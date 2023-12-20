@@ -1652,9 +1652,9 @@ class FLAlertLayer {
 	bool init(int);
 	bool init(FLAlertLayerProtocol*, char const*, std::string, char const*, char const*, float, bool, float, float);
 	TodoReturn show();
-	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, std::string, char const*, char const*);
-	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, std::string, char const*, char const*, float);
-	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, std::string, char const*, char const*, float, bool, float, float) = win 0x30cf0;
+	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*);
+	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float);
+	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x30cf0;
 	void onBtn1(cocos2d::CCObject* sender);
 	void onBtn2(cocos2d::CCObject* sender);
 	virtual void keyDown(cocos2d::enumKeyCodes);
