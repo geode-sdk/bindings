@@ -4832,15 +4832,3 @@ class ObjectDecoder {
 	void setDelegate(ObjectDecoderDelegate*);
 	static ObjectDecoder* sharedDecoder();
 }
-
-[[link(android)]]
-class CCContentManager {
-	virtual bool init();
-	~CCContentManager();
-	CCContentManager(CCContentManager const&);
-	CCContentManager();
-	cocos2d::CCDictionary* addDict(char const*, bool);
-	cocos2d::CCDictionary* addDictDS(char const*);
-	void clearCache();
-	static CCContentManager* sharedManager();
-}
