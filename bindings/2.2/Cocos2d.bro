@@ -238,17 +238,17 @@ class cocos2d::CCApplication {
 	virtual cocos2d::LanguageType getCurrentLanguage();
 	bool getForceTimer() const;
 	bool getFullscreen() const;
-	std::string const& getResourceRootPath();
+	gd::string const& getResourceRootPath();
 	bool getShutdownCalled() const;
 	bool getSleepMode() const;
 	bool getSmoothFix() const;
-	std::string const& getStartupScriptFilename();
+	gd::string const& getStartupScriptFilename();
 	virtual cocos2d::TargetPlatform getTargetPlatform();
 	int getTimeElapsed();
 	bool getVerticalSyncEnabled() const;
 	void leftMouseDown();
 	void leftMouseUp();
-	void logTimeElapsed(std::string);
+	void logTimeElapsed(gd::string);
 	void moveMouse(int, int);
 	virtual void openURL(char const*);
 	virtual void platformShutdown();
@@ -257,11 +257,11 @@ class cocos2d::CCApplication {
 	virtual void setAnimationInterval(double);
 	void setForceTimer(bool);
 	void setFullscreen(bool);
-	void setResourceRootPath(std::string const&);
+	void setResourceRootPath(gd::string const&);
 	void setShutdownCalled(bool);
 	void setSleepMode(bool);
 	void setSmoothFix(bool);
-	void setStartupScriptFilename(std::string const&);
+	void setStartupScriptFilename(gd::string const&);
 	virtual void setupGLView();
 	void setupVerticalSync();
 	static cocos2d::CCApplication* sharedApplication();
@@ -380,14 +380,14 @@ class cocos2d::CCBMFontConfiguration {
 	static cocos2d::CCBMFontConfiguration* create(char const*);
 	char const* description();
 	char const* getAtlasName();
-	std::set<unsigned int>* getCharacterSet() const;
+	gd::set<unsigned int>* getCharacterSet() const;
 	bool initWithFNTfile(char const*);
-	void parseCharacterDefinition(std::string, cocos2d::_BMFontDef*);
-	void parseCommonArguments(std::string);
-	std::set<unsigned int>* parseConfigFile(char const*);
-	void parseImageFileName(std::string, char const*);
-	void parseInfoArguments(std::string);
-	void parseKerningEntry(std::string);
+	void parseCharacterDefinition(gd::string, cocos2d::_BMFontDef*);
+	void parseCommonArguments(gd::string);
+	gd::set<unsigned int>* parseConfigFile(char const*);
+	void parseImageFileName(gd::string, char const*);
+	void parseInfoArguments(gd::string);
+	void parseKerningEntry(gd::string);
 	void purgeFontDefDictionary();
 	void purgeKerningDictionary();
 	void setAtlasName(char const*);
@@ -485,10 +485,10 @@ class cocos2d::CCCallFuncO {
 	CCCallFuncO(cocos2d::CCCallFuncO const&);
 	CCCallFuncO();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	static cocos2d::CCCallFuncO* create(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), cocos2d::CCObject*);
+	static cocos2d::CCCallFuncO* create(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCObject*);
 	virtual void execute();
 	cocos2d::CCObject* getObject();
-	virtual bool initWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), cocos2d::CCObject*);
+	virtual bool initWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCObject*);
 	void setObject(cocos2d::CCObject*);
 }
 
@@ -608,7 +608,7 @@ class cocos2d::CCComponentContainer {
 class cocos2d::CCConfiguration {
 	CCConfiguration();
 	CCConfiguration(cocos2d::CCConfiguration const&);
-	bool checkForGLExtension(std::string const&) const;
+	bool checkForGLExtension(gd::string const&) const;
 	void dumpInfo() const;
 	void gatherGPUInfo();
 	bool getBool(char const*, bool) const;
@@ -690,27 +690,27 @@ class cocos2d::CCDictionary {
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 	cocos2d::CCArray* allKeys();
 	cocos2d::CCArray* allKeysForObject(cocos2d::CCObject*);
-	char const* charForKey(std::string const&);
+	char const* charForKey(gd::string const&);
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	unsigned int count();
 	static cocos2d::CCDictionary* create();
 	static cocos2d::CCDictionary* createWithContentsOfFile(char const*);
 	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*);
 	static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
-	std::string getFirstKey();
-	cocos2d::CCObject* objectForKey(std::string const&);
+	gd::string getFirstKey();
+	cocos2d::CCObject* objectForKey(gd::string const&);
 	cocos2d::CCObject* objectForKey(int);
 	cocos2d::CCObject* randomObject();
 	void removeAllObjects();
 	void removeObjectForElememt(cocos2d::CCDictElement*);
-	void removeObjectForKey(std::string const&);
+	void removeObjectForKey(gd::string const&);
 	void removeObjectForKey(int);
 	void removeObjectsForKeys(cocos2d::CCArray*);
-	void setObject(cocos2d::CCObject*, std::string const&);
+	void setObject(cocos2d::CCObject*, gd::string const&);
 	void setObject(cocos2d::CCObject*, int);
-	void setObjectUnSafe(cocos2d::CCObject*, std::string const&);
+	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
 	void setObjectUnSafe(cocos2d::CCObject*, int);
-	cocos2d::CCString const* valueForKey(std::string const&);
+	cocos2d::CCString const* valueForKey(gd::string const&);
 	cocos2d::CCString const* valueForKey(int);
 	bool writeToFile(char const*);
 }
@@ -822,7 +822,7 @@ class cocos2d::CCDirector {
 	static cocos2d::CCDirector* sharedDirector();
 	void showFPSLabel();
 	void showStats();
-	void toggleShowFPS(bool, std::string, cocos2d::CCPoint);
+	void toggleShowFPS(bool, gd::string, cocos2d::CCPoint);
 	void updateContentScale(cocos2d::TextureQuality);
 	void updateScreenScale(cocos2d::CCSize);
 	void willSwitchToScene(cocos2d::CCScene*);
@@ -873,10 +873,10 @@ class cocos2d::CCEGLView {
 	void capture();
 	void centerWindow();
 	void checkErrorGL(char const*);
-	static cocos2d::CCEGLView* create(std::string const&);
-	static cocos2d::CCEGLView* createWithFullScreen(std::string const&);
-	static cocos2d::CCEGLView* createWithFullScreen(std::string const&, GLFWvidmode const&, GLFWmonitor*);
-	static cocos2d::CCEGLView* createWithRect(std::string const&, cocos2d::CCRect, float);
+	static cocos2d::CCEGLView* create(gd::string const&);
+	static cocos2d::CCEGLView* createWithFullScreen(gd::string const&);
+	static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, GLFWvidmode const&, GLFWmonitor*);
+	static cocos2d::CCEGLView* createWithRect(gd::string const&, cocos2d::CCRect, float);
 	void enableRetina(bool);
 	virtual void end();
 	bool getCursorLocked() const;
@@ -890,9 +890,9 @@ class cocos2d::CCEGLView {
 	cocos2d::CCSize getWindowedSize() const;
 	void iconify();
 	bool initGlew();
-	bool initWithFullScreen(std::string const&);
-	bool initWithFullscreen(std::string const&, GLFWvidmode const&, GLFWmonitor*);
-	bool initWithRect(std::string const&, cocos2d::CCRect, float);
+	bool initWithFullScreen(gd::string const&);
+	bool initWithFullscreen(gd::string const&, GLFWvidmode const&, GLFWmonitor*);
+	bool initWithRect(gd::string const&, cocos2d::CCRect, float);
 	virtual bool isOpenGLReady();
 	bool isRetinaEnabled() const;
 	void onGLFWCharCallback(GLFWwindow*, unsigned int);
@@ -920,7 +920,7 @@ class cocos2d::CCEGLView {
 	void setupWindow(cocos2d::CCRect);
 	static cocos2d::CCEGLView* sharedOpenGLView();
 	void showCursor(bool);
-	void showMessage(std::string);
+	void showMessage(gd::string);
 	virtual void swapBuffers();
 	void toggleFullScreen(bool);
 	void toggleGameplayActive(bool);
@@ -1258,22 +1258,22 @@ class cocos2d::CCFileUtils {
 	CCFileUtils(cocos2d::CCFileUtils const&);
 	virtual void addSearchPath(char const*);
 	virtual void addSearchResolutionsOrder(char const*);
-	virtual std::string addSuffix(std::string, std::string);
-	virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(std::string const&);
-	virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(std::string const&);
-	virtual std::string fullPathForFilename(char const*, bool);
+	virtual gd::string addSuffix(gd::string, gd::string);
+	virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const&);
+	virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const&);
+	virtual gd::string fullPathForFilename(char const*, bool);
 	virtual char const* fullPathFromRelativeFile(char const*, char const*);
-	std::string getAndroidPath() const;
+	gd::string getAndroidPath() const;
 	virtual unsigned char* getFileData(char const*, char const*, unsigned long*);
 	virtual unsigned char* getFileDataFromZip(char const*, char const*, unsigned long*);
-	virtual std::string getFullPathForDirectoryAndFilename(std::string const&, std::string const&);
-	virtual std::string getNewFilename(char const*);
-	virtual std::string getPathForFilename(std::string const&, std::string const&, std::string const&);
-	virtual std::vector<std::string> const& getSearchPaths();
-	virtual std::vector<std::string> const& getSearchResolutionsOrder();
-	virtual std::string getWritablePath2();
+	virtual gd::string getFullPathForDirectoryAndFilename(gd::string const&, gd::string const&);
+	virtual gd::string getNewFilename(char const*);
+	virtual gd::string getPathForFilename(gd::string const&, gd::string const&, gd::string const&);
+	virtual gd::vector<gd::string> const& getSearchPaths();
+	virtual gd::vector<gd::string> const& getSearchResolutionsOrder();
+	virtual gd::string getWritablePath2();
 	virtual bool init();
-	virtual bool isAbsolutePath(std::string const&);
+	virtual bool isAbsolutePath(gd::string const&);
 	virtual bool isPopupNotify();
 	virtual void loadFilenameLookupDictionaryFromFile(char const*);
 	virtual void purgeCachedEntries();
@@ -1281,14 +1281,14 @@ class cocos2d::CCFileUtils {
 	void removeAllPaths();
 	virtual void removeFullPath(char const*);
 	virtual void removeSearchPath(char const*);
-	void setAndroidPath(std::string);
+	void setAndroidPath(gd::string);
 	virtual void setFilenameLookupDictionary(cocos2d::CCDictionary*);
 	virtual void setPopupNotify(bool);
-	virtual void setSearchPaths(std::vector<std::string> const&);
-	virtual void setSearchResolutionsOrder(std::vector<std::string> const&);
+	virtual void setSearchPaths(gd::vector<gd::string> const&);
+	virtual void setSearchResolutionsOrder(gd::vector<gd::string> const&);
 	static cocos2d::CCFileUtils* sharedFileUtils();
 	virtual bool shouldUseHD();
-	virtual bool writeToFile(cocos2d::CCDictionary*, std::string const&);
+	virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&);
 }
 
 [[link(win, android)]]
@@ -1296,15 +1296,15 @@ class cocos2d::CCFileUtilsWin32 {
 	CCFileUtilsWin32();
 	CCFileUtilsWin32(cocos2d::CCFileUtilsWin32 const&);
 	virtual void addSearchPath(char const*);
-	virtual std::string fullPathForFilename(char const*);
-	virtual std::string getPathForFilename(std::string const&, std::string const&, std::string const&);
-	virtual std::string getWritablePath2();
-	virtual std::string getWritablePath();
+	virtual gd::string fullPathForFilename(char const*);
+	virtual gd::string getPathForFilename(gd::string const&, gd::string const&, gd::string const&);
+	virtual gd::string getWritablePath2();
+	virtual gd::string getWritablePath();
 	virtual bool init();
-	virtual bool isAbsolutePath(std::string const&);
-	virtual bool isFileExist(std::string const&);
+	virtual bool isAbsolutePath(gd::string const&);
+	virtual bool isFileExist(gd::string const&);
 	virtual void removeSearchPath(char const*);
-	std::string utf8Togbk(char const*);
+	gd::string utf8Togbk(char const*);
 }
 
 [[link(win, android)]]
@@ -2005,17 +2005,17 @@ class cocos2d::CCMenuItem {
 	CCMenuItem(cocos2d::CCMenuItem const&);
 	CCMenuItem();
 	virtual void activate();
-	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, SEL_MenuHandler);
 	static cocos2d::CCMenuItem* create();
 	int getScriptTapHandler();
-	bool initWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	bool initWithTarget(cocos2d::CCObject*, SEL_MenuHandler);
 	virtual bool isEnabled();
 	virtual bool isSelected();
 	cocos2d::CCRect rect();
 	virtual void registerScriptTapHandler(int);
 	virtual void selected();
 	virtual void setEnabled(bool);
-	void setTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	void setTarget(cocos2d::CCObject*, SEL_MenuHandler);
 	virtual void unregisterScriptTapHandler();
 	virtual void unselected();
 }
@@ -2025,8 +2025,8 @@ class cocos2d::CCMenuItemAtlasFont {
 	CCMenuItemAtlasFont(cocos2d::CCMenuItemAtlasFont const&);
 	CCMenuItemAtlasFont();
 	static cocos2d::CCMenuItemAtlasFont* create(char const*, char const*, int, int, char);
-	static cocos2d::CCMenuItemAtlasFont* create(char const*, char const*, int, int, char, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
-	bool initWithString(char const*, char const*, int, int, char, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	static cocos2d::CCMenuItemAtlasFont* create(char const*, char const*, int, int, char, cocos2d::CCObject*, SEL_MenuHandler);
+	bool initWithString(char const*, char const*, int, int, char, cocos2d::CCObject*, SEL_MenuHandler);
 }
 
 [[link(win, android)]]
@@ -2034,12 +2034,12 @@ class cocos2d::CCMenuItemFont {
 	CCMenuItemFont(cocos2d::CCMenuItemFont const&);
 	CCMenuItemFont();
 	static cocos2d::CCMenuItemFont* create(char const*);
-	static cocos2d::CCMenuItemFont* create(char const*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	static cocos2d::CCMenuItemFont* create(char const*, cocos2d::CCObject*, SEL_MenuHandler);
 	static char const* fontName();
 	char const* fontNameObj();
 	static unsigned int fontSize();
 	unsigned int fontSizeObj();
-	bool initWithString(char const*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	bool initWithString(char const*, cocos2d::CCObject*, SEL_MenuHandler);
 	void recreateLabel();
 	static void setFontName(char const*);
 	void setFontNameObj(char const*);
@@ -2052,12 +2052,12 @@ class cocos2d::CCMenuItemImage {
 	CCMenuItemImage(cocos2d::CCMenuItemImage const&);
 	CCMenuItemImage();
 	static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*);
-	static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*, cocos2d::CCObject*, SEL_MenuHandler);
 	static cocos2d::CCMenuItemImage* create(char const*, char const*);
-	static cocos2d::CCMenuItemImage* create(char const*, char const*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	static cocos2d::CCMenuItemImage* create(char const*, char const*, cocos2d::CCObject*, SEL_MenuHandler);
 	static cocos2d::CCMenuItemImage* create();
 	virtual bool init();
-	bool initWithNormalImage(char const*, char const*, char const*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	bool initWithNormalImage(char const*, char const*, char const*, cocos2d::CCObject*, SEL_MenuHandler);
 	void setDisabledSpriteFrame(cocos2d::CCSpriteFrame*);
 	void setNormalSpriteFrame(cocos2d::CCSpriteFrame*);
 	void setSelectedSpriteFrame(cocos2d::CCSpriteFrame*);
@@ -2069,10 +2069,10 @@ class cocos2d::CCMenuItemLabel {
 	CCMenuItemLabel();
 	virtual void activate();
 	static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*);
-	static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
 	virtual cocos2d::_ccColor3B const& getDisabledColor();
 	virtual cocos2d::CCNode* getLabel();
-	bool initWithLabel(cocos2d::CCNode*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	bool initWithLabel(cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
 	virtual void selected();
 	virtual void setDisabledColor(cocos2d::_ccColor3B const&);
 	virtual void setEnabled(bool);
@@ -2086,12 +2086,12 @@ class cocos2d::CCMenuItemSprite {
 	CCMenuItemSprite(cocos2d::CCMenuItemSprite const&);
 	CCMenuItemSprite();
 	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*);
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
+	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
 	virtual cocos2d::CCNode* getDisabledImage();
 	virtual cocos2d::CCNode* getNormalImage();
 	virtual cocos2d::CCNode* getSelectedImage();
-	bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*));
+	bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
 	virtual void selected();
 	virtual void setDisabledImage(cocos2d::CCNode*);
 	virtual void setEnabled(bool);
@@ -2109,12 +2109,12 @@ class cocos2d::CCMenuItemToggle {
 	void addSubItem(cocos2d::CCMenuItem*);
 	static cocos2d::CCMenuItemToggle* create(cocos2d::CCMenuItem*);
 	static cocos2d::CCMenuItemToggle* create();
-	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), cocos2d::CCArray*);
-	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), cocos2d::CCMenuItem*, ...);
+	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCArray*);
+	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCMenuItem*, ...);
 	virtual unsigned int getSelectedIndex();
 	virtual cocos2d::CCArray* getSubItems();
 	bool initWithItem(cocos2d::CCMenuItem*);
-	bool initWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), cocos2d::CCMenuItem*, char*);
+	bool initWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCMenuItem*, char*);
 	virtual void selected();
 	cocos2d::CCMenuItem* selectedItem();
 	virtual void setEnabled(bool);
@@ -2305,10 +2305,10 @@ class cocos2d::CCNode {
 	static void resetGlobalOrderOfArrival();
 	void resumeSchedulerAndActions();
 	cocos2d::CCAction* runAction(cocos2d::CCAction*);
-	void schedule(void (cocos2d::CCObject::*)(float));
-	void schedule(void (cocos2d::CCObject::*)(float), float);
-	void schedule(void (cocos2d::CCObject::*)(float), float, unsigned int, float);
-	void scheduleOnce(void (cocos2d::CCObject::*)(float), float);
+	void schedule(SEL_SCHEDULE);
+	void schedule(SEL_SCHEDULE, float);
+	void schedule(SEL_SCHEDULE, float, unsigned int, float);
+	void scheduleOnce(SEL_SCHEDULE, float);
 	void scheduleUpdate();
 	void scheduleUpdateWithPriority(int);
 	void scheduleUpdateWithPriorityLua(int, int);
@@ -2350,7 +2350,7 @@ class cocos2d::CCNode {
 	void transform();
 	void transformAncestors();
 	virtual void unregisterScriptHandler();
-	void unschedule(void (cocos2d::CCObject::*)(float));
+	void unschedule(SEL_SCHEDULE);
 	void unscheduleAllSelectors();
 	void unscheduleUpdate();
 	virtual void update(float);
@@ -2388,7 +2388,7 @@ class cocos2d::CCNodeRGBA {
 class cocos2d::CCNotificationCenter {
 	CCNotificationCenter(cocos2d::CCNotificationCenter const&);
 	CCNotificationCenter();
-	void addObserver(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), char const*, cocos2d::CCObject*);
+	void addObserver(cocos2d::CCObject*, SEL_MenuHandler, char const*, cocos2d::CCObject*);
 	int getObserverHandlerByName(char const*);
 	int getScriptHandler();
 	bool observerExisted(cocos2d::CCObject*, char const*);
@@ -2405,10 +2405,11 @@ class cocos2d::CCNotificationCenter {
 [[link(win, android)]]
 class cocos2d::CCNotificationObserver {
 	CCNotificationObserver(cocos2d::CCNotificationObserver const&);
-	CCNotificationObserver(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), char const*, cocos2d::CCObject*);
+	CCNotificationObserver(cocos2d::CCObject*, SEL_MenuHandler, char const*, cocos2d::CCObject*);
 	virtual int getHandler();
 	virtual char* getName();
 	virtual cocos2d::CCObject* getObject();
+	virtual SEL_SCHEDULE getSelector();
 	virtual cocos2d::CCObject* getTarget();
 	void performSelector(cocos2d::CCObject*);
 	virtual void setHandler(int);
@@ -2866,14 +2867,14 @@ class cocos2d::CCPointArray {
 	unsigned int count();
 	static cocos2d::CCPointArray* create(unsigned int);
 	cocos2d::CCPoint getControlPointAtIndex(unsigned int);
-	std::vector<cocos2d::CCPoint*> const* getControlPoints();
+	gd::vector<cocos2d::CCPoint*> const* getControlPoints();
 	bool initWithCapacity(unsigned int);
 	void insertControlPoint(cocos2d::CCPoint&, unsigned int);
 	void removeControlPointAtIndex(unsigned int);
 	void replaceControlPoint(cocos2d::CCPoint&, unsigned int);
 	cocos2d::CCPointArray* reverse();
 	void reverseInline();
-	void setControlPoints(std::vector<cocos2d::CCPoint*>*);
+	void setControlPoints(gd::vector<cocos2d::CCPoint*>*);
 }
 
 [[link(win, android)]]
@@ -2894,7 +2895,7 @@ class cocos2d::CCPrettyPrinter {
 	CCPrettyPrinter(cocos2d::CCPrettyPrinter const&);
 	CCPrettyPrinter(int);
 	virtual void clear();
-	virtual std::string getResult();
+	virtual gd::string getResult();
 	void setIndentLevel(int);
 	virtual void visit(cocos2d::CCArray const*);
 	virtual void visit(cocos2d::CCBool const*);
@@ -3223,15 +3224,15 @@ class cocos2d::CCScheduler {
 	void resumeTarget(cocos2d::CCObject*);
 	void resumeTargets(cocos2d::CCSet*);
 	unsigned int scheduleScriptFunc(unsigned int, float, bool);
-	void scheduleSelector(void (cocos2d::CCObject::*)(float), cocos2d::CCObject*, float, unsigned int, float, bool);
-	void scheduleSelector(void (cocos2d::CCObject::*)(float), cocos2d::CCObject*, float, bool);
+	void scheduleSelector(SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool);
+	void scheduleSelector(SEL_SCHEDULE, cocos2d::CCObject*, float, bool);
 	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool);
 	void setTimeScale(float);
 	void unscheduleAll();
 	void unscheduleAllForTarget(cocos2d::CCObject*);
 	void unscheduleAllWithMinPriority(int);
 	void unscheduleScriptEntry(unsigned int);
-	void unscheduleSelector(void (cocos2d::CCObject::*)(float), cocos2d::CCObject*);
+	void unscheduleSelector(SEL_SCHEDULE, cocos2d::CCObject*);
 	void unscheduleUpdateForTarget(cocos2d::CCObject const*);
 	virtual void update(float);
 }
@@ -3615,7 +3616,7 @@ class cocos2d::CCSpriteFrame {
 	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
 	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
 	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
-	std::string getFrameName() const;
+	gd::string getFrameName() const;
 	cocos2d::CCPoint const& getOffset();
 	cocos2d::CCPoint const& getOffsetInPixels();
 	cocos2d::CCSize const& getOriginalSize();
@@ -3628,7 +3629,7 @@ class cocos2d::CCSpriteFrame {
 	bool initWithTextureFilename(char const*, cocos2d::CCRect const&);
 	bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
 	bool isRotated();
-	void setFrameName(std::string);
+	void setFrameName(gd::string);
 	void setOffset(cocos2d::CCPoint const&);
 	void setOffsetInPixels(cocos2d::CCPoint const&);
 	void setOriginalSize(cocos2d::CCSize const&);
@@ -3689,14 +3690,14 @@ class cocos2d::CCStopGrid {
 [[link(win, android)]]
 class cocos2d::CCString {
 	CCString(cocos2d::CCString const&);
-	CCString(std::string const&);
+	CCString(gd::string const&);
 	CCString(char const*);
 	CCString();
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 	bool boolValue() const;
 	int compare(char const*) const;
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	static cocos2d::CCString* create(std::string const&);
+	static cocos2d::CCString* create(gd::string const&);
 	static cocos2d::CCString* createWithContentsOfFile(char const*);
 	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long);
 	static cocos2d::CCString* createWithFormat(char const*, ...);
@@ -4025,7 +4026,7 @@ class cocos2d::CCTextureCache {
 	CCTextureCache();
 	cocos2d::CCTexture2D* addETCImage(char const*);
 	cocos2d::CCTexture2D* addImage(char const*, bool);
-	void addImageAsync(char const*, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), int, cocos2d::CCTexture2DPixelFormat);
+	void addImageAsync(char const*, cocos2d::CCObject*, SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat);
 	void addImageAsyncCallBack(float);
 	cocos2d::CCTexture2D* addPVRImage(char const*);
 	cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*);
@@ -4115,13 +4116,14 @@ class cocos2d::CCTimer {
 	CCTimer();
 	float getInterval() const;
 	int getScriptHandler();
+	SEL_SCHEDULE getSelector() const;
 	bool initWithScriptHandler(int, float);
-	bool initWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(float));
-	bool initWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(float), float, unsigned int, float);
+	bool initWithTarget(cocos2d::CCObject*, SEL_SCHEDULE);
+	bool initWithTarget(cocos2d::CCObject*, SEL_SCHEDULE, float, unsigned int, float);
 	void setInterval(float);
 	static cocos2d::CCTimer* timerWithScriptHandler(int, float);
-	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(float));
-	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(float), float);
+	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, SEL_SCHEDULE);
+	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, SEL_SCHEDULE, float);
 	virtual void update(float);
 }
 
@@ -4622,9 +4624,9 @@ class cocos2d::CCUserDefault {
 	float getFloatForKey(char const*, float);
 	int getIntegerForKey(char const*);
 	int getIntegerForKey(char const*, int);
-	std::string getStringForKey(char const*);
-	std::string getStringForKey(char const*, std::string const&);
-	static std::string const& getXMLFilePath();
+	gd::string getStringForKey(char const*);
+	gd::string getStringForKey(char const*, gd::string const&);
+	static gd::string const& getXMLFilePath();
 	static void initXMLFilePath();
 	static bool isXMLFileExist();
 	static void purgeSharedUserDefault();
@@ -4632,7 +4634,7 @@ class cocos2d::CCUserDefault {
 	void setDoubleForKey(char const*, double);
 	void setFloatForKey(char const*, float);
 	void setIntegerForKey(char const*, int);
-	void setStringForKey(char const*, std::string const&);
+	void setStringForKey(char const*, gd::string const&);
 	static cocos2d::CCUserDefault* sharedUserDefault();
 }
 
@@ -4686,13 +4688,13 @@ class cocos2d::CCZone {
 [[link(win, android)]]
 class DS_Dictionary {
 	DS_Dictionary();
-	void addBoolValuesToMapForKey(std::map<std::string, bool>&, char const*, bool);
-	void addBoolValuesToMapForKeySpecial(std::map<std::string, bool>&, char const*, bool);
+	void addBoolValuesToMapForKey(std::map<gd::string, bool, std::less<gd::string >, std::allocator<std::pair<gd::string const , bool> > >&, char const*, bool);
+	void addBoolValuesToMapForKeySpecial(std::map<gd::string, bool, std::less<gd::string >, std::allocator<std::pair<gd::string const , bool> > >&, char const*, bool);
 	void checkCompatibility();
-	std::string cleanStringWhiteSpace(std::string const&);
+	gd::string cleanStringWhiteSpace(gd::string const&);
 	static void copyFile(char const*, char const*);
 	cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
-	std::vector<std::string> getAllKeys();
+	gd::vector<gd::string> getAllKeys();
 	cocos2d::CCArray* getArrayForKey(char const*, bool);
 	bool getBoolForKey(char const*);
 	cocos2d::CCDictionary* getDictForKey(char const*, bool);
@@ -4700,55 +4702,55 @@ class DS_Dictionary {
 	unsigned int getIndexOfKey(char const*);
 	unsigned int getIndexOfKeyWithClosestAlphaNumericalMatch(char const*);
 	int getIntegerForKey(char const*);
-	std::string getKey(unsigned int);
+	gd::string getKey(unsigned int);
 	unsigned int getNumKeys();
 	cocos2d::CCObject* getObjectForKey(char const*);
-	std::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
+	gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
 	cocos2d::CCRect getRectForKey(char const*);
-	std::vector<std::string> getStringArrayForKey(char const*);
-	std::string getStringForKey(char const*);
-	std::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
+	gd::vector<gd::string> getStringArrayForKey(char const*);
+	gd::string getStringForKey(char const*);
+	gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
 	cocos2d::CCPoint getVec2ForKey(char const*);
 	bool loadRootSubDictFromCompressedFile(char const*);
 	bool loadRootSubDictFromFile(char const*);
-	bool loadRootSubDictFromString(std::string const&);
-	bool rectFromString(std::string const&, cocos2d::CCRect&);
+	bool loadRootSubDictFromString(gd::string const&);
+	bool rectFromString(gd::string const&, cocos2d::CCRect&);
 	void removeAllKeys();
 	void removeKey(unsigned int);
 	void removeKey(char const*);
 	bool saveRootSubDictToCompressedFile(char const*);
 	bool saveRootSubDictToFile(char const*);
-	std::string saveRootSubDictToString();
+	gd::string saveRootSubDictToString();
 	void setArrayForKey(char const*, cocos2d::CCArray*);
 	void setBoolForKey(char const*, bool, bool);
 	void setBoolForKey(char const*, bool);
-	void setBoolMapForKey(char const*, std::map<std::string, bool>&);
+	void setBoolMapForKey(char const*, std::map<gd::string, bool, std::less<gd::string >, std::allocator<std::pair<gd::string const , bool> > >&);
 	void setDictForKey(char const*, cocos2d::CCDictionary*);
 	void setFloatForKey(char const*, float);
 	void setFloatForKey(char const*, float, bool);
 	void setIntegerForKey(char const*, int);
 	void setIntegerForKey(char const*, int, bool);
 	void setObjectForKey(char const*, cocos2d::CCObject*);
-	void setRectArrayForKey(char const*, std::vector<cocos2d::CCRect> const&);
-	void setRectArrayForKey(char const*, std::vector<cocos2d::CCRect> const&, bool);
+	void setRectArrayForKey(char const*, gd::vector<cocos2d::CCRect> const&);
+	void setRectArrayForKey(char const*, gd::vector<cocos2d::CCRect> const&, bool);
 	void setRectForKey(char const*, cocos2d::CCRect const&);
 	void setRectForKey(char const*, cocos2d::CCRect const&, bool);
-	void setStringArrayForKey(char const*, std::vector<std::string> const&);
-	void setStringArrayForKey(char const*, std::vector<std::string> const&, bool);
-	void setStringForKey(char const*, std::string const&);
-	void setStringForKey(char const*, std::string const&, bool);
+	void setStringArrayForKey(char const*, gd::vector<gd::string> const&);
+	void setStringArrayForKey(char const*, gd::vector<gd::string> const&, bool);
+	void setStringForKey(char const*, gd::string const&);
+	void setStringForKey(char const*, gd::string const&, bool);
 	void setSubDictForKey(char const*);
 	void setSubDictForKey(char const*, bool, bool);
-	void setVec2ArrayForKey(char const*, std::vector<cocos2d::CCPoint> const&);
-	void setVec2ArrayForKey(char const*, std::vector<cocos2d::CCPoint> const&, bool);
+	void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&);
+	void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&, bool);
 	void setVec2ForKey(char const*, cocos2d::CCPoint const&);
 	void setVec2ForKey(char const*, cocos2d::CCPoint const&, bool);
-	void split(std::string const&, char const*, std::vector<std::string>&);
-	bool splitWithForm(std::string const&, std::vector<std::string>&);
+	void split(gd::string const&, char const*, gd::vector<gd::string>&);
+	bool splitWithForm(gd::string const&, gd::vector<gd::string>&);
 	void stepBackToRootSubDict();
 	bool stepIntoSubDictWithKey(char const*);
 	void stepOutOfSubDict();
-	bool vec2FromString(std::string const&, cocos2d::CCPoint&);
+	bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
 }
 
 [[link(win, android)]]
@@ -4778,15 +4780,15 @@ class pugi::xml_document {
 	void save(pugi::xml_writer&, char const*, unsigned int, pugi::xml_encoding) const;
 	bool save_file(char const*, char const*, unsigned int, pugi::xml_encoding) const;
 	bool save_file(wchar_t const*, char const*, unsigned int, pugi::xml_encoding) const;
-	std::string save_string(char const*, unsigned int, pugi::xml_encoding) const;
+	gd::string save_string(char const*, unsigned int, pugi::xml_encoding) const;
 }
 
 [[link(win, android)]]
 class cocos2d::ZipUtils {
-	static std::string base64DecodeEnc(std::string const&, std::string);
-	static std::string base64EncodeEnc(std::string const&, std::string);
-	static std::string base64URLDecode(std::string const&);
-	static std::string base64URLEncode(std::string const&);
+	static gd::string base64DecodeEnc(gd::string const&, gd::string);
+	static gd::string base64EncodeEnc(gd::string const&, gd::string);
+	static gd::string base64URLDecode(gd::string const&);
+	static gd::string base64URLEncode(gd::string const&);
 	static unsigned int ccChecksumPvr(unsigned int const*, int);
 	static void ccDecodeEncodedPvr(unsigned int*, int);
 	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**);
@@ -4797,28 +4799,18 @@ class cocos2d::ZipUtils {
 	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int);
 	static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
 	static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-	static std::string compressString(std::string const&, bool, int);
-	static std::string decompressString2(unsigned char*, bool, int, int);
-	static std::string decompressString(std::string const&, bool, int);
-	static std::string encryptDecrypt(std::string const&, int);
-	static std::string encryptDecryptWKey(std::string const&, std::string);
-	static unsigned char hexToChar(std::string const&);
-	static std::string urlDecode(std::string const&);
+	static gd::string compressString(gd::string const&, bool, int);
+	static gd::string decompressString2(unsigned char*, bool, int, int);
+	static gd::string decompressString(gd::string const&, bool, int);
+	static gd::string encryptDecrypt(gd::string const&, int);
+	static gd::string encryptDecryptWKey(gd::string const&, gd::string);
+	static unsigned char hexToChar(gd::string const&);
+	static gd::string urlDecode(gd::string const&);
 }
 
 [[link(win, android)]]
 class cocos2d::CCDevice {
 	static int getDPI();
-}
-
-[[link(win, android)]]
-class cocos2d::CCObject::*__thiscall cocos2d::CCNotificationObserver {
-	virtual void (getSelector())(cocos2d::CCObject*);
-}
-
-[[link(win, android)]]
-class cocos2d::CCObject::*__thiscall cocos2d::CCTimer {
-	void (getSelector() const)(float);
 }
 
 [[link(win, android)]]
