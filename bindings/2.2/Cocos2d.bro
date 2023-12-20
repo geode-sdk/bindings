@@ -1,6 +1,13 @@
 // clang-format off
 
 [[link(win, android)]]
+class fmt::ArgList {
+	ArgList(fmt::internal::Arg const*, unsigned int);
+	ArgList();
+	unsigned int size() const;
+}
+
+[[link(win, android)]]
 class cocos2d::CCAccelAmplitude {
 	CCAccelAmplitude(cocos2d::CCAccelAmplitude const&);
 	CCAccelAmplitude();
@@ -299,7 +306,7 @@ class cocos2d::CCArray {
 	bool containsObject(cocos2d::CCObject*) const;
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	unsigned int count() const;
-	// static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
+	static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
 	static cocos2d::CCArray* create();
 	static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCArray* createWithCapacity(unsigned int);
@@ -317,7 +324,7 @@ class cocos2d::CCArray {
 	bool initWithArray(cocos2d::CCArray*);
 	bool initWithCapacity(unsigned int);
 	bool initWithObject(cocos2d::CCObject*);
-	// bool initWithObjects(cocos2d::CCObject*, ...);
+	bool initWithObjects(cocos2d::CCObject*, ...);
 	void insertObject(cocos2d::CCObject*, unsigned int);
 	bool isEqualToArray(cocos2d::CCArray*);
 	cocos2d::CCObject* lastObject();
@@ -450,7 +457,7 @@ class cocos2d::CCCallFunc {
 	CCCallFunc();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCCallFunc* create(int);
-	static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc);
+	static cocos2d::CCCallFunc* create(cocos2d::CCObject*, void (cocos2d::CCObject::*)());
 	virtual void execute();
 	int getScriptHandler();
 	cocos2d::CCObject* getTargetCallback();
@@ -465,9 +472,9 @@ class cocos2d::CCCallFuncN {
 	CCCallFuncN();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCCallFuncN* create(int);
-	static cocos2d::CCCallFuncN* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncN);
+	static cocos2d::CCCallFuncN* create(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCNode*));
 	virtual void execute();
-	virtual bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncN);
+	virtual bool initWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCNode*));
 }
 
 [[link(win, android)]]
@@ -475,9 +482,9 @@ class cocos2d::CCCallFuncND {
 	CCCallFuncND(cocos2d::CCCallFuncND const&);
 	CCCallFuncND();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	static cocos2d::CCCallFuncND* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*);
+	static cocos2d::CCCallFuncND* create(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCNode*, void*), void*);
 	virtual void execute();
-	virtual bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*);
+	virtual bool initWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCNode*, void*), void*);
 }
 
 [[link(win, android)]]
@@ -485,10 +492,10 @@ class cocos2d::CCCallFuncO {
 	CCCallFuncO(cocos2d::CCCallFuncO const&);
 	CCCallFuncO();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	static cocos2d::CCCallFuncO* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncO, cocos2d::CCObject*);
+	static cocos2d::CCCallFuncO* create(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCObject*);
 	virtual void execute();
 	cocos2d::CCObject* getObject();
-	virtual bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncO, cocos2d::CCObject*);
+	virtual bool initWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCObject*);
 	void setObject(cocos2d::CCObject*);
 }
 
@@ -628,6 +635,17 @@ class cocos2d::CCConfiguration {
 	bool supportsNPOT() const;
 	bool supportsPVRTC() const;
 	bool supportsShareableVAO() const;
+}
+
+[[link(win, android)]]
+class CCContentManager {
+	CCContentManager(CCContentManager const&);
+	CCContentManager();
+	cocos2d::CCDictionary* addDict(char const*, bool);
+	cocos2d::CCDictionary* addDictDS(char const*);
+	void clearCache();
+	bool init();
+	static CCContentManager* sharedManager();
 }
 
 [[link(win, android)]]
@@ -1400,7 +1418,7 @@ class cocos2d::CCGLProgram {
 	bool initWithVertexShaderByteArray(char const*, char const*);
 	bool initWithVertexShaderFilename(char const*, char const*);
 	bool link();
-	// char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
+	char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
 	char const* programLog();
 	void reset();
 	void setUniformLocationWith1f(int, float);
@@ -1899,7 +1917,7 @@ class cocos2d::CCLayerMultiplex {
 	CCLayerMultiplex(cocos2d::CCLayerMultiplex const&);
 	CCLayerMultiplex();
 	void addLayer(cocos2d::CCLayer*);
-	// static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...);
+	static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...);
 	static cocos2d::CCLayerMultiplex* create();
 	static cocos2d::CCLayerMultiplex* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCLayerMultiplex* createWithLayer(cocos2d::CCLayer*);
@@ -1969,10 +1987,10 @@ class cocos2d::CCMenu {
 	virtual void addChild(cocos2d::CCNode*, int, int);
 	void alignItemsHorizontally();
 	void alignItemsHorizontallyWithPadding(float);
-	// void alignItemsInColumns(unsigned int, ...);
+	void alignItemsInColumns(unsigned int, ...);
 	void alignItemsInColumns(unsigned int, char*);
 	void alignItemsInColumnsWithArray(cocos2d::CCArray*);
-	// void alignItemsInRows(unsigned int, ...);
+	void alignItemsInRows(unsigned int, ...);
 	void alignItemsInRows(unsigned int, char*);
 	void alignItemsInRowsWithArray(cocos2d::CCArray*);
 	void alignItemsVertically();
@@ -1981,7 +1999,7 @@ class cocos2d::CCMenu {
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
+	static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
 	static cocos2d::CCMenu* create();
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
@@ -2005,17 +2023,17 @@ class cocos2d::CCMenuItem {
 	CCMenuItem(cocos2d::CCMenuItem const&);
 	CCMenuItem();
 	virtual void activate();
-	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, SEL_MenuHandler);
 	static cocos2d::CCMenuItem* create();
 	int getScriptTapHandler();
-	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	bool initWithTarget(cocos2d::CCObject*, SEL_MenuHandler);
 	virtual bool isEnabled();
 	virtual bool isSelected();
 	cocos2d::CCRect rect();
 	virtual void registerScriptTapHandler(int);
 	virtual void selected();
 	virtual void setEnabled(bool);
-	void setTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	void setTarget(cocos2d::CCObject*, SEL_MenuHandler);
 	virtual void unregisterScriptTapHandler();
 	virtual void unselected();
 }
@@ -2025,8 +2043,8 @@ class cocos2d::CCMenuItemAtlasFont {
 	CCMenuItemAtlasFont(cocos2d::CCMenuItemAtlasFont const&);
 	CCMenuItemAtlasFont();
 	static cocos2d::CCMenuItemAtlasFont* create(char const*, char const*, int, int, char);
-	static cocos2d::CCMenuItemAtlasFont* create(char const*, char const*, int, int, char, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-	bool initWithString(char const*, char const*, int, int, char, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItemAtlasFont* create(char const*, char const*, int, int, char, cocos2d::CCObject*, SEL_MenuHandler);
+	bool initWithString(char const*, char const*, int, int, char, cocos2d::CCObject*, SEL_MenuHandler);
 }
 
 [[link(win, android)]]
@@ -2034,12 +2052,12 @@ class cocos2d::CCMenuItemFont {
 	CCMenuItemFont(cocos2d::CCMenuItemFont const&);
 	CCMenuItemFont();
 	static cocos2d::CCMenuItemFont* create(char const*);
-	static cocos2d::CCMenuItemFont* create(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItemFont* create(char const*, cocos2d::CCObject*, SEL_MenuHandler);
 	static char const* fontName();
 	char const* fontNameObj();
 	static unsigned int fontSize();
 	unsigned int fontSizeObj();
-	bool initWithString(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	bool initWithString(char const*, cocos2d::CCObject*, SEL_MenuHandler);
 	void recreateLabel();
 	static void setFontName(char const*);
 	void setFontNameObj(char const*);
@@ -2052,12 +2070,12 @@ class cocos2d::CCMenuItemImage {
 	CCMenuItemImage(cocos2d::CCMenuItemImage const&);
 	CCMenuItemImage();
 	static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*);
-	static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*, cocos2d::CCObject*, SEL_MenuHandler);
 	static cocos2d::CCMenuItemImage* create(char const*, char const*);
-	static cocos2d::CCMenuItemImage* create(char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItemImage* create(char const*, char const*, cocos2d::CCObject*, SEL_MenuHandler);
 	static cocos2d::CCMenuItemImage* create();
 	virtual bool init();
-	bool initWithNormalImage(char const*, char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	bool initWithNormalImage(char const*, char const*, char const*, cocos2d::CCObject*, SEL_MenuHandler);
 	void setDisabledSpriteFrame(cocos2d::CCSpriteFrame*);
 	void setNormalSpriteFrame(cocos2d::CCSpriteFrame*);
 	void setSelectedSpriteFrame(cocos2d::CCSpriteFrame*);
@@ -2069,10 +2087,10 @@ class cocos2d::CCMenuItemLabel {
 	CCMenuItemLabel();
 	virtual void activate();
 	static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*);
-	static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
 	virtual cocos2d::_ccColor3B const& getDisabledColor();
 	virtual cocos2d::CCNode* getLabel();
-	bool initWithLabel(cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	bool initWithLabel(cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
 	virtual void selected();
 	virtual void setDisabledColor(cocos2d::_ccColor3B const&);
 	virtual void setEnabled(bool);
@@ -2086,12 +2104,12 @@ class cocos2d::CCMenuItemSprite {
 	CCMenuItemSprite(cocos2d::CCMenuItemSprite const&);
 	CCMenuItemSprite();
 	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*);
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
+	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
 	virtual cocos2d::CCNode* getDisabledImage();
 	virtual cocos2d::CCNode* getNormalImage();
 	virtual cocos2d::CCNode* getSelectedImage();
-	bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
 	virtual void selected();
 	virtual void setDisabledImage(cocos2d::CCNode*);
 	virtual void setEnabled(bool);
@@ -2109,12 +2127,12 @@ class cocos2d::CCMenuItemToggle {
 	void addSubItem(cocos2d::CCMenuItem*);
 	static cocos2d::CCMenuItemToggle* create(cocos2d::CCMenuItem*);
 	static cocos2d::CCMenuItemToggle* create();
-	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCArray*);
-	// static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCMenuItem*, ...);
+	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCArray*);
+	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCMenuItem*, ...);
 	virtual unsigned int getSelectedIndex();
 	virtual cocos2d::CCArray* getSubItems();
 	bool initWithItem(cocos2d::CCMenuItem*);
-	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCMenuItem*, char*);
+	bool initWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCMenuItem*, char*);
 	virtual void selected();
 	cocos2d::CCMenuItem* selectedItem();
 	virtual void setEnabled(bool);
@@ -2305,10 +2323,10 @@ class cocos2d::CCNode {
 	static void resetGlobalOrderOfArrival();
 	void resumeSchedulerAndActions();
 	cocos2d::CCAction* runAction(cocos2d::CCAction*);
-	void schedule(cocos2d::SEL_SCHEDULE);
-	void schedule(cocos2d::SEL_SCHEDULE, float);
-	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float);
-	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
+	void schedule(SEL_SCHEDULE);
+	void schedule(SEL_SCHEDULE, float);
+	void schedule(SEL_SCHEDULE, float, unsigned int, float);
+	void scheduleOnce(SEL_SCHEDULE, float);
 	void scheduleUpdate();
 	void scheduleUpdateWithPriority(int);
 	void scheduleUpdateWithPriorityLua(int, int);
@@ -2350,7 +2368,7 @@ class cocos2d::CCNode {
 	void transform();
 	void transformAncestors();
 	virtual void unregisterScriptHandler();
-	void unschedule(cocos2d::SEL_SCHEDULE);
+	void unschedule(SEL_SCHEDULE);
 	void unscheduleAllSelectors();
 	void unscheduleUpdate();
 	virtual void update(float);
@@ -2388,7 +2406,7 @@ class cocos2d::CCNodeRGBA {
 class cocos2d::CCNotificationCenter {
 	CCNotificationCenter(cocos2d::CCNotificationCenter const&);
 	CCNotificationCenter();
-	void addObserver(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, char const*, cocos2d::CCObject*);
+	void addObserver(cocos2d::CCObject*, SEL_MenuHandler, char const*, cocos2d::CCObject*);
 	int getObserverHandlerByName(char const*);
 	int getScriptHandler();
 	bool observerExisted(cocos2d::CCObject*, char const*);
@@ -2405,7 +2423,7 @@ class cocos2d::CCNotificationCenter {
 [[link(win, android)]]
 class cocos2d::CCNotificationObserver {
 	CCNotificationObserver(cocos2d::CCNotificationObserver const&);
-	CCNotificationObserver(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, char const*, cocos2d::CCObject*);
+	CCNotificationObserver(cocos2d::CCObject*, SEL_MenuHandler, char const*, cocos2d::CCObject*);
 	virtual int getHandler();
 	virtual char* getName();
 	virtual cocos2d::CCObject* getObject();
@@ -3224,15 +3242,15 @@ class cocos2d::CCScheduler {
 	void resumeTarget(cocos2d::CCObject*);
 	void resumeTargets(cocos2d::CCSet*);
 	unsigned int scheduleScriptFunc(unsigned int, float, bool);
-	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool);
-	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool);
+	void scheduleSelector(SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool);
+	void scheduleSelector(SEL_SCHEDULE, cocos2d::CCObject*, float, bool);
 	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool);
 	void setTimeScale(float);
 	void unscheduleAll();
 	void unscheduleAllForTarget(cocos2d::CCObject*);
 	void unscheduleAllWithMinPriority(int);
 	void unscheduleScriptEntry(unsigned int);
-	void unscheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*);
+	void unscheduleSelector(SEL_SCHEDULE, cocos2d::CCObject*);
 	void unscheduleUpdateForTarget(cocos2d::CCObject const*);
 	virtual void update(float);
 }
@@ -3263,7 +3281,7 @@ class cocos2d::CCSequence {
 	CCSequence();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCSequence* create(cocos2d::CCArray*);
-	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
+	static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
 	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 	static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
 	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
@@ -3399,7 +3417,7 @@ class cocos2d::CCSpawn {
 	CCSpawn();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCSpawn* create(cocos2d::CCArray*);
-	// static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...);
+	static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...);
 	static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 	static cocos2d::CCSpawn* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
 	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
@@ -3700,11 +3718,11 @@ class cocos2d::CCString {
 	static cocos2d::CCString* create(gd::string const&);
 	static cocos2d::CCString* createWithContentsOfFile(char const*);
 	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long);
-	// static cocos2d::CCString* createWithFormat(char const*, ...);
+	static cocos2d::CCString* createWithFormat(char const*, ...);
 	double doubleValue() const;
 	float floatValue() const;
 	char const* getCString() const;
-	// bool initWithFormat(char const*, ...);
+	bool initWithFormat(char const*, ...);
 	bool initWithFormatAndValist(char const*, char*);
 	int intValue() const;
 	virtual bool isEqual(cocos2d::CCObject const*);
@@ -4026,7 +4044,7 @@ class cocos2d::CCTextureCache {
 	CCTextureCache();
 	cocos2d::CCTexture2D* addETCImage(char const*);
 	cocos2d::CCTexture2D* addImage(char const*, bool);
-	void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat);
+	void addImageAsync(char const*, cocos2d::CCObject*, SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat);
 	void addImageAsyncCallBack(float);
 	cocos2d::CCTexture2D* addPVRImage(char const*);
 	cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*);
@@ -4118,12 +4136,12 @@ class cocos2d::CCTimer {
 	int getScriptHandler();
 	SEL_SCHEDULE getSelector() const;
 	bool initWithScriptHandler(int, float);
-	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_SCHEDULE);
-	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_SCHEDULE, float, unsigned int, float);
+	bool initWithTarget(cocos2d::CCObject*, SEL_SCHEDULE);
+	bool initWithTarget(cocos2d::CCObject*, SEL_SCHEDULE, float, unsigned int, float);
 	void setInterval(float);
 	static cocos2d::CCTimer* timerWithScriptHandler(int, float);
-	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, cocos2d::SEL_SCHEDULE);
-	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, cocos2d::SEL_SCHEDULE, float);
+	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, SEL_SCHEDULE);
+	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, SEL_SCHEDULE, float);
 	virtual void update(float);
 }
 
@@ -4760,6 +4778,388 @@ class cocos2d::EGLTouchDelegate {
 }
 
 [[link(win, android)]]
+class fmt::FormatError {
+	FormatError(fmt::FormatError const&);
+	FormatError(gd::string const&);
+}
+
+[[link(win, android)]]
+class fmt::FormatInt {
+	FormatInt(int);
+	FormatInt(unsigned int);
+	FormatInt(long);
+	FormatInt(unsigned long);
+	FormatInt(__int64);
+	FormatInt(unsigned __int64);
+	char* FormatDecimal(unsigned __int64);
+	void FormatSigned(__int64);
+	char const* c_str() const;
+	char const* data() const;
+	unsigned int size() const;
+	gd::string str() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::MemPool {
+	MemPool(tinyxml2::MemPool const&);
+	MemPool();
+}
+
+[[link(win, android)]]
+class ObjectDecoder {
+	ObjectDecoder(ObjectDecoder const&);
+	ObjectDecoder();
+	cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
+	ObjectDecoderDelegate* getDelegate() const;
+	virtual bool init();
+	void setDelegate(ObjectDecoderDelegate*);
+	static ObjectDecoder* sharedDecoder();
+}
+
+[[link(win, android)]]
+class fmt::internal::RuntimeError {
+	RuntimeError();
+	RuntimeError(fmt::internal::RuntimeError const&);
+}
+
+[[link(win, android)]]
+class tinyxml2::StrPair {
+	StrPair();
+	void CollapseWhitespace();
+	bool Empty() const;
+	char const* GetStr();
+	char* ParseName(char*);
+	char* ParseText(char*, char const*, int);
+	void Reset();
+	void Set(char*, char*, int);
+	void SetInternedStr(char const*);
+	void SetStr(char const*, int);
+}
+
+[[link(win, android)]]
+class fmt::SystemError {
+	SystemError();
+	SystemError(fmt::SystemError const&);
+	SystemError(int, fmt::BasicStringRef<char>);
+	int error_code() const;
+	void init(int, fmt::BasicStringRef<char>, fmt::ArgList const&);
+}
+
+[[link(win, android)]]
+class fmt::internal::UTF16ToUTF8 {
+	UTF16ToUTF8(fmt::BasicStringRef<wchar_t>);
+	UTF16ToUTF8();
+	int Convert(fmt::BasicStringRef<wchar_t>);
+	char const* c_str() const;
+	unsigned int size() const;
+	gd::string str() const;
+}
+
+[[link(win, android)]]
+class fmt::internal::UTF8ToUTF16 {
+	UTF8ToUTF16(fmt::BasicStringRef<char>);
+	wchar_t const* c_str() const;
+	unsigned int size() const;
+	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > str() const;
+}
+
+[[link(win, android)]]
+class fmt::WindowsError {
+	WindowsError(fmt::WindowsError const&);
+	WindowsError(int, fmt::BasicStringRef<char>);
+	void init(int, fmt::BasicStringRef<char>, fmt::ArgList const&);
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLAttribute {
+	XMLAttribute();
+	bool BoolValue() const;
+	double DoubleValue() const;
+	float FloatValue() const;
+	int IntValue() const;
+	char const* Name() const;
+	tinyxml2::XMLAttribute const* Next() const;
+	char* ParseDeep(char*, bool);
+	tinyxml2::XMLError QueryBoolValue(bool*) const;
+	tinyxml2::XMLError QueryDoubleValue(double*) const;
+	tinyxml2::XMLError QueryFloatValue(float*) const;
+	tinyxml2::XMLError QueryIntValue(int*) const;
+	tinyxml2::XMLError QueryUnsignedValue(unsigned int*) const;
+	void SetAttribute(int);
+	void SetAttribute(unsigned int);
+	void SetAttribute(float);
+	void SetAttribute(double);
+	void SetAttribute(char const*);
+	void SetAttribute(bool);
+	void SetName(char const*);
+	unsigned int UnsignedValue() const;
+	char const* Value() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLComment {
+	XMLComment(tinyxml2::XMLDocument*);
+	virtual bool Accept(tinyxml2::XMLVisitor*) const;
+	virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+	virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+	virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+	virtual tinyxml2::XMLComment* ToComment();
+	virtual tinyxml2::XMLComment const* ToComment() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLConstHandle {
+	XMLConstHandle(tinyxml2::XMLConstHandle const&);
+	XMLConstHandle(tinyxml2::XMLNode const&);
+	XMLConstHandle(tinyxml2::XMLNode const*);
+	tinyxml2::XMLConstHandle const FirstChild() const;
+	tinyxml2::XMLConstHandle const FirstChildElement(char const*) const;
+	tinyxml2::XMLConstHandle const LastChild() const;
+	tinyxml2::XMLConstHandle const LastChildElement(char const*) const;
+	tinyxml2::XMLConstHandle const NextSibling() const;
+	tinyxml2::XMLConstHandle const NextSiblingElement(char const*) const;
+	tinyxml2::XMLConstHandle const PreviousSibling() const;
+	tinyxml2::XMLConstHandle const PreviousSiblingElement(char const*) const;
+	tinyxml2::XMLDeclaration const* ToDeclaration() const;
+	tinyxml2::XMLElement const* ToElement() const;
+	tinyxml2::XMLNode const* ToNode() const;
+	tinyxml2::XMLText const* ToText() const;
+	tinyxml2::XMLUnknown const* ToUnknown() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLDeclaration {
+	XMLDeclaration(tinyxml2::XMLDocument*);
+	virtual bool Accept(tinyxml2::XMLVisitor*) const;
+	virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+	virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+	virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+	virtual tinyxml2::XMLDeclaration* ToDeclaration();
+	virtual tinyxml2::XMLDeclaration const* ToDeclaration() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLDocument {
+	XMLDocument(bool, tinyxml2::Whitespace);
+	virtual bool Accept(tinyxml2::XMLVisitor*) const;
+	void DeleteNode(tinyxml2::XMLNode*);
+	bool Error() const;
+	tinyxml2::XMLError ErrorID() const;
+	char const* GetErrorStr1() const;
+	char const* GetErrorStr2() const;
+	bool HasBOM() const;
+	char* Identify(char*, tinyxml2::XMLNode**);
+	void InitDocument();
+	tinyxml2::XMLError LoadFile(_iobuf*);
+	tinyxml2::XMLError LoadFile(char const*);
+	tinyxml2::XMLComment* NewComment(char const*);
+	tinyxml2::XMLDeclaration* NewDeclaration(char const*);
+	tinyxml2::XMLElement* NewElement(char const*);
+	tinyxml2::XMLText* NewText(char const*);
+	tinyxml2::XMLUnknown* NewUnknown(char const*);
+	tinyxml2::XMLError Parse(char const*, unsigned int);
+	void Print(tinyxml2::XMLPrinter*);
+	void PrintError() const;
+	bool ProcessEntities() const;
+	tinyxml2::XMLElement* RootElement();
+	tinyxml2::XMLElement const* RootElement() const;
+	tinyxml2::XMLError SaveFile(_iobuf*, bool);
+	tinyxml2::XMLError SaveFile(char const*, bool);
+	void SetBOM(bool);
+	void SetError(tinyxml2::XMLError, char const*, char const*);
+	virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+	virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+	virtual tinyxml2::XMLDocument* ToDocument();
+	virtual tinyxml2::XMLDocument const* ToDocument() const;
+	tinyxml2::Whitespace WhitespaceMode() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLElement {
+	XMLElement(tinyxml2::XMLDocument*);
+	virtual bool Accept(tinyxml2::XMLVisitor*) const;
+	char const* Attribute(char const*, char const*) const;
+	bool BoolAttribute(char const*) const;
+	int ClosingType() const;
+	void DeleteAttribute(char const*);
+	double DoubleAttribute(char const*) const;
+	tinyxml2::XMLAttribute* FindAttribute(char const*);
+	tinyxml2::XMLAttribute const* FindAttribute(char const*) const;
+	tinyxml2::XMLAttribute* FindOrCreateAttribute(char const*);
+	tinyxml2::XMLAttribute const* FirstAttribute() const;
+	float FloatAttribute(char const*) const;
+	char const* GetText() const;
+	int IntAttribute(char const*) const;
+	char const* Name() const;
+	char* ParseAttributes(char*);
+	virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+	tinyxml2::XMLError QueryBoolAttribute(char const*, bool*) const;
+	tinyxml2::XMLError QueryBoolText(bool*) const;
+	tinyxml2::XMLError QueryDoubleAttribute(char const*, double*) const;
+	tinyxml2::XMLError QueryDoubleText(double*) const;
+	tinyxml2::XMLError QueryFloatAttribute(char const*, float*) const;
+	tinyxml2::XMLError QueryFloatText(float*) const;
+	tinyxml2::XMLError QueryIntAttribute(char const*, int*) const;
+	tinyxml2::XMLError QueryIntText(int*) const;
+	tinyxml2::XMLError QueryUnsignedAttribute(char const*, unsigned int*) const;
+	tinyxml2::XMLError QueryUnsignedText(unsigned int*) const;
+	void SetAttribute(char const*, char const*);
+	void SetAttribute(char const*, int);
+	void SetAttribute(char const*, unsigned int);
+	void SetAttribute(char const*, double);
+	void SetAttribute(char const*, bool);
+	void SetName(char const*, bool);
+	virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+	virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+	virtual tinyxml2::XMLElement* ToElement();
+	virtual tinyxml2::XMLElement const* ToElement() const;
+	unsigned int UnsignedAttribute(char const*) const;
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLHandle {
+	XMLHandle(tinyxml2::XMLNode&);
+	XMLHandle(tinyxml2::XMLHandle const&);
+	XMLHandle(tinyxml2::XMLNode*);
+	tinyxml2::XMLHandle FirstChild();
+	tinyxml2::XMLHandle FirstChildElement(char const*);
+	tinyxml2::XMLHandle LastChild();
+	tinyxml2::XMLHandle LastChildElement(char const*);
+	tinyxml2::XMLHandle NextSibling();
+	tinyxml2::XMLHandle NextSiblingElement(char const*);
+	tinyxml2::XMLHandle PreviousSibling();
+	tinyxml2::XMLHandle PreviousSiblingElement(char const*);
+	tinyxml2::XMLDeclaration* ToDeclaration();
+	tinyxml2::XMLElement* ToElement();
+	tinyxml2::XMLNode* ToNode();
+	tinyxml2::XMLText* ToText();
+	tinyxml2::XMLUnknown* ToUnknown();
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLNode {
+	XMLNode(tinyxml2::XMLDocument*);
+	void DeleteChild(tinyxml2::XMLNode*);
+	void DeleteChildren();
+	tinyxml2::XMLNode* FirstChild();
+	tinyxml2::XMLNode const* FirstChild() const;
+	tinyxml2::XMLElement* FirstChildElement(char const*);
+	tinyxml2::XMLElement const* FirstChildElement(char const*) const;
+	tinyxml2::XMLDocument* GetDocument();
+	tinyxml2::XMLDocument const* GetDocument() const;
+	tinyxml2::XMLNode* InsertAfterChild(tinyxml2::XMLNode*, tinyxml2::XMLNode*);
+	tinyxml2::XMLNode* InsertEndChild(tinyxml2::XMLNode*);
+	tinyxml2::XMLNode* InsertFirstChild(tinyxml2::XMLNode*);
+	tinyxml2::XMLNode* LastChild();
+	tinyxml2::XMLNode const* LastChild() const;
+	tinyxml2::XMLElement* LastChildElement(char const*);
+	tinyxml2::XMLElement const* LastChildElement(char const*) const;
+	tinyxml2::XMLNode* LinkEndChild(tinyxml2::XMLNode*);
+	tinyxml2::XMLNode* NextSibling();
+	tinyxml2::XMLNode const* NextSibling() const;
+	tinyxml2::XMLElement* NextSiblingElement(char const*);
+	tinyxml2::XMLElement const* NextSiblingElement(char const*) const;
+	bool NoChildren() const;
+	tinyxml2::XMLNode* Parent();
+	tinyxml2::XMLNode const* Parent() const;
+	virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+	tinyxml2::XMLNode* PreviousSibling();
+	tinyxml2::XMLNode const* PreviousSibling() const;
+	tinyxml2::XMLElement* PreviousSiblingElement(char const*);
+	tinyxml2::XMLElement const* PreviousSiblingElement(char const*) const;
+	void SetValue(char const*, bool);
+	virtual tinyxml2::XMLComment* ToComment();
+	virtual tinyxml2::XMLComment const* ToComment() const;
+	virtual tinyxml2::XMLDeclaration* ToDeclaration();
+	virtual tinyxml2::XMLDeclaration const* ToDeclaration() const;
+	virtual tinyxml2::XMLDocument* ToDocument();
+	virtual tinyxml2::XMLDocument const* ToDocument() const;
+	virtual tinyxml2::XMLElement* ToElement();
+	virtual tinyxml2::XMLElement const* ToElement() const;
+	virtual tinyxml2::XMLText* ToText();
+	virtual tinyxml2::XMLText const* ToText() const;
+	virtual tinyxml2::XMLUnknown* ToUnknown();
+	virtual tinyxml2::XMLUnknown const* ToUnknown() const;
+	void Unlink(tinyxml2::XMLNode*);
+	char const* Value() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLPrinter {
+	XMLPrinter(tinyxml2::XMLPrinter const&);
+	XMLPrinter(_iobuf*, bool);
+	char const* CStr() const;
+	int CStrSize() const;
+	void CloseElement();
+	void OpenElement(char const*);
+	void Print(char const*, ...);
+	void PrintSpace(int);
+	void PrintString(char const*, bool);
+	void PushAttribute(char const*, char const*);
+	void PushAttribute(char const*, int);
+	void PushAttribute(char const*, unsigned int);
+	void PushAttribute(char const*, double);
+	void PushAttribute(char const*, bool);
+	void PushComment(char const*);
+	void PushDeclaration(char const*);
+	void PushHeader(bool, bool);
+	void PushText(int);
+	void PushText(unsigned int);
+	void PushText(float);
+	void PushText(double);
+	void PushText(char const*, bool);
+	void PushText(bool);
+	void PushUnknown(char const*);
+	void SealElement();
+	virtual bool Visit(tinyxml2::XMLComment const&);
+	virtual bool Visit(tinyxml2::XMLDeclaration const&);
+	virtual bool Visit(tinyxml2::XMLText const&);
+	virtual bool Visit(tinyxml2::XMLUnknown const&);
+	virtual bool VisitEnter(tinyxml2::XMLDocument const&);
+	virtual bool VisitEnter(tinyxml2::XMLElement const&, tinyxml2::XMLAttribute const*);
+	virtual bool VisitExit(tinyxml2::XMLDocument const&);
+	virtual bool VisitExit(tinyxml2::XMLElement const&);
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLText {
+	XMLText(tinyxml2::XMLDocument*);
+	virtual bool Accept(tinyxml2::XMLVisitor*) const;
+	bool CData() const;
+	virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+	void SetCData(bool);
+	virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+	virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+	virtual tinyxml2::XMLText* ToText();
+	virtual tinyxml2::XMLText const* ToText() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLUnknown {
+	XMLUnknown(tinyxml2::XMLDocument*);
+	virtual bool Accept(tinyxml2::XMLVisitor*) const;
+	virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+	virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+	virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+	virtual tinyxml2::XMLUnknown* ToUnknown();
+	virtual tinyxml2::XMLUnknown const* ToUnknown() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLVisitor {
+	XMLVisitor(tinyxml2::XMLVisitor const&);
+	XMLVisitor();
+	virtual bool Visit(tinyxml2::XMLComment const&);
+	virtual bool Visit(tinyxml2::XMLDeclaration const&);
+	virtual bool Visit(tinyxml2::XMLText const&);
+	virtual bool Visit(tinyxml2::XMLUnknown const&);
+	virtual bool VisitEnter(tinyxml2::XMLDocument const&);
+	virtual bool VisitEnter(tinyxml2::XMLElement const&, tinyxml2::XMLAttribute const*);
+	virtual bool VisitExit(tinyxml2::XMLDocument const&);
+	virtual bool VisitExit(tinyxml2::XMLElement const&);
+}
+
+[[link(win, android)]]
 class pugi::xml_document {
 	xml_document();
 	void create();
@@ -4781,6 +5181,348 @@ class pugi::xml_document {
 	bool save_file(char const*, char const*, unsigned int, pugi::xml_encoding) const;
 	bool save_file(wchar_t const*, char const*, unsigned int, pugi::xml_encoding) const;
 	gd::string save_string(char const*, unsigned int, pugi::xml_encoding) const;
+}
+
+[[link(win, android)]]
+class tinyxml2::MemPoolT<36> {
+	virtual void* Alloc();
+	virtual void Free(void*);
+	virtual int ItemSize() const;
+	virtual void SetTracked();
+}
+
+[[link(win, android)]]
+class tinyxml2::MemPoolT<44> {
+	virtual void* Alloc();
+	virtual void Free(void*);
+	virtual int ItemSize() const;
+	virtual void SetTracked();
+}
+
+[[link(win, android)]]
+class tinyxml2::MemPoolT<48> {
+	virtual void* Alloc();
+	virtual void Free(void*);
+	virtual int ItemSize() const;
+	virtual void SetTracked();
+}
+
+[[link(win, android)]]
+class tinyxml2::MemPoolT<52> {
+	virtual void* Alloc();
+	virtual void Free(void*);
+	virtual int ItemSize() const;
+	virtual void SetTracked();
+}
+
+[[link(win, android)]]
+class cocos2d {
+	CCAffineTransform cocos2d::CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
+	bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
+	CCAffineTransform cocos2d::CCAffineTransformInvert(cocos2d::CCAffineTransform const&);
+	CCAffineTransform cocos2d::CCAffineTransformMakeIdentity();
+	CCAffineTransform cocos2d::CCAffineTransformRotate(cocos2d::CCAffineTransform const&, float);
+	CCAffineTransform cocos2d::CCAffineTransformScale(cocos2d::CCAffineTransform const&, float, float);
+	CCAffineTransform cocos2d::CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float);
+	void CCLog(char const*, ...);
+	void CCLuaLog(char const*);
+	void CCMessageBox(char const*, char const*);
+	CCPoint cocos2d::CCPointFromString(char const*);
+	void CCProfilingBeginTimingBlock(char const*);
+	void CCProfilingEndTimingBlock(char const*);
+	void CCProfilingResetTimingBlock(char const*);
+	CCRect cocos2d::CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
+	CCRect cocos2d::CCRectFromString(char const*);
+	CCSize cocos2d::CCSizeFromString(char const*);
+	CCBMFontConfiguration* cocos2d::FNTConfigLoadFile(char const*);
+	void FNTConfigRemoveCache();
+	CCAffineTransform cocos2d::__CCAffineTransformMake(float, float, float, float, float, float);
+	CCPoint cocos2d::__CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
+	CCSize cocos2d::__CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&);
+	CCPoint cocos2d::ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
+	void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
+	void ccDrawCatmullRom(cocos2d::CCPointArray*, unsigned int);
+	void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
+	void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
+	void ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
+	void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char);
+	void ccDrawColor4F(float, float, float, float);
+	void ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
+	void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
+	void ccDrawFree();
+	void ccDrawInit();
+	void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	void ccDrawLines(cocos2d::CCPoint const*, unsigned int);
+	void ccDrawPoint(cocos2d::CCPoint const&);
+	void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
+	void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
+	void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
+	void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
+	void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
+	void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F);
+	void ccGLBindTexture2D(unsigned int);
+	void ccGLBindTexture2DN(unsigned int, unsigned int);
+	void ccGLBindVAO(unsigned int);
+	void ccGLBlendFunc(unsigned int, unsigned int);
+	void ccGLBlendResetToCache();
+	void ccGLDeleteProgram(unsigned int);
+	void ccGLDeleteTexture(unsigned int);
+	void ccGLDeleteTextureN(unsigned int, unsigned int);
+	void ccGLEnable(cocos2d::ccGLServerState);
+	void ccGLEnableVertexAttribs(unsigned int);
+	void ccGLInvalidateStateCache();
+	void ccGLUseProgram(unsigned int);
+	void ccPointSize(float);
+	void ccSetProjectionMatrixDirty();
+	bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
+	void ccVertexLineToPolygon(cocos2d::CCPoint*, float, cocos2d::_ccVertex2F*, unsigned int, unsigned int);
+	char* cc_utf16_to_utf8(unsigned short const*, int*);
+	gd::vector<unsigned short> cc_utf16_vec_from_utf16_str(unsigned short const*);
+	unsigned int cc_utf8_find_last_not_char(gd::vector<unsigned short> const&, unsigned short);
+	long cc_utf8_strlen(char const*);
+	unsigned short* cc_utf8_to_utf16(char const*, int*);
+	void cc_utf8_trim_ws(gd::vector<unsigned short>*);
+	int cc_wcslen(unsigned short const*);
+	float ccpAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	float ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	CCPoint cocos2d::ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	CCPoint cocos2d::ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	CCPoint cocos2d::ccpCompOp(cocos2d::CCPoint const&, float (__cdecl*)(float));
+	float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	CCPoint cocos2d::ccpForAngle(float);
+	CCPoint cocos2d::ccpFromSize(cocos2d::CCSize const&);
+	bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+	CCPoint cocos2d::ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	float ccpLength(cocos2d::CCPoint const&);
+	CCPoint cocos2d::ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+	bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
+	CCPoint cocos2d::ccpNormalize(cocos2d::CCPoint const&);
+	CCPoint cocos2d::ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+	bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	float ccpToAngle(cocos2d::CCPoint const&);
+	float clampf(float, float, float);
+	char const* cocos2dVersion();
+	int gettimeofday(timeval*, cocos2d::timezone*);
+	bool iscjk_unicode(unsigned short);
+	bool isspace_unicode(unsigned short);
+	int unzClose(void*);
+	int unzCloseCurrentFile(void*);
+	int unzGetCurrentFileInfo64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
+	int unzGetCurrentFileInfo(void*, cocos2d::unz_file_info_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
+	unsigned __int64 unzGetCurrentFileZStreamPos64(void*);
+	int unzGetFilePos64(void*, cocos2d::unz64_file_pos_s*);
+	int unzGetFilePos(void*, cocos2d::unz_file_pos_s*);
+	int unzGetGlobalComment(void*, char*, unsigned long);
+	int unzGetGlobalInfo64(void*, cocos2d::unz_global_info64_s*);
+	int unzGetGlobalInfo(void*, cocos2d::unz_global_info_s*);
+	int unzGetLocalExtrafield(void*, void*, unsigned int);
+	unsigned __int64 unzGetOffset64(void*);
+	unsigned long unzGetOffset(void*);
+	int unzGoToFilePos64(void*, cocos2d::unz64_file_pos_s const*);
+	int unzGoToFilePos(void*, cocos2d::unz_file_pos_s*);
+	int unzGoToFirstFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
+	int unzGoToFirstFile(void*);
+	int unzGoToNextFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
+	int unzGoToNextFile(void*);
+	int unzLocateFile(void*, char const*, int);
+	void* unzOpen2(char const*, cocos2d::zlib_filefunc_def_s*);
+	void* unzOpen2_64(void const*, cocos2d::zlib_filefunc64_def_s*);
+	void* unzOpen64(void const*);
+	void* unzOpen(char const*);
+	int unzOpenCurrentFile2(void*, int*, int*, int);
+	int unzOpenCurrentFile3(void*, int*, int*, int, char const*);
+	int unzOpenCurrentFile(void*);
+	int unzOpenCurrentFilePassword(void*, char const*);
+	int unzReadCurrentFile(void*, void*, unsigned int);
+	int unzSetOffset64(void*, unsigned __int64);
+	int unzSetOffset(void*, unsigned long);
+	int unzStringFileNameCompare(char const*, char const*, int);
+	int unzeof(void*);
+	unsigned __int64 unztell64(void*);
+	long unztell(void*);
+}
+
+[[link(win, android)]]
+class tinyxml2::DynArray<char,20> {
+	int Capacity() const;
+	void EnsureCapacity(int);
+	char* Mem();
+	char const* Mem() const;
+	void Push(char);
+	char* PushArr(int);
+	int Size() const;
+}
+
+[[link(win, android)]]
+class fmt::BasicFormatter<char> {
+	void CheckSign(char const*&, fmt::internal::Arg const&);
+	void Format(fmt::BasicStringRef<char>, fmt::ArgList const&);
+	fmt::internal::Arg const& ParseArgIndex(char const*&);
+	char const* format(char const*, fmt::internal::Arg const&);
+}
+
+[[link(win, android)]]
+class fmt::BasicFormatter<wchar_t> {
+	void CheckSign(wchar_t const*&, fmt::internal::Arg const&);
+	void Format(fmt::BasicStringRef<wchar_t>, fmt::ArgList const&);
+	fmt::internal::Arg const& ParseArgIndex(wchar_t const*&);
+	wchar_t const* format(wchar_t const*, fmt::internal::Arg const&);
+}
+
+[[link(win, android)]]
+class tinyxml2::XMLUtil {
+	static void ConvertUTF32ToUTF8(unsigned long, char*, int*);
+	static char const* GetCharacterRef(char const*, char*, int*);
+	static int IsAlpha(unsigned char);
+	static int IsAlphaNum(unsigned char);
+	static int IsUTF8Continuation(char);
+	static bool IsWhiteSpace(char);
+	static char const* ReadBOM(char const*, bool*);
+	static char* SkipWhiteSpace(char*);
+	static char const* SkipWhiteSpace(char const*);
+	static bool StringEqual(char const*, char const*, int);
+	static bool ToBool(char const*, bool*);
+	static bool ToDouble(char const*, double*);
+	static bool ToFloat(char const*, float*);
+	static bool ToInt(char const*, int*);
+	static void ToStr(int, char*, int);
+	static void ToStr(unsigned int, char*, int);
+	static void ToStr(float, char*, int);
+	static void ToStr(double, char*, int);
+	static void ToStr(bool, char*, int);
+	static bool ToUnsigned(char const*, unsigned int*);
+}
+
+[[link(win, android)]]
+class tinyxml2::DynArray<struct tinyxml2::MemPoolT<36>::Block *,10> {
+	void EnsureCapacity(int);
+	void Push(tinyxml2::MemPoolT<36>::Block*);
+	int Size() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::DynArray<struct tinyxml2::MemPoolT<44>::Block *,10> {
+	void EnsureCapacity(int);
+	void Push(tinyxml2::MemPoolT<44>::Block*);
+	int Size() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::DynArray<struct tinyxml2::MemPoolT<48>::Block *,10> {
+	void EnsureCapacity(int);
+	void Push(tinyxml2::MemPoolT<48>::Block*);
+	int Size() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::DynArray<struct tinyxml2::MemPoolT<52>::Block *,10> {
+	void EnsureCapacity(int);
+	void Push(tinyxml2::MemPoolT<52>::Block*);
+	int Size() const;
+}
+
+[[link(win, android)]]
+class tinyxml2::DynArray<char const *,10> {
+	void EnsureCapacity(int);
+	char const* Pop();
+	void Push(char const*);
+}
+
+[[link(win, android)]]
+class fmt::BasicWriter<char> {
+	static char* FillPadding(char*, unsigned int, unsigned int, wchar_t);
+	static char* GetBase(char*);
+	char* GrowBuffer(unsigned int);
+	char const* c_str() const;
+	char const* data() const;
+	unsigned int size() const;
+	gd::string str() const;
+	void write(fmt::BasicStringRef<char>, fmt::ArgList const&);
+}
+
+[[link(win, android)]]
+class fmt::BasicWriter<wchar_t> {
+	static wchar_t* FillPadding(wchar_t*, unsigned int, unsigned int, wchar_t);
+	static wchar_t* GetBase(wchar_t*);
+	wchar_t* GrowBuffer(unsigned int);
+	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > str() const;
+	void write(fmt::BasicStringRef<wchar_t>, fmt::ArgList const&);
+}
+
+[[link(win, android)]]
+class fmt::internal::PrintfParser<char> {
+	void Format(fmt::BasicWriter<char>&, fmt::BasicStringRef<char>, fmt::ArgList const&);
+	fmt::internal::Arg const& HandleArgIndex(unsigned int, char const*&);
+	void ParseFlags(fmt::FormatSpec&, char const*&);
+	unsigned int ParseHeader(char const*&, fmt::FormatSpec&, char const*&);
+}
+
+[[link(win, android)]]
+class fmt::internal::PrintfParser<wchar_t> {
+	void Format(fmt::BasicWriter<wchar_t>&, fmt::BasicStringRef<wchar_t>, fmt::ArgList const&);
+	fmt::internal::Arg const& HandleArgIndex(unsigned int, char const*&);
+	void ParseFlags(fmt::FormatSpec&, wchar_t const*&);
+	unsigned int ParseHeader(wchar_t const*&, fmt::FormatSpec&, char const*&);
+}
+
+[[link(win, android)]]
+class fmt::TypeSpec<0> {
+	fmt::Alignment align() const;
+	char fill() const;
+	bool hash_flag() const;
+	bool plus_flag() const;
+	int precision() const;
+	bool sign_flag() const;
+	char type() const;
+	unsigned int width() const;
+}
+
+[[link(win, android)]]
+class fmt::TypeSpec<88> {
+	fmt::Alignment align() const;
+	char fill() const;
+	bool hash_flag() const;
+	bool plus_flag() const;
+	int precision() const;
+	bool sign_flag() const;
+	char type() const;
+	unsigned int width() const;
+}
+
+[[link(win, android)]]
+class fmt::TypeSpec<98> {
+	fmt::Alignment align() const;
+	char fill() const;
+	bool hash_flag() const;
+	bool plus_flag() const;
+	int precision() const;
+	bool sign_flag() const;
+	char type() const;
+	unsigned int width() const;
+}
+
+[[link(win, android)]]
+class fmt::TypeSpec<111> {
+	fmt::Alignment align() const;
+	char fill() const;
+	bool hash_flag() const;
+	bool plus_flag() const;
+	int precision() const;
+	bool sign_flag() const;
+	char type() const;
+	unsigned int width() const;
+}
+
+[[link(win, android)]]
+class fmt::TypeSpec<120> {
+	fmt::Alignment align() const;
+	char fill() const;
+	bool hash_flag() const;
+	bool plus_flag() const;
+	int precision() const;
+	bool sign_flag() const;
+	char type() const;
+	unsigned int width() const;
 }
 
 [[link(win, android)]]
@@ -4809,6 +5551,31 @@ class cocos2d::ZipUtils {
 }
 
 [[link(win, android)]]
+class fmt::BasicStringRef<char> {
+	char const* c_str() const;
+	unsigned int size() const;
+}
+
+[[link(win, android)]]
+class fmt::BasicStringRef<wchar_t> {
+	wchar_t const* c_str() const;
+}
+
+[[link(win, android)]]
+class fmt::internal::CharTraits<wchar_t> {
+	static wchar_t const* check(wchar_t const*);
+	static fmt::internal::StringValue<wchar_t> convert(fmt::internal::StringValue<wchar_t>);
+	static wchar_t convert(char);
+	static wchar_t convert(wchar_t);
+}
+
+[[link(win, android)]]
+class fmt::internal::CharTraits<char> {
+	static fmt::internal::StringValue<char> convert(fmt::internal::StringValue<wchar_t>);
+	static char convert(char);
+}
+
+[[link(win, android)]]
 class cocos2d::CCDevice {
 	static int getDPI();
 }
@@ -4817,4 +5584,17 @@ class cocos2d::CCDevice {
 class cocos2d::CCTime {
 	static int gettimeofdayCocos2d(cocos2d::cc_timeval*, void*);
 	static double timersubCocos2d(cocos2d::cc_timeval*, cocos2d::cc_timeval*);
+}
+
+[[link(win, android)]]
+class fmt::AlignTypeSpec<0> {
+	bool hash_flag() const;
+	bool plus_flag() const;
+	bool sign_flag() const;
+	char type() const;
+}
+
+[[link(win, android)]]
+class fmt::IntFormatSpec<int,struct fmt::TypeSpec<0>,char> {
+	int value() const;
 }
