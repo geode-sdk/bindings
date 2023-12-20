@@ -1654,7 +1654,7 @@ class FLAlertLayer {
 	TodoReturn show();
 	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, std::string, char const*, char const*);
 	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, std::string, char const*, char const*, float);
-	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, std::string, char const*, char const*, float, bool, float, float);
+	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, std::string, char const*, char const*, float, bool, float, float) = win 0x30cf0;
 	void onBtn1(cocos2d::CCObject* sender);
 	void onBtn2(cocos2d::CCObject* sender);
 	virtual void keyDown(cocos2d::enumKeyCodes);
@@ -2691,7 +2691,7 @@ class LoadingCircle {
 	virtual void registerWithTouchDispatcher();
 	virtual void draw();
 	virtual bool init();
-	TodoReturn show();
+	TodoReturn show() = win 0x48300;
 	static LoadingCircle* create() = win 0x48140;
 	~LoadingCircle();
 }
@@ -8928,7 +8928,7 @@ class CCMenuItemSpriteExtra {
 	void setSizeMult(float);
 	TodoReturn useAnimationType(MenuAnimationType);
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x25830;
 	virtual void activate();
 	virtual void selected();
 	~CCMenuItemSpriteExtra();
@@ -11934,7 +11934,7 @@ class LevelCell {
 [[link(android)]]
 class LevelPage {
 	void onTheTower(cocos2d::CCObject* sender);
-	void onMoreGames(cocos2d::CCObject* sender);
+	void onMoreGames(cocos2d::CCObject* sender) = win 0x277a50;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -11979,10 +11979,10 @@ class MenuLayer {
 	TodoReturn videoOptionsOpened();
 	TodoReturn updateUserProfileButton();
 	TodoReturn syncPlatformAchievements(float);
-	virtual bool init();
+	virtual bool init() = win 0x276700;
 	TodoReturn scene(bool);
 	void onPlay(cocos2d::CCObject* sender);
-	void onQuit(cocos2d::CCObject* sender);
+	void onQuit(cocos2d::CCObject* sender) = win 0x277e20;
 	TodoReturn endGame();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	void onDaily(cocos2d::CCObject* sender);
