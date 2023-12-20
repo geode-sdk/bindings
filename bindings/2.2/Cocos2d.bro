@@ -5593,8 +5593,3 @@ class fmt::AlignTypeSpec<0> {
 	bool sign_flag() const;
 	char type() const;
 }
-
-[[link(win, android)]]
-class fmt::IntFormatSpec<int,struct fmt::TypeSpec<0>,char> {
-	int value() const;
-}
