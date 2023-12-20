@@ -29,3 +29,11 @@ class DynamicObjectAction {
 class GJTransformState {
 
 }
+
+class CAState {
+
+}
+
+class GJSpriteColor {
+
+}
