@@ -299,7 +299,7 @@ class cocos2d::CCArray {
 	bool containsObject(cocos2d::CCObject*) const;
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	unsigned int count() const;
-	static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
+	// static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
 	static cocos2d::CCArray* create();
 	static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCArray* createWithCapacity(unsigned int);
@@ -317,7 +317,7 @@ class cocos2d::CCArray {
 	bool initWithArray(cocos2d::CCArray*);
 	bool initWithCapacity(unsigned int);
 	bool initWithObject(cocos2d::CCObject*);
-	bool initWithObjects(cocos2d::CCObject*, ...);
+	// bool initWithObjects(cocos2d::CCObject*, ...);
 	void insertObject(cocos2d::CCObject*, unsigned int);
 	bool isEqualToArray(cocos2d::CCArray*);
 	cocos2d::CCObject* lastObject();
@@ -1899,7 +1899,7 @@ class cocos2d::CCLayerMultiplex {
 	CCLayerMultiplex(cocos2d::CCLayerMultiplex const&);
 	CCLayerMultiplex();
 	void addLayer(cocos2d::CCLayer*);
-	static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...);
+	// static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...);
 	static cocos2d::CCLayerMultiplex* create();
 	static cocos2d::CCLayerMultiplex* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCLayerMultiplex* createWithLayer(cocos2d::CCLayer*);
@@ -1969,10 +1969,10 @@ class cocos2d::CCMenu {
 	virtual void addChild(cocos2d::CCNode*, int, int);
 	void alignItemsHorizontally();
 	void alignItemsHorizontallyWithPadding(float);
-	void alignItemsInColumns(unsigned int, ...);
+	// void alignItemsInColumns(unsigned int, ...);
 	void alignItemsInColumns(unsigned int, char*);
 	void alignItemsInColumnsWithArray(cocos2d::CCArray*);
-	void alignItemsInRows(unsigned int, ...);
+	// void alignItemsInRows(unsigned int, ...);
 	void alignItemsInRows(unsigned int, char*);
 	void alignItemsInRowsWithArray(cocos2d::CCArray*);
 	void alignItemsVertically();
@@ -1981,7 +1981,7 @@ class cocos2d::CCMenu {
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
+	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
 	static cocos2d::CCMenu* create();
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
@@ -2110,7 +2110,7 @@ class cocos2d::CCMenuItemToggle {
 	static cocos2d::CCMenuItemToggle* create(cocos2d::CCMenuItem*);
 	static cocos2d::CCMenuItemToggle* create();
 	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), cocos2d::CCArray*);
-	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), cocos2d::CCMenuItem*, ...);
+	// static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCObject*), cocos2d::CCMenuItem*, ...);
 	virtual unsigned int getSelectedIndex();
 	virtual cocos2d::CCArray* getSubItems();
 	bool initWithItem(cocos2d::CCMenuItem*);
@@ -3262,7 +3262,7 @@ class cocos2d::CCSequence {
 	CCSequence();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCSequence* create(cocos2d::CCArray*);
-	static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
+	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
 	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 	static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
 	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
@@ -3398,7 +3398,7 @@ class cocos2d::CCSpawn {
 	CCSpawn();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCSpawn* create(cocos2d::CCArray*);
-	static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...);
+	// static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...);
 	static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 	static cocos2d::CCSpawn* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
 	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
@@ -3699,11 +3699,11 @@ class cocos2d::CCString {
 	static cocos2d::CCString* create(std::string const&);
 	static cocos2d::CCString* createWithContentsOfFile(char const*);
 	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long);
-	static cocos2d::CCString* createWithFormat(char const*, ...);
+	// static cocos2d::CCString* createWithFormat(char const*, ...);
 	double doubleValue() const;
 	float floatValue() const;
 	char const* getCString() const;
-	bool initWithFormat(char const*, ...);
+	// bool initWithFormat(char const*, ...);
 	bool initWithFormatAndValist(char const*, char*);
 	int intValue() const;
 	virtual bool isEqual(cocos2d::CCObject const*);
