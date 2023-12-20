@@ -29,3 +29,15 @@ class DynamicObjectAction {
 class GJTransformState {
 
 }
+
+class CAState {
+
+}
+
+class GJSpriteColor {
+
+}
+
+class UIButtonConfig {
+    
+}
