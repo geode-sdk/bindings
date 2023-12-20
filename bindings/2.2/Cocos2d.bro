@@ -299,7 +299,7 @@ class cocos2d::CCArray {
 	bool containsObject(cocos2d::CCObject*) const;
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	unsigned int count() const;
-	static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
+	// static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
 	static cocos2d::CCArray* create();
 	static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCArray* createWithCapacity(unsigned int);
@@ -317,7 +317,7 @@ class cocos2d::CCArray {
 	bool initWithArray(cocos2d::CCArray*);
 	bool initWithCapacity(unsigned int);
 	bool initWithObject(cocos2d::CCObject*);
-	bool initWithObjects(cocos2d::CCObject*, ...);
+	// bool initWithObjects(cocos2d::CCObject*, ...);
 	void insertObject(cocos2d::CCObject*, unsigned int);
 	bool isEqualToArray(cocos2d::CCArray*);
 	cocos2d::CCObject* lastObject();
@@ -450,7 +450,7 @@ class cocos2d::CCCallFunc {
 	CCCallFunc();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCCallFunc* create(int);
-	static cocos2d::CCCallFunc* create(cocos2d::CCObject*, void (cocos2d::CCObject::*)());
+	static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc);
 	virtual void execute();
 	int getScriptHandler();
 	cocos2d::CCObject* getTargetCallback();
@@ -465,9 +465,9 @@ class cocos2d::CCCallFuncN {
 	CCCallFuncN();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCCallFuncN* create(int);
-	static cocos2d::CCCallFuncN* create(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCNode*));
+	static cocos2d::CCCallFuncN* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncN);
 	virtual void execute();
-	virtual bool initWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCNode*));
+	virtual bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncN);
 }
 
 [[link(win, android)]]
@@ -475,9 +475,9 @@ class cocos2d::CCCallFuncND {
 	CCCallFuncND(cocos2d::CCCallFuncND const&);
 	CCCallFuncND();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	static cocos2d::CCCallFuncND* create(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCNode*, void*), void*);
+	static cocos2d::CCCallFuncND* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*);
 	virtual void execute();
-	virtual bool initWithTarget(cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::CCNode*, void*), void*);
+	virtual bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*);
 }
 
 [[link(win, android)]]
@@ -485,10 +485,10 @@ class cocos2d::CCCallFuncO {
 	CCCallFuncO(cocos2d::CCCallFuncO const&);
 	CCCallFuncO();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	static cocos2d::CCCallFuncO* create(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCObject*);
+	static cocos2d::CCCallFuncO* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncO, cocos2d::CCObject*);
 	virtual void execute();
 	cocos2d::CCObject* getObject();
-	virtual bool initWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCObject*);
+	virtual bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncO, cocos2d::CCObject*);
 	void setObject(cocos2d::CCObject*);
 }
 
@@ -1400,7 +1400,7 @@ class cocos2d::CCGLProgram {
 	bool initWithVertexShaderByteArray(char const*, char const*);
 	bool initWithVertexShaderFilename(char const*, char const*);
 	bool link();
-	char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
+	// char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
 	char const* programLog();
 	void reset();
 	void setUniformLocationWith1f(int, float);
@@ -1899,7 +1899,7 @@ class cocos2d::CCLayerMultiplex {
 	CCLayerMultiplex(cocos2d::CCLayerMultiplex const&);
 	CCLayerMultiplex();
 	void addLayer(cocos2d::CCLayer*);
-	static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...);
+	// static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...);
 	static cocos2d::CCLayerMultiplex* create();
 	static cocos2d::CCLayerMultiplex* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCLayerMultiplex* createWithLayer(cocos2d::CCLayer*);
@@ -1969,10 +1969,10 @@ class cocos2d::CCMenu {
 	virtual void addChild(cocos2d::CCNode*, int, int);
 	void alignItemsHorizontally();
 	void alignItemsHorizontallyWithPadding(float);
-	void alignItemsInColumns(unsigned int, ...);
+	// void alignItemsInColumns(unsigned int, ...);
 	void alignItemsInColumns(unsigned int, char*);
 	void alignItemsInColumnsWithArray(cocos2d::CCArray*);
-	void alignItemsInRows(unsigned int, ...);
+	// void alignItemsInRows(unsigned int, ...);
 	void alignItemsInRows(unsigned int, char*);
 	void alignItemsInRowsWithArray(cocos2d::CCArray*);
 	void alignItemsVertically();
@@ -1981,7 +1981,7 @@ class cocos2d::CCMenu {
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
+	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
 	static cocos2d::CCMenu* create();
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
@@ -2005,17 +2005,17 @@ class cocos2d::CCMenuItem {
 	CCMenuItem(cocos2d::CCMenuItem const&);
 	CCMenuItem();
 	virtual void activate();
-	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, SEL_MenuHandler);
+	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	static cocos2d::CCMenuItem* create();
 	int getScriptTapHandler();
-	bool initWithTarget(cocos2d::CCObject*, SEL_MenuHandler);
+	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	virtual bool isEnabled();
 	virtual bool isSelected();
 	cocos2d::CCRect rect();
 	virtual void registerScriptTapHandler(int);
 	virtual void selected();
 	virtual void setEnabled(bool);
-	void setTarget(cocos2d::CCObject*, SEL_MenuHandler);
+	void setTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	virtual void unregisterScriptTapHandler();
 	virtual void unselected();
 }
@@ -2025,8 +2025,8 @@ class cocos2d::CCMenuItemAtlasFont {
 	CCMenuItemAtlasFont(cocos2d::CCMenuItemAtlasFont const&);
 	CCMenuItemAtlasFont();
 	static cocos2d::CCMenuItemAtlasFont* create(char const*, char const*, int, int, char);
-	static cocos2d::CCMenuItemAtlasFont* create(char const*, char const*, int, int, char, cocos2d::CCObject*, SEL_MenuHandler);
-	bool initWithString(char const*, char const*, int, int, char, cocos2d::CCObject*, SEL_MenuHandler);
+	static cocos2d::CCMenuItemAtlasFont* create(char const*, char const*, int, int, char, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	bool initWithString(char const*, char const*, int, int, char, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 }
 
 [[link(win, android)]]
@@ -2034,12 +2034,12 @@ class cocos2d::CCMenuItemFont {
 	CCMenuItemFont(cocos2d::CCMenuItemFont const&);
 	CCMenuItemFont();
 	static cocos2d::CCMenuItemFont* create(char const*);
-	static cocos2d::CCMenuItemFont* create(char const*, cocos2d::CCObject*, SEL_MenuHandler);
+	static cocos2d::CCMenuItemFont* create(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	static char const* fontName();
 	char const* fontNameObj();
 	static unsigned int fontSize();
 	unsigned int fontSizeObj();
-	bool initWithString(char const*, cocos2d::CCObject*, SEL_MenuHandler);
+	bool initWithString(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	void recreateLabel();
 	static void setFontName(char const*);
 	void setFontNameObj(char const*);
@@ -2052,12 +2052,12 @@ class cocos2d::CCMenuItemImage {
 	CCMenuItemImage(cocos2d::CCMenuItemImage const&);
 	CCMenuItemImage();
 	static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*);
-	static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*, cocos2d::CCObject*, SEL_MenuHandler);
+	static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	static cocos2d::CCMenuItemImage* create(char const*, char const*);
-	static cocos2d::CCMenuItemImage* create(char const*, char const*, cocos2d::CCObject*, SEL_MenuHandler);
+	static cocos2d::CCMenuItemImage* create(char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	static cocos2d::CCMenuItemImage* create();
 	virtual bool init();
-	bool initWithNormalImage(char const*, char const*, char const*, cocos2d::CCObject*, SEL_MenuHandler);
+	bool initWithNormalImage(char const*, char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	void setDisabledSpriteFrame(cocos2d::CCSpriteFrame*);
 	void setNormalSpriteFrame(cocos2d::CCSpriteFrame*);
 	void setSelectedSpriteFrame(cocos2d::CCSpriteFrame*);
@@ -2069,10 +2069,10 @@ class cocos2d::CCMenuItemLabel {
 	CCMenuItemLabel();
 	virtual void activate();
 	static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*);
-	static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
+	static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	virtual cocos2d::_ccColor3B const& getDisabledColor();
 	virtual cocos2d::CCNode* getLabel();
-	bool initWithLabel(cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
+	bool initWithLabel(cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	virtual void selected();
 	virtual void setDisabledColor(cocos2d::_ccColor3B const&);
 	virtual void setEnabled(bool);
@@ -2086,12 +2086,12 @@ class cocos2d::CCMenuItemSprite {
 	CCMenuItemSprite(cocos2d::CCMenuItemSprite const&);
 	CCMenuItemSprite();
 	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*);
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
+	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	virtual cocos2d::CCNode* getDisabledImage();
 	virtual cocos2d::CCNode* getNormalImage();
 	virtual cocos2d::CCNode* getSelectedImage();
-	bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, SEL_MenuHandler);
+	bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	virtual void selected();
 	virtual void setDisabledImage(cocos2d::CCNode*);
 	virtual void setEnabled(bool);
@@ -2109,12 +2109,12 @@ class cocos2d::CCMenuItemToggle {
 	void addSubItem(cocos2d::CCMenuItem*);
 	static cocos2d::CCMenuItemToggle* create(cocos2d::CCMenuItem*);
 	static cocos2d::CCMenuItemToggle* create();
-	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCArray*);
-	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCMenuItem*, ...);
+	static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCArray*);
+	// static cocos2d::CCMenuItemToggle* createWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCMenuItem*, ...);
 	virtual unsigned int getSelectedIndex();
 	virtual cocos2d::CCArray* getSubItems();
 	bool initWithItem(cocos2d::CCMenuItem*);
-	bool initWithTarget(cocos2d::CCObject*, SEL_MenuHandler, cocos2d::CCMenuItem*, char*);
+	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCMenuItem*, char*);
 	virtual void selected();
 	cocos2d::CCMenuItem* selectedItem();
 	virtual void setEnabled(bool);
@@ -2305,10 +2305,10 @@ class cocos2d::CCNode {
 	static void resetGlobalOrderOfArrival();
 	void resumeSchedulerAndActions();
 	cocos2d::CCAction* runAction(cocos2d::CCAction*);
-	void schedule(SEL_SCHEDULE);
-	void schedule(SEL_SCHEDULE, float);
-	void schedule(SEL_SCHEDULE, float, unsigned int, float);
-	void scheduleOnce(SEL_SCHEDULE, float);
+	void schedule(cocos2d::SEL_SCHEDULE);
+	void schedule(cocos2d::SEL_SCHEDULE, float);
+	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float);
+	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
 	void scheduleUpdate();
 	void scheduleUpdateWithPriority(int);
 	void scheduleUpdateWithPriorityLua(int, int);
@@ -2350,7 +2350,7 @@ class cocos2d::CCNode {
 	void transform();
 	void transformAncestors();
 	virtual void unregisterScriptHandler();
-	void unschedule(SEL_SCHEDULE);
+	void unschedule(cocos2d::SEL_SCHEDULE);
 	void unscheduleAllSelectors();
 	void unscheduleUpdate();
 	virtual void update(float);
@@ -2388,7 +2388,7 @@ class cocos2d::CCNodeRGBA {
 class cocos2d::CCNotificationCenter {
 	CCNotificationCenter(cocos2d::CCNotificationCenter const&);
 	CCNotificationCenter();
-	void addObserver(cocos2d::CCObject*, SEL_MenuHandler, char const*, cocos2d::CCObject*);
+	void addObserver(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, char const*, cocos2d::CCObject*);
 	int getObserverHandlerByName(char const*);
 	int getScriptHandler();
 	bool observerExisted(cocos2d::CCObject*, char const*);
@@ -2405,7 +2405,7 @@ class cocos2d::CCNotificationCenter {
 [[link(win, android)]]
 class cocos2d::CCNotificationObserver {
 	CCNotificationObserver(cocos2d::CCNotificationObserver const&);
-	CCNotificationObserver(cocos2d::CCObject*, SEL_MenuHandler, char const*, cocos2d::CCObject*);
+	CCNotificationObserver(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, char const*, cocos2d::CCObject*);
 	virtual int getHandler();
 	virtual char* getName();
 	virtual cocos2d::CCObject* getObject();
@@ -3224,15 +3224,15 @@ class cocos2d::CCScheduler {
 	void resumeTarget(cocos2d::CCObject*);
 	void resumeTargets(cocos2d::CCSet*);
 	unsigned int scheduleScriptFunc(unsigned int, float, bool);
-	void scheduleSelector(SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool);
-	void scheduleSelector(SEL_SCHEDULE, cocos2d::CCObject*, float, bool);
+	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool);
+	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool);
 	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool);
 	void setTimeScale(float);
 	void unscheduleAll();
 	void unscheduleAllForTarget(cocos2d::CCObject*);
 	void unscheduleAllWithMinPriority(int);
 	void unscheduleScriptEntry(unsigned int);
-	void unscheduleSelector(SEL_SCHEDULE, cocos2d::CCObject*);
+	void unscheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*);
 	void unscheduleUpdateForTarget(cocos2d::CCObject const*);
 	virtual void update(float);
 }
@@ -3263,7 +3263,7 @@ class cocos2d::CCSequence {
 	CCSequence();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCSequence* create(cocos2d::CCArray*);
-	static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
+	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
 	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 	static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
 	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
@@ -3399,7 +3399,7 @@ class cocos2d::CCSpawn {
 	CCSpawn();
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCSpawn* create(cocos2d::CCArray*);
-	static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...);
+	// static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...);
 	static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 	static cocos2d::CCSpawn* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
 	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
@@ -3700,11 +3700,11 @@ class cocos2d::CCString {
 	static cocos2d::CCString* create(gd::string const&);
 	static cocos2d::CCString* createWithContentsOfFile(char const*);
 	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long);
-	static cocos2d::CCString* createWithFormat(char const*, ...);
+	// static cocos2d::CCString* createWithFormat(char const*, ...);
 	double doubleValue() const;
 	float floatValue() const;
 	char const* getCString() const;
-	bool initWithFormat(char const*, ...);
+	// bool initWithFormat(char const*, ...);
 	bool initWithFormatAndValist(char const*, char*);
 	int intValue() const;
 	virtual bool isEqual(cocos2d::CCObject const*);
@@ -4026,7 +4026,7 @@ class cocos2d::CCTextureCache {
 	CCTextureCache();
 	cocos2d::CCTexture2D* addETCImage(char const*);
 	cocos2d::CCTexture2D* addImage(char const*, bool);
-	void addImageAsync(char const*, cocos2d::CCObject*, SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat);
+	void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat);
 	void addImageAsyncCallBack(float);
 	cocos2d::CCTexture2D* addPVRImage(char const*);
 	cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*);
@@ -4118,12 +4118,12 @@ class cocos2d::CCTimer {
 	int getScriptHandler();
 	SEL_SCHEDULE getSelector() const;
 	bool initWithScriptHandler(int, float);
-	bool initWithTarget(cocos2d::CCObject*, SEL_SCHEDULE);
-	bool initWithTarget(cocos2d::CCObject*, SEL_SCHEDULE, float, unsigned int, float);
+	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_SCHEDULE);
+	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_SCHEDULE, float, unsigned int, float);
 	void setInterval(float);
 	static cocos2d::CCTimer* timerWithScriptHandler(int, float);
-	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, SEL_SCHEDULE);
-	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, SEL_SCHEDULE, float);
+	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, cocos2d::SEL_SCHEDULE);
+	static cocos2d::CCTimer* timerWithTarget(cocos2d::CCObject*, cocos2d::SEL_SCHEDULE, float);
 	virtual void update(float);
 }
 
