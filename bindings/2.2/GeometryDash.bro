@@ -3258,7 +3258,7 @@ class LevelInfoLayer {
 	TodoReturn levelDownloadFinished(GJGameLevel*);
 	bool init(GJGameLevel*, bool) = win 0x24cd80, mac 0x2973f0;
 	TodoReturn scene(GJGameLevel*, bool);
-	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x64ccd0;
+	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x24ccd0;
 	void onBack(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
 	void onLike(cocos2d::CCObject* sender);
