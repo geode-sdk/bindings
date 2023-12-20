@@ -1217,7 +1217,7 @@ class ProfilePage {
 	TodoReturn updateUserScoreFinished();
 	TodoReturn toggleMainPageVisibility(bool);
 	virtual void registerWithTouchDispatcher();
-	bool init(int, bool);
+	bool init(int, bool) = win 0x2e7320;
 	TodoReturn show();
 	static ProfilePage* create(int, bool);
 	void onClose(cocos2d::CCObject* sender);
@@ -3215,7 +3215,7 @@ class LevelInfoLayer {
 	void onFavorite(cocos2d::CCObject* sender);
 	void onFeatured(cocos2d::CCObject* sender);
 	void onAddToList(cocos2d::CCObject* sender);
-	void onLevelInfo(cocos2d::CCObject* sender);
+	void onLevelInfo(cocos2d::CCObject* sender) = win 0x2521e0;
 	void onRateDemon(cocos2d::CCObject* sender);
 	void onRateStars(cocos2d::CCObject* sender);
 	void onSetFolder(cocos2d::CCObject* sender);
@@ -4666,7 +4666,7 @@ class PlatformToolbox {
 
 [[link(android)]]
 class RetryLevelLayer {
-	TodoReturn getEndText();
+	TodoReturn getEndText() = win 0xe96b0;
 	TodoReturn customSetup();
 	void onEveryplay(cocos2d::CCObject* sender);
 	virtual void keyBackClicked();
@@ -5270,7 +5270,7 @@ class GameLevelManager {
 	TodoReturn keyHasTimer(char const*);
 	TodoReturn reportLevel(int);
 	TodoReturn saveMapPack(GJMapPack*);
-	TodoReturn sharedState();
+	TodoReturn sharedState() = win 0xf2d90;
 	TodoReturn unblockUser(int);
 	TodoReturn updateLevel(GJGameLevel*);
 	TodoReturn uploadLevel(GJGameLevel*);
@@ -5295,7 +5295,7 @@ class GameLevelManager {
 	TodoReturn getCommentKey(int, int, int, CommentKeyType);
 	TodoReturn getDailyTimer(GJTimedLevelType);
 	TodoReturn getFolderName(int, bool);
-	TodoReturn getGJUserInfo(int);
+	TodoReturn getGJUserInfo(int) = win 0x105270;
 	TodoReturn getLevelLists(GJSearchObject*);
 	TodoReturn getLocalLevel(int);
 	TodoReturn getMapPackKey(int);
