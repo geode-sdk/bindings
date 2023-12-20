@@ -270,7 +270,7 @@ class cocos2d::CCApplication {
 	void toggleVerticalSync(bool);
 	virtual void trySaveGame(bool);
 	void updateController();
-	void updateControllerKeys(CXBOXController*, int);
+	// void updateControllerKeys(CXBOXController*, int);
 	void updateMouseControl();
 	void updateVerticalSync();
 }
