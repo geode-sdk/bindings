@@ -763,7 +763,7 @@ class GameManager {
 	TodoReturn getGTexture(int);
 	TodoReturn joinDiscord();
 	TodoReturn saveAdTimer();
-	TodoReturn sharedState();
+	TodoReturn sharedState() = win 0x21f720;
 	TodoReturn startUpdate();
 	TodoReturn unloadIcons(int);
 	TodoReturn unlockColor(int, UnlockType);
@@ -2692,7 +2692,7 @@ class LoadingCircle {
 	virtual void draw();
 	virtual bool init();
 	TodoReturn show();
-	static LoadingCircle* create();
+	static LoadingCircle* create() = win 0x48140;
 	~LoadingCircle();
 }
 
@@ -3270,9 +3270,9 @@ class LevelInfoLayer {
 	TodoReturn shouldDownloadLevel();
 	TodoReturn setupPlatformerStats();
 	TodoReturn levelDownloadFinished(GJGameLevel*);
-	bool init(GJGameLevel*, bool) = win 0x24cd80;
+	bool init(GJGameLevel*, bool) = win 0x24cd80, mac 0x2973f0;
 	TodoReturn scene(GJGameLevel*, bool);
-	static LevelInfoLayer* create(GJGameLevel*, bool);
+	static LevelInfoLayer* create(GJGameLevel*, bool) = 0x64ccd0;
 	void onBack(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
 	void onLike(cocos2d::CCObject* sender);
