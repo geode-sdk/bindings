@@ -3270,7 +3270,7 @@ class LevelInfoLayer {
 	TodoReturn shouldDownloadLevel();
 	TodoReturn setupPlatformerStats();
 	TodoReturn levelDownloadFinished(GJGameLevel*);
-	bool init(GJGameLevel*, bool);
+	bool init(GJGameLevel*, bool) = win 0x24cd80;
 	TodoReturn scene(GJGameLevel*, bool);
 	static LevelInfoLayer* create(GJGameLevel*, bool);
 	void onBack(cocos2d::CCObject* sender);
