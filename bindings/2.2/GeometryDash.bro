@@ -633,7 +633,7 @@ class AppDelegate {
 class CCCountdown {
 	virtual void setOpacity(unsigned char);
 	TodoReturn lapFinished();
-	TodoReturn startTimerWithSeconds(float, void (cocos2d::CCObject::*)(), cocos2d::CCNode*);
+	TodoReturn startTimerWithSeconds(float, cocos2d::SEL_CallFunc, cocos2d::CCNode*);
 	virtual bool init();
 	static CCCountdown* create();
 	~CCCountdown();
@@ -663,7 +663,7 @@ class CCURLObject {
 class ColorAction {
 	TodoReturn resetAction();
 	TodoReturn saveToState(CAState&);
-	TodoReturn setupFromMap(std::map<std::string, std::string, std::less<std::string>, std::allocator<std::pair<std::string const, std::string> > >&);
+	TodoReturn setupFromMap(std::map<std::string, std::string>&);
 	TodoReturn loadFromState(CAState&);
 	TodoReturn setupFromString(std::string);
 	TodoReturn writeSaveString(fmt::BasicWriter<char>&);
@@ -932,7 +932,7 @@ class GameToolbox {
 	TodoReturn getMultipliedHSV(cocos2d::_ccHSVValue const&, float);
 	TodoReturn intToShortString(int);
 	TodoReturn saveStringToFile(std::string const&, std::string const&);
-	TodoReturn stringSetupToMap(std::string const&, char const*, std::map<std::string, std::string, std::less<std::string>, std::allocator<std::pair<std::string const, std::string> > >&);
+	TodoReturn stringSetupToMap(std::string const&, char const*, std::map<std::string, std::string>&);
 	TodoReturn getDropActionWEnd(float, float, float, cocos2d::CCAction*, float);
 	TodoReturn getInvertedEasing(int);
 	TodoReturn getRelativeOffset(GameObject*, cocos2d::CCPoint);
@@ -942,7 +942,7 @@ class GameToolbox {
 	TodoReturn fast_rand_minus1_1();
 	TodoReturn particleFromString(std::string const&, cocos2d::CCParticleSystemQuad*, bool);
 	TodoReturn particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool);
-	TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, void (cocos2d::CCObject::*)());
+	TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, cocos2d::SEL_CallFunc);
 	TodoReturn alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
 	TodoReturn contentScaleClipRect(cocos2d::CCRect&);
 	TodoReturn multipliedColorValue(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float);
@@ -4101,7 +4101,7 @@ class GJBaseGameLayer {
 	TodoReturn updateGuideArt();
 	TodoReturn updateTimeWarp(float);
 	TodoReturn updateTimeWarp(GameObject*, float);
-	TodoReturn addRemapTargets(std::set<int, std::less<int>, std::allocator<int> >&);
+	TodoReturn addRemapTargets(std::set<int>&);
 	TodoReturn checkCollisions(PlayerObject*, float, bool);
 	TodoReturn claimMoveAction(int, bool);
 	TodoReturn collectedObject(EffectGameObject*);
@@ -6320,8 +6320,8 @@ class SelectEventLayer {
 	TodoReturn nextPosition();
 	virtual void keyBackClicked();
 	void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
-	bool init(SetupEventLinkPopup*, std::set<int, std::less<int>, std::allocator<int> >&);
-	static SelectEventLayer* create(SetupEventLinkPopup*, std::set<int, std::less<int>, std::allocator<int> >&);
+	bool init(SetupEventLinkPopup*, std::set<int>&);
+	static SelectEventLayer* create(SetupEventLinkPopup*, std::set<int>&);
 	void onInfo(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn addToggle(int, std::string);
@@ -8303,7 +8303,7 @@ class SetupBGSpeedTrigger {
 [[link(android)]]
 class SetupEventLinkPopup {
 	void onSelectEvent(cocos2d::CCObject* sender);
-	TodoReturn updateEventIDs(std::set<int, std::less<int>, std::allocator<int> >&);
+	TodoReturn updateEventIDs(std::set<int>&);
 	bool init(EventLinkTrigger*, cocos2d::CCArray*);
 	static SetupEventLinkPopup* create(EventLinkTrigger*, cocos2d::CCArray*);
 	~SetupEventLinkPopup();
@@ -8692,7 +8692,7 @@ class MusicDownloadManager {
 	TodoReturn loadSongInfoFinished(SongInfoObject*);
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	TodoReturn getSFXFolderPathForID(int, bool);
-	TodoReturn ProcessHttpGetRequest(std::string, std::string, void (cocos2d::CCObject::*)(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*), int, int);
+	TodoReturn ProcessHttpGetRequest(std::string, std::string, cocos2d::SEL_HttpResponse, int, int);
 	TodoReturn tryUpdateMusicLibrary();
 	TodoReturn getSFXDownloadProgress(int);
 	TodoReturn onDownloadSFXCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
@@ -10302,18 +10302,18 @@ class SetupTimerControlTriggerPopup {
 	~SetupTimerControlTriggerPopup();
 }
 
-[[link(android)]]
-class tk::spline {
-	TodoReturn set_points(gd::vector<double> const&, gd::vector<double> const&, tk::spline::spline_type);
-	TodoReturn set_boundary(tk::spline::bd_type, double, tk::spline::bd_type, double);
-	TodoReturn make_monotonic();
-	TodoReturn set_coeffs_from_b();
-	~spline();
-	TodoReturn find_closest(double);
-	TodoReturn deriv(int, double);
-	TodoReturn solve(double, bool);
-	TodoReturn operator()(double);
-}
+// [[link(android)]]
+// class tk::spline {
+// 	TodoReturn set_points(gd::vector<double> const&, gd::vector<double> const&, tk::spline::spline_type);
+// 	TodoReturn set_boundary(tk::spline::bd_type, double, tk::spline::bd_type, double);
+// 	TodoReturn make_monotonic();
+// 	TodoReturn set_coeffs_from_b();
+// 	~spline();
+// 	TodoReturn find_closest(double);
+// 	TodoReturn deriv(int, double);
+// 	TodoReturn solve(double, bool);
+// 	TodoReturn operator()(double);
+// }
 
 [[link(android)]]
 class SetupAdvFollowEditPhysicsPopup {
@@ -10919,26 +10919,26 @@ class GManager {
 	~GManager();
 }
 
-[[link(android)]]
-class internal::band_matrix {
-	TodoReturn saved_diag(int);
-	TodoReturn lu_decompose();
-	TodoReturn resize(int, int, int);
-	TodoReturn lu_solve(gd::vector<double> const&, bool);
-	TodoReturn band_matrix(int, int, int);
-	TodoReturn operator()(int, int);
-	TodoReturn dim();
-	TodoReturn l_solve(gd::vector<double> const&);
-	TodoReturn r_solve(gd::vector<double> const&);
-}
+// [[link(android)]]
+// class internal::band_matrix {
+// 	TodoReturn saved_diag(int);
+// 	TodoReturn lu_decompose();
+// 	TodoReturn resize(int, int, int);
+// 	TodoReturn lu_solve(gd::vector<double> const&, bool);
+// 	TodoReturn band_matrix(int, int, int);
+// 	TodoReturn operator()(int, int);
+// 	TodoReturn dim();
+// 	TodoReturn l_solve(gd::vector<double> const&);
+// 	TodoReturn r_solve(gd::vector<double> const&);
+// }
 
-[[link(android)]]
-class internal {
-	TodoReturn solve_cubic(double, double, double, double, int);
-	TodoReturn solve_linear(double, double);
-	TodoReturn solve_quadratic(double, double, double, int);
-	TodoReturn get_eps();
-}
+// [[link(android)]]
+// class internal {
+// 	TodoReturn solve_cubic(double, double, double, double, int);
+// 	TodoReturn solve_linear(double, double);
+// 	TodoReturn solve_quadratic(double, double, double, int);
+// 	TodoReturn get_eps();
+// }
 
 [[link(android)]]
 class ListCell {
