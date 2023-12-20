@@ -633,7 +633,7 @@ class AppDelegate {
 class CCCountdown {
 	virtual void setOpacity(unsigned char);
 	TodoReturn lapFinished();
-	TodoReturn startTimerWithSeconds(float, void (cocos2d::CCObject::*)(), cocos2d::CCNode*);
+	TodoReturn startTimerWithSeconds(float, cocos2d::SEL_CallFunc, cocos2d::CCNode*);
 	virtual bool init();
 	static CCCountdown* create();
 	~CCCountdown();
@@ -942,7 +942,7 @@ class GameToolbox {
 	TodoReturn fast_rand_minus1_1();
 	TodoReturn particleFromString(std::string const&, cocos2d::CCParticleSystemQuad*, bool);
 	TodoReturn particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool);
-	TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, void (cocos2d::CCObject::*)());
+	TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, cocos2d::SEL_CallFunc);
 	TodoReturn alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
 	TodoReturn contentScaleClipRect(cocos2d::CCRect&);
 	TodoReturn multipliedColorValue(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float);
@@ -2714,11 +2714,11 @@ class ObjectDecoder {
 	~ObjectDecoder();
 	ObjectDecoder(ObjectDecoder const&);
 	ObjectDecoder();
-	TodoReturn cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
+	cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
 	ObjectDecoderDelegate* getDelegate() const;
-	TodoReturn virtual bool init();
-	TodoReturn void setDelegate(ObjectDecoderDelegate*);
-	TodoReturn static ObjectDecoder* sharedDecoder();
+	virtual bool init();
+	void setDelegate(ObjectDecoderDelegate*);
+	static ObjectDecoder* sharedDecoder();
 }
 
 [[link(android)]]
@@ -5106,11 +5106,11 @@ class CCContentManager {
 	~CCContentManager();
 	CCContentManager(CCContentManager const&);
 	CCContentManager();
-	TodoReturn cocos2d::CCDictionary* addDict(char const*, bool);
-	TodoReturn cocos2d::CCDictionary* addDictDS(char const*);
-	TodoReturn void clearCache();
-	TodoReturn bool init();
-	TodoReturn static CCContentManager* sharedManager();
+	cocos2d::CCDictionary* addDict(char const*, bool);
+	cocos2d::CCDictionary* addDictDS(char const*);
+	void clearCache();
+	bool init();
+	static CCContentManager* sharedManager();
 }
 
 [[link(android)]]
@@ -8724,7 +8724,7 @@ class MusicDownloadManager {
 	TodoReturn loadSongInfoFinished(SongInfoObject*);
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	TodoReturn getSFXFolderPathForID(int, bool);
-	TodoReturn ProcessHttpGetRequest(std::string, std::string, void (cocos2d::CCObject::*)(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*), int, int);
+	TodoReturn ProcessHttpGetRequest(std::string, std::string, cocos2d::SEL_HttpResponse, int, int);
 	TodoReturn tryUpdateMusicLibrary();
 	TodoReturn getSFXDownloadProgress(int);
 	TodoReturn onDownloadSFXCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
@@ -10334,18 +10334,18 @@ class SetupTimerControlTriggerPopup {
 	~SetupTimerControlTriggerPopup();
 }
 
-[[link(android)]]
-class tk::spline {
-	TodoReturn set_points(gd::vector<double> const&, gd::vector<double> const&, tk::spline::spline_type);
-	TodoReturn set_boundary(tk::spline::bd_type, double, tk::spline::bd_type, double);
-	TodoReturn make_monotonic();
-	TodoReturn set_coeffs_from_b();
-	~spline();
-	TodoReturn find_closest(double);
-	TodoReturn deriv(int, double);
-	TodoReturn solve(double, bool);
-	TodoReturn operator()(double);
-}
+// [[link(android)]]
+// class tk::spline {
+// 	TodoReturn set_points(gd::vector<double> const&, gd::vector<double> const&, tk::spline::spline_type);
+// 	TodoReturn set_boundary(tk::spline::bd_type, double, tk::spline::bd_type, double);
+// 	TodoReturn make_monotonic();
+// 	TodoReturn set_coeffs_from_b();
+// 	~spline();
+// 	TodoReturn find_closest(double);
+// 	TodoReturn deriv(int, double);
+// 	TodoReturn solve(double, bool);
+// 	TodoReturn operator()(double);
+// }
 
 [[link(android)]]
 class SetupAdvFollowEditPhysicsPopup {
@@ -10386,151 +10386,151 @@ class SetupInstantCollisionTriggerPopup {
 	~SetupInstantCollisionTriggerPopup();
 }
 
-[[link(android)]]
-class fmt::SystemError {
-	bool init(int, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn SystemError();
-	TodoReturn SystemError(fmt::SystemError const&);
-	TodoReturn SystemError(int, fmt::BasicStringRef<char>);
-	TodoReturn int error_code() const;
-	TodoReturn void init(int, fmt::BasicStringRef<char>, fmt::ArgList const&);
-}
+// [[link(android)]]
+// class fmt::SystemError {
+// 	bool init(int, fmt::BasicStringRef<char>, fmt::ArgList const&);
+// 	TodoReturn SystemError();
+// 	TodoReturn SystemError(fmt::SystemError const&);
+// 	TodoReturn SystemError(int, fmt::BasicStringRef<char>);
+// 	TodoReturn int error_code() const;
+// 	TodoReturn void init(int, fmt::BasicStringRef<char>, fmt::ArgList const&);
+// }
 
-[[link(android)]]
-class fmt {
-	TodoReturn print_colored(fmt::Color, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn ReportSystemError(int, fmt::BasicStringRef<char>);
-	TodoReturn print(fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn print(__sFILE*, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn print(std::ostream&, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn format(fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn printf(fmt::BasicStringRef<char>, fmt::ArgList const&);
-}
+// [[link(android)]]
+// class fmt {
+// 	TodoReturn print_colored(fmt::Color, fmt::BasicStringRef<char>, fmt::ArgList const&);
+// 	TodoReturn ReportSystemError(int, fmt::BasicStringRef<char>);
+// 	TodoReturn print(fmt::BasicStringRef<char>, fmt::ArgList const&);
+// 	TodoReturn print(__sFILE*, fmt::BasicStringRef<char>, fmt::ArgList const&);
+// 	TodoReturn print(std::ostream&, fmt::BasicStringRef<char>, fmt::ArgList const&);
+// 	TodoReturn format(fmt::BasicStringRef<char>, fmt::ArgList const&);
+// 	TodoReturn printf(fmt::BasicStringRef<char>, fmt::ArgList const&);
+// }
 
-[[link(android)]]
-class fmt::internal {
-	TodoReturn SignBitNoInline(double);
-	TodoReturn ReportUnknownType(char, char const*);
-	TodoReturn FormatSystemErrorMessage(fmt::BasicWriter<char>&, int, fmt::BasicStringRef<char>);
-	TodoReturn StrError(int, char*&, unsigned long);
-}
+// [[link(android)]]
+// class fmt::internal {
+// 	TodoReturn SignBitNoInline(double);
+// 	TodoReturn ReportUnknownType(char, char const*);
+// 	TodoReturn FormatSystemErrorMessage(fmt::BasicWriter<char>&, int, fmt::BasicStringRef<char>);
+// 	TodoReturn StrError(int, char*&, unsigned long);
+// }
 
-[[link(android)]]
-class MD5 {
-	MD5Transform(unsigned long*, unsigned char*);
-}
+// [[link(android)]]
+// class MD5 {
+// 	MD5Transform(unsigned long*, unsigned char*);
+// }
 
-[[link(android)]]
-class FMOD::ChannelGroup {
-	TodoReturn getChannel(int, FMOD::Channel**);
-	TodoReturn getNumChannels(int*);
-	TodoReturn release();
-	TodoReturn addGroup(FMOD::ChannelGroup*, bool, FMOD::DSPConnection**);
-}
+// [[link(android)]]
+// class FMOD::ChannelGroup {
+// 	TodoReturn getChannel(int, FMOD::Channel**);
+// 	TodoReturn getNumChannels(int*);
+// 	TodoReturn release();
+// 	TodoReturn addGroup(FMOD::ChannelGroup*, bool, FMOD::DSPConnection**);
+// }
 
-[[link(android)]]
-class FMOD::ChannelControl {
-	TodoReturn getDSPClock(unsigned long long*, unsigned long long*);
-	TodoReturn getUserData(void**);
-	/* unverified signature */
-	void setCallback(FMOD_RESULT (*)(FMOD_CHANNELCONTROL*, FMOD_CHANNELCONTROL_TYPE, FMOD_CHANNELCONTROL_CALLBACK_TYPE, void*, void*));
-	virtual void setUserData(void*);
-	TodoReturn addFadePoint(unsigned long long, float);
-	/* unverified signature */
-	void setVolumeRamp(bool);
-	virtual void stop();
-	TodoReturn addDSP(int, FMOD::DSP*);
-	TodoReturn getDSP(int, FMOD::DSP**);
-	TodoReturn getPitch(float*);
-	/* unverified signature */
-	void setDelay(unsigned long long, unsigned long long, bool);
-	/* unverified signature */
-	void setPitch(float);
-	TodoReturn getPaused(bool*);
-	TodoReturn getVolume(float*);
-	/* unverified signature */
-	void setPaused(bool);
-	/* unverified signature */
-	void setVolume(float);
-}
+// [[link(android)]]
+// class FMOD::ChannelControl {
+// 	TodoReturn getDSPClock(unsigned long long*, unsigned long long*);
+// 	TodoReturn getUserData(void**);
+// 	/* unverified signature */
+// 	void setCallback(FMOD_RESULT (*)(FMOD_CHANNELCONTROL*, FMOD_CHANNELCONTROL_TYPE, FMOD_CHANNELCONTROL_CALLBACK_TYPE, void*, void*));
+// 	virtual void setUserData(void*);
+// 	TodoReturn addFadePoint(unsigned long long, float);
+// 	/* unverified signature */
+// 	void setVolumeRamp(bool);
+// 	virtual void stop();
+// 	TodoReturn addDSP(int, FMOD::DSP*);
+// 	TodoReturn getDSP(int, FMOD::DSP**);
+// 	TodoReturn getPitch(float*);
+// 	/* unverified signature */
+// 	void setDelay(unsigned long long, unsigned long long, bool);
+// 	/* unverified signature */
+// 	void setPitch(float);
+// 	TodoReturn getPaused(bool*);
+// 	TodoReturn getVolume(float*);
+// 	/* unverified signature */
+// 	void setPaused(bool);
+// 	/* unverified signature */
+// 	void setVolume(float);
+// }
 
-[[link(android)]]
-class FMOD::DSP {
-	TodoReturn getMeteringInfo(FMOD_DSP_METERING_INFO*, FMOD_DSP_METERING_INFO*);
-	/* unverified signature */
-	void setParameterBool(int, bool);
-	/* unverified signature */
-	void setParameterFloat(int, float);
-	/* unverified signature */
-	void setMeteringEnabled(bool, bool);
-}
+// [[link(android)]]
+// class FMOD::DSP {
+// 	TodoReturn getMeteringInfo(FMOD_DSP_METERING_INFO*, FMOD_DSP_METERING_INFO*);
+// 	/* unverified signature */
+// 	void setParameterBool(int, bool);
+// 	/* unverified signature */
+// 	void setParameterFloat(int, float);
+// 	/* unverified signature */
+// 	void setMeteringEnabled(bool, bool);
+// }
 
-[[link(android)]]
-class FMOD::Sound {
-	TodoReturn getOpenState(FMOD_OPENSTATE*, unsigned int*, bool*, bool*);
-	/* unverified signature */
-	void setLoopCount(int);
-	TodoReturn release();
-	TodoReturn getLength(unsigned int*, unsigned int);
-}
+// [[link(android)]]
+// class FMOD::Sound {
+// 	TodoReturn getOpenState(FMOD_OPENSTATE*, unsigned int*, bool*, bool*);
+// 	/* unverified signature */
+// 	void setLoopCount(int);
+// 	TodoReturn release();
+// 	TodoReturn getLength(unsigned int*, unsigned int);
+// }
 
-[[link(android)]]
-class FMOD::System {
-	TodoReturn getVersion(unsigned int*);
-	TodoReturn createSound(char const*, unsigned int, FMOD_CREATESOUNDEXINFO*, FMOD::Sound**);
-	TodoReturn getCPUUsage(FMOD_CPU_USAGE*);
-	TodoReturn mixerResume();
-	TodoReturn createStream(char const*, unsigned int, FMOD_CREATESOUNDEXINFO*, FMOD::Sound**);
-	TodoReturn mixerSuspend();
-	TodoReturn createDSPByType(FMOD_DSP_TYPE, FMOD::DSP**);
-	TodoReturn getDSPBufferSize(unsigned int*, int*);
-	/* unverified signature */
-	void setDSPBufferSize(unsigned int, int);
-	TodoReturn getSoftwareFormat(int*, FMOD_SPEAKERMODE*, int*);
-	/* unverified signature */
-	void setSoftwareFormat(int, FMOD_SPEAKERMODE, int);
-	TodoReturn createChannelGroup(char const*, FMOD::ChannelGroup**);
-	TodoReturn getStreamBufferSize(unsigned int*, unsigned int*);
-	bool init(int, unsigned int, void*);
-	TodoReturn close();
-	TodoReturn update();
-	TodoReturn lockDSP();
-	TodoReturn release();
-	TodoReturn playSound(FMOD::Sound*, FMOD::ChannelGroup*, bool, FMOD::Channel**);
-	TodoReturn unlockDSP();
-}
+// [[link(android)]]
+// class FMOD::System {
+// 	TodoReturn getVersion(unsigned int*);
+// 	TodoReturn createSound(char const*, unsigned int, FMOD_CREATESOUNDEXINFO*, FMOD::Sound**);
+// 	TodoReturn getCPUUsage(FMOD_CPU_USAGE*);
+// 	TodoReturn mixerResume();
+// 	TodoReturn createStream(char const*, unsigned int, FMOD_CREATESOUNDEXINFO*, FMOD::Sound**);
+// 	TodoReturn mixerSuspend();
+// 	TodoReturn createDSPByType(FMOD_DSP_TYPE, FMOD::DSP**);
+// 	TodoReturn getDSPBufferSize(unsigned int*, int*);
+// 	/* unverified signature */
+// 	void setDSPBufferSize(unsigned int, int);
+// 	TodoReturn getSoftwareFormat(int*, FMOD_SPEAKERMODE*, int*);
+// 	/* unverified signature */
+// 	void setSoftwareFormat(int, FMOD_SPEAKERMODE, int);
+// 	TodoReturn createChannelGroup(char const*, FMOD::ChannelGroup**);
+// 	TodoReturn getStreamBufferSize(unsigned int*, unsigned int*);
+// 	bool init(int, unsigned int, void*);
+// 	TodoReturn close();
+// 	TodoReturn update();
+// 	TodoReturn lockDSP();
+// 	TodoReturn release();
+// 	TodoReturn playSound(FMOD::Sound*, FMOD::ChannelGroup*, bool, FMOD::Channel**);
+// 	TodoReturn unlockDSP();
+// }
 
-[[link(android)]]
-class FMOD::Channel {
-	TodoReturn getPosition(unsigned int*, unsigned int);
-	/* unverified signature */
-	void setPosition(unsigned int, unsigned int);
-	/* unverified signature */
-	void setLoopCount(int);
-	TodoReturn getLoopPoints(unsigned int*, unsigned int, unsigned int*, unsigned int);
-	/* unverified signature */
-	void setLoopPoints(unsigned int, unsigned int, unsigned int, unsigned int);
-	TodoReturn getCurrentSound(FMOD::Sound**);
-}
+// [[link(android)]]
+// class FMOD::Channel {
+// 	TodoReturn getPosition(unsigned int*, unsigned int);
+// 	/* unverified signature */
+// 	void setPosition(unsigned int, unsigned int);
+// 	/* unverified signature */
+// 	void setLoopCount(int);
+// 	TodoReturn getLoopPoints(unsigned int*, unsigned int, unsigned int*, unsigned int);
+// 	/* unverified signature */
+// 	void setLoopPoints(unsigned int, unsigned int, unsigned int, unsigned int);
+// 	TodoReturn getCurrentSound(FMOD::Sound**);
+// }
 
-[[link(android)]]
-class llvm {
-	TodoReturn ConvertUTF8toWide(unsigned int, std::string const&, char*&, unsigned char const*&);
-	TodoReturn hasUTF16ByteOrderMark(char const*, unsigned long);
-	TodoReturn ConvertCodePointToUTF8(unsigned int, char*&);
-	TodoReturn convertUTF16ToUTF8String(std::basic_string<unsigned short, std::char_traits<unsigned short>, std::allocator<unsigned short> > const&, std::string&);
-}
+// [[link(android)]]
+// class llvm {
+// 	TodoReturn ConvertUTF8toWide(unsigned int, std::string const&, char*&, unsigned char const*&);
+// 	TodoReturn hasUTF16ByteOrderMark(char const*, unsigned long);
+// 	TodoReturn ConvertCodePointToUTF8(unsigned int, char*&);
+// 	TodoReturn convertUTF16ToUTF8String(std::basic_string<unsigned short, std::char_traits<unsigned short>, std::allocator<unsigned short> > const&, std::string&);
+// }
 
-[[link(android)]]
-class pugi {
-	TodoReturn get_memory_allocation_function();
-	TodoReturn set_memory_management_functions(void* (*)(unsigned long), void (*)(void*));
-	TodoReturn get_memory_deallocation_function();
-	TodoReturn as_utf8(wchar_t const*);
-	TodoReturn as_utf8(std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > const&);
-	TodoReturn as_wide(char const*);
-	TodoReturn as_wide(std::string const&);
-}
+// [[link(android)]]
+// class pugi {
+// 	TodoReturn get_memory_allocation_function();
+// 	TodoReturn set_memory_management_functions(void* (*)(unsigned long), void (*)(void*));
+// 	TodoReturn get_memory_deallocation_function();
+// 	TodoReturn as_utf8(wchar_t const*);
+// 	TodoReturn as_utf8(std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > const&);
+// 	TodoReturn as_wide(char const*);
+// 	TodoReturn as_wide(std::string const&);
+// }
 
 [[link(android)]]
 class OBB2D {
@@ -10583,334 +10583,334 @@ class Slider {
 	~Slider();
 }
 
-[[link(android)]]
-class cocos2d {
-	TodoReturn ccArrayNew(unsigned int);
-	TodoReturn ccDrawFree();
-	TodoReturn ccDrawInit();
-	TodoReturn ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
-	TodoReturn ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
-	TodoReturn ccGLEnable(cocos2d::ccGLServerState);
-	TodoReturn ccpToAngle(cocos2d::CCPoint const&);
-	TodoReturn qChildSort(void const*, void const*);
-	TodoReturn tgaDestroy(cocos2d::sImageTGA*);
-	TodoReturn ccArrayFree(cocos2d::_ccArray*&);
-	TodoReturn ccCArrayNew(unsigned int);
-	TodoReturn ccDrawLines(cocos2d::CCPoint const*, unsigned int);
-	TodoReturn ccDrawPoint(cocos2d::CCPoint const&);
-	TodoReturn ccGLBindVAO(unsigned int);
-	TodoReturn ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn ccpForAngle(float);
-	TodoReturn ccpFromSize(cocos2d::CCSize const&);
-	TodoReturn ccPointSize(float);
-	TodoReturn unzOpen2_64(void const*, cocos2d::zlib_filefunc64_def_s*);
-	TodoReturn call_zopen64(cocos2d::zlib_filefunc64_32_def_s const*, void const*, int);
-	TodoReturn call_zseek64(cocos2d::zlib_filefunc64_32_def_s const*, void*, unsigned long long, int);
-	TodoReturn call_ztell64(cocos2d::zlib_filefunc64_32_def_s const*, void*);
-	TodoReturn ccCArrayFree(cocos2d::_ccCArray*);
-	TodoReturn ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
-	TodoReturn ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
-	TodoReturn ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
-	TodoReturn CCMessageBox(char const*, char const*);
-	TodoReturn ccpNormalize(cocos2d::CCPoint const&);
-	TodoReturn CGAffineToGL(cocos2d::CCAffineTransform const*, float*);
-	TodoReturn GLToCGAffine(float const*, cocos2d::CCAffineTransform*);
-	TodoReturn tgaFlipImage(cocos2d::sImageTGA*);
-	TodoReturn unzGetOffset(void*);
-	TodoReturn unzSetOffset(void*, unsigned long);
-	TodoReturn _base64Decode(unsigned char const*, unsigned int, unsigned char*, unsigned int*, bool);
-	TodoReturn _base64Encode(unsigned char const*, unsigned int, char*, bool);
-	TodoReturn ccArrayShrink(cocos2d::_ccArray*);
-	TodoReturn ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char);
-	TodoReturn ccDrawColor4F(float, float, float, float);
-	TodoReturn ccGLBlendFunc(unsigned int, unsigned int);
-	TodoReturn ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
-	TodoReturn iscjk_unicode(unsigned short);
-	TodoReturn tgaLoadHeader(unsigned char*, unsigned long, cocos2d::sImageTGA*);
-	TodoReturn unzGetFilePos(void*, cocos2d::unz_file_pos_s*);
-	TodoReturn unzLocateFile(void*, char const*, int);
-	TodoReturn ccGLUseProgram(unsigned int);
-	TodoReturn ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn cc_utf8_strlen(char const*);
-	cocos2dVersion();
-	TodoReturn unzGetOffset64(void*);
-	TodoReturn unzGoToFilePos(void*, cocos2d::unz_file_pos_s*);
-	TodoReturn unzSetOffset64(void*, unsigned long long);
-	TodoReturn ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
-	TodoReturn ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F);
-	TodoReturn cc_utf8_trim_ws(gd::vector<unsigned short>*);
-	TodoReturn isspace_unicode(unsigned short);
-	TodoReturn unzGetFilePos64(void*, cocos2d::unz64_file_pos_s*);
-	TodoReturn unzGoToNextFile(void*);
-	TodoReturn ccDrawCatmullRom(cocos2d::CCPointArray*, unsigned int);
-	TodoReturn ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
-	TodoReturn ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
-	TodoReturn ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
-	TodoReturn CCRectFromString(char const*);
-	TodoReturn CCSizeFromString(char const*);
-	TodoReturn cc_utf16_to_utf8(unsigned short const*, int*);
-	TodoReturn cc_utf8_to_utf16(char const*, int*);
-	TodoReturn tgaLoadImageData(unsigned char*, unsigned long, cocos2d::sImageTGA*);
-	TodoReturn unzGetGlobalInfo(void*, cocos2d::unz_global_info_s*);
-	TodoReturn unzGoToFilePos64(void*, cocos2d::unz64_file_pos_s const*);
-	TodoReturn unzGoToFirstFile(void*);
-	TodoReturn ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
-	TodoReturn ccGLBindTexture2D(unsigned int);
-	TodoReturn ccGLDeleteProgram(unsigned int);
-	TodoReturn ccGLDeleteTexture(unsigned int);
-	TodoReturn ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn CCPointFromString(char const*);
-	TodoReturn FNTConfigLoadFile(char const*);
-	TodoReturn tgaRGBtogreyscale(cocos2d::sImageTGA*);
-	TodoReturn unzGoToNextFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
-	TodoReturn ccArrayAppendArray(cocos2d::_ccArray*, cocos2d::_ccArray*);
-	TodoReturn ccArrayRemoveArray(cocos2d::_ccArray*, cocos2d::_ccArray*);
-	TodoReturn ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
-	TodoReturn ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
-	TodoReturn ccGLBindTexture2DN(unsigned int, unsigned int);
-	TodoReturn ccGLDeleteTextureN(unsigned int, unsigned int);
-	TodoReturn unzGetGlobalInfo64(void*, cocos2d::unz_global_info64_s*);
-	TodoReturn unzGoToFirstFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
-	TodoReturn unzOpenCurrentFile(void*);
-	TodoReturn unzReadCurrentFile(void*, void*, unsigned int);
-	TodoReturn ccArrayAppendObject(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn ccArrayRemoveObject(cocos2d::_ccArray*, cocos2d::CCObject*, bool);
-	TodoReturn ccCArrayAppendArray(cocos2d::_ccCArray*, cocos2d::_ccCArray*);
-	TodoReturn ccCArrayAppendValue(cocos2d::_ccCArray*, void*);
-	TodoReturn ccCArrayRemoveArray(cocos2d::_ccCArray*, cocos2d::_ccCArray*);
-	TodoReturn ccCArrayRemoveValue(cocos2d::_ccCArray*, void*);
-	TodoReturn ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
-	TodoReturn ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn fill_fopen_filefunc(cocos2d::zlib_filefunc_def_s*);
-	TodoReturn unzCloseCurrentFile(void*);
-	TodoReturn unzGetGlobalComment(void*, char*, unsigned long);
-	TodoReturn unzOpenCurrentFile2(void*, int*, int*, int);
-	TodoReturn unzOpenCurrentFile3(void*, int*, int*, int, char const*);
-	TodoReturn ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
-	TodoReturn FNTConfigRemoveCache();
-	TodoReturn ccArrayContainsObject(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn ccArrayDoubleCapacity(cocos2d::_ccArray*);
-	TodoReturn ccCArrayContainsValue(cocos2d::_ccCArray*, void*);
-	TodoReturn ccGLBlendResetToCache();
-	TodoReturn ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
-	TodoReturn ccVertexLineToPolygon(cocos2d::CCPoint*, float, cocos2d::_ccVertex2F*, unsigned int, unsigned int);
-	TodoReturn fill_fopen64_filefunc(cocos2d::zlib_filefunc64_def_s*);
-	TodoReturn unzGetCurrentFileInfo(void*, cocos2d::unz_file_info_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
-	TodoReturn unzGetLocalExtrafield(void*, void*, unsigned int);
-	TodoReturn CCAffineTransformScale(cocos2d::CCAffineTransform const&, float, float);
-	TodoReturn ccArrayAppendObjectNew(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn ccArrayFullRemoveArray(cocos2d::_ccArray*, cocos2d::_ccArray*);
-	TodoReturn ccCArrayDoubleCapacity(cocos2d::_ccCArray*);
-	TodoReturn CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
-	TodoReturn CCAffineTransformInvert(cocos2d::CCAffineTransform const&);
-	TodoReturn __CCAffineTransformMake(float, float, float, float, float, float);
-	TodoReturn CCAffineTransformRotate(cocos2d::CCAffineTransform const&, float);
-	TodoReturn ccArrayFastRemoveObject(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn ccArrayGetIndexOfObject(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn ccArrayRemoveAllObjects(cocos2d::_ccArray*);
-	TodoReturn ccCArrayFullRemoveArray(cocos2d::_ccCArray*, cocos2d::_ccCArray*);
-	TodoReturn ccCArrayGetIndexOfValue(cocos2d::_ccCArray*, void*);
-	TodoReturn ccCArrayRemoveAllValues(cocos2d::_ccCArray*);
-	TodoReturn ccGLEnableVertexAttribs(unsigned int);
-	TodoReturn unzGetCurrentFileInfo64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
-	TodoReturn ccArrayAppendObjectBatch(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn ccArrayAppendObjectChild(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn ccGLInvalidateStateCache();
-	TodoReturn unzStringFileNameCompare(char const*, char const*, int);
-	TodoReturn ccArrayRecreateNewIndexes(cocos2d::_ccArray*);
-	TodoReturn ccArrayUpdateChildIndexes(cocos2d::_ccArray*);
-	TodoReturn CCProfilingEndTimingBlock(char const*);
-	TodoReturn CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float);
-	TodoReturn ccArrayEnsureExtraCapacity(cocos2d::_ccArray*, unsigned int);
-	TodoReturn ccArrayInsertObjectAtIndex(cocos2d::_ccArray*, cocos2d::CCObject*, unsigned int);
-	TodoReturn ccArrayRemoveObjectAtIndex(cocos2d::_ccArray*, unsigned int, bool);
-	TodoReturn ccCArrayInsertValueAtIndex(cocos2d::_ccCArray*, void*, unsigned int);
-	TodoReturn ccCArrayRemoveValueAtIndex(cocos2d::_ccCArray*, unsigned int);
-	TodoReturn CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
-	TodoReturn ccSetProjectionMatrixDirty();
-	TodoReturn cc_utf8_find_last_not_char(gd::vector<unsigned short> const&, unsigned short);
-	TodoReturn unzOpenCurrentFilePassword(void*, char const*);
-	TodoReturn ccArrayRecreateChildIndexes(cocos2d::_ccArray*);
-	TodoReturn ccArraySwapObjectsAtIndexes(cocos2d::_ccArray*, unsigned int, unsigned int);
-	TodoReturn ccCArrayEnsureExtraCapacity(cocos2d::_ccCArray*, unsigned int);
-	TodoReturn CCProfilingBeginTimingBlock(char const*);
-	TodoReturn CCProfilingResetTimingBlock(char const*);
-	TodoReturn cc_utf16_vec_from_utf16_str(unsigned short const*);
-	TodoReturn ccArrayAppendArrayWithResize(cocos2d::_ccArray*, cocos2d::_ccArray*);
-	TodoReturn __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&);
-	TodoReturn CCAffineTransformMakeIdentity();
-	TodoReturn ccArrayAppendObjectWithResize(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn ccCArrayAppendArrayWithResize(cocos2d::_ccCArray*, cocos2d::_ccCArray*);
-	TodoReturn ccCArrayAppendValueWithResize(cocos2d::_ccCArray*, void*);
-	TodoReturn __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
-	TodoReturn getCharacterCountInUTF8String(std::string const&);
-	TodoReturn unzGetCurrentFileZStreamPos64(void*);
-	TodoReturn ccArrayFastRemoveObjectAtIndex(cocos2d::_ccArray*, unsigned int);
-	TodoReturn ccCArrayFastRemoveValueAtIndex(cocos2d::_ccCArray*, unsigned int);
-	TodoReturn ccArrayInsertObjectAtIndexBatch(cocos2d::_ccArray*, cocos2d::CCObject*, unsigned int);
-	TodoReturn ccArrayRemoveObjectAtIndexBatch(cocos2d::_ccArray*, unsigned int, bool);
-	TodoReturn ccArrayRemoveObjectAtIndexChild(cocos2d::_ccArray*, unsigned int, bool);
-	TodoReturn ccArrayAppendObjectWithResizeNew(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
-	TodoReturn ccArrayFastRemoveObjectAtIndexNew(cocos2d::_ccArray*, unsigned int);
-	TodoReturn ccArrayAppendObjectWithResizeBatch(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn ccArrayAppendObjectWithResizeChild(cocos2d::_ccArray*, cocos2d::CCObject*);
-	TodoReturn ccArrayFastRemoveObjectAtIndexChild(cocos2d::_ccArray*, unsigned int);
-	TodoReturn fill_zlib_filefunc64_32_def_from_filefunc32(cocos2d::zlib_filefunc64_32_def_s*, cocos2d::zlib_filefunc_def_s const*);
-	TodoReturn CCLog(char const*, ...);
-	TodoReturn clampf(float, float, float);
-	TodoReturn unzeof(void*);
-	TodoReturn ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
-	TodoReturn tgaLoad(char const*);
-	TodoReturn unzOpen(char const*);
-	TodoReturn unztell(void*);
-	TodoReturn CCLuaLog(char const*);
-	TodoReturn ccpAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn unzClose(void*);
-	TodoReturn unzOpen2(char const*, cocos2d::zlib_filefunc_def_s*);
-	TodoReturn ccNextPOT(unsigned long);
-	TodoReturn ccpCompOp(cocos2d::CCPoint const&, float (*)(float));
-	TodoReturn ccpLength(cocos2d::CCPoint const&);
-	TodoReturn cc_wcslen(unsigned short const*);
-	TodoReturn unzOpen64(void const*);
-	TodoReturn unztell64(void*);
-	TodoReturn CCAffineTransform cocos2d::CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
-	TodoReturn bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
-	TodoReturn CCAffineTransform cocos2d::CCAffineTransformInvert(cocos2d::CCAffineTransform const&);
-	TodoReturn CCAffineTransform cocos2d::CCAffineTransformMakeIdentity();
-	TodoReturn CCAffineTransform cocos2d::CCAffineTransformRotate(cocos2d::CCAffineTransform const&, float);
-	TodoReturn CCAffineTransform cocos2d::CCAffineTransformScale(cocos2d::CCAffineTransform const&, float, float);
-	TodoReturn CCAffineTransform cocos2d::CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float);
-	TodoReturn void CCLog(char const*, ...);
-	TodoReturn void CCLuaLog(char const*);
-	TodoReturn void CCMessageBox(char const*, char const*);
-	TodoReturn CCPoint cocos2d::CCPointFromString(char const*);
-	TodoReturn void CCProfilingBeginTimingBlock(char const*);
-	TodoReturn void CCProfilingEndTimingBlock(char const*);
-	TodoReturn void CCProfilingResetTimingBlock(char const*);
-	TodoReturn CCRect cocos2d::CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
-	TodoReturn CCRect cocos2d::CCRectFromString(char const*);
-	TodoReturn CCSize cocos2d::CCSizeFromString(char const*);
-	TodoReturn CCBMFontConfiguration* cocos2d::FNTConfigLoadFile(char const*);
-	TodoReturn void FNTConfigRemoveCache();
-	TodoReturn CCAffineTransform cocos2d::__CCAffineTransformMake(float, float, float, float, float, float);
-	TodoReturn CCPoint cocos2d::__CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
-	TodoReturn CCSize cocos2d::__CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&);
-	TodoReturn CCPoint cocos2d::ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
-	TodoReturn void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
-	TodoReturn void ccDrawCatmullRom(cocos2d::CCPointArray*, unsigned int);
-	TodoReturn void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
-	TodoReturn void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
-	TodoReturn void ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
-	TodoReturn void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char);
-	TodoReturn void ccDrawColor4F(float, float, float, float);
-	TodoReturn void ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
-	TodoReturn void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
-	TodoReturn void ccDrawFree();
-	TodoReturn void ccDrawInit();
-	TodoReturn void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn void ccDrawLines(cocos2d::CCPoint const*, unsigned int);
-	TodoReturn void ccDrawPoint(cocos2d::CCPoint const&);
-	TodoReturn void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
-	TodoReturn void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
-	TodoReturn void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
-	TodoReturn void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
-	TodoReturn void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
-	TodoReturn void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F);
-	TodoReturn void ccGLBindTexture2D(unsigned int);
-	TodoReturn void ccGLBindTexture2DN(unsigned int, unsigned int);
-	TodoReturn void ccGLBindVAO(unsigned int);
-	TodoReturn void ccGLBlendFunc(unsigned int, unsigned int);
-	TodoReturn void ccGLBlendResetToCache();
-	TodoReturn void ccGLDeleteProgram(unsigned int);
-	TodoReturn void ccGLDeleteTexture(unsigned int);
-	TodoReturn void ccGLDeleteTextureN(unsigned int, unsigned int);
-	TodoReturn void ccGLEnable(cocos2d::ccGLServerState);
-	TodoReturn void ccGLEnableVertexAttribs(unsigned int);
-	TodoReturn void ccGLInvalidateStateCache();
-	TodoReturn void ccGLUseProgram(unsigned int);
-	TodoReturn void ccPointSize(float);
-	TodoReturn void ccSetProjectionMatrixDirty();
-	TodoReturn bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
-	TodoReturn void ccVertexLineToPolygon(cocos2d::CCPoint*, float, cocos2d::_ccVertex2F*, unsigned int, unsigned int);
-	TodoReturn char* cc_utf16_to_utf8(unsigned short const*, int*);
-	TodoReturn gd::vector<unsigned short> cc_utf16_vec_from_utf16_str(unsigned short const*);
-	TodoReturn unsigned int cc_utf8_find_last_not_char(gd::vector<unsigned short> const&, unsigned short);
-	TodoReturn long cc_utf8_strlen(char const*);
-	TodoReturn unsigned short* cc_utf8_to_utf16(char const*, int*);
-	TodoReturn void cc_utf8_trim_ws(gd::vector<unsigned short>*);
-	TodoReturn int cc_wcslen(unsigned short const*);
-	TodoReturn float ccpAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn float ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn CCPoint cocos2d::ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn CCPoint cocos2d::ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn CCPoint cocos2d::ccpCompOp(cocos2d::CCPoint const&, float (__cdecl*)(float));
-	TodoReturn float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn CCPoint cocos2d::ccpForAngle(float);
-	TodoReturn CCPoint cocos2d::ccpFromSize(cocos2d::CCSize const&);
-	TodoReturn bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
-	TodoReturn CCPoint cocos2d::ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn float ccpLength(cocos2d::CCPoint const&);
-	TodoReturn CCPoint cocos2d::ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
-	TodoReturn bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
-	TodoReturn CCPoint cocos2d::ccpNormalize(cocos2d::CCPoint const&);
-	TodoReturn CCPoint cocos2d::ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
-	TodoReturn bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	TodoReturn float ccpToAngle(cocos2d::CCPoint const&);
-	TodoReturn float clampf(float, float, float);
-	TodoReturn char const* cocos2dVersion();
-	TodoReturn int gettimeofday(timeval*, cocos2d::timezone*);
-	TodoReturn bool iscjk_unicode(unsigned short);
-	TodoReturn bool isspace_unicode(unsigned short);
-	TodoReturn int unzClose(void*);
-	TodoReturn int unzCloseCurrentFile(void*);
-	TodoReturn int unzGetCurrentFileInfo64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
-	TodoReturn int unzGetCurrentFileInfo(void*, cocos2d::unz_file_info_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
-	TodoReturn unsigned __int64 unzGetCurrentFileZStreamPos64(void*);
-	TodoReturn int unzGetFilePos64(void*, cocos2d::unz64_file_pos_s*);
-	TodoReturn int unzGetFilePos(void*, cocos2d::unz_file_pos_s*);
-	TodoReturn int unzGetGlobalComment(void*, char*, unsigned long);
-	TodoReturn int unzGetGlobalInfo64(void*, cocos2d::unz_global_info64_s*);
-	TodoReturn int unzGetGlobalInfo(void*, cocos2d::unz_global_info_s*);
-	TodoReturn int unzGetLocalExtrafield(void*, void*, unsigned int);
-	TodoReturn unsigned __int64 unzGetOffset64(void*);
-	TodoReturn unsigned long unzGetOffset(void*);
-	TodoReturn int unzGoToFilePos64(void*, cocos2d::unz64_file_pos_s const*);
-	TodoReturn int unzGoToFilePos(void*, cocos2d::unz_file_pos_s*);
-	TodoReturn int unzGoToFirstFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
-	TodoReturn int unzGoToFirstFile(void*);
-	TodoReturn int unzGoToNextFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
-	TodoReturn int unzGoToNextFile(void*);
-	TodoReturn int unzLocateFile(void*, char const*, int);
-	TodoReturn void* unzOpen2(char const*, cocos2d::zlib_filefunc_def_s*);
-	TodoReturn void* unzOpen2_64(void const*, cocos2d::zlib_filefunc64_def_s*);
-	TodoReturn void* unzOpen64(void const*);
-	TodoReturn void* unzOpen(char const*);
-	TodoReturn int unzOpenCurrentFile2(void*, int*, int*, int);
-	TodoReturn int unzOpenCurrentFile3(void*, int*, int*, int, char const*);
-	TodoReturn int unzOpenCurrentFile(void*);
-	TodoReturn int unzOpenCurrentFilePassword(void*, char const*);
-	TodoReturn int unzReadCurrentFile(void*, void*, unsigned int);
-	TodoReturn int unzSetOffset64(void*, unsigned __int64);
-	TodoReturn int unzSetOffset(void*, unsigned long);
-	TodoReturn int unzStringFileNameCompare(char const*, char const*, int);
-	TodoReturn int unzeof(void*);
-	TodoReturn unsigned __int64 unztell64(void*);
-	TodoReturn long unztell(void*);
-}
+// [[link(android)]]
+// class cocos2d {
+// 	TodoReturn ccArrayNew(unsigned int);
+// 	TodoReturn ccDrawFree();
+// 	TodoReturn ccDrawInit();
+// 	TodoReturn ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
+// 	TodoReturn ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
+// 	TodoReturn ccGLEnable(cocos2d::ccGLServerState);
+// 	TodoReturn ccpToAngle(cocos2d::CCPoint const&);
+// 	TodoReturn qChildSort(void const*, void const*);
+// 	TodoReturn tgaDestroy(cocos2d::sImageTGA*);
+// 	TodoReturn ccArrayFree(cocos2d::_ccArray*&);
+// 	TodoReturn ccCArrayNew(unsigned int);
+// 	TodoReturn ccDrawLines(cocos2d::CCPoint const*, unsigned int);
+// 	TodoReturn ccDrawPoint(cocos2d::CCPoint const&);
+// 	TodoReturn ccGLBindVAO(unsigned int);
+// 	TodoReturn ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn ccpForAngle(float);
+// 	TodoReturn ccpFromSize(cocos2d::CCSize const&);
+// 	TodoReturn ccPointSize(float);
+// 	TodoReturn unzOpen2_64(void const*, cocos2d::zlib_filefunc64_def_s*);
+// 	TodoReturn call_zopen64(cocos2d::zlib_filefunc64_32_def_s const*, void const*, int);
+// 	TodoReturn call_zseek64(cocos2d::zlib_filefunc64_32_def_s const*, void*, unsigned long long, int);
+// 	TodoReturn call_ztell64(cocos2d::zlib_filefunc64_32_def_s const*, void*);
+// 	TodoReturn ccCArrayFree(cocos2d::_ccCArray*);
+// 	TodoReturn ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
+// 	TodoReturn ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
+// 	TodoReturn ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
+// 	TodoReturn CCMessageBox(char const*, char const*);
+// 	TodoReturn ccpNormalize(cocos2d::CCPoint const&);
+// 	TodoReturn CGAffineToGL(cocos2d::CCAffineTransform const*, float*);
+// 	TodoReturn GLToCGAffine(float const*, cocos2d::CCAffineTransform*);
+// 	TodoReturn tgaFlipImage(cocos2d::sImageTGA*);
+// 	TodoReturn unzGetOffset(void*);
+// 	TodoReturn unzSetOffset(void*, unsigned long);
+// 	TodoReturn _base64Decode(unsigned char const*, unsigned int, unsigned char*, unsigned int*, bool);
+// 	TodoReturn _base64Encode(unsigned char const*, unsigned int, char*, bool);
+// 	TodoReturn ccArrayShrink(cocos2d::_ccArray*);
+// 	TodoReturn ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char);
+// 	TodoReturn ccDrawColor4F(float, float, float, float);
+// 	TodoReturn ccGLBlendFunc(unsigned int, unsigned int);
+// 	TodoReturn ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+// 	TodoReturn iscjk_unicode(unsigned short);
+// 	TodoReturn tgaLoadHeader(unsigned char*, unsigned long, cocos2d::sImageTGA*);
+// 	TodoReturn unzGetFilePos(void*, cocos2d::unz_file_pos_s*);
+// 	TodoReturn unzLocateFile(void*, char const*, int);
+// 	TodoReturn ccGLUseProgram(unsigned int);
+// 	TodoReturn ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn cc_utf8_strlen(char const*);
+// 	cocos2dVersion();
+// 	TodoReturn unzGetOffset64(void*);
+// 	TodoReturn unzGoToFilePos(void*, cocos2d::unz_file_pos_s*);
+// 	TodoReturn unzSetOffset64(void*, unsigned long long);
+// 	TodoReturn ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
+// 	TodoReturn ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F);
+// 	TodoReturn cc_utf8_trim_ws(gd::vector<unsigned short>*);
+// 	TodoReturn isspace_unicode(unsigned short);
+// 	TodoReturn unzGetFilePos64(void*, cocos2d::unz64_file_pos_s*);
+// 	TodoReturn unzGoToNextFile(void*);
+// 	TodoReturn ccDrawCatmullRom(cocos2d::CCPointArray*, unsigned int);
+// 	TodoReturn ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
+// 	TodoReturn ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
+// 	TodoReturn ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+// 	TodoReturn CCRectFromString(char const*);
+// 	TodoReturn CCSizeFromString(char const*);
+// 	TodoReturn cc_utf16_to_utf8(unsigned short const*, int*);
+// 	TodoReturn cc_utf8_to_utf16(char const*, int*);
+// 	TodoReturn tgaLoadImageData(unsigned char*, unsigned long, cocos2d::sImageTGA*);
+// 	TodoReturn unzGetGlobalInfo(void*, cocos2d::unz_global_info_s*);
+// 	TodoReturn unzGoToFilePos64(void*, cocos2d::unz64_file_pos_s const*);
+// 	TodoReturn unzGoToFirstFile(void*);
+// 	TodoReturn ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
+// 	TodoReturn ccGLBindTexture2D(unsigned int);
+// 	TodoReturn ccGLDeleteProgram(unsigned int);
+// 	TodoReturn ccGLDeleteTexture(unsigned int);
+// 	TodoReturn ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn CCPointFromString(char const*);
+// 	TodoReturn FNTConfigLoadFile(char const*);
+// 	TodoReturn tgaRGBtogreyscale(cocos2d::sImageTGA*);
+// 	TodoReturn unzGoToNextFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
+// 	TodoReturn ccArrayAppendArray(cocos2d::_ccArray*, cocos2d::_ccArray*);
+// 	TodoReturn ccArrayRemoveArray(cocos2d::_ccArray*, cocos2d::_ccArray*);
+// 	TodoReturn ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
+// 	TodoReturn ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
+// 	TodoReturn ccGLBindTexture2DN(unsigned int, unsigned int);
+// 	TodoReturn ccGLDeleteTextureN(unsigned int, unsigned int);
+// 	TodoReturn unzGetGlobalInfo64(void*, cocos2d::unz_global_info64_s*);
+// 	TodoReturn unzGoToFirstFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
+// 	TodoReturn unzOpenCurrentFile(void*);
+// 	TodoReturn unzReadCurrentFile(void*, void*, unsigned int);
+// 	TodoReturn ccArrayAppendObject(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn ccArrayRemoveObject(cocos2d::_ccArray*, cocos2d::CCObject*, bool);
+// 	TodoReturn ccCArrayAppendArray(cocos2d::_ccCArray*, cocos2d::_ccCArray*);
+// 	TodoReturn ccCArrayAppendValue(cocos2d::_ccCArray*, void*);
+// 	TodoReturn ccCArrayRemoveArray(cocos2d::_ccCArray*, cocos2d::_ccCArray*);
+// 	TodoReturn ccCArrayRemoveValue(cocos2d::_ccCArray*, void*);
+// 	TodoReturn ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
+// 	TodoReturn ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn fill_fopen_filefunc(cocos2d::zlib_filefunc_def_s*);
+// 	TodoReturn unzCloseCurrentFile(void*);
+// 	TodoReturn unzGetGlobalComment(void*, char*, unsigned long);
+// 	TodoReturn unzOpenCurrentFile2(void*, int*, int*, int);
+// 	TodoReturn unzOpenCurrentFile3(void*, int*, int*, int, char const*);
+// 	TodoReturn ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
+// 	TodoReturn FNTConfigRemoveCache();
+// 	TodoReturn ccArrayContainsObject(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn ccArrayDoubleCapacity(cocos2d::_ccArray*);
+// 	TodoReturn ccCArrayContainsValue(cocos2d::_ccCArray*, void*);
+// 	TodoReturn ccGLBlendResetToCache();
+// 	TodoReturn ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
+// 	TodoReturn ccVertexLineToPolygon(cocos2d::CCPoint*, float, cocos2d::_ccVertex2F*, unsigned int, unsigned int);
+// 	TodoReturn fill_fopen64_filefunc(cocos2d::zlib_filefunc64_def_s*);
+// 	TodoReturn unzGetCurrentFileInfo(void*, cocos2d::unz_file_info_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
+// 	TodoReturn unzGetLocalExtrafield(void*, void*, unsigned int);
+// 	TodoReturn CCAffineTransformScale(cocos2d::CCAffineTransform const&, float, float);
+// 	TodoReturn ccArrayAppendObjectNew(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn ccArrayFullRemoveArray(cocos2d::_ccArray*, cocos2d::_ccArray*);
+// 	TodoReturn ccCArrayDoubleCapacity(cocos2d::_ccCArray*);
+// 	TodoReturn CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
+// 	TodoReturn CCAffineTransformInvert(cocos2d::CCAffineTransform const&);
+// 	TodoReturn __CCAffineTransformMake(float, float, float, float, float, float);
+// 	TodoReturn CCAffineTransformRotate(cocos2d::CCAffineTransform const&, float);
+// 	TodoReturn ccArrayFastRemoveObject(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn ccArrayGetIndexOfObject(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn ccArrayRemoveAllObjects(cocos2d::_ccArray*);
+// 	TodoReturn ccCArrayFullRemoveArray(cocos2d::_ccCArray*, cocos2d::_ccCArray*);
+// 	TodoReturn ccCArrayGetIndexOfValue(cocos2d::_ccCArray*, void*);
+// 	TodoReturn ccCArrayRemoveAllValues(cocos2d::_ccCArray*);
+// 	TodoReturn ccGLEnableVertexAttribs(unsigned int);
+// 	TodoReturn unzGetCurrentFileInfo64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
+// 	TodoReturn ccArrayAppendObjectBatch(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn ccArrayAppendObjectChild(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn ccGLInvalidateStateCache();
+// 	TodoReturn unzStringFileNameCompare(char const*, char const*, int);
+// 	TodoReturn ccArrayRecreateNewIndexes(cocos2d::_ccArray*);
+// 	TodoReturn ccArrayUpdateChildIndexes(cocos2d::_ccArray*);
+// 	TodoReturn CCProfilingEndTimingBlock(char const*);
+// 	TodoReturn CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float);
+// 	TodoReturn ccArrayEnsureExtraCapacity(cocos2d::_ccArray*, unsigned int);
+// 	TodoReturn ccArrayInsertObjectAtIndex(cocos2d::_ccArray*, cocos2d::CCObject*, unsigned int);
+// 	TodoReturn ccArrayRemoveObjectAtIndex(cocos2d::_ccArray*, unsigned int, bool);
+// 	TodoReturn ccCArrayInsertValueAtIndex(cocos2d::_ccCArray*, void*, unsigned int);
+// 	TodoReturn ccCArrayRemoveValueAtIndex(cocos2d::_ccCArray*, unsigned int);
+// 	TodoReturn CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
+// 	TodoReturn ccSetProjectionMatrixDirty();
+// 	TodoReturn cc_utf8_find_last_not_char(gd::vector<unsigned short> const&, unsigned short);
+// 	TodoReturn unzOpenCurrentFilePassword(void*, char const*);
+// 	TodoReturn ccArrayRecreateChildIndexes(cocos2d::_ccArray*);
+// 	TodoReturn ccArraySwapObjectsAtIndexes(cocos2d::_ccArray*, unsigned int, unsigned int);
+// 	TodoReturn ccCArrayEnsureExtraCapacity(cocos2d::_ccCArray*, unsigned int);
+// 	TodoReturn CCProfilingBeginTimingBlock(char const*);
+// 	TodoReturn CCProfilingResetTimingBlock(char const*);
+// 	TodoReturn cc_utf16_vec_from_utf16_str(unsigned short const*);
+// 	TodoReturn ccArrayAppendArrayWithResize(cocos2d::_ccArray*, cocos2d::_ccArray*);
+// 	TodoReturn __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&);
+// 	TodoReturn CCAffineTransformMakeIdentity();
+// 	TodoReturn ccArrayAppendObjectWithResize(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn ccCArrayAppendArrayWithResize(cocos2d::_ccCArray*, cocos2d::_ccCArray*);
+// 	TodoReturn ccCArrayAppendValueWithResize(cocos2d::_ccCArray*, void*);
+// 	TodoReturn __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
+// 	TodoReturn getCharacterCountInUTF8String(std::string const&);
+// 	TodoReturn unzGetCurrentFileZStreamPos64(void*);
+// 	TodoReturn ccArrayFastRemoveObjectAtIndex(cocos2d::_ccArray*, unsigned int);
+// 	TodoReturn ccCArrayFastRemoveValueAtIndex(cocos2d::_ccCArray*, unsigned int);
+// 	TodoReturn ccArrayInsertObjectAtIndexBatch(cocos2d::_ccArray*, cocos2d::CCObject*, unsigned int);
+// 	TodoReturn ccArrayRemoveObjectAtIndexBatch(cocos2d::_ccArray*, unsigned int, bool);
+// 	TodoReturn ccArrayRemoveObjectAtIndexChild(cocos2d::_ccArray*, unsigned int, bool);
+// 	TodoReturn ccArrayAppendObjectWithResizeNew(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
+// 	TodoReturn ccArrayFastRemoveObjectAtIndexNew(cocos2d::_ccArray*, unsigned int);
+// 	TodoReturn ccArrayAppendObjectWithResizeBatch(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn ccArrayAppendObjectWithResizeChild(cocos2d::_ccArray*, cocos2d::CCObject*);
+// 	TodoReturn ccArrayFastRemoveObjectAtIndexChild(cocos2d::_ccArray*, unsigned int);
+// 	TodoReturn fill_zlib_filefunc64_32_def_from_filefunc32(cocos2d::zlib_filefunc64_32_def_s*, cocos2d::zlib_filefunc_def_s const*);
+// 	// TodoReturn CCLog(char const*, ...);
+// 	TodoReturn clampf(float, float, float);
+// 	TodoReturn unzeof(void*);
+// 	TodoReturn ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+// 	TodoReturn tgaLoad(char const*);
+// 	TodoReturn unzOpen(char const*);
+// 	TodoReturn unztell(void*);
+// 	TodoReturn CCLuaLog(char const*);
+// 	TodoReturn ccpAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn unzClose(void*);
+// 	TodoReturn unzOpen2(char const*, cocos2d::zlib_filefunc_def_s*);
+// 	TodoReturn ccNextPOT(unsigned long);
+// 	TodoReturn ccpCompOp(cocos2d::CCPoint const&, float (*)(float));
+// 	TodoReturn ccpLength(cocos2d::CCPoint const&);
+// 	TodoReturn cc_wcslen(unsigned short const*);
+// 	TodoReturn unzOpen64(void const*);
+// 	TodoReturn unztell64(void*);
+// 	TodoReturn CCAffineTransform cocos2d::CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
+// 	TodoReturn bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
+// 	TodoReturn CCAffineTransform cocos2d::CCAffineTransformInvert(cocos2d::CCAffineTransform const&);
+// 	TodoReturn CCAffineTransform cocos2d::CCAffineTransformMakeIdentity();
+// 	TodoReturn CCAffineTransform cocos2d::CCAffineTransformRotate(cocos2d::CCAffineTransform const&, float);
+// 	TodoReturn CCAffineTransform cocos2d::CCAffineTransformScale(cocos2d::CCAffineTransform const&, float, float);
+// 	TodoReturn CCAffineTransform cocos2d::CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float);
+// 	TodoReturn void CCLog(char const*, ...);
+// 	TodoReturn void CCLuaLog(char const*);
+// 	TodoReturn void CCMessageBox(char const*, char const*);
+// 	TodoReturn CCPoint cocos2d::CCPointFromString(char const*);
+// 	TodoReturn void CCProfilingBeginTimingBlock(char const*);
+// 	TodoReturn void CCProfilingEndTimingBlock(char const*);
+// 	TodoReturn void CCProfilingResetTimingBlock(char const*);
+// 	TodoReturn CCRect cocos2d::CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
+// 	TodoReturn CCRect cocos2d::CCRectFromString(char const*);
+// 	TodoReturn CCSize cocos2d::CCSizeFromString(char const*);
+// 	TodoReturn CCBMFontConfiguration* cocos2d::FNTConfigLoadFile(char const*);
+// 	TodoReturn void FNTConfigRemoveCache();
+// 	TodoReturn CCAffineTransform cocos2d::__CCAffineTransformMake(float, float, float, float, float, float);
+// 	TodoReturn CCPoint cocos2d::__CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
+// 	TodoReturn CCSize cocos2d::__CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&);
+// 	TodoReturn CCPoint cocos2d::ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
+// 	TodoReturn void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
+// 	TodoReturn void ccDrawCatmullRom(cocos2d::CCPointArray*, unsigned int);
+// 	TodoReturn void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
+// 	TodoReturn void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
+// 	TodoReturn void ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
+// 	TodoReturn void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char);
+// 	TodoReturn void ccDrawColor4F(float, float, float, float);
+// 	TodoReturn void ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
+// 	TodoReturn void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
+// 	TodoReturn void ccDrawFree();
+// 	TodoReturn void ccDrawInit();
+// 	TodoReturn void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn void ccDrawLines(cocos2d::CCPoint const*, unsigned int);
+// 	TodoReturn void ccDrawPoint(cocos2d::CCPoint const&);
+// 	TodoReturn void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
+// 	TodoReturn void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
+// 	TodoReturn void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
+// 	TodoReturn void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
+// 	TodoReturn void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
+// 	TodoReturn void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F);
+// 	TodoReturn void ccGLBindTexture2D(unsigned int);
+// 	TodoReturn void ccGLBindTexture2DN(unsigned int, unsigned int);
+// 	TodoReturn void ccGLBindVAO(unsigned int);
+// 	TodoReturn void ccGLBlendFunc(unsigned int, unsigned int);
+// 	TodoReturn void ccGLBlendResetToCache();
+// 	TodoReturn void ccGLDeleteProgram(unsigned int);
+// 	TodoReturn void ccGLDeleteTexture(unsigned int);
+// 	TodoReturn void ccGLDeleteTextureN(unsigned int, unsigned int);
+// 	TodoReturn void ccGLEnable(cocos2d::ccGLServerState);
+// 	TodoReturn void ccGLEnableVertexAttribs(unsigned int);
+// 	TodoReturn void ccGLInvalidateStateCache();
+// 	TodoReturn void ccGLUseProgram(unsigned int);
+// 	TodoReturn void ccPointSize(float);
+// 	TodoReturn void ccSetProjectionMatrixDirty();
+// 	TodoReturn bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
+// 	TodoReturn void ccVertexLineToPolygon(cocos2d::CCPoint*, float, cocos2d::_ccVertex2F*, unsigned int, unsigned int);
+// 	TodoReturn char* cc_utf16_to_utf8(unsigned short const*, int*);
+// 	TodoReturn gd::vector<unsigned short> cc_utf16_vec_from_utf16_str(unsigned short const*);
+// 	TodoReturn unsigned int cc_utf8_find_last_not_char(gd::vector<unsigned short> const&, unsigned short);
+// 	TodoReturn long cc_utf8_strlen(char const*);
+// 	TodoReturn unsigned short* cc_utf8_to_utf16(char const*, int*);
+// 	TodoReturn void cc_utf8_trim_ws(gd::vector<unsigned short>*);
+// 	TodoReturn int cc_wcslen(unsigned short const*);
+// 	TodoReturn float ccpAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn float ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn CCPoint cocos2d::ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn CCPoint cocos2d::ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn CCPoint cocos2d::ccpCompOp(cocos2d::CCPoint const&, float (__cdecl*)(float));
+// 	TodoReturn float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn CCPoint cocos2d::ccpForAngle(float);
+// 	TodoReturn CCPoint cocos2d::ccpFromSize(cocos2d::CCSize const&);
+// 	TodoReturn bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+// 	TodoReturn CCPoint cocos2d::ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn float ccpLength(cocos2d::CCPoint const&);
+// 	TodoReturn CCPoint cocos2d::ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+// 	TodoReturn bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
+// 	TodoReturn CCPoint cocos2d::ccpNormalize(cocos2d::CCPoint const&);
+// 	TodoReturn CCPoint cocos2d::ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+// 	TodoReturn bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+// 	TodoReturn float ccpToAngle(cocos2d::CCPoint const&);
+// 	TodoReturn float clampf(float, float, float);
+// 	TodoReturn char const* cocos2dVersion();
+// 	TodoReturn int gettimeofday(timeval*, cocos2d::timezone*);
+// 	TodoReturn bool iscjk_unicode(unsigned short);
+// 	TodoReturn bool isspace_unicode(unsigned short);
+// 	TodoReturn int unzClose(void*);
+// 	TodoReturn int unzCloseCurrentFile(void*);
+// 	TodoReturn int unzGetCurrentFileInfo64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
+// 	TodoReturn int unzGetCurrentFileInfo(void*, cocos2d::unz_file_info_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
+// 	TodoReturn unsigned __int64 unzGetCurrentFileZStreamPos64(void*);
+// 	TodoReturn int unzGetFilePos64(void*, cocos2d::unz64_file_pos_s*);
+// 	TodoReturn int unzGetFilePos(void*, cocos2d::unz_file_pos_s*);
+// 	TodoReturn int unzGetGlobalComment(void*, char*, unsigned long);
+// 	TodoReturn int unzGetGlobalInfo64(void*, cocos2d::unz_global_info64_s*);
+// 	TodoReturn int unzGetGlobalInfo(void*, cocos2d::unz_global_info_s*);
+// 	TodoReturn int unzGetLocalExtrafield(void*, void*, unsigned int);
+// 	TodoReturn unsigned __int64 unzGetOffset64(void*);
+// 	TodoReturn unsigned long unzGetOffset(void*);
+// 	TodoReturn int unzGoToFilePos64(void*, cocos2d::unz64_file_pos_s const*);
+// 	TodoReturn int unzGoToFilePos(void*, cocos2d::unz_file_pos_s*);
+// 	TodoReturn int unzGoToFirstFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
+// 	TodoReturn int unzGoToFirstFile(void*);
+// 	TodoReturn int unzGoToNextFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
+// 	TodoReturn int unzGoToNextFile(void*);
+// 	TodoReturn int unzLocateFile(void*, char const*, int);
+// 	TodoReturn void* unzOpen2(char const*, cocos2d::zlib_filefunc_def_s*);
+// 	TodoReturn void* unzOpen2_64(void const*, cocos2d::zlib_filefunc64_def_s*);
+// 	TodoReturn void* unzOpen64(void const*);
+// 	TodoReturn void* unzOpen(char const*);
+// 	TodoReturn int unzOpenCurrentFile2(void*, int*, int*, int);
+// 	TodoReturn int unzOpenCurrentFile3(void*, int*, int*, int, char const*);
+// 	TodoReturn int unzOpenCurrentFile(void*);
+// 	TodoReturn int unzOpenCurrentFilePassword(void*, char const*);
+// 	TodoReturn int unzReadCurrentFile(void*, void*, unsigned int);
+// 	TodoReturn int unzSetOffset64(void*, unsigned __int64);
+// 	TodoReturn int unzSetOffset(void*, unsigned long);
+// 	TodoReturn int unzStringFileNameCompare(char const*, char const*, int);
+// 	TodoReturn int unzeof(void*);
+// 	TodoReturn unsigned __int64 unztell64(void*);
+// 	TodoReturn long unztell(void*);
+// }
 
-[[link(android)]]
-class _JNIEnv {
-	TodoReturn CallStaticIntMethod(_jclass*, _jmethodID*, ...);
-	TodoReturn CallStaticVoidMethod(_jclass*, _jmethodID*, ...);
-	TodoReturn CallStaticFloatMethod(_jclass*, _jmethodID*, ...);
-	TodoReturn CallStaticDoubleMethod(_jclass*, _jmethodID*, ...);
-	TodoReturn CallStaticObjectMethod(_jclass*, _jmethodID*, ...);
-	TodoReturn CallStaticBooleanMethod(_jclass*, _jmethodID*, ...);
-}
+// [[link(android)]]
+// class _JNIEnv {
+// 	TodoReturn CallStaticIntMethod(_jclass*, _jmethodID*, ...);
+// 	TodoReturn CallStaticVoidMethod(_jclass*, _jmethodID*, ...);
+// 	TodoReturn CallStaticFloatMethod(_jclass*, _jmethodID*, ...);
+// 	TodoReturn CallStaticDoubleMethod(_jclass*, _jmethodID*, ...);
+// 	TodoReturn CallStaticObjectMethod(_jclass*, _jmethodID*, ...);
+// 	TodoReturn CallStaticBooleanMethod(_jclass*, _jmethodID*, ...);
+// }
 
 [[link(android)]]
 class UILayer {
@@ -11310,26 +11310,26 @@ class GManager {
 	~GManager();
 }
 
-[[link(android)]]
-class internal::band_matrix {
-	TodoReturn saved_diag(int);
-	TodoReturn lu_decompose();
-	TodoReturn resize(int, int, int);
-	TodoReturn lu_solve(gd::vector<double> const&, bool);
-	TodoReturn band_matrix(int, int, int);
-	TodoReturn operator()(int, int);
-	TodoReturn dim();
-	TodoReturn l_solve(gd::vector<double> const&);
-	TodoReturn r_solve(gd::vector<double> const&);
-}
+// [[link(android)]]
+// class internal::band_matrix {
+// 	TodoReturn saved_diag(int);
+// 	TodoReturn lu_decompose();
+// 	TodoReturn resize(int, int, int);
+// 	TodoReturn lu_solve(gd::vector<double> const&, bool);
+// 	TodoReturn band_matrix(int, int, int);
+// 	TodoReturn operator()(int, int);
+// 	TodoReturn dim();
+// 	TodoReturn l_solve(gd::vector<double> const&);
+// 	TodoReturn r_solve(gd::vector<double> const&);
+// }
 
-[[link(android)]]
-class internal {
-	TodoReturn solve_cubic(double, double, double, double, int);
-	TodoReturn solve_linear(double, double);
-	TodoReturn solve_quadratic(double, double, double, int);
-	TodoReturn get_eps();
-}
+// [[link(android)]]
+// class internal {
+// 	TodoReturn solve_cubic(double, double, double, double, int);
+// 	TodoReturn solve_linear(double, double);
+// 	TodoReturn solve_quadratic(double, double, double, int);
+// 	TodoReturn get_eps();
+// }
 
 [[link(android)]]
 class ListCell {
@@ -11376,446 +11376,446 @@ class TextArea {
 	~TextArea();
 }
 
-[[link(android)]]
-class tinyxml2::XMLComment {
-	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
-	TodoReturn ToComment();
-	TodoReturn XMLComment(tinyxml2::XMLDocument*);
-	~XMLComment();
-	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
-	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
-	TodoReturn Accept(tinyxml2::XMLVisitor*);
-	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
-	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
-	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
-	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
-	TodoReturn virtual tinyxml2::XMLComment* ToComment();
-	TodoReturn virtual tinyxml2::XMLComment const* ToComment() const;
-}
+// [[link(android)]]
+// class tinyxml2::XMLComment {
+// 	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
+// 	TodoReturn ToComment();
+// 	TodoReturn XMLComment(tinyxml2::XMLDocument*);
+// 	~XMLComment();
+// 	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
+// 	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
+// 	TodoReturn Accept(tinyxml2::XMLVisitor*);
+// 	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
+// 	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+// 	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+// 	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+// 	TodoReturn virtual tinyxml2::XMLComment* ToComment();
+// 	TodoReturn virtual tinyxml2::XMLComment const* ToComment() const;
+// }
 
-[[link(android)]]
-class tinyxml2::XMLElement {
-	TodoReturn FindAttribute(char const*);
-	TodoReturn DeleteAttribute(char const*);
-	TodoReturn ParseAttributes(char*);
-	TodoReturn FindOrCreateAttribute(char const*);
-	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
-	TodoReturn ToElement();
-	TodoReturn XMLElement(tinyxml2::XMLDocument*);
-	~XMLElement();
-	TodoReturn QueryIntText(int*);
-	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
-	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
-	TodoReturn QueryBoolText(bool*);
-	TodoReturn QueryFloatText(float*);
-	TodoReturn QueryDoubleText(double*);
-	TodoReturn QueryUnsignedText(unsigned int*);
-	TodoReturn Accept(tinyxml2::XMLVisitor*);
-	TodoReturn GetText();
-	TodoReturn Attribute(char const*, char const*);
-	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
-	TodoReturn char const* Attribute(char const*, char const*) const;
-	TodoReturn bool BoolAttribute(char const*) const;
-	TodoReturn int ClosingType() const;
-	TodoReturn void DeleteAttribute(char const*);
-	TodoReturn double DoubleAttribute(char const*) const;
-	TodoReturn tinyxml2::XMLAttribute* FindAttribute(char const*);
-	TodoReturn tinyxml2::XMLAttribute const* FindAttribute(char const*) const;
-	TodoReturn tinyxml2::XMLAttribute* FindOrCreateAttribute(char const*);
-	TodoReturn tinyxml2::XMLAttribute const* FirstAttribute() const;
-	TodoReturn float FloatAttribute(char const*) const;
-	TodoReturn char const* GetText() const;
-	TodoReturn int IntAttribute(char const*) const;
-	TodoReturn char const* Name() const;
-	TodoReturn char* ParseAttributes(char*);
-	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
-	TodoReturn tinyxml2::XMLError QueryBoolAttribute(char const*, bool*) const;
-	TodoReturn tinyxml2::XMLError QueryBoolText(bool*) const;
-	TodoReturn tinyxml2::XMLError QueryDoubleAttribute(char const*, double*) const;
-	TodoReturn tinyxml2::XMLError QueryDoubleText(double*) const;
-	TodoReturn tinyxml2::XMLError QueryFloatAttribute(char const*, float*) const;
-	TodoReturn tinyxml2::XMLError QueryFloatText(float*) const;
-	TodoReturn tinyxml2::XMLError QueryIntAttribute(char const*, int*) const;
-	TodoReturn tinyxml2::XMLError QueryIntText(int*) const;
-	TodoReturn tinyxml2::XMLError QueryUnsignedAttribute(char const*, unsigned int*) const;
-	TodoReturn tinyxml2::XMLError QueryUnsignedText(unsigned int*) const;
-	TodoReturn void SetAttribute(char const*, char const*);
-	TodoReturn void SetAttribute(char const*, int);
-	TodoReturn void SetAttribute(char const*, unsigned int);
-	TodoReturn void SetAttribute(char const*, double);
-	TodoReturn void SetAttribute(char const*, bool);
-	TodoReturn void SetName(char const*, bool);
-	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
-	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
-	TodoReturn virtual tinyxml2::XMLElement* ToElement();
-	TodoReturn virtual tinyxml2::XMLElement const* ToElement() const;
-	TodoReturn unsigned int UnsignedAttribute(char const*) const;
-}
+// [[link(android)]]
+// class tinyxml2::XMLElement {
+// 	TodoReturn FindAttribute(char const*);
+// 	TodoReturn DeleteAttribute(char const*);
+// 	TodoReturn ParseAttributes(char*);
+// 	TodoReturn FindOrCreateAttribute(char const*);
+// 	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
+// 	TodoReturn ToElement();
+// 	TodoReturn XMLElement(tinyxml2::XMLDocument*);
+// 	~XMLElement();
+// 	TodoReturn QueryIntText(int*);
+// 	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
+// 	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
+// 	TodoReturn QueryBoolText(bool*);
+// 	TodoReturn QueryFloatText(float*);
+// 	TodoReturn QueryDoubleText(double*);
+// 	TodoReturn QueryUnsignedText(unsigned int*);
+// 	TodoReturn Accept(tinyxml2::XMLVisitor*);
+// 	TodoReturn GetText();
+// 	TodoReturn Attribute(char const*, char const*);
+// 	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
+// 	TodoReturn char const* Attribute(char const*, char const*) const;
+// 	TodoReturn bool BoolAttribute(char const*) const;
+// 	TodoReturn int ClosingType() const;
+// 	TodoReturn void DeleteAttribute(char const*);
+// 	TodoReturn double DoubleAttribute(char const*) const;
+// 	TodoReturn tinyxml2::XMLAttribute* FindAttribute(char const*);
+// 	TodoReturn tinyxml2::XMLAttribute const* FindAttribute(char const*) const;
+// 	TodoReturn tinyxml2::XMLAttribute* FindOrCreateAttribute(char const*);
+// 	TodoReturn tinyxml2::XMLAttribute const* FirstAttribute() const;
+// 	TodoReturn float FloatAttribute(char const*) const;
+// 	TodoReturn char const* GetText() const;
+// 	TodoReturn int IntAttribute(char const*) const;
+// 	TodoReturn char const* Name() const;
+// 	TodoReturn char* ParseAttributes(char*);
+// 	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+// 	TodoReturn tinyxml2::XMLError QueryBoolAttribute(char const*, bool*) const;
+// 	TodoReturn tinyxml2::XMLError QueryBoolText(bool*) const;
+// 	TodoReturn tinyxml2::XMLError QueryDoubleAttribute(char const*, double*) const;
+// 	TodoReturn tinyxml2::XMLError QueryDoubleText(double*) const;
+// 	TodoReturn tinyxml2::XMLError QueryFloatAttribute(char const*, float*) const;
+// 	TodoReturn tinyxml2::XMLError QueryFloatText(float*) const;
+// 	TodoReturn tinyxml2::XMLError QueryIntAttribute(char const*, int*) const;
+// 	TodoReturn tinyxml2::XMLError QueryIntText(int*) const;
+// 	TodoReturn tinyxml2::XMLError QueryUnsignedAttribute(char const*, unsigned int*) const;
+// 	TodoReturn tinyxml2::XMLError QueryUnsignedText(unsigned int*) const;
+// 	TodoReturn void SetAttribute(char const*, char const*);
+// 	TodoReturn void SetAttribute(char const*, int);
+// 	TodoReturn void SetAttribute(char const*, unsigned int);
+// 	TodoReturn void SetAttribute(char const*, double);
+// 	TodoReturn void SetAttribute(char const*, bool);
+// 	TodoReturn void SetName(char const*, bool);
+// 	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+// 	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+// 	TodoReturn virtual tinyxml2::XMLElement* ToElement();
+// 	TodoReturn virtual tinyxml2::XMLElement const* ToElement() const;
+// 	TodoReturn unsigned int UnsignedAttribute(char const*) const;
+// }
 
-[[link(android)]]
-class tinyxml2::XMLPrinter {
-	TodoReturn PrintSpace(int);
-	TodoReturn PushHeader(bool, bool);
-	TodoReturn VisitEnter(tinyxml2::XMLElement const&, tinyxml2::XMLAttribute const*);
-	TodoReturn VisitEnter(tinyxml2::XMLDocument const&);
-	TodoReturn OpenElement(char const*);
-	TodoReturn PrintString(char const*, bool);
-	TodoReturn PushComment(char const*);
-	TodoReturn PushUnknown(char const*);
-	TodoReturn SealElement();
-	TodoReturn CloseElement();
-	TodoReturn PushAttribute(char const*, bool);
-	TodoReturn PushAttribute(char const*, double);
-	TodoReturn PushAttribute(char const*, int);
-	TodoReturn PushAttribute(char const*, unsigned int);
-	TodoReturn PushAttribute(char const*, char const*);
-	TodoReturn PushDeclaration(char const*);
-	TodoReturn Print(char const*, ...);
-	TodoReturn Visit(tinyxml2::XMLComment const&);
-	TodoReturn Visit(tinyxml2::XMLUnknown const&);
-	TodoReturn Visit(tinyxml2::XMLDeclaration const&);
-	TodoReturn Visit(tinyxml2::XMLText const&);
-	TodoReturn PushText(bool);
-	TodoReturn PushText(double);
-	TodoReturn PushText(float);
-	TodoReturn PushText(int);
-	TodoReturn PushText(unsigned int);
-	TodoReturn PushText(char const*, bool);
-	TodoReturn VisitExit(tinyxml2::XMLElement const&);
-	TodoReturn VisitExit(tinyxml2::XMLDocument const&);
-	TodoReturn XMLPrinter(__sFILE*, bool);
-	~XMLPrinter();
-	TodoReturn XMLPrinter(tinyxml2::XMLPrinter const&);
-	TodoReturn XMLPrinter(_iobuf*, bool);
-	TodoReturn char const* CStr() const;
-	TodoReturn int CStrSize() const;
-	TodoReturn void CloseElement();
-	TodoReturn void OpenElement(char const*);
-	TodoReturn void Print(char const*, ...);
-	TodoReturn void PrintSpace(int);
-	TodoReturn void PrintString(char const*, bool);
-	TodoReturn void PushAttribute(char const*, char const*);
-	TodoReturn void PushAttribute(char const*, int);
-	TodoReturn void PushAttribute(char const*, unsigned int);
-	TodoReturn void PushAttribute(char const*, double);
-	TodoReturn void PushAttribute(char const*, bool);
-	TodoReturn void PushComment(char const*);
-	TodoReturn void PushDeclaration(char const*);
-	TodoReturn void PushHeader(bool, bool);
-	TodoReturn void PushText(int);
-	TodoReturn void PushText(unsigned int);
-	TodoReturn void PushText(float);
-	TodoReturn void PushText(double);
-	TodoReturn void PushText(char const*, bool);
-	TodoReturn void PushText(bool);
-	TodoReturn void PushUnknown(char const*);
-	TodoReturn void SealElement();
-	TodoReturn virtual bool Visit(tinyxml2::XMLComment const&);
-	TodoReturn virtual bool Visit(tinyxml2::XMLDeclaration const&);
-	TodoReturn virtual bool Visit(tinyxml2::XMLText const&);
-	TodoReturn virtual bool Visit(tinyxml2::XMLUnknown const&);
-	TodoReturn virtual bool VisitEnter(tinyxml2::XMLDocument const&);
-	TodoReturn virtual bool VisitEnter(tinyxml2::XMLElement const&, tinyxml2::XMLAttribute const*);
-	TodoReturn virtual bool VisitExit(tinyxml2::XMLDocument const&);
-	TodoReturn virtual bool VisitExit(tinyxml2::XMLElement const&);
-}
+// [[link(android)]]
+// class tinyxml2::XMLPrinter {
+// 	TodoReturn PrintSpace(int);
+// 	TodoReturn PushHeader(bool, bool);
+// 	TodoReturn VisitEnter(tinyxml2::XMLElement const&, tinyxml2::XMLAttribute const*);
+// 	TodoReturn VisitEnter(tinyxml2::XMLDocument const&);
+// 	TodoReturn OpenElement(char const*);
+// 	TodoReturn PrintString(char const*, bool);
+// 	TodoReturn PushComment(char const*);
+// 	TodoReturn PushUnknown(char const*);
+// 	TodoReturn SealElement();
+// 	TodoReturn CloseElement();
+// 	TodoReturn PushAttribute(char const*, bool);
+// 	TodoReturn PushAttribute(char const*, double);
+// 	TodoReturn PushAttribute(char const*, int);
+// 	TodoReturn PushAttribute(char const*, unsigned int);
+// 	TodoReturn PushAttribute(char const*, char const*);
+// 	TodoReturn PushDeclaration(char const*);
+// 	TodoReturn Print(char const*, ...);
+// 	TodoReturn Visit(tinyxml2::XMLComment const&);
+// 	TodoReturn Visit(tinyxml2::XMLUnknown const&);
+// 	TodoReturn Visit(tinyxml2::XMLDeclaration const&);
+// 	TodoReturn Visit(tinyxml2::XMLText const&);
+// 	TodoReturn PushText(bool);
+// 	TodoReturn PushText(double);
+// 	TodoReturn PushText(float);
+// 	TodoReturn PushText(int);
+// 	TodoReturn PushText(unsigned int);
+// 	TodoReturn PushText(char const*, bool);
+// 	TodoReturn VisitExit(tinyxml2::XMLElement const&);
+// 	TodoReturn VisitExit(tinyxml2::XMLDocument const&);
+// 	TodoReturn XMLPrinter(__sFILE*, bool);
+// 	~XMLPrinter();
+// 	TodoReturn XMLPrinter(tinyxml2::XMLPrinter const&);
+// 	TodoReturn XMLPrinter(_iobuf*, bool);
+// 	TodoReturn char const* CStr() const;
+// 	TodoReturn int CStrSize() const;
+// 	TodoReturn void CloseElement();
+// 	TodoReturn void OpenElement(char const*);
+// 	TodoReturn void Print(char const*, ...);
+// 	TodoReturn void PrintSpace(int);
+// 	TodoReturn void PrintString(char const*, bool);
+// 	TodoReturn void PushAttribute(char const*, char const*);
+// 	TodoReturn void PushAttribute(char const*, int);
+// 	TodoReturn void PushAttribute(char const*, unsigned int);
+// 	TodoReturn void PushAttribute(char const*, double);
+// 	TodoReturn void PushAttribute(char const*, bool);
+// 	TodoReturn void PushComment(char const*);
+// 	TodoReturn void PushDeclaration(char const*);
+// 	TodoReturn void PushHeader(bool, bool);
+// 	TodoReturn void PushText(int);
+// 	TodoReturn void PushText(unsigned int);
+// 	TodoReturn void PushText(float);
+// 	TodoReturn void PushText(double);
+// 	TodoReturn void PushText(char const*, bool);
+// 	TodoReturn void PushText(bool);
+// 	TodoReturn void PushUnknown(char const*);
+// 	TodoReturn void SealElement();
+// 	TodoReturn virtual bool Visit(tinyxml2::XMLComment const&);
+// 	TodoReturn virtual bool Visit(tinyxml2::XMLDeclaration const&);
+// 	TodoReturn virtual bool Visit(tinyxml2::XMLText const&);
+// 	TodoReturn virtual bool Visit(tinyxml2::XMLUnknown const&);
+// 	TodoReturn virtual bool VisitEnter(tinyxml2::XMLDocument const&);
+// 	TodoReturn virtual bool VisitEnter(tinyxml2::XMLElement const&, tinyxml2::XMLAttribute const*);
+// 	TodoReturn virtual bool VisitExit(tinyxml2::XMLDocument const&);
+// 	TodoReturn virtual bool VisitExit(tinyxml2::XMLElement const&);
+// }
 
-[[link(android)]]
-class tinyxml2::XMLUnknown {
-	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
-	TodoReturn ToUnknown();
-	TodoReturn XMLUnknown(tinyxml2::XMLDocument*);
-	~XMLUnknown();
-	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
-	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
-	TodoReturn Accept(tinyxml2::XMLVisitor*);
-	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
-	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
-	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
-	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
-	TodoReturn virtual tinyxml2::XMLUnknown* ToUnknown();
-	TodoReturn virtual tinyxml2::XMLUnknown const* ToUnknown() const;
-}
+// [[link(android)]]
+// class tinyxml2::XMLUnknown {
+// 	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
+// 	TodoReturn ToUnknown();
+// 	TodoReturn XMLUnknown(tinyxml2::XMLDocument*);
+// 	~XMLUnknown();
+// 	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
+// 	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
+// 	TodoReturn Accept(tinyxml2::XMLVisitor*);
+// 	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
+// 	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+// 	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+// 	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+// 	TodoReturn virtual tinyxml2::XMLUnknown* ToUnknown();
+// 	TodoReturn virtual tinyxml2::XMLUnknown const* ToUnknown() const;
+// }
 
-[[link(android)]]
-class tinyxml2::XMLVisitor {
-	TodoReturn VisitEnter(tinyxml2::XMLElement const&, tinyxml2::XMLAttribute const*);
-	TodoReturn VisitEnter(tinyxml2::XMLDocument const&);
-	TodoReturn Visit(tinyxml2::XMLComment const&);
-	TodoReturn Visit(tinyxml2::XMLUnknown const&);
-	TodoReturn Visit(tinyxml2::XMLDeclaration const&);
-	TodoReturn Visit(tinyxml2::XMLText const&);
-	TodoReturn VisitExit(tinyxml2::XMLElement const&);
-	TodoReturn VisitExit(tinyxml2::XMLDocument const&);
-	~XMLVisitor();
-	TodoReturn XMLVisitor(tinyxml2::XMLVisitor const&);
-	TodoReturn XMLVisitor();
-	TodoReturn virtual bool Visit(tinyxml2::XMLComment const&);
-	TodoReturn virtual bool Visit(tinyxml2::XMLDeclaration const&);
-	TodoReturn virtual bool Visit(tinyxml2::XMLText const&);
-	TodoReturn virtual bool Visit(tinyxml2::XMLUnknown const&);
-	TodoReturn virtual bool VisitEnter(tinyxml2::XMLDocument const&);
-	TodoReturn virtual bool VisitEnter(tinyxml2::XMLElement const&, tinyxml2::XMLAttribute const*);
-	TodoReturn virtual bool VisitExit(tinyxml2::XMLDocument const&);
-	TodoReturn virtual bool VisitExit(tinyxml2::XMLElement const&);
-}
+// [[link(android)]]
+// class tinyxml2::XMLVisitor {
+// 	TodoReturn VisitEnter(tinyxml2::XMLElement const&, tinyxml2::XMLAttribute const*);
+// 	TodoReturn VisitEnter(tinyxml2::XMLDocument const&);
+// 	TodoReturn Visit(tinyxml2::XMLComment const&);
+// 	TodoReturn Visit(tinyxml2::XMLUnknown const&);
+// 	TodoReturn Visit(tinyxml2::XMLDeclaration const&);
+// 	TodoReturn Visit(tinyxml2::XMLText const&);
+// 	TodoReturn VisitExit(tinyxml2::XMLElement const&);
+// 	TodoReturn VisitExit(tinyxml2::XMLDocument const&);
+// 	~XMLVisitor();
+// 	TodoReturn XMLVisitor(tinyxml2::XMLVisitor const&);
+// 	TodoReturn XMLVisitor();
+// 	TodoReturn virtual bool Visit(tinyxml2::XMLComment const&);
+// 	TodoReturn virtual bool Visit(tinyxml2::XMLDeclaration const&);
+// 	TodoReturn virtual bool Visit(tinyxml2::XMLText const&);
+// 	TodoReturn virtual bool Visit(tinyxml2::XMLUnknown const&);
+// 	TodoReturn virtual bool VisitEnter(tinyxml2::XMLDocument const&);
+// 	TodoReturn virtual bool VisitEnter(tinyxml2::XMLElement const&, tinyxml2::XMLAttribute const*);
+// 	TodoReturn virtual bool VisitExit(tinyxml2::XMLDocument const&);
+// 	TodoReturn virtual bool VisitExit(tinyxml2::XMLElement const&);
+// }
 
-[[link(android)]]
-class tinyxml2::XMLDocument {
-	TodoReturn NewComment(char const*);
-	TodoReturn NewElement(char const*);
-	TodoReturn NewUnknown(char const*);
-	TodoReturn ToDocument();
-	TodoReturn InitDocument();
-	TodoReturn NewDeclaration(char const*);
-	TodoReturn Parse(char const*, unsigned long);
-	TodoReturn Print(tinyxml2::XMLPrinter*);
-	TodoReturn NewText(char const*);
-	TodoReturn Identify(char*, tinyxml2::XMLNode**);
-	TodoReturn LoadFile(__sFILE*);
-	TodoReturn LoadFile(char const*);
-	TodoReturn SaveFile(__sFILE*, bool);
-	TodoReturn SaveFile(char const*, bool);
-	TodoReturn SetError(tinyxml2::XMLError, char const*, char const*);
-	TodoReturn XMLDocument(bool, tinyxml2::Whitespace);
-	~XMLDocument();
-	TodoReturn PrintError();
-	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
-	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
-	TodoReturn Accept(tinyxml2::XMLVisitor*);
-	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
-	TodoReturn void DeleteNode(tinyxml2::XMLNode*);
-	TodoReturn bool Error() const;
-	TodoReturn tinyxml2::XMLError ErrorID() const;
-	TodoReturn char const* GetErrorStr1() const;
-	TodoReturn char const* GetErrorStr2() const;
-	TodoReturn bool HasBOM() const;
-	TodoReturn char* Identify(char*, tinyxml2::XMLNode**);
-	TodoReturn void InitDocument();
-	TodoReturn tinyxml2::XMLError LoadFile(_iobuf*);
-	TodoReturn tinyxml2::XMLError LoadFile(char const*);
-	TodoReturn tinyxml2::XMLComment* NewComment(char const*);
-	TodoReturn tinyxml2::XMLDeclaration* NewDeclaration(char const*);
-	TodoReturn tinyxml2::XMLElement* NewElement(char const*);
-	TodoReturn tinyxml2::XMLText* NewText(char const*);
-	TodoReturn tinyxml2::XMLUnknown* NewUnknown(char const*);
-	TodoReturn tinyxml2::XMLError Parse(char const*, unsigned int);
-	TodoReturn void Print(tinyxml2::XMLPrinter*);
-	TodoReturn void PrintError() const;
-	TodoReturn bool ProcessEntities() const;
-	TodoReturn tinyxml2::XMLElement* RootElement();
-	TodoReturn tinyxml2::XMLElement const* RootElement() const;
-	TodoReturn tinyxml2::XMLError SaveFile(_iobuf*, bool);
-	TodoReturn tinyxml2::XMLError SaveFile(char const*, bool);
-	TodoReturn void SetBOM(bool);
-	TodoReturn void SetError(tinyxml2::XMLError, char const*, char const*);
-	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
-	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
-	TodoReturn virtual tinyxml2::XMLDocument* ToDocument();
-	TodoReturn virtual tinyxml2::XMLDocument const* ToDocument() const;
-	TodoReturn tinyxml2::Whitespace WhitespaceMode() const;
-}
+// [[link(android)]]
+// class tinyxml2::XMLDocument {
+// 	TodoReturn NewComment(char const*);
+// 	TodoReturn NewElement(char const*);
+// 	TodoReturn NewUnknown(char const*);
+// 	TodoReturn ToDocument();
+// 	TodoReturn InitDocument();
+// 	TodoReturn NewDeclaration(char const*);
+// 	TodoReturn Parse(char const*, unsigned long);
+// 	TodoReturn Print(tinyxml2::XMLPrinter*);
+// 	TodoReturn NewText(char const*);
+// 	TodoReturn Identify(char*, tinyxml2::XMLNode**);
+// 	TodoReturn LoadFile(__sFILE*);
+// 	TodoReturn LoadFile(char const*);
+// 	TodoReturn SaveFile(__sFILE*, bool);
+// 	TodoReturn SaveFile(char const*, bool);
+// 	TodoReturn SetError(tinyxml2::XMLError, char const*, char const*);
+// 	TodoReturn XMLDocument(bool, tinyxml2::Whitespace);
+// 	~XMLDocument();
+// 	TodoReturn PrintError();
+// 	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
+// 	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
+// 	TodoReturn Accept(tinyxml2::XMLVisitor*);
+// 	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
+// 	TodoReturn void DeleteNode(tinyxml2::XMLNode*);
+// 	TodoReturn bool Error() const;
+// 	TodoReturn tinyxml2::XMLError ErrorID() const;
+// 	TodoReturn char const* GetErrorStr1() const;
+// 	TodoReturn char const* GetErrorStr2() const;
+// 	TodoReturn bool HasBOM() const;
+// 	TodoReturn char* Identify(char*, tinyxml2::XMLNode**);
+// 	TodoReturn void InitDocument();
+// 	TodoReturn tinyxml2::XMLError LoadFile(_iobuf*);
+// 	TodoReturn tinyxml2::XMLError LoadFile(char const*);
+// 	TodoReturn tinyxml2::XMLComment* NewComment(char const*);
+// 	TodoReturn tinyxml2::XMLDeclaration* NewDeclaration(char const*);
+// 	TodoReturn tinyxml2::XMLElement* NewElement(char const*);
+// 	TodoReturn tinyxml2::XMLText* NewText(char const*);
+// 	TodoReturn tinyxml2::XMLUnknown* NewUnknown(char const*);
+// 	TodoReturn tinyxml2::XMLError Parse(char const*, unsigned int);
+// 	TodoReturn void Print(tinyxml2::XMLPrinter*);
+// 	TodoReturn void PrintError() const;
+// 	TodoReturn bool ProcessEntities() const;
+// 	TodoReturn tinyxml2::XMLElement* RootElement();
+// 	TodoReturn tinyxml2::XMLElement const* RootElement() const;
+// 	TodoReturn tinyxml2::XMLError SaveFile(_iobuf*, bool);
+// 	TodoReturn tinyxml2::XMLError SaveFile(char const*, bool);
+// 	TodoReturn void SetBOM(bool);
+// 	TodoReturn void SetError(tinyxml2::XMLError, char const*, char const*);
+// 	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+// 	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+// 	TodoReturn virtual tinyxml2::XMLDocument* ToDocument();
+// 	TodoReturn virtual tinyxml2::XMLDocument const* ToDocument() const;
+// 	TodoReturn tinyxml2::Whitespace WhitespaceMode() const;
+// }
 
-[[link(android)]]
-class tinyxml2::XMLAttribute {
-	TodoReturn SetAttribute(bool);
-	TodoReturn SetAttribute(double);
-	TodoReturn SetAttribute(float);
-	TodoReturn SetAttribute(int);
-	TodoReturn SetAttribute(unsigned int);
-	TodoReturn SetAttribute(char const*);
-	TodoReturn SetName(char const*);
-	TodoReturn ParseDeep(char*, bool);
-	~XMLAttribute();
-	TodoReturn QueryIntValue(int*);
-	TodoReturn QueryBoolValue(bool*);
-	TodoReturn QueryFloatValue(float*);
-	TodoReturn QueryDoubleValue(double*);
-	TodoReturn QueryUnsignedValue(unsigned int*);
-	TodoReturn XMLAttribute();
-	TodoReturn bool BoolValue() const;
-	TodoReturn double DoubleValue() const;
-	TodoReturn float FloatValue() const;
-	TodoReturn int IntValue() const;
-	TodoReturn char const* Name() const;
-	tinyxml2::XMLAttribute const* Next() const;
-	TodoReturn char* ParseDeep(char*, bool);
-	TodoReturn tinyxml2::XMLError QueryBoolValue(bool*) const;
-	TodoReturn tinyxml2::XMLError QueryDoubleValue(double*) const;
-	TodoReturn tinyxml2::XMLError QueryFloatValue(float*) const;
-	TodoReturn tinyxml2::XMLError QueryIntValue(int*) const;
-	TodoReturn tinyxml2::XMLError QueryUnsignedValue(unsigned int*) const;
-	TodoReturn void SetAttribute(int);
-	TodoReturn void SetAttribute(unsigned int);
-	TodoReturn void SetAttribute(float);
-	TodoReturn void SetAttribute(double);
-	TodoReturn void SetAttribute(char const*);
-	TodoReturn void SetAttribute(bool);
-	TodoReturn void SetName(char const*);
-	TodoReturn unsigned int UnsignedValue() const;
-	TodoReturn char const* Value() const;
-}
+// [[link(android)]]
+// class tinyxml2::XMLAttribute {
+// 	TodoReturn SetAttribute(bool);
+// 	TodoReturn SetAttribute(double);
+// 	TodoReturn SetAttribute(float);
+// 	TodoReturn SetAttribute(int);
+// 	TodoReturn SetAttribute(unsigned int);
+// 	TodoReturn SetAttribute(char const*);
+// 	TodoReturn SetName(char const*);
+// 	TodoReturn ParseDeep(char*, bool);
+// 	~XMLAttribute();
+// 	TodoReturn QueryIntValue(int*);
+// 	TodoReturn QueryBoolValue(bool*);
+// 	TodoReturn QueryFloatValue(float*);
+// 	TodoReturn QueryDoubleValue(double*);
+// 	TodoReturn QueryUnsignedValue(unsigned int*);
+// 	TodoReturn XMLAttribute();
+// 	TodoReturn bool BoolValue() const;
+// 	TodoReturn double DoubleValue() const;
+// 	TodoReturn float FloatValue() const;
+// 	TodoReturn int IntValue() const;
+// 	TodoReturn char const* Name() const;
+// 	tinyxml2::XMLAttribute const* Next() const;
+// 	TodoReturn char* ParseDeep(char*, bool);
+// 	TodoReturn tinyxml2::XMLError QueryBoolValue(bool*) const;
+// 	TodoReturn tinyxml2::XMLError QueryDoubleValue(double*) const;
+// 	TodoReturn tinyxml2::XMLError QueryFloatValue(float*) const;
+// 	TodoReturn tinyxml2::XMLError QueryIntValue(int*) const;
+// 	TodoReturn tinyxml2::XMLError QueryUnsignedValue(unsigned int*) const;
+// 	TodoReturn void SetAttribute(int);
+// 	TodoReturn void SetAttribute(unsigned int);
+// 	TodoReturn void SetAttribute(float);
+// 	TodoReturn void SetAttribute(double);
+// 	TodoReturn void SetAttribute(char const*);
+// 	TodoReturn void SetAttribute(bool);
+// 	TodoReturn void SetName(char const*);
+// 	TodoReturn unsigned int UnsignedValue() const;
+// 	TodoReturn char const* Value() const;
+// }
 
-[[link(android)]]
-class tinyxml2::XMLDeclaration {
-	TodoReturn ToDeclaration();
-	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
-	TodoReturn XMLDeclaration(tinyxml2::XMLDocument*);
-	~XMLDeclaration();
-	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
-	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
-	TodoReturn Accept(tinyxml2::XMLVisitor*);
-	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
-	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
-	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
-	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
-	TodoReturn virtual tinyxml2::XMLDeclaration* ToDeclaration();
-	TodoReturn virtual tinyxml2::XMLDeclaration const* ToDeclaration() const;
-}
+// [[link(android)]]
+// class tinyxml2::XMLDeclaration {
+// 	TodoReturn ToDeclaration();
+// 	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
+// 	TodoReturn XMLDeclaration(tinyxml2::XMLDocument*);
+// 	~XMLDeclaration();
+// 	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
+// 	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
+// 	TodoReturn Accept(tinyxml2::XMLVisitor*);
+// 	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
+// 	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+// 	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+// 	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+// 	TodoReturn virtual tinyxml2::XMLDeclaration* ToDeclaration();
+// 	TodoReturn virtual tinyxml2::XMLDeclaration const* ToDeclaration() const;
+// }
 
-[[link(android)]]
-class tinyxml2::StrPair {
-	TodoReturn CollapseWhitespace();
-	TodoReturn Reset();
-	TodoReturn GetStr();
-	TodoReturn SetStr(char const*, int);
-	TodoReturn ParseName(char*);
-	TodoReturn ParseText(char*, char const*, int);
-	~StrPair();
-	TodoReturn StrPair();
-	TodoReturn void CollapseWhitespace();
-	TodoReturn bool Empty() const;
-	TodoReturn char const* GetStr();
-	TodoReturn char* ParseName(char*);
-	TodoReturn char* ParseText(char*, char const*, int);
-	TodoReturn void Reset();
-	TodoReturn void Set(char*, char*, int);
-	TodoReturn void SetInternedStr(char const*);
-	TodoReturn void SetStr(char const*, int);
-}
+// [[link(android)]]
+// class tinyxml2::StrPair {
+// 	TodoReturn CollapseWhitespace();
+// 	TodoReturn Reset();
+// 	TodoReturn GetStr();
+// 	TodoReturn SetStr(char const*, int);
+// 	TodoReturn ParseName(char*);
+// 	TodoReturn ParseText(char*, char const*, int);
+// 	~StrPair();
+// 	TodoReturn StrPair();
+// 	TodoReturn void CollapseWhitespace();
+// 	TodoReturn bool Empty() const;
+// 	TodoReturn char const* GetStr();
+// 	TodoReturn char* ParseName(char*);
+// 	TodoReturn char* ParseText(char*, char const*, int);
+// 	TodoReturn void Reset();
+// 	TodoReturn void Set(char*, char*, int);
+// 	TodoReturn void SetInternedStr(char const*);
+// 	TodoReturn void SetStr(char const*, int);
+// }
 
-[[link(android)]]
-class tinyxml2::XMLNode {
-	TodoReturn ToDocument();
-	TodoReturn DeleteChild(tinyxml2::XMLNode*);
-	TodoReturn ToDeclaration();
-	TodoReturn DeleteChildren();
-	TodoReturn InsertEndChild(tinyxml2::XMLNode*);
-	TodoReturn InsertAfterChild(tinyxml2::XMLNode*, tinyxml2::XMLNode*);
-	TodoReturn InsertFirstChild(tinyxml2::XMLNode*);
-	TodoReturn ToText();
-	TodoReturn Unlink(tinyxml2::XMLNode*);
-	TodoReturn SetValue(char const*, bool);
-	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
-	TodoReturn ToComment();
-	TodoReturn ToElement();
-	TodoReturn ToUnknown();
-	TodoReturn XMLNode(tinyxml2::XMLDocument*);
-	~XMLNode();
-	TodoReturn LastChildElement(char const*);
-	TodoReturn FirstChildElement(char const*);
-	TodoReturn NextSiblingElement(char const*);
-	TodoReturn PreviousSiblingElement(char const*);
-	TodoReturn void DeleteChild(tinyxml2::XMLNode*);
-	TodoReturn void DeleteChildren();
-	tinyxml2::XMLNode* FirstChild();
-	tinyxml2::XMLNode const* FirstChild() const;
-	TodoReturn tinyxml2::XMLElement* FirstChildElement(char const*);
-	TodoReturn tinyxml2::XMLElement const* FirstChildElement(char const*) const;
-	TodoReturn tinyxml2::XMLDocument* GetDocument();
-	TodoReturn tinyxml2::XMLDocument const* GetDocument() const;
-	tinyxml2::XMLNode* InsertAfterChild(tinyxml2::XMLNode*, tinyxml2::XMLNode*);
-	tinyxml2::XMLNode* InsertEndChild(tinyxml2::XMLNode*);
-	tinyxml2::XMLNode* InsertFirstChild(tinyxml2::XMLNode*);
-	tinyxml2::XMLNode* LastChild();
-	tinyxml2::XMLNode const* LastChild() const;
-	TodoReturn tinyxml2::XMLElement* LastChildElement(char const*);
-	TodoReturn tinyxml2::XMLElement const* LastChildElement(char const*) const;
-	tinyxml2::XMLNode* LinkEndChild(tinyxml2::XMLNode*);
-	tinyxml2::XMLNode* NextSibling();
-	tinyxml2::XMLNode const* NextSibling() const;
-	TodoReturn tinyxml2::XMLElement* NextSiblingElement(char const*);
-	TodoReturn tinyxml2::XMLElement const* NextSiblingElement(char const*) const;
-	TodoReturn bool NoChildren() const;
-	tinyxml2::XMLNode* Parent();
-	tinyxml2::XMLNode const* Parent() const;
-	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
-	tinyxml2::XMLNode* PreviousSibling();
-	tinyxml2::XMLNode const* PreviousSibling() const;
-	TodoReturn tinyxml2::XMLElement* PreviousSiblingElement(char const*);
-	TodoReturn tinyxml2::XMLElement const* PreviousSiblingElement(char const*) const;
-	TodoReturn void SetValue(char const*, bool);
-	TodoReturn virtual tinyxml2::XMLComment* ToComment();
-	TodoReturn virtual tinyxml2::XMLComment const* ToComment() const;
-	TodoReturn virtual tinyxml2::XMLDeclaration* ToDeclaration();
-	TodoReturn virtual tinyxml2::XMLDeclaration const* ToDeclaration() const;
-	TodoReturn virtual tinyxml2::XMLDocument* ToDocument();
-	TodoReturn virtual tinyxml2::XMLDocument const* ToDocument() const;
-	TodoReturn virtual tinyxml2::XMLElement* ToElement();
-	TodoReturn virtual tinyxml2::XMLElement const* ToElement() const;
-	TodoReturn virtual tinyxml2::XMLText* ToText();
-	TodoReturn virtual tinyxml2::XMLText const* ToText() const;
-	TodoReturn virtual tinyxml2::XMLUnknown* ToUnknown();
-	TodoReturn virtual tinyxml2::XMLUnknown const* ToUnknown() const;
-	TodoReturn void Unlink(tinyxml2::XMLNode*);
-	TodoReturn char const* Value() const;
-}
+// [[link(android)]]
+// class tinyxml2::XMLNode {
+// 	TodoReturn ToDocument();
+// 	TodoReturn DeleteChild(tinyxml2::XMLNode*);
+// 	TodoReturn ToDeclaration();
+// 	TodoReturn DeleteChildren();
+// 	TodoReturn InsertEndChild(tinyxml2::XMLNode*);
+// 	TodoReturn InsertAfterChild(tinyxml2::XMLNode*, tinyxml2::XMLNode*);
+// 	TodoReturn InsertFirstChild(tinyxml2::XMLNode*);
+// 	TodoReturn ToText();
+// 	TodoReturn Unlink(tinyxml2::XMLNode*);
+// 	TodoReturn SetValue(char const*, bool);
+// 	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
+// 	TodoReturn ToComment();
+// 	TodoReturn ToElement();
+// 	TodoReturn ToUnknown();
+// 	TodoReturn XMLNode(tinyxml2::XMLDocument*);
+// 	~XMLNode();
+// 	TodoReturn LastChildElement(char const*);
+// 	TodoReturn FirstChildElement(char const*);
+// 	TodoReturn NextSiblingElement(char const*);
+// 	TodoReturn PreviousSiblingElement(char const*);
+// 	TodoReturn void DeleteChild(tinyxml2::XMLNode*);
+// 	TodoReturn void DeleteChildren();
+// 	tinyxml2::XMLNode* FirstChild();
+// 	tinyxml2::XMLNode const* FirstChild() const;
+// 	TodoReturn tinyxml2::XMLElement* FirstChildElement(char const*);
+// 	TodoReturn tinyxml2::XMLElement const* FirstChildElement(char const*) const;
+// 	TodoReturn tinyxml2::XMLDocument* GetDocument();
+// 	TodoReturn tinyxml2::XMLDocument const* GetDocument() const;
+// 	tinyxml2::XMLNode* InsertAfterChild(tinyxml2::XMLNode*, tinyxml2::XMLNode*);
+// 	tinyxml2::XMLNode* InsertEndChild(tinyxml2::XMLNode*);
+// 	tinyxml2::XMLNode* InsertFirstChild(tinyxml2::XMLNode*);
+// 	tinyxml2::XMLNode* LastChild();
+// 	tinyxml2::XMLNode const* LastChild() const;
+// 	TodoReturn tinyxml2::XMLElement* LastChildElement(char const*);
+// 	TodoReturn tinyxml2::XMLElement const* LastChildElement(char const*) const;
+// 	tinyxml2::XMLNode* LinkEndChild(tinyxml2::XMLNode*);
+// 	tinyxml2::XMLNode* NextSibling();
+// 	tinyxml2::XMLNode const* NextSibling() const;
+// 	TodoReturn tinyxml2::XMLElement* NextSiblingElement(char const*);
+// 	TodoReturn tinyxml2::XMLElement const* NextSiblingElement(char const*) const;
+// 	TodoReturn bool NoChildren() const;
+// 	tinyxml2::XMLNode* Parent();
+// 	tinyxml2::XMLNode const* Parent() const;
+// 	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+// 	tinyxml2::XMLNode* PreviousSibling();
+// 	tinyxml2::XMLNode const* PreviousSibling() const;
+// 	TodoReturn tinyxml2::XMLElement* PreviousSiblingElement(char const*);
+// 	TodoReturn tinyxml2::XMLElement const* PreviousSiblingElement(char const*) const;
+// 	TodoReturn void SetValue(char const*, bool);
+// 	TodoReturn virtual tinyxml2::XMLComment* ToComment();
+// 	TodoReturn virtual tinyxml2::XMLComment const* ToComment() const;
+// 	TodoReturn virtual tinyxml2::XMLDeclaration* ToDeclaration();
+// 	TodoReturn virtual tinyxml2::XMLDeclaration const* ToDeclaration() const;
+// 	TodoReturn virtual tinyxml2::XMLDocument* ToDocument();
+// 	TodoReturn virtual tinyxml2::XMLDocument const* ToDocument() const;
+// 	TodoReturn virtual tinyxml2::XMLElement* ToElement();
+// 	TodoReturn virtual tinyxml2::XMLElement const* ToElement() const;
+// 	TodoReturn virtual tinyxml2::XMLText* ToText();
+// 	TodoReturn virtual tinyxml2::XMLText const* ToText() const;
+// 	TodoReturn virtual tinyxml2::XMLUnknown* ToUnknown();
+// 	TodoReturn virtual tinyxml2::XMLUnknown const* ToUnknown() const;
+// 	TodoReturn void Unlink(tinyxml2::XMLNode*);
+// 	TodoReturn char const* Value() const;
+// }
 
-[[link(android)]]
-class tinyxml2::XMLText {
-	TodoReturn ToText();
-	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
-	~XMLText();
-	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
-	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
-	TodoReturn Accept(tinyxml2::XMLVisitor*);
-	TodoReturn XMLText(tinyxml2::XMLDocument*);
-	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
-	TodoReturn bool CData() const;
-	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
-	TodoReturn void SetCData(bool);
-	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
-	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
-	TodoReturn virtual tinyxml2::XMLText* ToText();
-	TodoReturn virtual tinyxml2::XMLText const* ToText() const;
-}
+// [[link(android)]]
+// class tinyxml2::XMLText {
+// 	TodoReturn ToText();
+// 	TodoReturn ParseDeep(char*, tinyxml2::StrPair*);
+// 	~XMLText();
+// 	TodoReturn ShallowClone(tinyxml2::XMLDocument*);
+// 	TodoReturn ShallowEqual(tinyxml2::XMLNode const*);
+// 	TodoReturn Accept(tinyxml2::XMLVisitor*);
+// 	TodoReturn XMLText(tinyxml2::XMLDocument*);
+// 	TodoReturn virtual bool Accept(tinyxml2::XMLVisitor*) const;
+// 	TodoReturn bool CData() const;
+// 	TodoReturn virtual char* ParseDeep(char*, tinyxml2::StrPair*);
+// 	TodoReturn void SetCData(bool);
+// 	TodoReturn virtual tinyxml2::XMLNode* ShallowClone(tinyxml2::XMLDocument*) const;
+// 	TodoReturn virtual bool ShallowEqual(tinyxml2::XMLNode const*) const;
+// 	TodoReturn virtual tinyxml2::XMLText* ToText();
+// 	TodoReturn virtual tinyxml2::XMLText const* ToText() const;
+// }
 
-[[link(android)]]
-class tinyxml2::XMLUtil {
-	TodoReturn ToUnsigned(char const*, unsigned int*);
-	TodoReturn GetCharacterRef(char const*, char*, int*);
-	TodoReturn ConvertUTF32ToUTF8(unsigned long, char*, int*);
-	TodoReturn ToInt(char const*, int*);
-	TodoReturn ToStr(bool, char*, int);
-	TodoReturn ToStr(double, char*, int);
-	TodoReturn ToStr(float, char*, int);
-	TodoReturn ToStr(int, char*, int);
-	TodoReturn ToStr(unsigned int, char*, int);
-	TodoReturn ToBool(char const*, bool*);
-	TodoReturn ReadBOM(char const*, bool*);
-	TodoReturn ToFloat(char const*, float*);
-	TodoReturn ToDouble(char const*, double*);
-	TodoReturn static void ConvertUTF32ToUTF8(unsigned long, char*, int*);
-	TodoReturn static char const* GetCharacterRef(char const*, char*, int*);
-	TodoReturn static int IsAlpha(unsigned char);
-	TodoReturn static int IsAlphaNum(unsigned char);
-	TodoReturn static int IsUTF8Continuation(char);
-	TodoReturn static bool IsWhiteSpace(char);
-	TodoReturn static char const* ReadBOM(char const*, bool*);
-	TodoReturn static char* SkipWhiteSpace(char*);
-	TodoReturn static char const* SkipWhiteSpace(char const*);
-	TodoReturn static bool StringEqual(char const*, char const*, int);
-	TodoReturn static bool ToBool(char const*, bool*);
-	TodoReturn static bool ToDouble(char const*, double*);
-	TodoReturn static bool ToFloat(char const*, float*);
-	TodoReturn static bool ToInt(char const*, int*);
-	TodoReturn static void ToStr(int, char*, int);
-	TodoReturn static void ToStr(unsigned int, char*, int);
-	TodoReturn static void ToStr(float, char*, int);
-	TodoReturn static void ToStr(double, char*, int);
-	TodoReturn static void ToStr(bool, char*, int);
-	TodoReturn static bool ToUnsigned(char const*, unsigned int*);
-}
+// [[link(android)]]
+// class tinyxml2::XMLUtil {
+// 	TodoReturn ToUnsigned(char const*, unsigned int*);
+// 	TodoReturn GetCharacterRef(char const*, char*, int*);
+// 	TodoReturn ConvertUTF32ToUTF8(unsigned long, char*, int*);
+// 	TodoReturn ToInt(char const*, int*);
+// 	TodoReturn ToStr(bool, char*, int);
+// 	TodoReturn ToStr(double, char*, int);
+// 	TodoReturn ToStr(float, char*, int);
+// 	TodoReturn ToStr(int, char*, int);
+// 	TodoReturn ToStr(unsigned int, char*, int);
+// 	TodoReturn ToBool(char const*, bool*);
+// 	TodoReturn ReadBOM(char const*, bool*);
+// 	TodoReturn ToFloat(char const*, float*);
+// 	TodoReturn ToDouble(char const*, double*);
+// 	TodoReturn static void ConvertUTF32ToUTF8(unsigned long, char*, int*);
+// 	TodoReturn static char const* GetCharacterRef(char const*, char*, int*);
+// 	TodoReturn static int IsAlpha(unsigned char);
+// 	TodoReturn static int IsAlphaNum(unsigned char);
+// 	TodoReturn static int IsUTF8Continuation(char);
+// 	TodoReturn static bool IsWhiteSpace(char);
+// 	TodoReturn static char const* ReadBOM(char const*, bool*);
+// 	TodoReturn static char* SkipWhiteSpace(char*);
+// 	TodoReturn static char const* SkipWhiteSpace(char const*);
+// 	TodoReturn static bool StringEqual(char const*, char const*, int);
+// 	TodoReturn static bool ToBool(char const*, bool*);
+// 	TodoReturn static bool ToDouble(char const*, double*);
+// 	TodoReturn static bool ToFloat(char const*, float*);
+// 	TodoReturn static bool ToInt(char const*, int*);
+// 	TodoReturn static void ToStr(int, char*, int);
+// 	TodoReturn static void ToStr(unsigned int, char*, int);
+// 	TodoReturn static void ToStr(float, char*, int);
+// 	TodoReturn static void ToStr(double, char*, int);
+// 	TodoReturn static void ToStr(bool, char*, int);
+// 	TodoReturn static bool ToUnsigned(char const*, unsigned int*);
+// }
 
 [[link(android)]]
 class TOSPopup {
@@ -12221,337 +12221,337 @@ class TableView {
 	~TableView();
 }
 
-[[link(android)]]
-class fmt::ArgList {
-	TodoReturn ArgList(fmt::internal::Arg const*, unsigned int);
-	TodoReturn ArgList();
-	TodoReturn unsigned int size() const;
-}
+// [[link(android)]]
+// class fmt::ArgList {
+// 	TodoReturn ArgList(fmt::internal::Arg const*, unsigned int);
+// 	TodoReturn ArgList();
+// 	TodoReturn unsigned int size() const;
+// }
 
-[[link(android)]]
-class fmt::FormatError {
-	TodoReturn FormatError(fmt::FormatError const&);
-	TodoReturn FormatError(gd::string const&);
-}
+// [[link(android)]]
+// class fmt::FormatError {
+// 	TodoReturn FormatError(fmt::FormatError const&);
+// 	TodoReturn FormatError(gd::string const&);
+// }
 
-[[link(android)]]
-class fmt::FormatInt {
-	TodoReturn FormatInt(int);
-	TodoReturn FormatInt(unsigned int);
-	TodoReturn FormatInt(long);
-	TodoReturn FormatInt(unsigned long);
-	TodoReturn FormatInt(__int64);
-	TodoReturn FormatInt(unsigned __int64);
-	TodoReturn char* FormatDecimal(unsigned __int64);
-	TodoReturn void FormatSigned(__int64);
-	TodoReturn char const* c_str() const;
-	TodoReturn char const* data() const;
-	TodoReturn unsigned int size() const;
-	TodoReturn gd::string str() const;
-}
+// [[link(android)]]
+// class fmt::FormatInt {
+// 	TodoReturn FormatInt(int);
+// 	TodoReturn FormatInt(unsigned int);
+// 	TodoReturn FormatInt(long);
+// 	TodoReturn FormatInt(unsigned long);
+// 	TodoReturn FormatInt(__int64);
+// 	TodoReturn FormatInt(unsigned __int64);
+// 	TodoReturn char* FormatDecimal(unsigned __int64);
+// 	TodoReturn void FormatSigned(__int64);
+// 	TodoReturn char const* c_str() const;
+// 	TodoReturn char const* data() const;
+// 	TodoReturn unsigned int size() const;
+// 	TodoReturn gd::string str() const;
+// }
 
-[[link(android)]]
-class tinyxml2::MemPool {
-	TodoReturn MemPool(tinyxml2::MemPool const&);
-	TodoReturn MemPool();
-}
+// [[link(android)]]
+// class tinyxml2::MemPool {
+// 	TodoReturn MemPool(tinyxml2::MemPool const&);
+// 	TodoReturn MemPool();
+// }
 
-[[link(android)]]
-class fmt::internal::RuntimeError {
-	TodoReturn RuntimeError();
-	TodoReturn RuntimeError(fmt::internal::RuntimeError const&);
-}
+// [[link(android)]]
+// class fmt::internal::RuntimeError {
+// 	TodoReturn RuntimeError();
+// 	TodoReturn RuntimeError(fmt::internal::RuntimeError const&);
+// }
 
-[[link(android)]]
-class fmt::internal::UTF16ToUTF8 {
-	TodoReturn UTF16ToUTF8(fmt::BasicStringRef<wchar_t>);
-	TodoReturn UTF16ToUTF8();
-	TodoReturn int Convert(fmt::BasicStringRef<wchar_t>);
-	TodoReturn char const* c_str() const;
-	TodoReturn unsigned int size() const;
-	TodoReturn gd::string str() const;
-}
+// [[link(android)]]
+// class fmt::internal::UTF16ToUTF8 {
+// 	TodoReturn UTF16ToUTF8(fmt::BasicStringRef<wchar_t>);
+// 	TodoReturn UTF16ToUTF8();
+// 	TodoReturn int Convert(fmt::BasicStringRef<wchar_t>);
+// 	TodoReturn char const* c_str() const;
+// 	TodoReturn unsigned int size() const;
+// 	TodoReturn gd::string str() const;
+// }
 
-[[link(android)]]
-class fmt::internal::UTF8ToUTF16 {
-	TodoReturn UTF8ToUTF16(fmt::BasicStringRef<char>);
-	TodoReturn wchar_t const* c_str() const;
-	TodoReturn unsigned int size() const;
-	TodoReturn std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > str() const;
-}
+// [[link(android)]]
+// class fmt::internal::UTF8ToUTF16 {
+// 	TodoReturn UTF8ToUTF16(fmt::BasicStringRef<char>);
+// 	TodoReturn wchar_t const* c_str() const;
+// 	TodoReturn unsigned int size() const;
+// 	TodoReturn std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > str() const;
+// }
 
-[[link(android)]]
-class fmt::WindowsError {
-	TodoReturn WindowsError(fmt::WindowsError const&);
-	TodoReturn WindowsError(int, fmt::BasicStringRef<char>);
-	TodoReturn void init(int, fmt::BasicStringRef<char>, fmt::ArgList const&);
-}
+// [[link(android)]]
+// class fmt::WindowsError {
+// 	TodoReturn WindowsError(fmt::WindowsError const&);
+// 	TodoReturn WindowsError(int, fmt::BasicStringRef<char>);
+// 	TodoReturn void init(int, fmt::BasicStringRef<char>, fmt::ArgList const&);
+// }
 
-[[link(android)]]
-class tinyxml2::XMLConstHandle {
-	TodoReturn XMLConstHandle(tinyxml2::XMLConstHandle const&);
-	TodoReturn XMLConstHandle(tinyxml2::XMLNode const&);
-	TodoReturn XMLConstHandle(tinyxml2::XMLNode const*);
-	tinyxml2::XMLConstHandle const FirstChild() const;
-	tinyxml2::XMLConstHandle const FirstChildElement(char const*) const;
-	tinyxml2::XMLConstHandle const LastChild() const;
-	tinyxml2::XMLConstHandle const LastChildElement(char const*) const;
-	tinyxml2::XMLConstHandle const NextSibling() const;
-	tinyxml2::XMLConstHandle const NextSiblingElement(char const*) const;
-	tinyxml2::XMLConstHandle const PreviousSibling() const;
-	tinyxml2::XMLConstHandle const PreviousSiblingElement(char const*) const;
-	TodoReturn tinyxml2::XMLDeclaration const* ToDeclaration() const;
-	TodoReturn tinyxml2::XMLElement const* ToElement() const;
-	TodoReturn tinyxml2::XMLNode const* ToNode() const;
-	TodoReturn tinyxml2::XMLText const* ToText() const;
-	TodoReturn tinyxml2::XMLUnknown const* ToUnknown() const;
-}
+// [[link(android)]]
+// class tinyxml2::XMLConstHandle {
+// 	TodoReturn XMLConstHandle(tinyxml2::XMLConstHandle const&);
+// 	TodoReturn XMLConstHandle(tinyxml2::XMLNode const&);
+// 	TodoReturn XMLConstHandle(tinyxml2::XMLNode const*);
+// 	tinyxml2::XMLConstHandle const FirstChild() const;
+// 	tinyxml2::XMLConstHandle const FirstChildElement(char const*) const;
+// 	tinyxml2::XMLConstHandle const LastChild() const;
+// 	tinyxml2::XMLConstHandle const LastChildElement(char const*) const;
+// 	tinyxml2::XMLConstHandle const NextSibling() const;
+// 	tinyxml2::XMLConstHandle const NextSiblingElement(char const*) const;
+// 	tinyxml2::XMLConstHandle const PreviousSibling() const;
+// 	tinyxml2::XMLConstHandle const PreviousSiblingElement(char const*) const;
+// 	TodoReturn tinyxml2::XMLDeclaration const* ToDeclaration() const;
+// 	TodoReturn tinyxml2::XMLElement const* ToElement() const;
+// 	TodoReturn tinyxml2::XMLNode const* ToNode() const;
+// 	TodoReturn tinyxml2::XMLText const* ToText() const;
+// 	TodoReturn tinyxml2::XMLUnknown const* ToUnknown() const;
+// }
 
-[[link(android)]]
-class tinyxml2::XMLHandle {
-	TodoReturn XMLHandle(tinyxml2::XMLNode&);
-	TodoReturn XMLHandle(tinyxml2::XMLHandle const&);
-	TodoReturn XMLHandle(tinyxml2::XMLNode*);
-	tinyxml2::XMLHandle FirstChild();
-	tinyxml2::XMLHandle FirstChildElement(char const*);
-	tinyxml2::XMLHandle LastChild();
-	tinyxml2::XMLHandle LastChildElement(char const*);
-	tinyxml2::XMLHandle NextSibling();
-	tinyxml2::XMLHandle NextSiblingElement(char const*);
-	tinyxml2::XMLHandle PreviousSibling();
-	tinyxml2::XMLHandle PreviousSiblingElement(char const*);
-	TodoReturn tinyxml2::XMLDeclaration* ToDeclaration();
-	TodoReturn tinyxml2::XMLElement* ToElement();
-	TodoReturn tinyxml2::XMLNode* ToNode();
-	TodoReturn tinyxml2::XMLText* ToText();
-	TodoReturn tinyxml2::XMLUnknown* ToUnknown();
-}
+// [[link(android)]]
+// class tinyxml2::XMLHandle {
+// 	TodoReturn XMLHandle(tinyxml2::XMLNode&);
+// 	TodoReturn XMLHandle(tinyxml2::XMLHandle const&);
+// 	TodoReturn XMLHandle(tinyxml2::XMLNode*);
+// 	tinyxml2::XMLHandle FirstChild();
+// 	tinyxml2::XMLHandle FirstChildElement(char const*);
+// 	tinyxml2::XMLHandle LastChild();
+// 	tinyxml2::XMLHandle LastChildElement(char const*);
+// 	tinyxml2::XMLHandle NextSibling();
+// 	tinyxml2::XMLHandle NextSiblingElement(char const*);
+// 	tinyxml2::XMLHandle PreviousSibling();
+// 	tinyxml2::XMLHandle PreviousSiblingElement(char const*);
+// 	TodoReturn tinyxml2::XMLDeclaration* ToDeclaration();
+// 	TodoReturn tinyxml2::XMLElement* ToElement();
+// 	TodoReturn tinyxml2::XMLNode* ToNode();
+// 	TodoReturn tinyxml2::XMLText* ToText();
+// 	TodoReturn tinyxml2::XMLUnknown* ToUnknown();
+// }
 
-[[link(android)]]
-class tinyxml2::MemPoolT<36> {
-	TodoReturn virtual void* Alloc();
-	TodoReturn virtual void Free(void*);
-	TodoReturn virtual int ItemSize() const;
-	TodoReturn virtual void SetTracked();
-}
+// [[link(android)]]
+// class tinyxml2::MemPoolT<36> {
+// 	TodoReturn virtual void* Alloc();
+// 	TodoReturn virtual void Free(void*);
+// 	TodoReturn virtual int ItemSize() const;
+// 	TodoReturn virtual void SetTracked();
+// }
 
-[[link(android)]]
-class tinyxml2::MemPoolT<44> {
-	TodoReturn virtual void* Alloc();
-	TodoReturn virtual void Free(void*);
-	TodoReturn virtual int ItemSize() const;
-	TodoReturn virtual void SetTracked();
-}
+// [[link(android)]]
+// class tinyxml2::MemPoolT<44> {
+// 	TodoReturn virtual void* Alloc();
+// 	TodoReturn virtual void Free(void*);
+// 	TodoReturn virtual int ItemSize() const;
+// 	TodoReturn virtual void SetTracked();
+// }
 
-[[link(android)]]
-class tinyxml2::MemPoolT<48> {
-	TodoReturn virtual void* Alloc();
-	TodoReturn virtual void Free(void*);
-	TodoReturn virtual int ItemSize() const;
-	TodoReturn virtual void SetTracked();
-}
+// [[link(android)]]
+// class tinyxml2::MemPoolT<48> {
+// 	TodoReturn virtual void* Alloc();
+// 	TodoReturn virtual void Free(void*);
+// 	TodoReturn virtual int ItemSize() const;
+// 	TodoReturn virtual void SetTracked();
+// }
 
-[[link(android)]]
-class tinyxml2::MemPoolT<52> {
-	TodoReturn virtual void* Alloc();
-	TodoReturn virtual void Free(void*);
-	TodoReturn virtual int ItemSize() const;
-	TodoReturn virtual void SetTracked();
-}
+// [[link(android)]]
+// class tinyxml2::MemPoolT<52> {
+// 	TodoReturn virtual void* Alloc();
+// 	TodoReturn virtual void Free(void*);
+// 	TodoReturn virtual int ItemSize() const;
+// 	TodoReturn virtual void SetTracked();
+// }
 
-[[link(android)]]
-class tinyxml2::DynArray<char,20> {
-	TodoReturn int Capacity() const;
-	TodoReturn void EnsureCapacity(int);
-	TodoReturn char* Mem();
-	TodoReturn char const* Mem() const;
-	TodoReturn void Push(char);
-	TodoReturn char* PushArr(int);
-	TodoReturn int Size() const;
-}
+// [[link(android)]]
+// class tinyxml2::DynArray<char,20> {
+// 	TodoReturn int Capacity() const;
+// 	TodoReturn void EnsureCapacity(int);
+// 	TodoReturn char* Mem();
+// 	TodoReturn char const* Mem() const;
+// 	TodoReturn void Push(char);
+// 	TodoReturn char* PushArr(int);
+// 	TodoReturn int Size() const;
+// }
 
-[[link(android)]]
-class fmt::BasicFormatter<char> {
-	TodoReturn void CheckSign(char const*&, fmt::internal::Arg const&);
-	TodoReturn void Format(fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn fmt::internal::Arg const& ParseArgIndex(char const*&);
-	TodoReturn char const* format(char const*, fmt::internal::Arg const&);
-}
+// [[link(android)]]
+// class fmt::BasicFormatter<char> {
+// 	TodoReturn void CheckSign(char const*&, fmt::internal::Arg const&);
+// 	TodoReturn void Format(fmt::BasicStringRef<char>, fmt::ArgList const&);
+// 	TodoReturn fmt::internal::Arg const& ParseArgIndex(char const*&);
+// 	TodoReturn char const* format(char const*, fmt::internal::Arg const&);
+// }
 
-[[link(android)]]
-class fmt::BasicFormatter<wchar_t> {
-	TodoReturn void CheckSign(wchar_t const*&, fmt::internal::Arg const&);
-	TodoReturn void Format(fmt::BasicStringRef<wchar_t>, fmt::ArgList const&);
-	TodoReturn fmt::internal::Arg const& ParseArgIndex(wchar_t const*&);
-	TodoReturn wchar_t const* format(wchar_t const*, fmt::internal::Arg const&);
-}
+// [[link(android)]]
+// class fmt::BasicFormatter<wchar_t> {
+// 	TodoReturn void CheckSign(wchar_t const*&, fmt::internal::Arg const&);
+// 	TodoReturn void Format(fmt::BasicStringRef<wchar_t>, fmt::ArgList const&);
+// 	TodoReturn fmt::internal::Arg const& ParseArgIndex(wchar_t const*&);
+// 	TodoReturn wchar_t const* format(wchar_t const*, fmt::internal::Arg const&);
+// }
 
-[[link(android)]]
-class tinyxml2::DynArray<struct tinyxml2::MemPoolT<36>::Block *,10> {
-	TodoReturn void EnsureCapacity(int);
-	TodoReturn void Push(tinyxml2::MemPoolT<36>::Block*);
-	TodoReturn int Size() const;
-}
+// [[link(android)]]
+// class tinyxml2::DynArray<struct tinyxml2::MemPoolT<36>::Block *,10> {
+// 	TodoReturn void EnsureCapacity(int);
+// 	TodoReturn void Push(tinyxml2::MemPoolT<36>::Block*);
+// 	TodoReturn int Size() const;
+// }
 
-[[link(android)]]
-class tinyxml2::DynArray<struct tinyxml2::MemPoolT<44>::Block *,10> {
-	TodoReturn void EnsureCapacity(int);
-	TodoReturn void Push(tinyxml2::MemPoolT<44>::Block*);
-	TodoReturn int Size() const;
-}
+// [[link(android)]]
+// class tinyxml2::DynArray<struct tinyxml2::MemPoolT<44>::Block *,10> {
+// 	TodoReturn void EnsureCapacity(int);
+// 	TodoReturn void Push(tinyxml2::MemPoolT<44>::Block*);
+// 	TodoReturn int Size() const;
+// }
 
-[[link(android)]]
-class tinyxml2::DynArray<struct tinyxml2::MemPoolT<48>::Block *,10> {
-	TodoReturn void EnsureCapacity(int);
-	TodoReturn void Push(tinyxml2::MemPoolT<48>::Block*);
-	TodoReturn int Size() const;
-}
+// [[link(android)]]
+// class tinyxml2::DynArray<struct tinyxml2::MemPoolT<48>::Block *,10> {
+// 	TodoReturn void EnsureCapacity(int);
+// 	TodoReturn void Push(tinyxml2::MemPoolT<48>::Block*);
+// 	TodoReturn int Size() const;
+// }
 
-[[link(android)]]
-class tinyxml2::DynArray<struct tinyxml2::MemPoolT<52>::Block *,10> {
-	TodoReturn void EnsureCapacity(int);
-	TodoReturn void Push(tinyxml2::MemPoolT<52>::Block*);
-	TodoReturn int Size() const;
-}
+// [[link(android)]]
+// class tinyxml2::DynArray<struct tinyxml2::MemPoolT<52>::Block *,10> {
+// 	TodoReturn void EnsureCapacity(int);
+// 	TodoReturn void Push(tinyxml2::MemPoolT<52>::Block*);
+// 	TodoReturn int Size() const;
+// }
 
-[[link(android)]]
-class tinyxml2::DynArray<char const *,10> {
-	TodoReturn void EnsureCapacity(int);
-	TodoReturn char const* Pop();
-	TodoReturn void Push(char const*);
-}
+// [[link(android)]]
+// class tinyxml2::DynArray<char const *,10> {
+// 	TodoReturn void EnsureCapacity(int);
+// 	TodoReturn char const* Pop();
+// 	TodoReturn void Push(char const*);
+// }
 
-[[link(android)]]
-class fmt::BasicWriter<char> {
-	TodoReturn static char* FillPadding(char*, unsigned int, unsigned int, wchar_t);
-	TodoReturn static char* GetBase(char*);
-	TodoReturn char* GrowBuffer(unsigned int);
-	TodoReturn char const* c_str() const;
-	TodoReturn char const* data() const;
-	TodoReturn unsigned int size() const;
-	TodoReturn gd::string str() const;
-	TodoReturn void write(fmt::BasicStringRef<char>, fmt::ArgList const&);
-}
+// [[link(android)]]
+// class fmt::BasicWriter<char> {
+// 	TodoReturn static char* FillPadding(char*, unsigned int, unsigned int, wchar_t);
+// 	TodoReturn static char* GetBase(char*);
+// 	TodoReturn char* GrowBuffer(unsigned int);
+// 	TodoReturn char const* c_str() const;
+// 	TodoReturn char const* data() const;
+// 	TodoReturn unsigned int size() const;
+// 	TodoReturn gd::string str() const;
+// 	TodoReturn void write(fmt::BasicStringRef<char>, fmt::ArgList const&);
+// }
 
-[[link(android)]]
-class fmt::BasicWriter<wchar_t> {
-	TodoReturn static wchar_t* FillPadding(wchar_t*, unsigned int, unsigned int, wchar_t);
-	TodoReturn static wchar_t* GetBase(wchar_t*);
-	TodoReturn wchar_t* GrowBuffer(unsigned int);
-	TodoReturn std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > str() const;
-	TodoReturn void write(fmt::BasicStringRef<wchar_t>, fmt::ArgList const&);
-}
+// [[link(android)]]
+// class fmt::BasicWriter<wchar_t> {
+// 	TodoReturn static wchar_t* FillPadding(wchar_t*, unsigned int, unsigned int, wchar_t);
+// 	TodoReturn static wchar_t* GetBase(wchar_t*);
+// 	TodoReturn wchar_t* GrowBuffer(unsigned int);
+// 	TodoReturn std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > str() const;
+// 	TodoReturn void write(fmt::BasicStringRef<wchar_t>, fmt::ArgList const&);
+// }
 
-[[link(android)]]
-class fmt::internal::PrintfParser<char> {
-	TodoReturn void Format(fmt::BasicWriter<char>&, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn fmt::internal::Arg const& HandleArgIndex(unsigned int, char const*&);
-	TodoReturn void ParseFlags(fmt::FormatSpec&, char const*&);
-	TodoReturn unsigned int ParseHeader(char const*&, fmt::FormatSpec&, char const*&);
-}
+// [[link(android)]]
+// class fmt::internal::PrintfParser<char> {
+// 	TodoReturn void Format(fmt::BasicWriter<char>&, fmt::BasicStringRef<char>, fmt::ArgList const&);
+// 	TodoReturn fmt::internal::Arg const& HandleArgIndex(unsigned int, char const*&);
+// 	TodoReturn void ParseFlags(fmt::FormatSpec&, char const*&);
+// 	TodoReturn unsigned int ParseHeader(char const*&, fmt::FormatSpec&, char const*&);
+// }
 
-[[link(android)]]
-class fmt::internal::PrintfParser<wchar_t> {
-	TodoReturn void Format(fmt::BasicWriter<wchar_t>&, fmt::BasicStringRef<wchar_t>, fmt::ArgList const&);
-	TodoReturn fmt::internal::Arg const& HandleArgIndex(unsigned int, char const*&);
-	TodoReturn void ParseFlags(fmt::FormatSpec&, wchar_t const*&);
-	TodoReturn unsigned int ParseHeader(wchar_t const*&, fmt::FormatSpec&, char const*&);
-}
+// [[link(android)]]
+// class fmt::internal::PrintfParser<wchar_t> {
+// 	TodoReturn void Format(fmt::BasicWriter<wchar_t>&, fmt::BasicStringRef<wchar_t>, fmt::ArgList const&);
+// 	TodoReturn fmt::internal::Arg const& HandleArgIndex(unsigned int, char const*&);
+// 	TodoReturn void ParseFlags(fmt::FormatSpec&, wchar_t const*&);
+// 	TodoReturn unsigned int ParseHeader(wchar_t const*&, fmt::FormatSpec&, char const*&);
+// }
 
-[[link(android)]]
-class fmt::TypeSpec<0> {
-	TodoReturn fmt::Alignment align() const;
-	TodoReturn char fill() const;
-	TodoReturn bool hash_flag() const;
-	TodoReturn bool plus_flag() const;
-	TodoReturn int precision() const;
-	TodoReturn bool sign_flag() const;
-	TodoReturn char type() const;
-	TodoReturn unsigned int width() const;
-}
+// [[link(android)]]
+// class fmt::TypeSpec<0> {
+// 	TodoReturn fmt::Alignment align() const;
+// 	TodoReturn char fill() const;
+// 	TodoReturn bool hash_flag() const;
+// 	TodoReturn bool plus_flag() const;
+// 	TodoReturn int precision() const;
+// 	TodoReturn bool sign_flag() const;
+// 	TodoReturn char type() const;
+// 	TodoReturn unsigned int width() const;
+// }
 
-[[link(android)]]
-class fmt::TypeSpec<88> {
-	TodoReturn fmt::Alignment align() const;
-	TodoReturn char fill() const;
-	TodoReturn bool hash_flag() const;
-	TodoReturn bool plus_flag() const;
-	TodoReturn int precision() const;
-	TodoReturn bool sign_flag() const;
-	TodoReturn char type() const;
-	TodoReturn unsigned int width() const;
-}
+// [[link(android)]]
+// class fmt::TypeSpec<88> {
+// 	TodoReturn fmt::Alignment align() const;
+// 	TodoReturn char fill() const;
+// 	TodoReturn bool hash_flag() const;
+// 	TodoReturn bool plus_flag() const;
+// 	TodoReturn int precision() const;
+// 	TodoReturn bool sign_flag() const;
+// 	TodoReturn char type() const;
+// 	TodoReturn unsigned int width() const;
+// }
 
-[[link(android)]]
-class fmt::TypeSpec<98> {
-	TodoReturn fmt::Alignment align() const;
-	TodoReturn char fill() const;
-	TodoReturn bool hash_flag() const;
-	TodoReturn bool plus_flag() const;
-	TodoReturn int precision() const;
-	TodoReturn bool sign_flag() const;
-	TodoReturn char type() const;
-	TodoReturn unsigned int width() const;
-}
+// [[link(android)]]
+// class fmt::TypeSpec<98> {
+// 	TodoReturn fmt::Alignment align() const;
+// 	TodoReturn char fill() const;
+// 	TodoReturn bool hash_flag() const;
+// 	TodoReturn bool plus_flag() const;
+// 	TodoReturn int precision() const;
+// 	TodoReturn bool sign_flag() const;
+// 	TodoReturn char type() const;
+// 	TodoReturn unsigned int width() const;
+// }
 
-[[link(android)]]
-class fmt::TypeSpec<111> {
-	TodoReturn fmt::Alignment align() const;
-	TodoReturn char fill() const;
-	TodoReturn bool hash_flag() const;
-	TodoReturn bool plus_flag() const;
-	TodoReturn int precision() const;
-	TodoReturn bool sign_flag() const;
-	TodoReturn char type() const;
-	TodoReturn unsigned int width() const;
-}
+// [[link(android)]]
+// class fmt::TypeSpec<111> {
+// 	TodoReturn fmt::Alignment align() const;
+// 	TodoReturn char fill() const;
+// 	TodoReturn bool hash_flag() const;
+// 	TodoReturn bool plus_flag() const;
+// 	TodoReturn int precision() const;
+// 	TodoReturn bool sign_flag() const;
+// 	TodoReturn char type() const;
+// 	TodoReturn unsigned int width() const;
+// }
 
-[[link(android)]]
-class fmt::TypeSpec<120> {
-	TodoReturn fmt::Alignment align() const;
-	TodoReturn char fill() const;
-	TodoReturn bool hash_flag() const;
-	TodoReturn bool plus_flag() const;
-	TodoReturn int precision() const;
-	TodoReturn bool sign_flag() const;
-	TodoReturn char type() const;
-	TodoReturn unsigned int width() const;
-}
+// [[link(android)]]
+// class fmt::TypeSpec<120> {
+// 	TodoReturn fmt::Alignment align() const;
+// 	TodoReturn char fill() const;
+// 	TodoReturn bool hash_flag() const;
+// 	TodoReturn bool plus_flag() const;
+// 	TodoReturn int precision() const;
+// 	TodoReturn bool sign_flag() const;
+// 	TodoReturn char type() const;
+// 	TodoReturn unsigned int width() const;
+// }
 
-[[link(android)]]
-class fmt::BasicStringRef<char> {
-	TodoReturn char const* c_str() const;
-	TodoReturn unsigned int size() const;
-}
+// [[link(android)]]
+// class fmt::BasicStringRef<char> {
+// 	TodoReturn char const* c_str() const;
+// 	TodoReturn unsigned int size() const;
+// }
 
-[[link(android)]]
-class fmt::BasicStringRef<wchar_t> {
-	TodoReturn wchar_t const* c_str() const;
-}
+// [[link(android)]]
+// class fmt::BasicStringRef<wchar_t> {
+// 	TodoReturn wchar_t const* c_str() const;
+// }
 
-[[link(android)]]
-class fmt::internal::CharTraits<wchar_t> {
-	TodoReturn static wchar_t const* check(wchar_t const*);
-	TodoReturn static fmt::internal::StringValue<wchar_t> convert(fmt::internal::StringValue<wchar_t>);
-	TodoReturn static wchar_t convert(char);
-	TodoReturn static wchar_t convert(wchar_t);
-}
+// [[link(android)]]
+// class fmt::internal::CharTraits<wchar_t> {
+// 	TodoReturn static wchar_t const* check(wchar_t const*);
+// 	TodoReturn static fmt::internal::StringValue<wchar_t> convert(fmt::internal::StringValue<wchar_t>);
+// 	TodoReturn static wchar_t convert(char);
+// 	TodoReturn static wchar_t convert(wchar_t);
+// }
 
-[[link(android)]]
-class fmt::internal::CharTraits<char> {
-	TodoReturn static fmt::internal::StringValue<char> convert(fmt::internal::StringValue<wchar_t>);
-	TodoReturn static char convert(char);
-}
+// [[link(android)]]
+// class fmt::internal::CharTraits<char> {
+// 	TodoReturn static fmt::internal::StringValue<char> convert(fmt::internal::StringValue<wchar_t>);
+// 	TodoReturn static char convert(char);
+// }
 
-[[link(android)]]
-class fmt::AlignTypeSpec<0> {
-	TodoReturn bool hash_flag() const;
-	TodoReturn bool plus_flag() const;
-	TodoReturn bool sign_flag() const;
-	TodoReturn char type() const;
-}
+// [[link(android)]]
+// class fmt::AlignTypeSpec<0> {
+// 	TodoReturn bool hash_flag() const;
+// 	TodoReturn bool plus_flag() const;
+// 	TodoReturn bool sign_flag() const;
+// 	TodoReturn char type() const;
+// }
 
-[[link(android)]]
-class fmt::IntFormatSpec<int,struct fmt::TypeSpec<0>,char> {
-	TodoReturn int value() const;
-}
+// [[link(android)]]
+// class fmt::IntFormatSpec<int,struct fmt::TypeSpec<0>,char> {
+// 	TodoReturn int value() const;
+// }
