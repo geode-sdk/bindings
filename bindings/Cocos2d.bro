@@ -1,3 +1,4 @@
+// clang-format off
 
 [[link(win, android)]]
 class cocos2d::CCAccelAmplitude {
