@@ -10303,19 +10303,6 @@ class SetupTimerControlTriggerPopup {
 }
 
 [[link(android)]]
-class tk::spline {
-	TodoReturn set_points(gd::vector<double> const&, gd::vector<double> const&, tk::spline::spline_type);
-	TodoReturn set_boundary(tk::spline::bd_type, double, tk::spline::bd_type, double);
-	TodoReturn make_monotonic();
-	TodoReturn set_coeffs_from_b();
-	~spline();
-	TodoReturn find_closest(double);
-	TodoReturn deriv(int, double);
-	TodoReturn solve(double, bool);
-	TodoReturn operator()(double);
-}
-
-[[link(android)]]
 class SetupAdvFollowEditPhysicsPopup {
 	TodoReturn valueDidChange(int, float);
 	bool init(AdvancedFollowEditObject*, cocos2d::CCArray*);
@@ -10352,17 +10339,6 @@ class SetupInstantCollisionTriggerPopup {
 	bool init(EffectGameObject*, cocos2d::CCArray*);
 	static SetupInstantCollisionTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
 	~SetupInstantCollisionTriggerPopup();
-}
-
-[[link(android)]]
-class fmt {
-	TodoReturn print_colored(fmt::Color, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn ReportSystemError(int, fmt::BasicStringRef<char>);
-	TodoReturn print(fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn print(__sFILE*, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn print(std::ostream&, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn format(fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn printf(fmt::BasicStringRef<char>, fmt::ArgList const&);
 }
 
 [[link(android)]]
@@ -10461,14 +10437,6 @@ class FMOD::Channel {
 	/* unverified signature */
 	void setLoopPoints(unsigned int, unsigned int, unsigned int, unsigned int);
 	TodoReturn getCurrentSound(FMOD::Sound**);
-}
-
-[[link(android)]]
-class llvm {
-	TodoReturn ConvertUTF8toWide(unsigned int, gd::string const&, char*&, unsigned char const*&);
-	TodoReturn hasUTF16ByteOrderMark(char const*, unsigned long);
-	TodoReturn ConvertCodePointToUTF8(unsigned int, char*&);
-	TodoReturn convertUTF16ToUTF8String(std::basic_string<unsigned short, std::char_traits<unsigned short>, std::allocator<unsigned short> > const&, gd::string&);
 }
 
 [[link(android)]]
