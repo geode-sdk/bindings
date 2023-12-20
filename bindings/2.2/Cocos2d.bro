@@ -4688,8 +4688,8 @@ class cocos2d::CCZone {
 [[link(win, android)]]
 class DS_Dictionary {
 	DS_Dictionary();
-	void addBoolValuesToMapForKey(std::map<gd::string, bool, std::less<gd::string >, std::allocator<std::pair<gd::string const , bool> > >&, char const*, bool);
-	void addBoolValuesToMapForKeySpecial(std::map<gd::string, bool, std::less<gd::string >, std::allocator<std::pair<gd::string const , bool> > >&, char const*, bool);
+	void addBoolValuesToMapForKey(std::map<gd::string, bool>&, char const*, bool);
+	void addBoolValuesToMapForKeySpecial(std::map<gd::string, bool>&, char const*, bool);
 	void checkCompatibility();
 	gd::string cleanStringWhiteSpace(gd::string const&);
 	static void copyFile(char const*, char const*);
@@ -4724,7 +4724,7 @@ class DS_Dictionary {
 	void setArrayForKey(char const*, cocos2d::CCArray*);
 	void setBoolForKey(char const*, bool, bool);
 	void setBoolForKey(char const*, bool);
-	void setBoolMapForKey(char const*, std::map<gd::string, bool, std::less<gd::string >, std::allocator<std::pair<gd::string const , bool> > >&);
+	void setBoolMapForKey(char const*, std::map<gd::string, bool>&);
 	void setDictForKey(char const*, cocos2d::CCDictionary*);
 	void setFloatForKey(char const*, float);
 	void setFloatForKey(char const*, float, bool);
@@ -4817,4 +4817,30 @@ class cocos2d::CCDevice {
 class cocos2d::CCTime {
 	static int gettimeofdayCocos2d(cocos2d::cc_timeval*, void*);
 	static double timersubCocos2d(cocos2d::cc_timeval*, cocos2d::cc_timeval*);
+}
+
+// these dont have the cocos2d namespace but are in the cocos2d dll
+
+[[link(android, win)]]
+class ObjectDecoder {
+	virtual bool init();
+	~ObjectDecoder();
+	ObjectDecoder(ObjectDecoder const&);
+	ObjectDecoder();
+	cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
+	ObjectDecoderDelegate* getDelegate() const;
+	void setDelegate(ObjectDecoderDelegate*);
+	static ObjectDecoder* sharedDecoder();
+}
+
+[[link(android)]]
+class CCContentManager {
+	virtual bool init();
+	~CCContentManager();
+	CCContentManager(CCContentManager const&);
+	CCContentManager();
+	cocos2d::CCDictionary* addDict(char const*, bool);
+	cocos2d::CCDictionary* addDictDS(char const*);
+	void clearCache();
+	static CCContentManager* sharedManager();
 }

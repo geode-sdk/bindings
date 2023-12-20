@@ -663,7 +663,7 @@ class CCURLObject {
 class ColorAction {
 	TodoReturn resetAction();
 	TodoReturn saveToState(CAState&);
-	TodoReturn setupFromMap(std::map<std::string, std::string, std::less<std::string>, std::allocator<std::pair<std::string const, std::string> > >&);
+	TodoReturn setupFromMap(std::map<std::string, std::string>&);
 	TodoReturn loadFromState(CAState&);
 	TodoReturn setupFromString(std::string);
 	TodoReturn writeSaveString(fmt::BasicWriter<char>&);
@@ -932,7 +932,7 @@ class GameToolbox {
 	TodoReturn getMultipliedHSV(cocos2d::_ccHSVValue const&, float);
 	TodoReturn intToShortString(int);
 	TodoReturn saveStringToFile(std::string const&, std::string const&);
-	TodoReturn stringSetupToMap(std::string const&, char const*, std::map<std::string, std::string, std::less<std::string>, std::allocator<std::pair<std::string const, std::string> > >&);
+	TodoReturn stringSetupToMap(std::string const&, char const*, std::map<std::string, std::string>&);
 	TodoReturn getDropActionWEnd(float, float, float, cocos2d::CCAction*, float);
 	TodoReturn getInvertedEasing(int);
 	TodoReturn getRelativeOffset(GameObject*, cocos2d::CCPoint);
@@ -2707,21 +2707,6 @@ class MenuGameLayer {
 }
 
 [[link(android)]]
-class ObjectDecoder {
-	TodoReturn sharedDecoder();
-	TodoReturn getDecodedObject(int, DS_Dictionary*);
-	virtual bool init();
-	~ObjectDecoder();
-	ObjectDecoder(ObjectDecoder const&);
-	ObjectDecoder();
-	cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
-	ObjectDecoderDelegate* getDelegate() const;
-	virtual bool init();
-	void setDelegate(ObjectDecoderDelegate*);
-	static ObjectDecoder* sharedDecoder();
-}
-
-[[link(android)]]
 class ObjectManager {
 	TodoReturn animLoaded(char const*);
 	TodoReturn getDefinition(char const*);
@@ -4116,7 +4101,7 @@ class GJBaseGameLayer {
 	TodoReturn updateGuideArt();
 	TodoReturn updateTimeWarp(float);
 	TodoReturn updateTimeWarp(GameObject*, float);
-	TodoReturn addRemapTargets(std::set<int, std::less<int>, std::allocator<int> >&);
+	TodoReturn addRemapTargets(std::set<int>&);
 	TodoReturn checkCollisions(PlayerObject*, float, bool);
 	TodoReturn claimMoveAction(int, bool);
 	TodoReturn collectedObject(EffectGameObject*);
@@ -5094,23 +5079,6 @@ class CCAnimatedSprite {
 	virtual void setColor(cocos2d::_ccColor3B const&);
 	TodoReturn stopTween();
 	~CCAnimatedSprite();
-}
-
-[[link(android)]]
-class CCContentManager {
-	TodoReturn clearCache();
-	TodoReturn sharedManager();
-	virtual bool init();
-	TodoReturn addDict(char const*, bool);
-	TodoReturn addDictDS(char const*);
-	~CCContentManager();
-	CCContentManager(CCContentManager const&);
-	CCContentManager();
-	cocos2d::CCDictionary* addDict(char const*, bool);
-	cocos2d::CCDictionary* addDictDS(char const*);
-	void clearCache();
-	bool init();
-	static CCContentManager* sharedManager();
 }
 
 [[link(android)]]
@@ -6352,8 +6320,8 @@ class SelectEventLayer {
 	TodoReturn nextPosition();
 	virtual void keyBackClicked();
 	void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
-	bool init(SetupEventLinkPopup*, std::set<int, std::less<int>, std::allocator<int> >&);
-	static SelectEventLayer* create(SetupEventLinkPopup*, std::set<int, std::less<int>, std::allocator<int> >&);
+	bool init(SetupEventLinkPopup*, std::set<int>&);
+	static SelectEventLayer* create(SetupEventLinkPopup*, std::set<int>&);
 	void onInfo(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn addToggle(int, std::string);
@@ -8335,7 +8303,7 @@ class SetupBGSpeedTrigger {
 [[link(android)]]
 class SetupEventLinkPopup {
 	void onSelectEvent(cocos2d::CCObject* sender);
-	TodoReturn updateEventIDs(std::set<int, std::less<int>, std::allocator<int> >&);
+	TodoReturn updateEventIDs(std::set<int>&);
 	bool init(EventLinkTrigger*, cocos2d::CCArray*);
 	static SetupEventLinkPopup* create(EventLinkTrigger*, cocos2d::CCArray*);
 	~SetupEventLinkPopup();
