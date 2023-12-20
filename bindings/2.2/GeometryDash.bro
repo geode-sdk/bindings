@@ -3036,11 +3036,6 @@ class EditLevelLayer {
 }
 
 [[link(android)]]
-class FMODAudioState {
-	~FMODAudioState();
-}
-
-[[link(android)]]
 class GameObjectCopy {
 	TodoReturn resetObject();
 	bool init(GameObject*);
@@ -3859,129 +3854,6 @@ class FindObjectPopup {
 	virtual bool init();
 	static FindObjectPopup* create();
 	~FindObjectPopup();
-}
-
-[[link(android)]]
-class FMODAudioEngine {
-	TodoReturn pauseMusic(int);
-	TodoReturn playEffect(gd::string);
-	TodoReturn playEffect(gd::string, float, float, float);
-	TodoReturn startMusic(int, int, int, int, bool, int);
-	TodoReturn fadeInMusic(float, int);
-	TodoReturn pauseEffect(unsigned int);
-	TodoReturn pitchForIdx(int);
-	TodoReturn printResult(FMOD_RESULT);
-	TodoReturn resumeAudio();
-	TodoReturn resumeMusic(int);
-	TodoReturn stopChannel(int);
-	TodoReturn stopChannel(int, AudioTargetType, bool, float);
-	TodoReturn stopChannel(FMOD::Channel*, bool, float);
-	TodoReturn storeEffect(FMOD::Sound*, gd::string);
-	TodoReturn createStream(gd::string);
-	TodoReturn fadeOutMusic(float, int);
-	TodoReturn getMusicTime(int);
-	/* unverified signature */
-	bool isSoundReady(FMOD::Sound*);
-	TodoReturn preloadMusic(gd::string, bool, int);
-	TodoReturn resumeEffect(unsigned int);
-	TodoReturn sharedEngine();
-	TodoReturn stopAllMusic();
-	TodoReturn testFunction(int);
-	TodoReturn unloadEffect(gd::string);
-	TodoReturn updateReverb(FMODReverbPreset, bool);
-	TodoReturn clearAllAudio();
-	TodoReturn getFMODStatus(int);
-	TodoReturn pauseAllAudio();
-	TodoReturn pauseAllMusic();
-	TodoReturn preloadEffect(gd::string);
-	TodoReturn updateChannel(int, AudioTargetType, AudioModType, float, float);
-	TodoReturn channelStopped(FMOD::Channel*, bool);
-	TodoReturn enableMetering();
-	TodoReturn getActiveMusic(int);
-	TodoReturn getMusicTimeMS(int);
-	/* unverified signature */
-	bool isEffectLoaded(gd::string);
-	/* unverified signature */
-	bool isMusicPlaying(int);
-	/* unverified signature */
-	bool isMusicPlaying(gd::string, int);
-	TodoReturn lengthForSound(gd::string);
-	TodoReturn loadAudioState(FMODAudioState&);
-	TodoReturn resumeAllAudio();
-	TodoReturn resumeAllMusic();
-	TodoReturn reverbToString(FMODReverbPreset);
-	TodoReturn saveAudioState(FMODAudioState&);
-	/* unverified signature */
-	void setMusicTimeMS(unsigned int, bool, int);
-	TodoReturn stopAllEffects();
-	TodoReturn stopAndGetFade(FMOD::Channel*);
-	TodoReturn swapMusicIndex(int, int);
-	TodoReturn updateMetering();
-	TodoReturn disableMetering();
-	TodoReturn getChannelGroup(int, bool);
-	TodoReturn pauseAllEffects();
-	TodoReturn playEffectAsync(gd::string);
-	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int);
-	TodoReturn queueStartMusic(gd::string, float, float, float, bool, int, int, int, int, int, bool, int, bool);
-	TodoReturn registerChannel(FMOD::Channel*, int, int);
-	/* unverified signature */
-	void setChannelPitch(int, AudioTargetType, float);
-	TodoReturn channelLinkSound(int, FMODSound*);
-	TodoReturn countActiveMusic();
-	TodoReturn getEffectsVolume();
-	TodoReturn getMeteringValue();
-	TodoReturn getMusicLengthMS(int);
-	TodoReturn getNextChannelID();
-	TodoReturn loadAndPlayMusic(gd::string, unsigned int, int);
-	TodoReturn resumeAllEffects();
-	/* unverified signature */
-	void setChannelVolume(int, AudioTargetType, float);
-	/* unverified signature */
-	void setEffectsVolume(float);
-	TodoReturn setupAudioEngine();
-	TodoReturn stopChannelTween(int, AudioTargetType, AudioModType);
-	TodoReturn unloadAllEffects();
-	TodoReturn getMusicChannelID(int);
-	TodoReturn getTweenContainer(AudioTargetType);
-	/* unverified signature */
-	bool isChannelStopping(int);
-	TodoReturn stopChannelTweens(int, AudioTargetType);
-	TodoReturn stopMusicNotInSet(std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >&);
-	TodoReturn unregisterChannel(int);
-	TodoReturn updateQueuedMusic();
-	TodoReturn channelForUniqueID(int);
-	TodoReturn channelUnlinkSound(int);
-	TodoReturn countActiveEffects();
-	TodoReturn playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int);
-	TodoReturn preloadEffectAsync(gd::string);
-	TodoReturn stopAndRemoveMusic(int);
-	TodoReturn triggerQueuedMusic(FMODQueuedMusic);
-	TodoReturn activateQueuedMusic(int);
-	TodoReturn channelForChannelID(int);
-	/* unverified signature */
-	void setChannelVolumeMod(int, AudioTargetType, float);
-	TodoReturn updateChannelTweens(float);
-	TodoReturn updateQueuedEffects();
-	TodoReturn waitUntilSoundReady(FMOD::Sound*);
-	TodoReturn channelIDForUniqueID(int);
-	TodoReturn releaseRemovedSounds();
-	TodoReturn updateBackgroundFade();
-	TodoReturn fadeInBackgroundMusic(float);
-	TodoReturn getActiveMusicChannel(int);
-	TodoReturn updateTemporaryEffects();
-	TodoReturn getBackgroundMusicVolume();
-	/* unverified signature */
-	void setBackgroundMusicVolume(float);
-	TodoReturn queuedEffectFinishedLoading(gd::string);
-	virtual void stop();
-	TodoReturn setup();
-	TodoReturn start();
-	virtual void update(float);
-	TodoReturn loadMusic(gd::string);
-	TodoReturn loadMusic(gd::string, float, float, float, bool, int, int);
-	TodoReturn playMusic(gd::string, bool, float, int);
-	TodoReturn stopMusic(int);
-	~FMODAudioEngine();
 }
 
 [[link(android)]]
@@ -7966,14 +7838,6 @@ class EnterEffectInstance {
 }
 
 [[link(android)]]
-class FMODLevelVisualizer {
-	TodoReturn updateVisualizer(float, float, float);
-	virtual bool init();
-	static FMODLevelVisualizer* create();
-	~FMODLevelVisualizer();
-}
-
-[[link(android)]]
 class FRequestProfilePage {
 	void onNextPage(cocos2d::CCObject* sender);
 	void onPrevPage(cocos2d::CCObject* sender);
@@ -10303,19 +10167,6 @@ class SetupTimerControlTriggerPopup {
 }
 
 [[link(android)]]
-class tk::spline {
-	TodoReturn set_points(gd::vector<double> const&, gd::vector<double> const&, tk::spline::spline_type);
-	TodoReturn set_boundary(tk::spline::bd_type, double, tk::spline::bd_type, double);
-	TodoReturn make_monotonic();
-	TodoReturn set_coeffs_from_b();
-	~spline();
-	TodoReturn find_closest(double);
-	TodoReturn deriv(int, double);
-	TodoReturn solve(double, bool);
-	TodoReturn operator()(double);
-}
-
-[[link(android)]]
 class SetupAdvFollowEditPhysicsPopup {
 	TodoReturn valueDidChange(int, float);
 	bool init(AdvancedFollowEditObject*, cocos2d::CCArray*);
@@ -10355,120 +10206,8 @@ class SetupInstantCollisionTriggerPopup {
 }
 
 [[link(android)]]
-class fmt {
-	TodoReturn print_colored(fmt::Color, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn ReportSystemError(int, fmt::BasicStringRef<char>);
-	TodoReturn print(fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn print(__sFILE*, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn print(std::ostream&, fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn format(fmt::BasicStringRef<char>, fmt::ArgList const&);
-	TodoReturn printf(fmt::BasicStringRef<char>, fmt::ArgList const&);
-}
-
-[[link(android)]]
 class MD5 {
 	TodoReturn MD5Transform(unsigned long*, unsigned char*);
-}
-
-[[link(android)]]
-class FMOD::ChannelGroup {
-	TodoReturn getChannel(int, FMOD::Channel**);
-	TodoReturn getNumChannels(int*);
-	TodoReturn release();
-	TodoReturn addGroup(FMOD::ChannelGroup*, bool, FMOD::DSPConnection**);
-}
-
-[[link(android)]]
-class FMOD::ChannelControl {
-	TodoReturn getDSPClock(uint64_t*, uint64_t*);
-	TodoReturn getUserData(void**);
-	/* unverified signature */
-	void setCallback(FMOD_RESULT (*)(FMOD_CHANNELCONTROL*, FMOD_CHANNELCONTROL_TYPE, FMOD_CHANNELCONTROL_CALLBACK_TYPE, void*, void*));
-	virtual void setUserData(void*);
-	TodoReturn addFadePoint(uint64_t, float);
-	/* unverified signature */
-	void setVolumeRamp(bool);
-	virtual void stop();
-	TodoReturn addDSP(int, FMOD::DSP*);
-	TodoReturn getDSP(int, FMOD::DSP**);
-	TodoReturn getPitch(float*);
-	/* unverified signature */
-	void setDelay(uint64_t, uint64_t, bool);
-	/* unverified signature */
-	void setPitch(float);
-	TodoReturn getPaused(bool*);
-	TodoReturn getVolume(float*);
-	/* unverified signature */
-	void setPaused(bool);
-	/* unverified signature */
-	void setVolume(float);
-}
-
-[[link(android)]]
-class FMOD::DSP {
-	TodoReturn getMeteringInfo(FMOD_DSP_METERING_INFO*, FMOD_DSP_METERING_INFO*);
-	/* unverified signature */
-	void setParameterBool(int, bool);
-	/* unverified signature */
-	void setParameterFloat(int, float);
-	/* unverified signature */
-	void setMeteringEnabled(bool, bool);
-}
-
-[[link(android)]]
-class FMOD::Sound {
-	TodoReturn getOpenState(FMOD_OPENSTATE*, unsigned int*, bool*, bool*);
-	/* unverified signature */
-	void setLoopCount(int);
-	TodoReturn release();
-	TodoReturn getLength(unsigned int*, unsigned int);
-}
-
-[[link(android)]]
-class FMOD::System {
-	TodoReturn getVersion(unsigned int*);
-	TodoReturn createSound(char const*, unsigned int, FMOD_CREATESOUNDEXINFO*, FMOD::Sound**);
-	TodoReturn getCPUUsage(FMOD_CPU_USAGE*);
-	TodoReturn mixerResume();
-	TodoReturn createStream(char const*, unsigned int, FMOD_CREATESOUNDEXINFO*, FMOD::Sound**);
-	TodoReturn mixerSuspend();
-	TodoReturn createDSPByType(FMOD_DSP_TYPE, FMOD::DSP**);
-	TodoReturn getDSPBufferSize(unsigned int*, int*);
-	/* unverified signature */
-	void setDSPBufferSize(unsigned int, int);
-	TodoReturn getSoftwareFormat(int*, FMOD_SPEAKERMODE*, int*);
-	/* unverified signature */
-	void setSoftwareFormat(int, FMOD_SPEAKERMODE, int);
-	TodoReturn createChannelGroup(char const*, FMOD::ChannelGroup**);
-	TodoReturn getStreamBufferSize(unsigned int*, unsigned int*);
-	bool init(int, unsigned int, void*);
-	TodoReturn close();
-	TodoReturn update();
-	TodoReturn lockDSP();
-	TodoReturn release();
-	TodoReturn playSound(FMOD::Sound*, FMOD::ChannelGroup*, bool, FMOD::Channel**);
-	TodoReturn unlockDSP();
-}
-
-[[link(android)]]
-class FMOD::Channel {
-	TodoReturn getPosition(unsigned int*, unsigned int);
-	/* unverified signature */
-	void setPosition(unsigned int, unsigned int);
-	/* unverified signature */
-	void setLoopCount(int);
-	TodoReturn getLoopPoints(unsigned int*, unsigned int, unsigned int*, unsigned int);
-	/* unverified signature */
-	void setLoopPoints(unsigned int, unsigned int, unsigned int, unsigned int);
-	TodoReturn getCurrentSound(FMOD::Sound**);
-}
-
-[[link(android)]]
-class llvm {
-	TodoReturn ConvertUTF8toWide(unsigned int, gd::string const&, char*&, unsigned char const*&);
-	TodoReturn hasUTF16ByteOrderMark(char const*, unsigned long);
-	TodoReturn ConvertCodePointToUTF8(unsigned int, char*&);
-	TodoReturn convertUTF16ToUTF8String(std::basic_string<unsigned short, std::char_traits<unsigned short>, std::allocator<unsigned short> > const&, gd::string&);
 }
 
 [[link(android)]]

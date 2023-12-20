@@ -37,3 +37,7 @@ class CAState {
 class GJSpriteColor {
 
 }
+
+class UIButtonConfig {
+    
+}
