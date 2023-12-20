@@ -4706,8 +4706,8 @@ class cocos2d::CCZone {
 [[link(win, android)]]
 class DS_Dictionary {
 	DS_Dictionary();
-	void addBoolValuesToMapForKey(std::map<gd::string, bool>&, char const*, bool);
-	void addBoolValuesToMapForKeySpecial(std::map<gd::string, bool>&, char const*, bool);
+	void addBoolValuesToMapForKey(gd::map<gd::string, bool>&, char const*, bool);
+	void addBoolValuesToMapForKeySpecial(gd::map<gd::string, bool>&, char const*, bool);
 	void checkCompatibility();
 	gd::string cleanStringWhiteSpace(gd::string const&);
 	static void copyFile(char const*, char const*);
@@ -4742,7 +4742,7 @@ class DS_Dictionary {
 	void setArrayForKey(char const*, cocos2d::CCArray*);
 	void setBoolForKey(char const*, bool, bool);
 	void setBoolForKey(char const*, bool);
-	void setBoolMapForKey(char const*, std::map<gd::string, bool>&);
+	void setBoolMapForKey(char const*, gd::map<gd::string, bool>&);
 	void setDictForKey(char const*, cocos2d::CCDictionary*);
 	void setFloatForKey(char const*, float);
 	void setFloatForKey(char const*, float, bool);
