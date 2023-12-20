@@ -660,13 +660,18 @@ class CCURLObject {
 }
 
 [[link(android)]]
+class CAState {
+
+}
+
+[[link(android)]]
 class ColorAction {
 	TodoReturn resetAction();
 	TodoReturn saveToState(CAState&);
 	TodoReturn setupFromMap(std::map<std::string, std::string>&);
 	TodoReturn loadFromState(CAState&);
 	TodoReturn setupFromString(std::string);
-	TodoReturn writeSaveString(fmt::BasicWriter<char>&);
+	// TodoReturn writeSaveString(fmt::BasicWriter<char>&);
 	TodoReturn updateCustomColor(cocos2d::_ccColor3B, cocos2d::_ccColor3B);
 	bool init(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float, double, bool, int, float, float);
 	virtual void step(float);
@@ -729,6 +734,10 @@ class DialogLayer {
 	virtual void onEnter();
 	TodoReturn animateIn(DialogAnimationType);
 	~DialogLayer();
+}
+
+class UIButtonConfig {
+
 }
 
 [[link(android)]]
