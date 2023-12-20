@@ -270,7 +270,7 @@ class cocos2d::CCApplication {
 	void toggleVerticalSync(bool);
 	virtual void trySaveGame(bool);
 	void updateController();
-	void updateControllerKeys(CXBOXController*, int);
+	// void updateControllerKeys(CXBOXController*, int);
 	void updateMouseControl();
 	void updateVerticalSync();
 }
@@ -630,16 +630,16 @@ class cocos2d::CCConfiguration {
 	bool supportsShareableVAO() const;
 }
 
-[[link(win, android)]]
-class CCContentManager {
-	CCContentManager(CCContentManager const&);
-	CCContentManager();
-	cocos2d::CCDictionary* addDict(char const*, bool);
-	cocos2d::CCDictionary* addDictDS(char const*);
-	void clearCache();
-	bool init();
-	static CCContentManager* sharedManager();
-}
+// [[link(win, android)]]
+// class CCContentManager {
+// 	CCContentManager(CCContentManager const&);
+// 	CCContentManager();
+// 	cocos2d::CCDictionary* addDict(char const*, bool);
+// 	cocos2d::CCDictionary* addDictDS(char const*);
+// 	void clearCache();
+// 	bool init();
+// 	static CCContentManager* sharedManager();
+// }
 
 [[link(win, android)]]
 class cocos2d::CCCopying {
@@ -1411,7 +1411,7 @@ class cocos2d::CCGLProgram {
 	bool initWithVertexShaderByteArray(char const*, char const*);
 	bool initWithVertexShaderFilename(char const*, char const*);
 	bool link();
-	char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
+	// char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
 	char const* programLog();
 	void reset();
 	void setUniformLocationWith1f(int, float);
@@ -4877,7 +4877,7 @@ class cocos2d {
 	float ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
 	cocos2d::CCPoint ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
 	cocos2d::CCPoint ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	cocos2d::CCPoint ccpCompOp(cocos2d::CCPoint const&, float (__cdecl*)(float));
+	// cocos2d::CCPoint ccpCompOp(cocos2d::CCPoint const&, float (__cdecl*)(float));
 	float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
 	cocos2d::CCPoint ccpForAngle(float);
 	cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const&);
