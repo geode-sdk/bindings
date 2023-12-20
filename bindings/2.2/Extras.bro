@@ -11,5 +11,21 @@ class AdvancedFollowInstance {
 }
 
 class SFXTriggerInstance {
-    
+
 } 
+
+class ChanceObject {
+
+}
+
+class GameObjectPhysics {
+
+}
+
+class DynamicObjectAction {
+
+}
+
+class GJTransformState {
+
+}
