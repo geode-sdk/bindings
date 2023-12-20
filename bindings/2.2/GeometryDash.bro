@@ -1752,14 +1752,14 @@ class GJValueTween {
 }
 
 [[link(android)]]
-class LoadingLayer {
-	TodoReturn loadAssets();
+class LoadingLayer {	
+	void loadAssets() = win 0x272390;
 	TodoReturn updateProgress(int);
-	TodoReturn loadingFinished();
-	TodoReturn getLoadingString();
-	bool init(bool);
+	void loadingFinished() = win 0x2722A0;	
+	const char* getLoadingString() = win 0x272A20;
+	bool init(bool fromReload) = win 0x271B30;	
 	TodoReturn scene(bool);
-	static LoadingLayer* create(bool);
+	static LoadingLayer* create(bool fromReload) = win 0x271A90;
 	~LoadingLayer();
 }
 
