@@ -257,6 +257,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     int m_unknown1;
     bool m_selected;
     bool m_unknown2;
+	PAD = android 0xc;
     gd::string m_allowedChars;
     float m_maxLabelWidth;
     float m_maxLabelScale;
@@ -271,6 +272,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     bool m_unknown3;
     bool m_usePasswordChar;
     bool m_forceOffset;
+	PAD = android 0x10;
 }
 
 
