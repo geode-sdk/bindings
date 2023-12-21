@@ -31,7 +31,7 @@ class cocos2d::CCAccelerometer {
 	// CCAccelerometer();
 	void setAccelerometerInterval(float);
 	void setDelegate(cocos2d::CCAccelerometerDelegate*);
-	void update(double, double, double, double);
+	// void update(double, double, double, double);
 }
 
 [[link(win, android)]]
@@ -229,51 +229,56 @@ class cocos2d::CCAnimationFrame {
 	void setUserInfo(cocos2d::CCDictionary*);
 }
 
-[[link(win, android)]]
-class cocos2d::CCApplication {
-	// CCApplication(cocos2d::CCApplication const&);
-	// CCApplication();
-	virtual void gameDidSave();
-	bool getControllerConnected() const;
-	virtual cocos2d::LanguageType getCurrentLanguage();
-	bool getForceTimer() const;
-	bool getFullscreen() const;
-	gd::string const& getResourceRootPath();
-	bool getShutdownCalled() const;
-	bool getSleepMode() const;
-	bool getSmoothFix() const;
-	gd::string const& getStartupScriptFilename();
-	virtual cocos2d::TargetPlatform getTargetPlatform();
-	int getTimeElapsed();
-	bool getVerticalSyncEnabled() const;
-	void leftMouseDown();
-	void leftMouseUp();
-	void logTimeElapsed(gd::string);
-	void moveMouse(int, int);
-	virtual void openURL(char const*);
-	virtual void platformShutdown();
-	void resetForceTimer();
-	virtual int run();
-	virtual void setAnimationInterval(double);
-	void setForceTimer(bool);
-	void setFullscreen(bool);
-	void setResourceRootPath(gd::string const&);
-	void setShutdownCalled(bool);
-	void setSleepMode(bool);
-	void setSmoothFix(bool);
-	void setStartupScriptFilename(gd::string const&);
-	virtual void setupGLView();
-	void setupVerticalSync();
-	static cocos2d::CCApplication* sharedApplication();
-	void shutdownApplication();
-	void toggleMouseControl(bool);
-	void toggleVerticalSync(bool);
-	virtual void trySaveGame(bool);
-	void updateController();
-	// void updateControllerKeys(CXBOXController*, int);
-	void updateMouseControl();
-	void updateVerticalSync();
-}
+// [[link(win)]]
+// class cocos2d::CCApplication {
+// 	// CCApplication(cocos2d::CCApplication const&);
+// 	// CCApplication();
+// 	virtual void gameDidSave();
+// 	bool getControllerConnected() const;
+// 	[[link(win, android)]]
+// 	virtual cocos2d::LanguageType getCurrentLanguage();
+// 	bool getForceTimer() const;
+// 	bool getFullscreen() const;
+// 	gd::string const& getResourceRootPath();
+// 	bool getShutdownCalled() const;
+// 	bool getSleepMode() const;
+// 	bool getSmoothFix() const;
+// 	gd::string const& getStartupScriptFilename();
+// 	[[link(win, android)]]
+// 	virtual cocos2d::TargetPlatform getTargetPlatform();
+// 	int getTimeElapsed();
+// 	bool getVerticalSyncEnabled() const;
+// 	void leftMouseDown();
+// 	void leftMouseUp();
+// 	void logTimeElapsed(gd::string);
+// 	void moveMouse(int, int);
+// 	virtual void openURL(char const*);
+// 	virtual void platformShutdown();
+// 	void resetForceTimer();
+// 	[[link(win, android)]]
+// 	virtual int run();
+// 	[[link(win, android)]]
+// 	virtual void setAnimationInterval(double);
+// 	void setForceTimer(bool);
+// 	void setFullscreen(bool);
+// 	void setResourceRootPath(gd::string const&);
+// 	void setShutdownCalled(bool);
+// 	void setSleepMode(bool);
+// 	void setSmoothFix(bool);
+// 	void setStartupScriptFilename(gd::string const&);
+// 	virtual void setupGLView();
+// 	void setupVerticalSync();
+// 	[[link(win, android)]]
+// 	static cocos2d::CCApplication* sharedApplication();
+// 	void shutdownApplication();
+// 	void toggleMouseControl(bool);
+// 	void toggleVerticalSync(bool);
+// 	virtual void trySaveGame(bool);
+// 	void updateController();
+// 	// void updateControllerKeys(CXBOXController*, int);
+// 	void updateMouseControl();
+// 	void updateVerticalSync();
+// }
 
 [[link(win, android)]]
 class cocos2d::CCApplicationProtocol {
@@ -289,7 +294,7 @@ class cocos2d::CCApplicationProtocol {
 [[link(win, android)]]
 class cocos2d::CCArray {
 	// CCArray(cocos2d::CCArray const&);
-	CCArray(unsigned int);
+	// CCArray(unsigned int);
 	// CCArray();
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 	void addObject(cocos2d::CCObject*);
@@ -437,7 +442,7 @@ class cocos2d::CCBlink {
 [[link(win, android)]]
 class cocos2d::CCBool {
 	// CCBool(cocos2d::CCBool const&);
-	CCBool(bool);
+	// CCBool(bool);
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 	static cocos2d::CCBool* create(bool);
 	bool getValue() const;
@@ -592,7 +597,7 @@ class cocos2d::CCComponent {
 
 [[link(win, android)]]
 class cocos2d::CCComponentContainer {
-	CCComponentContainer(cocos2d::CCNode*);
+	// CCComponentContainer(cocos2d::CCNode*);
 	// CCComponentContainer(cocos2d::CCComponentContainer const&);
 	virtual bool add(cocos2d::CCComponent*);
 	void alloc();
@@ -687,8 +692,8 @@ class cocos2d::CCDelayTime {
 
 [[link(win, android)]]
 class cocos2d::CCDictElement {
-	CCDictElement(int, cocos2d::CCObject*);
-	CCDictElement(char const*, cocos2d::CCObject*);
+	// CCDictElement(int, cocos2d::CCObject*);
+	// CCDictElement(char const*, cocos2d::CCObject*);
 	int getIntKey() const;
 	cocos2d::CCObject* getObject() const;
 	char const* getStrKey() const;
@@ -848,7 +853,7 @@ class cocos2d::CCDirectorDelegate {
 [[link(win, android)]]
 class cocos2d::CCDouble {
 	// CCDouble(cocos2d::CCDouble const&);
-	CCDouble(double);
+	// CCDouble(double);
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 	static cocos2d::CCDouble* create(double);
 	double getValue() const;
@@ -877,70 +882,70 @@ class cocos2d::CCDrawNode {
 	void setBlendFunc(cocos2d::_ccBlendFunc const&);
 }
 
-[[link(win, android)]]
-class cocos2d::CCEGLView {
-	// CCEGLView();
-	// CCEGLView(cocos2d::CCEGLView const&);
-	void capture();
-	void centerWindow();
-	void checkErrorGL(char const*);
-	static cocos2d::CCEGLView* create(gd::string const&);
-	static cocos2d::CCEGLView* createWithFullScreen(gd::string const&);
-	static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, GLFWvidmode const&, GLFWmonitor*);
-	static cocos2d::CCEGLView* createWithRect(gd::string const&, cocos2d::CCRect, float);
-	void enableRetina(bool);
-	virtual void end();
-	bool getCursorLocked() const;
-	cocos2d::CCSize getDisplaySize();
-	float getFrameZoomFactor();
-	bool getGameplayActive() const;
-	bool getIsFullscreen() const;
-	int getRetinaFactor() const;
-	bool getShouldHideCursor() const;
-	GLFWwindow* getWindow() const;
-	cocos2d::CCSize getWindowedSize() const;
-	void iconify();
-	bool initGlew();
-	bool initWithFullScreen(gd::string const&);
-	bool initWithFullscreen(gd::string const&, GLFWvidmode const&, GLFWmonitor*);
-	bool initWithRect(gd::string const&, cocos2d::CCRect, float);
-	virtual bool isOpenGLReady();
-	bool isRetinaEnabled() const;
-	void onGLFWCharCallback(GLFWwindow*, unsigned int);
-	void onGLFWCursorEnterFunCallback(GLFWwindow*, int);
-	void onGLFWDeviceChangeFunCallback(GLFWwindow*);
-	void onGLFWError(int, char const*);
-	void onGLFWKeyCallback(GLFWwindow*, int, int, int, int);
-	void onGLFWMouseCallBack(GLFWwindow*, int, int, int);
-	void onGLFWMouseMoveCallBack(GLFWwindow*, double, double);
-	void onGLFWMouseScrollCallback(GLFWwindow*, double, double);
-	void onGLFWWindowCloseFunCallback(GLFWwindow*);
-	void onGLFWWindowIconifyFunCallback(GLFWwindow*, int);
-	void onGLFWWindowPosCallback(GLFWwindow*, int, int);
-	void onGLFWWindowSizeFunCallback(GLFWwindow*, int, int);
-	void onGLFWframebuffersize(GLFWwindow*, int, int);
-	void pollEvents();
-	void releaseCapture();
-	void resizeWindow(int, int);
-	virtual void setFrameSize(float, float);
-	void setFrameZoomFactor(float);
-	virtual void setIMEKeyboardState(bool);
-	virtual void setScissorInPoints(float, float, float, float);
-	virtual void setViewPortInPoints(float, float, float, float);
-	void setWindowedSize(cocos2d::CCSize);
-	void setupWindow(cocos2d::CCRect);
-	static cocos2d::CCEGLView* sharedOpenGLView();
-	void showCursor(bool);
-	void showMessage(gd::string);
-	virtual void swapBuffers();
-	void toggleFullScreen(bool);
-	void toggleGameplayActive(bool);
-	void toggleLockCursor(bool);
-	void updateDesignSize(int, int);
-	void updateFrameSize();
-	void updateWindow(int, int);
-	bool windowShouldClose();
-}
+// [[link(win)]]
+// class cocos2d::CCEGLView {
+// 	// CCEGLView();
+// 	// CCEGLView(cocos2d::CCEGLView const&);
+// 	void capture();
+// 	void centerWindow();
+// 	void checkErrorGL(char const*);
+// 	static cocos2d::CCEGLView* create(gd::string const&);
+// 	static cocos2d::CCEGLView* createWithFullScreen(gd::string const&);
+// 	static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, GLFWvidmode const&, GLFWmonitor*);
+// 	static cocos2d::CCEGLView* createWithRect(gd::string const&, cocos2d::CCRect, float);
+// 	void enableRetina(bool);
+// 	virtual void end();
+// 	bool getCursorLocked() const;
+// 	cocos2d::CCSize getDisplaySize();
+// 	float getFrameZoomFactor();
+// 	bool getGameplayActive() const;
+// 	bool getIsFullscreen() const;
+// 	int getRetinaFactor() const;
+// 	bool getShouldHideCursor() const;
+// 	GLFWwindow* getWindow() const;
+// 	cocos2d::CCSize getWindowedSize() const;
+// 	void iconify();
+// 	bool initGlew();
+// 	bool initWithFullScreen(gd::string const&);
+// 	bool initWithFullscreen(gd::string const&, GLFWvidmode const&, GLFWmonitor*);
+// 	bool initWithRect(gd::string const&, cocos2d::CCRect, float);
+// 	virtual bool isOpenGLReady();
+// 	bool isRetinaEnabled() const;
+// 	void onGLFWCharCallback(GLFWwindow*, unsigned int);
+// 	void onGLFWCursorEnterFunCallback(GLFWwindow*, int);
+// 	void onGLFWDeviceChangeFunCallback(GLFWwindow*);
+// 	void onGLFWError(int, char const*);
+// 	void onGLFWKeyCallback(GLFWwindow*, int, int, int, int);
+// 	void onGLFWMouseCallBack(GLFWwindow*, int, int, int);
+// 	void onGLFWMouseMoveCallBack(GLFWwindow*, double, double);
+// 	void onGLFWMouseScrollCallback(GLFWwindow*, double, double);
+// 	void onGLFWWindowCloseFunCallback(GLFWwindow*);
+// 	void onGLFWWindowIconifyFunCallback(GLFWwindow*, int);
+// 	void onGLFWWindowPosCallback(GLFWwindow*, int, int);
+// 	void onGLFWWindowSizeFunCallback(GLFWwindow*, int, int);
+// 	void onGLFWframebuffersize(GLFWwindow*, int, int);
+// 	void pollEvents();
+// 	void releaseCapture();
+// 	void resizeWindow(int, int);
+// 	virtual void setFrameSize(float, float);
+// 	void setFrameZoomFactor(float);
+// 	virtual void setIMEKeyboardState(bool);
+// 	virtual void setScissorInPoints(float, float, float, float);
+// 	virtual void setViewPortInPoints(float, float, float, float);
+// 	void setWindowedSize(cocos2d::CCSize);
+// 	void setupWindow(cocos2d::CCRect);
+// 	static cocos2d::CCEGLView* sharedOpenGLView();
+// 	void showCursor(bool);
+// 	void showMessage(gd::string);
+// 	virtual void swapBuffers();
+// 	void toggleFullScreen(bool);
+// 	void toggleGameplayActive(bool);
+// 	void toggleLockCursor(bool);
+// 	void updateDesignSize(int, int);
+// 	void updateFrameSize();
+// 	void updateWindow(int, int);
+// 	bool windowShouldClose();
+// }
 
 [[link(win, android)]]
 class cocos2d::CCEGLViewProtocol {
@@ -1372,7 +1377,7 @@ class cocos2d::CCFlipY {
 [[link(win, android)]]
 class cocos2d::CCFloat {
 	// CCFloat(cocos2d::CCFloat const&);
-	CCFloat(float);
+	// CCFloat(float);
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 	static cocos2d::CCFloat* create(float);
 	float getValue() const;
@@ -1576,7 +1581,7 @@ class cocos2d::CCImage {
 [[link(win, android)]]
 class cocos2d::CCInteger {
 	// CCInteger(cocos2d::CCInteger const&);
-	CCInteger(int);
+	// CCInteger(int);
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 	static cocos2d::CCInteger* create(int);
 	int getValue() const;
@@ -1915,7 +1920,7 @@ class cocos2d::CCLayerMultiplex {
 	static cocos2d::CCLayerMultiplex* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCLayerMultiplex* createWithLayer(cocos2d::CCLayer*);
 	bool initWithArray(cocos2d::CCArray*);
-	bool initWithLayers(cocos2d::CCLayer*, char*);
+	// bool initWithLayers(cocos2d::CCLayer*, char*);
 	void switchTo(unsigned int);
 	void switchToAndReleaseMe(unsigned int);
 }
@@ -1981,10 +1986,10 @@ class cocos2d::CCMenu {
 	void alignItemsHorizontally();
 	void alignItemsHorizontallyWithPadding(float);
 	// void alignItemsInColumns(unsigned int, ...);
-	void alignItemsInColumns(unsigned int, char*);
+	// void alignItemsInColumns(unsigned int, char*);
 	void alignItemsInColumnsWithArray(cocos2d::CCArray*);
 	// void alignItemsInRows(unsigned int, ...);
-	void alignItemsInRows(unsigned int, char*);
+	// void alignItemsInRows(unsigned int, char*);
 	void alignItemsInRowsWithArray(cocos2d::CCArray*);
 	void alignItemsVertically();
 	void alignItemsVerticallyWithPadding(float);
@@ -1996,7 +2001,7 @@ class cocos2d::CCMenu {
 	static cocos2d::CCMenu* create();
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
-	static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
+	// static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
 	virtual bool init();
 	bool initWithArray(cocos2d::CCArray*);
 	virtual bool isEnabled();
@@ -2125,7 +2130,7 @@ class cocos2d::CCMenuItemToggle {
 	virtual unsigned int getSelectedIndex();
 	virtual cocos2d::CCArray* getSubItems();
 	bool initWithItem(cocos2d::CCMenuItem*);
-	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCMenuItem*, char*);
+	// bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCMenuItem*, char*);
 	virtual void selected();
 	cocos2d::CCMenuItem* selectedItem();
 	virtual void setEnabled(bool);
@@ -2416,7 +2421,7 @@ class cocos2d::CCNotificationCenter {
 [[link(win, android)]]
 class cocos2d::CCNotificationObserver {
 	// CCNotificationObserver(cocos2d::CCNotificationObserver const&);
-	CCNotificationObserver(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, char const*, cocos2d::CCObject*);
+	// CCNotificationObserver(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, char const*, cocos2d::CCObject*);
 	virtual int getHandler();
 	virtual char* getName();
 	virtual cocos2d::CCObject* getObject();
@@ -2839,8 +2844,8 @@ class cocos2d::CCPlace {
 [[link(win, android)]]
 class cocos2d::CCPoint {
 	// CCPoint(cocos2d::CCPoint const&);
-	CCPoint(cocos2d::CCSize const&);
-	CCPoint(float, float);
+	// CCPoint(cocos2d::CCSize const&);
+	// CCPoint(float, float);
 	// CCPoint();
 	void add(int, float);
 	float at(int);
@@ -2904,7 +2909,7 @@ class cocos2d::CCPoolManager {
 [[link(win, android)]]
 class cocos2d::CCPrettyPrinter {
 	// CCPrettyPrinter(cocos2d::CCPrettyPrinter const&);
-	CCPrettyPrinter(int);
+	// CCPrettyPrinter(int);
 	virtual void clear();
 	virtual gd::string getResult();
 	void setIndentLevel(int);
@@ -2997,7 +3002,7 @@ class cocos2d::CCRGBAProtocol {
 [[link(win, android)]]
 class cocos2d::CCRect {
 	// CCRect(cocos2d::CCRect const&);
-	CCRect(float, float, float, float);
+	// CCRect(float, float, float, float);
 	// CCRect();
 	bool containsPoint(cocos2d::CCPoint const&) const;
 	bool equals(cocos2d::CCRect const&) const;
@@ -3276,7 +3281,7 @@ class cocos2d::CCSequence {
 	static cocos2d::CCSequence* create(cocos2d::CCArray*);
 	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
 	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
-	static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
+	// static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
 	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 	virtual cocos2d::CCActionInterval* reverse();
 	virtual void startWithTarget(cocos2d::CCNode*);
@@ -3373,8 +3378,8 @@ class cocos2d::CCShuffleTiles {
 [[link(win, android)]]
 class cocos2d::CCSize {
 	// CCSize(cocos2d::CCSize const&);
-	CCSize(cocos2d::CCPoint const&);
-	CCSize(float, float);
+	// CCSize(cocos2d::CCPoint const&);
+	// CCSize(float, float);
 	// CCSize();
 	void add(int, float);
 	float at(int);
@@ -3412,7 +3417,7 @@ class cocos2d::CCSpawn {
 	static cocos2d::CCSpawn* create(cocos2d::CCArray*);
 	// static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...);
 	static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
-	static cocos2d::CCSpawn* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
+	// static cocos2d::CCSpawn* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
 	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 	virtual cocos2d::CCActionInterval* reverse();
 	virtual void startWithTarget(cocos2d::CCNode*);
@@ -3701,14 +3706,14 @@ class cocos2d::CCStopGrid {
 [[link(win, android)]]
 class cocos2d::CCString {
 	// CCString(cocos2d::CCString const&);
-	CCString(gd::string const&);
-	CCString(char const*);
+	// CCString(gd::string const&);
+	// CCString(char const*);
 	// CCString();
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 	bool boolValue() const;
 	int compare(char const*) const;
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	static cocos2d::CCString* create(gd::string const&);
+	// static cocos2d::CCString* create(gd::string const&);
 	static cocos2d::CCString* createWithContentsOfFile(char const*);
 	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long);
 	// static cocos2d::CCString* createWithFormat(char const*, ...);
@@ -3716,7 +3721,7 @@ class cocos2d::CCString {
 	float floatValue() const;
 	char const* getCString() const;
 	// bool initWithFormat(char const*, ...);
-	bool initWithFormatAndValist(char const*, char*);
+	// bool initWithFormatAndValist(char const*, char*);
 	int intValue() const;
 	virtual bool isEqual(cocos2d::CCObject const*);
 	unsigned int length() const;
@@ -4693,7 +4698,7 @@ class cocos2d::CCWavesTiles3D {
 
 [[link(win, android)]]
 class cocos2d::CCZone {
-	CCZone(cocos2d::CCObject*);
+	// CCZone(cocos2d::CCObject*);
 }
 
 [[link(win, android)]]
@@ -4772,8 +4777,8 @@ class cocos2d::EGLTouchDelegate {
 
 [[link(win, android)]]
 class ObjectDecoder {
-	ObjectDecoder(ObjectDecoder const&);
-	ObjectDecoder();
+	// ObjectDecoder(ObjectDecoder const&);
+	// ObjectDecoder();
 	cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
 	ObjectDecoderDelegate* getDelegate() const;
 	virtual bool init();
@@ -4783,90 +4788,90 @@ class ObjectDecoder {
 
 [[link(win, android)]]
 class cocos2d {
-	cocos2d::CCAffineTransform CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
-	bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
-	cocos2d::CCAffineTransform CCAffineTransformInvert(cocos2d::CCAffineTransform const&);
-	cocos2d::CCAffineTransform CCAffineTransformMakeIdentity();
-	cocos2d::CCAffineTransform CCAffineTransformRotate(cocos2d::CCAffineTransform const&, float);
-	cocos2d::CCAffineTransform CCAffineTransformScale(cocos2d::CCAffineTransform const&, float, float);
-	cocos2d::CCAffineTransform CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float);
-	// void CCLog(char const*, ...);
-	void CCLuaLog(char const*);
-	void CCMessageBox(char const*, char const*);
-	cocos2d::CCPoint CCPointFromString(char const*);
-	void CCProfilingBeginTimingBlock(char const*);
-	void CCProfilingEndTimingBlock(char const*);
-	void CCProfilingResetTimingBlock(char const*);
-	cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
-	cocos2d::CCRect CCRectFromString(char const*);
-	cocos2d::CCSize CCSizeFromString(char const*);
-	cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*);
-	void FNTConfigRemoveCache();
-	cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
-	cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
-	cocos2d::CCSize __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&);
-	cocos2d::CCPoint ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
-	void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
-	void ccDrawCatmullRom(cocos2d::CCPointArray*, unsigned int);
-	void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
-	void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
-	void ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
-	void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char);
-	void ccDrawColor4F(float, float, float, float);
-	void ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
-	void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
-	void ccDrawFree();
-	void ccDrawInit();
-	void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	void ccDrawLines(cocos2d::CCPoint const*, unsigned int);
-	void ccDrawPoint(cocos2d::CCPoint const&);
-	void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
-	void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
-	void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
-	void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
-	void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
-	void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F);
-	void ccGLBindTexture2D(unsigned int);
-	void ccGLBindTexture2DN(unsigned int, unsigned int);
-	void ccGLBindVAO(unsigned int);
-	void ccGLBlendFunc(unsigned int, unsigned int);
-	void ccGLBlendResetToCache();
-	void ccGLDeleteProgram(unsigned int);
-	void ccGLDeleteTexture(unsigned int);
-	void ccGLDeleteTextureN(unsigned int, unsigned int);
-	void ccGLEnable(cocos2d::ccGLServerState);
-	void ccGLEnableVertexAttribs(unsigned int);
-	void ccGLInvalidateStateCache();
-	void ccGLUseProgram(unsigned int);
-	void ccPointSize(float);
-	void ccSetProjectionMatrixDirty();
-	bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
-	void ccVertexLineToPolygon(cocos2d::CCPoint*, float, cocos2d::_ccVertex2F*, unsigned int, unsigned int);
-	char* cc_utf16_to_utf8(unsigned short const*, int*);
-	gd::vector<unsigned short> cc_utf16_vec_from_utf16_str(unsigned short const*);
-	unsigned int cc_utf8_find_last_not_char(gd::vector<unsigned short> const&, unsigned short);
-	long cc_utf8_strlen(char const*);
-	unsigned short* cc_utf8_to_utf16(char const*, int*);
-	void cc_utf8_trim_ws(gd::vector<unsigned short>*);
-	int cc_wcslen(unsigned short const*);
-	float ccpAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	float ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	cocos2d::CCPoint ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	cocos2d::CCPoint ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	// cocos2d::CCPoint ccpCompOp(cocos2d::CCPoint const&, float (__cdecl*)(float));
-	float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	cocos2d::CCPoint ccpForAngle(float);
-	cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const&);
-	bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
-	cocos2d::CCPoint ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	float ccpLength(cocos2d::CCPoint const&);
-	cocos2d::CCPoint ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
-	bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
-	cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&);
-	cocos2d::CCPoint ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
-	bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	float ccpToAngle(cocos2d::CCPoint const&);
-	char const* cocos2dVersion();
+	static cocos2d::CCAffineTransform CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
+	static bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
+	static cocos2d::CCAffineTransform CCAffineTransformInvert(cocos2d::CCAffineTransform const&);
+	static cocos2d::CCAffineTransform CCAffineTransformMakeIdentity();
+	static cocos2d::CCAffineTransform CCAffineTransformRotate(cocos2d::CCAffineTransform const&, float);
+	static cocos2d::CCAffineTransform CCAffineTransformScale(cocos2d::CCAffineTransform const&, float, float);
+	static cocos2d::CCAffineTransform CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float);
+	// static void CCLog(char const*, ...);
+	static void CCLuaLog(char const*);
+	static void CCMessageBox(char const*, char const*);
+	static cocos2d::CCPoint CCPointFromString(char const*);
+	static void CCProfilingBeginTimingBlock(char const*);
+	static void CCProfilingEndTimingBlock(char const*);
+	static void CCProfilingResetTimingBlock(char const*);
+	static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
+	static cocos2d::CCRect CCRectFromString(char const*);
+	static cocos2d::CCSize CCSizeFromString(char const*);
+	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*);
+	static void FNTConfigRemoveCache();
+	static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
+	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
+	static cocos2d::CCSize __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&);
+	static cocos2d::CCPoint ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
+	static void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
+	static void ccDrawCatmullRom(cocos2d::CCPointArray*, unsigned int);
+	static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
+	static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
+	static void ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
+	static void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char);
+	static void ccDrawColor4F(float, float, float, float);
+	static void ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
+	static void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
+	static void ccDrawFree();
+	static void ccDrawInit();
+	static void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static void ccDrawLines(cocos2d::CCPoint const*, unsigned int);
+	static void ccDrawPoint(cocos2d::CCPoint const&);
+	static void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
+	static void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
+	static void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
+	static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
+	static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
+	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F);
+	static void ccGLBindTexture2D(unsigned int);
+	static void ccGLBindTexture2DN(unsigned int, unsigned int);
+	static void ccGLBindVAO(unsigned int);
+	static void ccGLBlendFunc(unsigned int, unsigned int);
+	static void ccGLBlendResetToCache();
+	static void ccGLDeleteProgram(unsigned int);
+	static void ccGLDeleteTexture(unsigned int);
+	static void ccGLDeleteTextureN(unsigned int, unsigned int);
+	static void ccGLEnable(cocos2d::ccGLServerState);
+	static void ccGLEnableVertexAttribs(unsigned int);
+	static void ccGLInvalidateStateCache();
+	static void ccGLUseProgram(unsigned int);
+	static void ccPointSize(float);
+	static void ccSetProjectionMatrixDirty();
+	static bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
+	static void ccVertexLineToPolygon(cocos2d::CCPoint*, float, cocos2d::_ccVertex2F*, unsigned int, unsigned int);
+	// static char* cc_utf16_to_utf8(unsigned short const*, int*);
+	static gd::vector<unsigned short> cc_utf16_vec_from_utf16_str(unsigned short const*);
+	// static unsigned int cc_utf8_find_last_not_char(gd::vector<unsigned short> const&, unsigned short);
+	// static long cc_utf8_strlen(char const*);
+	// static unsigned short* cc_utf8_to_utf16(char const*, int*);
+	static void cc_utf8_trim_ws(gd::vector<unsigned short>*);
+	static int cc_wcslen(unsigned short const*);
+	static float ccpAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static float ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static cocos2d::CCPoint ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static cocos2d::CCPoint ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	// static cocos2d::CCPoint ccpCompOp(cocos2d::CCPoint const&, float (__cdecl*)(float));
+	static float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static cocos2d::CCPoint ccpForAngle(float);
+	static cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const&);
+	static bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+	static cocos2d::CCPoint ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static float ccpLength(cocos2d::CCPoint const&);
+	static cocos2d::CCPoint ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+	static bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
+	static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&);
+	static cocos2d::CCPoint ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+	static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static float ccpToAngle(cocos2d::CCPoint const&);
+	static char const* cocos2dVersion();
 }
 
 [[link(win, android)]]

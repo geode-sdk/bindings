@@ -41,3 +41,7 @@ class GJSpriteColor {
 class UIButtonConfig {
     
 }
+
+class TriggerEffectDelegate {
+    
+}

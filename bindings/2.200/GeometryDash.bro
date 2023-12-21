@@ -619,10 +619,10 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	void setIdleTimerDisabled(bool);
 	virtual void applicationWillBecomeActive();
 	virtual void applicationWillResignActive();
-	TodoReturn applicationDidEnterBackground();
-	TodoReturn applicationDidFinishLaunching();
-	TodoReturn applicationWillEnterForeground();
-	TodoReturn get();
+	virtual void applicationDidEnterBackground();
+	virtual bool applicationDidFinishLaunching();
+	virtual void applicationWillEnterForeground();
+	static AppDelegate* get();
 	TodoReturn bgScale();
 	TodoReturn musicTest();
 	TodoReturn pauseGame();
@@ -1024,8 +1024,8 @@ class GJGameState {
 	TodoReturn updateTweenActions(float);
 	TodoReturn getGameObjectPhysics(GameObject*);
 	TodoReturn processStateTriggers();
-	GJGameState();
-	~GJGameState();
+	// GJGameState();
+	// ~GJGameState();
 }
 
 [[link(android)]]
@@ -1574,7 +1574,7 @@ class ColorAction2 {
 	TodoReturn resetAction();
 	TodoReturn updateCustomColor(cocos2d::_ccColor3B, cocos2d::_ccColor3B);
 	virtual void step(float);
-	ColorAction2(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float, double, bool, int, float, float);
+	// ColorAction2(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float, double, bool, int, float, float);
 }
 
 [[link(android)]]
@@ -4957,7 +4957,7 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 class CCPartAnimSprite : cocos2d::CCSprite {
 	TodoReturn countParts();
 	virtual void setOpacity(unsigned char);
-	TodoReturn displayFrame();
+	virtual cocos2d::CCSpriteFrame* displayFrame();
 	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
 	TodoReturn tweenToFrame(cocos2d::CCSpriteFrame*, float);
 	TodoReturn tweenSpriteTo(SpriteDescription*, float);
@@ -7027,12 +7027,6 @@ class VideoOptionsLayer : FLAlertLayer {
 }
 
 [[link(android)]]
-class xml_string_writer {
-	TodoReturn write(void const*, unsigned long);
-	~xml_string_writer();
-}
-
-[[link(android)]]
 class AchievementManager : cocos2d::CCNode {
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn firstSetup();
@@ -7177,7 +7171,7 @@ class EditorOptionsLayer : GJOptionsLayer {
 
 [[link(android)]]
 class EffectManagerState {
-	~EffectManagerState();
+	// ~EffectManagerState();
 }
 
 [[link(android)]]
@@ -7834,7 +7828,7 @@ class EnterEffectInstance {
 	TodoReturn getValue(int);
 	/* unverified signature */
 	void setValue(int, float);
-	~EnterEffectInstance();
+	// ~EnterEffectInstance();
 }
 
 [[link(android)]]
@@ -7970,8 +7964,8 @@ class GroupCommandObject2 {
 	TodoReturn runPlayerFollowCommand(double, double, int, double, double);
 	virtual void step(float);
 	TodoReturn reset();
-	GroupCommandObject2(GroupCommandObject2 const&);
-	GroupCommandObject2();
+	// GroupCommandObject2(GroupCommandObject2 const&);
+	// GroupCommandObject2();
 }
 
 [[link(android)]]
