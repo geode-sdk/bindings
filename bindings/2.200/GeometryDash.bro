@@ -407,13 +407,16 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     TodoReturn addObjectToList(cocos2d::CCNode*);
     TodoReturn lockList(bool);
 
+	// 2.2, not tested
+
     TableView* m_tableView;
     cocos2d::CCArray* m_entries;
     BoomListType m_type;
-    float m_height;
-    float m_width;
     float m_itemSeparation;
     int m_currentPage;
+	float m_height;
+    float m_width;
+	bool m_locked;
 }
 
 [[link(android)]]
@@ -452,14 +455,14 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
         this->toggle(on);
     }
 
-    static CCMenuItemToggler* create(cocos2d::CCNode* offSpr, cocos2d::CCNode* onSpr, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = mac 0x38400, win 0x19600, ios 0xf5594;
-    void setSizeMult(float) = mac 0x38a40, win 0x19850;
-    void toggle(bool) = mac 0x38950, win 0x199b0, ios 0xf5848;
-    bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler handler) = mac 0x38500, win 0x196e0;
-    virtual void activate() = mac 0x38bc0, win 0x198d0, ios 0xf59ac;
-    virtual void selected() = mac 0x38b80, win 0x198a0;
-    virtual void unselected() = mac 0x38c00, win 0x19900;
-    virtual void setEnabled(bool enabled) = mac 0x38c40, win 0x19930;
+    static CCMenuItemToggler* create(cocos2d::CCNode* offSpr, cocos2d::CCNode* onSpr, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback);
+    void setSizeMult(float);
+    void toggle(bool);
+    bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler handler);
+    virtual void activate();
+    virtual void selected();
+    virtual void unselected();
+    virtual void setEnabled(bool enabled);
 
 	TodoReturn activeItem();
 	TodoReturn normalTouch(cocos2d::CCObject*);
@@ -504,7 +507,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	TodoReturn updateUserProfileButton();
 	TodoReturn syncPlatformAchievements(float);
 	virtual bool init();
-	TodoReturn scene(bool);
+	static MenuLayer* scene(bool);
 	void onPlay(cocos2d::CCObject* sender);
 	void onQuit(cocos2d::CCObject* sender);
 	TodoReturn endGame();
@@ -533,7 +536,7 @@ class LoadingLayer : cocos2d::CCLayer {
 	TodoReturn loadingFinished();
 	TodoReturn getLoadingString();
 	bool init(bool);
-	TodoReturn scene(bool);
+	static LoadingLayer* scene(bool);
 	static LoadingLayer* create(bool);
 	~LoadingLayer();
 
@@ -678,6 +681,10 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 
 [[link(android)]]
 class GameManager : GManager {
+	static GameManager* get() {
+        return GameManager::sharedState();
+    }
+
 	TodoReturn addToGJLog(cocos2d::CCString*);
 	TodoReturn clearGJLog();
 	TodoReturn dataLoaded(DS_Dictionary*);
@@ -699,7 +706,7 @@ class GameManager : GManager {
 	TodoReturn getGTexture(int);
 	TodoReturn joinDiscord();
 	TodoReturn saveAdTimer();
-	TodoReturn sharedState();
+	static GameManager* sharedState();
 	TodoReturn startUpdate();
 	TodoReturn unloadIcons(int);
 	TodoReturn unlockColor(int, UnlockType);
@@ -845,6 +852,57 @@ class GameManager : GManager {
 	~GameManager();
 }
 
+
+[[link(android)]]
+class GJDropDownLayer : cocos2d::CCLayerColor {
+	bool init(char const*);
+	static GJDropDownLayer* create(char const*);
+	static GJDropDownLayer* create(char const*, float);
+	~GJDropDownLayer();
+
+	virtual void customSetup() {}
+    virtual void enterLayer();
+    virtual void exitLayer(cocos2d::CCObject*);
+    virtual void showLayer(bool);
+    virtual void hideLayer(bool);
+    virtual void layerVisible();
+    virtual void layerHidden();
+    virtual void enterAnimFinished() {}
+    virtual void disableUI();
+    virtual void enableUI();
+    
+    virtual bool ccTouchBegan(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent) {
+        return true;
+    }
+    virtual void ccTouchMoved(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent) {}
+    virtual void ccTouchEnded(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent) {}
+    virtual void ccTouchCancelled(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent) {}
+
+    virtual void draw();
+    bool init(const char* title, float height);
+    virtual void registerWithTouchDispatcher();
+    virtual void keyBackClicked();
+    inline GJDropDownLayer() {
+        m_endPosition = cocos2d::CCPointMake(0.f, 0.f);
+        m_startPosition = cocos2d::CCPointMake(0.f, 0.f);
+        m_buttonMenu = nullptr;
+        m_listLayer = nullptr;
+        m_controllerEnabled = false;
+        m_mainLayer = nullptr;
+        m_hidden = false;
+        m_delegate = nullptr;
+    }
+
+    cocos2d::CCPoint m_endPosition;
+    cocos2d::CCPoint m_startPosition;
+    cocos2d::CCMenu* m_buttonMenu;
+    GJListLayer* m_listLayer;
+    bool m_controllerEnabled;
+    cocos2d::CCLayer* m_mainLayer;
+    bool m_hidden;
+    GJDropDownLayerDelegate* m_delegate;
+}
+
 [[link(android)]]
 class TextAreaDelegate {
 	virtual TodoReturn fadeInTextFinished(TextArea*);
@@ -929,7 +987,7 @@ class DialogObject : cocos2d::CCObject {
 
 [[link(android)]]
 class AchievementNotifier : cocos2d::CCNode {
-	TodoReturn sharedState();
+	static AchievementNotifier* sharedState();
 	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
 	TodoReturn willSwitchToScene(cocos2d::CCScene*);
 	TodoReturn showNextAchievement();
@@ -943,6 +1001,9 @@ class GJListLayer : cocos2d::CCLayerColor {
 	bool init(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, int);
 	static GJListLayer* create(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, int);
 	~GJListLayer();
+
+	// 2.2 not tested
+	BoomListView* m_listView;
 }
 
 [[link(android)]]
@@ -1048,4 +1109,34 @@ class PlatformToolbox {
 	static TodoReturn logEvent(char const*);
 	static TodoReturn sendMail(char const*, char const*, char const*);
 	static TodoReturn getUserID();
+}
+
+[[link(android)]]
+class SliderThumb : cocos2d::CCMenuItemImage {
+	/* unverified signature */
+	void setRotated(bool);
+	/* unverified signature */
+	void setMaxOffset(float);
+	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
+	static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
+	TodoReturn getValue();
+	/* unverified signature */
+	void setValue(float);
+	~SliderThumb();
+}
+
+[[link(android)]]
+class ColorChannelSprite : cocos2d::CCSprite {
+	// TodoReturn updateValues(ColorAction*);
+	TodoReturn updateOpacity(float);
+	TodoReturn updateBlending(bool);
+	TodoReturn updateCopyLabel(int, bool);
+	virtual bool init();
+	static ColorChannelSprite* create();
+	~ColorChannelSprite();
+}
+
+[[link(android)]]
+class GJDropDownLayerDelegate {
+    virtual void dropDownLayerWillClose(GJDropDownLayer*) {}
 }

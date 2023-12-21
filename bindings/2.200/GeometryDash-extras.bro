@@ -1091,19 +1091,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	~ShaderLayer();
 }
 
-[[link(android)]]
-class SliderThumb : cocos2d::CCMenuItemImage {
-	/* unverified signature */
-	void setRotated(bool);
-	/* unverified signature */
-	void setMaxOffset(float);
-	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
-	static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
-	TodoReturn getValue();
-	/* unverified signature */
-	void setValue(float);
-	~SliderThumb();
-}
+
 
 [[link(android)]]
 class StatsObject : cocos2d::CCObject {
@@ -3852,32 +3840,6 @@ class GJChallengeItem : cocos2d::CCObject {
 }
 
 [[link(android)]]
-class GJDropDownLayer : cocos2d::CCLayerColor {
-	TodoReturn enterLayer();
-	TodoReturn customSetup();
-	TodoReturn layerHidden();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	TodoReturn layerVisible();
-	virtual void keyBackClicked();
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	TodoReturn enterAnimFinished();
-	virtual void registerWithTouchDispatcher();
-	virtual void draw();
-	bool init(char const*);
-	bool init(char const*, float);
-	static GJDropDownLayer* create(char const*);
-	static GJDropDownLayer* create(char const*, float);
-	TodoReturn enableUI();
-	TodoReturn disableUI();
-	TodoReturn exitLayer(cocos2d::CCObject*);
-	TodoReturn hideLayer(bool);
-	TodoReturn showLayer(bool);
-	~GJDropDownLayer();
-}
-
-[[link(android)]]
 class GJEffectManager : cocos2d::CCNode {
 	TodoReturn pauseTimer(int);
 	TodoReturn playerDied();
@@ -6525,16 +6487,7 @@ class CharacterColorPage : FLAlertLayer {
 	~CharacterColorPage();
 }
 
-[[link(android)]]
-class ColorChannelSprite : cocos2d::CCSprite {
-	TodoReturn updateValues(ColorAction*);
-	TodoReturn updateOpacity(float);
-	TodoReturn updateBlending(bool);
-	TodoReturn updateCopyLabel(int, bool);
-	virtual bool init();
-	static ColorChannelSprite* create();
-	~ColorChannelSprite();
-}
+
 
 [[link(android)]]
 class ColorSetupDelegate {
