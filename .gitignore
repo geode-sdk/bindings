@@ -1,4 +1,5 @@
 build/
 .vscode/
-smackaroo.mjs
+*.mjs
 *sym*.txt
+inheritance.txt
