@@ -218,15 +218,11 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	void refreshLabel() = win 0x2ede0;
-	void setAllowedChars(gd::string) = win 0x80813;
+	void setAllowedChars(gd::string) = win 0x2e8c0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&);
 	virtual void keyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&);
 	TodoReturn onClickTrackNode(bool) = win 0x80813;
-	/* unverified signature */
-	void setMaxLabelScale(float) = win 0x80813;
-	/* unverified signature */
-	void setMaxLabelWidth(float) = win 0x80813;
 	TodoReturn updateBlinkLabel();
 	/* unverified signature */
 	void setLabelNormalColor(cocos2d::_ccColor3B);
@@ -236,14 +232,29 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	TodoReturn updateDefaultFontValues(gd::string);
 	virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF*);
 	virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF*);
-	void setLabelPlaceholderColor(cocos2d::_ccColor3B) = win 0x80813;
-	void setLabelPlaceholderScale(float) = win 0x80813;
 	virtual void registerWithTouchDispatcher();
 	bool init(float, float, char const*, char const*, int, char const*) = win 0x2e500;
 	virtual void visit();
 	static CCTextInputNode* create(float, float, char const*, char const*, int, char const*) = win 0x2e440;
 	gd::string getString() = win 0x2ea50;
 	void setString(gd::string) = win 0x2e9a0;
+
+	inline void setMaxLabelScale(float v) {
+		m_maxLabelScale = v;
+		this->refreshLabel();
+	}
+	void setMaxLabelWidth(float v) {
+		m_maxLabelWidth = v;
+		this->refreshLabel();
+	}
+	void setLabelPlaceholderScale(float v) {
+		m_placeholderScale = v;
+		this->refreshLabel();
+	}
+	void setLabelPlaceholderColor(cocos2d::ccColor3B color) {
+		m_placeholderColor = color;
+		this->refreshLabel();
+	}
 	~CCTextInputNode();
 
 	// 2.2, very wrong since this class changed a lot
