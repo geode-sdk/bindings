@@ -666,7 +666,7 @@ class ColorAction {
 	TodoReturn setupFromMap(gd::map<gd::string, gd::string>&);
 	TodoReturn loadFromState(CAState&);
 	TodoReturn setupFromString(gd::string);
-	TodoReturn writeSaveString(fmt::BasicWriter<char>&);
+	// TodoReturn writeSaveString(fmt::BasicWriter<char>&);
 	TodoReturn updateCustomColor(cocos2d::_ccColor3B, cocos2d::_ccColor3B);
 	bool init(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float, double, bool, int, float, float);
 	virtual void step(float);
@@ -8556,7 +8556,7 @@ class MusicDownloadManager {
 	TodoReturn loadSongInfoFinished(SongInfoObject*);
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	TodoReturn getSFXFolderPathForID(int, bool);
-	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::SEL_HttpResponse, int, int);
+	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
 	TodoReturn tryUpdateMusicLibrary();
 	TodoReturn getSFXDownloadProgress(int);
 	TodoReturn onDownloadSFXCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);

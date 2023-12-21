@@ -1302,21 +1302,21 @@ class cocos2d::CCFileUtils {
 	virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&);
 }
 
-[[link(win, android)]]
-class cocos2d::CCFileUtilsWin32 {
-	// CCFileUtilsWin32();
-	// CCFileUtilsWin32(cocos2d::CCFileUtilsWin32 const&);
-	virtual void addSearchPath(char const*);
-	virtual gd::string fullPathForFilename(char const*);
-	virtual gd::string getPathForFilename(gd::string const&, gd::string const&, gd::string const&);
-	virtual gd::string getWritablePath2();
-	virtual gd::string getWritablePath();
-	virtual bool init();
-	virtual bool isAbsolutePath(gd::string const&);
-	virtual bool isFileExist(gd::string const&);
-	virtual void removeSearchPath(char const*);
-	gd::string utf8Togbk(char const*);
-}
+// [[link(win)]]
+// class cocos2d::CCFileUtilsWin32 {
+// 	// CCFileUtilsWin32();
+// 	// CCFileUtilsWin32(cocos2d::CCFileUtilsWin32 const&);
+// 	virtual void addSearchPath(char const*);
+// 	virtual gd::string fullPathForFilename(char const*);
+// 	virtual gd::string getPathForFilename(gd::string const&, gd::string const&, gd::string const&);
+// 	virtual gd::string getWritablePath2();
+// 	virtual gd::string getWritablePath();
+// 	virtual bool init();
+// 	virtual bool isAbsolutePath(gd::string const&);
+// 	virtual bool isFileExist(gd::string const&);
+// 	virtual void removeSearchPath(char const*);
+// 	gd::string utf8Togbk(char const*);
+// }
 
 [[link(win, android)]]
 class cocos2d::CCFiniteTimeAction {
@@ -3608,15 +3608,15 @@ class cocos2d::CCSpriteBatchNode {
 	virtual void visit();
 }
 
-[[link(win, android)]]
-class cocos2d::CCSpriteExtra {
-	// CCSpriteExtra(cocos2d::CCSpriteExtra const&);
-	// CCSpriteExtra();
-	float getXOffset() const;
-	float getYOffset() const;
-	void setXOffset(float);
-	void setYOffset(float);
-}
+// [[link(win, android)]]
+// class cocos2d::CCSpriteExtra {
+// 	// CCSpriteExtra(cocos2d::CCSpriteExtra const&);
+// 	// CCSpriteExtra();
+// 	float getXOffset() const;
+// 	float getYOffset() const;
+// 	void setXOffset(float);
+// 	void setYOffset(float);
+// }
 
 [[link(win, android)]]
 class cocos2d::CCSpriteFrame {
@@ -4782,30 +4782,6 @@ class ObjectDecoder {
 }
 
 [[link(win, android)]]
-class pugi::xml_document {
-	// xml_document();
-	void create();
-	void destroy();
-	pugi::xml_node document_element() const;
-	pugi::xml_parse_result load(std::basic_istream<char, std::char_traits<char> >&, unsigned int, pugi::xml_encoding);
-	pugi::xml_parse_result load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >&, unsigned int);
-	pugi::xml_parse_result load(char const*, unsigned int);
-	pugi::xml_parse_result load_buffer(void const*, unsigned int, unsigned int, pugi::xml_encoding);
-	pugi::xml_parse_result load_buffer_inplace(void*, unsigned int, unsigned int, pugi::xml_encoding);
-	pugi::xml_parse_result load_buffer_inplace_own(void*, unsigned int, unsigned int, pugi::xml_encoding);
-	pugi::xml_parse_result load_file(char const*, unsigned int, pugi::xml_encoding);
-	pugi::xml_parse_result load_file(wchar_t const*, unsigned int, pugi::xml_encoding);
-	void reset(pugi::xml_document const&);
-	void reset();
-	void save(std::basic_ostream<char, std::char_traits<char> >&, char const*, unsigned int, pugi::xml_encoding) const;
-	void save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >&, char const*, unsigned int) const;
-	void save(pugi::xml_writer&, char const*, unsigned int, pugi::xml_encoding) const;
-	bool save_file(char const*, char const*, unsigned int, pugi::xml_encoding) const;
-	bool save_file(wchar_t const*, char const*, unsigned int, pugi::xml_encoding) const;
-	gd::string save_string(char const*, unsigned int, pugi::xml_encoding) const;
-}
-
-[[link(win, android)]]
 class cocos2d {
 	cocos2d::CCAffineTransform CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
 	bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
@@ -4890,46 +4866,7 @@ class cocos2d {
 	cocos2d::CCPoint ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
 	bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
 	float ccpToAngle(cocos2d::CCPoint const&);
-	float clampf(float, float, float);
 	char const* cocos2dVersion();
-	int gettimeofday(timeval*, cocos2d::timezone*);
-	bool iscjk_unicode(unsigned short);
-	bool isspace_unicode(unsigned short);
-	int unzClose(void*);
-	int unzCloseCurrentFile(void*);
-	int unzGetCurrentFileInfo64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
-	int unzGetCurrentFileInfo(void*, cocos2d::unz_file_info_s*, char*, unsigned long, void*, unsigned long, char*, unsigned long);
-	unsigned __int64 unzGetCurrentFileZStreamPos64(void*);
-	int unzGetFilePos64(void*, cocos2d::unz64_file_pos_s*);
-	int unzGetFilePos(void*, cocos2d::unz_file_pos_s*);
-	int unzGetGlobalComment(void*, char*, unsigned long);
-	int unzGetGlobalInfo64(void*, cocos2d::unz_global_info64_s*);
-	int unzGetGlobalInfo(void*, cocos2d::unz_global_info_s*);
-	int unzGetLocalExtrafield(void*, void*, unsigned int);
-	unsigned __int64 unzGetOffset64(void*);
-	unsigned long unzGetOffset(void*);
-	int unzGoToFilePos64(void*, cocos2d::unz64_file_pos_s const*);
-	int unzGoToFilePos(void*, cocos2d::unz_file_pos_s*);
-	int unzGoToFirstFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
-	int unzGoToFirstFile(void*);
-	int unzGoToNextFile64(void*, cocos2d::unz_file_info64_s*, char*, unsigned long);
-	int unzGoToNextFile(void*);
-	int unzLocateFile(void*, char const*, int);
-	void* unzOpen2(char const*, cocos2d::zlib_filefunc_def_s*);
-	void* unzOpen2_64(void const*, cocos2d::zlib_filefunc64_def_s*);
-	void* unzOpen64(void const*);
-	void* unzOpen(char const*);
-	int unzOpenCurrentFile2(void*, int*, int*, int);
-	int unzOpenCurrentFile3(void*, int*, int*, int, char const*);
-	int unzOpenCurrentFile(void*);
-	int unzOpenCurrentFilePassword(void*, char const*);
-	int unzReadCurrentFile(void*, void*, unsigned int);
-	int unzSetOffset64(void*, unsigned __int64);
-	int unzSetOffset(void*, unsigned long);
-	int unzStringFileNameCompare(char const*, char const*, int);
-	int unzeof(void*);
-	unsigned __int64 unztell64(void*);
-	long unztell(void*);
 }
 
 [[link(win, android)]]
