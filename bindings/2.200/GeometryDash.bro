@@ -336,6 +336,8 @@ class Slider : cocos2d::CCLayer {
     cocos2d::CCSprite* m_groove;
     float m_width;
     float m_height;
+	int m_unknown;
+	int m_unknown2;
 }
 
 [[link(android)]]
@@ -420,6 +422,9 @@ class TableViewCell : cocos2d::CCLayer {
     float m_height;
     cocos2d::CCLayerColor* m_backgroundLayer;
     cocos2d::CCLayer* m_mainLayer;
+	int m_unknown2;
+	int m_unknown3;
+	int m_unknown4;
 }
 
 
