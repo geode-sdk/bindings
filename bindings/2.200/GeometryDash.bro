@@ -44,7 +44,6 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     // 2.2 order not tested
 
     cocos2d::CCMenu* m_buttonMenu;
-    int m_controlConnected;
     FLAlertLayerProtocol* m_alertProtocol;
     cocos2d::CCNode* m_scene;
     bool m_reverseKeyBack;
@@ -56,6 +55,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     ButtonSprite* m_button1;
     ButtonSprite* m_button2;
     ScrollingLayer* m_scrollingLayer;
+	int m_controlConnected;
     bool m_containsBorder;
     bool m_noAction;
     int m_joystickConnected;
