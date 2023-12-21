@@ -8,7 +8,8 @@ You can contribute new addresses / fields by opening up a [Pull Request](https:/
 
 The syntax of a binding is a simplified version of C++:
 ```cpp
-// Platforms you can link directly to the symbol on, so win for Cocos2d on Windows and android for everything on Android
+// Platforms you can link directly to the symbol on, so win for Cocos2d on 
+// Windows and android for everything on Android
 [[link(android)]]
 class Example : Base1, Base2 {
     [[docs("
@@ -19,7 +20,8 @@ class Example : Base1, Base2 {
     ")]]
     int binding(float param, bool other) = win 0x123456, mac 0x789012;
 
-    // If the binding is inlined on some platform, provide a reconstructed definition for it
+    // If the binding is inlined on some platform, provide a reconstructed 
+    // definition for it
     inline void inlined(bool x) {
         if (x) {
             // Do stuff
@@ -32,7 +34,9 @@ class Example : Base1, Base2 {
     // Remember to use fully qualified names for Cocos2d classes
     void onTrigger(cocos2d::CCObject*);
 
-    // Some functions that are passed as callbacks have unpredictable calling conventions. Use the `callback` keyword if a function is __thiscall when it would otherwise be inferred as __membercall
+    // Some functions that are passed as callbacks have unpredictable calling 
+    // conventions. Use the `callback` keyword if a function is __thiscall 
+    // when it would otherwise be inferred as __membercall
     callback void unpredictable();
 }
 ```
