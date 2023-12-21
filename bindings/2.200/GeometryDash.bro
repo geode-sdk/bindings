@@ -332,6 +332,8 @@ class Slider : cocos2d::CCLayer {
     cocos2d::CCSprite* m_groove;
     float m_width;
     float m_height;
+	int m_unknown;
+	int m_unknown2;
 }
 
 [[link(android)]]
@@ -416,6 +418,9 @@ class TableViewCell : cocos2d::CCLayer {
     float m_height;
     cocos2d::CCLayerColor* m_backgroundLayer;
     cocos2d::CCLayer* m_mainLayer;
+	int m_unknown2;
+	int m_unknown3;
+	int m_unknown4;
 }
 
 
@@ -515,9 +520,9 @@ class CCScrollLayerExtDelegate {
 
 [[link(android)]]
 class CustomListView : BoomListView {
-    static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType);
+    static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float);
     inline static CustomListView* create(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
-        return CustomListView::create(entries, nullptr, width, height, 0, type);
+        return CustomListView::create(entries, nullptr, width, height, 0, type, 0.0f);
     }
     virtual TableViewCell* getListCell(const char*);
     virtual void loadCell(TableViewCell*, int);
