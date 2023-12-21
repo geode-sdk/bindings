@@ -3451,7 +3451,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn checkSnapshot();
 	TodoReturn claimParticle(gd::string, int);
 	TodoReturn destroyObject(GameObject*);
-	TodoReturn destroyPlayer(PlayerObject*, GameObject*);
+	void destroyPlayer(PlayerObject*, GameObject*) = win 0x6e0a90;
 	TodoReturn enterDualMode(GameObject*, bool);
 	TodoReturn getMaxPortalY();
 	TodoReturn getMinPortalY();
