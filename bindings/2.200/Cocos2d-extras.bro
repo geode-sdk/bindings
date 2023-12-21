@@ -1769,30 +1769,6 @@ class cocos2d::CCLabelTTF {
 
 
 [[link(win, android)]]
-class cocos2d::CCLayerColor {
-	// CCLayerColor(cocos2d::CCLayerColor const&);
-	// CCLayerColor();
-	void addToVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
-	void changeHeight(float);
-	void changeWidth(float);
-	void changeWidthAndHeight(float, float);
-	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&);
-	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float);
-	static cocos2d::CCLayerColor* create();
-	virtual void draw();
-	virtual cocos2d::_ccBlendFunc getBlendFunc();
-	virtual bool init();
-	virtual bool initWithColor(cocos2d::_ccColor4B const&);
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, float, float);
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
-	virtual void setColor(cocos2d::_ccColor3B const&);
-	virtual void setContentSize(cocos2d::CCSize const&);
-	virtual void setOpacity(unsigned char);
-	void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
-	virtual void updateColor();
-}
-
-[[link(win, android)]]
 class cocos2d::CCLayerGradient {
 	// CCLayerGradient(cocos2d::CCLayerGradient const&);
 	// CCLayerGradient();
@@ -1836,27 +1812,6 @@ class cocos2d::CCLayerMultiplex {
 	void switchToAndReleaseMe(unsigned int);
 }
 
-[[link(win, android)]]
-class cocos2d::CCLayerRGBA {
-	// CCLayerRGBA(cocos2d::CCLayerRGBA const&);
-	// CCLayerRGBA();
-	static cocos2d::CCLayerRGBA* create();
-	virtual cocos2d::_ccColor3B const& getColor();
-	virtual cocos2d::_ccColor3B const& getDisplayedColor();
-	virtual unsigned char getDisplayedOpacity();
-	virtual unsigned char getOpacity();
-	virtual bool init();
-	virtual bool isCascadeColorEnabled();
-	virtual bool isCascadeOpacityEnabled();
-	virtual bool isOpacityModifyRGB();
-	virtual void setCascadeColorEnabled(bool);
-	virtual void setCascadeOpacityEnabled(bool);
-	virtual void setColor(cocos2d::_ccColor3B const&);
-	virtual void setOpacity(unsigned char);
-	virtual void setOpacityModifyRGB(bool);
-	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&);
-	virtual void updateDisplayedOpacity(unsigned char);
-}
 
 [[link(win, android)]]
 class cocos2d::CCLens3D {
