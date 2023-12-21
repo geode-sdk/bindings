@@ -1093,12 +1093,6 @@ class ShaderLayer : cocos2d::CCLayer {
 
 
 
-[[link(android)]]
-class StatsObject : cocos2d::CCObject {
-	bool init(char const*, int);
-	static StatsObject* create(char const*, int);
-	~StatsObject();
-}
 
 [[link(android)]]
 class UploadPopup : FLAlertLayer, LevelUploadDelegate {
@@ -5667,20 +5661,7 @@ class ShaderGameObject : EffectGameObject {
 	~ShaderGameObject();
 }
 
-[[link(android)]]
-class SliderTouchLogic : cocos2d::CCMenu {
-	/* unverified signature */
-	void setRotated(bool);
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	/* unverified signature */
-	void setMaxOffset(float);
-	virtual void registerWithTouchDispatcher();
-	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float);
-	static SliderTouchLogic* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float);
-	~SliderTouchLogic();
-}
+
 
 [[link(android)]]
 class SongOptionsLayer : FLAlertLayer {

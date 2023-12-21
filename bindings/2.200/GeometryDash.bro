@@ -1,6 +1,23 @@
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
+	inline FLAlertLayer() {
+        m_buttonMenu = nullptr;
+        m_controlConnected = -1;
+        m_mainLayer = nullptr;
+        m_ZOrder = 0;
+        m_noElasticity = false;
+        m_reverseKeyBack = false;
+        m_scene = nullptr;
+        m_alertProtocol = nullptr;
+        m_scrollingLayer = nullptr;
+        m_button2 = nullptr;
+        m_button1 = nullptr;
+        m_joystickConnected = -1;
+        m_containsBorder = 0;
+		m_forcePrioRegistered = false;
+    }
+
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -53,12 +70,57 @@ class FLAlertLayerProtocol {
 
 [[link(android)]]
 class ButtonSprite : cocos2d::CCSprite {
+	[[docs("
+        Create a ButtonSprite with a top sprite and a texture.
+        @param topSprite The top sprite to add on top of the sprite
+        @param width Sprite width; ignored if `absolute` is false
+        @param absolute Whether to use absolute width or not
+        @param texture The name of the background sprite file (can't be in a spritesheet)
+        @param height The height of the button, leave 0 for automatic
+        @param scale Scale of top sprite
+    ")]]
+    static ButtonSprite* create(
+        cocos2d::CCSprite* topSprite,
+        int width,
+        bool absolute,
+        float height,
+        const char* texture,
+        float scale
+    ) {
+        return create(topSprite, width, 0, height, scale, absolute, texture, true);
+    }
+
+    [[docs("
+        Create a ButtonSprite with text, a font and a texture.
+        @param caption The text of the ButtonSprite
+        @param width Sprite width; ignored if `absolute` is false
+        @param absolute Whether to use absolute width or not
+        @param font The name of the BM font file to use
+        @param texture The name of the background sprite file (can't be in a spritesheet)
+        @param height The height of the button, leave 0 for automatic
+        @param scale Scale of text
+        @returns Pointer to the created ButtonSprite, or nullptr on error
+    ")]]
+    static ButtonSprite* create(const char* caption, int width, bool absolute, const char* font, const char* texture, float height, float scale) {
+        return create(caption, width, 0, scale, absolute, font, texture, height);
+    }
+
+    static ButtonSprite* create(char const* caption) {
+        return ButtonSprite::create(caption, 0, 0, "goldFont.fnt", "GJ_button_01.png", .0f, 1.f);
+    }
+    static ButtonSprite* create(char const* caption, const char* font, const char* texture) {
+        return ButtonSprite::create(caption, 0, 0, font, texture, .0f, 1.f);
+    }
+    static ButtonSprite* create(char const* caption, const char* font, const char* texture, float scale) {
+        return ButtonSprite::create(caption, 0, 0, font, texture, .0f, scale);
+    }
+
 	TodoReturn updateBGImage(char const*);
 	TodoReturn updateSpriteBGSize();
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
 	bool init(char const*, int, int, float, bool, char const*, char const*, float);
 	bool init(cocos2d::CCSprite*, int, int, float, float, bool, char const*, bool);
-	static ButtonSprite* create(char const*);
+	// static ButtonSprite* create(char const*);
 	static ButtonSprite* create(char const*, float);
 	static ButtonSprite* create(char const*, int, int, float, bool);
 	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*);
@@ -137,6 +199,18 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 
 [[link(android)]]
 class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTextFieldDelegate {
+	inline CCTextInputNode() {}
+	inline static CCTextInputNode* create(float width, float height, char const* placeholder, char const* fontPath) {
+        return CCTextInputNode::create(width, height, placeholder, 0x18, fontPath);
+    }
+    inline static CCTextInputNode* create(float width, float height, char const* placeholder, int fontSize, char const* fontPath) {
+		return CCTextInputNode::create(width, height, placeholder, "Thonburi", fontSize, fontPath);
+    }
+
+	void setDelegate(TextInputDelegate* delegate) {
+        m_delegate = delegate;
+    }
+
 	TodoReturn addTextArea(TextArea*);
 	TodoReturn forceOffset();
 	virtual void textChanged();
@@ -172,10 +246,31 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	bool init(float, float, char const*, char const*, int, char const*);
 	virtual void visit();
 	static CCTextInputNode* create(float, float, char const*, char const*, int, char const*);
-	TodoReturn getString();
+	gd::string getString();
 	/* unverified signature */
 	void setString(gd::string);
 	~CCTextInputNode();
+
+	// 2.2, very wrong since this class changed a lot
+	bool m_numberInput;
+    gd::string m_caption;
+    int m_unknown1;
+    bool m_selected;
+    bool m_unknown2;
+    gd::string m_allowedChars;
+    float m_maxLabelWidth;
+    float m_maxLabelScale;
+    float m_placeholderScale;
+    cocos2d::ccColor3B m_placeholderColor;
+    cocos2d::ccColor3B m_textColor;
+    cocos2d::CCLabelBMFont* m_cursor;
+    cocos2d::CCTextFieldTTF* m_textField;
+    TextInputDelegate* m_delegate;
+    int m_maxLabelLength;
+    cocos2d::CCLabelBMFont* m_placeholderLabel;
+    bool m_unknown3;
+    bool m_usePasswordChar;
+    bool m_forceOffset;
 }
 
 
@@ -228,16 +323,24 @@ class Slider : cocos2d::CCLayer {
 	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler);
 	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, float);
 	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float);
-	TodoReturn getThumb();
-	TodoReturn getValue();
+	SliderThumb* getThumb();
+	float getValue();
 	/* unverified signature */
 	void setValue(float);
-	TodoReturn updateBar();
+	void updateBar();
 	~Slider();
+
+	// 2.2, not tested
+	SliderTouchLogic* m_touchLogic;
+    cocos2d::CCSprite* m_sliderBar;
+    cocos2d::CCSprite* m_groove;
+    float m_width;
+    float m_height;
 }
 
 [[link(android)]]
 class CCIndexPath : cocos2d::CCObject {
+	inline CCIndexPath() {}
 	~CCIndexPath();
 }
 
@@ -278,6 +381,25 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	virtual void onEnter();
 	TableView(cocos2d::CCRect);
 	~TableView();
+
+	bool m_touchOutOfBoundary;
+    cocos2d::CCTouch* m_touchStart;
+    cocos2d::CCPoint m_touchStartPosition2;
+    cocos2d::CCPoint m_unknown2;
+    cocos2d::CCPoint m_touchPosition2;
+    void* m_idk;
+    bool m_touchMoved;
+    cocos2d::CCArray* m_cellArray;
+    cocos2d::CCArray* m_array2;
+    cocos2d::CCArray* m_array3;
+    TableViewDelegate* m_tableDelegate;
+    TableViewDataSource* m_dataSource;
+    int m_unused1;
+    int m_unused2;
+    void* m_unused3;
+    int m_unused4;
+    float m_touchLastY;
+    bool m_cancellingTouches;
 }
 
 
@@ -286,6 +408,18 @@ class TableViewCell : cocos2d::CCLayer {
 	TodoReturn updateVisibility();
 	TableViewCell(char const*, float, float);
 	~TableViewCell();
+
+	// 2.2, not tested
+
+	bool m_unknown;
+    TableView* m_tableView;
+    CCIndexPath m_indexPath;
+    int m_unknownThing; // don't even know if this is an int, it's always set to 0
+    gd::string m_unknownString;
+    float m_width;
+    float m_height;
+    cocos2d::CCLayerColor* m_backgroundLayer;
+    cocos2d::CCLayer* m_mainLayer;
 }
 
 
@@ -349,6 +483,27 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 	TodoReturn postVisit();
 	CCScrollLayerExt(cocos2d::CCRect);
 	~CCScrollLayerExt();
+
+	cocos2d::CCTouch* m_touch;
+    cocos2d::CCPoint m_touchPosition;
+    cocos2d::CCPoint m_touchStartPosition;
+    cocos2d::cc_timeval m_timeValue;
+    bool m_touchDown;
+    bool m_notAtEndOfScroll;
+    cocos2d::CCLayerColor* m_verticalScrollbar;
+    cocos2d::CCLayerColor* m_horizontalScrollbar;
+    CCScrollLayerExtDelegate* m_delegate;
+    CCContentLayer* m_contentLayer;
+    bool m_cutContent;
+    bool m_vScrollbarVisible;
+    bool m_hScrollbarVisible;
+    bool m_disableHorizontal;
+    bool m_disableVertical;
+    bool m_disableMovement;
+    float m_scrollLimitTop;
+    float m_scrollLimitBottom;
+    float m_peekLimitTop;
+    float m_peekLimitBottom;
 }
 
 
@@ -387,7 +542,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     }
 
     static BoomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType);
-    bool init(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType);
+    bool init(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float);
     virtual void draw() {}
 
     virtual void setupList(float);
@@ -402,7 +557,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     virtual TableViewCell* getListCell(const char*);
     virtual void loadCell(TableViewCell*, int);
     inline bool init(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
-        return this->init(entries, nullptr, height, width, 0, type);
+        return this->init(entries, nullptr, height, width, 0, type, 0.0f);
     }
     TodoReturn addObjectToList(cocos2d::CCNode*);
     TodoReturn lockList(bool);
@@ -476,6 +631,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 
 [[link(android)]]
 class CCContentLayer : cocos2d::CCLayerColor {
+	inline CCContentLayer() {}
 	virtual void setPosition(cocos2d::CCPoint const&);
 	static CCContentLayer* create(cocos2d::_ccColor4B const&, float, float);
 	~CCContentLayer();
@@ -507,7 +663,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	TodoReturn updateUserProfileButton();
 	TodoReturn syncPlatformAchievements(float);
 	virtual bool init();
-	static MenuLayer* scene(bool);
+	static cocos2d::CCScene* scene(bool);
 	void onPlay(cocos2d::CCObject* sender);
 	void onQuit(cocos2d::CCObject* sender);
 	TodoReturn endGame();
@@ -536,7 +692,7 @@ class LoadingLayer : cocos2d::CCLayer {
 	TodoReturn loadingFinished();
 	TodoReturn getLoadingString();
 	bool init(bool);
-	static LoadingLayer* scene(bool);
+	static cocos2d::CCScene* scene(bool);
 	static LoadingLayer* create(bool);
 	~LoadingLayer();
 
@@ -599,7 +755,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	TodoReturn descriptionForUnlock(int, UnlockType);
 	TodoReturn listButtonBarSwitchedPage(ListButtonBar*, int);
 	virtual bool init();
-	TodoReturn scene();
+	static cocos2d::CCScene* scene();
 	void onBack(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
 	void onShop(cocos2d::CCObject* sender);
@@ -892,6 +1048,8 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         m_hidden = false;
         m_delegate = nullptr;
     }
+	
+	// 2.2, untested
 
     cocos2d::CCPoint m_endPosition;
     cocos2d::CCPoint m_startPosition;
@@ -901,6 +1059,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
     cocos2d::CCLayer* m_mainLayer;
     bool m_hidden;
     GJDropDownLayerDelegate* m_delegate;
+	int m_unknown;
 }
 
 [[link(android)]]
@@ -1119,7 +1278,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 	void setMaxOffset(float);
 	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
 	static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
-	TodoReturn getValue();
+	float getValue();
 	/* unverified signature */
 	void setValue(float);
 	~SliderThumb();
@@ -1139,4 +1298,110 @@ class ColorChannelSprite : cocos2d::CCSprite {
 [[link(android)]]
 class GJDropDownLayerDelegate {
     virtual void dropDownLayerWillClose(GJDropDownLayer*) {}
+}
+
+[[link(android)]]
+class StatsCell : TableViewCell {
+	TodoReturn updateBGColor(int);
+	TodoReturn loadFromObject(StatsObject*);
+	TodoReturn getTitleFromKey(char const*);
+	virtual void draw();
+	virtual bool init();
+	StatsCell(char const*, float, float);
+	~StatsCell();
+}
+
+
+[[link(android)]]
+class StatsObject : cocos2d::CCObject {
+	bool init(char const*, int);
+	static StatsObject* create(char const*, int);
+	~StatsObject();
+}
+
+[[link(android)]]
+class SliderTouchLogic : cocos2d::CCMenu {
+	/* unverified signature */
+	void setRotated(bool);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	/* unverified signature */
+	void setMaxOffset(float);
+	virtual void registerWithTouchDispatcher();
+	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float);
+	static SliderTouchLogic* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float);
+	~SliderTouchLogic();
+
+	// 2.2, not tested
+
+	float m_unknownUnused;
+    float m_length;
+    SliderThumb* m_thumb;
+    Slider* m_slider;
+    bool m_activateThumb;
+    cocos2d::CCPoint m_position;
+    bool m_rotated;
+}
+
+
+[[link(android)]]
+class GameToolbox {
+	static TodoReturn bounceTime(float);
+	static TodoReturn easeToText(int);
+	static TodoReturn fast_srand(unsigned long);
+	static TodoReturn gen_random(int);
+	static TodoReturn getResponse(cocos2d::extension::CCHttpResponse*);
+	static TodoReturn intToString(int);
+	static TodoReturn openAppPage();
+	static TodoReturn openRateURL(gd::string, gd::string);
+	static TodoReturn strongColor(cocos2d::_ccColor3B);
+	static TodoReturn colorToSepia(cocos2d::_ccColor3B, float);
+	/* unverified signature */
+	static bool isRateEasing(int);
+	static TodoReturn addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*);
+	static TodoReturn fast_rand_0_1();
+	static TodoReturn getEasedValue(float, int, float);
+	static TodoReturn getfast_srand();
+	static TodoReturn getTimeString(int);
+	static TodoReturn hsvFromString(gd::string const&, char const*);
+	static TodoReturn postClipVisit();
+	static TodoReturn stringFromHSV(cocos2d::_ccHSVValue, char const*);
+	static TodoReturn getEasedAction(cocos2d::CCActionInterval*, int, float);
+	static TodoReturn msToTimeString(int, int);
+	static TodoReturn pointsToString(int);
+	static TodoReturn transformColor(cocos2d::_ccColor3B const&, float, float, float);
+	static TodoReturn transformColor(cocos2d::_ccColor3B const&, cocos2d::_ccHSVValue);
+	static TodoReturn createHashString(gd::string const&, int);
+	static TodoReturn doWeHaveInternet();
+	static TodoReturn getMultipliedHSV(cocos2d::_ccHSVValue const&, float);
+	static TodoReturn intToShortString(int);
+	static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
+	static TodoReturn stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&);
+	static TodoReturn getDropActionWEnd(float, float, float, cocos2d::CCAction*, float);
+	static TodoReturn getInvertedEasing(int);
+	// static TodoReturn getRelativeOffset(GameObject*, cocos2d::CCPoint);
+	static TodoReturn stringSetupToDict(gd::string const&, char const*);
+	static CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCNode*, float, float, float, cocos2d::CCPoint, char const*, bool, int, cocos2d::CCArray*);
+	static CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCArray*);
+	static TodoReturn fast_rand_minus1_1();
+	static TodoReturn particleFromString(gd::string const&, cocos2d::CCParticleSystemQuad*, bool);
+	static TodoReturn particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool);
+	static TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, cocos2d::SEL_CallFunc);
+	static TodoReturn alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
+	static TodoReturn contentScaleClipRect(cocos2d::CCRect&);
+	static TodoReturn multipliedColorValue(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float);
+	static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
+	static TodoReturn saveParticleToString(cocos2d::CCParticleSystemQuad*);
+	static TodoReturn addRThumbScrollButton(cocos2d::CCLayer*);
+	static TodoReturn alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool);
+	static TodoReturn mergeDictsSkipConflict(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
+	static TodoReturn particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&);
+	static TodoReturn getLargestMergedIntDicts(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
+	static TodoReturn mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
+	static TodoReturn preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect);
+	static TodoReturn timestampToHumanReadable(long);
+	/* unverified signature */
+	static bool isIOS();
+	static TodoReturn fast_rand();
 }
