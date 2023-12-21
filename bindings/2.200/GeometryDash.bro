@@ -658,8 +658,8 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	TodoReturn videoOptionsOpened();
 	TodoReturn updateUserProfileButton();
 	TodoReturn syncPlatformAchievements(float);
-	virtual bool init() = win 0xb00ba;
-	static cocos2d::CCScene* scene(bool) = win 0xb00ba;
+	virtual bool init() = win 0x276700;
+	static cocos2d::CCScene* scene(bool) = win 0x12c470;
 	void onPlay(cocos2d::CCObject* sender);
 	void onQuit(cocos2d::CCObject* sender);
 	TodoReturn endGame();
@@ -683,13 +683,13 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
 [[link(android)]]
 class LoadingLayer : cocos2d::CCLayer {
-	TodoReturn loadAssets() = win 0xb00ba;
+	void loadAssets() = win 0x272390;
 	TodoReturn updateProgress(int);
-	TodoReturn loadingFinished();
-	TodoReturn getLoadingString();
-	bool init(bool) = win 0xb00ba;
+	void loadingFinished() = win 0x2722A0;
+	const char* getLoadingString() = win 0x272A20;
+	bool init(bool fromReload) = win 0x271B30;
 	static cocos2d::CCScene* scene(bool);
-	static LoadingLayer* create(bool);
+	static LoadingLayer* create(bool fromReload) = win 0x271A90;
 	~LoadingLayer();
 
 	// 2.2, not tested
