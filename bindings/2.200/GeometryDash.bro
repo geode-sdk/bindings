@@ -91,10 +91,27 @@ class ScrollingLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
+	void useAnimationType(MenuAnimationType type) {
+        m_startPosition = this->getNormalImage()->getPosition();
+        m_animationType = type;
+    }
+    void setDestination(cocos2d::CCPoint const& pos) {
+        m_destPosition = pos;
+    }
+    void setOffset(cocos2d::CCPoint const& pos) {
+        m_offset = pos;
+    }
+    void setScale(float scale) {
+        this->CCMenuItemSprite::setScale(scale);
+        m_baseScale = scale;
+    }
+	inline static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) {
+        return CCMenuItemSpriteExtra::create(sprite, nullptr, target, callback);
+    }
+
 	virtual void unselected();
 	/* unverified signature */
 	void setSizeMult(float);
-	TodoReturn useAnimationType(MenuAnimationType);
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	virtual void activate();
@@ -114,6 +131,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     cocos2d::CCPoint m_offset;
     MenuAnimationType m_animationType;
     cocos2d::CCPoint m_startPosition;
+	int m_unknown4;
 }
 
 
@@ -518,6 +536,18 @@ class LoadingLayer : cocos2d::CCLayer {
 	TodoReturn scene(bool);
 	static LoadingLayer* create(bool);
 	~LoadingLayer();
+
+	// 2.2, not tested
+
+	bool m_unknown;
+    bool m_unknown2;
+    int m_loadStep;
+    cocos2d::CCLabelBMFont* m_caption;
+    TextArea* m_textArea;
+    cocos2d::CCSprite* m_sliderBar;
+    float m_sliderGrooveXPos;
+    float m_sliderGrooveHeight;
+    bool m_fromRefresh;
 }
 
 [[link(android)]]
@@ -894,4 +924,128 @@ class DialogObject : cocos2d::CCObject {
 	bool init(gd::string, gd::string, int, float, bool, cocos2d::_ccColor3B);
 	static DialogObject* create(gd::string, gd::string, int, float, bool, cocos2d::_ccColor3B);
 	~DialogObject();
+}
+
+
+[[link(android)]]
+class AchievementNotifier : cocos2d::CCNode {
+	TodoReturn sharedState();
+	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
+	TodoReturn willSwitchToScene(cocos2d::CCScene*);
+	TodoReturn showNextAchievement();
+	TodoReturn achievementDisplayFinished();
+	virtual bool init();
+	~AchievementNotifier();
+}
+
+[[link(android)]]
+class GJListLayer : cocos2d::CCLayerColor {
+	bool init(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, int);
+	static GJListLayer* create(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, int);
+	~GJListLayer();
+}
+
+[[link(android)]]
+class LoadingCircle : cocos2d::CCLayerColor {
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	TodoReturn fadeAndRemove();
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void registerWithTouchDispatcher();
+	virtual void draw();
+	virtual bool init();
+	TodoReturn show();
+	static LoadingCircle* create();
+	~LoadingCircle();
+}
+
+
+[[link(android)]]
+class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
+	TodoReturn checkSound();
+	TodoReturn pauseSound();
+	TodoReturn resumeSound();
+	virtual void setupGLView();
+	virtual void trySaveGame(bool);
+	virtual void platformShutdown();
+	TodoReturn hideLoadingCircle();
+	TodoReturn loadingIsFinished();
+	TodoReturn showLoadingCircle(bool, bool, bool);
+	TodoReturn willSwitchToScene(cocos2d::CCScene*);
+	/* unverified signature */
+	void setIdleTimerDisabled(bool);
+	virtual void applicationWillBecomeActive();
+	virtual void applicationWillResignActive();
+	virtual void applicationDidEnterBackground();
+	virtual bool applicationDidFinishLaunching();
+	virtual void applicationWillEnterForeground();
+	static AppDelegate* get();
+	TodoReturn bgScale();
+	TodoReturn musicTest();
+	TodoReturn pauseGame();
+	~AppDelegate();
+}
+
+
+[[link(android)]]
+class PlatformToolbox {
+	static TodoReturn getRawPath(char const*);
+	static TodoReturn hideCursor();
+	static TodoReturn showCursor();
+	static void gameDidSave();
+	static TodoReturn openAppPage();
+	static TodoReturn onGameLaunch();
+	static TodoReturn resizeWindow(float, float);
+	static TodoReturn doesFileExist(gd::string);
+	static TodoReturn onNativePause();
+	static TodoReturn refreshWindow();
+	static TodoReturn getDisplaySize();
+	static TodoReturn onNativeResume();
+	static TodoReturn copyToClipboard(gd::string);
+	static TodoReturn getUniqueUserID();
+	static TodoReturn toggleSmoothFix(bool);
+	static TodoReturn onToggleKeyboard();
+	static void platformShutdown();
+	/* unverified signature */
+	static void setKeyboardState(bool);
+	static TodoReturn showAchievements();
+	static TodoReturn signInGooglePlay();
+	static TodoReturn toggleForceTimer(bool);
+	static TodoReturn toggleFullScreen(bool);
+	static TodoReturn toggleLockCursor(bool);
+	/* unverified signature */
+	static bool isLowMemoryDevice();
+	static TodoReturn shouldResumeSound();
+	static TodoReturn signOutGooglePlay();
+	static TodoReturn tryShowRateDialog(gd::string);
+	static TodoReturn activateGameCenter();
+	/* unverified signature */
+	static bool isNetworkAvailable();
+	/* unverified signature */
+	void setBlockBackButton(bool);
+	static TodoReturn toggleCallGLFinish(bool);
+	static TodoReturn toggleCPUSleepMode(bool);
+	static TodoReturn toggleMouseControl(bool);
+	static TodoReturn toggleVerticalSync(bool);
+	static TodoReturn updateMouseControl();
+	static TodoReturn updateWindowedSize(float, float);
+	static TodoReturn spriteFromSavedFile(gd::string);
+	static TodoReturn getDeviceRefreshRate();
+	/* unverified signature */
+	static bool isSignedInGooglePlay();
+	/* unverified signature */
+	static bool isControllerConnected();
+	static TodoReturn reportLoadingFinished();
+	static TodoReturn reportAchievementWithID(char const*, int);
+	static TodoReturn downloadAndSavePromoImage(gd::string, gd::string);
+	/* unverified signature */
+	static bool isLocalPlayerAuthenticated();
+	static TodoReturn loadAndDecryptFileToString(char const*, char const*);
+	static TodoReturn saveAndEncryptStringToFile(gd::string, char const*, char const*);
+	/* unverified signature */
+	static bool isHD();
+	static TodoReturn logEvent(char const*);
+	static TodoReturn sendMail(char const*, char const*, char const*);
+	static TodoReturn getUserID();
 }

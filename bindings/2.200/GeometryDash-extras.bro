@@ -603,31 +603,6 @@ class UndoObject : cocos2d::CCObject {
 	~UndoObject();
 }
 
-[[link(android)]]
-class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
-	TodoReturn checkSound();
-	TodoReturn pauseSound();
-	TodoReturn resumeSound();
-	virtual void setupGLView();
-	virtual void trySaveGame(bool);
-	virtual void platformShutdown();
-	TodoReturn hideLoadingCircle();
-	TodoReturn loadingIsFinished();
-	TodoReturn showLoadingCircle(bool, bool, bool);
-	TodoReturn willSwitchToScene(cocos2d::CCScene*);
-	/* unverified signature */
-	void setIdleTimerDisabled(bool);
-	virtual void applicationWillBecomeActive();
-	virtual void applicationWillResignActive();
-	virtual void applicationDidEnterBackground();
-	virtual bool applicationDidFinishLaunching();
-	virtual void applicationWillEnterForeground();
-	static AppDelegate* get();
-	TodoReturn bgScale();
-	TodoReturn musicTest();
-	TodoReturn pauseGame();
-	~AppDelegate();
-}
 
 [[link(android)]]
 class CCCountdown : cocos2d::CCSprite {
@@ -814,12 +789,7 @@ class GJLevelList : cocos2d::CCNode {
 	~GJLevelList();
 }
 
-[[link(android)]]
-class GJListLayer : cocos2d::CCLayerColor {
-	bool init(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, int);
-	static GJListLayer* create(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, int);
-	~GJListLayer();
-}
+
 
 [[link(android)]]
 class GJMapObject : cocos2d::CCNode {
@@ -2331,20 +2301,7 @@ class LikeItemLayer : FLAlertLayer {
 
 
 
-[[link(android)]]
-class LoadingCircle : cocos2d::CCLayerColor {
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	TodoReturn fadeAndRemove();
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void registerWithTouchDispatcher();
-	virtual void draw();
-	virtual bool init();
-	TodoReturn show();
-	static LoadingCircle* create();
-	~LoadingCircle();
-}
+
 
 [[link(android)]]
 class MenuGameLayer : cocos2d::CCLayer {
@@ -4184,67 +4141,6 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	~MoreSearchLayer();
 }
 
-[[link(android)]]
-class PlatformToolbox {
-	TodoReturn getRawPath(char const*);
-	TodoReturn hideCursor();
-	TodoReturn showCursor();
-	virtual void gameDidSave();
-	TodoReturn openAppPage();
-	TodoReturn onGameLaunch();
-	TodoReturn resizeWindow(float, float);
-	TodoReturn doesFileExist(gd::string);
-	TodoReturn onNativePause();
-	TodoReturn refreshWindow();
-	TodoReturn getDisplaySize();
-	TodoReturn onNativeResume();
-	TodoReturn copyToClipboard(gd::string);
-	TodoReturn getUniqueUserID();
-	TodoReturn toggleSmoothFix(bool);
-	TodoReturn onToggleKeyboard();
-	virtual void platformShutdown();
-	/* unverified signature */
-	void setKeyboardState(bool);
-	TodoReturn showAchievements();
-	TodoReturn signInGooglePlay();
-	TodoReturn toggleForceTimer(bool);
-	TodoReturn toggleFullScreen(bool);
-	TodoReturn toggleLockCursor(bool);
-	/* unverified signature */
-	bool isLowMemoryDevice();
-	TodoReturn shouldResumeSound();
-	TodoReturn signOutGooglePlay();
-	TodoReturn tryShowRateDialog(gd::string);
-	TodoReturn activateGameCenter();
-	/* unverified signature */
-	bool isNetworkAvailable();
-	/* unverified signature */
-	void setBlockBackButton(bool);
-	TodoReturn toggleCallGLFinish(bool);
-	TodoReturn toggleCPUSleepMode(bool);
-	TodoReturn toggleMouseControl(bool);
-	TodoReturn toggleVerticalSync(bool);
-	TodoReturn updateMouseControl();
-	TodoReturn updateWindowedSize(float, float);
-	TodoReturn spriteFromSavedFile(gd::string);
-	TodoReturn getDeviceRefreshRate();
-	/* unverified signature */
-	bool isSignedInGooglePlay();
-	/* unverified signature */
-	bool isControllerConnected();
-	TodoReturn reportLoadingFinished();
-	TodoReturn reportAchievementWithID(char const*, int);
-	TodoReturn downloadAndSavePromoImage(gd::string, gd::string);
-	/* unverified signature */
-	bool isLocalPlayerAuthenticated();
-	TodoReturn loadAndDecryptFileToString(char const*, char const*);
-	TodoReturn saveAndEncryptStringToFile(gd::string, char const*, char const*);
-	/* unverified signature */
-	bool isHD();
-	TodoReturn logEvent(char const*);
-	TodoReturn sendMail(char const*, char const*, char const*);
-	TodoReturn getUserID();
-}
 
 [[link(android)]]
 class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
@@ -7140,16 +7036,6 @@ class SpritePartDelegate {
 	TodoReturn displayFrameChanged(cocos2d::CCObject*, gd::string);
 }
 
-[[link(android)]]
-class AchievementNotifier : cocos2d::CCNode {
-	TodoReturn sharedState();
-	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
-	TodoReturn willSwitchToScene(cocos2d::CCScene*);
-	TodoReturn showNextAchievement();
-	TodoReturn achievementDisplayFinished();
-	virtual bool init();
-	~AchievementNotifier();
-}
 
 [[link(android)]]
 class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
