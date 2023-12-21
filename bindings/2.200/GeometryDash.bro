@@ -524,9 +524,9 @@ class CCScrollLayerExtDelegate {
 
 [[link(android)]]
 class CustomListView : BoomListView {
-    static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType);
+    static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float);
     inline static CustomListView* create(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
-        return CustomListView::create(entries, nullptr, width, height, 0, type);
+        return CustomListView::create(entries, nullptr, width, height, 0, type, 0.0f);
     }
     virtual TableViewCell* getListCell(const char*);
     virtual void loadCell(TableViewCell*, int);
