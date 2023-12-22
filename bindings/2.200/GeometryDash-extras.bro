@@ -451,30 +451,30 @@ class LevelTools {
 
 [[link(android)]]
 class PauseLayer : CCBlockLayer {
-	void onSettings(cocos2d::CCObject* sender);
+	void onSettings(cocos2d::CCObject* sender) = win 0x2b41e0;
 	TodoReturn customSetup();
-	void onNormalMode(cocos2d::CCObject* sender);
-	void onRestartFull(cocos2d::CCObject* sender);
+	void onNormalMode(cocos2d::CCObject* sender) = win 0x2b4be0;
+	void onRestartFull(cocos2d::CCObject* sender) = win 0x2b4d30;
 	TodoReturn tryShowBanner(float);
 	virtual void keyBackClicked();
-	void onPracticeMode(cocos2d::CCObject* sender);
+	void onPracticeMode(cocos2d::CCObject* sender) = win 0x2b4b70;
 	void onRecordReplays(cocos2d::CCObject* sender);
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
 	TodoReturn setupProgressBars();
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn musicSliderChanged(cocos2d::CCObject*);
-	bool init(bool);
+	bool init(bool) = win 0x2b3740;
 	virtual void keyUp(cocos2d::enumKeyCodes);
 	static PauseLayer* create(bool);
 	TodoReturn goEdit();
-	void onEdit(cocos2d::CCObject* sender);
+	void onEdit(cocos2d::CCObject* sender) = win 0x2b4d80;
 	void onHelp(cocos2d::CCObject* sender);
-	void onQuit(cocos2d::CCObject* sender);
+	void onQuit(cocos2d::CCObject* sender) = win 0x2b4ed0;
 	void onTime(cocos2d::CCObject* sender);
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	void onReplay(cocos2d::CCObject* sender);
-	void onResume(cocos2d::CCObject* sender);
-	void onRestart(cocos2d::CCObject* sender);
+	void onResume(cocos2d::CCObject* sender) = win 0x2b4c90;
+	void onRestart(cocos2d::CCObject* sender) = win 0x2b4ce0;
 	~PauseLayer();
 }
 
