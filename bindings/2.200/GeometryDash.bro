@@ -129,9 +129,8 @@ class ButtonSprite : cocos2d::CCSprite {
 	static ButtonSprite* create(cocos2d::CCSprite*) = win 0x80813;
 	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool) = win 0x80813;
 	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool, char const*, bool) = win 0x80813;
-	/* unverified signature */
-	void setColor(cocos2d::_ccColor3B) = win 0x80813;
-	virtual void setString(char const*);
+	void setColor(cocos2d::ccColor3B) = win 0x20b20;
+	void setString(char const*) = win 0x20770;
 	~ButtonSprite();
 }
 
@@ -480,11 +479,11 @@ class TableViewCellDelegate {
 [[link(android)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
 	TodoReturn scrollLayer(float) = win 0x80813;
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x80813;
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x280d0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x28410;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x281c0;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x283e0;
 	TodoReturn scrollingEnd();
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	/* unverified signature */
 	void setContentOffset(cocos2d::CCPoint, bool);
 	TodoReturn updateIndicators(float);
@@ -494,8 +493,8 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 	/* unverified signature */
 	void setContentLayerSize(cocos2d::CCSize);
 	TodoReturn preVisitWithClippingRect(cocos2d::CCRect);
-	virtual void registerWithTouchDispatcher();
-	virtual void visit();
+	virtual void registerWithTouchDispatcher() = win 0x280a0;
+	virtual void visit() = win 0x28600;
 	TodoReturn getMaxY();
 	TodoReturn getMinY();
 	void moveToTop() = win 0x27b60;
@@ -633,10 +632,10 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     void setSizeMult(float);
     void toggle(bool) = win 0x261e0;
     bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler handler) = win 0x25f30;
-    virtual void activate();
-    virtual void selected();
-    virtual void unselected();
-    virtual void setEnabled(bool enabled) = win 0x80813;
+    virtual void activate() = win 0x26100;
+    virtual void selected() = win 0x260d0;
+    virtual void unselected() = win 0x26130;
+    virtual void setEnabled(bool enabled) = win 0x26160;
 
 	TodoReturn activeItem();
 	TodoReturn normalTouch(cocos2d::CCObject*);
