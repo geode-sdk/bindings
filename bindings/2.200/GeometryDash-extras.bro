@@ -3451,7 +3451,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn checkSnapshot();
 	TodoReturn claimParticle(gd::string, int);
 	TodoReturn destroyObject(GameObject*);
-	void destroyPlayer(PlayerObject*, GameObject*) = win 0x6e0a90;
+	void destroyPlayer(PlayerObject*, GameObject*);
 	TodoReturn enterDualMode(GameObject*, bool);
 	TodoReturn getMaxPortalY();
 	TodoReturn getMinPortalY();
@@ -10154,7 +10154,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn showEndLayer();
 	TodoReturn addToGroupOld(GameObject*);
 	TodoReturn checkSnapshot();
-	TodoReturn destroyPlayer(PlayerObject*, GameObject*) = mac 0xb40f0, win 0x2e0a90;
+	void destroyPlayer(PlayerObject*, GameObject*) = mac 0xb40f0, win 0x2e0a90;
 	TodoReturn levelComplete();
 	TodoReturn spawnFirework();
 	TodoReturn stopRecording();
