@@ -1,0 +1,53 @@
+name: 'Verify bindings syntax'
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      if: steps.codegen-cache.outputs.cache-hit != 'true'
+      uses: actions/checkout@v3
+
+    - name: Restore cache
+      id: codegen-cache
+      uses: actions/cache/restore@v3
+      with:
+        path: bin
+        key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}
+
+    - name: Build Codegen binary
+      if: steps.codegen-cache.outputs.cache-hit != 'true'
+      run: |
+        cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=./bin -B build
+        cmake --build build --config RelWithDebInfo
+        cmake --install build
+
+    - name: Upload binary to cache
+      if: steps.codegen-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v3
+      with:
+        path: bin
+        key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}
+      
+    - name: Upload Codegen binary
+      uses: actions/upload-artifact@v3
+      with:
+        name: Codegen
+        path: bin/Codegen
+
+  verify:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Download Codegen binary
+      uses: actions/download-artifact@v3
+      with:
+        name: Codegen
+
+    - name: Verify
+      run: 'chmod +x ./Codegen && ./Codegen Win32 bindings/2.200 out'

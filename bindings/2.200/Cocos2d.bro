@@ -1,7 +1,7 @@
 
 [[link(win, android)]]
 class cocos2d::CCFileUtils {
-	// CCFileUtils();
+	/// CCFileUtils();
 	// CCFileUtils(cocos2d::CCFileUtils const&);
 	virtual void addSearchPath(char const*);
 	virtual void addSearchResolutionsOrder(char const*);
