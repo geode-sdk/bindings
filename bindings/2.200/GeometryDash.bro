@@ -424,14 +424,14 @@ class TableViewCell : cocos2d::CCLayer {
 	bool m_unknown;
     TableView* m_tableView;
     CCIndexPath m_indexPath;
+	int m_unknown2;
+	int m_unknown3;
     int m_unknownThing; // don't even know if this is an int, it's always set to 0
     gd::string m_unknownString;
     float m_width;
     float m_height;
     cocos2d::CCLayerColor* m_backgroundLayer;
     cocos2d::CCLayer* m_mainLayer;
-	int m_unknown2;
-	int m_unknown3;
 	int m_unknown4;
 }
 
@@ -553,7 +553,7 @@ class CustomListView : BoomListView {
 
 [[link(android)]]
 class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
-    BoomListView() = win 0x1d260;
+    BoomListView() {}
     ~BoomListView() {
         CC_SAFE_RELEASE(m_entries);
     }
