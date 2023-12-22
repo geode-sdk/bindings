@@ -457,13 +457,13 @@ class PauseLayer {
 	void onRestartFull(cocos2d::CCObject* sender);
 	TodoReturn tryShowBanner(float);
 	virtual void keyBackClicked();
-	void onPracticeMode(cocos2d::CCObject* sender) = 0x26b4b70;
+	void onPracticeMode(cocos2d::CCObject* sender) = win 0x26b4b70;
 	void onRecordReplays(cocos2d::CCObject* sender);
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
 	TodoReturn setupProgressBars();
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn musicSliderChanged(cocos2d::CCObject*);
-	bool init(bool) = 0x2b3740;
+	bool init(bool) = win 0x2b3740;
 	virtual void keyUp(cocos2d::enumKeyCodes);
 	static PauseLayer* create(bool);
 	TodoReturn goEdit();
@@ -2472,7 +2472,7 @@ class GJGarageLayer {
 	TodoReturn achievementForUnlock(int, UnlockType);
 	TodoReturn descriptionForUnlock(int, UnlockType);
 	TodoReturn listButtonBarSwitchedPage(ListButtonBar*, int);
-	virtual bool init();
+	virtual bool init() = win 0x1eaa40;
 	TodoReturn scene();
 	void onBack(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
