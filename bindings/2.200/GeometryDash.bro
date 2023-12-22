@@ -600,19 +600,19 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     static CCMenuItemToggler* createWithSize(const char* spr1, const char* spr2, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback, float scale) {
         auto sprOff = cocos2d::CCSprite::createWithSpriteFrameName(spr1);
         auto sprOn = cocos2d::CCSprite::createWithSpriteFrameName(spr2);
-    
+
         sprOff->setScale(scale);
         sprOn->setScale(scale);
-    
+
         return create(sprOff, sprOn, target, callback);
     }
     static CCMenuItemToggler* createWithStandardSprites(cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback, float scale) {
         auto sprOff = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
         auto sprOn = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
-    
+
         sprOff->setScale(scale);
         sprOn->setScale(scale);
-    
+
         return create(sprOff, sprOn, target, callback);
     }
     bool isOn() {
@@ -1044,7 +1044,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
     virtual void enterAnimFinished() {}
     virtual void disableUI();
     virtual void enableUI();
-    
+
     virtual bool ccTouchBegan(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent) {
         return true;
     }
@@ -1066,7 +1066,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         m_hidden = false;
         m_delegate = nullptr;
     }
-	
+
 	// 2.2, untested
 
     cocos2d::CCPoint m_endPosition;
@@ -1151,7 +1151,7 @@ class GJGameLevel : cocos2d::CCNode {
 
 
 class UIButtonConfig {
-    
+
 }
 
 [[link(android)]]
@@ -1203,9 +1203,9 @@ class LoadingCircle : cocos2d::CCLayerColor {
 class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn checkSound();
 	TodoReturn pauseSound();
-	TodoReturn resumeSound();
+	TodoReturn resumeSound() = win 0x5b2e0;
 	virtual void setupGLView();
-	virtual void trySaveGame(bool) = win 0x80813;
+	virtual void trySaveGame(bool) = win 0x5b3b0;
 	virtual void platformShutdown();
 	TodoReturn hideLoadingCircle();
 	TodoReturn loadingIsFinished();
@@ -1213,14 +1213,14 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn willSwitchToScene(cocos2d::CCScene*);
 	/* unverified signature */
 	void setIdleTimerDisabled(bool);
-	virtual void applicationWillBecomeActive();
-	virtual void applicationWillResignActive();
-	virtual void applicationDidEnterBackground();
-	virtual bool applicationDidFinishLaunching();
-	virtual void applicationWillEnterForeground();
+	virtual void applicationWillBecomeActive() = win 0x5b0f0;
+	virtual void applicationWillResignActive() = win 0x5b200;
+	virtual void applicationDidEnterBackground() = win 0x5b110;
+	virtual bool applicationDidFinishLaunching() = win 0x5af40;
+	virtual void applicationWillEnterForeground() = win 0x5b150;
 	static AppDelegate* get();
 	TodoReturn bgScale();
-	TodoReturn musicTest();
+	TodoReturn musicTest() = win 0x5b330;
 	TodoReturn pauseGame();
 	~AppDelegate();
 }
