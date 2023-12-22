@@ -1,7 +1,7 @@
 
 [[link(win, android)]]
 class cocos2d::CCFileUtils {
-	// CCFileUtils();
+	/// CCFileUtils();
 	// CCFileUtils(cocos2d::CCFileUtils const&);
 	virtual void addSearchPath(char const*);
 	virtual void addSearchResolutionsOrder(char const*);
@@ -42,7 +42,8 @@ class cocos2d::CCFileUtils {
 [[link(win, android)]]
 class cocos2d::CCNode {
 	// CCNode(cocos2d::CCNode const&);
-	// CCNode();
+	CCNode() = win 0x5eef0;
+    ~CCNode() = win 0x5f160;
 	virtual void _setZOrder(int);
 	virtual void addChild(cocos2d::CCNode*);
 	virtual void addChild(cocos2d::CCNode*, int);
@@ -218,4 +219,144 @@ class cocos2d::CCScheduler {
 	void unscheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*);
 	void unscheduleUpdateForTarget(cocos2d::CCObject const*);
 	virtual void update(float);
+}
+
+
+[[link(win, android)]]
+class cocos2d::CCLayer {
+	// CCLayer(cocos2d::CCLayer const&);
+	CCLayer() = win 0xa3370;
+    ~CCLayer() = win 0xa36d0;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
+	virtual void ccTouchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*);
+	virtual void ccTouchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*);
+	virtual void ccTouchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
+	static cocos2d::CCLayer* create();
+	virtual void didAccelerate(cocos2d::CCAcceleration*);
+	int excuteScriptTouchHandler(int, cocos2d::CCSet*);
+	int excuteScriptTouchHandler(int, cocos2d::CCTouch*);
+	virtual int getPreviousPriority();
+	cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
+	cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();
+	cocos2d::CCTouchScriptHandlerEntry* getScriptTouchHandlerEntry();
+	virtual int getTouchMode();
+	virtual int getTouchPriority();
+	virtual bool init();
+	virtual bool isAccelerometerEnabled();
+	virtual bool isKeyboardEnabled();
+	virtual bool isKeypadEnabled();
+	virtual bool isMouseEnabled();
+	virtual bool isTouchEnabled();
+	virtual void keyBackClicked();
+	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyMenuClicked();
+	virtual void onEnter();
+	virtual void onEnterTransitionDidFinish();
+	virtual void onExit();
+	void registerScriptAccelerateHandler(int);
+	void registerScriptKeypadHandler(int);
+	virtual void registerScriptTouchHandler(int, bool, int, bool);
+	virtual void registerWithTouchDispatcher();
+	virtual void setAccelerometerEnabled(bool);
+	virtual void setAccelerometerInterval(double);
+	virtual void setKeyboardEnabled(bool);
+	virtual void setKeypadEnabled(bool);
+	virtual void setMouseEnabled(bool);
+	virtual void setPreviousPriority(int);
+	virtual void setTouchEnabled(bool);
+	virtual void setTouchMode(cocos2d::ccTouchesMode);
+	virtual void setTouchPriority(int);
+	void unregisterScriptAccelerateHandler();
+	void unregisterScriptKeypadHandler();
+	virtual void unregisterScriptTouchHandler();
+}
+
+
+[[link(win, android)]]
+class cocos2d::CCObject {
+	// CCObject(cocos2d::CCObject const&);
+	CCObject() = win 0x6a180;
+    ~CCObject() = win 0x6a1f0;
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+	cocos2d::CCObject* autorelease();
+	virtual bool canEncode();
+	cocos2d::CCObject* copy();
+	static cocos2d::CCObject* createWithCoder(DS_Dictionary*);
+	virtual void encodeWithCoder(DS_Dictionary*);
+	cocos2d::CCObjectType getObjType() const;
+	virtual int getTag() const;
+	virtual bool isEqual(cocos2d::CCObject const*);
+	bool isSingleReference() const;
+	void release();
+	void retain();
+	unsigned int retainCount() const;
+	void setObjType(cocos2d::CCObjectType);
+	virtual void setTag(int);
+	virtual void update(float);
+}
+
+[[link(win, android)]]
+class cocos2d::CCOrbitCamera {
+	// CCOrbitCamera(cocos2d::CCOrbitCamera const&);
+	// CCOrbitCamera();
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	static cocos2d::CCOrbitCamera* create(float, float, float, float, float, float, float);
+	bool initWithDuration(float, float, float, float, float, float, float);
+	void sphericalRadius(float*, float*, float*);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual void update(float);
+}
+
+
+[[link(win, android)]]
+class cocos2d::CCLayerColor {
+	// CCLayerColor(cocos2d::CCLayerColor const&);
+	// CCLayerColor();
+    ~CCLayerColor();
+	void addToVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
+	void changeHeight(float);
+	void changeWidth(float);
+	void changeWidthAndHeight(float, float);
+	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&);
+	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float);
+	static cocos2d::CCLayerColor* create();
+	virtual void draw();
+	virtual cocos2d::_ccBlendFunc getBlendFunc();
+	virtual bool init();
+	virtual bool initWithColor(cocos2d::_ccColor4B const&);
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, float, float);
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
+	virtual void setColor(cocos2d::_ccColor3B const&);
+	virtual void setContentSize(cocos2d::CCSize const&);
+	virtual void setOpacity(unsigned char);
+	void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
+	virtual void updateColor();
+}
+
+
+[[link(win, android)]]
+class cocos2d::CCLayerRGBA {
+	// CCLayerRGBA(cocos2d::CCLayerRGBA const&);
+	// CCLayerRGBA();
+    ~CCLayerRGBA();
+	static cocos2d::CCLayerRGBA* create();
+	virtual cocos2d::_ccColor3B const& getColor();
+	virtual cocos2d::_ccColor3B const& getDisplayedColor();
+	virtual unsigned char getDisplayedOpacity();
+	virtual unsigned char getOpacity();
+	virtual bool init();
+	virtual bool isCascadeColorEnabled();
+	virtual bool isCascadeOpacityEnabled();
+	virtual bool isOpacityModifyRGB();
+	virtual void setCascadeColorEnabled(bool);
+	virtual void setCascadeOpacityEnabled(bool);
+	virtual void setColor(cocos2d::_ccColor3B const&);
+	virtual void setOpacity(unsigned char);
+	virtual void setOpacityModifyRGB(bool);
+	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&);
+	virtual void updateDisplayedOpacity(unsigned char);
 }
