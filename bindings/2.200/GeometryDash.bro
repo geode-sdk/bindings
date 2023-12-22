@@ -17,13 +17,14 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 		m_forcePrioRegistered = false;
     }
 
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x31ac0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x31b50;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x31c10;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x31bc0;
 	virtual void keyBackClicked() = win 0x319a0;
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	// TODO: inlined on windows
 	void incrementForcePrio();
-	virtual void registerWithTouchDispatcher();
+	virtual void registerWithTouchDispatcher() = win 0x31df0;
 	bool init(int) = win 0x80813;
 	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x30f50;
 	void show() = win 0x31c60;
@@ -33,8 +34,9 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	void onBtn1(cocos2d::CCObject* sender) = win 0x31a40;
 	void onBtn2(cocos2d::CCObject* sender) = win 0x31a80;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x31930;
-	virtual void onEnter();
-	~FLAlertLayer();
+	// doesnt exist on windows, nor android armv8..
+	// virtual void onEnter();
+	~FLAlertLayer() = win 0x30b80;
 
     static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) {
         return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
