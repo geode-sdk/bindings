@@ -1839,7 +1839,7 @@ class OptionsLayer {
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn musicSliderChanged(cocos2d::CCObject*);
-	static OptionsLayer* create();
+	static OptionsLayer* create() = win 0x2ab510;
 	void onHelp(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender);
 	void onVideo(cocos2d::CCObject* sender);
