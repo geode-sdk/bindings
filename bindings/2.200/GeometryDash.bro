@@ -416,7 +416,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 [[link(android)]]
 class TableViewCell : cocos2d::CCLayer {
 	TodoReturn updateVisibility();
-	TableViewCell(char const*, float, float) = win 0x80813;
+	TableViewCell(char const*, float, float) = win 0x51b10;
 	~TableViewCell();
 
 	// 2.2, not tested
@@ -562,17 +562,17 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     bool init(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = win 0x1d400;
     virtual void draw() {}
 
-    virtual void setupList(float);
+    virtual void setupList(float) = win 0x1d5c0;
     virtual void TableViewWillDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
-    virtual float cellHeightForRowAtIndexPath(CCIndexPath&, TableView*);
+    virtual float cellHeightForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x1d650;
     virtual void didSelectRowAtIndexPath(CCIndexPath&, TableView*) {}
     virtual int numberOfRowsInSection(unsigned int, TableView*) = win 0x1d660;
     virtual unsigned int numberOfSectionsInTableView(TableView*) = win 0x1d250;
     virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x1d670;
 	virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&) = win 0x1d230;
     virtual void TableViewWillReloadCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
-    virtual TableViewCell* getListCell(const char*);
-    virtual void loadCell(TableViewCell*, int);
+    virtual TableViewCell* getListCell(const char*) = win 0x1d6d0;
+    virtual void loadCell(TableViewCell*, int) = win 0x1d7b0;
     inline bool init(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
         return this->init(entries, nullptr, height, width, 0, type, 0.0f);
     }
@@ -649,7 +649,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 [[link(android)]]
 class CCContentLayer : cocos2d::CCLayerColor {
 	inline CCContentLayer() {}
-	virtual void setPosition(cocos2d::CCPoint const&) = win 0x80813;
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x23b20;
 	static CCContentLayer* create(cocos2d::_ccColor4B const&, float, float);
 	~CCContentLayer();
 }
@@ -878,7 +878,7 @@ class GameManager : GManager {
 	TodoReturn getGTexture(int);
 	TodoReturn joinDiscord();
 	TodoReturn saveAdTimer();
-	static GameManager* sharedState() = win 0x80813;
+	static GameManager* sharedState() = win 0x11f720;
 	TodoReturn startUpdate();
 	TodoReturn unloadIcons(int);
 	TodoReturn unlockColor(int, UnlockType);
@@ -1051,7 +1051,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
     virtual void ccTouchCancelled(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent) {}
 
     virtual void draw();
-    bool init(const char* title, float height) = win 0x80813;
+    bool init(const char* title, float height) = win 0x1d2340;
     virtual void registerWithTouchDispatcher();
     virtual void keyBackClicked();
     inline GJDropDownLayer() {
@@ -1322,7 +1322,7 @@ class StatsCell : TableViewCell {
 	TodoReturn updateBGColor(int);
 	TodoReturn loadFromObject(StatsObject*);
 	TodoReturn getTitleFromKey(char const*);
-	virtual void draw() = win 0x80813;
+	virtual void draw() = win 0x7d0f0;
 	virtual bool init();
 	StatsCell(char const*, float, float);
 	~StatsCell();
