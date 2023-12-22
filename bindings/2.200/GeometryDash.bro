@@ -20,19 +20,19 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void keyBackClicked() = win 0x80813;
+	virtual void keyBackClicked() = win 0x319a0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	void incrementForcePrio();
 	virtual void registerWithTouchDispatcher();
 	bool init(int) = win 0x80813;
 	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x30f50;
-	void show() = win 0x80813;
-	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*) = win 0x80813;
-	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float) = win 0x80813;
+	void show() = win 0x31c60;
+	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*) = win 0x30c40;
+	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float) = win 0x30cf0;
 	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x30da0;
-	void onBtn1(cocos2d::CCObject* sender) = win 0x80813;
-	void onBtn2(cocos2d::CCObject* sender) = win 0x80813;
-	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x80813;
+	void onBtn1(cocos2d::CCObject* sender) = win 0x31a40;
+	void onBtn2(cocos2d::CCObject* sender) = win 0x31a80;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x31930;
 	virtual void onEnter();
 	~FLAlertLayer();
 
