@@ -438,11 +438,13 @@ class TableViewCell : cocos2d::CCLayer {
 
 [[link(android)]]
 class TableViewDelegate {
-	virtual TodoReturn willTweenToIndexPath(CCIndexPath&, TableViewCell*, TableView*);
-	virtual TodoReturn didEndTweenToIndexPath(CCIndexPath&, TableView*);
-	virtual TodoReturn TableViewDidDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*);
-	virtual TodoReturn TableViewWillReloadCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*);
-	virtual TodoReturn TableViewWillDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*);
+	virtual void willTweenToIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
+	virtual void didEndTweenToIndexPath(CCIndexPath&, TableView*) {}
+	virtual void TableViewDidDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
+	virtual void TableViewWillReloadCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
+	virtual void TableViewWillDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
+	virtual float cellHeightForRowAtIndexPath(CCIndexPath&, TableView*) { return 0; }
+    virtual void didSelectRowAtIndexPath(CCIndexPath&, TableView*) {}
 }
 
 [[link(android)]]
@@ -459,8 +461,10 @@ class TextInputDelegate {
 
 [[link(android)]]
 class TableViewDataSource {
-	virtual unsigned int numberOfSectionsInTableView(TableView*);
-	virtual TodoReturn TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&);
+	virtual int numberOfRowsInSection(unsigned int, TableView*) { return 0; }
+	virtual unsigned int numberOfSectionsInTableView(TableView*) { return 0; }
+	virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&) {}
+	virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath&, TableView*) { return nullptr; }
 }
 
 
@@ -564,8 +568,8 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     virtual void didSelectRowAtIndexPath(CCIndexPath&, TableView*) {}
     virtual int numberOfRowsInSection(unsigned int, TableView*) = win 0x1d660;
     virtual unsigned int numberOfSectionsInTableView(TableView*) = win 0x1d250;
-    virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&) = win 0x1d230;
     virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x1d670;
+	virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&) = win 0x1d230;
     virtual void TableViewWillReloadCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
     virtual TableViewCell* getListCell(const char*);
     virtual void loadCell(TableViewCell*, int);
@@ -580,10 +584,10 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     TableView* m_tableView;
     cocos2d::CCArray* m_entries;
     BoomListType m_type;
-    float m_itemSeparation;
-    int m_currentPage;
 	float m_height;
     float m_width;
+    float m_itemSeparation;
+    int m_currentPage;
 	bool m_locked;
 }
 
