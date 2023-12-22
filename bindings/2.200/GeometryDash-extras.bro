@@ -1781,7 +1781,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn updateSearchLabel(char const*);
 	TodoReturn showCompletedLevel();
 	TodoReturn updateMessageLabel(gd::string);
-	virtual bool init();
+	virtual bool init() = mac 0x478e30, win 0x2fe1d0;
 	TodoReturn scene();
 	static SecretLayer2* create();
 	void onBack(cocos2d::CCObject* sender);
@@ -5922,7 +5922,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 	TodoReturn updateUserScoreFailed();
 	TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
 	TodoReturn updateUserScoreFinished();
-	bool init(LeaderboardState);
+	bool init(LeaderboardState) = mac 0x4ea600, win 0x228c70;
 	void onTop(cocos2d::CCObject* sender);
 	TodoReturn scene(LeaderboardState);
 	static LeaderboardsLayer* create(LeaderboardState);
@@ -9566,7 +9566,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getModeBtn(char const*, int);
 	TodoReturn moveObject(GameObject*, cocos2d::CCPoint);
 	void onPlayback(cocos2d::CCObject* sender);
-	void onPlaytest(cocos2d::CCObject* sender);
+	void onPlaytest(cocos2d::CCObject* sender) = mac 0x10160, win 0xc9480;
 	void onSettings(cocos2d::CCObject* sender);
 	TodoReturn shouldSnap(GameObject*);
 	TodoReturn toggleMode(cocos2d::CCObject*);
@@ -9675,7 +9675,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onGroupIDFilter(cocos2d::CCObject* sender);
 	void onNewCustomItem(cocos2d::CCObject* sender);
 	void onUngroupSticky(cocos2d::CCObject* sender);
-	TodoReturn playtestStopped();
+	TodoReturn playtestStopped() = win 0xc9630;
 	TodoReturn setupCreateMenu();
 	TodoReturn setupDeleteMenu();
 	TodoReturn smartTypeForKey(int);
@@ -10154,7 +10154,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn showEndLayer();
 	TodoReturn addToGroupOld(GameObject*);
 	TodoReturn checkSnapshot();
-	TodoReturn destroyPlayer(PlayerObject*, GameObject*);
+	TodoReturn destroyPlayer(PlayerObject*, GameObject*) = mac 0xb40f0, win 0x2e0a90;
 	TodoReturn levelComplete();
 	TodoReturn spawnFirework();
 	TodoReturn stopRecording();
@@ -10243,10 +10243,10 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn processCreateObjectsFromSetup();
 	TodoReturn createObjectsFromSetupFinished();
 	TodoReturn playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool);
-	bool init(GJGameLevel*, bool, bool);
+	bool init(GJGameLevel*, bool, bool) = mac 0xa5db0, win 0x2d69a0;
 	TodoReturn scene(GJGameLevel*, bool, bool);
 	static PlayLayer* create(GJGameLevel*, bool, bool);
-	virtual void onExit();
+	virtual void onExit() = win 0x6e5910;
 	TodoReturn onQuit();
 	TodoReturn resume();
 	TodoReturn flipArt(bool);
