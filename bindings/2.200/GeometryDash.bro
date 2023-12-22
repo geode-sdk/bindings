@@ -657,46 +657,46 @@ class CCContentLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
-	void onFacebook(cocos2d::CCObject* sender);
-	void onEveryplay(cocos2d::CCObject* sender);
-	void onMoreGames(cocos2d::CCObject* sender);
-	void onMyProfile(cocos2d::CCObject* sender);
-	TodoReturn openOptions(bool);
+	void onFacebook(cocos2d::CCObject* sender) = mac 0x36f670, win 0x2779b0;
+	void onEveryplay(cocos2d::CCObject* sender); // empty
+	void onMoreGames(cocos2d::CCObject* sender) = mac 0x36f710, win 0x277a50;
+	void onMyProfile(cocos2d::CCObject* sender) = mac 0x36f860, win 0x277940;
+	TodoReturn openOptions(bool) = mac 0x75bcf0, win 0x2ab400;
 	void onFreeLevels(cocos2d::CCObject* sender);
-	void onGameCenter(cocos2d::CCObject* sender);
-	void onNewgrounds(cocos2d::CCObject* sender);
+	void onGameCenter(cocos2d::CCObject* sender) = mac 0x36fac0;
+	void onNewgrounds(cocos2d::CCObject* sender) = mac 0x36f580, win 0x277d90;
 	void onFullVersion(cocos2d::CCObject* sender);
 	virtual void keyBackClicked();
-	void onAchievements(cocos2d::CCObject* sender);
-	TodoReturn showGCQuestion();
-	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x80813;
-	TodoReturn firstNetworkTest();
+	void onAchievements(cocos2d::CCObject* sender) = mac 0x36f4c0, win 0x277ae0;
+	TodoReturn showGCQuestion() = mac 0x36fb10;
+	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool); // = mac 0x36ff10;
+	TodoReturn firstNetworkTest() = mac 0x36fa30, win 0x277900;
 	TodoReturn onOptionsInstant();
 	void onGooglePlayGames(cocos2d::CCObject* sender);
-	TodoReturn showMeltdownPromo();
+	TodoReturn showMeltdownPromo(); // empty
 	TodoReturn googlePlaySignedIn() = win 0x80813;
 	TodoReturn videoOptionsClosed();
 	TodoReturn videoOptionsOpened();
 	TodoReturn updateUserProfileButton();
 	TodoReturn syncPlatformAchievements(float);
-	virtual bool init() = win 0x276700;
+	virtual bool init() = mac 0x36dfd0, win 0x276700;
 	static cocos2d::CCScene* scene(bool) = win 0x12c470;
-	void onPlay(cocos2d::CCObject* sender);
-	void onQuit(cocos2d::CCObject* sender);
+	void onPlay(cocos2d::CCObject* sender) = mac 0x36f310, win 0x277b40;
+	void onQuit(cocos2d::CCObject* sender) = mac 0x36f790, win 0x277e20;
 	TodoReturn endGame();
 	virtual void keyDown(cocos2d::enumKeyCodes);
-	void onDaily(cocos2d::CCObject* sender);
-	void onStats(cocos2d::CCObject* sender);
-	TodoReturn showTOS();
-	void onGarage(cocos2d::CCObject* sender);
-	void onRobTop(cocos2d::CCObject* sender);
-	void onTwitch(cocos2d::CCObject* sender);
-	void onCreator(cocos2d::CCObject* sender);
-	void onDiscord(cocos2d::CCObject* sender);
-	void onOptions(cocos2d::CCObject* sender);
-	void onTrailer(cocos2d::CCObject* sender);
-	void onTwitter(cocos2d::CCObject* sender);
-	void onYouTube(cocos2d::CCObject* sender);
+	void onDaily(cocos2d::CCObject* sender) = mac 0x36f9d0, win 0x2777b0;
+	void onStats(cocos2d::CCObject* sender)  = mac 0x36f540, win 0x277c50;
+	TodoReturn showTOS() = mac 0x36f9f0, win 0x277910;
+	void onGarage(cocos2d::CCObject* sender) = mac 0x36f3a0, win 0x277cf0;
+	void onRobTop(cocos2d::CCObject* sender) = mac 0x36f650, win 0x277990;
+	void onTwitch(cocos2d::CCObject* sender) = mac 0x36f6d0, win 0x277a10;
+	void onCreator(cocos2d::CCObject* sender) = mac 0x36f430, win 0x277c80;
+	void onDiscord(cocos2d::CCObject* sender) = mac 0x36f6f0, win 0x277a30;
+	void onOptions(cocos2d::CCObject* sender) = mac 0x36f500, win 0x277be0;
+	void onTrailer(cocos2d::CCObject* sender) = mac 0x36fea0;
+	void onTwitter(cocos2d::CCObject* sender) = mac 0x36f690, win 0x2779d6;
+	void onYouTube(cocos2d::CCObject* sender) = mac 0x36f6b0, win 0x2779f0;
 	TodoReturn tryShowAd(float);
 	TodoReturn willClose();
 	~MenuLayer();
@@ -708,7 +708,7 @@ class LoadingLayer : cocos2d::CCLayer {
 	TodoReturn updateProgress(int);
 	void loadingFinished() = win 0x2722A0;
 	const char* getLoadingString() = win 0x272A20;
-	bool init(bool fromReload) = win 0x271B30;
+	bool init(bool fromReload) = win 0x271B30, mac 0x380350;
 	static cocos2d::CCScene* scene(bool);
 	static LoadingLayer* create(bool fromReload) = win 0x271A90;
 
