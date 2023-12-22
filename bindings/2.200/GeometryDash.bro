@@ -707,7 +707,6 @@ class LoadingLayer : cocos2d::CCLayer {
 	bool init(bool fromReload) = win 0x271B30;
 	static cocos2d::CCScene* scene(bool);
 	static LoadingLayer* create(bool fromReload) = win 0x271A90;
-	~LoadingLayer();
 
 	// 2.2, not tested
 

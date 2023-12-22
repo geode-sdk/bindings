@@ -42,8 +42,8 @@ class cocos2d::CCFileUtils {
 [[link(win, android)]]
 class cocos2d::CCNode {
 	// CCNode(cocos2d::CCNode const&);
-	// CCNode();
-    ~CCNode();
+	CCNode() = win 0x5eef0;
+    ~CCNode() = win 0x5f160;
 	virtual void _setZOrder(int);
 	virtual void addChild(cocos2d::CCNode*);
 	virtual void addChild(cocos2d::CCNode*, int);
@@ -225,8 +225,8 @@ class cocos2d::CCScheduler {
 [[link(win, android)]]
 class cocos2d::CCLayer {
 	// CCLayer(cocos2d::CCLayer const&);
-	// CCLayer();
-    ~CCLayer();
+	CCLayer() = win 0xa3370;
+    ~CCLayer() = win 0xa36d0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -279,8 +279,8 @@ class cocos2d::CCLayer {
 [[link(win, android)]]
 class cocos2d::CCObject {
 	// CCObject(cocos2d::CCObject const&);
-	// CCObject();
-    ~CCObject();
+	CCObject() = win 0x6a180;
+    ~CCObject() = win 0x6a1f0;
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 	cocos2d::CCObject* autorelease();
 	virtual bool canEncode();
