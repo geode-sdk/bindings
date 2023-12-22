@@ -669,7 +669,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	virtual void keyBackClicked();
 	void onAchievements(cocos2d::CCObject* sender) = mac 0x36f4c0, win 0x277ae0;
 	TodoReturn showGCQuestion() = mac 0x36fb10;
-	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool); // = mac 0x36ff10;
+	void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x277ea0;
 	TodoReturn firstNetworkTest() = mac 0x36fa30, win 0x277900;
 	TodoReturn onOptionsInstant();
 	void onGooglePlayGames(cocos2d::CCObject* sender);
