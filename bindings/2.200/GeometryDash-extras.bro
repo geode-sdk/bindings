@@ -2511,7 +2511,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 
 [[link(android)]]
 class FMODAudioState {
-	~FMODAudioState();
+    // ~FMODAudioState();
 }
 
 [[link(android)]]
@@ -3269,7 +3269,7 @@ class FindObjectPopup : SetIDPopup {
 }
 
 [[link(android)]]
-class FMODAudioEngine {
+class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseMusic(int);
 	TodoReturn playEffect(gd::string);
 	TodoReturn playEffect(gd::string, float, float, float) = win 0x355b0;
@@ -7173,7 +7173,7 @@ class EnterEffectInstance {
 }
 
 [[link(android)]]
-class FMODLevelVisualizer {
+class FMODLevelVisualizer : cocos2d::CCNode {
 	TodoReturn updateVisualizer(float, float, float);
 	virtual bool init();
 	static FMODLevelVisualizer* create();
