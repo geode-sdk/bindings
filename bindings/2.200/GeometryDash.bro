@@ -801,6 +801,39 @@ class CCContentLayer : cocos2d::CCLayerColor {
 	~CCContentLayer();
 }
 
+[[link(android)]]
+class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
+	TodoReturn showDialog();
+	void onClickDoor(cocos2d::CCObject* sender) = win 0x22B580;
+	TodoReturn dialogClosed(DialogLayer*);
+	TodoReturn onEnterTower();
+	virtual void keyBackClicked();
+	TodoReturn fadeInsideTower();
+	virtual bool init() = win 0x22A610;
+	TodoReturn scene();
+	static LevelAreaLayer* create();
+	void onBack(cocos2d::CCObject* sender) = win 0x22C080;
+	TodoReturn addTorch(cocos2d::CCNode*, cocos2d::CCPoint, int, float, int, bool);
+	TodoReturn addGodRay(float, float, float, float, float, cocos2d::CCPoint);
+	~LevelAreaLayer();
+}
+
+[[link(android)]]
+class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
+	void onNextFloor(cocos2d::CCObject* sender) = win 0x22CEF0;
+	TodoReturn dialogClosed(DialogLayer*);
+	virtual void keyBackClicked();
+	void tryResumeTowerMusic() = win 0x22d640;
+	void showFloor1CompleteDialog() = win 0x22CF40;
+	bool init(bool) = win 0x22C1E0;
+	TodoReturn scene(bool);
+	static LevelAreaInnerLayer* create(bool);
+	void onBack(cocos2d::CCObject* sender) = win 0x22D8E0;
+	void onDoor(cocos2d::CCObject* sender) = win 0x22D6C0;
+	void onInfo(cocos2d::CCObject* sender) = win 0x22D3C0;
+	void playStep1() = win 0x22D7F0;
+	~LevelAreaInnerLayer();
+}
 
 [[link(android)]]
 class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
