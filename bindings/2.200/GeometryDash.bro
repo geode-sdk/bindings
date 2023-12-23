@@ -1936,3 +1936,44 @@ class GameToolbox {
 	static bool isIOS();
 	static TodoReturn fast_rand();
 }
+
+
+[[link(android)]]
+class BoomScrollLayer : cocos2d::CCLayer {
+	TodoReturn claimTouch(cocos2d::CCTouch*);
+	TodoReturn moveToPage(int);
+	TodoReturn removePage(cocos2d::CCLayer*);
+	TodoReturn selectPage(int);
+	TodoReturn updateDots(float);
+	TodoReturn quickUpdate();
+	/* unverified signature */
+	void setDotScale(float);
+	TodoReturn updatePages();
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	TodoReturn getTotalPages();
+	TodoReturn moveToPageEnded();
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	TodoReturn instantMoveToPage(int);
+	TodoReturn cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	TodoReturn removePageWithNumber(int);
+	TodoReturn togglePageIndicators(bool);
+	TodoReturn getRelativePageForNum(int);
+	TodoReturn getRelativePosForPage(int);
+	TodoReturn pageNumberForPosition(cocos2d::CCPoint);
+	TodoReturn repositionPagesLooped();
+	TodoReturn setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*);
+	TodoReturn positionForPageWithNumber(int);
+	/* unverified signature */
+	void setPagesIndicatorPosition(cocos2d::CCPoint);
+	virtual void registerWithTouchDispatcher();
+	bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*);
+	virtual void visit();
+	static BoomScrollLayer* create(cocos2d::CCArray*, int, bool);
+	static BoomScrollLayer* create(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*);
+	TodoReturn addPage(cocos2d::CCLayer*);
+	TodoReturn addPage(cocos2d::CCLayer*, int);
+	TodoReturn getPage(int);
+	~BoomScrollLayer();
+}
