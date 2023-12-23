@@ -16,6 +16,7 @@ int main(int argc, char** argv) try {
     else if (p == "MacOS") codegen::platform = Platform::Mac;
     else if (p == "iOS") codegen::platform = Platform::iOS;
     else if (p == "Android") codegen::platform = Platform::Android;
+    else if (p == "Android64") codegen::platform = Platform::Android64;
     else throw codegen::error("Invalid platform {}\n", p);
 
     auto rootDir = ghc::filesystem::path(argv[2]);
