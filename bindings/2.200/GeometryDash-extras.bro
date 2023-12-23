@@ -1236,10 +1236,10 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 	TodoReturn darkenButtons(bool);
 	virtual void keyBackClicked();
 	virtual void registerWithTouchDispatcher();
-	virtual bool init();
+	virtual bool init() = win 0x1F82A0;
 	TodoReturn show();
 	static GJPathsLayer* create();
-	virtual void onExit();
+	virtual void onExit() = 0x1F8756;
 	void onPath(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	~GJPathsLayer();
