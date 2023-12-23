@@ -114,7 +114,6 @@ class ButtonSprite : cocos2d::CCSprite {
     static ButtonSprite* create(char const* caption, const char* font, const char* texture, float scale) {
         return ButtonSprite::create(caption, 0, 0, font, texture, .0f, scale);
     }
-	static ButtonSprite* create(char const*);
 	static ButtonSprite* create(char const*, float);
 	static ButtonSprite* create(char const*, int, int, float, bool);
 	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*);
