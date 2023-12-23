@@ -185,6 +185,14 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 }
 
 [[link(android)]]
+class BoomScrollLayerDelegate {
+	TodoReturn scrollLayerMoved(cocos2d::CCPoint);
+	TodoReturn scrollLayerScrolledToPage(BoomScrollLayer*, int);
+	TodoReturn scrollLayerScrollingStarted(BoomScrollLayer*);
+	TodoReturn scrollLayerWillScrollToPage(BoomScrollLayer*, int);
+}
+
+[[link(android)]]
 class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
 	void onDownload(cocos2d::CCObject* sender);
 	TodoReturn colorForPage(int);
