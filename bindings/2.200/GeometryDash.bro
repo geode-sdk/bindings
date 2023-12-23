@@ -214,6 +214,15 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 }
 
 [[link(android)]]
+class LevelManagerDelegate {
+	virtual void setupPageInfo(gd::string, char const*) {}
+	virtual void loadLevelsFailed(char const*) {}
+	virtual void loadLevelsFailed(char const*, int) {}
+	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*) {}
+	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) {}
+}
+
+[[link(android)]]
 class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
 	TodoReturn setupGauntlet(cocos2d::CCArray*);
 	virtual void keyBackClicked();
