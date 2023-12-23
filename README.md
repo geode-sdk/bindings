@@ -41,6 +41,14 @@ class Example : Base1, Base2 {
     // conventions. Use the `callback` keyword if a function is __thiscall 
     // when it would otherwise be inferred as __membercall
     callback void unpredictable();
+
+    // Add members like you would on a C++ class
+    // Members are in the format m_camelCase
+    int m_jumpCount;
+    // Add pads for skipping members, platform dependant
+    PAD = win 0x18, android 0x4;
+    // Use std::array for C arrays
+    std::array<float, 2000> m_lastYPositions;
 }
 ```
 
