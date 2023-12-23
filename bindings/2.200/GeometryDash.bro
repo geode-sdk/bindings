@@ -71,15 +71,15 @@ class FLAlertLayerProtocol {
 
 [[link(android)]]
 class ButtonSprite : cocos2d::CCSprite {
-	[[docs("
-        Create a ButtonSprite with a top sprite and a texture.
-        @param topSprite The top sprite to add on top of the sprite
-        @param width Sprite width; ignored if `absolute` is false
-        @param absolute Whether to use absolute width or not
-        @param texture The name of the background sprite file (can't be in a spritesheet)
-        @param height The height of the button, leave 0 for automatic
-        @param scale Scale of top sprite
-    ")]]
+    /**
+     * Create a ButtonSprite with a top sprite and a texture.
+     * @param topSprite The top sprite to add on top of the sprite
+     * @param width Sprite width; ignored if `absolute` is false
+     * @param absolute Whether to use absolute width or not
+     * @param texture The name of the background sprite file (can't be in a spritesheet)
+     * @param height The height of the button, leave 0 for automatic
+     * @param scale Scale of top sprite
+     */
     static ButtonSprite* create(
         cocos2d::CCSprite* topSprite,
         int width,
@@ -91,17 +91,17 @@ class ButtonSprite : cocos2d::CCSprite {
         return create(topSprite, width, 0, height, scale, absolute, texture, true);
     }
 
-    [[docs("
-        Create a ButtonSprite with text, a font and a texture.
-        @param caption The text of the ButtonSprite
-        @param width Sprite width; ignored if `absolute` is false
-        @param absolute Whether to use absolute width or not
-        @param font The name of the BM font file to use
-        @param texture The name of the background sprite file (can't be in a spritesheet)
-        @param height The height of the button, leave 0 for automatic
-        @param scale Scale of text
-        @returns Pointer to the created ButtonSprite, or nullptr on error
-    ")]]
+    /**
+     * Create a ButtonSprite with text, a font and a texture.
+     * @param caption The text of the ButtonSprite
+     * @param width Sprite width; ignored if `absolute` is false
+     * @param absolute Whether to use absolute width or not
+     * @param font The name of the BM font file to use
+     * @param texture The name of the background sprite file (can't be in a spritesheet)
+     * @param height The height of the button, leave 0 for automatic
+     * @param scale Scale of text
+     * @returns Pointer to the created ButtonSprite, or nullptr on error
+     */
     static ButtonSprite* create(const char* caption, int width, bool absolute, const char* font, const char* texture, float height, float scale) {
         return create(caption, width, 0, scale, absolute, font, texture, height);
     }
