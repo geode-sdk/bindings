@@ -625,7 +625,7 @@ class ColorAction : cocos2d::CCObject {
 	// TodoReturn writeSaveString(fmt::BasicWriter<char>&);
 	TodoReturn updateCustomColor(cocos2d::_ccColor3B, cocos2d::_ccColor3B);
 	bool init(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float, double, bool, int, float, float);
-	virtual void step(float);
+	void step(float);
 	static ColorAction* create(cocos2d::_ccColor3B, bool, int);
 	static ColorAction* create(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float, double, bool);
 	static ColorAction* create(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float, double, bool, int, float, float);
