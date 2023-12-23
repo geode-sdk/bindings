@@ -565,9 +565,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn checkSound();
 	TodoReturn pauseSound();
 	TodoReturn resumeSound();
-	virtual void setupGLView();
 	virtual void trySaveGame(bool);
-	virtual void platformShutdown();
 	TodoReturn hideLoadingCircle();
 	TodoReturn loadingIsFinished();
 	TodoReturn showLoadingCircle(bool, bool, bool);
@@ -584,6 +582,8 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn pauseGame();
 	~AppDelegate();
 }
+	// virtual void setupGLView();
+	// virtual void platformShutdown();
 
 [[link(android)]]
 class CCCountdown : cocos2d::CCSprite {
@@ -602,7 +602,7 @@ class CCIndexPath : cocos2d::CCObject {
 
 [[link(android)]]
 class CCMoveCNode : cocos2d::CCObject {
-	virtual bool init();
+	bool init();
 	TodoReturn reset();
 	static CCMoveCNode* create();
 	~CCMoveCNode();
