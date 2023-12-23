@@ -25,7 +25,7 @@ class Example : Base1, Base2 {
 
     // If the binding is inlined on some platform, provide a reconstructed 
     // definition for it
-    inline void inlined(bool x) {
+    void inlined(bool x) {
         if (x) {
             // Do stuff
         }
