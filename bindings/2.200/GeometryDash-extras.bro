@@ -2417,49 +2417,6 @@ class DashRingObject : RingObject {
 
 
 [[link(android)]]
-class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-	void onLevelInfo(cocos2d::CCObject* sender);
-	TodoReturn onMoveToTop();
-	void onSetFolder(cocos2d::CCObject* sender);
-	TodoReturn textChanged(CCTextInputNode*);
-	TodoReturn confirmClone(cocos2d::CCObject*);
-	TodoReturn onClosePopup(UploadActionPopup*);
-	void onGuidelines(cocos2d::CCObject* sender);
-	TodoReturn confirmDelete(cocos2d::CCObject*);
-	virtual void keyBackClicked();
-	TodoReturn setupLevelInfo();
-	TodoReturn updateDescText(char const*);
-	TodoReturn closeTextInputs();
-	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
-	void onLowDetailMode(cocos2d::CCObject* sender);
-	TodoReturn textInputClosed(CCTextInputNode*);
-	TodoReturn textInputOpened(CCTextInputNode*);
-	TodoReturn verifyLevelName();
-	TodoReturn confirmMoveToTop(cocos2d::CCObject*);
-	/* unverified signature */
-	void setIDPopupClosed(SetIDPopup*, int);
-	void onLevelLeaderboard(cocos2d::CCObject* sender);
-	TodoReturn uploadActionFailed(int, int);
-	void onUpdateDescription(cocos2d::CCObject* sender);
-	TodoReturn uploadActionFinished(int, int);
-	bool init(GJGameLevel*);
-	TodoReturn scene(GJGameLevel*);
-	static EditLevelLayer* create(GJGameLevel*);
-	void onBack(cocos2d::CCObject* sender);
-	void onEdit(cocos2d::CCObject* sender);
-	void onHelp(cocos2d::CCObject* sender);
-	void onPlay(cocos2d::CCObject* sender);
-	void onTest(cocos2d::CCObject* sender);
-	virtual void keyDown(cocos2d::enumKeyCodes);
-	TodoReturn onClone();
-	void onShare(cocos2d::CCObject* sender);
-	TodoReturn onDelete();
-	TodoReturn playStep2();
-	TodoReturn playStep3();
-	~EditLevelLayer();
-}
-
-[[link(android)]]
 class FMODAudioState {
     // ~FMODAudioState();
 }
@@ -8011,12 +7968,6 @@ class UISettingsGameObject : EffectGameObject {
 	virtual bool init();
 	static UISettingsGameObject* create();
 	~UISettingsGameObject();
-}
-
-[[link(android)]]
-class UploadActionDelegate {
-	TodoReturn uploadActionFailed(int, int);
-	TodoReturn uploadActionFinished(int, int);
 }
 
 [[link(android)]]

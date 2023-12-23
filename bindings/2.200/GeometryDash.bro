@@ -194,7 +194,7 @@ class BoomScrollLayerDelegate {
 
 [[link(android)]]
 class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
-	void onDownload(cocos2d::CCObject* sender);
+	void onDownload(cocos2d::CCObject* sender) = win 0x385510;
 	TodoReturn colorForPage(int);
 	TodoReturn getColorValue(int, int, float);
 	virtual void keyBackClicked();
@@ -203,14 +203,74 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	bool init(int)  = win 0x2632F0;
 	TodoReturn scene(int);
 	static LevelSelectLayer* create(int);
-	void onBack(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onNext(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x2642C0;
+	void onInfo(cocos2d::CCObject* sender) = win 0x2643F0;
+	void onNext(cocos2d::CCObject* sender) = win 0x264200;
 	void onPlay(cocos2d::CCObject* sender);
-	void onPrev(cocos2d::CCObject* sender);
+	void onPrev(cocos2d::CCObject* sender) = win 0x264260;
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	TodoReturn tryShowAd();
 	~LevelSelectLayer();
+}
+
+[[link(android)]]
+class UploadActionDelegate {
+	TodoReturn uploadActionFailed(int, int);
+	TodoReturn uploadActionFinished(int, int);
+}
+
+[[link(android)]]
+class UploadPopupDelegate {
+	TodoReturn onClosePopup(UploadActionPopup*);
+}
+
+[[link(android)]]
+class SetIDPopupDelegate {
+       /* unverified signature */
+       void setIDPopupClosed(SetIDPopup*, int) {}
+}
+
+[[link(android)]]
+class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
+	void onLevelInfo(cocos2d::CCObject* sender) = win 0x9D0B0;
+	TodoReturn onMoveToTop();
+	void onSetFolder(cocos2d::CCObject* sender) = win 0x9EB60;
+	TodoReturn textChanged(CCTextInputNode*);
+	TodoReturn confirmClone(cocos2d::CCObject*) = win 0x9EA60;
+	TodoReturn onClosePopup(UploadActionPopup*);
+	void onGuidelines(cocos2d::CCObject* sender) = win 0x9CFE0;
+	TodoReturn confirmDelete(cocos2d::CCObject*) = win 0x9E5E0;
+	virtual void keyBackClicked();
+	TodoReturn setupLevelInfo();
+	TodoReturn updateDescText(char const*);
+	TodoReturn closeTextInputs();
+	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+	void onLowDetailMode(cocos2d::CCObject* sender);
+	TodoReturn textInputClosed(CCTextInputNode*);
+	TodoReturn textInputOpened(CCTextInputNode*);
+	TodoReturn verifyLevelName();
+	TodoReturn confirmMoveToTop(cocos2d::CCObject*) = win 0x9EAE0;
+	/* unverified signature */
+	void setIDPopupClosed(SetIDPopup*, int);
+	void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x9D050;
+	TodoReturn uploadActionFailed(int, int);
+	void onUpdateDescription(cocos2d::CCObject* sender) = win 0x9E180;
+	TodoReturn uploadActionFinished(int, int);
+	bool init(GJGameLevel*) = win 0x9BDF0;
+	TodoReturn scene(GJGameLevel*);
+	static EditLevelLayer* create(GJGameLevel*);
+	void onBack(cocos2d::CCObject* sender) = win 0x9ECA0;
+	void onEdit(cocos2d::CCObject* sender) = win 0x9E200;
+	void onHelp(cocos2d::CCObject* sender) = win 0x9E8C0;
+	void onPlay(cocos2d::CCObject* sender) = win 0x9DF10;
+	void onTest(cocos2d::CCObject* sender);
+	virtual void keyDown(cocos2d::enumKeyCodes);
+	TodoReturn onClone();
+	void onShare(cocos2d::CCObject* sender) = win 0x9E300;
+	TodoReturn onDelete();
+	TodoReturn playStep2();
+	TodoReturn playStep3();
+	~EditLevelLayer();
 }
 
 [[link(android)]]
