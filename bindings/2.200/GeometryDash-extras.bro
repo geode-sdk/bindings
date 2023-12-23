@@ -1184,41 +1184,6 @@ class ColorAction2 {
 	// ColorAction2(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float, double, bool, int, float, float);
 }
 
-[[link(android)]]
-class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, DialogDelegate {
-	void onMapPacks(cocos2d::CCObject* sender);
-	void onMyLevels(cocos2d::CCObject* sender) = win 0x6FE90;
-	void onTopLists(cocos2d::CCObject* sender);
-	void onChallenge(cocos2d::CCObject* sender);
-	void onGauntlets(cocos2d::CCObject* sender);
-	TodoReturn dialogClosed(DialogLayer*);
-	void onDailyLevel(cocos2d::CCObject* sender);
-	void onEventLevel(cocos2d::CCObject* sender);
-	void onFameLevels(cocos2d::CCObject* sender);
-	void onMultiplayer(cocos2d::CCObject* sender);
-	void onSavedLevels(cocos2d::CCObject* sender);
-	void onSecretVault(cocos2d::CCObject* sender);
-	void onWeeklyLevel(cocos2d::CCObject* sender);
-	virtual void keyBackClicked();
-	void onAdventureMap(cocos2d::CCObject* sender);
-	void onLeaderboards(cocos2d::CCObject* sender);
-	void onOnlineLevels(cocos2d::CCObject* sender);
-	void onTreasureRoom(cocos2d::CCObject* sender);
-	virtual void sceneWillResume();
-	void onFeaturedLevels(cocos2d::CCObject* sender);
-	TodoReturn checkQuestsStatus();
-	void onOnlyFullVersion(cocos2d::CCObject* sender);
-	TodoReturn canPlayOnlineLevels();
-	virtual bool init();
-	TodoReturn scene();
-	static CreatorLayer* create();
-	void onBack(cocos2d::CCObject* sender);
-	void onPaths(cocos2d::CCObject* sender);
-	~CreatorLayer();
-}
-
-
-
 [[link(android)]
 class FindBPMLayer : CreateGuidelinesLayer {
 	TodoReturn calculateBPM();
@@ -1986,22 +1951,6 @@ class FileOperation {
 	TodoReturn getFilePath();
 	TodoReturn readFile();
 	TodoReturn saveFile();
-}
-
-[[link(android)]]
-=======
-class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
-	TodoReturn setupGauntlet(cocos2d::CCArray*);
-	virtual void keyBackClicked();
-	virtual void loadLevelsFailed(char const*, int);
-	TodoReturn unlockActiveItem();
-	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int);
-	bool init(GauntletType);
-	TodoReturn scene(GauntletType);
-	static GauntletLayer* create(GauntletType);
-	void onBack(cocos2d::CCObject* sender);
-	void onLevel(cocos2d::CCObject* sender);
-	~GauntletLayer();
 }
 
 [[link(android)]]
