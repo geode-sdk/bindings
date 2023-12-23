@@ -5556,8 +5556,8 @@ class GameLevelManager {
 class GameOptionsLayer {
 	void onUIOptions(cocos2d::CCObject* sender);
 	TodoReturn setupOptions();
-	void onPracticeMusicSync(cocos2d::CCObject* sender);
-	TodoReturn showPracticeMusicSyncUnlockInfo();
+	void onPracticeMusicSync(cocos2d::CCObject* sender) = 0x20eeb0;
+	TodoReturn showPracticeMusicSyncUnlockInfo() = win 0x20eba0;
 	bool init(GJBaseGameLayer*);
 	static GameOptionsLayer* create(GJBaseGameLayer*);
 	TodoReturn didToggle(int);
