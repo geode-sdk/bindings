@@ -105,7 +105,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
-	char const* declare_virtual_error = R"GEN(
+	char const* declare_unimplemented_error = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	throw std::runtime_error("{class_name}::{function_name} not implemented");
 }}
@@ -196,11 +196,15 @@ std::string generateBindingSource(Root const& root) {
 				char const* used_declare_format = nullptr;
 
 				if (
-					codegen::getStatus(f) == BindStatus::Unbindable && 
-					codegen::platformNumber(fn->binds) == -1 && 
-					fn->prototype.is_virtual && fn->prototype.type != FunctionType::Dtor
+					(
+						codegen::getStatus(f) == BindStatus::Unbindable && 
+						codegen::platformNumber(fn->binds) == -1 && 
+						fn->prototype.is_virtual && fn->prototype.type != FunctionType::Dtor
+					) || (
+						codegen::platformNumber(fn->binds) == 0x9999999
+					)
 				) {
-					used_declare_format = format_strings::declare_virtual_error;
+					used_declare_format = format_strings::declare_unimplemented_error;
 				}
 				else if (codegen::getStatus(f) != BindStatus::NeedsBinding && !codegen::shouldAndroidBind(fn)) {
 					continue;

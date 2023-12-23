@@ -3,7 +3,7 @@
 Addresses and bindings for Geometry Dash, for use with the Geode mod loader.
 
 ## Temporary note
-`win 0x80813` is a **placeholder** address so that we can get to building windows Geode faster. This means that you should absolutely contribute addresses for functions marked with this, replacing the placeholder address!
+`win 0x9999999` is a **placeholder** address so that we can get to building windows Geode faster. This means that you should absolutely contribute addresses for functions marked with this, replacing the placeholder address!
 
 ## Contributing
 
