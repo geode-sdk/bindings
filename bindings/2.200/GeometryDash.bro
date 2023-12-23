@@ -17,6 +17,9 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         m_containsBorder = 0;
 		m_forcePrioRegistered = false;
     }
+    static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) {
+        return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
+    }
 
 	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*) = win 0x30c40;
 	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float) = win 0x30cf0;
@@ -341,8 +344,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 
 	gd::string getString() = win 0x2ea50;
 
-	/* unverified signature */
-	void setAllowedChars(gd::string);
+	void setAllowedChars(gd::string) = win 0x2e8c0;
 	/* unverified signature */
 	void setLabelNormalColor(cocos2d::_ccColor3B);
 	/* unverified signature */
@@ -672,7 +674,7 @@ class CustomListView : BoomListView {
     inline CustomListView() {}
 	~CustomListView();
 
-	TableViewCell* getListCell(char const*);
+	virtual TableViewCell* getListCell(char const*);
 	float getCellHeight(BoomListType);
 
     virtual void loadCell(TableViewCell*, int) = win 0x7B2D0;
