@@ -1019,7 +1019,7 @@ class GJMapObject : cocos2d::CCNode {
 	/* unverified signature */ void setObjectOrigin(cocos2d::CCPoint, float);
 	TodoReturn startPlayerJumpLoop();
 	TodoReturn startMonsterJumpLoop();
-	virtual bool init(cocos2d::CCNode*);
+	bool init(cocos2d::CCNode*);
 	static GJMapObject* create(cocos2d::CCNode*);
 	~GJMapObject();
 }
@@ -1398,7 +1398,7 @@ class ButtonSprite : cocos2d::CCSprite {
 	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool);
 	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool, char const*, bool);
 	/* unverified signature */ void setColor(cocos2d::_ccColor3B);
-	virtual void setString(char const*);
+	void setString(char const*);
 	~ButtonSprite();
 }
 
@@ -2118,7 +2118,7 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
 
 [[link(android)]]
 class SimpleObject : cocos2d::CCObject {
-	virtual bool init();
+	bool init();
 	static SimpleObject* create();
 	~SimpleObject();
 }
@@ -2506,7 +2506,7 @@ class GJSmartPrefab : cocos2d::CCObject {
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn createWithCoder(DS_Dictionary*);
 	virtual void encodeWithCoder(DS_Dictionary*);
-	virtual bool init();
+	bool init();
 	static GJSmartPrefab* create();
 	virtual bool canEncode();
 	~GJSmartPrefab();
@@ -3525,7 +3525,7 @@ class BitmapFontCache : cocos2d::CCObject {
 	TodoReturn sharedFontCache();
 	TodoReturn fontWithConfigFile(char const*, float);
 	TodoReturn purgeSharedFontCache();
-	virtual bool init();
+	bool init();
 	~BitmapFontCache();
 }
 
@@ -4398,7 +4398,7 @@ class GJSmartTemplate : cocos2d::CCObject {
 	TodoReturn smartTypeToObjectKey(SmartBlockType);
 	TodoReturn getTotalChanceForPrefab(gd::string);
 	TodoReturn applyTransformationsForType(SmartBlockType, cocos2d::CCSprite*);
-	virtual bool init();
+	bool init();
 	static GJSmartTemplate* create();
 	TodoReturn flipKey(gd::string, bool, bool);
 	virtual bool canEncode();
@@ -5651,7 +5651,7 @@ class GJRewardDelegate {
 
 [[link(android)]]
 class GJUnlockableItem : cocos2d::CCObject {
-	virtual bool init();
+	bool init();
 	static GJUnlockableItem* create();
 	~GJUnlockableItem();
 }
@@ -6346,7 +6346,7 @@ class GJRotationControl : cocos2d::CCLayer {
 	virtual void draw();
 	virtual bool init();
 	static GJRotationControl* create();
-	virtual void setAngle(float);
+	void setAngle(float);
 	~GJRotationControl();
 }
 
@@ -6529,7 +6529,7 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
 	TodoReturn createTagFilterObjects();
 	TodoReturn getFilesMatchingSearch(cocos2d::CCArray*, gd::string);
 	TodoReturn createArtistFilterObjects();
-	virtual bool init();
+	bool init();
 	static MusicSearchResult* create();
 	~MusicSearchResult();
 }
@@ -7477,7 +7477,7 @@ class CCAnimateFrameCache : cocos2d::CCObject {
 	TodoReturn addSpriteFramesWithFile(char const*);
 	TodoReturn purgeSharedSpriteFrameCache();
 	TodoReturn addCustomSpriteFramesWithFile(char const*);
-	virtual bool init();
+	bool init();
 	TodoReturn addDict(DS_Dictionary*, char const*);
 	TodoReturn addDict(cocos2d::CCDictionary*, char const*);
 	~CCAnimateFrameCache();
@@ -10390,7 +10390,7 @@ class GameCell : TableViewCell {
 class GJUINode : cocos2d::CCNode {
 	TodoReturn getOpacity();
 	TodoReturn resetState();
-	virtual void setOpacity(unsigned char);
+	void setOpacity(unsigned char);
 	TodoReturn touchEnded();
 	TodoReturn updateSize(float, float);
 	TodoReturn toggleModeB(bool);

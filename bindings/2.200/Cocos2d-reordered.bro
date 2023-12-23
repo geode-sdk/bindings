@@ -472,7 +472,7 @@ class cocos2d::CCCallFuncN {
 	static cocos2d::CCCallFuncN* create(int);
 	static cocos2d::CCCallFuncN* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncN);
 	virtual void execute();
-	virtual bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncN);
+	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncN);
 }
 
 [[link(win, android)]]
@@ -482,7 +482,7 @@ class cocos2d::CCCallFuncND {
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	static cocos2d::CCCallFuncND* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*);
 	virtual void execute();
-	virtual bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*);
+	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*);
 }
 
 [[link(win, android)]]
@@ -493,7 +493,7 @@ class cocos2d::CCCallFuncO {
 	static cocos2d::CCCallFuncO* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCObject*);
 	virtual void execute();
 	cocos2d::CCObject* getObject();
-	virtual bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCObject*);
+	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCObject*);
 	void setObject(cocos2d::CCObject*);
 }
 
@@ -961,10 +961,10 @@ class cocos2d::CCEGLViewProtocol {
 	cocos2d::CCRect const& getViewPortRect() const;
 	virtual cocos2d::CCPoint getVisibleOrigin() const;
 	virtual cocos2d::CCSize getVisibleSize() const;
-	virtual void handleTouchesBegin(int, int* const, float* const, float* const);
-	virtual void handleTouchesCancel(int, int* const, float* const, float* const);
-	virtual void handleTouchesEnd(int, int* const, float* const, float* const);
-	virtual void handleTouchesMove(int, int* const, float* const, float* const);
+	void handleTouchesBegin(int, int* const, float* const, float* const);
+	void handleTouchesCancel(int, int* const, float* const, float* const);
+	void handleTouchesEnd(int, int* const, float* const, float* const);
+	void handleTouchesMove(int, int* const, float* const, float* const);
 	virtual bool isScissorEnabled();
 	virtual void pollInputEvents();
 	virtual void setDesignResolutionSize(float, float, ResolutionPolicy);
