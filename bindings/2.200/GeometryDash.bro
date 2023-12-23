@@ -905,7 +905,7 @@ class GameManager : GManager {
 	TodoReturn getFontTexture(int);
 	TodoReturn getNextUsedKey(int, bool);
 	/* unverified signature */
-	bool isIconUnlocked(int, IconType) = win 0x520170;
+	bool isIconUnlocked(int, IconType) = win 0x120170;
 	TodoReturn levelIsPremium(int, int);
 	TodoReturn loadBackground(int);
 	TodoReturn loadDPadLayout(int, bool);
