@@ -25,7 +25,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	// TODO: inlined on windows
 	void incrementForcePrio();
 	virtual void registerWithTouchDispatcher() = win 0x31df0;
-	bool init(int) = win 0x80813;
+	bool init(int) = win 0x30eb0;
 	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x30f50;
 	void show() = win 0x31c60;
 	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*) = win 0x30c40;
@@ -116,7 +116,7 @@ class ButtonSprite : cocos2d::CCSprite {
         return ButtonSprite::create(caption, 0, 0, font, texture, .0f, scale);
     }
 
-	TodoReturn updateBGImage(char const*) = win 0x80813;
+	TodoReturn updateBGImage(char const*) = win 0x20230;
 	TodoReturn updateSpriteBGSize();
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
 	bool init(char const*, int, int, float, bool, char const*, char const*, float);
@@ -542,7 +542,7 @@ class CustomListView : BoomListView {
         return CustomListView::create(entries, nullptr, width, height, 0, type, 0.0f);
     }
     virtual TableViewCell* getListCell(const char*);
-    virtual void loadCell(TableViewCell*, int);
+    virtual void loadCell(TableViewCell*, int) = win 0x7B2D0;
     virtual void setupList(float);
     float getCellHeight(BoomListType);
     TodoReturn reloadAll();
@@ -1108,7 +1108,7 @@ class GManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GJGameLevel : cocos2d::CCNode {
-	TodoReturn dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*) = win 0x113B90;
 	TodoReturn getCoinKey(int);
 	TodoReturn getSongName();
 	TodoReturn getLengthKey(int, bool);
@@ -1118,7 +1118,12 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn copyLevelInfo(GJGameLevel*);
 	TodoReturn unverifyCoins();
 	TodoReturn savePercentage(int, bool, int, int, bool);
-	TodoReturn createWithCoder(DS_Dictionary*);
+	static GJGameLevel* createWithCoder(DS_Dictionary* dict) {
+		//inlined on windows
+		auto level = GJGameLevel::create();
+		level->dataLoaded(dict);
+		return level;
+	}
 	virtual void encodeWithCoder(DS_Dictionary*);
 	TodoReturn getListSnapshot();
 	TodoReturn levelWasAltered();
@@ -1143,7 +1148,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn getUnpackedLevelDescription();
 	virtual bool init();
 	static GJGameLevel* create(cocos2d::CCDictionary*, bool);
-	static GJGameLevel* create();
+	static GJGameLevel* create() = win 0x112540;
 	virtual bool canEncode();
 	~GJGameLevel();
 }
@@ -1320,8 +1325,8 @@ class GJDropDownLayerDelegate {
 
 [[link(android)]]
 class StatsCell : TableViewCell {
-	TodoReturn updateBGColor(int);
-	TodoReturn loadFromObject(StatsObject*);
+	TodoReturn updateBGColor(int) = win 0x7D0A0;
+	TodoReturn loadFromObject(StatsObject*) = win 0x81BD0;
 	TodoReturn getTitleFromKey(char const*);
 	virtual void draw() = win 0x7d0f0;
 	virtual bool init();
