@@ -15,7 +15,7 @@ int main(int argc, char** argv) try {
     if (p == "Win32") codegen::platform = Platform::Windows;
     else if (p == "MacOS") codegen::platform = Platform::Mac;
     else if (p == "iOS") codegen::platform = Platform::iOS;
-    else if (p == "Android") codegen::platform = Platform::Android;
+    else if (p == "Android32") codegen::platform = Platform::Android32;
     else if (p == "Android64") codegen::platform = Platform::Android64;
     else throw codegen::error("Invalid platform {}\n", p);
 
