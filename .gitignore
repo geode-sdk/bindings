@@ -3,3 +3,4 @@ build/
 *.mjs
 *sym*.txt
 inheritance.txt
+virtuals.txt
