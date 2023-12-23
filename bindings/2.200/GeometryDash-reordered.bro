@@ -550,7 +550,7 @@ class StatsLayer : GJDropDownLayer {
 
 [[link(android)]]
 class UndoObject : cocos2d::CCObject {
-	virtual void setObjects(cocos2d::CCArray*);
+	void setObjects(cocos2d::CCArray*);
 	TodoReturn createWithArray(cocos2d::CCArray*, UndoCommand);
 	TodoReturn initWithTransformObjects(cocos2d::CCArray*, UndoCommand);
 	TodoReturn createWithTransformObjects(cocos2d::CCArray*, UndoCommand);
