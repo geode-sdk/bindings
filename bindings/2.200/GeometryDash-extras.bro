@@ -1184,7 +1184,7 @@ class ColorAction2 {
 	// ColorAction2(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float, double, bool, int, float, float);
 }
 
-[[link(android)]
+[[link(android)]]
 class FindBPMLayer : CreateGuidelinesLayer {
 	TodoReturn calculateBPM();
 	TodoReturn registerTouch();
