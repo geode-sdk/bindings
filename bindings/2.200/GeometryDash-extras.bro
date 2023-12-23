@@ -8721,14 +8721,6 @@ class TimerTriggerGameObject : EffectGameObject {
 }
 
 [[link(android)]]
-class BoomScrollLayerDelegate {
-	TodoReturn scrollLayerMoved(cocos2d::CCPoint);
-	TodoReturn scrollLayerScrolledToPage(BoomScrollLayer*, int);
-	TodoReturn scrollLayerScrollingStarted(BoomScrollLayer*);
-	TodoReturn scrollLayerWillScrollToPage(BoomScrollLayer*, int);
-}
-
-[[link(android)]]
 class CameraTriggerGameObject : EffectGameObject {
 	TodoReturn getSaveString(GJBaseGameLayer*);
 	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
