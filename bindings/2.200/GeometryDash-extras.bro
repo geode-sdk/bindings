@@ -7719,15 +7719,6 @@ class LevelCommentDelegate {
 }
 
 [[link(android)]]
-class LevelManagerDelegate {
-	virtual void setupPageInfo(gd::string, char const*) {}
-	virtual void loadLevelsFailed(char const*) {}
-	virtual void loadLevelsFailed(char const*, int) {}
-	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*) {}
-	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) {}
-}
-
-[[link(android)]]
 class MusicBrowserDelegate {
 	TodoReturn musicBrowserClosed(MusicBrowser*);
 }
