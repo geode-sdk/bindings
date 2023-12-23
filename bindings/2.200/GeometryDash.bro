@@ -819,6 +819,39 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 }
 
 [[link(android)]]
+class LevelTools {
+	TodoReturn posForTime(float, cocos2d::CCArray*, int, bool, int&);
+	TodoReturn timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int);
+	TodoReturn getAudioBPM(int);
+	TodoReturn urlForAudio(int);
+	TodoReturn getLevelList();
+	TodoReturn getAudioTitle(int) = win 0x26E860;
+	TodoReturn getSongObject(int);
+	TodoReturn nameForArtist(int) = win 0x26F090;
+	TodoReturn artistForAudio(int);
+	TodoReturn fbURLForArtist(int);
+	TodoReturn getAudioString(int);
+	TodoReturn ngURLForArtist(int);
+	TodoReturn ytURLForArtist(int);
+	TodoReturn getLastTimewarp();
+	TodoReturn getAudioFileName(int) = win 0x26EC00;
+	TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*);
+	TodoReturn valueForSpeedMod(int);
+	TodoReturn offsetBPMForTrack(int);
+	TodoReturn base64DecodeString(gd::string);
+	TodoReturn base64EncodeString(gd::string);
+	TodoReturn createStarPackDict();
+	TodoReturn posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int);
+	TodoReturn toggleDebugLogging(bool);
+	TodoReturn verifyLevelIntegrity(gd::string, int);
+	TodoReturn getLastGameplayRotated();
+	TodoReturn getLastGameplayReversed();
+	TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
+	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
+	TodoReturn getLevel(int, bool) = win 0x26DDA0;
+}
+
+[[link(android)]]
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 	void onNextFloor(cocos2d::CCObject* sender) = win 0x22CEF0;
 	TodoReturn dialogClosed(DialogLayer*);
