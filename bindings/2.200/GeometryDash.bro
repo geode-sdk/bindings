@@ -152,6 +152,75 @@ class ScrollingLayer : cocos2d::CCLayerColor {
 }
 
 [[link(android)]]
+class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, DialogDelegate {
+	void onMapPacks(cocos2d::CCObject* sender) = win 0x70250;
+	void onMyLevels(cocos2d::CCObject* sender) = win 0x6FE90;
+	void onTopLists(cocos2d::CCObject* sender) = win 0x70160;
+	void onChallenge(cocos2d::CCObject* sender) = win 0x70910;
+	void onGauntlets(cocos2d::CCObject* sender);
+	TodoReturn dialogClosed(DialogLayer*);
+	void onDailyLevel(cocos2d::CCObject* sender);
+	void onEventLevel(cocos2d::CCObject* sender) = win 0x70740;
+	void onFameLevels(cocos2d::CCObject* sender);
+	void onMultiplayer(cocos2d::CCObject* sender) = win 0x70330;
+	void onSavedLevels(cocos2d::CCObject* sender) = win 0x6FF80;
+	void onSecretVault(cocos2d::CCObject* sender);
+	void onWeeklyLevel(cocos2d::CCObject* sender);
+	virtual void keyBackClicked();
+	void onAdventureMap(cocos2d::CCObject* sender) = win 0x706C0;
+	void onLeaderboards(cocos2d::CCObject* sender);
+	void onOnlineLevels(cocos2d::CCObject* sender) = win 0x701E0;
+	void onTreasureRoom(cocos2d::CCObject* sender) = win 0x70C50;
+	virtual void sceneWillResume();
+	void onFeaturedLevels(cocos2d::CCObject* sender) = win 0x700C0;
+	TodoReturn checkQuestsStatus();
+	void onOnlyFullVersion(cocos2d::CCObject* sender);
+	TodoReturn canPlayOnlineLevels();
+	virtual bool init();
+	TodoReturn scene();
+	static CreatorLayer* create();
+	void onBack(cocos2d::CCObject* sender);
+	void onPaths(cocos2d::CCObject* sender);
+	~CreatorLayer();
+}
+
+[[link(android)]]
+class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
+	void onDownload(cocos2d::CCObject* sender);
+	TodoReturn colorForPage(int);
+	TodoReturn getColorValue(int, int, float);
+	virtual void keyBackClicked();
+	TodoReturn scrollLayerMoved(cocos2d::CCPoint);
+	TodoReturn updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*);
+	bool init(int)  = win 0x2632F0;
+	TodoReturn scene(int);
+	static LevelSelectLayer* create(int);
+	void onBack(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender);
+	void onNext(cocos2d::CCObject* sender);
+	void onPlay(cocos2d::CCObject* sender);
+	void onPrev(cocos2d::CCObject* sender);
+	virtual void keyDown(cocos2d::enumKeyCodes);
+	TodoReturn tryShowAd();
+	~LevelSelectLayer();
+}
+
+[[link(android)]]
+class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
+	TodoReturn setupGauntlet(cocos2d::CCArray*);
+	virtual void keyBackClicked();
+	TodoReturn loadLevelsFailed(char const*, int);
+	TodoReturn unlockActiveItem();
+	TodoReturn loadLevelsFinished(cocos2d::CCArray*, char const*, int);
+	bool init(GauntletType) = win 0x183860;
+	TodoReturn scene(GauntletType);
+	static GauntletLayer* create(GauntletType);
+	void onBack(cocos2d::CCObject* sender);
+	void onLevel(cocos2d::CCObject* sender);
+	~GauntletLayer();
+}
+
+[[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	void useAnimationType(MenuAnimationType type) {
         m_startPosition = this->getNormalImage()->getPosition();
