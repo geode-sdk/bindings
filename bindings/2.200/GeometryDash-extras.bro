@@ -884,7 +884,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	TodoReturn updateUserScoreFinished();
 	TodoReturn toggleMainPageVisibility(bool);
 	virtual void registerWithTouchDispatcher();
-	bool init(int, bool);
+	bool init(int, bool) = win 0x2e7320;
 	TodoReturn show();
 	static ProfilePage* create(int, bool);
 	void onClose(cocos2d::CCObject* sender);
@@ -1372,7 +1372,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn musicSliderChanged(cocos2d::CCObject*);
-	static OptionsLayer* create();
+	static OptionsLayer* create() = win 0x2ab510;
 	void onHelp(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender);
 	void onVideo(cocos2d::CCObject* sender);
@@ -2685,7 +2685,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn shouldDownloadLevel();
 	TodoReturn setupPlatformerStats();
 	TodoReturn levelDownloadFinished(GJGameLevel*);
-	bool init(GJGameLevel*, bool) = win 0x24CD80;
+	bool init(GJGameLevel*, bool) = win 0x24cd80, mac 0x2973f0;
 	TodoReturn scene(GJGameLevel*, bool);
 	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x24CCD0;
 	void onBack(cocos2d::CCObject* sender) = win 0x2533E0;
@@ -4064,7 +4064,7 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 
 [[link(android)]]
 class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
-	TodoReturn getEndText();
+	TodoReturn getEndText() = win 0xe96b0;
 	TodoReturn customSetup();
 	void onEveryplay(cocos2d::CCObject* sender);
 	virtual void keyBackClicked();
@@ -4666,7 +4666,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getCommentKey(int, int, int, CommentKeyType);
 	TodoReturn getDailyTimer(GJTimedLevelType);
 	TodoReturn getFolderName(int, bool);
-	TodoReturn getGJUserInfo(int);
+	TodoReturn getGJUserInfo(int) = win 0x105270;
 	TodoReturn getLevelLists(GJSearchObject*);
 	TodoReturn getLocalLevel(int);
 	TodoReturn getMapPackKey(int);
@@ -4927,8 +4927,8 @@ class GameLevelManager : cocos2d::CCNode {
 class GameOptionsLayer : GJOptionsLayer {
 	void onUIOptions(cocos2d::CCObject* sender);
 	TodoReturn setupOptions();
-	void onPracticeMusicSync(cocos2d::CCObject* sender);
-	TodoReturn showPracticeMusicSyncUnlockInfo();
+	void onPracticeMusicSync(cocos2d::CCObject* sender) = win 0x20eeb0;
+	TodoReturn showPracticeMusicSyncUnlockInfo() = win 0x20eba0;
 	bool init(GJBaseGameLayer*);
 	static GameOptionsLayer* create(GJBaseGameLayer*);
 	TodoReturn didToggle(int);
@@ -9968,7 +9968,7 @@ class LevelCell : TableViewCell {
 [[link(android)]]
 class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	void onTheTower(cocos2d::CCObject* sender);
-	void onMoreGames(cocos2d::CCObject* sender);
+	void onMoreGames(cocos2d::CCObject* sender) = win 0x277a50;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);

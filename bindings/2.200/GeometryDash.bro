@@ -857,7 +857,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	TodoReturn achievementForUnlock(int, UnlockType);
 	TodoReturn descriptionForUnlock(int, UnlockType);
 	TodoReturn listButtonBarSwitchedPage(ListButtonBar*, int);
-	virtual bool init();
+	virtual bool init() = win 0x1eaa40;
 	static cocos2d::CCScene* scene();
 	void onBack(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
