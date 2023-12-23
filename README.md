@@ -2,6 +2,9 @@
 
 Addresses and bindings for Geometry Dash, for use with the Geode mod loader.
 
+## Temporary note
+`win 0x80813` is a **placeholder** address so that we can get to building windows Geode faster. This means that you should absolutely contribute addresses for functions marked with this, replacing the placeholder address!
+
 ## Contributing
 
 You can contribute new addresses / fields by opening up a [Pull Request](https://github.com/geode-sdk/bindings/pull).
@@ -22,7 +25,7 @@ class Example : Base1, Base2 {
 
     // If the binding is inlined on some platform, provide a reconstructed 
     // definition for it
-    inline void inlined(bool x) {
+    void inlined(bool x) {
         if (x) {
             // Do stuff
         }
@@ -38,6 +41,14 @@ class Example : Base1, Base2 {
     // conventions. Use the `callback` keyword if a function is __thiscall 
     // when it would otherwise be inferred as __membercall
     callback void unpredictable();
+
+    // Add members like you would on a C++ class
+    // Members are in the format m_camelCase
+    int m_jumpCount;
+    // Add pads for skipping members, platform dependant
+    PAD = win 0x18, android 0x4;
+    // Use std::array for C arrays
+    std::array<float, 2000> m_lastYPositions;
 }
 ```
 

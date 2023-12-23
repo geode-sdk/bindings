@@ -1497,26 +1497,6 @@ class cocos2d::CCIMEDelegate {
 }
 
 [[link(win, android)]]
-class cocos2d::CCIMEDispatcher {
-	// CCIMEDispatcher();
-	void addDelegate(cocos2d::CCIMEDelegate*);
-	bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
-	bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
-	void dispatchDeleteBackward();
-	void dispatchDeleteForward();
-	void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes);
-	void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
-	void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&);
-	void dispatchKeyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&);
-	void dispatchKeyboardWillHide();
-	void dispatchKeyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&);
-	char const* getContentText();
-	bool hasDelegate();
-	void removeDelegate(cocos2d::CCIMEDelegate*);
-	static cocos2d::CCIMEDispatcher* sharedDispatcher();
-}
-
-[[link(win, android)]]
 class cocos2d::CCImage {
 	// CCImage();
 	bool _initWithJpgData(void*, int);
@@ -1591,26 +1571,6 @@ class cocos2d::CCKeyboardDelegate {
 	// CCKeyboardDelegate();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual void keyUp(cocos2d::enumKeyCodes);
-}
-
-[[link(win, android)]]
-class cocos2d::CCKeyboardDispatcher {
-	// CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
-	// CCKeyboardDispatcher();
-	void addDelegate(cocos2d::CCKeyboardDelegate*);
-	static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes);
-	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool);
-	void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
-	void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
-	bool getAltKeyPressed() const;
-	bool getBlockRepeat() const;
-	bool getCommandKeyPressed() const;
-	bool getControlKeyPressed() const;
-	bool getShiftKeyPressed() const;
-	char const* keyToString(cocos2d::enumKeyCodes);
-	void removeDelegate(cocos2d::CCKeyboardDelegate*);
-	void setBlockRepeat(bool);
-	void updateModifierKeys(bool, bool, bool, bool);
 }
 
 [[link(win, android)]]
@@ -2048,17 +2008,6 @@ class cocos2d::CCMouseDelegate {
 	virtual void rightKeyDown();
 	virtual void rightKeyUp();
 	virtual void scrollWheel(float, float);
-}
-
-[[link(win, android)]]
-class cocos2d::CCMouseDispatcher {
-	// CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
-	// CCMouseDispatcher();
-	void addDelegate(cocos2d::CCMouseDelegate*);
-	bool dispatchScrollMSG(float, float);
-	void forceAddDelegate(cocos2d::CCMouseDelegate*);
-	void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
-	void removeDelegate(cocos2d::CCMouseDelegate*);
 }
 
 [[link(win, android)]]
@@ -3858,38 +3807,6 @@ class cocos2d::CCTouchDelegate {
 	virtual void ccTouchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
 	virtual int getPreviousPriority();
 	virtual void setPreviousPriority(int);
-}
-
-[[link(win, android)]]
-class cocos2d::CCTouchDispatcher {
-	// CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
-	// CCTouchDispatcher();
-	void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
-	void addStandardDelegate(cocos2d::CCTouchDelegate*, int);
-	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
-	void decrementForcePrio(int);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*);
-	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*);
-	void forceRemoveAllDelegates();
-	void forceRemoveDelegate(cocos2d::CCTouchDelegate*);
-	int getTargetPrio() const;
-	void incrementForcePrio(int);
-	bool init();
-	bool isDispatchEvents();
-	bool isUsingForcePrio();
-	void rearrangeHandlers(cocos2d::CCArray*);
-	void registerForcePrio(cocos2d::CCObject*, int);
-	void removeAllDelegates();
-	void removeDelegate(cocos2d::CCTouchDelegate*);
-	void setDispatchEvents(bool);
-	void setPriority(int, cocos2d::CCTouchDelegate*);
-	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
-	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
-	void unregisterForcePrio(cocos2d::CCObject*);
 }
 
 [[link(win, android)]]
