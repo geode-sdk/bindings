@@ -1,6 +1,3 @@
 build/
 .vscode/
-*.mjs
-*sym*.txt
-inheritance.txt
-virtuals.txt
+__scripts
