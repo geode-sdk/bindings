@@ -1150,14 +1150,6 @@ class ShaderLayer : cocos2d::CCLayer {
 }
 
 [[link(android)]]
-class StatsObject : cocos2d::CCObject {
-	static StatsObject* create(char const*, int);
-
-	bool init(char const*, int);
-	~StatsObject();
-}
-
-[[link(android)]]
 class UploadPopup : FLAlertLayer, LevelUploadDelegate {
 	static UploadPopup* create(GJGameLevel*);
 
@@ -1644,7 +1636,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn modeDidChange();
 	TodoReturn postCollision(float);
 	TodoReturn propellPlayer(float, bool, int);
-	TodoReturn releaseButton(PlayerButton);
+	TodoReturn releaseButton(PlayerButton) = win 0x2cc710;
 	TodoReturn reversePlayer(EffectGameObject*);
 	TodoReturn stopParticles();
 	TodoReturn switchedDirTo(PlayerButton);
@@ -1661,7 +1653,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn addToYVelocity(double, int);
 	TodoReturn copyAttributes(PlayerObject*);
 	TodoReturn fadeOutStreak2(float);
-	TodoReturn incrementJumps();
+	TodoReturn incrementJumps() = win 0x2c2250;
 	/* unverified signature */
 	bool isInNormalMode();
 	/* unverified signature */
@@ -2439,21 +2431,6 @@ class LikeItemLayer : FLAlertLayer {
 	TodoReturn triggerLike(bool);
 
 	virtual void keyBackClicked();
-}
-
-[[link(android)]]
-class ListButtonBar : cocos2d::CCNode {
-	static ListButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int);
-
-	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int);
-	~ListButtonBar();
-
-	TodoReturn getPage();
-
-	void onLeft(cocos2d::CCObject* sender);
-	void onRight(cocos2d::CCObject* sender);
-
-	TodoReturn goToPage(int);
 }
 
 [[link(android)]]
@@ -3701,6 +3678,142 @@ class FindObjectPopup : SetIDPopup {
 
 
 	virtual bool init();
+}
+
+[[link(android)]]
+class FMODAudioEngine : cocos2d::CCNode {
+	TodoReturn pauseMusic(int);
+	TodoReturn playEffect(gd::string);
+	TodoReturn playEffect(gd::string, float, float, float) = win 0x355b0;
+	TodoReturn startMusic(int, int, int, int, bool, int) = win 0x38900;
+	TodoReturn fadeInMusic(float, int);
+	TodoReturn pauseEffect(unsigned int);
+	TodoReturn pitchForIdx(int) = win 0x35070;
+	TodoReturn printResult(FMOD_RESULT);
+	TodoReturn resumeAudio();
+	TodoReturn resumeMusic(int);
+	TodoReturn stopChannel(int);
+	void stopChannel(int, AudioTargetType, bool, float) = win 0x36a60;
+	void stopChannel(FMOD::Channel*, bool, float) = win 0x36d00;
+	TodoReturn storeEffect(FMOD::Sound*, gd::string) = win 0x37970;
+	TodoReturn createStream(gd::string) = win 0x3ac10;
+	TodoReturn fadeOutMusic(float, int);
+	TodoReturn getMusicTime(int);
+	/* unverified signature */
+	bool isSoundReady(FMOD::Sound*);
+	TodoReturn preloadMusic(gd::string, bool, int);
+	TodoReturn resumeEffect(unsigned int);
+	static FMODAudioEngine* sharedEngine() = win 0x32b80;
+	TodoReturn stopAllMusic();
+	TodoReturn testFunction(int);
+	TodoReturn unloadEffect(gd::string);
+	void updateReverb(FMODReverbPreset, bool) = win 0x331b0;
+	TodoReturn clearAllAudio();
+	TodoReturn getFMODStatus(int) = win 0x3ae60;
+	TodoReturn pauseAllAudio();
+	void pauseAllMusic() = win 0x380c0;
+	TodoReturn preloadEffect(gd::string) = win 0x37780;
+	TodoReturn updateChannel(int, AudioTargetType, AudioModType, float, float);
+	TodoReturn channelStopped(FMOD::Channel*, bool);
+	TodoReturn enableMetering();
+	TodoReturn getActiveMusic(int);
+	TodoReturn getMusicTimeMS(int);
+	/* unverified signature */
+	bool isEffectLoaded(gd::string);
+	/* unverified signature */
+	bool isMusicPlaying(int);
+	/* unverified signature */
+	bool isMusicPlaying(gd::string, int);
+	TodoReturn lengthForSound(gd::string);
+	TodoReturn loadAudioState(FMODAudioState&) = win 0x33f90;
+	TodoReturn resumeAllAudio();
+	TodoReturn resumeAllMusic() = win 0x38110;
+	TodoReturn reverbToString(FMODReverbPreset);
+	TodoReturn saveAudioState(FMODAudioState&) = win 0x33b10;
+	/* unverified signature */
+	void setMusicTimeMS(unsigned int, bool, int) = win 0x3a160;
+	TodoReturn stopAllEffects();
+	TodoReturn stopAndGetFade(FMOD::Channel*);
+	TodoReturn swapMusicIndex(int, int);
+	TodoReturn updateMetering();
+	TodoReturn disableMetering();
+	TodoReturn getChannelGroup(int, bool) = win 0x351d0;
+	TodoReturn pauseAllEffects();
+	TodoReturn playEffectAsync(gd::string);
+	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int);
+	TodoReturn queueStartMusic(gd::string, float, float, float, bool, int, int, int, int, int, bool, int, bool);
+	TodoReturn registerChannel(FMOD::Channel*, int, int) = win 0x36310;
+	/* unverified signature */
+	void setChannelPitch(int, AudioTargetType, float) = win 0x37620;
+	TodoReturn channelLinkSound(int, FMODSound*);
+	TodoReturn countActiveMusic();
+	TodoReturn getEffectsVolume();
+	TodoReturn getMeteringValue();
+	TodoReturn getMusicLengthMS(int) = win 0x3a2e0;
+	TodoReturn getNextChannelID();
+	TodoReturn loadAndPlayMusic(gd::string, unsigned int, int);
+	TodoReturn resumeAllEffects();
+	/* unverified signature */
+	void setChannelVolume(int, AudioTargetType, float);
+	/* unverified signature */
+	void setEffectsVolume(float);
+	void setupAudioEngine() = win 0x32f20;
+	TodoReturn stopChannelTween(int, AudioTargetType, AudioModType);
+	TodoReturn unloadAllEffects();
+	TodoReturn getMusicChannelID(int);
+	TodoReturn getTweenContainer(AudioTargetType);
+	/* unverified signature */
+	bool isChannelStopping(int);
+	TodoReturn stopChannelTweens(int, AudioTargetType);
+	TodoReturn stopMusicNotInSet(std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >&);
+	TodoReturn unregisterChannel(int);
+	TodoReturn updateQueuedMusic();
+	TodoReturn channelForUniqueID(int);
+	TodoReturn channelUnlinkSound(int);
+	TodoReturn countActiveEffects();
+	TodoReturn playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int) = win 0x35740;
+	TodoReturn preloadEffectAsync(gd::string);
+	TodoReturn stopAndRemoveMusic(int);
+	TodoReturn triggerQueuedMusic(FMODQueuedMusic) = win 0x39570;
+	TodoReturn activateQueuedMusic(int);
+	TodoReturn channelForChannelID(int) = win 0x369e0;
+	/* unverified signature */
+	void setChannelVolumeMod(int, AudioTargetType, float);
+	TodoReturn updateChannelTweens(float);
+	TodoReturn updateQueuedEffects() = win 0x38e90;
+	TodoReturn waitUntilSoundReady(FMOD::Sound*);
+	TodoReturn channelIDForUniqueID(int);
+	TodoReturn releaseRemovedSounds();
+	TodoReturn updateBackgroundFade();
+	TodoReturn fadeInBackgroundMusic(float);
+	TodoReturn getActiveMusicChannel(int);
+	TodoReturn updateTemporaryEffects();
+	TodoReturn getBackgroundMusicVolume();
+	/* unverified signature */
+	void setBackgroundMusicVolume(float);
+	TodoReturn queuedEffectFinishedLoading(gd::string) = win 0x38f60;
+	virtual void stop() = win 0x5b260;
+	TodoReturn setup() = win 0x32c00;
+	TodoReturn start() = win 0x337c0;
+	virtual void update(float) = win 0x33910;
+	TodoReturn loadMusic(gd::string) = win 0x38410;
+	TodoReturn loadMusic(gd::string, float, float, float, bool, int, int) = win 0x384b0;
+	TodoReturn playMusic(gd::string, bool, float, int);
+	TodoReturn stopMusic(int);
+	~FMODAudioEngine();
+}
+
+[[link(android)]]
+class FMODAudioState {
+	// ~FMODAudioState();
+}
+
+[[link(android)]]
+class FMODLevelVisualizer : cocos2d::CCNode {
+	TodoReturn updateVisualizer(float, float, float);
+	virtual bool init();
+	static FMODLevelVisualizer* create();
+	~FMODLevelVisualizer();
 }
 
 [[link(android)]]
@@ -10891,7 +11004,7 @@ class NodePoint : cocos2d::CCObject {
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
 	static PlayLayer* create(GJGameLevel*, bool, bool);
 
-	bool init(GJGameLevel*, bool, bool);
+	bool init(GJGameLevel*, bool, bool) = win 0x2d69a0;
 	~PlayLayer();
 
 	TodoReturn getEndPosition();
@@ -10902,7 +11015,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn getRelativeModNew(cocos2d::CCPoint, float, float, bool, bool);
 	TodoReturn getCurrentPercentInt();
 
-	TodoReturn onQuit();
+	TodoReturn onQuit() = win 0x2e5650;
 
 	TodoReturn playReplay(gd::string);
 	TodoReturn posForTime(float);
@@ -10928,7 +11041,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn spawnFirework();
 	TodoReturn stopRecording();
 	TodoReturn toggleGlitter(bool);
-	TodoReturn incrementJumps();
+	TodoReturn incrementJumps() = win 0x2e4e50;
 	TodoReturn markCheckpoint();
 	TodoReturn showRetryLayer();
 	TodoReturn startRecording();
@@ -10959,7 +11072,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn delayedResetLevel();
 	TodoReturn loadDefaultColors();
 	TodoReturn playGravityEffect(bool);
-	TodoReturn setupHasCompleted();
+	TodoReturn setupHasCompleted() = win 0x2d71b0;
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleGhostEffect(int);
 	TodoReturn toggleProgressbar();
@@ -11012,8 +11125,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn addCircle(CCCircleWave*);
 	TodoReturn addObject(GameObject*);
 	TodoReturn fullReset();
-	TodoReturn pauseGame(bool);
-	TodoReturn startGame();
+	TodoReturn pauseGame(bool) = win 0x2e4fc0;
+	TodoReturn startGame() = win 0x2d7e80;
 
 	virtual void onEnterTransitionDidFinish();
 	virtual void onExit();
