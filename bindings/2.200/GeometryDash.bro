@@ -346,7 +346,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     int m_unknown1;
     bool m_selected;
     bool m_unknown2;
-	PAD = android32 0xc, win 0xc;
+	PAD = android32 0xc, win 0xc, android64 0x10;
     gd::string m_allowedChars;
     float m_maxLabelWidth;
     float m_maxLabelScale;
@@ -361,7 +361,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     bool m_unknown3;
     bool m_usePasswordChar;
     bool m_forceOffset;
-	PAD = android32 0x10;
+	PAD = android32 0x10, android64 0x18;
 }
 
 
@@ -427,8 +427,8 @@ class Slider : cocos2d::CCLayer {
     cocos2d::CCSprite* m_groove;
     float m_width;
     float m_height;
-	int m_unknown;
-	int m_unknown2;
+	void* m_unknown;
+	void* m_unknown2;
 }
 
 [[link(android)]]
@@ -487,7 +487,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
     cocos2d::CCArray* m_array3;
     TableViewDelegate* m_tableDelegate;
     TableViewDataSource* m_dataSource;
-    int m_unused1;
+    TableViewCellDelegate* m_cellDelegate;
     int m_unused2;
     void* m_unused3;
     int m_unused4;
@@ -507,8 +507,8 @@ class TableViewCell : cocos2d::CCLayer {
 	bool m_unknown;
     TableView* m_tableView;
     CCIndexPath m_indexPath;
-	int m_unknown2;
-	int m_unknown3;
+	void* m_unknown2;
+	void* m_unknown3;
     int m_unknownThing; // don't even know if this is an int, it's always set to 0
     gd::string m_unknownString;
     float m_width;
