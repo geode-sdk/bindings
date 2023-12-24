@@ -338,10 +338,10 @@ class GameObject : CCSpritePlus {
 	TodoReturn slopeYPos(GameObject*);
 
 	virtual void update(float);
-	virtual void setScaleX(float);
-	virtual void setScaleY(float);
-	virtual void setScale(float);
-	virtual void setPosition(cocos2d::CCPoint const&);
+	virtual void setScaleX(float) = win 0x138E40;
+	virtual void setScaleY(float) = win 0x138ED0;
+	virtual void setScale(float) = win 0x138F60;
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x138900;
 	virtual void setVisible(bool);
 	virtual void setRotation(float);
 	virtual void setRotationX(float);
@@ -373,7 +373,7 @@ class GJItemIcon : cocos2d::CCSprite {
 
 [[link(android)]]
 class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
-	static GJPathPage* create(int, GJPathsLayer*);
+	static GJPathPage* create(int, GJPathsLayer*) = win 0x1F8990;
 
 	bool init(int, GJPathsLayer*);
 	~GJPathPage();
@@ -846,7 +846,7 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 
 [[link(android)]]
 class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, RewardedVideoDelegate {
-	static GJShopLayer* create(ShopType);
+	static GJShopLayer* create(ShopType) = win 0x214D90;
 
 	bool init(ShopType);
 	~GJShopLayer();
@@ -1240,7 +1240,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class CCCircleWave : cocos2d::CCNode {
 	static CCCircleWave* create(float, float, float, bool);
-	static CCCircleWave* create(float, float, float, bool, bool);
+	static CCCircleWave* create(float, float, float, bool, bool) = win 0x23220;
 
 	bool init(float, float, float, bool, bool);
 	~CCCircleWave();
@@ -1321,10 +1321,10 @@ class CCSpritePlus : cocos2d::CCSprite {
 	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
 	TodoReturn createWithSpriteFrameName(char const*);
 
-	virtual void setScaleX(float);
-	virtual void setScaleY(float);
-	virtual void setScale(float);
-	virtual void setPosition(cocos2d::CCPoint const&);
+	virtual void setScaleX(float) = win 0x28C10;
+	virtual void setScaleY(float) = win 0x28C90;
+	virtual void setScale(float) = win 0x28D10;
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x288F0;
 	virtual void setRotation(float);
 	virtual void setRotationX(float);
 	virtual void setRotationY(float);
@@ -1580,7 +1580,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 
 [[link(android)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
-	static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool);
+	static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x2BCFD0;
 
 	bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool);
 	~PlayerObject();
@@ -1813,9 +1813,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn speedDown();
 
 	virtual void update(float);
-	virtual void setScaleX(float);
-	virtual void setScaleY(float);
-	virtual void setScale(float);
+	virtual void setScaleX(float) = win 0x2D4C10;
+	virtual void setScaleY(float) = win 0x2D4C30;
+	virtual void setScale(float) = win 0x2D4C50;
 	virtual void setPosition(cocos2d::CCPoint const&);
 	virtual void setVisible(bool);
 	virtual void setRotation(float);
@@ -2313,7 +2313,7 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 
 [[link(android)]]
 class GJRobotSprite : CCAnimatedSprite {
-	static GJRobotSprite* create(int);
+	static GJRobotSprite* create(int) = win 0x2127D0;
 
 	bool init(int);
 	bool init(int, gd::string);
@@ -2470,7 +2470,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 	TodoReturn destroyPlayer();
 	TodoReturn tryJump(float);
 
-	virtual void update(float);
+	virtual void update(float) = win 0x274F10;
 	virtual bool init();
 	virtual void registerWithTouchDispatcher();
 
@@ -2644,7 +2644,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 
 [[link(android)]]
 class CCCounterLabel : cocos2d::CCLabelBMFont {
-	static CCCounterLabel* create(int, char const*, FormatterType);
+	static CCCounterLabel* create(int, char const*, FormatterType) = win 0x23D00;
 
 	bool init(int, char const*, FormatterType);
 	~CCCounterLabel();
@@ -3057,7 +3057,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDelegate, RateLevelDelegate, LikeItemDelegate, FLAlertLayerProtocol, LevelDeleteDelegate, NumberInputDelegate, SetIDPopupDelegate, TableViewCellDelegate {
-	static LevelInfoLayer* create(GJGameLevel*, bool);
+	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x24CCD0;
 
 	bool init(GJGameLevel*, bool);
 	~LevelInfoLayer();
@@ -3252,7 +3252,7 @@ class RateLevelLayer : FLAlertLayer {
 
 [[link(android)]]
 class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
-	static RateStarsLayer* create(int, bool, bool);
+	static RateStarsLayer* create(int, bool, bool) = win 0x2ED3C0;
 
 	bool init(int, bool, bool);
 	~RateStarsLayer();
@@ -3957,7 +3957,7 @@ class GJSmartTemplate : cocos2d::CCObject {
 
 [[link(android)]]
 class InfoAlertButton : CCMenuItemSpriteExtra {
-	static InfoAlertButton* create(gd::string, gd::string, float);
+	static InfoAlertButton* create(gd::string, gd::string, float) = win 0x2233A0;
 
 	bool init(gd::string, gd::string, float);
 	~InfoAlertButton();
@@ -6104,7 +6104,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-	static LevelBrowserLayer* create(GJSearchObject*);
+	static LevelBrowserLayer* create(GJSearchObject*) = win 0x22DD50;
 
 	bool init(GJSearchObject*);
 	~LevelBrowserLayer();
@@ -6306,7 +6306,7 @@ class PulseEffectAction {
 
 [[link(android)]]
 class PurchaseItemPopup : FLAlertLayer {
-	static PurchaseItemPopup* create(GJStoreItem*);
+	static PurchaseItemPopup* create(GJStoreItem*) = win 0x217FB0;
 
 	bool init(GJStoreItem*);
 	~PurchaseItemPopup();
@@ -6325,7 +6325,7 @@ class RateLevelDelegate {
 
 [[link(android)]]
 class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
-	static RewardUnlockLayer* create(int, RewardsPage*);
+	static RewardUnlockLayer* create(int, RewardsPage*) = win 0x2F0610;
 
 	bool init(int, RewardsPage*);
 	~RewardUnlockLayer();
@@ -10889,7 +10889,7 @@ class NodePoint : cocos2d::CCObject {
 
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-	static PlayLayer* create(GJGameLevel*, bool, bool);
+	static PlayLayer* create(GJGameLevel*, bool, bool) = win 0x2D68F0;
 
 	bool init(GJGameLevel*, bool, bool);
 	~PlayLayer();
