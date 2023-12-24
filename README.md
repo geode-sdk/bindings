@@ -3,7 +3,7 @@
 Addresses and bindings for Geometry Dash, for use with the Geode mod loader.
 
 ## Temporary note
-`win 0x80813` is a **placeholder** address so that we can get to building windows Geode faster. This means that you should absolutely contribute addresses for functions marked with this, replacing the placeholder address!
+`win 0x9999999` is a **placeholder** address so that we can get to building windows Geode faster. This means that you should absolutely contribute addresses for functions marked with this, replacing the placeholder address!
 
 ## Contributing
 
@@ -15,12 +15,10 @@ The syntax of a binding is a simplified version of C++:
 // Windows and android for everything on Android
 [[link(android)]]
 class Example : Base1, Base2 {
-    [[docs("
-        Documentation for this binding. Uses Flash-compatible JSDoc
-        @param param This param does things
-        @param other This controls how the other param acts
-        @returns A number depicting what it did
-    ")]]
+    /// Documentation for this binding. Uses Flash-compatible JSDoc
+    /// @param param This param does things
+    /// @param other This controls how the other param acts
+    /// @returns A number depicting what it did
     int binding(float param, bool other) = win 0x123456, mac 0x789012;
 
     // If the binding is inlined on some platform, provide a reconstructed 

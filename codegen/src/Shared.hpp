@@ -20,6 +20,7 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
 std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder);
 std::string generatePredeclareHeader(Root const& root);
 std::string generateBindingSource(Root const& root);
+std::string generateJsonInterface(Root const& root);
 
 inline void writeFile(ghc::filesystem::path const& writePath, std::string const& output) {
     std::ifstream readfile;

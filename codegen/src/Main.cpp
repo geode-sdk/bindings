@@ -7,10 +7,20 @@ using namespace codegen;
 std::map<void const*, size_t> codegen::idMap;
 
 int main(int argc, char** argv) try {
-    if (argc != 4)
-        throw codegen::error("Invalid number of parameters (expected 3 found {})", argc - 1);
+    if (argc != 4) {
+        throw codegen::error("Invalid number of parameters (expected 3, found {})", argc - 1);
+    }
 
     std::string p = argv[1];
+
+    if (p == "--into-json") {
+        auto rootDir = ghc::filesystem::path(argv[2]);
+        ghc::filesystem::current_path(rootDir);
+
+        Root root = broma::parse_file("Entry.bro");
+        writeFile(ghc::filesystem::path(argv[3]), generateJsonInterface(root));
+        return 0;
+    }
 
     if (p == "Win32") codegen::platform = Platform::Windows;
     else if (p == "MacOS") codegen::platform = Platform::Mac;
