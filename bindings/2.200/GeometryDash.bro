@@ -190,7 +190,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 	TodoReturn canPlayOnlineLevels();
 	TodoReturn scene();
 
-	virtual bool init();
+	virtual bool init() = win 0x6f090;
 
 	virtual void keyBackClicked();
 
