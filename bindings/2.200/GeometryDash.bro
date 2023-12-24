@@ -26,7 +26,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	static FLAlertLayer* create(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x30da0;
 
 	bool init(int) = win 0x30eb0;
-	bool init(FLAlertLayerProtocol*, char const* title, gd::string description, char const* btn1, char const* btn2, float width, bool unk1, float unk2, float textScale) = win 0x30f50;
+	bool init(FLAlertLayerProtocol*, char const* title, gd::string description, char const* btn1, char const* btn2, float width, bool scrollable, float height, float textScale) = win 0x30f50;
 	~FLAlertLayer() = win 0x30b80;
 
 	void onBtn1(cocos2d::CCObject* sender) = win 0x31a40;
