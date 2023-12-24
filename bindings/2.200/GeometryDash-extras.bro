@@ -1399,8 +1399,8 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 	TodoReturn darkenButtons(bool);
 	TodoReturn show();
 
-	virtual bool init();
-	virtual void onExit();
+	virtual bool init() = win 0x1F82A0;
+	virtual void onExit() = win 0x1F8756;
 	virtual void registerWithTouchDispatcher();
 
 	virtual void keyBackClicked();
