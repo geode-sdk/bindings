@@ -1619,7 +1619,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn resetStreak();
 	TodoReturn setupStreak();
 	TodoReturn spawnCircle();
-	TodoReturn stopDashing();
+	TodoReturn stopDashing() = win 0x2CB080;
 	TodoReturn stopStreak2();
 	TodoReturn createSpider(int);
 	/* unverified signature */
@@ -1631,7 +1631,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn stopRotation(bool, int);
 	/* unverified signature */
 	bool isInBasicMode();
-	TodoReturn levelFlipping();
+	TodoReturn levelFlipping() = win 0x2CEF50;
 	TodoReturn levelWillFlip();
 	TodoReturn modeDidChange();
 	TodoReturn postCollision(float) = win 0x2C2D50;
@@ -1688,14 +1688,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn toggleRobotMode(bool, bool) = win 0x2CF0C0;
 	TodoReturn toggleSwingMode(bool, bool) = win 0x2CE680;
 	TodoReturn updateGlowColor();
-	TodoReturn updatePlayerArt();
+	TodoReturn updatePlayerArt() = win 0x2CCAC0;
 	TodoReturn updateSwingFire();
 	TodoReturn canStickToGround();
 	TodoReturn deactivateStreak(bool);
 	TodoReturn disableSwingFire();
 	/* unverified signature */
 	bool isSafeSpiderFlip(float);
-	TodoReturn placeStreakPoint();
+	TodoReturn placeStreakPoint() = win 0x2D3630;
 	TodoReturn playerIsMovingUp();
 	TodoReturn playerTeleported();
 	TodoReturn playingEndEffect();
@@ -1706,7 +1706,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn toggleSpiderMode(bool, bool) = win 0x2CF3B0;
 	TodoReturn toggleVisibility(bool);
 	TodoReturn updateCollideTop(float, GameObject*) = win 0x2C8EB0;
-	TodoReturn updatePlayerGlow();
+	TodoReturn updatePlayerGlow() = win 0x2D3170;
 	TodoReturn addToTouchedRings(RingObject*);
 	TodoReturn animationFinished(char const*);
 	TodoReturn collidedWithSlope(float, GameObject*, bool);
@@ -3732,7 +3732,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn saveAudioState(FMODAudioState&) = win 0x33b10;
 	/* unverified signature */
 	void setMusicTimeMS(unsigned int, bool, int) = win 0x3a160;
-	TodoReturn stopAllEffects();
+	TodoReturn stopAllEffects() = win 0x37D00;
 	TodoReturn stopAndGetFade(FMOD::Channel*);
 	TodoReturn swapMusicIndex(int, int);
 	TodoReturn updateMetering();
@@ -3759,7 +3759,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void setEffectsVolume(float);
 	void setupAudioEngine() = win 0x32f20;
 	TodoReturn stopChannelTween(int, AudioTargetType, AudioModType);
-	TodoReturn unloadAllEffects();
+	TodoReturn unloadAllEffects() = win 0x37EA0;
 	TodoReturn getMusicChannelID(int);
 	TodoReturn getTweenContainer(AudioTargetType);
 	/* unverified signature */
@@ -11020,8 +11020,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn playReplay(gd::string);
 	TodoReturn posForTime(float);
 	TodoReturn postUpdate(float) = win 0x2E1560;
-	TodoReturn resetLevel();
-	TodoReturn startMusic();
+	TodoReturn resetLevel() = win 0x2E42B0;
+	TodoReturn startMusic() = win 0x2E5570;
 	TodoReturn timeForPos(cocos2d::CCPoint, int, int, bool, int);
 	TodoReturn checkForEnd();
 	TodoReturn colorObject(int, cocos2d::_ccColor3B);
@@ -11032,7 +11032,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn updateColor(cocos2d::_ccColor3B&, float, int, bool, float, cocos2d::_ccHSVValue&, int, bool, EffectGameObject*, int, int);
 	TodoReturn canPauseGame();
 	TodoReturn dialogClosed(DialogLayer*);
-	TodoReturn prepareMusic(bool);
+	TodoReturn prepareMusic(bool) = win 0x2E5480;
 	TodoReturn showEndLayer();
 	TodoReturn addToGroupOld(GameObject*);
 	TodoReturn checkSnapshot();
@@ -11046,7 +11046,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn showRetryLayer();
 	TodoReturn startRecording();
 	TodoReturn tryStartRecord();
-	TodoReturn updateAttempts();
+	TodoReturn updateAttempts() = win 0x2E4CC0;
 	TodoReturn updateTimeWarp(float);
 	TodoReturn updateTimeWarp(EffectGameObject*, float);
 	TodoReturn queueCheckpoint();
@@ -11062,14 +11062,14 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	/* unverified signature */
 	bool isGameplayActive();
 	TodoReturn opacityForObject(GameObject*);
-	TodoReturn removeAllObjects();
+	TodoReturn removeAllObjects() = win 0x2E5750;
 	TodoReturn removeCheckpoint(bool);
 	TodoReturn resetSPTriggered();
-	TodoReturn resumeAndRestart(bool);
+	TodoReturn resumeAndRestart(bool) = win 0x2E5160;
 	TodoReturn showCompleteText();
-	TodoReturn startGameDelayed();
+	TodoReturn startGameDelayed() = win 0x2D7EC0;
 	TodoReturn updateVisibility(float);
-	TodoReturn delayedResetLevel();
+	TodoReturn delayedResetLevel() = win 0x2E4200;
 	TodoReturn loadDefaultColors();
 	TodoReturn playGravityEffect(bool);
 	TodoReturn setupHasCompleted() = win 0x2d71b0;
@@ -11077,7 +11077,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn toggleGhostEffect(int) = win 0x2D20D0;
 	TodoReturn toggleProgressbar();
 	TodoReturn updateAttemptTime(float);
-	TodoReturn updateProgressbar();
+	TodoReturn updateProgressbar() = win 0x2DF8FC;
 	TodoReturn activateEndTrigger(int, bool, bool);
 	TodoReturn loadFromCheckpoint(CheckpointObject*);
 	TodoReturn loadLastCheckpoint();
@@ -11089,14 +11089,14 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn togglePracticeMode(bool);
 	TodoReturn updateVerifyDamage();
 	TodoReturn checkpointActivated(CheckpointGameObject*);
-	TodoReturn optimizeColorGroups();
-	TodoReturn resetLevelFromStart();
+	TodoReturn optimizeColorGroups() = win 0x2DC8B0;
+	TodoReturn resetLevelFromStart() = win 0x2E4210;
 	TodoReturn compareStateSnapshot();
 	TodoReturn removeAllCheckpoints();
 	TodoReturn updateScreenRotation(int, bool, bool, float, int, float, int, int);
 	TodoReturn gravityEffectFinished();
 	TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
-	TodoReturn optimizeOpacityGroups();
+	TodoReturn optimizeOpacityGroups() = win 0x2DCB10;
 	TodoReturn playEndAnimationToPos(cocos2d::CCPoint);
 	TodoReturn saveActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
 	TodoReturn scanActiveSaveObjects();
@@ -11123,8 +11123,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn showHint();
 	TodoReturn testTime();
 	TodoReturn addCircle(CCCircleWave*);
-	TodoReturn addObject(GameObject*);
-	TodoReturn fullReset();
+	TodoReturn addObject(GameObject*) = win 0x2DBD30;
+	TodoReturn fullReset() = win 0x2E40C0;
 	TodoReturn pauseGame(bool) = win 0x2e4fc0;
 	TodoReturn startGame() = win 0x2d7e80;
 
