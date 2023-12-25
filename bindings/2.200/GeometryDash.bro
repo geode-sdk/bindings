@@ -1510,7 +1510,7 @@ class GameManager : GManager {
 	TodoReturn fadeInMenuMusic();
 	TodoReturn getGameVariable(char const*);
 	/* unverified signature */
-	bool isColorUnlocked(int, UnlockType);
+	bool isColorUnlocked(int, UnlockType) = win 0x120670;
 	TodoReturn loadDeathEffect(int);
 	TodoReturn loadGroundAsync(int);
 	TodoReturn openEditorGuide();
@@ -1744,7 +1744,7 @@ class GJGameLevel : cocos2d::CCNode {
 	void setLastBuildPageForTab(int, int);
 	TodoReturn getUnpackedLevelDescription();
 
-	virtual void encodeWithCoder(DS_Dictionary*);
+	virtual void encodeWithCoder(DS_Dictionary*) = win 0x114BF0;
 	virtual bool canEncode();
 	virtual bool init();
 }
@@ -2067,7 +2067,7 @@ class GJUserScore : cocos2d::CCNode {
 class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, CommentUploadDelegate, UserInfoDelegate, UploadActionDelegate, UploadPopupDelegate, LeaderboardManagerDelegate {
 	static ProfilePage* create(int, bool);
 
-	bool init(int, bool);
+	bool init(int, bool) = 0x2E7320;
 	~ProfilePage();
 
 	TodoReturn getUserInfoFailed(int);
@@ -2351,7 +2351,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void onGarage(cocos2d::CCObject* sender) = win 0x24F090;
 	void onUpdate(cocos2d::CCObject* sender) = win 0x252090;
 
-	TodoReturn confirmClone(cocos2d::CCObject*);
+	void confirmClone(cocos2d::CCObject*) = win 0x2518D0;
 	TodoReturn confirmDelete(cocos2d::CCObject*);
 	TodoReturn downloadLevel();
 	TodoReturn loadLevelStep();
