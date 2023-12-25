@@ -341,7 +341,7 @@ class cocos2d::CCLayerColor {
 	static cocos2d::CCLayerColor* create();
 
 	// CCLayerColor(cocos2d::CCLayerColor const&);
-	// CCLayerColor();
+	CCLayerColor();
 
 	void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
 
