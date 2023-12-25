@@ -2679,7 +2679,7 @@ class DashRingObject : RingObject {
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
 	static EditLevelLayer* create(GJGameLevel*);
 
-	bool init(GJGameLevel*);
+	bool init(GJGameLevel*) = 0x09BDF0;
 	~EditLevelLayer();
 
 	/* unverified signature */
@@ -2938,7 +2938,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
 	static LevelListLayer* create(GJLevelList*);
 
-	bool init(GJLevelList*);
+	bool init(GJLevelList*) = 0x22DE00;
 	~LevelListLayer();
 
 	/* unverified signature */
@@ -6136,7 +6136,7 @@ class LocalLevelManager : GManager {
 	TodoReturn getLevelsInNameGroups();
 
 	TodoReturn dataLoaded(DS_Dictionary*);
-	TodoReturn sharedState();
+	LocalLevelManager* sharedState() = win 0x272F00;
 	TodoReturn encodeDataTo(DS_Dictionary*);
 	TodoReturn reorderLevels();
 	TodoReturn moveLevelToTop(GJGameLevel*);
