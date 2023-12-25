@@ -2451,32 +2451,32 @@ class GameObject : CCSpritePlus {
     PAD = android32 0xf;
 
 	// property 511
-    bool m_property511;
+    bool m_hasExtendedCollision;
 	PAD = android32 0xc3;
 
 	// property 108
-    int m_property108;
+    int m_linkedGroup;
 	PAD = android32 0x27;
 
 	GameObjectType m_objectType;
 	PAD = android32 0x2d;
 
 	// property 372
-    bool m_property372;
+    bool m_hasNoAudioScale;
 	PAD = android32 0x2a;
 
 	// property 343
-    short m_property343;
+    short m_enterChannel;
 	// property 446
-    short m_property446;
+    short m_objectMaterial;
     PAD = android32 0x4;
 
 	// property 96
-    bool m_property96;
+    bool m_hasNoGlow;
 	PAD = android32 0x3;
 
 	// property 23
-    int m_property23;
+    int m_targetColor;
 
 	// property 1
     int m_objectID;
@@ -2485,13 +2485,13 @@ class GameObject : CCSpritePlus {
 	// property 497
     short m_property497;
 	// property 67
-    bool m_property67;
+    bool m_isDontEnter;
 	// property 64
-    bool m_property64;
+    bool m_isDontFade;
 	// property 116
-    bool m_property116;
+    bool m_hasNoEffects;
 	// property 507
-    bool m_property507;
+    bool m_hasNoParticles;
     PAD = android32 0x16;
 
 	// property 53
@@ -2499,25 +2499,25 @@ class GameObject : CCSpritePlus {
 	PAD = android32 0x18;
 
 	// property 21, also used with 41 and 43
-    void* m_property21;
+    void* m_mainColorStruct;
 	// property 22, also used with 42 and 44
-    void* m_property22;
+    void* m_detailColorStruct;
 	PAD = android32 0xc;
 
 	// property 24
-    int m_property24;
+    ZLayer m_zLayer;
 	// property 25
-    int m_property25;
+    int m_zOrder;
 	PAD = android32 0x12;
 
 	// property 34
-    bool m_property34;
+    bool m_hasGroupParent;
 	// property 279
-    bool m_property279;
+    bool m_hasAreaParent;
 	// property 128
-    float m_property128;
+    float m_scaleX;
 	// property 129
-    float m_property129;
+    float m_scaleY;
 	PAD = android 0x4;
 
 	// used with property 57
@@ -2527,38 +2527,37 @@ class GameObject : CCSpritePlus {
 	PAD = android32 0xf;
 
 	// property 20
-    short m_property20;
-
+    short m_editorLayer;
 	// property 61
-    short m_property61;
+    short m_editorLayer2;
     PAD = android32 0x8;
 
 	// property 121
-    bool m_property121;
+    bool m_isNoTouch;
 	PAD = android32 0x2c;
 
 	// property 103
-    bool m_property103;
+    bool m_isHighDetail;
 	PAD = android32 0x11;
 
     // property 134
-	bool m_property134;
+	bool m_isPassable;
 	// property 135
-	bool m_property135;
+	bool m_isHide;
     // property 136
-	bool m_property136;
+	bool m_isNonStickX;
     // property 289
-	bool m_property289;
+	bool m_isNonStickY;
     // property 137
-	bool m_property137;
+	bool m_isIceBlock;
     // property 193
-	bool m_property193;
+	bool m_isGripSlope;
 	// property 356
-	bool m_property356;
+	bool m_isScaleStick;
     // property 495
-	bool m_property495;
+	bool m_isExtraSticky;
     // property 496
-	bool m_property496;
+	bool m_isDontBoostY;
     // property 510
 	bool m_property510;
 	PAD = android32 0x11;
@@ -2585,43 +2584,39 @@ class EnhancedGameObject : GameObject {
     bool m_hasCustomAnimation;
     bool m_hasCustomRotation;
 	// property 98
-    bool m_property98;
+    bool m_disableRotation;
 	PAD = android32 0x3;
 
 	// property 97
-    float m_property97;
+    float m_rotationSpeed;
 	PAD = android32 0xc;
 
 	// property 106
-    bool m_property106;
+    bool m_animationRandomizedStart;
 	// property 107
-    float m_property107;
+    float m_animationSpeed;
 	// property 122
-    bool m_property122;
+    bool m_animationShouldUseSpeed;
 	// property 123
-    bool m_property123;
+    bool m_animateOnTrigger;
 	// property 126
-    bool m_property126;
+    bool m_disableDelayedLoop;
 	// property 462
-    int m_property462;
+    int m_singleFrame;
 	// property 592
-    bool m_property592;
+    bool m_animationOffset;
 	PAD = android32 0xf;
 
 	// property 214
-    bool m_property214;
+    bool m_animateOnlyWhenActive;
 	// property 444
     bool m_property444;
 	// property 99
-    bool m_property99;
+    bool m_isMultiActivate;
 	PAD = android32 0x5;
 
-	// property 7
-	bool m_property7;
-	// property 8
-	bool m_property8;
-	// property 9
-	bool m_property9;
+	// property 7, 8, 9
+	cocos2d::ccColor3B m_triggerTargetColor;
 }
 
 
@@ -2636,200 +2631,197 @@ class EffectGameObject : EnhancedGameObject {
 	virtual void setOpacity(unsigned char);
 
 	// property 10
-	float m_property10;
+	float m_duration;
 	// property 35
-    float m_property35;
+    float m_opacity;
 	PAD = android32 0x4;
 	// property 51
-    int m_property51;
+    int m_targetGroupID;
 	// property 71
-    int m_property71;
+    int m_centerGroupID;
 	// property 11
-    bool m_property11;
+    bool m_isTouchTriggered;
 	// property 62
-    bool m_property62;
+    bool m_isSpawnTriggered;
 	// property 369
-    bool m_property369;
+    bool m_hasCenterEffect;
 	// property 75
-    float m_property75;
+    float m_shakeStrength;
 	// property 84
-    float m_property84;
+    float m_shakeInterval;
 	// property 14
-    bool m_property14;
+    bool m_tintGround;
 	// property 15
-    bool m_property15;
+    bool m_usesPlayerColor1;
 	// property 16
-    bool m_property16;
+    bool m_usesPlayerColor2;
 	// property 17
-    bool m_property17;
+    bool m_usesBlending;
 	// property 28
-    float m_property28;
+    float m_moveOffsetX;
 	// property 29
-    float m_property29;
+    float m_moveOffsetY;
 	// property 30
-    int m_property30;
+    EasingType m_easingType;
 	// property 85
-    float m_property85;
+    float m_easingRate;
 	// property 58
-    bool m_property58;
+    bool m_lockToPlayerX;
 	// property 59
-    bool m_property59;
+    bool m_lockToPlayerY;
 	// property 141
-    bool m_property141;
+    bool m_lockToCameraX;
 	// property 142
-    bool m_property142;
+    bool m_lockToCameraY;
     // property 100
-	bool m_property100;
+	m_useTarget m_useMoveTarget;
     // property 101
-	int m_property101;
+	MoveTargetType m_moveTargetMode; 
     // property 143
-	float m_property143;
+	float m_moveModX;
     // property 144
-	float m_property144;
+	float m_moveModY;
     // property 393
 	bool m_property393;
     // property 394
-	bool m_property394;
+	bool m_isDirectionFollowSnap360; // TODO: pls find a better name for this why rob
     // property 395
-	int m_property395;
+	int m_targetModCenterID;
     // property 396
-	float m_property396;
+	float m_directionModeDistance;
     // property 397
-	bool m_property397;
+	bool m_isDynamicMode;
     // property 544
-	bool m_property544;
+	bool m_isSilent;
     PAD = android32 0x6;
     // property 68
-	float m_property68;
+	float m_rotationDegrees;
     // property 69
-	int m_property69;
+	int m_times360;
     // property 70
-	bool m_property70;
+	bool m_lockObjectRotation;
     // property 401
-	int m_property401;
+	int m_rotationTargetID;
     // property 402
-	float m_property402;
+	float m_rotationOffset;
     // property 403
-	int m_property403;
+	EasingType m_dynamicModeEasing;
     // property 72
-	float m_property72;
+	float m_followXMod;
     // property 73
-	bool m_property73;
+	float m_followYMod;
     // property 90
-	float m_property90;
+	float m_followYSpeed;
     // property 91
-	float m_property91;
+	float m_followYDelay;
     // property 92
-	int m_property92;
+	int m_followYOffset;
     // property 105
-	float m_property105;
+	float m_followYMaxSpeed;
     // property 45
-	float m_property45;
+	float m_fadeInDuration;
     // property 46
-	float m_property46;
+	float m_holdDuration;
     // property 47
-	float m_property47;
+	float m_fadeOutDuration;
     // property 48
-	int m_property48;
+	int m_pulseMode;
     // property 52
-	int m_property52;
+	int m_pulseTargetType;
     // property 49
-	cocos2d::ccHSVValue m_property49;
+	cocos2d::ccHSVValue m_hsvValue;
     // property 50
-	int m_property50;
+	int m_copyColorID;
     // property 60
-	bool m_property60;
+	bool m_copyOpacity;
     // property 65
-	bool m_property65;
+	bool m_pulseMainOnly;
     // property 66
-	bool m_property66;
+	bool m_pulseDetailOnly;
     // property 86
-	bool m_property86;
+	bool m_pulseExclusive;
     // property 210
 	bool m_property210;
     // property 56
-	bool m_property56;
+	bool m_activateGroup;
     // property 81
-	bool m_property81;
+	bool m_touchHoldMode;
     // property 82
-	int m_property82;
+	TouchToggleMode m_touchToggleMode;
     // property 198
-	int m_property198;
+	int m_touchPlayerMode; // TODO: add enum
     // property 89
-	bool m_property89;
+	bool m_isDualMode;
     // property 76
-	int m_property76;
+	int m_animationID;
     PAD = android32 0x8;
     // property 87
-	bool m_property87;
+	bool m_isMultiActivate;
 	PAD = android32 0x2;
     // property 93
-	bool m_property93;
+	bool m_triggerOnExit;
     // property 95
-	int m_property95;
+	int m_itemID2;
     // property 534
 	int m_property534;
 	PAD = android32 0x4;
     // property 80
-	int m_property80;
+	int m_itemID;
     // property 138
-	bool m_property138;
+	bool m_targetPlayer1;
     // property 200
-	bool m_property200;
+	bool m_targetPlayer2;
     // property 201
-	bool m_property201;
+	bool m_followCPP;
     // property 78
-	bool m_property78;
+	bool m_subtractCount;
     // property 381
-	bool m_property381;
+	bool m_collectibleIsPickupItem;
     // property 382
-	bool m_property382;
+	bool m_collectibleIsToggleTrigger;
     // property 440
-	int m_property440;
+	int m_collectibleParticleID;
     // property 383
-	int m_property383;
+	int m_collectiblePoints;
     // property 463
-	bool m_property463;
+	bool m_hasNoAnimation;
     PAD = android32 0x1f;
     // property 148
-	float m_property148;
+	float m_gravityValue;
     // property 284
-	bool m_property284;
+	bool m_isSinglePTouch;
     PAD = android32 0x3;
     // property 371
-	float m_property371;
+	float m_zoomValue;
     // property 111
-	bool m_property111;
+	bool m_cameraIsFreeMode;
     // property 112
-	bool m_property112;
-    PAD = android32 0x2;
+	bool m_cameraEditCameraSettings;
     // property 113
-	float m_property113;
+	float m_cameraEasingValue;
     // property 114
-	float m_property114;
+	float m_cameraPaddingValue;
     // property 370
-	bool m_property370;
+	bool m_cameraDisableGridSnap;
     // property 118
 	bool m_property118;
-    PAD = android32 0x2;
     // property 120
-	float m_property120;
+	float m_timeWarpTimeMod;
     // property 13
-	bool m_property13;
-    PAD = android32 0x3;
+	bool m_isEdp;
     // property 115
-	int m_property115;
+	int m_ordValue;
     // property 170
-	int m_property170;
+	int m_channelValue;
     // property 117
-	bool m_property117;
+	bool m_isReverse;
     PAD = android32 0xb;
     // property 12
-	int m_property12;
+	int m_secretCoinID;
     PAD = android32 0x1c;
     // property 280
-	bool m_property280;
+	bool m_ignoreGroupParent;
     // property 281
-	bool m_property281;
+	bool m_ignoreLinkedObjects;
     PAD = android32 0x6;
 }
