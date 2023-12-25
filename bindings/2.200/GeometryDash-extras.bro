@@ -1198,35 +1198,6 @@ class CCSpritePart : CCSpritePlus {
 }
 
 [[link(android)]]
-class CCSpritePlus : cocos2d::CCSprite {
-	~CCSpritePlus();
-
-	TodoReturn getFollower();
-
-	/* unverified signature */
-	void setFlipX(bool);
-	/* unverified signature */
-	void setFlipY(bool);
-
-	TodoReturn stopFollow();
-	TodoReturn addFollower(cocos2d::CCNode*);
-	TodoReturn followSprite(CCSpritePlus*);
-	TodoReturn removeFollower(cocos2d::CCNode*);
-	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	TodoReturn createWithSpriteFrameName(char const*);
-
-	virtual void setScaleX(float) = win 0x28C10;
-	virtual void setScaleY(float) = win 0x28C90;
-	virtual void setScale(float) = win 0x28D10;
-	virtual void setPosition(cocos2d::CCPoint const&) = win 0x288F0;
-	virtual void setRotation(float);
-	virtual void setRotationX(float);
-	virtual void setRotationY(float);
-	virtual bool initWithTexture(cocos2d::CCTexture2D*);
-	virtual bool initWithSpriteFrameName(char const*);
-}
-
-[[link(android)]]
 class ColorAction2 {
 	TodoReturn resetAction();
 	TodoReturn updateCustomColor(cocos2d::_ccColor3B, cocos2d::_ccColor3B);

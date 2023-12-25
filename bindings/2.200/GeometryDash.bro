@@ -2390,3 +2390,192 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 
 	virtual void keyDown(cocos2d::enumKeyCodes);
 }
+
+
+[[link(android)]]
+class CCSpritePlus : cocos2d::CCSprite {
+	CCSpritePlus();
+	~CCSpritePlus();
+
+	TodoReturn getFollower();
+
+	/* unverified signature */
+	void setFlipX(bool);
+	/* unverified signature */
+	void setFlipY(bool);
+
+	TodoReturn stopFollow();
+	TodoReturn addFollower(cocos2d::CCNode*);
+	TodoReturn followSprite(CCSpritePlus*);
+	TodoReturn removeFollower(cocos2d::CCNode*);
+	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
+	TodoReturn createWithSpriteFrameName(char const*);
+
+	virtual void setScaleX(float) = win 0x28C10;
+	virtual void setScaleY(float) = win 0x28C90;
+	virtual void setScale(float) = win 0x28D10;
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x288F0;
+	virtual void setRotation(float);
+	virtual void setRotationX(float);
+	virtual void setRotationY(float);
+	virtual bool initWithTexture(cocos2d::CCTexture2D*);
+	virtual bool initWithSpriteFrameName(char const*);
+
+	cocos2d::CCArray* m_followers;
+    CCSpritePlus* m_followingSprite;
+    bool m_hasFollower;
+    bool m_propagateScaleChanges;
+    bool m_propagateFlipChanges;
+}
+
+[[link(android)]]
+class GameObject : CCSpritePlus {
+	bool init(char const*);
+	GameObject();
+	~GameObject();
+
+	virtual void update(float);
+	virtual void setScaleX(float) = win 0x138E40;
+	virtual void setScaleY(float) = win 0x138ED0;
+	virtual void setScale(float) = win 0x138F60;
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x138900;
+	virtual void setVisible(bool);
+	virtual void setRotation(float);
+	virtual void setRotationX(float);
+	virtual void setRotationY(float);
+	virtual bool initWithTexture(cocos2d::CCTexture2D*);
+	virtual void setChildColor(cocos2d::_ccColor3B const&);
+
+	virtual void setOpacity(unsigned char);
+
+
+    PAD = android32 0xf;
+
+	// property 511
+    bool m_property511;
+    
+	PAD = android32 0xc3;
+
+	// property 108
+    int m_property108;
+    
+	PAD = android32 0x59;
+
+	// property 372
+    bool m_property372;
+    
+	PAD = android32 0x2a;
+
+	// property 343
+    short m_property343;
+	// property 446
+    short m_property446;
+
+    PAD = android32 0x4;
+
+	// property 96
+    bool m_property96;
+    
+	PAD = android32 0x7;
+
+	// property 1
+    int m_objectID;
+    
+	PAD = android32 0x8;
+
+	// property 497
+    short m_property497;
+	// property 67
+    bool m_property67;
+	// property 64
+    bool m_property64;
+	// property 116
+    bool m_property116;
+	// property 507
+    bool m_property507;
+
+    PAD = android32 0x16;
+
+	// property 53
+    int m_property53;
+    
+	PAD = android32 0x18;
+
+	// property 21
+    void* m_property21;
+	// property 22
+    void* m_property22;
+    
+	PAD = android32 0xc;
+
+	// property 24
+    int m_property24;
+	// property 25
+    int m_property25;
+    
+	PAD = android32 0x12;
+
+	// property 34
+    bool m_property34;
+	// property 279
+    bool m_property279;
+	// property 128
+    float m_property128;
+	// property 129
+    float m_property129;
+
+	PAD = android 0x4;
+
+    short m_groupCount;
+    bool m_hasGroupParentsString;
+
+	PAD = android32 0xf;
+
+	// property 20
+    short m_property20;
+
+	// property 61
+    short m_property61;
+
+    PAD = android32 0x8;
+
+	// property 121
+    bool m_property121;
+
+	PAD = android32 0x2c;
+
+	// property 103
+    bool m_property103;
+
+	PAD = android32 0x11;
+
+    // property 134
+	bool m_property134;
+	// property 135
+	bool m_property135;
+    // property 136
+	bool m_property136;
+    // property 289
+	bool m_property289;
+    // property 137
+	bool m_property137;
+    // property 193
+	bool m_property193;
+	// property 356
+	bool m_property356;
+    // property 495
+	bool m_property495;
+    // property 496
+	bool m_property496;
+    // property 510
+	bool m_property510;
+
+	PAD = android32 0x11;
+
+	// property 155
+    int m_property155;
+	// property 156
+    int m_property156;
+
+	PAD = android32 0x14;
+}
