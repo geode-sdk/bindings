@@ -2067,7 +2067,7 @@ class GJUserScore : cocos2d::CCNode {
 class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, CommentUploadDelegate, UserInfoDelegate, UploadActionDelegate, UploadPopupDelegate, LeaderboardManagerDelegate {
 	static ProfilePage* create(int, bool);
 
-	bool init(int, bool) = 0x2E7320;
+	bool init(int, bool) = win 0x2E7320;
 	~ProfilePage();
 
 	TodoReturn getUserInfoFailed(int);
