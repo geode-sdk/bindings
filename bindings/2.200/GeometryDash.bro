@@ -2448,39 +2448,38 @@ class GameObject : CCSpritePlus {
 
 	virtual void setOpacity(unsigned char);
 
-
     PAD = android32 0xf;
 
 	// property 511
     bool m_property511;
-    
 	PAD = android32 0xc3;
 
 	// property 108
     int m_property108;
-    
-	PAD = android32 0x59;
+	PAD = android32 0x27;
+
+	GameObjectType m_objectType;
+	PAD = android32 0x2d;
 
 	// property 372
     bool m_property372;
-    
 	PAD = android32 0x2a;
 
 	// property 343
     short m_property343;
 	// property 446
     short m_property446;
-
     PAD = android32 0x4;
 
 	// property 96
     bool m_property96;
-    
-	PAD = android32 0x7;
+	PAD = android32 0x3;
+
+	// property 23
+    int m_property23;
 
 	// property 1
     int m_objectID;
-    
 	PAD = android32 0x8;
 
 	// property 497
@@ -2493,26 +2492,22 @@ class GameObject : CCSpritePlus {
     bool m_property116;
 	// property 507
     bool m_property507;
-
     PAD = android32 0x16;
 
 	// property 53
     int m_property53;
-    
 	PAD = android32 0x18;
 
 	// property 21, also used with 41 and 43
     void* m_property21;
 	// property 22, also used with 42 and 44
     void* m_property22;
-    
 	PAD = android32 0xc;
 
 	// property 24
     int m_property24;
 	// property 25
     int m_property25;
-    
 	PAD = android32 0x12;
 
 	// property 34
@@ -2523,14 +2518,12 @@ class GameObject : CCSpritePlus {
     float m_property128;
 	// property 129
     float m_property129;
-
 	PAD = android 0x4;
 
 	// used with property 57
     short m_groupCount;
 	// used with property 274
     bool m_hasGroupParentsString;
-
 	PAD = android32 0xf;
 
 	// property 20
@@ -2538,17 +2531,14 @@ class GameObject : CCSpritePlus {
 
 	// property 61
     short m_property61;
-
     PAD = android32 0x8;
 
 	// property 121
     bool m_property121;
-
 	PAD = android32 0x2c;
 
 	// property 103
     bool m_property103;
-
 	PAD = android32 0x11;
 
     // property 134
@@ -2571,7 +2561,6 @@ class GameObject : CCSpritePlus {
 	bool m_property496;
     // property 510
 	bool m_property510;
-
 	PAD = android32 0x11;
 
 	// property 155
@@ -2597,12 +2586,10 @@ class EnhancedGameObject : GameObject {
     bool m_hasCustomRotation;
 	// property 98
     bool m_property98;
-    
 	PAD = android32 0x3;
 
 	// property 97
     float m_property97;
-    
 	PAD = android32 0xc;
 
 	// property 106
@@ -2619,7 +2606,6 @@ class EnhancedGameObject : GameObject {
     int m_property462;
 	// property 592
     bool m_property592;
-    
 	PAD = android32 0xf;
 
 	// property 214
@@ -2628,7 +2614,222 @@ class EnhancedGameObject : GameObject {
     bool m_property444;
 	// property 99
     bool m_property99;
-    
-	PAD = android32 0x9;
+	PAD = android32 0x5;
+
+	// property 7
+	bool m_property7;
+	// property 8
+	bool m_property8;
+	// property 9
+	bool m_property9;
 }
 
+
+[[link(android)]]
+class EffectGameObject : EnhancedGameObject {
+	static EffectGameObject* create(char const*);
+
+	bool init(char const*);
+	~EffectGameObject();
+	EffectGameObject();
+
+	virtual void setOpacity(unsigned char);
+
+	// property 10
+	float m_property10;
+	// property 35
+    float m_property35;
+	PAD = android32 0x4;
+	// property 51
+    int m_property51;
+	// property 71
+    int m_property71;
+	// property 11
+    bool m_property11;
+	// property 62
+    bool m_property62;
+	// property 369
+    bool m_property369;
+	// property 75
+    float m_property75;
+	// property 84
+    float m_property84;
+	// property 14
+    bool m_property14;
+	// property 15
+    bool m_property15;
+	// property 16
+    bool m_property16;
+	// property 17
+    bool m_property17;
+	// property 28
+    float m_property28;
+	// property 29
+    float m_property29;
+	// property 30
+    int m_property30;
+	// property 85
+    float m_property85;
+	// property 58
+    bool m_property58;
+	// property 59
+    bool m_property59;
+	// property 141
+    bool m_property141;
+	// property 142
+    bool m_property142;
+    // property 100
+	bool m_property100;
+    // property 101
+	int m_property101;
+    // property 143
+	float m_property143;
+    // property 144
+	float m_property144;
+    // property 393
+	bool m_property393;
+    // property 394
+	bool m_property394;
+    // property 395
+	int m_property395;
+    // property 396
+	float m_property396;
+    // property 397
+	bool m_property397;
+    // property 544
+	bool m_property544;
+    PAD = android32 0x6;
+    // property 68
+	float m_property68;
+    // property 69
+	int m_property69;
+    // property 70
+	bool m_property70;
+    // property 401
+	int m_property401;
+    // property 402
+	float m_property402;
+    // property 403
+	int m_property403;
+    // property 72
+	float m_property72;
+    // property 73
+	bool m_property73;
+    // property 90
+	float m_property90;
+    // property 91
+	float m_property91;
+    // property 92
+	int m_property92;
+    // property 105
+	float m_property105;
+    // property 45
+	float m_property45;
+    // property 46
+	float m_property46;
+    // property 47
+	float m_property47;
+    // property 48
+	int m_property48;
+    // property 52
+	int m_property52;
+    // property 49
+	cocos2d::ccHSVValue m_property49;
+    // property 50
+	int m_property50;
+    // property 60
+	bool m_property60;
+    // property 65
+	bool m_property65;
+    // property 66
+	bool m_property66;
+    // property 86
+	bool m_property86;
+    // property 210
+	bool m_property210;
+    // property 56
+	bool m_property56;
+    // property 81
+	bool m_property81;
+    // property 82
+	int m_property82;
+    // property 198
+	int m_property198;
+    // property 89
+	bool m_property89;
+    // property 76
+	int m_property76;
+    PAD = android32 0x8;
+    // property 87
+	bool m_property87;
+	PAD = android32 0x2;
+    // property 93
+	bool m_property93;
+    // property 95
+	int m_property95;
+    // property 534
+	int m_property534;
+	PAD = android32 0x4;
+    // property 80
+	int m_property80;
+    // property 138
+	bool m_property138;
+    // property 200
+	bool m_property200;
+    // property 201
+	bool m_property201;
+    // property 78
+	bool m_property78;
+    // property 381
+	bool m_property381;
+    // property 382
+	bool m_property382;
+    // property 440
+	int m_property440;
+    // property 383
+	int m_property383;
+    // property 463
+	bool m_property463;
+    PAD = android32 0x1f;
+    // property 148
+	float m_property148;
+    // property 284
+	bool m_property284;
+    PAD = android32 0x3;
+    // property 371
+	float m_property371;
+    // property 111
+	bool m_property111;
+    // property 112
+	bool m_property112;
+    PAD = android32 0x2;
+    // property 113
+	float m_property113;
+    // property 114
+	float m_property114;
+    // property 370
+	bool m_property370;
+    // property 118
+	bool m_property118;
+    PAD = android32 0x2;
+    // property 120
+	float m_property120;
+    // property 13
+	bool m_property13;
+    PAD = android32 0x3;
+    // property 115
+	int m_property115;
+    // property 170
+	int m_property170;
+    // property 117
+	bool m_property117;
+    PAD = android32 0xb;
+    // property 12
+	int m_property12;
+    PAD = android32 0x1c;
+    // property 280
+	bool m_property280;
+    // property 281
+	bool m_property281;
+    PAD = android32 0x6;
+}
