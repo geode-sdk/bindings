@@ -9968,7 +9968,7 @@ class LevelCell : TableViewCell {
 [[link(android)]]
 class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	void onTheTower(cocos2d::CCObject* sender);
-	void onMoreGames(cocos2d::CCObject* sender) = win 0x277a50;
+	void onMoreGames(cocos2d::CCObject* sender);
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
