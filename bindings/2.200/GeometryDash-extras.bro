@@ -3227,21 +3227,6 @@ class StartPosObject : EffectGameObject {
 }
 
 [[link(android)]]
-class TextGameObject : GameObject {
-	static TextGameObject* create(cocos2d::CCTexture2D*);
-
-	bool init(cocos2d::CCTexture2D*);
-	~TextGameObject();
-
-	TodoReturn getSaveString(GJBaseGameLayer*);
-	TodoReturn getTextKerning();
-
-	TodoReturn updateTextObject(gd::string, bool);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn updateTextKerning(int);
-}
-
-[[link(android)]]
 class UIOptionsLayer : SetupTriggerPopup {
 	static UIOptionsLayer* create(bool);
 
@@ -4189,19 +4174,6 @@ class ShareLevelLayer : FLAlertLayer {
 	TodoReturn selectRating(cocos2d::CCObject*);
 
 	virtual void keyBackClicked();
-}
-
-[[link(android)]]
-class SmartGameObject : GameObject {
-	static SmartGameObject* create(char const*);
-
-	bool init(char const*);
-	~SmartGameObject();
-
-	TodoReturn getSaveString(GJBaseGameLayer*);
-
-	TodoReturn updateSmartFrame();
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 }
 
 [[link(android)]]
@@ -6925,52 +6897,6 @@ class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
 	virtual void keyBackClicked();
 }
 
-[[link(android)]]
-class ParticleGameObject : EnhancedGameObject {
-	static ParticleGameObject* create();
-
-	~ParticleGameObject();
-
-	TodoReturn getSaveString(GJBaseGameLayer*);
-
-	/* unverified signature */
-	void setObjectColor(cocos2d::_ccColor3B const&);
-	/* unverified signature */
-	void setParticleString(gd::string);
-
-	TodoReturn customSetup();
-	TodoReturn resetObject();
-	TodoReturn claimParticle();
-	TodoReturn updateParticle();
-	TodoReturn unclaimParticle();
-	TodoReturn blendModeChanged();
-	TodoReturn deactivateObject(bool);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn updateParticleAngle(float, cocos2d::CCParticleSystemQuad*);
-	TodoReturn updateParticleColor(cocos2d::_ccColor3B const&);
-	TodoReturn updateParticleScale(float);
-	TodoReturn particleWasActivated();
-	TodoReturn updateParticleStruct();
-	TodoReturn addMainSpriteToParent(bool);
-	TodoReturn applyParticleSettings(cocos2d::CCParticleSystemQuad*);
-	TodoReturn updateParticleOpacity(unsigned char);
-	TodoReturn updateSyncedAnimation(float, int);
-	TodoReturn updateAnimateOnTrigger(bool);
-	TodoReturn createParticlePreviewArt();
-	TodoReturn updateMainParticleOpacity(unsigned char);
-	TodoReturn createAndAddCustomParticle();
-	TodoReturn updateSecondaryParticleOpacity(unsigned char);
-	TodoReturn updateParticlePreviewArtOpacity(float);
-
-	virtual bool init();
-	virtual void setScaleX(float);
-	virtual void setScaleY(float);
-	virtual void setScale(float);
-	virtual void setRotation(float);
-	virtual void setRotationX(float);
-	virtual void setRotationY(float);
-	virtual void setChildColor(cocos2d::_ccColor3B const&);
-}
 
 [[link(android)]]
 class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDelegate {
@@ -8796,22 +8722,6 @@ class SongTriggerGameObject : SFXTriggerGameObject {
 	TodoReturn getSaveString(GJBaseGameLayer*);
 
 	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-}
-
-[[link(android)]]
-class SpecialAnimGameObject : EnhancedGameObject {
-	static SpecialAnimGameObject* create(char const*);
-
-	bool init(char const*);
-	~SpecialAnimGameObject();
-
-	TodoReturn getSaveString(GJBaseGameLayer*);
-
-	TodoReturn resetObject();
-	TodoReturn updateMainColor(cocos2d::_ccColor3B const&);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn updateSecondaryColor(cocos2d::_ccColor3B const&);
-	TodoReturn updateSyncedAnimation(float, int);
 }
 
 [[link(android)]]

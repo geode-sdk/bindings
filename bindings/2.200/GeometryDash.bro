@@ -2452,7 +2452,11 @@ class GameObject : CCSpritePlus {
 
 	// property 511
     bool m_hasExtendedCollision;
-	PAD = android32 0xc3;
+	PAD = android32 0x84;
+
+	// property 146
+	bool m_particleUseObjectColor;
+	PAD = android32 0x3b;
 
 	// property 108
     int m_linkedGroup;
@@ -2567,7 +2571,7 @@ class GameObject : CCSpritePlus {
 	// property 156
     int m_property156;
 
-	PAD = android32 0x14;
+	PAD = android32 0x12;
 }
 
 
@@ -2579,7 +2583,12 @@ class EnhancedGameObject : GameObject {
 	~EnhancedGameObject();
 	EnhancedGameObject();
 
-	PAD = android32 0x25;
+	// apparently this class has alignment of 8, 
+	// please move this somewhere else in the class 
+	// when you find members from here
+	double m_alignmentDouble; 
+
+	PAD = android32 0x1d;
 
     bool m_hasCustomAnimation;
     bool m_hasCustomRotation;
@@ -2601,6 +2610,8 @@ class EnhancedGameObject : GameObject {
     bool m_animateOnTrigger;
 	// property 126
     bool m_disableDelayedLoop;
+	// property 127
+	bool m_property127;
 	// property 462
     int m_singleFrame;
 	// property 592
@@ -2613,10 +2624,7 @@ class EnhancedGameObject : GameObject {
     bool m_property444;
 	// property 99
     bool m_isMultiActivate;
-	PAD = android32 0x5;
-
-	// property 7, 8, 9
-	cocos2d::ccColor3B m_triggerTargetColor;
+	PAD = android32 0x4;
 }
 
 
@@ -2630,6 +2638,8 @@ class EffectGameObject : EnhancedGameObject {
 
 	virtual void setOpacity(unsigned char);
 
+	// property 7, 8, 9
+	cocos2d::ccColor3B m_triggerTargetColor;
 	// property 10
 	float m_duration;
 	// property 35
@@ -2674,7 +2684,7 @@ class EffectGameObject : EnhancedGameObject {
 	// property 142
     bool m_lockToCameraY;
     // property 100
-	m_useTarget m_useMoveTarget;
+	bool m_useMoveTarget;
     // property 101
 	MoveTargetType m_moveTargetMode; 
     // property 143
@@ -2824,4 +2834,114 @@ class EffectGameObject : EnhancedGameObject {
     // property 281
 	bool m_ignoreLinkedObjects;
     PAD = android32 0x6;
+}
+
+[[link(android)]]
+class TextGameObject : GameObject {
+	static TextGameObject* create(cocos2d::CCTexture2D*);
+
+	bool init(cocos2d::CCTexture2D*);
+	~TextGameObject();
+
+	TodoReturn getSaveString(GJBaseGameLayer*);
+	TodoReturn getTextKerning();
+
+	TodoReturn updateTextObject(gd::string, bool);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn updateTextKerning(int);
+
+	// property 31
+	char* m_text;
+	// property 488
+	int m_kerning;
+}
+
+
+[[link(android)]]
+class SmartGameObject : GameObject {
+	static SmartGameObject* create(char const*);
+
+	bool init(char const*);
+	~SmartGameObject();
+
+	TodoReturn getSaveString(GJBaseGameLayer*);
+
+	TodoReturn updateSmartFrame();
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	// property 157
+	bool m_property157;
+	PAD = android32 0x9;
+}
+
+
+[[link(android)]]
+class ParticleGameObject : EnhancedGameObject {
+	static ParticleGameObject* create();
+
+	~ParticleGameObject();
+
+	TodoReturn getSaveString(GJBaseGameLayer*);
+
+	/* unverified signature */
+	void setObjectColor(cocos2d::_ccColor3B const&);
+	/* unverified signature */
+	void setParticleString(gd::string);
+
+	// TodoReturn customSetup();
+	// TodoReturn resetObject();
+	// TodoReturn claimParticle();
+	// TodoReturn updateParticle();
+	// TodoReturn unclaimParticle();
+	// TodoReturn blendModeChanged();
+	// TodoReturn deactivateObject(bool);
+	// TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	// TodoReturn updateParticleAngle(float, cocos2d::CCParticleSystemQuad*);
+	// TodoReturn updateParticleColor(cocos2d::_ccColor3B const&);
+	// TodoReturn updateParticleScale(float);
+	// TodoReturn particleWasActivated();
+	// TodoReturn updateParticleStruct();
+	// TodoReturn addMainSpriteToParent(bool);
+	// TodoReturn applyParticleSettings(cocos2d::CCParticleSystemQuad*);
+	// TodoReturn updateParticleOpacity(unsigned char);
+	// TodoReturn updateSyncedAnimation(float, int);
+	// TodoReturn updateAnimateOnTrigger(bool);
+	// TodoReturn createParticlePreviewArt();
+	// TodoReturn updateMainParticleOpacity(unsigned char);
+	// TodoReturn createAndAddCustomParticle();
+	// TodoReturn updateSecondaryParticleOpacity(unsigned char);
+	// TodoReturn updateParticlePreviewArtOpacity(float);
+
+	virtual bool init();
+	virtual void setScaleX(float);
+	virtual void setScaleY(float);
+	virtual void setScale(float);
+	virtual void setRotation(float);
+	virtual void setRotationX(float);
+	virtual void setRotationY(float);
+	virtual void setChildColor(cocos2d::_ccColor3B const&);
+
+	// property 145
+	char* m_particleData;
+	PAD = android32 0x110;
+	bool m_hasUniformObjectColor;
+	PAD = android32 0x7;
+	bool m_shouldQuickStart;
+	PAD = android32 0xf;
+}
+
+[[link(android)]]
+class SpecialAnimGameObject : EnhancedGameObject {
+	static SpecialAnimGameObject* create(char const*);
+
+	bool init(char const*);
+	~SpecialAnimGameObject();
+
+	TodoReturn getSaveString(GJBaseGameLayer*);
+
+	TodoReturn resetObject();
+	TodoReturn updateMainColor(cocos2d::_ccColor3B const&);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn updateSecondaryColor(cocos2d::_ccColor3B const&);
+	TodoReturn updateSyncedAnimation(float, int);
 }
