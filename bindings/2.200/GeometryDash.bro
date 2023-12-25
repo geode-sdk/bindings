@@ -2456,7 +2456,7 @@ class GameObject : CCSpritePlus {
 
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3b;
+	PAD = android32 0x3e;
 
 	// property 108
     int m_linkedGroup;
@@ -2833,7 +2833,7 @@ class EffectGameObject : EnhancedGameObject {
 	bool m_ignoreGroupParent;
     // property 281
 	bool m_ignoreLinkedObjects;
-    PAD = android32 0x6;
+    PAD = android32 0x1;
 }
 
 [[link(android)]]
@@ -2944,4 +2944,30 @@ class SpecialAnimGameObject : EnhancedGameObject {
 	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn updateSecondaryColor(cocos2d::_ccColor3B const&);
 	TodoReturn updateSyncedAnimation(float, int);
+}
+
+[[link(android)]]
+class RingObject : EffectGameObject {
+	static RingObject* create(char const*);
+
+	bool init(char const*);
+	~RingObject();
+
+	TodoReturn getSaveString(GJBaseGameLayer*);
+
+	/* unverified signature */
+	void setRScale(float);
+
+	TodoReturn resetObject();
+	TodoReturn spawnCircle();
+	TodoReturn powerOnObject(int);
+	TodoReturn triggerActivated(float);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn shouldDrawEditorHitbox();
+
+	virtual void setScale(float);
+	virtual void setRotation(float);
+
+	bool m_claimTouch;
+	bool m_isSpawnOnly;
 }

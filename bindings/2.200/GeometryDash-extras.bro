@@ -523,28 +523,7 @@ class PriceLabel : cocos2d::CCNode {
 	void setPrice(int);
 }
 
-[[link(android)]]
-class RingObject : EffectGameObject {
-	static RingObject* create(char const*);
 
-	bool init(char const*);
-	~RingObject();
-
-	TodoReturn getSaveString(GJBaseGameLayer*);
-
-	/* unverified signature */
-	void setRScale(float);
-
-	TodoReturn resetObject();
-	TodoReturn spawnCircle();
-	TodoReturn powerOnObject(int);
-	TodoReturn triggerActivated(float);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn shouldDrawEditorHitbox();
-
-	virtual void setScale(float);
-	virtual void setRotation(float);
-}
 
 [[link(android)]]
 class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, SetTextPopupDelegate, SelectSFXSortDelegate {
