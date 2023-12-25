@@ -2501,9 +2501,9 @@ class GameObject : CCSpritePlus {
     
 	PAD = android32 0x18;
 
-	// property 21
+	// property 21, also used with 41 and 43
     void* m_property21;
-	// property 22
+	// property 22, also used with 42 and 44
     void* m_property22;
     
 	PAD = android32 0xc;
@@ -2526,7 +2526,9 @@ class GameObject : CCSpritePlus {
 
 	PAD = android 0x4;
 
+	// used with property 57
     short m_groupCount;
+	// used with property 274
     bool m_hasGroupParentsString;
 
 	PAD = android32 0xf;
