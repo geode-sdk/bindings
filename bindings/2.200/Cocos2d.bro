@@ -342,6 +342,7 @@ class cocos2d::CCLayerColor {
 
 	// CCLayerColor(cocos2d::CCLayerColor const&);
 	CCLayerColor();
+	~CCLayerColor();
 
 	void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
 
@@ -369,7 +370,8 @@ class cocos2d::CCLayerRGBA {
 	static cocos2d::CCLayerRGBA* create();
 
 	// CCLayerRGBA(cocos2d::CCLayerRGBA const&);
-	// CCLayerRGBA();
+	CCLayerRGBA();
+	~CCLayerRGBA();
 
 	virtual bool init();
 

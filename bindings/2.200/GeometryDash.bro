@@ -1901,88 +1901,87 @@ class PlatformToolbox {
 
 [[link(android)]]
 class LevelCommentDelegate {
-	TodoReturn setupPageInfo(gd::string, char const*);
-	TodoReturn loadCommentsFailed(char const*);
-	TodoReturn loadCommentsFinished(cocos2d::CCArray*, char const*);
-	TodoReturn updateUserScoreFinished();
+	virtual TodoReturn setupPageInfo(gd::string, char const*);
+	virtual TodoReturn loadCommentsFailed(char const*);
+	virtual TodoReturn loadCommentsFinished(cocos2d::CCArray*, char const*);
+	virtual TodoReturn updateUserScoreFinished();
 }
 
 [[link(android)]]
 class CommentUploadDelegate {
-	TodoReturn commentDeleteFailed(int, int);
-	TodoReturn commentUploadFailed(int, CommentError);
-	TodoReturn commentUploadFinished(int);
+	virtual TodoReturn commentDeleteFailed(int, int);
+	virtual TodoReturn commentUploadFailed(int, CommentError);
+	virtual TodoReturn commentUploadFinished(int);
 }
 
 [[link(android)]]
 class UserInfoDelegate {
-	TodoReturn getUserInfoFailed(int);
-	TodoReturn getUserInfoFinished(GJUserScore*);
-
-	TodoReturn userInfoChanged(GJUserScore*);
+	virtual TodoReturn getUserInfoFailed(int);
+	virtual TodoReturn getUserInfoFinished(GJUserScore*);
+	virtual TodoReturn userInfoChanged(GJUserScore*);
 }
 
 [[link(android)]]
 class UploadActionDelegate {
-	TodoReturn uploadActionFailed(int, int);
-	TodoReturn uploadActionFinished(int, int);
+	virtual TodoReturn uploadActionFailed(int, int);
+	virtual TodoReturn uploadActionFinished(int, int);
 }
 
 [[link(android)]]
 class UploadPopupDelegate {
-	TodoReturn onClosePopup(UploadActionPopup*);
+	virtual TodoReturn onClosePopup(UploadActionPopup*);
 }
 
 [[link(android)]]
 class LevelDownloadDelegate {
-	TodoReturn levelDownloadFailed(int);
-	TodoReturn levelDownloadFinished(GJGameLevel*);
+	virtual TodoReturn levelDownloadFailed(int);
+	virtual TodoReturn levelDownloadFinished(GJGameLevel*);
 }
 
 [[link(android)]]
 class LevelUploadDelegate {
-	TodoReturn levelUploadFailed(GJGameLevel*);
-	TodoReturn levelUploadFinished(GJGameLevel*);
+	virtual TodoReturn levelUploadFailed(GJGameLevel*);
+	virtual TodoReturn levelUploadFinished(GJGameLevel*);
 }
 
 [[link(android)]]
 class LevelUpdateDelegate {
-	TodoReturn levelUpdateFailed(int);
-	TodoReturn levelUpdateFinished(GJGameLevel*, UpdateResponse);
+	virtual TodoReturn levelUpdateFailed(int);
+	virtual TodoReturn levelUpdateFinished(GJGameLevel*, UpdateResponse);
 }
 
 [[link(android)]]
 class RateLevelDelegate {
-	TodoReturn rateLevelClosed();
+	virtual TodoReturn rateLevelClosed();
 }
 
 [[link(android)]]
 class LikeItemDelegate {
-	TodoReturn likedItem(LikeItemType, int, bool);
+	virtual TodoReturn likedItem(LikeItemType, int, bool);
 }
 
 [[link(android)]]
 class LevelDeleteDelegate {
-	TodoReturn levelDeleteFailed(int);
-	TodoReturn levelDeleteFinished(int);
+	virtual TodoReturn levelDeleteFailed(int);
+	virtual TodoReturn levelDeleteFinished(int);
 }
 
 [[link(android)]]
 class NumberInputDelegate {
-	TodoReturn numberInputClosed(NumberInputLayer*);
+	virtual TodoReturn numberInputClosed(NumberInputLayer*);
 }
 
 [[link(android)]]
 class SetIDPopupDelegate {
 	/* unverified signature */
-	void setIDPopupClosed(SetIDPopup*, int);
+	virtual void setIDPopupClosed(SetIDPopup*, int);
 }
 
 [[link(android)]]
 class OnlineListDelegate {
-	TodoReturn setupPageInfo(gd::string, char const*);
-	TodoReturn loadListFailed(char const*);
-	TodoReturn loadListFinished(cocos2d::CCArray*, char const*);
+	virtual TodoReturn setupPageInfo(gd::string, char const*);
+	virtual TodoReturn loadListFailed(char const*);
+	virtual TodoReturn loadListFinished(cocos2d::CCArray*, char const*);
 }
 
 [[link(android)]]
@@ -2044,10 +2043,10 @@ class UploadActionPopup : FLAlertLayer {
 
 [[link(android)]]
 class LeaderboardManagerDelegate {
-	TodoReturn loadLeaderboardFailed(char const*);
-	TodoReturn updateUserScoreFailed();
-	TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
-	TodoReturn updateUserScoreFinished();
+	virtual TodoReturn loadLeaderboardFailed(char const*);
+	virtual TodoReturn updateUserScoreFailed();
+	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
+	virtual TodoReturn updateUserScoreFinished();
 }
 
 [[link(android)]]
