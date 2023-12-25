@@ -2987,8 +2987,8 @@ class StartPosObject : EffectGameObject {
 
 	TodoReturn getSaveString(GJBaseGameLayer*);
 
-	/* unverified signature */
-	void setSettings(LevelSettingsObject*);
+	// TODO: move LevelSettingsObject
+	// void setSettings(LevelSettingsObject*);
 
 	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn loadSettingsFromString(gd::string);
