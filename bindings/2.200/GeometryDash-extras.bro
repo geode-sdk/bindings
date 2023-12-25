@@ -3188,22 +3188,6 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 	TodoReturn audioNext(cocos2d::CCObject*);
 }
 
-[[link(android)]]
-class StartPosObject : EffectGameObject {
-	static StartPosObject* create();
-
-	~StartPosObject();
-
-	TodoReturn getSaveString(GJBaseGameLayer*);
-
-	/* unverified signature */
-	void setSettings(LevelSettingsObject*);
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn loadSettingsFromString(gd::string);
-
-	virtual bool init();
-}
 
 [[link(android)]]
 class UIOptionsLayer : SetupTriggerPopup {
@@ -3851,37 +3835,6 @@ class InheritanceNode : cocos2d::CCObject {
 	~InheritanceNode();
 }
 
-[[link(android)]]
-class LabelGameObject : EffectGameObject {
-	static LabelGameObject* create();
-
-	~LabelGameObject();
-
-	TodoReturn getSaveString(GJBaseGameLayer*);
-	TodoReturn getTextKerning();
-
-	/* unverified signature */
-	void setObjectColor(cocos2d::_ccColor3B const&);
-
-	TodoReturn createLabel(gd::string);
-	TodoReturn removeLabel();
-	TodoReturn resetObject();
-	TodoReturn updateLabel(float);
-	TodoReturn updateLabel(gd::string);
-	TodoReturn queueUpdateLabel(gd::string);
-	TodoReturn unlockLabelColor();
-	TodoReturn updateLabelAlign(int);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn updateTextKerning(int);
-	TodoReturn setupCustomSprites(gd::string);
-	TodoReturn updateLabelIfDirty();
-	TodoReturn updatePreviewLabel();
-	TodoReturn addMainSpriteToParent(bool);
-
-	virtual bool init();
-
-	virtual void setOpacity(unsigned char);
-}
 
 [[link(android)]]
 class MoreSearchLayer : FLAlertLayer, TextInputDelegate {

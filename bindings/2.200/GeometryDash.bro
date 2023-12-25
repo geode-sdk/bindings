@@ -2924,8 +2924,12 @@ class ParticleGameObject : EnhancedGameObject {
 	// property 145
 	char* m_particleData;
 	PAD = android32 0x110;
+
+	// property 147
 	bool m_hasUniformObjectColor;
 	PAD = android32 0x7;
+
+	// property 211
 	bool m_shouldQuickStart;
 	PAD = android32 0xf;
 }
@@ -2968,6 +2972,80 @@ class RingObject : EffectGameObject {
 	virtual void setScale(float);
 	virtual void setRotation(float);
 
+	// property 445
 	bool m_claimTouch;
+	// property 504
 	bool m_isSpawnOnly;
+}
+
+
+[[link(android)]]
+class StartPosObject : EffectGameObject {
+	static StartPosObject* create();
+
+	~StartPosObject();
+
+	TodoReturn getSaveString(GJBaseGameLayer*);
+
+	/* unverified signature */
+	void setSettings(LevelSettingsObject*);
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn loadSettingsFromString(gd::string);
+
+	virtual bool init();
+
+	int m_unknown;
+}
+
+
+[[link(android)]]
+class LabelGameObject : EffectGameObject {
+	static LabelGameObject* create();
+
+	~LabelGameObject();
+
+	TodoReturn getSaveString(GJBaseGameLayer*);
+	TodoReturn getTextKerning();
+
+	/* unverified signature */
+	void setObjectColor(cocos2d::_ccColor3B const&);
+
+	TodoReturn createLabel(gd::string);
+	TodoReturn removeLabel();
+	TodoReturn resetObject();
+	TodoReturn updateLabel(float);
+	TodoReturn updateLabel(gd::string);
+	TodoReturn queueUpdateLabel(gd::string);
+	TodoReturn unlockLabelColor();
+	TodoReturn updateLabelAlign(int);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn updateTextKerning(int);
+	TodoReturn setupCustomSprites(gd::string);
+	TodoReturn updateLabelIfDirty();
+	TodoReturn updatePreviewLabel();
+	TodoReturn addMainSpriteToParent(bool);
+
+	virtual bool init();
+
+	virtual void setOpacity(unsigned char);
+
+	PAD = android32 0x11;
+
+	// property 391
+	int m_alignment;
+
+	// property 389
+	bool m_showSecondsOnly;
+
+	// property 390
+	int m_shownSpecial;
+
+	// property 466
+	bool m_isTimeCounter;
+
+	// property 488
+	int m_kerning;
+
+	PAD = android32 0x8;
 }
