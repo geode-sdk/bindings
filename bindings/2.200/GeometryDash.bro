@@ -2581,3 +2581,54 @@ class GameObject : CCSpritePlus {
 
 	PAD = android32 0x14;
 }
+
+
+[[link(android)]]
+class EnhancedGameObject : GameObject {
+	static EnhancedGameObject* create(char const*);
+
+	bool init(char const*);
+	~EnhancedGameObject();
+	EnhancedGameObject();
+
+	PAD = android32 0x25;
+
+    bool m_hasCustomAnimation;
+    bool m_hasCustomRotation;
+	// property 98
+    bool m_property98;
+    
+	PAD = android32 0x3;
+
+	// property 97
+    float m_property97;
+    
+	PAD = android32 0xc;
+
+	// property 106
+    bool m_property106;
+	// property 107
+    float m_property107;
+	// property 122
+    bool m_property122;
+	// property 123
+    bool m_property123;
+	// property 126
+    bool m_property126;
+	// property 462
+    int m_property462;
+	// property 592
+    bool m_property592;
+    
+	PAD = android32 0xf;
+
+	// property 214
+    bool m_property214;
+	// property 444
+    bool m_property444;
+	// property 99
+    bool m_property99;
+    
+	PAD = android32 0x9;
+}
+
