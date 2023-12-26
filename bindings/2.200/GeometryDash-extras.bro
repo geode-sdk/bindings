@@ -2015,8 +2015,8 @@ class EndLevelLayer : GJDropDownLayer {
 
 	~EndLevelLayer();
 
-	TodoReturn getEndText();
-	TodoReturn getCoinString();
+	char const* getEndText() = win 0xE96B0;
+	char const* getCoinString() = win 0xE7D10;
 
 	void onEveryplay(cocos2d::CCObject* sender);
 	void onLevelLeaderboard(cocos2d::CCObject* sender);
@@ -2024,8 +2024,8 @@ class EndLevelLayer : GJDropDownLayer {
 	void onMenu(cocos2d::CCObject* sender);
 	void onReplay(cocos2d::CCObject* sender);
 
-	TodoReturn customSetup();
-	TodoReturn playEndEffect();
+	void customSetup() = win 0xE67B0;
+	void playEndEffect();
 	TodoReturn tryShowBanner(float);
 	TodoReturn playCoinEffect(float);
 	TodoReturn playStarEffect(float);
