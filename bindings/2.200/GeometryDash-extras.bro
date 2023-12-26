@@ -494,12 +494,12 @@ class PauseLayer : CCBlockLayer {
 	void onResume(cocos2d::CCObject* sender) = win 0x2b4c90;
 	void onRestart(cocos2d::CCObject* sender) = win 0x2b4ce0;
 
-	TodoReturn customSetup();
+	void customSetup() = win 0x2B3740;
 	TodoReturn tryShowBanner(float);
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
 	TodoReturn setupProgressBars();
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	TodoReturn musicSliderChanged(cocos2d::CCObject*);
+	void musicSliderChanged(cocos2d::CCObject*) = win 0x2B4AB0;
 	TodoReturn goEdit();
 
 	virtual void keyBackClicked();
@@ -2015,8 +2015,8 @@ class EndLevelLayer : GJDropDownLayer {
 
 	~EndLevelLayer();
 
-	TodoReturn getEndText();
-	TodoReturn getCoinString();
+	char const* getEndText() = win 0xE96B0;
+	char const* getCoinString() = win 0xE7D10;
 
 	void onEveryplay(cocos2d::CCObject* sender);
 	void onLevelLeaderboard(cocos2d::CCObject* sender);
@@ -2024,8 +2024,8 @@ class EndLevelLayer : GJDropDownLayer {
 	void onMenu(cocos2d::CCObject* sender);
 	void onReplay(cocos2d::CCObject* sender);
 
-	TodoReturn customSetup();
-	TodoReturn playEndEffect();
+	void customSetup() = win 0xE67B0;
+	void playEndEffect();
 	TodoReturn tryShowBanner(float);
 	TodoReturn playCoinEffect(float);
 	TodoReturn playStarEffect(float);
@@ -4910,7 +4910,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn awardSecretKey();
 	TodoReturn completedLevel(GJGameLevel*);
 	/* unverified signature */
-	bool isItemUnlocked(UnlockType, int);
+	bool isItemUnlocked(UnlockType, int) = win 0x173D10;
 	/* unverified signature */
 	bool isPathUnlocked(StatKey);
 	TodoReturn resetUserCoins();
