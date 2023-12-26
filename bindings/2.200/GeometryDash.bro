@@ -350,7 +350,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	/* unverified signature */
 	void setString(gd::string) = win 0x2e9a0;
 
-	TodoReturn onClickTrackNode(bool) = win 0x02f600;
+	void onClickTrackNode(bool) = win 0x02f600;
 
 	TodoReturn addTextArea(TextArea*);
 	TodoReturn forceOffset();
