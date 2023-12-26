@@ -494,12 +494,12 @@ class PauseLayer : CCBlockLayer {
 	void onResume(cocos2d::CCObject* sender) = win 0x2b4c90;
 	void onRestart(cocos2d::CCObject* sender) = win 0x2b4ce0;
 
-	TodoReturn customSetup();
+	void customSetup() = win 0x2B3740;
 	TodoReturn tryShowBanner(float);
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
 	TodoReturn setupProgressBars();
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	TodoReturn musicSliderChanged(cocos2d::CCObject*);
+	void musicSliderChanged(cocos2d::CCObject*) = win 0x2B4AB0;
 	TodoReturn goEdit();
 
 	virtual void keyBackClicked();
@@ -4910,7 +4910,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn awardSecretKey();
 	TodoReturn completedLevel(GJGameLevel*);
 	/* unverified signature */
-	bool isItemUnlocked(UnlockType, int);
+	bool isItemUnlocked(UnlockType, int) = win 0x173D10;
 	/* unverified signature */
 	bool isPathUnlocked(StatKey);
 	TodoReturn resetUserCoins();
