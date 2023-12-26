@@ -4722,7 +4722,7 @@ class GJAccountManager : cocos2d::CCNode {
 	gd::string m_username;
 	int m_accountID;
 	PAD = win 0x8, android32 0x8;
-	gd::string m_gjp;
+	gd::string m_gjp2;
 }
 
 [[link(android)]]
