@@ -932,7 +932,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	TodoReturn selectTab(IconType);
 	TodoReturn setupPage(int, IconType);
 
-	virtual bool init();
+	virtual bool init() = 0x1EAA40;
 
 	virtual void keyBackClicked();
 }
