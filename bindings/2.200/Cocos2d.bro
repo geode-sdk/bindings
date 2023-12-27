@@ -45,8 +45,8 @@ class cocos2d::CCNode {
 	static void resetGlobalOrderOfArrival();
 
 	// CCNode(cocos2d::CCNode const&);
-	CCNode() = win 0x5eef0;
-    ~CCNode() = win 0x5f160;
+	CCNode();
+    ~CCNode();
 	
 	cocos2d::CCAction* getActionByTag(int);
 	cocos2d::CCComponent* getComponent(char const*) const;
@@ -235,8 +235,8 @@ class cocos2d::CCLayer {
 	static cocos2d::CCLayer* create();
 
 	// CCLayer(cocos2d::CCLayer const&);
-	CCLayer() = win 0xa3370;
-    ~CCLayer() = win 0xa36d0;
+	CCLayer();
+    ~CCLayer();
 
 	cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
 	cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();
@@ -296,8 +296,8 @@ class cocos2d::CCObject {
 	static cocos2d::CCObject* createWithCoder(DS_Dictionary*);
 
 	// CCObject(cocos2d::CCObject const&);
-	CCObject() = win 0x6a180;
-    ~CCObject() = win 0x6a1f0;
+	CCObject();
+    ~CCObject();
 
 	cocos2d::CCObjectType getObjType() const;
 

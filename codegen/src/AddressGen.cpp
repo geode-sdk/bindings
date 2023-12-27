@@ -1,5 +1,6 @@
 #include "Shared.hpp"
 #include "AndroidSymbol.hpp"
+#include "WindowsSymbol.hpp"
 
 namespace {
     namespace format_strings {
@@ -116,6 +117,13 @@ std::string generateAddressHeader(Root const& root) {
                 continue;
             }
 
+            const auto isWindowsCocosCtor = [&] {
+                return codegen::platform == Platform::Windows
+                    && is_cocos_class(field.parent) 
+                    // && codegen::getStatus(field) == BindStatus::Binded
+                    && fn->prototype.type != FunctionType::Normal;
+            };
+
             if (codegen::getStatus(field) == BindStatus::NeedsBinding || codegen::platformNumber(field) != -1) {
                 if (is_cocos_class(field.parent) && codegen::platform == Platform::Windows) {
                     address_str = fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
@@ -128,6 +136,13 @@ std::string generateAddressHeader(Root const& root) {
                 auto const mangled = generateAndroidSymbol(c, fn);
                 address_str = fmt::format( // thumb
                     "reinterpret_cast<uintptr_t>(dlsym(dlopen(\"libcocos2dcpp.so\", RTLD_NOW), \"{}\"))",
+                    mangled
+                );
+            }
+            else if (isWindowsCocosCtor()) {
+                auto const mangled = generateWindowsSymbol(c, fn);
+                address_str = fmt::format(
+                    "reinterpret_cast<uintptr_t>(GetProcAddress(GetModuleHandleA(\"libcocos2d.dll\"), \"{}\"))",
                     mangled
                 );
             }
