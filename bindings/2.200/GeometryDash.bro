@@ -619,9 +619,9 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 	TodoReturn constraintContent();
 	TodoReturn doConstraintContent(bool);
 	void moveToTopWithOffset(float) = win 0x27ae0;
-	TodoReturn preVisitWithClippingRect(cocos2d::CCRect);
+	virtual TodoReturn preVisitWithClippingRect(cocos2d::CCRect);
 	void moveToTop() = win 0x27b60;
-	TodoReturn postVisit();
+	virtual TodoReturn postVisit();
 
 	virtual void visit() = win 0x28600;
 	virtual void registerWithTouchDispatcher() = win 0x280a0;
@@ -2277,7 +2277,7 @@ class GameToolbox {
 	static TodoReturn particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&);
 	static TodoReturn getLargestMergedIntDicts(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
 	static TodoReturn mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
-	static TodoReturn preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect);
+	static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x40bc0;
 	static TodoReturn timestampToHumanReadable(long);
 	/* unverified signature */
 	static bool isIOS();
