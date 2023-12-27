@@ -1730,7 +1730,7 @@ class GJGameLevel : cocos2d::CCNode {
 	void dataLoaded(DS_Dictionary*) = win 0x113B90;
 	TodoReturn getCoinKey(int);
 	TodoReturn getSongName();
-	TodoReturn getLengthKey(int, bool);
+	char const* getLengthKey(int, bool) = win 0x112BA0;
 	inline bool isPlatformer() {
 		return m_levelLength == 5;
 	}
