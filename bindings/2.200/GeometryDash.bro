@@ -996,8 +996,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 
 	// /* unverified signature */
 	// void setGroupParent(GameObject*, int);
-	// /* unverified signature */
-	// void setStartPosObject(StartPosObject*);
+	/* unverified signature */
+	void setStartPosObject(StartPosObject*) = win 0x195FC0;
 
 	// TodoReturn addToGroup(GameObject*, int, bool);
 	// TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
@@ -1371,8 +1371,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn testTime();
 	// TodoReturn addPoints(int);
 
-	// virtual void update(float);
-	// virtual bool init();
+	virtual void update(float) = win 0x1B75E0;
+	virtual bool init() = win 0x18CC80;
 	// virtual void visit();
 }
 
@@ -3478,7 +3478,7 @@ class StartPosObject : EffectGameObject {
 	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn loadSettingsFromString(gd::string);
 
-	virtual bool init();
+	virtual bool init() = win 0x3A0D10;
 
 	int m_unknown;
 }
