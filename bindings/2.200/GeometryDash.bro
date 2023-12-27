@@ -619,12 +619,13 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 	TodoReturn constraintContent();
 	TodoReturn doConstraintContent(bool);
 	void moveToTopWithOffset(float) = win 0x27ae0;
-	virtual TodoReturn preVisitWithClippingRect(cocos2d::CCRect);
 	void moveToTop() = win 0x27b60;
-	virtual TodoReturn postVisit();
 
 	virtual void visit() = win 0x28600;
 	virtual void registerWithTouchDispatcher() = win 0x280a0;
+
+	virtual TodoReturn preVisitWithClippingRect(cocos2d::CCRect) = win 0x286d0;
+	virtual TodoReturn postVisit() = win 0x28760;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x280d0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x281c0;
