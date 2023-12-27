@@ -794,7 +794,8 @@ class CCContentLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
-	static cocos2d::CCScene* scene(bool) = win 0x12c470;
+	static cocos2d::CCScene* scene(bool) = win 0x276680;
+	// MenuLayer::create is inlined on android, but not on windows somehow lol :P
 
 	~MenuLayer();
 
@@ -1456,7 +1457,7 @@ class GameManager : GManager {
 	TodoReturn keyForIcon(int, int);
 	TodoReturn loadGround(int);
 	TodoReturn printGJLog();
-	TodoReturn reloadMenu();
+	TodoReturn reloadMenu(); 
 	TodoReturn reorderKey(int, bool);
 	TodoReturn subYouTube();
 	TodoReturn tryCacheAd();
