@@ -3902,7 +3902,7 @@ class LevelTools {
 	TodoReturn getAudioBPM(int);
 	TodoReturn urlForAudio(int);
 	TodoReturn getLevelList();
-	TodoReturn getAudioTitle(int);
+	static gd::string getAudioTitle(int) = win 0x26E860;
 	TodoReturn getSongObject(int);
 	TodoReturn nameForArtist(int);
 	TodoReturn artistForAudio(int);
@@ -3925,5 +3925,5 @@ class LevelTools {
 	TodoReturn getLastGameplayReversed();
 	TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
 	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
-	TodoReturn getLevel(int, bool);
+	static GJGameLevel* getLevel(int, bool) = win 0x26DDA0;
 }
