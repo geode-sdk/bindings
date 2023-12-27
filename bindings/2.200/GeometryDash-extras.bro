@@ -1434,31 +1434,39 @@ class SimpleObject : cocos2d::CCObject {
 
 [[link(android)]]
 class SimplePlayer : cocos2d::CCSprite {
-	static SimplePlayer* create(int);
+	static SimplePlayer* create(int) = win 0x1ef610;
 
-	bool init(int);
+	bool init(int) = win 0x5ef6b0;
 	~SimplePlayer();
 
 	/* unverified signature */
-	void setSecondColor(cocos2d::_ccColor3B const&);
+	inline void setSecondColor(cocos2d::_ccColor3B const& color) {
+		m_secondLayer->setColor(color);
+		updateColors();
+	}
+
 	/* unverified signature */
 	void setColors(cocos2d::_ccColor3B const&, cocos2d::_ccColor3B const&);
 	/* unverified signature */
-	void setFrames(char const*, char const*, char const*, char const*, char const*);
+	void setFrames(char const*, char const*, char const*, char const*, char const*) = win 0x1f0540;
 
-	TodoReturn updateColors();
+	TodoReturn updateColors() = win 0x1efe50;
 	TodoReturn asyncLoadIcon(int, IconType);
 	TodoReturn hideSecondary();
-	TodoReturn createRobotSprite(int);
-	TodoReturn updatePlayerFrame(int, IconType);
+	TodoReturn createRobotSprite(int) = win 0x1efd50;
+	TodoReturn updatePlayerFrame(int, IconType) = win 0x1f0140;
 	TodoReturn createSpiderSprite(int);
 	TodoReturn iconFinishedLoading(int, IconType);
 	TodoReturn enableCustomGlowColor(cocos2d::_ccColor3B const&);
 	TodoReturn disableCustomGlowColor();
 	TodoReturn hideAll();
 
-	virtual void setColor(cocos2d::_ccColor3B const&);
-	virtual void setOpacity(unsigned char);
+	virtual void setColor(cocos2d::_ccColor3B const&) = win 0x1efe20;
+	virtual void setOpacity(unsigned char) = win 0x1f06f0;
+
+	cocos2d::CCSprite* m_firstLayer;
+	cocos2d::CCSprite* m_secondLayer;
+	PAD = win 0x28, android32 0x28;
 }
 
 [[link(android)]]
@@ -3139,6 +3147,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn playMusic(gd::string, bool, float, int);
 	TodoReturn stopMusic(int);
 	~FMODAudioEngine();
+
+	PAD = win 0x9c, android32 0x9c;
+	FMOD::System* m_system;
 }
 
 [[link(android)]]
