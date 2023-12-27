@@ -430,16 +430,20 @@ class TextArea : cocos2d::CCSprite {
 
 [[link(android)]]
 class Slider : cocos2d::CCLayer {
-	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler) = win 0x9999999;
-	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, float) = win 0x9999999;
-	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float) = win 0x04ce90;
+	static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) {
+		return Slider::create(target, handler, 1.f);
+	}
+	static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, float idk) {
+		return Slider::create(target, handler, "sliderBar.png", "slidergroove.png", "sliderthumb.png", "sliderthumbsel.png", idk);
+	}
+	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float) = win 0x4ce90;
 
 	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float);
 	~Slider();
 
 	TodoReturn getLiveDragging();
 	SliderThumb* getThumb();
-	float getValue() = win 0x9999999;
+	float getValue() = win 0x4d250;
 
 	void setRotated(bool);
 	void setMaxOffset(float);
@@ -453,7 +457,7 @@ class Slider : cocos2d::CCLayer {
 	TodoReturn disableTouch();
 	TodoReturn enableSlider();
 	TodoReturn disableSlider();
-	void updateBar() = win 0x9999999;
+	void updateBar() = win 0x4d2f0;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -516,7 +520,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 
-	virtual void scrollWheel(float, float);
+	virtual void scrollWheel(float, float) = win 0x50d30;
 
 	bool m_touchOutOfBoundary;
     cocos2d::CCTouch* m_touchStart;
@@ -613,7 +617,7 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 	/* unverified signature */
 	void setContentLayerSize(cocos2d::CCSize);
 
-	TodoReturn scrollLayer(float) = win 0x9999999;
+	void scrollLayer(float) = win 0x28550;
 	TodoReturn scrollingEnd();
 	TodoReturn updateIndicators(float);
 	TodoReturn constraintContent();
@@ -829,7 +833,6 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	TodoReturn firstNetworkTest() = mac 0x36fa30, win 0x277900;
 	TodoReturn onOptionsInstant();
 	TodoReturn showMeltdownPromo(); // empty
-	TodoReturn googlePlaySignedIn() = win 0x9999999;
 	TodoReturn videoOptionsClosed();
 	TodoReturn videoOptionsOpened();
 	TodoReturn updateUserProfileButton();
@@ -844,6 +847,8 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	virtual void keyBackClicked();
 
 	virtual void keyDown(cocos2d::enumKeyCodes);
+
+	virtual void googlePlaySignedIn() = win 0x277b10;
 }
 
 [[link(android)]]
@@ -1457,7 +1462,7 @@ class GameManager : GManager {
 	TodoReturn keyForIcon(int, int);
 	TodoReturn loadGround(int);
 	TodoReturn printGJLog();
-	TodoReturn reloadMenu(); 
+	void reloadMenu() = win 0x12c510;
 	TodoReturn reorderKey(int, bool);
 	TodoReturn subYouTube();
 	TodoReturn tryCacheAd();
@@ -1501,10 +1506,10 @@ class GameManager : GManager {
 	TodoReturn loadBackground(int);
 	TodoReturn loadDPadLayout(int, bool);
 	// TodoReturn playSFXTrigger(SFXTriggerGameObject*);
-	TodoReturn reloadAllStep2();
-	TodoReturn reloadAllStep3();
-	TodoReturn reloadAllStep4();
-	TodoReturn reloadAllStep5();
+	void reloadAllStep2() = win 0x12c620;
+	void reloadAllStep3() = win 0x12c780;
+	void reloadAllStep4() = win 0x12c820;
+	void reloadAllStep5() = win 0x12c890;
 	TodoReturn saveDPadLayout(int, bool);
 	TodoReturn shortenAdTimer(float);
 	TodoReturn showMainMenuAd();
@@ -1516,7 +1521,7 @@ class GameManager : GManager {
 	TodoReturn loadDeathEffect(int);
 	TodoReturn loadGroundAsync(int);
 	TodoReturn openEditorGuide();
-	TodoReturn queueReloadMenu();
+	void queueReloadMenu() = win 0x12c4c0;
 	/* unverified signature */
 	void setGameVariable(char const*, bool) = win 0x1266D0;
 	TodoReturn unlockedPremium();
@@ -1529,7 +1534,7 @@ class GameManager : GManager {
 	TodoReturn recountUserStats(gd::string);
 	TodoReturn resetAchievement(gd::string);
 	TodoReturn resetCoinUnlocks();
-	TodoReturn resolutionForKey(int);
+	void resolutionForKey(int) = win 0x12c8e0;
 	TodoReturn sheetNameForIcon(int, int);
 	TodoReturn showInterstitial();
 	TodoReturn switchScreenMode(bool, bool);
@@ -1610,7 +1615,7 @@ class GameManager : GManager {
 	TodoReturn rateGame();
 	TodoReturn firstLoad();
 	TodoReturn lockColor(int, UnlockType);
-	TodoReturn reloadAll(bool, bool, bool) = win 0x9999999;
+	void reloadAll(bool, bool, bool) = win 0x12c590;
 
 	virtual bool init() = win 0x11EA00;
 	virtual void update(float);
@@ -1632,7 +1637,10 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	static GJDropDownLayer* create(char const*);
 	static GJDropDownLayer* create(char const*, float);
 
-	bool init(char const*) = win 0x9999999;
+	// inlined on windows
+	bool init(char const* title) {
+		return GJDropDownLayer::init(title, 220.f);
+	}
     bool init(const char* title, float height) = win 0x1d2340;
 	~GJDropDownLayer();
 
@@ -1770,7 +1778,7 @@ class AchievementNotifier : cocos2d::CCNode {
 	~AchievementNotifier();
 
 	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
-	TodoReturn willSwitchToScene(cocos2d::CCScene*) = win 0x9999999;
+	void willSwitchToScene(cocos2d::CCScene*) = win 0x1c200;
 	TodoReturn showNextAchievement();
 	TodoReturn achievementDisplayFinished();
 
@@ -1822,7 +1830,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn hideLoadingCircle();
 	TodoReturn loadingIsFinished();
 	TodoReturn showLoadingCircle(bool, bool, bool);
-	TodoReturn willSwitchToScene(cocos2d::CCScene*);
+	void willSwitchToScene(cocos2d::CCScene*) = win 0x5b550;
 	TodoReturn bgScale();
 	TodoReturn musicTest() = win 0x5b330;
 	TodoReturn pauseGame();
@@ -2153,12 +2161,12 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 	void setRotated(bool);
 	/* unverified signature */
 	void setMaxOffset(float);
-	void setValue(float);
+	void setValue(float) = win 0x4c950;
 }
 
 [[link(android)]]
 class ColorChannelSprite : cocos2d::CCSprite {
-	static ColorChannelSprite* create() = win 0x9999999;
+	static ColorChannelSprite* create() = win 0x1d41d0;
 
 	~ColorChannelSprite();
 
