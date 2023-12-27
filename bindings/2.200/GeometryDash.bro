@@ -442,14 +442,20 @@ class Slider : cocos2d::CCLayer {
 	~Slider();
 
 	TodoReturn getLiveDragging();
-	SliderThumb* getThumb();
+	SliderThumb* getThumb() {
+		return m_touchLogic->m_thumb;
+	}
 	float getValue() = win 0x4d250;
 
 	void setRotated(bool);
 	void setMaxOffset(float);
 	void setLiveDragging(bool);
 	void setBarVisibility(bool);
-	void setValue(float) = win 0x9999999;
+	// inlined on windows
+	void setValue(float val) {
+        this->getThumb()->setValue(val);
+		this->updateBar();
+    }
 
 	TodoReturn hideGroove(bool);
 	TodoReturn sliderBegan();
@@ -463,7 +469,6 @@ class Slider : cocos2d::CCLayer {
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 
-	// 2.2, not tested
 	SliderTouchLogic* m_touchLogic;
     cocos2d::CCSprite* m_sliderBar;
     cocos2d::CCSprite* m_groove;
@@ -2150,18 +2155,28 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 
 [[link(android)]]
 class SliderThumb : cocos2d::CCMenuItemImage {
-	static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
+	static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*) = win 0x4c680;
 
 	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
 	~SliderThumb();
 
-	float getValue() = win 0x9999999;
+	// inlined on windows
+	float getValue() {
+        return (this->getScaleX() * m_length * .5f +
+                (m_vertical ?
+                    this->getPositionY() : 
+                    this->getPositionX())
+            ) / (this->getScaleX() * m_length);
+    }
 
 	/* unverified signature */
 	void setRotated(bool);
 	/* unverified signature */
 	void setMaxOffset(float);
 	void setValue(float) = win 0x4c950;
+
+	float m_length;
+    bool m_vertical;
 }
 
 [[link(android)]]
