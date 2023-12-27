@@ -140,39 +140,6 @@ class HardStreak : cocos2d::CCDrawNode {
 }
 
 [[link(android)]]
-class LevelTools {
-	TodoReturn posForTime(float, cocos2d::CCArray*, int, bool, int&);
-	TodoReturn timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int) = win 0x26fba0;
-	TodoReturn getAudioBPM(int);
-	TodoReturn urlForAudio(int);
-	TodoReturn getLevelList();
-	TodoReturn getAudioTitle(int);
-	TodoReturn getSongObject(int);
-	TodoReturn nameForArtist(int);
-	TodoReturn artistForAudio(int);
-	TodoReturn fbURLForArtist(int);
-	TodoReturn getAudioString(int);
-	TodoReturn ngURLForArtist(int);
-	TodoReturn ytURLForArtist(int);
-	TodoReturn getLastTimewarp();
-	TodoReturn getAudioFileName(int);
-	TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*);
-	TodoReturn valueForSpeedMod(int) = win 0x26fb50;
-	TodoReturn offsetBPMForTrack(int);
-	TodoReturn base64DecodeString(gd::string);
-	TodoReturn base64EncodeString(gd::string);
-	TodoReturn createStarPackDict();
-	TodoReturn posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int) = win 0x270220;
-	TodoReturn toggleDebugLogging(bool);
-	TodoReturn verifyLevelIntegrity(gd::string, int);
-	TodoReturn getLastGameplayRotated();
-	TodoReturn getLastGameplayReversed();
-	TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
-	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
-	TodoReturn getLevel(int, bool);
-}
-
-[[link(android)]]
 class PauseLayer : CCBlockLayer {
 	static PauseLayer* create(bool) = win 0x2b3690;
 
@@ -384,7 +351,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	void onGoToLevel(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
 	void onConfirmDelete(cocos2d::CCObject* sender);
-	void onLike(cocos2d::CCObject* sender);
+	void onLike(cocos2d::CCObject* sender) = win 0x85A10;
 	TodoReturn onDelete();
 	void onUnhide(cocos2d::CCObject* sender);
 
@@ -427,36 +394,6 @@ class GJGameState {
 	TodoReturn processStateTriggers();
 	// GJGameState();
 	// ~GJGameState();
-}
-
-[[link(android)]]
-class GJLevelList : cocos2d::CCNode {
-	static GJLevelList* create(cocos2d::CCDictionary*);
-	static GJLevelList* create();
-
-	~GJLevelList();
-
-	TodoReturn getListLevelsArray(cocos2d::CCArray*);
-	TodoReturn getUnpackedDescription();
-
-	TodoReturn dataLoaded(DS_Dictionary*);
-	TodoReturn totalLevels();
-	TodoReturn reorderLevel(int, int);
-	TodoReturn showListInfo();
-	TodoReturn orderForLevel(int);
-	TodoReturn addLevelToList(GJGameLevel*);
-	TodoReturn completedLevels();
-	TodoReturn createWithCoder(DS_Dictionary*);
-	TodoReturn parseListLevels(gd::string);
-	TodoReturn reorderLevelStep(int, bool);
-	TodoReturn updateLevelsString();
-	TodoReturn duplicateListLevels(GJLevelList*);
-	TodoReturn removeLevelFromList(int);
-	TodoReturn frameForListDifficulty(int, DifficultyIconType);
-
-	virtual void encodeWithCoder(DS_Dictionary*);
-	virtual bool canEncode();
-	virtual bool init();
 }
 
 [[link(android)]]
@@ -566,7 +503,7 @@ class MapPackCell : TableViewCell {
 	~MapPackCell();
 
 	void onClaimReward(cocos2d::CCObject* sender);
-	void onClick(cocos2d::CCObject* sender);
+	void onClick(cocos2d::CCObject* sender) = win 0x81690;
 
 	TodoReturn reloadCell();
 	void updateBGColor(int) = win 0x807B0;
@@ -1367,14 +1304,6 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 }
 
 [[link(android)]]
-class SearchButton : cocos2d::CCSprite {
-	static SearchButton* create(char const*, char const*, float, char const*);
-
-	bool init(char const*, char const*, float, char const*);
-	~SearchButton();
-}
-
-[[link(android)]]
 class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
 	static SecretLayer2* create();
 
@@ -1968,22 +1897,6 @@ class LevelListCell : TableViewCell {
 }
 
 [[link(android)]]
-class LikeItemLayer : FLAlertLayer {
-	static LikeItemLayer* create(LikeItemType, int, int);
-
-	bool init(LikeItemType, int, int);
-	~LikeItemLayer();
-
-	void onLike(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onDislike(cocos2d::CCObject* sender);
-
-	TodoReturn triggerLike(bool);
-
-	virtual void keyBackClicked();
-}
-
-[[link(android)]]
 class MenuGameLayer : cocos2d::CCLayer {
 	static MenuGameLayer* create();
 
@@ -2492,27 +2405,6 @@ class GJScaleControl : cocos2d::CCLayer {
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-}
-
-[[link(android)]]
-class GJSearchObject : cocos2d::CCNode {
-	static GJSearchObject* create(SearchType);
-	static GJSearchObject* create(SearchType, gd::string);
-	static GJSearchObject* create(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
-
-	bool init(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
-	~GJSearchObject();
-
-	TodoReturn getSearchKey(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
-	TodoReturn getPageObject(int);
-	TodoReturn getNextPageKey();
-	TodoReturn getNextPageObject();
-	TodoReturn getPrevPageObject();
-	TodoReturn getKey();
-
-	TodoReturn createFromKey(char const*);
-	/* unverified signature */
-	bool isLevelSearchObject();
 }
 
 [[link(android)]]
@@ -4164,318 +4056,6 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 }
 
 [[link(android)]]
-class GameLevelManager : cocos2d::CCNode {
-	~GameLevelManager();
-
-	TodoReturn getDailyID(GJTimedLevelType);
-	TodoReturn getDescKey(int);
-	TodoReturn getDiffKey(int);
-	TodoReturn getDiffVal(int);
-	TodoReturn getLevelKey(int);
-	TodoReturn getMapPacks(GJSearchObject*);
-	TodoReturn getPageInfo(char const*);
-	TodoReturn getTimeLeft(char const*, float);
-	TodoReturn getUserList(UserListType);
-	TodoReturn getGauntlets();
-	TodoReturn getGJRewards(int);
-	TodoReturn getIntForKey(char const*);
-	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
-	TodoReturn getMainLevel(int, bool) = win 0xF40E0;
-	TodoReturn getReportKey(int);
-	TodoReturn getBoolForKey(char const*);
-	TodoReturn getCommentKey(int, int, int, CommentKeyType);
-	TodoReturn getDailyTimer(GJTimedLevelType);
-	TodoReturn getFolderName(int, bool);
-	TodoReturn getGJUserInfo(int);
-	TodoReturn getLevelLists(GJSearchObject*);
-	TodoReturn getLocalLevel(int);
-	TodoReturn getMapPackKey(int);
-	TodoReturn getMessageKey(int);
-	TodoReturn getSavedLevel(int);
-	TodoReturn getSavedLevel(GJGameLevel*);
-	TodoReturn getTopArtists(int, int);
-	TodoReturn getGauntletKey(int);
-	TodoReturn getLikeItemKey(LikeItemType, int, bool, int);
-	TodoReturn getMessagesKey(bool, int);
-	TodoReturn getSavedLevels(bool, int) = win 0xF6620;
-	TodoReturn getSearchScene(char const*);
-	TodoReturn getUserInfoKey(int);
-	TodoReturn getGJChallenges();
-	TodoReturn getLevelListKey(int);
-	TodoReturn getOnlineLevels(GJSearchObject*);
-	TodoReturn getRateStarsKey(int);
-	TodoReturn getSavedMapPack(int);
-	TodoReturn getUserMessages(bool, int, int);
-	TodoReturn getActiveDailyID(GJTimedLevelType);
-	TodoReturn getDifficultyStr(bool, bool, bool, bool, bool, bool, bool, bool);
-	TodoReturn getLevelComments(int, int, int, int, CommentKeyType);
-	TodoReturn getLevelSaveData();
-	TodoReturn getNextLevelName(gd::string);
-	TodoReturn getSavedGauntlet(int);
-	TodoReturn getTopArtistsKey(int);
-	TodoReturn getAllUsedSongIDs();
-	TodoReturn getBasePostString();
-	TodoReturn getFriendRequests(bool, int, int);
-	TodoReturn getGauntletLevels(int);
-	TodoReturn getLocalLevelList(int);
-	TodoReturn getPostCommentKey(int);
-	TodoReturn getSavedLevelList(int);
-	TodoReturn getStoredUserList(UserListType);
-	TodoReturn getAccountComments(int, int, int);
-	TodoReturn getCompletedLevels(bool) = win 0xF6A70;
-	TodoReturn getSavedDailyLevel(int);
-	TodoReturn getSavedLevelLists(int);
-	TodoReturn getSplitIntFromKey(char const*, int);
-	TodoReturn getDeleteCommentKey(int, int, int);
-	TodoReturn getDeleteMessageKey(int, bool);
-	TodoReturn getFriendRequestKey(bool, int);
-	TodoReturn getLevelDownloadKey(int, bool);
-	TodoReturn getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode);
-	TodoReturn getLocalLevelByName(gd::string);
-	TodoReturn getLowestLevelOrder();
-	TodoReturn getUploadMessageKey(int);
-	TodoReturn getAccountCommentKey(int, int);
-	TodoReturn getAllSmartTemplates();
-	TodoReturn getGauntletSearchKey(int);
-	TodoReturn getGJDailyLevelState(GJTimedLevelType);
-	TodoReturn getHighestLevelOrder();
-	TodoReturn getLeaderboardScores(char const*);
-	TodoReturn getStoredUserMessage(int);
-	TodoReturn getLikeAccountItemKey(LikeItemType, int, bool, int);
-	TodoReturn getNextFreeTemplateID();
-	TodoReturn getSavedGauntletLevel(int);
-	TodoReturn getStoredOnlineLevels(char const*);
-	TodoReturn getActiveSmartTemplate();
-	TodoReturn getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
-	TodoReturn getStoredLevelComments(char const*);
-	TodoReturn getStoredUserMessageReply(int);
-	TodoReturn getSavedDailyLevelFromLevelID(int);
-	TodoReturn getNews();
-	TodoReturn getUsers(GJSearchObject*);
-	TodoReturn getLenKey(int);
-	TodoReturn getLenVal(int);
-
-	/* unverified signature */
-	void setDiffVal(int, bool);
-	/* unverified signature */
-	void setIntForKey(int, char const*);
-	/* unverified signature */
-	void setBoolForKey(bool, char const*);
-	/* unverified signature */
-	void setFolderName(int, gd::string, bool);
-	/* unverified signature */
-	void setLevelStars(int, int, bool);
-	/* unverified signature */
-	void setLevelFeatured(int, int, bool);
-	/* unverified signature */
-	void setActiveSmartTemplate(GJSmartTemplate*);
-	/* unverified signature */
-	void setLenVal(int, bool);
-
-	TodoReturn onBanUserCompleted(gd::string, gd::string);
-	TodoReturn onGetNewsCompleted(gd::string, gd::string);
-	TodoReturn onGetUsersCompleted(gd::string, gd::string);
-	TodoReturn onLikeItemCompleted(gd::string, gd::string);
-	TodoReturn onBlockUserCompleted(gd::string, gd::string);
-	TodoReturn onRateDemonCompleted(gd::string, gd::string);
-	TodoReturn onRateStarsCompleted(gd::string, gd::string);
-	TodoReturn onGetMapPacksCompleted(gd::string, gd::string);
-	TodoReturn onGetUserListCompleted(gd::string, gd::string);
-	TodoReturn onReportLevelCompleted(gd::string, gd::string);
-	TodoReturn onUnblockUserCompleted(gd::string, gd::string);
-	TodoReturn onUpdateLevelCompleted(gd::string, gd::string);
-	TodoReturn onUploadLevelCompleted(gd::string, gd::string);
-	TodoReturn onGetGauntletsCompleted(gd::string, gd::string);
-	TodoReturn onGetGJRewardsCompleted(gd::string, gd::string);
-	TodoReturn onRemoveFriendCompleted(gd::string, gd::string);
-	TodoReturn onRestoreItemsCompleted(gd::string, gd::string);
-	TodoReturn onDeleteCommentCompleted(gd::string, gd::string);
-	TodoReturn onDownloadLevelCompleted(gd::string, gd::string);
-	TodoReturn onGetGJUserInfoCompleted(gd::string, gd::string);
-	TodoReturn onGetLevelListsCompleted(gd::string, gd::string);
-	TodoReturn onGetTopArtistsCompleted(gd::string, gd::string);
-	TodoReturn onSetLevelStarsCompleted(gd::string, gd::string);
-	TodoReturn onUploadCommentCompleted(gd::string, gd::string);
-	TodoReturn onSubmitUserInfoCompleted(gd::string, gd::string);
-	TodoReturn onGetGJChallengesCompleted(gd::string, gd::string);
-	TodoReturn onGetOnlineLevelsCompleted(gd::string, gd::string);
-	TodoReturn onGetUserMessagesCompleted(gd::string, gd::string);
-	TodoReturn onUpdateUserScoreCompleted(gd::string, gd::string);
-	TodoReturn onUploadLevelListCompleted(gd::string, gd::string);
-	TodoReturn onGetLevelCommentsCompleted(gd::string, gd::string);
-	TodoReturn onGetLevelSaveDataCompleted(gd::string, gd::string);
-	TodoReturn onSetLevelFeaturedCompleted(gd::string, gd::string);
-	TodoReturn onDeleteServerLevelCompleted(gd::string, gd::string);
-	TodoReturn onGetFriendRequestsCompleted(gd::string, gd::string);
-	TodoReturn onReadFriendRequestCompleted(gd::string, gd::string);
-	TodoReturn onRequestUserAccessCompleted(gd::string, gd::string);
-	TodoReturn onSuggestLevelStarsCompleted(gd::string, gd::string);
-	TodoReturn onUpdateDescriptionCompleted(gd::string, gd::string);
-	TodoReturn onUploadUserMessageCompleted(gd::string, gd::string);
-	TodoReturn onDeleteUserMessagesCompleted(gd::string, gd::string);
-	TodoReturn onGetAccountCommentsCompleted(gd::string, gd::string);
-	TodoReturn onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
-	TodoReturn onAcceptFriendRequestCompleted(gd::string, gd::string);
-	TodoReturn onDeleteFriendRequestCompleted(gd::string, gd::string);
-	TodoReturn onDownloadUserMessageCompleted(gd::string, gd::string);
-	TodoReturn onGetLevelLeaderboardCompleted(gd::string, gd::string);
-	TodoReturn onUploadFriendRequestCompleted(gd::string, gd::string);
-	TodoReturn onGetGJDailyLevelStateCompleted(gd::string, gd::string);
-	TodoReturn onGetLeaderboardScoresCompleted(gd::string, gd::string);
-	TodoReturn onDeleteServerLevelListCompleted(gd::string, gd::string);
-
-	TodoReturn dataLoaded(DS_Dictionary*);
-	TodoReturn firstSetup();
-	TodoReturn followUser(int);
-	TodoReturn handleItND(cocos2d::CCNode*, void*);
-	/* unverified signature */
-	bool isDLActive(char const*);
-	TodoReturn deleteLevel(GJGameLevel*);
-	/* unverified signature */
-	bool isTimeValid(char const*, float);
-	TodoReturn keyHasTimer(char const*);
-	TodoReturn reportLevel(int);
-	TodoReturn saveMapPack(GJMapPack*);
-	static GameLevelManager* sharedState();
-	TodoReturn unblockUser(int);
-	TodoReturn updateLevel(GJGameLevel*);
-	void uploadLevel(GJGameLevel*) = win 0xFA560;
-	TodoReturn encodeDataTo(DS_Dictionary*);
-	TodoReturn hasLikedItem(LikeItemType, int, bool, int);
-	TodoReturn removeFriend(int);
-	TodoReturn restoreItems();
-	TodoReturn saveGauntlet(GJMapPack*);
-	TodoReturn unfollowUser(int);
-	TodoReturn addDLToActive(char const*);
-	TodoReturn deleteComment(int, CommentType, int);
-	TodoReturn downloadLevel(int, bool);
-	TodoReturn gotoLevelPage(GJGameLevel*);
-	TodoReturn hasRatedDemon(int);
-	/* unverified signature */
-	bool isUpdateValid(int);
-	TodoReturn makeTimeStamp(char const*);
-	TodoReturn saveLevelList(GJLevelList*);
-	TodoReturn storeUserInfo(GJUserScore*);
-	TodoReturn storeUserName(int, int, gd::string);
-	TodoReturn uploadComment(gd::string, CommentType, int, int);
-	TodoReturn createNewLevel();
-	TodoReturn createPageInfo(int, int, int);
-	TodoReturn resetAllTimers();
-	TodoReturn resetGauntlets();
-	TodoReturn responseToDict(gd::string, bool);
-	TodoReturn saveLocalScore(int, int, int);
-	TodoReturn storeUserNames(gd::string);
-	TodoReturn submitUserInfo();
-	TodoReturn tryGetUsername(int);
-	TodoReturn deleteLevelList(GJLevelList*);
-	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
-	/* unverified signature */
-	bool isFollowingUser(int);
-	TodoReturn likeFromLikeKey(char const*);
-	TodoReturn markItemAsLiked(LikeItemType, int, bool, int);
-	TodoReturn typeFromLikeKey(char const*);
-	TodoReturn updateUsernames();
-	TodoReturn updateUserScore();
-	TodoReturn uploadLevelList(GJLevelList*);
-	TodoReturn hasReportedLevel(int);
-	TodoReturn limitSavedLevels();
-	TodoReturn parseRestoreData(gd::string);
-	TodoReturn resetTimerForKey(char const*);
-	TodoReturn storeUserMessage(GJUserMessage*);
-	TodoReturn verifyLevelState(GJGameLevel*);
-	TodoReturn deleteServerLevel(int);
-	TodoReturn hasDownloadedList(int);
-	TodoReturn itemIDFromLikeKey(char const*);
-	TodoReturn messageWasRemoved(int, bool);
-	TodoReturn purgeUnusedLevels();
-	TodoReturn readFriendRequest(int);
-	TodoReturn requestUserAccess();
-	TodoReturn saveFetchedLevels(cocos2d::CCArray*);
-	TodoReturn storeSearchResult(cocos2d::CCArray*, gd::string, char const*);
-	TodoReturn suggestLevelStars(int, int, int);
-	TodoReturn updateDescription(int, gd::string);
-	TodoReturn updateLevelOrders();
-	TodoReturn uploadUserMessage(int, gd::string, gd::string);
-	TodoReturn userNameForUserID(int);
-	TodoReturn accountIDForUserID(int);
-	TodoReturn areGauntletsLoaded();
-	TodoReturn cleanupDailyLevels();
-	TodoReturn createAndGetLevels(gd::string);
-	TodoReturn createAndGetScores(gd::string, GJScoreType);
-	TodoReturn createNewLevelList();
-	TodoReturn deleteLevelComment(int, int);
-	TodoReturn deleteUserMessages(GJUserMessage*, cocos2d::CCArray*, bool);
-	TodoReturn hasDownloadedLevel(int);
-	TodoReturn hasRatedLevelStars(int);
-	TodoReturn invalidateMessages(bool, bool);
-	TodoReturn invalidateRequests(bool, bool);
-	TodoReturn invalidateUserList(UserListType, bool);
-	TodoReturn pageFromCommentKey(char const*);
-	TodoReturn performNetworkTest();
-	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
-	TodoReturn removeDLFromActive(char const*);
-	TodoReturn removeUserFromList(int, UserListType);
-	TodoReturn specialFromLikeKey(char const*);
-	TodoReturn storeFriendRequest(GJFriendRequest*);
-	TodoReturn typeFromCommentKey(char const*);
-	TodoReturn updateLevelRewards(GJGameLevel*);
-	TodoReturn uploadLevelComment(int, gd::string, int);
-	TodoReturn userIDForAccountID(int);
-	TodoReturn acceptFriendRequest(int, int);
-	TodoReturn createSmartTemplate();
-	TodoReturn deleteSmartTemplate(GJSmartTemplate*);
-	TodoReturn downloadUserMessage(int, bool);
-	TodoReturn hasLikedAccountItem(LikeItemType, int, bool, int);
-	TodoReturn markLevelAsReported(int);
-	TodoReturn resetStoredUserInfo(int);
-	TodoReturn resetStoredUserList(UserListType);
-	TodoReturn saveFetchedMapPacks(cocos2d::CCArray*);
-	TodoReturn storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
-	TodoReturn uploadFriendRequest(int, gd::string);
-	TodoReturn writeSpecialFilters(GJSearchObject*);
-	TodoReturn createAndGetMapPacks(gd::string);
-	TodoReturn deleteAccountComment(int, int);
-	TodoReturn deleteFriendRequests(int, cocos2d::CCArray*, bool);
-	TodoReturn markListAsDownloaded(int);
-	TodoReturn removeDelimiterChars(gd::string, bool);
-	TodoReturn resetAccountComments(int);
-	TodoReturn resetDailyLevelState(GJTimedLevelType);
-	TodoReturn storeDailyLevelState(int, int, GJTimedLevelType);
-	TodoReturn updateSavedLevelList(GJLevelList*);
-	TodoReturn uploadAccountComment(gd::string);
-	TodoReturn userInfoForAccountID(int);
-	TodoReturn deleteServerLevelList(int);
-	TodoReturn hasLikedItemFullCheck(LikeItemType, int, int);
-	TodoReturn levelIDFromCommentKey(char const*);
-	TodoReturn markLevelAsDownloaded(int);
-	TodoReturn markLevelAsRatedDemon(int);
-	TodoReturn markLevelAsRatedStars(int);
-	TodoReturn saveFetchedLevelLists(cocos2d::CCArray*);
-	TodoReturn storeUserMessageReply(int, GJUserMessage*);
-	TodoReturn createAndGetLevelLists(gd::string);
-	TodoReturn deleteSentFriendRequest(int);
-	TodoReturn friendRequestWasRemoved(int, bool);
-	TodoReturn hasDailyStateBeenLoaded(GJTimedLevelType);
-	TodoReturn createAndGetCommentsFull(gd::string, int, bool);
-	TodoReturn createAndGetLevelComments(gd::string, int);
-	TodoReturn levelIDFromPostCommentKey(char const*);
-	TodoReturn friendRequestFromAccountID(int);
-	TodoReturn createAndGetAccountComments(gd::string, int);
-	TodoReturn resetCommentTimersForLevelID(int, CommentKeyType);
-	TodoReturn processOnDownloadLevelCompleted(gd::string, gd::string, bool);
-	TodoReturn removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary*);
-	TodoReturn banUser(int);
-	TodoReturn handleIt(bool, gd::string, gd::string, GJHttpType);
-	TodoReturn likeItem(LikeItemType, int, bool, int);
-	TodoReturn blockUser(int);
-	TodoReturn rateDemon(int, int, bool);
-	TodoReturn rateStars(int, int);
-	TodoReturn saveLevel(GJGameLevel*);
-
-	virtual bool init();
-}
-
-[[link(android)]]
 class GameOptionsLayer : GJOptionsLayer {
 	static GameOptionsLayer* create(GJBaseGameLayer*);
 
@@ -5012,7 +4592,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DemonFilterDelegate {
 	static LevelSearchLayer* create(int);
 
-	bool init(int);
+	bool init(int) = win 0x25C580;
 	~LevelSearchLayer();
 
 	TodoReturn getDiffKey(int);
@@ -6420,12 +6000,6 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 	virtual void registerWithTouchDispatcher();
 
 	virtual void keyBackClicked();
-}
-
-[[link(android)]]
-class ListUploadDelegate {
-	TodoReturn listUploadFailed(GJLevelList*, int);
-	TodoReturn listUploadFinished(GJLevelList*);
 }
 
 [[link(android)]]
@@ -8697,12 +8271,6 @@ class DownloadMessageDelegate {
 class GJAccountBackupDelegate {
 	TodoReturn backupAccountFailed(BackupAccountError, int);
 	TodoReturn backupAccountFinished();
-}
-
-[[link(android)]]
-class LevelListDeleteDelegate {
-	TodoReturn levelListDeleteFailed(int);
-	TodoReturn levelListDeleteFinished(int);
 }
 
 [[link(android)]]
