@@ -1731,8 +1731,9 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn getCoinKey(int);
 	TodoReturn getSongName();
 	TodoReturn getLengthKey(int, bool);
-	/* unverified signature */
-	bool isPlatformer();
+	inline bool isPlatformer() {
+		return m_levelLength == 5;
+	}
 	TodoReturn saveNewScore(int, int);
 	TodoReturn copyLevelInfo(GJGameLevel*);
 	TodoReturn unverifyCoins();
@@ -1761,7 +1762,106 @@ class GJGameLevel : cocos2d::CCNode {
 
 	virtual void encodeWithCoder(DS_Dictionary*) = win 0x114BF0;
 	virtual bool canEncode();
-	virtual bool init();
+	virtual bool init() = win 0x1125e0;
+
+	cocos2d::CCDictionary* m_lastBuildSave;
+	geode::SeedValueRSV m_levelID;
+	gd::string m_levelName;
+	gd::string m_levelDesc;
+	gd::string m_levelString;
+	gd::string m_creatorName;
+	gd::string m_recordString;
+	gd::string m_uploadDate;
+	gd::string m_updateDate;
+	gd::string m_unkString1;
+	gd::string m_unkString2;
+
+	cocos2d::CCPoint m_unkPoint;
+	geode::SeedValueRSV m_userID;
+	geode::SeedValueRSV m_accountID;
+	GJDifficulty m_difficulty;
+    int m_audioTrack;
+    int m_songID;
+    int m_levelRev;
+	bool m_unlisted;
+	geode::SeedValueRSV m_objectCount;
+    int m_levelIndex;
+	int m_ratings;
+    int m_ratingsSum;
+    int m_downloads;
+    bool m_isEditable;
+	bool m_gauntletLevel;
+	bool m_gauntletLevel2;
+    int m_workingTime;
+    int m_workingTime2;
+    bool m_lowDetailMode;
+    bool m_lowDetailModeToggled;
+	geode::SeedValueRS m_isVerified;
+    bool m_isVerifiedRaw;
+    bool m_isUploaded;
+    bool m_hasBeenModified;
+	int m_levelVersion;
+	int m_gameVersion;
+
+	geode::SeedValueRSV m_attempts;
+	geode::SeedValueRSV m_jumps;
+	geode::SeedValueRSV m_clicks;
+	geode::SeedValueRSV m_attemptTime;
+    int m_chk;
+    bool m_isChkValid;
+    bool m_isCompletionLegitimate;
+	geode::SeedValueVSR m_normalPercent;
+	geode::SeedValueRSV m_orbCompletion;
+	geode::SeedValueRSV m_newNormalPercent2;
+    int m_practicePercent;
+    int m_likes;
+    int m_dislikes;
+    int m_levelLength;
+    int m_featured;
+    int m_isEpic;
+    bool m_levelFavorited;
+	int m_levelFolder;
+	geode::SeedValueRSV m_dailyID;
+	geode::SeedValueRSV m_demon;
+    int m_demonDifficulty;
+    geode::SeedValueRSV m_stars;
+    bool m_autoLevel;
+    int m_coins;
+	geode::SeedValueRSV m_coinsVerified;
+    geode::SeedValueRS m_password;
+	geode::SeedValueRSV m_originalLevel;
+	bool m_twoPlayerMode;
+    int m_failedPasswordAttempts;
+    geode::SeedValueRSV m_firstCoinVerified;
+    geode::SeedValueRSV m_secondCoinVerified;
+    geode::SeedValueRSV m_thirdCoinVerified;
+    int m_starsRequested;
+    bool m_showedSongWarning;
+    int m_starRatings;
+    int m_starRatingsSum;
+    int m_maxStarRatings;
+    int m_minStarRatings;
+    int m_demonVotes;
+    int m_rateStars;
+    int m_rateFeature;
+    gd::string m_rateUser;
+    bool m_dontSave;
+    bool m_levelNotDownloaded;
+    int m_requiredCoins;
+    bool m_isUnlocked;
+    cocos2d::CCPoint m_lastCameraPos;
+    float m_fastEditorZoom;
+    int m_lastBuildTab;
+    int m_lastBuildPage;
+    int m_lastBuildGroupID;
+    GJLevelType m_levelType;
+    int m_M_ID;
+    gd::string m_tempName;
+    gd::string m_capacityString;
+    bool m_highObjectsEnabled;
+    gd::string m_personalBests;
+
+	PAD = android32 0x78, win 0x78;
 }
 
 class UIButtonConfig {
