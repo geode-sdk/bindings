@@ -437,7 +437,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	TodoReturn dialogClosed(DialogLayer*);
 	TodoReturn didPurchaseItem(GJStoreItem*);
 	TodoReturn exitVideoAdItems();
-	TodoReturn showReactMessage();
+	void showReactMessage() = win 0x217100;;
 	TodoReturn rewardedVideoFinished();
 	TodoReturn showCantAffordMessage(GJStoreItem*) = win 0x2166B0;
 	TodoReturn updateCurrencyCounter();
