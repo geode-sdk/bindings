@@ -1436,7 +1436,7 @@ class SimpleObject : cocos2d::CCObject {
 class SimplePlayer : cocos2d::CCSprite {
 	static SimplePlayer* create(int) = win 0x1ef610;
 
-	bool init(int) = win 0x5ef6b0;
+	bool init(int) = win 0x1ef6b0;
 	~SimplePlayer();
 
 	/* unverified signature */
