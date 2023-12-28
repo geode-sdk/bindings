@@ -328,31 +328,6 @@ class ColorAction : cocos2d::CCObject {
 }
 
 [[link(android)]]
-class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
-	~CommentCell();
-
-	TodoReturn onUndelete();
-	void onGoToLevel(cocos2d::CCObject* sender);
-	void onViewProfile(cocos2d::CCObject* sender);
-	void onConfirmDelete(cocos2d::CCObject* sender);
-	void onLike(cocos2d::CCObject* sender) = win 0x85A10;
-	TodoReturn onDelete();
-	void onUnhide(cocos2d::CCObject* sender);
-
-	void updateBGColor(int) = win 0x85990;
-	TodoReturn incrementLikes();
-	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
-	void loadFromComment(GJComment*) = win 0x83E20;
-	TodoReturn incrementDislikes();
-	TodoReturn updateLabelValues();
-	TodoReturn likedItem(LikeItemType, int, bool);
-	CommentCell(char const*, float, float);
-
-	virtual bool init();
-	virtual void draw();
-}
-
-[[link(android)]]
 class GJBigSprite : cocos2d::CCNode {
 	static GJBigSprite* create();
 
@@ -3318,7 +3293,7 @@ class GJEffectManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GJFriendRequest : cocos2d::CCNode {
-	static GJFriendRequest* create(cocos2d::CCDictionary*);
+	static GJFriendRequest* create(cocos2d::CCDictionary*) = win 0x117AA0;
 	static GJFriendRequest* create();
 
 	~GJFriendRequest();
@@ -4407,58 +4382,6 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 	bool isCorrect(char const*);
 
 	virtual void registerWithTouchDispatcher();
-
-	virtual void keyBackClicked();
-}
-
-[[link(android)]]
-class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DemonFilterDelegate {
-	static LevelSearchLayer* create(int);
-
-	bool init(int) = win 0x25C580;
-	~LevelSearchLayer();
-
-	TodoReturn getDiffKey(int);
-	TodoReturn getTimeKey(int);
-	TodoReturn getLevelLenKey();
-	TodoReturn getSearchObject(SearchType, gd::string);
-	TodoReturn getSearchDiffKey();
-
-	void onFollowed(cocos2d::CCObject* sender);
-	void onTrending(cocos2d::CCObject* sender);
-	void onMostLikes(cocos2d::CCObject* sender);
-	void onStarAward(cocos2d::CCObject* sender);
-	void onSuggested(cocos2d::CCObject* sender);
-	void onMostRecent(cocos2d::CCObject* sender);
-	void onSearchMode(cocos2d::CCObject* sender);
-	void onSearchUser(cocos2d::CCObject* sender);
-	void onLatestStars(cocos2d::CCObject* sender);
-	void onMoreOptions(cocos2d::CCObject* sender);
-	void onSpecialDemon(cocos2d::CCObject* sender);
-	void onMostDownloaded(cocos2d::CCObject* sender);
-	void onClearFreeSearch(cocos2d::CCObject* sender);
-	void onBack(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onMagic(cocos2d::CCObject* sender);
-	void onSearch(cocos2d::CCObject* sender);
-	void onFriends(cocos2d::CCObject* sender);
-
-	TodoReturn toggleStar(cocos2d::CCObject*);
-	TodoReturn toggleTime(cocos2d::CCObject*);
-	TodoReturn textChanged(CCTextInputNode*);
-	TodoReturn clearFilters();
-	TodoReturn toggleTimeNum(int, bool);
-	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
-	TodoReturn textInputClosed(CCTextInputNode*);
-	TodoReturn textInputOpened(CCTextInputNode*);
-	TodoReturn toggleDifficulty(cocos2d::CCObject*);
-	TodoReturn updateSearchLabel(char const*);
-	TodoReturn confirmClearFilters(cocos2d::CCObject*);
-	TodoReturn toggleDifficultyNum(int, bool);
-	TodoReturn demonFilterSelectClosed(int);
-	TodoReturn scene(int);
-	TodoReturn checkDiff(int);
-	TodoReturn checkTime(int);
 
 	virtual void keyBackClicked();
 }
@@ -6222,11 +6145,6 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 	TodoReturn incrementSpecialCount2(int);
 
 	virtual void update(float);
-}
-
-[[link(android)]]
-class DemonFilterDelegate {
-	TodoReturn demonFilterSelectClosed(int);
 }
 
 [[link(android)]]
@@ -9360,17 +9278,6 @@ class AdToolbox {
 	TodoReturn hasCachedRewardedVideo();
 	TodoReturn setupAds();
 	TodoReturn showDebug();
-}
-
-[[link(android)]]
-class GJComment : cocos2d::CCNode {
-	static GJComment* create(cocos2d::CCDictionary*);
-	static GJComment* create();
-
-	~GJComment();
-
-
-	virtual bool init();
 }
 
 [[link(android)]]
