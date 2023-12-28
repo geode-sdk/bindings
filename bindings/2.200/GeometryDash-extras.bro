@@ -1276,7 +1276,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	void onSecretLevel(cocos2d::CCObject* sender);
 	void onBack(cocos2d::CCObject* sender);
 	void onDoor(cocos2d::CCObject* sender);
-	void onSubmit(cocos2d::CCObject* sender);
+	void onSubmit(cocos2d::CCObject* sender) = mac 0x47a0d0, win 0x2ffcc0;
 
 	TodoReturn nodeWithTag(int);
 	TodoReturn textChanged(CCTextInputNode*);
@@ -1292,7 +1292,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn updateMessageLabel(gd::string);
 	TodoReturn scene();
 
-	virtual bool init();
+	virtual bool init()  = mac 0x478e30, win 0x2fe1d0;
 	virtual void onExit();
 
 	virtual void keyBackClicked();
