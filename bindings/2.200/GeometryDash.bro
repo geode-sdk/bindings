@@ -2178,8 +2178,8 @@ class LeaderboardManagerDelegate {
 
 [[link(android)]]
 class GJUserScore : cocos2d::CCNode {
-	static GJUserScore* create(cocos2d::CCDictionary*);
-	static GJUserScore* create();
+	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x1168C0;
+	static GJUserScore* create() = win 0x117860;
 
 	~GJUserScore();
 
@@ -2188,6 +2188,50 @@ class GJUserScore : cocos2d::CCNode {
 	TodoReturn mergeWithScore(GJUserScore*);
 
 	virtual bool init();
+
+	gd::string m_userName;
+    gd::string m_userUDID;
+    int m_scoreType;
+    int m_userID;
+    int m_accountID;
+    int m_stars;
+    int m_moons;
+    int m_diamonds;
+    int m_demons;
+    int m_playerRank;
+    int m_creatorPoints;
+    int m_secretCoins;
+    int m_userCoins;
+    int m_iconID;
+    int m_color1;
+    int m_color2;
+    int m_color3;
+    int m_special;
+    IconType m_iconType;
+    int m_messageState;
+    int m_friendStatus;
+    int m_commentHistoryStatus;
+    gd::string m_youtubeURL;
+    gd::string m_twitterURL;
+    gd::string m_twitchURL;
+    int m_playerCube;
+    int m_playerShip;
+    int m_playerBall;
+    int m_playerUfo;
+    int m_playerWave;
+    int m_playerRobot;
+    int m_playerSpider;
+    int m_playerSwing;
+    int m_playerJetpack;
+    int m_playerStreak;
+    bool m_glowEnabled;
+    int m_playerExplosion;
+    int m_modBadge;
+    int m_globalRank;
+    int m_friendReqStatus;
+    int m_newMsgCount;
+    int m_friendReqCount;
+    bool m_isBlocked;
 }
 
 [[link(android)]]
@@ -3674,7 +3718,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn onRestoreItemsCompleted(gd::string, gd::string);
 	TodoReturn onDeleteCommentCompleted(gd::string, gd::string);
 	TodoReturn onDownloadLevelCompleted(gd::string, gd::string);
-	TodoReturn onGetGJUserInfoCompleted(gd::string, gd::string);
+	TodoReturn onGetGJUserInfoCompleted(gd::string, gd::string) = win 0x1053D0;
 	TodoReturn onGetLevelListsCompleted(gd::string, gd::string);
 	TodoReturn onGetTopArtistsCompleted(gd::string, gd::string);
 	TodoReturn onSetLevelStarsCompleted(gd::string, gd::string);
@@ -4232,4 +4276,129 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_GS28;
 	  PAD = win 0x1C;
     int m_GS26;
+}
+
+
+[[link(android)]]
+class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DemonFilterDelegate {
+	static LevelSearchLayer* create(int) = win 0x25C4E0;
+
+	bool init(int) = win 0x25C580;
+	~LevelSearchLayer();
+
+	TodoReturn getDiffKey(int);
+	TodoReturn getTimeKey(int);
+	TodoReturn getLevelLenKey();
+	TodoReturn getSearchObject(SearchType, gd::string);
+	TodoReturn getSearchDiffKey();
+
+	void onFollowed(cocos2d::CCObject* sender);
+	void onTrending(cocos2d::CCObject* sender);
+	void onMostLikes(cocos2d::CCObject* sender);
+	void onStarAward(cocos2d::CCObject* sender);
+	void onSuggested(cocos2d::CCObject* sender);
+	void onMostRecent(cocos2d::CCObject* sender);
+	void onSearchMode(cocos2d::CCObject* sender);
+	void onSearchUser(cocos2d::CCObject* sender);
+	void onLatestStars(cocos2d::CCObject* sender);
+	void onMoreOptions(cocos2d::CCObject* sender);
+	void onSpecialDemon(cocos2d::CCObject* sender);
+	void onMostDownloaded(cocos2d::CCObject* sender);
+	void onClearFreeSearch(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender);
+	void onMagic(cocos2d::CCObject* sender);
+	void onSearch(cocos2d::CCObject* sender);
+	void onFriends(cocos2d::CCObject* sender);
+
+	TodoReturn toggleStar(cocos2d::CCObject*);
+	TodoReturn toggleTime(cocos2d::CCObject*);
+	TodoReturn textChanged(CCTextInputNode*);
+	TodoReturn clearFilters();
+	TodoReturn toggleTimeNum(int, bool);
+	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+	TodoReturn textInputClosed(CCTextInputNode*);
+	TodoReturn textInputOpened(CCTextInputNode*);
+	TodoReturn toggleDifficulty(cocos2d::CCObject*);
+	TodoReturn updateSearchLabel(char const*);
+	TodoReturn confirmClearFilters(cocos2d::CCObject*);
+	TodoReturn toggleDifficultyNum(int, bool);
+	TodoReturn demonFilterSelectClosed(int);
+	TodoReturn scene(int);
+	TodoReturn checkDiff(int);
+	TodoReturn checkTime(int);
+
+	virtual void keyBackClicked();
+
+	int m_type;
+	CCTextInputNode* m_searchInput;
+	cocos2d::CCSprite* m_starsSprite;
+	cocos2d::CCArray* m_difficultySprites;
+	cocos2d::CCArray* m_lengthSprites;
+	cocos2d::CCDictionary* m_difficultyDict;
+	cocos2d::CCSprite* m_lastDifficultySprite;
+	CCMenuItemSpriteExtra* m_demonTypeButton;
+}
+
+[[link(android)]]
+class DemonFilterDelegate {
+	virtual void demonFilterSelectClosed(int) {}
+}
+
+[[link(android)]]
+class GJComment : cocos2d::CCNode {
+	static GJComment* create(cocos2d::CCDictionary*);
+	static GJComment* create();
+
+	~GJComment();
+
+
+	virtual bool init();
+
+	gd::string m_commentString;
+    gd::string m_userName;
+    int m_commentID;
+    int m_userID;
+    int m_likeCount;
+    int m_levelID;
+    bool m_isSpam;
+    int m_accountID;
+    gd::string m_uploadDate;
+    bool m_commentDeleted;
+    int m_percentage;
+    int m_modBadge;
+    cocos2d::ccColor3B m_color;
+    bool m_hasLevelID;
+    PAD = win 0x4;
+    GJUserScore* m_userScore;
+}
+
+[[link(android)]]
+class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
+	~CommentCell();
+
+	TodoReturn onUndelete();
+	void onGoToLevel(cocos2d::CCObject* sender);
+	void onViewProfile(cocos2d::CCObject* sender);
+	void onConfirmDelete(cocos2d::CCObject* sender);
+	void onLike(cocos2d::CCObject* sender) = win 0x85A10;
+	TodoReturn onDelete();
+	void onUnhide(cocos2d::CCObject* sender) = win 0x85D10;
+
+	void updateBGColor(int) = win 0x85990;
+	TodoReturn incrementLikes();
+	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+	void loadFromComment(GJComment*) = win 0x83E20;
+	TodoReturn incrementDislikes();
+	TodoReturn updateLabelValues();
+	TodoReturn likedItem(LikeItemType, int, bool);
+	CommentCell(char const*, float, float);
+
+	virtual bool init();
+	virtual void draw();
+
+	cocos2d::CCSprite* m_iconSprite;
+    cocos2d::CCLabelBMFont* m_likeLabel;
+    GJComment* m_comment;
+    bool m_accountComment;
 }
