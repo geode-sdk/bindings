@@ -1576,7 +1576,7 @@ class GameManager : GManager {
 	TodoReturn completedAchievement(gd::string);
 	TodoReturn defaultYOffsetForBG2(int);
 	TodoReturn generateSecretNumber();
-	gd::string getPracticeMusicFile() = 0x11f990;
+	gd::string getPracticeMusicFile() = win 0x11f990;
 	TodoReturn iconTypeToUnlockType(IconType);
 	TodoReturn unlockTypeToIconType(int);
 	TodoReturn addDuplicateLastFrame(int);
