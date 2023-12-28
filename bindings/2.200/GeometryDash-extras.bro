@@ -9450,7 +9450,8 @@ class NodePoint : cocos2d::CCObject {
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
 	static PlayLayer* create(GJGameLevel*, bool, bool) = win 0x2D68F0;
     static PlayLayer* get() {
-        return GameManager::sharedState()->m_playLayer;
+		// remove this cast when this class is moved to the main file and m_playLayer in GM is changed to PlayLayer* instead of CCNode*
+        return static_cast<PlayLayer*>(GameManager::sharedState()->m_playLayer);
     }
 
 	bool init(GJGameLevel*, bool, bool) = mac 0xa5db0, win 0x2d69a0;

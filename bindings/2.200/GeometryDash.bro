@@ -1626,7 +1626,7 @@ class GameManager : GManager {
 	virtual void update(float);
 
 	PAD = win 0x90, android32 0x64;
-	PlayLayer* m_playLayer;
+	cocos2d::CCNode* m_playLayer; // actually is PlayLayer* -- change this whenever that gets moved into the main broma file
 	PAD = win 0x88, android32 0x5c;
     geode::SeedValueRSV m_playerFrame;
     geode::SeedValueRSV m_playerShip;
