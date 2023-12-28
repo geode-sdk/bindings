@@ -1640,7 +1640,7 @@ class EndLevelLayer : GJDropDownLayer {
 	void onEveryplay(cocos2d::CCObject* sender);
 	void onLevelLeaderboard(cocos2d::CCObject* sender);
 	void onEdit(cocos2d::CCObject* sender);
-	void onMenu(cocos2d::CCObject* sender) = 0xe81d0;
+	void onMenu(cocos2d::CCObject* sender) = win 0xe81d0;
 	void onReplay(cocos2d::CCObject* sender);
 
 	void customSetup() = win 0xE67B0;
