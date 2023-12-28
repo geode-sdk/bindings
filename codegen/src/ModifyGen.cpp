@@ -113,10 +113,10 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
             }
 
             if (codegen::getStatus(f) == BindStatus::NeedsBinding || codegen::platformNumber(f) != -1) {
-                
+                // only if has an address
             }
-            else if (codegen::getStatus(f) == BindStatus::Binded && fn->prototype.type == FunctionType::Normal) {
-                
+            else if (codegen::getStatus(f) == BindStatus::Binded) {
+                // allow bound functions (including ctors/dtors)
             }
             else {
                 continue;

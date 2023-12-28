@@ -2,9 +2,6 @@
 
 Addresses and bindings for Geometry Dash, for use with the Geode mod loader.
 
-## Temporary note
-`win 0x9999999` is a **placeholder** address so that we can get to building windows Geode faster. This means that you should absolutely contribute addresses for functions marked with this, replacing the placeholder address!
-
 ## Contributing
 
 You can contribute new addresses / fields by opening up a [Pull Request](https://github.com/geode-sdk/bindings/pull).
