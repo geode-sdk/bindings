@@ -1618,7 +1618,7 @@ class EndLevelLayer : GJDropDownLayer {
 	void onMenu(cocos2d::CCObject* sender) = win 0xe81d0;
 	void onReplay(cocos2d::CCObject* sender);
 
-	void customSetup() = win 0xE67B0;
+	virtual void customSetup() = win 0xE67B0;
 	void playEndEffect();
 	TodoReturn tryShowBanner(float);
 	TodoReturn playCoinEffect(float);
@@ -9459,13 +9459,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn spawnCircle();
 	TodoReturn updateColor(cocos2d::_ccColor3B&, float, int, bool, float, cocos2d::_ccHSVValue&, int, bool, EffectGameObject*, int, int) = win 0x2df440;
 	TodoReturn canPauseGame();
-	TodoReturn dialogClosed(DialogLayer*);
+	virtual void dialogClosed(DialogLayer*) = win 0x2e12b0;
 	TodoReturn prepareMusic(bool) = win 0x2E5480;
 	TodoReturn showEndLayer();
 	TodoReturn addToGroupOld(GameObject*);
 	TodoReturn checkSnapshot();
 	void destroyPlayer(PlayerObject*, GameObject*) = mac 0xb40f0, win 0x2e0a90;
-	TodoReturn levelComplete() = win 0x2d7f30;
+	void levelComplete() = win 0x2d7f30;
 	TodoReturn spawnFirework();
 	TodoReturn stopRecording();
 	TodoReturn toggleGlitter(bool) = win 0x2e0990;
@@ -9540,7 +9540,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2ddca0;
 	TodoReturn processLoadedMoveActions();
 	TodoReturn toggleBGEffectVisibility(bool);
-	TodoReturn activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = win 0x2da810;
+	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = win 0x2da810;
 	void prepareCreateObjectsFromSetup(gd::string&) = win 0x2dafd0;
 	void processCreateObjectsFromSetup() = win 0x2db250;
 	TodoReturn createObjectsFromSetupFinished();

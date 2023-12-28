@@ -1650,7 +1650,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	~GJDropDownLayer();
 
 	TodoReturn enterLayer();
-	TodoReturn customSetup();
+	virtual void customSetup();
 	TodoReturn layerHidden();
 	TodoReturn layerVisible();
 	TodoReturn enterAnimFinished();
