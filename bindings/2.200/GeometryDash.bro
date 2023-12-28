@@ -1089,7 +1089,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn updateTimeWarp(float);
 	// TodoReturn updateTimeWarp(GameObject*, float);
 	// TodoReturn addRemapTargets(gd::set<int>&);
-	void checkCollisions(PlayerObject*, float, bool) = win 0x1973f0;
+	// void checkCollisions(PlayerObject*, float, bool) = win 0x1973f0;
 	// TodoReturn claimMoveAction(int, bool);
 	// TodoReturn collectedObject(EffectGameObject*);
 	// /* unverified signature */
