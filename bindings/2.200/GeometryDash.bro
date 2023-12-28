@@ -1434,7 +1434,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	TodoReturn updateChatPlacement(DialogChatPlacement);
 	TodoReturn updateNavButtonFrame();
 	TodoReturn finishCurrentAnimation();
-	TodoReturn animateIn(DialogAnimationType);
+	TodoReturn animateIn(DialogAnimationType) = win 0x9a9d0;
 
 	virtual void onEnter();
 	virtual void registerWithTouchDispatcher();
@@ -1473,7 +1473,7 @@ class GameManager : GManager {
 	TodoReturn tryCacheAd();
 	TodoReturn unloadIcon(int, int, int);
 	TodoReturn unlockIcon(int, IconType);
-	cocos2d::ccColor3B colorForIdx(int);
+	cocos2d::ccColor3B colorForIdx(int) = win 0x124270;
 	TodoReturn colorForPos(int);
 	void doQuickSave() = win 0x12bf00;
 	TodoReturn fadeInMusic(gd::string);
@@ -1482,7 +1482,7 @@ class GameManager : GManager {
 	TodoReturn joinDiscord();
 	TodoReturn saveAdTimer();
 	TodoReturn startUpdate();
-	TodoReturn unloadIcons(int);
+	TodoReturn unloadIcons(int) = win 0x125a60;
 	TodoReturn unlockColor(int, UnlockType);
 	TodoReturn updateMusic();
 	TodoReturn countForType(IconType);
@@ -1558,10 +1558,10 @@ class GameManager : GManager {
 	TodoReturn dpadConfigToString(UIButtonConfig&);
 	TodoReturn eventUnlockFeature(char const*);
 	TodoReturn framesForAnimation(int);
-	TodoReturn getIntGameVariable(char const*);
+	TodoReturn getIntGameVariable(char const*) = win 0x126e70;
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn removeCustomObject(int);
-	TodoReturn removeIconDelegate(int);
+	TodoReturn removeIconDelegate(int) = win 0x125560;
 	/* unverified signature */
 	void setIntGameVariable(char const*, int);
 	TodoReturn toggleGameVariable(char const*);
@@ -1624,6 +1624,25 @@ class GameManager : GManager {
 
 	virtual bool init() = win 0x11EA00;
 	virtual void update(float);
+
+	PAD = win 0x90, android32 0x64;
+	PlayLayer* m_playLayer;
+	PAD = win 0x88, android32 0x5c;
+    geode::SeedValueRSV m_playerFrame;
+    geode::SeedValueRSV m_playerShip;
+    geode::SeedValueRSV m_playerBall;
+    geode::SeedValueRSV m_playerBird;
+    geode::SeedValueRSV m_playerDart;
+    geode::SeedValueRSV m_playerRobot;
+    geode::SeedValueRSV m_playerSpider;
+    geode::SeedValueRSV m_playerSwing;
+    geode::SeedValueRSV m_playerColor;
+    geode::SeedValueRSV m_playerColor2;
+    geode::SeedValueRSV m_playerGlowColor;
+    geode::SeedValueRSV m_playerStreak;
+    geode::SeedValueRSV m_playerShipFire;
+    geode::SeedValueRSV m_playerDeathEffect;
+    geode::SeedValueRSV m_playerJetpack;
 }
 
 [[link(android)]]
@@ -2618,7 +2637,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn getGroupID(int);
 	TodoReturn getRScaleX();
 	TodoReturn getRScaleY();
-	TodoReturn getColorKey(bool, bool);
+	TodoReturn getColorKey(bool, bool) = win 0x13be40;
 	TodoReturn getBallFrame(int);
 	TodoReturn getBoxOffset();
 	TodoReturn getGlowFrame(gd::string);
@@ -2652,7 +2671,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn getOuterObjectRect();
 	TodoReturn getObjectRectPointer();
 	TodoReturn getObjectTextureRect();
-	TodoReturn getActiveColorForMode(int, bool);
+	TodoReturn getActiveColorForMode(int, bool) = win 0x140ba0;
 	TodoReturn getHasSyncedAnimation();
 	TodoReturn getSecondaryColorMode();
 	TodoReturn getUnmodifiedPosition();
@@ -2715,7 +2734,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn removeGlow();
 	TodoReturn addRotation(float);
 	TodoReturn addRotation(float, float);
-	TodoReturn commonSetup();
+	TodoReturn commonSetup() = win 0x12f1a0;
 	TodoReturn customSetup();
 	TodoReturn ignoreEnter();
 	TodoReturn resetGroups();
@@ -2723,7 +2742,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn shouldLockX();
 	TodoReturn addEmptyGlow();
 	TodoReturn canBeOrdered();
-	TodoReturn colorForMode(int, bool);
+	TodoReturn colorForMode(int, bool) = win 0x1408c0;
 	/* unverified signature */
 	bool isFacingDown();
 	/* unverified signature */
@@ -2733,7 +2752,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn addNewSlope02(bool);
 	TodoReturn canRotateFree();
 	TodoReturn claimParticle();
-	TodoReturn createWithKey(int);
+	TodoReturn createWithKey(int) = win 0x12e410;
 	TodoReturn destroyObject();
 	TodoReturn disableObject();
 	/* unverified signature */
@@ -2760,11 +2779,11 @@ class GameObject : CCSpritePlus {
 	TodoReturn updateStartPos();
 	TodoReturn addToColorGroup(int);
 	TodoReturn addToTempOffset(double, double);
-	TodoReturn createWithFrame(char const*);
+	TodoReturn createWithFrame(char const*) = win 0x12f0a0;
 	TodoReturn didScaleXChange();
 	TodoReturn didScaleYChange();
 	TodoReturn duplicateValues(GameObject*);
-	TodoReturn groupOpacityMod();
+	TodoReturn groupOpacityMod() = win 0x13bc10;
 	TodoReturn groupWasEnabled();
 	/* unverified signature */
 	bool isSpecialObject();
@@ -2775,7 +2794,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn setupPixelScale();
 	TodoReturn setupSpriteSize();
 	TodoReturn unclaimParticle();
-	TodoReturn updateBlendMode();
+	TodoReturn updateBlendMode() = win 0x13add0;
 	TodoReturn updateMainColor(cocos2d::_ccColor3B const&);
 	TodoReturn updateMainColor();
 	TodoReturn addInternalChild(cocos2d::CCSprite*, gd::string, cocos2d::CCPoint, int);
@@ -2788,12 +2807,12 @@ class GameObject : CCSpritePlus {
 	TodoReturn hasBeenActivated();
 	/* unverified signature */
 	bool isSettingsObject();
-	TodoReturn objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool);
+	TodoReturn objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x13c2d0;
 	TodoReturn perspectiveFrame(char const*, int);
 	TodoReturn resetColorGroups();
 	TodoReturn saveActiveColors();
 	TodoReturn setupColorSprite(int, bool);
-	TodoReturn shouldBlendColor(GJSpriteColor*, bool);
+	TodoReturn shouldBlendColor(GJSpriteColor*, bool) = win 0x131950;
 	TodoReturn triggerActivated(float);
 	void updateIsOriented() = win 0x13fe50;
 	// TodoReturn activatedByPlayer(PlayerObject*);
@@ -3055,7 +3074,7 @@ class EnhancedGameObject : GameObject {
 	TodoReturn powerOnObject(int);
 	TodoReturn restoreObject();
 	TodoReturn powerOffObject();
-	TodoReturn updateUserCoin();
+	TodoReturn updateUserCoin() = win 0x145220;
 	TodoReturn canMultiActivate(bool);
 	TodoReturn deactivateObject(bool);
 	TodoReturn hasBeenActivated();
@@ -3154,14 +3173,14 @@ class EffectGameObject : EnhancedGameObject {
 	TodoReturn spawnXPosition();
 	TodoReturn triggerActivated(float);
 	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn playTriggerEffect();
+	TodoReturn playTriggerEffect() = win 0x395e50;
 	TodoReturn resetSpawnTrigger();
 	TodoReturn stateSensitiveOff(GJBaseGameLayer*);
 	TodoReturn updateSpecialColor();
 	TodoReturn updateSpeedModType();
 	/* unverified signature */
 	bool isSpecialSpawnObject();
-	TodoReturn triggerEffectFinished();
+	TodoReturn triggerEffectFinished() = win 0x396080;
 	TodoReturn updateInteractiveHover(float);
 	EffectGameObject();
 
@@ -3774,7 +3793,7 @@ class GameLevelManager : cocos2d::CCNode {
 	// TodoReturn saveGauntlet(GJMapPack*);
 	TodoReturn unfollowUser(int);
 	TodoReturn addDLToActive(char const*);
-	TodoReturn deleteComment(int, CommentType, int);
+	TodoReturn deleteComment(int, CommentType, int) = win 0x1093f0;
 	TodoReturn downloadLevel(int, bool);
 	TodoReturn gotoLevelPage(GJGameLevel*);
 	TodoReturn hasRatedDemon(int);
@@ -3784,7 +3803,7 @@ class GameLevelManager : cocos2d::CCNode {
 	// TodoReturn saveLevelList(GJLevelList*);
 	TodoReturn storeUserInfo(GJUserScore*);
 	TodoReturn storeUserName(int, int, gd::string);
-	TodoReturn uploadComment(gd::string, CommentType, int, int);
+	TodoReturn uploadComment(gd::string, CommentType, int, int) = win 0x108540;
 	TodoReturn createNewLevel();
 	TodoReturn createPageInfo(int, int, int);
 	TodoReturn resetAllTimers();
@@ -3793,7 +3812,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn saveLocalScore(int, int, int);
 	TodoReturn storeUserNames(gd::string);
 	TodoReturn submitUserInfo();
-	TodoReturn tryGetUsername(int);
+	TodoReturn tryGetUsername(int) = win 0xf56f0;
 	// TodoReturn deleteLevelList(GJLevelList*);
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	/* unverified signature */
@@ -3823,7 +3842,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn updateDescription(int, gd::string);
 	TodoReturn updateLevelOrders() = win 0xF68D0;
 	TodoReturn uploadUserMessage(int, gd::string, gd::string);
-	TodoReturn userNameForUserID(int);
+	TodoReturn userNameForUserID(int) = win 0xf5610;
 	TodoReturn accountIDForUserID(int);
 	TodoReturn areGauntletsLoaded();
 	TodoReturn cleanupDailyLevels() = win 0xF8430;
@@ -3834,8 +3853,8 @@ class GameLevelManager : cocos2d::CCNode {
 	// TodoReturn deleteUserMessages(GJUserMessage*, cocos2d::CCArray*, bool);
 	TodoReturn hasDownloadedLevel(int);
 	TodoReturn hasRatedLevelStars(int);
-	TodoReturn invalidateMessages(bool, bool);
-	TodoReturn invalidateRequests(bool, bool);
+	TodoReturn invalidateMessages(bool, bool) = win 0x106ad0;
+	TodoReturn invalidateRequests(bool, bool) = win 0x10c630;
 	TodoReturn invalidateUserList(UserListType, bool);
 	TodoReturn pageFromCommentKey(char const*);
 	TodoReturn performNetworkTest() = win 0xF2E10;
@@ -3846,7 +3865,7 @@ class GameLevelManager : cocos2d::CCNode {
 	// TodoReturn storeFriendRequest(GJFriendRequest*);
 	TodoReturn typeFromCommentKey(char const*);
 	TodoReturn updateLevelRewards(GJGameLevel*);
-	TodoReturn uploadLevelComment(int, gd::string, int);
+	TodoReturn uploadLevelComment(int, gd::string, int) = win 0x108420;
 	TodoReturn userIDForAccountID(int);
 	TodoReturn acceptFriendRequest(int, int);
 	TodoReturn createSmartTemplate();
@@ -3858,7 +3877,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn resetStoredUserList(UserListType);
 	TodoReturn saveFetchedMapPacks(cocos2d::CCArray*);
 	TodoReturn storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
-	TodoReturn uploadFriendRequest(int, gd::string);
+	TodoReturn uploadFriendRequest(int, gd::string) = win 0x109f10;
 	TodoReturn writeSpecialFilters(GJSearchObject*);
 	TodoReturn createAndGetMapPacks(gd::string);
 	TodoReturn deleteAccountComment(int, int);
@@ -3869,7 +3888,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn resetDailyLevelState(GJTimedLevelType);
 	TodoReturn storeDailyLevelState(int, int, GJTimedLevelType);
 	// TodoReturn updateSavedLevelList(GJLevelList*);
-	TodoReturn uploadAccountComment(gd::string);
+	TodoReturn uploadAccountComment(gd::string) = win 0x1084b0;
 	TodoReturn userInfoForAccountID(int);
 	TodoReturn deleteServerLevelList(int);
 	bool hasLikedItemFullCheck(LikeItemType, int, int) = win 0x10D7F0;
@@ -3919,7 +3938,7 @@ class GameLevelManager : cocos2d::CCNode {
     int m_dailyTimeLeft;
     int m_dailyID;
     int m_dailyIDUnk;
-    PAD = mac 0x10, win 0x4, android 0x4;
+    PAD = mac 0x10, win 0x4;
     int m_weeklyTimeLeft;
     int m_weeklyID;
     int m_weeklyIDUnk;
@@ -4056,7 +4075,7 @@ class LevelTools {
 	TodoReturn ytURLForArtist(int);
 	TodoReturn getLastTimewarp();
 	TodoReturn getAudioFileName(int);
-	TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*);
+	TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*) = win 0x270fe0;
 	TodoReturn valueForSpeedMod(int) = win 0x26fb50;
 	TodoReturn offsetBPMForTrack(int);
 	static gd::string base64DecodeString(gd::string) = win 0x270BA0;
@@ -4067,7 +4086,7 @@ class LevelTools {
 	TodoReturn verifyLevelIntegrity(gd::string, int);
 	TodoReturn getLastGameplayRotated();
 	TodoReturn getLastGameplayReversed();
-	TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
+	TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool) = win 0x270dc0;
 	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
 	static GJGameLevel* getLevel(int, bool) = win 0x26DDA0;
 }
@@ -4127,7 +4146,7 @@ class GameStatsManager : cocos2d::CCNode {
 
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn firstSetup();
-	TodoReturn hasUserCoin(char const*);
+	TodoReturn hasUserCoin(char const*) = win 0x16ecd0;
 	static GameStatsManager* sharedState() = win 0x165df0;
 	TodoReturn addStoreItem(int, int, int, int, ShopType) = win 0x167FB0;
 	TodoReturn encodeDataTo(DS_Dictionary*) = win 0x17DE70;
@@ -4181,7 +4200,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn collectVideoReward(int);
 	//TodoReturn completedChallenge(GJChallengeItem*);
 	TodoReturn completedStarLevel(GJGameLevel*) = win 0x16d970;
-	TodoReturn hasPendingUserCoin(char const*);
+	TodoReturn hasPendingUserCoin(char const*) = win 0x16ee40;
 	TodoReturn incrementChallenge(GJChallengeType, int) = win 0x170E40;
 	TodoReturn storeChallengeTime(int);
 	TodoReturn unlockSpecialChest(gd::string) = win 0x177940;
@@ -4203,7 +4222,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn shouldAwardSecretKey();
 	TodoReturn storePendingUserCoin(char const*);
 	//TodoReturn storeQueuedChallenge(int, GJChallengeItem*);
-	TodoReturn usernameForAccountID(int);
+	TodoReturn usernameForAccountID(int) = win 0x15c8b0;
 	TodoReturn awardCurrencyForLevel(GJGameLevel*) = win 0x16F850;
 	TodoReturn awardDiamondsForLevel(GJGameLevel*) = win 0x16FD70;
 	//TodoReturn hasCompletedChallenge(GJChallengeItem*);
@@ -4382,7 +4401,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	void onViewProfile(cocos2d::CCObject* sender);
 	void onConfirmDelete(cocos2d::CCObject* sender);
 	void onLike(cocos2d::CCObject* sender) = win 0x85A10;
-	TodoReturn onDelete();
+	TodoReturn onDelete() = win 0x85c60;
 	void onUnhide(cocos2d::CCObject* sender) = win 0x85D10;
 
 	void updateBGColor(int) = win 0x85990;
