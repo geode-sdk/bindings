@@ -1292,7 +1292,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn updateMessageLabel(gd::string);
 	TodoReturn scene();
 
-	virtual bool init()  = mac 0x478e30, win 0x2fe1d0;
+	virtual bool init() = mac 0x478e30, win 0x2fe1d0;
 	virtual void onExit();
 
 	virtual void keyBackClicked();
