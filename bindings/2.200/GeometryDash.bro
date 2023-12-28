@@ -430,22 +430,32 @@ class TextArea : cocos2d::CCSprite {
 
 [[link(android)]]
 class Slider : cocos2d::CCLayer {
-	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler) = win 0x9999999;
-	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, float) = win 0x9999999;
-	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float) = win 0x04ce90;
+	static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) {
+		return Slider::create(target, handler, 1.f);
+	}
+	static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, float idk) {
+		return Slider::create(target, handler, "sliderBar.png", "slidergroove.png", "sliderthumb.png", "sliderthumbsel.png", idk);
+	}
+	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float) = win 0x4ce90;
 
 	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float);
 	~Slider();
 
 	TodoReturn getLiveDragging();
-	SliderThumb* getThumb();
-	float getValue() = win 0x9999999;
+	SliderThumb* getThumb() {
+		return m_touchLogic->m_thumb;
+	}
+	float getValue() = win 0x4d250;
 
 	void setRotated(bool);
 	void setMaxOffset(float);
 	void setLiveDragging(bool);
 	void setBarVisibility(bool);
-	void setValue(float) = win 0x9999999;
+	// inlined on windows
+	void setValue(float val) {
+        this->getThumb()->setValue(val);
+		this->updateBar();
+    }
 
 	TodoReturn hideGroove(bool);
 	TodoReturn sliderBegan();
@@ -453,13 +463,12 @@ class Slider : cocos2d::CCLayer {
 	TodoReturn disableTouch();
 	TodoReturn enableSlider();
 	TodoReturn disableSlider();
-	void updateBar() = win 0x9999999;
+	void updateBar() = win 0x4d2f0;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 
-	// 2.2, not tested
 	SliderTouchLogic* m_touchLogic;
     cocos2d::CCSprite* m_sliderBar;
     cocos2d::CCSprite* m_groove;
@@ -516,7 +525,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 
-	virtual void scrollWheel(float, float);
+	virtual void scrollWheel(float, float) = win 0x50d30;
 
 	bool m_touchOutOfBoundary;
     cocos2d::CCTouch* m_touchStart;
@@ -613,7 +622,7 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 	/* unverified signature */
 	void setContentLayerSize(cocos2d::CCSize);
 
-	TodoReturn scrollLayer(float) = win 0x9999999;
+	void scrollLayer(float) = win 0x28550;
 	TodoReturn scrollingEnd();
 	TodoReturn updateIndicators(float);
 	TodoReturn constraintContent();
@@ -829,7 +838,6 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	TodoReturn firstNetworkTest() = mac 0x36fa30, win 0x277900;
 	TodoReturn onOptionsInstant();
 	TodoReturn showMeltdownPromo(); // empty
-	TodoReturn googlePlaySignedIn() = win 0x9999999;
 	TodoReturn videoOptionsClosed();
 	TodoReturn videoOptionsOpened();
 	TodoReturn updateUserProfileButton();
@@ -844,6 +852,8 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	virtual void keyBackClicked();
 
 	virtual void keyDown(cocos2d::enumKeyCodes);
+
+	virtual void googlePlaySignedIn() = win 0x277b10;
 }
 
 [[link(android)]]
@@ -1457,7 +1467,7 @@ class GameManager : GManager {
 	TodoReturn keyForIcon(int, int);
 	TodoReturn loadGround(int);
 	TodoReturn printGJLog();
-	TodoReturn reloadMenu(); 
+	void reloadMenu() = win 0x12c510;
 	TodoReturn reorderKey(int, bool);
 	TodoReturn subYouTube();
 	TodoReturn tryCacheAd();
@@ -1501,10 +1511,10 @@ class GameManager : GManager {
 	TodoReturn loadBackground(int);
 	TodoReturn loadDPadLayout(int, bool);
 	// TodoReturn playSFXTrigger(SFXTriggerGameObject*);
-	TodoReturn reloadAllStep2();
-	TodoReturn reloadAllStep3();
-	TodoReturn reloadAllStep4();
-	TodoReturn reloadAllStep5();
+	void reloadAllStep2() = win 0x12c620;
+	void reloadAllStep3() = win 0x12c780;
+	void reloadAllStep4() = win 0x12c820;
+	void reloadAllStep5() = win 0x12c890;
 	TodoReturn saveDPadLayout(int, bool);
 	TodoReturn shortenAdTimer(float);
 	TodoReturn showMainMenuAd();
@@ -1516,7 +1526,7 @@ class GameManager : GManager {
 	TodoReturn loadDeathEffect(int);
 	TodoReturn loadGroundAsync(int);
 	TodoReturn openEditorGuide();
-	TodoReturn queueReloadMenu();
+	void queueReloadMenu() = win 0x12c4c0;
 	/* unverified signature */
 	void setGameVariable(char const*, bool) = win 0x1266D0;
 	TodoReturn unlockedPremium();
@@ -1529,7 +1539,7 @@ class GameManager : GManager {
 	TodoReturn recountUserStats(gd::string);
 	TodoReturn resetAchievement(gd::string);
 	TodoReturn resetCoinUnlocks();
-	TodoReturn resolutionForKey(int);
+	void resolutionForKey(int) = win 0x12c8e0;
 	TodoReturn sheetNameForIcon(int, int);
 	TodoReturn showInterstitial();
 	TodoReturn switchScreenMode(bool, bool);
@@ -1599,7 +1609,7 @@ class GameManager : GManager {
 	TodoReturn checkSteamAchievementUnlock();
 	TodoReturn applicationDidEnterBackground();
 	TodoReturn applicationWillEnterForeground() = win 0x12bfb0;
-	TodoReturn getUGV(char const*);
+	bool getUGV(char const*) = win 0x126C10;
 	/* unverified signature */
 	void setUGV(char const*, bool) = win 0x126ac0;
 	TodoReturn iconKey(int, IconType);
@@ -1610,7 +1620,7 @@ class GameManager : GManager {
 	TodoReturn rateGame();
 	TodoReturn firstLoad();
 	TodoReturn lockColor(int, UnlockType);
-	TodoReturn reloadAll(bool, bool, bool) = win 0x9999999;
+	void reloadAll(bool, bool, bool) = win 0x12c590;
 
 	virtual bool init() = win 0x11EA00;
 	virtual void update(float);
@@ -1632,7 +1642,10 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	static GJDropDownLayer* create(char const*);
 	static GJDropDownLayer* create(char const*, float);
 
-	bool init(char const*) = win 0x9999999;
+	// inlined on windows
+	bool init(char const* title) {
+		return GJDropDownLayer::init(title, 220.f);
+	}
     bool init(const char* title, float height) = win 0x1d2340;
 	~GJDropDownLayer();
 
@@ -1717,9 +1730,10 @@ class GJGameLevel : cocos2d::CCNode {
 	void dataLoaded(DS_Dictionary*) = win 0x113B90;
 	TodoReturn getCoinKey(int);
 	TodoReturn getSongName();
-	TodoReturn getLengthKey(int, bool);
-	/* unverified signature */
-	bool isPlatformer();
+	char const* getLengthKey(int, bool) = win 0x112BA0;
+	inline bool isPlatformer() {
+		return m_levelLength == 5;
+	}
 	TodoReturn saveNewScore(int, int);
 	TodoReturn copyLevelInfo(GJGameLevel*);
 	TodoReturn unverifyCoins();
@@ -1748,7 +1762,106 @@ class GJGameLevel : cocos2d::CCNode {
 
 	virtual void encodeWithCoder(DS_Dictionary*) = win 0x114BF0;
 	virtual bool canEncode();
-	virtual bool init();
+	virtual bool init() = win 0x1125e0;
+
+	cocos2d::CCDictionary* m_lastBuildSave;
+	geode::SeedValueRSV m_levelID;
+	gd::string m_levelName;
+	gd::string m_levelDesc;
+	gd::string m_levelString;
+	gd::string m_creatorName;
+	gd::string m_recordString;
+	gd::string m_uploadDate;
+	gd::string m_updateDate;
+	gd::string m_unkString1;
+	gd::string m_unkString2;
+
+	cocos2d::CCPoint m_unkPoint;
+	geode::SeedValueRSV m_userID;
+	geode::SeedValueRSV m_accountID;
+	GJDifficulty m_difficulty;
+    int m_audioTrack;
+    int m_songID;
+    int m_levelRev;
+	bool m_unlisted;
+	geode::SeedValueRSV m_objectCount;
+    int m_levelIndex;
+	int m_ratings;
+    int m_ratingsSum;
+    int m_downloads;
+    bool m_isEditable;
+	bool m_gauntletLevel;
+	bool m_gauntletLevel2;
+    int m_workingTime;
+    int m_workingTime2;
+    bool m_lowDetailMode;
+    bool m_lowDetailModeToggled;
+	geode::SeedValueRS m_isVerified;
+    bool m_isVerifiedRaw;
+    bool m_isUploaded;
+    bool m_hasBeenModified;
+	int m_levelVersion;
+	int m_gameVersion;
+
+	geode::SeedValueRSV m_attempts;
+	geode::SeedValueRSV m_jumps;
+	geode::SeedValueRSV m_clicks;
+	geode::SeedValueRSV m_attemptTime;
+    int m_chk;
+    bool m_isChkValid;
+    bool m_isCompletionLegitimate;
+	geode::SeedValueVSR m_normalPercent;
+	geode::SeedValueRSV m_orbCompletion;
+	geode::SeedValueRSV m_newNormalPercent2;
+    int m_practicePercent;
+    int m_likes;
+    int m_dislikes;
+    int m_levelLength;
+    int m_featured;
+    int m_isEpic;
+    bool m_levelFavorited;
+	int m_levelFolder;
+	geode::SeedValueRSV m_dailyID;
+	geode::SeedValueRSV m_demon;
+    int m_demonDifficulty;
+    geode::SeedValueRSV m_stars;
+    bool m_autoLevel;
+    int m_coins;
+	geode::SeedValueRSV m_coinsVerified;
+    geode::SeedValueRS m_password;
+	geode::SeedValueRSV m_originalLevel;
+	bool m_twoPlayerMode;
+    int m_failedPasswordAttempts;
+    geode::SeedValueRSV m_firstCoinVerified;
+    geode::SeedValueRSV m_secondCoinVerified;
+    geode::SeedValueRSV m_thirdCoinVerified;
+    int m_starsRequested;
+    bool m_showedSongWarning;
+    int m_starRatings;
+    int m_starRatingsSum;
+    int m_maxStarRatings;
+    int m_minStarRatings;
+    int m_demonVotes;
+    int m_rateStars;
+    int m_rateFeature;
+    gd::string m_rateUser;
+    bool m_dontSave;
+    bool m_levelNotDownloaded;
+    int m_requiredCoins;
+    bool m_isUnlocked;
+    cocos2d::CCPoint m_lastCameraPos;
+    float m_fastEditorZoom;
+    int m_lastBuildTab;
+    int m_lastBuildPage;
+    int m_lastBuildGroupID;
+    GJLevelType m_levelType;
+    int m_M_ID;
+    gd::string m_tempName;
+    gd::string m_capacityString;
+    bool m_highObjectsEnabled;
+    gd::string m_personalBests;
+
+	PAD = android32 0x78, win 0x78;
 }
 
 class UIButtonConfig {
@@ -1770,7 +1883,7 @@ class AchievementNotifier : cocos2d::CCNode {
 	~AchievementNotifier();
 
 	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
-	TodoReturn willSwitchToScene(cocos2d::CCScene*) = win 0x9999999;
+	void willSwitchToScene(cocos2d::CCScene*) = win 0x1c200;
 	TodoReturn showNextAchievement();
 	TodoReturn achievementDisplayFinished();
 
@@ -1822,7 +1935,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn hideLoadingCircle();
 	TodoReturn loadingIsFinished();
 	TodoReturn showLoadingCircle(bool, bool, bool);
-	TodoReturn willSwitchToScene(cocos2d::CCScene*);
+	void willSwitchToScene(cocos2d::CCScene*) = win 0x5b550;
 	TodoReturn bgScale();
 	TodoReturn musicTest() = win 0x5b330;
 	TodoReturn pauseGame();
@@ -2142,23 +2255,33 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 
 [[link(android)]]
 class SliderThumb : cocos2d::CCMenuItemImage {
-	static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
+	static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*) = win 0x4c680;
 
 	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
 	~SliderThumb();
 
-	float getValue() = win 0x9999999;
+	// inlined on windows
+	float getValue() {
+        return (this->getScaleX() * m_length * .5f +
+                (m_vertical ?
+                    this->getPositionY() : 
+                    this->getPositionX())
+            ) / (this->getScaleX() * m_length);
+    }
 
 	/* unverified signature */
 	void setRotated(bool);
 	/* unverified signature */
 	void setMaxOffset(float);
-	void setValue(float);
+	void setValue(float) = win 0x4c950;
+
+	float m_length;
+    bool m_vertical;
 }
 
 [[link(android)]]
 class ColorChannelSprite : cocos2d::CCSprite {
-	static ColorChannelSprite* create() = win 0x9999999;
+	static ColorChannelSprite* create() = win 0x1d41d0;
 
 	~ColorChannelSprite();
 
@@ -3879,7 +4002,7 @@ class LevelTools {
 	TodoReturn getAudioBPM(int);
 	TodoReturn urlForAudio(int);
 	TodoReturn getLevelList();
-	TodoReturn getAudioTitle(int);
+	static gd::string getAudioTitle(int) = win 0x26E860;
 	TodoReturn getSongObject(int);
 	TodoReturn nameForArtist(int);
 	TodoReturn artistForAudio(int);
@@ -3902,7 +4025,7 @@ class LevelTools {
 	TodoReturn getLastGameplayReversed();
 	TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
 	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
-	TodoReturn getLevel(int, bool);
+	static GJGameLevel* getLevel(int, bool) = win 0x26DDA0;
 }
 
 [[link(android)]]
@@ -4107,6 +4230,6 @@ class GameStatsManager : cocos2d::CCNode {
     geode::SeedValueSRV m_bonusKey;
     cocos2d::CCDictionary* m_miscChests;
     cocos2d::CCDictionary* m_GS28;
-	PAD = win 0x1C;
+	  PAD = win 0x1C;
     int m_GS26;
 }

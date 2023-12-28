@@ -1,21 +1,5 @@
 // clang-format off
 
-class GDString {
-    // void winDtor() = win 0xf6e0;
-    // GDString& winAssign(GDString const&, size_t, size_t) = win 0xf720;
-    // GDString& winAssign(char const*) = win 0xf680;
-    // GDString& winAssign(char const*, size_t) = win 0xf840;
-
-    // static uintptr_t macEmptyContainer() {
-        // return geode::base::get() + 0x6030d0;
-    // }
-    // void macCtor(char const*) = mac 0x489fc0;
-    // void macCtor(GDString const&) = mac 0x489fcc;
-    // GDString& macAssign(char const*) = mac 0x489f96;
-    // GDString& macAssign(GDString const&) = mac 0x489f9c;
-    // void macDestroy() = mac 0x489f78;
-}
-
 [[link(android)]]
 class ArtistCell : TableViewCell {
 	~ArtistCell();
@@ -453,7 +437,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	TodoReturn dialogClosed(DialogLayer*);
 	TodoReturn didPurchaseItem(GJStoreItem*);
 	TodoReturn exitVideoAdItems();
-	TodoReturn showReactMessage();
+	void showReactMessage() = win 0x217100;;
 	TodoReturn rewardedVideoFinished();
 	TodoReturn showCantAffordMessage(GJStoreItem*) = win 0x2166B0;
 	TodoReturn updateCurrencyCounter();
@@ -1434,31 +1418,39 @@ class SimpleObject : cocos2d::CCObject {
 
 [[link(android)]]
 class SimplePlayer : cocos2d::CCSprite {
-	static SimplePlayer* create(int);
+	static SimplePlayer* create(int) = win 0x1ef610;
 
-	bool init(int);
+	bool init(int) = win 0x1ef6b0;
 	~SimplePlayer();
 
 	/* unverified signature */
-	void setSecondColor(cocos2d::_ccColor3B const&);
+	inline void setSecondColor(cocos2d::_ccColor3B const& color) {
+		m_secondLayer->setColor(color);
+		updateColors();
+	}
+
 	/* unverified signature */
 	void setColors(cocos2d::_ccColor3B const&, cocos2d::_ccColor3B const&);
 	/* unverified signature */
-	void setFrames(char const*, char const*, char const*, char const*, char const*);
+	void setFrames(char const*, char const*, char const*, char const*, char const*) = win 0x1f0540;
 
-	TodoReturn updateColors();
+	TodoReturn updateColors() = win 0x1efe50;
 	TodoReturn asyncLoadIcon(int, IconType);
 	TodoReturn hideSecondary();
-	TodoReturn createRobotSprite(int);
-	TodoReturn updatePlayerFrame(int, IconType);
+	TodoReturn createRobotSprite(int) = win 0x1efd50;
+	TodoReturn updatePlayerFrame(int, IconType) = win 0x1f0140;
 	TodoReturn createSpiderSprite(int);
 	TodoReturn iconFinishedLoading(int, IconType);
 	TodoReturn enableCustomGlowColor(cocos2d::_ccColor3B const&);
 	TodoReturn disableCustomGlowColor();
 	TodoReturn hideAll();
 
-	virtual void setColor(cocos2d::_ccColor3B const&);
-	virtual void setOpacity(unsigned char);
+	virtual void setColor(cocos2d::_ccColor3B const&) = win 0x1efe20;
+	virtual void setOpacity(unsigned char) = win 0x1f06f0;
+
+	cocos2d::CCSprite* m_firstLayer;
+	cocos2d::CCSprite* m_secondLayer;
+	PAD = win 0x28, android32 0x28;
 }
 
 [[link(android)]]
@@ -3139,6 +3131,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn playMusic(gd::string, bool, float, int);
 	TodoReturn stopMusic(int);
 	~FMODAudioEngine();
+
+	PAD = win 0x9c, android32 0x9c;
+	FMOD::System* m_system;
 }
 
 [[link(android)]]
@@ -5428,7 +5423,7 @@ class VideoOptionsLayer : FLAlertLayer {
 	void onTextureQualityNext(cocos2d::CCObject* sender);
 	void onTextureQualityPrev(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
-	void onApply(cocos2d::CCObject* sender);
+	void onApply(cocos2d::CCObject* sender) = win 0x2aff80;
 	void onClose(cocos2d::CCObject* sender);
 
 	TodoReturn reloadMenu();
@@ -6375,12 +6370,12 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 
 [[link(android)]]
 class GraphicsReloadLayer : cocos2d::CCLayer {
-	static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
+	static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool) = win 0x2b3240;
 
-	bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
+	bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool) = win 0x2b3300;
 	~GraphicsReloadLayer();
 
-	TodoReturn performReload();
+	void performReload() = win 0x2b3380;
 	TodoReturn scene(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
 }
 
