@@ -9577,7 +9577,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn updateTimeLabel(int, int, bool);
 	TodoReturn applyEnterEffect(GameObject*, int, bool);
 	TodoReturn checkpointWithID(int);
-	CheckpointObject *createCheckpoint() = win 0x2e1a20;
+	CheckpointObject* createCheckpoint() = win 0x2e1a20;
 	TodoReturn currencyWillExit(CurrencyRewardLayer*);
 	TodoReturn delayedFullReset();
 	/* unverified signature */
