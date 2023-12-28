@@ -1520,7 +1520,7 @@ class GameManager : GManager {
 	TodoReturn showMainMenuAd();
 	TodoReturn addIconDelegate(cocos2d::CCObject*, int);
 	TodoReturn fadeInMenuMusic() = win 0x11FBD0;
-	TodoReturn getGameVariable(char const*) = win 0x126920;
+	bool getGameVariable(char const*) = win 0x126920;
 	/* unverified signature */
 	bool isColorUnlocked(int, UnlockType) = win 0x120670;
 	TodoReturn loadDeathEffect(int);
@@ -2570,6 +2570,39 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	virtual void keyBackClicked();
 
 	virtual void keyDown(cocos2d::enumKeyCodes);
+
+	void* m_unk0;
+    cocos2d::CCMenu* m_playBtnMenu;
+    GJGameLevel* m_level;
+    cocos2d::CCArray* m_coins;
+    CCMenuItemSpriteExtra* m_likeBtn;
+    CCMenuItemSpriteExtra* m_starRateBtn;
+    CCMenuItemSpriteExtra* m_demonRateBtn;
+    void* m_unk2;
+    CCMenuItemToggler* m_ldmToggler;
+    cocos2d::CCLabelBMFont* m_ldmLabel;
+    cocos2d::CCLabelBMFont* m_lengthLabel;
+    cocos2d::CCLabelBMFont* m_downloadsLabel;
+    cocos2d::CCLabelBMFont* m_likesLabel;
+    cocos2d::CCLabelBMFont* m_orbsLabel;
+    cocos2d::CCLabelBMFont* m_folderLabel;
+    CCMenuItemSpriteExtra* m_cloneBtn;
+	void* m_unk3;
+    cocos2d::CCSprite* m_likesIcon;
+	cocos2d::CCSprite* m_orbsIcon;
+	int m_unk6; // always 3, maybe level type?
+	void* m_unk7;
+	LoadingCircle* m_circle;
+	CCNode* m_difficultySprite; // actually GJDifficultySprite
+	cocos2d::CCSprite* m_starsIcon;
+	cocos2d::CCLabelBMFont* m_starsLabel;
+	cocos2d::CCArray* m_icons;
+	PAD = win 0x10, android32 0x10;
+	bool m_challenge;
+	PAD = win 0x4, android32 0x4;
+	cocos2d::CCSprite* m_playSprite;
+	void* m_unk11;
+	CCNode* m_songWidget; // actually CustomSongWidget
 }
 
 
