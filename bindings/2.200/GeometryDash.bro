@@ -1609,7 +1609,7 @@ class GameManager : GManager {
 	TodoReturn checkSteamAchievementUnlock();
 	TodoReturn applicationDidEnterBackground();
 	TodoReturn applicationWillEnterForeground() = win 0x12bfb0;
-	TodoReturn getUGV(char const*);
+	bool getUGV(char const*) = win 0x126C10;
 	/* unverified signature */
 	void setUGV(char const*, bool) = win 0x126ac0;
 	TodoReturn iconKey(int, IconType);
@@ -1730,7 +1730,7 @@ class GJGameLevel : cocos2d::CCNode {
 	void dataLoaded(DS_Dictionary*) = win 0x113B90;
 	TodoReturn getCoinKey(int);
 	TodoReturn getSongName();
-	TodoReturn getLengthKey(int, bool);
+	char const* getLengthKey(int, bool) = win 0x112BA0;
 	inline bool isPlatformer() {
 		return m_levelLength == 5;
 	}
