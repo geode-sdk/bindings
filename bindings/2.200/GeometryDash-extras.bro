@@ -2211,7 +2211,7 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
 class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
 	static DailyLevelNode* create(GJGameLevel*, DailyLevelPage*, bool);
 
-	bool init(GJGameLevel*, DailyLevelPage*, bool);
+	bool init(GJGameLevel*, DailyLevelPage*, bool) = win 0x98BD0;
 	~DailyLevelNode();
 
 	void onSkipLevel(cocos2d::CCObject* sender);
@@ -2219,15 +2219,24 @@ class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
 
 	TodoReturn showSkipButton();
 	TodoReturn updateTimeLabel(gd::string);
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
-    
+
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x99770;
+
+	GJGameLevel* m_level;
+	DailyLevelPage* m_page;
+	cocos2d::CCLabelBMFont* m_timeLabel;
+	PAD = win 0x8, android32 0x8;
+	CCMenuItemSpriteExtra* m_skipButton;
+	bool m_unkBool;
+	bool m_needsDownloading;
+
 }
 
 [[link(android)]]
 class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate, LevelDownloadDelegate {
-	static DailyLevelPage* create(GJTimedLevelType);
+	static DailyLevelPage* create(GJTimedLevelType) = win 0x96B30;
 
-	bool init(GJTimedLevelType);
+	bool init(GJTimedLevelType) = win 0x96BD0;
 	~DailyLevelPage();
 
 	TodoReturn getDailyTime();
@@ -2248,14 +2257,22 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 
 
 	virtual void registerWithTouchDispatcher();
-	virtual TodoReturn show();
+	virtual TodoReturn show() = win 0x5D2C0;
 	virtual void keyBackClicked();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn dailyStatusFinished(GJTimedLevelType);
 	virtual TodoReturn dailyStatusFailed(GJTimedLevelType, GJErrorCode);
 	virtual TodoReturn levelDownloadFinished(GJGameLevel*);
 	virtual TodoReturn levelDownloadFailed(int);
-    
+
+	cocos2d::CCLabelBMFont* m_timeLabel;
+	LoadingCircle* m_timeCircle;
+	LoadingCircle* m_nodeCircle;
+	PAD = win 0x4;
+	DailyLevelNode* m_dailyNode;
+	PAD = win 0x4;
+	GJTimedLevelType m_type;
+
 }
 
 [[link(android)]]
