@@ -1,9 +1,9 @@
 import json
 import re
 
-input_file = open("../bindings/2.200/GeometryDash-extras.bro", "r")
+input_file = open("../bindings/2.200/GeometryDash.bro", "r")
 
-output_file = open("../bindings/2.200/GeometryDash-extras-reordered.bro", "w")
+output_file = open("../bindings/2.200/GeometryDash-reordered.bro", "w")
 
 virtuals_json = open("virtuals.json", "r")
 
@@ -20,7 +20,7 @@ pure_replaces = {
     'TableViewDataSource': 'BoomListView',
 }
 for line in input_file:
-    line = line.replace("\t", "    ")
+    line = line.replace("    ", "\t")
     add_line = True
 
     # find class
@@ -55,7 +55,7 @@ for line in input_file:
             add_line = False
 
     # write 
-    if (('        ' not in line and ';' in line and '(' not in line) or '}\n' in line) and len(virtuals_list) > 0:
+    if (('\t\t' not in line and ';' in line and '(' not in line) or '}\n' == line) and len(virtuals_list) > 0:
         # sort virtuals_list based on the class_functions
         sorted_list = []
         for function in class_functions:
@@ -70,9 +70,9 @@ for line in input_file:
                 continue
             
             if 'virtual' not in virtual:
-                virtual = virtual.replace("    // ", "    // virtual ")
+                virtual = virtual.replace("\t// ", "\t// virtual ")
                 if 'virtual' not in virtual:
-                    virtual = virtual.replace("    ", "    virtual ")
+                    virtual = virtual.replace("\t", "\tvirtual ")
             output_file.write(virtual)
         output_file.write('    \n')
         virtuals_list = []
