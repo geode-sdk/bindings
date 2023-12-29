@@ -9581,7 +9581,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void onEnterTransitionDidFinish() = win 0x2e58e0;
 	virtual void onExit() = win 0x2e5910;
 
-	PAD = win 0x498, android32 0x4b0;
+	PAD = win 0x494, android32 0x4b0;
 	GJGameLevel* m_level;
 }
 
