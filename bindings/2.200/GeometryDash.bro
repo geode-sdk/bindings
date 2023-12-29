@@ -3953,7 +3953,7 @@ class GameLevelManager : cocos2d::CCNode {
 
 	virtual bool init();
 
-	PAD = win 0x8;
+	PAD = win 0x8, android32 0x18;
 	cocos2d::CCDictionary* m_mainLevels;
     cocos2d::CCDictionary* m_searchFilters;
     cocos2d::CCDictionary* m_onlineLevels;
@@ -3971,11 +3971,12 @@ class GameLevelManager : cocos2d::CCNode {
     int m_dailyTimeLeft;
     int m_dailyID;
     int m_dailyIDUnk;
-    PAD = mac 0x10, win 0x4;
     int m_weeklyTimeLeft;
     int m_weeklyID;
     int m_weeklyIDUnk;
-	PAD = win 0x8;
+	int m_eventTimeLeft;
+	int m_eventID;
+	int m_eventIDUnk;
     cocos2d::CCDictionary* m_gauntletLevels;
     gd::map<gd::string, bool> m_availableFilters;
     cocos2d::CCDictionary* m_timerDict;
