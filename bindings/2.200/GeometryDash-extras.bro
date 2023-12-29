@@ -1006,7 +1006,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void onOptions(cocos2d::CCObject* sender);
 	void onSupport(cocos2d::CCObject* sender);
 
-	TodoReturn customSetup();
+	void customSetup() = win 0x2AB510;
 	TodoReturn layerHidden();
 	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	TodoReturn tryEnableRecord();
