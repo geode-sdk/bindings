@@ -240,12 +240,11 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 
 [[link(android)]]
 class LevelManagerDelegate {
-	virtual void setupPageInfo(gd::string, char const*) {}
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*) {}
 	virtual void loadLevelsFailed(char const*) {}
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) {}
 	virtual void loadLevelsFailed(char const*, int) {}
-    
+    virtual void setupPageInfo(gd::string, char const*) {}
 }
 
 [[link(android)]]
@@ -2056,11 +2055,10 @@ class PlatformToolbox {
 
 [[link(android)]]
 class LevelCommentDelegate {
-	virtual TodoReturn setupPageInfo(gd::string, char const*);
 	virtual TodoReturn loadCommentsFinished(cocos2d::CCArray*, char const*);
 	virtual TodoReturn loadCommentsFailed(char const*);
 	virtual TodoReturn updateUserScoreFinished();
-    
+    virtual TodoReturn setupPageInfo(gd::string, char const*);
 }
 
 [[link(android)]]
@@ -2160,10 +2158,9 @@ class SetIDPopupDelegate {
 
 [[link(android)]]
 class OnlineListDelegate {
-	virtual void setupPageInfo(gd::string, char const*) {}
 	virtual void loadListFinished(cocos2d::CCArray*, char const*) {}
 	virtual void loadListFailed(char const*) {}
-    
+    virtual void setupPageInfo(gd::string, char const*) {}
 }
 
 [[link(android)]]
