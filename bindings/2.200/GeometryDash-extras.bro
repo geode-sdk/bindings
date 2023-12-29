@@ -5127,6 +5127,35 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2326E0;
 	virtual void setIDPopupClosed(SetIDPopup*, int);
 	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
+
+	bool m_unk;
+	bool m_allSelected;
+    TextArea* m_noInternet;
+    GJListLayer* m_list;
+    CCMenuItemSpriteExtra* m_rightArrow;
+    CCMenuItemSpriteExtra* m_leftArrow;
+    CCMenuItemSpriteExtra* m_lastBtn;
+    CCMenuItemSpriteExtra* m_cancelSearchBtn;
+    CCMenuItemSpriteExtra* m_refreshBtn;
+    cocos2d::CCArray* m_selected;
+    GJSearchObject* m_searchObject;
+    cocos2d::CCLabelBMFont* m_countText;
+    cocos2d::CCLabelBMFont* m_pageText;
+    CCMenuItemSpriteExtra* m_pageBtn;
+    cocos2d::CCLabelBMFont* m_folderText;
+    CCMenuItemSpriteExtra* m_folderBtn;
+	CCMenuItemToggler* m_allObjectsToggler;
+    int m_itemCount;
+    int m_pageStartIdx;
+    int m_pageEndIdx;
+	LoadingCircle* m_circle;
+	int m_lastPage;
+	bool m_isOverlay;
+	PAD = win 0x4, android32 0x4;
+	int m_zOffset;
+	bool m_unk2;
+	int m_listHeight;
+	PAD = win 0x16, android32 0x16;
     
 }
 
@@ -7280,7 +7309,7 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class SetTextPopupDelegate {
 	/* unverified signature */
-	void setTextPopupClosed(SetTextPopup*, gd::string);
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
 }
 
 [[link(android)]]
@@ -7412,7 +7441,7 @@ class SFXTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class ShareCommentDelegate {
-	TodoReturn shareCommentClosed(gd::string, ShareCommentLayer*);
+	virtual TodoReturn shareCommentClosed(gd::string, ShareCommentLayer*);
 }
 
 [[link(android)]]
@@ -9216,8 +9245,8 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual void keyUp(cocos2d::enumKeyCodes);
-	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual void keyUp(cocos2d::enumKeyCodes);
+	// virtual void keyDown(cocos2d::enumKeyCodes);
+	// virtual void keyUp(cocos2d::enumKeyCodes);
     
 }
 
@@ -9529,7 +9558,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn transformChangeBegin();
 	virtual TodoReturn transformChangeEnded();
 	virtual TodoReturn updateTransformControl();
-	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint);
+	// virtual TodoReturn anchorPointMoved(cocos2d::CCPoint);
 	virtual TodoReturn getTransformNode();
 	virtual TodoReturn getUI();
 	virtual TodoReturn songStateChanged();

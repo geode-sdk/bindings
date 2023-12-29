@@ -4073,7 +4073,7 @@ class GJSearchObject : cocos2d::CCNode {
 
 	TodoReturn createFromKey(char const*);
 	/* unverified signature */
-	bool isLevelSearchObject();
+	bool isLevelSearchObject() = win 0x1197A0;
 
     SearchType m_searchType;
     gd::string m_searchQuery;
