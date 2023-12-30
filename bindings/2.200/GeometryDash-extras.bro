@@ -2327,19 +2327,6 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     
 }
 
-[[link(android)]]
-class DashRingObject : RingObject {
-	static DashRingObject* create(char const*);
-
-	bool init(char const*);
-	~DashRingObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
@@ -4249,21 +4236,6 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     
 }
 
-[[link(android)]]
-class EventLinkTrigger : EffectGameObject {
-	static EventLinkTrigger* create();
-
-	~EventLinkTrigger();
-
-
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, RewardedVideoDelegate {
@@ -4825,20 +4797,7 @@ class SetupRotatePopup : SetupTriggerPopup {
 	void onClose(cocos2d::CCObject* sender);
 }
 
-[[link(android)]]
-class ShaderGameObject : EffectGameObject {
-	static ShaderGameObject* create(char const*);
 
-	bool init(char const*);
-	~ShaderGameObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn customSetup();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class SongOptionsLayer : FLAlertLayer {
@@ -5059,22 +5018,6 @@ class EditTriggersPopup : SetupTriggerPopup {
 
 	
 	virtual TodoReturn determineStartValues();
-    
-}
-
-[[link(android)]]
-class EnterEffectObject : EffectGameObject {
-	static EnterEffectObject* create(char const*);
-
-	bool init(char const*);
-	~EnterEffectObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn resetEnterAnimValues();
-	
-	virtual TodoReturn customSetup();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
     
 }
 
@@ -5964,19 +5907,6 @@ class GameEffectsManager : cocos2d::CCNode {
 	TodoReturn addParticleEffect(cocos2d::CCParticleSystemQuad*, int);
 }
 
-[[link(android)]]
-class GameOptionsTrigger : EffectGameObject {
-	static GameOptionsTrigger* create(char const*);
-
-	bool init(char const*);
-	~GameOptionsTrigger();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class GJCommentListLayer : cocos2d::CCLayerColor {
@@ -6077,23 +6007,7 @@ class KeybindingsManager : cocos2d::CCNode {
     
 }
 
-[[link(android)]]
-class KeyframeGameObject : EffectGameObject {
-	static KeyframeGameObject* create();
 
-	~KeyframeGameObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn updateShadowObjects(GJBaseGameLayer*, EditorUI*);
-
-
-	
-	virtual bool init();
-	virtual void setOpacity(unsigned char);
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class LevelOptionsLayer2 : LevelOptionsLayer {
@@ -6792,24 +6706,6 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 }
 
 [[link(android)]]
-class LevelSettingsObject : cocos2d::CCNode {
-	static LevelSettingsObject* create();
-
-	~LevelSettingsObject();
-
-	TodoReturn getSaveString();
-
-	TodoReturn objectFromDict(cocos2d::CCDictionary*);
-	TodoReturn objectFromString(gd::string const&);
-	TodoReturn shouldUseYSection();
-	TodoReturn setupColorsFromLegacyMode(cocos2d::CCDictionary*);
-
-	
-	virtual bool init();
-    
-}
-
-[[link(android)]]
 class LoadingCircleSprite : cocos2d::CCSprite {
 	static LoadingCircleSprite* create();
 
@@ -7054,20 +6950,7 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
     
 }
 
-[[link(android)]]
-class ArtTriggerGameObject : EffectGameObject {
-	static ArtTriggerGameObject* create(char const*);
 
-	bool init(char const*);
-	~ArtTriggerGameObject();
-
-
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class CCCircleWaveDelegate {
@@ -7171,36 +7054,6 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     
 }
 
-[[link(android)]]
-class EndTriggerGameObject : EffectGameObject {
-	static EndTriggerGameObject* create();
-
-	~EndTriggerGameObject();
-
-
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
-
-[[link(android)]]
-class ForceBlockGameObject : EffectGameObject {
-	static ForceBlockGameObject* create(char const*);
-
-	bool init(char const*);
-	~ForceBlockGameObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn calculateForceToTarget(GameObject*);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class GJDailyLevelDelegate {
@@ -7635,21 +7488,6 @@ class SetupSmartBlockLayer : FLAlertLayer, TextInputDelegate, SelectArtDelegate 
     
 }
 
-[[link(android)]]
-class SFXTriggerGameObject : EffectGameObject {
-	static SFXTriggerGameObject* create(char const*);
-
-	bool init(char const*);
-	~SFXTriggerGameObject();
-
-	TodoReturn getSFXRefID();
-	TodoReturn getUniqueSFXID();
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class ShareCommentDelegate {
@@ -7663,49 +7501,7 @@ class SongPlaybackDelegate {
     
 }
 
-[[link(android)]]
-class TeleportPortalObject : RingObject {
-	static TeleportPortalObject* create(char const*, bool) = win 0x3a0e50;
 
-	bool init(char const*, bool);
-	~TeleportPortalObject();
-
-	TodoReturn getTeleportXOff(cocos2d::CCNode*);
-
-	/* unverified signature */
-	void setPositionOverride(cocos2d::CCPoint);
-	/* unverified signature */
-	void setStartPosOverride(cocos2d::CCPoint);
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual void setPosition(cocos2d::CCPoint const&);
-	virtual void setRotation(float);
-	virtual void setStartPos(cocos2d::CCPoint);
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-	virtual TodoReturn addToGroup(int);
-	virtual TodoReturn removeFromGroup(int);
-	virtual void setRotation2(float);
-	virtual TodoReturn addToGroup2(int);
-	virtual TodoReturn removeFromGroup2(int);
-    
-}
-
-[[link(android)]]
-class UISettingsGameObject : EffectGameObject {
-	static UISettingsGameObject* create();
-
-	~UISettingsGameObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
@@ -7745,19 +7541,6 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
     
 }
 
-[[link(android)]]
-class EnhancedTriggerObject : EffectGameObject {
-	static EnhancedTriggerObject* create(char const*);
-
-	bool init(char const*);
-	~EnhancedTriggerObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class FriendRequestDelegate {
@@ -7824,37 +7607,6 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
 	
 	virtual TodoReturn determineStartValues();
 	virtual TodoReturn textChanged(CCTextInputNode*);
-    
-}
-
-[[link(android)]]
-class GradientTriggerObject : EffectGameObject {
-	static GradientTriggerObject* create();
-
-	~GradientTriggerObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
-
-[[link(android)]]
-class ItemTriggerGameObject : EffectGameObject {
-	static ItemTriggerGameObject* create(char const*);
-
-	bool init(char const*);
-	~ItemTriggerGameObject();
-
-
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn customSetup();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
     
 }
 
@@ -7942,23 +7694,6 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
     
 }
 
-[[link(android)]]
-class RandTriggerGameObject : ChanceTriggerGameObject {
-	static RandTriggerGameObject* create();
-
-	~RandTriggerGameObject();
-
-	TodoReturn getTotalChance();
-	TodoReturn getRandomGroupID();
-
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class RewardedVideoDelegate {
@@ -8141,19 +7876,6 @@ class SetupZoomTriggerPopup : SetupTriggerPopup {
     
 }
 
-[[link(android)]]
-class SongTriggerGameObject : SFXTriggerGameObject {
-	static SongTriggerGameObject* create(char const*);
-
-	bool init(char const*);
-	~SongTriggerGameObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class UIObjectSettingsPopup : SetupTriggerPopup {
@@ -8212,20 +7934,6 @@ class ColorSelectLiveOverlay : FLAlertLayer {
     
 }
 
-[[link(android)]]
-class CountTriggerGameObject : EffectGameObject {
-	static CountTriggerGameObject* create(char const*);
-
-	bool init(char const*);
-	~CountTriggerGameObject();
-
-
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class CurrencyRewardDelegate {
@@ -8514,25 +8222,6 @@ class SetupTimerTriggerPopup : SetupTriggerPopup {
 	~SetupTimerTriggerPopup();
 }
 
-[[link(android)]]
-class SpawnTriggerGameObject : EffectGameObject {
-	static SpawnTriggerGameObject* create();
-
-	~SpawnTriggerGameObject();
-
-
-	TodoReturn changeRemap(int, int, bool);
-	TodoReturn removeRemap(int, int);
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn updateRemapKeys(gd::vector<int> const&);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn addRemap(int, int);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class SpriteAnimationManager : cocos2d::CCNode {
@@ -8565,45 +8254,6 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn playSound(gd::string);
 }
 
-[[link(android)]]
-class TimerTriggerGameObject : EffectGameObject {
-	static TimerTriggerGameObject* create(char const*);
-
-	bool init(char const*);
-	~TimerTriggerGameObject();
-
-
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
-
-[[link(android)]]
-class CameraTriggerGameObject : EffectGameObject {
-	static CameraTriggerGameObject* create(char const*);
-
-	bool init(char const*);
-	~CameraTriggerGameObject();
-
-
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3abfb0;
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
-
-[[link(android)]]
-class ChanceTriggerGameObject : EffectGameObject {
-	bool init(char const*);
-	~ChanceTriggerGameObject();
-
-	TodoReturn editChanceObject(int, int);
-	TodoReturn revertChanceRemap();
-	TodoReturn remapChanceObjects(gd::unordered_map<int, int> const*);
-}
 
 [[link(android)]]
 class CustomSongLayerDelegate {
@@ -8628,35 +8278,6 @@ class GJAccountBackupDelegate {
     
 }
 
-[[link(android)]]
-class ObjectControlGameObject : EffectGameObject {
-	static ObjectControlGameObject* create();
-
-	~ObjectControlGameObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
-
-[[link(android)]]
-class PlayerControlGameObject : EffectGameObject {
-	static PlayerControlGameObject* create();
-
-	~PlayerControlGameObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class SetupCameraRotatePopup2 : SetupTriggerPopup {
@@ -8814,49 +8435,8 @@ class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
     
 }
 
-[[link(android)]]
-class SpawnParticleGameObject : EffectGameObject {
-	static SpawnParticleGameObject* create();
-
-	~SpawnParticleGameObject();
 
 
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
-
-[[link(android)]]
-class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
-	static AdvancedFollowEditObject* create(char const*);
-
-	bool init(char const*);
-	~AdvancedFollowEditObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
-
-[[link(android)]]
-class AudioLineGuideGameObject : EffectGameObject {
-	static AudioLineGuideGameObject* create();
-
-	~AudioLineGuideGameObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class BrowseSmartTemplateLayer : FLAlertLayer {
@@ -8891,22 +8471,6 @@ class PlatformDownloadDelegate {
     
 }
 
-[[link(android)]]
-class RotateGameplayGameObject : EffectGameObject {
-	static RotateGameplayGameObject* create();
-
-	~RotateGameplayGameObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn updateGameplayRotation();
-
-	
-	virtual bool init();
-	virtual TodoReturn updateStartValues();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class SetupAudioLineGuidePopup : SetupTriggerPopup, SelectSettingDelegate {
@@ -9061,21 +8625,6 @@ class SetupRotateGameplayPopup : SetupTriggerPopup {
     
 }
 
-[[link(android)]]
-class TriggerControlGameObject : EffectGameObject {
-	static TriggerControlGameObject* create(char const*);
-
-	bool init(char const*);
-	~TriggerControlGameObject();
-
-
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn updateTriggerControlFrame();
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class GJAccountRegisterDelegate {
@@ -9115,42 +8664,6 @@ class GJSmartBlockPreviewSprite : cocos2d::CCNode {
     
 }
 
-[[link(android)]]
-class KeyframeAnimTriggerObject : EffectGameObject {
-	static KeyframeAnimTriggerObject* create();
-
-	~KeyframeAnimTriggerObject();
-
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	
-	virtual bool init();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
-
-[[link(android)]]
-class SequenceTriggerGameObject : ChanceTriggerGameObject {
-	static SequenceTriggerGameObject* create();
-
-	~SequenceTriggerGameObject();
-
-
-	TodoReturn deleteTarget(int);
-	TodoReturn reorderTarget(int, bool);
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	TodoReturn updateSequenceTotalCount();
-	TodoReturn addCount(int, int);
-	TodoReturn addTarget(int, int);
-
-	
-	virtual bool init();
-	virtual TodoReturn resetObject();
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class SetupAreaAnimTriggerPopup : SetupAreaTintTriggerPopup {
@@ -9305,20 +8818,6 @@ class SetupCollisionTriggerPopup : SetupTriggerPopup {
     
 }
 
-[[link(android)]]
-class TransformTriggerGameObject : EffectGameObject {
-	static TransformTriggerGameObject* create(char const*);
-
-	bool init(char const*);
-	~TransformTriggerGameObject();
-
-
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class UpdateAccountSettingsPopup : FLAlertLayer, GJAccountSettingsDelegate {
@@ -9337,20 +8836,6 @@ class UpdateAccountSettingsPopup : FLAlertLayer, GJAccountSettingsDelegate {
     
 }
 
-[[link(android)]]
-class AdvancedFollowTriggerObject : EffectGameObject {
-	static AdvancedFollowTriggerObject* create(char const*);
-
-	bool init(char const*);
-	~AdvancedFollowTriggerObject();
-
-	TodoReturn getAdvancedFollowID();
-
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-    
-}
 
 [[link(android)]]
 class ConfigureValuePopupDelegate {

@@ -3196,10 +3196,6 @@ class EnhancedGameObject : GameObject {
 	TodoReturn previewAnimateOnTrigger();
 	TodoReturn setupAnimationVariables();
 	TodoReturn waitForAnimationTrigger();
-
-	// apparently this class has alignment of 8,
-	// please move this somewhere else in the class
-	// when you find members from here
 	
 	virtual TodoReturn customSetup();
 	virtual void resetObject() = win 0x143380;
@@ -3222,6 +3218,9 @@ class EnhancedGameObject : GameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int);
 	virtual TodoReturn updateAnimateOnTrigger(bool);
     
+	// apparently this class has alignment of 8,
+	// please move this somewhere else in the class
+	// when you find members from here
 	double m_alignmentDouble;
 
 	PAD = android32 0x1d;
@@ -3287,9 +3286,6 @@ class EffectGameObject : EnhancedGameObject {
 	TodoReturn triggerEffectFinished();
 	TodoReturn updateInteractiveHover(float);
 	EffectGameObject();
-
-
-	// property 7, 8, 9
 	
 	virtual void setOpacity(unsigned char);
 	virtual TodoReturn firstSetup();
@@ -3307,6 +3303,7 @@ class EffectGameObject : EnhancedGameObject {
 	virtual void setObjectLabel(cocos2d::CCLabelBMFont*);
 	virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*);
     
+	// property 7, 8, 9
 	cocos2d::ccColor3B m_triggerTargetColor;
 	// property 10
 	float m_duration;
@@ -3514,13 +3511,12 @@ class TextGameObject : GameObject {
 
 	TodoReturn updateTextObject(gd::string, bool);
 	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	// property 31
 	
 	virtual TodoReturn getSaveString(GJBaseGameLayer*);
 	virtual TodoReturn updateTextKerning(int);
 	virtual TodoReturn getTextKerning();
     
+	// property 31
 	char* m_text;
 	// property 488
 	int m_kerning;
@@ -3537,11 +3533,10 @@ class SmartGameObject : GameObject {
 
 	TodoReturn updateSmartFrame();
 	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-	// property 157
 	
 	virtual TodoReturn getSaveString(GJBaseGameLayer*);
     
+	// property 157
 	bool m_property157;
 	PAD = android32 0x9;
 }
@@ -3566,9 +3561,6 @@ class ParticleGameObject : EnhancedGameObject {
 	// TodoReturn createParticlePreviewArt();
 	// TodoReturn createAndAddCustomParticle();
 	// TodoReturn updateParticlePreviewArtOpacity(float);
-
-
-	// property 145
 	
 	virtual bool init();
 	virtual void setScaleX(float);
@@ -3595,6 +3587,7 @@ class ParticleGameObject : EnhancedGameObject {
 	// virtual TodoReturn updateSyncedAnimation(float, int);
 	// virtual TodoReturn updateAnimateOnTrigger(bool);
     
+	// property 145
 	char* m_particleData;
 	PAD = android32 0x110;
 
@@ -3636,9 +3629,6 @@ class RingObject : EffectGameObject {
 
 	TodoReturn spawnCircle();
 	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-
-
-	// property 445
 	
 	virtual void setScale(float);
 	virtual void setRotation(float);
@@ -3649,6 +3639,7 @@ class RingObject : EffectGameObject {
 	virtual TodoReturn shouldDrawEditorHitbox();
 	virtual TodoReturn powerOnObject(int);
     
+	// property 445
 	bool m_claimTouch;
 	// property 504
 	bool m_isSpawnOnly;
@@ -4398,10 +4389,11 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn tempClear();
 
 
-	// non-windows pads not tested on 2.2
+	
 	
 	virtual bool init();
     
+	// non-windows pads not tested on 2.2
 	PAD = win 0x18;
 	PAD = mac 0x50, win 0x24, android32 0x24;
 	cocos2d::CCDictionary* m_dailyChests;
@@ -4567,4 +4559,576 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	cocos2d::CCLabelBMFont* m_likeLabel;
 	GJComment* m_comment;
 	bool m_accountComment;
+}
+
+[[link(android)]]
+class ShaderGameObject : EffectGameObject {
+	static ShaderGameObject* create(char const*);
+
+	bool init(char const*);
+	~ShaderGameObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn customSetup();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+[[link(android)]]
+class KeyframeGameObject : EffectGameObject {
+	static KeyframeGameObject* create();
+
+	~KeyframeGameObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	// TodoReturn updateShadowObjects(GJBaseGameLayer*, EditorUI*);
+
+
+	
+	virtual bool init();
+	virtual void setOpacity(unsigned char);
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+[[link(android)]]
+class ArtTriggerGameObject : EffectGameObject {
+	static ArtTriggerGameObject* create(char const*);
+
+	bool init(char const*);
+	~ArtTriggerGameObject();
+
+
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class EndTriggerGameObject : EffectGameObject {
+	static EndTriggerGameObject* create();
+
+	~EndTriggerGameObject();
+
+
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+[[link(android)]]
+class ForceBlockGameObject : EffectGameObject {
+	static ForceBlockGameObject* create(char const*);
+
+	bool init(char const*);
+	~ForceBlockGameObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn calculateForceToTarget(GameObject*);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class SFXTriggerGameObject : EffectGameObject {
+	static SFXTriggerGameObject* create(char const*);
+
+	bool init(char const*);
+	~SFXTriggerGameObject();
+
+	TodoReturn getSFXRefID();
+	TodoReturn getUniqueSFXID();
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class UISettingsGameObject : EffectGameObject {
+	static UISettingsGameObject* create();
+
+	~UISettingsGameObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class ItemTriggerGameObject : EffectGameObject {
+	static ItemTriggerGameObject* create(char const*);
+
+	bool init(char const*);
+	~ItemTriggerGameObject();
+
+
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn customSetup();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class RandTriggerGameObject : ChanceTriggerGameObject {
+	static RandTriggerGameObject* create();
+
+	~RandTriggerGameObject();
+
+	TodoReturn getTotalChance();
+	TodoReturn getRandomGroupID();
+
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class SongTriggerGameObject : SFXTriggerGameObject {
+	static SongTriggerGameObject* create(char const*);
+
+	bool init(char const*);
+	~SongTriggerGameObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class CountTriggerGameObject : EffectGameObject {
+	static CountTriggerGameObject* create(char const*);
+
+	bool init(char const*);
+	~CountTriggerGameObject();
+
+
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class SpawnTriggerGameObject : EffectGameObject {
+	static SpawnTriggerGameObject* create();
+
+	~SpawnTriggerGameObject();
+
+
+	TodoReturn changeRemap(int, int, bool);
+	TodoReturn removeRemap(int, int);
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn updateRemapKeys(gd::vector<int> const&);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn addRemap(int, int);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class TimerTriggerGameObject : EffectGameObject {
+	static TimerTriggerGameObject* create(char const*);
+
+	bool init(char const*);
+	~TimerTriggerGameObject();
+
+
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+[[link(android)]]
+class CameraTriggerGameObject : EffectGameObject {
+	static CameraTriggerGameObject* create(char const*);
+
+	bool init(char const*);
+	~CameraTriggerGameObject();
+
+
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3abfb0;
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+[[link(android)]]
+class ChanceTriggerGameObject : EffectGameObject {
+	bool init(char const*);
+	~ChanceTriggerGameObject();
+
+	TodoReturn editChanceObject(int, int);
+	TodoReturn revertChanceRemap();
+	TodoReturn remapChanceObjects(gd::unordered_map<int, int> const*);
+}
+
+
+[[link(android)]]
+class ObjectControlGameObject : EffectGameObject {
+	static ObjectControlGameObject* create();
+
+	~ObjectControlGameObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+[[link(android)]]
+class PlayerControlGameObject : EffectGameObject {
+	static PlayerControlGameObject* create();
+
+	~PlayerControlGameObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class SpawnParticleGameObject : EffectGameObject {
+	static SpawnParticleGameObject* create();
+
+	~SpawnParticleGameObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class AudioLineGuideGameObject : EffectGameObject {
+	static AudioLineGuideGameObject* create();
+
+	~AudioLineGuideGameObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class RotateGameplayGameObject : EffectGameObject {
+	static RotateGameplayGameObject* create();
+
+	~RotateGameplayGameObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn updateGameplayRotation();
+
+	
+	virtual bool init();
+	virtual TodoReturn updateStartValues();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class TriggerControlGameObject : EffectGameObject {
+	static TriggerControlGameObject* create(char const*);
+
+	bool init(char const*);
+	~TriggerControlGameObject();
+
+
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn updateTriggerControlFrame();
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class SequenceTriggerGameObject : ChanceTriggerGameObject {
+	static SequenceTriggerGameObject* create();
+
+	~SequenceTriggerGameObject();
+
+
+	TodoReturn deleteTarget(int);
+	TodoReturn reorderTarget(int, bool);
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn updateSequenceTotalCount();
+	TodoReturn addCount(int, int);
+	TodoReturn addTarget(int, int);
+
+	
+	virtual bool init();
+	virtual TodoReturn resetObject();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class TransformTriggerGameObject : EffectGameObject {
+	static TransformTriggerGameObject* create(char const*);
+
+	bool init(char const*);
+	~TransformTriggerGameObject();
+
+
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class AdvancedFollowTriggerObject : EffectGameObject {
+	static AdvancedFollowTriggerObject* create(char const*);
+
+	bool init(char const*);
+	~AdvancedFollowTriggerObject();
+
+	TodoReturn getAdvancedFollowID();
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class EventLinkTrigger : EffectGameObject {
+	static EventLinkTrigger* create();
+
+	~EventLinkTrigger();
+
+
+	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class EnterEffectObject : EffectGameObject {
+	static EnterEffectObject* create(char const*);
+
+	bool init(char const*);
+	~EnterEffectObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	TodoReturn resetEnterAnimValues();
+	
+	virtual TodoReturn customSetup();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class GameOptionsTrigger : EffectGameObject {
+	static GameOptionsTrigger* create(char const*);
+
+	bool init(char const*);
+	~GameOptionsTrigger();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class EnhancedTriggerObject : EffectGameObject {
+	static EnhancedTriggerObject* create(char const*);
+
+	bool init(char const*);
+	~EnhancedTriggerObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class GradientTriggerObject : EffectGameObject {
+	static GradientTriggerObject* create();
+
+	~GradientTriggerObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+
+[[link(android)]]
+class KeyframeAnimTriggerObject : EffectGameObject {
+	static KeyframeAnimTriggerObject* create();
+
+	~KeyframeAnimTriggerObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual bool init();
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+
+[[link(android)]]
+class DashRingObject : RingObject {
+	static DashRingObject* create(char const*);
+
+	bool init(char const*);
+	~DashRingObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
+}
+
+
+[[link(android)]]
+class LevelSettingsObject : cocos2d::CCNode {
+	static LevelSettingsObject* create();
+
+	~LevelSettingsObject();
+
+	TodoReturn getSaveString();
+
+	TodoReturn objectFromDict(cocos2d::CCDictionary*);
+	TodoReturn objectFromString(gd::string const&);
+	TodoReturn shouldUseYSection();
+	TodoReturn setupColorsFromLegacyMode(cocos2d::CCDictionary*);
+
+	
+	virtual bool init();
+    
+}
+
+
+[[link(android)]]
+class TeleportPortalObject : RingObject {
+	static TeleportPortalObject* create(char const*, bool) = win 0x3a0e50;
+
+	bool init(char const*, bool);
+	~TeleportPortalObject();
+
+	TodoReturn getTeleportXOff(cocos2d::CCNode*);
+
+	/* unverified signature */
+	void setPositionOverride(cocos2d::CCPoint);
+	/* unverified signature */
+	void setStartPosOverride(cocos2d::CCPoint);
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+
+	
+	virtual void setPosition(cocos2d::CCPoint const&);
+	virtual void setRotation(float);
+	virtual void setStartPos(cocos2d::CCPoint);
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+	virtual TodoReturn addToGroup(int);
+	virtual TodoReturn removeFromGroup(int);
+	virtual void setRotation2(float);
+	virtual TodoReturn addToGroup2(int);
+	virtual TodoReturn removeFromGroup2(int);
+    
+}
+
+
+[[link(android)]]
+class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
+	static AdvancedFollowEditObject* create(char const*);
+
+	bool init(char const*);
+	~AdvancedFollowEditObject();
+
+
+	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	
+	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+    
 }
