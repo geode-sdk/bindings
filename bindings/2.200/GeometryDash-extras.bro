@@ -2335,6 +2335,15 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	virtual TodoReturn onClosePopup(UploadActionPopup*);
 	virtual void setIDPopupClosed(SetIDPopup*, int);
     
+	cocos2d::CCMenu* m_buttonMenu;
+    GJGameLevel* m_level;
+    TextArea* m_descriptionInput;
+    cocos2d::CCArray* m_someArray;
+    cocos2d::CCLabelBMFont* m_folderLabel;
+	bool m_unk;
+	bool m_lowDetailModeTriggered;
+	GJLevelType m_levelType;
+
 }
 
 [[link(android)]]
