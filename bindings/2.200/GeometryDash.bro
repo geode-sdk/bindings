@@ -1359,6 +1359,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn toggleInfoLabel();
 	virtual TodoReturn removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
+
+	PAD = android32 0x4B4;
+	GJGameLevel* m_level;
+	PAD = android32 0x274C;
 }
 
 [[link(android)]]
@@ -1604,6 +1608,9 @@ class GameManager : GManager {
 	virtual TodoReturn encodeDataTo(DS_Dictionary*);
 	virtual TodoReturn dataLoaded(DS_Dictionary*);
 	virtual TodoReturn firstLoad();
+
+	PAD = android32 0x64;
+	GJBaseGameLayer* m_gameLayer;
 }
 
 [[link(android)]]
