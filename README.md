@@ -41,7 +41,7 @@ class Example : Base1, Base2 {
     // Members are in the format m_camelCase
     int m_jumpCount;
     // Add pads for skipping members, platform dependant
-    PAD = win 0x18, android 0x4;
+    PAD = win 0x18, android32 0x4, android64 0x8;
     // Use std::array for C arrays
     std::array<float, 2000> m_lastYPositions;
 }
