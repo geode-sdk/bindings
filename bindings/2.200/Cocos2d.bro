@@ -38,7 +38,6 @@ class cocos2d::CCFileUtils {
 	virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&);
 }
 
-
 [[link(win, android)]]
 class cocos2d::CCNode {
 	static cocos2d::CCNode* create();
@@ -195,7 +194,6 @@ class cocos2d::CCNode {
 	virtual void updateTweenAction(float, char const*);
 	virtual void updateTweenActionInt(float, int);
 }
-
 
 [[link(win, android)]]
 class cocos2d::CCScheduler {
