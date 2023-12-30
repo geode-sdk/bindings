@@ -953,7 +953,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 
 [[link(android)]]
 class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
-	static OptionsLayer* create();
+	static OptionsLayer* create() = win 0x2ab510;
 
 	~OptionsLayer();
 
@@ -3124,8 +3124,7 @@ class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
 
 	~RetryLevelLayer();
 
-	TodoReturn getEndText();
-
+	TodoReturn getEndText() = win 0xe96b0;
 	void onEveryplay(cocos2d::CCObject* sender);
 	void onRewardedVideo(cocos2d::CCObject* sender);
 	void onMenu(cocos2d::CCObject* sender);
@@ -3670,7 +3669,6 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 	void onClose(cocos2d::CCObject* sender);
 
 	TodoReturn switchToOpenedState(CCMenuItemSpriteExtra*);
-
 	virtual bool init();
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();

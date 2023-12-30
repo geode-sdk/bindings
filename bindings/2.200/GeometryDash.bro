@@ -2477,7 +2477,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDelegate, RateLevelDelegate, LikeItemDelegate, FLAlertLayerProtocol, LevelDeleteDelegate, NumberInputDelegate, SetIDPopupDelegate, TableViewCellDelegate {
-	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x24CCD0;
+	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x24CCD0, mac 0x2973f0;
 
 	bool init(GJGameLevel*, bool) = win 0x24CD80;
 	~LevelInfoLayer();
@@ -3579,7 +3579,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getCommentKey(int, int, int, CommentKeyType);
 	TodoReturn getDailyTimer(GJTimedLevelType);
 	TodoReturn getFolderName(int, bool);
-	TodoReturn getGJUserInfo(int);
+	TodoReturn getGJUserInfo(int) = win 0x105270;
 	TodoReturn getLevelLists(GJSearchObject*);
 	TodoReturn getLocalLevel(int);
 	TodoReturn getMapPackKey(int);
