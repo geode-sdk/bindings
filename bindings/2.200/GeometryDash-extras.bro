@@ -5206,23 +5206,29 @@ class LocalLevelManager : GManager {
 	TodoReturn getCreatedLists(int);
 	TodoReturn getCreatedLevels(int);
 	TodoReturn getAllLevelsInDict();
-	TodoReturn getMainLevelString(int);
+	gd::string getMainLevelString(int) = win 0x273230;
 	TodoReturn getAllLevelsWithName(gd::string);
 	TodoReturn getLevelsInNameGroups();
 
-	LocalLevelManager* sharedState() = win 0x272F00;
+    inline static LocalLevelManager* get() {
+        return LocalLevelManager::sharedState();
+    }
+	static LocalLevelManager* sharedState() = win 0x272F00;
 	TodoReturn reorderLevels();
 	TodoReturn moveLevelToTop(GJGameLevel*);
 	TodoReturn updateLevelOrder();
 	TodoReturn updateLevelRevision();
 	TodoReturn markLevelsAsUnmodified();
-	TodoReturn tryLoadMainLevelString(int);
+	TodoReturn tryLoadMainLevelString(int) = win 0x2730A0;
 
 	virtual bool init();
 	virtual TodoReturn encodeDataTo(DS_Dictionary*);
 	virtual TodoReturn dataLoaded(DS_Dictionary*);
 	virtual TodoReturn firstLoad();
-    
+
+    cocos2d::CCArray* m_localLevels;
+    cocos2d::CCArray* m_LLM03;
+    gd::map<int, gd::string> m_mainLevels;
 }
 
 [[link(android)]]

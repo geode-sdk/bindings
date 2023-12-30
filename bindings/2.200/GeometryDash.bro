@@ -1746,6 +1746,10 @@ class GManager : cocos2d::CCNode {
 	virtual TodoReturn dataLoaded(DS_Dictionary*);
 	virtual TodoReturn firstLoad();
     
+	gd::string m_fileName;
+    bool m_setup;
+    bool m_saved;
+    bool m_quickSave;
 }
 
 [[link(android)]]
