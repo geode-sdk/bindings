@@ -734,8 +734,6 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 
 	virtual void draw() {}
 	virtual void setupList(float) = win 0x1d5c0;
-	virtual TableViewCell* getListCell(const char*) = win 0x1d6d0;
-	virtual void loadCell(TableViewCell*, int) = win 0x1d7b0;
 	virtual void TableViewWillDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
 	virtual void TableViewWillReloadCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
 	virtual float cellHeightForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x1d650;
@@ -744,6 +742,8 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 	virtual unsigned int numberOfSectionsInTableView(TableView*) = win 0x1d250;
 	virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&) = win 0x1d230;
 	virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x1d670;
+	virtual TableViewCell* getListCell(char const*) = win 0x1d6d0;
+	virtual void loadCell(TableViewCell*, int) = win 0x1d7b0;
     
 	TableView* m_tableView;
 	cocos2d::CCArray* m_entries;
