@@ -6029,8 +6029,6 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 
 	/* unverified signature */
 	void setSearchObject(GJSearchObject*);
-	/* unverified signature */
-	void setTextPopupClosed(SetTextPopup*, gd::string);
 
 	void onGoToPage(cocos2d::CCObject* sender);
 	void onNextPage(cocos2d::CCObject* sender);
@@ -6062,7 +6060,6 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	TodoReturn reloadAllObjects();
 	TodoReturn setupLevelBrowser(cocos2d::CCArray*);
 	TodoReturn updateLevelsLabel();
-	TodoReturn shareCommentClosed(gd::string, ShareCommentLayer*);
 	TodoReturn createNewSmartTemplate(cocos2d::CCObject*);
 	TodoReturn show();
 	TodoReturn scene(GJSearchObject*);
@@ -6082,6 +6079,8 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual TodoReturn loadLevelsFinished(cocos2d::CCArray*, char const*, int);
 	virtual TodoReturn loadLevelsFailed(char const*, int);
+	virtual void shareCommentClosed(gd::string, ShareCommentLayer*);
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2326E0;
 	virtual void setIDPopupClosed(SetIDPopup*, int);
 	virtual TodoReturn updateResultArray(cocos2d::CCArray*);
@@ -6116,4 +6115,63 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	int m_listHeight;
 	PAD = win 0x16, android32 0x16;
   
+}
+
+[[link(android)]]
+class SetTextPopupDelegate {
+	/* unverified signature */
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
+}
+
+
+[[link(android)]]
+class ShareCommentDelegate {
+	virtual TodoReturn shareCommentClosed(gd::string, ShareCommentLayer*);
+}
+
+
+[[link(android)]]
+class SetTextPopup : FLAlertLayer, TextInputDelegate {
+	static SetTextPopup* create(gd::string, gd::string, int, gd::string, gd::string, bool, float);
+
+	bool init(gd::string, gd::string, int, gd::string, gd::string, bool, float);
+	~SetTextPopup();
+
+	void onResetValue(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender);
+	void onCancel(cocos2d::CCObject* sender);
+
+	TodoReturn updateTextInputLabel();
+
+	virtual void keyBackClicked();
+	virtual TodoReturn show();
+	virtual TodoReturn textInputClosed(CCTextInputNode*);
+	virtual TodoReturn textChanged(CCTextInputNode*);
+}
+
+
+[[link(android)]]
+class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate, UploadPopupDelegate {
+	static ShareCommentLayer* create(gd::string, int, CommentType, int, gd::string);
+
+	bool init(gd::string, int, CommentType, int, gd::string);
+	~ShareCommentLayer();
+
+	void onClear(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender);
+	void onShare(cocos2d::CCObject* sender);
+	void onPercent(cocos2d::CCObject* sender);
+
+	TodoReturn updateDescText(gd::string);
+	TodoReturn updatePercentLabel();
+	TodoReturn updateCharCountLabel();
+
+	virtual void registerWithTouchDispatcher();
+	virtual void keyBackClicked();
+	virtual TodoReturn textInputOpened(CCTextInputNode*);
+	virtual TodoReturn textInputClosed(CCTextInputNode*);
+	virtual TodoReturn textChanged(CCTextInputNode*);
+	virtual TodoReturn uploadActionFinished(int, int);
+	virtual TodoReturn uploadActionFailed(int, int);
+	virtual TodoReturn onClosePopup(UploadActionPopup*);
 }

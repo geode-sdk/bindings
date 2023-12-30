@@ -1020,24 +1020,6 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	virtual TodoReturn dialogClosed(DialogLayer*);
 }
 
-[[link(android)]]
-class SetTextPopup : FLAlertLayer, TextInputDelegate {
-	static SetTextPopup* create(gd::string, gd::string, int, gd::string, gd::string, bool, float);
-
-	bool init(gd::string, gd::string, int, gd::string, gd::string, bool, float);
-	~SetTextPopup();
-
-	void onResetValue(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onCancel(cocos2d::CCObject* sender);
-
-	TodoReturn updateTextInputLabel();
-
-	virtual void keyBackClicked();
-	virtual TodoReturn show();
-	virtual TodoReturn textInputClosed(CCTextInputNode*);
-	virtual TodoReturn textChanged(CCTextInputNode*);
-}
 
 [[link(android)]]
 class SimpleObject : cocos2d::CCObject {
@@ -4525,31 +4507,6 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	virtual TodoReturn valuePopupClosed(ConfigureValuePopup*, float);
 }
 
-[[link(android)]]
-class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate, UploadPopupDelegate {
-	static ShareCommentLayer* create(gd::string, int, CommentType, int, gd::string);
-
-	bool init(gd::string, int, CommentType, int, gd::string);
-	~ShareCommentLayer();
-
-	void onClear(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onShare(cocos2d::CCObject* sender);
-	void onPercent(cocos2d::CCObject* sender);
-
-	TodoReturn updateDescText(gd::string);
-	TodoReturn updatePercentLabel();
-	TodoReturn updateCharCountLabel();
-
-	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual TodoReturn textInputOpened(CCTextInputNode*);
-	virtual TodoReturn textInputClosed(CCTextInputNode*);
-	virtual TodoReturn textChanged(CCTextInputNode*);
-	virtual TodoReturn uploadActionFinished(int, int);
-	virtual TodoReturn uploadActionFailed(int, int);
-	virtual TodoReturn onClosePopup(UploadActionPopup*);
-}
 
 [[link(android)]]
 class SmartTemplateCell : TableViewCell {
@@ -6106,11 +6063,6 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 	virtual void visit();
 }
 
-[[link(android)]]
-class SetTextPopupDelegate {
-	/* unverified signature */
-	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
-}
 
 [[link(android)]]
 class SetupCameraEdgePopup : SetupTriggerPopup {
@@ -6219,11 +6171,6 @@ class SetupSmartBlockLayer : FLAlertLayer, TextInputDelegate, SelectArtDelegate 
 	virtual void keyBackClicked();
 	virtual TodoReturn show();
 	virtual TodoReturn selectArtClosed(SelectArtLayer*);
-}
-
-[[link(android)]]
-class ShareCommentDelegate {
-	virtual TodoReturn shareCommentClosed(gd::string, ShareCommentLayer*);
 }
 
 [[link(android)]]
