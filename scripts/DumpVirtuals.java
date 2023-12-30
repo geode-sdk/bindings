@@ -104,16 +104,15 @@ public class DumpVirtuals extends GhidraScript {
             // i think theyre correct already
             if (name.contains("cocos2d::")) return;
 
-            // if (!name.equals("GJDropDownLayer")) return;
+            // theres only one vtable on android,
+            var vtable = getChildOfName(cl.getSymbol(), "vtable");
+            // and if there is none then we dont care
+            if (vtable == null) return;
 
             println("Dumping " + name);
 
             ArrayList<ArrayList<String>> bases = new ArrayList<>();
             classes.put(name, bases);
-
-            // only one vtable on android
-            var vtable = getChildOfName(cl.getSymbol(), "vtable");
-            if (vtable == null) return;
 
             var vtableAddr = vtable.getProgramLocation().getAddress();
             try {
