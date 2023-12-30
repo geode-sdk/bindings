@@ -1,5 +1,5 @@
 build/
 .vscode/
-*.mjs
-*sym*.txt
-inheritance.txt
+__scripts
+
+**/.DS_Store

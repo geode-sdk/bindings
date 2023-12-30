@@ -20,6 +20,7 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
 std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder);
 std::string generatePredeclareHeader(Root const& root);
 std::string generateBindingSource(Root const& root);
+std::string generateJsonInterface(Root const& root);
 
 inline void writeFile(ghc::filesystem::path const& writePath, std::string const& output) {
     std::ifstream readfile;
@@ -97,7 +98,9 @@ namespace codegen {
             case Platform::Mac: return pn.mac;
             case Platform::Windows: return pn.win;
             case Platform::iOS: return pn.ios;
-            case Platform::Android: return pn.android;
+            case Platform::Android: return pn.android32;
+            case Platform::Android32: return pn.android32;
+            case Platform::Android64: return pn.android64;
             default: // unreachable
                 return pn.win;
         }
@@ -135,7 +138,7 @@ namespace codegen {
     }
 
     inline bool shouldAndroidBind(const FunctionBindField* fn) {
-        if (codegen::platform == Platform::Android) {
+        if (codegen::platform == Platform::Android32 || codegen::platform == Platform::Android64) {
             if (fn->prototype.type != FunctionType::Normal) return true;
             for (auto& [type, name] : fn->prototype.args) {
                 if (can_find(type.name, "gd::")) return true;
