@@ -1132,7 +1132,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn createMiddleground(int);
 	// TodoReturn gameEventTriggered(GJGameEvent, int, int);
 	// TodoReturn generateSpawnRemap();
-	// TodoReturn groupStickyObjects(cocos2d::CCArray*);
+	void groupStickyObjects(cocos2d::CCArray*);
 	void loadStartPosObject() = win 0x1B4BA0;
 	// TodoReturn modifyGroupPhysics(AdvancedFollowEditObject*, cocos2d::CCArray*);
 	// TodoReturn optimizeMoveGroups();
@@ -1203,7 +1203,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn triggerGravityChange(EffectGameObject*, int);
 	// TodoReturn triggerRotateCommand(EnhancedTriggerObject*);
 	// TodoReturn triggerShaderCommand(ShaderGameObject*);
-	// TodoReturn ungroupStickyObjects(cocos2d::CCArray*);
+	void ungroupStickyObjects(cocos2d::CCArray*);
 	// TodoReturn updateGradientLayers() = win 0x1A1750;
 	// TodoReturn updatePlatformerTime() = win 0x1B8BE0;
 	// TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
@@ -4365,7 +4365,7 @@ class GJComment : cocos2d::CCNode {
 	int m_modBadge;
 	cocos2d::ccColor3B m_color;
 	bool m_hasLevelID;
-	PAD = win 0x4;
+	PAD = win 0x4, android32 0x4;
 	GJUserScore* m_userScore;
 }
 
@@ -5300,7 +5300,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	// TodoReturn deselectObjectsColor();
 	// TodoReturn processSelectObjects(cocos2d::CCArray*);
 	// TodoReturn toggleStickyControls(bool);
-	TodoReturn tryUpdateTimeMarkers();
+	void tryUpdateTimeMarkers();
 	// TodoReturn canAllowMultiActivate(GameObject*, cocos2d::CCArray*);
 	// TodoReturn changeSelectedObjects(cocos2d::CCArray*, bool);
 	// TodoReturn createExtrasForObject(int, GameObject*, cocos2d::CCArray*);
@@ -6272,13 +6272,117 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 	cocos2d::CCLabelBMFont* m_timeLabel;
 	LoadingCircle* m_timeCircle;
 	LoadingCircle* m_nodeCircle;
-	PAD = win 0x4;
+	PAD = win 0x4, android32 0x4;
 	DailyLevelNode* m_dailyNode;
-	PAD = win 0x4;
+	PAD = win 0x4, android32 0x4;
 	GJTimedLevelType m_type;
 
 }
 
+
+[[link(android)]]
+class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
+	static EditLevelLayer* create(GJGameLevel*);
+
+	bool init(GJGameLevel*) = win 0x09BDF0;
+	~EditLevelLayer();
+
+	void onLevelInfo(cocos2d::CCObject* sender);
+	TodoReturn onMoveToTop();
+	void onSetFolder(cocos2d::CCObject* sender);
+	void onGuidelines(cocos2d::CCObject* sender);
+	void onLowDetailMode(cocos2d::CCObject* sender);
+	void onLevelLeaderboard(cocos2d::CCObject* sender);
+	void onUpdateDescription(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender);
+	void onEdit(cocos2d::CCObject* sender);
+	void onHelp(cocos2d::CCObject* sender);
+	void onPlay(cocos2d::CCObject* sender);
+	void onTest(cocos2d::CCObject* sender);
+	TodoReturn onClone();
+	void onShare(cocos2d::CCObject* sender);
+	TodoReturn onDelete();
+
+	TodoReturn confirmClone(cocos2d::CCObject*);
+	TodoReturn confirmDelete(cocos2d::CCObject*);
+	TodoReturn setupLevelInfo();
+	TodoReturn updateDescText(char const*);
+	TodoReturn closeTextInputs();
+	TodoReturn verifyLevelName();
+	TodoReturn confirmMoveToTop(cocos2d::CCObject*);
+	TodoReturn scene(GJGameLevel*);
+	TodoReturn playStep2();
+	TodoReturn playStep3();
+
+	virtual void keyBackClicked();
+	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void setIDPopupClosed(SetIDPopup*, int);
+	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual TodoReturn textInputOpened(CCTextInputNode*);
+	virtual TodoReturn textInputClosed(CCTextInputNode*);
+	virtual TodoReturn textChanged(CCTextInputNode*);
+	virtual TodoReturn uploadActionFinished(int, int);
+	virtual TodoReturn uploadActionFailed(int, int);
+	virtual TodoReturn onClosePopup(UploadActionPopup*);
+    
+	cocos2d::CCMenu* m_buttonMenu;
+	GJGameLevel* m_level;
+	TextArea* m_descriptionInput;
+	cocos2d::CCArray* m_someArray;
+	cocos2d::CCLabelBMFont* m_folderLabel;
+	bool m_unk;
+	bool m_lowDetailModeTriggered;
+	GJLevelType m_levelType;
+}
+
+
+[[link(android)]]
+class GJAccountManager : cocos2d::CCNode {
+	~GJAccountManager();
+
+	TodoReturn getDLObject(char const*);
+	TodoReturn getShaPassword(gd::string);
+	TodoReturn getAccountSyncURL();
+	TodoReturn getAccountBackupURL();
+
+	TodoReturn onSyncAccountCompleted(gd::string, gd::string);
+	TodoReturn onLoginAccountCompleted(gd::string, gd::string);
+	TodoReturn onBackupAccountCompleted(gd::string, gd::string);
+	TodoReturn onRegisterAccountCompleted(gd::string, gd::string);
+	TodoReturn onGetAccountSyncURLCompleted(gd::string, gd::string);
+	TodoReturn onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
+	TodoReturn onGetAccountBackupURLCompleted(gd::string, gd::string);
+	TodoReturn onUpdateAccountSettingsCompleted(gd::string, gd::string);
+
+	TodoReturn dataLoaded(DS_Dictionary*);
+	TodoReturn firstSetup();
+	TodoReturn handleItND(cocos2d::CCNode*, void*);
+	/* unverified signature */
+	bool isDLActive(char const*);
+	static GJAccountManager* sharedState() = win 0x186ff0;
+	TodoReturn syncAccount(gd::string);
+	TodoReturn encodeDataTo(DS_Dictionary*);
+	TodoReturn loginAccount(gd::string, gd::string);
+	TodoReturn addDLToActive(char const*);
+	TodoReturn addDLToActive(char const*, cocos2d::CCObject*) = win 0x187680;
+	TodoReturn backupAccount(gd::string);
+	TodoReturn linkToAccount(gd::string, gd::string, int, int);
+	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
+	TodoReturn registerAccount(gd::string, gd::string, gd::string);
+	TodoReturn unlinkFromAccount();
+	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
+	TodoReturn removeDLFromActive(char const*);
+	TodoReturn updateAccountSettings(int, int, int, gd::string, gd::string, gd::string) = win 0x1896b0;
+	TodoReturn handleIt(bool, gd::string, gd::string, GJHttpType);
+
+	virtual bool init();
+    
+	PAD = win 0x4, android32 0x4;
+	gd::string m_username;
+	int m_accountID;
+	PAD = win 0x8, android32 0x8;
+	gd::string m_gjp2;
+}
 
 [[link(android)]]
 class GJDailyLevelDelegate {
