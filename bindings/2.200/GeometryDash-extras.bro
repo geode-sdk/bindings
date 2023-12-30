@@ -122,38 +122,6 @@ class HardStreak : cocos2d::CCDrawNode {
 	virtual bool init();
 }
 
-[[link(android)]]
-class PauseLayer : CCBlockLayer {
-	static PauseLayer* create(bool) = win 0x2b3690;
-
-	bool init(bool) = win 0x2b3740;
-	~PauseLayer();
-
-	void onSettings(cocos2d::CCObject* sender) = win 0x2b41e0;
-	void onNormalMode(cocos2d::CCObject* sender) = win 0x2b4be0;
-	void onRestartFull(cocos2d::CCObject* sender) = win 0x2b4d30;
-	void onPracticeMode(cocos2d::CCObject* sender) = win 0x2b4b70;
-	void onRecordReplays(cocos2d::CCObject* sender);
-	void onEdit(cocos2d::CCObject* sender) = win 0x2b4d80;
-	void onHelp(cocos2d::CCObject* sender);
-	void onQuit(cocos2d::CCObject* sender) = win 0x2b4ed0;
-	void onTime(cocos2d::CCObject* sender);
-	void onReplay(cocos2d::CCObject* sender);
-	void onResume(cocos2d::CCObject* sender) = win 0x2b4c90;
-	void onRestart(cocos2d::CCObject* sender) = win 0x2b4ce0;
-
-	TodoReturn tryShowBanner(float);
-	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
-	TodoReturn setupProgressBars();
-	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	void musicSliderChanged(cocos2d::CCObject*) = win 0x2B4AB0;
-	void goEdit() = win 0x2b4e70;
-
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2b4fa0;
-	virtual void customSetup() = win 0x2B3740;
-	virtual void keyUp(cocos2d::enumKeyCodes);
-}
 
 [[link(android)]]
 class PriceLabel : cocos2d::CCNode {
@@ -661,34 +629,6 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 }
 
-[[link(android)]]
-class CCBlockLayer : cocos2d::CCLayerColor {
-	static CCBlockLayer* create();
-
-	~CCBlockLayer();
-
-	TodoReturn decrementForcePrio();
-	TodoReturn incrementForcePrio();
-
-	virtual bool init();
-	virtual void draw();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual TodoReturn customSetup();
-	virtual TodoReturn enterLayer();
-	virtual TodoReturn exitLayer();
-	virtual TodoReturn showLayer(bool);
-	virtual TodoReturn hideLayer(bool);
-	virtual TodoReturn layerVisible();
-	virtual TodoReturn layerHidden();
-	virtual TodoReturn enterAnimFinished();
-	virtual TodoReturn disableUI();
-	virtual TodoReturn enableUI();
-}
 
 
 [[link(android)]]
@@ -3593,70 +3533,6 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 }
 
-[[link(android)]]
-class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
-	static EditorPauseLayer* create(LevelEditorLayer*);
-
-	bool init(LevelEditorLayer*);
-	~EditorPauseLayer();
-
-	void onNewGroupX(cocos2d::CCObject* sender);
-	void onNewGroupY(cocos2d::CCObject* sender);
-	void onSelectAll(cocos2d::CCObject* sender);
-	void onCopyWColor(cocos2d::CCObject* sender);
-	void onCreateLoop(cocos2d::CCObject* sender);
-	void onExitEditor(cocos2d::CCObject* sender);
-	void onExitNoSave(cocos2d::CCObject* sender);
-	void onBuildHelper(cocos2d::CCObject* sender);
-	void onKeybindings(cocos2d::CCObject* sender);
-	void onPasteWColor(cocos2d::CCObject* sender);
-	void onSaveAndExit(cocos2d::CCObject* sender);
-	void onSaveAndPlay(cocos2d::CCObject* sender);
-	void onCreateExtras(cocos2d::CCObject* sender);
-	void onSelectAllLeft(cocos2d::CCObject* sender);
-	void onCreateTemplate(cocos2d::CCObject* sender);
-	void onSelectAllRight(cocos2d::CCObject* sender);
-	void onUnlockAllLayers(cocos2d::CCObject* sender);
-	void onResetUnusedColors(cocos2d::CCObject* sender);
-	void onHelp(cocos2d::CCObject* sender);
-	void onSave(cocos2d::CCObject* sender);
-	void onSong(cocos2d::CCObject* sender);
-	void onAlignX(cocos2d::CCObject* sender);
-	void onAlignY(cocos2d::CCObject* sender);
-	void onResume(cocos2d::CCObject* sender);
-	void onOptions(cocos2d::CCObject* sender);
-	void onReGroup(cocos2d::CCObject* sender);
-
-	TodoReturn doResetUnused();
-	TodoReturn toggleDebugDraw(cocos2d::CCObject*);
-	TodoReturn toggleGridOnTop(cocos2d::CCObject*);
-	TodoReturn toggleEditorGrid(cocos2d::CCObject*);
-	TodoReturn updateSongButton();
-	TodoReturn toggleEffectLines(cocos2d::CCObject*);
-	TodoReturn togglePreviewAnim(cocos2d::CCObject*);
-	TodoReturn toggleRecordOrder(cocos2d::CCObject*);
-	TodoReturn uncheckAllPortals(cocos2d::CCObject*);
-	TodoReturn toggleEditorGround(cocos2d::CCObject*);
-	TodoReturn toggleFollowPlayer(cocos2d::CCObject*);
-	TodoReturn toggleIgnoreDamage(cocos2d::CCObject*);
-	TodoReturn toggleSelectFilter(cocos2d::CCObject*);
-	TodoReturn toggleHideInvisible(cocos2d::CCObject*);
-	TodoReturn togglePlaytestMusic(cocos2d::CCObject*);
-	TodoReturn toggleEffectDuration(cocos2d::CCObject*);
-	TodoReturn togglePreviewShaders(cocos2d::CCObject*);
-	TodoReturn toggleShowObjectInfo(cocos2d::CCObject*);
-	TodoReturn toggleEditorColorMode(cocos2d::CCObject*);
-	TodoReturn toggleEditorBackground(cocos2d::CCObject*);
-	TodoReturn togglePreviewParticles(cocos2d::CCObject*);
-	TodoReturn playStep2();
-	TodoReturn playStep3();
-	TodoReturn saveLevel();
-
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual TodoReturn customSetup();
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
-}
 
 [[link(android)]]
 class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, RewardedVideoDelegate {
