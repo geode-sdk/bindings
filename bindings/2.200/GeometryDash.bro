@@ -600,18 +600,15 @@ class TableViewDelegate {
 	// these are pure virtuals
 	virtual void willTweenToIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
 	virtual void didEndTweenToIndexPath(CCIndexPath&, TableView*) {}
-	virtual void TableViewDidDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
-	
 	virtual void TableViewWillDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
+	virtual void TableViewDidDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
+	virtual void TableViewWillReloadCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
 	virtual float cellHeightForRowAtIndexPath(CCIndexPath&, TableView*) { return 0; }
 	virtual void didSelectRowAtIndexPath(CCIndexPath&, TableView*) {}
-	virtual void TableViewWillReloadCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
-    
 }
 
 [[link(android)]]
 class TextInputDelegate {
-	
 	virtual void textChanged(CCTextInputNode*);
 	virtual void textInputOpened(CCTextInputNode*);
 	virtual void textInputClosed(CCTextInputNode*);
@@ -619,26 +616,21 @@ class TextInputDelegate {
 	virtual void textInputReturn(CCTextInputNode*);
 	virtual void allowTextInput(CCTextInputNode*);
 	virtual void enterPressed(CCTextInputNode*);
-    
 }
 
 [[link(android)]]
 class TableViewDataSource {
-	
 	virtual int numberOfRowsInSection(unsigned int, TableView*) { return 0; }
 	virtual unsigned int numberOfSectionsInTableView(TableView*) { return 0; }
-	virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath&, TableView*) { return nullptr; }
 	virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&) {}
-    
+	virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath&, TableView*) { return nullptr; }
 }
 
 [[link(android)]]
 class TableViewCellDelegate {
-	
 	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
 	virtual TodoReturn getSelectedCellIdx();
 	virtual TodoReturn shouldSnapToSelected();
-    
 }
 
 [[link(android)]]
