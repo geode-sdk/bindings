@@ -1,9 +1,9 @@
 import json
 import re
 
-input_file = open("../bindings/2.200/GeometryDash.bro", "r")
+input_file = open("../bindings/2.200/GeometryDash-extras.bro", "r")
 
-output_file = open("../bindings/2.200/GeometryDash-reordered.bro", "w")
+output_file = open("../bindings/2.200/GeometryDash-extras-reordered.bro", "w")
 
 virtuals_json = open("virtuals.json", "r")
 
@@ -33,7 +33,10 @@ for line in input_file:
             class_name = pure_replaces[class_name]
         if class_name in virtuals:
             class_virtuals = virtuals[class_name]
-            class_functions = [func for table in virtuals[class_name] for func in table if "~" not in func]
+            if len(class_virtuals) == 0:
+                class_functions = []
+            else:
+                class_functions = [func for func in class_virtuals[0] if "~" not in func]
             virtuals_list = []
         else:
             class_name = None
@@ -42,6 +45,8 @@ for line in input_file:
     elif class_name is not None:
         # find matching functions
         for function in class_functions:
+            # if 'std::' in function:
+            #     function = function[0:function.find('(')]
             if ' ' + function in line:
                 # print("found function: " + line)
                 add_line = False
