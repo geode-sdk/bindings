@@ -15,6 +15,10 @@ using std::istreambuf_iterator;
 
 using namespace broma;
 
+
+#include "AndroidSymbol.hpp"
+#include "WindowsSymbol.hpp"
+
 std::string generateAddressHeader(Root const& root);
 std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& singleFolder);
 std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder);
@@ -228,5 +232,70 @@ namespace codegen {
         auto index = s.rfind("::");
         if (index == std::string::npos) return s;
         return s.substr(index + 2);
+    }
+
+    inline std::string getAddressString(Function const& f) {
+        if (codegen::getStatus(f) == BindStatus::Binded) {
+            return fmt::format(
+                "addresser::getNonVirtual(Resolve<{}>::func(&{}))",
+                codegen::getParameterTypes(f.prototype),
+                f.prototype.name
+            );
+        }
+        else if (codegen::getStatus(f) == BindStatus::NeedsBinding) {
+            return fmt::format("base::get() + 0x{:x}", codegen::platformNumber(f.binds));
+        }
+        else {
+            return "";
+        }
+    }
+
+    inline std::string getAddressString(Class const& c, Field const& field) {
+        if (auto fn = field.get_as<FunctionBindField>()) {
+            const auto isWindowsCocosCtor = [&] {
+                return codegen::platform == Platform::Windows
+                    && is_cocos_class(field.parent) 
+                    // && codegen::getStatus(field) == BindStatus::Binded
+                    && fn->prototype.type != FunctionType::Normal;
+            };
+
+            if (codegen::getStatus(field) == BindStatus::NeedsBinding || codegen::platformNumber(field) != -1) {
+                if (is_cocos_class(field.parent) && codegen::platform == Platform::Windows) {
+                    return fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
+                }
+                else {
+                    return fmt::format("base::get() + 0x{:x}", codegen::platformNumber(fn->binds));
+                }
+            }
+            else if (codegen::shouldAndroidBind(fn)) {
+                auto const mangled = generateAndroidSymbol(c, fn);
+                return fmt::format( // thumb
+                    "reinterpret_cast<uintptr_t>(dlsym(dlopen(\"libcocos2dcpp.so\", RTLD_NOW), \"{}\"))",
+                    mangled
+                );
+            }
+            else if (isWindowsCocosCtor()) {
+                auto const mangled = generateWindowsSymbol(c, fn);
+                return fmt::format(
+                    "reinterpret_cast<uintptr_t>(GetProcAddress(GetModuleHandleA(\"libcocos2d.dll\"), \"{}\"))",
+                    mangled
+                );
+            }
+            else if (codegen::getStatus(field) == BindStatus::Binded && fn->prototype.type == FunctionType::Normal) {
+                return fmt::format(
+                    "addresser::get{}Virtual(Resolve<{}>::func(&{}::{}))",
+                    str_if("Non", !fn->prototype.is_virtual),
+                    codegen::getParameterTypes(fn->prototype),
+                    field.parent,
+                    fn->prototype.name
+                );
+            }
+            else {
+                return "";
+            }
+        }
+        else {
+            return "";
+        }
     }
 }

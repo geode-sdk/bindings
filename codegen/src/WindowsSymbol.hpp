@@ -1,13 +1,14 @@
 #pragma once
 
-#include "Shared.hpp"
+#include <broma.hpp>
+using namespace broma;
 
 #include <unordered_set>
 #include <vector>
 #include <string>
 #include <string_view>
 
-std::string mangleWindowsIdent(std::string_view str) {
+inline std::string mangleWindowsIdent(std::string_view str) {
     if (str.find("::") != -1) {
 		std::string result = "";
 		auto s = str;
@@ -26,7 +27,7 @@ std::string mangleWindowsIdent(std::string_view str) {
 	}
 }
 
-std::string generateWindowsSymbol(const Class& clazz, const FunctionBindField* fn) {
+inline std::string generateWindowsSymbol(const Class& clazz, const FunctionBindField* fn) {
 	auto& decl = fn->prototype;
 
 
