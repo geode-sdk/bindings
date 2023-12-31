@@ -408,7 +408,7 @@ class OptionsCell : TableViewCell {
 
 [[link(android)]]
 class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
-	static RewardsPage* create();
+	static RewardsPage* create() = win 0x2EF270;
 
 	~RewardsPage();
 
@@ -422,13 +422,21 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	TodoReturn tryGetRewards();
 	TodoReturn unlockLayerClosed(RewardUnlockLayer*);
 
-	virtual bool init();
+	virtual bool init() = win 0x2EF310;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual TodoReturn show();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn rewardsStatusFinished(int);
 	virtual TodoReturn rewardsStatusFailed();
+
+	cocos2d::CCLabelBMFont* m_leftLabel;
+	cocos2d::CCLabelBMFont* m_rightLabel;
+	CCMenuItemSpriteExtra* m_leftChest;
+	CCMenuItemSpriteExtra* m_rightChest;
+	bool m_leftOpen;
+	bool m_rightOpen;
+	cocos2d::CCNode* m_openLayer;
 }
 
 [[link(android)]]
@@ -3854,6 +3862,17 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 	virtual TodoReturn updateUserScoreFailed();
 	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
 	virtual TodoReturn loadLeaderboardFailed(char const*);
+
+	GJListLayer* m_list;
+	cocos2d::CCArray* m_userScores;
+	LeaderboardState m_state;
+	CCMenuItemToggler* m_topBtn;
+	CCMenuItemToggler* m_globalBtn;
+	CCMenuItemToggler* m_creatorsBtn;
+	CCMenuItemToggler* m_friendsBtn;
+	LoadingCircle* m_circle;
+	TextArea* m_noInternet;
+	cocos2d::CCArray* m_tabs;
 }
 
 
@@ -7090,9 +7109,9 @@ class GJMGLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLAlertLayerProtocol {
-	static InfoLayer* create(GJGameLevel*, GJUserScore*, GJLevelList*);
+	static InfoLayer* create(GJGameLevel*, GJUserScore*, GJLevelList*) = win 0x2239C0;
 
-	bool init(GJGameLevel*, GJUserScore*, GJLevelList*) = win 0x23A80;
+	bool init(GJGameLevel*, GJUserScore*, GJLevelList*) = win 0x223A80;
 	~InfoLayer();
 
 	TodoReturn getAccountID();
@@ -7135,6 +7154,28 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	virtual TodoReturn commentUploadFailed(int, CommentError);
 	virtual TodoReturn updateUserScoreFinished();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+
+	GJGameLevel* m_level;
+    GJUserScore* m_score;
+    GJLevelList* m_levelList;
+    gd::string m_commentKey;
+    LoadingCircle* m_loadingCircle;
+    cocos2d::CCLabelBMFont* m_pageLabel;
+    cocos2d::CCLabelBMFont* m_noComments;
+    GJCommentListLayer* m_list;
+    CCMenuItemSpriteExtra* m_rightArrow;
+    CCMenuItemSpriteExtra* m_leftArrow;
+    CCMenuItemSpriteExtra* m_likeBtn;
+    CCMenuItemSpriteExtra* m_timeBtn;
+    CCMenuItemSpriteExtra* m_reportBtn;
+    CCMenuItemSpriteExtra* m_commentsBtn;
+    CCMenuItemSpriteExtra* m_refreshCommentsBtn;
+    int m_itemCount;
+    int m_pageStartIdx;
+    int m_pageEndIdx;
+    int m_page;
+    bool m_canUpdateUserScore;
+    bool m_commentHistory;
 }
 
 [[link(android)]]
