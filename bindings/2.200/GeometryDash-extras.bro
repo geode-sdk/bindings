@@ -2523,7 +2523,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	virtual void update(float) = win 0x33910;
 
-	PAD = win 0x9c, android32 0x9c;
+	PAD = win 0x88, android32 0x7c;
 	FMOD::System* m_system;
 }
 
