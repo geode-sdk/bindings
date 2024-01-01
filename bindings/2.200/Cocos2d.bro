@@ -605,3 +605,135 @@ class cocos2d::CCDirector {
 	virtual void setSceneDelegate(cocos2d::CCSceneDelegate*);
 	virtual cocos2d::CCSceneDelegate* getSceneDelegate() const;
 }
+
+
+[[link(win, android)]]
+class cocos2d::CCNodeRGBA {
+	static cocos2d::CCNodeRGBA* create();
+
+	// CCNodeRGBA(cocos2d::CCNodeRGBA const&);
+	CCNodeRGBA();
+	~CCNodeRGBA();
+
+	virtual bool init();
+
+	virtual void setColor(cocos2d::_ccColor3B const&);
+	virtual cocos2d::_ccColor3B const& getColor();
+	virtual cocos2d::_ccColor3B const& getDisplayedColor();
+	virtual unsigned char getDisplayedOpacity();
+	virtual unsigned char getOpacity();
+	virtual void setOpacity(unsigned char);
+	virtual void setOpacityModifyRGB(bool);
+	virtual bool isOpacityModifyRGB();
+	virtual bool isCascadeColorEnabled();
+	virtual void setCascadeColorEnabled(bool);
+	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&);
+	virtual bool isCascadeOpacityEnabled();
+	virtual void setCascadeOpacityEnabled(bool);
+	virtual void updateDisplayedOpacity(unsigned char);
+}
+
+
+[[link(win, android)]]
+class cocos2d::CCSprite {
+	static cocos2d::CCSprite* create(char const*);
+	static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&);
+	static cocos2d::CCSprite* create();
+	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*);
+	static cocos2d::CCSprite* createWithSpriteFrameName(char const*);
+	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*);
+	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
+
+	unsigned int getAtlasIndex();
+	float getBlVertexMod() const;
+	float getBrVertexMod() const;
+	bool getDontDraw() const;
+	cocos2d::CCPoint const& getOffsetPosition();
+	cocos2d::_ccV3F_C4B_T2F_Quad getQuad();
+	cocos2d::CCTextureAtlas* getTextureAtlas();
+	cocos2d::CCRect const& getTextureRect();
+	float getTlVertexMod() const;
+	float getTrVertexMod() const;
+	cocos2d::CCPoint const& getUnflippedOffsetPosition();
+	bool getUseVertexMod() const;
+
+	void setAtlasIndex(unsigned int);
+	void setBlVertexMod(float);
+	void setBrVertexMod(float);
+	void setDontDraw(bool);
+	void setFlipX(bool);
+	void setFlipY(bool);
+	void setTextureAtlas(cocos2d::CCTextureAtlas*);
+	void setTlVertexMod(float);
+	void setTrVertexMod(float);
+	void setUseVertexMod(bool);
+
+	// CCSprite(cocos2d::CCSprite const&);
+	CCSprite();
+	~CCSprite();
+	bool isFlipX();
+	bool isFlipY();
+	bool isTextureRectRotated();
+	void updateColor();
+
+	virtual bool init();
+	virtual void setVertexZ(float);
+	virtual void setScaleX(float);
+	virtual void setScaleY(float);
+	virtual void setScale(float);
+	virtual void setPosition(cocos2d::CCPoint const&);
+	virtual void setSkewX(float);
+	virtual void setSkewY(float);
+	virtual void setAnchorPoint(cocos2d::CCPoint const&);
+	virtual void setVisible(bool);
+	virtual void setRotation(float);
+	virtual void setRotationX(float);
+	virtual void setRotationY(float);
+	virtual void ignoreAnchorPointForPosition(bool);
+	virtual void addChild(cocos2d::CCNode*);
+	virtual void addChild(cocos2d::CCNode*, int);
+	virtual void addChild(cocos2d::CCNode*, int, int);
+	virtual void removeChild(cocos2d::CCNode*, bool);
+	virtual void removeAllChildrenWithCleanup(bool);
+	virtual void reorderChild(cocos2d::CCNode*, int);
+	virtual void sortAllChildren();
+	virtual void draw();
+	virtual void updateTransform();
+	virtual bool initWithTexture(cocos2d::CCTexture2D*);
+	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
+	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
+	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*);
+	virtual bool initWithSpriteFrameName(char const*);
+	virtual bool initWithFile(char const*);
+	virtual bool initWithFile(char const*, cocos2d::CCRect const&);
+	virtual void setChildColor(cocos2d::_ccColor3B const&);
+	virtual void setChildOpacity(unsigned char);
+	virtual cocos2d::CCSpriteBatchNode* getBatchNode();
+	virtual void setBatchNode(cocos2d::CCSpriteBatchNode*);
+	virtual void refreshTextureRect();
+	virtual void setTextureRect(cocos2d::CCRect const&);
+	virtual void setTextureRect(cocos2d::CCRect const&, bool, cocos2d::CCSize const&);
+	virtual void setVertexRect(cocos2d::CCRect const&);
+	virtual void setDisplayFrame(cocos2d::CCSpriteFrame*);
+	virtual bool isFrameDisplayed(cocos2d::CCSpriteFrame*);
+	virtual cocos2d::CCSpriteFrame* displayFrame();
+	virtual void setDisplayFrameWithAnimationName(char const*, int);
+	virtual bool isDirty();
+	virtual void setDirty(bool);
+	virtual void setTextureCoords(cocos2d::CCRect const&);
+	virtual void updateBlendFunc();
+	virtual void setReorderChildDirtyRecursively();
+	virtual void setDirtyRecursively(bool);
+
+	virtual void setColor(cocos2d::_ccColor3B const&);
+	virtual void setOpacity(unsigned char);
+	virtual void setOpacityModifyRGB(bool);
+	virtual bool isOpacityModifyRGB();
+	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&);
+	virtual void updateDisplayedOpacity(unsigned char);
+
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
+	virtual cocos2d::_ccBlendFunc getBlendFunc();
+	virtual cocos2d::CCTexture2D* getTexture();
+	virtual void setTexture(cocos2d::CCTexture2D*);
+}
