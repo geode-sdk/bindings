@@ -2748,7 +2748,6 @@ class GJSpriteColor {
     bool unk_110;
 
     TodoReturn getColorMode();
-	GJSpriteColor();
 }
 
 [[link(android)]]
