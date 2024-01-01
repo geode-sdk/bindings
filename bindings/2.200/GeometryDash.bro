@@ -282,7 +282,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	/* unverified signature */
 	void setSizeMult(float mult) {
 		//inlined on windows, member is in CCMenuItemSprite
-		m_fSizeMult = mult;
+		m_scaleMultiplier = mult;
 	}
 
 	// 2.2 not tested
