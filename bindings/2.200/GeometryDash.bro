@@ -4842,7 +4842,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 	// property kA10
     bool m_twoPlayerMode;
 	// property kA22
-	bool m_propertykA22;
+	bool m_platformerMode;
 	// property kA13
     float m_songOffset;
 	// property kA15
@@ -4873,7 +4873,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     GJGameLevel* m_level;
 	// property kA14
     gd::string m_guidelineString;
-	
+
     int m_defaultSongID;
 	// property kS39
     int m_colorPage;
