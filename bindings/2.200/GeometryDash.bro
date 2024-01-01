@@ -1037,7 +1037,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn asyncGLoaded(int);
 	void createPlayer() = win 0x18fed0;
 	// TodoReturn flipFinished();
-	// TodoReturn handleButton(bool, int, bool) = win 0x1b2880;
+	void handleButton(bool push, PlayerButton button, bool player1) = win 0x1b2880;
 	// TodoReturn processItems() = win 0x1992d0;
 	// TodoReturn recordAction(int, bool, bool);
 	// TodoReturn restoreRemap(EffectGameObject*, gd::unordered_map<int, int>&);
