@@ -5095,6 +5095,41 @@ class TeleportPortalObject : RingObject {
 	virtual void setRotation2(float);
 	virtual TodoReturn addToGroup2(int);
 	virtual TodoReturn removeFromGroup2(int);
+
+	void* m_unknown;
+    TeleportPortalObject* m_orangePortal;
+    bool m_isYellowPortal;
+    float m_teleportYOffset;
+	// property 55
+    bool m_teleportEase;
+	// property 345
+	bool m_staticForceEnabled;
+	// property 346
+	int m_staticForce;
+	// property 347
+	bool m_redirectForceEnabled;
+	// property 350
+	float m_redirectForceMod;
+	// property 348
+	float m_redirectForceMin;
+	// property 349
+	float m_redirectForceMax;
+	// property 351
+	bool m_saveOffset;
+	// property 352
+	bool m_ignoreX;
+	// property 353
+	bool m_ignoreY;
+	// property 354
+	int m_gravityMode;
+	// property 443
+	bool m_property443;
+	// property 464
+	bool m_property464;
+	// property 510
+	bool m_property510;
+	// property 591
+	bool m_property591;
 }
 
 [[link(android)]]
