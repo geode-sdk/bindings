@@ -1082,7 +1082,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn addPickupTrigger(CountTriggerGameObject*);
 	// TodoReturn buttonIDToButton(int);
 	// TodoReturn controlEventLink(int, int, GJActionCommand);
-	// TodoReturn createBackground(int);
+	void createBackground(int);
 	// TodoReturn createTextLayers() = win 0x193A90;
 	// TodoReturn exitStaticCamera(bool, bool, float, int, float, bool, float, bool);
 	void loadUpToPosition(float, int, int) = win 0x1B4D10;
@@ -1103,7 +1103,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn checkRepellPlayer();
 	void checkSpawnObjects() = win 0x19d320;
 	// TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
-	// TodoReturn createGroundLayer(int, int);
+	void createGroundLayer(int, int);
 	// TodoReturn gameEventToString(GJGameEvent);
 	// TodoReturn loadLevelSettings();
 	// TodoReturn moveObjectsSilent(int, double, double);
@@ -1129,7 +1129,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn animateInGroundNew(bool, float, bool);
 	// TodoReturn applyLevelSettings(GameObject*);
 	// TodoReturn clearPickedUpItems();
-	// TodoReturn createMiddleground(int);
+	void createMiddleground(int);
 	// TodoReturn gameEventTriggered(GJGameEvent, int, int);
 	// TodoReturn generateSpawnRemap();
 	void groupStickyObjects(cocos2d::CCArray*);
@@ -1450,7 +1450,7 @@ class GameManager : GManager {
 	TodoReturn clearGJLog();
 	TodoReturn joinReddit();
 	TodoReturn keyForIcon(int, int);
-	TodoReturn loadGround(int);
+	void loadGround(int);
 	TodoReturn printGJLog();
 	void reloadMenu() = win 0x12c510;
 	TodoReturn reorderKey(int, bool);
@@ -1492,7 +1492,7 @@ class GameManager : GManager {
 	/* unverified signature */
 	bool isIconUnlocked(int, IconType) = win 0x120170;
 	TodoReturn levelIsPremium(int, int);
-	TodoReturn loadBackground(int);
+	void loadBackground(int);
 	TodoReturn loadDPadLayout(int, bool);
 	// TodoReturn playSFXTrigger(SFXTriggerGameObject*);
 	void reloadAllStep2() = win 0x12c620;
@@ -1519,7 +1519,7 @@ class GameManager : GManager {
 	TodoReturn didExitPlayscene();
 	TodoReturn getIconRequestID();
 	TodoReturn getMenuMusicFile();
-	TodoReturn loadMiddleground(int);
+	void loadMiddleground(int);
 	TodoReturn recountUserStats(gd::string);
 	TodoReturn resetAchievement(gd::string);
 	TodoReturn resetCoinUnlocks();
@@ -4817,12 +4817,12 @@ class LevelSettingsObject : cocos2d::CCNode {
 
 	~LevelSettingsObject();
 
-	TodoReturn getSaveString();
+	gd::string getSaveString();
 
-	TodoReturn objectFromDict(cocos2d::CCDictionary*);
-	TodoReturn objectFromString(gd::string const&);
-	TodoReturn shouldUseYSection();
-	TodoReturn setupColorsFromLegacyMode(cocos2d::CCDictionary*);
+	static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary*);
+	static LevelSettingsObject* objectFromString(gd::string const&);
+	bool shouldUseYSection();
+	void setupColorsFromLegacyMode(cocos2d::CCDictionary*);
 
 	virtual bool init();
 
@@ -4856,7 +4856,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 	// property kA18
     int m_fontIndex;
 	// property kA25
-	int m_propertykA25;
+	int m_middleGroundIndex;
 	// property kA9
     bool m_startsWithStartPos;
 	// property kA11
@@ -5034,7 +5034,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	// TodoReturn unlockAllLayers();
 	// TodoReturn updateDebugDraw();
 	// TodoReturn updateGridLayer();
-	// TodoReturn updateLevelFont(int);
+	void updateLevelFont(int);
 	// TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*);
 	// TodoReturn addObjectsInRect(cocos2d::CCRect, bool, cocos2d::CCArray*, cocos2d::CCArray*);
 	// TodoReturn addObjectToGroup(GameObject*, int);
@@ -5123,7 +5123,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*);
 	virtual TodoReturn checkpointActivated(CheckpointGameObject*);
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
-	virtual TodoReturn levelSettingsUpdated();
+	virtual void levelSettingsUpdated();
 }
 
 
