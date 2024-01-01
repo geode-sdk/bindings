@@ -105,6 +105,22 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
+	char const* declare_constructor_begin = R"GEN(
+{class_name}::{function_name}({parameters}) {{
+	// here we construct it as normal as we can, then destruct it
+	// using the generated functions. this ensures no memory gets leaked
+	// no crashes :pray:
+	CCDestructor::lock(this) = true;
+	{class_name}::~{unqualified_class_name}();
+	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
+	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
+		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
+		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
+	}});
+	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
+}}
+)GEN";
+
 	char const* declare_unimplemented_error = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	throw std::runtime_error("{class_name}::{function_name} not implemented");
@@ -217,7 +233,12 @@ std::string generateBindingSource(Root const& root) {
 							used_declare_format = format_strings::declare_member;
 							break;
 						case FunctionType::Ctor:
-							used_declare_format = format_strings::declare_constructor;
+							if (cls.superclasses.empty()) {
+								used_declare_format = format_strings::declare_constructor_begin;
+							}
+							else {
+								used_declare_format = format_strings::declare_constructor;
+							}
 							break;
 						case FunctionType::Dtor:
 							used_declare_format = format_strings::declare_destructor;
