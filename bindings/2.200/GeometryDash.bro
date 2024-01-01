@@ -1384,7 +1384,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0x294, android32 0x290;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
-  LevelSettingsObject* m_levelSettings;
+	LevelSettingsObject* m_levelSettings;
 	PAD = win 0x134, android32 0x134;
 	cocos2d::CCLayer* m_objectLayer;
 
@@ -6862,9 +6862,9 @@ class ColorAction : cocos2d::CCObject {
 	TodoReturn getCopy();
 
 	TodoReturn resetAction();
-	// TodoReturn saveToState(CAState&);
+	TodoReturn saveToState(CAState&);
 	TodoReturn setupFromMap(gd::map<gd::string, gd::string>&);
-	// TodoReturn loadFromState(CAState&);
+	TodoReturn loadFromState(CAState&);
 	TodoReturn setupFromString(gd::string);
 	// TodoReturn writeSaveString(fmt::BasicWriter<char>&);
 	TodoReturn updateCustomColor(cocos2d::_ccColor3B, cocos2d::_ccColor3B);
@@ -6929,45 +6929,56 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 
 	TodoReturn getColorValue();
 
-	void onTintGround(cocos2d::CCObject* sender);
-	void onCopyOpacity(cocos2d::CCObject* sender);
-	void onPlayerColor1(cocos2d::CCObject* sender);
-	void onPlayerColor2(cocos2d::CCObject* sender);
-	void onHSVLegacyMode(cocos2d::CCObject* sender);
-	void onToggleHSVMode(cocos2d::CCObject* sender);
-	void onToggleTintMode(cocos2d::CCObject* sender);
-	void onUpdateCopyColor(cocos2d::CCObject* sender);
-	void onUpdateCustomColor(cocos2d::CCObject* sender);
-	void onSelectSpecialColor(cocos2d::CCObject* sender);
-	void onCopy(cocos2d::CCObject* sender);
-	void onPaste(cocos2d::CCObject* sender);
-	void onDefault(cocos2d::CCObject* sender);
+	// void onTintGround(cocos2d::CCObject* sender);
+	// void onCopyOpacity(cocos2d::CCObject* sender);
+	// void onPlayerColor1(cocos2d::CCObject* sender);
+	// void onPlayerColor2(cocos2d::CCObject* sender);
+	// void onHSVLegacyMode(cocos2d::CCObject* sender);
+	// void onToggleHSVMode(cocos2d::CCObject* sender);
+	// void onToggleTintMode(cocos2d::CCObject* sender);
+	// void onUpdateCopyColor(cocos2d::CCObject* sender);
+	// void onUpdateCustomColor(cocos2d::CCObject* sender);
+	// void onSelectSpecialColor(cocos2d::CCObject* sender);
+	// void onCopy(cocos2d::CCObject* sender);
+	// void onPaste(cocos2d::CCObject* sender);
+	// void onDefault(cocos2d::CCObject* sender);
 
-	TodoReturn colorToHex(cocos2d::_ccColor3B);
-	TodoReturn hexToColor(gd::string);
-	TodoReturn selectColor(cocos2d::_ccColor3B);
-	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn updateHSVMode();
-	TodoReturn updateOpacity();
-	TodoReturn updateDuration();
-	TodoReturn updateDurLabel();
-	TodoReturn updateHSVValue();
-	TodoReturn updateCopyColor();
-	TodoReturn closeColorSelect(cocos2d::CCObject*);
-	TodoReturn updateColorValue();
-	TodoReturn updateColorLabels();
-	TodoReturn updateOpacityLabel();
-	TodoReturn updateCustomColorIdx();
-	TodoReturn updateTextInputLabel();
-	TodoReturn updateCopyColorTextInputLabel();
+	// TodoReturn colorToHex(cocos2d::_ccColor3B);
+	// TodoReturn hexToColor(gd::string);
+	// TodoReturn selectColor(cocos2d::_ccColor3B);
+	// TodoReturn sliderChanged(cocos2d::CCObject*);
+	// TodoReturn updateHSVMode();
+	// TodoReturn updateOpacity();
+	// TodoReturn updateDuration();
+	// TodoReturn updateDurLabel();
+	// TodoReturn updateHSVValue();
+	// TodoReturn updateCopyColor();
+	// TodoReturn closeColorSelect(cocos2d::CCObject*);
+	// TodoReturn updateColorValue();
+	// TodoReturn updateColorLabels();
+	// TodoReturn updateOpacityLabel();
+	// TodoReturn updateCustomColorIdx();
+	// TodoReturn updateTextInputLabel();
+	// TodoReturn updateCopyColorTextInputLabel();
 
 	virtual TodoReturn show();
 	virtual TodoReturn determineStartValues();
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn colorValueChanged(cocos2d::_ccColor3B);
 	virtual TodoReturn colorSelectClosed(GJSpecialColorSelect*, int);
+
+	PAD = android32 0x40;
+	ColorAction* m_colorAction;
 }
 
+[[link(android)]]
+class ColorActionSprite : cocos2d::CCNode {
+	static ColorActionSprite* create() = win 0x1d4800;
+
+	~ColorActionSprite();
+
+	virtual bool init();
+}
 
 [[link(android)]]
 class GJSpecialColorSelect : FLAlertLayer {
@@ -7147,6 +7158,8 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	virtual TodoReturn triggerValueFromSliderValue(int, float);
 	virtual TodoReturn triggerSliderValueFromValue(int, float);
 	virtual TodoReturn valuePopupClosed(ConfigureValuePopup*, float);
+
+	PAD = android32 0xac;
 }
 
 

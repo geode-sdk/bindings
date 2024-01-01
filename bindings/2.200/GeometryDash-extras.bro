@@ -3571,14 +3571,6 @@ class CCSpriteGrayscale : CCSpriteWithHue {
 	virtual TodoReturn shaderBody();
 }
 
-[[link(android)]]
-class ColorActionSprite : cocos2d::CCNode {
-	static ColorActionSprite* create() = win 0x1d4800;
-
-	~ColorActionSprite();
-
-	virtual bool init();
-}
 
 [[link(android)]]
 class CustomSFXDelegate {
