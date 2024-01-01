@@ -50,7 +50,7 @@ int main(int argc, char** argv) try {
 
     codegen::populateIds(root);
 
-    writeFile(writeDir / "GeneratedAddress.cpp", generateAddressHeader(root));
+    // writeFile(writeDir / "GeneratedAddress.cpp", generateAddressHeader(root));
     writeFile(writeDir / "GeneratedModify.hpp", generateModifyHeader(root, writeDir / "modify"));
     writeFile(writeDir / "GeneratedBinding.hpp", generateBindingHeader(root, writeDir / "binding"));
     writeFile(writeDir / "GeneratedPredeclare.hpp", generatePredeclareHeader(root));

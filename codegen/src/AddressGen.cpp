@@ -1,6 +1,4 @@
 #include "Shared.hpp"
-#include "AndroidSymbol.hpp"
-#include "WindowsSymbol.hpp"
 
 namespace {
     namespace format_strings {
@@ -78,6 +76,8 @@ Result<tulip::hook::HandlerMetadata> geode::modifier::handlerMetadataForAddress(
 std::string generateAddressHeader(Root const& root) {
     std::string output;
     output += format_strings::address_begin;
+
+    return output;
 
     for (auto& f : root.functions) {
         if (codegen::getStatus(f) == BindStatus::Missing) continue;

@@ -35,13 +35,13 @@ namespace geode::modifier {{
 
         // requires: index, class_name, arg_types, function_name, raw_arg_types, non_virtual
         char const* apply_function = R"GEN(
-			GEODE_APPLY_MODIFY_FOR_FUNCTION({addr_index}, {function_convention}, {class_name}, {function_name}, {parameter_types}))GEN";
+			GEODE_APPLY_MODIFY_FOR_FUNCTION({address_inline}, {function_convention}, {class_name}, {function_name}, {parameter_types}))GEN";
 
         char const* apply_constructor = R"GEN(
-			GEODE_APPLY_MODIFY_FOR_CONSTRUCTOR({addr_index}, {function_convention}, {class_name}, {parameter_types}))GEN";
+			GEODE_APPLY_MODIFY_FOR_CONSTRUCTOR({address_inline}, {function_convention}, {class_name}, {parameter_types}))GEN";
 
         char const* apply_destructor = R"GEN(
-			GEODE_APPLY_MODIFY_FOR_DESTRUCTOR({addr_index}, {function_convention}, {class_name}))GEN";
+			GEODE_APPLY_MODIFY_FOR_DESTRUCTOR({address_inline}, {function_convention}, {class_name}))GEN";
 
         char const* modify_end = R"GEN(
 		}
@@ -138,7 +138,7 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
 
             single_output += fmt::format(
                 format_string,
-                fmt::arg("addr_index", codegen::getId(&f)),
+                fmt::arg("address_inline", codegen::getAddressString(c, f)),
                 fmt::arg("class_name", c.name),
                 fmt::arg("function_name", fn->prototype.name),
                 fmt::arg("function_convention", codegen::getModifyConventionName(f)),
