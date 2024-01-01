@@ -107,11 +107,6 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 
 	char const* declare_constructor_begin = R"GEN(
 {class_name}::{function_name}({parameters}) {{
-	// here we construct it as normal as we can, then destruct it
-	// using the generated functions. this ensures no memory gets leaked
-	// no crashes :pray:
-	CCDestructor::lock(this) = true;
-	{class_name}::~{unqualified_class_name}();
 	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
 	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
