@@ -2087,7 +2087,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	virtual void trySaveGame(bool) = win 0x5b3b0;
 	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x5b550;
 
-    PAD = win 0xC, android32 0xC;
+    PAD = win 0xC, android32 0xC, android64 0x18;
     cocos2d::CCScene* m_runningScene;
 }
 
