@@ -1197,23 +1197,6 @@ class DrawGridLayer : cocos2d::CCLayer {
 	virtual void draw();
 }
 
-[[link(android)]]
-class EditButtonBar : cocos2d::CCNode {
-	static EditButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int);
-
-	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int);
-	~EditButtonBar();
-
-	TodoReturn getPage();
-
-	void onLeft(cocos2d::CCObject* sender);
-	void onRight(cocos2d::CCObject* sender);
-
-	TodoReturn reloadItems(int, int);
-	TodoReturn loadFromItems(cocos2d::CCArray*, int, int, bool);
-	TodoReturn goToPage(int);
-}
-
 
 [[link(android)]]
 class ExtendedLayer : cocos2d::CCLayer {
@@ -3905,38 +3888,6 @@ class LevelOptionsLayer : GJOptionsLayer {
 	virtual TodoReturn getValue(int);
 	virtual TodoReturn setupOptions();
 	virtual TodoReturn didToggle(int);
-}
-
-[[link(android)]]
-class LocalLevelManager : GManager {
-	~LocalLevelManager();
-
-	TodoReturn getCreatedLists(int);
-	TodoReturn getCreatedLevels(int);
-	TodoReturn getAllLevelsInDict();
-	gd::string getMainLevelString(int) = win 0x273230;
-	TodoReturn getAllLevelsWithName(gd::string);
-	TodoReturn getLevelsInNameGroups();
-
-    inline static LocalLevelManager* get() {
-        return LocalLevelManager::sharedState();
-    }
-	static LocalLevelManager* sharedState() = win 0x272F00;
-	TodoReturn reorderLevels();
-	TodoReturn moveLevelToTop(GJGameLevel*);
-	TodoReturn updateLevelOrder();
-	TodoReturn updateLevelRevision();
-	TodoReturn markLevelsAsUnmodified();
-	TodoReturn tryLoadMainLevelString(int) = win 0x2730A0;
-
-	virtual bool init();
-	virtual TodoReturn encodeDataTo(DS_Dictionary*);
-	virtual TodoReturn dataLoaded(DS_Dictionary*);
-	virtual TodoReturn firstLoad();
-
-  cocos2d::CCArray* m_localLevels;
-  cocos2d::CCArray* m_LLM03;
-  gd::map<int, gd::string> m_mainLevels;
 }
 
 [[link(android)]]

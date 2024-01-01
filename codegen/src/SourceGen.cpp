@@ -40,7 +40,7 @@ auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadat
 	char const* declare_member = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({class_name}{const}*{parameter_comma}{parameter_types});
-	static auto func = wrapFunction(address<{addr_index}>(), tulip::hook::WrapperMetadata{{
+	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 	}});
@@ -52,7 +52,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	auto self = addresser::thunkAdjust(Resolve<{parameter_types}>::func(&{class_name}::{function_name}), this);
 	using FunctionType = decltype({function_name}({arguments}))(*)({class_name}{const}*{parameter_comma}{parameter_types});
-	static auto func = wrapFunction(address<{addr_index}>(), tulip::hook::WrapperMetadata{{
+	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 	}});
@@ -63,7 +63,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	char const* declare_static = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({parameter_types});
-	static auto func = wrapFunction(address<{addr_index}>(), tulip::hook::WrapperMetadata{{
+	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 	}});
@@ -77,7 +77,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	// then lock it, so that other gd destructors dont get called
 	if (CCDestructor::lock(this)) return;
 	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
-	static auto func = wrapFunction(address<{addr_index}>(), tulip::hook::WrapperMetadata{{
+	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 	}});
@@ -97,7 +97,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	CCDestructor::lock(this) = true;
 	{class_name}::~{unqualified_class_name}();
 	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
-	static auto func = wrapFunction(address<{addr_index}>(), tulip::hook::WrapperMetadata{{
+	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 	}});
@@ -122,7 +122,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	char const* declare_standalone = R"GEN(
 auto {function_name}({parameters}) -> decltype({function_name}({arguments})) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({parameter_types});
-	static auto func = wrapFunction(address<{addr_index}>(), tulip::hook::WrapperMetadata{{
+	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 	}});
@@ -144,7 +144,7 @@ std::string generateBindingSource(Root const& root) {
 		output += fmt::format(format_strings::declare_standalone,
 			fmt::arg("convention", codegen::getModifyConventionName(f)),
 			fmt::arg("function_name", f.prototype.name),
-			fmt::arg("addr_index", codegen::getId(&f)),
+			fmt::arg("address_inline", codegen::getAddressString(f)),
 			fmt::arg("parameters", codegen::getParameters(f.prototype)),
 			fmt::arg("parameter_types", codegen::getParameterTypes(f.prototype)),
 			fmt::arg("arguments", codegen::getParameterNames(f.prototype)),
@@ -236,7 +236,7 @@ std::string generateBindingSource(Root const& root) {
 					fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
 					fmt::arg("convention", codegen::getModifyConventionName(f)),
 					fmt::arg("function_name", fn->prototype.name),
-					fmt::arg("addr_index", codegen::getId(&f)),
+					fmt::arg("address_inline", codegen::getAddressString(c, f)),
 					fmt::arg("parameters", codegen::getParameters(fn->prototype)),
 					fmt::arg("parameter_types", codegen::getParameterTypes(fn->prototype)),
 					fmt::arg("arguments", codegen::getParameterNames(fn->prototype)),
