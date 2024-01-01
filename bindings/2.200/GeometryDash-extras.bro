@@ -1710,15 +1710,7 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
 
 
 
-[[link(android)]]
-class GameObjectCopy : cocos2d::CCObject {
-	static GameObjectCopy* create(GameObject*);
 
-	bool init(GameObject*);
-	~GameObjectCopy();
-
-	TodoReturn resetObject();
-}
 
 [[link(android)]]
 class GauntletSprite : cocos2d::CCNode {

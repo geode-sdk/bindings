@@ -2737,6 +2737,20 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 }
 
 [[link(android)]]
+class GJSpriteColor {
+    int m_colorID;
+    int m_defaultColorID;
+    float m_opacity;
+    cocos2d::ccHSVValue m_hsv;
+    bool m_usesHSV;
+    float unk_10C;
+    bool unk_110;
+
+    TodoReturn getColorMode();
+	GJSpriteColor();
+}
+
+[[link(android)]]
 class CCSpritePlus : cocos2d::CCSprite {
 	CCSpritePlus();
 	~CCSpritePlus();
@@ -3058,7 +3072,12 @@ class GameObject : CCSpritePlus {
 
 	// property 511
 	bool m_hasExtendedCollision;
-	PAD = android32 0x84;
+	PAD = android32 0x13;
+
+	cocos2d::CCSprite* m_baseSprite;
+    cocos2d::CCSprite* m_detailSprite;
+
+	PAD = android32 0x69;
 
 	// property 146
 	bool m_particleUseObjectColor;
@@ -3109,9 +3128,9 @@ class GameObject : CCSpritePlus {
 	PAD = android32 0x18;
 
 	// property 21, also used with 41 and 43
-	void* m_mainColorStruct;
+	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
-	void* m_detailColorStruct;
+    GJSpriteColor* m_detailColor;
 	PAD = android32 0xc;
 
 	// property 24
@@ -5314,7 +5333,13 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn checkpointActivated(CheckpointGameObject*);
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
 	virtual void levelSettingsUpdated();
+
+	PAD = android32 0xa8;
+
+	cocos2d::CCArray* m_undoObjects;
+    cocos2d::CCArray* m_redoObjects;
 }
+
 
 
 [[link(android)]]
@@ -6575,6 +6600,17 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 	virtual TodoReturn onClosePopup(UploadActionPopup*);
 }
 
+[[link(android)]]
+class GameObjectCopy : cocos2d::CCObject {
+	static GameObjectCopy* create(GameObject*);
+
+	bool init(GameObject*);
+	~GameObjectCopy();
+
+	TodoReturn resetObject();
+
+	GameObject* m_object;
+}
 
 [[link(android)]]
 class UndoObject : cocos2d::CCObject {
@@ -6589,6 +6625,11 @@ class UndoObject : cocos2d::CCObject {
 
 	TodoReturn createWithArray(cocos2d::CCArray*, UndoCommand);
 	TodoReturn createWithTransformObjects(cocos2d::CCArray*, UndoCommand);
+
+	GameObjectCopy* m_objectCopy;
+    UndoCommand m_command;
+    cocos2d::CCArray* m_objects;
+    bool m_redo;
 }
 
 
@@ -6830,6 +6871,49 @@ class ColorAction : cocos2d::CCObject {
 	void step(float);
 	/* unverified signature */
 	bool isInUse();
+
+	bool m_stepFinished;
+	// property 19
+	bool m_property19;
+    cocos2d::ccColor3B m_color;
+    float m_currentOpacity;
+    float m_deltaTime;
+    cocos2d::ccColor3B m_fromColor;
+    cocos2d::ccColor3B m_toColor;
+    float m_duration;
+    bool m_blending;
+    int m_playerColor;
+    int m_colorID;
+    float m_fromOpacity;
+    float m_toOpacity;
+    cocos2d::ccHSVValue m_copyHSV;
+    int m_copyID;
+    bool m_unknown;
+    bool m_copyOpacity;
+    ColorActionSprite* m_colorSprite;
+	// more stuff
+}
+
+
+[[link(android)]]
+class CAState {
+	cocos2d::ccColor3B m_fromColor;
+    cocos2d::ccColor3B m_toColor;
+	cocos2d::ccColor3B m_color;
+	bool m_property19;
+	bool m_blending;
+	bool m_copyOpacity;
+	bool m_unknown;
+	int m_playerColor;
+    int m_colorID;
+	int m_copyID;
+	int m_unknown2;
+	float m_duration;
+	float m_fromOpacity;
+    float m_toOpacity;
+	float m_deltaTime;
+	float m_unknown3;
+	cocos2d::ccHSVValue m_copyHSV;
 }
 
 

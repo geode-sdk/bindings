@@ -30,13 +30,7 @@ class GJTransformState {
 
 }
 
-class CAState {
 
-}
-
-class GJSpriteColor {
-
-}
 
 
 class TriggerEffectDelegate {
