@@ -784,6 +784,12 @@ class GJRewardItem : cocos2d::CCObject {
 
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
+
+    int m_chestID;
+    int m_timeRemaining;
+    GJRewardType m_rewardType;
+    cocos2d::CCArray* m_rewardObjects;
+    bool m_unk;
 }
 
 [[link(android)]]
@@ -1786,6 +1792,11 @@ class GJRewardObject : cocos2d::CCObject {
 
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
+
+    SpecialRewardItem m_specialRewardItem;
+    UnlockType m_unlockType;
+    int m_itemID;
+    int m_total;
 }
 
 [[link(android)]]
@@ -2544,23 +2555,6 @@ class GJBigSpriteNode : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GJChallengeItem : cocos2d::CCObject {
-	static GJChallengeItem* create(GJChallengeType, int, int, int, gd::string);
-	static GJChallengeItem* create();
-
-	bool init(GJChallengeType, int, int, int, gd::string);
-	~GJChallengeItem();
-
-	TodoReturn dataLoaded(DS_Dictionary*);
-	TodoReturn incrementCount(int);
-	TodoReturn createWithCoder(DS_Dictionary*);
-	TodoReturn createFromString(gd::string);
-
-	virtual void encodeWithCoder(DS_Dictionary*);
-	virtual bool canEncode();
-}
-
-[[link(android)]]
 class GJEffectManager : cocos2d::CCNode {
 	static GJEffectManager* create();
 
@@ -2786,7 +2780,7 @@ class InheritanceNode : cocos2d::CCObject {
 
 [[link(android)]]
 class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
-	static MoreSearchLayer* create();
+	static MoreSearchLayer* create() = win 0x260c80;
 
 	~MoreSearchLayer();
 
@@ -2814,7 +2808,7 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn audioNext(cocos2d::CCObject*);
 
-	virtual bool init();
+	virtual bool init() = win 0x260D20;
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
 	virtual TodoReturn textInputReturn(CCTextInputNode*);
@@ -3818,7 +3812,7 @@ class HSVWidgetDelegate {
 
 [[link(android)]]
 class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertLayerProtocol {
-	static LeaderboardsLayer* create(LeaderboardState);
+	static LeaderboardsLayer* create(LeaderboardState) = win 0x228BD0;
 
 	bool init(LeaderboardState) = mac 0x4ea600, win 0x228c70;
 	~LeaderboardsLayer();
@@ -7073,11 +7067,11 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	void onNextPage(cocos2d::CCObject* sender);
 	void onOriginal(cocos2d::CCObject* sender);
 	void onPrevPage(cocos2d::CCObject* sender);
-	void onLevelInfo(cocos2d::CCObject* sender);
+	void onLevelInfo(cocos2d::CCObject* sender) = win 0x225f00;
 	void onCopyLevelID(cocos2d::CCObject* sender);
 	void onGetComments(cocos2d::CCObject* sender);
-	void onRefreshComments(cocos2d::CCObject* sender);
-	void onMore(cocos2d::CCObject* sender);
+	void onRefreshComments(cocos2d::CCObject* sender) = win 0x2258f0;
+	void onMore(cocos2d::CCObject* sender) = win 0x225bf0;
 	void onClose(cocos2d::CCObject* sender);
 	void onComment(cocos2d::CCObject* sender);
 	void onSimilar(cocos2d::CCObject* sender);
@@ -7089,16 +7083,16 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	TodoReturn toggleCommentMode(cocos2d::CCObject*);
 	TodoReturn updateLevelsLabel();
 	TodoReturn toggleExtendedMode(cocos2d::CCObject*);
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*);
+	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = win 0x226770;
 	TodoReturn toggleSmallCommentMode(cocos2d::CCObject*);
 	TodoReturn updateCommentModeButtons();
-	TodoReturn loadPage(int, bool);
+	TodoReturn loadPage(int, bool) = win 0x226440;
 	/* unverified signature */
 	bool isCorrect(char const*);
 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
-	virtual TodoReturn show();
+	virtual TodoReturn show() = win 0x8F6A0;
 	virtual TodoReturn loadCommentsFinished(cocos2d::CCArray*, char const*);
 	virtual TodoReturn loadCommentsFailed(char const*);
 	virtual TodoReturn commentUploadFinished(int);
@@ -7126,7 +7120,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     int m_pageEndIdx;
     int m_page;
     bool m_canUpdateUserScore;
-    bool m_commentHistory;
+    CommentKeyType m_mode;
 }
 
 [[link(android)]]
@@ -7140,11 +7134,11 @@ class LevelCell : TableViewCell {
 	void onToggle(cocos2d::CCObject* sender);
 
 	TodoReturn updateToggle();
-	TodoReturn loadFromLevel(GJGameLevel*);
+	TodoReturn loadFromLevel(GJGameLevel*) = win 0x7D3F0;
 	TodoReturn updateBGColor(int) = win 0x807B0;
 	TodoReturn updateCellMode(int);
-	TodoReturn loadLocalLevelCell();
-	TodoReturn loadCustomLevelCell();
+	TodoReturn loadLocalLevelCell() = win 0x7FE70;
+	TodoReturn loadCustomLevelCell() = win 0x7D5A0;
 	LevelCell(char const*, float, float);
 
 	virtual bool init();
@@ -7161,7 +7155,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	void onTheTower(cocos2d::CCObject* sender);
 	void onMoreGames(cocos2d::CCObject* sender);
 	void onSecretDoor(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender) = win 0x267CB0;
 	void onPlay(cocos2d::CCObject* sender);
 
 	TodoReturn addSecretCoin();
@@ -7177,6 +7171,9 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void registerWithTouchDispatcher();
 	virtual TodoReturn dialogClosed(DialogLayer*);
+
+    void* m_unk;
+    GJGameLevel* m_level;
 }
 
 [[link(android)]]

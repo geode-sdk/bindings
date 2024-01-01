@@ -182,7 +182,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 	void onBack(cocos2d::CCObject* sender);
 	void onPaths(cocos2d::CCObject* sender);
 
-	TodoReturn checkQuestsStatus();
+	TodoReturn checkQuestsStatus() = win 0x71090;
 	TodoReturn canPlayOnlineLevels();
 	TodoReturn scene();
 
@@ -280,7 +280,10 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	~CCMenuItemSpriteExtra();
 
 	/* unverified signature */
-	void setSizeMult(float);
+	void setSizeMult(float mult) {
+		//inlined on windows, member is in CCMenuItemSprite
+		m_fSizeMult = mult;
+	}
 
 	// 2.2 not tested
 	
@@ -292,7 +295,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	float m_baseScale;
 	bool m_animationEnabled;
 	bool m_colorEnabled;
-	float m_unknown;
+	float m_unknown1;
 	gd::string m_unknown2;
 	gd::string m_unknown3;
 	float m_colorDip;
@@ -1360,7 +1363,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
 
-	PAD = android32 0x4B4;
+	PAD = android32 0x4B4, win 0x49C;
 	GJGameLevel* m_level;
 	PAD = android32 0x298;
 	LevelSettingsObject* m_levelSettings;
@@ -1458,7 +1461,7 @@ class GameManager : GManager {
 	TodoReturn tryCacheAd();
 	TodoReturn unloadIcon(int, int, int);
 	TodoReturn unlockIcon(int, IconType);
-	cocos2d::ccColor3B colorForIdx(int);
+	cocos2d::ccColor3B colorForIdx(int) = win 0x124270;
 	TodoReturn colorForPos(int);
 	void doQuickSave() = win 0x12bf00;
 	TodoReturn fadeInMusic(gd::string);
@@ -1689,20 +1692,23 @@ class GManager : cocos2d::CCNode {
 	TodoReturn loadDataFromFile(gd::string const&);
 	TodoReturn loadFromCompressedString(gd::string&);
 	TodoReturn load();
-	TodoReturn save() = win 0x472f0;
+	void save() {
+        saveGMTo(m_fileName);
+    }
 	TodoReturn saveData(DS_Dictionary*, gd::string);
-	TodoReturn saveGMTo(gd::string);
+	void saveGMTo(gd::string) = win 0x472f0;
+    inline GManager() {}
 
 	virtual bool init();
-	virtual TodoReturn setup();
+	virtual TodoReturn setup() = win 0x47030;
 	virtual TodoReturn encodeDataTo(DS_Dictionary*);
 	virtual TodoReturn dataLoaded(DS_Dictionary*);
 	virtual TodoReturn firstLoad();
     
 	gd::string m_fileName;
-  bool m_setup;
-  bool m_saved;
-  bool m_quickSave;
+	bool m_setup;
+	bool m_saved;
+	bool m_quickSave;
 }
 
 [[link(android)]]
@@ -1720,7 +1726,7 @@ class GJGameLevel : cocos2d::CCNode {
 	~GJGameLevel();
 
 	void dataLoaded(DS_Dictionary*) = win 0x113B90;
-	TodoReturn getCoinKey(int);
+	char const* getCoinKey(int) = win 0x112D00;
 	TodoReturn getSongName();
 	char const* getLengthKey(int, bool) = win 0x112BA0;
 	inline bool isPlatformer() {
@@ -1750,7 +1756,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn getLastBuildPageForTab(int);
 	/* unverified signature */
 	void setLastBuildPageForTab(int, int);
-	TodoReturn getUnpackedLevelDescription();
+	gd::string getUnpackedLevelDescription() = win 0x115960;
 
 	virtual void encodeWithCoder(DS_Dictionary*) = win 0x114BF0;
 	virtual bool canEncode();
@@ -1912,7 +1918,9 @@ class LoadingCircle : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
-	static AppDelegate* get();
+	static AppDelegate* get() {
+        return static_cast<AppDelegate*>(cocos2d::CCApplication::sharedApplication());
+    }
 
 	~AppDelegate();
 
@@ -1939,6 +1947,9 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	virtual void applicationWillResignActive() = win 0x5b200;
 	virtual void trySaveGame(bool) = win 0x5b3b0;
 	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x5b550;
+
+    PAD = win 0xC, android32 0xC;
+    cocos2d::CCScene* m_runningScene;
 }
 
 [[link(android)]]
@@ -2258,7 +2269,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	TodoReturn updateLevelsLabel();
 	TodoReturn showNoAccountError();
 	TodoReturn loadPageFromUserInfo(GJUserScore*) = win 0x2e8040;
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*);
+	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = win 0x2EB980;
 	TodoReturn toggleMainPageVisibility(bool);
 	TodoReturn loadPage(int);
 	TodoReturn blockUser();
@@ -2273,7 +2284,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	virtual TodoReturn updateUserScoreFailed();
 	virtual TodoReturn getUserInfoFinished(GJUserScore*);
 	virtual TodoReturn getUserInfoFailed(int);
-	virtual TodoReturn userInfoChanged(GJUserScore*);
+	virtual TodoReturn userInfoChanged(GJUserScore*) = win 0x2EB6B0;
 	virtual TodoReturn loadCommentsFinished(cocos2d::CCArray*, char const*);
 	virtual TodoReturn loadCommentsFailed(char const*);
 	virtual TodoReturn commentUploadFinished(int);
@@ -2526,7 +2537,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn confirmMoveToTop(cocos2d::CCObject*);
 	TodoReturn incrementDislikes();
 	TodoReturn setupProgressBars();
-	TodoReturn updateLabelValues();
+	TodoReturn updateLabelValues() = win 0x252490;
 	TodoReturn updateSideButtons();
 	TodoReturn confirmOwnerDelete(cocos2d::CCObject*);
 	TodoReturn confirmMoveToBottom(cocos2d::CCObject*);
@@ -3599,7 +3610,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getGauntletKey(int);
 	TodoReturn getLikeItemKey(LikeItemType, int, bool, int);
 	TodoReturn getMessagesKey(bool, int);
-	TodoReturn getSavedLevels(bool, int) = win 0xF6620;
+	cocos2d::CCArray* getSavedLevels(bool, int) = win 0xF6620;
 	TodoReturn getSearchScene(char const*);
 	TodoReturn getUserInfoKey(int);
 	TodoReturn getGJChallenges();
@@ -3624,15 +3635,15 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getSavedLevelList(int);
 	TodoReturn getStoredUserList(UserListType);
 	TodoReturn getAccountComments(int, int, int);
-	TodoReturn getCompletedLevels(bool) = win 0xF6A70;
+	cocos2d::CCArray* getCompletedLevels(bool);
 	TodoReturn getSavedDailyLevel(int);
-	TodoReturn getSavedLevelLists(int);
+	TodoReturn getSavedLevelLists(int) = win 0xF6A70;
 	TodoReturn getSplitIntFromKey(char const*, int);
 	TodoReturn getDeleteCommentKey(int, int, int);
 	TodoReturn getDeleteMessageKey(int, bool);
 	TodoReturn getFriendRequestKey(bool, int);
 	TodoReturn getLevelDownloadKey(int, bool);
-	TodoReturn getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode);
+	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x103E80;
 	TodoReturn getLocalLevelByName(gd::string);
 	TodoReturn getLowestLevelOrder();
 	TodoReturn getUploadMessageKey(int);
@@ -3646,7 +3657,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLikeAccountItemKey(LikeItemType, int, bool, int);
 	TodoReturn getNextFreeTemplateID();
 	TodoReturn getSavedGauntletLevel(int);
-	TodoReturn getStoredOnlineLevels(char const*);
+	cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0xF76F0;
 	TodoReturn getActiveSmartTemplate();
 	TodoReturn getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
 	TodoReturn getStoredLevelComments(char const*);
@@ -3749,7 +3760,7 @@ class GameLevelManager : cocos2d::CCNode {
 	// TodoReturn saveGauntlet(GJMapPack*);
 	TodoReturn unfollowUser(int);
 	TodoReturn addDLToActive(char const*);
-	TodoReturn deleteComment(int, CommentType, int);
+	TodoReturn deleteComment(int, CommentType, int) = win 0x1093F0;
 	TodoReturn downloadLevel(int, bool);
 	TodoReturn gotoLevelPage(GJGameLevel*);
 	TodoReturn hasRatedDemon(int);
@@ -3758,7 +3769,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn makeTimeStamp(char const*);
 	// TodoReturn saveLevelList(GJLevelList*);
 	TodoReturn storeUserInfo(GJUserScore*);
-	TodoReturn storeUserName(int, int, gd::string);
+	void storeUserName(int, int, gd::string) = win 0xF54C0;
 	TodoReturn uploadComment(gd::string, CommentType, int, int);
 	TodoReturn createNewLevel();
 	TodoReturn createPageInfo(int, int, int);
@@ -3777,7 +3788,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn markItemAsLiked(LikeItemType, int, bool, int);
 	TodoReturn typeFromLikeKey(char const*);
 	TodoReturn updateUsernames();
-	TodoReturn updateUserScore();
+	void updateUserScore() = win 0x1028A0;
 	// TodoReturn uploadLevelList(GJLevelList*);
 	TodoReturn hasReportedLevel(int);
 	TodoReturn limitSavedLevels() = win 0xF7FD0;
@@ -3798,7 +3809,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn updateDescription(int, gd::string);
 	TodoReturn updateLevelOrders() = win 0xF68D0;
 	TodoReturn uploadUserMessage(int, gd::string, gd::string);
-	TodoReturn userNameForUserID(int);
+	gd::string userNameForUserID(int) = win 0xF5610;
 	TodoReturn accountIDForUserID(int);
 	TodoReturn areGauntletsLoaded();
 	TodoReturn cleanupDailyLevels() = win 0xF8430;
@@ -3863,7 +3874,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn levelIDFromPostCommentKey(char const*);
 	TodoReturn friendRequestFromAccountID(int);
 	TodoReturn createAndGetAccountComments(gd::string, int);
-	TodoReturn resetCommentTimersForLevelID(int, CommentKeyType);
+	TodoReturn resetCommentTimersForLevelID(int, CommentKeyType) = win 0x1091B0;
 	TodoReturn processOnDownloadLevelCompleted(gd::string, gd::string, bool);
 	TodoReturn removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary*);
 	TodoReturn banUser(int);
@@ -3956,14 +3967,14 @@ class GJSearchObject : cocos2d::CCNode {
 	bool init(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int) = win 0x118FF0;
 	~GJSearchObject();
 
-	TodoReturn getSearchKey(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
+	char const* getSearchKey(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int) = win 0x1195C0;
 	TodoReturn getPageObject(int);
 	TodoReturn getNextPageKey();
 	TodoReturn getNextPageObject();
 	TodoReturn getPrevPageObject();
-	TodoReturn getKey();
+	char const* getKey() = win 0x119190;
 
-	TodoReturn createFromKey(char const*);
+	static GJSearchObject* createFromKey(char const*) = win 0x1188A0;
 	/* unverified signature */
 	bool isLevelSearchObject() = win 0x1197A0;
 
@@ -4037,6 +4048,11 @@ class LikeItemLayer : FLAlertLayer {
 	TodoReturn triggerLike(bool);
 
 	virtual void keyBackClicked();
+
+    LikeItemType m_itemType;
+    int m_itemID;
+    int m_commentSourceID;
+    LikeItemDelegate* m_likeDelegate;
 }
 
 [[link(android)]]
@@ -4079,7 +4095,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getItemKey(int, int);
 	TodoReturn getLevelKey(int, bool, bool, bool);
 	TodoReturn getLevelKey(GJGameLevel*);
-	TodoReturn getChallenge(int);
+	GJChallengeItem* getChallenge(int) = win 0x170BD0;
 	TodoReturn getRewardKey(GJRewardType, int);
 	TodoReturn getStoreItem(int);
 	TodoReturn getStoreItem(int, int);
@@ -4104,14 +4120,14 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getNextVideoAdReward();
 	TodoReturn getSecretChestForItem(int, UnlockType);
 	TodoReturn getItemUnlockStateLite(int, UnlockType);
-	TodoReturn getBaseCurrencyForLevel(GJGameLevel*);
+	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x16F560;
 	TodoReturn getRewardForSecretChest(int);
 	TodoReturn getRewardForSpecialChest(gd::string);
 	int getCollectedCoinsForLevel(GJGameLevel*) = win 0x16d240;
 	TodoReturn getSpecialChestKeyForItem(int, UnlockType);
 	TodoReturn getTotalCollectedCurrency();
 	TodoReturn getTotalCollectedDiamonds();
-	TodoReturn getAwardedCurrencyForLevel(GJGameLevel*);
+	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x16F680;
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*);
 	TodoReturn getSecondaryQueuedChallenge(int);
 	TodoReturn getSpecialRewardDescription(gd::string, bool);
@@ -4288,7 +4304,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	TodoReturn getDiffKey(int);
 	TodoReturn getTimeKey(int);
 	TodoReturn getLevelLenKey();
-	TodoReturn getSearchObject(SearchType, gd::string);
+	GJSearchObject* getSearchObject(SearchType, gd::string) = win 0x25F210;
 	TodoReturn getSearchDiffKey();
 
 	void onFollowed(cocos2d::CCObject* sender);
@@ -4378,7 +4394,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	TodoReturn onUndelete();
 	void onGoToLevel(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
-	void onConfirmDelete(cocos2d::CCObject* sender);
+	void onConfirmDelete(cocos2d::CCObject* sender) = win 0x85BC0;
 	void onLike(cocos2d::CCObject* sender) = win 0x85A10;
 	TodoReturn onDelete();
 	void onUnhide(cocos2d::CCObject* sender) = win 0x85D10;
@@ -4392,8 +4408,8 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 
 	virtual bool init();
 	virtual void draw();
-	virtual TodoReturn likedItem(LikeItemType, int, bool);
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual TodoReturn likedItem(LikeItemType, int, bool) = win 0x85AF0;
+	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x85CD0;
     
 	cocos2d::CCSprite* m_iconSprite;
 	cocos2d::CCLabelBMFont* m_likeLabel;
@@ -6238,7 +6254,6 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void onRefresh(cocos2d::CCObject* sender);
 
 	TodoReturn createNewList(cocos2d::CCObject*);
-	TodoReturn setupPageInfo(gd::string, char const*);
 	TodoReturn createNewLevel(cocos2d::CCObject*);
 	TodoReturn deleteSelected();
 	TodoReturn updatePageLabel();
@@ -6247,11 +6262,17 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	TodoReturn updateLevelsLabel();
 	TodoReturn createNewSmartTemplate(cocos2d::CCObject*);
 	TodoReturn show();
-	TodoReturn scene(GJSearchObject*);
-	TodoReturn loadPage(GJSearchObject*);
+	static cocos2d::CCScene* scene(GJSearchObject* search) {
+        auto scene = cocos2d::CCScene::create();
+        scene->addChild(LevelBrowserLayer::create(search));
+
+        AppDelegate::get()->m_runningScene = scene;
+        return scene;
+    }
+	void loadPage(GJSearchObject*) = win 0x22F480;
 	TodoReturn exitLayer(cocos2d::CCObject*);
 	/* unverified signature */
-	bool isCorrect(char const*);
+	bool isCorrect(char const*) = win 0x22F340;
 
 	virtual void onEnter();
 	virtual void onEnterTransitionDidFinish();
@@ -6264,6 +6285,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual TodoReturn loadLevelsFinished(cocos2d::CCArray*, char const*, int);
 	virtual TodoReturn loadLevelsFailed(char const*, int);
+	virtual void setupPageInfo(gd::string, char const*) = win 0x230980;
 	virtual void shareCommentClosed(gd::string, ShareCommentLayer*);
 	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2326E0;
@@ -6428,7 +6450,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 	void onClose(cocos2d::CCObject* sender);
 	void onTheSafe(cocos2d::CCObject* sender);
 
-	TodoReturn updateTimers(float);
+	callback void updateTimers(float) = win 0x98630;
 	TodoReturn exitDailyNode(DailyLevelNode*, float);
 	TodoReturn skipDailyLevel(DailyLevelNode*, GJGameLevel*);
 	TodoReturn createDailyNode(GJGameLevel*, bool, float, bool);
@@ -6976,6 +6998,31 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 	virtual TodoReturn textChanged(CCTextInputNode*);
 }
 
+[[link(android)]]
+class GJChallengeItem : cocos2d::CCObject {
+	static GJChallengeItem* create(GJChallengeType, int, int, int, gd::string);
+	static GJChallengeItem* create();
+
+	bool init(GJChallengeType, int, int, int, gd::string);
+	~GJChallengeItem();
+
+	TodoReturn dataLoaded(DS_Dictionary*);
+	TodoReturn incrementCount(int);
+	TodoReturn createWithCoder(DS_Dictionary*);
+	TodoReturn createFromString(gd::string);
+
+	virtual void encodeWithCoder(DS_Dictionary*);
+	virtual bool canEncode();
+
+    GJChallengeType m_challengeType;
+    geode::SeedValueSRV m_count;
+    geode::SeedValueSRV m_reward;
+    geode::SeedValueSRV m_goal;
+    int m_timeLeft;
+    bool m_canClaim;
+    int m_position;
+    gd::string m_name;
+}
 
 [[link(android)]]
 class LocalLevelManager : GManager {
