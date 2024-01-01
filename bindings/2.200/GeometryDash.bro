@@ -1388,7 +1388,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	LevelSettingsObject* m_levelSettings;
 	PAD = win 0x134, android32 0x134;
 	cocos2d::CCLayer* m_objectLayer;
-	PAD = win 0x21C0, adnroid32 0x21c0
+	PAD = win 0x21C0, adnroid32 0x21c0;
 	std::vector<PlayerButtonCommand*> m_queuedButtons;
 
 	PAD = win 0x1e8, android32 0x1b4;
