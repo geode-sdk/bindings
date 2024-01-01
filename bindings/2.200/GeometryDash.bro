@@ -1732,9 +1732,10 @@ class GameManager : GManager {
 	virtual TodoReturn dataLoaded(DS_Dictionary*);
 	virtual TodoReturn firstLoad();
 
-	PAD = win 0x74, android32 0x5d;
+	PAD = win 0x74, android32 0x64;
 	GJBaseGameLayer* m_gameLayer;
-	PAD = win 0x88, android32 0x5c;
+	// android pad not tested
+	PAD = win 0x88, android32 0x54;
     geode::SeedValueRSV m_playerFrame;
     geode::SeedValueRSV m_playerShip;
     geode::SeedValueRSV m_playerBall;
@@ -7210,4 +7211,127 @@ class LocalLevelManager : GManager {
 	cocos2d::CCArray* m_localLevels;
 	cocos2d::CCArray* m_LLM03;
 	gd::map<int, gd::string> m_mainLevels;
+}
+
+
+[[link(android)]]
+class GJEffectManager : cocos2d::CCNode {
+	static GJEffectManager* create();
+
+	~GJEffectManager();
+
+	// TodoReturn getMixedColor(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float);
+	// TodoReturn getSaveString();
+	TodoReturn getColorAction(int) = win 0x1d7a60;
+	TodoReturn getColorSprite(int) = win 0x1d7ae0;
+	// TodoReturn getAllColorActions();
+	// TodoReturn getAllColorSprites();
+	// TodoReturn getMoveCommandNode(GroupCommandObject2*);
+	// TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
+	// TodoReturn getTempGroupCommand();
+	// TodoReturn getMoveCommandObject();
+	// TodoReturn getOpacityActionForGroup(int);
+
+	// void setFollowing(int, int, bool);
+	// void setColorAction(ColorAction*, int);
+
+	// TodoReturn pauseTimer(int);
+	TodoReturn playerDied() = win 0x1de560;
+	// TodoReturn spawnGroup(int, float, bool, gd::vector<int> const&, int, int);
+	// TodoReturn startTimer(int, double, double, bool, bool, bool, float, bool, int, gd::vector<int> const&, int, int);
+	// TodoReturn colorExists(int);
+	// TodoReturn resumeTimer(int);
+	// TodoReturn saveToState(EffectManagerState&) = win 0x1dfe50;
+	// TodoReturn shouldBlend(int);
+	// TodoReturn spawnObject(GameObject*, float, gd::vector<int> const&, int, int);
+	// TodoReturn timeForItem(int);
+	// TodoReturn timerExists(int);
+	// TodoReturn toggleGroup(int, bool);
+	// TodoReturn updateTimer(int, double);
+	// TodoReturn countForItem(int);
+	// TodoReturn playerButton(bool, bool);
+	// TodoReturn resetEffects();
+	// TodoReturn updateColors(cocos2d::_ccColor3B, cocos2d::_ccColor3B);
+	// TodoReturn updateTimers(float, float);
+	// TodoReturn wasFollowing(int, int);
+	// TodoReturn colorForIndex(int);
+	// TodoReturn loadFromState(EffectManagerState&);
+	// TodoReturn processColors();
+	// TodoReturn updateEffects(float);
+	// TodoReturn addCountToItem(int, int);
+	// TodoReturn checkCollision(int const&, int const&);
+	// TodoReturn colorForEffect(cocos2d::_ccColor3B, cocos2d::_ccHSVValue);
+	// /* unverified signature */
+	// bool isGroupEnabled(int);
+	// TodoReturn runPulseEffect(int, bool, float, float, float, PulseEffectType, cocos2d::_ccColor3B, cocos2d::_ccHSVValue, int, bool, bool, bool, bool, int, int);
+	// TodoReturn colorForGroupID(int, cocos2d::_ccColor3B const&, bool);
+	TodoReturn objectsCollided(int, int) = win 0x1d7fa0;
+	// TodoReturn opacityForIndex(int);
+	// TodoReturn postMoveActions();
+	// TodoReturn runCountTrigger(int, int, bool, int, bool, gd::vector<int> const&, int, int);
+	// TodoReturn runDeathTrigger(int, bool, gd::vector<int> const&, int, int);
+	// TodoReturn runTimerTrigger(int, double, bool, int, gd::vector<int> const&, int, int);
+	// TodoReturn setupFromString(gd::string);
+	// TodoReturn wouldCreateLoop(InheritanceNode*, int) = win 0x1d7a30;
+	// TodoReturn hasBeenTriggered(int, int);
+	// TodoReturn resetMoveActions();
+	// TodoReturn storeTriggeredID(int, int);
+	// TodoReturn createMoveCommand(cocos2d::CCPoint, int, float, int, float, bool, bool, bool, bool, float, float, int, int);
+	// TodoReturn preCollisionCheck();
+	// TodoReturn removeColorAction(int);
+	// TodoReturn removeTriggeredID(int, int);
+	// TodoReturn resetTriggeredIDs();
+	// TodoReturn saveCompletedMove(int, double, double);
+	// TodoReturn updateColorAction(ColorAction*);
+	// TodoReturn addMoveCalculation(CCMoveCNode*, cocos2d::CCPoint, GameObject*);
+	// TodoReturn colorActionChanged(ColorAction*);
+	// TodoReturn hasActiveDualTouch();
+	// TodoReturn keyForGroupIDColor(int, cocos2d::_ccColor3B const&, bool);
+	// TodoReturn opacityModForGroup(int);
+	// TodoReturn postCollisionCheck();
+	// TodoReturn prepareMoveActions(float, bool);
+	// TodoReturn resetToggledGroups();
+	// TodoReturn updateColorEffects(float);
+	// TodoReturn updateCountForItem(int, int);
+	// TodoReturn updatePulseEffects(float);
+	TodoReturn activeColorForIndex(int) = win 0x1d7390;
+	// TodoReturn colorForPulseEffect(cocos2d::_ccColor3B const&, PulseEffectAction*) = win 0x1ddbc0;
+	// TodoReturn createFollowCommand(float, float, float, int, int, int, int);
+	// TodoReturn createRotateCommand(float, float, int, int, int, float, bool, bool, bool, int, int);
+	TodoReturn processPulseActions() = win 0x1dd8e0;
+	// TodoReturn updateOpacityAction(OpacityEffectAction*);
+	// TodoReturn updateSpawnTriggers(float);
+	// TodoReturn toggleItemPersistent(int, bool);
+	// TodoReturn updateOpacityEffects(float);
+	// TodoReturn activeOpacityForIndex(int);
+	TodoReturn calculateLightBGColor(cocos2d::_ccColor3B) = win 0x1df6c0;
+	// TodoReturn createKeyframeCommand(int, cocos2d::CCArray*, GameObject*, int, int, bool, float, float, float, float, float, float, gd::vector<int> const&);
+	// TodoReturn handleObjectCollision(bool, int, int);
+	// TodoReturn removeAllPulseActions();
+	// TodoReturn toggleTimerPersistent(int, bool);
+	// TodoReturn tryGetMoveCommandNode(int);
+	// TodoReturn createTransformCommand(double, double, double, double, bool, float, int, int, int, float, bool, bool, int, int);
+	TodoReturn processInheritedColors() = win 0x1d74e0;
+	// TodoReturn resetTempGroupCommands(bool);
+	// TodoReturn runTouchTriggerCommand(int, bool, TouchTriggerType, TouchTriggerControl, bool, gd::vector<int> const&, int, int);
+	// TodoReturn calculateInheritedColor(int, ColorAction*);
+	// TodoReturn processMoveCalculations();
+	// TodoReturn registerRotationCommand(GroupCommandObject2*, bool);
+	// TodoReturn runOpacityActionOnGroup(int, float, float, int, int);
+	// TodoReturn transferPersistentItems();
+	// TodoReturn controlActionsForTrigger(EffectGameObject*, GJActionCommand);
+	// TodoReturn hasPulseEffectForGroupID(int);
+	// TodoReturn registerCollisionTrigger(int, int, int, bool, bool, gd::vector<int> const&, int, int);
+	// TodoReturn traverseInheritanceChain(InheritanceNode*) = win 0x1d7730;
+	TodoReturn calculateBaseActiveColors() = win 0x1d7410;
+	// TodoReturn createPlayerFollowCommand(float, float, int, float, float, int, int, int);
+	// TodoReturn controlActionsForControlID(int, GJActionCommand);
+	// TodoReturn updateActiveOpacityEffects();
+	// TodoReturn addAllInheritedColorActions(cocos2d::CCArray*);
+	TodoReturn processCopyColorPulseActions() = win 0x1dd9a0;
+	// TodoReturn removePersistentFromAllItems();
+	// TodoReturn removePersistentFromAllTimers();
+	// TodoReturn reset();
+
+	virtual bool init() = win 0x1d6f50;
 }
