@@ -1381,7 +1381,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0xc, android32 0xc;
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
-	PAD = win 0x294, android32 0x290;
+	PlaybackMode m_playbackMode;
+	PAD = win 0x290, android32 0x28c;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
@@ -2747,7 +2748,6 @@ class GJSpriteColor {
     bool unk_110;
 
     TodoReturn getColorMode();
-	GJSpriteColor();
 }
 
 [[link(android)]]
@@ -5334,7 +5334,11 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
 	virtual void levelSettingsUpdated();
 
-	PAD = android32 0xa8;
+	PAD = android32 0x64;
+
+	geode::SeedValueRSV m_coinCount;
+
+	PAD = android32 0x38;
 
 	cocos2d::CCArray* m_undoObjects;
     cocos2d::CCArray* m_redoObjects;
