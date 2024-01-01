@@ -7016,23 +7016,29 @@ class ColorSelectLiveOverlay : FLAlertLayer {
 
 	void onSelectTab(cocos2d::CCObject* sender);
 
-	TodoReturn selectColor(cocos2d::_ccColor3B);
-	TodoReturn textChanged(CCTextInputNode*);
-	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn updateOpacity();
-	TodoReturn toggleControls(bool);
-	TodoReturn textInputClosed(CCTextInputNode*);
-	TodoReturn closeColorSelect(cocos2d::CCObject*);
-	TodoReturn createWithObject(EffectGameObject*);
-	TodoReturn updateColorLabel();
-	TodoReturn updateColorValue();
-	TodoReturn colorValueChanged(cocos2d::_ccColor3B);
-	TodoReturn createWithActions(ColorAction*, ColorAction*);
-	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	TodoReturn determineStartValues();
+	// TodoReturn selectColor(cocos2d::_ccColor3B);
+	// TodoReturn textChanged(CCTextInputNode*);
+	// TodoReturn sliderChanged(cocos2d::CCObject*);
+	// TodoReturn updateOpacity();
+	// TodoReturn toggleControls(bool);
+	// TodoReturn textInputClosed(CCTextInputNode*);
+	// TodoReturn closeColorSelect(cocos2d::CCObject*);
+	// TodoReturn createWithObject(EffectGameObject*);
+	// TodoReturn updateColorLabel();
+	// TodoReturn updateColorValue();
+	// TodoReturn colorValueChanged(cocos2d::_ccColor3B);
+	// TodoReturn createWithActions(ColorAction*, ColorAction*);
+	// TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
+	// TodoReturn determineStartValues();
 
 	virtual void keyBackClicked();
 	virtual TodoReturn show();
+
+	EffectGameObject* m_effectGameObject;
+    cocos2d::CCArray* m_barSprites;
+    cocos2d::CCArray* m_12buttons;
+    ColorAction* m_baseColorAction;
+    ColorAction* m_detailColorAction;
 }
 
 
