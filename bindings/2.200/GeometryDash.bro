@@ -5334,7 +5334,11 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
 	virtual void levelSettingsUpdated();
 
-	PAD = android32 0xa8;
+	PAD = android32 0x64;
+
+	geode::SeedValueRSV m_coinCount;
+
+	PAD = android32 0x38;
 
 	cocos2d::CCArray* m_undoObjects;
     cocos2d::CCArray* m_redoObjects;
