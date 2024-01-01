@@ -233,7 +233,7 @@ std::string generateBindingSource(Root const& root) {
 							used_declare_format = format_strings::declare_member;
 							break;
 						case FunctionType::Ctor:
-							if (cls.superclasses.empty()) {
+							if (c.superclasses.empty()) {
 								used_declare_format = format_strings::declare_constructor_begin;
 							}
 							else {
