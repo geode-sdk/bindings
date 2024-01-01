@@ -1105,7 +1105,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn exitStaticCamera(bool, bool, float, int, float, bool, float, bool);
 	void loadUpToPosition(float, int, int) = win 0x1B4D10;
 	// TodoReturn processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*);
-	// TodoReturn removeBackground();
+	void removeBackground();
 	// TodoReturn removeFromGroups(GameObject*);
 	// TodoReturn sortStickyGroups();
 	// TodoReturn swapMiddleground(int);
@@ -1130,7 +1130,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn playSpeedParticle(float);
 	// TodoReturn positionUIObjects();
 	// TodoReturn processSFXObjects();
-	// TodoReturn removeGroundLayer();
+	void removeGroundLayer();
 	// TodoReturn removeGroupParent(int) = win 0x1a54b0;
 	// TodoReturn resetStaticCamera(bool, bool) = win 0x1BE2C0;
 	// TodoReturn rotateAreaObjects(GameObject*, cocos2d::CCArray*, float, bool);
@@ -1160,7 +1160,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void processMoveActions() = win 0x1ADA80;
 	// TodoReturn reAddToStickyGroup(GameObject*);
 	// TodoReturn registerSpawnRemap(gd::vector<ChanceObject>&);
-	// TodoReturn removeMiddleground();
+	void removeMiddleground();
 	// TodoReturn resetGroupCounters(bool);
 	// TodoReturn switchToSpiderMode(PlayerObject*, GameObject*, bool);
 	// TodoReturn triggerMoveCommand(EffectGameObject*);
@@ -1225,7 +1225,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn updateGradientLayers() = win 0x1A1750;
 	// TodoReturn updatePlatformerTime() = win 0x1B8BE0;
 	// TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
-	// TodoReturn assignNewStickyGroups(cocos2d::CCArray*);
+	void assignNewStickyGroups(cocos2d::CCArray*);
 	// TodoReturn collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float);
 	// TodoReturn controlDynamicCommand(EffectGameObject*, int, gd::vector<DynamicObjectAction>&, GJActionCommand);
 	// TodoReturn createNewKeyframeAnim();
@@ -2087,7 +2087,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	virtual void trySaveGame(bool) = win 0x5b3b0;
 	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x5b550;
 
-    PAD = win 0xC, android32 0xC;
+    PAD = win 0xC, android32 0xC, android64 0x18;
     cocos2d::CCScene* m_runningScene;
 }
 
@@ -3663,8 +3663,7 @@ class StartPosObject : EffectGameObject {
 
 	~StartPosObject();
 
-	// TODO: move LevelSettingsObject
-	// void setSettings(LevelSettingsObject*);
+	void setSettings(LevelSettingsObject*);
 
 	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn loadSettingsFromString(gd::string);
@@ -3736,6 +3735,11 @@ class SearchButton : cocos2d::CCSprite {
 [[link(android)]]
 class GameLevelManager : cocos2d::CCNode {
 	~GameLevelManager();
+
+	static GameLevelManager* sharedState() = win 0xF2D90;
+	inline static GameLevelManager* get() {
+		return GameLevelManager::sharedState();
+	}
 
 	TodoReturn getDailyID(GJTimedLevelType);
 	TodoReturn getDescKey(int);
@@ -3906,7 +3910,6 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn keyHasTimer(char const*);
 	TodoReturn reportLevel(int);
 	// TodoReturn saveMapPack(GJMapPack*);
-	static GameLevelManager* sharedState() = win 0xF2D90;
 	TodoReturn unblockUser(int);
 	TodoReturn updateLevel(GJGameLevel*);
 	void uploadLevel(GJGameLevel*) = win 0xFA560;
@@ -3928,7 +3931,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn storeUserInfo(GJUserScore*);
 	void storeUserName(int, int, gd::string) = win 0xF54C0;
 	TodoReturn uploadComment(gd::string, CommentType, int, int) = win 0x108540;
-	TodoReturn createNewLevel();
+	GJGameLevel* createNewLevel();
 	TodoReturn createPageInfo(int, int, int);
 	TodoReturn resetAllTimers();
 	TodoReturn resetGauntlets();
@@ -5295,7 +5298,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	// TodoReturn resetDelayedSpawnNodes();
 	// TodoReturn updatePreviewParticles();
 	// TodoReturn addPlayerCollisionBlock();
-	// TodoReturn createObjectsFromString(gd::string const&, bool, bool);
+	void createObjectsFromString(gd::string const&, bool, bool);
 	// TodoReturn quickUpdateAllPositions();
 	// TodoReturn resetEffectTriggerOptim(GameObject*, cocos2d::CCArray*);
 	// TodoReturn fastUpdateDisabledGroups();
@@ -6402,6 +6405,8 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	virtual TodoReturn enterAnimFinished();
 	virtual TodoReturn disableUI();
 	virtual TodoReturn enableUI();
+
+	void* m_unknown;
 }
 
 
@@ -6957,7 +6962,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 	// TodoReturn updateDurLabel();
 	// TodoReturn updateHSVValue();
 	// TodoReturn updateCopyColor();
-	// TodoReturn closeColorSelect(cocos2d::CCObject*);
+	void closeColorSelect(cocos2d::CCObject*);
 	// TodoReturn updateColorValue();
 	// TodoReturn updateColorLabels();
 	// TodoReturn updateOpacityLabel();
@@ -7329,7 +7334,7 @@ class LocalLevelManager : GManager {
 
 	TodoReturn getCreatedLists(int);
 	TodoReturn getCreatedLevels(int);
-	TodoReturn getAllLevelsInDict();
+	cocos2d::CCDictionary* getAllLevelsInDict();
 	gd::string getMainLevelString(int) = win 0x273230;
 	TodoReturn getAllLevelsWithName(gd::string);
 	TodoReturn getLevelsInNameGroups();
