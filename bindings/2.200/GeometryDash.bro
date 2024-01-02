@@ -559,7 +559,7 @@ class TableViewCell : cocos2d::CCLayer {
 	float m_height;
 	cocos2d::CCLayerColor* m_backgroundLayer;
 	cocos2d::CCLayer* m_mainLayer;
-	int m_unknown4;
+	BoomListType m_listType;
 }
 
 [[link(android)]]
@@ -2083,6 +2083,8 @@ class GJGameLevel : cocos2d::CCNode {
 	int m_workingTime2;
 	bool m_lowDetailMode;
 	bool m_lowDetailModeToggled;
+	bool m_selected;
+	bool m_localOrSaved;
 	geode::SeedValueRS m_isVerified;
 	bool m_isVerifiedRaw;
 	bool m_isUploaded;
@@ -4401,8 +4403,8 @@ class GameStatsManager : cocos2d::CCNode {
 	~GameStatsManager();
 
 	TodoReturn getItemKey(int, int);
-	TodoReturn getLevelKey(int, bool, bool, bool);
-	TodoReturn getLevelKey(GJGameLevel*);
+	std::string getLevelKey(int, bool, bool, bool) = win 0x16D350;
+	std::string getLevelKey(GJGameLevel*) = win 0x16D2E0;
 	GJChallengeItem* getChallenge(int) = win 0x170BD0;
 	TodoReturn getRewardKey(GJRewardType, int);
 	TodoReturn getStoreItem(int);
@@ -4495,7 +4497,9 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn toggleEnableItem(UnlockType, int, bool) = win 0x174030;
 	TodoReturn updateActivePath(StatKey);
 	TodoReturn countSecretChests(GJRewardType);
-	TodoReturn hasCompletedLevel(GJGameLevel*);
+	bool hasCompletedLevel(GJGameLevel* level) {
+		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
+	}
 	/* unverified signature */
 	bool isSecretCoinValid(gd::string);
 	TodoReturn postLoadGameStats();

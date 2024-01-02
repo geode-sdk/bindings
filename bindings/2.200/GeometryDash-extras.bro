@@ -7006,9 +7006,9 @@ class LevelCell : TableViewCell {
 
 	~LevelCell();
 
-	void onViewProfile(cocos2d::CCObject* sender);
-	void onClick(cocos2d::CCObject* sender);
-	void onToggle(cocos2d::CCObject* sender);
+	void onViewProfile(cocos2d::CCObject* sender) = win 0x80910;
+	void onClick(cocos2d::CCObject* sender) = win 0x80820;
+	void onToggle(cocos2d::CCObject* sender) = win 0x7d580;
 
 	TodoReturn updateToggle();
 	TodoReturn loadFromLevel(GJGameLevel*) = win 0x7D3F0;
@@ -7020,6 +7020,15 @@ class LevelCell : TableViewCell {
 
 	virtual bool init();
 	virtual void draw();
+
+	CCMenuItemSpriteExtra* m_button;
+	GJGameLevel* m_level;
+	bool m_cellDrawn;
+	CCMenuItemToggler* m_toggler;
+	cocos2d::CCPoint m_point;
+	cocos2d::CCMenu* m_mainMenu;
+	bool m_compactView;
+	int m_cellMode;
 }
 
 [[link(android)]]
