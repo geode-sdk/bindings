@@ -2,7 +2,7 @@ class PlayerButtonCommand {
     PlayerButton m_button;
     bool m_isPush;
     bool m_isPlayer2;
-    PAD = 0x6;
+    PAD = windows 0x6, android32 0x6;
 }
 
 class DynamicScrollDelegate {
