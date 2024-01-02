@@ -6223,21 +6223,42 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn getObjectRotation();
 	virtual TodoReturn animationFinished(char const*);
 
-	PAD = win 0x53d, android32 0x305;
-    bool m_isShip;
-    bool m_isBird;
-    bool m_isBall;
-    bool m_isDart;
-    bool m_isRobot;
-    bool m_isSpider;
-    bool m_isUpsideDown;
-    bool m_isDead;
-    bool m_isOnGround;
-    bool m_isGoingLeft;
-	bool m_unkBool;
-	bool m_isSwing;
-	PAD = win 0x66, android32 0x66;
-	cocos2d::CCPoint m_position;
+	PAD = win 0xa0;
+	uint8_t m_playerNum; //0x318
+	PAD = win 0x2bf;
+	float m_rotationSpeed; //0x5d8
+	PAD = win 0x5;
+	bool m_isRotating; //0x5e1
+	PAD = win 0x1b6;
+	double m_yVelocity; //0x798
+	PAD = win 0x9;
+	bool m_isShip; //0x7a9
+	bool m_isBird; //0x7aa
+	bool m_isBall; //0x7ab
+	bool m_isDart; //0x7ac
+	bool m_isRobot; //0x7ad
+	bool m_isSpider; //0x7ae
+	bool m_isUpsideDown; //0x7af
+	bool m_isDead; //0x7b0
+	bool m_isOnGround; //0x7b1
+	bool m_isGoingLeft; //0x7b2
+	PAD = win 0x1;
+	bool m_isSwing; //0x7b4
+	PAD = win 0x1f;
+	bool m_isDashing; //0x7d4
+	PAD = win 0xf;
+	float m_speed; //0x7e4
+	PAD = win 0x17;
+	bool m_isLocked; //0x7ff
+	PAD = win 0x1c;
+	cocos2d::CCPoint m_position; //0x81c
+	PAD = win 0x4c;
+	double m_platformerXVelocity; //0x870
+	PAD = win 0x70;
+	bool m_isPlatformer; //0x8e8
+	PAD = win 0x13;
+	float m_gravityMod; //0x8fc
+	PAD = win 0x80;
 }
 
 
