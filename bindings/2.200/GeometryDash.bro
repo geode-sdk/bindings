@@ -1388,8 +1388,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	LevelSettingsObject* m_levelSettings;
 	PAD = win 0x134, android32 0x134;
 	cocos2d::CCLayer* m_objectLayer;
-
-	PAD = win 0x23ac, android32 0x2378;
+	PAD = win 0x20C0, android32 0x20C4;
+	bool m_isPracticeMode;
+	bool m_practiceMusicSync;
+	PAD = win 0x2E8, android32 0x2B0;
 }
 
 [[link(android)]]
@@ -1459,6 +1461,10 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual TodoReturn fadeInTextFinished(TextArea*);
+}
+
+class UIButtonConfig {
+	PAD = win 0x28, android32 0x28, android64 0x28;
 }
 
 [[link(android)]]
@@ -1733,28 +1739,172 @@ class GameManager : GManager {
 	virtual TodoReturn dataLoaded(DS_Dictionary*);
 	virtual TodoReturn firstLoad();
 
-	PAD = win 0x74, android32 0x64;
-	GJBaseGameLayer* m_gameLayer;
-	// android pad not tested
-	PAD = win 0x88, android32 0x54;
-    geode::SeedValueRSV m_playerFrame;
-    geode::SeedValueRSV m_playerShip;
-    geode::SeedValueRSV m_playerBall;
-    geode::SeedValueRSV m_playerBird;
-    geode::SeedValueRSV m_playerDart;
-    geode::SeedValueRSV m_playerRobot;
-    geode::SeedValueRSV m_playerSpider;
-    geode::SeedValueRSV m_playerSwing;
-    geode::SeedValueRSV m_playerColor;
-    geode::SeedValueRSV m_playerColor2;
-    geode::SeedValueRSV m_playerGlowColor;
-    geode::SeedValueRSV m_playerStreak;
-    geode::SeedValueRSV m_playerShipFire;
-    geode::SeedValueRSV m_playerDeathEffect;
-    geode::SeedValueRSV m_playerJetpack;
-    geode::SeedValueSR m_chk;
-    geode::SeedValueSR m_secretNumber;
-    bool m_playerGlow;
+	cocos2d::CCDictionary* m_unkAnimationDict;
+	cocos2d::CCDictionary* m_unkAnimationDict2;
+	cocos2d::CCDictionary* m_frameTimeForAnimation;
+	cocos2d::CCDictionary* m_framesForAnimation;
+	cocos2d::CCDictionary* m_defaultFrames;
+	bool m_switchModes;
+	bool m_toFullscreen;
+	bool m_reloading;
+	bool m_unkBool1;
+	bool m_unkBool2;
+	bool m_vsyncEnabled;
+	cocos2d::CCDictionary* m_valueKeeper;
+	cocos2d::CCDictionary* m_unlockValueKeeper;
+	cocos2d::CCDictionary* m_customObjectDict;
+	double m_adTimer;
+	double m_adCache;
+	bool m_unkBool3;
+	int m_unkSize4_1;
+	double m_unkDouble2;
+	int m_unkSize4_2;
+	int m_unkSize4_3;
+	bool m_loaded;
+	bool m_googlePlaySignedIn;
+	gd::string m_unknownString;
+	int m_unkSize4_4;
+	PlayLayer* m_playLayer;
+	LevelEditorLayer* m_levelEditorLayer;
+	GJBaseGameLayer* m_baseGameLayer;
+	void* m_unkPtr;
+	MenuLayer* m_menuLayer;
+	bool m_inMenuLayer;
+	void* m_unknownVariable;
+	bool m_unknownBool3;
+	bool m_unknownPlayLayerBool;
+	bool m_unknownBool4;
+	bool m_unknownBool5;
+	gd::string m_playerUDID;
+	gd::string m_playerName;
+	bool m_commentsEnabled;
+	int m_playerUserID_a;
+	int m_playerUserID_b;
+	int m_playerUserID;
+	float m_bgVolume;
+	float m_sfxVolume;
+	float m_timeOffset;
+	bool m_ratedGame;
+	bool m_clickedFacebook;
+	bool m_clickedTwitter;
+	bool m_clickedYouTube;
+	bool m_clickedTwitch;
+	bool m_clickedDiscord_;
+	bool m_clickedReddit;
+	double m_socialsDuration;
+	bool m_showedAd;
+	bool m_unknownBool;
+	bool m_editorEnabled;
+	int m_sceneEnum;
+	bool m_searchObjectBool;
+	geode::SeedValueRSV m_playerFrame;
+	geode::SeedValueRSV m_playerShip;
+	geode::SeedValueRSV m_playerBall;
+	geode::SeedValueRSV m_playerBird;
+	geode::SeedValueRSV m_playerDart;
+	geode::SeedValueRSV m_playerRobot;
+	geode::SeedValueRSV m_playerSpider;
+	geode::SeedValueRSV m_playerSwing;
+	geode::SeedValueRSV m_playerColor;
+	geode::SeedValueRSV m_playerColor2;
+	geode::SeedValueRSV m_playerGlowColor;
+	geode::SeedValueRSV m_playerStreak;
+	geode::SeedValueRSV m_playerShipFire;
+	geode::SeedValueRSV m_playerDeathEffect;
+	geode::SeedValueRSV m_playerJetpack;
+	geode::SeedValueSR m_chk;
+	geode::SeedValueSR m_secretNumber;
+	bool m_playerGlow;
+	int m_playerIconType;
+	bool m_everyPlaySetup;
+	bool m_showSongMarkers;
+	bool m_showBPMMarkers;
+	bool m_recordGameplay;
+	bool m_showProgressBar;
+	bool m_performanceMode;
+	bool m_unkBool4;
+	bool m_clickedGarage;
+	bool m_clickedEditor;
+	bool m_clickedName;
+	bool m_clickedPractice;
+	bool m_showedEditorGuide;
+	bool m_showedRateDiffDialog;
+	bool m_showedRateStarDialog;
+	bool m_showedLowDetailDialog;
+	void* m_unkPtr2;
+	void* m_unkPtr3;
+	int m_unkSize4_5;
+	int m_unkSize4_6;
+	int m_unkSize4_7;
+	int m_unkSize4_8;
+	int m_loadedBgID;
+	int m_loadedGroundID;
+	int m_loadedMG;
+	int m_loadedFont;
+	int m_loadedDeathEffect;
+	bool m_loadingBG;
+	bool m_loadingG;
+	bool m_loadingG1;
+	bool m_finishedLoadingG1;
+	bool m_shouldLoadG1;
+	bool m_finishedLoadingMG1;
+	bool m_finishedLoadingMG2;
+	bool m_unkBool5;
+	int m_unkSize4_9;
+	int m_unkSize4_10;
+	int m_unkSize4_11;
+	int m_bootups;
+	bool m_hasRatedGame;
+	bool m_unkBool6;
+	bool m_shouldLoadUnlockValueKeeper;
+	bool m_unkBool7;
+	bool m_unkBool8;
+	int m_hasRP_b;
+	int m_hasRP_a;
+	int m_hasRP;
+	bool m_canGetLevelSaveData;
+	int m_resolution;
+	int m_texQuality;
+	bool m_somethingInMenuLayer;
+	void* m_unkPtr4;
+	bool m_unkBool9;
+	int m_unkSize4_12;
+	int m_unkSize4_13;
+	bool m_unkBool10;
+	int m_unkSize4_14;
+	bool m_disableThumbstick;
+	float m_customFPSTarget;
+	bool m_unkBool11;
+	int m_customMenuSongID;
+	int m_customPracticeSongID;
+	gd::map<int, int> m_loadIcon;
+	gd::map<int, gd::map<int, int>> m_loadIcon2;
+	gd::map<int, bool> m_probablyIsIconLoaded;
+	void* m_somethingIconAndTypeForKey;
+	void* m_somethingKeyForIcon;
+	void* m_idk;
+	gd::map<int, cocos2d::CCObject*> m_iconDelegates;
+	int m_iconRequestID;
+	cocos2d::CCArray* m_unkArray;
+	void* m_someAdPointer;
+	int m_unkSize4_15;
+	int m_unkSize4_16;
+	int m_unkSize4_17;
+	UIButtonConfig m_dpad1;
+	UIButtonConfig m_dpad2;
+	UIButtonConfig m_dpad3;
+	UIButtonConfig m_dpad4;
+	UIButtonConfig m_dpad5;
+	gd::string m_dpadLayout1;
+	gd::string m_dpadLayout2;
+	gd::string m_dpadLayout3;
+	gd::string m_dpadLayoutDual1;
+	gd::string m_dpadLayoutDual2;
+	gd::string m_dpadLayoutDual3;
+	int m_unkSize4_18;
+	int m_unkSize4_19;
+	int m_unkSize4_20;
+	bool m_unkBool12;
 }
 
 [[link(android)]]
@@ -1999,9 +2149,6 @@ class GJGameLevel : cocos2d::CCNode {
 	gd::string m_personalBests;
 
 	PAD = android32 0x78, win 0x78;
-}
-
-class UIButtonConfig {
 }
 
 [[link(android)]]

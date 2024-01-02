@@ -3972,7 +3972,7 @@ class AchievementManager : cocos2d::CCNode {
 
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn firstSetup();
-	TodoReturn sharedState();
+	TodoReturn sharedState() = win 0x9AC0;
 	TodoReturn encodeDataTo(DS_Dictionary*);
 	TodoReturn addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
 	TodoReturn resetAchievement(char const*);
@@ -4250,9 +4250,9 @@ class GJTransformControl : cocos2d::CCLayer {
 class KeybindingsManager : cocos2d::CCNode {
 	~KeybindingsManager();
 
-	TodoReturn dataLoaded(DS_Dictionary*);
+	TodoReturn dataLoaded(DS_Dictionary*) = win 0x228580;
 	TodoReturn firstSetup();
-	TodoReturn sharedState();
+	TodoReturn sharedState() = win 0x228470;
 	TodoReturn encodeDataTo(DS_Dictionary*);
 	TodoReturn commandForKey(cocos2d::enumKeyCodes, GJKeyGroup, bool, bool, bool);
 	TodoReturn keyForCommand(GJKeyCommand);
