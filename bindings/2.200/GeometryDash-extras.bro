@@ -905,7 +905,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn selectAThread();
 	TodoReturn playCoinEffect();
 	TodoReturn showSecretLevel();
-	TodoReturn updateSearchLabel(char const*) = win 0x301260;
+	void updateSearchLabel(char const*) = win 0x301260;
 	TodoReturn showCompletedLevel();
 	TodoReturn updateMessageLabel(gd::string);
 	TodoReturn scene();
