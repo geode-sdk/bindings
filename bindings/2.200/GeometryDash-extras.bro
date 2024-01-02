@@ -4190,7 +4190,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
 	bool init(int, GJDifficultyName);
 	~GJDifficultySprite();
 
-	TodoReturn getDifficultyFrame(int, GJDifficultyName);
+	TodoReturn getDifficultyFrame(int, GJDifficultyName); = win 0x212010
 
 	TodoReturn updateFeatureState(GJFeatureState);
 	TodoReturn updateDifficultyFrame(int, GJDifficultyName);
