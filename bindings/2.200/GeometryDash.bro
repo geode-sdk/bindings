@@ -2666,7 +2666,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 
 	void confirmClone(cocos2d::CCObject*) = win 0x2518D0;
 	TodoReturn confirmDelete(cocos2d::CCObject*);
-	TodoReturn downloadLevel();
+	void downloadLevel() = win 0x1b950;
 	TodoReturn loadLevelStep();
 	void tryCloneLevel(cocos2d::CCObject*) = win 0x2516f0;
 	TodoReturn incrementLikes();
@@ -5449,11 +5449,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onPlayback(cocos2d::CCObject* sender) = win 0xc9130;
 	void onPlaytest(cocos2d::CCObject* sender) = mac 0x10160, win 0xc9480;
 	void onSettings(cocos2d::CCObject* sender) = win 0xa5570;
-	// void onCopyState(cocos2d::CCObject* sender);
-	void onDeleteAll(cocos2d::CCObject* sender);
-	void onDuplicate(cocos2d::CCObject* sender);
-	// void onEditColor(cocos2d::CCObject* sender);
-	// void onGoToLayer(cocos2d::CCObject* sender);
+	void onCopyState(cocos2d::CCObject* sender) = win 0xcb0c0;
+	// void onDeleteAll(cocos2d::CCObject* sender);
+	// void onDuplicate(cocos2d::CCObject* sender);
+	void onEditColor(cocos2d::CCObject* sender) = win 0xd3370;
+	void onGoToLayer(cocos2d::CCObject* sender) = win 0xcb200;
 	// void onGroupDown(cocos2d::CCObject* sender);
 	// void onLockLayer(cocos2d::CCObject* sender);
 	// void onDeleteInfo(cocos2d::CCObject* sender);
