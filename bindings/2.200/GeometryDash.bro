@@ -2039,20 +2039,31 @@ class GJListLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class LoadingCircle : cocos2d::CCLayerColor {
-	static LoadingCircle* create() = win 0x48140;
+    static LoadingCircle* create() = win 0x48140;
 
-	~LoadingCircle();
+    ~LoadingCircle();
 
-	TodoReturn fadeAndRemove() = win 0x483E0;
-	TodoReturn show() = win 0x48300;
+    TodoReturn fadeAndRemove() = win 0x483E0;
+    TodoReturn show() = win 0x48300;
 
-	virtual bool init() = win 0x48240;
-	virtual void draw();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void registerWithTouchDispatcher();
+    void setParentLayer(cocos2d::CCLayer* layer) {
+        m_parentLayer = layer;
+    }
+    void setFade(bool fade) {
+        m_fade = fade;
+    }
+
+    virtual bool init() = win 0x48240;
+    virtual void draw();
+    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    virtual void registerWithTouchDispatcher();
+
+    cocos2d::CCSprite* m_sprite;
+    cocos2d::CCLayer* m_parentLayer;
+    bool m_fade;
 }
 
 [[link(android)]]
