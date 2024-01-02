@@ -4145,7 +4145,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
 class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, UserListDelegate {
 	static FriendsProfilePage* create(UserListType);
 
-	bool init(UserListType);
+	bool init(UserListType) = win 0xefda0;
 	~FriendsProfilePage();
 
 	void onClose(cocos2d::CCObject* sender);
