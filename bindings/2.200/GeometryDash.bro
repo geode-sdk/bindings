@@ -5446,9 +5446,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	// TodoReturn getXMin(int) = win 0xd7470;
 	// TodoReturn getButton(char const*, int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
 
-	// void onPlayback(cocos2d::CCObject* sender);
+	void onPlayback(cocos2d::CCObject* sender) = win 0xc9130;
 	void onPlaytest(cocos2d::CCObject* sender) = mac 0x10160, win 0xc9480;
-	// void onSettings(cocos2d::CCObject* sender);
+	void onSettings(cocos2d::CCObject* sender) = win 0xa5570;
 	// void onCopyState(cocos2d::CCObject* sender);
 	void onDeleteAll(cocos2d::CCObject* sender);
 	void onDuplicate(cocos2d::CCObject* sender);
@@ -5467,7 +5467,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	// void onCreateButton(cocos2d::CCObject* sender);
 	// TodoReturn onCreateObject(int);
 	void onPasteInPlace(cocos2d::CCObject* sender);
-	// void onStopPlaytest(cocos2d::CCObject* sender);
+	void onStopPlaytest(cocos2d::CCObject* sender) = win 0xc95f0;
 	// void onGoToBaseLayer(cocos2d::CCObject* sender);
 	// void onGroupIDFilter(cocos2d::CCObject* sender);
 	void onNewCustomItem(cocos2d::CCObject* sender) = win 0xa7650;
@@ -5484,7 +5484,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	// TodoReturn onToggleSelectedOrder(EffectGameObject*);
 	void onCopy(cocos2d::CCObject* sender);
 	void onPaste(cocos2d::CCObject* sender);
-	void onPause(cocos2d::CCObject* sender);
+	void onPause(cocos2d::CCObject* sender) = win 0xa55c0;
 	bool onCreate();
 	void onDelete(cocos2d::CCObject* sender);
 	// void onGroupUp(cocos2d::CCObject* sender);
