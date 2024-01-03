@@ -4180,16 +4180,6 @@ class GameEffectsManager : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GJCommentListLayer : cocos2d::CCLayerColor {
-	static GJCommentListLayer* create(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203350;
-
-	bool init(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203440;
-	~GJCommentListLayer();
-
-    BoomListView* m_list;
-}
-
-[[link(android)]]
 class GJDifficultySprite : cocos2d::CCSprite {
 	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x211eb0;
 

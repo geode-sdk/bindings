@@ -2583,7 +2583,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	TodoReturn updatePageArrows();
 	TodoReturn updateLevelsLabel();
 	TodoReturn showNoAccountError();
-	TodoReturn loadPageFromUserInfo(GJUserScore*) = win 0x2e8040;
+	void loadPageFromUserInfo(GJUserScore*) = win 0x2e8040;
 	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = win 0x2EB980;
 	TodoReturn toggleMainPageVisibility(bool);
 	TodoReturn loadPage(int);
@@ -2608,6 +2608,27 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	virtual TodoReturn onClosePopup(UploadActionPopup*);
 	virtual TodoReturn uploadActionFinished(int, int);
 	virtual TodoReturn uploadActionFailed(int, int);
+
+	GJUserScore* m_score;
+	int m_accountID;
+	bool m_ownProfile;
+	gd::string m_profileKey;
+	cocos2d::CCLabelBMFont* m_somethingWentWrong;
+	cocos2d::CCLabelBMFont* m_usernameLabel;
+	GJCommentListLayer* m_list;
+	CCMenuItemSpriteExtra* m_rightArrow;
+	CCMenuItemSpriteExtra* m_leftArrow;
+	CCMenuItemSpriteExtra* m_followBtn;
+	void* m_unk;
+	cocos2d::CCArray* m_buttons;
+	cocos2d::CCArray* m_arrayWithUsernameLabel;
+	int m_itemCount;
+	int m_pageStartIdx;
+	int m_pageEndIdx;
+	int m_page;
+	LoadingCircle* m_circle;
+	void* m_popupDelegate;
+	CCMenuItemSpriteExtra* m_refreshBtn;
 }
 
 [[link(android)]]
@@ -7725,4 +7746,14 @@ class GJAccountRegisterDelegate {
 class GJAccountSettingsDelegate {
 	virtual TodoReturn updateSettingsFinished();
 	virtual TodoReturn updateSettingsFailed();
+}
+
+[[link(android)]]
+class GJCommentListLayer : cocos2d::CCLayerColor {
+	static GJCommentListLayer* create(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203350;
+
+	bool init(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203440;
+	~GJCommentListLayer();
+
+    BoomListView* m_list;
 }
