@@ -88,9 +88,9 @@ jobs:
     
     - name: Set up CPM cache
       id: cache-cpm
-      uses: actions/cache@v3
+      uses: actions/cache@v2
       with:
-        path: $HOME/cpm-cache
+        path: ~/cpm-cache
         key: cpm-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
         restore-keys: |
           cpm-
