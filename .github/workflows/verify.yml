@@ -117,14 +117,14 @@ jobs:
     
     - name: Set up CPM cache
       id: cache-cpm
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ github.workspace }}/cpm-cache
         key: cpm-cache-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
         restore-keys: |
           cpm-cache-
     
-    - name: Setup NDK
+    - name: Set up NDK
       uses: nttld/setup-ndk@v1
       id: setup-ndk
       with:
