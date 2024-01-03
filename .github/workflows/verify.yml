@@ -68,6 +68,7 @@ jobs:
           os: windows-2019
           prefixes: ''
           extra_flags: -A win32
+          target_platform: Win32
           
     name: Test Offsets ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
@@ -94,6 +95,7 @@ jobs:
         ${{ matrix.config.prefixes }} cmake -B build -S test/members
         -D GEODE_LOADER_PATH=${{ github.workspace }}/geode/loader
         -D GEODE_BINDINGS_REPO_PATH=${{ github.workspace }}
+        -D GEODE_TARGET_PLATFORM=${{ matrix.config.target_platform }}
         ${{ matrix.config.extra_flags }} 
         -D GEODE_DISABLE_CLI_CALLS=ON 
       # -D CMAKE_C_COMPILER_LAUNCHER=ccache
