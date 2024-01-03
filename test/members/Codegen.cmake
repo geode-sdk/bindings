@@ -1,5 +1,17 @@
 include(ExternalProject)
-set(GEODE_CODEGEN_BINARY_OUT ${CMAKE_CURRENT_BINARY_DIR}/codegen)
+
+if (NOT DEFINED GEODE_CODEGEN_BINARY_OUT)
+	set(GEODE_CODEGEN_BINARY_OUT ${CMAKE_CURRENT_BINARY_DIR}/codegen)
+else()
+	cmake_path(SET GEODE_CODEGEN_BINARY_OUT ${GEODE_CODEGEN_BINARY_OUT})
+endif()
+
+if (NOT GEODE_BINDINGS_PATH)
+	set(GEODE_BINDINGS_PATH ${GEODE_BINDINGS_REPO_PATH}/bindings/${GEODE_GD_VERSION})
+endif()
+
+if (NOT SKIP_BUILDING_CODEGEN)
+
 ExternalProject_Add(CodegenProject
 	BUILD_ALWAYS ON
 	SOURCE_DIR ${GEODE_BINDINGS_REPO_PATH}
@@ -14,10 +26,6 @@ ExternalProject_Add(CodegenProject
 	INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIGURATION>
 )
 
-if (NOT GEODE_BINDINGS_PATH)
-	set(GEODE_BINDINGS_PATH ${GEODE_BINDINGS_REPO_PATH}/bindings/${GEODE_GD_VERSION})
-endif()
-
 file(GLOB CODEGEN_DEPENDS CONFIGURE_DEPENDS 
 	${GEODE_BINDINGS_PATH}/*.bro
 	${GEODE_BINDINGS_REPO_PATH}/codegen/src/*.cpp
@@ -29,8 +37,10 @@ file(GLOB CODEGEN_OUTPUTS CONFIGURE_DEPENDS
 	${GEODE_CODEGEN_PATH}/Geode/binding/*.hpp
 )
 
+endif()
+
 add_custom_command(
-	DEPENDS ${CODEGEN_DEPENDS}
+	# DEPENDS ${CODEGEN_DEPENDS}
 	DEPENDS CodegenProject
 	COMMAND ${GEODE_CODEGEN_BINARY_OUT}/Codegen ${GEODE_TARGET_PLATFORM} ${GEODE_BINDINGS_PATH} ${GEODE_CODEGEN_PATH}
 	COMMAND echo codegen > ${GEODE_CODEGEN_PATH}/.stamp
@@ -70,11 +80,3 @@ target_include_directories(GeodeCodegenSources PRIVATE
 )
 set_target_properties(GeodeCodegenSources PROPERTIES CXX_VISIBILITY_PRESET hidden)
 target_compile_features(GeodeCodegenSources PUBLIC cxx_std_20)
-
-if (APPLE)
-	target_compile_options(GeodeCodegenSources PUBLIC -ffunction-sections -fdata-sections)
-	target_link_options(GeodeCodegenSources PUBLIC -dead_strip)
-elseif(ANDROID)
-	target_compile_options(GeodeCodegenSources PUBLIC -ffunction-sections -fdata-sections)
-	target_link_options(GeodeCodegenSources PUBLIC -Wl,--gc-sections)
-endif()

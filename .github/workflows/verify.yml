@@ -80,15 +80,17 @@ jobs:
       with:
         repository: geode-sdk/geode
         path: geode
+    
+    - name: Restore cache
+      id: codegen-cache
+      uses: actions/cache/restore@v3
+      with:
+        path: build/codegen
+        key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}-${{ matrix.config.os }}
 
     - uses: ilammy/msvc-dev-cmd@v1
       with:
         arch: x86
-
-    - name: Configure ccache
-      uses: hendrikmuhs/ccache-action@v1.2
-      with:
-        key: ${{ matrix.config.os }}
 
     - name: Configure CMake
       run: >
@@ -96,6 +98,8 @@ jobs:
         -D GEODE_LOADER_PATH=${{ github.workspace }}/geode/loader
         -D GEODE_BINDINGS_REPO_PATH=${{ github.workspace }}
         -D GEODE_TARGET_PLATFORM=${{ matrix.config.target_platform }}
+        -D GEODE_CODEGEN_BINARY_OUT=${{ github.workspace }}/build/codegen
+        -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
         ${{ matrix.config.extra_flags }} 
         -D GEODE_DISABLE_CLI_CALLS=ON 
       # -D CMAKE_C_COMPILER_LAUNCHER=ccache
@@ -104,3 +108,10 @@ jobs:
     - name: Build member test
       run: |
         cmake --build build --config RelWithDebInfo --parallel --target TestMembers
+
+    - name: Upload binary to cache
+      if: steps.codegen-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v3
+      with:
+        path: build/codegen
+        key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}-${{ matrix.config.os }}
