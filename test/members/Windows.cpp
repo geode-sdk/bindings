@@ -2,7 +2,7 @@
 
 #ifdef GEODE_IS_WINDOWS
 
-using namespace cocos2d;
+using namespace geode::prelude;
 
 GEODE_SIZE_CHECK(CCNode, 0x108);
 // GEODE_MEMBER_CHECK(CCNode, m_pUserObject, 0xcc);
@@ -41,8 +41,5 @@ GEODE_SIZE_CHECK(SliderThumb, 0x140);
 GEODE_SIZE_CHECK(Slider, 0x158);
 GEODE_MEMBER_CHECK(Slider, m_touchLogic, 0x13c);
 GEODE_SIZE_CHECK(SliderTouchLogic, 0x178);
-
-
-
 
 #endif
