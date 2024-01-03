@@ -7,6 +7,7 @@ CPMAddPackage("gh:geode-sdk/json#a47f570")
 CPMAddPackage("gh:gulrak/filesystem#3e5b930")
 
 add_library(${PROJECT_NAME} SHARED Windows.cpp)
+
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
 cmake_path(SET GEODE_LOADER_PATH ${GEODE_LOADER_PATH})

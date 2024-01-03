@@ -95,9 +95,9 @@ jobs:
         restore-keys: |
           cpm-
 
-    - uses: ilammy/msvc-dev-cmd@v1
-      with:
-        arch: x86
+    # - uses: ilammy/msvc-dev-cmd@v1
+    #   with:
+    #     arch: x86
 
     - name: Configure CMake
       run: >
