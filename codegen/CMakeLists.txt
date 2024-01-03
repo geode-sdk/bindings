@@ -10,6 +10,9 @@ file(GLOB SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 )
 
+cmake_path(SET GEODE_LOADER_PATH ${GEODE_LOADER_PATH})
+cmake_path(SET GEODE_BINDINGS_REPO_PATH ${GEODE_BINDINGS_REPO_PATH})
+
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_compile_features(Codegen PUBLIC cxx_std_17)
 
