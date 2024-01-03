@@ -2180,12 +2180,12 @@ class cocos2d::CCLiquid {
 class cocos2d::CCMenu {
 	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
 	// untested on mac
-	static cocos2d::CCMenu* create() = 0x754580;
+	static cocos2d::CCMenu* create() = mac 0x754580;
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
 	// static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
 
-	bool initWithArray(cocos2d::CCArray*) = 0x754850;
+	bool initWithArray(cocos2d::CCArray*) = mac 0x754850;
 
 	void setHandlerPriority(int);
 
@@ -3192,7 +3192,7 @@ class cocos2d::CCPointArray {
 [[link(win, android)]]
 class cocos2d::CCPoolManager {
 	// CCPoolManager();
-	void addObject(cocos2d::CCObject*) = 0x3d83d0;
+	void addObject(cocos2d::CCObject*) = mac 0x3d83d0;
 	void finalize();
 	cocos2d::CCAutoreleasePool* getCurReleasePool();
 	void pop();

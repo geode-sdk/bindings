@@ -995,7 +995,7 @@ class SimpleObject : cocos2d::CCObject {
 
 [[link(android)]]
 class SimplePlayer : cocos2d::CCSprite {
-	static SimplePlayer* create(int) = win 0x1ef610, mac = 0x349730;
+	static SimplePlayer* create(int) = win 0x1ef610, mac 0x349730;
 
 	bool init(int) = win 0x1ef6b0, mac 0x34e0e0;
 	~SimplePlayer();
@@ -1004,7 +1004,7 @@ class SimplePlayer : cocos2d::CCSprite {
 	inline void setSecondColor(cocos2d::_ccColor3B const& color) {
 		m_secondLayer->setColor(color);
 		updateColors();
-	} // mac = 0x34e9e0
+	} // = mac 0x34e9e0
 
 	/* unverified signature */
 	void setColors(cocos2d::_ccColor3B const&, cocos2d::_ccColor3B const&);
@@ -1332,7 +1332,7 @@ class GJRobotSprite : CCAnimatedSprite {
 	TodoReturn updateColors() = win 0x212e30;
 	TodoReturn updateColor01(cocos2d::_ccColor3B) = mac 0x5a1bb0;
 	TodoReturn updateColor02(cocos2d::_ccColor3B) = mac 0x5a1ef0;
-	TodoReturn updateGlowColor(cocos2d::_ccColor3B, bool) = win 0x212dd0, mac = 0x5a1f10;
+	TodoReturn updateGlowColor(cocos2d::_ccColor3B, bool) = win 0x212dd0, mac 0x5a1f10;
 	TodoReturn hideGlow() = mac 0x5a1b90;
 	TodoReturn showGlow() = mac 0x5a1b70;
 
