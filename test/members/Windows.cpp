@@ -40,7 +40,7 @@ GEODE_MEMBER_CHECK(CCScrollLayerExt, m_cutContent, 0x16c);
 GEODE_SIZE_CHECK(SliderThumb, 0x140);
 GEODE_SIZE_CHECK(Slider, 0x158);
 GEODE_MEMBER_CHECK(Slider, m_touchLogic, 0x13c);
-GEODE_SIZE_CHECK(SliderTouchLogic, 0x178);
+GEODE_SIZE_CHECK(SliderTouchLogic, 0x1780);
 
 
 
