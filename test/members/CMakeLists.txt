@@ -6,7 +6,7 @@ include(../../cmake/CPM.cmake)
 CPMAddPackage("gh:geode-sdk/json#a47f570")
 CPMAddPackage("gh:gulrak/filesystem#3e5b930")
 
-add_library(${PROJECT_NAME} SHARED Windows.cpp)
+add_library(${PROJECT_NAME} SHARED MacOS.cpp Windows.cpp Android32.cpp Android64.cpp)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 

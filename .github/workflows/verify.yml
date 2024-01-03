@@ -58,10 +58,39 @@ jobs:
       matrix:
         config:
         - name: Windows
+          target_platform: Win32
           os: windows-2019
           prefixes: ''
           extra_flags: -A win32
-          target_platform: Win32
+
+        - name: Android32
+          target_platform: Android32
+          os: ubuntu-latest
+          prefixes: ''
+          extra_flags: >
+            -DCMAKE_TOOLCHAIN_FILE=$NDK_HOME/build/cmake/android.toolchain.cmake
+            -DANDROID_ABI=armeabi-v7a
+            -DANDROID_PLATFORM=android-23
+            -G Ninja
+
+        - name: Android64
+          target_platform: Android64
+          os: ubuntu-latest
+          prefixes: ''
+          extra_flags: >
+            -DCMAKE_TOOLCHAIN_FILE=$NDK_HOME/build/cmake/android.toolchain.cmake
+            -DANDROID_ABI=arm64-v8a
+            -DANDROID_PLATFORM=android-23
+            -G Ninja
+        
+        # - name: macOS
+        #   os_identifier: mac
+        #   os: macos-latest
+        #   prefixes: PATH="/usr/local/opt/ccache/libexec:$PATH"
+        #   extra_flags: >
+        #     -DCMAKE_C_COMPILER=clang
+        #     -DCMAKE_CXX_COMPILER=clang++
+        #     -DCMAKE_BUILD_TYPE=Debug
           
     name: Test Offsets ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
@@ -91,9 +120,17 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ github.workspace }}/cpm-cache
-        key: cpm2-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
+        key: cpm-cache-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
         restore-keys: |
-          cpm2-
+          cpm-cache-
+    
+    - name: Setup NDK
+      uses: nttld/setup-ndk@v1
+      id: setup-ndk
+      with:
+        ndk-version: r26b
+        add-to-path: false
+      if: matrix.config.os == 'ubuntu-latest'
 
     - name: Configure CMake
       run: >
