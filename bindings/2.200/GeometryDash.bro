@@ -335,7 +335,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		this->refreshLabel();
 	}
 
-	static CCTextInputNode* create(float, float, char const*, char const*, int, char const*) = win 0x2e440;
+	static CCTextInputNode* create(float, float, char const*, char const*, int, char const*) = win 0x2e440, mac 0x97e10;
 
 	bool init(float, float, char const*, char const*, int, char const*) = win 0x2e500;
 	~CCTextInputNode();
