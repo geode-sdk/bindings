@@ -4194,7 +4194,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
 
 	TodoReturn updateFeatureState(GJFeatureState) = win 0x2122c0;
 	TodoReturn updateDifficultyFrame(int, GJDifficultyName) = win 0x212100;
-	TodoReturn updateFeatureStateFromLevel(GJGameLevel*) = win Ox212240;
+	TodoReturn updateFeatureStateFromLevel(GJGameLevel*) = win 0x212240;
 }
 
 [[link(android)]]
