@@ -135,7 +135,10 @@ jobs:
       if: matrix.config.os == 'ubuntu-latest'
 
     - name: Set GEODE_SDK
-      run: echo "GEODE_SDK=${{ github.workspace }}/geode" >> $GITHUB_ENV
+      shell: bash
+      run: |
+        GEODE_SDK=${{ github.workspace }}/geode
+        echo "GEODE_SDK=$GEODE_SDK" >> $GITHUB_ENV
 
     - name: Configure CMake
       shell: bash
