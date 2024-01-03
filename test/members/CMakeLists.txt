@@ -6,15 +6,24 @@ include(../../cmake/CPM.cmake)
 CPMAddPackage("gh:geode-sdk/json#a47f570")
 CPMAddPackage("gh:gulrak/filesystem#3e5b930")
 
-add_library(${PROJECT_NAME} SHARED MacOS.cpp Windows.cpp Android32.cpp Android64.cpp)
+add_library(${PROJECT_NAME} SHARED)
+
+# even though the other source files do nothing on windows,
+# they still take a little bit to compile, thanks to msvc being very fast!
+if (WIN32)
+	target_sources(${PROJECT_NAME} PRIVATE Windows.cpp)
+else()
+	target_sources(${PROJECT_NAME} PRIVATE MacOS.cpp Android32.cpp Android64.cpp)
+endif()
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
-cmake_path(SET GEODE_LOADER_PATH ${GEODE_LOADER_PATH})
-cmake_path(SET GEODE_BINDINGS_REPO_PATH ${GEODE_BINDINGS_REPO_PATH})
+cmake_path(SET GEODE_LOADER_PATH $ENV{GEODE_SDK}/loader)
+cmake_path(SET GEODE_BINDINGS_REPO_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../)
 set(GEODE_CODEGEN_PATH ${CMAKE_CURRENT_BINARY_DIR}/codegenned)
 set(GEODE_GD_VERSION 2.200)
 
+include(Platform.cmake)
 include(Codegen.cmake)
 
 target_include_directories(${PROJECT_NAME} PRIVATE

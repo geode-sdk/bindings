@@ -58,13 +58,11 @@ jobs:
       matrix:
         config:
         - name: Windows
-          target_platform: Win32
           os: windows-2019
           prefixes: ''
           extra_flags: -A win32
 
         - name: Android32
-          target_platform: Android32
           os: ubuntu-latest
           prefixes: ''
           extra_flags: >
@@ -74,7 +72,6 @@ jobs:
             -G Ninja
 
         - name: Android64
-          target_platform: Android64
           os: ubuntu-latest
           prefixes: ''
           extra_flags: >
@@ -86,7 +83,6 @@ jobs:
         # - name: macOS
         #   os_identifier: mac
         #   os: macos-latest
-        #   prefixes: PATH="/usr/local/opt/ccache/libexec:$PATH"
         #   extra_flags: >
         #     -DCMAKE_C_COMPILER=clang
         #     -DCMAKE_CXX_COMPILER=clang++
@@ -138,15 +134,18 @@ jobs:
         sudo apt install ninja-build
       if: matrix.config.os == 'ubuntu-latest'
 
+    - name: Set GEODE_SDK
+      shell: bash
+      run: echo "GEODE_SDK=${{ github.workspace }}/geode" >> $GITHUB_ENV
+
     - name: Configure CMake
+      shell: bash
       run: >
-        ${{ matrix.config.prefixes }} cmake -B build -S test/members
-        -D GEODE_LOADER_PATH=${{ github.workspace }}/geode/loader
-        -D GEODE_BINDINGS_REPO_PATH=${{ github.workspace }}
-        -D GEODE_TARGET_PLATFORM=${{ matrix.config.target_platform }}
-        -D GEODE_CODEGEN_BINARY_OUT=${{ github.workspace }}/build/codegen
+        cmake -B build -S test/members
         -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
         ${{ matrix.config.extra_flags }}  
+      # SKIP_BUILDING_CODEGEN will skip building codegen if finds a cached binary,
+      # locally you dont need to set it
 
     - name: Build member test
       run: |
