@@ -3246,7 +3246,7 @@ class KeybindingsLayer : FLAlertLayer {
 	TodoReturn layerKey(int);
 	TodoReturn objectKey(int);
 
-	virtual bool init();
+	virtual bool init() = win 0x227270;
 	virtual void keyBackClicked();
 }
 
