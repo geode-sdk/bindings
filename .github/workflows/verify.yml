@@ -139,9 +139,10 @@ jobs:
       run: >
         GEODE_SDK=${{ github.workspace }}/geode
         cmake -B build -S test/members
-        # will skip building codegen if finds a cached binary, locally you dont need to set this
         -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
         ${{ matrix.config.extra_flags }}  
+      # SKIP_BUILDING_CODEGEN will skip building codegen if finds a cached binary,
+      # locally you dont need to set it
 
     - name: Build member test
       run: |
