@@ -11,10 +11,10 @@ jobs:
 
     - name: Restore cache
       id: codegen-cache
-      uses: actions/cache/restore@v3
+      uses: actions/cache@v3
       with:
         path: bin
-        key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}
+        key: codegen-${{ hashFiles('codegen/**') }}
 
     - name: Build Codegen binary
       if: steps.codegen-cache.outputs.cache-hit != 'true'
@@ -22,13 +22,6 @@ jobs:
         cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=./bin -B build
         cmake --build build --config RelWithDebInfo
         cmake --install build
-
-    - name: Upload binary to cache
-      if: steps.codegen-cache.outputs.cache-hit != 'true'
-      uses: actions/cache/save@v3
-      with:
-        path: bin
-        key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}
       
     - name: Upload Codegen binary
       uses: actions/upload-artifact@v3
@@ -87,7 +80,7 @@ jobs:
       with:
         path: build/codegen
         # cache by os since for android32 and 64 the codegen binary is the same
-        key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}-${{ matrix.config.os }}
+        key: codegen-${{ hashFiles('codegen/**') }}-${{ matrix.config.os }}
 
     - name: Set CPM_SOURCE_CACHE
       shell: bash
@@ -95,7 +88,7 @@ jobs:
     
     - name: Set up CPM cache
       id: cache-cpm
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/cpm-cache
         key: cpm-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
