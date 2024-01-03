@@ -19,5 +19,3 @@ if (NOT DEFINED GEODE_TARGET_PLATFORM)
 		message(FATAL_ERROR "Unable to detect platform, please set GEODE_TARGET_PLATFORM in the root CMake file.")
 	endif()
 endif()
-
-set(GEODE_TARGET_PLATFORM GEODE_TARGET_PLATFORM PARENT_SCOPE)
