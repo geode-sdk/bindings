@@ -103,10 +103,7 @@ jobs:
         -D GEODE_TARGET_PLATFORM=${{ matrix.config.target_platform }}
         -D GEODE_CODEGEN_BINARY_OUT=${{ github.workspace }}/build/codegen
         -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
-        ${{ matrix.config.extra_flags }} 
-        -D GEODE_DISABLE_CLI_CALLS=ON 
-      # -D CMAKE_C_COMPILER_LAUNCHER=ccache
-      # -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
+        ${{ matrix.config.extra_flags }}  
 
     - name: Build member test
       run: |
