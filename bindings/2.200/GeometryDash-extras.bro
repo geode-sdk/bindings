@@ -4185,16 +4185,16 @@ class GJCommentListLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class GJDifficultySprite : cocos2d::CCSprite {
-	static GJDifficultySprite* create(int, GJDifficultyName);
+	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x211eb0;
 
-	bool init(int, GJDifficultyName);
+	bool init(int, GJDifficultyName) = win 0x11f80;
 	~GJDifficultySprite();
 
-	TodoReturn getDifficultyFrame(int, GJDifficultyName);
+	TodoReturn getDifficultyFrame(int, GJDifficultyName) = win 0x212010;
 
-	TodoReturn updateFeatureState(GJFeatureState);
-	TodoReturn updateDifficultyFrame(int, GJDifficultyName);
-	TodoReturn updateFeatureStateFromLevel(GJGameLevel*);
+	TodoReturn updateFeatureState(GJFeatureState) win 0x2122c0;
+	TodoReturn updateDifficultyFrame(int, GJDifficultyName) win 0x212100;
+	TodoReturn updateFeatureStateFromLevel(GJGameLevel*) win Ox212240;
 }
 
 [[link(android)]]
