@@ -9,6 +9,8 @@ CPMAddPackage("gh:gulrak/filesystem#3e5b930")
 add_library(${PROJECT_NAME} SHARED Windows.cpp)
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
+cmake_path(SET GEODE_LOADER_PATH ${GEODE_LOADER_PATH})
+cmake_path(SET GEODE_BINDINGS_REPO_PATH ${GEODE_BINDINGS_REPO_PATH})
 set(GEODE_CODEGEN_PATH ${CMAKE_CURRENT_BINARY_DIR}/codegenned)
 set(GEODE_GD_VERSION 2.200)
 
