@@ -2102,7 +2102,7 @@ class cocos2d::CCLayerMultiplex {
 	static cocos2d::CCLayerMultiplex* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCLayerMultiplex* createWithLayer(cocos2d::CCLayer*);
 
-	bool initWithArray(cocos2d::CCArray*) = max 0x754850;
+	bool initWithArray(cocos2d::CCArray*) = mac 0x754850;
 	// bool initWithLayers(cocos2d::CCLayer*, char*);
 
 	// CCLayerMultiplex(cocos2d::CCLayerMultiplex const&);
