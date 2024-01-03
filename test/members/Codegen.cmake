@@ -37,6 +37,11 @@ file(GLOB CODEGEN_OUTPUTS CONFIGURE_DEPENDS
 	${GEODE_CODEGEN_PATH}/Geode/binding/*.hpp
 )
 
+else()
+
+# does nothing
+add_custom_target(CodegenProject)
+
 endif()
 
 add_custom_command(
