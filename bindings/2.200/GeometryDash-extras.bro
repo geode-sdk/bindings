@@ -3246,7 +3246,7 @@ class KeybindingsLayer : FLAlertLayer {
 	TodoReturn layerKey(int);
 	TodoReturn objectKey(int);
 
-	virtual bool init();
+	virtual bool init() = win 0x227270;
 	virtual void keyBackClicked();
 }
 
@@ -4643,9 +4643,9 @@ class EnterEffectInstance {
 
 [[link(android)]]
 class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, FriendRequestDelegate {
-	static FRequestProfilePage* create(bool);
+	static FRequestProfilePage* create(bool) = win 0xEE230;
 
-	bool init(bool);
+	bool init(bool) = win 0xEE2E0;
 	~FRequestProfilePage();
 
 	void onNextPage(cocos2d::CCObject* sender);
@@ -4841,9 +4841,9 @@ class MessageListDelegate {
 
 [[link(android)]]
 class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, MessageListDelegate {
-	static MessagesProfilePage* create(bool);
+	static MessagesProfilePage* create(bool) = win 0x2783B0;
 
-	bool init(bool);
+	bool init(bool) = win 0x278460;
 	~MessagesProfilePage();
 
 	void onNextPage(cocos2d::CCObject* sender);
@@ -5846,9 +5846,9 @@ class GJAccountLoginDelegate {
 
 [[link(android)]]
 class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
-	static GJAccountSettingsLayer* create(int);
+	static GJAccountSettingsLayer* create(int) = win 0x2039D0;
 
-	bool init(int);
+	bool init(int) = win 0x203A70;
 	~GJAccountSettingsLayer();
 
 	void onCommentSetting(cocos2d::CCObject* sender);
