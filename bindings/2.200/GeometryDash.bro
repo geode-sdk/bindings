@@ -1037,7 +1037,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn asyncGLoaded(int);
 	void createPlayer() = win 0x18fed0;
 	// TodoReturn flipFinished();
-	// TodoReturn handleButton(bool, int, bool) = win 0x1b2880;
+	void handleButton(bool push, int button, bool player1) = win 0x1b2880;
 	// TodoReturn processItems() = win 0x1992d0;
 	// TodoReturn recordAction(int, bool, bool);
 	// TodoReturn restoreRemap(EffectGameObject*, gd::unordered_map<int, int>&);
@@ -1387,11 +1387,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
 	PAD = win 0x134, android32 0x134;
-	cocos2d::CCLayer* m_objectLayer;
-	PAD = win 0x20C0, android32 0x20C4;
+	cocos2d::CCLayer* m_objectLayer; 
+	PAD = win 0x20c0, android32 0x20c4;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = win 0x2E8, android32 0x2B0;
+	PAD = win 0xd2, android32 0xba;
+	gd::vector<PlayerButtonCommand*> m_queuedButtons; 
+	PAD = win 0x20b, android32 0x1ea;
 }
 
 [[link(android)]]
