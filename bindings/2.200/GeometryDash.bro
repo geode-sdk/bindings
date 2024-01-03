@@ -1389,7 +1389,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0x134, android32 0x134;
 	cocos2d::CCLayer* m_objectLayer;
 	PAD = win 0x2194, android32 0x2194;
-	std::vector<PlayerButtonCommand*> m_queuedButtons;
+	gd::vector<PlayerButtonCommand*> m_queuedButtons;
 
 	PAD = win 0x209, android32 0x1d4;
 }
