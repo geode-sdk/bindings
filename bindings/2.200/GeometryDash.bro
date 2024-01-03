@@ -2202,20 +2202,31 @@ class GJListLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class LoadingCircle : cocos2d::CCLayerColor {
-	static LoadingCircle* create() = win 0x48140;
+    static LoadingCircle* create() = win 0x48140;
 
-	~LoadingCircle();
+    ~LoadingCircle();
 
-	TodoReturn fadeAndRemove() = win 0x483E0;
-	TodoReturn show() = win 0x48300;
+    TodoReturn fadeAndRemove() = win 0x483E0;
+    TodoReturn show() = win 0x48300;
 
-	virtual bool init() = win 0x48240;
-	virtual void draw();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void registerWithTouchDispatcher();
+    void setParentLayer(cocos2d::CCLayer* layer) {
+        m_parentLayer = layer;
+    }
+    void setFade(bool fade) {
+        m_fade = fade;
+    }
+
+    virtual bool init() = win 0x48240;
+    virtual void draw();
+    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    virtual void registerWithTouchDispatcher();
+
+    cocos2d::CCSprite* m_sprite;
+    cocos2d::CCLayer* m_parentLayer;
+    bool m_fade;
 }
 
 [[link(android)]]
@@ -2829,7 +2840,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 
 	void confirmClone(cocos2d::CCObject*) = win 0x2518D0;
 	TodoReturn confirmDelete(cocos2d::CCObject*);
-	TodoReturn downloadLevel();
+	void downloadLevel() = win 0x1b950;
 	TodoReturn loadLevelStep();
 	void tryCloneLevel(cocos2d::CCObject*) = win 0x2516f0;
 	TodoReturn incrementLikes();
@@ -5611,14 +5622,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	// TodoReturn getXMin(int) = win 0xd7470;
 	// TodoReturn getButton(char const*, int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
 
-	// void onPlayback(cocos2d::CCObject* sender);
+	void onPlayback(cocos2d::CCObject* sender) = win 0xc9130;
 	void onPlaytest(cocos2d::CCObject* sender) = mac 0x10160, win 0xc9480;
-	// void onSettings(cocos2d::CCObject* sender);
-	// void onCopyState(cocos2d::CCObject* sender);
+	void onSettings(cocos2d::CCObject* sender) = win 0xa5570;
+	void onCopyState(cocos2d::CCObject* sender) = win 0xcb0c0;
 	void onDeleteAll(cocos2d::CCObject* sender);
 	void onDuplicate(cocos2d::CCObject* sender);
-	// void onEditColor(cocos2d::CCObject* sender);
-	// void onGoToLayer(cocos2d::CCObject* sender);
+	void onEditColor(cocos2d::CCObject* sender) = win 0xd3370;
+	void onGoToLayer(cocos2d::CCObject* sender) = win 0xcb200;
 	// void onGroupDown(cocos2d::CCObject* sender);
 	// void onLockLayer(cocos2d::CCObject* sender);
 	// void onDeleteInfo(cocos2d::CCObject* sender);
@@ -5632,7 +5643,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	// void onCreateButton(cocos2d::CCObject* sender);
 	// TodoReturn onCreateObject(int);
 	void onPasteInPlace(cocos2d::CCObject* sender);
-	// void onStopPlaytest(cocos2d::CCObject* sender);
+	void onStopPlaytest(cocos2d::CCObject* sender) = win 0xc95f0;
 	// void onGoToBaseLayer(cocos2d::CCObject* sender);
 	// void onGroupIDFilter(cocos2d::CCObject* sender);
 	void onNewCustomItem(cocos2d::CCObject* sender) = win 0xa7650;
@@ -5649,7 +5660,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	// TodoReturn onToggleSelectedOrder(EffectGameObject*);
 	void onCopy(cocos2d::CCObject* sender);
 	void onPaste(cocos2d::CCObject* sender);
-	void onPause(cocos2d::CCObject* sender);
+	void onPause(cocos2d::CCObject* sender) = win 0xa55c0;
 	bool onCreate();
 	void onDelete(cocos2d::CCObject* sender);
 	// void onGroupUp(cocos2d::CCObject* sender);

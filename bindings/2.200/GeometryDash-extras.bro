@@ -905,7 +905,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn selectAThread();
 	TodoReturn playCoinEffect();
 	TodoReturn showSecretLevel();
-	TodoReturn updateSearchLabel(char const*);
+	void updateSearchLabel(char const*) = win 0x301260;
 	TodoReturn showCompletedLevel();
 	TodoReturn updateMessageLabel(gd::string);
 	TodoReturn scene();
@@ -4156,7 +4156,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
 class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, UserListDelegate {
 	static FriendsProfilePage* create(UserListType);
 
-	bool init(UserListType);
+	bool init(UserListType) = win 0xefda0;
 	~FriendsProfilePage();
 
 	void onClose(cocos2d::CCObject* sender);
