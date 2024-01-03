@@ -294,18 +294,18 @@ class cocos2d::CCObject {
 	static cocos2d::CCObject* createWithCoder(DS_Dictionary*);
 
 	// CCObject(cocos2d::CCObject const&);
-	CCObject();
+	CCObject() = mac 0x467020;
     ~CCObject();
 
 	cocos2d::CCObjectType getObjType() const;
 
 	void setObjType(cocos2d::CCObjectType);
 
-	cocos2d::CCObject* autorelease();
+	cocos2d::CCObject* autorelease() = mac 0x467260;
 	cocos2d::CCObject* copy();
 	bool isSingleReference() const;
-	void release();
-	void retain();
+	void release() = mac 0x467230;
+	void retain() = mac 0x467250;
 	unsigned int retainCount() const;
 
 	virtual int getTag() const;
@@ -424,7 +424,7 @@ class cocos2d::CCTouchDispatcher {
 	bool isDispatchEvents();
 	bool isUsingForcePrio();
 	void rearrangeHandlers(cocos2d::CCArray*);
-	void registerForcePrio(cocos2d::CCObject*, int);
+	void registerForcePrio(cocos2d::CCObject*, int) = mac 0x4a6da0;
 	void removeAllDelegates();
 	void removeDelegate(cocos2d::CCTouchDelegate*);
 	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
@@ -491,7 +491,7 @@ class cocos2d::CCKeyboardDispatcher {
 
 [[link(win, android)]]
 class cocos2d::CCDirector {
-	static cocos2d::CCDirector* sharedDirector();
+	static cocos2d::CCDirector* sharedDirector() = mac 0x45eba0;
 
 	float getActualDeltaTime() const;
 	double getAnimationInterval();
@@ -507,14 +507,14 @@ class cocos2d::CCDirector {
 	cocos2d::ccDirectorProjection getProjection();
 	cocos2d::CCScene* getRunningScene();
 	cocos2d::CCScene* getSceneReference() const;
-	float getScreenBottom();
-	float getScreenLeft();
-	float getScreenRight();
+	float getScreenBottom() = mac 0x4614a0;
+	float getScreenLeft() = mac 0x4614b0;
+	float getScreenRight() = mac 0x4614c0;
 	float getScreenScaleFactor();
 	float getScreenScaleFactorH();
 	float getScreenScaleFactorMax();
 	float getScreenScaleFactorW();
-	float getScreenTop();
+	float getScreenTop() = mac 0x461490;
 	float getSecondsPerFrame();
 	bool getSmoothFix() const;
 	bool getSmoothFixCheck() const;
@@ -522,7 +522,7 @@ class cocos2d::CCDirector {
 	unsigned int getTotalFrames();
 	cocos2d::CCPoint getVisibleOrigin();
 	cocos2d::CCSize getVisibleSize();
-	cocos2d::CCSize getWinSize();
+	cocos2d::CCSize getWinSize() = mac 0x45ff90;
 	cocos2d::CCSize getWinSizeInPixels();
 	float getZEye();
 
@@ -612,7 +612,7 @@ class cocos2d::CCNodeRGBA {
 	static cocos2d::CCNodeRGBA* create();
 
 	// CCNodeRGBA(cocos2d::CCNodeRGBA const&);
-	CCNodeRGBA();
+	CCNodeRGBA() = mac 0x57c20;
 	~CCNodeRGBA();
 
 	virtual bool init();
@@ -640,7 +640,7 @@ class cocos2d::CCSprite {
 	static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&);
 	static cocos2d::CCSprite* create();
 	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	static cocos2d::CCSprite* createWithSpriteFrameName(char const*);
+	static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = mac 0x2666d0;
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*);
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
 
@@ -661,7 +661,7 @@ class cocos2d::CCSprite {
 	void setBlVertexMod(float);
 	void setBrVertexMod(float);
 	void setDontDraw(bool);
-	void setFlipX(bool);
+	void setFlipX(bool) = mac 0x2683b0;
 	void setFlipY(bool);
 	void setTextureAtlas(cocos2d::CCTextureAtlas*);
 	void setTlVertexMod(float);

@@ -88,7 +88,7 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
 	void onViewFriendRequest(cocos2d::CCObject* sender);
 	void onCancelFriendRequest(cocos2d::CCObject* sender);
 
-	void loadFromScore(GJUserScore*) = win 0x87F80;
+	void loadFromScore(GJUserScore*) = win 0x87F80, mac 0x22a2e0;
 	void updateBGColor(int) = win 0x807B0;
 	GJUserCell(char const*, float, float);
 
@@ -995,27 +995,27 @@ class SimpleObject : cocos2d::CCObject {
 
 [[link(android)]]
 class SimplePlayer : cocos2d::CCSprite {
-	static SimplePlayer* create(int) = win 0x1ef610;
+	static SimplePlayer* create(int) = win 0x1ef610, mac = 0x349730;
 
-	bool init(int) = win 0x1ef6b0;
+	bool init(int) = win 0x1ef6b0, mac 0x34e0e0;
 	~SimplePlayer();
 
 	/* unverified signature */
 	inline void setSecondColor(cocos2d::_ccColor3B const& color) {
 		m_secondLayer->setColor(color);
 		updateColors();
-	}
+	} // mac = 0x34e9e0
 
 	/* unverified signature */
 	void setColors(cocos2d::_ccColor3B const&, cocos2d::_ccColor3B const&);
 	/* unverified signature */
 	void setFrames(char const*, char const*, char const*, char const*, char const*) = win 0x1f0540;
 
-	TodoReturn updateColors() = win 0x1efe50;
+	TodoReturn updateColors() = win 0x1efe50, mac 0x34cf50;
 	TodoReturn asyncLoadIcon(int, IconType);
 	TodoReturn hideSecondary();
 	TodoReturn createRobotSprite(int) = win 0x1efd50;
-	TodoReturn updatePlayerFrame(int, IconType) = win 0x1f0140;
+	TodoReturn updatePlayerFrame(int, IconType) = win 0x1f0140, mac 0x34cf50;
 	TodoReturn createSpiderSprite(int) = win 0x1efda0;
 	TodoReturn iconFinishedLoading(int, IconType);
 	void enableCustomGlowColor(cocos2d::_ccColor3B const& color) {
@@ -1131,9 +1131,9 @@ class BonusDropdown : cocos2d::CCNode {
 
 [[link(android)]]
 class BoomListLayer : cocos2d::CCLayerColor {
-	static BoomListLayer* create(BoomListView*, char const*);
+	static BoomListLayer* create(BoomListView*, char const*) = mac 0x44be30;
 
-	bool init(BoomListView*, char const*);
+	bool init(BoomListView*, char const*) = mac 0x44bf20;
 	~BoomListLayer();
 }
 
@@ -1330,11 +1330,11 @@ class GJRobotSprite : CCAnimatedSprite {
 
 	TodoReturn updateFrame(int) = win 0x213370;
 	TodoReturn updateColors() = win 0x212e30;
-	TodoReturn updateColor01(cocos2d::_ccColor3B);
-	TodoReturn updateColor02(cocos2d::_ccColor3B);
-	TodoReturn updateGlowColor(cocos2d::_ccColor3B, bool) = win 0x212dd0;
-	TodoReturn hideGlow();
-	TodoReturn showGlow();
+	TodoReturn updateColor01(cocos2d::_ccColor3B) = mac 0x5a1bb0;
+	TodoReturn updateColor02(cocos2d::_ccColor3B) = mac 0x5a1ef0;
+	TodoReturn updateGlowColor(cocos2d::_ccColor3B, bool) = win 0x212dd0, mac = 0x5a1f10;
+	TodoReturn hideGlow() = mac 0x5a1b90;
+	TodoReturn showGlow() = mac 0x5a1b70;
 
 	virtual void setOpacity(unsigned char);
 	virtual TodoReturn hideSecondary();
@@ -2645,7 +2645,7 @@ class GJSmartTemplate : cocos2d::CCObject {
 
 [[link(android)]]
 class InfoAlertButton : CCMenuItemSpriteExtra {
-	static InfoAlertButton* create(gd::string, gd::string, float) = win 0x2233A0;
+	static InfoAlertButton* create(gd::string, gd::string, float) = win 0x2233A0, mac 0x540d10;
 
 	bool init(gd::string, gd::string, float) = win 0x2234C0;
 	~InfoAlertButton();
@@ -4645,7 +4645,7 @@ class EnterEffectInstance {
 class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, FriendRequestDelegate {
 	static FRequestProfilePage* create(bool);
 
-	bool init(bool);
+	bool init(bool) = mac 0x751780;
 	~FRequestProfilePage();
 
 	void onNextPage(cocos2d::CCObject* sender);
@@ -4662,7 +4662,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	TodoReturn updatePageArrows();
 	TodoReturn updateLevelsLabel();
 	TodoReturn setupCommentsBrowser(cocos2d::CCArray*);
-	TodoReturn loadPage(int);
+	TodoReturn loadPage(int) = mac 0x7527d0;
 	/* unverified signature */
 	bool isCorrect(char const*);
 
@@ -5178,7 +5178,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
 class GJRotateCommandLayer : SetupTriggerPopup {
 	static GJRotateCommandLayer* create(EffectGameObject*, cocos2d::CCArray*);
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = mac 0x5300;
 	~GJRotateCommandLayer();
 
 	void onEasingRate(cocos2d::CCObject* sender);
@@ -5192,18 +5192,18 @@ class GJRotateCommandLayer : SetupTriggerPopup {
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	TodoReturn updateDuration();
 	TodoReturn updateDurLabel(bool);
-	TodoReturn updateTimesLabel();
-	TodoReturn updateEasingLabel();
+	TodoReturn updateTimesLabel() = mac 0x7980;
+	TodoReturn updateEasingLabel() = mac 0x7a90;
 	TodoReturn sliderTimesChanged(cocos2d::CCObject*);
 	TodoReturn updateCommandTimes();
-	TodoReturn updateDegreesLabel();
+	TodoReturn updateDegreesLabel() = mac 0x7890;
 	TodoReturn updateTargetGroupID();
 	TodoReturn sliderDegreesChanged(cocos2d::CCObject*);
 	TodoReturn updateCommandDegrees();
 	TodoReturn updateTargetGroupID2();
-	TodoReturn updateTextInputLabel();
+	TodoReturn updateTextInputLabel() = mac 0x7670;
 	TodoReturn updateEasingRateLabel();
-	TodoReturn updateTextInputLabel2();
+	TodoReturn updateTextInputLabel2() = mac 0x7780;
 	TodoReturn updateMoveCommandEasing();
 	TodoReturn toggleEasingRateVisibility();
 	TodoReturn updateMoveCommandEasingRate();

@@ -826,7 +826,7 @@ class cocos2d::CCDictElement {
 
 [[link(win, android)]]
 class cocos2d::CCDictionary {
-	static cocos2d::CCDictionary* create();
+	static cocos2d::CCDictionary* create() = mac 0x2ed090;
 	static cocos2d::CCDictionary* createWithContentsOfFile(char const*);
 	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*);
 	static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
@@ -1889,7 +1889,7 @@ class cocos2d::CCLabelBMFont {
 	// CCLabelBMFont();
 	void createFontChars();
 	int kerningAmountForFirst(unsigned short, unsigned short);
-	void limitLabelWidth(float, float, float);
+	void limitLabelWidth(float, float, float) = mac 0x5a09b0;
 
 	virtual bool init();
 	virtual void setScaleX(float);
@@ -2098,11 +2098,11 @@ class cocos2d::CCLayerGradient {
 [[link(win, android)]]
 class cocos2d::CCLayerMultiplex {
 	// static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...);
-	static cocos2d::CCLayerMultiplex* create();
+	static cocos2d::CCLayerMultiplex* create() = mac 0x754580;
 	static cocos2d::CCLayerMultiplex* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCLayerMultiplex* createWithLayer(cocos2d::CCLayer*);
 
-	bool initWithArray(cocos2d::CCArray*);
+	bool initWithArray(cocos2d::CCArray*) = max 0x754850;
 	// bool initWithLayers(cocos2d::CCLayer*, char*);
 
 	// CCLayerMultiplex(cocos2d::CCLayerMultiplex const&);
@@ -2179,12 +2179,13 @@ class cocos2d::CCLiquid {
 [[link(win, android)]]
 class cocos2d::CCMenu {
 	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
-	static cocos2d::CCMenu* create();
+	// untested on mac
+	static cocos2d::CCMenu* create() = 0x754580;
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
 	// static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
 
-	bool initWithArray(cocos2d::CCArray*);
+	bool initWithArray(cocos2d::CCArray*) = 0x754850;
 
 	void setHandlerPriority(int);
 
@@ -2203,7 +2204,7 @@ class cocos2d::CCMenu {
 	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*);
 	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
 
-	virtual bool init();
+	virtual bool init() = mac 0x7549e0;
 	virtual void addChild(cocos2d::CCNode*);
 	virtual void addChild(cocos2d::CCNode*, int);
 	virtual void addChild(cocos2d::CCNode*, int, int);
@@ -2493,7 +2494,7 @@ class cocos2d::CCNode {
 	// CCNode();
 	cocos2d::CCRect boundingBox();
 	void childrenAlloc();
-	cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&);
+	cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = mac 0x252c70;
 	cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const&);
 	cocos2d::CCPoint convertToWindowSpace(cocos2d::CCPoint const&);
 	cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&);
@@ -3191,14 +3192,14 @@ class cocos2d::CCPointArray {
 [[link(win, android)]]
 class cocos2d::CCPoolManager {
 	// CCPoolManager();
-	void addObject(cocos2d::CCObject*);
+	void addObject(cocos2d::CCObject*) = 0x3d83d0;
 	void finalize();
 	cocos2d::CCAutoreleasePool* getCurReleasePool();
 	void pop();
 	static void purgePoolManager();
 	void push();
 	void removeObject(cocos2d::CCObject*);
-	static cocos2d::CCPoolManager* sharedPoolManager();
+	static cocos2d::CCPoolManager* sharedPoolManager() = mac 0x3d7f30;
 }
 
 [[link(win, android)]]
@@ -3618,7 +3619,7 @@ class cocos2d::CCScriptEngineManager {
 	static void purgeSharedManager();
 	void removeScriptEngine();
 	void setScriptEngine(cocos2d::CCScriptEngineProtocol*);
-	static cocos2d::CCScriptEngineManager* sharedManager();
+	static cocos2d::CCScriptEngineManager* sharedManager() = mac 0x2f7eb0;
 }
 
 [[link(win, android)]]
@@ -4022,12 +4023,12 @@ class cocos2d::CCString {
 	// static cocos2d::CCString* create(gd::string const&);
 	static cocos2d::CCString* createWithContentsOfFile(char const*);
 	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long);
-	// static cocos2d::CCString* createWithFormat(char const*, ...);
+	// static cocos2d::CCString* createWithFormat(char const*, ...) = mac 0x76cd60;
 
 	// bool initWithFormat(char const*, ...);
 	// bool initWithFormatAndValist(char const*, char*);
 
-	char const* getCString() const;
+	char const* getCString() const = mac 0x76c510;
 
 	// CCString(cocos2d::CCString const&);
 	// CCString(gd::string const&);
@@ -4328,7 +4329,7 @@ class cocos2d::CCTexture2D {
 
 	void setAliasTexParameters();
 	void setAntiAliasTexParameters();
-	void setTexParameters(cocos2d::_ccTexParams*);
+	void setTexParameters(cocos2d::_ccTexParams*) = mac 0x457060;
 
 	// CCTexture2D(cocos2d::CCTexture2D const&);
 	// CCTexture2D();
