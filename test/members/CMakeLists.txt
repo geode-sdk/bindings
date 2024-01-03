@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.21)
 project(TestMembers VERSION 1.0.0)
 
 include(../../cmake/CPM.cmake)
-CPMAddPackage("gh:geode-sdk/json#a47f570")
+CPMAddPackage("gh:geode-sdk/json#9f54cca")
 CPMAddPackage("gh:gulrak/filesystem#3e5b930")
 
 add_library(${PROJECT_NAME} SHARED)
