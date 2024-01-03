@@ -136,9 +136,7 @@ jobs:
 
     - name: Set GEODE_SDK
       shell: bash
-      run: |
-        GEODE_SDK=${{ github.workspace }}/geode
-        echo "GEODE_SDK=$GEODE_SDK" >> $GITHUB_ENV
+      run: echo "GEODE_SDK=${{ github.workspace }}/geode" >> $GITHUB_ENV
 
     - name: Configure CMake
       shell: bash
