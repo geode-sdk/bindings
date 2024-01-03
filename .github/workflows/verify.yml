@@ -84,20 +84,16 @@ jobs:
 
     - name: Set CPM_SOURCE_CACHE
       shell: bash
-      run: echo "CPM_SOURCE_CACHE=$HOME/cpm-cache" >> $GITHUB_ENV
+      run: echo "CPM_SOURCE_CACHE=${{ github.workspace }}/cpm-cache" >> $GITHUB_ENV
     
     - name: Set up CPM cache
       id: cache-cpm
       uses: actions/cache@v2
       with:
-        path: ~/cpm-cache
-        key: cpm-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
+        path: ${{ github.workspace }}/cpm-cache
+        key: cpm2-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
         restore-keys: |
-          cpm-
-
-    # - uses: ilammy/msvc-dev-cmd@v1
-    #   with:
-    #     arch: x86
+          cpm2-
 
     - name: Configure CMake
       run: >
