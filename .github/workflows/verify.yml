@@ -49,5 +49,10 @@ jobs:
       with:
         name: Codegen
 
+    - name: Include extras files
+      run: |
+        echo "#include <GeometryDash-extras.bro>" >> bindings/2.200/Entry.bro
+        echo "#include <Cocos2d-extras.bro>" >> bindings/2.200/Entry.bro
+
     - name: Verify
       run: 'chmod +x ./Codegen && ./Codegen Win32 bindings/2.200 out'
