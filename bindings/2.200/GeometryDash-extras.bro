@@ -3624,11 +3624,6 @@ class ExplodeItemSprite : cocos2d::CCSprite {
 }
 
 [[link(android)]]
-class GJAccountDelegate {
-	virtual TodoReturn accountStatusChanged();
-}
-
-[[link(android)]]
 class GJColorSetupLayer : FLAlertLayer, ColorSelectDelegate, FLAlertLayerProtocol {
 	static GJColorSetupLayer* create(LevelSettingsObject*);
 
@@ -5543,12 +5538,6 @@ class GameObjectEditorState {
 }
 
 [[link(android)]]
-class GJAccountSyncDelegate {
-	virtual TodoReturn syncAccountFinished();
-	virtual TodoReturn syncAccountFailed(BackupAccountError, int);
-}
-
-[[link(android)]]
 class GJLocalLevelScoreCell : TableViewCell {
 	~GJLocalLevelScoreCell();
 
@@ -5839,12 +5828,6 @@ class DemonFilterSelectLayer : FLAlertLayer {
 }
 
 [[link(android)]]
-class GJAccountLoginDelegate {
-	virtual TodoReturn loginAccountFinished(int, int);
-	virtual TodoReturn loginAccountFailed(AccountError);
-}
-
-[[link(android)]]
 class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 	static GJAccountSettingsLayer* create(int) = win 0x2039D0;
 
@@ -6110,12 +6093,6 @@ class SpriteAnimationManager : cocos2d::CCNode {
 class DownloadMessageDelegate {
 	virtual TodoReturn downloadMessageFinished(GJUserMessage*);
 	virtual TodoReturn downloadMessageFailed(int);
-}
-
-[[link(android)]]
-class GJAccountBackupDelegate {
-	virtual TodoReturn backupAccountFinished();
-	virtual TodoReturn backupAccountFailed(BackupAccountError, int);
 }
 
 [[link(android)]]
@@ -6435,20 +6412,6 @@ class SetupRotateGameplayPopup : SetupTriggerPopup {
 
 	virtual TodoReturn valueDidChange(int, float);
 }
-
-[[link(android)]]
-class GJAccountRegisterDelegate {
-	virtual TodoReturn registerAccountFinished();
-	virtual TodoReturn registerAccountFailed(AccountError);
-}
-
-[[link(android)]]
-class GJAccountSettingsDelegate {
-	virtual TodoReturn updateSettingsFinished();
-	virtual TodoReturn updateSettingsFailed();
-}
-
-
 
 [[link(android)]]
 class GJSmartBlockPreviewSprite : cocos2d::CCNode {

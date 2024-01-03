@@ -7018,11 +7018,21 @@ class GJAccountManager : cocos2d::CCNode {
 
 	virtual bool init();
 
-	PAD = win 0x4, android32 0x4;
+	cocos2d::CCDictionary* m_activeDownloads;
 	gd::string m_username;
 	int m_accountID;
-	PAD = win 0x8, android32 0x8;
-	gd::string m_gjp2;
+	int m_unkInt1;
+	int m_unkInt2;
+	gd::string m_GJP2;
+	GJAccountRegisterDelegate* m_accountRegisterDelegate;
+	GJAccountLoginDelegate* m_accountLoginDelegate;
+	GJAccountDelegate* m_accountDelegate;
+	GJAccountBackupDelegate* m_backupDelegate;
+	GJAccountSyncDelegate* m_syncDelegate;
+	GJAccountSettingsDelegate* m_accountSettingsDelegate;
+	int m_gameManagerSize;
+	int m_localLevelsSize;
+	gd::string m_password;
 }
 
 [[link(android)]]
@@ -7680,4 +7690,39 @@ class GJEffectManager : cocos2d::CCNode {
 	// TodoReturn reset();
 
 	virtual bool init() = win 0x1d6f50;
+}
+
+[[link(android)]]
+class GJAccountDelegate {
+	virtual TodoReturn accountStatusChanged();
+}
+
+[[link(android)]]
+class GJAccountSyncDelegate {
+	virtual TodoReturn syncAccountFinished();
+	virtual TodoReturn syncAccountFailed(BackupAccountError, int);
+}
+
+[[link(android)]]
+class GJAccountLoginDelegate {
+	virtual TodoReturn loginAccountFinished(int, int);
+	virtual TodoReturn loginAccountFailed(AccountError);
+}
+
+[[link(android)]]
+class GJAccountBackupDelegate {
+	virtual TodoReturn backupAccountFinished();
+	virtual TodoReturn backupAccountFailed(BackupAccountError, int);
+}
+
+[[link(android)]]
+class GJAccountRegisterDelegate {
+	virtual TodoReturn registerAccountFinished();
+	virtual TodoReturn registerAccountFailed(AccountError);
+}
+
+[[link(android)]]
+class GJAccountSettingsDelegate {
+	virtual TodoReturn updateSettingsFinished();
+	virtual TodoReturn updateSettingsFailed();
 }
