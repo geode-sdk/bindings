@@ -81,12 +81,26 @@ jobs:
         repository: geode-sdk/geode
         path: geode
     
-    - name: Restore cache
+    - name: Set up codegen binary cache
       id: codegen-cache
-      uses: actions/cache/restore@v3
+      uses: actions/cache@v3
       with:
         path: build/codegen
+        # cache by os since for android32 and 64 the codegen binary is the same
         key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}-${{ matrix.config.os }}
+
+    - name: Set CPM_SOURCE_CACHE
+      shell: bash
+      run: echo "CPM_SOURCE_CACHE=$HOME/cpm-cache" >> $GITHUB_ENV
+    
+    - name: Set up CPM cache
+      id: cache-cpm
+      uses: actions/cache@v2
+      with:
+        path: ~/cpm-cache
+        key: cpm-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
+        restore-keys: |
+          cpm-
 
     - uses: ilammy/msvc-dev-cmd@v1
       with:
@@ -108,10 +122,3 @@ jobs:
     - name: Build member test
       run: |
         cmake --build build --config RelWithDebInfo --parallel --target TestMembers
-
-    - name: Upload binary to cache
-      if: steps.codegen-cache.outputs.cache-hit != 'true'
-      uses: actions/cache/save@v3
-      with:
-        path: build/codegen
-        key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}-${{ matrix.config.os }}
