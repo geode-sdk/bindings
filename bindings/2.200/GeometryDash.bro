@@ -1392,7 +1392,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
 	PAD = win 0xd2, android32 0xba;
-	gd::vector<PlayerButtonCommand*> m_queuedButtons; 
+	gd::vector<PlayerButtonCommand> m_queuedButtons; 
 	PAD = win 0x20b, android32 0x1ea;
 }
 
