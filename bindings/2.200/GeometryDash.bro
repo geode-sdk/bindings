@@ -5461,8 +5461,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onPlaytest(cocos2d::CCObject* sender) = mac 0x10160, win 0xc9480;
 	void onSettings(cocos2d::CCObject* sender) = win 0xa5570;
 	void onCopyState(cocos2d::CCObject* sender) = win 0xcb0c0;
-	// void onDeleteAll(cocos2d::CCObject* sender);
-	// void onDuplicate(cocos2d::CCObject* sender);
+	void onDeleteAll(cocos2d::CCObject* sender);
+	void onDuplicate(cocos2d::CCObject* sender);
 	void onEditColor(cocos2d::CCObject* sender) = win 0xd3370;
 	void onGoToLayer(cocos2d::CCObject* sender) = win 0xcb200;
 	// void onGroupDown(cocos2d::CCObject* sender);
