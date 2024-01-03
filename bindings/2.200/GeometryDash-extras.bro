@@ -3253,7 +3253,7 @@ class KeybindingsLayer : FLAlertLayer {
 
 [[link(android)]]
 class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerProtocol {
-	static LevelLeaderboard* create(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode);
+	static LevelLeaderboard* create(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x253700;
 
 	bool init(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x2537c0;
 	~LevelLeaderboard();
@@ -3261,11 +3261,11 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 	TodoReturn getLocalScores();
 	TodoReturn getSpriteButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, cocos2d::CCPoint, int);
 
-	void onChangeMode(cocos2d::CCObject* sender);
-	void onChangeType(cocos2d::CCObject* sender);
+	void onChangeMode(cocos2d::CCObject* sender) = win 0x254d50;
+	void onChangeType(cocos2d::CCObject* sender) = win 0x254d00;
 	void onDeleteLocalScores(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onUpdate(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x6a340;
+	void onUpdate(cocos2d::CCObject* sender) = win 0x254d90;
 
 	TodoReturn loadScores();
 	TodoReturn setupLeaderboard(cocos2d::CCArray*);
@@ -3276,12 +3276,23 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
-	virtual TodoReturn show();
+	virtual TodoReturn show() = win 0x5D2C0;
 	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
 	virtual TodoReturn loadLeaderboardFailed(char const*);
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn updateUserScoreFinished();
 	virtual TodoReturn updateUserScoreFailed();
+
+	GJGameLevel* m_level;
+	LevelLeaderboardType m_type;
+    LevelLeaderboardMode m_mode;
+    cocos2d::CCArray* m_scores;
+    GJCommentListLayer* m_list;
+    LoadingCircle* m_circle;
+    TextArea* m_noInternet;
+    CCMenuItemSpriteExtra* m_refreshBtn;
+    CCMenuItemSpriteExtra* m_timeBtn;
+    CCMenuItemSpriteExtra* m_pointsBtn;
 }
 
 [[link(android)]]

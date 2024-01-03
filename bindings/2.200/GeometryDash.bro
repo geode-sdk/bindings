@@ -1571,6 +1571,20 @@ class GameManager : GManager {
     void setPlayerGlow(bool v) {
         m_playerGlow = v;
     }
+    bool getGameVariableDefault(const char* key, bool defaultValue) {
+		//helper function
+        auto object = static_cast<cocos2d::CCString*>(m_valueKeeper->objectForKey(std::string("gv_") + key));
+        if (object == nullptr)
+            return defaultValue;
+        return object->boolValue();
+    }
+    int getIntGameVariableDefault(const char* key, int defaultValue) {
+		//helper function
+        auto object = static_cast<cocos2d::CCString*>(m_valueKeeper->objectForKey(std::string("gv_") + key));
+        if (object == nullptr)
+            return defaultValue;
+        return object->intValue();
+    }
 
 	~GameManager();
 
@@ -1670,7 +1684,7 @@ class GameManager : GManager {
 	TodoReturn dpadConfigToString(UIButtonConfig&);
 	TodoReturn eventUnlockFeature(char const*);
 	TodoReturn framesForAnimation(int);
-	TodoReturn getIntGameVariable(char const*) = win 0x126e70;
+	int getIntGameVariable(char const*) = win 0x126e70;
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn removeCustomObject(int);
 	TodoReturn removeIconDelegate(int) = win 0x125560;
@@ -4403,8 +4417,8 @@ class GameStatsManager : cocos2d::CCNode {
 	~GameStatsManager();
 
 	TodoReturn getItemKey(int, int);
-	std::string getLevelKey(int, bool, bool, bool) = win 0x16D350;
-	std::string getLevelKey(GJGameLevel*) = win 0x16D2E0;
+	gd::string getLevelKey(int, bool, bool, bool) = win 0x16D350;
+	gd::string getLevelKey(GJGameLevel*) = win 0x16D2E0;
 	GJChallengeItem* getChallenge(int) = win 0x170BD0;
 	TodoReturn getRewardKey(GJRewardType, int);
 	TodoReturn getStoreItem(int);
