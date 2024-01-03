@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
-      if: steps.codegen-cache.outputs.cache-hit != 'true'
       uses: actions/checkout@v3
 
     - name: Restore cache
@@ -56,3 +55,50 @@ jobs:
 
     - name: Verify
       run: 'chmod +x ./Codegen && ./Codegen Win32 bindings/2.200 out'
+
+  test-members:
+    # dont bother running member test if broma isnt even valid
+    needs: verify
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - name: Windows
+          os: windows-2019
+          prefixes: ''
+          extra_flags: -A win32
+          
+    name: Test Offsets ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/checkout@v4
+      with:
+        repository: geode-sdk/geode
+        path: geode
+
+    - uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: x86
+
+    - name: Configure ccache
+      uses: hendrikmuhs/ccache-action@v1.2
+      with:
+        key: ${{ matrix.config.os }}
+
+    - name: Configure CMake
+      run: >
+        ${{ matrix.config.prefixes }} cmake -B build -S test/members
+        -D GEODE_LOADER_PATH=${{ github.workspace }}/geode/loader
+        -D GEODE_BINDINGS_REPO_PATH=${{ github.workspace }}
+        ${{ matrix.config.extra_flags }} 
+        -D GEODE_DISABLE_CLI_CALLS=ON 
+      # -D CMAKE_C_COMPILER_LAUNCHER=ccache
+      # -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
+
+    - name: Build member test
+      run: |
+        cmake --build build --config RelWithDebInfo --parallel --target TestMembers
