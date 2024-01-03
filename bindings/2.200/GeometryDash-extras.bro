@@ -3253,7 +3253,7 @@ class KeybindingsLayer : FLAlertLayer {
 
 [[link(android)]]
 class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerProtocol {
-	static LevelLeaderboard* create(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode);
+	static LevelLeaderboard* create(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x253700;
 
 	bool init(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x2537c0;
 	~LevelLeaderboard();
@@ -3261,11 +3261,11 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 	TodoReturn getLocalScores();
 	TodoReturn getSpriteButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, cocos2d::CCPoint, int);
 
-	void onChangeMode(cocos2d::CCObject* sender);
-	void onChangeType(cocos2d::CCObject* sender);
+	void onChangeMode(cocos2d::CCObject* sender) = win 0x254d50;
+	void onChangeType(cocos2d::CCObject* sender) = win 0x254d00;
 	void onDeleteLocalScores(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onUpdate(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x6a340;
+	void onUpdate(cocos2d::CCObject* sender) = win 0x254d90;
 
 	TodoReturn loadScores();
 	TodoReturn setupLeaderboard(cocos2d::CCArray*);
@@ -3276,12 +3276,23 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
-	virtual TodoReturn show();
+	virtual TodoReturn show() = win 0x5D2C0;
 	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
 	virtual TodoReturn loadLeaderboardFailed(char const*);
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn updateUserScoreFinished();
 	virtual TodoReturn updateUserScoreFailed();
+
+	GJGameLevel* m_level;
+	LevelLeaderboardType m_type;
+    LevelLeaderboardMode m_mode;
+    cocos2d::CCArray* m_scores;
+    GJCommentListLayer* m_list;
+    LoadingCircle* m_circle;
+    TextArea* m_noInternet;
+    CCMenuItemSpriteExtra* m_refreshBtn;
+    CCMenuItemSpriteExtra* m_timeBtn;
+    CCMenuItemSpriteExtra* m_pointsBtn;
 }
 
 [[link(android)]]
@@ -3972,7 +3983,7 @@ class AchievementManager : cocos2d::CCNode {
 
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn firstSetup();
-	TodoReturn sharedState();
+	TodoReturn sharedState() = win 0x9AC0;
 	TodoReturn encodeDataTo(DS_Dictionary*);
 	TodoReturn addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
 	TodoReturn resetAchievement(char const*);
@@ -4250,9 +4261,9 @@ class GJTransformControl : cocos2d::CCLayer {
 class KeybindingsManager : cocos2d::CCNode {
 	~KeybindingsManager();
 
-	TodoReturn dataLoaded(DS_Dictionary*);
+	TodoReturn dataLoaded(DS_Dictionary*) = win 0x228580;
 	TodoReturn firstSetup();
-	TodoReturn sharedState();
+	TodoReturn sharedState() = win 0x228470;
 	TodoReturn encodeDataTo(DS_Dictionary*);
 	TodoReturn commandForKey(cocos2d::enumKeyCodes, GJKeyGroup, bool, bool, bool);
 	TodoReturn keyForCommand(GJKeyCommand);
@@ -7006,9 +7017,9 @@ class LevelCell : TableViewCell {
 
 	~LevelCell();
 
-	void onViewProfile(cocos2d::CCObject* sender);
-	void onClick(cocos2d::CCObject* sender);
-	void onToggle(cocos2d::CCObject* sender);
+	void onViewProfile(cocos2d::CCObject* sender) = win 0x80910;
+	void onClick(cocos2d::CCObject* sender) = win 0x80820;
+	void onToggle(cocos2d::CCObject* sender) = win 0x7d580;
 
 	TodoReturn updateToggle();
 	TodoReturn loadFromLevel(GJGameLevel*) = win 0x7D3F0;
@@ -7020,6 +7031,15 @@ class LevelCell : TableViewCell {
 
 	virtual bool init();
 	virtual void draw();
+
+	CCMenuItemSpriteExtra* m_button;
+	GJGameLevel* m_level;
+	bool m_cellDrawn;
+	CCMenuItemToggler* m_toggler;
+	cocos2d::CCPoint m_point;
+	cocos2d::CCMenu* m_mainMenu;
+	bool m_compactView;
+	int m_cellMode;
 }
 
 [[link(android)]]
