@@ -1602,7 +1602,7 @@ class GameManager : GManager {
 	TodoReturn tryCacheAd();
 	TodoReturn unloadIcon(int, int, int);
 	TodoReturn unlockIcon(int, IconType);
-	cocos2d::ccColor3B colorForIdx(int) = win 0x124270, mac = 0x35d5b0;
+	cocos2d::ccColor3B colorForIdx(int) = win 0x124270;
 	TodoReturn colorForPos(int);
 	void doQuickSave() = win 0x12bf00;
 	TodoReturn fadeInMusic(gd::string);
