@@ -1780,7 +1780,7 @@ class GameManager : GManager {
 	int m_unkSize4_4;
 	PlayLayer* m_playLayer;
 	LevelEditorLayer* m_levelEditorLayer;
-	GJBaseGameLayer* m_baseGameLayer;
+	GJBaseGameLayer* m_gameLayer;
 	void* m_unkPtr;
 	MenuLayer* m_menuLayer;
 	bool m_inMenuLayer;
