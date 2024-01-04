@@ -1887,9 +1887,7 @@ class GameManager : GManager {
 	bool m_shouldLoadUnlockValueKeeper;
 	bool m_unkBool7;
 	bool m_unkBool8;
-	int m_hasRP_b;
-	int m_hasRP_a;
-	int m_hasRP;
+	geode::SeedValueRSV m_hasRP;
 	bool m_canGetLevelSaveData;
 	int m_resolution;
 	int m_texQuality;
@@ -2558,7 +2556,8 @@ class GJUserScore : cocos2d::CCNode {
 	int m_friendReqStatus;
 	int m_newMsgCount;
 	int m_friendReqCount;
-	bool m_isBlocked;
+	int m_newFriendCount;
+	bool m_newFriendRequest;
 }
 
 [[link(android)]]
@@ -2577,11 +2576,11 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	void onBlockUser(cocos2d::CCObject* sender);
 	void onSendMessage(cocos2d::CCObject* sender);
 	void onCommentHistory(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x2eae90;
 	void onFollow(cocos2d::CCObject* sender);
 	void onFriend(cocos2d::CCObject* sender);
 	void onTwitch(cocos2d::CCObject* sender);
-	void onUpdate(cocos2d::CCObject* sender);
+	void onUpdate(cocos2d::CCObject* sender) = win 0x2e7db0;
 	void onComment(cocos2d::CCObject* sender);
 	void onFriends(cocos2d::CCObject* sender);
 	void onMyLists(cocos2d::CCObject* sender);
@@ -2591,7 +2590,6 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	/* unverified signature */
 	bool isOnWatchlist(int);
 	TodoReturn setupComments();
-	TodoReturn setupPageInfo(gd::string, char const*);
 	TodoReturn updatePageArrows();
 	TodoReturn updateLevelsLabel();
 	TodoReturn showNoAccountError();
@@ -2604,17 +2602,18 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool isCorrect(char const*);
 
 	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x2EAEF0;
 	virtual void show() = win 0x2EB010;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn updateUserScoreFinished();
 	virtual TodoReturn updateUserScoreFailed();
-	virtual TodoReturn getUserInfoFinished(GJUserScore*);
-	virtual TodoReturn getUserInfoFailed(int);
+	virtual TodoReturn getUserInfoFinished(GJUserScore*) = win 0x2EB5D0;
+	virtual TodoReturn getUserInfoFailed(int) = win 0x2EB660;
 	virtual TodoReturn userInfoChanged(GJUserScore*) = win 0x2EB6B0;
-	virtual TodoReturn loadCommentsFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadCommentsFailed(char const*);
-	virtual TodoReturn commentUploadFinished(int);
+	virtual TodoReturn loadCommentsFinished(cocos2d::CCArray*, char const*) = win 0x2EBAB0;
+	virtual TodoReturn loadCommentsFailed(char const*) = win 0x2EBB10;
+	virtual TodoReturn setupPageInfo(gd::string, char const*) = win 0x2EBB70;
+	virtual TodoReturn commentUploadFinished(int); 
 	virtual TodoReturn commentUploadFailed(int, CommentError);
 	virtual TodoReturn commentDeleteFailed(int, int);
 	virtual TodoReturn onClosePopup(UploadActionPopup*);
@@ -4135,7 +4134,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn hasRatedDemon(int);
 	/* unverified signature */
 	bool isUpdateValid(int);
-	TodoReturn makeTimeStamp(char const*);
+	TodoReturn makeTimeStamp(char const*) = win 0xF7B30;
 	// TodoReturn saveLevelList(GJLevelList*);
 	TodoReturn storeUserInfo(GJUserScore*);
 	void storeUserName(int, int, gd::string) = win 0xF54C0;
@@ -4152,7 +4151,7 @@ class GameLevelManager : cocos2d::CCNode {
 	// TodoReturn deleteLevelList(GJLevelList*);
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	/* unverified signature */
-	bool isFollowingUser(int);
+	bool isFollowingUser(int) = win 0xF86A0;
 	TodoReturn likeFromLikeKey(char const*);
 	TodoReturn markItemAsLiked(LikeItemType, int, bool, int);
 	TodoReturn typeFromLikeKey(char const*);
@@ -4209,7 +4208,9 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn downloadUserMessage(int, bool);
 	TodoReturn hasLikedAccountItem(LikeItemType, int, bool, int);
 	TodoReturn markLevelAsReported(int);
-	TodoReturn resetStoredUserInfo(int);
+    void resetStoredUserInfo(int id) {
+        m_storedUserInfo->removeObjectForKey(id);
+    }
 	TodoReturn resetStoredUserList(UserListType);
 	TodoReturn saveFetchedMapPacks(cocos2d::CCArray*);
 	TodoReturn storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
@@ -4220,7 +4221,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn deleteFriendRequests(int, cocos2d::CCArray*, bool);
 	TodoReturn markListAsDownloaded(int);
 	TodoReturn removeDelimiterChars(gd::string, bool);
-	TodoReturn resetAccountComments(int);
+	TodoReturn resetAccountComments(int) = win 0x107B10;
 	TodoReturn resetDailyLevelState(GJTimedLevelType) = win 0x10f810;
 	TodoReturn storeDailyLevelState(int, int, GJTimedLevelType);
 	// TodoReturn updateSavedLevelList(GJLevelList*);
