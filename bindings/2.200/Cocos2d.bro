@@ -801,6 +801,9 @@ class cocos2d::CCLabelBMFont {
 [[link(win, android)]]
 class cocos2d::CCApplication {
 	virtual void openURL(char const*);
+}
+
+[[link(win, android)]]
 class cocos2d::CCArray {
 	// static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
 	static cocos2d::CCArray* create();
