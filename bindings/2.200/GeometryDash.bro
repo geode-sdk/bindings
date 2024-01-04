@@ -420,6 +420,15 @@ class TextArea : cocos2d::CCSprite {
 	virtual void update(float);
 	virtual void draw();
 	virtual void setOpacity(unsigned char);
+
+	bool m_disableColor;            // 0x1e4
+    MultilineBitmapFont* m_label;   // 0x1e8
+    float m_width;                  // 0x1ec
+    int m_unknown;                  // 0x1f0
+    gd::string m_fontFile;          // 0x1f4
+    float m_height;                 // 0x20c
+	PAD = win 0x4;
+	cocos2d::CCPoint m_anchorPoint;
 }
 
 [[link(android)]]
@@ -5577,6 +5586,9 @@ class GJTransformControlDelegate {
 
 
 [[link(android)]]
+class MultilineBitmapFont : cocos2d::CCSprite {}
+
+[[link(android)]]
 class MusicDownloadDelegate {
 	virtual TodoReturn loadSongInfoFinished(SongInfoObject*);
 	virtual TodoReturn loadSongInfoFailed(int, GJSongError);
@@ -7679,3 +7691,32 @@ class GJEffectManager : cocos2d::CCNode {
 
 	virtual bool init() = win 0x1d6f50;
 }
+
+[[link(android)]]
+class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
+	static OptionsLayer* create() = win 0x2ab510;
+
+	~OptionsLayer();
+
+	void onMenuMusic(cocos2d::CCObject* sender) = win 0x2abf20;
+	void onProgressBar(cocos2d::CCObject* sender); // idk
+	void onSecretVault(cocos2d::CCObject* sender) = win 0x2ac1d0;
+	void onSoundtracks(cocos2d::CCObject* sender) = win 0x2ac170;
+	void onRecordReplays(cocos2d::CCObject* sender); // mobile platforms only
+	void onHelp(cocos2d::CCObject* sender) = win 0x2ac640;
+	void onRate(cocos2d::CCObject* sender) = win 0x2ac600;
+	void onVideo(cocos2d::CCObject* sender) = win 0x2ac560;
+	void onAccount(cocos2d::CCObject* sender) = win 0x2ac5c0;
+	void onOptions(cocos2d::CCObject* sender) = win 0x2ac1b0;
+	void onSupport(cocos2d::CCObject* sender) = win 0x2ac580;
+
+	TodoReturn tryEnableRecord(); // mobile platforms only
+	void sfxSliderChanged(cocos2d::CCObject*) = win 0x2ac0b0;
+	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint); // idk lol
+	void musicSliderChanged(cocos2d::CCObject*) = win 0x2abfc0;
+	void exitLayer() = win 0x2ab110;
+
+	virtual void customSetup() = win 0x2ab510;
+	virtual void layerHidden() = win 0x2ac660;
+}
+
