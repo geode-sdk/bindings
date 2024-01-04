@@ -1772,69 +1772,6 @@ class cocos2d::CCLabelAtlas {
 }
 
 [[link(win, android)]]
-class cocos2d::CCLabelBMFont {
-	static cocos2d::CCLabelBMFont* create(char const*, char const*);
-	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
-	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment);
-	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint);
-	static cocos2d::CCLabelBMFont* create();
-	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int);
-	static void purgeCachedData();
-
-	bool initWithString(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint);
-
-	cocos2d::CCBMFontConfiguration* getConfiguration() const;
-	int getExtraKerning() const;
-	char const* getFntFile();
-	bool getIsBatched() const;
-	float getLetterPosXLeft(cocos2d::CCSprite*, float, bool);
-	float getLetterPosXRight(cocos2d::CCSprite*, float, bool);
-	cocos2d::CCArray* getTargetArray() const;
-
-	void setExtraKerning(int);
-	void setFntFile(char const*);
-	void setIsBatched(bool);
-	void setTargetArray(cocos2d::CCArray*);
-
-	// CCLabelBMFont(cocos2d::CCLabelBMFont const&);
-	// CCLabelBMFont();
-	void createFontChars();
-	int kerningAmountForFirst(unsigned short, unsigned short);
-	void limitLabelWidth(float, float, float);
-
-	virtual bool init();
-	virtual void setScaleX(float);
-	virtual void setScaleY(float);
-	virtual void setScale(float);
-	virtual void setAnchorPoint(cocos2d::CCPoint const&);
-	virtual void setString(char const*, bool);
-	virtual void setCString(char const*);
-	virtual void updateLabel();
-	virtual void setAlignment(cocos2d::CCTextAlignment);
-	virtual void setWidth(float);
-	virtual void setLineBreakWithoutSpace(bool);
-	virtual void setString(unsigned short*, bool);
-
-	virtual void setString(char const*);
-	virtual char const* getString();
-
-	virtual void setColor(cocos2d::_ccColor3B const&);
-	virtual cocos2d::_ccColor3B const& getColor();
-	virtual cocos2d::_ccColor3B const& getDisplayedColor();
-	virtual unsigned char getDisplayedOpacity();
-	virtual unsigned char getOpacity();
-	virtual void setOpacity(unsigned char);
-	virtual void setOpacityModifyRGB(bool);
-	virtual bool isOpacityModifyRGB();
-	virtual bool isCascadeColorEnabled();
-	virtual void setCascadeColorEnabled(bool);
-	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&);
-	virtual bool isCascadeOpacityEnabled();
-	virtual void setCascadeOpacityEnabled(bool);
-	virtual void updateDisplayedOpacity(unsigned char);
-}
-
-[[link(win, android)]]
 class cocos2d::CCLabelProtocol {
 	// CCLabelProtocol(cocos2d::CCLabelProtocol const&);
 	// CCLabelProtocol();
