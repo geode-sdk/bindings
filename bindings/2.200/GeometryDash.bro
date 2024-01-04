@@ -576,13 +576,13 @@ class TableViewDelegate {
 
 [[link(android)]]
 class TextInputDelegate {
-	virtual void textChanged(CCTextInputNode*);
-	virtual void textInputOpened(CCTextInputNode*);
-	virtual void textInputClosed(CCTextInputNode*);
-	virtual void textInputShouldOffset(CCTextInputNode*, float);
-	virtual void textInputReturn(CCTextInputNode*);
-	virtual void allowTextInput(CCTextInputNode*);
-	virtual void enterPressed(CCTextInputNode*);
+	virtual void textChanged(CCTextInputNode*) {}
+	virtual void textInputOpened(CCTextInputNode*) {}
+	virtual void textInputClosed(CCTextInputNode*) {}
+	virtual void textInputShouldOffset(CCTextInputNode*, float) {}
+	virtual void textInputReturn(CCTextInputNode*) {}
+	virtual bool allowTextInput(CCTextInputNode*) { return true; }
+	virtual void enterPressed(CCTextInputNode*) {}
 }
 
 [[link(android)]]
@@ -949,7 +949,7 @@ class GJGameState {
 	// GJGameState() = win 0x18a380;
 	// ~GJGameState();
 
-	PAD = win 0x490, android32 0x4a8;
+	PAD = win 0x490, android32 0x4a8, android64 0x6e8;
 }
 
 [[link(android)]]
@@ -1378,22 +1378,22 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
 
-	PAD = win 0xc, android32 0xc;
+	PAD = win 0xc, android32 0xc, android64 0x14;
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
-	PAD = win 0x290, android32 0x28c;
+	PAD = win 0x290, android32 0x28c, android64 0x510;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
-	PAD = win 0x134, android32 0x134;
+	PAD = win 0x134, android32 0x134, android64 0x21c;
 	cocos2d::CCLayer* m_objectLayer; 
-	PAD = win 0x20c0, android32 0x20c4;
+	PAD = win 0x20c0, android32 0x20c4, android64 0x2218;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
 	PAD = win 0xd2, android32 0xba;
 	gd::vector<PlayerButtonCommand> m_queuedButtons; 
-	PAD = win 0x20b, android32 0x1ea;
+	PAD = win 0x20a, android32 0x1ea;
 }
 
 [[link(android)]]
@@ -1476,6 +1476,18 @@ class GameManager : GManager {
 	}
 
 	static GameManager* sharedState() = win 0x11f720;
+
+	PlayLayer* getPlayLayer() {
+		return m_playLayer;
+	}
+
+	LevelEditorLayer* getEditorLayer() {
+		return m_levelEditorLayer;
+	}
+
+	GJBaseGameLayer* getGameLayer() {
+		return m_gameLayer;
+	}
 
 	int getPlayerFrame() {
         return m_playerFrame;
@@ -4244,7 +4256,7 @@ class GameLevelManager : cocos2d::CCNode {
 
 	virtual bool init();
 
-	PAD = win 0x8, android32 0x18;
+	PAD = win 0x8, android32 0x18, android64 0x30;
 	cocos2d::CCDictionary* m_mainLevels;
 	cocos2d::CCDictionary* m_searchFilters;
 	cocos2d::CCDictionary* m_onlineLevels;
@@ -6030,6 +6042,10 @@ class CurrencyRewardDelegate {
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
 	static PlayLayer* create(GJGameLevel*, bool, bool) = win 0x2D68F0;
+
+	static PlayLayer* get() {
+		return GameManager::get()->m_playLayer;
+	}
 
 	bool init(GJGameLevel*, bool, bool) = mac 0xa5db0, win 0x2d69a0;
 	~PlayLayer() = win 0x2D6580;

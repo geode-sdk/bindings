@@ -77,39 +77,23 @@ GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x22c);
 GEODE_SIZE_CHECK(SetupTriggerPopup, 0x2a8);
 GEODE_MEMBER_CHECK(ColorSelectPopup, m_colorAction, 0x2f0);
 
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5f0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x884);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x888);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2a8c);
 
-// GEODE_MEMBER_CHECK(CCNode, m_pUserObject, 0xcc);
+// playerobject and gameobject are kinda messed up rn
+// GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x794);
+// GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x804);
 
-// needed classes are ones in the ids folder and some generic ones (i think they are already done though so only ids)
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x184);
 
-// GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x138);
-// GEODE_MEMBER_CHECK(GameManager, m_levelEditorLayer, 0x13c);
-// GEODE_MEMBER_CHECK(GameManager, m_canGetLevelSaveData, 0x28c);
+GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x16c);
+GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 
-// static_assert(sizeof(GJBaseGameLayer) == 0x2cc);
-
-// GEODE_MEMBER_CHECK(PlayLayer, unknown4e8, 0x2e8);
-// GEODE_MEMBER_CHECK(PlayLayer, m_endPortal, 0x324);
-// GEODE_MEMBER_CHECK(PlayLayer, m_bottomGround, 0x37c);
-// GEODE_MEMBER_CHECK(PlayLayer, m_topGround, 0x380);
-// GEODE_MEMBER_CHECK(PlayLayer, m_level, 0x470);
-// GEODE_MEMBER_CHECK(PlayLayer, m_shouldTryToKick, 0x4e0);
-
-// static_assert(sizeof(GameObject) == 0x42c);
-
-// GEODE_MEMBER_CHECK(GameStatsManager, m_dailyChests, 0x110);
-// GEODE_MEMBER_CHECK(GameStatsManager, m_completedLevels, 0x164);
-
-// GEODE_MEMBER_CHECK(DailyLevelPage, m_weekly, 0x1ed);
-
-// GEODE_MEMBER_CHECK(TeleportPortalObject, m_orangePortal, 0x430);
-
-// GEODE_MEMBER_CHECK(EditorUI, m_rotationControl, 0x16c);
-// GEODE_MEMBER_CHECK(EditorUI, m_updateTimeMarkers, 0x1a4);
-// GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x1bc);
-// GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x2c4);
-
-// GEODE_MEMBER_CHECK(MoreSearchLayer, m_enterSongID, 0x1E4);
-// GEODE_MEMBER_CHECK(MoreSearchLayer, m_songLeftBtn, 0x1D4);
+GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
+GEODE_SIZE_CHECK(PlayLayer, 0x2f38);
+// GEODE_SIZE_CHECK(PlayerObject, 0x970);
+GEODE_SIZE_CHECK(GameObject, 0x488);
 
 #endif

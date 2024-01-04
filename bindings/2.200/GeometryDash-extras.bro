@@ -1051,10 +1051,10 @@ class SimplePlayer : cocos2d::CCSprite {
     GJSpiderSprite* m_spiderSprite;
 	int m_unknown;
 	bool m_hasGlowOutline;
-	PAD = win 0x7, android32 0x7;
+	PAD = win 0x7, android32 0x7, android64 0x7;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x8;
 }
 
 [[link(android)]]
@@ -2517,7 +2517,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	virtual void update(float) = win 0x33910;
 
-	PAD = win 0x88, android32 0x7c;
+	PAD = win 0x88, android32 0x7c, android64 0xdc;
 	FMOD::System* m_system;
 }
 
@@ -5021,7 +5021,7 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
 	virtual TodoReturn textInputReturn(CCTextInputNode*);
-	virtual TodoReturn allowTextInput(CCTextInputNode*);
+	virtual bool allowTextInput(CCTextInputNode*);
 	virtual TodoReturn registerAccountFinished();
 	virtual TodoReturn registerAccountFailed(AccountError);
 }
