@@ -34,6 +34,11 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 	${GEODE_LOADER_PATH}/include/Geode/fmod
 )
 
+if (WIN32)
+	# without this, some stl structures can have a wrong size when cross compiling from linux
+	add_compile_definitions(_HAS_ITERATOR_DEBUGGING=0)
+endif()
+
 target_compile_definitions(${PROJECT_NAME} PRIVATE -DGEODE_DONT_WARN_INCORRECT_MEMBERS)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ghc_filesystem mat-json)

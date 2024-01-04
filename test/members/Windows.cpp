@@ -58,7 +58,9 @@ GEODE_MEMBER_CHECK(GameLevelManager, m_dailyIDUnk, 0x150);
 GEODE_MEMBER_CHECK(GameLevelManager, m_weeklyIDUnk, 0x15C);
 GEODE_MEMBER_CHECK(GameLevelManager, m_gauntletLevels, 0x16C);
 GEODE_MEMBER_CHECK(GameLevelManager, m_availableFilters, 0x170);
+GEODE_MEMBER_CHECK(GameLevelManager, m_savedGauntlets, 0x198);
 GEODE_MEMBER_CHECK(GameLevelManager, m_levelManagerDelegate, 0x1ec);
+GEODE_MEMBER_CHECK(GameLevelManager, m_commentUploadDelegate, 0x1f8);
 
 GEODE_MEMBER_CHECK(GameStatsManager, m_dailyChests, 0x144);
 GEODE_MEMBER_CHECK(GameStatsManager, m_worldAdvertChests, 0x148);
@@ -86,5 +88,27 @@ GEODE_MEMBER_CHECK(GameStatsManager, m_treasureRoomChests, 0x1B8);
 GEODE_MEMBER_CHECK(GameStatsManager, m_miscChests, 0x1C8);
 GEODE_MEMBER_CHECK(GameStatsManager, m_GS28, 0x1CC);
 GEODE_MEMBER_CHECK(GameStatsManager, m_GS26, 0x1EC);
+
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x148);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5d8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x870);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x874);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9b0);
+
+
+GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x7ac);
+GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x81c);
+
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x190);
+
+GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x198);
+GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x1a0);
+
+GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
+GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d60);
+GEODE_SIZE_CHECK(PlayLayer, 0x2f58);
+GEODE_SIZE_CHECK(GJGameLevel, 0x488);
+GEODE_SIZE_CHECK(PlayerObject, 0x980);
+// GEODE_SIZE_CHECK(GameObject, 0x498);
 
 #endif
