@@ -737,3 +737,92 @@ class cocos2d::CCSprite {
 	virtual cocos2d::CCTexture2D* getTexture();
 	virtual void setTexture(cocos2d::CCTexture2D*);
 }
+
+[[link(win, android)]]
+class cocos2d::CCArray {
+	// static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
+	static cocos2d::CCArray* create();
+	static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
+	static cocos2d::CCArray* createWithCapacity(unsigned int);
+	static cocos2d::CCArray* createWithContentsOfFile(char const*);
+	static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*);
+	static cocos2d::CCArray* createWithObject(cocos2d::CCObject*);
+
+	bool init();
+	bool initWithArray(cocos2d::CCArray*);
+	bool initWithCapacity(unsigned int);
+	bool initWithObject(cocos2d::CCObject*);
+	// bool initWithObjects(cocos2d::CCObject*, ...);
+
+	// CCArray(cocos2d::CCArray const&);
+	// CCArray(unsigned int);
+	// CCArray();
+	void addObject(cocos2d::CCObject*);
+	void addObjectNew(cocos2d::CCObject*);
+	void addObjectsFromArray(cocos2d::CCArray*);
+	unsigned int capacity() const;
+	bool containsObject(cocos2d::CCObject*) const;
+	unsigned int count() const;
+	void exchangeObject(cocos2d::CCObject*, cocos2d::CCObject*);
+	void exchangeObjectAtIndex(unsigned int, unsigned int);
+	void fastRemoveObject(cocos2d::CCObject*);
+	void fastRemoveObjectAtIndex(unsigned int);
+	void fastRemoveObjectAtIndexChild(unsigned int);
+	void fastRemoveObjectAtIndexNew(unsigned int);
+	unsigned int indexOfObject(cocos2d::CCObject*) const;
+	void insertObject(cocos2d::CCObject*, unsigned int);
+	bool isEqualToArray(cocos2d::CCArray*);
+	cocos2d::CCObject* lastObject();
+	cocos2d::CCObject* objectAtIndex(unsigned int);
+	cocos2d::CCObject* randomObject();
+	void recreateNewIndexes();
+	void reduceMemoryFootprint();
+	void removeAllObjects();
+	void removeLastObject(bool);
+	void removeObject(cocos2d::CCObject*, bool);
+	void removeObjectAtIndex(unsigned int, bool);
+	void removeObjectAtIndexChild(unsigned int, bool);
+	void removeObjectsInArray(cocos2d::CCArray*);
+	void replaceObjectAtIndex(unsigned int, cocos2d::CCObject*, bool);
+	void reverseObjects();
+	cocos2d::CCString* stringAtIndex(unsigned int);
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+}
+
+[[link(win, android)]]
+class cocos2d::CCDictionary {
+	static cocos2d::CCDictionary* create();
+	static cocos2d::CCDictionary* createWithContentsOfFile(char const*);
+	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*);
+	static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
+
+	gd::string getFirstKey();
+
+	void setObject(cocos2d::CCObject*, gd::string const&);
+	void setObject(cocos2d::CCObject*, int);
+	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
+	void setObjectUnSafe(cocos2d::CCObject*, int);
+
+	// CCDictionary(cocos2d::CCDictionary const&);
+	// CCDictionary();
+	cocos2d::CCArray* allKeys();
+	cocos2d::CCArray* allKeysForObject(cocos2d::CCObject*);
+	char const* charForKey(gd::string const&);
+	unsigned int count();
+	cocos2d::CCObject* objectForKey(gd::string const&);
+	cocos2d::CCObject* objectForKey(int);
+	cocos2d::CCObject* randomObject();
+	void removeAllObjects();
+	void removeObjectForElememt(cocos2d::CCDictElement*);
+	void removeObjectForKey(gd::string const&);
+	void removeObjectForKey(int);
+	void removeObjectsForKeys(cocos2d::CCArray*);
+	cocos2d::CCString const* valueForKey(gd::string const&);
+	cocos2d::CCString const* valueForKey(int);
+	bool writeToFile(char const*);
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+}
