@@ -5630,10 +5630,6 @@ class GJTransformControlDelegate {
 	virtual TodoReturn getUI();
 }
 
-
-[[link(android)]]
-class MultilineBitmapFont : cocos2d::CCSprite {}
-
 [[link(android)]]
 class MusicDownloadDelegate {
 	virtual TodoReturn loadSongInfoFinished(SongInfoObject*);
@@ -7752,34 +7748,6 @@ class GJEffectManager : cocos2d::CCNode {
 	virtual bool init() = win 0x1d6f50;
 }
 
-[[link(android)]]
-class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
-	static OptionsLayer* create() = win 0x2ab510;
-
-	~OptionsLayer();
-
-	void onMenuMusic(cocos2d::CCObject* sender) = win 0x2abf20;
-	void onProgressBar(cocos2d::CCObject* sender); // idk
-	void onSecretVault(cocos2d::CCObject* sender) = win 0x2ac1d0;
-	void onSoundtracks(cocos2d::CCObject* sender) = win 0x2ac170;
-	void onRecordReplays(cocos2d::CCObject* sender); // mobile platforms only
-	void onHelp(cocos2d::CCObject* sender) = win 0x2ac640;
-	void onRate(cocos2d::CCObject* sender) = win 0x2ac600;
-	void onVideo(cocos2d::CCObject* sender) = win 0x2ac560;
-	void onAccount(cocos2d::CCObject* sender) = win 0x2ac5c0;
-	void onOptions(cocos2d::CCObject* sender) = win 0x2ac1b0;
-	void onSupport(cocos2d::CCObject* sender) = win 0x2ac580;
-
-	TodoReturn tryEnableRecord(); // mobile platforms only
-	void sfxSliderChanged(cocos2d::CCObject*) = win 0x2ac0b0;
-	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint); // idk lol
-	void musicSliderChanged(cocos2d::CCObject*) = win 0x2abfc0;
-	void exitLayer() = win 0x2ab110;
-
-	virtual void customSetup() = win 0x2ab510;
-	virtual void layerHidden() = win 0x2ac660;
-}
-
 class GJAccountDelegate {
 	virtual TodoReturn accountStatusChanged();
 }
@@ -8730,27 +8698,26 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 
 	~OptionsLayer();
 
-	void onMenuMusic(cocos2d::CCObject* sender);
-	void onProgressBar(cocos2d::CCObject* sender);
+	void onMenuMusic(cocos2d::CCObject* sender) = win 0x2abf20;
+	void onProgressBar(cocos2d::CCObject* sender); // idk
 	void onSecretVault(cocos2d::CCObject* sender) = win 0x2ac1d0;
-	void onSoundtracks(cocos2d::CCObject* sender);
-	void onRecordReplays(cocos2d::CCObject* sender);
-	void onHelp(cocos2d::CCObject* sender);
-	void onRate(cocos2d::CCObject* sender);
-	void onVideo(cocos2d::CCObject* sender);
-	void onAccount(cocos2d::CCObject* sender);
-	void onOptions(cocos2d::CCObject* sender);
-	void onSupport(cocos2d::CCObject* sender);
+	void onSoundtracks(cocos2d::CCObject* sender) = win 0x2ac170;
+	void onRecordReplays(cocos2d::CCObject* sender); // mobile platforms only
+	void onHelp(cocos2d::CCObject* sender) = win 0x2ac640;
+	void onRate(cocos2d::CCObject* sender) = win 0x2ac600;
+	void onVideo(cocos2d::CCObject* sender) = win 0x2ac560;
+	void onAccount(cocos2d::CCObject* sender) = win 0x2ac5c0;
+	void onOptions(cocos2d::CCObject* sender) = win 0x2ac1b0;
+	void onSupport(cocos2d::CCObject* sender) = win 0x2ac580;
 
-	TodoReturn tryEnableRecord();
-	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
-	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	TodoReturn musicSliderChanged(cocos2d::CCObject*);
-	TodoReturn exitLayer();
+	TodoReturn tryEnableRecord(); // mobile platforms only
+	void sfxSliderChanged(cocos2d::CCObject*) = win 0x2ac0b0;
+	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint); // idk lol
+	void musicSliderChanged(cocos2d::CCObject*) = win 0x2abfc0;
+	void exitLayer() = win 0x2ab110;
 
-	virtual void customSetup() = win 0x2AB510;
-	virtual TodoReturn layerHidden();
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void customSetup() = win 0x2ab510;
+	virtual void layerHidden() = win 0x2ac660;
 }
 
 
