@@ -1434,7 +1434,7 @@ class LevelListCell : TableViewCell {
 
 [[link(android)]]
 class MenuGameLayer : cocos2d::CCLayer {
-	static MenuGameLayer* create();
+	static MenuGameLayer* create() = win 0x274450;
 
 	~MenuGameLayer();
 
