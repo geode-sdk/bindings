@@ -98,6 +98,11 @@ jobs:
       with:
         repository: geode-sdk/geode
         path: geode
+
+    - name: Include extras files
+      run: |
+        echo "#include <GeometryDash-extras.bro>" >> bindings/2.200/Entry.bro
+        # echo "#include <Cocos2d-extras.bro>" >> bindings/2.200/Entry.bro
     
     - name: Set up codegen binary cache
       id: codegen-cache
