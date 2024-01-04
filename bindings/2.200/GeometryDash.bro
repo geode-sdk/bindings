@@ -7793,51 +7793,6 @@ class GJCommentListLayer : cocos2d::CCLayerColor {
 }
 
 [[link(android)]]
-class GJAccountDelegate {
-	virtual TodoReturn accountStatusChanged();
-}
-
-[[link(android)]]
-class GJAccountSyncDelegate {
-	virtual TodoReturn syncAccountFinished();
-	virtual TodoReturn syncAccountFailed(BackupAccountError, int);
-}
-
-[[link(android)]]
-class GJAccountLoginDelegate {
-	virtual TodoReturn loginAccountFinished(int, int);
-	virtual TodoReturn loginAccountFailed(AccountError);
-}
-
-[[link(android)]]
-class GJAccountBackupDelegate {
-	virtual TodoReturn backupAccountFinished();
-	virtual TodoReturn backupAccountFailed(BackupAccountError, int);
-}
-
-[[link(android)]]
-class GJAccountRegisterDelegate {
-	virtual TodoReturn registerAccountFinished();
-	virtual TodoReturn registerAccountFailed(AccountError);
-}
-
-[[link(android)]]
-class GJAccountSettingsDelegate {
-	virtual TodoReturn updateSettingsFinished();
-	virtual TodoReturn updateSettingsFailed();
-}
-
-[[link(android)]]
-class GJCommentListLayer : cocos2d::CCLayerColor {
-	static GJCommentListLayer* create(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203350;
-
-	bool init(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203440;
-	~GJCommentListLayer();
-
-    BoomListView* m_list;
-}
-
-[[link(android)]]
 class ArtistCell : TableViewCell {
 	~ArtistCell();
 
