@@ -585,13 +585,13 @@ class TableViewDelegate {
 
 [[link(android)]]
 class TextInputDelegate {
-	virtual void textChanged(CCTextInputNode*);
-	virtual void textInputOpened(CCTextInputNode*);
-	virtual void textInputClosed(CCTextInputNode*);
-	virtual void textInputShouldOffset(CCTextInputNode*, float);
-	virtual void textInputReturn(CCTextInputNode*);
-	virtual void allowTextInput(CCTextInputNode*);
-	virtual void enterPressed(CCTextInputNode*);
+	virtual void textChanged(CCTextInputNode*) {}
+	virtual void textInputOpened(CCTextInputNode*) {}
+	virtual void textInputClosed(CCTextInputNode*) {}
+	virtual void textInputShouldOffset(CCTextInputNode*, float) {}
+	virtual void textInputReturn(CCTextInputNode*) {}
+	virtual bool allowTextInput(CCTextInputNode*) { return true; }
+	virtual void enterPressed(CCTextInputNode*) {}
 }
 
 [[link(android)]]
@@ -958,7 +958,7 @@ class GJGameState {
 	// GJGameState() = win 0x18a380;
 	// ~GJGameState();
 
-	PAD = win 0x490, android32 0x4a8;
+	PAD = win 0x490, android32 0x4a8, android64 0x6e8;
 }
 
 [[link(android)]]
@@ -1046,7 +1046,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// TodoReturn asyncGLoaded(int);
 	void createPlayer() = win 0x18fed0;
 	// TodoReturn flipFinished();
-	// TodoReturn handleButton(bool, int, bool) = win 0x1b2880;
+	void handleButton(bool push, int button, bool player1) = win 0x1b2880;
 	// TodoReturn processItems() = win 0x1992d0;
 	// TodoReturn recordAction(int, bool, bool);
 	// TodoReturn restoreRemap(EffectGameObject*, gd::unordered_map<int, int>&);
@@ -1387,20 +1387,22 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
 
-	PAD = win 0xc, android32 0xc;
+	PAD = win 0xc, android32 0xc, android64 0x14;
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
-	PAD = win 0x290, android32 0x28c;
+	PAD = win 0x290, android32 0x28c, android64 0x510;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
-	PAD = win 0x134, android32 0x134;
-	cocos2d::CCLayer* m_objectLayer;
-	PAD = win 0x20C0, android32 0x20C4;
+	PAD = win 0x134, android32 0x134, android64 0x21c;
+	cocos2d::CCLayer* m_objectLayer; 
+	PAD = win 0x20c0, android32 0x20c4, android64 0x2218;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = win 0x2E8, android32 0x2B0;
+	PAD = win 0xd2, android32 0xba;
+	gd::vector<PlayerButtonCommand> m_queuedButtons; 
+	PAD = win 0x20a, android32 0x1ea;
 }
 
 [[link(android)]]
@@ -1483,6 +1485,18 @@ class GameManager : GManager {
 	}
 
 	static GameManager* sharedState() = win 0x11f720;
+
+	PlayLayer* getPlayLayer() {
+		return m_playLayer;
+	}
+
+	LevelEditorLayer* getEditorLayer() {
+		return m_levelEditorLayer;
+	}
+
+	GJBaseGameLayer* getGameLayer() {
+		return m_gameLayer;
+	}
 
 	int getPlayerFrame() {
         return m_playerFrame;
@@ -2590,7 +2604,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	TodoReturn updatePageArrows();
 	TodoReturn updateLevelsLabel();
 	TodoReturn showNoAccountError();
-	TodoReturn loadPageFromUserInfo(GJUserScore*) = win 0x2e8040;
+	void loadPageFromUserInfo(GJUserScore*) = win 0x2e8040;
 	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = win 0x2EB980;
 	TodoReturn toggleMainPageVisibility(bool);
 	TodoReturn loadPage(int);
@@ -2615,6 +2629,27 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	virtual TodoReturn onClosePopup(UploadActionPopup*);
 	virtual TodoReturn uploadActionFinished(int, int);
 	virtual TodoReturn uploadActionFailed(int, int);
+
+	GJUserScore* m_score;
+	int m_accountID;
+	bool m_ownProfile;
+	gd::string m_profileKey;
+	cocos2d::CCLabelBMFont* m_somethingWentWrong;
+	cocos2d::CCLabelBMFont* m_usernameLabel;
+	GJCommentListLayer* m_list;
+	CCMenuItemSpriteExtra* m_rightArrow;
+	CCMenuItemSpriteExtra* m_leftArrow;
+	CCMenuItemSpriteExtra* m_followBtn;
+	void* m_unk;
+	cocos2d::CCArray* m_buttons;
+	cocos2d::CCArray* m_arrayWithUsernameLabel;
+	int m_itemCount;
+	int m_pageStartIdx;
+	int m_pageEndIdx;
+	int m_page;
+	LoadingCircle* m_circle;
+	void* m_popupDelegate;
+	CCMenuItemSpriteExtra* m_refreshBtn;
 }
 
 [[link(android)]]
@@ -4230,7 +4265,7 @@ class GameLevelManager : cocos2d::CCNode {
 
 	virtual bool init();
 
-	PAD = win 0x8, android32 0x18;
+	PAD = win 0x8, android32 0x18, android64 0x30;
 	cocos2d::CCDictionary* m_mainLevels;
 	cocos2d::CCDictionary* m_searchFilters;
 	cocos2d::CCDictionary* m_onlineLevels;
@@ -6020,6 +6055,10 @@ class CurrencyRewardDelegate {
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
 	static PlayLayer* create(GJGameLevel*, bool, bool) = win 0x2D68F0;
 
+	static PlayLayer* get() {
+		return GameManager::get()->m_playLayer;
+	}
+
 	bool init(GJGameLevel*, bool, bool) = mac 0xa5db0, win 0x2d69a0;
 	~PlayLayer() = win 0x2D6580;
 
@@ -7028,11 +7067,21 @@ class GJAccountManager : cocos2d::CCNode {
 
 	virtual bool init();
 
-	PAD = win 0x4, android32 0x4;
+	cocos2d::CCDictionary* m_activeDownloads;
 	gd::string m_username;
 	int m_accountID;
-	PAD = win 0x8, android32 0x8;
-	gd::string m_gjp2;
+	int m_unkInt1;
+	int m_unkInt2;
+	gd::string m_GJP2;
+	GJAccountRegisterDelegate* m_accountRegisterDelegate;
+	GJAccountLoginDelegate* m_accountLoginDelegate;
+	GJAccountDelegate* m_accountDelegate;
+	GJAccountBackupDelegate* m_backupDelegate;
+	GJAccountSyncDelegate* m_syncDelegate;
+	GJAccountSettingsDelegate* m_accountSettingsDelegate;
+	int m_gameManagerSize;
+	int m_localLevelsSize;
+	gd::string m_password;
 }
 
 [[link(android)]]
@@ -7720,3 +7769,91 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	virtual void layerHidden() = win 0x2ac660;
 }
 
+class GJAccountDelegate {
+	virtual TodoReturn accountStatusChanged();
+}
+
+[[link(android)]]
+class GJAccountSyncDelegate {
+	virtual TodoReturn syncAccountFinished();
+	virtual TodoReturn syncAccountFailed(BackupAccountError, int);
+}
+
+[[link(android)]]
+class GJAccountLoginDelegate {
+	virtual TodoReturn loginAccountFinished(int, int);
+	virtual TodoReturn loginAccountFailed(AccountError);
+}
+
+[[link(android)]]
+class GJAccountBackupDelegate {
+	virtual TodoReturn backupAccountFinished();
+	virtual TodoReturn backupAccountFailed(BackupAccountError, int);
+}
+
+[[link(android)]]
+class GJAccountRegisterDelegate {
+	virtual TodoReturn registerAccountFinished();
+	virtual TodoReturn registerAccountFailed(AccountError);
+}
+
+[[link(android)]]
+class GJAccountSettingsDelegate {
+	virtual TodoReturn updateSettingsFinished();
+	virtual TodoReturn updateSettingsFailed();
+}
+
+[[link(android)]]
+class GJCommentListLayer : cocos2d::CCLayerColor {
+	static GJCommentListLayer* create(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203350;
+
+	bool init(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203440;
+	~GJCommentListLayer();
+
+    BoomListView* m_list;
+}
+
+[[link(android)]]
+class GJAccountDelegate {
+	virtual TodoReturn accountStatusChanged();
+}
+
+[[link(android)]]
+class GJAccountSyncDelegate {
+	virtual TodoReturn syncAccountFinished();
+	virtual TodoReturn syncAccountFailed(BackupAccountError, int);
+}
+
+[[link(android)]]
+class GJAccountLoginDelegate {
+	virtual TodoReturn loginAccountFinished(int, int);
+	virtual TodoReturn loginAccountFailed(AccountError);
+}
+
+[[link(android)]]
+class GJAccountBackupDelegate {
+	virtual TodoReturn backupAccountFinished();
+	virtual TodoReturn backupAccountFailed(BackupAccountError, int);
+}
+
+[[link(android)]]
+class GJAccountRegisterDelegate {
+	virtual TodoReturn registerAccountFinished();
+	virtual TodoReturn registerAccountFailed(AccountError);
+}
+
+[[link(android)]]
+class GJAccountSettingsDelegate {
+	virtual TodoReturn updateSettingsFinished();
+	virtual TodoReturn updateSettingsFailed();
+}
+
+[[link(android)]]
+class GJCommentListLayer : cocos2d::CCLayerColor {
+	static GJCommentListLayer* create(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203350;
+
+	bool init(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203440;
+	~GJCommentListLayer();
+
+    BoomListView* m_list;
+}

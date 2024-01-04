@@ -7,15 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
-      if: steps.codegen-cache.outputs.cache-hit != 'true'
       uses: actions/checkout@v3
 
     - name: Restore cache
       id: codegen-cache
-      uses: actions/cache/restore@v3
+      uses: actions/cache@v3
       with:
         path: bin
-        key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}
+        key: codegen-${{ hashFiles('codegen/**') }}
 
     - name: Build Codegen binary
       if: steps.codegen-cache.outputs.cache-hit != 'true'
@@ -23,13 +22,6 @@ jobs:
         cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=./bin -B build
         cmake --build build --config RelWithDebInfo
         cmake --install build
-
-    - name: Upload binary to cache
-      if: steps.codegen-cache.outputs.cache-hit != 'true'
-      uses: actions/cache/save@v3
-      with:
-        path: bin
-        key: ${{ hashFiles('codegen/**/*.cpp') }}-${{ hashFiles('codegen/**/**.hpp') }}
       
     - name: Upload Codegen binary
       uses: actions/upload-artifact@v3
@@ -49,5 +41,117 @@ jobs:
       with:
         name: Codegen
 
+    - name: Include extras files
+      run: |
+        echo "#include <GeometryDash-extras.bro>" >> bindings/2.200/Entry.bro
+        # echo "#include <Cocos2d-extras.bro>" >> bindings/2.200/Entry.bro
+
     - name: Verify
       run: 'chmod +x ./Codegen && ./Codegen Win32 bindings/2.200 out'
+
+  test-members:
+    # dont bother running member test if broma isnt even valid
+    needs: verify
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - name: Windows
+          os: windows-2019
+          prefixes: ''
+          extra_flags: -A win32
+
+        - name: Android32
+          os: ubuntu-latest
+          prefixes: ''
+          extra_flags: >
+            -DCMAKE_TOOLCHAIN_FILE=$NDK_HOME/build/cmake/android.toolchain.cmake
+            -DANDROID_ABI=armeabi-v7a
+            -DANDROID_PLATFORM=android-23
+            -G Ninja
+
+        - name: Android64
+          os: ubuntu-latest
+          prefixes: ''
+          extra_flags: >
+            -DCMAKE_TOOLCHAIN_FILE=$NDK_HOME/build/cmake/android.toolchain.cmake
+            -DANDROID_ABI=arm64-v8a
+            -DANDROID_PLATFORM=android-23
+            -G Ninja
+        
+        # - name: macOS
+        #   os_identifier: mac
+        #   os: macos-latest
+        #   extra_flags: >
+        #     -DCMAKE_C_COMPILER=clang
+        #     -DCMAKE_CXX_COMPILER=clang++
+        #     -DCMAKE_BUILD_TYPE=Debug
+          
+    name: Test Offsets ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/checkout@v4
+      with:
+        repository: geode-sdk/geode
+        path: geode
+
+    - name: Include extras files
+      run: |
+        echo "#include <GeometryDash-extras.bro>" >> bindings/2.200/Entry.bro
+        # echo "#include <Cocos2d-extras.bro>" >> bindings/2.200/Entry.bro
+    
+    - name: Set up codegen binary cache
+      id: codegen-cache
+      uses: actions/cache@v3
+      with:
+        path: build/codegen
+        # cache by os since for android32 and 64 the codegen binary is the same
+        key: codegen-${{ hashFiles('codegen/**') }}-${{ matrix.config.os }}
+
+    - name: Set CPM_SOURCE_CACHE
+      shell: bash
+      run: echo "CPM_SOURCE_CACHE=${{ github.workspace }}/cpm-cache" >> $GITHUB_ENV
+    
+    - name: Set up CPM cache
+      id: cache-cpm
+      uses: actions/cache@v3
+      with:
+        path: ${{ github.workspace }}/cpm-cache
+        key: cpm-cache-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
+        restore-keys: |
+          cpm-cache-
+    
+    - name: Set up NDK
+      uses: nttld/setup-ndk@v1
+      id: setup-ndk
+      with:
+        ndk-version: r26b
+        add-to-path: false
+      if: matrix.config.os == 'ubuntu-latest'
+
+    - name: Set up android env
+      run: |
+        echo "NDK_HOME=${{ steps.setup-ndk.outputs.ndk-path }}" >> "$GITHUB_ENV"
+        sudo apt install ninja-build
+      if: matrix.config.os == 'ubuntu-latest'
+
+    - name: Set GEODE_SDK
+      shell: bash
+      run: echo "GEODE_SDK=${{ github.workspace }}/geode" >> $GITHUB_ENV
+
+    - name: Configure CMake
+      shell: bash
+      run: >
+        cmake -B build -S test/members
+        -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
+        ${{ matrix.config.extra_flags }}  
+      # SKIP_BUILDING_CODEGEN will skip building codegen if finds a cached binary,
+      # locally you dont need to set it
+
+    - name: Build member test
+      run: |
+        cmake --build build --config RelWithDebInfo --parallel --target TestMembers

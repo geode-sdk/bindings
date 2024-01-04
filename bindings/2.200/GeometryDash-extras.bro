@@ -1051,10 +1051,10 @@ class SimplePlayer : cocos2d::CCSprite {
     GJSpiderSprite* m_spiderSprite;
 	int m_unknown;
 	bool m_hasGlowOutline;
-	PAD = win 0x7, android32 0x7;
+	PAD = win 0x7, android32 0x7, android64 0x7;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x8;
 }
 
 [[link(android)]]
@@ -1434,7 +1434,7 @@ class LevelListCell : TableViewCell {
 
 [[link(android)]]
 class MenuGameLayer : cocos2d::CCLayer {
-	static MenuGameLayer* create();
+	static MenuGameLayer* create() = win 0x274450;
 
 	~MenuGameLayer();
 
@@ -2517,7 +2517,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	virtual void update(float) = win 0x33910;
 
-	PAD = win 0x88, android32 0x7c;
+	PAD = win 0x88, android32 0x7c, android64 0xdc;
 	FMOD::System* m_system;
 }
 
@@ -3246,7 +3246,7 @@ class KeybindingsLayer : FLAlertLayer {
 	TodoReturn layerKey(int);
 	TodoReturn objectKey(int);
 
-	virtual bool init();
+	virtual bool init() = win 0x227270;
 	virtual void keyBackClicked();
 }
 
@@ -3621,11 +3621,6 @@ class ExplodeItemSprite : cocos2d::CCSprite {
 	~ExplodeItemSprite();
 
 	virtual bool init();
-}
-
-[[link(android)]]
-class GJAccountDelegate {
-	virtual TodoReturn accountStatusChanged();
 }
 
 [[link(android)]]
@@ -4185,16 +4180,6 @@ class GameEffectsManager : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GJCommentListLayer : cocos2d::CCLayerColor {
-	static GJCommentListLayer* create(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203350;
-
-	bool init(BoomListView*, char const*, cocos2d::_ccColor4B, float, float, bool) = win 0x203440;
-	~GJCommentListLayer();
-
-    BoomListView* m_list;
-}
-
-[[link(android)]]
 class GJDifficultySprite : cocos2d::CCSprite {
 	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x211eb0;
 
@@ -4643,9 +4628,9 @@ class EnterEffectInstance {
 
 [[link(android)]]
 class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, FriendRequestDelegate {
-	static FRequestProfilePage* create(bool);
+	static FRequestProfilePage* create(bool) = win 0xEE230;
 
-	bool init(bool);
+	bool init(bool) = win 0xEE2E0;
 	~FRequestProfilePage();
 
 	void onNextPage(cocos2d::CCObject* sender);
@@ -4841,9 +4826,9 @@ class MessageListDelegate {
 
 [[link(android)]]
 class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, MessageListDelegate {
-	static MessagesProfilePage* create(bool);
+	static MessagesProfilePage* create(bool) = win 0x2783B0;
 
-	bool init(bool);
+	bool init(bool) = win 0x278460;
 	~MessagesProfilePage();
 
 	void onNextPage(cocos2d::CCObject* sender);
@@ -5036,7 +5021,7 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
 	virtual TodoReturn textInputReturn(CCTextInputNode*);
-	virtual TodoReturn allowTextInput(CCTextInputNode*);
+	virtual bool allowTextInput(CCTextInputNode*);
 	virtual TodoReturn registerAccountFinished();
 	virtual TodoReturn registerAccountFailed(AccountError);
 }
@@ -5543,12 +5528,6 @@ class GameObjectEditorState {
 }
 
 [[link(android)]]
-class GJAccountSyncDelegate {
-	virtual TodoReturn syncAccountFinished();
-	virtual TodoReturn syncAccountFailed(BackupAccountError, int);
-}
-
-[[link(android)]]
 class GJLocalLevelScoreCell : TableViewCell {
 	~GJLocalLevelScoreCell();
 
@@ -5839,16 +5818,10 @@ class DemonFilterSelectLayer : FLAlertLayer {
 }
 
 [[link(android)]]
-class GJAccountLoginDelegate {
-	virtual TodoReturn loginAccountFinished(int, int);
-	virtual TodoReturn loginAccountFailed(AccountError);
-}
-
-[[link(android)]]
 class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
-	static GJAccountSettingsLayer* create(int);
+	static GJAccountSettingsLayer* create(int) = win 0x2039D0;
 
-	bool init(int);
+	bool init(int) = win 0x203A70;
 	~GJAccountSettingsLayer();
 
 	void onCommentSetting(cocos2d::CCObject* sender);
@@ -6110,12 +6083,6 @@ class SpriteAnimationManager : cocos2d::CCNode {
 class DownloadMessageDelegate {
 	virtual TodoReturn downloadMessageFinished(GJUserMessage*);
 	virtual TodoReturn downloadMessageFailed(int);
-}
-
-[[link(android)]]
-class GJAccountBackupDelegate {
-	virtual TodoReturn backupAccountFinished();
-	virtual TodoReturn backupAccountFailed(BackupAccountError, int);
 }
 
 [[link(android)]]
@@ -6435,20 +6402,6 @@ class SetupRotateGameplayPopup : SetupTriggerPopup {
 
 	virtual TodoReturn valueDidChange(int, float);
 }
-
-[[link(android)]]
-class GJAccountRegisterDelegate {
-	virtual TodoReturn registerAccountFinished();
-	virtual TodoReturn registerAccountFailed(AccountError);
-}
-
-[[link(android)]]
-class GJAccountSettingsDelegate {
-	virtual TodoReturn updateSettingsFinished();
-	virtual TodoReturn updateSettingsFailed();
-}
-
-
 
 [[link(android)]]
 class GJSmartBlockPreviewSprite : cocos2d::CCNode {
