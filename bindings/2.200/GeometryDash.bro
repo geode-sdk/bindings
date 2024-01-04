@@ -2175,8 +2175,18 @@ class GJGameLevel : cocos2d::CCNode {
 	gd::string m_capacityString;
 	bool m_highObjectsEnabled;
 	gd::string m_personalBests;
+	int m_timestamp;
+	PAD = android32 0x4, win 0x4;
+	gd::string m_songIDs;
+	gd::string m_sfxIDs;
+	int m_54;
+	int m_bestTime;
+	int m_bestPoints;
+	int m_k111;
+	gd::string m_unkString3;
+	gd::string m_unkString4;
 
-	PAD = android32 0x78, win 0x78;
+	PAD = android32 0x50, win 0x50;
 }
 
 [[link(android)]]

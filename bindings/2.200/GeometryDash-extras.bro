@@ -4786,7 +4786,7 @@ class GroupCommandObject2 {
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 	static LevelAreaInnerLayer* create(bool);
 
-	bool init(bool);
+	bool init(bool) = win 0x22C1E0;
 	~LevelAreaInnerLayer();
 
 	void onNextFloor(cocos2d::CCObject* sender);
