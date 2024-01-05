@@ -2055,7 +2055,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn parseSettingsString(gd::string);
 	TodoReturn scoreStringToVector(gd::string&, gd::vector<int>&);
 	TodoReturn scoreVectorToString(gd::vector<int>&, int);
-	TodoReturn getAverageDifficulty();
+	int getAverageDifficulty() = win 0x112c60;
 	TodoReturn demonIconForDifficulty(DemonDifficultyType);
 	TodoReturn generateSettingsString();
 	TodoReturn getLastBuildPageForTab(int);
@@ -5391,7 +5391,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	// TodoReturn validGroup(GameObject*, bool);
 	// TodoReturn objectMoved(GameObject*);
 	// TodoReturn shouldBlend(int);
-	GameObject* createObject(int, cocos2d::CCPoint, bool);
+	GameObject* createObject(int, cocos2d::CCPoint, bool) = win 0x236E70;
 	void handleAction(bool, cocos2d::CCArray*);
 	// TodoReturn removeObject(GameObject*, bool);
 	// TodoReturn stopPlayback();
