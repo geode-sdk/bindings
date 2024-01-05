@@ -36,6 +36,53 @@ struct SingleSizeChecker {
     using IsOffsetBy = SizeIsOffsetBy<Offset - Expected, Expected, Offset, Class, Expected == Offset>;
 };
 
-#define GEODE_MEMBER_CHECK(Class_, Member_, Offset_) class Member_; SingleMemberChecker<Member_, Class_, offsetof(Class_, Member_), Offset_>::IsOffsetBy GEODE_CONCAT(OffsetBy, __LINE__)
+#if 0
+
+#define GEODE_MEMBER_CHECK(Class_, Member_, Offset_) \
+    class Member_;                              \
+    SingleMemberChecker<                        \
+        Member_,                                \
+        Class_,                                 \
+        offsetof(Class_, Member_),              \
+        Offset_                                 \
+    >::IsOffsetBy GEODE_CONCAT(OffsetBy, __LINE__)
 
 #define GEODE_SIZE_CHECK(Class_, Offset_) SingleSizeChecker<Class_, sizeof(Class_), Offset_>::IsOffsetBy GEODE_CONCAT(OffsetBy, __LINE__)
+
+#else
+
+#include "Evil.hpp"
+
+#define STRING_PREFIX "[BEGIN]"
+#define STRING_SUFFIX "[END]"
+
+#define GEODE_MEMBER_CHECK(Class_, Member_, Expected_) \
+class Member_; \
+GEODE_EXPORT const char* GEODE_CONCAT(OffsetBy, __LINE__) = to_literal([] { \
+    MyString str; \
+    str.push(STRING_PREFIX); \
+    str.push(#Class_ "::" #Member_); \
+    str.push('.'); \
+    str.push_fmt(Expected_); \
+    str.push('.'); \
+    str.push_fmt(offsetof(Class_, Member_)); \
+    str.push(STRING_SUFFIX); \
+    return str; \
+});
+
+#define GEODE_SIZE_CHECK(Class_, Expected_) \
+GEODE_EXPORT const char* GEODE_CONCAT(SizeOf, __LINE__) = to_literal([] { \
+    MyString str; \
+    str.push(STRING_PREFIX); \
+    str.push("sizeof(" #Class_ ")"); \
+    str.push('.'); \
+    str.push_fmt(Expected_); \
+    str.push('.'); \
+    str.push_fmt(sizeof(Class_)); \
+    str.push(STRING_SUFFIX); \
+    return str; \
+});
+
+
+
+#endif
