@@ -146,18 +146,17 @@ jobs:
       run: |
         cmake --build build --config RelWithDebInfo --parallel --target TestMembers
 
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-
-    - name: Show errors
+    - name: Get Path
       shell: bash
+      id: getpath
       run: |
         if [ "$RUNNER_OS" = "Linux" ]; then
-          PATH=build/libTestMembers.so
+          echo "path=build/libTestMembers.so" >> $GITHUB_OUTPUT
         elif [ "$RUNNER_OS" = "Windows" ]; then
-          PATH=build/RelWithDebInfo/TestMembers.dll
+          echo "path=build/RelWithDebInfo/TestMembers.dll" >> $GITHUB_OUTPUT
         elif [ "$RUNNER_OS" = "macOS" ]; then
-          PATH=build/libTestMembers.dylib
+          echo "path=build/libTestMembers.dylib" >> $GITHUB_OUTPUT
         fi
-        python3.10 test/members/check.py $PATH
+
+    - name: Show Errors
+      run: python test/members/check.py ${{ steps.getpath.outputs.path }}
