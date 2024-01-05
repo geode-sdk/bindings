@@ -1978,7 +1978,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void customSetup();
 	virtual TodoReturn enterLayer();
 	virtual TodoReturn exitLayer(cocos2d::CCObject*);
-	virtual TodoReturn showLayer(bool);
+	virtual TodoReturn showLayer(bool) = win 0x1D27C0;
 	virtual TodoReturn hideLayer(bool);
 	virtual TodoReturn layerVisible();
 	virtual TodoReturn layerHidden();
@@ -3981,7 +3981,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
 	TodoReturn getMainLevel(int, bool) = win 0xF40E0;
 	TodoReturn getReportKey(int);
-	TodoReturn getBoolForKey(char const*);
+	bool getBoolForKey(char const*) = win 0x110820;
 	TodoReturn getCommentKey(int, int, int, CommentKeyType);
 	TodoReturn getDailyTimer(GJTimedLevelType);
 	TodoReturn getFolderName(int, bool);
@@ -4059,7 +4059,7 @@ class GameLevelManager : cocos2d::CCNode {
 	/* unverified signature */
 	void setIntForKey(int, char const*);
 	/* unverified signature */
-	void setBoolForKey(bool, char const*);
+	void setBoolForKey(bool, char const*) = win 0x110760;
 	/* unverified signature */
 	void setFolderName(int, gd::string, bool);
 	/* unverified signature */
@@ -5219,7 +5219,7 @@ class DashRingObject : RingObject {
 
 [[link(android)]]
 class LevelSettingsObject : cocos2d::CCNode {
-	static LevelSettingsObject* create();
+	static LevelSettingsObject* create() = win 0x248A80;
 
 	~LevelSettingsObject();
 
@@ -9159,7 +9159,7 @@ class GJSmartPrefab : cocos2d::CCObject {
 
 [[link(android)]]
 class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelegate {
-	static GJSongBrowser* create();
+	static GJSongBrowser* create() = win 0x220120;
 
 	~GJSongBrowser();
 
@@ -9172,11 +9172,21 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 	TodoReturn loadPage(int);
 
 	virtual bool init();
-	virtual TodoReturn customSetup();
-	virtual TodoReturn exitLayer(cocos2d::CCObject*);
+	virtual TodoReturn customSetup() = win 0x220320;
+	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x2202B0;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
 	virtual TodoReturn getSelectedCellIdx();
+
+	int m_page;
+	int m_songID;
+	bool m_selected;
+	CCMenuItemSpriteExtra* m_rightArrow;
+	CCMenuItemSpriteExtra* m_leftArrow;
+	cocos2d::CCLabelBMFont* m_countText;
+	PAD = android32 0x8;
+	cocos2d::CCArray* m_downloadedSongs;
+	CustomListView* m_listView;
 }
 
 [[link(android)]]
@@ -10462,15 +10472,15 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	void onFeatured(cocos2d::CCObject* sender);
 	void onFollowed(cocos2d::CCObject* sender);
 	void onOriginal(cocos2d::CCObject* sender);
-	void onSongMode(cocos2d::CCObject* sender);
+	void onSongMode(cocos2d::CCObject* sender) = win 0x262300;
 	void onCompleted(cocos2d::CCObject* sender);
 	void onLegendary(cocos2d::CCObject* sender);
 	void onTwoPlayer(cocos2d::CCObject* sender);
-	void onSongFilter(cocos2d::CCObject* sender);
+	void onSongFilter(cocos2d::CCObject* sender) = win 0x262050;
 	void onUncompleted(cocos2d::CCObject* sender);
 	void onEpic(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x262790;
 	void onCoins(cocos2d::CCObject* sender);
 	void onMythic(cocos2d::CCObject* sender);
 	void onNoStar(cocos2d::CCObject* sender);
@@ -10487,6 +10497,13 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
 	virtual TodoReturn textInputReturn(CCTextInputNode*);
+
+    cocos2d::CCLabelBMFont* m_audioTrackName;
+    CCMenuItemSpriteExtra* m_songLeftBtn;
+    CCMenuItemSpriteExtra* m_songRightBtn;
+    CCMenuItemSpriteExtra* m_normalBtn;
+    CCMenuItemSpriteExtra* m_customBtn;
+    CCTextInputNode* m_enterSongID;
 }
 
 [[link(android)]]
@@ -11100,7 +11117,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	void onFMODDebug(cocos2d::CCObject* sender) = win 0x2aea40;
 	void onGPSignOut(cocos2d::CCObject* sender);
 	void onKeybindings(cocos2d::CCObject* sender);
-	void onSongBrowser(cocos2d::CCObject* sender);
+	void onSongBrowser(cocos2d::CCObject* sender) = win 0x2ae9f0;
 	void onInfo(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onToggle(cocos2d::CCObject* sender);
