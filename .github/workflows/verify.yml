@@ -156,4 +156,4 @@ jobs:
         elif [ "$RUNNER_OS" = "macOS" ]; then
           PATH=build/libTestMembers.dylib
         fi
-        python3 test/members/check.py $PATH
+        python test/members/check.py $PATH
