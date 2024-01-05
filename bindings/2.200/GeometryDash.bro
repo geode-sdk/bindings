@@ -7138,7 +7138,8 @@ class ColorAction : cocos2d::CCObject {
 	TodoReturn setupFromMap(gd::map<gd::string, gd::string>&);
 	TodoReturn loadFromState(CAState&);
 	TodoReturn setupFromString(gd::string);
-	TodoReturn writeSaveString(fmt::BasicWriter<char>&);
+	// TODO: this is a scary function
+	// TodoReturn writeSaveString(fmt::BasicWriter<char>&);
 	TodoReturn updateCustomColor(cocos2d::_ccColor3B, cocos2d::_ccColor3B);
 	void step(float);
 	/* unverified signature */
