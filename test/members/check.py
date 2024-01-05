@@ -9,6 +9,8 @@ with open(binary_path, 'rb') as file:
 PREFIX = b'[BEGIN]'
 SUFFIX = b'[END]'
 
+has_errors = False
+
 i = 0
 while True:
     i = data.find(PREFIX, i)
@@ -18,5 +20,9 @@ while True:
     name, expected, actual = part.split('.')
     expected, actual = int(expected), int(actual)
     if expected != actual:
+        has_errors = True
         print(f'{name} is offset by {actual - expected:#x} bytes (expected={expected:#x}, actual={actual:#x})')
     i = e
+
+if has_errors:
+    exit(1)

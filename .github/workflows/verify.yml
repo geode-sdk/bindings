@@ -145,3 +145,15 @@ jobs:
     - name: Build member test
       run: |
         cmake --build build --config RelWithDebInfo --parallel --target TestMembers
+
+    - name: Show errors
+      shell: bash
+      run: |
+        if [ "$RUNNER_OS" = "Linux" ]; then
+          PATH=build/libTestMembers.so
+        elif [ "$RUNNER_OS" = "Windows" ]; then
+          PATH=build/RelWithDebInfo/TestMembers.dll
+        elif [ "$RUNNER_OS" = "macOS" ]; then
+          PATH=build/libTestMembers.dylib
+        fi
+        python3 test/members/check.py $PATH
