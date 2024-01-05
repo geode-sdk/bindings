@@ -8797,7 +8797,7 @@ class SimplePlayer : cocos2d::CCSprite {
 	~SimplePlayer();
 
 	/* unverified signature */
-	inline void setSecondColor(cocos2d::_ccColor3B const& color) {
+	void setSecondColor(cocos2d::_ccColor3B const& color) {
 		m_secondLayer->setColor(color);
 		updateColors();
 	}
@@ -8826,11 +8826,13 @@ class SimplePlayer : cocos2d::CCSprite {
 	void setGlowOutline(cocos2d::ccColor3B color) {
 		enableCustomGlowColor(color);
 		m_hasGlowOutline = true;
+		updateColors();
 	}
 
-	void disableGlowOutline(cocos2d::ccColor3B color) {
+	void disableGlowOutline() {
 		disableCustomGlowColor();
 		m_hasGlowOutline = false;
+		updateColors();
 	}
 
 	TodoReturn hideAll();
