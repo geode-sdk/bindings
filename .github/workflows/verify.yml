@@ -146,7 +146,6 @@ jobs:
       run: |
         cmake --build build --config RelWithDebInfo --parallel --target TestMembers
 
-    - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
       with:
         python-version: '3.10'
@@ -161,4 +160,4 @@ jobs:
         elif [ "$RUNNER_OS" = "macOS" ]; then
           PATH=build/libTestMembers.dylib
         fi
-        python test/members/check.py $PATH
+        python3.10 test/members/check.py $PATH
