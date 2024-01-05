@@ -6442,7 +6442,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setScaleX(float) = win 0x2D4C10;
 	virtual void setScaleY(float) = win 0x2D4C30;
 	virtual void setScale(float) = win 0x2D4C50;
-	virtual void setPosition(cocos2d::CCPoint const&);
+    virtual void setPosition(cocos2d::CCPoint const&) = win 0x2cfef0;
 	virtual void setVisible(bool);
 	virtual void setRotation(float);
 	virtual void setOpacity(unsigned char);
