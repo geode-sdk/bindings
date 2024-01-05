@@ -29,13 +29,17 @@ class Example : Base1, Base2 {
     // Statics and virtuals are as you'd expect
     static void example() = win 0x654321;
 
+    // Remember that the order of virtual functions matters!
+    virtual void virtFunc();
+    virtual bool init() = win 0x123;
+
     // Remember to use fully qualified names for Cocos2d classes
     void onTrigger(cocos2d::CCObject*);
 
     // Some functions that are passed as callbacks have unpredictable calling 
     // conventions. Use the `callback` keyword if a function is __thiscall 
     // when it would otherwise be inferred as __membercall
-    callback void unpredictable();
+    callback void unpredictable(float);
 
     // Add members like you would on a C++ class
     // Members are in the format m_camelCase
