@@ -7828,7 +7828,7 @@ class FontObject : cocos2d::CCObject {
 
 [[link(android)]]
 class GJItemIcon : cocos2d::CCSprite {
-	static GJItemIcon* create(UnlockType, int, cocos2d::_ccColor3B, cocos2d::_ccColor3B, bool, bool, bool, cocos2d::_ccColor3B);
+	static GJItemIcon* create(UnlockType, int, cocos2d::_ccColor3B, cocos2d::_ccColor3B, bool, bool, bool, cocos2d::_ccColor3B) = win 0x1F0790;
 
 	bool init(UnlockType, int, cocos2d::_ccColor3B, cocos2d::_ccColor3B, bool, bool, bool, cocos2d::_ccColor3B) = win 0x1f0870;
 	~GJItemIcon();
@@ -7837,7 +7837,9 @@ class GJItemIcon : cocos2d::CCSprite {
 	TodoReturn createStoreItem(UnlockType, int, bool, cocos2d::_ccColor3B);
 	TodoReturn darkenStoreItem(ShopType);
 	TodoReturn darkenStoreItem(cocos2d::_ccColor3B);
-	TodoReturn createBrowserItem(UnlockType, int);
+	static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) {
+		return GJItemIcon::create(unlockType, itemID, {0xAF, 0xAF, 0xAF}, {0xFF, 0xFF, 0xFF}, false, true, true, {0xFF, 0xFF, 0xFF});
+	}
 	TodoReturn toggleEnabledState(bool);
 	TodoReturn changeToLockedState(float);
 	TodoReturn unlockedColorForType(int);
