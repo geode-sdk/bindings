@@ -1,10 +1,6 @@
 include(ExternalProject)
 
-if (NOT DEFINED GEODE_CODEGEN_BINARY_OUT)
-	set(GEODE_CODEGEN_BINARY_OUT ${CMAKE_CURRENT_BINARY_DIR}/codegen)
-else()
-	cmake_path(SET GEODE_CODEGEN_BINARY_OUT ${GEODE_CODEGEN_BINARY_OUT})
-endif()
+set(GEODE_CODEGEN_BINARY_OUT ${CMAKE_CURRENT_BINARY_DIR}/codegen)
 
 if (NOT GEODE_BINDINGS_PATH)
 	set(GEODE_BINDINGS_PATH ${GEODE_BINDINGS_REPO_PATH}/bindings/${GEODE_GD_VERSION})
@@ -25,6 +21,10 @@ ExternalProject_Add(CodegenProject
 	BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --config $<CONFIGURATION>
 	INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIGURATION>
 )
+else()
+# does nothing
+add_custom_target(CodegenProject)
+endif()
 
 file(GLOB CODEGEN_DEPENDS CONFIGURE_DEPENDS 
 	${GEODE_BINDINGS_PATH}/*.bro
@@ -32,20 +32,12 @@ file(GLOB CODEGEN_DEPENDS CONFIGURE_DEPENDS
 	${GEODE_BINDINGS_REPO_PATH}/codegen/src/*.hpp
 )
 
-
 file(GLOB CODEGEN_OUTPUTS CONFIGURE_DEPENDS 
 	${GEODE_CODEGEN_PATH}/Geode/binding/*.hpp
 )
 
-else()
-
-# does nothing
-add_custom_target(CodegenProject)
-
-endif()
-
 add_custom_command(
-	# DEPENDS ${CODEGEN_DEPENDS}
+	DEPENDS ${CODEGEN_DEPENDS}
 	DEPENDS CodegenProject
 	COMMAND ${GEODE_CODEGEN_BINARY_OUT}/Codegen ${GEODE_TARGET_PLATFORM} ${GEODE_BINDINGS_PATH} ${GEODE_CODEGEN_PATH}
 	COMMAND echo codegen > ${GEODE_CODEGEN_PATH}/.stamp
