@@ -2063,7 +2063,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn getListSnapshot();
 	TodoReturn levelWasAltered();
 	bool areCoinsVerified() = win 0x115850;
-	TodoReturn getAudioFileName();
+	gd::string getAudioFileName() = win 0x112f20;
 	TodoReturn getNormalPercent();
 	/* unverified signature */
 	void setNormalPercent(int);
@@ -2865,7 +2865,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDelegate, RateLevelDelegate, LikeItemDelegate, FLAlertLayerProtocol, LevelDeleteDelegate, NumberInputDelegate, SetIDPopupDelegate, TableViewCellDelegate {
 	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x24CCD0, mac 0x2973f0;
 
-	bool init(GJGameLevel*, bool) = win 0x24CD80;
+	bool init(GJGameLevel* level, bool challenge) = win 0x24CD80;
 	~LevelInfoLayer();
 
 	void onFavorite(cocos2d::CCObject* sender)= win 0x24EFC0;
@@ -13088,7 +13088,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	bool isDLActive(char const*);
 	TodoReturn pathForSFX(int) = win 0x27f630;
 	TodoReturn downloadSFX(int);
-	TodoReturn pathForSong(int) = win 0x27f2c0;
+	gd::string pathForSong(int songID) = win 0x27f2c0;
 	static MusicDownloadManager* sharedState() = win 0x27d490;
 	TodoReturn downloadSong(int);
 	TodoReturn encodeDataTo(DS_Dictionary*);
