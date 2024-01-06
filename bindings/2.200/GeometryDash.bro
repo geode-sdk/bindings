@@ -2950,18 +2950,18 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	cocos2d::CCSprite* m_likesIcon;
 	cocos2d::CCSprite* m_orbsIcon;
 	int m_unk6; // always 3, maybe level type?
-	void* m_unk7;
+	int m_unk7;
 	LoadingCircle* m_circle;
-	CCNode* m_difficultySprite; // actually GJDifficultySprite
+	GJDifficultySprite* m_difficultySprite;
 	cocos2d::CCSprite* m_starsIcon;
 	cocos2d::CCLabelBMFont* m_starsLabel;
 	cocos2d::CCArray* m_icons;
-	PAD = win 0x10, android32 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10;
 	bool m_challenge;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x8;
 	cocos2d::CCSprite* m_playSprite;
 	void* m_unk11;
-	CCNode* m_songWidget; // actually CustomSongWidget
+	CustomSongWidget* m_songWidget;
 }
 
 [[link(android)]]

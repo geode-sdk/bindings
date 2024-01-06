@@ -67,4 +67,8 @@ GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3658);
 // GEODE_SIZE_CHECK(PlayerObject, 0xbb0);
 // GEODE_SIZE_CHECK(GameObject, 0x538);
 
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_circle, 0x280);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x2B8);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2D8);
+
 #endif
