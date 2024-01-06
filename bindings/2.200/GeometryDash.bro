@@ -116,12 +116,12 @@ class ButtonSprite : cocos2d::CCSprite {
 	static ButtonSprite* create(char const* caption, const char* font, const char* texture, float scale) {
 		return ButtonSprite::create(caption, 0, 0, font, texture, .0f, scale);
 	}
-	static ButtonSprite* create(char const*, float), mac 0x9999999;
-	static ButtonSprite* create(char const*, int, int, float, bool), mac 0x9999999;
-	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*), mac 0x9999999;
+	static ButtonSprite* create(char const*, float);
+	static ButtonSprite* create(char const*, int, int, float, bool);
+	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*);
 	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*, float) = win 0x1feb0, mac 0x9999999;
-	static ButtonSprite* create(cocos2d::CCSprite*), mac 0x9999999;
-	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool), mac 0x9999999;
+	static ButtonSprite* create(cocos2d::CCSprite*);
+	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool);
 	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool, char const*, bool) = win 0x1fb90, mac 0x9999999;
 
 	bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x1ff80;
