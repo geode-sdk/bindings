@@ -8475,15 +8475,15 @@ class FindBPMLayer : CreateGuidelinesLayer {
 
 [[link(android)]]
 class GauntletNode : cocos2d::CCNode {
-	static GauntletNode* create(GJMapPack*);
+	static GauntletNode* create(GJMapPack*) = win 0x185160;
 
-	bool init(GJMapPack*);
-	~GauntletNode();
+	bool init(GJMapPack*) = win 0x185220;
+	~GauntletNode() = win 0x1836C0;
 
-	TodoReturn onClaimReward();
+	void onClaimReward() = win 0x1865E0;
 
-	TodoReturn nameForType(GauntletType);
-	TodoReturn frameForType(GauntletType);
+	gd::string nameForType(GauntletType) = win 0x186A70;
+	gd::string frameForType(GauntletType) = win 0x186610;
 }
 
 [[link(android)]]
@@ -12492,30 +12492,30 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 
 [[link(android)]]
 class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelManagerDelegate {
-	static GauntletSelectLayer* create(int);
+	static GauntletSelectLayer* create(int) = win 0x1837C0;
 
-	bool init(int);
-	~GauntletSelectLayer();
+	bool init(int) = win 0x183860;
+	~GauntletSelectLayer() = win 0x1836F0;
 
-	void onBack(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onNext(cocos2d::CCObject* sender);
-	void onPlay(cocos2d::CCObject* sender);
-	void onPrev(cocos2d::CCObject* sender);
-	void onRefresh(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x184D50;
+	void onInfo(cocos2d::CCObject* sender) = win 0x1841F0;
+	void onNext(cocos2d::CCObject* sender) = win 0x184BA0;
+	void onPlay(cocos2d::CCObject* sender) = win 0x184DC0;
+	void onPrev(cocos2d::CCObject* sender) = win 0x184BC0;
+	void onRefresh(cocos2d::CCObject* sender) = win 0x184250;
 
-	TodoReturn unblockPlay();
+	void unblockPlay() = win 0x184D00;
 	TodoReturn updateArrows();
-	TodoReturn setupGauntlets();
-	TodoReturn scene(int);
-	TodoReturn goToPage(int, bool);
+	void setupGauntlets() = win 0x184670;
+	bool scene(int) = win 0x182F70;
+	void goToPage(int, bool) = win 0x184BE0;
 
-	virtual void onExit();
-	virtual void keyBackClicked();
+	virtual void onExit() = win 0x185120;
+	virtual void keyBackClicked() = win 0x184DB0;
 	virtual TodoReturn scrollLayerWillScrollToPage(BoomScrollLayer*, int);
 	virtual TodoReturn scrollLayerScrolledToPage(BoomScrollLayer*, int);
-	virtual TodoReturn loadLevelsFinished(cocos2d::CCArray*, char const*, int);
-	virtual TodoReturn loadLevelsFailed(char const*, int);
+	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x184300;
+	virtual void loadLevelsFailed(char const*, int) = win 0x1844D0;
 }
 
 [[link(android)]]
@@ -14684,6 +14684,18 @@ class AdToolbox {
 
 [[link(android)]]
 class GJMapPack : cocos2d::CCNode {
+	cocos2d::CCArray* m_levels;
+    int m_packID;
+    GJDifficulty m_difficulty;
+    int m_stars;
+    int m_coins;
+    gd::string m_packName;
+    gd::string m_levelStrings;
+    cocos2d::ccColor3B m_textColour;
+    cocos2d::ccColor3B m_barColour;
+    int m_MId;
+    bool m_isGauntlet;
+
 	static GJMapPack* create(cocos2d::CCDictionary*);
 	static GJMapPack* create();
 
