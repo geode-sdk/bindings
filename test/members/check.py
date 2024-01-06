@@ -52,13 +52,17 @@ if errors:
     for error in errors:
         name, expected, actual = error
         if name.startswith('sizeof('):
-            name_color = '\x1b[34;1m'
+            name_color = '\x1b[34;1m' # bold blue
         else:
-            name_color = '\x1b[1m'
+            name_color = '\x1b[1m' # bold
         if actual - expected < 0:
-            offset_color = '\x1b[31m'
+            offset_color = '\x1b[31m' # red
         else:
-            offset_color = '\x1b[32m'
-        print(f'{name_color}{name:<{longest_name}}{RESET} - offset by {offset_color}{actual - expected:<#5x}{RESET} (expected={expected:#x}, actual={actual:#x})')
+            offset_color = '\x1b[32m' # green
+        number_color = '\x1b[33m' # yellow
+        print(
+            f'{name_color}{name:<{longest_name}}{RESET} - offset by {offset_color}{actual - expected:<#5x}{RESET} ' +
+            f'(expected={number_color}{expected:#x}{RESET}, actual={number_color}{actual:#x}{RESET})'
+        )
 
     exit(1)
