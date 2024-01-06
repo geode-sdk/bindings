@@ -6191,9 +6191,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn circleWaveWillBeRemoved(CCCircleWave*);
 	virtual void dialogClosed(DialogLayer*) = win 0x2e12b0;
 
-	PAD = win 0x12C;
-	bool m_endLayerStars;
-	PAD = win 0xBF, android32 0x1ec;
+	PAD = win 0x12C, android32 0x12C;
+	bool m_endLayerStars; // not verified on android
+	PAD = win 0xBF, android32 0xBF;
 }
 
 
