@@ -1400,8 +1400,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_practiceMusicSync;
 	PAD = win 0xd2, android32 0xba;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = win 0x344;
-	bool m_endLayerStars;
 	PAD = win 0x20a, android32 0x1ea;
 }
 
@@ -6193,7 +6191,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn circleWaveWillBeRemoved(CCCircleWave*);
 	virtual void dialogClosed(DialogLayer*) = win 0x2e12b0;
 
-	PAD = win 0x1ec, android32 0x1ec;
+	PAD = win 0x12C;
+	bool m_endLayerStars;
+	PAD = win 0xBF, android32 0x1ec;
 }
 
 
