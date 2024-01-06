@@ -80,6 +80,7 @@ GEODE_MEMBER_CHECK(ColorSelectPopup, m_colorAction, 0x2f0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5f0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x884);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x888);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa38);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2a8c);
 
 // playerobject and gameobject are kinda messed up rn

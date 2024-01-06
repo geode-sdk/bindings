@@ -94,6 +94,8 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5d8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x870);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x874);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9b0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa24);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b48);
 
 
 GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x7ac);
