@@ -6446,7 +6446,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setVisible(bool);
 	virtual void setRotation(float);
 	virtual void setOpacity(unsigned char);
-	virtual void setColor(cocos2d::_ccColor3B const&);
+	virtual void setColor(cocos2d::_ccColor3B const&) = win 0x2d0bb0;
 	virtual void setFlipX(bool) = win 0x2D4B80;
 	virtual void setFlipY(bool) = win 0x138E00;
 	virtual TodoReturn resetObject() = win 0x2cb840;
