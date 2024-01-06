@@ -42,13 +42,10 @@ struct MyString {
             value = -value;
         }
 
-        constexpr char digits[] = { '0', '1', '2', '3', '4', '5', '6', '7',
-                                        '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+        constexpr auto digits = "0123456789abcedf";
 
         std::array<char, 64> buffer;
-
         auto index = buffer.size();
-
         do {
             const auto digit = value % 10;
             value /= 10;

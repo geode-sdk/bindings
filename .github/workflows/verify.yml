@@ -138,11 +138,11 @@ jobs:
       run: >
         cmake -B build -S test/members
         -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
-        -D USE_EVIL_SCRIPT=ON
+        -D USE_HACKY_SCRIPT=ON
         ${{ matrix.config.extra_flags }}  
       # SKIP_BUILDING_CODEGEN will skip building codegen if finds a cached binary,
       # locally you dont need to set it
-      # USE_EVIL_SCRIPT will use the python script and some hackery to print the
+      # USE_HACKY_SCRIPT will use the python script and some hackery to print the
       # offsets in a nicer way. it is also not required
 
     - name: Build member test

@@ -42,8 +42,8 @@ endif()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE -DGEODE_DONT_WARN_INCORRECT_MEMBERS)
 
-if (USE_EVIL_SCRIPT)
-	target_compile_definitions(${PROJECT_NAME} PRIVATE -DUSE_EVIL_SCRIPT)
+if (USE_HACKY_SCRIPT)
+	target_compile_definitions(${PROJECT_NAME} PRIVATE -DUSE_HACKY_SCRIPT)
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ghc_filesystem mat-json)
