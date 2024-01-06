@@ -2950,18 +2950,18 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	cocos2d::CCSprite* m_likesIcon;
 	cocos2d::CCSprite* m_orbsIcon;
 	int m_unk6; // always 3, maybe level type?
-	void* m_unk7;
+	int m_unk7;
 	LoadingCircle* m_circle;
-	CCNode* m_difficultySprite; // actually GJDifficultySprite
+	GJDifficultySprite* m_difficultySprite;
 	cocos2d::CCSprite* m_starsIcon;
 	cocos2d::CCLabelBMFont* m_starsLabel;
 	cocos2d::CCArray* m_icons;
-	PAD = win 0x10, android32 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10;
 	bool m_challenge;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x8;
 	cocos2d::CCSprite* m_playSprite;
 	void* m_unk11;
-	CCNode* m_songWidget; // actually CustomSongWidget
+	CustomSongWidget* m_songWidget;
 }
 
 [[link(android)]]
@@ -4708,7 +4708,8 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	static LevelSearchLayer* create(int) = win 0x25C4E0;
 
 	bool init(int) = win 0x25C580;
-	~LevelSearchLayer();
+	LevelSearchLayer() = win 0x25c160;
+	~LevelSearchLayer() = win 0x25c3c0;
 
 	TodoReturn getDiffKey(int);
 	TodoReturn getTimeKey(int);
@@ -4725,7 +4726,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	void onSearchMode(cocos2d::CCObject* sender);
 	void onSearchUser(cocos2d::CCObject* sender);
 	void onLatestStars(cocos2d::CCObject* sender);
-	void onMoreOptions(cocos2d::CCObject* sender);
+	void onMoreOptions(cocos2d::CCObject* sender) = win 0x25e040;
 	void onSpecialDemon(cocos2d::CCObject* sender);
 	void onMostDownloaded(cocos2d::CCObject* sender);
 	void onClearFreeSearch(cocos2d::CCObject* sender);
@@ -4740,8 +4741,8 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	TodoReturn clearFilters();
 	TodoReturn toggleTimeNum(int, bool);
 	TodoReturn toggleDifficulty(cocos2d::CCObject*);
-	TodoReturn updateSearchLabel(char const*);
-	TodoReturn confirmClearFilters(cocos2d::CCObject*);
+	TodoReturn updateSearchLabel(char const*) = win 0x25ef40;
+	TodoReturn confirmClearFilters(cocos2d::CCObject*) = win 0x25dfc0;
 	TodoReturn toggleDifficultyNum(int, bool);
 	TodoReturn scene(int);
 	TodoReturn checkDiff(int);
@@ -5746,7 +5747,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn updateZoom(float) = win 0xc97c0;
 	TodoReturn applyOffset(GameObject*);
 	TodoReturn copyObjects(cocos2d::CCArray*, bool, bool);
-	void deselectAll();
+	void deselectAll() = win 0xc8a10;
 	TodoReturn editObject2(cocos2d::CCObject*);
 	TodoReturn editObject3(cocos2d::CCObject*);
 	TodoReturn toggleSwipe(cocos2d::CCObject*);
@@ -5759,7 +5760,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn flipObjectsX(cocos2d::CCArray*);
 	TodoReturn flipObjectsY(cocos2d::CCArray*);
 	TodoReturn offsetForKey(int);
-	TodoReturn pasteObjects(gd::string, bool);
+	void pasteObjects(gd::string, bool) = win 0xca640;
 	TodoReturn removeOffset(GameObject*);
 	void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType) = win 0xd5910;
 	void selectObject(GameObject*, bool);
@@ -6591,7 +6592,7 @@ class CheckpointObject : cocos2d::CCNode {
 class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	static EditorPauseLayer* create(LevelEditorLayer*);
 
-	bool init(LevelEditorLayer*);
+	bool init(LevelEditorLayer*) = win 0x9f520;
 	~EditorPauseLayer();
 
 	void onNewGroupX(cocos2d::CCObject* sender);
