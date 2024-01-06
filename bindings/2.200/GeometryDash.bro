@@ -4649,16 +4649,29 @@ class GameStatsManager : cocos2d::CCNode {
 
 	virtual bool init();
 
-	// non-windows pads not tested on 2.2
-	PAD = win 0x18;
-	PAD = mac 0x50, win 0x24, android32 0x24;
+	bool m_unkBool;
+	bool m_unkBool2;
+	bool m_usePlayerStatsCCDictionary;
+	cocos2d::CCString* m_trueString;
+	cocos2d::CCDictionary* m_allStoreItems;
+	cocos2d::CCDictionary* m_storeItems;
+	cocos2d::CCDictionary* m_allTreasureRoomChests;
+	cocos2d::CCDictionary* m_allTreasureRoomChestItems;
+	cocos2d::CCDictionary* m_allSpecialChests;
+	cocos2d::CCDictionary* m_allSpecialChestItems;
+	gd::map<gd::string, gd::string> m_specialRewardDescriptions;
+	gd::map<gd::string, gd::string> m_createSpecialChestItemsMap;
+	cocos2d::CCDictionary* m_specialChestsLite;
+	cocos2d::CCArray* m_storeItemArray;
+	cocos2d::CCDictionary* m_rewardItems;
 	cocos2d::CCDictionary* m_dailyChests;
 	cocos2d::CCDictionary* m_worldAdvertChests;
 	cocos2d::CCDictionary* m_activeChallenges;
 	cocos2d::CCDictionary* m_upcomingChallenges;
-	PAD = mac 0x18, win 0xc, android32 0xc;
+	double m_challengeTime;
 	cocos2d::CCDictionary* m_playerStats;
-	PAD = mac 0x50, win 0x10, android32 0x34;
+	gd::map<int, int> m_playerStatsRandMap;
+	gd::map<int, int> m_playerStatsSeedMap;
 	cocos2d::CCDictionary* m_completedLevels;
 	cocos2d::CCDictionary* m_verifiedUserCoins;
 	cocos2d::CCDictionary* m_pendingUserCoins;
@@ -4679,9 +4692,13 @@ class GameStatsManager : cocos2d::CCNode {
 	cocos2d::CCDictionary* m_treasureRoomChests;
 	geode::SeedValueSRV m_bonusKey;
 	cocos2d::CCDictionary* m_miscChests;
-	cocos2d::CCDictionary* m_GS28;
-	  PAD = win 0x1C;
-	int m_GS26;
+	cocos2d::CCDictionary* m_enabledItems;
+	bool m_unkBoolIncrementStat;
+	cocos2d::CCDictionary* m_unkDict;
+	cocos2d::CCDictionary* m_unlockedItems;
+	gd::map<int, UnlockType> m_accountIDForIcon;
+	gd::map<int, gd::string> m_usernameForAccountID;
+	int m_activePath;
 }
 
 [[link(android)]]
@@ -6967,11 +6984,11 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 	cocos2d::CCLabelBMFont* m_timeLabel;
 	LoadingCircle* m_timeCircle;
 	LoadingCircle* m_nodeCircle;
-	PAD = win 0x4, android32 0x4;
+	bool m_gettingDailyStatus;
 	DailyLevelNode* m_dailyNode;
-	PAD = win 0x4, android32 0x4;
+	bool m_downloadStarted;
 	GJTimedLevelType m_type;
-
+	int m_downloadLevelID;
 }
 
 
