@@ -4708,7 +4708,8 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	static LevelSearchLayer* create(int) = win 0x25C4E0;
 
 	bool init(int) = win 0x25C580;
-	~LevelSearchLayer();
+	LevelSearchLayer() = win 0x25c160;
+	~LevelSearchLayer() = win 0x25c3c0;
 
 	TodoReturn getDiffKey(int);
 	TodoReturn getTimeKey(int);
@@ -4725,7 +4726,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	void onSearchMode(cocos2d::CCObject* sender);
 	void onSearchUser(cocos2d::CCObject* sender);
 	void onLatestStars(cocos2d::CCObject* sender);
-	void onMoreOptions(cocos2d::CCObject* sender);
+	void onMoreOptions(cocos2d::CCObject* sender) = win 0x25e040;
 	void onSpecialDemon(cocos2d::CCObject* sender);
 	void onMostDownloaded(cocos2d::CCObject* sender);
 	void onClearFreeSearch(cocos2d::CCObject* sender);
@@ -4740,8 +4741,8 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	TodoReturn clearFilters();
 	TodoReturn toggleTimeNum(int, bool);
 	TodoReturn toggleDifficulty(cocos2d::CCObject*);
-	TodoReturn updateSearchLabel(char const*);
-	TodoReturn confirmClearFilters(cocos2d::CCObject*);
+	TodoReturn updateSearchLabel(char const*) = win 0x25ef40;
+	TodoReturn confirmClearFilters(cocos2d::CCObject*) = win 0x25dfc0;
 	TodoReturn toggleDifficultyNum(int, bool);
 	TodoReturn scene(int);
 	TodoReturn checkDiff(int);
