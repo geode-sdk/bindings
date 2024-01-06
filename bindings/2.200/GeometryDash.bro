@@ -4790,7 +4790,7 @@ class GJComment : cocos2d::CCNode {
 	int m_modBadge;
 	cocos2d::ccColor3B m_color;
 	bool m_hasLevelID;
-	PAD = win 0x4, android32 0x4;
+	bool m_unkMultiplayerBool;
 	GJUserScore* m_userScore;
 }
 
