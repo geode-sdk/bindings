@@ -5894,8 +5894,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn deactivateRotationControl();
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool);
 	TodoReturn resetSelectedObjectsColor();
-	TodoReturn constrainGameLayerPosition(float, float);
-	TodoReturn constrainGameLayerPosition();
+	void constrainGameLayerPosition(float x, float y) = win 0xd7250;
+	// Inlined on Windows
+	void constrainGameLayerPosition() {
+		this->constrainGameLayerPosition(-100, -100);
+	}
 	TodoReturn convertKeyBasedOnNeighbors(int, int, cocos2d::CCPoint, cocos2d::CCArray*);
 	TodoReturn createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool);
 	TodoReturn deactivateTransformControl();
@@ -5942,7 +5945,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn songStateChanged();
 	virtual TodoReturn colorSelectClosed(cocos2d::CCNode*);
 	virtual void keyUp(cocos2d::enumKeyCodes);
-	virtual void scrollWheel(float, float);
+	virtual void scrollWheel(float, float) = win 0xda6b0;
 	virtual TodoReturn angleChangeBegin();
 	virtual TodoReturn angleChangeEnded();
 	virtual TodoReturn angleChanged(float);
@@ -9079,7 +9082,7 @@ class GJGroundLayer : cocos2d::CCLayer {
 	TodoReturn deactivateGround();
 	TodoReturn updateShadowXPos(float, float);
 	TodoReturn loadGroundSprites(int, bool);
-	TodoReturn updateGroundWidth(bool);
+	void updateGroundWidth(bool);
 	TodoReturn updateGround01Color(cocos2d::_ccColor3B) = win 0x1F3220;
 	TodoReturn updateGround02Color(cocos2d::_ccColor3B) = win 0x1F3280;
 
