@@ -24,8 +24,8 @@ GEODE_MEMBER_CHECK(CCDirector, m_obWinSizeInPoints, 0xe8);
 
 
 GEODE_MEMBER_CHECK(CCTextInputNode, m_allowedChars, 0x174);
-GEODE_MEMBER_CHECK(CCTextInputNode, m_maxLabelWidth, 0x18c);
-GEODE_MEMBER_CHECK(CCTextInputNode, m_maxLabelScale, 0x190);
+GEODE_MEMBER_CHECK(CCTextInputNode, m_maxLabelWidth, 0x180);
+GEODE_MEMBER_CHECK(CCTextInputNode, m_maxLabelScale, 0x19c);
 GEODE_MEMBER_CHECK(CCTextInputNode, m_placeholderScale, 0x194);
 GEODE_MEMBER_CHECK(CCTextInputNode, m_placeholderColor, 0x198);
 
@@ -38,7 +38,7 @@ GEODE_MEMBER_CHECK(TableView, m_cellArray, 0x1b0);
 GEODE_MEMBER_CHECK(CCScrollLayerExt, m_cutContent, 0x16c);
 
 GEODE_SIZE_CHECK(SliderThumb, 0x140);
-GEODE_SIZE_CHECK(Slider, 0x158);
+GEODE_SIZE_CHECK(Slider, 0x138);
 GEODE_MEMBER_CHECK(Slider, m_touchLogic, 0x13c);
 GEODE_SIZE_CHECK(SliderTouchLogic, 0x178);
 

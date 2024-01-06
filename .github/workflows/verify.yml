@@ -138,25 +138,16 @@ jobs:
       run: >
         cmake -B build -S test/members
         -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
+        -D USE_EVIL_SCRIPT=ON
         ${{ matrix.config.extra_flags }}  
       # SKIP_BUILDING_CODEGEN will skip building codegen if finds a cached binary,
       # locally you dont need to set it
+      # USE_EVIL_SCRIPT will use the python script and some hackery to print the
+      # offsets in a nicer way. it is also not required
 
     - name: Build member test
       run: |
         cmake --build build --config RelWithDebInfo --parallel --target TestMembers
 
-    - name: Get Path
-      shell: bash
-      id: getpath
-      run: |
-        if [ "$RUNNER_OS" = "Linux" ]; then
-          echo "path=build/libTestMembers.so" >> $GITHUB_OUTPUT
-        elif [ "$RUNNER_OS" = "Windows" ]; then
-          echo "path=build/RelWithDebInfo/TestMembers.dll" >> $GITHUB_OUTPUT
-        elif [ "$RUNNER_OS" = "macOS" ]; then
-          echo "path=build/libTestMembers.dylib" >> $GITHUB_OUTPUT
-        fi
-
     - name: Show Errors
-      run: python test/members/check.py ${{ steps.getpath.outputs.path }}
+      run: python test/members/check.py build

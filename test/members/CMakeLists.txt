@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.21)
 project(TestMembers VERSION 1.0.0)
 
 include(../../cmake/CPM.cmake)
+set(MAT_JSON_AS_INTERFACE ON)
 CPMAddPackage("gh:geode-sdk/json#9f54cca")
 CPMAddPackage("gh:gulrak/filesystem#3e5b930")
 
@@ -40,6 +41,10 @@ if (WIN32)
 endif()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE -DGEODE_DONT_WARN_INCORRECT_MEMBERS)
+
+if (USE_EVIL_SCRIPT)
+	target_compile_definitions(${PROJECT_NAME} PRIVATE -DUSE_EVIL_SCRIPT)
+endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ghc_filesystem mat-json)
 

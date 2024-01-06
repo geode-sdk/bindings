@@ -1,15 +1,35 @@
 import sys
 import os
 
+# windows color
+os.system('')
+
 binary_path = sys.argv[1]
+if os.path.isdir(binary_path):
+    # path is of the build dir, try to find executable
+    possible = [
+        'libTestMembers.so',
+        'libTestMembers.dylib',
+        'TestMembers.dll',
+        'Release/TestMembers.dll',
+        'RelWithDebInfo/TestMembers.dll',
+        'Debug/TestMembers.dll',
+    ]
+    for name in possible:
+        path = f'{binary_path}/{name}'
+        if os.path.exists(path):
+            binary_path = path
+            break
+
 
 with open(binary_path, 'rb') as file:
     data = file.read()
 
-PREFIX = b'[BEGIN]'
-SUFFIX = b'[END]'
+PREFIX = b'[GEODE_BEGIN]'
+SUFFIX = b'[GEODE_END]'
 
-has_errors = False
+errors = []
+longest_name = 0
 
 i = 0
 while True:
@@ -20,9 +40,25 @@ while True:
     name, expected, actual = part.split('.')
     expected, actual = int(expected), int(actual)
     if expected != actual:
-        has_errors = True
-        print(f'{name} is offset by {actual - expected:#x} bytes (expected={expected:#x}, actual={actual:#x})')
+        longest_name = max(longest_name, len(name))
+        errors.append((name, expected, actual))
     i = e
 
-if has_errors:
+errors.sort(key=lambda x: x[0], reverse=True)
+
+RESET = '\x1b[0m'
+
+if errors:
+    for error in errors:
+        name, expected, actual = error
+        if name.startswith('sizeof('):
+            name_color = '\x1b[34;1m'
+        else:
+            name_color = '\x1b[1m'
+        if actual - expected < 0:
+            offset_color = '\x1b[31m'
+        else:
+            offset_color = '\x1b[32m'
+        print(f'{name_color}{name:<{longest_name}}{RESET} - offset by {offset_color}{actual - expected:<#5x}{RESET} (expected={expected:#x}, actual={actual:#x})')
+
     exit(1)

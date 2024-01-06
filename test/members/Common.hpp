@@ -36,7 +36,7 @@ struct SingleSizeChecker {
     using IsOffsetBy = SizeIsOffsetBy<Offset - Expected, Expected, Offset, Class, Expected == Offset>;
 };
 
-#if 0
+#ifndef USE_EVIL_SCRIPT
 
 #define GEODE_MEMBER_CHECK(Class_, Member_, Offset_) \
     class Member_;                              \
@@ -53,8 +53,8 @@ struct SingleSizeChecker {
 
 #include "Evil.hpp"
 
-#define STRING_PREFIX "[BEGIN]"
-#define STRING_SUFFIX "[END]"
+#define STRING_PREFIX "[GEODE_BEGIN]"
+#define STRING_SUFFIX "[GEODE_END]"
 
 #define GEODE_MEMBER_CHECK(Class_, Member_, Expected_) \
 class Member_; \
