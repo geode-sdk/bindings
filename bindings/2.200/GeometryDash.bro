@@ -3430,7 +3430,7 @@ class GameObject : CCSpritePlus {
 	// property 156
 	int m_property156;
 
-	PAD = android32 0x12, win 0x12;
+	PAD = android32 0x12, win 0x26; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
@@ -6485,9 +6485,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn getObjectRotation();
 	virtual TodoReturn animationFinished(char const*);
 
-	PAD = win 0xa0;
-	uint8_t m_playerNum; //0x318
-	PAD = win 0x2bf;
+	// someone move this to gameobject kthxbye
+	// PAD = win 0xa0;
+	// uint8_t m_playerNum; //0x318
+	PAD = win 0x13c;
 	float m_rotationSpeed; //0x5d8
 	PAD = win 0x5;
 	bool m_isRotating; //0x5e1
