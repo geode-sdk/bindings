@@ -1020,7 +1020,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn pickupItem(EffectGameObject*);
 	TodoReturn resetAudio();
 	TodoReturn sortGroups();
-	TodoReturn spawnGroup(int, bool, double, gd::vector<int> const&, int, int);
 	TodoReturn swapGround(int);
 	TodoReturn updateOBB2(cocos2d::CCRect);
 	TodoReturn updateZoom(float, float, int, float, int, int);
@@ -1039,7 +1038,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void setupLayers() = win 0x18ddc0;
 	TodoReturn setupReplay(gd::string);
 	TodoReturn shakeCamera(float, float, float) = win 0x1ba3c0;
-	TodoReturn spawnObject(GameObject*, double, gd::vector<int> const&);
 	TodoReturn toggleGroup(int, bool);
 	TodoReturn asyncGLoaded(int);
 	void createPlayer() = win 0x18fed0;
@@ -1177,7 +1175,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn activateSongTrigger(SongTriggerGameObject*) = win 0x1bfba0;
 	TodoReturn animateOutGroundNew(bool);
 	TodoReturn applySFXEditTrigger(int, int, SFXTriggerGameObject*) = win 0x1c03b0;
-	TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool);
 	TodoReturn claimRotationAction(int, int, float&, float&, bool, bool);
 	TodoReturn maxZOrderForShaderZ(int);
 	TodoReturn minZOrderForShaderZ(int);
@@ -1207,7 +1204,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn addCustomEnterEffect(EnterEffectObject*, bool);
 	TodoReturn calculateColorGroups();
 	TodoReturn checkCollisionBlocks(EffectGameObject*, gd::vector<EffectGameObject*>*, int);
-	TodoReturn createCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, bool);
 	TodoReturn generateTargetGroups();
 	TodoReturn performMathOperation(double, double, int);
 	TodoReturn playAnimationCommand(int, int);
@@ -1223,7 +1219,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn spawnParticleTrigger(SpawnParticleGameObject*);
 	TodoReturn speedForShaderTarget(int);
 	TodoReturn stopAllGroundActions();
-	TodoReturn toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int);
 	TodoReturn transformAreaObjects(GameObject*, cocos2d::CCArray*, float, float, bool);
 	TodoReturn triggerGravityChange(EffectGameObject*, int);
 	TodoReturn triggerRotateCommand(EnhancedTriggerObject*);
@@ -1246,7 +1241,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn stopCustomEnterEffect(EnterEffectObject*);
 	TodoReturn stopCustomEnterEffect(EnterEffectObject*, bool);
 	TodoReturn toggleAudioVisualizer(bool);
-	TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*);
 	TodoReturn updateAudioVisualizer();
 	TodoReturn updateCollisionBlocks();
 	TodoReturn updateExtraGameLayers();
@@ -1320,7 +1314,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn triggerDynamicRotateCommand(EnhancedTriggerObject*);
 	TodoReturn updatePlayerCollisionBlocks();
 	TodoReturn activateObjectControlTrigger(ObjectControlGameObject*);
-	TodoReturn activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
 	TodoReturn activatePlayerControlTrigger(PlayerControlGameObject*);
 	TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
 	TodoReturn controlTriggersWithControlID(int, GJActionCommand);
@@ -1354,7 +1347,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn addToSpeedObjects(EffectGameObject*);
 	virtual TodoReturn objectsCollided(int, int) = win 0x19ba50;
 	virtual TodoReturn updateColor(cocos2d::_ccColor3B&, float, int, bool, float, cocos2d::_ccHSVValue&, int, bool, EffectGameObject*, int, int) = win 0x1a46f0;
+	virtual TodoReturn toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int);
+	virtual TodoReturn spawnGroup(int, bool, double, gd::vector<int> const&, int, int);
+	virtual TodoReturn spawnObject(GameObject*, double, gd::vector<int> const&);
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
+	virtual TodoReturn activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
 	virtual TodoReturn toggleGlitter(bool);
 	virtual TodoReturn destroyPlayer(PlayerObject*, GameObject*);
 	virtual void addToSection(GameObject*) = win 0x1a76e0;
@@ -1365,6 +1362,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn toggleGroundVisibility(bool);
 	virtual TodoReturn toggleMGVisibility(bool);
 	virtual TodoReturn toggleHideAttempts(bool);
+	virtual TodoReturn timeForPos(cocos2d::CCPoint, int, int, bool, int) {}
+	virtual TodoReturn posForTime(float) {}
+	virtual TodoReturn resetSPTriggered() {}
 	virtual TodoReturn updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x1b52e0;
 	virtual TodoReturn reverseDirection(EffectGameObject*) = win 0x19afc0;
 	virtual TodoReturn rotateGameplay(RotateGameplayGameObject*) = win 0x19b020;
@@ -1374,6 +1374,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void applyTimeWarp(float) = win 0x1B5600;
 	virtual TodoReturn playGravityEffect(bool);
 	virtual TodoReturn manualUpdateObjectColors(GameObject*);
+	virtual TodoReturn createCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, bool);
+	virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool);
+	virtual TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*);
 	virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*);
 	virtual void checkpointActivated(CheckpointGameObject*) = win 0x1c4610;
 	virtual TodoReturn flipArt(bool);
@@ -3045,9 +3048,6 @@ class GameObject : CCSpritePlus {
 	TodoReturn getUnmodifiedPosition();
 	TodoReturn getRelativeSpriteColor(int);
 	TodoReturn getStartPos();
-	TodoReturn getObjectRectDirty();
-	TodoReturn getOrientedRectDirty();
-	TodoReturn getType();
 
 	/* unverified signature */
 	void setAreaOpacity(float, float, int);
@@ -3096,7 +3096,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn makeInvisible();
 	TodoReturn slopeFloorTop();
 	TodoReturn slopeWallLeft();
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x1D230;
+	
 	TodoReturn addColorSprite(gd::string);
 	TodoReturn addCustomChild(gd::string, cocos2d::CCPoint, int);
 	TodoReturn assignUniqueID();
@@ -3143,7 +3143,6 @@ class GameObject : CCSpritePlus {
 	TodoReturn addToCustomScaleY(float);
 	TodoReturn addToOpacityGroup(int);
 	TodoReturn createSpriteColor(int);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn dirtifyObjectRect();
 	TodoReturn hasSecondaryColor();
 	TodoReturn opacityModForMode(int, bool);
@@ -3162,7 +3161,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn reorderColorSprite();
 	TodoReturn resetGroupDisabled();
 	TodoReturn resetMainColorMode();
-	TodoReturn setupCustomSprites(gd::string) = win 0x14BC10;
+	
 	TodoReturn updateCustomScaleX(float);
 	TodoReturn updateCustomScaleY(float);
 	TodoReturn addCustomBlackChild(gd::string, float, bool);
@@ -3232,8 +3231,10 @@ class GameObject : CCSpritePlus {
 	virtual void setFlipY(bool) = win 0x138e00;
 	virtual TodoReturn firstSetup();
 	virtual TodoReturn customSetup();
+	virtual TodoReturn setupCustomSprites(gd::string) = win 0x14BC10;
 	virtual TodoReturn addMainSpriteToParent(bool) = win 0x13AE30;
 	virtual TodoReturn resetObject();
+	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x1D230;
 	virtual TodoReturn activateObject();
 	virtual TodoReturn deactivateObject(bool) = win 0x131860;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = win 0x1383E0;
@@ -3244,6 +3245,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getRealPosition();
 	virtual void setStartPos(cocos2d::CCPoint);
 	virtual TodoReturn updateStartValues();
+	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual TodoReturn getSaveString(GJBaseGameLayer*);
 	virtual TodoReturn claimParticle();
 	virtual TodoReturn unclaimParticle();
@@ -3291,8 +3293,11 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn canMultiActivate(bool);
 	virtual TodoReturn updateTextKerning(int);
 	virtual TodoReturn getTextKerning();
+	virtual TodoReturn getObjectRectDirty() const;
 	virtual void setObjectRectDirty(bool);
+	virtual TodoReturn getOrientedRectDirty() const;
 	virtual void setOrientedRectDirty(bool);
+	virtual TodoReturn getType() const;
 	virtual void setType(GameObjectType);
 
 	PAD = android32 0xf, win 0xf;
