@@ -3290,11 +3290,11 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn canMultiActivate(bool);
 	virtual TodoReturn updateTextKerning(int);
 	virtual TodoReturn getTextKerning();
-	virtual TodoReturn getObjectRectDirty();
+	virtual TodoReturn getObjectRectDirty() const;
 	virtual void setObjectRectDirty(bool);
-	virtual TodoReturn getOrientedRectDirty();
+	virtual TodoReturn getOrientedRectDirty() const;
 	virtual void setOrientedRectDirty(bool);
-	virtual TodoReturn getType();
+	virtual TodoReturn getType() const;
 	virtual void setType(GameObjectType);
 
 	PAD = android32 0xf, win 0xf;
