@@ -111,7 +111,7 @@ GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d60);
 GEODE_SIZE_CHECK(PlayLayer, 0x2f58);
 GEODE_SIZE_CHECK(GJGameLevel, 0x488);
 GEODE_SIZE_CHECK(PlayerObject, 0x980);
-// GEODE_SIZE_CHECK(GameObject, 0x498);
+GEODE_SIZE_CHECK(GameObject, 0x498); // crying
 
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);

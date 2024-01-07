@@ -3295,48 +3295,47 @@ class GameObject : CCSpritePlus {
 	virtual void setOrientedRectDirty(bool);
 	virtual void setType(GameObjectType);
 
-	PAD = android32 0xf;
+	PAD = android32 0xf, win 0xf;
 
 	// property 511
 	bool m_hasExtendedCollision;
-	PAD = android32 0x13;
+	PAD = android32 0x13, win 0x13;
 
 	cocos2d::CCSprite* m_baseSprite;
     cocos2d::CCSprite* m_detailSprite;
 
-	PAD = android32 0x69;
+	PAD = android32 0x69, win 0x69;
 
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3e;
+	PAD = android32 0x3e, win 0x32;
 
 	// property 108
 	int m_linkedGroup;
-	PAD = android32 0x27;
+	PAD = android32 0x27, win 0x27;
 
 	GameObjectType m_objectType;
-	PAD = android32 0x2d;
+	PAD = android32 0x2d, win 0x2d;
 
 	// property 372
 	bool m_hasNoAudioScale;
-	PAD = android32 0x2a;
+	PAD = android32 0x2a, win 0x2a;
 
 	// property 343
 	short m_enterChannel;
 	// property 446
 	short m_objectMaterial;
-	PAD = android32 0x4;
+	PAD = android32 0x4, win 0x4;
 
 	// property 96
 	bool m_hasNoGlow;
-	PAD = android32 0x3;
 
 	// property 23
 	int m_targetColor;
 
 	// property 1
 	int m_objectID;
-	PAD = android32 0x8;
+	PAD = android32 0x8, win 0x8;
 
 	// property 497
 	short m_property497;
@@ -3348,11 +3347,11 @@ class GameObject : CCSpritePlus {
 	bool m_hasNoEffects;
 	// property 507
 	bool m_hasNoParticles;
-	PAD = android32 0x16;
+	PAD = android32 0x16, win 0x16;
 
 	// property 53
 	int m_property53;
-	PAD = android32 0x18;
+	PAD = android32 0x18, win 0x18;
 
 	// property 21, also used with 41 and 43
 	GJSpriteColor* m_baseColor;
@@ -3364,10 +3363,10 @@ class GameObject : CCSpritePlus {
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
-	PAD = android32 0x10;
+	PAD = android32 0x10, win 0x10;
 
 	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
-	PAD = android32 0x1;
+	PAD = android32 0x1, win 0x1;
 
 	// property 34
 	bool m_hasGroupParent;
@@ -3384,21 +3383,21 @@ class GameObject : CCSpritePlus {
 	short m_groupCount;
 	// used with property 274
 	bool m_hasGroupParentsString;
-	PAD = android32 0xf;
+	PAD = android32 0xf, win 0xf;
 
 	// property 20
 	short m_editorLayer;
 	// property 61
 	short m_editorLayer2;
-	PAD = android32 0x8;
+	PAD = android32 0x8, win 0x8;
 
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x2c;
+	PAD = android32 0x2c, win 0x2c;
 
 	// property 103
 	bool m_isHighDetail;
-	PAD = android32 0x11;
+	PAD = android32 0x11, win 0x11;
 
 	// property 134
 	bool m_isPassable;
@@ -3420,14 +3419,14 @@ class GameObject : CCSpritePlus {
 	bool m_isDontBoostY;
 	// property 510
 	bool m_property510;
-	PAD = android32 0x11;
+	PAD = android32 0x11, win 0x11;
 
 	// property 155
 	int m_property155;
 	// property 156
 	int m_property156;
 
-	PAD = android32 0x12;
+	PAD = android32 0x12, win 0x12;
 }
 
 [[link(android)]]
