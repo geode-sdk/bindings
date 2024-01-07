@@ -95,6 +95,7 @@ GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
 GEODE_SIZE_CHECK(PlayLayer, 0x2f38);
 // GEODE_SIZE_CHECK(PlayerObject, 0x970);
-GEODE_SIZE_CHECK(GameObject, 0x488);
+
+GEODE_MEMBER_CHECK(GameObject, m_scaleX, 0x3e8);
 
 #endif

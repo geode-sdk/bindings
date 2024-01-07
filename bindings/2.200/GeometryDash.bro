@@ -3045,9 +3045,6 @@ class GameObject : CCSpritePlus {
 	TodoReturn getUnmodifiedPosition();
 	TodoReturn getRelativeSpriteColor(int);
 	TodoReturn getStartPos();
-	TodoReturn getObjectRectDirty();
-	TodoReturn getOrientedRectDirty();
-	TodoReturn getType();
 
 	/* unverified signature */
 	void setAreaOpacity(float, float, int);
@@ -3096,7 +3093,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn makeInvisible();
 	TodoReturn slopeFloorTop();
 	TodoReturn slopeWallLeft();
-	TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x1D230;
+	
 	TodoReturn addColorSprite(gd::string);
 	TodoReturn addCustomChild(gd::string, cocos2d::CCPoint, int);
 	TodoReturn assignUniqueID();
@@ -3143,7 +3140,6 @@ class GameObject : CCSpritePlus {
 	TodoReturn addToCustomScaleY(float);
 	TodoReturn addToOpacityGroup(int);
 	TodoReturn createSpriteColor(int);
-	TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn dirtifyObjectRect();
 	TodoReturn hasSecondaryColor();
 	TodoReturn opacityModForMode(int, bool);
@@ -3162,7 +3158,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn reorderColorSprite();
 	TodoReturn resetGroupDisabled();
 	TodoReturn resetMainColorMode();
-	TodoReturn setupCustomSprites(gd::string) = win 0x14BC10;
+	
 	TodoReturn updateCustomScaleX(float);
 	TodoReturn updateCustomScaleY(float);
 	TodoReturn addCustomBlackChild(gd::string, float, bool);
@@ -3232,8 +3228,10 @@ class GameObject : CCSpritePlus {
 	virtual void setFlipY(bool) = win 0x138e00;
 	virtual TodoReturn firstSetup();
 	virtual TodoReturn customSetup();
+	virtual TodoReturn setupCustomSprites(gd::string) = win 0x14BC10;
 	virtual TodoReturn addMainSpriteToParent(bool) = win 0x13AE30;
 	virtual TodoReturn resetObject();
+	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x1D230;
 	virtual TodoReturn activateObject();
 	virtual TodoReturn deactivateObject(bool) = win 0x131860;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = win 0x1383E0;
@@ -3244,6 +3242,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getRealPosition();
 	virtual void setStartPos(cocos2d::CCPoint);
 	virtual TodoReturn updateStartValues();
+	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual TodoReturn getSaveString(GJBaseGameLayer*);
 	virtual TodoReturn claimParticle();
 	virtual TodoReturn unclaimParticle();
@@ -3291,8 +3290,11 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn canMultiActivate(bool);
 	virtual TodoReturn updateTextKerning(int);
 	virtual TodoReturn getTextKerning();
+	virtual TodoReturn getObjectRectDirty();
 	virtual void setObjectRectDirty(bool);
+	virtual TodoReturn getOrientedRectDirty();
 	virtual void setOrientedRectDirty(bool);
+	virtual TodoReturn getType();
 	virtual void setType(GameObjectType);
 
 	PAD = android32 0xf, win 0xf;
