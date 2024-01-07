@@ -3304,7 +3304,11 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCSprite* m_baseSprite;
     cocos2d::CCSprite* m_detailSprite;
 
-	PAD = android32 0x69, win 0x69;
+	PAD = android32 0x64, win 0x64;
+
+	gd::string m_unknownString;
+
+	PAD = android32 0x1, win 0x1;
 
 	// property 146
 	bool m_particleUseObjectColor;
