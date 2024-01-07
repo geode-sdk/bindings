@@ -13,14 +13,14 @@ int main(int argc, char** argv) try {
 
     std::string p = argv[1];
 
-    if (p == "--into-json") {
-        auto rootDir = ghc::filesystem::path(argv[2]);
-        ghc::filesystem::current_path(rootDir);
+    // if (p == "--into-json") {
+    //     auto rootDir = ghc::filesystem::path(argv[2]);
+    //     ghc::filesystem::current_path(rootDir);
 
-        Root root = broma::parse_file("Entry.bro");
-        writeFile(ghc::filesystem::path(argv[3]), generateJsonInterface(root));
-        return 0;
-    }
+    //     Root root = broma::parse_file("Entry.bro");
+    //     writeFile(ghc::filesystem::path(argv[3]), generateJsonInterface(root));
+    //     return 0;
+    // }
 
     if (p == "Win32") codegen::platform = Platform::Windows;
     else if (p == "MacOS") codegen::platform = Platform::Mac;
@@ -55,7 +55,7 @@ int main(int argc, char** argv) try {
     writeFile(writeDir / "GeneratedBinding.hpp", generateBindingHeader(root, writeDir / "binding"));
     writeFile(writeDir / "GeneratedPredeclare.hpp", generatePredeclareHeader(root));
     writeFile(writeDir / "GeneratedSource.cpp", generateBindingSource(root));
-    writeFile(writeDir / "CodegenData.json", generateJsonInterface(root));
+    writeFile(writeDir / "CodegenData.txt", generateJsonInterface(root));
 }
 
 catch (std::exception& e) {
