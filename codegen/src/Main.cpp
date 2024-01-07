@@ -55,6 +55,7 @@ int main(int argc, char** argv) try {
     writeFile(writeDir / "GeneratedBinding.hpp", generateBindingHeader(root, writeDir / "binding"));
     writeFile(writeDir / "GeneratedPredeclare.hpp", generatePredeclareHeader(root));
     writeFile(writeDir / "GeneratedSource.cpp", generateBindingSource(root));
+    writeFile(writeDir / "CodegenData.json", generateJsonInterface(root));
 }
 
 catch (std::exception& e) {
