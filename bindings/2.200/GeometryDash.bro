@@ -3306,7 +3306,7 @@ class GameObject : CCSpritePlus {
 
 	PAD = android32 0x64, win 0x64;
 
-	gd::string m_unknownString;
+	gd::string m_particleString;
 
 	PAD = android32 0x1, win 0x1;
 
@@ -3319,7 +3319,12 @@ class GameObject : CCSpritePlus {
 	PAD = android32 0x27, win 0x27;
 
 	GameObjectType m_objectType;
-	PAD = android32 0x2d, win 0x2d;
+
+	PAD = android32 0x14, win 0x14;
+	double m_realXPosition;
+	double m_realYPosition;
+	cocos2d::CCPoint m_startPosition;
+	PAD = android32 0x1, win 0x1;
 
 	// property 372
 	bool m_hasNoAudioScale;
@@ -3474,12 +3479,7 @@ class EnhancedGameObject : GameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int);
 	virtual TodoReturn updateAnimateOnTrigger(bool);
 
-	// apparently this class has alignment of 8,
-	// please move this somewhere else in the class
-	// when you find members from here
-	double m_alignmentDouble;
-
-	PAD = android32 0x1d;
+	PAD = android32 0x25;
 
 	bool m_hasCustomAnimation;
 	bool m_hasCustomRotation;
