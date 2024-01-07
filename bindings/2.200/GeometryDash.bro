@@ -1030,7 +1030,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn cameraMoveX(float, float, float, bool);
 	TodoReturn cameraMoveY(float, float, float, bool);
 	TodoReturn flipGravity(PlayerObject*, bool, bool) = win 0x196720;
-	TodoReturn flipObjects();
+	void flipObjects() = win 0x1c4540;
 	void moveObjects(cocos2d::CCArray*, double, double, bool) = win 0x1ADE90;
 	void queueButton(int, bool, bool) = win 0x1B19C0;
 	TodoReturn resetCamera() = win 0x1BE060;
@@ -1372,10 +1372,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn updateTimeWarp(float);
 	virtual TodoReturn updateTimeWarp(GameObject*, float);
 	virtual void applyTimeWarp(float) = win 0x1B5600;
-	virtual TodoReturn playGravityEffect(bool) = win 0x2df4c0;
+	virtual TodoReturn playGravityEffect(bool);
 	virtual TodoReturn manualUpdateObjectColors(GameObject*);
 	virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*);
-	virtual TodoReturn checkpointActivated(CheckpointGameObject*);
+	virtual void checkpointActivated(CheckpointGameObject*) = win 0x1c4610;
 	virtual TodoReturn flipArt(bool);
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
 	virtual TodoReturn updateTimeLabel(int, int, bool);
@@ -6098,7 +6098,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn onQuit() = win 0x2e5650;
 
 	TodoReturn playReplay(gd::string);
-	TodoReturn resetLevel() = win 0x2E42B0;
+	void resetLevel() = win 0x2E42B0;
 	TodoReturn startMusic() = win 0x2E5570;
 	TodoReturn colorObject(int, cocos2d::_ccColor3B);
 	TodoReturn commitJumps();
@@ -6134,13 +6134,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void showCompleteText() = win 0x2d8770;
 	TodoReturn startGameDelayed() = win 0x2D7EC0;
 	TodoReturn delayedResetLevel() = win 0x2E4200;
-	TodoReturn loadDefaultColors();
+	void loadDefaultColors() = win 0x2df1e0;
 	TodoReturn setupHasCompleted() = win 0x2d71b0;
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleGhostEffect(int) = win 0x2D20D0;
 	TodoReturn updateProgressbar() = win 0x2df7a0;
 	void loadFromCheckpoint(CheckpointObject*) = win 0x2e28d0;
-	TodoReturn loadLastCheckpoint();
+	CheckpointObject* loadLastCheckpoint();
 	TodoReturn removeFromGroupOld(GameObject*);
 	TodoReturn showCompleteEffect();
 	TodoReturn showTwoPlayerGuide();
@@ -6174,7 +6174,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn addObject(GameObject*) = win 0x2DBD30;
 	void fullReset() = win 0x2E40C0;
 	TodoReturn pauseGame(bool) = win 0x2e4fc0;
-	TodoReturn startGame() = win 0x2d7e80;
+	void startGame() = win 0x2d7e80;
 
 	virtual void onEnterTransitionDidFinish() = win 0x2e58e0;
 	virtual void onExit() = win 0x2e5910;
@@ -6199,7 +6199,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn updateTimeWarp(float) = win 0x1b5590;
 	virtual TodoReturn playGravityEffect(bool);
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2ddca0;
-	virtual TodoReturn checkpointActivated(CheckpointGameObject*);
+	virtual TodoReturn checkpointActivated(CheckpointGameObject*) = win 0x2e1a00;
 	virtual TodoReturn flipArt(bool);
 	virtual TodoReturn updateTimeLabel(int, int, bool);
 	virtual TodoReturn checkSnapshot();
