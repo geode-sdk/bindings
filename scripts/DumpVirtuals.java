@@ -54,13 +54,24 @@ public class DumpVirtuals extends GhidraScript {
         return addr;
     }
 
+    boolean isTypeinfo(Address addr) {
+        var com = listing.getComment(CodeUnit.PLATE_COMMENT, addr);
+        if (com == null) return false;
+        return com.contains("typeinfo");
+        // this.currentProgram.getSymbolTable().getPrimarySymbolAt(addr).getName().equals("typeinfo");
+    }
+
     boolean isStartOfVtable(Address addr) throws Exception {
+        if (hasVtableComment(addr)) return true;
+
         // on itanium, vtable starts with 0 or a negative number,
         // and then a pointer to type info.
 
         // get the value of the pointer as an int, and see if its non positive
-        var offset = readPtrAt(addr).getUnsignedOffset();
-        var result = offset == 0 || offset > 0xFF000000L;
+        var offset = currentProgram.getMemory().getInt(addr);
+        var result = offset <= 0;
+        // the ptr after must be of a typeinfo
+        result = result && isTypeinfo(readPtrAt(addr.add(PTR_SIZE)));
 
         return result;
     }
@@ -74,6 +85,87 @@ public class DumpVirtuals extends GhidraScript {
         }
     }
 
+    boolean hasVtableComment(Address addr) {
+        var com = listing.getComment(CodeUnit.PLATE_COMMENT, addr);
+        if (com == null) return false;
+        return com.contains("vtable");
+    }
+	
+	HashMap<String, ArrayList<ArrayList<String>>> classes = new HashMap<>();
+	
+	void processNamespace(Namespace cl) {
+		var name = cl.getName(true);
+
+		if (name.contains("switch")) return;
+		if (name.contains("llvm")) return;
+		if (name.contains("tinyxml2")) return;
+		if (name.contains("<")) return;
+		if (name.contains("__")) return;
+		if (name.contains("fmt")) return;
+		if (name.contains("std::")) return;
+		if (name.contains("pugi")) return;
+		// i think theyre correct already
+		if (name.contains("cocos2d::")) return;
+
+		// theres only one vtable on android,
+		var vtable = getChildOfName(cl.getSymbol(), "vtable");
+		// and if there is none then we dont care
+		if (vtable == null) return;
+
+        // if (!name.equals("GJBaseGameLayer")) return;
+
+		println("Dumping " + name);
+
+		ArrayList<ArrayList<String>> bases = new ArrayList<>();
+		classes.put(name, bases);
+
+		var vtableAddr = vtable.getProgramLocation().getAddress();
+		try {
+			var curAddr = vtableAddr;
+			while (isStartOfVtable(curAddr) && !this.monitor.isCancelled()) {
+				ArrayList<String> virtuals = new ArrayList<>();
+				curAddr = curAddr.add(PTR_SIZE * 2);
+				while (!this.monitor.isCancelled()) {
+					if (isStartOfVtable(curAddr)) break;
+					// idk what this is for
+					// if (listing.getComment(CodeUnit.PLATE_COMMENT, curAddr) != null) break;
+
+					// ok, we're probably at the functions now!
+
+					var functionAddr = removeThumbOffset(readPtrAt(curAddr));
+
+                    // some vtables have nullptrs in them, like GJBaseGameLayer
+                    // since they are pure virtual or something
+                    if (functionAddr.getUnsignedOffset() == 0) {
+                        curAddr = curAddr.add(PTR_SIZE);
+                        continue;
+                    }
+
+					var function = listing.getFunctionAt(functionAddr);
+					
+					if (function == null) break;
+
+					if (function.getName().contains("pure_virtual")) {
+						virtuals.add("pure_virtual_" + curAddr.toString() + "()");
+					} else {
+						var comment = listing.getComment(CodeUnit.PLATE_COMMENT, functionAddr);
+						var funcSig = comment.replaceAll("^(non-virtual thunk to )?(\\w+::)+(?=~?\\w+\\()", "");
+						virtuals.add(funcSig);
+					}
+					
+					curAddr = curAddr.add(PTR_SIZE);
+				}
+
+				bases.add(virtuals);
+
+				// we've reached another class's vtable! abort!!
+				if (hasVtableComment(curAddr) || hasVtableComment(curAddr.add(PTR_SIZE))) break;
+				// risky but whatever
+				// if (readPtrAt(curAddr).getOffset() == 0) return;
+			}
+		} catch (Exception e) {}
+	}
+
     public void run() throws Exception {
         println("-------- STARTING -------");
         PTR_SIZE = currentProgram.getDefaultPointerSize();
@@ -81,87 +173,26 @@ public class DumpVirtuals extends GhidraScript {
         table = currentProgram.getSymbolTable();
         listing = currentProgram.getListing();
 
-
-        HashMap<String, ArrayList<ArrayList<String>>> classes = new HashMap<>();
-
         table.getChildren(currentProgram.getGlobalNamespace().getSymbol()).forEach((sy) -> {
             if (!sy.getSymbolType().equals(ghidra.program.model.symbol.SymbolType.CLASS) &&
             !sy.getSymbolType().equals(ghidra.program.model.symbol.SymbolType.NAMESPACE)) return;
             // var cl = (Namespace)sy;
             // ghidra is so stupid istg
             var cl = table.getNamespace(sy.getName(), currentProgram.getGlobalNamespace());
-
-            var name = cl.getName(true);
-
-            if (name.contains("switch")) return;
-            if (name.contains("llvm")) return;
-            if (name.contains("tinyxml2")) return;
-            if (name.contains("<")) return;
-            if (name.contains("__")) return;
-            if (name.contains("fmt")) return;
-            if (name.contains("std::")) return;
-            if (name.contains("pugi")) return;
-            // i think theyre correct already
-            if (name.contains("cocos2d::")) return;
-
-            // theres only one vtable on android,
-            var vtable = getChildOfName(cl.getSymbol(), "vtable");
-            // and if there is none then we dont care
-            if (vtable == null) return;
-
-            println("Dumping " + name);
-
-            ArrayList<ArrayList<String>> bases = new ArrayList<>();
-            classes.put(name, bases);
-
-            var vtableAddr = vtable.getProgramLocation().getAddress();
-            try {
-                var curAddr = vtableAddr;
-                while (isStartOfVtable(curAddr)) {
-                    ArrayList<String> virtuals = new ArrayList<>();
-                    curAddr = curAddr.add(PTR_SIZE * 2);
-                    while (true) {
-                        if (isStartOfVtable(curAddr)) break;
-                        // idk what this is for
-                        // if (listing.getComment(CodeUnit.PLATE_COMMENT, curAddr) != null) break;
-
-                        // ok, we're probably at the functions now!
-
-                        var functionAddr = removeThumbOffset(readPtrAt(curAddr));
-                        var function = listing.getFunctionAt(functionAddr);
-                        
-                        if (function == null) break;
-
-                        if (function.getName().contains("pure_virtual")) {
-                            virtuals.add("pure_virtual()");
-                        } else {
-                            var comment = listing.getComment(CodeUnit.PLATE_COMMENT, functionAddr);
-                            var funcSig = comment.replaceAll("^(non-virtual thunk to )?(\\w+::)+(?=~?\\w+\\()", "");
-                            virtuals.add(funcSig);
-                        }
-                        
-                        curAddr = curAddr.add(PTR_SIZE);
-                    }
-
-                    bases.add(virtuals);
-
-                    // we've reached another class's vtable! abort!!
-                    if (listing.getComment(CodeUnit.PLATE_COMMENT, curAddr) != null) break;
-                    if (listing.getComment(CodeUnit.PLATE_COMMENT, curAddr.add(PTR_SIZE)) != null) break;
-                    // risky but whatever
-                    if (readPtrAt(curAddr).getOffset() == 0) return;
-                }
-            } catch (Exception e) {}
-
-            // this shouldnt be done for itanium since this also defines the function order
-            // for (int i = 1; i < bases.size(); ++i) {
-            //     var parent = bases.get(i);
-            //     for (var func : parent) {
-            //         // functions from other vtables show up again in the first one.. for some reason
-            //         bases.get(0).remove(func);
-            //     }
-            // }
+			
+			processNamespace(cl);
         });
+		
+        if (false) {
+            var cocosNs = table.getNamespace("cocos2d", currentProgram.getGlobalNamespace());
+            table.getChildren(cocosNs.getSymbol()).forEach((sy) -> {
+                if (!sy.getSymbolType().equals(ghidra.program.model.symbol.SymbolType.CLASS) &&
+                !sy.getSymbolType().equals(ghidra.program.model.symbol.SymbolType.NAMESPACE)) return;
+                var cl = table.getNamespace(sy.getName(), cocosNs);
+                
+                processNamespace(cl);
+            });
+        }
 
         println("Generating json..");
 
