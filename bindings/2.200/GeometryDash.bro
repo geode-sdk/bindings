@@ -3364,7 +3364,10 @@ class GameObject : CCSpritePlus {
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
-	PAD = android32 0x12;
+	PAD = android32 0x10;
+
+	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
+	PAD = android32 0x1;
 
 	// property 34
 	bool m_hasGroupParent;
@@ -3374,8 +3377,9 @@ class GameObject : CCSpritePlus {
 	float m_scaleX;
 	// property 129
 	float m_scaleY;
-	PAD = android 0x4;
-
+	
+	// property 57
+	std::array<short, 10>* m_groups;
 	// used with property 57
 	short m_groupCount;
 	// used with property 274
@@ -3731,7 +3735,7 @@ class EffectGameObject : EnhancedGameObject {
 	// property 120
 	float m_timeWarpTimeMod;
 	// property 13
-	bool m_isEdp;
+	bool m_showGamemodeBorders;
 	// property 115
 	int m_ordValue;
 	// property 170
@@ -5711,7 +5715,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onColorFilter(cocos2d::CCObject* sender);
 	void onDeselectAll(cocos2d::CCObject* sender);
 	void onGroupSticky(cocos2d::CCObject* sender);
-	TodoReturn onToggleGuide(EffectGameObject*);
+	void onToggleGuide(EffectGameObject*);
 	void onCreateButton(cocos2d::CCObject* sender);
 	TodoReturn onCreateObject(int);
 	void onPasteInPlace(cocos2d::CCObject* sender);
