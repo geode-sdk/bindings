@@ -72,7 +72,7 @@ function cleanFunctionSig(sig) {
 function shouldKeepSymbol(sym) {
     let keep = sym && sym.includes('::') && !sym.match(/(typeinfo|vtable|thunk|guard variable)/);
     if (!keep) return false;
-    keep = !sym.split('::')[0].match(/^(_JNIEnv|internal|tinyxml2|cocos2d|DS_Dictionary|pugi|__cxx|__gnu_cxx|std|fmt|llvm|tk::spline)/);
+    keep = !sym.split('::')[0].match(/^(_JNIEnv|internal|tinyxml2|cocos2d|DS_Dictionary|pugi|__cxx|__gnu_cxx|std|fmt|llvm|tk::spline|xml_)/);
     keep = keep && !sym.startsWith('FMOD::') && !sym.startsWith('FMOD_');
     return keep;
 }
@@ -117,17 +117,17 @@ for (let name in virtualsTable) {
     }
 }
 
-function commentOutFunctions(className, name) {
-    // variadic
-    if (
+function shouldCommentOutFunction(className, name) {
+    let baseClassName = className;
+    if (className.includes('::'))
+        baseClassName = className.split('::').at(-1);
+    return (
         name.includes('...') ||
-        name.startsWith(`${className.substring(className.indexOf('::') + 2)}()`) ||
-        name.startsWith(`${className.substring(className.indexOf('::') + 2)}(${className} const&)`) ||
+        name.startsWith(`${baseClassName}()`) ||
+        name.startsWith(`${baseClassName}(${className} const&)`) ||
+        name.startsWith(`~${baseClassName}(`) ||
         name.includes('fmt::')
-    ) {
-        return `// ${name}`;
-    }
-    return name;
+    );
 }
 
 function isStaticFunc(className, funcSig) {
@@ -246,7 +246,7 @@ for (let [name, funs] of Object.entries(classes['GeometryDash.bro']).sort((a, b)
     let funcs = reorderFuncs(name, funs);
     for (let group of funcs) {
         for (let func of group) {
-            let fullSig = commentOutFunctions(name, bestEffortSigGuess(name, func));
+            let fullSig = bestEffortSigGuess(name, func);
             if (isVirtual(name, func)) {
                 fullSig = 'virtual ' + fullSig;
             } else if (isStaticFunc(name, func)) {
@@ -256,6 +256,10 @@ for (let [name, funs] of Object.entries(classes['GeometryDash.bro']).sort((a, b)
                 fullSig += ' {} // TODO: figure out what function this is';
             } else {
                 fullSig += ';';
+            }
+
+            if (shouldCommentOutFunction(name, func)) {
+                fullSig = '// ' + fullSig;
             }
 
             funcOut.push('\t' + fullSig);
