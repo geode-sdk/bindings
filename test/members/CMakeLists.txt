@@ -22,9 +22,17 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 cmake_path(SET GEODE_LOADER_PATH $ENV{GEODE_SDK}/loader)
 cmake_path(SET GEODE_BINDINGS_REPO_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../)
 set(GEODE_CODEGEN_PATH ${CMAKE_CURRENT_BINARY_DIR}/codegenned)
-set(GEODE_GD_VERSION 2.202)
 
-include(Platform.cmake)
+include($ENV{GEODE_SDK}/cmake/PlatformDetect.cmake)
+
+if (NOT DEFINED GEODE_GD_VERSION)
+	if (${GEODE_TARGET_PLATFORM} STREQUAL "Win32")
+		set(GEODE_GD_VERSION 2.202)
+	else()
+		set(GEODE_GD_VERSION 2.200)
+	endif()
+endif()
+
 include(Codegen.cmake)
 
 target_include_directories(${PROJECT_NAME} PRIVATE

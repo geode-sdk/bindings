@@ -109,12 +109,17 @@ GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x1a0);
 GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d60);
 GEODE_SIZE_CHECK(PlayLayer, 0x2f58);
-GEODE_SIZE_CHECK(GJGameLevel, 0x488);
+GEODE_SIZE_CHECK(GJGameLevel, 0x48c);
 GEODE_SIZE_CHECK(PlayerObject, 0x980);
 GEODE_SIZE_CHECK(GameObject, 0x498); // crying
 
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_songID, 0x1f0);
+
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_level, 0x168);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x1d0);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_playSprite, 0x1d8);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x1e0);
 
 #endif
