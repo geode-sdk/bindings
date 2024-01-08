@@ -488,7 +488,7 @@ class CCIndexPath : cocos2d::CCObject {
 	~CCIndexPath();
 }
 
-[[link(android)]]
+[[link(android), depends(CCIndexPath)]]
 class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	static TableView* create(TableViewDelegate*, TableViewDataSource*, TableViewCellDelegate*, cocos2d::CCRect);
 
@@ -962,7 +962,7 @@ class GJGameState {
 	PAD = win 0x490, android32 0x4a8, android64 0x6e8;
 }
 
-[[link(android)]]
+[[link(android), depends(GJGameState)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// ~GJBaseGameLayer();
 

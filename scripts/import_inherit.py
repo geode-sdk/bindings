@@ -1,6 +1,10 @@
 import sys
 import re
 
+if len(sys.argv) < 3:
+    print(f'usage: python {sys.argv[0]} <input broma> <output broma>')
+    exit(1)
+
 path_in = sys.argv[1]
 path_out = sys.argv[2]
 
