@@ -3,3 +3,6 @@ build/
 __scripts
 
 **/.DS_Store
+scripts/*.so
+scripts/*.txt
+scripts/out/
