@@ -22,7 +22,7 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 cmake_path(SET GEODE_LOADER_PATH $ENV{GEODE_SDK}/loader)
 cmake_path(SET GEODE_BINDINGS_REPO_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../)
 set(GEODE_CODEGEN_PATH ${CMAKE_CURRENT_BINARY_DIR}/codegenned)
-set(GEODE_GD_VERSION 2.202)
+set(GEODE_GD_VERSION 2.200)
 
 include(Platform.cmake)
 include(Codegen.cmake)
