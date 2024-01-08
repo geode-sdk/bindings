@@ -5,10 +5,6 @@ class PlayerButtonCommand {
     PAD = win 0x6, android32 0x6;
 }
 
-class DynamicScrollDelegate {
-
-}
-
 class FMODSound {
     
 }
@@ -37,6 +33,6 @@ class GJTransformState {
 
 }
 
-class TriggerEffectDelegate {
-    
+class CAState {
+
 }

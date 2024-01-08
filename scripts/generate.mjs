@@ -25,6 +25,11 @@ const cocosVirtuals = Object.fromEntries(cocosSymbols
     .map(x => [x[2], x[1]])
 );
 
+// hardcode a few, because the symbols dont have em
+cocosVirtuals['applicationDidFinishLaunching()'] = 'bool';
+cocosVirtuals['applicationDidEnterBackground()'] = 'void';
+cocosVirtuals['applicationWillEnterForeground()'] = 'void';
+
 // assumes virtuals.json is in the same directory
 const virtualsTable = JSON.parse(readFileSync('virtuals.json').toString());
 // normalize all the function signatures
@@ -86,7 +91,7 @@ function cleanFunctionSig(sig) {
         .replace(/void \(cocos2d::CCObject::\*\)\(cocos2d::CCObject\*\)/g, 'cocos2d::SEL_CallFuncO')
         .replace(/void \(cocos2d::CCObject::\*\)\(cocos2d::CCEvent\*\)/g, 'cocos2d::SEL_EventHandler')
         .replace(/int \(cocos2d::CCObject::\*\)\(cocos2d::CCObject\*\)/g, 'cocos2d::SEL_Compare')
-        .replace(/void \(cocos2d::CCObject::\*\)\(cocos2d::extension::CCHttpClient\*, cocos2d::extension::CCHttpResponse\*\)/g, 'cocos2d::SEL_HttpResponse')
+        .replace(/void \(cocos2d::CCObject::\*\)\(cocos2d::extension::CCHttpClient\*, cocos2d::extension::CCHttpResponse\*\)/g, 'cocos2d::extension::SEL_HttpResponse')
         .replace(/void \(cocos2d::CCObject::\*\)\(float\)/g, 'cocos2d::SEL_SCHEDULE')
         .replace(/cocos2d::_ccColor3B/g, 'cocos2d::ccColor3B') // cocos devs and their typedef'd structs..
         .replace(/cocos2d::_ccColor4B/g, 'cocos2d::ccColor4B')
@@ -105,6 +110,7 @@ function shouldKeepSymbol(sym) {
     keep = !className.match(/^(_JNIEnv|internal|tinyxml2|cocos2d|DS_Dictionary|pugi|__cxx|__gnu_cxx|std|fmt|llvm|tk|xml_|MD5)/);
     keep = keep && className !== "FMOD" && !sym.startsWith('FMOD_') && className != "tk";
     keep = keep && !enumClasses.includes(className);
+    keep = keep && className != "CCContentManager";
     return keep;
 }
 

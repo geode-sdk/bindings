@@ -315,9 +315,9 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn setupGLView();
 	TodoReturn showLoadingCircle(bool, bool, bool);
 
-	virtual TodoReturn applicationDidFinishLaunching();
-	virtual TodoReturn applicationDidEnterBackground();
-	virtual TodoReturn applicationWillEnterForeground();
+	virtual bool applicationDidFinishLaunching();
+	virtual void applicationDidEnterBackground();
+	virtual void applicationWillEnterForeground();
 	virtual void applicationWillBecomeActive();
 	virtual void applicationWillResignActive();
 	virtual void trySaveGame(bool);
@@ -682,17 +682,6 @@ class CCContentLayer : cocos2d::CCLayerColor {
 	static CCContentLayer* create(cocos2d::ccColor4B const&, float, float);
 
 	virtual void setPosition(cocos2d::CCPoint const&);
-}
-
-[[link(android)]]
-class CCContentManager {
-	// virtual ~CCContentManager();
-
-	TodoReturn addDict(char const*, bool);
-	TodoReturn addDictDS(char const*);
-	TodoReturn clearCache();
-	bool init();
-	TodoReturn sharedManager();
 }
 
 [[link(android)]]
@@ -7970,7 +7959,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn pathForSFXFolder(int);
 	TodoReturn pathForSong(int);
 	TodoReturn pathForSongFolder(int);
-	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::SEL_HttpResponse, int, int);
+	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
 	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
 	TodoReturn removeDLFromActive(char const*);
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
