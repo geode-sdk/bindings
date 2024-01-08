@@ -1413,7 +1413,7 @@ class ConfigureValuePopupDelegate {
 
 [[link(android)]]
 class CountTriggerAction {
-	CountTriggerAction(CountTriggerAction&&);
+	// CountTriggerAction(CountTriggerAction&&);
 }
 
 [[link(android)]]
@@ -2651,7 +2651,7 @@ class EnhancedTriggerObject : EffectGameObject {
 class EnterEffectInstance {
 	// ~EnterEffectInstance();
 	// EnterEffectInstance(EnterEffectInstance const&);
-	EnterEffectInstance(EnterEffectInstance&&);
+	// EnterEffectInstance(EnterEffectInstance&&);
 	EnterEffectInstance(EnterEffectObject*, int, int, int, int, int, int);
 
 	TodoReturn animateValue(int, float, float, float, int, float, int);
@@ -7542,13 +7542,6 @@ class MapSelectLayer : cocos2d::CCLayer {
 }
 
 [[link(android)]]
-class MD5 {
-	TodoReturn Encode(unsigned char*, unsigned long*, unsigned int);
-	TodoReturn MD5Transform(unsigned long*, unsigned char*);
-	TodoReturn Update(unsigned char*, unsigned int);
-}
-
-[[link(android)]]
 class MenuGameLayer : cocos2d::CCLayer {
 	// virtual ~MenuGameLayer();
 
@@ -12010,22 +12003,6 @@ class TimerTriggerGameObject : EffectGameObject {
 
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual TodoReturn getSaveString(GJBaseGameLayer*);
-}
-
-[[link(android)]]
-class tk::spline {
-	// ~spline();
-
-	TodoReturn deriv(int, double);
-	TodoReturn find_closest(double);
-	TodoReturn make_monotonic();
-	TodoReturn operator()(double);
-	TodoReturn set_boundary(tk::spline::bd_type, double, tk::spline::bd_type, double);
-	TodoReturn set_coeffs_from_b();
-	TodoReturn set_points(gd::vector<double> const&, gd::vector<double> const&, tk::spline::spline_type);
-	TodoReturn solve(double, bool);
-	TodoReturn spline(gd::vector<double> const&, gd::vector<double> const&, tk::spline::spline_type, bool, tk::spline::bd_type, double, tk::spline::bd_type, double);
-	// TodoReturn spline(tk::spline const&);
 }
 
 [[link(android)]]

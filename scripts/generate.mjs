@@ -72,8 +72,8 @@ function cleanFunctionSig(sig) {
 function shouldKeepSymbol(sym) {
     let keep = sym && sym.includes('::') && !sym.match(/(typeinfo|vtable|thunk|guard variable)/);
     if (!keep) return false;
-    keep = !sym.split('::')[0].match(/^(_JNIEnv|internal|tinyxml2|cocos2d|DS_Dictionary|pugi|__cxx|__gnu_cxx|std|fmt|llvm|tk::spline|xml_)/);
-    keep = keep && !sym.startsWith('FMOD::') && !sym.startsWith('FMOD_');
+    keep = !sym.split('::')[0].match(/^(_JNIEnv|internal|tinyxml2|cocos2d|DS_Dictionary|pugi|__cxx|__gnu_cxx|std|fmt|llvm|tk|xml_|MD5)/);
+    keep = keep && !sym.startsWith('FMOD::') && !sym.startsWith('FMOD_') && !sym.startsWith('tk::');
     return keep;
 }
 
@@ -125,6 +125,7 @@ function shouldCommentOutFunction(className, name) {
         name.includes('...') ||
         name.startsWith(`${baseClassName}()`) ||
         name.startsWith(`${baseClassName}(${className} const&)`) ||
+        name.startsWith(`${baseClassName}(${className}&&)`) ||
         name.startsWith(`~${baseClassName}(`) ||
         name.includes('fmt::')
     );
