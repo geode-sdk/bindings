@@ -89,13 +89,13 @@ GEODE_MEMBER_CHECK(GameStatsManager, m_miscChests, 0x1C8);
 GEODE_MEMBER_CHECK(GameStatsManager, m_enabledItems, 0x1CC);
 GEODE_MEMBER_CHECK(GameStatsManager, m_activePath, 0x1EC);
 
-/*GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x148);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x148);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5d8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x870);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x874);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9b0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa24);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b48);*/
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b48);
 
 
 GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x7ac);
@@ -107,8 +107,8 @@ GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x198);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x1a0);
 
 GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
-//GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d60);
-//GEODE_SIZE_CHECK(PlayLayer, 0x2f58);
+GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d60);
+GEODE_SIZE_CHECK(PlayLayer, 0x2f58);
 GEODE_SIZE_CHECK(GJGameLevel, 0x48c);
 GEODE_SIZE_CHECK(PlayerObject, 0x980);
 GEODE_SIZE_CHECK(GameObject, 0x498); // crying
