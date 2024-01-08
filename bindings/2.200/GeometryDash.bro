@@ -2346,7 +2346,7 @@ class PlatformToolbox {
 	/* unverified signature */
 	static bool isSignedInGooglePlay();
 	static bool isControllerConnected() {
-		// TODO:
+		// TODO: mat
 		return false;
 	}
 	static TodoReturn reportLoadingFinished();

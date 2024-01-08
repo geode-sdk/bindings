@@ -163,7 +163,13 @@ function shouldCommentOutFunction(className, name) {
 }
 
 function isStaticFunc(className, funcSig) {
-    return funcSig.startsWith('create(') || className == 'GameToolbox';
+    return funcSig.startsWith('create(')
+    || className == 'GameToolbox'
+    || funcSig == 'sharedState()'
+    || funcSig == 'sharedEngine()'
+    || funcSig == 'sharedDecoder()'
+    || funcSig == 'sharedFontCache()'
+    || funcSig == 'sharedSpriteFrameCache()'
 }
 
 /**
@@ -196,6 +202,10 @@ function bestEffortSigGuess(className, name) {
     // cocos virtuals, risky because we arent even checking the inheritance but :P
     if (isVirtual(className, name) && cocosVirtuals[name]) {
         return `${cocosVirtuals[name]} ${name}`
+    }
+
+    if (name.startsWith('shared') && isStaticFunc(className, name)) {
+        return `${className}* ${name}`;
     }
 
     // good guesses
