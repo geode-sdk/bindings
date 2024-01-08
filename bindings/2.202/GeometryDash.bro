@@ -2001,8 +2001,8 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
 class CustomSongDelegate {
 	virtual TodoReturn songIDChanged(int);
 	virtual TodoReturn getActiveSongID();
-	virtual TodoReturn pure_virtual_00a1cde0() {} // TODO: figure out what function this is
-	virtual TodoReturn pure_virtual_00a1cde4() {} // TODO: figure out what function this is
+	virtual TodoReturn getSongFileName();
+	virtual TodoReturn getLevelSettings();
 }
 
 [[link(android)]]
@@ -5736,9 +5736,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn toggleGroundVisibility(bool);
 	virtual TodoReturn toggleMGVisibility(bool);
 	virtual TodoReturn toggleHideAttempts(bool);
-	virtual TodoReturn pure_virtual_00a3f570() {} // TODO: figure out what function this is
-	virtual TodoReturn pure_virtual_00a3f574() {} // TODO: figure out what function this is
-	virtual TodoReturn pure_virtual_00a3f578() {} // TODO: figure out what function this is
+	virtual TodoReturn timeForPos(cocos2d::CCPoint, int, int, bool, int) {}
+	virtual TodoReturn posForTime(float) {}
+	virtual TodoReturn resetSPTriggered() {}
 	virtual TodoReturn updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x1b8400;
 	virtual TodoReturn reverseDirection(EffectGameObject*) = win 0x19dfd0;
 	virtual TodoReturn rotateGameplay(RotateGameplayGameObject*) = win 0x19e030;
