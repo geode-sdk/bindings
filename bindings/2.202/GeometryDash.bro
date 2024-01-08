@@ -3394,7 +3394,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	// virtual ~FMODAudioEngine();
 	// FMODAudioEngine();
 
-	static FMODAudioEngine* sharedEngine();
+	static FMODAudioEngine* sharedEngine() = win 0x32bc0;
 
 	TodoReturn activateQueuedMusic(int);
 	TodoReturn channelForChannelID(int);
@@ -4052,7 +4052,7 @@ class GameManager : GManager {
 		return GameManager::sharedState();
 	}
 
-	static GameManager* sharedState() = win 0x9999999;
+	static GameManager* sharedState() = win 0x120860;
 
 	TodoReturn accountStatusChanged();
 	TodoReturn activeIconForType(IconType);
@@ -4099,7 +4099,7 @@ class GameManager : GManager {
 	TodoReturn getBGTexture(int);
 	TodoReturn getFontFile(int);
 	TodoReturn getFontTexture(int);
-	TodoReturn getGameVariable(char const*);
+	TodoReturn getGameVariable(char const*) = win 0x127a50;
 	TodoReturn getGTexture(int);
 	TodoReturn getIconRequestID();
 	TodoReturn getIntGameVariable(char const*) = win 0x127fa0;
@@ -5581,7 +5581,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn resetLevelVariables();
 	TodoReturn resetMoveOptimizedValue();
 	TodoReturn resetPlayer();
-	TodoReturn resetSongTriggerValues();
+	TodoReturn resetSongTriggerValues() = win 0x3bef0;
 	TodoReturn resetSpawnChannelIndex() = win 0x1c6d90;
 	TodoReturn resetStaticCamera(bool, bool) = win 0x1c1470;
 	TodoReturn resetStoppedAreaObjects();
@@ -10359,16 +10359,16 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn getTempMilliTime();
 	TodoReturn gravityEffectFinished();
 	TodoReturn incrementJumps() = win 0x2e8da0;
-	bool init(GJGameLevel*, bool, bool);
+	bool init(GJGameLevel*, bool, bool) = win 0x2da660;
 	bool isGameplayActive();
-	TodoReturn levelComplete();
+	TodoReturn levelComplete() = win 0x2dbc80;
 	TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
 	TodoReturn loadDefaultColors() = win 0x2e2f80;
 	TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&);
-	TodoReturn loadFromCheckpoint(CheckpointObject*);
+	TodoReturn loadFromCheckpoint(CheckpointObject*) = win 0x2e66c0;
 	TodoReturn loadLastCheckpoint();
 	TodoReturn markCheckpoint();
-	TodoReturn onQuit();
+	TodoReturn onQuit() = win 0x2e9550;
 	TodoReturn optimizeColorGroups();
 	TodoReturn optimizeOpacityGroups();
 	TodoReturn pauseGame(bool);
@@ -10383,7 +10383,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn removeAllObjects() = win 0x2e9660;
 	TodoReturn removeCheckpoint(bool);
 	TodoReturn removeFromGroupOld(GameObject*);
-	TodoReturn resetLevel();
+	TodoReturn resetLevel() = win 0x2e8200;
 	TodoReturn resetLevelFromStart() = win 0x2e8160;
 	TodoReturn resume();
 	TodoReturn resumeAndRestart(bool);
@@ -13490,7 +13490,7 @@ class SpritePartDelegate {
 class StartPosObject : EffectGameObject {
 	// virtual ~StartPosObject();
 
-	static StartPosObject* create();
+	static StartPosObject* create() = win 0x3a4700;
 
 	TodoReturn loadSettingsFromString(gd::string);
 	void setSettings(LevelSettingsObject*);
