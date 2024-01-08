@@ -4,5 +4,6 @@ __scripts
 
 **/.DS_Store
 scripts/*.so
+scripts/*.dll
 scripts/*.txt
 scripts/out/

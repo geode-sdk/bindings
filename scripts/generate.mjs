@@ -1,9 +1,36 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 
+if (process.argv.length < 4) {
+    console.error("usage: node generate.mjs <android symbols> <cocos symbols>");
+    process.exit(1);
+}
+
 // input is a list of demangled android symbols.
 // you can obtain it by using `nm -gDCj libcocos2dcpp.so`
 // nm comes from binutils which u can get via scoop on windows
 const androidSymbols = readFileSync(process.argv[2]).toString();
+
+// list of cocos symbols already demangled.
+// generated with `dumpbin /exports libcocos2d.dll | demumble -m`
+const cocosSymbols = readFileSync(process.argv[3]).toString();
+const cocosVirtuals = Object.fromEntries(cocosSymbols
+    .split('\n')
+    .map(x => x.trim())
+    .map(cleanFunctionSig)
+    .filter(x => x.startsWith('virtual '))
+    .map(x => x.substring('virtual '.length))
+    .filter(x => !x.match(/(.+?)::~?\1/)) // remove ctors / dtors
+    .map(x => x.match(/(.+) (?:\w+::)+(\w+\(.+)/)) // get return type and function name
+    .filter(x => x !== null)
+    .map(x => [x[2], x[1]])
+);
+
+// assumes virtuals.json is in the same directory
+const virtualsTable = JSON.parse(readFileSync('virtuals.json').toString());
+// normalize all the function signatures
+for (let name in virtualsTable) {
+    virtualsTable[name] = virtualsTable[name].map(arr => arr.map(cleanFunctionSig));
+}
 
 const classes = {
     'GeometryDash.bro': {},
@@ -19,38 +46,38 @@ function cleanFunctionSig(sig) {
         .replace(/ \*/g, '*')
         .replace(/\)const /g, ') const')
         .replace(/,(?!\s)/g, ', ')
+        .replace(/std::basic_string<char, std::char_traits<char>, std::allocator<char> ?>/g, 'gd::string')
+        .replace(/std::string/g, 'gd::string')
         .replace(
-            /std::set<(.*?), std::less<(.*?)>, std::allocator<(.*?)> >/g,
+            /std::set<(.*?), std::less<(.*?)>, std::allocator<(.*?)> ?>/g,
             v => `gd::set<${v.match(/(?<=std::set<)(.*?)(?=,)/)[0]}>`
         )
         .replace(
-            /std::vector<(.*?), std::allocator<(.*?)> >/g,
+            /std::vector<(.*?), std::allocator<(.*?)> ?>/g,
             v => `gd::vector<${v.match(/(?<=std::vector<)(.*?)(?=,)/)[0]}>`
         )
-        .replace(/std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<cocos2d::CCObject\*> > >/g, 'cocos2d::CCSetIterator')
+        .replace(/std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<cocos2d::CCObject\*> ?> ?>/g, 'cocos2d::CCSetIterator')
         .replace(
-            /std::map<(.*?), (.*?), std::less<(.*?)>, std::allocator<std::pair<(.*?), (.*?)> > >/g,
+            /std::map<(.*?), (.*?), std::less<(.*?)>, std::allocator<std::pair<(.*?), (.*?)> ?> ?>/g,
             v => {
                 const m = v.match(/(?<=std::map<)(.*?),(.*?)(?=,)/);
                 return `gd::map<${m[1]},${m[2]}>`;
             }
         )
         .replace(
-            /std::unordered_map<(.*?), std::pair<double, double>, .*?> > > >/g,
+            /std::unordered_map<(.*?), std::pair<double, double>, .*?> ?> ?> ?>/g,
             v => {
                 const m = v.match(/(?<=std::unordered_map<)(.*?)(?=,)/);
                 return `gd::unordered_map<${m[1]}, std::pair<double, double>>`;
             }
         )
         .replace(
-            /std::unordered_map<(.*?), (.*?), .*?> > >/g,
+            /std::unordered_map<(.*?), (.*?), .*?> ?> ?>/g,
             v => {
                 const m = v.match(/(?<=std::unordered_map<)(.*?),(.*?)(?=,)/);
                 return `gd::unordered_map<${m[1]},${m[2]}>`;
             }
         )
-        .replace(/std::basic_string<char, std::char_traits<char>, std::allocator<char> >/g, 'gd::string')
-        .replace(/std::string/g, 'gd::string')
         .replace(/unsigned long long/g, 'uint64_t')
         .replace(/void \(cocos2d::CCObject::\*\)\(cocos2d::CCObject\*\)/g, 'cocos2d::SEL_MenuHandler')
         .replace(/void \(cocos2d::CCObject::\*\)\(\)/g, 'cocos2d::SEL_CallFunc')
@@ -69,11 +96,15 @@ function cleanFunctionSig(sig) {
         .replace(/cocos2d::_ccHSVValue/g, 'cocos2d::ccHSVValue');
 }
 
+const enumClasses = ["SearchType", "GameObjectType", "PulseEffectType", "TouchTriggerType", "PlayerButton", "GhostType", "TableViewCellEditingStyle", "UserListType", "GJErrorCode", "AccountError", "GJSongError", "LikeItemType", "CommentError", "BackupAccountError", "GJMusicAction", "CellAction", "GJActionCommand", "DifficultyIconType", "GauntletType", "GJMPErrorCode", "GJTimedLevelType", "SongSelectType", "AudioTargetType", "FMODReverbPreset", "DemonDifficultyType", "PlayerCollisionDirection", "ChestSpriteState", "FormatterType", "AudioModType", "FMODQueuedMusic", "GJAreaActionType", "SFXTriggerState", "SongTriggerState", "GJGameEvent", "GJSmartDirection", "SmartBlockType", "TouchTriggerControl", "SmartPrefabResult", "AudioSortType", "spriteMode", "GJAssetType", "CommentKeyType", "LevelLeaderboardMode", "StatKey", "TextStyleType", "InputValueType", "GJInputStyle", "GJDifficultyName", "GJFeatureState", "GJKeyGroup", "GJKeyCommand", "SelectSettingType", "gjParticleValue", "ColorSelectType", "AudioGuidelinesType", "SmartBrowseFilter", "GJUITouchEvent", "ObjectScaleType", "SavedActiveObjectState", "SavedSpecialObjectState", "SavedObjectStateRef", "CommentType", "BoomListType", "CurrencySpriteType", "CurrencyRewardType", "MenuAnimationType", "ShopType", "ZLayer", "UpdateResponse", "UnlockType", "SpecialRewardItem", "EditCommand", "PlaybackMode", "SelectArtType", "UndoCommand", "EasingType", "GJDifficulty", "GJLevelType", "GJRewardType", "IconType", "GJChallengeType", "GJScoreType", "LevelLeaderboardType", "GJHttpType", "DialogChatPlacement", "DialogAnimationType", "ComparisonType", "MoveTargetType", "TouchToggleMode", "LeaderboardState", "Speed"];
+
 function shouldKeepSymbol(sym) {
     let keep = sym && sym.includes('::') && !sym.match(/(typeinfo|vtable|thunk|guard variable)/);
     if (!keep) return false;
-    keep = !sym.split('::')[0].match(/^(_JNIEnv|internal|tinyxml2|cocos2d|DS_Dictionary|pugi|__cxx|__gnu_cxx|std|fmt|llvm|tk|xml_|MD5)/);
-    keep = keep && !sym.startsWith('FMOD::') && !sym.startsWith('FMOD_') && !sym.startsWith('tk::');
+    let className = sym.split('::')[0];
+    keep = !className.match(/^(_JNIEnv|internal|tinyxml2|cocos2d|DS_Dictionary|pugi|__cxx|__gnu_cxx|std|fmt|llvm|tk|xml_|MD5)/);
+    keep = keep && className !== "FMOD" && !sym.startsWith('FMOD_') && className != "tk";
+    keep = keep && !enumClasses.includes(className);
     return keep;
 }
 
@@ -97,12 +128,6 @@ console.log('Writing results...');
 const res = {
     'GeometryDash.bro': '// clang-format off\n',
 };
-
-const virtualsTable = JSON.parse(readFileSync('virtuals.json').toString());
-// normalize all the function signatures
-for (let name in virtualsTable) {
-    virtualsTable[name] = virtualsTable[name].map(arr => arr.map(cleanFunctionSig));
-}
 
 // inject pure virtuals into classes
 for (let name in virtualsTable) {
@@ -162,7 +187,10 @@ function bestEffortSigGuess(className, name) {
         return `void ${name.substring(0, name.indexOf('('))}(cocos2d::CCObject* sender)`;
     }
 
-    // TODO: get return type for cocos virtuals
+    // cocos virtuals, risky because we arent even checking the inheritance but :P
+    if (isVirtual(className, name) && cocosVirtuals[name]) {
+        return `${cocosVirtuals[name]} ${name}`
+    }
 
     // good guesses
 
@@ -177,11 +205,6 @@ function bestEffortSigGuess(className, name) {
 }
 
 function vtableIndexForFunc(name, funcSig) {
-    // HACK: gjbasegamelayer is fucked up because its a pure virtual. so just use playlayer's vtable instead :P
-    // nvm its sorta fine
-    // if (name == 'GJBaseGameLayer' && !funcSig.startsWith('pure_virtual_')) {
-    //     name = 'PlayLayer';
-    // }
     let tables = virtualsTable[name];
     if (!tables) return;
     for (let table of tables) {
