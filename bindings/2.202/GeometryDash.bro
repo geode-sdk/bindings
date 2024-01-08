@@ -147,6 +147,8 @@ class AchievementCell : TableViewCell {
 class AchievementManager : cocos2d::CCNode {
 	// virtual ~AchievementManager();
 
+	static AchievementManager* sharedState();
+
 	TodoReturn achievementForUnlock(int, UnlockType);
 	TodoReturn addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int);
 	TodoReturn addManualAchievements();
@@ -171,7 +173,6 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn resetAchievement(char const*);
 	TodoReturn resetAchievements();
 	TodoReturn setup();
-	TodoReturn sharedState();
 	TodoReturn storeAchievementUnlocks();
 
 	virtual bool init();
@@ -181,9 +182,10 @@ class AchievementManager : cocos2d::CCNode {
 class AchievementNotifier : cocos2d::CCNode {
 	// virtual ~AchievementNotifier();
 
+	static AchievementNotifier* sharedState();
+
 	TodoReturn achievementDisplayFinished();
 	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
-	TodoReturn sharedState();
 	TodoReturn showNextAchievement();
 	TodoReturn willSwitchToScene(cocos2d::CCScene*);
 
@@ -386,10 +388,11 @@ class AudioLineGuideGameObject : EffectGameObject {
 class BitmapFontCache : cocos2d::CCObject {
 	// virtual ~BitmapFontCache();
 
+	static BitmapFontCache* sharedFontCache();
+
 	TodoReturn fontWithConfigFile(char const*, float);
 	bool init();
 	TodoReturn purgeSharedFontCache();
-	TodoReturn sharedFontCache();
 }
 
 [[link(android)]]
@@ -431,7 +434,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 	virtual TodoReturn cellForRowAtIndexPath(CCIndexPath&, TableView*);
 	virtual TodoReturn TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&);
 	virtual TodoReturn TableViewWillReloadCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*);
-	virtual TableViewCell* getListCell(char const*);
+	virtual TodoReturn getListCell(char const*);
 	virtual TodoReturn loadCell(TableViewCell*, int);
 
 	TableView* m_tableView;
@@ -614,6 +617,8 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 class CCAnimateFrameCache : cocos2d::CCObject {
 	// virtual ~CCAnimateFrameCache();
 
+	static CCAnimateFrameCache* sharedSpriteFrameCache();
+
 	TodoReturn addCustomSpriteFramesWithFile(char const*);
 	TodoReturn addDict(cocos2d::CCDictionary*, char const*);
 	TodoReturn addDict(DS_Dictionary*, char const*);
@@ -621,7 +626,6 @@ class CCAnimateFrameCache : cocos2d::CCObject {
 	bool init();
 	TodoReturn purgeSharedSpriteFrameCache();
 	TodoReturn removeSpriteFrames();
-	TodoReturn sharedSpriteFrameCache();
 	TodoReturn spriteFrameByName(char const*);
 }
 
@@ -735,7 +739,6 @@ class CCExtenderNode {
 
 [[link(android)]]
 class CCIndexPath : cocos2d::CCObject {
-	CCIndexPath() {}
 	// virtual ~CCIndexPath();
 
 	TodoReturn CCIndexPathWithSectionRow(int, int);
@@ -1792,7 +1795,7 @@ class CustomListView : BoomListView {
 	TodoReturn reloadAll();
 
 	virtual TodoReturn setupList(float);
-	virtual TableViewCell* getListCell(char const*);
+	virtual TodoReturn getListCell(char const*);
 	virtual TodoReturn loadCell(TableViewCell*, int);
 
 	int m_unknown;
@@ -3056,7 +3059,7 @@ class EnhancedGameObject : GameObject {
 	// property 126
 	bool m_disableDelayedLoop;
 	// property 127
-	bool m_property127;
+	bool m_disableAnimShine;
 	// property 462
 	int m_singleFrame;
 	// property 592
@@ -3066,7 +3069,7 @@ class EnhancedGameObject : GameObject {
 	// property 214
 	bool m_animateOnlyWhenActive;
 	// property 444
-	bool m_property444;
+	bool m_isNoMultiActivate; // used in platformer stuff
 	// property 99
 	bool m_isMultiActivate;
 	PAD = android32 0x4;
@@ -3167,9 +3170,10 @@ class FileOperation {
 class FileSaveManager : GManager {
 	// virtual ~FileSaveManager();
 
+	static FileSaveManager* sharedState();
+
 	TodoReturn getStoreData();
 	TodoReturn loadDataFromFile(char const*);
-	TodoReturn sharedState();
 
 	virtual bool init();
 	virtual TodoReturn firstLoad();
@@ -3257,6 +3261,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	// virtual ~FMODAudioEngine();
 	// FMODAudioEngine();
 
+	static FMODAudioEngine* sharedEngine();
+
 	TodoReturn activateQueuedMusic(int);
 	TodoReturn channelForChannelID(int);
 	TodoReturn channelForUniqueID(int);
@@ -3332,7 +3338,6 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void setMusicTimeMS(unsigned int, bool, int);
 	TodoReturn setup();
 	TodoReturn setupAudioEngine();
-	TodoReturn sharedEngine();
 	TodoReturn start();
 	TodoReturn startMusic(int, int, int, int, bool, int);
 	TodoReturn stop();
@@ -3540,6 +3545,8 @@ class GameEffectsManager : cocos2d::CCNode {
 [[link(android)]]
 class GameLevelManager : cocos2d::CCNode {
 	// virtual ~GameLevelManager();
+
+	static GameLevelManager* sharedState();
 
 	TodoReturn acceptFriendRequest(int, int);
 	TodoReturn accountIDForUserID(int);
@@ -3793,7 +3800,6 @@ class GameLevelManager : cocos2d::CCNode {
 	void setLenVal(int, bool);
 	void setLevelFeatured(int, int, bool);
 	void setLevelStars(int, int, bool);
-	TodoReturn sharedState();
 	TodoReturn specialFromLikeKey(char const*);
 	TodoReturn storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
 	TodoReturn storeDailyLevelState(int, int, GJTimedLevelType);
@@ -3905,9 +3911,11 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCString* m_unkStr4;*/
 }
 
-[[link(android), depends(UIButtonConfig)]]
+[[link(android)]]
 class GameManager : GManager {
 	// virtual ~GameManager();
+
+	static GameManager* sharedState();
 
 	TodoReturn accountStatusChanged();
 	TodoReturn activeIconForType(IconType);
@@ -4048,7 +4056,6 @@ class GameManager : GManager {
 	void setPlayerUserID(int);
 	void setUGV(char const*, bool);
 	TodoReturn setupGameAnimations();
-	TodoReturn sharedState();
 	TodoReturn sheetNameForIcon(int, int);
 	TodoReturn shortenAdTimer(float);
 	TodoReturn shouldShowInterstitial(int, int, int);
@@ -4534,8 +4541,9 @@ class GameObject : CCSpritePlus {
 	
 	// property 108
 	int m_linkedGroup;
-	PAD = android32 0x27, win 0x27;
+	PAD = android32 0x23, win 0x23;
 	
+	int m_uniqueID;
 	GameObjectType m_objectType;
 	
 	PAD = android32 0x14, win 0x14;
@@ -4565,7 +4573,7 @@ class GameObject : CCSpritePlus {
 	PAD = android32 0x8, win 0x8;
 	
 	// property 497
-	short m_property497;
+	short m_customColorType;
 	// property 67
 	bool m_isDontEnter;
 	// property 64
@@ -4644,8 +4652,8 @@ class GameObject : CCSpritePlus {
 	bool m_isExtraSticky;
 	// property 496
 	bool m_isDontBoostY;
-	// property 510
-	bool m_property510;
+	// property 509
+	bool m_isDontBoostX;
 	PAD = android32 0x11, win 0x11;
 	
 	// property 155
@@ -4708,6 +4716,8 @@ class GameRateDelegate {
 [[link(android)]]
 class GameStatsManager : cocos2d::CCNode {
 	// virtual ~GameStatsManager();
+
+	static GameStatsManager* sharedState();
 
 	TodoReturn accountIDForIcon(int, UnlockType);
 	TodoReturn addSimpleSpecialChestReward(gd::string, UnlockType, int, bool);
@@ -4835,7 +4845,6 @@ class GameStatsManager : cocos2d::CCNode {
 	void setStat(char const*, int);
 	void setStatIfHigher(char const*, int);
 	TodoReturn setupIconCredits();
-	TodoReturn sharedState();
 	TodoReturn shopTypeForItemID(int);
 	TodoReturn shouldAwardSecretKey();
 	TodoReturn starsForMapPack(int);
@@ -5079,6 +5088,8 @@ class GJAccountLoginDelegate {
 class GJAccountManager : cocos2d::CCNode {
 	// virtual ~GJAccountManager();
 
+	static GJAccountManager* sharedState();
+
 	TodoReturn addDLToActive(char const*, cocos2d::CCObject*);
 	TodoReturn addDLToActive(char const*);
 	TodoReturn backupAccount(gd::string);
@@ -5106,7 +5117,6 @@ class GJAccountManager : cocos2d::CCNode {
 	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
 	TodoReturn registerAccount(gd::string, gd::string, gd::string);
 	TodoReturn removeDLFromActive(char const*);
-	TodoReturn sharedState();
 	TodoReturn syncAccount(gd::string);
 	TodoReturn unlinkFromAccount();
 	TodoReturn updateAccountSettings(int, int, int, gd::string, gd::string, gd::string);
@@ -5183,7 +5193,7 @@ class GJActionManager : cocos2d::CCNode {
 	virtual bool init();
 }
 
-[[link(android), depends(GJGameState)]]
+[[link(android)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// ~GJBaseGameLayer();
 	// GJBaseGameLayer();
@@ -6522,6 +6532,8 @@ class GJMPDelegate {
 class GJMultiplayerManager : cocos2d::CCNode {
 	// virtual ~GJMultiplayerManager();
 
+	static GJMultiplayerManager* sharedState();
+
 	TodoReturn addComment(gd::string, int);
 	TodoReturn addDLToActive(char const*, cocos2d::CCObject*);
 	TodoReturn addDLToActive(char const*);
@@ -6544,7 +6556,6 @@ class GJMultiplayerManager : cocos2d::CCNode {
 	TodoReturn onUploadCommentCompleted(gd::string, gd::string);
 	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
 	TodoReturn removeDLFromActive(char const*);
-	TodoReturn sharedState();
 	TodoReturn uploadComment(gd::string, int);
 
 	virtual bool init();
@@ -6554,7 +6565,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
 class GJObjectDecoder : cocos2d::CCNode, ObjectDecoderDelegate {
 	// virtual ~GJObjectDecoder();
 
-	TodoReturn sharedDecoder();
+	static GJObjectDecoder* sharedDecoder();
 
 	virtual bool init();
 	virtual TodoReturn getDecodedObject(int, DS_Dictionary*);
@@ -7455,8 +7466,9 @@ class GooglePlayDelegate {
 class GooglePlayManager : cocos2d::CCNode {
 	// virtual ~GooglePlayManager();
 
+	static GooglePlayManager* sharedState();
+
 	TodoReturn googlePlaySignedIn();
-	TodoReturn sharedState();
 
 	virtual bool init();
 }
@@ -7720,6 +7732,8 @@ class KeybindingsLayer : FLAlertLayer {
 class KeybindingsManager : cocos2d::CCNode {
 	// virtual ~KeybindingsManager();
 
+	static KeybindingsManager* sharedState();
+
 	TodoReturn commandForKey(cocos2d::enumKeyCodes, GJKeyGroup, bool, bool, bool);
 	TodoReturn commandForKeyMods(cocos2d::enumKeyCodes, GJKeyGroup);
 	TodoReturn commandForKeyNoMods(cocos2d::enumKeyCodes, GJKeyGroup);
@@ -7730,7 +7744,6 @@ class KeybindingsManager : cocos2d::CCNode {
 	TodoReturn groupForCommand(GJKeyCommand);
 	TodoReturn keyForCommand(GJKeyCommand);
 	TodoReturn keyToCommandForGroup(GJKeyGroup);
-	TodoReturn sharedState();
 
 	virtual bool init();
 }
@@ -8934,6 +8947,8 @@ class LoadingLayer : cocos2d::CCLayer {
 class LocalLevelManager : GManager {
 	// virtual ~LocalLevelManager();
 
+	static LocalLevelManager* sharedState();
+
 	TodoReturn getAllLevelsInDict();
 	TodoReturn getAllLevelsWithName(gd::string);
 	TodoReturn getCreatedLevels(int);
@@ -8943,7 +8958,6 @@ class LocalLevelManager : GManager {
 	TodoReturn markLevelsAsUnmodified();
 	TodoReturn moveLevelToTop(GJGameLevel*);
 	TodoReturn reorderLevels();
-	TodoReturn sharedState();
 	TodoReturn tryLoadMainLevelString(int);
 	TodoReturn updateLevelOrder();
 	TodoReturn updateLevelRevision();
@@ -9365,6 +9379,8 @@ class MusicDownloadDelegate {
 class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	// virtual ~MusicDownloadManager();
 
+	static MusicDownloadManager* sharedState();
+
 	TodoReturn addDLToActive(char const*, cocos2d::CCObject*);
 	TodoReturn addDLToActive(char const*);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*);
@@ -9449,7 +9465,6 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn removeDLFromActive(char const*);
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
 	TodoReturn responseToDict(gd::string, char const*);
-	TodoReturn sharedState();
 	TodoReturn showTOS(FLAlertLayerProtocol*);
 	TodoReturn songStateChanged();
 	TodoReturn stopDownload(int);
@@ -9562,8 +9577,9 @@ class ObjectControlGameObject : EffectGameObject {
 class ObjectDecoder {
 	// virtual ~ObjectDecoder();
 
+	static ObjectDecoder* sharedDecoder();
+
 	TodoReturn getDecodedObject(int, DS_Dictionary*);
-	TodoReturn sharedDecoder();
 
 	virtual bool init();
 }
@@ -9595,11 +9611,12 @@ class ObjectManager : cocos2d::CCNode {
 class ObjectToolbox : cocos2d::CCNode {
 	// virtual ~ObjectToolbox();
 
+	static ObjectToolbox* sharedState();
+
 	TodoReturn allKeys();
 	TodoReturn gridNodeSizeForKey(int);
 	TodoReturn intKeyToFrame(int);
 	TodoReturn perspectiveBlockFrame(int);
-	TodoReturn sharedState();
 
 	virtual bool init();
 }
@@ -13446,7 +13463,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	bool m_cancellingTouches;
 }
 
-[[link(android), depends(CCIndexPath)]]
+[[link(android)]]
 class TableViewCell : cocos2d::CCLayer {
 	// virtual ~TableViewCell();
 	TableViewCell(char const*, float, float);
