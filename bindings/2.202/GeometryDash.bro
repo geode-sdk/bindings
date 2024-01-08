@@ -5769,7 +5769,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
 
-	PAD = win 0xc, android32 0xc, android64 0x14;
+	PAD = win 0x8, android32 0x8, android64 0xc;
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
