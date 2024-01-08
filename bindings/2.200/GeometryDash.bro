@@ -3321,8 +3321,9 @@ class GameObject : CCSpritePlus {
 
 	// property 108
 	int m_linkedGroup;
-	PAD = android32 0x27, win 0x27;
+	PAD = android32 0x23, win 0x23;
 
+	int m_uniqueID;
 	GameObjectType m_objectType;
 
 	PAD = android32 0x14, win 0x14;
@@ -3352,7 +3353,7 @@ class GameObject : CCSpritePlus {
 	PAD = android32 0x8, win 0x8;
 
 	// property 497
-	short m_property497;
+	short m_customColorType;
 	// property 67
 	bool m_isDontEnter;
 	// property 64
@@ -3431,8 +3432,8 @@ class GameObject : CCSpritePlus {
 	bool m_isExtraSticky;
 	// property 496
 	bool m_isDontBoostY;
-	// property 510
-	bool m_property510;
+	// property 509
+	bool m_isDontBoostX;
 	PAD = android32 0x11, win 0x11;
 
 	// property 155
@@ -3507,7 +3508,7 @@ class EnhancedGameObject : GameObject {
 	// property 126
 	bool m_disableDelayedLoop;
 	// property 127
-	bool m_property127;
+	bool m_disableAnimShine;
 	// property 462
 	int m_singleFrame;
 	// property 592
@@ -3517,7 +3518,7 @@ class EnhancedGameObject : GameObject {
 	// property 214
 	bool m_animateOnlyWhenActive;
 	// property 444
-	bool m_property444;
+	bool m_isNoMultiActivate; // used in platformer stuff
 	// property 99
 	bool m_isMultiActivate;
 	PAD = android32 0x4;
