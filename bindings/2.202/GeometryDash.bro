@@ -2592,7 +2592,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onPasteInPlace(cocos2d::CCObject* sender);
 	void onPasteState(cocos2d::CCObject* sender);
 	void onPause(cocos2d::CCObject* sender) = win 0xa6000;
-	void onPlayback(cocos2d::CCObject* sender) = win 0xc9c30;
+	void onPlayback(cocos2d::CCObject* sender);
 	void onPlaytest(cocos2d::CCObject* sender) = win 0xc9f90;
 	void onResetSpecialFilter(cocos2d::CCObject* sender);
 	void onSelectBuildTab(cocos2d::CCObject* sender);
@@ -3684,7 +3684,7 @@ class GameEffectsManager : cocos2d::CCNode {
 class GameLevelManager : cocos2d::CCNode {
 	// virtual ~GameLevelManager();
 
-	static GameLevelManager* sharedState() = win 0xf38f0;
+	static GameLevelManager* sharedState() = win 0xF38F0;
 
 	TodoReturn acceptFriendRequest(int, int);
 	TodoReturn accountIDForUserID(int);
@@ -7481,7 +7481,7 @@ class GJUserMessage : cocos2d::CCNode {
 class GJUserScore : cocos2d::CCNode {
 	// virtual ~GJUserScore();
 
-	static GJUserScore* create() = win 0x1186f0;
+	static GJUserScore* create() = win 0x1186F0;
 	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x117750;
 
 	bool isCurrentUser() = win 0x1187f0;
@@ -8429,14 +8429,14 @@ class LevelFeatureLayer : FLAlertLayer {
 class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDelegate, RateLevelDelegate, LikeItemDelegate, FLAlertLayerProtocol, LevelDeleteDelegate, NumberInputDelegate, SetIDPopupDelegate, TableViewCellDelegate {
 	// virtual ~LevelInfoLayer();
 
-	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x24ffa0;
+	static LevelInfoLayer* create(GJGameLevel*, bool);
 
 	TodoReturn confirmClone(cocos2d::CCObject*) = win 0x254a90;
 	TodoReturn confirmDelete(cocos2d::CCObject*);
 	TodoReturn confirmMoveToBottom(cocos2d::CCObject*);
 	TodoReturn confirmMoveToTop(cocos2d::CCObject*);
 	TodoReturn confirmOwnerDelete(cocos2d::CCObject*);
-	void downloadLevel() = win 0x1b950;
+	TodoReturn downloadLevel();
 	TodoReturn incrementDislikes();
 	TodoReturn incrementLikes();
 	bool init(GJGameLevel*, bool) = win 0x250050;
@@ -10914,16 +10914,16 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	void onBack(cocos2d::CCObject* sender);
 	void onDoor(cocos2d::CCObject* sender);
 	void onSecretLevel(cocos2d::CCObject* sender) = win 0x303d30;
-	void onSubmit(cocos2d::CCObject* sender) = win 0x3042c0;
+	void onSubmit(cocos2d::CCObject* sender);
 	TodoReturn playCoinEffect();
 	TodoReturn scene();
 	TodoReturn selectAThread();
 	TodoReturn showCompletedLevel();
 	TodoReturn showSecretLevel();
 	TodoReturn updateMessageLabel(gd::string);
-	void updateSearchLabel(char const*) = win 0x3055b0;
+	TodoReturn updateSearchLabel(char const*);
 
-	virtual bool init() = win 0x3027d0;
+	virtual bool init();
 	virtual void onExit();
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputOpened(CCTextInputNode*);
