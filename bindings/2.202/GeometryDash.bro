@@ -114,7 +114,7 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
 	virtual TodoReturn textInputReturn(CCTextInputNode*);
-	virtual TodoReturn allowTextInput(CCTextInputNode*);
+	virtual bool allowTextInput(CCTextInputNode*);
 	virtual TodoReturn registerAccountFinished();
 	virtual TodoReturn registerAccountFailed(AccountError);
 }
@@ -1246,7 +1246,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn tryGetChallenges();
 	TodoReturn updateDots();
-	TodoReturn updateTimers(float);
+	callback void updateTimers(float);
 
 	virtual bool init();
 	virtual void registerWithTouchDispatcher();
@@ -2132,7 +2132,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 	TodoReturn refreshDailyPage();
 	TodoReturn skipDailyLevel(DailyLevelNode*, GJGameLevel*);
 	TodoReturn tryGetDailyStatus() = win 0x98810;
-	TodoReturn updateTimers(float) = win 0x99020;
+	callback void updateTimers(float) = win 0x99020;
 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
@@ -6205,8 +6205,8 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn storeNewLocalScore(int, int);
 	TodoReturn unverifyCoins();
 
-	virtual void encodeWithCoder(DS_Dictionary*);
-	virtual bool canEncode();
+	virtual void encodeWithCoder(DS_Dictionary*) = win 0x1159B0;
+	virtual bool canEncode() = win 0x1D800; //merged func (return true)
 	virtual bool init() = win 0x1133d0;
 
 	cocos2d::CCDictionary* m_lastBuildSave;
@@ -7618,7 +7618,7 @@ class GManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GooglePlayDelegate {
-	virtual TodoReturn googlePlaySignedIn();
+	virtual void googlePlaySignedIn() {}
 }
 
 [[link(android)]]
@@ -7727,8 +7727,8 @@ class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
 
 [[link(android)]]
 class HSVWidgetDelegate {
-	virtual TodoReturn hsvPopupClosed(HSVWidgetPopup*, cocos2d::ccHSVValue);
-	virtual TodoReturn hsvChanged(ConfigureHSVWidget*);
+	virtual void hsvPopupClosed(HSVWidgetPopup*, cocos2d::ccHSVValue) {}
+	virtual void hsvChanged(ConfigureHSVWidget*) {}
 }
 
 [[link(android)]]
@@ -7989,10 +7989,10 @@ class LabelGameObject : EffectGameObject {
 
 [[link(android)]]
 class LeaderboardManagerDelegate {
-	virtual TodoReturn updateUserScoreFinished();
-	virtual TodoReturn updateUserScoreFailed();
-	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadLeaderboardFailed(char const*);
+	virtual void updateUserScoreFinished() {}
+	virtual void updateUserScoreFailed() {}
+	virtual void loadLeaderboardFinished(cocos2d::CCArray*, char const*) {}
+	virtual void loadLeaderboardFailed(char const*) {}
 }
 
 [[link(android)]]
@@ -8208,22 +8208,22 @@ class LevelCell : TableViewCell {
 
 [[link(android)]]
 class LevelCommentDelegate {
-	virtual TodoReturn loadCommentsFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadCommentsFailed(char const*);
-	virtual TodoReturn updateUserScoreFinished();
-	virtual TodoReturn setupPageInfo(gd::string, char const*);
+	virtual void loadCommentsFinished(cocos2d::CCArray*, char const*) {}
+	virtual void loadCommentsFailed(char const*) {}
+	virtual void updateUserScoreFinished() {}
+	virtual void setupPageInfo(gd::string, char const*) {}
 }
 
 [[link(android)]]
 class LevelDeleteDelegate {
-	virtual TodoReturn levelDeleteFinished(int);
-	virtual TodoReturn levelDeleteFailed(int);
+	virtual void levelDeleteFinished(int) {}
+	virtual void levelDeleteFailed(int) {}
 }
 
 [[link(android)]]
 class LevelDownloadDelegate {
-	virtual TodoReturn levelDownloadFinished(GJGameLevel*);
-	virtual TodoReturn levelDownloadFailed(int);
+	virtual void levelDownloadFinished(GJGameLevel*) {}
+	virtual void levelDownloadFailed(int) {}
 }
 
 [[link(android)]]
@@ -8585,8 +8585,8 @@ class LevelListCell : TableViewCell {
 
 [[link(android)]]
 class LevelListDeleteDelegate {
-	virtual TodoReturn levelListDeleteFinished(int);
-	virtual TodoReturn levelListDeleteFailed(int);
+	virtual void levelListDeleteFinished(int) {}
+	virtual void levelListDeleteFailed(int) {}
 }
 
 [[link(android)]]
@@ -8640,11 +8640,11 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 
 [[link(android)]]
 class LevelManagerDelegate {
-	virtual TodoReturn loadLevelsFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadLevelsFailed(char const*);
-	virtual TodoReturn loadLevelsFinished(cocos2d::CCArray*, char const*, int);
-	virtual TodoReturn loadLevelsFailed(char const*, int);
-	virtual TodoReturn setupPageInfo(gd::string, char const*);
+	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*) {}
+	virtual void loadLevelsFailed(char const*) {}
+	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) {}
+	virtual void loadLevelsFailed(char const*, int) {}
+	virtual void setupPageInfo(gd::string, char const*) {}
 }
 
 [[link(android)]]
@@ -8788,7 +8788,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 
 [[link(android)]]
 class LevelSettingsDelegate {
-	virtual TodoReturn levelSettingsUpdated();
+	virtual void levelSettingsUpdated() {}
 }
 
 [[link(android)]]
@@ -8968,19 +8968,19 @@ class LevelTools {
 
 [[link(android)]]
 class LevelUpdateDelegate {
-	virtual TodoReturn levelUpdateFinished(GJGameLevel*, UpdateResponse);
-	virtual TodoReturn levelUpdateFailed(int);
+	virtual void levelUpdateFinished(GJGameLevel*, UpdateResponse) {}
+	virtual void levelUpdateFailed(int) {}
 }
 
 [[link(android)]]
 class LevelUploadDelegate {
-	virtual TodoReturn levelUploadFinished(GJGameLevel*);
-	virtual TodoReturn levelUploadFailed(GJGameLevel*);
+	virtual void levelUploadFinished(GJGameLevel*) {}
+	virtual void levelUploadFailed(GJGameLevel*) {}
 }
 
 [[link(android)]]
 class LikeItemDelegate {
-	virtual TodoReturn likedItem(LikeItemType, int, bool);
+	virtual void likedItem(LikeItemType, int, bool) {}
 }
 
 [[link(android)]]
@@ -9114,7 +9114,10 @@ class LoadingLayer : cocos2d::CCLayer {
 class LocalLevelManager : GManager {
 	// virtual ~LocalLevelManager();
 
-	static LocalLevelManager* sharedState();
+	static LocalLevelManager* sharedState() = win 0x2760F0;
+	inline static LocalLevelManager* get() {
+        return LocalLevelManager::sharedState();
+    }
 
 	TodoReturn getAllLevelsInDict();
 	TodoReturn getAllLevelsWithName(gd::string);
@@ -9253,10 +9256,10 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
 [[link(android)]]
 class MessageListDelegate {
-	virtual TodoReturn loadMessagesFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadMessagesFailed(char const*, GJErrorCode);
-	virtual TodoReturn forceReloadMessages(bool);
-	virtual TodoReturn setupPageInfo(gd::string, char const*);
+	virtual void loadMessagesFinished(cocos2d::CCArray*, char const*) {}
+	virtual void loadMessagesFailed(char const*, GJErrorCode) {}
+	virtual void forceReloadMessages(bool) {}
+	virtual void setupPageInfo(gd::string, char const*) {}
 }
 
 [[link(android)]]
@@ -9518,7 +9521,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 
 [[link(android)]]
 class MusicBrowserDelegate {
-	virtual TodoReturn musicBrowserClosed(MusicBrowser*);
+	virtual void musicBrowserClosed(MusicBrowser*) {}
 }
 
 [[link(android)]]
@@ -9532,15 +9535,15 @@ class MusicDelegateHandler : cocos2d::CCNode {
 
 [[link(android)]]
 class MusicDownloadDelegate {
-	virtual TodoReturn loadSongInfoFinished(SongInfoObject*);
-	virtual TodoReturn loadSongInfoFailed(int, GJSongError);
-	virtual TodoReturn downloadSongFinished(int);
-	virtual TodoReturn downloadSongFailed(int, GJSongError);
-	virtual TodoReturn songStateChanged();
-	virtual TodoReturn downloadSFXFinished(int);
-	virtual TodoReturn downloadSFXFailed(int, GJSongError);
-	virtual TodoReturn musicActionFinished(GJMusicAction);
-	virtual TodoReturn musicActionFailed(GJMusicAction);
+	virtual void loadSongInfoFinished(SongInfoObject*) {}
+	virtual void loadSongInfoFailed(int, GJSongError) {}
+	virtual void downloadSongFinished(int) {}
+	virtual void downloadSongFailed(int, GJSongError) {}
+	virtual void songStateChanged() {}
+	virtual void downloadSFXFinished(int) {}
+	virtual void downloadSFXFailed(int, GJSongError) {}
+	virtual void musicActionFinished(GJMusicAction) {}
+	virtual void musicActionFailed(GJMusicAction) {}
 }
 
 [[link(android)]]
@@ -9694,7 +9697,7 @@ class NodePoint : cocos2d::CCObject {
 
 [[link(android)]]
 class NumberInputDelegate {
-	virtual TodoReturn numberInputClosed(NumberInputLayer*);
+	virtual void numberInputClosed(NumberInputLayer*) {}
 }
 
 [[link(android)]]
@@ -9791,9 +9794,9 @@ class ObjectToolbox : cocos2d::CCNode {
 
 [[link(android)]]
 class OnlineListDelegate {
-	virtual TodoReturn loadListFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadListFailed(char const*);
-	virtual TodoReturn setupPageInfo(gd::string, char const*);
+	virtual void loadListFinished(cocos2d::CCArray*, char const*) {}
+	virtual void loadListFailed(char const*) {}
+	virtual void setupPageInfo(gd::string, char const*) {}
 }
 
 [[link(android)]]
@@ -10666,7 +10669,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 
 [[link(android)]]
 class RateLevelDelegate {
-	virtual TodoReturn rateLevelClosed();
+	virtual void rateLevelClosed() {}
 }
 
 [[link(android)]]
@@ -11337,7 +11340,7 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
 
 [[link(android)]]
 class SetTextPopupDelegate {
-	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string) {}
 }
 
 [[link(android)]]
@@ -13845,13 +13848,13 @@ class TextGameObject : GameObject {
 
 [[link(android)]]
 class TextInputDelegate {
-	virtual TodoReturn textChanged(CCTextInputNode*);
-	virtual TodoReturn textInputOpened(CCTextInputNode*);
-	virtual TodoReturn textInputClosed(CCTextInputNode*);
-	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
-	virtual TodoReturn textInputReturn(CCTextInputNode*);
-	virtual TodoReturn allowTextInput(CCTextInputNode*);
-	virtual TodoReturn enterPressed(CCTextInputNode*);
+	virtual void textChanged(CCTextInputNode*) {}
+	virtual void textInputOpened(CCTextInputNode*) {}
+	virtual void textInputClosed(CCTextInputNode*) {}
+	virtual void textInputShouldOffset(CCTextInputNode*, float) {}
+	virtual void textInputReturn(CCTextInputNode*) {}
+	virtual bool allowTextInput(CCTextInputNode*) { return true; }
+	virtual void enterPressed(CCTextInputNode*) {}
 }
 
 [[link(android)]]
