@@ -3074,7 +3074,7 @@ class EndLevelLayer : GJDropDownLayer {
 	TodoReturn playCurrencyEffect(float);
 	TodoReturn playDiamondEffect(float);
 	TodoReturn playEndEffect();
-	TodoReturn playStarEffect(float);
+	void playStarEffect(float) = win 0xe9070;
 	TodoReturn starEnterFinished();
 	TodoReturn tryShowBanner(float);
 
@@ -4929,7 +4929,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getSpecialRewardDescription(gd::string, bool);
 	TodoReturn getSpecialUnlockDescription(int, UnlockType, bool);
 	TodoReturn getStarLevelKey(GJGameLevel*);
-	TodoReturn getStat(char const*) = win 0x169ff0;
+	int getStat(char const*) = win 0x169ff0;
 	TodoReturn getStatFromKey(StatKey);
 	TodoReturn getStoreItem(int, int);
 	TodoReturn getStoreItem(int);
@@ -8457,9 +8457,9 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void onPlay(cocos2d::CCObject* sender);
 	void onPlayReplay(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender);
-	void onRateDemon(cocos2d::CCObject* sender);
+	void onRateDemon(cocos2d::CCObject* sender) = win 0x254fc0;
 	void onRateStars(cocos2d::CCObject* sender) = win 0x254e90;
-	void onRateStarsMod(cocos2d::CCObject* sender);
+	void onRateStarsMod(cocos2d::CCObject* sender) = win 0x254f70;
 	void onSetFolder(cocos2d::CCObject* sender) = win 0x252030;
 	void onUpdate(cocos2d::CCObject* sender) = win 0x255250;
 	void onViewProfile(cocos2d::CCObject* sender) = win 0x2553b0;
@@ -10493,7 +10493,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn circleWaveWillBeRemoved(CCCircleWave*);
 	virtual TodoReturn dialogClosed(DialogLayer*);
 
-	PAD = win 0x1ec, android32 0x1ec, android64 0x2c4;
+	PAD = win 0x12C, android32 0x12C;
+	bool m_endLayerStars; // not verified on android
+	PAD = win 0xBF, android32 0xBF;
 }
 
 [[link(android)]]
@@ -10704,6 +10706,8 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	virtual TodoReturn uploadActionFinished(int, int);
 	virtual TodoReturn uploadActionFailed(int, int);
 	virtual TodoReturn onClosePopup(UploadActionPopup*);
+	PAD = win 0x10;
+	int m_starsRate;
 }
 
 [[link(android)]]
@@ -14129,13 +14133,13 @@ class UploadActionDelegate {
 class UploadActionPopup : FLAlertLayer {
 	// virtual ~UploadActionPopup();
 
-	static UploadActionPopup* create(UploadPopupDelegate*, gd::string);
+	static UploadActionPopup* create(UploadPopupDelegate*, gd::string) = win 0x209730;
 
 	TodoReturn closePopup();
 	bool init(UploadPopupDelegate*, gd::string) = win 0x209800;
 	void onClose(cocos2d::CCObject* sender);
-	TodoReturn showFailMessage(gd::string);
-	TodoReturn showSuccessMessage(gd::string);
+	void showFailMessage(gd::string) = win 0x209ce0;
+	void showSuccessMessage(gd::string) = win 0x209be0;
 
 	virtual void keyBackClicked();
 }
