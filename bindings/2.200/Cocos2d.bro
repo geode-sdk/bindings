@@ -891,3 +891,28 @@ class cocos2d::CCDictionary {
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 }
+
+[[link(win, android)]]
+class cocos2d::ZipUtils {
+	static gd::string base64DecodeEnc(gd::string const&, gd::string);
+	static gd::string base64EncodeEnc(gd::string const&, gd::string);
+	static gd::string base64URLDecode(gd::string const&);
+	static gd::string base64URLEncode(gd::string const&);
+	static unsigned int ccChecksumPvr(unsigned int const*, int);
+	static void ccDecodeEncodedPvr(unsigned int*, int);
+	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**);
+	static int ccInflateCCZFile(char const*, unsigned char**);
+	static int ccInflateGZipFile(char const*, unsigned char**);
+	static int ccInflateMemory(unsigned char*, unsigned int, unsigned char**);
+	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int*, unsigned int);
+	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int);
+	static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
+	static void ccSetPvrEncryptionKeyPart(int, unsigned int);
+	static gd::string compressString(gd::string const&, bool, int);
+	static gd::string decompressString2(unsigned char*, bool, int, int);
+	static gd::string decompressString(gd::string const&, bool, int);
+	static gd::string encryptDecrypt(gd::string const&, int);
+	static gd::string encryptDecryptWKey(gd::string const&, gd::string);
+	static unsigned char hexToChar(gd::string const&);
+	static gd::string urlDecode(gd::string const&);
+}
