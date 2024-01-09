@@ -15,9 +15,6 @@ import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.IntegerDataType;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.StructureDataType;
-import ghidra.program.model.listing.AutoParameterImpl;
-import ghidra.program.model.listing.Function;
-import ghidra.program.model.listing.GhidraClass;
 import ghidra.program.model.listing.ParameterImpl;
 import ghidra.program.model.listing.ReturnParameterImpl;
 import ghidra.program.model.listing.Variable;
@@ -25,12 +22,18 @@ import ghidra.program.model.listing.VariableStorage;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
 import ghidra.program.model.symbol.Namespace;
 import ghidra.program.model.symbol.SourceType;
+import ghidra.program.model.symbol.SymbolType;
+import ghidra.util.Swing;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import docking.widgets.dialogs.InputWithChoicesDialog;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +45,8 @@ interface ThrowingConsumer<T, E extends Exception> {
 }
 
 class Regexes {
+    // Helpers
+
     static final Pattern GRAB_NAMED_GROUP = Pattern.compile("(?<=\\(\\?)<\\w+>", 0);
     
     static final<T> String removeNamedGroups(T pattern) {
@@ -62,19 +67,50 @@ class Regexes {
         return Pattern.compile(result, flags);
     }
 
+    // Generic regexes
+
+    public static final Pattern grabClass(String className) {
+        return Pattern.compile(
+            formatRegex(
+                // Grab attributes
+                "(?<attrs>\\[\\[.*?\\]\\]\\s*)?" + 
+                // Grab name
+                "class (?<name>{0})\\s+(?::.*?)?" + 
+                // Grab body (assuming closing brace is on its own line without any preceding whitespace)
+                "\\{(?<body>.*?)^\\}",
+                className
+            ),
+            Pattern.DOTALL | Pattern.MULTILINE
+        );
+    }
+    // Pass class name as funName if you want to grab destructor
+    public static final Pattern grabFunction(String funName) {
+        return Pattern.compile(
+            formatRegex(
+                // Must match start of line (MULTILINE flag required) - also requires that the 
+                // function not be intended more than 4 spaces or a single tab
+                "(?<=^(?:(?: {0,4})|\\t))" + 
+                // Get the dispatch modifier keyword if one is defined
+                "(?<dispatch>(?:inline|virtual|static|callback)\\s+)?" +
+                // Grab the return type and name of the function, or the name if it's a destructor
+                "(?:(?:(?<return>{0})\\s+(?<name>{2}))|(?<destructor>~{2}))" + 
+                // Grab the parameters
+                "\\(\\s*(?<params>(?:{1},?)*)\\)" +
+                // Grab the platforms
+                "(?:\\s*=\\s*(?<platforms>(?:[a-z]+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+))?",
+                GRAB_TYPE, GRAB_PARAM, funName
+            ),
+            Pattern.DOTALL | Pattern.MULTILINE
+        );
+    }
+
+    // Fixed regexes
+
     public static final Pattern GRAB_LINK_ATTR = Pattern.compile(
         "link\\((?<platforms>.*?)\\)",
         Pattern.DOTALL
     );
-    public static final Pattern GRAB_CLASSES = Pattern.compile(
-        // Grab attributes
-        "(?<attrs>\\[\\[.*?\\]\\]\\s*)?" + 
-        // Grab name
-        "class (?<name>(?:\\w+::)*\\w+)\\s+(?::.*?)?" + 
-        // Grab body (assuming closing brace is on its own line without any preceding whitespace)
-        "\\{(?<body>.*?)^\\}",
-        Pattern.DOTALL | Pattern.MULTILINE
-    );
+    public static final Pattern GRAB_CLASS = grabClass("(?:\\w+::)*\\w+");
     public static final Pattern GRAB_TYPE = generateRecursiveRegex(
         "(?<lconst>\\bconst\\s+)?(?<name>(?:\\w+::)*\\w+)(?<template><(?:{0})(?:\\s*,\\s*(?:{0}))*>)?(?<rconst>\\s+const\\b)?(?<ptr>\\s*\\*+)?(?<ref>\\s*&+)?",
         2,
@@ -88,23 +124,7 @@ class Regexes {
         ),
         Pattern.DOTALL
     );
-    public static final Pattern GRAB_FUNCTION = Pattern.compile(
-        formatRegex(
-            // Must match start of line (MULTILINE flag required) - also requires that the 
-            // function not be intended more than 4 spaces or a single tab
-            // "(?<=^(?:(?: {0,4})|\\t))" + 
-            // Get the dispatch modifier keyword if one is defined
-            "(?<dispatch>(?:inline|virtual|static|callback)\\s+)?" +
-            // Grab the return type and name of the function, or the name if it's a destructor
-            "(?:(?:(?<return>{0})\\s+(?<name>\\w+))|(?<destructor>~\\w+))" + 
-            // Grab the parameters
-            "\\(\\s*(?<params>(?:{1},?)*)\\)" +
-            // Grab the platforms
-            "(?:\\s*=\\s*(?<platforms>(?:[a-z]+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+))?",
-            GRAB_TYPE, GRAB_PARAM
-        ),
-        Pattern.DOTALL | Pattern.MULTILINE
-    );
+    public static final Pattern GRAB_FUNCTION = grabFunction("\\w+");
     public static final Pattern GRAB_WIN_ADDRESS = Pattern.compile(
         "win\\s+0x(?<addr>[0-9a-fA-F]+)",
         Pattern.DOTALL
@@ -127,6 +147,10 @@ public class SyncBromaScript extends GhidraScript {
     int importedAddCount = 0;
     int importedUpdateCount = 0;
 
+    // todo: automatically generate vtable structs for each class
+    // todo: merge members
+
+    @Override
     public void run() throws Exception {
         // Get the bindings directory from the location of this script
         // todo: maybe ask the user for this if the script is not in the expected place?
@@ -176,7 +200,7 @@ public class SyncBromaScript extends GhidraScript {
             var file = new File(bindingsVerDir.toPath().toString() + "/" + bro);
             printfmt("Reading {0}...", bro);
             matchAll(
-                Regexes.GRAB_CLASSES,
+                Regexes.GRAB_CLASS,
                 new String(Files.readAllBytes(file.toPath())),
                 cls -> {
                     var linkValue = false;
@@ -199,7 +223,8 @@ public class SyncBromaScript extends GhidraScript {
                             if (name == null) {
                                 name = fun.group("name");
                             }
-                            final var fullName = cls.group("name") + "::" + name;
+                            var className = cls.group("name");
+                            var fullName = className + "::" + name;
 
                             // Get the address of this function on the platform, 
                             // or if it's not defined, then skip this function 
@@ -230,8 +255,30 @@ public class SyncBromaScript extends GhidraScript {
                                 if (data == null) {
                                     throw new Error("Unable to create a function at address " + addr.toString());
                                 }
-                                data.setParentNamespace(parseNamespace(cls.group("name")));
+                                data.setParentNamespace(parseNamespace(className));
                             }
+
+                            if (data.getSymbol().getSource() == SourceType.USER_DEFINED && !data.getName(true).equals(fullName)) {
+                                if (!askBromaConflict(
+                                    fullName,
+                                    "function name",
+                                    fullName,
+                                    data.getName(true)
+                                )) {
+                                    className = data.getParentNamespace().toString();
+                                    fullName = data.getName(true);
+                                    name = data.getName();
+                                }
+                                else {
+                                    didUpdateThis = true;
+                                }
+                            }
+
+                            if (!data.getName(true).equals(fullName)) {
+                                didAddThis = true;
+                            }
+                            data.setName(name, SourceType.ANALYSIS);
+                            data.setParentNamespace(parseNamespace(className));
 
                             // Get the calling convention
                             final var conv = getCallingConvention(platform, link, fun);
@@ -254,12 +301,10 @@ public class SyncBromaScript extends GhidraScript {
                             if (dispatch == null || !dispatch.equals("static")) {
                                 collectBromaParams.add(new ParameterImpl(
                                     "this",
-                                    parseType(cls.group("name") + "*"),
+                                    parseType(className + "*"),
                                     currentProgram
                                 ));
                             }
-
-                            printfmt("ret: {0}", bromaRetType);
 
                             // Struct return
                             if (bromaRetType != null && bromaRetType.getDataType() instanceof StructureDataType) {
@@ -285,21 +330,17 @@ public class SyncBromaScript extends GhidraScript {
                             // complains about effective finality...
                             var bromaParams = collectBromaParams;
 
-                            // Ask for mismatches between the incoming signature
-
+                            // Check for mismatches between the incoming signature
                             var signatureConflict = false;
-
-                            // If the Ghidra function has more parameters than Broma, 
-                            // then ask for whole signature override
-                            if (data.getParameterCount() > bromaParams.size()) {
-                                signatureConflict = true;
-                            }
-                            else {
-                                for (var i = 0; i < data.getParameterCount(); i += 1) {
-                                    var param = data.getParameter(i);
-                                    var bromaParam = bromaParams.get(i);
-                                    // Only care about mismatches against user-defined types
-                                    if (param.getSource() == SourceType.USER_DEFINED) {
+                            for (var i = 0; i < data.getParameterCount(); i += 1) {
+                                var param = data.getParameter(i);
+                                // Only care about mismatches against user-defined types
+                                if (param.getSource() == SourceType.USER_DEFINED) {
+                                    if (i >= bromaParams.size()) {
+                                        signatureConflict = true;
+                                    }
+                                    else {
+                                        var bromaParam = bromaParams.get(i);
                                         if (
                                             !param.getDataType().isEquivalent(bromaParam.getDataType()) ||
                                             (
@@ -331,6 +372,8 @@ public class SyncBromaScript extends GhidraScript {
                                     ) + ")"
                                 )) {
                                     bromaParams = new ArrayList<Variable>(Arrays.asList(data.getParameters()));
+                                }
+                                else {
                                     didUpdateThis = true;
                                 }
                             }
@@ -443,6 +486,43 @@ public class SyncBromaScript extends GhidraScript {
         }
 
         printfmt("Added {0} functions & updated {1} functions from Broma", importedAddCount, importedUpdateCount);
+        printfmt("Adding new addresses to Bindings...");
+
+        final var table = currentProgram.getSymbolTable();
+        var clsIter = table.getClassNamespaces();
+        while (clsIter.hasNext()) {
+            var cls = clsIter.next();
+            // Skip imported functions
+            if (cls.isExternal() || cls.isLibrary()) {
+                continue;
+            }
+            String targetFile = null;
+            Matcher matcher = null;
+            for (var bro : targetBromas) {
+                targetFile = bindingsVerDir.toPath().toString() + "/" + bro;
+                matcher = Regexes.grabClass(cls.getName(true)).matcher(
+                    new String(Files.readAllBytes(Path.of(targetFile)))
+                );
+                if (matcher.find()) {
+                    break;
+                }
+                else {
+                    matcher = null;
+                }
+            }
+            if (matcher == null) {
+                printfmt(
+                    "Warning: class {0} not found in any of the target Bromas ({1})",
+                    cls.getName(true), String.join(", ", targetBromas)
+                );
+                continue;
+            }
+            for (var child : table.getChildren(cls.getSymbol())) {
+                if (child.getSymbolType() != SymbolType.FUNCTION) {
+                    continue;
+                }
+            }
+        }
     }
 
     void printfmt(String fmt, Object... args) {
@@ -619,22 +699,24 @@ public class SyncBromaScript extends GhidraScript {
     }
 
     <A, B> Boolean askBromaConflict(String in, String what, A broma, B ghidra) throws Exception {
-        switch (askChoice(
-            "Conflict between Broma and Ghidra",
-            MessageFormat.format(
-                "Conflict between {1}s in {0}:                   \n" + 
-                "Broma: {2}                   \n" +
-                "Ghidra: {3}                   \n" + 
-                "Should Broma's {1} be used or keep Ghidra's {1}?",
-                in, what, broma, ghidra
-            ),
-            List.of("Use Broma", "Keep Ghidra", "Cancel Script"),
-            null
-        )) {
-            case "Use Broma": return true;
-            case "Keep Ghidra": return false;
-            case "Cancel Script": throw new Error("Script cancelled");
-        }
-        return true;
+		var choice = Swing.runNow(() -> {
+			InputWithChoicesDialog dialog = new InputWithChoicesDialog(
+                "Conflict between Broma and Ghidra",
+                MessageFormat.format(
+                    "<html>Conflict between {1}s in {0}:<br>" + 
+                    "Broma: {2}<br>" +
+                    "Ghidra: {3}<br>" + 
+                    "<b>Should Broma's {1} be used or keep Ghidra's {1}?</b></html>",
+                    in, what, broma, ghidra
+                ),
+                new String[] { "Use Broma", "Keep Ghidra" }, "Use Broma", null
+            );
+			state.getTool().showDialog(dialog);
+			return dialog.getValue();
+		});
+		if (choice == null) {
+			throw new Error("Script cancelled");
+		}
+        return choice.equals("Use Broma");
     }
 }
