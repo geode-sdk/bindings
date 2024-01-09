@@ -114,7 +114,7 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
 	virtual TodoReturn textInputReturn(CCTextInputNode*);
-	virtual TodoReturn allowTextInput(CCTextInputNode*);
+	virtual bool allowTextInput(CCTextInputNode*);
 	virtual TodoReturn registerAccountFinished();
 	virtual TodoReturn registerAccountFailed(AccountError);
 }
