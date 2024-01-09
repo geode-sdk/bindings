@@ -9818,7 +9818,7 @@ class OptionsCell : TableViewCell {
 class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	// virtual ~OptionsLayer();
 
-	static OptionsLayer* create() = win 0x2aec20;
+	static OptionsLayer* create() = win 0x2aeae0;
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn exitLayer();
@@ -9837,7 +9837,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*) = win 0x2af7c0;
 	TodoReturn tryEnableRecord();
 
-	virtual TodoReturn customSetup() = 0x2aec20;
+	virtual TodoReturn customSetup() = win 0x2aec20;
 	virtual TodoReturn layerHidden() = win 0x2afd70;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 }
@@ -13063,7 +13063,7 @@ class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
 
 	static ShareLevelSettingsLayer* create(GJGameLevel*);
 
-	bool init(GJGameLevel*);
+	bool init(GJGameLevel*) = win 0x386ab0;
 	void onClose(cocos2d::CCObject* sender);
 	void onCopyable(cocos2d::CCObject* sender);
 	void onEditPassword(cocos2d::CCObject* sender);
