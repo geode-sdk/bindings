@@ -32,7 +32,7 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 	TodoReturn exitLayer();
 	TodoReturn hideLoadingUI();
 	void onBackup(cocos2d::CCObject* sender) = win 0x57C60;
-	void onHelp(cocos2d::CCObject* sender) win = 0x57F80;
+	void onHelp(cocos2d::CCObject* sender) = win 0x57F80;
 	void onLogin(cocos2d::CCObject* sender) = win 0x57C10;
 	void onMore(cocos2d::CCObject* sender) = win 0x58000;
 	void onRegister(cocos2d::CCObject* sender) = win 0x57C40;
