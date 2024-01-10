@@ -3734,7 +3734,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getBasePostString() = win 0xfb1b0;
 	bool getBoolForKey(char const*) = win 0x111610;
 	TodoReturn getCommentKey(int, int, int, CommentKeyType);
-	CCArray* getCompletedLevels(bool) = win 0xf7680;
+	cocos2d::CCArray* getCompletedLevels(bool) = win 0xf7680;
 	TodoReturn getDailyID(GJTimedLevelType);
 	TodoReturn getDailyTimer(GJTimedLevelType);
 	TodoReturn getDeleteCommentKey(int, int, int);
