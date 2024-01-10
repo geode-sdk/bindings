@@ -3734,7 +3734,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getBasePostString() = win 0xfb1b0;
 	bool getBoolForKey(char const*) = win 0x111610;
 	TodoReturn getCommentKey(int, int, int, CommentKeyType);
-	TodoReturn getCompletedLevels(bool);
+	cocos2d::CCArray* getCompletedLevels(bool) = win 0xf7680;
 	TodoReturn getDailyID(GJTimedLevelType);
 	TodoReturn getDailyTimer(GJTimedLevelType);
 	TodoReturn getDeleteCommentKey(int, int, int);
@@ -9831,7 +9831,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	TodoReturn exitLayer();
 	TodoReturn musicSliderChanged(cocos2d::CCObject*) = win 0x2af6d0;
 	void onAccount(cocos2d::CCObject* sender) = win 0x2afcd0;
-	void onHelp(cocos2d::CCObject* sender) = win 0x2afc90;
+	void onHelp(cocos2d::CCObject* sender) = win 0x2afd50;
 	void onMenuMusic(cocos2d::CCObject* sender) = win 0x2af630;
 	void onOptions(cocos2d::CCObject* sender) = win 0x2af8c0;
 	void onProgressBar(cocos2d::CCObject* sender);
@@ -10921,16 +10921,16 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	void onBack(cocos2d::CCObject* sender);
 	void onDoor(cocos2d::CCObject* sender);
 	void onSecretLevel(cocos2d::CCObject* sender) = win 0x303d30;
-	void onSubmit(cocos2d::CCObject* sender);
+	void onSubmit(cocos2d::CCObject* sender) = win 0x3042c0;
 	TodoReturn playCoinEffect();
 	TodoReturn scene();
 	TodoReturn selectAThread();
 	TodoReturn showCompletedLevel();
 	TodoReturn showSecretLevel();
 	TodoReturn updateMessageLabel(gd::string);
-	TodoReturn updateSearchLabel(char const*);
+	void updateSearchLabel(char const*) = win 0x3055b0;
 
-	virtual bool init();
+	virtual bool init() = win 0x3027d0;
 	virtual void onExit();
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputOpened(CCTextInputNode*);
