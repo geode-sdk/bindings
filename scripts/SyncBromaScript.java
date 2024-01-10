@@ -272,7 +272,8 @@ public class SyncBromaScript extends GhidraScript {
         askValues(
             "Sync Broma",
             "Import addresses & signatures from Broma, and add new ones " + 
-            "from the current project to it",
+            "from the current project to it. Doesn't handle members or generating " +
+            "vtables yet, but support is planned in the future",
             map
         );
         var platform = map.getChoice("Target platform");
