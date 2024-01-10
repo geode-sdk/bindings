@@ -904,9 +904,9 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 		this->toggle(on);
 	}
 
-	virtual void activate();
-	virtual void selected();
-	virtual void unselected();
+	virtual void activate() = win 0x26100;
+	virtual void selected() = win 0x260D0;
+	virtual void unselected() = win 0x26130;
 	virtual void setEnabled(bool) = win 0x26160;
 
 	CCMenuItemSpriteExtra* m_offButton;
@@ -4123,7 +4123,7 @@ class GameManager : GManager {
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	TodoReturn iconKey(int, IconType);
-	TodoReturn iconTypeToUnlockType(IconType);
+	UnlockType iconTypeToUnlockType(IconType) = win 0x1213B0;
 	bool isColorUnlocked(int, UnlockType) = win 0x1217b0;
 	bool isIconLoaded(int, int);
 	bool isIconUnlocked(int, IconType) = win 0x1212b0;
@@ -7082,7 +7082,7 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	// virtual ~GJScoreCell();
 	GJScoreCell(char const*, float, float);
 
-	TodoReturn loadFromScore(GJUserScore*);
+	TodoReturn loadFromScore(GJUserScore*) = win 0x86520;
 	void onBan(cocos2d::CCObject* sender);
 	void onCheck(cocos2d::CCObject* sender);
 	void onMoreLevels(cocos2d::CCObject* sender);
@@ -7092,6 +7092,8 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	virtual bool init();
 	virtual void draw();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+
+	GJUserScore* m_score;
 }
 
 [[link(android)]]
@@ -7837,15 +7839,18 @@ class InheritanceNode : cocos2d::CCObject {
 class ItemInfoPopup : FLAlertLayer {
 	// virtual ~ItemInfoPopup();
 
-	static ItemInfoPopup* create(int, UnlockType);
+	static ItemInfoPopup* create(int, UnlockType) = win 0x1F45C0;
 
 	bool init(int, UnlockType) = win 0x1f4670;
 	bool isUnlockedByDefault(int, UnlockType);
 	TodoReturn nameForUnlockType(int, UnlockType) = win 0x597f0;
 	void onClose(cocos2d::CCObject* sender);
-	void onCredit(cocos2d::CCObject* sender);
+	void onCredit(cocos2d::CCObject* sender) = win 0x1f5a10;
 
 	virtual void keyBackClicked();
+
+	PAD = win 0x8;
+	int m_accountID;
 }
 
 [[link(android)]]
