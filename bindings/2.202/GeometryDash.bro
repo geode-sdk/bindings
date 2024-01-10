@@ -9831,7 +9831,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	TodoReturn exitLayer();
 	TodoReturn musicSliderChanged(cocos2d::CCObject*) = win 0x2af6d0;
 	void onAccount(cocos2d::CCObject* sender) = win 0x2afcd0;
-	void onHelp(cocos2d::CCObject* sender) = win 0x2afc90;
+	void onHelp(cocos2d::CCObject* sender) = win 0x2afd50;
 	void onMenuMusic(cocos2d::CCObject* sender) = win 0x2af630;
 	void onOptions(cocos2d::CCObject* sender) = win 0x2af8c0;
 	void onProgressBar(cocos2d::CCObject* sender);
