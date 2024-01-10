@@ -24,31 +24,31 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
 class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate, GJAccountSyncDelegate, FLAlertLayerProtocol {
 	// virtual ~AccountLayer();
 
-	static AccountLayer* create();
+	static AccountLayer* create() = win 0x573D0;
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	TodoReturn doBackup();
-	TodoReturn doSync();
+	TodoReturn doBackup() = win 0x57DB0;
+	TodoReturn doSync() = win 0x57F10;
 	TodoReturn exitLayer();
 	TodoReturn hideLoadingUI();
-	void onBackup(cocos2d::CCObject* sender);
-	void onHelp(cocos2d::CCObject* sender);
-	void onLogin(cocos2d::CCObject* sender);
-	void onMore(cocos2d::CCObject* sender);
-	void onRegister(cocos2d::CCObject* sender);
-	void onSync(cocos2d::CCObject* sender);
+	void onBackup(cocos2d::CCObject* sender) = win 0x57C60;
+	void onHelp(cocos2d::CCObject* sender) = win 0x57F80;
+	void onLogin(cocos2d::CCObject* sender) = win 0x57C10;
+	void onMore(cocos2d::CCObject* sender) = win 0x58000;
+	void onRegister(cocos2d::CCObject* sender) = win 0x57C40;
+	void onSync(cocos2d::CCObject* sender) = win 0x57E20;
 	TodoReturn showLoadingUI();
 	TodoReturn toggleUI(bool);
-	TodoReturn updatePage(bool);
+	TodoReturn updatePage(bool) = win 0x58050;
 
-	virtual TodoReturn customSetup();
-	virtual TodoReturn layerHidden();
-	virtual TodoReturn backupAccountFinished();
-	virtual TodoReturn backupAccountFailed(BackupAccountError, int);
-	virtual TodoReturn syncAccountFinished();
-	virtual TodoReturn syncAccountFailed(BackupAccountError, int);
-	virtual TodoReturn accountStatusChanged();
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual TodoReturn customSetup() = win 0x575B0;
+	virtual TodoReturn layerHidden() = win 0x589A0;
+	virtual TodoReturn backupAccountFinished() = win 0x58390;
+	virtual TodoReturn backupAccountFailed(BackupAccountError, int) = win 0x584F0;
+	virtual TodoReturn syncAccountFinished() = win 0x58720;
+	virtual TodoReturn syncAccountFailed(BackupAccountError, int) = win 0x58880;
+	virtual TodoReturn accountStatusChanged() = win 0x58040;
+	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x58930;
 }
 
 [[link(android)]]
