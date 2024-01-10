@@ -8436,7 +8436,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn confirmMoveToBottom(cocos2d::CCObject*);
 	TodoReturn confirmMoveToTop(cocos2d::CCObject*);
 	TodoReturn confirmOwnerDelete(cocos2d::CCObject*);
-	void downloadLevel();
+	void downloadLevel() = win 0x252350;
 	TodoReturn incrementDislikes();
 	TodoReturn incrementLikes();
 	bool init(GJGameLevel*, bool) = win 0x250050;
