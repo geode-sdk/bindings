@@ -122,4 +122,6 @@ GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x1d0);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_playSprite, 0x1d8);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x1e0);
 
+GEODE_MEMBER_CHECK(ItemInfoPopup, m_accountID, 0x1f8);
+
 #endif

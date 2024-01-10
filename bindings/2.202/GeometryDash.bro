@@ -904,9 +904,9 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 		this->toggle(on);
 	}
 
-	virtual void activate();
-	virtual void selected();
-	virtual void unselected();
+	virtual void activate() = win 0x26100;
+	virtual void selected() = win 0x260D0;
+	virtual void unselected() = win 0x26130;
 	virtual void setEnabled(bool) = win 0x26160;
 
 	CCMenuItemSpriteExtra* m_offButton;
@@ -1162,13 +1162,15 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_placeholderColor = color;
 		this->refreshLabel();
 	}
+    void setAllowedChars(gd::string filter) {
+        m_allowedChars = filter;
+    }
 
 	TodoReturn addTextArea(TextArea*);
 	TodoReturn forceOffset();
 	gd::string getString() = win 0x2ea50;
 	bool init(float, float, char const*, char const*, int, char const*) = win 0x2e500;
 	TodoReturn refreshLabel() = win 0x2ede0;
-	void setAllowedChars(gd::string) = win 0x9999999;
 	void setLabelNormalColor(cocos2d::ccColor3B);
 	void setString(gd::string) = win 0x2e9a0;
 	TodoReturn updateBlinkLabel();
@@ -3764,7 +3766,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x104c80;
 	TodoReturn getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
 	TodoReturn getLevelListKey(int);
-	TodoReturn getLevelLists(GJSearchObject*);
+	void getLevelLists(GJSearchObject*) = win 0xFF400;
 	TodoReturn getLevelSaveData();
 	TodoReturn getLikeAccountItemKey(LikeItemType, int, bool, int);
 	TodoReturn getLikeItemKey(LikeItemType, int, bool, int);
@@ -4121,7 +4123,7 @@ class GameManager : GManager {
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	TodoReturn iconKey(int, IconType);
-	TodoReturn iconTypeToUnlockType(IconType);
+	UnlockType iconTypeToUnlockType(IconType) = win 0x1213B0;
 	bool isColorUnlocked(int, UnlockType) = win 0x1217b0;
 	bool isIconLoaded(int, int);
 	bool isIconUnlocked(int, IconType) = win 0x1212b0;
@@ -5078,8 +5080,8 @@ class GameToolbox {
 	static TodoReturn colorToSepia(cocos2d::ccColor3B, float);
 	static TodoReturn contentScaleClipRect(cocos2d::CCRect&);
 	static TodoReturn createHashString(gd::string const&, int);
-	static CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCArray*) = win 0x9999999;
-	static CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCNode*, float, float, float, cocos2d::CCPoint, char const*, bool, int, cocos2d::CCArray*) = win 0x9999999;
+	static CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCArray*) = win 0x40F10;
+	static CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCNode*, float, float, float, cocos2d::CCPoint, char const*, bool, int, cocos2d::CCArray*) = win 0x41010;
 	static TodoReturn doWeHaveInternet();
 	static TodoReturn easeToText(int);
 	static TodoReturn fast_rand_0_1();
@@ -7080,7 +7082,7 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	// virtual ~GJScoreCell();
 	GJScoreCell(char const*, float, float);
 
-	TodoReturn loadFromScore(GJUserScore*);
+	TodoReturn loadFromScore(GJUserScore*) = win 0x86520;
 	void onBan(cocos2d::CCObject* sender);
 	void onCheck(cocos2d::CCObject* sender);
 	void onMoreLevels(cocos2d::CCObject* sender);
@@ -7090,6 +7092,8 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	virtual bool init();
 	virtual void draw();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+
+	GJUserScore* m_score;
 }
 
 [[link(android)]]
@@ -7835,15 +7839,18 @@ class InheritanceNode : cocos2d::CCObject {
 class ItemInfoPopup : FLAlertLayer {
 	// virtual ~ItemInfoPopup();
 
-	static ItemInfoPopup* create(int, UnlockType);
+	static ItemInfoPopup* create(int, UnlockType) = win 0x1F45C0;
 
 	bool init(int, UnlockType) = win 0x1f4670;
 	bool isUnlockedByDefault(int, UnlockType);
 	TodoReturn nameForUnlockType(int, UnlockType) = win 0x597f0;
 	void onClose(cocos2d::CCObject* sender);
-	void onCredit(cocos2d::CCObject* sender);
+	void onCredit(cocos2d::CCObject* sender) = win 0x1f5a10;
 
 	virtual void keyBackClicked();
+
+	PAD = win 0x8;
+	int m_accountID;
 }
 
 [[link(android)]]
