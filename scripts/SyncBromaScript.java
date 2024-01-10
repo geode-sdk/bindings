@@ -358,7 +358,7 @@ public class SyncBromaScript extends GhidraScript {
                                         fullName,
                                         data.getName(true)
                                     )) {
-                                        className = data.getParentNamespace().toString();
+                                        className = data.getParentNamespace().getName(true);
                                         fullName = data.getName(true);
                                         name = data.getName();
                                     }
