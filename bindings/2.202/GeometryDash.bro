@@ -1550,7 +1550,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	TodoReturn updateLabelValues();
 
 	virtual bool init();
-	virtual void draw();
+	virtual void draw() = win 0x7D520;
 	virtual TodoReturn likedItem(LikeItemType, int, bool) = win 0x86160;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x86340;
 
