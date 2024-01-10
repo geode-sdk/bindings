@@ -77,7 +77,7 @@ class Regexes {
                 // Grab name
                 "class (?<name>{0})\\s+(?::.*?)?" + 
                 // Grab body (assuming closing brace is on its own line without any preceding whitespace)
-                "\\{(?<body>.*?)^\\}",
+                "\\'{'(?<body>.*?)^\\'}'",
                 className
             ),
             Pattern.DOTALL | Pattern.MULTILINE
@@ -89,15 +89,21 @@ class Regexes {
             formatRegex(
                 // Must match start of line (MULTILINE flag required) - also requires that the 
                 // function not be intended more than 4 spaces or a single tab
-                "(?<=^(?:(?: {0,4})|\\t))" + 
+                "(?<=^(?:(?: '{'0,4'}')|\\t))" + 
                 // Get the dispatch modifier keyword if one is defined
                 "(?<dispatch>(?:inline|virtual|static|callback)\\s+)?" +
                 // Grab the return type and name of the function, or the name if it's a destructor
                 "(?:(?:(?<return>{0})\\s+(?<name>{2}))|(?<destructor>~{2}))" + 
                 // Grab the parameters
                 "\\(\\s*(?<params>(?:{1},?)*)\\)" +
-                // Grab the platforms
-                "(?:\\s*=\\s*(?<platforms>(?:[a-z]+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+))?",
+                "(?:"+
+                    // Grab the platforms
+                    "(?:\\s*=\\s*(?<platforms>(?:[a-z]+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+))" + 
+                    // Or the body
+                    "|(?<inlinebody>(?=\\s*\\'{'))" +
+                    // Or where we can add platforms
+                    "|(?<insertplatformshere>(?=\\s*;))" + 
+                ")",
                 GRAB_TYPE, GRAB_PARAM, funName
             ),
             Pattern.DOTALL | Pattern.MULTILINE
@@ -141,6 +147,89 @@ enum CConv {
     MEMBERCALL,
     FASTCALL,
     OPTCALL,
+}
+
+class RegexMutator {
+    StringBuffer result;
+    
+    public class RegexMatchMutator {
+        private Matcher matcher;
+        private ArrayList<Patch> patches;
+
+        private class Patch {
+            int start;
+            int end;
+            String patch;
+            protected Patch(int start, int end, String patch) {
+                this.start = start;
+                this.end = end;
+                this.patch = patch;
+            }
+        }
+
+        private RegexMatchMutator(Matcher matcher) {
+            this.matcher = matcher;
+            this.patches = new ArrayList<Patch>();
+        }
+        public boolean has(String group) {
+            return this.matcher.group(group) != null;
+        }
+        public String get(String group) {
+            return this.matcher.group(group);
+        }
+        public boolean replace(String group, String replacement) {
+            if (this.has(group)) {
+                this.patches.add(new Patch(matcher.start(group), matcher.end(group), replacement));
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        public boolean replace(String group, ThrowingConsumer<RegexMutator, Exception> replacer) throws Exception {
+            if (this.has(group)) {
+                var mutator = new RegexMutator(matcher.group(group));
+                replacer.accept(mutator);
+                this.patches.add(new Patch(matcher.start(group), matcher.end(group), mutator.result()));
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        private String finish() {
+            var result = new StringBuffer(matcher.group());
+            this.patches.sort((a, b) -> a.end - b.end);
+            for (var patch : this.patches) {
+                result.replace(patch.start, patch.end, patch.patch);
+            }
+            return result.toString();
+        }
+    }
+    
+    public RegexMutator(String original) {
+        result = new StringBuffer(original);
+    }
+    public boolean mutate(Pattern regex, ThrowingConsumer<RegexMatchMutator, Exception> consumer) throws Exception {
+        var matcher = regex.matcher(this.result);
+        var found = false;
+        var offset = 0;
+        while (matcher.find()) {
+            var mutator = new RegexMatchMutator(matcher);
+            found = true;
+            consumer.accept(mutator);
+            var replaceWith = mutator.finish();
+            this.result.replace(matcher.start() + offset, matcher.end() + offset, replaceWith);
+            offset += replaceWith.length() - (matcher.end() - matcher.start());
+        }
+        return found;
+    }
+    public void replace(String replacement) {
+        this.result = new StringBuffer(replacement);
+    }
+    public String result() {
+        return this.result.toString();
+    }
 }
 
 public class SyncBromaScript extends GhidraScript {
@@ -207,10 +296,8 @@ public class SyncBromaScript extends GhidraScript {
                     var attrs = cls.group("attrs");
                     if (attrs != null) {
                         var attr = Regexes.GRAB_LINK_ATTR.matcher(attrs);
-                        if (attr.find()) {
-                            if (attr.group("platforms").contains(getPlatformLinkName(platform))) {
-                                linkValue = true;
-                            }
+                        if (attr.find() && attr.group("platforms").contains(getPlatformLinkName(platform))) {
+                            linkValue = true;
                         }
                     }
                     final var link = linkValue;
@@ -237,7 +324,7 @@ public class SyncBromaScript extends GhidraScript {
                             if (!plat.find()) {
                                 return;
                             }
-                            var offset = Integer.parseInt(plat.group("addr"), 16);
+                            var offset = Long.parseLong(plat.group("addr"), 16);
                             // The hardcoded placeholder addr
                             if (offset == 0x9999999) {
                                 return;
@@ -307,7 +394,10 @@ public class SyncBromaScript extends GhidraScript {
                             }
 
                             // Struct return
-                            if (bromaRetType != null && bromaRetType.getDataType() instanceof StructureDataType) {
+                            if (
+                                bromaRetType != null &&
+                                bromaRetType.getDataType() instanceof StructureDataType
+                            ) {
                                 collectBromaParams.add(new ParameterImpl(
                                     "ret",
                                     bromaRetType.getDataType(),
@@ -488,6 +578,27 @@ public class SyncBromaScript extends GhidraScript {
         printfmt("Added {0} functions & updated {1} functions from Broma", importedAddCount, importedUpdateCount);
         printfmt("Adding new addresses to Bindings...");
 
+        class EditedBroma {
+            Path path;
+            String contents;
+            EditedBroma(Path p, String c) {
+                path = p;
+                contents = c;
+            }
+        }
+
+        var editedBromas = targetBromas.stream()
+            .map(bro -> {
+                var p = Path.of(bindingsVerDir.toPath().toString() + "/" + bro);
+                try {
+                    return new EditedBroma(p, new String(Files.readAllBytes(p)));
+                }
+                catch(Exception ignore) {
+                    return null;
+                }
+            })
+            .toList();
+
         final var table = currentProgram.getSymbolTable();
         var clsIter = table.getClassNamespaces();
         while (clsIter.hasNext()) {
@@ -496,32 +607,104 @@ public class SyncBromaScript extends GhidraScript {
             if (cls.isExternal() || cls.isLibrary()) {
                 continue;
             }
-            String targetFile = null;
-            Matcher matcher = null;
-            for (var bro : targetBromas) {
-                targetFile = bindingsVerDir.toPath().toString() + "/" + bro;
-                matcher = Regexes.grabClass(cls.getName(true)).matcher(
-                    new String(Files.readAllBytes(Path.of(targetFile)))
-                );
-                if (matcher.find()) {
-                    break;
-                }
-                else {
-                    matcher = null;
-                }
-            }
-            if (matcher == null) {
-                printfmt(
-                    "Warning: class {0} not found in any of the target Bromas ({1})",
-                    cls.getName(true), String.join(", ", targetBromas)
-                );
-                continue;
-            }
-            for (var child : table.getChildren(cls.getSymbol())) {
-                if (child.getSymbolType() != SymbolType.FUNCTION) {
+            if (cls.getName(true).contains("switch")) continue;
+            if (cls.getName(true).contains("llvm")) continue;
+            if (cls.getName(true).contains("tinyxml2")) continue;
+            if (cls.getName(true).contains("<")) continue;
+            if (cls.getName(true).contains("__")) continue;
+            if (cls.getName(true).contains("fmt")) continue;
+            if (cls.getName(true).contains("std::")) continue;
+            if (cls.getName(true).contains("pugi")) continue;
+            for (var bro : editedBromas) {
+                var mutator = new RegexMutator(bro.contents);
+                if (!mutator.mutate(
+                    Regexes.grabClass(cls.getName(true)),
+                    m -> m.replace("body", body -> {
+                        for (var child : table.getChildren(cls.getSymbol())) {
+                            if (child.getSymbolType() != SymbolType.FUNCTION) {
+                                continue;
+                            }
+                            var fullName = child.getName(true);
+
+                            if (!body.mutate(
+                                // Remove the ~ if this is a destructor
+                                Regexes.grabFunction(child.getName().replaceFirst("^~", "")),
+                                fm -> {
+                                    var fun = currentProgram.getListing().getFunctionAt(
+                                        child.getProgramLocation().getAddress()
+                                    );
+
+                                    // Update return type if Ghidra has an user-defined type and 
+                                    // Broma has TodoReturn
+                                    if (
+                                        fm.has("return") && fm.get("return").equals("TodoReturn") &&
+                                        fun.getReturn().getSource() == SourceType.USER_DEFINED
+                                    ) {
+                                        fm.replace("return", fun.getReturnType().toString());
+                                        printfmt("Updated return type for {0}", fullName);
+                                    }
+
+                                    final var goffset = child.getProgramLocation().getAddress()
+                                        .subtract(currentProgram.getImageBase());
+                                    final var plinkname = getPlatformLinkName(platform);
+                                    // Check if Broma already has this address, and check for conflict if so
+                                    if (fm.replace("platforms", p -> {
+                                        if (!p.mutate(
+                                            platformAddrGrab,
+                                            pm -> {
+                                                var commit = goffset;
+                                                var offset = Long.parseLong(pm.get("addr"), 16);
+                                                // The hardcoded placeholder addr
+                                                if (offset != 0x9999999 && goffset != offset) {
+                                                    if (askBromaConflict(
+                                                        fullName, "address",
+                                                        String.format("0x%X", offset),
+                                                        String.format("0x%X", goffset)
+                                                    )) {
+                                                        commit = offset;
+                                                    }
+                                                }
+                                                pm.replace("addr", String.format("0x%X", commit));
+                                                printfmt("Updated address for {0}", fullName);
+                                            }
+                                        )) {
+                                            p.replace(
+                                                fm.get("platforms") + ", " + plinkname + " " +
+                                                String.format("0x%X", goffset)
+                                            );
+                                            printfmt("Added address for {0}", fullName);
+                                        }
+                                    })) {
+                                        if (fm.replace(
+                                            "insertplatformshere",
+                                            " = " + plinkname + " " + String.format("0x%X", goffset)
+                                        )) {
+                                            printfmt("Added address for {0}", fullName);
+                                        }
+                                        else {
+                                            printfmt("Warning: function {0} is inlined in Broma", fullName);
+                                        }
+                                    }
+                                }
+                            )) {
+                                printfmt("Warning: function {0} not found", fullName);
+                            }
+                        }
+                    })
+                )) {
+                    printfmt(
+                        "Warning: class {0} not found in any of the target Bromas ({1})",
+                        cls.getName(true), String.join(", ", targetBromas)
+                    );
                     continue;
                 }
+                bro.contents = mutator.result();
             }
+        }
+
+        printfmt("Writing results...");
+        for (var bro : editedBromas) {
+            Files.writeString(bro.path, bro.contents);
         }
     }
 
