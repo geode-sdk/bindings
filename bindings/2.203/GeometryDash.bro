@@ -10558,7 +10558,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	void onUpdate(cocos2d::CCObject* sender);
 	void onYouTube(cocos2d::CCObject* sender);
 	TodoReturn setupComments();
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*);
+	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = win 0x2F1B90;
 	TodoReturn showNoAccountError();
 	TodoReturn toggleMainPageVisibility(bool);
 	TodoReturn updateLevelsLabel();
