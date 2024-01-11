@@ -10,22 +10,32 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
 import ghidra.features.base.values.GhidraValuesMap;
+import ghidra.program.model.data.AbstractFloatDataType;
 import ghidra.program.model.data.CategoryPath;
 import ghidra.program.model.data.DataType;
 import ghidra.program.model.data.DataTypeConflictHandler;
 import ghidra.program.model.data.DataTypePath;
+import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
+import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.IntegerDataType;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.StructureDataType;
+import ghidra.program.model.listing.Function.FunctionUpdateType;
+import ghidra.program.model.listing.ParameterImpl;
+import ghidra.program.model.listing.ReturnParameterImpl;
+import ghidra.program.model.listing.Variable;
+import ghidra.program.model.listing.VariableStorage;
 import ghidra.program.model.symbol.Namespace;
 import ghidra.program.model.symbol.SourceType;
+import ghidra.program.model.symbol.SymbolType;
 import ghidra.util.Swing;
 import ghidra.util.exception.CancelledException;
 
@@ -61,11 +71,19 @@ enum Platform {
 }
 
 enum CConv {
-    CDECL,
-    THISCALL,
-    MEMBERCALL,
-    FASTCALL,
-    OPTCALL,
+    CDECL("__cdecl"),
+    THISCALL("__thiscall"),
+    MEMBERCALL("__thiscall"),
+    FASTCALL("__fastcall"),
+    OPTCALL("__fastcall");
+
+    private final String ghidraName;
+    private CConv(String ghidraName) {
+        this.ghidraName = ghidraName;
+    }
+    public String getGhidraName() {
+        return this.ghidraName;
+    }
 }
 
 class Regexes {
@@ -127,7 +145,7 @@ class Regexes {
                     // Or the body
                     "|(?<inlinebody>(?=\\s*\\'{'))" +
                     // Or where we can add platforms
-                    "|(?<insertplatformshere>(?=\\s*;))" + 
+                    "|(?<insertplatformshere>\\s*(?=;))" + 
                 ")",
                 GRAB_TYPE, GRAB_PARAM, funName
             ),
@@ -165,27 +183,47 @@ class Regexes {
 }
 
 class Broma {
+    static int PLACEHOLDER_ADDR = 0x9999999;
+
+    public class Range {
+        public final int start;
+        public final int end;
+        Range() {
+            this.start = 0;
+            this.end = 0;
+        }
+        Range(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+    }
+
     /**
      * A match in the source Broma string, parsed from Regex. The start and end of 
      * the match are in relation to the full original Broma file, not whatever Regex 
      * matched them
      */
     public class Match {
-        public final int start;
-        public final int end;
+        public final Range range;
         public final String value;
 
-        private Match(int s, int e, String v) {
-            start = s;
-            end = e;
+        private Match(Range r, String v) {
+            range = r;
             value = v;
         }
-
-        private static Match from(Broma broma, Matcher matcher, String group) {
+        private Match(String v) {
+            range = new Range();
+            value = v;
+        }
+        private Match(Matcher matcher, String group) {
+            range = new Range(matcher.start(group), matcher.end(group));
+            value = matcher.group(group);
+        }
+        private static Optional<Match> maybe(Broma broma, Matcher matcher, String group) {
             if (matcher.group(group) == null) {
-                return null;
+                return Optional.empty();
             }
-            return broma.new Match(matcher.start(group), matcher.end(group), matcher.group(group));
+            return Optional.of(broma.new Match(matcher, group));
         }
     }
 
@@ -193,77 +231,83 @@ class Broma {
      * A replacement string to be applied to the source Broma string
      */
     private class Patch {
-        public final int start;
-        public final int end;
+        public final Range range;
         public final String patch;
 
-        private Patch(int start, int end, String patch) {
-            this.start = start;
-            this.end = end;
+        private Patch(Range range, String patch) {
+            this.range = range;
             this.patch = patch;
         }
     }
 
     public class Type {
-        public final int start;
-        public final int end;
+        public final Range range;
         public final Match name;
-        public final Match template;
-        public final Match ptr;
-        public final Match ref;
+        public final Optional<Match> template;
+        public final Optional<Match> ptr;
+        public final Optional<Match> ref;
+
+        private Type(String name) {
+            this.range = new Range();
+            this.name = new Match(name);
+            this.template = Optional.empty();
+            this.ptr = Optional.of(new Match("*"));
+            this.ref = Optional.empty();
+        }
+
+        /**
+         * Make a pointer type (for passing <code>this</code> args)
+         * @param name
+         */
+        public static Type ptr(Broma broma, String name) {
+            return broma.new Type(name);
+        }
 
         private Type(Broma broma, Platform platform, Matcher matcher) {
-            start = matcher.start();
-            end = matcher.end();
-            name = Match.from(broma, matcher, "name");
-            template = Match.from(broma, matcher, "template");
-            ptr = Match.from(broma, matcher, "ptr");
-            ref = Match.from(broma, matcher, "ref");
+            range = new Range(matcher.start(), matcher.end());
+            name = broma.new Match(matcher, "name");
+            template = Match.maybe(broma, matcher, "template");
+            ptr = Match.maybe(broma, matcher, "ptr");
+            ref = Match.maybe(broma, matcher, "ref");
         }
     }
 
     public class Param {
-        public final int start;
-        public final int end;
+        public final Range range;
         public final Type type;
-        public final Match name;
+        public final Optional<Match> name;
 
         private Param(Broma broma, Platform platform, Matcher matcher) {
-            start = matcher.start();
-            end = matcher.end();
-            var tyMatcher = Regexes.GRAB_TYPE.matcher(broma.data);
-            tyMatcher.region(matcher.start("type"), matcher.end("type"));
-            type = new Type(broma, platform, tyMatcher);
-            name = Match.from(broma, matcher, "name");
+            range = new Range(matcher.start(), matcher.end());
+            type = new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true));
+            name = Match.maybe(broma, matcher, "name");
         }
     }
 
     public class Function {
-        public final int start;
-        public final int end;
-        public final Match dispatch;
-        public final Type returnType;
-        public final Match name;
-        public final Match destructor;
+        public final Range range;
+        public final Optional<Match> dispatch;
+        public final Optional<Type> returnType;
+        public final Optional<Match> name;
+        public final Optional<Match> destructor;
         public final List<Param> params;
-        public final boolean inlined;
-        public final Match platformOffset;
+        public final Optional<Match> platformOffset;
+        public final Optional<Match> platformOffsetInsertPoint;
 
         private Function(Broma broma, Platform platform, Matcher matcher) {
-            start = matcher.start();
-            end = matcher.end();
-            dispatch = Match.from(broma, matcher, "dispatch");
+            range = new Range(matcher.start(), matcher.end());
+            dispatch = Match.maybe(broma, matcher, "dispatch");
             if (matcher.group("return") != null) {
-                var tyMatcher = Regexes.GRAB_TYPE.matcher(broma.data);
-                tyMatcher.region(matcher.start("return"), matcher.end("return"));
-                returnType = new Type(broma, platform, tyMatcher);
+                returnType = Optional.of(
+                    new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "return", true))
+                );
             }
             else {
-                returnType = null;
+                returnType = Optional.empty();
             }
-            name = Match.from(broma, matcher, "name");
-            destructor = Match.from(broma, matcher, "destructor");
-            inlined = matcher.group("inlinebody") != null;
+            name = Match.maybe(broma, matcher, "name");
+            destructor = Match.maybe(broma, matcher, "destructor");
+            platformOffsetInsertPoint = Match.maybe(broma, matcher, "insertplatformshere");
             params = new ArrayList<Param>();
 
             // Match parameters
@@ -274,23 +318,31 @@ class Broma {
             }
 
             if (matcher.group("platforms") != null) {
-                var addrMatcher = Regexes.grabPlatformAddress(platform).matcher(broma.data);
-                addrMatcher.region(matcher.start("platforms"), matcher.end("platforms"));
-                platformOffset = Match.from(broma, addrMatcher, "addr");
+                platformOffset = Match.maybe(
+                    broma,
+                    broma.forkMatcher(Regexes.grabPlatformAddress(platform), matcher, "platforms", true),
+                    "addr"
+                );
             }
             else {
-                platformOffset = null;
+                platformOffset = Optional.empty();
             }
+        }
+
+        public String getName() {
+            return this.name.orElseGet(() -> this.destructor.get()).value;
         }
     }
     
     public class Class {
+        public final Range range;
         public final boolean linked;
         public final Match name;
         public final List<Function> functions;
 
         private Class(Broma broma, Platform platform, Matcher matcher) {
-            name = Match.from(broma, matcher, "name");
+            range = new Range(matcher.start(), matcher.end());
+            name = new Match(matcher, "name");
             functions = new ArrayList<Function>();
 
             // Check if this class is linked
@@ -309,11 +361,19 @@ class Broma {
             }
 
             // Match functions
-            var funMatcher = Regexes.GRAB_FUNCTION.matcher(broma.data);
-            funMatcher.region(matcher.start("body"), matcher.end("body"));
+            var funMatcher = broma.forkMatcher(Regexes.GRAB_FUNCTION, matcher, "body", false);
             while (funMatcher.find()) {
                 functions.add(broma.new Function(broma, platform, funMatcher));
             }
+        }
+
+        /**
+         * Get a function by name
+         * @param name
+         * @return The function, or {@code Optional.empty()}
+         */
+        public Optional<Function> getFunction(String name) {
+            return this.functions.stream().filter(i -> i.getName().equals(name)).findFirst();
         }
     }
 
@@ -331,6 +391,14 @@ class Broma {
     private List<Patch> patches;
     public final List<Class> classes;
 
+    private Matcher forkMatcher(Pattern regex, Matcher of, String group, boolean find) {
+        var matcher = regex.matcher(this.data);
+        matcher.region(of.start(group), of.end(group));
+        if (find) {
+            matcher.find();
+        }
+        return matcher;
+    }
     private void applyRegexes(Platform platform) {
         var matcher = Regexes.GRAB_CLASS.matcher(this.data);
         while (matcher.find()) {
@@ -352,14 +420,22 @@ class Broma {
     }
 
     /**
+     * Get a class by name
+     * @param name
+     * @return A reference to the class, or <code>Optional.empty()</code> if none found
+     */
+    public Optional<Class> getClass(String name) {
+        return this.classes.stream().filter(i -> i.name.value.equals(name)).findFirst();
+    }
+
+    /**
      * Add a new patch to this Broma file. The patch will be applied when 
      * <code>save</code> is called. <b>It is assumed that no patches overlap!</b>
-     * @param start The start index of the patch
-     * @param end The end index of the patch
+     * @param range The range of the patch in the Broma file
      * @param patch The string contents of the patch
      */
-    public void addPatch(int start, int end, String patch) {
-        this.patches.add(new Patch(start, end, patch));
+    public void addPatch(Range range, String patch) {
+        this.patches.add(new Patch(range, patch));
     }
 
     /**
@@ -367,10 +443,10 @@ class Broma {
      * @throws IOException
      */
     public void save() throws IOException {
-        this.patches.sort((a, b) -> a.end - b.end);
+        this.patches.sort((a, b) -> a.range.end - b.range.end);
         var result = new StringBuffer(this.data);
         for (var patch : this.patches) {
-            result.replace(patch.start, patch.end, patch.patch);
+            result.replace(patch.range.start, patch.range.end, patch.patch);
         }
         this.patches.clear();
         Files.writeString(this.path, result.toString());
@@ -414,11 +490,7 @@ class InputParameters {
                 .map(p -> p.getLongName())
                 .toArray(String[]::new)
         );
-        map.defineChoice(
-            "Broma file (Windows-only)",
-            null,
-            result.bromaFiles.toArray(String[]::new)
-        );
+        map.defineChoice("Broma file (Windows-only)", null, bromaFiles.toArray(String[]::new));
         map.defineChoice(
             "Game version",
             versions.get(versions.size() - 1),
@@ -454,9 +526,10 @@ class InputParameters {
 }
 
 public class BetterSyncBromaScript extends GhidraScript {
+
     Path bindingsDir;
     InputParameters args;
-    ArrayList<Broma> bromas;
+    List<Broma> bromas = new ArrayList<Broma>();
     
     public void run() throws Exception {
         // Get the bindings directory from the location of this script
@@ -481,72 +554,328 @@ public class BetterSyncBromaScript extends GhidraScript {
     }
 
     private void handleImport() throws Exception {
+        printfmt("Loading addresses from Bindings...");
+        var importedAddCount = 0;
+        var importedUpdateCount = 0;
         final var listing = currentProgram.getListing();
         for (var bro : bromas) {
             printfmt("Reading {0}...", bro.path.getFileName());
-            for (var cls : bro.classes) {
-                for (var fun : cls.functions) {
-                    // Get function name either from destructor or custom name
-                    var name = fun.destructor != null ? fun.destructor.value : fun.name.value;
-                    var className = cls.name.value;
-                    var fullName = className + "::" + name;
+            for (var cls : bro.classes) for (var fun : cls.functions) {
+                var name = fun.getName();
+                var className = cls.name.value;
+                var fullName = className + "::" + name;
 
-                    // Only add functions that have an offset on this platform
-                    if (fun.platformOffset == null) {
-                        continue;
-                    }
-                    var offset = Long.parseLong(fun.platformOffset.value, 16);
-                    // The hardcoded placeholder addr
-                    if (offset == 0x9999999) {
-                        continue;
-                    }
-                    var addr = currentProgram.getImageBase().add(offset);
-        
-                    var didUpdateThis = false;
-                    var didAddThis = false;
-
-                    // Get the function defined at the address, or create one
-                    var data = listing.getFunctionAt(addr);
-                    if (data == null) {
-                        didAddThis = true;
-                        data = createFunction(addr, name);
-                        if (data == null) {
-                            throw new Error("Unable to create a function at address " + addr.toString());
-                        }
-                        data.setParentNamespace(addOrGetNamespace(className));
-                    }
-
-                    // Check if function already has an user-provided name
-                    if (data.getSymbol().getSource() == SourceType.USER_DEFINED && !data.getName(true).equals(fullName)) {
-                        switch (askBromaConflict(fullName, "function name", fullName, data.getName(true))) {
-                            case BROMA: {
-                                didUpdateThis = true;
-                            } break;
-
-                            case GHIDRA: {
-                                className = data.getParentNamespace().getName(true);
-                                fullName = data.getName(true);
-                                name = data.getName();
-                            } break;
-                        }
-                    }
-
-                    // If the 
-                    if (!data.getName(true).equals(fullName)) {
-                        didAddThis = true;
-                    }
-                    data.setName(name, SourceType.ANALYSIS);
-                    data.setParentNamespace(addOrGetNamespace(className));
-
-                    // Get the calling convention
-                    final var conv = getCallingConvention(args.platform, cls.linked, fun.dispatch);
+                // Only add functions that have an offset on this platform
+                if (fun.platformOffset.isEmpty()) {
+                    continue;
                 }
+                var offset = Long.parseLong(fun.platformOffset.get().value, 16);
+                if (offset == Broma.PLACEHOLDER_ADDR) {
+                    continue;
+                }
+                var addr = currentProgram.getImageBase().add(offset);
+    
+                var didUpdateThis = false;
+                var didAddThis = false;
+
+                // Get the function defined at the address, or create one
+                var data = listing.getFunctionAt(addr);
+                if (data == null) {
+                    didAddThis = true;
+                    data = createFunction(addr, name);
+                    if (data == null) {
+                        throw new Error("Unable to create a function at address " + addr.toString());
+                    }
+                    data.setParentNamespace(addOrGetNamespace(className));
+                }
+
+                // Check if function already has an user-provided name
+                if (data.getSymbol().getSource() == SourceType.USER_DEFINED && !data.getName(true).equals(fullName)) {
+                    switch (askBromaConflict(fullName, "function name", fullName, data.getName(true))) {
+                        case BROMA: {
+                            didUpdateThis = true;
+                        } break;
+
+                        case GHIDRA: {
+                            className = data.getParentNamespace().getName(true);
+                            fullName = data.getName(true);
+                            name = data.getName();
+                        } break;
+                    }
+                }
+
+                // If the 
+                if (!data.getName(true).equals(fullName)) {
+                    didAddThis = true;
+                }
+                data.setName(name, SourceType.ANALYSIS);
+                data.setParentNamespace(addOrGetNamespace(className));
+
+                // Get the calling convention
+                final var conv = getCallingConvention(cls.linked, fun.dispatch);
+                
+                // Parse return type, or null if this is a destructor
+                ReturnParameterImpl bromaRetType = null;
+                if (fun.returnType.isPresent()) {
+                    bromaRetType = new ReturnParameterImpl(addOrGetType(fun.returnType.get()), currentProgram);
+                }
+
+                // Parse args
+                List<Variable> bromaParams = new ArrayList<Variable>();
+                // Add `this` arg
+                if (fun.dispatch.isEmpty() || fun.dispatch.get().value.equals("static")) {
+                    bromaParams.add(new ParameterImpl("this", addOrGetType(Broma.Type.ptr(bro, className)), currentProgram));
+                }
+                // Struct return
+                if (bromaRetType != null && bromaRetType.getDataType() instanceof StructureDataType) {
+                    bromaParams.add(new ParameterImpl("ret", bromaRetType.getDataType(), currentProgram));
+                }
+                // Params
+                for (var param : fun.params) {
+                    bromaParams.add(new ParameterImpl(
+                        param.name.map(p -> p.value).orElse(null),
+                        addOrGetType(param.type),
+                        currentProgram
+                    ));
+                }
+
+                // Check for mismatches between the Broma and Ghidra signatures
+                var signatureConflict = false;
+                for (var i = 0; i < data.getParameterCount(); i += 1) {
+                    var param = data.getParameter(i);
+                    // We only care about mismatches against user-defined params
+                    if (param.getSource() != SourceType.USER_DEFINED) {
+                        continue;
+                    }
+                    // More params in Ghidra is automatic signature mismatch
+                    if (i >= bromaParams.size()) {
+                        signatureConflict = true;
+                    }
+                    else {
+                        var bromaParam = bromaParams.get(i);
+                        if (
+                            !param.getDataType().isEquivalent(bromaParam.getDataType()) ||
+                            (
+                                param.getName() != null && bromaParam.getName() != null &&
+                                !param.getName().equals(bromaParam.getName())
+                            )
+                        ) {
+                            signatureConflict = true;
+                        }
+                    }
+                }
+                if (data.getReturn().getSource() == SourceType.USER_DEFINED && bromaRetType != null) {
+                    if (!data.getReturnType().isEquivalent(bromaRetType.getDataType())) {
+                        signatureConflict = true;
+                    }
+                }
+                // Destructor signatures are weird
+                if (fun.destructor != null) {
+                    signatureConflict = false;
+                }
+                if (signatureConflict) {
+                    switch (askBromaConflict(
+                        fullName, "signature",
+                        fmtParameters(bromaParams),
+                        fmtParameters(Arrays.asList(data.getParameters()))
+                    )) {
+                        case BROMA: {
+                            didUpdateThis = true;
+                        } break;
+                        case GHIDRA: {
+                            // Set parameters as the existing list in Ghidra
+                            bromaParams = Arrays.asList(data.getParameters());
+                            // Make return type not be overridden
+                            bromaRetType = null;
+                        } break;
+                    }
+                }
+
+                FunctionUpdateType updateType;
+                // Manual storage for custom calling conventions
+                if (
+                    (conv == CConv.MEMBERCALL || conv == CConv.OPTCALL) && 
+                    // Only do manual storage if there's actually a need for it
+                    bromaParams.stream().anyMatch(p ->
+                        p.getDataType() instanceof StructureDataType ||
+                        p.getDataType() instanceof FloatDataType
+                    )
+                ) {
+                    updateType = FunctionUpdateType.CUSTOM_STORAGE;
+                    var reorderedParams = new ArrayList<Variable>(bromaParams);
+                    // Thanks stable sort <3
+                    reorderedParams.sort((a, b) -> {
+                        final var aIs = a.getDataType() instanceof StructureDataType;
+                        final var bIs = b.getDataType() instanceof StructureDataType;
+                        if (aIs && bIs) return 0;
+                        if (aIs) return 1;
+                        if (bIs) return -1;
+                        return 0;
+                    });
+                    var stackOffset = 0;
+                    for (var i = 0; i < bromaParams.size(); i += 1) {
+                        var param = bromaParams.get(i);
+                        final var type = param.getDataType();
+                        VariableStorage storage;
+                        if (i < 5 && type instanceof AbstractFloatDataType) {
+                            // (p)rocessor (reg)ister
+                            String preg = null;
+                            if (type instanceof FloatDataType) {
+                                preg = "XMM" + i + "_Da";
+                            }
+                            else if (type instanceof DoubleDataType) {
+                                preg = "XMM" + i + "_Qa";
+                            }
+                            else {
+                                throw new Error(
+                                    "Parameter has type " + type.toString() +
+                                    ", which is floating-point type but has an unknown register location"
+                                );
+                            }
+                            storage = new VariableStorage(currentProgram, currentProgram.getRegister(preg));
+                        }
+                        else {
+                            if (i == 0) {
+                                storage = new VariableStorage(currentProgram, currentProgram.getRegister("ECX"));
+                            }
+                            else if (conv == CConv.OPTCALL && i == 1 && !(type instanceof StructureDataType)) {
+                                storage = new VariableStorage(currentProgram, currentProgram.getRegister("EDX"));
+                            }
+                            else {
+                                if (type.isNotYetDefined()) {
+                                    printfmt(
+                                        "Warning: function {0} has parameter {1} of an undefined " + 
+                                        "struct type - you will need to manually fix this later!",
+                                        fullName, param.getName()
+                                    );
+                                }
+                                storage = new VariableStorage(currentProgram, stackOffset, type.getLength());
+                                stackOffset += reorderedParams.get(i).getLength();
+                            }
+                        }
+                        param.setDataType(type, storage, true, SourceType.ANALYSIS);
+                    }
+                }
+                // Use dynamic storage for calling conventions Ghidra knows
+                else {
+                    updateType = FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS;
+                }
+
+                if (didAddThis) {
+                    importedAddCount += 1;
+                    printfmt("Added {0}", fullName);
+                }
+                else if (didUpdateThis) {
+                    importedUpdateCount += 1;
+                    printfmt("Updated {0}", fullName);
+                }
+
+                // Apply new signature
+                data.updateFunction(
+                    conv.getGhidraName(),
+                    bromaRetType,
+                    updateType,
+                    true,
+                    SourceType.ANALYSIS,
+                    bromaParams.toArray(Variable[]::new)
+                );
             }
         }
+        printfmt("Added {0} functions & updated {1} functions from Broma", importedAddCount, importedUpdateCount);
     }
 
     private void handleExport() throws Exception {
-        
+        printfmt("Adding new addresses to Bindings...");
+
+        final var table = currentProgram.getSymbolTable();
+        var clsIter = table.getClassNamespaces();
+        while (clsIter.hasNext()) {
+            var cls = clsIter.next();
+            // Skip imported classes
+            if (cls.isExternal() || cls.isLibrary()) {
+                continue;
+            }
+            // Skip any non-GD or non-Cocos classes
+            if (cls.getName(true).matches(".*(switch|llvm|tinyxml2|<|__|fmt|std::|pugi|typeinfo).*")) {
+                continue;
+            }
+            Broma broma = null;
+            Broma.Class bromaClass = null;
+            for (var bro : bromas) {
+                bromaClass = bro.getClass(cls.getName(true)).orElse(null);
+                if (bromaClass != null) {
+                    broma = bro;
+                    break;
+                }
+            }
+            if (bromaClass == null) {
+                printfmt("Warning: class {0} not found", cls.getName(true));
+                continue;
+            }
+            for (var child : table.getChildren(cls.getSymbol())) {
+                // Skip non-functions
+                if (child.getSymbolType() != SymbolType.FUNCTION) {
+                    continue;
+                }
+
+                final var fullName = child.getName(true);
+                final var name = child.getName();
+
+                var bromaFun = bromaClass.getFunction(name).orElse(null);
+                if (bromaFun == null) {
+                    printfmt("Warning: function {0} not found", fullName);
+                    continue;
+                }
+
+                var fun = currentProgram.getListing().getFunctionAt(
+                    child.getProgramLocation().getAddress()
+                );
+
+                // Update return type if Ghidra has an user-defined type and 
+                // Broma has TodoReturn
+                if (
+                    bromaFun.returnType.isPresent() && bromaFun.returnType.get().name.value.equals("TodoReturn") &&
+                    fun.getReturn().getSource() == SourceType.USER_DEFINED
+                ) {
+                    broma.addPatch(bromaFun.returnType.get().range, fun.getReturnType().getDisplayName());
+                }
+
+                // todo: check signature mismatch
+
+                final var ghidraOffset = child.getProgramLocation().getAddress()
+                    .subtract(currentProgram.getImageBase());
+                
+                // Add address
+                if (bromaFun.platformOffset.isPresent()) {
+                    Long commitOffset = 0l;
+                    var bromaOffset = Long.parseLong(bromaFun.platformOffset.get().value, 16);
+                    if (bromaOffset != Broma.PLACEHOLDER_ADDR && bromaOffset != ghidraOffset) {
+                        switch (askBromaConflict(
+                            fullName, "address",
+                            String.format("0x%x", bromaOffset),
+                            String.format("0x%x", ghidraOffset)
+                        )) {
+                            case BROMA: {
+                                commitOffset = bromaOffset;
+                            } break;
+                            case GHIDRA: {
+                                commitOffset = ghidraOffset;
+                            }
+                        }
+                    }
+                    broma.addPatch(bromaFun.platformOffset.get().range, String.format("0x%x", commitOffset));
+                }
+                else if (bromaFun.platformOffsetInsertPoint.isPresent()) {
+                    broma.addPatch(
+                        bromaFun.platformOffsetInsertPoint.get().range,
+                        String.format(" = %s 0x%x", args.platform.getShortName(), ghidraOffset)
+                    );
+                }
+                else {
+                    printfmt("Warning: function {0} is inlined in Broma - refusing to add address", fullName);
+                }
+            }
+        }
 
         // Save results
         printfmt("Saving Broma files...");
@@ -559,12 +888,19 @@ public class BetterSyncBromaScript extends GhidraScript {
         println(MessageFormat.format(fmt, args));
     }
 
-    CConv getCallingConvention(Platform platform, Boolean link, Broma.Match dispatch) {
-        if (platform != Platform.WINDOWS) {
+    static String fmtParameters(List<Variable> params) {
+        return "(" + String.join(", ", params.stream()
+            .map(p -> p.getDataType().getDisplayName() + " " + p.getName())
+            .toArray(String[]::new)
+        ) + ")";
+    }
+
+    CConv getCallingConvention(Boolean link, Optional<Broma.Match> dispatch) {
+        if (args.platform != Platform.WINDOWS) {
             return null;
         }
-        if (dispatch != null) {
-            switch (dispatch.value) {
+        if (dispatch.isPresent()) {
+            switch (dispatch.get().value) {
                 case "virtual": case "callback": {
                     return CConv.THISCALL;
                 }
@@ -658,14 +994,14 @@ public class BetterSyncBromaScript extends GhidraScript {
         // Constants don't exist in Ghidra lol
 
         // Make the type a pointer if it's a ptr or ref
-        if (type.ptr != null) {
+        if (type.ptr.isPresent()) {
             // Make sure to support multi-level pointers like int**
-            for (var i = 0; i < type.ptr.value.length(); i++) {
+            for (var i = 0; i < type.ptr.get().value.length(); i++) {
                 result = new PointerDataType(result);
             }
         }
-        if (type.ref != null) {
-            for (var i = 0; i < type.ref.value.length(); i++) {
+        if (type.ref.isPresent()) {
+            for (var i = 0; i < type.ref.get().value.length(); i++) {
                 result = new PointerDataType(result);
             }
         }
