@@ -10241,16 +10241,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn deactivateStreak(bool);
 	TodoReturn destroyFromHitHead();
 	TodoReturn didHitHead();
-	void disableCustomGlowColor() {
-        m_hasCustomGlowColor = false;
-    }
+	void disableCustomGlowColor();
 	TodoReturn disablePlayerControls();
 	TodoReturn disableSwingFire();
 	TodoReturn doReversePlayer(bool) = win 0x2d1c90;
-	void enableCustomGlowColor(cocos2d::_ccColor3B const& color) {
-        m_hasCustomGlowColor = true;
-        m_glowColor = color;
-    }
+	void enableCustomGlowColor(cocos2d::_ccColor3B const&);
 	TodoReturn enablePlayerControls();
 	TodoReturn exitPlatformerAnimateJump();
 	TodoReturn fadeOutStreak2(float) = win 0x2d8530;
