@@ -5,6 +5,11 @@ class PlayerButtonCommand {
     PAD = win 0x6, android32 0x6;
 }
 
+class GJPointDouble {
+    double x;
+    double y;
+}
+
 class DynamicScrollDelegate {
 
 }

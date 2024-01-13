@@ -106,12 +106,57 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa2c);
 
 
 
-// vvv (hopefully) correct 2.203 offsets (still need to fix the struct for them to be right)
+// vvv correct 2.203 offsets
 // GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x770);
 // GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x900);
-// vvv unconfirmed 2.200 offsets
-// GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x7ac);
+// vvv 2.200 offsets, please fix them for whatever the newest ver is
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk518, 0x518);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk568, 0x568);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk56c, 0x56c);
+// GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x590);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk594, 0x594);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk5b4, 0x5b4);
+// GEODE_MEMBER_CHECK(PlayerObject, m_rotationSpeed, 0x5d8);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isRotating, 0x5e0);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x5e3);
+// GEODE_MEMBER_CHECK(PlayerObject, m_iconSprite, 0x5ec);
+// GEODE_MEMBER_CHECK(PlayerObject, m_rotationSpeed, 0x5d8);
+// GEODE_MEMBER_CHECK(PlayerObject, m_regularTrail, 0x620);
+// GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x628);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk644, 0x644);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk658, 0x658);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk688, 0x688);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk68c, 0x68c);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk6ac, 0x6ac);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk6bc, 0x6bc);
+// GEODE_MEMBER_CHECK(PlayerObject, m_objectSnappedTo, 0x6c4);
+// GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x6d0);
+// GEODE_MEMBER_CHECK(PlayerObject, m_spiderSprite, 0x6d4);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk708, 0x708);
+// GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x778);
+// GEODE_MEMBER_CHECK(PlayerObject, m_glowColor, 0x779);
+// GEODE_MEMBER_CHECK(PlayerObject, m_yVelocity, 0x798);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isShip, 0x7a9);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isGoingLeft, 0x7b2);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isSwing, 0x7b4);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isDashing, 0x7d4);
+// GEODE_MEMBER_CHECK(PlayerObject, m_vehicleSize, 0x7e0);
+// GEODE_MEMBER_CHECK(PlayerObject, m_playerSpeed, 0x7e4);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk7c8, 0x7c8);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk7d0, 0x7d0);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isLocked, 0x7ff);
+// GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x804);
+// GEODE_MEMBER_CHECK(PlayerObject, m_lastActivatedPortal, 0x810);
+// GEODE_MEMBER_CHECK(PlayerObject, m_playerColor1, 0x816);
+// GEODE_MEMBER_CHECK(PlayerObject, m_playerColor2, 0x819);
 // GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x81c);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk838, 0x838);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x8e8);
+// GEODE_MEMBER_CHECK(PlayerObject, m_gravityMod, 0x8fc);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk930, 0x930);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk950, 0x950);
+// GEODE_MEMBER_CHECK(PlayerObject, m_parentLayer, 0x968);
+// GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x96c);
 
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x190);
 

@@ -6491,43 +6491,174 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn getObjectRotation();
 	virtual TodoReturn animationFinished(char const*);
 
-	// someone move this to gameobject kthxbye
-	// PAD = win 0xa0;
-	// uint8_t m_playerNum; //0x318
-	PAD = win 0x13c;
-	float m_rotationSpeed; //0x5d8
-	PAD = win 0x5;
-	bool m_isRotating; //0x5e1
-	PAD = win 0x1b6;
-	double m_yVelocity; //0x798
-	PAD = win 0x9;
-	bool m_isShip; //0x7a9
-	bool m_isBird; //0x7aa
-	bool m_isBall; //0x7ab
-	bool m_isDart; //0x7ac
-	bool m_isRobot; //0x7ad
-	bool m_isSpider; //0x7ae
-	bool m_isUpsideDown; //0x7af
-	bool m_isDead; //0x7b0
-	bool m_isOnGround; //0x7b1
-	bool m_isGoingLeft; //0x7b2
-	PAD = win 0x1;
-	bool m_isSwing; //0x7b4
-	PAD = win 0x1f;
-	bool m_isDashing; //0x7d4
-	PAD = win 0xf;
-	float m_speed; //0x7e4
-	PAD = win 0x17;
-	bool m_isLocked; //0x7ff
+	cocos2d::CCNode* m_unk49c;
+	PAD = win 0x44;
+	cocos2d::CCNode* m_unk4e4;
+	cocos2d::CCDictionary* m_unk4e8;
+	cocos2d::CCDictionary* m_unk4ec;
+	cocos2d::CCDictionary* m_unk4f0;
+	cocos2d::CCDictionary* m_unk4f4;
+	PAD = win 0x20;
+	float m_unk518;
+	PAD = win 0x8;
+	GameObject* m_collidedObject;
+	PAD = win 0x40;
+	float m_unk568;
+	cocos2d::CCSprite* m_unk56c;
+	PAD = win 0x4;
+	GameObject* m_unk574;
+	GameObject* m_unk578;
+	PAD = win 0x8;
+	float unk_584;
+	int unk_588; // seems to always be 0, but when you respawn it's -1 until you move at least 1 block from the respawn place
+	PAD = win 0x4;
+	cocos2d::CCArray* m_particleSystems;
+	gd::unordered_map<int, GJPointDouble> m_unk594; // insertions are in PlayerObject::rotateGameplayObject
+	gd::unordered_map<int, GameObject*> m_unk5b4;
+	float m_unk5d4;
+	float m_rotationSpeed;
+	float m_unk5dc;
+	bool m_isRotating;
+	bool m_unk5e1;
+	bool m_hasGlow;
+	bool m_isHidden;
+	int m_hasGhostTrail;
+	GhostTrailEffect* m_ghostTrail;
+	cocos2d::CCSprite* m_iconSprite;
+	cocos2d::CCSprite* m_iconSpriteSecondary;
+	cocos2d::CCSprite* m_iconSpriteWhitener;
+	cocos2d::CCSprite* m_iconGlow;
+	cocos2d::CCSprite* m_vehicleSprite;
+	cocos2d::CCSprite* m_vehicleSpriteSecondary;
+	cocos2d::CCSprite* m_unk604;
+	cocos2d::CCSprite* m_vehicleSpriteWhitener;
+	cocos2d::CCSprite* m_vehicleGlow;
+	PlayerFireBoostSprite* m_swingFireMiddle;
+	PlayerFireBoostSprite* m_swingFireBottom;
+	PlayerFireBoostSprite* m_swingFireTop;
+	cocos2d::CCSprite* m_unk61c;
+	cocos2d::CCMotionStreak* m_regularTrail;
+	PAD = win 0x4;
+	HardStreak* m_waveTrail;
+	float m_unk62c;
+	PAD = win 0x14;
+	float m_unk644;
+	float m_unk648;
+	PAD = win 0xc;
+	bool m_unk658;
+	bool m_unk659;
+	bool m_unk65a;
+	bool m_unk65b; // midair ??
+	bool m_unk65c;
+	bool m_unk65d; // walking ???
+	bool m_unk65e;
+	bool m_unk65f;
+	PAD = win 0x28;
+	float m_unk688;
+	float m_unk68c;
+	PAD = win 0x12;
+	bool m_unk6a2; // = GameManager::getGameVariable("0096")
+	bool m_unk6a3; // = GameManager::getGameVariable("0100")
+	PAD = win 0x8;
+	float m_unk6ac;
+	PAD = win 0xc;
+	float m_unk6bc;
+	PAD = win 0x4;
+	GameObject* m_objectSnappedTo;
+	PAD = win 0x8;
+	GJRobotSprite* m_robotSprite;
+	GJSpiderSprite* m_spiderSprite;
+	PAD = win 0x4;
+	cocos2d::CCParticleSystemQuad* m_unk6dc;
+	cocos2d::CCParticleSystemQuad* m_unk6e0;
+	cocos2d::CCParticleSystemQuad* m_unk6e4;
+	cocos2d::CCParticleSystemQuad* m_unk6e8;
+	cocos2d::CCParticleSystemQuad* m_unk6ec;
+	cocos2d::CCParticleSystemQuad* m_unk6f0;
+	cocos2d::CCParticleSystemQuad* m_unk6f4;
+	cocos2d::CCParticleSystemQuad* m_unk6f8;
+	cocos2d::CCParticleSystemQuad* m_unk6fc;
+	PAD = win 0x4;
+	cocos2d::CCParticleSystemQuad* m_unk704;
+	cocos2d::CCParticleSystemQuad* m_unk708;
+	PAD = win 0x6c;
+	bool m_hasCustomGlowColor;
+	cocos2d::ccColor3B m_glowColor;
 	PAD = win 0x1c;
-	cocos2d::CCPoint m_position; //0x81c
-	PAD = win 0x4c;
-	double m_platformerXVelocity; //0x870
-	PAD = win 0x70;
-	bool m_isPlatformer; //0x8e8
-	PAD = win 0x13;
-	float m_gravityMod; //0x8fc
-	PAD = win 0x80;
+	double m_yVelocity;
+	bool m_isOnSlope;
+	bool m_wasOnSlope;
+	PAD = win 0x7;
+	bool m_isShip;
+	bool m_isBird;
+	bool m_isBall;
+	bool m_isDart;
+	bool m_isRobot;
+	bool m_isSpider;
+	bool m_isUpsideDown;
+	bool m_isDead;
+	bool m_isOnGround;
+	bool m_isGoingLeft;
+	bool m_unk7b3;
+	bool m_isSwing;
+	PAD = win 0x10;
+	float m_unk7c8;
+	float m_unk7cc; // unsure if float
+	float m_unk7d0;
+	bool m_isDashing;
+	PAD = win 0x8;
+	float m_vehicleSize;
+	float m_playerSpeed;
+	cocos2d::CCPoint m_unk7e8;
+	cocos2d::CCPoint m_unk7f0; // maybe m_lastPortalPos
+	PAD = win 0x7;
+	bool m_isLocked;
+	PAD = win 0x4;
+	cocos2d::CCPoint m_lastGroundedPos;
+	cocos2d::CCArray* m_touchingRings;
+	GameObject* m_lastActivatedPortal;
+	bool m_unk814;
+	bool m_unk815;
+	cocos2d::ccColor3B m_playerColor1;
+	cocos2d::ccColor3B m_playerColor2;
+	cocos2d::CCPoint m_position;
+	PAD = win 0x14;
+	float m_unk838;
+	gd::unordered_map<int, int> m_unk83c; // the types are placeholders, no idea what they should be
+	PAD = win 0x8c;
+	bool m_isPlatformer;
+	int m_unk8ec;
+	int m_unk8f0;
+	int m_unk8f4;
+	int m_unk8f8;
+	float m_gravityMod;
+	PAD = win 0x4;
+	cocos2d::CCPoint m_unk904;
+	PAD = win 0x4;
+	gd::map<int, bool> m_unk910;
+	float m_unk918; // increments whenever you're midiar?
+	float m_unk91c;
+	PAD = win 0x4;
+	gd::map<int, bool> m_unk924;
+	PAD = win 0x4;
+	gd::string m_unk930; // this is always "run" ???
+	bool m_unk948; // = getGameVariable("0123")
+	PAD = win 0x7;
+	cocos2d::CCSpriteBatchNode* m_unk950;
+	cocos2d::CCSpriteBatchNode* m_unk954;
+	PAD = win 0x4;
+	PlayerFireBoostSprite* m_robotFire;
+	PAD = win 0x4;
+	PlayLayer* m_playLayer;
+	cocos2d::CCLayer* m_parentLayer;
+	GJActionManager* m_actionManager;
+	PAD = win 0x4;
+	float m_unk974;
+	bool m_unk978;
+	bool m_unk979; // = isItemEnabled(0xc, 0x12);
+	bool m_unk97a; // = isItemEnabled(0xc, 0x13);
+	bool m_unk97b; // = isItemEnabled(0xc, 0x14);
+	PAD = win 0x4;
 }
 
 
