@@ -799,6 +799,7 @@ class cocos2d::CCLabelBMFont {
 
 [[link(win, android)]]
 class cocos2d::CCApplication {
+	virtual void gameDidSave();
 	virtual void openURL(char const*);
 }
 
