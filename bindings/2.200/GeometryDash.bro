@@ -5275,9 +5275,9 @@ class LevelSettingsObject : cocos2d::CCNode {
 	// property kA8
     bool m_startDual;
 	// property kA28
-	bool m_propertykA28;
+	bool m_mirrorMode;
 	// property kA29
-	bool m_propertykA29;
+	bool m_rotateGameplay;
 	// property kA10
     bool m_twoPlayerMode;
 	// property kA22
@@ -5301,7 +5301,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 	// property kA11
     bool m_isFlipped;
 	// property kA20
-	bool m_propertykA20;
+	bool m_reverseGameplay;
 	// property kA21
 	bool m_propertykA21;
 	// property kA19
@@ -5323,35 +5323,35 @@ class LevelSettingsObject : cocos2d::CCNode {
 	// property kA24
 	bool m_propertykA24;
 	// property kA43
-	bool m_propertykA43;
+	bool m_noTimePenalty;
 	// property kA44
 	int m_propertykA44;
 	// property kA35
 	bool m_propertykA35;
 	// property kA36
-	int m_propertykA36;
+	int m_spawnGroup;
 	// property kA27
-	bool m_propertykA27;
+	bool m_allowMultiRotation;
 	// property kA31
-	bool m_propertykA31;
+	bool m_enablePlayerSqueeze;
 	// property kA32
-	bool m_propertykA32;	
+	bool m_fixGravityBug;	
 	// property kA33
-	bool m_propertykA33;
+	bool m_fixNegativeScale;
 	// property kA34
-	bool m_propertykA34;
+	bool m_fixRobotJump;
 	// property kA37
-	bool m_propertykA37;
+	bool m_dynamicLevelHeight;
 	// property kA38
-	bool m_propertykA38;
+	bool m_sortGroups;
 	// property kA39
-	bool m_propertykA39;
+	bool m_fixRadiusCollision;
 	// property kA40
-	bool m_propertykA40;
+	bool m_enable22Changes;
 	// property kA41
-	bool m_propertykA41;
+	bool m_allowStaticRotate;
 	// property kA42
-	bool m_propertykA42;
+	bool m_reverseSync;
 }
 
 [[link(android)]]
