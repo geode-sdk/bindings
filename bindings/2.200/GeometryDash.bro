@@ -5303,11 +5303,11 @@ class LevelSettingsObject : cocos2d::CCNode {
 	// property kA20
 	bool m_reverseGameplay;
 	// property kA21
-	bool m_propertykA21;
+	bool m_disableStartPos;
 	// property kA19
-	int m_propertykA19;
+	int m_targetOrder;
 	// property kA26
-	int m_propertykA26;
+	int m_targetChannel;
 
     GJGameLevel* m_level;
 	// property kA14
@@ -5327,7 +5327,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 	// property kA44
 	int m_propertykA44;
 	// property kA35
-	bool m_propertykA35;
+	bool m_resetCamera;
 	// property kA36
 	int m_spawnGroup;
 	// property kA27
