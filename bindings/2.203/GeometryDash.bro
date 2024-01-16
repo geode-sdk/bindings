@@ -1168,7 +1168,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 
 	TodoReturn addTextArea(TextArea*);
 	TodoReturn forceOffset();
-	gd::string getString() = win 0x2ea50;
+	gd::string getString() {
+		return m_textField->getString();
+	}
 	bool init(float, float, char const*, char const*, int, char const*) = win 0x2e500;
 	TodoReturn refreshLabel() = win 0x2ede0;
 	void setLabelNormalColor(cocos2d::ccColor3B);
