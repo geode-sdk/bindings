@@ -3357,8 +3357,8 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	}
 
 	TodoReturn incrementForcePrio();
-	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x30ea0;
-	bool init(int);
+	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x30F60;
+	bool init(int) = win 0x30ea0;
 	void onBtn1(cocos2d::CCObject* sender) = win 0x31ab0;
 	void onBtn2(cocos2d::CCObject* sender) = win 0x31af0;
 
@@ -6075,13 +6075,13 @@ class GJDailyLevelDelegate {
 class GJDifficultySprite : cocos2d::CCSprite {
 	// virtual ~GJDifficultySprite();
 
-	static GJDifficultySprite* create(int, GJDifficultyName);
+	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x216A60;
 
-	TodoReturn getDifficultyFrame(int, GJDifficultyName);
-	bool init(int, GJDifficultyName);
-	TodoReturn updateDifficultyFrame(int, GJDifficultyName);
-	TodoReturn updateFeatureState(GJFeatureState) = win 0x216e70;
-	TodoReturn updateFeatureStateFromLevel(GJGameLevel*) = win 0x216df0;
+	gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x216BC0;
+	bool init(int, GJDifficultyName) = win 0x216B30;
+	void updateDifficultyFrame(int, GJDifficultyName) = win 0x216CB0;
+	void updateFeatureState(GJFeatureState) = win 0x216e70;
+	void updateFeatureStateFromLevel(GJGameLevel*) = win 0x216df0;
 }
 
 [[link(android)]]
@@ -6647,6 +6647,37 @@ class GJLevelList : cocos2d::CCNode {
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
 	virtual bool init();
+
+	gd::vector<int> m_levels;
+	int m_listID;
+	int m_listVersion;
+	int m_downloads;
+	int m_likes;
+	int m_difficulty;
+	int m_accountID;
+	int m_folder;
+	int m_listRevision;
+	int m_listOrder;
+	int m_original;
+	int m_diamonds;
+	int m_levelsToClaim;
+	bool m_unkBool;
+	bool m_unlisted;
+	bool m_friendsOnly;
+	bool m_uploaded;
+	bool m_favorite;
+	bool m_featured;
+	bool m_k100;
+	gd::string m_creatorName;
+	gd::string m_listName;
+	gd::string m_unkString;
+	gd::string m_levelsString;
+	gd::string m_listDesc;
+	int m_uploadDate;
+	int m_updateDate;
+	cocos2d::CCDictionary* m_k97;
+	int m_listType;
+	int m_M_ID;
 }
 
 [[link(android)]]
@@ -8728,7 +8759,7 @@ class LevelListCell : TableViewCell {
 
 	static LevelListCell* create(float, float);
 
-	TodoReturn loadFromList(GJLevelList*);
+	void loadFromList(GJLevelList*) = win 0x8B500;
 	void onClick(cocos2d::CCObject* sender);
 	void onListInfo(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
@@ -8736,6 +8767,9 @@ class LevelListCell : TableViewCell {
 
 	virtual bool init();
 	virtual void draw();
+
+	GJLevelList* m_levelList;
+	bool m_addingLevel;
 }
 
 [[link(android)]]
