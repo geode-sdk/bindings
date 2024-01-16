@@ -1154,6 +1154,10 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_maxLabelWidth = v;
 		this->refreshLabel();
 	}
+	void setMaxLabelLength(int v) {
+		m_maxLabelLength = v;
+		this->refreshLabel();
+	}
 	void setLabelPlaceholderScale(float v) {
 		m_placeholderScale = v;
 		this->refreshLabel();
