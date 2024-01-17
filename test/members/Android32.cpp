@@ -92,6 +92,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x184);
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x16c);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 
+GEODE_SIZE_CHECK(GJGameState, 0x4a8);
 GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
 GEODE_SIZE_CHECK(PlayLayer, 0x2f38);
 // GEODE_SIZE_CHECK(PlayerObject, 0x970);
