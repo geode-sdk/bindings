@@ -997,25 +997,25 @@ class GJGameState {
 	cocos2d::CCPoint m_unke8;
 	cocos2d::CCPoint m_unkf0;
 	bool m_unkf8;
-	PAD = win 0x7, android32 0x7;
+	PAD = win 0x7, android32 0x7, android64 0x7;
 	bool m_unk100;
-	PAD = win 0x7, android32 0x7;
+	PAD = win 0x7, android32 0x7, android64 0x7;
 	bool m_unk108;
 	cocos2d::CCPoint m_unk10c;
-	PAD = win 0x10, android32 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10;
 	float m_unk124;
 	float m_unk128;
-	PAD = win 0x1c, android32 0x1c;
+	PAD = win 0x1c, android32 0x1c, android64 0x1c;
 	float m_unk148;
-	PAD = win 0x20, android32 0x20;
+	PAD = win 0x20, android32 0x20, android64 0x20;
 	float m_unk16c;
 	float m_unk170;
 	float m_unk174;
 	float m_unk178;
-	PAD = win 0xc, android32 0xc;
+	PAD = win 0xc, android32 0xc, android64 0xc;
 	float m_unk188;
 	float m_unk18c;
-	PAD = win 0x8, android32 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8;
 	gd::unordered_map<int, int> m_unk198;
 	gd::unordered_map<int, bool> m_unk1b4;
 	float m_unk1d0; // unsure types of all 4 floats
@@ -1023,27 +1023,29 @@ class GJGameState {
 	float m_unk1d8;
 	float m_unk1dc;
 	double m_unk1e0; // unsure type
-	PAD = win 0x24, android32 0x24;
+	PAD = win 0x24, android32 0x24, android64 0x30;
 	cocos2d::CCPoint m_unk20c;
-	PAD = win 0x10, android32 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10;
 	gd::unordered_map<int, GJValueTween> m_unk224;
-	PAD = win 0x10, android32 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10;
 	gd::unordered_map<int, GameObjectPhysics> m_unk250;
-	PAD = win 0x18, android32 0x18;
+	PAD = win 0x18, android32 0x18, android64 0x24;
 	cocos2d::CCPoint m_unk284;
-	PAD = win 0x10, android32 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10;
 	gd::map<std::pair<int, int>, int> m_unk29c;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4;
 	cocos2d::CCPoint m_unk2b8;
 	cocos2d::CCPoint m_unk2c0;
 	bool m_unk2c8;
 	bool m_unk2c9;
-	PAD = win 0x4, android32 0x4;
+	bool m_unk2ca;
+	PAD = win 0x6, android32 0x6, android64 0x6;
 	bool m_unk2d0;
 	bool m_unk2d1;
-	PAD = win 0x16, android32 0x16;
+	PAD = win 0x10, android32 0x10, android64 0x10;
+	void* m_unk2e4;
 	cocos2d::CCPoint m_unk2e8;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4;
 	gd::unordered_map<int, EnhancedGameObject*> m_unk2f4;
 	gd::map<std::pair<GJGameEvent, int>, gd::vector<EventTriggerInstance>> m_unk310;
 	gd::map<std::pair<GJGameEvent, int>, int> m_unk328;
@@ -1063,13 +1065,13 @@ class GJGameState {
 	gd::vector<DynamicObjectAction> m_unk404;
 	bool m_unk410;
 	bool m_unk411;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4;
 	gd::unordered_map<int, gd::vector<int>> m_unk418;
 	gd::map<std::pair<int, int>, SFXTriggerInstance> m_unk434;
 	gd::unordered_map<int, SongChannelState> m_unk44c;
 	gd::unordered_map<int, gd::vector<SongTriggerState>> m_unk468;
 	gd::vector<SFXTriggerState> m_unk484;
-	PAD = win 0x14, android32 0x14;
+	PAD = win 0x14, android32 0x14, android64 0x14;
 }
 
 [[link(android), depends(GJGameState)]]
