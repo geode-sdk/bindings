@@ -11132,7 +11132,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn showCompletedLevel();
 	TodoReturn showSecretLevel();
 	TodoReturn updateMessageLabel(gd::string);
-	void updateSearchLabel(char const*);
+	void updateSearchLabel(char const*) = win 0x3084b0;
 
 	virtual bool init() = win 0x3056d0;
 	virtual void onExit();
