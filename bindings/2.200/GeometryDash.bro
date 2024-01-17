@@ -8378,6 +8378,8 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	virtual bool init();
 	virtual void draw();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+
+	GJUserScore* m_score;
 }
 
 [[link(android)]]
