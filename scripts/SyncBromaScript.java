@@ -149,7 +149,7 @@ public class SyncBromaScript extends GhidraScript {
                     // Grab the return type and name of the function, or the name if it's a destructor
                     "(?:(?:(?<return>{0})\\s+(?<name>{2}))|(?<destructor>~{2}))" + 
                     // Grab the parameters
-                    "\\(\\s*(?<params>(?:{1},?)*)\\)" +
+                    "\\(\\s*(?<params>(?:{1}\\s*,?\\s*)*)\\)" +
                     "(?:"+
                         // Grab the platforms
                         "(?:\\s*=\\s*(?<platforms>(?:[a-z]+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+))" + 
@@ -392,7 +392,7 @@ public class SyncBromaScript extends GhidraScript {
                 else {
                     linked = false;
                 }
-    
+
                 // Match functions
                 var funMatcher = broma.forkMatcher(Regexes.GRAB_FUNCTION, matcher, "body", false);
                 while (funMatcher.find()) {
@@ -721,7 +721,10 @@ public class SyncBromaScript extends GhidraScript {
             status = status.promoted(SignatureImport.ADDED);
             data = createFunction(addr, name);
             if (data == null) {
-                throw new Error("Unable to create a function at address " + addr.toString());
+                throw new Error(MessageFormat.format(
+                    "Unable to create a function at address {0} (offset 0x{1}, function {2})",
+                    addr, fun.platformOffset.get().value, fullName
+                ));
             }
             data.setParentNamespace(addOrGetNamespace(className));
         }

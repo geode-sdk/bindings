@@ -5371,7 +5371,7 @@ class GJAccountManager : cocos2d::CCNode {
 	bool isDLActive(char const*);
 	TodoReturn linkToAccount(gd::string, gd::string, int, int);
 	TodoReturn loginAccount(gd::string, gd::string);
-	TodoReturn onBackupAccountCompleted(gd::string, gd::string) = win 0x58bb20;
+	TodoReturn onBackupAccountCompleted(gd::string, gd::string) = win 0x18bb20;
 	TodoReturn onGetAccountBackupURLCompleted(gd::string, gd::string);
 	TodoReturn onGetAccountSyncURLCompleted(gd::string, gd::string);
 	TodoReturn onLoginAccountCompleted(gd::string, gd::string);
