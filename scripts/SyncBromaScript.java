@@ -753,7 +753,7 @@ public class SyncBromaScript extends GhidraScript {
         if (data.getSymbol().getSource() != SourceType.USER_DEFINED) {
             status = status.promoted(SignatureImport.ADDED);
         }
-        data.setName(name, SourceType.USER_DEFINED);
+        data.getSymbol().setName(name, SourceType.USER_DEFINED);
         data.setParentNamespace(addOrGetNamespace(className));
 
         // Get the calling convention
