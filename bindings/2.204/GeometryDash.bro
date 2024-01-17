@@ -6320,7 +6320,7 @@ class GJGameLevel : cocos2d::CCNode {
 	void dataLoaded(DS_Dictionary*) = win 0x115060;
 	TodoReturn demonIconForDifficulty(DemonDifficultyType);
 	TodoReturn generateSettingsString();
-	TodoReturn getAudioFileName() = win 0x114440;
+	gd::string getAudioFileName() = win 0x114440;
 	TodoReturn getAverageDifficulty() = win 0x114180;
 	char const* getCoinKey(int) = win 0x114220;
 	TodoReturn getLastBuildPageForTab(int);
@@ -9824,7 +9824,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn parseSFXLibrary() = win 0x286bd0;
 	TodoReturn pathForSFX(int) = win 0x2843e0;
 	TodoReturn pathForSFXFolder(int) = win 0x284240;
-	TodoReturn pathForSong(int) = win 0x284070;
+	gd::string pathForSong(int) = win 0x284070;
 	TodoReturn pathForSongFolder(int) = win 0x283ed0;
 	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
 	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
