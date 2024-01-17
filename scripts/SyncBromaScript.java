@@ -504,6 +504,7 @@ public class SyncBromaScript extends GhidraScript {
         String gameVersion;
         boolean importFromBroma;
         boolean exportToBroma;
+        boolean setOptcall;
     
         private InputParameters() {}
     
@@ -539,8 +540,9 @@ public class SyncBromaScript extends GhidraScript {
                 versions.get(versions.size() - 1),
                 versions.toArray(String[]::new)
             );
-            map.defineBoolean("Import to Broma", true);
+            map.defineBoolean("Import from Broma", true);
             map.defineBoolean("Export to Broma", true);
+            map.defineBoolean("Set optcall & membercall", true);
             script.askValues(
                 "Sync Broma",
                 "Import addresses & signatures from Broma, and add new ones " + 
@@ -553,8 +555,9 @@ public class SyncBromaScript extends GhidraScript {
             );
             this.platform = Platform.parse(map.getChoice("Target platform"));
             this.gameVersion = map.getChoice("Game version");
-            this.importFromBroma = map.getBoolean("Import to Broma");
+            this.importFromBroma = map.getBoolean("Import from Broma");
             this.exportToBroma = map.getBoolean("Export to Broma");
+            this.setOptcall = map.getBoolean("Set optcall & membercall");
     
             if (this.platform == Platform.WINDOWS) {
                 bromaFiles = List.of(map.getChoice("Broma file (Windows-only)"));
@@ -817,59 +820,71 @@ public class SyncBromaScript extends GhidraScript {
                 p.getDataType() instanceof FloatDataType
             )
         ) {
-            updateType = FunctionUpdateType.CUSTOM_STORAGE;
-            var reorderedParams = new ArrayList<Variable>(bromaSig.parameters);
-            // Thanks stable sort <3
-            reorderedParams.sort((a, b) -> {
-                final var aIs = a.getDataType() instanceof StructureDataType;
-                final var bIs = b.getDataType() instanceof StructureDataType;
-                if (aIs && bIs) return 0;
-                if (aIs) return 1;
-                if (bIs) return -1;
-                return 0;
-            });
-            var stackOffset = 0;
-            for (var i = 0; i < bromaSig.parameters.size(); i += 1) {
-                var param = bromaSig.parameters.get(i);
-                final var type = param.getDataType();
-                VariableStorage storage;
-                if (i < 5 && type instanceof AbstractFloatDataType) {
-                    // (p)rocessor (reg)ister
-                    String preg = null;
-                    if (type instanceof FloatDataType) {
-                        preg = "XMM" + i + "_Da";
-                    }
-                    else if (type instanceof DoubleDataType) {
-                        preg = "XMM" + i + "_Qa";
-                    }
-                    else {
-                        throw new Error(
-                            "Parameter has type " + type.toString() +
-                            ", which is floating-point type but has an unknown register location"
-                        );
-                    }
-                    storage = new VariableStorage(currentProgram, currentProgram.getRegister(preg));
-                }
-                else {
-                    if (i == 0) {
-                        storage = new VariableStorage(currentProgram, currentProgram.getRegister("ECX"));
-                    }
-                    else if (conv == CConv.OPTCALL && i == 1 && !(type instanceof StructureDataType)) {
-                        storage = new VariableStorage(currentProgram, currentProgram.getRegister("EDX"));
-                    }
-                    else {
-                        if (type.isNotYetDefined()) {
-                            printfmt(
-                                "Warning: function {0} has parameter {1} of an undefined " + 
-                                "struct type - you will need to manually fix this later!",
-                                fullName, param.getName()
+            if (!this.args.setOptcall) {
+                updateType = FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS;
+                printfmt(
+                    "Warning: not handling optcall/membercall for {0} - " + 
+                    "parameter order / registers will be wrong!",
+                    fullName
+                );
+            }
+            else {
+                updateType = FunctionUpdateType.CUSTOM_STORAGE;
+                var reorderedParams = new ArrayList<Variable>(bromaSig.parameters);
+                // Thanks stable sort <3
+                reorderedParams.sort((a, b) -> {
+                    final var aIs = a.getDataType() instanceof StructureDataType;
+                    final var bIs = b.getDataType() instanceof StructureDataType;
+                    if (aIs && bIs) return 0;
+                    if (aIs) return 1;
+                    if (bIs) return -1;
+                    return 0;
+                });
+                // First stack offset is 0x4 (0x0 is for return address)
+                var stackOffset = 0x4;
+                for (var i = 0; i < bromaSig.parameters.size(); i += 1) {
+                    var param = bromaSig.parameters.get(i);
+                    final var type = param.getDataType();
+                    VariableStorage storage;
+                    if (i < 5 && type instanceof AbstractFloatDataType) {
+                        // (p)rocessor (reg)ister
+                        String preg = null;
+                        if (type instanceof FloatDataType) {
+                            preg = "XMM" + i + "_Da";
+                        }
+                        else if (type instanceof DoubleDataType) {
+                            preg = "XMM" + i + "_Qa";
+                        }
+                        else {
+                            throw new Error(
+                                "Parameter has type " + type.toString() +
+                                ", which is floating-point type but has an unknown register location"
                             );
                         }
-                        storage = new VariableStorage(currentProgram, stackOffset, type.getLength());
-                        stackOffset += reorderedParams.get(i).getLength();
+                        storage = new VariableStorage(currentProgram, currentProgram.getRegister(preg));
                     }
+                    else {
+                        if (i == 0) {
+                            storage = new VariableStorage(currentProgram, currentProgram.getRegister("ECX"));
+                        }
+                        else if (conv == CConv.OPTCALL && i == 1 && !(type instanceof StructureDataType)) {
+                            storage = new VariableStorage(currentProgram, currentProgram.getRegister("EDX"));
+                        }
+                        else {
+                            if (type.isNotYetDefined()) {
+                                printfmt(
+                                    "Warning: function {0} has parameter {1} of an undefined " + 
+                                    "struct type - you will need to manually fix this later!",
+                                    fullName, param.getName()
+                                );
+                            }
+                            storage = new VariableStorage(currentProgram, stackOffset, type.getLength());
+                            // https://github.com/geode-sdk/TulipHook/blob/main/src/convention/WindowsConvention.cpp#L69-L70
+                            stackOffset += (reorderedParams.get(i).getLength() + 3) / 4 * 4;
+                        }
+                    }
+                    param.setDataType(type, storage, true, SourceType.USER_DEFINED);
                 }
-                param.setDataType(type, storage, true, SourceType.USER_DEFINED);
             }
         }
         // Use dynamic storage for calling conventions Ghidra knows
@@ -929,6 +944,9 @@ public class SyncBromaScript extends GhidraScript {
 
     private void handleExport() throws Exception {
         printfmt("Adding new addresses to Bindings...");
+
+        var exportedAddrCount = 0;
+        var exportedTypeCount = 0;
 
         final var table = currentProgram.getSymbolTable();
         var clsIter = table.getClassNamespaces();
@@ -1031,6 +1049,7 @@ public class SyncBromaScript extends GhidraScript {
                     fun.getReturn().getSource() == SourceType.USER_DEFINED
                 ) {
                     broma.addPatch(bromaFun.returnType.get().range, fun.getReturnType().getDisplayName());
+                    exportedTypeCount += 1;
                 }
 
                 // Get the function signature from Broma
@@ -1048,20 +1067,24 @@ public class SyncBromaScript extends GhidraScript {
                             "Function {0} has the address 0x{1} in the Broma but the address 0x{2} in Ghidra - do you want to override the Broma's address?",
                             fullName, Long.toHexString(bromaOffset), Long.toHexString(ghidraOffset)
                         );
+                        exportedAddrCount += 1;
+                        broma.addPatch(bromaFun.platformOffset.get().range, String.format("%x", ghidraOffset));
                     }
-                    broma.addPatch(bromaFun.platformOffset.get().range, String.format("%x", ghidraOffset));
                 }
                 else if (bromaFun.platformOffsetInsertPoint.isPresent()) {
                     broma.addPatch(
                         bromaFun.platformOffsetInsertPoint.get().range,
                         String.format(" = %s 0x%x", args.platform.getShortName(), ghidraOffset)
                     );
+                    exportedAddrCount += 1;
                 }
                 else {
                     printfmt("Warning: function {0} is inlined in Broma - refusing to add address", fullName);
                 }
             }
         }
+        
+        printfmt("Exported {0} addresses & {1} return types to Broma", exportedAddrCount, exportedTypeCount);
 
         // Save results
         printfmt("Saving Broma files...");
