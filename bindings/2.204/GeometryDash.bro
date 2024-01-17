@@ -2476,7 +2476,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn closeLiveHSVSelect();
 	TodoReturn colorSelectClosed(cocos2d::ccColor3B);
 	TodoReturn constrainGameLayerPosition() = win 0xd7df0;
-	TodoReturn constrainGameLayerPosition(float, float) = win 0xd7df0;
+	void constrainGameLayerPosition(float, float) = win 0xd7df0;
 	TodoReturn convertKeyBasedOnNeighbors(int, int, cocos2d::CCPoint, cocos2d::CCArray*);
 	TodoReturn convertToBaseKey(int);
 	TodoReturn copyObjects(cocos2d::CCArray*, bool, bool);
@@ -2583,7 +2583,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onDeleteSelected(cocos2d::CCObject* sender);
 	void onDeleteSelectedType(cocos2d::CCObject* sender);
 	void onDeleteStartPos(cocos2d::CCObject* sender);
-	void onDeselectAll(cocos2d::CCObject* sender);
+	void onDeselectAll(cocos2d::CCObject* sender) = win 0xc95c0;
 	void onDuplicate(cocos2d::CCObject* sender);
 	void onEditColor(cocos2d::CCObject* sender);
 	void onFindObject(cocos2d::CCObject* sender);
