@@ -10,6 +10,14 @@ class GJPointDouble {
     double y;
 }
 
+class EventTriggerInstance {
+
+}
+
+class SongChannelState {
+    
+}
+
 class DynamicScrollDelegate {
 
 }
