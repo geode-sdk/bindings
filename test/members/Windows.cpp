@@ -181,4 +181,10 @@ GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x1e0);
 
 GEODE_MEMBER_CHECK(ItemInfoPopup, m_accountID, 0x1f8);
 
+GEODE_MEMBER_CHECK(CCApplication, m_resourceRootPath, 0x20);
+GEODE_MEMBER_CHECK(CCApplication, m_startupScriptFilename, 0x38);
+GEODE_MEMBER_CHECK(CCApplication, m_bUpdateController, 0x58);
+GEODE_MEMBER_CHECK(CCApplication, m_bMouseControl, 0x88);
+GEODE_MEMBER_CHECK(AppDelegate, m_runningScene, 0xA8);
+
 #endif

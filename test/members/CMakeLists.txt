@@ -27,7 +27,7 @@ include($ENV{GEODE_SDK}/cmake/PlatformDetect.cmake)
 
 if (NOT DEFINED GEODE_GD_VERSION)
 	if (${GEODE_TARGET_PLATFORM} STREQUAL "Win32")
-		set(GEODE_GD_VERSION 2.203)
+		set(GEODE_GD_VERSION 2.204)
 	else()
 		set(GEODE_GD_VERSION 2.200)
 	endif()
