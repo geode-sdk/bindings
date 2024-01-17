@@ -1545,7 +1545,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	TodoReturn incrementDislikes();
 	TodoReturn incrementLikes();
 	void loadFromComment(GJComment*) = win 0x84490;
-	void onConfirmDelete(cocos2d::CCObject* sender) = win 0x862C0;
+	void onConfirmDelete(cocos2d::CCObject* sender) = win 0x862c0;
 	TodoReturn onDelete() = win 0x86360;
 	void onGoToLevel(cocos2d::CCObject* sender);
 	void onLike(cocos2d::CCObject* sender) = win 0x86110;
@@ -3835,7 +3835,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn invalidateRequests(bool, bool) = win 0x10db50;
 	TodoReturn invalidateUserList(UserListType, bool);
 	bool isDLActive(char const*) = win 0xf8b50;
-	bool isFollowingUser(int) = win 0xF9910;
+	bool isFollowingUser(int) = win 0xf9910;
 	bool isTimeValid(char const*, float);
 	bool isUpdateValid(int);
 	TodoReturn itemIDFromLikeKey(char const*);
@@ -6109,15 +6109,15 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual TodoReturn customSetup();
-	virtual TodoReturn enterLayer() = win 0x22FA0;
+	virtual TodoReturn enterLayer() = win 0x22fa0;
 	virtual TodoReturn exitLayer(cocos2d::CCObject*);
-	virtual TodoReturn showLayer(bool) = win 0x1D6B70;
-	virtual TodoReturn hideLayer(bool) = win 0x1D6C60;
+	virtual TodoReturn showLayer(bool) = win 0x1d6b70;
+	virtual TodoReturn hideLayer(bool) = win 0x1d6c60;
 	virtual TodoReturn layerVisible() = win 0x23060;
-	virtual TodoReturn layerHidden() = win 0x1D6D50;
+	virtual TodoReturn layerHidden() = win 0x1d6d50;
 	virtual TodoReturn enterAnimFinished();
-	virtual TodoReturn disableUI() = win 0x1D6AE0;
-	virtual TodoReturn enableUI() = win 0x1D6B00;
+	virtual TodoReturn disableUI() = win 0x1d6ae0;
+	virtual TodoReturn enableUI() = win 0x1d6b00;
 
 	cocos2d::CCPoint m_endPosition;
 	cocos2d::CCPoint m_startPosition;
@@ -7461,7 +7461,7 @@ class GJSmartTemplate : cocos2d::CCObject {
 class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelegate {
 	// virtual ~GJSongBrowser();
 
-	static GJSongBrowser* create() = win 0x224E80;
+	static GJSongBrowser* create() = win 0x224e80;
 
 	TodoReturn loadPage(int);
 	void onDeleteAll(cocos2d::CCObject* sender);
@@ -8191,7 +8191,7 @@ class LeaderboardManagerDelegate {
 class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertLayerProtocol {
 	// virtual ~LeaderboardsLayer();
 
-	static LeaderboardsLayer* create(LeaderboardState) = win 0x22DBC0;
+	static LeaderboardsLayer* create(LeaderboardState) = win 0x22dbc0;
 
 	bool init(LeaderboardState) = win 0x22dc60;
 	bool isCorrect(char const*);
@@ -8648,7 +8648,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void onOwnerDelete(cocos2d::CCObject* sender) = win 0x256370;
 	void onPlay(cocos2d::CCObject* sender) = win 0x2555b0;
 	void onPlayReplay(cocos2d::CCObject* sender);
-	void onRate(cocos2d::CCObject* sender) = win 0x2564f0;
+	void onRate(cocos2d::CCObject* sender);
 	void onRateDemon(cocos2d::CCObject* sender);
 	void onRateStars(cocos2d::CCObject* sender) = win 0x2564f0;
 	void onRateStarsMod(cocos2d::CCObject* sender);
@@ -8765,7 +8765,7 @@ class LevelListCell : TableViewCell {
 
 	static LevelListCell* create(float, float);
 
-	void loadFromList(GJLevelList*) = win 0x8B570;
+	void loadFromList(GJLevelList*) = win 0x8b570;
 	void onClick(cocos2d::CCObject* sender);
 	void onListInfo(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
@@ -8923,7 +8923,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	void onMagic(cocos2d::CCObject* sender);
 	void onMoreOptions(cocos2d::CCObject* sender) = win 0x2629d0;
 	void onMostDownloaded(cocos2d::CCObject* sender);
-	void onMostLikes(cocos2d::CCObject* sender) = win 0x263E40;
+	void onMostLikes(cocos2d::CCObject* sender) = win 0x263e40;
 	void onMostRecent(cocos2d::CCObject* sender);
 	void onSearch(cocos2d::CCObject* sender) = win 0x264340;
 	void onSearchMode(cocos2d::CCObject* sender);
@@ -10658,7 +10658,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn storeCheckpoint(CheckpointObject*) = win 0x2e84a0;
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleBGEffectVisibility(bool);
-	TodoReturn toggleGhostEffect(int) = win 0x2d7a40;
+	TodoReturn toggleGhostEffect(int);
 	TodoReturn togglePracticeMode(bool);
 	TodoReturn tryStartRecord();
 	TodoReturn updateAttempts() = win 0x2eab40;
