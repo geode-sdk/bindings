@@ -5023,7 +5023,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getCurrencyKey(GJGameLevel*) = win 0x171c70;
 	TodoReturn getDailyLevelKey(int);
 	TodoReturn getDemonLevelKey(GJGameLevel*) = win 0x16fcb0;
-	TodoReturn getGauntletRewardKey(int) = win 0x179D00;
+	TodoReturn getGauntletRewardKey(int) = win 0x179d00;
 	TodoReturn getItemKey(int, int);
 	TodoReturn getItemUnlockState(int, UnlockType);
 	TodoReturn getItemUnlockStateLite(int, UnlockType);
@@ -6111,7 +6111,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual TodoReturn customSetup();
 	virtual TodoReturn enterLayer();
 	virtual TodoReturn exitLayer(cocos2d::CCObject*);
-	virtual TodoReturn showLayer(bool) = win 0x1D69F0;
+	virtual TodoReturn showLayer(bool) = win 0x1d69f0;
 	virtual TodoReturn hideLayer(bool);
 	virtual TodoReturn layerVisible();
 	virtual TodoReturn layerHidden();
@@ -6297,7 +6297,7 @@ class GJFriendRequest : cocos2d::CCNode {
 	// virtual ~GJFriendRequest();
 
 	static GJFriendRequest* create() = win 0x1190e0;
-	static GJFriendRequest* create(cocos2d::CCDictionary*);
+	static GJFriendRequest* create(cocos2d::CCDictionary*) = win 0x1190e0;
 
 	virtual bool init();
 }
@@ -7670,7 +7670,7 @@ class GJUserMessage : cocos2d::CCNode {
 class GJUserScore : cocos2d::CCNode {
 	// virtual ~GJUserScore();
 
-	static GJUserScore* create() = win 0x118EA0;
+	static GJUserScore* create() = win 0x118ea0;
 	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x117ea0;
 
 	bool isCurrentUser() = win 0x118fa0;
@@ -8150,7 +8150,7 @@ class LabelGameObject : EffectGameObject {
 
 	virtual bool init();
 	virtual void setOpacity(unsigned char);
-	virtual TodoReturn setupCustomSprites(gd::string);
+	virtual TodoReturn setupCustomSprites(gd::string) = win 0x3a8580;
 	virtual TodoReturn addMainSpriteToParent(bool);
 	virtual TodoReturn resetObject();
 	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
@@ -8191,7 +8191,7 @@ class LeaderboardManagerDelegate {
 class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertLayerProtocol {
 	// virtual ~LeaderboardsLayer();
 
-	static LeaderboardsLayer* create(LeaderboardState) = win 0x22DA30;
+	static LeaderboardsLayer* create(LeaderboardState) = win 0x22da30;
 
 	bool init(LeaderboardState) = win 0x22dad0;
 	bool isCorrect(char const*);
@@ -8765,7 +8765,7 @@ class LevelListCell : TableViewCell {
 
 	static LevelListCell* create(float, float);
 
-	void loadFromList(GJLevelList*) = win 0x8B500;
+	void loadFromList(GJLevelList*) = win 0x8b500;
 	void onClick(cocos2d::CCObject* sender);
 	void onListInfo(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
