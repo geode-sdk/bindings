@@ -8150,7 +8150,7 @@ class LabelGameObject : EffectGameObject {
 
 	virtual bool init();
 	virtual void setOpacity(unsigned char);
-	virtual TodoReturn setupCustomSprites(gd::string) = win 0x14dda0;
+	virtual TodoReturn setupCustomSprites(gd::string);
 	virtual TodoReturn addMainSpriteToParent(bool);
 	virtual TodoReturn resetObject();
 	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
@@ -8648,7 +8648,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void onOwnerDelete(cocos2d::CCObject* sender) = win 0x2561d0;
 	void onPlay(cocos2d::CCObject* sender) = win 0x255410;
 	void onPlayReplay(cocos2d::CCObject* sender);
-	void onRate(cocos2d::CCObject* sender) = win 0x256350;
+	void onRate(cocos2d::CCObject* sender);
 	void onRateDemon(cocos2d::CCObject* sender);
 	void onRateStars(cocos2d::CCObject* sender) = win 0x256350;
 	void onRateStarsMod(cocos2d::CCObject* sender);
@@ -10658,7 +10658,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn storeCheckpoint(CheckpointObject*) = win 0x2e7eb0;
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleBGEffectVisibility(bool);
-	TodoReturn toggleGhostEffect(int) = win 0x2d74c0;
+	TodoReturn toggleGhostEffect(int);
 	TodoReturn togglePracticeMode(bool);
 	TodoReturn tryStartRecord();
 	TodoReturn updateAttempts() = win 0x2ea550;
