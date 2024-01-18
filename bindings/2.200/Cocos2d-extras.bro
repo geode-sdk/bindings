@@ -2024,51 +2024,6 @@ class cocos2d::CCLiquid {
 	virtual void update(float);
 }
 
-[[link(win, android)]]
-class cocos2d::CCMenu {
-	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
-	static cocos2d::CCMenu* create();
-	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
-	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
-	// static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
-
-	bool initWithArray(cocos2d::CCArray*);
-
-	void setHandlerPriority(int);
-
-	// CCMenu(cocos2d::CCMenu const&);
-	// CCMenu();
-	void alignItemsHorizontally();
-	void alignItemsHorizontallyWithPadding(float);
-	// void alignItemsInColumns(unsigned int, ...);
-	// void alignItemsInColumns(unsigned int, char*);
-	void alignItemsInColumnsWithArray(cocos2d::CCArray*);
-	// void alignItemsInRows(unsigned int, ...);
-	// void alignItemsInRows(unsigned int, char*);
-	void alignItemsInRowsWithArray(cocos2d::CCArray*);
-	void alignItemsVertically();
-	void alignItemsVerticallyWithPadding(float);
-	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*);
-	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
-
-	virtual bool init();
-	virtual void addChild(cocos2d::CCNode*);
-	virtual void addChild(cocos2d::CCNode*, int);
-	virtual void addChild(cocos2d::CCNode*, int, int);
-	virtual void removeChild(cocos2d::CCNode*, bool);
-	virtual void onExit();
-	virtual void registerWithTouchDispatcher();
-	virtual bool isEnabled();
-	virtual void setEnabled(bool);
-
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-
-	virtual void setOpacityModifyRGB(bool);
-	virtual bool isOpacityModifyRGB();
-}
 
 [[link(win, android)]]
 class cocos2d::CCMenuItem {
