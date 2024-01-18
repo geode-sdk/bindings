@@ -981,8 +981,8 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 
 	virtual void visit() = win 0x28600;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x280d0;
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x281c0;
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x28410;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x28410;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x281c0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x283e0;
 	virtual void registerWithTouchDispatcher() = win 0x280a0;
 	virtual TodoReturn preVisitWithClippingRect(cocos2d::CCRect) = win 0x286d0;
