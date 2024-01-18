@@ -3455,7 +3455,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int) = win 0x350e0;
 	TodoReturn playEffect(gd::string, float, float, float);
-	TodoReturn playEffect(gd::string);
+	void playEffect(gd::string) = win 0x35590;
 	TodoReturn playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int) = win 0x357b0;
 	TodoReturn playEffectAsync(gd::string);
 	TodoReturn playMusic(gd::string, bool, float, int);
@@ -11132,7 +11132,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn showCompletedLevel();
 	TodoReturn showSecretLevel();
 	TodoReturn updateMessageLabel(gd::string);
-	void updateSearchLabel(char const*);
+	void updateSearchLabel(char const*) = win 0x3084b0;
 
 	virtual bool init() = win 0x3056d0;
 	virtual void onExit();
