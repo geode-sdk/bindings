@@ -126,7 +126,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 	static AchievementBar* create(char const*, char const*, char const*, bool) = win 0x59720;
 
 	bool init(char const*, char const*, char const*, bool) = win 0x59800;
-	TodoReturn show();
+	TodoReturn show() = win 0x5a610;
 
 	virtual void setOpacity(unsigned char);
 }
@@ -165,11 +165,11 @@ class AchievementManager : cocos2d::CCNode {
 	bool isAchievementEarned(char const*);
 	TodoReturn limitForAchievement(gd::string);
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
-	TodoReturn notifyAchievementWithID(char const*);
+	TodoReturn notifyAchievementWithID(char const*) = win 0x1b550;
 	TodoReturn percentageForCount(int, int);
-	TodoReturn percentForAchievement(char const*);
-	TodoReturn reportAchievementWithID(char const*, int, bool);
-	TodoReturn reportPlatformAchievementWithID(char const*, int);
+	TodoReturn percentForAchievement(char const*) = win 0x1ab50;
+	TodoReturn reportAchievementWithID(char const*, int, bool) = win 0x1b7e0;
+	TodoReturn reportPlatformAchievementWithID(char const*, int) = win 0x1b8f0;
 	TodoReturn resetAchievement(char const*);
 	TodoReturn resetAchievements();
 	TodoReturn setup();
@@ -186,7 +186,7 @@ class AchievementNotifier : cocos2d::CCNode {
 
 	TodoReturn achievementDisplayFinished();
 	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
-	TodoReturn showNextAchievement();
+	TodoReturn showNextAchievement() = win 0x1c0a0;
 	TodoReturn willSwitchToScene(cocos2d::CCScene*) = win 0x1c200;
 
 	virtual bool init();
@@ -4210,8 +4210,8 @@ class GameManager : GManager {
 	TodoReturn clearGJLog();
 	cocos2d::ccColor3B colorForIdx(int) = win 0x126090;
 	TodoReturn colorForPos(int);
-	TodoReturn colorKey(int, UnlockType);
-	TodoReturn completedAchievement(gd::string);
+	TodoReturn colorKey(int, UnlockType) = win 0x122350;
+	TodoReturn completedAchievement(gd::string) = win 0x122b50;
 	TodoReturn countForType(IconType);
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn defaultYOffsetForBG2(int);
@@ -4251,7 +4251,7 @@ class GameManager : GManager {
 	TodoReturn getUnlockForAchievement(gd::string, int&, UnlockType&) = win 0x122690;
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
-	TodoReturn iconKey(int, IconType);
+	TodoReturn iconKey(int, IconType) = win 0x121d30;
 	UnlockType iconTypeToUnlockType(IconType) = win 0x122090;
 	bool isColorUnlocked(int, UnlockType) = win 0x122490;
 	bool isIconLoaded(int, int);
@@ -4299,7 +4299,7 @@ class GameManager : GManager {
 	TodoReturn removeCustomObject(int);
 	TodoReturn removeIconDelegate(int) = win 0x127370;
 	TodoReturn reorderKey(int, bool);
-	TodoReturn reportAchievementWithID(char const*, int, bool) = win 0x122b50;
+	TodoReturn reportAchievementWithID(char const*, int, bool) = win 0x1234a0;
 	TodoReturn reportPercentageForLevel(int, int, bool) = win 0x122d50;
 	TodoReturn resetAchievement(gd::string);
 	TodoReturn resetAdTimer();
@@ -4338,10 +4338,10 @@ class GameManager : GManager {
 	TodoReturn unloadBackground();
 	TodoReturn unloadIcon(int, int, int);
 	TodoReturn unloadIcons(int) = win 0x127870;
-	TodoReturn unlockColor(int, UnlockType);
+	TodoReturn unlockColor(int, UnlockType) = win 0x122560;
 	TodoReturn unlockedPremium();
-	TodoReturn unlockIcon(int, IconType);
-	TodoReturn unlockTypeToIconType(int);
+	TodoReturn unlockIcon(int, IconType) = win 0x122220;
+	TodoReturn unlockTypeToIconType(int) = win 0x122190;
 	TodoReturn updateCustomFPS() = win 0x12ec60;
 	TodoReturn updateMusic();
 	TodoReturn verifyAchievementUnlocks();
@@ -4984,8 +4984,8 @@ class GameStatsManager : cocos2d::CCNode {
 	static GameStatsManager* sharedState() = win 0x167d90;
 
 	TodoReturn accountIDForIcon(int, UnlockType);
-	TodoReturn addSimpleSpecialChestReward(gd::string, UnlockType, int, bool);
-	TodoReturn addSpecialRewardDescription(gd::string, gd::string);
+	TodoReturn addSimpleSpecialChestReward(gd::string, UnlockType, int, bool) = win 0x179bd0;
+	TodoReturn addSpecialRewardDescription(gd::string, gd::string) = win 0x179e00;
 	TodoReturn addStoreItem(int, int, int, int, ShopType) = win 0x169f40;
 	TodoReturn areChallengesLoaded();
 	TodoReturn areRewardsLoaded();
@@ -5006,14 +5006,14 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn completedStarLevel(GJGameLevel*) = win 0x1701a0;
 	TodoReturn countSecretChests(GJRewardType);
 	TodoReturn countUnlockedSecretChests(GJRewardType);
-	TodoReturn createSecretChestItems();
-	TodoReturn createSecretChestRewards();
-	TodoReturn createSpecialChestItems();
-	TodoReturn createStoreItems();
+	TodoReturn createSecretChestItems() = win 0x17a620;
+	TodoReturn createSecretChestRewards() = win 0x17aab0;
+	TodoReturn createSpecialChestItems() = win 0x176940;
+	TodoReturn createStoreItems() = win 0x168680;
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn encodeDataTo(DS_Dictionary*) = win 0x180630;
 	TodoReturn firstSetup();
-	TodoReturn generateItemUnlockableData();
+	TodoReturn generateItemUnlockableData() = win 0x1680a0;
 	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x171eb0;
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*) = win 0x1723f0;
 	TodoReturn getBaseCurrency(int, bool, int);
@@ -5027,8 +5027,8 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getCurrencyKey(GJGameLevel*) = win 0x171c70;
 	TodoReturn getDailyLevelKey(int) = win 0x173d60;
 	TodoReturn getDemonLevelKey(GJGameLevel*) = win 0x16fcb0;
-	TodoReturn getGauntletRewardKey(int);
-	TodoReturn getItemKey(int, int);
+	TodoReturn getGauntletRewardKey(int) = win 0x179d00;
+	TodoReturn getItemKey(int, int) = win 0x1729f0;
 	TodoReturn getItemUnlockState(int, UnlockType);
 	TodoReturn getItemUnlockStateLite(int, UnlockType);
 	gd::string getLevelKey(GJGameLevel*) = win 0x16fb10;
@@ -5036,16 +5036,16 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getListRewardKey(GJLevelList*) = win 0x173b70;
 	TodoReturn getMapPackKey(int);
 	TodoReturn getNextVideoAdReward();
-	TodoReturn getPathRewardKey(int);
-	TodoReturn getQueuedChallenge(int);
+	TodoReturn getPathRewardKey(int) = win 0x17a3d0;
+	TodoReturn getQueuedChallenge(int) = win 0x1734d0;
 	TodoReturn getRewardForSecretChest(int);
 	TodoReturn getRewardForSpecialChest(gd::string);
 	TodoReturn getRewardItem(GJRewardType);
 	TodoReturn getRewardKey(GJRewardType, int);
-	TodoReturn getSecondaryQueuedChallenge(int);
+	TodoReturn getSecondaryQueuedChallenge(int) = win 0x1735a0;
 	TodoReturn getSecretChestForItem(int, UnlockType);
 	TodoReturn getSecretCoinKey(char const*);
-	TodoReturn getSpecialChestKeyForItem(int, UnlockType);
+	TodoReturn getSpecialChestKeyForItem(int, UnlockType) = win 0x179c70;
 	TodoReturn getSpecialRewardDescription(gd::string, bool);
 	TodoReturn getSpecialUnlockDescription(int, UnlockType, bool);
 	TodoReturn getStarLevelKey(GJGameLevel*) = win 0x16fd10;
@@ -5058,7 +5058,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn hasClaimedListReward(GJLevelList*) = win 0x173bf0;
 	TodoReturn hasCompletedChallenge(GJChallengeItem*);
 	TodoReturn hasCompletedDailyLevel(int) = win 0x173de0;
-	TodoReturn hasCompletedDemonLevel(GJGameLevel*);
+	TodoReturn hasCompletedDemonLevel(GJGameLevel*) = win 0x16fe00;
 	TodoReturn hasCompletedGauntletLevel(int);
 	bool hasCompletedLevel(GJGameLevel* level) {
 		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
@@ -5080,7 +5080,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool isItemUnlocked(UnlockType, int) = win 0x176570;
 	bool isPathChestUnlocked(int) = win 0x17a4d0;
 	bool isPathUnlocked(StatKey);
-	bool isSecretChestUnlocked(int);
+	bool isSecretChestUnlocked(int) = win 0x17a7c0;
 	bool isSecretCoin(gd::string);
 	bool isSecretCoinValid(gd::string);
 	bool isSpecialChestLiteUnlockable(gd::string);
@@ -5090,17 +5090,17 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn logCoins();
 	TodoReturn markLevelAsCompletedAndClaimed(GJGameLevel*);
 	TodoReturn postLoadGameStats() = win 0x181810;
-	TodoReturn preProcessReward(GJRewardItem*);
-	TodoReturn preSaveGameStats();
+	TodoReturn preProcessReward(GJRewardItem*) = win 0x172c80;
+	TodoReturn preSaveGameStats() = win 0x1819d0;
 	TodoReturn processChallengeQueue(int) = win 0x173b10;
 	TodoReturn purchaseItem(int) = win 0x16a0f0;
 	TodoReturn recountSpecialStats();
 	TodoReturn recountUserCoins(bool);
-	TodoReturn registerRewardsFromItem(GJRewardItem*);
-	TodoReturn removeChallenge(int);
+	TodoReturn registerRewardsFromItem(GJRewardItem*) = win 0x17fee0;
+	TodoReturn removeChallenge(int) = win 0x172ff0;
 	TodoReturn removeErrorFromSpecialChests();
-	TodoReturn removeQueuedChallenge(int);
-	TodoReturn removeQueuedSecondaryChallenge(int);
+	TodoReturn removeQueuedChallenge(int) = win 0x173190;
+	TodoReturn removeQueuedSecondaryChallenge(int) = win 0x173330;
 	TodoReturn resetChallengeTimer();
 	TodoReturn resetPreSync();
 	TodoReturn resetSpecialStatAchievements();
@@ -5110,14 +5110,14 @@ class GameStatsManager : cocos2d::CCNode {
 	void setStarsForMapPack(int, int);
 	void setStat(char const*, int) = win 0x16af10;
 	void setStatIfHigher(char const*, int);
-	TodoReturn setupIconCredits();
+	TodoReturn setupIconCredits() = win 0x15e8d0;
 	TodoReturn shopTypeForItemID(int);
 	TodoReturn shouldAwardSecretKey();
 	TodoReturn starsForMapPack(int);
-	TodoReturn storeChallenge(int, GJChallengeItem*);
+	TodoReturn storeChallenge(int, GJChallengeItem*) = win 0x172f20;
 	TodoReturn storeChallengeTime(int);
 	TodoReturn storePendingUserCoin(char const*);
-	TodoReturn storeQueuedChallenge(int, GJChallengeItem*);
+	TodoReturn storeQueuedChallenge(int, GJChallengeItem*) = win 0x1730c0;
 	TodoReturn storeRewardState(GJRewardType, int, int, gd::string);
 	TodoReturn storeSecondaryQueuedChallenge(int, GJChallengeItem*);
 	TodoReturn storeSecretCoin(char const*);
@@ -5134,7 +5134,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn usernameForAccountID(int) = win 0x15e830;
 	TodoReturn verifyUserCoins();
 
-	virtual bool init();
+	virtual bool init() = win 0x168000;
 
 	bool m_unkBool;
 	bool m_unkBool2;
@@ -6993,7 +6993,7 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 	static GJPathsLayer* create() = win 0x1fcb20;
 
 	TodoReturn darkenButtons(bool);
-	TodoReturn nameForPath(int);
+	TodoReturn nameForPath(int) = win 0x1fc9a0;
 	void onClose(cocos2d::CCObject* sender);
 	void onPath(cocos2d::CCObject* sender) = win 0x1fd0a0;
 
@@ -7101,16 +7101,16 @@ class GJRewardItem : cocos2d::CCObject {
 	static GJRewardItem* create();
 	static GJRewardItem* create(int, int, gd::string);
 
-	TodoReturn createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int);
+	TodoReturn createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = win 0x181cd0;
 	TodoReturn createWithCoder(DS_Dictionary*) = win 0x1826b0;
 	TodoReturn createWithObject(GJRewardType, GJRewardObject*);
-	TodoReturn createWithObjects(GJRewardType, cocos2d::CCArray*);
+	TodoReturn createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x181e10;
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn getNextShardType(SpecialRewardItem);
 	TodoReturn getRandomNonMaxShardType();
 	TodoReturn getRandomShardType();
 	TodoReturn getRewardCount(SpecialRewardItem);
-	TodoReturn getRewardObjectForType(SpecialRewardItem);
+	TodoReturn getRewardObjectForType(SpecialRewardItem) = win 0x1825b0;
 	bool init(int, int, gd::string);
 	bool isShardType(SpecialRewardItem);
 	TodoReturn rewardItemToStat(SpecialRewardItem);
@@ -7129,8 +7129,8 @@ class GJRewardItem : cocos2d::CCObject {
 class GJRewardObject : cocos2d::CCObject {
 	// virtual ~GJRewardObject();
 
-	static GJRewardObject* create();
-	static GJRewardObject* create(SpecialRewardItem, int, int);
+	static GJRewardObject* create() = win 0x181ba0;
+	static GJRewardObject* create(SpecialRewardItem, int, int) = win 0x181c30;
 
 	TodoReturn createItemUnlock(UnlockType, int);
 	TodoReturn createWithCoder(DS_Dictionary*) = win 0x181d60;
@@ -7542,10 +7542,10 @@ class GJSpriteColor {
 class GJStoreItem : cocos2d::CCNode {
 	// virtual ~GJStoreItem();
 
-	static GJStoreItem* create(int, int, int, int, ShopType);
+	static GJStoreItem* create(int, int, int, int, ShopType) = win 0x182d20;
 
-	TodoReturn getCurrencyKey();
-	bool init(int, int, int, int, ShopType);
+	TodoReturn getCurrencyKey() = win 0x182ed0;
+	bool init(int, int, int, int, ShopType) = win 0x182dd0;
 }
 
 [[link(android)]]
@@ -11197,7 +11197,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn showDialog(int);
 	TodoReturn showFirstDialog();
 	TodoReturn updateMessageLabel(gd::string) = win 0x308770;
-	TodoReturn updateSearchLabel(char const*) = win 0x3084b0;
+	void updateSearchLabel(char const*) = win 0x3084b0;
 
 	virtual bool init() = win 0x30e5a0;
 	virtual void onExit();
