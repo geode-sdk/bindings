@@ -506,6 +506,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean importFromBroma;
         boolean exportToBroma;
         boolean setOptcall;
+        Class<?> mapClass = null;
         Object valuesMapObject = null;
         HashMap<String, Object> resultMap = null;
     
@@ -513,7 +514,7 @@ public class SyncBromaScript extends GhidraScript {
 
         private void initAsk() {
             try {
-                var mapClass = Class.forName("GhidraValuesMap");
+                mapClass = Class.forName("ghidra.features.base.values.GhidraValuesMap");
                 valuesMapObject = mapClass.getConstructor().newInstance();
             }
             catch(Exception ignore) {
@@ -523,7 +524,6 @@ public class SyncBromaScript extends GhidraScript {
 
         private void defineOrAskChoice(SyncBromaScript script, String title, String value, List<String> options) throws Exception {
             if (this.valuesMapObject != null) {
-                var mapClass = Class.forName("GhidraValuesMap");
                 var defineChoice = mapClass.getMethod("defineChoice", String.class, String.class, String[].class);
                 defineChoice.invoke(
                     this.valuesMapObject,
@@ -540,7 +540,6 @@ public class SyncBromaScript extends GhidraScript {
 
         private void defineOrAskBoolean(SyncBromaScript script, String title, boolean value) throws Exception {
             if (this.valuesMapObject != null) {
-                var mapClass = Class.forName("GhidraValuesMap");
                 var defineBoolean = mapClass.getMethod("defineBoolean", String.class, boolean.class);
                 defineBoolean.invoke(this.valuesMapObject, title, value);
             }
@@ -556,7 +555,7 @@ public class SyncBromaScript extends GhidraScript {
             if (this.valuesMapObject != null) {
                 var askValues = script.getClass().getMethod(
                     "askValues",
-                    String.class, String.class, Class.forName("GhidraValuesMap")
+                    String.class, String.class, mapClass
                 );
                 askValues.invoke(
                     script,
@@ -574,7 +573,6 @@ public class SyncBromaScript extends GhidraScript {
 
         private String getFinalChoice(String title) throws Exception {
             if (this.valuesMapObject != null) {
-                var mapClass = Class.forName("GhidraValuesMap");
                 var getChoice = mapClass.getMethod("getChoice", String.class);
                 return (String)getChoice.invoke(this.valuesMapObject, title);
             }
@@ -585,7 +583,6 @@ public class SyncBromaScript extends GhidraScript {
 
         private boolean getFinalBoolean(String title) throws Exception {
             if (this.valuesMapObject != null) {
-                var mapClass = Class.forName("GhidraValuesMap");
                 var getBoolean = mapClass.getMethod("getBoolean", String.class);
                 return (Boolean)getBoolean.invoke(this.valuesMapObject, title);
             }
