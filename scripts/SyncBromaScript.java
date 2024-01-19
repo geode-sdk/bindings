@@ -9,7 +9,9 @@ import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,7 +26,6 @@ import docking.DialogComponentProvider;
 import docking.widgets.dialogs.InputWithChoicesDialog;
 import docking.widgets.label.GHtmlLabel;
 import ghidra.app.script.GhidraScript;
-import ghidra.features.base.values.GhidraValuesMap;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.data.AbstractFloatDataType;
 import ghidra.program.model.data.CategoryPath;
@@ -505,8 +506,93 @@ public class SyncBromaScript extends GhidraScript {
         boolean importFromBroma;
         boolean exportToBroma;
         boolean setOptcall;
+        Object valuesMapObject = null;
+        HashMap<String, Object> resultMap = null;
     
         private InputParameters() {}
+
+        private void initAsk() {
+            try {
+                var mapClass = Class.forName("GhidraValuesMap");
+                valuesMapObject = mapClass.getConstructor().newInstance();
+            }
+            catch(Exception ignore) {
+                resultMap = new HashMap<String,Object>();
+            }
+        }
+
+        private void defineOrAskChoice(SyncBromaScript script, String title, String value, List<String> options) throws Exception {
+            if (this.valuesMapObject != null) {
+                var mapClass = Class.forName("GhidraValuesMap");
+                var defineChoice = mapClass.getMethod("defineChoice", String.class, String.class, String[].class);
+                defineChoice.invoke(
+                    this.valuesMapObject,
+                    title, value, options.toArray(String[]::new)
+                );
+            }
+            else {
+                resultMap.put(title, script.askChoice(    
+                    "Input values to SyncBromaScript",
+                    title, options, value
+                ));
+            }
+        }
+
+        private void defineOrAskBoolean(SyncBromaScript script, String title, boolean value) throws Exception {
+            if (this.valuesMapObject != null) {
+                var mapClass = Class.forName("GhidraValuesMap");
+                var defineBoolean = mapClass.getMethod("defineBoolean", String.class, boolean.class);
+                defineBoolean.invoke(this.valuesMapObject, title, value);
+            }
+            else {
+                resultMap.put(title, script.askYesNo(
+                    "Input values to SyncBromaScript",
+                    "Should the script " + title + "?"
+                ));
+            }
+        }
+
+        private void askAllIfNeeded(SyncBromaScript script) throws Exception {
+            if (this.valuesMapObject != null) {
+                var askValues = script.getClass().getMethod(
+                    "askValues",
+                    String.class, String.class, Class.forName("GhidraValuesMap")
+                );
+                askValues.invoke(
+                    script,
+                    "Sync Broma",
+                    "Import addresses & signatures from Broma, and add new ones " + 
+                    "from the current project to it. Doesn't handle members or generating " +
+                    "vtables yet, but support is planned in the future!\n\n" + 
+                    "Note that it is recommended to save your Ghidra project before " + 
+                    "running the script, as if it messes something up you can safely " + 
+                    "undo the mistake.",
+                    this.valuesMapObject
+                );
+            }
+        }
+
+        private String getFinalChoice(String title) throws Exception {
+            if (this.valuesMapObject != null) {
+                var mapClass = Class.forName("GhidraValuesMap");
+                var getChoice = mapClass.getMethod("getChoice", String.class);
+                return (String)getChoice.invoke(this.valuesMapObject, title);
+            }
+            else {
+                return (String)this.resultMap.get(title);
+            }
+        }
+
+        private boolean getFinalBoolean(String title) throws Exception {
+            if (this.valuesMapObject != null) {
+                var mapClass = Class.forName("GhidraValuesMap");
+                var getBoolean = mapClass.getMethod("getBoolean", String.class);
+                return (Boolean)getBoolean.invoke(this.valuesMapObject, title);
+            }
+            else {
+                return (Boolean)this.resultMap.get(title);
+            }
+        }
     
         /**
          * Ask the user for input parameters
@@ -514,7 +600,7 @@ public class SyncBromaScript extends GhidraScript {
          * @param bindingsDir Bindings directory
          * @returns InputParameters struct with the responses
          */
-        public void ask(GhidraScript script, Path bindingsDir) throws IOException, CancelledException {
+        public void ask(SyncBromaScript script, Path bindingsDir) throws Exception {
             // Get all available bindings versions from the bindings directory
             List<String> versions = new ArrayList<String>();
             for (var file : Files.list(bindingsDir).toArray(Path[]::new)) {
@@ -524,43 +610,32 @@ public class SyncBromaScript extends GhidraScript {
             }
     
             var bromaFiles = List.of("Cocos2d.bro", "GeometryDash.bro");
-    
+
+            this.initAsk();
+
             // Get the target platform and version from the user
-            var map = new GhidraValuesMap();
-            map.defineChoice(
+            this.defineOrAskChoice(
+                script,
                 "Target platform",
                 null,
-                Arrays.asList(Platform.values()).stream()
-                    .map(p -> p.getLongName())
-                    .toArray(String[]::new)
+                Arrays.asList(Platform.values()).stream().map(p -> p.getLongName()).toList()
             );
-            map.defineChoice("Broma file (Windows-only)", null, bromaFiles.toArray(String[]::new));
-            map.defineChoice(
-                "Game version",
-                versions.get(versions.size() - 1),
-                versions.toArray(String[]::new)
-            );
-            map.defineBoolean("Import from Broma", true);
-            map.defineBoolean("Export to Broma", true);
-            map.defineBoolean("Set optcall & membercall", true);
-            script.askValues(
-                "Sync Broma",
-                "Import addresses & signatures from Broma, and add new ones " + 
-                "from the current project to it. Doesn't handle members or generating " +
-                "vtables yet, but support is planned in the future!\n\n" + 
-                "Note that it is recommended to save your Ghidra project before " + 
-                "running the script, as if it messes something up you can safely " + 
-                "undo the mistake.",
-                map
-            );
-            this.platform = Platform.parse(map.getChoice("Target platform"));
-            this.gameVersion = map.getChoice("Game version");
-            this.importFromBroma = map.getBoolean("Import from Broma");
-            this.exportToBroma = map.getBoolean("Export to Broma");
-            this.setOptcall = map.getBoolean("Set optcall & membercall");
+            this.defineOrAskChoice(script, "Broma file (Windows-only)", null, bromaFiles);
+            this.defineOrAskChoice(script, "Game version", versions.get(versions.size() - 1), versions);
+            this.defineOrAskBoolean(script, "Import from Broma", true);
+            this.defineOrAskBoolean(script, "Export to Broma", true);
+            this.defineOrAskBoolean(script, "Set optcall & membercall", true);
+
+            this.askAllIfNeeded(script);
+
+            this.platform = Platform.parse(this.getFinalChoice("Target platform"));
+            this.gameVersion = this.getFinalChoice("Game version");
+            this.importFromBroma = this.getFinalBoolean("Import from Broma");
+            this.exportToBroma = this.getFinalBoolean("Export to Broma");
+            this.setOptcall = this.getFinalBoolean("Set optcall & membercall");
     
             if (this.platform == Platform.WINDOWS) {
-                bromaFiles = List.of(map.getChoice("Broma file (Windows-only)"));
+                bromaFiles = List.of(this.getFinalChoice("Broma file (Windows-only)"));
             }
             this.bromaFiles = bromaFiles.stream()
                 .map(f -> Paths.get(bindingsDir.toString(), this.gameVersion, f))
