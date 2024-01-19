@@ -551,23 +551,23 @@ public class SyncBromaScript extends GhidraScript {
             }
         }
 
-        private void askAllIfNeeded(SyncBromaScript script) throws Exception {
+        private void showIntroOrAskAll(SyncBromaScript script) throws Exception {
+            var msg =
+                "Import addresses & signatures from Broma, and add new ones " + 
+                "from the current project to it. Doesn't handle members or generating " +
+                "vtables yet, but support is planned in the future!\n\n" + 
+                "Note that it is recommended to save your Ghidra project before " + 
+                "running the script, as if it messes something up you can safely " + 
+                "undo the mistake.";
             if (this.valuesMapObject != null) {
                 var askValues = script.getClass().getMethod(
                     "askValues",
                     String.class, String.class, mapClass
                 );
-                askValues.invoke(
-                    script,
-                    "Sync Broma",
-                    "Import addresses & signatures from Broma, and add new ones " + 
-                    "from the current project to it. Doesn't handle members or generating " +
-                    "vtables yet, but support is planned in the future!\n\n" + 
-                    "Note that it is recommended to save your Ghidra project before " + 
-                    "running the script, as if it messes something up you can safely " + 
-                    "undo the mistake.",
-                    this.valuesMapObject
-                );
+                askValues.invoke(script, "Sync Broma", msg, this.valuesMapObject);
+            }
+            else {
+                script.popup(msg);
             }
         }
 
@@ -609,6 +609,7 @@ public class SyncBromaScript extends GhidraScript {
             var bromaFiles = List.of("Cocos2d.bro", "GeometryDash.bro");
 
             this.initAsk();
+            this.showIntroOrAskAll(script);
 
             // Get the target platform and version from the user
             this.defineOrAskChoice(
@@ -623,7 +624,7 @@ public class SyncBromaScript extends GhidraScript {
             this.defineOrAskBoolean(script, "Export to Broma", true);
             this.defineOrAskBoolean(script, "Set optcall & membercall", true);
 
-            this.askAllIfNeeded(script);
+            this.showIntroOrAskAll(script);
 
             this.platform = Platform.parse(this.getFinalChoice("Target platform"));
             this.gameVersion = this.getFinalChoice("Game version");
