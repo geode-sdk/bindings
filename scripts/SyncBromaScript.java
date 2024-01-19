@@ -567,7 +567,11 @@ public class SyncBromaScript extends GhidraScript {
                 askValues.invoke(script, "Sync Broma", msg, this.valuesMapObject);
             }
             else {
-                script.popup(msg);
+                script.popup(
+                    msg + 
+                    "\n\nNote: It is recommended to run this script " + 
+                    "under Ghidra 11 so you get all of these inputs in one dialog :-)"
+                );
             }
         }
 
