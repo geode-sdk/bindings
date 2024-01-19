@@ -9317,7 +9317,7 @@ class LocalLevelManager : GManager {
 	TodoReturn getAllLevelsInDict();
 	TodoReturn getAllLevelsWithName(gd::string);
 	TodoReturn getCreatedLevels(int);
-	TodoReturn getCreatedLists(int);
+	TodoReturn getCreatedLists(int) = win 0x2784f0;
 	TodoReturn getLevelsInNameGroups();
 	TodoReturn getMainLevelString(int) = win 0x277a90;
 	TodoReturn markLevelsAsUnmodified();
