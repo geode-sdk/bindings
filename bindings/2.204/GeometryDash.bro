@@ -7670,7 +7670,7 @@ class GJUserMessage : cocos2d::CCNode {
 class GJUserScore : cocos2d::CCNode {
 	// virtual ~GJUserScore();
 
-	static GJUserScore* create() = win 0x117ea0;
+	static GJUserScore* create() = win 0x118ea0;
 	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x117ea0;
 
 	bool isCurrentUser() = win 0x118fa0;
@@ -7973,7 +7973,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	TodoReturn setupLevelInfo();
 	TodoReturn toggleCommentMode(cocos2d::CCObject*);
 	TodoReturn toggleExtendedMode(cocos2d::CCObject*);
-	TodoReturn toggleSmallCommentMode(cocos2d::CCObject*);
+	TodoReturn toggleSmallCommentMode(cocos2d::CCObject*) = win 0x22bc10;
 	TodoReturn updateCommentModeButtons();
 	TodoReturn updateLevelsLabel();
 
