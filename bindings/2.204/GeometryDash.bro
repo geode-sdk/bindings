@@ -11482,22 +11482,31 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 	static SetIDPopup* create(int, int, int, gd::string, gd::string, bool, int, float, bool, bool) = win 0x20f840;
 
 	bool init(int, int, int, gd::string, gd::string, bool, int, float, bool, bool) = win 0x20f980;
-	void onCancel(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onItemIDArrow(cocos2d::CCObject* sender);
-	void onResetValue(cocos2d::CCObject* sender);
+	void onCancel(cocos2d::CCObject* sender) = win 0x210410;
+	void onClose(cocos2d::CCObject* sender) = win 0x210430;
+	void onItemIDArrow(cocos2d::CCObject* sender) = win 0x2101e0;
+	void onResetValue(cocos2d::CCObject* sender) = win 0x210240;
 	TodoReturn updateTextInputLabel() = win 0x2102f0;
 
 	virtual void keyBackClicked();
-	virtual void show();
+	virtual void show() = win 0x2103a0;
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn valueChanged();
+
+	CCTextInputNode* m_inputNode;
+	int m_value;
+	bool m_unkBool;
+	bool m_cancelled;
+	int m_minimum;
+	int m_maximum;
+	int m_default;
+	SetIDPopupDelegate* m_delegate;
 }
 
 [[link(android)]]
 class SetIDPopupDelegate {
-	virtual void setIDPopupClosed(SetIDPopup*, int);
+	virtual void setIDPopupClosed(SetIDPopup*, int) {}
 }
 
 [[link(android)]]

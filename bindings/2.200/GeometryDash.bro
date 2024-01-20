@@ -2609,6 +2609,15 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn valueChanged();
+
+	CCTextInputNode* m_inputNode;
+	int m_value;
+	bool m_unkBool;
+	bool m_cancelled;
+	int m_minimum;
+	int m_maximum;
+	int m_default;
+	SetIDPopupDelegate* m_delegate;
 }
 
 [[link(android)]]
