@@ -963,3 +963,17 @@ class cocos2d::CCMenu {
 	virtual void setOpacityModifyRGB(bool);
 	virtual bool isOpacityModifyRGB();
 }
+
+[[link(win, android)]]
+class cocos2d::CCTransitionFade {
+	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*);
+	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
+
+	// CCTransitionFade(cocos2d::CCTransitionFade const&);
+	// CCTransitionFade();
+
+	virtual void onEnter();
+	virtual void onExit();
+	virtual bool initWithDuration(float, cocos2d::CCScene*);
+	virtual bool initWithDuration(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
+}
