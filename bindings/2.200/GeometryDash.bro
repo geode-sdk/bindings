@@ -4536,7 +4536,7 @@ class GJLevelList : cocos2d::CCNode {
 	~GJLevelList();
 
 	TodoReturn getListLevelsArray(cocos2d::CCArray*);
-	TodoReturn getUnpackedDescription();
+	gd::string getUnpackedDescription();
 
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn totalLevels();
