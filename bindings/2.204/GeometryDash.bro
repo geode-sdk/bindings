@@ -10299,7 +10299,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn addAllParticles() = win 0x2c3b10;
 	TodoReturn addToTouchedRings(RingObject*);
 	TodoReturn addToYVelocity(double, int);
-	TodoReturn animatePlatformerJump(float);
+	TodoReturn animatePlatformerJump(float) = win 0x2c7820;
 	TodoReturn boostPlayer(float) = win 0x2d8820;
 	TodoReturn bumpPlayer(float, int, bool, GameObject*) = win 0x2d80b0;
 	TodoReturn buttonDown(PlayerButton);
@@ -10561,8 +10561,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCPoint m_position; //0x81c
 	PAD = win 0x4c;
 	double m_platformerXVelocity; //0x870
-	PAD = win 0x70;
-	bool m_isPlatformer; //0x8e8
+	PAD = win 0xA8;
+	bool m_isPlatformer; //0x8e8 actually its 0x920
 	PAD = win 0x13;
 	float m_gravityMod; //0x8fc
 	PAD = win 0x80;
