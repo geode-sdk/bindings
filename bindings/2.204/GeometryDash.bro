@@ -2323,37 +2323,37 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 
 	static EditLevelLayer* create(GJGameLevel*) = win 0x9c840;
 
-	TodoReturn closeTextInputs();
-	TodoReturn confirmClone(cocos2d::CCObject*);
-	TodoReturn confirmDelete(cocos2d::CCObject*);
-	TodoReturn confirmMoveToTop(cocos2d::CCObject*);
+	TodoReturn closeTextInputs() = win 0x9e520;
+	void confirmClone(cocos2d::CCObject*) = win 0x9f560;
+	void confirmDelete(cocos2d::CCObject*) = win 0x9f0e0;
+	void confirmMoveToTop(cocos2d::CCObject*) = win 0x9f5e0;
 	bool init(GJGameLevel*) = win 0x9c8e0;
-	void onBack(cocos2d::CCObject* sender);
-	TodoReturn onClone();
-	TodoReturn onDelete();
-	void onEdit(cocos2d::CCObject* sender);
-	void onGuidelines(cocos2d::CCObject* sender);
-	void onHelp(cocos2d::CCObject* sender);
-	void onLevelInfo(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x9f7a0;
+	void onClone() = win 0x9f440;
+	void onDelete();
+	void onEdit(cocos2d::CCObject* sender) = win 0x9ed00;
+	void onGuidelines(cocos2d::CCObject* sender) = win 0x9da70;
+	void onHelp(cocos2d::CCObject* sender) = win 0x9f3c0;
+	void onLevelInfo(cocos2d::CCObject* sender) = win 0x9db40;
 	void onLevelLeaderboard(cocos2d::CCObject* sender);
 	void onLowDetailMode(cocos2d::CCObject* sender);
-	TodoReturn onMoveToTop();
-	void onPlay(cocos2d::CCObject* sender);
-	void onSetFolder(cocos2d::CCObject* sender);
+	void onMoveToTop() = win 0x9f740;
+	void onPlay(cocos2d::CCObject* sender) = win 0x9ea10;
+	void onSetFolder(cocos2d::CCObject* sender) = win 0x9f660;
 	void onShare(cocos2d::CCObject* sender) = win 0x9ee00;
 	void onTest(cocos2d::CCObject* sender);
-	void onUpdateDescription(cocos2d::CCObject* sender);
+	void onUpdateDescription(cocos2d::CCObject* sender) = win 0x9ec80;
 	TodoReturn playStep2();
 	TodoReturn playStep3();
 	TodoReturn scene(GJGameLevel*);
 	TodoReturn setupLevelInfo();
 	TodoReturn updateDescText(char const*);
-	TodoReturn verifyLevelName();
+	TodoReturn verifyLevelName() = win 0x9f8f0;
 
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual void setIDPopupClosed(SetIDPopup*, int);
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x9f160;
 	virtual TodoReturn textInputOpened(CCTextInputNode*);
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
@@ -3716,7 +3716,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn deleteAccountComment(int, int);
 	TodoReturn deleteComment(int, CommentType, int) = win 0x10a920;
 	TodoReturn deleteFriendRequests(int, cocos2d::CCArray*, bool) = win 0x10b8c0;
-	TodoReturn deleteLevel(GJGameLevel*);
+	TodoReturn deleteLevel(GJGameLevel*) = win 0xf58b0;
 	TodoReturn deleteLevelComment(int, int);
 	TodoReturn deleteLevelList(GJLevelList*);
 	TodoReturn deleteSentFriendRequest(int);
@@ -4278,7 +4278,7 @@ class GameManager : GManager {
 	TodoReturn lockColor(int, UnlockType);
 	TodoReturn lockIcon(int, IconType);
 	TodoReturn logLoadedIconInfo();
-	TodoReturn openEditorGuide();
+	TodoReturn openEditorGuide() = win 0x1270d0;
 	TodoReturn playMenuMusic();
 	TodoReturn playSFXTrigger(SFXTriggerGameObject*) = win 0x121b40;
 	TodoReturn prepareDPadSettings();
@@ -4396,9 +4396,7 @@ class GameManager : GManager {
 	gd::string m_playerUDID;
 	gd::string m_playerName;
 	bool m_commentsEnabled;
-	int m_playerUserID_a;
-	int m_playerUserID_b;
-	int m_playerUserID;
+	geode::SeedValueRSV m_playerUserID;
 	float m_bgVolume;
 	float m_sfxVolume;
 	float m_timeOffset;
@@ -5245,7 +5243,7 @@ class GameToolbox {
 	static TodoReturn stringSetupToDict(gd::string const&, char const*);
 	static TodoReturn stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&);
 	static TodoReturn strongColor(cocos2d::ccColor3B) = win 0x425e0;
-	static TodoReturn timestampToHumanReadable(long);
+	static gd::string timestampToHumanReadable(long) = win 0x45640;
 	static TodoReturn transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue) = win 0x41b20;
 	static TodoReturn transformColor(cocos2d::ccColor3B const&, float, float, float);
 }
@@ -8521,7 +8519,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn rotationForSlopeNearObject(GameObject*);
 	TodoReturn runColorEffect(EffectGameObject*, int, float, float, bool);
 	TodoReturn saveEditorPosition(cocos2d::CCPoint&, int);
-	TodoReturn scene(GJGameLevel*, bool);
+	TodoReturn scene(GJGameLevel*, bool) = win 0x239980;
 	void setObjectCount(int);
 	TodoReturn shouldBlend(int);
 	TodoReturn sortBatchnodeChildren(float);
@@ -9313,7 +9311,7 @@ class LocalLevelManager : GManager {
     }
 
 	TodoReturn getAllLevelsInDict();
-	TodoReturn getAllLevelsWithName(gd::string);
+	TodoReturn getAllLevelsWithName(gd::string) = win 0x277e00;
 	TodoReturn getCreatedLevels(int);
 	TodoReturn getCreatedLists(int) = win 0x2784f0;
 	TodoReturn getLevelsInNameGroups();
@@ -13269,10 +13267,10 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 class ShareLevelLayer : FLAlertLayer {
 	// virtual ~ShareLevelLayer();
 
-	static ShareLevelLayer* create(GJGameLevel*);
+	static ShareLevelLayer* create(GJGameLevel*) = win 0x387e70;
 
 	TodoReturn getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
-	bool init(GJGameLevel*);
+	bool init(GJGameLevel*) = win 0x387f10;
 	void onClose(cocos2d::CCObject* sender);
 	void onSettings(cocos2d::CCObject* sender);
 	void onShare(cocos2d::CCObject* sender) = win 0x388f20;
