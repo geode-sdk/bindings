@@ -10299,7 +10299,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn addAllParticles() = win 0x2c3b10;
 	TodoReturn addToTouchedRings(RingObject*);
 	TodoReturn addToYVelocity(double, int);
-	TodoReturn animatePlatformerJump(float);
+	TodoReturn animatePlatformerJump(float) = win 0x2c7820;
 	TodoReturn boostPlayer(float) = win 0x2d8820;
 	TodoReturn bumpPlayer(float, int, bool, GameObject*) = win 0x2d80b0;
 	TodoReturn buttonDown(PlayerButton);
