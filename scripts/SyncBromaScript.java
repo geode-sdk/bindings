@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -193,7 +192,7 @@ public class SyncBromaScript extends GhidraScript {
         );
         public static final Pattern GRAB_PARAM = Pattern.compile(
             formatRegex(
-                "(?<type>{0})(?:\\s+(?<name>\\w+))?",
+                "(?<type>{0})(?:(?:\\s+(?<name>\\w+))|(?<insertnamehere>\\s*))",
                 GRAB_TYPE
             ),
             Pattern.DOTALL
@@ -316,11 +315,13 @@ public class SyncBromaScript extends GhidraScript {
         public class Param extends Parseable {
             public final Type type;
             public final Optional<Match> name;
+            public final Optional<Match> nameInsertionPoint;
     
             private Param(Broma broma, Platform platform, Matcher matcher) {
                 super(broma, matcher);
                 type = new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true));
                 name = Match.maybe(broma, matcher, "name");
+                nameInsertionPoint = Match.maybe(broma, matcher, "insertnamehere");
             }
         }
     
@@ -747,11 +748,6 @@ public class SyncBromaScript extends GhidraScript {
     }
 
     private Signature getBromaSignature(Broma.Function fun) throws Exception {
-        // Parse return type, or null if this is a destructor
-        ReturnParameterImpl bromaRetType = null;
-        if (fun.returnType.isPresent() && !fun.returnType.get().name.value.contains("TodoReturn")) {
-            bromaRetType = new ReturnParameterImpl(addOrGetType(fun.returnType.get()), currentProgram);
-        }
 
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
@@ -764,14 +760,16 @@ public class SyncBromaScript extends GhidraScript {
                 SourceType.USER_DEFINED
             ));
         }
-        // Struct return
-        if (bromaRetType != null && bromaRetType.getDataType() instanceof Composite) {
-            bromaParams.add(new ParameterImpl(
-                "ret",
-                bromaRetType.getDataType(),
-                currentProgram,
-                SourceType.USER_DEFINED
-            ));
+        // Parse return type, or null if this is a destructor
+        ReturnParameterImpl bromaRetType = null;
+        if (fun.returnType.isPresent() && !fun.returnType.get().name.value.contains("TodoReturn")) {
+            var type = addOrGetType(fun.returnType.get());
+            // Struct return
+            if (type instanceof Composite) {
+                type = new PointerDataType(type);
+                bromaParams.add(new ParameterImpl("__return", type, currentProgram, SourceType.USER_DEFINED));
+            }
+            bromaRetType = new ReturnParameterImpl(type, currentProgram);
         }
         // Params
         for (var param : fun.params) {
@@ -880,6 +878,10 @@ public class SyncBromaScript extends GhidraScript {
                     )
                 ) {
                     signatureConflict = true;
+                }
+                // Keep existing Ghidra name for args without names in Broma
+                else if (bromaParam.getName() == null && param.getName() != null) {
+                    bromaParam.setName(param.getName(), SourceType.USER_DEFINED);
                 }
             }
         }
@@ -1184,6 +1186,22 @@ public class SyncBromaScript extends GhidraScript {
 
                 final var ghidraOffset = child.getProgramLocation().getAddress()
                     .subtract(currentProgram.getImageBase());
+                
+                // Export parameter names
+                for (var i = 0; i < fun.getParameterCount() && i < bromaFun.params.size(); i += 1) {
+                    var param = fun.getParameter(i);
+                    var bromaParam = bromaFun.params.get(i);
+                    if (
+                        param.getName() != null &&
+                        !param.getName().matches("(param_[0-9]+|this|__return)") &&
+                        bromaParam.nameInsertionPoint.isPresent()
+                    ) {
+                        broma.addPatch(
+                            bromaParam.nameInsertionPoint.get().range,
+                            " " + param.getName()
+                        );
+                    }
+                }
                 
                 // Add address
                 if (bromaFun.platformOffset.isPresent()) {

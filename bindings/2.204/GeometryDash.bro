@@ -438,7 +438,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 	virtual void TableViewWillDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
 	virtual float cellHeightForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x1d650;
 	virtual void didSelectRowAtIndexPath(CCIndexPath&, TableView*) {}
-	virtual int numberOfRowsInSection(unsigned int, TableView*) = win 0x1d660;
+	virtual int numberOfRowsInSection(unsigned int, TableView* int) = win 0x1d660;
 	virtual unsigned int numberOfSectionsInTableView(TableView*) { return 1; }
 	virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x1d670;
 	virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&) {}
@@ -604,12 +604,12 @@ class ButtonSprite : cocos2d::CCSprite {
 	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*, float) = win 0x1feb0;
 	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*);
 	static ButtonSprite* create(char const*, int, int, float, bool);
-	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool, char const*, bool) = win 0x1fb90;
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float, bool, char const* bgSprite, bool noScaleSpriteForBG) = win 0x1fb90;
 	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool);
 	static ButtonSprite* create(cocos2d::CCSprite*);
 
 	bool init(char const*, int, int, float, bool, char const*, char const*, float);
-	bool init(cocos2d::CCSprite*, int, int, float, float, bool, char const*, bool) = win 0x1fc60;
+	bool init(cocos2d::CCSprite*, int topSprite, int width, float unused, float scale, bool height, char const* unkBool, bool bgSprite) = win 0x1fc60;
 	void setColor(cocos2d::ccColor3B) = win 0x20b20;
 	void setString(char const*) = win 0x20770;
 	TodoReturn updateBGImage(char const*) = win 0x20230;
@@ -3481,7 +3481,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void setChannelVolume(int, AudioTargetType, float) = win 0x373b0;
 	void setChannelVolumeMod(int, AudioTargetType, float) = win 0x37630;
 	void setEffectsVolume(float);
-	void setMusicTimeMS(unsigned int, bool, int) = win 0x3a3f0;
+	void setMusicTimeMS(unsigned int, bool int, int) = win 0x3a3f0;
 	TodoReturn setup() = win 0x32c70;
 	TodoReturn setupAudioEngine() = win 0x32f90;
 	TodoReturn start() = win 0x33830;
