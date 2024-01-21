@@ -6869,6 +6869,18 @@ class SongInfoObject : cocos2d::CCNode {
 
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
+
+    int m_songID;
+    gd::string m_songName;
+    gd::string m_artistName;
+    gd::string m_youtubeVideo;
+    gd::string m_youtubeChannel;
+    gd::string m_songURL;
+    int m_artistID;
+    float m_fileSize;
+    bool m_isUnknownSong;
+    int m_priority;
+    LevelSettingsObject* m_levelSettings;
 }
 
 
@@ -11362,6 +11374,13 @@ class GhostTrailEffect : cocos2d::CCNode {
 
 	virtual bool init();
 	virtual void draw();
+}
+
+[[link(android)]]
+class GJAssetDownloadAction {
+	int m_id;
+	GJAssetType m_assetType;
+	int m_status;
 }
 
 
