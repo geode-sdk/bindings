@@ -1902,13 +1902,6 @@ class GJAccountBackupDelegate {
 }
 
 [[link(android)]]
-class GJAssetDownloadAction {
-	int m_id;
-	GJAssetType m_assetType;
-	int m_status;
-}
-
-[[link(android)]]
 class GJAccountDelegate {
     virtual bool accountStatusChanged() {
         return false;

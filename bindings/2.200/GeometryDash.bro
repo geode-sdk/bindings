@@ -6870,17 +6870,16 @@ class SongInfoObject : cocos2d::CCNode {
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
 
-    int m_songID;
-    gd::string m_songName;
-    gd::string m_artistName;
-    gd::string m_youtubeVideo;
-    gd::string m_youtubeChannel;
-    gd::string m_songURL;
-    int m_artistID;
-    float m_fileSize;
-    bool m_isUnknownSong;
-    int m_priority;
-    LevelSettingsObject* m_levelSettings;
+	int m_songID;
+	gd::string m_songName;
+	gd::string m_artistName;
+	gd::string m_youtubeVideo;
+	gd::string m_youtubeChannel;
+	gd::string m_songUrl;
+	gd::string m_artistID;
+	float m_fileSize;
+	bool m_isUnkownSong;
+	int m_priority;
 }
 
 
@@ -11383,7 +11382,6 @@ class GJAssetDownloadAction {
 	int m_status;
 }
 
-
 [[link(android)]]
 class GJFlyGroundLayer : GJGroundLayer {
 	static GJFlyGroundLayer* create();
@@ -13438,7 +13436,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getSongPriority();
 	TodoReturn getAllSFXObjects(bool);
 	TodoReturn getSFXDownloadKey(int);
-	TodoReturn getSongInfoObject(int);
+	void getSongInfoObject(int);
 	TodoReturn getAllMusicArtists(OptionsObjectDelegate*);
 	TodoReturn getAllMusicObjects();
 	TodoReturn getDownloadedSongs();
