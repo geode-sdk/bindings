@@ -38,7 +38,10 @@ import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
+import ghidra.program.model.data.FunctionDefinitionDataType;
 import ghidra.program.model.data.IntegerDataType;
+import ghidra.program.model.data.ParameterDefinition;
+import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined1DataType;
@@ -1430,6 +1433,25 @@ public class SyncBromaScript extends GhidraScript {
         ccHSVValue.add(new Undefined1DataType());
         ccHSVValue.add(new Undefined1DataType());
         manager.addDataType(ccHSVValue, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::SEL_MenuHandler
+
+        var menuHandlerSelector = new FunctionDefinitionDataType(new CategoryPath("/cocos2d"), "SEL_MenuHandler");
+        menuHandlerSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(this.bromas.get(0), "cocos2d::CCObject")),
+                "The target object for this callback"
+            ),
+            new ParameterDefinitionImpl(
+                "sender",
+                this.addOrGetType(Broma.Type.ptr(this.bromas.get(0), "cocos2d::CCObject")),
+                "The menu item that was activated to trigger this callback"
+            ),
+        });
+        menuHandlerSelector.setReturnType(new VoidDataType());
+        menuHandlerSelector.setCallingConvention("__thiscall");
+        manager.addDataType(menuHandlerSelector, DataTypeConflictHandler.REPLACE_HANDLER);
     }
 
     void askContinue(String title, String fmt, Object... args) throws Exception {
