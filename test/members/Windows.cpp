@@ -101,6 +101,40 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x878);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x87c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9b8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa2c);
+
+// CustomSongWidget
+
+GEODE_MEMBER_CHECK(CustomSongWidget, m_songInfoObject, 0x110);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_buttonMenu, 0x114);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_songLabel, 0x118);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_artistLabel, 0x11c);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_songIDLabel, 0x120);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_errorLabel, 0x124);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_downloadBtn, 0x128);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_cancelDownloadBtn, 0x12c);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_selectSongBtn, 0x130);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_getSongInfoBtn, 0x134);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_playbackBtn, 0x138);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_moreBtn, 0x13c);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_deleteBtn, 0x140);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_sliderGroove, 0x144);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_sliderBar, 0x148);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_bgSpr, 0x14c);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_songDelegate, 0x150);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_showSelectSongBtn, 0x154);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_showPlayMusicBtn, 0x155);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_showDownloadBtn, 0x156);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_isNotDownloading, 0x157);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_isRobtopSong, 0x158);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_hasMultipleAssets, 0x159);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_customSongID, 0x15c);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_hasLibrarySongs, 0x16c);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_hasSFX, 0x16d);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_unkBool, 0x16e);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_songs, 0x170);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_sfx, 0x178);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_assetInfoBtn, 0x190);
+
 // unverified in 2.203
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b48);
 
