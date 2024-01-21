@@ -609,11 +609,11 @@ class ButtonSprite : cocos2d::CCSprite {
 	static ButtonSprite* create(cocos2d::CCSprite*);
 
 	bool init(char const*, int, int, float, bool, char const*, char const*, float);
-	bool init(cocos2d::CCSprite*, int, int, float, float, bool, char const*, bool);
+	bool init(cocos2d::CCSprite*, int, int, float, float, bool, char const*, bool) = win 0x1fc60;
 	void setColor(cocos2d::ccColor3B) = win 0x20b20;
 	void setString(char const*) = win 0x20770;
 	TodoReturn updateBGImage(char const*) = win 0x20230;
-	TodoReturn updateSpriteBGSize();
+	void updateSpriteBGSize() = win 0x20340;
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
 }
 
