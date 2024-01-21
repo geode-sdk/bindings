@@ -748,7 +748,6 @@ public class SyncBromaScript extends GhidraScript {
     }
 
     private Signature getBromaSignature(Broma.Function fun) throws Exception {
-
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
         // Add `this` arg
@@ -780,7 +779,6 @@ public class SyncBromaScript extends GhidraScript {
                 SourceType.USER_DEFINED
             ));
         }
-
         return new Signature(bromaRetType, bromaParams);
     }
 
@@ -1188,18 +1186,20 @@ public class SyncBromaScript extends GhidraScript {
                     .subtract(currentProgram.getImageBase());
                 
                 // Export parameter names
+                int skipCount = 0;
                 for (var i = 0; i < fun.getParameterCount() && i < bromaFun.params.size(); i += 1) {
                     var param = fun.getParameter(i);
-                    var bromaParam = bromaFun.params.get(i);
+                    if (param.getName() != null && param.getName().matches("(this|__return)")) {
+                        skipCount += 1;
+                        continue;
+                    }
+                    var bromaParam = bromaFun.params.get(i - skipCount);
                     if (
                         param.getName() != null &&
-                        !param.getName().matches("(param_[0-9]+|this|__return)") &&
+                        !param.getName().matches("(param_[0-9]+|int|float|bool|void|char|const)") &&
                         bromaParam.nameInsertionPoint.isPresent()
                     ) {
-                        broma.addPatch(
-                            bromaParam.nameInsertionPoint.get().range,
-                            " " + param.getName()
-                        );
+                        broma.addPatch(bromaParam.nameInsertionPoint.get().range, " " + param.getName());
                     }
                 }
                 
