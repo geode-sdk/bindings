@@ -438,7 +438,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 	virtual void TableViewWillDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
 	virtual float cellHeightForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x1d650;
 	virtual void didSelectRowAtIndexPath(CCIndexPath&, TableView*) {}
-	virtual int numberOfRowsInSection(unsigned int, TableView* int) = win 0x1d660;
+	virtual int numberOfRowsInSection(unsigned, TableView*) = win 0x1d660;
 	virtual unsigned int numberOfSectionsInTableView(TableView*) { return 1; }
 	virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x1d670;
 	virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&) {}
@@ -3481,7 +3481,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void setChannelVolume(int, AudioTargetType, float) = win 0x373b0;
 	void setChannelVolumeMod(int, AudioTargetType, float) = win 0x37630;
 	void setEffectsVolume(float);
-	void setMusicTimeMS(unsigned int, bool int, int) = win 0x3a3f0;
+	void setMusicTimeMS(unsigned int, bool, int) = win 0x3a3f0;
 	TodoReturn setup() = win 0x32c70;
 	TodoReturn setupAudioEngine() = win 0x32f90;
 	TodoReturn start() = win 0x33830;
