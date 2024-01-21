@@ -11290,8 +11290,8 @@ class SelectFontLayer : FLAlertLayer {
 
 	static SelectFontLayer* create(LevelEditorLayer*);
 
-	bool init(LevelEditorLayer*);
-	void onChangeFont(cocos2d::CCObject* sender);
+	bool init(LevelEditorLayer*) = win 0x204DD0;
+	void onChangeFont(cocos2d::CCObject* sender) = win 0x205460;
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn updateFontLabel();
 
