@@ -1187,9 +1187,9 @@ public class SyncBromaScript extends GhidraScript {
                 
                 // Export parameter names
                 int skipCount = 0;
-                for (var i = 0; i < fun.getParameterCount() && i < bromaFun.params.size(); i += 1) {
+                for (var i = 0; i < fun.getParameterCount() && (i - skipCount) < bromaFun.params.size(); i += 1) {
                     var param = fun.getParameter(i);
-                    if (param.getName() != null && param.getName().matches("(this|__return)")) {
+                    if (param.getName() != null && param.getName().matches("(this|__return)") || param.isAutoParameter()) {
                         skipCount += 1;
                         continue;
                     }
