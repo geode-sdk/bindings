@@ -512,13 +512,14 @@ public class SyncBromaScript extends GhidraScript {
     
         private InputParameters() {}
 
-        private void initAsk() {
+        private void initAsk(SyncBromaScript script) throws Exception {
             try {
                 mapClass = Class.forName("ghidra.features.base.values.GhidraValuesMap");
                 valuesMapObject = mapClass.getConstructor().newInstance();
             }
             catch(Exception ignore) {
                 resultMap = new HashMap<String,Object>();
+                this.showIntroOrAskAll(script);
             }
         }
 
@@ -557,17 +558,17 @@ public class SyncBromaScript extends GhidraScript {
                 "from the current project to it. Doesn't handle members or generating " +
                 "vtables yet, but support is planned in the future!\n\n" + 
                 "Note that it is recommended to save your Ghidra project before " + 
-                "running the script, as if it messes something up you can safely " + 
-                "undo the mistake.";
+                "running the script, so if it messes something up you can safely " + 
+                "undo the mistake.\n\n" + 
+                "You will need to manually git pull / push your local copy of the " + 
+                "bindings repository!";
             if (this.valuesMapObject != null) {
-                var askValues = script.getClass().getMethod(
-                    "askValues",
-                    String.class, String.class, mapClass
-                );
+                var askValues = script.getClass().getMethod("askValues", String.class, String.class, mapClass);
                 askValues.invoke(script, "Sync Broma", msg, this.valuesMapObject);
             }
             else {
-                script.popup(
+                script.askContinue(
+                    "Sync Addresses to Broma",
                     msg + 
                     "\n\nNote: It is recommended to run this script " + 
                     "under Ghidra 11 so you get all of these inputs in one dialog :-)"
@@ -612,8 +613,7 @@ public class SyncBromaScript extends GhidraScript {
     
             var bromaFiles = List.of("Cocos2d.bro", "GeometryDash.bro");
 
-            this.initAsk();
-            this.showIntroOrAskAll(script);
+            this.initAsk(script);
 
             // Get the target platform and version from the user
             this.defineOrAskChoice(
@@ -816,7 +816,7 @@ public class SyncBromaScript extends GhidraScript {
             !data.getName(true).equals(fullName) && 
             !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName))
         ) {
-            int choice = askContinue(
+            int choice = askContinueConflict(
                 "Function has a different name",
                 List.of("Add to merged functions list", "Overwrite Ghidra name"),
                 "The function {0} at {1} from Broma already has the name " + 
@@ -878,7 +878,7 @@ public class SyncBromaScript extends GhidraScript {
             signatureConflict = false;
         }
         if (signatureConflict) {
-            askContinue(
+            askContinueConflict(
                 "Signature doesn't match",
                 "Ghidra has a function signature {0} that doesn't match Broma's signature {1} - do you want to override it?",
                 new Signature(data.getReturn(), Arrays.asList(data.getParameters())),
@@ -1139,7 +1139,7 @@ public class SyncBromaScript extends GhidraScript {
                 if (bromaFun.platformOffset.isPresent()) {
                     var bromaOffset = Long.parseLong(bromaFun.platformOffset.get().value, 16);
                     if (bromaOffset != Broma.PLACEHOLDER_ADDR && bromaOffset != ghidraOffset) {
-                        askContinue(
+                        askContinueConflict(
                             "Address mismatch",
                             "Function {0} has the address 0x{1} in the Broma but the address 0x{2} in Ghidra - do you want to override the Broma's address?",
                             fullName, Long.toHexString(bromaOffset), Long.toHexString(ghidraOffset)
@@ -1293,6 +1293,21 @@ public class SyncBromaScript extends GhidraScript {
     }
 
     void askContinue(String title, String fmt, Object... args) throws Exception {
+		var choice = Swing.runNow(() -> {
+			var dialog = new InputWithButtonsDialog(
+                title,
+                MessageFormat.format(("<html>" + fmt + "</html>").replace("\n\n", "<br>"), args),
+                List.of("Continue")
+            );
+			state.getTool().showDialog(dialog);
+			return dialog.getValue();
+		});
+        if (choice.isEmpty()) {
+            throw new CancelledException();
+        }
+    }
+
+    void askContinueConflict(String title, String fmt, Object... args) throws Exception {
         if (!askYesNo(title, MessageFormat.format(
             fmt + "\nIf this is not the case, please fix the conflict manually in the Broma file!",
             args
@@ -1301,7 +1316,7 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
-    int askContinue(String title, List<String> options, String fmt, Object... args) throws Exception {
+    int askContinueConflict(String title, List<String> options, String fmt, Object... args) throws Exception {
 		var choice = Swing.runNow(() -> {
 			var dialog = new InputWithButtonsDialog(
                 title,
