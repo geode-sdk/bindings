@@ -2627,6 +2627,15 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn valueChanged();
+
+	CCTextInputNode* m_inputNode;
+	int m_value;
+	bool m_unkBool;
+	bool m_cancelled;
+	int m_minimum;
+	int m_maximum;
+	int m_default;
+	SetIDPopupDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -4545,7 +4554,7 @@ class GJLevelList : cocos2d::CCNode {
 	~GJLevelList();
 
 	TodoReturn getListLevelsArray(cocos2d::CCArray*);
-	TodoReturn getUnpackedDescription();
+	gd::string getUnpackedDescription();
 
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn totalLevels();
@@ -4565,6 +4574,37 @@ class GJLevelList : cocos2d::CCNode {
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
 	virtual bool init();
+
+	gd::vector<int> m_levels;
+	int m_listID;
+	int m_listVersion;
+	int m_downloads;
+	int m_likes;
+	int m_difficulty;
+	int m_accountID;
+	int m_folder;
+	int m_listRevision;
+	int m_listOrder;
+	int m_original;
+	int m_diamonds;
+	int m_levelsToClaim;
+	bool m_unkBool;
+	bool m_unlisted;
+	bool m_friendsOnly;
+	bool m_uploaded;
+	bool m_favorite;
+	bool m_featured;
+	bool m_k100;
+	gd::string m_creatorName;
+	gd::string m_listName;
+	gd::string m_unkString;
+	gd::string m_levelsString;
+	gd::string m_listDesc;
+	int m_uploadDate;
+	int m_updateDate;
+	cocos2d::CCDictionary* m_k97;
+	int m_listType;
+	int m_M_ID;
 }
 
 [[link(android)]]
@@ -8396,6 +8436,8 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	virtual bool init();
 	virtual void draw();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+
+	GJUserScore* m_score;
 }
 
 [[link(android)]]
@@ -9534,6 +9576,9 @@ class LevelListCell : TableViewCell {
 
 	virtual bool init();
 	virtual void draw();
+
+	GJLevelList* m_levelList;
+	bool m_addingLevel;
 }
 
 [[link(android)]]
