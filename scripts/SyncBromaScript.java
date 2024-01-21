@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,16 +27,26 @@ import docking.widgets.label.GHtmlLabel;
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.data.AbstractFloatDataType;
+import ghidra.program.model.data.ArrayDataType;
+import ghidra.program.model.data.ByteDataType;
 import ghidra.program.model.data.CategoryPath;
+import ghidra.program.model.data.CharDataType;
+import ghidra.program.model.data.Composite;
 import ghidra.program.model.data.DataType;
 import ghidra.program.model.data.DataTypeConflictHandler;
 import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
+import ghidra.program.model.data.FunctionDefinitionDataType;
 import ghidra.program.model.data.IntegerDataType;
+import ghidra.program.model.data.ParameterDefinition;
+import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.StructureDataType;
+import ghidra.program.model.data.Undefined1DataType;
+import ghidra.program.model.data.UnionDataType;
+import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
 import ghidra.program.model.listing.ParameterImpl;
 import ghidra.program.model.listing.ReturnParameterImpl;
@@ -186,7 +195,7 @@ public class SyncBromaScript extends GhidraScript {
         );
         public static final Pattern GRAB_PARAM = Pattern.compile(
             formatRegex(
-                "(?<type>{0})(?:\\s+(?<name>\\w+))?",
+                "(?<type>{0})(?:(?:\\s+(?<name>\\w+))|(?<insertnamehere>\\s*))",
                 GRAB_TYPE
             ),
             Pattern.DOTALL
@@ -309,11 +318,13 @@ public class SyncBromaScript extends GhidraScript {
         public class Param extends Parseable {
             public final Type type;
             public final Optional<Match> name;
+            public final Optional<Match> nameInsertionPoint;
     
             private Param(Broma broma, Platform platform, Matcher matcher) {
                 super(broma, matcher);
                 type = new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true));
                 name = Match.maybe(broma, matcher, "name");
+                nameInsertionPoint = Match.maybe(broma, matcher, "insertnamehere");
             }
         }
     
@@ -506,19 +517,21 @@ public class SyncBromaScript extends GhidraScript {
         boolean importFromBroma;
         boolean exportToBroma;
         boolean setOptcall;
+        boolean updateTypeDB;
         Class<?> mapClass = null;
         Object valuesMapObject = null;
         HashMap<String, Object> resultMap = null;
     
         private InputParameters() {}
 
-        private void initAsk() {
+        private void initAsk(SyncBromaScript script) throws Exception {
             try {
                 mapClass = Class.forName("ghidra.features.base.values.GhidraValuesMap");
                 valuesMapObject = mapClass.getConstructor().newInstance();
             }
             catch(Exception ignore) {
                 resultMap = new HashMap<String,Object>();
+                this.showIntroOrAskAll(script);
             }
         }
 
@@ -557,17 +570,17 @@ public class SyncBromaScript extends GhidraScript {
                 "from the current project to it. Doesn't handle members or generating " +
                 "vtables yet, but support is planned in the future!\n\n" + 
                 "Note that it is recommended to save your Ghidra project before " + 
-                "running the script, as if it messes something up you can safely " + 
-                "undo the mistake.";
+                "running the script, so if it messes something up you can safely " + 
+                "undo the mistake.\n\n" + 
+                "You will need to manually git pull / push your local copy of the " + 
+                "bindings repository!";
             if (this.valuesMapObject != null) {
-                var askValues = script.getClass().getMethod(
-                    "askValues",
-                    String.class, String.class, mapClass
-                );
+                var askValues = script.getClass().getMethod("askValues", String.class, String.class, mapClass);
                 askValues.invoke(script, "Sync Broma", msg, this.valuesMapObject);
             }
             else {
-                script.popup(
+                script.askContinue(
+                    "Sync Addresses to Broma",
                     msg + 
                     "\n\nNote: It is recommended to run this script " + 
                     "under Ghidra 11 so you get all of these inputs in one dialog :-)"
@@ -612,8 +625,7 @@ public class SyncBromaScript extends GhidraScript {
     
             var bromaFiles = List.of("Cocos2d.bro", "GeometryDash.bro");
 
-            this.initAsk();
-            this.showIntroOrAskAll(script);
+            this.initAsk(script);
 
             // Get the target platform and version from the user
             this.defineOrAskChoice(
@@ -627,6 +639,7 @@ public class SyncBromaScript extends GhidraScript {
             this.defineOrAskBoolean(script, "Import from Broma", true);
             this.defineOrAskBoolean(script, "Export to Broma", true);
             this.defineOrAskBoolean(script, "Set optcall & membercall", true);
+            this.defineOrAskBoolean(script, "Set known types", true);
 
             this.showIntroOrAskAll(script);
 
@@ -635,6 +648,7 @@ public class SyncBromaScript extends GhidraScript {
             this.importFromBroma = this.getFinalBoolean("Import from Broma");
             this.exportToBroma = this.getFinalBoolean("Export to Broma");
             this.setOptcall = this.getFinalBoolean("Set optcall & membercall");
+            this.updateTypeDB = this.getFinalBoolean("Set known types");
     
             if (this.platform == Platform.WINDOWS) {
                 bromaFiles = List.of(this.getFinalChoice("Broma file (Windows-only)"));
@@ -704,6 +718,11 @@ public class SyncBromaScript extends GhidraScript {
             this.bromas.add(new Broma(bro, args.platform));
         }
 
+        // Update type database with known types like `gd::string` and `CCPoint`
+        if (this.args.updateTypeDB) {
+            this.addKnownDataTypes();
+        }
+
         // Do the imports and exports
         if (this.args.importFromBroma) {
             this.handleImport();
@@ -732,12 +751,6 @@ public class SyncBromaScript extends GhidraScript {
     }
 
     private Signature getBromaSignature(Broma.Function fun) throws Exception {
-        // Parse return type, or null if this is a destructor
-        ReturnParameterImpl bromaRetType = null;
-        if (fun.returnType.isPresent() && !fun.returnType.get().name.value.contains("TodoReturn")) {
-            bromaRetType = new ReturnParameterImpl(addOrGetType(fun.returnType.get()), currentProgram);
-        }
-
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
         // Add `this` arg
@@ -749,14 +762,16 @@ public class SyncBromaScript extends GhidraScript {
                 SourceType.USER_DEFINED
             ));
         }
-        // Struct return
-        if (bromaRetType != null && bromaRetType.getDataType() instanceof StructureDataType) {
-            bromaParams.add(new ParameterImpl(
-                "ret",
-                bromaRetType.getDataType(),
-                currentProgram,
-                SourceType.USER_DEFINED
-            ));
+        // Parse return type, or null if this is a destructor
+        ReturnParameterImpl bromaRetType = null;
+        if (fun.returnType.isPresent() && !fun.returnType.get().name.value.contains("TodoReturn")) {
+            var type = addOrGetType(fun.returnType.get());
+            // Struct return
+            if (type instanceof Composite) {
+                type = new PointerDataType(type);
+                bromaParams.add(new ParameterImpl("__return", type, currentProgram, SourceType.USER_DEFINED));
+            }
+            bromaRetType = new ReturnParameterImpl(type, currentProgram);
         }
         // Params
         for (var param : fun.params) {
@@ -767,7 +782,6 @@ public class SyncBromaScript extends GhidraScript {
                 SourceType.USER_DEFINED
             ));
         }
-
         return new Signature(bromaRetType, bromaParams);
     }
 
@@ -816,7 +830,7 @@ public class SyncBromaScript extends GhidraScript {
             !data.getName(true).equals(fullName) && 
             !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName))
         ) {
-            int choice = askContinue(
+            int choice = askContinueConflict(
                 "Function has a different name",
                 List.of("Add to merged functions list", "Overwrite Ghidra name"),
                 "The function {0} at {1} from Broma already has the name " + 
@@ -866,6 +880,10 @@ public class SyncBromaScript extends GhidraScript {
                 ) {
                     signatureConflict = true;
                 }
+                // Keep existing Ghidra name for args without names in Broma
+                else if (bromaParam.getName() == null && param.getName() != null) {
+                    bromaParam.setName(param.getName(), SourceType.USER_DEFINED);
+                }
             }
         }
         if (data.getReturn().getSource() == SourceType.USER_DEFINED && bromaSig.returnType.isPresent()) {
@@ -878,7 +896,7 @@ public class SyncBromaScript extends GhidraScript {
             signatureConflict = false;
         }
         if (signatureConflict) {
-            askContinue(
+            askContinueConflict(
                 "Signature doesn't match",
                 "Ghidra has a function signature {0} that doesn't match Broma's signature {1} - do you want to override it?",
                 new Signature(data.getReturn(), Arrays.asList(data.getParameters())),
@@ -887,16 +905,32 @@ public class SyncBromaScript extends GhidraScript {
             status = status.promoted(SignatureImport.UPDATED);
         }
 
-        FunctionUpdateType updateType;
-        // Manual storage for custom calling conventions
-        if (
+        // todo: Figure this out
+        // So for some undecipherable reason `EditorUI::init` will *not* decompile 
+        // in Ghidra unless `ButtonSprite::create` has a meaningless unused arg 
+        // at the end of its stack list. Why? I spent an entire day trying to 
+        // figure that one out, and I couldn't. If someone can, please let me know 
+        // so I can remove this ugly hotfix :'(
+        if (addr.subtract(currentProgram.getImageBase()) == 0x1fb90) {
+            bromaSig.parameters.add(new ParameterImpl(
+                "__see_SyncBromaScript_line_" + getLineNumber(),
+                new Undefined1DataType(),
+                currentProgram,
+                SourceType.USER_DEFINED
+            ));
+        }
+
+        var shouldReorderParams = 
             (conv == CConv.MEMBERCALL || conv == CConv.OPTCALL) && 
             // Only do manual storage if there's actually a need for it
             bromaSig.parameters.stream().anyMatch(p ->
-                p.getDataType() instanceof StructureDataType ||
+                p.getDataType() instanceof Composite ||
                 p.getDataType() instanceof FloatDataType
-            )
-        ) {
+            );
+
+        FunctionUpdateType updateType;
+        // Manual storage for custom calling conventions
+        if (shouldReorderParams) {
             if (!this.args.setOptcall) {
                 updateType = FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS;
                 printfmt(
@@ -906,12 +940,13 @@ public class SyncBromaScript extends GhidraScript {
                 );
             }
             else {
+                printfmt("cconv for {0} at {1}", fullName, addr);
                 updateType = FunctionUpdateType.CUSTOM_STORAGE;
                 var reorderedParams = new ArrayList<Variable>(bromaSig.parameters);
                 // Thanks stable sort <3
                 reorderedParams.sort((a, b) -> {
-                    final var aIs = a.getDataType() instanceof StructureDataType;
-                    final var bIs = b.getDataType() instanceof StructureDataType;
+                    final var aIs = a.getDataType() instanceof Composite;
+                    final var bIs = b.getDataType() instanceof Composite;
                     if (aIs && bIs) return 0;
                     if (aIs) return 1;
                     if (bIs) return -1;
@@ -920,10 +955,10 @@ public class SyncBromaScript extends GhidraScript {
                 // First stack offset is 0x4 (0x0 is for return address)
                 var stackOffset = 0x4;
                 for (var i = 0; i < bromaSig.parameters.size(); i += 1) {
-                    var param = bromaSig.parameters.get(i);
+                    var param = reorderedParams.get(i);
                     final var type = param.getDataType();
                     VariableStorage storage;
-                    if (i < 5 && type instanceof AbstractFloatDataType) {
+                    if (i < 4 && type instanceof AbstractFloatDataType) {
                         // (p)rocessor (reg)ister
                         String preg = null;
                         if (type instanceof FloatDataType) {
@@ -941,10 +976,10 @@ public class SyncBromaScript extends GhidraScript {
                         storage = new VariableStorage(currentProgram, currentProgram.getRegister(preg));
                     }
                     else {
-                        if (i == 0) {
+                        if (i == 0 && !(type instanceof Composite)) {
                             storage = new VariableStorage(currentProgram, currentProgram.getRegister("ECX"));
                         }
-                        else if (conv == CConv.OPTCALL && i == 1 && !(type instanceof StructureDataType)) {
+                        else if (conv == CConv.OPTCALL && i == 1 && !(type instanceof Composite)) {
                             storage = new VariableStorage(currentProgram, currentProgram.getRegister("EDX"));
                         }
                         else {
@@ -957,7 +992,7 @@ public class SyncBromaScript extends GhidraScript {
                             }
                             storage = new VariableStorage(currentProgram, stackOffset, type.getLength());
                             // https://github.com/geode-sdk/TulipHook/blob/main/src/convention/WindowsConvention.cpp#L69-L70
-                            stackOffset += (reorderedParams.get(i).getLength() + 3) / 4 * 4;
+                            stackOffset += (type.getLength() + 3) / 4 * 4;
                         }
                     }
                     param.setDataType(type, storage, true, SourceType.USER_DEFINED);
@@ -978,6 +1013,39 @@ public class SyncBromaScript extends GhidraScript {
             SourceType.USER_DEFINED,
             bromaSig.parameters.toArray(Variable[]::new)
         );
+
+        // Set return type storage for custom cconvs
+        if (shouldReorderParams && bromaSig.returnType.isPresent()) {
+            var ret = bromaSig.returnType.get();
+            final var type = ret.getDataType();
+            VariableStorage storage;
+            if (type instanceof AbstractFloatDataType) {
+                // (p)rocessor (reg)ister
+                String preg = null;
+                if (type instanceof FloatDataType) {
+                    preg = "XMM0_Da";
+                }
+                else if (type instanceof DoubleDataType) {
+                    preg = "XMM0_Qa";
+                }
+                else {
+                    throw new Error(
+                        "Parameter has type " + type.toString() +
+                        ", which is floating-point type but has an unknown register location"
+                    );
+                }
+                storage = new VariableStorage(currentProgram, currentProgram.getRegister(preg));
+            }
+            else {
+                if (ret instanceof VoidDataType) {
+                    storage = VariableStorage.VOID_STORAGE;
+                }
+                else {
+                    storage = new VariableStorage(currentProgram, currentProgram.getRegister("EAX"));
+                }
+            }
+            data.setReturn(type, storage, SourceType.USER_DEFINED);
+        }
 
         return status;
     }
@@ -1135,11 +1203,29 @@ public class SyncBromaScript extends GhidraScript {
                 final var ghidraOffset = child.getProgramLocation().getAddress()
                     .subtract(currentProgram.getImageBase());
                 
+                // Export parameter names
+                int skipCount = 0;
+                for (var i = 0; i < fun.getParameterCount() && (i - skipCount) < bromaFun.params.size(); i += 1) {
+                    var param = fun.getParameter(i);
+                    if (param.getName() != null && param.getName().matches("(this|__return)") || param.isAutoParameter()) {
+                        skipCount += 1;
+                        continue;
+                    }
+                    var bromaParam = bromaFun.params.get(i - skipCount);
+                    if (
+                        param.getName() != null &&
+                        !param.getName().matches("(param_[0-9]+|int|float|bool|void|char|const)") &&
+                        bromaParam.nameInsertionPoint.isPresent()
+                    ) {
+                        broma.addPatch(bromaParam.nameInsertionPoint.get().range, " " + param.getName());
+                    }
+                }
+                
                 // Add address
                 if (bromaFun.platformOffset.isPresent()) {
                     var bromaOffset = Long.parseLong(bromaFun.platformOffset.get().value, 16);
                     if (bromaOffset != Broma.PLACEHOLDER_ADDR && bromaOffset != ghidraOffset) {
-                        askContinue(
+                        askContinueConflict(
                             "Address mismatch",
                             "Function {0} has the address 0x{1} in the Broma but the address 0x{2} in Ghidra - do you want to override the Broma's address?",
                             fullName, Long.toHexString(bromaOffset), Long.toHexString(ghidraOffset)
@@ -1292,7 +1378,113 @@ public class SyncBromaScript extends GhidraScript {
         return result;
     }
 
+    void addKnownDataTypes() throws Exception {
+        printfmt("Updating type database...");
+
+        final var manager = currentProgram.getDataTypeManager();
+
+        // gd::string
+
+        var stringDataUnion = new UnionDataType(new CategoryPath("/gd"), "string_data_union");
+        stringDataUnion.add(new PointerDataType(new CharDataType()), 0x4, "ptr", "");
+        stringDataUnion.add(new ArrayDataType(new CharDataType(), 0x10, 0x1), 0x10, "data", "SSO");
+
+        var string = new StructureDataType(new CategoryPath("/gd"), "string", 0x0);
+        string.add(stringDataUnion, 0x10, "data", "String data with SSO");
+        string.add(new IntegerDataType(), 0x4, "length", "The length of the string without the terminating null byte");
+        string.add(new IntegerDataType(), 0x4, "capacity", "The capacity of the string buffer");
+
+        manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::CCPoint
+
+        var point = new StructureDataType(new CategoryPath("/cocos2d"), "CCPoint", 0x0);
+        point.add(new FloatDataType(), 0x4, "x", "X position of the point");
+        point.add(new FloatDataType(), 0x4, "y", "Y position of the point");
+        manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::CCSize
+
+        var size = new StructureDataType(new CategoryPath("/cocos2d"), "CCSize", 0x0);
+        size.add(new FloatDataType(), 0x4, "width", "Width of the size");
+        size.add(new FloatDataType(), 0x4, "height", "Height of the size");
+        manager.addDataType(size, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::CCRect
+
+        var rect = new StructureDataType(new CategoryPath("/cocos2d"), "CCRect", 0x0);
+        rect.add(new FloatDataType(), 0x4, "x", "X position of the rect");
+        rect.add(new FloatDataType(), 0x4, "y", "Y position of the rect");
+        rect.add(new FloatDataType(), 0x4, "width", "Width of the rect");
+        rect.add(new FloatDataType(), 0x4, "height", "Height of the rect");
+        manager.addDataType(rect, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccColor3B
+
+        var color3B = new StructureDataType(new CategoryPath("/cocos2d"), "ccColor3B", 0x0);
+        color3B.add(new ByteDataType(), 0x1, "r", "Red component");
+        color3B.add(new ByteDataType(), 0x1, "g", "Green component");
+        color3B.add(new ByteDataType(), 0x1, "b", "Blue component");
+        color3B.add(new Undefined1DataType());
+        manager.addDataType(color3B, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccColor4B
+
+        var color4B = new StructureDataType(new CategoryPath("/cocos2d"), "ccColor4B", 0x0);
+        color4B.add(new ByteDataType(), 0x1, "r", "Red component");
+        color4B.add(new ByteDataType(), 0x1, "g", "Green component");
+        color4B.add(new ByteDataType(), 0x1, "b", "Blue component");
+        color4B.add(new ByteDataType(), 0x1, "a", "Alpha component");
+        manager.addDataType(color4B, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccHSVValue
+
+        var ccHSVValue = new StructureDataType(new CategoryPath("/cocos2d"), "ccHSVValue", 0x0);
+        ccHSVValue.add(new FloatDataType(), 0x4, "h", "Hue");
+        ccHSVValue.add(new FloatDataType(), 0x4, "s", "Saturation");
+        ccHSVValue.add(new FloatDataType(), 0x4, "v", "Lightness");
+        ccHSVValue.add(new ByteDataType(), 0x1, "saturationChecked", "");
+        ccHSVValue.add(new ByteDataType(), 0x1, "brightnessChecked", "");
+        ccHSVValue.add(new Undefined1DataType());
+        ccHSVValue.add(new Undefined1DataType());
+        manager.addDataType(ccHSVValue, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::SEL_MenuHandler
+
+        var menuHandlerSelector = new FunctionDefinitionDataType(new CategoryPath("/cocos2d"), "SEL_MenuHandler");
+        menuHandlerSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(this.bromas.get(0), "cocos2d::CCObject")),
+                "The target object for this callback"
+            ),
+            new ParameterDefinitionImpl(
+                "sender",
+                this.addOrGetType(Broma.Type.ptr(this.bromas.get(0), "cocos2d::CCObject")),
+                "The menu item that was activated to trigger this callback"
+            ),
+        });
+        menuHandlerSelector.setReturnType(new VoidDataType());
+        menuHandlerSelector.setCallingConvention("__thiscall");
+        manager.addDataType(menuHandlerSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+    }
+
     void askContinue(String title, String fmt, Object... args) throws Exception {
+		var choice = Swing.runNow(() -> {
+			var dialog = new InputWithButtonsDialog(
+                title,
+                MessageFormat.format(("<html>" + fmt + "</html>").replace("\n\n", "<br>"), args),
+                List.of("Continue")
+            );
+			state.getTool().showDialog(dialog);
+			return dialog.getValue();
+		});
+        if (choice.isEmpty()) {
+            throw new CancelledException();
+        }
+    }
+
+    void askContinueConflict(String title, String fmt, Object... args) throws Exception {
         if (!askYesNo(title, MessageFormat.format(
             fmt + "\nIf this is not the case, please fix the conflict manually in the Broma file!",
             args
@@ -1301,7 +1493,7 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
-    int askContinue(String title, List<String> options, String fmt, Object... args) throws Exception {
+    int askContinueConflict(String title, List<String> options, String fmt, Object... args) throws Exception {
 		var choice = Swing.runNow(() -> {
 			var dialog = new InputWithButtonsDialog(
                 title,
@@ -1354,5 +1546,38 @@ public class SyncBromaScript extends GhidraScript {
                 "please report it to the Geode devs!", args
             ));
         }
+    }
+
+    // https://stackoverflow.com/questions/17473148/dynamically-get-the-current-line-number
+
+    /** @return The line number of the code that ran this method
+     * @author Brian_Entei */
+    public static int getLineNumber() {
+        return ___8drrd3148796d_Xaf();
+    }
+
+    /** This methods name is ridiculous on purpose to prevent any other method
+     * names in the stack trace from potentially matching this one.
+     * 
+     * @return The line number of the code that called the method that called
+     *         this method(Should only be called by getLineNumber()).
+     * @author Brian_Entei */
+    private static int ___8drrd3148796d_Xaf() {
+        boolean thisOne = false;
+        int thisOneCountDown = 1;
+        StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+        for(StackTraceElement element : elements) {
+            String methodName = element.getMethodName();
+            int lineNum = element.getLineNumber();
+            if(thisOne && (thisOneCountDown == 0)) {
+                return lineNum;
+            } else if(thisOne) {
+                thisOneCountDown--;
+            }
+            if(methodName.equals("___8drrd3148796d_Xaf")) {
+                thisOne = true;
+            }
+        }
+        return -1;
     }
 }
