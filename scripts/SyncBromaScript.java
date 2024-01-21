@@ -905,6 +905,21 @@ public class SyncBromaScript extends GhidraScript {
             status = status.promoted(SignatureImport.UPDATED);
         }
 
+        // todo: Figure this out
+        // So for some undecipherable reason `EditorUI::init` will *not* decompile 
+        // in Ghidra unless `ButtonSprite::create` has a meaningless unused arg 
+        // at the end of its stack list. Why? I spent an entire day trying to 
+        // figure that one out, and I couldn't. If someone can, please let me know 
+        // so I can remove this ugly hotfix :'(
+        if (addr.subtract(currentProgram.getImageBase()) == 0x1fb90) {
+            bromaSig.parameters.add(new ParameterImpl(
+                "__see_SyncBromaScript_line_" + getLineNumber(),
+                new Undefined1DataType(),
+                currentProgram,
+                SourceType.USER_DEFINED
+            ));
+        }
+
         var shouldReorderParams = 
             (conv == CConv.MEMBERCALL || conv == CConv.OPTCALL) && 
             // Only do manual storage if there's actually a need for it
@@ -1531,5 +1546,38 @@ public class SyncBromaScript extends GhidraScript {
                 "please report it to the Geode devs!", args
             ));
         }
+    }
+
+    // https://stackoverflow.com/questions/17473148/dynamically-get-the-current-line-number
+
+    /** @return The line number of the code that ran this method
+     * @author Brian_Entei */
+    public static int getLineNumber() {
+        return ___8drrd3148796d_Xaf();
+    }
+
+    /** This methods name is ridiculous on purpose to prevent any other method
+     * names in the stack trace from potentially matching this one.
+     * 
+     * @return The line number of the code that called the method that called
+     *         this method(Should only be called by getLineNumber()).
+     * @author Brian_Entei */
+    private static int ___8drrd3148796d_Xaf() {
+        boolean thisOne = false;
+        int thisOneCountDown = 1;
+        StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+        for(StackTraceElement element : elements) {
+            String methodName = element.getMethodName();
+            int lineNum = element.getLineNumber();
+            if(thisOne && (thisOneCountDown == 0)) {
+                return lineNum;
+            } else if(thisOne) {
+                thisOneCountDown--;
+            }
+            if(methodName.equals("___8drrd3148796d_Xaf")) {
+                thisOne = true;
+            }
+        }
+        return -1;
     }
 }
