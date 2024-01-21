@@ -11248,6 +11248,41 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	virtual TodoReturn musicActionFailed(GJMusicAction);
 	virtual TodoReturn songStateChanged();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+
+	SongInfoObject* m_songInfoObject;
+	cocos2d::CCMenu* m_buttonMenu;
+	cocos2d::CCLabelBMFont* m_songLabel;
+	cocos2d::CCLabelBMFont* m_artistLabel;
+	cocos2d::CCLabelBMFont* m_songIDLabel;
+	cocos2d::CCLabelBMFont* m_errorLabel;
+	CCMenuItemSpriteExtra* m_downloadBtn;
+	CCMenuItemSpriteExtra* m_cancelDownloadBtn;
+	CCMenuItemSpriteExtra* m_selectSongBtn;
+	CCMenuItemSpriteExtra* m_getSongInfoBtn;
+	CCMenuItemSpriteExtra* m_playbackBtn;
+	CCMenuItemSpriteExtra* m_moreBtn;
+	CCMenuItemSpriteExtra* m_deleteBtn;
+	cocos2d::CCSprite* m_sliderGroove;
+	cocos2d::CCSprite* m_sliderBar;
+	cocos2d::CCSprite* m_bgSpr;
+	CustomSongDelegate* m_songDelegate;
+	bool m_showSelectSongBtn;
+	bool m_showPlayMusicBtn;
+	bool m_showDownloadBtn;
+	bool m_isNotDownloading;
+	bool m_isRobtopSong;
+	bool m_hasMultipleAssets;
+	int m_customSongID;
+	// Big pad here, didn't find anything yet
+	PAD = win 0xC;
+	bool m_hasLibrarySongs;
+	bool m_hasSFX;
+	bool m_unkBool;
+	gd::map<int, bool> m_songs;
+	gd::map<int, bool> m_sfx;
+	gd::vector<GJAssetDownloadAction> m_undownloadedAssets;
+	PAD = win 0x4;
+	InfoAlertButton* m_assetInfoBtn;
 }
 
 
