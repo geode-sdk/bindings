@@ -4475,20 +4475,6 @@ class cocos2d::CCTransitionEaseScene {
 }
 
 [[link(win, android)]]
-class cocos2d::CCTransitionFade {
-	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*);
-	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
-
-	// CCTransitionFade(cocos2d::CCTransitionFade const&);
-	// CCTransitionFade();
-
-	virtual void onEnter();
-	virtual void onExit();
-	virtual bool initWithDuration(float, cocos2d::CCScene*);
-	virtual bool initWithDuration(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
-}
-
-[[link(win, android)]]
 class cocos2d::CCTransitionFadeBL {
 	static cocos2d::CCTransitionFadeBL* create(float, cocos2d::CCScene*);
 
