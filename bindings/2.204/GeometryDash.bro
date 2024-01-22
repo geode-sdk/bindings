@@ -2396,7 +2396,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
 	static EditorPauseLayer* create(LevelEditorLayer*) = win 0x9ff80;
 
-	TodoReturn doResetUnused();
+	TodoReturn doResetUnused() = win 0x242150;
 	bool init(LevelEditorLayer*) = win 0xa0020;
 	void onAlignX(cocos2d::CCObject* sender);
 	void onAlignY(cocos2d::CCObject* sender);
@@ -2405,7 +2405,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onCreateExtras(cocos2d::CCObject* sender);
 	void onCreateLoop(cocos2d::CCObject* sender);
 	void onCreateTemplate(cocos2d::CCObject* sender);
-	void onExitEditor(cocos2d::CCObject* sender);
+	void onExitEditor(cocos2d::CCObject* sender) = win 0xa2ef0;
 	void onExitNoSave(cocos2d::CCObject* sender) = win 0xa2f50;
 	void onHelp(cocos2d::CCObject* sender);
 	void onKeybindings(cocos2d::CCObject* sender);
@@ -2414,7 +2414,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onOptions(cocos2d::CCObject* sender);
 	void onPasteWColor(cocos2d::CCObject* sender);
 	void onReGroup(cocos2d::CCObject* sender);
-	void onResetUnusedColors(cocos2d::CCObject* sender);
+	void onResetUnusedColors(cocos2d::CCObject* sender) = win 0xa1f30;
 	void onResume(cocos2d::CCObject* sender) = win 0xa2640;
 	void onSave(cocos2d::CCObject* sender) = win 0xa2e40;
 	void onSaveAndExit(cocos2d::CCObject* sender) = win 0xa2eb0;
@@ -2422,11 +2422,11 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onSelectAll(cocos2d::CCObject* sender);
 	void onSelectAllLeft(cocos2d::CCObject* sender);
 	void onSelectAllRight(cocos2d::CCObject* sender);
-	void onSong(cocos2d::CCObject* sender);
+	void onSong(cocos2d::CCObject* sender) = win 0xa25a0;
 	void onUnlockAllLayers(cocos2d::CCObject* sender);
-	TodoReturn playStep2();
+	TodoReturn playStep2() = win 0xa2cf0;
 	TodoReturn playStep3();
-	TodoReturn saveLevel();
+	TodoReturn saveLevel() = win 0xa26c0;
 	TodoReturn toggleDebugDraw(cocos2d::CCObject*);
 	TodoReturn toggleEditorBackground(cocos2d::CCObject*);
 	TodoReturn toggleEditorColorMode(cocos2d::CCObject*);
@@ -2445,11 +2445,11 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	TodoReturn toggleRecordOrder(cocos2d::CCObject*);
 	TodoReturn toggleSelectFilter(cocos2d::CCObject*);
 	TodoReturn toggleShowObjectInfo(cocos2d::CCObject*);
-	TodoReturn uncheckAllPortals(cocos2d::CCObject*);
-	TodoReturn updateSongButton();
+	TodoReturn uncheckAllPortals(cocos2d::CCObject*) = win 0xa1e70;
+	TodoReturn updateSongButton() = win 0xa25d0;
 
-	virtual void keyBackClicked() = win 0xa3080;
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyBackClicked();
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0xa3080;
 	virtual TodoReturn customSetup() = win 0xa0730;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0xa2fc0;
 }
