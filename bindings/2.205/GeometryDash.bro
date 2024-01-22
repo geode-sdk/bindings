@@ -5201,9 +5201,8 @@ class GameStatsManager : cocos2d::CCNode {
 	cocos2d::CCDictionary* m_allTreasureRoomChestItems;
 	cocos2d::CCDictionary* m_allSpecialChests;
 	cocos2d::CCDictionary* m_allSpecialChestItems;
-	gd::map<gd::string, gd::string> m_specialRewardDescriptions;
-	gd::map<gd::string, gd::string> m_createSpecialChestItemsMap;
-	PAD = win 0x30, android32 0x4; //everything before this pad is untested
+	gd::unordered_map<gd::string, gd::string> m_specialRewardDescriptions;
+	gd::unordered_map<gd::string, gd::string> m_createSpecialChestItemsMap;
 	cocos2d::CCDictionary* m_specialChestsLite;
 	cocos2d::CCArray* m_storeItemArray;
 	cocos2d::CCDictionary* m_rewardItems;
@@ -5213,9 +5212,8 @@ class GameStatsManager : cocos2d::CCNode {
 	cocos2d::CCDictionary* m_upcomingChallenges;
 	double m_challengeTime;
 	cocos2d::CCDictionary* m_playerStats;
-	gd::map<int, int> m_playerStatsRandMap;
-	gd::map<int, int> m_playerStatsSeedMap;
-	PAD = win 0x30, android32 0x8;
+	gd::unordered_map<int, int> m_playerStatsRandMap;
+	gd::unordered_map<int, int> m_playerStatsSeedMap;
 	cocos2d::CCDictionary* m_completedLevels;
 	cocos2d::CCDictionary* m_verifiedUserCoins;
 	cocos2d::CCDictionary* m_pendingUserCoins;
