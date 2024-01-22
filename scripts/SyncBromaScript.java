@@ -2,6 +2,7 @@
 // @author HJfod
 // @category GeodeSDK
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,6 +21,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import docking.DialogComponentProvider;
 import docking.widgets.dialogs.InputWithChoicesDialog;
@@ -518,6 +523,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean exportToBroma;
         boolean setOptcall;
         boolean updateTypeDB;
+        boolean createVTables;
         Class<?> mapClass = null;
         Object valuesMapObject = null;
         HashMap<String, Object> resultMap = null;
@@ -573,7 +579,8 @@ public class SyncBromaScript extends GhidraScript {
                 "running the script, so if it messes something up you can safely " + 
                 "undo the mistake.\n\n" + 
                 "You will need to manually git pull / push your local copy of the " + 
-                "bindings repository!";
+                "bindings repository!\n\n" + 
+                "See the README for detailed explanations of all the options.";
             if (this.valuesMapObject != null) {
                 var askValues = script.getClass().getMethod("askValues", String.class, String.class, mapClass);
                 askValues.invoke(script, "Sync Broma", msg, this.valuesMapObject);
@@ -606,6 +613,13 @@ public class SyncBromaScript extends GhidraScript {
             else {
                 return (Boolean)this.resultMap.get(title);
             }
+        }
+
+        private boolean getFinalBoolean(String title, Platform exclusiveTo) throws Exception {
+            if (this.getFinalBoolean(title) && this.platform != exclusiveTo) {
+                printfmt("Warning: \"{0}\" is not supported on {1}", title, exclusiveTo.longName);
+            }
+            return false;
         }
     
         /**
@@ -640,6 +654,7 @@ public class SyncBromaScript extends GhidraScript {
             this.defineOrAskBoolean(script, "Export to Broma", true);
             this.defineOrAskBoolean(script, "Set optcall & membercall", true);
             this.defineOrAskBoolean(script, "Set known types", true);
+            this.defineOrAskBoolean(script, "Create VTables", true);
 
             this.showIntroOrAskAll(script);
 
@@ -647,8 +662,9 @@ public class SyncBromaScript extends GhidraScript {
             this.gameVersion = this.getFinalChoice("Game version");
             this.importFromBroma = this.getFinalBoolean("Import from Broma");
             this.exportToBroma = this.getFinalBoolean("Export to Broma");
-            this.setOptcall = this.getFinalBoolean("Set optcall & membercall");
-            this.updateTypeDB = this.getFinalBoolean("Set known types");
+            this.setOptcall = this.getFinalBoolean("Set optcall & membercall", Platform.WINDOWS);
+            this.updateTypeDB = this.getFinalBoolean("Set known types", Platform.WINDOWS);
+            this.createVTables = this.getFinalBoolean("Create VTables", Platform.WINDOWS);
     
             if (this.platform == Platform.WINDOWS) {
                 bromaFiles = List.of(this.getFinalChoice("Broma file (Windows-only)"));
@@ -729,6 +745,11 @@ public class SyncBromaScript extends GhidraScript {
         }
         if (this.args.exportToBroma) {
             this.handleExport();
+        }
+    
+        // Create vtables from virtuals.json
+        if (this.args.createVTables) {
+            this.createVTables();
         }
     }
 
@@ -911,6 +932,7 @@ public class SyncBromaScript extends GhidraScript {
         // at the end of its stack list. Why? I spent an entire day trying to 
         // figure that one out, and I couldn't. If someone can, please let me know 
         // so I can remove this ugly hotfix :'(
+        // Same hotfix is in overload resolution in handleExport
         if (addr.subtract(currentProgram.getImageBase()) == 0x1fb90) {
             bromaSig.parameters.add(new ParameterImpl(
                 "__see_SyncBromaScript_line_" + getLineNumber(),
@@ -1124,10 +1146,12 @@ public class SyncBromaScript extends GhidraScript {
                     continue;
                 }
                 final var fun = currentProgram.getListing().getFunctionAt(child.getAddress());
+                final var ghidraOffset = child.getProgramLocation().getAddress()
+                    .subtract(currentProgram.getImageBase());
 
                 final var fullName = child.getName(true);
                 final var name = child.getName();
-
+                
                 var bromaFuns = bromaClass.getFunctions(name);
                 if (bromaFuns.isEmpty()) {
                     printfmt("Warning: function {0} not found", fullName);
@@ -1140,10 +1164,15 @@ public class SyncBromaScript extends GhidraScript {
                     tryMatchFun:
                     for (var tryMatch : bromaFuns) {
                         var sig = getBromaSignature(tryMatch);
-                        if (fun.getParameterCount() != sig.parameters.size()) {
+                        // Same hotfix as the other reference to offset 0x1fb90
+                        var paramCount = fun.getParameterCount();
+                        if (ghidraOffset == 0x1fb90) {
+                            paramCount -= 1;
+                        }
+                        if (paramCount != sig.parameters.size()) {
                             continue tryMatchFun;
                         }
-                        for (var i = 0; i < fun.getParameterCount(); i += 1) {
+                        for (var i = 0; i < paramCount; i += 1) {
                             var param = fun.getParameter(i);
                             if (!param.getDataType().isEquivalent(sig.parameters.get(i).getDataType())) {
                                 printfmt(
@@ -1200,9 +1229,6 @@ public class SyncBromaScript extends GhidraScript {
                 // Get the function signature from Broma
                 importSignatureFromBroma(child.getAddress(), bromaFun, false);
 
-                final var ghidraOffset = child.getProgramLocation().getAddress()
-                    .subtract(currentProgram.getImageBase());
-                
                 // Export parameter names
                 int skipCount = 0;
                 for (var i = 0; i < fun.getParameterCount() && (i - skipCount) < bromaFun.params.size(); i += 1) {
@@ -1467,6 +1493,25 @@ public class SyncBromaScript extends GhidraScript {
         menuHandlerSelector.setReturnType(new VoidDataType());
         menuHandlerSelector.setCallingConvention("__thiscall");
         manager.addDataType(menuHandlerSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+    }
+
+    void createVTables() throws Exception {
+        final var manager = currentProgram.getDataTypeManager();
+
+        printfmt("Creating VTables...");
+
+        final var jsonPath = Paths.get(this.bindingsDir.toString(), "scripts", "virtuals.json");
+        final var json = (JSONObject) new JSONParser().parse(new FileReader(jsonPath.toFile()));
+
+        printfmt("Creating function definitions...");
+        for (var key : json.keySet()) {
+            var tables = (JSONArray) json.get(key);
+            for (var i = 0; i < tables.size(); i += 1) {
+                var table = (JSONArray) tables.get(i);
+                // var fun = 
+                // unfinished because 2.205 dropped on android holy crap
+            }
+        }
     }
 
     void askContinue(String title, String fmt, Object... args) throws Exception {
