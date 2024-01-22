@@ -2738,12 +2738,16 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn scaleYChanged(float);
 	virtual TodoReturn scaleXYChanged(float, float);
 
+	
 	PAD = android32 0xd4;
 	EditButtonBar* m_editButtonBar;
 	
 	PAD = android32 0x30;
 	
 	cocos2d::CCArray* m_selectedObjects;
+	// LevelEditorLayer* m_editorLayer; // 0x340
+
+	// double m_unkDouble; // 0x398
 	
 	// all of these are not tested
 	cocos2d::CCMenu* m_deleteMenu;
@@ -2797,7 +2801,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCArray* m_customObjectButtonArray;
 	cocos2d::CCArray* m_unknownArray9;
 	int m_selectedMode;
-	LevelEditorLayer* m_editorLayer;
+	LevelEditorLayer* m_editorLayer; // 0x340
 	cocos2d::CCPoint m_swipeStart;
 	cocos2d::CCPoint m_swipeEnd;
 	PAD = mac 0x8, win 0x8, android32 0x8;
