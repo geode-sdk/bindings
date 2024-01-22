@@ -2731,7 +2731,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn angleChangeEnded() = win 0x95c0;
 	virtual TodoReturn angleChanged(float) = win 0xd84e0;
 	virtual TodoReturn updateScaleControl() = win 0xcc380;
-	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint) = win 0xe1cfe = win 0xccc60;
+	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint) = win 0xccc60;
 	virtual TodoReturn scaleChangeBegin() = win 0xcc4b0;
 	virtual TodoReturn scaleChangeEnded();
 	virtual TodoReturn scaleXChanged(float) = win 0xcc4c0;
