@@ -11311,15 +11311,16 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool m_isRobtopSong;
 	bool m_hasMultipleAssets;
 	int m_customSongID;
-	// Big pad here, didn't find anything yet
-	PAD = win 0xC;
+	float m_unkFloat;
+	bool m_unkBool1;
+	void* m_unkPtr;
 	bool m_hasLibrarySongs;
 	bool m_hasSFX;
-	bool m_unkBool;
+	bool m_unkBool2;
 	gd::map<int, bool> m_songs;
 	gd::map<int, bool> m_sfx;
 	gd::vector<GJAssetDownloadAction> m_undownloadedAssets;
-	PAD = win 0x4;
+	int m_unkInt;
 	InfoAlertButton* m_assetInfoBtn;
 }
 
