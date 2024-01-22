@@ -99,4 +99,6 @@ GEODE_SIZE_CHECK(PlayLayer, 0x2f38);
 
 GEODE_MEMBER_CHECK(GameObject, m_scaleX, 0x3e8);
 
+GEODE_MEMBER_CHECK(GameLevelManager, m_completedLevels, 0x1bc)
+
 #endif
