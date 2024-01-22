@@ -223,7 +223,7 @@ public class SyncBromaScript extends GhidraScript {
                 this.end = end;
             }
             boolean overlaps(Range other) {
-                return start <= other.end && other.start <= end;
+                return start < other.end && other.start < end;
             }
         }
     
@@ -499,7 +499,7 @@ public class SyncBromaScript extends GhidraScript {
                 if (prev != null) {
                     rtassert(
                         !patch.range.overlaps(prev),
-                        "There are overlapping patches: (0}..{1} and {2}..{3}",
+                        "There are overlapping patches: {0}..{1} and {2}..{3}",
                         patch.range.start, patch.range.end, 
                         prev.start, prev.end
                     );
