@@ -47,6 +47,7 @@ import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.UnionDataType;
 import ghidra.program.model.data.VoidDataType;
+import ghidra.program.model.data.TypedefDataType;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
 import ghidra.program.model.listing.ParameterImpl;
 import ghidra.program.model.listing.ReturnParameterImpl;
@@ -518,6 +519,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean exportToBroma;
         boolean setOptcall;
         boolean updateTypeDB;
+        boolean setTodoReturnInGhidra;
         Class<?> mapClass = null;
         Object valuesMapObject = null;
         HashMap<String, Object> resultMap = null;
@@ -640,6 +642,7 @@ public class SyncBromaScript extends GhidraScript {
             this.defineOrAskBoolean(script, "Export to Broma", true);
             this.defineOrAskBoolean(script, "Set optcall & membercall", true);
             this.defineOrAskBoolean(script, "Set known types", true);
+            this.defineOrAskBoolean(script, "Set TodoReturn in ghidra", false);
 
             this.showIntroOrAskAll(script);
 
@@ -649,6 +652,7 @@ public class SyncBromaScript extends GhidraScript {
             this.exportToBroma = this.getFinalBoolean("Export to Broma");
             this.setOptcall = this.getFinalBoolean("Set optcall & membercall");
             this.updateTypeDB = this.getFinalBoolean("Set known types");
+            this.setTodoReturnInGhidra = this.getFinalBoolean("Set TodoReturn in ghidra");
     
             if (this.platform == Platform.WINDOWS) {
                 bromaFiles = List.of(this.getFinalChoice("Broma file (Windows-only)"));
@@ -750,7 +754,7 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
-    private Signature getBromaSignature(Broma.Function fun) throws Exception {
+    private Signature getBromaSignature(Broma.Function fun, boolean setTodoReturnInGhidra) throws Exception {
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
         // Add `this` arg
@@ -764,7 +768,8 @@ public class SyncBromaScript extends GhidraScript {
         }
         // Parse return type, or null if this is a destructor
         ReturnParameterImpl bromaRetType = null;
-        if (fun.returnType.isPresent() && !fun.returnType.get().name.value.contains("TodoReturn")) {
+        // If we want to set TodoReturn in ghidra, set bromaRetType even if the function returnType is TodoReturn
+        if (fun.returnType.isPresent() && (setTodoReturnInGhidra || !fun.returnType.get().name.value.contains("TodoReturn"))) {
             var type = addOrGetType(fun.returnType.get());
             // Struct return
             if (type instanceof Composite) {
@@ -855,7 +860,7 @@ public class SyncBromaScript extends GhidraScript {
 
         // Get the calling convention
         final var conv = getCallingConvention(fun.parent.linked, fun.dispatch);
-        final var bromaSig = getBromaSignature(fun);
+        final var bromaSig = getBromaSignature(fun, this.args.setTodoReturnInGhidra);
 
         // Check for mismatches between the Broma and Ghidra signatures
         var signatureConflict = false;
@@ -1139,7 +1144,7 @@ public class SyncBromaScript extends GhidraScript {
                     // For this to be possible, every arg must match type exactly
                     tryMatchFun:
                     for (var tryMatch : bromaFuns) {
-                        var sig = getBromaSignature(tryMatch);
+                        var sig = getBromaSignature(tryMatch, this.args.setTodoReturnInGhidra);
                         if (fun.getParameterCount() != sig.parameters.size()) {
                             continue tryMatchFun;
                         }
@@ -1187,18 +1192,25 @@ public class SyncBromaScript extends GhidraScript {
                     bromaFun = bromaFuns.get(0);
                 }
 
-                // Update return type if Ghidra has an user-defined type and 
+                // Update return type if Ghidra has an user-defined type which isn't TodoReturn and 
                 // Broma has TodoReturn
                 if (
                     bromaFun.returnType.isPresent() && bromaFun.returnType.get().name.value.contains("TodoReturn") &&
-                    fun.getReturn().getSource() == SourceType.USER_DEFINED
+                    fun.getReturn().getSource() == SourceType.USER_DEFINED &&
+                    !fun.getReturnType().getDisplayName().contains("TodoReturn")
                 ) {
                     broma.addPatch(bromaFun.returnType.get().range, fun.getReturnType().getDisplayName());
                     exportedTypeCount += 1;
                 }
+                
+                // $Sabe: 
+                // Commented this call to importSignatureFromBroma because it's replacing the 
+                // return type in ghidra with the one in the broma file and this is the
+                // export handler, so it effectively undoes the RE work by the user.
+                // Left this comment in case I'm not understanding properly and the call is needed.
 
                 // Get the function signature from Broma
-                importSignatureFromBroma(child.getAddress(), bromaFun, false);
+                // importSignatureFromBroma(child.getAddress(), bromaFun, false);
 
                 final var ghidraOffset = child.getProgramLocation().getAddress()
                     .subtract(currentProgram.getImageBase());
@@ -1322,6 +1334,19 @@ public class SyncBromaScript extends GhidraScript {
                 if (manager.getCategory(category) == null) {
                     manager.createCategory(category);
                 }
+            }
+            else if (ns.contains("TodoReturn")) {
+                // Little hack to pick the correct return type in the broma category when it's TodoReturn
+                category = category.extend("broma");
+                if (manager.getCategory(category) == null) {
+                    manager.createCategory(category);
+                }
+                var templates = type.template;
+                if (templates.isPresent()) {
+                    ns += templates.get().value;
+                }
+                name = ns;
+                typePath = new DataTypePath(category, ns);
             }
             else {
                 // Add template parameters to the name
@@ -1467,6 +1492,13 @@ public class SyncBromaScript extends GhidraScript {
         menuHandlerSelector.setReturnType(new VoidDataType());
         menuHandlerSelector.setCallingConvention("__thiscall");
         manager.addDataType(menuHandlerSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // TodoReturn
+
+        if (this.args.setTodoReturnInGhidra) {
+            var todoReturn = new TypedefDataType(new CategoryPath("/broma"), "TodoReturn", new VoidDataType());
+            manager.addDataType(todoReturn, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
     }
 
     void askContinue(String title, String fmt, Object... args) throws Exception {
