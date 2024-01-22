@@ -22,7 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.h2.util.json.JSONArray;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -932,6 +932,7 @@ public class SyncBromaScript extends GhidraScript {
         // at the end of its stack list. Why? I spent an entire day trying to 
         // figure that one out, and I couldn't. If someone can, please let me know 
         // so I can remove this ugly hotfix :'(
+        // Same hotfix is in overload resolution in handleExport
         if (addr.subtract(currentProgram.getImageBase()) == 0x1fb90) {
             bromaSig.parameters.add(new ParameterImpl(
                 "__see_SyncBromaScript_line_" + getLineNumber(),
@@ -1145,10 +1146,12 @@ public class SyncBromaScript extends GhidraScript {
                     continue;
                 }
                 final var fun = currentProgram.getListing().getFunctionAt(child.getAddress());
+                final var ghidraOffset = child.getProgramLocation().getAddress()
+                    .subtract(currentProgram.getImageBase());
 
                 final var fullName = child.getName(true);
                 final var name = child.getName();
-
+                
                 var bromaFuns = bromaClass.getFunctions(name);
                 if (bromaFuns.isEmpty()) {
                     printfmt("Warning: function {0} not found", fullName);
@@ -1161,10 +1164,15 @@ public class SyncBromaScript extends GhidraScript {
                     tryMatchFun:
                     for (var tryMatch : bromaFuns) {
                         var sig = getBromaSignature(tryMatch);
-                        if (fun.getParameterCount() != sig.parameters.size()) {
+                        // Same hotfix as the other reference to offset 0x1fb90
+                        var paramCount = fun.getParameterCount();
+                        if (ghidraOffset == 0x1fb90) {
+                            paramCount -= 1;
+                        }
+                        if (paramCount != sig.parameters.size()) {
                             continue tryMatchFun;
                         }
-                        for (var i = 0; i < fun.getParameterCount(); i += 1) {
+                        for (var i = 0; i < paramCount; i += 1) {
                             var param = fun.getParameter(i);
                             if (!param.getDataType().isEquivalent(sig.parameters.get(i).getDataType())) {
                                 printfmt(
@@ -1221,9 +1229,6 @@ public class SyncBromaScript extends GhidraScript {
                 // Get the function signature from Broma
                 importSignatureFromBroma(child.getAddress(), bromaFun, false);
 
-                final var ghidraOffset = child.getProgramLocation().getAddress()
-                    .subtract(currentProgram.getImageBase());
-                
                 // Export parameter names
                 int skipCount = 0;
                 for (var i = 0; i < fun.getParameterCount() && (i - skipCount) < bromaFun.params.size(); i += 1) {
@@ -1500,9 +1505,9 @@ public class SyncBromaScript extends GhidraScript {
 
         printfmt("Creating function definitions...");
         for (var key : json.keySet()) {
-            var tables = ((JSONArray) json.get(key)).getArray();
-            for (var i = 0; i < tables.length; i += 1) {
-                var table = (JSONArray) tables[i];
+            var tables = (JSONArray) json.get(key);
+            for (var i = 0; i < tables.size(); i += 1) {
+                var table = (JSONArray) tables.get(i);
                 // var fun = 
                 // unfinished because 2.205 dropped on android holy crap
             }
