@@ -5203,7 +5203,7 @@ class GameStatsManager : cocos2d::CCNode {
 	cocos2d::CCDictionary* m_allSpecialChestItems;
 	gd::map<gd::string, gd::string> m_specialRewardDescriptions;
 	gd::map<gd::string, gd::string> m_createSpecialChestItemsMap;
-	PAD = win 0x30; //everything before this pad is untested
+	PAD = win 0x30, android32 0x4; //everything before this pad is untested
 	cocos2d::CCDictionary* m_specialChestsLite;
 	cocos2d::CCArray* m_storeItemArray;
 	cocos2d::CCDictionary* m_rewardItems;
@@ -5215,7 +5215,7 @@ class GameStatsManager : cocos2d::CCNode {
 	cocos2d::CCDictionary* m_playerStats;
 	gd::map<int, int> m_playerStatsRandMap;
 	gd::map<int, int> m_playerStatsSeedMap;
-	PAD = win 0x30;
+	PAD = win 0x30, android32 0x8;
 	cocos2d::CCDictionary* m_completedLevels;
 	cocos2d::CCDictionary* m_verifiedUserCoins;
 	cocos2d::CCDictionary* m_pendingUserCoins;
