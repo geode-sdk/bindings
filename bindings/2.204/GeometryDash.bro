@@ -5147,8 +5147,8 @@ class GameStatsManager : cocos2d::CCNode {
 	cocos2d::CCDictionary* m_allTreasureRoomChestItems;
 	cocos2d::CCDictionary* m_allSpecialChests;
 	cocos2d::CCDictionary* m_allSpecialChestItems;
-	gd::unordered_map<gd::string, gd::string> m_specialRewardDescriptions;
-	gd::unordered_map<gd::string, gd::string> m_createSpecialChestItemsMap;
+	gd::unordered_map<int, gd::string> m_specialRewardDescriptions; //todo: is gd::string gd::string
+	gd::unordered_map<int, gd::string> m_createSpecialChestItemsMap; //todo: is gd::string gd::string
 	cocos2d::CCDictionary* m_specialChestsLite;
 	cocos2d::CCArray* m_storeItemArray;
 	cocos2d::CCDictionary* m_rewardItems;
