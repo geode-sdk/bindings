@@ -2826,7 +2826,7 @@ class EffectGameObject : EnhancedGameObject {
 	// virtual ~EffectGameObject();
 	// EffectGameObject();
 
-	static EffectGameObject* create(char const*);
+	static EffectGameObject* create(char const*) = win 0x39c8b0;
 
 	TodoReturn getTargetColorIndex();
 	bool init(char const*) = win 0x39c950;
@@ -8658,7 +8658,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn setupLevelInfo() = win 0x2544a0;
 	TodoReturn setupPlatformerStats() = win 0x253a90;
 	TodoReturn setupProgressBars() = win 0x253e20;
-	TodoReturn shouldDownloadLevel() = win 0x253890;
+	bool shouldDownloadLevel() = win 0x253890;
 	TodoReturn showSongWarning() = win 0x255510;
 	TodoReturn showUpdateAlert(UpdateResponse) = win 0x255280;
 	TodoReturn tryCloneLevel(cocos2d::CCObject*) = win 0x255f10;
@@ -9025,7 +9025,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 class LevelSettingsObject : cocos2d::CCNode {
 	// virtual ~LevelSettingsObject();
 
-	static LevelSettingsObject* create();
+	static LevelSettingsObject* create() = win 0x24d2f0;
 
 	TodoReturn getSaveString();
 	TodoReturn objectFromDict(cocos2d::CCDictionary*);
@@ -10411,7 +10411,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn runRotateAction(bool, int);
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*) = win 0x2d9c20;
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x2d65a0;
-	TodoReturn setupStreak();
+	void setupStreak() = win 0x2c3c80;
 	void setYVelocity(double, int);
 	TodoReturn spawnCircle();
 	TodoReturn spawnCircle2();
@@ -13555,16 +13555,16 @@ class SongInfoLayer : FLAlertLayer {
 	// virtual ~SongInfoLayer();
 
 	static SongInfoLayer* create(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string);
-	static SongInfoLayer* create(int);
+	static SongInfoLayer* create(int) = win 0x38aba0;
 
-	bool init(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string);
+	bool init(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string) = win 0x38ae50;
 	void onBPM(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onDownload(cocos2d::CCObject* sender);
 	void onFB(cocos2d::CCObject* sender);
-	void onMenuMusic(cocos2d::CCObject* sender) = win 0x38bda0;
+	void onMenuMusic(cocos2d::CCObject* sender) = win 0x38bd20;
 	void onNG(cocos2d::CCObject* sender);
-	void onPracticeMusic(cocos2d::CCObject* sender);
+	void onPracticeMusic(cocos2d::CCObject* sender) = win 0x38bda0;
 	void onYT(cocos2d::CCObject* sender);
 	TodoReturn showCustomMusicUnlockInfo() = win 0x38baa0;
 
@@ -13766,7 +13766,7 @@ class SpritePartDelegate {
 class StartPosObject : EffectGameObject {
 	// virtual ~StartPosObject();
 
-	static StartPosObject* create();
+	static StartPosObject* create() = win 0x3a7850;
 
 	TodoReturn loadSettingsFromString(gd::string);
 	void setSettings(LevelSettingsObject*);
