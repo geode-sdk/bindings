@@ -4354,21 +4354,21 @@ class GameManager : GManager {
 	void setGameVariable(char const*, bool);
 	void setHasRatingPower(int);
 	void setIntGameVariable(char const*, int);
-	void setPlayerBall(int);
-	void setPlayerBird(int);
-	void setPlayerColor(int);
-	void setPlayerColor2(int);
-	void setPlayerColor3(int);
-	void setPlayerDart(int);
-	void setPlayerDeathEffect(int);
-	void setPlayerFrame(int);
-	void setPlayerJetpack(int);
-	void setPlayerRobot(int);
-	void setPlayerShip(int);
-	void setPlayerShipStreak(int);
-	void setPlayerSpider(int);
-	void setPlayerStreak(int);
-	void setPlayerSwing(int);
+	// void setPlayerBall(int);
+	// void setPlayerBird(int);
+	// void setPlayerColor(int);
+	// void setPlayerColor2(int);
+	// void setPlayerColor3(int);
+	// void setPlayerDart(int);
+	// void setPlayerDeathEffect(int);
+	// void setPlayerFrame(int);
+	// void setPlayerJetpack(int);
+	// void setPlayerRobot(int);
+	// void setPlayerShip(int);
+	// void setPlayerShipStreak(int);
+	// void setPlayerSpider(int);
+	// void setPlayerStreak(int);
+	// void setPlayerSwing(int);
 	void setPlayerUserID(int);
 	void setUGV(char const*, bool);
 	TodoReturn setupGameAnimations();
@@ -5951,7 +5951,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
-	PAD, android32 0x28c, android64 0x510;
+	PAD = android32 0x28c, android64 0x510;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
@@ -5996,12 +5996,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCLayer* m_objectLayer;
 	PAD = win 0x70, android32 0x70, android64 0xec;
 	std::array<float, 2000> m_massiveFloatArray;
-	PAD, android32 0x114, android64 0x1ec;
+	PAD = android32 0x114, android64 0x1ec;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
 	PAD = win 0xd2, android32 0xba, android64 0xf0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD, android32 0x1ea, android64 0x340;
+	PAD = android32 0x1ea, android64 0x340;
 }
 
 [[link(android)]]
@@ -10768,7 +10768,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn circleWaveWillBeRemoved(CCCircleWave*);
 	virtual TodoReturn dialogClosed(DialogLayer*);
 
-	PAD, android32 0x12C;
+	PAD = android32 0x12C;
 	bool m_endLayerStars; // not verified on android
 	PAD = win 0xBF, android32 0xBF;
 }
