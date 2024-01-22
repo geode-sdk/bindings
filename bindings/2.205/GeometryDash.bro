@@ -9381,6 +9381,10 @@ class LoadingCircle : cocos2d::CCLayerColor {
 	TodoReturn fadeAndRemove();
 	TodoReturn show();
 
+	void setFade(bool fade) {
+		m_fade = fade;
+	}
+
 	virtual bool init();
 	virtual void draw();
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
