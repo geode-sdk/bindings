@@ -128,11 +128,16 @@ GEODE_MEMBER_CHECK(CustomSongWidget, m_isNotDownloading, 0x157);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_isRobtopSong, 0x158);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_hasMultipleAssets, 0x159);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_customSongID, 0x15c);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_unkFloat, 0x160);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_unkBool1, 0x164);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_unkPtr, 0x168);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_hasLibrarySongs, 0x16c);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_hasSFX, 0x16d);
-GEODE_MEMBER_CHECK(CustomSongWidget, m_unkBool, 0x16e);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_unkBool2, 0x16e);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_songs, 0x170);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_sfx, 0x178);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_undownloadedAssets, 0x180);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_unkInt, 0x18c);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_assetInfoBtn, 0x190);
 
 // unverified in 2.203
