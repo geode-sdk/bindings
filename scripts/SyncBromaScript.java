@@ -726,6 +726,11 @@ public class SyncBromaScript extends GhidraScript {
         if (this.args.updateTypeDB) {
             this.addKnownDataTypes();
         }
+        // Create TodoReturn typedef if we want to set it as return type for ghidra functions
+        if (this.args.setTodoReturnInGhidra) {
+            var todoReturn = new TypedefDataType(new CategoryPath("/broma"), "TodoReturn", new VoidDataType());
+            currentProgram.getDataTypeManager().addDataType(todoReturn, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
 
         // Do the imports and exports
         if (this.args.importFromBroma) {
@@ -1492,13 +1497,6 @@ public class SyncBromaScript extends GhidraScript {
         menuHandlerSelector.setReturnType(new VoidDataType());
         menuHandlerSelector.setCallingConvention("__thiscall");
         manager.addDataType(menuHandlerSelector, DataTypeConflictHandler.REPLACE_HANDLER);
-
-        // TodoReturn
-
-        if (this.args.setTodoReturnInGhidra) {
-            var todoReturn = new TypedefDataType(new CategoryPath("/broma"), "TodoReturn", new VoidDataType());
-            manager.addDataType(todoReturn, DataTypeConflictHandler.REPLACE_HANDLER);
-        }
     }
 
     void askContinue(String title, String fmt, Object... args) throws Exception {
