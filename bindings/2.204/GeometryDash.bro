@@ -7958,7 +7958,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	TodoReturn resumeStroke();
 	TodoReturn scheduleAutoUpdate();
 	TodoReturn stopStroke();
-	TodoReturn updateStroke(float) = win 0x226960;
+	callback void updateStroke(float) = win 0x226960;
 
 	virtual bool init();
 }

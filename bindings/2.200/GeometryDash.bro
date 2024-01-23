@@ -8250,7 +8250,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	TodoReturn firstSetup();
 	TodoReturn stopStroke();
 	TodoReturn resumeStroke();
-	TodoReturn updateStroke(float) = win 0x221C00;
+	callback void updateStroke(float) = win 0x221C00;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn normalizeAngle(double);
 	TodoReturn clearBehindXPos(float);
