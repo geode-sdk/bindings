@@ -5549,6 +5549,13 @@ class GJActionManager : cocos2d::CCNode {
 	virtual bool init();
 }
 
+[[link(android)]]
+class GJAssetDownloadAction {
+	int m_id;
+	GJAssetType m_assetType;
+	int m_status;
+}
+
 [[link(android), depends(GJGameState)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// ~GJBaseGameLayer();
