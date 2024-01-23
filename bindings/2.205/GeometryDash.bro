@@ -2050,7 +2050,7 @@ class CustomSongLayerDelegate {
 	virtual TodoReturn customSongLayerClosed();
 }
 
-[[link(android)]]
+[[link(android), depends(GJAssetDownloadAction)]]
 class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProtocol {
 	// virtual ~CustomSongWidget();
 
