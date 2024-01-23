@@ -1308,7 +1308,7 @@ class cocos2d::CCMenuItem {
 class cocos2d::extension::CCScale9Sprite {
 	static cocos2d::extension::CCScale9Sprite* create() = mac 0x3d7240;
 	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*) = mac 0x3d7120;
-	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*, cocos2d::CCRect) = mac 0x3d7190;
+	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*, cocos2d::CCRect) = mac 0x3d7040;
 	static cocos2d::extension::CCScale9Sprite* create(char const*) = mac 0x3d6d90; // prolly correct
 	static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = mac 0x3d6bc0;
 }
