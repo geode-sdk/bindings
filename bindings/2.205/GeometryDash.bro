@@ -2096,6 +2096,42 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	virtual TodoReturn musicActionFailed(GJMusicAction);
 	virtual TodoReturn songStateChanged();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+
+	SongInfoObject* m_songInfoObject;
+	cocos2d::CCMenu* m_buttonMenu;
+	cocos2d::CCLabelBMFont* m_songLabel;
+	cocos2d::CCLabelBMFont* m_artistLabel;
+	cocos2d::CCLabelBMFont* m_songIDLabel;
+	cocos2d::CCLabelBMFont* m_errorLabel;
+	CCMenuItemSpriteExtra* m_downloadBtn;
+	CCMenuItemSpriteExtra* m_cancelDownloadBtn;
+	CCMenuItemSpriteExtra* m_selectSongBtn;
+	CCMenuItemSpriteExtra* m_getSongInfoBtn;
+	CCMenuItemSpriteExtra* m_playbackBtn;
+	CCMenuItemSpriteExtra* m_moreBtn;
+	CCMenuItemSpriteExtra* m_deleteBtn;
+	cocos2d::CCSprite* m_sliderGroove;
+	cocos2d::CCSprite* m_sliderBar;
+	cocos2d::CCSprite* m_bgSpr;
+	CustomSongDelegate* m_songDelegate;
+	bool m_showSelectSongBtn;
+	bool m_showPlayMusicBtn;
+	bool m_showDownloadBtn;
+	bool m_isNotDownloading;
+	bool m_isRobtopSong;
+	bool m_hasMultipleAssets;
+	int m_customSongID;
+	float m_unkFloat;
+	bool m_unkBool1;
+	void* m_unkPtr;
+	bool m_hasLibrarySongs;
+	bool m_hasSFX;
+	bool m_unkBool2;
+	gd::map<int, bool> m_songs;
+	gd::map<int, bool> m_sfx;
+	gd::vector<GJAssetDownloadAction> m_undownloadedAssets;
+	int m_unkInt;
+	InfoAlertButton* m_assetInfoBtn;
 }
 
 [[link(android)]]
@@ -5191,8 +5227,6 @@ class GameStatsManager : cocos2d::CCNode {
 
 	virtual bool init();
 
-	bool m_unkBool;
-	bool m_unkBool2;
 	bool m_usePlayerStatsCCDictionary;
 	cocos2d::CCString* m_trueString;
 	cocos2d::CCDictionary* m_allStoreItems;

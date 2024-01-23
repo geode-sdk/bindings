@@ -4834,8 +4834,6 @@ class GameStatsManager : cocos2d::CCNode {
 
 	virtual bool init();
 
-	bool m_unkBool;
-	bool m_unkBool2;
 	bool m_usePlayerStatsCCDictionary;
 	cocos2d::CCString* m_trueString;
 	cocos2d::CCDictionary* m_allStoreItems;
