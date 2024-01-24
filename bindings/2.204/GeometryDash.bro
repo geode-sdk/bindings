@@ -10185,23 +10185,23 @@ class PauseLayer : CCBlockLayer {
 	TodoReturn goEdit() = win 0x2ba0f0;
 	bool init(bool) = win 0x22f00;
 	TodoReturn musicSliderChanged(cocos2d::CCObject*) = win 0x2b9da0;
-	void onEdit(cocos2d::CCObject* sender);
+	void onEdit(cocos2d::CCObject* sender) = win 0x2ba020;
 	void onHelp(cocos2d::CCObject* sender);
-	void onNormalMode(cocos2d::CCObject* sender);
+	void onNormalMode(cocos2d::CCObject* sender) = win 0x2b9ed0;
 	void onPracticeMode(cocos2d::CCObject* sender) = win 0x2b9e60;
 	void onQuit(cocos2d::CCObject* sender) = win 0x2ba240;
 	void onRecordReplays(cocos2d::CCObject* sender);
 	void onReplay(cocos2d::CCObject* sender);
-	void onRestart(cocos2d::CCObject* sender);
-	void onRestartFull(cocos2d::CCObject* sender);
+	void onRestart(cocos2d::CCObject* sender) = win 0x2b9f80;
+	void onRestartFull(cocos2d::CCObject* sender) = win 0x2b9fd0;
 	void onResume(cocos2d::CCObject* sender) = win 0x2b9f30;
-	void onSettings(cocos2d::CCObject* sender);
+	void onSettings(cocos2d::CCObject* sender) = win 0x2b94d0;
 	void onTime(cocos2d::CCObject* sender);
-	TodoReturn setupProgressBars();
-	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
+	TodoReturn setupProgressBars() = win 0x2b94f0;
+	TodoReturn sfxSliderChanged(cocos2d::CCObject*) = win 0x2b9da0;
 	TodoReturn tryShowBanner(float);
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x2ba3a0;
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual TodoReturn customSetup() = win 0x2b89f0;
 	virtual void keyUp(cocos2d::enumKeyCodes);
@@ -10276,7 +10276,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
 
 	static PlayerCheckpoint* create() = win 0x2eb770;
 
-	virtual bool init();
+	virtual bool init() = win 0x52e00;
 }
 
 [[link(android)]]
