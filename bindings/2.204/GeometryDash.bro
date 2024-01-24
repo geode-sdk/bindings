@@ -1486,14 +1486,14 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 
 	static ColorSelectPopup* create(cocos2d::ccColor3B);
 	static ColorSelectPopup* create(ColorAction*);
-	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*, ColorAction*);
+	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x63a10;
 	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*);
 
 	TodoReturn closeColorSelect(cocos2d::CCObject*);
 	TodoReturn colorToHex(cocos2d::ccColor3B);
 	TodoReturn getColorValue();
 	TodoReturn hexToColor(gd::string);
-	bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*);
+	bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x63ac0;
 	void onCopy(cocos2d::CCObject* sender);
 	void onCopyOpacity(cocos2d::CCObject* sender);
 	void onDefault(cocos2d::CCObject* sender);
