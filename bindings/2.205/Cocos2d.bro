@@ -406,7 +406,7 @@ class cocos2d::CCTouchDispatcher {
 	int getTargetPrio() const;
 
 	void setDispatchEvents(bool);
-	void setPriority(int, cocos2d::CCTouchDelegate*);
+	void setPriority(int, cocos2d::CCTouchDelegate*) = mac 0x4a7640;
 
 	// CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
 	// CCTouchDispatcher();
@@ -415,7 +415,7 @@ class cocos2d::CCTouchDispatcher {
 	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
 	void decrementForcePrio(int);
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*);
+	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*) = mac 0x4a74f0;
 	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*);
 	void forceRemoveAllDelegates();
 	void forceRemoveDelegate(cocos2d::CCTouchDelegate*);
@@ -423,11 +423,11 @@ class cocos2d::CCTouchDispatcher {
 	bool isDispatchEvents();
 	bool isUsingForcePrio();
 	void rearrangeHandlers(cocos2d::CCArray*);
-	void registerForcePrio(cocos2d::CCObject*, int);
+	void registerForcePrio(cocos2d::CCObject*, int) = mac 0x4a6da0;
 	void removeAllDelegates();
 	void removeDelegate(cocos2d::CCTouchDelegate*);
 	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
-	void unregisterForcePrio(cocos2d::CCObject*);
+	void unregisterForcePrio(cocos2d::CCObject*) = mac 0x4a6e40;
 
 	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
 	virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
@@ -904,4 +904,28 @@ class cocos2d::CCTransitionFade {
 	virtual void onExit();
 	virtual bool initWithDuration(float, cocos2d::CCScene*);
 	virtual bool initWithDuration(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
+}
+
+[[link(win, android)]]
+class cocos2d::ZipUtils {
+	static gd::string base64DecodeEnc(gd::string const&, gd::string);
+	static gd::string base64EncodeEnc(gd::string const&, gd::string);
+	static gd::string base64URLDecode(gd::string const&);
+	static gd::string base64URLEncode(gd::string const&);
+	static void ccDecodeEncodedPvr(unsigned int*, int);
+	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**);
+	static int ccInflateCCZFile(char const*, unsigned char**);
+	static int ccInflateGZipFile(char const*, unsigned char**);
+	static int ccInflateMemory(unsigned char*, unsigned int, unsigned char**);
+	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int*, unsigned int);
+	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int);
+	static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
+	static void ccSetPvrEncryptionKeyPart(int, unsigned int);
+	static gd::string compressString(gd::string const&, bool, int);
+	static gd::string decompressString2(unsigned char*, bool, int, int);
+	static gd::string decompressString(gd::string const&, bool, int);
+	static gd::string encryptDecrypt(gd::string const&, int);
+	static gd::string encryptDecryptWKey(gd::string const&, gd::string);
+	static unsigned char hexToChar(gd::string const&);
+	static gd::string urlDecode(gd::string const&);
 }

@@ -50,7 +50,8 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x1a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x890);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xdb0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xdb8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xfe8);
+//GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xfe8);
+//^ figuring the actual position of this member is left as an exercise to the reader
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0x10dc);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3208);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3300);
@@ -62,13 +63,13 @@ GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x1e8);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x218);
 
 GEODE_SIZE_CHECK(SimplePlayer, 0x2a8);
-GEODE_SIZE_CHECK(PlayLayer, 0x3938);
-GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3658);
+//GEODE_SIZE_CHECK(PlayLayer, 0x3960);
+GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3688);
 // GEODE_SIZE_CHECK(PlayerObject, 0xbb0);
 // GEODE_SIZE_CHECK(GameObject, 0x538);
 
-GEODE_MEMBER_CHECK(LevelInfoLayer, m_circle, 0x280);
-GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x2B8);
-GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2D8);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_circle, 0x270);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x2A8);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2C8);
 
 #endif

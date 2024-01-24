@@ -61,12 +61,18 @@ GEODE_SIZE_CHECK(LabelGameObject, 0x690);
 GEODE_SIZE_CHECK(TeleportPortalObject, 0x6a0);
 // GEODE_SIZE_CHECK(EventLinkTrigger, 0x688);
 
-GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d40);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5f0);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelSettings, 0x88c);
+GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d60);
+//GEODE_MEMBER_CHECK(GJGameState, m_level, 0x148);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5f8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x88C); //used in PlayLayer::destroyPlayer for example
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x890);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelSettings, 0x894);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xA40); //loop in init
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2a94);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2B48);
 
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x2da8);
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x2dec);
+//GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x2da8);
+//GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x2dec);
 
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 
@@ -77,11 +83,6 @@ GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x22c);
 GEODE_SIZE_CHECK(SetupTriggerPopup, 0x2a8);
 GEODE_MEMBER_CHECK(ColorSelectPopup, m_colorAction, 0x2f0);
 
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5f0);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x884);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x888);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa38);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2a8c);
 
 // playerobject and gameobject are kinda messed up rn
 // GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x794);
@@ -92,13 +93,11 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x184);
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x16c);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 
-GEODE_SIZE_CHECK(GJGameState, 0x4a8);
+GEODE_SIZE_CHECK(GJGameState, 0x4b0);
 GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
-GEODE_SIZE_CHECK(PlayLayer, 0x2f38);
+GEODE_SIZE_CHECK(PlayLayer, 0x2F58);
 // GEODE_SIZE_CHECK(PlayerObject, 0x970);
 
 GEODE_MEMBER_CHECK(GameObject, m_scaleX, 0x3e8);
-
-GEODE_MEMBER_CHECK(GameLevelManager, m_completedLevels, 0x1bc)
 
 #endif

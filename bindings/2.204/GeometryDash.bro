@@ -2054,18 +2054,18 @@ class CustomSongLayerDelegate {
 	virtual TodoReturn customSongLayerClosed();
 }
 
-[[link(android)]]
+[[link(android), depends(GJAssetDownloadAction)]]
 class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProtocol {
 	// virtual ~CustomSongWidget();
 
-	static CustomSongWidget* create(SongInfoObject*, CustomSongDelegate*, bool, bool, bool, bool, bool, bool) = win 0x92b60;
+	static CustomSongWidget* create(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool hasMultipleAssets) = win 0x92b60;
 
 	TodoReturn deleteSong();
 	TodoReturn downloadAssetFailed(int, GJAssetType, GJSongError);
 	TodoReturn downloadAssetFinished(int, GJAssetType);
 	TodoReturn downloadFailed();
 	TodoReturn getSongInfoIfUnloaded();
-	bool init(SongInfoObject*, CustomSongDelegate*, bool, bool, bool, bool, bool, bool) = win 0x92c20;
+	bool init(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool hasMultipleAssets) = win 0x92c20;
 	void onCancelDownload(cocos2d::CCObject* sender);
 	void onDelete(cocos2d::CCObject* sender);
 	void onDownload(cocos2d::CCObject* sender) = win 0x94510;
@@ -2082,11 +2082,11 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	TodoReturn updateDownloadProgress(float);
 	TodoReturn updateError(GJSongError);
 	TodoReturn updateLengthMod(float);
-	TodoReturn updateMultiAssetInfo(bool) = win 0x95a60;
+	void updateMultiAssetInfo(bool) = win 0x95a60;
 	TodoReturn updatePlaybackBtn() = win 0x94970;
 	TodoReturn updateProgressBar(int);
-	TodoReturn updateSongInfo() = win 0x94b80;
-	TodoReturn updateSongObject(SongInfoObject*) = win 0x94280;
+	void updateSongInfo() = win 0x94b80;
+	void updateSongObject(SongInfoObject*) = win 0x94280;
 	TodoReturn updateWithMultiAssets(gd::string, gd::string, int) = win 0x956f0;
 	TodoReturn verifySongID(int);
 
@@ -2100,6 +2100,42 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	virtual TodoReturn musicActionFailed(GJMusicAction);
 	virtual TodoReturn songStateChanged();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+
+	SongInfoObject* m_songInfoObject;
+	cocos2d::CCMenu* m_buttonMenu;
+	cocos2d::CCLabelBMFont* m_songLabel;
+	cocos2d::CCLabelBMFont* m_artistLabel;
+	cocos2d::CCLabelBMFont* m_songIDLabel;
+	cocos2d::CCLabelBMFont* m_errorLabel;
+	CCMenuItemSpriteExtra* m_downloadBtn;
+	CCMenuItemSpriteExtra* m_cancelDownloadBtn;
+	CCMenuItemSpriteExtra* m_selectSongBtn;
+	CCMenuItemSpriteExtra* m_getSongInfoBtn;
+	CCMenuItemSpriteExtra* m_playbackBtn;
+	CCMenuItemSpriteExtra* m_moreBtn;
+	CCMenuItemSpriteExtra* m_deleteBtn;
+	cocos2d::CCSprite* m_sliderGroove;
+	cocos2d::CCSprite* m_sliderBar;
+	cocos2d::CCSprite* m_bgSpr;
+	CustomSongDelegate* m_songDelegate;
+	bool m_showSelectSongBtn;
+	bool m_showPlayMusicBtn;
+	bool m_showDownloadBtn;
+	bool m_isNotDownloading;
+	bool m_isRobtopSong;
+	bool m_hasMultipleAssets;
+	int m_customSongID;
+	float m_unkFloat;
+	bool m_unkBool1;
+	void* m_unkPtr;
+	bool m_hasLibrarySongs;
+	bool m_hasSFX;
+	bool m_unkBool2;
+	gd::map<int, bool> m_songs;
+	gd::map<int, bool> m_sfx;
+	gd::vector<GJAssetDownloadAction> m_undownloadedAssets;
+	int m_unkInt;
+	InfoAlertButton* m_assetInfoBtn;
 }
 
 [[link(android)]]
@@ -2736,7 +2772,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn angleChangeEnded() = win 0x95c0;
 	virtual TodoReturn angleChanged(float) = win 0xd84e0;
 	virtual TodoReturn updateScaleControl() = win 0xcc380;
-	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint) = win 0xe1cfe = win 0xccc60;
+	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint) = win 0xccc60;
 	virtual TodoReturn scaleChangeBegin() = win 0xcc4b0;
 	virtual TodoReturn scaleChangeEnded();
 	virtual TodoReturn scaleXChanged(float) = win 0xcc4c0;
@@ -5145,8 +5181,6 @@ class GameStatsManager : cocos2d::CCNode {
 
 	virtual bool init() = win 0x168000;
 
-	bool m_unkBool;
-	bool m_unkBool2;
 	bool m_usePlayerStatsCCDictionary;
 	cocos2d::CCString* m_trueString;
 	cocos2d::CCDictionary* m_allStoreItems;
@@ -5155,9 +5189,8 @@ class GameStatsManager : cocos2d::CCNode {
 	cocos2d::CCDictionary* m_allTreasureRoomChestItems;
 	cocos2d::CCDictionary* m_allSpecialChests;
 	cocos2d::CCDictionary* m_allSpecialChestItems;
-	gd::map<gd::string, gd::string> m_specialRewardDescriptions;
-	gd::map<gd::string, gd::string> m_createSpecialChestItemsMap;
-	PAD = win 0x30; //everything before this pad is untested
+	gd::unordered_map<int, gd::string> m_specialRewardDescriptions; //todo: is gd::string gd::string
+	gd::unordered_map<int, gd::string> m_createSpecialChestItemsMap; //todo: is gd::string gd::string
 	cocos2d::CCDictionary* m_specialChestsLite;
 	cocos2d::CCArray* m_storeItemArray;
 	cocos2d::CCDictionary* m_rewardItems;
@@ -5167,9 +5200,8 @@ class GameStatsManager : cocos2d::CCNode {
 	cocos2d::CCDictionary* m_upcomingChallenges;
 	double m_challengeTime;
 	cocos2d::CCDictionary* m_playerStats;
-	gd::map<int, int> m_playerStatsRandMap;
-	gd::map<int, int> m_playerStatsSeedMap;
-	PAD = win 0x30;
+	gd::unordered_map<int, int> m_playerStatsRandMap;
+	gd::unordered_map<int, int> m_playerStatsSeedMap;
 	cocos2d::CCDictionary* m_completedLevels;
 	cocos2d::CCDictionary* m_verifiedUserCoins;
 	cocos2d::CCDictionary* m_pendingUserCoins;
@@ -5472,6 +5504,13 @@ class GJActionManager : cocos2d::CCNode {
 	virtual bool init();
 }
 
+[[link(android)]]
+class GJAssetDownloadAction {
+	int m_id;
+	GJAssetType m_assetType;
+	int m_status;
+}
+
 [[link(android), depends(GJGameState)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// ~GJBaseGameLayer();
@@ -5723,7 +5762,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn resetLevelVariables() = win 0x1bdb10;
 	TodoReturn resetMoveOptimizedValue();
 	TodoReturn resetPlayer();
-	TodoReturn resetSongTriggerValues() = win 0x3bf30;
+	TodoReturn resetSongTriggerValues();
 	TodoReturn resetSpawnChannelIndex() = win 0x1c7e40;
 	TodoReturn resetStaticCamera(bool, bool);
 	TodoReturn resetStoppedAreaObjects();
@@ -6107,13 +6146,34 @@ class GJDifficultySprite : cocos2d::CCSprite {
 [[link(android)]]
 class GJDropDownLayer : cocos2d::CCLayerColor {
 	// virtual ~GJDropDownLayer();
-	// GJDropDownLayer() = win 0x57050;
+    inline GJDropDownLayer() {
+        m_endPosition = cocos2d::CCPointMake(0.f, 0.f);
+        m_startPosition = cocos2d::CCPointMake(0.f, 0.f);
+        m_buttonMenu = nullptr;
+        m_listLayer = nullptr;
+        m_controllerEnabled = false;
+        m_mainLayer = nullptr;
+        m_hidden = false;
+        m_delegate = nullptr;
+    }
 
-	static GJDropDownLayer* create(char const*, float);
-	static GJDropDownLayer* create(char const*);
+	// static GJDropDownLayer* create(char const*, float);
+	// static GJDropDownLayer* create(char const*);
 
 	bool init(char const*, float) = win 0x1d6700;
-	bool init(char const*);
+	bool init(char const* title) {
+		return init(title, 0.0f);
+	}
+
+    static GJDropDownLayer* create(const char* title, float height) {
+        GJDropDownLayer* pRet = new GJDropDownLayer();
+        if (pRet && pRet->init(title, height)) {
+            pRet->autorelease();
+            return pRet;
+        }
+        CC_SAFE_DELETE(pRet);
+        return nullptr;
+    }
 
 	virtual void draw() = win 0x230a0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -7906,7 +7966,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	TodoReturn resumeStroke();
 	TodoReturn scheduleAutoUpdate();
 	TodoReturn stopStroke();
-	TodoReturn updateStroke(float) = win 0x226960;
+	callback void updateStroke(float) = win 0x226960;
 
 	virtual bool init();
 }
@@ -9263,6 +9323,10 @@ class LoadingCircle : cocos2d::CCLayerColor {
 	TodoReturn fadeAndRemove() = win 0x48670;
 	TodoReturn show() = win 0x48590;
 
+	void setFade(bool fade) {
+		m_fade = fade;
+	}
+
 	virtual bool init() = win 0x484d0;
 	virtual void draw();
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -9802,7 +9866,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getSongDownloadKey(int);
 	TodoReturn getSongInfo(int, bool) = win 0x282ae0;
 	TodoReturn getSongInfoKey(int);
-	TodoReturn getSongInfoObject(int) = win 0x283cb0;
+	SongInfoObject* getSongInfoObject(int) = win 0x283cb0;
 	TodoReturn getSongPriority();
 	TodoReturn handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x282600;
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
@@ -9827,7 +9891,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onGetCustomContentURLCompleted(gd::string, gd::string) = win 0x284a70;
-	TodoReturn onGetSongInfoCompleted(gd::string, gd::string) = win 0x282d00;
+	void onGetSongInfoCompleted(gd::string, gd::string) = win 0x282d00;
 	TodoReturn onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x2824e0;
 	TodoReturn onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
@@ -11310,8 +11374,8 @@ class SelectFontLayer : FLAlertLayer {
 
 	static SelectFontLayer* create(LevelEditorLayer*);
 
-	bool init(LevelEditorLayer*);
-	void onChangeFont(cocos2d::CCObject* sender);
+	bool init(LevelEditorLayer*) = win 0x204DD0;
+	void onChangeFont(cocos2d::CCObject* sender) = win 0x205460;
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn updateFontLabel();
 
@@ -13596,17 +13660,28 @@ class SongInfoObject : cocos2d::CCNode {
 	// virtual ~SongInfoObject();
 
 	static SongInfoObject* create(cocos2d::CCDictionary*);
-	static SongInfoObject* create(int, gd::string, gd::string, int, float, gd::string, gd::string, gd::string, int) = win 0x288650;
+	static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority) = win 0x288650;
 	static SongInfoObject* create(int) = win 0x287f00;
 
 	TodoReturn addTags(gd::string);
 	TodoReturn containsTag(int);
 	TodoReturn createWithCoder(DS_Dictionary*) = win 0x288a10;
 	TodoReturn getTagsString();
-	bool init(int, gd::string, gd::string, int, float, gd::string, gd::string, gd::string, int) = win 0x288860;
+	bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority) = win 0x288860;
 
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
+
+	int m_songID;
+	gd::string m_songName;
+	gd::string m_artistName;
+	gd::string m_youtubeVideo;
+	gd::string m_youtubeChannel;
+	gd::string m_songUrl;
+	gd::string m_artistID;
+	float m_fileSize;
+	bool m_isUnkownSong;
+	int m_priority;
 }
 
 [[link(android)]]
