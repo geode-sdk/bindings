@@ -10,11 +10,25 @@ import javax.swing.JPanel;
 
 import docking.DialogComponentProvider;
 import docking.widgets.label.GHtmlLabel;
+import ghidra.util.Swing;
+import ghidra.util.exception.CancelledException;
 
 public class InputWithButtonsDialog extends DialogComponentProvider {
     Optional<Integer> value = Optional.empty();
 
-    InputWithButtonsDialog(String title, String content, List<String> buttons) {
+    public static int show(ScriptWrapper wrapper, String title, String content, List<String> buttons) throws CancelledException  {
+        var choice = Swing.runNow(() -> {
+			var dialog = new InputWithButtonsDialog(title, content, buttons);
+			wrapper.wrapped.getState().getTool().showDialog(dialog);
+			return dialog.getValue();
+		});
+        if (choice.isEmpty()) {
+            throw new CancelledException();
+        }
+        return choice.get();
+    }
+
+    private InputWithButtonsDialog(String title, String content, List<String> buttons) {
         super(title, true, false, true, false);
         this.setTransient(true);
 
@@ -34,7 +48,7 @@ public class InputWithButtonsDialog extends DialogComponentProvider {
         this.setRememberLocation(false);
         this.buildMainPanel(content, buttons);
     }
-    public Optional<Integer> getValue() {
+    private Optional<Integer> getValue() {
         return this.value;
     }
     private void buildMainPanel(String labelText, List<String> optionValues) {

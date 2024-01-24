@@ -21,15 +21,31 @@ import ghidra.program.model.listing.ReturnParameterImpl;
 import ghidra.program.model.listing.Variable;
 import ghidra.program.model.symbol.Namespace;
 import ghidra.program.model.symbol.SourceType;
-import ghidra.util.Swing;
 import ghidra.util.exception.CancelledException;
 
 public class ScriptWrapper {
     GhidraScript wrapped;
     Path bindingsDir;
 
-    ScriptWrapper(GhidraScript script) {
+    ScriptWrapper(GhidraScript script) throws CancelledException {
         this.wrapped = script;
+
+        // Check if RecoverClassesFromRttiScript has been run
+        final var manager = script.getCurrentProgram().getDataTypeManager();
+        final var category = new CategoryPath("/ClassDataTypes");
+        if (manager.getCategory(category) == null) {
+            InputWithButtonsDialog.show(
+                this,
+                "Ghidra environment has not been set up",
+                "<html>It appears you have not run RecoverClassesFromRttiScript yet!<br>" + 
+                "It is highly recommended to run the script before doing any Broma " + 
+                "synchronization, as it makes decompilations much better by adding " + 
+                "vtables, and it is also required for importing/exporting members.<br>" + 
+                "If you would like to proceed anyway, you may do so, but note that " + 
+                "some things may not work properly.</html>",
+                List.of("Proceed Anyway")
+            );
+        }
 
         // Get the bindings directory from the location of this script
         this.bindingsDir = Paths.get(script.getSourceFile().getParentFile().getParentFile().getParentFile().toString(), "bindings");
@@ -211,17 +227,11 @@ public class ScriptWrapper {
     }
 
     void askContinue(String title, String fmt, Object... args) throws Exception {
-		var choice = Swing.runNow(() -> {
-			var dialog = new InputWithButtonsDialog(
-                title,
-                MessageFormat.format(("<html>" + fmt + "</html>").replace("\n\n", "<br>"), args),
-                List.of("Continue")
-            );
-			wrapped.getState().getTool().showDialog(dialog);
-			return dialog.getValue();
-		});
-        if (choice.isEmpty()) {
-            throw new CancelledException();
-        }
+        InputWithButtonsDialog.show(
+            this,
+            title,
+            MessageFormat.format(("<html>" + fmt + "</html>").replace("\n\n", "<br>"), args),
+            List.of("Continue")
+        );
     }
 }
