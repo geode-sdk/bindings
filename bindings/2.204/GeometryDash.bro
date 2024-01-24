@@ -9197,7 +9197,7 @@ class LevelTools {
 	TodoReturn createStarPackDict();
 	TodoReturn fbURLForArtist(int);
 	TodoReturn getAudioBPM(int);
-	TodoReturn getAudioFileName(int);
+	gd::string getAudioFileName(int) = win 0x273430;
 	TodoReturn getAudioString(int);
 	TodoReturn getAudioTitle(int) = win 0x273090;
 	TodoReturn getLastGameplayReversed();
