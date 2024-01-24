@@ -2,13 +2,7 @@
 // @author HJfod
 // @category GeodeSDK
 
-import java.io.FileReader;
-import java.nio.file.Paths;
 import java.util.Arrays;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.data.ArrayDataType;
@@ -31,7 +25,6 @@ public class SetupGhidraScript extends GhidraScript {
     class Args extends InputParameters {
         Platform platform;
         boolean updateTypeDB;
-        boolean createVTables;
 
         public Args(ScriptWrapper wrapper) throws Exception {
             this.run(wrapper);
@@ -45,9 +38,11 @@ public class SetupGhidraScript extends GhidraScript {
         @Override
         protected String description() {
             return 
-                "Defines a few common types like CCPoint & creates vtables (WIP) " + 
-                "for all classes. This script is WIP, the vtable feature doesn't " + 
-                "work yet!";
+                "Defines a few common types like CCPoint.\n\n" + 
+                "It is highly recommended to also run the built-in \n\n" + 
+                "RecoverClassesFromRttiScript, which automatically creates " + 
+                "vtables for you! That script may take a long time " + 
+                "(over 30 minutes) to finish, but it's well worth it!";
         }
 
         @Override
@@ -56,7 +51,6 @@ public class SetupGhidraScript extends GhidraScript {
 
             this.choice("Target platform", platforms, p -> this.platform = Platform.parse(p));
             this.bool("Set known types", b -> this.updateTypeDB = b);
-            this.bool("Create VTables", b -> this.createVTables = b);
             
             this.waitForAnswers();
         }
@@ -73,11 +67,6 @@ public class SetupGhidraScript extends GhidraScript {
         // Update type database with known types like `gd::string` and `CCPoint`
         if (this.args.updateTypeDB) {
             this.addKnownDataTypes();
-        }
-
-        // Create vtables from virtuals.json
-        if (this.args.createVTables) {
-            this.createVTables();
         }
     }
 
@@ -170,24 +159,5 @@ public class SetupGhidraScript extends GhidraScript {
         menuHandlerSelector.setReturnType(new VoidDataType());
         menuHandlerSelector.setCallingConvention("__thiscall");
         manager.addDataType(menuHandlerSelector, DataTypeConflictHandler.REPLACE_HANDLER);
-    }
-
-    void createVTables() throws Exception {
-        final var manager = currentProgram.getDataTypeManager();
-
-        wrapper.printfmt("Creating VTables...");
-
-        final var jsonPath = Paths.get(wrapper.bindingsDir.toString(), "scripts", "virtuals.json");
-        final var json = (JSONObject) new JSONParser().parse(new FileReader(jsonPath.toFile()));
-
-        wrapper.printfmt("Creating function definitions...");
-        for (var key : json.keySet()) {
-            var tables = (JSONArray) json.get(key);
-            for (var i = 0; i < tables.size(); i += 1) {
-                var table = (JSONArray) tables.get(i);
-                // var fun = 
-                // unfinished because 2.205 dropped on android holy crap
-            }
-        }
     }
 }
