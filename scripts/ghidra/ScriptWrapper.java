@@ -93,23 +93,41 @@ public class ScriptWrapper {
         var nameIter = Arrays.asList(type.name.value.split("::")).listIterator();
         String name = null;
         DataTypePath typePath = null;
-        CategoryPath category = new CategoryPath("/");
-        while (nameIter.hasNext()) {
-            var ns = nameIter.next();
-            if (nameIter.hasNext()) {
-                category = category.extend(ns);
-                if (manager.getCategory(category) == null) {
-                    manager.createCategory(category);
-                }
+
+        // Root category is the same as where RecoverClassesFromRTTIScript places them
+        CategoryPath category = new CategoryPath("/ClassDataTypes");
+
+        // Built-in types
+        if (type.name.value.matches("bool|char|int|long|float|double|void")) {
+            category = new CategoryPath("/");
+            name = type.name.value;
+            typePath = new DataTypePath(category, name);
+        }
+        // Class types
+        else {
+            // Ensure root category exists
+            if (manager.getCategory(category) == null) {
+                manager.createCategory(category);
             }
-            else {
-                // Add template parameters to the name
-                var templates = type.template;
-                if (templates.isPresent()) {
-                    ns += templates.get().value;
+            while (nameIter.hasNext()) {
+                var ns = nameIter.next();
+                if (nameIter.hasNext()) {
+                    category = category.extend(ns);
+                    if (manager.getCategory(category) == null) {
+                        manager.createCategory(category);
+                    }
                 }
-                name = ns;
-                typePath = new DataTypePath(category, ns);
+                else {
+                    // Add template parameters to the name
+                    var templates = type.template;
+                    if (templates.isPresent()) {
+                        ns += templates.get().value;
+                    }
+                    name = ns;
+                    // RecoverClassesFromRTTIScript puts class types in a self-titled folder
+                    category = category.extend(name);
+                    typePath = new DataTypePath(category, ns);
+                }
             }
         }
         
