@@ -75,6 +75,15 @@ public class Regexes {
             Pattern.DOTALL
         );
     }
+    public static final Pattern grabMember(String memberName) {
+        return Pattern.compile(
+            formatRegex(
+                "{0}\\s+{1}\\s*;",
+                GRAB_TYPE, memberName
+            ),
+            Pattern.DOTALL | Pattern.MULTILINE
+        );
+    }
 
     // Fixed regexes
 

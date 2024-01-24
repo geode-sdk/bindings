@@ -7,15 +7,25 @@ import java.util.Arrays;
 import java.util.List;
 
 import ghidra.app.script.GhidraScript;
+import ghidra.program.model.data.ArrayDataType;
+import ghidra.program.model.data.ByteDataType;
 import ghidra.program.model.data.CategoryPath;
+import ghidra.program.model.data.CharDataType;
 import ghidra.program.model.data.Composite;
 import ghidra.program.model.data.DataType;
 import ghidra.program.model.data.DataTypeConflictHandler;
 import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.EnumDataType;
+import ghidra.program.model.data.FloatDataType;
+import ghidra.program.model.data.FunctionDefinitionDataType;
 import ghidra.program.model.data.IntegerDataType;
+import ghidra.program.model.data.ParameterDefinition;
+import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.StructureDataType;
+import ghidra.program.model.data.Undefined1DataType;
+import ghidra.program.model.data.UnionDataType;
+import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.listing.ParameterImpl;
 import ghidra.program.model.listing.ReturnParameterImpl;
 import ghidra.program.model.listing.Variable;
@@ -105,22 +115,27 @@ public class ScriptWrapper {
     DataType addOrGetType(Broma.Type type) throws Exception {
         final var manager = wrapped.getCurrentProgram().getDataTypeManager();
 
-        // Get the name and category
-        var nameIter = Arrays.asList(type.name.value.split("::")).listIterator();
-        String name = null;
-        DataTypePath typePath = null;
-
-        // Root category is the same as where RecoverClassesFromRTTIScript places them
-        CategoryPath category = new CategoryPath("/ClassDataTypes");
+        DataType result = null;
 
         // Built-in types
-        if (type.name.value.matches("bool|char|int|long|float|double|void")) {
-            category = new CategoryPath("/");
-            name = type.name.value;
-            typePath = new DataTypePath(category, name);
+        if (type.name.value.matches("bool|char|short|int|long|float|double|void")) {
+            result = manager.getDataType(new DataTypePath(new CategoryPath("/"), type.name.value));
+            ScriptWrapper.rtassert(result != null, "{0} isn't a C++ type according to Ghidra", type.name.value);
+        }
+        // STL containers are fully known
+        else if (type.name.value.startsWith("gd::")) {
+            result = this.updateTypeDatabaseWithSTL(type.name.value.substring(4));
         }
         // Class types
         else {
+            // Get the name and category
+            var nameIter = Arrays.asList(type.name.value.split("::")).listIterator();
+            String name = null;
+            DataTypePath typePath = null;
+    
+            // Root category is the same as where RecoverClassesFromRTTIScript places them
+            CategoryPath category = new CategoryPath("/ClassDataTypes");
+
             // Ensure root category exists
             if (manager.getCategory(category) == null) {
                 manager.createCategory(category);
@@ -145,29 +160,29 @@ public class ScriptWrapper {
                     typePath = new DataTypePath(category, ns);
                 }
             }
-        }
         
-        ScriptWrapper.rtassert(name != null, "Data type doesn't have a name (GRAB_TYPE regex is invalid)");
+            ScriptWrapper.rtassert(name != null, "Data type doesn't have a name (GRAB_TYPE regex is invalid)");
 
-        // Try to get this type
-        var result = manager.getDataType(typePath);
-        if (result == null) {
-            // Try to guess the type; if the guess is wrong, the user can fix it manually
-            // If the type is passed without pointer or reference, assume it's an enum
-            if (type.ptr.isEmpty() && type.ref.isEmpty()) {
-                result = manager.addDataType(
-                    new EnumDataType(category, name, new IntegerDataType().getLength()),
-                    DataTypeConflictHandler.DEFAULT_HANDLER
-                );
-                printfmt("Created new type {0}, assumed it's an enum", typePath);
-            }
-            // Otherwise it's probably a struct
-            else {
-                result = manager.addDataType(
-                    new StructureDataType(category, name, 0),
-                    DataTypeConflictHandler.DEFAULT_HANDLER
-                );
-                printfmt("Created new type {0}, assumed it's a struct", typePath);
+            // Try to get this type
+            result = manager.getDataType(typePath);
+            if (result == null) {
+                // Try to guess the type; if the guess is wrong, the user can fix it manually
+                // If the type is passed without pointer or reference, assume it's an enum
+                if (type.ptr.isEmpty() && type.ref.isEmpty()) {
+                    result = manager.addDataType(
+                        new EnumDataType(category, name, new IntegerDataType().getLength()),
+                        DataTypeConflictHandler.DEFAULT_HANDLER
+                    );
+                    printfmt("Created new type {0}, assumed it's an enum", typePath);
+                }
+                // Otherwise it's probably a struct
+                else {
+                    result = manager.addDataType(
+                        new StructureDataType(category, name, 0),
+                        DataTypeConflictHandler.DEFAULT_HANDLER
+                    );
+                    printfmt("Created new type {0}, assumed it's a struct", typePath);
+                }
             }
         }
 
@@ -189,6 +204,18 @@ public class ScriptWrapper {
         }
 
         return result;
+    }
+
+    CategoryPath createCategoryAll(CategoryPath path) {
+        final var manager = wrapped.getCurrentProgram().getDataTypeManager();
+        var build = new CategoryPath("/");
+        for (var p : path.asList()) {
+            build = build.extend(p);
+            if (manager.getCategory(build) == null) {
+                manager.createCategory(build);
+            }
+        }
+        return path;
     }
 
     Signature getBromaSignature(Broma.Function fun) throws Exception {
@@ -233,5 +260,165 @@ public class ScriptWrapper {
             MessageFormat.format(("<html>" + fmt + "</html>").replace("\n\n", "<br>"), args),
             List.of("Continue")
         );
+    }
+    
+    void updateTypeDatabase() throws Exception {
+        this.printfmt("Updating type database...");
+
+        final var manager = wrapped.getCurrentProgram().getDataTypeManager();
+        final var category = new CategoryPath("/ClassDataTypes");
+        CategoryPath cat;
+
+        // gd::string
+
+        cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
+        var stringDataUnion = new UnionDataType(cat, cat.getName());
+        stringDataUnion.add(new PointerDataType(new CharDataType()), 0x4, "ptr", "");
+        stringDataUnion.add(new ArrayDataType(new CharDataType(), 0x10, 0x1), 0x10, "data", "SSO");
+
+        cat = this.createCategoryAll(category.extend("gd", "string"));
+        var string = new StructureDataType(cat, cat.getName(), 0x0);
+        string.add(stringDataUnion, 0x10, "data", "String data with SSO");
+        string.add(new IntegerDataType(), 0x4, "length", "The length of the string without the terminating null byte");
+        string.add(new IntegerDataType(), 0x4, "capacity", "The capacity of the string buffer");
+
+        manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::CCPoint
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "CCPoint"));
+        var point = new StructureDataType(cat, cat.getName(), 0x0);
+        point.add(new FloatDataType(), 0x4, "x", "X position of the point");
+        point.add(new FloatDataType(), 0x4, "y", "Y position of the point");
+        manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::CCSize
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "CCSize"));
+        var size = new StructureDataType(cat, cat.getName(), 0x0);
+        size.add(new FloatDataType(), 0x4, "width", "Width of the size");
+        size.add(new FloatDataType(), 0x4, "height", "Height of the size");
+        manager.addDataType(size, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::CCRect
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "CCRect"));
+        var rect = new StructureDataType(cat, cat.getName(), 0x0);
+        rect.add(new FloatDataType(), 0x4, "x", "X position of the rect");
+        rect.add(new FloatDataType(), 0x4, "y", "Y position of the rect");
+        rect.add(new FloatDataType(), 0x4, "width", "Width of the rect");
+        rect.add(new FloatDataType(), 0x4, "height", "Height of the rect");
+        manager.addDataType(rect, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccColor3B
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccColor3B"));
+        var color3B = new StructureDataType(cat, cat.getName(), 0x0);
+        color3B.add(new ByteDataType(), 0x1, "r", "Red component");
+        color3B.add(new ByteDataType(), 0x1, "g", "Green component");
+        color3B.add(new ByteDataType(), 0x1, "b", "Blue component");
+        color3B.add(new Undefined1DataType());
+        manager.addDataType(color3B, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccColor4B
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccColor4B"));
+        var color4B = new StructureDataType(cat, cat.getName(), 0x0);
+        color4B.add(new ByteDataType(), 0x1, "r", "Red component");
+        color4B.add(new ByteDataType(), 0x1, "g", "Green component");
+        color4B.add(new ByteDataType(), 0x1, "b", "Blue component");
+        color4B.add(new ByteDataType(), 0x1, "a", "Alpha component");
+        manager.addDataType(color4B, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccHSVValue
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccHSVValue"));
+        var ccHSVValue = new StructureDataType(cat, cat.getName(), 0x0);
+        ccHSVValue.add(new FloatDataType(), 0x4, "h", "Hue");
+        ccHSVValue.add(new FloatDataType(), 0x4, "s", "Saturation");
+        ccHSVValue.add(new FloatDataType(), 0x4, "v", "Lightness");
+        ccHSVValue.add(new ByteDataType(), 0x1, "saturationChecked", "");
+        ccHSVValue.add(new ByteDataType(), 0x1, "brightnessChecked", "");
+        ccHSVValue.add(new Undefined1DataType());
+        ccHSVValue.add(new Undefined1DataType());
+        manager.addDataType(ccHSVValue, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::SEL_MenuHandler
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "SEL_MenuHandler"));
+        var menuHandlerSelector = new FunctionDefinitionDataType(cat, cat.getName());
+        menuHandlerSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject")),
+                "The target object for this callback"
+            ),
+            new ParameterDefinitionImpl(
+                "sender",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject")),
+                "The menu item that was activated to trigger this callback"
+            ),
+        });
+        menuHandlerSelector.setReturnType(new VoidDataType());
+        menuHandlerSelector.setCallingConvention("__thiscall");
+        manager.addDataType(menuHandlerSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // geode::SeedValueSRV etc.
+
+        for (var x : new String[] { "SR", "RS", "VRS", "VSR", "RVS", "RSV", "SVR", "SRV" }) {
+            cat = this.createCategoryAll(category.extend("geode", "SeedValue" + x));
+            var ty = new StructureDataType(cat, cat.getName(), 0x0);
+            for (var c : x.chars().toArray()) {
+                switch (c) {
+                    case 'S': ty.add(new IntegerDataType(), 0x4, "seed", "The seed of the protected value"); break;
+                    case 'R': ty.add(new IntegerDataType(), 0x4, "random", "The randomized number of the protected value"); break;
+                    case 'V': ty.add(new IntegerDataType(), 0x4, "value", "The original value of the protected value"); break;
+                }
+            }
+            manager.addDataType(ty, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
+    }
+
+    DataType updateTypeDatabaseWithSTL(String templated) throws Exception {
+        final var manager = wrapped.getCurrentProgram().getDataTypeManager();
+        final var category = new CategoryPath("/ClassDataTypes");
+
+        var cat = this.createCategoryAll(category.extend("gd", templated));
+        var existing = manager.getDataType(cat, cat.getName());
+        if (existing != null) {
+            return existing;
+        }
+
+        if (templated.startsWith("vector")) {
+            var point = new StructureDataType(cat, cat.getName(), 0x0);
+            point.add(new PointerDataType(), 0x4, "start", "Pointer to the first element in the vector");
+            point.add(new PointerDataType(), 0x4, "last", "Pointer to one past the last element in the vector");
+            point.add(new PointerDataType(), 0x4, "capacity", "Pointer to the end of the current vector allocation");
+            return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
+        else if (templated.startsWith("unordered_map")) {
+            var point = new StructureDataType(cat, cat.getName(), 0x20);
+            // todo: idk the structure...
+            return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
+        else if (templated.startsWith("map")) {
+            var point = new StructureDataType(cat, cat.getName(), 0x8);
+            // todo: idk the structure...
+            return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
+        else if (templated.startsWith("unordered_set")) {
+            var point = new StructureDataType(cat, cat.getName(), 0x20);
+            // todo: idk the structure...
+            return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
+        else if (templated.startsWith("set")) {
+            var point = new StructureDataType(cat, cat.getName(), 0x8);
+            // todo: idk the structure...
+            return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
+        else {
+            ScriptWrapper.rtassert(false, "{0} is an unhandled STL type!", templated);
+            return null;
+        }
     }
 }
