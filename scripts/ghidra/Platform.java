@@ -1,7 +1,9 @@
 
 public enum Platform {
     WINDOWS("Windows", "win", false),
-    MAC("MacOS", "mac", true);
+    MAC("MacOS", "mac", true),
+    ANDROID32("Android32", "android32", true),
+    ANDROID64("Android64", "android64", true);
 
     private final String longName;
     private final String shortName;

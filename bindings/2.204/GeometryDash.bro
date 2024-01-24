@@ -4324,7 +4324,7 @@ class GameManager : GManager {
 	TodoReturn printGJLog();
 	TodoReturn queueReloadMenu() = win 0x12e3e0;
 	TodoReturn rateGame();
-	TodoReturn recountUserStats(gd::string) = win 0x129ce0;
+	void recountUserStats(gd::string) = win 0x129ce0;
 	void reloadAll(bool, bool, bool, bool) = win 0x12e4b0;
 	void reloadAll(bool a, bool b, bool c) {
 		// TODO: figure out these args i have no idea
