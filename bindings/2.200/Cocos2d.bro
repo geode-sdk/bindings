@@ -542,11 +542,15 @@ class cocos2d::CCTextureCache {
 
 [[link(win, android)]]
 class cocos2d::CCTouch {
-	cocos2d::CCPoint getDelta() const;
+	cocos2d::CCPoint getDelta() const {
+		return getLocation() - getPreviousLocation();
+	}
 	int getID() const;
 	cocos2d::CCPoint getLocation() const = mac 0x5c750;
 	cocos2d::CCPoint getLocationInView() const;
-	cocos2d::CCPoint getPreviousLocation() const;
+	cocos2d::CCPoint getPreviousLocation() const {
+		return CCDirector::sharedDirector()->convertToGL(m_prevPoint);
+	}
 	cocos2d::CCPoint getPreviousLocationInView() const;
 	cocos2d::CCPoint getStartLocation() const;
 	cocos2d::CCPoint getStartLocationInView() const;
@@ -1026,7 +1030,7 @@ class cocos2d::CCLabelBMFont {
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint);
-	static cocos2d::CCLabelBMFont* create();
+	static cocos2d::CCLabelBMFont* create() = mac 0x59c9f0;
 	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int);
 	static void purgeCachedData();
 
@@ -1392,7 +1396,7 @@ class cocos2d {
 	static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
 	static cocos2d::CCRect CCRectFromString(char const*);
 	static cocos2d::CCSize CCSizeFromString(char const*);
-	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*);
+	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = mac 0x59a1c0;
 	static void FNTConfigRemoveCache();
 	static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
 	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&) = mac 0x21f1b0;
