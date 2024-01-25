@@ -10976,7 +10976,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	TodoReturn getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
 	bool init(int, bool, bool) = win 0x2f4920;
 	void onClose(cocos2d::CCObject* sender) = win 0x2f53b0;
-	void onFeature(cocos2d::CCObject* sender);
+	void onFeature(cocos2d::CCObject* sender) = win 0x2f4f90;
 	void onRate(cocos2d::CCObject* sender) = win 0x2f51c0;
 	void onToggleCoins(cocos2d::CCObject* sender);
 	TodoReturn selectRating(cocos2d::CCObject*) = win 0x2f5070;
