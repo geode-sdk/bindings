@@ -615,6 +615,14 @@ class ButtonSprite : cocos2d::CCSprite {
 	TodoReturn updateBGImage(char const*) = win 0x20230;
 	void updateSpriteBGSize() = win 0x20340;
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
+
+    PAD = mac 0x18, win 0x18;
+    cocos2d::CCLabelBMFont* m_label;
+    cocos2d::CCSprite* m_subSprite;
+    cocos2d::CCSprite* m_subBGSprite;
+    cocos2d::extension::CCScale9Sprite* m_BGSprite;
+    PAD = mac 0xC, win 0x8;
+    cocos2d::CCPoint m_spritePosition;
 }
 
 [[link(android)]]
@@ -1135,7 +1143,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	// virtual ~CCTextInputNode();
 
 	static CCTextInputNode* create(float, float, char const*, char const*, int, char const*) = win 0x2e440;
-	
+
 	static CCTextInputNode* create(float width, float height, char const* placeholder, char const* fontPath) {
 		return CCTextInputNode::create(width, height, placeholder, 0x18, fontPath);
 	}
@@ -1168,6 +1176,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	}
     void setAllowedChars(gd::string filter) {
         m_allowedChars = filter;
+    }
+    cocos2d::CCLabelBMFont* getPlaceholderLabel() {
+        return m_placeholderLabel;
     }
 
 	TodoReturn addTextArea(TextArea*);
@@ -2446,7 +2457,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onPasteWColor(cocos2d::CCObject* sender);
 	void onReGroup(cocos2d::CCObject* sender);
 	void onResetUnusedColors(cocos2d::CCObject* sender);
-	void onResume(cocos2d::CCObject* sender);
+	void onResume(cocos2d::CCObject* sender) = win 0xa2640;
 	void onSave(cocos2d::CCObject* sender);
 	void onSaveAndExit(cocos2d::CCObject* sender);
 	void onSaveAndPlay(cocos2d::CCObject* sender);
@@ -2480,7 +2491,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	TodoReturn updateSongButton();
 
 	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0xa3080;
 	virtual TodoReturn customSetup() = win 0xa0730;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 }
@@ -2600,10 +2611,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn liveEditColorUsable();
 	TodoReturn menuItemFromObjectString(gd::string, int);
 	TodoReturn moveForCommand(EditCommand);
-	TodoReturn moveGamelayer(cocos2d::CCPoint);
+	TodoReturn moveGamelayer(cocos2d::CCPoint) = win 0xa7070;
 	TodoReturn moveObject(GameObject*, cocos2d::CCPoint) = win 0xd4f10;
 	TodoReturn moveObjectCall(cocos2d::CCObject*);
-	TodoReturn moveObjectCall(EditCommand);
+	TodoReturn moveObjectCall(EditCommand) = win 0xd4d40;
 	TodoReturn offsetForKey(int) = win 0xdb460;
 	TodoReturn onAssignNewGroupID();
 	void onColorFilter(cocos2d::CCObject* sender);
@@ -2672,7 +2683,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType) = win 0xd64b0;
 	TodoReturn selectAll();
 	TodoReturn selectAllWithDirection(bool);
-	TodoReturn selectBuildTab(int);
+	TodoReturn selectBuildTab(int) = win 0xcbf00;
 	TodoReturn selectObject(GameObject*, bool) = win 0xc8aa0;
 	TodoReturn selectObjects(cocos2d::CCArray*, bool) = win 0xc8d40;
 	TodoReturn selectObjectsInRect(cocos2d::CCRect);
@@ -2774,17 +2785,40 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn scaleYChanged(float) = win 0xcc540;
 	virtual TodoReturn scaleXYChanged(float, float) = win 0xcc5c0;
 
-	
-	PAD = win 0xd0, android32 0xcc;
-    cocos2d::CCDictionary* m_editButtonDict; // win 0x228
-	void* unk0x22c;
-	EditButtonBar* m_editButtonBar; // win 0x230
-	
+
+	PAD = win 0x60, android32 0x5c;
+
+	float m_unk1b8;
+	float m_unk1bc;
+	PAD = win 0x4, android32 0x4;
+	EditButtonBar* m_unk1c4;
+	PAD = win 0x4, android32 0x4;
+	cocos2d::CCArray* m_unk1cc;
+	float m_unk1d0;
 	PAD = win 0x30, android32 0x30;
-	
+	cocos2d::CCLabelBMFont* m_unk204;
+	GJRotationControl* m_rotationControl;
+	PAD = win 0xc, android32 0xc;
+	GJScaleControl* m_scaleControl;
+	GJTransformControl* m_transformControl;
+	cocos2d::CCNode* m_unk220;
+	cocos2d::CCNode* m_unk224;
+    cocos2d::CCDictionary* m_editButtonDict; // win 0x228
+	EditButtonBar* unk0x22c;
+	EditButtonBar* m_editButtonBar; // win 0x230
+	Slider* m_unk234;
+	float m_unk238;
+	float m_unk23c;
+	float m_unk240;
+	float m_unk244;
+
+	PAD = win 0x10, android32 0x10;
+	cocos2d::CCArray* m_unk258;
+	PAD = win 0x8, android32 0x8;
+
 	cocos2d::CCArray* m_selectedObjects; // win 0x264
-	
-	// all of these are not tested
+
+	// most of these are not tested
 	cocos2d::CCMenu* m_deleteMenu;
 	cocos2d::CCArray* m_unknownArray4;
 	CCMenuItemSpriteExtra* m_deleteModeBtn;
@@ -2807,6 +2841,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	CCMenuItemSpriteExtra* m_editGroupBtn;
 	CCMenuItemSpriteExtra* m_editHSVBtn;
 	CCMenuItemSpriteExtra* m_editSpecialBtn;
+	PAD = win 0x4, android32 0x4;
 	CCMenuItemSpriteExtra* m_copyPasteBtn;
 	CCMenuItemSpriteExtra* m_copyBtn;
 	CCMenuItemSpriteExtra* m_pasteBtn;
@@ -2814,7 +2849,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	CCMenuItemSpriteExtra* m_pasteStateBtn;
 	CCMenuItemSpriteExtra* m_pasteColorBtn;
 	CCMenuItemSpriteExtra* m_goToLayerBtn;
-	CCMenuItemToggler* m_guideToggle;
+	// CCMenuItemToggler* m_guideToggle;
 	cocos2d::CCArray* m_createButtonBars;
 	cocos2d::CCMenu* m_tabsMenu;
 	cocos2d::CCArray* m_tabsArray;
@@ -2830,8 +2865,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	CCMenuItemSpriteExtra* m_layerNextBtn;
 	CCMenuItemSpriteExtra* m_layerPrevBtn;
 	CCMenuItemSpriteExtra* m_goToBaseBtn;
-	PAD = mac 0x10, win 0x8, android32 0x8;
+	ButtonSprite* m_unk31c;
+	ButtonSprite* m_unk320;
 	int m_selectedCreateObjectID;
+	PAD = win 0x8, android32 0x8;
 	cocos2d::CCArray* m_createButtonArray;
 	cocos2d::CCArray* m_customObjectButtonArray;
 	cocos2d::CCArray* m_unknownArray9;
@@ -2843,9 +2880,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCPoint m_lastTouchPoint;
 	cocos2d::CCPoint m_cameraTest;
 	PAD = mac 0x8, win 0x8, android32 0x8;
-	
-	PAD = android32 0x8;
+
+	PAD = win 0x8, android32 0x8;
 	GameObject* m_selectedObject;
+	PAD = win 0x4;
+	int m_selectedTab;
 }
 
 [[link(android)]]
@@ -3203,17 +3242,17 @@ class EnhancedGameObject : GameObject {
 	virtual TodoReturn updateAnimateOnTrigger(bool);
 
 	PAD = android32 0x25;
-	
+
 	bool m_hasCustomAnimation;
 	bool m_hasCustomRotation;
 	// property 98
 	bool m_disableRotation;
 	PAD = android32 0x3;
-	
+
 	// property 97
 	float m_rotationSpeed;
 	PAD = android32 0xc;
-	
+
 	// property 106
 	bool m_animationRandomizedStart;
 	// property 107
@@ -3231,7 +3270,7 @@ class EnhancedGameObject : GameObject {
 	// property 592
 	bool m_animationOffset;
 	PAD = android32 0xf;
-	
+
 	// property 214
 	bool m_animateOnlyWhenActive;
 	// property 444
@@ -4107,7 +4146,7 @@ class GameManager : GManager {
 	}
 
 	static GameManager* sharedState() = win 0x121540;
-	
+
 	PlayLayer* getPlayLayer() {
 		return m_playLayer;
 	}
@@ -4822,57 +4861,57 @@ class GameObject : CCSpritePlus {
 	virtual void setType(GameObjectType);
 
 	PAD = android32 0xf, win 0xf;
-	
+
 	// property 511
 	bool m_hasExtendedCollision;
 	PAD = android32 0x13, win 0x13;
-	
+
 	cocos2d::CCSprite* m_baseSprite;
 	cocos2d::CCSprite* m_detailSprite;
-	
+
 	PAD = android32 0x64, win 0x64;
-	
+
 	gd::string m_particleString;
-	
+
 	PAD = android32 0x1, win 0x1;
-	
+
 	// property 146
 	bool m_particleUseObjectColor;
 	PAD = android32 0x3e, win 0x32;
-	
+
 	// property 108
 	int m_linkedGroup;
 	PAD = android32 0x23, win 0x23;
-	
+
 	int m_uniqueID;
 	GameObjectType m_objectType;
-	
+
 	PAD = android32 0x14, win 0x14;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
 	PAD = android32 0x1, win 0x1;
-	
+
 	// property 372
 	bool m_hasNoAudioScale;
 	PAD = android32 0x2a, win 0x2a;
-	
+
 	// property 343
 	short m_enterChannel;
 	// property 446
 	short m_objectMaterial;
 	PAD = android32 0x4, win 0x4;
-	
+
 	// property 96
 	bool m_hasNoGlow;
-	
+
 	// property 23
 	int m_targetColor;
-	
+
 	// property 1
 	int m_objectID;
 	PAD = android32 0x8, win 0x8;
-	
+
 	// property 497
 	short m_customColorType;
 	// property 67
@@ -4884,26 +4923,26 @@ class GameObject : CCSpritePlus {
 	// property 507
 	bool m_hasNoParticles;
 	PAD = android32 0x16, win 0x16;
-	
+
 	// property 53
 	int m_property53;
 	PAD = android32 0x18, win 0x18;
-	
+
 	// property 21, also used with 41 and 43
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
 	PAD = android32 0xc;
-	
+
 	// property 24
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
 	PAD = android32 0x10, win 0x10;
-	
+
 	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
 	PAD = android32 0x1, win 0x1;
-	
+
 	// property 34
 	bool m_hasGroupParent;
 	// property 279
@@ -4912,7 +4951,7 @@ class GameObject : CCSpritePlus {
 	float m_scaleX;
 	// property 129
 	float m_scaleY;
-	
+
 	// property 57
 	std::array<short, 10>* m_groups;
 	// used with property 57
@@ -4920,21 +4959,21 @@ class GameObject : CCSpritePlus {
 	// used with property 274
 	bool m_hasGroupParentsString;
 	PAD = android32 0xf, win 0xf;
-	
+
 	// property 20
 	short m_editorLayer;
 	// property 61
 	short m_editorLayer2;
 	PAD = android32 0x8, win 0x8;
-	
+
 	// property 121
 	bool m_isNoTouch;
 	PAD = android32 0x2c, win 0x2c;
-	
+
 	// property 103
 	bool m_isHighDetail;
 	PAD = android32 0x11, win 0x11;
-	
+
 	// property 134
 	bool m_isPassable;
 	// property 135
@@ -4956,12 +4995,12 @@ class GameObject : CCSpritePlus {
 	// property 509
 	bool m_isDontBoostX;
 	PAD = android32 0x11, win 0x11;
-	
+
 	// property 155
 	int m_property155;
 	// property 156
 	int m_property156;
-	
+
 	PAD = android32 0x12, win 0x26; // TODO: yeah someone pls fix windows pads
 }
 
@@ -6443,7 +6482,7 @@ class GJGameLevel : cocos2d::CCNode {
 	gd::string m_updateDate;
 	gd::string m_unkString1;
 	gd::string m_unkString2;
-	
+
 	cocos2d::CCPoint m_unkPoint;
 	geode::SeedValueRSV m_userID;
 	geode::SeedValueRSV m_accountID;
@@ -6474,7 +6513,7 @@ class GJGameLevel : cocos2d::CCNode {
 	bool m_hasBeenModified;
 	int m_levelVersion;
 	int m_gameVersion;
-	
+
 	geode::SeedValueRSV m_attempts;
 	geode::SeedValueRSV m_jumps;
 	geode::SeedValueRSV m_clicks;
@@ -6845,10 +6884,10 @@ class GJMapPack : cocos2d::CCNode {
 	cocos2d::ccColor3B m_barColour;
 	int m_MId;
 	bool m_isGauntlet;
-	
-	
-	
-	
+
+
+
+
 }
 
 [[link(android)]]
@@ -7598,7 +7637,7 @@ class GJSpriteColor {
 	bool m_usesHSV;
 	float unk_10C;
 	bool unk_110;
-	
+
 }
 
 [[link(android)]]
@@ -8227,22 +8266,22 @@ class LabelGameObject : EffectGameObject {
 	virtual TodoReturn getTextKerning();
 
 	PAD = android32 0x11;
-	
+
 	// property 391
 	int m_alignment;
-	
+
 	// property 389
 	bool m_showSecondsOnly;
-	
+
 	// property 390
 	int m_shownSpecial;
-	
+
 	// property 466
 	bool m_isTimeCounter;
-	
+
 	// property 488
 	int m_kerning;
-	
+
 	PAD = android32 0x8;
 }
 
@@ -8426,7 +8465,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	bool m_unk2;
 	int m_listHeight;
 	PAD = win 0x16, android32 0x16;
-	
+
 }
 
 [[link(android)]]
@@ -8648,11 +8687,11 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn levelSettingsUpdated();
 
 	PAD = android32 0x64;
-	
+
 	geode::SeedValueRSV m_coinCount;
-	
+
 	PAD = android32 0x38;
-	
+
 	cocos2d::CCArray* m_undoObjects;
 	cocos2d::CCArray* m_redoObjects;
 }
@@ -9143,11 +9182,11 @@ class LevelSettingsObject : cocos2d::CCNode {
 	int m_propertykA19;
 	// property kA26
 	int m_propertykA26;
-	
+
 	GJGameLevel* m_level;
 	// property kA14
 	gd::string m_guidelineString;
-	
+
 	int m_defaultSongID;
 	// property kS39
 	int m_colorPage;
@@ -9578,7 +9617,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	void onGPSignIn(cocos2d::CCObject* sender);
 	void onGPSignOut(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
-	void onKeybindings(cocos2d::CCObject* sender);
+	void onKeybindings(cocos2d::CCObject* sender) = win 0xa21a0;
 	void onNextPage(cocos2d::CCObject* sender);
 	void onParental(cocos2d::CCObject* sender);
 	void onPrevPage(cocos2d::CCObject* sender);
@@ -10204,11 +10243,11 @@ class ParticleGameObject : EnhancedGameObject {
 
 	char* m_particleData;
 	PAD = android32 0x110;
-	
+
 	// property 147
 	bool m_hasUniformObjectColor;
 	PAD = android32 0x7;
-	
+
 	// property 211
 	bool m_shouldQuickStart;
 	PAD = android32 0xf;
@@ -10240,12 +10279,12 @@ class PauseLayer : CCBlockLayer {
 	TodoReturn musicSliderChanged(cocos2d::CCObject*) = win 0x2b9da0;
 	void onEdit(cocos2d::CCObject* sender);
 	void onHelp(cocos2d::CCObject* sender);
-	void onNormalMode(cocos2d::CCObject* sender);
+	void onNormalMode(cocos2d::CCObject* sender) = win 0x2b9ed0;
 	void onPracticeMode(cocos2d::CCObject* sender) = win 0x2b9e60;
 	void onQuit(cocos2d::CCObject* sender) = win 0x2ba240;
 	void onRecordReplays(cocos2d::CCObject* sender);
 	void onReplay(cocos2d::CCObject* sender);
-	void onRestart(cocos2d::CCObject* sender);
+	void onRestart(cocos2d::CCObject* sender) = win 0x2b9f80;
 	void onRestartFull(cocos2d::CCObject* sender);
 	void onResume(cocos2d::CCObject* sender) = win 0x2b9f30;
 	void onSettings(cocos2d::CCObject* sender);
@@ -10255,7 +10294,7 @@ class PauseLayer : CCBlockLayer {
 	TodoReturn tryShowBanner(float);
 
 	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2ba310;
 	virtual TodoReturn customSetup() = win 0x2b89f0;
 	virtual void keyUp(cocos2d::enumKeyCodes);
 }
@@ -10558,7 +10597,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerSpiderFrame(int id) {
         if (id < 1) id = 1;
         else if (id > 0x44) id = 0x45;
-        
+
         createSpider(id);
     }
 
@@ -14306,10 +14345,10 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	TodoReturn enableEditorMode();
 	TodoReturn enableMenu();
 	TodoReturn handleKeypress(cocos2d::enumKeyCodes, bool);
-	bool init(GJBaseGameLayer*);
+	bool init(GJBaseGameLayer*) = win 0x3bec10;
 	bool isJumpButtonPressed(bool);
-	void onCheck(cocos2d::CCObject* sender);
-	void onDeleteCheck(cocos2d::CCObject* sender);
+	void onCheck(cocos2d::CCObject* sender) = win 0x3bfa10;
+	void onDeleteCheck(cocos2d::CCObject* sender) = win 0x3bfa50;
 	void onPause(cocos2d::CCObject* sender) = win 0x3bf9a0;
 	TodoReturn processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*);
 	TodoReturn processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*);
@@ -14329,7 +14368,7 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3bf930;
 	virtual void keyUp(cocos2d::enumKeyCodes);
 }
 
