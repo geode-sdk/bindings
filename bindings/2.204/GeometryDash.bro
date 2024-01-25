@@ -3836,8 +3836,8 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getSavedDailyLevelFromLevelID(int);
 	TodoReturn getSavedGauntlet(int) = win 0x100a40;
 	TodoReturn getSavedGauntletLevel(int) = win 0xf8060;
-	TodoReturn getSavedLevel(GJGameLevel*) = win 0xf7df0;
-	TodoReturn getSavedLevel(int);
+	GJGameLevel* getSavedLevel(GJGameLevel*) = win 0xf7df0;
+	GJGameLevel* getSavedLevel(int) = win 0xf7e50;
 	TodoReturn getSavedLevelList(int);
 	TodoReturn getSavedLevelLists(int);
 	cocos2d::CCArray* getSavedLevels(bool, int) = win 0xf7340;
