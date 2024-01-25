@@ -3597,6 +3597,14 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	PAD = win 0x88, android32 0x7c, android64 0xdc;
 	FMOD::System* m_system;
+	FMOD::Sound* m_sound;
+	FMOD::Channel* m_currentSoundChannel;
+	FMOD::Channel* m_globalChannel;
+	FMOD::DSP* m_DSP;
+	FMOD_RESULT m_lastResult;
+	int m_version;
+	void* m_extraDriverData;
+	int m_musicOffset;
 }
 
 [[link(android)]]
