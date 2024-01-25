@@ -226,6 +226,14 @@ GEODE_MEMBER_CHECK(CCApplication, m_bUpdateController, 0x58);
 GEODE_MEMBER_CHECK(CCApplication, m_bMouseControl, 0x88);
 GEODE_MEMBER_CHECK(AppDelegate, m_runningScene, 0xA8);
 
+GEODE_MEMBER_CHECK(EditorUI, m_unk1b8, 0x1b8);
+GEODE_MEMBER_CHECK(EditorUI, m_rotationControl, 0x208);
+GEODE_MEMBER_CHECK(EditorUI, m_transformControl, 0x21c);
+GEODE_MEMBER_CHECK(EditorUI, m_editButtonDict, 0x228);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x264);
+GEODE_MEMBER_CHECK(EditorUI, m_deleteMenu, 0x268);
+GEODE_MEMBER_CHECK(EditorUI, m_createButtonBars, 0x2e0);
 GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x340);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedTab, 0x384);
 
 #endif

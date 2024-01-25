@@ -205,16 +205,38 @@ public class Broma {
         }
     }
     
+    public class Member extends Parseable {
+        public final Class parent;
+        public final Optional<Type> type;
+        public final Optional<Match> name;
+        public final Optional<Match> paddingPlatforms;
+
+        private Member(Broma broma, Class parent, Platform platform, Matcher matcher) {
+            super(broma, matcher);
+            this.parent = parent;
+            name = Match.maybe(broma, matcher, "name");
+            if (name.isPresent()) {
+                type = Optional.of(new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true)));
+            }
+            else {
+                type = Optional.empty();
+            }
+            paddingPlatforms = Match.maybe(broma, matcher, "platforms");
+        }
+    }
+
     public class Class extends Parseable {
         public final boolean linked;
         public final Match name;
         public final List<Function> functions;
+        public final List<Member> members;
 
         private Class(Broma broma, Platform platform, Matcher matcher) {
             super(broma, matcher);
 
             name = new Match(matcher, "name");
             functions = new ArrayList<Function>();
+            members = new ArrayList<Member>();
 
             // Check if this class is linked
             var attrs = matcher.group("attrs");
@@ -235,6 +257,12 @@ public class Broma {
             var funMatcher = broma.forkMatcher(Regexes.GRAB_FUNCTION, matcher, "body", false);
             while (funMatcher.find()) {
                 functions.add(broma.new Function(broma, this, platform, funMatcher));
+            }
+
+            // Match members
+            var memMatcher = broma.forkMatcher(Regexes.GRAB_MEMBER, matcher, "body", false);
+            while (memMatcher.find()) {
+                members.add(broma.new Member(broma, this, platform, memMatcher));
             }
         }
 

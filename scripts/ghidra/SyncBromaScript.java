@@ -38,6 +38,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean importFromBroma;
         boolean exportToBroma;
         boolean setOptcall;
+        boolean syncMembers;
 
         public Args(ScriptWrapper wrapper, Path bindingsDir) throws Exception {
             this.run(wrapper, bindingsDir);
@@ -52,8 +53,7 @@ public class SyncBromaScript extends GhidraScript {
         protected String description() {
             return 
                 "Import addresses & signatures from Broma, and add new ones " + 
-                "from the current project to it. Doesn't handle members or generating " +
-                "vtables yet, but support is planned in the future!\n\n" + 
+                "from the current project to it.\n\n" + 
                 "Note that it is recommended to save your Ghidra project before " + 
                 "running the script, so if it messes something up you can safely " + 
                 "undo the mistake.\n\n" + 
@@ -85,6 +85,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Import from Broma", b -> this.importFromBroma = b);
             this.bool("Export to Broma", b -> this.exportToBroma = b);
             this.bool("Set optcall & membercall", b -> this.setOptcall = b);
+            this.bool("Sync members", b -> this.syncMembers = b);
 
             this.waitForAnswers();
 
@@ -113,12 +114,17 @@ public class SyncBromaScript extends GhidraScript {
             this.bromas.add(new Broma(bro, args.platform));
         }
 
-        // Do the imports and exports
+        wrapper.updateTypeDatabase();
+
+        // Do the imports and exports and members
         if (this.args.importFromBroma) {
             this.handleImport();
         }
         if (this.args.exportToBroma) {
             this.handleExport();
+        }
+        if (this.args.syncMembers) {
+            this.handleMembers();
         }
     }
 
@@ -598,6 +604,10 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
+    private void handleMembers() throws Exception {
+        wrapper.printfmt("Syncing members... (note: not yet implemented... sry..)");
+    }
+
     void askContinueConflict(String title, String fmt, Object... args) throws Exception {
         if (!askYesNo(title, MessageFormat.format(
             fmt + "\nIf this is not the case, please fix the conflict manually in the Broma file!",
@@ -608,23 +618,16 @@ public class SyncBromaScript extends GhidraScript {
     }
 
     int askContinueConflict(String title, List<String> options, String fmt, Object... args) throws Exception {
-		var choice = Swing.runNow(() -> {
-			var dialog = new InputWithButtonsDialog(
-                title,
-                MessageFormat.format(
-                    "<html>" + fmt + "<br>If this is not the case, please fix " + 
-                    "the conflict manually in the Broma file!" + "</html>",
-                    args
-                ),
-                options
-            );
-			state.getTool().showDialog(dialog);
-			return dialog.getValue();
-		});
-        if (choice.isEmpty()) {
-            throw new CancelledException();
-        }
-        return choice.get();
+		return InputWithButtonsDialog.show(
+            wrapper,
+            title,
+            MessageFormat.format(
+                "<html>" + fmt + "<br>If this is not the case, please fix " + 
+                "the conflict manually in the Broma file!" + "</html>",
+                args
+            ),
+            options
+        );
     }
 
     int askChoiceBetter(String title, List<String> options, String fmt, Object... args) throws Exception {

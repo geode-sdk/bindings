@@ -58,7 +58,7 @@ public class Regexes {
                 "\\(\\s*(?<params>(?:{1}\\s*,?\\s*)*)\\)" +
                 "(?:"+
                     // Grab the platforms
-                    "(?:\\s*=\\s*(?<platforms>(?:[a-z]+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+))" + 
+                    "(?:\\s*=\\s*(?<platforms>(?:\\w+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+))" + 
                     // Or the body
                     "|(?<inlinebody>(?=\\s*\\'{'))" +
                     // Or where we can add platforms
@@ -73,6 +73,21 @@ public class Regexes {
         return Pattern.compile(
             formatRegex("{0}\\s+0x(?<addr>[0-9a-fA-F]+)", platform.getShortName()),
             Pattern.DOTALL
+        );
+    }
+    public static final Pattern grabMemberOrPad(String memberName) {
+        return Pattern.compile(
+            formatRegex(
+                // Must match start of line (MULTILINE flag required) - also requires that the 
+                // function not be intended more than 4 spaces or a single tab
+                "(?<=^(?:(?: '{'0,4'}')|\\t))" + 
+                // Grab member
+                "(?:(?<type>{0})\\s+(?<name>{1})\\s*;)|" + 
+                // Or padding
+                "(?:PAD\\s*=\\s*(?<platforms>(?:\\w+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+);)",
+                GRAB_TYPE, memberName
+            ),
+            Pattern.DOTALL | Pattern.MULTILINE
         );
     }
 
@@ -97,4 +112,5 @@ public class Regexes {
         Pattern.DOTALL
     );
     public static final Pattern GRAB_FUNCTION = grabFunction("\\w+");
+    public static final Pattern GRAB_MEMBER = grabMemberOrPad("\\w+");
 }

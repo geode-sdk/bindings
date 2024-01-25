@@ -1,4 +1,5 @@
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
@@ -35,7 +36,12 @@ public abstract class InputParameters {
         var msg = this.description();
         if (this.valuesMapObject != null) {
             var askValues = wrapper.wrapped.getClass().getMethod("askValues", String.class, String.class, mapClass);
-            askValues.invoke(wrapper.wrapped, this.title(), msg, this.valuesMapObject);
+            try {
+                askValues.invoke(wrapper.wrapped, this.title(), msg, this.valuesMapObject);
+            }
+            catch(InvocationTargetException error) {
+                throw (Exception)error.getCause();
+            }
             for (var key : resultTargetMap.keySet()) {
                 var getAbstractValue = mapClass.getMethod("getAbstractValue", String.class);
                 var abstractValue = getAbstractValue.invoke(this.valuesMapObject, key);
