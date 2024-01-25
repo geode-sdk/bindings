@@ -10290,7 +10290,7 @@ class PauseLayer : CCBlockLayer {
 	void onTime(cocos2d::CCObject* sender);
 	TodoReturn setupProgressBars();
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
-	TodoReturn tryQuit(cocos2d::CCObject*) = win 0x2ba170;
+	TodoReturn tryQuit(cocos2d::CCObject*);
 	TodoReturn tryShowBanner(float);
 
 	virtual void keyBackClicked();
