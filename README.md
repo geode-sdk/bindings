@@ -59,6 +59,8 @@ You can automatically sync addresses from-and-to Broma using the [`SyncBromaScri
 
 **To install SyncBromaScript**, open up the `Script Manager` in Ghidra, then select `Manage Script Directories` from the top right toolbar. Add the path to the `scripts` directory in your local copy of Bindings, then refresh your scripts in `Script Manager`. You should see a `GeodeSDK` category appear with `SyncBromaScript.java` in it
 
+**Before running SyncBromaScript**, you should set up your Ghidra to be a good scripting environment by running the built-in `RecoverClassesFromRttiScript.java` from Ghidra, as well as `SetupGhidraScript.java` from this repository. Note that `RecoverClassesFromRttiScript.java` can take over half an hour to finish.
+
 **To run SyncBromaScript**, open up the `Script Manager` in Ghidra and then double-click it to run the script. It should present you with a popup window of options.
 
 ### SyncBromaScript options
@@ -71,5 +73,3 @@ You can automatically sync addresses from-and-to Broma using the [`SyncBromaScri
 | Import from Broma | Import function signatures & addresses from Broma into Ghidra. This assumes that Broma is always correct for everything; if there is a signature mismatch, or an incorrect address in Broma, you will have to manually edit the Broma file to fix the conflict. |
 | Export to Broma | Export function addresses, parameter names, and return types from Ghidra into Broma. Signatures are not exported; Broma is always used as the source of truth for function signatures. |
 | Set optcall & membercall | This option only matters on Windows; automatically corrects the calling convention for functions that use the optimized `__fastcall` / `__thiscall` conventions. This will only set the custom convention for functions where it makes a difference; also, if the signature of the function changes, you will need to rerun the script to have it correct the calling convention again. |
-| Set known types | Automatically defines a bunch of known structs and typedefs like `cocos2d::CCPoint`. Makes function signatures & decomps more accurate. Note that this overrides any existing definitions, and that this is only implemented on Windows! |
-| Create VTables | Automatically create vtable structs for all classes in [`virtuals.json`](scripts/virtuals.json). This means that rather than calls to virtual functions looking like `(this->field0x0 + 0xec)()`, they're instead `this->vtable->setPosition(point)`. This will only add the base vtable member at 0x0 to the class definition itself; however, the rest of the classes vtables will be defined and you can set the other vtables manually by retyping them to `vtables::Class::Base`. Only implemented on Windows! |

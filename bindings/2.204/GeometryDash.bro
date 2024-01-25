@@ -2050,7 +2050,7 @@ class CustomSongLayerDelegate {
 	virtual TodoReturn customSongLayerClosed();
 }
 
-[[link(android)]]
+[[link(android), depends(GJAssetDownloadAction)]]
 class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProtocol {
 	// virtual ~CustomSongWidget();
 
@@ -4324,7 +4324,7 @@ class GameManager : GManager {
 	TodoReturn printGJLog();
 	TodoReturn queueReloadMenu() = win 0x12e3e0;
 	TodoReturn rateGame();
-	TodoReturn recountUserStats(gd::string) = win 0x129ce0;
+	void recountUserStats(gd::string) = win 0x129ce0;
 	void reloadAll(bool, bool, bool, bool) = win 0x12e4b0;
 	void reloadAll(bool a, bool b, bool c) {
 		// TODO: figure out these args i have no idea
@@ -5173,8 +5173,6 @@ class GameStatsManager : cocos2d::CCNode {
 
 	virtual bool init() = win 0x168000;
 
-	bool m_unkBool;
-	bool m_unkBool2;
 	bool m_usePlayerStatsCCDictionary;
 	cocos2d::CCString* m_trueString;
 	cocos2d::CCDictionary* m_allStoreItems;
@@ -5755,7 +5753,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn resetLevelVariables() = win 0x1bdb10;
 	TodoReturn resetMoveOptimizedValue();
 	TodoReturn resetPlayer();
-	TodoReturn resetSongTriggerValues() = win 0x3bf30;
+	TodoReturn resetSongTriggerValues();
 	TodoReturn resetSpawnChannelIndex() = win 0x1c7e40;
 	TodoReturn resetStaticCamera(bool, bool);
 	TodoReturn resetStoppedAreaObjects();
@@ -7960,7 +7958,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	TodoReturn resumeStroke();
 	TodoReturn scheduleAutoUpdate();
 	TodoReturn stopStroke();
-	TodoReturn updateStroke(float) = win 0x226960;
+	callback void updateStroke(float) = win 0x226960;
 
 	virtual bool init();
 }

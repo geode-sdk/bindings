@@ -573,7 +573,7 @@ class cocos2d::CCTouchDispatcher {
 	int getTargetPrio() const;
 
 	void setDispatchEvents(bool);
-	void setPriority(int, cocos2d::CCTouchDelegate*);
+	void setPriority(int, cocos2d::CCTouchDelegate*) = mac 0x4a7640;
 
 	// CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
 	// CCTouchDispatcher();
@@ -582,7 +582,7 @@ class cocos2d::CCTouchDispatcher {
 	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = mac 0x4a6ec0;
 	void decrementForcePrio(int);
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*);
+	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*) = mac 0x4a74f0;
 	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*);
 	void forceRemoveAllDelegates();
 	void forceRemoveDelegate(cocos2d::CCTouchDelegate*);
@@ -590,7 +590,7 @@ class cocos2d::CCTouchDispatcher {
 	bool isDispatchEvents();
 	bool isUsingForcePrio();
 	void rearrangeHandlers(cocos2d::CCArray*);
-	void registerForcePrio(cocos2d::CCObject*, int);
+	void registerForcePrio(cocos2d::CCObject*, int) = mac 0x4a6da0;
 	void removeAllDelegates();
 	void removeDelegate(cocos2d::CCTouchDelegate*);
 	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
@@ -1308,7 +1308,7 @@ class cocos2d::CCMenuItem {
 class cocos2d::extension::CCScale9Sprite {
 	static cocos2d::extension::CCScale9Sprite* create() = mac 0x3d7240;
 	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*) = mac 0x3d7120;
-	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*, cocos2d::CCRect) = mac 0x3d7190;
+	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*, cocos2d::CCRect) = mac 0x3d7040;
 	static cocos2d::extension::CCScale9Sprite* create(char const*) = mac 0x3d6d90; // prolly correct
 	static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = mac 0x3d6bc0;
 }

@@ -4834,8 +4834,6 @@ class GameStatsManager : cocos2d::CCNode {
 
 	virtual bool init();
 
-	bool m_unkBool;
-	bool m_unkBool2;
 	bool m_usePlayerStatsCCDictionary;
 	cocos2d::CCString* m_trueString;
 	cocos2d::CCDictionary* m_allStoreItems;
@@ -8252,7 +8250,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	TodoReturn firstSetup();
 	TodoReturn stopStroke();
 	TodoReturn resumeStroke();
-	TodoReturn updateStroke(float) = win 0x221C00;
+	callback void updateStroke(float) = win 0x221C00;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn normalizeAngle(double);
 	TodoReturn clearBehindXPos(float);
@@ -11238,7 +11236,7 @@ class CCSpriteCOpacity : cocos2d::CCSprite {
 }
 
 
-[[link(android)]]
+[[link(android), depends(GJAssetDownloadAction)]]
 class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProtocol {
 	static CustomSongWidget* create(SongInfoObject*, CustomSongDelegate*, bool, bool, bool, bool, bool, bool);
 
