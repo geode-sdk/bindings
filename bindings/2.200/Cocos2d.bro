@@ -542,11 +542,15 @@ class cocos2d::CCTextureCache {
 
 [[link(win, android)]]
 class cocos2d::CCTouch {
-	cocos2d::CCPoint getDelta() const;
+	cocos2d::CCPoint getDelta() const {
+		return getLocation() - getPreviousLocation();
+	}
 	int getID() const;
 	cocos2d::CCPoint getLocation() const = mac 0x5c750;
 	cocos2d::CCPoint getLocationInView() const;
-	cocos2d::CCPoint getPreviousLocation() const;
+	cocos2d::CCPoint getPreviousLocation() const {
+		return CCDirector::sharedDirector()->convertToGL(m_prevPoint);
+	}
 	cocos2d::CCPoint getPreviousLocationInView() const;
 	cocos2d::CCPoint getStartLocation() const;
 	cocos2d::CCPoint getStartLocationInView() const;
