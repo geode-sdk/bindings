@@ -193,19 +193,11 @@ public class SyncBromaScript extends GhidraScript {
             }
         }
 
-        try {
-            if (data.getSymbol().getSource() != SourceType.USER_DEFINED) {
-                status = status.promoted(SignatureImport.ADDED);
-            }
-            data.getSymbol().setName(name, SourceType.USER_DEFINED);
-            data.setParentNamespace(wrapper.addOrGetNamespace(className));
-        } catch (DuplicateNameException e) {
-            wrapper.printfmt("\\u001B[31m DUPLICATE NAME EXCEPTION !!!!!!");
-            wrapper.printfmt("Func name: {0}", data.getName(true));
-            wrapper.printfmt("Full new name: {0}", fullName);
-            wrapper.printfmt("Symbol name: {0}", name);
-            wrapper.printfmt("ParentNamespace name: {0} \\u001B[0m", className);
+        if (data.getSymbol().getSource() != SourceType.USER_DEFINED) {
+            status = status.promoted(SignatureImport.ADDED);
         }
+        data.getSymbol().setName(name, SourceType.USER_DEFINED);
+        data.setParentNamespace(wrapper.addOrGetNamespace(className));
 
         // Get the calling convention
         final var conv = fun.getCallingConvention(args.platform);
