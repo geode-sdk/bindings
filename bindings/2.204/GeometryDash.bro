@@ -2353,10 +2353,20 @@ class EditButtonBar : cocos2d::CCNode {
 	TodoReturn getPage();
 	TodoReturn goToPage(int);
 	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int) = win 0x9b8e0;
-	TodoReturn loadFromItems(cocos2d::CCArray*, int, int, bool);
+	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0x9b970;
 	void onLeft(cocos2d::CCObject* sender);
 	void onRight(cocos2d::CCObject* sender);
-	TodoReturn reloadItems(int, int);
+	void reloadItems(int rowCount, int columnCount) {
+		if (m_buttonArray)
+			this->loadFromItems(m_buttonArray, rowCount, columnCount, m_unknown);
+	}
+
+	cocos2d::CCPoint m_position;
+	int m_unknown;
+	bool m_unknownBool;
+	cocos2d::CCArray* m_buttonArray;
+	BoomScrollLayer* m_scrollLayer;
+	cocos2d::CCArray* m_pagesArray;
 }
 
 [[link(android)]]
@@ -2599,14 +2609,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getRandomStartKey(int);
 	TodoReturn getRelativeOffset(GameObject*);
-	TodoReturn getSelectedObjects();
+	cocos2d::CCArray* getSelectedObjects() = win 0xc92a0;
 	TodoReturn getSimpleButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
 	TodoReturn getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getSmartObjectKey(int, GJSmartDirection);
 	TodoReturn getSnapAngle(GameObject*, cocos2d::CCArray*) = win 0x23c490;
-	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
-	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float) = win 0xa6c00;
-	TodoReturn getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
+	CCMenuItemSpriteExtra* getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
+	CCMenuItemSpriteExtra* getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float) = win 0xa6c00;
+	CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getTouchPoint(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn getTransformState();
 	TodoReturn getXMin(int) = win 0xd8010;
@@ -8703,12 +8713,15 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
 	virtual TodoReturn levelSettingsUpdated();
 
-	PAD = android32 0x64;
+	// this is def wrong
+	PAD = win 0x64, android32 0x64;
 
 	geode::SeedValueRSV m_coinCount;
 
-	PAD = android32 0x38;
+	PAD = win 0x30, android32 0x34;
 
+	EditorUI* m_editorUI;
+	
 	cocos2d::CCArray* m_undoObjects;
 	cocos2d::CCArray* m_redoObjects;
 }
@@ -14458,9 +14471,9 @@ class UndoObject : cocos2d::CCObject {
 	// UndoObject();
 
 	static UndoObject* create(GameObject*, UndoCommand) = win 0x24a4b0;
+	static UndoObject* createWithArray(cocos2d::CCArray*, UndoCommand) = win 0x24a760;
+	static UndoObject* createWithTransformObjects(cocos2d::CCArray*, UndoCommand) = win 0x24a580;
 
-	TodoReturn createWithArray(cocos2d::CCArray*, UndoCommand) = win 0x24a760;
-	TodoReturn createWithTransformObjects(cocos2d::CCArray*, UndoCommand) = win 0x24a580;
 	bool init(cocos2d::CCArray*, UndoCommand);
 	bool init(GameObject*, UndoCommand);
 	TodoReturn initWithTransformObjects(cocos2d::CCArray*, UndoCommand) = win 0x24a650;
