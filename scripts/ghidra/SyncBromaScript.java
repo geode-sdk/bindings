@@ -15,9 +15,12 @@ import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.data.AbstractFloatDataType;
+import ghidra.program.model.data.CategoryPath;
 import ghidra.program.model.data.Composite;
+import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.FloatDataType;
+import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
@@ -85,7 +88,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Import from Broma", b -> this.importFromBroma = b);
             this.bool("Export to Broma", b -> this.exportToBroma = b);
             this.bool("Set optcall & membercall", b -> this.setOptcall = b);
-            this.bool("Sync members", b -> this.syncMembers = b);
+            this.bool("Sync members (Unimplemented)", b -> this.syncMembers = b);
 
             this.waitForAnswers();
 
@@ -119,12 +122,15 @@ public class SyncBromaScript extends GhidraScript {
         // Do the imports and exports and members
         if (this.args.importFromBroma) {
             this.handleImport();
+            if (this.args.syncMembers) {
+                // this.handleImportMembers();
+            }
         }
         if (this.args.exportToBroma) {
             this.handleExport();
-        }
-        if (this.args.syncMembers) {
-            this.handleMembers();
+            if (this.args.syncMembers) {
+                // this.handleExportMembers();
+            }
         }
     }
 
@@ -144,7 +150,7 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
-    private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force) throws Exception {
+    private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force, boolean ignoreReturnType) throws Exception {
         final var name = fun.getName();
         final var className = fun.parent.name.value;
         final var fullName = className + "::" + name;
@@ -198,7 +204,7 @@ public class SyncBromaScript extends GhidraScript {
 
         // Get the calling convention
         final var conv = fun.getCallingConvention(args.platform);
-        final var bromaSig = wrapper.getBromaSignature(fun);
+        final var bromaSig = wrapper.getBromaSignature(fun, ignoreReturnType);
 
         // Check for mismatches between the Broma and Ghidra signatures
         var signatureConflict = false;
@@ -415,7 +421,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 var addr = currentProgram.getImageBase().add(offset);
 
-                switch (importSignatureFromBroma(addr, fun, false)) {
+                switch (importSignatureFromBroma(addr, fun, false, false)) {
                     case ADDED: {
                         importedAddCount += 1;
                         wrapper.printfmt("Added {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
@@ -485,7 +491,7 @@ public class SyncBromaScript extends GhidraScript {
                     // For this to be possible, every arg must match type exactly
                     tryMatchFun:
                     for (var tryMatch : bromaFuns) {
-                        var sig = wrapper.getBromaSignature(tryMatch);
+                        var sig = wrapper.getBromaSignature(tryMatch, false);
                         // Same hotfix as the other reference to offset 0x1fb90
                         var paramCount = fun.getParameterCount();
                         if (ghidraOffset == 0x1fb90) {
@@ -538,6 +544,8 @@ public class SyncBromaScript extends GhidraScript {
                     bromaFun = bromaFuns.get(0);
                 }
 
+                boolean returnTypeUpdated = false;
+
                 // Update return type if Ghidra has an user-defined type and 
                 // Broma has TodoReturn
                 if (
@@ -546,10 +554,11 @@ public class SyncBromaScript extends GhidraScript {
                 ) {
                     broma.addPatch(bromaFun.returnType.get().range, fun.getReturnType().getDisplayName());
                     exportedTypeCount += 1;
+                    returnTypeUpdated = true;
                 }
 
                 // Get the function signature from Broma
-                importSignatureFromBroma(child.getAddress(), bromaFun, false);
+                importSignatureFromBroma(child.getAddress(), bromaFun, false, !returnTypeUpdated);
 
                 // Export parameter names
                 int skipCount = 0;
@@ -604,8 +613,73 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
-    private void handleMembers() throws Exception {
-        wrapper.printfmt("Syncing members... (note: not yet implemented... sry..)");
+    private void handleImportMembers() throws Exception {
+        final var manager = currentProgram.getDataTypeManager();
+
+        wrapper.printfmt("Importing members...");
+        for (var bro : this.bromas) {
+            wrapper.printfmt("Importing from {0}...", bro.path.getFileName());
+            for (var cls : bro.classes) {
+                final var fullName = cls.name.value;
+                var category = new CategoryPath("/ClassDataTypes");
+                String name = null;
+                for (var part : fullName.split("::")) {
+                    category = category.extend(part);
+                    name = part;
+                }
+                final var classDataTypePath = new DataTypePath(category, name + "_data");
+                final var classDataMembers = (Structure) manager.getDataType(classDataTypePath);
+
+                if (classDataMembers == null) {
+                    wrapper.printfmt("Class {0} does not have a data members struct, skipping importing members", fullName);
+                    continue;
+                }
+                wrapper.printfmt("Importing members for {0}", fullName);
+
+                var offset = 0;
+                for (int m = 0; m < cls.members.size(); m += 1) {
+                    final var mem = cls.members.get(m);
+                    if (mem.name.isPresent()) {
+                        final var memType = wrapper.addOrGetType(mem.type.get());
+
+                        // Make sure the data member struct is large enough to hold everything
+                        // todo: check if this data member struct has an already-well-known size like FLAlertLayer_data
+                        if (offset + memType.getLength() > classDataMembers.getLength()) {
+                            classDataMembers.growStructure(memType.getLength());
+                        }
+                        // Clear existing member(s) (make sure that if there are bools they are cleared aswell)
+                        for (int i = 0; i < memType.getLength(); i += 1) {
+                            classDataMembers.clearAtOffset(offset + i);
+                        }
+
+                        wrapper.printfmt("member at {0}: {1} (type {2}, size {3})", offset, mem.name.get().value, mem.type.get().name.value, memType.getLength());
+
+                        classDataMembers.insert(m, memType).setFieldName(mem.name.get().value);
+                        offset += memType.getLength();
+                    }
+                    else if (mem.padding.isPresent()) {
+                        var length = Integer.parseInt(mem.padding.get().value);
+                        if (offset + length > classDataMembers.getLength()) {
+                            classDataMembers.growStructure(length);
+                        }
+                        for (int i = 0; i < length; i += 1) {
+                            classDataMembers.clearAtOffset(offset + i);
+                        }
+                        offset += length;
+                    }
+                    else {
+                        wrapper.printfmt("Reached unimplemented padding on this platform, stopping importing members");
+                        break;
+                    }
+                    // todo: shrink class size if it has been expanded earlier, but do not shrink beyond what rtti analysis did
+                }
+            }
+        }
+    }
+
+    private void handleExportMembers() throws Exception {
+        wrapper.printfmt("Exporting members...");
+        this.popup("Exporting members has not yet been implemented! Sorry :(   -HJfod");
     }
 
     void askContinueConflict(String title, String fmt, Object... args) throws Exception {

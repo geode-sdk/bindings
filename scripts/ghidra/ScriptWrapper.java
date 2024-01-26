@@ -126,6 +126,14 @@ public class ScriptWrapper {
         else if (type.name.value.startsWith("gd::")) {
             result = this.updateTypeDatabaseWithSTL(type.name.value.substring(4));
         }
+        // Broma-specific type
+        else if (type.name.value == "TodoReturn") {
+            var path = new CategoryPath("/ClassDataTypes/broma/TodoReturn");
+            result = manager.addDataType(
+                new StructureDataType(path, path.getName(), 0x0),
+                DataTypeConflictHandler.REPLACE_HANDLER
+            );
+        }
         // Class types
         else {
             // Get the name and category
@@ -218,7 +226,7 @@ public class ScriptWrapper {
         return path;
     }
 
-    Signature getBromaSignature(Broma.Function fun) throws Exception {
+    Signature getBromaSignature(Broma.Function fun, boolean ignoreReturnType) throws Exception {
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
         // Add `this` arg
@@ -232,7 +240,7 @@ public class ScriptWrapper {
         }
         // Parse return type, or null if this is a destructor
         ReturnParameterImpl bromaRetType = null;
-        if (fun.returnType.isPresent() && !fun.returnType.get().name.value.contains("TodoReturn")) {
+        if (fun.returnType.isPresent() && !ignoreReturnType) {
             var type = addOrGetType(fun.returnType.get());
             // Struct return
             if (type instanceof Composite) {
