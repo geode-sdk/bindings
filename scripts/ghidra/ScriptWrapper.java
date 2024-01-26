@@ -127,10 +127,11 @@ public class ScriptWrapper {
             result = this.updateTypeDatabaseWithSTL(type.name.value.substring(4));
         }
         // Broma-specific type
-        else if (type.name.value == "TodoReturn") {
+        else if (type.name.value.equals("TodoReturn")) {
             var path = new CategoryPath("/ClassDataTypes/broma/TodoReturn");
+            // Make enum rather than struct so it doesn't get subjected to struct return
             result = manager.addDataType(
-                new StructureDataType(path, path.getName(), 0x0),
+                new EnumDataType(path, path.getName(), 0x1),
                 DataTypeConflictHandler.REPLACE_HANDLER
             );
         }
