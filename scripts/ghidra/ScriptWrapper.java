@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ghidra.app.script.GhidraScript;
 import ghidra.program.model.data.ArrayDataType;
 import ghidra.program.model.data.ByteDataType;
 import ghidra.program.model.data.CategoryPath;
@@ -22,7 +23,6 @@ import ghidra.program.model.data.ParameterDefinition;
 import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.StructureDataType;
-import ghidra.program.model.data.TypedefDataType;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.UnionDataType;
 import ghidra.program.model.data.VoidDataType;
@@ -34,10 +34,10 @@ import ghidra.program.model.symbol.SourceType;
 import ghidra.util.exception.CancelledException;
 
 public class ScriptWrapper {
-    SyncBromaScript wrapped;
+    GhidraScript wrapped;
     Path bindingsDir;
 
-    ScriptWrapper(SyncBromaScript script) throws CancelledException {
+    ScriptWrapper(GhidraScript script) throws CancelledException {
         this.wrapped = script;
 
         // Check if RecoverClassesFromRttiScript has been run
@@ -126,6 +126,15 @@ public class ScriptWrapper {
         else if (type.name.value.startsWith("gd::")) {
             result = this.updateTypeDatabaseWithSTL(type.name.value.substring(4));
         }
+        // Broma-specific type
+        else if (type.name.value.equals("TodoReturn")) {
+            var path = new CategoryPath("/ClassDataTypes/broma/TodoReturn");
+            // Make enum rather than struct so it doesn't get subjected to struct return
+            result = manager.addDataType(
+                new EnumDataType(path, path.getName(), 0x1),
+                DataTypeConflictHandler.REPLACE_HANDLER
+            );
+        }
         // Class types
         else {
             // Get the name and category
@@ -147,19 +156,6 @@ public class ScriptWrapper {
                     if (manager.getCategory(category) == null) {
                         manager.createCategory(category);
                     }
-                }
-                else if (ns.contains("TodoReturn")) {
-                    // Little hack to pick the correct return type in the broma category when it's TodoReturn
-                    category = new CategoryPath("/broma");
-                    if (manager.getCategory(category) == null) {
-                        manager.createCategory(category);
-                    }
-                    var templates = type.template;
-                    if (templates.isPresent()) {
-                        ns += templates.get().value;
-                    }
-                    name = ns;
-                    typePath = new DataTypePath(category, ns);
                 }
                 else {
                     // Add template parameters to the name
@@ -231,7 +227,7 @@ public class ScriptWrapper {
         return path;
     }
 
-    Signature getBromaSignature(Broma.Function fun) throws Exception {
+    Signature getBromaSignature(Broma.Function fun, boolean ignoreReturnType) throws Exception {
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
         // Add `this` arg
@@ -245,8 +241,7 @@ public class ScriptWrapper {
         }
         // Parse return type, or null if this is a destructor
         ReturnParameterImpl bromaRetType = null;
-        // If we want to set TodoReturn in ghidra, set bromaRetType even if the function returnType is TodoReturn
-        if (fun.returnType.isPresent() && (this.wrapped.args.setTodoReturnInGhidra || !fun.returnType.get().name.value.contains("TodoReturn"))) {
+        if (fun.returnType.isPresent() && !ignoreReturnType) {
             var type = addOrGetType(fun.returnType.get());
             // Struct return
             if (type instanceof Composite) {
@@ -390,13 +385,6 @@ public class ScriptWrapper {
                 }
             }
             manager.addDataType(ty, DataTypeConflictHandler.REPLACE_HANDLER);
-        }
-
-        // Create TodoReturn typedef if we want to set it as return type for ghidra functions
-
-        if (this.wrapped.args.setTodoReturnInGhidra) {
-            var todoReturn = new TypedefDataType(new CategoryPath("/broma"), "TodoReturn", new VoidDataType());
-            wrapped.getCurrentProgram().getDataTypeManager().addDataType(todoReturn, DataTypeConflictHandler.REPLACE_HANDLER);
         }
     }
 
