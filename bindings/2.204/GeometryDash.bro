@@ -5680,7 +5680,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn createPlayerCollisionBlock() = win 0x19f1b0;
 	TodoReturn createTextLayers() = win 0x197090;
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
-	TodoReturn destroyObject(GameObject*);
+	void destroyObject(GameObject*) = win 0x19cf50;
 	TodoReturn enterDualMode(GameObject*, bool);
 	TodoReturn exitStaticCamera(bool, bool, float, int, float, bool, float, bool);
 	TodoReturn flipFinished();
@@ -6022,7 +6022,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
-	virtual TodoReturn removeAllCheckpoints();
+	virtual void removeAllCheckpoints() = win 0x2ea090;
 	virtual TodoReturn toggleMusicInPractice();
 
 	PAD = win 0x8, android32 0x8, android64 0xc;
