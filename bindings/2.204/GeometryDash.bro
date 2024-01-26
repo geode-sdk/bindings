@@ -1142,7 +1142,31 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 [[link(android)]]
 class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTextFieldDelegate {
 	// virtual ~CCTextInputNode();
-	// CCTextInputNode() = win 0x29fb0;
+	CCTextInputNode() {
+		m_numberInput = false;
+		m_caption = "";
+		m_unknown1 = 0;
+		m_selected = false;
+		m_unknown2 = false;
+		m_fontValue1 = -0.5f;
+		m_fontValue2 = 8.0f;
+		m_isChatFont = false;
+		m_allowedChars = "";
+		m_maxLabelWidth = 0.0f;
+		m_maxLabelScale = 0.0f;
+		m_placeholderScale = 0.0f;
+		m_placeholderColor = cocos2d::ccc3(0, 0, 0);
+		m_textColor = cocos2d::ccc3(0, 0, 0);
+		m_cursor = nullptr;
+		m_textField = nullptr;
+		m_delegate = nullptr;
+		m_maxLabelLength = 0;
+		m_placeholderLabel = nullptr;
+		m_unknown3 = false;
+		m_usePasswordChar = false;
+		m_forceOffset = false;
+		m_textArea = nullptr;
+	}
 
 	static CCTextInputNode* create(float, float, char const*, char const*, int, char const*) = win 0x2e440;
 
@@ -1217,7 +1241,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	int m_unknown1;
 	bool m_selected;
 	bool m_unknown2;
-	PAD = android32 0xc, win 0xc, android64 0x10;
+	float m_fontValue1;
+	float m_fontValue2;
+	bool m_isChatFont;
 	gd::string m_allowedChars;
 	float m_maxLabelWidth;
 	float m_maxLabelScale;
@@ -1232,7 +1258,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	bool m_unknown3;
 	bool m_usePasswordChar;
 	bool m_forceOffset;
-	PAD = android32 0x10, android64 0x18;
+	TextArea* m_textArea;
+	PAD = android32 0xc, android64 0x10;
 }
 
 [[link(android)]]
@@ -3160,30 +3187,30 @@ class EndLevelLayer : GJDropDownLayer {
 
 	static EndLevelLayer* create() = win 0xe7380;
 
-	TodoReturn coinEnterFinished(cocos2d::CCPoint);
-	TodoReturn coinEnterFinishedO(cocos2d::CCObject*);
-	TodoReturn currencyEnterFinished();
-	TodoReturn diamondEnterFinished();
+	TodoReturn coinEnterFinished(cocos2d::CCPoint) = win 0xe9720;
+	TodoReturn coinEnterFinishedO(cocos2d::CCObject*) = win 0xe96f0;
+	TodoReturn currencyEnterFinished() = win 0xe9cd0;
+	TodoReturn diamondEnterFinished() = win 0xea0c0;
 	TodoReturn getCoinString() = win 0xe8a60;
 	TodoReturn getEndText() = win 0xea370;
-	TodoReturn goEdit();
+	TodoReturn goEdit() = win 0xe9060;
 	void onEdit(cocos2d::CCObject* sender) = win 0xe8fb0;
 	void onEveryplay(cocos2d::CCObject* sender);
 	void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0xe89f0;
 	void onMenu(cocos2d::CCObject* sender) = win 0xe8ec0;
 	void onReplay(cocos2d::CCObject* sender) = win 0xe8dc0;
-	TodoReturn playCoinEffect(float);
-	TodoReturn playCurrencyEffect(float) = win 0xe99c0;
-	TodoReturn playDiamondEffect(float) = win 0xe9db0;
-	void playEndEffect() = win 0xe8c20;
-	TodoReturn playStarEffect(float) = win 0xe9120;
-	TodoReturn starEnterFinished();
+	void playCoinEffect(float) = win 0xe9570;
+	void playCurrencyEffect(float) = win 0xe99c0;
+	void playDiamondEffect(float) = win 0xe9db0;
+	void playEndEffect() = win 0xea1a0;
+	void playStarEffect(float) = win 0xe9120;
+	TodoReturn starEnterFinished() = win 0xe9440;
 	TodoReturn tryShowBanner(float);
 
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual TodoReturn customSetup() = win 0xe74f0;
-	virtual TodoReturn showLayer(bool);
+	virtual void customSetup() = win 0xe74f0;
+	virtual void showLayer(bool) = win 0xe8c20;
 	virtual TodoReturn enterAnimFinished();
 	virtual void keyUp(cocos2d::enumKeyCodes);
 }

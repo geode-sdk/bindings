@@ -49,10 +49,15 @@ public class Broma {
             value = matcher.group(group);
         }
         private static Optional<Match> maybe(Broma broma, Matcher matcher, String group) {
-            if (matcher.group(group) == null) {
+            try {
+                if (matcher.group(group) == null) {
+                    return Optional.empty();
+                }
+                return Optional.of(broma.new Match(matcher, group));
+            }
+            catch(IllegalStateException exception) {
                 return Optional.empty();
             }
-            return Optional.of(broma.new Match(matcher, group));
         }
     }
 
@@ -71,15 +76,18 @@ public class Broma {
 
     public abstract class Parseable {
         public final Range range;
+        public final String raw;
         public final Broma broma;
 
         Parseable(int ignore) {
             this.range = new Range();
             this.broma = null;
+            this.raw = null;
         }
         Parseable(Broma broma, Matcher matcher) {
             this.broma = broma;
             this.range = new Range(matcher.start(), matcher.end());
+            this.raw = matcher.group();
         }
         public String toString() {
             if (broma == null) {
@@ -209,19 +217,25 @@ public class Broma {
         public final Class parent;
         public final Optional<Type> type;
         public final Optional<Match> name;
-        public final Optional<Match> paddingPlatforms;
+        public final Optional<Match> padding;
 
         private Member(Broma broma, Class parent, Platform platform, Matcher matcher) {
             super(broma, matcher);
             this.parent = parent;
-            name = Match.maybe(broma, matcher, "name");
-            if (name.isPresent()) {
+            if (matcher.group("name") != null) {
+                name = Match.maybe(broma, matcher, "name");
                 type = Optional.of(new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true)));
+                padding = Optional.empty();
             }
             else {
+                name = Optional.empty();
                 type = Optional.empty();
+                padding = Match.maybe(
+                    broma,
+                    broma.forkMatcher(Regexes.grabPlatformAddress(platform), matcher, "platforms", true),
+                    "addr"
+                );
             }
-            paddingPlatforms = Match.maybe(broma, matcher, "platforms");
         }
     }
 
