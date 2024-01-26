@@ -1142,7 +1142,31 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 [[link(android)]]
 class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTextFieldDelegate {
 	// virtual ~CCTextInputNode();
-	// CCTextInputNode() = win 0x29fb0;
+	CCTextInputNode() {
+		m_numberInput = false;
+		m_caption = "";
+		m_unknown1 = 0;
+		m_selected = false;
+		m_unknown2 = false;
+		m_fontValue1 = -0.5f;
+		m_fontValue2 = 8.0f;
+		m_isChatFont = false;
+		m_allowedChars = "";
+		m_maxLabelWidth = 0.0f;
+		m_maxLabelScale = 0.0f;
+		m_placeholderScale = 0.0f;
+		m_placeholderColor = cocos2d::ccc3(0, 0, 0);
+		m_textColor = cocos2d::ccc3(0, 0, 0);
+		m_cursor = nullptr;
+		m_textField = nullptr;
+		m_delegate = nullptr;
+		m_maxLabelLength = 0;
+		m_placeholderLabel = nullptr;
+		m_unknown3 = false;
+		m_usePasswordChar = false;
+		m_forceOffset = false;
+		m_textArea = nullptr;
+	}
 
 	static CCTextInputNode* create(float, float, char const*, char const*, int, char const*) = win 0x2e440;
 
@@ -1217,7 +1241,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	int m_unknown1;
 	bool m_selected;
 	bool m_unknown2;
-	PAD = android32 0xc, win 0xc, android64 0x10;
+	float m_fontValue1;
+	float m_fontValue2;
+	bool m_isChatFont;
 	gd::string m_allowedChars;
 	float m_maxLabelWidth;
 	float m_maxLabelScale;
@@ -1232,7 +1258,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	bool m_unknown3;
 	bool m_usePasswordChar;
 	bool m_forceOffset;
-	PAD = android32 0x10, android64 0x18;
+	TextArea* m_textArea;
+	PAD = android32 0xc, android64 0x10;
 }
 
 [[link(android)]]
