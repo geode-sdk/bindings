@@ -9561,15 +9561,15 @@ class MenuGameLayer : cocos2d::CCLayer {
 	virtual void registerWithTouchDispatcher();
 
 	bool m_unkBool1;
-	float m_fDeltaCount;
-	bool m_bIsDestroyingPlayer;
-	int m_uInitCount;
+	float m_deltaCount;
+	bool m_isDestroyingPlayer;
+	int m_initCount;
 	cocos2d::CCPoint* m_unused1;
 	int m_unused2;
-	PlayerObject* m_pPlayerObject;
-	cocos2d::CCSprite* m_pBG1;
-	GJGroundLayer* m_pGroundLayer;
-	float m_fBGSpeed;
+	PlayerObject* m_playerObject;
+	cocos2d::CCSprite* m_backgroundSprite;
+	GJGroundLayer* m_groundLayer;
+	float m_backgroundSpeed;
 }
 
 [[link(android)]]
