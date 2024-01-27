@@ -2222,7 +2222,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
-	virtual void show();
+	virtual void show() = win 0x5D6D0;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn dailyStatusFinished(GJTimedLevelType) = win 0x98550;
 	virtual TodoReturn dailyStatusFailed(GJTimedLevelType, GJErrorCode);
