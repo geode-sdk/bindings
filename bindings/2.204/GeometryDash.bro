@@ -11615,7 +11615,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn addGroupID(int) = win 0x314320;
 	TodoReturn callRemoveFromGroup(float);
 	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int);
-	TodoReturn determineStartValues();
+	TodoReturn determineStartValues() = win 0x313130;
 	bool init(GameObject*, cocos2d::CCArray*) = win 0x310d80;
 	void onAddGroup(cocos2d::CCObject* sender) = win 0x313fd0;
 	void onAddGroupParent(cocos2d::CCObject* sender) = win 0x313fe0;
@@ -11623,7 +11623,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn onArrow(int, int);
 	void onArrowLeft(cocos2d::CCObject* sender);
 	void onArrowRight(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x314bd0;
 	void onCopy(cocos2d::CCObject* sender) = win 0x3134a0;
 	void onExtra(cocos2d::CCObject* sender) = win 0x313530;
 	void onExtra2(cocos2d::CCObject* sender) = win 0x313560;
@@ -11634,10 +11634,10 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onPaste(cocos2d::CCObject* sender) = win 0x3134c0;
 	void onRemoveFromGroup(cocos2d::CCObject* sender);
 	void onSmoothEase(cocos2d::CCObject* sender);
-	void onToggleGuide(cocos2d::CCObject* sender);
-	void onToggleSelectedOrder(cocos2d::CCObject* sender);
-	void onZLayer(cocos2d::CCObject* sender);
-	void onZLayerShift(cocos2d::CCObject* sender);
+	void onToggleGuide(cocos2d::CCObject* sender) = win 0x312aa0;
+	void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x312af0;
+	void onZLayer(cocos2d::CCObject* sender) = win 0x314050;
+	void onZLayerShift(cocos2d::CCObject* sender) = win 0x314150;
 	TodoReturn removeGroupID(int);
 	TodoReturn updateEditorLabel() = win 0x314610;
 	TodoReturn updateEditorLabel2() = win 0x3146a0;
