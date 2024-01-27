@@ -69,11 +69,14 @@ public class Regexes {
             Pattern.DOTALL | Pattern.MULTILINE
         );
     }
-    public static final Pattern grabPlatformAddress(Platform platform) {
+    public static final Pattern grabPlatformAddress(String platformName) {
         return Pattern.compile(
-            formatRegex("{0}\\s+0x(?<addr>[0-9a-fA-F]+)", platform.getShortName()),
+            formatRegex("(?<platform>{0})\\s+0x(?<addr>[0-9a-fA-F]+)", platformName),
             Pattern.DOTALL
         );
+    }
+    public static final Pattern grabPlatformAddress(Platform platform) {
+        return grabPlatformAddress(platform.getShortName());
     }
     public static final Pattern grabMemberOrPad(String memberName) {
         return Pattern.compile(
@@ -113,4 +116,5 @@ public class Regexes {
     );
     public static final Pattern GRAB_FUNCTION = grabFunction("\\w+");
     public static final Pattern GRAB_MEMBER = grabMemberOrPad("\\w+");
+    public static final Pattern GRAB_PLATFORM_ADDRESS = grabPlatformAddress("\\w+");
 }

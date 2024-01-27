@@ -8,6 +8,7 @@ import java.util.List;
 
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.data.ArrayDataType;
+import ghidra.program.model.data.BooleanDataType;
 import ghidra.program.model.data.ByteDataType;
 import ghidra.program.model.data.CategoryPath;
 import ghidra.program.model.data.CharDataType;
@@ -15,13 +16,16 @@ import ghidra.program.model.data.Composite;
 import ghidra.program.model.data.DataType;
 import ghidra.program.model.data.DataTypeConflictHandler;
 import ghidra.program.model.data.DataTypePath;
+import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.FunctionDefinitionDataType;
 import ghidra.program.model.data.IntegerDataType;
+import ghidra.program.model.data.LongDataType;
 import ghidra.program.model.data.ParameterDefinition;
 import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.PointerDataType;
+import ghidra.program.model.data.ShortDataType;
 import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.UnionDataType;
@@ -119,8 +123,16 @@ public class ScriptWrapper {
 
         // Built-in types
         if (type.name.value.matches("bool|char|short|int|long|float|double|void")) {
-            result = manager.getDataType(new DataTypePath(new CategoryPath("/"), type.name.value));
-            ScriptWrapper.rtassert(result != null, "{0} isn't a C++ type according to Ghidra", type.name.value);
+            switch (type.name.value) {
+                case "bool": result = BooleanDataType.dataType; break;
+                case "char": result = CharDataType.dataType; break;
+                case "short": result = ShortDataType.dataType; break;
+                case "int": result = IntegerDataType.dataType; break;
+                case "long": result = LongDataType.dataType; break;
+                case "float": result = FloatDataType.dataType; break;
+                case "double": result = DoubleDataType.dataType; break;
+                case "void": result = VoidDataType.dataType; break;
+            }
         }
         // STL containers are fully known
         else if (type.name.value.startsWith("gd::")) {
@@ -179,7 +191,7 @@ public class ScriptWrapper {
                 // If the type is passed without pointer or reference, assume it's an enum
                 if (type.ptr.isEmpty() && type.ref.isEmpty()) {
                     result = manager.addDataType(
-                        new EnumDataType(category, name, new IntegerDataType().getLength()),
+                        new EnumDataType(category, name, IntegerDataType.dataType.getLength()),
                         DataTypeConflictHandler.DEFAULT_HANDLER
                     );
                     printfmt("Created new type {0}, assumed it's an enum", typePath);
@@ -282,14 +294,14 @@ public class ScriptWrapper {
 
         cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
         var stringDataUnion = new UnionDataType(cat, cat.getName());
-        stringDataUnion.add(new PointerDataType(new CharDataType()), 0x4, "ptr", "");
-        stringDataUnion.add(new ArrayDataType(new CharDataType(), 0x10, 0x1), 0x10, "data", "SSO");
+        stringDataUnion.add(new PointerDataType(CharDataType.dataType), 0x4, "ptr", "");
+        stringDataUnion.add(new ArrayDataType(CharDataType.dataType, 0x10, 0x1), 0x10, "data", "SSO");
 
         cat = this.createCategoryAll(category.extend("gd", "string"));
         var string = new StructureDataType(cat, cat.getName(), 0x0);
         string.add(stringDataUnion, 0x10, "data", "String data with SSO");
-        string.add(new IntegerDataType(), 0x4, "length", "The length of the string without the terminating null byte");
-        string.add(new IntegerDataType(), 0x4, "capacity", "The capacity of the string buffer");
+        string.add(IntegerDataType.dataType, 0x4, "length", "The length of the string without the terminating null byte");
+        string.add(IntegerDataType.dataType, 0x4, "capacity", "The capacity of the string buffer");
 
         manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
 
@@ -297,59 +309,59 @@ public class ScriptWrapper {
 
         cat = this.createCategoryAll(category.extend("cocos2d", "CCPoint"));
         var point = new StructureDataType(cat, cat.getName(), 0x0);
-        point.add(new FloatDataType(), 0x4, "x", "X position of the point");
-        point.add(new FloatDataType(), 0x4, "y", "Y position of the point");
+        point.add(FloatDataType.dataType, 0x4, "x", "X position of the point");
+        point.add(FloatDataType.dataType, 0x4, "y", "Y position of the point");
         manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::CCSize
 
         cat = this.createCategoryAll(category.extend("cocos2d", "CCSize"));
         var size = new StructureDataType(cat, cat.getName(), 0x0);
-        size.add(new FloatDataType(), 0x4, "width", "Width of the size");
-        size.add(new FloatDataType(), 0x4, "height", "Height of the size");
+        size.add(FloatDataType.dataType, 0x4, "width", "Width of the size");
+        size.add(FloatDataType.dataType, 0x4, "height", "Height of the size");
         manager.addDataType(size, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::CCRect
 
         cat = this.createCategoryAll(category.extend("cocos2d", "CCRect"));
         var rect = new StructureDataType(cat, cat.getName(), 0x0);
-        rect.add(new FloatDataType(), 0x4, "x", "X position of the rect");
-        rect.add(new FloatDataType(), 0x4, "y", "Y position of the rect");
-        rect.add(new FloatDataType(), 0x4, "width", "Width of the rect");
-        rect.add(new FloatDataType(), 0x4, "height", "Height of the rect");
+        rect.add(FloatDataType.dataType, 0x4, "x", "X position of the rect");
+        rect.add(FloatDataType.dataType, 0x4, "y", "Y position of the rect");
+        rect.add(FloatDataType.dataType, 0x4, "width", "Width of the rect");
+        rect.add(FloatDataType.dataType, 0x4, "height", "Height of the rect");
         manager.addDataType(rect, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::ccColor3B
 
         cat = this.createCategoryAll(category.extend("cocos2d", "ccColor3B"));
         var color3B = new StructureDataType(cat, cat.getName(), 0x0);
-        color3B.add(new ByteDataType(), 0x1, "r", "Red component");
-        color3B.add(new ByteDataType(), 0x1, "g", "Green component");
-        color3B.add(new ByteDataType(), 0x1, "b", "Blue component");
-        color3B.add(new Undefined1DataType());
+        color3B.add(ByteDataType.dataType, 0x1, "r", "Red component");
+        color3B.add(ByteDataType.dataType, 0x1, "g", "Green component");
+        color3B.add(ByteDataType.dataType, 0x1, "b", "Blue component");
+        color3B.add(Undefined1DataType.dataType);
         manager.addDataType(color3B, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::ccColor4B
 
         cat = this.createCategoryAll(category.extend("cocos2d", "ccColor4B"));
         var color4B = new StructureDataType(cat, cat.getName(), 0x0);
-        color4B.add(new ByteDataType(), 0x1, "r", "Red component");
-        color4B.add(new ByteDataType(), 0x1, "g", "Green component");
-        color4B.add(new ByteDataType(), 0x1, "b", "Blue component");
-        color4B.add(new ByteDataType(), 0x1, "a", "Alpha component");
+        color4B.add(ByteDataType.dataType, 0x1, "r", "Red component");
+        color4B.add(ByteDataType.dataType, 0x1, "g", "Green component");
+        color4B.add(ByteDataType.dataType, 0x1, "b", "Blue component");
+        color4B.add(ByteDataType.dataType, 0x1, "a", "Alpha component");
         manager.addDataType(color4B, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::ccHSVValue
 
         cat = this.createCategoryAll(category.extend("cocos2d", "ccHSVValue"));
         var ccHSVValue = new StructureDataType(cat, cat.getName(), 0x0);
-        ccHSVValue.add(new FloatDataType(), 0x4, "h", "Hue");
-        ccHSVValue.add(new FloatDataType(), 0x4, "s", "Saturation");
-        ccHSVValue.add(new FloatDataType(), 0x4, "v", "Lightness");
-        ccHSVValue.add(new ByteDataType(), 0x1, "saturationChecked", "");
-        ccHSVValue.add(new ByteDataType(), 0x1, "brightnessChecked", "");
-        ccHSVValue.add(new Undefined1DataType());
-        ccHSVValue.add(new Undefined1DataType());
+        ccHSVValue.add(FloatDataType.dataType, 0x4, "h", "Hue");
+        ccHSVValue.add(FloatDataType.dataType, 0x4, "s", "Saturation");
+        ccHSVValue.add(FloatDataType.dataType, 0x4, "v", "Lightness");
+        ccHSVValue.add(ByteDataType.dataType, 0x1, "saturationChecked", "");
+        ccHSVValue.add(ByteDataType.dataType, 0x1, "brightnessChecked", "");
+        ccHSVValue.add(Undefined1DataType.dataType);
+        ccHSVValue.add(Undefined1DataType.dataType);
         manager.addDataType(ccHSVValue, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::SEL_MenuHandler
@@ -368,7 +380,7 @@ public class ScriptWrapper {
                 "The menu item that was activated to trigger this callback"
             ),
         });
-        menuHandlerSelector.setReturnType(new VoidDataType());
+        menuHandlerSelector.setReturnType(VoidDataType.dataType);
         menuHandlerSelector.setCallingConvention("__thiscall");
         manager.addDataType(menuHandlerSelector, DataTypeConflictHandler.REPLACE_HANDLER);
 
@@ -379,9 +391,9 @@ public class ScriptWrapper {
             var ty = new StructureDataType(cat, cat.getName(), 0x0);
             for (var c : x.chars().toArray()) {
                 switch (c) {
-                    case 'S': ty.add(new IntegerDataType(), 0x4, "seed", "The seed of the protected value"); break;
-                    case 'R': ty.add(new IntegerDataType(), 0x4, "random", "The randomized number of the protected value"); break;
-                    case 'V': ty.add(new IntegerDataType(), 0x4, "value", "The original value of the protected value"); break;
+                    case 'S': ty.add(IntegerDataType.dataType, 0x4, "seed", "The seed of the protected value"); break;
+                    case 'R': ty.add(IntegerDataType.dataType, 0x4, "random", "The randomized number of the protected value"); break;
+                    case 'V': ty.add(IntegerDataType.dataType, 0x4, "value", "The original value of the protected value"); break;
                 }
             }
             manager.addDataType(ty, DataTypeConflictHandler.REPLACE_HANDLER);
@@ -400,9 +412,9 @@ public class ScriptWrapper {
 
         if (templated.startsWith("vector")) {
             var point = new StructureDataType(cat, cat.getName(), 0x0);
-            point.add(new PointerDataType(), 0x4, "start", "Pointer to the first element in the vector");
-            point.add(new PointerDataType(), 0x4, "last", "Pointer to one past the last element in the vector");
-            point.add(new PointerDataType(), 0x4, "capacity", "Pointer to the end of the current vector allocation");
+            point.add(PointerDataType.dataType, 0x4, "start", "Pointer to the first element in the vector");
+            point.add(PointerDataType.dataType, 0x4, "last", "Pointer to one past the last element in the vector");
+            point.add(PointerDataType.dataType, 0x4, "capacity", "Pointer to the end of the current vector allocation");
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("unordered_map")) {

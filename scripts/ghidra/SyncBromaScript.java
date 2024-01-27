@@ -17,10 +17,12 @@ import ghidra.program.model.address.Address;
 import ghidra.program.model.data.AbstractFloatDataType;
 import ghidra.program.model.data.CategoryPath;
 import ghidra.program.model.data.Composite;
+import ghidra.program.model.data.DataTypeConflictHandler;
 import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.Structure;
+import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
@@ -88,7 +90,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Import from Broma", b -> this.importFromBroma = b);
             this.bool("Export to Broma", b -> this.exportToBroma = b);
             this.bool("Set optcall & membercall", b -> this.setOptcall = b);
-            this.bool("Sync members (Unimplemented)", b -> this.syncMembers = b);
+            this.bool("Sync members", b -> this.syncMembers = b);
 
             this.waitForAnswers();
 
@@ -123,13 +125,13 @@ public class SyncBromaScript extends GhidraScript {
         if (this.args.importFromBroma) {
             this.handleImport();
             if (this.args.syncMembers) {
-                // this.handleImportMembers();
+                this.handleImportMembers();
             }
         }
         if (this.args.exportToBroma) {
             this.handleExport();
             if (this.args.syncMembers) {
-                // this.handleExportMembers();
+                this.handleExportMembers();
             }
         }
     }
@@ -264,7 +266,7 @@ public class SyncBromaScript extends GhidraScript {
         if (addr.subtract(currentProgram.getImageBase()) == 0x1fb90) {
             bromaSig.parameters.add(new ParameterImpl(
                 "__see_SyncBromaScript_line_" + getLineNumber(),
-                new Undefined1DataType(),
+                Undefined1DataType.dataType,
                 currentProgram,
                 SourceType.USER_DEFINED
             ));
@@ -290,7 +292,6 @@ public class SyncBromaScript extends GhidraScript {
                 );
             }
             else {
-                wrapper.printfmt("cconv for {0} at {1}", fullName, addr);
                 updateType = FunctionUpdateType.CUSTOM_STORAGE;
                 var reorderedParams = new ArrayList<Variable>(bromaSig.parameters);
                 // Thanks stable sort <3
@@ -627,43 +628,57 @@ public class SyncBromaScript extends GhidraScript {
                     category = category.extend(part);
                     name = part;
                 }
+                // Make sure the category exists
+                wrapper.createCategoryAll(category);
                 final var classDataTypePath = new DataTypePath(category, name + "_data");
-                final var classDataMembers = (Structure) manager.getDataType(classDataTypePath);
+                var classDataMembers = (Structure) manager.getDataType(classDataTypePath);
 
                 if (classDataMembers == null) {
-                    wrapper.printfmt("Class {0} does not have a data members struct, skipping importing members", fullName);
-                    continue;
+                    // Just skip if there are no members to import
+                    if (cls.members.isEmpty()) {
+                        continue;
+                    }
+                    // Otherwise create data members struct
+                    classDataMembers = new StructureDataType(name + "_data", 0);
+                    manager.getCategory(category).addDataType(classDataMembers, DataTypeConflictHandler.DEFAULT_HANDLER);
                 }
                 wrapper.printfmt("Importing members for {0}", fullName);
 
                 var offset = 0;
-                for (int m = 0; m < cls.members.size(); m += 1) {
-                    final var mem = cls.members.get(m);
+                for (var mem : cls.members) {
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
-
-                        // Make sure the data member struct is large enough to hold everything
-                        // todo: check if this data member struct has an already-well-known size like FLAlertLayer_data
-                        if (offset + memType.getLength() > classDataMembers.getLength()) {
-                            classDataMembers.growStructure(memType.getLength());
+                        // Make sure the class is large enough to hold this member
+                        // growStructure aint doin shit on packed structs so manually doing this
+                        while (offset + memType.getLength() > classDataMembers.getLength() || classDataMembers.isZeroLength()) {
+                            classDataMembers.add(Undefined1DataType.dataType);
                         }
-                        // Clear existing member(s) (make sure that if there are bools they are cleared aswell)
-                        for (int i = 0; i < memType.getLength(); i += 1) {
-                            classDataMembers.clearAtOffset(offset + i);
+                        // If there are packed bools or something we need to clear multiple members
+                        var freedCount = 0;
+                        while (true) {
+                            final var data = classDataMembers.getComponentAt(offset + freedCount);
+                            if (data == null || data.getLength() >= memType.getLength() - freedCount) {
+                                break;
+                            }
+                            freedCount += data.getLength();
+                            classDataMembers.clearAtOffset(offset + freedCount);
                         }
-
-                        wrapper.printfmt("member at {0}: {1} (type {2}, size {3})", offset, mem.name.get().value, mem.type.get().name.value, memType.getLength());
-
-                        classDataMembers.insert(m, memType).setFieldName(mem.name.get().value);
+                        classDataMembers.replaceAtOffset(offset, memType, memType.getLength(), mem.name.get().value, null);
                         offset += memType.getLength();
                     }
                     else if (mem.padding.isPresent()) {
-                        var length = Integer.parseInt(mem.padding.get().value);
-                        if (offset + length > classDataMembers.getLength()) {
-                            classDataMembers.growStructure(length);
+                        var length = Integer.parseInt(mem.padding.get().value, 16);
+                        while (offset + length > classDataMembers.getLength()) {
+                            classDataMembers.add(Undefined1DataType.dataType);
                         }
                         for (int i = 0; i < length; i += 1) {
                             classDataMembers.clearAtOffset(offset + i);
+                            if (mem.unequalPadding) {
+                                classDataMembers.replaceAtOffset(
+                                    offset + i, Undefined1DataType.dataType, 1, null,
+                                    "Unequal padding on different platforms; UNEQ_SKIP:" + (length - i - 1)
+                                );
+                            }
                         }
                         offset += length;
                     }
@@ -673,6 +688,9 @@ public class SyncBromaScript extends GhidraScript {
                     }
                     // todo: shrink class size if it has been expanded earlier, but do not shrink beyond what rtti analysis did
                 }
+
+                // Repack because I don't want to manually pack this stuff like why would I
+                classDataMembers.repack();
             }
         }
     }

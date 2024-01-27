@@ -218,6 +218,11 @@ public class Broma {
         public final Optional<Type> type;
         public final Optional<Match> name;
         public final Optional<Match> padding;
+        /**
+         * Whether the paddings don't match between all platforms
+         * (requires full RE of the padded space to export members)
+         */
+        public final boolean unequalPadding;
 
         private Member(Broma broma, Class parent, Platform platform, Matcher matcher) {
             super(broma, matcher);
@@ -226,15 +231,28 @@ public class Broma {
                 name = Match.maybe(broma, matcher, "name");
                 type = Optional.of(new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true)));
                 padding = Optional.empty();
+                unequalPadding = false;
             }
             else {
                 name = Optional.empty();
                 type = Optional.empty();
-                padding = Match.maybe(
-                    broma,
-                    broma.forkMatcher(Regexes.grabPlatformAddress(platform), matcher, "platforms", true),
-                    "addr"
-                );
+
+                Optional<Match> padding = Optional.empty();
+                var unequalPadding = false;
+                var addrMatcher = broma.forkMatcher(Regexes.GRAB_PLATFORM_ADDRESS, matcher, "platforms", false);
+                var addrValue = 0l;
+                while (addrMatcher.find()) {
+                    if (addrMatcher.group("platform").equals(platform.getShortName())) {
+                        padding = Optional.of(new Match(addrMatcher, "addr"));
+                    }
+                    var compAddr = Long.parseLong(addrMatcher.group("addr"), 16);
+                    if (addrValue != 0l && addrValue != compAddr) {
+                        unequalPadding = true;
+                    }
+                    addrValue = compAddr;
+                }
+                this.padding = padding;
+                this.unequalPadding = unequalPadding;
             }
         }
     }
