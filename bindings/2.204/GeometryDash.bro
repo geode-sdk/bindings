@@ -10915,10 +10915,10 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	// virtual ~ProfilePage();
 	// ProfilePage() = win 0x2ecb80;
 
-	static ProfilePage* create(int accountID, bool myProfile) = win 0x2ecfd0;
+	static ProfilePage* create(int accountID, bool ownProfile) = win 0x2ecfd0;
 
 	TodoReturn blockUser();
-	bool init(int accountID, bool myProfile) = win 0x2ed080;
+	bool init(int accountID, bool ownProfile) = win 0x2ed080;
 	bool isCorrect(char const* key) = win 0x2f1ef0;
 	bool isOnWatchlist(int);
 	TodoReturn loadPage(int) = win 0x2f1fc0;
