@@ -11613,7 +11613,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*) = win 0x310cd0;
 
 	TodoReturn addGroupID(int) = win 0x314320;
-	TodoReturn callRemoveFromGroup(float) = win 0x313ea0;
+	void callRemoveFromGroup(float) = win 0x313ea0;
 	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int) = win 0x312b40;
 	TodoReturn determineStartValues() = win 0x313130;
 	bool init(GameObject*, cocos2d::CCArray*) = win 0x310d80;
