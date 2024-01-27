@@ -401,7 +401,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&) = mac 0x99270;
 	virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF*, char const*, int, cocos2d::enumKeyCodes) = mac 0x994b0;
 	virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF*) = mac 0x99a30;
-	virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF*);
+	virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF*) = mac 0x99d50;
 
 	bool m_numberInput;
 	gd::string m_caption;
