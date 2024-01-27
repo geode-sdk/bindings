@@ -10348,8 +10348,12 @@ class PlatformToolbox {
 	static TodoReturn getUserID();
 	static TodoReturn hideCursor();
 	static bool isControllerConnected() {
-		// TODO: mat
-		return false;
+		//todo: mac
+		#ifdef GEODE_IS_WINDOWS
+			return cocos2d::CCApplication::sharedApplication()->getControllerConnected();
+		#else
+			return false;
+		#endif
 	}
 	static bool isHD();
 	static bool isLocalPlayerAuthenticated();
