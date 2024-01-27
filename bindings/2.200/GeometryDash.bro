@@ -309,7 +309,32 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 
 [[link(android)]]
 class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTextFieldDelegate {
-	inline CCTextInputNode() {}
+	CCTextInputNode() {
+		m_numberInput = false;
+		m_caption = "";
+		m_unknown1 = 0;
+		m_selected = false;
+		m_unknown2 = false;
+		m_fontValue1 = -0.5f;
+		m_fontValue2 = 8.0f;
+		m_isChatFont = false;
+		m_allowedChars = "";
+		m_maxLabelWidth = 0.0f;
+		m_maxLabelScale = 0.0f;
+		m_placeholderScale = 0.0f;
+		m_placeholderColor = cocos2d::ccc3(0, 0, 0);
+		m_textColor = cocos2d::ccc3(0, 0, 0);
+		m_cursor = nullptr;
+		m_textField = nullptr;
+		m_delegate = nullptr;
+		m_maxLabelLength = 0;
+		m_placeholderLabel = nullptr;
+		m_unknown3 = false;
+		m_usePasswordChar = false;
+		m_forceOffset = false;
+		m_textArea = nullptr;
+	}
+
 	inline static CCTextInputNode* create(float width, float height, char const* placeholder, char const* fontPath) {
 		return CCTextInputNode::create(width, height, placeholder, 0x18, fontPath);
 	}
@@ -383,7 +408,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	int m_unknown1;
 	bool m_selected;
 	bool m_unknown2;
-	PAD = android32 0xc, win 0xc, android64 0x10, mac 0x10;
+	float m_fontValue1;
+	float m_fontValue2;
+	bool m_isChatFont;
 	gd::string m_allowedChars;
 	float m_maxLabelWidth;
 	float m_maxLabelScale;
@@ -398,7 +425,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	bool m_unknown3;
 	bool m_usePasswordChar;
 	bool m_forceOffset;
-	PAD = android32 0x10, android64 0x18, mac 0x18;
+	TextArea* m_textArea;
+	PAD = android32 0xc, android64 0x10, mac 0x10;
 }
 
 [[link(android)]]
@@ -6646,11 +6674,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setScaleX(float) = win 0x2D4C10;
 	virtual void setScaleY(float) = win 0x2D4C30;
 	virtual void setScale(float) = win 0x2D4C50;
-	virtual void setPosition(cocos2d::CCPoint const&);
+    virtual void setPosition(cocos2d::CCPoint const&) = win 0x2cfef0;
 	virtual void setVisible(bool);
 	virtual void setRotation(float);
 	virtual void setOpacity(unsigned char);
-	virtual void setColor(cocos2d::_ccColor3B const&);
+	virtual void setColor(cocos2d::_ccColor3B const&) = win 0x2d0bb0;
 	virtual void setFlipX(bool) = win 0x2D4B80;
 	virtual void setFlipY(bool) = win 0x138E00;
 	virtual TodoReturn resetObject() = win 0x2cb840;
@@ -8620,8 +8648,8 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn resetAllShaders();
 	TodoReturn toggleAntiAlias(bool);
 	TodoReturn triggerHueShift(float, float, int, float);
-	TodoReturn setupBulgeShader();
-	TodoReturn setupPinchShader();
+    TodoReturn setupBulgeShader() = win 0x37aa00;
+    TodoReturn setupPinchShader() = win 0x37af60;
 	TodoReturn setupSepiaShader();
 	TodoReturn triggerGrayscale(float, float, bool, int, int, float);
 	TodoReturn triggerPixelateX(float, float, bool, bool, int, float, bool);
@@ -8647,34 +8675,34 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn preMotionBlurShader();
 	TodoReturn preRadialBlurShader();
 	TodoReturn setupCommonUniforms();
-	TodoReturn setupGlitchUniforms();
-	TodoReturn setupHueShiftShader();
+    TodoReturn setupGlitchUniforms() = win 0x377e70;
+    TodoReturn setupHueShiftShader() = win 0x37b6b0;
 	TodoReturn updateEffectOffsets(cocos2d::CCPoint);
 	TodoReturn objectPosToShaderPos(cocos2d::CCPoint);
 	TodoReturn preColorChangeShader();
 	TodoReturn preInvertColorShader();
 	TodoReturn preSplitScreenShader();
 	TodoReturn resetTargetContainer();
-	TodoReturn setupGrayscaleShader();
+    TodoReturn setupGrayscaleShader() = win 0x37b0a0;
 	TodoReturn setupLensCircleShader();
-	TodoReturn setupMotionBlurShader();
-	TodoReturn setupRadialBlurShader();
+    TodoReturn setupMotionBlurShader() = win 0x37a430;
+    TodoReturn setupRadialBlurShader() = win 0x379fa0;
 	TodoReturn updateShockLineCenter(cocos2d::CCPoint);
 	TodoReturn updateShockWaveCenter(cocos2d::CCPoint);
 	TodoReturn prepareTargetContainer();
-	TodoReturn setupChromaticUniforms();
-	TodoReturn setupColorChangeShader();
+    TodoReturn setupChromaticUniforms() = win 0x378480;
+    TodoReturn setupColorChangeShader() = win 0x37bad0;
 	TodoReturn setupInvertColorShader();
-	TodoReturn setupShockLineUniforms();
-	TodoReturn setupShockWaveUniforms();
-	TodoReturn setupSplitScreenShader();
+    TodoReturn setupShockLineUniforms() = win 0x3776e0;
+    TodoReturn setupShockWaveUniforms() = win 0x376b20;
+    TodoReturn setupSplitScreenShader() = win 0x37be40;
 	TodoReturn triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool);
 	TodoReturn triggerSplitScreenCols(float, float, int, float);
 	TodoReturn triggerSplitScreenRows(float, float, int, float);
 	TodoReturn updateMotionBlurSpeedX(float, float);
 	TodoReturn updateMotionBlurSpeedY(float, float);
 	TodoReturn preChromaticGlitchShader();
-	TodoReturn setupChromaticGlitchUniforms();
+    TodoReturn setupChromaticGlitchUniforms() = win 0x3789c0;
 
 	virtual void update(float);
 	virtual bool init();

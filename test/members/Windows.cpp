@@ -236,4 +236,9 @@ GEODE_MEMBER_CHECK(EditorUI, m_createButtonBars, 0x2e0);
 GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x340);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedTab, 0x384);
 
+
+GEODE_SIZE_CHECK(EditButtonBar, 0x124);
+
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e24);
+
 #endif
