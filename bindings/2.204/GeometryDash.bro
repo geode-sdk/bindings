@@ -5318,8 +5318,8 @@ class GameStatsManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GameToolbox {
-	static TodoReturn addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x41910;
-	static TodoReturn addRThumbScrollButton(cocos2d::CCLayer*);
+	static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x41910;
+	static void addRThumbScrollButton(cocos2d::CCLayer*) = win 0x419c0;
 	static TodoReturn alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x40a50;
 	static TodoReturn alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
 	static TodoReturn bounceTime(float);
@@ -6022,7 +6022,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
-	virtual void removeAllCheckpoints() = win 0x2ea090;
+	virtual void removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
 
 	PAD = win 0x8, android32 0x8, android64 0xc;
