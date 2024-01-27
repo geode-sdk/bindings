@@ -2222,7 +2222,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
-	virtual void show();
+	virtual void show() = win 0x5D6D0;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn dailyStatusFinished(GJTimedLevelType) = win 0x98550;
 	virtual TodoReturn dailyStatusFailed(GJTimedLevelType, GJErrorCode);
@@ -2624,7 +2624,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn flipObjectsX(cocos2d::CCArray*) = win 0xd5c20;
 	TodoReturn flipObjectsY(cocos2d::CCArray*) = win 0xd5e50;
 	TodoReturn getButton(char const*, int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
-	TodoReturn getCreateBtn(int, int);
+	CreateMenuItem* getCreateBtn(int id, int bg) = win 0xC78A0;
 	TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getCycledObject(cocos2d::CCArray*, bool);
 	TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&);
@@ -4695,8 +4695,8 @@ class GameObject : CCSpritePlus {
 	TodoReturn createGroupContainer(int);
 	TodoReturn createOpacityGroupContainer(int);
 	TodoReturn createSpriteColor(int);
-	TodoReturn createWithFrame(char const*) = win 0x130fc0;
-	TodoReturn createWithKey(int) = win 0x130330;
+	static GameObject* createWithFrame(char const*) = win 0x130fc0;
+	static GameObject* createWithKey(int) = win 0x130330;
 	TodoReturn deselectObject() = win 0x141b70;
 	TodoReturn destroyObject();
 	TodoReturn determineSlopeDirection() = win 0x13d3c0;
@@ -5318,8 +5318,8 @@ class GameStatsManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GameToolbox {
-	static TodoReturn addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x41910;
-	static TodoReturn addRThumbScrollButton(cocos2d::CCLayer*);
+	static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x41910;
+	static void addRThumbScrollButton(cocos2d::CCLayer*) = win 0x419c0;
 	static TodoReturn alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x40a50;
 	static TodoReturn alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
 	static TodoReturn bounceTime(float);
@@ -6022,7 +6022,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
-	virtual void removeAllCheckpoints() = win 0x2ea090;
+	virtual void removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
 
 	PAD = win 0x8, android32 0x8, android64 0xc;
@@ -9545,7 +9545,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 
 	static MenuGameLayer* create();
 
-	TodoReturn destroyPlayer();
+	void destroyPlayer() = win 0x27AE40;
 	TodoReturn getBGColor(int);
 	TodoReturn resetPlayer() = win 0x279fd0;
 	TodoReturn tryJump(float);
@@ -9559,6 +9559,17 @@ class MenuGameLayer : cocos2d::CCLayer {
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void registerWithTouchDispatcher();
+
+	bool m_unkBool1;
+	float m_deltaCount;
+	bool m_isDestroyingPlayer;
+	int m_initCount;
+	cocos2d::CCPoint* m_unused1;
+	int m_unused2;
+	PlayerObject* m_playerObject;
+	cocos2d::CCSprite* m_backgroundSprite;
+	GJGroundLayer* m_groundLayer;
+	float m_backgroundSpeed;
 }
 
 [[link(android)]]
@@ -10378,8 +10389,12 @@ class PlatformToolbox {
 	static TodoReturn getUserID();
 	static TodoReturn hideCursor();
 	static bool isControllerConnected() {
-		// TODO: mat
-		return false;
+		//todo: mac
+		#ifdef GEODE_IS_WINDOWS
+			return cocos2d::CCApplication::sharedApplication()->getControllerConnected();
+		#else
+			return false;
+		#endif
 	}
 	static bool isHD();
 	static bool isLocalPlayerAuthenticated();

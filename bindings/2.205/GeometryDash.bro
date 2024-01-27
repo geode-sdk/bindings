@@ -5311,8 +5311,8 @@ class GameStatsManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GameToolbox {
-	static TodoReturn addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*);
-	static TodoReturn addRThumbScrollButton(cocos2d::CCLayer*);
+	static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*);
+	static void addRThumbScrollButton(cocos2d::CCLayer*);
 	static TodoReturn alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool);
 	static TodoReturn alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
 	static TodoReturn bounceTime(float);
@@ -10348,8 +10348,12 @@ class PlatformToolbox {
 	static TodoReturn getUserID();
 	static TodoReturn hideCursor();
 	static bool isControllerConnected() {
-		// TODO: mat
-		return false;
+		//todo: mac
+		#ifdef GEODE_IS_WINDOWS
+			return cocos2d::CCApplication::sharedApplication()->getControllerConnected();
+		#else
+			return false;
+		#endif
 	}
 	static bool isHD();
 	static bool isLocalPlayerAuthenticated();
