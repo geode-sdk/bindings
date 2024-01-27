@@ -1222,19 +1222,19 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	TodoReturn updateDefaultFontValues(gd::string);
 	TodoReturn updateLabel(gd::string) = win 0x2eac0;
 
-	virtual void visit();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void registerWithTouchDispatcher();
-	virtual TodoReturn textChanged();
+	virtual void visit() = win 0x2e930;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x304f0;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1d240;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1d240;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1d240;
+	virtual void registerWithTouchDispatcher() = win 0x306d0;
+	virtual TodoReturn textChanged() = win 0x2f630;
 	virtual TodoReturn onClickTrackNode(bool) = win 0x2f600;
-	virtual void keyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&);
-	virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&);
-	virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF*, char const*, int, cocos2d::enumKeyCodes);
-	virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF*);
-	virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF*);
+	virtual void keyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&) = win 0x2f4d0;
+	virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&) = win 0x2f5a0;
+	virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF*, char const*, int, cocos2d::enumKeyCodes) = win 0x2f6b0;
+	virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF*) = win 0x2fa30;
+	virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF*) = win 0x2fd50;
 
 	bool m_numberInput;
 	gd::string m_caption;
