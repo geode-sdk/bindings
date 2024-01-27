@@ -11613,8 +11613,8 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*) = win 0x310cd0;
 
 	TodoReturn addGroupID(int) = win 0x314320;
-	void callRemoveFromGroup(float) = win 0x313ea0;
-	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int) = win 0x312b40;
+	void callRemoveFromGroup(float); // win 0x313ea0
+	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int); // win 0x312b40
 	TodoReturn determineStartValues() = win 0x313130;
 	bool init(GameObject*, cocos2d::CCArray*) = win 0x310d80;
 	void onAddGroup(cocos2d::CCObject* sender) = win 0x313fd0;
@@ -11638,7 +11638,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x312af0;
 	void onZLayer(cocos2d::CCObject* sender) = win 0x314050;
 	void onZLayerShift(cocos2d::CCObject* sender) = win 0x314150;
-	TodoReturn removeGroupID(int) = win 0x314460;
+	TodoReturn removeGroupID(int); // win 0x314460
 	TodoReturn updateEditorLabel() = win 0x314610;
 	TodoReturn updateEditorLabel2() = win 0x3146a0;
 	TodoReturn updateEditorLayerID() = win 0x314200;
