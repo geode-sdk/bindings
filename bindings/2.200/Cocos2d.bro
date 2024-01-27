@@ -616,6 +616,7 @@ class cocos2d::CCEGLView {
 
 [[link(win, android)]]
 class cocos2d::CCIMEDelegate {
+	CCIMEDelegate() = mac 0x4970a0;
 	~CCIMEDelegate() = mac 0x497410;
 	virtual bool attachWithIME() = mac 0x497440;
 	virtual bool detachWithIME() = mac 0x497630;
