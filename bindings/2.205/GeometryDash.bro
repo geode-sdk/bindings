@@ -9924,7 +9924,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getSFXFolderPathForID(int, bool);
 	TodoReturn getSFXObject(int);
 	TodoReturn getSongDownloadKey(int);
-	TodoReturn getSongInfo(int, bool);
+	void getSongInfo(int, bool);
 	TodoReturn getSongInfoKey(int);
 	SongInfoObject* getSongInfoObject(int);
 	TodoReturn getSongPriority();
