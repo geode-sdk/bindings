@@ -2624,7 +2624,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn flipObjectsX(cocos2d::CCArray*) = win 0xd5c20;
 	TodoReturn flipObjectsY(cocos2d::CCArray*) = win 0xd5e50;
 	TodoReturn getButton(char const*, int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
-	TodoReturn getCreateBtn(int, int);
+	CreateMenuItem* getCreateBtn(int id, int bg) = win 0xC78A0;
 	TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getCycledObject(cocos2d::CCArray*, bool);
 	TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&);
@@ -4695,8 +4695,8 @@ class GameObject : CCSpritePlus {
 	TodoReturn createGroupContainer(int);
 	TodoReturn createOpacityGroupContainer(int);
 	TodoReturn createSpriteColor(int);
-	TodoReturn createWithFrame(char const*) = win 0x130fc0;
-	TodoReturn createWithKey(int) = win 0x130330;
+	static GameObject* createWithFrame(char const*) = win 0x130fc0;
+	static GameObject* createWithKey(int) = win 0x130330;
 	TodoReturn deselectObject() = win 0x141b70;
 	TodoReturn destroyObject();
 	TodoReturn determineSlopeDirection() = win 0x13d3c0;
@@ -9545,7 +9545,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 
 	static MenuGameLayer* create();
 
-	TodoReturn destroyPlayer();
+	void destroyPlayer() = win 0x27AE40;
 	TodoReturn getBGColor(int);
 	TodoReturn resetPlayer() = win 0x279fd0;
 	TodoReturn tryJump(float);
@@ -9559,6 +9559,17 @@ class MenuGameLayer : cocos2d::CCLayer {
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void registerWithTouchDispatcher();
+
+	bool m_unkBool1;
+	float m_deltaCount;
+	bool m_isDestroyingPlayer;
+	int m_initCount;
+	cocos2d::CCPoint* m_unused1;
+	int m_unused2;
+	PlayerObject* m_playerObject;
+	cocos2d::CCSprite* m_backgroundSprite;
+	GJGroundLayer* m_groundLayer;
+	float m_backgroundSpeed;
 }
 
 [[link(android)]]
