@@ -1218,7 +1218,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	void setString(gd::string) = win 0x2e9a0;
 	TodoReturn updateBlinkLabel();
 	TodoReturn updateBlinkLabelToChar(int);
-	TodoReturn updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect);
+	TodoReturn updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x2ff50;
 	TodoReturn updateDefaultFontValues(gd::string);
 	TodoReturn updateLabel(gd::string) = win 0x2eac0;
 
