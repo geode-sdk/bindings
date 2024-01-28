@@ -9695,7 +9695,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 
 	static MoreOptionsLayer* create();
 
-	TodoReturn addToggle(char const*, char const*, char const*);
+	TodoReturn addToggle(char const*, char const*, char const*) = win 0x2b25f0;
 	TodoReturn countForPage(int);
 	TodoReturn goToPage(int);
 	TodoReturn incrementCountForPage(int);
@@ -9720,7 +9720,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	TodoReturn pageKey(int);
 	TodoReturn toggleGP();
 
-	virtual bool init();
+	virtual bool init() = win 0x2b1630;
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
 	virtual TodoReturn textInputReturn(CCTextInputNode*);
