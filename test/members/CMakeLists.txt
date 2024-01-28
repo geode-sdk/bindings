@@ -51,6 +51,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 if (WIN32)
 	# without this, some stl structures can have a wrong size when cross compiling from linux
 	add_compile_definitions(_HAS_ITERATOR_DEBUGGING=0)
+else()
+	target_compile_options(${PROJECT_NAME} PRIVATE -Wno-invalid-offsetof -Wno-inaccessible-base)
 endif()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE -DGEODE_DONT_WARN_INCORRECT_MEMBERS)
