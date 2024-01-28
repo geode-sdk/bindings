@@ -8240,14 +8240,14 @@ class ItemTriggerGameObject : EffectGameObject {
 class KeybindingsLayer : FLAlertLayer {
 	// virtual ~KeybindingsLayer();
 
-	static KeybindingsLayer* create();
+	static KeybindingsLayer* create() = win 0x22c1c0;
 
-	TodoReturn addKeyPair(char const*, char const*);
-	TodoReturn countForPage(int);
-	TodoReturn goToPage(int);
-	TodoReturn incrementCountForPage(int);
+	TodoReturn addKeyPair(char const*, char const*) = win 0x22c9d0;
+	TodoReturn countForPage(int) = win 0x22ccd0;
+	TodoReturn goToPage(int) = win 0x22d010;
+	TodoReturn incrementCountForPage(int) = win 0x22cda0;
 	TodoReturn infoKey(int);
-	TodoReturn layerForPage(int);
+	TodoReturn layerForPage(int) = win 0x22ce80;
 	TodoReturn layerKey(int);
 	TodoReturn nextPosition(int);
 	TodoReturn objectKey(int);
@@ -9696,15 +9696,15 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	static MoreOptionsLayer* create();
 
 	TodoReturn addToggle(char const*, char const*, char const*) = win 0x2b25f0;
-	TodoReturn countForPage(int);
-	TodoReturn goToPage(int);
-	TodoReturn incrementCountForPage(int);
+	TodoReturn countForPage(int) = win 0x2b2b90;
+	TodoReturn goToPage(int) = win 0x2b2fd0;
+	TodoReturn incrementCountForPage(int) = win 0x2b2c60;
 	TodoReturn infoKey(int);
-	TodoReturn layerForPage(int);
+	TodoReturn layerForPage(int) = win 0x2b2e70;
 	TodoReturn layerKey(int);
-	TodoReturn nextPosition(int);
+	TodoReturn nextPosition(int) = win 0x2b2a50;
 	TodoReturn objectKey(int);
-	TodoReturn objectsForPage(int);
+	TodoReturn objectsForPage(int) = win 0x2b2d40;
 	TodoReturn offsetToNextPage();
 	void onClose(cocos2d::CCObject* sender);
 	void onFMODDebug(cocos2d::CCObject* sender);
