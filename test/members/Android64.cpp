@@ -72,4 +72,8 @@ GEODE_MEMBER_CHECK(LevelInfoLayer, m_circle, 0x270);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x2A8);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2C8);
 
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x3788);
+
+GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
+
 #endif

@@ -1218,7 +1218,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	void setString(gd::string) = win 0x2e9a0;
 	TodoReturn updateBlinkLabel();
 	TodoReturn updateBlinkLabelToChar(int);
-	TodoReturn updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect);
+	TodoReturn updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x2ff50;
 	TodoReturn updateDefaultFontValues(gd::string);
 	TodoReturn updateLabel(gd::string) = win 0x2eac0;
 
@@ -1941,9 +1941,9 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 class CustomizeObjectSettingsPopup : SetupTriggerPopup {
 	// virtual ~CustomizeObjectSettingsPopup();
 
-	static CustomizeObjectSettingsPopup* create(GameObject*, cocos2d::CCArray*, CustomizeObjectLayer*);
+	static CustomizeObjectSettingsPopup* create(GameObject*, cocos2d::CCArray*, CustomizeObjectLayer*) = win 0x7a340;
 
-	bool init(GameObject*, cocos2d::CCArray*, CustomizeObjectLayer*);
+	bool init(GameObject*, cocos2d::CCArray*, CustomizeObjectLayer*) = win 0x7a3f0;
 
 	virtual void onClose(cocos2d::CCObject* sender);
 	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
@@ -2400,9 +2400,9 @@ class EditButtonBar : cocos2d::CCNode {
 class EditGameObjectPopup : SetupTriggerPopup {
 	// virtual ~EditGameObjectPopup();
 
-	static EditGameObjectPopup* create(EffectGameObject*, cocos2d::CCArray*, bool);
+	static EditGameObjectPopup* create(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x20f5a0;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*, bool);
+	bool init(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x20f650;
 }
 
 [[link(android)]]
@@ -2933,9 +2933,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 class EditTriggersPopup : SetupTriggerPopup {
 	// virtual ~EditTriggersPopup();
 
-	static EditTriggersPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static EditTriggersPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x205550;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x205600;
 
 	virtual TodoReturn determineStartValues();
 	virtual void onClose(cocos2d::CCObject* sender);
@@ -4078,15 +4078,15 @@ class GameLevelManager : cocos2d::CCNode {
 	void setLevelFeatured(int, int, bool);
 	void setLevelStars(int, int, bool);
 	TodoReturn specialFromLikeKey(char const*);
-	TodoReturn storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
-	TodoReturn storeDailyLevelState(int, int, GJTimedLevelType);
-	TodoReturn storeFriendRequest(GJFriendRequest*);
-	TodoReturn storeSearchResult(cocos2d::CCArray*, gd::string, char const*);
-	TodoReturn storeUserInfo(GJUserScore*);
-	TodoReturn storeUserMessage(GJUserMessage*);
-	TodoReturn storeUserMessageReply(int, GJUserMessage*);
-	TodoReturn storeUserName(int, int, gd::string) = win 0xf6140;
-	TodoReturn storeUserNames(gd::string);
+	void storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
+	void storeDailyLevelState(int, int, GJTimedLevelType);
+	void storeFriendRequest(GJFriendRequest*);
+	void storeSearchResult(cocos2d::CCArray*, gd::string, char const*);
+	void storeUserInfo(GJUserScore*);
+	void storeUserMessage(GJUserMessage*);
+	void storeUserMessageReply(int, GJUserMessage*);
+	void storeUserName(int userID, int accountID, gd::string userName) = win 0xf6140;
+	void storeUserNames(gd::string usernameString);
 	TodoReturn submitUserInfo() = win 0x110f40;
 	TodoReturn suggestLevelStars(int, int, int) = win 0x102ec0;
 	TodoReturn tryGetUsername(int) = win 0xf6370;
@@ -5858,7 +5858,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn rotateAreaObjects(GameObject*, cocos2d::CCArray*, float, bool);
 	TodoReturn rotateObject(GameObject*, float);
 	TodoReturn rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
-	void setGroupParent(GameObject*, int);
+	void setGroupParent(GameObject*, int) = win 0x1a9460;
 	void setStartPosObject(StartPosObject*) = win 0x199e90;
 	TodoReturn setupLayers() = win 0x191440;
 	TodoReturn setupLevelStart(LevelSettingsObject*) = win 0x199ed0;
@@ -6241,26 +6241,32 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         m_delegate = nullptr;
     }
 
-	// static GJDropDownLayer* create(char const*, float);
-	// static GJDropDownLayer* create(char const*);
-
-	bool init(char const*, float) = win 0x1d6700;
+	bool init(char const*, float, bool) = win 0x1d6700;
 	bool init(char const* title) {
-		return init(title, 0.0f);
+		return init(title, 220.0f, false);
 	}
 
-    static GJDropDownLayer* create(const char* title, float height) {
+    static GJDropDownLayer* create(const char* title, float height, bool p2) {
         GJDropDownLayer* pRet = new GJDropDownLayer();
-        if (pRet && pRet->init(title, height)) {
+        if (pRet && pRet->init(title, height, p2)) {
             pRet->autorelease();
             return pRet;
         }
         CC_SAFE_DELETE(pRet);
         return nullptr;
     }
+	static GJDropDownLayer* create(const char* title) {
+		GJDropDownLayer* pRet = new GJDropDownLayer();
+        if (pRet && pRet->init(title)) {
+            pRet->autorelease();
+            return pRet;
+        }
+        CC_SAFE_DELETE(pRet);
+        return nullptr;
+	}
 
 	virtual void draw() = win 0x230a0;
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x230d0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -6268,7 +6274,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void keyBackClicked() = win 0x1d6b20;
 	virtual TodoReturn customSetup();
 	virtual TodoReturn enterLayer() = win 0x22fa0;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*);
+	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x1d6b40;
 	virtual TodoReturn showLayer(bool) = win 0x1d6b70;
 	virtual TodoReturn hideLayer(bool) = win 0x1d6c60;
 	virtual TodoReturn layerVisible() = win 0x23060;
@@ -6426,9 +6432,9 @@ class GJFlyGroundLayer : GJGroundLayer {
 class GJFollowCommandLayer : SetupTriggerPopup {
 	// virtual ~GJFollowCommandLayer();
 
-	static GJFollowCommandLayer* create(EffectGameObject*, cocos2d::CCArray*);
+	static GJFollowCommandLayer* create(EffectGameObject*, cocos2d::CCArray*) = win 0x1ecb80;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x1ecc30;
 	void onUpdateGroupID(cocos2d::CCObject* sender);
 	void onUpdateGroupID2(cocos2d::CCObject* sender);
 	TodoReturn sliderChanged(cocos2d::CCObject*);
@@ -7176,9 +7182,9 @@ class GJPathSprite : CCSpriteCOpacity {
 class GJPFollowCommandLayer : SetupTriggerPopup {
 	// virtual ~GJPFollowCommandLayer();
 
-	static GJPFollowCommandLayer* create(EffectGameObject*, cocos2d::CCArray*);
+	static GJPFollowCommandLayer* create(EffectGameObject*, cocos2d::CCArray*) = win 0x2010e0;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x201190;
 	void onUpdateGroupID(cocos2d::CCObject* sender);
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	TodoReturn sliderXModChanged(cocos2d::CCObject*);
@@ -8619,12 +8625,12 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getNextColorChannel();
 	TodoReturn getNextFreeAreaEffectID(cocos2d::CCArray*);
 	TodoReturn getNextFreeBlockID(cocos2d::CCArray*);
-	TodoReturn getNextFreeEditorLayer(cocos2d::CCArray*);
+	TodoReturn getNextFreeEditorLayer(cocos2d::CCArray*) = win 0x241950;
 	TodoReturn getNextFreeEnterChannel(cocos2d::CCArray*);
 	TodoReturn getNextFreeGradientID(cocos2d::CCArray*);
-	TodoReturn getNextFreeGroupID(cocos2d::CCArray*);
+	TodoReturn getNextFreeGroupID(cocos2d::CCArray*) = win 0x241530;
 	TodoReturn getNextFreeItemID(cocos2d::CCArray*);
-	TodoReturn getNextFreeOrderChannel(cocos2d::CCArray*);
+	TodoReturn getNextFreeOrderChannel(cocos2d::CCArray*) = win 0x241870;
 	TodoReturn getNextFreeSFXGroupID(cocos2d::CCArray*);
 	TodoReturn getNextFreeSFXID(cocos2d::CCArray*);
 	TodoReturn getObjectRect(GameObject*, bool, bool);
@@ -10807,7 +10813,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn removeAllObjects() = win 0x2eb570;
 	TodoReturn removeCheckpoint(bool);
 	TodoReturn removeFromGroupOld(GameObject*);
-	TodoReturn resetLevel() = win 0x2ea130;
+	void resetLevel() = win 0x2ea130;
 	TodoReturn resetLevelFromStart() = win 0x2ea090;
 	TodoReturn resume();
 	TodoReturn resumeAndRestart(bool);
@@ -10839,7 +10845,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleBGEffectVisibility(bool);
 	TodoReturn toggleGhostEffect(int);
-	TodoReturn togglePracticeMode(bool) = win 0x2ead30;
+	void togglePracticeMode(bool) = win 0x2ead30;
 	TodoReturn tryStartRecord();
 	TodoReturn updateAttempts() = win 0x2eab40;
 	TodoReturn updateEffectPositions() = win 0x2e7130;
@@ -11610,48 +11616,48 @@ class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
 class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	// virtual ~SetGroupIDLayer();
 
-	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*);
+	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*) = win 0x310cd0;
 
-	TodoReturn addGroupID(int);
-	TodoReturn callRemoveFromGroup(float);
-	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int);
-	TodoReturn determineStartValues();
-	bool init(GameObject*, cocos2d::CCArray*);
-	void onAddGroup(cocos2d::CCObject* sender);
-	void onAddGroupParent(cocos2d::CCObject* sender);
-	void onAnim(cocos2d::CCObject* sender);
-	TodoReturn onArrow(int, int);
-	void onArrowLeft(cocos2d::CCObject* sender);
-	void onArrowRight(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onCopy(cocos2d::CCObject* sender);
-	void onExtra(cocos2d::CCObject* sender);
-	void onExtra2(cocos2d::CCObject* sender);
-	void onNextFreeEditorLayer1(cocos2d::CCObject* sender);
-	void onNextFreeEditorLayer2(cocos2d::CCObject* sender);
-	void onNextFreeOrderChannel(cocos2d::CCObject* sender);
-	void onNextGroupID1(cocos2d::CCObject* sender);
-	void onPaste(cocos2d::CCObject* sender);
-	void onRemoveFromGroup(cocos2d::CCObject* sender);
+	TodoReturn addGroupID(int) = win 0x314320;
+	void callRemoveFromGroup(float); // win 0x313ea0
+	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int); // win 0x312b40
+	TodoReturn determineStartValues() = win 0x313130;
+	bool init(GameObject*, cocos2d::CCArray*) = win 0x310d80;
+	void onAddGroup(cocos2d::CCObject* sender) = win 0x313fd0;
+	void onAddGroupParent(cocos2d::CCObject* sender) = win 0x313fe0;
+	void onAnim(cocos2d::CCObject* sender) = win 0x313580;
+	TodoReturn onArrow(int, int) = win 0x312fc0;
+	void onArrowLeft(cocos2d::CCObject* sender) = win 0x312f80;
+	void onArrowRight(cocos2d::CCObject* sender) = win 0x312fa0;
+	void onClose(cocos2d::CCObject* sender) = win 0x314bd0;
+	void onCopy(cocos2d::CCObject* sender) = win 0x3134a0;
+	void onExtra(cocos2d::CCObject* sender) = win 0x313530;
+	void onExtra2(cocos2d::CCObject* sender) = win 0x313560;
+	void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = win 0x3142c0;
+	void onNextFreeEditorLayer2(cocos2d::CCObject* sender) = win 0x3142f0;
+	void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x314910;
+	void onNextGroupID1(cocos2d::CCObject* sender) = win 0x3137e0;
+	void onPaste(cocos2d::CCObject* sender) = win 0x3134c0;
+	void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x313f20;
 	void onSmoothEase(cocos2d::CCObject* sender);
-	void onToggleGuide(cocos2d::CCObject* sender);
-	void onToggleSelectedOrder(cocos2d::CCObject* sender);
-	void onZLayer(cocos2d::CCObject* sender);
-	void onZLayerShift(cocos2d::CCObject* sender);
-	TodoReturn removeGroupID(int);
-	TodoReturn updateEditorLabel();
-	TodoReturn updateEditorLabel2();
-	TodoReturn updateEditorLayerID();
-	TodoReturn updateEditorLayerID2();
-	TodoReturn updateEditorOrder();
-	TodoReturn updateEditorOrderLabel();
-	TodoReturn updateGroupIDButtons();
-	TodoReturn updateGroupIDLabel();
-	TodoReturn updateOrderChannel();
-	TodoReturn updateOrderChannelLabel();
+	void onToggleGuide(cocos2d::CCObject* sender) = win 0x312aa0;
+	void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x312af0;
+	void onZLayer(cocos2d::CCObject* sender) = win 0x314050;
+	void onZLayerShift(cocos2d::CCObject* sender) = win 0x314150;
+	TodoReturn removeGroupID(int); // win 0x314460
+	TodoReturn updateEditorLabel() = win 0x314610;
+	TodoReturn updateEditorLabel2() = win 0x3146a0;
+	TodoReturn updateEditorLayerID() = win 0x314200;
+	TodoReturn updateEditorLayerID2() = win 0x314260;
+	TodoReturn updateEditorOrder() = win 0x314b40;
+	TodoReturn updateEditorOrderLabel() = win 0x314850;
+	TodoReturn updateGroupIDButtons() = win 0x313810;
+	TodoReturn updateGroupIDLabel() = win 0x3147c0;
+	TodoReturn updateOrderChannel() = win 0x314ab0;
+	TodoReturn updateOrderChannelLabel() = win 0x3148b0;
 	TodoReturn updateZLayerButtons();
-	TodoReturn updateZOrder();
-	TodoReturn updateZOrderLabel();
+	TodoReturn updateZOrder() = win 0x314590;
+	TodoReturn updateZOrderLabel() = win 0x314730;
 
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
@@ -12449,9 +12455,9 @@ class SetupMGTrigger : SetupTriggerPopup {
 class SetupMoveCommandPopup : SetupTriggerPopup {
 	// virtual ~SetupMoveCommandPopup();
 
-	static SetupMoveCommandPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupMoveCommandPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x1f9810;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x1f98c0;
 	TodoReturn updateControlVisibility();
 
 	virtual TodoReturn updateInputValue(int, float&);
@@ -12961,9 +12967,9 @@ class SetupSpawnParticlePopup : SetupTriggerPopup {
 class SetupSpawnPopup : SetupTriggerPopup {
 	// virtual ~SetupSpawnPopup();
 
-	static SetupSpawnPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupSpawnPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x35e2d0;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x35e380;
 	void onAddRemap(cocos2d::CCObject* sender);
 	void onDeleteRemap(cocos2d::CCObject* sender);
 	void onSelectRemap(cocos2d::CCObject* sender);
@@ -14414,7 +14420,7 @@ class UIButtonConfig {
 }
 
 [[link(android)]]
-class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
+class UILayer : cocos2d::CCLayerColor {
 	// virtual ~UILayer();
 	// UILayer() = win 0x3bea20;
 
@@ -14450,6 +14456,12 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3bf930;
 	virtual void keyUp(cocos2d::enumKeyCodes) = win 0x3bf950;
+
+	// This member is here because rob managed to inhert CCKeyboardDelegate twice
+	// in this class, which ended up breaking addresser when trying to hook it.
+	// so instead, we removed the second CCKeyboardDelegate from the base class list
+	// and put this member here to take the place of its vtable
+	void* m_stupidDelegate;
 }
 
 [[link(android)]]
@@ -14467,10 +14479,10 @@ class UIObjectSettingsPopup : SetupTriggerPopup {
 class UIOptionsLayer : SetupTriggerPopup {
 	// virtual ~UIOptionsLayer();
 
-	static UIOptionsLayer* create(bool);
+	static UIOptionsLayer* create(bool) = win 0x213db0;
 
 	TodoReturn getNode(int);
-	bool init(bool);
+	bool init(bool) = win 0x213e60;
 	void onReset(cocos2d::CCObject* sender);
 	void onSaveLoad(cocos2d::CCObject* sender);
 	TodoReturn toggleUIGroup(int);
@@ -14489,9 +14501,9 @@ class UIOptionsLayer : SetupTriggerPopup {
 class UISaveLoadLayer : SetupTriggerPopup {
 	// virtual ~UISaveLoadLayer();
 
-	static UISaveLoadLayer* create(UIOptionsLayer*);
+	static UISaveLoadLayer* create(UIOptionsLayer*) = win 0x215e10;
 
-	bool init(UIOptionsLayer*);
+	bool init(UIOptionsLayer*) = win 0x215eb0;
 	void onLoad(cocos2d::CCObject* sender);
 	void onSave(cocos2d::CCObject* sender);
 }
