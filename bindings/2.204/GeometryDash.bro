@@ -6241,26 +6241,32 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         m_delegate = nullptr;
     }
 
-	// static GJDropDownLayer* create(char const*, float);
-	// static GJDropDownLayer* create(char const*);
-
-	bool init(char const*, float) = win 0x1d6700;
+	bool init(char const*, float, bool) = win 0x1d6700;
 	bool init(char const* title) {
-		return init(title, 0.0f);
+		return init(title, 220.0f, false);
 	}
 
-    static GJDropDownLayer* create(const char* title, float height) {
+    static GJDropDownLayer* create(const char* title, float height, bool p2) {
         GJDropDownLayer* pRet = new GJDropDownLayer();
-        if (pRet && pRet->init(title, height)) {
+        if (pRet && pRet->init(title, height, p2)) {
             pRet->autorelease();
             return pRet;
         }
         CC_SAFE_DELETE(pRet);
         return nullptr;
     }
+	static GJDropDownLayer* create(const char* title) {
+		GJDropDownLayer* pRet = new GJDropDownLayer();
+        if (pRet && pRet->init(title)) {
+            pRet->autorelease();
+            return pRet;
+        }
+        CC_SAFE_DELETE(pRet);
+        return nullptr;
+	}
 
 	virtual void draw() = win 0x230a0;
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x230d0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -6268,7 +6274,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void keyBackClicked() = win 0x1d6b20;
 	virtual TodoReturn customSetup();
 	virtual TodoReturn enterLayer() = win 0x22fa0;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*);
+	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x1d6b40;
 	virtual TodoReturn showLayer(bool) = win 0x1d6b70;
 	virtual TodoReturn hideLayer(bool) = win 0x1d6c60;
 	virtual TodoReturn layerVisible() = win 0x23060;
