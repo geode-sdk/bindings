@@ -10813,7 +10813,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn removeAllObjects() = win 0x2eb570;
 	TodoReturn removeCheckpoint(bool);
 	TodoReturn removeFromGroupOld(GameObject*);
-	TodoReturn resetLevel() = win 0x2ea130;
+	void resetLevel() = win 0x2ea130;
 	TodoReturn resetLevelFromStart() = win 0x2ea090;
 	TodoReturn resume();
 	TodoReturn resumeAndRestart(bool);
@@ -10845,7 +10845,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleBGEffectVisibility(bool);
 	TodoReturn toggleGhostEffect(int);
-	TodoReturn togglePracticeMode(bool) = win 0x2ead30;
+	void togglePracticeMode(bool) = win 0x2ead30;
 	TodoReturn tryStartRecord();
 	TodoReturn updateAttempts() = win 0x2eab40;
 	TodoReturn updateEffectPositions() = win 0x2e7130;
