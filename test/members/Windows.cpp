@@ -126,7 +126,7 @@ GEODE_MEMBER_CHECK(CustomSongWidget, m_showPlayMusicBtn, 0x155);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_showDownloadBtn, 0x156);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_isNotDownloading, 0x157);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_isRobtopSong, 0x158);
-GEODE_MEMBER_CHECK(CustomSongWidget, m_hasMultipleAssets, 0x159);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_isMusicLibrary, 0x159);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_customSongID, 0x15c);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_unkFloat, 0x160);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_unkBool1, 0x164);
