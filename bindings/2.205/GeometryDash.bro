@@ -4946,7 +4946,7 @@ class GameObject : CCSpritePlus {
 	int m_uniqueID;
 	GameObjectType m_objectType;
 	
-	PAD = android32 0x14, win 0x14;
+	PAD = android32 0x10, win 0x10;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
@@ -5069,7 +5069,7 @@ class GameObject : CCSpritePlus {
 	// property 156
 	int m_property156;
 	
-	PAD = android32 0x12, win 0x26; // TODO: yeah someone pls fix windows pads
+	PAD = android32 0x12, win 0x1e; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
