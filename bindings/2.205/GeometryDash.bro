@@ -2383,6 +2383,13 @@ class EditButtonBar : cocos2d::CCNode {
 	void onLeft(cocos2d::CCObject* sender);
 	void onRight(cocos2d::CCObject* sender);
 	TodoReturn reloadItems(int, int);
+
+	cocos2d::CCPoint m_position;
+	int m_unknown;
+	bool m_unknownBool;
+	cocos2d::CCArray* m_buttonArray;
+	BoomScrollLayer* m_scrollLayer;
+	cocos2d::CCArray* m_pagesArray;
 }
 
 [[link(android)]]
@@ -2624,14 +2631,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getRandomStartKey(int);
 	TodoReturn getRelativeOffset(GameObject*);
-	TodoReturn getSelectedObjects();
+	cocos2d::CCArray* getSelectedObjects();
 	TodoReturn getSimpleButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
 	TodoReturn getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getSmartObjectKey(int, GJSmartDirection);
 	TodoReturn getSnapAngle(GameObject*, cocos2d::CCArray*);
-	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
-	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
-	TodoReturn getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
+	CCMenuItemSpriteExtra* getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
+	CCMenuItemSpriteExtra* getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
+	CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getTouchPoint(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn getTransformState();
 	TodoReturn getXMin(int);
@@ -2816,7 +2823,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn scaleXYChanged(float, float, bool);
 
 	
-	PAD = android32 0xd4;
+	// TODO: android64 absolutely wrong
+	PAD = android32 0xd4, android64 0x124;
 	EditButtonBar* m_editButtonBar;
 	
 	PAD = android32 0x30;
@@ -4041,15 +4049,15 @@ class GameLevelManager : cocos2d::CCNode {
 	void setLevelFeatured(int, int, bool);
 	void setLevelStars(int, int, bool);
 	TodoReturn specialFromLikeKey(char const*);
-	TodoReturn storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
-	TodoReturn storeDailyLevelState(int, int, GJTimedLevelType);
-	TodoReturn storeFriendRequest(GJFriendRequest*);
-	TodoReturn storeSearchResult(cocos2d::CCArray*, gd::string, char const*);
-	TodoReturn storeUserInfo(GJUserScore*);
-	TodoReturn storeUserMessage(GJUserMessage*);
-	TodoReturn storeUserMessageReply(int, GJUserMessage*);
-	TodoReturn storeUserName(int, int, gd::string);
-	TodoReturn storeUserNames(gd::string);
+	void storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
+	void storeDailyLevelState(int, int, GJTimedLevelType);
+	void storeFriendRequest(GJFriendRequest*);
+	void storeSearchResult(cocos2d::CCArray*, gd::string, char const*);
+	void storeUserInfo(GJUserScore*);
+	void storeUserMessage(GJUserMessage*);
+	void storeUserMessageReply(int, GJUserMessage*);
+	void storeUserName(int userID, int accountID, gd::string userName);
+	void storeUserNames(gd::string usernameString);
 	TodoReturn submitUserInfo();
 	TodoReturn suggestLevelStars(int, int, int);
 	TodoReturn tryGetUsername(int);
@@ -8713,11 +8721,14 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
 	virtual TodoReturn levelSettingsUpdated();
 
-	PAD = android32 0x64;
+	// TODO: the android64 ones are absolutely wrong i am just very lazy
+	PAD = android32 0x64, android64 0x0000001;
 	
 	geode::SeedValueRSV m_coinCount;
 	
-	PAD = android32 0x38;
+	PAD = android32 0x34, android64 0xe8;
+
+	EditorUI* m_editorUI;
 	
 	cocos2d::CCArray* m_undoObjects;
 	cocos2d::CCArray* m_redoObjects;
@@ -10872,10 +10883,10 @@ class PriceLabel : cocos2d::CCNode {
 class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, CommentUploadDelegate, UserInfoDelegate, UploadActionDelegate, UploadPopupDelegate, LeaderboardManagerDelegate {
 	// virtual ~ProfilePage();
 
-	static ProfilePage* create(int, bool);
+	static ProfilePage* create(int accountID, bool ownProfile);
 
 	TodoReturn blockUser();
-	bool init(int, bool);
+	bool init(int accountID, bool ownProfile);
 	bool isCorrect(char const*);
 	bool isOnWatchlist(int);
 	TodoReturn loadPage(int);
@@ -14494,9 +14505,9 @@ class UndoObject : cocos2d::CCObject {
 	// UndoObject();
 
 	static UndoObject* create(GameObject*, UndoCommand);
+	static UndoObject* createWithArray(cocos2d::CCArray*, UndoCommand);
+	static UndoObject* createWithTransformObjects(cocos2d::CCArray*, UndoCommand);
 
-	TodoReturn createWithArray(cocos2d::CCArray*, UndoCommand);
-	TodoReturn createWithTransformObjects(cocos2d::CCArray*, UndoCommand);
 	bool init(cocos2d::CCArray*, UndoCommand);
 	bool init(GameObject*, UndoCommand);
 	TodoReturn initWithTransformObjects(cocos2d::CCArray*, UndoCommand);
