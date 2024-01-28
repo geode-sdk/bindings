@@ -4919,6 +4919,7 @@ class GameObject : CCSpritePlus {
 	PAD = android32 0x13, win 0x13;
 
 	// somehow related to property 155 and 156 if anyone wants to reverse engineer
+	// these only change whenever i reopen the level, at least in the editor
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
 
@@ -4930,7 +4931,7 @@ class GameObject : CCSpritePlus {
 
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3e, win 0x32;
+	PAD = android32 0x3e, win 0x3e;
 
 	// property 108
 	int m_linkedGroup;
@@ -4939,7 +4940,7 @@ class GameObject : CCSpritePlus {
 	int m_uniqueID;
 	GameObjectType m_objectType;
 
-	PAD = android32 0x14, win 0x14;
+	PAD = android32 0x10, win 0x10;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
@@ -5058,7 +5059,7 @@ class GameObject : CCSpritePlus {
 	// property 156
 	int m_property156;
 
-	PAD = android32 0x12, win 0x26; // TODO: yeah someone pls fix windows pads
+	PAD = android32 0x12, win 0x1e; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
