@@ -14420,7 +14420,7 @@ class UIButtonConfig {
 }
 
 [[link(android)]]
-class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
+class UILayer : cocos2d::CCLayerColor {
 	// virtual ~UILayer();
 	// UILayer() = win 0x3bea20;
 
@@ -14456,6 +14456,12 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3bf930;
 	virtual void keyUp(cocos2d::enumKeyCodes) = win 0x3bf950;
+
+	// This member is here because rob managed to inhert CCKeyboardDelegate twice
+	// in this class, which ended up breaking addresser when trying to hook it.
+	// so instead, we removed the second CCKeyboardDelegate from the base class list
+	// and put this member here to take the place of its vtable
+	void* m_stupidDelegate;
 }
 
 [[link(android)]]
