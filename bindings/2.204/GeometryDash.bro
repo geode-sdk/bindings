@@ -1207,7 +1207,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         return m_placeholderLabel;
     }
 
-	TodoReturn addTextArea(TextArea*);
+	void addTextArea(TextArea*) = win 0x2e6d0;
 	TodoReturn forceOffset();
 	gd::string getString() {
 		return m_textField->getString();
@@ -1219,7 +1219,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	TodoReturn updateBlinkLabel();
 	TodoReturn updateBlinkLabelToChar(int);
 	TodoReturn updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x2ff50;
-	TodoReturn updateDefaultFontValues(gd::string);
+	void updateDefaultFontValues(gd::string) = win 0x2e7a0;
 	TodoReturn updateLabel(gd::string) = win 0x2eac0;
 
 	virtual void visit() = win 0x2e930;
