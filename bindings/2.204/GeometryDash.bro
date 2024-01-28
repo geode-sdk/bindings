@@ -1207,7 +1207,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         return m_placeholderLabel;
     }
 
-	TodoReturn addTextArea(TextArea*);
+	void addTextArea(TextArea*) = win 0x2e6d0;
 	TodoReturn forceOffset();
 	gd::string getString() {
 		return m_textField->getString();
@@ -1219,7 +1219,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	TodoReturn updateBlinkLabel();
 	TodoReturn updateBlinkLabelToChar(int);
 	TodoReturn updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x2ff50;
-	TodoReturn updateDefaultFontValues(gd::string);
+	void updateDefaultFontValues(gd::string) = win 0x2e7a0;
 	TodoReturn updateLabel(gd::string) = win 0x2eac0;
 
 	virtual void visit() = win 0x2e930;
@@ -2096,14 +2096,14 @@ class CustomSongLayerDelegate {
 class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProtocol {
 	// virtual ~CustomSongWidget();
 
-	static CustomSongWidget* create(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool hasMultipleAssets) = win 0x92b60;
+	static CustomSongWidget* create(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary) = win 0x92b60;
 
 	TodoReturn deleteSong();
 	TodoReturn downloadAssetFailed(int, GJAssetType, GJSongError);
 	TodoReturn downloadAssetFinished(int, GJAssetType);
 	TodoReturn downloadFailed();
 	TodoReturn getSongInfoIfUnloaded();
-	bool init(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool hasMultipleAssets) = win 0x92c20;
+	bool init(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary) = win 0x92c20;
 	void onCancelDownload(cocos2d::CCObject* sender);
 	void onDelete(cocos2d::CCObject* sender);
 	void onDownload(cocos2d::CCObject* sender) = win 0x94510;
@@ -2125,7 +2125,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	TodoReturn updateProgressBar(int);
 	void updateSongInfo() = win 0x94b80;
 	void updateSongObject(SongInfoObject*) = win 0x94280;
-	TodoReturn updateWithMultiAssets(gd::string, gd::string, int) = win 0x956f0;
+	void updateWithMultiAssets(gd::string, gd::string, int) = win 0x956f0;
 	TodoReturn verifySongID(int);
 
 	virtual TodoReturn loadSongInfoFinished(SongInfoObject*);
@@ -2161,7 +2161,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool m_showDownloadBtn;
 	bool m_isNotDownloading;
 	bool m_isRobtopSong;
-	bool m_hasMultipleAssets;
+	bool m_isMusicLibrary;
 	int m_customSongID;
 	float m_unkFloat;
 	bool m_unkBool1;
@@ -2171,7 +2171,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool m_unkBool2;
 	gd::map<int, bool> m_songs;
 	gd::map<int, bool> m_sfx;
-	gd::vector<GJAssetDownloadAction> m_undownloadedAssets;
+	gd::vector<CCObject*> m_undownloadedAssets;
 	int m_unkInt;
 	InfoAlertButton* m_assetInfoBtn;
 }
@@ -4918,10 +4918,16 @@ class GameObject : CCSpritePlus {
 	bool m_hasExtendedCollision;
 	PAD = android32 0x13, win 0x13;
 
-	cocos2d::CCSprite* m_baseSprite;
-	cocos2d::CCSprite* m_detailSprite;
+	// somehow related to property 155 and 156 if anyone wants to reverse engineer
+	// these only change whenever i reopen the level, at least in the editor
+	int m_activeMainColorID;
+	int m_activeDetailColorID;
 
-	PAD = android32 0x64, win 0x64;
+	PAD = android32 0x4c, win 0x4c;
+
+	cocos2d::CCSprite* m_glowSprite;
+
+	PAD = android32 0x14, win 0x14;
 
 	gd::string m_particleString;
 
@@ -4929,16 +4935,21 @@ class GameObject : CCSpritePlus {
 
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3e, win 0x32;
+	PAD = android32 0x3e, win 0x3e;
 
 	// property 108
 	int m_linkedGroup;
-	PAD = android32 0x23, win 0x23;
+	
+	PAD = android32 0xc, win 0xc;
+
+	cocos2d::CCSprite* m_colorSprite;
+
+	PAD = android32 0x13, win 0x13;
 
 	int m_uniqueID;
 	GameObjectType m_objectType;
 
-	PAD = android32 0x14, win 0x14;
+	PAD = android32 0x10, win 0x10;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
@@ -5010,7 +5021,11 @@ class GameObject : CCSpritePlus {
 	short m_groupCount;
 	// used with property 274
 	bool m_hasGroupParentsString;
-	PAD = android32 0xf, win 0xf;
+
+	std::array<short, 10>* m_colorGroups;
+	short m_colorGroupCount;
+	std::array<short, 10>* m_opacityGroups;
+	short m_opacityGroupCount;
 
 	// property 20
 	short m_editorLayer;
@@ -5020,7 +5035,11 @@ class GameObject : CCSpritePlus {
 
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x2c, win 0x2c;
+	PAD = android32 0x9, win 0x9;
+	
+	cocos2d::CCPoint m_lastPosition;
+
+	PAD = android32 0x1b, win 0x1b;
 
 	// property 103
 	bool m_isHighDetail;
@@ -5053,7 +5072,7 @@ class GameObject : CCSpritePlus {
 	// property 156
 	int m_property156;
 
-	PAD = android32 0x12, win 0x26; // TODO: yeah someone pls fix windows pads
+	PAD = android32 0x12, win 0x1e; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
@@ -10001,7 +10020,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn parseMusicLibrary() = win 0x285270;
 	TodoReturn parseSFXLibrary() = win 0x286bd0;
-	TodoReturn pathForSFX(int) = win 0x2843e0;
+	gd::string pathForSFX(int) = win 0x2843e0;
 	TodoReturn pathForSFXFolder(int) = win 0x284240;
 	gd::string pathForSong(int) = win 0x284070;
 	TodoReturn pathForSongFolder(int) = win 0x283ed0;
@@ -10813,7 +10832,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn removeAllObjects() = win 0x2eb570;
 	TodoReturn removeCheckpoint(bool);
 	TodoReturn removeFromGroupOld(GameObject*);
-	TodoReturn resetLevel() = win 0x2ea130;
+	void resetLevel() = win 0x2ea130;
 	TodoReturn resetLevelFromStart() = win 0x2ea090;
 	TodoReturn resume();
 	TodoReturn resumeAndRestart(bool);
@@ -10845,7 +10864,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleBGEffectVisibility(bool);
 	TodoReturn toggleGhostEffect(int);
-	TodoReturn togglePracticeMode(bool) = win 0x2ead30;
+	void togglePracticeMode(bool) = win 0x2ead30;
 	TodoReturn tryStartRecord();
 	TodoReturn updateAttempts() = win 0x2eab40;
 	TodoReturn updateEffectPositions() = win 0x2e7130;
@@ -14420,7 +14439,7 @@ class UIButtonConfig {
 }
 
 [[link(android)]]
-class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
+class UILayer : cocos2d::CCLayerColor {
 	// virtual ~UILayer();
 	// UILayer() = win 0x3bea20;
 
@@ -14456,6 +14475,12 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3bf930;
 	virtual void keyUp(cocos2d::enumKeyCodes) = win 0x3bf950;
+
+	// This member is here because rob managed to inhert CCKeyboardDelegate twice
+	// in this class, which ended up breaking addresser when trying to hook it.
+	// so instead, we removed the second CCKeyboardDelegate from the base class list
+	// and put this member here to take the place of its vtable
+	void* m_stupidDelegate;
 }
 
 [[link(android)]]
