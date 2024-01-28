@@ -22,8 +22,6 @@ namespace geode::modifier {{
 		using Base = {class_name};
         using Derived = Der;
 		void apply() override {{
-			using namespace geode::core::meta;
-
 )GEN";
 
         char const* statics_declare_identifier = R"GEN(

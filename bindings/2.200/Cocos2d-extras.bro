@@ -2024,51 +2024,6 @@ class cocos2d::CCLiquid {
 	virtual void update(float);
 }
 
-[[link(win, android)]]
-class cocos2d::CCMenu {
-	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
-	static cocos2d::CCMenu* create();
-	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
-	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
-	// static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
-
-	bool initWithArray(cocos2d::CCArray*);
-
-	void setHandlerPriority(int);
-
-	// CCMenu(cocos2d::CCMenu const&);
-	// CCMenu();
-	void alignItemsHorizontally();
-	void alignItemsHorizontallyWithPadding(float);
-	// void alignItemsInColumns(unsigned int, ...);
-	// void alignItemsInColumns(unsigned int, char*);
-	void alignItemsInColumnsWithArray(cocos2d::CCArray*);
-	// void alignItemsInRows(unsigned int, ...);
-	// void alignItemsInRows(unsigned int, char*);
-	void alignItemsInRowsWithArray(cocos2d::CCArray*);
-	void alignItemsVertically();
-	void alignItemsVerticallyWithPadding(float);
-	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*);
-	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
-
-	virtual bool init();
-	virtual void addChild(cocos2d::CCNode*);
-	virtual void addChild(cocos2d::CCNode*, int);
-	virtual void addChild(cocos2d::CCNode*, int, int);
-	virtual void removeChild(cocos2d::CCNode*, bool);
-	virtual void onExit();
-	virtual void registerWithTouchDispatcher();
-	virtual bool isEnabled();
-	virtual void setEnabled(bool);
-
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-
-	virtual void setOpacityModifyRGB(bool);
-	virtual bool isOpacityModifyRGB();
-}
 
 [[link(win, android)]]
 class cocos2d::CCMenuItem {
@@ -4520,20 +4475,6 @@ class cocos2d::CCTransitionEaseScene {
 }
 
 [[link(win, android)]]
-class cocos2d::CCTransitionFade {
-	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*);
-	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
-
-	// CCTransitionFade(cocos2d::CCTransitionFade const&);
-	// CCTransitionFade();
-
-	virtual void onEnter();
-	virtual void onExit();
-	virtual bool initWithDuration(float, cocos2d::CCScene*);
-	virtual bool initWithDuration(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
-}
-
-[[link(win, android)]]
 class cocos2d::CCTransitionFadeBL {
 	static cocos2d::CCTransitionFadeBL* create(float, cocos2d::CCScene*);
 
@@ -5225,31 +5166,6 @@ class cocos2d {
 	static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
 	static float ccpToAngle(cocos2d::CCPoint const&);
 	static char const* cocos2dVersion();
-}
-
-[[link(win, android)]]
-class cocos2d::ZipUtils {
-	static gd::string base64DecodeEnc(gd::string const&, gd::string);
-	static gd::string base64EncodeEnc(gd::string const&, gd::string);
-	static gd::string base64URLDecode(gd::string const&);
-	static gd::string base64URLEncode(gd::string const&);
-	static unsigned int ccChecksumPvr(unsigned int const*, int);
-	static void ccDecodeEncodedPvr(unsigned int*, int);
-	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**);
-	static int ccInflateCCZFile(char const*, unsigned char**);
-	static int ccInflateGZipFile(char const*, unsigned char**);
-	static int ccInflateMemory(unsigned char*, unsigned int, unsigned char**);
-	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int*, unsigned int);
-	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int);
-	static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
-	static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-	static gd::string compressString(gd::string const&, bool, int);
-	static gd::string decompressString2(unsigned char*, bool, int, int);
-	static gd::string decompressString(gd::string const&, bool, int);
-	static gd::string encryptDecrypt(gd::string const&, int);
-	static gd::string encryptDecryptWKey(gd::string const&, gd::string);
-	static unsigned char hexToChar(gd::string const&);
-	static gd::string urlDecode(gd::string const&);
 }
 
 [[link(win, android)]]
