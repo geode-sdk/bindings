@@ -2106,12 +2106,12 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	TodoReturn updateDownloadProgress(float);
 	TodoReturn updateError(GJSongError);
 	TodoReturn updateLengthMod(float);
-	TodoReturn updateMultiAssetInfo(bool);
+	void updateMultiAssetInfo(bool);
 	TodoReturn updatePlaybackBtn();
 	TodoReturn updateProgressBar(int);
-	TodoReturn updateSongInfo();
-	TodoReturn updateSongObject(SongInfoObject*);
-	TodoReturn updateWithMultiAssets(gd::string, gd::string, int);
+	void updateSongInfo();
+	void updateSongObject(SongInfoObject*);
+	void updateWithMultiAssets(gd::string, gd::string, int);
 	TodoReturn verifySongID(int);
 
 	virtual TodoReturn loadSongInfoFinished(SongInfoObject*);
@@ -9392,6 +9392,10 @@ class LoadingCircle : cocos2d::CCLayerColor {
 	TodoReturn fadeAndRemove();
 	TodoReturn show();
 
+	void setFade(bool fade) {
+		m_fade = fade;
+	}
+
 	virtual bool init();
 	virtual void draw();
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -9931,9 +9935,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getSFXFolderPathForID(int, bool);
 	TodoReturn getSFXObject(int);
 	TodoReturn getSongDownloadKey(int);
-	TodoReturn getSongInfo(int, bool);
+	void getSongInfo(int, bool);
 	TodoReturn getSongInfoKey(int);
-	TodoReturn getSongInfoObject(int);
+	SongInfoObject* getSongInfoObject(int);
 	TodoReturn getSongPriority();
 	TodoReturn handleIt(bool, gd::string, gd::string, GJHttpType);
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
@@ -9958,13 +9962,13 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onGetCustomContentURLCompleted(gd::string, gd::string);
-	TodoReturn onGetSongInfoCompleted(gd::string, gd::string);
+	void onGetSongInfoCompleted(gd::string, gd::string);
 	TodoReturn onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn parseMusicLibrary();
 	TodoReturn parseSFXLibrary();
-	TodoReturn pathForSFX(int);
+	gd::string pathForSFX(int);
 	TodoReturn pathForSFXFolder(int);
 	gd::string pathForSong(int);
 	TodoReturn pathForSongFolder(int);
@@ -13743,6 +13747,17 @@ class SongInfoObject : cocos2d::CCNode {
 
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
+
+	int m_songID;
+	gd::string m_songName;
+	gd::string m_artistName;
+	gd::string m_youtubeVideo;
+	gd::string m_youtubeChannel;
+	gd::string m_songUrl;
+	gd::string m_artistID;
+	float m_fileSize;
+	bool m_isUnkownSong;
+	int m_priority;
 }
 
 [[link(android)]]
