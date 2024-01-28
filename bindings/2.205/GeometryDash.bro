@@ -4916,8 +4916,9 @@ class GameObject : CCSpritePlus {
 	bool m_hasExtendedCollision;
 	PAD = android32 0x13, win 0x13;
 	
-	cocos2d::CCSprite* m_baseSprite;
-	cocos2d::CCSprite* m_detailSprite;
+	// somehow related to property 155 and 156 if anyone wants to reverse engineer
+	int m_activeMainColorID;
+	int m_activeDetailColorID;
 	
 	PAD = android32 0x64, win 0x64;
 	
