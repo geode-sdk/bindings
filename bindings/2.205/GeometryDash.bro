@@ -4920,7 +4920,11 @@ class GameObject : CCSpritePlus {
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
 	
-	PAD = android32 0x64, win 0x64;
+	PAD = android32 0x4c, win 0x4c;
+
+	cocos2d::CCSprite* m_glowSprite;
+
+	PAD = android32 0x14, win 0x14;
 	
 	gd::string m_particleString;
 	
@@ -4932,7 +4936,12 @@ class GameObject : CCSpritePlus {
 	
 	// property 108
 	int m_linkedGroup;
-	PAD = android32 0x23, win 0x23;
+
+	PAD = android32 0xc, win 0xc;
+
+	cocos2d::CCSprite* m_colorSprite;
+
+	PAD = android32 0x13, win 0x13;
 	
 	int m_uniqueID;
 	GameObjectType m_objectType;
@@ -5023,7 +5032,11 @@ class GameObject : CCSpritePlus {
 	
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x2c, win 0x2c;
+	PAD = android32 0x9, win 0x9;
+	
+	cocos2d::CCPoint m_lastPosition;
+
+	PAD = android32 0x1b, win 0x1b;
 	
 	// property 103
 	bool m_isHighDetail;
