@@ -3379,7 +3379,7 @@ class ExtendedLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class FileOperation {
-	TodoReturn getFilePath();
+	gd::string getFilePath();
 	TodoReturn readFile();
 	TodoReturn saveFile();
 }
@@ -4916,10 +4916,15 @@ class GameObject : CCSpritePlus {
 	bool m_hasExtendedCollision;
 	PAD = android32 0x13, win 0x13;
 	
-	cocos2d::CCSprite* m_baseSprite;
-	cocos2d::CCSprite* m_detailSprite;
+	// somehow related to property 155 and 156 if anyone wants to reverse engineer
+	int m_activeMainColorID;
+	int m_activeDetailColorID;
 	
-	PAD = android32 0x64, win 0x64;
+	PAD = android32 0x4c, win 0x4c;
+
+	cocos2d::CCSprite* m_glowSprite;
+
+	PAD = android32 0x14, win 0x14;
 	
 	gd::string m_particleString;
 	
@@ -4931,12 +4936,17 @@ class GameObject : CCSpritePlus {
 	
 	// property 108
 	int m_linkedGroup;
-	PAD = android32 0x23, win 0x23;
+
+	PAD = android32 0xc, win 0xc;
+
+	cocos2d::CCSprite* m_colorSprite;
+
+	PAD = android32 0x13, win 0x13;
 	
 	int m_uniqueID;
 	GameObjectType m_objectType;
 	
-	PAD = android32 0x14, win 0x14;
+	PAD = android32 0x10, win 0x10;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
@@ -5008,7 +5018,11 @@ class GameObject : CCSpritePlus {
 	short m_groupCount;
 	// used with property 274
 	bool m_hasGroupParentsString;
-	PAD = android32 0xf, win 0xf;
+	
+	std::array<short, 10>* m_colorGroups;
+	short m_colorGroupCount;
+	std::array<short, 10>* m_opacityGroups;
+	short m_opacityGroupCount;
 	
 	// property 20
 	short m_editorLayer;
@@ -5018,7 +5032,11 @@ class GameObject : CCSpritePlus {
 	
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x2c, win 0x2c;
+	PAD = android32 0x9, win 0x9;
+	
+	cocos2d::CCPoint m_lastPosition;
+
+	PAD = android32 0x1b, win 0x1b;
 	
 	// property 103
 	bool m_isHighDetail;
@@ -5051,7 +5069,7 @@ class GameObject : CCSpritePlus {
 	// property 156
 	int m_property156;
 	
-	PAD = android32 0x12, win 0x26; // TODO: yeah someone pls fix windows pads
+	PAD = android32 0x12, win 0x1e; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
@@ -10894,7 +10912,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool isCorrect(char const*);
 	bool isOnWatchlist(int);
 	TodoReturn loadPage(int);
-	TodoReturn loadPageFromUserInfo(GJUserScore*);
+	void loadPageFromUserInfo(GJUserScore*);
 	void onBlockUser(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onComment(cocos2d::CCObject* sender);
