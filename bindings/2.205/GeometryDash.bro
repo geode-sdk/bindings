@@ -319,13 +319,13 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn setupGLView();
 	TodoReturn showLoadingCircle(bool, bool, bool);
 
-	virtual bool applicationDidFinishLaunching();
-	virtual void applicationDidEnterBackground();
-	virtual void applicationWillEnterForeground();
-	virtual void applicationWillBecomeActive();
-	virtual void applicationWillResignActive();
-	virtual void trySaveGame(bool);
-	virtual TodoReturn willSwitchToScene(cocos2d::CCScene*);
+	virtual bool applicationDidFinishLaunching() = win 0x5b320;
+	virtual void applicationDidEnterBackground() = win 0x5b4f0;
+	virtual void applicationWillEnterForeground() = win 0x5b530;
+	virtual void applicationWillBecomeActive() = win 0x5b4d0;
+	virtual void applicationWillResignActive() = win 0x5b4e0;
+	virtual void trySaveGame(bool) = win 0x5b790;
+	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x5b0b0;
 
 	PAD = win 0x4, android32 0xC, android64 0x18;
 	cocos2d::CCScene* m_runningScene;
@@ -4180,7 +4180,7 @@ class GameManager : GManager {
 		return GameManager::sharedState();
 	}
 
-	static GameManager* sharedState();
+	static GameManager* sharedState() = 0x121540;
 	
 	PlayLayer* getPlayLayer() {
 		return m_playLayer;
@@ -4321,7 +4321,7 @@ class GameManager : GManager {
 	TodoReturn checkUsedIcons();
 	TodoReturn claimItemsResponse(gd::string);
 	TodoReturn clearGJLog();
-	cocos2d::ccColor3B colorForIdx(int);
+	cocos2d::ccColor3B colorForIdx(int) = 0x126090;
 	TodoReturn colorForPos(int);
 	TodoReturn colorKey(int, UnlockType);
 	TodoReturn completedAchievement(gd::string);
@@ -4349,7 +4349,7 @@ class GameManager : GManager {
 	TodoReturn getBGTexture(int);
 	TodoReturn getFontFile(int);
 	TodoReturn getFontTexture(int);
-	bool getGameVariable(char const*);
+	bool getGameVariable(char const*) = 0x128730;
 	TodoReturn getGTexture(int);
 	TodoReturn getIconRequestID();
 	int getIntGameVariable(char const*);
@@ -4365,9 +4365,9 @@ class GameManager : GManager {
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	TodoReturn iconKey(int, IconType);
 	UnlockType iconTypeToUnlockType(IconType);
-	bool isColorUnlocked(int, UnlockType);
+	bool isColorUnlocked(int, UnlockType) = win 0x122490;
 	bool isIconLoaded(int, int);
-	bool isIconUnlocked(int, IconType);
+	bool isIconUnlocked(int, IconType) = 0x121f90;
 	TodoReturn itemPurchased(char const*);
 	TodoReturn joinDiscord();
 	TodoReturn joinReddit();
@@ -4376,7 +4376,7 @@ class GameManager : GManager {
 	TodoReturn likeFacebook();
 	TodoReturn loadBackground(int);
 	TodoReturn loadBackgroundAsync(int);
-	TodoReturn loadDeathEffect(int);
+	void loadDeathEffect(int) = 0x127c80;
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool);
 	TodoReturn loadFont(int);
@@ -4415,7 +4415,7 @@ class GameManager : GManager {
 	TodoReturn reportPercentageForLevel(int, int, bool);
 	TodoReturn resetAchievement(gd::string);
 	TodoReturn resetAdTimer();
-	TodoReturn resetAllIcons();
+	void resetAllIcons() = win 0x1294a0;
 	TodoReturn resetCoinUnlocks();
 	TodoReturn resetDPadSettings(bool);
 	TodoReturn resolutionForKey(int);
@@ -4426,7 +4426,7 @@ class GameManager : GManager {
 	TodoReturn safePopScene();
 	TodoReturn saveAdTimer();
 	TodoReturn saveDPadLayout(int, bool);
-	void setGameVariable(char const*, bool);
+	void setGameVariable(char const*, bool) = 0x1284e0;
 	void setHasRatingPower(int);
 	void setIntGameVariable(char const*, int);
 	// void setPlayerBall(int);
@@ -4480,9 +4480,9 @@ class GameManager : GManager {
 
 	virtual void update(float);
 	virtual bool init();
-	virtual TodoReturn encodeDataTo(DS_Dictionary*);
-	virtual TodoReturn dataLoaded(DS_Dictionary*);
-	virtual TodoReturn firstLoad();
+	virtual void encodeDataTo(DS_Dictionary*) = win 0x12d480;
+	virtual void dataLoaded(DS_Dictionary*) = win 0x12b830;
+	virtual void firstLoad() = win 0x12cb20;
 
 	cocos2d::CCDictionary* m_unkAnimationDict;
 	cocos2d::CCDictionary* m_unkAnimationDict2;
@@ -5756,7 +5756,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getTargetGroupOrigin(int, int);
 	TodoReturn gravBumpPlayer(PlayerObject*, EffectGameObject*);
 	TodoReturn groupStickyObjects(cocos2d::CCArray*);
-	TodoReturn handleButton(bool, int, bool);
+	bool handleButton(bool, int, bool) = 0x1b69f0;
 	TodoReturn hasItem(int);
 	TodoReturn hasUniqueCoin(EffectGameObject*);
 	TodoReturn increaseBatchNodeCapacity();
@@ -5965,7 +5965,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateKeyframeOrder(int);
 	TodoReturn updateLayerCapacity(gd::string);
 	TodoReturn updateLegacyLayerCapacity(int, int, int, int);
-	TodoReturn updateLevelColors();
+	void updateLevelColors() = win 0x194490;
 	TodoReturn updateMaxGameplayY();
 	TodoReturn updateMGArtSpeed(float, float);
 	TodoReturn updateMGOffsetY(float, float, int, float, int, int);
@@ -5988,8 +5988,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn visitWithColorFlash();
 	TodoReturn volumeForProximityEffect(SFXTriggerInstance&);
 
-	virtual void update(float);
-	virtual bool init();
+	virtual void update(float) = win 0x1bb780;
+	virtual bool init() = 0x190290;
 	virtual void visit();
 	virtual TodoReturn postUpdate(float);
 	virtual TodoReturn checkForEnd();
@@ -7938,10 +7938,10 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 class GManager : cocos2d::CCNode {
 	// virtual ~GManager();
 
-	TodoReturn getCompressedSaveString();
-	gd::string getSaveString();
-	TodoReturn load();
-	TodoReturn loadDataFromFile(gd::string const&);
+	void getCompressedSaveString() = win 0x473a0;
+	gd::string getSaveString() = win 0x472e0;
+	void load() = 0x472c0;
+	void loadDataFromFile(gd::string const&) = win 0x47690;
 	TodoReturn loadFromCompressedString(gd::string&);
 	TodoReturn loadFromString(gd::string&);
 	inline void save() {
@@ -7953,10 +7953,7 @@ class GManager : cocos2d::CCNode {
 	inline GManager() {}
 
 	virtual bool init();
-	virtual TodoReturn setup();
-	virtual TodoReturn encodeDataTo(DS_Dictionary*);
-	virtual TodoReturn dataLoaded(DS_Dictionary*);
-	virtual TodoReturn firstLoad();
+	virtual void setup() = win 0x472c0;
 
 	gd::string m_fileName;
 	bool m_setup;
