@@ -13,13 +13,21 @@ public enum Platform {
         this.shortName = shortName;
         this.singleBinary = singleBinary;
     }
-    public static Platform parse(String longName) {
+    public static Platform fromShortName(String shortName) {
+        for (var v : Platform.values()) {
+            if (v.getShortName().equals(shortName)) {
+                return v;
+            }
+        }
+        throw new RuntimeException("Invalid platform '" + shortName + "' to parse from short name; this error should be unreachable");
+    }
+    public static Platform fromLongName(String longName) {
         for (var v : Platform.values()) {
             if (v.getLongName().equals(longName)) {
                 return v;
             }
         }
-        throw new Error("Invalid platform to parse; this error should be unreachable");
+        throw new RuntimeException("Invalid platform '" + longName + "' to parse from long name; this error should be unreachable");
     }
     public String getLongName() {
         return this.longName;
