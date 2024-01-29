@@ -2147,7 +2147,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool m_showDownloadBtn;
 	bool m_isNotDownloading;
 	bool m_isRobtopSong;
-	bool m_hasMultipleAssets;
+	bool m_isMusicLibrary;
 	int m_customSongID;
 	float m_unkFloat;
 	bool m_unkBool1;
@@ -2157,7 +2157,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool m_unkBool2;
 	gd::map<int, bool> m_songs;
 	gd::map<int, bool> m_sfx;
-	gd::vector<GJAssetDownloadAction> m_undownloadedAssets;
+	gd::vector<CCObject*> m_undownloadedAssets;
 	int m_unkInt;
 	InfoAlertButton* m_assetInfoBtn;
 }
@@ -8744,7 +8744,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	
 	geode::SeedValueRSV m_coinCount;
 	
-	PAD = android32 0x34, android64 0xe8;
+	PAD = android32 0x30, android64 0xe8;
 
 	EditorUI* m_editorUI;
 	
@@ -14419,7 +14419,7 @@ class UIButtonConfig {
 }
 
 [[link(android)]]
-class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
+class UILayer : cocos2d::CCLayerColor {
 	// virtual ~UILayer();
 
 	static UILayer* create(GJBaseGameLayer*);
@@ -14455,6 +14455,12 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual void keyUp(cocos2d::enumKeyCodes);
+
+	// This member is here because rob managed to inhert CCKeyboardDelegate twice
+	// in this class, which ended up breaking addresser when trying to hook it.
+	// so instead, we removed the second CCKeyboardDelegate from the base class list
+	// and put this member here to take the place of its vtable
+	void* m_stupidDelegate;
 }
 
 [[link(android)]]
