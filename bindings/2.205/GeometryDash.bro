@@ -10912,7 +10912,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool isCorrect(char const*);
 	bool isOnWatchlist(int);
 	TodoReturn loadPage(int);
-	TodoReturn loadPageFromUserInfo(GJUserScore*);
+	void loadPageFromUserInfo(GJUserScore*);
 	void onBlockUser(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onComment(cocos2d::CCObject* sender);
