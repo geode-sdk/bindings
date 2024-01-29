@@ -4480,9 +4480,6 @@ class GameManager : GManager {
 
 	virtual void update(float);
 	virtual bool init();
-	virtual void encodeDataTo(DS_Dictionary*) = win 0x12d480;
-	virtual void dataLoaded(DS_Dictionary*) = win 0x12b830;
-	virtual void firstLoad() = win 0x12cb20;
 
 	cocos2d::CCDictionary* m_unkAnimationDict;
 	cocos2d::CCDictionary* m_unkAnimationDict2;
@@ -5989,7 +5986,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn volumeForProximityEffect(SFXTriggerInstance&);
 
 	virtual void update(float) = win 0x1bb780;
-	virtual bool init() = 0x190290;
+	virtual bool init() = win 0x190290;
 	virtual void visit();
 	virtual TodoReturn postUpdate(float);
 	virtual TodoReturn checkForEnd();
@@ -7954,6 +7951,9 @@ class GManager : cocos2d::CCNode {
 
 	virtual bool init();
 	virtual void setup() = win 0x472c0;
+	virtual void encodeDataTo(DS_Dictionary*) = win 0x12d480;
+	virtual void dataLoaded(DS_Dictionary*) = win 0x12b830;
+	virtual void firstLoad() = win 0x12cb20;
 
 	gd::string m_fileName;
 	bool m_setup;
