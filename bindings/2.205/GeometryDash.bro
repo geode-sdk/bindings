@@ -2147,7 +2147,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool m_showDownloadBtn;
 	bool m_isNotDownloading;
 	bool m_isRobtopSong;
-	bool m_hasMultipleAssets;
+	bool m_isMusicLibrary;
 	int m_customSongID;
 	float m_unkFloat;
 	bool m_unkBool1;
@@ -2157,7 +2157,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool m_unkBool2;
 	gd::map<int, bool> m_songs;
 	gd::map<int, bool> m_sfx;
-	gd::vector<GJAssetDownloadAction> m_undownloadedAssets;
+	gd::vector<CCObject*> m_undownloadedAssets;
 	int m_unkInt;
 	InfoAlertButton* m_assetInfoBtn;
 }
