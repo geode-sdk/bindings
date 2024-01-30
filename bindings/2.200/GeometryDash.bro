@@ -6354,7 +6354,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn setupHasCompleted() = win 0x2d71b0;
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleGhostEffect(int) = win 0x2D20D0;
-	TodoReturn updateProgressbar() = win 0x2df7a0, mac = 0xab590;
+	TodoReturn updateProgressbar() = win 0x2df7a0, mac 0xab590;
 	void loadFromCheckpoint(CheckpointObject*) = win 0x2e28d0;
 	CheckpointObject* loadLastCheckpoint();
 	TodoReturn removeFromGroupOld(GameObject*);
