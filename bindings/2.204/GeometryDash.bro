@@ -744,6 +744,9 @@ class CCCircleWave : cocos2d::CCNode {
 	virtual void removeMeAndCleanup();
 	virtual void draw();
 	virtual void updateTweenAction(float, char const*);
+
+	PAD = win 0x11;
+	cocos2d::_ccColor3B m_color;
 }
 
 [[link(android)]]
@@ -3520,7 +3523,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class FLAlertLayerProtocol {
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x1d240;
 }
 
 [[link(android)]]
@@ -5890,7 +5893,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn sortStickyGroups();
 	TodoReturn spawnGroupTriggered(int, float, bool, gd::vector<int> const&, int, int);
 	TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
-	TodoReturn spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint);
+	TodoReturn spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint) = win 0x1c2b80;
 	TodoReturn spawnParticleTrigger(int, cocos2d::CCPoint, float, float);
 	TodoReturn spawnParticleTrigger(SpawnParticleGameObject*);
 	TodoReturn spawnPlayer2() = win 0x19d970;
@@ -10553,7 +10556,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn getCurrentXVelocity();
 	TodoReturn getModifiedSlopeYVel() = win 0x2c9d30;
 	TodoReturn getOldPosition(float);
-	TodoReturn getSecondColor();
+	cocos2d::ccColor3B getSecondColor() = win 0x2d90e0;
 	TodoReturn getYVelocity();
 	TodoReturn gravityDown();
 	TodoReturn gravityUp();
@@ -10740,7 +10743,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setPosition(cocos2d::CCPoint const&) = win 0x2d5860;
 	virtual void setVisible(bool) = win 0x2da7a0;
 	virtual void setRotation(float) = win 0x2da690;
-	virtual void setOpacity(unsigned char);
+	virtual void setOpacity(unsigned char) = win 0x2d6a90;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x2d6520;
 	virtual void setFlipX(bool) = win 0x2da6b0;
 	virtual void setFlipY(bool);
