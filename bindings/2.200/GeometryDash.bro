@@ -1,7 +1,12 @@
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-	inline FLAlertLayer() {
+	~FLAlertLayer() {
+		if (m_forcePrioRegistered) {
+			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
+		}
+	}
+	FLAlertLayer() {
 		m_buttonMenu = nullptr;
 		m_controlConnected = -1;
 		m_mainLayer = nullptr;
