@@ -6354,7 +6354,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn setupHasCompleted() = win 0x2d71b0;
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleGhostEffect(int) = win 0x2D20D0;
-	TodoReturn updateProgressbar() = win 0x2df7a0;
+	void updateProgressbar() = win 0x2df7a0, mac 0xab590;
 	void loadFromCheckpoint(CheckpointObject*) = win 0x2e28d0;
 	CheckpointObject* loadLastCheckpoint();
 	TodoReturn removeFromGroupOld(GameObject*);
@@ -6417,7 +6417,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2ddca0;
 	virtual TodoReturn checkpointActivated(CheckpointGameObject*) = win 0x2e1a00;
 	virtual TodoReturn flipArt(bool);
-	virtual TodoReturn updateTimeLabel(int, int, bool);
+	virtual void updateTimeLabel(int, int, bool) = mac 0xb39e0;
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
