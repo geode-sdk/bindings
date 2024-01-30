@@ -289,7 +289,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 	static AnimatedShopKeeper* create(ShopType) = win 0x21d880;
 
 	bool init(ShopType) = win 0x21d920;
-	TodoReturn playReactAnimation() = win 0x21DA20;
+	TodoReturn playReactAnimation() = win 0x21da20;
 	TodoReturn startAnimating() = win 0x21db40;
 
 	virtual TodoReturn animationFinished(char const*) = win 0x21db80;
