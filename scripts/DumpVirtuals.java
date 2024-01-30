@@ -39,7 +39,7 @@ public class DumpVirtuals extends GhidraScript {
     Data createPtrAt(Address addr) throws Exception {
         Data data = listing.getDataAt(addr);
         if (!data.isDefined())
-            data = listing.createData(addr, new PointerDataType());
+            data = listing.createData(addr, PointerDataType.dataType);
         return data;
     }
 

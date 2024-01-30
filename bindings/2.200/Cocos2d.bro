@@ -254,6 +254,48 @@ class cocos2d::CCNode {
 }
 
 [[link(win, android)]]
+class cocos2d::CCGLProgram {
+	bool initWithVertexShaderByteArray(char const*, char const*);
+	bool initWithVertexShaderFilename(char const*, char const*);
+
+	unsigned int const getProgram();
+	int getUniformLocationForName(char const*);
+
+	void setUniformLocationWith1f(int, float);
+	void setUniformLocationWith1i(int, int);
+	void setUniformLocationWith2f(int, float, float);
+	void setUniformLocationWith2fv(int, float*, unsigned int);
+	void setUniformLocationWith2i(int, int, int);
+	void setUniformLocationWith2iv(int, int*, unsigned int);
+	void setUniformLocationWith3f(int, float, float, float);
+	void setUniformLocationWith3fv(int, float*, unsigned int);
+	void setUniformLocationWith3i(int, int, int, int);
+	void setUniformLocationWith3iv(int, int*, unsigned int);
+	void setUniformLocationWith4f(int, float, float, float, float);
+	void setUniformLocationWith4fv(int, float*, unsigned int);
+	void setUniformLocationWith4i(int, int, int, int, int);
+	void setUniformLocationWith4iv(int, int*, unsigned int);
+	void setUniformLocationWithMatrix3fv(int, float*, unsigned int);
+	void setUniformLocationWithMatrix4fv(int, float*, unsigned int);
+	void setUniformsForBuiltins() = mac 0x40ad20;
+
+	// CCGLProgram(cocos2d::CCGLProgram const&);
+	// CCGLProgram();
+	void addAttribute(char const*, unsigned int);
+	bool compileShader(unsigned int*, unsigned int, char const*);
+	char const* description();
+	char const* fragmentShaderLog();
+	bool link();
+	// char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
+	char const* programLog();
+	void reset();
+	bool updateUniformLocation(int, void*, unsigned int);
+	void updateUniforms();
+	void use() = mac 0x409d50;
+	char const* vertexShaderLog();
+}
+
+[[link(win, android)]]
 class cocos2d::CCString {
 	// static cocos2d::CCString* create(gd::string const&);
 	static cocos2d::CCString* createWithContentsOfFile(char const*) = mac 0x76cee0;
@@ -316,7 +358,7 @@ class cocos2d::CCScheduler {
 	unsigned int scheduleScriptFunc(unsigned int, float, bool);
 	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool);
 	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool);
-	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool);
+	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool) = mac 0x420a30;
 	void unscheduleAll();
 	void unscheduleAllForTarget(cocos2d::CCObject*);
 	void unscheduleAllWithMinPriority(int);
@@ -490,7 +532,7 @@ class cocos2d::CCMouseDispatcher {
 	// CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
 	// CCMouseDispatcher();
 	void addDelegate(cocos2d::CCMouseDelegate*);
-	bool dispatchScrollMSG(float, float);
+	bool dispatchScrollMSG(float, float) = mac 0x53c670;
 	void forceAddDelegate(cocos2d::CCMouseDelegate*);
 	void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
 	void removeDelegate(cocos2d::CCMouseDelegate*);
@@ -500,13 +542,13 @@ class cocos2d::CCMouseDispatcher {
 class cocos2d::CCTouchHandler {
 	static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
 
-	cocos2d::CCTouchDelegate* getDelegate();
+	cocos2d::CCTouchDelegate* getDelegate() = mac 0x45d860;
 	int getEnabledSelectors();
 	int getPriority() = mac 0x45d8e0;
 
 	void setDelegate(cocos2d::CCTouchDelegate*);
 	void setEnalbedSelectors(int);
-	void setPriority(int);
+	void setPriority(int) = mac 0x45d8f0;
 
 	// CCTouchHandler(cocos2d::CCTouchHandler const&);
 	// CCTouchHandler();
@@ -562,6 +604,26 @@ class cocos2d::CCTouch {
 }
 
 [[link(win, android)]]
+class cocos2d::CCSet {
+	static cocos2d::CCSet* create();
+
+	// CCSet(cocos2d::CCSet const&);
+	// CCSet();
+	void addObject(cocos2d::CCObject*) = mac 0x775080;
+	cocos2d::CCObject* anyObject() = mac 0x775250;
+	cocos2d::CCSetIterator begin();
+	bool containsObject(cocos2d::CCObject*);
+	cocos2d::CCSet* copy();
+	int count();
+	cocos2d::CCSetIterator end();
+	cocos2d::CCSet* mutableCopy() = mac 0x775030;
+	void removeAllObjects();
+	void removeObject(cocos2d::CCObject*);
+
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+}
+
+[[link(win, android)]]
 class cocos2d::CCTouchDelegate {
 	// CCTouchDelegate(cocos2d::CCTouchDelegate const&);
 	// CCTouchDelegate();
@@ -572,7 +634,7 @@ class cocos2d::CCTouchDelegate {
 
 [[link(win, android)]]
 class cocos2d::CCTouchDispatcher {
-	bool init();
+	bool init() = mac 0x4a6bf0;
 
 	int getTargetPrio() const;
 
@@ -597,25 +659,26 @@ class cocos2d::CCTouchDispatcher {
 	void registerForcePrio(cocos2d::CCObject*, int) = mac 0x4a6da0;
 	void removeAllDelegates();
 	void removeDelegate(cocos2d::CCTouchDelegate*);
-	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
+	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = mac 0x4a77a0;
 	void unregisterForcePrio(cocos2d::CCObject*) = mac 0x4a6e40;
 
-	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*);
+	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*) = mac 0x4a7de0;
+	virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*) = mac 0x4a7e20;
+	virtual void touchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*) = mac 0x4a7e60;
+	virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*) = mac 0x4a7ea0;
 }
 
 [[link(win)]]
 class cocos2d::CCEGLView {
 	// CCEGLView();
 	// CCEGLView(cocos2d::CCEGLView const&);
-	virtual void swapBuffers();
+	virtual void swapBuffers() = mac 0x4de300;
 	// rest are in extras
 }
 
 [[link(win, android)]]
 class cocos2d::CCIMEDelegate {
+	CCIMEDelegate() = mac 0x4970a0;
 	~CCIMEDelegate() = mac 0x497410;
 	virtual bool attachWithIME() = mac 0x497440;
 	virtual bool detachWithIME() = mac 0x497630;
@@ -659,10 +722,10 @@ class cocos2d::CCKeyboardDispatcher {
 	// CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
 	// CCKeyboardDispatcher();
 	void addDelegate(cocos2d::CCKeyboardDelegate*);
-	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool);
+	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool) = mac 0x1e2400;
 	void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
 	void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
-	char const* keyToString(cocos2d::enumKeyCodes);
+	char const* keyToString(cocos2d::enumKeyCodes) = mac 0x1e26d0;
 	void removeDelegate(cocos2d::CCKeyboardDelegate*);
 	void updateModifierKeys(bool, bool, bool, bool);
 }
@@ -673,7 +736,6 @@ class cocos2d::CCDirector {
 
 	float getActualDeltaTime() const;
 	double getAnimationInterval();
-	float getContentScaleFactor();
 	cocos2d::CCDirectorDelegate* getDelegate() const;
 	bool getDontCallWillSwitch() const;
 	void getFPSImageData(unsigned char**, unsigned int*);
@@ -703,13 +765,13 @@ class cocos2d::CCDirector {
 	void setActualDeltaTime(float);
 	void setAlphaBlending(bool);
 	void setContentScaleFactor(float);
-	void setDefaultValues();
+	void setDefaultValues() = mac 0x45ef70;
 	void setDelegate(cocos2d::CCDirectorDelegate*);
 	void setDeltaTime(float);
 	void setDepthTest(bool);
 	void setDisplayStats(bool);
 	void setDontCallWillSwitch(bool);
-	void setGLDefaultValues();
+	void setGLDefaultValues() = mac 0x45f250;
 	void setNextDeltaTimeZero(bool);
 	void setNextScene();
 	void setNotificationNode(cocos2d::CCNode*);
@@ -728,8 +790,8 @@ class cocos2d::CCDirector {
 	void checkSceneReference();
 	cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = mac 0x4604c0;
 	cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&);
-	void createStatsLabel();
-	void drawScene();
+	void createStatsLabel() = mac 0x45fe60;
+	void drawScene() = mac 0x45f510;
 	void end();
 	bool isDisplayStats();
 	bool isNextDeltaTimeZero();
@@ -743,13 +805,13 @@ class cocos2d::CCDirector {
 	void popToSceneInStack(cocos2d::CCScene*);
 	void popToSceneStackLevel(int);
 	void purgeCachedData();
-	void purgeDirector();
-	bool pushScene(cocos2d::CCScene*);
+	void purgeDirector() = mac 0x460e10;
+	bool pushScene(cocos2d::CCScene*) = mac 0x4608a0;
 	void removeStatsLabel();
 	bool replaceScene(cocos2d::CCScene*) = mac 0x460950;
 	void resetSmoothFixCounter();
 	void reshapeProjection(cocos2d::CCSize const&);
-	void resume();
+	void resume() = mac 0x460fa0;
 	void runWithScene(cocos2d::CCScene*);
 	int sceneCount();
 	void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
@@ -760,7 +822,7 @@ class cocos2d::CCDirector {
 	void updateScreenScale(cocos2d::CCSize);
 	void willSwitchToScene(cocos2d::CCScene*);
 
-	virtual bool init();
+	virtual bool init() = mac 0x45ecc0;
 	virtual cocos2d::CCScheduler* getScheduler();
 	virtual void setScheduler(cocos2d::CCScheduler*);
 	virtual cocos2d::CCActionManager* getActionManager();
@@ -776,6 +838,37 @@ class cocos2d::CCDirector {
 	virtual cocos2d::CCAccelerometer* getAccelerometer();
 	virtual void setAccelerometer(cocos2d::CCAccelerometer*);
 	virtual float getDeltaTime();
+}
+
+[[link(win, android)]]
+class cocos2d::CCEGLViewProtocol {
+	float getScaleX() const;
+	float getScaleY() const;
+	void getSetOfTouchesEndOrCancel(cocos2d::CCSet&, int, int* const, float* const, float* const); // = mac 0x4e8400;
+	char const* getViewName();
+	cocos2d::CCRect const& getViewPortRect() const = mac 0x4e8680;
+
+	// CCEGLViewProtocol(cocos2d::CCEGLViewProtocol const&);
+	// CCEGLViewProtocol();
+	void handleTouchesBegin(int, int* const, float* const, float* const); // = mac 0x4e7fb0;
+	void handleTouchesCancel(int, int* const, float* const, float* const); // = mac 0x4e8600;
+	void handleTouchesEnd(int, int* const, float* const, float* const); // = mac 0x4e8580;
+	void handleTouchesMove(int, int* const, float* const, float* const); // = mac 0x4e8270;
+	void updateDesignResolutionSize();
+
+	virtual void setFrameSize(float, float) = mac 0x4e7d30;
+	virtual void setDesignResolutionSize(float, float, ResolutionPolicy);
+	virtual void setTouchDelegate(cocos2d::EGLTouchDelegate*) = mac 0x4e7e30;
+	virtual void setViewPortInPoints(float, float, float, float) = mac 0x4de390;
+	virtual void setScissorInPoints(float, float, float, float) = mac 0x4de480;
+	virtual bool isScissorEnabled() = mac 0x4e7ec0;
+	virtual cocos2d::CCRect getScissorRect() = mac 0x4e7ee0;
+	virtual void setViewName(char const*) = mac 0x4e7f80;
+	virtual void pollInputEvents() = mac 0x4e86b0;
+	virtual cocos2d::CCSize const& getDesignResolutionSize() const;
+	virtual cocos2d::CCSize const& getFrameSize() const = mac 0x4e7d20;
+	virtual cocos2d::CCPoint getVisibleOrigin() const = mac 0x4e7dc0;
+	virtual cocos2d::CCSize getVisibleSize() const = mac 0x4e7d70;
 }
 
 
@@ -1024,6 +1117,110 @@ class cocos2d::CCSprite {
 }
 
 [[link(win, android)]]
+class cocos2d::CCShaderCache {
+	static void purgeSharedShaderCache();
+	static cocos2d::CCShaderCache* sharedShaderCache() = mac 0x1e0f90;
+
+	bool init();
+
+	// CCShaderCache(cocos2d::CCShaderCache const&);
+	// CCShaderCache();
+	void addProgram(cocos2d::CCGLProgram*, char const*);
+	void loadDefaultShader(cocos2d::CCGLProgram*, int);
+	void loadDefaultShaders();
+	cocos2d::CCGLProgram* programForKey(char const*) = mac 0x1e1e70;
+	void reloadDefaultShaders();
+}
+
+[[link(win, android)]]
+class cocos2d::CCTexture2D {
+	static void PVRImagesHavePremultipliedAlpha(bool) = mac 0x457000;
+	static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
+	static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat) = mac 0x4571c0;
+
+	bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = mac 0x456180;
+	bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = mac 0x455dc0;
+	bool initWithETCFile(char const*);
+	bool initWithImage(cocos2d::CCImage*);
+	bool initWithPVRFile(char const*);
+	bool initWithString(char const*, char const*, float);
+	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment);
+	bool initWithString(char const*, cocos2d::_ccFontDefinition*);
+
+	cocos2d::CCSize const& getContentSizeInPixels();
+
+	void setAliasTexParameters() = mac 0x4570f0;
+	void setAntiAliasTexParameters();
+	void setTexParameters(cocos2d::_ccTexParams*) = mac 0x457060;
+
+	// CCTexture2D(cocos2d::CCTexture2D const&);
+	~CCTexture2D() = mac 0x455b70;
+	CCTexture2D() = mac 0x455ac0;
+	unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat);
+	unsigned int bitsPerPixelForFormat();
+	char const* description();
+	void drawAtPoint(cocos2d::CCPoint const&);
+	void drawInRect(cocos2d::CCRect const&);
+	void generateMipmap();
+	bool hasMipmaps();
+	bool hasPremultipliedAlpha();
+	void* keepData(void*, unsigned int);
+	void releaseData(void*);
+	void releaseGLTexture();
+	char const* stringForFormat();
+
+	virtual cocos2d::CCTexture2DPixelFormat getPixelFormat() = mac 0x455c10;
+	virtual unsigned int getPixelsWide() = mac 0x455c20;
+	virtual unsigned int getPixelsHigh() = mac 0x455c30;
+	virtual unsigned int getName() = mac 0x455c40;
+	virtual float getMaxS() = mac 0x455cd0;
+	virtual void setMaxS(float) = mac 0x455ce0;
+	virtual float getMaxT() = mac 0x455cf0;
+	virtual void setMaxT(float) = mac 0x455d00;
+	virtual cocos2d::CCSize getContentSize() = mac 0x455c50;
+	virtual cocos2d::CCGLProgram* getShaderProgram() = mac 0x455d10;
+	virtual void setShaderProgram(cocos2d::CCGLProgram*) = mac 0x455d20;
+}
+
+[[link(win, android)]]
+class cocos2d::CCSpriteFrame {
+	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&);
+	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
+	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
+	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
+
+	bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
+	bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
+	bool initWithTextureFilename(char const*, cocos2d::CCRect const&);
+	bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
+
+	gd::string getFrameName() const;
+	cocos2d::CCPoint const& getOffset();
+	cocos2d::CCPoint const& getOffsetInPixels();
+	cocos2d::CCSize const& getOriginalSize();
+	cocos2d::CCSize const& getOriginalSizeInPixels();
+	cocos2d::CCRect const& getRect();
+	cocos2d::CCRect const& getRectInPixels();
+	cocos2d::CCTexture2D* getTexture() = mac 0x337280;
+
+	void setFrameName(gd::string);
+	void setOffset(cocos2d::CCPoint const&);
+	void setOffsetInPixels(cocos2d::CCPoint const&);
+	void setOriginalSize(cocos2d::CCSize const&);
+	void setOriginalSizeInPixels(cocos2d::CCSize const&);
+	void setRect(cocos2d::CCRect const&);
+	void setRectInPixels(cocos2d::CCRect const&);
+	void setRotated(bool);
+	void setTexture(cocos2d::CCTexture2D*);
+
+	// CCSpriteFrame(cocos2d::CCSpriteFrame const&);
+	// CCSpriteFrame();
+	bool isRotated();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+}
+
+[[link(win, android)]]
 class cocos2d::CCLabelBMFont {
 	~CCLabelBMFont() = mac 0x59d2f0;
 	static cocos2d::CCLabelBMFont* create(char const*, char const*) = mac 0x59cc60;
@@ -1045,7 +1242,7 @@ class cocos2d::CCLabelBMFont {
 	cocos2d::CCArray* getTargetArray() const;
 
 	void setExtraKerning(int);
-	void setFntFile(char const*);
+	void setFntFile(char const*) = mac 0x5a0890;
 	void setIsBatched(bool);
 	void setTargetArray(cocos2d::CCArray*);
 	void createFontChars() = mac 0x59d440;
@@ -1098,7 +1295,7 @@ class cocos2d::CCActionManager {
 	void pauseTarget(cocos2d::CCObject*);
 	void removeAction(cocos2d::CCAction*);
 	void removeActionAtIndex(unsigned int, cocos2d::_hashElement*);
-	void removeActionByTag(unsigned int, cocos2d::CCObject*);
+	void removeActionByTag(unsigned int, cocos2d::CCObject*) = mac 0x213640;
 	void removeAllActions();
 	void removeAllActionsFromTarget(cocos2d::CCObject*);
 	void resumeTarget(cocos2d::CCObject*);
@@ -1123,7 +1320,7 @@ class cocos2d::CCArray {
 	static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*);
 	static cocos2d::CCArray* createWithObject(cocos2d::CCObject*);
 
-	bool init();
+	bool init() = mac 0x6e2fc0;
 	bool initWithArray(cocos2d::CCArray*);
 	bool initWithCapacity(unsigned int) = mac 0x6e30b0;
 	bool initWithObject(cocos2d::CCObject*);
@@ -1347,7 +1544,7 @@ class cocos2d::CCMenu {
 
 	bool initWithArray(cocos2d::CCArray*) = mac 0x754850;
 
-	void setHandlerPriority(int);
+	void setHandlerPriority(int) = mac 0x754b20;
 
 	// CCMenu(cocos2d::CCMenu const&);
 	// CCMenu();
@@ -1422,13 +1619,13 @@ class cocos2d {
 	static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
 	static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
 	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F) = mac 0x1e7250;
-	static void ccGLBindTexture2D(unsigned int);
+	static void ccGLBindTexture2D(unsigned int) = mac 0x33a420;
 	static void ccGLBindTexture2DN(unsigned int, unsigned int);
 	static void ccGLBindVAO(unsigned int);
 	static void ccGLBlendFunc(unsigned int, unsigned int) = mac 0x33a370;
 	static void ccGLBlendResetToCache();
 	static void ccGLDeleteProgram(unsigned int);
-	static void ccGLDeleteTexture(unsigned int);
+	static void ccGLDeleteTexture(unsigned int) = mac 0x33a4a0;
 	static void ccGLDeleteTextureN(unsigned int, unsigned int);
 	static void ccGLEnable(cocos2d::ccGLServerState) = mac 0x33a540;
 	static void ccGLEnableVertexAttribs(unsigned int) = mac 0x33a550;
