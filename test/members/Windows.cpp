@@ -104,6 +104,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9b8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa2c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2a7c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_practiceMusicSync, 0x2a7d);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x2aa0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isTestMode, 0x2aac);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b50);
 
