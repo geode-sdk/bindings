@@ -10915,7 +10915,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2e3940;
 	virtual TodoReturn checkpointActivated(CheckpointGameObject*) = win 0x2e76c0;
 	virtual TodoReturn flipArt(bool);
-	virtual TodoReturn updateTimeLabel(int, int, bool);
+	virtual TodoReturn updateTimeLabel(int, int, bool) = win 0x2e5670;
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
