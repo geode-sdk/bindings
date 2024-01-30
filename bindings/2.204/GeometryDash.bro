@@ -2113,7 +2113,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onSelect(cocos2d::CCObject* sender) = win 0x94740;
 	TodoReturn processNextMultiAsset();
 	TodoReturn showError(bool) = win 0x96a70;
-	TodoReturn startDownload() = win 0x94660;
+	void startDownload() = win 0x94660;
 	TodoReturn startMonitorDownload() = win 0x94690;
 	TodoReturn startMultiAssetDownload();
 	TodoReturn toggleUpdateButton(bool) = win 0x944c0;
@@ -10915,7 +10915,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2e3940;
 	virtual TodoReturn checkpointActivated(CheckpointGameObject*) = win 0x2e76c0;
 	virtual TodoReturn flipArt(bool);
-	virtual TodoReturn updateTimeLabel(int, int, bool) = win 0x2e5670;
+	virtual void updateTimeLabel(int, int, bool) = win 0x2e5670;
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
