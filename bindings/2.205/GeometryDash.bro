@@ -2147,7 +2147,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool m_showDownloadBtn;
 	bool m_isNotDownloading;
 	bool m_isRobtopSong;
-	bool m_hasMultipleAssets;
+	bool m_isMusicLibrary;
 	int m_customSongID;
 	float m_unkFloat;
 	bool m_unkBool1;
@@ -2157,7 +2157,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool m_unkBool2;
 	gd::map<int, bool> m_songs;
 	gd::map<int, bool> m_sfx;
-	gd::vector<GJAssetDownloadAction> m_undownloadedAssets;
+	gd::vector<CCObject*> m_undownloadedAssets;
 	int m_unkInt;
 	InfoAlertButton* m_assetInfoBtn;
 }
@@ -3379,7 +3379,7 @@ class ExtendedLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class FileOperation {
-	TodoReturn getFilePath();
+	gd::string getFilePath();
 	TodoReturn readFile();
 	TodoReturn saveFile();
 }
@@ -3427,7 +3427,11 @@ class FindObjectPopup : SetIDPopup {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-	// virtual ~FLAlertLayer();
+	~FLAlertLayer() {
+		if (m_forcePrioRegistered) {
+			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
+		}
+	}
 	FLAlertLayer() {
 		m_buttonMenu = nullptr;
 		m_controlConnected = -1;
@@ -6095,7 +6099,19 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = android32 0x114, android64 0x1ec;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = win 0xd2, android32 0xb0, android64 0xf4;
+	float m_unk2a80;
+	cocos2d::CCNode* m_unk2a84;
+	int m_unk2a88;
+	float m_unk2a8c;
+	int m_unk2a90;
+	int m_unk2a94;
+	int m_unk2a98;
+	cocos2d::CCDictionary* m_unk2a9c;
+	float m_levelLength;
+	int m_unk2aa4;
+	EndPortalObject* m_endPortal;
+	bool m_isTestMode;
+	PAD = win 0xa0, android32 0x82, android64 0xb0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = android32 0x20a, android64 0x370;
 }
@@ -8744,7 +8760,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	
 	geode::SeedValueRSV m_coinCount;
 	
-	PAD = android32 0x34, android64 0xe8;
+	PAD = android32 0x30, android64 0xe8;
 
 	EditorUI* m_editorUI;
 	
@@ -10764,8 +10780,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn delayedFullReset();
 	TodoReturn delayedResetLevel();
 	TodoReturn fullReset();
-	TodoReturn getCurrentPercent();
-	TodoReturn getCurrentPercentInt();
+	float getCurrentPercent();
+	int getCurrentPercentInt();
 	TodoReturn getEndPosition();
 	TodoReturn getLastCheckpoint();
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
@@ -10912,7 +10928,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool isCorrect(char const*);
 	bool isOnWatchlist(int);
 	TodoReturn loadPage(int);
-	TodoReturn loadPageFromUserInfo(GJUserScore*);
+	void loadPageFromUserInfo(GJUserScore*);
 	void onBlockUser(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onComment(cocos2d::CCObject* sender);
@@ -14419,7 +14435,7 @@ class UIButtonConfig {
 }
 
 [[link(android)]]
-class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
+class UILayer : cocos2d::CCLayerColor {
 	// virtual ~UILayer();
 
 	static UILayer* create(GJBaseGameLayer*);
@@ -14455,6 +14471,12 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual void keyUp(cocos2d::enumKeyCodes);
+
+	// This member is here because rob managed to inhert CCKeyboardDelegate twice
+	// in this class, which ended up breaking addresser when trying to hook it.
+	// so instead, we removed the second CCKeyboardDelegate from the base class list
+	// and put this member here to take the place of its vtable
+	void* m_stupidDelegate;
 }
 
 [[link(android)]]

@@ -1,7 +1,12 @@
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-	inline FLAlertLayer() {
+	~FLAlertLayer() {
+		if (m_forcePrioRegistered) {
+			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
+		}
+	}
+	FLAlertLayer() {
 		m_buttonMenu = nullptr;
 		m_controlConnected = -1;
 		m_mainLayer = nullptr;
@@ -27,7 +32,6 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 
 	bool init(int) = win 0x30eb0, mac 0x477b50;
 	bool init(FLAlertLayerProtocol*, char const* title, gd::string description, char const* btn1, char const* btn2, float width, bool scrollable, float height, float textScale) = win 0x30f50, mac 0x477140;
-	~FLAlertLayer() = win 0x30b80;
 
 	void onBtn1(cocos2d::CCObject* sender) = win 0x31a40, mac 0x477c50;
 	void onBtn2(cocos2d::CCObject* sender) = win 0x31a80, mac 0x477cb0;
@@ -6350,7 +6354,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn setupHasCompleted() = win 0x2d71b0;
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleGhostEffect(int) = win 0x2D20D0;
-	TodoReturn updateProgressbar() = win 0x2df7a0;
+	void updateProgressbar() = win 0x2df7a0, mac 0xab590;
 	void loadFromCheckpoint(CheckpointObject*) = win 0x2e28d0;
 	CheckpointObject* loadLastCheckpoint();
 	TodoReturn removeFromGroupOld(GameObject*);
@@ -6413,7 +6417,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2ddca0;
 	virtual TodoReturn checkpointActivated(CheckpointGameObject*) = win 0x2e1a00;
 	virtual TodoReturn flipArt(bool);
-	virtual TodoReturn updateTimeLabel(int, int, bool);
+	virtual void updateTimeLabel(int, int, bool) = mac 0xb39e0;
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();

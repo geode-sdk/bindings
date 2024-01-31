@@ -69,9 +69,11 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x890);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelSettings, 0x894);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xA40); //loop in init
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2a94);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x2ab8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2B48);
 
 //GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x2da8);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e04);
 //GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x2dec);
 
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);

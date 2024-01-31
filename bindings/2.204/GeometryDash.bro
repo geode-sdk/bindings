@@ -2113,7 +2113,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onSelect(cocos2d::CCObject* sender) = win 0x94740;
 	TodoReturn processNextMultiAsset();
 	TodoReturn showError(bool) = win 0x96a70;
-	TodoReturn startDownload();
+	void startDownload() = win 0x94660;
 	TodoReturn startMonitorDownload() = win 0x94690;
 	TodoReturn startMultiAssetDownload();
 	TodoReturn toggleUpdateButton(bool) = win 0x944c0;
@@ -3457,7 +3457,11 @@ class FindObjectPopup : SetIDPopup {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-	// virtual ~FLAlertLayer();
+	~FLAlertLayer() {
+		if (m_forcePrioRegistered) {
+			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
+		}
+	}
 	FLAlertLayer() {
 		m_buttonMenu = nullptr;
 		m_controlConnected = -1;
@@ -6096,7 +6100,19 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0x110, android32 0x114, android64 0x1ec;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = win 0xd2, android32 0xba, android64 0xf0;
+	float m_unk2a80;
+	cocos2d::CCNode* m_unk2a84;
+	int m_unk2a88;
+	float m_unk2a8c;
+	int m_unk2a90;
+	int m_unk2a94;
+	int m_unk2a98;
+	cocos2d::CCDictionary* m_unk2a9c;
+	float m_levelLength;
+	int m_unk2aa4;
+	EndPortalObject* m_endPortal;
+	bool m_isTestMode;
+	PAD = win 0xa0; // wrong, android32 0xba, android64 0xf0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = win 0x222, android32 0x1ea, android64 0x340;
 }
@@ -8240,14 +8256,14 @@ class ItemTriggerGameObject : EffectGameObject {
 class KeybindingsLayer : FLAlertLayer {
 	// virtual ~KeybindingsLayer();
 
-	static KeybindingsLayer* create();
+	static KeybindingsLayer* create() = win 0x22c1c0;
 
-	TodoReturn addKeyPair(char const*, char const*);
-	TodoReturn countForPage(int);
-	TodoReturn goToPage(int);
-	TodoReturn incrementCountForPage(int);
+	TodoReturn addKeyPair(char const*, char const*) = win 0x22c9d0;
+	TodoReturn countForPage(int) = win 0x22ccd0;
+	TodoReturn goToPage(int) = win 0x22d010;
+	TodoReturn incrementCountForPage(int) = win 0x22cda0;
 	TodoReturn infoKey(int);
-	TodoReturn layerForPage(int);
+	TodoReturn layerForPage(int) = win 0x22ce80;
 	TodoReturn layerKey(int);
 	TodoReturn nextPosition(int);
 	TodoReturn objectKey(int);
@@ -9695,16 +9711,16 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 
 	static MoreOptionsLayer* create();
 
-	TodoReturn addToggle(char const*, char const*, char const*);
-	TodoReturn countForPage(int);
-	TodoReturn goToPage(int);
-	TodoReturn incrementCountForPage(int);
+	TodoReturn addToggle(char const*, char const*, char const*) = win 0x2b25f0;
+	TodoReturn countForPage(int) = win 0x2b2b90;
+	TodoReturn goToPage(int) = win 0x2b2fd0;
+	TodoReturn incrementCountForPage(int) = win 0x2b2c60;
 	TodoReturn infoKey(int);
-	TodoReturn layerForPage(int);
+	TodoReturn layerForPage(int) = win 0x2b2e70;
 	TodoReturn layerKey(int);
-	TodoReturn nextPosition(int);
+	TodoReturn nextPosition(int) = win 0x2b2a50;
 	TodoReturn objectKey(int);
-	TodoReturn objectsForPage(int);
+	TodoReturn objectsForPage(int) = win 0x2b2d40;
 	TodoReturn offsetToNextPage();
 	void onClose(cocos2d::CCObject* sender);
 	void onFMODDebug(cocos2d::CCObject* sender);
@@ -9720,7 +9736,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	TodoReturn pageKey(int);
 	TodoReturn toggleGP();
 
-	virtual bool init();
+	virtual bool init() = win 0x2b1630;
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
 	virtual TodoReturn textInputReturn(CCTextInputNode*);
@@ -10799,8 +10815,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn delayedFullReset() = win 0x2e9f20;
 	TodoReturn delayedResetLevel() = win 0x2ea080;
 	TodoReturn fullReset() = win 0x2e9f80;
-	TodoReturn getCurrentPercent();
-	TodoReturn getCurrentPercentInt() = win 0x2e6680;
+	float getCurrentPercent();
+	int getCurrentPercentInt() = win 0x2e6680;
 	TodoReturn getEndPosition();
 	TodoReturn getLastCheckpoint() = win 0x2e8d40;
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
@@ -10899,7 +10915,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2e3940;
 	virtual TodoReturn checkpointActivated(CheckpointGameObject*) = win 0x2e76c0;
 	virtual TodoReturn flipArt(bool);
-	virtual TodoReturn updateTimeLabel(int, int, bool);
+	virtual void updateTimeLabel(int, int, bool) = win 0x2e5670;
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
@@ -10947,7 +10963,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool isCorrect(char const* key) = win 0x2f1ef0;
 	bool isOnWatchlist(int);
 	TodoReturn loadPage(int) = win 0x2f1fc0;
-	TodoReturn loadPageFromUserInfo(GJUserScore*) = win 0x2edda0;
+	void loadPageFromUserInfo(GJUserScore*) = win 0x2edda0;
 	void onBlockUser(cocos2d::CCObject* sender) = win 0x2f0c90;
 	void onClose(cocos2d::CCObject* sender) = win 0x2f15e0;
 	void onComment(cocos2d::CCObject* sender) = win 0x2f09a0;
