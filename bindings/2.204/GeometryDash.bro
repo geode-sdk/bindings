@@ -286,13 +286,13 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
 class AnimatedShopKeeper : CCAnimatedSprite {
 	// virtual ~AnimatedShopKeeper();
 
-	static AnimatedShopKeeper* create(ShopType);
+	static AnimatedShopKeeper* create(ShopType) = win 0x21d880;
 
-	bool init(ShopType);
-	TodoReturn playReactAnimation();
-	TodoReturn startAnimating();
+	bool init(ShopType) = win 0x21d920;
+	TodoReturn playReactAnimation() = win 0x21da20;
+	TodoReturn startAnimating() = win 0x21db40;
 
-	virtual TodoReturn animationFinished(char const*);
+	virtual TodoReturn animationFinished(char const*) = win 0x21db80;
 }
 
 [[link(android)]]
@@ -653,16 +653,16 @@ class CCAlertCircle : cocos2d::CCNode {
 class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
 
-	TodoReturn cleanupSprite();
-	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool);
+	TodoReturn cleanupSprite() = win 0x21440;
+	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
 	TodoReturn initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
-	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool);
+	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
 	TodoReturn runAnimation(gd::string) = win 0x21640;
-	TodoReturn runAnimationForced(gd::string);
+	TodoReturn runAnimationForced(gd::string) = win 0x216c0;
 	TodoReturn stopTween();
-	TodoReturn switchToMode(spriteMode);
-	TodoReturn tweenToAnimation(gd::string, float);
-	TodoReturn tweenToAnimationFinished();
+	TodoReturn switchToMode(spriteMode) = win 0x214f0;
+	TodoReturn tweenToAnimation(gd::string, float) = win 0x21750;
+	TodoReturn tweenToAnimationFinished() = win 0x219c0;
 	TodoReturn willPlayAnimation();
 
 	virtual void setOpacity(unsigned char);
@@ -13963,7 +13963,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn createAnimations(gd::string);
 	TodoReturn createWithOwner(CCAnimatedSprite*, gd::string);
 	TodoReturn doCleanup();
-	TodoReturn executeAnimation(gd::string);
+	TodoReturn executeAnimation(gd::string) = win 0x4f480;
 	TodoReturn finishAnimation(gd::string);
 	TodoReturn getAnimType(gd::string);
 	TodoReturn getPrio(gd::string);
@@ -13977,7 +13977,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn resetAnimState();
 	TodoReturn runAnimation(gd::string);
 	TodoReturn runQueuedAnimation();
-	TodoReturn stopAnimations();
+	TodoReturn stopAnimations() = win 0x4fa60;
 	TodoReturn storeAnimation(cocos2d::CCAnimate*, cocos2d::CCAnimate*, gd::string, int, spriteMode, cocos2d::CCSpriteFrame*);
 	TodoReturn storeSoundForAnimation(cocos2d::CCString*, gd::string, float);
 	TodoReturn switchToFirstFrameOfAnimation(gd::string);
