@@ -1798,7 +1798,7 @@ class GameManager : GManager {
 	TodoReturn saveAdTimer();
 	TodoReturn startUpdate();
 	TodoReturn unloadIcons(int) = win 0x125a60;
-	TodoReturn unlockColor(int, UnlockType) = mac 0x3560d0;
+	void unlockColor(int, UnlockType) = mac 0x3560d0;
 	TodoReturn updateMusic();
 	TodoReturn countForType(IconType);
 	TodoReturn followTwitch();
@@ -1833,7 +1833,7 @@ class GameManager : GManager {
 	TodoReturn shortenAdTimer(float);
 	TodoReturn showMainMenuAd();
 	TodoReturn addIconDelegate(cocos2d::CCObject*, int);
-	TodoReturn fadeInMenuMusic() = win 0x11FBD0, mac 0x355150;
+	void fadeInMenuMusic() = win 0x11FBD0, mac 0x355150;
 	bool getGameVariable(char const*) = win 0x126920, mac 0x355010;
 	/* unverified signature */
 	bool isColorUnlocked(int, UnlockType) = win 0x120670, mac 0x356020;
@@ -2224,7 +2224,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn saveNewScore(int, int);
 	TodoReturn copyLevelInfo(GJGameLevel*);
 	TodoReturn unverifyCoins();
-	TodoReturn savePercentage(int, bool, int, int, bool) = win 0x112850, mac 0x528990;
+	void savePercentage(int, bool, int, int, bool) = win 0x112850, mac 0x528990;
 	TodoReturn getListSnapshot();
 	TodoReturn levelWasAltered();
 	bool areCoinsVerified() = win 0x115850;
@@ -4789,7 +4789,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn recountUserCoins(bool);
 	TodoReturn setupIconCredits();
 	TodoReturn storeRewardState(GJRewardType, int, int, gd::string);
-	TodoReturn toggleEnableItem(UnlockType, int, bool) = win 0x174030, mac 0x5fb50;
+	void toggleEnableItem(UnlockType, int, bool) = win 0x174030, mac 0x5fb50;
 	TodoReturn updateActivePath(StatKey);
 	TodoReturn countSecretChests(GJRewardType);
 	bool hasCompletedLevel(GJGameLevel* level) {
@@ -6311,7 +6311,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn getRelativeModNew(cocos2d::CCPoint, float, float, bool, bool);
 	TodoReturn getCurrentPercentInt() = win 0x2e09e0;
 
-	TodoReturn onQuit() = win 0x2e5650, mac 0xad390;
+	void onQuit() = win 0x2e5650, mac 0xad390;
 
 	TodoReturn playReplay(gd::string);
 	void resetLevel() = win 0x2E42B0, mac 0xac8d0;
@@ -6319,7 +6319,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn colorObject(int, cocos2d::_ccColor3B);
 	TodoReturn commitJumps();
 	TodoReturn shouldBlend(int);
-	TodoReturn showNewBest(bool, int, int, bool, bool, bool) = win 0x2D9100, mac 0xaf2e0;
+	void showNewBest(bool, int, int, bool, bool, bool) = win 0x2D9100, mac 0xaf2e0;
 	TodoReturn spawnCircle();
 	TodoReturn canPauseGame();
 	TodoReturn prepareMusic(bool) = win 0x2E5480;
@@ -6368,7 +6368,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn gravityEffectFinished();
 	TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
 	TodoReturn optimizeOpacityGroups() = win 0x2DCB10;
-	TodoReturn playEndAnimationToPos(cocos2d::CCPoint) = win 0x2da140, mac 0xaffb0;
+	void playEndAnimationToPos(cocos2d::CCPoint) = win 0x2da140, mac 0xaffb0;
 	TodoReturn saveActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&) = win 0x2e3d60;
 	TodoReturn scanActiveSaveObjects();
 	TodoReturn startRecordingDelayed();
@@ -6394,7 +6394,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	virtual void onEnterTransitionDidFinish() = win 0x2e58e0;
 	virtual void onExit() = win 0x2e5910;
-	virtual TodoReturn postUpdate(float) = win 0x2E1560, mac 0xb4df0;
+	virtual void postUpdate(float) = win 0x2E1560, mac 0xb4df0;
 	virtual TodoReturn checkForEnd() = win 0x2e1810;
 	virtual TodoReturn testTime();
 	virtual TodoReturn updateVerifyDamage() = win 0x2e18f0;
@@ -6476,7 +6476,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	// /* unverified signature */
 	bool isSafeMode(float);
 	TodoReturn lockPlayer() = win 0x2d2290;
-	TodoReturn pushButton(PlayerButton) = win 0x2cc4d0, mac 0x3f4bf0;
+	void pushButton(PlayerButton) = win 0x2cc4d0, mac 0x3f4bf0;
 	TodoReturn pushPlayer(float);
 	TodoReturn reverseMod();
 	TodoReturn updateJump(float) = win 0x2c1290;
@@ -6507,7 +6507,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn modeDidChange();
 	void postCollision(float) = win 0x2C2D50;
 	TodoReturn propellPlayer(float, bool, int) = win 0x2d2700;
-	TodoReturn releaseButton(PlayerButton) = win 0x2cc710, mac 0x3f5e10;
+	void releaseButton(PlayerButton) = win 0x2cc710, mac 0x3f5e10;
 	TodoReturn reversePlayer(EffectGameObject*) = win 0x2CC810;
 	TodoReturn stopParticles();
 	TodoReturn switchedDirTo(PlayerButton) = win 0x2cc3e0;
