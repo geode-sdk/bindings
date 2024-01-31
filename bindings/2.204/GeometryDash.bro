@@ -289,10 +289,10 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 	static AnimatedShopKeeper* create(ShopType) = win 0x21d880;
 
 	bool init(ShopType) = win 0x21d920;
-	TodoReturn playReactAnimation() = win 0x21da20;
-	TodoReturn startAnimating() = win 0x21db40;
+	void playReactAnimation() = win 0x21da20;
+	void startAnimating() = win 0x21db40;
 
-	virtual TodoReturn animationFinished(char const*) = win 0x21db80;
+	void TodoReturn animationFinished(char const*) = win 0x21db80;
 }
 
 [[link(android)]]
@@ -313,7 +313,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn loadingIsFinished();
 	TodoReturn musicTest() = win 0x5b710;
 	TodoReturn pauseGame() = win 0x5b5e0;
-	TodoReturn pauseSound();
+	TodoReturn pauseSound() = win 0x5b640;
 	TodoReturn platformShutdown();
 	TodoReturn resumeSound() = win 0x5b6c0;
 	void setIdleTimerDisabled(bool);
@@ -654,14 +654,14 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
 
 	TodoReturn cleanupSprite() = win 0x21440;
-	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
-	TodoReturn initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
-	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
-	TodoReturn runAnimation(gd::string) = win 0x21640;
-	TodoReturn runAnimationForced(gd::string) = win 0x216c0;
+	static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
+	bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
+	void loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
+	void runAnimation(gd::string) = win 0x21640;
+	void runAnimationForced(gd::string) = win 0x216c0;
 	TodoReturn stopTween();
-	TodoReturn switchToMode(spriteMode) = win 0x214f0;
-	TodoReturn tweenToAnimation(gd::string, float) = win 0x21750;
+	void switchToMode(spriteMode) = win 0x214f0;
+	void tweenToAnimation(gd::string, float) = win 0x21750;
 	TodoReturn tweenToAnimationFinished() = win 0x219c0;
 	TodoReturn willPlayAnimation();
 
@@ -4327,7 +4327,7 @@ class GameManager : GManager {
     }
 
 	TodoReturn accountStatusChanged();
-	TodoReturn activeIconForType(IconType);
+	TodoReturn activeIconForType(IconType) = win 0x1270f0;
 	TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string);
 	TodoReturn addDuplicateLastFrame(int);
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int) = win 0x14d8c0;
@@ -4346,7 +4346,7 @@ class GameManager : GManager {
 	TodoReturn colorForPos(int);
 	TodoReturn colorKey(int, UnlockType) = win 0x122350;
 	TodoReturn completedAchievement(gd::string) = win 0x122b50;
-	TodoReturn countForType(IconType);
+	TodoReturn countForType(IconType) = win 0x127270;
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn defaultYOffsetForBG2(int);
 	TodoReturn didExitPlayscene();
@@ -6736,7 +6736,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	TodoReturn selectTab(IconType) = win 0x1f1cd0;
 	TodoReturn setupIconSelect() = win 0x1f1170;
 	TodoReturn setupPage(int, IconType) = win 0x1f1d70;
-	TodoReturn setupSpecialPage();
+	TodoReturn setupSpecialPage() = win 0x1f2590;
 	TodoReturn showUnlockPopupNew(int, UnlockType);
 	TodoReturn titleForUnlock(int, UnlockType);
 	TodoReturn toggleGlow();
