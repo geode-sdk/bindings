@@ -10636,7 +10636,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*) = win 0x2d9c20;
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x2d65a0;
 	TodoReturn setupStreak();
-	void setYVelocity(double, int);
+	void setYVelocity(double, int) = win 0x2c40c0;
 	TodoReturn spawnCircle();
 	TodoReturn spawnCircle2();
 	TodoReturn spawnDualCircle();
