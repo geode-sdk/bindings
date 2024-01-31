@@ -51,7 +51,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 if (WIN32)
 	# without this, some stl structures can have a wrong size when cross compiling from linux
 	add_compile_definitions(_HAS_ITERATOR_DEBUGGING=0)
-else()
+endif()
+
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
 	target_compile_options(${PROJECT_NAME} PRIVATE -Wno-invalid-offsetof -Wno-inaccessible-base)
 endif()
 

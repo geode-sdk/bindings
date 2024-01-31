@@ -1,3 +1,4 @@
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,12 +25,15 @@ import ghidra.program.model.data.IntegerDataType;
 import ghidra.program.model.data.LongDataType;
 import ghidra.program.model.data.ParameterDefinition;
 import ghidra.program.model.data.ParameterDefinitionImpl;
+import ghidra.program.model.data.Pointer;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.ShortDataType;
 import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.UnionDataType;
 import ghidra.program.model.data.VoidDataType;
+import ghidra.program.model.lang.CompilerSpecID;
+import ghidra.program.model.lang.LanguageID;
 import ghidra.program.model.listing.ParameterImpl;
 import ghidra.program.model.listing.ReturnParameterImpl;
 import ghidra.program.model.listing.Variable;
@@ -439,6 +443,71 @@ public class ScriptWrapper {
         }
         else {
             ScriptWrapper.rtassert(false, "{0} is an unhandled STL type!", templated);
+            return null;
+        }
+    }
+
+    public int sizeOfTypeOn(Platform platform, DataType type) throws Exception {
+        String langID;
+        String compID;
+        switch (platform) {
+            case WINDOWS:   langID = "x86:LE:32:default"; compID = "windows"; break;
+            case MAC:       langID = "x86:LE:64:default"; compID = "gcc"; break;
+            case ANDROID32: langID = "ARM:LE:32:v8";      compID = "default"; break;
+            case ANDROID64: langID = "AARCH64:LE:64:v8A"; compID = "default"; break;
+            default: throw new Exception("Unhandled Platform case in ScriptWrapper.sizeOfTypeOn");
+        }
+        var org = wrapped.getLanguage(new LanguageID(langID))
+            .getCompilerSpecByID(new CompilerSpecID(compID))
+            .getDataOrganization();
+        
+        if (type instanceof Pointer) {
+            return org.getPointerSize();
+        }
+        if (type instanceof CharDataType) {
+            return org.getCharSize();
+        }
+        if (type instanceof IntegerDataType) {
+            return org.getIntegerSize();
+        }
+        if (type instanceof LongDataType) {
+            return org.getLongSize();
+        }
+        if (type instanceof FloatDataType) {
+            return org.getFloatSize();
+        }
+        if (type instanceof DoubleDataType) {
+            return org.getDoubleSize();
+        }
+        return type.getLength();
+    }
+    
+    static String formatType(DataType type) {
+        try {
+            return ScriptWrapper.formatType(((Pointer) type).getDataType()) + "*";
+        }
+        catch(ClassCastException ignore) {}
+        
+        try {
+            return String.join("::", ((Composite) type).getCategoryPath().asList()).replace("ClassDataTypes::", "");
+        }
+        catch(ClassCastException ignore) {}
+
+        return type.getDisplayName();
+    }
+
+    /**
+     * Tries to cast a type to another, or returns null if the cast is not possible
+     * @param <To> The type to cast to
+     * @param from Value to cast
+     * @return Value as casted to the other type, or null
+     */
+    @SuppressWarnings("unchecked")
+    static <To> To castFrom(Object from) {
+        try {
+            return (To) from;
+        }
+        catch(ClassCastException ignore) {
             return null;
         }
     }
