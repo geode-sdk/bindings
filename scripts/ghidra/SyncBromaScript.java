@@ -88,12 +88,15 @@ public class SyncBromaScript extends GhidraScript {
             var bromaFiles = List.of("Cocos2d.bro", "GeometryDash.bro");
             final var platforms = Arrays.asList(Platform.values()).stream().map(p -> p.getLongName()).toList();
 
-            this.choice("Target platform", platforms, p -> this.platform = Platform.fromLongName(p));
+            var platform = wrapper.autoDetectPlatform().orElse(null).getLongName();
+            var isWindows = platform != null && platform.equals(Platform.WINDOWS.getLongName());
+
+            this.choice("Target platform", platforms, platform, p -> this.platform = Platform.fromLongName(p));
             this.choice("Broma file (Windows-only)", bromaFiles, f -> this.selectedBromaFile = f);
             this.choice("Game version", versions, v -> this.gameVersion = v);
             this.bool("Import from Broma", b -> this.importFromBroma = b);
             this.bool("Export to Broma", b -> this.exportToBroma = b);
-            this.bool("Set optcall & membercall", b -> this.setOptcall = b);
+            this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
 
             this.waitForAnswers();
