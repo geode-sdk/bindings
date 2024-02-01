@@ -286,13 +286,13 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
 class AnimatedShopKeeper : CCAnimatedSprite {
 	// virtual ~AnimatedShopKeeper();
 
-	static AnimatedShopKeeper* create(ShopType);
+	static AnimatedShopKeeper* create(ShopType) = win 0x21d880;
 
-	bool init(ShopType);
-	TodoReturn playReactAnimation();
-	TodoReturn startAnimating();
+	bool init(ShopType) = win 0x21d920;
+	TodoReturn playReactAnimation() = win 0x21da20;
+	TodoReturn startAnimating() = win 0x21db40;
 
-	virtual TodoReturn animationFinished(char const*);
+	virtual TodoReturn animationFinished(char const*) = win 0x21db80;
 }
 
 [[link(android)]]
@@ -653,16 +653,16 @@ class CCAlertCircle : cocos2d::CCNode {
 class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
 
-	TodoReturn cleanupSprite();
-	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool);
+	TodoReturn cleanupSprite() = win 0x21440;
+	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
 	TodoReturn initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
-	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool);
+	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
 	TodoReturn runAnimation(gd::string) = win 0x21640;
-	TodoReturn runAnimationForced(gd::string);
+	TodoReturn runAnimationForced(gd::string) = win 0x216c0;
 	TodoReturn stopTween();
-	TodoReturn switchToMode(spriteMode);
-	TodoReturn tweenToAnimation(gd::string, float);
-	TodoReturn tweenToAnimationFinished();
+	TodoReturn switchToMode(spriteMode) = win 0x214f0;
+	TodoReturn tweenToAnimation(gd::string, float) = win 0x21750;
+	TodoReturn tweenToAnimationFinished() = win 0x219c0;
 	TodoReturn willPlayAnimation();
 
 	virtual void setOpacity(unsigned char);
@@ -2113,7 +2113,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onSelect(cocos2d::CCObject* sender) = win 0x94740;
 	TodoReturn processNextMultiAsset();
 	TodoReturn showError(bool) = win 0x96a70;
-	TodoReturn startDownload();
+	void startDownload() = win 0x94660;
 	TodoReturn startMonitorDownload() = win 0x94690;
 	TodoReturn startMultiAssetDownload();
 	TodoReturn toggleUpdateButton(bool) = win 0x944c0;
@@ -3457,7 +3457,11 @@ class FindObjectPopup : SetIDPopup {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-	// virtual ~FLAlertLayer();
+	~FLAlertLayer() {
+		if (m_forcePrioRegistered) {
+			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
+		}
+	}
 	FLAlertLayer() {
 		m_buttonMenu = nullptr;
 		m_controlConnected = -1;
@@ -6096,7 +6100,19 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0x110, android32 0x114, android64 0x1ec;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = win 0xd2, android32 0xba, android64 0xf0;
+	float m_unk2a80;
+	cocos2d::CCNode* m_unk2a84;
+	int m_unk2a88;
+	float m_unk2a8c;
+	int m_unk2a90;
+	int m_unk2a94;
+	int m_unk2a98;
+	cocos2d::CCDictionary* m_unk2a9c;
+	float m_levelLength;
+	int m_unk2aa4;
+	EndPortalObject* m_endPortal;
+	bool m_isTestMode;
+	PAD = win 0xa0; // wrong, android32 0xba, android64 0xf0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = win 0x222, android32 0x1ea, android64 0x340;
 }
@@ -6795,12 +6811,12 @@ class GJItemIcon : cocos2d::CCSprite {
 
 	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x1f5010;
 
-	TodoReturn changeToLockedState(float) = win 0x1f5920;
+	void changeToLockedState(float) = win 0x1f5920;
 	inline static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) {
 		return GJItemIcon::create(unlockType, itemID, {0xAF, 0xAF, 0xAF}, {0xFF, 0xFF, 0xFF}, false, true, true, {0xFF, 0xFF, 0xFF});
 	}
 	TodoReturn createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B);
-	TodoReturn darkenStoreItem(cocos2d::ccColor3B) = win 0x1f5720;
+	void darkenStoreItem(cocos2d::ccColor3B) = win 0x1f5720;
 	TodoReturn darkenStoreItem(ShopType);
 	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x1f50f0;
 	TodoReturn scaleForType(UnlockType) = win 0x1f59e0;
@@ -10799,8 +10815,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn delayedFullReset() = win 0x2e9f20;
 	TodoReturn delayedResetLevel() = win 0x2ea080;
 	TodoReturn fullReset() = win 0x2e9f80;
-	TodoReturn getCurrentPercent();
-	TodoReturn getCurrentPercentInt() = win 0x2e6680;
+	float getCurrentPercent();
+	int getCurrentPercentInt() = win 0x2e6680;
 	TodoReturn getEndPosition();
 	TodoReturn getLastCheckpoint() = win 0x2e8d40;
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
@@ -10899,7 +10915,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2e3940;
 	virtual TodoReturn checkpointActivated(CheckpointGameObject*) = win 0x2e76c0;
 	virtual TodoReturn flipArt(bool);
-	virtual TodoReturn updateTimeLabel(int, int, bool);
+	virtual void updateTimeLabel(int, int, bool) = win 0x2e5670;
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
@@ -13947,7 +13963,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn createAnimations(gd::string);
 	TodoReturn createWithOwner(CCAnimatedSprite*, gd::string);
 	TodoReturn doCleanup();
-	TodoReturn executeAnimation(gd::string);
+	TodoReturn executeAnimation(gd::string) = win 0x4f480;
 	TodoReturn finishAnimation(gd::string);
 	TodoReturn getAnimType(gd::string);
 	TodoReturn getPrio(gd::string);
@@ -13961,7 +13977,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn resetAnimState();
 	TodoReturn runAnimation(gd::string);
 	TodoReturn runQueuedAnimation();
-	TodoReturn stopAnimations();
+	TodoReturn stopAnimations() = win 0x4fa60;
 	TodoReturn storeAnimation(cocos2d::CCAnimate*, cocos2d::CCAnimate*, gd::string, int, spriteMode, cocos2d::CCSpriteFrame*);
 	TodoReturn storeSoundForAnimation(cocos2d::CCString*, gd::string, float);
 	TodoReturn switchToFirstFrameOfAnimation(gd::string);
