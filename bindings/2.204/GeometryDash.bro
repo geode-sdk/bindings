@@ -10795,7 +10795,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-	// virtual ~PlayLayer();
+	virtual ~PlayLayer() = win 0x2dc080;
 	// PlayLayer() = win 0x2db390;
 
 	static PlayLayer* create(GJGameLevel*, bool, bool) = win 0x2dc3f0;
