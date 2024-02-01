@@ -681,8 +681,9 @@ public class SyncBromaScript extends GhidraScript {
                             padLength = mem.paddings.get(args.platform);
                         }
                         else {
-                            wrapper.printfmt("Warning: class {0} contains unimplemented padding on this platform", fullName);
-                            padLength = 1;
+                            // I think there should be no warning, because sometimes paddings are exclusive to specific operation systems
+                            // wrapper.printfmt("Warning: class {0} contains unimplemented padding on this platform", fullName);
+                            padLength = 0;
                         }
                         for (int i = 0; i < padLength; i += 1) {
                             classDataMembers.replaceAtOffset(
@@ -696,8 +697,8 @@ public class SyncBromaScript extends GhidraScript {
                 }
 
                 // Re-enable packing
-                classDataMembers.setPackingEnabled(true);
-                classDataMembers.repack();
+                // classDataMembers.setPackingEnabled(true);
+                // classDataMembers.repack();
             }
         }
     }
