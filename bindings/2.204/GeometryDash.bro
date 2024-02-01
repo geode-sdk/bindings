@@ -10805,7 +10805,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn addToGroupOld(GameObject*);
 	TodoReturn applyCustomEnterEffect(GameObject*, bool);
 	TodoReturn applyEnterEffect(GameObject*, int, bool);
-	TodoReturn canPauseGame();
+	bool canPauseGame() = win 0x2eae60;
 	TodoReturn checkpointWithID(int);
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
 	TodoReturn commitJumps();
