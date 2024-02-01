@@ -171,7 +171,7 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn percentForAchievement(char const*) = win 0x1ab50;
 	TodoReturn reportAchievementWithID(char const*, int, bool) = win 0x1b7e0;
 	TodoReturn reportPlatformAchievementWithID(char const*, int) = win 0x1b8f0;
-	TodoReturn resetAchievement(char const*);
+	TodoReturn resetAchievement(char const*) = win 0x1b730;
 	TodoReturn resetAchievements();
 	TodoReturn setup();
 	TodoReturn storeAchievementUnlocks();
@@ -4373,12 +4373,12 @@ class GameManager : GManager {
 	TodoReturn generateSecretNumber();
 	TodoReturn getBGTexture(int) = win 0x127dc0;
 	TodoReturn getFontFile(int);
-	TodoReturn getFontTexture(int);
+	TodoReturn getFontTexture(int) = win 0x127c30;
 	bool getGameVariable(char const*) = win 0x128730;
 	TodoReturn getGTexture(int);
 	TodoReturn getIconRequestID();
 	int getIntGameVariable(char const*) = win 0x128c80;
-	TodoReturn getMenuMusicFile();
+	TodoReturn getMenuMusicFile() = win 0x1216e0;
 	TodoReturn getMGTexture(int);
 	TodoReturn getNextUniqueObjectKey();
 	TodoReturn getNextUsedKey(int, bool);
@@ -4404,7 +4404,7 @@ class GameManager : GManager {
 	TodoReturn loadDeathEffect(int) = win 0x127c80;
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool) = win 0x12af80;
-	TodoReturn loadFont(int);
+	TodoReturn loadFont(int) = win 0x127ba0;
 	TodoReturn loadGround(int) = win 0x1281f0;
 	TodoReturn loadGroundAsync(int);
 	TodoReturn loadIcon(int, int, int) = win 0x127440;
@@ -4412,11 +4412,11 @@ class GameManager : GManager {
 	TodoReturn loadMiddleground(int);
 	TodoReturn loadMiddlegroundAsync(int);
 	TodoReturn loadVideoSettings();
-	TodoReturn lockColor(int, UnlockType);
-	TodoReturn lockIcon(int, IconType);
+	TodoReturn lockColor(int, UnlockType) = win 0x122610;
+	TodoReturn lockIcon(int, IconType) = win 0x1222d0;
 	TodoReturn logLoadedIconInfo();
 	TodoReturn openEditorGuide() = win 0x1270d0;
-	TodoReturn playMenuMusic();
+	TodoReturn playMenuMusic() = win 0x121890;
 	TodoReturn playSFXTrigger(SFXTriggerGameObject*) = win 0x121b40;
 	TodoReturn prepareDPadSettings();
 	TodoReturn printGJLog();
