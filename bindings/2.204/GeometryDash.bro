@@ -3523,7 +3523,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class FLAlertLayerProtocol {
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x1d240;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 }
 
 [[link(android)]]
