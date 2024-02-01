@@ -4380,8 +4380,8 @@ class GameManager : GManager {
 	int getIntGameVariable(char const*) = win 0x128c80;
 	TodoReturn getMenuMusicFile() = win 0x1216e0;
 	TodoReturn getMGTexture(int);
-	TodoReturn getNextUniqueObjectKey();
-	TodoReturn getNextUsedKey(int, bool);
+	TodoReturn getNextUniqueObjectKey() = win 0x128d70;
+	TodoReturn getNextUsedKey(int, bool) = win 0x128de0;
 	TodoReturn getOrderedCustomObjectKeys();
 	TodoReturn getPracticeMusicFile() = win 0x1217b0;
 	TodoReturn getUGV(char const*) = win 0x128a20;
