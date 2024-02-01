@@ -289,10 +289,10 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 	static AnimatedShopKeeper* create(ShopType) = win 0x21d880;
 
 	bool init(ShopType) = win 0x21d920;
-	void playReactAnimation() = win 0x21da20;
-	void startAnimating() = win 0x21db40;
+	TodoReturn playReactAnimation() = win 0x21da20;
+	TodoReturn startAnimating() = win 0x21db40;
 
-	void TodoReturn animationFinished(char const*) = win 0x21db80;
+	virtual TodoReturn animationFinished(char const*) = win 0x21db80;
 }
 
 [[link(android)]]
@@ -654,14 +654,14 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
 
 	TodoReturn cleanupSprite() = win 0x21440;
-	static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
-	bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
-	void loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
-	void runAnimation(gd::string) = win 0x21640;
-	void runAnimationForced(gd::string) = win 0x216c0;
+	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
+	TodoReturn initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
+	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
+	TodoReturn runAnimation(gd::string) = win 0x21640;
+	TodoReturn runAnimationForced(gd::string) = win 0x216c0;
 	TodoReturn stopTween();
-	void switchToMode(spriteMode) = win 0x214f0;
-	void tweenToAnimation(gd::string, float) = win 0x21750;
+	TodoReturn switchToMode(spriteMode) = win 0x214f0;
+	TodoReturn tweenToAnimation(gd::string, float) = win 0x21750;
 	TodoReturn tweenToAnimationFinished() = win 0x219c0;
 	TodoReturn willPlayAnimation();
 
@@ -6811,12 +6811,12 @@ class GJItemIcon : cocos2d::CCSprite {
 
 	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x1f5010;
 
-	TodoReturn changeToLockedState(float) = win 0x1f5920;
+	void changeToLockedState(float) = win 0x1f5920;
 	inline static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) {
 		return GJItemIcon::create(unlockType, itemID, {0xAF, 0xAF, 0xAF}, {0xFF, 0xFF, 0xFF}, false, true, true, {0xFF, 0xFF, 0xFF});
 	}
 	TodoReturn createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B);
-	TodoReturn darkenStoreItem(cocos2d::ccColor3B) = win 0x1f5720;
+	void darkenStoreItem(cocos2d::ccColor3B) = win 0x1f5720;
 	TodoReturn darkenStoreItem(ShopType);
 	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x1f50f0;
 	TodoReturn scaleForType(UnlockType) = win 0x1f59e0;
