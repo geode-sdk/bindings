@@ -655,7 +655,7 @@ public class SyncBromaScript extends GhidraScript {
                     // Make sure the class is large enough to hold this member
                     // growStructure aint doin shit on packed structs so manually doing this
                     if (offset + length > classDataMembers.getLength() || classDataMembers.isZeroLength()) {
-                        classDataMembers.growStructure(offset + length - classDataMembers.getLength());
+                        classDataMembers.growStructure(offset + length - (classDataMembers.isZeroLength() ? 0 : classDataMembers.getLength()));
                     }
                     // If there are packed bools or something we need to clear multiple members
                     var freedCount = 0;
