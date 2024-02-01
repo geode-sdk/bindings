@@ -53,6 +53,10 @@ if (WIN32)
 	add_compile_definitions(_HAS_ITERATOR_DEBUGGING=0)
 endif()
 
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
+	target_compile_options(${PROJECT_NAME} PRIVATE -Wno-invalid-offsetof -Wno-inaccessible-base)
+endif()
+
 target_compile_definitions(${PROJECT_NAME} PRIVATE -DGEODE_DONT_WARN_INCORRECT_MEMBERS)
 
 if (USE_HACKY_SCRIPT)

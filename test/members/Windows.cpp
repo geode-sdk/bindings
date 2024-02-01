@@ -95,12 +95,18 @@ GEODE_MEMBER_CHECK(GameStatsManager, m_enabledItems, 0x22C);
 GEODE_MEMBER_CHECK(GameStatsManager, m_GS29, 0x24C);
 GEODE_MEMBER_CHECK(GameStatsManager, m_activePath, 0x250);
 
+GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d80);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x148);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5e0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x878);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x87c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9b8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa2c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2a7c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_practiceMusicSync, 0x2a7d);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x2aa0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isTestMode, 0x2aac);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b50);
 
 // CustomSongWidget
 
@@ -126,7 +132,7 @@ GEODE_MEMBER_CHECK(CustomSongWidget, m_showPlayMusicBtn, 0x155);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_showDownloadBtn, 0x156);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_isNotDownloading, 0x157);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_isRobtopSong, 0x158);
-GEODE_MEMBER_CHECK(CustomSongWidget, m_hasMultipleAssets, 0x159);
+GEODE_MEMBER_CHECK(CustomSongWidget, m_isMusicLibrary, 0x159);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_customSongID, 0x15c);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_unkFloat, 0x160);
 GEODE_MEMBER_CHECK(CustomSongWidget, m_unkBool1, 0x164);
@@ -203,11 +209,19 @@ GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x198);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x1a0);
 
 GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
-GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d80);
 GEODE_SIZE_CHECK(PlayLayer, 0x2f78);
 GEODE_SIZE_CHECK(GJGameLevel, 0x48c);
 // GEODE_SIZE_CHECK(PlayerObject, 0x980); // 0x998 in 2.203
+
 GEODE_SIZE_CHECK(GameObject, 0x498); // crying
+GEODE_MEMBER_CHECK(GameObject, m_activeMainColorID, 0x22c);
+GEODE_MEMBER_CHECK(GameObject, m_linkedGroup, 0x2f0);
+GEODE_MEMBER_CHECK(GameObject, m_uniqueID, 0x318);
+GEODE_MEMBER_CHECK(GameObject, m_realXPosition, 0x330);
+GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x340);
+GEODE_MEMBER_CHECK(GameObject, m_enterChannel, 0x374);
+GEODE_MEMBER_CHECK(GameObject, m_objectMaterial, 0x376);
+GEODE_MEMBER_CHECK(GameObject, m_objectID, 0x384);
 
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);
@@ -235,7 +249,6 @@ GEODE_MEMBER_CHECK(EditorUI, m_deleteMenu, 0x268);
 GEODE_MEMBER_CHECK(EditorUI, m_createButtonBars, 0x2e0);
 GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x340);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedTab, 0x384);
-
 
 GEODE_SIZE_CHECK(EditButtonBar, 0x124);
 

@@ -37,7 +37,7 @@ public class Regexes {
                 // Grab name
                 "class (?<name>{0})\\s+(?::.*?)?" + 
                 // Grab body (assuming closing brace is on its own line without any preceding whitespace)
-                "\\'{'(?<body>.*?)^\\'}'",
+                "\\'{'(?<body>.*?)(?<closingbrace>^\\'})'",
                 className
             ),
             Pattern.DOTALL | Pattern.MULTILINE
@@ -69,11 +69,14 @@ public class Regexes {
             Pattern.DOTALL | Pattern.MULTILINE
         );
     }
-    public static final Pattern grabPlatformAddress(Platform platform) {
+    public static final Pattern grabPlatformAddress(String platformName) {
         return Pattern.compile(
-            formatRegex("{0}\\s+0x(?<addr>[0-9a-fA-F]+)", platform.getShortName()),
+            formatRegex("(?<platform>{0})\\s+0x(?<addr>[0-9a-fA-F]+)", platformName),
             Pattern.DOTALL
         );
+    }
+    public static final Pattern grabPlatformAddress(Platform platform) {
+        return grabPlatformAddress(platform.getShortName());
     }
     public static final Pattern grabMemberOrPad(String memberName) {
         return Pattern.compile(
@@ -81,13 +84,14 @@ public class Regexes {
                 // Must match start of line (MULTILINE flag required) - also requires that the 
                 // function not be intended more than 4 spaces or a single tab
                 "(?<=^(?:(?: '{'0,4'}')|\\t))" + 
+                "(?<comments>(?://(?:.*\\n))+(?:(?: '{'0,4'}')|\\t))?" + 
                 // Grab member
                 "(?:(?<type>{0})\\s+(?<name>{1})\\s*;)|" + 
                 // Or padding
                 "(?:PAD\\s*=\\s*(?<platforms>(?:\\w+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+);)",
                 GRAB_TYPE, memberName
             ),
-            Pattern.DOTALL | Pattern.MULTILINE
+            Pattern.MULTILINE
         );
     }
 
@@ -113,4 +117,5 @@ public class Regexes {
     );
     public static final Pattern GRAB_FUNCTION = grabFunction("\\w+");
     public static final Pattern GRAB_MEMBER = grabMemberOrPad("\\w+");
+    public static final Pattern GRAB_PLATFORM_ADDRESS = grabPlatformAddress("\\w+");
 }
