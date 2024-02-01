@@ -6,6 +6,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.data.ArrayDataType;
@@ -51,7 +52,11 @@ public class ScriptWrapper {
         // Check if RecoverClassesFromRttiScript has been run
         final var manager = script.getCurrentProgram().getDataTypeManager();
         final var category = new CategoryPath("/ClassDataTypes");
-        if (manager.getCategory(category) == null) {
+        if (
+            manager.getCategory(category) == null &&
+            // Mac has no symbol information to RE
+            this.autoDetectPlatform().map(p -> p != Platform.MAC).orElse(true)
+        ) {
             InputWithButtonsDialog.show(
                 this,
                 "Ghidra environment has not been set up",
@@ -71,6 +76,16 @@ public class ScriptWrapper {
             throw new Error("SyncBromaScript should be located in <Geode bindings>/scripts/ghidra!");
         }
         this.printfmt("Bindings directory: {0}", bindingsDir);
+    }
+
+    Optional<Platform> autoDetectPlatform() {
+        switch (wrapped.getCurrentProgram().getLanguageID().getIdAsString()) {
+            case "x86:LE:32:default": return Optional.of(Platform.WINDOWS);
+            case "x86:LE:64:default": return Optional.of(Platform.MAC);
+            case "ARM:LE:32:v8":      return Optional.of(Platform.ANDROID32);
+            case "AARCH64:LE:64:v8A": return Optional.of(Platform.ANDROID64);
+        }
+        return Optional.empty();
     }
 
     /**
