@@ -746,7 +746,7 @@ class CCCircleWave : cocos2d::CCNode {
 	virtual void updateTweenAction(float, char const*);
 
 	PAD = win 0x11;
-	cocos2d::_ccColor3B m_color;
+	cocos2d::ccColor3B m_color;
 }
 
 [[link(android)]]
