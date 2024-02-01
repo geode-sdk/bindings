@@ -3937,7 +3937,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* getSavedLevels(bool, int) = win 0xf7340;
 	TodoReturn getSavedMapPack(int);
 	TodoReturn getSearchScene(char const*);
-	TodoReturn getSplitIntFromKey(char const*, int);
+	TodoReturn getSplitIntFromKey(char const*, int) = win 0x109250;
 	TodoReturn getStoredLevelComments(char const*) = win 0x1098a0;
 	cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0xf8930;
 	TodoReturn getStoredUserList(UserListType) = win 0x10d820;
@@ -4328,18 +4328,18 @@ class GameManager : GManager {
 
 	TodoReturn accountStatusChanged();
 	TodoReturn activeIconForType(IconType) = win 0x1270f0;
-	TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string);
+	TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string) = win 0x14da60;
 	TodoReturn addDuplicateLastFrame(int);
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int) = win 0x14d8c0;
 	TodoReturn addIconDelegate(cocos2d::CCObject*, int);
-	TodoReturn addNewCustomObject(gd::string);
+	TodoReturn addNewCustomObject(gd::string) = win 0x128ea0;
 	TodoReturn addToGJLog(cocos2d::CCString*);
 	TodoReturn applicationDidEnterBackground();
 	TodoReturn applicationWillEnterForeground() = win 0x12ded0;
 	TodoReturn calculateBaseKeyForIcons() = win 0x1278d0;
 	TodoReturn canShowRewardedVideo();
 	TodoReturn checkSteamAchievementUnlock() = win 0x1234f0;
-	TodoReturn checkUsedIcons();
+	TodoReturn checkUsedIcons() = win 0x1297d0;
 	TodoReturn claimItemsResponse(gd::string);
 	TodoReturn clearGJLog();
 	cocos2d::ccColor3B colorForIdx(int) = win 0x126090;
@@ -4355,7 +4355,7 @@ class GameManager : GManager {
 	TodoReturn eventUnlockFeature(char const*);
 	TodoReturn fadeInMenuMusic() = win 0x1219f0;
 	TodoReturn fadeInMusic(gd::string) = win 0x121a60;
-	TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*);
+	TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*) = win 0x127ed0;
 	TodoReturn finishedLoadingGAsync(int);
 	TodoReturn finishedLoadingGAsync1(cocos2d::CCObject*);
 	TodoReturn finishedLoadingGAsync2(cocos2d::CCObject*);
@@ -4396,9 +4396,9 @@ class GameManager : GManager {
 	TodoReturn keyForIcon(int, int);
 	TodoReturn levelIsPremium(int, int);
 	TodoReturn likeFacebook();
-	TodoReturn loadBackground(int);
-	TodoReturn loadBackgroundAsync(int);
-	TodoReturn loadDeathEffect(int);
+	TodoReturn loadBackground(int) = win 0x127dc0;
+	TodoReturn loadBackgroundAsync(int) = win 0x127e60;
+	TodoReturn loadDeathEffect(int) = win 0x127c80;
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool) = win 0x12af80;
 	TodoReturn loadFont(int);
@@ -4428,7 +4428,7 @@ class GameManager : GManager {
 	TodoReturn reloadAllStep2() = win 0x12e540;
 	TodoReturn reloadAllStep3() = win 0x12e6a0;
 	TodoReturn reloadAllStep4() = win 0x12e740;
-	TodoReturn reloadAllStep5();
+	TodoReturn reloadAllStep5() = win 0x12e7b0;
 	TodoReturn reloadMenu();
 	TodoReturn removeCustomObject(int);
 	TodoReturn removeIconDelegate(int) = win 0x127370;
@@ -4454,7 +4454,7 @@ class GameManager : GManager {
 	void setPlayerUserID(int);
 	void setUGV(char const*, bool) = win 0x1288d0;
 	TodoReturn setupGameAnimations() = win 0x14b280;
-	TodoReturn sheetNameForIcon(int, int);
+	TodoReturn sheetNameForIcon(int, int) = win 0x1279a0;
 	TodoReturn shortenAdTimer(float);
 	TodoReturn shouldShowInterstitial(int, int, int);
 	TodoReturn showInterstitial();
@@ -4470,7 +4470,7 @@ class GameManager : GManager {
 	TodoReturn tryCacheAd();
 	TodoReturn tryShowInterstitial(int, int, int);
 	TodoReturn unloadBackground();
-	TodoReturn unloadIcon(int, int, int);
+	TodoReturn unloadIcon(int, int, int) = win 0x1276b0;
 	TodoReturn unloadIcons(int) = win 0x127870;
 	TodoReturn unlockColor(int, UnlockType) = win 0x122560;
 	TodoReturn unlockedPremium();
@@ -4487,9 +4487,9 @@ class GameManager : GManager {
 
 	virtual void update(float);
 	virtual bool init() = win 0x1215c0;
-	virtual TodoReturn encodeDataTo(DS_Dictionary*);
+	virtual TodoReturn encodeDataTo(DS_Dictionary*) = win 0x12d480;
 	virtual TodoReturn dataLoaded(DS_Dictionary*) = win 0x12b830;
-	virtual TodoReturn firstLoad();
+	virtual TodoReturn firstLoad() = win 0x12cb20;
 
 	cocos2d::CCDictionary* m_unkAnimationDict;
 	cocos2d::CCDictionary* m_unkAnimationDict2;
