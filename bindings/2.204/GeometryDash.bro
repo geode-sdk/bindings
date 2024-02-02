@@ -8434,19 +8434,19 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 	// virtual ~LevelAreaInnerLayer();
 
-	static LevelAreaInnerLayer* create(bool);
+	static LevelAreaInnerLayer* create(bool) = win 0x231140;
 
 	bool init(bool) = win 0x2311e0;
-	void onBack(cocos2d::CCObject* sender);
-	void onDoor(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onNextFloor(cocos2d::CCObject* sender);
-	TodoReturn playStep1();
+	void onBack(cocos2d::CCObject* sender) = win 0x232940;
+	void onDoor(cocos2d::CCObject* sender) = win 0x232720;
+	void onInfo(cocos2d::CCObject* sender) = win 0x232c30;
+	void onNextFloor(cocos2d::CCObject* sender) = win 0x231ef0;
+	bool playStep1() = win 0x232850;
 	TodoReturn scene(bool);
-	TodoReturn showFloor1CompleteDialog();
-	TodoReturn tryResumeTowerMusic();
+	cocos2d::CCAction* showFloor1CompleteDialog() = win 0x231f40;
+	TodoReturn tryResumeTowerMusic() = win 0x2326a0;
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x2329a0;
 	virtual TodoReturn dialogClosed(DialogLayer*);
 }
 
@@ -8454,19 +8454,19 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 	// virtual ~LevelAreaLayer();
 
-	static LevelAreaLayer* create();
+	static LevelAreaLayer* create() = win 0x22f560;
 
-	TodoReturn addGodRay(float, float, float, float, float, cocos2d::CCPoint);
-	TodoReturn addTorch(cocos2d::CCNode*, cocos2d::CCPoint, int, float, int, bool);
-	TodoReturn fadeInsideTower();
-	void onBack(cocos2d::CCObject* sender);
-	void onClickDoor(cocos2d::CCObject* sender);
-	TodoReturn onEnterTower();
+	cocos2d::CCAction* addGodRay(float, float, float, float, float, cocos2d::CCPoint) = win 0x230d50;
+	void addTorch(cocos2d::CCNode*, cocos2d::CCPoint, int, float, int, bool) = win 0x230800;
+	cocos2d::CCAction* fadeInsideTower() = win 0x2306c0;
+	void onBack(cocos2d::CCObject* sender) = win 0x231080;
+	void onClickDoor(cocos2d::CCObject* sender) = win 0x230580;
+	bool onEnterTower() = win 0x230750;
 	TodoReturn scene();
-	TodoReturn showDialog();
+	cocos2d::CCAction* showDialog() = win 0x230300;
 
-	virtual bool init();
-	virtual void keyBackClicked();
+	virtual bool init() = win 0x22f610;
+	virtual void keyBackClicked() = win 0x2310f0;
 	virtual TodoReturn dialogClosed(DialogLayer*);
 }
 
