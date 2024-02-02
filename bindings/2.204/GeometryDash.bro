@@ -8443,7 +8443,7 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 	void onNextFloor(cocos2d::CCObject* sender) = win 0x231ef0;
 	bool playStep1() = win 0x232850;
 	TodoReturn scene(bool);
-	void showFloor1CompleteDialog() = win 0x231f40;
+	cocos2d::CCAction* showFloor1CompleteDialog() = win 0x231f40;
 	TodoReturn tryResumeTowerMusic() = win 0x2326a0;
 
 	virtual void keyBackClicked() = win 0x2329a0;
@@ -8456,14 +8456,14 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 	static LevelAreaLayer* create() = win 0x22f560;
 
-	void addGodRay(float, float, float, float, float, cocos2d::CCPoint) = win 0x230d50;
+	cocos2d::CCAction* addGodRay(float, float, float, float, float, cocos2d::CCPoint) = win 0x230d50;
 	void addTorch(cocos2d::CCNode*, cocos2d::CCPoint, int, float, int, bool) = win 0x230800;
-	void fadeInsideTower() = win 0x2306c0;
+	cocos2d::CCAction* fadeInsideTower() = win 0x2306c0;
 	void onBack(cocos2d::CCObject* sender) = win 0x231080;
 	void onClickDoor(cocos2d::CCObject* sender) = win 0x230580;
 	bool onEnterTower() = win 0x230750;
 	TodoReturn scene();
-	void showDialog() = win 0x230300;
+	cocos2d::CCAction* showDialog() = win 0x230300;
 
 	virtual bool init() = win 0x22f610;
 	virtual void keyBackClicked() = win 0x2310f0;
