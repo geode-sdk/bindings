@@ -9168,7 +9168,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	TodoReturn colorForPage(int);
 	TodoReturn getColorValue(int, int, float);
 	bool init(int) = win 0x267d00;
-	void onBack(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x268d00;
 	void onDownload(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
 	void onNext(cocos2d::CCObject* sender);
@@ -9177,7 +9177,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	TodoReturn scene(int);
 	TodoReturn tryShowAd();
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x268d60;
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual TodoReturn updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*);
 	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint);
@@ -13978,7 +13978,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn playSoundForAnimation(gd::string);
 	TodoReturn queueAnimation(gd::string);
 	TodoReturn resetAnimState();
-	TodoReturn runAnimation(gd::string);
+	TodoReturn runAnimation(gd::string) = win 0x4f280;
 	TodoReturn runQueuedAnimation();
 	TodoReturn stopAnimations() = win 0x4fa60;
 	TodoReturn storeAnimation(cocos2d::CCAnimate*, cocos2d::CCAnimate*, gd::string, int, spriteMode, cocos2d::CCSpriteFrame*);
