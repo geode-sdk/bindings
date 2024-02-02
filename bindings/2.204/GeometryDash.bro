@@ -3894,7 +3894,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getGauntletSearchKey(int) = win 0x100080;
 	TodoReturn getGJChallenges() = win 0x10fd60;
 	TodoReturn getGJDailyLevelState(GJTimedLevelType) = win 0x110670;
-	TodoReturn getGJRewards(int) = win 0x10f140;
+	void getGJRewards(int) = win 0x10f140;
 	TodoReturn getGJUserInfo(int) = win 0x106790;
 	TodoReturn getHighestLevelOrder() = win 0xf7550;
 	TodoReturn getIntForKey(char const*);
@@ -4180,7 +4180,7 @@ class GameLevelManager : cocos2d::CCNode {
 	LevelListDeleteDelegate* m_levelListDeleteDelegate;
 	UserInfoDelegate* m_userInfoDelegate;
 	void* m_unkDelegate;
-	/*UserListDelegate* m_userListDelegate;
+	UserListDelegate* m_userListDelegate;
 	FriendRequestDelegate* m_friendRequestDelegate;
 	MessageListDelegate* m_messageListDelegate;
 	DownloadMessageDelegate* m_downloadMessageDelegate;
@@ -4192,7 +4192,7 @@ class GameLevelManager : cocos2d::CCNode {
 	int m_unkDownload;
 	PAD = win 0x4;
 	gd::string m_unkStr3;
-	cocos2d::CCString* m_unkStr4;*/
+	cocos2d::CCString* m_unkStr4;
 }
 
 [[link(android), depends(UIButtonConfig)]]
@@ -5195,7 +5195,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getQueuedChallenge(int) = win 0x1734d0;
 	TodoReturn getRewardForSecretChest(int);
 	TodoReturn getRewardForSpecialChest(gd::string);
-	TodoReturn getRewardItem(GJRewardType);
+	int getRewardItem(GJRewardType) = win 0x2f76d0;
 	TodoReturn getRewardKey(GJRewardType, int);
 	TodoReturn getSecondaryQueuedChallenge(int) = win 0x1735a0;
 	TodoReturn getSecretChestForItem(int, UnlockType);
