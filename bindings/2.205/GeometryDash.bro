@@ -3830,7 +3830,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn friendRequestFromAccountID(int);
 	TodoReturn friendRequestWasRemoved(int, bool);
 	TodoReturn getAccountCommentKey(int, int);
-	TodoReturn getAccountComments(int accountID, int page, int total);
+	void getAccountComments(int accountID, int page, int total);
 	TodoReturn getActiveDailyID(GJTimedLevelType);
 	TodoReturn getActiveSmartTemplate();
 	TodoReturn getAllSmartTemplates();
@@ -3869,7 +3869,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
 	TodoReturn getLenKey(int);
 	TodoReturn getLenVal(int);
-	TodoReturn getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype);
+	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype);
 	TodoReturn getLevelDownloadKey(int, bool);
 	TodoReturn getLevelKey(int);
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode);
