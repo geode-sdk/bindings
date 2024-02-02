@@ -11307,7 +11307,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 
 	static SecretLayer2* create();
 
-	TodoReturn getBasicMessage();
+	gd::string getBasicMessage();
 	TodoReturn getErrorMessage();
 	TodoReturn getMessage();
 	TodoReturn getThreadMessage();
@@ -11321,7 +11321,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn selectAThread();
 	TodoReturn showCompletedLevel();
 	TodoReturn showSecretLevel();
-	TodoReturn updateMessageLabel(gd::string);
+	void updateMessageLabel(gd::string);
 	void updateSearchLabel(char const*);
 
 	virtual bool init();
