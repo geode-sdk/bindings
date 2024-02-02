@@ -10617,7 +10617,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn resetAllParticles();
 	TodoReturn resetCollisionLog(bool);
 	TodoReturn resetCollisionValues();
-	TodoReturn resetPlayerIcon() = win 0x2d45b0;
+	void resetPlayerIcon() = win 0x2d45b0;
 	TodoReturn resetStateVariables();
 	TodoReturn resetStreak() = win 0x2c6540;
 	TodoReturn resetTouchedRings();
@@ -10758,7 +10758,22 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_rotationSpeed; //0x5d8
 	PAD = win 0x5;
 	bool m_isRotating; //0x5e1
-	PAD = win 0x1b6;
+	PAD = win 0x3e;
+	cocos2d::CCMotionStreak* m_normalTrail; // 0x620
+	PAD = win 0xb0;
+	cocos2d::CCParticleSystemQuad* m_unkParticles1; // 0x6d4
+	cocos2d::CCParticleSystemQuad* m_trailingParticles; // 0x6d8
+	cocos2d::CCParticleSystemQuad* m_shipClickParticles; // 0x6dc
+	cocos2d::CCParticleSystemQuad* m_unkParticles4; // 0x6e0
+	cocos2d::CCParticleSystemQuad* m_ufoClickParticles; // 0x6e4
+	cocos2d::CCParticleSystemQuad* m_unkParticles6; // 0x6e8
+	cocos2d::CCParticleSystemQuad* m_unkParticles7; // 0x6ec
+	cocos2d::CCParticleSystemQuad* m_swingBurstParticles1; // 0x6f0
+	cocos2d::CCParticleSystemQuad* m_swingBurstParticles2; // 0x6f4
+	PAD = win 0x4;
+	cocos2d::CCParticleSystemQuad* m_unkParticles10; // 0x6fc
+	cocos2d::CCParticleSystemQuad* m_unkParticles11; // 0x700
+	PAD = win 0x94;
 	double m_yVelocity; //0x798
 	PAD = win 0x9;
 	bool m_isShip; //0x7a9
@@ -10781,7 +10796,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_isLocked; //0x7ff
 	PAD = win 0x1c;
 	cocos2d::CCPoint m_position; //0x81c
-	PAD = win 0x4c;
+	PAD = win 0x2a;
+	cocos2d::ccColor3B m_playerColor1; // 0x84e
+	cocos2d::ccColor3B m_playerColor2; // 0x851
+	PAD = win 0x1d;
 	double m_platformerXVelocity; //0x870
 	PAD = win 0xA8;
 	bool m_isPlatformer; //0x8e8 actually its 0x920
