@@ -9660,8 +9660,8 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	TodoReturn willClose();
 
 	virtual bool init() = win 0x27b450;
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyBackClicked() = win 0x27CB60;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x27CD70;
 	virtual TodoReturn googlePlaySignedIn() = win 0x27c860;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x27cbf0;
 }
