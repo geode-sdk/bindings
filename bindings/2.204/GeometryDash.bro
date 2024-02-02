@@ -3902,7 +3902,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
 	TodoReturn getLenKey(int);
 	TodoReturn getLenVal(int);
-	TodoReturn getLevelComments(int, int, int, int, CommentKeyType) = win 0x108160;
+	TodoReturn getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x108160;
 	TodoReturn getLevelDownloadKey(int, bool);
 	TodoReturn getLevelKey(int);
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1053a0;
