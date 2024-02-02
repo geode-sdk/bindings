@@ -17,6 +17,7 @@ import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.data.AbstractFloatDataType;
+import ghidra.program.model.data.ArrayDataType;
 import ghidra.program.model.data.Category;
 import ghidra.program.model.data.CategoryPath;
 import ghidra.program.model.data.Composite;
@@ -643,14 +644,14 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
 
-                // Disable packing for the duration of the import
+                // Disable packing
                 classDataMembers.setPackingEnabled(false);
 
                 var offset = 0;
                 for (var mem : cls.members) {
                     var length = mem.name.isPresent() ?
                         wrapper.addOrGetType(mem.type.get()).getLength() :
-                        Optional.ofNullable(mem.paddings.get(args.platform)).orElse(1);
+                        Optional.ofNullable(mem.paddings.get(args.platform)).orElse(0);
                     
                     // Make sure the class is large enough to hold this member
                     // growStructure aint doin shit on packed structs so manually doing this
@@ -658,14 +659,16 @@ public class SyncBromaScript extends GhidraScript {
                         classDataMembers.growStructure(offset + length - (classDataMembers.isZeroLength() ? 0 : classDataMembers.getLength()));
                     }
                     // If there are packed bools or something we need to clear multiple members
-                    var freedCount = 0;
-                    while (true) {
-                        final var data = classDataMembers.getComponentAt(offset + freedCount);
-                        if (data == null || data.getLength() >= length - freedCount) {
-                            break;
+                    if (length > 0) {
+                        var freedCount = 0;
+                        while (true) {
+                            final var data = classDataMembers.getComponentAt(offset + freedCount);
+                            if (data == null || data.getLength() >= length - freedCount) {
+                                break;
+                            }
+                            freedCount += data.getLength();
+                            classDataMembers.clearAtOffset(offset + freedCount);
                         }
-                        freedCount += data.getLength();
-                        classDataMembers.clearAtOffset(offset + freedCount);
                     }
                     
                     // If this is a real ass member, add it to the class
@@ -676,29 +679,27 @@ public class SyncBromaScript extends GhidraScript {
                     }
                     // Otherwise add padding members
                     else {
-                        int padLength;
                         if (mem.paddings.containsKey(args.platform)) {
-                            padLength = mem.paddings.get(args.platform);
+                            var padLength = mem.paddings.get(args.platform);
+                            for (int i = 0; i < padLength; i += 1) {
+                                classDataMembers.replaceAtOffset(
+                                    offset + i, Undefined1DataType.dataType, 1, null,
+                                    new PaddingInfo(mem.paddings, offset).toString()
+                                );
+                            }
+                            offset += padLength;
                         }
+                        // Sometimes paddings are not included for specific platform,
+                        // this pseudo-member has zero length and metadata for other platforms
+                        // Running the sync script will create multiple of these but it doesnt make any difference in RE
                         else {
-                            // I think there should be no warning, because sometimes paddings are exclusive to specific operation systems
-                            // wrapper.printfmt("Warning: class {0} contains unimplemented padding on this platform", fullName);
-                            padLength = 0;
-                        }
-                        for (int i = 0; i < padLength; i += 1) {
-                            classDataMembers.replaceAtOffset(
-                                offset + i, Undefined1DataType.dataType, 1,
-                                null,
+                            classDataMembers.insertAtOffset(
+                                offset, new ArrayDataType(Undefined1DataType.dataType, 0, 1), 0, null,
                                 new PaddingInfo(mem.paddings, offset).toString()
                             );
                         }
-                        offset += padLength;
                     }
                 }
-
-                // Re-enable packing
-                // classDataMembers.setPackingEnabled(true);
-                // classDataMembers.repack();
             }
         }
     }
