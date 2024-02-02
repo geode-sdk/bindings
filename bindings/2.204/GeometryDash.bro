@@ -6786,7 +6786,7 @@ class GJGroundLayer : cocos2d::CCLayer {
 	TodoReturn toggleVisible01(bool);
 	TodoReturn toggleVisible02(bool);
 	TodoReturn updateGround01Color(cocos2d::ccColor3B) = win 0x1f7ab0;
-	TodoReturn updateGround02Color(cocos2d::ccColor3B);
+	TodoReturn updateGround02Color(cocos2d::ccColor3B) = win 0x1f7b10;
 	TodoReturn updateGroundPos(cocos2d::CCPoint);
 	TodoReturn updateGroundWidth(bool);
 	TodoReturn updateLineBlend(bool);
@@ -9078,16 +9078,16 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 
 	TodoReturn addSecretCoin();
 	TodoReturn addSecretDoor();
-	bool init(GJGameLevel*);
+	bool init(GJGameLevel*) = win 0x268ff0;
 	void onInfo(cocos2d::CCObject* sender) = win 0x26c400;
 	void onMoreGames(cocos2d::CCObject* sender);
-	void onPlay(cocos2d::CCObject* sender);
+	void onPlay(cocos2d::CCObject* sender) = win 0x26c080;
 	void onSecretDoor(cocos2d::CCObject* sender);
 	void onTheTower(cocos2d::CCObject* sender);
 	TodoReturn playCoinEffect();
 	TodoReturn playStep2();
 	TodoReturn playStep3();
-	TodoReturn updateDynamicPage(GJGameLevel*);
+	TodoReturn updateDynamicPage(GJGameLevel*) = win 0x269a80;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -9165,22 +9165,22 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 
 	static LevelSelectLayer* create(int) = win 0x267c60;
 
-	TodoReturn colorForPage(int);
-	TodoReturn getColorValue(int, int, float);
+	TodoReturn colorForPage(int) = win 0x268ac0;
+	TodoReturn getColorValue(int, int, float) = win 0x268980;
 	bool init(int) = win 0x267d00;
 	void onBack(cocos2d::CCObject* sender) = win 0x268d00;
-	void onDownload(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onNext(cocos2d::CCObject* sender);
+	void onDownload(cocos2d::CCObject* sender) = win 0x268750;
+	void onInfo(cocos2d::CCObject* sender) = win 0x268e30;
+	void onNext(cocos2d::CCObject* sender) = win 0x268c40;
 	void onPlay(cocos2d::CCObject* sender);
-	void onPrev(cocos2d::CCObject* sender);
-	TodoReturn scene(int);
+	void onPrev(cocos2d::CCObject* sender) = win 0x268ca0;
+	TodoReturn scene(int) = win 0x267c20;
 	TodoReturn tryShowAd();
 
 	virtual void keyBackClicked() = win 0x268d60;
-	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual TodoReturn updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*);
-	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint);
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x268d70;
+	virtual TodoReturn updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = win 0x268790;
+	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint) = win 0x2687f0;
 }
 
 [[link(android)]]
@@ -13890,9 +13890,9 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 class SongsLayer : GJDropDownLayer {
 	// virtual ~SongsLayer();
 
-	static SongsLayer* create();
+	static SongsLayer* create() = win 0x38bfb0;
 
-	virtual TodoReturn customSetup();
+	virtual TodoReturn customSetup() = win 0x38c0c0;
 }
 
 [[link(android)]]
