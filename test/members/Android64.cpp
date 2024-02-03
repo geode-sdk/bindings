@@ -56,6 +56,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0x10dc);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3208);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x3238);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3300);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34a8);
 
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x1d8);
 GEODE_MEMBER_CHECK(GameManager, m_levelEditorLayer, 0x1e0);
@@ -67,7 +68,23 @@ GEODE_SIZE_CHECK(SimplePlayer, 0x2a8);
 //GEODE_SIZE_CHECK(PlayLayer, 0x3960);
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3688);
 // GEODE_SIZE_CHECK(PlayerObject, 0xbb0);
-// GEODE_SIZE_CHECK(GameObject, 0x538);
+GEODE_SIZE_CHECK(GameObject, 0x538);
+GEODE_SIZE_CHECK(EnhancedGameObject, 0x598);
+GEODE_SIZE_CHECK(EffectGameObject, 0x720);
+
+GEODE_MEMBER_CHECK(GameObject, m_hasExtendedCollision, 0x27c);
+GEODE_MEMBER_CHECK(GameObject, m_activeMainColorID, 0x290);
+GEODE_MEMBER_CHECK(GameObject, m_glowSprite, 0x2f0);
+GEODE_MEMBER_CHECK(GameObject, m_colorSprite, 0x368);
+GEODE_MEMBER_CHECK(GameObject, m_baseColor, 0x438);
+GEODE_MEMBER_CHECK(GameObject, m_groups, 0x478);
+GEODE_MEMBER_CHECK(GameObject, m_isHighDetail, 0x4db);
+GEODE_MEMBER_CHECK(GameObject, m_isPassable, 0x4fd);
+GEODE_MEMBER_CHECK(GameObject, m_property155, 0x518);
+
+GEODE_MEMBER_CHECK(EffectGameObject, m_isMultiActivate, 0x670);
+GEODE_MEMBER_CHECK(EffectGameObject, m_isReverse, 0x6e4);
+GEODE_MEMBER_CHECK(EffectGameObject, m_objectLabel, 0x710);
 
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_circle, 0x270);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x2A8);
@@ -75,6 +92,8 @@ GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2C8);
 
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x3788);
 
-GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
 
+GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x250);
+GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
+GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x300);
 #endif

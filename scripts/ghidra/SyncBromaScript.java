@@ -17,6 +17,7 @@ import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.data.AbstractFloatDataType;
+import ghidra.program.model.data.ArrayDataType;
 import ghidra.program.model.data.Category;
 import ghidra.program.model.data.CategoryPath;
 import ghidra.program.model.data.Composite;
@@ -643,61 +644,94 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
 
-                // Disable packing for the duration of the import
+                // Disable packing
                 classDataMembers.setPackingEnabled(false);
 
+                // Remove zero-length members at the beginning
+                // Necessary ones are added after
+                while(true) {
+                    var memberToRemove = classDataMembers.getComponent(0);
+                    if (memberToRemove.getLength() == 0)
+                        classDataMembers.delete(0);
+                    else break;
+                }
+
                 var offset = 0;
+                var last_ord = 0;
                 for (var mem : cls.members) {
                     var length = mem.name.isPresent() ?
                         wrapper.addOrGetType(mem.type.get()).getLength() :
-                        Optional.ofNullable(mem.paddings.get(args.platform)).orElse(1);
+                        Optional.ofNullable(mem.paddings.get(args.platform)).orElse(0);
                     
                     // Make sure the class is large enough to hold this member
                     // growStructure aint doin shit on packed structs so manually doing this
                     if (offset + length > classDataMembers.getLength() || classDataMembers.isZeroLength()) {
-                        classDataMembers.growStructure(offset + length - classDataMembers.getLength());
+                        classDataMembers.growStructure(offset + length - (classDataMembers.isZeroLength() ? 0 : classDataMembers.getLength()));
                     }
                     // If there are packed bools or something we need to clear multiple members
-                    var freedCount = 0;
-                    while (true) {
-                        final var data = classDataMembers.getComponentAt(offset + freedCount);
-                        if (data == null || data.getLength() >= length - freedCount) {
-                            break;
+                    if (length > 0) {
+                        var freedCount = 0;
+                        while (true) {
+                            final var data = classDataMembers.getComponentAt(offset + freedCount);
+                            if (data == null || data.getLength() >= length - freedCount) {
+                                break;
+                            }
+                            freedCount += data.getLength();
+                            classDataMembers.clearAtOffset(offset + freedCount);
                         }
-                        freedCount += data.getLength();
-                        classDataMembers.clearAtOffset(offset + freedCount);
                     }
                     
                     // If this is a real ass member, add it to the class
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
-                        classDataMembers.replaceAtOffset(offset, memType, memType.getLength(), mem.name.get().value, null);
+                        var member = classDataMembers.replaceAtOffset(offset, memType, memType.getLength(), mem.name.get().value, null);
+                        // Remove zero-length members that come after this member
+                        // Necessary ones are added after
+                        while(member.getOrdinal() + 1 < classDataMembers.getNumComponents()) {
+                            var memberToRemove = classDataMembers.getComponent(member.getOrdinal() + 1);
+                            if (memberToRemove.getLength() == 0)
+                                classDataMembers.delete(member.getOrdinal() + 1);
+                            else break;
+                        }
                         offset += memType.getLength();
+                        last_ord = member.getOrdinal() + 1;
                     }
                     // Otherwise add padding members
                     else {
-                        int padLength;
                         if (mem.paddings.containsKey(args.platform)) {
-                            padLength = mem.paddings.get(args.platform);
+                            var padLength = mem.paddings.get(args.platform);
+                            for (int i = 0; i < padLength; i += 1) {
+                                var member = classDataMembers.replaceAtOffset(
+                                    offset + i, Undefined1DataType.dataType, 1, null,
+                                    new PaddingInfo(mem.paddings, offset).toString()
+                                );
+                                // Remove zero-length members that come after this member
+                                // Necessary ones are added after
+                                while(member.getOrdinal() + 1 < classDataMembers.getNumComponents()) {
+                                    var memberToRemove = classDataMembers.getComponent(member.getOrdinal() + 1);
+                                    if (memberToRemove.getLength() == 0)
+                                        classDataMembers.delete(member.getOrdinal() + 1);
+                                    else break;
+                                }
+                                last_ord = member.getOrdinal() + 1;
+                            }
+                            offset += padLength;
                         }
+                        // Sometimes paddings are not included for specific platform,
+                        // this pseudo-member has zero length and metadata for other platforms
                         else {
-                            wrapper.printfmt("Warning: class {0} contains unimplemented padding on this platform", fullName);
-                            padLength = 1;
-                        }
-                        for (int i = 0; i < padLength; i += 1) {
-                            classDataMembers.replaceAtOffset(
-                                offset + i, Undefined1DataType.dataType, 1,
-                                null,
+                            var member = classDataMembers.insertAtOffset(
+                                offset, new ArrayDataType(Undefined1DataType.dataType, 0, 1), 0, null,
                                 new PaddingInfo(mem.paddings, offset).toString()
                             );
+                            last_ord = member.getOrdinal() + 1;
                         }
-                        offset += padLength;
                     }
                 }
-
-                // Re-enable packing
-                classDataMembers.setPackingEnabled(true);
-                classDataMembers.repack();
+                classDataMembers.insert(
+                    last_ord, new ArrayDataType(Undefined1DataType.dataType, 0, 1), 0, null,
+                    "End of BROMA Structure"
+                );
             }
         }
     }

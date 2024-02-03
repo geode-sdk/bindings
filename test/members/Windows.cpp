@@ -213,7 +213,7 @@ GEODE_SIZE_CHECK(PlayLayer, 0x2f78);
 GEODE_SIZE_CHECK(GJGameLevel, 0x48c);
 // GEODE_SIZE_CHECK(PlayerObject, 0x980); // 0x998 in 2.203
 
-GEODE_SIZE_CHECK(GameObject, 0x498); // crying
+// GEODE_SIZE_CHECK(GameObject, 0x498); // crying
 GEODE_MEMBER_CHECK(GameObject, m_activeMainColorID, 0x22c);
 GEODE_MEMBER_CHECK(GameObject, m_linkedGroup, 0x2f0);
 GEODE_MEMBER_CHECK(GameObject, m_uniqueID, 0x318);
@@ -222,6 +222,7 @@ GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x340);
 GEODE_MEMBER_CHECK(GameObject, m_enterChannel, 0x374);
 GEODE_MEMBER_CHECK(GameObject, m_objectMaterial, 0x376);
 GEODE_MEMBER_CHECK(GameObject, m_objectID, 0x384);
+GEODE_MEMBER_CHECK(GameObject, m_isDontBoostX, 0x46A);
 
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);
