@@ -222,6 +222,7 @@ GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x340);
 GEODE_MEMBER_CHECK(GameObject, m_enterChannel, 0x374);
 GEODE_MEMBER_CHECK(GameObject, m_objectMaterial, 0x376);
 GEODE_MEMBER_CHECK(GameObject, m_objectID, 0x384);
+GEODE_MEMBER_CHECK(GameObject, m_isDontBoostX, 0x46A);
 
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);
