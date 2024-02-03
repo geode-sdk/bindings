@@ -6742,7 +6742,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	TodoReturn scene();
 	TodoReturn selectTab(IconType) = win 0x1f1cd0;
 	TodoReturn setupIconSelect() = win 0x1f1170;
-	TodoReturn setupPage(int, IconType) = win 0x1f1d70;
+	void setupPage(int, IconType) = win 0x1f1d70;
 	TodoReturn setupSpecialPage();
 	TodoReturn showUnlockPopupNew(int, UnlockType);
 	TodoReturn titleForUnlock(int, UnlockType);
