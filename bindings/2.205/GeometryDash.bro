@@ -5189,7 +5189,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getQueuedChallenge(int);
 	TodoReturn getRewardForSecretChest(int);
 	TodoReturn getRewardForSpecialChest(gd::string);
-	int getRewardItem(GJRewardType);
+	TodoReturn getRewardItem(GJRewardType);
 	TodoReturn getRewardKey(GJRewardType, int);
 	TodoReturn getSecondaryQueuedChallenge(int);
 	TodoReturn getSecretChestForItem(int, UnlockType);
