@@ -8757,7 +8757,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateGridLayerParent();
 	TodoReturn updateKeyframeObjects();
 	TodoReturn updateKeyframeVisibility(bool);
-	TodoReturn updateLevelFont(int);
+	void updateLevelFont(int) = win 0x2458c0;
 	TodoReturn updateObjectColors(cocos2d::CCArray*);
 	TodoReturn updateObjectLabel(GameObject*);
 	TodoReturn updateOptions() = win 0x23afa0;
@@ -11527,7 +11527,7 @@ class SelectFontLayer : FLAlertLayer {
 	bool init(LevelEditorLayer*) = win 0x204DD0;
 	void onChangeFont(cocos2d::CCObject* sender) = win 0x205460;
 	void onClose(cocos2d::CCObject* sender);
-	TodoReturn updateFontLabel();
+	TodoReturn updateFontLabel() = win 0x205320;
 
 	virtual void keyBackClicked();
 }
