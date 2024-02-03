@@ -21,10 +21,32 @@ public abstract class InputParameters {
         }
     }
 
+    protected void choice(String title, List<String> options, String defaultValue, Consumer<String> setter) throws Exception {
+        if (this.valuesMapObject != null) {
+            var defineChoice = mapClass.getMethod("defineChoice", String.class, String.class, String[].class);
+            defineChoice.invoke(this.valuesMapObject, title, defaultValue, options.toArray(String[]::new));
+            resultTargetMap.put(title, s -> setter.accept((String)s));
+        }
+        else {
+            setter.accept(wrapper.wrapped.askChoice("Input values to " + this.title(), title, options, defaultValue));
+        }
+    }
+
     protected void bool(String title, Consumer<Boolean> setter) throws Exception {
         if (this.valuesMapObject != null) {
             var defineBoolean = mapClass.getMethod("defineBoolean", String.class, boolean.class);
             defineBoolean.invoke(this.valuesMapObject, title, true);
+            resultTargetMap.put(title, s -> setter.accept((Boolean)s));
+        }
+        else {
+            setter.accept(wrapper.wrapped.askYesNo("Input values to " + this.title(), "Should the script " + title + "?"));
+        }
+    }
+
+    protected void bool(String title, boolean defaultValue, Consumer<Boolean> setter) throws Exception {
+        if (this.valuesMapObject != null) {
+            var defineBoolean = mapClass.getMethod("defineBoolean", String.class, boolean.class);
+            defineBoolean.invoke(this.valuesMapObject, title, defaultValue);
             resultTargetMap.put(title, s -> setter.accept((Boolean)s));
         }
         else {
