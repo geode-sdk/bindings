@@ -1347,7 +1347,7 @@ class CharacterColorPage : FLAlertLayer {
 	TodoReturn createColorMenu() = win 0x5f630;
 	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	TodoReturn offsetForIndex(int);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x608A0;
 	void onMode(cocos2d::CCObject* sender);
 	void onPlayerColor(cocos2d::CCObject* sender);
 	TodoReturn toggleGlow(cocos2d::CCObject*);
