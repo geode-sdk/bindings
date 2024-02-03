@@ -824,7 +824,17 @@ class CCLightStrip : cocos2d::CCNode {
 
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
-	// virtual ~CCMenuItemSpriteExtra();
+	~CCMenuItemSpriteExtra() {}
+	CCMenuItemSpriteExtra() {
+		m_scaleMultiplier = 1.0f;
+		m_baseScale = 1.0f;
+		m_animationEnabled = true;
+		m_colorEnabled = false;
+		m_unknown1 = 0.0f;
+		m_colorDip = 0.0f;
+		m_animationType = MenuAnimationType::Scale;
+		m_unknown4 = 0;
+	}
 
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 
@@ -2531,6 +2541,11 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual TodoReturn customSetup();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+
+	bool m_saved;
+    CCMenuItemSpriteExtra* m_guidelinesOffButton;
+    CCMenuItemSpriteExtra* m_guidelinesOnButton;
+    LevelEditorLayer* m_editorLayer;
 }
 
 [[link(android)]]
@@ -2824,10 +2839,19 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	
 	// TODO: android64 absolutely wrong
-	PAD = android32 0xd4, android64 0x124;
-	EditButtonBar* m_editButtonBar;
+	PAD = android32 0x64, android64 0x7c;
+
+	EditButtonBar* m_buttonBar;
+
+	PAD = android32 0x58, android64 0x78;
+
+	GJTransformControl* m_transformControl;
+	PAD = android32 0xc, android64 0x18;
+	EditButtonBar* m_createButtonBar;
+    EditButtonBar* m_editButtonBar;
+    Slider* m_positionSlider;
 	
-	PAD = android32 0x30;
+	PAD = android32 0x2c;
 	
 	cocos2d::CCArray* m_selectedObjects;
 	// LevelEditorLayer* m_editorLayer; // 0x340
@@ -2951,7 +2975,7 @@ class EffectGameObject : EnhancedGameObject {
 	float m_duration;
 	// property 35
 	float m_opacity;
-	PAD = android32 0x4;
+	PAD = android32 0x4, win 0x4, android64 0x4;
 	// property 51
 	int m_targetGroupID;
 	// property 71
@@ -3010,7 +3034,7 @@ class EffectGameObject : EnhancedGameObject {
 	bool m_isDynamicMode;
 	// property 544
 	bool m_isSilent;
-	PAD = android32 0x6;
+	PAD = android32 0x6, win 0x6, android64 0x6;
 	// property 68
 	float m_rotationDegrees;
 	// property 69
@@ -3071,17 +3095,17 @@ class EffectGameObject : EnhancedGameObject {
 	bool m_isDualMode;
 	// property 76
 	int m_animationID;
-	PAD = android32 0x8;
+	PAD = android32 0x8, win 0x8, android64 0x8;
 	// property 87
 	bool m_isMultiActivate;
-	PAD = android32 0x2;
+	PAD = android32 0x2, win 0x2, android64 0x2;
 	// property 93
 	bool m_triggerOnExit;
 	// property 95
 	int m_itemID2;
 	// property 534
 	int m_property534;
-	PAD = android32 0x4;
+	PAD = android32 0x4, win 0x4, android64 0x4;
 	// property 80
 	int m_itemID;
 	// property 138
@@ -3102,12 +3126,12 @@ class EffectGameObject : EnhancedGameObject {
 	int m_collectiblePoints;
 	// property 463
 	bool m_hasNoAnimation;
-	PAD = android32 0x1f;
+	PAD = android32 0x1f, win 0x1f, android64 0x23;
 	// property 148
 	float m_gravityValue;
 	// property 284
 	bool m_isSinglePTouch;
-	PAD = android32 0x3;
+	PAD = android32 0x3, win 0x3, android64 0x3;
 	// property 371
 	float m_zoomValue;
 	// property 111
@@ -3132,15 +3156,16 @@ class EffectGameObject : EnhancedGameObject {
 	int m_channelValue;
 	// property 117
 	bool m_isReverse;
-	PAD = android32 0xb;
+	PAD = android32 0xb, win 0xb, android64 0xb;
 	// property 12
 	int m_secretCoinID;
-	PAD = android32 0x1c;
+	PAD = android32 0x18, win 0x18, android64 0x1c;
+	cocos2d::CCLabelBMFont* m_objectLabel;
 	// property 280
 	bool m_ignoreGroupParent;
 	// property 281
 	bool m_ignoreLinkedObjects;
-	PAD = android32 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1;
 }
 
 [[link(android)]]
@@ -3254,17 +3279,17 @@ class EnhancedGameObject : GameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int);
 	virtual TodoReturn updateAnimateOnTrigger(bool);
 
-	PAD = android32 0x25;
+	PAD = android32 0x25, android64 0x25;
 	
 	bool m_hasCustomAnimation;
 	bool m_hasCustomRotation;
 	// property 98
 	bool m_disableRotation;
-	PAD = android32 0x3;
+	PAD = android32 0x3, android64 0x3;
 	
 	// property 97
 	float m_rotationSpeed;
-	PAD = android32 0xc;
+	PAD = android32 0xc, android64 0xc;
 	
 	// property 106
 	bool m_animationRandomizedStart;
@@ -3282,7 +3307,7 @@ class EnhancedGameObject : GameObject {
 	int m_singleFrame;
 	// property 592
 	bool m_animationOffset;
-	PAD = android32 0xf;
+	PAD = android32 0xf, android64 0xf;
 	
 	// property 214
 	bool m_animateOnlyWhenActive;
@@ -3290,7 +3315,7 @@ class EnhancedGameObject : GameObject {
 	bool m_isNoMultiActivate; // used in platformer stuff
 	// property 99
 	bool m_isMultiActivate;
-	PAD = android32 0x4;
+	PAD = android32 0x4, android64 0x4;
 }
 
 [[link(android)]]
@@ -3830,7 +3855,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn friendRequestFromAccountID(int);
 	TodoReturn friendRequestWasRemoved(int, bool);
 	TodoReturn getAccountCommentKey(int, int);
-	TodoReturn getAccountComments(int, int, int);
+	void getAccountComments(int accountID, int page, int total);
 	TodoReturn getActiveDailyID(GJTimedLevelType);
 	TodoReturn getActiveSmartTemplate();
 	TodoReturn getAllSmartTemplates();
@@ -3861,7 +3886,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getGauntletSearchKey(int);
 	TodoReturn getGJChallenges();
 	TodoReturn getGJDailyLevelState(GJTimedLevelType);
-	TodoReturn getGJRewards(int);
+	void getGJRewards(int);
 	TodoReturn getGJUserInfo(int);
 	TodoReturn getHighestLevelOrder();
 	TodoReturn getIntForKey(char const*);
@@ -3869,7 +3894,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
 	TodoReturn getLenKey(int);
 	TodoReturn getLenVal(int);
-	TodoReturn getLevelComments(int, int, int, int, CommentKeyType);
+	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype);
 	TodoReturn getLevelDownloadKey(int, bool);
 	TodoReturn getLevelKey(int);
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode);
@@ -4149,7 +4174,7 @@ class GameLevelManager : cocos2d::CCNode {
 	LevelListDeleteDelegate* m_levelListDeleteDelegate;
 	UserInfoDelegate* m_userInfoDelegate;
 	void* m_unkDelegate;
-	/*UserListDelegate* m_userListDelegate;
+	UserListDelegate* m_userListDelegate;
 	FriendRequestDelegate* m_friendRequestDelegate;
 	MessageListDelegate* m_messageListDelegate;
 	DownloadMessageDelegate* m_downloadMessageDelegate;
@@ -4161,7 +4186,7 @@ class GameLevelManager : cocos2d::CCNode {
 	int m_unkDownload;
 	PAD = win 0x4;
 	gd::string m_unkStr3;
-	cocos2d::CCString* m_unkStr4;*/
+	cocos2d::CCString* m_unkStr4;
 }
 
 [[link(android)]]
@@ -4914,57 +4939,57 @@ class GameObject : CCSpritePlus {
 	virtual void setOrientedRectDirty(bool);
 	virtual void setType(GameObjectType);
 
-	PAD = android32 0xf, win 0xf;
+	PAD = android32 0x11, win 0x11, android64 0x11;
 	
 	// property 511
 	bool m_hasExtendedCollision;
-	PAD = android32 0x13, win 0x13;
+	PAD = android32 0x13, win 0x13, android64 0x13;
 	
 	// somehow related to property 155 and 156 if anyone wants to reverse engineer
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
 	
-	PAD = android32 0x4c, win 0x4c;
+	PAD = android32 0x4c, win 0x4c, android64 0x54;
 
 	cocos2d::CCSprite* m_glowSprite;
 
-	PAD = android32 0x14, win 0x14;
+	PAD = android32 0x14, win 0x14, android64 0x14;
 	
 	gd::string m_particleString;
 	
-	PAD = android32 0x1, win 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1;
 	
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3e, win 0x32;
+	PAD = android32 0x3e, win 0x3e, android64 0x3e;
 	
 	// property 108
 	int m_linkedGroup;
 
-	PAD = android32 0xc, win 0xc;
+	PAD = android32 0xc, win 0xc, android64 0xc;
 
 	cocos2d::CCSprite* m_colorSprite;
 
-	PAD = android32 0x13, win 0x13;
+	PAD = android32 0x13, win 0x13, android64 0x13;
 	
 	int m_uniqueID;
 	GameObjectType m_objectType;
 	
-	PAD = android32 0x10, win 0x10;
+	PAD = android32 0x10, win 0x10, android64 0x10;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
-	PAD = android32 0x1, win 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1;
 	
 	// property 372
 	bool m_hasNoAudioScale;
-	PAD = android32 0x2a, win 0x2a;
+	PAD = android32 0x2a, win 0x2a, android64 0x2a;
 	
 	// property 343
 	short m_enterChannel;
 	// property 446
 	short m_objectMaterial;
-	PAD = android32 0x4, win 0x4;
+	PAD = android32 0x4, win 0x4, android64 0x4;
 	
 	// property 96
 	bool m_hasNoGlow;
@@ -4974,7 +4999,7 @@ class GameObject : CCSpritePlus {
 	
 	// property 1
 	int m_objectID;
-	PAD = android32 0x8, win 0x8;
+	PAD = android32 0x8, win 0x8, android64 0x8;
 	
 	// property 497
 	short m_customColorType;
@@ -4986,26 +5011,26 @@ class GameObject : CCSpritePlus {
 	bool m_hasNoEffects;
 	// property 507
 	bool m_hasNoParticles;
-	PAD = android32 0x16, win 0x16;
+	PAD = android32 0x16, win 0x16, android64 0x16;
 	
 	// property 53
 	int m_property53;
-	PAD = android32 0x18, win 0x18;
+	PAD = android32 0x18, win 0x18, android64 0x18;
 	
 	// property 21, also used with 41 and 43
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
-	PAD = android32 0xc;
+	PAD = android32 0xc, win 0xc, android64 0xc;
 	
 	// property 24
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
-	PAD = android32 0x10, win 0x10;
+	PAD = android32 0x10, win 0x10, android64 0x10;
 	
 	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
-	PAD = android32 0x1, win 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1;
 	
 	// property 34
 	bool m_hasGroupParent;
@@ -5032,19 +5057,19 @@ class GameObject : CCSpritePlus {
 	short m_editorLayer;
 	// property 61
 	short m_editorLayer2;
-	PAD = android32 0x8, win 0x8;
+	PAD = android32 0x8, win 0x8, android64 0x8;
 	
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x9, win 0x9;
+	PAD = android32 0x9, win 0x9, android64 0x9;
 	
 	cocos2d::CCPoint m_lastPosition;
 
-	PAD = android32 0x1b, win 0x1b;
+	PAD = android32 0x1b, win 0x1b, android64 0x1b;
 	
 	// property 103
 	bool m_isHighDetail;
-	PAD = android32 0x11, win 0x11;
+	PAD = android32 0x11, win 0x11, android64 0x21;
 	
 	// property 134
 	bool m_isPassable;
@@ -5066,14 +5091,14 @@ class GameObject : CCSpritePlus {
 	bool m_isDontBoostY;
 	// property 509
 	bool m_isDontBoostX;
-	PAD = android32 0x11, win 0x11;
+	PAD = android32 0x11, win 0x11, android64 0x11;
 	
 	// property 155
 	int m_property155;
 	// property 156
 	int m_property156;
 	
-	PAD = android32 0x12, win 0x1e; // TODO: yeah someone pls fix windows pads
+	PAD = android32 0x12, win 0x1e, android64 0x12; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
@@ -5504,6 +5529,10 @@ class GJAccountLoginDelegate {
 [[link(android)]]
 class GJAccountManager : cocos2d::CCNode {
 	// virtual ~GJAccountManager();
+
+	static GJAccountManager* get() {
+		return GJAccountManager::sharedState();
+	}
 
 	static GJAccountManager* sharedState();
 
@@ -6013,6 +6042,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
 	virtual TodoReturn toggleGlitter(bool);
 	virtual TodoReturn destroyPlayer(PlayerObject*, GameObject*);
+	virtual TodoReturn updateDebugDraw();
 	virtual TodoReturn addToSection(GameObject*);
 	virtual TodoReturn addToGroup(GameObject*, int, bool);
 	virtual TodoReturn removeFromGroup(GameObject*, int);
@@ -6113,7 +6143,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_isTestMode;
 	PAD = win 0xa0, android32 0x82, android64 0xb0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = android32 0x20a, android64 0x370;
+	PAD = android32 0xd8, android64 0x190;
+	gd::vector<GameObject*> m_sections;
+	PAD = android32 0x126, android64 0x1c8;
 }
 
 [[link(android)]]
@@ -6706,7 +6738,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	static cocos2d::CCScene* scene();
 	TodoReturn selectTab(IconType);
 	TodoReturn setupIconSelect();
-	TodoReturn setupPage(int, IconType);
+	void setupPage(int, IconType);
 	TodoReturn setupSpecialPage();
 	TodoReturn showUnlockPopupNew(int, UnlockType);
 	TodoReturn titleForUnlock(int, UnlockType);
@@ -8596,7 +8628,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn addDelayedSpawn(EffectGameObject*, float);
 	TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*);
-	TodoReturn addObjectFromVector(gd::vector<gd::string>&, gd::vector<void*>&);
+	GameObject* addObjectFromVector(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn addObjectsAtPosition(cocos2d::CCPoint, cocos2d::CCArray*, cocos2d::CCArray*);
 	TodoReturn addObjectsInRect(cocos2d::CCRect, bool, cocos2d::CCArray*, cocos2d::CCArray*);
 	TodoReturn addObjectToGroup(GameObject*, int);
@@ -8716,7 +8748,6 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateAnimateOnTriggerObjects(bool);
 	TodoReturn updateArt(float);
 	TodoReturn updateBlendValues();
-	TodoReturn updateDebugDraw();
 	TodoReturn updateEditor(float);
 	TodoReturn updateEditorMode();
 	TodoReturn updateGameObjects();
@@ -8739,6 +8770,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn updateVisibility(float);
 	virtual TodoReturn playerTookDamage(PlayerObject*);
 	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
+	virtual TodoReturn updateDebugDraw();
 	virtual TodoReturn addToGroup(GameObject*, int, bool);
 	virtual TodoReturn removeFromGroup(GameObject*, int);
 	virtual TodoReturn updateObjectSection(GameObject*);
@@ -11307,7 +11339,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 
 	static SecretLayer2* create();
 
-	TodoReturn getBasicMessage();
+	gd::string getBasicMessage();
 	TodoReturn getErrorMessage();
 	TodoReturn getMessage();
 	TodoReturn getThreadMessage();
@@ -11321,7 +11353,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn selectAThread();
 	TodoReturn showCompletedLevel();
 	TodoReturn showSecretLevel();
-	TodoReturn updateMessageLabel(gd::string);
+	void updateMessageLabel(gd::string);
 	void updateSearchLabel(char const*);
 
 	virtual bool init();
