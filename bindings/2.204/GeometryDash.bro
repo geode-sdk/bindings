@@ -5079,7 +5079,7 @@ class GameObject : CCSpritePlus {
 	// property 156
 	int m_property156;
 
-	PAD = android32 0x12; // TODO: yeah someone pls fix windows pads (may be fixed now)
+	PAD = android32 0x12, win 0xE; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
