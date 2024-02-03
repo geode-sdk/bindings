@@ -4934,7 +4934,9 @@ class GameObject : CCSpritePlus {
 	virtual void setOrientedRectDirty(bool);
 	virtual void setType(GameObjectType);
 
-	PAD = android32 0x11, win 0x11, android64 0x11;
+	// windows members may be wrong! yay!
+
+	PAD = android32 0x11, win 0xf, android64 0x11; // i will not question the windows pad
 	
 	// property 511
 	bool m_hasExtendedCollision;
@@ -5016,7 +5018,7 @@ class GameObject : CCSpritePlus {
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
-	PAD = android32 0xc, win 0xc, android64 0xc;
+	PAD = android32 0xc, win 0xa, android64 0xc; // i will not question the windows pad
 	
 	// property 24
 	ZLayer m_zLayer;
