@@ -647,7 +647,17 @@ public class SyncBromaScript extends GhidraScript {
                 // Disable packing
                 classDataMembers.setPackingEnabled(false);
 
+                // Remove zero-length members at the beginning
+                // Necessary ones are added after
+                while(true) {
+                    var memberToRemove = classDataMembers.getComponent(0);
+                    if (memberToRemove.getLength() == 0)
+                        classDataMembers.delete(0);
+                    else break;
+                }
+
                 var offset = 0;
+                var last_ord = 0;
                 for (var mem : cls.members) {
                     var length = mem.name.isPresent() ?
                         wrapper.addOrGetType(mem.type.get()).getLength() :
@@ -674,32 +684,54 @@ public class SyncBromaScript extends GhidraScript {
                     // If this is a real ass member, add it to the class
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
-                        classDataMembers.replaceAtOffset(offset, memType, memType.getLength(), mem.name.get().value, null);
+                        var member = classDataMembers.replaceAtOffset(offset, memType, memType.getLength(), mem.name.get().value, null);
+                        // Remove zero-length members that come after this member
+                        // Necessary ones are added after
+                        while(member.getOrdinal() + 1 < classDataMembers.getNumComponents()) {
+                            var memberToRemove = classDataMembers.getComponent(member.getOrdinal() + 1);
+                            if (memberToRemove.getLength() == 0)
+                                classDataMembers.delete(member.getOrdinal() + 1);
+                            else break;
+                        }
                         offset += memType.getLength();
+                        last_ord = member.getOrdinal() + 1;
                     }
                     // Otherwise add padding members
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
                             var padLength = mem.paddings.get(args.platform);
                             for (int i = 0; i < padLength; i += 1) {
-                                classDataMembers.replaceAtOffset(
+                                var member = classDataMembers.replaceAtOffset(
                                     offset + i, Undefined1DataType.dataType, 1, null,
                                     new PaddingInfo(mem.paddings, offset).toString()
                                 );
+                                // Remove zero-length members that come after this member
+                                // Necessary ones are added after
+                                while(member.getOrdinal() + 1 < classDataMembers.getNumComponents()) {
+                                    var memberToRemove = classDataMembers.getComponent(member.getOrdinal() + 1);
+                                    if (memberToRemove.getLength() == 0)
+                                        classDataMembers.delete(member.getOrdinal() + 1);
+                                    else break;
+                                }
+                                last_ord = member.getOrdinal() + 1;
                             }
                             offset += padLength;
                         }
                         // Sometimes paddings are not included for specific platform,
                         // this pseudo-member has zero length and metadata for other platforms
-                        // Running the sync script will create multiple of these but it doesnt make any difference in RE
                         else {
-                            classDataMembers.insertAtOffset(
+                            var member = classDataMembers.insertAtOffset(
                                 offset, new ArrayDataType(Undefined1DataType.dataType, 0, 1), 0, null,
                                 new PaddingInfo(mem.paddings, offset).toString()
                             );
+                            last_ord = member.getOrdinal() + 1;
                         }
                     }
                 }
+                classDataMembers.insert(
+                    last_ord, new ArrayDataType(Undefined1DataType.dataType, 0, 1), 0, null,
+                    "End of BROMA Structure"
+                );
             }
         }
     }
