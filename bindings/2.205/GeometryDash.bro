@@ -824,7 +824,17 @@ class CCLightStrip : cocos2d::CCNode {
 
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
-	// virtual ~CCMenuItemSpriteExtra();
+	~CCMenuItemSpriteExtra() {}
+	CCMenuItemSpriteExtra() {
+		m_scaleMultiplier = 1.0f;
+		m_baseScale = 1.0f;
+		m_animationEnabled = true;
+		m_colorEnabled = false;
+		m_unknown1 = 0.0f;
+		m_colorDip = 0.0f;
+		m_animationType = MenuAnimationType::Scale;
+		m_unknown4 = 0;
+	}
 
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 
@@ -2824,10 +2834,17 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	
 	// TODO: android64 absolutely wrong
-	PAD = android32 0xd4, android64 0x124;
-	EditButtonBar* m_editButtonBar;
+	PAD = android32 0x64, android64 0x7c;
+
+	EditButtonBar* m_buttonBar;
+
+	PAD = android32 0x68, android64 0x98;
+
+	EditButtonBar* m_createButtonBar;
+    EditButtonBar* m_editButtonBar;
+    Slider* m_positionSlider;
 	
-	PAD = android32 0x30;
+	PAD = android32 0x2c;
 	
 	cocos2d::CCArray* m_selectedObjects;
 	// LevelEditorLayer* m_editorLayer; // 0x340
@@ -6117,7 +6134,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_isTestMode;
 	PAD = win 0xa0, android32 0x82, android64 0xb0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = android32 0x20a, android64 0x370;
+	PAD = android32 0xd8, android64 0x190;
+	gd::vector<GameObject*> m_sections;
+	PAD = android32 0x126, android64 0x1c8;
 }
 
 [[link(android)]]
@@ -8600,7 +8619,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn addDelayedSpawn(EffectGameObject*, float);
 	TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*);
-	TodoReturn addObjectFromVector(gd::vector<gd::string>&, gd::vector<void*>&);
+	GameObject* addObjectFromVector(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn addObjectsAtPosition(cocos2d::CCPoint, cocos2d::CCArray*, cocos2d::CCArray*);
 	TodoReturn addObjectsInRect(cocos2d::CCRect, bool, cocos2d::CCArray*, cocos2d::CCArray*);
 	TodoReturn addObjectToGroup(GameObject*, int);
