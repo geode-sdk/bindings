@@ -2711,7 +2711,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn positionWithoutOffset(GameObject*);
 	TodoReturn processSelectObjects(cocos2d::CCArray*);
 	TodoReturn processSmartObjectsFromType(int, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*);
-	TodoReturn recreateButtonTabs() = win 0xa8a60;
+	void recreateButtonTabs() = win 0xa8a60;
 	TodoReturn redoLastAction(cocos2d::CCObject*) = win 0xc9ba0;
 	TodoReturn reloadCustomItems();
 	TodoReturn removeOffset(GameObject*) = win 0xd7cf0;
@@ -5869,7 +5869,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn resetLevelVariables() = win 0x1bdb10;
 	TodoReturn resetMoveOptimizedValue();
 	TodoReturn resetPlayer();
-	TodoReturn resetSongTriggerValues() = win 0x3bf30;
+	void resetSongTriggerValues() = win 0x3bf30;
 	TodoReturn resetSpawnChannelIndex() = win 0x1c7e40;
 	TodoReturn resetStaticCamera(bool, bool);
 	TodoReturn resetStoppedAreaObjects();
@@ -8629,7 +8629,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn addPlayer2Point(cocos2d::CCPoint, bool);
 	TodoReturn addPlayerCollisionBlock();
 	TodoReturn addPlayerPoint(cocos2d::CCPoint);
-	TodoReturn addSpecial(GameObject*) = win 0x23ec50;
+	void addSpecial(GameObject*) = win 0x23ec50;
 	TodoReturn addToRedoList(UndoObject*);
 	TodoReturn addTouchPoint(cocos2d::CCPoint) = win 0x2509d0;
 	TodoReturn addToUndoList(UndoObject*, bool);
@@ -9084,7 +9084,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	TodoReturn playCoinEffect();
 	TodoReturn playStep2();
 	TodoReturn playStep3();
-	TodoReturn updateDynamicPage(GJGameLevel*) = win 0x269a80;
+	void updateDynamicPage(GJGameLevel*) = win 0x269a80;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -9176,7 +9176,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual TodoReturn updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = win 0x268790;
+	virtual void updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = win 0x268790;
 	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint);
 }
 
@@ -9357,7 +9357,7 @@ class LevelTools {
 	static gd::string urlForAudio(int) = win 0x273a00;
 	TodoReturn valueForSpeedMod(int) = win 0x274380;
 	TodoReturn verifyLevelIntegrity(gd::string, int) = win 0x2751d0;
-	gd::string ytURLForArtist(int) = win 0x273ed0;
+	static gd::string ytURLForArtist(int) = win 0x273ed0;
 }
 
 [[link(android)]]
@@ -13769,7 +13769,7 @@ class SongCell : TableViewCell {
 	// virtual ~SongCell();
 	SongCell(char const*, float, float);
 
-	TodoReturn loadFromObject(SongObject*) = win 0x82cb0;
+	void loadFromObject(SongObject*) = win 0x82cb0;
 	void onClick(cocos2d::CCObject* sender);
 	TodoReturn updateBGColor(int);
 
@@ -13864,15 +13864,15 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 
 	static SongSelectNode* create(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool);
 
-	TodoReturn audioNext(cocos2d::CCObject*) = win 0x92270;
-	TodoReturn audioPrevious(cocos2d::CCObject*) = win 0x922b0;
+	void audioNext(cocos2d::CCObject*) = win 0x92270;
+	void audioPrevious(cocos2d::CCObject*) = win 0x922b0;
 	bool init(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool) = win 0x91a70;
 	void onOpenCustomSong(cocos2d::CCObject* sender) = win 0x92500;
 	void onSongMode(cocos2d::CCObject* sender) = win 0x922f0;
-	TodoReturn onSongMode(int) = win 0x92310;
+	void onSongMode(int) = win 0x92310;
 	TodoReturn selectSong(int);
 	TodoReturn showCustomSongSelect();
-	TodoReturn updateAudioLabel() = win 0x92160;
+	void updateAudioLabel() = win 0x92160;
 	TodoReturn updateWidgetVisibility();
 
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
@@ -14067,9 +14067,9 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 	void onTOS(cocos2d::CCObject* sender);
 	TodoReturn sendSupportMail();
 
-	virtual TodoReturn customSetup() = win 0x3bbcc0;
-	virtual TodoReturn uploadActionFinished(int, int) = win 0x3bcbc0;
-	virtual TodoReturn uploadActionFailed(int, int) = win 0x3bcc20;
+	virtual void customSetup() = win 0x3bbcc0;
+	virtual void uploadActionFinished(int, int) = win 0x3bcbc0;
+	virtual void uploadActionFailed(int, int) = win 0x3bcc20;
 	virtual TodoReturn onClosePopup(UploadActionPopup*);
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 }
