@@ -5509,6 +5509,10 @@ class GJAccountManager : cocos2d::CCNode {
 	// virtual ~GJAccountManager();
 	// GJAccountManager() = win 0x18a400;
 
+	static GJAccountManager* get() {
+		return GJAccountManager::sharedState();
+	}
+
 	static GJAccountManager* sharedState() = win 0x18a510;
 
 	TodoReturn addDLToActive(char const*, cocos2d::CCObject*) = win 0x18aba0;

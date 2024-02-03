@@ -5505,6 +5505,10 @@ class GJAccountLoginDelegate {
 class GJAccountManager : cocos2d::CCNode {
 	// virtual ~GJAccountManager();
 
+	static GJAccountManager* get() {
+		return GJAccountManager::sharedState();
+	}
+
 	static GJAccountManager* sharedState();
 
 	TodoReturn addDLToActive(char const*, cocos2d::CCObject*);
