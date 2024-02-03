@@ -7412,6 +7412,11 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 
 [[link(android)]]
 class GJAccountManager : cocos2d::CCNode {
+
+	static GJAccountManager* get() {
+		return GJAccountManager::sharedState();
+	}
+	
 	~GJAccountManager();
 
 	TodoReturn getDLObject(char const*);
