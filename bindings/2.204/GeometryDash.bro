@@ -3592,7 +3592,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn preloadMusic(gd::string, bool, int);
 	TodoReturn printResult(FMOD_RESULT);
 	TodoReturn queuedEffectFinishedLoading(gd::string) = win 0x391f0;
-	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int);
+	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x4361f0;
 	TodoReturn queueStartMusic(gd::string, float, float, float, bool, int, int, int, int, int, bool, int, bool);
 	TodoReturn registerChannel(FMOD::Channel*, int, int) = win 0x36410;
 	TodoReturn releaseRemovedSounds();
