@@ -6371,8 +6371,8 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn createTransformCommand(double, double, double, double, bool, float, int, int, int, float, bool, bool, int, int);
 	TodoReturn getAllColorActions();
 	TodoReturn getAllColorSprites();
-	TodoReturn getColorAction(int);
-	TodoReturn getColorSprite(int);
+	ColorAction* getColorAction(int);
+	ColorActionSprite* getColorSprite(int);
 	TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
 	TodoReturn getMixedColor(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
 	TodoReturn getMoveCommandNode(GroupCommandObject2*);
@@ -10349,6 +10349,7 @@ class ParticleGameObject : EnhancedGameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int);
 	virtual TodoReturn updateAnimateOnTrigger(bool);
 
+	// property 145
 	gd::string m_particleData;
 	PAD = android32 0x110;
 	

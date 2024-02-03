@@ -6391,8 +6391,8 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn createTransformCommand(double, double, double, double, bool, float, int, int, int, float, bool, bool, int, int);
 	TodoReturn getAllColorActions();
 	TodoReturn getAllColorSprites();
-	TodoReturn getColorAction(int) = win 0x1dbe80;
-	TodoReturn getColorSprite(int) = win 0x1dbf00;
+	ColorAction* getColorAction(int) = win 0x1dbe80;
+	ColorActionSprite* getColorSprite(int) = win 0x1dbf00;
 	TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
 	TodoReturn getMixedColor(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
 	TodoReturn getMoveCommandNode(GroupCommandObject2*);
