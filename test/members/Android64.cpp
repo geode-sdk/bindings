@@ -54,7 +54,9 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xdb8);
 //^ figuring the actual position of this member is left as an exercise to the reader
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0x10dc);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3208);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x3238);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3300);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34a8);
 
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x1d8);
 GEODE_MEMBER_CHECK(GameManager, m_levelEditorLayer, 0x1e0);
@@ -74,6 +76,8 @@ GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2C8);
 
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x3788);
 
-GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
 
+GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x250);
+GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
+GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x300);
 #endif

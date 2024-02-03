@@ -824,7 +824,17 @@ class CCLightStrip : cocos2d::CCNode {
 
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
-	// virtual ~CCMenuItemSpriteExtra();
+	~CCMenuItemSpriteExtra() {}
+	CCMenuItemSpriteExtra() {
+		m_scaleMultiplier = 1.0f;
+		m_baseScale = 1.0f;
+		m_animationEnabled = true;
+		m_colorEnabled = false;
+		m_unknown1 = 0.0f;
+		m_colorDip = 0.0f;
+		m_animationType = MenuAnimationType::Scale;
+		m_unknown4 = 0;
+	}
 
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 
@@ -2531,6 +2541,11 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual TodoReturn customSetup();
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+
+	bool m_saved;
+    CCMenuItemSpriteExtra* m_guidelinesOffButton;
+    CCMenuItemSpriteExtra* m_guidelinesOnButton;
+    LevelEditorLayer* m_editorLayer;
 }
 
 [[link(android)]]
@@ -2824,10 +2839,17 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	
 	// TODO: android64 absolutely wrong
-	PAD = android32 0xd4, android64 0x124;
-	EditButtonBar* m_editButtonBar;
+	PAD = android32 0x64, android64 0x7c;
+
+	EditButtonBar* m_buttonBar;
+
+	PAD = android32 0x68, android64 0x98;
+
+	EditButtonBar* m_createButtonBar;
+    EditButtonBar* m_editButtonBar;
+    Slider* m_positionSlider;
 	
-	PAD = android32 0x30;
+	PAD = android32 0x2c;
 	
 	cocos2d::CCArray* m_selectedObjects;
 	// LevelEditorLayer* m_editorLayer; // 0x340
@@ -3379,7 +3401,7 @@ class ExtendedLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class FileOperation {
-	TodoReturn getFilePath();
+	gd::string getFilePath();
 	TodoReturn readFile();
 	TodoReturn saveFile();
 }
@@ -3427,7 +3449,11 @@ class FindObjectPopup : SetIDPopup {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-	// virtual ~FLAlertLayer();
+	~FLAlertLayer() {
+		if (m_forcePrioRegistered) {
+			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
+		}
+	}
 	FLAlertLayer() {
 		m_buttonMenu = nullptr;
 		m_controlConnected = -1;
@@ -3826,7 +3852,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn friendRequestFromAccountID(int);
 	TodoReturn friendRequestWasRemoved(int, bool);
 	TodoReturn getAccountCommentKey(int, int);
-	TodoReturn getAccountComments(int, int, int);
+	void getAccountComments(int accountID, int page, int total);
 	TodoReturn getActiveDailyID(GJTimedLevelType);
 	TodoReturn getActiveSmartTemplate();
 	TodoReturn getAllSmartTemplates();
@@ -3857,7 +3883,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getGauntletSearchKey(int);
 	TodoReturn getGJChallenges();
 	TodoReturn getGJDailyLevelState(GJTimedLevelType);
-	TodoReturn getGJRewards(int);
+	void getGJRewards(int);
 	TodoReturn getGJUserInfo(int);
 	TodoReturn getHighestLevelOrder();
 	TodoReturn getIntForKey(char const*);
@@ -3865,7 +3891,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
 	TodoReturn getLenKey(int);
 	TodoReturn getLenVal(int);
-	TodoReturn getLevelComments(int, int, int, int, CommentKeyType);
+	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype);
 	TodoReturn getLevelDownloadKey(int, bool);
 	TodoReturn getLevelKey(int);
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode);
@@ -4145,7 +4171,7 @@ class GameLevelManager : cocos2d::CCNode {
 	LevelListDeleteDelegate* m_levelListDeleteDelegate;
 	UserInfoDelegate* m_userInfoDelegate;
 	void* m_unkDelegate;
-	/*UserListDelegate* m_userListDelegate;
+	UserListDelegate* m_userListDelegate;
 	FriendRequestDelegate* m_friendRequestDelegate;
 	MessageListDelegate* m_messageListDelegate;
 	DownloadMessageDelegate* m_downloadMessageDelegate;
@@ -4157,7 +4183,7 @@ class GameLevelManager : cocos2d::CCNode {
 	int m_unkDownload;
 	PAD = win 0x4;
 	gd::string m_unkStr3;
-	cocos2d::CCString* m_unkStr4;*/
+	cocos2d::CCString* m_unkStr4;
 }
 
 [[link(android)]]
@@ -4916,10 +4942,15 @@ class GameObject : CCSpritePlus {
 	bool m_hasExtendedCollision;
 	PAD = android32 0x13, win 0x13;
 	
-	cocos2d::CCSprite* m_baseSprite;
-	cocos2d::CCSprite* m_detailSprite;
+	// somehow related to property 155 and 156 if anyone wants to reverse engineer
+	int m_activeMainColorID;
+	int m_activeDetailColorID;
 	
-	PAD = android32 0x64, win 0x64;
+	PAD = android32 0x4c, win 0x4c;
+
+	cocos2d::CCSprite* m_glowSprite;
+
+	PAD = android32 0x14, win 0x14;
 	
 	gd::string m_particleString;
 	
@@ -4931,12 +4962,17 @@ class GameObject : CCSpritePlus {
 	
 	// property 108
 	int m_linkedGroup;
-	PAD = android32 0x23, win 0x23;
+
+	PAD = android32 0xc, win 0xc;
+
+	cocos2d::CCSprite* m_colorSprite;
+
+	PAD = android32 0x13, win 0x13;
 	
 	int m_uniqueID;
 	GameObjectType m_objectType;
 	
-	PAD = android32 0x14, win 0x14;
+	PAD = android32 0x10, win 0x10;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
@@ -5008,7 +5044,11 @@ class GameObject : CCSpritePlus {
 	short m_groupCount;
 	// used with property 274
 	bool m_hasGroupParentsString;
-	PAD = android32 0xf, win 0xf;
+	
+	std::array<short, 10>* m_colorGroups;
+	short m_colorGroupCount;
+	std::array<short, 10>* m_opacityGroups;
+	short m_opacityGroupCount;
 	
 	// property 20
 	short m_editorLayer;
@@ -5018,7 +5058,11 @@ class GameObject : CCSpritePlus {
 	
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x2c, win 0x2c;
+	PAD = android32 0x9, win 0x9;
+	
+	cocos2d::CCPoint m_lastPosition;
+
+	PAD = android32 0x1b, win 0x1b;
 	
 	// property 103
 	bool m_isHighDetail;
@@ -5051,7 +5095,7 @@ class GameObject : CCSpritePlus {
 	// property 156
 	int m_property156;
 	
-	PAD = android32 0x12, win 0x26; // TODO: yeah someone pls fix windows pads
+	PAD = android32 0x12, win 0x1e; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
@@ -5482,6 +5526,10 @@ class GJAccountLoginDelegate {
 [[link(android)]]
 class GJAccountManager : cocos2d::CCNode {
 	// virtual ~GJAccountManager();
+
+	static GJAccountManager* get() {
+		return GJAccountManager::sharedState();
+	}
 
 	static GJAccountManager* sharedState();
 
@@ -6077,9 +6125,23 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = android32 0x114, android64 0x1ec;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = win 0xd2, android32 0xb0, android64 0xf4;
+	float m_unk2a80;
+	cocos2d::CCNode* m_unk2a84;
+	int m_unk2a88;
+	float m_unk2a8c;
+	int m_unk2a90;
+	int m_unk2a94;
+	int m_unk2a98;
+	cocos2d::CCDictionary* m_unk2a9c;
+	float m_levelLength;
+	int m_unk2aa4;
+	EndPortalObject* m_endPortal;
+	bool m_isTestMode;
+	PAD = win 0xa0, android32 0x82, android64 0xb0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = android32 0x20a, android64 0x370;
+	PAD = android32 0xd8, android64 0x190;
+	gd::vector<GameObject*> m_sections;
+	PAD = android32 0x126, android64 0x1c8;
 }
 
 [[link(android)]]
@@ -6672,7 +6734,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	static cocos2d::CCScene* scene();
 	TodoReturn selectTab(IconType);
 	TodoReturn setupIconSelect();
-	TodoReturn setupPage(int, IconType);
+	void setupPage(int, IconType);
 	TodoReturn setupSpecialPage();
 	TodoReturn showUnlockPopupNew(int, UnlockType);
 	TodoReturn titleForUnlock(int, UnlockType);
@@ -8562,7 +8624,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn addDelayedSpawn(EffectGameObject*, float);
 	TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*);
-	TodoReturn addObjectFromVector(gd::vector<gd::string>&, gd::vector<void*>&);
+	GameObject* addObjectFromVector(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn addObjectsAtPosition(cocos2d::CCPoint, cocos2d::CCArray*, cocos2d::CCArray*);
 	TodoReturn addObjectsInRect(cocos2d::CCRect, bool, cocos2d::CCArray*, cocos2d::CCArray*);
 	TodoReturn addObjectToGroup(GameObject*, int);
@@ -8726,7 +8788,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	
 	geode::SeedValueRSV m_coinCount;
 	
-	PAD = android32 0x34, android64 0xe8;
+	PAD = android32 0x30, android64 0xe8;
 
 	EditorUI* m_editorUI;
 	
@@ -10746,8 +10808,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn delayedFullReset();
 	TodoReturn delayedResetLevel();
 	TodoReturn fullReset();
-	TodoReturn getCurrentPercent();
-	TodoReturn getCurrentPercentInt();
+	float getCurrentPercent();
+	int getCurrentPercentInt();
 	TodoReturn getEndPosition();
 	TodoReturn getLastCheckpoint();
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
@@ -10894,7 +10956,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool isCorrect(char const*);
 	bool isOnWatchlist(int);
 	TodoReturn loadPage(int);
-	TodoReturn loadPageFromUserInfo(GJUserScore*);
+	void loadPageFromUserInfo(GJUserScore*);
 	void onBlockUser(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onComment(cocos2d::CCObject* sender);
@@ -11273,7 +11335,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 
 	static SecretLayer2* create();
 
-	TodoReturn getBasicMessage();
+	gd::string getBasicMessage();
 	TodoReturn getErrorMessage();
 	TodoReturn getMessage();
 	TodoReturn getThreadMessage();
@@ -11287,7 +11349,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn selectAThread();
 	TodoReturn showCompletedLevel();
 	TodoReturn showSecretLevel();
-	TodoReturn updateMessageLabel(gd::string);
+	void updateMessageLabel(gd::string);
 	void updateSearchLabel(char const*);
 
 	virtual bool init();
@@ -14401,7 +14463,7 @@ class UIButtonConfig {
 }
 
 [[link(android)]]
-class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
+class UILayer : cocos2d::CCLayerColor {
 	// virtual ~UILayer();
 
 	static UILayer* create(GJBaseGameLayer*);
@@ -14437,6 +14499,12 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual void keyUp(cocos2d::enumKeyCodes);
+
+	// This member is here because rob managed to inhert CCKeyboardDelegate twice
+	// in this class, which ended up breaking addresser when trying to hook it.
+	// so instead, we removed the second CCKeyboardDelegate from the base class list
+	// and put this member here to take the place of its vtable
+	void* m_stupidDelegate;
 }
 
 [[link(android)]]

@@ -37,7 +37,7 @@ public class Regexes {
                 // Grab name
                 "class (?<name>{0})\\s+(?::.*?)?" + 
                 // Grab body (assuming closing brace is on its own line without any preceding whitespace)
-                "\\'{'(?<body>.*?)^\\'}'",
+                "\\'{'(?<body>.*?)(?<closingbrace>^\\'})'",
                 className
             ),
             Pattern.DOTALL | Pattern.MULTILINE
@@ -84,13 +84,14 @@ public class Regexes {
                 // Must match start of line (MULTILINE flag required) - also requires that the 
                 // function not be intended more than 4 spaces or a single tab
                 "(?<=^(?:(?: '{'0,4'}')|\\t))" + 
+                "(?<comments>(?://(?:.*\\n))+(?:(?: '{'0,4'}')|\\t))?" + 
                 // Grab member
                 "(?:(?<type>{0})\\s+(?<name>{1})\\s*;)|" + 
                 // Or padding
                 "(?:PAD\\s*=\\s*(?<platforms>(?:\\w+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+);)",
                 GRAB_TYPE, memberName
             ),
-            Pattern.DOTALL | Pattern.MULTILINE
+            Pattern.MULTILINE
         );
     }
 
