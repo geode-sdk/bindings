@@ -657,6 +657,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
 
                 var offset = 0;
+                var last_ord = 0;
                 for (var mem : cls.members) {
                     var length = mem.name.isPresent() ?
                         wrapper.addOrGetType(mem.type.get()).getLength() :
@@ -693,6 +694,7 @@ public class SyncBromaScript extends GhidraScript {
                             else break;
                         }
                         offset += memType.getLength();
+                        last_ord = member.getOrdinal() + 1;
                     }
                     // Otherwise add padding members
                     else {
@@ -711,21 +713,25 @@ public class SyncBromaScript extends GhidraScript {
                                         classDataMembers.delete(member.getOrdinal() + 1);
                                     else break;
                                 }
+                                last_ord = member.getOrdinal() + 1;
                             }
                             offset += padLength;
                         }
                         // Sometimes paddings are not included for specific platform,
                         // this pseudo-member has zero length and metadata for other platforms
-                        // Running the sync script will create multiple of these but it doesnt make any difference in RE
                         else {
-                            wrapper.printfmt("ZEROLENGTH {0}", offset);
-                            classDataMembers.insertAtOffset(
+                            var member = classDataMembers.insertAtOffset(
                                 offset, new ArrayDataType(Undefined1DataType.dataType, 0, 1), 0, null,
                                 new PaddingInfo(mem.paddings, offset).toString()
                             );
+                            last_ord = member.getOrdinal() + 1;
                         }
                     }
                 }
+                classDataMembers.insert(
+                    last_ord, new ArrayDataType(Undefined1DataType.dataType, 0, 1), 0, null,
+                    "End of BROMA Structure"
+                );
             }
         }
     }
