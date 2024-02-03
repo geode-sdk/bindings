@@ -2843,8 +2843,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	EditButtonBar* m_buttonBar;
 
-	PAD = android32 0x68, android64 0x98;
+	PAD = android32 0x58, android64 0x78;
 
+	GJTransformControl* m_transformControl;
+	PAD = android32 0xc, android64 0x18;
 	EditButtonBar* m_createButtonBar;
     EditButtonBar* m_editButtonBar;
     Slider* m_positionSlider;
@@ -4937,7 +4939,7 @@ class GameObject : CCSpritePlus {
 	virtual void setOrientedRectDirty(bool);
 	virtual void setType(GameObjectType);
 
-	PAD = android32 0xf, win 0xf, android64 0x11;
+	PAD = android32 0x11, win 0x11, android64 0x11;
 	
 	// property 511
 	bool m_hasExtendedCollision;
@@ -4959,7 +4961,7 @@ class GameObject : CCSpritePlus {
 	
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3e, win 0x32, android64 0x3e;
+	PAD = android32 0x3e, win 0x3e, android64 0x3e;
 	
 	// property 108
 	int m_linkedGroup;
