@@ -9987,8 +9987,8 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn addDLToActive(char const*);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x2828d0;
 	TodoReturn addSongObjectFromString(gd::string);
-	TodoReturn clearSong(int);
-	TodoReturn clearUnusedSongs();
+	void clearSong(int) = win 0x283620;
+	void clearUnusedSongs() = win 0x2836f0;
 	TodoReturn createSongsInfo(gd::string);
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn deleteSFX(int);
@@ -9999,7 +9999,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn downloadSFXFailed(int, GJSongError);
 	TodoReturn downloadSFXFinished(int);
 	TodoReturn downloadSFXLibrary() = win 0x286940;
-	TodoReturn downloadSong(int);
+	void downloadSong(int) = win 0x283780;
 	TodoReturn downloadSongFailed(int, GJSongError);
 	TodoReturn downloadSongFinished(int);
 	TodoReturn encodeDataTo(DS_Dictionary*);
