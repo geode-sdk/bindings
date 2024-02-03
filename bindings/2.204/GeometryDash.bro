@@ -10375,7 +10375,7 @@ class ParticleGameObject : EnhancedGameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int);
 	virtual TodoReturn updateAnimateOnTrigger(bool);
 
-	char* m_particleData;
+	gd::string m_particleData;
 	PAD = android32 0x110;
 
 	// property 147
@@ -14327,7 +14327,7 @@ class TextGameObject : GameObject {
 	virtual TodoReturn updateTextKerning(int);
 	virtual TodoReturn getTextKerning();
 
-	char* m_text;
+	gd::string m_text;
 	// property 488
 	int m_kerning;
 }
