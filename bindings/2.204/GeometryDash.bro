@@ -4934,7 +4934,9 @@ class GameObject : CCSpritePlus {
 	virtual void setOrientedRectDirty(bool);
 	virtual void setType(GameObjectType);
 
-	PAD = android32 0x11, win 0x11, android64 0x11;
+	// windows members may be wrong! yay!
+
+	PAD = android32 0x11, win 0xf, android64 0x11; // i will not question the windows pad
 	
 	// property 511
 	bool m_hasExtendedCollision;
@@ -5016,7 +5018,7 @@ class GameObject : CCSpritePlus {
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
-	PAD = android32 0xc, win 0xc, android64 0xc;
+	PAD = android32 0xc, win 0xa, android64 0xc; // i will not question the windows pad
 	
 	// property 24
 	ZLayer m_zLayer;
@@ -6035,6 +6037,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
 	virtual TodoReturn toggleGlitter(bool);
 	virtual TodoReturn destroyPlayer(PlayerObject*, GameObject*);
+	virtual TodoReturn updateDebugDraw();
 	virtual TodoReturn addToSection(GameObject*) = win 0x1ab800;
 	virtual TodoReturn addToGroup(GameObject*, int, bool) = win 0x1a8ce0;
 	virtual TodoReturn removeFromGroup(GameObject*, int) = win 0x1a8e00;
@@ -8763,7 +8766,6 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateAnimateOnTriggerObjects(bool);
 	TodoReturn updateArt(float);
 	TodoReturn updateBlendValues();
-	TodoReturn updateDebugDraw();
 	TodoReturn updateEditor(float);
 	TodoReturn updateEditorMode() = win 0x2423a0;
 	TodoReturn updateGameObjects();
@@ -8786,6 +8788,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn updateVisibility(float);
 	virtual TodoReturn playerTookDamage(PlayerObject*);
 	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
+	virtual TodoReturn updateDebugDraw();
 	virtual TodoReturn addToGroup(GameObject*, int, bool);
 	virtual TodoReturn removeFromGroup(GameObject*, int);
 	virtual TodoReturn updateObjectSection(GameObject*);
@@ -10372,7 +10375,7 @@ class ParticleGameObject : EnhancedGameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int);
 	virtual TodoReturn updateAnimateOnTrigger(bool);
 
-	char* m_particleData;
+	gd::string m_particleData;
 	PAD = android32 0x110;
 
 	// property 147
@@ -14324,7 +14327,7 @@ class TextGameObject : GameObject {
 	virtual TodoReturn updateTextKerning(int);
 	virtual TodoReturn getTextKerning();
 
-	char* m_text;
+	gd::string m_text;
 	// property 488
 	int m_kerning;
 }
