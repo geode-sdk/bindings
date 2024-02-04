@@ -102,7 +102,7 @@ jobs:
       id: codegen-cache
       uses: actions/cache@v3
       with:
-        path: test/members/build/bindings/codegen
+        path: build/bindings/codegen
         # cache by os since for android32 and 64 the codegen binary is the same
         key: codegen-${{ hashFiles('codegen/**') }}-${{ matrix.config.os }}
 
