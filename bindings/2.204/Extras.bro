@@ -15,7 +15,15 @@ class AdvancedFollowInstance {
 
 class SFXTriggerInstance {
 
-} 
+}
+
+class EventTriggerInstance {
+
+}
+
+class SongChannelState {
+    
+}
 
 class ChanceObject {
 
@@ -34,5 +42,9 @@ class GJTransformState {
 }
 
 class CAState {
+
+}
+
+class GJPointDouble {
 
 }
