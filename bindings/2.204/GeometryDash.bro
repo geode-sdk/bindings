@@ -63,10 +63,10 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
 	TodoReturn createTextLabel(cocos2d::CCPoint, char const*, cocos2d::CCSize);
 	TodoReturn disableNodes();
 	TodoReturn hideLoadingUI();
-	bool init(gd::string);
+	bool init(gd::string) = win 0x55cb0;
 	void onClose(cocos2d::CCObject* sender);
-	void onForgotPassword(cocos2d::CCObject* sender);
-	void onForgotUser(cocos2d::CCObject* sender);
+	void onForgotPassword(cocos2d::CCObject* sender) = win 0x56440;
+	void onForgotUser(cocos2d::CCObject* sender) = win 0x56420;
 	void onSubmit(cocos2d::CCObject* sender);
 	TodoReturn resetLabel(int);
 	TodoReturn resetLabels();
