@@ -171,7 +171,7 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn percentForAchievement(char const*) = win 0x1ab50;
 	TodoReturn reportAchievementWithID(char const*, int, bool) = win 0x1b7e0;
 	TodoReturn reportPlatformAchievementWithID(char const*, int) = win 0x1b8f0;
-	TodoReturn resetAchievement(char const*);
+	TodoReturn resetAchievement(char const*) = win 0x1b730;
 	TodoReturn resetAchievements();
 	TodoReturn setup();
 	TodoReturn storeAchievementUnlocks();
@@ -313,7 +313,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn loadingIsFinished();
 	TodoReturn musicTest() = win 0x5b710;
 	TodoReturn pauseGame() = win 0x5b5e0;
-	TodoReturn pauseSound();
+	TodoReturn pauseSound() = win 0x5b640;
 	TodoReturn platformShutdown();
 	TodoReturn resumeSound() = win 0x5b6c0;
 	void setIdleTimerDisabled(bool);
@@ -836,7 +836,17 @@ class CCLightStrip : cocos2d::CCNode {
 
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
-	// virtual ~CCMenuItemSpriteExtra();
+	~CCMenuItemSpriteExtra() {}
+	CCMenuItemSpriteExtra() {
+		m_scaleMultiplier = 1.0f;
+		m_baseScale = 1.0f;
+		m_animationEnabled = true;
+		m_colorEnabled = false;
+		m_unknown1 = 0.0f;
+		m_colorDip = 0.0f;
+		m_animationType = MenuAnimationType::Scale;
+		m_unknown4 = 0;
+	}
 
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x25830;
 
@@ -844,16 +854,16 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		return CCMenuItemSpriteExtra::create(sprite, nullptr, target, callback);
 	}
 
-	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x258f0;
 	inline void setSizeMult(float mult) {
 		//inlined on windows, member is in CCMenuItemSprite
 		m_scaleMultiplier = mult;
 	}
 	TodoReturn useAnimationType(MenuAnimationType);
 
-	virtual void activate();
-	virtual void selected();
-	virtual void unselected();
+	virtual void activate() = win 0x259d0;
+	virtual void selected() = win 0x25aa0;
+	virtual void unselected() = win 0x25c80;
 
 	float m_scaleMultiplier;
 	float m_baseScale;
@@ -1337,7 +1347,7 @@ class CharacterColorPage : FLAlertLayer {
 	TodoReturn createColorMenu() = win 0x5f630;
 	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	TodoReturn offsetForIndex(int);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x608A0;
 	void onMode(cocos2d::CCObject* sender);
 	void onPlayerColor(cocos2d::CCObject* sender);
 	TodoReturn toggleGlow(cocos2d::CCObject*);
@@ -2539,6 +2549,11 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0xa3080;
 	virtual TodoReturn customSetup() = win 0xa0730;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0xa2fc0;
+
+	bool m_saved;
+    CCMenuItemSpriteExtra* m_guidelinesOffButton;
+    CCMenuItemSpriteExtra* m_guidelinesOnButton;
+    LevelEditorLayer* m_editorLayer;
 }
 
 [[link(android)]]
@@ -2594,7 +2609,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn deactivateRotationControl();
 	TodoReturn deactivateScaleControl() = win 0xcc2d0;
 	TodoReturn deactivateTransformControl() = win 0xcc800;
-	TodoReturn deleteObject(GameObject*, bool) = win 0xaa120;
+	void deleteObject(GameObject*, bool) = win 0xaa120;
 	TodoReturn deleteSmartBlocksFromObjects(cocos2d::CCArray*);
 	TodoReturn deleteTypeFromObjects(int, cocos2d::CCArray*);
 	TodoReturn deselectAll() = win 0xc9600;
@@ -2714,7 +2729,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn positionWithoutOffset(GameObject*);
 	TodoReturn processSelectObjects(cocos2d::CCArray*);
 	TodoReturn processSmartObjectsFromType(int, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*);
-	TodoReturn recreateButtonTabs();
+	void recreateButtonTabs() = win 0xa8a60;
 	TodoReturn redoLastAction(cocos2d::CCObject*) = win 0xc9ba0;
 	TodoReturn reloadCustomItems();
 	TodoReturn removeOffset(GameObject*) = win 0xd7cf0;
@@ -3592,7 +3607,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn preloadMusic(gd::string, bool, int);
 	TodoReturn printResult(FMOD_RESULT);
 	TodoReturn queuedEffectFinishedLoading(gd::string) = win 0x391f0;
-	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int);
+	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x4361f0;
 	TodoReturn queueStartMusic(gd::string, float, float, float, bool, int, int, int, int, int, bool, int, bool);
 	TodoReturn registerChannel(FMOD::Channel*, int, int) = win 0x36410;
 	TodoReturn releaseRemovedSounds();
@@ -3868,7 +3883,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn friendRequestFromAccountID(int);
 	TodoReturn friendRequestWasRemoved(int, bool);
 	TodoReturn getAccountCommentKey(int, int);
-	TodoReturn getAccountComments(int, int, int) = win 0x108720;
+	void getAccountComments(int accountID, int page, int total) = win 0x108720;
 	TodoReturn getActiveDailyID(GJTimedLevelType);
 	TodoReturn getActiveSmartTemplate();
 	TodoReturn getAllSmartTemplates();
@@ -3894,7 +3909,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getGauntletSearchKey(int) = win 0x100080;
 	TodoReturn getGJChallenges() = win 0x10fd60;
 	TodoReturn getGJDailyLevelState(GJTimedLevelType) = win 0x110670;
-	TodoReturn getGJRewards(int) = win 0x10f140;
+	void getGJRewards(int) = win 0x10f140;
 	TodoReturn getGJUserInfo(int) = win 0x106790;
 	TodoReturn getHighestLevelOrder() = win 0xf7550;
 	TodoReturn getIntForKey(char const*);
@@ -3902,7 +3917,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
 	TodoReturn getLenKey(int);
 	TodoReturn getLenVal(int);
-	TodoReturn getLevelComments(int, int, int, int, CommentKeyType) = win 0x108160;
+	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x108160;
 	TodoReturn getLevelDownloadKey(int, bool);
 	TodoReturn getLevelKey(int);
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1053a0;
@@ -3940,7 +3955,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* getSavedLevels(bool, int) = win 0xf7340;
 	TodoReturn getSavedMapPack(int);
 	TodoReturn getSearchScene(char const*);
-	TodoReturn getSplitIntFromKey(char const*, int);
+	TodoReturn getSplitIntFromKey(char const*, int) = win 0x109250;
 	TodoReturn getStoredLevelComments(char const*) = win 0x1098a0;
 	cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0xf8930;
 	TodoReturn getStoredUserList(UserListType) = win 0x10d820;
@@ -4180,7 +4195,7 @@ class GameLevelManager : cocos2d::CCNode {
 	LevelListDeleteDelegate* m_levelListDeleteDelegate;
 	UserInfoDelegate* m_userInfoDelegate;
 	void* m_unkDelegate;
-	/*UserListDelegate* m_userListDelegate;
+	UserListDelegate* m_userListDelegate;
 	FriendRequestDelegate* m_friendRequestDelegate;
 	MessageListDelegate* m_messageListDelegate;
 	DownloadMessageDelegate* m_downloadMessageDelegate;
@@ -4192,7 +4207,7 @@ class GameLevelManager : cocos2d::CCNode {
 	int m_unkDownload;
 	PAD = win 0x4;
 	gd::string m_unkStr3;
-	cocos2d::CCString* m_unkStr4;*/
+	cocos2d::CCString* m_unkStr4;
 }
 
 [[link(android), depends(UIButtonConfig)]]
@@ -4330,26 +4345,26 @@ class GameManager : GManager {
     }
 
 	TodoReturn accountStatusChanged();
-	TodoReturn activeIconForType(IconType);
-	TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string);
+	TodoReturn activeIconForType(IconType) = win 0x1270f0;
+	TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string) = win 0x14da60;
 	TodoReturn addDuplicateLastFrame(int);
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int) = win 0x14d8c0;
 	TodoReturn addIconDelegate(cocos2d::CCObject*, int);
-	TodoReturn addNewCustomObject(gd::string);
+	TodoReturn addNewCustomObject(gd::string) = win 0x128ea0;
 	TodoReturn addToGJLog(cocos2d::CCString*);
 	TodoReturn applicationDidEnterBackground();
 	TodoReturn applicationWillEnterForeground() = win 0x12ded0;
 	TodoReturn calculateBaseKeyForIcons() = win 0x1278d0;
 	TodoReturn canShowRewardedVideo();
 	TodoReturn checkSteamAchievementUnlock() = win 0x1234f0;
-	TodoReturn checkUsedIcons();
+	TodoReturn checkUsedIcons() = win 0x1297d0;
 	TodoReturn claimItemsResponse(gd::string);
 	TodoReturn clearGJLog();
 	cocos2d::ccColor3B colorForIdx(int) = win 0x126090;
 	TodoReturn colorForPos(int);
 	TodoReturn colorKey(int, UnlockType) = win 0x122350;
 	TodoReturn completedAchievement(gd::string) = win 0x122b50;
-	TodoReturn countForType(IconType);
+	TodoReturn countForType(IconType) = win 0x127270;
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn defaultYOffsetForBG2(int);
 	TodoReturn didExitPlayscene();
@@ -4358,7 +4373,7 @@ class GameManager : GManager {
 	TodoReturn eventUnlockFeature(char const*);
 	TodoReturn fadeInMenuMusic() = win 0x1219f0;
 	TodoReturn fadeInMusic(gd::string) = win 0x121a60;
-	TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*);
+	TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*) = win 0x127ed0;
 	TodoReturn finishedLoadingGAsync(int);
 	TodoReturn finishedLoadingGAsync1(cocos2d::CCObject*);
 	TodoReturn finishedLoadingGAsync2(cocos2d::CCObject*);
@@ -4373,15 +4388,15 @@ class GameManager : GManager {
 	TodoReturn generateSecretNumber();
 	TodoReturn getBGTexture(int) = win 0x127dc0;
 	TodoReturn getFontFile(int);
-	TodoReturn getFontTexture(int);
+	TodoReturn getFontTexture(int) = win 0x127c30;
 	bool getGameVariable(char const*) = win 0x128730;
 	TodoReturn getGTexture(int);
 	TodoReturn getIconRequestID();
 	int getIntGameVariable(char const*) = win 0x128c80;
-	TodoReturn getMenuMusicFile();
+	TodoReturn getMenuMusicFile() = win 0x1216e0;
 	TodoReturn getMGTexture(int);
-	TodoReturn getNextUniqueObjectKey();
-	TodoReturn getNextUsedKey(int, bool);
+	TodoReturn getNextUniqueObjectKey() = win 0x128d70;
+	TodoReturn getNextUsedKey(int, bool) = win 0x128de0;
 	TodoReturn getOrderedCustomObjectKeys();
 	TodoReturn getPracticeMusicFile() = win 0x1217b0;
 	TodoReturn getUGV(char const*) = win 0x128a20;
@@ -4400,11 +4415,11 @@ class GameManager : GManager {
 	TodoReturn levelIsPremium(int, int);
 	TodoReturn likeFacebook();
 	TodoReturn loadBackground(int);
-	TodoReturn loadBackgroundAsync(int);
-	TodoReturn loadDeathEffect(int);
+	TodoReturn loadBackgroundAsync(int) = win 0x127e60;
+	TodoReturn loadDeathEffect(int) = win 0x127c80;
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool) = win 0x12af80;
-	TodoReturn loadFont(int);
+	TodoReturn loadFont(int) = win 0x127ba0;
 	TodoReturn loadGround(int) = win 0x1281f0;
 	TodoReturn loadGroundAsync(int);
 	TodoReturn loadIcon(int, int, int) = win 0x127440;
@@ -4412,11 +4427,11 @@ class GameManager : GManager {
 	TodoReturn loadMiddleground(int);
 	TodoReturn loadMiddlegroundAsync(int);
 	TodoReturn loadVideoSettings();
-	TodoReturn lockColor(int, UnlockType);
-	TodoReturn lockIcon(int, IconType);
+	TodoReturn lockColor(int, UnlockType) = win 0x122610;
+	TodoReturn lockIcon(int, IconType) = win 0x1222d0;
 	TodoReturn logLoadedIconInfo();
 	TodoReturn openEditorGuide() = win 0x1270d0;
-	TodoReturn playMenuMusic();
+	TodoReturn playMenuMusic() = win 0x121890;
 	TodoReturn playSFXTrigger(SFXTriggerGameObject*) = win 0x121b40;
 	TodoReturn prepareDPadSettings();
 	TodoReturn printGJLog();
@@ -4431,7 +4446,7 @@ class GameManager : GManager {
 	TodoReturn reloadAllStep2() = win 0x12e540;
 	TodoReturn reloadAllStep3() = win 0x12e6a0;
 	TodoReturn reloadAllStep4() = win 0x12e740;
-	TodoReturn reloadAllStep5();
+	TodoReturn reloadAllStep5() = win 0x12e7b0;
 	TodoReturn reloadMenu();
 	TodoReturn removeCustomObject(int);
 	TodoReturn removeIconDelegate(int) = win 0x127370;
@@ -4457,7 +4472,7 @@ class GameManager : GManager {
 	void setPlayerUserID(int);
 	void setUGV(char const*, bool) = win 0x1288d0;
 	TodoReturn setupGameAnimations() = win 0x14b280;
-	TodoReturn sheetNameForIcon(int, int);
+	TodoReturn sheetNameForIcon(int, int) = win 0x1279a0;
 	TodoReturn shortenAdTimer(float);
 	TodoReturn shouldShowInterstitial(int, int, int);
 	TodoReturn showInterstitial();
@@ -4473,7 +4488,7 @@ class GameManager : GManager {
 	TodoReturn tryCacheAd();
 	TodoReturn tryShowInterstitial(int, int, int);
 	TodoReturn unloadBackground();
-	TodoReturn unloadIcon(int, int, int);
+	TodoReturn unloadIcon(int, int, int) = win 0x1276b0;
 	TodoReturn unloadIcons(int) = win 0x127870;
 	TodoReturn unlockColor(int, UnlockType) = win 0x122560;
 	TodoReturn unlockedPremium();
@@ -4490,9 +4505,9 @@ class GameManager : GManager {
 
 	virtual void update(float);
 	virtual bool init() = win 0x1215c0;
-	virtual TodoReturn encodeDataTo(DS_Dictionary*);
+	virtual TodoReturn encodeDataTo(DS_Dictionary*) = win 0x12d480;
 	virtual TodoReturn dataLoaded(DS_Dictionary*) = win 0x12b830;
-	virtual TodoReturn firstLoad();
+	virtual TodoReturn firstLoad() = win 0x12cb20;
 
 	cocos2d::CCDictionary* m_unkAnimationDict;
 	cocos2d::CCDictionary* m_unkAnimationDict2;
@@ -4919,69 +4934,70 @@ class GameObject : CCSpritePlus {
 	virtual void setOrientedRectDirty(bool);
 	virtual void setType(GameObjectType);
 
-	PAD = android32 0xf, win 0xf;
+	// windows members may be wrong! yay!
 
+	PAD = android32 0x11, win 0xf, android64 0x11; // i will not question the windows pad
+	
 	// property 511
 	bool m_hasExtendedCollision;
-	PAD = android32 0x13, win 0x13;
-
+	PAD = android32 0x13, win 0x13, android64 0x13;
+	
 	// somehow related to property 155 and 156 if anyone wants to reverse engineer
-	// these only change whenever i reopen the level, at least in the editor
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
-
-	PAD = android32 0x4c, win 0x4c;
+	
+	PAD = android32 0x4c, win 0x4c, android64 0x54;
 
 	cocos2d::CCSprite* m_glowSprite;
 
-	PAD = android32 0x14, win 0x14;
-
+	PAD = android32 0x14, win 0x14, android64 0x14;
+	
 	gd::string m_particleString;
-
-	PAD = android32 0x1, win 0x1;
-
+	
+	PAD = android32 0x1, win 0x1, android64 0x1;
+	
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3e, win 0x3e;
-
+	PAD = android32 0x3e, win 0x3e, android64 0x3e;
+	
 	// property 108
 	int m_linkedGroup;
-	
-	PAD = android32 0xc, win 0xc;
+
+	PAD = android32 0xc, win 0xc, android64 0xc;
 
 	cocos2d::CCSprite* m_colorSprite;
 
-	PAD = android32 0x13, win 0x13;
-
+	PAD = android32 0x13, win 0x13, android64 0x13;
+	
 	int m_uniqueID;
 	GameObjectType m_objectType;
-
-	PAD = android32 0x10, win 0x10;
+	
+	PAD = android32 0x10, win 0x10, android64 0x10;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
-	PAD = android32 0x1, win 0x1;
-
+	PAD = android32 0x1, win 0x1, android64 0x1;
+	
 	// property 372
 	bool m_hasNoAudioScale;
-	PAD = android32 0x2a, win 0x2a;
-
+	PAD = android32 0x2a, win 0x2a, android64 0x2a;
+	
 	// property 343
 	short m_enterChannel;
 	// property 446
 	short m_objectMaterial;
-	PAD = android32 0x4, win 0x4;
-
+	PAD = android32 0x4, win 0x4, android64 0x4;
+	
 	// property 96
 	bool m_hasNoGlow;
-
+	
 	// property 23
 	int m_targetColor;
-
+	
 	// property 1
 	int m_objectID;
-	PAD = android32 0x8, win 0x8;
-
+	PAD = android32 0x8, win 0x8, android64 0x8;
+	
 	// property 497
 	short m_customColorType;
 	// property 67
@@ -4992,27 +5008,27 @@ class GameObject : CCSpritePlus {
 	bool m_hasNoEffects;
 	// property 507
 	bool m_hasNoParticles;
-	PAD = android32 0x16, win 0x16;
-
+	PAD = android32 0x16, win 0x16, android64 0x16;
+	
 	// property 53
 	int m_property53;
-	PAD = android32 0x18, win 0x18;
-
+	PAD = android32 0x18, win 0x18, android64 0x18;
+	
 	// property 21, also used with 41 and 43
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
-	PAD = android32 0xc;
-
+	PAD = android32 0xc, win 0xa, android64 0xc; // i will not question the windows pad
+	
 	// property 24
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
-	PAD = android32 0x10, win 0x10;
-
+	PAD = android32 0x10, win 0x10, android64 0x10;
+	
 	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
-	PAD = android32 0x1, win 0x1;
-
+	PAD = android32 0x1, win 0x1, android64 0x1;
+	
 	// property 34
 	bool m_hasGroupParent;
 	// property 279
@@ -5021,37 +5037,37 @@ class GameObject : CCSpritePlus {
 	float m_scaleX;
 	// property 129
 	float m_scaleY;
-
+	
 	// property 57
 	std::array<short, 10>* m_groups;
 	// used with property 57
 	short m_groupCount;
 	// used with property 274
 	bool m_hasGroupParentsString;
-
+	
 	std::array<short, 10>* m_colorGroups;
 	short m_colorGroupCount;
 	std::array<short, 10>* m_opacityGroups;
 	short m_opacityGroupCount;
-
+	
 	// property 20
 	short m_editorLayer;
 	// property 61
 	short m_editorLayer2;
-	PAD = android32 0x8, win 0x8;
-
+	PAD = android32 0x8, win 0x8, android64 0x8;
+	
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x9, win 0x9;
+	PAD = android32 0x9, win 0x9, android64 0x9;
 	
 	cocos2d::CCPoint m_lastPosition;
 
-	PAD = android32 0x1b, win 0x1b;
-
+	PAD = android32 0x1b, win 0x1b, android64 0x1b;
+	
 	// property 103
 	bool m_isHighDetail;
-	PAD = android32 0x11, win 0x11;
-
+	PAD = android32 0x11, win 0x11, android64 0x21;
+	
 	// property 134
 	bool m_isPassable;
 	// property 135
@@ -5072,14 +5088,14 @@ class GameObject : CCSpritePlus {
 	bool m_isDontBoostY;
 	// property 509
 	bool m_isDontBoostX;
-	PAD = android32 0x11, win 0x11;
-
+	PAD = android32 0x11, win 0x11, android64 0x11;
+	
 	// property 155
 	int m_property155;
 	// property 156
 	int m_property156;
-
-	PAD = android32 0x12, win 0x1e; // TODO: yeah someone pls fix windows pads
+	
+	PAD = android32 0x12, win 0x12, android64 0x12; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
@@ -5876,7 +5892,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn resetLevelVariables() = win 0x1bdb10;
 	TodoReturn resetMoveOptimizedValue();
 	TodoReturn resetPlayer();
-	TodoReturn resetSongTriggerValues();
+	void resetSongTriggerValues() = win 0x3bf30;
 	TodoReturn resetSpawnChannelIndex() = win 0x1c7e40;
 	TodoReturn resetStaticCamera(bool, bool);
 	TodoReturn resetStoppedAreaObjects();
@@ -5915,10 +5931,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn swapBackground(int);
 	TodoReturn swapGround(int);
 	TodoReturn swapMiddleground(int);
-	TodoReturn switchToFlyMode(PlayerObject*, GameObject*, bool, int);
-	TodoReturn switchToRobotMode(PlayerObject*, GameObject*, bool);
-	TodoReturn switchToRollMode(PlayerObject*, GameObject*, bool);
-	TodoReturn switchToSpiderMode(PlayerObject*, GameObject*, bool);
+	void switchToFlyMode(PlayerObject*, GameObject*, bool, int) = win 0x19a6d0;
+	void switchToRobotMode(PlayerObject*, GameObject*, bool) = win 0x19a800;
+	void switchToRollMode(PlayerObject*, GameObject*, bool) = win 0x19a9c0;
+	void switchToSpiderMode(PlayerObject*, GameObject*, bool) = win 0x19a8e0;
 	TodoReturn syncBGTextures() = win 0x1bda80;
 	TodoReturn teleportPlayer(TeleportPortalObject*, PlayerObject*);
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
@@ -6021,6 +6037,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
 	virtual TodoReturn toggleGlitter(bool);
 	virtual TodoReturn destroyPlayer(PlayerObject*, GameObject*);
+	virtual TodoReturn updateDebugDraw();
 	virtual TodoReturn addToSection(GameObject*) = win 0x1ab800;
 	virtual TodoReturn addToGroup(GameObject*, int, bool) = win 0x1a8ce0;
 	virtual TodoReturn removeFromGroup(GameObject*, int) = win 0x1a8e00;
@@ -6374,8 +6391,8 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn createTransformCommand(double, double, double, double, bool, float, int, int, int, float, bool, bool, int, int);
 	TodoReturn getAllColorActions();
 	TodoReturn getAllColorSprites();
-	TodoReturn getColorAction(int) = win 0x1dbe80;
-	TodoReturn getColorSprite(int) = win 0x1dbf00;
+	ColorAction* getColorAction(int) = win 0x1dbe80;
+	ColorActionSprite* getColorSprite(int) = win 0x1dbf00;
 	TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
 	TodoReturn getMixedColor(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
 	TodoReturn getMoveCommandNode(GroupCommandObject2*);
@@ -6742,8 +6759,8 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	TodoReturn scene();
 	TodoReturn selectTab(IconType) = win 0x1f1cd0;
 	TodoReturn setupIconSelect() = win 0x1f1170;
-	TodoReturn setupPage(int, IconType) = win 0x1f1d70;
-	TodoReturn setupSpecialPage();
+	void setupPage(int, IconType) = win 0x1f1d70;
+	TodoReturn setupSpecialPage() = win 0x1f2590;
 	TodoReturn showUnlockPopupNew(int, UnlockType);
 	TodoReturn titleForUnlock(int, UnlockType);
 	TodoReturn toggleGlow();
@@ -6790,7 +6807,7 @@ class GJGroundLayer : cocos2d::CCLayer {
 	TodoReturn toggleVisible01(bool);
 	TodoReturn toggleVisible02(bool);
 	TodoReturn updateGround01Color(cocos2d::ccColor3B) = win 0x1f7ab0;
-	TodoReturn updateGround02Color(cocos2d::ccColor3B);
+	TodoReturn updateGround02Color(cocos2d::ccColor3B) = win 0x1f7b10;
 	TodoReturn updateGroundPos(cocos2d::CCPoint);
 	TodoReturn updateGroundWidth(bool);
 	TodoReturn updateLineBlend(bool);
@@ -8438,19 +8455,19 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 	// virtual ~LevelAreaInnerLayer();
 
-	static LevelAreaInnerLayer* create(bool);
+	static LevelAreaInnerLayer* create(bool) = win 0x231140;
 
 	bool init(bool) = win 0x2311e0;
-	void onBack(cocos2d::CCObject* sender);
-	void onDoor(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onNextFloor(cocos2d::CCObject* sender);
-	TodoReturn playStep1();
+	void onBack(cocos2d::CCObject* sender) = win 0x232940;
+	void onDoor(cocos2d::CCObject* sender) = win 0x232720;
+	void onInfo(cocos2d::CCObject* sender) = win 0x232c30;
+	void onNextFloor(cocos2d::CCObject* sender) = win 0x231ef0;
+	bool playStep1() = win 0x232850;
 	TodoReturn scene(bool);
-	TodoReturn showFloor1CompleteDialog();
-	TodoReturn tryResumeTowerMusic();
+	cocos2d::CCAction* showFloor1CompleteDialog() = win 0x231f40;
+	TodoReturn tryResumeTowerMusic() = win 0x2326a0;
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x2329a0;
 	virtual TodoReturn dialogClosed(DialogLayer*);
 }
 
@@ -8458,19 +8475,19 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 	// virtual ~LevelAreaLayer();
 
-	static LevelAreaLayer* create();
+	static LevelAreaLayer* create() = win 0x22f560;
 
-	TodoReturn addGodRay(float, float, float, float, float, cocos2d::CCPoint);
-	TodoReturn addTorch(cocos2d::CCNode*, cocos2d::CCPoint, int, float, int, bool);
-	TodoReturn fadeInsideTower();
-	void onBack(cocos2d::CCObject* sender);
-	void onClickDoor(cocos2d::CCObject* sender);
-	TodoReturn onEnterTower();
+	cocos2d::CCAction* addGodRay(float, float, float, float, float, cocos2d::CCPoint) = win 0x230d50;
+	void addTorch(cocos2d::CCNode*, cocos2d::CCPoint, int, float, int, bool) = win 0x230800;
+	cocos2d::CCAction* fadeInsideTower() = win 0x2306c0;
+	void onBack(cocos2d::CCObject* sender) = win 0x231080;
+	void onClickDoor(cocos2d::CCObject* sender) = win 0x230580;
+	bool onEnterTower() = win 0x230750;
 	TodoReturn scene();
-	TodoReturn showDialog();
+	cocos2d::CCAction* showDialog() = win 0x230300;
 
-	virtual bool init();
-	virtual void keyBackClicked();
+	virtual bool init() = win 0x22f610;
+	virtual void keyBackClicked() = win 0x2310f0;
 	virtual TodoReturn dialogClosed(DialogLayer*);
 }
 
@@ -8636,7 +8653,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn addPlayer2Point(cocos2d::CCPoint, bool);
 	TodoReturn addPlayerCollisionBlock();
 	TodoReturn addPlayerPoint(cocos2d::CCPoint);
-	TodoReturn addSpecial(GameObject*);
+	void addSpecial(GameObject*) = win 0x23ec50;
 	TodoReturn addToRedoList(UndoObject*);
 	TodoReturn addTouchPoint(cocos2d::CCPoint) = win 0x2509d0;
 	TodoReturn addToUndoList(UndoObject*, bool);
@@ -8649,7 +8666,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn copyObjectState(GameObject*) = win 0x2477f0;
 	TodoReturn copyParticleState(ParticleGameObject*);
 	TodoReturn createObject(int, cocos2d::CCPoint, bool);
-	TodoReturn createObjectsFromSetup(gd::string&);
+	void createObjectsFromSetup(gd::string&) = win 0x2E0C40;
 	TodoReturn createObjectsFromString(gd::string const&, bool, bool) = win 0x23b970;
 	TodoReturn dirtifyTriggers();
 	TodoReturn duplicateKeyframeAnimation(int);
@@ -8749,7 +8766,6 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateAnimateOnTriggerObjects(bool);
 	TodoReturn updateArt(float);
 	TodoReturn updateBlendValues();
-	TodoReturn updateDebugDraw();
 	TodoReturn updateEditor(float);
 	TodoReturn updateEditorMode() = win 0x2423a0;
 	TodoReturn updateGameObjects();
@@ -8772,6 +8788,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn updateVisibility(float);
 	virtual TodoReturn playerTookDamage(PlayerObject*);
 	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
+	virtual TodoReturn updateDebugDraw();
 	virtual TodoReturn addToGroup(GameObject*, int, bool);
 	virtual TodoReturn removeFromGroup(GameObject*, int);
 	virtual TodoReturn updateObjectSection(GameObject*);
@@ -9082,16 +9099,16 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 
 	TodoReturn addSecretCoin();
 	TodoReturn addSecretDoor();
-	bool init(GJGameLevel*);
+	bool init(GJGameLevel*) = win 0x268ff0;
 	void onInfo(cocos2d::CCObject* sender) = win 0x26c400;
 	void onMoreGames(cocos2d::CCObject* sender);
-	void onPlay(cocos2d::CCObject* sender);
+	void onPlay(cocos2d::CCObject* sender) = win 0x26c080;
 	void onSecretDoor(cocos2d::CCObject* sender);
 	void onTheTower(cocos2d::CCObject* sender);
 	TodoReturn playCoinEffect();
 	TodoReturn playStep2();
 	TodoReturn playStep3();
-	TodoReturn updateDynamicPage(GJGameLevel*);
+	void updateDynamicPage(GJGameLevel*) = win 0x269a80;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -9169,22 +9186,22 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 
 	static LevelSelectLayer* create(int) = win 0x267c60;
 
-	TodoReturn colorForPage(int);
-	TodoReturn getColorValue(int, int, float);
+	TodoReturn colorForPage(int) = win 0x268ac0;
+	TodoReturn getColorValue(int, int, float) = win 0x268980;
 	bool init(int) = win 0x267d00;
-	void onBack(cocos2d::CCObject* sender);
-	void onDownload(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onNext(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x268d00;
+	void onDownload(cocos2d::CCObject* sender) = win 0x268750;
+	void onInfo(cocos2d::CCObject* sender) = win 0x268e30;
+	void onNext(cocos2d::CCObject* sender) = win 0x268c40;
 	void onPlay(cocos2d::CCObject* sender);
-	void onPrev(cocos2d::CCObject* sender);
-	TodoReturn scene(int);
+	void onPrev(cocos2d::CCObject* sender) = win 0x268ca0;
+	TodoReturn scene(int) = win 0x267c20;
 	TodoReturn tryShowAd();
 
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual TodoReturn updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*);
-	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint);
+	virtual void keyBackClicked() = win 0x268d60;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x268d70;
+	virtual void updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = win 0x268790;
+	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint) = win 0x2687f0;
 }
 
 [[link(android)]]
@@ -9336,24 +9353,24 @@ class LevelSettingsObject : cocos2d::CCNode {
 
 [[link(android)]]
 class LevelTools {
-	TodoReturn artistForAudio(int);
+	static int artistForAudio(int) = win 0x2737c0;
 	TodoReturn base64DecodeString(gd::string) = win 0x2753e0;
 	TodoReturn base64EncodeString(gd::string) = win 0x275360;
 	TodoReturn createStarPackDict();
-	TodoReturn fbURLForArtist(int);
+	static gd::string fbURLForArtist(int) = win 0x274010;
 	TodoReturn getAudioBPM(int);
-	TodoReturn getAudioFileName(int);
+	static gd::string getAudioFileName(int) = win 0x273430;
 	TodoReturn getAudioString(int);
-	TodoReturn getAudioTitle(int) = win 0x273090;
+	static gd::string getAudioTitle(int) = win 0x273090;
 	TodoReturn getLastGameplayReversed();
 	TodoReturn getLastGameplayRotated();
 	TodoReturn getLastTimewarp();
-	TodoReturn getLevel(int, bool) = win 0x2725d0;
+	static GJGameLevel* getLevel(int, bool) = win 0x2725d0;
 	TodoReturn getLevelList();
 	TodoReturn getSongObject(int) = win 0x275040;
 	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
-	TodoReturn nameForArtist(int);
-	TodoReturn ngURLForArtist(int);
+	static gd::string nameForArtist(int) = win 0x2738c0;
+	static gd::string ngURLForArtist(int) = win 0x273d90;
 	TodoReturn offsetBPMForTrack(int);
 	TodoReturn posForTime(float, cocos2d::CCArray*, int, bool, int&);
 	TodoReturn posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int) = win 0x274a60;
@@ -9361,10 +9378,10 @@ class LevelTools {
 	TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*) = win 0x275820;
 	TodoReturn timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int) = win 0x2743d0;
 	TodoReturn toggleDebugLogging(bool);
-	TodoReturn urlForAudio(int);
+	static gd::string urlForAudio(int) = win 0x273a00;
 	TodoReturn valueForSpeedMod(int) = win 0x274380;
 	TodoReturn verifyLevelIntegrity(gd::string, int) = win 0x2751d0;
-	TodoReturn ytURLForArtist(int);
+	static gd::string ytURLForArtist(int) = win 0x273ed0;
 }
 
 [[link(android)]]
@@ -9664,8 +9681,8 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	TodoReturn willClose();
 
 	virtual bool init() = win 0x27b450;
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyBackClicked() = win 0x27CB60;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x27CD70;
 	virtual TodoReturn googlePlaySignedIn() = win 0x27c860;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x27cbf0;
 }
@@ -10358,7 +10375,7 @@ class ParticleGameObject : EnhancedGameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int);
 	virtual TodoReturn updateAnimateOnTrigger(bool);
 
-	char* m_particleData;
+	gd::string m_particleData;
 	PAD = android32 0x110;
 
 	// property 147
@@ -11099,7 +11116,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 
 	static RateDemonLayer* create(int);
 
-	bool init(int);
+	bool init(int) = win 0x2f35b0;
 	void onClose(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender) = win 0x2f3c20;
 	void selectRating(cocos2d::CCObject*) = win 0x2f3ac0;
@@ -13776,7 +13793,7 @@ class SongCell : TableViewCell {
 	// virtual ~SongCell();
 	SongCell(char const*, float, float);
 
-	TodoReturn loadFromObject(SongObject*) = win 0x82cb0;
+	void loadFromObject(SongObject*) = win 0x82cb0;
 	void onClick(cocos2d::CCObject* sender);
 	TodoReturn updateBGColor(int);
 
@@ -13871,22 +13888,22 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 
 	static SongSelectNode* create(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool);
 
-	TodoReturn audioNext(cocos2d::CCObject*);
-	TodoReturn audioPrevious(cocos2d::CCObject*);
-	bool init(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool);
-	void onOpenCustomSong(cocos2d::CCObject* sender);
-	void onSongMode(cocos2d::CCObject* sender);
-	TodoReturn onSongMode(int);
+	void audioNext(cocos2d::CCObject*) = win 0x92270;
+	void audioPrevious(cocos2d::CCObject*) = win 0x922b0;
+	bool init(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool) = win 0x91a70;
+	void onOpenCustomSong(cocos2d::CCObject* sender) = win 0x92500;
+	void onSongMode(cocos2d::CCObject* sender) = win 0x922f0;
+	void onSongMode(int) = win 0x92310;
 	TodoReturn selectSong(int);
 	TodoReturn showCustomSongSelect();
-	TodoReturn updateAudioLabel();
+	void updateAudioLabel() = win 0x92160;
 	TodoReturn updateWidgetVisibility();
 
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn customSongLayerClosed();
 	virtual TodoReturn songIDChanged(int);
 	virtual TodoReturn getActiveSongID();
-	virtual TodoReturn getSongFileName();
+	virtual TodoReturn getSongFileName() = win 0x92660;
 	virtual TodoReturn getLevelSettings();
 }
 
@@ -13894,9 +13911,9 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 class SongsLayer : GJDropDownLayer {
 	// virtual ~SongsLayer();
 
-	static SongsLayer* create();
+	static SongsLayer* create() = win 0x38bfb0;
 
-	virtual TodoReturn customSetup();
+	virtual TodoReturn customSetup() = win 0x38c0c0;
 }
 
 [[link(android)]]
@@ -13982,7 +13999,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn playSoundForAnimation(gd::string);
 	TodoReturn queueAnimation(gd::string);
 	TodoReturn resetAnimState();
-	TodoReturn runAnimation(gd::string);
+	TodoReturn runAnimation(gd::string) = win 0x4f280;
 	TodoReturn runQueuedAnimation();
 	TodoReturn stopAnimations() = win 0x4fa60;
 	TodoReturn storeAnimation(cocos2d::CCAnimate*, cocos2d::CCAnimate*, gd::string, int, spriteMode, cocos2d::CCSpriteFrame*);
@@ -14068,15 +14085,15 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 	void onLinks(cocos2d::CCObject* sender) = win 0x3bce90;
 	void onLowDetail(cocos2d::CCObject* sender);
 	void onPrivacy(cocos2d::CCObject* sender);
-	void onRequestAccess(cocos2d::CCObject* sender);
+	void onRequestAccess(cocos2d::CCObject* sender) = win 0x3bca70;
 	void onRobTop(cocos2d::CCObject* sender);
 	void onSFX(cocos2d::CCObject* sender);
 	void onTOS(cocos2d::CCObject* sender);
 	TodoReturn sendSupportMail();
 
-	virtual TodoReturn customSetup();
-	virtual TodoReturn uploadActionFinished(int, int);
-	virtual TodoReturn uploadActionFailed(int, int);
+	virtual void customSetup() = win 0x3bbcc0;
+	virtual void uploadActionFinished(int, int) = win 0x3bcbc0;
+	virtual void uploadActionFailed(int, int) = win 0x3bcc20;
 	virtual TodoReturn onClosePopup(UploadActionPopup*);
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 }
@@ -14310,7 +14327,7 @@ class TextGameObject : GameObject {
 	virtual TodoReturn updateTextKerning(int);
 	virtual TodoReturn getTextKerning();
 
-	char* m_text;
+	gd::string m_text;
 	// property 488
 	int m_kerning;
 }
