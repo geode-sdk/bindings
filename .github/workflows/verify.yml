@@ -19,10 +19,10 @@ jobs:
     - name: Build Codegen binary
       if: steps.codegen-cache.outputs.cache-hit != 'true'
       run: |
-        cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=./bin -B build
+        cmake ./codegen -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=./bin -B build
         cmake --build build --config RelWithDebInfo
         cmake --install build
-      
+
     - name: Upload Codegen binary
       uses: actions/upload-artifact@v3
       with:
