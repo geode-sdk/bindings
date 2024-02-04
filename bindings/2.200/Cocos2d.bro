@@ -801,7 +801,6 @@ class cocos2d::CCDirector {
 	void pause();
 	void popScene();
 	bool popSceneWithTransition(float, cocos2d::PopTransition) = mac 0x460b30;
-	bool popSceneWithTransition(float, cocos2d::PopTransition) = mac 0x460b30;
 	void popToRootScene();
 	void popToSceneInStack(cocos2d::CCScene*);
 	void popToSceneStackLevel(int);

@@ -4717,7 +4717,7 @@ class GameStatsManager : cocos2d::CCNode {
 
 	TodoReturn getItemKey(int, int);
 	gd::string getLevelKey(int, bool, bool, bool) = mac 0x6cd80, win 0x16D350;
-	gd::string getLevelKey(GJGameLevel*) = win 0x16D2E0;
+	gd::string getLevelKey(GJGameLevel*) = mac 0x6cd20, win 0x16D2E0;
 	GJChallengeItem* getChallenge(int) = mac 0x73750, win 0x170BD0;
 	TodoReturn getRewardKey(GJRewardType, int);
 	TodoReturn getStoreItem(int);
