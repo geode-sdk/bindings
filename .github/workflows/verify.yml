@@ -102,18 +102,18 @@ jobs:
         # cache by os since for android32 and 64 the codegen binary is the same
         key: codegen-${{ hashFiles('codegen/**') }}-${{ matrix.config.os }}
 
-    - name: Set CPM_SOURCE_CACHE
-      shell: bash
-      run: echo "CPM_SOURCE_CACHE=${{ github.workspace }}/cpm-cache" >> $GITHUB_ENV
+    #- name: Set CPM_SOURCE_CACHE
+    #  shell: bash
+    #  run: echo "CPM_SOURCE_CACHE=${{ github.workspace }}/cpm-cache" >> $GITHUB_ENV
     
-    - name: Set up CPM cache
-      id: cache-cpm
-      uses: actions/cache@v3
-      with:
-        path: ${{ github.workspace }}/cpm-cache
-        key: cpm-cache-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
-        restore-keys: |
-          cpm-cache-
+    #- name: Set up CPM cache
+    #  id: cache-cpm
+    #  uses: actions/cache@v3
+    #  with:
+    #    path: ${{ github.workspace }}/cpm-cache
+    #    key: cpm-cache-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
+    #    restore-keys: |
+    #      cpm-cache-
     
     - name: Set up NDK
       uses: nttld/setup-ndk@v1
