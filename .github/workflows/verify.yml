@@ -137,7 +137,7 @@ jobs:
       shell: bash
       run: >
         cmake -B build -S test/members
-        -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
+      #  -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
         -D USE_HACKY_SCRIPT=ON
         ${{ matrix.config.extra_flags }}  
       # SKIP_BUILDING_CODEGEN will skip building codegen if finds a cached binary,
