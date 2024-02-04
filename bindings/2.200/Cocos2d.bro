@@ -105,7 +105,7 @@ class cocos2d::CCNode {
 	CCNode() = mac 0x2501f0;
     ~CCNode() = mac 0x250390;
 	
-	cocos2d::CCAction* getActionByTag(int);
+	cocos2d::CCAction* getActionByTag(int) = mac 0x252000;
 	cocos2d::CCComponent* getComponent(char const*) const;
 	int getScriptHandler();
 	cocos2d::CCAffineTransform getTransformTemp();
@@ -145,8 +145,8 @@ class cocos2d::CCNode {
 	void stopAllActions() = mac 0x250e10;
 	void transform();
 	void transformAncestors();
-	void unschedule(cocos2d::SEL_SCHEDULE);
-	void unscheduleAllSelectors();
+	void unschedule(cocos2d::SEL_SCHEDULE) = mac 0x252280;
+	void unscheduleAllSelectors() = mac 0x250e30;
 	void unscheduleUpdate();
 	void updateChildIndexes();
 
@@ -333,7 +333,7 @@ class cocos2d::CCScene {
 	// CCScene(cocos2d::CCScene const&);
 	// CCScene();
 
-	virtual bool init();
+	virtual bool init() = mac 0x26ebf0;
 }
 
 [[link(win, android)]]
@@ -360,10 +360,10 @@ class cocos2d::CCScheduler {
 	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool);
 	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool) = mac 0x420a30;
 	void unscheduleAll();
-	void unscheduleAllForTarget(cocos2d::CCObject*);
+	void unscheduleAllForTarget(cocos2d::CCObject*) = mac 0x420ff0;
 	void unscheduleAllWithMinPriority(int);
 	void unscheduleScriptEntry(unsigned int);
-	void unscheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*);
+	void unscheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*) = mac 0x41f960;
 	void unscheduleUpdateForTarget(cocos2d::CCObject const*);
 
 	virtual void update(float) = mac 0x421a70;
@@ -558,7 +558,7 @@ class cocos2d::CCTouchHandler {
 
 [[link(win, android)]]
 class cocos2d::CCTextureCache {
-	static void purgeSharedTextureCache();
+	static void purgeSharedTextureCache() = mac 0x5b16d0;
 	static void reloadAllTextures();
 	static cocos2d::CCTextureCache* sharedTextureCache() = mac 0x5b1450;
 
@@ -614,11 +614,11 @@ class cocos2d::CCSet {
 	cocos2d::CCSetIterator begin();
 	bool containsObject(cocos2d::CCObject*);
 	cocos2d::CCSet* copy();
-	int count();
+	int count() = mac 0x775070;
 	cocos2d::CCSetIterator end();
 	cocos2d::CCSet* mutableCopy() = mac 0x775030;
 	void removeAllObjects();
-	void removeObject(cocos2d::CCObject*);
+	void removeObject(cocos2d::CCObject*) = mac 0x775130;
 
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 }
@@ -654,7 +654,7 @@ class cocos2d::CCTouchDispatcher {
 	void forceRemoveDelegate(cocos2d::CCTouchDelegate*);
 	void incrementForcePrio(int);
 	bool isDispatchEvents();
-	bool isUsingForcePrio();
+	bool isUsingForcePrio() = mac 0x4a6e90;
 	void rearrangeHandlers(cocos2d::CCArray*);
 	void registerForcePrio(cocos2d::CCObject*, int) = mac 0x4a6da0;
 	void removeAllDelegates();
@@ -800,20 +800,20 @@ class cocos2d::CCDirector {
 	int levelForSceneInStack(cocos2d::CCScene*);
 	void pause();
 	void popScene();
-	bool popSceneWithTransition(float, cocos2d::PopTransition);
+	bool popSceneWithTransition(float, cocos2d::PopTransition) = mac 0x460b30;
 	void popToRootScene();
 	void popToSceneInStack(cocos2d::CCScene*);
 	void popToSceneStackLevel(int);
 	void purgeCachedData();
 	void purgeDirector() = mac 0x460e10;
 	bool pushScene(cocos2d::CCScene*) = mac 0x4608a0;
-	void removeStatsLabel();
+	void removeStatsLabel() = mac 0x461020;
 	bool replaceScene(cocos2d::CCScene*) = mac 0x460950;
 	void resetSmoothFixCounter();
 	void reshapeProjection(cocos2d::CCSize const&);
 	void resume() = mac 0x460fa0;
-	void runWithScene(cocos2d::CCScene*);
-	int sceneCount();
+	void runWithScene(cocos2d::CCScene*) = mac 0x460800;
+	int sceneCount() = mac 0x460d20;
 	void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
 	void showFPSLabel();
 	void showStats();
@@ -935,7 +935,7 @@ class cocos2d::CCRotateBy {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteFrameCache {
-	static void purgeSharedSpriteFrameCache();
+	static void purgeSharedSpriteFrameCache() = mac 0x2f8740;
 	static cocos2d::CCSpriteFrameCache* sharedSpriteFrameCache() = mac 0x2f85f0;
 
 	bool init();
@@ -967,7 +967,7 @@ class cocos2d::CCSpriteBatchNode {
 	bool initWithFile(char const*, unsigned int);
 	bool initWithTexture(cocos2d::CCTexture2D*, unsigned int) = mac 0x167320;
 
-	int getAtlasCapacity();
+	int getAtlasCapacity() = mac 0x168800;
 	cocos2d::CCArray* getDescendants();
 	bool getManualSortChildren() const;
 	cocos2d::CCTextureAtlas* getTextureAtlas();
@@ -1418,7 +1418,7 @@ class cocos2d::ZipUtils {
 	static void ccSetPvrEncryptionKeyPart(int, unsigned int);
 	static gd::string compressString(gd::string const&, bool, int);
 	static gd::string decompressString2(unsigned char*, bool, int, int);
-	static gd::string decompressString(gd::string const&, bool, int);
+	static gd::string decompressString(gd::string const&, bool, int) = mac 0x1e4290;
 	static gd::string encryptDecrypt(gd::string const&, int);
 	static gd::string encryptDecryptWKey(gd::string const&, gd::string);
 	static unsigned char hexToChar(gd::string const&);
@@ -1630,7 +1630,7 @@ class cocos2d {
 	static void ccGLEnable(cocos2d::ccGLServerState) = mac 0x33a540;
 	static void ccGLEnableVertexAttribs(unsigned int) = mac 0x33a550;
 	static void ccGLInvalidateStateCache();
-	static void ccGLUseProgram(unsigned int);
+	static void ccGLUseProgram(unsigned int) = mac 0x33a350;
 	static void ccPointSize(float);
 	static void ccSetProjectionMatrixDirty();
 	static bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
@@ -1642,7 +1642,7 @@ class cocos2d {
 	static float ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
 	static cocos2d::CCPoint ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
 	static cocos2d::CCPoint ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-	static float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = mac 0x334db0;
 	static cocos2d::CCPoint ccpForAngle(float);
 	static cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const&) = mac 0x334fd0;
 	static bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);

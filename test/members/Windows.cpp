@@ -111,7 +111,6 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isTestMode, 0x2aac);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b50);
 
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e58);
-GEODE_MEMBER_CHECK(PlayLayer, m_endLayerStars, 0x2eb8);
 
 // CustomSongWidget
 

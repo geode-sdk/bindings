@@ -616,12 +616,12 @@ class ButtonSprite : cocos2d::CCSprite {
 	void updateSpriteBGSize();
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
 
-    PAD = mac 0x18, win 0x18, android64 0x18;
+    PAD = mac 0x18, win 0x18, android32 0x18, android64 0x18;
     cocos2d::CCLabelBMFont* m_label;
     cocos2d::CCSprite* m_subSprite;
     cocos2d::CCSprite* m_subBGSprite;
     cocos2d::extension::CCScale9Sprite* m_BGSprite;
-    PAD = mac 0xC, win 0x8, android64 0xc;
+    PAD = mac 0xC, win 0x8, android32 0x8, android64 0xc;
     cocos2d::CCPoint m_spritePosition;
 }
 
@@ -11182,11 +11182,10 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn circleWaveWillBeRemoved(CCCircleWave*);
 	virtual TodoReturn dialogClosed(DialogLayer*);
 
-	PAD = android32 0x12C;
-	bool m_endLayerStars; // not verified on android
-	PAD = win 0xBF, android32 0xBF;
+	PAD = android32 0xcc, android64 0x134;
+	cocos2d::CCSprite* m_progressBar;
 
-	PAD = android64 0x2b8; // so the size is right
+	PAD = android32 0x118, android64 0x180;
 }
 
 [[link(android)]]

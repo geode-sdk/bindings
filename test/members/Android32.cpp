@@ -82,6 +82,8 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2B48);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2c04);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c2c);
 
+GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e38);
+
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4e4, 0x4d4);
 GEODE_MEMBER_CHECK(PlayerObject, m_collidedObject, 0x514);
 GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x580);
