@@ -649,7 +649,7 @@ public class SyncBromaScript extends GhidraScript {
 
                 // Remove zero-length members at the beginning
                 // Necessary ones are added after
-                while(true) {
+                while (!classDataMembers.isZeroLength()) {
                     var memberToRemove = classDataMembers.getComponent(0);
                     if (memberToRemove.getLength() == 0)
                         classDataMembers.delete(0);
