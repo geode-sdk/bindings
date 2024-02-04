@@ -96,7 +96,7 @@ jobs:
         repository: geode-sdk/geode
         path: geode
         # TODO: remove on merge
-        branch: codegen-on-configure
+        ref: codegen-on-configure
 
     - name: Set up codegen binary cache
       id: codegen-cache
