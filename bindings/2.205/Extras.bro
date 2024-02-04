@@ -15,7 +15,14 @@ class AdvancedFollowInstance {
 
 class SFXTriggerInstance {
 
-} 
+}
+class EventTriggerInstance {
+
+}
+
+class SongChannelState {
+    
+}
 
 class ChanceObject {
 
@@ -51,4 +58,8 @@ class CAState {
 	float m_deltaTime;
 	float m_unknown3;
 	cocos2d::ccHSVValue m_copyHSV;
+}
+
+class GJPointDouble {
+
 }
