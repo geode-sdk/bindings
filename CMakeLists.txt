@@ -24,7 +24,7 @@ set(GEODE_CODEGEN_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/codegen-build)
 file(MAKE_DIRECTORY ${GEODE_CODEGEN_BINARY_DIR})
 
 if (NOT SKIP_BUILDING_CODEGEN)
-	message(STATUS "Configuring Codegen... (output in ${CMAKE_CURRENT_BINARY_DIR}/ConfigureOutput.txt)")
+	message(STATUS "Configuring Codegen... (output in ${GEODE_CODEGEN_BINARY_DIR}/ConfigureOutput.txt)")
 	execute_process(
 		COMMAND ${CMAKE_COMMAND} ${GEODE_CODEGEN_CMAKE_ARGS}
 			-DCMAKE_C_COMPILER_LAUNCHER=${CMAKE_C_COMPILER_LAUNCHER}
@@ -38,7 +38,7 @@ if (NOT SKIP_BUILDING_CODEGEN)
 		ERROR_FILE ${GEODE_CODEGEN_BINARY_DIR}/ConfigureOutput.txt
 		COMMAND_ERROR_IS_FATAL ANY
 	)
-	message(STATUS "Building Codegen... (output in ${CMAKE_CURRENT_BINARY_DIR}/BuildOutput.txt)")
+	message(STATUS "Building Codegen... (output in ${GEODE_CODEGEN_BINARY_DIR}/BuildOutput.txt)")
 	execute_process(
 		COMMAND ${CMAKE_COMMAND} --build ${GEODE_CODEGEN_BINARY_DIR} --config Release
 		WORKING_DIRECTORY ${GEODE_CODEGEN_SOURCE_DIR}
