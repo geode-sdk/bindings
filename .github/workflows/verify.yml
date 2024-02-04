@@ -98,7 +98,7 @@ jobs:
       id: codegen-cache
       uses: actions/cache@v3
       with:
-        path: build/codegen
+        path: test/members/build/bindings/codegen
         # cache by os since for android32 and 64 the codegen binary is the same
         key: codegen-${{ hashFiles('codegen/**') }}-${{ matrix.config.os }}
 
@@ -137,7 +137,7 @@ jobs:
       shell: bash
       run: >
         cmake -B build -S test/members
-      #  -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
+        -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
         -D USE_HACKY_SCRIPT=ON
         ${{ matrix.config.extra_flags }}  
       # SKIP_BUILDING_CODEGEN will skip building codegen if finds a cached binary,
