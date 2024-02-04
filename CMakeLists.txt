@@ -83,6 +83,11 @@ add_custom_target(GeodeCodegenRun
 	WORKING_DIRECTORY ${GEODE_CODEGEN_BINARY_OUT}
 )
 
+if (GEODE_IS_MEMBER_TEST)
+	set(GEODE_MEMBER_TEST_CODEGEN_PATH ${GEODE_CODEGEN_PATH} PARENT_SCOPE)
+	return()
+endif()
+
 add_library(${PROJECT_NAME} ${GEODE_CODEGEN_PATH}/Geode/GeneratedSource.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC ${GEODE_CODEGEN_PATH})
 

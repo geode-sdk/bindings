@@ -2,17 +2,10 @@ cmake_minimum_required(VERSION 3.21)
 
 project(TestMembers VERSION 1.0.0)
 
-include(../../cmake/CPM.cmake)
-set(MAT_JSON_AS_INTERFACE ON)
-CPMAddPackage("gh:geode-sdk/json#9f54cca")
-CPMAddPackage("gh:fmtlib/fmt#10.1.1")
-CPMAddPackage("gh:gulrak/filesystem#3e5b930")
-
-set(CMAKE_WARN_DEPRECATED OFF CACHE BOOL "" FORCE)
-CPMAddPackage("gh:geode-sdk/TulipHook#3e32b0c")
-set(CMAKE_WARN_DEPRECATED ON CACHE BOOL "" FORCE)
-
 add_library(${PROJECT_NAME} SHARED)
+
+set(GEODE_IS_MEMBER_TEST ON)
+add_compile_definitions(GEODE_IS_MEMBER_TEST)
 
 # even though the other source files do nothing on windows,
 # they still take a little bit to compile, thanks to msvc being very fast!
@@ -56,12 +49,11 @@ endif()
 
 add_subdirectory(../.. bindings)
 
-target_include_directories(GeodeBindings PUBLIC
+target_include_directories(${PROJECT_NAME} PRIVATE
+	${GEODE_MEMBER_TEST_CODEGEN_PATH}
 	${GEODE_LOADER_PATH}/include
 	${GEODE_LOADER_PATH}/include/Geode/cocos/include
 	${GEODE_LOADER_PATH}/include/Geode/cocos/extensions
 	${GEODE_LOADER_PATH}/include/Geode/fmod
 )
-target_link_directories(GeodeBindings PUBLIC ${GEODE_LOADER_PATH}/include/link)
-target_link_libraries(GeodeBindings PUBLIC ghc_filesystem fmt TulipHookInclude mat-json)
-target_link_libraries(${PROJECT_NAME} PUBLIC GeodeBindings)
+target_link_directories(${PROJECT_NAME} PRIVATE ${GEODE_LOADER_PATH}/include/link)
