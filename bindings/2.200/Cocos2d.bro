@@ -1374,9 +1374,9 @@ class cocos2d::CCDictionary {
 	gd::string getFirstKey();
 
 	void setObject(cocos2d::CCObject*, gd::string const&) = mac 0x2ec120;
-	void setObject(cocos2d::CCObject*, int);
+	void setObject(cocos2d::CCObject*, intptr_t);
 	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
-	void setObjectUnSafe(cocos2d::CCObject*, int);
+	void setObjectUnSafe(cocos2d::CCObject*, intptr_t);
 
 	// CCDictionary(cocos2d::CCDictionary const&);
 	// CCDictionary();
@@ -1385,15 +1385,15 @@ class cocos2d::CCDictionary {
 	char const* charForKey(gd::string const&);
 	unsigned int count() = mac 0x2eaed0;
 	cocos2d::CCObject* objectForKey(gd::string const&) = mac 0x2eb260;
-	cocos2d::CCObject* objectForKey(int) = mac 0x2eb5f0;
+	cocos2d::CCObject* objectForKey(intptr_t) = mac 0x2eb5f0;
 	cocos2d::CCObject* randomObject();
 	void removeAllObjects();
 	void removeObjectForElememt(cocos2d::CCDictElement*);
 	void removeObjectForKey(gd::string const&) = mac 0x2ec630;
-	void removeObjectForKey(int);
+	void removeObjectForKey(intptr_t);
 	void removeObjectsForKeys(cocos2d::CCArray*);
 	cocos2d::CCString const* valueForKey(gd::string const&) = mac 0x2eb1e0;
-	cocos2d::CCString const* valueForKey(int);
+	cocos2d::CCString const* valueForKey(intptr_t);
 	bool writeToFile(char const*);
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
