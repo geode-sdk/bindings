@@ -11482,9 +11482,9 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	static RewardsPage* create();
 
 	static char const* getRewardFrame(int, int);
-	void onClose(cocos2d::CCObject* sender);
-	void onFreeStuff(cocos2d::CCObject* sender);
-	void onReward(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x6a750;
+	void onFreeStuff(cocos2d::CCObject* sender) = win 0x2f7A00;
+	void onReward(cocos2d::CCObject* sender) = win 0x2f74a0;
 	TodoReturn tryGetRewards();
 	TodoReturn unlockLayerClosed(RewardUnlockLayer*);
 	TodoReturn updateTimers(float);
