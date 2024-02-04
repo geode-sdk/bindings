@@ -133,7 +133,7 @@ class cocos2d::CCNode {
 	cocos2d::CCAction* runAction(cocos2d::CCAction*) = mac 0x251f90;
 	void schedule(cocos2d::SEL_SCHEDULE);
 	void schedule(cocos2d::SEL_SCHEDULE, float);
-	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float);
+	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = mac 0x252220;
 	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
 	void scheduleUpdate();
 	void scheduleUpdateWithPriority(int);
@@ -960,7 +960,7 @@ class cocos2d::CCSpriteFrameCache {
 [[link(win, android)]]
 class cocos2d::CCSpriteBatchNode {
 	static cocos2d::CCSpriteBatchNode* create(char const*);
-	static cocos2d::CCSpriteBatchNode* create(char const*, unsigned int);
+	static cocos2d::CCSpriteBatchNode* create(char const*, unsigned int) = mac 0x167460;
 	static cocos2d::CCSpriteBatchNode* createWithTexture(cocos2d::CCTexture2D*);
 	static cocos2d::CCSpriteBatchNode* createWithTexture(cocos2d::CCTexture2D*, unsigned int);
 
@@ -1350,7 +1350,7 @@ class cocos2d::CCArray {
 	cocos2d::CCObject* randomObject();
 	void recreateNewIndexes();
 	void reduceMemoryFootprint();
-	void removeAllObjects();
+	void removeAllObjects() = mac 0x6e39b0;
 	void removeLastObject(bool);
 	void removeObject(cocos2d::CCObject*, bool) = mac 0x6e3960;
 	void removeObjectAtIndex(unsigned int, bool);
@@ -1538,7 +1538,7 @@ class cocos2d::CCTransitionFade {
 class cocos2d::CCMenu {
 	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = mac 0x754590;
 	static cocos2d::CCMenu* create() = mac 0x754580;
-	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
+	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*) = mac 0x754640;
 	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
 	// static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
 
@@ -1549,7 +1549,7 @@ class cocos2d::CCMenu {
 	// CCMenu(cocos2d::CCMenu const&);
 	// CCMenu();
 	void alignItemsHorizontally();
-	void alignItemsHorizontallyWithPadding(float);
+	void alignItemsHorizontallyWithPadding(float) = mac 0x7551f0;
 	// void alignItemsInColumns(unsigned int, ...);
 	// void alignItemsInColumns(unsigned int, char*);
 	void alignItemsInColumnsWithArray(cocos2d::CCArray*);
@@ -1557,7 +1557,7 @@ class cocos2d::CCMenu {
 	// void alignItemsInRows(unsigned int, char*);
 	void alignItemsInRowsWithArray(cocos2d::CCArray*);
 	void alignItemsVertically();
-	void alignItemsVerticallyWithPadding(float);
+	void alignItemsVerticallyWithPadding(float) = mac 0x754fa0;
 	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*);
 	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
 
