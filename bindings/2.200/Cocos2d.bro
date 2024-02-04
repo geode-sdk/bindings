@@ -164,7 +164,7 @@ class cocos2d::CCNode {
 	virtual void setScaleY(float) = mac 0x250760;
 	virtual float getScaleY() = mac 0x250750;
 	virtual void setScale(float) = mac 0x2506e0;
-	virtual float getScale() = mac 0x250720;
+	virtual float getScale() = mac 0x2506d0;
 	virtual void setScale(float, float) = mac 0x250700;
 	virtual void setPosition(cocos2d::CCPoint const&) = mac 0x250790;
 	virtual cocos2d::CCPoint const& getPosition() = mac 0x250780;
@@ -1312,7 +1312,7 @@ class cocos2d::CCApplication {
 
 [[link(win, android)]]
 class cocos2d::CCArray {
-	// static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
+	// static cocos2d::CCArray* create(cocos2d::CCObject*, ...) = mac 0x6e32e0;
 	static cocos2d::CCArray* create() = mac 0x6e3140;
 	static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCArray* createWithCapacity(unsigned int) = mac 0x6e3450;
@@ -1536,7 +1536,7 @@ class cocos2d::CCTransitionFade {
 
 [[link(win, android)]]
 class cocos2d::CCMenu {
-	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
+	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = mac 0x754590;
 	static cocos2d::CCMenu* create() = mac 0x754580;
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
