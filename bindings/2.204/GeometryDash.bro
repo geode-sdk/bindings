@@ -11116,7 +11116,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 
 	static RateDemonLayer* create(int);
 
-	bool init(int);
+	bool init(int) = win 0x2f35b0;
 	void onClose(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender) = win 0x2f3c20;
 	void selectRating(cocos2d::CCObject*) = win 0x2f3ac0;
