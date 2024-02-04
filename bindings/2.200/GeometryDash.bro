@@ -282,7 +282,18 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x25830, mac 0x254900;
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = mac 0x254990;
-	~CCMenuItemSpriteExtra() = mac 0x255070;
+	
+	~CCMenuItemSpriteExtra() {}
+	CCMenuItemSpriteExtra() {
+		m_scaleMultiplier = 1.0f;
+		m_baseScale = 1.0f;
+		m_animationEnabled = true;
+		m_colorEnabled = false;
+		m_unknown1 = 0.0f;
+		m_colorDip = 0.0f;
+		m_animationType = MenuAnimationType::Scale;
+		m_unknown4 = 0;
+	}
 
 	/* unverified signature */
 	void setSizeMult(float mult) {
