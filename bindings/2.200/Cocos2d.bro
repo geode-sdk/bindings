@@ -135,7 +135,7 @@ class cocos2d::CCNode {
 	void schedule(cocos2d::SEL_SCHEDULE, float);
 	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = mac 0x252220;
 	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
-	void scheduleUpdate();
+	void scheduleUpdate() = mac 0x2520a0;
 	void scheduleUpdateWithPriority(int);
 	void scheduleUpdateWithPriorityLua(int, int);
 	void sortAllChildrenNoIndex();
@@ -147,7 +147,7 @@ class cocos2d::CCNode {
 	void transformAncestors();
 	void unschedule(cocos2d::SEL_SCHEDULE) = mac 0x252280;
 	void unscheduleAllSelectors() = mac 0x250e30;
-	void unscheduleUpdate();
+	void unscheduleUpdate() = mac 0x252170;
 	void updateChildIndexes();
 
 	virtual unsigned int getChildrenCount() const = mac 0x250900;
@@ -1353,8 +1353,8 @@ class cocos2d::CCArray {
 	void removeAllObjects() = mac 0x6e39b0;
 	void removeLastObject(bool);
 	void removeObject(cocos2d::CCObject*, bool) = mac 0x6e3960;
-	void removeObjectAtIndex(unsigned int, bool);
-	void removeObjectAtIndexChild(unsigned int, bool) = mac 0x6e3980;
+	void removeObjectAtIndex(unsigned, bool) = mac 0x6e3970;
+	void removeObjectAtIndexChild(unsigned, bool) = mac 0x6e3980;
 	void removeObjectsInArray(cocos2d::CCArray*);
 	void replaceObjectAtIndex(unsigned int, cocos2d::CCObject*, bool);
 	void reverseObjects();
@@ -1539,7 +1539,7 @@ class cocos2d::CCMenu {
 	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = mac 0x754590;
 	static cocos2d::CCMenu* create() = mac 0x754580;
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*) = mac 0x754640;
-	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
+	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = mac 0x7549d0;
 	// static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
 
 	bool initWithArray(cocos2d::CCArray*) = mac 0x754850;
