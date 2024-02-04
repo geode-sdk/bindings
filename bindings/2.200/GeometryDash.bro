@@ -4194,8 +4194,8 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLocalLevel(int);
 	TodoReturn getMapPackKey(int);
 	TodoReturn getMessageKey(int);
-	TodoReturn getSavedLevel(int);
-	TodoReturn getSavedLevel(GJGameLevel*) = mac 0x509370;
+	GJGameLevel* getSavedLevel(int) = mac 0x509370;
+	GJGameLevel* getSavedLevel(GJGameLevel*);
 	TodoReturn getTopArtists(int, int);
 	TodoReturn getGauntletKey(int);
 	TodoReturn getLikeItemKey(LikeItemType, int, bool, int);
