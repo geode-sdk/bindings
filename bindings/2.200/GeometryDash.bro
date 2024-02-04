@@ -1124,6 +1124,13 @@ class GJGameState {
 	PAD = win 0x14, android32 0x14, android64 0x14;
 }
 
+[[link(android)]]
+class TriggerEffectDelegate {
+	virtual TodoReturn pure_virtual_00a1b9c0() {} // TODO: figure out what function this is
+	virtual TodoReturn pure_virtual_00a1b9c4() {} // TODO: figure out what function this is
+	virtual TodoReturn pure_virtual_00a1b9c8() {} // TODO: figure out what function this is
+}
+
 [[link(android), depends(GJGameState)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// ~GJBaseGameLayer();
@@ -1550,7 +1557,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
 
-	PAD = win 0xc, android32 0xc, android64 0x14;
+	PAD = win 0x8, android32 0x8, android64 0x8;
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
