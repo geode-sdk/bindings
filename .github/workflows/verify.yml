@@ -74,7 +74,7 @@ jobs:
             -DANDROID_ABI=arm64-v8a
             -DANDROID_PLATFORM=android-23
             -G Ninja
-        
+
         # - name: macOS
         #   os_identifier: mac
         #   os: macos-latest
@@ -82,14 +82,16 @@ jobs:
         #     -DCMAKE_C_COMPILER=clang
         #     -DCMAKE_CXX_COMPILER=clang++
         #     -DCMAKE_BUILD_TYPE=Debug
-          
+
     name: Test Offsets ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout bindings
+      uses: actions/checkout@v4
 
-    - uses: actions/checkout@v4
+    - name: Checkout geode
+      uses: actions/checkout@v4
       with:
         repository: geode-sdk/geode
         path: geode
@@ -98,23 +100,10 @@ jobs:
       id: codegen-cache
       uses: actions/cache@v3
       with:
-        path: build/codegen
+        path: build/bindings/codegen
         # cache by os since for android32 and 64 the codegen binary is the same
         key: codegen-${{ hashFiles('codegen/**') }}-${{ matrix.config.os }}
 
-    - name: Set CPM_SOURCE_CACHE
-      shell: bash
-      run: echo "CPM_SOURCE_CACHE=${{ github.workspace }}/cpm-cache" >> $GITHUB_ENV
-    
-    - name: Set up CPM cache
-      id: cache-cpm
-      uses: actions/cache@v3
-      with:
-        path: ${{ github.workspace }}/cpm-cache
-        key: cpm-cache-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
-        restore-keys: |
-          cpm-cache-
-    
     - name: Set up NDK
       uses: nttld/setup-ndk@v1
       id: setup-ndk
@@ -139,7 +128,7 @@ jobs:
         cmake -B build -S test/members
         -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
         -D USE_HACKY_SCRIPT=ON
-        ${{ matrix.config.extra_flags }}  
+        ${{ matrix.config.extra_flags }}
       # SKIP_BUILDING_CODEGEN will skip building codegen if finds a cached binary,
       # locally you dont need to set it
       # USE_HACKY_SCRIPT will use the python script and some hackery to print the
