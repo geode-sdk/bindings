@@ -801,6 +801,7 @@ class cocos2d::CCDirector {
 	void pause();
 	void popScene();
 	bool popSceneWithTransition(float, cocos2d::PopTransition) = mac 0x460b30;
+	bool popSceneWithTransition(float, cocos2d::PopTransition) = mac 0x460b30;
 	void popToRootScene();
 	void popToSceneInStack(cocos2d::CCScene*);
 	void popToSceneStackLevel(int);
@@ -1366,33 +1367,33 @@ class cocos2d::CCArray {
 
 [[link(win, android)]]
 class cocos2d::CCDictionary {
-	static cocos2d::CCDictionary* create();
+	static cocos2d::CCDictionary* create() = mac 0x2ed090;
 	static cocos2d::CCDictionary* createWithContentsOfFile(char const*);
 	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*);
 	static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
 
 	gd::string getFirstKey();
 
-	void setObject(cocos2d::CCObject*, gd::string const&);
+	void setObject(cocos2d::CCObject*, gd::string const&) = mac 0x2ec120;
 	void setObject(cocos2d::CCObject*, int);
 	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
 	void setObjectUnSafe(cocos2d::CCObject*, int);
 
 	// CCDictionary(cocos2d::CCDictionary const&);
 	// CCDictionary();
-	cocos2d::CCArray* allKeys();
+	cocos2d::CCArray* allKeys() = mac 0x2eaef0;
 	cocos2d::CCArray* allKeysForObject(cocos2d::CCObject*);
 	char const* charForKey(gd::string const&);
-	unsigned int count();
-	cocos2d::CCObject* objectForKey(gd::string const&);
-	cocos2d::CCObject* objectForKey(int);
+	unsigned int count() = mac 0x2eaed0;
+	cocos2d::CCObject* objectForKey(gd::string const&) = mac 0x2eb260;
+	cocos2d::CCObject* objectForKey(int) = mac 0x2eb5f0;
 	cocos2d::CCObject* randomObject();
 	void removeAllObjects();
 	void removeObjectForElememt(cocos2d::CCDictElement*);
-	void removeObjectForKey(gd::string const&);
+	void removeObjectForKey(gd::string const&) = mac 0x2ec630;
 	void removeObjectForKey(int);
 	void removeObjectsForKeys(cocos2d::CCArray*);
-	cocos2d::CCString const* valueForKey(gd::string const&);
+	cocos2d::CCString const* valueForKey(gd::string const&) = mac 0x2eb1e0;
 	cocos2d::CCString const* valueForKey(int);
 	bool writeToFile(char const*);
 
