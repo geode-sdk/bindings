@@ -95,4 +95,6 @@
 // GEODE_MEMBER_CHECK(GameLevelManager, m_accountIDtoUserIDDict, 0x1f8);
 // GEODE_MEMBER_CHECK(GameLevelManager, m_userIDtoAccountIDDict, 0x200);
 
+GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x158);
+
 #endif

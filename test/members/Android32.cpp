@@ -61,17 +61,53 @@ GEODE_SIZE_CHECK(LabelGameObject, 0x690);
 GEODE_SIZE_CHECK(TeleportPortalObject, 0x6a0);
 // GEODE_SIZE_CHECK(EventLinkTrigger, 0x688);
 
+GEODE_MEMBER_CHECK(GJGameState, m_unk284, 0x284);
+GEODE_MEMBER_CHECK(GJGameState, m_unk2b8, 0x2b4);
+GEODE_MEMBER_CHECK(GJGameState, m_unk2e8, 0x2e8);
+
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d60);
-//GEODE_MEMBER_CHECK(GJGameState, m_level, 0x148);
+
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5f8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x88C); //used in PlayLayer::destroyPlayer for example
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x88C); //used in PlayLayer::destroyPlayer for example // no silly createPlayer() is easier
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x890);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelSettings, 0x894);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownCD0, 0x8ac);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk918, 0x918);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0x954);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9c4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xA40); //loop in init
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2a94);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x2ab8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2B48);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2c04);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c2c);
+
+GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e38);
+
+GEODE_MEMBER_CHECK(PlayerObject, m_unk4e4, 0x4d4);
+GEODE_MEMBER_CHECK(PlayerObject, m_collidedObject, 0x514);
+GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x580);
+GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x5d0);
+GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x610);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk644, 0x62c);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk658, 0x640);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk6a2, 0x68a);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk6a3, 0x68b);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk6a4, 0x6a4);
+GEODE_MEMBER_CHECK(PlayerObject, m_objectSnappedTo, 0x6c0);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk6dc, 0x6d8);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk708, 0x704);
+GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x7ac);
+GEODE_MEMBER_CHECK(PlayerObject, m_vehicleSize, 0x7e0);
+GEODE_MEMBER_CHECK(PlayerObject, m_playerSpeed, 0x7e4);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk7e0, 0x7e8);
+GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
+GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0x824);
+GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x850);
+GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk930, 0x988);
+GEODE_MEMBER_CHECK(PlayerObject, m_parentLayer, 0x9ac);
+GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x9b0);
 
 //GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x2da8);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e04);

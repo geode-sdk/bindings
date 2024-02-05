@@ -3,7 +3,7 @@ project(Codegen LANGUAGES C CXX)
 
 include(../cmake/CPM.cmake)
 
-CPMAddPackage("gh:fmtlib/fmt#9.1.0")
+CPMAddPackage("gh:fmtlib/fmt#10.1.1")
 CPMAddPackage("gh:geode-sdk/Broma#fdf00ae")
 
 file(GLOB SOURCES
