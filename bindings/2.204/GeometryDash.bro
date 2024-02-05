@@ -6796,9 +6796,9 @@ class GJGameState {
 	float m_unk1d8;
 	float m_unk1dc;
 	double m_unk1e0; // unsure type
-	PAD = win 0x10, android32 0x10, android64 0x10;
-	float m_unk1f8;
-	PAD = win 0x10, android32 0x10, android64 0x1c;
+	PAD = win 0x8;
+	int m_unk1f8; // used in PlayLayer::getCurrentPercent
+	PAD = win 0x18;
 	cocos2d::CCPoint m_unk20c;
 	PAD = win 0x10, android32 0x10, android64 0x10;
 	gd::unordered_map<int, GJValueTween> m_unk224;
@@ -11098,7 +11098,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 		float percent;
 
 		if (m_level->m_timestamp > 0) {
-			percent = m_gameState.m_unk1f8 / m_level->m_timestamp * 100.f;
+			percent = static_cast<float>(m_gameState.m_unk1f8) / m_level->m_timestamp * 100.f;
 		} else {
 			percent = m_player1->getPosition().x / m_levelLength * 100.f;
 		}
