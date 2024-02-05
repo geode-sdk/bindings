@@ -11027,8 +11027,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	GameObject* m_lastActivatedPortal;
 	bool m_unk814;
 	bool m_unk815;
-	cocos2d::ccColor3B m_playerColor1; // 0x84e
-	cocos2d::ccColor3B m_playerColor2; // 0x851
+	cocos2d::ccColor3B m_playerColor1; // 0x816
+	cocos2d::ccColor3B m_playerColor2; // 0x819
 	cocos2d::CCPoint m_position;
 	PAD = win 0x14, android32 0x14;
 	float m_unk838;
