@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
@@ -643,61 +642,90 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
 
-                // Disable packing for the duration of the import
+                // Disable packing
                 classDataMembers.setPackingEnabled(false);
 
-                var offset = 0;
-                for (var mem : cls.members) {
-                    var length = mem.name.isPresent() ?
-                        wrapper.addOrGetType(mem.type.get()).getLength() :
-                        Optional.ofNullable(mem.paddings.get(args.platform)).orElse(1);
-                    
-                    // Make sure the class is large enough to hold this member
-                    // growStructure aint doin shit on packed structs so manually doing this
-                    if (offset + length > classDataMembers.getLength() || classDataMembers.isZeroLength()) {
-                        classDataMembers.growStructure(offset + length - classDataMembers.getLength());
+                // Delete any padding at the end of the struct 
+                // (so if the struct has shrunk in broma, we refit it properly)
+                while (!classDataMembers.isZeroLength()) {
+                    var comp = classDataMembers.getComponent(classDataMembers.getNumComponents() - 1);
+                    if (comp.getDataType().isNotYetDefined()) {
+                        classDataMembers.delete(classDataMembers.getNumComponents() - 1);
                     }
-                    // If there are packed bools or something we need to clear multiple members
-                    var freedCount = 0;
-                    while (true) {
-                        final var data = classDataMembers.getComponentAt(offset + freedCount);
-                        if (data == null || data.getLength() >= length - freedCount) {
-                            break;
-                        }
-                        freedCount += data.getLength();
-                        classDataMembers.clearAtOffset(offset + freedCount);
-                    }
-                    
-                    // If this is a real ass member, add it to the class
-                    if (mem.name.isPresent()) {
-                        final var memType = wrapper.addOrGetType(mem.type.get());
-                        classDataMembers.replaceAtOffset(offset, memType, memType.getLength(), mem.name.get().value, null);
-                        offset += memType.getLength();
-                    }
-                    // Otherwise add padding members
                     else {
-                        int padLength;
-                        if (mem.paddings.containsKey(args.platform)) {
-                            padLength = mem.paddings.get(args.platform);
-                        }
-                        else {
-                            wrapper.printfmt("Warning: class {0} contains unimplemented padding on this platform", fullName);
-                            padLength = 1;
-                        }
-                        for (int i = 0; i < padLength; i += 1) {
-                            classDataMembers.replaceAtOffset(
-                                offset + i, Undefined1DataType.dataType, 1,
-                                null,
-                                new PaddingInfo(mem.paddings, offset).toString()
-                            );
-                        }
-                        offset += padLength;
+                        break;
                     }
                 }
 
-                // Re-enable packing
-                classDataMembers.setPackingEnabled(true);
-                classDataMembers.repack();
+                var offset = 0;
+                for (var mem : cls.members) {
+                    int length;
+                    if (mem.name.isPresent()) {
+                        length = wrapper.addOrGetType(mem.type.get()).getLength();
+                    }
+                    else {
+                        if (mem.paddings.containsKey(args.platform)) {
+                            length = mem.paddings.get(args.platform);
+                        }
+                        else {
+                            length = 0;
+                        }
+                    }
+
+                    int classLength = classDataMembers.isZeroLength() ? 0 : classDataMembers.getLength();
+                    if (offset + length > classLength) {
+                        classDataMembers.growStructure(offset + length - classLength);
+                    }
+
+                    if (mem.name.isPresent()) {
+                        final var memType = wrapper.addOrGetType(mem.type.get());
+                        var existing = classDataMembers.getComponentAt(offset);
+                        if (!existing.getDataType().isNotYetDefined()) {
+                            if (
+                                !existing.getDataType().isEquivalent(memType) ||
+                                (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value))
+                            ) {
+                                askContinueConflict(
+                                    "Override member",
+                                    "Member #{0} in {1} does not match between Broma and Ghidra:\n" + 
+                                    "Broma: {2} {3}\n" + 
+                                    "Ghidra: {4} {5}\n" + 
+                                    "Should the existing member in Ghidra be overwritten with Broma's?",
+                                    existing.getOrdinal(), fullName,
+                                    ScriptWrapper.formatType(memType), mem.name.get().value,
+                                    ScriptWrapper.formatType(existing.getDataType()), existing.getFieldName()
+                                );
+                            }
+                        }
+                        for (int i = memType.getLength(); i > 0; i -= 1) {
+                            classDataMembers.clearAtOffset(offset + i - 1);
+                        }
+                        classDataMembers.replaceAtOffset(
+                            offset,
+                            memType, memType.getLength(),
+                            mem.name.get().value,
+                            mem.getComment().orElse(null)
+                        );
+                        offset += memType.getLength();
+                    }
+                    else {
+                        if (mem.paddings.containsKey(args.platform)) {
+                            // Don't clear anything in case there's user-defined members there
+                            // since we don't want to override anyone's RE progress
+                            offset += mem.paddings.get(args.platform);
+                        }
+                        else {
+                            wrapper.printfmt(
+                                "Warning: Reached undefined padding at offset {0} " + 
+                                "on class {1} - stopping importing members",
+                                offset, fullName
+                            );
+                        }
+                    }
+                }
+
+                // classDataMembers.setPackingEnabled(true);
+                // classDataMembers.repack();
             }
         }
     }

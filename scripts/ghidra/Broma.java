@@ -250,6 +250,20 @@ public class Broma {
             }
         }
 
+        private static String removeCommentPrefix(String str) {
+            return str.startsWith("//") ? str.substring(2).trim() : str;
+        }
+        public Optional<String> getComment() {
+            if (comments.isPresent()) {
+                return Optional.of(String.join(
+                    "\n",
+                    comments.get().value.lines()
+                        .map(line -> removeCommentPrefix(line.trim()))
+                        .toList()
+                ).trim());
+            }
+            return Optional.empty();
+        }
         public String paddingNamesToString() {
             return "GEODE(" + String.join(
                 "|",
