@@ -10981,7 +10981,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCParticleSystemQuad* m_shipClickParticles; // 0x6dc
 	cocos2d::CCParticleSystemQuad* m_unk6e8;
 	cocos2d::CCParticleSystemQuad* m_ufoClickParticles; // 0x6e4
-	cocos2d::CCParticleSystemQuad* m_unk6f0;
+	cocos2d::CCParticleSystemQuad* m_robotBurstParticles;
 	cocos2d::CCParticleSystemQuad* m_unk6f4;
 	cocos2d::CCParticleSystemQuad* m_swingBurstParticles1; // 0x6f0
 	cocos2d::CCParticleSystemQuad* m_swingBurstParticles2; // 0x6f4
@@ -11027,17 +11027,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	GameObject* m_lastActivatedPortal;
 	bool m_unk814;
 	bool m_unk815;
-	PAD = win 0x8, android32 0x8;
+	cocos2d::ccColor3B m_playerColor1; // 0x84e
+	cocos2d::ccColor3B m_playerColor2; // 0x851
 	cocos2d::CCPoint m_position;
 	PAD = win 0x14, android32 0x14;
 	float m_unk838;
-	PAD = win 0x16, android32 0x16;
-	cocos2d::ccColor3B m_playerColor1; // 0x84e
-	cocos2d::ccColor3B m_playerColor2; // 0x851
-	PAD = win 0x1d;
-	double m_platformerXVelocity; //0x870
-	PAD = win 0xA8;
-	bool m_isPlatformer; //0x8e8 actually its 0x920
+	gd::unordered_map<int, int> m_unk83c; // the types are placeholders, no idea what they should be
+	PAD = win 0x8c, android32 0x94;
+	bool m_isPlatformer;
 	int m_unk8ec;
 	int m_unk8f0;
 	int m_unk8f4;
