@@ -679,6 +679,8 @@ public class SyncBromaScript extends GhidraScript {
 
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
+                        // Make sure alignment is correct
+                        offset += offset % memType.getAlignment();
                         var existing = classDataMembers.getComponentAt(offset);
                         if (!existing.getDataType().isNotYetDefined()) {
                             if (
