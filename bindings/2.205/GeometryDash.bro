@@ -6778,7 +6778,7 @@ class GJGameState {
 	float m_unk1dc;
 	double m_unk1e0; // unsure type
 	PAD = win 0x10, android32 0x10, android64 0x10;
-	float m_unk1f8;
+	int m_unk1f8;
 	PAD = win 0x10, android32 0x10, android64 0x1c;
 	cocos2d::CCPoint m_unk20c;
 	PAD = win 0x10, android32 0x10, android64 0x10;
