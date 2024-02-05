@@ -4226,7 +4226,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getStoredUserList(UserListType);
 	TodoReturn getAccountComments(int, int, int);
 	cocos2d::CCArray* getCompletedLevels(bool);
-	TodoReturn getSavedDailyLevel(int) = mac 0x5091b0;
+	GJGameLevel* getSavedDailyLevel(int) = mac 0x5091b0;
 	TodoReturn getSavedLevelLists(int) = mac 0x508b90, win 0xF6A70;
 	TodoReturn getSplitIntFromKey(char const*, int);
 	TodoReturn getDeleteCommentKey(int, int, int);
@@ -4252,7 +4252,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode) = mac 0x51acf0;
 	TodoReturn getStoredLevelComments(char const*) = mac 0x51fa70;
 	TodoReturn getStoredUserMessageReply(int);
-	TodoReturn getSavedDailyLevelFromLevelID(int) = mac 0x509450;
+	GJGameLevel* getSavedDailyLevelFromLevelID(int) = mac 0x509450;
 	TodoReturn getNews();
 	TodoReturn getUsers(GJSearchObject*) = mac 0x51b140;
 	TodoReturn getLenKey(int);
