@@ -10681,7 +10681,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn getCurrentXVelocity();
 	TodoReturn getModifiedSlopeYVel();
 	TodoReturn getOldPosition(float);
-	TodoReturn getSecondColor();
+	cocos2d::ccColor3B getSecondColor();
 	TodoReturn getYVelocity();
 	TodoReturn gravityDown();
 	TodoReturn gravityUp();
@@ -10937,7 +10937,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_unk659;
 	bool m_unk65a;
 	bool m_unk65b; // midair ??
-	bool m_unk65c;
+	bool m_unk65c; // something to do with spider, when false the spider tp animation does not play
 	bool m_unk65d; // walking ???
 	bool m_unk65e;
 	bool m_unk65f;
@@ -10966,10 +10966,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	PAD = win 0x4, android32 0x4, android64 0x4;
 	cocos2d::CCParticleSystemQuad* m_unk704;
 	cocos2d::CCParticleSystemQuad* m_unk708;
-	PAD = win 0x6c, android32 0x6c, android64 0x68;
+	PAD = win 0x6c, android32 0x68, android64 0x68;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
-	PAD = win 0x1c, android32 0x1c, android64 0x20;
+	PAD = win 0x1c, android32 0x20, android64 0x20;
 	double m_yVelocity;
 	bool m_isOnSlope;
 	bool m_wasOnSlope;
@@ -11011,7 +11011,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	PAD = win 0x14, android32 0x14, android64 0x14;
 	float m_unk838;
 	gd::unordered_map<int, int> m_unk83c; // the types are placeholders, no idea what they should be
-	PAD = win 0x94, android32 0x94, android64 0x88;
+	PAD = android32 0x18, android64 0x10;
+	double m_platformerXVelocity;
+	PAD = android32 0x70, android64 0x70;
 	bool m_isPlatformer;
 	int m_unk8ec;
 	int m_unk8f0;

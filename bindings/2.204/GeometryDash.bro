@@ -10682,8 +10682,12 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 
 	static PlayerFireBoostSprite* create();
 
-	TodoReturn animateFireIn();
-	TodoReturn animateFireOut();
+	void animateFireIn() = win 0x2dac30;
+	void animateFireOut() {
+		this->stopAllActions();
+		auto action = cocos2d::CCScaleTo::create(0.4f, 0.01f, 0.01f);
+		this->runAction(action);
+	}
 	TodoReturn loopFireAnimation();
 
 	virtual bool init();
@@ -10733,7 +10737,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn enablePlayerControls();
 	TodoReturn exitPlatformerAnimateJump();
 	TodoReturn fadeOutStreak2(float) = win 0x2d8ab0;
-	TodoReturn flashPlayer(float, float, cocos2d::ccColor3B, cocos2d::ccColor3B);
+	void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = win 0x2d1080;
 	TodoReturn flipGravity(bool, bool) = win 0x2d36e0;
 	TodoReturn flipMod();
 	TodoReturn gameEventTriggered(int, int);
@@ -10783,7 +10787,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playerTeleported();
 	TodoReturn playingEndEffect();
 	TodoReturn playSpawnEffect();
-	TodoReturn playSpiderDashEffect(cocos2d::CCPoint, cocos2d::CCPoint);
+	void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x2cf5b0;
 	TodoReturn postCollision(float) = win 0x2c82f0;
 	TodoReturn preCollision() = win 0x2c81b0;
 	TodoReturn preSlopeCollision(float, GameObject*);
@@ -11069,7 +11073,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	PAD = win 0x14, android32 0x14;
 	float m_unk838;
 	gd::unordered_map<int, int> m_unk83c; // the types are placeholders, no idea what they should be
-	PAD = win 0x8c, android32 0x94;
+	PAD = win 0x10;
+	double m_platformerXVelocity;
+	PAD = win 0x70;
 	bool m_isPlatformer;
 	int m_unk8ec;
 	int m_unk8f0;
