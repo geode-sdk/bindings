@@ -11542,14 +11542,14 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 	/* unverified signature */
 	bool isCorrect(char const*);
 
-	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual TodoReturn show() = win 0x5D2C0;
-	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadLeaderboardFailed(char const*);
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
-	virtual TodoReturn updateUserScoreFinished();
-	virtual TodoReturn updateUserScoreFailed();
+	virtual void registerWithTouchDispatcher() = mac 0x3ba380;
+	virtual void keyBackClicked() = mac 0x3ba310;
+	virtual TodoReturn show() = mac 0x3ba8d0, win 0x5D2C0;
+	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*) = mac 0x3ba5d0;
+	virtual TodoReturn loadLeaderboardFailed(char const*) = mac 0x3ba710;
+	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x3b9f60;
+	virtual TodoReturn updateUserScoreFinished() = mac 0x3ba160;
+	virtual TodoReturn updateUserScoreFailed() = mac 0x3ba190;
 
 	GJGameLevel* m_level;
 	LevelLeaderboardType m_type;
