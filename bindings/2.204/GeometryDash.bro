@@ -2763,7 +2763,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn processSmartObjectsFromType(int, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*);
 	void recreateButtonTabs() = win 0xa8a60;
 	TodoReturn redoLastAction(cocos2d::CCObject*) = win 0xc9ba0;
-	TodoReturn reloadCustomItems();
+	void reloadCustomItems() = win 0xa8a10;
 	TodoReturn removeOffset(GameObject*) = win 0xd7cf0;
 	TodoReturn replaceGroupID(GameObject*, int, int);
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0xcbc50;
@@ -3014,7 +3014,7 @@ class EffectGameObject : EnhancedGameObject {
 	virtual TodoReturn customSetup() = win 0x39e950;
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x39ccf0;
 	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual TodoReturn getSaveString(GJBaseGameLayer*);
+	virtual TodoReturn getSaveString(GJBaseGameLayer*); // = win 0x13f9a0;
 	virtual void setRScaleX(float);
 	virtual void setRScaleY(float);
 	virtual TodoReturn triggerActivated(float);
@@ -8268,7 +8268,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	TodoReturn stopStroke();
 	callback void updateStroke(float) = win 0x226960;
 
-	virtual bool init();
+	virtual bool init() = win 0x226860;
 }
 
 [[link(android)]]
@@ -10717,7 +10717,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn collidedWithSlopeInternal(float, GameObject*, bool);
 	TodoReturn convertToClosestRotation(float);
 	TodoReturn copyAttributes(PlayerObject*);
-	TodoReturn createFadeOutDartStreak();
+	void createFadeOutDartStreak() = win 0x2d2320;
 	TodoReturn createRobot(int) = win 0x2c35e0;
 	TodoReturn createSpider(int) = win 0x2c3870;
 	TodoReturn deactivateParticle();
@@ -10917,7 +10917,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateSpecial(float) = win 0x2c62c0;
 	TodoReturn updateStateVariables();
 	TodoReturn updateStaticForce(float, float, bool);
-	TodoReturn updateStreakBlend(bool);
+	void updateStreakBlend(bool) = win 0x2c4050;
 	TodoReturn updateStreaks(float);
 	TodoReturn updateSwingFire() = win 0x2d41e0;
 	TodoReturn updateTimeMod(float, bool) = win 0x2d95e0;
@@ -11217,6 +11217,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleBGEffectVisibility(bool);
 	TodoReturn toggleGhostEffect(int);
+	//void toggleDebugDraw(bool) = win 0x2dda61;
 	void togglePracticeMode(bool) = win 0x2ead30;
 	TodoReturn tryStartRecord();
 	TodoReturn updateAttempts() = win 0x2eab40;
