@@ -1358,7 +1358,7 @@ class cocos2d::CCArray {
 	void removeObjectsInArray(cocos2d::CCArray*);
 	void replaceObjectAtIndex(unsigned int, cocos2d::CCObject*, bool);
 	void reverseObjects();
-	cocos2d::CCString* stringAtIndex(unsigned int);
+	cocos2d::CCString* stringAtIndex(unsigned int) = mac 0x6e37d0;
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
@@ -1374,7 +1374,7 @@ class cocos2d::CCDictionary {
 	gd::string getFirstKey();
 
 	void setObject(cocos2d::CCObject*, gd::string const&) = mac 0x2ec120;
-	void setObject(cocos2d::CCObject*, intptr_t);
+	void setObject(cocos2d::CCObject*, intptr_t) = mac 0x2eb7a0;
 	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
 	void setObjectUnSafe(cocos2d::CCObject*, intptr_t);
 
