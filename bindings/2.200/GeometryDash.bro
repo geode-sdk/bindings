@@ -1958,7 +1958,7 @@ class GameManager : GManager {
 	virtual bool init() = win 0x11EA00;
 	virtual TodoReturn encodeDataTo(DS_Dictionary*) = mac 0x367900;
 	virtual TodoReturn dataLoaded(DS_Dictionary*) = mac 0x365be0;
-	virtual TodoReturn firstLoad();
+	virtual TodoReturn firstLoad() = mac 0x367010;
 
 	cocos2d::CCDictionary* m_unkAnimationDict;
 	cocos2d::CCDictionary* m_unkAnimationDict2;
@@ -3056,7 +3056,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDelegate, RateLevelDelegate, LikeItemDelegate, FLAlertLayerProtocol, LevelDeleteDelegate, NumberInputDelegate, SetIDPopupDelegate, TableViewCellDelegate {
-	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x24CCD0, mac 0x2973f0;
+	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x24CCD0, mac 0x297220;
 
 	bool init(GJGameLevel* level, bool challenge) = win 0x24CD80, mac 0x2973f0;
 	~LevelInfoLayer();
