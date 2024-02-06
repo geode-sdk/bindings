@@ -2146,7 +2146,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	bool init(char const* title) {
 		return GJDropDownLayer::init(title, 220.f);
 	}
-	bool init(const char* title, float height) = win 0x1d2340;
+	bool init(const char* title, float height) = win 0x1d2340, mac 0x5acd70;
 	~GJDropDownLayer();
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent) {
@@ -6501,7 +6501,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateJump(float) = win 0x2c1290, mac 0x3df600;
 	TodoReturn updateMove(float) = win 0x2BFC30;
 	TodoReturn yStartDown();
-	void boostPlayer(float) = win 0x2d2d30, mac 0x3df600;
+	void boostPlayer(float) = win 0x2d2d30;
 	TodoReturn createRobot(int) = mac 0x3dd580;
 	TodoReturn flashPlayer(float, float, cocos2d::_ccColor3B, cocos2d::_ccColor3B);
 	TodoReturn flipGravity(bool, bool) = win 0x2CDDB0, mac 0x3e4a80;
@@ -9220,7 +9220,7 @@ class SimplePlayer : cocos2d::CCSprite {
 	TodoReturn hideSecondary();
 	TodoReturn createRobotSprite(int) = win 0x1efd50;
 	TodoReturn updatePlayerFrame(int, IconType) = win 0x1f0140, mac 0x349a00;
-	TodoReturn createSpiderSprite(int) = mac 0x5a22a0, win 0x1efda0;
+	TodoReturn createSpiderSprite(int) = mac 0x349850, win 0x1efda0;
 	TodoReturn iconFinishedLoading(int, IconType);
 	void enableCustomGlowColor(cocos2d::_ccColor3B const& color) {
 		m_hasCustomGlowColor = true;
