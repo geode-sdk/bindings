@@ -2830,7 +2830,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn updatePlaybackBtn() = win 0xc9f80;
 	TodoReturn updateSlider();
 	TodoReturn updateSpecialUIElements();
-	TodoReturn updateZoom(float) = win 0xca3d0;
+	void updateZoom(float) = win 0xca3d0;
 	void valueFromXPos(float) = win 0xa6e20;
 	TodoReturn xPosFromValue(float);
 	TodoReturn zoomGameLayer(bool);
