@@ -1931,14 +1931,14 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onSettings(cocos2d::CCObject* sender);
 	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x79af0;
 	TodoReturn recreateLayer();
-	void sliderChanged(cocos2d::CCObject*);
+	void sliderChanged(cocos2d::CCObject*) = win 0x78930;
 	void toggleVisible() = win 0x79780;
 	void updateChannelLabel(int) = win 0x79720;
 	void updateColorSprite() = win 0x78d40;
 	void updateCurrentSelection();
 	void updateCustomColorLabels() = win 0x79ec0;
 	void updateHSVButtons() = win 0x79050;
-	void updateKerningLabel();
+	void updateKerningLabel() = win 0x787e0;
 	void updateSelected(int) = win 0x7a040;
 
 	virtual void keyBackClicked();
@@ -2550,8 +2550,8 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onSave(cocos2d::CCObject* sender) = win 0xa2e40;
 	void onSaveAndExit(cocos2d::CCObject* sender) = win 0xa2eb0;
 	void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xa2c90;
-	void onSelectAll(cocos2d::CCObject* sender);
-	void onSelectAllLeft(cocos2d::CCObject* sender);
+	void onSelectAll(cocos2d::CCObject* sender) = win 0xa20e0;
+	void onSelectAllLeft(cocos2d::CCObject* sender) = win 0xa2100;
 	void onSelectAllRight(cocos2d::CCObject* sender);
 	void onSong(cocos2d::CCObject* sender) = win 0xa25a0;
 	void onUnlockAllLayers(cocos2d::CCObject* sender);
@@ -2597,7 +2597,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	static EditorUI* create(LevelEditorLayer*);
 
 	TodoReturn activateRotationControl(cocos2d::CCObject*) = win 0xd83d0;
-	TodoReturn activateScaleControl(cocos2d::CCObject*);
+	TodoReturn activateScaleControl(cocos2d::CCObject*) = win 0xcc130;
 	TodoReturn activateTransformControl(cocos2d::CCObject*);
 	TodoReturn addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*);
 	TodoReturn addSnapPosition(cocos2d::CCPoint);
@@ -2775,8 +2775,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = win 0xd6080;
 	TodoReturn rotationforCommand(EditCommand);
 	TodoReturn scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType) = win 0xd64b0;
-	TodoReturn selectAll();
-	TodoReturn selectAllWithDirection(bool);
+	TodoReturn selectAll() = win 0xc9750;
+	TodoReturn selectAllWithDirection(bool) = win 0xc9890;
 	TodoReturn selectBuildTab(int) = win 0xcbf00;
 	TodoReturn selectObject(GameObject*, bool) = win 0xc8aa0;
 	TodoReturn selectObjects(cocos2d::CCArray*, bool) = win 0xc8d40;
@@ -2793,7 +2793,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn showMaxBasicError() = win 0xca6c0;
 	TodoReturn showMaxCoinError() = win 0xca750;
 	TodoReturn showMaxError() = win 0xca640;
-	TodoReturn showUI(bool);
+	TodoReturn showUI(bool) = win 0xc9c10;
 	TodoReturn sliderChanged(cocos2d::CCObject*) = win 0xa6cd0;
 	TodoReturn smartTypeForKey(int);
 	TodoReturn spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
@@ -8213,7 +8213,7 @@ class GradientTriggerObject : EffectGameObject {
 class GraphicsReloadLayer : cocos2d::CCLayer {
 	// virtual ~GraphicsReloadLayer();
 
-	static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
+	static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool) = win 0x2b8460;
 
 	bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
 	TodoReturn performReload();
@@ -8868,9 +8868,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn objectMoved(GameObject*) = win 0x23f080;
 	TodoReturn objectsAtPosition(cocos2d::CCPoint);
 	TodoReturn objectsInRect(cocos2d::CCRect, bool);
-	TodoReturn onPausePlaytest();
+	TodoReturn onPausePlaytest() = win 0x246c70;
 	TodoReturn onPlaytest() = win 0x2463a0;
-	TodoReturn onResumePlaytest();
+	TodoReturn onResumePlaytest() = win 0x246d60;
 	TodoReturn onStopPlaytest();
 	TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*) = win 0x247940;
 	TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*) = win 0x2478d0;
@@ -15043,7 +15043,7 @@ class VideoOptionsLayer : FLAlertLayer {
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float, bool);
 	void onAdvanced(cocos2d::CCObject* sender);
-	void onApply(cocos2d::CCObject* sender);
+	void onApply(cocos2d::CCObject* sender) = win 0x2b50e0;
 	void onClose(cocos2d::CCObject* sender);
 	void onFullscreen(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
