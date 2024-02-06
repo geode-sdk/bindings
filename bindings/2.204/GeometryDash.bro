@@ -1932,7 +1932,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x79af0;
 	TodoReturn recreateLayer();
 	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn toggleVisible() = win 0x79780;
+	void toggleVisible() = win 0x79780;
 	void updateChannelLabel(int) = win 0x79720;
 	void updateColorSprite() = win 0x78d40;
 	void updateCurrentSelection();
