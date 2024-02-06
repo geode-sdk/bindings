@@ -1710,11 +1710,11 @@ class DS_Dictionary {
 	bool getBoolForKey(char const*) = mac 0x16e8f0;
 	cocos2d::CCDictionary* getDictForKey(char const*, bool) = mac 0x172ac0;
 	float getFloatForKey(char const*) = mac 0x16e9f0;
-	unsigned getIndexOfKey(char const*);
-	unsigned getIndexOfKeyWithClosestAlphaNumericalMatch(char const*);
+	unsigned int getIndexOfKey(char const*);
+	unsigned int getIndexOfKeyWithClosestAlphaNumericalMatch(char const*);
 	int getIntegerForKey(char const*) = mac 0x16e7b0;
-	gd::string getKey(unsigned) = mac 0x16e0d0;
-	unsigned getNumKeys();
+	gd::string getKey(unsigned int) = mac 0x16e0d0;
+	unsigned int getNumKeys();
 	cocos2d::CCObject* getObjectForKey(char const*) = mac 0x171d10;
 	gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
 	cocos2d::CCRect getRectForKey(char const*);
@@ -1727,7 +1727,7 @@ class DS_Dictionary {
 	bool loadRootSubDictFromString(gd::string const&);
 	bool rectFromString(gd::string const&, cocos2d::CCRect&);
 	void removeAllKeys();
-	void removeKey(unsigned);
+	void removeKey(unsigned int);
 	void removeKey(char const*);
 	bool saveRootSubDictToCompressedFile(char const*);
 	bool saveRootSubDictToFile(char const*);
