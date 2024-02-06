@@ -1931,7 +1931,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onSettings(cocos2d::CCObject* sender);
 	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x79af0;
 	TodoReturn recreateLayer();
-	TodoReturn sliderChanged(cocos2d::CCObject*);
+	void sliderChanged(cocos2d::CCObject*);
 	void toggleVisible() = win 0x79780;
 	void updateChannelLabel(int) = win 0x79720;
 	void updateColorSprite() = win 0x78d40;
@@ -1970,7 +1970,9 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     cocos2d::CCLabelBMFont* m_selectedColorLabel;
     CCTextInputNode* m_customColorInput;
     CCTextInputNode* m_textInput;
-	PAD = win 0xc;
+	int m_kerningAmount;
+	cocos2d::CCLabelBMFont* m_kerningLabel;
+	Slider* m_kerningSlider;
     ButtonSprite* m_customColorButtonSprite;
     CCMenuItemSpriteExtra* m_customColorButton;
     CCMenuItemSpriteExtra* m_arrowDown;

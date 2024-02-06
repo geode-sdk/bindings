@@ -13363,6 +13363,40 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	virtual TodoReturn hsvPopupClosed(HSVWidgetPopup*, cocos2d::_ccHSVValue);
 	virtual TodoReturn colorSelectClosed(cocos2d::CCNode*);
 	virtual TodoReturn colorSetupClosed(int);
+	
+    GameObject* m_targetObject;
+    cocos2d::CCArray* m_targetObjects;
+    cocos2d::CCArray* m_colorButtons;
+    cocos2d::CCArray* m_colorTabNodes;
+    cocos2d::CCArray* m_textTabNodes;
+	cocos2d::CCArray* m_unkArray;
+    cocos2d::CCArray* m_detailTabNodes;
+    int m_selectedMode;
+    int m_customColorChannel;
+    bool m_unk0x200;
+    bool m_unk0x201;
+    bool m_glowDisabled;
+    CCMenuItemSpriteExtra* m_baseButton;
+    CCMenuItemSpriteExtra* m_detailButton;
+    CCMenuItemSpriteExtra* m_textButton;
+    CCMenuItemSpriteExtra* m_baseColorHSV;
+    CCMenuItemSpriteExtra* m_detailColorHSV;
+    cocos2d::CCLabelBMFont* m_titleLabel;
+    cocos2d::CCLabelBMFont* m_selectedColorLabel;
+    CCTextInputNode* m_customColorInput;
+    CCTextInputNode* m_textInput;
+	int m_kerningAmount;
+	cocos2d::CCLabelBMFont* m_kerningLabel;
+	Slider* m_kerningSlider;
+    ButtonSprite* m_customColorButtonSprite;
+    CCMenuItemSpriteExtra* m_customColorButton;
+    CCMenuItemSpriteExtra* m_arrowDown;
+    CCMenuItemSpriteExtra* m_arrowUp;
+    cocos2d::extension::CCScale9Sprite* m_customColorInputBG;
+    ColorChannelSprite* m_colorSprite;
+    CCMenuItemSpriteExtra* m_colorSpriteButton;
+    bool m_showTextInput;
+    bool m_customColorSelected;
 }
 
 [[link(android)]]
