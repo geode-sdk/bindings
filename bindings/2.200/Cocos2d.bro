@@ -349,15 +349,15 @@ class cocos2d::CCScheduler {
 	bool isTargetPaused(cocos2d::CCObject*);
 	cocos2d::CCSet* pauseAllTargets();
 	cocos2d::CCSet* pauseAllTargetsWithMinPriority(int);
-	void pauseTarget(cocos2d::CCObject*);
+	void pauseTarget(cocos2d::CCObject*) = mac 0x421430;
 	void priorityIn(cocos2d::_listEntry**, cocos2d::CCObject*, int, bool);
 	void removeHashElement(cocos2d::_hashSelectorEntry*);
 	void removeUpdateFromHash(cocos2d::_listEntry*);
 	void resumeTarget(cocos2d::CCObject*);
 	void resumeTargets(cocos2d::CCSet*);
 	unsigned int scheduleScriptFunc(unsigned int, float, bool);
-	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool);
-	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool);
+	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool) = mac 0x41fe50;
+	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool) = mac 0x41fe30;
 	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool) = mac 0x420a30;
 	void unscheduleAll();
 	void unscheduleAllForTarget(cocos2d::CCObject*) = mac 0x420ff0;
@@ -499,8 +499,8 @@ class cocos2d::CCLayerColor {
 	virtual void setColor(cocos2d::_ccColor3B const&) = mac 0x48ee90;
 	virtual void setOpacity(unsigned char) = mac 0x48f010;
 
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
-	virtual cocos2d::_ccBlendFunc getBlendFunc();
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = mac 0x48e520;
+	virtual cocos2d::_ccBlendFunc getBlendFunc() = mac 0x48e500;
 }
 
 [[link(win, android)]]
@@ -768,7 +768,7 @@ class cocos2d::CCDirector {
 	void setDefaultValues() = mac 0x45ef70;
 	void setDelegate(cocos2d::CCDirectorDelegate*);
 	void setDeltaTime(float);
-	void setDepthTest(bool);
+	void setDepthTest(bool) = mac 0x45f2c0;
 	void setDisplayStats(bool);
 	void setDontCallWillSwitch(bool);
 	void setGLDefaultValues() = mac 0x45f250;
@@ -1388,9 +1388,9 @@ class cocos2d::CCDictionary {
 	cocos2d::CCObject* objectForKey(intptr_t) = mac 0x2eb5f0;
 	cocos2d::CCObject* randomObject();
 	void removeAllObjects() = mac 0x2eacf0;
-	void removeObjectForElememt(cocos2d::CCDictElement*);
+	void removeObjectForElememt(cocos2d::CCDictElement*) = mac 0x2ec9f0;
 	void removeObjectForKey(gd::string const&) = mac 0x2ec630;
-	void removeObjectForKey(intptr_t);
+	void removeObjectForKey(intptr_t) = mac 0x2ecb40;
 	void removeObjectsForKeys(cocos2d::CCArray*);
 	cocos2d::CCString const* valueForKey(gd::string const&) = mac 0x2eb1e0;
 	cocos2d::CCString const* valueForKey(intptr_t);
