@@ -1660,7 +1660,7 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 	static ConfigureHSVWidget* create(cocos2d::ccHSVValue, bool, bool);
 
 	TodoReturn createTextInputNode(cocos2d::CCPoint, int);
-	TodoReturn getHSV(GameObject*, cocos2d::CCArray*, int);
+	TodoReturn getHSV(GameObject*, cocos2d::CCArray*, int) = win 0x6c320;
 	bool init(cocos2d::ccHSVValue, bool, bool);
 	TodoReturn onClose();
 	void onResetHSV(cocos2d::CCObject* sender);
@@ -1932,12 +1932,12 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x79af0;
 	TodoReturn recreateLayer();
 	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn toggleVisible();
+	void toggleVisible() = win 0x79780;
 	void updateChannelLabel(int) = win 0x79720;
 	void updateColorSprite() = win 0x78d40;
 	void updateCurrentSelection();
 	void updateCustomColorLabels() = win 0x79ec0;
-	void updateHSVButtons();
+	void updateHSVButtons() = win 0x79050;
 	void updateKerningLabel();
 	void updateSelected(int) = win 0x7a040;
 
