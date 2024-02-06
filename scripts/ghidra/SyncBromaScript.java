@@ -649,7 +649,7 @@ public class SyncBromaScript extends GhidraScript {
                 // (so if the struct has shrunk in broma, we refit it properly)
                 while (!classDataMembers.isZeroLength()) {
                     var comp = classDataMembers.getComponent(classDataMembers.getNumComponents() - 1);
-                    if (comp.getDataType().isNotYetDefined()) {
+                    if (comp.getDataType() instanceof Undefined) {
                         classDataMembers.delete(classDataMembers.getNumComponents() - 1);
                     }
                     else {
@@ -661,7 +661,9 @@ public class SyncBromaScript extends GhidraScript {
                 for (var mem : cls.members) {
                     int length;
                     if (mem.name.isPresent()) {
-                        length = wrapper.addOrGetType(mem.type.get()).getLength();
+                        final var memType = wrapper.addOrGetType(mem.type.get());
+                        length = memType.getLength();
+                        offset += offset % memType.getAlignment();
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
@@ -680,9 +682,8 @@ public class SyncBromaScript extends GhidraScript {
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
                         // Make sure alignment is correct
-                        offset += offset % memType.getAlignment();
                         var existing = classDataMembers.getComponentAt(offset);
-                        if (!existing.getDataType().isNotYetDefined()) {
+                        if (existing != null && existing.getDataType() instanceof Undefined) {
                             if (
                                 !existing.getDataType().isEquivalent(memType) ||
                                 (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value))
