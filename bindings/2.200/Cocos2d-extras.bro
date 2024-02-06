@@ -1152,18 +1152,6 @@ class cocos2d::CCEaseSineIn {
 }
 
 [[link(win, android)]]
-class cocos2d::CCEaseSineInOut {
-	static cocos2d::CCEaseSineInOut* create(cocos2d::CCActionInterval*);
-
-	// CCEaseSineInOut(cocos2d::CCEaseSineInOut const&);
-	// CCEaseSineInOut();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
 class cocos2d::CCEaseSineOut {
 	static cocos2d::CCEaseSineOut* create(cocos2d::CCActionInterval*);
 
@@ -2266,19 +2254,6 @@ class cocos2d::CCMoveBy {
 }
 
 [[link(win, android)]]
-class cocos2d::CCMoveTo {
-	static cocos2d::CCMoveTo* create(float, cocos2d::CCPoint const&);
-
-	bool initWithDuration(float, cocos2d::CCPoint const&);
-
-	// CCMoveTo(cocos2d::CCMoveTo const&);
-	// CCMoveTo();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void startWithTarget(cocos2d::CCNode*);
-}
-
-[[link(win, android)]]
 class cocos2d::CCNode {
 	static cocos2d::CCNode* create();
 	static void resetGlobalOrderOfArrival();
@@ -3344,22 +3319,6 @@ class cocos2d::CCScaleBy {
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void startWithTarget(cocos2d::CCNode*);
 	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
-class cocos2d::CCScaleTo {
-	static cocos2d::CCScaleTo* create(float, float);
-	static cocos2d::CCScaleTo* create(float, float, float);
-
-	bool initWithDuration(float, float);
-	bool initWithDuration(float, float, float);
-
-	// CCScaleTo(cocos2d::CCScaleTo const&);
-	// CCScaleTo();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual void startWithTarget(cocos2d::CCNode*);
 }
 
 [[link(win, android)]]

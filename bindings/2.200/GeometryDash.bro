@@ -2146,7 +2146,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	bool init(char const* title) {
 		return GJDropDownLayer::init(title, 220.f);
 	}
-	bool init(const char* title, float height) = win 0x1d2340;
+	bool init(const char* title, float height) = win 0x1d2340, mac 0x5acd70;
 	~GJDropDownLayer();
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent) {
