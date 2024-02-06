@@ -4364,7 +4364,7 @@ class GameLevelManager : cocos2d::CCNode {
 	GJGameLevel* createNewLevel() = mac 0x5017f0;
 	TodoReturn createPageInfo(int, int, int);
 	TodoReturn resetAllTimers();
-	TodoReturn resetGauntlets();
+	TodoReturn resetGauntlets() = mac 0x514480;
 	TodoReturn responseToDict(gd::string, bool) = mac 0x505b60;
 	TodoReturn saveLocalScore(int, int, int);
 	TodoReturn storeUserNames(gd::string);
@@ -4600,21 +4600,21 @@ class GJSearchObject : cocos2d::CCNode {
 [[link(android)]]
 class GJLevelList : cocos2d::CCNode {
 	static GJLevelList* create(cocos2d::CCDictionary*);
-	static GJLevelList* create();
+	static GJLevelList* create() = mac 0x502610;
 
 	~GJLevelList();
 
 	TodoReturn getListLevelsArray(cocos2d::CCArray*);
 	gd::string getUnpackedDescription() = mac 0x52e6a0;
 
-	TodoReturn dataLoaded(DS_Dictionary*);
+	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x52fff0;
 	TodoReturn totalLevels();
 	TodoReturn reorderLevel(int, int);
 	void showListInfo() = mac 0x52fba0;
 	TodoReturn orderForLevel(int);
 	TodoReturn addLevelToList(GJGameLevel*);
 	TodoReturn completedLevels();
-	TodoReturn createWithCoder(DS_Dictionary*);
+	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x52ffc0;
 	TodoReturn parseListLevels(gd::string);
 	TodoReturn reorderLevelStep(int, bool);
 	TodoReturn updateLevelsString();
@@ -6507,7 +6507,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn flipGravity(bool, bool) = win 0x2CDDB0, mac 0x3e4a80;
 	TodoReturn gravityDown();
 	TodoReturn resetStreak() = mac 0x3e4520;
-	TodoReturn setupStreak();
+	TodoReturn setupStreak() = mac 0x3ddd10;
 	TodoReturn spawnCircle();
 	TodoReturn stopDashing() = win 0x2CB080;
 	TodoReturn stopStreak2();
@@ -6913,7 +6913,7 @@ class SongInfoObject : cocos2d::CCNode {
 	TodoReturn getTagsString();
 
 	TodoReturn containsTag(int);
-	TodoReturn createWithCoder(DS_Dictionary*);
+	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x560020;
 	TodoReturn addTags(gd::string);
 
 	virtual void encodeWithCoder(DS_Dictionary*);
@@ -7982,9 +7982,9 @@ class GJChallengeItem : cocos2d::CCObject {
 	bool init(GJChallengeType, int, int, int, gd::string);
 	~GJChallengeItem();
 
-	TodoReturn dataLoaded(DS_Dictionary*);
+	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x8b3c0;
 	TodoReturn incrementCount(int);
-	TodoReturn createWithCoder(DS_Dictionary*);
+	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x8b350;
 	TodoReturn createFromString(gd::string);
 
 	virtual void encodeWithCoder(DS_Dictionary*);
@@ -8968,7 +8968,7 @@ class GJRewardItem : cocos2d::CCObject {
 	/* unverified signature */
 	bool isShardType(SpecialRewardItem);
 	TodoReturn createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int);
-	TodoReturn createWithCoder(DS_Dictionary*);
+	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x8adb0;
 	TodoReturn createWithObject(GJRewardType, GJRewardObject*);
 	TodoReturn rewardItemToStat(SpecialRewardItem);
 	TodoReturn createWithObjects(GJRewardType, cocos2d::CCArray*);
@@ -9565,7 +9565,7 @@ class GJSmartPrefab : cocos2d::CCObject {
 	~GJSmartPrefab();
 
 	TodoReturn dataLoaded(DS_Dictionary*);
-	TodoReturn createWithCoder(DS_Dictionary*);
+	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x4077a0;
 
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
@@ -10012,7 +10012,7 @@ class GJRewardObject : cocos2d::CCObject {
 	TodoReturn dataLoaded(DS_Dictionary*);
 	/* unverified signature */
 	bool isSpecialType();
-	TodoReturn createWithCoder(DS_Dictionary*);
+	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x8a800;
 	TodoReturn createItemUnlock(UnlockType, int);
 
 	virtual void encodeWithCoder(DS_Dictionary*);
@@ -10806,7 +10806,7 @@ class GJObjectDecoder : cocos2d::CCNode, ObjectDecoderDelegate {
 	TodoReturn sharedDecoder();
 
 	virtual bool init();
-	virtual TodoReturn getDecodedObject(int, DS_Dictionary*) = win 0x1F7B60;
+	virtual TodoReturn getDecodedObject(int, DS_Dictionary*) = mac 0x6e7d00, win 0x1F7B60;
 }
 
 [[link(android)]]
@@ -10817,18 +10817,18 @@ class GJSmartTemplate : cocos2d::CCObject {
 	~GJSmartTemplate();
 
 	TodoReturn getPrefabs(gd::string);
-	TodoReturn getNoCornerKey(gd::string);
+	TodoReturn getNoCornerKey(gd::string) = mac 0x403360;
 	TodoReturn getPrefabWithID(gd::string, int);
 	TodoReturn getRandomPrefab(gd::string);
-	TodoReturn getSimplifiedKey(gd::string);
+	TodoReturn getSimplifiedKey(gd::string) = mac 0x402b00;
 	TodoReturn getTemplateState(gd::vector<SmartPrefabResult>&);
 	TodoReturn getSimplifiedType(SmartBlockType, bool&);
-	TodoReturn getVerySimplifiedKey(gd::string);
+	TodoReturn getVerySimplifiedKey(gd::string) = mac 0x4034a0;
 	TodoReturn getTotalChanceForPrefab(gd::string);
 	TodoReturn getPrefab(cocos2d::CCPoint, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*);
 	TodoReturn getPrefab(gd::string, bool, bool);
 
-	TodoReturn dataLoaded(DS_Dictionary*);
+	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x407300;
 	TodoReturn savePrefab(gd::string, gd::string);
 	/* unverified signature */
 	bool isUnrequired(gd::string);
@@ -10839,10 +10839,10 @@ class GJSmartTemplate : cocos2d::CCObject {
 	TodoReturn scanForPrefab(gd::string);
 	TodoReturn flipBlockTypeX(SmartBlockType);
 	TodoReturn flipBlockTypeY(SmartBlockType);
-	TodoReturn createWithCoder(DS_Dictionary*);
+	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x407250;
 	TodoReturn offsetForObject(SmartGameObject*);
 	TodoReturn rotateBlockType(SmartBlockType, int);
-	TodoReturn saveRemapToDict(gd::string, gd::string, cocos2d::CCDictionary*);
+	TodoReturn saveRemapToDict(gd::string, gd::string, cocos2d::CCDictionary*) = mac 0x403130;
 	TodoReturn keyFromNeighbors(SmartBlockType, SmartBlockType, SmartBlockType, SmartBlockType, SmartBlockType, SmartBlockType, SmartBlockType, SmartBlockType, SmartBlockType);
 	TodoReturn keyFromNeighbors(cocos2d::CCPoint, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*);
 	TodoReturn generateRemapDict();
@@ -10856,7 +10856,7 @@ class GJSmartTemplate : cocos2d::CCObject {
 	TodoReturn applyTransformationsForType(SmartBlockType, cocos2d::CCSprite*);
 	TodoReturn flipKey(gd::string, bool, bool);
 	TodoReturn rotateKey(gd::string, int);
-	TodoReturn saveRemap(gd::string);
+	TodoReturn saveRemap(gd::string) = mac 0x402210;
 
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
@@ -12944,7 +12944,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 	void onNext(cocos2d::CCObject* sender) = win 0x184BA0;
 	void onPlay(cocos2d::CCObject* sender) = mac 0x53e4d0, win 0x184DC0;
 	void onPrev(cocos2d::CCObject* sender) = win 0x184BC0;
-	void onRefresh(cocos2d::CCObject* sender) = win 0x184250;
+	void onRefresh(cocos2d::CCObject* sender) = mac 0x53dad0, win 0x184250;
 
 	void unblockPlay() = win 0x184D00;
 	TodoReturn updateArrows();

@@ -432,7 +432,7 @@ class cocos2d::CCLayer {
 
 [[link(win, android)]]
 class cocos2d::CCObject {
-	static cocos2d::CCObject* createWithCoder(DS_Dictionary*);
+	static cocos2d::CCObject* createWithCoder(DS_Dictionary*) = mac 0x467310;
 
 	// CCObject(cocos2d::CCObject const&);
 	CCObject() = mac 0x467020;
@@ -1020,7 +1020,7 @@ class cocos2d::CCSpriteBatchNode {
 class cocos2d::CCSprite {
 	static cocos2d::CCSprite* create(char const*) = mac 0x266400;
 	static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&);
-	static cocos2d::CCSprite* create();
+	static cocos2d::CCSprite* create() = mac 0x266700;
 	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = mac 0x2665e0;
 	static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = mac 0x2666d0;
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*);
@@ -1387,7 +1387,7 @@ class cocos2d::CCDictionary {
 	cocos2d::CCObject* objectForKey(gd::string const&) = mac 0x2eb260;
 	cocos2d::CCObject* objectForKey(intptr_t) = mac 0x2eb5f0;
 	cocos2d::CCObject* randomObject();
-	void removeAllObjects();
+	void removeAllObjects() = mac 0x2eacf0;
 	void removeObjectForElememt(cocos2d::CCDictElement*);
 	void removeObjectForKey(gd::string const&) = mac 0x2ec630;
 	void removeObjectForKey(intptr_t);
@@ -1694,4 +1694,72 @@ class cocos2d {
 	static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
 	static float ccpToAngle(cocos2d::CCPoint const&);
 	static char const* cocos2dVersion();
+}
+
+[[link(win, android)]]
+class DS_Dictionary {
+	DS_Dictionary();
+	void addBoolValuesToMapForKey(gd::map<gd::string, bool>&, char const*, bool);
+	void addBoolValuesToMapForKeySpecial(gd::map<gd::string, bool>&, char const*, bool);
+	void checkCompatibility();
+	gd::string cleanStringWhiteSpace(gd::string const&);
+	static void copyFile(char const*, char const*);
+	cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
+	gd::vector<gd::string> getAllKeys();
+	cocos2d::CCArray* getArrayForKey(char const*, bool) = mac 0x171b90;
+	bool getBoolForKey(char const*) = mac 0x16e8f0;
+	cocos2d::CCDictionary* getDictForKey(char const*, bool) = mac 0x172ac0;
+	float getFloatForKey(char const*) = mac 0x16e9f0;
+	unsigned getIndexOfKey(char const*);
+	unsigned getIndexOfKeyWithClosestAlphaNumericalMatch(char const*);
+	int getIntegerForKey(char const*) = mac 0x16e7b0;
+	gd::string getKey(unsigned) = mac 0x16e0d0;
+	unsigned getNumKeys();
+	cocos2d::CCObject* getObjectForKey(char const*) = mac 0x171d10;
+	gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
+	cocos2d::CCRect getRectForKey(char const*);
+	gd::vector<gd::string> getStringArrayForKey(char const*);
+	gd::string getStringForKey(char const*) = mac 0x16eb30;
+	gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
+	cocos2d::CCPoint getVec2ForKey(char const*);
+	bool loadRootSubDictFromCompressedFile(char const*);
+	bool loadRootSubDictFromFile(char const*);
+	bool loadRootSubDictFromString(gd::string const&);
+	bool rectFromString(gd::string const&, cocos2d::CCRect&);
+	void removeAllKeys();
+	void removeKey(unsigned);
+	void removeKey(char const*);
+	bool saveRootSubDictToCompressedFile(char const*);
+	bool saveRootSubDictToFile(char const*);
+	gd::string saveRootSubDictToString();
+	void setArrayForKey(char const*, cocos2d::CCArray*);
+	void setBoolForKey(char const*, bool, bool);
+	void setBoolForKey(char const*, bool) = mac 0x16fc80;
+	void setBoolMapForKey(char const*, gd::map<gd::string, bool>&);
+	void setDictForKey(char const*, cocos2d::CCDictionary*) = mac 0x1721a0;
+	void setFloatForKey(char const*, float) = mac 0x16feb0;
+	void setFloatForKey(char const*, float, bool);
+	void setIntegerForKey(char const*, int) = mac 0x16f9a0;
+	void setIntegerForKey(char const*, int, bool);
+	void setObjectForKey(char const*, cocos2d::CCObject*);
+	void setRectArrayForKey(char const*, gd::vector<cocos2d::CCRect> const&);
+	void setRectArrayForKey(char const*, gd::vector<cocos2d::CCRect> const&, bool);
+	void setRectForKey(char const*, cocos2d::CCRect const&);
+	void setRectForKey(char const*, cocos2d::CCRect const&, bool);
+	void setStringArrayForKey(char const*, gd::vector<gd::string> const&);
+	void setStringArrayForKey(char const*, gd::vector<gd::string> const&, bool);
+	void setStringForKey(char const*, gd::string const&) = mac 0x1701a0;
+	void setStringForKey(char const*, gd::string const&, bool);
+	void setSubDictForKey(char const*);
+	void setSubDictForKey(char const*, bool, bool);
+	void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&);
+	void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&, bool);
+	void setVec2ForKey(char const*, cocos2d::CCPoint const&);
+	void setVec2ForKey(char const*, cocos2d::CCPoint const&, bool);
+	void split(gd::string const&, char const*, gd::vector<gd::string>&);
+	bool splitWithForm(gd::string const&, gd::vector<gd::string>&);
+	void stepBackToRootSubDict();
+	bool stepIntoSubDictWithKey(char const*) = mac 0x16daa0;
+	void stepOutOfSubDict();
+	bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
 }
