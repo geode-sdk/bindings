@@ -1577,9 +1577,9 @@ class cocos2d::CCTransitionFade {
 class cocos2d::CCMenu {
 	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = mac 0x754590;
 	static cocos2d::CCMenu* create() = mac 0x754580;
-	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*) = mac 0x754640;
-	static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = mac 0x7549d0;
-	// static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
+	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*) = mac 0x754780;
+    static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = mac 0x7549d0;
+    // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*) = mac 0x754640;
 
 	bool initWithArray(cocos2d::CCArray*) = mac 0x754850;
 
