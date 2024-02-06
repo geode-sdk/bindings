@@ -96,5 +96,9 @@
 // GEODE_MEMBER_CHECK(GameLevelManager, m_userIDtoAccountIDDict, 0x200);
 
 GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x158);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x780);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc90);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
 
 #endif
