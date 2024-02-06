@@ -7165,7 +7165,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual TodoReturn loadLevelsFinished(cocos2d::CCArray*, char const*, int);
+	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = mac 0x46ca00;
 	virtual TodoReturn loadLevelsFailed(char const*, int);
 	virtual void setupPageInfo(gd::string, char const*) = win 0x230980, mac 0x46cc40;
 	virtual void shareCommentClosed(gd::string, ShareCommentLayer*);
@@ -13320,7 +13320,7 @@ class CommunityCreditsPage : FLAlertLayer {
 class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate, ColorSelectDelegate, ColorSetupDelegate {
 	static CustomizeObjectLayer* create(GameObject*, cocos2d::CCArray*);
 
-	bool init(GameObject*, cocos2d::CCArray*);
+	bool init(GameObject*, cocos2d::CCArray*) = mac 0x1d4180;
 	~CustomizeObjectLayer();
 
 	TodoReturn getActiveMode(bool);
@@ -13331,7 +13331,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onSettings(cocos2d::CCObject* sender);
 	void onEditColor(cocos2d::CCObject* sender);
 	void onBreakApart(cocos2d::CCObject* sender);
-	void onSelectMode(cocos2d::CCObject* sender);
+	void onSelectMode(cocos2d::CCObject* sender) = mac 0x1d6550;
 	void onSelectColor(cocos2d::CCObject* sender);
 	void onNextColorChannel(cocos2d::CCObject* sender);
 	void onUpdateCustomColor(cocos2d::CCObject* sender);
@@ -13344,7 +13344,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 
 	TodoReturn recreateLayer();
 	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn toggleVisible();
+	void toggleVisible() = mac 0x1d8230;
 	TodoReturn updateSelected(int);
 	TodoReturn updateHSVButtons();
 	TodoReturn highlightSelected(ButtonSprite*);
@@ -14083,7 +14083,7 @@ class DemonFilterSelectLayer : FLAlertLayer {
 
 	TodoReturn selectRating(cocos2d::CCObject*);
 
-	virtual bool init();
+	virtual bool init() = mac 0x5f3710;
 	virtual void keyBackClicked();
 }
 

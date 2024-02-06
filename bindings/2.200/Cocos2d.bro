@@ -1368,7 +1368,7 @@ class cocos2d::CCArray {
 class cocos2d::CCDictionary {
 	static cocos2d::CCDictionary* create() = mac 0x2ed090;
 	static cocos2d::CCDictionary* createWithContentsOfFile(char const*);
-	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*);
+	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*) = mac 0x2ed110;
 	static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
 
 	gd::string getFirstKey();
