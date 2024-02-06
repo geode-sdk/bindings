@@ -96,5 +96,6 @@
 // GEODE_MEMBER_CHECK(GameLevelManager, m_userIDtoAccountIDDict, 0x200);
 
 GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x158);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x780);
 
 #endif
