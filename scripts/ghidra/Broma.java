@@ -20,6 +20,10 @@ public class Broma {
             this.start = 0;
             this.end = 0;
         }
+        Range(int where) {
+            this.start = where;
+            this.end = where;
+        }
         Range(int start, int end) {
             this.start = start;
             this.end = end;
@@ -157,6 +161,7 @@ public class Broma {
         public final Optional<Match> destructor;
         public final List<Param> params;
         public final Optional<Match> platformOffset;
+        public final Optional<Range> platformOffsetAddPoint;
         public final Optional<Match> platformOffsetInsertPoint;
 
         private Function(Broma broma, Class parent, Platform platform, Matcher matcher) {
@@ -189,9 +194,16 @@ public class Broma {
                     broma.forkMatcher(Regexes.grabPlatformAddress(platform), matcher, "platforms", true),
                     "addr"
                 );
+                if (platformOffset.isEmpty()) {
+                    platformOffsetAddPoint = Optional.of(new Range(matcher.end("platforms")));
+                }
+                else {
+                    platformOffsetAddPoint = Optional.empty();
+                }
             }
             else {
                 platformOffset = Optional.empty();
+                platformOffsetAddPoint = Optional.empty();
             }
         }
 

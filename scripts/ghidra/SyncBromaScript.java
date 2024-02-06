@@ -596,6 +596,13 @@ public class SyncBromaScript extends GhidraScript {
                         broma.addPatch(bromaFun.platformOffset.get().range, String.format("%x", ghidraOffset));
                     }
                 }
+                else if (bromaFun.platformOffsetAddPoint.isPresent()) {
+                    broma.addPatch(
+                        bromaFun.platformOffsetAddPoint.get(),
+                        String.format(", %s 0x%x", args.platform.getShortName(), ghidraOffset)
+                    );
+                    exportedAddrCount += 1;
+                }
                 else if (bromaFun.platformOffsetInsertPoint.isPresent()) {
                     broma.addPatch(
                         bromaFun.platformOffsetInsertPoint.get().range,
