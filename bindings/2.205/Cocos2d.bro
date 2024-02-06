@@ -211,67 +211,6 @@ class cocos2d::CCCallFunc {
 }
 
 [[link(win, android)]]
-class cocos2d::CCLayer {
-	static cocos2d::CCLayer* create() = ios 0x150918;
-
-	// CCLayer(cocos2d::CCLayer const&);
-	CCLayer();
-    	~CCLayer();
-
-	cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
-	cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();
-	cocos2d::CCTouchScriptHandlerEntry* getScriptTouchHandlerEntry();
-
-	int excuteScriptTouchHandler(int, cocos2d::CCSet*);
-	int excuteScriptTouchHandler(int, cocos2d::CCTouch*);
-	void registerScriptAccelerateHandler(int);
-	void registerScriptKeypadHandler(int);
-	void unregisterScriptAccelerateHandler();
-	void unregisterScriptKeypadHandler();
-
-	virtual bool init();
-	virtual void onEnter();
-	virtual void onEnterTransitionDidFinish();
-	virtual void onExit();
-	virtual void registerWithTouchDispatcher();
-	virtual void registerScriptTouchHandler(int, bool, int, bool);
-	virtual void unregisterScriptTouchHandler();
-	virtual bool isTouchEnabled();
-	virtual void setTouchEnabled(bool);
-	virtual void setTouchMode(cocos2d::ccTouchesMode);
-	virtual int getTouchMode();
-	virtual void setTouchPriority(int);
-	virtual int getTouchPriority();
-	virtual bool isAccelerometerEnabled();
-	virtual void setAccelerometerEnabled(bool);
-	virtual void setAccelerometerInterval(double);
-	virtual bool isKeypadEnabled();
-	virtual void setKeypadEnabled(bool);
-	virtual bool isKeyboardEnabled();
-	virtual void setKeyboardEnabled(bool);
-	virtual bool isMouseEnabled();
-	virtual void setMouseEnabled(bool);
-
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void ccTouchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void ccTouchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void ccTouchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void setPreviousPriority(int);
-	virtual int getPreviousPriority();
-
-	virtual void didAccelerate(cocos2d::CCAcceleration*);
-
-	virtual void keyBackClicked();
-	virtual void keyMenuClicked();
-
-	virtual void keyDown(cocos2d::enumKeyCodes);
-}
-
-[[link(win, android)]]
 class cocos2d::CCParticleSystemQuad {
 	static cocos2d::CCParticleSystemQuad* create(char const*, bool);
 	static cocos2d::CCParticleSystemQuad* create();
@@ -534,7 +473,7 @@ class cocos2d::CCScheduler {
 
 [[link(win, android)]]
 class cocos2d::CCLayer {
-	static cocos2d::CCLayer* create();
+	static cocos2d::CCLayer* create() = ios 0x150918;
 
 	// CCLayer(cocos2d::CCLayer const&);
 	CCLayer();
