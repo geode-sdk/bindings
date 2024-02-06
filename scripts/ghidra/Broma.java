@@ -105,6 +105,7 @@ public class Broma {
     public class Type extends Parseable {
         public final Match name;
         public final Optional<Match> template;
+        public final boolean unsigned;
         public final Optional<Match> ptr;
         public final Optional<Match> ref;
 
@@ -112,6 +113,7 @@ public class Broma {
             super(0);
             this.name = new Match(name);
             this.template = Optional.empty();
+            this.unsigned = false;
             this.ptr = Optional.of(new Match("*"));
             this.ref = Optional.empty();
         }
@@ -128,6 +130,7 @@ public class Broma {
             super(broma, matcher);
             name = broma.new Match(matcher, "name");
             template = Match.maybe(broma, matcher, "template");
+            unsigned = matcher.group("sign") != null && matcher.group("sign").equals("unsigned");
             ptr = Match.maybe(broma, matcher, "ptr");
             ref = Match.maybe(broma, matcher, "ref");
         }
