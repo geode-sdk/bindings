@@ -198,6 +198,8 @@ GEODE_MEMBER_CHECK(GameObject, m_objectMaterial, 0x376);
 GEODE_MEMBER_CHECK(GameObject, m_objectID, 0x384);
 GEODE_MEMBER_CHECK(GameObject, m_isDontBoostX, 0x46A);
 
+GEODE_SIZE_CHECK(EffectGameObject, 0x688)
+
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_songID, 0x1f0);

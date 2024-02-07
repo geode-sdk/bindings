@@ -1574,7 +1574,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 	virtual TodoReturn colorValueChanged(cocos2d::ccColor3B);
 	virtual TodoReturn colorSelectClosed(GJSpecialColorSelect*, int);
 
-	PAD = android32 0x40;
+	PAD = android32 0x40, win 0x40;
 	ColorAction* m_colorAction;
 }
 
@@ -4763,8 +4763,8 @@ class GameObject : CCSpritePlus {
 	TodoReturn createGroupContainer(int);
 	TodoReturn createOpacityGroupContainer(int);
 	TodoReturn createSpriteColor(int);
-	TodoReturn createWithFrame(char const*);
-	TodoReturn createWithKey(int);
+	static GameObject* createWithFrame(char const*);
+	static GameObject* createWithKey(int);
 	TodoReturn deselectObject();
 	TodoReturn destroyObject();
 	TodoReturn determineSlopeDirection();
