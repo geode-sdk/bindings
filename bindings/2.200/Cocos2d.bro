@@ -601,7 +601,7 @@ class cocos2d::CCTextureCache {
 	bool reloadTexture(char const*);
 	void removeAllTextures();
 	void removeTexture(cocos2d::CCTexture2D*);
-	void removeTextureForKey(char const*);
+	void removeTextureForKey(char const*) = mac 0x5b38d0;
 	void removeUnusedTextures();
 	cocos2d::CCDictionary* snapshotTextures();
 	cocos2d::CCTexture2D* textureForKey(char const*);
@@ -1414,8 +1414,8 @@ class cocos2d::CCDictionary {
 
 	gd::string getFirstKey();
 
-	void setObject(cocos2d::CCObject*, gd::string const&) = mac 0x2ec120;
-	void setObject(cocos2d::CCObject*, intptr_t) = mac 0x2eb7a0;
+	void setObject(cocos2d::CCObject*, gd::string const&) = mac 0x2eb7a0;
+	void setObject(cocos2d::CCObject*, intptr_t) = mac 0x2ec120;
 	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
 	void setObjectUnSafe(cocos2d::CCObject*, intptr_t);
 
