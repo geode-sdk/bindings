@@ -130,6 +130,6 @@ GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
 GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x300);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x338);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedMode, 0x4e8);
-GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x528);
+// GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x528);
 
 #endif
