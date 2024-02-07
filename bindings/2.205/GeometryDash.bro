@@ -1902,7 +1902,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn determineStartValues();
-	TodoReturn getActiveMode(bool);
+	int getActiveMode(bool);
 	TodoReturn getButtonByTag(int);
 	TodoReturn getHSV();
 	TodoReturn highlightSelected(ButtonSprite*);
@@ -7860,7 +7860,7 @@ class GJSpecialColorSelect : FLAlertLayer {
 	bool init(int, GJSpecialColorSelectDelegate*, ColorSelectType);
 	void onClose(cocos2d::CCObject* sender);
 	void onSelectColor(cocos2d::CCObject* sender);
-	TodoReturn textForColorIdx(int);
+	static const char* textForColorIdx(int);
 
 	virtual void keyBackClicked();
 }
@@ -8779,6 +8779,10 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 
 	static LevelEditorLayer* create(GJGameLevel*, bool);
 
+    static LevelEditorLayer* get() {
+        return GameManager::sharedState()->m_levelEditorLayer;
+    }
+	
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn addDelayedSpawn(EffectGameObject*, float);
 	TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*);

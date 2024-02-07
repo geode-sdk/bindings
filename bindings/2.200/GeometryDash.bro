@@ -5652,6 +5652,10 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
 class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	static LevelEditorLayer* create(GJGameLevel*, bool);
 
+    static LevelEditorLayer* get() {
+        return GameManager::sharedState()->m_levelEditorLayer;
+    }
+	
 	bool init(GJGameLevel*, bool) = win 0x2349d0, mac 0xd7300;
 	~LevelEditorLayer();
 
@@ -7673,7 +7677,7 @@ class GJSpecialColorSelect : FLAlertLayer {
 	void onSelectColor(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 
-	TodoReturn textForColorIdx(int);
+	static const char* textForColorIdx(int);
 	TodoReturn highlightSelected(ButtonSprite*);
 
 	virtual void keyBackClicked();
@@ -13323,7 +13327,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	bool init(GameObject*, cocos2d::CCArray*) = mac 0x1d4180;
 	~CustomizeObjectLayer();
 
-	TodoReturn getActiveMode(bool);
+	int getActiveMode(bool);
 	TodoReturn getButtonByTag(int);
 	TodoReturn getHSV();
 
