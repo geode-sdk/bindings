@@ -5675,7 +5675,7 @@ class GJAssetDownloadAction {
 
 [[link(android), depends(GJGameState)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
-	// ~GJBaseGameLayer();
+	~GJBaseGameLayer() = 0x18e1b0;
 	// GJBaseGameLayer() = win 0x237ce0;
 
 	TodoReturn activateCustomRing(RingObject*);
