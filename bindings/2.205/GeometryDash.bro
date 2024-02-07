@@ -4760,8 +4760,8 @@ class GameObject : CCSpritePlus {
 	TodoReturn createGroupContainer(int);
 	TodoReturn createOpacityGroupContainer(int);
 	TodoReturn createSpriteColor(int);
-	TodoReturn createWithFrame(char const*);
-	TodoReturn createWithKey(int);
+	static GameObject* createWithFrame(char const*);
+	static GameObject* createWithKey(int);
 	TodoReturn deselectObject();
 	TodoReturn destroyObject();
 	TodoReturn determineSlopeDirection();
