@@ -6177,9 +6177,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = win 0xb0;
 	UILayer* m_uiLayer;
-	PAD = win 0x44;
+	PAD = win 0x38;
 	gd::vector<GameObject*> m_sections;
-	PAD = win 0x11e;
+	PAD = win 0x12a;
 }
 
 [[link(android)]]
