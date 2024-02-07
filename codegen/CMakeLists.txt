@@ -28,8 +28,10 @@ target_include_directories(Codegen PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_precompile_headers(Codegen PRIVATE 
-	${CMAKE_CURRENT_SOURCE_DIR}/src/Shared.hpp
-)
+if (NOT CMAKE_CXX_COMPILER_LAUNCHER MATCHES "sccache(|.exe)$")
+	target_precompile_headers(Codegen PRIVATE
+		${CMAKE_CURRENT_SOURCE_DIR}/src/Shared.hpp
+	)
+endif ()
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
