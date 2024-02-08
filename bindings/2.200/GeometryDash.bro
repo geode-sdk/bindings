@@ -13327,7 +13327,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	bool init(GameObject*, cocos2d::CCArray*) = mac 0x1d4180;
 	~CustomizeObjectLayer();
 
-	int getActiveMode(bool) = 0x1d73f0;
+	int getActiveMode(bool) = mac 0x1d73f0;
 	TodoReturn getButtonByTag(int);
 	TodoReturn getHSV();
 
