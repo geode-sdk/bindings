@@ -97,6 +97,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_unk6a4, 0x6a4);
 GEODE_MEMBER_CHECK(PlayerObject, m_objectSnappedTo, 0x6c0);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk6dc, 0x6d8);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk708, 0x704);
+GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x770);
 GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x7ac);
 GEODE_MEMBER_CHECK(PlayerObject, m_vehicleSize, 0x7e0);
 GEODE_MEMBER_CHECK(PlayerObject, m_playerSpeed, 0x7e4);
@@ -104,6 +105,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_unk7e0, 0x7e8);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
 GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0x824);
 GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x850);
+GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk930, 0x988);
 GEODE_MEMBER_CHECK(PlayerObject, m_parentLayer, 0x9ac);
@@ -142,5 +144,11 @@ GEODE_SIZE_CHECK(PlayLayer, 0x2F58);
 
 GEODE_MEMBER_CHECK(GameObject, m_hasExtendedCollision, 0x218);
 GEODE_MEMBER_CHECK(GameObject, m_scaleX, 0x3e8);
+
+GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x22c);
+GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x230);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedMode, 0x338);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
 
 #endif

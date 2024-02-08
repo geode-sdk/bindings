@@ -32,6 +32,10 @@ import ghidra.program.model.data.ShortDataType;
 import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.UnionDataType;
+import ghidra.program.model.data.UnsignedCharDataType;
+import ghidra.program.model.data.UnsignedIntegerDataType;
+import ghidra.program.model.data.UnsignedLongDataType;
+import ghidra.program.model.data.UnsignedShortDataType;
 import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.lang.CompilerSpecID;
 import ghidra.program.model.lang.LanguageID;
@@ -144,10 +148,10 @@ public class ScriptWrapper {
         if (type.name.value.matches("bool|char|short|int|long|float|double|void")) {
             switch (type.name.value) {
                 case "bool": result = BooleanDataType.dataType; break;
-                case "char": result = CharDataType.dataType; break;
-                case "short": result = ShortDataType.dataType; break;
-                case "int": result = IntegerDataType.dataType; break;
-                case "long": result = LongDataType.dataType; break;
+                case "char": result = type.unsigned ? UnsignedCharDataType.dataType : CharDataType.dataType; break;
+                case "short": result = type.unsigned ? UnsignedShortDataType.dataType : ShortDataType.dataType; break;
+                case "int": result = type.unsigned ? UnsignedIntegerDataType.dataType : IntegerDataType.dataType; break;
+                case "long": result = type.unsigned ? UnsignedLongDataType.dataType : LongDataType.dataType; break;
                 case "float": result = FloatDataType.dataType; break;
                 case "double": result = DoubleDataType.dataType; break;
                 case "void": result = VoidDataType.dataType; break;
