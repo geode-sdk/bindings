@@ -4877,17 +4877,23 @@ class GameObject : CCSpritePlus {
 	TodoReturn updateCustomScaleY(float) = win 0x13b350;
 	TodoReturn updateHSVState();
 	TodoReturn updateIsOriented() = win 0x141fe0;
-	TodoReturn updateMainColor();
 	TodoReturn updateMainColorOnly();
 	TodoReturn updateMainOpacity();
 	void updateObjectEditorColor() = win 0x141b70;
-	TodoReturn updateSecondaryColor();
 	TodoReturn updateSecondaryColorOnly();
 	TodoReturn updateSecondaryOpacity();
 	TodoReturn updateStartPos() = win 0x133160;
 	TodoReturn updateUnmodifiedPositions();
 	TodoReturn usesFreezeAnimation();
 	TodoReturn usesSpecialAnimation();
+
+	// MSVC changed virtual table ordering somewhere between what Rob uses
+	// and now, and now virtual functions that have non virtual overloads
+	// are added to the first of the vtable regardless of the order
+	// defined in the header. This is why we simply can not use these
+	// two functions since defining them would break the vtable layout.
+	// TodoReturn updateMainColor(); 
+	// TodoReturn updateSecondaryColor();
 
 	virtual void update(float);
 	virtual void setScaleX(float) = win 0x13af80;
@@ -6826,7 +6832,7 @@ class GJGameState {
 	bool m_unk184;
 	float m_unk188;
 	float m_unk18c;
-	int m_unk190;
+	int m_currentChannel;
 	int m_unk194;
 	gd::unordered_map<int, int> m_unk198;
 	gd::unordered_map<int, bool> m_unk1b4;

@@ -7677,7 +7677,7 @@ class GJSpecialColorSelect : FLAlertLayer {
 	void onSelectColor(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 
-	static const char* textForColorIdx(int);
+	static const char* textForColorIdx(int) = mac 0x5eacd0;
 	TodoReturn highlightSelected(ButtonSprite*);
 
 	virtual void keyBackClicked();
@@ -13327,7 +13327,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	bool init(GameObject*, cocos2d::CCArray*) = mac 0x1d4180;
 	~CustomizeObjectLayer();
 
-	int getActiveMode(bool);
+	int getActiveMode(bool) = mac 0x1d73f0;
 	TodoReturn getButtonByTag(int);
 	TodoReturn getHSV();
 
@@ -13336,9 +13336,9 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onEditColor(cocos2d::CCObject* sender);
 	void onBreakApart(cocos2d::CCObject* sender);
 	void onSelectMode(cocos2d::CCObject* sender) = mac 0x1d6550;
-	void onSelectColor(cocos2d::CCObject* sender);
+	void onSelectColor(cocos2d::CCObject* sender) = mac 0x1d6ac0;
 	void onNextColorChannel(cocos2d::CCObject* sender);
-	void onUpdateCustomColor(cocos2d::CCObject* sender);
+	void onUpdateCustomColor(cocos2d::CCObject* sender) = mac 0x1d6b70;
 	void onHSV(cocos2d::CCObject* sender);
 	void onCopy(cocos2d::CCObject* sender);
 	void onClear(cocos2d::CCObject* sender);
@@ -13349,16 +13349,16 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	TodoReturn recreateLayer();
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	void toggleVisible() = mac 0x1d8230;
-	TodoReturn updateSelected(int);
+	void updateSelected(int) = mac 0x1d7b80;
 	TodoReturn updateHSVButtons();
-	TodoReturn highlightSelected(ButtonSprite*);
-	TodoReturn updateColorSprite();
+	void highlightSelected(ButtonSprite*) = mac 0x1d7d10;
+	void updateColorSprite() = mac 0x1d75c0;
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn updateChannelLabel(int);
 	TodoReturn updateKerningLabel();
 	TodoReturn determineStartValues();
 	TodoReturn updateCurrentSelection();
-	TodoReturn updateCustomColorLabels();
+	void updateCustomColorLabels() = mac 0x1d6c40;
 
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputOpened(CCTextInputNode*);
@@ -13366,7 +13366,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn hsvPopupClosed(HSVWidgetPopup*, cocos2d::_ccHSVValue);
 	virtual TodoReturn colorSelectClosed(cocos2d::CCNode*);
-	virtual TodoReturn colorSetupClosed(int);
+	virtual void colorSetupClosed(int) = mac 0x1d7a70;
 	
     GameObject* m_targetObject;
     cocos2d::CCArray* m_targetObjects;
