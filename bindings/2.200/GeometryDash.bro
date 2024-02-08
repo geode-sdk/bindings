@@ -13349,7 +13349,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	TodoReturn recreateLayer();
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	void toggleVisible() = mac 0x1d8230;
-	TodoReturn updateSelected(int);
+	void updateSelected(int) = mac 0x1d7b80;
 	TodoReturn updateHSVButtons();
 	void highlightSelected(ButtonSprite*) = mac 0x1d7d10;
 	void updateColorSprite() = mac 0x1d75c0;
