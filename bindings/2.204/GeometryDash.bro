@@ -11208,7 +11208,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn saveDynamicSaveObjects(gd::vector<SavedObjectStateRef>&) = win 0x2e9780;
 	TodoReturn scanActiveSaveObjects() = win 0x2e9b70;
 	TodoReturn scanDynamicSaveObjects() = win 0x2e8f80;
-	TodoReturn scene(GJGameLevel*, bool, bool) = win 0x2dc3a0;
+	static cocos2d::CCScene* scene(GJGameLevel*, bool, bool) = win 0x2dc3a0;
 	TodoReturn screenFlipObject(GameObject*);
 	void setDamageVerifiedIdx(int) = win 0x2db7c0;
 	TodoReturn setupHasCompleted() = win 0x2dce40;
