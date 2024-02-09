@@ -7535,7 +7535,7 @@ class GJRobotSprite : CCAnimatedSprite {
 	TodoReturn updateFrame(int) = win 0x2180b0;
 	TodoReturn updateGlowColor(cocos2d::ccColor3B, bool) = win 0x217b10;
 
-	virtual void setOpacity(unsigned char);
+	virtual void setOpacity(unsigned char) = win 0x217ff0;
 	virtual TodoReturn hideSecondary();
 }
 
