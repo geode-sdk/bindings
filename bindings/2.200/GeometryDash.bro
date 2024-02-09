@@ -1,4 +1,3 @@
-
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
 	~FLAlertLayer() {
@@ -7332,7 +7331,7 @@ class EndLevelLayer : GJDropDownLayer {
 
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual void customSetup() = win 0xE67B0;
+	virtual void customSetup() = win 0xE67B0, mac 0x49b580;
 	virtual TodoReturn showLayer(bool);
 	virtual TodoReturn enterAnimFinished();
 	virtual void keyUp(cocos2d::enumKeyCodes);
@@ -10620,7 +10619,7 @@ class FindObjectPopup : SetIDPopup {
 [[link(android)]]
 class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseMusic(int);
-	TodoReturn playEffect(gd::string);
+	TodoReturn playEffect(gd::string) = mac 0x3c24f0;
 	TodoReturn playEffect(gd::string, float, float, float) = win 0x355b0, mac 0x3c2560;
 	TodoReturn startMusic(int, int, int, int, bool, int) = win 0x38900;
 	TodoReturn fadeInMusic(float, int);
