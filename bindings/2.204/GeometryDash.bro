@@ -3927,9 +3927,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getAllUsedSongIDs();
 	TodoReturn getBasePostString() = win 0xfb5b0;
 	bool getBoolForKey(char const*) = win 0x111d40;
-	const char* getCommentKey(int ID, int page, int mode, CommentKeyType keytype){
-	    return cocos2d::CCString::createWithFormat("comment_%i_%i_%i_%i", page, mode, keytype, ID)->getCString();
-	} = win 0x1091d0;
+	const char* getCommentKey(int ID, int page, int mode, CommentKeyType keytype) = win 0x1091d0;
 	cocos2d::CCArray* getCompletedLevels(bool) = win 0xf7790;
 	TodoReturn getDailyID(GJTimedLevelType);
 	TodoReturn getDailyTimer(GJTimedLevelType);
@@ -3954,15 +3952,11 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getIntForKey(char const*);
 	TodoReturn getLeaderboardScores(char const*) = win 0x104c40;
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
-	const char *getLenKey(int len){
-    	    return cocos2d::CCString::createWithFormat("Len%i", len)->getCString();
-	};
+	const char *getLenKey(int len);
 	TodoReturn getLenVal(int);
 	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x108160;
 	TodoReturn getLevelDownloadKey(int, bool);
-	const char* getLevelKey(int levelID){
-	    return cocos2d::CCString::createWithFormat("%i", levelID)->getCString();
-	};
+	const char* getLevelKey(int levelID);
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1053a0;
 	TodoReturn getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
 	TodoReturn getLevelListKey(int);
@@ -3975,9 +3969,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLocalLevelList(int);
 	TodoReturn getLowestLevelOrder() = win 0xf75a0;
 	TodoReturn getMainLevel(int, bool) = win 0xf4d50;
-        const char *getMapPackKey(int pack){
-            return cocos2d::CCString::createWithFormat("pack_%i", pack)->getCString();
-        };
+        const char *getMapPackKey(int pack);
 	TodoReturn getMapPacks(GJSearchObject*) = win 0xfe120;
 	TodoReturn getMessageKey(int);
 	TodoReturn getMessagesKey(bool, int);
@@ -3987,9 +3979,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getOnlineLevels(GJSearchObject*) = win 0xfccb0;
 	TodoReturn getPageInfo(char const*) = win 0xf89e0;
 	TodoReturn getPostCommentKey(int);
-	const char *getRateStarsKey(int key){
-    		return cocos2d::CCString::createWithFormat("%i", key)->getCString();
-	};
+	const char *getRateStarsKey(int key);
 	TodoReturn getReportKey(int);
 	GJGameLevel* getSavedDailyLevel(int) = win 0xf7f20;
 	GJGameLevel* getSavedDailyLevelFromLevelID(int);
