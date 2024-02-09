@@ -3883,8 +3883,8 @@ class GameLevelManager : cocos2d::CCNode {
 	}
 
 	TodoReturn acceptFriendRequest(int, int) = win 0x10be70;
-	TodoReturn accountIDForUserID(int);
-	TodoReturn addDLToActive(char const*) = win 0xf8c10;
+	int accountIDForUserID(int accountID);
+	void addDLToActive(char const*) = win 0xf8c10;
 	TodoReturn areGauntletsLoaded();
 	void inline banUser(int);
 	TodoReturn blockUser(int) = win 0x10ca10;
@@ -3927,7 +3927,9 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getAllUsedSongIDs();
 	TodoReturn getBasePostString() = win 0xfb5b0;
 	bool getBoolForKey(char const*) = win 0x111d40;
-	TodoReturn getCommentKey(int, int, int, CommentKeyType) = win 0x1091d0;
+	const char* getCommentKey(int ID, int page, int mode, CommentKeyType keytype){
+	    return cocos2d::CCString::createWithFormat("comment_%i_%i_%i_%i", page, mode, keytype, ID)->getCString();
+	} = win 0x1091d0;
 	cocos2d::CCArray* getCompletedLevels(bool) = win 0xf7790;
 	TodoReturn getDailyID(GJTimedLevelType);
 	TodoReturn getDailyTimer(GJTimedLevelType);
@@ -3952,11 +3954,15 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getIntForKey(char const*);
 	TodoReturn getLeaderboardScores(char const*) = win 0x104c40;
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
-	TodoReturn getLenKey(int);
+	const char *getLenKey(int len){
+    	    return cocos2d::CCString::createWithFormat("Len%i", len)->getCString();
+	};
 	TodoReturn getLenVal(int);
 	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x108160;
 	TodoReturn getLevelDownloadKey(int, bool);
-	TodoReturn getLevelKey(int);
+	const char* getLevelKey(int levelID){
+	    return cocos2d::CCString::createWithFormat("%i", levelID)->getCString();
+	};
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1053a0;
 	TodoReturn getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
 	TodoReturn getLevelListKey(int);
@@ -3969,7 +3975,9 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLocalLevelList(int);
 	TodoReturn getLowestLevelOrder() = win 0xf75a0;
 	TodoReturn getMainLevel(int, bool) = win 0xf4d50;
-	TodoReturn getMapPackKey(int);
+        const char *getMapPackKey(int pack){
+            return cocos2d::CCString::createWithFormat("pack_%i", pack)->getCString();
+        };
 	TodoReturn getMapPacks(GJSearchObject*) = win 0xfe120;
 	TodoReturn getMessageKey(int);
 	TodoReturn getMessagesKey(bool, int);
@@ -3979,7 +3987,9 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getOnlineLevels(GJSearchObject*) = win 0xfccb0;
 	TodoReturn getPageInfo(char const*) = win 0xf89e0;
 	TodoReturn getPostCommentKey(int);
-	TodoReturn getRateStarsKey(int);
+	const char *getRateStarsKey(int key){
+    		return cocos2d::CCString::createWithFormat("%i", key)->getCString();
+	};
 	TodoReturn getReportKey(int);
 	GJGameLevel* getSavedDailyLevel(int) = win 0xf7f20;
 	GJGameLevel* getSavedDailyLevelFromLevelID(int);
@@ -3999,7 +4009,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getStoredUserMessage(int);
 	TodoReturn getStoredUserMessageReply(int);
 	TodoReturn getTimeLeft(char const*, float) = win 0xf8fc0;
-	TodoReturn getTopArtists(int, int) = win 0x105d80;
+	void getTopArtists(int page, int total) = win 0x105d80;
 	TodoReturn getTopArtistsKey(int);
 	TodoReturn getUploadMessageKey(int);
 	TodoReturn getUserInfoKey(int);
@@ -4022,7 +4032,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn invalidateMessages(bool, bool) = win 0x107ff0;
 	TodoReturn invalidateRequests(bool, bool) = win 0x10db50;
 	TodoReturn invalidateUserList(UserListType, bool);
-	bool isDLActive(char const*) = win 0xf8b50;
+	bool isDLActive(char const* tag) = win 0xf8b50;
 	bool isFollowingUser(int) = win 0xf9910;
 	bool isTimeValid(char const*, float) = win 0xf8e90;
 	bool isUpdateValid(int);
@@ -5574,8 +5584,8 @@ class GJAccountManager : cocos2d::CCNode {
 
 	static GJAccountManager* sharedState() = win 0x18a510;
 
-	TodoReturn addDLToActive(char const*, cocos2d::CCObject*) = win 0x18aba0;
-	TodoReturn addDLToActive(char const*);
+	void addDLToActive(char const* tag, cocos2d::CCObject*) = win 0x18aba0;
+	void addDLToActive(char const* tag);
 	TodoReturn backupAccount(gd::string);
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn encodeDataTo(DS_Dictionary*);
@@ -5587,7 +5597,7 @@ class GJAccountManager : cocos2d::CCNode {
 	TodoReturn handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x18a830;
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
-	bool isDLActive(char const*);
+	bool isDLActive(char const* tag);
 	TodoReturn linkToAccount(gd::string, gd::string, int, int);
 	TodoReturn loginAccount(gd::string, gd::string) = win 0x18afe0;
 	TodoReturn onBackupAccountCompleted(gd::string, gd::string) = win 0x18bb20;
@@ -7266,8 +7276,8 @@ class GJMultiplayerManager : cocos2d::CCNode {
 	static GJMultiplayerManager* sharedState();
 
 	TodoReturn addComment(gd::string, int);
-	TodoReturn addDLToActive(char const*, cocos2d::CCObject*);
-	TodoReturn addDLToActive(char const*);
+	void addDLToActive(char const* tag, cocos2d::CCObject* obj);
+	void addDLToActive(char const* tag);
 	TodoReturn createAndAddComment(gd::string, int) = win 0x1fbfc0;
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn encodeDataTo(DS_Dictionary*);
@@ -7279,7 +7289,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
 	TodoReturn handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1faf80;
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
-	bool isDLActive(char const*);
+	bool isDLActive(char const* tag);
 	TodoReturn joinLobby(int);
 	TodoReturn onExitLobbyCompleted(gd::string, gd::string) = win 0x1fb820;
 	TodoReturn onJoinLobbyCompleted(gd::string, gd::string) = win 0x1fb220;
@@ -10155,8 +10165,8 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 
 	static MusicDownloadManager* sharedState() = win 0x2821e0;
 
-	TodoReturn addDLToActive(char const*, cocos2d::CCObject*);
-	TodoReturn addDLToActive(char const*);
+	void addDLToActive(char const* tag, cocos2d::CCObject* obj);
+	void addDLToActive(char const* tag);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x2828d0;
 	TodoReturn addSongObjectFromString(gd::string);
 	TodoReturn clearSong(int);
@@ -10205,7 +10215,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
 	TodoReturn incrementPriorityForSong(int);
-	bool isDLActive(char const*);
+	bool isDLActive(char const* tag);
 	bool isMusicLibraryLoaded();
 	bool isResourceSFX(int);
 	bool isResourceSong(int);
