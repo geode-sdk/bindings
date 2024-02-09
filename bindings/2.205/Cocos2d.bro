@@ -192,6 +192,25 @@ class cocos2d::CCParticleSystem {
 }
 
 [[link(win, android)]]
+class cocos2d::CCCallFunc {
+	static cocos2d::CCCallFunc* create(int);
+	static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc) = ios 0x1b42e8;
+
+	int getScriptHandler();
+	cocos2d::CCObject* getTargetCallback();
+
+	void setTargetCallback(cocos2d::CCObject*);
+
+	// CCCallFunc(cocos2d::CCCallFunc const&);
+	// CCCallFunc();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual bool initWithTarget(cocos2d::CCObject*);
+	virtual void execute();
+}
+
+[[link(win, android)]]
 class cocos2d::CCParticleSystemQuad {
 	static cocos2d::CCParticleSystemQuad* create(char const*, bool);
 	static cocos2d::CCParticleSystemQuad* create();
@@ -264,12 +283,12 @@ class cocos2d::CCFileUtils {
 
 [[link(win, android)]]
 class cocos2d::CCNode {
-	static cocos2d::CCNode* create();
+	static cocos2d::CCNode* create() = ios 0x24389c;
 	static void resetGlobalOrderOfArrival();
 
 	// CCNode(cocos2d::CCNode const&);
 	CCNode();
-    ~CCNode();
+    	~CCNode();
 	
 	cocos2d::CCAction* getActionByTag(int);
 	cocos2d::CCComponent* getComponent(char const*) const;
@@ -454,7 +473,7 @@ class cocos2d::CCScheduler {
 
 [[link(win, android)]]
 class cocos2d::CCLayer {
-	static cocos2d::CCLayer* create();
+	static cocos2d::CCLayer* create() = ios 0x150918;
 
 	// CCLayer(cocos2d::CCLayer const&);
 	CCLayer();
