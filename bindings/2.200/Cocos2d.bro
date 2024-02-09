@@ -1,5 +1,17 @@
 
 [[link(win, android)]]
+class cocos2d::CCEaseSineInOut {
+	static cocos2d::CCEaseSineInOut* create(cocos2d::CCActionInterval*) = mac 0x4ed980;
+
+	// CCEaseSineInOut(cocos2d::CCEaseSineInOut const&);
+	// CCEaseSineInOut();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCFileUtils {
 	// CCFileUtils();
 	// CCFileUtils(cocos2d::CCFileUtils const&);
@@ -539,6 +551,19 @@ class cocos2d::CCMouseDispatcher {
 }
 
 [[link(win, android)]]
+class cocos2d::CCMoveTo {
+	static cocos2d::CCMoveTo* create(float, cocos2d::CCPoint const&) = mac 0x3964a0;
+
+	bool initWithDuration(float, cocos2d::CCPoint const&);
+
+	// CCMoveTo(cocos2d::CCMoveTo const&);
+	// CCMoveTo();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void startWithTarget(cocos2d::CCNode*);
+}
+
+[[link(win, android)]]
 class cocos2d::CCTouchHandler {
 	static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
 
@@ -576,7 +601,7 @@ class cocos2d::CCTextureCache {
 	bool reloadTexture(char const*);
 	void removeAllTextures();
 	void removeTexture(cocos2d::CCTexture2D*);
-	void removeTextureForKey(char const*);
+	void removeTextureForKey(char const*) = mac 0x5b38d0;
 	void removeUnusedTextures();
 	cocos2d::CCDictionary* snapshotTextures();
 	cocos2d::CCTexture2D* textureForKey(char const*);
@@ -931,6 +956,22 @@ class cocos2d::CCRotateBy {
 	virtual void update(float);
 	virtual void startWithTarget(cocos2d::CCNode*);
 	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCScaleTo {
+	static cocos2d::CCScaleTo* create(float, float) = mac 0x397f90;
+	static cocos2d::CCScaleTo* create(float, float, float);
+
+	bool initWithDuration(float, float);
+	bool initWithDuration(float, float, float);
+
+	// CCScaleTo(cocos2d::CCScaleTo const&);
+	// CCScaleTo();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
 }
 
 [[link(win, android)]]
@@ -1373,8 +1414,8 @@ class cocos2d::CCDictionary {
 
 	gd::string getFirstKey();
 
-	void setObject(cocos2d::CCObject*, gd::string const&) = mac 0x2ec120;
-	void setObject(cocos2d::CCObject*, intptr_t) = mac 0x2eb7a0;
+	void setObject(cocos2d::CCObject*, gd::string const&) = mac 0x2eb7a0;
+	void setObject(cocos2d::CCObject*, intptr_t) = mac 0x2ec120;
 	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
 	void setObjectUnSafe(cocos2d::CCObject*, intptr_t);
 
