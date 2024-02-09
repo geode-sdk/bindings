@@ -3883,7 +3883,7 @@ class GameLevelManager : cocos2d::CCNode {
 	}
 
 	TodoReturn acceptFriendRequest(int, int) = win 0x10be70;
-	int accountIDForUserID(int accountID);
+	int accountIDForUserID(int userID);
 	void addDLToActive(char const*) = win 0xf8c10;
 	TodoReturn areGauntletsLoaded();
 	void inline banUser(int);
