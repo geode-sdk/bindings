@@ -1,3 +1,45 @@
+[[link(win, android)]]
+class cocos2d::CCMotionStreak {
+	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
+	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*);
+
+	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
+	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*);
+
+	bool getDontOpacityFade() const;
+	float getM_fMaxSeg() const;
+
+	void setDontOpacityFade(bool);
+	void setFastMode(bool);
+	void setM_fMaxSeg(float);
+	void setStartingPositionInitialized(bool);
+	void setStroke(float);
+
+	// CCMotionStreak(cocos2d::CCMotionStreak const&);
+	// CCMotionStreak();
+	void enableRepeatMode(float);
+	bool isFastMode();
+	bool isStartingPositionInitialized();
+	void reset();
+	void resumeStroke();
+	void stopStroke();
+	void tintWithColor(cocos2d::_ccColor3B);
+	void updateFade(float);
+
+	virtual void update(float);
+	virtual void setPosition(cocos2d::CCPoint const&);
+	virtual void draw();
+
+	virtual unsigned char getOpacity();
+	virtual void setOpacity(unsigned char);
+	virtual void setOpacityModifyRGB(bool);
+	virtual bool isOpacityModifyRGB();
+
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
+	virtual cocos2d::_ccBlendFunc getBlendFunc();
+	virtual cocos2d::CCTexture2D* getTexture();
+	virtual void setTexture(cocos2d::CCTexture2D*);
+}
 
 [[link(win, android)]]
 class cocos2d::CCScene {
