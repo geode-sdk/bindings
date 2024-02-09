@@ -4,7 +4,7 @@ project(Codegen LANGUAGES C CXX)
 include(../cmake/CPM.cmake)
 
 CPMAddPackage("gh:fmtlib/fmt#10.1.1")
-CPMAddPackage("gh:geode-sdk/Broma#fdf00ae")
+CPMAddPackage("gh:geode-sdk/Broma#1a6120c")
 
 file(GLOB SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
@@ -28,8 +28,10 @@ target_include_directories(Codegen PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_precompile_headers(Codegen PRIVATE 
-	${CMAKE_CURRENT_SOURCE_DIR}/src/Shared.hpp
-)
+if (NOT CMAKE_CXX_COMPILER_LAUNCHER MATCHES "sccache(|.exe)$")
+	target_precompile_headers(Codegen PRIVATE
+		${CMAKE_CURRENT_SOURCE_DIR}/src/Shared.hpp
+	)
+endif ()
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})

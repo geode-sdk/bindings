@@ -596,6 +596,13 @@ public class SyncBromaScript extends GhidraScript {
                         broma.addPatch(bromaFun.platformOffset.get().range, String.format("%x", ghidraOffset));
                     }
                 }
+                else if (bromaFun.platformOffsetAddPoint.isPresent()) {
+                    broma.addPatch(
+                        bromaFun.platformOffsetAddPoint.get(),
+                        String.format(", %s 0x%x", args.platform.getShortName(), ghidraOffset)
+                    );
+                    exportedAddrCount += 1;
+                }
                 else if (bromaFun.platformOffsetInsertPoint.isPresent()) {
                     broma.addPatch(
                         bromaFun.platformOffsetInsertPoint.get().range,
@@ -649,7 +656,7 @@ public class SyncBromaScript extends GhidraScript {
                 // (so if the struct has shrunk in broma, we refit it properly)
                 while (!classDataMembers.isZeroLength()) {
                     var comp = classDataMembers.getComponent(classDataMembers.getNumComponents() - 1);
-                    if (comp.getDataType().isNotYetDefined()) {
+                    if (comp.getDataType() instanceof Undefined) {
                         classDataMembers.delete(classDataMembers.getNumComponents() - 1);
                     }
                     else {
@@ -661,7 +668,9 @@ public class SyncBromaScript extends GhidraScript {
                 for (var mem : cls.members) {
                     int length;
                     if (mem.name.isPresent()) {
-                        length = wrapper.addOrGetType(mem.type.get()).getLength();
+                        final var memType = wrapper.addOrGetType(mem.type.get());
+                        length = memType.getLength();
+                        offset += offset % memType.getAlignment();
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
@@ -679,8 +688,9 @@ public class SyncBromaScript extends GhidraScript {
 
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
+                        // Make sure alignment is correct
                         var existing = classDataMembers.getComponentAt(offset);
-                        if (!existing.getDataType().isNotYetDefined()) {
+                        if (existing != null && existing.getDataType() instanceof Undefined) {
                             if (
                                 !existing.getDataType().isEquivalent(memType) ||
                                 (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value))
@@ -721,6 +731,11 @@ public class SyncBromaScript extends GhidraScript {
                                 offset, fullName
                             );
                         }
+                    }
+
+                    // todo: Funky little hack to fix GameObject_data not fitting inside EndGameObject
+                    if (fullName.equals("GameObject") && offset > 0x26e) {
+                        break;
                     }
                 }
 

@@ -78,6 +78,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_vehicleSize, 0x9c0);
 GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0xa08);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk814, 0xa50);
 GEODE_MEMBER_CHECK(PlayerObject, m_position, 0xa58);
+GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xac0);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xb38);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk950, 0xbe8);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk948, 0xbe0);
@@ -127,4 +128,8 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x3788);
 GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x250);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
 GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x300);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x338);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedMode, 0x4e8);
+// GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x528);
+
 #endif

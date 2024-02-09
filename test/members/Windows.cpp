@@ -109,6 +109,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_practiceMusicSync, 0x2a7d);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x2aa0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isTestMode, 0x2aac);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b50);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c48);
 
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e58);
 
@@ -166,6 +167,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
 GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0x824);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastActivatedPortal, 0x848);
 GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x854);
+GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x9a4);
 
@@ -180,11 +182,12 @@ GEODE_SIZE_CHECK(GJGameLevel, 0x48c);
 GEODE_SIZE_CHECK(GJGameState, 0x498);
 // GEODE_SIZE_CHECK(PlayerObject, 0x980); // 0x998 in 2.203
 
+GEODE_MEMBER_CHECK(GJGameState, m_unk1f8, 0x1f8);
 GEODE_MEMBER_CHECK(GJGameState, m_unk20c, 0x214);
 GEODE_MEMBER_CHECK(GJGameState, m_unk284, 0x294);
 GEODE_MEMBER_CHECK(GJGameState, m_unk2b8, 0x2b4);
 
-// GEODE_SIZE_CHECK(GameObject, 0x498); // crying
+GEODE_SIZE_CHECK(GameObject, 0x498); // crying
 GEODE_MEMBER_CHECK(GameObject, m_activeMainColorID, 0x22c);
 GEODE_MEMBER_CHECK(GameObject, m_linkedGroup, 0x2f0);
 GEODE_MEMBER_CHECK(GameObject, m_uniqueID, 0x318);
@@ -194,6 +197,8 @@ GEODE_MEMBER_CHECK(GameObject, m_enterChannel, 0x374);
 GEODE_MEMBER_CHECK(GameObject, m_objectMaterial, 0x376);
 GEODE_MEMBER_CHECK(GameObject, m_objectID, 0x384);
 GEODE_MEMBER_CHECK(GameObject, m_isDontBoostX, 0x46A);
+
+GEODE_SIZE_CHECK(EffectGameObject, 0x688)
 
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);
