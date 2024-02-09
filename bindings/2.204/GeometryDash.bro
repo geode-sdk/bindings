@@ -3886,7 +3886,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn accountIDForUserID(int);
 	TodoReturn addDLToActive(char const*) = win 0xf8c10;
 	TodoReturn areGauntletsLoaded();
-	TodoReturn banUser(int);
+	void inline banUser(int);
 	TodoReturn blockUser(int) = win 0x10ca10;
 	TodoReturn cleanupDailyLevels() = win 0xf96a0;
 	TodoReturn createAndGetAccountComments(gd::string, int);
@@ -4094,8 +4094,8 @@ class GameLevelManager : cocos2d::CCNode {
 	void onUploadUserMessageCompleted(gd::string response, gd::string tag) = win 0x1076a0;
 	TodoReturn pageFromCommentKey(char const*);
 	TodoReturn parseRestoreData(gd::string);
-	TodoReturn performNetworkTest() = win 0xf3a80;
-	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0xf3bf0;
+	void performNetworkTest() = win 0xf3a80;
+	void ProcessHttpRequest((gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0xf3bf0;
 	TodoReturn processOnDownloadLevelCompleted(gd::string, gd::string, bool);
 	TodoReturn purgeUnusedLevels();
 	TodoReturn rateDemon(int, int, bool) = win 0x103330;
