@@ -8914,7 +8914,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateKeyframeVisibility(bool);
 	void updateLevelFont(int);
 	TodoReturn updateObjectColors(cocos2d::CCArray*);
-	TodoReturn updateObjectLabel(GameObject*);
+	static void updateObjectLabel(GameObject*);
 	TodoReturn updateOptions();
 	TodoReturn updatePreviewAnim();
 	TodoReturn updatePreviewParticle(ParticleGameObject*);
