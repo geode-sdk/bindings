@@ -11932,19 +11932,22 @@ class SelectSettingDelegate {
 class SelectSettingLayer : FLAlertLayer {
 	// virtual ~SelectSettingLayer();
 
-	static SelectSettingLayer* create(SelectSettingType, int);
+	static SelectSettingLayer* create(SelectSettingType, int) = win 0x270c10;
 
-	TodoReturn frameForItem(SelectSettingType, int);
+	TodoReturn frameForItem(SelectSettingType, int) = win 0x271380;
 	TodoReturn frameForValue(SelectSettingType, int);
 	TodoReturn getSelectedFrame();
 	TodoReturn getSelectedValue();
 	TodoReturn idxToValue(SelectSettingType, int);
-	bool init(SelectSettingType, int);
+	bool init(SelectSettingType, int) = win 0x270cc0;
 	void onClose(cocos2d::CCObject* sender);
-	void onSelect(cocos2d::CCObject* sender);
+	void onSelect(cocos2d::CCObject* sender) = win 0x2715d0;
 	TodoReturn valueToIdx(SelectSettingType, int);
 
 	virtual void keyBackClicked();
+
+	PAD = win 0x4;
+	int m_settingID;
 }
 
 [[link(android)]]
