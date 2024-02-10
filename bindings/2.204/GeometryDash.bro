@@ -2979,10 +2979,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCPoint m_lastTouchPoint;
 	cocos2d::CCPoint m_cameraTest;
 	PAD = mac 0x8, win 0x8, android32 0x8;
-
-	PAD = win 0x8, android32 0x8;
 	GameObject* m_selectedObject;
-	PAD = win 0x4;
+	PAD = win 0xc, android32 0xc;
 	int m_selectedTab;
 }
 
@@ -5454,7 +5452,7 @@ class GameToolbox {
 	static TodoReturn postClipVisit();
 	static TodoReturn preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x40f00;
 	static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
-	static TodoReturn saveParticleToString(cocos2d::CCParticleSystemQuad*);
+	static TodoReturn saveParticleToString(cocos2d::CCParticleSystemQuad*) = win 0x428f0;
 	static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
 	static TodoReturn stringFromHSV(cocos2d::ccHSVValue, char const*);
 	static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*) = win 0x42430;
@@ -8949,7 +8947,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateKeyframeVisibility(bool);
 	void updateLevelFont(int) = win 0x2458c0;
 	TodoReturn updateObjectColors(cocos2d::CCArray*);
-	void updateObjectLabel(GameObject*) = win 0x23e710;
+	static void updateObjectLabel(GameObject*) = win 0x23e710;
 	TodoReturn updateOptions() = win 0x23afa0;
 	TodoReturn updatePreviewAnim() = win 0x247c90;
 	void updatePreviewParticle(ParticleGameObject*) = win 0x247ec0;
@@ -10518,8 +10516,8 @@ class ParticleGameObject : EnhancedGameObject {
 	TodoReturn applyParticleSettings(cocos2d::CCParticleSystemQuad*);
 	TodoReturn createAndAddCustomParticle();
 	TodoReturn createParticlePreviewArt();
-	void setParticleString(gd::string);
-	TodoReturn updateParticle();
+	void setParticleString(gd::string) = win 0x398c00;
+	void updateParticle() = win 0x398cd0;
 	TodoReturn updateParticleAngle(float, cocos2d::CCParticleSystemQuad*);
 	TodoReturn updateParticlePreviewArtOpacity(float);
 	TodoReturn updateParticleScale(float);
@@ -10552,7 +10550,8 @@ class ParticleGameObject : EnhancedGameObject {
 	virtual TodoReturn updateAnimateOnTrigger(bool);
 
 	gd::string m_particleData;
-	PAD = android32 0x110, win 0x124;
+	bool m_updatedParticleData;
+	PAD = android32 0x10f, win 0x123;
 
 	// property 147
 	bool m_hasUniformObjectColor;

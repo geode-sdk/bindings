@@ -10474,7 +10474,7 @@ class ParticleGameObject : EnhancedGameObject {
 	TodoReturn createAndAddCustomParticle();
 	TodoReturn createParticlePreviewArt();
 	void setParticleString(gd::string);
-	TodoReturn updateParticle();
+	void updateParticle();
 	TodoReturn updateParticleAngle(float, cocos2d::CCParticleSystemQuad*);
 	TodoReturn updateParticlePreviewArtOpacity(float);
 	TodoReturn updateParticleScale(float);
@@ -10508,7 +10508,8 @@ class ParticleGameObject : EnhancedGameObject {
 
 	// property 145
 	gd::string m_particleData;
-	PAD = android32 0x110;
+	bool m_updatedParticleData;
+	PAD = android32 0x10f;
 	
 	// property 147
 	bool m_hasUniformObjectColor;
