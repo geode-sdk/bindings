@@ -976,11 +976,11 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onToggleItem(cocos2d::CCObject* sender) = win 0x1ee7d0;
 	void onBack(cocos2d::CCObject* sender) = mac 0x34a9f0;
 	void onInfo(cocos2d::CCObject* sender) = mac 0x34ac40;
-	void onShop(cocos2d::CCObject* sender);
+	void onShop(cocos2d::CCObject* sender) = mac 0x34ab50;
 	void onArrow(cocos2d::CCObject* sender);
-	void onPaint(cocos2d::CCObject* sender);
+	void onPaint(cocos2d::CCObject* sender) = mac 0x34abe0;
 	void onSelect(cocos2d::CCObject* sender) = win 0x1ee4b0;
-	void onShards(cocos2d::CCObject* sender);
+	void onShards(cocos2d::CCObject* sender) = mac 0x34abb0;
 	void onSpecial(cocos2d::CCObject* sender);
 
 	TodoReturn toggleGlow();
