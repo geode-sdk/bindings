@@ -3001,7 +3001,7 @@ class EffectGameObject : EnhancedGameObject {
 	// virtual ~EffectGameObject();
 	// EffectGameObject();
 
-	static EffectGameObject* create(char const*);
+	static EffectGameObject* create(char const*) = win 0x39c8b0;
 
 	TodoReturn getTargetColorIndex();
 	bool init(char const*) = win 0x39c950;
@@ -9057,7 +9057,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn setupLevelInfo() = win 0x2544a0;
 	TodoReturn setupPlatformerStats() = win 0x253a90;
 	TodoReturn setupProgressBars() = win 0x253e20;
-	TodoReturn shouldDownloadLevel() = win 0x253890;
+	bool shouldDownloadLevel() = win 0x253890;
 	TodoReturn showSongWarning() = win 0x255510;
 	TodoReturn showUpdateAlert(UpdateResponse) = win 0x255280;
 	TodoReturn tryCloneLevel(cocos2d::CCObject*) = win 0x255f10;
@@ -10825,7 +10825,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn resetAllParticles();
 	TodoReturn resetCollisionLog(bool);
 	TodoReturn resetCollisionValues();
-	TodoReturn resetPlayerIcon() = win 0x2d45b0;
+	void resetPlayerIcon() = win 0x2d45b0;
 	TodoReturn resetStateVariables();
 	TodoReturn resetStreak() = win 0x2c6540;
 	TodoReturn resetTouchedRings();
@@ -10843,7 +10843,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn runRotateAction(bool, int);
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*) = win 0x2d9c20;
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x2d65a0;
-	TodoReturn setupStreak();
+	void setupStreak() = win 0x2c3c80;
 	void setYVelocity(double, int) = win 0x2c40c0;
 	TodoReturn spawnCircle();
 	TodoReturn spawnCircle2();
@@ -11037,14 +11037,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	GJSpiderSprite* m_spiderSprite;
 	PAD = win 0x4, android32 0x4;
 	cocos2d::CCParticleSystemQuad* m_unk6dc;
-	cocos2d::CCParticleSystemQuad* m_unk6e0;
-	cocos2d::CCParticleSystemQuad* m_unk6e4;
+	cocos2d::CCParticleSystemQuad* m_trailingParticles; // 0x6d8
+	cocos2d::CCParticleSystemQuad* m_shipClickParticles; // 0x6dc
 	cocos2d::CCParticleSystemQuad* m_unk6e8;
-	cocos2d::CCParticleSystemQuad* m_unk6ec;
-	cocos2d::CCParticleSystemQuad* m_unk6f0;
+	cocos2d::CCParticleSystemQuad* m_ufoClickParticles; // 0x6e4
+	cocos2d::CCParticleSystemQuad* m_robotBurstParticles;
 	cocos2d::CCParticleSystemQuad* m_unk6f4;
-	cocos2d::CCParticleSystemQuad* m_unk6f8;
-	cocos2d::CCParticleSystemQuad* m_unk6fc;
+	cocos2d::CCParticleSystemQuad* m_swingBurstParticles1; // 0x6f0
+	cocos2d::CCParticleSystemQuad* m_swingBurstParticles2; // 0x6f4
 	PAD = win 0x4, android32 0x4;
 	cocos2d::CCParticleSystemQuad* m_unk704;
 	cocos2d::CCParticleSystemQuad* m_unk708;
@@ -11087,8 +11087,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	GameObject* m_lastActivatedPortal;
 	bool m_unk814;
 	bool m_unk815;
-	cocos2d::ccColor3B m_playerColor1;
-	cocos2d::ccColor3B m_playerColor2;
+	cocos2d::ccColor3B m_playerColor1; // 0x816
+	cocos2d::ccColor3B m_playerColor2; // 0x819
 	cocos2d::CCPoint m_position;
 	PAD = win 0x14, android32 0x14;
 	float m_unk838;
@@ -14147,16 +14147,16 @@ class SongInfoLayer : FLAlertLayer {
 	// virtual ~SongInfoLayer();
 
 	static SongInfoLayer* create(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string);
-	static SongInfoLayer* create(int);
+	static SongInfoLayer* create(int) = win 0x38aba0;
 
-	bool init(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string);
+	bool init(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string) = win 0x38ae50;
 	void onBPM(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onDownload(cocos2d::CCObject* sender);
 	void onFB(cocos2d::CCObject* sender);
-	void onMenuMusic(cocos2d::CCObject* sender) = win 0x38bda0;
+	void onMenuMusic(cocos2d::CCObject* sender) = win 0x38bd20;
 	void onNG(cocos2d::CCObject* sender);
-	void onPracticeMusic(cocos2d::CCObject* sender);
+	void onPracticeMusic(cocos2d::CCObject* sender) = win 0x38bda0;
 	void onYT(cocos2d::CCObject* sender);
 	TodoReturn showCustomMusicUnlockInfo() = win 0x38baa0;
 
