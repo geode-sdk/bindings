@@ -2974,10 +2974,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCPoint m_lastTouchPoint;
 	cocos2d::CCPoint m_cameraTest;
 	PAD = mac 0x8, win 0x8, android32 0x8;
-
-	PAD = win 0x8, android32 0x8;
 	GameObject* m_selectedObject;
-	PAD = win 0x4;
+	PAD = win 0xc, android32 0xc;
 	int m_selectedTab;
 }
 
