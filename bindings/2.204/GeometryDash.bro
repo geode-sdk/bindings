@@ -4925,7 +4925,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getObjectRect(float, float) = win 0x13a570;
 	virtual TodoReturn getObjectRect2(float, float);
 	virtual TodoReturn getObjectTextureRect();
-	virtual TodoReturn getRealPosition();
+	virtual cocos2d::CCPoint getRealPosition();
 	virtual void setStartPos(cocos2d::CCPoint);
 	virtual TodoReturn updateStartValues();
 	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
@@ -10844,7 +10844,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*) = win 0x2d9c20;
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x2d65a0;
 	TodoReturn setupStreak();
-	void setYVelocity(double, int);
+	void setYVelocity(double, int) = win 0x2c40c0;
 	TodoReturn spawnCircle();
 	TodoReturn spawnCircle2();
 	TodoReturn spawnDualCircle();
@@ -10957,7 +10957,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setFlipX(bool) = win 0x2da6b0;
 	virtual void setFlipY(bool);
 	virtual TodoReturn resetObject() = win 0x2d1100;
-	virtual TodoReturn getRealPosition();
+	virtual cocos2d::CCPoint getRealPosition() = win 0x2d6b70;
 	virtual TodoReturn getOrientedBox();
 	virtual TodoReturn getObjectRotation();
 	virtual TodoReturn animationFinished(char const*);
