@@ -1219,7 +1219,7 @@ class cocos2d::ZipUtils {
 [[link(win, android)]]
 class DS_Dictionary {
 	DS_Dictionary();
-	~DS_Dictionary();
+	// ~DS_Dictionary();
 
 	static void copyFile(const char*, const char*);
 
