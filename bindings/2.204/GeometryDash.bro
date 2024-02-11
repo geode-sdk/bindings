@@ -3339,7 +3339,7 @@ class EnhancedGameObject : GameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int);
 	virtual TodoReturn updateAnimateOnTrigger(bool);
 
-	PAD = android32 0x25, win 0x25;
+	PAD = android32 0x25, win 0x2a;
 
 	bool m_hasCustomAnimation;
 	bool m_hasCustomRotation;
@@ -5272,22 +5272,24 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getStoreItem(int);
 	TodoReturn getTotalCollectedCurrency() = win 0x1740d0;
 	TodoReturn getTotalCollectedDiamonds();
-	TodoReturn hasClaimedListReward(GJLevelList*) = win 0x173bf0;
-	TodoReturn hasCompletedChallenge(GJChallengeItem*);
-	TodoReturn hasCompletedDailyLevel(int) = win 0x173de0;
-	TodoReturn hasCompletedDemonLevel(GJGameLevel*) = win 0x16fe00;
-	TodoReturn hasCompletedGauntletLevel(int);
+	bool hasClaimedListReward(GJLevelList*) = win 0x173bf0;
+	bool hasCompletedChallenge(GJChallengeItem*);
+	bool hasCompletedDailyLevel(int) = win 0x173de0;
+	bool hasCompletedDemonLevel(GJGameLevel*) = win 0x16fe00;
+	bool hasCompletedGauntletLevel(int);
 	bool hasCompletedLevel(GJGameLevel* level) {
 		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
 	}
-	TodoReturn hasCompletedMainLevel(int);
-	TodoReturn hasCompletedMapPack(int);
-	TodoReturn hasCompletedOnlineLevel(int);
-	TodoReturn hasCompletedStarLevel(GJGameLevel*) = win 0x16fec0;
-	TodoReturn hasPendingUserCoin(char const*) = win 0x171670;
-	TodoReturn hasRewardBeenCollected(GJRewardType, int);
-	TodoReturn hasSecretCoin(char const*) = win 0x1717e0;
-	TodoReturn hasUserCoin(char const*) = win 0x171500;
+	bool hasCompletedMainLevel(int levelID) {
+		return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
+	}
+	bool hasCompletedMapPack(int);
+	bool hasCompletedOnlineLevel(int);
+	bool hasCompletedStarLevel(GJGameLevel*) = win 0x16fec0;
+	bool hasPendingUserCoin(char const*) = win 0x171670;
+	bool hasRewardBeenCollected(GJRewardType, int);
+	bool hasSecretCoin(char const*) = win 0x1717e0;
+	bool hasUserCoin(char const*) = win 0x171500;
 	TodoReturn incrementActivePath(int) = win 0x16a4f0;
 	TodoReturn incrementChallenge(GJChallengeType, int) = win 0x173670;
 	TodoReturn incrementStat(char const*, int) = win 0x16a250;

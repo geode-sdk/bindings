@@ -198,7 +198,13 @@ GEODE_MEMBER_CHECK(GameObject, m_objectMaterial, 0x376);
 GEODE_MEMBER_CHECK(GameObject, m_objectID, 0x384);
 GEODE_MEMBER_CHECK(GameObject, m_isDontBoostX, 0x46A);
 
-GEODE_SIZE_CHECK(EffectGameObject, 0x678)
+GEODE_SIZE_CHECK(EnhancedGameObject, 0x500);
+GEODE_MEMBER_CHECK(EnhancedGameObject, m_hasCustomAnimation, 0x4c2);
+GEODE_MEMBER_CHECK(EnhancedGameObject, m_rotationSpeed, 0x4c8);
+
+GEODE_SIZE_CHECK(EffectGameObject, 0x678);
+GEODE_MEMBER_CHECK(EffectGameObject, m_opacity, 0x508);
+GEODE_MEMBER_CHECK(EffectGameObject, m_isTouchTriggered, 0x518);
 
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);

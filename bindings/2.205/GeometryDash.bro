@@ -5270,22 +5270,24 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getStoreItem(int);
 	TodoReturn getTotalCollectedCurrency();
 	TodoReturn getTotalCollectedDiamonds();
-	TodoReturn hasClaimedListReward(GJLevelList*);
-	TodoReturn hasCompletedChallenge(GJChallengeItem*);
-	TodoReturn hasCompletedDailyLevel(int);
-	TodoReturn hasCompletedDemonLevel(GJGameLevel*);
-	TodoReturn hasCompletedGauntletLevel(int);
+	bool hasClaimedListReward(GJLevelList*);
+	bool hasCompletedChallenge(GJChallengeItem*);
+	bool hasCompletedDailyLevel(int);
+	bool hasCompletedDemonLevel(GJGameLevel*);
+	bool hasCompletedGauntletLevel(int);
 	bool hasCompletedLevel(GJGameLevel* level) {
 		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
 	}
-	TodoReturn hasCompletedMainLevel(int);
-	TodoReturn hasCompletedMapPack(int);
-	TodoReturn hasCompletedOnlineLevel(int);
-	TodoReturn hasCompletedStarLevel(GJGameLevel*);
-	TodoReturn hasPendingUserCoin(char const*);
-	TodoReturn hasRewardBeenCollected(GJRewardType, int);
-	TodoReturn hasSecretCoin(char const*);
-	TodoReturn hasUserCoin(char const*);
+	bool hasCompletedMainLevel(int levelID) {
+		return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
+	}
+	bool hasCompletedMapPack(int);
+	bool hasCompletedOnlineLevel(int);
+	bool hasCompletedStarLevel(GJGameLevel*);
+	bool hasPendingUserCoin(char const*);
+	bool hasRewardBeenCollected(GJRewardType, int);
+	bool hasSecretCoin(char const*);
+	bool hasUserCoin(char const*);
 	TodoReturn incrementActivePath(int);
 	TodoReturn incrementChallenge(GJChallengeType, int);
 	TodoReturn incrementStat(char const*, int);
