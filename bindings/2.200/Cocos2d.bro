@@ -993,7 +993,7 @@ class cocos2d::CCSpriteFrameCache {
 	void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*) = mac 0x2f9e50;
 	void removeSpriteFramesFromFile(char const*) = mac 0x2f9c80;
 	void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*) = mac 0x2fa060;
-	void removeUnusedSpriteFrames() = mac0x2f9930;
+	void removeUnusedSpriteFrames() = mac 0x2f9930;
 	cocos2d::CCSpriteFrame* spriteFrameByName(char const*) = mac 0x2fa330;
 }
 
