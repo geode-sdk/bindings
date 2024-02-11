@@ -1232,7 +1232,10 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	}
 	bool init(float, float, char const*, char const*, int, char const*) = win 0x2e500;
 	TodoReturn refreshLabel() = win 0x2ede0;
-	void setLabelNormalColor(cocos2d::ccColor3B);
+	void setLabelNormalColor(cocos2d::ccColor3B color) {
+        m_textColor = color;
+        this->refreshLabel();
+    }
 	void setString(gd::string) = win 0x2e9a0;
 	TodoReturn updateBlinkLabel();
 	TodoReturn updateBlinkLabelToChar(int);
