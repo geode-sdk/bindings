@@ -983,17 +983,17 @@ class cocos2d::CCSpriteFrameCache {
 
 	// CCSpriteFrameCache();
 	// CCSpriteFrameCache(cocos2d::CCSpriteFrameCache const&);
-	void addSpriteFrame(cocos2d::CCSpriteFrame*, char const*);
+	void addSpriteFrame(cocos2d::CCSpriteFrame*, char const*) = mac 0x2f9810;
 	void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*) = mac 0x2f88d0;
 	void addSpriteFramesWithFile(char const*, char const*);
 	void addSpriteFramesWithFile(char const*) = mac 0x2f9470;
-	void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*);
-	void removeSpriteFrameByName(char const*);
-	void removeSpriteFrames();
-	void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*);
-	void removeSpriteFramesFromFile(char const*);
-	void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*);
-	void removeUnusedSpriteFrames();
+	void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*) = mac 0x2f93c0;
+	void removeSpriteFrameByName(char const*) = mac 0x2f99c0;
+	void removeSpriteFrames() = mac 0x2f98f0;
+	void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*) = mac 0x2f9e50;
+	void removeSpriteFramesFromFile(char const*) = mac 0x2f9c80;
+	void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*) = mac 0x2fa060;
+	void removeUnusedSpriteFrames() = mac0x2f9930;
 	cocos2d::CCSpriteFrame* spriteFrameByName(char const*) = mac 0x2fa330;
 }
 
