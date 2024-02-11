@@ -4848,7 +4848,9 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn awardCurrencyForLevel(GJGameLevel*) = win 0x16F850;
 	TodoReturn awardDiamondsForLevel(GJGameLevel*) = win 0x16FD70;
 	//TodoReturn hasCompletedChallenge(GJChallengeItem*);
-	TodoReturn hasCompletedMainLevel(int);
+	bool hasCompletedMainLevel(int levelID) {
+		return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
+	}
 	TodoReturn hasCompletedStarLevel(GJGameLevel*) = mac 0x6d360, win 0x16d690;
 	/* unverified signature */
 	bool isSecretChestUnlocked(int);
