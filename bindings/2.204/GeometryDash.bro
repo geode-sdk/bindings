@@ -8880,7 +8880,12 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	void handleAction(bool, cocos2d::CCArray*) = win 0x23d670;
 	TodoReturn hasAction(bool);
 	bool init(GJGameLevel*, bool) = win 0x239a70;
-	bool isLayerLocked(int);
+	bool isLayerLocked(int layer) {
+		if (layer < 10000 && m_layerLockingEnabled) {
+			return m_lockedLayers.at(layer);
+		}
+		return false;
+	}
 	TodoReturn objectAtPosition(cocos2d::CCPoint) = win 0x23c610;
 	TodoReturn objectMoved(GameObject*) = win 0x23f080;
 	TodoReturn objectsAtPosition(cocos2d::CCPoint);
@@ -9045,6 +9050,10 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	DrawGridLayer* m_drawGridLayer;
 	bool m_unkBool;
 	bool m_previewMode;
+
+	PAD = win 0x86, android32 0x7a, android64 0xfa;
+
+	gd::vector<bool> m_lockedLayers;
 }
 
 [[link(android)]]
