@@ -3339,7 +3339,7 @@ class EnhancedGameObject : GameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int);
 	virtual TodoReturn updateAnimateOnTrigger(bool);
 
-	PAD = android32 0x25, win 0x25;
+	PAD = android32 0x25, win 0x2a;
 
 	bool m_hasCustomAnimation;
 	bool m_hasCustomRotation;
