@@ -1011,7 +1011,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	virtual TodoReturn playerColorChanged();
 }
 
-[[link(android), depends(EnterEffectInstance)]]
+[[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance)]]
 class GJGameState {
 	TodoReturn tweenValue(float, float, int, float, int, float, int, int) = win 0x18b380;
 	TodoReturn stopTweenAction(int);
@@ -1141,7 +1141,7 @@ class TriggerEffectDelegate {
 	virtual TodoReturn pure_virtual_00a1b9c8() {} // TODO: figure out what function this is
 }
 
-[[link(android), depends(GJGameState)]]
+[[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// ~GJBaseGameLayer();
 

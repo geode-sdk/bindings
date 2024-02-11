@@ -5692,7 +5692,7 @@ class GJAssetDownloadAction {
 	int m_status;
 }
 
-[[link(android), depends(GJGameState)]]
+[[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// ~GJBaseGameLayer();
 	// GJBaseGameLayer() = win 0x237ce0;
@@ -6771,7 +6771,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 	virtual void onEnterTransitionDidFinish();
 }
 
-[[link(android), depends(EventTriggerInstance), depends(SongChannelState)]]
+[[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance)]]
 class GJGameState {
 	// ~GJGameState();
 	// GJGameState() = win 0x18d990;
