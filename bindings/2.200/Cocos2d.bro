@@ -1265,9 +1265,9 @@ class cocos2d::CCSpriteFrame {
 class cocos2d::CCLabelBMFont {
 	~CCLabelBMFont() = mac 0x59d2f0;
 	static cocos2d::CCLabelBMFont* create(char const*, char const*) = mac 0x59cc60;
-	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
-	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment);
-	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint);
+	static cocos2d::CCLabelBMFont* create(char const*, char const*, float) = mac 0x59cbb0;
+	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment) = mac 0x59ca60;
+	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = mac 0x59cb10;
 	static cocos2d::CCLabelBMFont* create() = mac 0x59c9f0;
 	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int);
 	static void purgeCachedData();
