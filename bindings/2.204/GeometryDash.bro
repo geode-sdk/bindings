@@ -4102,7 +4102,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn parseRestoreData(gd::string);
 	void performNetworkTest() = win 0xf3a80;
 	void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0xf3bf0;
-	TodoReturn processOnDownloadLevelCompleted(gd::string, gd::string, bool);
+	TodoReturn processOnDownloadLevelCompleted(gd::string, gd::string, bool) = win 0x101160;
 	TodoReturn purgeUnusedLevels();
 	TodoReturn rateDemon(int, int, bool) = win 0x103330;
 	TodoReturn rateStars(int, int) = win 0x101f90;
@@ -6585,7 +6585,7 @@ class GJGameLevel : cocos2d::CCNode {
 	// virtual ~GJGameLevel();
 
 	static GJGameLevel* create() = win 0x113a60;
-	static GJGameLevel* create(cocos2d::CCDictionary*, bool);
+	static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x112680;
 	inline static GJGameLevel* createWithCoder(DS_Dictionary* dict) {
 		//inlined on windows
 		auto level = GJGameLevel::create();
