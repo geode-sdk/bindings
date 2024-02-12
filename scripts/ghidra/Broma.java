@@ -3,7 +3,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,12 +20,19 @@ public class Broma {
             this.start = 0;
             this.end = 0;
         }
+        Range(int where) {
+            this.start = where;
+            this.end = where;
+        }
         Range(int start, int end) {
             this.start = start;
             this.end = end;
         }
         boolean overlaps(Range other) {
             return start < other.end && other.start < end;
+        }
+        Range join(Range other) {
+            return new Range(Math.min(this.start, other.start), Math.max(this.end, other.end));
         }
     }
 
@@ -100,6 +109,7 @@ public class Broma {
     public class Type extends Parseable {
         public final Match name;
         public final Optional<Match> template;
+        public final boolean unsigned;
         public final Optional<Match> ptr;
         public final Optional<Match> ref;
 
@@ -107,6 +117,7 @@ public class Broma {
             super(0);
             this.name = new Match(name);
             this.template = Optional.empty();
+            this.unsigned = false;
             this.ptr = Optional.of(new Match("*"));
             this.ref = Optional.empty();
         }
@@ -123,6 +134,7 @@ public class Broma {
             super(broma, matcher);
             name = broma.new Match(matcher, "name");
             template = Match.maybe(broma, matcher, "template");
+            unsigned = matcher.group("sign") != null && matcher.group("sign").equals("unsigned");
             ptr = Match.maybe(broma, matcher, "ptr");
             ref = Match.maybe(broma, matcher, "ref");
         }
@@ -149,6 +161,7 @@ public class Broma {
         public final Optional<Match> destructor;
         public final List<Param> params;
         public final Optional<Match> platformOffset;
+        public final Optional<Range> platformOffsetAddPoint;
         public final Optional<Match> platformOffsetInsertPoint;
 
         private Function(Broma broma, Class parent, Platform platform, Matcher matcher) {
@@ -181,9 +194,16 @@ public class Broma {
                     broma.forkMatcher(Regexes.grabPlatformAddress(platform), matcher, "platforms", true),
                     "addr"
                 );
+                if (platformOffset.isEmpty()) {
+                    platformOffsetAddPoint = Optional.of(new Range(matcher.end("platforms")));
+                }
+                else {
+                    platformOffsetAddPoint = Optional.empty();
+                }
             }
             else {
                 platformOffset = Optional.empty();
+                platformOffsetAddPoint = Optional.empty();
             }
         }
 
@@ -215,45 +235,64 @@ public class Broma {
     
     public class Member extends Parseable {
         public final Class parent;
+        public final Optional<Match> comments;
         public final Optional<Type> type;
         public final Optional<Match> name;
-        public final Optional<Match> padding;
-        /**
-         * Whether the paddings don't match between all platforms
-         * (requires full RE of the padded space to export members)
-         */
-        public final boolean unequalPadding;
+        public final Map<Platform, Integer> paddings;
 
         private Member(Broma broma, Class parent, Platform platform, Matcher matcher) {
             super(broma, matcher);
             this.parent = parent;
+            this.comments = Match.maybe(broma, matcher, "comments");
             if (matcher.group("name") != null) {
                 name = Match.maybe(broma, matcher, "name");
                 type = Optional.of(new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true)));
-                padding = Optional.empty();
-                unequalPadding = false;
+                paddings = Map.of();
             }
             else {
                 name = Optional.empty();
                 type = Optional.empty();
-
-                Optional<Match> padding = Optional.empty();
-                var unequalPadding = false;
+                
+                var mutPaddings = new HashMap<Platform, Integer>();
                 var addrMatcher = broma.forkMatcher(Regexes.GRAB_PLATFORM_ADDRESS, matcher, "platforms", false);
-                var addrValue = 0l;
                 while (addrMatcher.find()) {
-                    if (addrMatcher.group("platform").equals(platform.getShortName())) {
-                        padding = Optional.of(new Match(addrMatcher, "addr"));
-                    }
-                    var compAddr = Long.parseLong(addrMatcher.group("addr"), 16);
-                    if (addrValue != 0l && addrValue != compAddr) {
-                        unequalPadding = true;
-                    }
-                    addrValue = compAddr;
+                    mutPaddings.put(
+                        Platform.fromShortName(addrMatcher.group("platform")),
+                        Integer.parseInt(addrMatcher.group("addr"), 16)
+                    );
                 }
-                this.padding = padding;
-                this.unequalPadding = unequalPadding;
+                paddings = Map.copyOf(mutPaddings);
             }
+        }
+
+        private static String removeCommentPrefix(String str) {
+            return str.startsWith("//") ? str.substring(2).trim() : str;
+        }
+        public Optional<String> getComment() {
+            if (comments.isPresent()) {
+                return Optional.of(String.join(
+                    "\n",
+                    comments.get().value.lines()
+                        .map(line -> removeCommentPrefix(line.trim()))
+                        .toList()
+                ).trim());
+            }
+            return Optional.empty();
+        }
+        public String paddingNamesToString() {
+            return "GEODE(" + String.join(
+                "|",
+                paddings.entrySet().stream().map(e -> e.getKey().getShortName()).toList()
+            ) + ")";
+        }
+        public String paddingsToString() {
+            return String.join(
+                ", ",
+                paddings.entrySet()
+                    .stream()
+                    .map(e -> e.getKey().getShortName() + " 0x" + Integer.toHexString(e.getValue()))
+                    .toList()
+            );
         }
     }
 
@@ -262,6 +301,7 @@ public class Broma {
         public final Match name;
         public final List<Function> functions;
         public final List<Member> members;
+        public final Range beforeClosingBrace;
 
         private Class(Broma broma, Platform platform, Matcher matcher) {
             super(broma, matcher);
@@ -269,6 +309,7 @@ public class Broma {
             name = new Match(matcher, "name");
             functions = new ArrayList<Function>();
             members = new ArrayList<Member>();
+            beforeClosingBrace = new Range(matcher.start("closingbrace"), matcher.start("closingbrace"));
 
             // Check if this class is linked
             var attrs = matcher.group("attrs");
@@ -321,6 +362,7 @@ public class Broma {
      */
     private final List<Patch> patches;
     public final List<Class> classes;
+    private boolean committed = false;
 
     private Matcher forkMatcher(Pattern regex, Matcher of, String group, boolean find) {
         var matcher = regex.matcher(this.data);
@@ -385,6 +427,10 @@ public class Broma {
      * @throws IOException
      */
     public void save() throws IOException, Error {
+        if (this.committed) {
+            throw new Error("Broma file has already been saved");
+        }
+        this.committed = true;
         this.patches.sort((a, b) -> b.range.end - a.range.end);
         Range prev = null;
         for (var patch : this.patches) {
@@ -402,7 +448,6 @@ public class Broma {
         for (var patch : this.patches) {
             result.replace(patch.range.start, patch.range.end, patch.patch);
         }
-        this.patches.clear();
         Files.writeString(this.path, result.toString());
     }
 }

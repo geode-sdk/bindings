@@ -42,6 +42,8 @@ GEODE_SIZE_CHECK(Slider, 0x158);
 GEODE_MEMBER_CHECK(Slider, m_touchLogic, 0x13c);
 GEODE_SIZE_CHECK(SliderTouchLogic, 0x178);
 
+GEODE_MEMBER_CHECK(ButtonSprite, m_label, 0x214);
+
 GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x110);
 GEODE_MEMBER_CHECK(GameLevelManager, m_searchFilters, 0x114);
 GEODE_MEMBER_CHECK(GameLevelManager, m_onlineLevels, 0x118);
@@ -95,12 +97,21 @@ GEODE_MEMBER_CHECK(GameStatsManager, m_enabledItems, 0x22C);
 GEODE_MEMBER_CHECK(GameStatsManager, m_GS29, 0x24C);
 GEODE_MEMBER_CHECK(GameStatsManager, m_activePath, 0x250);
 
+GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d80);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x148);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5e0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x878);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x87c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9b8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa2c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2a7c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_practiceMusicSync, 0x2a7d);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x2aa0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isTestMode, 0x2aac);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b50);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c48);
+
+GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e58);
 
 // CustomSongWidget
 
@@ -144,58 +155,21 @@ GEODE_MEMBER_CHECK(CustomSongWidget, m_assetInfoBtn, 0x190);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b48);
 
 
-
-// vvv correct 2.203 offsets
-// GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x770);
-// GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x900);
-// vvv 2.200 offsets, please fix them for whatever the newest ver is
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk518, 0x518);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk568, 0x568);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk56c, 0x56c);
-// GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x590);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk594, 0x594);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk5b4, 0x5b4);
-// GEODE_MEMBER_CHECK(PlayerObject, m_rotationSpeed, 0x5d8);
-// GEODE_MEMBER_CHECK(PlayerObject, m_isRotating, 0x5e0);
-// GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x5e3);
-// GEODE_MEMBER_CHECK(PlayerObject, m_iconSprite, 0x5ec);
-// GEODE_MEMBER_CHECK(PlayerObject, m_rotationSpeed, 0x5d8);
-// GEODE_MEMBER_CHECK(PlayerObject, m_regularTrail, 0x620);
-// GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x628);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk644, 0x644);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk658, 0x658);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk688, 0x688);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk68c, 0x68c);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk6ac, 0x6ac);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk6bc, 0x6bc);
-// GEODE_MEMBER_CHECK(PlayerObject, m_objectSnappedTo, 0x6c4);
-// GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x6d0);
-// GEODE_MEMBER_CHECK(PlayerObject, m_spiderSprite, 0x6d4);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk708, 0x708);
-// GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x778);
-// GEODE_MEMBER_CHECK(PlayerObject, m_glowColor, 0x779);
-// GEODE_MEMBER_CHECK(PlayerObject, m_yVelocity, 0x798);
-// GEODE_MEMBER_CHECK(PlayerObject, m_isShip, 0x7a9);
-// GEODE_MEMBER_CHECK(PlayerObject, m_isGoingLeft, 0x7b2);
-// GEODE_MEMBER_CHECK(PlayerObject, m_isSwing, 0x7b4);
-// GEODE_MEMBER_CHECK(PlayerObject, m_isDashing, 0x7d4);
-// GEODE_MEMBER_CHECK(PlayerObject, m_vehicleSize, 0x7e0);
-// GEODE_MEMBER_CHECK(PlayerObject, m_playerSpeed, 0x7e4);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk7c8, 0x7c8);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk7d0, 0x7d0);
-// GEODE_MEMBER_CHECK(PlayerObject, m_isLocked, 0x7ff);
-// GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x804);
-// GEODE_MEMBER_CHECK(PlayerObject, m_lastActivatedPortal, 0x810);
-// GEODE_MEMBER_CHECK(PlayerObject, m_playerColor1, 0x816);
-// GEODE_MEMBER_CHECK(PlayerObject, m_playerColor2, 0x819);
-// GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x81c);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk838, 0x838);
-// GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x8e8);
-// GEODE_MEMBER_CHECK(PlayerObject, m_gravityMod, 0x8fc);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk930, 0x930);
-// GEODE_MEMBER_CHECK(PlayerObject, m_unk950, 0x950);
-// GEODE_MEMBER_CHECK(PlayerObject, m_parentLayer, 0x968);
-// GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x96c);
+GEODE_MEMBER_CHECK(PlayerObject, m_iconSprite, 0x5ec);
+GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x628);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk644, 0x644);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk6a2, 0x6a2);
+GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x6c8);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk708, 0x700);
+GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x770);
+GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x7ac);
+GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
+GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0x824);
+GEODE_MEMBER_CHECK(PlayerObject, m_lastActivatedPortal, 0x848);
+GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x854);
+GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
+GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
+GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x9a4);
 
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x190);
 
@@ -203,11 +177,34 @@ GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x198);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x1a0);
 
 GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
-GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d80);
 GEODE_SIZE_CHECK(PlayLayer, 0x2f78);
 GEODE_SIZE_CHECK(GJGameLevel, 0x48c);
+GEODE_SIZE_CHECK(GJGameState, 0x498);
 // GEODE_SIZE_CHECK(PlayerObject, 0x980); // 0x998 in 2.203
+
+GEODE_MEMBER_CHECK(GJGameState, m_unk1f8, 0x1f8);
+GEODE_MEMBER_CHECK(GJGameState, m_unk20c, 0x214);
+GEODE_MEMBER_CHECK(GJGameState, m_unk284, 0x294);
+GEODE_MEMBER_CHECK(GJGameState, m_unk2b8, 0x2b4);
+
 GEODE_SIZE_CHECK(GameObject, 0x498); // crying
+GEODE_MEMBER_CHECK(GameObject, m_activeMainColorID, 0x22c);
+GEODE_MEMBER_CHECK(GameObject, m_linkedGroup, 0x2f0);
+GEODE_MEMBER_CHECK(GameObject, m_uniqueID, 0x318);
+GEODE_MEMBER_CHECK(GameObject, m_realXPosition, 0x330);
+GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x340);
+GEODE_MEMBER_CHECK(GameObject, m_enterChannel, 0x374);
+GEODE_MEMBER_CHECK(GameObject, m_objectMaterial, 0x376);
+GEODE_MEMBER_CHECK(GameObject, m_objectID, 0x384);
+GEODE_MEMBER_CHECK(GameObject, m_isDontBoostX, 0x46A);
+
+GEODE_SIZE_CHECK(EnhancedGameObject, 0x500);
+GEODE_MEMBER_CHECK(EnhancedGameObject, m_hasCustomAnimation, 0x4c2);
+GEODE_MEMBER_CHECK(EnhancedGameObject, m_rotationSpeed, 0x4c8);
+
+GEODE_SIZE_CHECK(EffectGameObject, 0x678);
+GEODE_MEMBER_CHECK(EffectGameObject, m_opacity, 0x508);
+GEODE_MEMBER_CHECK(EffectGameObject, m_isTouchTriggered, 0x518);
 
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
 GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);
@@ -235,7 +232,6 @@ GEODE_MEMBER_CHECK(EditorUI, m_deleteMenu, 0x268);
 GEODE_MEMBER_CHECK(EditorUI, m_createButtonBars, 0x2e0);
 GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x340);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedTab, 0x384);
-
 
 GEODE_SIZE_CHECK(EditButtonBar, 0x124);
 

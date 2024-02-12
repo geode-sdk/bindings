@@ -1,5 +1,12 @@
 #pragma once
-#include <Geode/Bindings.hpp>
+#include <Geode/Enums.hpp>
+#include <cocos-ext.h>
+#include <cocos2d.h>
+#include <fmod.hpp>
+#include <cstdint>
+#include <type_traits>
+#include <unordered_map>
+#include <Geode/GeneratedBinding.hpp>
 
 template <auto V1, auto V2, auto V3, class... Types>
 struct False {

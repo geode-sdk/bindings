@@ -9,12 +9,14 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.data.AbstractFloatDataType;
+import ghidra.program.model.data.Category;
 import ghidra.program.model.data.CategoryPath;
 import ghidra.program.model.data.Composite;
 import ghidra.program.model.data.DataTypeConflictHandler;
@@ -23,6 +25,7 @@ import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
+import ghidra.program.model.data.Undefined;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
@@ -84,12 +87,15 @@ public class SyncBromaScript extends GhidraScript {
             var bromaFiles = List.of("Cocos2d.bro", "GeometryDash.bro");
             final var platforms = Arrays.asList(Platform.values()).stream().map(p -> p.getLongName()).toList();
 
-            this.choice("Target platform", platforms, p -> this.platform = Platform.parse(p));
+            var platform = wrapper.autoDetectPlatform().orElse(null).getLongName();
+            var isWindows = platform != null && platform.equals(Platform.WINDOWS.getLongName());
+
+            this.choice("Target platform", platforms, platform, p -> this.platform = Platform.fromLongName(p));
             this.choice("Broma file (Windows-only)", bromaFiles, f -> this.selectedBromaFile = f);
             this.choice("Game version", versions, v -> this.gameVersion = v);
             this.bool("Import from Broma", b -> this.importFromBroma = b);
             this.bool("Export to Broma", b -> this.exportToBroma = b);
-            this.bool("Set optcall & membercall", b -> this.setOptcall = b);
+            this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
 
             this.waitForAnswers();
@@ -132,6 +138,12 @@ public class SyncBromaScript extends GhidraScript {
             this.handleExport();
             if (this.args.syncMembers) {
                 this.handleExportMembers();
+            }
+
+            // Save results
+            wrapper.printfmt("Saving Broma files...");
+            for (var bro : this.bromas) {
+                bro.save();
             }
         }
     }
@@ -265,7 +277,7 @@ public class SyncBromaScript extends GhidraScript {
         // Same hotfix is in overload resolution in handleExport
         if (addr.subtract(currentProgram.getImageBase()) == 0x1fb90) {
             bromaSig.parameters.add(new ParameterImpl(
-                "__see_SyncBromaScript_line_" + getLineNumber(),
+                "__see_SyncBromaScript_line_" + Thread.currentThread().getStackTrace()[0].getLineNumber(),
                 Undefined1DataType.dataType,
                 currentProgram,
                 SourceType.USER_DEFINED
@@ -456,19 +468,11 @@ public class SyncBromaScript extends GhidraScript {
             if (cls.getName(true).matches(".*(switch|llvm|tinyxml2|<|__|fmt|std::|pugi|typeinfo).*")) {
                 continue;
             }
-            Broma broma = null;
-            Broma.Class bromaClass = null;
-            for (var bro : bromas) {
-                bromaClass = bro.getClass(cls.getName(true)).orElse(null);
-                if (bromaClass != null) {
-                    broma = bro;
-                    break;
-                }
-            }
+            var bromaClass = this.getTargetClassInBroma(cls.getName(true));
             if (bromaClass == null) {
-                wrapper.printfmt("Warning: class {0} not found", cls.getName(true));
                 continue;
             }
+            Broma broma = bromaClass.broma;
             for (var child : table.getChildren(cls.getSymbol())) {
                 // Skip non-functions
                 if (child.getSymbolType() != SymbolType.FUNCTION) {
@@ -592,6 +596,13 @@ public class SyncBromaScript extends GhidraScript {
                         broma.addPatch(bromaFun.platformOffset.get().range, String.format("%x", ghidraOffset));
                     }
                 }
+                else if (bromaFun.platformOffsetAddPoint.isPresent()) {
+                    broma.addPatch(
+                        bromaFun.platformOffsetAddPoint.get(),
+                        String.format(", %s 0x%x", args.platform.getShortName(), ghidraOffset)
+                    );
+                    exportedAddrCount += 1;
+                }
                 else if (bromaFun.platformOffsetInsertPoint.isPresent()) {
                     broma.addPatch(
                         bromaFun.platformOffsetInsertPoint.get().range,
@@ -606,12 +617,6 @@ public class SyncBromaScript extends GhidraScript {
         }
         
         wrapper.printfmt("Exported {0} addresses & {1} return types to Broma", exportedAddrCount, exportedTypeCount);
-
-        // Save results
-        wrapper.printfmt("Saving Broma files...");
-        for (var bro : this.bromas) {
-            bro.save();
-        }
     }
 
     private void handleImportMembers() throws Exception {
@@ -642,62 +647,283 @@ public class SyncBromaScript extends GhidraScript {
                     classDataMembers = new StructureDataType(name + "_data", 0);
                     manager.getCategory(category).addDataType(classDataMembers, DataTypeConflictHandler.DEFAULT_HANDLER);
                 }
-                wrapper.printfmt("Importing members for {0}", fullName);
+                wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
+
+                // Disable packing
+                classDataMembers.setPackingEnabled(false);
+
+                // Delete any padding at the end of the struct 
+                // (so if the struct has shrunk in broma, we refit it properly)
+                while (!classDataMembers.isZeroLength()) {
+                    var comp = classDataMembers.getComponent(classDataMembers.getNumComponents() - 1);
+                    if (comp.getDataType() instanceof Undefined) {
+                        classDataMembers.delete(classDataMembers.getNumComponents() - 1);
+                    }
+                    else {
+                        break;
+                    }
+                }
 
                 var offset = 0;
                 for (var mem : cls.members) {
+                    int length;
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
-                        // Make sure the class is large enough to hold this member
-                        // growStructure aint doin shit on packed structs so manually doing this
-                        while (offset + memType.getLength() > classDataMembers.getLength() || classDataMembers.isZeroLength()) {
-                            classDataMembers.add(Undefined1DataType.dataType);
-                        }
-                        // If there are packed bools or something we need to clear multiple members
-                        var freedCount = 0;
-                        while (true) {
-                            final var data = classDataMembers.getComponentAt(offset + freedCount);
-                            if (data == null || data.getLength() >= memType.getLength() - freedCount) {
-                                break;
-                            }
-                            freedCount += data.getLength();
-                            classDataMembers.clearAtOffset(offset + freedCount);
-                        }
-                        classDataMembers.replaceAtOffset(offset, memType, memType.getLength(), mem.name.get().value, null);
-                        offset += memType.getLength();
+                        length = memType.getLength();
+                        offset += offset % memType.getAlignment();
                     }
-                    else if (mem.padding.isPresent()) {
-                        var length = Integer.parseInt(mem.padding.get().value, 16);
-                        while (offset + length > classDataMembers.getLength()) {
-                            classDataMembers.add(Undefined1DataType.dataType);
+                    else {
+                        if (mem.paddings.containsKey(args.platform)) {
+                            length = mem.paddings.get(args.platform);
                         }
-                        for (int i = 0; i < length; i += 1) {
-                            classDataMembers.clearAtOffset(offset + i);
-                            if (mem.unequalPadding) {
-                                classDataMembers.replaceAtOffset(
-                                    offset + i, Undefined1DataType.dataType, 1, null,
-                                    "Unequal padding on different platforms; UNEQ_SKIP:" + (length - i - 1)
+                        else {
+                            length = 0;
+                        }
+                    }
+
+                    int classLength = classDataMembers.isZeroLength() ? 0 : classDataMembers.getLength();
+                    if (offset + length > classLength) {
+                        classDataMembers.growStructure(offset + length - classLength);
+                    }
+
+                    if (mem.name.isPresent()) {
+                        final var memType = wrapper.addOrGetType(mem.type.get());
+                        // Make sure alignment is correct
+                        var existing = classDataMembers.getComponentAt(offset);
+                        if (existing != null && existing.getDataType() instanceof Undefined) {
+                            if (
+                                !existing.getDataType().isEquivalent(memType) ||
+                                (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value))
+                            ) {
+                                askContinueConflict(
+                                    "Override member",
+                                    "Member #{0} in {1} does not match between Broma and Ghidra:\n" + 
+                                    "Broma: {2} {3}\n" + 
+                                    "Ghidra: {4} {5}\n" + 
+                                    "Should the existing member in Ghidra be overwritten with Broma's?",
+                                    existing.getOrdinal(), fullName,
+                                    ScriptWrapper.formatType(memType), mem.name.get().value,
+                                    ScriptWrapper.formatType(existing.getDataType()), existing.getFieldName()
                                 );
                             }
                         }
-                        offset += length;
+                        for (int i = memType.getLength(); i > 0; i -= 1) {
+                            classDataMembers.clearAtOffset(offset + i - 1);
+                        }
+                        classDataMembers.replaceAtOffset(
+                            offset,
+                            memType, memType.getLength(),
+                            mem.name.get().value,
+                            mem.getComment().orElse(null)
+                        );
+                        offset += memType.getLength();
                     }
                     else {
-                        wrapper.printfmt("Reached unimplemented padding on this platform, stopping importing members");
+                        if (mem.paddings.containsKey(args.platform)) {
+                            // Don't clear anything in case there's user-defined members there
+                            // since we don't want to override anyone's RE progress
+                            offset += mem.paddings.get(args.platform);
+                        }
+                        else {
+                            wrapper.printfmt(
+                                "Warning: Reached undefined padding at offset {0} " + 
+                                "on class {1} - stopping importing members",
+                                offset, fullName
+                            );
+                        }
+                    }
+
+                    // todo: Funky little hack to fix GameObject_data not fitting inside EndGameObject
+                    if (fullName.equals("GameObject") && offset > 0x26e) {
                         break;
                     }
-                    // todo: shrink class size if it has been expanded earlier, but do not shrink beyond what rtti analysis did
                 }
 
-                // Repack because I don't want to manually pack this stuff like why would I
-                classDataMembers.repack();
+                // classDataMembers.setPackingEnabled(true);
+                // classDataMembers.repack();
             }
         }
     }
 
     private void handleExportMembers() throws Exception {
+        final var enabled = false;
+        if (!enabled) {
+            wrapper.printfmt("Exporting members is currently not supported due to implementation difficulties! Sorry :(  -HJfod");
+            return;
+        }
+
+        final var manager = currentProgram.getDataTypeManager();
         wrapper.printfmt("Exporting members...");
-        this.popup("Exporting members has not yet been implemented! Sorry :(   -HJfod");
+        for (var cat : manager.getCategory(new CategoryPath("/ClassDataTypes")).getCategories()) {
+            handleExportMembers(cat);
+        }
+    }
+
+    private void handleExportMembers(Category category) throws Exception {
+        // Handle subcategories
+        for (var cat : category.getCategories()) {
+            handleExportMembers(cat);
+        }
+        final var fullName = category.getCategoryPathName().replace("/ClassDataTypes/", "").replace("/", "::");
+        // Check for a {ClassName}_data type
+        var type = ScriptWrapper.<Structure>castFrom(category.getDataType(category.getName() + "_data"));
+        if (type == null) {
+            return;
+        }
+        // Check for matching Broma class
+        var bromaClass = this.getTargetClassInBroma(fullName);
+        if (bromaClass == null) {
+            return;
+        }
+        // Build up the whole members replace string
+        final StringBuilder result = new StringBuilder();
+
+        if (bromaClass.members.isEmpty()) {
+            // Add padding since there's none from existing members already
+            if (!result.isEmpty()) {
+                result.append("\n\t");
+            }
+        }
+
+        for (var i = 0; i < type.getNumComponents(); i += 1) {
+            var mem = type.getComponent(i);
+
+            if (i > 0) {
+                result.append("\n\t");
+            }
+
+            // Handle exporting paddings
+            if (mem.getDataType() instanceof Undefined) {
+                var pad = new PaddingInfo(mem.getComment());
+
+                // If this padding is different between different platforms, 
+                // skip any members inside that padding region 
+                // (since we can't know how inserting those members would 
+                // split the padding on other platforms)
+                if (pad.unequal()) {
+                    if (pad.platforms.containsKey(args.platform)) {
+                        // Backsolve where the original start of the padding region was
+                        // (if new members have been added to the start)
+                        int originalPadRegionStartIndex = i;
+                        for (var j = i; j >= 0; j -= 1) {
+                            if (type.getComponent(j).getOffset() == pad.offset) {
+                                originalPadRegionStartIndex = j;
+                            }
+                        }
+                        int lastPaddingIndex = i;
+                        int originalPadRegionEndIndex = type.getNumComponents() - 1;
+                        for (var j = i; j < type.getNumComponents(); j += 1) {
+                            var opad = new PaddingInfo(type.getComponent(j).getComment());
+                            if (opad.offset == pad.offset) {
+                                lastPaddingIndex = j;
+                            }
+                            if (type.getComponent(j).getOffset() == pad.offset + pad.platforms.get(args.platform)) {
+                                originalPadRegionEndIndex = j;
+                                break;
+                            }
+                        }
+                        // Issue warnings for members within the area
+                        for (var j = i; j < lastPaddingIndex; j += 1) {
+                            if (type.getComponent(j).getFieldName() != null) {
+                                wrapper.printfmt(
+                                    "Warning: field {0} in {1} is within a region of " + 
+                                    "unequal paddings between platforms - you will need " + 
+                                    "to manually export it to the Broma file and fix the " + 
+                                    "paddings!",
+                                    type.getComponent(j).getFieldName(), fullName
+                                );
+                            }
+                        }
+                        // Figure out how much the paddings should be shrunk down for each platform 
+                        // based on the size of the members added to the ends
+                        var shrunk = new HashMap<Platform, Integer>(pad.platforms);
+                        for (var j = originalPadRegionStartIndex; j < i; j += 1) {
+                            for (var plat : shrunk.keySet()) {
+                                shrunk.replace(plat, shrunk.get(plat) - wrapper.sizeOfTypeOn(plat, type.getComponent(j).getDataType()));
+                            }
+                        }
+                        for (var j = lastPaddingIndex + 1; j < originalPadRegionEndIndex; j += 1) {
+                            for (var plat : shrunk.keySet()) {
+                                shrunk.replace(plat, shrunk.get(plat) - wrapper.sizeOfTypeOn(plat, type.getComponent(j).getDataType()));
+                            }
+                        }
+
+                        // Write paddings to file
+                        result.append(new PaddingInfo(shrunk, pad.offset).bromaString());
+
+                        // Skip the members
+                        i = lastPaddingIndex + 1;
+                    }
+                    else {
+                        wrapper.printfmt(
+                            "Warning: padding at offset {0} in {1} is not defined on this platform " + 
+                            " - exported members may be wrong!",
+                            mem.getOffset(), fullName
+                        );
+                        result.append(pad.bromaString());
+                    }
+                }
+                else {
+                    var length = 0;
+                    for (var j = i; j < type.getNumComponents(); j += 1) {
+                        var opad = new PaddingInfo(type.getComponent(j).getComment());
+                        if (opad.offset != pad.offset) {
+                            break;
+                        }
+                        length += 1;
+                    }
+                    var platforms = new HashMap<Platform, Integer>();
+                    for (var plat : pad.platforms.keySet()) {
+                        platforms.put(plat, length);
+                    }
+                    result.append(new PaddingInfo(platforms, pad.offset).bromaString());
+                    i += length;
+                }
+            }
+            // Otherwise just export member
+            else {
+                result.append(MessageFormat.format(
+                    "{0} {1};",
+                    ScriptWrapper.formatType(mem.getDataType()), mem.getFieldName()
+                ));
+            }
+        }
+
+        Broma.Range replaceRange;
+        if (bromaClass.members.isEmpty()) {
+            // If there are no members just put at the end of the class definition
+            replaceRange = bromaClass.beforeClosingBrace;
+            // Add padding since there's none from existing members already
+            result.append("\n");
+        }
+        // Otherwise replace all members
+        else {
+            replaceRange = bromaClass.members.get(0).range;
+            for (var mem : bromaClass.members) {
+                // If the padding is not defined on this platform, 
+                // the padding and the rest of the members weren't imported 
+                // and shouldn't be overridden
+                if (mem.name.isEmpty() && !mem.paddings.containsKey(args.platform)) {
+                    break;
+                }
+                replaceRange = replaceRange.join(mem.range);
+            }
+        }
+        bromaClass.broma.addPatch(replaceRange, bromaClass.members.isEmpty() ? "" : result.toString());
+    }
+
+    private Broma.Class getTargetClassInBroma(String name) {
+        Broma.Class bromaClass = null;
+        for (var bro : bromas) {
+            bromaClass = bro.getClass(name).orElse(null);
+            if (bromaClass != null) {
+                break;
+            }
+        }
+        if (bromaClass == null) {
+            wrapper.printfmt("Warning: class {0} not found in any of the target Bromas", name);
+        }
+        return bromaClass;
     }
 
     void askContinueConflict(String title, String fmt, Object... args) throws Exception {
@@ -738,38 +964,5 @@ public class SyncBromaScript extends GhidraScript {
 			throw new CancelledException();
 		}
         return options.indexOf(choice);
-    }
-
-    // https://stackoverflow.com/questions/17473148/dynamically-get-the-current-line-number
-
-    /** @return The line number of the code that ran this method
-     * @author Brian_Entei */
-    public static int getLineNumber() {
-        return ___8drrd3148796d_Xaf();
-    }
-
-    /** This methods name is ridiculous on purpose to prevent any other method
-     * names in the stack trace from potentially matching this one.
-     * 
-     * @return The line number of the code that called the method that called
-     *         this method(Should only be called by getLineNumber()).
-     * @author Brian_Entei */
-    private static int ___8drrd3148796d_Xaf() {
-        boolean thisOne = false;
-        int thisOneCountDown = 1;
-        StackTraceElement[] elements = Thread.currentThread().getStackTrace();
-        for(StackTraceElement element : elements) {
-            String methodName = element.getMethodName();
-            int lineNum = element.getLineNumber();
-            if(thisOne && (thisOneCountDown == 0)) {
-                return lineNum;
-            } else if(thisOne) {
-                thisOneCountDown--;
-            }
-            if(methodName.equals("___8drrd3148796d_Xaf")) {
-                thisOne = true;
-            }
-        }
-        return -1;
     }
 }

@@ -49,7 +49,3 @@ class DynamicObjectAction {
 class GJTransformState {
 
 }
-
-class TriggerEffectDelegate {
-    
-}
