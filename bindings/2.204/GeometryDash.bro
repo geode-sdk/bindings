@@ -3975,7 +3975,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLocalLevelList(int);
 	TodoReturn getLowestLevelOrder() = win 0xf75a0;
 	GJGameLevel* getMainLevel(int, bool) = win 0xf4d50;
-        const char *getMapPackKey(int pack);
+	const char* getMapPackKey(int pack);
 	TodoReturn getMapPacks(GJSearchObject*) = win 0xfe120;
 	TodoReturn getMessageKey(int);
 	TodoReturn getMessagesKey(bool, int);
