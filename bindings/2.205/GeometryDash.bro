@@ -3887,7 +3887,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn deleteServerLevel(int);
 	TodoReturn deleteServerLevelList(int);
 	TodoReturn deleteSmartTemplate(GJSmartTemplate*);
-	TodoReturn deleteUserMessages(GJUserMessage*, cocos2d::CCArray*, bool);
+	TodoReturn deleteUserMessages(GJUserMessage* message, cocos2d::CCArray* messages, bool isSender);
 	TodoReturn downloadLevel(int, bool);
 	TodoReturn downloadUserMessage(int, bool);
 	TodoReturn encodeDataTo(DS_Dictionary*);
@@ -8026,6 +8026,8 @@ class GJUserMessage : cocos2d::CCNode {
 	static GJUserMessage* create(cocos2d::CCDictionary*);
 
 	virtual bool init();
+
+	int m_messageID;
 }
 
 [[link(android)]]

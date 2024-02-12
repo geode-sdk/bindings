@@ -3917,7 +3917,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn deleteServerLevel(int) = win 0x102990;
 	TodoReturn deleteServerLevelList(int) = win 0xff440;
 	TodoReturn deleteSmartTemplate(GJSmartTemplate*);
-	TodoReturn deleteUserMessages(GJUserMessage*, cocos2d::CCArray*, bool) = win 0x107880;
+	TodoReturn deleteUserMessages(GJUserMessage* message, cocos2d::CCArray* messages, bool isSender) = win 0x107880;
 	TodoReturn downloadLevel(int, bool) = win 0x100c20;
 	TodoReturn downloadUserMessage(int, bool) = win 0x107070;
 	TodoReturn encodeDataTo(DS_Dictionary*) = win 0xfa200;
@@ -8060,10 +8060,12 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
 class GJUserMessage : cocos2d::CCNode {
 	// virtual ~GJUserMessage();
 
-	static GJUserMessage* create();
+	static GJUserMessage* create() = win 0x119d90;
 	static GJUserMessage* create(cocos2d::CCDictionary*);
 
 	virtual bool init();
+
+	int m_messageID;
 }
 
 [[link(android)]]
