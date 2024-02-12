@@ -4102,7 +4102,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn parseRestoreData(gd::string);
 	void performNetworkTest() = win 0xf3a80;
 	void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0xf3bf0;
-	TodoReturn processOnDownloadLevelCompleted(gd::string, gd::string, bool) = win 0x101160;
+	void processOnDownloadLevelCompleted(gd::string, gd::string, bool) = win 0x101160;
 	TodoReturn purgeUnusedLevels();
 	TodoReturn rateDemon(int, int, bool) = win 0x103330;
 	TodoReturn rateStars(int, int) = win 0x101f90;
@@ -7274,7 +7274,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
 
 	static GJMultiplayerManager* sharedState();
 
-	TodoReturn addComment(gd::string, int) = win 0x1fc100;
+	void addComment(gd::string, int) = win 0x1fc100;
 	void addDLToActive(char const* tag, cocos2d::CCObject* obj);
 	void addDLToActive(char const* tag);
 	TodoReturn createAndAddComment(gd::string, int) = win 0x1fbfc0;
@@ -10311,7 +10311,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x282260;
 	TodoReturn removeDLFromActive(char const*) = win 0x283c00;
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
-	TodoReturn responseToDict(gd::string, char const*) = win 0x111fa0;
+	cocos2d::CCDictionary* responseToDict(gd::string, char const*) = win 0x111fa0;
 	TodoReturn showTOS(FLAlertLayerProtocol*);
 	TodoReturn songStateChanged() = win 0x282a90;
 	TodoReturn stopDownload(int);
