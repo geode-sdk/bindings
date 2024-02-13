@@ -19,7 +19,9 @@ jobs:
       id: changed
       uses: tj-actions/changed-files@v42
       with:
-        files: codegen/**
+        files: |
+          .github/workflows/build.yml
+          codegen/**
 
     - name: Prevent from running
       if: steps.changed.outputs.any_changed != 'true'
