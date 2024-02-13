@@ -102,6 +102,16 @@ jobs:
     - name: Download Artifacts
       uses: actions/download-artifact@v4
 
+    - name: Move Binaries
+      run: |
+        mv geode-codegen-win/Codegen.exe geode-codegen-win.exe
+        mv geode-codegen-mac/Codegen geode-codegen-mac-temp
+        mv geode-codegen-linux/Codegen geode-codegen-linux-temp
+        rmdir geode-codegen-mac
+        rmdir geode-codegen-linux
+        mv geode-codegen-mac-temp geode-codegen-mac
+        mv geode-codegen-linux-temp geode-codegen-linux
+
     - name: Update Codegen Release
       uses: andelf/nightly-release@main
       env:
