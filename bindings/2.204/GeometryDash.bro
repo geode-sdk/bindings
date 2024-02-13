@@ -2997,6 +2997,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	GameObject* m_selectedObject;
 	PAD = win 0xc, android32 0xc;
 	int m_selectedTab;
+	PAD = win 0x2c;
+	bool m_unk3b4;
+
+	PAD = win 0x8;
 }
 
 [[link(android)]]
@@ -5955,7 +5959,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn resetLevelVariables() = win 0x1bdb10;
 	TodoReturn resetMoveOptimizedValue();
 	TodoReturn resetPlayer();
-	void resetSongTriggerValues() = win 0x3bf30;
+	void resetSongTriggerValues(); //someone keeps adding win 0x3bf30 for this but it's WRONG! that addr is an stl func
 	TodoReturn resetSpawnChannelIndex() = win 0x1c7e40;
 	TodoReturn resetStaticCamera(bool, bool);
 	TodoReturn resetStoppedAreaObjects();
@@ -12101,9 +12105,9 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 
 	TodoReturn addGroupID(int) = win 0x314320;
 	void callRemoveFromGroup(float); // win 0x313ea0
-	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int); // win 0x312b40
+	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int) = win 0x1bb10; // win 0x312b40
 	TodoReturn determineStartValues() = win 0x313130;
-	bool init(GameObject*, cocos2d::CCArray*) = win 0x310d80;
+	bool init(GameObject* obj, cocos2d::CCArray* objs) = win 0x310d80;
 	void onAddGroup(cocos2d::CCObject* sender) = win 0x313fd0;
 	void onAddGroupParent(cocos2d::CCObject* sender) = win 0x313fe0;
 	void onAnim(cocos2d::CCObject* sender) = win 0x313580;
@@ -12143,6 +12147,33 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
+	
+    GameObject* m_targetObject;
+    cocos2d::CCArray* m_targetObjects;
+    cocos2d::CCArray* m_array0;
+    cocos2d::CCArray* m_groupIDObjects;
+    CCTextInputNode* m_editorLayerInput;
+    CCTextInputNode* m_editorLayer2Input;
+    CCTextInputNode* m_zOrderInput;
+    CCTextInputNode* m_groupIDInput;
+    CCTextInputNode* m_orderInput;
+    CCTextInputNode* m_channelInput;
+	bool m_showChannelOrder;
+	int m_channelValue;
+	bool m_channelUpdated;
+    int m_groupIDValue;
+    int m_editorLayerValue;
+    int m_editorLayer2Value;
+    int m_zOrderValue;
+    ZLayer m_zLayerValue;
+	int m_orderValue;
+	bool m_channelOrderEdited;
+	bool m_editorLayerEdited;
+	bool m_removeGroupsLock;
+	int m_groupToRemove;
+	bool m_addedGroup;
+	bool m_unkBool0;
+	bool m_hasTargetObjects;
 }
 
 [[link(android)]]
