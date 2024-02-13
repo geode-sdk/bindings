@@ -3974,8 +3974,8 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLocalLevelByName(gd::string);
 	TodoReturn getLocalLevelList(int);
 	TodoReturn getLowestLevelOrder() = win 0xf75a0;
-	TodoReturn getMainLevel(int, bool) = win 0xf4d50;
-        const char *getMapPackKey(int pack);
+	GJGameLevel* getMainLevel(int, bool) = win 0xf4d50;
+	const char* getMapPackKey(int pack);
 	TodoReturn getMapPacks(GJSearchObject*) = win 0xfe120;
 	TodoReturn getMessageKey(int);
 	TodoReturn getMessagesKey(bool, int);
@@ -5943,7 +5943,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn resetLevelVariables() = win 0x1bdb10;
 	TodoReturn resetMoveOptimizedValue();
 	TodoReturn resetPlayer();
-	void resetSongTriggerValues() = win 0x3bf30;
+	void resetSongTriggerValues(); //someone keeps adding win 0x3bf30 for this but it's WRONG! that addr is an stl func
 	TodoReturn resetSpawnChannelIndex() = win 0x1c7e40;
 	TodoReturn resetStaticCamera(bool, bool);
 	TodoReturn resetStoppedAreaObjects();
