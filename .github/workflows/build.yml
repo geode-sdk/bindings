@@ -119,7 +119,6 @@ jobs:
       with:
         tag_name: codegen
         name: 'Codegen Release'
-        prerelease: false
         body: Geode codegen release for commit ${{ github.sha }}.
         files: |
           ./geode-codegen-win.exe
