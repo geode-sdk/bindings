@@ -4124,7 +4124,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
 	void resetStoredUserList(UserListType);
 	void resetTimerForKey(char const*) = win 0xf9130;
-	cocos2d::CCDictionary* responseToDict(gd::string, bool);
+	cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x111fa0;
 	TodoReturn restoreItems();
 	TodoReturn saveFetchedLevelLists(cocos2d::CCArray*);
 	TodoReturn saveFetchedLevels(cocos2d::CCArray*);
@@ -10311,7 +10311,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x282260;
 	TodoReturn removeDLFromActive(char const*) = win 0x283c00;
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
-	cocos2d::CCDictionary* responseToDict(gd::string, char const*) = win 0x111fa0;
+	TodoReturn responseToDict(gd::string, char const*);
 	TodoReturn showTOS(FLAlertLayerProtocol*);
 	TodoReturn songStateChanged() = win 0x282a90;
 	TodoReturn stopDownload(int);
