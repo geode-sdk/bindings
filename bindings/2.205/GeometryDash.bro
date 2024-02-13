@@ -4231,7 +4231,7 @@ class GameLevelManager : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GameLevelOptionsLayer {
+class GameLevelOptionsLayer : GJOptionsLayer {
 	// virtual ~GameLevelOptionsLayer();
 
 	static GameLevelOptionsLayer* create(GJGameLevel*);
