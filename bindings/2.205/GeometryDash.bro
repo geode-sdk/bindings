@@ -182,12 +182,12 @@ class AchievementManager : cocos2d::CCNode {
 class AchievementNotifier : cocos2d::CCNode {
 	// virtual ~AchievementNotifier();
 
-	static AchievementNotifier* sharedState();
+	static AchievementNotifier* sharedState() = ios 0x21f3d8;
 
 	TodoReturn achievementDisplayFinished();
 	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
 	TodoReturn showNextAchievement();
-	TodoReturn willSwitchToScene(cocos2d::CCScene*);
+	TodoReturn willSwitchToScene(cocos2d::CCScene*) = ios 0x21f60c;
 
 	virtual bool init();
 }
@@ -324,7 +324,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	virtual void applicationWillEnterForeground();
 	virtual void applicationWillBecomeActive();
 	virtual void applicationWillResignActive();
-	virtual void trySaveGame(bool);
+	virtual void trySaveGame(bool) = ios 0x30a988;
 	virtual TodoReturn willSwitchToScene(cocos2d::CCScene*);
 
 	PAD = win 0x4, android32 0xC, android64 0x18;
@@ -426,7 +426,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 	static BoomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float);
 
 	TodoReturn addObjectToList(cocos2d::CCNode*);
-	bool init(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float);
+	bool init(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = ios 0x1d3a64;
 	TodoReturn lockList(bool);
 
 	bool init(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
@@ -601,19 +601,19 @@ class ButtonSprite : cocos2d::CCSprite {
 	}
 
 	static ButtonSprite* create(char const*, float);
-	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*, float);
+	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*, float) = ios 0x689b0;
 	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*);
 	static ButtonSprite* create(char const*, int, int, float, bool);
-	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float, bool, char const* bgSprite, bool noScaleSpriteForBG);
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float, bool, char const* bgSprite, bool noScaleSpriteForBG) = ios 0x6827c;
 	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool);
-	static ButtonSprite* create(cocos2d::CCSprite*);
+	static ButtonSprite* create(cocos2d::CCSprite*) = ios 0x68970;
 
 	bool init(char const*, int, int, float, bool, char const*, char const*, float);
 	bool init(cocos2d::CCSprite* topSprite, int width, int unused, float scale, float height, bool unkBool, char const* bgSprite, bool useNormalCCSpriteForBG);
-	void setColor(cocos2d::ccColor3B);
+	void setColor(cocos2d::ccColor3B) = ios 0x691c8;
 	void setString(char const*);
-	TodoReturn updateBGImage(char const*);
-	void updateSpriteBGSize();
+	TodoReturn updateBGImage(char const*) = ios 0x69090;
+	void updateSpriteBGSize() = ios 0x6859c;
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
 
     PAD = mac 0x18, win 0x18, android32 0x18, android64 0x18;
@@ -844,7 +844,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		m_unknown4 = 0;
 	}
 
-	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = ios 0x21c4fc;
 
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) {
 		return CCMenuItemSpriteExtra::create(sprite, nullptr, target, callback);
@@ -881,7 +881,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	CCMenuItemToggler() {}
 	// virtual ~CCMenuItemToggler();
 
-	static CCMenuItemToggler* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static CCMenuItemToggler* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = ios 0x197eb8;
 	static CCMenuItemToggler* createWithSize(const char* spr1, const char* spr2, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback, float scale) {
 		auto sprOff = cocos2d::CCSprite::createWithSpriteFrameName(spr1);
 		auto sprOn = cocos2d::CCSprite::createWithSpriteFrameName(spr2);
@@ -902,11 +902,11 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	}
 
 	TodoReturn activeItem();
-	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = ios 0x197f88;
 	TodoReturn normalTouch(cocos2d::CCObject*);
 	TodoReturn selectedTouch(cocos2d::CCObject*);
-	void setSizeMult(float);
-	TodoReturn toggle(bool);
+	void setSizeMult(float) = ios 0x198238;
+	void toggle(bool) = ios 0x198160;
 
 	bool isToggled() {
 		return m_toggled;
@@ -925,7 +925,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	virtual void activate();
 	virtual void selected();
 	virtual void unselected();
-	virtual void setEnabled(bool);
+	virtual void setEnabled(bool) = ios 0x198358;
 
 	CCMenuItemSpriteExtra* m_offButton;
 	CCMenuItemSpriteExtra* m_onButton;
@@ -1489,7 +1489,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
 
 [[link(android)]]
 class ColorSelectDelegate {
-	virtual TodoReturn colorSelectClosed(cocos2d::CCNode*);
+	virtual void colorSelectClosed(cocos2d::CCNode*) {}
 }
 
 [[link(android)]]
@@ -1574,7 +1574,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 	virtual TodoReturn colorValueChanged(cocos2d::ccColor3B);
 	virtual TodoReturn colorSelectClosed(GJSpecialColorSelect*, int);
 
-	PAD = android32 0x40;
+	PAD = android32 0x40, win 0x40;
 	ColorAction* m_colorAction;
 }
 
@@ -1902,7 +1902,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn determineStartValues();
-	TodoReturn getActiveMode(bool);
+	int getActiveMode(bool);
 	TodoReturn getButtonByTag(int);
 	TodoReturn getHSV();
 	TodoReturn highlightSelected(ButtonSprite*);
@@ -1937,7 +1937,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn hsvPopupClosed(HSVWidgetPopup*, cocos2d::ccHSVValue);
-	virtual TodoReturn colorSelectClosed(cocos2d::CCNode*);
+	virtual void colorSelectClosed(cocos2d::CCNode*);
 	virtual TodoReturn colorSetupClosed(int);
 	
     GameObject* m_targetObject;
@@ -1992,7 +1992,7 @@ class CustomListView : BoomListView {
 	inline CustomListView() {}
 	~CustomListView() {}
 
-	static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float);
+	static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = ios 0x1011fc;
 
 	static CustomListView* create(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
 		return CustomListView::create(entries, nullptr, width, height, 0, type, 0.0f);
@@ -2335,7 +2335,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	TodoReturn animateIn(DialogAnimationType);
 	TodoReturn animateInDialog();
 	TodoReturn animateInRandomSide();
-	TodoReturn createDialogLayer(DialogObject*, cocos2d::CCArray*, int);
+	static DialogLayer* createDialogLayer(DialogObject*, cocos2d::CCArray*, int);
 	TodoReturn createWithObjects(cocos2d::CCArray*, int);
 	TodoReturn displayDialogObject(DialogObject*);
 	TodoReturn displayNextObject();
@@ -2704,7 +2704,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	bool isSpecialSnapObject(int);
 	TodoReturn liveEditColorUsable();
 	TodoReturn menuItemFromObjectString(gd::string, int);
-	TodoReturn moveForCommand(EditCommand);
+	cocos2d::CCPoint moveForCommand(EditCommand command);
 	TodoReturn moveGamelayer(cocos2d::CCPoint);
 	TodoReturn moveObject(GameObject*, cocos2d::CCPoint);
 	TodoReturn moveObjectCall(cocos2d::CCObject*);
@@ -2879,9 +2879,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn scaleYChanged(float, bool);
 	virtual TodoReturn scaleXYChanged(float, float, bool);
 
-	
-	// TODO: android64 absolutely wrong
-	PAD = android32 0x64, android64 0x7c;
+	PAD = android32 0x64, android64 0x80;
 
 	EditButtonBar* m_buttonBar;
 
@@ -2893,10 +2891,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     EditButtonBar* m_editButtonBar;
     Slider* m_positionSlider;
 	
-	PAD = android32 0x2c;
+	PAD = android32 0xc, android64 0xc;
+	bool m_swipeEnabled;
+
+	PAD = android32 0x1f, android64 0x23;
 	
-	cocos2d::CCArray* m_selectedObjects;
-	// LevelEditorLayer* m_editorLayer; // 0x340
+	cocos2d::CCArray* m_selectedObjects; // 0x338 on a64
 
 	// double m_unkDouble; // 0x398
 	
@@ -2946,13 +2946,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	CCMenuItemSpriteExtra* m_layerNextBtn;
 	CCMenuItemSpriteExtra* m_layerPrevBtn;
 	CCMenuItemSpriteExtra* m_goToBaseBtn;
-	PAD = mac 0x10, win 0x8, android32 0x8;
+	PAD = mac 0x20, win 0x10, android32 0x10, android64 0x20;
 	int m_selectedCreateObjectID;
 	cocos2d::CCArray* m_createButtonArray;
 	cocos2d::CCArray* m_customObjectButtonArray;
 	cocos2d::CCArray* m_unknownArray9;
 	int m_selectedMode;
-	LevelEditorLayer* m_editorLayer; // 0x340
+	LevelEditorLayer* m_editorLayer;
 	cocos2d::CCPoint m_swipeStart;
 	cocos2d::CCPoint m_swipeEnd;
 	PAD = mac 0x8, win 0x8, android32 0x8;
@@ -2960,7 +2960,6 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCPoint m_cameraTest;
 	PAD = mac 0x8, win 0x8, android32 0x8;
 	
-	PAD = android32 0x8;
 	GameObject* m_selectedObject;
 }
 
@@ -3516,17 +3515,17 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 		m_forcePrioRegistered = false;
 	}
 
-	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale);
-	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width);
-	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2);
+	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = ios 0x2b3d40;
+	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = ios 0x2b3e4c;
+	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2) = ios 0x2b3c9c;
 
 	static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) {
 		return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
 	}
 
-	TodoReturn incrementForcePrio();
-	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float);
-	bool init(int);
+	void incrementForcePrio() = ios 0x2ee4f4;
+	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = ios 0x2b3ef8;
+	bool init(int) = ios 0x2b4834;
 	void onBtn1(cocos2d::CCObject* sender);
 	void onBtn2(cocos2d::CCObject* sender);
 
@@ -3538,7 +3537,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual void show();
+	virtual void show() = ios 0x2b4cf0;
 
 	cocos2d::CCMenu* m_buttonMenu;
 	FLAlertLayerProtocol* m_alertProtocol;
@@ -3950,7 +3949,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLocalLevelByName(gd::string);
 	TodoReturn getLocalLevelList(int);
 	TodoReturn getLowestLevelOrder();
-	TodoReturn getMainLevel(int, bool);
+	GJGameLevel* getMainLevel(int, bool);
 	TodoReturn getMapPackKey(int);
 	TodoReturn getMapPacks(GJSearchObject*);
 	TodoReturn getMessageKey(int);
@@ -4232,7 +4231,7 @@ class GameLevelManager : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GameLevelOptionsLayer {
+class GameLevelOptionsLayer : GJOptionsLayer {
 	// virtual ~GameLevelOptionsLayer();
 
 	static GameLevelOptionsLayer* create(GJGameLevel*);
@@ -4251,7 +4250,7 @@ class GameManager : GManager {
 		return GameManager::sharedState();
 	}
 
-	static GameManager* sharedState();
+	static GameManager* sharedState() = ios 0x318608;
 	
 	PlayLayer* getPlayLayer() {
 		return m_playLayer;
@@ -4763,8 +4762,8 @@ class GameObject : CCSpritePlus {
 	TodoReturn createGroupContainer(int);
 	TodoReturn createOpacityGroupContainer(int);
 	TodoReturn createSpriteColor(int);
-	TodoReturn createWithFrame(char const*);
-	TodoReturn createWithKey(int);
+	static GameObject* createWithFrame(char const*);
+	static GameObject* createWithKey(int);
 	TodoReturn deselectObject();
 	TodoReturn destroyObject();
 	TodoReturn determineSlopeDirection();
@@ -5271,22 +5270,24 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getStoreItem(int);
 	TodoReturn getTotalCollectedCurrency();
 	TodoReturn getTotalCollectedDiamonds();
-	TodoReturn hasClaimedListReward(GJLevelList*);
-	TodoReturn hasCompletedChallenge(GJChallengeItem*);
-	TodoReturn hasCompletedDailyLevel(int);
-	TodoReturn hasCompletedDemonLevel(GJGameLevel*);
-	TodoReturn hasCompletedGauntletLevel(int);
+	bool hasClaimedListReward(GJLevelList*);
+	bool hasCompletedChallenge(GJChallengeItem*);
+	bool hasCompletedDailyLevel(int);
+	bool hasCompletedDemonLevel(GJGameLevel*);
+	bool hasCompletedGauntletLevel(int);
 	bool hasCompletedLevel(GJGameLevel* level) {
 		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
 	}
-	TodoReturn hasCompletedMainLevel(int);
-	TodoReturn hasCompletedMapPack(int);
-	TodoReturn hasCompletedOnlineLevel(int);
-	TodoReturn hasCompletedStarLevel(GJGameLevel*);
-	TodoReturn hasPendingUserCoin(char const*);
-	TodoReturn hasRewardBeenCollected(GJRewardType, int);
-	TodoReturn hasSecretCoin(char const*);
-	TodoReturn hasUserCoin(char const*);
+	bool hasCompletedMainLevel(int levelID) {
+		return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
+	}
+	bool hasCompletedMapPack(int);
+	bool hasCompletedOnlineLevel(int);
+	bool hasCompletedStarLevel(GJGameLevel*);
+	bool hasPendingUserCoin(char const*);
+	bool hasRewardBeenCollected(GJRewardType, int);
+	bool hasSecretCoin(char const*);
+	bool hasUserCoin(char const*);
 	TodoReturn incrementActivePath(int);
 	TodoReturn incrementChallenge(GJChallengeType, int);
 	TodoReturn incrementStat(char const*, int);
@@ -5688,7 +5689,7 @@ class GJAssetDownloadAction {
 	int m_status;
 }
 
-[[link(android), depends(GJGameState)]]
+[[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// ~GJBaseGameLayer();
 	// GJBaseGameLayer();
@@ -6733,7 +6734,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 	virtual void onEnterTransitionDidFinish();
 }
 
-[[link(android), depends(EventTriggerInstance), depends(SongChannelState)]]
+[[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance)]]
 class GJGameState {
 	// ~GJGameState();
 	// GJGameState();
@@ -6802,7 +6803,7 @@ class GJGameState {
 	bool m_unk184;
 	float m_unk188;
 	float m_unk18c;
-	int m_unk190;
+	int m_currentChannel;
 	int m_unk194;
 	gd::unordered_map<int, int> m_unk198;
 	gd::unordered_map<int, bool> m_unk1b4;
@@ -7860,7 +7861,7 @@ class GJSpecialColorSelect : FLAlertLayer {
 	bool init(int, GJSpecialColorSelectDelegate*, ColorSelectType);
 	void onClose(cocos2d::CCObject* sender);
 	void onSelectColor(cocos2d::CCObject* sender);
-	TodoReturn textForColorIdx(int);
+	static const char* textForColorIdx(int);
 
 	virtual void keyBackClicked();
 }
@@ -8779,6 +8780,10 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 
 	static LevelEditorLayer* create(GJGameLevel*, bool);
 
+    static LevelEditorLayer* get() {
+        return GameManager::sharedState()->m_levelEditorLayer;
+    }
+	
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn addDelayedSpawn(EffectGameObject*, float);
 	TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*);
@@ -8911,7 +8916,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateKeyframeVisibility(bool);
 	void updateLevelFont(int);
 	TodoReturn updateObjectColors(cocos2d::CCArray*);
-	TodoReturn updateObjectLabel(GameObject*);
+	static void updateObjectLabel(GameObject*);
 	TodoReturn updateOptions();
 	TodoReturn updatePreviewAnim();
 	TodoReturn updatePreviewParticle(ParticleGameObject*);
@@ -8941,17 +8946,72 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
 	virtual TodoReturn levelSettingsUpdated();
 
-	// TODO: the android64 ones are absolutely wrong i am just very lazy
-	PAD = android32 0x64, android64 0x0000001;
+	bool m_drawTriggerBoxes;
+	bool m_showGrid;
+	bool m_hideGridOnPlay;
+	bool m_drawEffectLines;
+	bool m_showGround;
+	bool m_showDurationLines;
+	bool m_increaseMaxUndoRedo;
+	bool m_hideBackground;
+	bool m_gv0120;
+	bool m_layerLockingEnabled;
+	bool m_unkBool4;
+	bool m_previewParticles;
+	bool m_previewAnimations;
+	bool m_previewShaders;
+	bool m_hideParticleIcons;
+	bool m_unkBool5;
+	bool m_playTestSmoothFix;
+
+	// haven't verified the mac padding
+	PAD = win 0xf, android32 0xf, android64 0xf, mac 0xf;
+
+	cocos2d::CCArray* m_unkArr0;
+	cocos2d::CCArray* m_unkArr1;
+	cocos2d::CCArray* m_unkArr2;
+	cocos2d::CCArray* m_unkArr3;
+	cocos2d::CCArray* m_unkArr4;
+	cocos2d::CCArray* m_unkArr8;
+	cocos2d::CCArray* m_unkArr11;
+	cocos2d::CCArray* m_unkArr12;
+	cocos2d::CCArray* m_unkArr13;
+	cocos2d::CCDictionary* m_unkDict3;
+	cocos2d::CCArray* m_unkArr5;
 	
+	// haven't verified the mac padding
+	PAD = win 0x8, android32 0x8, android64 0x10, mac 0x10;
+
+	cocos2d::CCDictionary* m_unkDict4;
+	cocos2d::CCArray* m_unkArr7;
+	bool m_unkBool3;
+	bool m_unkBool2;
 	geode::SeedValueRSV m_coinCount;
 	
-	PAD = android32 0x30, android64 0xe8;
+	// haven't verified the mac padding
+	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
+
+	cocos2d::CCArray* m_unkArr6;
+
+	// haven't verified the mac padding
+	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x8;
+
+	cocos2d::CCDictionary* m_unkDict1;
+	cocos2d::CCDictionary* m_unkDict2;
+	bool m_unkBool0;
+	bool m_unkBool1;
+    short m_currentLayer;
+
+	// haven't verified the mac padding
+	PAD = win 0x18, android32 0x18, android64 0x24, mac 0x24;
 
 	EditorUI* m_editorUI;
-	
 	cocos2d::CCArray* m_undoObjects;
 	cocos2d::CCArray* m_redoObjects;
+	geode::SeedValueRSV m_objectCount;
+	DrawGridLayer* m_drawGridLayer;
+	bool m_unkBool;
+	bool m_previewMode;
 }
 
 [[link(android)]]
@@ -9607,10 +9667,10 @@ class ListUploadDelegate {
 class LoadingCircle : cocos2d::CCLayerColor {
 	// virtual ~LoadingCircle();
 
-	static LoadingCircle* create();
+	static LoadingCircle* create() = ios 0x397d8c;
 
-	TodoReturn fadeAndRemove();
-	TodoReturn show();
+	void fadeAndRemove() = ios 0x398028;
+	void show() = ios 0x397f34;
 
 	void setFade(bool fade) {
 		m_fade = fade;
@@ -9652,10 +9712,10 @@ class LoadingLayer : cocos2d::CCLayer {
 	static LoadingLayer* create(bool);
 
 	TodoReturn getLoadingString();
-	bool init(bool);
-	TodoReturn loadAssets();
+	bool init(bool) = ios 0x1d8ce8;
+	TodoReturn loadAssets() = ios 0x1d949c;
 	TodoReturn loadingFinished();
-	static cocos2d::CCScene* scene(bool);
+	static cocos2d::CCScene* scene(bool) = ios 0x1d8bf0;
 	TodoReturn updateProgress(int);
 
 	bool m_unknown;
@@ -9769,7 +9829,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	// virtual ~MenuLayer();
 
-	static cocos2d::CCScene* scene(bool);
+	static cocos2d::CCScene* scene(bool) = ios 0x26dd84;
 
 	TodoReturn endGame();
 	TodoReturn firstNetworkTest();
@@ -9808,7 +9868,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	TodoReturn videoOptionsOpened();
 	TodoReturn willClose();
 
-	virtual bool init();
+	virtual bool init() = ios 0x26dee0;
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual TodoReturn googlePlaySignedIn();
@@ -10471,7 +10531,7 @@ class ParticleGameObject : EnhancedGameObject {
 	TodoReturn createAndAddCustomParticle();
 	TodoReturn createParticlePreviewArt();
 	void setParticleString(gd::string);
-	TodoReturn updateParticle();
+	void updateParticle();
 	TodoReturn updateParticleAngle(float, cocos2d::CCParticleSystemQuad*);
 	TodoReturn updateParticlePreviewArtOpacity(float);
 	TodoReturn updateParticleScale(float);
@@ -10505,7 +10565,8 @@ class ParticleGameObject : EnhancedGameObject {
 
 	// property 145
 	gd::string m_particleData;
-	PAD = android32 0x110;
+	bool m_updatedParticleData;
+	PAD = android32 0x10f;
 	
 	// property 147
 	bool m_hasUniformObjectColor;
@@ -10688,8 +10749,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn convertToClosestRotation(float);
 	TodoReturn copyAttributes(PlayerObject*);
 	TodoReturn createFadeOutDartStreak();
-	TodoReturn createRobot(int);
-	TodoReturn createSpider(int);
+	TodoReturn createRobot(int) = ios 0x2217cc;
+	TodoReturn createSpider(int) = ios 0x221a58;
 	TodoReturn deactivateParticle();
 	TodoReturn deactivateStreak(bool);
 	TodoReturn destroyFromHitHead();
@@ -10727,7 +10788,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn hitGround(GameObject*, bool);
 	TodoReturn hitGroundNoJump(GameObject*, bool);
 	TodoReturn incrementJumps();
-	bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool);
+	bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = ios 0x2205f4;
 	bool isBoostValid(float);
 	bool isFlying();
 	bool isInBasicMode();
@@ -11288,7 +11349,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
-	virtual void show();
+	virtual void show() = ios 0x2b4cf0;
 	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn updateUserScoreFinished();
 	virtual TodoReturn updateUserScoreFailed();
@@ -14388,7 +14449,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	// virtual ~TableView();
 	TableView(cocos2d::CCRect);
 
-	static TableView* create(TableViewDelegate*, TableViewDataSource*, TableViewCellDelegate*, cocos2d::CCRect);
+	static TableView* create(TableViewDelegate*, TableViewDataSource*, TableViewCellDelegate*, cocos2d::CCRect) = ios 0x305598;
 
 	TodoReturn cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn cellForRowAtIndexPath(CCIndexPath&);
