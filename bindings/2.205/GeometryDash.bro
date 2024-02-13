@@ -3949,7 +3949,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLocalLevelByName(gd::string);
 	TodoReturn getLocalLevelList(int);
 	TodoReturn getLowestLevelOrder();
-	TodoReturn getMainLevel(int, bool);
+	GJGameLevel* getMainLevel(int, bool);
 	TodoReturn getMapPackKey(int);
 	TodoReturn getMapPacks(GJSearchObject*);
 	TodoReturn getMessageKey(int);
@@ -4231,7 +4231,7 @@ class GameLevelManager : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GameLevelOptionsLayer {
+class GameLevelOptionsLayer : GJOptionsLayer {
 	// virtual ~GameLevelOptionsLayer();
 
 	static GameLevelOptionsLayer* create(GJGameLevel*);
