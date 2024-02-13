@@ -11,6 +11,8 @@ jobs:
   filter:
     runs-on: ubuntu-latest
     name: Filter
+    outputs:
+      should-run: ${{ steps.changed.outputs.any_changed }}
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -23,12 +25,9 @@ jobs:
           .github/workflows/build.yml
           codegen/**
 
-    - name: Prevent from running
-      if: steps.changed.outputs.any_changed != 'true'
-      run: exit 1
-
   build:
     needs: filter
+    if: needs.filter.outputs.should-run
 
     strategy:
       fail-fast: false
@@ -99,22 +98,22 @@ jobs:
 
     - name: Configure
       run: >
-        cmake -B build
+        cmake codegen -B codegen/build
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_C_COMPILER=clang
         -DCMAKE_CXX_COMPILER=clang++
         -G Ninja
 
     - name: Build
-      run: cmake --build build --config Release --parallel
+      run: cmake --build codegen/build --config Release --parallel
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: geode-codegen-${{ matrix.config.id }}
         path: |
-          ./build/Codegen
-          ./build/Codegen.exe
+          codegen/build/Codegen
+          codegen/build/Codegen.exe
         if-no-files-found: ignore
 
   publish:
