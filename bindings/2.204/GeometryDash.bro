@@ -2985,6 +2985,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	GameObject* m_selectedObject;
 	PAD = win 0xc, android32 0xc;
 	int m_selectedTab;
+	PAD = win 0x2c;
+	bool m_unk3b4;
+
+	PAD = win 0x8;
 }
 
 [[link(android)]]
