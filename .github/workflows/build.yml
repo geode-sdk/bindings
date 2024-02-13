@@ -55,32 +55,6 @@ jobs:
       with:
         submodules: recursive
 
-    # https://github.com/mozilla/sccache/issues/2090
-    - name: Download custom sccache
-      uses: robinraju/release-downloader@v1.9
-      with:
-        repository: cgytrus/sccache
-        latest: true
-        fileName: 'sccache-*-x86_64-apple-darwin.zip'
-        tarBall: false
-        zipBall: false
-        out-file-path: "epic-sccache"
-      if: matrix.config.id == 'mac'
-
-    - name: Setup custom sccache
-      run: |
-        7z x "epic-sccache/sccache-*-x86_64-apple-darwin.zip" -o"epic-sccache"
-        echo "$GITHUB_WORKSPACE/epic-sccache" >> $GITHUB_PATH
-        chmod +x "epic-sccache/sccache"
-      if: matrix.config.id == 'mac'
-
-    # https://github.com/hendrikmuhs/ccache-action/pull/182
-    - name: Setup sccache
-      uses: chirag-droid/ccache-action@main
-      with:
-        variant: sccache
-        key: ${{ matrix.config.id }}-v1
-
     - name: Setup CPM Cache
       uses: actions/cache@v4
       with:
