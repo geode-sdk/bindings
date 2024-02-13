@@ -22,7 +22,7 @@ jobs:
         files: codegen/**
 
     - name: Prevent from running
-      if: steps.changed.outputs.any_changed
+      if: steps.changed.outputs.any_changed != 'true'
       run: exit 1
 
   build:
