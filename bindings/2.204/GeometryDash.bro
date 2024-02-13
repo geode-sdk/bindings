@@ -2529,6 +2529,18 @@ class EditorOptionsLayer : GJOptionsLayer {
 }
 
 [[link(android)]]
+class GameLevelOptionsLayer : GJOptionsLayer {
+    // virtual ~GameLevelOptionsLayer();
+
+    static GameLevelOptionsLayer* create(GJGameLevel*);
+
+    bool init(GJGameLevel*);
+
+    virtual TodoReturn setupOptions() = win 0x213d20;
+    virtual TodoReturn didToggle(int);
+}
+
+[[link(android)]]
 class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	// virtual ~EditorPauseLayer();
 	// EditorPauseLayer() = win 0x9fd40;
