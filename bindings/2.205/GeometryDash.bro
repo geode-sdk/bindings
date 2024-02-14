@@ -123,9 +123,9 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 class AchievementBar : cocos2d::CCNodeRGBA {
 	// virtual ~AchievementBar();
 
-	static AchievementBar* create(char const*, char const*, char const*, bool);
+	static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest);
 
-	bool init(char const*, char const*, char const*, bool);
+	bool init(char const* title, char const* desc, char const* icon, bool quest);
 	TodoReturn show();
 
 	virtual void setOpacity(unsigned char);
@@ -185,7 +185,7 @@ class AchievementNotifier : cocos2d::CCNode {
 	static AchievementNotifier* sharedState() = ios 0x21f3d8;
 
 	TodoReturn achievementDisplayFinished();
-	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
+	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
 	TodoReturn showNextAchievement();
 	TodoReturn willSwitchToScene(cocos2d::CCScene*) = ios 0x21f60c;
 
@@ -2704,7 +2704,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	bool isSpecialSnapObject(int);
 	TodoReturn liveEditColorUsable();
 	TodoReturn menuItemFromObjectString(gd::string, int);
-	TodoReturn moveForCommand(EditCommand);
+	cocos2d::CCPoint moveForCommand(EditCommand command);
 	TodoReturn moveGamelayer(cocos2d::CCPoint);
 	TodoReturn moveObject(GameObject*, cocos2d::CCPoint);
 	TodoReturn moveObjectCall(cocos2d::CCObject*);
@@ -3949,7 +3949,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLocalLevelByName(gd::string);
 	TodoReturn getLocalLevelList(int);
 	TodoReturn getLowestLevelOrder();
-	TodoReturn getMainLevel(int, bool);
+	GJGameLevel* getMainLevel(int, bool);
 	TodoReturn getMapPackKey(int);
 	TodoReturn getMapPacks(GJSearchObject*);
 	TodoReturn getMessageKey(int);
@@ -4231,7 +4231,7 @@ class GameLevelManager : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GameLevelOptionsLayer {
+class GameLevelOptionsLayer : GJOptionsLayer {
 	// virtual ~GameLevelOptionsLayer();
 
 	static GameLevelOptionsLayer* create(GJGameLevel*);
@@ -5270,22 +5270,24 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getStoreItem(int);
 	TodoReturn getTotalCollectedCurrency();
 	TodoReturn getTotalCollectedDiamonds();
-	TodoReturn hasClaimedListReward(GJLevelList*);
-	TodoReturn hasCompletedChallenge(GJChallengeItem*);
-	TodoReturn hasCompletedDailyLevel(int);
-	TodoReturn hasCompletedDemonLevel(GJGameLevel*);
-	TodoReturn hasCompletedGauntletLevel(int);
+	bool hasClaimedListReward(GJLevelList*);
+	bool hasCompletedChallenge(GJChallengeItem*);
+	bool hasCompletedDailyLevel(int);
+	bool hasCompletedDemonLevel(GJGameLevel*);
+	bool hasCompletedGauntletLevel(int);
 	bool hasCompletedLevel(GJGameLevel* level) {
 		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
 	}
-	TodoReturn hasCompletedMainLevel(int);
-	TodoReturn hasCompletedMapPack(int);
-	TodoReturn hasCompletedOnlineLevel(int);
-	TodoReturn hasCompletedStarLevel(GJGameLevel*);
-	TodoReturn hasPendingUserCoin(char const*);
-	TodoReturn hasRewardBeenCollected(GJRewardType, int);
-	TodoReturn hasSecretCoin(char const*);
-	TodoReturn hasUserCoin(char const*);
+	bool hasCompletedMainLevel(int levelID) {
+		return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
+	}
+	bool hasCompletedMapPack(int);
+	bool hasCompletedOnlineLevel(int);
+	bool hasCompletedStarLevel(GJGameLevel*);
+	bool hasPendingUserCoin(char const*);
+	bool hasRewardBeenCollected(GJRewardType, int);
+	bool hasSecretCoin(char const*);
+	bool hasUserCoin(char const*);
 	TodoReturn incrementActivePath(int);
 	TodoReturn incrementChallenge(GJChallengeType, int);
 	TodoReturn incrementStat(char const*, int);
@@ -5687,7 +5689,7 @@ class GJAssetDownloadAction {
 	int m_status;
 }
 
-[[link(android), depends(GJGameState)]]
+[[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// ~GJBaseGameLayer();
 	// GJBaseGameLayer();
@@ -6732,7 +6734,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 	virtual void onEnterTransitionDidFinish();
 }
 
-[[link(android), depends(EventTriggerInstance), depends(SongChannelState)]]
+[[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance)]]
 class GJGameState {
 	// ~GJGameState();
 	// GJGameState();
@@ -7645,18 +7647,18 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 class GJSearchObject : cocos2d::CCNode {
 	// virtual ~GJSearchObject();
 
-	static GJSearchObject* create(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
-	static GJSearchObject* create(SearchType, gd::string);
-	static GJSearchObject* create(SearchType);
-	static GJSearchObject* createFromKey(char const*);
+	static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
+	static GJSearchObject* create(SearchType searchType, gd::string searchQuery);
+	static GJSearchObject* create(SearchType searchType);
+	static GJSearchObject* createFromKey(char const* key);
 
 	char const* getKey();
 	TodoReturn getNextPageKey();
 	TodoReturn getNextPageObject();
-	TodoReturn getPageObject(int);
+	TodoReturn getPageObject(int page);
 	TodoReturn getPrevPageObject();
-	TodoReturn getSearchKey(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
-	bool init(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
+	TodoReturn getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
+	bool init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
 	bool isLevelSearchObject();
 
 	SearchType m_searchType;
@@ -8914,7 +8916,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateKeyframeVisibility(bool);
 	void updateLevelFont(int);
 	TodoReturn updateObjectColors(cocos2d::CCArray*);
-	TodoReturn updateObjectLabel(GameObject*);
+	static void updateObjectLabel(GameObject*);
 	TodoReturn updateOptions();
 	TodoReturn updatePreviewAnim();
 	TodoReturn updatePreviewParticle(ParticleGameObject*);
@@ -8944,17 +8946,72 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
 	virtual TodoReturn levelSettingsUpdated();
 
-	// TODO: the android64 ones are absolutely wrong i am just very lazy
-	PAD = android32 0x64, android64 0x0000001;
+	bool m_drawTriggerBoxes;
+	bool m_showGrid;
+	bool m_hideGridOnPlay;
+	bool m_drawEffectLines;
+	bool m_showGround;
+	bool m_showDurationLines;
+	bool m_increaseMaxUndoRedo;
+	bool m_hideBackground;
+	bool m_gv0120;
+	bool m_layerLockingEnabled;
+	bool m_unkBool4;
+	bool m_previewParticles;
+	bool m_previewAnimations;
+	bool m_previewShaders;
+	bool m_hideParticleIcons;
+	bool m_unkBool5;
+	bool m_playTestSmoothFix;
+
+	// haven't verified the mac padding
+	PAD = win 0xf, android32 0xf, android64 0xf, mac 0xf;
+
+	cocos2d::CCArray* m_unkArr0;
+	cocos2d::CCArray* m_unkArr1;
+	cocos2d::CCArray* m_unkArr2;
+	cocos2d::CCArray* m_unkArr3;
+	cocos2d::CCArray* m_unkArr4;
+	cocos2d::CCArray* m_unkArr8;
+	cocos2d::CCArray* m_unkArr11;
+	cocos2d::CCArray* m_unkArr12;
+	cocos2d::CCArray* m_unkArr13;
+	cocos2d::CCDictionary* m_unkDict3;
+	cocos2d::CCArray* m_unkArr5;
 	
+	// haven't verified the mac padding
+	PAD = win 0x8, android32 0x8, android64 0x10, mac 0x10;
+
+	cocos2d::CCDictionary* m_unkDict4;
+	cocos2d::CCArray* m_unkArr7;
+	bool m_unkBool3;
+	bool m_unkBool2;
 	geode::SeedValueRSV m_coinCount;
 	
-	PAD = android32 0x30, android64 0xe8;
+	// haven't verified the mac padding
+	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
+
+	cocos2d::CCArray* m_unkArr6;
+
+	// haven't verified the mac padding
+	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x8;
+
+	cocos2d::CCDictionary* m_unkDict1;
+	cocos2d::CCDictionary* m_unkDict2;
+	bool m_unkBool0;
+	bool m_unkBool1;
+    short m_currentLayer;
+
+	// haven't verified the mac padding
+	PAD = win 0x18, android32 0x18, android64 0x24, mac 0x24;
 
 	EditorUI* m_editorUI;
-	
 	cocos2d::CCArray* m_undoObjects;
 	cocos2d::CCArray* m_redoObjects;
+	geode::SeedValueRSV m_objectCount;
+	DrawGridLayer* m_drawGridLayer;
+	bool m_unkBool;
+	bool m_previewMode;
 }
 
 [[link(android)]]
@@ -10474,7 +10531,7 @@ class ParticleGameObject : EnhancedGameObject {
 	TodoReturn createAndAddCustomParticle();
 	TodoReturn createParticlePreviewArt();
 	void setParticleString(gd::string);
-	TodoReturn updateParticle();
+	void updateParticle();
 	TodoReturn updateParticleAngle(float, cocos2d::CCParticleSystemQuad*);
 	TodoReturn updateParticlePreviewArtOpacity(float);
 	TodoReturn updateParticleScale(float);
@@ -10508,7 +10565,8 @@ class ParticleGameObject : EnhancedGameObject {
 
 	// property 145
 	gd::string m_particleData;
-	PAD = android32 0x110;
+	bool m_updatedParticleData;
+	PAD = android32 0x10f;
 	
 	// property 147
 	bool m_hasUniformObjectColor;
@@ -11995,6 +12053,33 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
+	
+    GameObject* m_targetObject;
+    cocos2d::CCArray* m_targetObjects;
+    cocos2d::CCArray* m_array0;
+    cocos2d::CCArray* m_groupIDObjects;
+    CCTextInputNode* m_editorLayerInput;
+    CCTextInputNode* m_editorLayer2Input;
+    CCTextInputNode* m_zOrderInput;
+    CCTextInputNode* m_groupIDInput;
+    CCTextInputNode* m_orderInput;
+    CCTextInputNode* m_channelInput;
+	bool m_showChannelOrder;
+	int m_channelValue;
+	bool m_channelUpdated;
+    int m_groupIDValue;
+    int m_editorLayerValue;
+    int m_editorLayer2Value;
+    int m_zOrderValue;
+    ZLayer m_zLayerValue;
+	int m_orderValue;
+	bool m_channelOrderEdited;
+	bool m_editorLayerEdited;
+	bool m_removeGroupsLock;
+	int m_groupToRemove;
+	bool m_addedGroup;
+	bool m_unkBool0;
+	bool m_hasTargetObjects;
 }
 
 [[link(android)]]
