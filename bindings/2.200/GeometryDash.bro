@@ -7191,7 +7191,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void onToggleAllObjects(cocos2d::CCObject* sender) = mac 0x469710;
 	void onRemoveAllFavorites(cocos2d::CCObject* sender) = mac 0x469bd0;
 	void onNew(cocos2d::CCObject* sender) = mac 0x4697a0;
-	void onBack(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = mac 0x46d2e0;
 	void onHelp(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender) = mac 0x46a1a0;
 	void onSaved(cocos2d::CCObject* sender) = mac 0x469e90;
@@ -7219,24 +7219,24 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	/* unverified signature */
 	bool isCorrect(char const*) = win 0x22F340;
 
-	virtual void onEnter();
-	virtual void onEnterTransitionDidFinish();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void onEnter() = mac 0x46de00;
+	virtual void onEnterTransitionDidFinish() = mac 0x46dfa0;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x46e090;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x46e0f0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x46e0b0;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x46e0d0;
+	virtual void registerWithTouchDispatcher() = mac 0x46dfb0;
+	virtual void keyBackClicked() = mac 0x46d390;
+	virtual void keyDown(cocos2d::enumKeyCodes) = mac 0x46d3d0;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = mac 0x46ca00;
-	virtual TodoReturn loadLevelsFailed(char const*, int);
+	virtual TodoReturn loadLevelsFailed(char const*, int) = mac 0x46cb60;
 	virtual void setupPageInfo(gd::string, char const*) = win 0x230980, mac 0x46cc40;
-	virtual void shareCommentClosed(gd::string, ShareCommentLayer*);
-	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2326E0;
-	virtual void setIDPopupClosed(SetIDPopup*, int);
-	virtual TodoReturn updateResultArray(cocos2d::CCArray*);
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
+	virtual void shareCommentClosed(gd::string, ShareCommentLayer*) = mac 0x46d6b0;
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string) = mac 0x46d790;
+	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2326E0, mac 0x46d9e0;
+	virtual void setIDPopupClosed(SetIDPopup*, int) = mac 0x46d1b0;
+	virtual TodoReturn updateResultArray(cocos2d::CCArray*) = mac 0x46e110;
+	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = mac 0x46de80;
 
 	bool m_unk;
 	bool m_allSelected;
