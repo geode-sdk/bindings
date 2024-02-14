@@ -3700,7 +3700,11 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	virtual void update(float) = win 0x33980;
 
-	PAD = win 0x88, android32 0x7c, android64 0xdc;
+	PAD = win 0x60, android32 0x50, android64 0xac;
+	float m_musicVolume;
+	float m_sfxVolume;
+	PAD = win 0x1c, android32 0x20, android64 0x20;
+	FMOD::Channel* m_backgroundMusicChannel;
 	FMOD::System* m_system;
 	FMOD::Sound* m_sound;
 	FMOD::Channel* m_currentSoundChannel;
