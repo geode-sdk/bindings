@@ -124,9 +124,9 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 class AchievementBar : cocos2d::CCNodeRGBA {
 	// virtual ~AchievementBar();
 
-	static AchievementBar* create(char const*, char const*, char const*, bool) = win 0x59720;
+	static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest) = win 0x59720;
 
-	bool init(char const*, char const*, char const*, bool) = win 0x59800;
+	bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x59800;
 	TodoReturn show() = win 0x5a610;
 
 	virtual void setOpacity(unsigned char);
@@ -186,7 +186,7 @@ class AchievementNotifier : cocos2d::CCNode {
 	static AchievementNotifier* sharedState();
 
 	TodoReturn achievementDisplayFinished();
-	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
+	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
 	TodoReturn showNextAchievement() = win 0x1c0a0;
 	TodoReturn willSwitchToScene(cocos2d::CCScene*) = win 0x1c200;
 
@@ -7690,18 +7690,18 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 class GJSearchObject : cocos2d::CCNode {
 	// virtual ~GJSearchObject();
 
-	static GJSearchObject* create(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int) = win 0x11a480;
-	static GJSearchObject* create(SearchType, gd::string) = win 0x11a380;
-	static GJSearchObject* create(SearchType) = win 0x11a290;
-	static GJSearchObject* createFromKey(char const*) = win 0x119ee0;
+	static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x11a480;
+	static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x11a380;
+	static GJSearchObject* create(SearchType searchType) = win 0x11a290;
+	static GJSearchObject* createFromKey(char const* key) = win 0x119ee0;
 
 	char const* getKey() = win 0x11a7d0;
 	TodoReturn getNextPageKey();
 	TodoReturn getNextPageObject();
-	TodoReturn getPageObject(int) = win 0x11aa90;
+	TodoReturn getPageObject(int page) = win 0x11aa90;
 	TodoReturn getPrevPageObject();
-	TodoReturn getSearchKey(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
-	bool init(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int) = win 0x11a630;
+	TodoReturn getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
+	bool init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x11a630;
 	bool isLevelSearchObject() = win 0x11ade0;
 
 	SearchType m_searchType;
