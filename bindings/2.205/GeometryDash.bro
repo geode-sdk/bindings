@@ -123,9 +123,9 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 class AchievementBar : cocos2d::CCNodeRGBA {
 	// virtual ~AchievementBar();
 
-	static AchievementBar* create(char const*, char const*, char const*, bool);
+	static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest);
 
-	bool init(char const*, char const*, char const*, bool);
+	bool init(char const* title, char const* desc, char const* icon, bool quest);
 	TodoReturn show();
 
 	virtual void setOpacity(unsigned char);
@@ -185,7 +185,7 @@ class AchievementNotifier : cocos2d::CCNode {
 	static AchievementNotifier* sharedState() = ios 0x21f3d8;
 
 	TodoReturn achievementDisplayFinished();
-	TodoReturn notifyAchievement(char const*, char const*, char const*, bool);
+	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
 	TodoReturn showNextAchievement();
 	TodoReturn willSwitchToScene(cocos2d::CCScene*) = ios 0x21f60c;
 
@@ -7647,18 +7647,18 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 class GJSearchObject : cocos2d::CCNode {
 	// virtual ~GJSearchObject();
 
-	static GJSearchObject* create(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
-	static GJSearchObject* create(SearchType, gd::string);
-	static GJSearchObject* create(SearchType);
-	static GJSearchObject* createFromKey(char const*);
+	static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
+	static GJSearchObject* create(SearchType searchType, gd::string searchQuery);
+	static GJSearchObject* create(SearchType searchType);
+	static GJSearchObject* createFromKey(char const* key);
 
 	char const* getKey();
 	TodoReturn getNextPageKey();
 	TodoReturn getNextPageObject();
-	TodoReturn getPageObject(int);
+	TodoReturn getPageObject(int page);
 	TodoReturn getPrevPageObject();
-	TodoReturn getSearchKey(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
-	bool init(SearchType, gd::string, gd::string, gd::string, int, bool, bool, bool, int, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, int, int, int);
+	TodoReturn getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
+	bool init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
 	bool isLevelSearchObject();
 
 	SearchType m_searchType;
@@ -12053,6 +12053,33 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
+	
+    GameObject* m_targetObject;
+    cocos2d::CCArray* m_targetObjects;
+    cocos2d::CCArray* m_array0;
+    cocos2d::CCArray* m_groupIDObjects;
+    CCTextInputNode* m_editorLayerInput;
+    CCTextInputNode* m_editorLayer2Input;
+    CCTextInputNode* m_zOrderInput;
+    CCTextInputNode* m_groupIDInput;
+    CCTextInputNode* m_orderInput;
+    CCTextInputNode* m_channelInput;
+	bool m_showChannelOrder;
+	int m_channelValue;
+	bool m_channelUpdated;
+    int m_groupIDValue;
+    int m_editorLayerValue;
+    int m_editorLayer2Value;
+    int m_zOrderValue;
+    ZLayer m_zLayerValue;
+	int m_orderValue;
+	bool m_channelOrderEdited;
+	bool m_editorLayerEdited;
+	bool m_removeGroupsLock;
+	int m_groupToRemove;
+	bool m_addedGroup;
+	bool m_unkBool0;
+	bool m_hasTargetObjects;
 }
 
 [[link(android)]]
