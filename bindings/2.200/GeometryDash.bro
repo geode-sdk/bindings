@@ -6190,7 +6190,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn deactivateRotationControl();
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool);
 	TodoReturn resetSelectedObjectsColor();
-	void constrainGameLayerPosition(float x, float y) = win 0xd7250;
+	void constrainGameLayerPosition(float x, float y) = win 0xd7250, mac 0x2e5c0;
 	// Inlined on Windows
 	void constrainGameLayerPosition() {
 		this->constrainGameLayerPosition(-100, -100);
@@ -11041,7 +11041,7 @@ class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
 class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*);
 
-	bool init(GameObject*, cocos2d::CCArray*);
+	bool init(GameObject*, cocos2d::CCArray*) = mac 0x2ef2d0;
 	~SetGroupIDLayer();
 
 	void onAddGroup(cocos2d::CCObject* sender);
