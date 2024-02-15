@@ -11041,7 +11041,7 @@ class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
 class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*);
 
-	bool init(GameObject*, cocos2d::CCArray*) = mac 0x2ef2d0;
+	bool init(GameObject*, cocos2d::CCArray*) = mac 0x2ef4a0;
 	~SetGroupIDLayer();
 
 	void onAddGroup(cocos2d::CCObject* sender);
