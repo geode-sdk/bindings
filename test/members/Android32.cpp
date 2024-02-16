@@ -27,7 +27,7 @@ GEODE_SIZE_CHECK(BoomListView, 0x164);
 GEODE_SIZE_CHECK(CustomListView, 0x168);
 GEODE_SIZE_CHECK(CCMenuItemSpriteExtra, 0x174);
 GEODE_SIZE_CHECK(LoadingLayer, 0x15c);
-GEODE_SIZE_CHECK(GJDropDownLayer, 0x1e4);
+GEODE_SIZE_CHECK(GJDropDownLayer, 0x1e0);
 GEODE_SIZE_CHECK(TableViewCell, 0x19c);
 GEODE_SIZE_CHECK(Slider, 0x158);
 GEODE_SIZE_CHECK(SliderTouchLogic, 0x174);
