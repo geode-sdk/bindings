@@ -6357,7 +6357,6 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         m_startPosition = cocos2d::CCPointMake(0.f, 0.f);
         m_buttonMenu = nullptr;
         m_listLayer = nullptr;
-        m_controllerEnabled = false;
         m_mainLayer = nullptr;
         m_hidden = false;
         m_delegate = nullptr;
