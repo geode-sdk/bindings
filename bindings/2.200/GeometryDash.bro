@@ -1419,7 +1419,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn shouldExitHackedLevel() = win 0x18FE20;
 	TodoReturn stopCustomEnterEffect(EnterEffectObject*);
 	TodoReturn stopCustomEnterEffect(EnterEffectObject*, bool);
-	TodoReturn toggleAudioVisualizer(bool);
+	void toggleAudioVisualizer(bool);
 	TodoReturn updateAudioVisualizer();
 	TodoReturn updateCollisionBlocks();
 	TodoReturn updateExtraGameLayers();

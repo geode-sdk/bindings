@@ -5986,7 +5986,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn syncBGTextures();
 	TodoReturn teleportPlayer(TeleportPortalObject*, PlayerObject*);
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
-	TodoReturn toggleAudioVisualizer(bool);
+	void toggleAudioVisualizer(bool);
 	TodoReturn toggleDualMode(GameObject*, bool, PlayerObject*, bool);
 	TodoReturn toggleFlipped(bool, bool);
 	TodoReturn toggleGroup(int, bool);
