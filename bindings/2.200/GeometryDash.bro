@@ -7392,7 +7392,7 @@ class EndLevelLayer : GJDropDownLayer {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual void customSetup() = win 0xE67B0, mac 0x49b580;
-	virtual TodoReturn showLayer(bool);
+	virtual void showLayer(bool);
 	virtual TodoReturn enterAnimFinished();
 	virtual void keyUp(cocos2d::enumKeyCodes);
 }
