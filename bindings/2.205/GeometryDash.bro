@@ -5244,8 +5244,8 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getDemonLevelKey(GJGameLevel*);
 	TodoReturn getGauntletRewardKey(int);
 	TodoReturn getItemKey(int, int);
-	TodoReturn getItemUnlockState(int, UnlockType);
-	TodoReturn getItemUnlockStateLite(int, UnlockType);
+	int getItemUnlockState(int, UnlockType);
+	int getItemUnlockStateLite(int, UnlockType);
 	gd::string getLevelKey(GJGameLevel*);
 	gd::string getLevelKey(int, bool, bool, bool);
 	TodoReturn getListRewardKey(GJLevelList*);
@@ -8396,7 +8396,8 @@ class ItemInfoPopup : FLAlertLayer {
 
 	virtual void keyBackClicked();
 
-	PAD = win 0x8;
+	int m_itemID;
+	UnlockType m_unlockType;
 	int m_accountID;
 }
 

@@ -4736,7 +4736,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getListRewardKey(GJLevelList*);
 	TodoReturn getPathRewardKey(int);
 	TodoReturn getSecretCoinKey(char const*);
-	TodoReturn getItemUnlockState(int, UnlockType);
+	int getItemUnlockState(int, UnlockType);
 	TodoReturn getQueuedChallenge(int);
 	TodoReturn getCompletedMapPacks();
 	TodoReturn getGauntletRewardKey(int) = mac 0x78490;
@@ -9691,6 +9691,10 @@ class ItemInfoPopup : FLAlertLayer {
 	bool isUnlockedByDefault(int, UnlockType);
 
 	virtual void keyBackClicked();
+
+	int m_itemID;
+	UnlockType m_unlockType;
+	int m_accountID;
 }
 
 [[link(android)]]
