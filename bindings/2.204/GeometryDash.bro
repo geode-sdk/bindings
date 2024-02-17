@@ -7304,7 +7304,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
 	TodoReturn removeDLFromActive(char const*);
 	TodoReturn uploadComment(gd::string, int) = win 0x1fb970;
 
-	virtual bool init();
+	virtual bool init() = win 0x1FB1C0;
 }
 
 [[link(android)]]
