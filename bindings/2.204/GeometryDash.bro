@@ -11212,7 +11212,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual ~PlayLayer() = win 0x2dc080;
 	// PlayLayer() = win 0x2db390;
 
-	static PlayLayer* create(GJGameLevel*, bool, bool) = win 0x2dc3f0;
+	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x2dc3f0;
 	static PlayLayer* get() {
 		return GameManager::get()->m_playLayer;
 	}
@@ -11256,8 +11256,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn getRelativeModNew(cocos2d::CCPoint, float, float, bool, bool);
 	TodoReturn getTempMilliTime();
 	TodoReturn gravityEffectFinished();
-	TodoReturn incrementJumps() = win 0x2eacd0;
-	bool init(GJGameLevel*, bool, bool) = win 0x2dc4a0;
+	void incrementJumps() = win 0x2eacd0;
+	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x2dc4a0;
 	bool isGameplayActive();
 	void levelComplete() = win 0x2ddb60;
 	TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
@@ -11266,7 +11266,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn loadFromCheckpoint(CheckpointObject*) = win 0x2e85e0;
 	TodoReturn loadLastCheckpoint();
 	TodoReturn markCheckpoint() = win 0x2e8550;
-	TodoReturn onQuit() = win 0x2eb480;
+	void onQuit() = win 0x2eb480;
 	TodoReturn optimizeColorGroups() = win 0x2e2530;
 	TodoReturn optimizeOpacityGroups() = win 0x2e2790;
 	TodoReturn pauseGame(bool) = win 0x2eae80;
@@ -11289,7 +11289,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn saveDynamicSaveObjects(gd::vector<SavedObjectStateRef>&) = win 0x2e9780;
 	TodoReturn scanActiveSaveObjects() = win 0x2e9b70;
 	TodoReturn scanDynamicSaveObjects() = win 0x2e8f80;
-	static cocos2d::CCScene* scene(GJGameLevel*, bool, bool) = win 0x2dc3a0;
+	static cocos2d::CCScene* scene(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x2dc3a0;
 	TodoReturn screenFlipObject(GameObject*);
 	void setDamageVerifiedIdx(int) = win 0x2db7c0;
 	TodoReturn setupHasCompleted() = win 0x2dce40;
