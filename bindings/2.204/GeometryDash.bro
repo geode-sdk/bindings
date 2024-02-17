@@ -4018,7 +4018,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getTopArtists(int page, int total) = win 0x105d80;
 	const char* getTopArtistsKey(int page){
 	    return cocos2d::CCString::createWithFormat("topArtists_%i", page)->getCString();
-	};
+	}
 	TodoReturn getUploadMessageKey(int);
 	TodoReturn getUserInfoKey(int);
 	TodoReturn getUserList(UserListType) = win 0x10d2a0;
