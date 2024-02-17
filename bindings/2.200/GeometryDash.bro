@@ -2138,7 +2138,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	}
 
 	static GJDropDownLayer* create(char const*);
-	static GJDropDownLayer* create(char const*, float);
+	static GJDropDownLayer* create(char const*, float) = mac 0x5acc30;
 
 	// inlined on windows
 	bool init(char const* title) {
@@ -2174,6 +2174,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	cocos2d::CCPoint m_startPosition;
 	cocos2d::CCMenu* m_buttonMenu;
 	GJListLayer* m_listLayer;
+	bool m_controllerEnabled;
 	cocos2d::CCLayer* m_mainLayer;
 	bool m_hidden;
 	GJDropDownLayerDelegate* m_delegate;
