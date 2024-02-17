@@ -3969,7 +3969,9 @@ class GameLevelManager : cocos2d::CCNode {
 	const char *getLenKey(int len);
 	TodoReturn getLenVal(int);
 	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x108160;
-	TodoReturn getLevelDownloadKey(int, bool);
+	const char* getLevelDownloadKey(int levelID, bool isGauntlet){
+	    return cocos2d::CCString::createWithFormat("%i_%i", levelID, isGauntlet)->getCString();
+	};
 	const char* getLevelKey(int levelID);
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1053a0;
 	TodoReturn getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
@@ -4014,7 +4016,9 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getStoredUserMessageReply(int);
 	TodoReturn getTimeLeft(char const*, float) = win 0xf8fc0;
 	void getTopArtists(int page, int total) = win 0x105d80;
-	TodoReturn getTopArtistsKey(int);
+	const char* getTopArtistsKey(int page){
+	    return cocos2d::CCString::createWithFormat("topArtists_%i", page)->getCString();
+	};
 	TodoReturn getUploadMessageKey(int);
 	TodoReturn getUserInfoKey(int);
 	TodoReturn getUserList(UserListType) = win 0x10d2a0;
