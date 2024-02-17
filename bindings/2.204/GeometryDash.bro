@@ -10468,7 +10468,7 @@ class ObjectToolbox : cocos2d::CCNode {
 	static ObjectToolbox* sharedState() = win 0x28b340;
 
 	TodoReturn allKeys();
-	TodoReturn gridNodeSizeForKey(int) = win 0x2af310;
+	float gridNodeSizeForKey(int) = win 0x2af310;
 	TodoReturn intKeyToFrame(int) = win 0x166920;
 	TodoReturn perspectiveBlockFrame(int);
 
