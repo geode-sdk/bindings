@@ -12897,7 +12897,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
 	static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*, gd::string);
 	static CreateParticlePopup* create(gd::string);
 
-	bool init(ParticleGameObject*, cocos2d::CCArray*, gd::string);
+	bool init(ParticleGameObject*, cocos2d::CCArray*, gd::string) = mac 0x044c7e0;
 	~CreateParticlePopup();
 
 	TodoReturn getPageMenu(int);
