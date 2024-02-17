@@ -1253,7 +1253,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	virtual TodoReturn onClickTrackNode(bool) = win 0x2f600;
 	virtual void keyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&) = win 0x2f4d0;
 	virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&) = win 0x2f5a0;
-	virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF*, char const*, int, cocos2d::enumKeyCodes) = win 0x2f6b0;
+	virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF* pSender, char const* text, int nLen, cocos2d::enumKeyCodes keyCodes) = win 0x2f6b0;
 	virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF*) = win 0x2fa30;
 	virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF*) = win 0x2fd50;
 
