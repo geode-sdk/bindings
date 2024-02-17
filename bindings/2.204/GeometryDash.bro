@@ -3971,7 +3971,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x108160;
 	const char* getLevelDownloadKey(int levelID, bool isGauntlet){
 	    return cocos2d::CCString::createWithFormat("%i_%i", levelID, isGauntlet)->getCString();
-	};
+	}
 	const char* getLevelKey(int levelID);
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1053a0;
 	TodoReturn getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
