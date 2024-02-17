@@ -4840,7 +4840,7 @@ class GameObject : CCSpritePlus {
 	bool isSpeedObject() = win 0x143970;
 	bool isStoppableTrigger();
 	bool isTrigger() = win 0x142ea0;
-	TodoReturn loadGroupsFromString(gd::string);
+	void loadGroupsFromString(gd::string) = win 0x13dc20;
 	TodoReturn makeInvisible();
 	TodoReturn objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x13e420;
 	TodoReturn opacityModForMode(int, bool);
@@ -4966,8 +4966,8 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getObjectRotation();
 	virtual TodoReturn updateMainColor(cocos2d::ccColor3B const&);
 	virtual TodoReturn updateSecondaryColor(cocos2d::ccColor3B const&);
-	virtual TodoReturn addToGroup(int) = win 0x13d7f0;
-	virtual TodoReturn removeFromGroup(int);
+	virtual void addToGroup(int) = win 0x13d7f0;
+	virtual void removeFromGroup(int) = win 0x13d870;
 	virtual TodoReturn saveActiveColors();
 	virtual TodoReturn spawnXPosition();
 	virtual TodoReturn canAllowMultiActivate();
@@ -6098,8 +6098,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn destroyPlayer(PlayerObject*, GameObject*);
 	virtual TodoReturn updateDebugDraw() = win 0x1986f0;
 	virtual TodoReturn addToSection(GameObject*) = win 0x1ab800;
-	virtual TodoReturn addToGroup(GameObject*, int, bool) = win 0x1a8ce0;
-	virtual TodoReturn removeFromGroup(GameObject*, int) = win 0x1a8e00;
+	virtual void addToGroup(GameObject*, int, bool) = win 0x1a8ce0;
+	virtual void removeFromGroup(GameObject*, int) = win 0x1a8e00;
 	virtual TodoReturn updateObjectSection(GameObject*) = win 0x1acd40;
 	virtual TodoReturn updateDisabledObjectsLastPos(cocos2d::CCArray*);
 	virtual TodoReturn toggleGroundVisibility(bool);
