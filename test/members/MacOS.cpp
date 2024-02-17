@@ -101,4 +101,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc90);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
 
+GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
+GEODE_MEMBER_CHECK(GJDropDownLayer, m_mainLayer, 0x248);
+
 #endif
