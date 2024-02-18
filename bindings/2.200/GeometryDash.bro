@@ -4714,7 +4714,7 @@ class LevelTools {
 class GameStatsManager : cocos2d::CCNode {
 	~GameStatsManager();
 
-	TodoReturn getItemKey(int, int);
+	TodoReturn getItemKey(int, int) = mac 0x66050;
 	gd::string getLevelKey(int, bool, bool, bool) = mac 0x6cd80, win 0x16D350;
 	gd::string getLevelKey(GJGameLevel*) = mac 0x6cd20, win 0x16D2E0;
 	GJChallengeItem* getChallenge(int) = mac 0x73750, win 0x170BD0;
@@ -4735,7 +4735,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getListRewardKey(GJLevelList*);
 	TodoReturn getPathRewardKey(int);
 	TodoReturn getSecretCoinKey(char const*);
-	int getItemUnlockState(int, UnlockType);
+	int getItemUnlockState(int, UnlockType) = mac 0x77e40;
 	TodoReturn getQueuedChallenge(int);
 	TodoReturn getCompletedMapPacks();
 	TodoReturn getGauntletRewardKey(int) = mac 0x78490;
@@ -4753,7 +4753,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*) = mac 0x70720;
 	TodoReturn getSecondaryQueuedChallenge(int);
 	TodoReturn getSpecialRewardDescription(gd::string, bool);
-	TodoReturn getSpecialUnlockDescription(int, UnlockType, bool);
+	TodoReturn getSpecialUnlockDescription(int, UnlockType, bool) = mac 0x789e0;
 	TodoReturn getStat(char const*) = win 0x168680, mac 0x66800;
 
 	/* unverified signature */
@@ -4796,7 +4796,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn uncompleteLevel(GJGameLevel*);
 	TodoReturn unlockPathChest(int);
 	TodoReturn verifyUserCoins();
-	TodoReturn accountIDForIcon(int, UnlockType);
+	TodoReturn accountIDForIcon(int, UnlockType) = mac 0x3087a0;
 	TodoReturn areRewardsLoaded() = mac 0x70f00;
 	TodoReturn checkAchievement(char const*) = win 0x168870;
 	//TodoReturn completedMapPack(GJMapPack*);
@@ -4843,7 +4843,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn shouldAwardSecretKey();
 	TodoReturn storePendingUserCoin(char const*);
 	//TodoReturn storeQueuedChallenge(int, GJChallengeItem*);
-	TodoReturn usernameForAccountID(int) = win 0x15c8b0;
+	TodoReturn usernameForAccountID(int) = win 0x15c8b0, mac 0x308810;
 	TodoReturn awardCurrencyForLevel(GJGameLevel*) = win 0x16F850;
 	TodoReturn awardDiamondsForLevel(GJGameLevel*) = win 0x16FD70;
 	//TodoReturn hasCompletedChallenge(GJChallengeItem*);
@@ -9682,10 +9682,10 @@ class ItemInfoPopup : FLAlertLayer {
 	bool init(int, UnlockType) = win 0x1f1300, mac 0x34f980;
 	~ItemInfoPopup();
 
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = mac 0x350f10;
 	void onCredit(cocos2d::CCObject* sender);
 
-	gd::string nameForUnlockType(int, UnlockType) = win 0x59430;
+	gd::string nameForUnlockType(int, UnlockType) = win 0x59430, mac 0x350c60;
 	/* unverified signature */
 	bool isUnlockedByDefault(int, UnlockType);
 
@@ -12333,7 +12333,7 @@ class AchievementManager : cocos2d::CCNode {
 	~AchievementManager();
 
 	TodoReturn getAllAchievements();
-	TodoReturn getAchievementsWithID(char const*);
+	TodoReturn getAchievementsWithID(char const*) = mac 0x746b10;
 	TodoReturn getAchievementRewardDict();
 	TodoReturn getAllAchievementsSorted(bool);
 
@@ -12349,8 +12349,8 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn percentageForCount(int, int);
 	/* unverified signature */
 	bool isAchievementEarned(char const*) = mac 0x7469d0;
-	TodoReturn limitForAchievement(gd::string);
-	TodoReturn achievementForUnlock(int, UnlockType);
+	TodoReturn limitForAchievement(gd::string) = mac 0x746c60;
+	TodoReturn achievementForUnlock(int, UnlockType) = mac 0x746d00;
 	TodoReturn addManualAchievements() = win 0xf74a;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
 	TodoReturn percentForAchievement(char const*) = mac 0x7469f0;
