@@ -7156,7 +7156,7 @@ class PauseLayer : CCBlockLayer {
 	void goEdit() = win 0x2b4e70;
 
 	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2b4fa0;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2b4fa0, mac 0x3b6010;
 	virtual void customSetup() = win 0x2B3740, mac 0x3b4500;
 	virtual void keyUp(cocos2d::enumKeyCodes);
 }
