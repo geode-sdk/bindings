@@ -4691,7 +4691,7 @@ class GameManager : GManager {
 	gd::map<int, int> m_loadIcon;
 	gd::map<int, gd::map<int, int>> m_loadIcon2;
 	gd::map<int, bool> m_isIconBeingLoaded;
-	void* m_somethingIconAndTypeForKey;
+	std::array<int, 9>* m_keyStartForIcon;
 	void* m_somethingKeyForIcon;
 	void* m_idk;
 	gd::map<int, gd::vector<cocos2d::CCObject*>> m_iconDelegates;
