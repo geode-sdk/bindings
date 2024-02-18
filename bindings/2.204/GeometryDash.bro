@@ -4110,7 +4110,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn parseRestoreData(gd::string);
 	void performNetworkTest() = win 0xf3a80;
 	void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0xf3bf0;
-	TodoReturn processOnDownloadLevelCompleted(gd::string, gd::string, bool);
+	void processOnDownloadLevelCompleted(gd::string, gd::string, bool) = win 0x101160;
 	TodoReturn purgeUnusedLevels();
 	TodoReturn rateDemon(int, int, bool) = win 0x103330;
 	TodoReturn rateStars(int, int) = win 0x101f90;
@@ -4132,7 +4132,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
 	void resetStoredUserList(UserListType);
 	void resetTimerForKey(char const*) = win 0xf9130;
-	cocos2d::CCDictionary* responseToDict(gd::string, bool);
+	cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x111fa0;
 	TodoReturn restoreItems();
 	TodoReturn saveFetchedLevelLists(cocos2d::CCArray*);
 	TodoReturn saveFetchedLevels(cocos2d::CCArray*);
@@ -6591,7 +6591,7 @@ class GJGameLevel : cocos2d::CCNode {
 	// virtual ~GJGameLevel();
 
 	static GJGameLevel* create() = win 0x113a60;
-	static GJGameLevel* create(cocos2d::CCDictionary*, bool);
+	static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x112680;
 	inline static GJGameLevel* createWithCoder(DS_Dictionary* dict) {
 		//inlined on windows
 		auto level = GJGameLevel::create();
@@ -7280,7 +7280,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
 
 	static GJMultiplayerManager* sharedState();
 
-	TodoReturn addComment(gd::string, int);
+	void addComment(gd::string, int) = win 0x1fc100;
 	void addDLToActive(char const* tag, cocos2d::CCObject* obj);
 	void addDLToActive(char const* tag);
 	TodoReturn createAndAddComment(gd::string, int) = win 0x1fbfc0;
