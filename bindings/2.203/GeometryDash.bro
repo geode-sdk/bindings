@@ -8468,7 +8468,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getNextFreeEditorLayer(cocos2d::CCArray*);
 	TodoReturn getNextFreeEnterChannel(cocos2d::CCArray*);
 	TodoReturn getNextFreeGradientID(cocos2d::CCArray*);
-	TodoReturn getNextFreeGroupID(cocos2d::CCArray*);
+	int getNextFreeGroupID(cocos2d::CCArray*);
 	TodoReturn getNextFreeItemID(cocos2d::CCArray*);
 	TodoReturn getNextFreeOrderChannel(cocos2d::CCArray*);
 	TodoReturn getNextFreeSFXGroupID(cocos2d::CCArray*);
