@@ -3859,8 +3859,8 @@ class GameLevelManager : cocos2d::CCNode {
 	}
 
 	TodoReturn acceptFriendRequest(int, int);
-	TodoReturn accountIDForUserID(int);
-	TodoReturn addDLToActive(char const*);
+	int accountIDForUserID(int accountID);
+	void addDLToActive(char const* tag);
 	TodoReturn areGauntletsLoaded();
 	TodoReturn banUser(int);
 	TodoReturn blockUser(int);
@@ -3981,8 +3981,8 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getStoredUserMessage(int);
 	TodoReturn getStoredUserMessageReply(int);
 	TodoReturn getTimeLeft(char const*, float);
-	TodoReturn getTopArtists(int, int);
-	TodoReturn getTopArtistsKey(int);
+	void getTopArtists(int page, int total);
+	const char *getTopArtistsKey(int page);
 	TodoReturn getUploadMessageKey(int);
 	TodoReturn getUserInfoKey(int);
 	TodoReturn getUserList(UserListType);
@@ -4053,7 +4053,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn onGetUserMessagesCompleted(gd::string, gd::string);
 	TodoReturn onGetUsersCompleted(gd::string, gd::string);
 	TodoReturn onLikeItemCompleted(gd::string, gd::string);
-	TodoReturn onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
+	TodoReturn onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response);
 	TodoReturn onRateDemonCompleted(gd::string, gd::string);
 	TodoReturn onRateStarsCompleted(gd::string, gd::string);
 	TodoReturn onReadFriendRequestCompleted(gd::string, gd::string);
@@ -4084,7 +4084,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn rateStars(int, int);
 	TodoReturn readFriendRequest(int);
 	TodoReturn removeDelimiterChars(gd::string, bool);
-	TodoReturn removeDLFromActive(char const*);
+	void removeDLFromActive(char const* tag);
 	TodoReturn removeFriend(int);
 	TodoReturn removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary*);
 	TodoReturn removeUserFromList(int, UserListType);

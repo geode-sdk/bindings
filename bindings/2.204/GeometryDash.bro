@@ -1253,7 +1253,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	virtual TodoReturn onClickTrackNode(bool) = win 0x2f600;
 	virtual void keyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&) = win 0x2f4d0;
 	virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&) = win 0x2f5a0;
-	virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF*, char const*, int, cocos2d::enumKeyCodes) = win 0x2f6b0;
+	virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF* pSender, char const* text, int nLen, cocos2d::enumKeyCodes keyCodes) = win 0x2f6b0;
 	virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF*) = win 0x2fa30;
 	virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF*) = win 0x2fd50;
 
@@ -3969,7 +3969,9 @@ class GameLevelManager : cocos2d::CCNode {
 	const char *getLenKey(int len);
 	TodoReturn getLenVal(int);
 	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x108160;
-	TodoReturn getLevelDownloadKey(int, bool);
+	const char* getLevelDownloadKey(int levelID, bool isGauntlet){
+	    return cocos2d::CCString::createWithFormat("%i_%i", levelID, isGauntlet)->getCString();
+	}
 	const char* getLevelKey(int levelID);
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1053a0;
 	TodoReturn getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
@@ -4014,7 +4016,9 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getStoredUserMessageReply(int);
 	TodoReturn getTimeLeft(char const*, float) = win 0xf8fc0;
 	void getTopArtists(int page, int total) = win 0x105d80;
-	TodoReturn getTopArtistsKey(int);
+	const char* getTopArtistsKey(int page){
+	    return cocos2d::CCString::createWithFormat("topArtists_%i", page)->getCString();
+	}
 	TodoReturn getUploadMessageKey(int);
 	TodoReturn getUserInfoKey(int);
 	TodoReturn getUserList(UserListType) = win 0x10d2a0;
