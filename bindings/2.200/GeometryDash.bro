@@ -1322,7 +1322,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn switchToRobotMode(PlayerObject*, GameObject*, bool);
 	TodoReturn triggerAreaEffect(EnterEffectObject*);
 	TodoReturn tryGetGroupParent(int);
-	TodoReturn updateCameraBGArt(cocos2d::CCPoint, float), mac 0x147180;
+	TodoReturn updateCameraBGArt(cocos2d::CCPoint, float) = mac 0x147180;
 	TodoReturn updateLevelColors() = win 0x190db0;
 	TodoReturn updateShaderLayer(float) = win 0x1A37B0, mac 0x127c40;
 	TodoReturn updateTimerLabels();
