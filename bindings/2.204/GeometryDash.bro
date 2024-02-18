@@ -4454,9 +4454,8 @@ class GameManager : GManager {
 	TodoReturn itemPurchased(char const*);
 	TodoReturn joinDiscord();
 	TodoReturn joinReddit();
-	int keyForIcon(int p0, int p1) {
-		// xd
-		return *(int*)(*(int*)((char*)this + 0x3ac) + p1 * 4) -1 + p0;
+	int keyForIcon(int iconIdx, int iconEnum) {
+		return m_keyStartForIcon->at(iconEnum) + iconIdx - 1;
 	}
 	TodoReturn levelIsPremium(int, int);
 	TodoReturn likeFacebook();
@@ -4692,7 +4691,7 @@ class GameManager : GManager {
 	gd::map<int, int> m_loadIcon;
 	gd::map<int, gd::map<int, int>> m_loadIcon2;
 	gd::map<int, bool> m_isIconBeingLoaded;
-	void* m_somethingIconAndTypeForKey;
+	std::array<int, 9>* m_keyStartForIcon;
 	void* m_somethingKeyForIcon;
 	void* m_idk;
 	gd::map<int, gd::vector<cocos2d::CCObject*>> m_iconDelegates;
