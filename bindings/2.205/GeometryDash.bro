@@ -3250,7 +3250,7 @@ class EndLevelLayer : GJDropDownLayer {
 	virtual TodoReturn enterAnimFinished();
 	virtual void keyUp(cocos2d::enumKeyCodes);
 
-	int m_unknown7;
+	PlayLayer* m_playLayer;
 	bool m_unknown1;
 	bool m_unknown2;
 	bool m_unknown3;
