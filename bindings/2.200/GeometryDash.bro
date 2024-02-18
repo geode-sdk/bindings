@@ -2178,7 +2178,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	cocos2d::CCLayer* m_mainLayer;
 	bool m_hidden;
 	GJDropDownLayerDelegate* m_delegate;
-	int m_unknown;
+	bool m_unknown;
 }
 
 [[link(android)]]
@@ -7394,6 +7394,14 @@ class EndLevelLayer : GJDropDownLayer {
 	virtual void showLayer(bool) = mac 0x49d530;
 	virtual TodoReturn enterAnimFinished();
 	virtual void keyUp(cocos2d::enumKeyCodes);
+
+	bool m_unknown1;
+	bool m_unknown2;
+	bool m_unknown3;
+	bool m_unknown4;
+	bool m_unknown5;
+	int m_unknown6;
+	cocos2d::CCArray* m_coinsToAnimate;
 }
 
 
