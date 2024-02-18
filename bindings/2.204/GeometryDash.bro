@@ -4261,6 +4261,18 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCString* m_unkStr4;
 }
 
+[[link(android)]]
+class GameLevelOptionsLayer : GJOptionsLayer{
+    // virtual ~GameLevelOptionsLayer();
+
+    static GameLevelOptionsLayer* create(GJGameLevel*);
+
+    bool init(GJGameLevel*);
+
+    virtual TodoReturn setupOptions() = win 0x213d20;
+    virtual TodoReturn didToggle(int);
+}
+
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
 	// virtual ~GameManager();
