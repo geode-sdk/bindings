@@ -7721,11 +7721,11 @@ class GJSearchObject : cocos2d::CCNode {
 	static GJSearchObject* createFromKey(char const* key) = win 0x119ee0;
 
 	char const* getKey() = win 0x11a7d0;
-	TodoReturn getNextPageKey();
-	TodoReturn getNextPageObject();
-	TodoReturn getPageObject(int page) = win 0x11aa90;
-	TodoReturn getPrevPageObject();
-	TodoReturn getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
+	char const* getNextPageKey();
+	GJSearchObject* getNextPageObject();
+	GJSearchObject* getPageObject(int page) = win 0x11aa90;
+	GJSearchObject* getPrevPageObject();
+	char const* getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
 	bool init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x11a630;
 	bool isLevelSearchObject() = win 0x11ade0;
 
