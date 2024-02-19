@@ -9153,7 +9153,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void musicSliderChanged(cocos2d::CCObject*) = win 0x2abfc0;
 	void exitLayer() = win 0x2ab110;
 
-	virtual void customSetup() = win 0x2ab510;
+	virtual void customSetup() = win 0x2ab510, mac 0x75bf50;
 	virtual void layerHidden() = win 0x2ac660;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
 }
