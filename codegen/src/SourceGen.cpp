@@ -55,6 +55,13 @@ float handleFloatReturnOnClang() {{
 	__asm movss real, xmm0
 	return real;
 }}
+
+template <>
+double handleFloatReturnOnClang() {{
+	double real;
+	__asm movsd real, xmm0
+	return real;
+}}
 #endif
 )CAC";
 
