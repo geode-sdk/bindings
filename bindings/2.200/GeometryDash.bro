@@ -9150,7 +9150,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	TodoReturn tryEnableRecord(); // mobile platforms only
 	void sfxSliderChanged(cocos2d::CCObject*) = win 0x2ac0b0;
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	void musicSliderChanged(cocos2d::CCObject*) = win 0x2abfc0;
+	void musicSliderChanged(cocos2d::CCObject*) = mac 0x75bf50, win 0x2abfc0;
 	void exitLayer() = win 0x2ab110;
 
 	virtual void customSetup() = win 0x2ab510;
