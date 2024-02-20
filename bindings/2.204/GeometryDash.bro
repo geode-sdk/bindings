@@ -5498,7 +5498,7 @@ class GameToolbox {
 	static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*) = win 0x42430;
 	static TodoReturn stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x42230;
 	static TodoReturn strongColor(cocos2d::ccColor3B) = win 0x425e0;
-	static gd::string timestampToHumanReadable(long) = win 0x45640;
+	static gd::string timestampToHumanReadable(time_t, time_t) = win 0x45640;
 	static TodoReturn transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue) = win 0x41b20;
 	static TodoReturn transformColor(cocos2d::ccColor3B const&, float, float, float);
 }
@@ -5529,7 +5529,7 @@ class GauntletNode : cocos2d::CCNode {
 
 	TodoReturn frameForType(GauntletType) = win 0x189b30;
 	bool init(GJMapPack*) = win 0x188740;
-	TodoReturn nameForType(GauntletType) = win 0x189f90;
+	static gd::string nameForType(GauntletType) = win 0x189f90;
 	TodoReturn onClaimReward() = win 0x189b00;
 }
 
@@ -7419,7 +7419,7 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 	static GJPathsLayer* create() = win 0x1fcb20;
 
 	TodoReturn darkenButtons(bool);
-	TodoReturn nameForPath(int) = win 0x1fc9a0;
+	static gd::string nameForPath(int) = win 0x1fc9a0;
 	void onClose(cocos2d::CCObject* sender);
 	void onPath(cocos2d::CCObject* sender) = win 0x1fd0a0;
 

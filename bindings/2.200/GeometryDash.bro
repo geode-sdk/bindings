@@ -8945,7 +8945,7 @@ class GauntletNode : cocos2d::CCNode {
 
 	void onClaimReward() = win 0x1865E0;
 
-	gd::string nameForType(GauntletType) = mac 0x5403e0, win 0x186A70;
+	static gd::string nameForType(GauntletType) = mac 0x5403e0, win 0x186A70;
 	gd::string frameForType(GauntletType) = mac 0x5408a0, win 0x186610;
 }
 
@@ -8982,7 +8982,7 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 	void onPath(cocos2d::CCObject* sender) = mac 0x2db510;
 	void onClose(cocos2d::CCObject* sender);
 
-	TodoReturn nameForPath(int);
+	static gd::string nameForPath(int);
 	TodoReturn darkenButtons(bool);
 
 	virtual bool init() = mac 0x2dae70, win 0x1F82A0;

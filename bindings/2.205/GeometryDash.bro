@@ -5501,7 +5501,7 @@ class GauntletNode : cocos2d::CCNode {
 
 	TodoReturn frameForType(GauntletType);
 	bool init(GJMapPack*);
-	TodoReturn nameForType(GauntletType);
+	static gd::string nameForType(GauntletType);
 	TodoReturn onClaimReward();
 }
 
@@ -7358,7 +7358,7 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 	static GJPathsLayer* create();
 
 	TodoReturn darkenButtons(bool);
-	TodoReturn nameForPath(int);
+	static gd::string nameForPath(int);
 	void onClose(cocos2d::CCObject* sender);
 	void onPath(cocos2d::CCObject* sender);
 
