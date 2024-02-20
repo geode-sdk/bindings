@@ -10541,16 +10541,16 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	TodoReturn exitLayer();
 	TodoReturn musicSliderChanged(cocos2d::CCObject*) = win 0x2b0d80;
 	void onAccount(cocos2d::CCObject* sender) = win 0x2b1380;
-	void onHelp(cocos2d::CCObject* sender);
+	void onHelp(cocos2d::CCObject* sender) = win 0x2b1400;
 	void onMenuMusic(cocos2d::CCObject* sender) = win 0x2b0ce0;
-	void onOptions(cocos2d::CCObject* sender);
+	void onOptions(cocos2d::CCObject* sender) = win 0x2b0f70;
 	void onProgressBar(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender) = win 0x2b13c0;
 	void onRecordReplays(cocos2d::CCObject* sender);
 	void onSecretVault(cocos2d::CCObject* sender) = win 0x2b0f90;
 	void onSoundtracks(cocos2d::CCObject* sender) = win 0x2b0f30;
 	void onSupport(cocos2d::CCObject* sender) = win 0x2b1340;
-	void onVideo(cocos2d::CCObject* sender);
+	void onVideo(cocos2d::CCObject* sender) = win 0x2b1320;
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*) = win 0x2b0e70;
 	TodoReturn tryEnableRecord();
 
@@ -15198,7 +15198,7 @@ class UserListDelegate {
 class VideoOptionsLayer : FLAlertLayer {
 	// virtual ~VideoOptionsLayer();
 
-	static VideoOptionsLayer* create();
+	static VideoOptionsLayer* create() = win 0x2b3e20;
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float, bool);
 	void onAdvanced(cocos2d::CCObject* sender);
@@ -15215,7 +15215,7 @@ class VideoOptionsLayer : FLAlertLayer {
 	TodoReturn updateResolution(int) = win 0x2b4ea0;
 	TodoReturn updateTextureQuality(int) = win 0x2b4de0;
 
-	virtual bool init();
+	virtual bool init() = win 0x2b3ec0;
 	virtual void keyBackClicked();
 }
 
