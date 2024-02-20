@@ -4477,10 +4477,9 @@ class GameManager : GManager {
 	TodoReturn queueReloadMenu();
 	TodoReturn rateGame();
 	TodoReturn recountUserStats(gd::string);
-	void reloadAll(bool, bool, bool, bool);
-	void reloadAll(bool a, bool b, bool c) {
-		// TODO: figure out these args i have no idea
-		return this->reloadAll(a, b, c, false);
+	void reloadAll(bool switchModes, bool toFullscreen, bool borderless, bool unused);
+	void reloadAll(bool switchModes, bool toFullscreen, bool unused) {
+		return this->reloadAll(switchModes, toFullscreen, false, unused);
 	}
 	TodoReturn reloadAllStep2();
 	TodoReturn reloadAllStep3();

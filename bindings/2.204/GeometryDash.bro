@@ -4516,10 +4516,9 @@ class GameManager : GManager {
 	TodoReturn queueReloadMenu() = win 0x12e3e0;
 	TodoReturn rateGame();
 	void recountUserStats(gd::string) = win 0x129ce0;
-	void reloadAll(bool, bool, bool, bool) = win 0x12e4b0;
-	void reloadAll(bool a, bool b, bool c) {
-		// TODO: figure out these args i have no idea
-		return this->reloadAll(a, b, c, false);
+	void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x12e4b0;
+	void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
+		return this->reloadAll(switchingModes, toFullscreen, false, unused);
 	}
 	TodoReturn reloadAllStep2() = win 0x12e540;
 	TodoReturn reloadAllStep3() = win 0x12e6a0;

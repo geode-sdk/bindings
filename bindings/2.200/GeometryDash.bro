@@ -1951,7 +1951,7 @@ class GameManager : GManager {
 	TodoReturn lockIcon(int, IconType);
 	TodoReturn rateGame();
 	TodoReturn lockColor(int, UnlockType);
-	void reloadAll(bool, bool, bool) = win 0x12c590, mac 0x368ce0;
+	void reloadAll(bool switchingModes, bool toFullscreen, bool unused) = win 0x12c590, mac 0x368ce0;
 
 	virtual void update(float);
 	virtual bool init() = win 0x11EA00;
