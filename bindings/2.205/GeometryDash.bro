@@ -4478,10 +4478,9 @@ class GameManager : GManager {
 	TodoReturn queueReloadMenu();
 	TodoReturn rateGame();
 	TodoReturn recountUserStats(gd::string);
-	void reloadAll(bool, bool, bool, bool);
-	void reloadAll(bool a, bool b, bool c) {
-		// TODO: figure out these args i have no idea
-		return this->reloadAll(a, b, c, false);
+	void reloadAll(bool switchModes, bool toFullscreen, bool borderless, bool unused);
+	void reloadAll(bool switchModes, bool toFullscreen, bool unused) {
+		return this->reloadAll(switchModes, toFullscreen, false, unused);
 	}
 	TodoReturn reloadAllStep2();
 	TodoReturn reloadAllStep3();
@@ -5502,7 +5501,7 @@ class GauntletNode : cocos2d::CCNode {
 
 	TodoReturn frameForType(GauntletType);
 	bool init(GJMapPack*);
-	TodoReturn nameForType(GauntletType);
+	static gd::string nameForType(GauntletType);
 	TodoReturn onClaimReward();
 }
 
@@ -7359,7 +7358,7 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 	static GJPathsLayer* create();
 
 	TodoReturn darkenButtons(bool);
-	TodoReturn nameForPath(int);
+	static gd::string nameForPath(int);
 	void onClose(cocos2d::CCObject* sender);
 	void onPath(cocos2d::CCObject* sender);
 
@@ -7662,11 +7661,11 @@ class GJSearchObject : cocos2d::CCNode {
 	static GJSearchObject* createFromKey(char const* key);
 
 	char const* getKey();
-	TodoReturn getNextPageKey();
-	TodoReturn getNextPageObject();
-	TodoReturn getPageObject(int page);
-	TodoReturn getPrevPageObject();
-	TodoReturn getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
+	const char* getNextPageKey();
+	GJSearchObject *getNextPageObject();
+	GJSearchObject *getPageObject(int page);
+	GJSearchObject *getPrevPageObject();
+	const char * getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
 	bool init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
 	bool isLevelSearchObject();
 
