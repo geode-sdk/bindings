@@ -9423,8 +9423,8 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	GJSearchObject* getSearchObject(SearchType, gd::string) = win 0x263ba0;
 	TodoReturn getTimeKey(int);
 	bool init(int) = win 0x260f10;
-	void onBack(cocos2d::CCObject* sender);
-	void onClearFreeSearch(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x2646e0;
+	void onClearFreeSearch(cocos2d::CCObject* sender) = win 0x2646a0;
 	void onClose(cocos2d::CCObject* sender);
 	void onFollowed(cocos2d::CCObject* sender);
 	void onFriends(cocos2d::CCObject* sender);
