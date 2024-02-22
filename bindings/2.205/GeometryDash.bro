@@ -6567,13 +6567,15 @@ class GJGameLevel : cocos2d::CCNode {
 	bool areCoinsVerified();
 	void copyLevelInfo (GJGameLevel * levelInfo);
 	void dataLoaded(DS_Dictionary *dsdict);
-	int demonIconForDifficulty(DemonDifficultyType);
-	TodoReturn generateSettingsString();
+	int demonIconForDifficulty(DemonDifficultyType diff);
+	void generateSettingsString();
 	gd::string getAudioFileName();
 	long getAverageDifficulty();
 	const char *getCoinKey(int unknInt);
+ 	int getLastBuildPageForTab(int page);
 	GJLength getLengthKey(int seconds, bool platformer);
 	GJGameLevel *getListSnapshot();
+	int getNormalPercent();
 	const char* getSongName();
 	gd::string getUnpackedLevelDescription();
 	void handleStatsConflict(GJGameLevel* otherLevel);
