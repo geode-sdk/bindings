@@ -6961,8 +6961,8 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onToggleItem(cocos2d::CCObject* sender) = win 0x1f3050;
 	TodoReturn playRainbowEffect() = win 0x1f3a00;
 	TodoReturn playShadowEffect();
-	inline static CCScene* scene() {
-		auto scene = CCScene::create();
+	inline static cocos2d::CCScene* scene() {
+		auto scene = cocos2d::CCScene::create();
 		scene->addChild(GJGarageLayer::node());
 		return scene;
 	}
