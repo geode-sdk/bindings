@@ -6554,7 +6554,6 @@ class GJFriendRequest : cocos2d::CCNode {
 [[link(android)]]
 class GJGameLevel : cocos2d::CCNode {
 	// virtual ~GJGameLevel();
-
 	static GJGameLevel* create();
 	static GJGameLevel* create(cocos2d::CCDictionary* dict, bool hasPassword);
 	inline static GJGameLevel* createWithCoder(DS_Dictionary* dict) {
@@ -6565,27 +6564,27 @@ class GJGameLevel : cocos2d::CCNode {
 	}
 
 	bool areCoinsVerified();
-	void copyLevelInfo (GJGameLevel * levelInfo);
-	void dataLoaded(DS_Dictionary *dsdict);
-	int demonIconForDifficulty(DemonDifficultyType diff);
-	void generateSettingsString();
+	void copyLevelInfo(GJGameLevel* levelInfo);
+	void dataLoaded(DS_Dictionary* );
+	static int demonIconForDifficulty(DemonDifficultyType);
+	gd::string generateSettingsString();
 	gd::string getAudioFileName();
-	long getAverageDifficulty();
-	const char *getCoinKey(int unknInt);
- 	int getLastBuildPageForTab(int page);
-	GJLength getLengthKey(int seconds, bool platformer);
-	GJGameLevel *getListSnapshot();
+	TodoReturn getAverageDifficulty();
+	char const* getCoinKey(int);
+	int getLastBuildPageForTab(int page);
+	int getLengthKey(int, bool);
+	GJGameLevel* getListSnapshot();
 	int getNormalPercent();
-	const char* getSongName();
+	TodoReturn getSongName();
 	gd::string getUnpackedLevelDescription();
-	void handleStatsConflict(GJGameLevel* otherLevel);
+	TodoReturn handleStatsConflict(GJGameLevel*);
 	inline bool isPlatformer() {
 		return m_levelLength == 5;
 	}
-	const char* lengthKeyToString(int lengthKey);
+	const char* lengthKeyToString(int);
 	void levelWasAltered();
 	void levelWasSubmitted();
-	void parseSettingsString(gd::string Settings);
+	void parseSettingsString(gd::string settings);
 	void saveNewScore(int newTime, int newPoints);
 	TodoReturn savePercentage(int, bool, int, int, bool);
 	TodoReturn scoreStringToVector(gd::string&, gd::vector<int>&);
@@ -6598,6 +6597,7 @@ class GJGameLevel : cocos2d::CCNode {
 	void setDailyID(int dailyID);
 	void setDemon(int demon);
 	void setJumps(int jumps);
+	void setLastBuildPageForTab(int, int);
 	void setLevelID(int levelID);
 	void setNewNormalPercent(int newNormalPercent);
 	void setNewNormalPercent2(int newNormalPercent2);
@@ -6606,7 +6606,7 @@ class GJGameLevel : cocos2d::CCNode {
 	void setOriginalLevel(int copiedID);
 	void setStars(int stars);
 	bool shouldCheatReset();
-	void storeNewLocalScore(int newTime, int newPoints);
+	TodoReturn storeNewLocalScore(int, int);
 	void unverifyCoins();
 
 	virtual void encodeWithCoder(DS_Dictionary* dsdict);
