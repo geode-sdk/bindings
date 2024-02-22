@@ -6605,6 +6605,7 @@ class GJGameLevel : cocos2d::CCNode {
 	void setObjectCount(int objectCount);
 	void setOriginalLevel(int copiedID);
 	void setStars(int stars);
+	bool shouldCheatReset();
 	void storeNewLocalScore(int newTime, int newPoints);
 	void unverifyCoins();
 
