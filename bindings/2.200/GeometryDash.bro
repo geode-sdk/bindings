@@ -9433,9 +9433,9 @@ class CCCircleAlert : CCCircleWave {
 
 [[link(android), depends(ChallengesPage), depends(GJChallengeItem)]]
 class ChallengeNode : cocos2d::CCNode {
-	static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool new) = mac 0x37bf50;
+	static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = mac 0x37bf50;
 
-	bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool new) = mac 0x37c510;
+	bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = mac 0x37c510;
 	~ChallengeNode();
 
 	void onClaimReward(cocos2d::CCObject* sender) = mac 0x37d120;
