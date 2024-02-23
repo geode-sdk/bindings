@@ -1296,11 +1296,17 @@ class CCURLObject : cocos2d::CCObject {
 class ChallengeNode : cocos2d::CCNode {
 	// virtual ~ChallengeNode();
 
-	static ChallengeNode* create(GJChallengeItem*, ChallengesPage*, bool) = win 0x5da50;
+	static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool new) = win 0x5da50;
 
-	bool init(GJChallengeItem*, ChallengesPage*, bool) = win 0x5db30;
+	bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool new) = win 0x5db30;
 	void onClaimReward(cocos2d::CCObject* sender);
-	TodoReturn updateTimeLabel(gd::string);
+	void updateTimeLabel(gd::string);
+
+	ChallengesPage* m_challengesPage;
+	GJChallengeItem* m_challengeItem;
+	cocos2d::CCPoint m_unkPoint;
+	cocos2d::CCLabelBMFont* m_countdownLabel;
+	bool m_unloaded;
 }
 
 [[link(android)]]

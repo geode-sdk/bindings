@@ -9433,14 +9433,20 @@ class CCCircleAlert : CCCircleWave {
 
 [[link(android)]]
 class ChallengeNode : cocos2d::CCNode {
-	static ChallengeNode* create(GJChallengeItem*, ChallengesPage*, bool) = mac 0x37bf50;
+	static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool new) = mac 0x37bf50;
 
-	bool init(GJChallengeItem*, ChallengesPage*, bool) = mac 0x37c510;
+	bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool new) = mac 0x37c510;
 	~ChallengeNode();
 
 	void onClaimReward(cocos2d::CCObject* sender) = mac 0x37d120;
 
-	TodoReturn updateTimeLabel(gd::string);
+	void updateTimeLabel(gd::string);
+
+	ChallengesPage* m_challengesPage;
+	GJChallengeItem* m_challengeItem;
+	cocos2d::CCPoint m_unkPoint;
+	cocos2d::CCLabelBMFont* m_countdownLabel;
+	bool m_unloaded;
 }
 
 [[link(android)]]
