@@ -4151,7 +4151,7 @@ class LabelGameObject : EffectGameObject {
 
 [[link(android)]]
 class SearchButton : cocos2d::CCSprite {
-	static SearchButton* create(char const* texture, char const* text, float size, char const* icon) = win 0x2608A0;
+	static SearchButton* create(char const* texture, char const* text, float size, char const* icon) = win 0x2608A0, mac 0x5ee970;
 
 	bool init(char const*, char const*, float, char const*) = mac 0x5f0c10, win 0x260990;
 	~SearchButton();
