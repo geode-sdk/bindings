@@ -8215,30 +8215,28 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 class GManager : cocos2d::CCNode {
 	// virtual ~GManager();
 
-	TodoReturn getCompressedSaveString();
-	TodoReturn getSaveString();
-	TodoReturn load();
-	TodoReturn loadDataFromFile(gd::string const&);
-	TodoReturn loadFromCompressedString(gd::string&);
-	TodoReturn loadFromString(gd::string&);
-	inline void save() {
-		saveGMTo(m_fileName);
-	}
-	TodoReturn saveData(DS_Dictionary*, gd::string);
-	TodoReturn saveGMTo(gd::string) = win 0x47580;
-	TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
-	inline GManager() {}
+	virtual void encodeDataTo(DS_Dictionary *dsdict);
+    	virtual bool dataLoaded(DS_Dictionary *dsdict);
+    	virtual bool firstLoad();
 
-	virtual bool init();
-	virtual TodoReturn setup() = win 0x472c0;
-	virtual TodoReturn encodeDataTo(DS_Dictionary*);
-	virtual TodoReturn dataLoaded(DS_Dictionary*);
-	virtual TodoReturn firstLoad();
+    	std::string getCompressedSaveString();
+    	std::string getSaveString();
+    	bool init();
+    	bool load();
+    	bool loadDataFromFile(std::string fileName);
+    	bool loadFromCompressedString(std::string compressedStr);
+    	bool loadFromString(std::string data);
 
-	gd::string m_fileName;
+    	void save();
+   	bool saveData(DS_Dictionary *dsdict, std::string fileName);
+   	void saveGMTo(std::string fileName);
+    	void setup();
+    	bool tryLoadData(DS_Dictionary* dsdict, std::string fileName);
+
+	std::string m_fileName;
 	bool m_setup;
 	bool m_saved;
-	bool m_quickSave;
+	bool m_quickSave;	
 }
 
 [[link(android)]]
