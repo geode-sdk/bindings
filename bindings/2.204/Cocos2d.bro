@@ -1200,3 +1200,8 @@ class cocos2d::CCDrawNode {
 	virtual bool init();
 	virtual void draw();
 }
+
+[[link(win, android)]]
+class cocos2d::CCSpriteBatchNode {
+    bool initWithTexture(cocos2d::CCTexture2D*, unsigned int);
+}
