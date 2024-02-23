@@ -8227,7 +8227,9 @@ class GManager : cocos2d::CCNode {
     	bool loadFromCompressedString(std::string compressedStr);
     	bool loadFromString(std::string data);
 
-    	void save();
+    	inline void save() {
+		saveGMTo(m_fileName);
+	}
    	bool saveData(DS_Dictionary *dsdict, std::string fileName);
    	void saveGMTo(std::string fileName);
     	void setup();
