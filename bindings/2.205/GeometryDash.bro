@@ -1277,7 +1277,7 @@ class CCURLObject : cocos2d::CCObject {
 	bool init(gd::string, gd::string);
 }
 
-[[link(android)]]
+[[link(android), depends(ChallengesPage), depends(GJChallengeItem)]]
 class ChallengeNode : cocos2d::CCNode {
 	// virtual ~ChallengeNode();
 

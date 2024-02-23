@@ -9431,7 +9431,7 @@ class CCCircleAlert : CCCircleWave {
 	~CCCircleAlert();
 }
 
-[[link(android)]]
+[[link(android), depends(ChallengesPage), depends(GJChallengeItem)]]
 class ChallengeNode : cocos2d::CCNode {
 	static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool new) = mac 0x37bf50;
 
