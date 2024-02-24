@@ -2438,7 +2438,7 @@ class DynamicBitset {
 
 [[link(android)]]
 class DynamicScrollDelegate {
-	virtual TodoReturn pure_virtual_00a34a60() {} // TODO: figure out what function this is
+	virtual void updatePageWithObject(cocos2d::CCObject* p0, cocos2d::CCObject* p1) {}
 }
 
 [[link(android)]]
@@ -9482,7 +9482,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 
 [[link(android)]]
 class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
-	// virtual ~LevelSelectLayer();
+	~LevelSelectLayer() = win 0x267bc0;
 
 	static LevelSelectLayer* create(int) = win 0x267c60;
 

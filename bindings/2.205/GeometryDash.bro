@@ -2434,7 +2434,7 @@ class DynamicBitset {
 
 [[link(android)]]
 class DynamicScrollDelegate {
-	virtual TodoReturn pure_virtual_00a34a60() {} // TODO: figure out what function this is
+	virtual void updatePageWithObject(cocos2d::CCObject* p0, cocos2d::CCObject* p1) {}
 }
 
 [[link(android)]]
