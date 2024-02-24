@@ -10768,7 +10768,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void setChannelPitch(int, AudioTargetType, float) = win 0x37620;
 	TodoReturn channelLinkSound(int, FMODSound*);
 	TodoReturn countActiveMusic();
-	TodoReturn getEffectsVolume() = mac 0x3c5050;
+	float getEffectsVolume() = mac 0x3c5050;
 	TodoReturn getMeteringValue();
 	TodoReturn getMusicLengthMS(int) = win 0x3a2e0;
 	TodoReturn getNextChannelID();
@@ -10809,7 +10809,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn fadeInBackgroundMusic(float);
 	TodoReturn getActiveMusicChannel(int);
 	TodoReturn updateTemporaryEffects();
-	TodoReturn getBackgroundMusicVolume() = mac 0x3c5010;
+	float getBackgroundMusicVolume() = mac 0x3c5010;
 	/* unverified signature */
 	void setBackgroundMusicVolume(float);
 	TodoReturn queuedEffectFinishedLoading(gd::string) = win 0x38f60;

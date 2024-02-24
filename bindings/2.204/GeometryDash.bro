@@ -3638,9 +3638,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn fadeOutMusic(float, int);
 	TodoReturn getActiveMusic(int) = win 0x3a940;
 	TodoReturn getActiveMusicChannel(int);
-	TodoReturn getBackgroundMusicVolume();
+	float getBackgroundMusicVolume();
 	TodoReturn getChannelGroup(int, bool) = win 0x35240;
-	TodoReturn getEffectsVolume();
+	float getEffectsVolume();
 	TodoReturn getFMODStatus(int) = win 0x3b0f0;
 	TodoReturn getMeteringValue();
 	TodoReturn getMusicChannelID(int);
