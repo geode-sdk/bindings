@@ -4973,8 +4973,8 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn activateObject();
 	virtual void deactivateObject(bool) = win 0x133790;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = win 0x13a500;
-	virtual TodoReturn getObjectRect() = win 0x13a570;
-	virtual TodoReturn getObjectRect(float, float) = win 0x13a570;
+	virtual cocos2d::CCRect const& getObjectRect() = win 0x13a570;
+	virtual cocos2d::CCRect getObjectRect(float, float) = win 0x13a570;
 	virtual TodoReturn getObjectRect2(float, float);
 	virtual TodoReturn getObjectTextureRect();
 	virtual cocos2d::CCPoint getRealPosition();
@@ -6242,7 +6242,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	UILayer* m_uiLayer;
 	PAD = win 0x38;
 	gd::vector<GameObject*> m_sections;
-	PAD = win 0x12a;
+	PAD = win 0x119;
+	cocos2d::CCDrawNode* m_debugDrawNode;
+	PAD = win 0x4;
+	bool m_isDebugDrawEnabled;
+	PAD = win 0x8;
 }
 
 [[link(android)]]
