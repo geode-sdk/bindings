@@ -4736,7 +4736,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getPathRewardKey(int);
 	TodoReturn getSecretCoinKey(char const*);
 	int getItemUnlockState(int, UnlockType) = mac 0x77e40;
-	TodoReturn getQueuedChallenge(int);
+	GJChallengeItem* getQueuedChallenge(int);
 	TodoReturn getCompletedMapPacks();
 	TodoReturn getGauntletRewardKey(int) = mac 0x78490;
 	TodoReturn getNextVideoAdReward();
@@ -9431,16 +9431,22 @@ class CCCircleAlert : CCCircleWave {
 	~CCCircleAlert();
 }
 
-[[link(android)]]
+[[link(android), depends(ChallengesPage), depends(GJChallengeItem)]]
 class ChallengeNode : cocos2d::CCNode {
-	static ChallengeNode* create(GJChallengeItem*, ChallengesPage*, bool) = mac 0x37bf50;
+	static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = mac 0x37bf50;
 
-	bool init(GJChallengeItem*, ChallengesPage*, bool) = mac 0x37c510;
+	bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = mac 0x37c510;
 	~ChallengeNode();
 
 	void onClaimReward(cocos2d::CCObject* sender) = mac 0x37d120;
 
-	TodoReturn updateTimeLabel(gd::string);
+	void updateTimeLabel(gd::string);
+
+	ChallengesPage* m_challengesPage;
+	GJChallengeItem* m_challengeItem;
+	cocos2d::CCPoint m_unkPoint;
+	cocos2d::CCLabelBMFont* m_countdownLabel;
+	bool m_unloaded;
 }
 
 [[link(android)]]
@@ -9948,7 +9954,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	TodoReturn updateTimers(float);
 	TodoReturn exitNodeAtSlot(int, float);
 	TodoReturn tryGetChallenges();
-	TodoReturn createChallengeNode(int, bool, float, bool) = mac 0x37b890;
+	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = mac 0x37b890;
 	TodoReturn claimItem(ChallengeNode*, GJChallengeItem*, cocos2d::CCPoint);
 
 	virtual bool init() = mac 0x37abe0;
@@ -9959,6 +9965,14 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	virtual TodoReturn challengeStatusFinished();
 	virtual TodoReturn challengeStatusFailed();
 	virtual TodoReturn currencyWillExit(CurrencyRewardLayer*);
+	
+	cocos2d::CCArray* m_dots;
+	cocos2d::CCLabelBMFont* m_countdownLabel;
+	LoadingCircle* m_circle;
+	bool m_triedToLoad;
+	bool m_unkBool;
+	CurrencySpriteType m_currencySpriteType;
+	cocos2d::CCDictionary* m_challengeNodes;
 }
 
 [[link(android)]]
