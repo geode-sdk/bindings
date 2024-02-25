@@ -5,7 +5,6 @@ namespace { namespace format_strings {
 #include <stdexcept>
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/addresser.hpp>
-#include <Geode/modify/Addresses.hpp>
 #include <Geode/modify/Traits.hpp>
 #include <Geode/loader/Tulip.hpp>
 
