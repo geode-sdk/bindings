@@ -1816,12 +1816,13 @@ class cocos2d::CCTransitionScene {
 	void finish();
 	void hideOutShowIn();
 
-	// TODO: ok im sleeping someone can go find these 
+	~CCTransitionScene() = mac 0xd0620;
 
-	virtual void onEnter() = mac 0x352727;
-	virtual void onExit() = mac 0x352727;
-	virtual void cleanup() = mac 0x352727;
-	virtual void draw() = mac 0x352727;
-	virtual bool initWithDuration(float, cocos2d::CCScene*) = mac 0x352727;
-	virtual void sceneOrder() = mac 0x352727;
+    virtual void onEnter() = mac 0xd0a90;
+    virtual void onExit() = mac 0xd0ae0;
+    virtual void cleanup() = mac 0xd0b40;
+    virtual void draw() = mac 0xd0840;
+    virtual bool initWithDuration(float, cocos2d::CCScene*) = mac 0xd07a0;
+    virtual void sceneOrder() = mac 0xd0830;
+}
 }
