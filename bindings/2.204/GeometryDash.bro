@@ -1337,7 +1337,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	LoadingCircle* m_circle;
 	bool m_triedToLoad;
 	bool m_unkBool;
-	CurrencySpriteType m_currencySpriteType;
+	CurrencyRewardLayer* m_currencyRewardLayer;
 	cocos2d::CCDictionary* m_challengeNodes;
 }
 
