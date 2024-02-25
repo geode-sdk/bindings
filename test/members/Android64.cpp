@@ -132,4 +132,7 @@ GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x338);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedMode, 0x4e8);
 // GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x528);
 
+GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x290)
+GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x2B8)
+
 #endif

@@ -9,7 +9,6 @@ namespace {
         char const* modify_start = R"GEN(#pragma once
 #include <Geode/modify/Modify.hpp>
 #include <Geode/modify/Field.hpp>
-#include <Geode/modify/Addresses.hpp>
 {class_include}
 using namespace geode::modifier;
 namespace geode::modifier {{

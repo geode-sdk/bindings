@@ -2964,7 +2964,7 @@ class GameToolbox {
 	static TodoReturn fast_rand_0_1();
 	static TodoReturn getEasedValue(float, int, float);
 	static TodoReturn getfast_srand();
-	static TodoReturn getTimeString(int);
+	static gd::string getTimeString(int) = mac 0x4cc860;
 	static TodoReturn hsvFromString(gd::string const&, char const*);
 	static TodoReturn postClipVisit();
 	static TodoReturn stringFromHSV(cocos2d::_ccHSVValue, char const*);
@@ -4299,7 +4299,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn onSetLevelStarsCompleted(gd::string, gd::string) = mac 0x4f7490;
 	TodoReturn onUploadCommentCompleted(gd::string, gd::string) = mac 0x4f8670, win 0x108c30;
 	TodoReturn onSubmitUserInfoCompleted(gd::string, gd::string);
-	TodoReturn onGetGJChallengesCompleted(gd::string, gd::string);
+	TodoReturn onGetGJChallengesCompleted(gd::string, gd::string) = mac 0x4fe0c0;
 	TodoReturn onGetOnlineLevelsCompleted(gd::string, gd::string) = mac 0x4f5930, win 0xFC270;
 	TodoReturn onGetUserMessagesCompleted(gd::string, gd::string);
 	TodoReturn onUpdateUserScoreCompleted(gd::string, gd::string) = mac 0x4f7640;
@@ -4736,7 +4736,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getPathRewardKey(int);
 	TodoReturn getSecretCoinKey(char const*);
 	int getItemUnlockState(int, UnlockType) = mac 0x77e40;
-	GJChallengeItem* getQueuedChallenge(int);
+	GJChallengeItem* getQueuedChallenge(int) = mac 0x73830;
 	TodoReturn getCompletedMapPacks();
 	TodoReturn getGauntletRewardKey(int) = mac 0x78490;
 	TodoReturn getNextVideoAdReward();
@@ -4751,7 +4751,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getTotalCollectedDiamonds();
 	int getAwardedCurrencyForLevel(GJGameLevel*) = mac 0x6ffb0, win 0x16F680;
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*) = mac 0x70720;
-	TodoReturn getSecondaryQueuedChallenge(int);
+	GJChallengeItem* getSecondaryQueuedChallenge(int) = mac 0x73910;
 	TodoReturn getSpecialRewardDescription(gd::string, bool);
 	TodoReturn getSpecialUnlockDescription(int, UnlockType, bool) = mac 0x789e0;
 	TodoReturn getStat(char const*) = win 0x168680, mac 0x66800;
@@ -4823,7 +4823,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn completedStarLevel(GJGameLevel*) = mac 0x6d730, win 0x16d970;
 	TodoReturn hasPendingUserCoin(char const*) = mac 0x6f3c0, win 0x16ee40;
 	TodoReturn incrementChallenge(GJChallengeType, int) = win 0x170E40;
-	TodoReturn storeChallengeTime(int);
+	TodoReturn storeChallengeTime(int) = mac 0x73130;
 	TodoReturn unlockSpecialChest(gd::string) = win 0x177940;
 	TodoReturn areChallengesLoaded() = mac 0x731b0;
 	TodoReturn completedDailyLevel(GJGameLevel*);
@@ -7298,6 +7298,11 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
 	virtual TodoReturn show();
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
+
+	CCTextInputNode* m_input;
+	bool m_disableDelegate;
+	gd::string m_value;
+	SetTextPopupDelegate* m_delegate;
 }
 
 
@@ -8047,7 +8052,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 [[link(android)]]
 class GJChallengeItem : cocos2d::CCObject {
 	static GJChallengeItem* create(GJChallengeType, int, int, int, gd::string);
-	static GJChallengeItem* create();
+	static GJChallengeItem* create() = mac 0x8b120;
 
 	bool init(GJChallengeType, int, int, int, gd::string);
 	~GJChallengeItem();
@@ -8055,7 +8060,7 @@ class GJChallengeItem : cocos2d::CCObject {
 	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x8b3c0;
 	TodoReturn incrementCount(int);
 	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x8b350;
-	TodoReturn createFromString(gd::string);
+	TodoReturn createFromString(gd::string) = mac 0x8af60;
 
 	virtual void encodeWithCoder(DS_Dictionary*);
 	virtual bool canEncode();
@@ -9951,7 +9956,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	void onClose(cocos2d::CCObject* sender);
 
 	TodoReturn updateDots();
-	TodoReturn updateTimers(float);
+	TodoReturn updateTimers(float) = mac 0x37b650;
 	TodoReturn exitNodeAtSlot(int, float);
 	TodoReturn tryGetChallenges();
 	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = mac 0x37b890;
@@ -9971,7 +9976,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	LoadingCircle* m_circle;
 	bool m_triedToLoad;
 	bool m_unkBool;
-	CurrencySpriteType m_currencySpriteType;
+	CurrencyRewardLayer* m_currencyRewardLayer;
 	cocos2d::CCDictionary* m_challengeNodes;
 }
 
