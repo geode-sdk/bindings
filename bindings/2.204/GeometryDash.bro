@@ -4981,7 +4981,7 @@ class GameObject : CCSpritePlus {
 	virtual void setStartPos(cocos2d::CCPoint);
 	virtual TodoReturn updateStartValues();
 	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x13f9a0;
 	virtual TodoReturn claimParticle();
 	virtual TodoReturn unclaimParticle();
 	virtual TodoReturn particleWasActivated();
@@ -8908,7 +8908,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn copyParticleState(ParticleGameObject*);
 	GameObject* createObject(int, cocos2d::CCPoint, bool) = win 0x23bf10;
 	void createObjectsFromSetup(gd::string&) = win 0x23b330;
-	TodoReturn createObjectsFromString(gd::string const&, bool, bool) = win 0x23b970;
+	cocos2d::CCArray* createObjectsFromString(gd::string const&, bool, bool) = win 0x23b970;
 	TodoReturn dirtifyTriggers();
 	TodoReturn duplicateKeyframeAnimation(int);
 	TodoReturn fastUpdateDisabledGroups();
