@@ -1804,3 +1804,24 @@ class DS_Dictionary {
 	void stepOutOfSubDict();
 	bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
 }
+
+[[link(win, android)]]
+class cocos2d::CCTransitionScene {
+	static cocos2d::CCTransitionScene* create(float, cocos2d::CCScene*);
+
+	void setNewScene(float);
+
+	// CCTransitionScene(cocos2d::CCTransitionScene const&);
+	// CCTransitionScene();
+	void finish();
+	void hideOutShowIn();
+
+	// TODO: ok im sleeping someone can go find these 
+
+	virtual void onEnter() = mac 0x352727;
+	virtual void onExit() = mac 0x352727;
+	virtual void cleanup() = mac 0x352727;
+	virtual void draw() = mac 0x352727;
+	virtual bool initWithDuration(float, cocos2d::CCScene*) = mac 0x352727;
+	virtual void sceneOrder() = mac 0x352727;
+}

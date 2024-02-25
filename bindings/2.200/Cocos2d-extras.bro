@@ -4664,25 +4664,6 @@ class cocos2d::CCTransitionRotoZoom {
 }
 
 [[link(win, android)]]
-class cocos2d::CCTransitionScene {
-	static cocos2d::CCTransitionScene* create(float, cocos2d::CCScene*);
-
-	void setNewScene(float);
-
-	// CCTransitionScene(cocos2d::CCTransitionScene const&);
-	// CCTransitionScene();
-	void finish();
-	void hideOutShowIn();
-
-	virtual void onEnter();
-	virtual void onExit();
-	virtual void cleanup();
-	virtual void draw();
-	virtual bool initWithDuration(float, cocos2d::CCScene*);
-	virtual void sceneOrder();
-}
-
-[[link(win, android)]]
 class cocos2d::CCTransitionSceneOriented {
 	static cocos2d::CCTransitionSceneOriented* create(float, cocos2d::CCScene*, cocos2d::tOrientation);
 
