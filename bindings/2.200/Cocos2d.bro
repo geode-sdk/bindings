@@ -344,6 +344,7 @@ class cocos2d::CCScene {
 
 	// CCScene(cocos2d::CCScene const&);
 	// CCScene();
+	~CCScene() = mac 0x26ebc0;
 
 	virtual bool init() = mac 0x26ebf0;
 }
