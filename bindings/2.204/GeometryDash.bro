@@ -1321,7 +1321,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn tryGetChallenges();
 	TodoReturn updateDots();
-	callback void updateTimers(float);
+	callback void updateTimers(float) = win 0x5d450;
 
 	virtual bool init() = win 0x5c560;
 	virtual void registerWithTouchDispatcher();
@@ -4561,7 +4561,7 @@ class GameManager : GManager {
 	void setGameVariable(char const*, bool) = win 0x1284e0;
 	void setHasRatingPower(int);
 	void setIntGameVariable(char const*, int) = win 0x128b80;
-	void setPlayerUserID(int);
+	void setPlayerUserID(int) = win 0xf3760;
 	void setUGV(char const*, bool) = win 0x1288d0;
 	TodoReturn setupGameAnimations() = win 0x14b280;
 	gd::string sheetNameForIcon(int, int) = win 0x1279a0;
@@ -5289,8 +5289,8 @@ class GameStatsManager : cocos2d::CCNode {
 	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x171d90;
 	TodoReturn getBaseDiamonds(int);
 	TodoReturn getBonusDiamonds(int);
-	TodoReturn getChallenge(int) = win 0x173400;
-	TodoReturn getChallengeKey(GJChallengeItem*);
+	GJChallengeItem* getChallenge(int) = win 0x173400;
+	TodoReturn getChallengeKey(GJChallengeItem*) = win 0x1738f0;
 	int getCollectedCoinsForLevel(GJGameLevel*) = win 0x16fa70;
 	TodoReturn getCompletedMapPacks();
 	TodoReturn getCurrencyKey(GJGameLevel*) = win 0x171c70;
@@ -5311,7 +5311,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getRewardForSpecialChest(gd::string);
 	TodoReturn getRewardItem(GJRewardType);
 	TodoReturn getRewardKey(GJRewardType, int);
-	TodoReturn getSecondaryQueuedChallenge(int) = win 0x1735a0;
+	GJChallengeItem* getSecondaryQueuedChallenge(int) = win 0x1735a0;
 	TodoReturn getSecretChestForItem(int, UnlockType);
 	TodoReturn getSecretCoinKey(char const*);
 	TodoReturn getSpecialChestKeyForItem(int, UnlockType) = win 0x179c70;
@@ -5325,7 +5325,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getTotalCollectedCurrency() = win 0x1740d0;
 	TodoReturn getTotalCollectedDiamonds();
 	bool hasClaimedListReward(GJLevelList*) = win 0x173bf0;
-	bool hasCompletedChallenge(GJChallengeItem*);
+	bool hasCompletedChallenge(GJChallengeItem*) = win 0x173970;
 	bool hasCompletedDailyLevel(int) = win 0x173de0;
 	bool hasCompletedDemonLevel(GJGameLevel*) = win 0x16fe00;
 	bool hasCompletedGauntletLevel(int);
@@ -5386,11 +5386,11 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn shouldAwardSecretKey();
 	TodoReturn starsForMapPack(int);
 	TodoReturn storeChallenge(int, GJChallengeItem*) = win 0x172f20;
-	TodoReturn storeChallengeTime(int);
+	TodoReturn storeChallengeTime(int) = win 0x172ea0;
 	TodoReturn storePendingUserCoin(char const*);
 	TodoReturn storeQueuedChallenge(int, GJChallengeItem*) = win 0x1730c0;
 	TodoReturn storeRewardState(GJRewardType, int, int, gd::string);
-	TodoReturn storeSecondaryQueuedChallenge(int, GJChallengeItem*);
+	TodoReturn storeSecondaryQueuedChallenge(int, GJChallengeItem*) = win 0x173260;
 	TodoReturn storeSecretCoin(char const*);
 	TodoReturn storeUserCoin(char const*);
 	TodoReturn tempClear();
@@ -5487,7 +5487,7 @@ class GameToolbox {
 	static TodoReturn getMultipliedHSV(cocos2d::ccHSVValue const&, float);
 	static TodoReturn getRelativeOffset(GameObject*, cocos2d::CCPoint) = win 0x41300;
 	static TodoReturn getResponse(cocos2d::extension::CCHttpResponse*);
-	static TodoReturn getTimeString(int);
+	static gd::string getTimeString(int) = win 0x426b0;
 	static TodoReturn hsvFromString(gd::string const&, char const*);
 	static TodoReturn intToShortString(int);
 	static TodoReturn intToString(int) = win 0x453a0;
@@ -5743,7 +5743,7 @@ class GJAssetDownloadAction {
 
 [[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
-	~GJBaseGameLayer() = win 0x18e1b0;
+	~GJBaseGameLayer() = win 0x18ef50;
 	// GJBaseGameLayer() = win 0x237ce0;
 
 	TodoReturn activateCustomRing(RingObject*);
@@ -6280,13 +6280,13 @@ class GJChallengeItem : cocos2d::CCObject {
 	// virtual ~GJChallengeItem();
 
 	static GJChallengeItem* create();
-	static GJChallengeItem* create(GJChallengeType, int, int, int, gd::string);
+	static GJChallengeItem* create(GJChallengeType, int, int, int, gd::string) = win 0x182900;
 
-	TodoReturn createFromString(gd::string);
+	TodoReturn createFromString(gd::string) = win 0x1827c0;
 	TodoReturn createWithCoder(DS_Dictionary*) = win 0x182ab0;
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn incrementCount(int);
-	bool init(GJChallengeType, int, int, int, gd::string);
+	bool init(GJChallengeType, int, int, int, gd::string) = win 0x1829d0;
 	void setCount(int);
 
 	virtual void encodeWithCoder(DS_Dictionary*);
@@ -12149,7 +12149,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 
 	TodoReturn addGroupID(int) = win 0x314320;
 	void callRemoveFromGroup(float); // win 0x313ea0
-	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int) = win 0x1bb10; // win 0x312b40
+	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int) = win 0x312b40;
 	TodoReturn determineStartValues() = win 0x313130;
 	bool init(GameObject* obj, cocos2d::CCArray* objs) = win 0x310d80;
 	void onAddGroup(cocos2d::CCObject* sender) = win 0x313fd0;
