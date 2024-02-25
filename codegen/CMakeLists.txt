@@ -13,7 +13,6 @@ file(GLOB SOURCES
 add_executable(${PROJECT_NAME}
 	# glob sucks so just list em out
 	src/Main.cpp
-	src/AddressGen.cpp
 	src/AndroidSymbol.cpp
 	src/BindingGen.cpp
 	src/JsonInterfaceGen.cpp
