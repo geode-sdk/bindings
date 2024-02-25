@@ -7298,6 +7298,11 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
 	virtual TodoReturn show();
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
+
+	CCTextInputNode* m_input;
+	bool m_disableDelegate;
+	gd::string m_value;
+	SetTextPopupDelegate* m_delegate;
 }
 
 

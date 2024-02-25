@@ -12300,7 +12300,7 @@ class SetTargetIDLayer : SetupTriggerPopup {
 class SetTextPopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~SetTextPopup();
 
-	static SetTextPopup* create(gd::string, gd::string, int, gd::string, gd::string, bool, float) = win 0x211180;
+	static SetTextPopup* create(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float) = win 0x211180;
 
 	bool init(gd::string, gd::string, int, gd::string, gd::string, bool, float) = win 0x211340;
 	void onCancel(cocos2d::CCObject* sender);
@@ -12309,9 +12309,14 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateTextInputLabel();
 
 	virtual void keyBackClicked();
-	virtual void show();
+	virtual void show() = win 0x61860;
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*);
+
+	CCTextInputNode* m_input;
+	bool m_disableDelegate;
+	gd::string m_value;
+	SetTextPopupDelegate* m_delegate;
 }
 
 [[link(android)]]
