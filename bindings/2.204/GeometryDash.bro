@@ -2544,18 +2544,6 @@ class EditorOptionsLayer : GJOptionsLayer {
 }
 
 [[link(android)]]
-class GameLevelOptionsLayer : GJOptionsLayer {
-    // virtual ~GameLevelOptionsLayer();
-
-    static GameLevelOptionsLayer* create(GJGameLevel*);
-
-    bool init(GJGameLevel*);
-
-    virtual TodoReturn setupOptions() = win 0x213d20;
-    virtual TodoReturn didToggle(int);
-}
-
-[[link(android)]]
 class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	// virtual ~EditorPauseLayer();
 	// EditorPauseLayer() = win 0x9fd40;
@@ -6248,7 +6236,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unk2aa4;
 	EndPortalObject* m_endPortal;
 	bool m_isTestMode;
-	PAD = win 0xa0; // wrong, android32 0xba, android64 0xf0;
+	PAD = win 0x23;
+	bool m_started;
+	PAD = win 0x7C; // wrong, android32 0xba - 0x24, android64 0xf0 - 0x24;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = win 0xb0;
 	UILayer* m_uiLayer;
