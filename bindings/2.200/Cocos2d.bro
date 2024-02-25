@@ -1825,4 +1825,3 @@ class cocos2d::CCTransitionScene {
     virtual bool initWithDuration(float, cocos2d::CCScene*) = mac 0xd07a0;
     virtual void sceneOrder() = mac 0xd0830;
 }
-}
