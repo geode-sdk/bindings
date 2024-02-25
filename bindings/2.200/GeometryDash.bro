@@ -2964,7 +2964,7 @@ class GameToolbox {
 	static TodoReturn fast_rand_0_1();
 	static TodoReturn getEasedValue(float, int, float);
 	static TodoReturn getfast_srand();
-	static gd::string getTimeString(int);
+	static gd::string getTimeString(int) = mac 0x4cc860;
 	static TodoReturn hsvFromString(gd::string const&, char const*);
 	static TodoReturn postClipVisit();
 	static TodoReturn stringFromHSV(cocos2d::_ccHSVValue, char const*);
