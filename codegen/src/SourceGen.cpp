@@ -35,6 +35,34 @@ auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadat
 	}}
 	return wrapped.unwrap();
 }
+
+// So apparently Clang considers cdecl to return floats through ST0, whereas 
+// MSVC thinks they are returned through XMM0. This has caused a lot of pain 
+// and misery for me
+
+#if defined(GEODE_IS_WINDOWS) && defined(__clang__) 
+#define SHOULD_DO_CLANG_FLOAT_FIX
+
+// This should never be instantiated, except for floats!
+template <class T>
+T handleFloatReturnOnClang();
+
+template <>
+float handleFloatReturnOnClang() {{
+	// This creates a dummy variable for extracting the actual return value 
+	// from xmm0
+	float real;
+	__asm movss real, xmm0
+	return real;
+}}
+
+template <>
+double handleFloatReturnOnClang() {{
+	double real;
+	__asm movsd real, xmm0
+	return real;
+}}
+#endif
 )CAC";
 
 	char const* declare_member = R"GEN(
@@ -44,6 +72,13 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 	}});
+#ifdef SHOULD_DO_CLANG_FLOAT_FIX
+	using RetType = decltype({function_name}({arguments}));
+	if constexpr (std::is_floating_point_v<RetType>) {{
+		reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
+		return handleFloatReturnOnClang<RetType>();
+	}}
+#endif
 	return reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 }}
 )GEN";
@@ -56,6 +91,13 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 	}});
+#ifdef SHOULD_DO_CLANG_FLOAT_FIX
+	using RetType = decltype({function_name}({arguments}));
+	if constexpr (std::is_floating_point_v<RetType>) {{
+		reinterpret_cast<FunctionType>(func)(self{parameter_comma}{arguments});
+		return handleFloatReturnOnClang<RetType>();
+	}}
+#endif
 	return reinterpret_cast<FunctionType>(func)(self{parameter_comma}{arguments});
 }}
 )GEN";
@@ -67,6 +109,13 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 	}});
+#ifdef SHOULD_DO_CLANG_FLOAT_FIX
+	using RetType = decltype({function_name}({arguments}));
+	if constexpr (std::is_floating_point_v<RetType>) {{
+		reinterpret_cast<FunctionType>(func)({arguments});
+		return handleFloatReturnOnClang<RetType>();
+	}}
+#endif
 	return reinterpret_cast<FunctionType>(func)({arguments});
 }}
 )GEN";

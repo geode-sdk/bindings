@@ -206,9 +206,9 @@ GEODE_SIZE_CHECK(EffectGameObject, 0x678);
 GEODE_MEMBER_CHECK(EffectGameObject, m_opacity, 0x508);
 GEODE_MEMBER_CHECK(EffectGameObject, m_isTouchTriggered, 0x518);
 
-GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
-GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);
-GEODE_MEMBER_CHECK(GJSongBrowser, m_songID, 0x1f0);
+GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1d8);
+GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1e8);
+GEODE_MEMBER_CHECK(GJSongBrowser, m_songID, 0x1ec);
 
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_level, 0x168);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x1d0);
