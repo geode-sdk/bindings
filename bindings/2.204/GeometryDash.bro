@@ -11378,7 +11378,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn updateEffectPositions() = win 0x2e7130;
 	TodoReturn updateInfoLabel() = win 0x2e5ad0;
 	TodoReturn updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&);
-	TodoReturn updateProgressbar() = win 0x2e5440;
+	void updateProgressbar() = win 0x2e5440;
 	TodoReturn updateScreenRotation(int, bool, bool, float, int, float, int, int);
 	TodoReturn updateTimeWarp(EffectGameObject*, float) = win 0x1b9700;
 
