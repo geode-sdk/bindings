@@ -6208,7 +6208,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCDrawNode* m_debugDrawNode; // android32 = 0x2d50, android64 = 0x3668
 	PAD = android32 0x4, android64 0x8;
 	bool m_isDebugDrawEnabled;
-	PAD = android32 0x4, android64 0x8;
+	PAD = android32 0x5, android64 0x9;
 }
 
 [[link(android)]]
