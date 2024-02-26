@@ -1211,8 +1211,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void flipObjects() = win 0x1c4540;
 	void moveObjects(cocos2d::CCArray*, double, double, bool) = win 0x1ADE90;
 	void queueButton(int, bool, bool) = win 0x1B19C0, mac 0x1375f0;
-	TodoReturn resetCamera() = win 0x1BE060, mac 0x145830;
-	TodoReturn resetPlayer() = win 0x195ED5, mac 0x10e540;
+	void resetCamera() = win 0x1BE060, mac 0x145830;
+	void resetPlayer() = win 0x195ED5, mac 0x10e540;
 	void resumeAudio() = win 0x1B74C0;
 	void setupLayers() = win 0x18ddc0;
 	TodoReturn setupReplay(gd::string);
@@ -1862,7 +1862,7 @@ class GameManager : GManager {
 	/* unverified signature */
 	void setGameVariable(char const*, bool) = win 0x1266D0, mac 0x361260;
 	TodoReturn unlockedPremium();
-	TodoReturn updateCustomFPS() = win 0x12cd40, mac 0x369260;
+	void updateCustomFPS() = win 0x12cd40, mac 0x369260;
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int);
 	TodoReturn didExitPlayscene() = mac 0x3683a0;
 	TodoReturn getIconRequestID() = mac 0x360540;
@@ -3426,8 +3426,8 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn activateObject() = mac 0x571c40;
 	virtual TodoReturn deactivateObject(bool) = win 0x131860, mac 0x571fb0;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = win 0x1383E0, mac 0x582cb0;
-	virtual TodoReturn getObjectRect();
-	virtual TodoReturn getObjectRect(float, float) = win 0x138430, mac 0x582d50;
+	virtual cocos2d::CCRect const& getObjectRect();
+	virtual cocos2d::CCRect getObjectRect(float, float) = win 0x138430, mac 0x582d50;
 	virtual TodoReturn getObjectRect2(float, float) = mac 0x582f90;
 	virtual TodoReturn getObjectTextureRect() = mac 0x583060;
 	virtual TodoReturn getRealPosition();
@@ -9744,10 +9744,10 @@ class MenuGameLayer : cocos2d::CCLayer {
 
 	TodoReturn getBGColor(int);
 
-	TodoReturn resetPlayer() = mac 0x4d52a0;
+	void resetPlayer() = mac 0x4d52a0;
 	TodoReturn updateColor(float);
 	TodoReturn updateColors();
-	TodoReturn destroyPlayer() = mac 0x4d5e50;
+	void destroyPlayer() = mac 0x4d5e50;
 	TodoReturn tryJump(float);
 
 	virtual void update(float) = win 0x274F10, mac 0x4d5ae0;
