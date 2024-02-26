@@ -786,33 +786,6 @@ class cocos2d::CCDouble {
 	double getValue() const;
 }
 
-[[link(win, android)]]
-class cocos2d::CCDrawNode {
-	static cocos2d::CCDrawNode* create();
-
-	cocos2d::_ccBlendFunc getBlendFunc() const;
-
-	void setBlendFunc(cocos2d::_ccBlendFunc const&);
-
-	// CCDrawNode(cocos2d::CCDrawNode const&);
-	// CCDrawNode();
-	void clear();
-	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int);
-	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
-	void drawDot(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
-	void drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::_ccColor4F const&);
-	void drawPolygon(cocos2d::CCPoint*, unsigned int, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&);
-	void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
-	void drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&);
-	void drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
-	void ensureCapacity(unsigned int);
-	void listenBackToForeground(cocos2d::CCObject*);
-	void render();
-
-	virtual bool init();
-	virtual void draw();
-}
-
 // [[link(win)]]
 // class cocos2d::CCEGLView {
 // 	// CCEGLView();
@@ -4661,25 +4634,6 @@ class cocos2d::CCTransitionRotoZoom {
 	// CCTransitionRotoZoom();
 
 	virtual void onEnter();
-}
-
-[[link(win, android)]]
-class cocos2d::CCTransitionScene {
-	static cocos2d::CCTransitionScene* create(float, cocos2d::CCScene*);
-
-	void setNewScene(float);
-
-	// CCTransitionScene(cocos2d::CCTransitionScene const&);
-	// CCTransitionScene();
-	void finish();
-	void hideOutShowIn();
-
-	virtual void onEnter();
-	virtual void onExit();
-	virtual void cleanup();
-	virtual void draw();
-	virtual bool initWithDuration(float, cocos2d::CCScene*);
-	virtual void sceneOrder();
 }
 
 [[link(win, android)]]
