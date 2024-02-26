@@ -8162,7 +8162,7 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 class GManager : cocos2d::CCNode {
 	// virtual ~GManager();
 
-	TodoReturn getCompressedSaveString();
+	gd::string getCompressedSaveString();
 	gd::string getSaveString();
 	bool load();
 	bool loadDataFromFile(gd::string const& fileName);
