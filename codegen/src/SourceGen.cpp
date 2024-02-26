@@ -1,11 +1,10 @@
 #include "Shared.hpp"
 
 namespace { namespace format_strings {
-	char const* source_start = R"CAC(
+	char const* source_start = R"GEN(
 #include <stdexcept>
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/addresser.hpp>
-#include <Geode/modify/Addresses.hpp>
 #include <Geode/modify/Traits.hpp>
 #include <Geode/loader/Tulip.hpp>
 
@@ -35,7 +34,12 @@ auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadat
 	}}
 	return wrapped.unwrap();
 }
-)CAC";
+
+// So apparently Clang considers cdecl to return floats through ST0, whereas 
+// MSVC thinks they are returned through XMM0. This has caused a lot of pain 
+// and misery for me
+
+)GEN";
 
 	char const* declare_member = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
