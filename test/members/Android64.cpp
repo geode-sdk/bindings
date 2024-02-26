@@ -22,7 +22,7 @@ GEODE_SIZE_CHECK(BoomListView, 0x1d0);
 GEODE_SIZE_CHECK(CustomListView, 0x1d8);
 GEODE_SIZE_CHECK(CCMenuItemSpriteExtra, 0x1d8);
 GEODE_SIZE_CHECK(LoadingLayer, 0x1c8);
-GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
+GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
 GEODE_SIZE_CHECK(TableViewCell, 0x218);
 GEODE_SIZE_CHECK(Slider, 0x1c8);
 GEODE_SIZE_CHECK(SliderTouchLogic, 0x1e0);
@@ -131,5 +131,8 @@ GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x300);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x338);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedMode, 0x4e8);
 // GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x528);
+
+GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x290)
+GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x2B8)
 
 #endif

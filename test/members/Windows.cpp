@@ -206,9 +206,9 @@ GEODE_SIZE_CHECK(EffectGameObject, 0x678);
 GEODE_MEMBER_CHECK(EffectGameObject, m_opacity, 0x508);
 GEODE_MEMBER_CHECK(EffectGameObject, m_isTouchTriggered, 0x518);
 
-GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1dc);
-GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1ec);
-GEODE_MEMBER_CHECK(GJSongBrowser, m_songID, 0x1f0);
+GEODE_MEMBER_CHECK(GJDropDownLayer, m_delegate, 0x1d8);
+GEODE_MEMBER_CHECK(GJSongBrowser, m_page, 0x1e8);
+GEODE_MEMBER_CHECK(GJSongBrowser, m_songID, 0x1ec);
 
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_level, 0x168);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x1d0);
@@ -223,7 +223,9 @@ GEODE_MEMBER_CHECK(CCApplication, m_bUpdateController, 0x58);
 GEODE_MEMBER_CHECK(CCApplication, m_bMouseControl, 0x88);
 GEODE_MEMBER_CHECK(AppDelegate, m_runningScene, 0xA8);
 
+GEODE_SIZE_CHECK(EditorUI, 0x3c0);
 GEODE_MEMBER_CHECK(EditorUI, m_unk1b8, 0x1b8);
+// GEODE_MEMBER_CHECK(EditorUI, m_unk1ec, 0x1ec);
 GEODE_MEMBER_CHECK(EditorUI, m_rotationControl, 0x208);
 GEODE_MEMBER_CHECK(EditorUI, m_transformControl, 0x21c);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonDict, 0x228);
@@ -232,6 +234,7 @@ GEODE_MEMBER_CHECK(EditorUI, m_deleteMenu, 0x268);
 GEODE_MEMBER_CHECK(EditorUI, m_createButtonBars, 0x2e0);
 GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x340);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedTab, 0x384);
+GEODE_MEMBER_CHECK(EditorUI, m_unk3b4, 0x3b4);
 
 GEODE_SIZE_CHECK(EditButtonBar, 0x124);
 

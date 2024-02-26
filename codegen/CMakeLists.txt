@@ -13,7 +13,6 @@ file(GLOB SOURCES
 add_executable(${PROJECT_NAME}
 	# glob sucks so just list em out
 	src/Main.cpp
-	src/AddressGen.cpp
 	src/AndroidSymbol.cpp
 	src/BindingGen.cpp
 	src/JsonInterfaceGen.cpp
@@ -28,7 +27,9 @@ target_include_directories(Codegen PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-if (NOT CMAKE_CXX_COMPILER_LAUNCHER MATCHES "sccache(|.exe)$")
+if (NOT DEFINED CMAKE_CXX_COMPILER_LAUNCHER OR CMAKE_CXX_COMPILER_LAUNCHER STREQUAL "" OR
+	CMAKE_CXX_COMPILER_LAUNCHER MATCHES "sccache(|.exe)$" AND
+	CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 	target_precompile_headers(Codegen PRIVATE
 		${CMAKE_CURRENT_SOURCE_DIR}/src/Shared.hpp
 	)
