@@ -8238,23 +8238,23 @@ class GManager : cocos2d::CCNode {
     	virtual bool dataLoaded(DS_Dictionary *dsdict);
     	virtual bool firstLoad();
 
-    	std::string getCompressedSaveString();
-    	std::string getSaveString();
+    	gd::string getCompressedSaveString();
+    	gd::string getSaveString();
     	bool init();
     	bool load();
-    	bool loadDataFromFile(std::string fileName);
-    	bool loadFromCompressedString(std::string compressedStr);
-    	bool loadFromString(std::string data);
+    	bool loadDataFromFile(gd::string fileName);
+    	bool loadFromCompressedString(gd::string compressedStr);
+    	bool loadFromString(gd::string data);
 
     	inline void save() {
 		saveGMTo(m_fileName);
 	}
-   	bool saveData(DS_Dictionary *dsdict, std::string fileName);
-   	void saveGMTo(std::string fileName);
-    	void setup();
-    	bool tryLoadData(DS_Dictionary* dsdict, std::string fileName);
+   	bool saveData(DS_Dictionary *dsdict, gd::string fileName);
+   	void saveGMTo(gd::string fileName);
+    	virtual void setup();
+    	bool tryLoadData(DS_Dictionary* dsdict, gd::string fileName);
 
-	std::string m_fileName;
+	gd::string m_fileName;
 	bool m_setup;
 	bool m_saved;
 	bool m_quickSave;	
