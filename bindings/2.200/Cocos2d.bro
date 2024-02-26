@@ -312,7 +312,7 @@ class cocos2d::CCString {
 	// static cocos2d::CCString* create(gd::string const&);
 	static cocos2d::CCString* createWithContentsOfFile(char const*) = mac 0x76cee0;
 	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = mac 0x76cc10;
-	// static cocos2d::CCString* createWithFormat(char const*, ...);
+	// static cocos2d::CCString* createWithFormat(char const*, ...) = mac 0x76cd60;
 
 	// bool initWithFormat(char const*, ...);
 	// bool initWithFormatAndValist(char const*, char*);
@@ -323,11 +323,11 @@ class cocos2d::CCString {
 	// CCString(gd::string const&);
 	// CCString(char const*);
 	// CCString();
-	bool boolValue() const;
+	bool boolValue() const = mac 0x76c980;
 	int compare(char const*) const;
-	double doubleValue() const;
+	double doubleValue() const = mac 0x76c950;
 	float floatValue() const;
-	int intValue() const;
+	int intValue() const = mac 0x76c890;
 	unsigned int length() const;
 	unsigned int uintValue() const;
 
