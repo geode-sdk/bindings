@@ -5049,7 +5049,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	CommentCell(char const*, float, float);
 
 	virtual bool init();
-	virtual void draw();
+	virtual void draw() = mac 0x2332e0;
 	virtual void likedItem(LikeItemType, int, bool) = win 0x85AF0, mac 0x2333b0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x85CD0, mac 0x233750;
     
@@ -14252,7 +14252,7 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 	void onCommentSetting(cocos2d::CCObject* sender);
 	void onFriendRequests(cocos2d::CCObject* sender);
 	void onMessageSetting(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = mac 0x27eac0;
 	void onUpdate(cocos2d::CCObject* sender);
 
 	TodoReturn updateScoreValues();
