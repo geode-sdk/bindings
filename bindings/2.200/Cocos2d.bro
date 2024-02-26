@@ -1826,3 +1826,30 @@ class cocos2d::CCTransitionScene {
     virtual bool initWithDuration(float, cocos2d::CCScene*) = mac 0xd07a0;
     virtual void sceneOrder() = mac 0xd0830;
 }
+
+[[link(win, android)]]
+class cocos2d::CCDrawNode {
+	static cocos2d::CCDrawNode* create();
+
+	cocos2d::_ccBlendFunc getBlendFunc() const;
+
+	void setBlendFunc(cocos2d::_ccBlendFunc const&) = mac 0x5d6a90;
+
+	// CCDrawNode(cocos2d::CCDrawNode const&);
+	// CCDrawNode();
+	void clear();
+	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int);
+	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
+	void drawDot(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
+	bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::_ccColor4F const&);
+	bool drawPolygon(cocos2d::CCPoint*, unsigned int, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&) = mac 0x5d5b70;
+	void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
+	bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&);
+	void drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
+	void ensureCapacity(unsigned int);
+	void listenBackToForeground(cocos2d::CCObject*);
+	void render();
+
+	virtual bool init();
+	virtual void draw();
+}
