@@ -1211,8 +1211,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void flipObjects() = win 0x1c4540;
 	void moveObjects(cocos2d::CCArray*, double, double, bool) = win 0x1ADE90;
 	void queueButton(int, bool, bool) = win 0x1B19C0, mac 0x1375f0;
-	TodoReturn resetCamera() = win 0x1BE060;
-	TodoReturn resetPlayer() = win 0x195ED5;
+	TodoReturn resetCamera() = win 0x1BE060, mac 0x145830;
+	TodoReturn resetPlayer() = win 0x195ED5, mac 0x10e540;
 	void resumeAudio() = win 0x1B74C0;
 	void setupLayers() = win 0x18ddc0;
 	TodoReturn setupReplay(gd::string);
@@ -1862,7 +1862,7 @@ class GameManager : GManager {
 	/* unverified signature */
 	void setGameVariable(char const*, bool) = win 0x1266D0, mac 0x361260;
 	TodoReturn unlockedPremium();
-	TodoReturn updateCustomFPS() = win 0x12cd40;
+	TodoReturn updateCustomFPS() = win 0x12cd40, mac 0x369260;
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int);
 	TodoReturn didExitPlayscene() = mac 0x3683a0;
 	TodoReturn getIconRequestID() = mac 0x360540;
@@ -3427,7 +3427,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn deactivateObject(bool) = win 0x131860, mac 0x571fb0;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = win 0x1383E0, mac 0x582cb0;
 	virtual TodoReturn getObjectRect();
-	virtual TodoReturn getObjectRect(float, float) = win 0x138430;
+	virtual TodoReturn getObjectRect(float, float) = win 0x138430, mac 0x582d50;
 	virtual TodoReturn getObjectRect2(float, float) = mac 0x582f90;
 	virtual TodoReturn getObjectTextureRect() = mac 0x583060;
 	virtual TodoReturn getRealPosition();
@@ -9747,10 +9747,10 @@ class MenuGameLayer : cocos2d::CCLayer {
 	TodoReturn resetPlayer() = mac 0x4d52a0;
 	TodoReturn updateColor(float);
 	TodoReturn updateColors();
-	TodoReturn destroyPlayer();
+	TodoReturn destroyPlayer() = mac 0x4d5e50;
 	TodoReturn tryJump(float);
 
-	virtual void update(float) = win 0x274F10;
+	virtual void update(float) = win 0x274F10, mac 0x4d5ae0;
 	virtual bool init() = win 0x2744f0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -10829,7 +10829,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	virtual void update(float) = win 0x33910;
 
-	PAD = win 0x88, android32 0x7c, android64 0xdc;
+	PAD = win 0x88, android32 0x7c, android64 0xdc, mac 0xa8;
 	FMOD::System* m_system;
 }
 
@@ -12331,7 +12331,7 @@ class SpriteDescription : cocos2d::CCObject {
 
 [[link(android)]]
 class VideoOptionsLayer : FLAlertLayer {
-	static VideoOptionsLayer* create();
+	static VideoOptionsLayer* create() = mac 0x75d140;
 
 	~VideoOptionsLayer();
 
