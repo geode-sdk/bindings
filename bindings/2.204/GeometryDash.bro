@@ -8236,7 +8236,7 @@ class GManager : cocos2d::CCNode {
 
 	virtual void encodeDataTo(DS_Dictionary *dsdict);
     	virtual bool dataLoaded(DS_Dictionary *dsdict);
-    	virtual bool firstLoad();
+    	virtual void firstLoad();
 
     	gd::string getCompressedSaveString();
     	gd::string getSaveString();
