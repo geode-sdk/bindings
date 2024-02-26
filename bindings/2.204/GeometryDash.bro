@@ -3510,7 +3510,7 @@ class FileSaveManager : GManager {
 	TodoReturn loadDataFromFile(char const*);
 
 	virtual bool init();
-	virtual TodoReturn firstLoad();
+	virtual bool firstLoad();
 }
 
 [[link(android)]]
@@ -4599,7 +4599,7 @@ class GameManager : GManager {
 	virtual bool init() = win 0x1215c0;
 	virtual TodoReturn encodeDataTo(DS_Dictionary*) = win 0x12d480;
 	virtual TodoReturn dataLoaded(DS_Dictionary*) = win 0x12b830;
-	virtual TodoReturn firstLoad() = win 0x12cb20;
+	virtual bool firstLoad() = win 0x12cb20;
 
 	cocos2d::CCDictionary* m_unkAnimationDict;
 	cocos2d::CCDictionary* m_unkAnimationDict2;
@@ -8236,7 +8236,7 @@ class GManager : cocos2d::CCNode {
 
 	virtual void encodeDataTo(DS_Dictionary *dsdict);
     	virtual bool dataLoaded(DS_Dictionary *dsdict);
-    	virtual void firstLoad();
+    	virtual bool firstLoad();
 
     	gd::string getCompressedSaveString();
     	gd::string getSaveString();
@@ -9864,7 +9864,7 @@ class LocalLevelManager : GManager {
 	virtual bool init();
 	virtual TodoReturn encodeDataTo(DS_Dictionary*);
 	virtual TodoReturn dataLoaded(DS_Dictionary*);
-	virtual TodoReturn firstLoad();
+	virtual bool firstLoad();
 
 	cocos2d::CCArray* m_localLevels;
 	cocos2d::CCArray* m_LLM03;
