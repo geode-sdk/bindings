@@ -1019,7 +1019,7 @@ class cocos2d::CCSpriteBatchNode {
 	void setTextureAtlas(cocos2d::CCTextureAtlas*);
 
 	// CCSpriteBatchNode(cocos2d::CCSpriteBatchNode const&);
-	CCSpriteBatchNode() = max 0x1675f0;
+	CCSpriteBatchNode() = mac 0x1675f0;
 	~CCSpriteBatchNode() = mac 0x1676a0;
 	cocos2d::CCSpriteBatchNode* addSpriteWithoutQuad(cocos2d::CCSprite*, unsigned int, int);
 	void appendChild(cocos2d::CCSprite*) = mac 0x1678a0;
