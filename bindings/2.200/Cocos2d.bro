@@ -144,7 +144,7 @@ class cocos2d::CCNode {
 	void resumeSchedulerAndActions() = mac 0x251c40;
 	cocos2d::CCAction* runAction(cocos2d::CCAction*) = mac 0x251f90;
 	void schedule(cocos2d::SEL_SCHEDULE);
-	void schedule(cocos2d::SEL_SCHEDULE, float);
+	void schedule(cocos2d::SEL_SCHEDULE, float) = mac 0x2521c0;
 	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = mac 0x252220;
 	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
 	void scheduleUpdate() = mac 0x2520a0;
@@ -595,7 +595,7 @@ class cocos2d::CCTextureCache {
 	void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat);
 	void addImageAsyncCallBack(float);
 	cocos2d::CCTexture2D* addPVRImage(char const*);
-	cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*);
+	cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*) = mac 0x5b3350;
 	char const* description();
 	void dumpCachedTextureInfo();
 	void prepareAsyncLoading();
@@ -605,7 +605,7 @@ class cocos2d::CCTextureCache {
 	void removeTextureForKey(char const*) = mac 0x5b38d0;
 	void removeUnusedTextures();
 	cocos2d::CCDictionary* snapshotTextures();
-	cocos2d::CCTexture2D* textureForKey(char const*);
+	cocos2d::CCTexture2D* textureForKey(char const*) = mac 0x5b3950;
 }
 
 [[link(win, android)]]
@@ -1065,7 +1065,7 @@ class cocos2d::CCSprite {
 	static cocos2d::CCSprite* create() = mac 0x266700;
 	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = mac 0x2665e0;
 	static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = mac 0x2666d0;
-	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*);
+	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = mac 0x266310;
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
 
 	unsigned int getAtlasIndex();
