@@ -1550,32 +1550,6 @@ class cocos2d::CCIMEDispatcher {
 }
 
 [[link(win, android)]]
-class cocos2d::CCImage {
-	bool initWithImageData(void*, int, cocos2d::CCImage::EImageFormat, int, int, int, int);
-	bool initWithImageFile(char const*, cocos2d::CCImage::EImageFormat);
-	bool initWithImageFileThreadSafe(char const*, cocos2d::CCImage::EImageFormat);
-	bool initWithString(char const*, int, int, cocos2d::CCImage::ETextAlign, char const*, int);
-
-	int getBitsPerComponent() const;
-	unsigned char* getData();
-	int getDataLen();
-	unsigned short getHeight() const;
-	unsigned short getWidth() const;
-
-	// CCImage();
-	bool _initWithJpgData(void*, int);
-	bool _initWithPngData(void*, int);
-	bool _initWithRawData(void*, int, int, int, int, bool);
-	bool _initWithTiffData(void*, int);
-	bool _initWithWebpData(void*, int);
-	bool _saveImageToJPG(char const*);
-	bool _saveImageToPNG(char const*, bool);
-	bool hasAlpha();
-	bool isPremultipliedAlpha();
-	bool saveToFile(char const*, bool);
-}
-
-[[link(win, android)]]
 class cocos2d::CCInteger {
 	static cocos2d::CCInteger* create(int);
 

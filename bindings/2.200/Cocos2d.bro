@@ -143,8 +143,8 @@ class cocos2d::CCNode {
 	void qsortAllChildrenWithIndex();
 	void resumeSchedulerAndActions() = mac 0x251c40;
 	cocos2d::CCAction* runAction(cocos2d::CCAction*) = mac 0x251f90;
-	void schedule(cocos2d::SEL_SCHEDULE);
-	void schedule(cocos2d::SEL_SCHEDULE, float) = mac 0x2521c0;
+	void schedule(cocos2d::SEL_SCHEDULE) = mac 0x2521c0;
+	void schedule(cocos2d::SEL_SCHEDULE, float);
 	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = mac 0x252220;
 	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
 	void scheduleUpdate() = mac 0x2520a0;
@@ -1019,7 +1019,7 @@ class cocos2d::CCSpriteBatchNode {
 	void setTextureAtlas(cocos2d::CCTextureAtlas*);
 
 	// CCSpriteBatchNode(cocos2d::CCSpriteBatchNode const&);
-	// CCSpriteBatchNode();
+	CCSpriteBatchNode() = max 0x1675f0;
 	~CCSpriteBatchNode() = mac 0x1676a0;
 	cocos2d::CCSpriteBatchNode* addSpriteWithoutQuad(cocos2d::CCSprite*, unsigned int, int);
 	void appendChild(cocos2d::CCSprite*) = mac 0x1678a0;
@@ -1852,4 +1852,30 @@ class cocos2d::CCDrawNode {
 
 	virtual bool init();
 	virtual void draw();
+}
+
+[[link(win, android)]]
+class cocos2d::CCImage {
+	bool initWithImageData(void*, int, cocos2d::CCImage::EImageFormat, int, int, int, int) = mac 0x466190;
+	bool initWithImageFile(char const*, cocos2d::CCImage::EImageFormat);
+	bool initWithImageFileThreadSafe(char const*, cocos2d::CCImage::EImageFormat);
+	bool initWithString(char const*, int, int, cocos2d::CCImage::ETextAlign, char const*, int);
+
+	int getBitsPerComponent() const;
+	unsigned char* getData();
+	int getDataLen();
+	unsigned short getHeight() const;
+	unsigned short getWidth() const;
+
+	CCImage() = mac 0x465e80;
+	bool _initWithJpgData(void*, int);
+	bool _initWithPngData(void*, int);
+	bool _initWithRawData(void*, int, int, int, int, bool);
+	bool _initWithTiffData(void*, int);
+	bool _initWithWebpData(void*, int);
+	bool _saveImageToJPG(char const*);
+	bool _saveImageToPNG(char const*, bool);
+	bool hasAlpha();
+	bool isPremultipliedAlpha();
+	bool saveToFile(char const*, bool);
 }
