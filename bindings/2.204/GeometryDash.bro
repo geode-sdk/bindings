@@ -1370,11 +1370,11 @@ class CharacterColorPage : FLAlertLayer {
 	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	TodoReturn offsetForIndex(int);
 	void onClose(cocos2d::CCObject* sender) = win 0x608A0;
-	void onMode(cocos2d::CCObject* sender);
-	void onPlayerColor(cocos2d::CCObject* sender);
-	TodoReturn toggleGlow(cocos2d::CCObject*);
+	void onMode(cocos2d::CCObject* sender) = win 0x5fab0;
+	void onPlayerColor(cocos2d::CCObject* sender) = win 0x60000;
+	TodoReturn toggleGlow(cocos2d::CCObject*) = win 0x5f600;
 	TodoReturn toggleGlowItems(bool);
-	TodoReturn toggleShip(cocos2d::CCObject*);
+	TodoReturn toggleShip(cocos2d::CCObject*) = win 0x5f560;
 	TodoReturn updateColorMode(int) = win 0x5fc60;
 	TodoReturn updateIconColors() = win 0x60700;
 
@@ -2353,7 +2353,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	TodoReturn addToMainScene();
 	TodoReturn animateIn(DialogAnimationType) = win 0x9b4c0;
 	TodoReturn animateInDialog();
-	TodoReturn animateInRandomSide();
+	TodoReturn animateInRandomSide() = win 0x9b460;
 	static DialogLayer* createDialogLayer(DialogObject*, cocos2d::CCArray*, int) = win 0x9a850;
 	TodoReturn createWithObjects(cocos2d::CCArray*, int);
 	TodoReturn displayDialogObject(DialogObject*);
