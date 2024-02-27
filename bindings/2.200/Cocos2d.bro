@@ -1868,6 +1868,8 @@ class cocos2d::CCImage {
 	unsigned short getWidth() const;
 
 	CCImage() = mac 0x465e80;
+	~CCImage() = mac 0x465f00;
+
 	bool _initWithJpgData(void*, int);
 	bool _initWithPngData(void*, int);
 	bool _initWithRawData(void*, int, int, int, int, bool);
