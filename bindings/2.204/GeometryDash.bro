@@ -1065,7 +1065,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
 	static CCSpriteGrayscale* create(gd::string const&);
 
 	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	TodoReturn createWithSpriteFrameName(gd::string const&);
+	static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const&) = win 0x29c40;
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*);
 
@@ -1436,7 +1436,7 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
 
 	virtual void keyBackClicked();
 	virtual void show();
-	virtual TodoReturn textInputClosed(CCTextInputNode*);
+	virtual TodoReturn textInputClosed(CCTextInputNode*) = win 0x61660;
 	virtual TodoReturn textChanged(CCTextInputNode*);
 	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
 	virtual TodoReturn textInputReturn(CCTextInputNode*);
@@ -2653,7 +2653,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createGlow();
 	TodoReturn createLoop();
 	TodoReturn createMoveMenu() = win 0xd1be0;
-	TodoReturn createNewKeyframeAnim();
+	TodoReturn createNewKeyframeAnim() = win 0xd0230;
 	TodoReturn createObject(int, cocos2d::CCPoint) = win 0xc86a0;
 	TodoReturn createOutlines(cocos2d::CCArray*);
 	TodoReturn createPrefab(GJSmartTemplate*, gd::string, int);
@@ -4851,7 +4851,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn getObjectZOrder();
 	TodoReturn getOrientedRectDirty();
 	TodoReturn getOuterObjectRect();
-	TodoReturn getParentMode();
+	TodoReturn getParentMode() = win 0x13ca30;
 	TodoReturn getRelativeSpriteColor(int) = win 0x142320;
 	TodoReturn getScalePosDelta();
 	TodoReturn getSecondaryColor();
@@ -8888,7 +8888,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn addDelayedSpawn(EffectGameObject*, float);
-	TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*);
+	TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*) = win 0x241da0;
 	TodoReturn addObjectFromVector(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn addObjectsAtPosition(cocos2d::CCPoint, cocos2d::CCArray*, cocos2d::CCArray*);
 	TodoReturn addObjectsInRect(cocos2d::CCRect, bool, cocos2d::CCArray*, cocos2d::CCArray*);
@@ -12155,7 +12155,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*) = win 0x310cd0;
 
 	TodoReturn addGroupID(int) = win 0x314320;
-	void callRemoveFromGroup(float); // win 0x313ea0
+	void callRemoveFromGroup(float) = win 0x313ea0; // win 0x313ea0
 	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int) = win 0x312b40;
 	TodoReturn determineStartValues() = win 0x313130;
 	bool init(GameObject* obj, cocos2d::CCArray* objs) = win 0x310d80;
@@ -12180,7 +12180,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x312af0;
 	void onZLayer(cocos2d::CCObject* sender) = win 0x314050;
 	void onZLayerShift(cocos2d::CCObject* sender) = win 0x314150;
-	TodoReturn removeGroupID(int); // win 0x314460
+	TodoReturn removeGroupID(int) = win 0x314460; // win 0x314460
 	TodoReturn updateEditorLabel() = win 0x314610;
 	TodoReturn updateEditorLabel2() = win 0x3146a0;
 	TodoReturn updateEditorLayerID() = win 0x314200;
@@ -12197,7 +12197,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
-	virtual TodoReturn textChanged(CCTextInputNode*);
+	virtual TodoReturn textChanged(CCTextInputNode*) = win 0x3135b0;
 	
     GameObject* m_targetObject;
     cocos2d::CCArray* m_targetObjects;
@@ -12313,7 +12313,7 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
 	virtual void keyBackClicked();
 	virtual void show() = win 0x61860;
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
-	virtual TodoReturn textChanged(CCTextInputNode*);
+	virtual TodoReturn textChanged(CCTextInputNode*) = win 0x211b20;
 
 	CCTextInputNode* m_input;
 	bool m_disableDelegate;
@@ -13049,7 +13049,7 @@ class SetupObjectControlPopup : SetupTriggerPopup {
 class SetupObjectOptions2Popup : SetupTriggerPopup {
 	// virtual ~SetupObjectOptions2Popup();
 
-	static SetupObjectOptions2Popup* create(GameObject*, cocos2d::CCArray*);
+	static SetupObjectOptions2Popup* create(GameObject*, cocos2d::CCArray*) = win 0x316fe0;
 
 	bool init(GameObject*, cocos2d::CCArray*);
 
@@ -13060,7 +13060,7 @@ class SetupObjectOptions2Popup : SetupTriggerPopup {
 class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~SetupObjectOptionsPopup();
 
-	static SetupObjectOptionsPopup* create(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*);
+	static SetupObjectOptionsPopup* create(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win 0x314f00;
 
 	bool init(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*);
 	void onAlwaysHide(cocos2d::CCObject* sender);

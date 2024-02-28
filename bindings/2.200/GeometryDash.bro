@@ -11964,7 +11964,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*);
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
 	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*) = mac 0x5b6a70;
-	TodoReturn createWithSpriteFrameName(gd::string const&) = mac 0x5b6b50;
+	static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const&) = mac 0x5b6b50;
 
 	virtual TodoReturn getShaderName();
 	virtual TodoReturn shaderBody();
