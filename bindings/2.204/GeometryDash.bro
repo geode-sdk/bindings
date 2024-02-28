@@ -1363,7 +1363,7 @@ class CharacterColorPage : FLAlertLayer {
 
 	static CharacterColorPage* create() = win 0x5e9b0;
 
-	TodoReturn activeColorForMode(int);
+	int activeColorForMode(int mode) = win 0x5fa50;
 	TodoReturn checkColor(int, UnlockType);
 	TodoReturn colorForIndex(int);
 	TodoReturn createColorMenu() = win 0x5f630;
