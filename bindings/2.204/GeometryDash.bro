@@ -4115,7 +4115,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void onGetUserMessagesCompleted(gd::string response, gd::string tag) = win 0x106c50;
 	void onGetUsersCompleted(gd::string response, gd::string tag) = win 0x1064b0;
 	void onLikeItemCompleted(gd::string response, gd::string tag) = win 0x10e610;
-	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
+	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0xf3d70;
 	void onRateDemonCompleted(gd::string response, gd::string tag) = win 0x1035a0;
 	void onRateStarsCompleted(gd::string response, gd::string tag) = win 0x102410;
 	void onReadFriendRequestCompleted(gd::string response, gd::string tag) = win 0x10c4a0;
@@ -5488,7 +5488,7 @@ class GameToolbox {
 	static TodoReturn getLargestMergedIntDicts(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
 	static TodoReturn getMultipliedHSV(cocos2d::ccHSVValue const&, float);
 	static TodoReturn getRelativeOffset(GameObject*, cocos2d::CCPoint) = win 0x41300;
-	static TodoReturn getResponse(cocos2d::extension::CCHttpResponse*);
+	static TodoReturn getResponse(cocos2d::extension::CCHttpResponse*) = win 0x40dd0;
 	static gd::string getTimeString(int) = win 0x426b0;
 	static TodoReturn hsvFromString(gd::string const&, char const*);
 	static TodoReturn intToShortString(int);
@@ -14787,7 +14787,7 @@ class TextArea : cocos2d::CCSprite {
 	// virtual ~TextArea();
 	// TextArea() = win 0x52050;
 
-	static TextArea* create(gd::string, char const*, float, float, cocos2d::CCPoint, float, bool) = win 0x52250;
+	static TextArea* create(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = win 0x52250;
 
 	TodoReturn colorAllCharactersTo(cocos2d::ccColor3B) = win 0x52850;
 	TodoReturn colorAllLabels(cocos2d::ccColor3B);
@@ -14797,7 +14797,7 @@ class TextArea : cocos2d::CCSprite {
 	TodoReturn fadeOutAndRemove();
 	TodoReturn finishFade();
 	TodoReturn hideAll();
-	bool init(gd::string, char const*, float, float, cocos2d::CCPoint, float, bool) = win 0x52350;
+	bool init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = win 0x52350;
 	void setIgnoreColorCode(bool);
 	void setString(gd::string) = win 0x52460;
 	TodoReturn showAll();

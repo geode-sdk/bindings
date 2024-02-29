@@ -14695,7 +14695,7 @@ class TextAlertPopup : cocos2d::CCNode {
 class TextArea : cocos2d::CCSprite {
 	// virtual ~TextArea();
 
-	static TextArea* create(gd::string, char const*, float, float, cocos2d::CCPoint, float, bool);
+	static TextArea* create(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor);
 
 	TodoReturn colorAllCharactersTo(cocos2d::ccColor3B);
 	TodoReturn colorAllLabels(cocos2d::ccColor3B);
@@ -14705,7 +14705,7 @@ class TextArea : cocos2d::CCSprite {
 	TodoReturn fadeOutAndRemove();
 	TodoReturn finishFade();
 	TodoReturn hideAll();
-	bool init(gd::string, char const*, float, float, cocos2d::CCPoint, float, bool);
+	bool init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor);
 	void setIgnoreColorCode(bool);
 	void setString(gd::string);
 	TodoReturn showAll();
