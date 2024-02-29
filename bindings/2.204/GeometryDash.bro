@@ -10883,8 +10883,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 		m_hasCustomGlowColor = false;
 	}
 	TodoReturn disablePlayerControls();
-	TodoReturn disableSwingFire();
-	TodoReturn doReversePlayer(bool) = win 0x2d2210;
+	void disableSwingFire() = win 0x2D4280;
+	void doReversePlayer(bool) = win 0x2d2210;
 	void enableCustomGlowColor(cocos2d::_ccColor3B const& color) {
 		m_hasCustomGlowColor = true;
 		m_glowColor = color;
@@ -10922,7 +10922,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool isSafeMode(float);
 	bool isSafeSpiderFlip(float);
 	TodoReturn levelFlipFinished();
-	TodoReturn levelFlipping() = win 0x2d4880;
+	bool levelFlipping() = win 0x2d4880;
 	TodoReturn levelWillFlip();
 	void loadFromCheckpoint(PlayerCheckpoint*) = win 0x2d9e60;
 	TodoReturn lockPlayer() = win 0x2d7d40;
@@ -10936,7 +10936,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playDeathEffect() = win 0x2ba470;
 	TodoReturn playDynamicSpiderRun();
 	TodoReturn playerDestroyed(bool) = win 0x2d1b30;
-	TodoReturn playerIsFalling(float);
+	bool playerIsFalling(float) = win 0x2D39B0;
 	TodoReturn playerIsFallingBugged();
 	TodoReturn playerIsMovingUp();
 	TodoReturn playerTeleported();
@@ -10997,7 +10997,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn stopBurstEffect();
 	TodoReturn stopDashing() = win 0x2d0940;
 	TodoReturn stopParticles();
-	TodoReturn stopPlatformerJumpAnimation();
+	void stopPlatformerJumpAnimation() = win 0x2C7B10;
 	TodoReturn stopRotation(bool, int);
 	TodoReturn stopStreak2() = win 0x2d8b20;
 	TodoReturn storeCollision(PlayerCollisionDirection, int);
