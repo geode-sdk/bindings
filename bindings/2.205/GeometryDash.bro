@@ -1056,7 +1056,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
 	static CCSpriteGrayscale* create(gd::string const&);
 
 	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	TodoReturn createWithSpriteFrameName(gd::string const&);
+	static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const&);
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*);
 
@@ -1209,9 +1209,13 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_placeholderColor = color;
 		this->refreshLabel();
 	}
-    	void setAllowedChars(gd::string filter) {
-        	m_allowedChars = filter;
-    	}
+	void setAllowedChars(gd::string filter) {
+		m_allowedChars = filter;
+	}
+	cocos2d::CCLabelBMFont* getPlaceholderLabel() {
+        return m_placeholderLabel;
+    }
+	
 	TodoReturn addTextArea(TextArea*);
 	TodoReturn forceOffset();
 	gd::string getString() {
@@ -2969,11 +2973,15 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	LevelEditorLayer* m_editorLayer;
 	cocos2d::CCPoint m_swipeStart;
 	cocos2d::CCPoint m_swipeEnd;
-	PAD = mac 0x8, win 0x8, android32 0x8;
+	PAD = mac 0x8, win 0x8, android32 0x8, android64 0x8;
 	cocos2d::CCPoint m_lastTouchPoint;
 	cocos2d::CCPoint m_cameraTest;
 	cocos2d::CCPoint m_clickAtPosition;
 	GameObject* m_selectedObject;
+	void* m_unk530;
+	void* m_unk538;
+	void* m_unk540;
+	int m_selectedTab;
 }
 
 [[link(android)]]
@@ -11190,7 +11198,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn addToGroupOld(GameObject*);
 	TodoReturn applyCustomEnterEffect(GameObject*, bool);
 	TodoReturn applyEnterEffect(GameObject*, int, bool);
-	TodoReturn canPauseGame();
+	bool canPauseGame();
 	TodoReturn checkpointWithID(int);
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
 	TodoReturn commitJumps();
@@ -14687,7 +14695,7 @@ class TextAlertPopup : cocos2d::CCNode {
 class TextArea : cocos2d::CCSprite {
 	// virtual ~TextArea();
 
-	static TextArea* create(gd::string, char const*, float, float, cocos2d::CCPoint, float, bool);
+	static TextArea* create(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor);
 
 	TodoReturn colorAllCharactersTo(cocos2d::ccColor3B);
 	TodoReturn colorAllLabels(cocos2d::ccColor3B);
@@ -14697,7 +14705,7 @@ class TextArea : cocos2d::CCSprite {
 	TodoReturn fadeOutAndRemove();
 	TodoReturn finishFade();
 	TodoReturn hideAll();
-	bool init(gd::string, char const*, float, float, cocos2d::CCPoint, float, bool);
+	bool init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor);
 	void setIgnoreColorCode(bool);
 	void setString(gd::string);
 	TodoReturn showAll();
