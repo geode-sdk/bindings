@@ -6814,12 +6814,12 @@ class GJGameLevel : cocos2d::CCNode {
 class GJGameLoadingLayer : cocos2d::CCLayer {
 	// virtual ~GJGameLoadingLayer();
 
-	static GJGameLoadingLayer* create(GJGameLevel*, bool) = win 0x1ca920;
+	static GJGameLoadingLayer* create(GJGameLevel* level, bool editor) = win 0x1ca920;
 
 	void gameLayerDidUnload();
 	bool init(GJGameLevel* level, bool editor) = win 0x1ca9d0;
 	void loadLevel() = win 0x1caab0;
-	static GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel*, bool) = win 0x1ca820;
+	static GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel* level, bool editor) = win 0x1ca820;
 
 	virtual void onEnter();
 	virtual void onEnterTransitionDidFinish();
