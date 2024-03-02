@@ -9484,7 +9484,7 @@ class DrawGridLayer : cocos2d::CCLayer {
 	TodoReturn addToGuides(GameObject*);
 	TodoReturn addToEffects(EffectGameObject*);
 	TodoReturn loadTimeMarkers(gd::string);
-	TodoReturn removeFromGuides(GameObject*);
+	TodoReturn removeFromGuides(GameObject*) = mac 0xe5b10;
 	TodoReturn sortSpeedObjects();
 	TodoReturn addToSpeedObjects(EffectGameObject*);
 	TodoReturn removeFromEffects(EffectGameObject*);
@@ -12496,7 +12496,7 @@ class CustomSongDelegate {
 
 [[link(android)]]
 class EditorOptionsLayer : GJOptionsLayer {
-	static EditorOptionsLayer* create();
+	static EditorOptionsLayer* create() = mac 0x27b7d0;
 
 	~EditorOptionsLayer();
 
@@ -13646,7 +13646,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 
 	TodoReturn getAllSongs();
 	TodoReturn getDLObject(char const*);
-	TodoReturn getSongInfo(int, bool);
+	TodoReturn getSongInfo(int, bool) = mac 0x556950;
 	TodoReturn getSFXObject(int);
 	TodoReturn getMusicObject(int);
 	TodoReturn getSongInfoKey(int);
@@ -13668,7 +13668,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 
 	TodoReturn onDownloadSFXCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onGetSongInfoCompleted(gd::string, gd::string);
-	TodoReturn onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
+	TodoReturn onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = mac 0x558f70;
 	TodoReturn onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onGetCustomContentURLCompleted(gd::string, gd::string);
@@ -13681,17 +13681,17 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn firstSetup();
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
 	/* unverified signature */
-	bool isDLActive(char const*);
+	bool isDLActive(char const*) = mac 0x5565e0;
 	TodoReturn pathForSFX(int) = mac 0x559cb0, win 0x27f630;
 	TodoReturn downloadSFX(int);
 	gd::string pathForSong(int songID) = mac 0x5586d0, win 0x27f2c0;
 	static MusicDownloadManager* sharedState() = win 0x27d490, mac 0x5552f0;
-	TodoReturn downloadSong(int);
+	TodoReturn downloadSong(int) = mac 0x558880;
 	TodoReturn encodeDataTo(DS_Dictionary*);
 	TodoReturn nameForTagID(int);
 	TodoReturn stopDownload(int);
 	TodoReturn addDLToActive(char const*);
-	TodoReturn addDLToActive(char const*, cocos2d::CCObject*);
+	TodoReturn addDLToActive(char const*, cocos2d::CCObject*) = mac 0x559210;
 	/* unverified signature */
 	bool isResourceSFX(int);
 	/* unverified signature */
@@ -13714,14 +13714,14 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn musicActionFailed(GJMusicAction);
 	TodoReturn parseMusicLibrary();
 	TodoReturn pathForSongFolder(int) = mac 0x559640, win 0x27f120;
-	TodoReturn downloadCustomSong(int);
+	TodoReturn downloadCustomSong(int) = mac 0x558d00;
 	TodoReturn downloadSFXLibrary();
 	TodoReturn downloadSongFailed(int, GJSongError);
 	/* unverified signature */
 	bool isSFXLibraryLoaded();
 	TodoReturn loadSongInfoFailed(int, GJSongError);
 	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
-	TodoReturn removeDLFromActive(char const*);
+	TodoReturn removeDLFromActive(char const*) = mac 0x5566b0;
 	TodoReturn storeSFXInfoObject(SFXInfoObject*);
 	TodoReturn downloadSFXFinished(int);
 	TodoReturn musicActionFinished(GJMusicAction);
@@ -13730,7 +13730,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn downloadSongFinished(int);
 	/* unverified signature */
 	bool isMusicLibraryLoaded();
-	TodoReturn limitDownloadedSongs();
+	TodoReturn limitDownloadedSongs() = mac 0x558460;
 	TodoReturn loadSongInfoFinished(SongInfoObject*);
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
@@ -13743,7 +13743,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	bool isRunningActionForSongID(int) = mac 0x5564c0;
 	TodoReturn generateResourceAssetList();
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
-	TodoReturn showTOS(FLAlertLayerProtocol*);
+	TodoReturn showTOS(FLAlertLayerProtocol*) = mac 0x559fb0;
 	TodoReturn handleIt(bool, gd::string, gd::string, GJHttpType);
 	TodoReturn clearSong(int);
 	TodoReturn deleteSFX(int);

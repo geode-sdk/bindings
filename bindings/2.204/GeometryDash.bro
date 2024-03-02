@@ -2181,11 +2181,11 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onMore(cocos2d::CCObject* sender) = win 0x93e10;
 	void onPlayback(cocos2d::CCObject* sender) = win 0x94790;
 	void onSelect(cocos2d::CCObject* sender) = win 0x94740;
-	TodoReturn processNextMultiAsset();
+	TodoReturn processNextMultiAsset() = win 0x965f0;
 	TodoReturn showError(bool) = win 0x96a70;
 	void startDownload() = win 0x94660;
 	TodoReturn startMonitorDownload() = win 0x94690;
-	TodoReturn startMultiAssetDownload();
+	TodoReturn startMultiAssetDownload() = win 0x96490;
 	TodoReturn toggleUpdateButton(bool) = win 0x944c0;
 	TodoReturn updateDownloadProgress(float);
 	TodoReturn updateError(GJSongError);
@@ -2198,7 +2198,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void updateWithMultiAssets(gd::string, gd::string, int) = win 0x956f0;
 	TodoReturn verifySongID(int);
 
-	virtual TodoReturn loadSongInfoFinished(SongInfoObject*);
+	virtual TodoReturn loadSongInfoFinished(SongInfoObject*) = win 0x96210;
 	virtual TodoReturn loadSongInfoFailed(int, GJSongError);
 	virtual TodoReturn downloadSongFinished(int) = win 0x96340;
 	virtual TodoReturn downloadSongFailed(int, GJSongError);
@@ -10297,7 +10297,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 
 	static MusicDownloadManager* sharedState() = win 0x2821e0;
 
-	void addDLToActive(char const* tag, cocos2d::CCObject* obj);
+	void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x283b30;
 	void addDLToActive(char const* tag);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x2828d0;
 	TodoReturn addSongObjectFromString(gd::string);
@@ -10307,20 +10307,20 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn deleteSFX(int);
 	TodoReturn deleteSong(int);
-	TodoReturn downloadCustomSong(int);
-	TodoReturn downloadMusicLibrary() = win 0x284fd0;
-	TodoReturn downloadSFX(int);
-	TodoReturn downloadSFXFailed(int, GJSongError);
-	TodoReturn downloadSFXFinished(int);
-	TodoReturn downloadSFXLibrary() = win 0x286940;
-	TodoReturn downloadSong(int);
-	TodoReturn downloadSongFailed(int, GJSongError);
-	TodoReturn downloadSongFinished(int);
+	void downloadCustomSong(int) = win 0x284bc0;
+	void downloadMusicLibrary() = win 0x284fd0;
+	void downloadSFX(int) = win 0x2863f0;
+	void downloadSFXFailed(int, GJSongError);
+	void downloadSFXFinished(int);
+	void downloadSFXLibrary() = win 0x286940;
+	void downloadSong(int) = win 0x283780;
+	void downloadSongFailed(int, GJSongError) = win 0x287be0;
+	void downloadSongFinished(int) = win 0x287b90;
 	TodoReturn encodeDataTo(DS_Dictionary*);
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	TodoReturn filterMusicByTag(int, cocos2d::CCArray*);
 	TodoReturn firstSetup();
-	TodoReturn generateCustomContentURL(gd::string);
+	TodoReturn generateCustomContentURL(gd::string) = win 0x287540;
 	TodoReturn generateResourceAssetList();
 	TodoReturn getAllMusicArtists(OptionsObjectDelegate*);
 	TodoReturn getAllMusicObjects();
@@ -10355,7 +10355,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	bool isSFXDownloaded(int) = win 0x284140;
 	bool isSFXLibraryLoaded();
 	bool isSongDownloaded(int) = win 0x283dd0;
-	TodoReturn limitDownloadedSongs();
+	TodoReturn limitDownloadedSongs() = win 0x283550;
 	TodoReturn loadSongInfoFailed(int, GJSongError) = win 0x287b30;
 	TodoReturn loadSongInfoFinished(SongInfoObject*) = win 0x287ae0;
 	TodoReturn musicActionFailed(GJMusicAction) = win 0x287d40;
@@ -10364,7 +10364,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn onDownloadMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onDownloadSFXCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
-	TodoReturn onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
+	TodoReturn onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x2839b0;
 	TodoReturn onGetCustomContentURLCompleted(gd::string, gd::string) = win 0x284a70;
 	void onGetSongInfoCompleted(gd::string, gd::string) = win 0x282d00;
 	TodoReturn onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x2824e0;
@@ -10376,7 +10376,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn pathForSFXFolder(int) = win 0x284240;
 	gd::string pathForSong(int) = win 0x284070;
 	TodoReturn pathForSongFolder(int) = win 0x283ed0;
-	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
+	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int) = win 0x2823c0;
 	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x282260;
 	TodoReturn removeDLFromActive(char const*) = win 0x283c00;
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
