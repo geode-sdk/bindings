@@ -152,7 +152,7 @@ class cocos2d::CCNode {
 	void scheduleUpdateWithPriorityLua(int, int);
 	void sortAllChildrenNoIndex();
 	void sortAllChildrenWithIndex();
-	void stopAction(cocos2d::CCAction*);
+	void stopAction(cocos2d::CCAction*) = mac 0x251fc0;
 	void stopActionByTag(int) = mac 0x251fe0;
 	void stopAllActions() = mac 0x250e10;
 	void transform();
@@ -326,7 +326,7 @@ class cocos2d::CCString {
 	bool boolValue() const = mac 0x76c980;
 	int compare(char const*) const;
 	double doubleValue() const = mac 0x76c950;
-	float floatValue() const;
+	float floatValue() const = mac 0x76c910;
 	int intValue() const = mac 0x76c890;
 	unsigned int length() const;
 	unsigned int uintValue() const;
@@ -775,7 +775,7 @@ class cocos2d::CCDirector {
 	cocos2d::CCScene* getSceneReference() const;
 	float getScreenScaleFactor();
 	float getScreenScaleFactorH();
-	float getScreenScaleFactorMax();
+	float getScreenScaleFactorMax() = mac 0x461460;
 	float getScreenScaleFactorW();
 	float getSecondsPerFrame();
 	bool getSmoothFix() const;
@@ -1025,7 +1025,7 @@ class cocos2d::CCSpriteBatchNode {
 	void appendChild(cocos2d::CCSprite*) = mac 0x1678a0;
 	unsigned int atlasIndexForChild(cocos2d::CCSprite*, int);
 	unsigned int highestAtlasIndexInChild(cocos2d::CCSprite*);
-	void increaseAtlasCapacity(unsigned int);
+	void increaseAtlasCapacity(unsigned int) = mac 0x1687b0;
 	void increaseAtlasCapacity();
 	void insertChild(cocos2d::CCSprite*, unsigned int);
 	void insertQuadFromSprite(cocos2d::CCSprite*, unsigned int);
