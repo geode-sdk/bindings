@@ -6756,13 +6756,16 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 
 	static GJGameLoadingLayer* create(GJGameLevel*, bool);
 
-	TodoReturn gameLayerDidUnload();
+	void gameLayerDidUnload();
 	bool init(GJGameLevel*, bool);
-	TodoReturn loadLevel();
-	TodoReturn transitionToLoadingLayer(GJGameLevel*, bool);
+	void loadLevel();
+	static GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel*, bool);
 
 	virtual void onEnter();
 	virtual void onEnterTransitionDidFinish();
+
+	GJGameLevel* m_level;
+	bool m_editor;
 }
 
 [[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance)]]

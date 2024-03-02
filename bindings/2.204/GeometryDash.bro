@@ -2579,7 +2579,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onSong(cocos2d::CCObject* sender) = win 0xa25a0;
 	void onUnlockAllLayers(cocos2d::CCObject* sender);
 	TodoReturn playStep2() = win 0xa2cf0;
-	TodoReturn playStep3();
+	TodoReturn playStep3() = win 0xa2dc0;
 	TodoReturn saveLevel() = win 0xa26c0;
 	TodoReturn toggleDebugDraw(cocos2d::CCObject*);
 	TodoReturn toggleEditorBackground(cocos2d::CCObject*);
@@ -6814,15 +6814,18 @@ class GJGameLevel : cocos2d::CCNode {
 class GJGameLoadingLayer : cocos2d::CCLayer {
 	// virtual ~GJGameLoadingLayer();
 
-	static GJGameLoadingLayer* create(GJGameLevel*, bool);
+	static GJGameLoadingLayer* create(GJGameLevel*, bool) = win 0x1ca920;
 
-	TodoReturn gameLayerDidUnload();
-	bool init(GJGameLevel*, bool);
-	TodoReturn loadLevel();
-	TodoReturn transitionToLoadingLayer(GJGameLevel*, bool);
+	void gameLayerDidUnload();
+	bool init(GJGameLevel* level, bool editor) = win 0x1ca9d0;
+	void loadLevel() = win 0x1caab0;
+	static GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel*, bool) = win 0x1ca820;
 
 	virtual void onEnter();
 	virtual void onEnterTransitionDidFinish();
+
+	GJGameLevel* m_level;
+	bool m_editor;
 }
 
 [[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance)]]

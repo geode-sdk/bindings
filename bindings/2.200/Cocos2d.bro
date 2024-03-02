@@ -1450,7 +1450,7 @@ class cocos2d::ZipUtils {
 	static gd::string base64URLEncode(gd::string const&);
 	static unsigned int ccChecksumPvr(unsigned int const*, int);
 	static void ccDecodeEncodedPvr(unsigned int*, int);
-	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**);
+	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**) = mac 0x1e3e60;
 	static int ccInflateCCZFile(char const*, unsigned char**);
 	static int ccInflateGZipFile(char const*, unsigned char**);
 	static int ccInflateMemory(unsigned char*, unsigned int, unsigned char**);
@@ -1458,7 +1458,7 @@ class cocos2d::ZipUtils {
 	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int);
 	static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
 	static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-	static gd::string compressString(gd::string const&, bool, int);
+	static gd::string compressString(gd::string const&, bool, int) = mac 0x1e3c50;
 	static gd::string decompressString2(unsigned char*, bool, int, int);
 	static gd::string decompressString(gd::string const&, bool, int) = mac 0x1e4290;
 	static gd::string encryptDecrypt(gd::string const&, int);
