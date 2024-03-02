@@ -5297,8 +5297,8 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getStatFromKey(StatKey);
 	TodoReturn getStoreItem(int, int);
 	TodoReturn getStoreItem(int);
-	TodoReturn getTotalCollectedCurrency();
-	TodoReturn getTotalCollectedDiamonds();
+	int getTotalCollectedCurrency();
+	int getTotalCollectedDiamonds();
 	bool hasClaimedListReward(GJLevelList*);
 	bool hasCompletedChallenge(GJChallengeItem*);
 	bool hasCompletedDailyLevel(int);
