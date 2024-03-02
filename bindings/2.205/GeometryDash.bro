@@ -10309,6 +10309,28 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn tryUpdateSFXLibrary();
 
 	virtual bool init();
+	
+	cocos2d::CCDictionary* m_activeDownloads;
+	cocos2d::CCArray* m_musicDownloadDelegates;
+	cocos2d::CCDictionary* m_songObjects;
+	cocos2d::CCDictionary* m_MDLM003;
+	int m_songPriority;
+	gd::string m_customContentURL;
+	cocos2d::CCDictionary* m_sfxObjects;
+	cocos2d::CCArray* m_sfxArtists;
+	int m_sfxLibraryVersion;
+	int m_sfxObjectCount;
+	bool m_requestedSfxLibraryDownloaded;
+	cocos2d::CCDictionary* m_musicObjects;
+	cocos2d::CCDictionary* m_musicArtists;
+	gd::map<int, gd::string> m_musicTags;
+	int m_musicLibraryVersion;
+	int m_musicObjectCount;
+	bool m_requestedMusicLibraryDownloaded;
+	bool m_triedToLoadLibraries;
+	bool m_unkBool;
+	gd::unordered_set<int> m_resourceSfxUnorderedSet;
+	gd::unordered_set<int> m_resourceSongUnorderedSet;
 }
 
 [[link(android)]]
