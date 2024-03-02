@@ -12594,6 +12594,9 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 
 	virtual void onEnter();
 	virtual void onEnterTransitionDidFinish();
+
+	GJGameLevel* m_level;
+	bool m_editor;
 }
 
 [[link(android)]]
