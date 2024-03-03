@@ -1171,7 +1171,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_delegate = nullptr;
 		m_maxLabelLength = 0;
 		m_placeholderLabel = nullptr;
-		m_unknown3 = false;
+		m_filterSwearWords = false;
 		m_usePasswordChar = false;
 		m_forceOffset = false;
 		m_textArea = nullptr;
