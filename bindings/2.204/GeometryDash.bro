@@ -655,7 +655,7 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 
 	TodoReturn cleanupSprite() = win 0x21440;
 	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
-	TodoReturn initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
+	bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
 	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
 	TodoReturn runAnimation(gd::string) = win 0x21640;
 	TodoReturn runAnimationForced(gd::string) = win 0x216c0;
@@ -1331,7 +1331,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	virtual TodoReturn challengeStatusFinished();
 	virtual TodoReturn challengeStatusFailed();
 	virtual TodoReturn currencyWillExit(CurrencyRewardLayer*);
-	
+
 	cocos2d::CCArray* m_dots;
 	cocos2d::CCLabelBMFont* m_countdownLabel;
 	LoadingCircle* m_circle;
@@ -2847,7 +2847,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn updateEditButtonColor(int, cocos2d::ccColor3B) = win 0xcc030;
 	TodoReturn updateEditColorButton();
 	TodoReturn updateEditMenu() = win 0xd0c90;
-	void updateGridNodeSize() = win 0xa6f20; 
+	void updateGridNodeSize() = win 0xa6f20;
 	TodoReturn updateGridNodeSize(int);
 	TodoReturn updateGroupIDBtn2();
 	TodoReturn updateGroupIDLabel() = win 0xd47d0;
@@ -4484,7 +4484,9 @@ class GameManager : GManager {
 	TodoReturn getFontTexture(int) = win 0x127c30;
 	bool getGameVariable(char const*) = win 0x128730;
 	TodoReturn getGTexture(int);
-	TodoReturn getIconRequestID();
+	int getIconRequestID() {
+		return m_iconRequestID++;
+	}
 	int getIntGameVariable(char const*) = win 0x128c80;
 	TodoReturn getMenuMusicFile() = win 0x1216e0;
 	TodoReturn getMGTexture(int);
@@ -4949,7 +4951,7 @@ class GameObject : CCSpritePlus {
 	// are added to the first of the vtable regardless of the order
 	// defined in the header. This is why we simply can not use these
 	// two functions since defining them would break the vtable layout.
-	// TodoReturn updateMainColor(); 
+	// TodoReturn updateMainColor();
 	// TodoReturn updateSecondaryColor();
 
 	virtual void update(float);
@@ -5037,29 +5039,34 @@ class GameObject : CCSpritePlus {
 	// windows members may be wrong! yay!
 
 	PAD = android32 0x11, win 0xf, android64 0x11; // i will not question the windows pad
-	
+
 	// property 511
 	bool m_hasExtendedCollision;
 	PAD = android32 0x13, win 0x13, android64 0x13;
-	
+
 	// somehow related to property 155 and 156 if anyone wants to reverse engineer
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
-	
+
 	PAD = android32 0x4c, win 0x4c, android64 0x54;
 
 	cocos2d::CCSprite* m_glowSprite;
 
-	PAD = android32 0x14, win 0x14, android64 0x14;
-	
+	PAD = android32 0x8, win 0x4, android64 0x4;
+
+	float m_unk288;
+	float m_unk28c;
+
+	PAD = android32 0x8, win 0x8, android64 0x8;
+
 	gd::string m_particleString;
-	
+
 	PAD = android32 0x1, win 0x1, android64 0x1;
-	
+
 	// property 146
 	bool m_particleUseObjectColor;
 	PAD = android32 0x3e, win 0x3e, android64 0x3e;
-	
+
 	// property 108
 	int m_linkedGroup;
 
@@ -5068,36 +5075,36 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCSprite* m_colorSprite;
 
 	PAD = android32 0x13, win 0x13, android64 0x13;
-	
+
 	int m_uniqueID;
 	GameObjectType m_objectType;
-	
+
 	PAD = android32 0x10, win 0x10, android64 0x10;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
 	PAD = android32 0x1, win 0x1, android64 0x1;
-	
+
 	// property 372
 	bool m_hasNoAudioScale;
 	PAD = android32 0x2a, win 0x2a, android64 0x2a;
-	
+
 	// property 343
 	short m_enterChannel;
 	// property 446
 	short m_objectMaterial;
 	PAD = android32 0x4, win 0x4, android64 0x4;
-	
+
 	// property 96
 	bool m_hasNoGlow;
-	
+
 	// property 23
 	int m_targetColor;
-	
+
 	// property 1
 	int m_objectID;
 	PAD = android32 0x8, win 0x8, android64 0x8;
-	
+
 	// property 497
 	short m_customColorType;
 	// property 67
@@ -5109,26 +5116,26 @@ class GameObject : CCSpritePlus {
 	// property 507
 	bool m_hasNoParticles;
 	PAD = android32 0x16, win 0x16, android64 0x16;
-	
+
 	// property 53
 	int m_property53;
 	PAD = android32 0x18, win 0x18, android64 0x18;
-	
+
 	// property 21, also used with 41 and 43
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
 	PAD = android32 0xc, win 0xa, android64 0xc; // i will not question the windows pad
-	
+
 	// property 24
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
 	PAD = android32 0x10, win 0x10, android64 0x10;
-	
+
 	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
 	PAD = android32 0x1, win 0x1, android64 0x1;
-	
+
 	// property 34
 	bool m_hasGroupParent;
 	// property 279
@@ -5137,37 +5144,37 @@ class GameObject : CCSpritePlus {
 	float m_scaleX;
 	// property 129
 	float m_scaleY;
-	
+
 	// property 57
 	std::array<short, 10>* m_groups;
 	// used with property 57
 	short m_groupCount;
 	// used with property 274
 	bool m_hasGroupParentsString;
-	
+
 	std::array<short, 10>* m_colorGroups;
 	short m_colorGroupCount;
 	std::array<short, 10>* m_opacityGroups;
 	short m_opacityGroupCount;
-	
+
 	// property 20
 	short m_editorLayer;
 	// property 61
 	short m_editorLayer2;
 	PAD = android32 0x8, win 0x8, android64 0x8;
-	
+
 	// property 121
 	bool m_isNoTouch;
 	PAD = android32 0x9, win 0x9, android64 0x9;
-	
+
 	cocos2d::CCPoint m_lastPosition;
 
 	PAD = android32 0x1b, win 0x1b, android64 0x1b;
-	
+
 	// property 103
 	bool m_isHighDetail;
 	PAD = android32 0x11, win 0x11, android64 0x21;
-	
+
 	// property 134
 	bool m_isPassable;
 	// property 135
@@ -5189,12 +5196,12 @@ class GameObject : CCSpritePlus {
 	// property 509
 	bool m_isDontBoostX;
 	PAD = android32 0x11, win 0x11, android64 0x11;
-	
+
 	// property 155
 	int m_property155;
 	// property 156
 	int m_property156;
-	
+
 	PAD = android32 0x12, win 0x12, android64 0x12; // TODO: yeah someone pls fix windows pads
 }
 
@@ -5725,7 +5732,7 @@ class GJAccountSyncDelegate {
 class GJActionManager : cocos2d::CCNode {
 	// virtual ~GJActionManager();
 
-	static GJActionManager* create();
+	static GJActionManager* create() = win 0x18d340;
 
 	TodoReturn getInternalAction(int);
 	TodoReturn runInternalAction(cocos2d::CCAction*, cocos2d::CCNode*);
@@ -6840,7 +6847,7 @@ class GJGameState {
 	TodoReturn tweenValue(float, float, int, float, int, float, int, int) = win 0x18e920;
 	TodoReturn updateTweenAction(float, int);
 	TodoReturn updateTweenActions(float);
-	
+
 	float m_unk0;
 	float m_unk4;
 	cocos2d::CCPoint m_unk8;
@@ -6910,7 +6917,9 @@ class GJGameState {
 	int m_unk1f8; // used in PlayLayer::getCurrentPercent
 	PAD = win 0x18;
 	cocos2d::CCPoint m_unk20c;
-	PAD = win 0x10, android32 0x10, android64 0x10;
+	PAD = win 0xa, android32 0xa, android64 0xa;
+	bool m_isDualMode;
+	PAD = win 0x5, android32 0x5, android64 0x5;
 	gd::unordered_map<int, GJValueTween> m_unk224;
 	PAD = win 0x10, android32 0x10, android64 0x10;
 	gd::unordered_map<int, GameObjectPhysics> m_unk250;
@@ -8121,7 +8130,7 @@ class GJUserMessage : cocos2d::CCNode {
 	static GJUserMessage* create() = win 0x119d90;
 	static GJUserMessage* create(cocos2d::CCDictionary*);
 
-	virtual bool init();
+	virtual bool init() = mac 0x52d2d0;
 
 	int m_messageID;
 }
@@ -8735,7 +8744,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-	// virtual ~LevelBrowserLayer();
+	~LevelBrowserLayer() = win 0x232c10;
 
 	static LevelBrowserLayer* create(GJSearchObject*) = win 0x232db0;
 
@@ -8886,7 +8895,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     static LevelEditorLayer* get() {
         return GameManager::sharedState()->m_levelEditorLayer;
     }
-	
+
 	static LevelEditorLayer* create(GJGameLevel*, bool) = win 0x2399c0;
 
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
@@ -9088,7 +9097,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	cocos2d::CCArray* m_unkArr13;
 	cocos2d::CCDictionary* m_unkDict3;
 	cocos2d::CCArray* m_unkArr5;
-	
+
 	// haven't verified the mac padding
 	PAD = win 0x8, android32 0x8, android64 0x10, mac 0x10;
 
@@ -9097,7 +9106,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	bool m_unkBool3;
 	bool m_unkBool2;
 	geode::SeedValueRSV m_coinCount;
-	
+
 	// haven't verified the mac padding
 	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
 
@@ -9644,7 +9653,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 	// property kA31
 	bool m_enablePlayerSqueeze;
 	// property kA32
-	bool m_fixGravityBug;	
+	bool m_fixGravityBug;
 	// property kA33
 	bool m_fixNegativeScale;
 	// property kA34
@@ -10391,7 +10400,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn tryUpdateSFXLibrary() = win 0x2866f0;
 
 	virtual bool init();
-	
+
 	cocos2d::CCDictionary* m_activeDownloads;
 	cocos2d::CCArray* m_musicDownloadDelegates;
 	cocos2d::CCDictionary* m_songObjects;
@@ -10860,7 +10869,7 @@ class PlayerControlGameObject : EffectGameObject {
 class PlayerFireBoostSprite : cocos2d::CCSprite {
 	// virtual ~PlayerFireBoostSprite();
 
-	static PlayerFireBoostSprite* create();
+	static PlayerFireBoostSprite* create() = win 0x2dab20;
 
 	void animateFireIn() = win 0x2dac30;
 	void animateFireOut() {
@@ -10871,6 +10880,8 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 	TodoReturn loopFireAnimation();
 
 	virtual bool init();
+
+	float m_size;
 }
 
 [[link(android)]]
@@ -11085,13 +11096,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         createSpider(id);
     }
 
-	TodoReturn updatePlayerSpriteExtra(gd::string);
+	void updatePlayerSpriteExtra(gd::string) = win 0x2d7840;
 	TodoReturn updatePlayerSwingFrame(int) = win 0x2d74c0;
 	TodoReturn updateRobotAnimationSpeed();
 	TodoReturn updateRotation(float, float);
 	TodoReturn updateRotation(float) = win 0x2cbd20;
 	TodoReturn updateShipRotation(float);
-	TodoReturn updateShipSpriteExtra(gd::string);
+	void updateShipSpriteExtra(gd::string) = win 0x2d7940;
 	TodoReturn updateSlopeRotation(float);
 	TodoReturn updateSlopeYVelocity(float);
 	TodoReturn updateSpecial(float) = win 0x2c62c0;
@@ -11131,7 +11142,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCDictionary* m_unk4f4;
 	PAD = win 0x20, android32 0x20;
 	float m_unk518;
-	PAD = win 0x8, android32 0x8;
+	bool m_unk51c;
+	bool m_unk51d;
+	bool m_unk51e;
+	bool m_unk51f;
+	PAD = win 0x4, android32 0x4;
 	GameObject* m_collidedObject;
 	PAD = win 0x40, android32 0x40;
 	float m_unk568;
@@ -11191,8 +11206,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_unk6a2; // = GameManager::getGameVariable("0096")
 	bool m_unk6a3; // = GameManager::getGameVariable("0100")
 	PAD = win 0x18, android32 0x18;
+	int m_unk6c0;
 	GameObject* m_objectSnappedTo;
-	PAD = win 0x8, android32 0x8;
+	PAD = win 0x4, android32 0x4;
 	GJRobotSprite* m_robotSprite;
 	GJSpiderSprite* m_spiderSprite;
 	PAD = win 0x4, android32 0x4;
@@ -11208,7 +11224,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	PAD = win 0x4, android32 0x4;
 	cocos2d::CCParticleSystemQuad* m_unk704;
 	cocos2d::CCParticleSystemQuad* m_unk708;
-	PAD = win 0x6c, android32 0x6c;
+	float m_unk70c;
+	float m_unk710;
+	PAD = win 0x64, android32 0x64;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
 	PAD = win 0x24, android32 0x1c;
@@ -11240,7 +11258,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_unk7e4;
 	cocos2d::CCPoint m_unk7e8;
 	cocos2d::CCPoint m_unk7f0; // maybe m_lastPortalPos
-	PAD = win 0x1c, android32 0x1c;
+	bool m_unk7f8;
+	PAD = win 0x18, android32 0x18;
 	cocos2d::CCPoint m_lastGroundedPos;
 	cocos2d::CCArray* m_touchingRings;
 	gd::unordered_set<int> m_unk828;
@@ -11252,8 +11271,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCPoint m_position;
 	PAD = win 0x14, android32 0x14;
 	float m_unk838;
-	gd::unordered_map<int, int> m_unk83c; // the types are placeholders, no idea what they should be
-	PAD = win 0x10;
+	PAD = win 0x4;
+	bool m_gamevar0060;
+	bool m_gamevar0061;
+	bool m_gamevar0062;
+	PAD = win 0x4;
+	gd::vector<float> m_unk880;
+	PAD = win 0x1c;
 	double m_platformerXVelocity;
 	PAD = win 0x70;
 	bool m_isPlatformer;
@@ -12223,7 +12247,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputClosed(CCTextInputNode*);
 	virtual TodoReturn textChanged(CCTextInputNode*) = win 0x3135b0;
-	
+
     GameObject* m_targetObject;
     cocos2d::CCArray* m_targetObjects;
     cocos2d::CCArray* m_array0;
@@ -14213,7 +14237,7 @@ class Slider : cocos2d::CCLayer {
 	SliderThumb* getThumb() {
 		return m_touchLogic->m_thumb;
 	}
-	TodoReturn getValue() = win 0x4d4f0;
+	float getValue() = win 0x4d4f0;
 	TodoReturn hideGroove(bool);
 	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float) = win 0x4d1f0;
 	void setBarVisibility(bool);

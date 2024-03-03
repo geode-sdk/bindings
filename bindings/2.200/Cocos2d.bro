@@ -116,7 +116,7 @@ class cocos2d::CCNode {
 	// CCNode(cocos2d::CCNode const&);
 	CCNode() = mac 0x2501f0;
     ~CCNode() = mac 0x250390;
-	
+
 	cocos2d::CCAction* getActionByTag(int) = mac 0x252000;
 	cocos2d::CCComponent* getComponent(char const*) const;
 	int getScriptHandler();
@@ -146,7 +146,7 @@ class cocos2d::CCNode {
 	void schedule(cocos2d::SEL_SCHEDULE) = mac 0x2521c0;
 	void schedule(cocos2d::SEL_SCHEDULE, float);
 	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = mac 0x252220;
-	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
+	void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = mac 0x2521f0;
 	void scheduleUpdate() = mac 0x2520a0;
 	void scheduleUpdateWithPriority(int);
 	void scheduleUpdateWithPriorityLua(int, int);
@@ -354,9 +354,9 @@ class cocos2d::CCScheduler {
 	float getTimeScale();
 
 	void setTimeScale(float);
-	
+
 	// CCScheduler(cocos2d::CCScheduler const&);
-	// CCScheduler();	
+	// CCScheduler();
 
 	void appendIn(cocos2d::_listEntry**, cocos2d::CCObject*, bool);
 	bool isTargetPaused(cocos2d::CCObject*);
@@ -592,7 +592,7 @@ class cocos2d::CCTextureCache {
 	// CCTextureCache();
 	cocos2d::CCTexture2D* addETCImage(char const*);
 	cocos2d::CCTexture2D* addImage(char const*, bool) = mac 0x5b2630;
-	void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat);
+	void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat) = mac 0x5b18d0;
 	void addImageAsyncCallBack(float);
 	cocos2d::CCTexture2D* addPVRImage(char const*);
 	cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*) = mac 0x5b3350;
@@ -716,7 +716,7 @@ class cocos2d::CCIMEDispatcher {
 	static cocos2d::CCIMEDispatcher* sharedDispatcher();
 
 	// CCIMEDispatcher();
-	
+
 	void addDelegate(cocos2d::CCIMEDelegate*);
 	bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
 	bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
@@ -961,7 +961,7 @@ class cocos2d::CCRotateBy {
 [[link(win, android)]]
 class cocos2d::CCScaleTo {
 	static cocos2d::CCScaleTo* create(float, float) = mac 0x397f90;
-	static cocos2d::CCScaleTo* create(float, float, float);
+	static cocos2d::CCScaleTo* create(float, float, float) = mac 0x398090;
 
 	bool initWithDuration(float, float);
 	bool initWithDuration(float, float, float);

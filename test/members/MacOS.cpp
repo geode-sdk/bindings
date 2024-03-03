@@ -98,10 +98,34 @@
 GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x158);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x780);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc90);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3290);
+
+GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x35d8);
 
 GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_mainLayer, 0x248);
+
+GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3488);
+GEODE_SIZE_CHECK(GameObject, 0x578);
+GEODE_SIZE_CHECK(PlayerObject, 0xb80);
+GEODE_SIZE_CHECK(PlayLayer, 0x3758);
+GEODE_SIZE_CHECK(GJGameState, 0x5d8);
+
+GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
+GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x688);
+GEODE_MEMBER_CHECK(PlayerObject, m_swingFireMiddle, 0x748);
+GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x778);
+GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x830);
+GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x910);
+GEODE_MEMBER_CHECK(PlayerObject, m_glowColor, 0x911);
+GEODE_MEMBER_CHECK(PlayerObject, m_isShip, 0x941);
+GEODE_MEMBER_CHECK(PlayerObject, m_isRobot, 0x945);
+GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xa28);
+GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
 
 #endif
