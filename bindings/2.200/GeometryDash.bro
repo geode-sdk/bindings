@@ -7200,7 +7200,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	bool init(GJSearchObject*) = mac 0x467790, win 0x22DE00;
 	~LevelBrowserLayer();
 
-	TodoReturn getSearchTitle() = mac 0x46c370;
+	gd::string getSearchTitle() = mac 0x46c370;
 	TodoReturn getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*);
 
 	/* unverified signature */
