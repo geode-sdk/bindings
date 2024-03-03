@@ -1216,8 +1216,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         return m_placeholderLabel;
     }
 
-	TodoReturn addTextArea(TextArea*);
-	TodoReturn forceOffset();
+	void addTextArea(TextArea* tArea);
+	void forceOffset();
 	gd::string getString() {
 		return m_textField->getString();
 	}
@@ -1229,7 +1229,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	TodoReturn updateBlinkLabelToChar(int);
 	TodoReturn updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = ios 0x17532c;
 	TodoReturn updateDefaultFontValues(gd::string);
-	TodoReturn updateLabel(gd::string);
+	void updateLabel(gd::string label);
 
 	virtual void visit();
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x175770;
@@ -1242,8 +1242,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	virtual void keyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&);
 	virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&);
 	virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF*, char const*, int, cocos2d::enumKeyCodes);
-	virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF*);
-	virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF*);
+	virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF* pSender);
+	virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* pSender);
 
 	bool m_numberInput;
 	gd::string m_caption;
@@ -1264,7 +1264,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	TextInputDelegate* m_delegate;
 	int m_maxLabelLength;
 	cocos2d::CCLabelBMFont* m_placeholderLabel;
-	bool m_unknown3;
+	bool m_filterSwearWords;
 	bool m_usePasswordChar;
 	bool m_forceOffset;
 	TextArea* m_textArea;
