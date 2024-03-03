@@ -4754,7 +4754,7 @@ class GameStatsManager : cocos2d::CCNode {
 	GJChallengeItem* getSecondaryQueuedChallenge(int) = mac 0x73910;
 	TodoReturn getSpecialRewardDescription(gd::string, bool);
 	TodoReturn getSpecialUnlockDescription(int, UnlockType, bool) = mac 0x789e0;
-	TodoReturn getStat(char const*) = win 0x168680, mac 0x66800;
+	int getStat(char const*) = win 0x168680, mac 0x66800;
 
 	/* unverified signature */
 	void setStatIfHigher(char const*, int);
