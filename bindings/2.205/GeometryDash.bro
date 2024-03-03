@@ -3490,7 +3490,7 @@ class FileSaveManager : GManager {
 	TodoReturn loadDataFromFile(char const*);
 
 	virtual bool init();
-	virtual TodoReturn firstLoad();
+	virtual bool firstLoad();
 }
 
 [[link(android)]]
@@ -4581,7 +4581,7 @@ class GameManager : GManager {
 	virtual bool init();
 	virtual TodoReturn encodeDataTo(DS_Dictionary*);
 	virtual TodoReturn dataLoaded(DS_Dictionary*);
-	virtual TodoReturn firstLoad();
+	virtual bool firstLoad();
 
 	cocos2d::CCDictionary* m_unkAnimationDict;
 	cocos2d::CCDictionary* m_unkAnimationDict2;
@@ -8177,25 +8177,25 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 class GManager : cocos2d::CCNode {
 	// virtual ~GManager();
 
-	TodoReturn getCompressedSaveString();
+	gd::string getCompressedSaveString();
 	gd::string getSaveString();
-	TodoReturn load();
-	TodoReturn loadDataFromFile(gd::string const&);
-	TodoReturn loadFromCompressedString(gd::string&);
-	TodoReturn loadFromString(gd::string&);
+	bool load();
+	bool loadDataFromFile(gd::string const& fileName);
+	bool loadFromCompressedString(gd::string& compressedStr);
+	bool loadFromString(gd::string& data);
 	inline void save() {
 		saveGMTo(m_fileName);
 	}
-	TodoReturn saveData(DS_Dictionary*, gd::string);
-	TodoReturn saveGMTo(gd::string);
-	TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
+	void saveData(DS_Dictionary*, gd::string);
+	void saveGMTo(gd::string fileName);
+	bool tryLoadData(DS_Dictionary*, gd::string const&);
 	inline GManager() {}
 
 	virtual bool init();
-	virtual TodoReturn setup();
-	virtual TodoReturn encodeDataTo(DS_Dictionary*);
-	virtual TodoReturn dataLoaded(DS_Dictionary*);
-	virtual TodoReturn firstLoad();
+	virtual void setup();
+	virtual void encodeDataTo(DS_Dictionary* dsdict);
+	virtual bool dataLoaded(DS_Dictionary* dsdict);
+	virtual bool firstLoad();
 
 	gd::string m_fileName;
 	bool m_setup;
@@ -9798,7 +9798,7 @@ class LocalLevelManager : GManager {
 	virtual bool init();
 	virtual TodoReturn encodeDataTo(DS_Dictionary*);
 	virtual TodoReturn dataLoaded(DS_Dictionary*);
-	virtual TodoReturn firstLoad();
+	virtual bool firstLoad();
 
 	cocos2d::CCArray* m_localLevels;
 	cocos2d::CCArray* m_LLM03;
