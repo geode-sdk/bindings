@@ -4182,7 +4182,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void setLevelStars(int, int, bool);
 	TodoReturn specialFromLikeKey(char const*);
 	void storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
-	void storeDailyLevelState(int, int, GJTimedLevelType);
+	void storeDailyLevelState(int, int, GJTimedLevelType) = win 0x110bc0;
 	void storeFriendRequest(GJFriendRequest*);
 	void storeSearchResult(cocos2d::CCArray*, gd::string, char const*);
 	void storeUserInfo(GJUserScore*);
@@ -4474,8 +4474,8 @@ class GameManager : GManager {
 	TodoReturn finishedLoadingMGAsync(int);
 	TodoReturn finishedLoadingMGAsync1(cocos2d::CCObject*);
 	TodoReturn finishedLoadingMGAsync2(cocos2d::CCObject*);
-	TodoReturn followTwitch();
-	TodoReturn followTwitter();
+	TodoReturn followTwitch() = win 0x126f20;
+	TodoReturn followTwitter() = win 0x126e00;
 	TodoReturn framesForAnimation(int);
 	TodoReturn frameTimeForAnimation(int);
 	TodoReturn generateSecretNumber();
@@ -4502,13 +4502,13 @@ class GameManager : GManager {
 	bool isIconLoaded(int, int);
 	bool isIconUnlocked(int, IconType) = win 0x121f90;
 	TodoReturn itemPurchased(char const*);
-	TodoReturn joinDiscord();
-	TodoReturn joinReddit();
+	TodoReturn joinDiscord() = win 0x126fb0;
+	TodoReturn joinReddit() = win 0x127040;
 	int keyForIcon(int iconIdx, int iconEnum) {
 		return m_keyStartForIcon->at(iconEnum) + iconIdx - 1;
 	}
 	TodoReturn levelIsPremium(int, int);
-	TodoReturn likeFacebook();
+	TodoReturn likeFacebook() = win 0x126d70;
 	void loadBackground(int) = win 0x127dc0;
 	TodoReturn loadBackgroundAsync(int) = win 0x127e60;
 	TodoReturn loadDeathEffect(int) = win 0x127c80;
@@ -4574,7 +4574,7 @@ class GameManager : GManager {
 	TodoReturn showMainMenuAd();
 	TodoReturn startUpdate();
 	TodoReturn stringForCustomObject(int) = win 0x128f90;
-	TodoReturn subYouTube();
+	TodoReturn subYouTube() = win 0x126e90;
 	TodoReturn switchCustomObjects(int, int);
 	TodoReturn switchScreenMode(bool, bool);
 	TodoReturn syncPlatformAchievements();
@@ -5391,7 +5391,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn storeChallengeTime(int) = win 0x172ea0;
 	TodoReturn storePendingUserCoin(char const*);
 	TodoReturn storeQueuedChallenge(int, GJChallengeItem*) = win 0x1730c0;
-	TodoReturn storeRewardState(GJRewardType, int, int, gd::string);
+	TodoReturn storeRewardState(GJRewardType, int, int, gd::string) = win 0x1728f0;
 	TodoReturn storeSecondaryQueuedChallenge(int, GJChallengeItem*) = win 0x173260;
 	TodoReturn storeSecretCoin(char const*);
 	TodoReturn storeUserCoin(char const*);
