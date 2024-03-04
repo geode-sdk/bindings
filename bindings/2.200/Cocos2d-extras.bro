@@ -1144,7 +1144,7 @@ class cocos2d::CCEvent {
 
 [[link(win, android)]]
 class cocos2d::CCFadeIn {
-	static cocos2d::CCFadeIn* create(float);
+	static cocos2d::CCFadeIn* create(float) = mac 0x398AD0;
 
 	// CCFadeIn(cocos2d::CCFadeIn const&);
 	// CCFadeIn();
@@ -1156,7 +1156,7 @@ class cocos2d::CCFadeIn {
 
 [[link(win, android)]]
 class cocos2d::CCFadeOut {
-	static cocos2d::CCFadeOut* create(float);
+	static cocos2d::CCFadeOut* create(float) = mac 0x398D40;
 
 	// CCFadeOut(cocos2d::CCFadeOut const&);
 	// CCFadeOut();
@@ -1818,7 +1818,7 @@ class cocos2d::CCLayer {
 
 [[link(win, android)]]
 class cocos2d::CCLayerColor {
-	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&);
+	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&) = mac 0x48F140;
 	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float);
 	static cocos2d::CCLayerColor* create();
 
