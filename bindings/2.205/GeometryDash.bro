@@ -9613,7 +9613,7 @@ class LevelTools {
 	TodoReturn getLastTimewarp();
 	TodoReturn getLevel(int, bool);
 	TodoReturn getLevelList();
-	TodoReturn getSongObject(int);
+	static SongInfoObject* getSongObject(int);
 	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
 	TodoReturn nameForArtist(int);
 	TodoReturn ngURLForArtist(int);
