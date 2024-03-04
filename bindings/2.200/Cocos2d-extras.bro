@@ -1143,30 +1143,6 @@ class cocos2d::CCEvent {
 }
 
 [[link(win, android)]]
-class cocos2d::CCFadeIn {
-	static cocos2d::CCFadeIn* create(float) = mac 0x398AD0;
-
-	// CCFadeIn(cocos2d::CCFadeIn const&);
-	// CCFadeIn();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
-class cocos2d::CCFadeOut {
-	static cocos2d::CCFadeOut* create(float) = mac 0x398D40;
-
-	// CCFadeOut(cocos2d::CCFadeOut const&);
-	// CCFadeOut();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
 class cocos2d::CCFadeOutBLTiles {
 	static cocos2d::CCFadeOutBLTiles* create(float, cocos2d::CCSize const&);
 
@@ -1814,68 +1790,6 @@ class cocos2d::CCLayer {
 	virtual void keyMenuClicked();
 
 	virtual void keyDown(cocos2d::enumKeyCodes);
-}
-
-[[link(win, android)]]
-class cocos2d::CCLayerColor {
-	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&);
-	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float);
-	static cocos2d::CCLayerColor* create();
-
-	void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
-
-	// CCLayerColor(cocos2d::CCLayerColor const&);
-	// CCLayerColor();
-	void addToVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
-	void changeHeight(float);
-	void changeWidth(float);
-	void changeWidthAndHeight(float, float);
-
-	virtual bool init();
-	virtual void setContentSize(cocos2d::CCSize const&);
-	virtual void draw();
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, float, float);
-	virtual bool initWithColor(cocos2d::_ccColor4B const&);
-	virtual void updateColor();
-
-	virtual void setColor(cocos2d::_ccColor3B const&);
-	virtual void setOpacity(unsigned char);
-
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
-	virtual cocos2d::_ccBlendFunc getBlendFunc();
-}
-
-[[link(win, android)]]
-class cocos2d::CCLayerGradient {
-	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = mac 0x48F140;
-	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
-	static cocos2d::CCLayerGradient* create();
-
-	bool getShouldPremultiply() const;
-
-	void setShouldPremultiply(bool);
-	void setValues(cocos2d::_ccColor3B const&, unsigned char, cocos2d::_ccColor3B const&, unsigned char, cocos2d::CCPoint const&);
-
-	// CCLayerGradient(cocos2d::CCLayerGradient const&);
-	// CCLayerGradient();
-
-	virtual bool init();
-	virtual void visit();
-	virtual void updateColor();
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&);
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
-	virtual cocos2d::_ccColor3B const& getStartColor();
-	virtual void setStartColor(cocos2d::_ccColor3B const&);
-	virtual cocos2d::_ccColor3B const& getEndColor();
-	virtual void setEndColor(cocos2d::_ccColor3B const&);
-	virtual unsigned char getStartOpacity();
-	virtual void setStartOpacity(unsigned char);
-	virtual unsigned char getEndOpacity();
-	virtual void setEndOpacity(unsigned char);
-	virtual cocos2d::CCPoint const& getVector();
-	virtual void setVector(cocos2d::CCPoint const&);
-	virtual void setCompressedInterpolation(bool);
-	virtual bool isCompressedInterpolation();
 }
 
 [[link(win, android)]]
