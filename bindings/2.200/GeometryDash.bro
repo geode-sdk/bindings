@@ -577,7 +577,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	TodoReturn cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn checkBoundaryOfCell(TableViewCell*);
 	TodoReturn checkBoundaryOfCell(cocos2d::CCPoint&, float);
-	TodoReturn deleteTableViewCell(TableViewCell*);
+	TodoReturn deleteTableViewCell(TableViewCell*) = mac 0x5e4cf0;
 	/* unverified signature */
 	bool isDuplicateIndexPath(CCIndexPath&);
 	TodoReturn cellForRowAtIndexPath(CCIndexPath&);
@@ -2169,7 +2169,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 		return GJDropDownLayer::init(title, 220.f);
 	}
 	bool init(const char* title, float height) = win 0x1d2340, mac 0x5acd70;
-	~GJDropDownLayer();
+	~GJDropDownLayer() = mac 0x5ac980;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent) {
 		return true;
@@ -2180,19 +2180,19 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 
 	// 2.2, untested
 
-	virtual void draw();
-	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual void customSetup();
-	virtual TodoReturn enterLayer();
-	virtual TodoReturn exitLayer(cocos2d::CCObject*);
+	virtual void draw() = mac 0x5ad550;
+	virtual void registerWithTouchDispatcher() = mac 0x5ad240;
+	virtual void keyBackClicked() = mac 0x5ad280;
+	virtual void customSetup() = mac 0x5ad1c0;
+	virtual TodoReturn enterLayer() = mac 0x5ad210;
+	virtual TodoReturn exitLayer(cocos2d::CCObject*) = mac 0x5ad2c0;
 	virtual void showLayer(bool) = win 0x1D27C0, mac 0x5ad300;
-	virtual TodoReturn hideLayer(bool);
-	virtual TodoReturn layerVisible();
-	virtual TodoReturn layerHidden();
-	virtual TodoReturn enterAnimFinished();
-	virtual TodoReturn disableUI();
-	virtual TodoReturn enableUI();
+	virtual TodoReturn hideLayer(bool) = mac 0x5ad3f0;
+	virtual TodoReturn layerVisible() = mac 0x5ad4f0;
+	virtual TodoReturn layerHidden() = mac 0x5ad510;
+	virtual TodoReturn enterAnimFinished() = mac 0x5ad4e0;
+	virtual TodoReturn disableUI() = mac 0x5ad1d0;
+	virtual TodoReturn enableUI() = mac 0x5ad1f0;
 
 	cocos2d::CCPoint m_endPosition;
 	cocos2d::CCPoint m_startPosition;
@@ -9687,7 +9687,7 @@ class GJSmartPrefab : cocos2d::CCObject {
 class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelegate {
 	static GJSongBrowser* create() = win 0x220120, mac 0x5c3a70;
 
-	~GJSongBrowser();
+	~GJSongBrowser() = mac 0x5c3b90;
 
 	void onNextPage(cocos2d::CCObject* sender);
 	void onPrevPage(cocos2d::CCObject* sender);
@@ -9697,12 +9697,12 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 	TodoReturn setupSongBrowser(cocos2d::CCArray*);
 	TodoReturn loadPage(int);
 
-	virtual bool init();
-	virtual TodoReturn customSetup() = win 0x220320;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x2202B0;
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
-	virtual TodoReturn getSelectedCellIdx();
+	virtual bool init() = mac 0x5c3e80;
+	virtual TodoReturn customSetup() = win 0x220320, mac 0x5c4150;
+	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x2202B0, mac 0x5c4120;
+	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x5c46e0;
+	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = mac 0x5c47c0;
+	virtual TodoReturn getSelectedCellIdx() = mac 0x5c4820;
 
 	int m_page;
 	int m_songID;
@@ -10038,7 +10038,7 @@ class CurrencySprite : CCSpritePlus {
 class CustomSongCell : TableViewCell, CustomSongDelegate {
 	~CustomSongCell();
 
-	void onDelete(cocos2d::CCObject* sender);
+	void onDelete(cocos2d::CCObject* sender) = mac 0x232080;
 
 	TodoReturn shouldReload();
 	void updateBGColor(int) = win 0x82D40;
@@ -10051,11 +10051,10 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
 	virtual TodoReturn getActiveSongID();
 	virtual TodoReturn getSongFileName();
 	virtual TodoReturn getLevelSettings();
+
+	SongInfoObject* m_songInfoObject;
+	bool m_unkBool;
 }
-
-
-
-
 
 [[link(android)]]
 class GauntletSprite : cocos2d::CCNode {
@@ -10780,7 +10779,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	/* unverified signature */
 	bool isEffectLoaded(gd::string);
 	/* unverified signature */
-	bool isMusicPlaying(int);
+	bool isMusicPlaying(int) = mac 0x3c5170;
 	/* unverified signature */
 	bool isMusicPlaying(gd::string, int);
 	TodoReturn lengthForSound(gd::string);
@@ -11455,7 +11454,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	static CustomSongWidget* create(SongInfoObject*, CustomSongDelegate*, bool, bool, bool, bool, bool, bool) = mac 0x5de780;
 
 	bool init(SongInfoObject*, CustomSongDelegate*, bool, bool, bool, bool, bool, bool) = mac 0x5de910, win 0x921A0;
-	~CustomSongWidget();
+	~CustomSongWidget() = mac 0x5de750;
 
 	TodoReturn getSongInfoIfUnloaded();
 
@@ -11467,7 +11466,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onDelete(cocos2d::CCObject* sender) = mac 0x5dfeb0;
 	void onSelect(cocos2d::CCObject* sender) = mac 0x5dff90, win 0x93CC0;
 
-	TodoReturn deleteSong();
+	TodoReturn deleteSong() = mac 0x5e1850;
 	TodoReturn updateError(GJSongError);
 	TodoReturn verifySongID(int);
 	TodoReturn startDownload();
@@ -11488,16 +11487,16 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	TodoReturn startMultiAssetDownload();
 	TodoReturn showError(bool) = mac 0x5e1990;
 
-	virtual TodoReturn loadSongInfoFinished(SongInfoObject*);
-	virtual TodoReturn loadSongInfoFailed(int, GJSongError);
-	virtual TodoReturn downloadSongFinished(int);
-	virtual TodoReturn downloadSongFailed(int, GJSongError);
-	virtual TodoReturn downloadSFXFinished(int);
-	virtual TodoReturn downloadSFXFailed(int, GJSongError);
-	virtual TodoReturn musicActionFinished(GJMusicAction);
-	virtual TodoReturn musicActionFailed(GJMusicAction);
-	virtual TodoReturn songStateChanged();
-	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual TodoReturn loadSongInfoFinished(SongInfoObject*) = mac 0x5e3290;
+	virtual TodoReturn loadSongInfoFailed(int, GJSongError) = mac 0x5e3440;
+	virtual TodoReturn downloadSongFinished(int) = mac 0x5e3640;
+	virtual TodoReturn downloadSongFailed(int, GJSongError) = mac 0x5e3920;
+	virtual TodoReturn downloadSFXFinished(int) = mac 0x5e3ab0;
+	virtual TodoReturn downloadSFXFailed(int, GJSongError) = mac 0x5e3ae0;
+	virtual TodoReturn musicActionFinished(GJMusicAction) = mac 0x5e3da0;
+	virtual TodoReturn musicActionFailed(GJMusicAction) = mac 0x5e3e00;
+	virtual TodoReturn songStateChanged() = mac 0x5e2300;
+	virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x5e3ee0;
 
 	SongInfoObject* m_songInfoObject;
 	cocos2d::CCMenu* m_buttonMenu;
@@ -13710,7 +13709,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 
 	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x55a150;
-	TodoReturn deleteSong(int);
+	TodoReturn deleteSong(int) = mac 0x5585a0;
 	TodoReturn firstSetup();
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
 	/* unverified signature */
