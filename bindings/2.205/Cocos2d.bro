@@ -1064,6 +1064,7 @@ class cocos2d::CCSprite {
 
 [[link(win, android)]]
 class cocos2d::CCLabelBMFont {
+	~CCLabelBMFont() = ios 0x301fcc;
 	static cocos2d::CCLabelBMFont* create(char const*, char const*) = ios 0x301b04;
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment);
