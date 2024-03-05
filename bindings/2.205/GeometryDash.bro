@@ -5868,7 +5868,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn groupStickyObjects(cocos2d::CCArray*);
 	TodoReturn handleButton(bool, int, bool);
 	TodoReturn hasItem(int);
-	TodoReturn hasUniqueCoin(EffectGameObject*);
+	bool hasUniqueCoin(EffectGameObject*);
 	TodoReturn increaseBatchNodeCapacity();
 	bool isFlipping();
 	bool isPlayer2Button(int);
