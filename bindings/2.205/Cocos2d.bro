@@ -722,6 +722,15 @@ class cocos2d::CCTouchDispatcher {
 }
 
 [[link(win, android)]]
+class cocos2d::CCTouchDelegate {
+	// CCTouchDelegate(cocos2d::CCTouchDelegate const&);
+	// CCTouchDelegate();
+
+	virtual void setPreviousPriority(int) {}
+	virtual int getPreviousPriority() { return 0; }
+}
+
+[[link(win, android)]]
 class cocos2d::CCMoveTo {
 	static cocos2d::CCMoveTo* create(float, cocos2d::CCPoint const&) = ios 0x192864;
 
