@@ -4494,7 +4494,7 @@ class GameManager : GManager {
 	TodoReturn getNextUsedKey(int, bool) = win 0x128de0;
 	TodoReturn getOrderedCustomObjectKeys();
 	TodoReturn getPracticeMusicFile() = win 0x1217b0;
-	TodoReturn getUGV(char const*) = win 0x128a20;
+	bool getUGV(char const*) = win 0x128a20;
 	TodoReturn getUnlockForAchievement(gd::string, int&, UnlockType&) = win 0x122690;
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
