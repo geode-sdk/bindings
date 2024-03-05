@@ -1221,7 +1221,7 @@ class cocos2d::CCDictionary {
 [[link(win, android)]]
 class cocos2d::CCTransitionFade {
 	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = ios 0x1d1e60;
-	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
+	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&) = ios 0x1d1dc4;
 
 	// CCTransitionFade(cocos2d::CCTransitionFade const&);
 	// CCTransitionFade();
@@ -1565,6 +1565,52 @@ class cocos2d::CCActionManager {
 }
 
 [[link(win, android)]]
+class cocos2d::CCString {
+	// static cocos2d::CCString* create(gd::string const&);
+	static cocos2d::CCString* createWithContentsOfFile(char const*) = ios 0x2709e0;
+	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = ios 0x2708a4;
+	// static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x270958;
+
+	// bool initWithFormat(char const*, ...);
+	// bool initWithFormatAndValist(char const*, char*);
+
+	char const* getCString() const = ios 0x270528;
+
+	// CCString(cocos2d::CCString const&);
+	// CCString(gd::string const&);
+	// CCString(char const*);
+	// CCString();
+	bool boolValue() const;
+	int compare(char const*) const;
+	double doubleValue() const;
+	float floatValue() const;
+	int intValue() const;
+	unsigned int length() const;
+	unsigned int uintValue() const;
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual bool isEqual(cocos2d::CCObject const*);
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+}
+
+[[link(win, android)]]
+class cocos2d::CCTouch {
+	cocos2d::CCPoint getDelta() const;
+	int getID() const;
+	cocos2d::CCPoint getLocation() const = ios 0x305508;
+	cocos2d::CCPoint getLocationInView() const;
+	cocos2d::CCPoint getPreviousLocation() const;
+	cocos2d::CCPoint getPreviousLocationInView() const;
+	cocos2d::CCPoint getStartLocation() const;
+	cocos2d::CCPoint getStartLocationInView() const;
+
+	void setTouchInfo(int, float, float);
+
+	// CCTouch(cocos2d::CCTouch const&);
+	// CCTouch();
+}
+
+[[link(win, android)]]
 class cocos2d {
 	static cocos2d::CCAffineTransform CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
 	static bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
@@ -1593,7 +1639,7 @@ class cocos2d {
 	static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
 	static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
 	static void ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
-	static void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char);
+	static void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char) = ios 0x254420;
 	static void ccDrawColor4F(float, float, float, float);
 	static void ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
 	static void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
@@ -1611,7 +1657,7 @@ class cocos2d {
 	static void ccGLBindTexture2D(unsigned int);
 	static void ccGLBindTexture2DN(unsigned int, unsigned int);
 	static void ccGLBindVAO(unsigned int);
-	static void ccGLBlendFunc(unsigned int, unsigned int);
+	static void ccGLBlendFunc(unsigned int, unsigned int) = ios 0x1957d8;
 	static void ccGLBlendResetToCache();
 	static void ccGLDeleteProgram(unsigned int);
 	static void ccGLDeleteTexture(unsigned int);
@@ -1644,4 +1690,78 @@ class cocos2d {
 	static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
 	static float ccpToAngle(cocos2d::CCPoint const&);
 	static char const* cocos2dVersion();
+}
+
+[[link(win, android)]]
+class cocos2d::CCRotateBy {
+	static cocos2d::CCRotateBy* create(float, float) = ios 0x1921e4;
+	static cocos2d::CCRotateBy* create(float, float, float);
+
+	bool initWithDuration(float, float);
+	bool initWithDuration(float, float, float);
+
+	// CCRotateBy(cocos2d::CCRotateBy const&);
+	// CCRotateBy();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCRepeatForever {
+	static cocos2d::CCRepeatForever* create(cocos2d::CCActionInterval*) = ios 0x191794;
+
+	bool initWithAction(cocos2d::CCActionInterval*);
+
+	cocos2d::CCActionInterval* getInnerAction();
+
+	void setInnerAction(cocos2d::CCActionInterval*);
+
+	// CCRepeatForever(cocos2d::CCRepeatForever const&);
+	// CCRepeatForever();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual bool isDone();
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual void step(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCSpriteFrameCache {
+	static void purgeSharedSpriteFrameCache();
+	static cocos2d::CCSpriteFrameCache* sharedSpriteFrameCache() = ios 0x3b8d98;
+
+	bool init();
+
+	// CCSpriteFrameCache();
+	// CCSpriteFrameCache(cocos2d::CCSpriteFrameCache const&);
+	void addSpriteFrame(cocos2d::CCSpriteFrame*, char const*);
+	void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*);
+	void addSpriteFramesWithFile(char const*, char const*);
+	void addSpriteFramesWithFile(char const*);
+	void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*);
+	void removeSpriteFrameByName(char const*);
+	void removeSpriteFrames();
+	void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*);
+	void removeSpriteFramesFromFile(char const*);
+	void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*);
+	void removeUnusedSpriteFrames();
+	cocos2d::CCSpriteFrame* spriteFrameByName(char const*) = ios 0x3b9c74;
+}
+
+[[link(win, android)]]
+class cocos2d::CCFadeTo {
+	static cocos2d::CCFadeTo* create(float, unsigned char) = ios 0x193adc;
+
+	bool initWithDuration(float, unsigned char);
+
+	// CCFadeTo(cocos2d::CCFadeTo const&);
+	// CCFadeTo();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
 }
