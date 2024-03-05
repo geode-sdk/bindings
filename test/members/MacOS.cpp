@@ -128,4 +128,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_isRobot, 0x945);
 GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xa28);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
 
+GEODE_MEMBER_CHECK(CustomSongCell, m_songInfoObject, 0x230);
+GEODE_MEMBER_CHECK(SongInfoObject, m_songID, 0x13c);
+
 #endif
