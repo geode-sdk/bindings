@@ -1820,7 +1820,7 @@ class GameManager : GManager {
 
 	TodoReturn addToGJLog(cocos2d::CCString*);
 	TodoReturn clearGJLog();
-	TodoReturn joinReddit();
+	TodoReturn joinReddit() = mac 0x35e270;
 	int keyForIcon(int iconIdx, int iconEnum) {
 		return m_keyStartForIcon->at(iconEnum) + iconIdx - 1;
 	}
@@ -1828,7 +1828,7 @@ class GameManager : GManager {
 	TodoReturn printGJLog();
 	void reloadMenu() = win 0x12c510;
 	TodoReturn reorderKey(int, bool);
-	TodoReturn subYouTube();
+	TodoReturn subYouTube() = mac 0x35e120;
 	TodoReturn tryCacheAd();
 	TodoReturn unloadIcon(int, int, int);
 	TodoReturn unlockIcon(int, IconType);
@@ -1838,22 +1838,22 @@ class GameManager : GManager {
 	TodoReturn fadeInMusic(gd::string);
 	TodoReturn getFontFile(int);
 	TodoReturn getGTexture(int) = mac 0x3611f0;
-	TodoReturn joinDiscord();
+	TodoReturn joinDiscord() = mac 0x35e200;
 	TodoReturn saveAdTimer();
 	TodoReturn startUpdate() = mac 0x354bc0;
 	TodoReturn unloadIcons(int) = win 0x125a60;
 	void unlockColor(int, UnlockType) = mac 0x3560d0;
 	TodoReturn updateMusic();
 	TodoReturn countForType(IconType) = mac 0x35e6a0;
-	TodoReturn followTwitch();
+	TodoReturn followTwitch() = mac 0x35e190;
 	TodoReturn getBGTexture(int) = mac 0x361150;
 	TodoReturn getMGTexture(int);
 	/* unverified signature */
 	bool isIconLoaded(int, int) = mac 0x35e8a0;
-	TodoReturn likeFacebook();
+	TodoReturn likeFacebook() = mac 0x35e040;
 	TodoReturn resetAdTimer();
 	TodoReturn safePopScene() = mac 0x368b40;
-	TodoReturn followTwitter();
+	TodoReturn followTwitter() = mac 0x35e0b0;
 	TodoReturn itemPurchased(char const*);
 	TodoReturn loadIconAsync(int, int, int, cocos2d::CCObject*);
 	TodoReturn playMenuMusic();
@@ -4467,7 +4467,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn removeDelimiterChars(gd::string, bool);
 	TodoReturn resetAccountComments(int) = mac 0x51f580, win 0x107B10;
 	TodoReturn resetDailyLevelState(GJTimedLevelType) = mac 0x5270e0, win 0x10f810;
-	TodoReturn storeDailyLevelState(int, int, GJTimedLevelType);
+	TodoReturn storeDailyLevelState(int, int, GJTimedLevelType) = mac 0x526fc0;
 	TodoReturn updateSavedLevelList(GJLevelList*);
 	TodoReturn uploadAccountComment(gd::string) = win 0x1084b0, mac 0x5209a0;
 	TodoReturn userInfoForAccountID(int) = mac 0x5037d0;
