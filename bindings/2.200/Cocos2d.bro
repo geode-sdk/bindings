@@ -1942,3 +1942,9 @@ class cocos2d::CCImage {
 	bool isPremultipliedAlpha();
 	bool saveToFile(char const*, bool);
 }
+
+[[link(win, android)]]
+class cocos2d::CCTime {
+	static int gettimeofdayCocos2d(cocos2d::cc_timeval*, void*) = mac 0x2fead0;
+	static double timersubCocos2d(cocos2d::cc_timeval*, cocos2d::cc_timeval*);
+}
