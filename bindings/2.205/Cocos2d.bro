@@ -43,10 +43,9 @@ class cocos2d::CCMotionStreak {
 
 [[link(win, android)]]
 class cocos2d::CCScene {
-// huh why is mac here???
-	static cocos2d::CCScene* create() = mac 0x26ec40, ios 0x248dd0;
+	static cocos2d::CCScene* create() = ios 0x248dd0;
 
-	int getHighestChildZ() = mac 0x26ecf0, ios 0x248e44;
+	int getHighestChildZ() = ios 0x248e44;
 
 	// CCScene(cocos2d::CCScene const&);
 	// CCScene();
@@ -342,7 +341,7 @@ class cocos2d::CCNode {
 	void setAdditionalTransform(cocos2d::CCAffineTransform const&);
 	void setUseChildIndex(bool);
 
-	cocos2d::CCRect boundingBox();
+	cocos2d::CCRect boundingBox() = ios 0x244110;
 	void childrenAlloc();
 	cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = ios 0x245994;
 	cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const&);
@@ -370,7 +369,7 @@ class cocos2d::CCNode {
 	void sortAllChildrenWithIndex();
 	void stopAction(cocos2d::CCAction*);
 	void stopActionByTag(int);
-	void stopAllActions();
+	void stopAllActions() = ios 0x244280;
 	void transform();
 	void transformAncestors();
 	void unschedule(cocos2d::SEL_SCHEDULE);
@@ -688,38 +687,38 @@ class cocos2d::CCMouseDispatcher {
 
 [[link(win, android)]]
 class cocos2d::CCTouchDispatcher {
-	bool init();
+	bool init() = ios 0x156dd8;
 
 	int getTargetPrio() const;
 
-	void setDispatchEvents(bool);
+	void setDispatchEvents(bool) = ios 0x156dd0;
 	void setPriority(int, cocos2d::CCTouchDelegate*);
 
 	// CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
 	// CCTouchDispatcher();
-	void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
-	void addStandardDelegate(cocos2d::CCTouchDelegate*, int);
-	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
+	void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = ios 0x156ffc;
+	void addStandardDelegate(cocos2d::CCTouchDelegate*, int) = ios 0x157200;
+	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = ios 0x157014;
 	void decrementForcePrio(int);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*);
-	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*);
+	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*) = ios 0x157400;
+	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*) = ios 0x1574b8;
+	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*) = ios 0x157400;
 	void forceRemoveAllDelegates();
-	void forceRemoveDelegate(cocos2d::CCTouchDelegate*);
+	void forceRemoveDelegate(cocos2d::CCTouchDelegate*) = ios 0x157294;
 	void incrementForcePrio(int);
 	bool isDispatchEvents();
 	bool isUsingForcePrio();
 	void rearrangeHandlers(cocos2d::CCArray*);
-	void registerForcePrio(cocos2d::CCObject*, int);
+	void registerForcePrio(cocos2d::CCObject*, int) = ios 0x156f0c;
 	void removeAllDelegates();
-	void removeDelegate(cocos2d::CCTouchDelegate*);
-	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
-	void unregisterForcePrio(cocos2d::CCObject*);
+	void removeDelegate(cocos2d::CCTouchDelegate*) = ios 0x157384;
+	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = ios 0x157580;
+	void unregisterForcePrio(cocos2d::CCObject*) = ios 0x156f88;
 
-	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*);
+	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*) = ios 0x157968;
+	virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*) = ios 0x157994;
+	virtual void touchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*) = ios 0x1579c0;
+	virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*) = ios 0x1579ec;
 }
 
 [[link(win, android)]]
@@ -1221,7 +1220,7 @@ class cocos2d::CCDictionary {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionFade {
-	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*);
+	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = ios 0x1d1e60;
 	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
 
 	// CCTransitionFade(cocos2d::CCTransitionFade const&);
@@ -1301,14 +1300,14 @@ class cocos2d::CCMenuItemSprite {
 
 	virtual void selected();
 	virtual void unselected();
-	virtual void setEnabled(bool);
-	virtual cocos2d::CCNode* getNormalImage();
-	virtual void setNormalImage(cocos2d::CCNode*);
-	virtual cocos2d::CCNode* getSelectedImage();
-	virtual void setSelectedImage(cocos2d::CCNode*);
-	virtual cocos2d::CCNode* getDisabledImage();
-	virtual void setDisabledImage(cocos2d::CCNode*);
-	virtual void updateImagesVisibility();
+	virtual void setEnabled(bool) = ios 0x56490;
+	virtual cocos2d::CCNode* getNormalImage() = ios 0x56038;
+	virtual void setNormalImage(cocos2d::CCNode*) = ios 0x56040;
+	virtual cocos2d::CCNode* getSelectedImage() = ios 0x5610c;
+	virtual void setSelectedImage(cocos2d::CCNode*) = ios 0x56114;
+	virtual cocos2d::CCNode* getDisabledImage() = ios 0x561bc;
+	virtual void setDisabledImage(cocos2d::CCNode*) = ios 0x561c4;
+	virtual void updateImagesVisibility() = ios 0x564b0;
 }
 
 [[link(win, android)]]
@@ -1321,7 +1320,11 @@ class cocos2d::CCMenuItem {
 
 	int getScriptTapHandler();
 
-	void setTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler); // find!
+	void setTarget(cocos2d::CCObject* rec, cocos2d::SEL_MenuHandler selector) {
+	    // i think its inlined on ios or something
+            m_pListener = rec;
+            m_pfnSelector = selector;
+	}
 
 	// CCMenuItem(cocos2d::CCMenuItem const&);
 	// CCMenuItem();
@@ -1536,4 +1539,109 @@ class cocos2d::CCDrawNode {
 [[link(win, android)]]
 class cocos2d::CCSpriteBatchNode {
     bool initWithTexture(cocos2d::CCTexture2D*, unsigned int);
+}
+
+[[link(win, android)]]
+class cocos2d::CCActionManager {
+	cocos2d::CCAction* getActionByTag(unsigned int, cocos2d::CCObject*);
+
+	// CCActionManager(cocos2d::CCActionManager const&);
+	// CCActionManager();
+	void actionAllocWithHashElement(cocos2d::_hashElement*);
+	void addAction(cocos2d::CCAction*, cocos2d::CCNode*, bool) = ios 0x2fb3d8;
+	void deleteHashElement(cocos2d::_hashElement*);
+	unsigned int numberOfRunningActionsInTarget(cocos2d::CCObject*);
+	cocos2d::CCSet* pauseAllRunningActions();
+	void pauseTarget(cocos2d::CCObject*);
+	void removeAction(cocos2d::CCAction*);
+	void removeActionAtIndex(unsigned int, cocos2d::_hashElement*);
+	void removeActionByTag(unsigned int, cocos2d::CCObject*);
+	void removeAllActions();
+	void removeAllActionsFromTarget(cocos2d::CCObject*);
+	void resumeTarget(cocos2d::CCObject*);
+	void resumeTargets(cocos2d::CCSet*);
+
+	virtual void update(float);
+}
+
+[[link(win, android)]]
+class cocos2d {
+	static cocos2d::CCAffineTransform CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
+	static bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
+	static cocos2d::CCAffineTransform CCAffineTransformInvert(cocos2d::CCAffineTransform const&);
+	static cocos2d::CCAffineTransform CCAffineTransformMakeIdentity();
+	static cocos2d::CCAffineTransform CCAffineTransformRotate(cocos2d::CCAffineTransform const&, float);
+	static cocos2d::CCAffineTransform CCAffineTransformScale(cocos2d::CCAffineTransform const&, float, float);
+	static cocos2d::CCAffineTransform CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float);
+	static void CCLuaLog(char const*);
+	static void CCMessageBox(char const*, char const*);
+	static cocos2d::CCPoint CCPointFromString(char const*);
+	static void CCProfilingBeginTimingBlock(char const*);
+	static void CCProfilingEndTimingBlock(char const*);
+	static void CCProfilingResetTimingBlock(char const*);
+	static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
+	static cocos2d::CCRect CCRectFromString(char const*);
+	static cocos2d::CCSize CCSizeFromString(char const*);
+	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*);
+	static void FNTConfigRemoveCache();
+	static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
+	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
+	static cocos2d::CCSize __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&);
+	static cocos2d::CCPoint ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
+	static void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
+	static void ccDrawCatmullRom(cocos2d::CCPointArray*, unsigned int);
+	static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
+	static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
+	static void ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
+	static void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char);
+	static void ccDrawColor4F(float, float, float, float);
+	static void ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
+	static void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
+	static void ccDrawFree();
+	static void ccDrawInit();
+	static void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static void ccDrawLines(cocos2d::CCPoint const*, unsigned int);
+	static void ccDrawPoint(cocos2d::CCPoint const&);
+	static void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
+	static void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
+	static void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
+	static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
+	static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
+	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F) = ios 0x3ad68;
+	static void ccGLBindTexture2D(unsigned int);
+	static void ccGLBindTexture2DN(unsigned int, unsigned int);
+	static void ccGLBindVAO(unsigned int);
+	static void ccGLBlendFunc(unsigned int, unsigned int);
+	static void ccGLBlendResetToCache();
+	static void ccGLDeleteProgram(unsigned int);
+	static void ccGLDeleteTexture(unsigned int);
+	static void ccGLDeleteTextureN(unsigned int, unsigned int);
+	static void ccGLEnable(cocos2d::ccGLServerState);
+	static void ccGLEnableVertexAttribs(unsigned int);
+	static void ccGLInvalidateStateCache();
+	static void ccGLUseProgram(unsigned int);
+	static void ccPointSize(float);
+	static void ccSetProjectionMatrixDirty();
+	static bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
+	static void ccVertexLineToPolygon(cocos2d::CCPoint*, float, cocos2d::_ccVertex2F*, unsigned int, unsigned int);
+	static gd::vector<unsigned short> cc_utf16_vec_from_utf16_str(unsigned short const*);
+	static void cc_utf8_trim_ws(gd::vector<unsigned short>*);
+	static int cc_wcslen(unsigned short const*);
+	static float ccpAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static float ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static cocos2d::CCPoint ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static cocos2d::CCPoint ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static cocos2d::CCPoint ccpForAngle(float);
+	static cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const&);
+	static bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+	static cocos2d::CCPoint ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static float ccpLength(cocos2d::CCPoint const&);
+	static cocos2d::CCPoint ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+	static bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
+	static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&);
+	static cocos2d::CCPoint ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
+	static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+	static float ccpToAngle(cocos2d::CCPoint const&);
+	static char const* cocos2dVersion();
 }
