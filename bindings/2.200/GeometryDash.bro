@@ -5,6 +5,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
 		}
 	}
+
 	FLAlertLayer() {
 		m_buttonMenu = nullptr;
 		m_controlConnected = -1;
@@ -1609,7 +1610,14 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = mac 0x128;
 	UILayer* m_uiLayer;
-	PAD = win 0x20a, android32 0x1ea, android64 0x340, mac 0x1f0;
+
+	mac {
+		PAD = 0x40;
+		std::vector<std::vector<GameObject*>> m_sections;
+		PAD = 0x1bc;
+	}
+
+	PAD = win 0x20a, android32 0x1ea, android64 0x340, mac 0x0;
 }
 
 [[link(android)]]
