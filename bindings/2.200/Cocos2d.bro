@@ -94,6 +94,31 @@ class cocos2d::CCCallFunc {
 	virtual void execute();
 }
 
+
+[[link(win, android)]]
+class cocos2d::CCFadeIn {
+	static cocos2d::CCFadeIn* create(float) = mac 0x398AD0;
+
+	// CCFadeIn(cocos2d::CCFadeIn const&);
+	// CCFadeIn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCFadeOut {
+	static cocos2d::CCFadeOut* create(float) = mac 0x398D40;
+
+	// CCFadeOut(cocos2d::CCFadeOut const&);
+	// CCFadeOut();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
 [[link(win, android)]]
 class cocos2d::CCFadeTo {
 	static cocos2d::CCFadeTo* create(float, unsigned char) = mac 0x398fc0;
@@ -116,7 +141,7 @@ class cocos2d::CCNode {
 	// CCNode(cocos2d::CCNode const&);
 	CCNode() = mac 0x2501f0;
     ~CCNode() = mac 0x250390;
-	
+
 	cocos2d::CCAction* getActionByTag(int) = mac 0x252000;
 	cocos2d::CCComponent* getComponent(char const*) const;
 	int getScriptHandler();
@@ -146,13 +171,13 @@ class cocos2d::CCNode {
 	void schedule(cocos2d::SEL_SCHEDULE) = mac 0x2521c0;
 	void schedule(cocos2d::SEL_SCHEDULE, float);
 	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = mac 0x252220;
-	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
+	void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = mac 0x2521f0;
 	void scheduleUpdate() = mac 0x2520a0;
 	void scheduleUpdateWithPriority(int);
 	void scheduleUpdateWithPriorityLua(int, int);
 	void sortAllChildrenNoIndex();
 	void sortAllChildrenWithIndex();
-	void stopAction(cocos2d::CCAction*);
+	void stopAction(cocos2d::CCAction*) = mac 0x251fc0;
 	void stopActionByTag(int) = mac 0x251fe0;
 	void stopAllActions() = mac 0x250e10;
 	void transform();
@@ -326,7 +351,7 @@ class cocos2d::CCString {
 	bool boolValue() const = mac 0x76c980;
 	int compare(char const*) const;
 	double doubleValue() const = mac 0x76c950;
-	float floatValue() const;
+	float floatValue() const = mac 0x76c910;
 	int intValue() const = mac 0x76c890;
 	unsigned int length() const;
 	unsigned int uintValue() const;
@@ -354,9 +379,9 @@ class cocos2d::CCScheduler {
 	float getTimeScale();
 
 	void setTimeScale(float);
-	
+
 	// CCScheduler(cocos2d::CCScheduler const&);
-	// CCScheduler();	
+	// CCScheduler();
 
 	void appendIn(cocos2d::_listEntry**, cocos2d::CCObject*, bool);
 	bool isTargetPaused(cocos2d::CCObject*);
@@ -517,6 +542,43 @@ class cocos2d::CCLayerColor {
 }
 
 [[link(win, android)]]
+class cocos2d::CCLayerGradient {
+	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = mac 0x48F140;
+	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
+	static cocos2d::CCLayerGradient* create();
+
+	bool getShouldPremultiply() const;
+
+	void setShouldPremultiply(bool);
+	void setValues(cocos2d::_ccColor3B const&, unsigned char, cocos2d::_ccColor3B const&, unsigned char, cocos2d::CCPoint const&);
+
+	// CCLayerGradient(cocos2d::CCLayerGradient const&);
+	// CCLayerGradient();
+
+	virtual bool init() = mac 0x48f4f0;
+
+	// seems like the override is missing from cocos side (or this shouldn't be here)
+	// hopefully figure that one out before it actually becomes important
+	// virtual void visit() = mac 0x48f9e0;
+
+	virtual void updateColor();
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&);
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
+	virtual cocos2d::_ccColor3B const& getStartColor();
+	virtual void setStartColor(cocos2d::_ccColor3B const&);
+	virtual cocos2d::_ccColor3B const& getEndColor();
+	virtual void setEndColor(cocos2d::_ccColor3B const&);
+	virtual unsigned char getStartOpacity();
+	virtual void setStartOpacity(unsigned char);
+	virtual unsigned char getEndOpacity();
+	virtual void setEndOpacity(unsigned char);
+	virtual cocos2d::CCPoint const& getVector();
+	virtual void setVector(cocos2d::CCPoint const&);
+	virtual void setCompressedInterpolation(bool);
+	virtual bool isCompressedInterpolation();
+}
+
+[[link(win, android)]]
 class cocos2d::CCLayerRGBA {
 	static cocos2d::CCLayerRGBA* create();
 
@@ -592,7 +654,7 @@ class cocos2d::CCTextureCache {
 	// CCTextureCache();
 	cocos2d::CCTexture2D* addETCImage(char const*);
 	cocos2d::CCTexture2D* addImage(char const*, bool) = mac 0x5b2630;
-	void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat);
+	void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat) = mac 0x5b18d0;
 	void addImageAsyncCallBack(float);
 	cocos2d::CCTexture2D* addPVRImage(char const*);
 	cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*) = mac 0x5b3350;
@@ -716,7 +778,7 @@ class cocos2d::CCIMEDispatcher {
 	static cocos2d::CCIMEDispatcher* sharedDispatcher();
 
 	// CCIMEDispatcher();
-	
+
 	void addDelegate(cocos2d::CCIMEDelegate*);
 	bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
 	bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
@@ -775,7 +837,6 @@ class cocos2d::CCDirector {
 	cocos2d::CCScene* getSceneReference() const;
 	float getScreenScaleFactor();
 	float getScreenScaleFactorH();
-	float getScreenScaleFactorMax();
 	float getScreenScaleFactorW();
 	float getSecondsPerFrame();
 	bool getSmoothFix() const;
@@ -962,7 +1023,7 @@ class cocos2d::CCRotateBy {
 [[link(win, android)]]
 class cocos2d::CCScaleTo {
 	static cocos2d::CCScaleTo* create(float, float) = mac 0x397f90;
-	static cocos2d::CCScaleTo* create(float, float, float);
+	static cocos2d::CCScaleTo* create(float, float, float) = mac 0x398090;
 
 	bool initWithDuration(float, float);
 	bool initWithDuration(float, float, float);
@@ -1025,7 +1086,7 @@ class cocos2d::CCSpriteBatchNode {
 	void appendChild(cocos2d::CCSprite*) = mac 0x1678a0;
 	unsigned int atlasIndexForChild(cocos2d::CCSprite*, int);
 	unsigned int highestAtlasIndexInChild(cocos2d::CCSprite*);
-	void increaseAtlasCapacity(unsigned int);
+	void increaseAtlasCapacity(unsigned int) = mac 0x1687b0;
 	void increaseAtlasCapacity();
 	void insertChild(cocos2d::CCSprite*, unsigned int);
 	void insertQuadFromSprite(cocos2d::CCSprite*, unsigned int);
@@ -1450,7 +1511,7 @@ class cocos2d::ZipUtils {
 	static gd::string base64URLEncode(gd::string const&);
 	static unsigned int ccChecksumPvr(unsigned int const*, int);
 	static void ccDecodeEncodedPvr(unsigned int*, int);
-	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**);
+	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**) = mac 0x1e3e60;
 	static int ccInflateCCZFile(char const*, unsigned char**);
 	static int ccInflateGZipFile(char const*, unsigned char**);
 	static int ccInflateMemory(unsigned char*, unsigned int, unsigned char**);
@@ -1458,7 +1519,7 @@ class cocos2d::ZipUtils {
 	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int);
 	static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
 	static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-	static gd::string compressString(gd::string const&, bool, int);
+	static gd::string compressString(gd::string const&, bool, int) = mac 0x1e3c50;
 	static gd::string decompressString2(unsigned char*, bool, int, int);
 	static gd::string decompressString(gd::string const&, bool, int) = mac 0x1e4290;
 	static gd::string encryptDecrypt(gd::string const&, int);

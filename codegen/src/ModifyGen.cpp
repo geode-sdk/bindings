@@ -80,9 +80,10 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
         std::string statics;
         std::set<std::string> used;
         for (auto& f : c.fields) {
-            if (codegen::getStatus(f) == BindStatus::Missing) continue;
-
             if (auto fn = f.get_as<FunctionBindField>()) {
+                if (codegen::getStatus(*fn) == BindStatus::Missing)
+                        continue;
+
                 if (fn->prototype.type == FunctionType::Normal && !used.count(fn->prototype.name)) {
                     used.insert(fn->prototype.name);
                     statics += fmt::format(
@@ -101,21 +102,21 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
 
         // modify
         for (auto& f : c.fields) {
-            if (codegen::getStatus(f) == BindStatus::Missing) continue;
-
             auto fn = f.get_as<FunctionBindField>();
 
-            if (!fn) {
+            if (!fn)
                 continue;
-            }
 
-            if (codegen::getStatus(f) == BindStatus::NeedsBinding || codegen::platformNumber(f) != -1) {
+            auto status = codegen::getStatus(*fn);
+
+            if (status == BindStatus::Missing)
+                continue;
+
+            if (status == BindStatus::NeedsBinding || codegen::platformNumber(f) != -1) {
                 // only if has an address
-            }
-            else if (codegen::getStatus(f) == BindStatus::Binded) {
+            } else if (status == BindStatus::Binded) {
                 // allow bound functions (including ctors/dtors)
-            }
-            else {
+            } else {
                 continue;
             }
 

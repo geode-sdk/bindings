@@ -167,6 +167,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
 GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0x824);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastActivatedPortal, 0x848);
 GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x854);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk880, 0x880);
 GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x9a4);
@@ -176,6 +177,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x190);
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x198);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x1a0);
 
+GEODE_SIZE_CHECK(PlayerFireBoostSprite, 0x200);
 GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
 GEODE_SIZE_CHECK(PlayLayer, 0x2f78);
 GEODE_SIZE_CHECK(GJGameLevel, 0x48c);

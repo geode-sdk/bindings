@@ -105,6 +105,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_unk7e0, 0x7e8);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
 GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0x824);
 GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x850);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk880, 0x880);
 GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk930, 0x988);

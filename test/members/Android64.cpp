@@ -78,6 +78,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_vehicleSize, 0x9c0);
 GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0xa08);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk814, 0xa50);
 GEODE_MEMBER_CHECK(PlayerObject, m_position, 0xa58);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk880, 0xa88);
 GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xac0);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xb38);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk950, 0xbe8);
