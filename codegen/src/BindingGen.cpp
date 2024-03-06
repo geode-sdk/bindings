@@ -83,7 +83,6 @@ inline std::string nameForPlatform(Platform platform) {
     }
 }
 
-// Only Function and FunctionBindField
 template <class T>
 std::string generateAddressDocs(T const& f, PlatformNumber pn) {
     std::string ret;
@@ -138,7 +137,7 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
             char const* used_format = format_strings::function_definition;
 
             std::string addressDocs = generateAddressDocs(f, f.binds);
-            std::string docs = generateDocs(fb->attributes.docs);
+            std::string docs = generateDocs(fb->docs);
 
             single_output += fmt::format(used_format,
                 fmt::arg("virtual", ""),
@@ -173,7 +172,7 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
             single_output += format_strings::class_no_includes;
         }
 
-        for (auto dep : cls.attributes.depends) {
+        for (auto dep : cls.depends) {
             if (can_find(dep, "cocos2d::")) continue;
 
             std::string depfilename = (codegen::getUnqualifiedClassName(dep) + ".hpp");
@@ -205,6 +204,8 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
 
         bool unimplementedField = false;
         for (auto field : cls.fields) {
+            if (codegen::getStatus(field) == BindStatus::Missing) continue;
+
             MemberFunctionProto* fb;
             char const* used_format = format_strings::function_definition;
 
@@ -214,49 +215,44 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
                 single_output += "\t" + i->inner + "\n";
                 continue;
             } else if (auto m = field.get_as<MemberField>()) {
-
-                if (m->platform == Platform::None || (m->platform & codegen::platform) != Platform::None) {
-                    single_output += fmt::format(format_strings::member_definition,
-                        fmt::arg("private", unimplementedField ? "private:\n" : ""),
-                        fmt::arg("public", unimplementedField ? "\npublic:" : ""),
-                        fmt::arg("type", m->type.name),
-                        fmt::arg("member_name", m->name + str_if(fmt::format("[{}]", m->count), m->count))
-                    );
-                }
-
+                single_output += fmt::format(format_strings::member_definition,
+                    fmt::arg("private", unimplementedField ? "private:\n" : ""),
+                    fmt::arg("public", unimplementedField ? "\npublic:" : ""),
+                    fmt::arg("type", m->type.name),
+                    fmt::arg("member_name", m->name + str_if(fmt::format("[{}]", m->count), m->count))
+                );
                 continue;
             } else if (auto p = field.get_as<PadField>()) {
                 auto hardcode = codegen::platformNumber(p->amount);
 
-                if (hardcode > 0)
+                if (hardcode > 0) {
                     single_output += fmt::format(format_strings::pad_definition, fmt::arg("hardcode", hardcode));
-                else if (hardcode == 0)
+                } 
+                else if (hardcode == 0) {
                     single_output += "    // no padding\n";
-                else
+                }
+                else {
                     unimplementedField = true;
-
+                }
                 continue;
             } else if (auto fn = field.get_as<OutOfLineField>()) {
                 fb = &fn->prototype;
                 addressDocs = "     * @note[short] Out of line\n";
 
             } else if (auto fn = field.get_as<FunctionBindField>()) {
-                if (codegen::getStatus(*fn) == BindStatus::Missing)
-                    continue;
-
                 fb = &fn->prototype;
 
-                if (codegen::platformNumber(fn->binds) == -1 && codegen::getStatus(*fn) != BindStatus::Binded) {
+                if (codegen::platformNumber(fn->binds) == -1 && codegen::getStatus(field) != BindStatus::Binded) {
                     used_format = format_strings::error_definition;
 
                     if (fb->type != FunctionType::Normal)
                         continue;
                 }
 
-                addressDocs = generateAddressDocs(*fn, fn->binds);
+                addressDocs = generateAddressDocs(field, fn->binds);
             }
 
-            std::string docs = generateDocs(fb->attributes.docs);
+            std::string docs = generateDocs(fb->docs);
 
             single_output += fmt::format(used_format,
                 fmt::arg("virtual", str_if("virtual ", fb->is_virtual)),
