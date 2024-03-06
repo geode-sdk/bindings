@@ -55,7 +55,9 @@ jobs:
         - name: Windows
           os: windows-2019
           prefixes: ''
-          extra_flags: -A win32
+          extra_flags: >
+            -A win32
+            -D USE_HACKY_SCRIPT=ON
 
         - name: Android32
           os: ubuntu-latest
@@ -65,6 +67,7 @@ jobs:
             -DANDROID_ABI=armeabi-v7a
             -DANDROID_PLATFORM=android-23
             -G Ninja
+            -D USE_HACKY_SCRIPT=ON
 
         - name: Android64
           os: ubuntu-latest
@@ -74,14 +77,15 @@ jobs:
             -DANDROID_ABI=arm64-v8a
             -DANDROID_PLATFORM=android-23
             -G Ninja
+            -D USE_HACKY_SCRIPT=ON
 
-        # - name: macOS
-        #   os_identifier: mac
-        #   os: macos-latest
-        #   extra_flags: >
-        #     -DCMAKE_C_COMPILER=clang
-        #     -DCMAKE_CXX_COMPILER=clang++
-        #     -DCMAKE_BUILD_TYPE=Debug
+        - name: macOS
+          os_identifier: mac
+          os: macos-latest
+          extra_flags: >
+            -DCMAKE_C_COMPILER=clang
+            -DCMAKE_CXX_COMPILER=clang++
+            -DCMAKE_BUILD_TYPE=Debug
 
     name: Test Offsets ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
@@ -118,7 +122,6 @@ jobs:
       run: >
         cmake -B build -S test/members
         -D SKIP_BUILDING_CODEGEN=${{ steps.codegen-cache.outputs.cache-hit }}
-        -D USE_HACKY_SCRIPT=ON
         ${{ matrix.config.extra_flags }}
       # SKIP_BUILDING_CODEGEN will skip building codegen if finds a cached binary,
       # locally you dont need to set it

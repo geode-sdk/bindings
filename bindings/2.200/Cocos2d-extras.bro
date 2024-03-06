@@ -786,33 +786,6 @@ class cocos2d::CCDouble {
 	double getValue() const;
 }
 
-[[link(win, android)]]
-class cocos2d::CCDrawNode {
-	static cocos2d::CCDrawNode* create();
-
-	cocos2d::_ccBlendFunc getBlendFunc() const;
-
-	void setBlendFunc(cocos2d::_ccBlendFunc const&);
-
-	// CCDrawNode(cocos2d::CCDrawNode const&);
-	// CCDrawNode();
-	void clear();
-	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int);
-	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
-	void drawDot(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
-	void drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::_ccColor4F const&);
-	void drawPolygon(cocos2d::CCPoint*, unsigned int, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&);
-	void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
-	void drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&);
-	void drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
-	void ensureCapacity(unsigned int);
-	void listenBackToForeground(cocos2d::CCObject*);
-	void render();
-
-	virtual bool init();
-	virtual void draw();
-}
-
 // [[link(win)]]
 // class cocos2d::CCEGLView {
 // 	// CCEGLView();
@@ -1167,30 +1140,6 @@ class cocos2d::CCEaseSineOut {
 class cocos2d::CCEvent {
 	// CCEvent(cocos2d::CCEvent const&);
 	// CCEvent();
-}
-
-[[link(win, android)]]
-class cocos2d::CCFadeIn {
-	static cocos2d::CCFadeIn* create(float);
-
-	// CCFadeIn(cocos2d::CCFadeIn const&);
-	// CCFadeIn();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
-class cocos2d::CCFadeOut {
-	static cocos2d::CCFadeOut* create(float);
-
-	// CCFadeOut(cocos2d::CCFadeOut const&);
-	// CCFadeOut();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
 }
 
 [[link(win, android)]]
@@ -1577,32 +1526,6 @@ class cocos2d::CCIMEDispatcher {
 }
 
 [[link(win, android)]]
-class cocos2d::CCImage {
-	bool initWithImageData(void*, int, cocos2d::CCImage::EImageFormat, int, int, int, int);
-	bool initWithImageFile(char const*, cocos2d::CCImage::EImageFormat);
-	bool initWithImageFileThreadSafe(char const*, cocos2d::CCImage::EImageFormat);
-	bool initWithString(char const*, int, int, cocos2d::CCImage::ETextAlign, char const*, int);
-
-	int getBitsPerComponent() const;
-	unsigned char* getData();
-	int getDataLen();
-	unsigned short getHeight() const;
-	unsigned short getWidth() const;
-
-	// CCImage();
-	bool _initWithJpgData(void*, int);
-	bool _initWithPngData(void*, int);
-	bool _initWithRawData(void*, int, int, int, int, bool);
-	bool _initWithTiffData(void*, int);
-	bool _initWithWebpData(void*, int);
-	bool _saveImageToJPG(char const*);
-	bool _saveImageToPNG(char const*, bool);
-	bool hasAlpha();
-	bool isPremultipliedAlpha();
-	bool saveToFile(char const*, bool);
-}
-
-[[link(win, android)]]
 class cocos2d::CCInteger {
 	static cocos2d::CCInteger* create(int);
 
@@ -1867,68 +1790,6 @@ class cocos2d::CCLayer {
 	virtual void keyMenuClicked();
 
 	virtual void keyDown(cocos2d::enumKeyCodes);
-}
-
-[[link(win, android)]]
-class cocos2d::CCLayerColor {
-	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&);
-	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float);
-	static cocos2d::CCLayerColor* create();
-
-	void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
-
-	// CCLayerColor(cocos2d::CCLayerColor const&);
-	// CCLayerColor();
-	void addToVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
-	void changeHeight(float);
-	void changeWidth(float);
-	void changeWidthAndHeight(float, float);
-
-	virtual bool init();
-	virtual void setContentSize(cocos2d::CCSize const&);
-	virtual void draw();
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, float, float);
-	virtual bool initWithColor(cocos2d::_ccColor4B const&);
-	virtual void updateColor();
-
-	virtual void setColor(cocos2d::_ccColor3B const&);
-	virtual void setOpacity(unsigned char);
-
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
-	virtual cocos2d::_ccBlendFunc getBlendFunc();
-}
-
-[[link(win, android)]]
-class cocos2d::CCLayerGradient {
-	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&);
-	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
-	static cocos2d::CCLayerGradient* create();
-
-	bool getShouldPremultiply() const;
-
-	void setShouldPremultiply(bool);
-	void setValues(cocos2d::_ccColor3B const&, unsigned char, cocos2d::_ccColor3B const&, unsigned char, cocos2d::CCPoint const&);
-
-	// CCLayerGradient(cocos2d::CCLayerGradient const&);
-	// CCLayerGradient();
-
-	virtual bool init();
-	virtual void visit();
-	virtual void updateColor();
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&);
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
-	virtual cocos2d::_ccColor3B const& getStartColor();
-	virtual void setStartColor(cocos2d::_ccColor3B const&);
-	virtual cocos2d::_ccColor3B const& getEndColor();
-	virtual void setEndColor(cocos2d::_ccColor3B const&);
-	virtual unsigned char getStartOpacity();
-	virtual void setStartOpacity(unsigned char);
-	virtual unsigned char getEndOpacity();
-	virtual void setEndOpacity(unsigned char);
-	virtual cocos2d::CCPoint const& getVector();
-	virtual void setVector(cocos2d::CCPoint const&);
-	virtual void setCompressedInterpolation(bool);
-	virtual bool isCompressedInterpolation();
 }
 
 [[link(win, android)]]
@@ -3396,9 +3257,9 @@ class cocos2d::CCScriptEngineProtocol {
 [[link(win, android)]]
 class cocos2d::CCSequence {
 	static cocos2d::CCSequence* create(cocos2d::CCArray*);
-	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
+	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = mac 0x393740;
 	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
-	// static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
+	// static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*) = mac 0x3937f0;
 
 	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 
@@ -4661,25 +4522,6 @@ class cocos2d::CCTransitionRotoZoom {
 	// CCTransitionRotoZoom();
 
 	virtual void onEnter();
-}
-
-[[link(win, android)]]
-class cocos2d::CCTransitionScene {
-	static cocos2d::CCTransitionScene* create(float, cocos2d::CCScene*);
-
-	void setNewScene(float);
-
-	// CCTransitionScene(cocos2d::CCTransitionScene const&);
-	// CCTransitionScene();
-	void finish();
-	void hideOutShowIn();
-
-	virtual void onEnter();
-	virtual void onExit();
-	virtual void cleanup();
-	virtual void draw();
-	virtual bool initWithDuration(float, cocos2d::CCScene*);
-	virtual void sceneOrder();
 }
 
 [[link(win, android)]]

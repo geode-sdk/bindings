@@ -1,11 +1,10 @@
 #include "Shared.hpp"
 
 namespace { namespace format_strings {
-	char const* source_start = R"CAC(
+	char const* source_start = R"GEN(
 #include <stdexcept>
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/addresser.hpp>
-#include <Geode/modify/Addresses.hpp>
 #include <Geode/modify/Traits.hpp>
 #include <Geode/loader/Tulip.hpp>
 
@@ -35,7 +34,12 @@ auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadat
 	}}
 	return wrapped.unwrap();
 }
-)CAC";
+
+// So apparently Clang considers cdecl to return floats through ST0, whereas 
+// MSVC thinks they are returned through XMM0. This has caused a lot of pain 
+// and misery for me
+
+)GEN";
 
 	char const* declare_member = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
@@ -146,8 +150,6 @@ std::string generateBindingSource(Root const& root) {
 	std::string output(format_strings::source_start);
 
 	for (auto& f : root.functions) {
-		if (codegen::getStatus(f) == BindStatus::Missing) continue;
-
         if (codegen::getStatus(f) != BindStatus::NeedsBinding) {
             continue;
         }
@@ -166,16 +168,10 @@ std::string generateBindingSource(Root const& root) {
 	for (auto& c : root.classes) {
 
 		for (auto& f : c.fields) {
-			if (codegen::getStatus(f) == BindStatus::Missing) continue;
-
 			if (auto i = f.get_as<InlineField>()) {
 				// yeah there are no inlines on cocos
-			} 
-			else if (auto fn = f.get_as<OutOfLineField>()) {
-				if (is_cocos_class(c.name) && (c.links & codegen::platform) != Platform::None) {
-					continue;
-				}
-				if (codegen::getStatus(f) != BindStatus::Unbindable) {
+			}  else if (auto fn = f.get_as<OutOfLineField>()) {
+				if (is_cocos_class(c.name) && (c.attributes.links & codegen::platform) != Platform::None) {
 					continue;
 				}
 
@@ -202,13 +198,12 @@ std::string generateBindingSource(Root const& root) {
 						break;
 				}
 				
-			} 
-			else if (auto fn = f.get_as<FunctionBindField>()) {
+			} else if (auto fn = f.get_as<FunctionBindField>()) {
 				char const* used_declare_format = nullptr;
 
 				if (
 					(
-						codegen::getStatus(f) == BindStatus::Unbindable && 
+						codegen::getStatus(*fn) == BindStatus::Unbindable && 
 						codegen::platformNumber(fn->binds) == -1 && 
 						fn->prototype.is_virtual && fn->prototype.type != FunctionType::Dtor
 					) || (
@@ -217,7 +212,7 @@ std::string generateBindingSource(Root const& root) {
 				) {
 					used_declare_format = format_strings::declare_unimplemented_error;
 				}
-				else if (codegen::getStatus(f) != BindStatus::NeedsBinding && !codegen::shouldAndroidBind(fn)) {
+				else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && !codegen::shouldAndroidBind(fn)) {
 					continue;
 				}
 

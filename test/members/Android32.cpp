@@ -27,7 +27,7 @@ GEODE_SIZE_CHECK(BoomListView, 0x164);
 GEODE_SIZE_CHECK(CustomListView, 0x168);
 GEODE_SIZE_CHECK(CCMenuItemSpriteExtra, 0x174);
 GEODE_SIZE_CHECK(LoadingLayer, 0x15c);
-GEODE_SIZE_CHECK(GJDropDownLayer, 0x1e4);
+GEODE_SIZE_CHECK(GJDropDownLayer, 0x1e0);
 GEODE_SIZE_CHECK(TableViewCell, 0x19c);
 GEODE_SIZE_CHECK(Slider, 0x158);
 GEODE_SIZE_CHECK(SliderTouchLogic, 0x174);
@@ -105,6 +105,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_unk7e0, 0x7e8);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
 GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0x824);
 GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x850);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk880, 0x880);
 GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk930, 0x988);
@@ -150,5 +151,8 @@ GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x230);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedMode, 0x338);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
+
+GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x1FC)
+GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x210)
 
 #endif
