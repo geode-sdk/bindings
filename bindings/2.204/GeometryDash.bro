@@ -736,7 +736,7 @@ class CCCircleWave : cocos2d::CCNode {
 	static CCCircleWave* create(float, float, float, bool);
 
 	TodoReturn baseSetup(float);
-	TodoReturn followObject(cocos2d::CCNode*, bool) = win 0x123540;
+	TodoReturn followObject(cocos2d::CCNode*, bool) = win 0x23540;
 	bool init(float, float, float, bool, bool) = win 0x232f0;
 	TodoReturn updatePosition(float);
 
