@@ -4,7 +4,8 @@ project(Codegen LANGUAGES C CXX)
 include(../cmake/CPM.cmake)
 
 CPMAddPackage("gh:fmtlib/fmt#10.1.1")
-CPMAddPackage("gh:geode-sdk/Broma#15de955")
+#CPMAddPackage("gh:geode-sdk/Broma#15de955")
+CPMAddPackage("gh:camila314/Broma#master")
 
 file(GLOB SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
