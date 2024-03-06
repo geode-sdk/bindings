@@ -4748,6 +4748,8 @@ class GameManager : GManager {
 	int m_unkSize4_19;
 	int m_unkSize4_20;
 	bool m_unkBool12;
+	PAD = 0xbb; // Not sure about this either
+	int m_browseType;
 }
 
 [[link(android)]]
