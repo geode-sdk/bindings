@@ -2147,7 +2147,7 @@ class GameManager : GManager {
 	int m_unkSize4_19;
 	int m_unkSize4_20;
 	bool m_unkBool12;
-	PAD = mac 0xd7; // Not sure about this
+	PAD = mac 0xd3; // Not sure about this
 	int m_browseType;
 }
 
