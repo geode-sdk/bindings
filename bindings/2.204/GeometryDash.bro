@@ -3290,7 +3290,7 @@ class EndLevelLayer : GJDropDownLayer {
 	TodoReturn tryShowBanner(float);
 
 	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0xea310;
 	virtual void customSetup() = win 0xe74f0;
 	virtual void showLayer(bool) = win 0xe8c20;
 	virtual TodoReturn enterAnimFinished();
