@@ -4748,7 +4748,7 @@ class GameManager : GManager {
 	int m_unkSize4_19;
 	int m_unkSize4_20;
 	bool m_unkBool12;
-	PAD = android32 0xbb; // Not sure about this either
+	PAD = android32 0xb7, android64 0x133; // Not sure about this either
 	int m_browseType;
 }
 
