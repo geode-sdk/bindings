@@ -1853,6 +1853,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 	// virtual ~CreatorLayer();
 
 	static CreatorLayer* create() = win 0x6f4b0;
+	static cocos2d::CCScene* scene() = win 0x6f460;
 
 	TodoReturn canPlayOnlineLevels();
 	TodoReturn checkQuestsStatus() = win 0x71550;
@@ -1876,7 +1877,6 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 	void onTopLists(cocos2d::CCObject* sender) = win 0x70620;
 	void onTreasureRoom(cocos2d::CCObject* sender) = win 0x71110;
 	void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x70be0;
-	TodoReturn scene() = win 0x6f460;
 
 	virtual bool init() = win 0x6f550;
 	virtual void keyBackClicked();
@@ -3290,7 +3290,7 @@ class EndLevelLayer : GJDropDownLayer {
 	TodoReturn tryShowBanner(float);
 
 	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0xea310;
 	virtual void customSetup() = win 0xe74f0;
 	virtual void showLayer(bool) = win 0xe8c20;
 	virtual TodoReturn enterAnimFinished();
@@ -3632,7 +3632,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn channelLinkSound(int, FMODSound*);
 	TodoReturn channelStopped(FMOD::Channel*, bool);
 	TodoReturn channelUnlinkSound(int);
-	TodoReturn clearAllAudio();
+	void clearAllAudio() = win 0x338a0;
 	TodoReturn countActiveEffects();
 	TodoReturn countActiveMusic();
 	TodoReturn createStream(gd::string) = win 0x3aea0;
@@ -3991,7 +3991,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getGJDailyLevelState(GJTimedLevelType) = win 0x110670;
 	void getGJRewards(int) = win 0x10f140;
 	TodoReturn getGJUserInfo(int) = win 0x106790;
-	TodoReturn getHighestLevelOrder() = win 0xf7550;
+	int getHighestLevelOrder() = win 0xf7550;
 	TodoReturn getIntForKey(char const*);
 	TodoReturn getLeaderboardScores(char const*) = win 0x104c40;
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
@@ -4012,7 +4012,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getLocalLevel(int);
 	TodoReturn getLocalLevelByName(gd::string);
 	TodoReturn getLocalLevelList(int);
-	TodoReturn getLowestLevelOrder() = win 0xf75a0;
+	int getLowestLevelOrder() = win 0xf75a0;
 	GJGameLevel* getMainLevel(int, bool) = win 0xf4d50;
 	const char* getMapPackKey(int pack);
 	TodoReturn getMapPacks(GJSearchObject*) = win 0xfe120;
@@ -10391,7 +10391,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int) = win 0x2823c0;
 	TodoReturn ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x282260;
 	TodoReturn removeDLFromActive(char const*) = win 0x283c00;
-	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
+	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x2829d0;
 	TodoReturn responseToDict(gd::string, char const*);
 	TodoReturn showTOS(FLAlertLayerProtocol*) = win 0x2844b0;
 	TodoReturn songStateChanged() = win 0x282a90;
