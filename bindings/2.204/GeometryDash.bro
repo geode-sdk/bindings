@@ -4203,7 +4203,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn updateDescription(int, gd::string) = win 0x10dc80;
 	TodoReturn updateLevel(GJGameLevel*) = win 0x101d40;
 	TodoReturn updateLevelOrders() = win 0xf75f0;
-	TodoReturn updateLevelRewards(GJGameLevel*);
+	void updateLevelRewards(GJGameLevel*) = win 0xf66c0;
 	TodoReturn updateSavedLevelList(GJLevelList*);
 	TodoReturn updateUsernames();
 	TodoReturn updateUserScore() = win 0x103ab0;
@@ -4217,7 +4217,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn userIDForAccountID(int);
 	TodoReturn userInfoForAccountID(int);
 	gd::string userNameForUserID(int) = win 0xf6290;
-	TodoReturn verifyLevelState(GJGameLevel*);
+	void verifyLevelState(GJGameLevel*) = win 0xf6510;
 	TodoReturn writeSpecialFilters(GJSearchObject*);
 
 	virtual bool init();
@@ -5270,21 +5270,21 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn addStoreItem(int, int, int, int, ShopType) = win 0x169f40;
 	TodoReturn areChallengesLoaded();
 	TodoReturn areRewardsLoaded();
-	TodoReturn awardCurrencyForLevel(GJGameLevel*) = win 0x172080;
+	void awardCurrencyForLevel(GJGameLevel*) = win 0x172080;
 	TodoReturn awardDiamondsForLevel(GJGameLevel*) = win 0x1725a0;
 	TodoReturn awardSecretKey() = win 0x180040;
 	TodoReturn checkAchievement(char const*) = win 0x16b0b0;
 	TodoReturn checkCoinAchievement(GJGameLevel*);
-	TodoReturn checkCoinsForLevel(GJGameLevel*);
+	void checkCoinsForLevel(GJGameLevel*) = win 0x1713c0;
 	TodoReturn claimListReward(GJLevelList*);
 	TodoReturn collectReward(GJRewardType, GJRewardItem*);
 	TodoReturn collectVideoReward(int);
 	TodoReturn completedChallenge(GJChallengeItem*);
 	TodoReturn completedDailyLevel(GJGameLevel*);
-	TodoReturn completedDemonLevel(GJGameLevel*) = win 0x1700b0;
+	void completedDemonLevel(GJGameLevel*) = win 0x1700b0;
 	TodoReturn completedLevel(GJGameLevel*);
 	TodoReturn completedMapPack(GJMapPack*);
-	TodoReturn completedStarLevel(GJGameLevel*) = win 0x1701a0;
+	void completedStarLevel(GJGameLevel*) = win 0x1701a0;
 	TodoReturn countSecretChests(GJRewardType);
 	TodoReturn countUnlockedSecretChests(GJRewardType);
 	TodoReturn createSecretChestItems() = win 0x17a620;
@@ -5404,7 +5404,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn storeRewardState(GJRewardType, int, int, gd::string) = win 0x1728f0;
 	TodoReturn storeSecondaryQueuedChallenge(int, GJChallengeItem*) = win 0x173260;
 	TodoReturn storeSecretCoin(char const*);
-	TodoReturn storeUserCoin(char const*);
+	void storeUserCoin(char const*) = win 0x1715c0;
 	TodoReturn tempClear();
 	TodoReturn toggleEnableItem(UnlockType, int, bool) = win 0x176890;
 	TodoReturn trySelectActivePath() = win 0x16a350;
@@ -10972,9 +10972,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn placeStreakPoint() = win 0x2d9110;
 	TodoReturn playBumpEffect(int, GameObject*) = win 0x2d8380;
 	TodoReturn playBurstEffect();
-	TodoReturn playCompleteEffect(bool, bool);
+	TodoReturn playCompleteEffect(bool, bool) = win 0x2bfd50;
 	TodoReturn playDeathEffect() = win 0x2ba470;
-	TodoReturn playDynamicSpiderRun();
+	TodoReturn playDynamicSpiderRun() = win 0x2d9ac0;
 	TodoReturn playerDestroyed(bool) = win 0x2d1b30;
 	bool playerIsFalling(float) = win 0x2D39B0;
 	TodoReturn playerIsFallingBugged();
@@ -11013,9 +11013,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn rotatePreSlopeObjects();
 	TodoReturn runBallRotation(float) = win 0x2c7e30;
 	TodoReturn runBallRotation2() = win 0x2c7f70;
-	TodoReturn runNormalRotation() = win 0x2c7cf0;
-	TodoReturn runNormalRotation(bool, float) = win 0x2c7cf0;
-	TodoReturn runRotateAction(bool, int);
+	void runNormalRotation() {
+		runNormalRotation(false, 1.0f);
+	}
+	void runNormalRotation(bool, float) = win 0x2c7cf0;
+	void runRotateAction(bool, int) = win 0x2c7c90;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*) = win 0x2d9c20;
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x2d65a0;
 	void setupStreak() = win 0x2c3c80;
@@ -14555,7 +14557,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn getPrio(gd::string);
 	TodoReturn initWithOwner(CCAnimatedSprite*, gd::string);
 	TodoReturn loadAnimations(gd::string);
-	TodoReturn offsetCurrentAnimation(float);
+	TodoReturn offsetCurrentAnimation(float) = win 0x4fc50;
 	TodoReturn overridePrio() = win 0x4f7e0;
 	TodoReturn playSound(gd::string);
 	TodoReturn playSoundForAnimation(gd::string);
