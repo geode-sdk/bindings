@@ -736,7 +736,7 @@ class CCCircleWave : cocos2d::CCNode {
 	static CCCircleWave* create(float, float, float, bool);
 
 	TodoReturn baseSetup(float);
-	TodoReturn followObject(cocos2d::CCNode*, bool);
+	TodoReturn followObject(cocos2d::CCNode*, bool) = win 0x23540;
 	bool init(float, float, float, bool, bool) = win 0x232f0;
 	TodoReturn updatePosition(float);
 
@@ -5758,7 +5758,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	~GJBaseGameLayer() = win 0x18ef50;
 	// GJBaseGameLayer() = win 0x237ce0;
 
-	TodoReturn activateCustomRing(RingObject*);
+	TodoReturn activateCustomRing(RingObject*) = win 0x1a4270;
 	TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
 	TodoReturn activateEventTrigger(EventLinkTrigger*, gd::vector<int> const&);
 	TodoReturn activateItemCompareTrigger(ItemTriggerGameObject*, gd::vector<int> const&);
@@ -6048,7 +6048,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void switchToRollMode(PlayerObject*, GameObject*, bool) = win 0x19a9c0;
 	void switchToSpiderMode(PlayerObject*, GameObject*, bool) = win 0x19a8e0;
 	TodoReturn syncBGTextures() = win 0x1bda80;
-	TodoReturn teleportPlayer(TeleportPortalObject*, PlayerObject*);
+	TodoReturn teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x1980c0;
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
 	void toggleAudioVisualizer(bool) = win 0x1ca4d0;
 	TodoReturn toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x19d6a0;
@@ -11022,10 +11022,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void setYVelocity(double, int) = win 0x2c40c0;
 	TodoReturn spawnCircle();
 	TodoReturn spawnCircle2();
-	TodoReturn spawnDualCircle();
+	TodoReturn spawnDualCircle() = win 0x2d1a50;
 	TodoReturn spawnFromPlayer(PlayerObject*, bool) = win 0x2d8f90;
 	TodoReturn spawnPortalCircle(cocos2d::ccColor3B, float) = win 0x2d1810;
-	TodoReturn spawnScaleCircle();
+	TodoReturn spawnScaleCircle() = win 0x2d1920;
 	TodoReturn specialGroundHit();
 	TodoReturn speedDown();
 	TodoReturn speedUp();
@@ -11407,7 +11407,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void setDamageVerifiedIdx(int) = win 0x2db7c0;
 	TodoReturn setupHasCompleted() = win 0x2dce40;
 	TodoReturn shouldBlend(int);
-	TodoReturn showCompleteEffect();
+	TodoReturn showCompleteEffect() = win 0x2DE940;
 	TodoReturn showCompleteText() = win 0x2de410;
 	TodoReturn showEndLayer();
 	TodoReturn showHint() = win 0x2e6f90;
