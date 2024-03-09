@@ -9704,7 +9704,7 @@ class LevelTools {
 	TodoReturn toggleDebugLogging(bool);
 	static gd::string urlForAudio(int) = win 0x273a00;
 	TodoReturn valueForSpeedMod(int) = win 0x274380;
-	bool verifyLevelIntegrity(gd::string, int) = win 0x2751d0;
+	static bool verifyLevelIntegrity(gd::string, int) = win 0x2751d0;
 	static gd::string ytURLForArtist(int) = win 0x273ed0;
 }
 
