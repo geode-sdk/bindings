@@ -9677,12 +9677,12 @@ class LevelSettingsObject : cocos2d::CCNode {
 
 [[link(android)]]
 class LevelTools {
-	static int artistForAudio(int) = win 0x2737c0;
-	TodoReturn base64DecodeString(gd::string) = win 0x2753e0;
-	TodoReturn base64EncodeString(gd::string) = win 0x275360;
-	TodoReturn createStarPackDict();
+	int artistForAudio(int) = win 0x2737c0;
+	static gd::string base64DecodeString(gd::string) = win 0x2753e0;
+	static gd::string base64EncodeString(gd::string) = win 0x275360;
+	CCDictionary* createStarPackDict();
 	static gd::string fbURLForArtist(int) = win 0x274010;
-	TodoReturn getAudioBPM(int);
+	int getAudioBPM(int);
 	static gd::string getAudioFileName(int) = win 0x273430;
 	static gd::string getAudioString(int) = win 0x274140;
 	static gd::string getAudioTitle(int) = win 0x273090;
@@ -9704,7 +9704,7 @@ class LevelTools {
 	TodoReturn toggleDebugLogging(bool);
 	static gd::string urlForAudio(int) = win 0x273a00;
 	TodoReturn valueForSpeedMod(int) = win 0x274380;
-	TodoReturn verifyLevelIntegrity(gd::string, int) = win 0x2751d0;
+	bool verifyLevelIntegrity(gd::string, int) = win 0x2751d0;
 	static gd::string ytURLForArtist(int) = win 0x273ed0;
 }
 

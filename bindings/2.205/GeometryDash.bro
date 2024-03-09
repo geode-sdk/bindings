@@ -9602,24 +9602,24 @@ class LevelSettingsObject : cocos2d::CCNode {
 
 [[link(android)]]
 class LevelTools {
-	TodoReturn artistForAudio(int);
-	TodoReturn base64DecodeString(gd::string);
-	TodoReturn base64EncodeString(gd::string);
-	TodoReturn createStarPackDict();
-	TodoReturn fbURLForArtist(int);
-	TodoReturn getAudioBPM(int);
-	TodoReturn getAudioFileName(int);
-	TodoReturn getAudioString(int);
-	TodoReturn getAudioTitle(int);
+	int artistForAudio(int);
+	static gd::string base64DecodeString(gd::string);
+	static gd::string base64EncodeString(gd::string);
+	CCDictionary* createStarPackDict();
+	static gd::string fbURLForArtist(int);
+	int getAudioBPM(int);
+	static gd::string getAudioFileName(int);
+	static gd::string getAudioString(int);
+	static gd::string getAudioTitle(int);
 	TodoReturn getLastGameplayReversed();
 	TodoReturn getLastGameplayRotated();
 	TodoReturn getLastTimewarp();
-	TodoReturn getLevel(int, bool);
+	static GJGameLevel* getLevel(int, bool);
 	TodoReturn getLevelList();
 	static SongInfoObject* getSongObject(int);
 	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
-	TodoReturn nameForArtist(int);
-	TodoReturn ngURLForArtist(int);
+	static gd::string nameForArtist(int);
+	static gd::string ngURLForArtist(int);
 	TodoReturn offsetBPMForTrack(int);
 	TodoReturn posForTime(float, cocos2d::CCArray*, int, bool, int&);
 	TodoReturn posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int);
@@ -9627,10 +9627,10 @@ class LevelTools {
 	TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*);
 	TodoReturn timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int);
 	TodoReturn toggleDebugLogging(bool);
-	TodoReturn urlForAudio(int);
+	static gd::string urlForAudio(int);
 	TodoReturn valueForSpeedMod(int);
-	TodoReturn verifyLevelIntegrity(gd::string, int);
-	TodoReturn ytURLForArtist(int);
+	bool verifyLevelIntegrity(gd::string, int);
+	static gd::string ytURLForArtist(int);
 }
 
 [[link(android)]]
