@@ -5,7 +5,6 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
 		}
 	}
-
 	FLAlertLayer() {
 		m_buttonMenu = nullptr;
 		m_controlConnected = -1;
@@ -352,7 +351,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_delegate = nullptr;
 		m_maxLabelLength = 0;
 		m_placeholderLabel = nullptr;
-		m_unknown3 = false;
+		m_filterSwearWords = false;
 		m_usePasswordChar = false;
 		m_forceOffset = false;
 		m_textArea = nullptr;
@@ -445,7 +444,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	TextInputDelegate* m_delegate;
 	int m_maxLabelLength;
 	cocos2d::CCLabelBMFont* m_placeholderLabel;
-	bool m_unknown3;
+	bool m_filterSwearWords;
 	bool m_usePasswordChar;
 	bool m_forceOffset;
 	TextArea* m_textArea;
@@ -1610,14 +1609,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = mac 0x128;
 	UILayer* m_uiLayer;
-
-	mac {
-		PAD = 0x40;
-		std::vector<std::vector<GameObject*>> m_sections;
-		PAD = 0x1bc;
-	}
-
-	PAD = win 0x20a, android32 0x1ea, android64 0x340, mac 0x0;
+	PAD = win 0x20a, android32 0x1ea, android64 0x340, mac 0x1f0;
 }
 
 [[link(android)]]
