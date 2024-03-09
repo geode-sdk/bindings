@@ -11718,7 +11718,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 
 [[link(android)]]
 class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJDropDownLayerDelegate {
-	static MoreOptionsLayer* create();
+	static MoreOptionsLayer* create() = mac 0x75cfc0;
 
 	~MoreOptionsLayer();
 
@@ -11731,7 +11731,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	void onKeybindings(cocos2d::CCObject* sender);
 	void onSongBrowser(cocos2d::CCObject* sender) = win 0x2ae9f0;
 	void onInfo(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = mac 0x75f210;
 	void onToggle(cocos2d::CCObject* sender);
 
 	TodoReturn countForPage(int);
