@@ -5784,9 +5784,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn addToGroups(GameObject*, bool) = win 0x1a8c80;
 	TodoReturn addToObjectsToShow(GameObject*);
 	TodoReturn addUIObject(GameObject*);
-	TodoReturn animateInDualGroundNew(GameObject*, float, bool, float);
+	void animateInDualGroundNew(GameObject*, float, bool, float) = win 0x19AE90;
 	TodoReturn animateInGroundNew(bool, float, bool);
-	TodoReturn animateOutGroundNew(bool);
+	void animateOutGroundNew(bool) = win 0x19B120;
 	TodoReturn animatePortalY(float, float, float, float);
 	TodoReturn applyLevelSettings(GameObject*) = win 0x1bd900;
 	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
@@ -5863,7 +5863,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getEnterEasingKey(int, float);
 	TodoReturn getEnterEasingValue(float, int, float, int);
 	TodoReturn getFollowSpeedVal(GameObject*, int, int, float, float);
-	TodoReturn getGroundHeight(PlayerObject*, int);
+	float getGroundHeight(PlayerObject*, int) = win 0x199740;
 	TodoReturn getGroundHeightForMode(int);
 	TodoReturn getGroup(int) = win 0x1a8f50;
 	TodoReturn getGroupParent(int);
@@ -5918,7 +5918,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn moveObjects(cocos2d::CCArray*, double, double, bool) = win 0x1b1fa0;
 	TodoReturn moveObjectsSilent(int, double, double);
 	TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
-	TodoReturn objectTypeToGameEvent(int);
+	GJGameEvent objectTypeToGameEvent(int) = win 0x1B6190;
 	TodoReturn optimizeMoveGroups() = win 0x1b4cd0;
 	TodoReturn orderSpawnObjects() = win 0x1c7c20;
 	TodoReturn parentForZLayer(int, bool, int, int);
@@ -5933,7 +5933,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn playerTouchedRing(PlayerObject*, RingObject*) = win 0x19eca0;
 	TodoReturn playerTouchedTrigger(PlayerObject*, EffectGameObject*);
 	TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*) = win 0x19e530;
-	TodoReturn playerWillSwitchMode(PlayerObject*, GameObject*);
+	void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x19AB80;
 	TodoReturn playExitDualEffect(PlayerObject*) = win 0x19da70;
 	TodoReturn playFlashEffect(float, int, float);
 	TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
@@ -6091,7 +6091,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateCameraOffsetY(float, float, int, float, int, int);
 	TodoReturn updateCollisionBlocks();
 	TodoReturn updateCounters(int, int);
-	TodoReturn updateDualGround(PlayerObject*, int, bool, float);
+	void updateDualGround(PlayerObject*, int, bool, float) = win 0x19AD50;
 	TodoReturn updateEnterEffects(float);
 	TodoReturn updateExtendedCollision(GameObject*, bool);
 	TodoReturn updateExtraGameLayers();
@@ -6124,7 +6124,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateStaticCameraPosToGroup(int, bool, bool, bool, float, float, int, float, bool, float);
 	TodoReturn updateTimeMod(float, bool, bool);
 	TodoReturn updateTimerLabels();
-	TodoReturn updateZoom(float, float, int, float, int, int);
+	void updateZoom(float, float, int, float, int, int) = win 0x1B9350;
 	TodoReturn visitWithColorFlash();
 	TodoReturn volumeForProximityEffect(SFXTriggerInstance&) = win 0x1c4ae0;
 
@@ -6846,7 +6846,7 @@ class GJGameState {
 	TodoReturn controlTweenAction(int, int, GJActionCommand);
 	TodoReturn getGameObjectPhysics(GameObject*);
 	TodoReturn processStateTriggers();
-	TodoReturn stopTweenAction(int);
+	void stopTweenAction(int) = win 0x18EA30;
 	TodoReturn tweenValue(float, float, int, float, int, float, int, int) = win 0x18e920;
 	TodoReturn updateTweenAction(float, int);
 	TodoReturn updateTweenActions(float);
@@ -10936,7 +10936,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn flipGravity(bool, bool) = win 0x2d36e0;
 	TodoReturn flipMod();
 	TodoReturn gameEventTriggered(int, int);
-	TodoReturn getActiveMode();
+	bool getActiveMode() = win 0x2D3A50;
 	TodoReturn getCurrentXVelocity();
 	TodoReturn getModifiedSlopeYVel() = win 0x2c9d30;
 	TodoReturn getOldPosition(float);
