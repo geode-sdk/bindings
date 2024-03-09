@@ -9167,7 +9167,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 
 [[link(android)]]
 class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
-	static OptionsLayer* create() = win 0x2ab510;
+	static OptionsLayer* create() = win 0x2ab510, mac 0x75bcf0;
 
 	~OptionsLayer();
 
