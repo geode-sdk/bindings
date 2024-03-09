@@ -1247,7 +1247,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn claimParticle(gd::string, int);
 	TodoReturn destroyObject(GameObject*);
 	TodoReturn enterDualMode(GameObject*, bool);
-	TodoReturn hasUniqueCoin(EffectGameObject*) = win 0x1995a0;
+	bool hasUniqueCoin(EffectGameObject*) = win 0x1995a0;
 	TodoReturn preResumeGame() = mac 0x13ea50;
 	TodoReturn removePlayer2();
 	TodoReturn rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
@@ -4709,7 +4709,7 @@ class LevelTools {
 	TodoReturn urlForAudio(int);
 	TodoReturn getLevelList();
 	static gd::string getAudioTitle(int) = mac 0x4d8da0, win 0x26E860;
-	TodoReturn getSongObject(int) = mac 0x4dc4f0;
+	static SongInfoObject* getSongObject(int) = mac 0x4dc4f0;
 	TodoReturn nameForArtist(int);
 	TodoReturn artistForAudio(int);
 	TodoReturn fbURLForArtist(int);
@@ -7180,10 +7180,10 @@ class PauseLayer : CCBlockLayer {
 	void onRestart(cocos2d::CCObject* sender) = mac 0x3b5be0, win 0x2b4ce0;
 
 	TodoReturn tryShowBanner(float);
-	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
+	TodoReturn sfxSliderChanged(cocos2d::CCObject*) = mac 0x3b5c90;
 	TodoReturn setupProgressBars() = mac 0x3b4fb0;
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	void musicSliderChanged(cocos2d::CCObject*) = win 0x2B4AB0;
+	void musicSliderChanged(cocos2d::CCObject*) = mac 0x3b5c50, win 0x2B4AB0;
 	void goEdit() = win 0x2b4e70;
 
 	virtual void keyBackClicked();
@@ -11559,7 +11559,7 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 
 [[link(android)]]
 class GameOptionsLayer : GJOptionsLayer {
-	static GameOptionsLayer* create(GJBaseGameLayer*);
+	static GameOptionsLayer* create(GJBaseGameLayer*) = mac 0x28c970;
 
 	bool init(GJBaseGameLayer*);
 	~GameOptionsLayer();
@@ -11570,7 +11570,7 @@ class GameOptionsLayer : GJOptionsLayer {
 	void showPracticeMusicSyncUnlockInfo() = win 0x20eba0;
 
 	virtual void setupOptions() = win 0x20e710, mac 0x28cc30;
-	virtual TodoReturn didToggle(int);
+	virtual TodoReturn didToggle(int) = mac 0x28d610;
 }
 
 [[link(android)]]
