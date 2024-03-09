@@ -9680,7 +9680,7 @@ class LevelTools {
 	int artistForAudio(int) = win 0x2737c0;
 	static gd::string base64DecodeString(gd::string) = win 0x2753e0;
 	static gd::string base64EncodeString(gd::string) = win 0x275360;
-	CCDictionary* createStarPackDict();
+	cocos2d::CCDictionary* createStarPackDict();
 	static gd::string fbURLForArtist(int) = win 0x274010;
 	int getAudioBPM(int);
 	static gd::string getAudioFileName(int) = win 0x273430;
