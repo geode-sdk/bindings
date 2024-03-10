@@ -7302,7 +7302,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 [[link(android)]]
 class SetTextPopupDelegate {
 	/* unverified signature */
-	virtual void setTextPopupClosed(SetTextPopup*, gd::string){}
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string) {}
 }
 
 
@@ -8454,7 +8454,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
 	~SFXBrowser();
 
 	/* unverified signature */
-	void setTextPopupClosed(SetTextPopup*, gd::string);
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
 
 	void onExitFolder(cocos2d::CCObject* sender);
 	void onClearSearch(cocos2d::CCObject* sender);
@@ -9137,7 +9137,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 	~MusicBrowser();
 
 	/* unverified signature */
-	void setTextPopupClosed(SetTextPopup*, gd::string);
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
 
 	void onTagFilters(cocos2d::CCObject* sender);
 	void onClearSearch(cocos2d::CCObject* sender);
@@ -10397,7 +10397,7 @@ class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
 	~SetFolderPopup();
 
 	/* unverified signature */
-	void setTextPopupClosed(SetTextPopup*, gd::string);
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
 
 	void onSetFolderName(cocos2d::CCObject* sender);
 
