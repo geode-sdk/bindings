@@ -11636,15 +11636,15 @@ class PurchaseItemPopup : FLAlertLayer {
 class RandTriggerGameObject : ChanceTriggerGameObject {
 	// virtual ~RandTriggerGameObject();
 
-	static RandTriggerGameObject* create();
+	static RandTriggerGameObject* create() = win 0x3a9860;
 
-	TodoReturn getRandomGroupID();
+	TodoReturn getRandomGroupID() = win 0x3a9950;
 	TodoReturn getTotalChance();
 
-	virtual bool init();
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual bool init() = win 0x3a9940;
+	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3a9a00;
+	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3a9b30;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3a9d70;
 }
 
 [[link(android)]]
