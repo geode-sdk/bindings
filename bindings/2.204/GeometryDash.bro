@@ -14841,7 +14841,8 @@ class TextAlertPopup : cocos2d::CCNode {
 	static TextAlertPopup* create(gd::string, float, float, int, gd::string) = win 0x211c90;
 
 	bool init(gd::string, float, float, int, gd::string) = win 0x211de0;
-	void setAlertPosition(cocos2d::CCPoint, cocos2d::CCPoint);
+	void setAlertPosition(cocos2d::CCPoint, cocos2d::CCPoint) = win 0x212120;
+	// inlined on Windows
 	void setLabelColor(cocos2d::ccColor3B);
 }
 
