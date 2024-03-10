@@ -11746,7 +11746,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	virtual bool init() = win 0x2f67f0;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
-	virtual void show() = win 0xf17f0;
+	virtual void show() = win 0x2f17f0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn rewardsStatusFinished(int);
 	virtual TodoReturn rewardsStatusFailed();
