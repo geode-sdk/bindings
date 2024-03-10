@@ -11638,8 +11638,8 @@ class RandTriggerGameObject : ChanceTriggerGameObject {
 
 	static RandTriggerGameObject* create() = win 0x3a9860;
 
-	TodoReturn getRandomGroupID() = win 0x3a9950;
-	TodoReturn getTotalChance();
+	int getRandomGroupID() = win 0x3a9950;
+	int getTotalChance();
 
 	virtual bool init() = win 0x3a9940;
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3a9a00;
