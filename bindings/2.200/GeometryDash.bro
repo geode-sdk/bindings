@@ -7302,7 +7302,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 [[link(android)]]
 class SetTextPopupDelegate {
 	/* unverified signature */
-	virtual void setTextPopupClosed(SetTextPopup*, gd::string){};
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string){}
 }
 
 
