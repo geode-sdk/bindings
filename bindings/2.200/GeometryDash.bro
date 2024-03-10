@@ -1835,7 +1835,7 @@ class GameManager : GManager {
 	cocos2d::ccColor3B colorForIdx(int) = win 0x124270, mac 0x35d5b0;
 	TodoReturn colorForPos(int);
 	void doQuickSave() = win 0x12bf00;
-	TodoReturn fadeInMusic(gd::string);
+	TodoReturn fadeInMusic(gd::string) = mac 0x355220;
 	TodoReturn getFontFile(int);
 	TodoReturn getGTexture(int) = mac 0x3611f0;
 	TodoReturn joinDiscord() = mac 0x35e200;
@@ -4856,7 +4856,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn storeRewardState(GJRewardType, int, int, gd::string);
 	void toggleEnableItem(UnlockType, int, bool) = win 0x174030, mac 0x78200;
 	TodoReturn updateActivePath(StatKey);
-	TodoReturn countSecretChests(GJRewardType);
+	TodoReturn countSecretChests(GJRewardType) = mac 0x885d0;
 	bool hasCompletedLevel(GJGameLevel* level) {
 		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
 	}
@@ -4916,7 +4916,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool isGauntletChestUnlocked(int) = mac 0x77bc0;
 	//TodoReturn registerRewardsFromItem(GJRewardItem*) = win 0x17D700;
 	TodoReturn createSecretChestRewards() = mac 0x79370;
-	TodoReturn countUnlockedSecretChests(GJRewardType);
+	TodoReturn countUnlockedSecretChests(GJRewardType) = mac 0x88630;
 	TodoReturn hasCompletedGauntletLevel(int) = mac 0x6d1c0;
 	TodoReturn generateItemUnlockableData() = mac 0x65480;
 	TodoReturn addSimpleSpecialChestReward(gd::string, UnlockType, int, bool);
@@ -12741,14 +12741,14 @@ class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
 
 [[link(android)]]
 class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDelegate {
-	static SecretRewardsLayer* create(bool);
+	static SecretRewardsLayer* create(bool) = mac 0x5f41b0;
 
-	bool init(bool);
+	bool init(bool) = mac 0x5f42d0;
 	~SecretRewardsLayer();
 
 	TodoReturn getPageColor(int);
 
-	void onChestType(cocos2d::CCObject* sender);
+	void onChestType(cocos2d::CCObject* sender) = mac 0x5f5de0;
 	void onSelectItem(cocos2d::CCObject* sender) = win 0x2F6D50;
 	void onSwitchPage(cocos2d::CCObject* sender);
 	void onSpecialItem(cocos2d::CCObject* sender) = win 0x2F7360;
@@ -12764,7 +12764,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	TodoReturn generateChestItems(int) = win 0x2F63D0;
 	TodoReturn showDialogMechanic();
 	TodoReturn switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x2F7630;
-	TodoReturn updateUnlockedLabel() = win 0x2F76E0;
+	TodoReturn updateUnlockedLabel() = win 0x2F76E0, mac 0x5f5ef0;
 	TodoReturn createSecondaryLayer(int) = win 0x2F5F60;
 	TodoReturn moveToSecondaryLayer(int);
 	TodoReturn scene(bool) = win 0x2f4130, mac 0x5f4170;
