@@ -2884,7 +2884,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 	~SliderThumb();
 
 	// inlined on windows
-	float getValue() = mac 0x2e02f0 {
+	float getValue() {
 		return (this->getScaleX() * m_length * .5f +
 				(m_vertical ?
 					this->getPositionY() :
