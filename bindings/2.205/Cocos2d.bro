@@ -1775,3 +1775,29 @@ class cocos2d::CCFadeTo {
 	virtual void update(float);
 	virtual void startWithTarget(cocos2d::CCNode*);
 }
+
+[[link(win, android)]]
+class cocos2d::CCMenuItem {
+	~CCMenuItem();
+	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItem* create();
+
+	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+
+	int getScriptTapHandler();
+
+	void setTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+
+	// CCMenuItem(cocos2d::CCMenuItem const&);
+	// CCMenuItem();
+	cocos2d::CCRect rect();
+
+	virtual void activate();
+	virtual void selected();
+	virtual void unselected();
+	virtual void registerScriptTapHandler(int);
+	virtual void unregisterScriptTapHandler();
+	virtual bool isEnabled();
+	virtual void setEnabled(bool);
+	virtual bool isSelected();
+}
