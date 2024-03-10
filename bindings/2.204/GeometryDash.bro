@@ -13319,15 +13319,15 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
 
 	static SetupRandAdvTriggerPopup* create(RandTriggerGameObject*, cocos2d::CCArray*) = win 0x346250;
 
-	TodoReturn addChance(int, int);
-	TodoReturn addChanceToObject(RandTriggerGameObject*, int, int);
-	TodoReturn callRemoveFromGroup(float);
+	void addChance(int, int) = win 0x346ce0;
+	void addChanceToObject(RandTriggerGameObject*, int, int) = win 0x346d70;
+	void callRemoveFromGroup(float); // = win 0x3479f0;
 	bool init(RandTriggerGameObject*, cocos2d::CCArray*) = win 0x346300;
-	void onAddChance(cocos2d::CCObject* sender);
-	void onRemoveFromGroup(cocos2d::CCObject* sender);
-	TodoReturn removeGroupID(int);
-	TodoReturn removeGroupIDFromObject(RandTriggerGameObject*, int);
-	TodoReturn updateGroupIDButtons();
+	void onAddChance(cocos2d::CCObject* sender) = win 0x347ad0;
+	void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x347a20;
+	void removeGroupID(int) = win 0x346de0;
+	void removeGroupIDFromObject(RandTriggerGameObject*, int) = win 0x346ee0;
+	void updateGroupIDButtons() = win 0x346f60;
 
 	virtual void onClose(cocos2d::CCObject* sender);
 	virtual TodoReturn textChanged(CCTextInputNode*);
