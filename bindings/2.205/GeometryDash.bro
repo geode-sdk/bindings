@@ -9602,33 +9602,33 @@ class LevelSettingsObject : cocos2d::CCNode {
 
 [[link(android)]]
 class LevelTools {
-	int artistForAudio(int);
+	static int artistForAudio(int);
 	static gd::string base64DecodeString(gd::string);
 	static gd::string base64EncodeString(gd::string);
-	cocos2d::CCDictionary* createStarPackDict();
+	static cocos2d::CCDictionary* createStarPackDict();
 	static gd::string fbURLForArtist(int);
-	int getAudioBPM(int);
+	static int getAudioBPM(int);
 	static gd::string getAudioFileName(int);
 	static gd::string getAudioString(int);
 	static gd::string getAudioTitle(int);
-	TodoReturn getLastGameplayReversed();
-	TodoReturn getLastGameplayRotated();
-	TodoReturn getLastTimewarp();
+	static TodoReturn getLastGameplayReversed();
+	static TodoReturn getLastGameplayRotated();
+	static TodoReturn getLastTimewarp();
 	static GJGameLevel* getLevel(int, bool);
-	TodoReturn getLevelList();
+	static TodoReturn getLevelList();
 	static SongInfoObject* getSongObject(int);
-	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
+	static TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
 	static gd::string nameForArtist(int);
 	static gd::string ngURLForArtist(int);
-	TodoReturn offsetBPMForTrack(int);
-	TodoReturn posForTime(float, cocos2d::CCArray*, int, bool, int&);
-	TodoReturn posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int);
-	TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
-	TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*);
-	TodoReturn timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int);
-	TodoReturn toggleDebugLogging(bool);
+	static TodoReturn offsetBPMForTrack(int);
+	static TodoReturn posForTime(float, cocos2d::CCArray*, int, bool, int&);
+	static TodoReturn posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int);
+	static TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
+	static TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*);
+	static TodoReturn timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int);
+	static TodoReturn toggleDebugLogging(bool);
 	static gd::string urlForAudio(int);
-	TodoReturn valueForSpeedMod(int);
+	static TodoReturn valueForSpeedMod(int);
 	static bool verifyLevelIntegrity(gd::string, int);
 	static gd::string ytURLForArtist(int);
 }
