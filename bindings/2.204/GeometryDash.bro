@@ -9203,7 +9203,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn playStep2();
 	TodoReturn playStep3();
 	TodoReturn playStep4();
-	TodoReturn scene(GJGameLevel*, bool);
+	static cocos2d::CCScene* scene(GJGameLevel*, bool) = win 0x2515b0;
 	TodoReturn setupLevelInfo() = win 0x2544a0;
 	TodoReturn setupPlatformerStats() = win 0x253a90;
 	TodoReturn setupProgressBars() = win 0x253e20;
