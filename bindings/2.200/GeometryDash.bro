@@ -219,7 +219,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	bool init(int) = mac 0x410c70;
 	~LevelSelectLayer();
 
-	TodoReturn getColorValue(int, int, float);
+	TodoReturn getColorValue(int, int, float) = mac 0x4133f0;
 
 	void onDownload(cocos2d::CCObject* sender) = mac 0x411980;
 	void onBack(cocos2d::CCObject* sender) = mac 0x411a30;
@@ -235,7 +235,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual TodoReturn updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = mac 0x411ac0;
-	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint);
+	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint) = mac 0x413280;
 }
 
 [[link(android)]]
@@ -1835,7 +1835,7 @@ class GameManager : GManager {
 	cocos2d::ccColor3B colorForIdx(int) = win 0x124270, mac 0x35d5b0;
 	TodoReturn colorForPos(int);
 	void doQuickSave() = win 0x12bf00;
-	TodoReturn fadeInMusic(gd::string);
+	TodoReturn fadeInMusic(gd::string) = mac 0x355220;
 	TodoReturn getFontFile(int);
 	TodoReturn getGTexture(int) = mac 0x3611f0;
 	TodoReturn joinDiscord() = mac 0x35e200;
@@ -3512,47 +3512,63 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getType() const = mac 0x1d2ad0;
 	virtual void setType(GameObjectType) = mac 0x1d2ae0;
 
-	PAD = android32 0xf, win 0xf;
+	// most are untested and copied from android64 2.205 bindings
+	PAD = mac 0x11;
 
 	// property 511
 	bool m_hasExtendedCollision;
-	PAD = android32 0x13, win 0x13;
+	PAD = mac 0x13;
 
-	cocos2d::CCSprite* m_baseSprite;
-    cocos2d::CCSprite* m_detailSprite;
+	// somehow related to property 155 and 156 if anyone wants to reverse engineer
+	int m_activeMainColorID;
+	int m_activeDetailColorID;
 
-	PAD = android32 0x64, win 0x64;
+	PAD = mac 0x54;
+
+	cocos2d::CCSprite* m_glowSprite;
+
+	PAD = mac 0x4;
+
+	float m_unk288;
+	float m_unk28c;
+
+	PAD = mac 0x8;
 
 	gd::string m_particleString;
 
-	PAD = android32 0x1, win 0x1;
+	PAD = mac 0x1;
 
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3e, win 0x32;
+	PAD = mac 0x3e;
 
 	// property 108
 	int m_linkedGroup;
-	PAD = android32 0x23, win 0x23;
+
+	PAD = mac 0xc;
+
+	cocos2d::CCSprite* m_colorSprite;
+
+	PAD = mac 0x13;
 
 	int m_uniqueID;
 	GameObjectType m_objectType;
 
-	PAD = android32 0x14, win 0x14;
+	PAD = mac 0x10;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
-	PAD = android32 0x1, win 0x1;
+	PAD = mac 0x1;
 
 	// property 372
 	bool m_hasNoAudioScale;
-	PAD = android32 0x2a, win 0x2a;
+	PAD = mac 0x2a;
 
 	// property 343
 	short m_enterChannel;
 	// property 446
 	short m_objectMaterial;
-	PAD = android32 0x4, win 0x4;
+	PAD = mac 0x4;
 
 	// property 96
 	bool m_hasNoGlow;
@@ -3562,7 +3578,7 @@ class GameObject : CCSpritePlus {
 
 	// property 1
 	int m_objectID;
-	PAD = android32 0x8, win 0x8;
+	PAD = mac 0x8;
 
 	// property 497
 	short m_customColorType;
@@ -3574,26 +3590,26 @@ class GameObject : CCSpritePlus {
 	bool m_hasNoEffects;
 	// property 507
 	bool m_hasNoParticles;
-	PAD = android32 0x16, win 0x16;
+	PAD = mac 0x16;
 
 	// property 53
 	int m_property53;
-	PAD = android32 0x18, win 0x18;
+	PAD = mac 0x18;
 
 	// property 21, also used with 41 and 43
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
-    GJSpriteColor* m_detailColor;
-	PAD = android32 0xc;
+	GJSpriteColor* m_detailColor;
+	PAD = mac 0xc;
 
 	// property 24
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
-	PAD = android32 0x10, win 0x10;
+	PAD = mac 0x10;
 
 	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
-	PAD = android32 0x1, win 0x1;
+	PAD = mac 0x1;
 
 	// property 34
 	bool m_hasGroupParent;
@@ -3610,21 +3626,29 @@ class GameObject : CCSpritePlus {
 	short m_groupCount;
 	// used with property 274
 	bool m_hasGroupParentsString;
-	PAD = android32 0xf, win 0xf;
+
+	std::array<short, 10>* m_colorGroups;
+	short m_colorGroupCount;
+	std::array<short, 10>* m_opacityGroups;
+	short m_opacityGroupCount;
 
 	// property 20
 	short m_editorLayer;
 	// property 61
 	short m_editorLayer2;
-	PAD = android32 0x8, win 0x8;
+	PAD = mac 0x8;
 
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x2c, win 0x2c;
+	PAD = mac 0x9;
+
+	cocos2d::CCPoint m_lastPosition;
+
+	PAD = mac 0x1b;
 
 	// property 103
 	bool m_isHighDetail;
-	PAD = android32 0x11, win 0x11;
+	PAD = mac 0x21;
 
 	// property 134
 	bool m_isPassable;
@@ -3646,14 +3670,14 @@ class GameObject : CCSpritePlus {
 	bool m_isDontBoostY;
 	// property 509
 	bool m_isDontBoostX;
-	PAD = android32 0x11, win 0x11;
+	PAD = mac 0x11;
 
 	// property 155
 	int m_property155;
 	// property 156
 	int m_property156;
 
-	PAD = android32 0x12, win 0x26; // TODO: yeah someone pls fix windows pads
+	PAD = mac 0x42;
 }
 
 [[link(android)]]
@@ -4832,7 +4856,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn storeRewardState(GJRewardType, int, int, gd::string);
 	void toggleEnableItem(UnlockType, int, bool) = win 0x174030, mac 0x78200;
 	TodoReturn updateActivePath(StatKey);
-	TodoReturn countSecretChests(GJRewardType);
+	TodoReturn countSecretChests(GJRewardType) = mac 0x885d0;
 	bool hasCompletedLevel(GJGameLevel* level) {
 		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
 	}
@@ -4892,7 +4916,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool isGauntletChestUnlocked(int) = mac 0x77bc0;
 	//TodoReturn registerRewardsFromItem(GJRewardItem*) = win 0x17D700;
 	TodoReturn createSecretChestRewards() = mac 0x79370;
-	TodoReturn countUnlockedSecretChests(GJRewardType);
+	TodoReturn countUnlockedSecretChests(GJRewardType) = mac 0x88630;
 	TodoReturn hasCompletedGauntletLevel(int) = mac 0x6d1c0;
 	TodoReturn generateItemUnlockableData() = mac 0x65480;
 	TodoReturn addSimpleSpecialChestReward(gd::string, UnlockType, int, bool);
@@ -6491,7 +6515,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn scene(GJGameLevel*, bool, bool) = win 0x2D68A0, mac 0xa5c80;
 	TodoReturn resume() = mac 0xb8a50;
 	TodoReturn showHint() = win 0x2e12d0, mac 0xb4ab0;
-	TodoReturn addCircle(CCCircleWave*);
+	void addCircle(CCCircleWave* cw) = mac 0xb4cc0;
 	TodoReturn addObject(GameObject*) = win 0x2DBD30;
 	void fullReset() = win 0x2E40C0, mac 0xb8080;
 	TodoReturn pauseGame(bool) = win 0x2e4fc0, mac 0xb8790;
@@ -6533,7 +6557,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void dialogClosed(DialogLayer*) = win 0x2e12b0;
 
 	// those are all wrong except for mac
-	PAD = win 0x1ec, android32 0x1ec, android64 0x2c4, mac 0x138;
+	PAD = win 0x1ec, android32 0x1ec, android64 0x2c4, mac 0xfc;
+	cocos2d::CCArray* m_circleWaveArray;
+	PAD = mac 0x2c;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = mac 0x178;
 }
@@ -6801,7 +6827,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn getObjectRotation() = mac 0x3fc300;
 	virtual TodoReturn animationFinished(char const*) = mac 0x3fd190;
 
-	cocos2d::CCNode* m_unk49c;
+	cocos2d::CCNode* m_mainLayer;
 	PAD = win 0x44, mac 0x18;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
@@ -10242,7 +10268,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
 	static LevelListLayer* create(GJLevelList*);
 
-	bool init(GJLevelList*) = win 0x22DE00;
+	bool init(GJLevelList*) = win 0x22DE00, mac 0x33a9a0;
 	~LevelListLayer() = mac 0x33a830;
 
 	void onFavorite(cocos2d::CCObject* sender);
@@ -12465,7 +12491,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 
 [[link(android)]]
 class CharacterColorPage : FLAlertLayer {
-	static CharacterColorPage* create();
+	static CharacterColorPage* create() = mac 0x61fec0;
 
 	~CharacterColorPage();
 
@@ -12476,16 +12502,16 @@ class CharacterColorPage : FLAlertLayer {
 	TodoReturn checkColor(int, UnlockType);
 	TodoReturn toggleGlow(cocos2d::CCObject*);
 	TodoReturn toggleShip(cocos2d::CCObject*);
-	TodoReturn colorForIndex(int);
-	TodoReturn offsetForIndex(int);
-	TodoReturn createColorMenu();
+	TodoReturn colorForIndex(int) = mac 0x621a30;
+	TodoReturn offsetForIndex(int) = mac 0x621ca0;
+	TodoReturn createColorMenu() = mac 0x6210e0;
 	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	TodoReturn toggleGlowItems(bool);
-	TodoReturn updateColorMode(int);
-	TodoReturn updateIconColors();
+	TodoReturn updateColorMode(int) = mac 0x6214f0;
+	TodoReturn updateIconColors() = mac 0x620f80;
 	TodoReturn activeColorForMode(int);
 
-	virtual bool init() = win 0x5e640;
+	virtual bool init() = win 0x5e640, mac 0x620020;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual TodoReturn show();
@@ -12669,9 +12695,9 @@ class GJTransformControl : cocos2d::CCLayer {
 class KeybindingsManager : cocos2d::CCNode {
 	~KeybindingsManager();
 
-	TodoReturn dataLoaded(DS_Dictionary*) = win 0x228580;
+	TodoReturn dataLoaded(DS_Dictionary*) = win 0x228580, mac 0x4c12a0;
 	TodoReturn firstSetup();
-	TodoReturn sharedState() = win 0x228470;
+	TodoReturn sharedState() = win 0x228470, mac 0x4c0c60;
 	TodoReturn encodeDataTo(DS_Dictionary*);
 	TodoReturn commandForKey(cocos2d::enumKeyCodes, GJKeyGroup, bool, bool, bool);
 	TodoReturn keyForCommand(GJKeyCommand);
@@ -12715,14 +12741,14 @@ class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
 
 [[link(android)]]
 class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDelegate {
-	static SecretRewardsLayer* create(bool);
+	static SecretRewardsLayer* create(bool) = mac 0x5f41b0;
 
-	bool init(bool);
+	bool init(bool) = mac 0x5f42d0;
 	~SecretRewardsLayer();
 
 	TodoReturn getPageColor(int);
 
-	void onChestType(cocos2d::CCObject* sender);
+	void onChestType(cocos2d::CCObject* sender) = mac 0x5f5de0;
 	void onSelectItem(cocos2d::CCObject* sender) = win 0x2F6D50;
 	void onSwitchPage(cocos2d::CCObject* sender);
 	void onSpecialItem(cocos2d::CCObject* sender) = win 0x2F7360;
@@ -12738,7 +12764,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	TodoReturn generateChestItems(int) = win 0x2F63D0;
 	TodoReturn showDialogMechanic();
 	TodoReturn switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x2F7630;
-	TodoReturn updateUnlockedLabel() = win 0x2F76E0;
+	TodoReturn updateUnlockedLabel() = win 0x2F76E0, mac 0x5f5ef0;
 	TodoReturn createSecondaryLayer(int) = win 0x2F5F60;
 	TodoReturn moveToSecondaryLayer(int);
 	TodoReturn scene(bool) = win 0x2f4130, mac 0x5f4170;
@@ -15520,10 +15546,10 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	void onInfo(cocos2d::CCObject* sender) = win 0x267CB0, mac 0x4140c0;
 	void onPlay(cocos2d::CCObject* sender) = mac 0x4139b0;
 
-	TodoReturn addSecretCoin();
+	TodoReturn addSecretCoin() = mac 0x413060;
 	TodoReturn addSecretDoor();
 	TodoReturn playCoinEffect();
-	TodoReturn updateDynamicPage(GJGameLevel*);
+	TodoReturn updateDynamicPage(GJGameLevel*) = mac 0x411b30;
 	TodoReturn playStep2();
 	TodoReturn playStep3();
 
