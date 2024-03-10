@@ -10561,11 +10561,15 @@ class ObjectManager : cocos2d::CCNode {
 class ObjectToolbox : cocos2d::CCNode {
 	// virtual ~ObjectToolbox();
 
+	gd::map<int, gd::string> m_allKeys;
+
 	static ObjectToolbox* sharedState() = win 0x28b340;
 
 	TodoReturn allKeys();
 	float gridNodeSizeForKey(int) = win 0x2af310;
-	char const* intKeyToFrame(int) = win 0x166920;
+	const char* intKeyToFrame(int key) {
+		return m_allKeys[key].c_str();
+	}
 	TodoReturn perspectiveBlockFrame(int);
 
 	virtual bool init();
