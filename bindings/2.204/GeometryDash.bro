@@ -11143,7 +11143,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn getObjectRotation();
 	virtual TodoReturn animationFinished(char const*);
 
-	cocos2d::CCNode* m_unk49c;
+	cocos2d::CCNode* m_mainLayer;
 	PAD = win 0x44, android32 0x44;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
@@ -11336,7 +11336,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 		return GameManager::get()->m_playLayer;
 	}
 
-	TodoReturn addCircle(CCCircleWave*);
+	void addCircle(CCCircleWave* cw) {
+		m_circleWaveArray->addObject(cw);
+	}
 	TodoReturn addObject(GameObject*) = win 0x2e19b0;
 	TodoReturn addToGroupOld(GameObject*);
 	TodoReturn applyCustomEnterEffect(GameObject*, bool);
@@ -11480,7 +11482,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	PAD = win 0x84;
 	float m_unksomefloat;
-	PAD = win 0x44;
+	PAD = win 0x24;
+	cocos2d::CCArray* m_circleWaveArray;
+	PAD = win 0x1c;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = win 0x5c;
 	bool m_endLayerStars; // not verified on android

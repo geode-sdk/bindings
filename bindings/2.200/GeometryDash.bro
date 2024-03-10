@@ -6515,7 +6515,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn scene(GJGameLevel*, bool, bool) = win 0x2D68A0, mac 0xa5c80;
 	TodoReturn resume() = mac 0xb8a50;
 	TodoReturn showHint() = win 0x2e12d0, mac 0xb4ab0;
-	TodoReturn addCircle(CCCircleWave*);
+	void addCircle(CCCircleWave* cw) = mac 0xb4cc0;
 	TodoReturn addObject(GameObject*) = win 0x2DBD30;
 	void fullReset() = win 0x2E40C0, mac 0xb8080;
 	TodoReturn pauseGame(bool) = win 0x2e4fc0, mac 0xb8790;
@@ -6557,7 +6557,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void dialogClosed(DialogLayer*) = win 0x2e12b0;
 
 	// those are all wrong except for mac
-	PAD = win 0x1ec, android32 0x1ec, android64 0x2c4, mac 0x138;
+	PAD = win 0x1ec, android32 0x1ec, android64 0x2c4, mac 0xfc;
+	cocos2d::CCArray* m_circleWaveArray;
+	PAD = mac 0x2c;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = mac 0x178;
 }
@@ -6825,7 +6827,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn getObjectRotation() = mac 0x3fc300;
 	virtual TodoReturn animationFinished(char const*) = mac 0x3fd190;
 
-	cocos2d::CCNode* m_unk49c;
+	cocos2d::CCNode* m_mainLayer;
 	PAD = win 0x44, mac 0x18;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
