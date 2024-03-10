@@ -151,8 +151,8 @@ class AchievementManager : cocos2d::CCNode {
 	static AchievementManager* sharedState() = win 0x9ac0;
 
 	TodoReturn achievementForUnlock(int, UnlockType);
-	TodoReturn addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
-	TodoReturn addManualAchievements() = win 0xf74a;
+	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
+	vpod addManualAchievements() = win 0xf74a;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
 	TodoReturn checkAchFromUnlock(char const*);
 	TodoReturn dataLoaded(DS_Dictionary*);
@@ -169,9 +169,9 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn notifyAchievementWithID(char const*) = win 0x1b550;
 	TodoReturn percentageForCount(int, int);
 	TodoReturn percentForAchievement(char const*) = win 0x1ab50;
-	TodoReturn reportAchievementWithID(char const*, int, bool) = win 0x1b7e0;
-	TodoReturn reportPlatformAchievementWithID(char const*, int) = win 0x1b8f0;
-	TodoReturn resetAchievement(char const*) = win 0x1b730;
+	void reportAchievementWithID(char const*, int, bool) = win 0x1b7e0;
+	void reportPlatformAchievementWithID(char const*, int) = win 0x1b8f0;
+	void resetAchievement(char const*) = win 0x1b730;
 	TodoReturn resetAchievements();
 	TodoReturn setup();
 	TodoReturn storeAchievementUnlocks();
@@ -188,7 +188,7 @@ class AchievementNotifier : cocos2d::CCNode {
 	TodoReturn achievementDisplayFinished();
 	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
 	TodoReturn showNextAchievement() = win 0x1c0a0;
-	TodoReturn willSwitchToScene(cocos2d::CCScene*) = win 0x1c200;
+	void willSwitchToScene(cocos2d::CCScene*) = win 0x1c200;
 
 	virtual bool init();
 }
@@ -2448,11 +2448,11 @@ class DynamicScrollDelegate {
 class EditButtonBar : cocos2d::CCNode {
 	// virtual ~EditButtonBar();
 
-	static EditButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int) = win 0x9b7e0;
+	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0x9b7e0;
 
 	TodoReturn getPage();
 	TodoReturn goToPage(int);
-	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int) = win 0x9b8e0;
+	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0x9b8e0;
 	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0x9b970;
 	void onLeft(cocos2d::CCObject* sender);
 	void onRight(cocos2d::CCObject* sender);
@@ -10565,7 +10565,7 @@ class ObjectToolbox : cocos2d::CCNode {
 
 	TodoReturn allKeys();
 	float gridNodeSizeForKey(int) = win 0x2af310;
-	TodoReturn intKeyToFrame(int) = win 0x166920;
+	char const* intKeyToFrame(int) = win 0x166920;
 	TodoReturn perspectiveBlockFrame(int);
 
 	virtual bool init();
