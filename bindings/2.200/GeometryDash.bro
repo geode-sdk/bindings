@@ -12465,7 +12465,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 
 [[link(android)]]
 class CharacterColorPage : FLAlertLayer {
-	static CharacterColorPage* create();
+	static CharacterColorPage* create() = mac 0x61fec0;
 
 	~CharacterColorPage();
 
@@ -12476,16 +12476,16 @@ class CharacterColorPage : FLAlertLayer {
 	TodoReturn checkColor(int, UnlockType);
 	TodoReturn toggleGlow(cocos2d::CCObject*);
 	TodoReturn toggleShip(cocos2d::CCObject*);
-	TodoReturn colorForIndex(int);
-	TodoReturn offsetForIndex(int);
-	TodoReturn createColorMenu();
+	TodoReturn colorForIndex(int) = mac 0x621a30;
+	TodoReturn offsetForIndex(int) = mac 0x621ca0;
+	TodoReturn createColorMenu() = mac 0x6210e0;
 	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
 	TodoReturn toggleGlowItems(bool);
-	TodoReturn updateColorMode(int);
-	TodoReturn updateIconColors();
+	TodoReturn updateColorMode(int) = mac 0x6214f0;
+	TodoReturn updateIconColors() = mac 0x620f80;
 	TodoReturn activeColorForMode(int);
 
-	virtual bool init() = win 0x5e640;
+	virtual bool init() = win 0x5e640, mac 0x620020;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual TodoReturn show();
@@ -12669,9 +12669,9 @@ class GJTransformControl : cocos2d::CCLayer {
 class KeybindingsManager : cocos2d::CCNode {
 	~KeybindingsManager();
 
-	TodoReturn dataLoaded(DS_Dictionary*) = win 0x228580;
+	TodoReturn dataLoaded(DS_Dictionary*) = win 0x228580, mac 0x4c12a0;
 	TodoReturn firstSetup();
-	TodoReturn sharedState() = win 0x228470;
+	TodoReturn sharedState() = win 0x228470, mac 0x4c0c60;
 	TodoReturn encodeDataTo(DS_Dictionary*);
 	TodoReturn commandForKey(cocos2d::enumKeyCodes, GJKeyGroup, bool, bool, bool);
 	TodoReturn keyForCommand(GJKeyCommand);
