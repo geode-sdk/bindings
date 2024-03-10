@@ -11764,7 +11764,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 	// virtual ~RewardUnlockLayer();
 
-	static RewardUnlockLayer* create(int, RewardsPage*);
+	static RewardUnlockLayer* create(int, RewardsPage*) = win 0x2f7af0;
 
 	TodoReturn connectionTimeout();
 	bool init(int, RewardsPage*);
