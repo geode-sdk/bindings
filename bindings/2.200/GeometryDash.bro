@@ -6033,7 +6033,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getSelectedObjects() = mac 0x406e0;
 	TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&) = mac 0x4cf40;
 	TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
-	TodoReturn getXMin(int) = win 0xd7470, mac = 0x329d0;
+	TodoReturn getXMin(int) = win 0xd7470, mac 0x329d0;
 	TodoReturn getButton(char const*, int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
 
 	void onPlayback(cocos2d::CCObject* sender) = win 0xc9130, mac 0xff20;
