@@ -11014,7 +11014,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn runBallRotation(float) = win 0x2c7e30;
 	TodoReturn runBallRotation2() = win 0x2c7f70;
 	void runNormalRotation() {
-		runNormalRotation(false, 1.0f);
+		this->runNormalRotation(false, 1.0f);
 	}
 	void runNormalRotation(bool, float) = win 0x2c7cf0;
 	void runRotateAction(bool, int) = win 0x2c7c90;
