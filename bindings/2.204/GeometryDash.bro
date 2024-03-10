@@ -6233,7 +6233,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCLayer* m_objectLayer;
 	PAD = win 0x70, android32 0x70, android64 0xec;
 	std::array<float, 2000> m_massiveFloatArray;
-	PAD = win 0x110, android32 0x114, android64 0x1ec;
+	PAD = win 0x48, android32 0x4C, android64 0x124;
+	int m_leftSectionIndex; // 29b4
+	int m_rightSectionIndex; // 29b8
+	int m_bottomSectionIndex; // 29bc
+	int m_topSectionIndex; // 29c0
+	PAD = win 0xB8, android32 0xB8, android64 0xB8;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
 	float m_unk2a80;
@@ -6255,8 +6260,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0xb0;
 	UILayer* m_uiLayer;
 	PAD = win 0x38;
-	gd::vector<GameObject*> m_sections;
-	PAD = win 0x119;
+	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c48 win
+	PAD = win 0x48;
+	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection; // 2c9c win
+	PAD = win 0xCD;
 	cocos2d::CCDrawNode* m_debugDrawNode;
 	PAD = win 0x4;
 	bool m_isDebugDrawEnabled;
