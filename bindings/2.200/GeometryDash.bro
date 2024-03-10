@@ -6492,7 +6492,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn resume() = mac 0xb8a50;
 	TodoReturn showHint() = win 0x2e12d0, mac 0xb4ab0;
 	TodoReturn addCircle(CCCircleWave*);
-	TodoReturn addObject(GameObject*) = win 0x2DBD30;
+	TodoReturn addObject(GameObject*) = win 0x2DBD30, mac 0xabae0;
 	void fullReset() = win 0x2E40C0, mac 0xb8080;
 	TodoReturn pauseGame(bool) = win 0x2e4fc0, mac 0xb8790;
 	void startGame() = win 0x2d7e80;
@@ -9986,7 +9986,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 
 	~ChallengesPage();
 
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = mac 0x37b610;
 
 	TodoReturn updateDots();
 	TodoReturn updateTimers(float) = mac 0x37b650;
@@ -11474,7 +11474,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	TodoReturn downloadFailed();
 	TodoReturn updateSongInfo() = mac 0x5e0a70;
 	TodoReturn updateLengthMod(float);
-	TodoReturn updateSongObject(SongInfoObject*);
+	TodoReturn updateSongObject(SongInfoObject*) = mac 0x5e09e0;
 	TodoReturn updatePlaybackBtn() = mac 0x5e1780;
 	TodoReturn updateProgressBar(int);
 	TodoReturn toggleUpdateButton(bool);
@@ -11745,7 +11745,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	TodoReturn goToPage(int);
 	TodoReturn layerKey(int);
 	TodoReturn toggleGP();
-	TodoReturn addToggle(char const*, char const*, char const*);
+	TodoReturn addToggle(char const*, char const*, char const*) = mac 0x75e760;
 	TodoReturn objectKey(int);
 
 	virtual bool init();
