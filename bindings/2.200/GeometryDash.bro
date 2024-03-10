@@ -219,7 +219,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	bool init(int) = mac 0x410c70;
 	~LevelSelectLayer();
 
-	TodoReturn getColorValue(int, int, float);
+	cocos2d::ccColor3B getColorValue(int, int, float) = mac 0x4133f0;
 
 	void onDownload(cocos2d::CCObject* sender) = mac 0x411980;
 	void onBack(cocos2d::CCObject* sender) = mac 0x411a30;
@@ -235,7 +235,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual TodoReturn updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = mac 0x411ac0;
-	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint);
+	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint) = mac 0x413280;
 }
 
 [[link(android)]]
@@ -10242,7 +10242,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
 	static LevelListLayer* create(GJLevelList*);
 
-	bool init(GJLevelList*) = win 0x22DE00;
+	bool init(GJLevelList*) = win 0x22DE00, mac 0x33a9a0;
 	~LevelListLayer() = mac 0x33a830;
 
 	void onFavorite(cocos2d::CCObject* sender);
@@ -15520,10 +15520,10 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	void onInfo(cocos2d::CCObject* sender) = win 0x267CB0, mac 0x4140c0;
 	void onPlay(cocos2d::CCObject* sender) = mac 0x4139b0;
 
-	TodoReturn addSecretCoin();
+	TodoReturn addSecretCoin() = mac 0x413060;
 	TodoReturn addSecretDoor();
 	TodoReturn playCoinEffect();
-	TodoReturn updateDynamicPage(GJGameLevel*);
+	TodoReturn updateDynamicPage(GJGameLevel*) = mac 0x411b30;
 	TodoReturn playStep2();
 	TodoReturn playStep3();
 

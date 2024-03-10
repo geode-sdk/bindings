@@ -9419,7 +9419,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 
 	static LevelPage* create(GJGameLevel*) = win 0x268f30;
 
-	TodoReturn addSecretCoin();
+	TodoReturn addSecretCoin() = win 0x26b3b0;
 	TodoReturn addSecretDoor();
 	bool init(GJGameLevel*) = win 0x268ff0;
 	void onInfo(cocos2d::CCObject* sender) = win 0x26c400;
@@ -9509,7 +9509,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	static LevelSelectLayer* create(int) = win 0x267c60;
 
 	cocos2d::ccColor3B colorForPage(int page) = win 0x268ac0;
-	TodoReturn getColorValue(int, int, float) = win 0x268980;
+	cocos2d::ccColor3B getColorValue(int, int, float) = win 0x268980;
 	bool init(int) = win 0x267d00;
 	void onBack(cocos2d::CCObject* sender) = win 0x268d00;
 	void onDownload(cocos2d::CCObject* sender) = win 0x268750;
@@ -15327,7 +15327,7 @@ class WorldSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate {
 	static WorldSelectLayer* create(int);
 
 	TodoReturn animateInActiveIsland();
-	TodoReturn colorForPage(int);
+	cocos2d::ccColor3B colorForPage(int);
 	TodoReturn getColorValue(int, int, float);
 	TodoReturn goToPage(int, bool);
 	bool init(int);
