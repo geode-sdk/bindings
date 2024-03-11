@@ -11047,8 +11047,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn getObjectRotation();
 	virtual TodoReturn animationFinished(char const*);
 
-	// android32 pads not really tested
-	cocos2d::CCNode* m_unk49c;
+	cocos2d::CCNode* m_mainLayer;
 	PAD = win 0x44, android32 0x44, android64 0x48;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
@@ -11366,10 +11365,11 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn circleWaveWillBeRemoved(CCCircleWave*);
 	virtual TodoReturn dialogClosed(DialogLayer*);
 
-	PAD = android32 0xcc, android64 0x134;
+	PAD = android32 0xac, android64 0xfc;
+	cocos2d::CCArray* m_circleWaveArray;
+	PAD = android32 0x1c, android64 0x2c;
 	cocos2d::CCSprite* m_progressBar;
-
-	PAD = android32 0x118, android64 0x180;
+	PAD = android32 0x11c, android64 0x180;
 }
 
 [[link(android)]]
