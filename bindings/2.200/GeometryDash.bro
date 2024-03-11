@@ -1828,7 +1828,7 @@ class GameManager : GManager {
 	TodoReturn reorderKey(int, bool);
 	TodoReturn subYouTube() = mac 0x35e120;
 	TodoReturn tryCacheAd();
-	TodoReturn unloadIcon(int, int, int);
+	TodoReturn unloadIcon(int, int, int) = mac 0x35fde0;
 	TodoReturn unlockIcon(int, IconType);
 	cocos2d::ccColor3B colorForIdx(int) = win 0x124270, mac 0x35d5b0;
 	TodoReturn colorForPos(int);
