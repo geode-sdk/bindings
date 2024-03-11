@@ -11404,7 +11404,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void setDamageVerifiedIdx(int) = win 0x2db7c0;
 	TodoReturn setupHasCompleted() = win 0x2dce40;
 	TodoReturn shouldBlend(int);
-	TodoReturn showCompleteEffect();
+	TodoReturn showCompleteEffect() = win 0x2de940;
 	TodoReturn showCompleteText() = win 0x2de410;
 	TodoReturn showEndLayer();
 	TodoReturn showHint() = win 0x2e6f90;
