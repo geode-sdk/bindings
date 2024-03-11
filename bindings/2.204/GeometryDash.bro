@@ -151,8 +151,8 @@ class AchievementManager : cocos2d::CCNode {
 	static AchievementManager* sharedState() = win 0x9ac0;
 
 	TodoReturn achievementForUnlock(int, UnlockType);
-	TodoReturn addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
-	TodoReturn addManualAchievements() = win 0xf74a;
+	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
+	void addManualAchievements() = win 0xf74a;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
 	TodoReturn checkAchFromUnlock(char const*);
 	TodoReturn dataLoaded(DS_Dictionary*);
@@ -169,9 +169,9 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn notifyAchievementWithID(char const*) = win 0x1b550;
 	TodoReturn percentageForCount(int, int);
 	TodoReturn percentForAchievement(char const*) = win 0x1ab50;
-	TodoReturn reportAchievementWithID(char const*, int, bool) = win 0x1b7e0;
-	TodoReturn reportPlatformAchievementWithID(char const*, int) = win 0x1b8f0;
-	TodoReturn resetAchievement(char const*) = win 0x1b730;
+	void reportAchievementWithID(char const*, int, bool) = win 0x1b7e0;
+	void reportPlatformAchievementWithID(char const*, int) = win 0x1b8f0;
+	void resetAchievement(char const*) = win 0x1b730;
 	TodoReturn resetAchievements();
 	TodoReturn setup();
 	TodoReturn storeAchievementUnlocks();
@@ -188,7 +188,7 @@ class AchievementNotifier : cocos2d::CCNode {
 	TodoReturn achievementDisplayFinished();
 	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
 	TodoReturn showNextAchievement() = win 0x1c0a0;
-	TodoReturn willSwitchToScene(cocos2d::CCScene*) = win 0x1c200;
+	void willSwitchToScene(cocos2d::CCScene*) = win 0x1c200;
 
 	virtual bool init();
 }
@@ -2448,11 +2448,11 @@ class DynamicScrollDelegate {
 class EditButtonBar : cocos2d::CCNode {
 	// virtual ~EditButtonBar();
 
-	static EditButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int) = win 0x9b7e0;
+	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0x9b7e0;
 
 	TodoReturn getPage();
 	TodoReturn goToPage(int);
-	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int) = win 0x9b8e0;
+	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0x9b8e0;
 	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0x9b970;
 	void onLeft(cocos2d::CCObject* sender);
 	void onRight(cocos2d::CCObject* sender);
@@ -9203,7 +9203,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn playStep2();
 	TodoReturn playStep3();
 	TodoReturn playStep4();
-	TodoReturn scene(GJGameLevel*, bool);
+	static cocos2d::CCScene* scene(GJGameLevel*, bool) = win 0x2515b0;
 	TodoReturn setupLevelInfo() = win 0x2544a0;
 	TodoReturn setupPlatformerStats() = win 0x253a90;
 	TodoReturn setupProgressBars() = win 0x253e20;
@@ -9419,7 +9419,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 
 	static LevelPage* create(GJGameLevel*) = win 0x268f30;
 
-	TodoReturn addSecretCoin();
+	TodoReturn addSecretCoin() = win 0x26b3b0;
 	TodoReturn addSecretDoor();
 	bool init(GJGameLevel*) = win 0x268ff0;
 	void onInfo(cocos2d::CCObject* sender) = win 0x26c400;
@@ -10561,11 +10561,15 @@ class ObjectManager : cocos2d::CCNode {
 class ObjectToolbox : cocos2d::CCNode {
 	// virtual ~ObjectToolbox();
 
+	gd::map<int, gd::string> m_allKeys;
+
 	static ObjectToolbox* sharedState() = win 0x28b340;
 
 	TodoReturn allKeys();
 	float gridNodeSizeForKey(int) = win 0x2af310;
-	TodoReturn intKeyToFrame(int) = win 0x166920;
+	const char* intKeyToFrame(int key) {
+		return m_allKeys[key].c_str();
+	}
 	TodoReturn perspectiveBlockFrame(int);
 
 	virtual bool init();
@@ -11014,7 +11018,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn runBallRotation(float) = win 0x2c7e30;
 	TodoReturn runBallRotation2() = win 0x2c7f70;
 	void runNormalRotation() {
-		runNormalRotation(false, 1.0f);
+		this->runNormalRotation(false, 1.0f);
 	}
 	void runNormalRotation(bool, float) = win 0x2c7cf0;
 	void runRotateAction(bool, int) = win 0x2c7c90;
@@ -11139,7 +11143,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn getObjectRotation();
 	virtual TodoReturn animationFinished(char const*);
 
-	cocos2d::CCNode* m_unk49c;
+	cocos2d::CCNode* m_mainLayer;
 	PAD = win 0x44, android32 0x44;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
@@ -11332,7 +11336,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 		return GameManager::get()->m_playLayer;
 	}
 
-	TodoReturn addCircle(CCCircleWave*);
+	void addCircle(CCCircleWave* cw) {
+		m_circleWaveArray->addObject(cw);
+	}
 	TodoReturn addObject(GameObject*) = win 0x2e19b0;
 	TodoReturn addToGroupOld(GameObject*);
 	TodoReturn applyCustomEnterEffect(GameObject*, bool);
@@ -11476,7 +11482,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	PAD = win 0x84;
 	float m_unksomefloat;
-	PAD = win 0x44;
+	PAD = win 0x24;
+	cocos2d::CCArray* m_circleWaveArray;
+	PAD = win 0x1c;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = win 0x5c;
 	bool m_endLayerStars; // not verified on android
@@ -11764,7 +11772,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 	// virtual ~RewardUnlockLayer();
 
-	static RewardUnlockLayer* create(int, RewardsPage*);
+	static RewardUnlockLayer* create(int, RewardsPage*) = win 0x2f7af0;
 
 	TodoReturn connectionTimeout();
 	bool init(int, RewardsPage*);
@@ -15327,7 +15335,7 @@ class WorldSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate {
 	static WorldSelectLayer* create(int);
 
 	TodoReturn animateInActiveIsland();
-	TodoReturn colorForPage(int);
+	cocos2d::ccColor3B colorForPage(int);
 	TodoReturn getColorValue(int, int, float);
 	TodoReturn goToPage(int, bool);
 	bool init(int);
