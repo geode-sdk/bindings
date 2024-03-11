@@ -10832,7 +10832,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn channelLinkSound(int, FMODSound*);
 	TodoReturn countActiveMusic();
 	float getEffectsVolume() = mac 0x3c5050;
-	TodoReturn getMeteringValue() = mac 0x3c1a50;
+	float getMeteringValue() = mac 0x3c1a50;
 	TodoReturn getMusicLengthMS(int) = win 0x3a2e0;
 	TodoReturn getNextChannelID();
 	TodoReturn loadAndPlayMusic(gd::string, unsigned int, int);
