@@ -11039,7 +11039,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn spiderTestJumpInternal(bool);
 	TodoReturn spiderTestJumpX(bool);
 	TodoReturn spiderTestJumpY(bool);
-	TodoReturn startDashing(DashRingObject*) = win 0x2cfdb0;
+	void startDashing(DashRingObject*) = win 0x2cfdb0;
 	TodoReturn stopBurstEffect();
 	TodoReturn stopDashing() = win 0x2d0940;
 	TodoReturn stopParticles();
@@ -11074,8 +11074,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateCollideLeft(float, GameObject*);
 	TodoReturn updateCollideRight(float, GameObject*);
 	TodoReturn updateCollideTop(float, GameObject*);
-	TodoReturn updateDashAnimation() = win 0x2d0ea0;
-	TodoReturn updateDashArt() = win 0x2d0530;
+	void updateDashAnimation() = win 0x2d0ea0;
+	void updateDashArt() = win 0x2d0530;
 	TodoReturn updateEffects(float);
 	TodoReturn updateGlowColor() = win 0x2d6610;
 	TodoReturn updateInternalActions(float);
