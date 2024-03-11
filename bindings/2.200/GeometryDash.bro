@@ -6526,7 +6526,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn testTime();
 	virtual TodoReturn updateVerifyDamage() = win 0x2e18f0;
 	virtual TodoReturn updateAttemptTime(float) = win 0x2e1970;
-	virtual TodoReturn updateVisibility(float) = win 0x2dcf70;
+	virtual TodoReturn updateVisibility(float) = win 0x2dcf70, mac 0xb10e0;
 	virtual TodoReturn opacityForObject(GameObject*) = win 0x2ddc80;
 	virtual TodoReturn updateColor(cocos2d::_ccColor3B&, float, int, bool, float, cocos2d::_ccHSVValue&, int, bool, EffectGameObject*, int, int) = win 0x2df440;
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
@@ -10830,7 +10830,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn channelLinkSound(int, FMODSound*);
 	TodoReturn countActiveMusic();
 	float getEffectsVolume() = mac 0x3c5050;
-	TodoReturn getMeteringValue();
+	float getMeteringValue() = mac 0x3c1a50;
 	TodoReturn getMusicLengthMS(int) = win 0x3a2e0;
 	TodoReturn getNextChannelID();
 	TodoReturn loadAndPlayMusic(gd::string, unsigned int, int);

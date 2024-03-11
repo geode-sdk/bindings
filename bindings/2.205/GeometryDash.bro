@@ -3625,7 +3625,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getChannelGroup(int, bool);
 	float getEffectsVolume();
 	TodoReturn getFMODStatus(int);
-	TodoReturn getMeteringValue();
+	float getMeteringValue();
 	TodoReturn getMusicChannelID(int);
 	TodoReturn getMusicLengthMS(int);
 	TodoReturn getMusicTime(int);
