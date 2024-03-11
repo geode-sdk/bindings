@@ -965,10 +965,8 @@ class TextAlertPopup : cocos2d::CCNode {
 	bool init(gd::string, float, float, int, gd::string) = mac 0x28b3c0;
 	~TextAlertPopup();
 
-	/* unverified signature */
-	void setLabelColor(cocos2d::_ccColor3B);
-	/* unverified signature */
-	void setAlertPosition(cocos2d::CCPoint, cocos2d::CCPoint);
+	void setLabelColor(cocos2d::_ccColor3B) = mac 0x28b6d0;
+	void setAlertPosition(cocos2d::CCPoint, cocos2d::CCPoint) = mac 0x28b710;
 }
 
 [[link(android)]]
