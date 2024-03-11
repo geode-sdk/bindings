@@ -1108,8 +1108,8 @@ class CCSpritePlus : cocos2d::CCSprite {
 	virtual void setScale(float) = win 0x28d10;
 	virtual void setPosition(cocos2d::CCPoint const&) = win 0x288f0;
 	virtual void setRotation(float) = win 0x28950;
-	virtual void setRotationX(float);
-	virtual void setRotationY(float);
+	virtual void setRotationX(float) = win 0x289d0;
+	virtual void setRotationY(float) = win 0x28a50;
 	virtual bool initWithTexture(cocos2d::CCTexture2D*);
 	virtual bool initWithSpriteFrameName(char const*) = win 0x288b0;
 	virtual void setFlipX(bool);
@@ -9584,7 +9584,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 	TodoReturn setupColorsFromLegacyMode(cocos2d::CCDictionary*);
 	TodoReturn shouldUseYSection();
 
-	virtual bool init();
+	virtual bool init() = win 0x239a70;
 
 	GJEffectManager* m_effectManager;
     // property kA2
@@ -11039,7 +11039,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn spiderTestJumpInternal(bool);
 	TodoReturn spiderTestJumpX(bool);
 	TodoReturn spiderTestJumpY(bool);
-	TodoReturn startDashing(DashRingObject*);
+	void startDashing(DashRingObject*) = win 0x2cfdb0;
 	TodoReturn stopBurstEffect();
 	TodoReturn stopDashing() = win 0x2d0940;
 	TodoReturn stopParticles();
@@ -11074,8 +11074,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateCollideLeft(float, GameObject*);
 	TodoReturn updateCollideRight(float, GameObject*);
 	TodoReturn updateCollideTop(float, GameObject*);
-	TodoReturn updateDashAnimation();
-	TodoReturn updateDashArt() = win 0x2d0530;
+	void updateDashAnimation() = win 0x2d0ea0;
+	void updateDashArt() = win 0x2d0530;
 	TodoReturn updateEffects(float);
 	TodoReturn updateGlowColor() = win 0x2d6610;
 	TodoReturn updateInternalActions(float);
@@ -11741,7 +11741,7 @@ class RewardedVideoDelegate {
 class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	// virtual ~RewardsPage();
 
-	static RewardsPage* create();
+	static RewardsPage* create() = win 0x2f6750;
 
 	static char const* getRewardFrame(int, int);
 	void onClose(cocos2d::CCObject* sender) = win 0x6a750;
@@ -11754,7 +11754,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	virtual bool init() = win 0x2f67f0;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
-	virtual void show();
+	virtual void show() = win 0x2f17f0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual TodoReturn rewardsStatusFinished(int);
 	virtual TodoReturn rewardsStatusFailed();
