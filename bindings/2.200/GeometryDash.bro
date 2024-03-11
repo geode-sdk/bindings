@@ -217,7 +217,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	static LevelSelectLayer* create(int) = mac 0x410b80;
 
 	bool init(int) = mac 0x410c70;
-	~LevelSelectLayer();
+	~LevelSelectLayer() = mac 0x48beb0;
 
 	TodoReturn getColorValue(int, int, float) = mac 0x4133f0;
 
@@ -7210,7 +7210,7 @@ class PauseLayer : CCBlockLayer {
 	TodoReturn setupProgressBars() = mac 0x3b4fb0;
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	void musicSliderChanged(cocos2d::CCObject*) = win 0x2B4AB0;
-	void goEdit() = win 0x2b4e70;
+	void goEdit() = win 0x2b4e70, mac 0x3b5fa0;
 
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2b4fa0, mac 0x3b6010;
@@ -7224,7 +7224,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	static LevelBrowserLayer* create(GJSearchObject*) = mac 0x4675c0, win 0x22DD50;
 
 	bool init(GJSearchObject*) = mac 0x467790, win 0x22DE00;
-	~LevelBrowserLayer();
+	~LevelBrowserLayer() = mac 0x467380;
 
 	gd::string getSearchTitle() = mac 0x46c370;
 	TodoReturn getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*);
@@ -13241,8 +13241,8 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 	~LevelAreaInnerLayer();
 
 	void onNextFloor(cocos2d::CCObject* sender);
-	void onBack(cocos2d::CCObject* sender);
-	void onDoor(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = mac 0x2586b0;
+	void onDoor(cocos2d::CCObject* sender) = mac 0x258700;
 	void onInfo(cocos2d::CCObject* sender);
 
 	TodoReturn tryResumeTowerMusic();
