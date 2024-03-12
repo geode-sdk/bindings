@@ -904,7 +904,7 @@ class cocos2d::CCDirector {
 	void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
 	void showFPSLabel();
 	void showStats();
-	void toggleShowFPS(bool, gd::string, cocos2d::CCPoint);
+	void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = mac 0x45fe70;
 	void updateContentScale(cocos2d::TextureQuality);
 	void updateScreenScale(cocos2d::CCSize);
 	void willSwitchToScene(cocos2d::CCScene*);

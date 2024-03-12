@@ -5574,7 +5574,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 	void onPrev(cocos2d::CCObject* sender);
 	void onRefresh(cocos2d::CCObject* sender) = win 0x187770;
 	TodoReturn scene(int);
-	TodoReturn setupGauntlets() = win 0x187b90;
+	void setupGauntlets() = win 0x187b90;
 	TodoReturn unblockPlay();
 	TodoReturn updateArrows();
 

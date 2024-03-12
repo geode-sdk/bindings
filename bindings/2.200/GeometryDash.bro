@@ -11731,7 +11731,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	void onSongBrowser(cocos2d::CCObject* sender) = win 0x2ae9f0;
 	void onInfo(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
-	void onToggle(cocos2d::CCObject* sender);
+	void onToggle(cocos2d::CCObject* sender) = mac 0x75fa80;
 
 	TodoReturn countForPage(int);
 	TodoReturn layerForPage(int);
@@ -11744,10 +11744,10 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	TodoReturn goToPage(int);
 	TodoReturn layerKey(int);
 	TodoReturn toggleGP();
-	TodoReturn addToggle(char const*, char const*, char const*);
+	TodoReturn addToggle(char const*, char const*, char const*) = mac 0x75e760;
 	TodoReturn objectKey(int);
 
-	virtual bool init();
+	virtual bool init() = mac 0x75d590;
 	virtual void keyBackClicked();
 	virtual TodoReturn textInputShouldOffset(CCTextInputNode*, float);
 	virtual TodoReturn textInputReturn(CCTextInputNode*);
@@ -15523,7 +15523,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	TodoReturn addSecretCoin();
 	TodoReturn addSecretDoor();
 	TodoReturn playCoinEffect();
-	TodoReturn updateDynamicPage(GJGameLevel*);
+	void updateDynamicPage(GJGameLevel*) = mac 0x411b30;
 	TodoReturn playStep2();
 	TodoReturn playStep3();
 
