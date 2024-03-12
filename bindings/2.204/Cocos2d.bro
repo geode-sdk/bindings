@@ -43,9 +43,9 @@ class cocos2d::CCMotionStreak {
 
 [[link(win, android)]]
 class cocos2d::CCScene {
-	static cocos2d::CCScene* create() = mac 0x26ec40;
+	static cocos2d::CCScene* create();
 
-	int getHighestChildZ() = mac 0x26ecf0;
+	int getHighestChildZ();
 
 	// CCScene(cocos2d::CCScene const&);
 	// CCScene();
@@ -1204,4 +1204,30 @@ class cocos2d::CCDrawNode {
 [[link(win, android)]]
 class cocos2d::CCSpriteBatchNode {
     bool initWithTexture(cocos2d::CCTexture2D*, unsigned int);
+}
+
+[[link(win, android)]]
+class cocos2d::CCMenuItem {
+	~CCMenuItem();
+	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItem* create();
+
+	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+
+	int getScriptTapHandler();
+
+	void setTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+
+	// CCMenuItem(cocos2d::CCMenuItem const&);
+	// CCMenuItem();
+	cocos2d::CCRect rect();
+
+	virtual void activate();
+	virtual void selected();
+	virtual void unselected();
+	virtual void registerScriptTapHandler(int);
+	virtual void unregisterScriptTapHandler();
+	virtual bool isEnabled();
+	virtual void setEnabled(bool);
+	virtual bool isSelected();
 }
