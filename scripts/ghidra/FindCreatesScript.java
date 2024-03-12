@@ -46,7 +46,7 @@ public class FindCreatesScript extends GhidraScript {
         /**
          * Find inits (stupid way)
          */
-        //findInitsStupid("vfunction10");
+        findInitsStupid("vfunction10");
         
 
     }
@@ -121,7 +121,7 @@ public class FindCreatesScript extends GhidraScript {
     }
 
     // this doesnt work because it doesnt resolve virtuals
-    /*public boolean isFuncInit(Function func) {
+    public boolean isFuncInit2(Function func) {
         InstructionIterator instructionIterator = currentProgram.getListing().getInstructions(func.getBody(), true);
         while (instructionIterator.hasNext()) {
             Instruction instruction = instructionIterator.next();
@@ -137,7 +137,7 @@ public class FindCreatesScript extends GhidraScript {
 
                 Symbol symbol = getSymbolAt(calledFunctionAddress);
 
-                if (symbol != null && symbol.isExternal()) {
+                /*if (symbol != null && symbol.isExternal()) {
                     
 
                     ExternalLocation extLoc = ((FunctionDB) symbol.getObject()).getExternalLocation();
@@ -151,7 +151,7 @@ public class FindCreatesScript extends GhidraScript {
                     }
                 } else {
                     println("Not a pointer to an external function.");
-                }
+                }*/
 
 
                 Function calledFunction = functionManager.getFunctionAt(calledFunctionAddress);
@@ -160,11 +160,12 @@ public class FindCreatesScript extends GhidraScript {
                         return true;
                     }
                 }
-                return true;
+                //return true;
             }
         }
         return false;
-    }*/
+    }
+
     public boolean isFuncInit(Function func) {
         //every func is init if you believe hard enough 🥺
         return true;
@@ -179,7 +180,8 @@ public class FindCreatesScript extends GhidraScript {
             String functionName = func.getName();
             String namespace = func.getParentNamespace().getName();
 
-            if(functionName.equals(name)) {
+            if(functionName.equals(name) && isFuncInit2(func)) {
+
                 /*DataTypeManager dataTypeManager = currentProgram.getDataTypeManager();
                 DataType dataType = dataTypeManager.getDataType(namespace);
                 if(dataType != null) println(dataType.toString());
@@ -200,6 +202,7 @@ public class FindCreatesScript extends GhidraScript {
                 //TODO: check if class inherits CCNode
 
                 println("Init found: " + func.getName() + " : " + func.getEntryPoint() + " : " + func.getParentNamespace().getName());
+                func.setName("init", SourceType.ANALYSIS);
             }
         }
     }
