@@ -104,6 +104,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3290);
 
+GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x35a0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x35d8);
 
 GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
@@ -114,6 +115,14 @@ GEODE_SIZE_CHECK(GameObject, 0x578);
 GEODE_SIZE_CHECK(PlayerObject, 0xb80);
 GEODE_SIZE_CHECK(PlayLayer, 0x3758);
 GEODE_SIZE_CHECK(GJGameState, 0x5d8);
+
+GEODE_MEMBER_CHECK(GameObject, m_objectType, 0x398);
+GEODE_MEMBER_CHECK(GameObject, m_realXPosition, 0x3b0);
+GEODE_MEMBER_CHECK(GameObject, m_realYPosition, 0x3b8);
+GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x3c0);
+GEODE_MEMBER_CHECK(GameObject, m_groups, 0x488);
+GEODE_MEMBER_CHECK(GameObject, m_colorGroups, 0x498);
+GEODE_MEMBER_CHECK(GameObject, m_opacityGroups, 0x4a8);
 
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
@@ -127,5 +136,8 @@ GEODE_MEMBER_CHECK(PlayerObject, m_isShip, 0x941);
 GEODE_MEMBER_CHECK(PlayerObject, m_isRobot, 0x945);
 GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xa28);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
+
+GEODE_MEMBER_CHECK(CustomSongCell, m_songInfoObject, 0x230);
+GEODE_MEMBER_CHECK(SongInfoObject, m_songID, 0x13c);
 
 #endif

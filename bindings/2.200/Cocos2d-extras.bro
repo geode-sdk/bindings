@@ -4905,9 +4905,3 @@ class cocos2d {
 class cocos2d::CCDevice {
 	static int getDPI();
 }
-
-[[link(win, android)]]
-class cocos2d::CCTime {
-	static int gettimeofdayCocos2d(cocos2d::cc_timeval*, void*);
-	static double timersubCocos2d(cocos2d::cc_timeval*, cocos2d::cc_timeval*);
-}

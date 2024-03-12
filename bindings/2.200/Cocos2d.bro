@@ -176,18 +176,18 @@ class cocos2d::CCNode {
 	char const* description();
 	void detachChild(cocos2d::CCNode*, bool);
 	void insertChild(cocos2d::CCNode*, int);
-	unsigned int numberOfRunningActions();
-	void pauseSchedulerAndActions();
+	unsigned int numberOfRunningActions() = mac 0x252020;
+	void pauseSchedulerAndActions() = mac 0x251e80;
 	void qsortAllChildrenWithIndex();
 	void resumeSchedulerAndActions() = mac 0x251c40;
 	cocos2d::CCAction* runAction(cocos2d::CCAction*) = mac 0x251f90;
 	void schedule(cocos2d::SEL_SCHEDULE) = mac 0x2521c0;
-	void schedule(cocos2d::SEL_SCHEDULE, float);
-	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = mac 0x252220;
-	void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = mac 0x2521f0;
+	void schedule(cocos2d::SEL_SCHEDULE, float) = mac 0x252220;
+	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = mac 0x2521f0;
+	void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = mac 0x252250;
 	void scheduleUpdate() = mac 0x2520a0;
-	void scheduleUpdateWithPriority(int);
-	void scheduleUpdateWithPriorityLua(int, int);
+	void scheduleUpdateWithPriority(int) = mac 0x2520d0;
+	void scheduleUpdateWithPriorityLua(int, int) = mac 0x252100;
 	void sortAllChildrenNoIndex();
 	void sortAllChildrenWithIndex();
 	void stopAction(cocos2d::CCAction*) = mac 0x251fc0;
@@ -574,21 +574,21 @@ class cocos2d::CCLayerGradient {
 	// hopefully figure that one out before it actually becomes important
 	// virtual void visit() = mac 0x48f9e0;
 
-	virtual void updateColor();
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&);
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
-	virtual cocos2d::_ccColor3B const& getStartColor();
-	virtual void setStartColor(cocos2d::_ccColor3B const&);
-	virtual cocos2d::_ccColor3B const& getEndColor();
-	virtual void setEndColor(cocos2d::_ccColor3B const&);
-	virtual unsigned char getStartOpacity();
-	virtual void setStartOpacity(unsigned char);
-	virtual unsigned char getEndOpacity();
-	virtual void setEndOpacity(unsigned char);
-	virtual cocos2d::CCPoint const& getVector();
-	virtual void setVector(cocos2d::CCPoint const&);
-	virtual void setCompressedInterpolation(bool);
-	virtual bool isCompressedInterpolation();
+	virtual void updateColor() = mac 0x48f630;
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = mac 0x48f580;
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&) = mac 0x48f520;
+	virtual cocos2d::_ccColor3B const& getStartColor() = mac 0x48f820;
+	virtual void setStartColor(cocos2d::_ccColor3B const&) = mac 0x48f830;
+	virtual cocos2d::_ccColor3B const& getEndColor() = mac 0x48f880;
+	virtual void setEndColor(cocos2d::_ccColor3B const&) = mac 0x48f850;
+	virtual unsigned char getStartOpacity() = mac 0x48f8b0;
+	virtual void setStartOpacity(unsigned char) = mac 0x48f890;
+	virtual unsigned char getEndOpacity() = mac 0x48f8e0;
+	virtual void setEndOpacity(unsigned char) = mac 0x48f8c0;
+	virtual cocos2d::CCPoint const& getVector() = mac 0x48f920;
+	virtual void setVector(cocos2d::CCPoint const&) = mac 0x48f8f0;
+	virtual void setCompressedInterpolation(bool) = mac 0x48f9c0;
+	virtual bool isCompressedInterpolation() = mac 0x48f9b0;
 }
 
 [[link(win, android)]]
@@ -917,7 +917,7 @@ class cocos2d::CCDirector {
 	void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
 	void showFPSLabel();
 	void showStats();
-	void toggleShowFPS(bool, gd::string, cocos2d::CCPoint);
+	void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = mac 0x45fe70;
 	void updateContentScale(cocos2d::TextureQuality);
 	void updateScreenScale(cocos2d::CCSize);
 	void willSwitchToScene(cocos2d::CCScene*);
@@ -1215,7 +1215,7 @@ class cocos2d::CCSprite {
 	virtual void setDisplayFrame(cocos2d::CCSpriteFrame*) = mac 0x268e30;
 	virtual bool isFrameDisplayed(cocos2d::CCSpriteFrame*) = mac 0x268f00;
 	virtual cocos2d::CCSpriteFrame* displayFrame() = mac 0x268f90;
-	virtual void setDisplayFrameWithAnimationName(char const*, int);
+	virtual void setDisplayFrameWithAnimationName(char const*, int) = mac 0x268eb0;
 	virtual void setTextureCoords(cocos2d::CCRect const&) = mac 0x267160;
 	virtual void updateBlendFunc() = mac 0x2691c0;
 	virtual void setReorderChildDirtyRecursively() = mac 0x267d60;
@@ -1257,7 +1257,7 @@ class cocos2d::CCTexture2D {
 	bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = mac 0x456180;
 	bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = mac 0x455dc0;
 	bool initWithETCFile(char const*);
-	bool initWithImage(cocos2d::CCImage*);
+	bool initWithImage(cocos2d::CCImage*) = mac 0x456120;
 	bool initWithPVRFile(char const*);
 	bool initWithString(char const*, char const*, float);
 	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment);
@@ -1423,7 +1423,7 @@ class cocos2d::CCActionManager {
 [[link(win, android)]]
 class cocos2d::CCApplication {
 	static cocos2d::CCApplication* sharedApplication() = mac 0x3065c0;
-	virtual void openURL(char const*);
+	virtual void openURL(char const*) = mac 0x307350;
 }
 
 [[link(win, android)]]
@@ -1532,7 +1532,7 @@ class cocos2d::ZipUtils {
 	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int);
 	static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
 	static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-	static gd::string compressString(gd::string const&, bool, int) = mac 0x1e3c50;
+	static gd::string compressString(gd::string const& string, bool, int) = mac 0x1e3c50;
 	static gd::string decompressString2(unsigned char*, bool, int, int);
 	static gd::string decompressString(gd::string const&, bool, int) = mac 0x1e4290;
 	static gd::string encryptDecrypt(gd::string const&, int);
@@ -1925,7 +1925,7 @@ class cocos2d::CCDrawNode {
 	void render();
 
 	virtual bool init();
-	virtual void draw();
+	virtual void draw() = mac 0x5d5410;
 }
 
 [[link(win, android)]]
@@ -1954,4 +1954,10 @@ class cocos2d::CCImage {
 	bool hasAlpha();
 	bool isPremultipliedAlpha();
 	bool saveToFile(char const*, bool);
+}
+
+[[link(win, android)]]
+class cocos2d::CCTime {
+	static int gettimeofdayCocos2d(cocos2d::cc_timeval*, void*) = mac 0x2fead0;
+	static double timersubCocos2d(cocos2d::cc_timeval*, cocos2d::cc_timeval*);
 }
