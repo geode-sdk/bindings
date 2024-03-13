@@ -4657,7 +4657,7 @@ class GJLevelList : cocos2d::CCNode {
 	void showListInfo() = mac 0x52fba0;
 	TodoReturn orderForLevel(int);
 	TodoReturn addLevelToList(GJGameLevel*);
-	TodoReturn completedLevels();
+	int completedLevels() = mac 0x52fb50;
 	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x52ffc0;
 	TodoReturn parseListLevels(gd::string);
 	TodoReturn reorderLevelStep(int, bool);
@@ -4784,7 +4784,7 @@ class GameStatsManager : cocos2d::CCNode {
 	int getItemUnlockState(int, UnlockType) = mac 0x77e40;
 	GJChallengeItem* getQueuedChallenge(int) = mac 0x73830;
 	TodoReturn getCompletedMapPacks();
-	TodoReturn getGauntletRewardKey(int) = mac 0x78490;
+	gd::string getGauntletRewardKey(int) = mac 0x78490;
 	TodoReturn getNextVideoAdReward();
 	TodoReturn getSecretChestForItem(int, UnlockType);
 	TodoReturn getItemUnlockStateLite(int, UnlockType);
@@ -4909,7 +4909,7 @@ class GameStatsManager : cocos2d::CCNode {
 	/* unverified signature */
 	bool isSpecialChestUnlocked(gd::string) = mac 0x77d60, win 0x177860;
 	TodoReturn createSpecialChestItems() = mac 0x5fca0;
-	TodoReturn hasCompletedOnlineLevel(int);
+	bool hasCompletedOnlineLevel(int) = mac 0x6d140;
 	/* unverified signature */
 	bool isGauntletChestUnlocked(int) = mac 0x77bc0;
 	//TodoReturn registerRewardsFromItem(GJRewardItem*) = win 0x17D700;
@@ -15392,11 +15392,17 @@ class GJMapPack : cocos2d::CCNode {
 
 	~GJMapPack();
 
-	TodoReturn completedMaps() = mac 0x52c930;
+	int completedMaps() = mac 0x52c930;
 	TodoReturn parsePackColors(gd::string, gd::string);
 	TodoReturn parsePackLevels(gd::string);
-	TodoReturn hasCompletedMapPack() = mac 0x52c9e0;
-	TodoReturn totalMaps();
+	bool hasCompletedMapPack() = mac 0x52c9e0;
+	int totalMaps() {
+		if (this->m_levels) {
+			return this->m_levels->count();
+		}
+
+		return 0;
+	}
 
 	virtual bool init() = mac 0x52c8b0;
 }
