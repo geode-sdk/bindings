@@ -2904,7 +2904,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	EditButtonBar* m_buttonBar;
 
-	PAD = android32 0x58, android64 0x78;
+	PAD = android32 0x3c, android64 0x48;
+
+	cocos2d::CCLabelBMFont* m_objectInfoLabel;
+
+	PAD = android32 0x18, android64 0x28;
 
 	GJTransformControl* m_transformControl;
 	PAD = android32 0xc, android64 0x18;
