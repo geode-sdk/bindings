@@ -2906,7 +2906,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	PAD = android32 0x3c, android64 0x48;
 
-	CCLabelBMFont* m_objectInfoLabel;
+	cocos2d::CCLabelBMFont* m_objectInfoLabel;
 
 	PAD = android32 0x18, android64 0x28;
 
