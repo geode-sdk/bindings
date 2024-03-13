@@ -2494,7 +2494,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	virtual void applicationWillBecomeActive() = win 0x5b0f0, mac 0x61f700;
 	virtual void applicationWillResignActive() = win 0x5b200, mac 0x61f720;
 	virtual void trySaveGame(bool) = win 0x5b3b0, mac 0x61fbd0;
-	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x5b550, mac 0x61fcb0;
+	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x5b550, mac 0x61fcd0;
 
     PAD = win 0xC, android32 0xC, android64 0x18, mac 0x18;
     cocos2d::CCScene* m_runningScene;
@@ -2930,7 +2930,7 @@ class StatsCell : TableViewCell {
 	TodoReturn loadFromObject(StatsObject*) = mac 0x225a30, win 0x81BD0;
 
 	virtual bool init() = mac 0x231150;
-	virtual void draw() = win 0x7d0f0, mac 0x231bf0;
+	virtual void draw() = win 0x7d0f0, mac 0x234ca0;
 }
 
 [[link(android)]]
@@ -12682,7 +12682,7 @@ class GJTransformControl : cocos2d::CCLayer {
 	TodoReturn updateMinMaxPositions();
 	TodoReturn calculateRotationOffset();
 
-	virtual bool init() = mac 0x561e0;
+	virtual bool init() = mac 0x57e40;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x56650;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x56b20;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x570d0;
