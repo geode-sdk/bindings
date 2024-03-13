@@ -3942,7 +3942,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getActiveSmartTemplate();
 	TodoReturn getAllSmartTemplates();
 	TodoReturn getAllUsedSongIDs();
-	static gd::string getBasePostString();
+	gd::string getBasePostString();
 	bool getBoolForKey(char const*);
 	gd::string getCommentKey(int ID, int page, int mode, CommentKeyType keytype);
 	TodoReturn getCompletedDailyLevels();

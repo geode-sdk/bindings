@@ -4262,7 +4262,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getSavedGauntlet(int);
 	TodoReturn getTopArtistsKey(int);
 	TodoReturn getAllUsedSongIDs();
-	TodoReturn getBasePostString() = win 0xfa3b0, mac 0x50e2f0;
+	gd::string getBasePostString() = win 0xfa3b0, mac 0x50e2f0;
 	TodoReturn getFriendRequests(bool, int, int) = mac 0x5219a0;
 	TodoReturn getGauntletLevels(int) = mac 0x513e90, win 0xFF660;
 	TodoReturn getLocalLevelList(int);
