@@ -1395,13 +1395,13 @@ class cocos2d::CCActionManager {
 	void deleteHashElement(cocos2d::_hashElement*);
 	unsigned int numberOfRunningActionsInTarget(cocos2d::CCObject*);
 	cocos2d::CCSet* pauseAllRunningActions();
-	void pauseTarget(cocos2d::CCObject*);
+	void pauseTarget(cocos2d::CCObject*) = mac 0x212c60;
 	void removeAction(cocos2d::CCAction*);
 	void removeActionAtIndex(unsigned int, cocos2d::_hashElement*);
 	void removeActionByTag(unsigned int, cocos2d::CCObject*) = mac 0x213640;
 	void removeAllActions();
 	void removeAllActionsFromTarget(cocos2d::CCObject*);
-	void resumeTarget(cocos2d::CCObject*);
+	void resumeTarget(cocos2d::CCObject*) = mac 0x212d40;
 	void resumeTargets(cocos2d::CCSet*);
 
 	virtual void update(float);
@@ -1465,6 +1465,22 @@ class cocos2d::CCArray {
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+}
+
+[[link(win, android)]]
+class cocos2d::CCBlink {
+	static cocos2d::CCBlink* create(float, unsigned int) = mac 0x398730;
+
+	bool initWithDuration(float, unsigned int);
+
+	// CCBlink(cocos2d::CCBlink const&);
+	// CCBlink();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual void stop();
+	virtual cocos2d::CCActionInterval* reverse();
 }
 
 [[link(win, android)]]
@@ -1537,6 +1553,19 @@ class cocos2d::CCDelayTime {
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCScaleBy {
+	static cocos2d::CCScaleBy* create(float, float) = mac 0x398370;
+	static cocos2d::CCScaleBy* create(float, float, float);
+
+	// CCScaleBy(cocos2d::CCScaleBy const&);
+	// CCScaleBy();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void startWithTarget(cocos2d::CCNode*);
 	virtual cocos2d::CCActionInterval* reverse();
 }
 
