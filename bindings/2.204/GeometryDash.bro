@@ -6233,13 +6233,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCLayer* m_objectLayer;
 	PAD = win 0x70, android32 0x70, android64 0xec;
 	std::array<float, 2000> m_massiveFloatArray;
-	PAD = win 0x48, android32 0x4C, android64 0x124;
-	int m_leftSectionIndex; // 29b4
-	int m_rightSectionIndex; // 29b8
-	int m_bottomSectionIndex; // 29bc
-	int m_topSectionIndex; // 29c0
-	PAD = win 0xB8, android32 0xB8, android64 0xB8;
-	bool m_isPracticeMode;
+	PAD = win 0x48, android32 0x54, android64 0x98; // not sure about the android paddings
+	int m_leftSectionIndex; // 29b4 win, 29d4 android32, 30b4 android64
+	int m_rightSectionIndex;
+	int m_bottomSectionIndex;
+	int m_topSectionIndex;
+	PAD = win 0xB8, android32 0xB0, android64 0x144;
+	bool m_isPracticeMode; // 2a7c win, 2a94 android32, 3208 android64
 	bool m_practiceMusicSync;
 	float m_unk2a80;
 	cocos2d::CCNode* m_unk2a84;
