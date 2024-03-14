@@ -12191,7 +12191,7 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 	void addCount(int, int) = win 0x3aae20;
 	void addTarget(int, int) = win 0x3aad40;
 	void deleteTarget(int);
-	int reorderTarget(int, bool) = win 0x7aada0;
+	int reorderTarget(int, bool) = win 0x3aada0;
 	TodoReturn updateSequenceTotalCount();
 
 	virtual bool init() = win 0x3aa070;
