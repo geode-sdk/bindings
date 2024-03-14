@@ -14083,8 +14083,8 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 	static ShareCommentLayer* create(gd::string, int, CommentType, int, gd::string) = win 0x386370;
 
 	bool init(gd::string, int, CommentType, int, gd::string) = win 0x386490;
-	void onClear(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+	void onClear(cocos2d::CCObject* sender) = win 0x387320;
+	void onClose(cocos2d::CCObject* sender) = win 0x387750;
 	void onPercent(cocos2d::CCObject* sender);
 	void onShare(cocos2d::CCObject* sender) = win 0x3874c0;
 	TodoReturn updateCharCountLabel() = win 0x3879e0;
@@ -14092,13 +14092,13 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 	TodoReturn updatePercentLabel() = win 0x387410;
 
 	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x387780;
 	virtual TodoReturn textInputOpened(CCTextInputNode*);
-	virtual TodoReturn textInputClosed(CCTextInputNode*);
-	virtual TodoReturn textChanged(CCTextInputNode*);
-	virtual TodoReturn uploadActionFinished(int, int);
-	virtual TodoReturn uploadActionFailed(int, int);
-	virtual TodoReturn onClosePopup(UploadActionPopup*);
+	virtual TodoReturn textInputClosed(CCTextInputNode*) = win 0x3877c0;
+	virtual TodoReturn textChanged(CCTextInputNode*) = win 0x3878e0;
+	virtual TodoReturn uploadActionFinished(int, int) = win 0x387aa0;
+	virtual TodoReturn uploadActionFailed(int, int) = win 0x387ae0;
+	virtual TodoReturn onClosePopup(UploadActionPopup*) = win 0x387b10;
 }
 
 [[link(android)]]
