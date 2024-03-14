@@ -12507,7 +12507,18 @@ class CharacterColorPage : FLAlertLayer {
 	TodoReturn toggleGlowItems(bool);
 	TodoReturn updateColorMode(int) = mac 0x6214f0;
 	TodoReturn updateIconColors() = mac 0x620f80;
-	int activeColorForMode(int); // inlined
+	int activeColorForMode(int mode) {
+		switch (mode) {
+			case 0:
+				return GameManager::get()->m_playerColor;
+			case 1:
+				return GameManager::get()->m_playerColor2;
+			case 2:
+				return GameManager::get()->m_playerGlowColor;
+			default:
+				return 0;
+		}
+	}
 
 	virtual bool init() = win 0x5e640, mac 0x620020;
 	virtual void registerWithTouchDispatcher() = mac 0x621ff0;
