@@ -234,8 +234,8 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x397030;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x396c40;
 }
 
 [[link(android)]]
@@ -243,13 +243,13 @@ class AdvancedFollowTriggerObject : EffectGameObject {
 	// virtual ~AdvancedFollowTriggerObject();
 	// AdvancedFollowTriggerObject();
 
-	static AdvancedFollowTriggerObject* create(char const*);
+	static AdvancedFollowTriggerObject* create(char const*) = win 0x393950;
 
-	TodoReturn getAdvancedFollowID();
+	int getAdvancedFollowID() = win 0x3939f0;
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x395bc0;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x393a50;
 }
 
 [[link(android)]]
