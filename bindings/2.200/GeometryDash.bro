@@ -7022,7 +7022,7 @@ class CheckpointGameObject : EffectGameObject {
 class SongInfoObject : cocos2d::CCNode {
 	static SongInfoObject* create(int) = mac 0x55fb90;
 	static SongInfoObject* create(int, gd::string, gd::string, int, float, gd::string, gd::string, gd::string, int) = mac 0x55d1d0;
-	static SongInfoObject* create(cocos2d::CCDictionary*);
+	static SongInfoObject* create(cocos2d::CCDictionary*) = mac 0x557250;
 
 	bool init(int, gd::string, gd::string, int, float, gd::string, gd::string, gd::string, int) = mac 0x55fe20;
 	~SongInfoObject();
@@ -13763,8 +13763,8 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	bool isResourceSFX(int);
 	/* unverified signature */
 	bool isResourceSong(int);
-	TodoReturn responseToDict(gd::string, char const*);
-	TodoReturn createSongsInfo(gd::string);
+	TodoReturn responseToDict(gd::string, char const*) = mac 0x556fb0;
+	void createSongsInfo(gd::string) = mac 0x557a60;
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	/* unverified signature */
 	bool isSFXDownloaded(int sfxID) = mac 0x559880;
@@ -13802,7 +13802,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
 	TodoReturn tryUpdateMusicLibrary();
-	TodoReturn addSongObjectFromString(gd::string);
+	TodoReturn addSongObjectFromString(gd::string) = mac 0x556e20;
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = mac 0x556340;
 	TodoReturn generateCustomContentURL(gd::string);
 	TodoReturn incrementPriorityForSong(int);
