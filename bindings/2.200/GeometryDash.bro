@@ -4437,7 +4437,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn purgeUnusedLevels();
 	TodoReturn readFriendRequest(int);
 	TodoReturn requestUserAccess();
-	TodoReturn saveFetchedLevels(cocos2d::CCArray*);
+	TodoReturn saveFetchedLevels(cocos2d::CCArray*) = mac 0x505dd0;
 	TodoReturn storeSearchResult(cocos2d::CCArray*, gd::string, char const*) = mac 0x509d50;
 	TodoReturn suggestLevelStars(int, int, int);
 	TodoReturn updateDescription(int, gd::string);
@@ -4465,7 +4465,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn specialFromLikeKey(char const*);
 	TodoReturn storeFriendRequest(GJFriendRequest*);
 	TodoReturn typeFromCommentKey(char const*);
-	TodoReturn updateLevelRewards(GJGameLevel*);
+	TodoReturn updateLevelRewards(GJGameLevel*) = mac 0x503980;
 	TodoReturn uploadLevelComment(int, gd::string, int) = win 0x108420, mac 0x51fb60;
 	TodoReturn userIDForAccountID(int) = mac 0x5037b0;
 	TodoReturn acceptFriendRequest(int, int) = mac 0x522b50;
