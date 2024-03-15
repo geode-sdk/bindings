@@ -5734,7 +5734,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getSelectedOrderChannel();
 	TodoReturn getSFXIDs() = mac 0xe4540;
 
-	TodoReturn onPlaytest();
+	void onPlaytest() = mac 0xee840;
 	TodoReturn onStopPlaytest() = mac 0xef430;
 	TodoReturn onPausePlaytest();
 	TodoReturn onResumePlaytest();
@@ -12493,13 +12493,13 @@ class CharacterColorPage : FLAlertLayer {
 
 	~CharacterColorPage();
 
-	void onPlayerColor(cocos2d::CCObject* sender);
-	void onMode(cocos2d::CCObject* sender);
+	void onPlayerColor(cocos2d::CCObject* sender) = mac 0x621a50;
+	void onMode(cocos2d::CCObject* sender) = mac 0x620db0;
 	void onClose(cocos2d::CCObject* sender);
 
-	TodoReturn checkColor(int, UnlockType);
-	TodoReturn toggleGlow(cocos2d::CCObject*);
-	TodoReturn toggleShip(cocos2d::CCObject*);
+	TodoReturn checkColor(int, UnlockType); // inlined
+	TodoReturn toggleGlow(cocos2d::CCObject*) = mac 0x6214b0;
+	TodoReturn toggleShip(cocos2d::CCObject*) = mac 0x620d00;
 	TodoReturn colorForIndex(int) = mac 0x621a30;
 	TodoReturn offsetForIndex(int) = mac 0x621ca0;
 	TodoReturn createColorMenu() = mac 0x6210e0;
@@ -12507,7 +12507,18 @@ class CharacterColorPage : FLAlertLayer {
 	TodoReturn toggleGlowItems(bool);
 	TodoReturn updateColorMode(int) = mac 0x6214f0;
 	TodoReturn updateIconColors() = mac 0x620f80;
-	TodoReturn activeColorForMode(int);
+	int activeColorForMode(int mode) {
+		switch (mode) {
+			case 0:
+				return GameManager::get()->m_playerColor;
+			case 1:
+				return GameManager::get()->m_playerColor2;
+			case 2:
+				return GameManager::get()->m_playerGlowColor;
+			default:
+				return 0;
+		}
+	}
 
 	virtual bool init() = win 0x5e640, mac 0x620020;
 	virtual void registerWithTouchDispatcher() = mac 0x621ff0;
