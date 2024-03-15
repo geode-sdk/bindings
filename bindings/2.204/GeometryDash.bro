@@ -8367,11 +8367,11 @@ class HardStreak : cocos2d::CCDrawNode {
 
 	static HardStreak* create() = win 0x2267c0;
 
-	TodoReturn addPoint(cocos2d::CCPoint) = win 0x227250;
+	void addPoint(cocos2d::CCPoint) = win 0x227250;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn clearBehindXPos(float);
 	TodoReturn createDuplicate();
-	TodoReturn firstSetup();
+	void firstSetup() = win 0x2268C0;
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
 	TodoReturn reset();
