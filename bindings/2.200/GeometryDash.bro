@@ -6476,7 +6476,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn resumeAndRestart(bool) = win 0x2E5160, mac 0xb88d0;
 	void showCompleteText() = win 0x2d8770;
 	TodoReturn startGameDelayed() = win 0x2D7EC0;
-	TodoReturn delayedResetLevel() = win 0x2E4200;
+	TodoReturn delayedResetLevel() = win 0x2E4200, mac 0xb4c20;
 	void loadDefaultColors() = win 0x2df1e0;
 	TodoReturn setupHasCompleted() = win 0x2d71b0, mac 0xa7210;
 	TodoReturn takeStateSnapshot();
