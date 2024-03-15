@@ -1019,8 +1019,8 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 
 [[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance)]]
 class GJGameState {
-	TodoReturn tweenValue(float, float, int, float, int, float, int, int) = win 0x18b380;
-	TodoReturn stopTweenAction(int);
+	TodoReturn tweenValue(float, float, int, float, int, float, int, int) = win 0x18b380, mac 0x1525d0;
+	TodoReturn stopTweenAction(int) = mac 0x152c50;
 	TodoReturn updateTweenAction(float, int);
 	TodoReturn controlTweenAction(int, int, GJActionCommand);
 	TodoReturn updateTweenActions(float);
@@ -1165,7 +1165,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getStaticGroup(int) = win 0x1a4f10;
 	TodoReturn getStickyGroup(int);
 	TodoReturn getTargetGroup(int, int);
-	TodoReturn getGroundHeight(PlayerObject*, int);
+	TodoReturn getGroundHeight(PlayerObject*, int) = mac 0x3e29d0;
 	TodoReturn getParticleKey2(gd::string);
 	TodoReturn getPortalTarget(TeleportPortalObject*);
 	TodoReturn getRecordString();
@@ -1236,7 +1236,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn rotateObject(GameObject*, float);
 	TodoReturn spawnPlayer2() = win 0x199990;
 	TodoReturn tryGetObject(int);
-	TodoReturn updateCamera(float) = win 0x1BCBEF;
+	void updateCamera(float) = win 0x1BCBEF, mac 0x140660;
 	TodoReturn updateReplay();
 	TodoReturn addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType);
 	TodoReturn asyncBGLoaded(int);
@@ -1266,7 +1266,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn swapBackground(int);
 	TodoReturn syncBGTextures() = win 0x1B98C0;
 	TodoReturn teleportPlayer(TeleportPortalObject*, PlayerObject*);
-	TodoReturn toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x1996c0;
+	TodoReturn toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x1996c0, mac 0x10f070;
 	TodoReturn tryResumeAudio() = mac 0x13eaf0;
 	TodoReturn updateCounters(int, int);
 	TodoReturn updateGuideArt();
@@ -1281,7 +1281,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn playFlashEffect(float, int, float);
 	TodoReturn processCommands(float);
 	TodoReturn processSFXState(SFXTriggerState*, SFXTriggerState*, int, float);
-	TodoReturn setupLevelStart(LevelSettingsObject*) = win 0x196000;
+	TodoReturn setupLevelStart(LevelSettingsObject*) = win 0x196000, mac 0x10e7f0;
 	TodoReturn stopCameraShake();
 	TodoReturn switchToFlyMode(PlayerObject*, GameObject*, bool, int);
 	TodoReturn unclaimParticle(char const*, cocos2d::CCParticleSystemQuad*);
@@ -1307,7 +1307,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateBGArtSpeed(float, float) = mac 0x1454f0;
 	TodoReturn updateCameraEdge(int, int);
 	TodoReturn updateCameraMode(EffectGameObject*, bool);
-	TodoReturn updateDualGround(PlayerObject*, int, bool, float);
+	TodoReturn updateDualGround(PlayerObject*, int, bool, float) = mac 0x10f730;
 	TodoReturn updateMGArtSpeed(float, float);
 	TodoReturn addToGroupParents(GameObject*);
 	TodoReturn checkRepellPlayer();
@@ -1336,7 +1336,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateTimerLabels();
 	TodoReturn activateCustomRing(RingObject*);
 	TodoReturn activateSFXTrigger(SFXTriggerGameObject*) = win 0x1bfff0, mac 0x146380;
-	TodoReturn animateInGroundNew(bool, float, bool);
+	TodoReturn animateInGroundNew(bool, float, bool) = mac 0x10fda0;
 	TodoReturn applyLevelSettings(GameObject*);
 	TodoReturn clearPickedUpItems();
 	void createMiddleground(int);
@@ -1360,7 +1360,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateMaxGameplayY() = win 0x1b97a0, mac 0x1445f0;
 	TodoReturn updateQueuedLabels();
 	TodoReturn activateSongTrigger(SongTriggerGameObject*) = win 0x1bfba0, mac 0x145d60;
-	TodoReturn animateOutGroundNew(bool);
+	TodoReturn animateOutGroundNew(bool) = mac 0x110090;
 	TodoReturn applySFXEditTrigger(int, int, SFXTriggerGameObject*) = win 0x1c03b0;
 	TodoReturn claimRotationAction(int, int, float&, float&, bool, bool);
 	TodoReturn maxZOrderForShaderZ(int);
