@@ -2248,7 +2248,7 @@ class GJGameLevel : cocos2d::CCNode {
 		return level;
 	}
 
-	static GJGameLevel* create(cocos2d::CCDictionary*, bool);
+	static GJGameLevel* create(cocos2d::CCDictionary*, bool) = mac 0x503c90;
 	static GJGameLevel* create() = win 0x112540, mac 0x501aa0;
 
 	~GJGameLevel();
@@ -2494,7 +2494,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	virtual void applicationWillBecomeActive() = win 0x5b0f0, mac 0x61f700;
 	virtual void applicationWillResignActive() = win 0x5b200, mac 0x61f720;
 	virtual void trySaveGame(bool) = win 0x5b3b0, mac 0x61fbd0;
-	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x5b550, mac 0x61fcd0;
+	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x5b550, mac 0x61fcb0; //there is also a thunk at 0x61fcd0 which is identical, keep the one at 0x61fcb0 here
 
     PAD = win 0xC, android32 0xC, android64 0x18, mac 0x18;
     cocos2d::CCScene* m_runningScene;
@@ -2930,7 +2930,7 @@ class StatsCell : TableViewCell {
 	TodoReturn loadFromObject(StatsObject*) = mac 0x225a30, win 0x81BD0;
 
 	virtual bool init() = mac 0x231150;
-	virtual void draw() = win 0x7d0f0, mac 0x234ca0;
+	virtual void draw() = win 0x7d0f0, mac 0x231bf0; //correct one is 0x231bf0, there is also 0x234ca0 which is identical but its actually from GJUserCell
 }
 
 [[link(android)]]
@@ -4753,7 +4753,7 @@ class LevelTools {
 	TodoReturn getLastGameplayReversed();
 	TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool) = win 0x270dc0;
 	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
-	static GJGameLevel* getLevel(int, bool) = win 0x26DDA0;
+	static GJGameLevel* getLevel(int, bool) = win 0x26DDA0, mac 0x4d6840;
 }
 
 [[link(android)]]
@@ -12662,7 +12662,7 @@ class GJPurchaseDelegate {
 
 [[link(android)]]
 class GJTransformControl : cocos2d::CCLayer {
-	static GJTransformControl* create();
+	static GJTransformControl* create() = mac 0x57e40;
 
 	~GJTransformControl();
 
@@ -12682,7 +12682,7 @@ class GJTransformControl : cocos2d::CCLayer {
 	TodoReturn updateMinMaxPositions();
 	TodoReturn calculateRotationOffset();
 
-	virtual bool init() = mac 0x57e40;
+	virtual bool init() = mac 0x561e0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x56650;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x56b20;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x570d0;
