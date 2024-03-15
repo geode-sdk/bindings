@@ -1433,7 +1433,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateExtraGameLayers() = mac 0x129020;
 	TodoReturn updateGameplayOffsetX(int, bool);
 	TodoReturn updateGameplayOffsetY(int, bool);
-	TodoReturn updateStaticCameraPos(cocos2d::CCPoint, bool, bool, bool, float, int, float) = win 0x1bda60;
+	TodoReturn updateStaticCameraPos(cocos2d::CCPoint, bool, bool, bool, float, int, float) = win 0x1bda60, mac 0x110240;
 	TodoReturn activateSFXEditTrigger(SFXTriggerGameObject*) = win 0x1c0160, mac 0x1468d0;
 	TodoReturn animateInDualGroundNew(GameObject*, float, bool, float);
 	TodoReturn canBeActivatedByPlayer(PlayerObject*, EffectGameObject*) = win 0x19a4b0;
