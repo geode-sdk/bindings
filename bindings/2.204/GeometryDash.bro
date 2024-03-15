@@ -234,8 +234,8 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x397030;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x396c40;
 }
 
 [[link(android)]]
@@ -243,13 +243,13 @@ class AdvancedFollowTriggerObject : EffectGameObject {
 	// virtual ~AdvancedFollowTriggerObject();
 	// AdvancedFollowTriggerObject();
 
-	static AdvancedFollowTriggerObject* create(char const*);
+	static AdvancedFollowTriggerObject* create(char const*) = win 0x393950;
 
-	TodoReturn getAdvancedFollowID();
+	int getAdvancedFollowID() = win 0x3939f0;
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x395bc0;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x393a50;
 }
 
 [[link(android)]]
@@ -4168,15 +4168,15 @@ class GameLevelManager : cocos2d::CCNode {
 	void resetStoredUserList(UserListType);
 	void resetTimerForKey(char const*) = win 0xf9130;
 	cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x111fa0;
-	TodoReturn restoreItems();
-	TodoReturn saveFetchedLevelLists(cocos2d::CCArray*);
-	TodoReturn saveFetchedLevels(cocos2d::CCArray*);
-	TodoReturn saveFetchedMapPacks(cocos2d::CCArray*);
-	TodoReturn saveGauntlet(GJMapPack*) = win 0x100b20;
-	TodoReturn saveLevel(GJGameLevel*) = win 0xf8130;
-	TodoReturn saveLevelList(GJLevelList*);
-	TodoReturn saveLocalScore(int, int, int);
-	TodoReturn saveMapPack(GJMapPack*);
+	void restoreItems();
+	void saveFetchedLevelLists(cocos2d::CCArray*);
+	void saveFetchedLevels(cocos2d::CCArray*) = win 0xf69d0;
+	void saveFetchedMapPacks(cocos2d::CCArray*);
+	void saveGauntlet(GJMapPack*) = win 0x100b20;
+	void saveLevel(GJGameLevel*) = win 0xf8130;
+	void saveLevelList(GJLevelList*);
+	void saveLocalScore(int, int, int);
+	void saveMapPack(GJMapPack*);
 	void setActiveSmartTemplate(GJSmartTemplate*);
 	void setBoolForKey(bool, char const*);
 	void setDiffVal(int, bool);
@@ -4189,7 +4189,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
 	void storeDailyLevelState(int, int, GJTimedLevelType) = win 0x110bc0;
 	void storeFriendRequest(GJFriendRequest*);
-	void storeSearchResult(cocos2d::CCArray*, gd::string, char const*);
+	void storeSearchResult(cocos2d::CCArray* levels, gd::string pageInfo, char const* searchKey) = win 0xf8810;
 	void storeUserInfo(GJUserScore*);
 	void storeUserMessage(GJUserMessage*);
 	void storeUserMessageReply(int, GJUserMessage*);
@@ -8367,11 +8367,11 @@ class HardStreak : cocos2d::CCDrawNode {
 
 	static HardStreak* create() = win 0x2267c0;
 
-	TodoReturn addPoint(cocos2d::CCPoint) = win 0x227250;
+	void addPoint(cocos2d::CCPoint) = win 0x227250;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn clearBehindXPos(float);
 	TodoReturn createDuplicate();
-	TodoReturn firstSetup();
+	void firstSetup() = win 0x2268C0;
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
 	TodoReturn reset();
@@ -12188,17 +12188,17 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 
 	static SequenceTriggerGameObject* create() = win 0x3a9fd0;
 
-	TodoReturn addCount(int, int);
-	TodoReturn addTarget(int, int);
-	TodoReturn deleteTarget(int);
-	TodoReturn reorderTarget(int, bool);
+	void addCount(int, int) = win 0x3aae20;
+	void addTarget(int, int) = win 0x3aad40;
+	void deleteTarget(int);
+	int reorderTarget(int, bool) = win 0x3aada0;
 	TodoReturn updateSequenceTotalCount();
 
 	virtual bool init() = win 0x3aa070;
-	virtual TodoReturn resetObject();
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual TodoReturn resetObject() = win 0x3aa080;
+	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3aa0a0;
+	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3aa5b0;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3aa900;
 }
 
 [[link(android)]]
@@ -12412,7 +12412,7 @@ class SetupAdvFollowEditPhysicsPopup : SetupTriggerPopup {
 
 	bool init(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x31b630;
 
-	virtual TodoReturn valueDidChange(int, float);
+	virtual void valueDidChange(int, float) = win 0x31bda0;
 }
 
 [[link(android)]]
@@ -12422,15 +12422,15 @@ class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
 	static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject*, cocos2d::CCArray*) = win 0x3184c0;
 
 	bool init(AdvancedFollowTriggerObject*, cocos2d::CCArray*) = win 0x318570;
-	void onMode(cocos2d::CCObject* sender);
-	void onPremade(cocos2d::CCObject* sender);
-	TodoReturn updateMode(int);
+	void onMode(cocos2d::CCObject* sender) = win 0x31aa70;
+	void onPremade(cocos2d::CCObject* sender) = win 0x31ab60;
+	void updateMode(int) = win 0x31aaf0;
 
 	virtual void onClose(cocos2d::CCObject* sender);
-	virtual TodoReturn updateDefaultTriggerValues();
-	virtual TodoReturn valueDidChange(int, float);
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
-	virtual TodoReturn selectPremadeClosed(SelectPremadeLayer*, int);
+	virtual void updateDefaultTriggerValues() = win 0x31a670;
+	virtual void valueDidChange(int, float) = win 0x31a760;
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x31a9d0;
+	virtual void selectPremadeClosed(SelectPremadeLayer*, int) = win 0x31aba0;
 }
 
 [[link(android)]]
@@ -12441,8 +12441,8 @@ class SetupAdvFollowRetargetPopup : SetupTriggerPopup {
 
 	bool init(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x31bea0;
 
-	virtual TodoReturn updateDefaultTriggerValues();
-	virtual TodoReturn valueDidChange(int, float);
+	virtual void updateDefaultTriggerValues() = win 0x31a670;
+	virtual void valueDidChange(int, float) = win 0x31c220;
 }
 
 [[link(android)]]
@@ -13441,11 +13441,11 @@ class SetupSequenceTriggerPopup : SetupTriggerPopup {
 	static SetupSequenceTriggerPopup* create(SequenceTriggerGameObject*) = win 0x34b450;
 
 	bool init(SequenceTriggerGameObject*) = win 0x34b4f0;
-	void onAddChance(cocos2d::CCObject* sender);
-	void onChangeOrder(cocos2d::CCObject* sender);
-	void onDeleteSelected(cocos2d::CCObject* sender);
-	void onSelect(cocos2d::CCObject* sender);
-	TodoReturn updateGroupIDButtons();
+	void onAddChance(cocos2d::CCObject* sender) = win 0x34c5e0;
+	void onChangeOrder(cocos2d::CCObject* sender) = win 0x34c670;
+	void onDeleteSelected(cocos2d::CCObject* sender) = win 0x34c6e0;
+	void onSelect(cocos2d::CCObject* sender) = win 0x34c570;
+	void updateGroupIDButtons() = win 0x34c110;
 
 	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
 }
