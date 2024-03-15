@@ -1,4 +1,15 @@
 [[link(win, android)]]
+class cocos2d::CCEGLViewProtocol {
+    CCEGLViewProtocol() = win 0xbac00;
+    virtual ~CCEGLViewProtocol() = win 0xbacc0;
+    auto getViewPortRect() const = mac 0x29e2f0;
+    auto getScaleX() const = mac 0x29e300;
+    auto getScaleY() const = mac 0x29e310;
+    virtual auto setDesignResolutionSize(float, float, ResolutionPolicy);
+	virtual void setFrameSize(float, float) = mac 0x29d960;
+}
+
+[[link(win, android)]]
 class cocos2d::CCMotionStreak {
 	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
 	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*);
