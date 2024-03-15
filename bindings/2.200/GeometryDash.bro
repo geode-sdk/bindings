@@ -13738,11 +13738,11 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
 	/* unverified signature */
 	bool isDLActive(char const*) = mac 0x5565e0;
-	TodoReturn pathForSFX(int) = mac 0x559cb0, win 0x27f630;
+	gd::string pathForSFX(int sfxID) = mac 0x559cb0, win 0x27f630;
 	TodoReturn downloadSFX(int);
 	gd::string pathForSong(int songID) = mac 0x5586d0, win 0x27f2c0;
 	static MusicDownloadManager* sharedState() = win 0x27d490, mac 0x5552f0;
-	TodoReturn downloadSong(int) = mac 0x558880;
+	void downloadSong(int songID) = mac 0x558880;
 	TodoReturn encodeDataTo(DS_Dictionary*);
 	TodoReturn nameForTagID(int);
 	TodoReturn stopDownload(int);
@@ -13756,21 +13756,21 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn createSongsInfo(gd::string);
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	/* unverified signature */
-	bool isSFXDownloaded(int) = mac 0x559880;
+	bool isSFXDownloaded(int sfxID) = mac 0x559880;
 	TodoReturn parseSFXLibrary();
 	TodoReturn clearUnusedSongs();
 	TodoReturn filterMusicByTag(int, cocos2d::CCArray*);
 	/* unverified signature */
 	bool isSongDownloaded(int) = mac 0x558160, win 0x27f020;
-	TodoReturn pathForSFXFolder(int) = mac 0x559d70, win 0x27f490;
+	gd::string pathForSFXFolder(int) = mac 0x559d70, win 0x27f490;
 	TodoReturn songStateChanged() = win 0x27dd40;
 	TodoReturn storeMusicObject(SongInfoObject*);
 	TodoReturn tryLoadLibraries();
 	TodoReturn downloadSFXFailed(int, GJSongError);
 	TodoReturn musicActionFailed(GJMusicAction);
 	TodoReturn parseMusicLibrary();
-	TodoReturn pathForSongFolder(int) = mac 0x559640, win 0x27f120;
-	TodoReturn downloadCustomSong(int) = mac 0x558d00;
+	gd::string pathForSongFolder(int) = mac 0x559640, win 0x27f120;
+	void downloadCustomSong(int) = mac 0x558d00;
 	TodoReturn downloadSFXLibrary();
 	TodoReturn downloadSongFailed(int, GJSongError);
 	/* unverified signature */
