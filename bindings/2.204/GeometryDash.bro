@@ -234,8 +234,8 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x397030;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x396c40;
 }
 
 [[link(android)]]
@@ -243,13 +243,13 @@ class AdvancedFollowTriggerObject : EffectGameObject {
 	// virtual ~AdvancedFollowTriggerObject();
 	// AdvancedFollowTriggerObject();
 
-	static AdvancedFollowTriggerObject* create(char const*);
+	static AdvancedFollowTriggerObject* create(char const*) = win 0x393950;
 
-	TodoReturn getAdvancedFollowID();
+	int getAdvancedFollowID() = win 0x3939f0;
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x395bc0;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x393a50;
 }
 
 [[link(android)]]
@@ -12412,7 +12412,7 @@ class SetupAdvFollowEditPhysicsPopup : SetupTriggerPopup {
 
 	bool init(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x31b630;
 
-	virtual TodoReturn valueDidChange(int, float);
+	virtual void valueDidChange(int, float) = win 0x31bda0;
 }
 
 [[link(android)]]
@@ -12422,15 +12422,15 @@ class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
 	static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject*, cocos2d::CCArray*) = win 0x3184c0;
 
 	bool init(AdvancedFollowTriggerObject*, cocos2d::CCArray*) = win 0x318570;
-	void onMode(cocos2d::CCObject* sender);
-	void onPremade(cocos2d::CCObject* sender);
-	TodoReturn updateMode(int);
+	void onMode(cocos2d::CCObject* sender) = win 0x31aa70;
+	void onPremade(cocos2d::CCObject* sender) = win 0x31ab60;
+	void updateMode(int) = win 0x31aaf0;
 
 	virtual void onClose(cocos2d::CCObject* sender);
-	virtual TodoReturn updateDefaultTriggerValues();
-	virtual TodoReturn valueDidChange(int, float);
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
-	virtual TodoReturn selectPremadeClosed(SelectPremadeLayer*, int);
+	virtual void updateDefaultTriggerValues() = win 0x31a670;
+	virtual void valueDidChange(int, float) = win 0x31a760;
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x31a9d0;
+	virtual void selectPremadeClosed(SelectPremadeLayer*, int) = win 0x31aba0;
 }
 
 [[link(android)]]
@@ -12441,8 +12441,8 @@ class SetupAdvFollowRetargetPopup : SetupTriggerPopup {
 
 	bool init(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x31bea0;
 
-	virtual TodoReturn updateDefaultTriggerValues();
-	virtual TodoReturn valueDidChange(int, float);
+	virtual void updateDefaultTriggerValues() = win 0x31a670;
+	virtual void valueDidChange(int, float) = win 0x31c220;
 }
 
 [[link(android)]]
