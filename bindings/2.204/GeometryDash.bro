@@ -12188,17 +12188,17 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 
 	static SequenceTriggerGameObject* create() = win 0x3a9fd0;
 
-	TodoReturn addCount(int, int);
-	TodoReturn addTarget(int, int);
-	TodoReturn deleteTarget(int);
-	TodoReturn reorderTarget(int, bool);
+	void addCount(int, int) = win 0x3aae20;
+	void addTarget(int, int) = win 0x3aad40;
+	void deleteTarget(int);
+	int reorderTarget(int, bool) = win 0x3aada0;
 	TodoReturn updateSequenceTotalCount();
 
 	virtual bool init() = win 0x3aa070;
-	virtual TodoReturn resetObject();
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual TodoReturn resetObject() = win 0x3aa080;
+	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3aa0a0;
+	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3aa5b0;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3aa900;
 }
 
 [[link(android)]]
@@ -13441,11 +13441,11 @@ class SetupSequenceTriggerPopup : SetupTriggerPopup {
 	static SetupSequenceTriggerPopup* create(SequenceTriggerGameObject*) = win 0x34b450;
 
 	bool init(SequenceTriggerGameObject*) = win 0x34b4f0;
-	void onAddChance(cocos2d::CCObject* sender);
-	void onChangeOrder(cocos2d::CCObject* sender);
-	void onDeleteSelected(cocos2d::CCObject* sender);
-	void onSelect(cocos2d::CCObject* sender);
-	TodoReturn updateGroupIDButtons();
+	void onAddChance(cocos2d::CCObject* sender) = win 0x34c5e0;
+	void onChangeOrder(cocos2d::CCObject* sender) = win 0x34c670;
+	void onDeleteSelected(cocos2d::CCObject* sender) = win 0x34c6e0;
+	void onSelect(cocos2d::CCObject* sender) = win 0x34c570;
+	void updateGroupIDButtons() = win 0x34c110;
 
 	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
 }
