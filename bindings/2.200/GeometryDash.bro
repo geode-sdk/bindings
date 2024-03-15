@@ -985,7 +985,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onShop(cocos2d::CCObject* sender) = mac 0x34ab50;
 	void onArrow(cocos2d::CCObject* sender);
 	void onPaint(cocos2d::CCObject* sender) = mac 0x34abe0;
-	void onSelect(cocos2d::CCObject* sender) = win 0x1ee4b0;
+	void onSelect(cocos2d::CCObject* sender) = win 0x1ee4b0, mac 0x34c580;
 	void onShards(cocos2d::CCObject* sender) = mac 0x34abb0;
 	void onSpecial(cocos2d::CCObject* sender);
 
