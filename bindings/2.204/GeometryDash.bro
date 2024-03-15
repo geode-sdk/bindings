@@ -1932,25 +1932,25 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	static CustomizeObjectLayer* create(GameObject*, cocos2d::CCArray*) = win 0x763f0;
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	TodoReturn determineStartValues();
+	TodoReturn determineStartValues() = win 0x78e70;
 	int getActiveMode(bool) = win 0x79a00;
 	TodoReturn getButtonByTag(int);
 	TodoReturn getHSV();
 	void highlightSelected(ButtonSprite*) = win 0x7a1b0;
 	bool init(GameObject*, cocos2d::CCArray*) = win 0x764a0;
-	void onBreakApart(cocos2d::CCObject* sender);
-	void onBrowse(cocos2d::CCObject* sender);
-	void onClear(cocos2d::CCObject* sender);
+	void onBreakApart(cocos2d::CCObject* sender) = win 0x79e90;
+	void onBrowse(cocos2d::CCObject* sender) = win 0x78b50;
+	void onClear(cocos2d::CCObject* sender) = win 0x79e30;
 	void onClose(cocos2d::CCObject* sender) = win 0x7a2a0;
-	void onCopy(cocos2d::CCObject* sender);
-	void onEditColor(cocos2d::CCObject* sender);
-	void onHSV(cocos2d::CCObject* sender);
-	void onLiveEdit(cocos2d::CCObject* sender);
-	void onNextColorChannel(cocos2d::CCObject* sender);
-	void onPaste(cocos2d::CCObject* sender);
+	void onCopy(cocos2d::CCObject* sender) = win 0x78a30;
+	void onEditColor(cocos2d::CCObject* sender) = win 0x78ce0;
+	void onHSV(cocos2d::CCObject* sender) = win 0x79210;
+	void onLiveEdit(cocos2d::CCObject* sender) = win 0x789f0;
+	void onNextColorChannel(cocos2d::CCObject* sender) = win 0x79490;
+	void onPaste(cocos2d::CCObject* sender) = win 0x78a50;
 	void onSelectColor(cocos2d::CCObject* sender) = win 0x79fa0;
 	void onSelectMode(cocos2d::CCObject* sender) = win 0x79550;
-	void onSettings(cocos2d::CCObject* sender);
+	void onSettings(cocos2d::CCObject* sender) = win 0x78b20;
 	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x79af0;
 	TodoReturn recreateLayer();
 	void sliderChanged(cocos2d::CCObject*) = win 0x78930;
@@ -2814,7 +2814,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn shouldDeleteObject(GameObject*);
 	TodoReturn shouldSnap(GameObject*);
 	TodoReturn showDeleteConfirmation();
-	TodoReturn showLiveColorSelectForMode(int);
+	TodoReturn showLiveColorSelectForMode(int) = win 0xd4460;
 	TodoReturn showLiveColorSelectForModeSpecial(int);
 	TodoReturn showMaxBasicError() = win 0xca6c0;
 	TodoReturn showMaxCoinError() = win 0xca750;
@@ -9555,20 +9555,20 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	bool init(LevelSettingsObject*, LevelEditorLayer*) = win 0x26CE20;
 	void onBGArt(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onCol(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x26f640;
+	void onCol(cocos2d::CCObject* sender) = win 0x26f7e0;
 	void onDisable(cocos2d::CCObject* sender);
-	void onFGArt(cocos2d::CCObject* sender);
-	void onGameplayMode(cocos2d::CCObject* sender);
-	void onGArt(cocos2d::CCObject* sender);
-	void onLiveEdit(cocos2d::CCObject* sender);
+	void onFGArt(cocos2d::CCObject* sender) = win 0x26f990;
+	void onGameplayMode(cocos2d::CCObject* sender) = win 0x26eff0;
+	void onGArt(cocos2d::CCObject* sender) = win 0x26f930;
+	void onLiveEdit(cocos2d::CCObject* sender) = win 0x26f760;
 	void onMode(cocos2d::CCObject* sender);
 	void onOptionToggle(cocos2d::CCObject* sender);
-	void onSelectFont(cocos2d::CCObject* sender);
+	void onSelectFont(cocos2d::CCObject* sender) = win 0x26f9d0;
 	void onSelectMode(cocos2d::CCObject* sender);
 	void onSelectSpeed(cocos2d::CCObject* sender);
 	void onSettings(cocos2d::CCObject* sender);
-	void onShowPicker(cocos2d::CCObject* sender);
+	void onShowPicker(cocos2d::CCObject* sender) = win 0x26f790;
 	void onSpeed(cocos2d::CCObject* sender);
 	TodoReturn showPicker(ColorAction*);
 	TodoReturn updateColorSprite(ColorChannelSprite*) = win 0x26f870;
@@ -14083,22 +14083,22 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 	static ShareCommentLayer* create(gd::string, int, CommentType, int, gd::string) = win 0x386370;
 
 	bool init(gd::string, int, CommentType, int, gd::string) = win 0x386490;
-	void onClear(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+	void onClear(cocos2d::CCObject* sender) = win 0x387320;
+	void onClose(cocos2d::CCObject* sender) = win 0x387750;
 	void onPercent(cocos2d::CCObject* sender);
 	void onShare(cocos2d::CCObject* sender) = win 0x3874c0;
-	TodoReturn updateCharCountLabel() = win 0x3879e0;
+	void updateCharCountLabel() = win 0x3879e0;
 	TodoReturn updateDescText(gd::string);
-	TodoReturn updatePercentLabel() = win 0x387410;
+	void updatePercentLabel() = win 0x387410;
 
 	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual TodoReturn textInputOpened(CCTextInputNode*);
-	virtual TodoReturn textInputClosed(CCTextInputNode*);
-	virtual TodoReturn textChanged(CCTextInputNode*);
-	virtual TodoReturn uploadActionFinished(int, int);
-	virtual TodoReturn uploadActionFailed(int, int);
-	virtual TodoReturn onClosePopup(UploadActionPopup*);
+	virtual void keyBackClicked() = win 0x387780;
+	virtual void textInputOpened(CCTextInputNode*);
+	virtual void textInputClosed(CCTextInputNode*) = win 0x3877c0;
+	virtual void textChanged(CCTextInputNode*) = win 0x3878e0;
+	virtual void uploadActionFinished(int, int) = win 0x387aa0;
+	virtual void uploadActionFailed(int, int) = win 0x387ae0;
+	virtual void onClosePopup(UploadActionPopup*) = win 0x387b10;
 }
 
 [[link(android)]]
