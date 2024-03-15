@@ -2022,49 +2022,6 @@ class cocos2d::CCMenuItemToggle {
 }
 
 [[link(win, android)]]
-class cocos2d::CCMotionStreak {
-	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
-	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*);
-
-	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
-	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*);
-
-	bool getDontOpacityFade() const;
-	float getM_fMaxSeg() const;
-
-	void setDontOpacityFade(bool);
-	void setFastMode(bool);
-	void setM_fMaxSeg(float);
-	void setStartingPositionInitialized(bool);
-	void setStroke(float);
-
-	// CCMotionStreak(cocos2d::CCMotionStreak const&);
-	// CCMotionStreak();
-	void enableRepeatMode(float);
-	bool isFastMode();
-	bool isStartingPositionInitialized();
-	void reset();
-	void resumeStroke();
-	void stopStroke();
-	void tintWithColor(cocos2d::_ccColor3B);
-	void updateFade(float);
-
-	virtual void update(float);
-	virtual void setPosition(cocos2d::CCPoint const&);
-	virtual void draw();
-
-	virtual unsigned char getOpacity();
-	virtual void setOpacity(unsigned char);
-	virtual void setOpacityModifyRGB(bool);
-	virtual bool isOpacityModifyRGB();
-
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
-	virtual cocos2d::_ccBlendFunc getBlendFunc();
-	virtual cocos2d::CCTexture2D* getTexture();
-	virtual void setTexture(cocos2d::CCTexture2D*);
-}
-
-[[link(win, android)]]
 class cocos2d::CCMouseDelegate {
 	// CCMouseDelegate(cocos2d::CCMouseDelegate const&);
 	// CCMouseDelegate();
@@ -2722,38 +2679,6 @@ class cocos2d::CCParticleSystem {
 	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
 	virtual cocos2d::_ccBlendFunc getBlendFunc();
 	virtual cocos2d::CCTexture2D* getTexture();
-	virtual void setTexture(cocos2d::CCTexture2D*);
-}
-
-[[link(win, android)]]
-class cocos2d::CCParticleSystemQuad {
-	static cocos2d::CCParticleSystemQuad* create(char const*, bool);
-	static cocos2d::CCParticleSystemQuad* create();
-	static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool);
-
-	void initIndices();
-	void initTexCoordsWithRect(cocos2d::CCRect const&);
-
-	unsigned char getOpacity();
-
-	void setDisplayFrame(cocos2d::CCSpriteFrame*);
-	void setOpacity(unsigned char);
-	void setTextureWithRect(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
-
-	// CCParticleSystemQuad(cocos2d::CCParticleSystemQuad const&);
-	// CCParticleSystemQuad();
-	bool allocMemory();
-	void listenBackToForeground(cocos2d::CCObject*);
-	void setupVBO();
-	void updateTexCoords();
-
-	virtual void draw();
-	virtual void setBatchNode(cocos2d::CCParticleBatchNode*);
-	virtual void setTotalParticles(unsigned int);
-	virtual bool initWithTotalParticles(unsigned int, bool);
-	virtual void updateQuadWithParticle(cocos2d::sCCParticle*, cocos2d::CCPoint const&);
-	virtual void postStep();
-
 	virtual void setTexture(cocos2d::CCTexture2D*);
 }
 
