@@ -10494,7 +10494,7 @@ class ObjectToolbox : cocos2d::CCNode {
 
 	TodoReturn allKeys();
 	float gridNodeSizeForKey(int);
-	TodoReturn intKeyToFrame(int);
+	const char* intKeyToFrame(int);
 	TodoReturn perspectiveBlockFrame(int);
 
 	virtual bool init();

@@ -5505,7 +5505,7 @@ class KeyframeAnimTriggerObject : EffectGameObject {
 
 [[link(android)]]
 class DashRingObject : RingObject {
-	static DashRingObject* create(char const*);
+	static DashRingObject* create(char const*) = mac 0x19dbf0;
 
 	bool init(char const*);
 	~DashRingObject();
@@ -6622,7 +6622,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn resetStreak() = mac 0x3e4520;
 	TodoReturn setupStreak() = mac 0x3ddd10;
 	TodoReturn spawnCircle();
-	TodoReturn stopDashing() = win 0x2CB080;
+	void stopDashing() = win 0x2CB080, mac 0x3e2cd0;
 	TodoReturn stopStreak2();
 	TodoReturn createSpider(int) = mac 0x3dd8b0;
 	/* unverified signature */
@@ -6630,7 +6630,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void preCollision() = win 0x2c2c10;
 	TodoReturn redirectDash(float) = win 0x2CA320;
 	TodoReturn spawnCircle2();
-	TodoReturn startDashing(DashRingObject*);
+	void startDashing(DashRingObject*) = mac 0x3f2380;
 	TodoReturn stopRotation(bool, int);
 	// /* unverified signature */
 	bool isInBasicMode();
