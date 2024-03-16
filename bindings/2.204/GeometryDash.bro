@@ -460,9 +460,25 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 [[link(android)]]
 class BoomScrollLayer : cocos2d::CCLayer {
 	// virtual ~BoomScrollLayer();
+	BoomScrollLayer() = win 0x1de90;
 
-	static BoomScrollLayer* create(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*); // this is inline btw
-	static BoomScrollLayer* create(cocos2d::CCArray*, int, bool); // also inline D:
+	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2, cocos2d::CCArray* unk3, DynamicScrollDelegate* delegate)
+	{
+		BoomScrollLayer* pRet = new BoomScrollLayer();
+
+		if (pRet && pRet->init(pages, unk1, unk2, unk3, delegate))
+		{
+			pRet->autorelease();
+			return pRet;
+		}
+
+		delete pRet;
+		return nullptr;
+	}
+	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2)
+	{
+		return BoomScrollLayer::create(pages, unk1, unk2, nullptr, nullptr);
+	}
 
 	TodoReturn addPage(cocos2d::CCLayer*, int);
 	TodoReturn addPage(cocos2d::CCLayer*);
