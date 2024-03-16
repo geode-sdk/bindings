@@ -5505,7 +5505,7 @@ class KeyframeAnimTriggerObject : EffectGameObject {
 
 [[link(android)]]
 class DashRingObject : RingObject {
-	static DashRingObject* create(char const*);
+	static DashRingObject* create(char const*) = mac 0x19dbf0;
 
 	bool init(char const*);
 	~DashRingObject();
@@ -6622,7 +6622,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn resetStreak() = mac 0x3e4520;
 	TodoReturn setupStreak() = mac 0x3ddd10;
 	TodoReturn spawnCircle();
-	TodoReturn stopDashing() = win 0x2CB080;
+	void stopDashing() = win 0x2CB080, mac 0x3e2cd0;
 	TodoReturn stopStreak2();
 	TodoReturn createSpider(int) = mac 0x3dd8b0;
 	/* unverified signature */
@@ -6630,7 +6630,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void preCollision() = win 0x2c2c10;
 	TodoReturn redirectDash(float) = win 0x2CA320;
 	TodoReturn spawnCircle2();
-	TodoReturn startDashing(DashRingObject*);
+	void startDashing(DashRingObject*) = mac 0x3f2380;
 	TodoReturn stopRotation(bool, int);
 	// /* unverified signature */
 	bool isInBasicMode();
@@ -7022,7 +7022,7 @@ class CheckpointGameObject : EffectGameObject {
 class SongInfoObject : cocos2d::CCNode {
 	static SongInfoObject* create(int) = mac 0x55fb90;
 	static SongInfoObject* create(int, gd::string, gd::string, int, float, gd::string, gd::string, gd::string, int) = mac 0x55d1d0;
-	static SongInfoObject* create(cocos2d::CCDictionary*);
+	static SongInfoObject* create(cocos2d::CCDictionary*) = mac 0x557250;
 
 	bool init(int, gd::string, gd::string, int, float, gd::string, gd::string, gd::string, int) = mac 0x55fe20;
 	~SongInfoObject();
@@ -13763,8 +13763,8 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	bool isResourceSFX(int);
 	/* unverified signature */
 	bool isResourceSong(int);
-	TodoReturn responseToDict(gd::string, char const*);
-	TodoReturn createSongsInfo(gd::string);
+	TodoReturn responseToDict(gd::string, char const*) = mac 0x556fb0;
+	void createSongsInfo(gd::string) = mac 0x557a60;
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	/* unverified signature */
 	bool isSFXDownloaded(int sfxID) = mac 0x559880;
@@ -13802,7 +13802,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	TodoReturn ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
 	TodoReturn tryUpdateMusicLibrary();
-	TodoReturn addSongObjectFromString(gd::string);
+	TodoReturn addSongObjectFromString(gd::string) = mac 0x556e20;
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = mac 0x556340;
 	TodoReturn generateCustomContentURL(gd::string);
 	TodoReturn incrementPriorityForSong(int);
