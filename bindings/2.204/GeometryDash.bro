@@ -2822,7 +2822,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn showUI(bool) = win 0xc9c10;
 	TodoReturn sliderChanged(cocos2d::CCObject*) = win 0xa6cd0;
 	TodoReturn smartTypeForKey(int);
-	CCPoint* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
+	TodoReturn spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
 	TodoReturn toggleDuplicateButton();
 	TodoReturn toggleEditObjectButton() = win 0xd1680;
 	TodoReturn toggleEnableRotate(cocos2d::CCObject*) = win 0xc8900;

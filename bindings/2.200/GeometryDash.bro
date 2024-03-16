@@ -6220,7 +6220,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn deactivateScaleControl();
 	TodoReturn selectAllWithDirection(bool) = mac 0x40d10;
 	TodoReturn showDeleteConfirmation();
-	CCPoint* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = mac 0x37820;
+	cocos2d::CCPoint* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = mac 0x37820;
 	TodoReturn toggleEditObjectButton();
 	TodoReturn transformObjectsActive();
 	TodoReturn activateRotationControl(cocos2d::CCObject*) = mac 0x41020;
