@@ -1277,7 +1277,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// /* unverified signature */
 	bool isPlayer2Button(int);
 	TodoReturn moveCameraToPos(cocos2d::CCPoint);
-	TodoReturn parentForZLayer(int, bool, int, int);
+	TodoReturn parentForZLayer(int, bool, int, int) = mac 0x10b8f0;
 	TodoReturn playFlashEffect(float, int, float);
 	TodoReturn processCommands(float);
 	TodoReturn processSFXState(SFXTriggerState*, SFXTriggerState*, int, float);
@@ -3382,7 +3382,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn quickUpdatePosition();
 	TodoReturn updateMainColorOnly();
 	TodoReturn usesFreezeAnimation();
-	TodoReturn addColorSpriteToSelf();
+	TodoReturn addColorSpriteToSelf() = mac 0x585840;
 	TodoReturn addInternalGlowChild(gd::string, cocos2d::CCPoint);
 	TodoReturn calculateOrientedBox();
 	TodoReturn canChangeCustomColor();
@@ -3399,7 +3399,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn perspectiveColorFrame(char const*, int);
 	TodoReturn playDestroyObjectAnim(GJBaseGameLayer*);
 	TodoReturn updateCustomColorType(short);
-	TodoReturn addColorSpriteToParent(bool);
+	TodoReturn addColorSpriteToParent(bool) = mac 0x571da0;
 	TodoReturn commonInteractiveSetup();
 	TodoReturn updateSecondaryOpacity();
 	TodoReturn canChangeSecondaryColor();
@@ -5805,7 +5805,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateObjectColors(cocos2d::CCArray*);
 	TodoReturn addObjectFromVector(gd::vector<gd::string>&, gd::vector<void*>&);
 	TodoReturn applyAttributeState(GameObject*, GameObject*);
-	TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool);
+	TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = mac 0xf0900;
 	TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*);
 	TodoReturn stopTriggersInGroup(int, float);
 	TodoReturn updateToggledGroups();
@@ -5820,7 +5820,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn sortBatchnodeChildren(float);
 	TodoReturn toggleLockActiveLayer();
 	TodoReturn transferDefaultColors(GJEffectManager*, GJEffectManager*);
-	TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*);
+	TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = 0xf09c0;
 	TodoReturn updateGridLayerParent();
 	TodoReturn updateKeyframeObjects() = mac 0xe68f0;
 	TodoReturn updatePreviewParticle(ParticleGameObject*) = mac 0x19b760;
@@ -6220,7 +6220,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn deactivateScaleControl();
 	TodoReturn selectAllWithDirection(bool) = mac 0x40d10;
 	TodoReturn showDeleteConfirmation();
-	TodoReturn spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
+	TodoReturn spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = mac 0x37820;
 	TodoReturn toggleEditObjectButton();
 	TodoReturn transformObjectsActive();
 	TodoReturn activateRotationControl(cocos2d::CCObject*) = mac 0x41020;
@@ -6533,7 +6533,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = win 0x2da810;
 	virtual TodoReturn toggleGlitter(bool) = win 0x2e0990;
 	virtual void destroyPlayer(PlayerObject*, GameObject*) = mac 0xb40f0, win 0x2e0a90;
-	virtual TodoReturn toggleGroundVisibility(bool) = win 0x2e0840;
+	virtual TodoReturn toggleGroundVisibility(bool) = win 0x2e0840, mac 0xb3f40;
 	virtual TodoReturn toggleMGVisibility(bool) = win 0x2e08c0;
 	virtual TodoReturn toggleHideAttempts(bool) = win 0x2e0910;
 	virtual TodoReturn timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x2e0740;
@@ -9599,8 +9599,8 @@ class GJGroundLayer : cocos2d::CCLayer {
 	TodoReturn updateShadows();
 	TodoReturn fadeInFinished();
 	TodoReturn positionGround(float) = mac 0x5b06f0;
-	TodoReturn toggleVisible01(bool);
-	TodoReturn toggleVisible02(bool);
+	TodoReturn toggleVisible01(bool) = mac 0x5b0040;
+	TodoReturn toggleVisible02(bool) = mac 0x5b0080;
 	TodoReturn updateGroundPos(cocos2d::CCPoint);
 	TodoReturn updateLineBlend(bool) = mac 0x5b04b0;
 	TodoReturn deactivateGround();
