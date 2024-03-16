@@ -1900,7 +1900,7 @@ class GameManager : GManager {
 	TodoReturn showInterstitial();
 	TodoReturn switchScreenMode(bool, bool);
 	TodoReturn unloadBackground();
-	TodoReturn activeIconForType(IconType) = mac 0x35e430;
+	int activeIconForType(IconType) = mac 0x35e430;
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	TodoReturn loadVideoSettings() = mac 0x365ad0;
 	TodoReturn logLoadedIconInfo();

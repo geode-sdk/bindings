@@ -4445,7 +4445,7 @@ class GameManager : GManager {
     }
 
 	TodoReturn accountStatusChanged();
-	TodoReturn activeIconForType(IconType) = win 0x1270f0;
+	int activeIconForType(IconType) = win 0x1270f0;
 	TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string) = win 0x14da60;
 	TodoReturn addDuplicateLastFrame(int);
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int) = win 0x14d8c0;
