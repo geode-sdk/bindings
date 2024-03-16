@@ -1277,7 +1277,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// /* unverified signature */
 	bool isPlayer2Button(int);
 	TodoReturn moveCameraToPos(cocos2d::CCPoint);
-	TodoReturn parentForZLayer(int, bool, int, int) = mac 0x10b8f0;
+	TodoReturn parentForZLayer(int, bool, int, int);
 	TodoReturn playFlashEffect(float, int, float);
 	TodoReturn processCommands(float);
 	TodoReturn processSFXState(SFXTriggerState*, SFXTriggerState*, int, float);
@@ -6220,7 +6220,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn deactivateScaleControl();
 	TodoReturn selectAllWithDirection(bool) = mac 0x40d10;
 	TodoReturn showDeleteConfirmation();
-	TodoReturn spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = mac 0x37820;
+	CCPoint* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = mac 0x37820;
 	TodoReturn toggleEditObjectButton();
 	TodoReturn transformObjectsActive();
 	TodoReturn activateRotationControl(cocos2d::CCObject*) = mac 0x41020;
