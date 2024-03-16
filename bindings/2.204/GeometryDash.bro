@@ -3636,8 +3636,14 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn countActiveEffects();
 	TodoReturn countActiveMusic();
 	TodoReturn createStream(gd::string) = win 0x3aea0;
-	TodoReturn disableMetering();
-	TodoReturn enableMetering();
+	TodoReturn disableMetering()
+	{
+		*(reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x184)) = false;
+	}
+	TodoReturn enableMetering()
+	{
+		*(reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x184)) = true;
+	}
 	TodoReturn fadeInBackgroundMusic(float);
 	TodoReturn fadeInMusic(float, int) = win 0x3a740;
 	TodoReturn fadeOutMusic(float, int);
@@ -3649,7 +3655,10 @@ class FMODAudioEngine : cocos2d::CCNode {
 		return m_sfxVolume;
 	}
 	TodoReturn getFMODStatus(int) = win 0x3b0f0;
-	float getMeteringValue();
+	float getMeteringValue()
+	{
+		return *(reinterpret_cast<float*>(reinterpret_cast<uintptr_t>(this) + 0x174));
+	}
 	TodoReturn getMusicChannelID(int);
 	TodoReturn getMusicLengthMS(int) = win 0x3a570;
 	TodoReturn getMusicTime(int);
@@ -3685,7 +3694,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x4361f0;
 	TodoReturn queueStartMusic(gd::string, float, float, float, bool, int, int, int, int, int, bool, int, bool);
 	TodoReturn registerChannel(FMOD::Channel*, int, int) = win 0x36410;
-	TodoReturn releaseRemovedSounds();
+	TodoReturn releaseRemovedSounds() = win 0x3B040;
 	TodoReturn resumeAllAudio();
 	TodoReturn resumeAllEffects();
 	TodoReturn resumeAllMusic() = win 0x383a0;
@@ -3723,14 +3732,14 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn unloadAllEffects() = win 0x38130;
 	TodoReturn unloadEffect(gd::string);
 	TodoReturn unregisterChannel(int);
-	TodoReturn updateBackgroundFade();
+	float updateBackgroundFade() = win 0x38230; // this is float? rob?
 	TodoReturn updateChannel(int, AudioTargetType, AudioModType, float, float) = win 0x37200;
 	TodoReturn updateChannelTweens(float) = win 0x34dd0;
-	TodoReturn updateMetering();
+	float updateMetering() = win 0x34F80;
 	TodoReturn updateQueuedEffects() = win 0x39120;
-	TodoReturn updateQueuedMusic();
+	TodoReturn updateQueuedMusic() = win 0x396C0;
 	TodoReturn updateReverb(FMODReverbPreset, bool) = win 0x33220;
-	TodoReturn updateTemporaryEffects();
+	TodoReturn updateTemporaryEffects() = win 0x39520;
 	TodoReturn waitUntilSoundReady(FMOD::Sound*);
 
 	virtual void update(float) = win 0x33980;
