@@ -4222,7 +4222,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn userInfoForAccountID(int);
 	gd::string userNameForUserID(int) = win 0xf6290;
 	void verifyLevelState(GJGameLevel*) = win 0xf6510;
-	TodoReturn writeSpecialFilters(GJSearchObject*);
+	gd::string writeSpecialFilters(GJSearchObject*) = win 0xfca10;
 
 	virtual bool init() = win 0xf4c40;
 

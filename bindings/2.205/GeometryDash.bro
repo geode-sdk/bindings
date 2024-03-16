@@ -4195,7 +4195,7 @@ class GameLevelManager : cocos2d::CCNode {
 	gd::string userNameForUserID(int);
 	TodoReturn verifyContainerOnlyHasLevels(cocos2d::CCDictionary*);
 	TodoReturn verifyLevelState(GJGameLevel*);
-	TodoReturn writeSpecialFilters(GJSearchObject*);
+	gd::string writeSpecialFilters(GJSearchObject*);
 
 	virtual bool init();
 
