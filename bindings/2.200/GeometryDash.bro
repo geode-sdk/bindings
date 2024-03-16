@@ -3382,7 +3382,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn quickUpdatePosition();
 	TodoReturn updateMainColorOnly();
 	TodoReturn usesFreezeAnimation();
-	TodoReturn addColorSpriteToSelf() = mac 0x585840;
+	GameObject* addColorSpriteToSelf() = mac 0x585840;
 	TodoReturn addInternalGlowChild(gd::string, cocos2d::CCPoint);
 	TodoReturn calculateOrientedBox();
 	TodoReturn canChangeCustomColor();
@@ -3399,7 +3399,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn perspectiveColorFrame(char const*, int);
 	TodoReturn playDestroyObjectAnim(GJBaseGameLayer*);
 	TodoReturn updateCustomColorType(short);
-	TodoReturn addColorSpriteToParent(bool) = mac 0x571da0;
+	GameObject* addColorSpriteToParent(bool) = mac 0x571da0;
 	TodoReturn commonInteractiveSetup();
 	TodoReturn updateSecondaryOpacity();
 	TodoReturn canChangeSecondaryColor();
@@ -5820,7 +5820,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn sortBatchnodeChildren(float);
 	TodoReturn toggleLockActiveLayer();
 	TodoReturn transferDefaultColors(GJEffectManager*, GJEffectManager*);
-	TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = 0xf09c0;
+	TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = mac 0xf09c0;
 	TodoReturn updateGridLayerParent();
 	TodoReturn updateKeyframeObjects() = mac 0xe68f0;
 	TodoReturn updatePreviewParticle(ParticleGameObject*) = mac 0x19b760;
