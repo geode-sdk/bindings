@@ -3638,11 +3638,11 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn createStream(gd::string) = win 0x3aea0;
 	TodoReturn disableMetering()
 	{
-		*(reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x184)) = false;
+		*(reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x188)) = false;
 	}
 	TodoReturn enableMetering()
 	{
-		*(reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x184)) = true;
+		*(reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(this) + 0x188)) = true;
 	}
 	TodoReturn fadeInBackgroundMusic(float);
 	TodoReturn fadeInMusic(float, int) = win 0x3a740;
@@ -3657,7 +3657,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getFMODStatus(int) = win 0x3b0f0;
 	float getMeteringValue()
 	{
-		return *(reinterpret_cast<float*>(reinterpret_cast<uintptr_t>(this) + 0x174));
+		return *(reinterpret_cast<float*>(reinterpret_cast<uintptr_t>(this) + 0x178));
 	}
 	TodoReturn getMusicChannelID(int);
 	TodoReturn getMusicLengthMS(int) = win 0x3a570;
