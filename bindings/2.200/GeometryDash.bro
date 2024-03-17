@@ -6730,8 +6730,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updatePlayerScale() = win 0x2d3110;
 	TodoReturn updateStaticForce(float, float, bool) = win 0x2D2A00;
 	TodoReturn updateStreakBlend(bool);
-	TodoReturn collidedWithObject(float, GameObject*);
-	TodoReturn collidedWithObject(float, GameObject*, cocos2d::CCRect, bool);
+	void collidedWithObject(float, GameObject*) = mac 0x3ee020;
+	void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = mac 0x3e7850;
 	TodoReturn deactivateParticle();
 	TodoReturn destroyFromHitHead();
 	TodoReturn gameEventTriggered(int, int) = win 0x1B1AC0;
@@ -6933,7 +6933,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_isDead;
 	bool m_isOnGround;
 	bool m_isGoingLeft;
-	bool m_unk7b3;
+	bool m_isSideways;
 	bool m_isSwing;
 	PAD = win 0x10, mac 0x10;
 	float m_unk7c8;
