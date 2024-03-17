@@ -3675,7 +3675,7 @@ class GameObject : CCSpritePlus {
 	// property 156
 	int m_property156;
 
-	PAD = mac 0x42;
+	PAD = mac 0x12;
 }
 
 [[link(android)]]
@@ -6826,7 +6826,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn animationFinished(char const*) = mac 0x3fd190;
 
 	cocos2d::CCNode* m_mainLayer;
-	PAD = win 0x44, mac 0x18;
+	PAD = win 0x44, mac 0x48;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
 	cocos2d::CCDictionary* m_unk4ec;

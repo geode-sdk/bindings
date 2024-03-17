@@ -111,7 +111,7 @@ GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_mainLayer, 0x248);
 
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3488);
-GEODE_SIZE_CHECK(GameObject, 0x578);
+GEODE_SIZE_CHECK(GameObject, 0x548);
 GEODE_SIZE_CHECK(PlayerObject, 0xb80);
 GEODE_SIZE_CHECK(PlayLayer, 0x3758);
 GEODE_SIZE_CHECK(GJGameState, 0x5d8);
@@ -124,6 +124,7 @@ GEODE_MEMBER_CHECK(GameObject, m_groups, 0x488);
 GEODE_MEMBER_CHECK(GameObject, m_colorGroups, 0x498);
 GEODE_MEMBER_CHECK(GameObject, m_opacityGroups, 0x4a8);
 
+GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
 GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x688);
