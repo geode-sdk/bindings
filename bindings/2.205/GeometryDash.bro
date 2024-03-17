@@ -11172,7 +11172,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_isDead;
 	bool m_isOnGround;
 	bool m_isGoingLeft;
-	bool m_unk7b3;
+	bool m_isSideways;
 	bool m_isSwing;
 	PAD = win 0x10, android32 0x10, android64 0x10;
 	float m_unk7c8;
