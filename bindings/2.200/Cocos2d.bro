@@ -1586,8 +1586,8 @@ class cocos2d::CCScaleBy {
 
 [[link(win, android)]]
 class cocos2d::CCSequence {
-	static cocos2d::CCSequence* create(cocos2d::CCArray*) = mac 0x393740;
-	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
+	static cocos2d::CCSequence* create(cocos2d::CCArray*) = mac 0x393ab0;
+	static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = mac 0x393740;
 	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 	static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = mac 0x3937f0;
 
