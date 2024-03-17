@@ -217,7 +217,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	static LevelSelectLayer* create(int) = mac 0x410b80;
 
 	bool init(int) = mac 0x410c70;
-	~LevelSelectLayer() = mac 0x48beb0;
+	~LevelSelectLayer() = mac 0x4109e0;
 
 	TodoReturn getColorValue(int, int, float) = mac 0x4133f0;
 
@@ -1271,7 +1271,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateCounters(int, int);
 	TodoReturn updateGuideArt();
 	TodoReturn addRemapTargets(gd::set<int>&) = mac 0x101730;
-	void checkCollisions(PlayerObject*, float, bool) = win 0x1973f0;
+	void checkCollisions(PlayerObject*, float, bool) = win 0x1973f0, mac 0x110890;
 	TodoReturn claimMoveAction(int, bool);
 	TodoReturn collectedObject(EffectGameObject*);
 	// /* unverified signature */
@@ -1900,7 +1900,7 @@ class GameManager : GManager {
 	TodoReturn showInterstitial();
 	TodoReturn switchScreenMode(bool, bool);
 	TodoReturn unloadBackground();
-	TodoReturn activeIconForType(IconType) = mac 0x35e430;
+	int activeIconForType(IconType) = mac 0x35e430;
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	TodoReturn loadVideoSettings() = mac 0x365ad0;
 	TodoReturn logLoadedIconInfo();
@@ -4481,7 +4481,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn saveFetchedMapPacks(cocos2d::CCArray*);
 	TodoReturn storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
 	TodoReturn uploadFriendRequest(int, gd::string) = win 0x109f10;
-	TodoReturn writeSpecialFilters(GJSearchObject*);
+	gd::string writeSpecialFilters(GJSearchObject*) = mac 0x510460;
 	TodoReturn createAndGetMapPacks(gd::string);
 	TodoReturn deleteAccountComment(int, int);
 	TodoReturn deleteFriendRequests(int, cocos2d::CCArray*, bool);
@@ -6730,8 +6730,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updatePlayerScale() = win 0x2d3110;
 	TodoReturn updateStaticForce(float, float, bool) = win 0x2D2A00;
 	TodoReturn updateStreakBlend(bool);
-	TodoReturn collidedWithObject(float, GameObject*);
-	TodoReturn collidedWithObject(float, GameObject*, cocos2d::CCRect, bool);
+	void collidedWithObject(float, GameObject*) = mac 0x3ee020;
+	void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = mac 0x3e7850;
 	TodoReturn deactivateParticle();
 	TodoReturn destroyFromHitHead();
 	TodoReturn gameEventTriggered(int, int) = win 0x1B1AC0;
@@ -6933,7 +6933,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_isDead;
 	bool m_isOnGround;
 	bool m_isGoingLeft;
-	bool m_unk7b3;
+	bool m_isSideways;
 	bool m_isSwing;
 	PAD = win 0x10, mac 0x10;
 	float m_unk7c8;
