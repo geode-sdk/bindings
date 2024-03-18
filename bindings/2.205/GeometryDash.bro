@@ -5789,7 +5789,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn checkCameraLimitAfterTeleport(PlayerObject*, float);
 	TodoReturn checkCollision(int, int);
 	TodoReturn checkCollisionBlocks(EffectGameObject*, gd::vector<EffectGameObject*>*, int);
-	TodoReturn checkCollisions(PlayerObject*, float, bool);
+	bool checkCollisions(PlayerObject*, float, bool);
 	TodoReturn checkRepellPlayer();
 	TodoReturn checkSpawnObjects();
 	TodoReturn claimMoveAction(int, bool);
