@@ -12497,16 +12497,16 @@ class CharacterColorPage : FLAlertLayer {
 	void onMode(cocos2d::CCObject* sender) = mac 0x620db0;
 	void onClose(cocos2d::CCObject* sender);
 
-	TodoReturn checkColor(int, UnlockType); // inlined
-	TodoReturn toggleGlow(cocos2d::CCObject*) = mac 0x6214b0;
-	TodoReturn toggleShip(cocos2d::CCObject*) = mac 0x620d00;
-	TodoReturn colorForIndex(int) = mac 0x621a30;
-	TodoReturn offsetForIndex(int) = mac 0x621ca0;
-	TodoReturn createColorMenu() = mac 0x6210e0;
-	TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
-	TodoReturn toggleGlowItems(bool);
-	TodoReturn updateColorMode(int) = mac 0x6214f0;
-	TodoReturn updateIconColors() = mac 0x620f80;
+	void checkColor(int, UnlockType); // inlined
+	void toggleGlow(cocos2d::CCObject*) = mac 0x6214b0;
+	void toggleShip(cocos2d::CCObject*) = mac 0x620d00;
+	int colorForIndex(int) = mac 0x621a30;
+	cocos2d::CCPoint& offsetForIndex(int) = mac 0x621ca0;
+	void createColorMenu() = mac 0x6210e0;
+	void FLAlert_Clicked(FLAlertLayer*, bool);
+	void toggleGlowItems(bool);
+	void updateColorMode(int) = mac 0x6214f0;
+	void updateIconColors() = mac 0x620f80;
 	int activeColorForMode(int mode) {
 		switch (mode) {
 			case 0:
@@ -12523,7 +12523,18 @@ class CharacterColorPage : FLAlertLayer {
 	virtual bool init() = win 0x5e640, mac 0x620020;
 	virtual void registerWithTouchDispatcher() = mac 0x621ff0;
 	virtual void keyBackClicked() = mac 0x621f50;
-	virtual TodoReturn show() = mac 0x621dc0;
+	virtual void show() = mac 0x621dc0;
+
+	int m_currentColorMode;
+	float m_height;
+	float m_width;
+	cocos2d::CCArray* m_players;
+	cocos2d::CCArray* m_modeSelectButtons;
+	cocos2d::CCDictionary* m_colorButtons;
+	cocos2d::CCArray* m_colorSelectCursors;
+	CharacterColorDelegate* m_colorDelegate;
+	CCMenuItemToggler* m_glowItemCheck;
+	cocos2d::CCLabelBMFont* m_glowItemLabel;
 }
 
 [[link(android)]]
