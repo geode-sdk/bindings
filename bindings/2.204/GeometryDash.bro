@@ -152,7 +152,7 @@ class AchievementManager : cocos2d::CCNode {
 
 	TodoReturn achievementForUnlock(int, UnlockType);
 	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
-	void addManualAchievements() = win 0xf74a;
+	void addManualAchievements() = win 0x9f60;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
 	TodoReturn checkAchFromUnlock(char const*);
 	void dataLoaded(DS_Dictionary*);
