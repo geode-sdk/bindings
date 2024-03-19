@@ -5023,7 +5023,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getCurrencyKey(GJGameLevel*) = win 0x171c70;
 	TodoReturn getDailyLevelKey(int);
 	TodoReturn getDemonLevelKey(GJGameLevel*) = win 0x16fcb0;
-	TodoReturn getGauntletRewardKey(int) = win 0x179d00;
+	gd::string getGauntletRewardKey(int) = win 0x179d00;
 	TodoReturn getItemKey(int, int);
 	TodoReturn getItemUnlockState(int, UnlockType);
 	TodoReturn getItemUnlockStateLite(int, UnlockType);
@@ -5061,7 +5061,7 @@ class GameStatsManager : cocos2d::CCNode {
 	}
 	TodoReturn hasCompletedMainLevel(int);
 	TodoReturn hasCompletedMapPack(int);
-	TodoReturn hasCompletedOnlineLevel(int);
+	bool hasCompletedOnlineLevel(int);
 	TodoReturn hasCompletedStarLevel(GJGameLevel*);
 	TodoReturn hasPendingUserCoin(char const*);
 	TodoReturn hasRewardBeenCollected(GJRewardType, int);
@@ -6634,7 +6634,7 @@ class GJLevelList : cocos2d::CCNode {
 	static GJLevelList* create(cocos2d::CCDictionary*);
 
 	TodoReturn addLevelToList(GJGameLevel*);
-	TodoReturn completedLevels();
+	int completedLevels();
 	TodoReturn createWithCoder(DS_Dictionary*);
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn duplicateListLevels(GJLevelList*);
@@ -6759,11 +6759,11 @@ class GJMapPack : cocos2d::CCNode {
 	static GJMapPack* create();
 	static GJMapPack* create(cocos2d::CCDictionary*);
 
-	TodoReturn completedMaps();
-	TodoReturn hasCompletedMapPack();
+	int completedMaps();
+	bool hasCompletedMapPack();
 	TodoReturn parsePackColors(gd::string, gd::string);
 	TodoReturn parsePackLevels(gd::string);
-	TodoReturn totalMaps();
+	int totalMaps();
 
 	virtual bool init();
 
