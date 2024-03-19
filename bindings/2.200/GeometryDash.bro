@@ -1245,7 +1245,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn claimParticle(gd::string, int);
 	TodoReturn destroyObject(GameObject*);
 	TodoReturn enterDualMode(GameObject*, bool);
-	TodoReturn hasUniqueCoin(EffectGameObject*) = win 0x1995a0;
+	bool hasUniqueCoin(EffectGameObject*) = win 0x1995a0, mac 0x113ec0;
 	TodoReturn preResumeGame() = mac 0x13ea50;
 	TodoReturn removePlayer2();
 	TodoReturn rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
@@ -1658,7 +1658,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	TodoReturn addToMainScene();
 	TodoReturn animateInDialog();
 	TodoReturn handleDialogTap();
-	TodoReturn createDialogLayer(DialogObject*, cocos2d::CCArray*, int) = mac 0x3a5610;
+	static DialogLayer* createDialogLayer(DialogObject*, cocos2d::CCArray*, int) = mac 0x3a5610;
 	TodoReturn createWithObjects(cocos2d::CCArray*, int) = mac 0x3a5750;
 	TodoReturn displayNextObject() = mac 0x3a5c50;
 	TodoReturn animateInRandomSide() = mac 0x3a6830;
@@ -4731,7 +4731,7 @@ class LevelTools {
 	TodoReturn urlForAudio(int);
 	TodoReturn getLevelList();
 	static gd::string getAudioTitle(int) = mac 0x4d8da0, win 0x26E860;
-	TodoReturn getSongObject(int) = mac 0x4dc4f0;
+	static SongInfoObject* getSongObject(int) = mac 0x4dc4f0;
 	TodoReturn nameForArtist(int);
 	TodoReturn artistForAudio(int);
 	TodoReturn fbURLForArtist(int);
@@ -6474,7 +6474,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn removeAllObjects() = win 0x2E5750;
 	TodoReturn removeCheckpoint(bool);
 	TodoReturn resumeAndRestart(bool) = win 0x2E5160, mac 0xb88d0;
-	void showCompleteText() = win 0x2d8770;
+	void showCompleteText() = win 0x2d8770, mac 0xae690;
 	TodoReturn startGameDelayed() = win 0x2D7EC0;
 	TodoReturn delayedResetLevel() = win 0x2E4200, mac 0xb4c20;
 	void loadDefaultColors() = win 0x2df1e0;
@@ -6514,7 +6514,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn resume() = mac 0xb8a50;
 	TodoReturn showHint() = win 0x2e12d0, mac 0xb4ab0;
 	void addCircle(CCCircleWave* cw) = mac 0xb4cc0;
-	TodoReturn addObject(GameObject*) = win 0x2DBD30;
+	void addObject(GameObject*) = win 0x2DBD30, mac 0xabae0;
 	void fullReset() = win 0x2E40C0, mac 0xb8080;
 	TodoReturn pauseGame(bool) = win 0x2e4fc0, mac 0xb8790;
 	void startGame() = win 0x2d7e80;
@@ -7204,10 +7204,10 @@ class PauseLayer : CCBlockLayer {
 	void onRestart(cocos2d::CCObject* sender) = mac 0x3b5be0, win 0x2b4ce0;
 
 	TodoReturn tryShowBanner(float);
-	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
+	TodoReturn sfxSliderChanged(cocos2d::CCObject*) = mac 0x3b5c90;
 	TodoReturn setupProgressBars() = mac 0x3b4fb0;
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	void musicSliderChanged(cocos2d::CCObject*) = win 0x2B4AB0;
+	void musicSliderChanged(cocos2d::CCObject*) = mac 0x3b5c50, win 0x2B4AB0;
 	void goEdit() = win 0x2b4e70, mac 0x3b5fa0;
 
 	virtual void keyBackClicked();
@@ -7326,7 +7326,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 [[link(android)]]
 class SetTextPopupDelegate {
 	/* unverified signature */
-	virtual void setTextPopupClosed(SetTextPopup*, gd::string);
+	virtual void setTextPopupClosed(SetTextPopup*, gd::string) {}
 }
 
 
@@ -8476,9 +8476,9 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
 
 	bool init(int);
 	~SFXBrowser();
-
-	/* unverified signature */
+  
 	void setTextPopupClosed(SetTextPopup*, gd::string) = mac 0x41e7b0;
+
 
 	void onExitFolder(cocos2d::CCObject* sender);
 	void onClearSearch(cocos2d::CCObject* sender);
@@ -9162,6 +9162,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 
 	/* unverified signature */
 	void setTextPopupClosed(SetTextPopup*, gd::string) = mac 0x5d4090;
+
 
 	void onTagFilters(cocos2d::CCObject* sender);
 	void onClearSearch(cocos2d::CCObject* sender);
@@ -10010,7 +10011,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 
 	~ChallengesPage();
 
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = mac 0x37b610;
 
 	TodoReturn updateDots();
 	TodoReturn updateTimers(float) = mac 0x37b650;
@@ -11497,7 +11498,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	TodoReturn downloadFailed();
 	TodoReturn updateSongInfo() = mac 0x5e0a70;
 	TodoReturn updateLengthMod(float);
-	TodoReturn updateSongObject(SongInfoObject*);
+	TodoReturn updateSongObject(SongInfoObject*) = mac 0x5e09e0;
 	TodoReturn updatePlaybackBtn() = mac 0x5e1780;
 	TodoReturn updateProgressBar(int);
 	TodoReturn toggleUpdateButton(bool);
@@ -11582,7 +11583,7 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 
 [[link(android)]]
 class GameOptionsLayer : GJOptionsLayer {
-	static GameOptionsLayer* create(GJBaseGameLayer*);
+	static GameOptionsLayer* create(GJBaseGameLayer*) = mac 0x28c970;
 
 	bool init(GJBaseGameLayer*);
 	~GameOptionsLayer();
@@ -11741,7 +11742,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 
 [[link(android)]]
 class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJDropDownLayerDelegate {
-	static MoreOptionsLayer* create();
+	static MoreOptionsLayer* create() = mac 0x75cfc0;
 
 	~MoreOptionsLayer();
 
@@ -11754,8 +11755,10 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	void onKeybindings(cocos2d::CCObject* sender);
 	void onSongBrowser(cocos2d::CCObject* sender) = win 0x2ae9f0;
 	void onInfo(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+
+	void onClose(cocos2d::CCObject* sender) = mac 0x75f210;
 	void onToggle(cocos2d::CCObject* sender) = mac 0x75fa80;
+
 
 	TodoReturn countForPage(int);
 	TodoReturn layerForPage(int);

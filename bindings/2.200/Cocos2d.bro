@@ -12,6 +12,19 @@ class cocos2d::CCEaseSineInOut {
 }
 
 [[link(win, android)]]
+class cocos2d::CCEaseElasticOut {
+	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*);
+	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*, float) = mac 0x4EE060;
+
+	// CCEaseElasticOut(cocos2d::CCEaseElasticOut const&);
+	// CCEaseElasticOut();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCFileUtils {
 	// CCFileUtils();
 	// CCFileUtils(cocos2d::CCFileUtils const&);

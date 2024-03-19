@@ -1327,7 +1327,9 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual void show() = win 0x5D6D0;
+
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+
 	virtual TodoReturn challengeStatusFinished();
 	virtual TodoReturn challengeStatusFailed();
 	virtual TodoReturn currencyWillExit(CurrencyRewardLayer*);
@@ -5903,7 +5905,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn groupStickyObjects(cocos2d::CCArray*) = win 0x1a9b20;
 	TodoReturn handleButton(bool, int, bool) = win 0x1b69f0;
 	TodoReturn hasItem(int);
-	TodoReturn hasUniqueCoin(EffectGameObject*) = win 0x19d580;
+	bool hasUniqueCoin(EffectGameObject*) = win 0x19d580;
 	TodoReturn increaseBatchNodeCapacity() = win 0x194b40;
 	bool isFlipping();
 	bool isPlayer2Button(int);
