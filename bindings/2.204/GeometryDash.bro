@@ -1095,13 +1095,13 @@ class CCSpritePart : CCSpritePlus {
 class CCSpritePlus : cocos2d::CCSprite {
 	// virtual ~CCSpritePlus();
 
-	TodoReturn addFollower(cocos2d::CCNode*);
-	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	TodoReturn createWithSpriteFrameName(char const*);
-	TodoReturn followSprite(CCSpritePlus*);
-	TodoReturn getFollower();
-	TodoReturn removeFollower(cocos2d::CCNode*);
-	TodoReturn stopFollow();
+	void addFollower(cocos2d::CCNode* sprite);
+	static CCSpritePlus* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame);
+	static CCSpritePlus* createWithSpriteFrameName(char const* name);
+	void followSprite(CCSpritePlus* sprite);
+	cocos2d::CCSprite* getFollower();
+	void removeFollower(cocos2d::CCNode* sprite);
+	void stopFollow();
 
 	virtual void setScaleX(float) = win 0x28c10;
 	virtual void setScaleY(float) = win 0x28c90;
