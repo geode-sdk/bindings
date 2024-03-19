@@ -1271,7 +1271,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateCounters(int, int);
 	TodoReturn updateGuideArt();
 	TodoReturn addRemapTargets(gd::set<int>&) = mac 0x101730;
-	bool checkCollisions(PlayerObject*, float, bool) = win 0x1973f0, mac 0x110890;
+	int checkCollisions(PlayerObject*, float, bool) = win 0x1973f0, mac 0x110890;
 	TodoReturn claimMoveAction(int, bool);
 	TodoReturn collectedObject(EffectGameObject*);
 	// /* unverified signature */
