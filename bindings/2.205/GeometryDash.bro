@@ -8696,7 +8696,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-	// virtual ~LevelBrowserLayer();
+	virtual ~LevelBrowserLayer();
 
 	static LevelBrowserLayer* create(GJSearchObject*);
 
@@ -9444,7 +9444,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 
 [[link(android)]]
 class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
-	// virtual ~LevelSelectLayer();
+	virtual ~LevelSelectLayer();
 
 	static LevelSelectLayer* create(int);
 
