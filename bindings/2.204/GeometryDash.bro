@@ -11437,7 +11437,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn shouldBlend(int);
 	TodoReturn showCompleteEffect() = win 0x2DE940;
 	TodoReturn showCompleteText() = win 0x2de410;
-	TodoReturn showEndLayer();
+	TodoReturn showEndLayer() = win 0x2e0870;
 	TodoReturn showHint() = win 0x2e6f90;
 	TodoReturn showNewBest(bool, int, int, bool, bool, bool) = win 0x2dedc0;
 	TodoReturn showRetryLayer() = win 0x2e08e0;
