@@ -732,12 +732,12 @@ class CCCircleWave : cocos2d::CCNode {
 	// virtual ~CCCircleWave();
 	// CCCircleWave() = win 0x230e0;
 
-	static CCCircleWave* create(float, float, float, bool, bool) = win 0x23220;
+	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x23220;
 	static CCCircleWave* create(float, float, float, bool);
 
 	TodoReturn baseSetup(float);
 	TodoReturn followObject(cocos2d::CCNode*, bool) = win 0x23540;
-	bool init(float, float, float, bool, bool) = win 0x232f0;
+	bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x232f0; // easeOut is only used in fadeOut
 	TodoReturn updatePosition(float);
 
 	virtual void setPosition(cocos2d::CCPoint const&) = win 0x234f0;
@@ -10581,8 +10581,6 @@ class ObjectManager : cocos2d::CCNode {
 class ObjectToolbox : cocos2d::CCNode {
 	// virtual ~ObjectToolbox();
 
-	gd::map<int, gd::string> m_allKeys;
-
 	static ObjectToolbox* sharedState() = win 0x28b340;
 
 	TodoReturn allKeys();
@@ -10593,6 +10591,8 @@ class ObjectToolbox : cocos2d::CCNode {
 	TodoReturn perspectiveBlockFrame(int);
 
 	virtual bool init();
+
+	gd::map<int, gd::string> m_allKeys;
 }
 
 [[link(android)]]
@@ -11815,7 +11815,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 class RingObject : EffectGameObject {
 	// virtual ~RingObject();
 
-	static RingObject* create(char const*);
+	static RingObject* create(char const*) = win 0x399e70;
 
 	bool init(char const*);
 	TodoReturn spawnCircle();
