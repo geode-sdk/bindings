@@ -11440,7 +11440,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn showEndLayer();
 	TodoReturn showHint() = win 0x2e6f90;
 	TodoReturn showNewBest(bool, int, int, bool, bool, bool) = win 0x2dedc0;
-	TodoReturn showRetryLayer();
+	TodoReturn showRetryLayer() = win 0x2e08e0;
 	TodoReturn showTwoPlayerGuide();
 	TodoReturn spawnCircle();
 	TodoReturn spawnFirework();
