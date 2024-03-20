@@ -6665,7 +6665,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn rotateGameplay(int, int, bool, float, float, bool, bool) = win 0x2CDA10;
 	TodoReturn spiderTestJump(bool);
 	TodoReturn storeCollision(PlayerCollisionDirection, int) = win 0x2C2B70;
-	TodoReturn switchedToMode(GameObjectType) = win 0x2CF6A0;
+	void switchedToMode(GameObjectType) = win 0x2CF6A0, mac 0x3f3880;
 	TodoReturn toggleBirdMode(bool, bool) = win 0x2CE400, mac 0x3f7800;
 	TodoReturn toggleDartMode(bool, bool) = win 0x2CE9C0, mac 0x3f88a0;
 	TodoReturn toggleRollMode(bool, bool) = win 0x2CEF90, mac 0x3f8f60;
@@ -8476,7 +8476,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
 
 	bool init(int);
 	~SFXBrowser();
-  
+
 	void setTextPopupClosed(SetTextPopup*, gd::string) = mac 0x41e7b0;
 
 
