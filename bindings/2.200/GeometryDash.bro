@@ -6616,7 +6616,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn yStartDown();
 	void boostPlayer(float) = win 0x2d2d30;
 	TodoReturn createRobot(int) = mac 0x3dd580;
-	TodoReturn flashPlayer(float, float, cocos2d::_ccColor3B, cocos2d::_ccColor3B);
+	TodoReturn flashPlayer(float, float, cocos2d::_ccColor3B, cocos2d::_ccColor3B) = mac 0x3efee0;
 	TodoReturn flipGravity(bool, bool) = win 0x2CDDB0, mac 0x3e4a80;
 	TodoReturn gravityDown();
 	TodoReturn resetStreak() = mac 0x3e4520;
