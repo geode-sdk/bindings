@@ -6693,8 +6693,8 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn levelWasAltered();
 	TodoReturn levelWasSubmitted();
 	TodoReturn parseSettingsString(gd::string);
-	TodoReturn saveNewScore(int, int);
-	TodoReturn savePercentage(int, bool, int, int, bool) = win 0x113d70;
+	void saveNewScore(int, int) = win 0x114660;
+	void savePercentage(int percent, bool, int clicks, int attempts, bool) = win 0x113d70;
 	TodoReturn scoreStringToVector(gd::string&, gd::vector<int>&);
 	TodoReturn scoreVectorToString(gd::vector<int>&, int);
 	void setAccountID(int);
