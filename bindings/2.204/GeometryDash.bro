@@ -748,17 +748,17 @@ class CCCircleWave : cocos2d::CCNode {
 	// virtual ~CCCircleWave();
 	// CCCircleWave() = win 0x230e0;
 
-	static CCCircleWave* create(float, float, float, bool, bool) = win 0x23220;
+	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x23220;
 	static CCCircleWave* create(float, float, float, bool);
 
 	TodoReturn baseSetup(float);
 	TodoReturn followObject(cocos2d::CCNode*, bool) = win 0x23540;
-	bool init(float, float, float, bool, bool) = win 0x232f0;
+	bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x232f0; // easeOut is only used in fadeOut
 	TodoReturn updatePosition(float);
 
-	virtual void setPosition(cocos2d::CCPoint const&);
-	virtual void removeMeAndCleanup();
-	virtual void draw();
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x234f0;
+	virtual void removeMeAndCleanup() = win 0x239a0;
+	virtual void draw() = win 0x23840;
 	virtual void updateTweenAction(float, char const*) = win 0x235b0;
 
 	PAD = win 0x11;
