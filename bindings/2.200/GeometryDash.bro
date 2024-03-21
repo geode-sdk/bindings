@@ -6847,9 +6847,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	int unk_588; // seems to always be 0, but when you respawn it's -1 until you move at least 1 block from the respawn place
 	PAD = win 0x4, mac 0x4;
 	cocos2d::CCArray* m_particleSystems;
+	PAD = mac 0x8;
 	gd::unordered_map<int, GJPointDouble> m_unk594; // insertions are in PlayerObject::rotateGameplayObject
 	gd::unordered_map<int, GameObject*> m_unk5b4;
-	float m_unk5d4;
 	float m_rotationSpeed;
 	float m_unk5dc;
 	bool m_isRotating;

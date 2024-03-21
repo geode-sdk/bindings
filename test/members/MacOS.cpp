@@ -128,6 +128,12 @@ GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
 GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x688);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk594, 0x698); // unsure
+GEODE_MEMBER_CHECK(PlayerObject, m_unk5b4, 0x6c0); // unsure
+GEODE_MEMBER_CHECK(PlayerObject, m_rotationSpeed, 0x6e8);
+GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x6f3);
+GEODE_MEMBER_CHECK(PlayerObject, m_hasGhostTrail, 0x6f4);
+GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x6f8);
 GEODE_MEMBER_CHECK(PlayerObject, m_swingFireMiddle, 0x748);
 GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x778);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x830);
