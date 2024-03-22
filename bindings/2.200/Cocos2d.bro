@@ -1329,7 +1329,7 @@ class cocos2d::CCParticleSystem {
 	virtual void setScaleX(float);
 	virtual void setScaleY(float);
 	virtual void setScale(float);
-	virtual void setVisible(bool);
+	// virtual void setVisible(bool); // todo this does not compile
 	virtual void setRotation(float);
 	virtual cocos2d::CCParticleBatchNode* getBatchNode();
 	virtual void setBatchNode(cocos2d::CCParticleBatchNode*);
