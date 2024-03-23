@@ -65,8 +65,8 @@ class cocos2d::CCAction {
 	void setSpeedMod(float);
 	void setTarget(cocos2d::CCNode*);
 
-	// CCAction(cocos2d::CCAction const&);
-	// CCAction();
+	 CCAction(cocos2d::CCAction const&) = mac 0x9999999;
+	 CCAction() = mac 0x9999999;
 	char const* description();
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
@@ -74,7 +74,7 @@ class cocos2d::CCAction {
 	virtual void setTag(int);
 	virtual bool isDone();
 	virtual void startWithTarget(cocos2d::CCNode*);
-	virtual void stop();
+	virtual void stop() = mac 0x9999999;
 	virtual void step(float);
 }
 
@@ -120,7 +120,7 @@ class cocos2d::CCActionInstant {
 class cocos2d::CCActionInterval {
 	static cocos2d::CCActionInterval* create(float);
 
-	bool initWithDuration(float);
+	bool initWithDuration(float) = mac 0x9999999;
 
 	float getAmplitudeRate();
 	float getElapsed();
@@ -131,9 +131,9 @@ class cocos2d::CCActionInterval {
 	// CCActionInterval(cocos2d::CCActionInterval const&);
 	// CCActionInterval();
 
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual bool isDone();
-	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = mac 0x9999999;
+	virtual bool isDone() = mac 0x9999999;
+	virtual void startWithTarget(cocos2d::CCNode*) = mac 0x9999999;
 	virtual void step(float);
 	virtual cocos2d::CCActionInterval* reverse();
 }
@@ -786,8 +786,8 @@ class cocos2d::CCDouble {
 	double getValue() const;
 }
 
-// [[link(win)]]
-// class cocos2d::CCEGLView {
+ [[link(win)]]
+ class cocos2d::CCEGLView {
 // 	// CCEGLView();
 // 	// CCEGLView(cocos2d::CCEGLView const&);
 // 	void capture();
@@ -838,7 +838,7 @@ class cocos2d::CCDouble {
 // 	virtual void setViewPortInPoints(float, float, float, float);
 // 	void setWindowedSize(cocos2d::CCSize);
 // 	void setupWindow(cocos2d::CCRect);
-// 	static cocos2d::CCEGLView* sharedOpenGLView();
+ 	static cocos2d::CCEGLView* sharedOpenGLView() = mac 0x9999999;
 // 	void showCursor(bool);
 // 	void showMessage(gd::string);
 // 	virtual void swapBuffers();
@@ -849,7 +849,7 @@ class cocos2d::CCDouble {
 // 	void updateFrameSize();
 // 	void updateWindow(int, int);
 // 	bool windowShouldClose();
-// }
+ }
 
 [[link(win, android)]]
 class cocos2d::CCEGLViewProtocol {
@@ -1012,8 +1012,8 @@ class cocos2d::CCEaseElasticInOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseElasticOut {
-	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*);
-	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*, float);
+	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*) = mac 0x9999999;
+	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*, float) = mac 0x9999999;
 
 	// CCEaseElasticOut(cocos2d::CCEaseElasticOut const&);
 	// CCEaseElasticOut();
@@ -2058,7 +2058,7 @@ class cocos2d::CCMouseHandler {
 
 [[link(win, android)]]
 class cocos2d::CCMoveBy {
-	static cocos2d::CCMoveBy* create(float, cocos2d::CCPoint const&);
+	static cocos2d::CCMoveBy* create(float, cocos2d::CCPoint const&) = mac 0x9999999;
 
 	bool initWithDuration(float, cocos2d::CCPoint const&);
 
@@ -3134,7 +3134,7 @@ class cocos2d::CCScheduler {
 	void setTimeScale(float);
 
 	// CCScheduler(cocos2d::CCScheduler const&);
-	// CCScheduler();
+	 CCScheduler() = mac 0x9999999;
 	void appendIn(cocos2d::_listEntry**, cocos2d::CCObject*, bool);
 	bool isTargetPaused(cocos2d::CCObject*);
 	cocos2d::CCSet* pauseAllTargets();
@@ -3359,7 +3359,7 @@ class cocos2d::CCSpawn {
 
 [[link(win, android)]]
 class cocos2d::CCSpeed {
-	static cocos2d::CCSpeed* create(cocos2d::CCActionInterval*, float);
+	static cocos2d::CCSpeed* create(cocos2d::CCActionInterval*, float) = mac 0x9999999;
 
 	bool initWithAction(cocos2d::CCActionInterval*, float);
 
@@ -4090,7 +4090,7 @@ class cocos2d::CCTintBy {
 
 [[link(win, android)]]
 class cocos2d::CCTintTo {
-	static cocos2d::CCTintTo* create(float, unsigned char, unsigned char, unsigned char);
+	static cocos2d::CCTintTo* create(float, unsigned char, unsigned char, unsigned char) = mac 0x9999999;
 
 	bool initWithDuration(float, unsigned char, unsigned char, unsigned char);
 
@@ -4158,9 +4158,9 @@ class cocos2d::CCTouchDispatcher {
 
 	// CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
 	// CCTouchDispatcher();
-	void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
-	void addStandardDelegate(cocos2d::CCTouchDelegate*, int);
-	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
+	void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = mac 0x9999999;
+	void addStandardDelegate(cocos2d::CCTouchDelegate*, int) = mac 0x9999999;
+	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = mac 0x9999999;
 	void decrementForcePrio(int);
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*);
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*);
@@ -4172,10 +4172,10 @@ class cocos2d::CCTouchDispatcher {
 	bool isUsingForcePrio();
 	void rearrangeHandlers(cocos2d::CCArray*);
 	void registerForcePrio(cocos2d::CCObject*, int);
-	void removeAllDelegates();
-	void removeDelegate(cocos2d::CCTouchDelegate*);
+	void removeAllDelegates() = mac 0x9999999;
+	void removeDelegate(cocos2d::CCTouchDelegate*) = mac 0x9999999;
 	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
-	void unregisterForcePrio(cocos2d::CCObject*);
+	void unregisterForcePrio(cocos2d::CCObject*) = mac 0x9999999;
 
 	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
 	virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
