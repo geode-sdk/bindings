@@ -5851,7 +5851,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 
 	virtual void draw();
 	virtual TodoReturn postUpdate(float) = win 0x242560, mac 0xefae0;
-	virtual TodoReturn updateVisibility(float);
+	virtual TodoReturn updateVisibility(float) = mac 0x9999999;
 	virtual TodoReturn playerTookDamage(PlayerObject*);
 	virtual TodoReturn updateColor(cocos2d::_ccColor3B&, float, int, bool, float, cocos2d::_ccHSVValue&, int, bool, EffectGameObject*, int, int);
 	virtual TodoReturn addToGroup(GameObject*, int, bool);
