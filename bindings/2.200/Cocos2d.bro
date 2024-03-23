@@ -158,7 +158,7 @@ class cocos2d::CCNode {
 	cocos2d::CCPoint convertToWindowSpace(cocos2d::CCPoint const&);
 	cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&) = mac 0x252cb0;
 	cocos2d::CCPoint convertToWorldSpaceAR(cocos2d::CCPoint const&);
-	cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*);
+	cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*) = mac 0x9999999;
 	cocos2d::CCPoint convertTouchToNodeSpaceAR(cocos2d::CCTouch*);
 	char const* description();
 	void detachChild(cocos2d::CCNode*, bool);
@@ -382,6 +382,7 @@ class cocos2d::CCScheduler {
 
 	// CCScheduler(cocos2d::CCScheduler const&);
 	// CCScheduler();
+	~CCScheduler() = mac 0x9999999;
 
 	void appendIn(cocos2d::_listEntry**, cocos2d::CCObject*, bool);
 	bool isTargetPaused(cocos2d::CCObject*);
@@ -1927,6 +1928,8 @@ class cocos2d::CCDrawNode {
 
 	// CCDrawNode(cocos2d::CCDrawNode const&);
 	// CCDrawNode();
+	~CCDrawNode() = mac 0x9999999;
+
 	void clear();
 	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int);
 	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
