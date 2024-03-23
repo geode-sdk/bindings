@@ -1140,6 +1140,9 @@ class GJGameState {
 	gd::unordered_map<int, gd::vector<SongTriggerState>> m_unk468;
 	gd::vector<SFXTriggerState> m_unk484;
 	PAD = win 0x14, android32 0x14, android64 0x14, mac 0x14;
+
+// added for testing, todo: remove
+int m_unk1f8;
 }
 
 [[link(android)]]
@@ -5775,7 +5778,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*);
 	TodoReturn pasteGroupState(GameObject*, cocos2d::CCArray*);
 	TodoReturn unlockAllLayers() = mac 0xe4f00;
-	TodoReturn updateDebugDraw();
+	TodoReturn updateDebugDraw() = mac 0x9999999;
 	TodoReturn updateGridLayer();
 	void updateLevelFont(int);
 	TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*);
@@ -6474,7 +6477,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn removeAllObjects() = win 0x2E5750;
 	TodoReturn removeCheckpoint(bool);
 	TodoReturn resumeAndRestart(bool) = win 0x2E5160, mac 0xb88d0;
-	void showCompleteText() = win 0x2d8770;
+	void showCompleteText() = win 0x2d8770, mac 0x9999999;
 	TodoReturn startGameDelayed() = win 0x2D7EC0;
 	TodoReturn delayedResetLevel() = win 0x2E4200, mac 0xb4c20;
 	void loadDefaultColors() = win 0x2df1e0;
@@ -10797,7 +10800,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn preloadEffect(gd::string) = win 0x37780;
 	TodoReturn updateChannel(int, AudioTargetType, AudioModType, float, float) = win 0x36f70;
 	TodoReturn channelStopped(FMOD::Channel*, bool);
-	TodoReturn enableMetering();
+	TodoReturn enableMetering() = mac 0x9999999;
 	TodoReturn getActiveMusic(int) = win 0x3a6b0;
 	TodoReturn getMusicTimeMS(int);
 	/* unverified signature */
@@ -10817,7 +10820,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn stopAllEffects() = mac 0x3bc450, win 0x37D00;
 	TodoReturn stopAndGetFade(FMOD::Channel*);
 	TodoReturn swapMusicIndex(int, int);
-	TodoReturn updateMetering();
+	TodoReturn updateMetering() = mac 0x9999999;
 	TodoReturn disableMetering() = mac 0x3c1a40;
 	TodoReturn getChannelGroup(int, bool) = win 0x351d0;
 	TodoReturn pauseAllEffects();
