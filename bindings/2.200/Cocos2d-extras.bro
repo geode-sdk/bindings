@@ -491,7 +491,7 @@ class cocos2d::CCCallFunc {
 [[link(win, android)]]
 class cocos2d::CCCallFuncN {
 	static cocos2d::CCCallFuncN* create(int);
-	static cocos2d::CCCallFuncN* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncN);
+	static cocos2d::CCCallFuncN* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncN) = mac 0x9999999;
 
 	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncN);
 
@@ -908,7 +908,7 @@ class cocos2d::CCEaseBackInOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBackOut {
-	static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*);
+	static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*) = mac 0x9999999;
 
 	// CCEaseBackOut(cocos2d::CCEaseBackOut const&);
 	// CCEaseBackOut();
@@ -956,7 +956,7 @@ class cocos2d::CCEaseBounceInOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBounceOut {
-	static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*);
+	static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*) = mac 0x9999999;
 
 	// CCEaseBounceOut(cocos2d::CCEaseBounceOut const&);
 	// CCEaseBounceOut();
