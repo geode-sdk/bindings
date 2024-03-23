@@ -1250,7 +1250,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn removePlayer2();
 	TodoReturn rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
 	TodoReturn spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint);
-	TodoReturn toggleFlipped(bool, bool);
+	TodoReturn toggleFlipped(bool, bool) = mac 0x9999999;
 	TodoReturn updateTimeMod(float, bool, bool);
 	TodoReturn animatePortalY(float, float, float, float);
 	TodoReturn canTouchObject(GameObject*);
