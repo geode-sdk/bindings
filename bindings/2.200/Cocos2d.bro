@@ -77,7 +77,7 @@ class cocos2d::CCClippingNode {
 
 [[link(win, android)]]
 class cocos2d::CCCallFunc {
-	static cocos2d::CCCallFunc* create(int);
+	static cocos2d::CCCallFunc* create(int) = mac 0x9999999;
 	static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc) = mac 0x76e860;
 
 	int getScriptHandler();
@@ -544,8 +544,8 @@ class cocos2d::CCLayerColor {
 [[link(win, android)]]
 class cocos2d::CCLayerGradient {
 	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = mac 0x48F140;
-	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
-	static cocos2d::CCLayerGradient* create();
+	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&) = mac 0x9999999;
+	static cocos2d::CCLayerGradient* create() = mac 0x9999999;
 
 	bool getShouldPremultiply() const;
 
