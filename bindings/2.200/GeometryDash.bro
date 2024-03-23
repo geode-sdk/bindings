@@ -1198,7 +1198,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void setStartPosObject(StartPosObject*) = win 0x195FC0;
 
 	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
-	TodoReturn applyShake(cocos2d::CCPoint&) = win 0x1BD670;
+	TodoReturn applyShake(cocos2d::CCPoint&) = win 0x1BD670, mac 0x9999999;
 	TodoReturn atlasValue(int);
 	TodoReturn bumpPlayer(PlayerObject*, EffectGameObject*) = win 0x19a6b0;
 	bool isFlipping();
