@@ -67,6 +67,7 @@ class cocos2d::CCAction {
 
 	 CCAction(cocos2d::CCAction const&) = mac 0x9999999;
 	 CCAction() = mac 0x9999999;
+	 ~CCAction() = mac 0x9999999;
 	char const* description();
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
