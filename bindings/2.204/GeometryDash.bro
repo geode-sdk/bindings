@@ -4826,7 +4826,11 @@ class GameObject : CCSpritePlus {
 	static GameObject* createWithFrame(char const*) = win 0x130fc0;
 	static GameObject* createWithKey(int) = win 0x130330;
 	void deselectObject(); // = win 0x141b70; actually updateObjectEditorColor, source: LevelEditorLayer::updateVisibility
-	TodoReturn destroyObject();
+	inline void destroyObject() {
+		m_unk34a = true;
+		m_unk292 = true;
+		setOpacity(0);
+	}
 	TodoReturn determineSlopeDirection() = win 0x13d3c0;
 	TodoReturn didScaleXChange();
 	TodoReturn didScaleYChange();
@@ -4902,7 +4906,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn parentForZLayer(int, bool, int);
 	TodoReturn perspectiveColorFrame(char const*, int);
 	TodoReturn perspectiveFrame(char const*, int);
-	TodoReturn playDestroyObjectAnim(GJBaseGameLayer*);
+	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x14a660;
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float);
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float);
 	TodoReturn playShineEffect() = win 0x13bf40;
@@ -5066,9 +5070,9 @@ class GameObject : CCSpritePlus {
 
 	float m_unk288;
 	float m_unk28c;
-
-	PAD = android32 0x8, win 0x8, android64 0x8;
-
+	short m_unk290;
+	bool m_unk292;
+	PAD = android32 0x1, win 0x1, android64 0x1;
 	gd::string m_particleString;
 
 	PAD = android32 0x1, win 0x1, android64 0x1;
@@ -5097,7 +5101,8 @@ class GameObject : CCSpritePlus {
 
 	// property 372
 	bool m_hasNoAudioScale;
-	PAD = android32 0x2a, win 0x2a, android64 0x2a;
+	bool m_unk34a;
+	PAD = android32 0x29, win 0x29, android64 0x29;
 
 	// property 343
 	short m_enterChannel;
