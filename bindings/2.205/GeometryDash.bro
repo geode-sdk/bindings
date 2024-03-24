@@ -9668,13 +9668,13 @@ class LikeItemDelegate {
 class LikeItemLayer : FLAlertLayer {
 	// virtual ~LikeItemLayer();
 
-	static LikeItemLayer* create(LikeItemType, int, int);
-
-	bool init(LikeItemType, int, int);
-	void onClose(cocos2d::CCObject* sender);
-	void onDislike(cocos2d::CCObject* sender);
-	void onLike(cocos2d::CCObject* sender);
-	TodoReturn triggerLike(bool);
+	static LikeItemLayer* create(LikeItemType, int, int) = win 0x275d20;
+	
+    	bool init(LikeItemType, int, int) = win 0x275dd0;
+    	void onClose(cocos2d::CCObject* sender) = win 0x6a750;
+    	void onDislike(cocos2d::CCObject* sender) = win 0x276180;
+    	void onLike(cocos2d::CCObject* sender) = win 0x276170;
+    	TodoReturn triggerLike(bool like) = win 0x276190;
 
 	virtual void keyBackClicked();
 
