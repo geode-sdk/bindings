@@ -9755,7 +9755,7 @@ class LikeItemLayer : FLAlertLayer {
 	void onClose(cocos2d::CCObject* sender) = win 0x6a750;
 	void onDislike(cocos2d::CCObject* sender) = win 0x276180;
 	void onLike(cocos2d::CCObject* sender) = win 0x276170;
-	TodoReturn triggerLike(bool isLiked) = win 0x276190;
+	void triggerLike(bool isLiked) = win 0x276190;
 
 	virtual void keyBackClicked();
 
