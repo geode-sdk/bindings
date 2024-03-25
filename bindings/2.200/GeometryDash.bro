@@ -3320,7 +3320,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn updateStartPos() = mac 0x571590;
 	TodoReturn addToColorGroup(int);
 	TodoReturn addToTempOffset(double, double);
-	TodoReturn createWithFrame(char const*) = win 0x12f0a0;
+	static GameObject* createWithFrame(char const*) = win 0x12f0a0, mac 0x569e80;
 	TodoReturn didScaleXChange();
 	TodoReturn didScaleYChange();
 	TodoReturn duplicateValues(GameObject*);
@@ -3682,7 +3682,7 @@ class GameObject : CCSpritePlus {
 class EnhancedGameObject : GameObject {
 	static EnhancedGameObject* create(char const*);
 
-	bool init(char const*);
+	bool init(char const*) = mac 0x591c40;
 	~EnhancedGameObject();
 	EnhancedGameObject();
 
@@ -3760,9 +3760,9 @@ class EnhancedGameObject : GameObject {
 
 [[link(android)]]
 class EffectGameObject : EnhancedGameObject {
-	static EffectGameObject* create(char const*);
+	static EffectGameObject* create(char const*) = mac 0x1a1820;
 
-	bool init(char const*);
+	bool init(char const*); // inlined
 	~EffectGameObject();
 
 	TodoReturn getTargetColorIndex();
@@ -3780,7 +3780,7 @@ class EffectGameObject : EnhancedGameObject {
 	TodoReturn updateSpeedModType();
 	TodoReturn triggerEffectFinished() = win 0x396080;
 	TodoReturn updateInteractiveHover(float);
-	EffectGameObject();
+	EffectGameObject() = mac 0x1d33f0;
 
 	virtual void setOpacity(unsigned char) = mac 0x1a1c20;
 	virtual TodoReturn firstSetup() = mac 0x1a3b80;
@@ -4820,7 +4820,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn purchaseItem(int) = win 0x168160;
 	TodoReturn resetPreSync();
 	//TodoReturn collectReward(GJRewardType, GJRewardItem*);
-	TodoReturn hasSecretCoin(char const*) = win 0x16efb0;
+	bool hasSecretCoin(char const*) = win 0x16efb0, mac 0x6cc30;
 	TodoReturn incrementStat(char const*);
 	TodoReturn incrementStat(char const*, int) = win 0x1682C0;
 	/* unverified signature */
@@ -8615,7 +8615,7 @@ class GJMapObject : cocos2d::CCNode {
 	TodoReturn moveFinished();
 	TodoReturn touchMonster();
 	TodoReturn updateShadow(float, float, cocos2d::CCPoint);
-	TodoReturn createMonster(int);
+	TodoReturn createMonster(int) = mac 0x244df0;
 	TodoReturn startPlayerJumpLoop();
 	TodoReturn startMonsterJumpLoop();
 }
