@@ -1086,25 +1086,25 @@ class CCSpritePart : CCSpritePlus {
 class CCSpritePlus : cocos2d::CCSprite {
 	// virtual ~CCSpritePlus();
 
-	TodoReturn addFollower(cocos2d::CCNode*);
-	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	TodoReturn createWithSpriteFrameName(char const*);
-	TodoReturn followSprite(CCSpritePlus*);
-	TodoReturn getFollower();
-	TodoReturn removeFollower(cocos2d::CCNode*);
-	TodoReturn stopFollow();
+	void addFollower(cocos2d::CCNode* sprite);
+	static CCSpritePlus* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame);
+	static CCSpritePlus* createWithSpriteFrameName(char const* name);
+	void followSprite(CCSpritePlus* sprite);
+	cocos2d::CCSprite* getFollower();
+	void removeFollower(cocos2d::CCNode* sprite);
+	void stopFollow();
 
-	virtual void setScaleX(float);
-	virtual void setScaleY(float);
-	virtual void setScale(float);
-	virtual void setPosition(cocos2d::CCPoint const&);
-	virtual void setRotation(float);
-	virtual void setRotationX(float);
-	virtual void setRotationY(float);
+    	virtual void setPosition(cocos2d::CCPoint const &pos);
+	virtual void setRotation(float fRotation);
+    	virtual void setRotationX(float fRotationX);
+    	virtual void setRotationY(float fRotationY);
+    	virtual void setScale(float fScale);
+    	virtual void setScaleX(float fScaleX);
+    	virtual void setScaleY(float fScaleY);
 	virtual bool initWithTexture(cocos2d::CCTexture2D*);
 	virtual bool initWithSpriteFrameName(char const*);
-	virtual void setFlipX(bool);
-	virtual void setFlipY(bool);
+	virtual void setFlipX(bool value);
+	virtual void setFlipY(bool value);
 
 	cocos2d::CCArray* m_followers;
 	CCSpritePlus* m_followingSprite;
