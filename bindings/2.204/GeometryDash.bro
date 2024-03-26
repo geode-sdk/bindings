@@ -14117,14 +14117,14 @@ class ShareLevelLayer : FLAlertLayer {
 
 	static ShareLevelLayer* create(GJGameLevel*) = win 0x387e70;
 
-	TodoReturn getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
-	bool init(GJGameLevel*) = win 0x387f10;
+	CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale);
+	bool init(GJGameLevel* level) = win 0x387f10;
 	void onClose(cocos2d::CCObject* sender);
 	void onSettings(cocos2d::CCObject* sender);
 	void onShare(cocos2d::CCObject* sender) = win 0x388f20;
 	TodoReturn selectRating(cocos2d::CCObject*);
 	TodoReturn setupStars();
-
+	
 	virtual void keyBackClicked();
 }
 
