@@ -9980,7 +9980,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 	void destroyPlayer() = win 0x27AE40;
 	TodoReturn getBGColor(int);
 	TodoReturn resetPlayer() = win 0x279fd0;
-	TodoReturn tryJump(float);
+	TodoReturn tryJump(float) = win 0x2399a0;
 	TodoReturn updateColor(float) = win 0x2796d0;
 	TodoReturn updateColors();
 
