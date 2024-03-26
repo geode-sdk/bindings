@@ -5276,7 +5276,7 @@ class GameStatsManager : cocos2d::CCNode {
 
 	static GameStatsManager* sharedState() = win 0x167d90;
 
-	TodoReturn accountIDForIcon(int, UnlockType);
+	int accountIDForIcon(int, UnlockType) = win 0x15e7c0;
 	TodoReturn addSimpleSpecialChestReward(gd::string, UnlockType, int, bool) = win 0x179bd0;
 	TodoReturn addSpecialRewardDescription(gd::string, gd::string) = win 0x179e00;
 	TodoReturn addStoreItem(int, int, int, int, ShopType) = win 0x169f40;
@@ -5426,7 +5426,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn unlockSecretChest(int) = win 0x17a8a0;
 	TodoReturn unlockSpecialChest(gd::string) = win 0x17a130;
 	TodoReturn updateActivePath(StatKey);
-	TodoReturn usernameForAccountID(int) = win 0x15e830;
+	gd::string usernameForAccountID(int) = win 0x15e830;
 	TodoReturn verifyUserCoins();
 
 	virtual bool init() = win 0x168000;
@@ -7006,7 +7006,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onArrow(cocos2d::CCObject* sender) = win 0x1f1bf0;
 	void onBack(cocos2d::CCObject* sender) = win 0x1f3c70;
 	void onInfo(cocos2d::CCObject* sender);
-	void onNavigate(cocos2d::CCObject* sender);
+	void onNavigate(cocos2d::CCObject* sender) = win 0x1f1c80;
 	void onPaint(cocos2d::CCObject* sender) = win 0x1f3bb0;
 	void onSelect(cocos2d::CCObject* sender) = win 0x1f2d30;
 	void onSelectTab(cocos2d::CCObject* sender);
@@ -7021,7 +7021,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 		scene->addChild(GJGarageLayer::node());
 		return scene;
 	}
-	TodoReturn selectTab(IconType) = win 0x1f1cd0;
+	void selectTab(IconType) = win 0x1f1cd0;
 	TodoReturn setupIconSelect() = win 0x1f1170;
 	void setupPage(int, IconType) = win 0x1f1d70;
 	TodoReturn setupSpecialPage() = win 0x1f2590;
@@ -7107,7 +7107,7 @@ class GJItemIcon : cocos2d::CCSprite {
 	void darkenStoreItem(cocos2d::ccColor3B) = win 0x1f5720;
 	TodoReturn darkenStoreItem(ShopType);
 	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x1f50f0;
-	TodoReturn scaleForType(UnlockType) = win 0x1f59e0;
+	float scaleForType(UnlockType) = win 0x1f59e0;
 	TodoReturn toggleEnabledState(bool) = win 0x1f5870;
 	TodoReturn unlockedColorForType(int);
 
@@ -8384,13 +8384,19 @@ class HardStreak : cocos2d::CCDrawNode {
 	void firstSetup() = win 0x2268C0;
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
-	TodoReturn reset();
+	inline void reset() {
+		this->clear();
+		m_pointArray->removeAllObjects();
+	}
 	TodoReturn resumeStroke();
 	TodoReturn scheduleAutoUpdate();
 	TodoReturn stopStroke();
 	callback void updateStroke(float) = win 0x226960;
 
 	virtual bool init() = win 0x226860;
+	
+	PAD = win 0x20;
+	cocos2d::CCArray* m_pointArray;
 }
 
 [[link(android)]]
