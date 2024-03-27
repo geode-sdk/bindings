@@ -4225,7 +4225,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getTimeLeft(char const*, float) = mac 0x50a700;
 	void getUserList(UserListType) = mac 0x524400;
 	TodoReturn getGauntlets() = mac 0x513af0;
-	TodoReturn getGJRewards(int) = mac 0x525ff0;
+	void getGJRewards(int) = mac 0x525ff0;
 	TodoReturn getIntForKey(char const*) = mac 0x527ee0;
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
 	GJGameLevel* getMainLevel(int, bool) = win 0xF40E0, mac 0x5011a0;
@@ -4235,7 +4235,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getDailyTimer(GJTimedLevelType) = mac 0x5271c0;
 	TodoReturn getFolderName(int, bool) = mac 0x50bf00;
 	void getGJUserInfo(int) = win 0x105270, mac 0x51b4d0;
-	TodoReturn getLevelLists(GJSearchObject*) = mac 0x512dd0;
+	void getLevelLists(GJSearchObject*) = mac 0x512dd0;
 	TodoReturn getLocalLevel(int);
 	TodoReturn getMapPackKey(int);
 	TodoReturn getMessageKey(int);
@@ -4248,7 +4248,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* getSavedLevels(bool, int) = mac 0x5089a0, win 0xF6620;
 	TodoReturn getSearchScene(char const*) = mac 0x50aa00;
 	TodoReturn getUserInfoKey(int);
-	TodoReturn getGJChallenges() = mac 0x5267e0;
+	void getGJChallenges() = mac 0x5267e0;
 	TodoReturn getLevelListKey(int);
 	void getOnlineLevels(GJSearchObject*) = mac 0x5108d0, win 0xFBAB0;
 	TodoReturn getRateStarsKey(int);
@@ -4285,7 +4285,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getAccountCommentKey(int, int) = mac 0x51e710;
 	TodoReturn getAllSmartTemplates() = mac 0x50c310;
 	TodoReturn getGauntletSearchKey(int) = mac 0x513a50, win 0xfee80;
-	TodoReturn getGJDailyLevelState(GJTimedLevelType) = mac 0x526c80, win 0x10f150;
+	void getGJDailyLevelState(GJTimedLevelType) = mac 0x526c80, win 0x10f150;
 	TodoReturn getHighestLevelOrder() = mac 0x508c70;
 	TodoReturn getLeaderboardScores(char const*) = mac 0x5196a0;
 	TodoReturn getStoredUserMessage(int);
