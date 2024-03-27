@@ -53,7 +53,7 @@ jobs:
       matrix:
         config:
         - name: Windows
-          os: windows-2019
+          os: windows-2022
           prefixes: ''
           extra_flags: >
             -A win32
