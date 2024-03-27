@@ -4256,7 +4256,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getUserMessages(bool, int, int) = mac 0x51bd80;
 	TodoReturn getActiveDailyID(GJTimedLevelType) = mac 0x527190;
 	TodoReturn getDifficultyStr(bool, bool, bool, bool, bool, bool, bool, bool);
-	TodoReturn getLevelComments(int, int, int, int, CommentKeyType) = mac 0x51dcc0;
+	void getLevelComments(int, int, int, int, CommentKeyType) = mac 0x51dcc0;
 	TodoReturn getLevelSaveData();
 	TodoReturn getNextLevelName(gd::string);
 	TodoReturn getSavedGauntlet(int);
