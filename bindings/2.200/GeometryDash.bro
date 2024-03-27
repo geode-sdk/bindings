@@ -13811,7 +13811,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void downloadSongFinished(int);
 	/* unverified signature */
 	bool isMusicLibraryLoaded();
-	TodoReturn limitDownloadedSongs() = mac 0x558460;
+	void limitDownloadedSongs() = mac 0x558460;
 	void loadSongInfoFinished(SongInfoObject*);
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);

@@ -9617,7 +9617,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	bool isSFXDownloaded(int);
 	bool isSFXLibraryLoaded();
 	bool isSongDownloaded(int);
-	TodoReturn limitDownloadedSongs();
+	void limitDownloadedSongs();
 	TodoReturn loadSongInfoFailed(int, GJSongError);
 	TodoReturn loadSongInfoFinished(SongInfoObject*);
 	TodoReturn musicActionFailed(GJMusicAction);

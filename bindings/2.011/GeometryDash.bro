@@ -5958,7 +5958,7 @@ class MusicDownloadManager {
     bool isDLActive(char const*);
     bool isRunningActionForSongID(int);
     bool isSongDownloaded(int);
-    TodoReturn limitDownloadedSongs();
+    void limitDownloadedSongs();
     TodoReturn loadSongInfoFailed(int, GJSongError);
     TodoReturn loadSongInfoFinished(SongInfoObject*);
     TodoReturn onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
