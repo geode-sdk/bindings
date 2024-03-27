@@ -1643,7 +1643,7 @@ class ListButtonBar : cocos2d::CCNode {
 	void onLeft(cocos2d::CCObject* sender);
 	void onRight(cocos2d::CCObject* sender);
 
-	TodoReturn goToPage(int);
+	void goToPage(int);
 }
 
 [[link(android)]]
@@ -1905,7 +1905,7 @@ class GameManager : GManager {
 	TodoReturn loadVideoSettings() = mac 0x365ad0;
 	TodoReturn logLoadedIconInfo();
 	TodoReturn resetDPadSettings(bool);
-	TodoReturn returnToLastScene(GJGameLevel*) = win 0x12C1F0, mac 0x368830;
+	void returnToLastScene(GJGameLevel*) = win 0x12C1F0, mac 0x368830;
 	TodoReturn verifyCoinUnlocks();
 	TodoReturn verifyStarUnlocks();
 	TodoReturn verifySyncedCoins();
@@ -2574,27 +2574,27 @@ class LevelCommentDelegate {
 
 [[link(android)]]
 class CommentUploadDelegate {
-	virtual TodoReturn commentUploadFinished(int);
-	virtual TodoReturn commentUploadFailed(int, CommentError);
-	virtual TodoReturn commentDeleteFailed(int, int);
+	virtual void commentUploadFinished(int);
+	virtual void commentUploadFailed(int, CommentError);
+	virtual void commentDeleteFailed(int, int);
 }
 
 [[link(android)]]
 class UserInfoDelegate {
 	virtual void getUserInfoFinished(GJUserScore*);
-	virtual TodoReturn getUserInfoFailed(int);
-	virtual TodoReturn userInfoChanged(GJUserScore*);
+	virtual void getUserInfoFailed(int);
+	virtual void userInfoChanged(GJUserScore*);
 }
 
 [[link(android)]]
 class UploadActionDelegate {
-	virtual TodoReturn uploadActionFinished(int, int);
-	virtual TodoReturn uploadActionFailed(int, int);
+	virtual void uploadActionFinished(int, int);
+	virtual void uploadActionFailed(int, int);
 }
 
 [[link(android)]]
 class UploadPopupDelegate {
-	virtual TodoReturn onClosePopup(UploadActionPopup*);
+	virtual void onClosePopup(UploadActionPopup*);
 }
 
 [[link(android)]]
@@ -2840,17 +2840,17 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	virtual void updateUserScoreFinished() = mac 0x77de60;
 	virtual void updateUserScoreFailed() = mac 0x77df30;
 	virtual void getUserInfoFinished(GJUserScore*) = win 0x2EB5D0, mac 0x77e2c0;
-	virtual TodoReturn getUserInfoFailed(int) = win 0x2EB660, mac 0x77e5f0;
-	virtual TodoReturn userInfoChanged(GJUserScore*) = win 0x2EB6B0, mac 0x77e6b0;
+	virtual void getUserInfoFailed(int) = win 0x2EB660, mac 0x77e5f0;
+	virtual void userInfoChanged(GJUserScore*) = win 0x2EB6B0, mac 0x77e6b0;
 	virtual void loadCommentsFinished(cocos2d::CCArray*, char const*) = win 0x2EBAB0, mac 0x77e8d0;
 	virtual void loadCommentsFailed(char const*) = win 0x2EBB10, mac 0x77e9c0;
 	virtual void setupPageInfo(gd::string, char const*) = win 0x2EBB70, mac 0x77ea90;
-	virtual TodoReturn commentUploadFinished(int) = mac 0x77eec0;
-	virtual TodoReturn commentUploadFailed(int, CommentError) = mac 0x77ef50;
-	virtual TodoReturn commentDeleteFailed(int, int) = mac 0x77f020;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x77d9f0;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x77da70;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x77dc30;
+	virtual void commentUploadFinished(int) = mac 0x77eec0;
+	virtual void commentUploadFailed(int, CommentError) = mac 0x77ef50;
+	virtual void commentDeleteFailed(int, int) = mac 0x77f020;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x77d9f0;
+	virtual void uploadActionFinished(int, int) = mac 0x77da70;
+	virtual void uploadActionFailed(int, int) = mac 0x77dc30;
 
 	GJUserScore* m_score;
 	int m_accountID;
@@ -4223,7 +4223,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getMapPacks(GJSearchObject*) = mac 0x511a30;
 	TodoReturn getPageInfo(char const*) = mac 0x50a2f0;
 	TodoReturn getTimeLeft(char const*, float) = mac 0x50a700;
-	TodoReturn getUserList(UserListType) = mac 0x524400;
+	void getUserList(UserListType) = mac 0x524400;
 	TodoReturn getGauntlets() = mac 0x513af0;
 	TodoReturn getGJRewards(int) = mac 0x525ff0;
 	TodoReturn getIntForKey(char const*) = mac 0x527ee0;
@@ -4234,7 +4234,7 @@ class GameLevelManager : cocos2d::CCNode {
 	gd::string getCommentKey(int, int, int, CommentKeyType) = mac 0x51e1d0;
 	TodoReturn getDailyTimer(GJTimedLevelType) = mac 0x5271c0;
 	TodoReturn getFolderName(int, bool) = mac 0x50bf00;
-	TodoReturn getGJUserInfo(int) = win 0x105270, mac 0x51b4d0;
+	void getGJUserInfo(int) = win 0x105270, mac 0x51b4d0;
 	TodoReturn getLevelLists(GJSearchObject*) = mac 0x512dd0;
 	TodoReturn getLocalLevel(int);
 	TodoReturn getMapPackKey(int);
@@ -4299,7 +4299,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getStoredUserMessageReply(int) = mac 0x51bd60;
 	TodoReturn getSavedDailyLevelFromLevelID(int) = mac 0x509450;
 	TodoReturn getNews();
-	TodoReturn getUsers(GJSearchObject*) = mac 0x51b140;
+	void getUsers(GJSearchObject*) = mac 0x51b140;
 	TodoReturn getLenKey(int);
 	TodoReturn getLenVal(int);
 
@@ -4395,7 +4395,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn unfollowUser(int) = mac 0x50bac0;
 	TodoReturn addDLToActive(char const*) = mac 0x50a550, win 0xf79d0;
 	TodoReturn deleteComment(int, CommentType, int) = win 0x1093f0, mac 0x521210;
-	TodoReturn downloadLevel(int, bool) = mac 0x5144c0, win 0xffa20;
+	void downloadLevel(int, bool) = mac 0x5144c0, win 0xffa20;
 	TodoReturn gotoLevelPage(GJGameLevel*);
 	TodoReturn hasRatedDemon(int) = mac 0x516e10;
 	/* unverified signature */
@@ -6455,7 +6455,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void levelComplete() = win 0x2d7f30, mac 0xad6d0;
 	TodoReturn spawnFirework();
 	TodoReturn stopRecording();
-	TodoReturn incrementJumps() = win 0x2e4e50, mac 0xb8700;
+	void incrementJumps() = win 0x2e4e50, mac 0xb8700;
 	TodoReturn markCheckpoint() = win 0x2e2880, mac 0xb53a0;
 	void showRetryLayer();
 	TodoReturn startRecording();
@@ -6478,7 +6478,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn startGameDelayed() = win 0x2D7EC0;
 	TodoReturn delayedResetLevel() = win 0x2E4200, mac 0xb4c20;
 	void loadDefaultColors() = win 0x2df1e0;
-	TodoReturn setupHasCompleted() = win 0x2d71b0, mac 0xa7210;
+	void setupHasCompleted() = win 0x2d71b0, mac 0xa7210;
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleGhostEffect(int) = win 0x2D20D0;
 	void updateProgressbar() = win 0x2df7a0, mac 0xab590;
@@ -6577,7 +6577,7 @@ class EditButtonBar : cocos2d::CCNode {
 
 	TodoReturn reloadItems(int, int);
 	TodoReturn loadFromItems(cocos2d::CCArray*, int, int, bool);
-	TodoReturn goToPage(int);
+	void goToPage(int);
 }
 
 
@@ -6644,7 +6644,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn stopParticles();
 	TodoReturn switchedDirTo(PlayerButton) = win 0x2cc3e0;
 	TodoReturn testForMoving(float, GameObject*);
-	TodoReturn toggleFlyMode(bool, bool) = win 0x2CE170, mac 0x3f6d20;
+	void toggleFlyMode(bool, bool) = win 0x2CE170, mac 0x3f6d20;
 	TodoReturn touchedObject(GameObject*);
 	TodoReturn updateCollide(PlayerCollisionDirection, GameObject*) = win 0x2C8CC0;
 	TodoReturn updateDashArt() = win 0x2cac70, mac 0x3f1e10;
@@ -6656,7 +6656,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void addToYVelocity(double, int) = win 0x2bece0;
 	TodoReturn copyAttributes(PlayerObject*);
 	TodoReturn fadeOutStreak2(float) = win 0x2D2FD0;
-	TodoReturn incrementJumps() = win 0x2c2250, mac 0x3e4a40;
+	void incrementJumps() = win 0x2c2250, mac 0x3e4a40;
 	/* unverified signature */
 	bool isInNormalMode() = win 0x2cfe00;
 	/* unverified signature */
@@ -6666,9 +6666,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn spiderTestJump(bool);
 	TodoReturn storeCollision(PlayerCollisionDirection, int) = win 0x2C2B70;
 	void switchedToMode(GameObjectType) = win 0x2CF6A0, mac 0x3f3880;
-	TodoReturn toggleBirdMode(bool, bool) = win 0x2CE400, mac 0x3f7800;
-	TodoReturn toggleDartMode(bool, bool) = win 0x2CE9C0, mac 0x3f88a0;
-	TodoReturn toggleRollMode(bool, bool) = win 0x2CEF90, mac 0x3f8f60;
+	void toggleBirdMode(bool, bool) = win 0x2CE400, mac 0x3f7800;
+	void toggleDartMode(bool, bool) = win 0x2CE9C0, mac 0x3f88a0;
+	void toggleRollMode(bool, bool) = win 0x2CEF90, mac 0x3f8f60;
 	TodoReturn updateRotation(float) = win 0x2C64E0;
 	TodoReturn updateRotation(float, float);
 	TodoReturn addAllParticles() = win 0x2be6d0;
@@ -6676,8 +6676,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn hardFlipGravity();
 	TodoReturn hitGroundNoJump(GameObject*, bool) = win 0x2CF730;
 	TodoReturn playBurstEffect();
-	TodoReturn playDeathEffect() = mac 0x1ead80;
-	TodoReturn playerDestroyed(bool) = win 0x2CC2D0, mac 0x3f4690;
+	void playDeathEffect() = mac 0x1ead80;
+	void playerDestroyed(bool) = win 0x2CC2D0, mac 0x3f4690;
 	TodoReturn playerIsFalling(float);
 	TodoReturn playSpawnEffect();
 	TodoReturn resetPlayerIcon() = win 0x2cec80, mac 0x3f75e0;
@@ -6688,11 +6688,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn spiderTestJumpX(bool);
 	TodoReturn spiderTestJumpY(bool);
 	TodoReturn stopBurstEffect();
-	TodoReturn toggleRobotMode(bool, bool) = win 0x2CF0C0, mac 0x3f9320;
-	TodoReturn toggleSwingMode(bool, bool) = win 0x2CE680, mac 0x3f7ec0;
-	TodoReturn updateGlowColor() = win 0x2d0ca0, mac 0x3fa940;
+	void toggleRobotMode(bool, bool) = win 0x2CF0C0, mac 0x3f9320;
+	void toggleSwingMode(bool, bool) = win 0x2CE680, mac 0x3f7ec0;
+	void updateGlowColor() = win 0x2d0ca0, mac 0x3fa940;
 	TodoReturn updatePlayerArt() = win 0x2CCAC0, mac 0x3f66e0;
-	TodoReturn updateSwingFire() = win 0x2ce8b0;
+	void updateSwingFire() = win 0x2ce8b0;
 	TodoReturn canStickToGround();
 	TodoReturn deactivateStreak(bool) = mac 0x3de280;
 	TodoReturn disableSwingFire();
@@ -6706,10 +6706,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*) = win 0x2d4140;
 	TodoReturn spawnScaleCircle();
 	TodoReturn specialGroundHit();
-	TodoReturn toggleSpiderMode(bool, bool) = win 0x2CF3B0, mac 0x3f9760;
+	void toggleSpiderMode(bool, bool) = win 0x2CF3B0, mac 0x3f9760;
 	TodoReturn toggleVisibility(bool);
 	TodoReturn updateCollideTop(float, GameObject*) = win 0x2C8EB0;
-	TodoReturn updatePlayerGlow() = win 0x2D3170, mac 0x3f6550;
+	void updatePlayerGlow() = win 0x2D3170, mac 0x3f6550;
 	TodoReturn addToTouchedRings(RingObject*);
 	TodoReturn collidedWithSlope(float, GameObject*, bool);
 	TodoReturn levelFlipFinished();
@@ -6725,9 +6725,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn toggleGhostEffect(GhostType) = win 0x2d20d0;
 	TodoReturn togglePlayerScale(bool, bool) = win 0x2D3690, mac 0x3f39d0;
 	TodoReturn updateCollideLeft(float, GameObject*) = win 0x2C8F30;
-	TodoReturn updatePlayerForce(cocos2d::CCPoint, bool);
-	TodoReturn updatePlayerFrame(int) = win 0x2D1220, mac 0x3f85c0;
-	TodoReturn updatePlayerScale() = win 0x2d3110;
+	void updatePlayerForce(cocos2d::CCPoint, bool);
+	void updatePlayerFrame(int) = win 0x2D1220, mac 0x3f85c0;
+	void updatePlayerScale() = win 0x2d3110;
 	TodoReturn updateStaticForce(float, float, bool) = win 0x2D2A00;
 	TodoReturn updateStreakBlend(bool);
 	void collidedWithObject(float, GameObject*) = mac 0x3ee020;
@@ -6741,20 +6741,20 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn rotateGameplayOnly(bool);
 	TodoReturn tryPlaceCheckpoint() = win 0x2d4730;
 	TodoReturn updateCollideRight(float, GameObject*) = win 0x2C8FB0;
-	TodoReturn updateShipRotation(float);
+	void updateShipRotation(float);
 	TodoReturn handlePlayerCommand(int);
 	TodoReturn redirectPlayerForce(float, float, float, float) = win 0x2D2B40;
 	TodoReturn resetStateVariables();
 	TodoReturn updateCollideBottom(float, GameObject*) = win 0x2C8E30;
-	TodoReturn updateDashAnimation();
-	TodoReturn updateJumpVariables();
+	void updateDashAnimation();
+	void updateJumpVariables();
 	TodoReturn updateSlopeRotation(float);
 	TodoReturn enablePlayerControls();
-	TodoReturn playDynamicSpiderRun() = mac 0x3e3400;
+	void playDynamicSpiderRun() = mac 0x3e3400;
 	void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = mac 0x3ef720;
 	TodoReturn resetCollisionValues();
 	TodoReturn rotateGameplayObject(GameObject*);
-	TodoReturn togglePlatformerMode(bool) = mac 0x3de0b0;
+	void togglePlatformerMode(bool) = mac 0x3de0b0;
 	TodoReturn updateCheckpointMode(bool);
 	TodoReturn updateCheckpointTest() = win 0x2c0df0;
 	TodoReturn updateSlopeYVelocity(float);
@@ -6766,12 +6766,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void enableCustomGlowColor(cocos2d::_ccColor3B const&) = mac 0x3fa900;
 	TodoReturn playerIsFallingBugged();
 	TodoReturn rotatePreSlopeObjects();
-	TodoReturn updateInternalActions(float);
-	TodoReturn updatePlayerBirdFrame(int) = win 0x2D1770, mac 0x3f7c20;
-	TodoReturn updatePlayerDartFrame(int) = win 0x2D1D10, mac 0x3f8d10;
-	TodoReturn updatePlayerRollFrame(int) = win 0x2D1990, mac 0x3f90f0;
-	TodoReturn updatePlayerShipFrame(int) = win 0x2D13F0, mac 0x3f7180;
-	TodoReturn updateShipSpriteExtra(gd::string) = win 0x2D1FD0, mac 0x3dd4b0;
+	void updateInternalActions(float);
+	void updatePlayerBirdFrame(int) = win 0x2D1770, mac 0x3f7c20;
+	void updatePlayerDartFrame(int) = win 0x2D1D10, mac 0x3f8d10;
+	void updatePlayerRollFrame(int) = win 0x2D1990, mac 0x3f90f0;
+	void updatePlayerShipFrame(int) = win 0x2D13F0, mac 0x3f7180;
+	void updateShipSpriteExtra(gd::string) = win 0x2D1FD0, mac 0x3dd4b0;
 	void disableCustomGlowColor() {
 		m_hasCustomGlowColor = false;
 	}
@@ -6787,13 +6787,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerSpiderFrame(int) = mac 0x3fb020;
 	TodoReturn updatePlayerSpriteExtra(gd::string) = win 0x2D1ED0;
 	TodoReturn convertToClosestRotation(float);
-	TodoReturn updatePlayerJetpackFrame(int) = win 0x2D15B0, mac 0x3f73b0;
+	void updatePlayerJetpackFrame(int) = win 0x2D15B0, mac 0x3f73b0;
 	TodoReturn collidedWithSlopeInternal(float, GameObject*, bool) = win 0x2C4C50;
 	TodoReturn exitPlatformerAnimateJump();
 	TodoReturn updateRobotAnimationSpeed();
 	TodoReturn collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x2C6C10;
 	TodoReturn handleRotatedSlopeCollision(float, GameObject*, bool);
-	TodoReturn stopPlatformerJumpAnimation() = mac 0x3e5350;
+	void stopPlatformerJumpAnimation() = mac 0x3e5350;
 	TodoReturn handleRotatedObjectCollision(float, GameObject*, cocos2d::CCRect, bool);
 	TodoReturn handleRotatedCollisionInternal(float, GameObject*, cocos2d::CCRect, bool, bool, bool);
 	TodoReturn flipMod();
@@ -7382,9 +7382,9 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 	virtual void textInputOpened(CCTextInputNode*) = mac 0x5a6270;
 	virtual void textInputClosed(CCTextInputNode*) = mac 0x5a6110;
 	virtual void textChanged(CCTextInputNode*) = mac 0x5a6290;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x5a64e0;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x5a65e0;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x5a6700;
+	virtual void uploadActionFinished(int, int) = mac 0x5a64e0;
+	virtual void uploadActionFailed(int, int) = mac 0x5a65e0;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x5a6700;
 }
 
 [[link(android)]]
@@ -7446,7 +7446,7 @@ class EndLevelLayer : GJDropDownLayer {
 	TodoReturn playCurrencyEffect(float);
 	TodoReturn diamondEnterFinished();
 	TodoReturn currencyEnterFinished();
-	TodoReturn goEdit();
+	void goEdit();
 
 	virtual void keyBackClicked() = mac 0x49e360;
 	virtual void keyDown(cocos2d::enumKeyCodes) = mac 0x49eb10;
@@ -7549,9 +7549,9 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	virtual void textInputOpened(CCTextInputNode*) = mac 0x1dc940;
 	virtual void textInputClosed(CCTextInputNode*) = mac 0x1dc650;
 	virtual void textChanged(CCTextInputNode*) = mac 0x1dca20;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x1dd5e0;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x1dd770;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x1dd590;
+	virtual void uploadActionFinished(int, int) = mac 0x1dd5e0;
+	virtual void uploadActionFailed(int, int) = mac 0x1dd770;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x1dd590;
 
 	cocos2d::CCMenu* m_buttonMenu;
 	GJGameLevel* m_level;
@@ -7949,7 +7949,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	TodoReturn createMultiTriggerItemsDefaultHorizontal();
 	TodoReturn hideAll();
 	TodoReturn addTitle(gd::string);
-	TodoReturn goToPage(int, bool);
+	void goToPage(int, bool);
 	TodoReturn preSetup();
 	TodoReturn toggleBG(bool);
 	TodoReturn postSetup();
@@ -8427,9 +8427,9 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
 	virtual bool init() = mac 0x2345f0;
 	virtual void draw();
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x234d70;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x235020;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x235210;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x235380;
+	virtual void uploadActionFinished(int, int) = mac 0x235020;
+	virtual void uploadActionFailed(int, int) = mac 0x235210;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x235380;
 }
 
 [[link(android)]]
@@ -8515,7 +8515,7 @@ class ShardsPage : FLAlertLayer {
 	void onClose(cocos2d::CCObject* sender);
 
 	void FLAlert_Clicked(FLAlertLayer*, bool);
-	TodoReturn goToPage(int);
+	void goToPage(int);
 
 	virtual bool init() = mac 0x4a0e00;
 	virtual void registerWithTouchDispatcher() = mac 0x4a2c70;
@@ -9148,9 +9148,9 @@ class MPLobbyLayer : cocos2d::CCLayer, GJMPDelegate, UploadPopupDelegate, Upload
 	virtual void textChanged(CCTextInputNode*) = mac 0x470400;
 	virtual void keyUp(cocos2d::enumKeyCodes) = mac 0x4704d0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x470420;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x4704f0;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x470700;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x4708a0;
+	virtual void uploadActionFinished(int, int) = mac 0x4704f0;
+	virtual void uploadActionFailed(int, int) = mac 0x470700;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x4708a0;
 }
 
 [[link(android)]]
@@ -9346,11 +9346,11 @@ class SimplePlayer : cocos2d::CCSprite {
 	/* unverified signature */
 	void setFrames(char const*, char const*, char const*, char const*, char const*) = win 0x1f0540;
 
-	TodoReturn updateColors() = win 0x1efe50, mac 0x34cf50;
+	void updateColors() = win 0x1efe50, mac 0x34cf50;
 	TodoReturn asyncLoadIcon(int, IconType);
 	TodoReturn hideSecondary();
 	TodoReturn createRobotSprite(int) = win 0x1efd50;
-	TodoReturn updatePlayerFrame(int, IconType) = win 0x1f0140, mac 0x349a00;
+	void updatePlayerFrame(int, IconType) = win 0x1f0140, mac 0x349a00;
 	TodoReturn createSpiderSprite(int) = mac 0x349850, win 0x1efda0;
 	TodoReturn iconFinishedLoading(int, IconType);
 	void enableCustomGlowColor(cocos2d::_ccColor3B const& color) {
@@ -9442,9 +9442,9 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 	TodoReturn exitLayer();
 
 	virtual void customSetup() = mac 0x376a50;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x378320;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x378460;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x3782d0;
+	virtual void uploadActionFinished(int, int) = mac 0x378320;
+	virtual void uploadActionFailed(int, int) = mac 0x378460;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x3782d0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x378710;
 }
 
@@ -9635,9 +9635,9 @@ class GJMessageCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 	virtual bool init() = mac 0x236600;
 	virtual void draw() = mac 0x236910;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x2369e0;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x236b70;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x236d40;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x236eb0;
+	virtual void uploadActionFinished(int, int) = mac 0x236b70;
+	virtual void uploadActionFailed(int, int) = mac 0x236d40;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x236eb0;
 }
 
 [[link(android)]]
@@ -9658,9 +9658,9 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 	virtual bool init() = mac 0x235860;
 	virtual void draw() = mac 0x235b70;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x235c40;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x235e10;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x236010;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x236120;
+	virtual void uploadActionFinished(int, int) = mac 0x235e10;
+	virtual void uploadActionFailed(int, int) = mac 0x236010;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x236120;
 }
 
 [[link(android)]]
@@ -9675,7 +9675,7 @@ class GJRobotSprite : CCAnimatedSprite {
 	TodoReturn updateColors() = win 0x212e30, mac 0x5a1bd0;
 	TodoReturn updateColor01(cocos2d::_ccColor3B) = mac 0x5a1bb0;
 	TodoReturn updateColor02(cocos2d::_ccColor3B) = mac 0x5a1ef0;
-	TodoReturn updateGlowColor(cocos2d::_ccColor3B, bool) = win 0x212dd0, mac 0x5a1f10;
+	void updateGlowColor(cocos2d::_ccColor3B, bool) = win 0x212dd0, mac 0x5a1f10;
 	TodoReturn hideGlow() = mac 0x5a1b90;
 	void showGlow() = mac 0x5a1b70;
 
@@ -10113,9 +10113,9 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
 	virtual void keyBackClicked() = mac 0x284240;
 	virtual TodoReturn downloadMessageFinished(GJUserMessage*) = mac 0x2842b0;
 	virtual TodoReturn downloadMessageFailed(int) = mac 0x284370;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x284410;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x2845d0;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x2846a0;
+	virtual void uploadActionFinished(int, int) = mac 0x284410;
+	virtual void uploadActionFailed(int, int) = mac 0x2845d0;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x2846a0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x2847a0;
 }
 
@@ -10142,7 +10142,7 @@ class GJOptionsLayer : SetupTriggerPopup {
 	TodoReturn incrementCountForPage(int) = mac 0x27ad90;
 	TodoReturn infoKey(int);
 	TodoReturn pageKey(int);
-	TodoReturn goToPage(int);
+	void goToPage(int);
 	TodoReturn layerKey(int);
 	TodoReturn addToggle(char const*, int, bool, char const*);
 	TodoReturn objectKey(int);
@@ -10360,9 +10360,9 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	TodoReturn selectRating(cocos2d::CCObject*);
 
 	virtual void keyBackClicked() = mac 0x2629a0;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x262660;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x262750;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x2628c0;
+	virtual void uploadActionFinished(int, int) = mac 0x262660;
+	virtual void uploadActionFailed(int, int) = mac 0x262750;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x2628c0;
 }
 
 [[link(android)]]
@@ -10397,9 +10397,9 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	void selectRating(cocos2d::CCObject*) = win 0x2edbc0, mac 0x26a0a0;
 
 	virtual void keyBackClicked() = mac 0x26a730;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x26a3f0;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x26a4e0;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x26a650;
+	virtual void uploadActionFinished(int, int) = mac 0x26a3f0;
+	virtual void uploadActionFailed(int, int) = mac 0x26a4e0;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x26a650;
 }
 
 [[link(android)]]
@@ -10897,7 +10897,7 @@ class FMODAudioState {
 
 [[link(android)]]
 class FMODLevelVisualizer : cocos2d::CCNode {
-	TodoReturn updateVisualizer(float, float, float) = mac 0x28c6e0;
+	void updateVisualizer(float, float, float) = mac 0x28c6e0;
 	static FMODLevelVisualizer* create() = mac 0x28c230;
 	~FMODLevelVisualizer();
 
@@ -11418,10 +11418,10 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 	TodoReturn switchToMode(spriteMode);
 	TodoReturn cleanupSprite();
 	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool);
-	TodoReturn tweenToAnimation(gd::string, float) = win 0x21750, mac 0x32eeb0;
+	void tweenToAnimation(gd::string, float) = win 0x21750, mac 0x32eeb0;
 	TodoReturn willPlayAnimation();
 	TodoReturn runAnimationForced(gd::string);
-	TodoReturn tweenToAnimationFinished();
+	void tweenToAnimationFinished();
 	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool);
 	TodoReturn stopTween();
 
@@ -11687,7 +11687,7 @@ class KeybindingsLayer : FLAlertLayer {
 	TodoReturn incrementCountForPage(int);
 	TodoReturn infoKey(int);
 	TodoReturn pageKey(int);
-	TodoReturn goToPage(int);
+	void goToPage(int);
 	TodoReturn layerKey(int);
 	TodoReturn objectKey(int);
 
@@ -11768,7 +11768,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	TodoReturn incrementCountForPage(int);
 	TodoReturn infoKey(int);
 	TodoReturn pageKey(int);
-	TodoReturn goToPage(int);
+	void goToPage(int);
 	TodoReturn layerKey(int);
 	TodoReturn toggleGP();
 	TodoReturn addToggle(char const*, char const*, char const*) = mac 0x75e760;
@@ -11907,10 +11907,10 @@ class TextStyleSection : cocos2d::CCObject {
 
 [[link(android)]]
 class UserListDelegate {
-	virtual TodoReturn getUserListFinished(cocos2d::CCArray*, UserListType);
-	virtual TodoReturn getUserListFailed(UserListType, GJErrorCode);
-	virtual TodoReturn userListChanged(cocos2d::CCArray*, UserListType);
-	virtual TodoReturn forceReloadList(UserListType);
+	virtual void getUserListFinished(cocos2d::CCArray*, UserListType);
+	virtual void getUserListFailed(UserListType, GJErrorCode);
+	virtual void userListChanged(cocos2d::CCArray*, UserListType);
+	virtual void forceReloadList(UserListType);
 }
 
 [[link(android)]]
@@ -11935,7 +11935,7 @@ class WorldSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate {
 	void showCompleteDialog();
 	TodoReturn animateInActiveIsland();
 	TodoReturn scene(int);
-	TodoReturn goToPage(int, bool);
+	void goToPage(int, bool);
 	TodoReturn tryShowAd();
 
 	virtual void onExit() = mac 0x3a1fb0;
@@ -12610,9 +12610,9 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
 	TodoReturn blockUser();
 
 	virtual void keyBackClicked() = mac 0x282380;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x282470;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x282630;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x282700;
+	virtual void uploadActionFinished(int, int) = mac 0x282470;
+	virtual void uploadActionFailed(int, int) = mac 0x282630;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x282700;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x282870;
 }
 
@@ -12631,10 +12631,10 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 
 	virtual void registerWithTouchDispatcher() = mac 0x61c510;
 	virtual void keyBackClicked() = mac 0x61c4e0;
-	virtual TodoReturn getUserListFinished(cocos2d::CCArray*, UserListType) = mac 0x61c160;
-	virtual TodoReturn getUserListFailed(UserListType, GJErrorCode) = mac 0x61c2a0;
-	virtual TodoReturn userListChanged(cocos2d::CCArray*, UserListType) = mac 0x61c3b0;
-	virtual TodoReturn forceReloadList(UserListType) = mac 0x61c3f0;
+	virtual void getUserListFinished(cocos2d::CCArray*, UserListType) = mac 0x61c160;
+	virtual void getUserListFailed(UserListType, GJErrorCode) = mac 0x61c2a0;
+	virtual void userListChanged(cocos2d::CCArray*, UserListType) = mac 0x61c3b0;
+	virtual void forceReloadList(UserListType) = mac 0x61c3f0;
 }
 
 [[link(android)]]
@@ -12791,7 +12791,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	TodoReturn createSecondaryLayer(int) = win 0x2F5F60;
 	TodoReturn moveToSecondaryLayer(int);
 	TodoReturn scene(bool) = win 0x2f4130, mac 0x5f4170;
-	TodoReturn goToPage(int);
+	void goToPage(int);
 	void showShop(int);
 
 	virtual void onExit() = mac 0x5fdb10;
@@ -13128,9 +13128,9 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	virtual void registerWithTouchDispatcher() = mac 0x752ef0;
 	virtual void keyBackClicked() = mac 0x752ec0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x752dd0;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x752f30;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x752fa0;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x753140;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x752f30;
+	virtual void uploadActionFinished(int, int) = mac 0x752fa0;
+	virtual void uploadActionFailed(int, int) = mac 0x753140;
 	virtual TodoReturn loadFRequestsFinished(cocos2d::CCArray*, char const*) = mac 0x753510;
 	virtual TodoReturn loadFRequestsFailed(char const*, GJErrorCode) = mac 0x753600;
 	virtual TodoReturn forceReloadRequests(bool) = mac 0x753710;
@@ -13208,9 +13208,9 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 	virtual void textInputOpened(CCTextInputNode*) = mac 0x286080;
 	virtual void textInputClosed(CCTextInputNode*) = mac 0x286040;
 	virtual void textChanged(CCTextInputNode*) = mac 0x2860a0;
-	virtual TodoReturn uploadMessageFinished(int) = mac 0x286690;
-	virtual TodoReturn uploadMessageFailed(int) = mac 0x2867a0;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x2868c0;
+	virtual void uploadMessageFinished(int) = mac 0x286690;
+	virtual void uploadMessageFailed(int) = mac 0x2867a0;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x2868c0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x286a10;
 	virtual void textInputShouldOffset(CCTextInputNode*, float) = mac 0x286af0;
 	virtual void textInputReturn(CCTextInputNode*) = mac 0x286bb0;
@@ -13326,9 +13326,9 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	virtual void registerWithTouchDispatcher() = mac 0x20e900;
 	virtual void keyBackClicked() = mac 0x20e8d0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x20e4b0;
-	virtual TodoReturn onClosePopup(UploadActionPopup*) = mac 0x20e520;
-	virtual TodoReturn uploadActionFinished(int, int) = mac 0x20e590;
-	virtual TodoReturn uploadActionFailed(int, int) = mac 0x20e730;
+	virtual void onClosePopup(UploadActionPopup*) = mac 0x20e520;
+	virtual void uploadActionFinished(int, int) = mac 0x20e590;
+	virtual void uploadActionFailed(int, int) = mac 0x20e730;
 	virtual void loadMessagesFinished(cocos2d::CCArray*, char const*) = mac 0x20ebe0;
 	virtual void loadMessagesFailed(char const*, GJErrorCode) = mac 0x20ed10;
 	virtual void forceReloadMessages(bool) = mac 0x20ee20;
@@ -13512,7 +13512,7 @@ class CommunityCreditsPage : FLAlertLayer {
 	void onClose(cocos2d::CCObject* sender);
 
 	void FLAlert_Clicked(FLAlertLayer*, bool);
-	TodoReturn goToPage(int);
+	void goToPage(int);
 
 	virtual bool init() = mac 0x2faf40;
 	virtual void registerWithTouchDispatcher() = mac 0x2fe2d0;
@@ -13873,7 +13873,7 @@ class ParentalOptionsLayer : FLAlertLayer {
 	TodoReturn incrementCountForPage(int);
 	TodoReturn infoKey(int);
 	TodoReturn pageKey(int);
-	TodoReturn goToPage(int);
+	void goToPage(int);
 	TodoReturn layerKey(int);
 	TodoReturn addToggle(char const*, char const*, char const*);
 	TodoReturn objectKey(int);
@@ -14122,7 +14122,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn incrementCountForPage(int);
 	TodoReturn infoKey(int);
 	TodoReturn pageKey(int);
-	TodoReturn goToPage(int);
+	void goToPage(int);
 	TodoReturn layerKey(int);
 	TodoReturn addToggle(char const*, char const*, char const*);
 	TodoReturn objectKey(int);
@@ -14341,8 +14341,8 @@ class UIObjectSettingsPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class UploadMessageDelegate {
-	virtual TodoReturn uploadMessageFinished(int);
-	virtual TodoReturn uploadMessageFailed(int);
+	virtual void uploadMessageFinished(int);
+	virtual void uploadMessageFailed(int);
 }
 
 
@@ -14793,7 +14793,7 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
 	TodoReturn createPrefab(gd::string, int);
 	TodoReturn addObjectToPage(cocos2d::CCObject*, int);
 	TodoReturn addPrefabMenuItem(SmartPrefabResult, int);
-	TodoReturn goToPage(int);
+	void goToPage(int);
 	TodoReturn baseSetup();
 
 	virtual void keyBackClicked() = mac 0x4c6250;
