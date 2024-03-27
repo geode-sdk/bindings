@@ -199,7 +199,7 @@ class AchievementsLayer : GJDropDownLayer {
 
 	static AchievementsLayer* create() = win 0x5a9a0;
 
-	TodoReturn loadPage(int) = win 0x5adc0;
+	void loadPage(int) = win 0x5adc0;
 	void onNextPage(cocos2d::CCObject* sender) = win 0x5b040;
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x5b050;
 	TodoReturn setupLevelBrowser(cocos2d::CCArray*);
@@ -1631,7 +1631,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	void onUnhide(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
 	TodoReturn updateBGColor(int) = win 0x86090;
-	TodoReturn updateLabelValues() = win 0x86240;
+	void updateLabelValues() = win 0x86240;
 
 	virtual bool init() = win 0x84460;
 	virtual void draw() = win 0x7d5b0;
@@ -3822,7 +3822,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	TodoReturn deleteSelected() = win 0xefb90;
 	bool init(bool) = win 0xeef90;
 	bool isCorrect(char const*);
-	TodoReturn loadPage(int) = win 0xf00d0;
+	void loadPage(int) = win 0xf00d0;
 	void onClose(cocos2d::CCObject* sender);
 	void onDeleteSelected(cocos2d::CCObject* sender);
 	void onNextPage(cocos2d::CCObject* sender);
@@ -3830,7 +3830,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	void onSentRequests(cocos2d::CCObject* sender);
 	void onToggleAllObjects(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = win 0xf0320;
+	void setupCommentsBrowser(cocos2d::CCArray*) = win 0xf0320;
 	TodoReturn untoggleAll() = win 0xefe50;
 	TodoReturn updateLevelsLabel();
 	TodoReturn updatePageArrows();
@@ -3991,8 +3991,8 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getGauntletLevels(int) = win 0x100860;
 	TodoReturn getGauntlets() = win 0x100100;
 	TodoReturn getGauntletSearchKey(int) = win 0x100080;
-	TodoReturn getGJChallenges() = win 0x10fd60;
-	TodoReturn getGJDailyLevelState(GJTimedLevelType) = win 0x110670;
+	void getGJChallenges() = win 0x10fd60;
+	void getGJDailyLevelState(GJTimedLevelType) = win 0x110670;
 	void getGJRewards(int) = win 0x10f140;
 	void getGJUserInfo(int) = win 0x106790;
 	int getHighestLevelOrder() = win 0xf7550;
@@ -4083,8 +4083,8 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn levelIDFromPostCommentKey(char const*);
 	TodoReturn likeFromLikeKey(char const*);
 	TodoReturn likeItem(LikeItemType, int, bool, int) = win 0x10e100;
-	TodoReturn limitSavedLevels() = win 0xf9210;
-	TodoReturn makeTimeStamp(char const*) = win 0xf8d70;
+	void limitSavedLevels() = win 0xf9210;
+	void makeTimeStamp(char const*) = win 0xf8d70;
 	void markItemAsLiked(LikeItemType, int, bool, int) = win 0x10eba0;
 	void markLevelAsDownloaded(int) = win 0x101b40;
 	void markLevelAsRatedDemon(int);
@@ -4161,8 +4161,8 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn removeUserFromList(int, UserListType);
 	TodoReturn reportLevel(int) = win 0x111310;
 	TodoReturn requestUserAccess() = win 0x10e7c0;
-	TodoReturn resetAccountComments(int) = win 0x109030;
-	TodoReturn resetAllTimers();
+	void resetAccountComments(int) = win 0x109030;
+	void resetAllTimers();
 	void resetCommentTimersForLevelID(int, CommentKeyType) = win 0x10a6e0;
 	void resetDailyLevelState(GJTimedLevelType) = win 0x110d30;
 	void resetGauntlets();
@@ -4204,21 +4204,21 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn tryGetUsername(int) = win 0xf6370;
 	TodoReturn typeFromCommentKey(char const*);
 	TodoReturn typeFromLikeKey(char const*);
-	TodoReturn unblockUser(int) = win 0x10ce50;
-	TodoReturn unfollowUser(int) = win 0xf9b10;
-	TodoReturn updateDescription(int, gd::string) = win 0x10dc80;
-	TodoReturn updateLevel(GJGameLevel*) = win 0x101d40;
-	TodoReturn updateLevelOrders() = win 0xf75f0;
+	void unblockUser(int) = win 0x10ce50;
+	void unfollowUser(int) = win 0xf9b10;
+	void updateDescription(int, gd::string) = win 0x10dc80;
+	void updateLevel(GJGameLevel*) = win 0x101d40;
+	void updateLevelOrders() = win 0xf75f0;
 	void updateLevelRewards(GJGameLevel*) = win 0xf66c0;
-	TodoReturn updateSavedLevelList(GJLevelList*);
-	TodoReturn updateUsernames();
-	TodoReturn updateUserScore() = win 0x103ab0;
-	TodoReturn uploadAccountComment(gd::string) = win 0x1099d0;
-	TodoReturn uploadComment(gd::string, CommentType, int, int) = win 0x109a70;
-	TodoReturn uploadFriendRequest(int, gd::string) = win 0x10b440;
-	TodoReturn uploadLevel(GJGameLevel*) = win 0xfb760;
-	TodoReturn uploadLevelComment(int, gd::string, int) = win 0x109940;
-	TodoReturn uploadLevelList(GJLevelList*) = win 0xfeac0;
+	void updateSavedLevelList(GJLevelList*);
+	void updateUsernames();
+	void updateUserScore() = win 0x103ab0;
+	void uploadAccountComment(gd::string) = win 0x1099d0;
+	void uploadComment(gd::string, CommentType, int, int) = win 0x109a70;
+	void uploadFriendRequest(int, gd::string) = win 0x10b440;
+	void uploadLevel(GJGameLevel*) = win 0xfb760;
+	void uploadLevelComment(int, gd::string, int) = win 0x109940;
+	void uploadLevelList(GJLevelList*) = win 0xfeac0;
 	void uploadUserMessage(int, gd::string, gd::string) = win 0x107370;
 	TodoReturn userIDForAccountID(int);
 	TodoReturn userInfoForAccountID(int);
@@ -7179,7 +7179,7 @@ class GJLevelScoreCell : TableViewCell {
 	// virtual ~GJLevelScoreCell();
 	GJLevelScoreCell(char const*, float, float);
 
-	TodoReturn loadFromScore(GJUserScore*) = win 0x87cc0;
+	void loadFromScore(GJUserScore*) = win 0x87cc0;
 	void onViewProfile(cocos2d::CCObject* sender);
 	TodoReturn updateBGColor(int);
 
@@ -7203,7 +7203,7 @@ class GJLocalLevelScoreCell : TableViewCell {
 	// virtual ~GJLocalLevelScoreCell();
 	GJLocalLevelScoreCell(char const*, float, float);
 
-	TodoReturn loadFromScore(GJLocalScore*) = win 0x878f0;
+	void loadFromScore(GJLocalScore*) = win 0x878f0;
 	TodoReturn updateBGColor(int) = win 0x87b80;
 
 	virtual bool init();
@@ -7562,7 +7562,7 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 	// virtual ~GJRequestCell();
 	GJRequestCell(char const*, float, float);
 
-	TodoReturn loadFromScore(GJUserScore*) = win 0x896e0;
+	void loadFromScore(GJUserScore*) = win 0x896e0;
 	TodoReturn markAsRead();
 	void onDeleteRequest(cocos2d::CCObject* sender);
 	void onToggle(cocos2d::CCObject* sender);
@@ -7762,7 +7762,7 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	// virtual ~GJScoreCell();
 	GJScoreCell(char const*, float, float);
 
-	TodoReturn loadFromScore(GJUserScore*) = win 0x865b0;
+	void loadFromScore(GJUserScore*) = win 0x865b0;
 	void onBan(cocos2d::CCObject* sender);
 	void onCheck(cocos2d::CCObject* sender);
 	void onMoreLevels(cocos2d::CCObject* sender);
@@ -7958,7 +7958,7 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 
 	static GJSongBrowser* create() = win 0x224e80;
 
-	TodoReturn loadPage(int) = win 0x2253c0;
+	void loadPage(int) = win 0x2253c0;
 	void onDeleteAll(cocos2d::CCObject* sender);
 	void onNextPage(cocos2d::CCObject* sender);
 	void onPrevPage(cocos2d::CCObject* sender);
@@ -8134,7 +8134,7 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
 	// virtual ~GJUserCell();
 	GJUserCell(char const*, float, float);
 
-	TodoReturn loadFromScore(GJUserScore*) = win 0x88750;
+	void loadFromScore(GJUserScore*) = win 0x88750;
 	void onCancelFriendRequest(cocos2d::CCObject* sender);
 	void onRemoveFriend(cocos2d::CCObject* sender);
 	void onSendMessage(cocos2d::CCObject* sender);
@@ -8291,7 +8291,7 @@ class GManager : cocos2d::CCNode {
 	inline GManager() {}
 
 	virtual bool init();
-	virtual TodoReturn setup() = win 0x472c0;
+	virtual void setup() = win 0x472c0;
 	virtual void encodeDataTo(DS_Dictionary*);
 	virtual void dataLoaded(DS_Dictionary*);
 	virtual void firstLoad();
@@ -8477,7 +8477,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	void onRefreshComments(cocos2d::CCObject* sender) = win 0x22a680;
 	void onSimilar(cocos2d::CCObject* sender);
 	TodoReturn reloadWindow() = win 0x22bd00;
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = win 0x22b670;
+	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x22b670;
 	TodoReturn setupLevelInfo();
 	TodoReturn toggleCommentMode(cocos2d::CCObject*);
 	TodoReturn toggleExtendedMode(cocos2d::CCObject*);
@@ -8791,7 +8791,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	gd::string getSearchTitle() = win 0x235390;
 	bool init(GJSearchObject*) = win 0x232e60;
 	bool isCorrect(char const*) = win 0x2343a0;
-	TodoReturn loadPage(GJSearchObject*) = win 0x2344e0;
+	void loadPage(GJSearchObject*) = win 0x2344e0;
 	void onClearSearch(cocos2d::CCObject* sender) = win 0x236e90;
 	void onDeleteAll(cocos2d::CCObject* sender) = win 0x236c30;
 	void onDeleteSelected(cocos2d::CCObject* sender) = win 0x237460;
@@ -8878,9 +8878,9 @@ class LevelCell : TableViewCell {
 
 	static LevelCell* create(float, float) = win 0x7d6f0;
 
-	TodoReturn loadCustomLevelCell() = win 0x7da60;
-	TodoReturn loadFromLevel(GJGameLevel*) = win 0x7d8b0;
-	TodoReturn loadLocalLevelCell() = win 0x804d0;
+	void loadCustomLevelCell() = win 0x7da60;
+	void loadFromLevel(GJGameLevel*) = win 0x7d8b0;
+	void loadLocalLevelCell() = win 0x804d0;
 	void onClick(cocos2d::CCObject* sender) = win 0x80e80;
 	void onToggle(cocos2d::CCObject* sender) = win 0x7da40;
 	void onViewProfile(cocos2d::CCObject* sender) = win 0x80f70;
@@ -9243,7 +9243,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void showUpdateAlert(UpdateResponse) = win 0x255280;
 	void tryCloneLevel(cocos2d::CCObject*) = win 0x255f10;
 	TodoReturn tryShowAd();
-	TodoReturn updateLabelValues() = win 0x256d20;
+	void updateLabelValues() = win 0x256d20;
 	TodoReturn updateSideButtons();
 
 	virtual void keyBackClicked() = win 0x257d50;
@@ -10059,7 +10059,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	TodoReturn deleteSelected();
 	bool init(bool) = win 0x27d1c0;
 	bool isCorrect(char const*);
-	TodoReturn loadPage(int) = win 0x27e140;
+	void loadPage(int) = win 0x27e140;
 	void onClose(cocos2d::CCObject* sender);
 	void onDeleteSelected(cocos2d::CCObject* sender);
 	void onNextPage(cocos2d::CCObject* sender);
@@ -10067,7 +10067,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	void onSentMessages(cocos2d::CCObject* sender);
 	void onToggleAllObjects(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = win 0x27e390;
+	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x27e390;
 	TodoReturn untoggleAll() = win 0x27e0f0;
 	TodoReturn updateLevelsLabel();
 	TodoReturn updatePageArrows();
@@ -11554,7 +11554,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool init(int accountID, bool ownProfile) = win 0x2ed080;
 	bool isCorrect(char const* key) = win 0x2f1ef0;
 	bool isOnWatchlist(int);
-	TodoReturn loadPage(int) = win 0x2f1fc0;
+	void loadPage(int) = win 0x2f1fc0;
 	void loadPageFromUserInfo(GJUserScore*) = win 0x2edda0;
 	void onBlockUser(cocos2d::CCObject* sender) = win 0x2f0c90;
 	void onClose(cocos2d::CCObject* sender) = win 0x2f15e0;
@@ -11576,7 +11576,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	void onUpdate(cocos2d::CCObject* sender) = win 0x2edb10;
 	void onYouTube(cocos2d::CCObject* sender) = win 0x2f1910;
 	TodoReturn setupComments() = win 0x2f1170;
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = win 0x2f2160;
+	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x2f2160;
 	void showNoAccountError() = win 0x2f1650;
 	TodoReturn toggleMainPageVisibility(bool);
 	TodoReturn updateLevelsLabel();
@@ -14980,7 +14980,7 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
 	static TopArtistsLayer* create() = win 0x3bd270;
 
 	bool isCorrect(char const*);
-	TodoReturn loadPage(int) = win 0x3bdcb0;
+	void loadPage(int) = win 0x3bdcb0;
 	void onClose(cocos2d::CCObject* sender);
 	void onNextPage(cocos2d::CCObject* sender);
 	void onPrevPage(cocos2d::CCObject* sender);
@@ -15050,7 +15050,7 @@ class TutorialLayer : FLAlertLayer {
 
 	static TutorialLayer* create() = win 0x3be0a0;
 
-	TodoReturn loadPage(int);
+	void loadPage(int);
 	void onClose(cocos2d::CCObject* sender);
 	void onNext(cocos2d::CCObject* sender);
 	TodoReturn removeTutorialTexture();

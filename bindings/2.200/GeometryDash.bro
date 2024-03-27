@@ -2826,9 +2826,9 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	TodoReturn updateLevelsLabel();
 	void showNoAccountError();
 	void loadPageFromUserInfo(GJUserScore*) = mac 0x77a170, win 0x2e8040;
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = win 0x2EB980, mac 0x77a030;
+	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x2EB980, mac 0x77a030;
 	TodoReturn toggleMainPageVisibility(bool);
-	TodoReturn loadPage(int) = mac 0x77e370;
+	void loadPage(int) = mac 0x77e370;
 	TodoReturn blockUser() = mac 0x77d730;
 	/* unverified signature */
 	bool isCorrect(char const*) = mac 0x77e7a0;
@@ -3116,7 +3116,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn confirmMoveToTop(cocos2d::CCObject*) = mac 0x29c3a0;
 	TodoReturn incrementDislikes();
 	TodoReturn setupProgressBars() = mac 0x29aec0;
-	TodoReturn updateLabelValues() = mac 0x29c920, win 0x252490;
+	void updateLabelValues() = mac 0x29c920, win 0x252490;
 	TodoReturn updateSideButtons() = mac 0x29ba90;
 	TodoReturn confirmOwnerDelete(cocos2d::CCObject*) = mac 0x29bc80;
 	TodoReturn confirmMoveToBottom(cocos2d::CCObject*) = mac 0x29c480;
@@ -4487,7 +4487,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn deleteFriendRequests(int, cocos2d::CCArray*, bool);
 	TodoReturn markListAsDownloaded(int);
 	TodoReturn removeDelimiterChars(gd::string, bool);
-	TodoReturn resetAccountComments(int) = mac 0x51f580, win 0x107B10;
+	void resetAccountComments(int) = mac 0x51f580, win 0x107B10;
 	TodoReturn resetDailyLevelState(GJTimedLevelType) = mac 0x5270e0, win 0x10f810;
 	TodoReturn storeDailyLevelState(int, int, GJTimedLevelType) = mac 0x526fc0;
 	TodoReturn updateSavedLevelList(GJLevelList*);
@@ -5091,7 +5091,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	TodoReturn incrementLikes();
 	void loadFromComment(GJComment*) = mac 0x2266f0, win 0x83E20;
 	TodoReturn incrementDislikes();
-	TodoReturn updateLabelValues();
+	void updateLabelValues();
 	CommentCell(char const*, float, float);
 
 	virtual bool init() = mac 0x232fc0;
@@ -9720,7 +9720,7 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 
 	void setupPageInfo(int, int, int);
 	TodoReturn setupSongBrowser(cocos2d::CCArray*);
-	TodoReturn loadPage(int);
+	void loadPage(int);
 
 	virtual bool init() = mac 0x5c3e80;
 	virtual void customSetup() = win 0x220320, mac 0x5c4150;
@@ -9946,7 +9946,7 @@ class TutorialLayer : FLAlertLayer {
 	void onClose(cocos2d::CCObject* sender);
 
 	TodoReturn removeTutorialTexture();
-	TodoReturn loadPage(int);
+	void loadPage(int);
 
 	virtual bool init() = mac 0x4b7b20;
 	virtual void keyBackClicked() = mac 0x4b8560;
@@ -11348,7 +11348,7 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
 	void setupPageInfo(gd::string, char const*) = mac 0x2ee360;
 	TodoReturn setupLeaderboard(cocos2d::CCArray*);
 	TodoReturn updateLevelsLabel();
-	TodoReturn loadPage(int);
+	void loadPage(int);
 	/* unverified signature */
 	bool isCorrect(char const*);
 
@@ -11989,7 +11989,7 @@ class AchievementsLayer : GJDropDownLayer {
 
 	void setupPageInfo(int, int, int);
 	TodoReturn setupLevelBrowser(cocos2d::CCArray*);
-	TodoReturn loadPage(int);
+	void loadPage(int);
 
 	virtual void keyDown(cocos2d::enumKeyCodes) = mac 0x351660;
 	virtual void customSetup() = mac 0x3511a0;
@@ -13120,8 +13120,8 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	TodoReturn deleteSelected();
 	TodoReturn updatePageArrows();
 	TodoReturn updateLevelsLabel();
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = mac 0x753390;
-	TodoReturn loadPage(int) = mac 0x7527d0;
+	void setupCommentsBrowser(cocos2d::CCArray*) = mac 0x753390;
+	void loadPage(int) = mac 0x7527d0;
 	/* unverified signature */
 	bool isCorrect(char const*);
 
@@ -13318,8 +13318,8 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	TodoReturn deleteSelected();
 	TodoReturn updatePageArrows();
 	TodoReturn updateLevelsLabel();
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = mac 0x20ea70;
-	TodoReturn loadPage(int) = mac 0x20de90;
+	void setupCommentsBrowser(cocos2d::CCArray*) = mac 0x20ea70;
+	void loadPage(int) = mac 0x20de90;
 	/* unverified signature */
 	bool isCorrect(char const*);
 
@@ -15491,10 +15491,10 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	TodoReturn toggleCommentMode(cocos2d::CCObject*) = mac 0x772b20;
 	TodoReturn updateLevelsLabel();
 	TodoReturn toggleExtendedMode(cocos2d::CCObject*);
-	TodoReturn setupCommentsBrowser(cocos2d::CCArray*) = mac 0x773120, win 0x226770;
+	void setupCommentsBrowser(cocos2d::CCArray*) = mac 0x773120, win 0x226770;
 	TodoReturn toggleSmallCommentMode(cocos2d::CCObject*);
 	TodoReturn updateCommentModeButtons();
-	TodoReturn loadPage(int, bool) = mac 0x772d80, win 0x226440;
+	void loadPage(int, bool) = mac 0x772d80, win 0x226440;
 	/* unverified signature */
 	bool isCorrect(char const*);
 
@@ -15542,11 +15542,11 @@ class LevelCell : TableViewCell {
 	void onToggle(cocos2d::CCObject* sender) = win 0x7d580;
 
 	TodoReturn updateToggle();
-	TodoReturn loadFromLevel(GJGameLevel*) = mac 0x223890, win 0x7D3F0;
+	void loadFromLevel(GJGameLevel*) = mac 0x223890, win 0x7D3F0;
 	TodoReturn updateBGColor(int) = win 0x807B0;
 	TodoReturn updateCellMode(int) = mac 0x22cde0;
-	TodoReturn loadLocalLevelCell() = mac 0x22d440, win 0x7FE70;
-	TodoReturn loadCustomLevelCell() = win 0x7D5A0, mac 0x22dcd0;
+	void loadLocalLevelCell() = mac 0x22d440, win 0x7FE70;
+	void loadCustomLevelCell() = win 0x7D5A0, mac 0x22dcd0;
 	LevelCell(char const*, float, float);
 
 	virtual bool init() = mac 0x22d410;
