@@ -1979,9 +1979,9 @@ class GameManager : GManager {
 
 	virtual void update(float) = mac 0x368430;
 	virtual bool init() = win 0x11EA00, mac 0x354980;
-	virtual TodoReturn encodeDataTo(DS_Dictionary*) = mac 0x367900;
-	virtual TodoReturn dataLoaded(DS_Dictionary*) = mac 0x365be0;
-	virtual TodoReturn firstLoad() = mac 0x367010;
+	virtual void encodeDataTo(DS_Dictionary*) = mac 0x367900;
+	virtual void dataLoaded(DS_Dictionary*) = mac 0x365be0;
+	virtual void firstLoad() = mac 0x367010;
 
 	cocos2d::CCDictionary* m_unkAnimationDict;
 	cocos2d::CCDictionary* m_unkAnimationDict2;
@@ -2228,10 +2228,10 @@ class GManager : cocos2d::CCNode {
     inline GManager() {}
 
 	virtual bool init() = mac 0x487ec0;
-	virtual TodoReturn setup() = mac 0x487ee0, win 0x47030;
-	virtual TodoReturn encodeDataTo(DS_Dictionary*) = mac 0x488340;
-	virtual TodoReturn dataLoaded(DS_Dictionary*) = mac 0x488910;
-	virtual TodoReturn firstLoad() = mac 0x488920;
+	virtual void setup() = mac 0x487ee0, win 0x47030;
+	virtual void encodeDataTo(DS_Dictionary*) = mac 0x488340;
+	virtual void dataLoaded(DS_Dictionary*) = mac 0x488910;
+	virtual void firstLoad() = mac 0x488920;
 
 	gd::string m_fileName;
 	bool m_setup;
@@ -4225,7 +4225,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getTimeLeft(char const*, float) = mac 0x50a700;
 	void getUserList(UserListType) = mac 0x524400;
 	TodoReturn getGauntlets() = mac 0x513af0;
-	TodoReturn getGJRewards(int) = mac 0x525ff0;
+	void getGJRewards(int) = mac 0x525ff0;
 	TodoReturn getIntForKey(char const*) = mac 0x527ee0;
 	TodoReturn getLengthStr(bool, bool, bool, bool, bool, bool);
 	GJGameLevel* getMainLevel(int, bool) = win 0xF40E0, mac 0x5011a0;
@@ -4235,7 +4235,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getDailyTimer(GJTimedLevelType) = mac 0x5271c0;
 	TodoReturn getFolderName(int, bool) = mac 0x50bf00;
 	void getGJUserInfo(int) = win 0x105270, mac 0x51b4d0;
-	TodoReturn getLevelLists(GJSearchObject*) = mac 0x512dd0;
+	void getLevelLists(GJSearchObject*) = mac 0x512dd0;
 	TodoReturn getLocalLevel(int);
 	TodoReturn getMapPackKey(int);
 	TodoReturn getMessageKey(int);
@@ -4248,7 +4248,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* getSavedLevels(bool, int) = mac 0x5089a0, win 0xF6620;
 	TodoReturn getSearchScene(char const*) = mac 0x50aa00;
 	TodoReturn getUserInfoKey(int);
-	TodoReturn getGJChallenges() = mac 0x5267e0;
+	void getGJChallenges() = mac 0x5267e0;
 	TodoReturn getLevelListKey(int);
 	void getOnlineLevels(GJSearchObject*) = mac 0x5108d0, win 0xFBAB0;
 	TodoReturn getRateStarsKey(int);
@@ -4285,7 +4285,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getAccountCommentKey(int, int) = mac 0x51e710;
 	TodoReturn getAllSmartTemplates() = mac 0x50c310;
 	TodoReturn getGauntletSearchKey(int) = mac 0x513a50, win 0xfee80;
-	TodoReturn getGJDailyLevelState(GJTimedLevelType) = mac 0x526c80, win 0x10f150;
+	void getGJDailyLevelState(GJTimedLevelType) = mac 0x526c80, win 0x10f150;
 	TodoReturn getHighestLevelOrder() = mac 0x508c70;
 	TodoReturn getLeaderboardScores(char const*) = mac 0x5196a0;
 	TodoReturn getStoredUserMessage(int);
@@ -4387,7 +4387,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn unblockUser(int);
 	TodoReturn updateLevel(GJGameLevel*) = mac 0x515ec0;
 	void uploadLevel(GJGameLevel*) = win 0xFA560;
-	TodoReturn encodeDataTo(DS_Dictionary*) = mac 0x50c700, win 0xF8F90;
+	void encodeDataTo(DS_Dictionary*) = mac 0x50c700, win 0xF8F90;
 	TodoReturn hasLikedItem(LikeItemType, int, bool, int);
 	TodoReturn removeFriend(int) = mac 0x523530;
 	TodoReturn restoreItems();
@@ -4651,7 +4651,7 @@ class GJLevelList : cocos2d::CCNode {
 	TodoReturn getListLevelsArray(cocos2d::CCArray*);
 	gd::string getUnpackedDescription() = mac 0x52e6a0;
 
-	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x52fff0;
+	void dataLoaded(DS_Dictionary*) = mac 0x52fff0;
 	TodoReturn totalLevels();
 	TodoReturn reorderLevel(int, int);
 	void showListInfo() = mac 0x52fba0;
@@ -4809,12 +4809,12 @@ class GameStatsManager : cocos2d::CCNode {
 	/* unverified signature */
 	void setStat(char const*, int) = win 0x168760, mac 0x66a40;
 
-	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x89460;
+	void dataLoaded(DS_Dictionary*) = mac 0x89460;
 	TodoReturn firstSetup();
 	TodoReturn hasUserCoin(char const*) = mac 0x6f490, win 0x16ecd0;
 	static GameStatsManager* sharedState() = win 0x165df0, mac 0x5d0a0;
 	TodoReturn addStoreItem(int, int, int, int, ShopType) = win 0x167FB0, mac 0x662c0;
-	TodoReturn encodeDataTo(DS_Dictionary*) = win 0x17DE70;
+	void encodeDataTo(DS_Dictionary*) = win 0x17DE70;
 	/* unverified signature */
 	bool isSecretCoin(gd::string);
 	TodoReturn purchaseItem(int) = win 0x168160;
@@ -7587,14 +7587,14 @@ class GJAccountManager : cocos2d::CCNode {
 	TodoReturn onGetAccountBackupURLCompleted(gd::string, gd::string);
 	TodoReturn onUpdateAccountSettingsCompleted(gd::string, gd::string);
 
-	TodoReturn dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*);
 	TodoReturn firstSetup();
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
 	/* unverified signature */
 	bool isDLActive(char const*);
 	static GJAccountManager* sharedState() = win 0x186ff0, mac 0xcba00;
 	TodoReturn syncAccount(gd::string);
-	TodoReturn encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*);
 	TodoReturn loginAccount(gd::string, gd::string);
 	TodoReturn addDLToActive(char const*);
 	TodoReturn addDLToActive(char const*, cocos2d::CCObject*) = win 0x187680;
@@ -8112,7 +8112,7 @@ class GJChallengeItem : cocos2d::CCObject {
 	bool init(GJChallengeType, int, int, int, gd::string);
 	~GJChallengeItem();
 
-	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x8b3c0;
+	void dataLoaded(DS_Dictionary*) = mac 0x8b3c0;
 	TodoReturn incrementCount(int);
 	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x8b350;
 	TodoReturn createFromString(gd::string) = mac 0x8af60;
@@ -8153,9 +8153,9 @@ class LocalLevelManager : GManager {
 	TodoReturn tryLoadMainLevelString(int) = win 0x2730A0, mac 0x5bc400;
 
 	virtual bool init() = mac 0x5bc3c0;
-	virtual TodoReturn encodeDataTo(DS_Dictionary*) = mac 0x5bd590;
-	virtual TodoReturn dataLoaded(DS_Dictionary*) = mac 0x5bd5f0;
-	virtual TodoReturn firstLoad() = mac 0x5bd500;
+	virtual void encodeDataTo(DS_Dictionary*) = mac 0x5bd590;
+	virtual void dataLoaded(DS_Dictionary*) = mac 0x5bd5f0;
+	virtual void firstLoad() = mac 0x5bd500;
 
 	cocos2d::CCArray* m_localLevels;
 	cocos2d::CCArray* m_LLM03;
@@ -8739,7 +8739,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	void onClose(cocos2d::CCObject* sender);
 	void onReward(cocos2d::CCObject* sender);
 
-	TodoReturn updateTimers(float) = mac 0x1f9460;
+	callback void updateTimers(float) = mac 0x1f9460;
 	TodoReturn tryGetRewards();
 	TodoReturn unlockLayerClosed(RewardUnlockLayer*);
 
@@ -9094,7 +9094,7 @@ class GJRewardItem : cocos2d::CCObject {
 	TodoReturn getRewardObjectForType(SpecialRewardItem);
 	TodoReturn getRandomNonMaxShardType();
 
-	TodoReturn dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*);
 	/* unverified signature */
 	bool isShardType(SpecialRewardItem);
 	TodoReturn createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = mac 0x78290;
@@ -9701,7 +9701,7 @@ class GJSmartPrefab : cocos2d::CCObject {
 	bool init();
 	~GJSmartPrefab();
 
-	TodoReturn dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*);
 	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x4077a0;
 
 	virtual void encodeWithCoder(DS_Dictionary*) = mac 0x4078e0;
@@ -10014,7 +10014,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	void onClose(cocos2d::CCObject* sender) = mac 0x37b610;
 
 	TodoReturn updateDots();
-	TodoReturn updateTimers(float) = mac 0x37b650;
+	callback void updateTimers(float) = mac 0x37b650;
 	TodoReturn exitNodeAtSlot(int, float);
 	TodoReturn tryGetChallenges();
 	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = mac 0x37b890;
@@ -10159,7 +10159,7 @@ class GJRewardObject : cocos2d::CCObject {
 	bool init(SpecialRewardItem, int, int);
 	~GJRewardObject();
 
-	TodoReturn dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*);
 	/* unverified signature */
 	bool isSpecialType();
 	TodoReturn createWithCoder(DS_Dictionary*) = mac 0x8a800;
@@ -10749,7 +10749,7 @@ class FileSaveManager : GManager {
 	TodoReturn loadDataFromFile(char const*);
 
 	virtual bool init();
-	virtual TodoReturn firstLoad();
+	virtual void firstLoad();
 }
 
 [[link(android)]]
@@ -10978,7 +10978,7 @@ class GJSmartTemplate : cocos2d::CCObject {
 	TodoReturn getPrefab(cocos2d::CCPoint, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*);
 	TodoReturn getPrefab(gd::string, bool, bool);
 
-	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x407300;
+	void dataLoaded(DS_Dictionary*) = mac 0x407300;
 	TodoReturn savePrefab(gd::string, gd::string);
 	/* unverified signature */
 	bool isUnrequired(gd::string);
@@ -12423,10 +12423,10 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn getAchievementRewardDict();
 	TodoReturn getAllAchievementsSorted(bool);
 
-	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x7467f0;
+	void dataLoaded(DS_Dictionary*) = mac 0x7467f0;
 	TodoReturn firstSetup();
 	TodoReturn sharedState() = win 0x9AC0, mac 0x6eed90;
-	TodoReturn encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*);
 	TodoReturn addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
 	TodoReturn resetAchievement(char const*);
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
@@ -12718,10 +12718,10 @@ class GJTransformControl : cocos2d::CCLayer {
 class KeybindingsManager : cocos2d::CCNode {
 	~KeybindingsManager();
 
-	TodoReturn dataLoaded(DS_Dictionary*) = win 0x228580, mac 0x4c12a0;
+	void dataLoaded(DS_Dictionary*) = win 0x228580, mac 0x4c12a0;
 	TodoReturn firstSetup();
 	TodoReturn sharedState() = win 0x228470, mac 0x4c0c60;
-	TodoReturn encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*);
 	TodoReturn commandForKey(cocos2d::enumKeyCodes, GJKeyGroup, bool, bool, bool);
 	TodoReturn keyForCommand(GJKeyCommand);
 	TodoReturn groupForCommand(GJKeyCommand);
@@ -13647,13 +13647,13 @@ class GJMultiplayerManager : cocos2d::CCNode {
 	TodoReturn onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 
 	TodoReturn addComment(gd::string, int) = mac 0x61e550;
-	TodoReturn dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*);
 	TodoReturn firstSetup();
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
 	/* unverified signature */
 	bool isDLActive(char const*);
 	TodoReturn sharedState();
-	TodoReturn encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*);
 	TodoReturn addDLToActive(char const*);
 	TodoReturn addDLToActive(char const*, cocos2d::CCObject*);
 	TodoReturn uploadComment(gd::string, int);
@@ -13757,7 +13757,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn onDownloadMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 
-	TodoReturn dataLoaded(DS_Dictionary*) = mac 0x55a150;
+	void dataLoaded(DS_Dictionary*) = mac 0x55a150;
 	TodoReturn deleteSong(int) = mac 0x5585a0;
 	TodoReturn firstSetup();
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
@@ -13768,7 +13768,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	gd::string pathForSong(int songID) = mac 0x5586d0, win 0x27f2c0;
 	static MusicDownloadManager* sharedState() = win 0x27d490, mac 0x5552f0;
 	void downloadSong(int songID) = mac 0x558880;
-	TodoReturn encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*);
 	TodoReturn nameForTagID(int);
 	TodoReturn stopDownload(int);
 	TodoReturn addDLToActive(char const*);
