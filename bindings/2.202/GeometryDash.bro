@@ -3481,8 +3481,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn start() = win 0x33800;
 	TodoReturn startMusic(int, int, int, int, bool, int);
 	TodoReturn stop() = win 0x5b620;
-	TodoReturn stopAllEffects() = win 0x37f50;
-	TodoReturn stopAllMusic();
+	void stopAllEffects() = win 0x37f50;
+	void stopAllMusic();
 	TodoReturn stopAndGetFade(FMOD::Channel*);
 	TodoReturn stopAndRemoveMusic(int);
 	TodoReturn stopChannel(FMOD::Channel*, bool, float);

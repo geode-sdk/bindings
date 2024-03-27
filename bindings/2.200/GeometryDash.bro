@@ -10787,7 +10787,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn preloadMusic(gd::string, bool, int);
 	TodoReturn resumeEffect(unsigned int);
 	static FMODAudioEngine* sharedEngine() = win 0x32b80, mac 0x3baf40;
-	TodoReturn stopAllMusic() = mac 0x3bcc30;
+	void stopAllMusic() = mac 0x3bcc30;
 	TodoReturn testFunction(int);
 	TodoReturn unloadEffect(gd::string);
 	void updateReverb(FMODReverbPreset, bool) = win 0x331b0, mac 0x3bbca0;
@@ -10815,7 +10815,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn saveAudioState(FMODAudioState&) = win 0x33b10;
 	/* unverified signature */
 	void setMusicTimeMS(unsigned int, bool, int) = win 0x3a160;
-	TodoReturn stopAllEffects() = mac 0x3bc450, win 0x37D00;
+	void stopAllEffects() = mac 0x3bc450, win 0x37D00;
 	TodoReturn stopAndGetFade(FMOD::Channel*);
 	TodoReturn swapMusicIndex(int, int);
 	TodoReturn updateMetering();
