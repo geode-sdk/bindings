@@ -8739,7 +8739,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	void onClose(cocos2d::CCObject* sender);
 	void onReward(cocos2d::CCObject* sender);
 
-	TodoReturn updateTimers(float) = mac 0x1f9460;
+	callback void updateTimers(float) = mac 0x1f9460;
 	TodoReturn tryGetRewards();
 	TodoReturn unlockLayerClosed(RewardUnlockLayer*);
 
@@ -10014,7 +10014,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	void onClose(cocos2d::CCObject* sender) = mac 0x37b610;
 
 	TodoReturn updateDots();
-	TodoReturn updateTimers(float) = mac 0x37b650;
+	callback void updateTimers(float) = mac 0x37b650;
 	TodoReturn exitNodeAtSlot(int, float);
 	TodoReturn tryGetChallenges();
 	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = mac 0x37b890;
