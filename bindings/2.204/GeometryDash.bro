@@ -274,7 +274,7 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
 
 	virtual void setOpacity(unsigned char) = win 0x39bb70;
 	virtual void setChildColor(cocos2d::ccColor3B const&);
-	virtual TodoReturn resetObject();
+	virtual void resetObject();
 	virtual void activateObject();
 	virtual void deactivateObject(bool);
 	virtual void setObjectColor(cocos2d::ccColor3B const&);
@@ -314,10 +314,10 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn musicTest() = win 0x5b710;
 	TodoReturn pauseGame() = win 0x5b5e0;
 	TodoReturn pauseSound() = win 0x5b640;
-	TodoReturn platformShutdown() = win 0x5b0b0;
+	void platformShutdown() = win 0x5b0b0;
 	TodoReturn resumeSound() = win 0x5b6c0;
 	void setIdleTimerDisabled(bool);
-	TodoReturn setupGLView() = win 0x5b0c0;
+	void setupGLView() = win 0x5b0c0;
 	void showLoadingCircle(bool, bool, bool);
 
 	virtual bool applicationDidFinishLaunching() = win 0x5b320;
@@ -355,7 +355,7 @@ class ArtTriggerGameObject : EffectGameObject {
 	bool init(char const*);
 
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -383,7 +383,7 @@ class AudioLineGuideGameObject : EffectGameObject {
 	static AudioLineGuideGameObject* create() = win 0x3b6730;
 
 	virtual bool init() = win 0x3b67d0;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -635,7 +635,7 @@ class CameraTriggerGameObject : EffectGameObject {
 	bool init(char const*);
 
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -1396,10 +1396,10 @@ class CheckpointGameObject : EffectGameObject {
 	TodoReturn updateCheckpointSpriteVisibility();
 
 	virtual bool init();
-	virtual TodoReturn setupCustomSprites(gd::string);
-	virtual TodoReturn resetObject();
+	virtual void setupCustomSprites(gd::string);
+	virtual void resetObject();
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 	virtual TodoReturn triggerActivated(float);
 	virtual TodoReturn restoreObject();
@@ -1612,7 +1612,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 
 [[link(android)]]
 class ColorSetupDelegate {
-	virtual TodoReturn colorSetupClosed(int);
+	virtual void colorSetupClosed(int);
 }
 
 [[link(android)]]
@@ -1734,7 +1734,7 @@ class CountTriggerGameObject : EffectGameObject {
 	bool init(char const*);
 
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -2261,7 +2261,7 @@ class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
 	void onClaimReward(cocos2d::CCObject* sender) = win 0x9a040;
 	void onSkipLevel(cocos2d::CCObject* sender);
 	void showSkipButton() = win 0x99ff0;
-	TodoReturn updateTimeLabel(gd::string) = win 0x9a290;
+	void updateTimeLabel(gd::string) = win 0x9a290;
 
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x9a260;
 
@@ -2322,13 +2322,13 @@ class DashRingObject : RingObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
 [[link(android)]]
 class DemonFilterDelegate {
-	virtual TodoReturn demonFilterSelectClosed(int);
+	virtual void demonFilterSelectClosed(int);
 }
 
 [[link(android)]]
@@ -2410,7 +2410,7 @@ class DrawGridLayer : cocos2d::CCLayer {
 	bool init(cocos2d::CCNode*, LevelEditorLayer*);
 	void loadTimeMarkers(gd::string) = win 0x24afa0;
 	TodoReturn posForTime(float);
-	TodoReturn postUpdate();
+	void postUpdate();
 	TodoReturn removeAudioLineObject(AudioLineGuideGameObject*) = win 0x24ae60;
 	TodoReturn removeFromEffects(EffectGameObject*);
 	TodoReturn removeFromGuides(GameObject*);
@@ -2797,7 +2797,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn removeOffset(GameObject*) = win 0xd7cf0;
 	TodoReturn replaceGroupID(GameObject*, int, int);
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0xcbc50;
-	TodoReturn resetObjectEditorValues(cocos2d::CCArray*) = win 0xcca80;
+	void resetObjectEditorValues(cocos2d::CCArray*) = win 0xcca80;
 	TodoReturn resetSelectedObjectsColor() = win 0xd4990;
 	TodoReturn resetUI() = win 0xa8b10;
 	TodoReturn rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = win 0xd6080;
@@ -2905,7 +2905,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual void scaleChangeEnded() {}
 	virtual TodoReturn scaleXChanged(float) = win 0xcc4c0;
 	virtual TodoReturn scaleYChanged(float) = win 0xcc540;
-	virtual TodoReturn scaleXYChanged(float, float) = win 0xcc5c0;
+	virtual void scaleXYChanged(float, float) = win 0xcc5c0;
 
 
 	PAD = win 0x60, android32 0x5c;
@@ -3047,7 +3047,7 @@ class EffectGameObject : EnhancedGameObject {
 	virtual void firstSetup();
 	virtual void customSetup() = win 0x39e950;
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x39ccf0;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x39eb70;
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x39eb70;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3a1df0; // = win 0x13f9a0;
 	virtual void setRScaleX(float);
 	virtual void setRScaleY(float);
@@ -3332,7 +3332,7 @@ class EndTriggerGameObject : EffectGameObject {
 
 	virtual bool init();
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -3356,9 +3356,9 @@ class EnhancedGameObject : GameObject {
 	TodoReturn waitForAnimationTrigger();
 
 	virtual void customSetup() = win 0x145af0;
-	virtual TodoReturn resetObject() = win 0x145510;
+	virtual void resetObject() = win 0x145510;
 	virtual void deactivateObject(bool) = win 0x1474c0;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x1457b0;
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x1457b0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x147520;
 	virtual TodoReturn triggerActivated(float);
 	virtual TodoReturn restoreObject();
@@ -3424,7 +3424,7 @@ class EnhancedTriggerObject : EffectGameObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -3453,7 +3453,7 @@ class EnterEffectObject : EffectGameObject {
 	TodoReturn resetEnterAnimValues();
 
 	virtual void customSetup();
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -3465,7 +3465,7 @@ class EventLinkTrigger : EffectGameObject {
 
 	virtual bool init() = win 0x3ae040;
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -3787,7 +3787,7 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 	virtual void show();
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xee9c0;
 	virtual TodoReturn rewardedVideoFinished() = win 0xee490;
-	virtual TodoReturn updateRate() = win 0xee0f0;
+	virtual void updateRate() = win 0xee0f0;
 }
 
 [[link(android)]]
@@ -3809,7 +3809,7 @@ class ForceBlockGameObject : EffectGameObject {
 	TodoReturn calculateForceToTarget(GameObject*);
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -4984,9 +4984,9 @@ class GameObject : CCSpritePlus {
 	virtual void setFlipY(bool) = win 0x13af40;
 	virtual void firstSetup();
 	virtual void customSetup() = win 0x133940;
-	virtual TodoReturn setupCustomSprites(gd::string) = win 0x14DDA0;
+	virtual void setupCustomSprites(gd::string) = win 0x14DDA0;
 	virtual TodoReturn addMainSpriteToParent(bool) = win 0x13cf90;
-	virtual TodoReturn resetObject();
+	virtual void resetObject();
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void activateObject();
 	virtual void deactivateObject(bool) = win 0x133790;
@@ -4998,7 +4998,7 @@ class GameObject : CCSpritePlus {
 	virtual cocos2d::CCPoint getRealPosition();
 	virtual void setStartPos(cocos2d::CCPoint);
 	virtual TodoReturn updateStartValues();
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x13f9a0;
 	virtual TodoReturn claimParticle();
 	virtual TodoReturn unclaimParticle();
@@ -5227,7 +5227,7 @@ class GameObjectCopy : cocos2d::CCObject {
 	static GameObjectCopy* create(GameObject*) = win 0x24a8b0;
 
 	bool init(GameObject*) = win 0x24a960;
-	TodoReturn resetObject();
+	void resetObject();
 
 	GameObject* m_object;
 }
@@ -5260,13 +5260,13 @@ class GameOptionsTrigger : EffectGameObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
 [[link(android)]]
 class GameRateDelegate {
-	virtual TodoReturn updateRate();
+	virtual void updateRate();
 }
 
 [[link(android)]]
@@ -5792,8 +5792,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn addPoints(int);
 	TodoReturn addProximityVolumeEffect(int, int, SFXTriggerGameObject*) = win 0x1c4a20;
 	TodoReturn addRemapTargets(gd::set<int>&);
-	TodoReturn addToGroupParents(GameObject*) = win 0x1a96a0;
-	TodoReturn addToGroups(GameObject*, bool) = win 0x1a8c80;
+	void addToGroupParents(GameObject*) = win 0x1a96a0;
+	void addToGroups(GameObject*, bool) = win 0x1a8c80;
 	TodoReturn addToObjectsToShow(GameObject*);
 	TodoReturn addUIObject(GameObject*);
 	void animateInDualGroundNew(GameObject*, float, bool, float) = win 0x19AE90;
@@ -5995,8 +5995,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn registerStateObject(EffectGameObject*);
 	TodoReturn removeBackground();
 	TodoReturn removeCustomEnterEffects(int, bool) = win 0x1CB000;
-	TodoReturn removeFromGroupParents(GameObject*) = win 0x1a9600;
-	TodoReturn removeFromGroups(GameObject*) = win 0x1a8da0;
+	void removeFromGroupParents(GameObject*) = win 0x1a9600;
+	void removeFromGroups(GameObject*) = win 0x1a8da0;
 	TodoReturn removeFromStickyGroup(GameObject*) = win 0x1a9da0;
 	TodoReturn removeGroundLayer();
 	TodoReturn removeGroupParent(int) = win 0x1a9550;
@@ -6143,7 +6143,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void update(float) = win 0x1bb780;
 	virtual bool init() = win 0x190290;
 	virtual void visit() = win 0x1c8ea0;
-	virtual TodoReturn postUpdate(float);
+	virtual void postUpdate(float);
 	virtual TodoReturn checkForEnd();
 	virtual TodoReturn testTime();
 	virtual TodoReturn updateVerifyDamage();
@@ -6186,10 +6186,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool);
 	virtual TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*);
 	virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*);
-	virtual TodoReturn checkpointActivated(CheckpointGameObject*) = win 0x1c8a50;
+	virtual void checkpointActivated(CheckpointGameObject*) = win 0x1c8a50;
 	virtual TodoReturn flipArt(bool);
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
-	virtual TodoReturn updateTimeLabel(int, int, bool);
+	virtual void updateTimeLabel(int, int, bool);
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
@@ -7038,7 +7038,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	virtual void textChanged(CCTextInputNode*);
 	virtual TodoReturn listButtonBarSwitchedPage(ListButtonBar*, int) = win 0x1f32a0;
 	virtual void showUnlockPopup(int, UnlockType) = win 0x1f32b0;
-	virtual TodoReturn updateRate() = win 0x1f3880;
+	virtual void updateRate() = win 0x1f3880;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x1f3570;
 	virtual void dialogClosed(DialogLayer*) = win 0x1f36a0;
 	virtual TodoReturn playerColorChanged() = win 0x1f3160;
@@ -7750,7 +7750,7 @@ class GJScaleControl : cocos2d::CCLayer {
 class GJScaleControlDelegate {
 	virtual TodoReturn scaleXChanged(float);
 	virtual TodoReturn scaleYChanged(float);
-	virtual TodoReturn scaleXYChanged(float, float);
+	virtual void scaleXYChanged(float, float);
 	virtual TodoReturn scaleChangeBegin();
 	virtual void scaleChangeEnded();
 	virtual TodoReturn updateScaleControl();
@@ -8325,7 +8325,7 @@ class GradientTriggerObject : EffectGameObject {
 	static GradientTriggerObject* create() = win 0x3915d0;
 
 	virtual bool init() = win 0x391670;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -8557,7 +8557,7 @@ class ItemTriggerGameObject : EffectGameObject {
 
 	virtual void customSetup() = win 0x3b50e0;
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -8615,7 +8615,7 @@ class KeyframeAnimTriggerObject : EffectGameObject {
 	static KeyframeAnimTriggerObject* create() = win 0x3a6cd0;
 
 	virtual bool init() = win 0x3a6d70;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -8629,7 +8629,7 @@ class KeyframeGameObject : EffectGameObject {
 
 	virtual bool init() = win 0x3aafc0;
 	virtual void setOpacity(unsigned char) = win 0x3ab230;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -8661,8 +8661,8 @@ class LabelGameObject : EffectGameObject {
 	virtual void setOpacity(unsigned char) = win 0x3a8f20;
 	virtual void setupCustomSprites(gd::string) = win 0x3A8C70;
 	virtual TodoReturn addMainSpriteToParent(bool);
-	virtual TodoReturn resetObject();
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void resetObject();
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 	virtual void setObjectColor(cocos2d::ccColor3B const&);
 	virtual TodoReturn updateTextKerning(int);
@@ -9026,7 +9026,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn resetDelayedSpawnNodes();
 	TodoReturn resetEffectTriggerOptim(GameObject*, cocos2d::CCArray*);
 	TodoReturn resetMovingObjects();
-	TodoReturn resetObjectVector();
+	void resetObjectVector();
 	TodoReturn resetPlayback();
 	TodoReturn resetToggledGroups();
 	TodoReturn resetToggledGroupsAndObjects();
@@ -9078,13 +9078,13 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn validGroup(GameObject*, bool);
 
 	virtual void draw();
-	virtual TodoReturn postUpdate(float) = win 0x2475d0;
+	virtual void postUpdate(float) = win 0x2475d0;
 	virtual TodoReturn updateVisibility(float) = win 0x23fa90;
 	virtual TodoReturn playerTookDamage(PlayerObject*);
 	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
 	virtual TodoReturn updateDebugDraw();
-	virtual TodoReturn addToGroup(GameObject*, int, bool);
-	virtual TodoReturn removeFromGroup(GameObject*, int);
+	virtual void addToGroup(GameObject*, int, bool);
+	virtual void removeFromGroup(GameObject*, int);
 	virtual TodoReturn updateObjectSection(GameObject*);
 	virtual TodoReturn updateDisabledObjectsLastPos(cocos2d::CCArray*);
 	virtual TodoReturn timeForPos(cocos2d::CCPoint, int, int, bool, int);
@@ -9095,7 +9095,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool);
 	virtual TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*);
 	virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*);
-	virtual TodoReturn checkpointActivated(CheckpointGameObject*);
+	virtual void checkpointActivated(CheckpointGameObject*);
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
 	virtual void levelSettingsUpdated() = win 0x23b2b0;
 
@@ -9521,7 +9521,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	virtual void textInputClosed(CCTextInputNode*) = win 0x263790;
 	virtual void textChanged(CCTextInputNode*) = win 0x263830;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x263630;
-	virtual TodoReturn demonFilterSelectClosed(int) = win 0x2627d0;
+	virtual void demonFilterSelectClosed(int) = win 0x2627d0;
 
 	int m_type;
 	CCTextInputNode* m_searchInput;
@@ -10550,7 +10550,7 @@ class ObjectControlGameObject : EffectGameObject {
 	static ObjectControlGameObject* create();
 
 	virtual bool init();
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -10740,9 +10740,9 @@ class ParticleGameObject : EnhancedGameObject {
 	virtual void setChildColor(cocos2d::ccColor3B const&);
 	virtual void customSetup() = win 0x3983f0;
 	virtual TodoReturn addMainSpriteToParent(bool);
-	virtual TodoReturn resetObject();
+	virtual void resetObject();
 	virtual void deactivateObject(bool);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x398170;
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x398170;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x399880;
 	virtual TodoReturn claimParticle();
 	virtual TodoReturn unclaimParticle();
@@ -10856,7 +10856,7 @@ class PlatformToolbox {
 	static TodoReturn onNativeResume();
 	static TodoReturn onToggleKeyboard();
 	static TodoReturn openAppPage();
-	static TodoReturn platformShutdown();
+	static void platformShutdown();
 	static TodoReturn refreshWindow();
 	static TodoReturn reportAchievementWithID(char const*, int);
 	static TodoReturn reportLoadingFinished();
@@ -10900,7 +10900,7 @@ class PlayerControlGameObject : EffectGameObject {
 	static PlayerControlGameObject* create();
 
 	virtual bool init();
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -11168,7 +11168,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x2d6520;
 	virtual void setFlipX(bool) = win 0x2da6b0;
 	virtual void setFlipY(bool);
-	virtual TodoReturn resetObject() = win 0x2d1100;
+	virtual void resetObject() = win 0x2d1100;
 	virtual cocos2d::CCPoint getRealPosition() = win 0x2d6b70;
 	virtual TodoReturn getOrientedBox();
 	virtual TodoReturn getObjectRotation();
@@ -11371,7 +11371,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 		m_circleWaveArray->addObject(cw);
 	}
 	TodoReturn addObject(GameObject*) = win 0x2e19b0;
-	TodoReturn addToGroupOld(GameObject*);
+	void addToGroupOld(GameObject*);
 	TodoReturn applyCustomEnterEffect(GameObject*, bool);
 	TodoReturn applyEnterEffect(GameObject*, int, bool);
 	bool canPauseGame() = win 0x2eae60;
@@ -11432,7 +11432,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn queueCheckpoint();
 	TodoReturn removeAllObjects() = win 0x2eb570;
 	TodoReturn removeCheckpoint(bool) = win 0x2e8d70;
-	TodoReturn removeFromGroupOld(GameObject*);
+	void removeFromGroupOld(GameObject*);
 	void resetLevel() = win 0x2ea130;
 	TodoReturn resetLevelFromStart() = win 0x2ea090;
 	TodoReturn resume() = win 0x2eb100;
@@ -11478,7 +11478,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	virtual void onEnterTransitionDidFinish() = win 0x2eb700;
 	virtual void onExit() = win 0x2eb730;
-	virtual TodoReturn postUpdate(float) = win 0x2e7220;
+	virtual void postUpdate(float) = win 0x2e7220;
 	virtual TodoReturn checkForEnd() = win 0x2e74d0;
 	virtual TodoReturn testTime();
 	virtual TodoReturn updateVerifyDamage() = win 0x2e75b0;
@@ -11499,13 +11499,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn updateTimeWarp(float);
 	virtual TodoReturn playGravityEffect(bool);
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2e3940;
-	virtual TodoReturn checkpointActivated(CheckpointGameObject*) = win 0x2e76c0;
+	virtual void checkpointActivated(CheckpointGameObject*) = win 0x2e76c0;
 	virtual TodoReturn flipArt(bool);
 	virtual void updateTimeLabel(int, int, bool) = win 0x2e5670;
 	virtual TodoReturn checkSnapshot();
 	virtual TodoReturn toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
-	virtual TodoReturn removeAllCheckpoints();
+	virtual void removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
 	virtual void currencyWillExit(CurrencyRewardLayer*);
 	virtual void circleWaveWillBeRemoved(CCCircleWave*);
@@ -11674,7 +11674,7 @@ class RandTriggerGameObject : ChanceTriggerGameObject {
 
 	virtual bool init() = win 0x3a9940;
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3a9a00;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3a9b30;
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3a9b30;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3a9d70;
 }
 
@@ -11833,8 +11833,8 @@ class RingObject : EffectGameObject {
 
 	virtual void setScale(float);
 	virtual void setRotation(float);
-	virtual TodoReturn resetObject();
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void resetObject();
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 	virtual void setRScale(float);
 	virtual TodoReturn triggerActivated(float);
@@ -11856,7 +11856,7 @@ class RotateGameplayGameObject : EffectGameObject {
 
 	virtual bool init() = win 0x3b9130;
 	virtual TodoReturn updateStartValues();
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -12069,7 +12069,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 
 [[link(android)]]
 class SelectArtDelegate {
-	virtual TodoReturn selectArtClosed(SelectArtLayer*);
+	virtual void selectArtClosed(SelectArtLayer*);
 }
 
 [[link(android)]]
@@ -12137,7 +12137,7 @@ class SelectListIconLayer : FLAlertLayer {
 
 [[link(android)]]
 class SelectPremadeDelegate {
-	virtual TodoReturn selectPremadeClosed(SelectPremadeLayer*, int);
+	virtual void selectPremadeClosed(SelectPremadeLayer*, int);
 }
 
 [[link(android)]]
@@ -12211,9 +12211,9 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 	TodoReturn updateSequenceTotalCount();
 
 	virtual bool init() = win 0x3aa070;
-	virtual TodoReturn resetObject() = win 0x3aa080;
+	virtual void resetObject() = win 0x3aa080;
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3aa0a0;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3aa5b0;
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3aa5b0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3aa900;
 }
 
@@ -12503,7 +12503,7 @@ class SetupAreaAnimTriggerPopup : SetupAreaTintTriggerPopup {
 	void onDeactivateAnimValue(cocos2d::CCObject* sender);
 	TodoReturn updateTargetIDLabel();
 
-	virtual TodoReturn updateDefaultTriggerValues() = win 0x3239c0;
+	virtual void updateDefaultTriggerValues() = win 0x3239c0;
 	virtual void valueDidChange(int, float) = win 0x323b90;
 }
 
@@ -12532,7 +12532,7 @@ class SetupAreaMoveTriggerPopup : SetupTriggerPopup {
 	TodoReturn updateEnterTargetIDState();
 
 	virtual void updateInputValue(int, float&) = win 0x320540;
-	virtual TodoReturn updateDefaultTriggerValues() = win 0x31fe50;
+	virtual void updateDefaultTriggerValues() = win 0x31fe50;
 	virtual TodoReturn updateInputNode(int, float) = win 0x320500;
 	virtual void valueDidChange(int, float) = win 0x320300;
 	virtual TodoReturn triggerValueFromSliderValue(int, float) = win 0x320410;
@@ -12591,7 +12591,7 @@ class SetupArtSwitchPopup : SetupTriggerPopup, SelectArtDelegate {
 	bool init(ArtTriggerGameObject*, cocos2d::CCArray*, int) = win 0x36cbf0;
 	void onArt(cocos2d::CCObject* sender);
 
-	virtual TodoReturn selectArtClosed(SelectArtLayer*) = win 0x36cff0;
+	virtual void selectArtClosed(SelectArtLayer*) = win 0x36cff0;
 }
 
 [[link(android)]]
@@ -12986,7 +12986,7 @@ class SetupInstantCollisionTriggerPopup : SetupTriggerPopup {
 	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x32a350;
 	TodoReturn updateSpecialNodes();
 
-	virtual TodoReturn updateDefaultTriggerValues() = win 0x32a930;
+	virtual void updateDefaultTriggerValues() = win 0x32a930;
 	virtual void valueDidChange(int, float) = win 0x32a780;
 }
 
@@ -13528,7 +13528,7 @@ class SetupShaderEffectPopup : SetupTriggerPopup {
 
 	virtual TodoReturn toggleGroup(int, bool) = win 0x357390;
 	virtual void onClose(cocos2d::CCObject* sender);
-	virtual TodoReturn updateDefaultTriggerValues() = win 0x350180;
+	virtual void updateDefaultTriggerValues() = win 0x350180;
 	virtual void valueDidChange(int, float) = win 0x3570a0;
 }
 
@@ -13576,7 +13576,7 @@ class SetupSmartBlockLayer : FLAlertLayer, TextInputDelegate, SelectArtDelegate 
 
 	virtual void keyBackClicked() = win 0x35a170;
 	virtual void show();
-	virtual TodoReturn selectArtClosed(SelectArtLayer*) = win 0x35a120;
+	virtual void selectArtClosed(SelectArtLayer*) = win 0x35a120;
 }
 
 [[link(android)]]
@@ -13677,7 +13677,7 @@ class SetupTeleportPopup : SetupTriggerPopup {
 	TodoReturn updateTeleportGravityState(int);
 
 	virtual TodoReturn determineStartValues();
-	virtual TodoReturn updateDefaultTriggerValues() = win 0x360b50;
+	virtual void updateDefaultTriggerValues() = win 0x360b50;
 	virtual void valueDidChange(int, float) = win 0x360b80;
 }
 
@@ -13863,7 +13863,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	virtual TodoReturn sliderEnded(Slider*) = win 0x36fcc0;
 	virtual void onPlusButton(cocos2d::CCObject* sender) {}
 	virtual void onCustomButton(cocos2d::CCObject* sender) {}
-	virtual TodoReturn updateDefaultTriggerValues() = win 0x371500;
+	virtual void updateDefaultTriggerValues() = win 0x371500;
 	virtual TodoReturn updateInputNode(int, float) = win 0x3719c0;
 	virtual TodoReturn updateToggleItem(int, bool) = win 0x371bd0;
 	virtual void valueDidChange(int, float);
@@ -13968,7 +13968,7 @@ class SFXTriggerGameObject : EffectGameObject {
 	TodoReturn getUniqueSFXID();
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -13981,7 +13981,7 @@ class ShaderGameObject : EffectGameObject {
 	bool init(char const*);
 
 	virtual void customSetup() = win 0x391f50;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -14371,7 +14371,7 @@ class SmartGameObject : GameObject {
 	bool init(char const*) = win 0x397cc0;
 	TodoReturn updateSmartFrame();
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 
 	bool m_property157;
@@ -14527,7 +14527,7 @@ class SongTriggerGameObject : SFXTriggerGameObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -14538,7 +14538,7 @@ class SpawnParticleGameObject : EffectGameObject {
 	static SpawnParticleGameObject* create() = win 0x3b8660;
 
 	virtual bool init() = win 0x3b8700;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -14561,7 +14561,7 @@ class SpawnTriggerGameObject : EffectGameObject {
 
 	virtual bool init() = win 0x3ae8e0;
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -14573,8 +14573,8 @@ class SpecialAnimGameObject : EnhancedGameObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn resetObject();
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void resetObject();
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 	virtual TodoReturn updateMainColor(cocos2d::ccColor3B const&);
 	virtual TodoReturn updateSecondaryColor(cocos2d::ccColor3B const&);
@@ -14637,7 +14637,7 @@ class StartPosObject : EffectGameObject {
 	void setSettings(LevelSettingsObject*);
 
 	virtual bool init() = win 0x3a7910;
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 
 	int m_unknown;
@@ -14821,13 +14821,13 @@ class TeleportPortalObject : RingObject {
 	virtual void setPosition(cocos2d::CCPoint const&);
 	virtual void setRotation(float);
 	virtual void setStartPos(cocos2d::CCPoint);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
-	virtual TodoReturn addToGroup(int);
-	virtual TodoReturn removeFromGroup(int);
+	virtual void addToGroup(int);
+	virtual void removeFromGroup(int);
 	virtual void setRotation2(float);
-	virtual TodoReturn addToGroup2(int);
-	virtual TodoReturn removeFromGroup2(int);
+	virtual void addToGroup2(int);
+	virtual void removeFromGroup2(int);
 
 	void* m_unknown;
 	TeleportPortalObject* m_orangePortal;
@@ -14926,7 +14926,7 @@ class TextGameObject : GameObject {
 	bool init(cocos2d::CCTexture2D*);
 	TodoReturn updateTextObject(gd::string, bool) = win 0x147d90;
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 	virtual TodoReturn updateTextKerning(int);
 	virtual TodoReturn getTextKerning();
@@ -14969,7 +14969,7 @@ class TimerTriggerGameObject : EffectGameObject {
 	bool init(char const*);
 
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -15019,7 +15019,7 @@ class TransformTriggerGameObject : EffectGameObject {
 	bool init(char const*);
 
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -15033,7 +15033,7 @@ class TriggerControlGameObject : EffectGameObject {
 	TodoReturn updateTriggerControlFrame();
 
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
@@ -15178,7 +15178,7 @@ class UISettingsGameObject : EffectGameObject {
 	static UISettingsGameObject* create();
 
 	virtual bool init();
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
 
