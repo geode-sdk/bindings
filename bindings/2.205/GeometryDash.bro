@@ -11653,7 +11653,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	void onReward(cocos2d::CCObject* sender);
 	TodoReturn tryGetRewards();
 	TodoReturn unlockLayerClosed(RewardUnlockLayer*);
-	TodoReturn updateTimers(float);
+	callback void updateTimers(float);
 
 	virtual bool init();
 	virtual void registerWithTouchDispatcher();
