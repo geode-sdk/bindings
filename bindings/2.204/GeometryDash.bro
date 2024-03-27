@@ -9871,7 +9871,7 @@ class LoadingLayer : cocos2d::CCLayer {
 
 	TodoReturn getLoadingString() = win 0x277280;
 	bool init(bool) = win 0x276370;
-	TodoReturn loadAssets() = win 0x276bd0;
+	void loadAssets() = win 0x276bd0;
 	TodoReturn loadingFinished() = win 0x276ae0;
 	TodoReturn scene(bool);
 	TodoReturn updateProgress(int);
