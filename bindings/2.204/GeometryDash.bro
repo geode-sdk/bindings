@@ -1231,7 +1231,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		return m_textField->getString();
 	}
 	bool init(float, float, char const*, char const*, int, char const*) = win 0x2e500;
-	TodoReturn refreshLabel() = win 0x2ede0;
+	void refreshLabel() = win 0x2ede0;
 	void setLabelNormalColor(cocos2d::ccColor3B color) {
         	m_textColor = color;
         	this->refreshLabel();
@@ -14295,7 +14295,7 @@ class Slider : cocos2d::CCLayer {
 	}
 	TodoReturn sliderBegan();
 	TodoReturn sliderEnded();
-	TodoReturn updateBar() = win 0x4d590;
+	void updateBar() = win 0x4d590;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d670;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d6b0;
@@ -14722,7 +14722,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	TodoReturn initTableViewCells();
 	bool isDuplicateIndexPath(CCIndexPath&);
 	bool isDuplicateInVisibleCellArray(CCIndexPath*);
-	TodoReturn reloadData() = win 0x50770;
+	void reloadData() = win 0x50770;
 	TodoReturn removeIndexPathFromPathAddedArray(CCIndexPath&);
 	TodoReturn scrollToIndexPath(CCIndexPath&);
 	TodoReturn touchFinish(cocos2d::CCTouch*);
