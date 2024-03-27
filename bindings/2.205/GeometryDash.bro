@@ -11795,7 +11795,7 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
 class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
 	// virtual ~SecretLayer2();
 
-	static SecretLayer2* create() = win 0x305630;
+	static SecretLayer2* create();
 
 	gd::string getBasicMessage();
 	TodoReturn getErrorMessage();
