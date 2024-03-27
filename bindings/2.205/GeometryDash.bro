@@ -8318,7 +8318,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	
 	// camila
 	PAD = android32 0x20, android64 0x24;
-	cocos2d::CCArray* m_pointsArr; // android64 = 0x1a0
+	cocos2d::CCArray* m_pointArray; // android64 = 0x1a0
 	cocos2d::CCPoint m_currentPoint;
 	float m_waveSize;
 	float m_pulseSize; // android32 = 0x168 (0x168)
