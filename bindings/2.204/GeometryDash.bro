@@ -3687,7 +3687,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x4361f0;
 	TodoReturn queueStartMusic(gd::string, float, float, float, bool, int, int, int, int, int, bool, int, bool);
 	TodoReturn registerChannel(FMOD::Channel*, int, int) = win 0x36410;
-	TodoReturn releaseRemovedSounds();
+	void releaseRemovedSounds() = win 0x3b040;
 	TodoReturn resumeAllAudio();
 	TodoReturn resumeAllEffects();
 	TodoReturn resumeAllMusic() = win 0x383a0;
@@ -3725,14 +3725,14 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn unloadAllEffects() = win 0x38130;
 	TodoReturn unloadEffect(gd::string);
 	TodoReturn unregisterChannel(int);
-	TodoReturn updateBackgroundFade();
+	void updateBackgroundFade() = win 0x38230;
 	TodoReturn updateChannel(int, AudioTargetType, AudioModType, float, float) = win 0x37200;
 	TodoReturn updateChannelTweens(float) = win 0x34dd0;
-	TodoReturn updateMetering();
+	void updateMetering() = win 0x34f80;
 	TodoReturn updateQueuedEffects() = win 0x39120;
-	TodoReturn updateQueuedMusic();
+	void updateQueuedMusic() = win 0x396c0;
 	TodoReturn updateReverb(FMODReverbPreset, bool) = win 0x33220;
-	TodoReturn updateTemporaryEffects();
+	void updateTemporaryEffects() = win 0x39520;
 	TodoReturn waitUntilSoundReady(FMOD::Sound*);
 
 	virtual void update(float) = win 0x33980;
@@ -8397,6 +8397,10 @@ class HardStreak : cocos2d::CCDrawNode {
 
 	PAD = win 0x20;
 	cocos2d::CCArray* m_pointArray;
+	cocos2d::CCPoint m_currentPoint;
+	float m_waveSize;
+	float m_pulseSize; // win = 0x5c (0x168)
+	// bool m_isSolid;
 }
 
 [[link(android)]]

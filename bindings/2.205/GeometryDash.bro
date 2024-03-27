@@ -3665,7 +3665,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int);
 	TodoReturn queueStartMusic(gd::string, float, float, float, bool, int, int, int, int, int, bool, int, bool);
 	TodoReturn registerChannel(FMOD::Channel*, int, int);
-	TodoReturn releaseRemovedSounds();
+	void releaseRemovedSounds();
 	TodoReturn resumeAllAudio();
 	TodoReturn resumeAllEffects();
 	TodoReturn resumeAllMusic();
@@ -3680,10 +3680,10 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void setChannelVolumeMod(int, AudioTargetType, float);
 	void setEffectsVolume(float);
 	void setMusicTimeMS(unsigned int, bool, int);
-	TodoReturn setup();
+	void setup();
 	TodoReturn setupAudioEngine();
-	TodoReturn start();
-	TodoReturn startMusic(int, int, int, int, bool, int, bool);
+	void start();
+	void startMusic(int, int, int, int, bool, int, bool);
 	TodoReturn stop();
 	void stopAllEffects();
 	void stopAllMusic();
@@ -3703,14 +3703,14 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn unloadAllEffects();
 	TodoReturn unloadEffect(gd::string);
 	TodoReturn unregisterChannel(int);
-	TodoReturn updateBackgroundFade();
+	void updateBackgroundFade();
 	TodoReturn updateChannel(int, AudioTargetType, AudioModType, float, float);
 	TodoReturn updateChannelTweens(float);
-	TodoReturn updateMetering();
+	void updateMetering();
 	TodoReturn updateQueuedEffects();
-	TodoReturn updateQueuedMusic();
+	void updateQueuedMusic();
 	TodoReturn updateReverb(FMODReverbPreset, bool);
-	TodoReturn updateTemporaryEffects();
+	void updateTemporaryEffects();
 	TodoReturn waitUntilSoundReady(FMOD::Sound*);
 
 	virtual void update(float);
@@ -8309,12 +8309,20 @@ class HardStreak : cocos2d::CCDrawNode {
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
 	TodoReturn reset();
-	TodoReturn resumeStroke();
+	void resumeStroke();
 	TodoReturn scheduleAutoUpdate();
-	TodoReturn stopStroke();
+	void stopStroke();
 	callback void updateStroke(float);
 
 	virtual bool init();
+	
+	// camila
+	PAD = android32 0x20, android64 0x24;
+	cocos2d::CCArray* m_pointArray; // android64 = 0x1a0
+	cocos2d::CCPoint m_currentPoint;
+	float m_waveSize;
+	float m_pulseSize; // android32 = 0x168 (0x168)
+	// bool m_isSolid;
 }
 
 [[link(android)]]
