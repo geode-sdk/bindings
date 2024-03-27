@@ -1144,9 +1144,9 @@ class GJGameState {
 
 [[link(android)]]
 class TriggerEffectDelegate {
-	virtual TodoReturn pure_virtual_00a1b9c0() {} // TODO: figure out what function this is
-	virtual TodoReturn pure_virtual_00a1b9c4() {} // TODO: figure out what function this is
-	virtual TodoReturn pure_virtual_00a1b9c8() {} // TODO: figure out what function this is
+	virtual void toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int) {}
+	virtual void spawnGroup(int, bool, double, gd::vector<int> const&, int, int) {}
+	virtual void spawnObject(GameObject*, double, gd::vector<int> const&) {}
 }
 
 [[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
@@ -1534,9 +1534,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn addToSpeedObjects(EffectGameObject*);
 	virtual TodoReturn objectsCollided(int, int) = win 0x19ba50;
 	virtual TodoReturn updateColor(cocos2d::_ccColor3B&, float, int, bool, float, cocos2d::_ccHSVValue&, int, bool, EffectGameObject*, int, int) = win 0x1a46f0;
-	virtual TodoReturn toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int);
-	virtual TodoReturn spawnGroup(int, bool, double, gd::vector<int> const&, int, int);
-	virtual TodoReturn spawnObject(GameObject*, double, gd::vector<int> const&);
+	virtual void toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int);
+	virtual void spawnGroup(int, bool, double, gd::vector<int> const&, int, int);
+	virtual void spawnObject(GameObject*, double, gd::vector<int> const&);
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
 	virtual TodoReturn toggleGlitter(bool);
