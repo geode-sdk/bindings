@@ -2050,7 +2050,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 
 	static CustomSongWidget* create(SongInfoObject*, CustomSongDelegate*, bool, bool, bool, bool, bool, bool) = win 0x92AD0;
 
-	TodoReturn deleteSong();
+	void deleteSong();
 	TodoReturn downloadAssetFailed(int, GJAssetType, GJSongError);
 	TodoReturn downloadAssetFinished(int, GJAssetType);
 	TodoReturn downloadFailed();
@@ -2075,7 +2075,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	TodoReturn updateMultiAssetInfo(bool);
 	TodoReturn updatePlaybackBtn();
 	TodoReturn updateProgressBar(int);
-	TodoReturn updateSongInfo();
+	void updateSongInfo();
 	TodoReturn updateSongObject(SongInfoObject*);
 	TodoReturn updateWithMultiAssets(gd::string, gd::string, int);
 	TodoReturn verifySongID(int);
@@ -9568,7 +9568,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn createSongsInfo(gd::string);
 	TodoReturn dataLoaded(DS_Dictionary*);
 	TodoReturn deleteSFX(int);
-	TodoReturn deleteSong(int);
+	void deleteSong(int);
 	TodoReturn downloadCustomSong(int);
 	TodoReturn downloadMusicLibrary();
 	TodoReturn downloadSFX(int);

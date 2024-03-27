@@ -1473,7 +1473,7 @@ class CustomSongWidget {
     TodoReturn updateError(GJSongError);
     TodoReturn updatePlaybackBtn();
     TodoReturn updateProgressBar(int);
-    TodoReturn updateSongInfo();
+    void updateSongInfo();
     TodoReturn updateSongObject(SongInfoObject*);
     TodoReturn verifySongID(int);
 
@@ -5935,7 +5935,7 @@ class MusicDownloadManager {
     TodoReturn clearUnusedSongs();
     TodoReturn createSongsInfo(gd::string);
     TodoReturn dataLoaded(DS_Dictionary*);
-    TodoReturn deleteSong(int);
+    void deleteSong(int);
     TodoReturn downloadSong(int);
     TodoReturn downloadSongFailed(int, GJSongError);
     TodoReturn downloadSongFinished(SongInfoObject*);

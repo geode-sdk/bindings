@@ -11491,12 +11491,12 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onDelete(cocos2d::CCObject* sender) = mac 0x5dfeb0;
 	void onSelect(cocos2d::CCObject* sender) = mac 0x5dff90, win 0x93CC0;
 
-	TodoReturn deleteSong() = mac 0x5e1850;
+	void deleteSong() = mac 0x5e1850;
 	TodoReturn updateError(GJSongError);
 	TodoReturn verifySongID(int);
 	TodoReturn startDownload();
 	TodoReturn downloadFailed();
-	TodoReturn updateSongInfo() = mac 0x5e0a70;
+	void updateSongInfo() = mac 0x5e0a70;
 	TodoReturn updateLengthMod(float);
 	TodoReturn updateSongObject(SongInfoObject*) = mac 0x5e09e0;
 	TodoReturn updatePlaybackBtn() = mac 0x5e1780;
@@ -13758,7 +13758,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 
 	void dataLoaded(DS_Dictionary*) = mac 0x55a150;
-	TodoReturn deleteSong(int) = mac 0x5585a0;
+	void deleteSong(int) = mac 0x5585a0;
 	void firstSetup();
 	void handleItND(cocos2d::CCNode*, void*);
 	/* unverified signature */
