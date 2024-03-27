@@ -2115,7 +2115,7 @@ class FMODAudioEngine {
     TodoReturn setupAudioEngine();
     TodoReturn start();
     TodoReturn stop();
-    TodoReturn stopAllEffects();
+    void stopAllEffects();
     TodoReturn stopBackgroundMusic(bool);
     TodoReturn stopEffect(unsigned int);
     TodoReturn unloadEffect(gd::string);
