@@ -2406,14 +2406,14 @@ class DrawGridLayer : cocos2d::CCLayer {
 	TodoReturn getPortalMinMax(GameObject*);
 	bool init(cocos2d::CCNode*, LevelEditorLayer*);
 	TodoReturn loadTimeMarkers(gd::string);
-	TodoReturn posForTime(float);
+	float posForTime(float);
 	void postUpdate();
 	TodoReturn removeAudioLineObject(AudioLineGuideGameObject*);
 	TodoReturn removeFromEffects(EffectGameObject*);
 	TodoReturn removeFromGuides(GameObject*);
 	TodoReturn removeFromSpeedObjects(EffectGameObject*);
 	TodoReturn sortSpeedObjects();
-	TodoReturn timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int);
+	float timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int);
 	TodoReturn updateMusicGuideTime(float);
 	TodoReturn updateTimeMarkers();
 
@@ -6139,9 +6139,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn toggleGroundVisibility(bool);
 	virtual TodoReturn toggleMGVisibility(bool);
 	virtual TodoReturn toggleHideAttempts(bool);
-	virtual TodoReturn timeForPos(cocos2d::CCPoint, int, int, bool, int) {}
-	virtual TodoReturn posForTime(float) {}
-	virtual TodoReturn resetSPTriggered() {}
+	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) { return 0.f; }
+	virtual float posForTime(float) { return 0.f; }
+	virtual void resetSPTriggered() {}
 	virtual TodoReturn updateScreenRotation(float, bool, bool, float, int, float, int, int);
 	virtual TodoReturn reverseDirection(EffectGameObject*);
 	virtual TodoReturn rotateGameplay(RotateGameplayGameObject*);
@@ -8999,9 +8999,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual void removeFromGroup(GameObject*, int);
 	virtual TodoReturn updateObjectSection(GameObject*);
 	virtual TodoReturn updateDisabledObjectsLastPos(cocos2d::CCArray*);
-	virtual TodoReturn timeForPos(cocos2d::CCPoint, int, int, bool, int);
-	virtual TodoReturn posForTime(float);
-	virtual TodoReturn resetSPTriggered();
+	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int);
+	virtual float posForTime(float);
+	virtual void resetSPTriggered();
 	virtual TodoReturn didRotateGameplay();
 	virtual TodoReturn manualUpdateObjectColors(GameObject*);
 	virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool);
@@ -9634,11 +9634,11 @@ class LevelTools {
 	static gd::string nameForArtist(int);
 	static gd::string ngURLForArtist(int);
 	static TodoReturn offsetBPMForTrack(int);
-	static TodoReturn posForTime(float, cocos2d::CCArray*, int, bool, int&);
-	static TodoReturn posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int);
+	static float posForTime(float, cocos2d::CCArray*, int, bool, int&);
+	static float posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int);
 	static TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
 	static TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*);
-	static TodoReturn timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int);
+	static float timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int);
 	static TodoReturn toggleDebugLogging(bool);
 	static gd::string urlForAudio(int);
 	static TodoReturn valueForSpeedMod(int);
@@ -11361,9 +11361,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn toggleGroundVisibility(bool);
 	virtual TodoReturn toggleMGVisibility(bool);
 	virtual TodoReturn toggleHideAttempts(bool);
-	virtual TodoReturn timeForPos(cocos2d::CCPoint, int, int, bool, int);
-	virtual TodoReturn posForTime(float);
-	virtual TodoReturn resetSPTriggered();
+	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int);
+	virtual float posForTime(float);
+	virtual void resetSPTriggered();
 	virtual TodoReturn updateTimeWarp(float);
 	virtual TodoReturn playGravityEffect(bool);
 	virtual TodoReturn manualUpdateObjectColors(GameObject*);
