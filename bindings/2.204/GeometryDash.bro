@@ -11930,22 +11930,22 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
 class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
 	// virtual ~SecretLayer2();
 
-	static SecretLayer2* create();
+	static SecretLayer2* create() = win 0x305630;
 
 	gd::string getBasicMessage() = win 0x309030;
-	TodoReturn getErrorMessage();
-	TodoReturn getMessage();
-	TodoReturn getThreadMessage();
+	gd::string getErrorMessage() = win 0x3093c0;
+	gd::string getMessage() = win 0x308810;
+	gd::string getThreadMessage() = win 0x308a70;
 	TodoReturn nodeWithTag(int);
-	void onBack(cocos2d::CCObject* sender);
-	void onDoor(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x309ce0;
+	void onDoor(cocos2d::CCObject* sender) = win 0x306e30;
 	void onSecretLevel(cocos2d::CCObject* sender) = win 0x306c30;
 	void onSubmit(cocos2d::CCObject* sender) = win 0x3071c0;
-	TodoReturn playCoinEffect();
+	void playCoinEffect() = win 0x309890;
 	TodoReturn scene();
-	TodoReturn selectAThread();
-	void showCompletedLevel();
-	void showSecretLevel();
+	void selectAThread() = win 0x3088b0;
+	void showCompletedLevel() = win 0x306460;
+	void showSecretLevel() = win 0x306370;
 	void updateMessageLabel(gd::string) = win 0x308770;
 	void updateSearchLabel(char const*) = win 0x3084b0;
 
