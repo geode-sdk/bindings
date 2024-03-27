@@ -15,7 +15,7 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
 	TodoReturn verifyUnlink();
 
 	virtual void customSetup() = win 0x58b90;
-	virtual TodoReturn layerHidden() = win 0x594f0;
+	virtual void layerHidden() = win 0x594f0;
 	virtual TodoReturn accountStatusChanged() = win 0x59220;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x59480;
 }
@@ -43,7 +43,7 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 	TodoReturn updatePage(bool) = win 0x58060;
 
 	virtual void customSetup() = win 0x575c0;
-	virtual TodoReturn layerHidden() = win 0x589b0;
+	virtual void layerHidden() = win 0x589b0;
 	virtual TodoReturn backupAccountFinished() = win 0x583a0;
 	virtual TodoReturn backupAccountFailed(BackupAccountError, int) = win 0x58500;
 	virtual TodoReturn syncAccountFinished() = win 0x58730;
@@ -710,7 +710,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	virtual void showLayer(bool) = win 0x23040;
 	virtual TodoReturn hideLayer(bool) = win 0x23050;
 	virtual TodoReturn layerVisible();
-	virtual TodoReturn layerHidden() = win 0x23070;
+	virtual void layerHidden() = win 0x23070;
 	virtual void enterAnimFinished() {}
 	virtual void disableUI() {}
 	virtual void enableUI() {}
@@ -2158,7 +2158,7 @@ class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate
 	virtual void textInputClosed(CCTextInputNode*) = win 0x8fd70;
 	virtual void textInputShouldOffset(CCTextInputNode*, float);
 	virtual void textInputReturn(CCTextInputNode*);
-	virtual TodoReturn dropDownLayerWillClose(GJDropDownLayer*) = win 0x8fee0;
+	virtual void dropDownLayerWillClose(GJDropDownLayer*) = win 0x8fee0;
 	virtual void musicBrowserClosed(MusicBrowser*) = win 0x8ff20;
 }
 
@@ -6158,9 +6158,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn spawnGroup(int, bool, double, gd::vector<int> const&, int, int);
 	virtual TodoReturn spawnObject(GameObject*, double, gd::vector<int> const&);
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
-	virtual TodoReturn activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
+	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
 	virtual TodoReturn toggleGlitter(bool);
-	virtual TodoReturn destroyPlayer(PlayerObject*, GameObject*);
+	virtual void destroyPlayer(PlayerObject*, GameObject*);
 	virtual TodoReturn updateDebugDraw() = win 0x1986f0;
 	virtual TodoReturn addToSection(GameObject*) = win 0x1ab800;
 	virtual void addToGroup(GameObject*, int, bool) = win 0x1a8ce0;
@@ -6191,7 +6191,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn addKeyframe(KeyframeGameObject*);
 	virtual void updateTimeLabel(int, int, bool);
 	virtual TodoReturn checkSnapshot();
-	virtual TodoReturn toggleProgressbar();
+	virtual void toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
 	virtual void removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
@@ -6476,7 +6476,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void showLayer(bool) = win 0x1d6b70;
 	virtual TodoReturn hideLayer(bool) = win 0x1d6c60;
 	virtual TodoReturn layerVisible() = win 0x23060;
-	virtual TodoReturn layerHidden() = win 0x1d6d50;
+	virtual void layerHidden() = win 0x1d6d50;
 	virtual void enterAnimFinished() {}
 	virtual void disableUI() = win 0x1d6ae0;
 	virtual void enableUI() = win 0x1d6b00;
@@ -6493,7 +6493,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class GJDropDownLayerDelegate {
-	virtual TodoReturn dropDownLayerWillClose(GJDropDownLayer*);
+	virtual void dropDownLayerWillClose(GJDropDownLayer*);
 }
 
 [[link(android)]]
@@ -8833,7 +8833,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	virtual void loadLevelsFailed(char const*, int) = win 0x2359a0;
 	virtual void setupPageInfo(gd::string, char const*) = win 0x2359e0;
 	virtual void onBack(cocos2d::CCObject* sender) = win 0x236010;
-	virtual TodoReturn shareCommentClosed(gd::string, ShareCommentLayer*) = win 0x2367c0;
+	virtual void shareCommentClosed(gd::string, ShareCommentLayer*) = win 0x2367c0;
 	virtual void setTextPopupClosed(SetTextPopup*, gd::string) = win 0x237120;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x237760;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x235d80;
@@ -9395,7 +9395,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x25ce60;
 	virtual void loadLevelsFailed(char const*, int);
 	virtual void onBack(cocos2d::CCObject* sender) = win 0x25d190;
-	virtual TodoReturn shareCommentClosed(gd::string, ShareCommentLayer*) = win 0x25d5c0;
+	virtual void shareCommentClosed(gd::string, ShareCommentLayer*) = win 0x25d5c0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x25d3b0;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x25d110;
 	virtual TodoReturn updateResultArray(cocos2d::CCArray*) = win 0x25d180;
@@ -10120,7 +10120,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	virtual void textInputShouldOffset(CCTextInputNode*, float);
 	virtual void textInputReturn(CCTextInputNode*);
 	virtual void googlePlaySignedIn() = win 0x2b3d50;
-	virtual TodoReturn dropDownLayerWillClose(GJDropDownLayer*) = win 0x2b3a50;
+	virtual void dropDownLayerWillClose(GJDropDownLayer*) = win 0x2b3a50;
 }
 
 [[link(android)]]
@@ -10652,7 +10652,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	TodoReturn tryEnableRecord();
 
 	virtual void customSetup() = win 0x2b02d0;
-	virtual TodoReturn layerHidden() = win 0x2b1420;
+	virtual void layerHidden() = win 0x2b1420;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 }
 
@@ -11487,9 +11487,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn opacityForObject(GameObject*) = win 0x2e3920;
 	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int) = win 0x2e50e0;
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
-	virtual TodoReturn activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = win 0x2e04d0;
+	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = win 0x2e04d0;
 	virtual TodoReturn toggleGlitter(bool) = win 0x2e6630;
-	virtual TodoReturn destroyPlayer(PlayerObject*, GameObject*) = win 0x2e6730;
+	virtual void destroyPlayer(PlayerObject*, GameObject*) = win 0x2e6730;
 	virtual TodoReturn toggleGroundVisibility(bool) = win 0x2e64e0;
 	virtual TodoReturn toggleMGVisibility(bool) = win 0x2e6560;
 	virtual TodoReturn toggleHideAttempts(bool) = win 0x2e65b0;
@@ -11503,7 +11503,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn flipArt(bool);
 	virtual void updateTimeLabel(int, int, bool) = win 0x2e5670;
 	virtual TodoReturn checkSnapshot();
-	virtual TodoReturn toggleProgressbar();
+	virtual void toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
 	virtual void removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
@@ -14089,7 +14089,7 @@ class ShardsPage : FLAlertLayer {
 
 [[link(android)]]
 class ShareCommentDelegate {
-	virtual TodoReturn shareCommentClosed(gd::string, ShareCommentLayer*);
+	virtual void shareCommentClosed(gd::string, ShareCommentLayer*);
 }
 
 [[link(android)]]
@@ -14257,7 +14257,7 @@ class SlideInLayer : cocos2d::CCLayerColor {
 	virtual void showLayer(bool);
 	virtual TodoReturn hideLayer(bool);
 	virtual TodoReturn layerVisible();
-	virtual TodoReturn layerHidden();
+	virtual void layerHidden();
 	virtual void enterAnimFinished();
 	virtual void disableUI();
 	virtual void enableUI();
