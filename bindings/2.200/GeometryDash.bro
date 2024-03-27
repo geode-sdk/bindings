@@ -15503,8 +15503,8 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	virtual void show() = win 0x8F6A0, mac 0x774ae0;
 	virtual void loadCommentsFinished(cocos2d::CCArray*, char const*) = mac 0x773ec0;
 	virtual void loadCommentsFailed(char const*) = mac 0x773f90;
-	virtual TodoReturn commentUploadFinished(int) = mac 0x774690;
-	virtual TodoReturn commentUploadFailed(int, CommentError) = mac 0x7747e0;
+	virtual void commentUploadFinished(int) = mac 0x774690;
+	virtual void commentUploadFailed(int, CommentError) = mac 0x7747e0;
 	virtual void updateUserScoreFinished() = mac 0x7744f0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x773a00;
 
