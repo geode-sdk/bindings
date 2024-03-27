@@ -612,7 +612,7 @@ class ButtonSprite : cocos2d::CCSprite {
 	bool init(cocos2d::CCSprite* topSprite, int width, int unused, float scale, float height, bool unkBool, char const* bgSprite, bool useNormalCCSpriteForBG);
 	void setColor(cocos2d::ccColor3B) = ios 0x691c8;
 	void setString(char const*);
-	TodoReturn updateBGImage(char const*) = ios 0x69090;
+	void updateBGImage(char const*) = ios 0x69090;
 	void updateSpriteBGSize() = ios 0x6859c;
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
 
@@ -810,7 +810,7 @@ class CCLightFlash : cocos2d::CCNode {
 	static CCLightFlash* create();
 
 	TodoReturn cleanupFlash();
-	TodoReturn fadeAndRemove();
+	void fadeAndRemove();
 	TodoReturn playEffect(cocos2d::CCPoint, cocos2d::ccColor3B, float, float, float, float, float, float, float, float, float, float, float, float, float, float, int, bool, bool, float);
 	TodoReturn removeLights();
 	void showFlash();
@@ -989,10 +989,10 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 	TodoReturn doConstraintContent(bool);
 	TodoReturn getMaxY();
 	TodoReturn getMinY();
-	TodoReturn moveToTop() = ios 0x307c78;
-	TodoReturn moveToTopWithOffset(float) = ios 0x307bd0;
+	void moveToTop() = ios 0x307c78;
+	void moveToTopWithOffset(float) = ios 0x307bd0;
 	TodoReturn scrollingEnd();
-	TodoReturn scrollLayer(float) = ios 0x308548;
+	void scrollLayer(float) = ios 0x308548;
 	void setContentLayerSize(cocos2d::CCSize);
 	void setContentOffset(cocos2d::CCPoint, bool);
 	TodoReturn updateIndicators(float);
@@ -1227,7 +1227,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	void setString(gd::string) = ios 0x173f1c;
 	TodoReturn updateBlinkLabel();
 	TodoReturn updateBlinkLabelToChar(int);
-	TodoReturn updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = ios 0x17532c;
+	void updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = ios 0x17532c;
 	TodoReturn updateDefaultFontValues(gd::string);
 	void updateLabel(gd::string label);
 
@@ -1238,7 +1238,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void registerWithTouchDispatcher();
 	virtual void textChanged();
-	virtual TodoReturn onClickTrackNode(bool) = ios 0x174734;
+	virtual void onClickTrackNode(bool) = ios 0x174734;
 	virtual void keyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&);
 	virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&);
 	virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF*, char const*, int, cocos2d::enumKeyCodes);
@@ -1531,7 +1531,7 @@ class ColorSelectLiveOverlay : FLAlertLayer {
 	TodoReturn toggleControls(bool);
 	TodoReturn updateColorLabel();
 	TodoReturn updateColorValue();
-	TodoReturn updateOpacity();
+	void updateOpacity();
 
 	virtual void keyBackClicked();
 	virtual void show();
@@ -1581,8 +1581,8 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 	TodoReturn updateDurLabel();
 	TodoReturn updateHSVMode();
 	TodoReturn updateHSVValue();
-	TodoReturn updateOpacity();
-	TodoReturn updateOpacityLabel();
+	void updateOpacity();
+	void updateOpacityLabel();
 	TodoReturn updateTextInputLabel();
 
 	virtual void show();
@@ -6537,8 +6537,8 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B);
 	TodoReturn updateCountForItem(int, int);
 	TodoReturn updateEffects(float);
-	TodoReturn updateOpacityAction(OpacityEffectAction*);
-	TodoReturn updateOpacityEffects(float);
+	void updateOpacityAction(OpacityEffectAction*);
+	void updateOpacityEffects(float);
 	TodoReturn updatePulseEffects(float);
 	TodoReturn updateSpawnTriggers(float);
 	TodoReturn updateTimer(int, double);
@@ -8210,7 +8210,7 @@ class GManager : cocos2d::CCNode {
 		saveGMTo(m_fileName);
 	}
 	TodoReturn saveData(DS_Dictionary*, gd::string);
-	TodoReturn saveGMTo(gd::string);
+	void saveGMTo(gd::string);
 	TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
 	inline GManager() {}
 
@@ -13073,8 +13073,8 @@ class SetupOpacityPopup : SetupTriggerPopup {
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	TodoReturn updateDuration();
 	TodoReturn updateDurLabel(bool);
-	TodoReturn updateOpacity();
-	TodoReturn updateOpacityLabel();
+	void updateOpacity();
+	void updateOpacityLabel();
 	TodoReturn updateTargetID();
 	TodoReturn updateTextInputLabel();
 

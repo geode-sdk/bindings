@@ -134,7 +134,7 @@ class ButtonSprite : cocos2d::CCSprite {
 	void setColor(cocos2d::ccColor3B) = win 0x20b20, mac 0x8cf20;
 	void setString(char const*) = win 0x20770, mac 0x8c9e0;
 
-	TodoReturn updateBGImage(char const*) = win 0x20230, mac 0x8cdd0;
+	void updateBGImage(char const*) = win 0x20230, mac 0x8cdd0;
 	TodoReturn updateSpriteBGSize();
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint) = mac 0x8cef0;
 
@@ -206,10 +206,10 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 
 [[link(android)]]
 class BoomScrollLayerDelegate {
-	virtual TodoReturn scrollLayerScrollingStarted(BoomScrollLayer*);
-	virtual TodoReturn scrollLayerScrolledToPage(BoomScrollLayer*, int);
-	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint);
-	virtual TodoReturn scrollLayerWillScrollToPage(BoomScrollLayer*, int);
+	virtual void scrollLayerScrollingStarted(BoomScrollLayer*);
+	virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int);
+	virtual void scrollLayerMoved(cocos2d::CCPoint);
+	virtual void scrollLayerWillScrollToPage(BoomScrollLayer*, int);
 }
 
 [[link(android)]]
@@ -235,7 +235,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	virtual void keyBackClicked() = mac 0x413710;
 	virtual void keyDown(cocos2d::enumKeyCodes) = mac 0x4137b0;
 	virtual void updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = mac 0x411ac0;
-	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint) = mac 0x413280;
+	virtual void scrollLayerMoved(cocos2d::CCPoint) = mac 0x413280;
 }
 
 [[link(android)]]
@@ -405,7 +405,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	void updateLabel(gd::string) = win 0x2eac0, mac 0x98560;
 	void refreshLabel() = win 0x2ede0, mac 0x98a20;
 	TodoReturn updateBlinkLabel();
-	TodoReturn updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = mac 0x9a4a0;
+	void updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = mac 0x9a4a0;
 	TodoReturn updateBlinkLabelToChar(int);
 	TodoReturn updateDefaultFontValues(gd::string);
 
@@ -2441,7 +2441,7 @@ class LoadingCircle : cocos2d::CCLayerColor {
 
     ~LoadingCircle();
 
-    TodoReturn fadeAndRemove() = win 0x483E0, mac 0x49a970;
+    void fadeAndRemove() = win 0x483E0, mac 0x49a970;
     void show() = win 0x48300, mac 0x49a880;
 
     void setParentLayer(cocos2d::CCLayer* layer) {
@@ -2907,7 +2907,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
 	~ColorChannelSprite();
 
 	TodoReturn updateValues(ColorAction*) = mac 0x2b2340;
-	TodoReturn updateOpacity(float) = win 0x1d4450, mac 0x2b20e0;
+	void updateOpacity(float) = win 0x1d4450, mac 0x2b20e0;
 	TodoReturn updateBlending(bool) = mac 0x2b2230;
 	TodoReturn updateCopyLabel(int, bool) = mac 0x2b1f20;
 
@@ -7759,7 +7759,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 	TodoReturn selectColor(cocos2d::_ccColor3B);
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	TodoReturn updateHSVMode();
-	TodoReturn updateOpacity();
+	void updateOpacity();
 	TodoReturn updateDuration();
 	TodoReturn updateDurLabel();
 	TodoReturn updateHSVValue();
@@ -7767,7 +7767,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 	void closeColorSelect(cocos2d::CCObject*);
 	TodoReturn updateColorValue();
 	TodoReturn updateColorLabels();
-	TodoReturn updateOpacityLabel();
+	void updateOpacityLabel();
 	TodoReturn updateCustomColorIdx();
 	TodoReturn updateTextInputLabel();
 	TodoReturn updateCopyColorTextInputLabel();
@@ -7830,7 +7830,7 @@ class ColorSelectLiveOverlay : FLAlertLayer {
 	TodoReturn selectColor(cocos2d::_ccColor3B);
 	void textChanged(CCTextInputNode*);
 	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn updateOpacity();
+	void updateOpacity();
 	TodoReturn toggleControls(bool);
 	void textInputClosed(CCTextInputNode*);
 	TodoReturn closeColorSelect(cocos2d::CCObject*);
@@ -8248,10 +8248,10 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn createFollowCommand(float, float, float, int, int, int, int);
 	TodoReturn createRotateCommand(float, float, int, int, int, float, bool, bool, bool, int, int);
 	TodoReturn processPulseActions() = win 0x1dd8e0;
-	TodoReturn updateOpacityAction(OpacityEffectAction*);
+	void updateOpacityAction(OpacityEffectAction*);
 	TodoReturn updateSpawnTriggers(float);
 	TodoReturn toggleItemPersistent(int, bool);
-	TodoReturn updateOpacityEffects(float);
+	void updateOpacityEffects(float);
 	TodoReturn activeOpacityForIndex(int) = mac 0x2b83c0;
 	TodoReturn calculateLightBGColor(cocos2d::_ccColor3B) = win 0x1df6c0, mac 0x2c74c0;
 	TodoReturn createKeyframeCommand(int, cocos2d::CCArray*, GameObject*, int, int, bool, float, float, float, float, float, float, gd::vector<int> const&);
@@ -8932,7 +8932,7 @@ class CCLightFlash : cocos2d::CCNode {
 	TodoReturn playEffect(cocos2d::CCPoint, cocos2d::_ccColor3B, float, float, float, float, float, float, float, float, float, float, float, float, float, float, int, bool, bool, float);
 	TodoReturn cleanupFlash();
 	TodoReturn removeLights();
-	TodoReturn fadeAndRemove();
+	void fadeAndRemove();
 	void showFlash();
 
 	virtual bool init() = mac 0x4de720;
@@ -11940,9 +11940,9 @@ class WorldSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate {
 
 	virtual void onExit() = mac 0x3a1fb0;
 	virtual void keyBackClicked() = mac 0x3a1ed0;
-	virtual TodoReturn scrollLayerWillScrollToPage(BoomScrollLayer*, int) = mac 0x3a1de0;
-	virtual TodoReturn scrollLayerScrolledToPage(BoomScrollLayer*, int) = mac 0x3a1cf0;
-	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint) = mac 0x3a2000;
+	virtual void scrollLayerWillScrollToPage(BoomScrollLayer*, int) = mac 0x3a1de0;
+	virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int) = mac 0x3a1cf0;
+	virtual void scrollLayerMoved(cocos2d::CCPoint) = mac 0x3a2000;
 }
 
 [[link(android)]]
@@ -12342,11 +12342,11 @@ class SetupOpacityPopup : SetupTriggerPopup {
 	void onClose(cocos2d::CCObject* sender) = mac 0x5b9c0;
 
 	TodoReturn sliderChanged(cocos2d::CCObject*) = mac 0x5b000;
-	TodoReturn updateOpacity();
+	void updateOpacity();
 	TodoReturn updateDuration();
 	TodoReturn updateDurLabel(bool);
 	TodoReturn updateTargetID();
-	TodoReturn updateOpacityLabel();
+	void updateOpacityLabel();
 	TodoReturn updateTextInputLabel();
 
 	virtual TodoReturn determineStartValues() = mac 0x5b3c0;
@@ -12797,7 +12797,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	virtual void onExit() = mac 0x5fdb10;
 	virtual void keyBackClicked() = mac 0x5fda80;
 	virtual void dialogClosed(DialogLayer*) = mac 0x5fd930;
-	virtual TodoReturn scrollLayerMoved(cocos2d::CCPoint) = mac 0x5f6310;
+	virtual void scrollLayerMoved(cocos2d::CCPoint) = mac 0x5f6310;
 }
 
 [[link(android)]]
@@ -13158,8 +13158,8 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 
 	virtual void onExit() = win 0x185120, mac 0x53ecc0;
 	virtual void keyBackClicked() = win 0x184DB0, mac 0x53eb90;
-	virtual TodoReturn scrollLayerWillScrollToPage(BoomScrollLayer*, int) = mac 0x53eaf0;
-	virtual TodoReturn scrollLayerScrolledToPage(BoomScrollLayer*, int) = mac 0x53ea50;
+	virtual void scrollLayerWillScrollToPage(BoomScrollLayer*, int) = mac 0x53eaf0;
+	virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int) = mac 0x53ea50;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x184300, mac 0x53e100;
 	virtual void loadLevelsFailed(char const*, int) = win 0x1844D0, mac 0x53e2d0;
 }
