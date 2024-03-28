@@ -8315,6 +8315,13 @@ class HardStreak : cocos2d::CCDrawNode {
 	callback void updateStroke(float);
 
 	virtual bool init();
+
+	PAD = android32 0x20, android64 0x20; // untested
+	cocos2d::CCArray* m_pointArray;
+	cocos2d::CCPoint m_currentPoint;
+	float m_waveSize;
+	float m_pulseSize; // win = 0x5c (0x168)
+	// bool m_isSolid;
 }
 
 [[link(android)]]
