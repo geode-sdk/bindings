@@ -1355,7 +1355,7 @@ class ChanceTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class CharacterColorDelegate {
-	virtual TodoReturn playerColorChanged();
+	virtual void playerColorChanged();
 	virtual void showUnlockPopup(int, UnlockType);
 }
 
@@ -1367,23 +1367,34 @@ class CharacterColorPage : FLAlertLayer {
 
 	int activeColorForMode(int mode) = win 0x5fa50;
 	TodoReturn checkColor(int, UnlockType);
-	TodoReturn colorForIndex(int);
-	TodoReturn createColorMenu() = win 0x5f630;
+	int colorForIndex(int) = win 0x60120;
+	void createColorMenu() = win 0x5f630;
 	void FLAlert_Clicked(FLAlertLayer*, bool);
-	TodoReturn offsetForIndex(int);
+	cocos2d::CCPoint offsetForIndex(int) = win 0x605f0;
 	void onClose(cocos2d::CCObject* sender) = win 0x608A0;
 	void onMode(cocos2d::CCObject* sender) = win 0x5fab0;
 	void onPlayerColor(cocos2d::CCObject* sender) = win 0x60000;
-	TodoReturn toggleGlow(cocos2d::CCObject*) = win 0x5f600;
+	void toggleGlow(cocos2d::CCObject*) = win 0x5f600;
 	TodoReturn toggleGlowItems(bool);
-	TodoReturn toggleShip(cocos2d::CCObject*) = win 0x5f560;
-	TodoReturn updateColorMode(int) = win 0x5fc60;
-	TodoReturn updateIconColors() = win 0x60700;
+	void toggleShip(cocos2d::CCObject*) = win 0x5f560;
+	void updateColorMode(int) = win 0x5fc60;
+	void updateIconColors() = win 0x60700;
 
 	virtual bool init() = win 0x5ea50;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked() = win 0x608d0;
 	virtual void show();
+	
+	int m_colorMode;
+	float m_height;
+	float m_width;
+	cocos2d::CCArray* m_playerObjects;
+	cocos2d::CCArray* m_modeButtons;
+	cocos2d::CCDictionary* m_colorButtons;
+	cocos2d::CCArray* m_cursors;
+	GJGarageLayer* m_garageLayer;
+	CCMenuItemToggler* m_glowToggler;
+	cocos2d::CCLabelBMFont* m_glowLabel;
 }
 
 [[link(android)]]
@@ -6998,23 +7009,23 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	// GJGarageLayer() = win 0x1eec50;
 
 	TodoReturn achievementForUnlock(int, UnlockType);
-	TodoReturn descriptionForUnlock(int, UnlockType);
+	gd::string descriptionForUnlock(int, UnlockType) = win 0x1f3420;
 	TodoReturn getItems(IconType);
-	TodoReturn getItems(int, int, IconType, int) = win 0x1f2310;
+	cocos2d::CCArray getItems(int, int, IconType, int) = win 0x1f2310;
 	TodoReturn getLockFrame(int, UnlockType);
 	static GJGarageLayer* node() = win 0x1eedc0;
 	void onArrow(cocos2d::CCObject* sender) = win 0x1f1bf0;
 	void onBack(cocos2d::CCObject* sender) = win 0x1f3c70;
-	void onInfo(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender) = win 0x1f0c90;
 	void onNavigate(cocos2d::CCObject* sender) = win 0x1f1c80;
 	void onPaint(cocos2d::CCObject* sender) = win 0x1f3bb0;
 	void onSelect(cocos2d::CCObject* sender) = win 0x1f2d30;
-	void onSelectTab(cocos2d::CCObject* sender);
+	void onSelectTab(cocos2d::CCObject* sender) = win 0x1f1cb0;
 	void onShards(cocos2d::CCObject* sender) = win 0x1f3b90;
 	void onShop(cocos2d::CCObject* sender) = win 0x1f3c00;
-	void onSpecial(cocos2d::CCObject* sender);
+	void onSpecial(cocos2d::CCObject* sender) = win 0x1f3110;
 	void onToggleItem(cocos2d::CCObject* sender) = win 0x1f3050;
-	TodoReturn playRainbowEffect() = win 0x1f3a00;
+	void playRainbowEffect() = win 0x1f3a00;
 	TodoReturn playShadowEffect();
 	inline static cocos2d::CCScene* scene() {
 		auto scene = cocos2d::CCScene::create();
@@ -7022,13 +7033,13 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 		return scene;
 	}
 	void selectTab(IconType) = win 0x1f1cd0;
-	TodoReturn setupIconSelect() = win 0x1f1170;
+	void setupIconSelect() = win 0x1f1170;
 	void setupPage(int, IconType) = win 0x1f1d70;
-	TodoReturn setupSpecialPage() = win 0x1f2590;
+	void setupSpecialPage() = win 0x1f2590;
 	void showUnlockPopupNew(int, UnlockType);
-	TodoReturn titleForUnlock(int, UnlockType);
+	gd::string titleForUnlock(int, UnlockType) = win 0x1f32f0;
 	TodoReturn toggleGlow();
-	TodoReturn updatePlayerColors() = win 0x1f3180;
+	void updatePlayerColors() = win 0x1f3180;
 	TodoReturn updatePlayerName(char const*);
 
 	virtual bool init() = win 0x1ef250;
@@ -7036,14 +7047,13 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	virtual void textInputOpened(CCTextInputNode*) = win 0x1f0e40;
 	virtual void textInputClosed(CCTextInputNode*) = win 0x1f0f90;
 	virtual void textChanged(CCTextInputNode*);
-	virtual TodoReturn listButtonBarSwitchedPage(ListButtonBar*, int) = win 0x1f32a0;
+	virtual void listButtonBarSwitchedPage(ListButtonBar*, int) = win 0x1f32a0;
 	virtual void showUnlockPopup(int, UnlockType) = win 0x1f32b0;
 	virtual void updateRate() = win 0x1f3880;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x1f3570;
 	virtual void dialogClosed(DialogLayer*) = win 0x1f36a0;
-	virtual TodoReturn playerColorChanged() = win 0x1f3160;
+	virtual void playerColorChanged() = win 0x1f3160;
 }
-
 [[link(android)]]
 class GJGradientLayer : cocos2d::CCLayerGradient {
 	// virtual ~GJGradientLayer();
@@ -9795,7 +9805,7 @@ class ListButtonBar : cocos2d::CCNode {
 
 [[link(android)]]
 class ListButtonBarDelegate {
-	virtual TodoReturn listButtonBarSwitchedPage(ListButtonBar*, int);
+	virtual void listButtonBarSwitchedPage(ListButtonBar*, int);
 }
 
 [[link(android)]]
