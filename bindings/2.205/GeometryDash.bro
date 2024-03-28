@@ -1351,20 +1351,20 @@ class CharacterColorPage : FLAlertLayer {
 
 	static CharacterColorPage* create();
 
-	TodoReturn activeColorForMode(int);
+	int activeColorForMode(int);
 	TodoReturn checkColor(int, UnlockType);
-	TodoReturn colorForIndex(int);
-	TodoReturn createColorMenu();
+	int colorForIndex(int);
+	void createColorMenu();
 	void FLAlert_Clicked(FLAlertLayer*, bool);
-	TodoReturn offsetForIndex(int);
+	cocos2d::CCPoint offsetForIndex(int);
 	void onClose(cocos2d::CCObject* sender);
 	void onMode(cocos2d::CCObject* sender);
 	void onPlayerColor(cocos2d::CCObject* sender);
-	TodoReturn toggleGlow(cocos2d::CCObject*);
-	TodoReturn toggleGlowItems(bool);
-	TodoReturn toggleShip(cocos2d::CCObject*);
-	TodoReturn updateColorMode(int);
-	TodoReturn updateIconColors();
+	void toggleGlow(cocos2d::CCObject*);
+	void toggleGlowItems(bool);
+	void toggleShip(cocos2d::CCObject*);
+	void updateColorMode(int);
+	void updateIconColors();
 
 	virtual bool init();
 	virtual void registerWithTouchDispatcher();
@@ -6928,12 +6928,12 @@ class GJGameState {
 class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, GameRateDelegate, ListButtonBarDelegate, DialogDelegate, CharacterColorDelegate {
 	// virtual ~GJGarageLayer();
 
-	TodoReturn achievementForUnlock(int, UnlockType);
-	TodoReturn descriptionForUnlock(int, UnlockType);
-	TodoReturn getItems(IconType);
-	TodoReturn getItems(int, int, IconType, int);
+	gd::string achievementForUnlock(int, UnlockType);
+	gd::string descriptionForUnlock(int, UnlockType);
+	cocos2d::CCArray* getItems(IconType);
+	cocos2d::CCArray* getItems(int, int, IconType, int);
 	TodoReturn getLockFrame(int, UnlockType);
-	TodoReturn node();
+	static GJGarageLayer* node();
 	void onArrow(cocos2d::CCObject* sender);
 	void onBack(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
@@ -6945,30 +6945,30 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onShop(cocos2d::CCObject* sender);
 	void onSpecial(cocos2d::CCObject* sender);
 	void onToggleItem(cocos2d::CCObject* sender);
-	TodoReturn playRainbowEffect();
-	TodoReturn playShadowEffect();
+	void playRainbowEffect();
+	void playShadowEffect();
 	static cocos2d::CCScene* scene();
-	TodoReturn selectTab(IconType);
-	TodoReturn setupIconSelect();
+	void selectTab(IconType);
+	void setupIconSelect();
 	void setupPage(int, IconType);
-	TodoReturn setupSpecialPage();
+	void setupSpecialPage();
 	void showUnlockPopupNew(int, UnlockType);
-	TodoReturn titleForUnlock(int, UnlockType);
-	TodoReturn toggleGlow();
-	TodoReturn updatePlayerColors();
-	TodoReturn updatePlayerName(char const*);
+	gd::string titleForUnlock(int, UnlockType);
+	void toggleGlow();
+	void updatePlayerColors();
+	void updatePlayerName(char const*);
 
 	virtual bool init();
 	virtual void keyBackClicked();
 	virtual void textInputOpened(CCTextInputNode*);
 	virtual void textInputClosed(CCTextInputNode*);
 	virtual void textChanged(CCTextInputNode*);
-	virtual TodoReturn listButtonBarSwitchedPage(ListButtonBar*, int);
+	virtual void listButtonBarSwitchedPage(ListButtonBar*, int);
 	virtual void showUnlockPopup(int, UnlockType);
 	virtual void updateRate();
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual void dialogClosed(DialogLayer*);
-	virtual TodoReturn playerColorChanged();
+	virtual void playerColorChanged();
 }
 
 [[link(android)]]
