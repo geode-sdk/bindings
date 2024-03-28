@@ -354,7 +354,7 @@ class ArtTriggerGameObject : EffectGameObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -634,7 +634,7 @@ class CameraTriggerGameObject : EffectGameObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -1398,7 +1398,7 @@ class CheckpointGameObject : EffectGameObject {
 	virtual bool init();
 	virtual void setupCustomSprites(gd::string);
 	virtual void resetObject();
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 	virtual TodoReturn triggerActivated(float);
@@ -1733,7 +1733,7 @@ class CountTriggerGameObject : EffectGameObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -3046,7 +3046,7 @@ class EffectGameObject : EnhancedGameObject {
 	virtual void setOpacity(unsigned char) = win 0x39ccb0;
 	virtual void firstSetup();
 	virtual void customSetup() = win 0x39e950;
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x39ccf0;
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x39ccf0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x39eb70;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3a1df0; // = win 0x13f9a0;
 	virtual void setRScaleX(float);
@@ -3331,7 +3331,7 @@ class EndTriggerGameObject : EffectGameObject {
 	static EndTriggerGameObject* create();
 
 	virtual bool init();
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -3464,7 +3464,7 @@ class EventLinkTrigger : EffectGameObject {
 	static EventLinkTrigger* create() = win 0x3adfa0;
 
 	virtual bool init() = win 0x3ae040;
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -4987,7 +4987,7 @@ class GameObject : CCSpritePlus {
 	virtual void setupCustomSprites(gd::string) = win 0x14DDA0;
 	virtual TodoReturn addMainSpriteToParent(bool) = win 0x13cf90;
 	virtual void resetObject();
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void activateObject();
 	virtual void deactivateObject(bool) = win 0x133790;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = win 0x13a500;
@@ -6081,7 +6081,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn triggerGravityChange(EffectGameObject*, int) = win 0x1A86E0;
 	TodoReturn triggerMoveCommand(EffectGameObject*);
 	TodoReturn triggerRotateCommand(EnhancedTriggerObject*);
-	TodoReturn triggerShaderCommand(ShaderGameObject*) = win 0x1A6D40;
+	bool triggerShaderCommand(ShaderGameObject*) = win 0x1A6D40;
 	TodoReturn triggerTransformCommand(TransformTriggerGameObject*);
 	TodoReturn tryGetGroupParent(int);
 	TodoReturn tryGetMainObject(int) = win 0x1a9340;
@@ -8560,7 +8560,7 @@ class ItemTriggerGameObject : EffectGameObject {
 	bool init(char const*);
 
 	virtual void customSetup() = win 0x3b50e0;
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -11677,7 +11677,7 @@ class RandTriggerGameObject : ChanceTriggerGameObject {
 	int getTotalChance();
 
 	virtual bool init() = win 0x3a9940;
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3a9a00;
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3a9a00;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3a9b30;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3a9d70;
 }
@@ -12216,7 +12216,7 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 
 	virtual bool init() = win 0x3aa070;
 	virtual void resetObject() = win 0x3aa080;
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3aa0a0;
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3aa0a0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3aa5b0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3aa900;
 }
@@ -14016,7 +14016,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn preShockLineShader();
 	TodoReturn preShockWaveShader();
 	TodoReturn preSplitScreenShader();
-	TodoReturn resetAllShaders() = win 0x383FE0;
+	bool resetAllShaders() = win 0x383FE0;
 	TodoReturn resetTargetContainer();
 	TodoReturn setupBulgeShader();
 	TodoReturn setupChromaticGlitchUniforms();
@@ -14055,8 +14055,8 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn triggerPixelateY(float, float, bool, bool, int, float, bool);
 	TodoReturn triggerRadialBlur(float, float, float, float, int, float, float, bool, int, int, float, bool);
 	TodoReturn triggerSepia(float, float, int, float);
-	TodoReturn triggerShockLine(float, float, bool, bool, bool, bool, float, float, float, float, float, float, int, bool, bool, bool, float, bool, float, int, float) = win 0x37E540;
-	TodoReturn triggerShockWave(float, float, float, float, float, float, float, bool, float, float, float, int, bool, bool, bool, float, float, bool, float, int, float) = win 0x37D810;
+	bool triggerShockLine(float, float, bool, bool, bool, bool, float, float, float, float, float, float, int, bool, bool, bool, float, bool, float, int, float) = win 0x37E540;
+	bool triggerShockWave(float, float, float, float, float, float, float, bool, float, float, float, int, bool, bool, bool, float, float, bool, float, int, float) = win 0x37D810;
 	TodoReturn triggerSplitScreenCols(float, float, int, float);
 	TodoReturn triggerSplitScreenRows(float, float, int, float);
 	TodoReturn tweenValue(float, float, int, float, int, float);
@@ -14066,7 +14066,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn updateMotionBlurSpeedY(float, float);
 	TodoReturn updateShockLineCenter(cocos2d::CCPoint);
 	TodoReturn updateShockWaveCenter(cocos2d::CCPoint);
-	TodoReturn updateZLayer(int, int, bool) = win 0x383F60;
+	bool updateZLayer(int, int, bool) = win 0x383F60;
 
 	virtual void update(float) = win 0x37bde0;
 	virtual bool init() = win 0x37b7c0;
@@ -14564,7 +14564,7 @@ class SpawnTriggerGameObject : EffectGameObject {
 	TodoReturn updateRemapKeys(gd::vector<int> const&);
 
 	virtual bool init() = win 0x3ae8e0;
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -14972,7 +14972,7 @@ class TimerTriggerGameObject : EffectGameObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -15022,7 +15022,7 @@ class TransformTriggerGameObject : EffectGameObject {
 
 	bool init(char const*);
 
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -15036,7 +15036,7 @@ class TriggerControlGameObject : EffectGameObject {
 	bool init(char const*);
 	TodoReturn updateTriggerControlFrame();
 
-	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
