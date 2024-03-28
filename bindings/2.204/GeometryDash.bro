@@ -1404,7 +1404,7 @@ class CheckpointGameObject : EffectGameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int);
 }
 
-[[link(android)]]
+[[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState)]]
 class CheckpointObject : cocos2d::CCNode {
 	// virtual ~CheckpointObject();
 	// CheckpointObject() = win 0x2db9f0;
@@ -1415,6 +1415,34 @@ class CheckpointObject : cocos2d::CCNode {
 	void setObject(GameObject*);
 
 	virtual bool init() = win 0x52e00;
+
+	// PAD = win 0x104;
+	GJGameState m_gameState;
+	GJShaderState m_shaderState;
+	FMODAudioState m_audioState;
+	GameObject* m_physicalCheckpointObject;
+	PlayerCheckpoint* m_player1Checkpoint;
+	PlayerCheckpoint* m_player2Checkpoint;
+	int m_unkInt1;
+	int m_unkInt2;
+	int m_unkInt3;
+	short m_unkShort1;
+	PAD = win 0x2;
+	int m_unkInt4;
+	int m_unkInt5;
+	gd::vector<byte> m_unkVectorDynamicObjects;
+	gd::vector<byte> m_unkVectorActiveSaveObjects;
+	gd::vector<byte> m_unkVectorActiveSaveObjects2;
+	EffectManagerState m_effectManagerState;
+	PAD = win 0x1c;
+	cocos2d::CCArray* m_unkArray;
+	bool m_unkBool1;
+	PAD = win 0x3;
+	void* m_unkPtr1;
+	PAD = win 0x4;
+	gd::vector<byte> m_unkVector1;
+	PAD = win 0xc;
+	int m_unkGetsCopiedFromGameState;
 }
 
 [[link(android)]]
@@ -3248,7 +3276,9 @@ class EffectGameObject : EnhancedGameObject {
 	PAD = android32 0xb, win 0xb;
 	// property 12
 	int m_secretCoinID;
-	PAD = android32 0x1c, win 0x1c;
+	PAD = android32 0x20, win 0x20;
+	// property 279
+	LevelSettingsObject* m_levelSettings;
 	// property 280
 	bool m_ignoreGroupParent;
 	// property 281
@@ -3260,6 +3290,8 @@ class EffectGameObject : EnhancedGameObject {
 class EffectManagerState {
 	// ~EffectManagerState();
 	// EffectManagerState();
+
+	PAD = win 0x180;
 }
 
 [[link(android)]]
@@ -3755,6 +3787,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 class FMODAudioState {
 	// ~FMODAudioState();
 	// FMODAudioState();
+
+	PAD = win 0x1c8;
 }
 
 [[link(android)]]
@@ -4982,7 +5016,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn addMainSpriteToParent(bool) = win 0x13cf90;
 	virtual TodoReturn resetObject();
 	virtual TodoReturn triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual TodoReturn activateObject();
+	virtual TodoReturn activateObject() = win 0x133700;
 	virtual void deactivateObject(bool) = win 0x133790;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = win 0x13a500;
 	virtual cocos2d::CCRect const& getObjectRect() = win 0x13a570;
@@ -7822,6 +7856,8 @@ class GJShaderState {
 	TodoReturn tweenValue(float, float, int, float, int, float);
 	TodoReturn updateTweenAction(float, int);
 	TodoReturn updateTweenActions(float);
+
+	PAD = win 0x288;
 }
 
 [[link(android)]]
@@ -10878,6 +10914,27 @@ class PlayerCheckpoint : cocos2d::CCNode {
 	static PlayerCheckpoint* create() = win 0x2eb770;
 
 	virtual bool init() = win 0x52e00;
+
+	// PAD = win 0x104;
+	cocos2d::CCPoint m_position;
+	cocos2d::CCPoint m_lastPosition;
+	int m_unkInt1;
+	bool m_isUpsideDown;
+	bool m_unk7b3;
+	bool m_isShip;
+	bool m_isBall;
+	bool m_isBird;
+	bool m_isSwing;
+	bool m_isDart;
+	bool m_isRobot;
+	bool m_isSpider;
+	bool m_isOnGround;
+	PAD = win 0x2;
+	int m_hasGhostTrail;
+	PAD = win 0x8;
+	bool m_isHidden;
+	bool m_isGoingLeft;
+	PAD = win 0x4a;
 }
 
 [[link(android)]]
@@ -11366,7 +11423,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
 	TodoReturn commitJumps();
 	TodoReturn compareStateSnapshot();
-	TodoReturn createCheckpoint() = win 0x2e76e0;
+	CheckpointObject* createCheckpoint() = win 0x2e76e0;
 	TodoReturn createObjectsFromSetupFinished() = win 0x2e1730;
 	TodoReturn delayedFullReset() = win 0x2e9f20;
 	TodoReturn delayedResetLevel() = win 0x2ea080;
@@ -11500,7 +11557,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	PAD = win 0x84;
 	float m_unksomefloat;
-	PAD = win 0x24;
+	CheckpointObject* m_unkCheckpointObject;
+	cocos2d::CCArray* m_checkpointArray;
+	PAD = win 0x1c;
 	cocos2d::CCArray* m_circleWaveArray;
 	PAD = win 0x1c;
 	cocos2d::CCSprite* m_progressBar;
