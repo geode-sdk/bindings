@@ -323,7 +323,7 @@ class cocos2d::CCNode {
 	// CCNode(cocos2d::CCNode const&);
 	CCNode();
     ~CCNode();
-	
+
 	cocos2d::CCAction* getActionByTag(int);
 	cocos2d::CCComponent* getComponent(char const*) const;
 	int getScriptHandler();
@@ -477,7 +477,7 @@ class cocos2d::CCScheduler {
 	float getTimeScale();
 
 	void setTimeScale(float);
-	
+
 	// CCScheduler(cocos2d::CCScheduler const&);
 	// CCScheduler();
 
@@ -727,7 +727,7 @@ class cocos2d::CCIMEDispatcher {
 	static cocos2d::CCIMEDispatcher* sharedDispatcher();
 
 	// CCIMEDispatcher();
-	
+
 	void addDelegate(cocos2d::CCIMEDelegate*);
 	bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
 	bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
@@ -1282,4 +1282,16 @@ class cocos2d::CCMenu {
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCDelayTime {
+	static cocos2d::CCDelayTime* create(float);
+
+	// CCDelayTime(cocos2d::CCDelayTime const&);
+	// CCDelayTime();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
 }

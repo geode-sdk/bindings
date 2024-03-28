@@ -243,4 +243,6 @@ GEODE_SIZE_CHECK(EditButtonBar, 0x124);
 
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e24);
 
+GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
+
 #endif
