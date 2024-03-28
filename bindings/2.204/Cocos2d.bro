@@ -323,7 +323,7 @@ class cocos2d::CCNode {
 	// CCNode(cocos2d::CCNode const&);
 	CCNode();
     ~CCNode();
-	
+
 	cocos2d::CCAction* getActionByTag(int);
 	cocos2d::CCComponent* getComponent(char const*) const;
 	int getScriptHandler();
@@ -477,7 +477,7 @@ class cocos2d::CCScheduler {
 	float getTimeScale();
 
 	void setTimeScale(float);
-	
+
 	// CCScheduler(cocos2d::CCScheduler const&);
 	// CCScheduler();
 
@@ -727,7 +727,7 @@ class cocos2d::CCIMEDispatcher {
 	static cocos2d::CCIMEDispatcher* sharedDispatcher();
 
 	// CCIMEDispatcher();
-	
+
 	void addDelegate(cocos2d::CCIMEDelegate*);
 	bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
 	bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
