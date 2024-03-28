@@ -8389,26 +8389,35 @@ class GroupCommandObject2 {
 	TodoReturn updateEffectAction(float, int);
 }
 
-[[link(android)]]
 class HardStreak : cocos2d::CCDrawNode {
 	// virtual ~HardStreak();
 
 	static HardStreak* create() = win 0x2267c0;
 
-	void addPoint(cocos2d::CCPoint) = win 0x227250;
+	PointNode* addPoint(cocos2d::CCPoint) = win 0x227250;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn clearBehindXPos(float);
 	TodoReturn createDuplicate();
 	void firstSetup() = win 0x2268C0;
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
-	TodoReturn reset();
+	inline void reset() {
+		this->clear();
+		m_pointArray->removeAllObjects();
+	}
 	TodoReturn resumeStroke();
 	TodoReturn scheduleAutoUpdate();
 	TodoReturn stopStroke();
 	callback void updateStroke(float) = win 0x226960;
 
 	virtual bool init() = win 0x226860;
+
+	PAD = win 0x20;
+	cocos2d::CCArray* m_pointArray;
+	cocos2d::CCPoint m_currentPoint;
+	float m_waveSize;
+	float m_pulseSize; // win = 0x5c (0x168)
+	// bool m_isSolid;
 }
 
 [[link(android)]]
