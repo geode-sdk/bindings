@@ -1355,7 +1355,7 @@ class ChanceTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class CharacterColorDelegate {
-	virtual TodoReturn playerColorChanged();
+	virtual void playerColorChanged();
 	virtual void showUnlockPopup(int, UnlockType);
 }
 
@@ -9805,7 +9805,7 @@ class ListButtonBar : cocos2d::CCNode {
 
 [[link(android)]]
 class ListButtonBarDelegate {
-	virtual TodoReturn listButtonBarSwitchedPage(ListButtonBar*, int);
+	virtual void listButtonBarSwitchedPage(ListButtonBar*, int);
 }
 
 [[link(android)]]
