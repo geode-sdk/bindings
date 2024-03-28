@@ -312,7 +312,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn hideLoadingCircle();
 	TodoReturn loadingIsFinished();
 	TodoReturn musicTest() = win 0x5b710;
-	TodoReturn pauseGame() = win 0x5b5e0;
+	void pauseGame() = win 0x5b5e0;
 	TodoReturn pauseSound() = win 0x5b640;
 	void platformShutdown() = win 0x5b0b0;
 	TodoReturn resumeSound() = win 0x5b6c0;
@@ -3832,7 +3832,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 
 	TodoReturn deleteSelected() = win 0xefb90;
 	bool init(bool) = win 0xeef90;
-	bool isCorrect(char const*);
+	bool isCorrect(char const*) = win 0xf0000;
 	void loadPage(int) = win 0xf00d0;
 	void onClose(cocos2d::CCObject* sender);
 	void onDeleteSelected(cocos2d::CCObject* sender);
@@ -3958,7 +3958,7 @@ class GameLevelManager : cocos2d::CCNode {
 	GJLevelList* createNewLevelList() = win 0xf5ac0;
 	TodoReturn createPageInfo(int, int, int) = win 0xf8ac0;
 	GJSmartTemplate* createSmartTemplate();
-	void dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*) = win 0xfa620;
 	void deleteAccountComment(int, int);
 	void deleteComment(int, CommentType, int) = win 0x10a920;
 	void deleteFriendRequests(int, cocos2d::CCArray*, bool) = win 0x10b8c0;
@@ -5314,7 +5314,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn createSecretChestRewards() = win 0x17aab0;
 	TodoReturn createSpecialChestItems() = win 0x176940;
 	TodoReturn createStoreItems() = win 0x168680;
-	void dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*) = win 0x180820;
 	void encodeDataTo(DS_Dictionary*) = win 0x180630;
 	void firstSetup();
 	TodoReturn generateItemUnlockableData() = win 0x1680a0;
@@ -8127,7 +8127,7 @@ class GJUINode : cocos2d::CCNode {
 	TodoReturn updateSize(float, float);
 	TodoReturn updateWidth(float);
 
-	virtual void draw();
+	virtual void draw() = win 0x3c0de0;
 }
 
 [[link(android)]]
@@ -8606,7 +8606,7 @@ class KeybindingsLayer : FLAlertLayer {
 class KeybindingsManager : cocos2d::CCNode {
 	// virtual ~KeybindingsManager();
 
-	static KeybindingsManager* sharedState();
+	static KeybindingsManager* sharedState() = win 0x22d460;
 
 	TodoReturn commandForKey(cocos2d::enumKeyCodes, GJKeyGroup, bool, bool, bool);
 	TodoReturn commandForKeyMods(cocos2d::enumKeyCodes, GJKeyGroup);
@@ -10361,7 +10361,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn clearSong(int);
 	TodoReturn clearUnusedSongs();
 	void createSongsInfo(gd::string) = win 0x283080;
-	void dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*) = win 0x284530;
 	void deleteSFX(int);
 	void deleteSong(int);
 	void downloadCustomSong(int) = win 0x284bc0;
