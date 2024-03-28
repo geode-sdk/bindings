@@ -1283,3 +1283,15 @@ class cocos2d::CCMenu {
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 }
+
+[[link(win, android)]]
+class cocos2d::CCDelayTime {
+	static cocos2d::CCDelayTime* create(float);
+
+	// CCDelayTime(cocos2d::CCDelayTime const&);
+	// CCDelayTime();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
