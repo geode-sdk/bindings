@@ -5033,7 +5033,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn addMainSpriteToParent(bool) = win 0x13cf90;
 	virtual void resetObject();
 	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual void activateObject() = win 0x133700;;
+	virtual void activateObject() = win 0x133700;
 	virtual void deactivateObject(bool) = win 0x133790;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = win 0x13a500;
 	virtual cocos2d::CCRect const& getObjectRect() = win 0x13a570;
