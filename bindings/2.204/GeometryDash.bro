@@ -4611,7 +4611,7 @@ class GameManager : GManager {
 	TodoReturn unlockedPremium();
 	TodoReturn unlockIcon(int, IconType) = win 0x122220;
 	TodoReturn unlockTypeToIconType(int) = win 0x122190;
-	TodoReturn updateCustomFPS() = win 0x12ec60;
+	void updateCustomFPS() = win 0x12ec60;
 	TodoReturn updateMusic();
 	TodoReturn verifyAchievementUnlocks();
 	TodoReturn verifyCoinUnlocks();
@@ -10185,7 +10185,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 
 	static MoreVideoOptionsLayer* create() = win 0x2b5630;
 
-	TodoReturn addToggle(char const*, char const*, char const*);
+	void addToggle(char const*, char const*, char const*);
 	TodoReturn countForPage(int);
 	void goToPage(int);
 	TodoReturn incrementCountForPage(int);
@@ -10201,8 +10201,8 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 	void onNextPage(cocos2d::CCObject* sender);
 	void onPrevPage(cocos2d::CCObject* sender);
 	void onToggle(cocos2d::CCObject* sender);
-	TodoReturn pageKey(int);
-	TodoReturn updateFPSButtons() = win 0x2b72e0;
+	void pageKey(int);
+	void updateFPSButtons() = win 0x2b72e0;
 
 	virtual bool init() = win 0x2b56d0;
 	virtual void keyBackClicked() = win 0x2b77f0;
@@ -10978,11 +10978,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 		m_hasCustomGlowColor = true;
 		m_glowColor = color;
 	}
-	TodoReturn enablePlayerControls();
-	TodoReturn exitPlatformerAnimateJump();
-	TodoReturn fadeOutStreak2(float) = win 0x2d8ab0;
+	void enablePlayerControls();
+	void exitPlatformerAnimateJump();
+	void fadeOutStreak2(float) = win 0x2d8ab0;
 	void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = win 0x2d1080;
-	TodoReturn flipGravity(bool, bool) = win 0x2d36e0;
+	void flipGravity(bool, bool) = win 0x2d36e0;
 	TodoReturn flipMod();
 	TodoReturn gameEventTriggered(int, int);
 	bool getActiveMode() = win 0x2D3A50;
@@ -15105,7 +15105,7 @@ class UILayer : cocos2d::CCLayerColor {
 
 	TodoReturn disableMenu();
 	TodoReturn editorPlaytest(bool);
-	TodoReturn enableEditorMode() = win 0x3bf420;
+	void enableEditorMode() = win 0x3bf420;
 	TodoReturn enableMenu();
 	TodoReturn handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x3bf480;
 	bool init(GJBaseGameLayer*) = win 0x3bec10;
@@ -15116,11 +15116,11 @@ class UILayer : cocos2d::CCLayerColor {
 	TodoReturn processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*);
 	TodoReturn processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*);
 	TodoReturn refreshDpad();
-	TodoReturn resetAllButtons() = win 0x3bfad0;
-	TodoReturn resetUINodeState() = win 0x3bf390;
+	void resetAllButtons() = win 0x3bfad0;
+	void resetUINodeState() = win 0x3bf390;
 	TodoReturn toggleCheckpointsMenu(bool);
-	TodoReturn toggleMenuVisibility(bool) = win 0x3bfa80;
-	TodoReturn togglePlatformerMode(bool);
+	void toggleMenuVisibility(bool) = win 0x3bfa80;
+	void togglePlatformerMode(bool);
 	TodoReturn updateDualMode(bool);
 	TodoReturn updateUINodeVisibility(bool);
 
