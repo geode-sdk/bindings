@@ -5781,7 +5781,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	~GJBaseGameLayer() = win 0x18ef50;
 	// GJBaseGameLayer() = win 0x237ce0;
 
-	TodoReturn activateCustomRing(RingObject*) = win 0x1a4270;
+	void activateCustomRing(RingObject*) = win 0x1a4270;
 	TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
 	TodoReturn activateEventTrigger(EventLinkTrigger*, gd::vector<int> const&);
 	TodoReturn activateItemCompareTrigger(ItemTriggerGameObject*, gd::vector<int> const&);
@@ -5868,7 +5868,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn flipGravity(PlayerObject*, bool, bool) = win 0x19a5f0;
 	TodoReturn flipObjects() = win 0x1c8980;
 	TodoReturn gameEventToString(GJGameEvent);
-	TodoReturn gameEventTriggered(GJGameEvent, int, int) = win 0x1b5bf0;
+	void gameEventTriggered(GJGameEvent, int, int) = win 0x1b5bf0;
 	TodoReturn generateEnterEasingBuffer(int, float);
 	TodoReturn generateEnterEasingBuffers(EnterEffectObject*);
 	TodoReturn generatePickupAnimRandVal(GameObject*, float&, float&);
@@ -11004,7 +11004,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x2c24c0;
 	bool isBoostValid(float) = win 0x2c9cd0;
 	bool isFlying() = win 0x2d3a20;
-	bool isInBasicMode();
+	bool isInBasicMode() = win 0x2D57D0;
 	bool isInNormalMode() = win 0x2d5780;
 	bool isSafeFlip(float);
 	bool isSafeHeadTest();
@@ -11035,7 +11035,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn postCollision(float) = win 0x2c82f0;
 	TodoReturn preCollision() = win 0x2c81b0;
 	TodoReturn preSlopeCollision(float, GameObject*);
-	TodoReturn propellPlayer(float, bool, int) = win 0x2d81b0;
+	void propellPlayer(float, bool, int) = win 0x2d81b0;
 	void pushButton(PlayerButton) = win 0x2d1d30;
 	TodoReturn pushDown();
 	void pushPlayer(float);
@@ -11080,10 +11080,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn specialGroundHit();
 	TodoReturn speedDown();
 	TodoReturn speedUp();
-	TodoReturn spiderTestJump(bool);
-	TodoReturn spiderTestJumpInternal(bool);
-	TodoReturn spiderTestJumpX(bool);
-	TodoReturn spiderTestJumpY(bool);
+	void spiderTestJump(bool) = win 0x2CE8C0;
+	void spiderTestJumpInternal(bool) = win 0x2CE970;
+	void spiderTestJumpX(bool);
+	void spiderTestJumpY(bool);
 	void startDashing(DashRingObject*) = win 0x2cfdb0;
 	TodoReturn stopBurstEffect();
 	void stopDashing() = win 0x2d0940;
