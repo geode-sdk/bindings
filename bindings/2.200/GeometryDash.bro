@@ -1250,7 +1250,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn removePlayer2();
 	TodoReturn rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
 	TodoReturn spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint);
-	TodoReturn toggleFlipped(bool, bool);
+	void toggleFlipped(bool, bool) = mac 0x113560;
 	TodoReturn updateTimeMod(float, bool, bool);
 	TodoReturn animatePortalY(float, float, float, float);
 	TodoReturn canTouchObject(GameObject*);
@@ -1266,7 +1266,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn swapBackground(int);
 	TodoReturn syncBGTextures() = win 0x1B98C0;
 	TodoReturn teleportPlayer(TeleportPortalObject*, PlayerObject*);
-	TodoReturn toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x1996c0, mac 0x10f070;
+	void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x1996c0, mac 0x10f070;
 	TodoReturn tryResumeAudio() = mac 0x13eaf0;
 	TodoReturn updateCounters(int, int);
 	TodoReturn updateGuideArt();
@@ -1415,7 +1415,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updatePlatformerTime() = win 0x1B8BE0;
 	TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
 	void assignNewStickyGroups(cocos2d::CCArray*);
-	TodoReturn collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float);
+	void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = mac 0x111970;
 	TodoReturn controlDynamicCommand(EffectGameObject*, int, gd::vector<DynamicObjectAction>&, GJActionCommand);
 	TodoReturn createNewKeyframeAnim();
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
@@ -1528,7 +1528,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn testTime();
 	virtual TodoReturn updateVerifyDamage();
 	virtual TodoReturn updateAttemptTime(float);
-	virtual TodoReturn updateVisibility(float);
+	virtual void updateVisibility(float);
 	virtual TodoReturn playerTookDamage(PlayerObject*);
 	virtual TodoReturn opacityForObject(GameObject*);
 	virtual TodoReturn addToSpeedObjects(EffectGameObject*);
@@ -3246,7 +3246,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn getObjectRadius();
 	TodoReturn getObjectZLayer();
 	TodoReturn getObjectZOrder();
-	TodoReturn getGroupDisabled();
+	bool getGroupDisabled() = mac 0x586250;
 	TodoReturn getMainColorMode();
 	TodoReturn getScalePosDelta();
 	TodoReturn getSecondaryColor();
@@ -5775,7 +5775,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*);
 	TodoReturn pasteGroupState(GameObject*, cocos2d::CCArray*);
 	TodoReturn unlockAllLayers() = mac 0xe4f00;
-	TodoReturn updateDebugDraw();
+	void updateDebugDraw();
 	TodoReturn updateGridLayer();
 	void updateLevelFont(int);
 	TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*);
@@ -5851,7 +5851,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 
 	virtual void draw();
 	virtual void postUpdate(float) = win 0x242560, mac 0xefae0;
-	virtual TodoReturn updateVisibility(float);
+	virtual void updateVisibility(float);
 	virtual TodoReturn playerTookDamage(PlayerObject*);
 	virtual TodoReturn updateColor(cocos2d::_ccColor3B&, float, int, bool, float, cocos2d::_ccHSVValue&, int, bool, EffectGameObject*, int, int);
 	virtual void addToGroup(GameObject*, int, bool);
@@ -6526,7 +6526,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn testTime();
 	virtual TodoReturn updateVerifyDamage() = win 0x2e18f0;
 	virtual TodoReturn updateAttemptTime(float) = win 0x2e1970;
-	virtual TodoReturn updateVisibility(float) = win 0x2dcf70, mac 0xb10e0;
+	virtual void updateVisibility(float) = win 0x2dcf70, mac 0xb10e0;
 	virtual TodoReturn opacityForObject(GameObject*) = win 0x2ddc80;
 	virtual TodoReturn updateColor(cocos2d::_ccColor3B&, float, int, bool, float, cocos2d::_ccHSVValue&, int, bool, EffectGameObject*, int, int) = win 0x2df440;
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
@@ -6604,7 +6604,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn buttonDown(PlayerButton);
 	TodoReturn didHitHead();
 	// /* unverified signature */
-	bool isSafeFlip(float);
+	bool isSafeFlip(float) = mac 0x3ece70;
 	// /* unverified signature */
 	bool isSafeMode(float);
 	TodoReturn lockPlayer() = win 0x2d2290;
@@ -6614,20 +6614,20 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateJump(float) = win 0x2c1290, mac 0x3df600;
 	TodoReturn updateMove(float) = win 0x2BFC30;
 	TodoReturn yStartDown();
-	void boostPlayer(float) = win 0x2d2d30;
+	void boostPlayer(float) = win 0x2d2d30, mac 0x3e75b0;
 	TodoReturn createRobot(int) = mac 0x3dd580;
 	TodoReturn flashPlayer(float, float, cocos2d::_ccColor3B, cocos2d::_ccColor3B) = mac 0x3efee0;
 	TodoReturn flipGravity(bool, bool) = win 0x2CDDB0, mac 0x3e4a80;
 	TodoReturn gravityDown();
-	TodoReturn resetStreak() = mac 0x3e4520;
-	TodoReturn setupStreak() = mac 0x3ddd10;
+	void resetStreak() = mac 0x3e4520;
+	void setupStreak() = mac 0x3ddd10;
 	TodoReturn spawnCircle();
 	void stopDashing() = win 0x2CB080, mac 0x3e2cd0;
 	TodoReturn stopStreak2();
 	TodoReturn createSpider(int) = mac 0x3dd8b0;
 	/* unverified signature */
 	bool isBoostValid(float) = win 0x2c4500;
-	void preCollision() = win 0x2c2c10;
+	void preCollision() = win 0x2c2c10, mac 0x3e5890;
 	TodoReturn redirectDash(float) = win 0x2CA320;
 	TodoReturn spawnCircle2();
 	void startDashing(DashRingObject*) = mac 0x3f2380;
@@ -6637,7 +6637,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn levelFlipping() = win 0x2CEF50;
 	TodoReturn levelWillFlip();
 	TodoReturn modeDidChange();
-	void postCollision(float) = win 0x2C2D50;
+	void postCollision(float) = win 0x2C2D50, mac 0x3e5a90;
 	TodoReturn propellPlayer(float, bool, int) = win 0x2d2700;
 	void releaseButton(PlayerButton) = win 0x2cc710, mac 0x3f5e10;
 	TodoReturn reversePlayer(EffectGameObject*) = win 0x2CC810;
@@ -6646,13 +6646,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn testForMoving(float, GameObject*);
 	void toggleFlyMode(bool, bool) = win 0x2CE170, mac 0x3f6d20;
 	TodoReturn touchedObject(GameObject*);
-	TodoReturn updateCollide(PlayerCollisionDirection, GameObject*) = win 0x2C8CC0;
+	void updateCollide(PlayerCollisionDirection, GameObject*) = win 0x2C8CC0, mac 0x3ed5e0;
 	TodoReturn updateDashArt() = win 0x2cac70, mac 0x3f1e10;
 	TodoReturn updateEffects(float) = mac 0x3e3f00;
 	TodoReturn updateSpecial(float);
 	TodoReturn updateStreaks(float);
 	TodoReturn updateTimeMod(float, bool) = win 0x2D3B00, mac 0x3ddb80;
-	TodoReturn activateStreak() = win 0x2d2ed0, mac 0x3e4610;
+	void activateStreak() = win 0x2d2ed0, mac 0x3e4610;
 	void addToYVelocity(double, int) = win 0x2bece0;
 	TodoReturn copyAttributes(PlayerObject*);
 	TodoReturn fadeOutStreak2(float) = win 0x2D2FD0;
@@ -6694,7 +6694,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updatePlayerArt() = win 0x2CCAC0, mac 0x3f66e0;
 	void updateSwingFire() = win 0x2ce8b0;
 	TodoReturn canStickToGround();
-	TodoReturn deactivateStreak(bool) = mac 0x3de280;
+	void deactivateStreak(bool) = mac 0x3de280;
 	TodoReturn disableSwingFire();
 	/* unverified signature */
 	bool isSafeSpiderFlip(float);
@@ -6799,12 +6799,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn flipMod();
 	TodoReturn speedUp();
 	/* unverified signature */
-	bool isFlying() = win 0x2ce0f0;
+	bool isFlying() = win 0x2ce0f0, mac 0x3e29d0;
 	TodoReturn pushDown();
 	TodoReturn ringJump(RingObject*, bool) = win 0x2CCEA0;
 	TodoReturn yStartUp();
 	TodoReturn gravityUp();
-	TodoReturn hitGround(GameObject*, bool) = win 0x2CF760;
+	void hitGround(GameObject*, bool) = win 0x2CF760, mac 0x3eceb0;
 	TodoReturn logValues();
 	TodoReturn speedDown();
 
@@ -7531,13 +7531,13 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	void onShare(cocos2d::CCObject* sender) = mac 0x1db050;
 	TodoReturn onDelete();
 
-	TodoReturn confirmClone(cocos2d::CCObject*) = mac 0x1dbed0;
-	TodoReturn confirmDelete(cocos2d::CCObject*) = mac 0x1dbd10;
+	void confirmClone(cocos2d::CCObject*) = mac 0x1dbed0;
+	void confirmDelete(cocos2d::CCObject*) = mac 0x1dbd10;
 	TodoReturn setupLevelInfo();
 	TodoReturn updateDescText(char const*);
 	TodoReturn closeTextInputs();
 	TodoReturn verifyLevelName();
-	TodoReturn confirmMoveToTop(cocos2d::CCObject*) = mac 0x1dbfa0;
+	void confirmMoveToTop(cocos2d::CCObject*) = mac 0x1dbfa0;
 	TodoReturn scene(GJGameLevel*) = mac 0x1d9590;
 	TodoReturn playStep2();
 	TodoReturn playStep3();
@@ -10285,13 +10285,13 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	TodoReturn onDelete();
 
 	TodoReturn ownerDelete();
-	TodoReturn confirmClone(cocos2d::CCObject*);
-	TodoReturn confirmDelete(cocos2d::CCObject*);
+	void confirmClone(cocos2d::CCObject*);
+	void confirmDelete(cocos2d::CCObject*);
 	TodoReturn updateEditMode();
 	TodoReturn updateStatsArt();
 	TodoReturn verifyListName();
 	TodoReturn updateSideButtons();
-	TodoReturn confirmOwnerDelete(cocos2d::CCObject*);
+	void confirmOwnerDelete(cocos2d::CCObject*);
 	void shareCommentClosed(gd::string, ShareCommentLayer*) = mac 0x33ed50;
 	TodoReturn scene(GJLevelList*) = mac 0x33a8b0;
 	TodoReturn cloneList();
