@@ -4590,7 +4590,7 @@ class GameManager : GManager {
 	TodoReturn unlockedPremium();
 	TodoReturn unlockIcon(int, IconType);
 	TodoReturn unlockTypeToIconType(int);
-	TodoReturn updateCustomFPS();
+	void updateCustomFPS();
 	TodoReturn updateMusic();
 	TodoReturn verifyAchievementUnlocks();
 	TodoReturn verifyCoinUnlocks();
@@ -10089,7 +10089,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 
 	static MoreVideoOptionsLayer* create();
 
-	TodoReturn addToggle(char const*, char const*, char const*);
+	void addToggle(char const*, char const*, char const*);
 	TodoReturn countForPage(int);
 	void goToPage(int);
 	TodoReturn incrementCountForPage(int);
@@ -10106,7 +10106,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 	void onPrevPage(cocos2d::CCObject* sender);
 	void onToggle(cocos2d::CCObject* sender);
 	TodoReturn pageKey(int);
-	TodoReturn updateFPSButtons();
+	void updateFPSButtons();
 
 	virtual bool init();
 	virtual void keyBackClicked();
@@ -10872,11 +10872,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 		m_hasCustomGlowColor = true;
 		m_glowColor = color;
 	}
-	TodoReturn enablePlayerControls();
-	TodoReturn exitPlatformerAnimateJump();
-	TodoReturn fadeOutStreak2(float);
-	TodoReturn flashPlayer(float, float, cocos2d::ccColor3B, cocos2d::ccColor3B);
-	TodoReturn flipGravity(bool, bool);
+	void enablePlayerControls();
+	void exitPlatformerAnimateJump();
+	void fadeOutStreak2(float);
+	void flashPlayer(float, float, cocos2d::ccColor3B, cocos2d::ccColor3B);
+	void flipGravity(bool, bool);
 	TodoReturn flipMod();
 	TodoReturn gameEventTriggered(int, int);
 	TodoReturn getActiveMode();
@@ -10905,9 +10905,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool isSafeMode(float);
 	bool isSafeSpiderFlip(float);
 	TodoReturn levelFlipFinished();
-	TodoReturn levelFlipping();
+	bool levelFlipping();
 	TodoReturn levelWillFlip();
-	TodoReturn loadFromCheckpoint(PlayerCheckpoint*);
+	void loadFromCheckpoint(PlayerCheckpoint*);
 	TodoReturn lockPlayer();
 	TodoReturn logValues();
 	void modeDidChange();
@@ -10918,8 +10918,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playCompleteEffect(bool, bool);
 	void playDeathEffect();
 	void playDynamicSpiderRun();
-	TodoReturn playerDestroyed(bool);
-	TodoReturn playerIsFalling(float);
+	void playerDestroyed(bool);
+	void playerIsFalling(float);
 	TodoReturn playerIsFallingBugged();
 	TodoReturn playerIsMovingUp();
 	TodoReturn playerTeleported();
@@ -14981,27 +14981,27 @@ class UILayer : cocos2d::CCLayerColor {
 
 	static UILayer* create(GJBaseGameLayer*);
 
-	TodoReturn disableMenu();
-	TodoReturn editorPlaytest(bool);
-	TodoReturn enableEditorMode();
-	TodoReturn enableMenu();
+	void disableMenu();
+	void editorPlaytest(bool);
+	void enableEditorMode();
+	void enableMenu();
 	TodoReturn handleKeypress(cocos2d::enumKeyCodes, bool);
 	bool init(GJBaseGameLayer*);
 	bool isJumpButtonPressed(bool);
 	void onCheck(cocos2d::CCObject* sender);
 	void onDeleteCheck(cocos2d::CCObject* sender);
 	void onPause(cocos2d::CCObject* sender);
-	TodoReturn processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*);
-	TodoReturn processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*);
-	TodoReturn refreshDpad();
-	TodoReturn resetAllButtons();
-	TodoReturn resetUINodeState();
-	TodoReturn toggleCheckpointsMenu(bool);
-	TodoReturn toggleMenuVisibility(bool);
-	TodoReturn togglePlatformerMode(bool);
-	TodoReturn updateCheckState();
-	TodoReturn updateDualMode(bool);
-	TodoReturn updateUINodeVisibility(bool);
+	void processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*);
+	void processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*);
+	void refreshDpad();
+	void resetAllButtons();
+	void resetUINodeState();
+	void toggleCheckpointsMenu(bool);
+	void toggleMenuVisibility(bool);
+	void togglePlatformerMode(bool);
+	void updateCheckState();
+	void updateDualMode(bool);
+	void updateUINodeVisibility(bool);
 
 	virtual void draw() {}
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
