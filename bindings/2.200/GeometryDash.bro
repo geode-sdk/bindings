@@ -14124,7 +14124,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn pageKey(int);
 	void goToPage(int);
 	TodoReturn layerKey(int);
-	TodoReturn addToggle(char const*, char const*, char const*);
+	void addToggle(char const*, char const*, char const*);
 	TodoReturn objectKey(int);
 
 	virtual bool init() = win 0x2b0540, mac 0x762a30;
@@ -15247,9 +15247,9 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	void onCheck(cocos2d::CCObject* sender);
 	void onPause(cocos2d::CCObject* sender) = win 0x3b8d90, mac 0x4a3630;
 
-	TodoReturn enableMenu() = mac 0x4a4600;
-	TodoReturn disableMenu() = mac 0x4a3ea0;
-	TodoReturn refreshDpad() = mac 0x4a3950;
+	void enableMenu() = mac 0x4a4600;
+	void disableMenu() = mac 0x4a3ea0;
+	void refreshDpad() = mac 0x4a3950;
 	TodoReturn editorPlaytest(bool);
 	void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x3b8900;
 	TodoReturn updateDualMode(bool);
@@ -15260,8 +15260,8 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	/* unverified signature */
 	bool isJumpButtonPressed(bool);
 	TodoReturn processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*);
-	TodoReturn toggleMenuVisibility(bool) = mac 0x4a4620, win 0x3b8ec0;
-	TodoReturn togglePlatformerMode(bool);
+	void toggleMenuVisibility(bool) = mac 0x4a4620, win 0x3b8ec0;
+	void togglePlatformerMode(bool);
 	TodoReturn toggleCheckpointsMenu(bool);
 	TodoReturn updateUINodeVisibility(bool);
 
