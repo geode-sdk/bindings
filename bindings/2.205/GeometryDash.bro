@@ -5990,12 +5990,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn resetActiveEnterEffects();
 	TodoReturn resetAreaObjectValues(GameObject*, bool);
 	TodoReturn resetAudio();
-	TodoReturn resetCamera();
-	TodoReturn resetGradientLayers();
+	void resetCamera();
+	void resetGradientLayers();
 	TodoReturn resetGroupCounters(bool);
-	TodoReturn resetLevelVariables();
+	void resetLevelVariables();
 	TodoReturn resetMoveOptimizedValue();
-	TodoReturn resetPlayer();
+	void resetPlayer();
 	TodoReturn resetSongTriggerValues();
 	TodoReturn resetSpawnChannelIndex();
 	TodoReturn resetStaticCamera(bool, bool);
@@ -6043,8 +6043,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn teleportPlayer(TeleportPortalObject*, PlayerObject*);
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
 	void toggleAudioVisualizer(bool);
-	TodoReturn toggleDualMode(GameObject*, bool, PlayerObject*, bool);
-	TodoReturn toggleFlipped(bool, bool);
+	void toggleDualMode(GameObject*, bool, PlayerObject*, bool);
+	void toggleFlipped(bool, bool);
 	TodoReturn toggleGroup(int, bool);
 	TodoReturn toggleLockPlayer(bool, bool);
 	TodoReturn togglePlayerStreakBlend(bool);
@@ -6141,7 +6141,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
 	virtual TodoReturn toggleGlitter(bool);
 	virtual void destroyPlayer(PlayerObject*, GameObject*);
-	virtual TodoReturn updateDebugDraw();
+	virtual void updateDebugDraw();
 	virtual TodoReturn addToSection(GameObject*);
 	virtual void addToGroup(GameObject*, int, bool);
 	virtual void removeFromGroup(GameObject*, int);
@@ -9010,7 +9010,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 
 	virtual void draw();
 	virtual void postUpdate(float);
-	virtual TodoReturn updateVisibility(float);
+	virtual void updateVisibility(float);
 	virtual TodoReturn playerTookDamage(PlayerObject*);
 	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
 	virtual TodoReturn updateDebugDraw();
@@ -9125,11 +9125,11 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 
 	static LevelInfoLayer* create(GJGameLevel*, bool);
 
-	TodoReturn confirmClone(cocos2d::CCObject*);
-	TodoReturn confirmDelete(cocos2d::CCObject*);
-	TodoReturn confirmMoveToBottom(cocos2d::CCObject*);
-	TodoReturn confirmMoveToTop(cocos2d::CCObject*);
-	TodoReturn confirmOwnerDelete(cocos2d::CCObject*);
+	void confirmClone(cocos2d::CCObject*);
+	void confirmDelete(cocos2d::CCObject*);
+	void confirmMoveToBottom(cocos2d::CCObject*);
+	void confirmMoveToTop(cocos2d::CCObject*);
+	void confirmOwnerDelete(cocos2d::CCObject*);
 	void downloadLevel();
 	TodoReturn incrementDislikes();
 	TodoReturn incrementLikes();
@@ -9295,9 +9295,9 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	static LevelListLayer* create(GJLevelList*);
 
 	TodoReturn cloneList();
-	TodoReturn confirmClone(cocos2d::CCObject*);
-	TodoReturn confirmDelete(cocos2d::CCObject*);
-	TodoReturn confirmOwnerDelete(cocos2d::CCObject*);
+	void confirmClone(cocos2d::CCObject*);
+	void confirmDelete(cocos2d::CCObject*);
+	void confirmOwnerDelete(cocos2d::CCObject*);
 	bool init(GJLevelList*);
 	void onClaimReward(cocos2d::CCObject* sender);
 	TodoReturn onDelete();
@@ -9411,7 +9411,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	TodoReturn checkDiff(int);
 	TodoReturn checkTime(int);
 	TodoReturn clearFilters();
-	TodoReturn confirmClearFilters(cocos2d::CCObject*);
+	void confirmClearFilters(cocos2d::CCObject*);
 	char const* getDiffKey(int);
 	TodoReturn getLevelLenKey();
 	TodoReturn getSearchDiffKey();
@@ -9437,10 +9437,10 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	void onSuggested(cocos2d::CCObject* sender);
 	void onTrending(cocos2d::CCObject* sender);
 	static cocos2d::CCScene* scene(int);
-	TodoReturn toggleDifficulty(cocos2d::CCObject*);
+	void toggleDifficulty(cocos2d::CCObject*);
 	TodoReturn toggleDifficultyNum(int, bool);
-	TodoReturn toggleStar(cocos2d::CCObject*);
-	TodoReturn toggleTime(cocos2d::CCObject*);
+	void toggleStar(cocos2d::CCObject*);
+	void toggleTime(cocos2d::CCObject*);
 	TodoReturn toggleTimeNum(int, bool);
 	TodoReturn updateSearchLabel(char const*);
 
@@ -10838,13 +10838,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 	static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool);
 
-	TodoReturn activateStreak();
+	void activateStreak();
 	TodoReturn addAllParticles();
 	TodoReturn addToTouchedRings(RingObject*);
 	TodoReturn addToYVelocity(double, int);
 	void animatePlatformerJump(float);
-	TodoReturn boostPlayer(float);
-	TodoReturn bumpPlayer(float, int, bool, GameObject*);
+	void boostPlayer(float);
+	void bumpPlayer(float, int, bool, GameObject*);
 	TodoReturn buttonDown(PlayerButton);
 	TodoReturn canStickToGround();
 	TodoReturn checkSnapJumpToObject(GameObject*);
@@ -10858,8 +10858,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn createFadeOutDartStreak();
 	TodoReturn createRobot(int) = ios 0x2217cc;
 	TodoReturn createSpider(int) = ios 0x221a58;
-	TodoReturn deactivateParticle();
-	TodoReturn deactivateStreak(bool);
+	void deactivateParticle();
+	void deactivateStreak(bool);
 	TodoReturn destroyFromHitHead();
 	TodoReturn didHitHead();
 	void disableCustomGlowColor() {
@@ -10930,13 +10930,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn preCollision();
 	TodoReturn preSlopeCollision(float, GameObject*);
 	TodoReturn propellPlayer(float, bool, int);
-	TodoReturn pushButton(PlayerButton);
+	void pushButton(PlayerButton);
 	TodoReturn pushDown();
-	TodoReturn pushPlayer(float);
+	void pushPlayer(float);
 	TodoReturn redirectDash(float);
 	TodoReturn redirectPlayerForce(float, float, float, float);
 	TodoReturn releaseAllButtons();
-	TodoReturn releaseButton(PlayerButton);
+	void releaseButton(PlayerButton);
 	TodoReturn removeAllParticles();
 	TodoReturn removePendingCheckpoint();
 	TodoReturn removePlacedCheckpoint();
@@ -10945,19 +10945,19 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn resetCollisionValues();
 	TodoReturn resetPlayerIcon();
 	TodoReturn resetStateVariables();
-	TodoReturn resetStreak();
+	void resetStreak();
 	TodoReturn resetTouchedRings(bool);
 	TodoReturn reverseMod();
-	TodoReturn reversePlayer(EffectGameObject*);
-	TodoReturn ringJump(RingObject*, bool);
-	TodoReturn rotateGameplay(int, int, bool, float, float, bool, bool);
+	void reversePlayer(EffectGameObject*);
+	void ringJump(RingObject*, bool);
+	void rotateGameplay(int, int, bool, float, float, bool, bool);
 	TodoReturn rotateGameplayObject(GameObject*);
 	TodoReturn rotateGameplayOnly(bool);
 	TodoReturn rotatePreSlopeObjects();
-	TodoReturn runBallRotation(float);
-	TodoReturn runBallRotation2();
-	TodoReturn runNormalRotation();
-	TodoReturn runNormalRotation(bool, float);
+	void runBallRotation(float);
+	void runBallRotation2();
+	void runNormalRotation();
+	void runNormalRotation(bool, float);
 	TodoReturn runRotateAction(bool, int);
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&);
@@ -11272,8 +11272,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 		return GameManager::get()->m_playLayer;
 	}
 
-	TodoReturn addCircle(CCCircleWave*);
-	TodoReturn addObject(GameObject*);
+	void addCircle(CCCircleWave*);
+	void addObject(GameObject*);
 	void addToGroupOld(GameObject*);
 	TodoReturn applyCustomEnterEffect(GameObject*, bool);
 	TodoReturn applyEnterEffect(GameObject*, int, bool);
@@ -11370,7 +11370,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn testTime();
 	virtual TodoReturn updateVerifyDamage();
 	virtual TodoReturn updateAttemptTime(float);
-	virtual TodoReturn updateVisibility(float);
+	virtual void updateVisibility(float);
 	virtual TodoReturn opacityForObject(GameObject*);
 	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
@@ -13873,7 +13873,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	static ShaderLayer* create();
 
 	TodoReturn objectPosToShaderPos(cocos2d::CCPoint);
-	TodoReturn performCalculations();
+	void performCalculations();
 	TodoReturn preBulgeShader();
 	TodoReturn preChromaticGlitchShader();
 	TodoReturn preChromaticShader();
