@@ -10918,7 +10918,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playCompleteEffect(bool, bool);
 	void playDeathEffect();
 	void playDynamicSpiderRun();
-	TodoReturn playerDestroyed(bool);
+	void playerDestroyed(bool);
 	TodoReturn playerIsFalling(float);
 	TodoReturn playerIsFallingBugged();
 	TodoReturn playerIsMovingUp();
