@@ -10766,8 +10766,8 @@ class FindObjectPopup : SetIDPopup {
 [[link(android)]]
 class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseMusic(int);
-	TodoReturn playEffect(gd::string) = mac 0x3c24f0;
-	TodoReturn playEffect(gd::string, float, float, float) = win 0x355b0, mac 0x3c2560;
+	void playEffect(gd::string) = mac 0x3c24f0;
+	void playEffect(gd::string, float, float, float) = win 0x355b0, mac 0x3c2560;
 	TodoReturn startMusic(int, int, int, int, bool, int) = win 0x38900;
 	TodoReturn fadeInMusic(float, int);
 	TodoReturn pauseEffect(unsigned int);
