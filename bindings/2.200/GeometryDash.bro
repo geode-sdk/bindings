@@ -10880,7 +10880,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn start() = win 0x337c0;
 	void loadMusic(gd::string) = win 0x38410;
 	void loadMusic(gd::string, float, float, float, bool, int, int) = win 0x384b0, mac 0x3bf920;
-	TodoReturn playMusic(gd::string, bool, float, int) = mac 0x3c5500;
+	void playMusic(gd::string, bool, float, int) = mac 0x3c5500;
 	TodoReturn stopMusic(int);
 	~FMODAudioEngine();
 
