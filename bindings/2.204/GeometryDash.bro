@@ -3677,8 +3677,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn lengthForSound(gd::string);
 	TodoReturn loadAndPlayMusic(gd::string, unsigned int, int);
 	TodoReturn loadAudioState(FMODAudioState&) = win 0x34000;
-	TodoReturn loadMusic(gd::string, float, float, float, bool, int, int) = win 0x38740;
-	TodoReturn loadMusic(gd::string) = win 0x386a0;
+	void loadMusic(gd::string, float, float, float, bool, int, int) = win 0x38740;
+	void loadMusic(gd::string) = win 0x386a0;
 	TodoReturn pauseAllAudio();
 	TodoReturn pauseAllEffects();
 	TodoReturn pauseAllMusic() = win 0x38350;
