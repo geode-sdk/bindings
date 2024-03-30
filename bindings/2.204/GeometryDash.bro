@@ -16,7 +16,7 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
 
 	virtual void customSetup() = win 0x58b90;
 	virtual void layerHidden() = win 0x594f0;
-	virtual void accountStatusChanged() = win 0x59220;
+	virtual TodoReturn void accountStatusChanged() = win 0x59220;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x59480;
 
 	cocos2d::CCLabelBMFont* accountNameLabel;
