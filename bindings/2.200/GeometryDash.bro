@@ -6448,7 +6448,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn shouldBlend(int);
 	void showNewBest(bool, int, int, bool, bool, bool) = win 0x2D9100, mac 0xaf2e0;
 	TodoReturn spawnCircle();
-	TodoReturn canPauseGame();
+	bool canPauseGame();
 	TodoReturn prepareMusic(bool) = win 0x2E5480;
 	void showEndLayer();
 	void addToGroupOld(GameObject*);
