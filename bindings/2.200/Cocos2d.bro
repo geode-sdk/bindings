@@ -627,6 +627,21 @@ class cocos2d::CCMouseDispatcher {
 }
 
 [[link(win, android)]]
+class cocos2d::CCMoveBy {
+	static cocos2d::CCMoveBy* create(float, cocos2d::CCPoint const&) = mac 0x3960c0;
+
+	bool initWithDuration(float, cocos2d::CCPoint const&);
+
+	// CCMoveBy(cocos2d::CCMoveBy const&);
+	// CCMoveBy();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCMoveTo {
 	static cocos2d::CCMoveTo* create(float, cocos2d::CCPoint const&) = mac 0x3964a0;
 
@@ -1232,6 +1247,187 @@ class cocos2d::CCSprite {
 	virtual void setTexture(cocos2d::CCTexture2D*) = mac 0x269220;
 }
 
+
+[[link(win, android)]]
+class cocos2d::CCParticleSystem {
+	static cocos2d::CCParticleSystem* create(char const*);
+	static cocos2d::CCParticleSystem* createWithTotalParticles(unsigned int);
+
+	void initParticle(cocos2d::sCCParticle*);
+	bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool);
+	bool initWithDictionary(cocos2d::CCDictionary*, bool);
+	bool initWithFile(char const*, bool);
+
+	unsigned int getAtlasIndex() const;
+	bool getDontCleanupOnFinish() const;
+	bool getDynamicRotationIsDir() const;
+	bool getEndRGBVarSync() const;
+	float getFadeInTime() const;
+	float getFadeInTimeVar() const;
+	float getFadeOutTime() const;
+	float getFadeOutTimeVar() const;
+	float getFrictionPos() const;
+	float getFrictionPosVar() const;
+	float getFrictionRot() const;
+	float getFrictionRotVar() const;
+	float getFrictionSize() const;
+	float getFrictionSizeVar() const;
+	bool getOrderSensitive() const;
+	float getRespawn() const;
+	float getRespawnVar() const;
+	bool getStartRGBVarSync() const;
+	bool getStartRadiusEqualToEnd() const;
+	bool getStartSizeEqualToEnd() const;
+	bool getStartSpinEqualToEnd() const;
+	float getTimeElapsed();
+	bool getUseUniformColorMode() const;
+	bool getUsingSchedule() const;
+	bool getWasRemoved() const;
+
+	void setAtlasIndex(unsigned int);
+	void setDontCleanupOnFinish(bool);
+	void setDynamicRotationIsDir(bool);
+	void setEndAlpha(float);
+	void setEndRGBVarSync(bool);
+	void setFadeInTime(float);
+	void setFadeInTimeVar(float);
+	void setFadeOutTime(float);
+	void setFadeOutTimeVar(float);
+	void setFrictionPos(float);
+	void setFrictionPosVar(float);
+	void setFrictionRot(float);
+	void setFrictionRotVar(float);
+	void setFrictionSize(float);
+	void setFrictionSizeVar(float);
+	void setOrderSensitive(bool);
+	void setRespawn(float);
+	void setRespawnVar(float);
+	void setStartAlpha(float);
+	void setStartRGBVarSync(bool);
+	void setStartRadiusEqualToEnd(bool);
+	void setStartSizeEqualToEnd(bool);
+	void setStartSpinEqualToEnd(bool);
+	void setUsingSchedule(bool);
+	void setWasRemoved(bool);
+
+	// CCParticleSystem(cocos2d::CCParticleSystem const&);
+	// CCParticleSystem();
+	bool addParticle();
+	void calculateWorldSpace();
+	bool isFull();
+	void loadDefaults();
+	void loadScaledDefaults(float);
+	void resetSystem() = mac 0x7865e0;
+	void resumeSystem() = mac 0x7865d0;
+	void saveDefaults();
+	void stopSystem() = mac 0x7865a0;
+	void toggleUniformColorMode(bool);
+	void updateVisible();
+
+	virtual void update(float);
+	virtual bool init();
+	virtual void setScaleX(float);
+	virtual void setScaleY(float);
+	virtual void setScale(float);
+	// virtual void setVisible(bool); // todo this does not compile
+	virtual void setRotation(float);
+	virtual cocos2d::CCParticleBatchNode* getBatchNode();
+	virtual void setBatchNode(cocos2d::CCParticleBatchNode*);
+	virtual unsigned int getParticleCount();
+	virtual float getDuration();
+	virtual void setDuration(float);
+	virtual cocos2d::CCPoint const& getSourcePosition();
+	virtual void setSourcePosition(cocos2d::CCPoint const&);
+	virtual cocos2d::CCPoint const& getPosVar();
+	virtual void setPosVar(cocos2d::CCPoint const&);
+	virtual float getLife();
+	virtual void setLife(float);
+	virtual float getLifeVar();
+	virtual void setLifeVar(float);
+	virtual float getAngle();
+	virtual void setAngle(float);
+	virtual float getAngleVar();
+	virtual void setAngleVar(float);
+	virtual void updateEmissionRate();
+	virtual cocos2d::CCPoint const& getGravity();
+	virtual void setGravity(cocos2d::CCPoint const&);
+	virtual float getSpeed();
+	virtual void setSpeed(float);
+	virtual float getSpeedVar();
+	virtual void setSpeedVar(float);
+	virtual float getTangentialAccel();
+	virtual void setTangentialAccel(float);
+	virtual float getTangentialAccelVar();
+	virtual void setTangentialAccelVar(float);
+	virtual float getRadialAccel();
+	virtual void setRadialAccel(float);
+	virtual float getRadialAccelVar();
+	virtual void setRadialAccelVar(float);
+	virtual bool getRotationIsDir();
+	virtual void setRotationIsDir(bool);
+	virtual float getStartRadius();
+	virtual void setStartRadius(float);
+	virtual float getStartRadiusVar();
+	virtual void setStartRadiusVar(float);
+	virtual float getEndRadius();
+	virtual void setEndRadius(float);
+	virtual float getEndRadiusVar();
+	virtual void setEndRadiusVar(float);
+	virtual float getRotatePerSecond();
+	virtual void setRotatePerSecond(float);
+	virtual float getRotatePerSecondVar();
+	virtual void setRotatePerSecondVar(float);
+	virtual bool isActive();
+	virtual bool isBlendAdditive();
+	virtual void setBlendAdditive(bool);
+	virtual float getStartSize();
+	virtual void setStartSize(float);
+	virtual float getStartSizeVar();
+	virtual void setStartSizeVar(float);
+	virtual float getEndSize();
+	virtual void setEndSize(float);
+	virtual float getEndSizeVar();
+	virtual void setEndSizeVar(float);
+	virtual cocos2d::_ccColor4F const& getStartColor();
+	virtual void setStartColor(cocos2d::_ccColor4F const&) = mac 0x787b30;
+	virtual cocos2d::_ccColor4F const& getStartColorVar();
+	virtual void setStartColorVar(cocos2d::_ccColor4F const&);
+	virtual cocos2d::_ccColor4F const& getEndColor();
+	virtual void setEndColor(cocos2d::_ccColor4F const&) = mac 0x787b70;
+	virtual cocos2d::_ccColor4F const& getEndColorVar();
+	virtual void setEndColorVar(cocos2d::_ccColor4F const&);
+	virtual float getStartSpin();
+	virtual void setStartSpin(float);
+	virtual float getStartSpinVar();
+	virtual void setStartSpinVar(float);
+	virtual float getEndSpin();
+	virtual void setEndSpin(float);
+	virtual float getEndSpinVar();
+	virtual void setEndSpinVar(float);
+	virtual float getEmissionRate();
+	virtual void setEmissionRate(float);
+	virtual unsigned int getTotalParticles();
+	virtual void setTotalParticles(unsigned int);
+	virtual bool getOpacityModifyRGB();
+	virtual void setOpacityModifyRGB(bool);
+	virtual cocos2d::tCCPositionType getPositionType();
+	virtual void setPositionType(cocos2d::tCCPositionType);
+	virtual bool isAutoRemoveOnFinish();
+	virtual void setAutoRemoveOnFinish(bool);
+	virtual int getEmitterMode();
+	virtual void setEmitterMode(int);
+	virtual bool initWithTotalParticles(unsigned int, bool);
+	virtual void updateQuadWithParticle(cocos2d::sCCParticle*, cocos2d::CCPoint const&);
+	virtual void postStep();
+	virtual void updateWithNoTime();
+	virtual void updateBlendFunc();
+
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
+	virtual cocos2d::_ccBlendFunc getBlendFunc();
+	virtual cocos2d::CCTexture2D* getTexture();
+	virtual void setTexture(cocos2d::CCTexture2D*);
+}
+
 [[link(win, android)]]
 class cocos2d::CCShaderCache {
 	static void purgeSharedShaderCache();
@@ -1408,13 +1604,13 @@ class cocos2d::CCActionManager {
 	void deleteHashElement(cocos2d::_hashElement*);
 	unsigned int numberOfRunningActionsInTarget(cocos2d::CCObject*);
 	cocos2d::CCSet* pauseAllRunningActions();
-	void pauseTarget(cocos2d::CCObject*);
+	void pauseTarget(cocos2d::CCObject*) = mac 0x212c60;
 	void removeAction(cocos2d::CCAction*);
 	void removeActionAtIndex(unsigned int, cocos2d::_hashElement*);
 	void removeActionByTag(unsigned int, cocos2d::CCObject*) = mac 0x213640;
 	void removeAllActions();
 	void removeAllActionsFromTarget(cocos2d::CCObject*);
-	void resumeTarget(cocos2d::CCObject*);
+	void resumeTarget(cocos2d::CCObject*) = mac 0x212d40;
 	void resumeTargets(cocos2d::CCSet*);
 
 	virtual void update(float);
@@ -1478,6 +1674,22 @@ class cocos2d::CCArray {
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+}
+
+[[link(win, android)]]
+class cocos2d::CCBlink {
+	static cocos2d::CCBlink* create(float, unsigned int) = mac 0x398730;
+
+	bool initWithDuration(float, unsigned int);
+
+	// CCBlink(cocos2d::CCBlink const&);
+	// CCBlink();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual void stop();
+	virtual cocos2d::CCActionInterval* reverse();
 }
 
 [[link(win, android)]]
@@ -1554,9 +1766,22 @@ class cocos2d::CCDelayTime {
 }
 
 [[link(win, android)]]
+class cocos2d::CCScaleBy {
+	static cocos2d::CCScaleBy* create(float, float) = mac 0x398370;
+	static cocos2d::CCScaleBy* create(float, float, float);
+
+	// CCScaleBy(cocos2d::CCScaleBy const&);
+	// CCScaleBy();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCSequence {
-	static cocos2d::CCSequence* create(cocos2d::CCArray*) = mac 0x393740;
-	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
+	static cocos2d::CCSequence* create(cocos2d::CCArray*) = mac 0x393ab0;
+	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = mac 0x393740;
 	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
 	static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = mac 0x3937f0;
 
@@ -1960,4 +2185,79 @@ class cocos2d::CCImage {
 class cocos2d::CCTime {
 	static int gettimeofdayCocos2d(cocos2d::cc_timeval*, void*) = mac 0x2fead0;
 	static double timersubCocos2d(cocos2d::cc_timeval*, cocos2d::cc_timeval*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCMotionStreak {
+	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
+	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*);
+
+	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
+	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*);
+
+	bool getDontOpacityFade() const;
+	float getM_fMaxSeg() const;
+
+	void setDontOpacityFade(bool);
+	void setFastMode(bool);
+	void setM_fMaxSeg(float);
+	void setStartingPositionInitialized(bool);
+	void setStroke(float);
+
+	// CCMotionStreak(cocos2d::CCMotionStreak const&);
+	// CCMotionStreak();
+	void enableRepeatMode(float);
+	bool isFastMode();
+	bool isStartingPositionInitialized();
+	void reset();
+	void resumeStroke();
+	void stopStroke();
+	void tintWithColor(cocos2d::_ccColor3B);
+	void updateFade(float);
+
+	virtual void update(float);
+	virtual void setPosition(cocos2d::CCPoint const&);
+	virtual void draw();
+
+	virtual unsigned char getOpacity();
+	virtual void setOpacity(unsigned char);
+	virtual void setOpacityModifyRGB(bool);
+	virtual bool isOpacityModifyRGB();
+
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
+	virtual cocos2d::_ccBlendFunc getBlendFunc();
+	virtual cocos2d::CCTexture2D* getTexture();
+	virtual void setTexture(cocos2d::CCTexture2D*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCParticleSystemQuad {
+	static cocos2d::CCParticleSystemQuad* create(char const*, bool);
+	static cocos2d::CCParticleSystemQuad* create() = mac 0x5c7320;
+	static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool);
+
+	void initIndices();
+	void initTexCoordsWithRect(cocos2d::CCRect const&);
+
+	unsigned char getOpacity();
+
+	void setDisplayFrame(cocos2d::CCSpriteFrame*);
+	void setOpacity(unsigned char);
+	void setTextureWithRect(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
+
+	// CCParticleSystemQuad(cocos2d::CCParticleSystemQuad const&);
+	// CCParticleSystemQuad();
+	bool allocMemory();
+	void listenBackToForeground(cocos2d::CCObject*);
+	void setupVBO();
+	void updateTexCoords();
+
+	virtual void draw();
+	virtual void setBatchNode(cocos2d::CCParticleBatchNode*);
+	virtual void setTotalParticles(unsigned int);
+	virtual bool initWithTotalParticles(unsigned int, bool);
+	virtual void updateQuadWithParticle(cocos2d::sCCParticle*, cocos2d::CCPoint const&);
+	virtual void postStep();
+
+	virtual void setTexture(cocos2d::CCTexture2D*);
 }
