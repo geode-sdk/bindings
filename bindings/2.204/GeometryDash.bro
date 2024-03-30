@@ -4532,17 +4532,17 @@ class GameManager : GManager {
 	TodoReturn levelIsPremium(int, int);
 	TodoReturn likeFacebook() = win 0x126d70;
 	void loadBackground(int) = win 0x127dc0;
-	TodoReturn loadBackgroundAsync(int) = win 0x127e60;
+	void loadBackgroundAsync(int) = win 0x127e60;
 	TodoReturn loadDeathEffect(int) = win 0x127c80;
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool) = win 0x12af80;
 	TodoReturn loadFont(int) = win 0x127ba0;
 	void loadGround(int) = win 0x1281f0;
-	TodoReturn loadGroundAsync(int);
+	void loadGroundAsync(int);
 	cocos2d::CCTexture2D* loadIcon(int, int, int) = win 0x127440;
 	TodoReturn loadIconAsync(int, int, int, cocos2d::CCObject*);
 	void loadMiddleground(int) = win 0x127f50;
-	TodoReturn loadMiddlegroundAsync(int);
+	void loadMiddlegroundAsync(int);
 	TodoReturn loadVideoSettings();
 	TodoReturn lockColor(int, UnlockType) = win 0x122610;
 	TodoReturn lockIcon(int, IconType) = win 0x1222d0;
@@ -6592,7 +6592,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn runTimerTrigger(int, double, bool, int, gd::vector<int> const&, int, int);
 	TodoReturn runTouchTriggerCommand(int, bool, TouchTriggerType, TouchTriggerControl, bool, gd::vector<int> const&, int, int) = win 0x1E2760;
 	TodoReturn saveCompletedMove(int, double, double);
-	TodoReturn saveToState(EffectManagerState&) = win 0x1e42a0;
+	void saveToState(EffectManagerState&) = win 0x1e42a0;
 	void setColorAction(ColorAction*, int);
 	void setFollowing(int, int, bool);
 	void setupFromString(gd::string);
@@ -7075,7 +7075,7 @@ class GJGroundLayer : cocos2d::CCLayer {
 	TodoReturn getGroundY();
 	TodoReturn hideShadows();
 	bool init(int, int) = win 0x1f74a0;
-	TodoReturn loadGroundSprites(int, bool) = win 0x1f7900;
+	void loadGroundSprites(int, bool) = win 0x1f7900;
 	TodoReturn positionGround(float);
 	TodoReturn scaleGround(float);
 	TodoReturn toggleVisible01(bool);
@@ -7341,7 +7341,7 @@ class GJMGLayer : cocos2d::CCLayer {
 
 	TodoReturn deactivateGround();
 	bool init(int);
-	TodoReturn loadGroundSprites(int, bool);
+	void loadGroundSprites(int, bool);
 	TodoReturn scaleGround(float);
 	TodoReturn toggleVisible01(bool);
 	TodoReturn toggleVisible02(bool);
@@ -8058,12 +8058,12 @@ class GJTransformControl : cocos2d::CCLayer {
 	TodoReturn applyRotation(float) = win 0xe14d0;
 	TodoReturn calculateRotationOffset();
 	TodoReturn finishTouch();
-	TodoReturn loadFromState(GJTransformState&);
+	void loadFromState(GJTransformState&);
 	TodoReturn loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&) = win 0xdfda0;
 	TodoReturn logCurrentZeroPos();
 	void onToggleLockScale(cocos2d::CCObject* sender);
 	TodoReturn refreshControl();
-	TodoReturn saveToState(GJTransformState&);
+	void saveToState(GJTransformState&);
 	TodoReturn scaleButtons(float) = win 0xdfd10;
 	TodoReturn spriteByTag(int);
 	TodoReturn updateAnchorSprite(cocos2d::CCPoint);
