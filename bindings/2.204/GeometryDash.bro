@@ -6,18 +6,24 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
 
 	static AccountHelpLayer* create() = win 0x58a10;
 
-	TodoReturn doUnlink();
-	TodoReturn exitLayer();
-	void onAccountManagement(cocos2d::CCObject* sender);
-	void onReLogin(cocos2d::CCObject* sender);
-	void onUnlink(cocos2d::CCObject* sender);
-	TodoReturn updatePage();
-	TodoReturn verifyUnlink();
+	void doUnlink() = win 0x591e0;
+	void exitLayer();
+	void onAccountManagement(cocos2d::CCObject* sender) = win 0x58f90;
+	void onReLogin(cocos2d::CCObject* sender) = win 0x58f50;
+	void onUnlink(cocos2d::CCObject* sender) = win 0x59010;
+	void updatePage() = win 0x59230;
+	void verifyUnlink() = win 0x59160;
 
 	virtual void customSetup() = win 0x58b90;
-	virtual TodoReturn layerHidden();
-	virtual TodoReturn accountStatusChanged();
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void layerHidden() = win 0x594f0;
+	virtual void accountStatusChanged();
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x59480;
+
+	cocos2d::CCLabelBMFont* accountNameLabel;
+	TextArea* statusMessageArea;
+	CCMenuItemSpriteExtra* refreshLoginButton; 
+	CCMenuItemSpriteExtra* unlinkAccountButton; 
+	bool setupCompleted; 
 }
 
 [[link(android)]]
@@ -691,26 +697,26 @@ class CCAnimateFrameCache : cocos2d::CCObject {
 class CCBlockLayer : cocos2d::CCLayerColor {
 	// virtual ~CCBlockLayer();
 
-	static CCBlockLayer* create();
+	static CCBlockLayer* create() = win 0x22e40;
 
 	TodoReturn decrementForcePrio();
 	TodoReturn incrementForcePrio();
 
 	virtual bool init() = win 0x22f00;
 	virtual void draw() = win 0x230a0;
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x230d0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void registerWithTouchDispatcher();
+	virtual void registerWithTouchDispatcher() = win 0x22fc0;
 	virtual void keyBackClicked();
 	virtual void customSetup();
-	virtual TodoReturn enterLayer();
-	virtual TodoReturn exitLayer();
-	virtual TodoReturn showLayer(bool);
-	virtual TodoReturn hideLayer(bool);
-	virtual TodoReturn layerVisible();
-	virtual TodoReturn layerHidden();
+	virtual TodoReturn enterLayer() = win 0x22fa0;
+	virtual TodoReturn exitLayer() = win 0x23010;
+	virtual TodoReturn showLayer(bool) = win 0x23040;
+	virtual TodoReturn hideLayer(bool) = win 0x23050;
+	virtual TodoReturn layerVisible() = win 0x23060;
+	virtual TodoReturn layerHidden() = win 0x23070;
 	virtual TodoReturn enterAnimFinished();
 	virtual TodoReturn disableUI();
 	virtual TodoReturn enableUI();
@@ -1001,7 +1007,7 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 	TodoReturn moveToTop() = win 0x27b60;
 	TodoReturn moveToTopWithOffset(float) = win 0x27ae0;
 	TodoReturn scrollingEnd();
-	TodoReturn scrollLayer(float) = win 0x28550;
+	void scrollLayer(float) = win 0x28550;
 	void setContentLayerSize(cocos2d::CCSize);
 	void setContentOffset(cocos2d::CCPoint, bool);
 	TodoReturn updateIndicators(float);
@@ -3643,7 +3649,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn fadeInBackgroundMusic(float);
 	TodoReturn fadeInMusic(float, int) = win 0x3a740;
 	TodoReturn fadeOutMusic(float, int);
-	TodoReturn getActiveMusic(int) = win 0x3a940;
+	FMOD::Channel* getActiveMusic(int) = win 0x3a940;
 	TodoReturn getActiveMusicChannel(int);
 	float getBackgroundMusicVolume();
 	TodoReturn getChannelGroup(int, bool) = win 0x35240;
@@ -3651,7 +3657,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getFMODStatus(int) = win 0x3b0f0;
 	float getMeteringValue();
 	TodoReturn getMusicChannelID(int);
-	TodoReturn getMusicLengthMS(int) = win 0x3a570;
+	unsigned int getMusicLengthMS(int) = win 0x3a570;
 	TodoReturn getMusicTime(int);
 	TodoReturn getMusicTimeMS(int);
 	TodoReturn getNextChannelID();
@@ -3708,7 +3714,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn stopAllEffects() = win 0x37f90;
 	TodoReturn stopAllMusic() = win 0x38310;
 	TodoReturn stopAndGetFade(FMOD::Channel*);
-	TodoReturn stopAndRemoveMusic(int);
+	TodoReturn stopAndRemoveMusic(int) = win 0x3c870;
 	TodoReturn stopChannel(FMOD::Channel*, bool, float);
 	TodoReturn stopChannel(int, AudioTargetType, bool, float);
 	TodoReturn stopChannel(int);
@@ -5608,13 +5614,32 @@ class GhostTrailEffect : cocos2d::CCNode {
 
 	static GhostTrailEffect* create() = win 0x46b20;
 
-	TodoReturn doBlendAdditive();
-	TodoReturn runWithTarget(cocos2d::CCSprite*, float, float, float, float, bool);
-	TodoReturn stopTrail();
-	TodoReturn trailSnapshot(float);
+	void doBlendAdditive() {
+		additiveBlendAmount = 770;
+		isAdditiveBlendEnabled = true;
+	}
+	void runWithTarget(cocos2d::CCSprite*, float, float, float, float, bool) = win 0x46c20;
+	void stopTrail() = win 0x47140;
 
+	virtual void trailSnapshot(float) = win 0x46cc0;
 	virtual bool init() = win 0x46bc0;
 	virtual void draw();
+
+	float deltaTime;
+	float secondDeltaTime; 
+	float trailScale;
+	bool distant;
+	float scaleDecrease;
+	int additiveBlendAmount; 
+	bool isAdditiveBlendEnabled;
+	PAD = win 0x4;
+	cocos2d::CCSprite* baseSprite; 
+	PlayerObject* basePlayer;
+	cocos2d::CCLayer* unusedLayer; 
+	float trailDistance;
+	int unusedInt;
+	PAD = win 0xC;
+	bool unusedBool;
 }
 
 [[link(android)]]
@@ -5818,7 +5843,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn claimRotationAction(int, int, float&, float&, bool, bool);
 	TodoReturn clearActivatedAudioTriggers() = win 0x1c5590;
 	TodoReturn clearPickedUpItems();
-	TodoReturn collectedObject(EffectGameObject*);
+	TodoReturn collectedObject(EffectGameObject*) = win 0x1b70d0;
 	TodoReturn collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x19c1b0;
 	TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
 	TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
@@ -6059,7 +6084,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn toggleLockPlayer(bool, bool);
 	TodoReturn togglePlayerStreakBlend(bool);
 	TodoReturn togglePlayerVisibility(bool, bool);
-	TodoReturn togglePlayerVisibility(bool);
+	TodoReturn togglePlayerVisibility(bool) = win 0x1b9320;
 	TodoReturn transformAreaObjects(GameObject*, cocos2d::CCArray*, float, float, bool);
 	TodoReturn triggerAdvancedFollowCommand(AdvancedFollowTriggerObject*);
 	TodoReturn triggerAdvancedFollowEditCommand(AdvancedFollowEditObject*);
@@ -7395,7 +7420,7 @@ class GJOptionsLayer : SetupTriggerPopup {
 
 	TodoReturn addGVToggle(char const*, char const*, char const*);
 	TodoReturn addToggle(char const*, int, bool, char const*);
-	TodoReturn addToggleInternal(char const*, int, bool, char const*) = win 0x206350;
+	void addToggleInternal(char const*, int, bool, char const*) = win 0x206350;
 	TodoReturn countForPage(int);
 	TodoReturn goToPage(int);
 	TodoReturn incrementCountForPage(int);
@@ -10343,7 +10368,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getAllSongs();
 	TodoReturn getCustomContentURL() = win 0x2849c0;
 	TodoReturn getDLObject(char const*);
-	TodoReturn getDownloadedSongs();
+	cocos2d::CCArray* getDownloadedSongs() = win 0x283450;
 	TodoReturn getDownloadProgress(int);
 	TodoReturn getMusicArtistForID(int);
 	TodoReturn getMusicObject(int);
@@ -10755,7 +10780,7 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 }
 
 [[link(android)]]
-class PauseLayer : CCBlockLayer {
+class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	// virtual ~PauseLayer();
 	// PauseLayer() = win 0x2b8830;
 
@@ -10786,6 +10811,7 @@ class PauseLayer : CCBlockLayer {
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2ba310;
 	virtual void customSetup() = win 0x2b89f0;
 	virtual void keyUp(cocos2d::enumKeyCodes);
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2ba200;
 }
 
 [[link(android)]]
@@ -11055,7 +11081,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn toggleBirdMode(bool, bool) = win 0x2d3d30;
 	TodoReturn toggleDartMode(bool, bool) = win 0x2d42f0;
 	TodoReturn toggleFlyMode(bool, bool) = win 0x2d3aa0;
-	TodoReturn toggleGhostEffect(GhostType) = win 0x2d7a40;
+	void toggleGhostEffect(GhostType) = win 0x2d7a40;
 	void togglePlatformerMode(bool val) {
         m_isPlatformer = val;
     }
@@ -11419,13 +11445,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn shouldBlend(int);
 	TodoReturn showCompleteEffect() = win 0x2DE940;
 	TodoReturn showCompleteText() = win 0x2de410;
-	TodoReturn showEndLayer();
+	TodoReturn showEndLayer() = win 0x2e0870;
 	TodoReturn showHint() = win 0x2e6f90;
 	TodoReturn showNewBest(bool, int, int, bool, bool, bool) = win 0x2dedc0;
-	TodoReturn showRetryLayer();
-	TodoReturn showTwoPlayerGuide();
-	TodoReturn spawnCircle();
-	TodoReturn spawnFirework();
+	TodoReturn showRetryLayer() = win 0x2e08e0;
+	TodoReturn showTwoPlayerGuide() = win 0x2e0950;
+	TodoReturn spawnCircle() = win 0x2e0190;
+	TodoReturn spawnFirework() = win 0x2e0260;
 	TodoReturn startGame() = win 0x2ddab0;
 	TodoReturn startGameDelayed() = win 0x2ddaf0;
 	TodoReturn startMusic() = win 0x2eb3a0;
