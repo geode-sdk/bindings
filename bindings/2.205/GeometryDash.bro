@@ -10919,7 +10919,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void playDeathEffect();
 	void playDynamicSpiderRun();
 	void playerDestroyed(bool);
-	TodoReturn playerIsFalling(float);
+	void playerIsFalling(float);
 	TodoReturn playerIsFallingBugged();
 	TodoReturn playerIsMovingUp();
 	TodoReturn playerTeleported();
