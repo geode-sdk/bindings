@@ -9388,10 +9388,10 @@ class SimplePlayer : cocos2d::CCSprite {
     GJSpiderSprite* m_spiderSprite;
 	int m_unknown;
 	bool m_hasGlowOutline;
-	PAD = win 0x7, android32 0x7, android64 0x7;
+	PAD = win 0x7, android32 0x7, android64 0x7, mac 0x7;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
-	PAD = win 0x4, android32 0x4, android64 0x8;
+	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x8;
 }
 
 [[link(android)]]
