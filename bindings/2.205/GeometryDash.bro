@@ -5783,7 +5783,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn applyLevelSettings(GameObject*);
 	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
 	TodoReturn applySFXEditTrigger(int, int, SFXTriggerGameObject*);
-	TodoReturn applyShake(cocos2d::CCPoint&);
+	void applyShake(cocos2d::CCPoint&);
 	void assignNewStickyGroups(cocos2d::CCArray*);
 	TodoReturn asyncBGLoaded(int);
 	TodoReturn asyncGLoaded(int);
@@ -6112,7 +6112,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateShaderLayer(float);
 	TodoReturn updateSpecialGroupData();
 	TodoReturn updateSpecialLabels();
-	TodoReturn updateStaticCameraPos(cocos2d::CCPoint, bool, bool, bool, float, int, float);
+	void updateStaticCameraPos(cocos2d::CCPoint, bool, bool, bool, float, int, float);
 	TodoReturn updateStaticCameraPosToGroup(int, bool, bool, bool, float, float, int, float, bool, float);
 	TodoReturn updateTimeMod(float, bool, bool);
 	TodoReturn updateTimerLabels();
