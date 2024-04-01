@@ -6157,7 +6157,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn reverseDirection(EffectGameObject*);
 	virtual TodoReturn rotateGameplay(RotateGameplayGameObject*);
 	virtual TodoReturn didRotateGameplay();
-	virtual TodoReturn updateTimeWarp(float);
+	virtual void updateTimeWarp(float);
 	virtual TodoReturn updateTimeWarp(GameObject*, float);
 	virtual TodoReturn applyTimeWarp(float);
 	virtual TodoReturn playGravityEffect(bool);
