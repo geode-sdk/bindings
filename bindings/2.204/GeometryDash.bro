@@ -11529,7 +11529,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	float m_unksomefloat;
 	PAD = win 0x24;
 	cocos2d::CCArray* m_circleWaveArray;
-	PAD = win 0x1c;
+	PAD = win 0x10;
+	cocos2d::CCLabelBMFont* m_attemptLabel;
+	PAD = win 0x8;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = win 0x5c;
 	bool m_endLayerStars; // not verified on android

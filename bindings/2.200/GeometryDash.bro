@@ -6557,7 +6557,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	// those are all wrong except for mac
 	PAD = win 0x1ec, android32 0x1ec, android64 0x2c4, mac 0xfc;
 	cocos2d::CCArray* m_circleWaveArray;
-	PAD = mac 0x2c;
+	PAD = mac 0x18;
+	cocos2d::CCLabelBMFont* m_attemptLabel;
+	PAD = mac 0x10;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = mac 0x178;
 }

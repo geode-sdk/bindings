@@ -11400,7 +11400,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	PAD = android32 0xac, android64 0xfc;
 	cocos2d::CCArray* m_circleWaveArray;
-	PAD = android32 0x1c, android64 0x2c;
+	PAD = android32 0x10, android64 0x18;
+	cocos2d::CCLabelBMFont* m_attemptLabel;
+	PAD = android32 0x8, android64 0x10;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = android32 0x11c, android64 0x180;
 }
