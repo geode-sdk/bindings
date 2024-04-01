@@ -3261,10 +3261,10 @@ class EndLevelLayer : GJDropDownLayer {
 	// parameter from 2.205
 	static EndLevelLayer* create(PlayLayer*);
 
-	TodoReturn coinEnterFinished(cocos2d::CCPoint);
-	TodoReturn coinEnterFinishedO(cocos2d::CCObject*);
-	TodoReturn currencyEnterFinished();
-	TodoReturn diamondEnterFinished();
+	void coinEnterFinished(cocos2d::CCPoint);
+	void coinEnterFinishedO(cocos2d::CCObject*);
+	void currencyEnterFinished();
+	void diamondEnterFinished();
 	TodoReturn getCoinString();
 	TodoReturn getEndText();
 	void goEdit();
@@ -3274,10 +3274,10 @@ class EndLevelLayer : GJDropDownLayer {
 	void onLevelLeaderboard(cocos2d::CCObject* sender);
 	void onMenu(cocos2d::CCObject* sender);
 	void onReplay(cocos2d::CCObject* sender);
-	TodoReturn playCoinEffect(float);
-	TodoReturn playCurrencyEffect(float);
-	TodoReturn playDiamondEffect(float);
-	TodoReturn playEndEffect();
+	void playCoinEffect(float);
+	void playCurrencyEffect(float);
+	void playDiamondEffect(float);
+	void playEndEffect();
 	void playStarEffect(float);
 	TodoReturn starEnterFinished();
 	TodoReturn tryShowBanner(float);
