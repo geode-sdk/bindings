@@ -9099,7 +9099,7 @@ class LoadingLayer : cocos2d::CCLayer {
 
 	static LoadingLayer* create(bool);
 
-	TodoReturn getLoadingString() = win 0x275c10;
+	const char* getLoadingString() = win 0x275c10;
 	bool init(bool) = win 0x274d20;
 	TodoReturn loadAssets() = win 0x275580;
 	TodoReturn loadingFinished() = win 0x275490;
