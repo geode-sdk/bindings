@@ -1416,20 +1416,20 @@ class CharacterColorPage : FLAlertLayer {
 class CheckpointGameObject : EffectGameObject {
 	// virtual ~CheckpointGameObject();
 
-	static CheckpointGameObject* create();
+	static CheckpointGameObject* create() = win 0x3af510;
 
 	TodoReturn resetCheckpoint();
 	TodoReturn updateCheckpointSpriteVisibility();
 
-	virtual bool init();
-	virtual void setupCustomSprites(gd::string);
-	virtual void resetObject();
-	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
-	virtual TodoReturn triggerActivated(float);
-	virtual TodoReturn restoreObject();
-	virtual TodoReturn updateSyncedAnimation(float, int);
+	virtual bool init() = win 0x3af5e0;
+	virtual void setupCustomSprites(gd::string) = win 0x3af940;
+	virtual void resetObject() = win 0x3b05c0;
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3af610;
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3b04a0;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3b01f0;
+	virtual cocos2d::CCAction* triggerActivated(float) = win 0x3af630;
+	virtual TodoReturn restoreObject() = win 0x3b0600;
+	virtual TodoReturn updateSyncedAnimation(float, int) = win 0x3afc50;
 }
 
 [[link(android)]]

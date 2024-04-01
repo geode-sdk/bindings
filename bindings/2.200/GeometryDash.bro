@@ -7015,7 +7015,7 @@ class CheckpointGameObject : EffectGameObject {
 	virtual bool init() = mac 0x1b8960;
 	virtual void resetObject() = mac 0x1ba260;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x1b97a0;
-	virtual TodoReturn triggerActivated(float) = mac 0x1b89e0;
+	virtual cocos2d::CCAction* triggerActivated(float) = mac 0x1b89e0;
 	virtual TodoReturn restoreObject() = mac 0x1ba2d0;
 	virtual TodoReturn updateSyncedAnimation(float, int) = mac 0x1b9390;
 }
