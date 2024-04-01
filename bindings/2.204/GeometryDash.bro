@@ -1416,20 +1416,20 @@ class CharacterColorPage : FLAlertLayer {
 class CheckpointGameObject : EffectGameObject {
 	// virtual ~CheckpointGameObject();
 
-	static CheckpointGameObject* create();
+	static CheckpointGameObject* create() = win 0x3af510;
 
 	TodoReturn resetCheckpoint();
 	TodoReturn updateCheckpointSpriteVisibility();
 
-	virtual bool init();
-	virtual void setupCustomSprites(gd::string);
-	virtual void resetObject();
-	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
-	virtual TodoReturn triggerActivated(float);
-	virtual TodoReturn restoreObject();
-	virtual TodoReturn updateSyncedAnimation(float, int);
+	virtual bool init() = win 0x3af5e0;
+	virtual void setupCustomSprites(gd::string) = win 0x3af940;
+	virtual void resetObject() = win 0x3b05c0;
+	virtual bool triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3af610;
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x3b04a0;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3b01f0;
+	virtual cocos2d::CCAction* triggerActivated(float) = win 0x3af630;
+	virtual TodoReturn restoreObject() = win 0x3b0600;
+	virtual TodoReturn updateSyncedAnimation(float, int) = win 0x3afc50;
 }
 
 [[link(android)]]
@@ -3077,7 +3077,7 @@ class EffectGameObject : EnhancedGameObject {
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x3a1df0; // = win 0x13f9a0;
 	virtual void setRScaleX(float);
 	virtual void setRScaleY(float);
-	virtual TodoReturn triggerActivated(float);
+	virtual cocos2d::CCAction* triggerActivated(float);
 	virtual TodoReturn restoreObject();
 	virtual TodoReturn spawnXPosition();
 	virtual TodoReturn canReverse();
@@ -3386,7 +3386,7 @@ class EnhancedGameObject : GameObject {
 	virtual void deactivateObject(bool) = win 0x1474c0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x1457b0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x147520;
-	virtual TodoReturn triggerActivated(float);
+	virtual cocos2d::CCAction* triggerActivated(float);
 	virtual TodoReturn restoreObject();
 	virtual TodoReturn animationTriggered();
 	virtual TodoReturn activatedByPlayer(PlayerObject*);
@@ -5037,7 +5037,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getRScaleX();
 	virtual TodoReturn getRScaleY();
 	virtual void setRRotation(float);
-	virtual TodoReturn triggerActivated(float);
+	virtual cocos2d::CCAction* triggerActivated(float);
 	virtual void setObjectColor(cocos2d::ccColor3B const&) = win 0x141300;
 	virtual void setGlowColor(cocos2d::ccColor3B const&);
 	virtual TodoReturn restoreObject();
@@ -11887,7 +11887,7 @@ class RingObject : EffectGameObject {
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 	virtual void setRScale(float);
-	virtual TodoReturn triggerActivated(float);
+	virtual cocos2d::CCAction* triggerActivated(float);
 	virtual TodoReturn shouldDrawEditorHitbox();
 	virtual TodoReturn powerOnObject(int);
 
