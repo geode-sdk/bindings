@@ -2535,7 +2535,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	TodoReturn playStep2();
 	TodoReturn playStep3();
 	TodoReturn scene(GJGameLevel*);
-	TodoReturn setupLevelInfo();
+	void setupLevelInfo();
 	TodoReturn updateDescText(char const*);
 	TodoReturn verifyLevelName() = win 0x9f8f0;
 
@@ -8526,7 +8526,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	void onSimilar(cocos2d::CCObject* sender);
 	TodoReturn reloadWindow() = win 0x22bd00;
 	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x22b670;
-	TodoReturn setupLevelInfo();
+	void setupLevelInfo();
 	TodoReturn toggleCommentMode(cocos2d::CCObject*);
 	TodoReturn toggleExtendedMode(cocos2d::CCObject*);
 	TodoReturn toggleSmallCommentMode(cocos2d::CCObject*) = win 0x22bc10;
@@ -9283,9 +9283,9 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn playStep3();
 	TodoReturn playStep4();
 	static cocos2d::CCScene* scene(GJGameLevel*, bool) = win 0x2515b0;
-	TodoReturn setupLevelInfo() = win 0x2544a0;
-	TodoReturn setupPlatformerStats() = win 0x253a90;
-	TodoReturn setupProgressBars() = win 0x253e20;
+	void setupLevelInfo() = win 0x2544a0;
+	void setupPlatformerStats() = win 0x253a90;
+	void setupProgressBars() = win 0x253e20;
 	bool shouldDownloadLevel() = win 0x253890;
 	void showSongWarning() = win 0x255510;
 	void showUpdateAlert(UpdateResponse) = win 0x255280;

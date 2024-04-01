@@ -2514,7 +2514,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	TodoReturn playStep2();
 	TodoReturn playStep3();
 	static cocos2d::CCScene* scene(GJGameLevel*);
-	TodoReturn setupLevelInfo();
+	void setupLevelInfo();
 	TodoReturn updateDescText(char const*);
 	TodoReturn verifyLevelName();
 
@@ -8434,7 +8434,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	void onSimilar(cocos2d::CCObject* sender);
 	TodoReturn reloadWindow();
 	void setupCommentsBrowser(cocos2d::CCArray*);
-	TodoReturn setupLevelInfo();
+	void setupLevelInfo();
 	TodoReturn toggleCommentMode(cocos2d::CCObject*);
 	TodoReturn toggleExtendedMode(cocos2d::CCObject*);
 	TodoReturn toggleSmallCommentMode(cocos2d::CCObject*);
@@ -9181,7 +9181,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn playStep3();
 	TodoReturn playStep4();
 	static cocos2d::CCScene* scene(GJGameLevel*, bool);
-	TodoReturn setupLevelInfo();
+	void setupLevelInfo();
 	void setupPlatformerStats();
 	void setupProgressBars();
 	TodoReturn shouldDownloadLevel();

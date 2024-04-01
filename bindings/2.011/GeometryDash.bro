@@ -1573,7 +1573,7 @@ class EditLevelLayer {
     TodoReturn playStep2();
     TodoReturn playStep3();
     TodoReturn scene(GJGameLevel*);
-    TodoReturn setupLevelInfo();
+    void setupLevelInfo();
     TodoReturn updateDescText(char const*);
     TodoReturn verifyLevelName();
 
@@ -4900,7 +4900,7 @@ class InfoLayer {
     void onOriginal(cocos2d::CCObject* sender);
     void onPrevPage(cocos2d::CCObject* sender);
     TodoReturn setupCommentsBrowser(cocos2d::CCArray*);
-    TodoReturn setupLevelInfo();
+    void setupLevelInfo();
     TodoReturn toggleCommentMode(cocos2d::CCNode*);
     TodoReturn updateCommentModeButtons();
     TodoReturn updateLevelsLabel();
@@ -5275,7 +5275,7 @@ class LevelInfoLayer {
     TodoReturn playStep2();
     TodoReturn playStep3();
     TodoReturn scene(GJGameLevel*);
-    TodoReturn setupLevelInfo();
+    void setupLevelInfo();
     void setupProgressBars();
     TodoReturn shouldDownloadLevel();
     TodoReturn showSongWarning();

@@ -3110,18 +3110,18 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn loadLevelStep() = mac 0x29deb0;
 	void tryCloneLevel(cocos2d::CCObject*) = mac 0x29be90, win 0x2516f0;
 	TodoReturn incrementLikes();
-	TodoReturn setupLevelInfo() = mac 0x29a030;
+	void setupLevelInfo() = mac 0x29a030;
 	void showSongWarning() = mac 0x29dc90;
 	void showUpdateAlert(UpdateResponse) = mac 0x29d7f0;
 	TodoReturn confirmMoveToTop(cocos2d::CCObject*) = mac 0x29c3a0;
 	TodoReturn incrementDislikes();
-	TodoReturn setupProgressBars() = mac 0x29aec0;
+	void setupProgressBars() = mac 0x29aec0;
 	void updateLabelValues() = mac 0x29c920, win 0x252490;
 	TodoReturn updateSideButtons() = mac 0x29ba90;
 	TodoReturn confirmOwnerDelete(cocos2d::CCObject*) = mac 0x29bc80;
 	TodoReturn confirmMoveToBottom(cocos2d::CCObject*) = mac 0x29c480;
 	TodoReturn shouldDownloadLevel();
-	TodoReturn setupPlatformerStats() = mac 0x29ab80;
+	void setupPlatformerStats() = mac 0x29ab80;
 	TodoReturn scene(GJGameLevel*, bool);
 	TodoReturn playStep2() = mac 0x29dd60;
 	TodoReturn playStep3() = mac 0x29de20;
@@ -7207,7 +7207,7 @@ class PauseLayer : CCBlockLayer {
 
 	TodoReturn tryShowBanner(float);
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*) = mac 0x3b5c90;
-	TodoReturn setupProgressBars() = mac 0x3b4fb0;
+	void setupProgressBars() = mac 0x3b4fb0;
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	void musicSliderChanged(cocos2d::CCObject*) = mac 0x3b5c50, win 0x2B4AB0;
 	void goEdit() = win 0x2b4e70, mac 0x3b5fa0;
@@ -7535,7 +7535,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 
 	void confirmClone(cocos2d::CCObject*) = mac 0x1dbed0;
 	void confirmDelete(cocos2d::CCObject*) = mac 0x1dbd10;
-	TodoReturn setupLevelInfo();
+	void setupLevelInfo();
 	TodoReturn updateDescText(char const*);
 	TodoReturn closeTextInputs();
 	TodoReturn verifyLevelName();
@@ -15489,7 +15489,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	TodoReturn reloadWindow();
 	TodoReturn confirmReport(cocos2d::CCObject*) = mac 0x7727d0;
 	void setupPageInfo(gd::string, char const*) = mac 0x774030;
-	TodoReturn setupLevelInfo() = mac 0x772060;
+	void setupLevelInfo() = mac 0x772060;
 	TodoReturn toggleCommentMode(cocos2d::CCObject*) = mac 0x772b20;
 	TodoReturn updateLevelsLabel();
 	TodoReturn toggleExtendedMode(cocos2d::CCObject*);
