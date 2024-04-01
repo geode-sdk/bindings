@@ -1871,7 +1871,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onUpdateCustomColor(cocos2d::CCObject* sender);
 	TodoReturn recreateLayer();
 	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn toggleVisible();
+	void toggleVisible();
 	TodoReturn updateChannelLabel(int);
 	TodoReturn updateColorSprite();
 	TodoReturn updateCurrentSelection();
@@ -3481,8 +3481,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn start() = win 0x33800;
 	TodoReturn startMusic(int, int, int, int, bool, int);
 	TodoReturn stop() = win 0x5b620;
-	TodoReturn stopAllEffects() = win 0x37f50;
-	TodoReturn stopAllMusic();
+	void stopAllEffects() = win 0x37f50;
+	void stopAllMusic();
 	TodoReturn stopAndGetFade(FMOD::Channel*);
 	TodoReturn stopAndRemoveMusic(int);
 	TodoReturn stopChannel(FMOD::Channel*, bool, float);
@@ -8475,8 +8475,8 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn playStep4();
 	TodoReturn scene(GJGameLevel*, bool);
 	TodoReturn setupLevelInfo();
-	TodoReturn setupPlatformerStats();
-	TodoReturn setupProgressBars();
+	void setupPlatformerStats();
+	void setupProgressBars();
 	TodoReturn shouldDownloadLevel();
 	TodoReturn showSongWarning();
 	TodoReturn showUpdateAlert(UpdateResponse);
@@ -9099,7 +9099,7 @@ class LoadingLayer : cocos2d::CCLayer {
 
 	static LoadingLayer* create(bool);
 
-	TodoReturn getLoadingString() = win 0x275c10;
+	const char* getLoadingString() = win 0x275c10;
 	bool init(bool) = win 0x274d20;
 	TodoReturn loadAssets() = win 0x275580;
 	TodoReturn loadingFinished() = win 0x275490;
@@ -9997,7 +9997,7 @@ class PauseLayer : CCBlockLayer {
 	void onResume(cocos2d::CCObject* sender) = win 0x2b8510;
 	void onSettings(cocos2d::CCObject* sender);
 	void onTime(cocos2d::CCObject* sender);
-	TodoReturn setupProgressBars();
+	void setupProgressBars();
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
 	TodoReturn tryShowBanner(float);
 

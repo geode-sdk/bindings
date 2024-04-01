@@ -63,6 +63,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3460);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34a8);
 
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37a0);
+GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x37c0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x37d8);
 
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4e4, 0x590);

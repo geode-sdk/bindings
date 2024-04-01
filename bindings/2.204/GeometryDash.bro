@@ -1399,7 +1399,7 @@ class CharacterColorPage : FLAlertLayer {
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked() = win 0x608d0;
 	virtual void show();
-	
+
 	int m_colorMode;
 	float m_height;
 	float m_width;
@@ -3692,8 +3692,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn lengthForSound(gd::string);
 	TodoReturn loadAndPlayMusic(gd::string, unsigned int, int);
 	TodoReturn loadAudioState(FMODAudioState&) = win 0x34000;
-	TodoReturn loadMusic(gd::string, float, float, float, bool, int, int) = win 0x38740;
-	TodoReturn loadMusic(gd::string) = win 0x386a0;
+	void loadMusic(gd::string, float, float, float, bool, int, int) = win 0x38740;
+	void loadMusic(gd::string) = win 0x386a0;
 	TodoReturn pauseAllAudio();
 	TodoReturn pauseAllEffects();
 	TodoReturn pauseAllMusic() = win 0x38350;
@@ -3702,9 +3702,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pitchForIdx(int) = win 0x350e0;
 	void playEffect(gd::string, float, float, float) = win 0x356e0;
 	void playEffect(gd::string) = win 0x35590;
-	TodoReturn playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int) = win 0x357b0;
+	void playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int) = win 0x357b0;
 	TodoReturn playEffectAsync(gd::string) = win 0x35620;
-	TodoReturn playMusic(gd::string, bool, float, int) = win 0x385b0;
+	void playMusic(gd::string, bool, float, int) = win 0x385b0;
 	TodoReturn preloadEffect(gd::string) = win 0x37a10;
 	TodoReturn preloadEffectAsync(gd::string);
 	TodoReturn preloadMusic(gd::string, bool, int);
@@ -4548,7 +4548,7 @@ class GameManager : GManager {
 	TodoReturn likeFacebook() = win 0x126d70;
 	void loadBackground(int) = win 0x127dc0;
 	void loadBackgroundAsync(int) = win 0x127e60;
-	TodoReturn loadDeathEffect(int) = win 0x127c80;
+	void loadDeathEffect(int) = win 0x127c80;
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool) = win 0x12af80;
 	TodoReturn loadFont(int) = win 0x127ba0;
@@ -4620,8 +4620,8 @@ class GameManager : GManager {
 	TodoReturn tryCacheAd();
 	TodoReturn tryShowInterstitial(int, int, int);
 	TodoReturn unloadBackground() = win 0x127d40;
-	TodoReturn unloadIcon(int, int, int) = win 0x1276b0;
-	TodoReturn unloadIcons(int) = win 0x127870;
+	void unloadIcon(int, int, int) = win 0x1276b0;
+	void unloadIcons(int) = win 0x127870;
 	TodoReturn unlockColor(int, UnlockType) = win 0x122560;
 	TodoReturn unlockedPremium();
 	TodoReturn unlockIcon(int, IconType) = win 0x122220;
@@ -5444,7 +5444,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn storeSecretCoin(char const*);
 	void storeUserCoin(char const*) = win 0x1715c0;
 	TodoReturn tempClear();
-	TodoReturn toggleEnableItem(UnlockType, int, bool) = win 0x176890;
+	void toggleEnableItem(UnlockType, int, bool) = win 0x176890;
 	TodoReturn trySelectActivePath() = win 0x16a350;
 	TodoReturn uncompleteLevel(GJGameLevel*);
 	TodoReturn unlockGauntletChest(int);
@@ -5943,7 +5943,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B);
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::ccColor3B, float, float, int, bool, float);
 	TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
-	TodoReturn loadLevelSettings() = win 0x1bd7b0;
+	void loadLevelSettings() = win 0x1bd7b0;
 	TodoReturn loadStartPosObject() = win 0x1b8d10;
 	TodoReturn loadUpToPosition(float, int, int) = win 0x1b8e80;
 	TodoReturn maxZOrderForShaderZ(int) = win 0x1A8530;
@@ -7068,6 +7068,25 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x1f3570;
 	virtual void dialogClosed(DialogLayer*) = win 0x1f36a0;
 	virtual void playerColorChanged() = win 0x1f3160;
+
+	CCTextInputNode* m_usernameInput;
+	SimplePlayer* m_playerObject;
+	cocos2d::CCArray* m_tabButtons;
+	cocos2d::CCArray* m_pageButtons;
+	PAD = android32 0x8, win 0x8, android64 0x10;
+	bool m_hasClosed;
+	PAD = android32 0x3, win 0x3, android64 0x3;
+	IconType m_iconType;
+	gd::map<IconType, int> m_iconPages;
+	cocos2d::CCSprite* m_cursor1;
+	cocos2d::CCSprite* m_cursor2;
+	CCMenuItemSpriteExtra* m_currentIcon;
+	ListButtonBar* m_iconSelection;
+	CCMenuItemSpriteExtra* m_leftArrow;
+	CCMenuItemSpriteExtra* m_rightArrow;
+	cocos2d::CCMenu* m_iconSelectionMenu;
+	int m_iconID;
+	IconType m_selectedIconType;
 }
 [[link(android)]]
 class GJGradientLayer : cocos2d::CCLayerGradient {
@@ -9898,7 +9917,7 @@ class LoadingLayer : cocos2d::CCLayer {
 
 	static LoadingLayer* create(bool) = win 0x2762d0;
 
-	TodoReturn getLoadingString() = win 0x277280;
+	const char* getLoadingString() = win 0x277280;
 	bool init(bool) = win 0x276370;
 	void loadAssets() = win 0x276bd0;
 	void loadingFinished() = win 0x276ae0;
@@ -10977,8 +10996,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn convertToClosestRotation(float);
 	TodoReturn copyAttributes(PlayerObject*);
 	void createFadeOutDartStreak() = win 0x2d2320;
-	TodoReturn createRobot(int) = win 0x2c35e0;
-	TodoReturn createSpider(int) = win 0x2c3870;
+	void createRobot(int) = win 0x2c35e0;
+	void createSpider(int) = win 0x2c3870;
 	void deactivateParticle();
 	void deactivateStreak(bool);
 	TodoReturn destroyFromHitHead();
@@ -11502,7 +11521,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void updateInfoLabel() = win 0x2e5ad0;
 	TodoReturn updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&);
 	void updateProgressbar() = win 0x2e5440;
-	TodoReturn updateScreenRotation(int, bool, bool, float, int, float, int, int);
+	void updateScreenRotation(int, bool, bool, float, int, float, int, int);
 	void updateTimeWarp(EffectGameObject*, float) = win 0x1b9700;
 
 	virtual void onEnterTransitionDidFinish() = win 0x2eb700;
@@ -11544,7 +11563,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	float m_unksomefloat;
 	PAD = win 0x24;
 	cocos2d::CCArray* m_circleWaveArray;
-	PAD = win 0x1c;
+	PAD = win 0x10;
+	cocos2d::CCLabelBMFont* m_attemptLabel;
+	PAD = win 0x8;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = win 0x5c;
 	bool m_endLayerStars; // not verified on android
@@ -14159,7 +14180,7 @@ class ShareLevelLayer : FLAlertLayer {
 	void onShare(cocos2d::CCObject* sender) = win 0x388f20;
 	TodoReturn selectRating(cocos2d::CCObject*);
 	TodoReturn setupStars();
-	
+
 	virtual void keyBackClicked();
 }
 
