@@ -3468,7 +3468,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getRScaleX() = mac 0x583c20;
 	virtual TodoReturn getRScaleY() = mac 0x583c50;
 	virtual void setRRotation(float) = mac 0x5835b0;
-	virtual TodoReturn triggerActivated(float) = mac 0x1d2940;
+	virtual cocos2d::CCAction* triggerActivated(float) = mac 0x1d2940;
 	virtual void setObjectColor(cocos2d::_ccColor3B const&) = mac 0x58ebe0;
 	virtual void setGlowColor(cocos2d::_ccColor3B const&) = mac 0x58ee70;
 	virtual TodoReturn restoreObject() = mac 0x584980;
@@ -3702,7 +3702,7 @@ class EnhancedGameObject : GameObject {
 	virtual void resetObject() = win 0x143380, mac 0x591f80;
 	virtual void deactivateObject(bool) = mac 0x595600;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x595660;
-	virtual TodoReturn triggerActivated(float) = mac 0x5920f0;
+	virtual cocos2d::CCAction* triggerActivated(float) = mac 0x5920f0;
 	virtual TodoReturn restoreObject() = mac 0x592020;
 	virtual TodoReturn animationTriggered() = mac 0x5921c0;
 	virtual TodoReturn activatedByPlayer(PlayerObject*) = mac 0x592100;
@@ -3788,7 +3788,7 @@ class EffectGameObject : EnhancedGameObject {
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x17b7a0;
 	virtual void setRScaleX(float) = mac 0x1a18b0;
 	virtual void setRScaleY(float) = mac 0x1a18d0;
-	virtual TodoReturn triggerActivated(float) = mac 0x1a3b10;
+	virtual cocos2d::CCAction* triggerActivated(float) = mac 0x1a3b10;
 	virtual TodoReturn restoreObject() = mac 0x1a38d0;
 	virtual TodoReturn spawnXPosition() = mac 0x1a3ad0;
 	virtual TodoReturn canReverse() = mac 0x1a3c70;
@@ -4121,7 +4121,7 @@ class RingObject : EffectGameObject {
 	virtual void resetObject() = mac 0x19d060;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x19d260;
 	virtual void setRScale(float) = mac 0x19d0b0;
-	virtual TodoReturn triggerActivated(float) = mac 0x19cf00;
+	virtual cocos2d::CCAction* triggerActivated(float) = mac 0x19cf00;
 	virtual TodoReturn shouldDrawEditorHitbox() = mac 0x19d0f0;
 	virtual TodoReturn powerOnObject(int) = mac 0x19cf10;
 
