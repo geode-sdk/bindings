@@ -297,7 +297,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 
 [[link(android)]]
 class AnimatedSpriteDelegate {
-	virtual TodoReturn animationFinished(char const*);
+	virtual void animationFinished(char const*);
 }
 
 [[link(android)]]
