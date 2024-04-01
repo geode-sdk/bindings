@@ -7257,7 +7257,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	TodoReturn deleteSelected();
 	TodoReturn updatePageLabel() = mac 0x469230;
 	TodoReturn reloadAllObjects();
-	TodoReturn setupLevelBrowser(cocos2d::CCArray*) = mac 0x46c070;
+	void setupLevelBrowser(cocos2d::CCArray*) = mac 0x46c070;
 	TodoReturn updateLevelsLabel();
 	TodoReturn createNewSmartTemplate(cocos2d::CCObject*);
 	void show();
