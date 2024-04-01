@@ -11122,9 +11122,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void toggleRollMode(bool, bool) = win 0x2d48c0;
 	void toggleSpiderMode(bool, bool) = win 0x2d4ce0;
 	void toggleSwingMode(bool, bool) = win 0x2d3fb0;
-	TodoReturn toggleVisibility(bool) = win 0x2c63f0;
+	void toggleVisibility(bool) = win 0x2c63f0;
 	TodoReturn touchedObject(GameObject*);
-	TodoReturn tryPlaceCheckpoint() = win 0x2da220;
+	void tryPlaceCheckpoint() = win 0x2da220;
 	TodoReturn unrotateGameplayObject(GameObject*);
 	TodoReturn unrotatePreSlopeObjects();
 	TodoReturn updateCheckpointMode(bool);
@@ -11139,7 +11139,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateEffects(float);
 	void updateGlowColor() = win 0x2d6610;
 	TodoReturn updateInternalActions(float);
-	TodoReturn updateJump(float) = win 0x2c67b0;
+	void updateJump(float) = win 0x2c67b0;
 	TodoReturn updateJumpVariables();
 	TodoReturn updateLastGroundObject(GameObject*);
 	TodoReturn updateMove(float);
@@ -11175,13 +11175,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updateShipSpriteExtra(gd::string) = win 0x2d7940;
 	TodoReturn updateSlopeRotation(float);
 	TodoReturn updateSlopeYVelocity(float);
-	TodoReturn updateSpecial(float) = win 0x2c62c0;
+	void updateSpecial(float) = win 0x2c62c0;
 	TodoReturn updateStateVariables();
 	TodoReturn updateStaticForce(float, float, bool);
 	void updateStreakBlend(bool) = win 0x2c4050;
 	TodoReturn updateStreaks(float);
-	TodoReturn updateSwingFire() = win 0x2d41e0;
-	TodoReturn updateTimeMod(float, bool) = win 0x2d95e0;
+	void updateSwingFire() = win 0x2d41e0;
+	void updateTimeMod(float, bool) = win 0x2d95e0;
 	TodoReturn usingWallLimitedMode();
 	TodoReturn yStartDown();
 	TodoReturn yStartUp();
@@ -11201,7 +11201,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual cocos2d::CCPoint getRealPosition() = win 0x2d6b70;
 	virtual TodoReturn getOrientedBox();
 	virtual TodoReturn getObjectRotation();
-	virtual TodoReturn animationFinished(char const*) = win 0x2da7c0;
+	virtual void animationFinished(char const*) = win 0x2da7c0;
 
 	cocos2d::CCNode* m_mainLayer;
 	PAD = win 0x44, android32 0x44;
