@@ -4533,7 +4533,7 @@ class GameManager : GManager {
 	TodoReturn likeFacebook() = win 0x126d70;
 	void loadBackground(int) = win 0x127dc0;
 	void loadBackgroundAsync(int) = win 0x127e60;
-	TodoReturn loadDeathEffect(int) = win 0x127c80;
+	void loadDeathEffect(int) = win 0x127c80;
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool) = win 0x12af80;
 	TodoReturn loadFont(int) = win 0x127ba0;
@@ -4605,8 +4605,8 @@ class GameManager : GManager {
 	TodoReturn tryCacheAd();
 	TodoReturn tryShowInterstitial(int, int, int);
 	TodoReturn unloadBackground() = win 0x127d40;
-	TodoReturn unloadIcon(int, int, int) = win 0x1276b0;
-	TodoReturn unloadIcons(int) = win 0x127870;
+	void unloadIcon(int, int, int) = win 0x1276b0;
+	void unloadIcons(int) = win 0x127870;
 	TodoReturn unlockColor(int, UnlockType) = win 0x122560;
 	TodoReturn unlockedPremium();
 	TodoReturn unlockIcon(int, IconType) = win 0x122220;

@@ -1828,8 +1828,8 @@ class GameManager : GManager {
 	TodoReturn reorderKey(int, bool);
 	TodoReturn subYouTube() = mac 0x35e120;
 	TodoReturn tryCacheAd();
-	TodoReturn unloadIcon(int, int, int) = mac 0x35fde0;
-	TodoReturn unlockIcon(int, IconType);
+	void unloadIcon(int, int, int) = mac 0x35fde0;
+	void unlockIcon(int, IconType);
 	cocos2d::ccColor3B colorForIdx(int) = win 0x124270, mac 0x35d5b0;
 	TodoReturn colorForPos(int);
 	void doQuickSave() = win 0x12bf00;
@@ -1839,7 +1839,7 @@ class GameManager : GManager {
 	TodoReturn joinDiscord() = mac 0x35e200;
 	TodoReturn saveAdTimer();
 	TodoReturn startUpdate() = mac 0x354bc0;
-	TodoReturn unloadIcons(int) = win 0x125a60;
+	void unloadIcons(int) = win 0x125a60;
 	void unlockColor(int, UnlockType) = mac 0x3560d0;
 	TodoReturn updateMusic();
 	TodoReturn countForType(IconType) = mac 0x35e6a0;
@@ -1879,7 +1879,7 @@ class GameManager : GManager {
 	bool getGameVariable(char const*) = win 0x126920, mac 0x355010;
 	/* unverified signature */
 	bool isColorUnlocked(int, UnlockType) = win 0x120670, mac 0x356020;
-	TodoReturn loadDeathEffect(int) = mac 0x3607b0;
+	void loadDeathEffect(int) = mac 0x3607b0;
 	void loadGroundAsync(int);
 	void openEditorGuide() = mac 0x35e2e0;
 	void queueReloadMenu() = win 0x12c4c0, mac 0x368bb0;
