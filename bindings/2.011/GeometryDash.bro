@@ -148,7 +148,7 @@ class AchievementCell {
     // virtual ~AchievementCell();
     AchievementCell(char const*, float, float);
 
-    TodoReturn loadFromDict(cocos2d::CCDictionary*);
+    void loadFromDict(cocos2d::CCDictionary*);
     TodoReturn updateBGColor(int);
 
     virtual bool init();
@@ -1242,7 +1242,7 @@ class CommentCell {
 
     TodoReturn incrementDislikes();
     TodoReturn incrementLikes();
-    TodoReturn loadFromComment(GJComment*);
+    void loadFromComment(GJComment*);
     void onConfirmDelete(cocos2d::CCObject* sender);
     TodoReturn onDelete();
     void onLike(cocos2d::CCObject* sender);
@@ -1406,7 +1406,7 @@ class CustomSongCell {
     // virtual ~CustomSongCell();
     CustomSongCell(char const*, float, float);
 
-    TodoReturn loadFromObject(SongInfoObject*);
+    void loadFromObject(SongInfoObject*);
     void onDelete(cocos2d::CCObject* sender);
     TodoReturn updateBGColor(int);
 
@@ -1541,7 +1541,7 @@ class EditButtonBar {
     TodoReturn getPage();
     TodoReturn goToPage(int);
     bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int);
-    TodoReturn loadFromItems(cocos2d::CCArray*, int, int, bool);
+    void loadFromItems(cocos2d::CCArray*, int, int, bool);
     void onLeft(cocos2d::CCObject* sender);
     void onRight(cocos2d::CCObject* sender);
     TodoReturn reloadItems(int, int);
@@ -2203,7 +2203,7 @@ class FriendRequestPopup {
 
     void blockUser();
     bool init(GJFriendRequest*);
-    TodoReturn loadFromGJFriendRequest(GJFriendRequest*);
+    void loadFromGJFriendRequest(GJFriendRequest*);
     void onAccept(cocos2d::CCObject* sender);
     void onBlock(cocos2d::CCObject* sender);
     void onClose(cocos2d::CCObject* sender);
@@ -2242,7 +2242,7 @@ class GameCell {
     // virtual ~GameCell();
     GameCell(char const*, float, float);
 
-    TodoReturn loadFromString(gd::string);
+    void loadFromString(gd::string);
     void onTouch(cocos2d::CCObject* sender);
     TodoReturn updateBGColor(int);
 
@@ -4193,7 +4193,7 @@ class GJMessageCell {
     // virtual ~GJMessageCell();
     GJMessageCell(char const*, float, float);
 
-    TodoReturn loadFromMessage(GJUserMessage*);
+    void loadFromMessage(GJUserMessage*);
     TodoReturn markAsRead();
     void onDeleteMessage(cocos2d::CCObject* sender);
     void onToggle(cocos2d::CCObject* sender);
@@ -4219,7 +4219,7 @@ class GJMessagePopup {
 
     void blockUser();
     bool init(GJUserMessage*);
-    TodoReturn loadFromGJMessage(GJUserMessage*);
+    void loadFromGJMessage(GJUserMessage*);
     void onBlock(cocos2d::CCObject* sender);
     void onClose(cocos2d::CCObject* sender);
     void onRemove(cocos2d::CCObject* sender);
@@ -4329,7 +4329,7 @@ class GJRequestCell {
     // virtual ~GJRequestCell();
     GJRequestCell(char const*, float, float);
 
-    TodoReturn loadFromScore(GJUserScore*);
+    void loadFromScore(GJUserScore*);
     TodoReturn markAsRead();
     void onDeleteRequest(cocos2d::CCObject* sender);
     void onToggle(cocos2d::CCObject* sender);
@@ -4429,7 +4429,7 @@ class GJScoreCell {
     // virtual ~GJScoreCell();
     GJScoreCell(char const*, float, float);
 
-    TodoReturn loadFromScore(GJUserScore*);
+    void loadFromScore(GJUserScore*);
     void onBan(cocos2d::CCObject* sender);
     void onMoreLevels(cocos2d::CCObject* sender);
     void onViewProfile(cocos2d::CCObject* sender);
@@ -4563,7 +4563,7 @@ class GJUserCell {
     // virtual ~GJUserCell();
     GJUserCell(char const*, float, float);
 
-    TodoReturn loadFromScore(GJUserScore*);
+    void loadFromScore(GJUserScore*);
     void onCancelFriendRequest(cocos2d::CCObject* sender);
     void onRemoveFriend(cocos2d::CCObject* sender);
     void onSendMessage(cocos2d::CCObject* sender);
@@ -4734,8 +4734,8 @@ class GManager {
     TodoReturn getSaveString();
     TodoReturn load();
     TodoReturn loadDataFromFile(gd::string);
-    TodoReturn loadFromCompressedString(gd::string);
-    TodoReturn loadFromString(gd::string);
+    void loadFromCompressedString(gd::string);
+    void loadFromString(gd::string);
     TodoReturn save();
     TodoReturn saveData(DS_Dictionary*, gd::string);
     TodoReturn saveGMTo(gd::string);
@@ -5059,7 +5059,7 @@ class LevelCell {
     LevelCell(char const*, float, float);
 
     TodoReturn loadCustomLevelCell();
-    TodoReturn loadFromLevel(GJGameLevel*);
+    void loadFromLevel(GJGameLevel*);
     TodoReturn loadLocalLevelCell();
     void onClick(cocos2d::CCObject* sender);
     void onViewProfile(cocos2d::CCObject* sender);
@@ -5597,7 +5597,7 @@ class ListCell {
     // virtual ~ListCell();
     ListCell(char const*, float, float);
 
-    TodoReturn loadFromObject(cocos2d::CCObject*, int, int, int);
+    void loadFromObject(cocos2d::CCObject*, int, int, int);
     TodoReturn updateBGColor(int);
 
     virtual bool init();
@@ -5671,7 +5671,7 @@ class MapPackCell {
     // virtual ~MapPackCell();
     MapPackCell(char const*, float, float);
 
-    TodoReturn loadFromMapPack(GJMapPack*);
+    void loadFromMapPack(GJMapPack*);
     void onClaimReward(cocos2d::CCObject* sender);
     void onClick(cocos2d::CCObject* sender);
     TodoReturn playCompleteEffect();
@@ -6349,7 +6349,7 @@ class PlayerObject : GameObject {
     TodoReturn levelFlipFinished();
     TodoReturn levelFlipping();
     TodoReturn levelWillFlip();
-    TodoReturn loadFromCheckpoint(PlayerCheckpoint*);
+    void loadFromCheckpoint(PlayerCheckpoint*);
     TodoReturn lockPlayer();
     TodoReturn logValues();
     TodoReturn placeStreakPoint();
@@ -7490,7 +7490,7 @@ class SongCell {
     // virtual ~SongCell();
     SongCell(char const*, float, float);
 
-    TodoReturn loadFromObject(SongObject*);
+    void loadFromObject(SongObject*);
     void onClick(cocos2d::CCObject* sender);
     TodoReturn updateBGColor(int);
 
@@ -7697,7 +7697,7 @@ class StatsCell {
     StatsCell(char const*, float, float);
 
     TodoReturn getTitleFromKey(char const*);
-    TodoReturn loadFromObject(StatsObject*);
+    void loadFromObject(StatsObject*);
     TodoReturn updateBGColor(int);
 
     virtual bool init();

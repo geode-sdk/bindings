@@ -2216,9 +2216,9 @@ class GManager : cocos2d::CCNode {
 	TodoReturn getCompressedSaveString();
 
 	TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
-	TodoReturn loadFromString(gd::string&);
+	void loadFromString(gd::string&);
 	TodoReturn loadDataFromFile(gd::string const&) = mac 0x488350;
-	TodoReturn loadFromCompressedString(gd::string&);
+	void loadFromCompressedString(gd::string&);
 	TodoReturn load();
 	void save() {
         saveGMTo(m_fileName);
@@ -2927,7 +2927,7 @@ class StatsCell : TableViewCell {
 	TodoReturn getTitleFromKey(char const*);
 
 	TodoReturn updateBGColor(int) = win 0x7D0A0;
-	TodoReturn loadFromObject(StatsObject*) = mac 0x225a30, win 0x81BD0;
+	void loadFromObject(StatsObject*) = mac 0x225a30, win 0x81BD0;
 
 	virtual bool init() = mac 0x231150;
 	virtual void draw() = win 0x7d0f0, mac 0x231bf0; //correct one is 0x231bf0, there is also 0x234ca0 which is identical but its actually from GJUserCell
@@ -6578,7 +6578,7 @@ class EditButtonBar : cocos2d::CCNode {
 	void onRight(cocos2d::CCObject* sender);
 
 	TodoReturn reloadItems(int, int);
-	TodoReturn loadFromItems(cocos2d::CCArray*, int, int, bool);
+	void loadFromItems(cocos2d::CCArray*, int, int, bool);
 	void goToPage(int);
 }
 
@@ -10109,7 +10109,7 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
 	void onReply(cocos2d::CCObject* sender);
 	void onRemove(cocos2d::CCObject* sender);
 
-	TodoReturn loadFromGJMessage(GJUserMessage*);
+	void loadFromGJMessage(GJUserMessage*);
 	void blockUser();
 
 	virtual void keyBackClicked() = mac 0x284240;
@@ -10646,7 +10646,7 @@ class CustomMusicCell : CustomSongCell {
 	~CustomMusicCell();
 
 	TodoReturn updateBGColor(int) = win 0x82D40;
-	TodoReturn loadFromObject(SongInfoObject*) = win 0x83240;
+	void loadFromObject(SongInfoObject*) = win 0x83240;
 	CustomMusicCell(char const*, float, float);
 }
 
@@ -12608,7 +12608,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
 	void onAccept(cocos2d::CCObject* sender) = mac 0x281ef0;
 	void onRemove(cocos2d::CCObject* sender) = mac 0x281fc0;
 
-	TodoReturn loadFromGJFriendRequest(GJFriendRequest*) = mac 0x2815c0;
+	void loadFromGJFriendRequest(GJFriendRequest*) = mac 0x2815c0;
 	void blockUser();
 
 	virtual void keyBackClicked() = mac 0x282380;
@@ -15300,7 +15300,7 @@ class GameCell : TableViewCell {
 	void onTouch(cocos2d::CCObject* sender);
 
 	TodoReturn updateBGColor(int);
-	TodoReturn loadFromString(gd::string);
+	void loadFromString(gd::string);
 	GameCell(char const*, float, float);
 
 	virtual bool init() = mac 0x2ea680;
@@ -15326,7 +15326,7 @@ class GJUINode : cocos2d::CCNode {
 	TodoReturn updateWidth(float);
 	TodoReturn saveToConfig(UIButtonConfig&);
 	TodoReturn updateHeight(float);
-	TodoReturn loadFromConfig(UIButtonConfig&);
+	void loadFromConfig(UIButtonConfig&);
 	TodoReturn updateDeadzone(int);
 	TodoReturn updateRangePos(cocos2d::CCPoint);
 	TodoReturn activeTouchTest(cocos2d::CCPoint);
@@ -15347,7 +15347,7 @@ class ListCell : TableViewCell {
 	~ListCell();
 
 	TodoReturn updateBGColor(int);
-	TodoReturn loadFromObject(cocos2d::CCObject*, int, int, int);
+	void loadFromObject(cocos2d::CCObject*, int, int, int);
 	ListCell(char const*, float, float);
 
 	virtual bool init() = mac 0x2ea4d0;
