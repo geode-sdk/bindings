@@ -278,7 +278,7 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
 	virtual void activateObject();
 	virtual void deactivateObject(bool);
 	virtual void setObjectColor(cocos2d::ccColor3B const&);
-	virtual TodoReturn animationFinished(char const*) = win 0x39bc50;
+	virtual void animationFinished(char const*) = win 0x39bc50;
 	virtual TodoReturn displayFrameChanged(cocos2d::CCObject*, gd::string) = win 0x39c390;
 }
 
