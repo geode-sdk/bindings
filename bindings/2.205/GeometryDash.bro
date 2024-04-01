@@ -11308,9 +11308,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void onQuit();
 	TodoReturn optimizeColorGroups();
 	TodoReturn optimizeOpacityGroups();
-	TodoReturn pauseGame(bool);
-	TodoReturn playEndAnimationToPos(cocos2d::CCPoint);
-	TodoReturn playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool);
+	void pauseGame(bool);
+	void playEndAnimationToPos(cocos2d::CCPoint);
+	void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool);
 	TodoReturn playReplay(gd::string);
 	TodoReturn prepareCreateObjectsFromSetup(gd::string&);
 	TodoReturn prepareMusic(bool);
