@@ -1370,7 +1370,7 @@ class CharacterColorPage : FLAlertLayer {
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual void show();
-	
+
 	int m_colorMode;
 	float m_height;
 	float m_width;
@@ -5897,7 +5897,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B);
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::ccColor3B, float, float, int, bool, float);
 	TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
-	TodoReturn loadLevelSettings();
+	void loadLevelSettings();
 	TodoReturn loadStartPosObject();
 	TodoReturn loadUpToPosition(float, int, int);
 	TodoReturn maxZOrderForShaderZ(int);
@@ -8326,7 +8326,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	callback void updateStroke(float);
 
 	virtual bool init();
-	
+
 	// camila
 	PAD = android32 0x20, android64 0x24;
 	cocos2d::CCArray* m_pointArray; // android64 = 0x1a0
@@ -14011,7 +14011,7 @@ class ShareLevelLayer : FLAlertLayer {
 	void onShare(cocos2d::CCObject* sender);
 	TodoReturn selectRating(cocos2d::CCObject*);
 	void setupStars();
-	
+
 	virtual void keyBackClicked();
 }
 

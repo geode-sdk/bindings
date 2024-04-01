@@ -1384,7 +1384,7 @@ class CharacterColorPage : FLAlertLayer {
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked() = win 0x608d0;
 	virtual void show();
-	
+
 	int m_colorMode;
 	float m_height;
 	float m_width;
@@ -5928,7 +5928,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B);
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::ccColor3B, float, float, int, bool, float);
 	TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
-	TodoReturn loadLevelSettings() = win 0x1bd7b0;
+	void loadLevelSettings() = win 0x1bd7b0;
 	TodoReturn loadStartPosObject() = win 0x1b8d10;
 	TodoReturn loadUpToPosition(float, int, int) = win 0x1b8e80;
 	TodoReturn maxZOrderForShaderZ(int) = win 0x1A8530;
@@ -10962,8 +10962,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn convertToClosestRotation(float);
 	TodoReturn copyAttributes(PlayerObject*);
 	void createFadeOutDartStreak() = win 0x2d2320;
-	TodoReturn createRobot(int) = win 0x2c35e0;
-	TodoReturn createSpider(int) = win 0x2c3870;
+	void createRobot(int) = win 0x2c35e0;
+	void createSpider(int) = win 0x2c3870;
 	void deactivateParticle();
 	void deactivateStreak(bool);
 	TodoReturn destroyFromHitHead();
@@ -14144,7 +14144,7 @@ class ShareLevelLayer : FLAlertLayer {
 	void onShare(cocos2d::CCObject* sender) = win 0x388f20;
 	TodoReturn selectRating(cocos2d::CCObject*);
 	TodoReturn setupStars();
-	
+
 	virtual void keyBackClicked();
 }
 

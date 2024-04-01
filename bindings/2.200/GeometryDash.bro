@@ -1315,7 +1315,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
 	void createGroundLayer(int, int);
 	TodoReturn gameEventToString(GJGameEvent);
-	TodoReturn loadLevelSettings() = mac 0x144400;
+	void loadLevelSettings() = mac 0x144400;
 	void moveObjectsSilent(int, double, double);
 	TodoReturn orderSpawnObjects() = win 0x1c37e0, mac 0x14e270;
 	TodoReturn playerTouchedRing(PlayerObject*, RingObject*) = win 0x19acd0;
