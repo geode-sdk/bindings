@@ -3629,8 +3629,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn countActiveEffects();
 	TodoReturn countActiveMusic();
 	TodoReturn createStream(gd::string);
-	TodoReturn disableMetering();
-	TodoReturn enableMetering();
+	void disableMetering();
+	void enableMetering();
 	TodoReturn fadeInBackgroundMusic(float);
 	TodoReturn fadeInMusic(float, int);
 	TodoReturn fadeOutMusic(float, int);
