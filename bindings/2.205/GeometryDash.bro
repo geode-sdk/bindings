@@ -6172,9 +6172,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void updateTimeLabel(int, int, bool);
 	virtual TodoReturn checkSnapshot();
 	virtual void toggleProgressbar();
-	virtual TodoReturn toggleInfoLabel();
+	virtual void toggleInfoLabel();
 	virtual void removeAllCheckpoints();
-	virtual TodoReturn toggleMusicInPractice();
+	virtual void toggleMusicInPractice();
 
 	PAD = win 0x8, android32 0x8, android64 0x8;
 	GJGameState m_gameState;
@@ -11383,7 +11383,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int);
 	virtual float posForTime(float);
 	virtual void resetSPTriggered();
-	virtual update updateTimeWarp(float);
+	virtual void updateTimeWarp(float);
 	virtual TodoReturn playGravityEffect(bool);
 	virtual TodoReturn manualUpdateObjectColors(GameObject*);
 	virtual void checkpointActivated(CheckpointGameObject*);
