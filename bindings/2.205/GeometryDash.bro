@@ -3655,8 +3655,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn lengthForSound(gd::string);
 	TodoReturn loadAndPlayMusic(gd::string, unsigned int, int);
 	TodoReturn loadAudioState(FMODAudioState&);
-	TodoReturn loadMusic(gd::string, float, float, float, bool, int, int);
-	TodoReturn loadMusic(gd::string);
+	void loadMusic(gd::string, float, float, float, bool, int, int);
+	void loadMusic(gd::string);
 	TodoReturn pauseAllAudio();
 	TodoReturn pauseAllEffects();
 	TodoReturn pauseAllMusic();
@@ -3665,9 +3665,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pitchForIdx(int);
 	void playEffect(gd::string, float, float, float);
 	void playEffect(gd::string);
-	TodoReturn playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int);
+	void playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int);
 	TodoReturn playEffectAsync(gd::string);
-	TodoReturn playMusic(gd::string, bool, float, int);
+	void playMusic(gd::string, bool, float, int);
 	TodoReturn preloadEffect(gd::string);
 	TodoReturn preloadEffectAsync(gd::string);
 	TodoReturn preloadMusic(gd::string, bool, int);
@@ -11835,7 +11835,7 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
 class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
 	// virtual ~SecretLayer2();
 
-	static SecretLayer2* create();
+	static SecretLayer2* create() = win 0x305630;
 
 	gd::string getBasicMessage();
 	TodoReturn getErrorMessage();

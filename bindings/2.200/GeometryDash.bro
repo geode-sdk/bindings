@@ -6448,7 +6448,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn shouldBlend(int);
 	void showNewBest(bool, int, int, bool, bool, bool) = win 0x2D9100, mac 0xaf2e0;
 	TodoReturn spawnCircle();
-	TodoReturn canPauseGame();
+	bool canPauseGame();
 	TodoReturn prepareMusic(bool) = win 0x2E5480;
 	void showEndLayer();
 	void addToGroupOld(GameObject*);
@@ -10768,8 +10768,8 @@ class FindObjectPopup : SetIDPopup {
 [[link(android)]]
 class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseMusic(int);
-	TodoReturn playEffect(gd::string) = mac 0x3c24f0;
-	TodoReturn playEffect(gd::string, float, float, float) = win 0x355b0, mac 0x3c2560;
+	void playEffect(gd::string) = mac 0x3c24f0;
+	void playEffect(gd::string, float, float, float) = win 0x355b0, mac 0x3c2560;
 	TodoReturn startMusic(int, int, int, int, bool, int) = win 0x38900;
 	TodoReturn fadeInMusic(float, int);
 	TodoReturn pauseEffect(unsigned int);
@@ -10856,7 +10856,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn channelForUniqueID(int);
 	TodoReturn channelUnlinkSound(int);
 	TodoReturn countActiveEffects();
-	TodoReturn playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int) = win 0x35740;
+	void playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int) = win 0x35740;
 	TodoReturn preloadEffectAsync(gd::string);
 	TodoReturn stopAndRemoveMusic(int);
 	TodoReturn triggerQueuedMusic(FMODQueuedMusic) = win 0x39570;
@@ -10880,9 +10880,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	virtual void stop() = win 0x5b260;
 	TodoReturn setup() = win 0x32c00, mac 0x3bb2c0;
 	TodoReturn start() = win 0x337c0;
-	TodoReturn loadMusic(gd::string) = win 0x38410;
-	TodoReturn loadMusic(gd::string, float, float, float, bool, int, int) = win 0x384b0, mac 0x3bf920;
-	TodoReturn playMusic(gd::string, bool, float, int) = mac 0x3c5500;
+	void loadMusic(gd::string) = win 0x38410;
+	void loadMusic(gd::string, float, float, float, bool, int, int) = win 0x384b0, mac 0x3bf920;
+	void playMusic(gd::string, bool, float, int) = mac 0x3c5500;
 	TodoReturn stopMusic(int);
 	~FMODAudioEngine();
 
