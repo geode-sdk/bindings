@@ -2672,7 +2672,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn closeLiveColorSelect() = win 0xd4550;
 	TodoReturn closeLiveHSVSelect() = win 0xd46d0;
 	void colorSelectClosed(cocos2d::ccColor3B);
-	TodoReturn constrainGameLayerPosition() = win 0xd7df0;
+	void constrainGameLayerPosition() = win 0xd7df0;
 	void constrainGameLayerPosition(float, float) = win 0xd7df0;
 	TodoReturn convertKeyBasedOnNeighbors(int, int, cocos2d::CCPoint, cocos2d::CCArray*);
 	TodoReturn convertToBaseKey(int);
@@ -4843,7 +4843,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn canRotateFree();
 	TodoReturn colorForMode(int, bool) = win 0x142a50;
 	TodoReturn commonInteractiveSetup();
-	TodoReturn commonSetup() = win 0x1310c0;
+	void commonSetup() = win 0x1310c0;
 	TodoReturn copyGroups(GameObject*) = win 0x13d8f0;
 	TodoReturn createAndAddParticle(int, char const*, int, cocos2d::tCCPositionType) = win 0x13b790;
 	TodoReturn createColorGroupContainer(int);
@@ -5831,7 +5831,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn applyLevelSettings(GameObject*) = win 0x1bd900;
 	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
 	TodoReturn applySFXEditTrigger(int, int, SFXTriggerGameObject*) = win 0x1c45b0;
-	TodoReturn applyShake(cocos2d::CCPoint&) = win 0x1c18c0;
+	void applyShake(cocos2d::CCPoint&) = win 0x1c18c0;
 	void assignNewStickyGroups(cocos2d::CCArray*) = win 0x1a9cb0;
 	TodoReturn asyncBGLoaded(int);
 	TodoReturn asyncGLoaded(int);
@@ -6160,7 +6160,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateShaderLayer(float) = win 0x1a7820;
 	TodoReturn updateSpecialGroupData() = win 0x196060;
 	TodoReturn updateSpecialLabels() = win 0x1bc9f0;
-	TodoReturn updateStaticCameraPos(cocos2d::CCPoint, bool, bool, bool, float, int, float) = win 0x1c1cb0;
+	void updateStaticCameraPos(cocos2d::CCPoint, bool, bool, bool, float, int, float) = win 0x1c1cb0;
 	TodoReturn updateStaticCameraPosToGroup(int, bool, bool, bool, float, float, int, float, bool, float);
 	TodoReturn updateTimeMod(float, bool, bool);
 	TodoReturn updateTimerLabels();
@@ -9037,7 +9037,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn objectsAtPosition(cocos2d::CCPoint);
 	TodoReturn objectsInRect(cocos2d::CCRect, bool);
 	TodoReturn onPausePlaytest() = win 0x246c70;
-	TodoReturn onPlaytest() = win 0x2463a0;
+	void onPlaytest() = win 0x2463a0;
 	TodoReturn onResumePlaytest() = win 0x246d60;
 	TodoReturn onStopPlaytest();
 	TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*) = win 0x247940;
