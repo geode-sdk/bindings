@@ -462,8 +462,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	// virtual ~BoomScrollLayer();
 	BoomScrollLayer() = win 0x1de90;
 
-	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2, cocos2d::CCArray* unk3, DynamicScrollDelegate* delegate)
-	{
+	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2, cocos2d::CCArray* unk3, DynamicScrollDelegate* delegate) {
 		BoomScrollLayer* pRet = new BoomScrollLayer();
 
 		if (pRet && pRet->init(pages, unk1, unk2, unk3, delegate))
@@ -475,8 +474,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 		delete pRet;
 		return nullptr;
 	}
-	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2)
-	{
+	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2) {
 		return BoomScrollLayer::create(pages, unk1, unk2, nullptr, nullptr);
 	}
 
@@ -5936,7 +5934,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getTargetGroupOrigin(int, int);
 	TodoReturn gravBumpPlayer(PlayerObject*, EffectGameObject*) = win 0x19e770;
 	void groupStickyObjects(cocos2d::CCArray*) = win 0x1a9b20;
-	TodoReturn handleButton(bool, int, bool) = win 0x1b69f0;
+	void handleButton(bool down, int button, bool isPlayer1) = win 0x1b69f0; // button may be a PlayerButton enum
 	TodoReturn hasItem(int);
 	bool hasUniqueCoin(EffectGameObject*) = win 0x19d580;
 	TodoReturn increaseBatchNodeCapacity() = win 0x194b40;
