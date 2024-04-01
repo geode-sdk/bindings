@@ -9112,7 +9112,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual void postUpdate(float) = win 0x2475d0;
 	virtual void updateVisibility(float) = win 0x23fa90;
 	virtual TodoReturn playerTookDamage(PlayerObject*);
-	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
+	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
 	virtual void updateDebugDraw();
 	virtual void addToGroup(GameObject*, int, bool);
 	virtual void removeFromGroup(GameObject*, int);
