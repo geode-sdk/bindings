@@ -1950,15 +1950,15 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onSettings(cocos2d::CCObject* sender);
 	void onUpdateCustomColor(cocos2d::CCObject* sender);
 	TodoReturn recreateLayer();
-	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn toggleVisible();
-	TodoReturn updateChannelLabel(int);
-	TodoReturn updateColorSprite();
-	TodoReturn updateCurrentSelection();
-	TodoReturn updateCustomColorLabels();
-	TodoReturn updateHSVButtons();
-	TodoReturn updateKerningLabel();
-	TodoReturn updateSelected(int);
+	void sliderChanged(cocos2d::CCObject*);
+	void toggleVisible();
+	void updateChannelLabel(int);
+	void updateColorSprite();
+	void updateCurrentSelection();
+	void updateCustomColorLabels();
+	void updateHSVButtons();
+	void updateKerningLabel();
+	void updateSelected(int);
 
 	virtual void keyBackClicked();
 	virtual void textInputOpened(CCTextInputNode*);
@@ -9163,8 +9163,8 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn playStep4();
 	static cocos2d::CCScene* scene(GJGameLevel*, bool);
 	TodoReturn setupLevelInfo();
-	TodoReturn setupPlatformerStats();
-	TodoReturn setupProgressBars();
+	void setupPlatformerStats();
+	void setupProgressBars();
 	TodoReturn shouldDownloadLevel();
 	void showSongWarning();
 	void showUpdateAlert(UpdateResponse);
@@ -10720,7 +10720,7 @@ class PauseLayer : CCBlockLayer {
 	void onResume(cocos2d::CCObject* sender);
 	void onSettings(cocos2d::CCObject* sender);
 	void onTime(cocos2d::CCObject* sender);
-	TodoReturn setupProgressBars();
+	void setupProgressBars();
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
 	TodoReturn tryQuit(cocos2d::CCObject*);
 	TodoReturn tryShowBanner(float);

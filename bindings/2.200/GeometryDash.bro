@@ -991,9 +991,9 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 
 	TodoReturn toggleGlow();
 	TodoReturn titleForUnlock(int, UnlockType);
-	TodoReturn setupIconSelect() = mac 0x349ee0;
+	void setupIconSelect() = mac 0x349ee0;
 	TodoReturn playShadowEffect();
-	TodoReturn setupSpecialPage() = mac 0x34baa0;
+	void setupSpecialPage() = mac 0x34baa0;
 	TodoReturn updatePlayerName(char const*);
 	TodoReturn playRainbowEffect();
 	void showUnlockPopupNew(int, UnlockType);
@@ -1002,7 +1002,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	TodoReturn descriptionForUnlock(int, UnlockType);
 	TodoReturn scene() = mac 0x347bd0;
 	TodoReturn selectTab(IconType) = mac 0x34b2e0;
-	TodoReturn setupPage(int, IconType) = mac 0x34b420;
+	void setupPage(int, IconType) = mac 0x34b420;
 
 	virtual bool init() = win 0x1EAA40, mac 0x347d60;
 	virtual void keyBackClicked() = mac 0x34df30;
@@ -2982,7 +2982,7 @@ class GameToolbox {
 	static TodoReturn colorToSepia(cocos2d::_ccColor3B, float);
 	/* unverified signature */
 	static bool isRateEasing(int);
-	static TodoReturn addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = mac 0x4cae40;
+	static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = mac 0x4cae40;
 	static TodoReturn fast_rand_0_1();
 	static TodoReturn getEasedValue(float, int, float);
 	static TodoReturn getfast_srand();
@@ -3016,7 +3016,7 @@ class GameToolbox {
 	static TodoReturn multipliedColorValue(cocos2d::_ccColor3B, cocos2d::_ccColor3B, float) = win 0x41a40;
 	static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
 	static TodoReturn saveParticleToString(cocos2d::CCParticleSystemQuad*);
-	static TodoReturn addRThumbScrollButton(cocos2d::CCLayer*) = mac 0x4caf10;
+	static void addRThumbScrollButton(cocos2d::CCLayer*) = mac 0x4caf10;
 	static TodoReturn alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = mac 0x4c9860;
 	static TodoReturn mergeDictsSkipConflict(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
 	static TodoReturn particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&);
