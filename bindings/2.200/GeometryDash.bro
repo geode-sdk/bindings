@@ -6780,12 +6780,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn unrotateGameplayObject(GameObject*);
 	TodoReturn updateLastGroundObject(GameObject*);
 	void updatePlayerRobotFrame(int) = mac 0x3fb000;
-	TodoReturn updatePlayerSwingFrame(int) = win 0x2D1B50, mac 0x3f8300;
+	void updatePlayerSwingFrame(int) = win 0x2D1B50, mac 0x3f8300;
 	TodoReturn createFadeOutDartStreak();
 	TodoReturn removePendingCheckpoint() = win 0x2d46d0;
 	TodoReturn unrotatePreSlopeObjects();
 	void updatePlayerSpiderFrame(int) = mac 0x3fb020;
-	TodoReturn updatePlayerSpriteExtra(gd::string) = win 0x2D1ED0;
+	void updatePlayerSpriteExtra(gd::string) = win 0x2D1ED0;
 	TodoReturn convertToClosestRotation(float);
 	void updatePlayerJetpackFrame(int) = win 0x2D15B0, mac 0x3f73b0;
 	TodoReturn collidedWithSlopeInternal(float, GameObject*, bool) = win 0x2C4C50;
