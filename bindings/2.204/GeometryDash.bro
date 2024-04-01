@@ -6181,7 +6181,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn opacityForObject(GameObject*);
 	virtual TodoReturn addToSpeedObjects(EffectGameObject*);
 	virtual TodoReturn objectsCollided(int, int) = win 0x19fac0;
-	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int) = win 0x1a8760;
+	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int) = win 0x1a8760;
 	virtual void toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int);
 	virtual void spawnGroup(int, bool, double, gd::vector<int> const&, int, int);
 	virtual void spawnObject(GameObject*, double, gd::vector<int> const&);
