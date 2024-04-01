@@ -1370,7 +1370,7 @@ class CustomizeObjectLayer {
     void onSelectColor(cocos2d::CCObject* sender);
     void onSelectMode(cocos2d::CCObject* sender);
     void onUpdateCustomColor(cocos2d::CCObject* sender);
-    TodoReturn toggleVisible();
+    void toggleVisible();
     TodoReturn updateChannelLabel(int);
     TodoReturn updateColorSprite();
     TodoReturn updateCurrentSelection();
@@ -5276,7 +5276,7 @@ class LevelInfoLayer {
     TodoReturn playStep3();
     TodoReturn scene(GJGameLevel*);
     TodoReturn setupLevelInfo();
-    TodoReturn setupProgressBars();
+    void setupProgressBars();
     TodoReturn shouldDownloadLevel();
     TodoReturn showSongWarning();
     TodoReturn showUpdateAlert(UpdateResponse);
@@ -6168,7 +6168,7 @@ class PauseLayer {
     void onRestart(cocos2d::CCObject* sender);
     void onResume(cocos2d::CCObject* sender);
     void onTime(cocos2d::CCObject* sender);
-    TodoReturn setupProgressBars();
+    void setupProgressBars();
     TodoReturn sfxSliderChanged(cocos2d::CCObject*);
     TodoReturn tryShowBanner(float);
 

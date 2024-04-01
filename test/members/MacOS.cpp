@@ -105,6 +105,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3290);
 
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x35a0);
+GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x35c0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x35d8);
 
 GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
