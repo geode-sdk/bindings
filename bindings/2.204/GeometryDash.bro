@@ -6497,11 +6497,11 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void registerWithTouchDispatcher() = win 0x22fc0;
 	virtual void keyBackClicked() = win 0x1d6b20;
 	virtual void customSetup() {}
-	virtual TodoReturn enterLayer() = win 0x22fa0;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x1d6b40;
+	virtual void enterLayer() = win 0x22fa0;
+	virtual void exitLayer(cocos2d::CCObject*) = win 0x1d6b40;
 	virtual void showLayer(bool) = win 0x1d6b70;
-	virtual TodoReturn hideLayer(bool) = win 0x1d6c60;
-	virtual TodoReturn layerVisible() = win 0x23060;
+	virtual void hideLayer(bool) = win 0x1d6c60;
+	virtual void layerVisible() = win 0x23060;
 	virtual void layerHidden() = win 0x1d6d50;
 	virtual void enterAnimFinished() {}
 	virtual void disableUI() = win 0x1d6ae0;
@@ -8011,7 +8011,7 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 
 	virtual bool init() = win 0x224fe0;
 	virtual void customSetup() = win 0x225080;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x225010;
+	virtual void exitLayer(cocos2d::CCObject*) = win 0x225010;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2257d0;
 	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x225990;
 	virtual TodoReturn getSelectedCellIdx() = win 0x2259d0;
