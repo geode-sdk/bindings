@@ -170,7 +170,7 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn limitForAchievement(gd::string);
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
 	TodoReturn notifyAchievementWithID(char const*) = win 0x1b550;
-	TodoReturn percentageForCount(int, int);
+	int percentageForCount(int, int);
 	TodoReturn percentForAchievement(char const*) = win 0x1ab50;
 	void reportAchievementWithID(char const*, int, bool) = win 0x1b7e0;
 	void reportPlatformAchievementWithID(char const*, int) = win 0x1b8f0;
@@ -181,7 +181,7 @@ class AchievementManager : cocos2d::CCNode {
 
 	virtual bool init();
 	
-	PAD = win 0x108
+	PAD = win 0x108;
 	cocos2d::CCArray* m_achievements; //win 0x104 0x108
 }
 
