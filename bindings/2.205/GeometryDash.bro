@@ -11372,7 +11372,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn toggleBGEffectVisibility(bool);
 	TodoReturn toggleDebugDraw(bool);
 	TodoReturn toggleGhostEffect(int);
-	TodoReturn togglePracticeMode(bool);
+	void togglePracticeMode(bool);
 	TodoReturn tryStartRecord();
 	void updateAttempts();
 	void updateEffectPositions();
