@@ -3894,10 +3894,10 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 	static FriendsProfilePage* create(UserListType) = win 0xf0960;
 
 	bool init(UserListType) = win 0xf0a10;
-	void onBlocked(cocos2d::CCObject* sender) = win 0xf1630;
-	void onClose(cocos2d::CCObject* sender);
-	void onUpdate(cocos2d::CCObject* sender);
-	TodoReturn setupUsersBrowser(cocos2d::CCArray*, UserListType) = win 0xf1090;
+	void onBlocked(cocos2d::CCObject* sender) = win 0xf15c0;
+	void onClose(cocos2d::CCObject* sender) = win 0xf1630;
+	void onUpdate(cocos2d::CCObject* sender) = win 0xf1550;
+	void setupUsersBrowser(cocos2d::CCArray*, UserListType) = win 0xf1090;
 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked() = win 0xf16d0;
