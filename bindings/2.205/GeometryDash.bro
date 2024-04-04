@@ -6141,7 +6141,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn opacityForObject(GameObject*);
 	virtual TodoReturn addToSpeedObjects(EffectGameObject*);
 	virtual TodoReturn objectsCollided(int, int);
-	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
+	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
 	virtual void toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int);
 	virtual void spawnGroup(int, bool, double, gd::vector<int> const&, int, int);
 	virtual void spawnObject(GameObject*, double, gd::vector<int> const&);
@@ -9039,7 +9039,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual void postUpdate(float);
 	virtual void updateVisibility(float);
 	virtual TodoReturn playerTookDamage(PlayerObject*);
-	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
+	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
 	virtual void updateDebugDraw();
 	virtual void addToGroup(GameObject*, int, bool);
 	virtual void removeFromGroup(GameObject*, int);
@@ -9923,10 +9923,10 @@ class MenuGameLayer : cocos2d::CCLayer {
 
 	void destroyPlayer();
 	TodoReturn getBGColor(int);
-	TodoReturn resetPlayer();
-	TodoReturn tryJump(float);
-	TodoReturn updateColor(float);
-	TodoReturn updateColors();
+	void resetPlayer();
+	void tryJump(float);
+	void updateColor(float);
+	void updateColors();
 
 	virtual void update(float);
 	virtual bool init();
@@ -11399,7 +11399,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn updateAttemptTime(float);
 	virtual void updateVisibility(float);
 	virtual TodoReturn opacityForObject(GameObject*);
-	virtual TodoReturn updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
+	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
 	virtual TodoReturn toggleGlitter(bool);
