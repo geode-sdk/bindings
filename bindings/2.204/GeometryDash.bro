@@ -11002,7 +11002,8 @@ class PlayerCheckpoint : cocos2d::CCNode {
 	bool m_isOnGround;
 	PAD = win 0x2;
 	int m_hasGhostTrail;
-	char m_unkBytes1[8];
+	char m_unkBytes1[4];
+	float m_speed;
 	bool m_isHidden;
 	bool m_isGoingLeft;
 	char m_unkBytes2[42];
