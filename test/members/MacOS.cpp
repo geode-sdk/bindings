@@ -98,10 +98,54 @@
 GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x158);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x780);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc90);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3290);
+
+GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x35a0);
+GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x35c0);
+GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x35d8);
 
 GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_mainLayer, 0x248);
+
+GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3488);
+GEODE_SIZE_CHECK(GameObject, 0x548);
+GEODE_SIZE_CHECK(PlayerObject, 0xb80);
+GEODE_SIZE_CHECK(PlayLayer, 0x3758);
+GEODE_SIZE_CHECK(GJGameState, 0x5d8);
+
+GEODE_MEMBER_CHECK(GameObject, m_objectType, 0x398);
+GEODE_MEMBER_CHECK(GameObject, m_realXPosition, 0x3b0);
+GEODE_MEMBER_CHECK(GameObject, m_realYPosition, 0x3b8);
+GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x3c0);
+GEODE_MEMBER_CHECK(GameObject, m_groups, 0x488);
+GEODE_MEMBER_CHECK(GameObject, m_colorGroups, 0x498);
+GEODE_MEMBER_CHECK(GameObject, m_opacityGroups, 0x4a8);
+
+GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
+GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x688);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk594, 0x698); // unsure
+GEODE_MEMBER_CHECK(PlayerObject, m_unk5b4, 0x6c0); // unsure
+GEODE_MEMBER_CHECK(PlayerObject, m_rotationSpeed, 0x6e8);
+GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x6f3);
+GEODE_MEMBER_CHECK(PlayerObject, m_hasGhostTrail, 0x6f4);
+GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x6f8);
+GEODE_MEMBER_CHECK(PlayerObject, m_swingFireMiddle, 0x748);
+GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x778);
+GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x830);
+GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x910);
+GEODE_MEMBER_CHECK(PlayerObject, m_glowColor, 0x911);
+GEODE_MEMBER_CHECK(PlayerObject, m_isShip, 0x941);
+GEODE_MEMBER_CHECK(PlayerObject, m_isRobot, 0x945);
+GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xa28);
+GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
+
+GEODE_MEMBER_CHECK(CustomSongCell, m_songInfoObject, 0x230);
+GEODE_MEMBER_CHECK(SongInfoObject, m_songID, 0x13c);
 
 #endif

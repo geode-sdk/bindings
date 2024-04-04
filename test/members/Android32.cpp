@@ -82,6 +82,8 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2B48);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2c04);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c2c);
 
+GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x2e18);
+GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x2e2c);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e38);
 
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4e4, 0x4d4);
@@ -105,6 +107,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_unk7e0, 0x7e8);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
 GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0x824);
 GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x850);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk880, 0x880);
 GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk930, 0x988);

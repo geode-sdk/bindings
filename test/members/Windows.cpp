@@ -111,6 +111,8 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isTestMode, 0x2aac);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b50);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c48);
 
+GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x2e38);
+GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x2e4c);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e58);
 
 // CustomSongWidget
@@ -167,6 +169,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
 GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0x824);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastActivatedPortal, 0x848);
 GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x854);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk880, 0x880);
 GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x9a4);
@@ -176,6 +179,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x190);
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x198);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x1a0);
 
+GEODE_SIZE_CHECK(PlayerFireBoostSprite, 0x200);
 GEODE_SIZE_CHECK(SimplePlayer, 0x22c);
 GEODE_SIZE_CHECK(PlayLayer, 0x2f78);
 GEODE_SIZE_CHECK(GJGameLevel, 0x48c);
@@ -239,5 +243,7 @@ GEODE_MEMBER_CHECK(EditorUI, m_unk3b4, 0x3b4);
 GEODE_SIZE_CHECK(EditButtonBar, 0x124);
 
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e24);
+
+GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
 
 #endif
