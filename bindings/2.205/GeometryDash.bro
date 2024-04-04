@@ -4082,7 +4082,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void markLevelAsRatedDemon(int);
 	void markLevelAsRatedStars(int);
 	void markLevelAsReported(int);
-	void markListAsDownloaded(int) {
+	void markListAsDownloaded(int id) {
 		this->markLevelAsDownloaded(-id);
 	}
 	void messageWasRemoved(int, bool);
