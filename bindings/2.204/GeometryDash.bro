@@ -7111,7 +7111,7 @@ class GJGroundLayer : cocos2d::CCLayer {
 
 	static GJGroundLayer* create(int, int) = win 0x1f73f0;
 
-	TodoReturn createLine(int) = win 0x1f7b70;
+	void createLine(int) = win 0x1f7b70;
 	TodoReturn deactivateGround();
 	TodoReturn fadeInFinished();
 	TodoReturn getGroundY();
@@ -7122,8 +7122,8 @@ class GJGroundLayer : cocos2d::CCLayer {
 	TodoReturn scaleGround(float);
 	TodoReturn toggleVisible01(bool);
 	TodoReturn toggleVisible02(bool);
-	TodoReturn updateGround01Color(cocos2d::ccColor3B) = win 0x1f7ab0;
-	TodoReturn updateGround02Color(cocos2d::ccColor3B) = win 0x1f7b10;
+	void updateGround01Color(cocos2d::ccColor3B) = win 0x1f7ab0;
+	void updateGround02Color(cocos2d::ccColor3B) = win 0x1f7b10;
 	TodoReturn updateGroundPos(cocos2d::CCPoint);
 	TodoReturn updateGroundWidth(bool);
 	TodoReturn updateLineBlend(bool);
