@@ -3305,7 +3305,7 @@ class EffectGameObject : EnhancedGameObject {
 	PAD = android32 0xb, win 0xb;
 	// property 12
 	int m_secretCoinID;
-	PAD = android32 0x20, win 0x20;
+	PAD = android32 0x18, win 0x18;
 	// property 279
 	LevelSettingsObject* m_levelSettings;
 	// property 280
