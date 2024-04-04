@@ -168,7 +168,7 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
 	TodoReturn notifyAchievementWithID(char const*) = win 0x1b550;
 	TodoReturn percentageForCount(int, int);
-	TodoReturn percentForAchievement(char const*) = win 0x1ab50;
+	int percentForAchievement(char const*) = win 0x1ab50;
 	void reportAchievementWithID(char const*, int, bool) = win 0x1b7e0;
 	void reportPlatformAchievementWithID(char const*, int) = win 0x1b8f0;
 	void resetAchievement(char const*) = win 0x1b730;
@@ -4491,7 +4491,7 @@ class GameManager : GManager {
 	cocos2d::ccColor3B colorForIdx(int) = win 0x126090;
 	TodoReturn colorForPos(int);
 	TodoReturn colorKey(int, UnlockType) = win 0x122350;
-	TodoReturn completedAchievement(gd::string) = win 0x122b50;
+	bool completedAchievement(gd::string) = win 0x122b50;
 	static int countForType(IconType) = win 0x127270;
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn defaultYOffsetForBG2(int);
@@ -8331,7 +8331,7 @@ class GManager : cocos2d::CCNode {
 	TodoReturn getCompressedSaveString();
 	TodoReturn getSaveString();
 	TodoReturn load();
-	TodoReturn loadDataFromFile(gd::string const&);
+	void loadDataFromFile(gd::string const&) = win 0x47690;
 	void loadFromCompressedString(gd::string&);
 	void loadFromString(gd::string&);
 	inline void save() {
@@ -9604,7 +9604,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	void onNext(cocos2d::CCObject* sender) = win 0x268c40;
 	void onPlay(cocos2d::CCObject* sender);
 	void onPrev(cocos2d::CCObject* sender) = win 0x268ca0;
-	TodoReturn scene(int) = win 0x267c20;
+	static cocos2d::CCScene* scene(int) = win 0x267c20;
 	TodoReturn tryShowAd();
 
 	virtual void keyBackClicked() = win 0x268d60;
@@ -9957,7 +9957,7 @@ class LocalLevelManager : GManager {
 	TodoReturn getCreatedLevels(int);
 	TodoReturn getCreatedLists(int) = win 0x2784f0;
 	TodoReturn getLevelsInNameGroups();
-	TodoReturn getMainLevelString(int) = win 0x277a90;
+	gd::string getMainLevelString(int) = win 0x277a90;
 	TodoReturn markLevelsAsUnmodified();
 	TodoReturn moveLevelToTop(GJGameLevel*);
 	TodoReturn reorderLevels();
@@ -10472,9 +10472,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void parseMusicLibrary() = win 0x285270;
 	void parseSFXLibrary() = win 0x286bd0;
 	gd::string pathForSFX(int) = win 0x2843e0;
-	TodoReturn pathForSFXFolder(int) = win 0x284240;
+	gd::string pathForSFXFolder(int) = win 0x284240;
 	gd::string pathForSong(int) = win 0x284070;
-	TodoReturn pathForSongFolder(int) = win 0x283ed0;
+	gd::string pathForSongFolder(int) = win 0x283ed0;
 	void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int) = win 0x2823c0;
 	void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x282260;
 	void removeDLFromActive(char const*) = win 0x283c00;
