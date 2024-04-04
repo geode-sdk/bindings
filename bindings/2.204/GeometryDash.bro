@@ -1120,6 +1120,7 @@ class CCSpritePlus : cocos2d::CCSprite {
 	bool m_hasFollower;
 	bool m_propagateScaleChanges;
 	bool m_propagateFlipChanges;
+	PAD = win 0x1;
 }
 
 [[link(android)]]
@@ -3365,6 +3366,8 @@ class EndPortalObject : GameObject {
 	virtual bool init() = win 0xeb210;
 	virtual void setPosition(cocos2d::CCPoint const&);
 	virtual void setVisible(bool);
+
+	PAD = win 0x8;
 }
 
 [[link(android)]]
@@ -10942,7 +10945,6 @@ class PlayerCheckpoint : cocos2d::CCNode {
 
 	virtual bool init() = win 0x52e00;
 
-	// PAD = win 0x104;
 	cocos2d::CCPoint m_position;
 	cocos2d::CCPoint m_lastPosition;
 	int m_unkInt1;
@@ -10958,10 +10960,12 @@ class PlayerCheckpoint : cocos2d::CCNode {
 	bool m_isOnGround;
 	PAD = win 0x2;
 	int m_hasGhostTrail;
-	PAD = win 0x8;
+	char m_unkBytes1[8];
 	bool m_isHidden;
 	bool m_isGoingLeft;
-	PAD = win 0x4a;
+	char m_unkBytes2[42];
+	float m_unkFloat1;
+	char m_unkBytes3[28];
 }
 
 [[link(android)]]
