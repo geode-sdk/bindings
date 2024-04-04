@@ -4911,7 +4911,7 @@ class GameObject : CCSpritePlus {
 	void playDestroyObjectAnim(GJBaseGameLayer*);
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float);
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float);
-	TodoReturn playShineEffect();
+	void playShineEffect();
 	TodoReturn quickUpdatePosition();
 	TodoReturn quickUpdatePosition2();
 	TodoReturn removeColorSprite();
@@ -5832,7 +5832,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn clearActivatedAudioTriggers();
 	TodoReturn clearPickedUpItems();
 	TodoReturn collectedObject(EffectGameObject*);
-	TodoReturn collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float);
+	void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float);
 	TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
 	TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
 	TodoReturn controlAreaEffectWithID(int, int, GJActionCommand);
@@ -7050,8 +7050,8 @@ class GJGroundLayer : cocos2d::CCLayer {
 	TodoReturn scaleGround(float);
 	TodoReturn toggleVisible01(bool);
 	TodoReturn toggleVisible02(bool);
-	TodoReturn updateGround01Color(cocos2d::ccColor3B);
-	TodoReturn updateGround02Color(cocos2d::ccColor3B);
+	void updateGround01Color(cocos2d::ccColor3B);
+	void updateGround02Color(cocos2d::ccColor3B);
 	TodoReturn updateGroundPos(cocos2d::CCPoint);
 	TodoReturn updateGroundWidth(bool);
 	TodoReturn updateLineBlend(bool);
@@ -9949,10 +9949,10 @@ class MenuGameLayer : cocos2d::CCLayer {
 
 	void destroyPlayer();
 	TodoReturn getBGColor(int);
-	TodoReturn resetPlayer();
-	TodoReturn tryJump(float);
-	TodoReturn updateColor(float);
-	TodoReturn updateColors();
+	void resetPlayer();
+	void tryJump(float);
+	void updateColor(float);
+	void updateColors();
 
 	virtual void update(float);
 	virtual bool init();
