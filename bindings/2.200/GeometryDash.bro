@@ -3604,7 +3604,11 @@ class GameObject : CCSpritePlus {
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
-	PAD = mac 0x10;
+	PAD = mac 0x1;
+
+	bool m_isSelected;
+
+	PAD = mac 0xe;
 
 	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
 	PAD = mac 0x1;

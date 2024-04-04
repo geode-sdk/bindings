@@ -168,7 +168,7 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
 	TodoReturn notifyAchievementWithID(char const*) = win 0x1b550;
 	TodoReturn percentageForCount(int, int);
-	TodoReturn percentForAchievement(char const*) = win 0x1ab50;
+	int percentForAchievement(char const*) = win 0x1ab50;
 	void reportAchievementWithID(char const*, int, bool) = win 0x1b7e0;
 	void reportPlatformAchievementWithID(char const*, int) = win 0x1b8f0;
 	void resetAchievement(char const*) = win 0x1b730;
@@ -3909,10 +3909,10 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 	static FriendsProfilePage* create(UserListType) = win 0xf0960;
 
 	bool init(UserListType) = win 0xf0a10;
-	void onBlocked(cocos2d::CCObject* sender) = win 0xf1630;
-	void onClose(cocos2d::CCObject* sender);
-	void onUpdate(cocos2d::CCObject* sender);
-	TodoReturn setupUsersBrowser(cocos2d::CCArray*, UserListType) = win 0xf1090;
+	void onBlocked(cocos2d::CCObject* sender) = win 0xf15c0;
+	void onClose(cocos2d::CCObject* sender) = win 0xf1630;
+	void onUpdate(cocos2d::CCObject* sender) = win 0xf1550;
+	void setupUsersBrowser(cocos2d::CCArray*, UserListType) = win 0xf1090;
 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked() = win 0xf16d0;
@@ -4491,7 +4491,7 @@ class GameManager : GManager {
 	cocos2d::ccColor3B colorForIdx(int) = win 0x126090;
 	TodoReturn colorForPos(int);
 	TodoReturn colorKey(int, UnlockType) = win 0x122350;
-	TodoReturn completedAchievement(gd::string) = win 0x122b50;
+	bool completedAchievement(gd::string) = win 0x122b50;
 	static int countForType(IconType) = win 0x127270;
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn defaultYOffsetForBG2(int);
@@ -4499,7 +4499,7 @@ class GameManager : GManager {
 	TodoReturn doQuickSave() = win 0x12de10;
 	TodoReturn dpadConfigToString(UIButtonConfig&);
 	TodoReturn eventUnlockFeature(char const*);
-	TodoReturn fadeInMenuMusic() = win 0x1219f0;
+	void fadeInMenuMusic() = win 0x1219f0;
 	TodoReturn fadeInMusic(gd::string) = win 0x121a60;
 	TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*) = win 0x127ed0;
 	TodoReturn finishedLoadingGAsync(int);
@@ -5078,7 +5078,11 @@ class GameObject : CCSpritePlus {
 
 	// windows members may be wrong! yay!
 
-	PAD = android32 0x11, win 0xf, android64 0x11; // i will not question the windows pad
+	PAD = android32 0x5, win 0x3, android64 0x5; // i will not question the windows pad
+
+	int m_innerSectionIndex;
+	int m_outerSectionIndex;
+	int m_middleSectionIndex;
 
 	// property 511
 	bool m_hasExtendedCollision;
@@ -5172,7 +5176,11 @@ class GameObject : CCSpritePlus {
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
-	PAD = android32 0x10, win 0x10, android64 0x10;
+	PAD = android32 0x1, win 0x1, android64 0x1;
+
+	bool m_isSelected;
+
+	PAD = android32 0xe, win 0xe, android64 0xe;
 
 	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
 	PAD = android32 0x1, win 0x1, android64 0x1;
@@ -6497,11 +6505,11 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void registerWithTouchDispatcher() = win 0x22fc0;
 	virtual void keyBackClicked() = win 0x1d6b20;
 	virtual void customSetup() {}
-	virtual TodoReturn enterLayer() = win 0x22fa0;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x1d6b40;
+	virtual void enterLayer() = win 0x22fa0;
+	virtual void exitLayer(cocos2d::CCObject*) = win 0x1d6b40;
 	virtual void showLayer(bool) = win 0x1d6b70;
-	virtual TodoReturn hideLayer(bool) = win 0x1d6c60;
-	virtual TodoReturn layerVisible() = win 0x23060;
+	virtual void hideLayer(bool) = win 0x1d6c60;
+	virtual void layerVisible() = win 0x23060;
 	virtual void layerHidden() = win 0x1d6d50;
 	virtual void enterAnimFinished() {}
 	virtual void disableUI() = win 0x1d6ae0;
@@ -8011,7 +8019,7 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 
 	virtual bool init() = win 0x224fe0;
 	virtual void customSetup() = win 0x225080;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x225010;
+	virtual void exitLayer(cocos2d::CCObject*) = win 0x225010;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2257d0;
 	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x225990;
 	virtual TodoReturn getSelectedCellIdx() = win 0x2259d0;
@@ -8323,7 +8331,7 @@ class GManager : cocos2d::CCNode {
 	TodoReturn getCompressedSaveString();
 	TodoReturn getSaveString();
 	TodoReturn load();
-	TodoReturn loadDataFromFile(gd::string const&);
+	void loadDataFromFile(gd::string const&) = win 0x47690;
 	void loadFromCompressedString(gd::string&);
 	void loadFromString(gd::string&);
 	inline void save() {
@@ -9596,7 +9604,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	void onNext(cocos2d::CCObject* sender) = win 0x268c40;
 	void onPlay(cocos2d::CCObject* sender);
 	void onPrev(cocos2d::CCObject* sender) = win 0x268ca0;
-	TodoReturn scene(int) = win 0x267c20;
+	static cocos2d::CCScene* scene(int) = win 0x267c20;
 	TodoReturn tryShowAd();
 
 	virtual void keyBackClicked() = win 0x268d60;
@@ -9949,7 +9957,7 @@ class LocalLevelManager : GManager {
 	TodoReturn getCreatedLevels(int);
 	TodoReturn getCreatedLists(int) = win 0x2784f0;
 	TodoReturn getLevelsInNameGroups();
-	TodoReturn getMainLevelString(int) = win 0x277a90;
+	gd::string getMainLevelString(int) = win 0x277a90;
 	TodoReturn markLevelsAsUnmodified();
 	TodoReturn moveLevelToTop(GJGameLevel*);
 	TodoReturn reorderLevels();
@@ -10464,9 +10472,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void parseMusicLibrary() = win 0x285270;
 	void parseSFXLibrary() = win 0x286bd0;
 	gd::string pathForSFX(int) = win 0x2843e0;
-	TodoReturn pathForSFXFolder(int) = win 0x284240;
+	gd::string pathForSFXFolder(int) = win 0x284240;
 	gd::string pathForSong(int) = win 0x284070;
-	TodoReturn pathForSongFolder(int) = win 0x283ed0;
+	gd::string pathForSongFolder(int) = win 0x283ed0;
 	void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int) = win 0x2823c0;
 	void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x282260;
 	void removeDLFromActive(char const*) = win 0x283c00;
