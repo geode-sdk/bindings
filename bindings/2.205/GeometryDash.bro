@@ -6043,10 +6043,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn swapBackground(int);
 	TodoReturn swapGround(int);
 	TodoReturn swapMiddleground(int);
-	TodoReturn switchToFlyMode(PlayerObject*, GameObject*, bool, int);
-	TodoReturn switchToRobotMode(PlayerObject*, GameObject*, bool);
-	TodoReturn switchToRollMode(PlayerObject*, GameObject*, bool);
-	TodoReturn switchToSpiderMode(PlayerObject*, GameObject*, bool);
+	void switchToFlyMode(PlayerObject*, GameObject*, bool, int);
+	void switchToRobotMode(PlayerObject*, GameObject*, bool);
+	void switchToRollMode(PlayerObject*, GameObject*, bool);
+	void switchToSpiderMode(PlayerObject*, GameObject*, bool);
 	TodoReturn syncBGTextures();
 	TodoReturn teleportPlayer(TeleportPortalObject*, PlayerObject*);
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
