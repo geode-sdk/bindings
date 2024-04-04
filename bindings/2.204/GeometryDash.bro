@@ -4935,7 +4935,7 @@ class GameObject : CCSpritePlus {
 	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x14a660;
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float);
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float);
-	TodoReturn playShineEffect() = win 0x13bf40;
+	void playShineEffect() = win 0x13bf40;
 	TodoReturn quickUpdatePosition();
 	TodoReturn quickUpdatePosition2();
 	TodoReturn removeColorSprite();
