@@ -161,7 +161,7 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn getAchievementRewardDict();
 	void getAchievementsWithID(char const*) = win 0x1ade0;
 	TodoReturn getAllAchievements();
-	TodoReturn getAllAchievementsSorted(bool);
+	void getAllAchievementsSorted(bool) = win 0x1ac20;
 	bool isAchievementAvailable(gd::string);
 	bool isAchievementEarned(char const* ach) {
 		int iVal1 = AchievementManager::percentForAchievement(ach);
@@ -177,12 +177,13 @@ class AchievementManager : cocos2d::CCNode {
 	void resetAchievement(char const*) = win 0x1b730;
 	TodoReturn resetAchievements();
 	TodoReturn setup();
-	TodoReturn storeAchievementUnlocks();
+	void storeAchievementUnlocks() = win 0x1afa0;
 
-	virtual bool init();
+	virtual bool init() = win 0x9b40;
 	
-	PAD = win 0x108;
-	cocos2d::CCArray* m_achievements; //win 0x104 0x108
+	PAD = win 0x104;
+	cocos2d::CCArray* m_achievements1;
+	cocos2d::CCDictionary* m_achievements2;
 }
 
 [[link(android)]]
