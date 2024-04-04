@@ -40,7 +40,7 @@ int main(int argc, char** argv) try {
     Root root = broma::parse_file("Entry.bro");
 
     for (auto cls : root.classes) {
-        for (auto dep : cls.depends) {
+        for (auto dep : cls.attributes.depends) {
             if (!is_cocos_class(dep) &&
                 std::find(root.classes.begin(), root.classes.end(), dep) == root.classes.end()) {
                 throw codegen::error("Class {} depends on unknown class {}", cls.name, dep);

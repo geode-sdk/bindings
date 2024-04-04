@@ -55,7 +55,7 @@ We are mainly only looking for new addresses for the latest version of GD (Updat
 
 ## SyncBromaScript
 
-You can automatically sync addresses from-and-to Broma using the [`SyncBromaScript`](scripts/SyncBromaScript.java) script for Ghidra. This script automatically pulls function names, signatures & addresses from Broma, adds them to your Ghidra project, and then adds any addresses you have found back into the Broma.
+You can automatically sync addresses from-and-to Broma using the [`SyncBromaScript`](scripts/ghidra/SyncBromaScript.java) script for Ghidra. This script automatically pulls function names, signatures & addresses from Broma, adds them to your Ghidra project, and then adds any addresses you have found back into the Broma.
 
 **To install SyncBromaScript**, open up the `Script Manager` in Ghidra, then select `Manage Script Directories` from the top right toolbar. Add the path to the `scripts` directory in your local copy of Bindings, then refresh your scripts in `Script Manager`. You should see a `GeodeSDK` category appear with `SyncBromaScript.java` in it
 
