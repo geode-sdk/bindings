@@ -4582,7 +4582,7 @@ class GameManager : GManager {
 	TodoReturn removeCustomObject(int);
 	TodoReturn removeIconDelegate(int) = win 0x127370;
 	TodoReturn reorderKey(int, bool);
-	TodoReturn reportAchievementWithID(char const*, int, bool) = win 0x1234a0;
+	void reportAchievementWithID(char const*, int, bool) = win 0x1234a0;
 	TodoReturn reportPercentageForLevel(int, int, bool) = win 0x122d50;
 	TodoReturn resetAchievement(gd::string);
 	TodoReturn resetAdTimer();
