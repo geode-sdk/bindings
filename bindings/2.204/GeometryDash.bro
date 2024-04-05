@@ -9513,7 +9513,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	void onMoreGames(cocos2d::CCObject* sender);
 	void onPlay(cocos2d::CCObject* sender) = win 0x26c080;
 	void onSecretDoor(cocos2d::CCObject* sender) = win 0x26bad0;
-	void onTheTower(cocos2d::CCObject* sender);
+	void onTheTower(cocos2d::CCObject* sender) = win 0x26af90;
 	TodoReturn playCoinEffect();
 	TodoReturn playStep2();
 	TodoReturn playStep3();
