@@ -4500,7 +4500,7 @@ class GameManager : GManager {
 	TodoReturn dpadConfigToString(UIButtonConfig&);
 	TodoReturn eventUnlockFeature(char const*);
 	void fadeInMenuMusic() = win 0x1219f0;
-	TodoReturn fadeInMusic(gd::string) = win 0x121a60;
+	void fadeInMusic(gd::string) = win 0x121a60;
 	TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*) = win 0x127ed0;
 	TodoReturn finishedLoadingGAsync(int);
 	TodoReturn finishedLoadingGAsync1(cocos2d::CCObject*);
