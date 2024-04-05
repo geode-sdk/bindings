@@ -1445,7 +1445,6 @@ class CheckpointObject : cocos2d::CCNode {
 
 	virtual bool init() = win 0x52e00;
 
-	// PAD = win 0x104;
 	GJGameState m_gameState;
 	GJShaderState m_shaderState;
 	FMODAudioState m_audioState;
@@ -11008,7 +11007,10 @@ class PlayerCheckpoint : cocos2d::CCNode {
 	bool m_isGoingLeft;
 	char m_unkBytes2[42];
 	float m_unkFloat1;
-	char m_unkBytes3[28];
+	int m_possiblyFlags;
+	int m_timeOrPercentRelated;
+	gd::vector<float> m_yPositionVector;
+	char m_unkBytes3[8];
 }
 
 [[link(android)]]
