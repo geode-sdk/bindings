@@ -64,3 +64,28 @@ class CAState {
 class GJPointDouble {
 
 }
+
+class DynamicSaveObject {
+    GameObject* m_gameObject;
+    unsigned int m_unkIntUnusedMaybe;
+    double m_unkDouble1;
+    double m_unkDouble2;
+    float m_unkFloat1;
+    float m_unkFloat2;
+    float m_unkFloat3;
+    float m_unkFloat4;
+    float m_unkFloat5;
+    float m_unkFloat6;
+}
+
+class ActiveSaveObject1 {
+	GameObject* m_gameObject;
+	bool m_unkBool1;
+	bool m_unkBool2;
+	PAD = win 0x2;
+}
+
+class ActiveSaveObject2 {
+	GameObject* m_gameObject;
+	EasingType m_easingType;
+}
