@@ -1466,10 +1466,7 @@ class CheckpointObject : cocos2d::CCNode {
 	cocos2d::CCArray* m_gradientTriggerObjectArray;
 	bool m_unkBool1;
 	PAD = win 0x3;
-	void* m_unkPtr1;
-	PAD = win 0x4;
-	gd::vector<byte> m_unkVector1;
-	PAD = win 0xc;
+	gd::unordered_map<int,SequenceTriggerState> m_sequenceTriggerStateUnorderedMap;
 	int m_unkGetsCopiedFromGameState;
 }
 
@@ -4935,8 +4932,8 @@ class GameObject : CCSpritePlus {
 	TodoReturn getSecondaryColor();
 	TodoReturn getSecondaryColorMode();
 	TodoReturn getSlopeAngle();
-	TodoReturn getStartPos();
-	TodoReturn getType();
+	cocos2d::CCPoint* getStartPos(cocos2d::CCPoint*) = win 0xeb0f0;
+	GameObjectType getType() = win 0xeb0d0;
 	TodoReturn getUnmodifiedPosition();
 	TodoReturn groupColor(cocos2d::ccColor3B const&, bool);
 	TodoReturn groupOpacityMod() = win 0x13dd70;
@@ -5110,7 +5107,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getTextKerning();
 	virtual void setObjectRectDirty(bool);
 	virtual void setOrientedRectDirty(bool);
-	virtual void setType(GameObjectType);
+	virtual void setType(GameObjectType) = win 0xeb0e0;
 
 	// windows members may be wrong! yay!
 
@@ -7918,7 +7915,9 @@ class GJShaderState {
 	TodoReturn updateTweenAction(float, int);
 	TodoReturn updateTweenActions(float);
 
-	PAD = win 0x288;
+	gd::unordered_map<int, GJValueTween> m_someIntToValueTweenMap;
+	gd::unordered_map<int, double> m_someIntToDoubleMap;
+	PAD = win 0x248;
 }
 
 [[link(android)]]
@@ -8314,6 +8313,8 @@ class GJUserScore : cocos2d::CCNode {
 [[link(android)]]
 class GJValueTween {
 	TodoReturn step(float);
+
+	PAD = win 0x28;
 }
 
 [[link(android)]]

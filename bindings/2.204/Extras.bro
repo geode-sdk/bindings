@@ -89,3 +89,8 @@ class ActiveSaveObject2 {
 	GameObject* m_gameObject;
 	EasingType m_easingType;
 }
+
+class SequenceTriggerState {
+	gd::unordered_map<int,float> m_unkUnorderedMap1;
+	gd::unordered_map<int,float> m_unkUnorderedMap2;
+}
