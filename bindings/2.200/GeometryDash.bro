@@ -8754,8 +8754,8 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	virtual void keyBackClicked() = mac 0x1f9de0;
 	virtual void show() = mac 0x1f9c80;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x1f9dc0;
-	virtual TodoReturn rewardsStatusFinished(int) = mac 0x1f9900;
-	virtual TodoReturn rewardsStatusFailed() = mac 0x1f9b90;
+	virtual void rewardsStatusFinished(int) = mac 0x1f9900;
+	virtual void rewardsStatusFailed() = mac 0x1f9b90;
 
 	cocos2d::CCLabelBMFont* m_leftLabel;
 	cocos2d::CCLabelBMFont* m_rightLabel;
@@ -9585,7 +9585,7 @@ class GJChestSprite : cocos2d::CCSprite {
 	bool init(int);
 	~GJChestSprite();
 
-	TodoReturn switchToState(ChestSpriteState, bool) = mac 0x1fc3d0;
+	void switchToState(ChestSpriteState, bool) = mac 0x1fc3d0;
 
 	virtual void setOpacity(unsigned char) = mac 0x1fda20;
 	virtual void setColor(cocos2d::_ccColor3B const&) = mac 0x1fd930;
@@ -11661,8 +11661,8 @@ class GJMoreGamesLayer : GJDropDownLayer {
 
 [[link(android)]]
 class GJRewardDelegate {
-	virtual TodoReturn rewardsStatusFinished(int);
-	virtual TodoReturn rewardsStatusFailed();
+	virtual void rewardsStatusFinished(int);
+	virtual void rewardsStatusFailed();
 }
 
 [[link(android)]]
