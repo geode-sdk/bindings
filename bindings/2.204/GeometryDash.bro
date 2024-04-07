@@ -6379,7 +6379,7 @@ class GJChestSprite : cocos2d::CCSprite {
 	static GJChestSprite* create(int) = win 0x2fa380;
 
 	bool init(int);
-	TodoReturn switchToState(ChestSpriteState, bool) = win 0x2fa590;
+	void switchToState(ChestSpriteState, bool) = win 0x2fa590;
 
 	virtual void setOpacity(unsigned char) = win 0x2fa540;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x2fa480;
