@@ -24,7 +24,7 @@ target_compile_features(Codegen PUBLIC cxx_std_17)
 
 target_link_libraries(Codegen PRIVATE fmt::fmt Broma)
 target_include_directories(Codegen PRIVATE 
-	${CMAKE_CURRENT_SOURCE_DIR}/src
+	${CMAKE_CURRENT_SOURCE_DIR}/src/include
 )
 
 if (NOT DEFINED CMAKE_CXX_COMPILER_LAUNCHER OR CMAKE_CXX_COMPILER_LAUNCHER STREQUAL "" OR

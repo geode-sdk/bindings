@@ -52,15 +52,38 @@ std::string subsSeen(std::vector<std::string>& seen, std::string mangled, bool s
 	return mangled;
 }
 
-std::string mangleType(std::vector<std::string>& seen, std::string name, bool subs = true) {
+std::vector<std::string> splitTemplateRecursive(std::string_view str) {
+	std::vector<std::string> result;
+	int depth = 0;
+	std::string current;
+	for (int i = 0; i < str.size(); ++i) {
+		if (str[i] == '<') {
+			depth++;
+			if (depth > 0) current += str[i];
+		} else if (str[i] == '>') {
+			if (depth > 0) current += str[i];
+			depth--;
+		} else if (str[i] == ',' && depth == 0) {
+			result.push_back(current);
+			current = "";
+		} else {
+			if (current.size() > 0 || str[i] != ' ') current += str[i];
+		}
+	}
+	if (!current.empty()) result.push_back(current);
+	return result;
+}
+
+std::string mangleType(std::vector<std::string>& seen, std::string name, bool subs = true, bool isTemplate = false) {
 	if (name == "int") return "i";
 	if (name == "float") return "f";
 	if (name == "bool") return "b";
 	if (name == "char") return "c";
+	if (name == "void") return "v";
 	if (name == "gd::string") return "Ss";
+	if (name == "std::allocator") return "Sa";
 	if (name == "cocos2d::ccColor3B") return mangleType(seen, "cocos2d::_ccColor3B", subs);
 	// too lazy
-	if (name == "gd::map<gd::string, gd::string>") return "St3mapISsSsSt4lessISsESaISt4pairIKSsSsEEE";
 	if (name == "cocos2d::SEL_MenuHandler") {
 		const auto a = mangleType(seen, "cocos2d::CCObject", subs);
 		const auto b = mangleType(seen, "cocos2d::CCObject*", subs);
@@ -84,13 +107,51 @@ std::string mangleType(std::vector<std::string>& seen, std::string name, bool su
 		// at the end of the name
 		if (i == name.size() - 5) {
 			inner = mangleType(seen, name.substr(0, i - 1));
+
+			return subsSeen(seen, "K" + inner, subs);
 		} else if (i == 0) {
 			inner = mangleType(seen, name.substr(6));
-		} else {
-			inner = "v";
-			std::cout << "um " << name << std::endl;
+
+			return subsSeen(seen, "K" + inner, subs);
 		}
-		return subsSeen(seen, "K" + inner, subs);
+	}
+
+	if (name.find("<") != -1) {
+		auto i = name.find("<");
+		auto r = name.rfind(">");
+		auto base = name.substr(0, i);
+		std::string outer = mangleType(seen, base, subs, true);
+
+		auto parts = splitTemplateRecursive(name.substr(i + 1, r - i - 1));
+		std::string result = "";
+		for (auto& part : parts) {
+			result += mangleType(seen, part, subs, true);
+		}
+
+		// exceptions of additional params		
+		if (base == "gd::map") {
+			result += mangleType(seen, "std::less<" + parts[0] + ">", subs, true);
+			result += mangleType(seen, "std::allocator<std::pair<const " + parts[0] + ", " + parts[1] + ">>", subs, true);
+		}
+		else if (base == "gd::vector") {
+			result += mangleType(seen, "std::allocator<" + parts[0] + ">", subs, true);
+		}
+		else if (base == "gd::set") {
+			result += mangleType(seen, "std::less<" + parts[0] + ">", subs, true);
+			result += mangleType(seen, "std::allocator<" + parts[0] + ">", subs, true);
+		}
+		else if (base == "gd::unordered_map") {
+			result += mangleType(seen, "std::hash<" + parts[0] + ">", subs, true);
+			result += mangleType(seen, "std::equal_to<" + parts[0] + ">", subs, true);
+			result += mangleType(seen, "std::allocator<std::pair<const " + parts[0] + ", " + parts[1] + ">>", subs, true);
+		}
+		else if (base == "gd::unordered_set") {
+			result += mangleType(seen, "std::hash<" + parts[0] + ">", subs, true);
+			result += mangleType(seen, "std::equal_to<" + parts[0] + ">", subs, true);
+			result += mangleType(seen, "std::allocator<" + parts[0] + ">", subs, true);
+		}
+
+		return subsSeen(seen, outer + "I" + result + "E", subs);
 	}
 
 	if (name.find("::") != -1) {
@@ -100,19 +161,23 @@ std::string mangleType(std::vector<std::string>& seen, std::string name, bool su
 		do {
 			const auto i = s.find("::");
 			const auto t = s.substr(0, i);
-            auto part = std::to_string(t.size()) + std::string(t);
-		    if (auto x = lookForSeen(seen, result + part); !x.empty()) {
-                substituted = x;
-            } else {
-                substituted = subsSeen(seen, substituted + part, subs);
-            }
-            result += part;
-
+			auto part = std::to_string(t.size()) + std::string(t);
+			if (t == "gd" || t == "std") {
+				substituted = "St";
+			}
+			else if (auto x = lookForSeen(seen, result + part); !x.empty()) {
+				substituted = x;
+			}
+			else {
+				substituted = subsSeen(seen, substituted + part, subs);
+			}
+			result += part;
 			if (i == -1) s = "";
 			else s = s.substr(i + 2);
 		} while(s.size());
         if (substituted.size() == 3 && substituted[0] == 'S')
             return substituted;
+		if (isTemplate) return substituted;
 		return "N" + substituted + "E";
 	} else {
 		return subsSeen(seen, mangleIdent(name), subs);
