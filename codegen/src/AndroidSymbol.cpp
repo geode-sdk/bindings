@@ -33,32 +33,7 @@ std::string intToString(unsigned int value, unsigned int radix) {
     return result;
 }
 
-std::string replaceSeens(std::vector<std::string>& seen, std::string mangled) {
-	std::string replaced;
-	for (int i = 0; i < mangled.size(); ++i) {
-		if (mangled[i] == 'S') {
-			if (mangled[i + 1] == '_') {
-				if (seen.size() == 0) continue;
-				replaced += seen[0];
-				i++;
-			} else {
-				int j = 1;
-				while (mangled.size() > i + j && mangled[i + j] != '_' && j < 3) j++;
-				int index = std::stoi(mangled.substr(i + 1, j - 1), nullptr, 36);
-				if (seen.size() <= index + 1) continue;
-				replaced += seen[index + 1];
-				i += j;
-			}
-		}
-		else {
-			replaced += mangled[i];
-		}
-	}
-	return replaced;
-}
-
 std::string lookForSeen(std::vector<std::string>& seen, std::string mangled) {
-	mangled = replaceSeens(seen, mangled);
 	for (int i = 0; i < seen.size(); ++i) {
 		if (seen[i] == mangled) {
 			if (i == 0) return "S_";
@@ -73,7 +48,7 @@ std::string subsSeen(std::vector<std::string>& seen, std::string mangled, bool s
 	if (!subs) return mangled;
     if (mangled.empty()) return mangled;
 	if (auto x = lookForSeen(seen, mangled); !x.empty()) return x;
-	seen.push_back(replaceSeens(seen, mangled));
+	seen.push_back(mangled);
 	return mangled;
 }
 
@@ -99,7 +74,42 @@ std::vector<std::string> splitTemplateRecursive(std::string_view str) {
 	return result;
 }
 
-std::string mangleType(std::vector<std::string>& seen, std::string name, bool subs = true, bool isTemplate = false) {
+std::string mangleType(std::vector<std::string>& seen, std::string name, bool subs = true, bool isTemplate = false);
+
+std::string handleTemplate(std::vector<std::string>& seen, std::string base, std::vector<std::string> parts, bool subs) {
+	std::string result = "";
+	std::string outer = mangleType(seen, base, subs, true);
+	for (auto& part : parts) {
+		result += mangleType(seen, part, subs, true);
+	}
+
+	// exceptions of additional params		
+	if (base == "gd::map") {
+		result += mangleType(seen, "std::less<" + parts[0] + ">", subs, true);
+		result += mangleType(seen, "std::allocator<std::pair<const " + parts[0] + ", " + parts[1] + ">>", subs, true);
+	}
+	else if (base == "gd::vector") {
+		result += mangleType(seen, "std::allocator<" + parts[0] + ">", subs, true);
+	}
+	else if (base == "gd::set") {
+		result += mangleType(seen, "std::less<" + parts[0] + ">", subs, true);
+		result += mangleType(seen, "std::allocator<" + parts[0] + ">", subs, true);
+	}
+	else if (base == "gd::unordered_map") {
+		result += mangleType(seen, "std::hash<" + parts[0] + ">", subs, true);
+		result += mangleType(seen, "std::equal_to<" + parts[0] + ">", subs, true);
+		result += mangleType(seen, "std::allocator<std::pair<const " + parts[0] + ", " + parts[1] + ">>", subs, true);
+	}
+	else if (base == "gd::unordered_set") {
+		result += mangleType(seen, "std::hash<" + parts[0] + ">", subs, true);
+		result += mangleType(seen, "std::equal_to<" + parts[0] + ">", subs, true);
+		result += mangleType(seen, "std::allocator<" + parts[0] + ">", subs, true);
+	}
+
+	return outer + "I" + result + "E";
+}
+
+std::string mangleType(std::vector<std::string>& seen, std::string name, bool subs, bool isTemplate) {
 	if (name == "int") return "i";
 	if (name == "float") return "f";
 	if (name == "bool") return "b";
@@ -145,38 +155,12 @@ std::string mangleType(std::vector<std::string>& seen, std::string name, bool su
 		auto i = name.find("<");
 		auto r = name.rfind(">");
 		auto base = name.substr(0, i);
-		std::string outer = mangleType(seen, base, subs, true);
-
 		auto parts = splitTemplateRecursive(name.substr(i + 1, r - i - 1));
-		std::string result = "";
-		for (auto& part : parts) {
-			result += mangleType(seen, part, subs, true);
-		}
 
-		// exceptions of additional params		
-		if (base == "gd::map") {
-			result += mangleType(seen, "std::less<" + parts[0] + ">", subs, true);
-			result += mangleType(seen, "std::allocator<std::pair<const " + parts[0] + ", " + parts[1] + ">>", subs, true);
-		}
-		else if (base == "gd::vector") {
-			result += mangleType(seen, "std::allocator<" + parts[0] + ">", subs, true);
-		}
-		else if (base == "gd::set") {
-			result += mangleType(seen, "std::less<" + parts[0] + ">", subs, true);
-			result += mangleType(seen, "std::allocator<" + parts[0] + ">", subs, true);
-		}
-		else if (base == "gd::unordered_map") {
-			result += mangleType(seen, "std::hash<" + parts[0] + ">", subs, true);
-			result += mangleType(seen, "std::equal_to<" + parts[0] + ">", subs, true);
-			result += mangleType(seen, "std::allocator<std::pair<const " + parts[0] + ", " + parts[1] + ">>", subs, true);
-		}
-		else if (base == "gd::unordered_set") {
-			result += mangleType(seen, "std::hash<" + parts[0] + ">", subs, true);
-			result += mangleType(seen, "std::equal_to<" + parts[0] + ">", subs, true);
-			result += mangleType(seen, "std::allocator<" + parts[0] + ">", subs, true);
-		}
-
-		return subsSeen(seen, outer + "I" + result + "E", subs);
+		auto unsub = handleTemplate(seen, base, parts, false);
+		if (auto x = lookForSeen(seen, unsub); !x.empty()) return x;
+		auto result = handleTemplate(seen, base, parts, subs);
+		return subsSeen(seen, result, subs);
 	}
 
 	if (name.find("::") != -1) {
