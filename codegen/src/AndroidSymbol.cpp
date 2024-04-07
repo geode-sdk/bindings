@@ -110,11 +110,21 @@ std::string handleTemplate(std::vector<std::string>& seen, std::string base, std
 }
 
 std::string mangleType(std::vector<std::string>& seen, std::string name, bool subs, bool isTemplate) {
-	if (name == "int") return "i";
-	if (name == "float") return "f";
+	if (name == "void") return "v";
 	if (name == "bool") return "b";
 	if (name == "char") return "c";
-	if (name == "void") return "v";
+	if (name == "short") return "s";
+	if (name == "int") return "i";
+	if (name == "long") return "l";
+	if (name == "long long") return "x";
+	if (name == "unsigned") return "j";
+	if (name == "unsigned char") return "h";
+	if (name == "unsigned short") return "t";
+	if (name == "unsigned int") return "j";
+	if (name == "unsigned long") return "m";
+	if (name == "unsigned long long") return "y";
+	if (name == "float") return "f";
+	if (name == "double") return "d";
 	if (name == "gd::string") return "Ss";
 	if (name == "std::allocator") return "Sa";
 	if (name == "cocos2d::ccColor3B") return mangleType(seen, "cocos2d::_ccColor3B", subs);
