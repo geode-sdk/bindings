@@ -3122,7 +3122,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn confirmMoveToBottom(cocos2d::CCObject*) = mac 0x29c480;
 	TodoReturn shouldDownloadLevel();
 	void setupPlatformerStats() = mac 0x29ab80;
-	static CCScene* scene(GJGameLevel* level, bool) {
+	static cocos2d::CCScene* scene(GJGameLevel* level, bool) {
         auto scene = cocos2d::CCScene::create();
         scene->addChild(LevelInfoLayer::create(level));
 
