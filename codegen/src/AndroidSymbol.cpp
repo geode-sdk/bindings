@@ -33,17 +33,6 @@ std::string intToString(unsigned int value, unsigned int radix) {
     return result;
 }
 
-std::string lookForSeen(std::vector<std::string>& seen, std::string mangled) {
-	for (int i = 0; i < seen.size(); ++i) {
-		if (seen[i] == mangled) {
-			if (i == 0) return "S_";
-			// yes, its base 36
-			return "S" + intToString(i - 1, 36) + "_";
-		}
-	}
-	return "";
-}
-
 std::string replaceSeens(std::vector<std::string>& seen, std::string mangled) {
 	std::string replaced;
 	for (int i = 0; i < mangled.size(); ++i) {
@@ -68,10 +57,22 @@ std::string replaceSeens(std::vector<std::string>& seen, std::string mangled) {
 	return replaced;
 }
 
+std::string lookForSeen(std::vector<std::string>& seen, std::string mangled) {
+	mangled = replaceSeens(seen, mangled);
+	for (int i = 0; i < seen.size(); ++i) {
+		if (seen[i] == mangled) {
+			if (i == 0) return "S_";
+			// yes, its base 36
+			return "S" + intToString(i - 1, 36) + "_";
+		}
+	}
+	return "";
+}
+
 std::string subsSeen(std::vector<std::string>& seen, std::string mangled, bool subs) {
 	if (!subs) return mangled;
     if (mangled.empty()) return mangled;
-	if (auto x = lookForSeen(seen, replaceSeens(seen, mangled)); !x.empty()) return x;
+	if (auto x = lookForSeen(seen, mangled); !x.empty()) return x;
 	seen.push_back(replaceSeens(seen, mangled));
 	return mangled;
 }
@@ -114,30 +115,26 @@ std::string mangleType(std::vector<std::string>& seen, std::string name, bool su
 		const auto fnptr = subsSeen(seen, "Fv" + b + "E", subs);
 		return subsSeen(seen, "M" + a + fnptr, subs);
 	}
-	if (name.find('*') == name.size() - 1) {
+	if (name.rfind('*') == name.size() - 1) {
 		auto inner = mangleType(seen, name.substr(0, name.size() - 1), false);
 		if (auto x = lookForSeen(seen, "P" + inner); !x.empty()) return x;
 		inner = mangleType(seen, name.substr(0, name.size() - 1), subs);
 		return subsSeen(seen, "P" + inner, subs);
 	}
-	if (name.find('&') == name.size() - 1) {
+	if (name.rfind('&') == name.size() - 1) {
 		auto inner = mangleType(seen, name.substr(0, name.size() - 1), false);
 		if (auto x = lookForSeen(seen, "R" + inner); !x.empty()) return x;
 		inner = mangleType(seen, name.substr(0, name.size() - 1), subs);
 		return subsSeen(seen, "R" + inner, subs);
 	}
-	if (auto i = name.find("const"); i != -1) {
-		std::string inner;
-		// at the end of the name
-		if (i == name.size() - 5) {
-			inner = mangleType(seen, name.substr(0, i - 1));
+	if (auto i = name.rfind("const"); i == name.size() - 5) {
+		auto inner = mangleType(seen, name.substr(0, i - 1));
+		return subsSeen(seen, "K" + inner, subs);
+	}
 
-			return subsSeen(seen, "K" + inner, subs);
-		} else if (i == 0) {
-			inner = mangleType(seen, name.substr(6));
-
-			return subsSeen(seen, "K" + inner, subs);
-		}
+	if (auto i = name.find("const"); i == 0) {
+		auto inner = mangleType(seen, name.substr(6));
+		return subsSeen(seen, "K" + inner, subs);
 	}
 
 	if (name.find("<") != -1) {
