@@ -13909,8 +13909,8 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	virtual void keyBackClicked() = win 0x365a00;
 	virtual void show() = win 0x61860;
 	virtual void pageChanged() {}
-	virtual void toggleGroup(int, bool) = win 0x36ea50;
-	virtual void determineStartValues() = win 0x36f5d0;
+	virtual TodoReturn toggleGroup(int, bool) = win 0x36ea50;
+	virtual TodoReturn determineStartValues() = win 0x36f5d0;
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x205870;
 	virtual void textInputClosed(CCTextInputNode*);
 	virtual void textChanged(CCTextInputNode*) = win 0x36fa30;
@@ -13918,18 +13918,18 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	virtual void textInputReturn(CCTextInputNode*);
 	virtual void updateInputValue(int, float&) {}
 	virtual void sliderBegan(Slider*) = win 0x36fc20;
-	virtual void sliderEnded(Slider*) = win 0x36fcc0;
+	virtual TodoReturn sliderEnded(Slider*) = win 0x36fcc0;
 	virtual void onPlusButton(cocos2d::CCObject* sender) {}
 	virtual void onCustomButton(cocos2d::CCObject* sender) {}
 	virtual void updateDefaultTriggerValues() = win 0x371500;
-	virtual void updateInputNode(int, float) = win 0x3719c0;
-	virtual void updateToggleItem(int, bool) = win 0x371bd0;
+	virtual TodoReturn updateInputNode(int, float) = win 0x3719c0;
+	virtual TodoReturn updateToggleItem(int, bool) = win 0x371bd0;
 	virtual void valueDidChange(int, float) {}
-	virtual float getValue(int) = win 0x371c30;
-	virtual float triggerValueFromSliderValue(int, float) = win 0x376120;
-	virtual float triggerSliderValueFromValue(int, float) = win 0x376190;
+	virtual TodoReturn getValue(int) = win 0x371c30;
+	virtual TodoReturn triggerValueFromSliderValue(int, float) = win 0x376120;
+	virtual TodoReturn triggerSliderValueFromValue(int, float) = win 0x376190;
 	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) {}
-	virtual void valuePopupClosed(ConfigureValuePopup*, float) = win 0x376cb0;
+	virtual TodoReturn valuePopupClosed(ConfigureValuePopup*, float) = win 0x376cb0;
 
 	PAD = android32 0xac;
 }
