@@ -478,27 +478,27 @@ class BoomScrollLayer : cocos2d::CCLayer {
 		return BoomScrollLayer::create(pages, unk1, unk2, nullptr, nullptr);
 	}
 
-	TodoReturn addPage(cocos2d::CCLayer*, int);
-	TodoReturn addPage(cocos2d::CCLayer*);
-	TodoReturn cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	TodoReturn claimTouch(cocos2d::CCTouch*);
-	TodoReturn getPage(int);
-	int getRelativePageForNum(int) = win 0x1f190;
-	TodoReturn getRelativePosForPage(int);
-	TodoReturn getTotalPages();
+	void addPage(cocos2d::CCLayer* pLayer, int num);
+	void addPage(cocos2d::CCLayer* pLayer);
+	void cancelAndStoleTouch(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+	void claimTouch(cocos2d::CCTouch*);
+	CCLayer* getPage(int num);
+	int getRelativePageForNum(int num) = win 0x1f190;
+	CCPoint getRelativePosForPage(int num);
+	unsigned int getTotalPages();
 	bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x1E100;
-	void instantMoveToPage(int) = win 0x1ebe0;
-	void moveToPage(int) = win 0x1ecb0;
+	void instantMoveToPage(int num) = win 0x1ebe0;
+	void moveToPage(int num) = win 0x1ecb0;
 	void moveToPageEnded() = win 0x1ea60;
 	int pageNumberForPosition(cocos2d::CCPoint) = win 0x1eae0;
-	TodoReturn positionForPageWithNumber(int);
+	CCPoint* positionForPageWithNumber(int number);
 	TodoReturn quickUpdate(); // inlined D:
-	TodoReturn removePage(cocos2d::CCLayer*);
+	TodoReturn removePage(cocos2d::CCLayer* pLayer);
 	TodoReturn removePageWithNumber(int);
 	void repositionPagesLooped() = win 0x1ee40;
-	void selectPage(int) = win 0x1f1d0;
+	void selectPage(int num) = win 0x1f1d0;
 	void setDotScale(float); // inlined
-	void setPagesIndicatorPosition(cocos2d::CCPoint); // inline functions my beloved :heart:
+	void setPagesIndicatorPosition(cocos2d::CCPoint pos); // inline functions my beloved :heart:
 	void setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x1e370;
 	void togglePageIndicators(bool) = win 0x1e9c0;
 	void updateDots(float) = win 0x1e820;
