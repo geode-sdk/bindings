@@ -1254,8 +1254,8 @@ class cocos2d::CCParticleSystem {
 	static cocos2d::CCParticleSystem* createWithTotalParticles(unsigned int);
 
 	void initParticle(cocos2d::sCCParticle*);
-	bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool);
-	bool initWithDictionary(cocos2d::CCDictionary*, bool);
+	bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool) = mac 0x7838d0;
+	bool initWithDictionary(cocos2d::CCDictionary*, bool) = mac 0x7850b0;
 	bool initWithFile(char const*, bool);
 
 	unsigned int getAtlasIndex() const;
