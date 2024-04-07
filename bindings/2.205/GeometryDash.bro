@@ -4603,7 +4603,7 @@ class GameManager : GManager {
 	void unloadIcons(int);
 	TodoReturn unlockColor(int, UnlockType);
 	TodoReturn unlockedPremium();
-	TodoReturn unlockIcon(int, IconType);
+	void unlockIcon(int, IconType);
 	TodoReturn unlockTypeToIconType(int);
 	void updateCustomFPS();
 	TodoReturn updateMusic();
@@ -7488,6 +7488,8 @@ class GJPathSprite : CCSpriteCOpacity {
 	TodoReturn changeToLockedArt();
 	bool init(int);
 	TodoReturn updateState();
+
+  int m_pathNumber;
 }
 
 [[link(android)]]
