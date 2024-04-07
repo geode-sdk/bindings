@@ -128,12 +128,16 @@ std::string mangleType(std::vector<std::string>& seen, std::string name, bool su
 		return subsSeen(seen, "R" + inner, subs);
 	}
 	if (auto i = name.rfind("const"); i == name.size() - 5) {
-		auto inner = mangleType(seen, name.substr(0, i - 1));
+		auto inner = mangleType(seen, name.substr(0, name.size() - 6), false);
+		if (auto x = lookForSeen(seen, "K" + inner); !x.empty()) return x;
+		inner = mangleType(seen, name.substr(0, name.size() - 6), subs);
 		return subsSeen(seen, "K" + inner, subs);
 	}
 
 	if (auto i = name.find("const"); i == 0) {
-		auto inner = mangleType(seen, name.substr(6));
+		auto inner = mangleType(seen, name.substr(6), false);
+		if (auto x = lookForSeen(seen, "K" + inner); !x.empty()) return x;
+		inner = mangleType(seen, name.substr(6), subs);
 		return subsSeen(seen, "K" + inner, subs);
 	}
 
