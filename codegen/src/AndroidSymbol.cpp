@@ -44,11 +44,35 @@ std::string lookForSeen(std::vector<std::string>& seen, std::string mangled) {
 	return "";
 }
 
+std::string replaceSeens(std::vector<std::string>& seen, std::string mangled) {
+	std::string replaced;
+	for (int i = 0; i < mangled.size(); ++i) {
+		if (mangled[i] == 'S') {
+			if (mangled[i + 1] == '_') {
+				if (seen.size() == 0) continue;
+				replaced += seen[0];
+				i++;
+			} else {
+				int j = 1;
+				while (mangled.size() > i + j && mangled[i + j] != '_' && j < 3) j++;
+				int index = std::stoi(mangled.substr(i + 1, j - 1), nullptr, 36);
+				if (seen.size() <= index + 1) continue;
+				replaced += seen[index + 1];
+				i += j;
+			}
+		}
+		else {
+			replaced += mangled[i];
+		}
+	}
+	return replaced;
+}
+
 std::string subsSeen(std::vector<std::string>& seen, std::string mangled, bool subs) {
 	if (!subs) return mangled;
     if (mangled.empty()) return mangled;
-	if (auto x = lookForSeen(seen, mangled); !x.empty()) return x;
-	seen.push_back(mangled);
+	if (auto x = lookForSeen(seen, replaceSeens(seen, mangled)); !x.empty()) return x;
+	seen.push_back(replaceSeens(seen, mangled));
 	return mangled;
 }
 
