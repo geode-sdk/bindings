@@ -1153,6 +1153,10 @@ class TriggerEffectDelegate {
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	// ~GJBaseGameLayer() = mac 0xf96c0;
 
+	static GJBaseGameLayer* get() {
+		return GameManager::get()->m_gameLayer;
+	}
+
 	TodoReturn getBumpMod(PlayerObject*, int) = win 0x19a5d0;
 	TodoReturn getItemValue(int, int);
 	TodoReturn getMaxPortalY();
