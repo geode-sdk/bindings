@@ -182,8 +182,16 @@ class AchievementManager : cocos2d::CCNode {
 	virtual bool init() = win 0x9b40;
 	
 	PAD = win 0x104;
-	cocos2d::CCArray* m_achievements1;
-	cocos2d::CCDictionary* m_achievements2;
+	cocos2d::CCArray* m_allAchievements;
+	cocos2d::CCDictionary* m_platformAchievements;
+	cocos2d::CCDictionary* m_achievementUnlocks;
+	PAD = win 0x4;
+	cocos2d::CCDictionary* m_reportedAchievements;
+	bool m_dontNotify;
+	PAD = win 0x3;
+	cocos2d::CCArray* m_allAchievementsSorted;
+	int m_order;
+	cocos2d::CCDictionary* m_unAchieved;
 }
 
 [[link(android)]]
