@@ -3341,7 +3341,7 @@ class EffectManagerState {
 	gd::unordered_map<int,std::pair<double,double>> m_unorderedMapInt_pair_double_double;
 	gd::unordered_set<int> m_unorderedSet_int2;
 	gd::unordered_map<int,TimerItem> m_unorderedMapInt_TimerItem;
-	gd::unordered_map<int,TimerTriggerAction> m_unorderedMapInt_vectorTimerTriggerAction;
+	gd::unordered_map<int,gd::vector<TimerTriggerAction>> m_unorderedMapInt_vectorTimerTriggerAction;
 }
 
 [[link(android)]]
