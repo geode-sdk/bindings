@@ -1301,7 +1301,7 @@ class cocos2d::extension::CCScale9Sprite {
 	static cocos2d::extension::CCScale9Sprite* create();
 	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*);
 	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*, cocos2d::CCRect);
-	static cocos2d::extension::CCScale9Sprite* create(char const*); // prolly correct
+	static cocos2d::extension::CCScale9Sprite* create(char const*);
 	static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect);
 
 	CCScale9Sprite();
@@ -1340,6 +1340,6 @@ class cocos2d::extension::CCScale9Sprite {
 	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*);
 	virtual bool initWithSpriteFrameName(const char*, CCRect);
 	virtual bool initWithSpriteFrameName(const char*);
-	virtual bool updateWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect) = mac 0x3d54d0;
+	virtual bool updateWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect);
 	virtual void setSpriteFrame(cocos2d::CCSpriteFrame*);
 }
