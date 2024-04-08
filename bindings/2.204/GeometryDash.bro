@@ -1462,7 +1462,6 @@ class CheckpointObject : cocos2d::CCNode {
 	gd::vector<ActiveSaveObject1> m_vectorActiveSaveObjects1;
 	gd::vector<ActiveSaveObject2> m_vectorActiveSaveObjects2;
 	EffectManagerState m_effectManagerState;
-	PAD = win 0x1c;
 	cocos2d::CCArray* m_gradientTriggerObjectArray;
 	bool m_unkBool1;
 	PAD = win 0x3;
@@ -3316,7 +3315,7 @@ class EffectManagerState {
 	// ~EffectManagerState();
 	// EffectManagerState();
 
-	PAD = win 0x180;
+	PAD = win 0x19c;
 }
 
 [[link(android)]]
@@ -3815,7 +3814,26 @@ class FMODAudioState {
 	// ~FMODAudioState();
 	// FMODAudioState();
 
-	PAD = win 0x1c8;
+	float m_unkFloat1;
+	float m_unkFloat2;
+	gd::map<std::pair<int,int>,FMODSoundTween> m_unkMapPairIntIntFMODSoundTween1;
+	gd::map<std::pair<int,int>,FMODSoundTween> m_unkMapPairIntIntFMODSoundTween2;
+	gd::map<std::pair<int,int>,FMODSoundTween> m_unkMapPairIntIntFMODSoundTween3;
+	gd::unordered_map<int,float> m_unkMapIntFloat1;
+	gd::unordered_map<int,float> m_unkMapIntFloat2;
+	gd::unordered_map<int,float> m_unkMapIntFloat3;
+	gd::unordered_map<int,float> m_unkMapIntFloat4;
+	gd::unordered_map<int,float> m_unkMapIntFloat5;
+	gd::unordered_map<int,float> m_unkMapIntFloat6;
+	gd::unordered_map<int,float> m_unkMapIntFloat7;
+	gd::unordered_map<int,float> m_unkMapIntFloat8;
+	gd::unordered_map<int,float> m_unkMapIntFloat9;
+	gd::unordered_map<int,float> m_unkMapIntFloat10;
+	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic1;
+	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic2;
+	gd::unordered_map<int,FMODSoundState_padded> m_unkMapIntFMODSoundState; 
+	int m_unkInt1;
+	int m_unkInt2;
 }
 
 [[link(android)]]

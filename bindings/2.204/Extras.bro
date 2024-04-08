@@ -92,5 +92,26 @@ class ActiveSaveObject2 {
 
 class SequenceTriggerState {
 	gd::unordered_map<int,float> m_unkUnorderedMap1;
-	gd::unordered_map<int,float> m_unkUnorderedMap2;
+	gd::unordered_map<int,int> m_unkUnorderedMap2;
+}
+
+class FMODSoundTween {
+	PAD = win 0x28;
+}
+
+class FMODQueuedMusic {
+	gd::string m_unkString;
+	PAD = win 0x38;
+}
+
+class FMODSoundState {
+	gd::string m_unkString;
+	PAD = win 0xa4;
+}
+
+//Needed because pair<int,FMODSoundState> gets padded in gd but not when we compile it
+class FMODSoundState_padded {
+	PAD = win 0x4;
+	gd::string m_unkString;
+	PAD = win 0xa4;
 }
