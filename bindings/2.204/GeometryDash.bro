@@ -181,7 +181,6 @@ class AchievementManager : cocos2d::CCNode {
 
 	virtual bool init() = win 0x9b40;
 	
-	PAD = win 0x104;
 	cocos2d::CCArray* m_allAchievements;
 	cocos2d::CCDictionary* m_platformAchievements;
 	cocos2d::CCDictionary* m_achievementUnlocks;
