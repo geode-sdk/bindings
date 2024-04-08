@@ -33,9 +33,9 @@ std::string intToString(unsigned int value, unsigned int radix) {
     return result;
 }
 
-std::string lookForSeen(std::vector<std::string>& seen, std::string mangled) {
+std::string lookForSeen(std::vector<std::string>& seen, std::string expanded) {
 	for (int i = 0; i < seen.size(); ++i) {
-		if (seen[i] == mangled) {
+		if (seen[i] == expanded) {
 			if (i == 0) return "S_";
 			// yes, its base 36
 			return "S" + intToString(i - 1, 36) + "_";
@@ -44,11 +44,11 @@ std::string lookForSeen(std::vector<std::string>& seen, std::string mangled) {
 	return "";
 }
 
-std::string subsSeen(std::vector<std::string>& seen, std::string mangled, bool subs) {
+std::string subsSeen(std::vector<std::string>& seen, std::string mangled, bool subs, std::string expanded) {
 	if (!subs) return mangled;
     if (mangled.empty()) return mangled;
-	if (auto x = lookForSeen(seen, mangled); !x.empty()) return x;
-	seen.push_back(mangled);
+	if (auto x = lookForSeen(seen, expanded); !x.empty()) return x;
+	seen.push_back(expanded);
 	return mangled;
 }
 
@@ -130,47 +130,59 @@ std::string mangleType(std::vector<std::string>& seen, std::string name, bool su
 	if (name == "cocos2d::ccColor3B") return mangleType(seen, "cocos2d::_ccColor3B", subs);
 	// too lazy
 	if (name == "cocos2d::SEL_MenuHandler") {
-		const auto a = mangleType(seen, "cocos2d::CCObject", subs);
-		const auto b = mangleType(seen, "cocos2d::CCObject*", subs);
-		const auto fnptr = subsSeen(seen, "Fv" + b + "E", subs);
-		return subsSeen(seen, "M" + a + fnptr, subs);
+		const auto unsubClass = mangleType(seen, "cocos2d::CCObject", false);
+		const auto unsubParam = mangleType(seen, "cocos2d::CCObject*", false);
+		const auto unsubPtr = "Fv" + unsubParam + "E";
+		const auto unsubMem = "M" + unsubClass + unsubPtr;
+		if (!subs) return unsubMem;
+		if (auto x = lookForSeen(seen, unsubMem); !x.empty()) return x;
+		const auto resultClass = mangleType(seen, "cocos2d::CCObject", subs);
+		const auto resultParam = mangleType(seen, "cocos2d::CCObject*", subs);
+		const auto resultPtr = subsSeen(seen, "Fv" + resultParam + "E", subs, unsubPtr);
+		const auto resultMem = subsSeen(seen, "M" + resultClass + resultPtr, subs, unsubMem);
+		return resultMem;
 	}
 	if (name.rfind('*') == name.size() - 1) {
-		auto inner = mangleType(seen, name.substr(0, name.size() - 1), false);
-		if (auto x = lookForSeen(seen, "P" + inner); !x.empty()) return x;
-		inner = mangleType(seen, name.substr(0, name.size() - 1), subs);
-		return subsSeen(seen, "P" + inner, subs);
+		const auto unsub = mangleType(seen, name.substr(0, name.size() - 1), false);
+		if (!subs) return "P" + unsub;
+		if (auto x = lookForSeen(seen, "P" + unsub); !x.empty()) return x;
+		const auto result = mangleType(seen, name.substr(0, name.size() - 1), subs);
+		return subsSeen(seen, "P" + result, subs, "P" + unsub);
 	}
 	if (name.rfind('&') == name.size() - 1) {
-		auto inner = mangleType(seen, name.substr(0, name.size() - 1), false);
-		if (auto x = lookForSeen(seen, "R" + inner); !x.empty()) return x;
-		inner = mangleType(seen, name.substr(0, name.size() - 1), subs);
-		return subsSeen(seen, "R" + inner, subs);
+		const auto unsub = mangleType(seen, name.substr(0, name.size() - 1), false);
+		if (!subs) return "R" + unsub;
+		if (auto x = lookForSeen(seen, "R" + unsub); !x.empty()) return x;
+		const auto result = mangleType(seen, name.substr(0, name.size() - 1), subs);
+		return subsSeen(seen, "R" + result, subs, "R" + unsub);
 	}
 	if (auto i = name.rfind("const"); i == name.size() - 5) {
-		auto inner = mangleType(seen, name.substr(0, name.size() - 6), false);
-		if (auto x = lookForSeen(seen, "K" + inner); !x.empty()) return x;
-		inner = mangleType(seen, name.substr(0, name.size() - 6), subs);
-		return subsSeen(seen, "K" + inner, subs);
+		const auto unsub = mangleType(seen, name.substr(0, name.size() - 6), false);
+		if (!subs) return "K" + unsub;
+		if (auto x = lookForSeen(seen, "K" + unsub); !x.empty()) return x;
+		const auto result = mangleType(seen, name.substr(0, name.size() - 6), subs);
+		return subsSeen(seen, "K" + result, subs, "K" + unsub);
 	}
 
 	if (auto i = name.find("const"); i == 0) {
-		auto inner = mangleType(seen, name.substr(6), false);
-		if (auto x = lookForSeen(seen, "K" + inner); !x.empty()) return x;
-		inner = mangleType(seen, name.substr(6), subs);
-		return subsSeen(seen, "K" + inner, subs);
+		const auto unsub = mangleType(seen, name.substr(6), false);
+		if (!subs) return "K" + unsub;
+		if (auto x = lookForSeen(seen, "K" + unsub); !x.empty()) return x;
+		const auto result = mangleType(seen, name.substr(6), subs);
+		return subsSeen(seen, "K" + result, subs, "K" + unsub);
 	}
 
 	if (name.find("<") != -1) {
-		auto i = name.find("<");
-		auto r = name.rfind(">");
-		auto base = name.substr(0, i);
-		auto parts = splitTemplateRecursive(name.substr(i + 1, r - i - 1));
+		const auto i = name.find("<");
+		const auto r = name.rfind(">");
+		const auto base = name.substr(0, i);
+		const auto parts = splitTemplateRecursive(name.substr(i + 1, r - i - 1));
 
-		auto unsub = handleTemplate(seen, base, parts, false);
+		const auto unsub = handleTemplate(seen, base, parts, false);
+		if (!subs) return unsub;
 		if (auto x = lookForSeen(seen, unsub); !x.empty()) return x;
-		auto result = handleTemplate(seen, base, parts, subs);
-		return subsSeen(seen, result, subs);
+		const auto result = handleTemplate(seen, base, parts, subs);
+		return subsSeen(seen, result, subs, unsub);
 	}
 
 	if (name.find("::") != -1) {
@@ -184,11 +196,14 @@ std::string mangleType(std::vector<std::string>& seen, std::string name, bool su
 			if (t == "gd" || t == "std") {
 				substituted = "St";
 			}
+			else if (!subs) {
+				substituted += part;
+			}
 			else if (auto x = lookForSeen(seen, result + part); !x.empty()) {
 				substituted = x;
 			}
 			else {
-				substituted = subsSeen(seen, substituted + part, subs);
+				substituted = subsSeen(seen, substituted + part, subs, result + part);
 			}
 			result += part;
 			if (i == -1) s = "";
@@ -199,7 +214,7 @@ std::string mangleType(std::vector<std::string>& seen, std::string name, bool su
 		if (isTemplate) return substituted;
 		return "N" + substituted + "E";
 	} else {
-		return subsSeen(seen, mangleIdent(name), subs);
+		return subsSeen(seen, mangleIdent(name), subs, mangleIdent(name));
 	}
 };
 
