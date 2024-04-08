@@ -1495,6 +1495,12 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
 }
 
 [[link(android)]]
+class CollisionTriggerAction {
+	PAD = win 0x20;
+	gd::vector<int> m_unkVecInt;
+}
+
+[[link(android)]]
 class ColorAction : cocos2d::CCObject {
 	// virtual ~ColorAction();
 
@@ -1773,6 +1779,9 @@ class ConfigureValuePopupDelegate {
 [[link(android)]]
 class CountTriggerAction {
 	// CountTriggerAction(CountTriggerAction&&);
+
+	PAD = win 0x24;
+	gd::vector<int> m_unkVecInt;
 }
 
 [[link(android)]]
@@ -3315,7 +3324,24 @@ class EffectManagerState {
 	// ~EffectManagerState();
 	// EffectManagerState();
 
-	PAD = win 0x19c;
+	gd::vector<CAState> m_unkVecCAState;
+	gd::vector<PulseEffectAction> m_unkVecPulseEffectAction;
+	gd::unordered_map<int,gd::vector<PulseEffectAction>> m_unorderedMapInt_vectorPulseEffectAction;
+	gd::unordered_map<int,gd::vector<CountTriggerAction>> m_unorderedMapInt_vectorCountTriggerAction;
+	gd::unordered_set<int> m_unorderedSet_int1;
+	gd::map<int,int> m_mapInt_Int;
+	gd::unordered_map<int,OpacityEffectAction> m_unorderedMapInt_OpacityEffectAction;
+	gd::vector<TouchToggleAction> m_vectorTouchToggleAction;
+	gd::vector<CollisionTriggerAction> m_vectorCollisionTriggerAction;
+	gd::vector<ToggleTriggerAction> m_vectorToggleTriggerAction;
+	gd::vector<SpawnTriggerAction> m_vectorSpawnTriggerAction;
+	gd::unordered_map<int,int> m_unorderedMapInt_int;
+	gd::unordered_map<int,bool> m_unorderedMapInt_bool;
+	gd::vector<GroupCommandObject2> m_vectorGroupCommandObject2;
+	gd::unordered_map<int,std::pair<double,double>> m_unorderedMapInt_pair_double_double;
+	gd::unordered_set<int> m_unorderedSet_int2;
+	gd::unordered_map<int,TimerItem> m_unorderedMapInt_TimerItem;
+	gd::unordered_map<int,TimerTriggerAction> m_unorderedMapInt_vectorTimerTriggerAction;
 }
 
 [[link(android)]]
@@ -8478,6 +8504,12 @@ class GroupCommandObject2 {
 	TodoReturn stepTransformCommand(float, bool, bool);
 	TodoReturn updateAction(int, float);
 	TodoReturn updateEffectAction(float, int);
+
+	PAD = win 0x1b4;
+	gd::vector<KeyframeObject> m_unkVecKeyframeObject;
+	PAD = win 0x10;
+	gd::vector<int> m_unkVecInt;
+	PAD = win 0xc;
 }
 
 [[link(android)]]
@@ -8752,6 +8784,20 @@ class KeyframeObject {
 	// KeyframeObject(KeyframeObject const&);
 
 	TodoReturn setupSpline(gd::vector<KeyframeObject*>&);
+
+	PAD = win 0x20;
+	gd::vector<double> m_unkVecDouble1;
+	gd::vector<double> m_unkVecDouble2;
+	gd::vector<double> m_unkVecDouble3;
+	gd::vector<double> m_unkVecDouble4;
+	gd::vector<double> m_unkVecDouble5;
+	PAD = win 0x34;
+	gd::vector<double> m_unkVecDouble6;
+	gd::vector<double> m_unkVecDouble7;
+	gd::vector<double> m_unkVecDouble8;
+	gd::vector<double> m_unkVecDouble9;
+	gd::vector<double> m_unkVecDouble10;
+	PAD = win 0x84;
 }
 
 [[link(android)]]
@@ -10729,6 +10775,8 @@ class OnlineListDelegate {
 [[link(android)]]
 class OpacityEffectAction {
 	TodoReturn step(float);
+
+	PAD = win 0x2c;
 }
 
 [[link(android)]]
@@ -11790,6 +11838,8 @@ class PulseEffectAction {
 	bool isFinished();
 	TodoReturn step(float);
 	TodoReturn valueForDelta(float, float, float, float);
+
+	PAD = win 0x48;
 }
 
 [[link(android)]]
@@ -14689,6 +14739,9 @@ class SpawnParticleGameObject : EffectGameObject {
 class SpawnTriggerAction {
 	bool isFinished();
 	TodoReturn step(float);
+
+	PAD = win 0x2c;
+	gd::vector<int> m_unkVecInt;
 }
 
 [[link(android)]]
@@ -15104,6 +15157,12 @@ class TextStyleSection : cocos2d::CCObject {
 }
 
 [[link(android)]]
+class TimerTriggerAction {
+	PAD = win 0x20;
+	gd::vector<int> m_unkVecInt;
+}
+
+[[link(android)]]
 class TimerTriggerGameObject : EffectGameObject {
 	// virtual ~TimerTriggerGameObject();
 
@@ -15114,6 +15173,12 @@ class TimerTriggerGameObject : EffectGameObject {
 	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
+}
+
+[[link(android)]]
+class ToggleTriggerAction {
+	PAD = win 0x14;
+	gd::vector<int> m_unkVecInt;
 }
 
 [[link(android)]]
@@ -15151,6 +15216,12 @@ class TOSPopup : FLAlertLayer {
 
 	virtual bool init() = win 0x2122e0;
 	virtual void keyBackClicked() {}
+}
+
+[[link(android)]]
+class TouchToggleAction {
+	PAD = win 0x20;
+	gd::vector<int> m_unkVecInt;
 }
 
 [[link(android)]]
