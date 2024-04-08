@@ -1338,7 +1338,7 @@ class cocos2d::extension::CCScale9Sprite {
 	virtual bool initWithFile(const char*);
 	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*, cocos2d::CCRect);
 	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	virtual bool initWithSpriteFrameName(const char*, CCRect);
+	virtual bool initWithSpriteFrameName(const char*, cocos2d::CCRect);
 	virtual bool initWithSpriteFrameName(const char*);
 	virtual bool updateWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect);
 	virtual void setSpriteFrame(cocos2d::CCSpriteFrame*);
