@@ -5975,7 +5975,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn pauseAudio() = win 0x1bb600;
 	TodoReturn performMathOperation(double, double, int);
 	TodoReturn performMathRounding(double, int);
-	TodoReturn pickupItem(EffectGameObject*);
+	void pickupItem(EffectGameObject*) = win 0x19d100;
 	TodoReturn playAnimationCommand(int, int) = win 0x19E880;
 	TodoReturn playerCircleCollision(PlayerObject*, GameObject*);
 	TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
