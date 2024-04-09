@@ -11461,13 +11461,21 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*);
 	virtual void dialogClosed(DialogLayer*);
 
-	PAD = android32 0xac, android64 0xfc;
+	PAD = android32 0x24, android64 0x28;
+	cocos2d::CCArray* m_coinArray;
+	PAD = android32 0x84, android64 0xc8;
 	cocos2d::CCArray* m_circleWaveArray;
 	PAD = android32 0x10, android64 0x18;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
 	PAD = android32 0x8, android64 0x10;
 	cocos2d::CCSprite* m_progressBar;
-	PAD = android32 0x11c, android64 0x180;
+	PAD = android32 0xD8, android64 0x108;
+	cocos2d::CCDictionary* m_colorKeyDict;
+	gd::vector<int> m_keyColors; // type not really accurate
+	gd::vector<int> m_keyOpacities; // type not really accurate
+	gd::vector<int> m_keyPulses; // type not really accurate
+	int m_nextColorKey;
+	PAD = android32 0x1c, android64 0x24;
 }
 
 [[link(android)]]
