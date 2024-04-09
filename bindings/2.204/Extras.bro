@@ -101,30 +101,30 @@ class FMODSoundTween {
 
 class FMODQueuedMusic {
 	gd::string m_unkString;
-	PAD = win 0x38;
+	byte pad_1[56];
 }
 
 class FMODSoundState {
 	gd::string m_unkString;
-	PAD = win 0xa4;
+	byte pad_1[164];
 }
 
 //Needed because pair<int,FMODSoundState> gets padded in gd but not when we compile it
 class FMODSoundState_padded {
-	PAD = win 0x4;
+	byte pad_1[4];
 	gd::string m_unkString;
-	PAD = win 0xa4;
+	byte pad_2[164];
 }
 
 class TimerItem {
-	PAD = win 0x38;
+	byte pad_1[56];
 	gd::vector<int> m_unkVecInt;
-	PAD = win 0x4;
+	byte pad_2[4];
 }
 
 //Needed because pair<int,TimerItem> gets padded in gd but not when we compile it
 class TimerItem_padded {
-	PAD = win 0x3c;
+	byte pad_1[60];
 	gd::vector<int> m_unkVecInt;
-	PAD = win 0x4;
+	byte pad_2[4];
 }
