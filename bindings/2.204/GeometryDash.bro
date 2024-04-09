@@ -6383,7 +6383,7 @@ class GJChestSprite : cocos2d::CCSprite {
 	static GJChestSprite* create(int) = win 0x2fa380;
 
 	bool init(int);
-	TodoReturn switchToState(ChestSpriteState, bool) = win 0x2fa590;
+	void switchToState(ChestSpriteState, bool) = win 0x2fa590;
 
 	virtual void setOpacity(unsigned char) = win 0x2fa540;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x2fa480;
@@ -7637,8 +7637,8 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 
 [[link(android)]]
 class GJRewardDelegate {
-	virtual TodoReturn rewardsStatusFinished(int);
-	virtual TodoReturn rewardsStatusFailed();
+	virtual void rewardsStatusFinished(int);
+	virtual void rewardsStatusFailed();
 }
 
 [[link(android)]]
@@ -8279,7 +8279,7 @@ class GJUserScore : cocos2d::CCNode {
 
 [[link(android)]]
 class GJValueTween {
-	TodoReturn step(float);
+	void step(float);
 }
 
 [[link(android)]]
@@ -11439,7 +11439,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
 	TodoReturn commitJumps();
 	TodoReturn compareStateSnapshot();
-	TodoReturn createCheckpoint() = win 0x2e76e0;
+	CheckpointObject* createCheckpoint() = win 0x2e76e0;
 	void createObjectsFromSetupFinished() = win 0x2e1730;
 	void delayedFullReset() = win 0x2e9f20;
 	void delayedResetLevel() = win 0x2ea080;
@@ -11858,8 +11858,8 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	virtual void keyBackClicked();
 	virtual void show() = win 0x2f17f0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
-	virtual TodoReturn rewardsStatusFinished(int) = win 0x2f7580;
-	virtual TodoReturn rewardsStatusFailed() = win 0x2f7660;
+	virtual void rewardsStatusFinished(int) = win 0x2f7580;
+	virtual void rewardsStatusFailed() = win 0x2f7660;
 
 	cocos2d::CCLabelBMFont* m_leftLabel;
 	cocos2d::CCLabelBMFont* m_rightLabel;
