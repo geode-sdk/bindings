@@ -111,10 +111,12 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isTestMode, 0x2aac);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b50);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c48);
 
+GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x2db0);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x2e38);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x2e4c);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e58);
-
+GEODE_MEMBER_CHECK(PlayLayer, m_colorKeyDict, 0x2f30);
+GEODE_MEMBER_CHECK(PlayLayer, m_nextColorKey, 0x2f58);
 // CustomSongWidget
 
 GEODE_MEMBER_CHECK(CustomSongWidget, m_songInfoObject, 0x110);
@@ -245,5 +247,7 @@ GEODE_SIZE_CHECK(EditButtonBar, 0x124);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e24);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
+
+GEODE_MEMBER_CHECK(GJPathSprite, m_pathNumber, 0x1fc);
 
 #endif
