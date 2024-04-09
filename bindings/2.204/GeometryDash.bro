@@ -150,7 +150,7 @@ class AchievementManager : cocos2d::CCNode {
 
 	static AchievementManager* sharedState() = win 0x9ac0;
 
-	void achievementForUnlock(int, UnlockType) = win 0x1b290;
+	TodoReturn achievementForUnlock(int, UnlockType) = win 0x1b290;
 	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
 	void addManualAchievements() = win 0x9f60;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
