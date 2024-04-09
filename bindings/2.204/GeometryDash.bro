@@ -159,9 +159,9 @@ class AchievementManager : cocos2d::CCNode {
 	void encodeDataTo(DS_Dictionary*);
 	void firstSetup();
 	TodoReturn getAchievementRewardDict();
-	void getAchievementsWithID(char const*) = win 0x1ade0;
+	cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x1ade0;
 	TodoReturn getAllAchievements();
-	void getAllAchievementsSorted(bool) = win 0x1ac20;
+	cocos2d::CCArray* getAllAchievementsSorted(bool) = win 0x1ac20;
 	bool isAchievementAvailable(gd::string);
 	bool isAchievementEarned(char const* ach) {
 		int iVal1 = AchievementManager::percentForAchievement(ach);
