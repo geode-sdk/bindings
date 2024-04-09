@@ -4624,7 +4624,7 @@ class GameManager : GManager {
 	void unloadIcons(int) = win 0x127870;
 	TodoReturn unlockColor(int, UnlockType) = win 0x122560;
 	TodoReturn unlockedPremium();
-	TodoReturn unlockIcon(int, IconType) = win 0x122220;
+	void unlockIcon(int, IconType) = win 0x122220;
 	TodoReturn unlockTypeToIconType(int) = win 0x122190;
 	void updateCustomFPS() = win 0x12ec60;
 	TodoReturn updateMusic();
@@ -5931,8 +5931,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getPlayerButtonID(int, bool);
 	TodoReturn getPlayTimerFullSeconds();
 	TodoReturn getPlayTimerMilli();
-	TodoReturn getPortalTarget(TeleportPortalObject*) = win 0x1985c0;
-	TodoReturn getPortalTargetPos(TeleportPortalObject*, GameObject*, PlayerObject*);
+	TeleportPortalObject* getPortalTarget(TeleportPortalObject*) = win 0x1985c0;
+	cocos2d::CCPoint getPortalTargetPos(TeleportPortalObject*, GameObject*, PlayerObject*) = win 0x198660;
 	TodoReturn getRecordString();
 	TodoReturn getRotateCommandTargets(EnhancedTriggerObject*, GameObject*&, GameObject*&, GameObject*&);
 	TodoReturn getSavedPosition(int, float);
@@ -6098,7 +6098,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void switchToRollMode(PlayerObject*, GameObject*, bool) = win 0x19a9c0;
 	void switchToSpiderMode(PlayerObject*, GameObject*, bool) = win 0x19a8e0;
 	TodoReturn syncBGTextures() = win 0x1bda80;
-	TodoReturn teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x1980c0;
+	void teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x1980c0;
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
 	void toggleAudioVisualizer(bool) = win 0x1ca4d0;
 	void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x19d6a0;
@@ -7037,8 +7037,8 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 
 	TodoReturn achievementForUnlock(int, UnlockType);
 	gd::string descriptionForUnlock(int, UnlockType) = win 0x1f3420;
-	TodoReturn getItems(IconType);
-	cocos2d::CCArray getItems(int, int, IconType, int) = win 0x1f2310;
+	cocos2d::CCArray* getItems(IconType);
+	cocos2d::CCArray* getItems(int, int, IconType, int) = win 0x1f2310;
 	TodoReturn getLockFrame(int, UnlockType);
 	static GJGarageLayer* node() = win 0x1eedc0;
 	void onArrow(cocos2d::CCObject* sender) = win 0x1f1bf0;
@@ -7562,6 +7562,8 @@ class GJPathSprite : CCSpriteCOpacity {
 	TodoReturn changeToLockedArt();
 	bool init(int) = win 0x2001e0;
 	TodoReturn updateState() = win 0x2002c0;
+
+  int m_pathNumber;
 }
 
 [[link(android)]]
@@ -11064,7 +11066,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn logValues();
 	TodoReturn modeDidChange();
 	TodoReturn performSlideCheck();
-	TodoReturn placeStreakPoint() = win 0x2d9110;
+	void placeStreakPoint() = win 0x2d9110;
 	TodoReturn playBumpEffect(int, GameObject*) = win 0x2d8380;
 	TodoReturn playBurstEffect();
 	TodoReturn playCompleteEffect(bool, bool) = win 0x2bfd50;
@@ -11078,7 +11080,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playingEndEffect();
 	TodoReturn playSpawnEffect();
 	void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x2cf5b0;
-	TodoReturn postCollision(float) = win 0x2c82f0;
+	void postCollision(float) = win 0x2c82f0;
 	TodoReturn preCollision() = win 0x2c81b0;
 	TodoReturn preSlopeCollision(float, GameObject*);
 	void propellPlayer(float, bool, int) = win 0x2d81b0;

@@ -4603,7 +4603,7 @@ class GameManager : GManager {
 	void unloadIcons(int);
 	TodoReturn unlockColor(int, UnlockType);
 	TodoReturn unlockedPremium();
-	TodoReturn unlockIcon(int, IconType);
+	void unlockIcon(int, IconType);
 	TodoReturn unlockTypeToIconType(int);
 	void updateCustomFPS();
 	TodoReturn updateMusic();
@@ -5900,8 +5900,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getPlayerButtonID(int, bool);
 	TodoReturn getPlayTimerFullSeconds();
 	TodoReturn getPlayTimerMilli();
-	TodoReturn getPortalTarget(TeleportPortalObject*);
-	TodoReturn getPortalTargetPos(TeleportPortalObject*, GameObject*, PlayerObject*);
+	TeleportPortalObject* getPortalTarget(TeleportPortalObject*);
+	cocos2d::CCPoint getPortalTargetPos(TeleportPortalObject*, GameObject*, PlayerObject*);
 	TodoReturn getRecordString();
 	TodoReturn getRotateCommandTargets(EnhancedTriggerObject*, GameObject*&, GameObject*&, GameObject*&);
 	TodoReturn getSavedPosition(int, float);
@@ -6067,7 +6067,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void switchToRollMode(PlayerObject*, GameObject*, bool);
 	void switchToSpiderMode(PlayerObject*, GameObject*, bool);
 	TodoReturn syncBGTextures();
-	TodoReturn teleportPlayer(TeleportPortalObject*, PlayerObject*);
+	void teleportPlayer(TeleportPortalObject*, PlayerObject*);
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
 	void toggleAudioVisualizer(bool);
 	void toggleDualMode(GameObject*, bool, PlayerObject*, bool);
@@ -7492,6 +7492,8 @@ class GJPathSprite : CCSpriteCOpacity {
 	TodoReturn changeToLockedArt();
 	bool init(int);
 	TodoReturn updateState();
+
+  int m_pathNumber;
 }
 
 [[link(android)]]
@@ -10971,7 +10973,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn logValues();
 	void modeDidChange();
 	TodoReturn performSlideCheck();
-	TodoReturn placeStreakPoint();
+	void placeStreakPoint();
 	TodoReturn playBumpEffect(int, GameObject*);
 	TodoReturn playBurstEffect();
 	TodoReturn playCompleteEffect(bool, bool);
@@ -10985,7 +10987,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playingEndEffect();
 	TodoReturn playSpawnEffect();
 	void playSpiderDashEffect(cocos2d::CCPoint, cocos2d::CCPoint);
-	TodoReturn postCollision(float);
+	void postCollision(float);
 	TodoReturn preCollision();
 	TodoReturn preSlopeCollision(float, GameObject*);
 	void propellPlayer(float, bool, int);
