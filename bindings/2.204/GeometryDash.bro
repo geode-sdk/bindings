@@ -1176,11 +1176,11 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 	TodoReturn updateColorMatrix();
 	TodoReturn updateHue(float);
 
-	virtual void draw();
+	virtual void draw() = win 0x29380;
 	virtual bool initWithTexture(cocos2d::CCTexture2D*);
 	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
-	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
-	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*);
+	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool) = win 0x28f80;
+	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = win 0x29050;
 	virtual TodoReturn getShaderName();
 	virtual TodoReturn shaderBody();
 	virtual void updateColor();
@@ -2697,7 +2697,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createExtrasForObject(int, GameObject*, cocos2d::CCArray*);
 	TodoReturn createGlow();
 	void createLoop() = win 0xd0430;
-	TodoReturn createMoveMenu() = win 0xd1be0;
+	void createMoveMenu() = win 0xd1be0;
 	TodoReturn createNewKeyframeAnim() = win 0xd0230;
 	TodoReturn createObject(int, cocos2d::CCPoint) = win 0xc86a0;
 	TodoReturn createOutlines(cocos2d::CCArray*);
@@ -7397,10 +7397,10 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
 class GJMGLayer : cocos2d::CCLayer {
 	// virtual ~GJMGLayer();
 
-	static GJMGLayer* create(int);
+	static GJMGLayer* create(int) = win 0x1f8030;
 
 	TodoReturn deactivateGround();
-	bool init(int);
+	bool init(int) = win 0x1f80d0;
 	void loadGroundSprites(int, bool);
 	TodoReturn scaleGround(float);
 	TodoReturn toggleVisible01(bool);
@@ -11493,7 +11493,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&);
 	void loadFromCheckpoint(CheckpointObject*) = win 0x2e85e0;
 	TodoReturn loadLastCheckpoint();
-	TodoReturn markCheckpoint() = win 0x2e8550;
+	CheckpointObject * markCheckpoint() = win 0x2e8550;
 	void onQuit() = win 0x2eb480;
 	TodoReturn optimizeColorGroups() = win 0x2e2530;
 	TodoReturn optimizeOpacityGroups() = win 0x2e2790;
