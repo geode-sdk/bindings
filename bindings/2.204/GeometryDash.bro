@@ -9893,8 +9893,8 @@ class ListCell : TableViewCell {
 
 [[link(android)]]
 class ListUploadDelegate {
-	virtual TodoReturn listUploadFinished(GJLevelList*);
-	virtual TodoReturn listUploadFailed(GJLevelList*, int);
+	virtual void listUploadFinished(GJLevelList*);
+	virtual void listUploadFailed(GJLevelList*, int);
 }
 
 [[link(android)]]
@@ -15337,8 +15337,8 @@ class UploadListPopup : FLAlertLayer, ListUploadDelegate {
 
 	virtual void keyBackClicked() {}
 	virtual void show() = win 0x260a30;
-	virtual TodoReturn listUploadFinished(GJLevelList*) = win 0x260630;
-	virtual TodoReturn listUploadFailed(GJLevelList*, int) = win 0x260790;
+	virtual void listUploadFinished(GJLevelList*) = win 0x260630;
+	virtual void listUploadFailed(GJLevelList*, int) = win 0x260790;
 }
 
 [[link(android)]]

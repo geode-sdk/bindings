@@ -2615,8 +2615,8 @@ class LevelUploadDelegate {
 
 [[link(android)]]
 class ListUploadDelegate {
-	virtual TodoReturn listUploadFinished(GJLevelList*) {}
-	virtual TodoReturn listUploadFailed(GJLevelList*, int) {}
+	virtual void listUploadFinished(GJLevelList*) {}
+	virtual void listUploadFailed(GJLevelList*, int) {}
 }
 
 [[link(android)]]
@@ -11394,8 +11394,8 @@ class UploadListPopup : FLAlertLayer, ListUploadDelegate {
 
 	virtual void keyBackClicked() = mac 0x342eb0;
 	virtual void show() = mac 0x342e40;
-	virtual TodoReturn listUploadFinished(GJLevelList*) = mac 0x342960;
-	virtual TodoReturn listUploadFailed(GJLevelList*, int) = mac 0x342b80;
+	virtual void listUploadFinished(GJLevelList*) = mac 0x342960;
+	virtual void listUploadFailed(GJLevelList*, int) = mac 0x342b80;
 }
 
 [[link(android)]]
