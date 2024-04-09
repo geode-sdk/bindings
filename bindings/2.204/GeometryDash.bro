@@ -150,7 +150,7 @@ class AchievementManager : cocos2d::CCNode {
 
 	static AchievementManager* sharedState() = win 0x9ac0;
 
-	TodoReturn achievementForUnlock(int, UnlockType);
+	TodoReturn achievementForUnlock(int, UnlockType) = win 0x1b290;
 	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
 	void addManualAchievements() = win 0x9f60;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
@@ -159,11 +159,14 @@ class AchievementManager : cocos2d::CCNode {
 	void encodeDataTo(DS_Dictionary*);
 	void firstSetup();
 	TodoReturn getAchievementRewardDict();
-	TodoReturn getAchievementsWithID(char const*);
+	cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x1ade0;
 	TodoReturn getAllAchievements();
-	TodoReturn getAllAchievementsSorted(bool);
+	cocos2d::CCArray* getAllAchievementsSorted(bool) = win 0x1ac20;
 	bool isAchievementAvailable(gd::string);
-	bool isAchievementEarned(char const*);
+	bool isAchievementEarned(char const* ach) {
+		int iVal1 = AchievementManager::percentForAchievement(ach);
+		return 99 < iVal1;
+	}
 	TodoReturn limitForAchievement(gd::string);
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
 	TodoReturn notifyAchievementWithID(char const*) = win 0x1b550;
@@ -174,9 +177,20 @@ class AchievementManager : cocos2d::CCNode {
 	void resetAchievement(char const*) = win 0x1b730;
 	TodoReturn resetAchievements();
 	TodoReturn setup();
-	TodoReturn storeAchievementUnlocks();
+	void storeAchievementUnlocks() = win 0x1afa0;
 
-	virtual bool init();
+	virtual bool init() = win 0x9b40;
+	
+	cocos2d::CCArray* m_allAchievements;
+	cocos2d::CCDictionary* m_platformAchievements;
+	cocos2d::CCDictionary* m_achievementUnlocks;
+	PAD = win 0x4;
+	cocos2d::CCDictionary* m_reportedAchievements;
+	bool m_dontNotify;
+	PAD = win 0x3;
+	cocos2d::CCArray* m_allAchievementsSorted;
+	int m_order;
+	cocos2d::CCDictionary* m_unAchieved;
 }
 
 [[link(android)]]
@@ -4628,8 +4642,8 @@ class GameManager : GManager {
 	TodoReturn unlockTypeToIconType(int) = win 0x122190;
 	void updateCustomFPS() = win 0x12ec60;
 	TodoReturn updateMusic();
-	TodoReturn verifyAchievementUnlocks();
-	TodoReturn verifyCoinUnlocks();
+	void verifyAchievementUnlocks() = win 0x1235e0;
+	TodoReturn verifyCoinUnlocks() = win 0x123910;
 	TodoReturn verifyStarUnlocks();
 	TodoReturn verifySyncedCoins();
 	TodoReturn videoAdHidden();
