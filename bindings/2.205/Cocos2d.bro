@@ -1385,15 +1385,15 @@ class cocos2d::extension::CCScale9Sprite {
 	virtual void setInsetRight(float);
 	virtual float getInsetBottom();
 	virtual void setInsetBottom(float);
-	virtual bool initWithBatchNode(cocos2d::CCSpriteBatchNode*, CCRect, bool, CCRect);
-	virtual bool initWithBatchNode(cocos2d::CCSpriteBatchNode*, CCRect, CCRect);
+	virtual bool initWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect);
+	virtual bool initWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, cocos2d::CCRect);
 	virtual bool initWithFile(const char*, cocos2d::CCRect, cocos2d::CCRect) = ios 0x21e8f0;
 	virtual bool initWithFile(const char*, cocos2d::CCRect);
 	virtual bool initWithFile(cocos2d::CCRect, const char*);
 	virtual bool initWithFile(const char*);
 	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*, cocos2d::CCRect) = ios 0x21eb24;
 	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	virtual bool initWithSpriteFrameName(const char*, CCRect);
+	virtual bool initWithSpriteFrameName(const char*, cocos2d::CCRect);
 	virtual bool initWithSpriteFrameName(const char*);
 	virtual bool updateWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect) = ios 0x21d68c;
 	virtual void setSpriteFrame(cocos2d::CCSpriteFrame*);
