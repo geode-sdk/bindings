@@ -11584,13 +11584,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	PAD = win 0x5c;
 	bool m_endLayerStars; // not verified on android
 	PAD = win 0x3;
-	PAD = win 0x78;
+	PAD = win 0x74;
 	cocos2d::CCDictionary* m_colorKeyDict;
 	gd::vector<int> m_keyColors; // type not really accurate
 	gd::vector<int> m_keyOpacities; // type not really accurate
 	gd::vector<int> m_keyPulses; // type not really accurate
 	int m_nextColorKey;
-	PAD = win 0x18;
+	PAD = win 0x1c;
 }
 
 [[link(android)]]
