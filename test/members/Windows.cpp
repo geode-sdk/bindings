@@ -248,4 +248,6 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e24);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
 
+GEODE_MEMBER_CHECK(GJPathSprite, m_pathNumber, 0x1fc);
+
 #endif
