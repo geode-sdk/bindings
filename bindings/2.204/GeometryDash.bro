@@ -5881,6 +5881,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	~GJBaseGameLayer() = win 0x18ef50;
 	// GJBaseGameLayer() = win 0x237ce0;
 
+	static GJBaseGameLayer* get() {
+		return GameManager::get()->m_gameLayer;
+	}
+
 	void activateCustomRing(RingObject*) = win 0x1a4270;
 	TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
 	TodoReturn activateEventTrigger(EventLinkTrigger*, gd::vector<int> const&);
@@ -6456,7 +6460,7 @@ class GJChestSprite : cocos2d::CCSprite {
 	static GJChestSprite* create(int) = win 0x2fa380;
 
 	bool init(int);
-	TodoReturn switchToState(ChestSpriteState, bool) = win 0x2fa590;
+	void switchToState(ChestSpriteState, bool) = win 0x2fa590;
 
 	virtual void setOpacity(unsigned char) = win 0x2fa540;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x2fa480;
@@ -7710,8 +7714,8 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 
 [[link(android)]]
 class GJRewardDelegate {
-	virtual TodoReturn rewardsStatusFinished(int);
-	virtual TodoReturn rewardsStatusFailed();
+	virtual void rewardsStatusFinished(int);
+	virtual void rewardsStatusFailed();
 }
 
 [[link(android)]]
@@ -8356,7 +8360,7 @@ class GJUserScore : cocos2d::CCNode {
 
 [[link(android)]]
 class GJValueTween {
-	TodoReturn step(float);
+	void step(float);
 
 	PAD = win 0x28;
 }
@@ -11698,7 +11702,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*);
 	virtual void dialogClosed(DialogLayer*) = win 0x2e6f50;
 
-	PAD = win 0x84;
+	PAD = win 0x24;
+	cocos2d::CCArray* m_coinArray;
+	PAD = win 0x5c;
 	float m_unksomefloat;
 	CheckpointObject* m_unkCheckpointObject;
 	cocos2d::CCArray* m_checkpointArray;
@@ -11710,7 +11716,14 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCSprite* m_progressBar;
 	PAD = win 0x5c;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0xb8;
+	PAD = win 0x3;
+	PAD = win 0x74;
+	cocos2d::CCDictionary* m_colorKeyDict;
+	gd::vector<int> m_keyColors; // type not really accurate
+	gd::vector<int> m_keyOpacities; // type not really accurate
+	gd::vector<int> m_keyPulses; // type not really accurate
+	int m_nextColorKey;
+	PAD = win 0x1c;
 }
 
 [[link(android)]]
@@ -11980,8 +11993,8 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	virtual void keyBackClicked();
 	virtual void show() = win 0x2f17f0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
-	virtual TodoReturn rewardsStatusFinished(int) = win 0x2f7580;
-	virtual TodoReturn rewardsStatusFailed() = win 0x2f7660;
+	virtual void rewardsStatusFinished(int) = win 0x2f7580;
+	virtual void rewardsStatusFailed() = win 0x2f7660;
 
 	cocos2d::CCLabelBMFont* m_leftLabel;
 	cocos2d::CCLabelBMFont* m_rightLabel;

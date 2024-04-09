@@ -62,9 +62,12 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3300);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3460);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34a8);
 
+GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x36d0);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37a0);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x37c0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x37d8);
+GEODE_MEMBER_CHECK(PlayLayer, m_colorKeyDict, 0x38e8);
+GEODE_MEMBER_CHECK(PlayLayer, m_nextColorKey, 0x3938);
 
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4e4, 0x590);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk56c, 0x648);
