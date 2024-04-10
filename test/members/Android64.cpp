@@ -88,6 +88,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xac0);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xb38);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk950, 0xbe8);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk948, 0xbe0);
+GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x703);
 
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x1d8);
 GEODE_MEMBER_CHECK(GameManager, m_levelEditorLayer, 0x1e0);
