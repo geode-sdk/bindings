@@ -1,3 +1,8 @@
+[[link(win, android)]]
+class cocos2d::CCEaseOut {
+	static cocos2d::CCEaseOut* create(cocos2d::CCActionInterval*, float) = mac 0x4ecb10;
+}
+
 
 [[link(win, android)]]
 class cocos2d::CCEaseSineInOut {
