@@ -11616,6 +11616,9 @@ class PointNode : cocos2d::CCObject {
 	static PointNode* create(cocos2d::CCPoint) = win 0x2274c0;
 
 	bool init(cocos2d::CCPoint);
+  
+  cocos2d::CCPoint m_point;
+
 }
 
 [[link(android)]]
