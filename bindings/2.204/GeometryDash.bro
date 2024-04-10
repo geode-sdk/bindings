@@ -5773,7 +5773,7 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float);
 	bool init(int) = win 0x2084f0;
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x209DB0;
 	void onCommentSetting(cocos2d::CCObject* sender);
 	void onFriendRequests(cocos2d::CCObject* sender);
 	void onMessageSetting(cocos2d::CCObject* sender);
