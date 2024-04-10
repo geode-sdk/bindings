@@ -2187,7 +2187,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void keyBackClicked() = mac 0x5ad280;
 	virtual void customSetup() = mac 0x5ad1c0;
 	virtual TodoReturn enterLayer() = mac 0x5ad210;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*) = mac 0x5ad2c0;
+	virtual void exitLayer(cocos2d::CCObject*) = mac 0x5ad2c0;
 	virtual void showLayer(bool) = win 0x1D27C0, mac 0x5ad300;
 	virtual TodoReturn hideLayer(bool) = mac 0x5ad3f0;
 	virtual TodoReturn layerVisible() = mac 0x5ad4f0;
