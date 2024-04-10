@@ -2773,7 +2773,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn liveEditColorUsable();
 	TodoReturn menuItemFromObjectString(gd::string, int);
 	cocos2d::CCPoint moveForCommand(EditCommand command) = win 0xd4a20;
-	TodoReturn moveGamelayer(cocos2d::CCPoint) = win 0xa7070;
+	void moveGamelayer(cocos2d::CCPoint) = win 0xa7070;
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0xd4f10;
 	void moveObjectCall(cocos2d::CCObject*);
 	void moveObjectCall(EditCommand) = win 0xd4d40;
@@ -2845,7 +2845,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType) = win 0xd64b0;
 	TodoReturn selectAll() = win 0xc9750;
 	TodoReturn selectAllWithDirection(bool) = win 0xc9890;
-	TodoReturn selectBuildTab(int) = win 0xcbf00;
+	void selectBuildTab(int) = win 0xcbf00;
 	void selectObject(GameObject*, bool) = win 0xc8aa0;
 	void selectObjects(cocos2d::CCArray*, bool) = win 0xc8d40;
 	void selectObjectsInRect(cocos2d::CCRect);
@@ -2877,8 +2877,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn toggleStickyControls(bool) = win 0xa6080;
 	TodoReturn toggleSwipe(cocos2d::CCObject*) = win 0xc87a0;
 	TodoReturn transformObject(GameObject*, EditCommand, bool) = win 0xd5780;
-	TodoReturn transformObjectCall(cocos2d::CCObject*) = win 0xd5360;
-	TodoReturn transformObjectCall(EditCommand) = win 0xd5380;
+	void transformObjectCall(cocos2d::CCObject*) = win 0xd5360;
+	void transformObjectCall(EditCommand) = win 0xd5380;
 	TodoReturn transformObjects(cocos2d::CCArray*, cocos2d::CCPoint, float, float, float, float, float, float) = win 0xd6e40;
 	TodoReturn transformObjectsActive() = win 0xd6d20;
 	TodoReturn transformObjectsReset() = win 0xd6da0;
@@ -2904,8 +2904,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	float valueFromXPos(float) = win 0xa6e20;
 	float xPosFromValue(float);
 	TodoReturn zoomGameLayer(bool);
-	TodoReturn zoomIn(cocos2d::CCObject*) = win 0xca2f0;
-	TodoReturn zoomOut(cocos2d::CCObject*) = win 0xca360;
+	void zoomIn(cocos2d::CCObject*) = win 0xca2f0;
+	void zoomOut(cocos2d::CCObject*) = win 0xca360;
 
 	virtual void draw() = win 0xd80f0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xd8be0;
@@ -6036,7 +6036,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*);
 	TodoReturn processStateObjects();
 	TodoReturn processTransformActions(bool);
-	TodoReturn queueButton(int, bool, bool) = win 0x1b5af0;
+	void queueButton(int, bool, bool) = win 0x1b5af0;
 	TodoReturn reAddToStickyGroup(GameObject*) = win 0x1a9e40;
 	TodoReturn recordAction(int, bool, bool);
 	TodoReturn rectIntersectsCircle(cocos2d::CCRect, cocos2d::CCPoint, float);
