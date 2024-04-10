@@ -93,6 +93,7 @@ GEODE_MEMBER_CHECK(PlayLayer, m_nextColorKey, 0x2f38);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4e4, 0x4d4);
 GEODE_MEMBER_CHECK(PlayerObject, m_collidedObject, 0x514);
 GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x580);
+GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x5cb);
 GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x5d0);
 GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x610);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk644, 0x62c);
