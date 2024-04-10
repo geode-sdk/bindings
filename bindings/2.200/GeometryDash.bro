@@ -6519,7 +6519,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn createObjectsFromSetupFinished() = win 0x2dbab0, mac 0xb0a50;
 	TodoReturn playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = win 0x2da920;
 	TodoReturn scene(GJGameLevel*, bool, bool) = win 0x2D68A0, mac 0xa5c80;
-	TodoReturn resume() = mac 0xb8a50;
+	void resume() = mac 0xb8a50;
 	void showHint() = win 0x2e12d0, mac 0xb4ab0;
 	void addCircle(CCCircleWave* cw) = mac 0xb4cc0;
 	void addObject(GameObject*) = win 0x2DBD30, mac 0xabae0;
@@ -7180,7 +7180,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	virtual void keyBackClicked() = mac 0x4f0790;
 	virtual void customSetup() = mac 0x4f06f0;
 	virtual TodoReturn enterLayer() = mac 0x4f0720;
-	virtual TodoReturn exitLayer() = mac 0x4f07c0;
+	virtual void exitLayer() = mac 0x4f07c0;
 	virtual void showLayer(bool) = mac 0x4f0800;
 	virtual TodoReturn hideLayer(bool) = mac 0x4f0810;
 	virtual TodoReturn layerVisible() = mac 0x4f0830;
@@ -9734,7 +9734,7 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 
 	virtual bool init() = mac 0x5c3e80;
 	virtual void customSetup() = win 0x220320, mac 0x5c4150;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x2202B0, mac 0x5c4120;
+	virtual void exitLayer(cocos2d::CCObject*) = win 0x2202B0, mac 0x5c4120;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x5c46e0;
 	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = mac 0x5c47c0;
 	virtual TodoReturn getSelectedCellIdx() = mac 0x5c4820;
