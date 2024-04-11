@@ -1738,7 +1738,7 @@ class cocos2d::ZipUtils {
 	static gd::string base64DecodeEnc(gd::string const&, gd::string);
 	static gd::string base64EncodeEnc(gd::string const&, gd::string);
 	static gd::string base64URLDecode(gd::string const&);
-	static gd::string base64URLEncode(gd::string const&);
+	static gd::string base64URLEncode(gd::string const&) = mac 0x1e4960;
 	static unsigned int ccChecksumPvr(unsigned int const*, int);
 	static void ccDecodeEncodedPvr(unsigned int*, int);
 	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**) = mac 0x1e3e60;
