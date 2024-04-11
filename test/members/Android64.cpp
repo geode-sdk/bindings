@@ -88,6 +88,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xac0);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xb38);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk950, 0xbe8);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk948, 0xbe0);
+GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x703);
 
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x1d8);
 GEODE_MEMBER_CHECK(GameManager, m_levelEditorLayer, 0x1e0);
@@ -120,7 +121,7 @@ GEODE_MEMBER_CHECK(GameObject, m_isHighDetail, 0x4db);
 GEODE_MEMBER_CHECK(GameObject, m_isPassable, 0x4fd);
 GEODE_MEMBER_CHECK(GameObject, m_property155, 0x518);
 
-GEODE_MEMBER_CHECK(EffectGameObject, m_isMultiActivate, 0x670);
+GEODE_MEMBER_CHECK(EffectGameObject, m_isMultiTriggered, 0x670);
 GEODE_MEMBER_CHECK(EffectGameObject, m_isReverse, 0x6e4);
 GEODE_MEMBER_CHECK(EffectGameObject, m_objectLabel, 0x710);
 
