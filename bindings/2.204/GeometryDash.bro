@@ -1421,7 +1421,7 @@ class CharacterColorPage : FLAlertLayer {
 	cocos2d::CCArray* m_modeButtons;
 	cocos2d::CCDictionary* m_colorButtons;
 	cocos2d::CCArray* m_cursors;
-	GJGarageLayer* m_garageLayer;
+	CharacterColorDelegate* m_delegate;
 	CCMenuItemToggler* m_glowToggler;
 	cocos2d::CCLabelBMFont* m_glowLabel;
 }
