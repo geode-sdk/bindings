@@ -5891,7 +5891,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getMaxPortalY();
 	TodoReturn getMinDistance(cocos2d::CCPoint, cocos2d::CCArray*, float, int);
 	TodoReturn getMinPortalY();
-	TodoReturn getModifiedDelta(float);
+	float getModifiedDelta(float);
 	TodoReturn getMoveTargetDelta(EffectGameObject*, bool);
 	TodoReturn getOptimizedGroup(int);
 	TodoReturn getOtherPlayer(PlayerObject*);
