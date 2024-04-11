@@ -1063,9 +1063,9 @@ class GJGameState {
 	cocos2d::CCPoint m_unke8;
 	cocos2d::CCPoint m_unkf0;
 	bool m_unkf8;
-	PAD = win 0x7, android32 0x7, android64 0x7, mac 0x7;
+	int m_unkfc;
 	bool m_unk100;
-	PAD = win 0x7, android32 0x7, android64 0x7, mac 0x7;
+	int m_unk104;
 	bool m_unk108;
 	cocos2d::CCPoint m_unk10c;
 	PAD = win 0x10, android32 0x10, android64 0x10, mac 0x10;
@@ -1073,12 +1073,17 @@ class GJGameState {
 	float m_unk128;
 	PAD = win 0x1c, android32 0x1c, android64 0x1c, mac 0x1c;
 	float m_unk148;
-	PAD = win 0x20, android32 0x20, android64 0x20, mac 0x20;
+	PAD = win 0x1c, android32 0x1c, android64 0x1c, mac 0x1c;
+	bool m_unk168;
+	bool m_unk169;
+	bool m_unk16a;
 	float m_unk16c;
 	float m_unk170;
 	float m_unk174;
 	float m_unk178;
-	PAD = win 0xc, android32 0xc, android64 0xc, mac 0xc;
+	int m_unk17c;
+	int m_unk180;
+	bool m_unk184;
 	float m_unk188;
 	float m_unk18c;
 	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
@@ -1089,7 +1094,9 @@ class GJGameState {
 	float m_unk1d8;
 	float m_unk1dc;
 	double m_unk1e0; // unsure type
-	PAD = win 0x24, android32 0x24, android64 0x30, mac 0x30;
+	PAD = win 0x10, android32 0x10, android64 0x10, mac 0x10;
+	int m_unk1f8;
+	PAD = win 0x10, android32 0x10, android64 0x1c, mac 0x1c;
 	cocos2d::CCPoint m_unk20c;
 	PAD = win 0xa, android32 0xa, android64 0xa, mac 0xa;
 	bool m_isDualMode;
@@ -6442,7 +6449,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
 	TodoReturn getTempMilliTime();
 	float getCurrentPercent() = mac 0xb3970;
-	TodoReturn getLastCheckpoint() = win 0x2e3000;
+	CheckpointObject* getLastCheckpoint() = win 0x2e3000, mac 0xb6b70;
 	TodoReturn getRelativeModNew(cocos2d::CCPoint, float, float, bool, bool);
 	int getCurrentPercentInt() = win 0x2e09e0;
 
@@ -6450,7 +6457,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	TodoReturn playReplay(gd::string);
 	void resetLevel() = win 0x2E42B0, mac 0xac8d0;
-	TodoReturn startMusic() = win 0x2E5570;
+	void startMusic() = win 0x2E5570, mac 0xad570;
 	TodoReturn colorObject(int, cocos2d::_ccColor3B);
 	TodoReturn commitJumps();
 	TodoReturn shouldBlend(int);
@@ -6471,7 +6478,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn updateAttempts() = win 0x2E4CC0;
 	TodoReturn updateTimeWarp(EffectGameObject*, float);
 	TodoReturn queueCheckpoint();
-	TodoReturn storeCheckpoint(CheckpointObject*) = win 0x2e27d0;
+	void storeCheckpoint(CheckpointObject*) = win 0x2e27d0, mac 0xb74f0;
 	TodoReturn updateInfoLabel() = win 0x2dfe30, mac 0xa96e0;
 	TodoReturn applyEnterEffect(GameObject*, int, bool);
 	TodoReturn checkpointWithID(int);
@@ -6480,10 +6487,10 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	// /* unverified signature */
 	bool isGameplayActive();
 	void removeAllObjects() = win 0x2E5750;
-	TodoReturn removeCheckpoint(bool);
+	void removeCheckpoint(bool) = mac 0xb7590;
 	void resumeAndRestart(bool) = win 0x2E5160, mac 0xb88d0;
 	void showCompleteText() = win 0x2d8770, mac 0xae690;
-	void startGameDelayed() = win 0x2D7EC0;
+	void startGameDelayed() = win 0x2D7EC0, mac 0xad660;
 	void delayedResetLevel() = win 0x2E4200, mac 0xb4c20;
 	void loadDefaultColors() = win 0x2df1e0;
 	void setupHasCompleted() = win 0x2d71b0, mac 0xa7210;
@@ -6525,7 +6532,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void addObject(GameObject*) = win 0x2DBD30, mac 0xabae0;
 	void fullReset() = win 0x2E40C0, mac 0xb8080;
 	TodoReturn pauseGame(bool) = win 0x2e4fc0, mac 0xb8790;
-	void startGame() = win 0x2d7e80;
+	void startGame() = win 0x2d7e80, mac 0xad330;
 
 	virtual void onEnterTransitionDidFinish() = win 0x2e58e0;
 	virtual void onExit() = win 0x2e5910;
@@ -6745,11 +6752,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn deactivateParticle();
 	TodoReturn destroyFromHitHead();
 	TodoReturn gameEventTriggered(int, int) = win 0x1B1AC0;
-	void loadFromCheckpoint(PlayerCheckpoint*) = win 0x2d4370;
+	void loadFromCheckpoint(PlayerCheckpoint*) = win 0x2d4370, mac 0xb7690;
 	TodoReturn playCompleteEffect(bool, bool) = mac 0x1f2ef0;
 	TodoReturn removeAllParticles();
 	TodoReturn rotateGameplayOnly(bool);
-	TodoReturn tryPlaceCheckpoint() = win 0x2d4730;
+	void tryPlaceCheckpoint() = win 0x2d4730, mac 0x3e4080;
 	TodoReturn updateCollideRight(float, GameObject*) = win 0x2C8FB0;
 	void updateShipRotation(float);
 	TodoReturn handlePlayerCommand(int);
@@ -6785,7 +6792,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void disableCustomGlowColor() {
 		m_hasCustomGlowColor = false;
 	}
-	TodoReturn removePlacedCheckpoint();
+	void removePlacedCheckpoint() = mac 0x3f4650;
 	TodoReturn spiderTestJumpInternal(bool);
 	TodoReturn unrotateGameplayObject(GameObject*);
 	TodoReturn updateLastGroundObject(GameObject*);
@@ -15253,7 +15260,7 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	bool init(GJBaseGameLayer*) = mac 0x4a2e40;
 	~UILayer();
 
-	void onDeleteCheck(cocos2d::CCObject* sender);
+	void onDeleteCheck(cocos2d::CCObject* sender) = mac 0x4a3760;
 	void onCheck(cocos2d::CCObject* sender);
 	void onPause(cocos2d::CCObject* sender) = win 0x3b8d90, mac 0x4a3630;
 
@@ -15261,9 +15268,9 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	void disableMenu() = mac 0x4a3ea0;
 	void refreshDpad() = mac 0x4a3950;
 	TodoReturn editorPlaytest(bool);
-	void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x3b8900;
+	void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x3b8900, mac 0x4a4090;
 	TodoReturn updateDualMode(bool);
-	TodoReturn resetAllButtons() = win 0x3b8f10, mac 0x4a4710;
+	viud resetAllButtons() = win 0x3b8f10, mac 0x4a4710;
 	TodoReturn enableEditorMode();
 	void resetUINodeState() = win 0x3b8810;
 	TodoReturn processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*);
