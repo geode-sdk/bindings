@@ -2187,7 +2187,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void keyBackClicked() = mac 0x5ad280;
 	virtual void customSetup() = mac 0x5ad1c0;
 	virtual TodoReturn enterLayer() = mac 0x5ad210;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*) = mac 0x5ad2c0;
+	virtual void exitLayer(cocos2d::CCObject*) = mac 0x5ad2c0;
 	virtual void showLayer(bool) = win 0x1D27C0, mac 0x5ad300;
 	virtual TodoReturn hideLayer(bool) = mac 0x5ad3f0;
 	virtual TodoReturn layerVisible() = mac 0x5ad4f0;
@@ -2615,8 +2615,8 @@ class LevelUploadDelegate {
 
 [[link(android)]]
 class ListUploadDelegate {
-	virtual TodoReturn listUploadFinished(GJLevelList*) {}
-	virtual TodoReturn listUploadFailed(GJLevelList*, int) {}
+	virtual void listUploadFinished(GJLevelList*) {}
+	virtual void listUploadFailed(GJLevelList*, int) {}
 }
 
 [[link(android)]]
@@ -3458,7 +3458,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getObjectTextureRect() = mac 0x583060;
 	virtual TodoReturn getRealPosition() = mac 0x583300;
 	virtual void setStartPos(cocos2d::CCPoint) = mac 0x571510;
-	virtual TodoReturn updateStartValues() = mac 0x571a70;
+	virtual void updateStartValues() = mac 0x571a70;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = mac 0x37a860;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x588f50;
 	virtual TodoReturn claimParticle() = mac 0x5842e0;
@@ -3934,7 +3934,7 @@ class EffectGameObject : EnhancedGameObject {
 	int m_animationID;
 	PAD = android32 0x8;
 	// property 87
-	bool m_isMultiActivate;
+	bool m_isMultiTriggered;
 	PAD = android32 0x2;
 	// property 93
 	bool m_triggerOnExit;
@@ -5372,7 +5372,7 @@ class RotateGameplayGameObject : EffectGameObject {
 	TodoReturn updateGameplayRotation();
 
 	virtual bool init() = mac 0x1d1270;
-	virtual TodoReturn updateStartValues() = mac 0x1d2800;
+	virtual void updateStartValues() = mac 0x1d2800;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x1d12c0;
 }
 
@@ -6118,7 +6118,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn disableButton(CreateMenuItem*);
 	TodoReturn doCopyObjects(bool) = mac 0x419e0;
 	TodoReturn edgeForObject(int, int);
-	TodoReturn moveGamelayer(cocos2d::CCPoint);
+	void moveGamelayer(cocos2d::CCPoint);
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint);
 	void selectObjects(cocos2d::CCArray*, bool);
 	void setupEditMenu();
@@ -6141,7 +6141,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn playCircleAnim(cocos2d::CCPoint, float, float);
 	TodoReturn redoLastAction(cocos2d::CCObject*) = mac 0xfd30;
 	TodoReturn replaceGroupID(GameObject*, int, int);
-	TodoReturn selectBuildTab(int);
+	void selectBuildTab(int);
 	void toggleFreeMove(cocos2d::CCObject*) = mac 0xfab0;
 	void undoLastAction(cocos2d::CCObject*) = mac 0xfcd0;
 	TodoReturn updateEditMenu();
@@ -6198,8 +6198,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn orderDownCustomItem(cocos2d::CCObject*);
 	TodoReturn positionIsInSnapped(cocos2d::CCPoint);
 	void selectObjectsInRect(cocos2d::CCRect);
-	TodoReturn transformObjectCall(EditCommand);
-	TodoReturn transformObjectCall(cocos2d::CCObject*);
+	void transformObjectCall(EditCommand);
+	void transformObjectCall(cocos2d::CCObject*);
 	TodoReturn updateDeleteButtons();
 	TodoReturn activateScaleControl(cocos2d::CCObject*);
 	TodoReturn centerCameraOnObject(GameObject*);
@@ -6258,10 +6258,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool);
 	void showLiveColorSelectForModeSpecial(int);
 	void showUI(bool) = mac 0x411b0;
-	TodoReturn zoomIn(cocos2d::CCObject*) = mac 0x104a0;
+	void zoomIn(cocos2d::CCObject*) = mac 0x104a0;
 	TodoReturn editHSV();
 	TodoReturn resetUI();
-	TodoReturn zoomOut(cocos2d::CCObject*) = mac 0x104f0;
+	void zoomOut(cocos2d::CCObject*) = mac 0x104f0;
 	TodoReturn editColor();
 	TodoReturn editGroup(cocos2d::CCObject*);
 	TodoReturn selectAll() = mac 0x40a00;
@@ -6519,7 +6519,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn createObjectsFromSetupFinished() = win 0x2dbab0, mac 0xb0a50;
 	TodoReturn playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = win 0x2da920;
 	TodoReturn scene(GJGameLevel*, bool, bool) = win 0x2D68A0, mac 0xa5c80;
-	TodoReturn resume() = mac 0xb8a50;
+	void resume() = mac 0xb8a50;
 	void showHint() = win 0x2e12d0, mac 0xb4ab0;
 	void addCircle(CCCircleWave* cw) = mac 0xb4cc0;
 	void addObject(GameObject*) = win 0x2DBD30, mac 0xabae0;
@@ -7180,7 +7180,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	virtual void keyBackClicked() = mac 0x4f0790;
 	virtual void customSetup() = mac 0x4f06f0;
 	virtual TodoReturn enterLayer() = mac 0x4f0720;
-	virtual TodoReturn exitLayer() = mac 0x4f07c0;
+	virtual void exitLayer() = mac 0x4f07c0;
 	virtual void showLayer(bool) = mac 0x4f0800;
 	virtual TodoReturn hideLayer(bool) = mac 0x4f0810;
 	virtual TodoReturn layerVisible() = mac 0x4f0830;
@@ -8758,8 +8758,8 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	virtual void keyBackClicked() = mac 0x1f9de0;
 	virtual void show() = mac 0x1f9c80;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x1f9dc0;
-	virtual TodoReturn rewardsStatusFinished(int) = mac 0x1f9900;
-	virtual TodoReturn rewardsStatusFailed() = mac 0x1f9b90;
+	virtual void rewardsStatusFinished(int) = mac 0x1f9900;
+	virtual void rewardsStatusFailed() = mac 0x1f9b90;
 
 	cocos2d::CCLabelBMFont* m_leftLabel;
 	cocos2d::CCLabelBMFont* m_rightLabel;
@@ -9589,7 +9589,7 @@ class GJChestSprite : cocos2d::CCSprite {
 	bool init(int);
 	~GJChestSprite();
 
-	TodoReturn switchToState(ChestSpriteState, bool) = mac 0x1fc3d0;
+	void switchToState(ChestSpriteState, bool) = mac 0x1fc3d0;
 
 	virtual void setOpacity(unsigned char) = mac 0x1fda20;
 	virtual void setColor(cocos2d::_ccColor3B const&) = mac 0x1fd930;
@@ -9734,7 +9734,7 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 
 	virtual bool init() = mac 0x5c3e80;
 	virtual void customSetup() = win 0x220320, mac 0x5c4150;
-	virtual TodoReturn exitLayer(cocos2d::CCObject*) = win 0x2202B0, mac 0x5c4120;
+	virtual void exitLayer(cocos2d::CCObject*) = win 0x2202B0, mac 0x5c4120;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x5c46e0;
 	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = mac 0x5c47c0;
 	virtual TodoReturn getSelectedCellIdx() = mac 0x5c4820;
@@ -11394,8 +11394,8 @@ class UploadListPopup : FLAlertLayer, ListUploadDelegate {
 
 	virtual void keyBackClicked() = mac 0x342eb0;
 	virtual void show() = mac 0x342e40;
-	virtual TodoReturn listUploadFinished(GJLevelList*) = mac 0x342960;
-	virtual TodoReturn listUploadFailed(GJLevelList*, int) = mac 0x342b80;
+	virtual void listUploadFinished(GJLevelList*) = mac 0x342960;
+	virtual void listUploadFailed(GJLevelList*, int) = mac 0x342b80;
 }
 
 [[link(android)]]
@@ -11665,8 +11665,8 @@ class GJMoreGamesLayer : GJDropDownLayer {
 
 [[link(android)]]
 class GJRewardDelegate {
-	virtual TodoReturn rewardsStatusFinished(int);
-	virtual TodoReturn rewardsStatusFailed();
+	virtual void rewardsStatusFinished(int);
+	virtual void rewardsStatusFailed();
 }
 
 [[link(android)]]
