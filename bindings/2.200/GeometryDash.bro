@@ -15270,7 +15270,7 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	TodoReturn editorPlaytest(bool);
 	void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x3b8900, mac 0x4a4090;
 	TodoReturn updateDualMode(bool);
-	viud resetAllButtons() = win 0x3b8f10, mac 0x4a4710;
+	void resetAllButtons() = win 0x3b8f10, mac 0x4a4710;
 	TodoReturn enableEditorMode();
 	void resetUINodeState() = win 0x3b8810;
 	TodoReturn processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*);
