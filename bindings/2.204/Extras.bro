@@ -10,19 +10,29 @@ class FMODSound {
 }
 
 class AdvancedFollowInstance {
-    
+	GameObject* m_gameObject;
+	byte pad_1[24];
 }
 
 class SFXTriggerInstance {
-
+	PAD = win 0x10;
 }
 
 class EventTriggerInstance {
-
+	byte pad_1[16];
+	gd::vector<int> m_unkVecInt;
 }
 
 class SongChannelState {
-    
+	PAD = win 0x24;
+}
+
+class SongTriggerState {
+	PAD = win 0x10;
+}
+
+class SFXTriggerState {
+	PAD = win 0xa0;
 }
 
 class ChanceObject {
@@ -30,11 +40,11 @@ class ChanceObject {
 }
 
 class GameObjectPhysics {
-
+	PAD = win 0x28;
 }
 
 class DynamicObjectAction {
-
+	PAD = win 0x3c;
 }
 
 class GJTransformState {
@@ -127,4 +137,8 @@ class TimerItem_padded {
 	byte pad_1[60];
 	gd::vector<int> m_unkVecInt;
 	byte pad_2[4];
+}
+
+class EnterEffectAnimValue {
+	byte pad_1[32];
 }
