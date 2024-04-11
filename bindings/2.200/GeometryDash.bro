@@ -6118,7 +6118,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn disableButton(CreateMenuItem*);
 	TodoReturn doCopyObjects(bool) = mac 0x419e0;
 	TodoReturn edgeForObject(int, int);
-	TodoReturn moveGamelayer(cocos2d::CCPoint);
+	void moveGamelayer(cocos2d::CCPoint);
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint);
 	void selectObjects(cocos2d::CCArray*, bool);
 	void setupEditMenu();
@@ -6141,7 +6141,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn playCircleAnim(cocos2d::CCPoint, float, float);
 	TodoReturn redoLastAction(cocos2d::CCObject*) = mac 0xfd30;
 	TodoReturn replaceGroupID(GameObject*, int, int);
-	TodoReturn selectBuildTab(int);
+	void selectBuildTab(int);
 	void toggleFreeMove(cocos2d::CCObject*) = mac 0xfab0;
 	void undoLastAction(cocos2d::CCObject*) = mac 0xfcd0;
 	TodoReturn updateEditMenu();
@@ -6198,8 +6198,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn orderDownCustomItem(cocos2d::CCObject*);
 	TodoReturn positionIsInSnapped(cocos2d::CCPoint);
 	void selectObjectsInRect(cocos2d::CCRect);
-	TodoReturn transformObjectCall(EditCommand);
-	TodoReturn transformObjectCall(cocos2d::CCObject*);
+	void transformObjectCall(EditCommand);
+	void transformObjectCall(cocos2d::CCObject*);
 	TodoReturn updateDeleteButtons();
 	TodoReturn activateScaleControl(cocos2d::CCObject*);
 	TodoReturn centerCameraOnObject(GameObject*);
@@ -6258,10 +6258,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool);
 	void showLiveColorSelectForModeSpecial(int);
 	void showUI(bool) = mac 0x411b0;
-	TodoReturn zoomIn(cocos2d::CCObject*) = mac 0x104a0;
+	void zoomIn(cocos2d::CCObject*) = mac 0x104a0;
 	TodoReturn editHSV();
 	TodoReturn resetUI();
-	TodoReturn zoomOut(cocos2d::CCObject*) = mac 0x104f0;
+	void zoomOut(cocos2d::CCObject*) = mac 0x104f0;
 	TodoReturn editColor();
 	TodoReturn editGroup(cocos2d::CCObject*);
 	TodoReturn selectAll() = mac 0x40a00;
