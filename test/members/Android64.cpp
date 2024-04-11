@@ -121,7 +121,7 @@ GEODE_MEMBER_CHECK(GameObject, m_isHighDetail, 0x4db);
 GEODE_MEMBER_CHECK(GameObject, m_isPassable, 0x4fd);
 GEODE_MEMBER_CHECK(GameObject, m_property155, 0x518);
 
-GEODE_MEMBER_CHECK(EffectGameObject, m_isMultiActivate, 0x670);
+GEODE_MEMBER_CHECK(EffectGameObject, m_isMultiTriggered, 0x670);
 GEODE_MEMBER_CHECK(EffectGameObject, m_isReverse, 0x6e4);
 GEODE_MEMBER_CHECK(EffectGameObject, m_objectLabel, 0x710);
 
