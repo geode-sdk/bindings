@@ -3101,6 +3101,7 @@ class EffectGameObject : EnhancedGameObject {
 	virtual void setObjectLabel(cocos2d::CCLabelBMFont*);
 	virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*);
 
+	bool m_unknownBool;
 	cocos2d::ccColor3B m_triggerTargetColor;
 	// property 10
 	float m_duration;
@@ -3228,7 +3229,7 @@ class EffectGameObject : EnhancedGameObject {
 	int m_animationID;
 	PAD = android32 0x8, win 0x8;
 	// property 87
-	bool m_isMultiActivate;
+	bool m_isMultiTriggered;
 	PAD = android32 0x2, win 0x2;
 	// property 93
 	bool m_triggerOnExit;
@@ -4890,7 +4891,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn getBoxOffset();
 	TodoReturn getColorFrame(gd::string) = win 0x132f00;
 	TodoReturn getColorIndex();
-	TodoReturn getColorKey(bool, bool) = win 0x13df90;
+	gd::string getColorKey(bool, bool) = win 0x13df90;
 	TodoReturn getCustomZLayer();
 	TodoReturn getGlowFrame(gd::string);
 	TodoReturn getGroupDisabled();
@@ -5036,8 +5037,8 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getObjectRect2(float, float);
 	virtual TodoReturn getObjectTextureRect();
 	virtual cocos2d::CCPoint getRealPosition();
-	virtual void setStartPos(cocos2d::CCPoint);
-	virtual TodoReturn updateStartValues();
+	virtual void setStartPos(cocos2d::CCPoint) = win 0x1330e0;
+	virtual void updateStartValues() = win 0x1334d0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x13f9a0;
 	virtual TodoReturn claimParticle();
@@ -5146,7 +5147,12 @@ class GameObject : CCSpritePlus {
 	// property 372
 	bool m_hasNoAudioScale;
 	bool m_unk34a;
-	PAD = android32 0x29, win 0x29, android64 0x29;
+	PAD = android32 0x11, win 0x11, android64 0x11;
+
+	float m_currentScaleX;
+	float m_currentScaleY;
+
+	PAD = android32 0x10, win 0x10, android64 0x10;
 
 	// property 343
 	short m_enterChannel;
@@ -11945,7 +11951,7 @@ class RotateGameplayGameObject : EffectGameObject {
 	TodoReturn updateGameplayRotation();
 
 	virtual bool init() = win 0x3b9130;
-	virtual TodoReturn updateStartValues();
+	virtual void updateStartValues();
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -15183,7 +15189,7 @@ class UILayer : cocos2d::CCLayerColor {
 	TodoReturn editorPlaytest(bool);
 	void enableEditorMode() = win 0x3bf420;
 	TodoReturn enableMenu();
-	TodoReturn handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x3bf480;
+	void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x3bf480;
 	bool init(GJBaseGameLayer*) = win 0x3bec10;
 	bool isJumpButtonPressed(bool);
 	void onCheck(cocos2d::CCObject* sender) = win 0x3bfa10;

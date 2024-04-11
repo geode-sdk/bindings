@@ -3458,7 +3458,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getObjectTextureRect() = mac 0x583060;
 	virtual TodoReturn getRealPosition() = mac 0x583300;
 	virtual void setStartPos(cocos2d::CCPoint) = mac 0x571510;
-	virtual TodoReturn updateStartValues() = mac 0x571a70;
+	virtual void updateStartValues() = mac 0x571a70;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = mac 0x37a860;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x588f50;
 	virtual TodoReturn claimParticle() = mac 0x5842e0;
@@ -5372,7 +5372,7 @@ class RotateGameplayGameObject : EffectGameObject {
 	TodoReturn updateGameplayRotation();
 
 	virtual bool init() = mac 0x1d1270;
-	virtual TodoReturn updateStartValues() = mac 0x1d2800;
+	virtual void updateStartValues() = mac 0x1d2800;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x1d12c0;
 }
 

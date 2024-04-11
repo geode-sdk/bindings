@@ -3053,6 +3053,7 @@ class EffectGameObject : EnhancedGameObject {
 	virtual void setObjectLabel(cocos2d::CCLabelBMFont*);
 	virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*);
 
+	bool m_unknownBool;
 	cocos2d::ccColor3B m_triggerTargetColor;
 	// property 10
 	float m_duration;
@@ -3180,7 +3181,7 @@ class EffectGameObject : EnhancedGameObject {
 	int m_animationID;
 	PAD = android32 0x8, win 0x8, android64 0x8;
 	// property 87
-	bool m_isMultiActivate;
+	bool m_isMultiTriggered;
 	PAD = android32 0x2, win 0x2, android64 0x2;
 	// property 93
 	bool m_triggerOnExit;
@@ -4851,7 +4852,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn getBoxOffset();
 	TodoReturn getColorFrame(gd::string);
 	TodoReturn getColorIndex();
-	TodoReturn getColorKey(bool, bool);
+	gd::string getColorKey(bool, bool);
 	TodoReturn getCustomZLayer();
 	TodoReturn getGlowFrame(gd::string);
 	TodoReturn getGroupDisabled();
@@ -4993,7 +4994,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getObjectTextureRect();
 	virtual cocos2d::CCPoint getRealPosition();
 	virtual void setStartPos(cocos2d::CCPoint);
-	virtual TodoReturn updateStartValues();
+	virtual void updateStartValues();
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 	virtual TodoReturn claimParticle();
@@ -5099,7 +5100,12 @@ class GameObject : CCSpritePlus {
 
 	// property 372
 	bool m_hasNoAudioScale;
-	PAD = android32 0x2a, win 0x2a, android64 0x2a;
+	PAD = android32 0x12, win 0x12, android64 0x12;
+
+	float m_currentScaleX;
+	float m_currentScaleY;
+
+	PAD = android32 0x10, win 0x10, android64 0x10;
 
 	// property 343
 	short m_enterChannel;
@@ -11816,7 +11822,7 @@ class RotateGameplayGameObject : EffectGameObject {
 	TodoReturn updateGameplayRotation();
 
 	virtual bool init();
-	virtual TodoReturn updateStartValues();
+	virtual void updateStartValues();
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
 }
@@ -15062,7 +15068,7 @@ class UILayer : cocos2d::CCLayerColor {
 	void editorPlaytest(bool);
 	void enableEditorMode();
 	void enableMenu();
-	TodoReturn handleKeypress(cocos2d::enumKeyCodes, bool);
+	void handleKeypress(cocos2d::enumKeyCodes, bool);
 	bool init(GJBaseGameLayer*);
 	bool isJumpButtonPressed(bool);
 	void onCheck(cocos2d::CCObject* sender);
