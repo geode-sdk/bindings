@@ -1188,7 +1188,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getOptimizedGroup(int) = win 0x1a4f70;
 	TodoReturn getPlayerButtonID(int, bool);
 	TodoReturn getPlayTimerMilli();
-	TodoReturn getCameraEdgeValue(int);
+	TodoReturn getCameraEdgeValue(int) = mac 0x13bf90;
 	TodoReturn getMoveTargetDelta(EffectGameObject*, bool);
 	TodoReturn getPortalTargetPos(TeleportPortalObject*, GameObject*, PlayerObject*);
 	TodoReturn getEnterEasingValue(float, int, float, int);
@@ -1209,7 +1209,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void setStartPosObject(StartPosObject*) = win 0x195FC0;
 
 	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
-	TodoReturn applyShake(cocos2d::CCPoint&) = win 0x1BD670;
+	TodoReturn applyShake(cocos2d::CCPoint&) = win 0x1BD670; //inlined on mac :(
 	TodoReturn atlasValue(int);
 	TodoReturn bumpPlayer(PlayerObject*, EffectGameObject*) = win 0x19a6b0;
 	bool isFlipping();
@@ -3294,7 +3294,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn removeGlow() = mac 0x56c6f0;
 	TodoReturn addRotation(float);
 	TodoReturn addRotation(float, float);
-	TodoReturn commonSetup() = win 0x12f1a0, mac 0x569f20;
+	void commonSetup() = win 0x12f1a0, mac 0x569f20;
 	TodoReturn ignoreEnter();
 	TodoReturn resetGroups();
 	TodoReturn shouldLockX();
@@ -6605,7 +6605,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x2BD080, mac 0x3dbd30;
 	~PlayerObject();
 
-	TodoReturn getYVelocity();
+	float getYVelocity() = mac 0x3de3e0;
 	TodoReturn getActiveMode();
 	TodoReturn getOldPosition(float);
 	TodoReturn getSecondColor();
