@@ -6652,7 +6652,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	// /* unverified signature */
 	bool isInBasicMode();
 	TodoReturn levelFlipping() = win 0x2CEF50;
-	TodoReturn levelWillFlip();
+	TodoReturn levelWillFlip() = mac 0x3e4780;
 	TodoReturn modeDidChange();
 	void postCollision(float) = win 0x2C2D50, mac 0x3e5a90;
 	TodoReturn propellPlayer(float, bool, int) = win 0x2d2700;
@@ -6689,7 +6689,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateRotation(float) = win 0x2C64E0;
 	TodoReturn updateRotation(float, float);
 	TodoReturn addAllParticles() = win 0x2be6d0;
-	TodoReturn doReversePlayer(bool) = win 0x2CC8F0;
+	void doReversePlayer(bool) = win 0x2CC8F0, mac 0x3e3760;
 	TodoReturn hardFlipGravity();
 	TodoReturn hitGroundNoJump(GameObject*, bool) = win 0x2CF730;
 	TodoReturn playBurstEffect();
@@ -6755,7 +6755,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void loadFromCheckpoint(PlayerCheckpoint*) = win 0x2d4370, mac 0xb7690;
 	TodoReturn playCompleteEffect(bool, bool) = mac 0x1f2ef0;
 	TodoReturn removeAllParticles();
-	TodoReturn rotateGameplayOnly(bool);
+	void rotateGameplayOnly(bool) = mac 0x3f6a80;
 	void tryPlaceCheckpoint() = win 0x2d4730, mac 0x3e4080;
 	TodoReturn updateCollideRight(float, GameObject*) = win 0x2C8FB0;
 	void updateShipRotation(float);
