@@ -2557,10 +2557,7 @@ class PlatformToolbox {
 	static TodoReturn getDeviceRefreshRate();
 	/* unverified signature */
 	static bool isSignedInGooglePlay();
-	static bool isControllerConnected() {
-		// TODO: mat
-		return false;
-	}
+	static bool isControllerConnected() = mac 0x4a0010;
 	static TodoReturn reportLoadingFinished();
 	static TodoReturn reportAchievementWithID(char const*, int);
 	static TodoReturn downloadAndSavePromoImage(gd::string, gd::string);
@@ -6386,7 +6383,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 [[link(android)]]
 class CCCircleWave : cocos2d::CCNode {
-	static CCCircleWave* create(float, float, float, bool);
+	static CCCircleWave* create(float, float, float, bool) = mac 0x1693e0;
 	static CCCircleWave* create(float, float, float, bool, bool) = win 0x23220, mac 0x1693f0;
 
 	bool init(float, float, float, bool, bool) = win 0x232F0, mac 0x1694d0;
@@ -6405,9 +6402,9 @@ class CCCircleWave : cocos2d::CCNode {
 
 [[link(android)]]
 class CurrencyRewardLayer : cocos2d::CCLayer {
-	static CurrencyRewardLayer* create(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x71780;
+	static CurrencyRewardLayer* create(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x71780, mac 0x767320;
 
-	bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x71870;
+	bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x71870, mac 0x767400;
 	~CurrencyRewardLayer();
 
 	TodoReturn pulseSprite(cocos2d::CCSprite*);
@@ -7449,18 +7446,18 @@ class EndLevelLayer : GJDropDownLayer {
 	void onEveryplay(cocos2d::CCObject* sender);
 	void onLevelLeaderboard(cocos2d::CCObject* sender);
 	void onEdit(cocos2d::CCObject* sender);
-	void onMenu(cocos2d::CCObject* sender) = win 0xe81d0;
+	void onMenu(cocos2d::CCObject* sender) = win 0xe81d0, mac 0x49d2e0;
 	void onReplay(cocos2d::CCObject* sender);
 
-	void playEndEffect();
+	void playEndEffect() = mac 0x49e4c0;
 	TodoReturn tryShowBanner(float);
-	TodoReturn playCoinEffect(float);
-	TodoReturn playStarEffect(float);
-	TodoReturn coinEnterFinished(cocos2d::CCPoint);
-	TodoReturn playDiamondEffect(float);
-	TodoReturn starEnterFinished();
+	void playCoinEffect(float) = mac 0x49da20;
+	void playStarEffect(float) = mac 0x49d6a0;
+	void coinEnterFinished(cocos2d::CCPoint);
+	void playDiamondEffect(float) = mac 0x49df20;
+	void starEnterFinished() = mac 0x49e390;
 	TodoReturn coinEnterFinishedO(cocos2d::CCObject*);
-	TodoReturn playCurrencyEffect(float);
+	void playCurrencyEffect(float) = mac 0x49dbc0;
 	TodoReturn diamondEnterFinished();
 	TodoReturn currencyEnterFinished();
 	void goEdit();
