@@ -907,18 +907,6 @@ class cocos2d::CCEaseBackInOut {
 }
 
 [[link(win, android)]]
-class cocos2d::CCEaseBackOut {
-	static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*) = mac 0x4ef300;
-
-	// CCEaseBackOut(cocos2d::CCEaseBackOut const&);
-	// CCEaseBackOut();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
 class cocos2d::CCEaseBounce {
 	static cocos2d::CCEaseBounce* create(cocos2d::CCActionInterval*);
 
