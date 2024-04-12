@@ -26,65 +26,6 @@ class cocos2d::CCTintTo {
 }
 
 [[link(win, android)]]
-class cocos2d::CCTouchDispatcher {
-	bool init();
-
-	int getTargetPrio() const;
-
-	void setDispatchEvents(bool);
-	void setPriority(int, cocos2d::CCTouchDelegate*);
-
-	// CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
-	// CCTouchDispatcher();
-	void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
-	void addStandardDelegate(cocos2d::CCTouchDelegate*, int);
-	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
-	void decrementForcePrio(int);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*);
-	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*);
-	void forceRemoveAllDelegates();
-	void forceRemoveDelegate(cocos2d::CCTouchDelegate*);
-	void incrementForcePrio(int);
-	bool isDispatchEvents();
-	bool isUsingForcePrio();
-	void rearrangeHandlers(cocos2d::CCArray*);
-	void registerForcePrio(cocos2d::CCObject*, int);
-	void removeAllDelegates();
-	void removeDelegate(cocos2d::CCTouchDelegate*);
-	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
-	void unregisterForcePrio(cocos2d::CCObject*);
-
-	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*);
-}
-
-[[link(win, android)]]
-class cocos2d::CCMenuItemSprite {
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*);
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = mac 0x9999999;
-
-	bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-
-	// CCMenuItemSprite(cocos2d::CCMenuItemSprite const&);
-	// CCMenuItemSprite();
-
-	virtual void selected();
-	virtual void unselected();
-	virtual void setEnabled(bool);
-	virtual cocos2d::CCNode* getNormalImage();
-	virtual void setNormalImage(cocos2d::CCNode*);
-	virtual cocos2d::CCNode* getSelectedImage();
-	virtual void setSelectedImage(cocos2d::CCNode*);
-	virtual cocos2d::CCNode* getDisabledImage();
-	virtual void setDisabledImage(cocos2d::CCNode*);
-	virtual void updateImagesVisibility();
-}
-
-[[link(win, android)]]
 class cocos2d::CCEaseOut {
 	static cocos2d::CCEaseOut* create(cocos2d::CCActionInterval*, float) = mac 0x4ecb10;
 }
@@ -1892,7 +1833,7 @@ class cocos2d::CCSequence {
 class cocos2d::CCMenuItemSprite {
 	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*);
 	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = mac 0x9999999;
 
 	bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = mac 0x39e2b0;
 
