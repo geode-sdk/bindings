@@ -908,7 +908,7 @@ class cocos2d::CCEaseBackInOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBackOut {
-	static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*);
+	static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*) = mac 0x4ef300;
 
 	// CCEaseBackOut(cocos2d::CCEaseBackOut const&);
 	// CCEaseBackOut();
@@ -956,7 +956,7 @@ class cocos2d::CCEaseBounceInOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBounceOut {
-	static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*);
+	static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*) = mac 0x4eeb50;
 
 	// CCEaseBounceOut(cocos2d::CCEaseBounceOut const&);
 	// CCEaseBounceOut();
@@ -1073,7 +1073,7 @@ class cocos2d::CCEaseIn {
 
 [[link(win, android)]]
 class cocos2d::CCEaseInOut {
-	static cocos2d::CCEaseInOut* create(cocos2d::CCActionInterval*, float);
+	static cocos2d::CCEaseInOut* create(cocos2d::CCActionInterval*, float) = mac 0x4ecd30;
 
 	// CCEaseInOut(cocos2d::CCEaseInOut const&);
 	// CCEaseInOut();
