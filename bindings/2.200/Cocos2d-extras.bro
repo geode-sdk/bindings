@@ -1072,18 +1072,6 @@ class cocos2d::CCEaseIn {
 }
 
 [[link(win, android)]]
-class cocos2d::CCEaseInOut {
-	static cocos2d::CCEaseInOut* create(cocos2d::CCActionInterval*, float) = mac 0x4ecd30;
-
-	// CCEaseInOut(cocos2d::CCEaseInOut const&);
-	// CCEaseInOut();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
 class cocos2d::CCEaseOut {
 	static cocos2d::CCEaseOut* create(cocos2d::CCActionInterval*, float);
 
@@ -1971,29 +1959,6 @@ class cocos2d::CCMenuItemLabel {
 	virtual void setDisabledColor(cocos2d::_ccColor3B const&);
 	virtual cocos2d::CCNode* getLabel();
 	virtual void setLabel(cocos2d::CCNode*);
-}
-
-[[link(win, android)]]
-class cocos2d::CCMenuItemSprite {
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*);
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-	static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-
-	bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-
-	// CCMenuItemSprite(cocos2d::CCMenuItemSprite const&);
-	// CCMenuItemSprite();
-
-	virtual void selected();
-	virtual void unselected();
-	virtual void setEnabled(bool);
-	virtual cocos2d::CCNode* getNormalImage();
-	virtual void setNormalImage(cocos2d::CCNode*);
-	virtual cocos2d::CCNode* getSelectedImage();
-	virtual void setSelectedImage(cocos2d::CCNode*);
-	virtual cocos2d::CCNode* getDisabledImage();
-	virtual void setDisabledImage(cocos2d::CCNode*);
-	virtual void updateImagesVisibility();
 }
 
 [[link(win, android)]]
@@ -3909,20 +3874,6 @@ class cocos2d::CCTintBy {
 }
 
 [[link(win, android)]]
-class cocos2d::CCTintTo {
-	static cocos2d::CCTintTo* create(float, unsigned char, unsigned char, unsigned char) = mac 0x399290;
-
-	bool initWithDuration(float, unsigned char, unsigned char, unsigned char);
-
-	// CCTintTo(cocos2d::CCTintTo const&);
-	// CCTintTo();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual void startWithTarget(cocos2d::CCNode*);
-}
-
-[[link(win, android)]]
 class cocos2d::CCToggleVisibility {
 	static cocos2d::CCToggleVisibility* create();
 
@@ -3965,42 +3916,6 @@ class cocos2d::CCTouchDelegate {
 	virtual void ccTouchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*);
 	virtual void setPreviousPriority(int);
 	virtual int getPreviousPriority();
-}
-
-[[link(win, android)]]
-class cocos2d::CCTouchDispatcher {
-	bool init();
-
-	int getTargetPrio() const;
-
-	void setDispatchEvents(bool);
-	void setPriority(int, cocos2d::CCTouchDelegate*);
-
-	// CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
-	// CCTouchDispatcher();
-	void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
-	void addStandardDelegate(cocos2d::CCTouchDelegate*, int);
-	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool);
-	void decrementForcePrio(int);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*);
-	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*);
-	void forceRemoveAllDelegates();
-	void forceRemoveDelegate(cocos2d::CCTouchDelegate*);
-	void incrementForcePrio(int);
-	bool isDispatchEvents();
-	bool isUsingForcePrio();
-	void rearrangeHandlers(cocos2d::CCArray*);
-	void registerForcePrio(cocos2d::CCObject*, int);
-	void removeAllDelegates();
-	void removeDelegate(cocos2d::CCTouchDelegate*);
-	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
-	void unregisterForcePrio(cocos2d::CCObject*);
-
-	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*);
-	virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*);
 }
 
 [[link(win, android)]]
