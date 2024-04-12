@@ -1187,7 +1187,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getFollowSpeedVal(GameObject*, int, int, float, float);
 	TodoReturn getOptimizedGroup(int) = win 0x1a4f70;
 	TodoReturn getPlayerButtonID(int, bool);
-	TodoReturn getPlayTimerMilli();
+	TodoReturn getPlayTimerMilli(); // inlined
 	TodoReturn getCameraEdgeValue(int) = mac 0x13bf90;
 	TodoReturn getMoveTargetDelta(EffectGameObject*, bool);
 	TodoReturn getPortalTargetPos(TeleportPortalObject*, GameObject*, PlayerObject*);
@@ -1349,7 +1349,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn activateSFXTrigger(SFXTriggerGameObject*) = win 0x1bfff0, mac 0x146380;
 	TodoReturn animateInGroundNew(bool, float, bool) = mac 0x10fda0;
 	TodoReturn applyLevelSettings(GameObject*);
-	TodoReturn clearPickedUpItems();
+	TodoReturn clearPickedUpItems(); // inlined
 	void createMiddleground(int);
 	TodoReturn gameEventTriggered(GJGameEvent, int, int) = win 0x1b1ac0, mac 0x10d070;
 	TodoReturn generateSpawnRemap() = mac 0x1023a0;
@@ -1384,7 +1384,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processStateObjects();
 	TodoReturn registerStateObject(EffectGameObject*);
 	TodoReturn resetGradientLayers();
-	TodoReturn resetLevelVariables() = mac 0x144860, win 0x1B9950;
+	void resetLevelVariables() = mac 0x144860, win 0x1B9950;
 	TodoReturn restoreAllUIObjects();
 	TodoReturn spawnGroupTriggered(int, float, bool, gd::vector<int> const&, int, int);
 	TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
@@ -1394,7 +1394,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateGroundShadows();
 	TodoReturn updateKeyframeOrder(int);
 	TodoReturn updateLayerCapacity(gd::string) = mac 0x100360;
-	TodoReturn updateSpecialLabels() = win 0x1B8A0E;
+	void updateSpecialLabels() = win 0x1B8A0E, mac 0x142d10;
 	TodoReturn visitWithColorFlash();
 	TodoReturn activateEventTrigger(EventLinkTrigger*, gd::vector<int> const&);
 	TodoReturn activateResetTrigger(EffectGameObject*);
@@ -1422,8 +1422,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn triggerRotateCommand(EnhancedTriggerObject*);
 	bool triggerShaderCommand(ShaderGameObject*);
 	void ungroupStickyObjects(cocos2d::CCArray*) = mac 0x12a7a0;
-	TodoReturn updateGradientLayers() = win 0x1A1750, mac 0x125fd0;
-	TodoReturn updatePlatformerTime() = win 0x1B8BE0;
+	void updateGradientLayers() = win 0x1A1750, mac 0x125fd0;
+	void updatePlatformerTime() = win 0x1B8BE0, mac 0x143350;
 	TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
 	void assignNewStickyGroups(cocos2d::CCArray*);
 	void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = mac 0x111970;
@@ -1457,7 +1457,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processRotationActions();
 	void removeFromGroupParents(GameObject*);
 	TodoReturn resetSongTriggerValues();
-	TodoReturn resetSpawnChannelIndex() = win 0x1C3A00;
+	void resetSpawnChannelIndex() = win 0x1C3A00, mac 0x145ba0;
 	TodoReturn togglePlayerVisibility(bool);
 	TodoReturn togglePlayerVisibility(bool, bool);
 	TodoReturn triggerGradientCommand(GradientTriggerObject*);
@@ -1474,7 +1474,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn resetMoveOptimizedValue();
 	TodoReturn resetStoppedAreaObjects();
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
-	TodoReturn togglePlayerStreakBlend(bool);
+	TodoReturn togglePlayerStreakBlend(bool); // inlined
 	TodoReturn triggerTransformCommand(TransformTriggerGameObject*);
 	TodoReturn updateActiveEnterEffect(EnterEffectObject*);
 	TodoReturn updateExtendedCollision(GameObject*, bool);
@@ -1828,13 +1828,13 @@ class GameManager : GManager {
 	~GameManager();
 
 	TodoReturn addToGJLog(cocos2d::CCString*);
-	TodoReturn clearGJLog();
-	TodoReturn joinReddit() = mac 0x35e270;
+	void clearGJLog() = mac 0x363780;
+	void joinReddit() = mac 0x35e270;
 	int keyForIcon(int iconIdx, int iconEnum) {
 		return m_keyStartForIcon->at(iconEnum) + iconIdx - 1;
 	}
 	void loadGround(int) = mac 0x360e10;
-	TodoReturn printGJLog();
+	void printGJLog() = mac 0x363770; // how does this exist
 	void reloadMenu() = win 0x12c510;
 	TodoReturn reorderKey(int, bool);
 	TodoReturn subYouTube() = mac 0x35e120;
@@ -2983,7 +2983,7 @@ class SliderTouchLogic : cocos2d::CCMenu {
 class GameToolbox {
 	static TodoReturn bounceTime(float);
 	static TodoReturn easeToText(int);
-	static TodoReturn fast_srand(unsigned long) = mac 0x4ccc30;
+	static void fast_srand(unsigned long) = mac 0x4ccc30;
 	static TodoReturn gen_random(int);
 	static TodoReturn getResponse(cocos2d::extension::CCHttpResponse*) = mac 0x4c9fa0;
 	static TodoReturn intToString(int) = win 0x45060, mac 0x4d2190;
@@ -2996,7 +2996,7 @@ class GameToolbox {
 	static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = mac 0x4cae40;
 	static TodoReturn fast_rand_0_1();
 	static TodoReturn getEasedValue(float, int, float);
-	static TodoReturn getfast_srand();
+	static int getfast_srand();
 	static gd::string getTimeString(int) = mac 0x4cc860;
 	static TodoReturn hsvFromString(gd::string const&, char const*);
 	static TodoReturn postClipVisit();
@@ -4172,7 +4172,7 @@ class LabelGameObject : EffectGameObject {
 	TodoReturn createLabel(gd::string);
 	TodoReturn removeLabel();
 	TodoReturn updateLabel(float);
-	TodoReturn updateLabel(gd::string);
+	void updateLabel(gd::string) = mac 0x1a8d10;
 	TodoReturn queueUpdateLabel(gd::string);
 	TodoReturn unlockLabelColor();
 	TodoReturn updateLabelAlign(int);
@@ -6746,7 +6746,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerFrame(int) = win 0x2D1220, mac 0x3f85c0;
 	void updatePlayerScale() = win 0x2d3110;
 	TodoReturn updateStaticForce(float, float, bool) = win 0x2D2A00;
-	TodoReturn updateStreakBlend(bool);
+	void updateStreakBlend(bool) = mac 0x3de350;
 	void collidedWithObject(float, GameObject*) = mac 0x3ee020;
 	void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = mac 0x3e7850;
 	TodoReturn deactivateParticle();
@@ -9621,20 +9621,20 @@ class GJGroundLayer : cocos2d::CCLayer {
 
 	TodoReturn createLine(int);
 	TodoReturn hideShadows();
-	TodoReturn scaleGround(float);
-	TodoReturn updateShadows();
+	void scaleGround(float) = mac 0x5b0190;
+	void updateShadows() = mac 0x5b0420;
 	TodoReturn fadeInFinished();
-	TodoReturn positionGround(float) = mac 0x5b06f0;
-	TodoReturn toggleVisible01(bool) = mac 0x5b0040;
-	TodoReturn toggleVisible02(bool) = mac 0x5b0080;
+	void positionGround(float) = mac 0x5b06f0;
+	void toggleVisible01(bool) = mac 0x5b0040;
+	void toggleVisible02(bool) = mac 0x5b0080;
 	TodoReturn updateGroundPos(cocos2d::CCPoint);
-	TodoReturn updateLineBlend(bool) = mac 0x5b04b0;
+	void updateLineBlend(bool) = mac 0x5b04b0;
 	TodoReturn deactivateGround();
-	TodoReturn updateShadowXPos(float, float);
+	void updateShadowXPos(float, float) = mac 0x5b05f0;
 	void loadGroundSprites(int, bool);
 	void updateGroundWidth(bool);
-	TodoReturn updateGround01Color(cocos2d::_ccColor3B) = win 0x1F3220, mac 0x5affc0;
-	TodoReturn updateGround02Color(cocos2d::_ccColor3B) = win 0x1F3280, mac 0x5b0110;
+	void updateGround01Color(cocos2d::_ccColor3B) = win 0x1F3220, mac 0x5affc0;
+	void updateGround02Color(cocos2d::_ccColor3B) = win 0x1F3280, mac 0x5b0110;
 
 	virtual void draw() = mac 0x5b06e0;
 	virtual void showGround() = mac 0x5b0500;
@@ -10823,7 +10823,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn preloadEffect(gd::string) = win 0x37780;
 	TodoReturn updateChannel(int, AudioTargetType, AudioModType, float, float) = win 0x36f70;
 	TodoReturn channelStopped(FMOD::Channel*, bool);
-	TodoReturn enableMetering();
+	void enableMetering();
 	TodoReturn getActiveMusic(int) = win 0x3a6b0;
 	TodoReturn getMusicTimeMS(int);
 	/* unverified signature */
@@ -10843,8 +10843,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void stopAllEffects() = mac 0x3bc450, win 0x37D00;
 	TodoReturn stopAndGetFade(FMOD::Channel*);
 	TodoReturn swapMusicIndex(int, int);
-	TodoReturn updateMetering();
-	TodoReturn disableMetering() = mac 0x3c1a40;
+	void updateMetering();
+	void disableMetering() = mac 0x3c1a40;
 	TodoReturn getChannelGroup(int, bool) = win 0x351d0;
 	TodoReturn pauseAllEffects();
 	TodoReturn playEffectAsync(gd::string);
