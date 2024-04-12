@@ -1268,8 +1268,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn checkCollision(int, int);
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType) = win 0x1bed60;
 	TodoReturn gravBumpPlayer(PlayerObject*, EffectGameObject*) = win 0x19a7b0;
-	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::_ccColor3B);
-	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor3B, float, float, int, bool, float);
+	void lightningFlash(cocos2d::CCPoint, cocos2d::_ccColor3B) = mac 0x14f370;
+	void lightningFlash(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor3B, float, float, int, bool, float) = mac 10ce20;
 	TodoReturn removeKeyframe(KeyframeGameObject*);
 	TodoReturn reparentObject(cocos2d::CCNode*, cocos2d::CCNode*);
 	TodoReturn sortAllGroupsX();
@@ -6721,7 +6721,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playingEndEffect();
 	TodoReturn runBallRotation2() = win 0x2c29d0;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*) = win 0x2d4140;
-	TodoReturn spawnScaleCircle();
+	void spawnScaleCircle() = mac 0x3f4400;
 	TodoReturn specialGroundHit();
 	void toggleSpiderMode(bool, bool) = win 0x2CF3B0, mac 0x3f9760;
 	TodoReturn toggleVisibility(bool);
@@ -6807,7 +6807,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerJetpackFrame(int) = win 0x2D15B0, mac 0x3f73b0;
 	TodoReturn collidedWithSlopeInternal(float, GameObject*, bool) = win 0x2C4C50;
 	TodoReturn exitPlatformerAnimateJump();
-	TodoReturn updateRobotAnimationSpeed();
+	void updateRobotAnimationSpeed() = mac 0x3fc360;
 	TodoReturn collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x2C6C10;
 	TodoReturn handleRotatedSlopeCollision(float, GameObject*, bool);
 	void stopPlatformerJumpAnimation() = mac 0x3e5350;
@@ -10929,10 +10929,10 @@ class GJActionManager : cocos2d::CCNode {
 
 	TodoReturn getInternalAction(int);
 
-	TodoReturn runInternalAction(cocos2d::CCAction*, cocos2d::CCNode*);
-	TodoReturn stopInternalAction(int) = mac 0x5cdf50;
-	TodoReturn updateInternalActions(float, bool) = win 0x189E70;
-	TodoReturn stopAllInternalActions();
+	void runInternalAction(cocos2d::CCAction*, cocos2d::CCNode*) = mac 0x5cdf00;
+	void stopInternalAction(int) = mac 0x5cdf50;
+	void updateInternalActions(float, bool) = win 0x189E70;
+	void stopAllInternalActions();
 
 	virtual bool init() = mac 0x5cded0;
 }
@@ -14629,7 +14629,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn executeAnimation(gd::string);
 	TodoReturn animationFinished();
 	TodoReturn runQueuedAnimation();
-	TodoReturn updateAnimationSpeed(float);
+	void updateAnimationSpeed(float) = mac 0x6e6790;
 	TodoReturn callAnimationFinished();
 	TodoReturn playSoundForAnimation(gd::string);
 	TodoReturn offsetCurrentAnimation(float) = mac 0x6e7890;
