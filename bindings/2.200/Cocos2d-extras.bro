@@ -3910,7 +3910,7 @@ class cocos2d::CCTintBy {
 
 [[link(win, android)]]
 class cocos2d::CCTintTo {
-	static cocos2d::CCTintTo* create(float, unsigned char, unsigned char, unsigned char);
+	static cocos2d::CCTintTo* create(float, unsigned char, unsigned char, unsigned char) = mac 0x399290;
 
 	bool initWithDuration(float, unsigned char, unsigned char, unsigned char);
 
