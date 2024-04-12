@@ -18,7 +18,7 @@ class cocos2d::CCEaseSineInOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseElasticOut {
-	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*);
+	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*) = mac 0x4ee120;
 	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*, float) = mac 0x4EE060;
 
 	// CCEaseElasticOut(cocos2d::CCEaseElasticOut const&);
@@ -1095,7 +1095,7 @@ class cocos2d::CCSpriteFrameCache {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteBatchNode {
-	static cocos2d::CCSpriteBatchNode* create(char const*);
+	static cocos2d::CCSpriteBatchNode* create(char const*) = mac 0x167230;
 	static cocos2d::CCSpriteBatchNode* create(char const*, unsigned int) = mac 0x167460;
 	static cocos2d::CCSpriteBatchNode* createWithTexture(cocos2d::CCTexture2D*);
 	static cocos2d::CCSpriteBatchNode* createWithTexture(cocos2d::CCTexture2D*, unsigned int);
@@ -1321,7 +1321,7 @@ class cocos2d::CCParticleSystem {
 	void calculateWorldSpace();
 	bool isFull();
 	void loadDefaults();
-	void loadScaledDefaults(float);
+	void loadScaledDefaults(float) = mac 0x787f80;
 	void resetSystem() = mac 0x7865e0;
 	void resumeSystem() = mac 0x7865d0;
 	void saveDefaults();
@@ -2207,7 +2207,7 @@ class cocos2d::CCMotionStreak {
 	void setFastMode(bool);
 	void setM_fMaxSeg(float);
 	void setStartingPositionInitialized(bool);
-	void setStroke(float);
+	void setStroke(float) = mac 0x5421f0;
 
 	// CCMotionStreak(cocos2d::CCMotionStreak const&);
 	// CCMotionStreak();
@@ -2218,7 +2218,7 @@ class cocos2d::CCMotionStreak {
 	void resumeStroke();
 	void stopStroke();
 	void tintWithColor(cocos2d::_ccColor3B);
-	void updateFade(float);
+	void updateFade(float) = mac 0x541b90;
 
 	virtual void update(float);
 	virtual void setPosition(cocos2d::CCPoint const&);
