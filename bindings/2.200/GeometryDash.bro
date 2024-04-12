@@ -8469,6 +8469,14 @@ class HardStreak : cocos2d::CCDrawNode {
 	TodoReturn addPoint(cocos2d::CCPoint) = win 0x2224F0;
 
 	virtual bool init() = mac 0x96c80;
+
+	// untested. probably doesn't work
+	PAD = win 0x20;
+	cocos2d::CCArray* m_pointArray;
+	cocos2d::CCPoint m_currentPoint;
+	float m_waveSize;
+	float m_pulseSize; // win = 0x5c (0x168)
+	// bool m_isSolid;
 }
 
 
