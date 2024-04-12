@@ -8471,7 +8471,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	virtual bool init() = mac 0x96c80;
 
 	// untested. probably doesn't work
-	PAD = win 0x20;
+	PAD = mac 0x20;
 	cocos2d::CCArray* m_pointArray;
 	cocos2d::CCPoint m_currentPoint;
 	float m_waveSize;
