@@ -1095,7 +1095,7 @@ class cocos2d::CCSpriteFrameCache {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteBatchNode {
-	static cocos2d::CCSpriteBatchNode* create(char const*) = mac 0x167230;
+	static cocos2d::CCSpriteBatchNode* create(char const*);// = mac 0x167230;
 	static cocos2d::CCSpriteBatchNode* create(char const*, unsigned int) = mac 0x167460;
 	static cocos2d::CCSpriteBatchNode* createWithTexture(cocos2d::CCTexture2D*);
 	static cocos2d::CCSpriteBatchNode* createWithTexture(cocos2d::CCTexture2D*, unsigned int);
