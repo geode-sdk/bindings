@@ -195,6 +195,13 @@ public class FindVtablesScript extends GhidraScript {
                     continue;
                 }
             }
+
+            try {
+                NamespaceUtils.convertNamespaceToClass(symbol.getParentNamespace());
+            }
+            catch (InvalidInputException e) {
+                continue;
+            }
         }
     }
 }
