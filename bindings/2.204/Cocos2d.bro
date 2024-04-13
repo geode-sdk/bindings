@@ -1343,3 +1343,10 @@ class cocos2d::extension::CCScale9Sprite {
 	virtual bool updateWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect);
 	virtual void setSpriteFrame(cocos2d::CCSpriteFrame*);
 }
+
+[[link(win, android)]]
+class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
+	static cocos2d::extension::CCHttpClient* getInstance();
+	static void destroyInstance();
+	void send(cocos2d::extension::CCHttpRequest* request);
+}

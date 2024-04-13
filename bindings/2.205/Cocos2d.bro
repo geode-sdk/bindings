@@ -1775,3 +1775,10 @@ class cocos2d::CCFadeTo {
 	virtual void update(float);
 	virtual void startWithTarget(cocos2d::CCNode*);
 }
+
+[[link(win, android)]]
+class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
+	static cocos2d::extension::CCHttpClient* getInstance();
+	static void destroyInstance();
+	void send(cocos2d::extension::CCHttpRequest* request);
+}
