@@ -1015,6 +1015,24 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x34da70;
 	virtual void dialogClosed(DialogLayer*) = mac 0x34db80;
 	virtual TodoReturn playerColorChanged() = mac 0x34d410;
+
+	CCTextInputNode* m_usernameInput;
+	SimplePlayer* m_playerObject;
+	cocos2d::CCArray* m_tabButtons;
+	cocos2d::CCArray* m_pageButtons;
+	PAD = android32 0x8, win 0x8, android64 0x10, mac 0x10;
+	bool m_hasClosed;
+	IconType m_iconType;
+	gd::map<IconType, int> m_iconPages;
+	cocos2d::CCSprite* m_cursor1;
+	cocos2d::CCSprite* m_cursor2;
+	CCMenuItemSpriteExtra* m_currentIcon;
+	ListButtonBar* m_iconSelection;
+	CCMenuItemSpriteExtra* m_leftArrow;
+	CCMenuItemSpriteExtra* m_rightArrow;
+	cocos2d::CCMenu* m_iconSelectionMenu;
+	int m_iconID;
+	IconType m_selectedIconType;
 }
 
 [[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance)]]
@@ -12545,16 +12563,16 @@ class CharacterColorPage : FLAlertLayer {
 	virtual void keyBackClicked() = mac 0x621f50;
 	virtual void show() = mac 0x621dc0;
 
-	int m_currentColorMode;
+	int m_colorMode;
 	float m_height;
 	float m_width;
-	cocos2d::CCArray* m_players;
-	cocos2d::CCArray* m_modeSelectButtons;
+	cocos2d::CCArray* m_playerObjects;
+	cocos2d::CCArray* m_modeButtons;
 	cocos2d::CCDictionary* m_colorButtons;
-	cocos2d::CCArray* m_colorSelectCursors;
-	CharacterColorDelegate* m_colorDelegate;
-	CCMenuItemToggler* m_glowItemCheck;
-	cocos2d::CCLabelBMFont* m_glowItemLabel;
+	cocos2d::CCArray* m_cursors;
+	CharacterColorDelegate* m_delegate;
+	CCMenuItemToggler* m_glowToggler;
+	cocos2d::CCLabelBMFont* m_glowLabel;
 }
 
 [[link(android)]]
