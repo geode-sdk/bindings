@@ -6230,7 +6230,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn transformObjectsReset();
 	TodoReturn updateEditButtonColor(int, cocos2d::_ccColor3B);
 	TodoReturn updateEditColorButton() = mac 0x4c630;
-	TodoReturn updateObjectInfoLabel() = mac 0x32dd0;
+	void updateObjectInfoLabel() = mac 0x32dd0;
 	TodoReturn createUndoSelectObject(bool);
 	TodoReturn deactivateScaleControl();
 	TodoReturn selectAllWithDirection(bool) = mac 0x40d10;
