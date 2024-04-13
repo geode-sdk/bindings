@@ -1314,7 +1314,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn swapMiddleground(int);
 	void switchToRollMode(PlayerObject*, GameObject*, bool) = mac 0x10f520;
 	TodoReturn toggleLockPlayer(bool, bool);
-	TodoReturn tryGetMainObject(int) = win 0x1A4FD0;
+	GameObject* tryGetMainObject(int) = win 0x1A4FD0, mac 0x10e6f0;
 	TodoReturn updateBGArtSpeed(float, float) = mac 0x1454f0;
 	TodoReturn updateCameraEdge(int, int);
 	TodoReturn updateCameraMode(EffectGameObject*, bool);
@@ -6521,8 +6521,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void prepareCreateObjectsFromSetup(gd::string&) = win 0x2dafd0;
 	void processCreateObjectsFromSetup() = win 0x2db250, mac 0xa69f0;
 	TodoReturn createObjectsFromSetupFinished() = win 0x2dbab0, mac 0xb0a50;
-	TodoReturn playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = win 0x2da920;
-	TodoReturn scene(GJGameLevel*, bool, bool) = win 0x2D68A0, mac 0xa5c80;
+	void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = win 0x2da920, mac 0xb0570;
+	cocos2d::CCScene* scene(GJGameLevel*, bool, bool) = win 0x2D68A0, mac 0xa5c80;
 	void resume() = mac 0xb8a50;
 	void showHint() = win 0x2e12d0, mac 0xb4ab0;
 	void addCircle(CCCircleWave* cw) = mac 0xb4cc0;
@@ -6542,7 +6542,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn opacityForObject(GameObject*) = win 0x2ddc80;
 	virtual TodoReturn updateColor(cocos2d::_ccColor3B&, float, int, bool, float, cocos2d::_ccHSVValue&, int, bool, EffectGameObject*, int, int) = win 0x2df440;
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
-	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = win 0x2da810;
+	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = win 0x2da810, mac 0xb0480;
 	virtual TodoReturn toggleGlitter(bool) = win 0x2e0990;
 	virtual void destroyPlayer(PlayerObject*, GameObject*) = mac 0xb40f0, win 0x2e0a90;
 	virtual TodoReturn toggleGroundVisibility(bool) = win 0x2e0840, mac 0xb3f40;
@@ -6736,7 +6736,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn runNormalRotation(bool, float) = win 0x2C2750;
 	TodoReturn runNormalRotation();
 	TodoReturn spawnPortalCircle(cocos2d::_ccColor3B, float) = win 0x2CBF20, mac 0x3f42d0;
-	TodoReturn toggleGhostEffect(GhostType) = win 0x2d20d0;
+	void toggleGhostEffect(GhostType) = win 0x2d20d0, mac 0x3f3e50;
 	TodoReturn togglePlayerScale(bool, bool) = win 0x2D3690, mac 0x3f39d0;
 	TodoReturn updateCollideLeft(float, GameObject*) = win 0x2C8F30;
 	void updatePlayerForce(cocos2d::CCPoint, bool);
@@ -6746,7 +6746,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updateStreakBlend(bool) = mac 0x3de350;
 	void collidedWithObject(float, GameObject*) = mac 0x3ee020;
 	void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = mac 0x3e7850;
-	TodoReturn deactivateParticle();
+	void deactivateParticle() = mac 0x3e2a30;
 	TodoReturn destroyFromHitHead();
 	TodoReturn gameEventTriggered(int, int) = win 0x1B1AC0;
 	void loadFromCheckpoint(PlayerCheckpoint*) = win 0x2d4370, mac 0xb7690;
@@ -10742,7 +10742,7 @@ class EndPortalObject : GameObject {
 
 	TodoReturn updateColors(cocos2d::_ccColor3B) = win 0xea8f0, mac 0x37a210;
 	TodoReturn updateEndPos(bool) = win 0xeac60;
-	TodoReturn triggerObject(GJBaseGameLayer*) = win 0xeaa00;
+	void triggerObject(GJBaseGameLayer*) = win 0xeaa00, mac 0x37a2d0;
 
 	virtual bool init() = mac 0x379ee0;
 	virtual void setPosition(cocos2d::CCPoint const&) = mac 0x37a3e0;
