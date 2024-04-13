@@ -6368,6 +6368,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CCMenuItemSpriteExtra* m_layerNextBtn;
     CCMenuItemSpriteExtra* m_layerPrevBtn;
     CCMenuItemSpriteExtra* m_goToBaseBtn;
+    PAD = mac 0x10, win 0x8, android32 0x8;
     ButtonSprite* m_unk31c;
     ButtonSprite* m_unk320;
     int m_selectedCreateObjectID;
