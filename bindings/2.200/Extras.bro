@@ -18,6 +18,14 @@ class SongChannelState {
     
 }
 
+class SongTriggerState {
+
+}
+
+class SFXTriggerState {
+
+}
+
 class DynamicScrollDelegate {
 
 }
@@ -47,5 +55,9 @@ class DynamicObjectAction {
 }
 
 class GJTransformState {
+
+}
+
+class FMODQueuedMusic {
 
 }

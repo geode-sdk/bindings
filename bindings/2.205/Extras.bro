@@ -24,6 +24,15 @@ class SongChannelState {
     
 }
 
+class SongTriggerState {
+
+}
+
+class SFXTriggerState {
+
+}
+
+
 class ChanceObject {
 
 }
@@ -61,5 +70,9 @@ class CAState {
 }
 
 class GJPointDouble {
+
+}
+
+class FMODQueuedMusic {
 
 }

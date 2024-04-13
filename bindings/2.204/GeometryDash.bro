@@ -1449,7 +1449,7 @@ class CheckpointGameObject : EffectGameObject {
 
 [[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState)]]
 class CheckpointObject : cocos2d::CCNode {
-	// virtual ~CheckpointObject();
+	// virtual ~CheckpointObject() = win 0x2eb810;
 	// CheckpointObject() = win 0x2db9f0;
 
 	static CheckpointObject* create() = win 0x2eb9a0;
@@ -1510,7 +1510,7 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
 
 [[link(android)]]
 class CollisionTriggerAction {
-	byte pad_1[32];
+	PAD = win 0x20;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -1794,7 +1794,7 @@ class ConfigureValuePopupDelegate {
 class CountTriggerAction {
 	// CountTriggerAction(CountTriggerAction&&);
 
-	byte pad_1[36];
+	PAD = win 0x24;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -3324,9 +3324,7 @@ class EffectGameObject : EnhancedGameObject {
 	PAD = android32 0xb, win 0xb;
 	// property 12
 	int m_secretCoinID;
-	PAD = android32 0x18, win 0x18;
-	// property 279
-	LevelSettingsObject* m_levelSettings;
+	PAD = android32 0x1c, win 0x1c;
 	// property 280
 	bool m_ignoreGroupParent;
 	// property 281
@@ -3540,11 +3538,11 @@ class EnterEffectInstance {
 	TodoReturn updateTransitions(float, GJBaseGameLayer*);
 
 	gd::map<int,EnterEffectAnimValue> m_enterEffectAnimMap;
-	byte pad_1[140];
+	PAD = win 0x8c;
 	GameObject* m_gameObject;
-	byte pad_2[28];
+	PAD = win 0x1c;
 	gd::vector<int> m_unkVecInt;
-	byte pad_3[4];
+	PAD = win 0x4;
 }
 
 [[link(android)]]
@@ -8041,7 +8039,7 @@ class GJShaderState {
 
 	gd::unordered_map<int, GJValueTween> m_someIntToValueTweenMap;
 	gd::unordered_map<int, double> m_someIntToDoubleMap;
-	byte pad_1[584];
+	PAD = win 0x248;
 }
 
 [[link(android)]]
@@ -8585,11 +8583,11 @@ class GroupCommandObject2 {
 	TodoReturn updateAction(int, float);
 	TodoReturn updateEffectAction(float, int);
 
-	byte pad_1[436];
+	PAD = win 0x1b4;
 	gd::vector<KeyframeObject> m_unkVecKeyframeObject;
-	byte pad_2[16];
+	PAD = win 0x10;
 	gd::vector<int> m_unkVecInt;
-	byte pad_3[12];
+	PAD = win 0xc;
 }
 
 [[link(android)]]
@@ -8865,19 +8863,19 @@ class KeyframeObject {
 
 	TodoReturn setupSpline(gd::vector<KeyframeObject*>&);
 
-	byte pad_1[32];
+	PAD = win 0x20;
 	gd::vector<double> m_unkVecDouble1;
 	gd::vector<double> m_unkVecDouble2;
 	gd::vector<double> m_unkVecDouble3;
 	gd::vector<double> m_unkVecDouble4;
 	gd::vector<double> m_unkVecDouble5;
-	byte pad_2[52];
+	PAD = win 0x34;
 	gd::vector<double> m_unkVecDouble6;
 	gd::vector<double> m_unkVecDouble7;
 	gd::vector<double> m_unkVecDouble8;
 	gd::vector<double> m_unkVecDouble9;
 	gd::vector<double> m_unkVecDouble10;
-	byte pad_3[132];
+	PAD = win 0x84;
 }
 
 [[link(android)]]
@@ -14832,7 +14830,7 @@ class SpawnTriggerAction {
 	bool isFinished();
 	TodoReturn step(float);
 
-	byte pad_1[40];
+	PAD = win 0x28;
 	GameObject* m_gameObject;
 	gd::vector<int> m_unkVecInt;
 }
@@ -15251,7 +15249,7 @@ class TextStyleSection : cocos2d::CCObject {
 
 [[link(android)]]
 class TimerTriggerAction {
-	byte pad_1[32];
+	PAD = win 0x20;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -15270,7 +15268,7 @@ class TimerTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class ToggleTriggerAction {
-	byte pad_1[20];
+	PAD = win 0x14;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -15313,7 +15311,7 @@ class TOSPopup : FLAlertLayer {
 
 [[link(android)]]
 class TouchToggleAction {
-	byte pad_1[32];
+	PAD = win 0x20;
 	gd::vector<int> m_unkVecInt;
 }
 

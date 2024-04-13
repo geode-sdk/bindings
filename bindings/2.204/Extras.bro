@@ -11,7 +11,7 @@ class FMODSound {
 
 class AdvancedFollowInstance {
 	GameObject* m_gameObject;
-	byte pad_1[24];
+	PAD = win 0x18;
 }
 
 class SFXTriggerInstance {
@@ -19,7 +19,7 @@ class SFXTriggerInstance {
 }
 
 class EventTriggerInstance {
-	byte pad_1[16];
+	PAD = win 0x10;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -111,34 +111,34 @@ class FMODSoundTween {
 
 class FMODQueuedMusic {
 	gd::string m_unkString;
-	byte pad_1[56];
+	PAD = win 0x38;
 }
 
 class FMODSoundState {
 	gd::string m_unkString;
-	byte pad_1[164];
+	PAD = win 0xa4;
 }
 
 //Needed because pair<int,FMODSoundState> gets padded in gd but not when we compile it
 class FMODSoundState_padded {
-	byte pad_1[4];
+	PAD = win 0x4;
 	gd::string m_unkString;
-	byte pad_2[164];
+	PAD = win 0xa4;
 }
 
 class TimerItem {
-	byte pad_1[56];
+	PAD = win 0x38;
 	gd::vector<int> m_unkVecInt;
-	byte pad_2[4];
+	PAD = win 0x4;
 }
 
 //Needed because pair<int,TimerItem> gets padded in gd but not when we compile it
 class TimerItem_padded {
-	byte pad_1[60];
+	PAD = win 0x3c;
 	gd::vector<int> m_unkVecInt;
-	byte pad_2[4];
+	PAD = win 0x4;
 }
 
 class EnterEffectAnimValue {
-	byte pad_1[32];
+	PAD = win 0x20;
 }
