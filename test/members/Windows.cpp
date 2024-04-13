@@ -189,9 +189,9 @@ GEODE_SIZE_CHECK(GJGameState, 0x498);
 // GEODE_SIZE_CHECK(PlayerObject, 0x980); // 0x998 in 2.203
 
 GEODE_MEMBER_CHECK(GJGameState, m_unk1f8, 0x1f8);
-GEODE_MEMBER_CHECK(GJGameState, m_unk20c, 0x214);
-GEODE_MEMBER_CHECK(GJGameState, m_unk284, 0x294);
-GEODE_MEMBER_CHECK(GJGameState, m_unk2b8, 0x2b4);
+GEODE_MEMBER_CHECK(GJGameState, m_cameraMove, 0x214);
+GEODE_MEMBER_CHECK(GJGameState, m_unkPoint31, 0x294);
+GEODE_MEMBER_CHECK(GJGameState, m_unkPoint32, 0x2b4);
 
 GEODE_SIZE_CHECK(GameObject, 0x498); // crying
 GEODE_MEMBER_CHECK(GameObject, m_activeMainColorID, 0x22c);
