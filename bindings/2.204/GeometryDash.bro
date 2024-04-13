@@ -221,6 +221,8 @@ class AchievementsLayer : GJDropDownLayer {
 
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x5ad30;
 	virtual void customSetup() = win 0x5aab0;
+	
+	int m_currentPage;
 }
 
 [[link(android)]]
