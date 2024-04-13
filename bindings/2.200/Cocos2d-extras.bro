@@ -2643,13 +2643,13 @@ class cocos2d::CCRect {
 	bool containsPoint(cocos2d::CCPoint const&) const;
 	bool equals(cocos2d::CCRect const&) const;
 	float getMax(int);
-	float getMaxX() const;
-	float getMaxY() const;
+	float getMaxX() const = mac 0x26ae90;
+	float getMaxY() const = mac 0x26aee0;
 	float getMidX() const;
 	float getMidY() const;
 	float getMin(int);
-	float getMinX() const;
-	float getMinY() const;
+	float getMinX() const = mac 0x26aed0;
+	float getMinY() const = mac 0x26af20;
 	bool intersectsRect(cocos2d::CCRect const&) const;
 	void setRect(float, float, float, float);
 }
