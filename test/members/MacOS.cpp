@@ -14,13 +14,8 @@
 // GEODE_MEMBER_CHECK(EditorUI, m_scaleControl, 0x208);
 // GEODE_MEMBER_CHECK(EditorUI, m_swipeEnabled, 0x23c);
 // GEODE_MEMBER_CHECK(EditorUI, m_updateTimeMarkers, 0x244);
-GEODE_MEMBER_CHECK(EditorUI, m_objectInfoLabel, 0x298);
-GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2e8);
-GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x328);
-GEODE_MEMBER_CHECK(EditorUI, m_deleteMenu, 0x330);
-GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x4e0);
-GEODE_MEMBER_CHECK(EditorUI, m_cameraTest, 0x508);
-GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x518);
+// GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
+// GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x440);
 
 // // LevelEditorLayer
 // GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x5d8);
