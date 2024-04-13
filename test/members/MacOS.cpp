@@ -17,6 +17,9 @@
 GEODE_MEMBER_CHECK(EditorUI, m_objectInfoLabel, 0x298);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2e8);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x328);
+GEODE_MEMBER_CHECK(EditorUI, m_deleteMenu, 0x330);
+GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x4e0);
+GEODE_MEMBER_CHECK(EditorUI, m_cameraTest, 0x508);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x518);
 
 // // LevelEditorLayer
