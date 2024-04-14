@@ -1093,8 +1093,8 @@ class CCSpriteGrayscale : CCSpriteWithHue {
 	static CCSpriteGrayscale* create(gd::string const&, cocos2d::CCRect const&);
 	static CCSpriteGrayscale* create(gd::string const&);
 
-	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const&) = win 0x29c40;
+	static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = win 0x29c40;
+	static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const&); // this is actually createWithSpriteFrame cuz inlined function
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*);
 
