@@ -9088,10 +9088,10 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn objectAtPosition(cocos2d::CCPoint) = win 0x23c610;
 	TodoReturn objectMoved(GameObject*) = win 0x23f080;
 	TodoReturn objectsAtPosition(cocos2d::CCPoint);
-	TodoReturn objectsInRect(cocos2d::CCRect, bool);
-	TodoReturn onPausePlaytest() = win 0x246c70;
+	cocos2d::CCArray *objectsInRect(cocos2d::CCRect, bool) = win 0x0023cf20;
+	void onPausePlaytest() = win 0x246c70;
 	void onPlaytest() = win 0x2463a0;
-	TodoReturn onResumePlaytest() = win 0x246d60;
+	void onResumePlaytest() = win 0x246d60;
 	TodoReturn onStopPlaytest();
 	TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*) = win 0x247940;
 	TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*) = win 0x2478d0;
