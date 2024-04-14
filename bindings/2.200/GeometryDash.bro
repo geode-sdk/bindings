@@ -6227,7 +6227,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn transformObjectsReset();
 	TodoReturn updateEditButtonColor(int, cocos2d::_ccColor3B);
 	TodoReturn updateEditColorButton() = mac 0x4c630;
-	TodoReturn updateObjectInfoLabel() = mac 0x32dd0;
+	void updateObjectInfoLabel() = mac 0x32dd0;
 	TodoReturn createUndoSelectObject(bool);
 	TodoReturn deactivateScaleControl();
 	TodoReturn selectAllWithDirection(bool) = mac 0x40d10;
@@ -6310,10 +6310,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn scaleYChanged(float) = mac 0x43550;
 	virtual void scaleXYChanged(float, float) = win 0xcb9b0, mac 0x43680;
 
-	PAD = android32 0xd4;
+	PAD = android32 0xa8, mac 0xc8;
+	cocos2d::CCLabelBMFont* m_objectInfoLabel;
+	PAD = android32 0x28, mac 0x48;
     EditButtonBar* m_editButtonBar;
 
-	PAD = android32 0x30;
+	PAD = android32 0x30, mac 0x38;
 
 	cocos2d::CCArray* m_selectedObjects;
 
@@ -6364,6 +6366,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CCMenuItemSpriteExtra* m_layerPrevBtn;
     CCMenuItemSpriteExtra* m_goToBaseBtn;
     PAD = mac 0x10, win 0x8, android32 0x8;
+    ButtonSprite* m_unk31c;
+    ButtonSprite* m_unk320;
     int m_selectedCreateObjectID;
     cocos2d::CCArray* m_createButtonArray;
     cocos2d::CCArray* m_customObjectButtonArray;
@@ -6375,9 +6379,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     PAD = mac 0x8, win 0x8, android32 0x8;
     cocos2d::CCPoint m_lastTouchPoint;
     cocos2d::CCPoint m_cameraTest;
-    PAD = mac 0x8, win 0x8, android32 0x8;
-
-	PAD = android32 0x8;
+    cocos2d::CCPoint m_clickAtPosition;
     GameObject* m_selectedObject;
 }
 
