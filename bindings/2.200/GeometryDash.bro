@@ -1804,13 +1804,13 @@ class GameManager : GManager {
 	void setPlayerSwing(int id) {
 		m_playerSwing = id;
 	}
-	void setPlayerGlowColor(int id) {
+	void setPlayerColor3(int id) {
 		m_playerGlowColor = id;
 	}
     void setPlayerStreak(int id) {
         m_playerStreak = id;
     }
-    void setPlayerShipFire(int id) {
+    void setPlayerShipStreak(int id) {
         m_playerShipFire = id;
     }
     void setPlayerDeathEffect(int id) {
