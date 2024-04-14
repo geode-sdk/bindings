@@ -6277,7 +6277,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	UILayer* m_uiLayer;
 	PAD = android32 0x24, android64 0x40;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c2c
-	PAD = android32 0x118, android64 0x1A8;
+	PAD = android32 0x114, android64 0x1a0;
+	GJGameLoadingLayer* m_loadingLayer; 
 	cocos2d::CCDrawNode* m_debugDrawNode; // android32 = 0x2d50, android64 = 0x3668
 	PAD = android32 0x4, android64 0x8;
 	bool m_isDebugDrawEnabled;

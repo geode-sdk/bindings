@@ -6335,8 +6335,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c48 win
 	PAD = win 0x48;
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection; // 2c9c win
-	PAD = win 0xC5;
-	cocos2d::CCDrawNode* m_debugDrawNode;
+	PAD = win 0xc4;
+
+	GJGameLoadingLayer* m_loadingLayer; // 2d6c
+	PAD = win 0x4;
+	cocos2d::CCDrawNode* m_debugDrawNode; // 2d74
 	PAD = win 0x4;
 	bool m_isDebugDrawEnabled;
 }
