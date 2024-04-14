@@ -12804,15 +12804,15 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	void showDialog03();
 	TodoReturn moveToMainLayer(cocos2d::CCObject*);
 	void showLockedChest();
-	TodoReturn updateBackButton();
+	void updateBackButton() = mac 0x5f6b70;
 	void showDialogDiamond();
 	TodoReturn generateChestItems(int) = win 0x2F63D0;
 	void showDialogMechanic();
 	TodoReturn switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x2F7630;
 	TodoReturn updateUnlockedLabel() = win 0x2F76E0, mac 0x5f5ef0;
 	TodoReturn createSecondaryLayer(int) = win 0x2F5F60;
-	TodoReturn moveToSecondaryLayer(int);
-	TodoReturn scene(bool) = win 0x2f4130, mac 0x5f4170;
+	void moveToSecondaryLayer(int) = mac 0x5f6830;
+	cocos2d::CCScene* scene(bool) = win 0x2f4130, mac 0x5f4170;
 	void goToPage(int);
 	void showShop(int);
 
