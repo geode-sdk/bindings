@@ -1000,8 +1000,8 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void updatePlayerColors() = mac 0x3498d0;
 	TodoReturn achievementForUnlock(int, UnlockType);
 	TodoReturn descriptionForUnlock(int, UnlockType);
-	TodoReturn scene() = mac 0x347bd0;
-	TodoReturn selectTab(IconType) = mac 0x34b2e0;
+	static cocos2d::CCScene* scene() = mac 0x347bd0;
+	void selectTab(IconType) = mac 0x34b2e0;
 	void setupPage(int, IconType) = mac 0x34b420;
 
 	virtual bool init() = win 0x1EAA40, mac 0x347d60;
