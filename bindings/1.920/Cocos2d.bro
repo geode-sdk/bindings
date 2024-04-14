@@ -39,6 +39,25 @@ class cocos2d::CCDictionary {
 }
 
 [[link(win, android)]]
+class cocos2d::CCDirector {
+	void drawScene();
+	void setContentScaleFactor(float);
+	void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
+	void updateContentScale(cocos2d::TextureQuality);
+	void updateScreenScale(cocos2d::CCSize);
+}
+
+[[link(win, android)]]
+class cocos2d::CCEGLView {
+	static cocos2d::CCEGLView* sharedOpenGLView();
+
+	virtual void end();
+	virtual void isOpenGLReady();
+	virtual void swapBuffers();
+	virtual void setIMEKeyboardState(bool);
+}
+
+[[link(win, android)]]
 class cocos2d::CCFileUtils {
 	// CCFileUtils();
 	// CCFileUtils(cocos2d::CCFileUtils const&);
@@ -85,6 +104,9 @@ class cocos2d::CCLayerColor {
  	static cocos2d::CCLayerColor* create(const cocos2d::ccColor4B&, float, float);
  	static cocos2d::CCLayerColor* create(const cocos2d::ccColor4B&);
 
+	CCLayerColor();
+	~CCLayerColor();
+
 	void changeWidth(float);
 	void changeHeight(float);
 	void changeWidthAndHeight(float, float);
@@ -104,6 +126,9 @@ class cocos2d::CCLayerColor {
 [[link(win, android)]]
 class cocos2d::CCLayerRGBA {
 	static cocos2d::CCLayerRGBA* create();
+
+	CCLayerRGBA();
+	~CCLayerRGBA();
 
 	virtual bool init();
 	virtual GLubyte getOpacity();
@@ -403,4 +428,52 @@ class cocos2d::CCSpriteFrameCache {
 	void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*);
 	void removeSpriteFramesFromTexture(cocos2d::CCTexture2D* texture);
 	cocos2d::CCSpriteFrame* spriteFrameByName(const char *pszName);
+}
+
+[[link(win, android)]]
+class cocos2d::CCTouchDispatcher {
+	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
+
+	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
+	virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*);
+	virtual void touchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*);
+	virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*);
+	virtual bool getForcePrio() const;
+	virtual void setForcePrio(bool);
+	virtual int getTargetPrio() const;
+	virtual void setTargetPrio(int);
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCHttpClient {
+	void send(cocos2d::extension::CCHttpRequest*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCKeyboardDispatcher {
+	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool);
+}
+
+[[link(win, android)]]
+class DS_Dictionary {
+    bool getBoolForKey(const char*);
+    float getFloatForKey(const char*);
+    int getIntegerForKey(const char*);
+    gd::string getKey(const char*);
+    gd::string getStringForKey(const char*);
+    void setBoolForKey(const char*, bool, bool);
+    void setBoolForKey(const char*, bool);
+    void setFloatForKey(const char*, float, bool);
+    void setFloatForKey(const char*, float);
+    void setIntegerForKey(const char*, int, bool);
+    void setIntegerForKey(const char*, int);
+    void setStringForKey(const char*, gd::string const&, bool);
+    void setStringForKey(const char*, gd::string const&);
+    cocos2d::CCArray* getArrayForKey(const char*);
+    void setArrayForKey(const char*, cocos2d::CCArray*);
+    cocos2d::CCObject* getObjectForKey(const char*);
+    void setObjectForKey(const char*, cocos2d::CCObject*);
+    bool loadRootSubDictFromFile(const char*);
+    bool loadRootSubDictFromString(gd::string);
+    bool loadRootSubDictFromCompressedFile(const char*);
 }
