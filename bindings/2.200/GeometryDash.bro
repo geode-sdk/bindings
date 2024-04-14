@@ -6497,7 +6497,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleGhostEffect(int) = win 0x2D20D0;
 	void updateProgressbar() = win 0x2df7a0, mac 0xab590;
-	void loadFromCheckpoint(CheckpointObject*) = win 0x2e28d0;
+	void loadFromCheckpoint(CheckpointObject*) = win 0x2e28d0, mac 0xb7690;
 	CheckpointObject* loadLastCheckpoint();
 	void removeFromGroupOld(GameObject*);
 	void showCompleteEffect() = mac 0xae230;
@@ -6752,7 +6752,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn deactivateParticle();
 	TodoReturn destroyFromHitHead();
 	TodoReturn gameEventTriggered(int, int) = win 0x1B1AC0;
-	void loadFromCheckpoint(PlayerCheckpoint*) = win 0x2d4370, mac 0xb7690;
+	void loadFromCheckpoint(PlayerCheckpoint*) = win 0x2d4370;
 	TodoReturn playCompleteEffect(bool, bool) = mac 0x1f2ef0;
 	TodoReturn removeAllParticles();
 	TodoReturn rotateGameplayOnly(bool);
