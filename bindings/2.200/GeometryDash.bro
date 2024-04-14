@@ -6548,7 +6548,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void addCircle(CCCircleWave* cw) = mac 0xb4cc0;
 	void addObject(GameObject*) = win 0x2DBD30, mac 0xabae0;
 	void fullReset() = win 0x2E40C0, mac 0xb8080;
-	TodoReturn pauseGame(bool) = win 0x2e4fc0, mac 0xb8790;
+	void pauseGame(bool) = win 0x2e4fc0, mac 0xb8790;
 	void startGame() = win 0x2d7e80, mac 0xad330;
 
 	virtual void onEnterTransitionDidFinish() = win 0x2e58e0;
