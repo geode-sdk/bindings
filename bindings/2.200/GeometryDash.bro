@@ -3205,15 +3205,15 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 
 [[link(android)]]
 class GJSpriteColor {
-    int m_colorID;
-    int m_defaultColorID;
-    float m_opacity;
+	int m_colorID;
+	int m_defaultColorID;
+	float m_opacity;
 	float m_unknown;
-    cocos2d::ccHSVValue m_hsv;
-    bool m_usesHSV;
-    cocos2d::ccColor3B m_unkColor;
+	cocos2d::ccHSVValue m_hsv;
+	short m_usesHSV; // Actually a bool
+	cocos2d::ccColor3B m_color;
 
-    TodoReturn getColorMode();
+	TodoReturn getColorMode();
 }
 
 [[link(android)]]
