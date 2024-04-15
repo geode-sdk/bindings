@@ -3211,8 +3211,7 @@ class GJSpriteColor {
 	float m_unknown;
     cocos2d::ccHSVValue m_hsv;
     bool m_usesHSV;
-    float unk_10C;
-    bool unk_110;
+    cocos2d::ccColor3B m_unkColor;
 
     TodoReturn getColorMode();
 }
