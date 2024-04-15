@@ -110,6 +110,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x2aa0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isTestMode, 0x2aac);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b50);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c48);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x2d6c);
 
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x2db0);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x2e38);
