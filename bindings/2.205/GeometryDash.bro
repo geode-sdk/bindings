@@ -6321,8 +6321,8 @@ class GJChallengeItem : cocos2d::CCObject {
 	static GJChallengeItem* create();
 	static GJChallengeItem* create(GJChallengeType challengeType, int goal, int reward, int timeLeft, std::string questName);
 
-	GJChallengeItem* createFromString(gd::string string);
-	GJChallengeItem* createWithCoder(DS_Dictionary* dsdict);
+	static GJChallengeItem* createFromString(gd::string string);
+	static GJChallengeItem* createWithCoder(DS_Dictionary* dsdict);
 	void dataLoaded(DS_Dictionary* dsdict);
 	void incrementCount(int add);
 	bool init(GJChallengeType challengeType, int goal, int reward, int timeLeft, std::string questName);
