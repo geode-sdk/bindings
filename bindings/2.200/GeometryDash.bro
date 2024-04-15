@@ -4175,7 +4175,7 @@ class StartPosObject : EffectGameObject {
 	virtual bool init() = win 0x3A0D10, mac 0x1a5880;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x1a59e0;
 
-	int m_unknown;
+	LevelSettingsObject* m_startSettings;
 }
 
 [[link(android)]]
