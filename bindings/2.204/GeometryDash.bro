@@ -8105,12 +8105,10 @@ class GJSpriteColor {
 	int m_colorID;
 	int m_defaultColorID;
 	float m_opacity;
-	float m_unknown;
+	float m_unkFloat;
 	cocos2d::ccHSVValue m_hsv;
 	bool m_usesHSV;
-	float unk_10C;
-	bool unk_110;
-
+	cocos2d::ccColor3B m_unkColor; // I'm assuming this because it's one short and one byte
 }
 
 [[link(android)]]
