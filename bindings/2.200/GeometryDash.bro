@@ -5676,7 +5676,6 @@ class TeleportPortalObject : RingObject {
 	virtual void addToGroup2(int) = mac 0x1a5f60;
 	virtual void removeFromGroup2(int) = mac 0x1a5f70;
 
-	void* m_unknown;
     TeleportPortalObject* m_orangePortal;
     bool m_isYellowPortal;
     float m_teleportYOffset;
