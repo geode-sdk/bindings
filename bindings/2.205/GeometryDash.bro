@@ -6319,13 +6319,13 @@ class GJChallengeItem : cocos2d::CCObject {
 	// virtual ~GJChallengeItem();
 
 	static GJChallengeItem* create();
-	static GJChallengeItem* create(GJChallengeType challengeType, int goal, int reward, int timeLeft, std::string questName);
+	static GJChallengeItem* create(GJChallengeType challengeType, int goal, int reward, int timeLeft, gd::string questName);
 
 	static GJChallengeItem* createFromString(gd::string string);
 	static GJChallengeItem* createWithCoder(DS_Dictionary* dsdict);
 	void dataLoaded(DS_Dictionary* dsdict);
 	void incrementCount(int add);
-	bool init(GJChallengeType challengeType, int goal, int reward, int timeLeft, std::string questName);
+	bool init(GJChallengeType challengeType, int goal, int reward, int timeLeft, gd::string questName);
 	void setCount(int value);
 
 	virtual void encodeWithCoder(DS_Dictionary* dsdict);
