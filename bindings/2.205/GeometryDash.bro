@@ -3191,7 +3191,9 @@ class EffectGameObject : EnhancedGameObject {
 	int m_itemID2;
 	// property 534
 	int m_property534;
-	PAD = android32 0x4, win 0x4, android64 0x4;
+	PAD = android32 0x1, win 0x1, android64 0x1;
+	// property 94
+	bool m_isDynamicBlock;
 	// property 80
 	int m_itemID;
 	// property 138
