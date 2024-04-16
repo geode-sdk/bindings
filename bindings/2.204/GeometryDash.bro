@@ -180,7 +180,7 @@ class AchievementManager : cocos2d::CCNode {
 	void storeAchievementUnlocks() = win 0x1afa0;
 
 	virtual bool init() = win 0x9b40;
-	
+
 	cocos2d::CCArray* m_allAchievements;
 	cocos2d::CCDictionary* m_platformAchievements;
 	cocos2d::CCDictionary* m_achievementUnlocks;
@@ -221,7 +221,7 @@ class AchievementsLayer : GJDropDownLayer {
 
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x5ad30;
 	virtual void customSetup() = win 0x5aab0;
-	
+
 	int m_currentPage;
 }
 
@@ -8474,7 +8474,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	}
 	TodoReturn resumeStroke();
 	TodoReturn scheduleAutoUpdate();
-	TodoReturn stopStroke();
+	void stopStroke() = win 0x226890;
 	callback void updateStroke(float) = win 0x226960;
 
 	virtual bool init() = win 0x226860;
@@ -11628,7 +11628,7 @@ class PointNode : cocos2d::CCObject {
 	static PointNode* create(cocos2d::CCPoint) = win 0x2274c0;
 
 	bool init(cocos2d::CCPoint);
-  
+
   cocos2d::CCPoint m_point;
 
 }
