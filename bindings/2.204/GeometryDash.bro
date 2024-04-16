@@ -6341,7 +6341,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0xc4;
 
 	GJGameLoadingLayer* m_loadingLayer; // 2d6c
-	PAD = win 0x4;
 	cocos2d::CCDrawNode* m_debugDrawNode; // 2d74
 	PAD = win 0x4;
 	bool m_isDebugDrawEnabled;
