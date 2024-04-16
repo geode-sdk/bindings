@@ -3208,10 +3208,11 @@ class GJSpriteColor {
     int m_colorID;
     int m_defaultColorID;
     float m_opacity;
+	float m_baseOpacity;
     cocos2d::ccHSVValue m_hsv;
     bool m_usesHSV;
-    float unk_10C;
-    bool unk_110;
+    bool m_usesCustomBlend;
+	cocos2d::ccColor3B m_customColor;
 
     TodoReturn getColorMode();
 }
@@ -4008,7 +4009,7 @@ class EffectGameObject : EnhancedGameObject {
 	// property 120
 	float m_timeWarpTimeMod;
 	// property 13
-	bool m_showGamemodeBorders;
+	bool m_shouldPreview;
 	// property 115
 	int m_ordValue;
 	// property 170
@@ -5675,7 +5676,6 @@ class TeleportPortalObject : RingObject {
 	virtual void addToGroup2(int) = mac 0x1a5f60;
 	virtual void removeFromGroup2(int) = mac 0x1a5f70;
 
-	void* m_unknown;
     TeleportPortalObject* m_orangePortal;
     bool m_isYellowPortal;
     float m_teleportYOffset;
@@ -5844,7 +5844,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn reverseObjectChanged(EffectGameObject*);
 	TodoReturn triggerFollowCommand(EffectGameObject*);
 	TodoReturn triggerRotateCommand(EffectGameObject*);
-	TodoReturn tryUpdateSpeedObject(EffectGameObject*, bool);
+	bool tryUpdateSpeedObject(EffectGameObject*, bool);
 	TodoReturn typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float);
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn sortBatchnodeChildren(float);
@@ -6906,7 +6906,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	PlayerFireBoostSprite* m_swingFireTop;
 	cocos2d::CCSprite* m_unk61c;
 	cocos2d::CCMotionStreak* m_regularTrail;
-	PAD = win 0x4, mac 0x8;
+	cocos2d::CCMotionStreak* m_shipStreak;
 	HardStreak* m_waveTrail;
 	float m_unk62c;
 	PAD = win 0x14, mac 0x14;
