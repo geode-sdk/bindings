@@ -5038,7 +5038,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	void onFollowed(cocos2d::CCObject* sender) = mac 0x5eee90;
 	void onTrending(cocos2d::CCObject* sender) = mac 0x5eec10;
 	void onMostLikes(cocos2d::CCObject* sender) = mac 0x5eead0;
-	void onStarAward(cocos2d::CCObject* sender);
+	void onStarAward(cocos2d::CCObject* sender) = mac 0x5f08c0;
 	void onSuggested(cocos2d::CCObject* sender) = mac 0x5eeb70;
 	void onMostRecent(cocos2d::CCObject* sender) = mac 0x5eecb0;
 	void onSearchMode(cocos2d::CCObject* sender) = mac 0x5ee380;
