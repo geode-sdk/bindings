@@ -2914,7 +2914,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn scaleYChanged(float, bool);
 	virtual void scaleXYChanged(float, float, bool);
 
-	PAD = android32 0x64, android64 0x88;
+	PAD = android32 0x68, android64 0x88;
 
 	EditButtonBar* m_buttonBar;
 
@@ -2922,7 +2922,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	cocos2d::CCLabelBMFont* m_objectInfoLabel;
 
-	PAD = android32 0x18, android64 0x20;
+	PAD = android32 0x14, android64 0x20;
 
 	GJTransformControl* m_transformControl;
 	PAD = android32 0xc, android64 0x18;
