@@ -118,6 +118,7 @@ GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x2e4c);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e58);
 GEODE_MEMBER_CHECK(PlayLayer, m_colorKeyDict, 0x2f30);
 GEODE_MEMBER_CHECK(PlayLayer, m_nextColorKey, 0x2f58);
+GEODE_MEMBER_CHECK(PlayLayer, m_debugDrawNode, 0x2d70);
 // CustomSongWidget
 
 GEODE_MEMBER_CHECK(CustomSongWidget, m_songInfoObject, 0x110);
