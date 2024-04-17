@@ -9569,7 +9569,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	// virtual ~LevelSearchLayer();
 
 	static LevelSearchLayer* create(int) = win 0x260e70;
-	static CCScene* scene(int) = win 0x260e30;
+	static cocos2d::CCScene* scene(int) = win 0x260e30;
 
 	bool checkDiff(int) = win 0x264870;
 	bool checkTime(int) = win 0x264e90;
