@@ -10439,9 +10439,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x283b30;
 	void addDLToActive(char const* tag);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x2828d0;
-	TodoReturn addSongObjectFromString(gd::string) = win 0x282f20;
-	TodoReturn clearSong(int);
-	TodoReturn clearUnusedSongs();
+	void addSongObjectFromString(gd::string) = win 0x282f20;
+	void clearSong(int) = win 0x283620;
+	void clearUnusedSongs() = win 0x2836f0;
 	void createSongsInfo(gd::string) = win 0x283080;
 	void dataLoaded(DS_Dictionary*) = win 0x284530;
 	void deleteSFX(int);
@@ -15236,6 +15236,13 @@ class UILayer : cocos2d::CCLayerColor {
 	// so instead, we removed the second CCKeyboardDelegate from the base class list
 	// and put this member here to take the place of its vtable
 	void* m_stupidDelegate;
+
+	PAD = win 0xe;
+	bool m_p1Jumping;
+	bool m_p2Jumping;
+	PAD = win 0x4;
+	int m_unkP1Counter;
+	int m_unkP2Counter;
 }
 
 [[link(android)]]

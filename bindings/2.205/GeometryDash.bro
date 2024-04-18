@@ -10332,9 +10332,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void addDLToActive(char const* tag, cocos2d::CCObject* obj);
 	void addDLToActive(char const* tag);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*);
-	TodoReturn addSongObjectFromString(gd::string);
-	TodoReturn clearSong(int);
-	TodoReturn clearUnusedSongs();
+	void addSongObjectFromString(gd::string);
+	void clearSong(int);
+	void clearUnusedSongs();
 	void createSongsInfo(gd::string);
 	void dataLoaded(DS_Dictionary*);
 	void deleteSFX(int);
