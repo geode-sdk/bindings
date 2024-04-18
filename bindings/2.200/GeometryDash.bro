@@ -10161,7 +10161,7 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
 	void onReply(cocos2d::CCObject* sender);
 	void onRemove(cocos2d::CCObject* sender);
 
-	void loadFromGJMessage(GJUserMessage*);
+	void loadFromGJMessage(GJUserMessage*) = mac 0x283510;
 	void blockUser();
 
 	virtual void keyBackClicked() = mac 0x284240;
