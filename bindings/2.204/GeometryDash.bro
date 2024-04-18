@@ -2396,9 +2396,9 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	static DialogLayer* create(DialogObject*, int);
 
 	TodoReturn addToMainScene();
-	TodoReturn animateIn(DialogAnimationType) = win 0x9b4c0;
-	TodoReturn animateInDialog();
-	TodoReturn animateInRandomSide() = win 0x9b460;
+	void animateIn(DialogAnimationType) = win 0x9b4c0;
+	void animateInDialog();
+	void animateInRandomSide() = win 0x9b460;
 	static DialogLayer* createDialogLayer(DialogObject*, cocos2d::CCArray*, int) = win 0x9a850;
 	TodoReturn createWithObjects(cocos2d::CCArray*, int);
 	TodoReturn displayDialogObject(DialogObject*);
