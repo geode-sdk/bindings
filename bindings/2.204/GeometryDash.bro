@@ -9569,42 +9569,48 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	// virtual ~LevelSearchLayer();
 
 	static LevelSearchLayer* create(int) = win 0x260e70;
+	static cocos2d::CCScene* scene(int) = win 0x260e30;
 
-	TodoReturn checkDiff(int);
-	TodoReturn checkTime(int);
-	TodoReturn clearFilters();
-	void confirmClearFilters(cocos2d::CCObject*);
-	char const* getDiffKey(int);
-	TodoReturn getLevelLenKey();
-	TodoReturn getSearchDiffKey();
+	bool checkDiff(int) = win 0x264870;
+	bool checkTime(int) = win 0x264e90;
+	void clearFilters() = win 0x2629d0;
+	void confirmClearFilters(cocos2d::CCObject*) = win 0x262950;
+	inline char const* getDiffKey(int diff) {
+		return cocos2d::CCString::createWithFormat("D%i", diff)->getCString();
+	}
+	gd::string getLevelLenKey() = win 0x264e00;
+	gd::string getSearchDiffKey() = win 0x2647c0;
 	GJSearchObject* getSearchObject(SearchType, gd::string) = win 0x263ba0;
-	TodoReturn getTimeKey(int);
+	inline char const* getTimeKey(int time) {
+		return cocos2d::CCString::createWithFormat("T%i", time)->getCString();
+	}
 	bool init(int) = win 0x260f10;
 	void onBack(cocos2d::CCObject* sender) = win 0x2646e0;
 	void onClearFreeSearch(cocos2d::CCObject* sender) = win 0x2646a0;
-	void onClose(cocos2d::CCObject* sender);
-	void onFollowed(cocos2d::CCObject* sender);
-	void onFriends(cocos2d::CCObject* sender);
-	void onLatestStars(cocos2d::CCObject* sender);
-	void onMagic(cocos2d::CCObject* sender);
-	void onMoreOptions(cocos2d::CCObject* sender) = win 0x2629d0;
-	void onMostDownloaded(cocos2d::CCObject* sender);
+	inline void onClose(cocos2d::CCObject* sender) {
+		m_searchInput->onClickTrackNode(false);
+	}
+	void onFollowed(cocos2d::CCObject* sender) = win 0x2642a0;
+	void onFriends(cocos2d::CCObject* sender) = win 0x264200;
+	void onLatestStars(cocos2d::CCObject* sender) = win 0x264160;
+	void onMagic(cocos2d::CCObject* sender) = win 0x264020;
+	void onMoreOptions(cocos2d::CCObject* sender) = win 0x262930;
+	void onMostDownloaded(cocos2d::CCObject* sender) = win 0x263da0;
 	void onMostLikes(cocos2d::CCObject* sender) = win 0x263e40;
-	void onMostRecent(cocos2d::CCObject* sender);
+	void onMostRecent(cocos2d::CCObject* sender) = win 0x2640c0;
 	void onSearch(cocos2d::CCObject* sender) = win 0x264340;
-	void onSearchMode(cocos2d::CCObject* sender);
+	void onSearchMode(cocos2d::CCObject* sender) = win 0x2628f0;
 	void onSearchUser(cocos2d::CCObject* sender) = win 0x2644f0;
-	void onSpecialDemon(cocos2d::CCObject* sender);
+	void onSpecialDemon(cocos2d::CCObject* sender) = win 0x262790;
 	void onStarAward(cocos2d::CCObject* sender);
-	void onSuggested(cocos2d::CCObject* sender);
-	void onTrending(cocos2d::CCObject* sender);
-	TodoReturn scene(int);
-	void toggleDifficulty(cocos2d::CCObject*);
-	TodoReturn toggleDifficultyNum(int, bool);
-	void toggleStar(cocos2d::CCObject*);
-	void toggleTime(cocos2d::CCObject*);
-	TodoReturn toggleTimeNum(int, bool);
-	TodoReturn updateSearchLabel(char const*) = win 0x2638d0;
+	void onSuggested(cocos2d::CCObject* sender) = win 0x263ee0;
+	void onTrending(cocos2d::CCObject* sender) = win 0x263f80;
+	void toggleDifficulty(cocos2d::CCObject*) = win 0x264950;
+	void toggleDifficultyNum(int, bool) = win 0x264cb0;
+	void toggleStar(cocos2d::CCObject*) = win 0x264740;
+	void toggleTime(cocos2d::CCObject*) = win 0x264f70;
+	void toggleTimeNum(int, bool) = win 0x2650f0;
+	void updateSearchLabel(char const*) = win 0x2638d0;
 
 	virtual void keyBackClicked() = win 0x265220;
 	virtual void textInputOpened(CCTextInputNode*) = win 0x263660;

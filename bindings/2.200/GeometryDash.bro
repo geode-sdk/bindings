@@ -4260,7 +4260,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getGauntlets() = mac 0x513af0;
 	void getGJRewards(int) = mac 0x525ff0;
 	int getIntForKey(char const*) = mac 0x527ee0;
-	gd::string getLengthStr(bool, bool, bool, bool, bool, bool);
+	gd::string getLengthStr(bool, bool, bool, bool, bool, bool) = mac 0x50fcf0;
 	GJGameLevel* getMainLevel(int, bool) = win 0xF40E0, mac 0x5011a0;
 	char const* getReportKey(int);
 	bool getBoolForKey(char const*) = mac 0x5280b0, win 0x110820;
@@ -5017,47 +5017,55 @@ class GameStatsManager : cocos2d::CCNode {
 [[link(android)]]
 class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DemonFilterDelegate {
 	static LevelSearchLayer* create(int) = mac 0x5ebb80, win 0x25C4E0;
+	static cocos2d::CCScene* scene(int) = mac 0x5eba40;
 
 	bool init(int) = mac 0x5ebc90, win 0x25C580;
 	LevelSearchLayer() = win 0x25c160;
 	~LevelSearchLayer() = win 0x25c3c0;
 
-	char const* getDiffKey(int);
-	TodoReturn getTimeKey(int);
-	TodoReturn getLevelLenKey();
+	inline char const* getDiffKey(int diff) {
+		return cocos2d::CCString::createWithFormat("D%i", diff)->getCString();
+	}
+	inline char const* getTimeKey(int time) {
+		return cocos2d::CCString::createWithFormat("T%i", time)->getCString();
+	}
+	inline gd::string getLevelLenKey() {
+		GameLevelManager::sharedState()->getLengthStr(checkTime(0), checkTime(1), checkTime(2), checkTime(3), checkTime(4), checkTime(5));
+	}
 	GJSearchObject* getSearchObject(SearchType, gd::string) = mac 0x5f0380, win 0x25F210;
-	TodoReturn getSearchDiffKey();
+	gd::string getSearchDiffKey() = mac 0x5f0710;
 
 	void onFollowed(cocos2d::CCObject* sender) = mac 0x5eee90;
 	void onTrending(cocos2d::CCObject* sender) = mac 0x5eec10;
 	void onMostLikes(cocos2d::CCObject* sender) = mac 0x5eead0;
-	void onStarAward(cocos2d::CCObject* sender);
+	void onStarAward(cocos2d::CCObject* sender) = mac 0x5f08c0;
 	void onSuggested(cocos2d::CCObject* sender) = mac 0x5eeb70;
 	void onMostRecent(cocos2d::CCObject* sender) = mac 0x5eecb0;
 	void onSearchMode(cocos2d::CCObject* sender) = mac 0x5ee380;
 	void onSearchUser(cocos2d::CCObject* sender) = mac 0x5ee800;
 	void onLatestStars(cocos2d::CCObject* sender) = mac 0x5eedf0;
 	void onMoreOptions(cocos2d::CCObject* sender) = mac 0x5ee360, win 0x25e040;
-	void onSpecialDemon(cocos2d::CCObject* sender);
+	void onSpecialDemon(cocos2d::CCObject* sender) = mac 0x5ef490;
 	void onMostDownloaded(cocos2d::CCObject* sender) = mac 0x5eea30;
 	void onClearFreeSearch(cocos2d::CCObject* sender) = mac 0x5ee920;
-	void onBack(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = mac 0x5ef6d0;
+	inline void onClose(cocos2d::CCObject* sender) {
+		m_searchInput->onClickTrackNode(false);
+	}
 	void onMagic(cocos2d::CCObject* sender) = mac 0x5eed50;
 	void onSearch(cocos2d::CCObject* sender) = mac 0x5ee6f0;
 	void onFriends(cocos2d::CCObject* sender) = mac 0x5eef30;
 
-	TodoReturn toggleStar(cocos2d::CCObject*);
-	TodoReturn toggleTime(cocos2d::CCObject*);
-	TodoReturn clearFilters();
-	TodoReturn toggleTimeNum(int, bool) = mac 0x5ef890;
-	TodoReturn toggleDifficulty(cocos2d::CCObject*);
-	TodoReturn updateSearchLabel(char const*) = mac 0x5ee3d0, win 0x25ef40;
-	TodoReturn confirmClearFilters(cocos2d::CCObject*) = mac 0x5ee280, win 0x25dfc0;
-	TodoReturn toggleDifficultyNum(int, bool) = mac 0x5ef720;
-	TodoReturn scene(int) = mac 0x5eba40;
-	TodoReturn checkDiff(int);
-	TodoReturn checkTime(int);
+	void toggleStar(cocos2d::CCObject*) = mac 0x5ef650;
+	void toggleTime(cocos2d::CCObject*) = mac 0x5ef4d0;
+	void clearFilters() = mac 0x5efdc0;
+	void toggleTimeNum(int, bool) = mac 0x5ef890;
+	void toggleDifficulty(cocos2d::CCObject*) = mac 0x5eefd0;
+	void updateSearchLabel(char const*) = mac 0x5ee3d0, win 0x25ef40;
+	void confirmClearFilters(cocos2d::CCObject*) = mac 0x5ee280, win 0x25dfc0;
+	void toggleDifficultyNum(int, bool) = mac 0x5ef720;
+	bool checkDiff(int) = mac 0x5f0960;
+	bool checkTime(int) = mac 0x5f0a50;
 
 	virtual void keyBackClicked() = mac 0x5f0b60;
 	virtual void textInputOpened(CCTextInputNode*) = mac 0x5f0100;
