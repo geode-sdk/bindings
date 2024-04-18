@@ -6544,7 +6544,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn toggleBGEffectVisibility(bool);
 	void prepareCreateObjectsFromSetup(gd::string&) = win 0x2dafd0;
 	void processCreateObjectsFromSetup() = win 0x2db250, mac 0xa69f0;
-	TodoReturn createObjectsFromSetupFinished() = win 0x2dbab0, mac 0xb0a50;
+	void createObjectsFromSetupFinished() = win 0x2dbab0, mac 0xb0a50;
 	void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = win 0x2da920, mac 0xb0570;
 	cocos2d::CCScene* scene(GJGameLevel*, bool, bool) = win 0x2D68A0, mac 0xa5c80;
 	void resume() = mac 0xb8a50;
