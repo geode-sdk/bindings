@@ -719,6 +719,7 @@ class cocos2d::CCEGLView {
 	// CCEGLView(cocos2d::CCEGLView const&);
 	virtual void swapBuffers();
 	void toggleFullScreen(bool, bool);
+	void pollEvents();
 	// rest are in extras
 }
 

@@ -81,6 +81,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x2ab8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2B48);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2c04);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c2c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x2d4c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_debugDrawNode, 0x2d50);
 
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x2d90);
@@ -127,7 +128,7 @@ GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
-GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x1bc);
+GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x1c0);
 GEODE_MEMBER_CHECK(EditorUI, m_transformControl, 0x218);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x22c);
 GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x230);
