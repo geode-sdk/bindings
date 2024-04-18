@@ -1308,7 +1308,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn moveCameraToPos(cocos2d::CCPoint);
 	TodoReturn parentForZLayer(int, bool, int, int);
 	TodoReturn playFlashEffect(float, int, float);
-	TodoReturn processCommands(float);
+	void processCommands(float) = mac 0x140200;
 	TodoReturn processSFXState(SFXTriggerState*, SFXTriggerState*, int, float);
 	TodoReturn setupLevelStart(LevelSettingsObject*) = win 0x196000, mac 0x10e7f0;
 	TodoReturn stopCameraShake();
@@ -3009,7 +3009,7 @@ class GameToolbox {
 	/* unverified signature */
 	static bool isRateEasing(int);
 	static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = mac 0x4cae40;
-	static TodoReturn fast_rand_0_1();
+	static float fast_rand_0_1() = mac 0x4ccc80;
 	static TodoReturn getEasedValue(float, int, float);
 	static int getfast_srand();
 	static gd::string getTimeString(int) = mac 0x4cc860;
@@ -3270,7 +3270,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn getBoundingRect();
 	TodoReturn getCustomZLayer();
 	TodoReturn getLastPosition() = mac 0x590f00;
-	TodoReturn getObjectRadius();
+	float getObjectRadius() = mac 0x5915e0;
 	TodoReturn getObjectZLayer();
 	TodoReturn getObjectZOrder();
 	bool getGroupDisabled() = mac 0x586250;
@@ -3534,7 +3534,7 @@ class GameObject : CCSpritePlus {
 	virtual void setObjectRectDirty(bool) = mac 0x1d2aa0;
 	virtual TodoReturn getOrientedRectDirty() const = mac 0x1d2ab0;
 	virtual void setOrientedRectDirty(bool) = mac 0x1d2ac0;
-	virtual TodoReturn getType() const = mac 0x1d2ad0;
+	virtual GameObjectType getType() const = mac 0x1d2ad0;
 	virtual void setType(GameObjectType) = mac 0x1d2ae0;
 
 	// most are untested and copied from android64 2.205 bindings
@@ -5817,7 +5817,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*);
 	TodoReturn pasteGroupState(GameObject*, cocos2d::CCArray*);
 	TodoReturn unlockAllLayers() = mac 0xe4f00;
-	void updateDebugDraw();
+	void updateDebugDraw() = mac 0xe6970;
 	TodoReturn updateGridLayer();
 	void updateLevelFont(int);
 	TodoReturn addExclusionList(cocos2d::CCArray*, cocos2d::CCDictionary*);
@@ -6500,7 +6500,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn spawnFirework();
 	TodoReturn stopRecording();
 	void incrementJumps() = win 0x2e4e50, mac 0xb8700;
-	TodoReturn markCheckpoint() = win 0x2e2880, mac 0xb53a0;
+	CheckpointObject* markCheckpoint() = win 0x2e2880, mac 0xb53a0;
 	void showRetryLayer();
 	TodoReturn startRecording();
 	TodoReturn tryStartRecord();
@@ -6828,7 +6828,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerRobotFrame(int) = mac 0x3fb000;
 	void updatePlayerSwingFrame(int) = win 0x2D1B50, mac 0x3f8300;
 	TodoReturn createFadeOutDartStreak();
-	TodoReturn removePendingCheckpoint() = win 0x2d46d0;
+	void removePendingCheckpoint() = win 0x2d46d0, mac 0x3f3830;
 	TodoReturn unrotatePreSlopeObjects();
 	void updatePlayerSpiderFrame(int) = mac 0x3fb020;
 	void updatePlayerSpriteExtra(gd::string) = win 0x2D1ED0;
@@ -12201,7 +12201,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 
 	void onCreators(cocos2d::CCObject* sender);
 	void onTop(cocos2d::CCObject* sender);
-	void onBack(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = mac 0x4eb380;
 	void onInfo(cocos2d::CCObject* sender);
 	void onWeek(cocos2d::CCObject* sender);
 	void onGlobal(cocos2d::CCObject* sender);
