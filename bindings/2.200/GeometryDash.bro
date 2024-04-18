@@ -6552,7 +6552,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn toggleBGEffectVisibility(bool);
 	void prepareCreateObjectsFromSetup(gd::string&) = win 0x2dafd0;
 	void processCreateObjectsFromSetup() = win 0x2db250, mac 0xa69f0;
-	TodoReturn createObjectsFromSetupFinished() = win 0x2dbab0, mac 0xb0a50;
+	void createObjectsFromSetupFinished() = win 0x2dbab0, mac 0xb0a50;
 	void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = win 0x2da920, mac 0xb0570;
 	cocos2d::CCScene* scene(GJGameLevel*, bool, bool) = win 0x2D68A0, mac 0xa5c80;
 	void resume() = mac 0xb8a50;
@@ -8928,9 +8928,9 @@ class ShaderLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class UploadPopup : FLAlertLayer, LevelUploadDelegate {
-	static UploadPopup* create(GJGameLevel*);
+	static UploadPopup* create(GJGameLevel*) = mac 0x25f2c0;
 
-	bool init(GJGameLevel*);
+	bool init(GJGameLevel*) = mac 0x25f5e0;
 	~UploadPopup();
 
 	void onReturnToLevel(cocos2d::CCObject* sender);
@@ -11374,14 +11374,14 @@ class SFXSearchResult : MusicSearchResult {
 class ShareLevelLayer : FLAlertLayer {
 	static ShareLevelLayer* create(GJGameLevel*);
 
-	bool init(GJGameLevel*);
+	bool init(GJGameLevel*) = mac 0x25dc20;
 	~ShareLevelLayer();
 
 	TodoReturn getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
 
 	void onSettings(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
-	void onShare(cocos2d::CCObject* sender) = win 0x381b90;
+	void onShare(cocos2d::CCObject* sender) = win 0x381b90, mac 0x25ed60;
 
 	TodoReturn setupStars();
 	TodoReturn selectRating(cocos2d::CCObject*);
