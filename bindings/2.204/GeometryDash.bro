@@ -5742,7 +5742,7 @@ class GJAccountManager : cocos2d::CCNode {
 	void registerAccount(gd::string, gd::string, gd::string) = win 0x18ad00;
 	void removeDLFromActive(char const*) = win 0x18ac50;
 	bool syncAccount(gd::string);
-	void unlinkFromAccount();
+	void unlinkFromAccount() = win 0x18cb90;
 	void updateAccountSettings(int, int, int, gd::string, gd::string, gd::string) = win 0x18cc30;
 
 	virtual bool init() = win 0x18ab70;
