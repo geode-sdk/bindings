@@ -4260,7 +4260,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getGauntlets() = mac 0x513af0;
 	void getGJRewards(int) = mac 0x525ff0;
 	int getIntForKey(char const*) = mac 0x527ee0;
-	gd::string getLengthStr(bool, bool, bool, bool, bool, bool);
+	gd::string getLengthStr(bool, bool, bool, bool, bool, bool) = mac 0x50fcf0;
 	GJGameLevel* getMainLevel(int, bool) = win 0xF40E0, mac 0x5011a0;
 	char const* getReportKey(int);
 	bool getBoolForKey(char const*) = mac 0x5280b0, win 0x110820;
