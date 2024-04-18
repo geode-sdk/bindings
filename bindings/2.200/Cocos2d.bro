@@ -865,9 +865,9 @@ class cocos2d::CCIMEDispatcher {
 	void addDelegate(cocos2d::CCIMEDelegate*);
 	bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
 	bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
-	void dispatchDeleteBackward();
+	void dispatchDeleteBackward() = mac 0x497940;
 	void dispatchDeleteForward();
-	void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes);
+	void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = mac 0x497910;
 	void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
 	void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&);
 	void dispatchKeyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&);
@@ -2183,28 +2183,29 @@ class cocos2d::CCTransitionScene {
 
 [[link(win, android)]]
 class cocos2d::CCDrawNode {
-	static cocos2d::CCDrawNode* create();
+	static cocos2d::CCDrawNode* create() = mac 0x5d5130;
 
 	cocos2d::_ccBlendFunc getBlendFunc() const;
 
 	void setBlendFunc(cocos2d::_ccBlendFunc const&) = mac 0x5d6a90;
 
 	// CCDrawNode(cocos2d::CCDrawNode const&);
-	// CCDrawNode();
+	CCDrawNode() = mac 0x252ff0;
+	~CCDrawNode() = mac 0x2530a0;
 	void clear();
-	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int);
-	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
+	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int) = mac 0x5d6920;
+	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&) = mac 0x5d5950;
 	void drawDot(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
 	bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::_ccColor4F const&);
 	bool drawPolygon(cocos2d::CCPoint*, unsigned int, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&) = mac 0x5d5b70;
 	void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
-	bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&);
+	bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&) = mac 0x5d6780;
 	void drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
 	void ensureCapacity(unsigned int);
 	void listenBackToForeground(cocos2d::CCObject*);
 	void render();
 
-	virtual bool init();
+	virtual bool init() = mac 0x2530d0;
 	virtual void draw() = mac 0x5d5410;
 }
 
