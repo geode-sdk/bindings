@@ -7391,7 +7391,7 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
 
 	void blockUser();
 	bool init(GJUserMessage*) = win 0x20c870;
-	void loadFromGJMessage(GJUserMessage*);
+	void loadFromGJMessage(GJUserMessage*) = win 0x20d160;
 	void onBlock(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onRemove(cocos2d::CCObject* sender);
