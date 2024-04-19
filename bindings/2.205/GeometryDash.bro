@@ -15229,15 +15229,21 @@ class UploadActionDelegate {
 class UploadActionPopup : FLAlertLayer {
 	// virtual ~UploadActionPopup();
 
-	static UploadActionPopup* create(UploadPopupDelegate*, gd::string);
+	static UploadActionPopup* create(UploadPopupDelegate* delegate, gd::string str);
 
-	TodoReturn closePopup();
-	bool init(UploadPopupDelegate*, gd::string);
+	void closePopup();
+	bool init(UploadPopupDelegate*, gd::string str);
 	void onClose(cocos2d::CCObject* sender);
-	void showFailMessage(gd::string);
-	void showSuccessMessage(gd::string);
+	void showFailMessage(gd::string message);
+	void showSuccessMessage(gd::string message);
 
 	virtual void keyBackClicked();
+	
+	UploadPopupDelegate * m_delegate;
+    	TextArea * m_textArea;	
+    	LoadingCircle *	m_loadingCircle;
+    	CCMenuItemSpriteExtra *	m_menuItemSpriteExtra;
+    	bool m_succeeded;
 }
 
 [[link(android)]]
