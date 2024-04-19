@@ -4837,7 +4837,7 @@ class GameObject : CCSpritePlus {
 	static GameObject* createWithKey(int);
 	void deselectObject();
 	void destroyObject();
-	TodoReturn determineSlopeDirection();
+	void determineSlopeDirection();
 	TodoReturn didScaleXChange();
 	TodoReturn didScaleYChange();
 	TodoReturn dirtifyObjectPos();

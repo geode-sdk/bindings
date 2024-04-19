@@ -4877,7 +4877,7 @@ class GameObject : CCSpritePlus {
 		m_unk292 = true;
 		setOpacity(0);
 	}
-	TodoReturn determineSlopeDirection() = win 0x13d3c0;
+	void determineSlopeDirection() = win 0x13d3c0;
 	TodoReturn didScaleXChange();
 	TodoReturn didScaleYChange();
 	TodoReturn dirtifyObjectPos();
@@ -9098,7 +9098,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	void onPausePlaytest() = win 0x246c70;
 	void onPlaytest() = win 0x2463a0;
 	void onResumePlaytest() = win 0x246d60;
-	TodoReturn onStopPlaytest();
+	void onStopPlaytest() = win 0x246ea0;
 	TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*) = win 0x247940;
 	TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*) = win 0x2478d0;
 	TodoReturn pasteGroupState(GameObject*, cocos2d::CCArray*);
