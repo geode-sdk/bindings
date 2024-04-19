@@ -1388,7 +1388,7 @@ class cocos2d::extension::CCScale9Sprite {
 			ret->autorelease();
 			return ret;
 		}
-		zar lit omg!
+
 		delete ret;
 		return nullptr;
 	}
