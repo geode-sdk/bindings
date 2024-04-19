@@ -511,7 +511,7 @@ class cocos2d::CCScheduler {
 	void unscheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*);
 	void unscheduleUpdateForTarget(cocos2d::CCObject const*);
 
-	virtual void update(float);
+	virtual void update(float) = ios 0x1b20c8;
 }
 
 [[link(win, android)]]
@@ -1388,7 +1388,7 @@ class cocos2d::extension::CCScale9Sprite {
 			ret->autorelease();
 			return ret;
 		}
-
+		zar lit omg!
 		delete ret;
 		return nullptr;
 	}
