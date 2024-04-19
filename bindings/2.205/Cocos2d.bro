@@ -1405,7 +1405,7 @@ class cocos2d::extension::CCScale9Sprite {
 		}
 	}
 
-	win, mac, android {
+	win, mac, android32, android64 {
 		static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*);
 		static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*, cocos2d::CCRect);
 		static cocos2d::extension::CCScale9Sprite* create(char const*);
