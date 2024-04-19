@@ -324,7 +324,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	virtual void applicationWillEnterForeground();
 	virtual void applicationWillBecomeActive();
 	virtual void applicationWillResignActive();
-	virtual void trySaveGame(bool) = ios 0x30a988;
+	virtual void trySaveGame(bool) = ios 0x271114;
 	virtual void willSwitchToScene(cocos2d::CCScene*);
 
 	PAD = win 0x4, android32 0xC, android64 0x18;
@@ -5547,7 +5547,7 @@ class GameToolbox {
 	static TodoReturn saveParticleToString(cocos2d::CCParticleSystemQuad*);
 	static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
 	static TodoReturn stringFromHSV(cocos2d::ccHSVValue, char const*);
-	static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*);
+	static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*) = ios 0x4e50c;
 	static TodoReturn stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&);
 	static TodoReturn strongColor(cocos2d::ccColor3B);
 	static gd::string timestampToHumanReadable(time_t);
@@ -6648,7 +6648,7 @@ class GJFriendRequest : cocos2d::CCNode {
 [[link(android)]]
 class GJGameLevel : cocos2d::CCNode {
 	// virtual ~GJGameLevel();
-	static GJGameLevel* create();
+	static GJGameLevel* create() = ios 0x9660c;
 	static GJGameLevel* create(cocos2d::CCDictionary* dict, bool hasPassword);
 	inline static GJGameLevel* createWithCoder(DS_Dictionary* dict) {
 		//inlined on windows
@@ -6659,7 +6659,7 @@ class GJGameLevel : cocos2d::CCNode {
 
 	bool areCoinsVerified();
 	void copyLevelInfo(GJGameLevel* levelInfo);
-	void dataLoaded(DS_Dictionary* );
+	void dataLoaded(DS_Dictionary*) = ios 0xafb9c;
 	static int demonIconForDifficulty(DemonDifficultyType);
 	gd::string generateSettingsString();
 	gd::string getAudioFileName();
@@ -7780,9 +7780,9 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 class GJSearchObject : cocos2d::CCNode {
 	// virtual ~GJSearchObject();
 
-	static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
-	static GJSearchObject* create(SearchType searchType, gd::string searchQuery);
-	static GJSearchObject* create(SearchType searchType);
+	static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = ios 0xb1e80;
+	static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = ios 0xb2188;
+	static GJSearchObject* create(SearchType searchType) = ios 0xb2078;
 	static GJSearchObject* createFromKey(char const* key);
 
 	char const* getKey();
@@ -8287,7 +8287,7 @@ class GManager : cocos2d::CCNode {
 		saveGMTo(m_fileName);
 	}
 	TodoReturn saveData(DS_Dictionary*, gd::string);
-	void saveGMTo(gd::string);
+	void saveGMTo(gd::string) = ios 0x2523c4;
 	TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
 	inline GManager() {}
 
@@ -8819,7 +8819,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void onSearch(cocos2d::CCObject* sender);
 	void onToggleAllObjects(cocos2d::CCObject* sender);
 	void reloadAllObjects();
-	static cocos2d::CCScene* scene(GJSearchObject* search);
+	static cocos2d::CCScene* scene(GJSearchObject* search) = ios 0x410dd4;
 	void setSearchObject(GJSearchObject*);
 	void setupLevelBrowser(cocos2d::CCArray*);
 	void show();
@@ -9452,7 +9452,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	bool init(GJGameLevel*);
 	void onInfo(cocos2d::CCObject* sender);
 	void onMoreGames(cocos2d::CCObject* sender);
-	void onPlay(cocos2d::CCObject* sender);
+	void onPlay(cocos2d::CCObject* sender) = ios 0x3ffffc;
 	void onSecretDoor(cocos2d::CCObject* sender);
 	void onTheTower(cocos2d::CCObject* sender);
 	TodoReturn playCoinEffect();
@@ -9987,7 +9987,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
 	static cocos2d::CCScene* scene(bool) = ios 0x26dd84;
 
-	TodoReturn endGame();
+	void endGame() = ios 0x26fc50;
 	TodoReturn firstNetworkTest();
 	void onAchievements(cocos2d::CCObject* sender);
 	void onCreator(cocos2d::CCObject* sender);
@@ -10815,7 +10815,7 @@ class PlatformToolbox {
 	static TodoReturn copyToClipboard(gd::string);
 	static TodoReturn doesFileExist(gd::string);
 	static TodoReturn downloadAndSavePromoImage(gd::string, gd::string);
-	static TodoReturn gameDidSave();
+	static TodoReturn gameDidSave() = ios 0x1b27c8;
 	static TodoReturn getDeviceRefreshRate();
 	static TodoReturn getDisplaySize();
 	static TodoReturn getRawPath(char const*);
