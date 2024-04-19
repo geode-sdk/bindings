@@ -1035,9 +1035,9 @@ class cocos2d::CCSprite {
 	virtual void sortAllChildren() = ios 0x241404;
 	virtual void draw() = ios 0x24108c;
 	virtual void updateTransform() = ios 0x240cd8;
-	virtual bool initWithTexture(cocos2d::CCTexture2D*);
-	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
-	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
+	virtual bool initWithTexture(cocos2d::CCTexture2D*) = ios 0x240528;
+	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = ios 0x240518;
+	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool) = ios 0x2403c4;
 	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = ios 0x24069c;
 	virtual bool initWithSpriteFrameName(char const*) = ios 0x240700;
 	virtual bool initWithFile(char const*);
@@ -1047,8 +1047,8 @@ class cocos2d::CCSprite {
 	virtual cocos2d::CCSpriteBatchNode* getBatchNode() = ios 0x2422a8;
 	virtual void setBatchNode(cocos2d::CCSpriteBatchNode*) = ios 0x2422b0;
 	virtual void refreshTextureRect() = ios 0x240828;
-	virtual void setTextureRect(cocos2d::CCRect const&);
-	virtual void setTextureRect(cocos2d::CCRect const&, bool, cocos2d::CCSize const&);
+	virtual void setTextureRect(cocos2d::CCRect const&) = ios 0x2408ac;
+	virtual void setTextureRect(cocos2d::CCRect const&, bool, cocos2d::CCSize const&) = ios 0x2408c0;
 	virtual void setVertexRect(cocos2d::CCRect const&) = ios 0x240b1c;
 	virtual void setDisplayFrame(cocos2d::CCSpriteFrame*) = ios 0x242038;
 	virtual bool isFrameDisplayed(cocos2d::CCSpriteFrame*) = ios 0x24210c;
