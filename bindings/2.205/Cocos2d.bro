@@ -1371,44 +1371,37 @@ class cocos2d::CCMenuItem {
 
 [[link(win, android)]]
 class cocos2d::extension::CCScale9Sprite {
-	ios {
-		static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName) {
-			CCScale9Sprite* ret = new CCScale9Sprite;
-			if (ret->initWithSpriteFrameName(spriteFrameName)) {
-				ret->autorelease();
-				return ret;
-			}
-
-			delete ret;
-			return nullptr;
-		}
-		static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName, cocos2d::CCRect capInsets) {
-			CCScale9Sprite* ret = new CCScale9Sprite;
-			if (ret->initWithSpriteFrameName(spriteFrameName, capInsets)) {
-				ret->autorelease();
-				return ret;
-			}
-
-			delete ret;
-			return nullptr;
+	// those 3 are inlined on ios
+	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName) {
+		CCScale9Sprite* ret = new CCScale9Sprite;
+		if (ret->initWithSpriteFrameName(spriteFrameName)) {
+			ret->autorelease();
+			return ret;
 		}
 
-		static cocos2d::extension::CCScale9Sprite* create(char const* pszname) {
-			CCScale9Sprite* ret = new CCScale9Sprite;
-			if (ret->initWithFile(pszname)) {
-				ret->autorelease();
-				return ret;
-			}
-
-			delete ret;
-			return nullptr;
+		delete ret;
+		return nullptr;
+	}
+	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName, cocos2d::CCRect capInsets) {
+		CCScale9Sprite* ret = new CCScale9Sprite;
+		if (ret->initWithSpriteFrameName(spriteFrameName, capInsets)) {
+			ret->autorelease();
+			return ret;
 		}
+
+		delete ret;
+		return nullptr;
 	}
 
-	win, mac {
-		static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*);
-		static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*, cocos2d::CCRect);
-		static cocos2d::extension::CCScale9Sprite* create(char const*);
+	static cocos2d::extension::CCScale9Sprite* create(char const* pszname) {
+		CCScale9Sprite* ret = new CCScale9Sprite;
+		if (ret->initWithFile(pszname)) {
+			ret->autorelease();
+			return ret;
+		}
+
+		delete ret;
+		return nullptr;
 	}
 
 	static cocos2d::extension::CCScale9Sprite* create() = mac 0x3d7240;
