@@ -5546,7 +5546,7 @@ class GameToolbox {
 	static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x41910;
 	static void addRThumbScrollButton(cocos2d::CCLayer*) = win 0x419c0;
 	static void alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x40a50;
-	static void alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
+	static void alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint) = win 0x40c20;
 	static TodoReturn bounceTime(float);
 	static TodoReturn colorToSepia(cocos2d::ccColor3B, float);
 	static TodoReturn contentScaleClipRect(cocos2d::CCRect&);

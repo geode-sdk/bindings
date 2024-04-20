@@ -4552,7 +4552,7 @@ class GameManager : GManager {
 	TodoReturn removeCustomObject(int);
 	TodoReturn removeIconDelegate(int);
 	TodoReturn reorderKey(int, bool);
-	TodoReturn reportAchievementWithID(char const*, int, bool);
+	void reportAchievementWithID(char const*, int, bool);
 	TodoReturn reportPercentageForLevel(int, int, bool);
 	TodoReturn resetAchievement(gd::string);
 	TodoReturn resetAdTimer();
