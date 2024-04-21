@@ -5827,7 +5827,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn objectAtPosition(cocos2d::CCPoint);
 	TodoReturn removeAllObjects();
 	TodoReturn toggleBackground(bool);
-	TodoReturn updateEditorMode() = mac 0xdac80;
+	void updateEditorMode() = mac 0xdac80;
 	TodoReturn clearPlayerPoints();
 	TodoReturn copyParticleState(ParticleGameObject*);
 	TodoReturn objectsAtPosition(cocos2d::CCPoint);

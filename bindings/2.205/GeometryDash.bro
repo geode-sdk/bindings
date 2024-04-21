@@ -9061,7 +9061,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateArt(float);
 	TodoReturn updateBlendValues();
 	TodoReturn updateEditor(float);
-	TodoReturn updateEditorMode();
+	void updateEditorMode();
 	TodoReturn updateGameObjects();
 	TodoReturn updateGridLayer();
 	TodoReturn updateGridLayerParent();
