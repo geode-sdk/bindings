@@ -736,7 +736,7 @@ class cocos2d::CCTouchDispatcher {
 	void decrementForcePrio(int);
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*) = ios 0x157400;
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*) = ios 0x1574b8;
-	void forceAddHandler(cocos2cclayercolord::CCTouchHandler*, cocos2d::CCArray*) = ios 0x157400;
+	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*) = ios 0x157400;
 	void forceRemoveAllDelegates();
 	void forceRemoveDelegate(cocos2d::CCTouchDelegate*) = ios 0x157294;
 	void incrementForcePrio(int);
