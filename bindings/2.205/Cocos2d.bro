@@ -684,13 +684,49 @@ class cocos2d::CCMouseDispatcher {
 }
 
 [[link(win, android)]]
+class cocos2d::CCTouchHandler {
+	static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
+
+	cocos2d::CCTouchDelegate* getDelegate() {
+		return m_pDelegate;
+	}
+	int getEnabledSelectors();
+	int getPriority() {
+		return m_nPriority;
+	}
+
+	void setDelegate(cocos2d::CCTouchDelegate* delegate) {
+		m_pDelegate = delegate;
+	}
+	void setEnalbedSelectors(int);
+	void setPriority(int prio) {
+		m_nPriority = prio;
+	}
+
+	// CCTouchHandler(cocos2d::CCTouchHandler const&);
+	// CCTouchHandler();
+
+	virtual bool initWithDelegate(cocos2d::CCTouchDelegate*, int);
+}
+
+[[link(win, android)]]
 class cocos2d::CCTouchDispatcher {
 	bool init() = ios 0x156dd8;
 
 	int getTargetPrio() const;
 
 	void setDispatchEvents(bool) = ios 0x156dd0;
-	void setPriority(int, cocos2d::CCTouchDelegate*) = ios 0x9999999; // doesn't exist lol
+
+	void setPriority(int p1, cocos2d::CCTouchDelegate* p2) {
+		auto* handler = this->findHandler(p2);
+		auto priority = handler->getPriority();
+
+		if (p1 != priority) {
+			handler->setPriority(p1);
+			this->rearrangeHandlers(m_pTargetedHandlers);
+			this->rearrangeHandlers(m_pStandardHandlers);
+		}
+	}
 
 	// CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
 	// CCTouchDispatcher();
@@ -706,7 +742,9 @@ class cocos2d::CCTouchDispatcher {
 	void incrementForcePrio(int);
 	bool isDispatchEvents();
 	bool isUsingForcePrio();
-	void rearrangeHandlers(cocos2d::CCArray*);
+	void rearrangeHandlers(cocos2d::CCArray* handlers) {
+		std::sort(handlers->data->arr, handlers->data->arr + handlers->data->num, std::less);
+	}
 	void registerForcePrio(cocos2d::CCObject*, int) = ios 0x156f0c;
 	void removeAllDelegates();
 	void removeDelegate(cocos2d::CCTouchDelegate*) = ios 0x157384;
