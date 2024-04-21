@@ -637,8 +637,8 @@ class cocos2d::CCLayerColor {
 	virtual bool init() = ios 0x151d98;
 	virtual void setContentSize(cocos2d::CCSize const&) = ios 0x151f48;
 	virtual void draw() = ios 0x151fb4;
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, float, float);
-	virtual bool initWithColor(cocos2d::_ccColor4B const&);
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, float, float) = ios 0x151de4;
+	virtual bool initWithColor(cocos2d::_ccColor4B const&) = ios 0x151eb0;
 	virtual void updateColor() = ios 0x151f60;
 
 	virtual void setColor(cocos2d::_ccColor3B const&) = ios 0x152080;
@@ -736,7 +736,7 @@ class cocos2d::CCTouchDispatcher {
 	void decrementForcePrio(int);
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*) = ios 0x157400;
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*) = ios 0x1574b8;
-	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*) = ios 0x157400;
+	void forceAddHandler(cocos2cclayercolord::CCTouchHandler*, cocos2d::CCArray*) = ios 0x157400;
 	void forceRemoveAllDelegates();
 	void forceRemoveDelegate(cocos2d::CCTouchDelegate*) = ios 0x157294;
 	void incrementForcePrio(int);
