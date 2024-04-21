@@ -534,9 +534,9 @@ class cocos2d::CCLayer {
 	void unregisterScriptKeypadHandler();
 
 	virtual bool init() = ios 0x1508bc;
-	virtual void onEnter();
+	virtual void onEnter() = ios 0x150fa8;
 	virtual void onEnterTransitionDidFinish() = ios 0x15113c;
-	virtual void onExit();
+	virtual void onExit() = ios 0x151074;
 	virtual void registerWithTouchDispatcher() = ios 0x15098c;
 	virtual void registerScriptTouchHandler(int, bool, int, bool) = ios 0x1509f8;
 	virtual void unregisterScriptTouchHandler() = ios 0x150a58;
