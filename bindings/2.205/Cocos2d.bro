@@ -333,7 +333,7 @@ class cocos2d::CCNode {
 	CCNode() = ios 0x24389c;
 	~CCNode() = ios 0x2439f8;
 
-	cocos2d::CCAction* getActionByTag(int);
+	cocos2d::CCAction* getActionByTag(int) = ios 0x244fbc;
 	cocos2d::CCComponent* getComponent(char const*) const;
 	int getScriptHandler();
 	cocos2d::CCAffineTransform getTransformTemp();
@@ -369,7 +369,7 @@ class cocos2d::CCNode {
 	void sortAllChildrenNoIndex();
 	void sortAllChildrenWithIndex();
 	void stopAction(cocos2d::CCAction*);
-	void stopActionByTag(int);
+	void stopActionByTag(int) = ios 0x244fb0;
 	void stopAllActions() = ios 0x244280;
 	void transform() = ios 0x244acc;
 	void transformAncestors();
@@ -1969,4 +1969,28 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 	static cocos2d::extension::CCHttpClient* getInstance();
 	static void destroyInstance();
 	void send(cocos2d::extension::CCHttpRequest* request);
+}
+
+[[link(win, android)]]
+class cocos2d::CCFadeIn {
+	static cocos2d::CCFadeIn* create(float) = ios 0x193adc;
+
+	// CCFadeIn(cocos2d::CCFadeIn const&);
+	// CCFadeIn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCFadeOut {
+	static cocos2d::CCFadeOut* create(float) = ios 0x193924;
+
+	// CCFadeOut(cocos2d::CCFadeOut const&);
+	// CCFadeOut();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
 }
