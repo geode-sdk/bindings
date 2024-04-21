@@ -676,7 +676,7 @@ class cocos2d::CCLayerRGBA {
 class cocos2d::CCMouseDispatcher {
 	// CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
 	// CCMouseDispatcher();
-	void addDelegate(cocos2d::CCMouseDelegate*);
+	void addDelegate(cocos2d::CCMouseDelegate*) = ios 0x305108;
 	bool dispatchScrollMSG(float, float);
 	void forceAddDelegate(cocos2d::CCMouseDelegate*);
 	void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
@@ -1804,7 +1804,16 @@ class cocos2d {
 	static void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
 	static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
 	static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F) = ios 0x253f04;
-	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F) = ios 0x3ad68;
+	static void ccDrawSolidRect(cocos2d::CCPoint origin, cocos2d::CCPoint destination, cocos2d::_ccColor4F color) {
+		CCPoint vertices[] = {
+			origin,
+			CCPoint{destination.x, origin.y},
+			destination,
+			CCPoint{origin.x, destination.y}
+		};
+
+		ccDrawSolidPoly(vertices, 4, color);
+	}
 	static void ccGLBindTexture2D(unsigned int);
 	static void ccGLBindTexture2DN(unsigned int, unsigned int);
 	static void ccGLBindVAO(unsigned int);
