@@ -435,10 +435,10 @@ class cocos2d::CCNode {
 	virtual void removeFromParent() = ios 0x244460;
 	virtual void removeFromParentAndCleanup(bool) = ios 0x244470;
 	virtual void removeMeAndCleanup() = ios 0x244490;
-	virtual void removeChild(cocos2d::CCNode*);
-	virtual void removeChild(cocos2d::CCNode*, bool);
-	virtual void removeChildByTag(int);
-	virtual void removeChildByTag(int, bool);
+	virtual void removeChild(cocos2d::CCNode*) = ios 0x2444a0;
+	virtual void removeChild(cocos2d::CCNode*, bool) = ios 0x2444b0;
+	virtual void removeChildByTag(int) = ios 0x244568;
+	virtual void removeChildByTag(int, bool) = ios 0x244578;
 	virtual void removeAllChildren() = ios 0x2445c8;
 	virtual void removeAllChildrenWithCleanup(bool) = ios 0x2445d8;
 	virtual void reorderChild(cocos2d::CCNode*, int) = ios 0x2446bc;
@@ -1040,8 +1040,8 @@ class cocos2d::CCSprite {
 	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool) = ios 0x2403c4;
 	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = ios 0x24069c;
 	virtual bool initWithSpriteFrameName(char const*) = ios 0x240700;
-	virtual bool initWithFile(char const*);
-	virtual bool initWithFile(char const*, cocos2d::CCRect const&);
+	virtual bool initWithFile(char const*) = ios 0x2405a4;
+	virtual bool initWithFile(char const*, cocos2d::CCRect const&) = ios 0x240638;
 	virtual void setChildColor(cocos2d::_ccColor3B const&) = ios 0x241eb4;
 	virtual void setChildOpacity(unsigned char) = ios 0x241da4;
 	virtual cocos2d::CCSpriteBatchNode* getBatchNode() = ios 0x2422a8;
