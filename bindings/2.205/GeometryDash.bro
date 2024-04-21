@@ -3673,9 +3673,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseEffect(unsigned int);
 	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int);
-	void playEffect(gd::string, float, float, float);
-	void playEffect(gd::string);
-	void playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int);
+	void playEffect(gd::string, float, float, float) = ios 0x14017c;
+	void playEffect(gd::string) = ios 0x140104;
+	void playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int) = ios 0x13f048;
 	TodoReturn playEffectAsync(gd::string);
 	void playMusic(gd::string, bool, float, int);
 	TodoReturn preloadEffect(gd::string);
@@ -5925,7 +5925,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getTargetGroupOrigin(int, int);
 	TodoReturn gravBumpPlayer(PlayerObject*, EffectGameObject*);
 	void groupStickyObjects(cocos2d::CCArray*);
-	void handleButton(bool down, int button, bool isPlayer1); // button may be a PlayerButton enum
+	void handleButton(bool down, int button, bool isPlayer1) = ios 0x1fed20; // button may be a PlayerButton enum
 	TodoReturn hasItem(int);
 	bool hasUniqueCoin(EffectGameObject*);
 	TodoReturn increaseBatchNodeCapacity();
@@ -10916,7 +10916,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn addToTouchedRings(RingObject*);
 	TodoReturn addToYVelocity(double, int);
 	void animatePlatformerJump(float);
-	void boostPlayer(float);
+	void boostPlayer(float) = ios 0x2289bc;
 	void bumpPlayer(float, int, bool, GameObject*);
 	TodoReturn buttonDown(PlayerButton);
 	TodoReturn canStickToGround();
@@ -10989,9 +10989,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playBumpEffect(int, GameObject*);
 	TodoReturn playBurstEffect();
 	TodoReturn playCompleteEffect(bool, bool);
-	void playDeathEffect();
+	void playDeathEffect() = ios 0x60aa8; // this looks way too short...
 	void playDynamicSpiderRun();
-	void playerDestroyed(bool);
+	void playerDestroyed(bool) = ios 0x230554;
 	void playerIsFalling(float);
 	TodoReturn playerIsFallingBugged();
 	TodoReturn playerIsMovingUp();
@@ -10999,17 +10999,17 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playingEndEffect();
 	TodoReturn playSpawnEffect();
 	void playSpiderDashEffect(cocos2d::CCPoint, cocos2d::CCPoint);
-	void postCollision(float);
+	void postCollision(float) = ios 0x227530;
 	TodoReturn preCollision();
 	TodoReturn preSlopeCollision(float, GameObject*);
 	void propellPlayer(float, bool, int);
-	void pushButton(PlayerButton);
+	void pushButton(PlayerButton) = ios 0x23087c;
 	TodoReturn pushDown();
 	void pushPlayer(float);
 	TodoReturn redirectDash(float);
 	TodoReturn redirectPlayerForce(float, float, float, float);
 	TodoReturn releaseAllButtons();
-	void releaseButton(PlayerButton);
+	void releaseButton(PlayerButton) = ios 0x23166c;
 	TodoReturn removeAllParticles();
 	void removePendingCheckpoint();
 	TodoReturn removePlacedCheckpoint();
@@ -11091,7 +11091,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updateEffects(float);
 	void updateGlowColor();
 	void updateInternalActions(float);
-	void updateJump(float);
+	void updateJump(float) = ios 0x2230a4;
 	void updateJumpVariables();
 	void updateLastGroundObject(GameObject*);
 	void updateMove(float);
