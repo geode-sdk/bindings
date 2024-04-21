@@ -564,8 +564,8 @@ class cocos2d::CCLayer {
 	virtual void ccTouchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*) = ios 0x1514fc;
 	virtual void ccTouchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*) = ios 0x15159c;
 	virtual void ccTouchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*) = ios 0x15163c;
-	virtual void setPreviousPriority(int) = ios 0xe0f8;
-	virtual int getPreviousPriority() = ios 0xe100;
+	virtual void setPreviousPriority(int) = ios 0xe0e8;
+	virtual int getPreviousPriority() = ios 0xe0f0;
 
 	virtual void didAccelerate(cocos2d::CCAcceleration*) = ios 0x150c8c;
 
