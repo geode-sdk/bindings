@@ -743,7 +743,9 @@ class cocos2d::CCTouchDispatcher {
 	bool isDispatchEvents();
 	bool isUsingForcePrio();
 	void rearrangeHandlers(cocos2d::CCArray* handlers) {
-		std::sort(handlers->data->arr, handlers->data->arr + handlers->data->num, std::less);
+		std::sort(handlers->data->arr, handlers->data->arr + handlers->data->num, [](const CCObject* p1, const CCObject* p2) {
+			return ((CCTouchHandler*)p1)->getPriority() < ((CCTouchHandler*)p2)->getPriority();
+		});
 	}
 	void registerForcePrio(cocos2d::CCObject*, int) = ios 0x156f0c;
 	void removeAllDelegates();
