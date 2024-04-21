@@ -3585,11 +3585,11 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	void onBtn1(cocos2d::CCObject* sender) = ios 0x2b4934;
 	void onBtn2(cocos2d::CCObject* sender) = ios 0x2b4994;
 
-	// virtual void onEnter(); // only exists on armv7...
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4b24;
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4cb4;
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4ba0;
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4c3c;
+	virtual void onEnter() = ios 0x2b4eb0;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4a88;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4c78;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4b40;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4c00;
 	virtual void registerWithTouchDispatcher() = ios 0x2b4e78;
 	virtual void keyBackClicked() = ios 0x2b4a24;
 	virtual void keyDown(cocos2d::enumKeyCodes) = ios 0x2b49f4;
