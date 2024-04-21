@@ -3585,7 +3585,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	void onBtn1(cocos2d::CCObject* sender) = ios 0x2b4934;
 	void onBtn2(cocos2d::CCObject* sender) = ios 0x2b4994;
 
-	virtual void onEnter() = ios 0x2b4eb0;
+	// virtual void onEnter(); // only exists on armv7...
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4a88;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4c78;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x2b4b40;
@@ -10000,7 +10000,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	void onGameCenter(cocos2d::CCObject* sender);
 	void onGarage(cocos2d::CCObject* sender);
 	void onGooglePlayGames(cocos2d::CCObject* sender);
-	void onMoreGames(cocos2d::CCObject* sender);
+	void onMoreGames(cocos2d::CCObject* sender) = ios 0x26f4d8;
 	void onMyProfile(cocos2d::CCObject* sender);
 	void onNewgrounds(cocos2d::CCObject* sender);
 	void onOptions(cocos2d::CCObject* sender);
@@ -14746,7 +14746,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 
 [[link(android), depends(CCIndexPath)]]
 class TableViewCell : cocos2d::CCLayer {
-	~TableViewCell() = ios 0x3d630;
+	~TableViewCell() = ios 0x3d624;
 	TableViewCell(char const*, float, float) = ios 0x3d438;
 
 	TodoReturn updateVisibility() = ios 0x3d65c;
