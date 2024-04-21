@@ -1480,16 +1480,16 @@ class cocos2d::CCMenu {
 	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
 
 	virtual bool init() = ios 0x1daedc;
-	virtual void addChild(cocos2d::CCNode*);
-	virtual void addChild(cocos2d::CCNode*, int);
-	virtual void addChild(cocos2d::CCNode*, int, int);
+	virtual void addChild(cocos2d::CCNode*) = ios 0x1daee4;
+	virtual void addChild(cocos2d::CCNode*, int) = ios 0x1daee8;
+	virtual void addChild(cocos2d::CCNode*, int, int) = ios 0x1daeec;
 	virtual void removeChild(cocos2d::CCNode*, bool) = ios 0x1daf94;
 	virtual void onExit() = ios 0x1daf4c;
-	virtual void registerWithTouchDispatcher();
+	virtual void registerWithTouchDispatcher() = ios 0x1db004;
 
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x1db060;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x1db244;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x1db154;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x1db1dc;
 }
 
