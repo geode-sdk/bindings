@@ -326,7 +326,7 @@ class cocos2d::CCFileUtils {
 
 [[link(win, android)]]
 class cocos2d::CCNode {
-	static cocos2d::CCNode* create() = ios 0x24389c;
+	static cocos2d::CCNode* create() = ios 0x244170;
 	static void resetGlobalOrderOfArrival();
 
 	// CCNode(cocos2d::CCNode const&);
