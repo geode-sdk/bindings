@@ -1784,11 +1784,11 @@ class CountTriggerGameObject : EffectGameObject {
 class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
 	// virtual ~CreateGuidelinesLayer();
 
-	static CreateGuidelinesLayer* create(CustomSongDelegate*, AudioGuidelinesType);
+	static CreateGuidelinesLayer* create(CustomSongDelegate*, AudioGuidelinesType) = win 0x6d3f0;
 
 	TodoReturn doClearGuidelines();
 	TodoReturn getMergedRecordString(gd::string, gd::string);
-	bool init(CustomSongDelegate*, AudioGuidelinesType);
+	bool init(CustomSongDelegate*, AudioGuidelinesType) = win 0x6d490;
 	void onClearGuidelines(cocos2d::CCObject* sender);
 	void onStop(cocos2d::CCObject* sender);
 	TodoReturn toggleItems(bool);
@@ -11175,7 +11175,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void stopPlatformerJumpAnimation() = win 0x2C7B10;
 	TodoReturn stopRotation(bool, int);
 	TodoReturn stopStreak2() = win 0x2d8b20;
-	TodoReturn storeCollision(PlayerCollisionDirection, int);
+	void storeCollision(PlayerCollisionDirection, int) = win 0x2c8110;
 	TodoReturn switchedDirTo(PlayerButton) = win 0x2d1c40;
 	void switchedToMode(GameObjectType) = win 0x2d4fd0;
 	TodoReturn testForMoving(float, GameObject*);
@@ -11198,11 +11198,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn unrotatePreSlopeObjects();
 	TodoReturn updateCheckpointMode(bool);
 	TodoReturn updateCheckpointTest() = win 0x2c6310;
-	TodoReturn updateCollide(PlayerCollisionDirection, GameObject*);
-	TodoReturn updateCollideBottom(float, GameObject*);
-	TodoReturn updateCollideLeft(float, GameObject*);
-	TodoReturn updateCollideRight(float, GameObject*);
-	TodoReturn updateCollideTop(float, GameObject*);
+	void updateCollide(PlayerCollisionDirection, GameObject*) = win 0x2ce550;
+	void updateCollideBottom(float, GameObject*) = win 0x2ce6c0;
+	void updateCollideLeft(float, GameObject*) = win 0x2ce7c0;
+	void updateCollideRight(float, GameObject*) = win 0x2ce840;
+	void updateCollideTop(float, GameObject*) = win 0x2ce740;
 	void updateDashAnimation() = win 0x2d0ea0;
 	void updateDashArt() = win 0x2d0530;
 	TodoReturn updateEffects(float);

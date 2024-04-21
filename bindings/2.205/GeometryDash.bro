@@ -11058,7 +11058,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void stopPlatformerJumpAnimation();
 	TodoReturn stopRotation(bool, int);
 	TodoReturn stopStreak2();
-	TodoReturn storeCollision(PlayerCollisionDirection, int);
+	void storeCollision(PlayerCollisionDirection, int);
 	TodoReturn switchedDirTo(PlayerButton);
 	void switchedToMode(GameObjectType);
 	TodoReturn testForMoving(float, GameObject*);
