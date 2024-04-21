@@ -995,7 +995,7 @@ class cocos2d::CCNodeRGBA {
 
 	virtual bool init() = ios 0x245b6c;
 
-	virtual void setColor(cocos2d::_ccColor3B const&) = ios 0x245e14;
+	virtual void setColor(cocos2d::_ccColor3B const&) = ios 0x245d4c;
 	virtual cocos2d::_ccColor3B const& getColor() = ios 0x245d2c;
 	virtual cocos2d::_ccColor3B const& getDisplayedColor() = ios 0x245d3c;
 	virtual unsigned char getDisplayedOpacity() = ios 0x245b90;
