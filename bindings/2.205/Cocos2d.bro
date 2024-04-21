@@ -1132,10 +1132,10 @@ class cocos2d::CCLabelBMFont {
 	cocos2d::CCArray* getTargetArray() const;
 
 	void setExtraKerning(int);
-	void setFntFile(char const*);
+	void setFntFile(char const* fntFile); // inlined on ios
 	void setIsBatched(bool);
 	void setTargetArray(cocos2d::CCArray*);
-	void createFontChars();
+	void createFontChars() = ios 0x3021a0;
 	int kerningAmountForFirst(unsigned short, unsigned short);
 	void limitLabelWidth(float, float, float) = ios 0x303e78;
 
@@ -1779,7 +1779,7 @@ class cocos2d {
 	static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
 	static cocos2d::CCRect CCRectFromString(char const*);
 	static cocos2d::CCSize CCSizeFromString(char const*);
-	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*);
+	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = ios 0x2ff794;
 	static void FNTConfigRemoveCache();
 	static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
 	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
