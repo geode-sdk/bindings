@@ -331,7 +331,7 @@ class cocos2d::CCNode {
 
 	// CCNode(cocos2d::CCNode const&);
 	CCNode() = ios 0x24389c;
-    	~CCNode() = ios 0x2439f8;
+	~CCNode() = ios 0x2439f8;
 
 	cocos2d::CCAction* getActionByTag(int);
 	cocos2d::CCComponent* getComponent(char const*) const;
@@ -520,7 +520,7 @@ class cocos2d::CCLayer {
 
 	// CCLayer(cocos2d::CCLayer const&);
 	CCLayer() = ios 0x150758;
-    	~CCLayer() = ios 0x150804;
+	~CCLayer() = ios 0x150884;
 
 	cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
 	cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();
@@ -625,7 +625,7 @@ class cocos2d::CCLayerColor {
 
 	// CCLayerColor(cocos2d::CCLayerColor const&);
 	CCLayerColor() = ios 0x151b38;
-	~CCLayerColor() = ios 0x151bac; // (or ios = 0x150804 IDK GHIDRA IS MESSING WITH ME);
+	~CCLayerColor() = ios 0x151ba0;
 
 	void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
 
