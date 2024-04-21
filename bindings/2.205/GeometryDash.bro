@@ -5320,7 +5320,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn generateItemUnlockableData();
 	int getAwardedCurrencyForLevel(GJGameLevel*);
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*);
-	TodoReturn getBaseCurrency(int, bool, int);
+	int getBaseCurrency(int, bool, int);
 	int getBaseCurrencyForLevel(GJGameLevel*);
 	TodoReturn getBaseDiamonds(int);
 	TodoReturn getBonusDiamonds(int);
