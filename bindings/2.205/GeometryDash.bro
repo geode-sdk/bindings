@@ -5498,8 +5498,8 @@ class GameStatsManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GameToolbox {
-	static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*);
-	static void addRThumbScrollButton(cocos2d::CCLayer*);
+	static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = ios 0x4d880;
+	static void addRThumbScrollButton(cocos2d::CCLayer*) = ios 0x4d964;
 	static void alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = ios 0x4c9d4;
 	static void alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint) = ios 0x4cbac;
 	static TodoReturn bounceTime(float);
