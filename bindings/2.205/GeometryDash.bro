@@ -3673,9 +3673,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseEffect(unsigned int);
 	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int);
-	void playEffect(gd::string, float, float, float);
-	void playEffect(gd::string);
-	void playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int);
+	void playEffect(gd::string, float, float, float) = ios 0x14017c;
+	void playEffect(gd::string) = ios 0x140104;
+	void playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int) = ios 0x13f048;
 	TodoReturn playEffectAsync(gd::string);
 	void playMusic(gd::string, bool, float, int) = ios 0x141c64;
 	TodoReturn preloadEffect(gd::string);
@@ -5925,7 +5925,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getTargetGroupOrigin(int, int);
 	TodoReturn gravBumpPlayer(PlayerObject*, EffectGameObject*);
 	void groupStickyObjects(cocos2d::CCArray*);
-	void handleButton(bool down, int button, bool isPlayer1); // button may be a PlayerButton enum
+	void handleButton(bool down, int button, bool isPlayer1) = ios 0x1fed20; // button may be a PlayerButton enum
 	TodoReturn hasItem(int);
 	bool hasUniqueCoin(EffectGameObject*);
 	TodoReturn increaseBatchNodeCapacity();
@@ -6213,7 +6213,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void removeAllCheckpoints() = ios 0x20d8b4;
 	virtual void toggleMusicInPractice() = ios 0x20d8b8;
 
-	PAD = win 0x8, android32 0x8, android64 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8, ios 0x2; // why 0x2 for iOS? i have no idea!
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
@@ -6889,12 +6889,12 @@ class GJGameState {
 	int m_unk104;
 	bool m_unk108;
 	cocos2d::CCPoint m_unk10c;
-	PAD = win 0x10, android32 0x10, android64 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10, ios 0x10;
 	float m_unk124;
 	float m_unk128;
-	PAD = win 0x1c, android32 0x1c, android64 0x1c;
+	PAD = win 0x1c, android32 0x1c, android64 0x1c, ios 0x1c;
 	float m_unk148;
-	PAD = win 0x1c, android32 0x1c, android64 0x1c;
+	PAD = win 0x1c, android32 0x1c, android64 0x1c, ios 0x1c;
 	bool m_unk168;
 	bool m_unk169;
 	bool m_unk16a;
@@ -6916,17 +6916,17 @@ class GJGameState {
 	float m_unk1d8;
 	float m_unk1dc;
 	double m_unk1e0; // unsure type
-	PAD = win 0x10, android32 0x10, android64 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10, ios 0x10;
 	int m_unk1f8;
-	PAD = win 0x10, android32 0x10, android64 0x1c;
+	PAD = win 0x10, android32 0x10, android64 0x1c, ios 0x1c;
 	cocos2d::CCPoint m_unk20c;
-	PAD = win 0xa, android32 0xa, android64 0xa;
+	PAD = win 0xa, android32 0xa, android64 0xa, ios 0xa;
 	bool m_isDualMode;
-	PAD = win 0x5, android32 0x5, android64 0x5;
+	PAD = win 0x5, android32 0x5, android64 0x5, ios 0x5;
 	gd::unordered_map<int, GJValueTween> m_unk224;
-	PAD = win 0x10, android32 0x10, android64 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10, ios 0x10;
 	gd::unordered_map<int, GameObjectPhysics> m_unk250;
-	PAD = win 0x18, android32 0x18, android64 0x24;
+	PAD = win 0x18, android32 0x18, android64 0x24, ios 0x24;
 	cocos2d::CCPoint m_unk284;
 	int m_unk288;
 	int m_unk28c;
@@ -6938,13 +6938,13 @@ class GJGameState {
 	bool m_unk2c8;
 	bool m_unk2c9;
 	bool m_unk2ca;
-	PAD = win 0x6, android32 0x6, android64 0x6;
+	PAD = win 0x6, android32 0x6, android64 0x6, ios 0x6;
 	bool m_unk2d0;
 	bool m_unk2d1;
-	PAD = win 0x10, android32 0x10, android64 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10, ios 0x10;
 	double m_unk2e4; // unsure type
 	cocos2d::CCPoint m_unk2e8;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	gd::unordered_map<int, EnhancedGameObject*> m_unk2f4;
 	gd::map<std::pair<GJGameEvent, int>, gd::vector<EventTriggerInstance>> m_unk310;
 	gd::map<std::pair<GJGameEvent, int>, int> m_unk328;
@@ -6964,13 +6964,13 @@ class GJGameState {
 	gd::vector<DynamicObjectAction> m_unk404;
 	bool m_unk410;
 	bool m_unk411;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	gd::unordered_map<int, gd::vector<int>> m_unk418;
 	gd::map<std::pair<int, int>, SFXTriggerInstance> m_unk434;
 	gd::unordered_map<int, SongChannelState> m_unk44c;
 	gd::unordered_map<int, gd::vector<SongTriggerState>> m_unk468;
 	gd::vector<SFXTriggerState> m_unk484;
-	PAD = win 0x1c, android32 0x1c, android64 0x1c;
+	PAD = win 0x1c, android32 0x1c, android64 0x1c, ios 0x1c;
 }
 
 [[link(android)]]
@@ -7094,7 +7094,7 @@ class GJItemIcon : cocos2d::CCSprite {
 
 	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B);
 
-	void changeToLockedState(float);
+	void changeToLockedState(float) = ios 0x30cc78;
 	inline static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) {
 		return GJItemIcon::create(unlockType, itemID, {0xAF, 0xAF, 0xAF}, {0xFF, 0xFF, 0xFF}, false, true, true, {0xFF, 0xFF, 0xFF});
 	}
@@ -7305,7 +7305,7 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
 
 	void blockUser();
 	bool init(GJUserMessage*);
-	void loadFromGJMessage(GJUserMessage*);
+	void loadFromGJMessage(GJUserMessage*) = ios 0x2e25a8;
 	void onBlock(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onRemove(cocos2d::CCObject* sender);
@@ -10916,7 +10916,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn addToTouchedRings(RingObject*);
 	TodoReturn addToYVelocity(double, int);
 	void animatePlatformerJump(float);
-	void boostPlayer(float);
+	void boostPlayer(float) = ios 0x2289bc;
 	void bumpPlayer(float, int, bool, GameObject*);
 	TodoReturn buttonDown(PlayerButton);
 	TodoReturn canStickToGround();
@@ -10989,9 +10989,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playBumpEffect(int, GameObject*);
 	TodoReturn playBurstEffect();
 	TodoReturn playCompleteEffect(bool, bool);
-	void playDeathEffect();
+	void playDeathEffect() = ios 0x60aa8; // this looks way too short...
 	void playDynamicSpiderRun();
-	void playerDestroyed(bool);
+	void playerDestroyed(bool) = ios 0x230554;
 	void playerIsFalling(float);
 	TodoReturn playerIsFallingBugged();
 	TodoReturn playerIsMovingUp();
@@ -10999,17 +10999,17 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playingEndEffect();
 	TodoReturn playSpawnEffect();
 	void playSpiderDashEffect(cocos2d::CCPoint, cocos2d::CCPoint);
-	void postCollision(float);
+	void postCollision(float) = ios 0x227530;
 	TodoReturn preCollision();
 	TodoReturn preSlopeCollision(float, GameObject*);
 	void propellPlayer(float, bool, int);
-	void pushButton(PlayerButton);
+	void pushButton(PlayerButton) = ios 0x23087c;
 	TodoReturn pushDown();
 	void pushPlayer(float);
 	TodoReturn redirectDash(float);
 	TodoReturn redirectPlayerForce(float, float, float, float);
 	TodoReturn releaseAllButtons();
-	void releaseButton(PlayerButton);
+	void releaseButton(PlayerButton) = ios 0x23166c;
 	TodoReturn removeAllParticles();
 	void removePendingCheckpoint();
 	TodoReturn removePlacedCheckpoint();
@@ -11091,7 +11091,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updateEffects(float);
 	void updateGlowColor();
 	void updateInternalActions(float);
-	void updateJump(float);
+	void updateJump(float) = ios 0x2230a4;
 	void updateJumpVariables();
 	void updateLastGroundObject(GameObject*);
 	void updateMove(float);
@@ -11364,7 +11364,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset();
 	void delayedResetLevel();
 	void fullReset();
-	float getCurrentPercent();
+	float getCurrentPercent() = ios 0x11fa08;
 	int getCurrentPercentInt();
 	TodoReturn getEndPosition();
 	TodoReturn getLastCheckpoint();
@@ -11436,7 +11436,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void updateEffectPositions();
 	void updateInfoLabel();
 	void updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&);
-	void updateProgressbar();
+	void updateProgressbar() = ios 0x1196d8;
 	void updateScreenRotation(int, bool, bool, float, int, float, int, int);
 	void updateTimeWarp(EffectGameObject*, float);
 
@@ -14875,7 +14875,7 @@ class TextArea : cocos2d::CCSprite {
 	TodoReturn fadeOutAndRemove();
 	TodoReturn finishFade();
 	TodoReturn hideAll();
-	bool init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor);
+	bool init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = ios 0xf7df8;
 	void setIgnoreColorCode(bool);
 	void setString(gd::string);
 	void showAll();

@@ -333,7 +333,7 @@ class cocos2d::CCNode {
 	CCNode() = ios 0x24389c;
 	~CCNode() = ios 0x2439f8;
 
-	cocos2d::CCAction* getActionByTag(int);
+	cocos2d::CCAction* getActionByTag(int) = ios 0x244fbc;
 	cocos2d::CCComponent* getComponent(char const*) const;
 	int getScriptHandler();
 	cocos2d::CCAffineTransform getTransformTemp();
@@ -369,7 +369,7 @@ class cocos2d::CCNode {
 	void sortAllChildrenNoIndex();
 	void sortAllChildrenWithIndex();
 	void stopAction(cocos2d::CCAction*);
-	void stopActionByTag(int);
+	void stopActionByTag(int) = ios 0x244fb0;
 	void stopAllActions() = ios 0x244280;
 	void transform() = ios 0x244acc;
 	void transformAncestors();
@@ -1300,10 +1300,10 @@ class cocos2d::CCLabelBMFont {
 	cocos2d::CCArray* getTargetArray() const;
 
 	void setExtraKerning(int);
-	void setFntFile(char const*);
+	void setFntFile(char const* fntFile); // inlined on ios
 	void setIsBatched(bool);
 	void setTargetArray(cocos2d::CCArray*);
-	void createFontChars();
+	void createFontChars() = ios 0x3021a0;
 	int kerningAmountForFirst(unsigned short, unsigned short);
 	void limitLabelWidth(float, float, float) = ios 0x303e78;
 
@@ -1977,7 +1977,7 @@ class cocos2d {
 	static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
 	static cocos2d::CCRect CCRectFromString(char const*);
 	static cocos2d::CCSize CCSizeFromString(char const*);
-	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*);
+	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = ios 0x2ff794;
 	static void FNTConfigRemoveCache();
 	static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
 	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
@@ -2167,4 +2167,28 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 	static cocos2d::extension::CCHttpClient* getInstance();
 	static void destroyInstance();
 	void send(cocos2d::extension::CCHttpRequest* request);
+}
+
+[[link(win, android)]]
+class cocos2d::CCFadeIn {
+	static cocos2d::CCFadeIn* create(float) = ios 0x193adc;
+
+	// CCFadeIn(cocos2d::CCFadeIn const&);
+	// CCFadeIn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCFadeOut {
+	static cocos2d::CCFadeOut* create(float) = ios 0x193924;
+
+	// CCFadeOut(cocos2d::CCFadeOut const&);
+	// CCFadeOut();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
 }
