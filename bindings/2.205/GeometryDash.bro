@@ -5335,8 +5335,8 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getItemKey(int, int) = ios 0x3314d4;
 	int getItemUnlockState(int, UnlockType) = ios 0x33b2a0;
 	int getItemUnlockStateLite(int, UnlockType);
-	gd::string getLevelKey(GJGameLevel*);
-	gd::string getLevelKey(int, bool, bool, bool);
+	gd::string getLevelKey(GJGameLevel*) = ios 0x336088;
+	gd::string getLevelKey(int, bool, bool, bool) = ios 0x3360c0;
 	TodoReturn getListRewardKey(GJLevelList*) = ios 0x339660;
 	char const* getMapPackKey(int);
 	TodoReturn getNextVideoAdReward();
