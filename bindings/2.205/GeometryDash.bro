@@ -4026,12 +4026,12 @@ class GameLevelManager : cocos2d::CCNode {
 	char const* getPostCommentKey(int);
 	char const* getRateStarsKey(int key);
 	char const* getReportKey(int);
-	GJGameLevel* getSavedDailyLevel(int);
+	GJGameLevel* getSavedDailyLevel(int) = ios 0x9c2ec;
 	GJGameLevel* getSavedDailyLevelFromLevelID(int);
 	GJGameLevel* getSavedGauntlet(int);
 	GJGameLevel* getSavedGauntletLevel(int);
 	GJGameLevel* getSavedLevel(GJGameLevel*);
-	GJGameLevel* getSavedLevel(int);
+	GJGameLevel* getSavedLevel(int) = ios 0x9c3f4; // NOT SURE !!
 	GJLevelList* getSavedLevelList(int);
 	cocos2d::CCArray* getSavedLevelLists(int);
 	cocos2d::CCArray* getSavedLevels(bool, int) = ios 0x9af38;
@@ -9233,7 +9233,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn playStep4() = ios 0x33e28;
 	static cocos2d::CCScene* scene(GJGameLevel*, bool);
 	void setupLevelInfo();
-	void setupPlatformerStats();
+	void setupPlatformerStats() = ios 0x3113c;
 	void setupProgressBars() = ios 0x31498;
 	bool shouldDownloadLevel();
 	void showSongWarning();
