@@ -6217,7 +6217,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
-	PAD = android32 0x28c, android64 0x514;
+	PAD = android32 0x28c, android64 0x514, ios 0x504;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
@@ -6233,9 +6233,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<GameObject*> m_unknownD30;
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD48;
 	gd::vector<GameObject*> m_unknownD70;
-	PAD = win 0x8, android32 0x8, android64 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8, ios 0x8;
 	gd::vector<GameObject*> m_unk918;
-	PAD = win 0x30, android32 0x30, android64 0x30;
+	PAD = win 0x30, android32 0x30, android64 0x30, ios 0x30;
 	cocos2d::CCDictionary* m_groupDict;
 	cocos2d::CCDictionary* m_staticGroupDict;
 	cocos2d::CCDictionary* m_optimizedGroupDict;
@@ -6253,14 +6253,15 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCNode* m_unknownE98;
 	cocos2d::CCNode* m_unknownEA0;
 	cocos2d::CCLayer* m_objectLayer;
-	PAD = win 0x7c, android32 0x78, android64 0xec;
+	PAD = win 0x7c, android32 0x78, android64 0xec, ios 0xb4;
 	std::array<float, 2000> m_massiveFloatArray;
-	PAD = win 0x48, android32 0x54, android64 0x98; // not sure about the android paddings
+	PAD = win 0x48, android32 0x54, android64 0x98, ios 0x98; // not sure about the android paddings
+	// these 4 might be wrong on ios (they probably are wrong)
 	int m_leftSectionIndex; // 29b4 win, 29d4 android32, 30b4 android64
 	int m_rightSectionIndex;
 	int m_bottomSectionIndex;
 	int m_topSectionIndex;
-	PAD = win 0xB8, android32 0xB0, android64 0x144;
+	PAD = win 0xB8, android32 0xB0, android64 0x144, ios 0xfc;
 	bool m_isPracticeMode; // 2a7c win, 2a94 android32, 3208 android64
 	bool m_practiceMusicSync;
 	float m_unk2a80;
@@ -6275,18 +6276,18 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unk2aa4;
 	EndPortalObject* m_endPortal;
 	bool m_isTestMode;
-	PAD = win 0xa0, android32 0x82, android64 0xb0;
+	PAD = win 0xa0, android32 0x82, android64 0xb0, ios 0xc0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = android32 0xb0, android64 0x148;
+	PAD = android32 0xb0, android64 0x148, ios 0x128;
 	UILayer* m_uiLayer;
-	PAD = android32 0x24, android64 0x40;
+	PAD = android32 0x24, android64 0x40, ios 0x40;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c2c
-	PAD = android32 0x114, android64 0x1a0;
+	PAD = android32 0x114, android64 0x1a0, ios 0x1a0;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode; // android32 = 0x2d50, android64 = 0x3668
-	PAD = android32 0x4, android64 0x8;
+	PAD = android32 0x4, android64 0x8, ios 0x8;
 	bool m_isDebugDrawEnabled;
-	PAD = android32 0x5, android64 0x9;
+	PAD = android32 0x5, android64 0x9, ios 0x9;
 }
 
 [[link(android)]]
@@ -8748,9 +8749,9 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 
 	static LevelAreaInnerLayer* create(bool);
 
-	bool init(bool);
-	void onBack(cocos2d::CCObject* sender);
-	void onDoor(cocos2d::CCObject* sender);
+	bool init(bool) = ios 0x349548;
+	void onBack(cocos2d::CCObject* sender) = ios 0x349f70;
+	void onDoor(cocos2d::CCObject* sender) = ios 0x349fc8;
 	void onInfo(cocos2d::CCObject* sender) = ios 0x34a1fc;
 	void onNextFloor(cocos2d::CCObject* sender) = ios 0x34a0f4;
 	bool playStep1();
@@ -10905,7 +10906,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 	float m_size;
 }
 
-[[link(android)]]
+[[link(android), depends(GJPointDouble)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	// virtual ~PlayerObject();
 
@@ -11475,21 +11476,21 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*) = ios 0x1209d0;
 	virtual void dialogClosed(DialogLayer*) = ios 0x12099c;
 
-	PAD = android32 0x24, android64 0x2c;
+	PAD = android32 0x24, android64 0x2c, ios 0x2c;
 	cocos2d::CCArray* m_coinArray;
-	PAD = android32 0x84, android64 0xc8;
+	PAD = android32 0x84, android64 0xc8, ios 0xc8;
 	cocos2d::CCArray* m_circleWaveArray;
-	PAD = android32 0x10, android64 0x18;
+	PAD = android32 0x10, android64 0x18, ios 0x18;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
-	PAD = android32 0x8, android64 0x10;
+	PAD = android32 0x8, android64 0x10, ios 0x10;
 	cocos2d::CCSprite* m_progressBar;
-	PAD = android32 0xD4, android64 0x108;
+	PAD = android32 0xD4, android64 0x108, ios 0xf8; // (ios) maybe add 0x10 here and subtract at the end
 	cocos2d::CCDictionary* m_colorKeyDict;
 	gd::vector<int> m_keyColors; // type not really accurate
 	gd::vector<int> m_keyOpacities; // type not really accurate
 	gd::vector<int> m_keyPulses; // type not really accurate
 	int m_nextColorKey;
-	PAD = android32 0x18, android64 0x24;
+	PAD = android32 0x18, android64 0x24, ios 0x24;
 }
 
 [[link(android)]]
