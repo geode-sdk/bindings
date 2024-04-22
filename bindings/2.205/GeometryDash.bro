@@ -5331,7 +5331,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getCurrencyKey(GJGameLevel*);
 	TodoReturn getDailyLevelKey(int);
 	TodoReturn getDemonLevelKey(GJGameLevel*) = ios 0x3361ec;
-	gd::string getGauntletRewardKey(int);
+	gd::string getGauntletRewardKey(int) = ios 0x33b594; // NOT FULLY SURE
 	TodoReturn getItemKey(int, int) = ios 0x3314d4;
 	int getItemUnlockState(int, UnlockType) = ios 0x33b2a0;
 	int getItemUnlockStateLite(int, UnlockType);
@@ -5390,7 +5390,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool isSecretCoin(gd::string);
 	bool isSecretCoinValid(gd::string) = ios 0x3379b4;
 	bool isSpecialChestLiteUnlockable(gd::string);
-	bool isSpecialChestUnlocked(gd::string);
+	bool isSpecialChestUnlocked(gd::string) = ios 0x33b224;
 	bool isStoreItemUnlocked(int) = ios 0x331778;
 	TodoReturn keyCostForSecretChest(int) = ios 0x33aec4;
 	TodoReturn logCoins();
