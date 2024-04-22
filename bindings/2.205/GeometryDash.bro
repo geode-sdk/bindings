@@ -1304,7 +1304,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	static ChallengesPage* create() = ios 0x3b278;
 
 	TodoReturn claimItem(ChallengeNode*, GJChallengeItem*, cocos2d::CCPoint) = ios 0x3c428;
-	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew);
+	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = ios 0x3bcb8;
 	TodoReturn exitNodeAtSlot(int, float);
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn tryGetChallenges();
@@ -1951,7 +1951,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onUpdateCustomColor(cocos2d::CCObject* sender);
 	TodoReturn recreateLayer();
 	void sliderChanged(cocos2d::CCObject*);
-	void toggleVisible();
+	void toggleVisible() = ios 0x59b94;
 	void updateChannelLabel(int) = ios 0x595a4;
 	void updateColorSprite() = ios 0x594d4;
 	void updateCurrentSelection();
@@ -2252,7 +2252,7 @@ class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
 
 	static DailyLevelNode* create(GJGameLevel*, DailyLevelPage*, bool) = ios 0x1bfa6c;
 
-	bool init(GJGameLevel*, DailyLevelPage*, bool);
+	bool init(GJGameLevel*, DailyLevelPage*, bool) = ios 0x1c0044;
 	void onClaimReward(cocos2d::CCObject* sender);
 	void onSkipLevel(cocos2d::CCObject* sender) = ios 0x1c0bd4;
 	void showSkipButton();
