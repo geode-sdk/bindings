@@ -5051,7 +5051,7 @@ class GameObject : CCSpritePlus {
 	virtual void setOrientedRectDirty(bool) = ios 0x236aa0;
 	virtual void setType(GameObjectType) = ios 0x236ab0;
 
-	PAD = android32 0x5, win 0x5, android64 0x5;
+	PAD = android32 0x5, win 0x5, android64 0x5, ios 0x5;
 
 	int m_innerSectionIndex;
 	int m_outerSectionIndex;
@@ -5059,63 +5059,63 @@ class GameObject : CCSpritePlus {
 
 	// property 511
 	bool m_hasExtendedCollision;
-	PAD = android32 0x13, win 0x13, android64 0x13;
+	PAD = android32 0x13, win 0x13, android64 0x13, ios 0x13;
 
 	// somehow related to property 155 and 156 if anyone wants to reverse engineer
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
 
-	PAD = android32 0x4c, win 0x4c, android64 0x54;
+	PAD = android32 0x4c, win 0x4c, android64 0x54, ios 0x54;
 
 	cocos2d::CCSprite* m_glowSprite;
 
-	PAD = android32 0x8, win 0x4, android64 0x4;
+	PAD = android32 0x8, win 0x4, android64 0x4, ios 0x4;
 
 	float m_unk288;
 	float m_unk28c;
 
-	PAD = android32 0x8, win 0x8, android64 0x8;
+	PAD = android32 0x8, win 0x8, android64 0x8, ios 0x8;
 
 	gd::string m_particleString;
 
-	PAD = android32 0x1, win 0x1, android64 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1, ios 0x1;
 
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3e, win 0x3e, android64 0x3e;
+	PAD = android32 0x3e, win 0x3e, android64 0x3e, ios 0x3e;
 
 	// property 108
 	int m_linkedGroup;
 
-	PAD = android32 0xc, win 0xc, android64 0xc;
+	PAD = android32 0xc, win 0xc, android64 0xc, ios 0xc;
 
 	cocos2d::CCSprite* m_colorSprite;
 
-	PAD = android32 0x13, win 0x13, android64 0x13;
+	PAD = android32 0x13, win 0x13, android64 0x13, ios 0x13;
 
 	int m_uniqueID;
 	GameObjectType m_objectType;
 
-	PAD = android32 0x10, win 0x10, android64 0x10;
+	PAD = android32 0x10, win 0x10, android64 0x10, ios 0x10;
 	double m_realXPosition;
 	double m_realYPosition;
 	cocos2d::CCPoint m_startPosition;
-	PAD = android32 0x1, win 0x1, android64 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1, ios 0x1;
 
 	// property 372
 	bool m_hasNoAudioScale;
-	PAD = android32 0x12, win 0x12, android64 0x12;
+	PAD = android32 0x12, win 0x12, android64 0x12, ios 0x12;
 
 	float m_currentScaleX;
 	float m_currentScaleY;
 
-	PAD = android32 0x10, win 0x10, android64 0x10;
+	PAD = android32 0x10, win 0x10, android64 0x10, ios 0x10;
 
 	// property 343
 	short m_enterChannel;
 	// property 446
 	short m_objectMaterial;
-	PAD = android32 0x4, win 0x4, android64 0x4;
+	PAD = android32 0x4, win 0x4, android64 0x4, ios 0x4;
 
 	// property 96
 	bool m_hasNoGlow;
@@ -5125,7 +5125,7 @@ class GameObject : CCSpritePlus {
 
 	// property 1
 	int m_objectID;
-	PAD = android32 0x8, win 0x8, android64 0x8;
+	PAD = android32 0x8, win 0x8, android64 0x8, ios 0x8;
 
 	// property 497
 	short m_customColorType;
@@ -5137,30 +5137,30 @@ class GameObject : CCSpritePlus {
 	bool m_hasNoEffects;
 	// property 507
 	bool m_hasNoParticles;
-	PAD = android32 0x16, win 0x16, android64 0x16;
+	PAD = android32 0x16, win 0x16, android64 0x16, ios 0x16;
 
 	// property 53
 	int m_property53;
-	PAD = android32 0x18, win 0x18, android64 0x18;
+	PAD = android32 0x18, win 0x18, android64 0x18, ios 0x18;
 
 	// property 21, also used with 41 and 43
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
-	PAD = android32 0xc, win 0xc, android64 0xc;
+	PAD = android32 0xc, win 0xc, android64 0xc, ios 0xc;
 
 	// property 24
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
-	PAD = android32 0x1, win 0x1, android64 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1, ios 0x1;
 
 	bool m_isSelected;
 
-	PAD = android32 0xe, win 0xe, android64 0xe;
+	PAD = android32 0xe, win 0xe, android64 0xe, ios 0xe;
 
 	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
-	PAD = android32 0x1, win 0x1, android64 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1, ios 0x1;
 
 	// property 34
 	bool m_hasGroupParent;
@@ -5187,19 +5187,19 @@ class GameObject : CCSpritePlus {
 	short m_editorLayer;
 	// property 61
 	short m_editorLayer2;
-	PAD = android32 0x8, win 0x8, android64 0x8;
+	PAD = android32 0x8, win 0x8, android64 0x8, ios 0x8;
 
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x9, win 0x9, android64 0x9;
+	PAD = android32 0x9, win 0x9, android64 0x9, ios 0x9;
 
 	cocos2d::CCPoint m_lastPosition;
 
-	PAD = android32 0x1b, win 0x1b, android64 0x1b;
+	PAD = android32 0x1b, win 0x1b, android64 0x1b, ios 0x1b;
 
 	// property 103
 	bool m_isHighDetail;
-	PAD = android32 0x11, win 0x11, android64 0x21;
+	PAD = android32 0x11, win 0x11, android64 0x21, ios 0x21;
 
 	// property 134
 	bool m_isPassable;
@@ -5221,14 +5221,14 @@ class GameObject : CCSpritePlus {
 	bool m_isDontBoostY;
 	// property 509
 	bool m_isDontBoostX;
-	PAD = android32 0x11, win 0x11, android64 0x11;
+	PAD = android32 0x11, win 0x11, android64 0x11, ios 0x11;
 
 	// property 155
 	int m_property155;
 	// property 156
 	int m_property156;
 
-	PAD = android32 0x12, win 0x1e, android64 0x12; // TODO: yeah someone pls fix windows pads
+	PAD = android32 0x12, win 0x1e, android64 0x12, ios 0x12; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
@@ -11157,30 +11157,30 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void animationFinished(char const*) = ios 0x2366b8;
 
 	cocos2d::CCNode* m_mainLayer;
-	PAD = win 0x44, android32 0x44, android64 0x48;
+	PAD = win 0x44, android32 0x44, android64 0x48, ios 0x48;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
 	cocos2d::CCDictionary* m_unk4ec;
 	cocos2d::CCDictionary* m_unk4f0;
 	cocos2d::CCDictionary* m_unk4f4;
-	PAD = win 0x20, android32 0x20, android64 0x20;
+	PAD = win 0x20, android32 0x20, android64 0x20, ios 0x20;
 	float m_unk518;
 	bool m_unk51c;
 	bool m_unk51d;
 	bool m_unk51e;
 	bool m_unk51f;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	GameObject* m_collidedObject;
-	PAD = win 0x40, android32 0x40, android64 0x50;
+	PAD = win 0x40, android32 0x40, android64 0x50, ios 0x50;
 	float m_unk568;
 	cocos2d::CCSprite* m_unk56c;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	GameObject* m_unk574;
 	GameObject* m_unk578;
-	PAD = win 0x8, android32 0x8, android64 0x0;
+	PAD = win 0x8, android32 0x8, android64 0x0, ios 0x0;
 	float unk_584;
 	int unk_588; // seems to always be 0, but when you respawn it's -1 until you move at least 1 block from the respawn place
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	cocos2d::CCArray* m_particleSystems;
 	gd::unordered_map<int, GJPointDouble> m_unk594; // insertions are in PlayerObject::rotateGameplayObject
 	gd::unordered_map<int, GameObject*> m_unk5b4;
@@ -11210,10 +11210,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCMotionStreak* m_shipStreak;
 	HardStreak* m_waveTrail;
 	float m_unk62c;
-	PAD = win 0x14, android32 0x14, android64 0x14;
+	PAD = win 0x14, android32 0x14, android64 0x14, ios 0x14;
 	float m_unk644;
 	float m_unk648;
-	PAD = win 0xc, android32 0xc, android64 0xc;
+	PAD = win 0xc, android32 0xc, android64 0xc, ios 0xc;
 	bool m_unk658;
 	bool m_unk659;
 	bool m_unk65a;
@@ -11222,20 +11222,20 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_unk65d; // walking ???
 	bool m_unk65e;
 	bool m_unk65f;
-	PAD = win 0x28, android32 0x28, android64 0x28;
+	PAD = win 0x28, android32 0x28, android64 0x28, ios 0x28;
 	float m_unk688;
 	float m_unk68c;
-	PAD = win 0x12, android32 0x12, android64 0x12;
+	PAD = win 0x12, android32 0x12, android64 0x12, ios 0x12;
 	bool m_unk6a2; // = GameManager::getGameVariable("0096")
 	bool m_unk6a3; // = GameManager::getGameVariable("0100")
-	PAD = win 0x18, android32 0x18, android64 0x18;
+	PAD = win 0x18, android32 0x18, android64 0x18, ios 0x18;
 	gd::unordered_set<int> m_unk6a4;
 	GameObject* m_objectSnappedTo;
 	int m_unk6c0;
-	PAD = win 0x4, android32 0x4, android64 0xc; // android64 unsure
+	PAD = win 0x4, android32 0x4, android64 0xc, ios 0xc; // android64 unsure
 	GJRobotSprite* m_robotSprite;
 	GJSpiderSprite* m_spiderSprite;
-	PAD = win 0x4, android32 0x4, android64 0x8;
+	PAD = win 0x4, android32 0x4, android64 0x8, ios 0x8;
 	cocos2d::CCParticleSystemQuad* m_unk6dc;
 	cocos2d::CCParticleSystemQuad* m_trailingParticles;
 	cocos2d::CCParticleSystemQuad* m_shipClickParticles;
@@ -11245,19 +11245,19 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCParticleSystemQuad* m_unk6f4;
 	cocos2d::CCParticleSystemQuad* m_swingBurstParticles1;
 	cocos2d::CCParticleSystemQuad* m_swingBurstParticles2;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	cocos2d::CCParticleSystemQuad* m_unk704;
 	cocos2d::CCParticleSystemQuad* m_unk708;
 	float m_unk70c;
 	float m_unk710;
-	PAD = android32 0x60, android64 0x60;
+	PAD = android32 0x60, android64 0x60, ios 0x60;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
-	PAD = win 0x1c, android32 0x20, android64 0x20;
+	PAD = win 0x1c, android32 0x20, android64 0x20, ios 0x20;
 	double m_yVelocity;
 	bool m_isOnSlope;
 	bool m_wasOnSlope;
-	PAD = win 0x7, android32 0x7, android64 0x7;
+	PAD = win 0x7, android32 0x7, android64 0x7, ios 0x7;
 	bool m_isShip;
 	bool m_isBird;
 	bool m_isBall;
@@ -11270,12 +11270,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_isGoingLeft;
 	bool m_isSideways;
 	bool m_isSwing;
-	PAD = win 0x10, android32 0x10, android64 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10, ios 0x10;
 	float m_unk7c8;
 	float m_unk7cc; // unsure if float
 	float m_unk7d0;
 	bool m_isDashing;
-	PAD = win 0x8, android32 0x8, android64 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8, ios 0x8;
 	float m_vehicleSize;
 	float m_playerSpeed;
 	float m_unk7e0;
@@ -11283,7 +11283,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCPoint m_unk7e8;
 	cocos2d::CCPoint m_unk7f0; // maybe m_lastPortalPos
 	bool m_unk7f8;
-	PAD = win 0x18, android32 0x18, android64 0x1c;
+	PAD = win 0x18, android32 0x18, android64 0x1c, ios 0x1c;
 	cocos2d::CCPoint m_lastGroundedPos;
 	cocos2d::CCArray* m_touchingRings;
 	gd::unordered_set<int> m_unk828;
@@ -11293,50 +11293,50 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::ccColor3B m_playerColor1;
 	cocos2d::ccColor3B m_playerColor2;
 	cocos2d::CCPoint m_position;
-	PAD = win 0x14, android32 0x20, android64 0x20; // android64 unverified
+	PAD = win 0x14, android32 0x20, android64 0x20, ios 0x20; // android64 unverified
 	bool m_gamevar0060; // used in init
 	bool m_gamevar0061;
 	bool m_gamevar0062;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	gd::vector<float> m_unk880;
 	float m_unk838;
-	PAD = android32 0x18, android64 0x18;
+	PAD = android32 0x18, android64 0x18, ios 0x18;
 	double m_platformerXVelocity;
-	PAD = android32 0x70, android64 0x70;
+	PAD = android32 0x70, android64 0x70, ios 0x70;
 	bool m_isPlatformer;
 	int m_unk8ec;
 	int m_unk8f0;
 	int m_unk8f4;
 	int m_unk8f8;
 	float m_gravityMod;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	cocos2d::CCPoint m_unk904;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	gd::map<int, bool> m_unk910;
 	float m_unk918; // increments whenever you're midiar?
 	float m_unk91c;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	gd::map<int, bool> m_unk924;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	gd::string m_unk930; // this is always "run" ???
 	bool m_unk948; // = getGameVariable("0123")
-	PAD = win 0x3, android32 0x3, android64 0x3;
+	PAD = win 0x3, android32 0x3, android64 0x3, ios 0x3;
 	int m_iconRequestID;
 	cocos2d::CCSpriteBatchNode* m_unk950;
 	cocos2d::CCSpriteBatchNode* m_unk954;
 	cocos2d::CCArray* m_unk958;
 	PlayerFireBoostSprite* m_robotFire;
-	PAD = win 0x4, android32 0x4, android64 0x8;
+	PAD = win 0x4, android32 0x4, android64 0x8, ios 0x8;
 	GJBaseGameLayer* m_gameLayer;
 	cocos2d::CCLayer* m_parentLayer;
 	GJActionManager* m_actionManager;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	float m_unk974;
 	bool m_unk978;
 	bool m_unk979; // = isItemEnabled(0xc, 0x12);
 	bool m_unk97a; // = isItemEnabled(0xc, 0x13);
 	bool m_unk97b; // = isItemEnabled(0xc, 0x14);
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 }
 
 [[link(android)]]

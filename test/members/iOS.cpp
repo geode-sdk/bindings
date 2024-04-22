@@ -15,5 +15,7 @@ GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x35f0);
 
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x34b8);
 GEODE_SIZE_CHECK(PlayLayer, 0x3780);
+GEODE_SIZE_CHECK(GameObject, 0x548);
+GEODE_SIZE_CHECK(PlayerObject, 0xbe8);
 
 #endif
