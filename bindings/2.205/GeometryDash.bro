@@ -876,6 +876,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
+		auto sprite = this->getNormalImage();
 		auto size = sprite->getScaledContentSize();
 		sprite->setPosition(size / 2);
 		sprite->setAnchorPoint({ .5f, .5f });
