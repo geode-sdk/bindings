@@ -177,6 +177,13 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn storeAchievementUnlocks();
 
 	virtual bool init();
+
+	cocos2d::CCArray* m_unkAchievements;
+	cocos2d::CCDictionary* m_achievements;
+	PAD = win 0x10;
+	cocos2d::CCArray* m_achievementsOrdered;
+	PAD = win 0x4;
+	cocos2d::CCString* m_unkString;
 }
 
 [[link(android)]]
