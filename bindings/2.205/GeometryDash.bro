@@ -11364,8 +11364,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset();
 	void delayedResetLevel();
 	void fullReset();
-	float getCurrentPercent();
-	int getCurrentPercentInt() = ios 0x11fa08; // is this correct...
+	float getCurrentPercent() = ios 0x11fa08;
+	int getCurrentPercentInt();
 	TodoReturn getEndPosition();
 	TodoReturn getLastCheckpoint();
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
