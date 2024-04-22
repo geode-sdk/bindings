@@ -4071,7 +4071,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void invalidateRequests(bool, bool);
 	void invalidateUserList(UserListType, bool);
 	bool isDLActive(char const* tag) = ios 0x9cea4;
-	bool isFollowingUser(int);
+	bool isFollowingUser(int) = ios 0x9db50; // fairly sure
 	bool isTimeValid(char const*, float);
 	bool isUpdateValid(int);
 	int itemIDFromLikeKey(char const*);
@@ -9539,7 +9539,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 
 	cocos2d::ccColor3B colorForPage(int);
 	TodoReturn getColorValue(int, int, float);
-	bool init(int);
+	bool init(int) = ios 0x3fe018;
 	void onBack(cocos2d::CCObject* sender);
 	void onDownload(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
@@ -12015,7 +12015,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	TodoReturn generateChestItems(int) = ios 0x2f1948;
 	TodoReturn getPageColor(int);
 	void goToPage(int);
-	bool init(bool);
+	bool init(bool) = ios 0x2ef498;
 	TodoReturn moveToMainLayer(cocos2d::CCObject*);
 	TodoReturn moveToSecondaryLayer(int);
 	void onBack(cocos2d::CCObject* sender);
