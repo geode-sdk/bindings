@@ -978,7 +978,7 @@ class cocos2d::CCDirector {
 
 	float getActualDeltaTime() const;
 	double getAnimationInterval();
-	float getContentScaleFactor() = ios 0x17d64c;
+	float getContentScaleFactor();
 	cocos2d::CCDirectorDelegate* getDelegate() const;
 	bool getDontCallWillSwitch() const;
 	void getFPSImageData(unsigned char**, unsigned int*);
@@ -990,14 +990,14 @@ class cocos2d::CCDirector {
 	cocos2d::ccDirectorProjection getProjection();
 	cocos2d::CCScene* getRunningScene();
 	cocos2d::CCScene* getSceneReference() const;
-	float getScreenBottom() = ios 0x17d944;
-	float getScreenLeft() = ios 0x17d94c;
-	float getScreenRight() = ios 0x17d954;
+	float getScreenBottom();
+	float getScreenLeft();
+	float getScreenRight();
 	float getScreenScaleFactor();
-	float getScreenScaleFactorH() = ios 0x17d92c;
+	float getScreenScaleFactorH();
 	float getScreenScaleFactorMax();
 	float getScreenScaleFactorW();
-	float getScreenTop() = ios 0x17d93c;
+	float getScreenTop();
 	float getSecondsPerFrame();
 	bool getSmoothFix() const;
 	bool getSmoothFixCheck() const;
