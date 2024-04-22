@@ -8469,7 +8469,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	}
 	int getRealID();
 	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, cocos2d::CCPoint);
-	bool init(GJGameLevel*, GJUserScore*, GJLevelList*);
+	bool init(GJGameLevel*, GJUserScore*, GJLevelList*) = ios 0x353630;
 	bool isCorrect(char const*);
 	void loadPage(int, bool);
 	void onClose(cocos2d::CCObject* sender) = ios 0x355888;
