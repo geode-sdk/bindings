@@ -132,7 +132,7 @@ GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2C8);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x3788);
 
 
-GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x250);
+GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x258);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
 GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x300);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x338);

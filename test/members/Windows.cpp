@@ -100,6 +100,7 @@ GEODE_MEMBER_CHECK(GameStatsManager, m_activePath, 0x250);
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d80);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x148);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5e0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_effectManager, 0x650);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x878);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x87c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9b8);
