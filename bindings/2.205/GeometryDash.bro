@@ -3677,7 +3677,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void playEffect(gd::string);
 	void playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int);
 	TodoReturn playEffectAsync(gd::string);
-	void playMusic(gd::string, bool, float, int);
+	void playMusic(gd::string, bool, float, int) = ios 0x141c64;
 	TodoReturn preloadEffect(gd::string);
 	TodoReturn preloadEffectAsync(gd::string);
 	TodoReturn preloadMusic(gd::string, bool, int);
@@ -4469,7 +4469,7 @@ class GameManager : GManager {
 	TodoReturn doQuickSave();
 	TodoReturn dpadConfigToString(UIButtonConfig&);
 	TodoReturn eventUnlockFeature(char const*);
-	void fadeInMenuMusic();
+	void fadeInMenuMusic() = ios 0x318c34;
 	void fadeInMusic(gd::string);
 	TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*);
 	TodoReturn finishedLoadingGAsync(int);
@@ -6982,7 +6982,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	cocos2d::CCArray* getItems(IconType);
 	cocos2d::CCArray* getItems(int, int, IconType, int);
 	TodoReturn getLockFrame(int, UnlockType);
-	static GJGarageLayer* node();
+	static GJGarageLayer* node() = ios 0x308984;
 	void onArrow(cocos2d::CCObject* sender);
 	void onBack(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
@@ -6996,7 +6996,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onToggleItem(cocos2d::CCObject* sender);
 	void playRainbowEffect();
 	void playShadowEffect();
-	static cocos2d::CCScene* scene();
+	static cocos2d::CCScene* scene() = ios 0x308940;
 	void selectTab(IconType);
 	void setupIconSelect();
 	void setupPage(int, IconType);

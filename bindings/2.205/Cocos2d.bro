@@ -363,7 +363,7 @@ class cocos2d::CCNode {
 	void schedule(cocos2d::SEL_SCHEDULE, float);
 	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = ios 0x2450a4;
 	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
-	void scheduleUpdate();
+	void scheduleUpdate() = ios 0x245020;
 	void scheduleUpdateWithPriority(int);
 	void scheduleUpdateWithPriorityLua(int, int);
 	void sortAllChildrenNoIndex();
@@ -684,6 +684,42 @@ class cocos2d::CCMouseDispatcher {
 }
 
 [[link(win, android)]]
+class cocos2d::CCTransitionMoveInT {
+	static cocos2d::CCTransitionMoveInT* create(float, cocos2d::CCScene*) = ios 0x1d1cbc;
+
+	// CCTransitionMoveInT(cocos2d::CCTransitionMoveInT const&);
+	// CCTransitionMoveInT();
+
+	virtual void initScenes();
+}
+
+[[link(win, android)]]
+class cocos2d::CCCamera {
+	static float getZEye();
+
+	void init();
+
+	void getCenterXYZ(float*, float*, float*);
+	void getEyeXYZ(float* pEyeX, float* pEyeY, float* pEyeZ) {
+		*pEyeX = m_fEyeX;
+		*pEyeY = m_fEyeY;
+		*pEyeZ = m_fEyeZ;
+	}
+	void getUpXYZ(float*, float*, float*);
+
+	void setCenterXYZ(float, float, float);
+	void setDirty(bool);
+	void setEyeXYZ(float, float, float);
+	void setUpXYZ(float, float, float);
+
+	// CCCamera();
+	char const* description();
+	bool isDirty();
+	void locate();
+	void restore();
+}
+
+[[link(win, android)]]
 class cocos2d::CCTouchHandler {
 	static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
 
@@ -760,6 +796,18 @@ class cocos2d::CCTouchDispatcher {
 }
 
 [[link(win, android)]]
+class cocos2d::CCEaseIn {
+	static cocos2d::CCEaseIn* create(cocos2d::CCActionInterval*, float) = ios 0x2739b8;
+
+	// CCEaseIn(cocos2d::CCEaseIn const&);
+	// CCEaseIn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCTouchDelegate {
 	// CCTouchDelegate(cocos2d::CCTouchDelegate const&);
 	// CCTouchDelegate();
@@ -807,11 +855,66 @@ class cocos2d::CCTextureCache {
 	cocos2d::CCTexture2D* textureForKey(char const*);
 }
 
+[[link(win, android)]]
+class cocos2d::CCGLProgram {
+	bool initWithVertexShaderByteArray(char const*, char const*);
+	bool initWithVertexShaderFilename(char const*, char const*);
+
+	unsigned int const getProgram();
+	int getUniformLocationForName(char const*);
+
+	void setUniformLocationWith1f(int, float);
+	void setUniformLocationWith1i(int, int);
+	void setUniformLocationWith2f(int, float, float);
+	void setUniformLocationWith2fv(int, float*, unsigned int);
+	void setUniformLocationWith2i(int, int, int);
+	void setUniformLocationWith2iv(int, int*, unsigned int);
+	void setUniformLocationWith3f(int, float, float, float);
+	void setUniformLocationWith3fv(int, float*, unsigned int);
+	void setUniformLocationWith3i(int, int, int, int);
+	void setUniformLocationWith3iv(int, int*, unsigned int);
+	void setUniformLocationWith4f(int, float, float, float, float);
+	void setUniformLocationWith4fv(int, float*, unsigned int);
+	void setUniformLocationWith4i(int, int, int, int, int);
+	void setUniformLocationWith4iv(int, int*, unsigned int);
+	void setUniformLocationWithMatrix3fv(int, float*, unsigned int);
+	void setUniformLocationWithMatrix4fv(int, float*, unsigned int);
+	void setUniformsForBuiltins() = ios 0x13a908;
+
+	// CCGLProgram(cocos2d::CCGLProgram const&);
+	// CCGLProgram();
+	void addAttribute(char const*, unsigned int);
+	bool compileShader(unsigned int*, unsigned int, char const*);
+	char const* description();
+	char const* fragmentShaderLog();
+	bool link();
+	// char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
+	char const* programLog();
+	void reset();
+	bool updateUniformLocation(int, void*, unsigned int);
+	void updateUniforms();
+	void use() = ios 0x13a068;
+	char const* vertexShaderLog();
+}
+
+[[link(win, android)]]
+class cocos2d::CCEGLViewProtocol {
+    CCEGLViewProtocol() = win 0xbac00;
+    virtual ~CCEGLViewProtocol() = win 0xbacc0;
+    const cocos2d::CCRect& getViewPortRect() const {
+		return m_obViewPortRect;
+	}
+    auto getScaleX() const;
+    auto getScaleY() const;
+    virtual auto setDesignResolutionSize(float, float, ResolutionPolicy);
+	virtual void setFrameSize(float, float);
+}
+
 [[link(win)]]
 class cocos2d::CCEGLView {
 	// CCEGLView();
 	// CCEGLView(cocos2d::CCEGLView const&);
-	virtual void swapBuffers();
+	virtual void swapBuffers() = ios 0x12f6c8;
 	// rest are in extras
 }
 
@@ -935,7 +1038,7 @@ class cocos2d::CCDirector {
 	cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = ios 0x17cde4;
 	cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&);
 	void createStatsLabel();
-	void drawScene();
+	void drawScene() = ios 0x17c68c;
 	void end() = ios 0x17d190;
 	bool isDisplayStats();
 	bool isNextDeltaTimeZero();
@@ -1009,6 +1112,71 @@ class cocos2d::CCNodeRGBA {
 	virtual void updateDisplayedOpacity(unsigned char) = ios 0x245c40;
 }
 
+[[link(win, android)]]
+class cocos2d::CCShaderCache {
+	static void purgeSharedShaderCache();
+	static cocos2d::CCShaderCache* sharedShaderCache() = ios 0x12d244;
+
+	bool init();
+
+	// CCShaderCache(cocos2d::CCShaderCache const&);
+	// CCShaderCache();
+	void addProgram(cocos2d::CCGLProgram*, char const*);
+	void loadDefaultShader(cocos2d::CCGLProgram*, int);
+	void loadDefaultShaders();
+	cocos2d::CCGLProgram* programForKey(char const*) = ios 0x12d928;
+	void reloadDefaultShaders();
+}
+
+[[link(win, android)]]
+class cocos2d::CCTexture2D {
+	static void PVRImagesHavePremultipliedAlpha(bool) = mac 0x457000;
+	static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
+	static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat) = mac 0x4571c0;
+
+	bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = mac 0x456180;
+	bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = ios 0x132444;
+	bool initWithETCFile(char const*);
+	bool initWithImage(cocos2d::CCImage*) = mac 0x456120;
+	bool initWithPVRFile(char const*);
+	bool initWithString(char const*, char const*, float);
+	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment);
+	bool initWithString(char const*, cocos2d::_ccFontDefinition*);
+
+	cocos2d::CCSize const& getContentSizeInPixels();
+
+	void setAliasTexParameters() = mac 0x4570f0;
+	void setAntiAliasTexParameters();
+	void setTexParameters(cocos2d::_ccTexParams*) = mac 0x457060;
+
+	// CCTexture2D(cocos2d::CCTexture2D const&);
+	~CCTexture2D() = ios 0x132340;
+	CCTexture2D() = ios 0x132290;
+	unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat);
+	unsigned int bitsPerPixelForFormat();
+	char const* description();
+	void drawAtPoint(cocos2d::CCPoint const&);
+	void drawInRect(cocos2d::CCRect const&);
+	void generateMipmap();
+	bool hasMipmaps();
+	bool hasPremultipliedAlpha();
+	void* keepData(void*, unsigned int);
+	void releaseData(void*);
+	void releaseGLTexture();
+	char const* stringForFormat();
+
+	virtual cocos2d::CCTexture2DPixelFormat getPixelFormat() = mac 0x455c10;
+	virtual unsigned int getPixelsWide() = mac 0x455c20;
+	virtual unsigned int getPixelsHigh() = mac 0x455c30;
+	virtual unsigned int getName() = mac 0x455c40;
+	virtual float getMaxS() = mac 0x455cd0;
+	virtual void setMaxS(float) = mac 0x455ce0;
+	virtual float getMaxT() = mac 0x455cf0;
+	virtual void setMaxT(float) = mac 0x455d00;
+	virtual cocos2d::CCSize getContentSize() = mac 0x455c50;
+	virtual cocos2d::CCGLProgram* getShaderProgram() = mac 0x455d10;
+	virtual void setShaderProgram(cocos2d::CCGLProgram*) = mac 0x455d20;
+}
 
 [[link(win, android)]]
 class cocos2d::CCSprite {
@@ -1335,6 +1503,36 @@ class cocos2d::CCDelayTime {
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void update(float);
 	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCSet {
+	static cocos2d::CCSet* create();
+
+	// CCSet(cocos2d::CCSet const&);
+	// CCSet();
+	void addObject(cocos2d::CCObject*) = mac 0x775080;
+	cocos2d::CCObject* anyObject() {
+		if (!m_pSet || m_pSet->empty()) {
+			return nullptr;
+		}
+
+		for (auto* obj : *m_pSet) {
+			if (obj) return obj;
+		}
+
+		return nullptr;
+	}
+	cocos2d::CCSetIterator begin();
+	bool containsObject(cocos2d::CCObject*);
+	cocos2d::CCSet* copy();
+	int count() = mac 0x775070;
+	cocos2d::CCSetIterator end();
+	cocos2d::CCSet* mutableCopy() = mac 0x775030;
+	void removeAllObjects();
+	void removeObject(cocos2d::CCObject*) = mac 0x775130;
+
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 }
 
 [[link(win, android)]]
@@ -1814,8 +2012,8 @@ class cocos2d {
 
 		ccDrawSolidPoly(vertices, 4, color);
 	}
-	static void ccGLBindTexture2D(unsigned int);
-	static void ccGLBindTexture2DN(unsigned int, unsigned int);
+	static void ccGLBindTexture2D(unsigned int) = ios 0x195850;
+	static void ccGLBindTexture2DN(unsigned int, unsigned int) = ios 0x19585c;
 	static void ccGLBindVAO(unsigned int);
 	static void ccGLBlendFunc(unsigned int, unsigned int) = ios 0x1957d8;
 	static void ccGLBlendResetToCache();
@@ -1823,7 +2021,7 @@ class cocos2d {
 	static void ccGLDeleteTexture(unsigned int);
 	static void ccGLDeleteTextureN(unsigned int, unsigned int);
 	static void ccGLEnable(cocos2d::ccGLServerState);
-	static void ccGLEnableVertexAttribs(unsigned int);
+	static void ccGLEnableVertexAttribs(unsigned int) = ios 0x195914;
 	static void ccGLInvalidateStateCache();
 	static void ccGLUseProgram(unsigned int);
 	static void ccPointSize(float);
