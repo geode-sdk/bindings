@@ -1349,7 +1349,7 @@ class CharacterColorDelegate {
 class CharacterColorPage : FLAlertLayer {
 	// virtual ~CharacterColorPage();
 
-	static CharacterColorPage* create();
+	static CharacterColorPage* create()= ios 0x12dacc;
 
 	int activeColorForMode(int mode);
 	TodoReturn checkColor(int, UnlockType);
@@ -1359,7 +1359,7 @@ class CharacterColorPage : FLAlertLayer {
 	cocos2d::CCPoint offsetForIndex(int) = ios 0x12f1ac;
 	void onClose(cocos2d::CCObject* sender);
 	void onMode(cocos2d::CCObject* sender) = ios 0x12e628;
-	void onPlayerColor(cocos2d::CCObject* sender);
+	void onPlayerColor(cocos2d::CCObject* sender) = ios 0x12efbc;
 	void toggleGlow(cocos2d::CCObject*);
 	void toggleGlowItems(bool);
 	void toggleShip(cocos2d::CCObject*);
@@ -6665,7 +6665,7 @@ class GJGameLevel : cocos2d::CCNode {
 	gd::string generateSettingsString();
 	gd::string getAudioFileName() = ios 0xaeb34;
 	TodoReturn getAverageDifficulty() = ios 0xae9e0;
-	char const* getCoinKey(int);
+	char const* getCoinKey(int) = ios 0xa6930;
 	int getLastBuildPageForTab(int page);
 	int getLengthKey(int, bool) = ios 0xae978;
 	GJGameLevel* getListSnapshot();
@@ -8172,7 +8172,7 @@ class GJUserScore : cocos2d::CCNode {
 	static GJUserScore* create();
 	static GJUserScore* create(cocos2d::CCDictionary*);
 
-	bool isCurrentUser();
+	bool isCurrentUser() = ios 0xb1b7c;
 	TodoReturn mergeWithScore(GJUserScore*);
 
 	virtual bool init() = ios 0xb1b34;
