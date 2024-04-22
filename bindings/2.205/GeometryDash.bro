@@ -6213,7 +6213,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void removeAllCheckpoints() = ios 0x20d8b4;
 	virtual void toggleMusicInPractice() = ios 0x20d8b8;
 
-	PAD = win 0x8, android32 0x8, android64 0x8, ios 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8, ios 0x2; // why 0x2 for iOS? i have no idea!
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
@@ -6889,12 +6889,12 @@ class GJGameState {
 	int m_unk104;
 	bool m_unk108;
 	cocos2d::CCPoint m_unk10c;
-	PAD = win 0x10, android32 0x10, android64 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10, ios 0x10;
 	float m_unk124;
 	float m_unk128;
-	PAD = win 0x1c, android32 0x1c, android64 0x1c;
+	PAD = win 0x1c, android32 0x1c, android64 0x1c, ios 0x1c;
 	float m_unk148;
-	PAD = win 0x1c, android32 0x1c, android64 0x1c;
+	PAD = win 0x1c, android32 0x1c, android64 0x1c, ios 0x1c;
 	bool m_unk168;
 	bool m_unk169;
 	bool m_unk16a;
@@ -6916,17 +6916,17 @@ class GJGameState {
 	float m_unk1d8;
 	float m_unk1dc;
 	double m_unk1e0; // unsure type
-	PAD = win 0x10, android32 0x10, android64 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10, ios 0x10;
 	int m_unk1f8;
-	PAD = win 0x10, android32 0x10, android64 0x1c;
+	PAD = win 0x10, android32 0x10, android64 0x1c, ios 0x1c;
 	cocos2d::CCPoint m_unk20c;
-	PAD = win 0xa, android32 0xa, android64 0xa;
+	PAD = win 0xa, android32 0xa, android64 0xa, ios 0xa;
 	bool m_isDualMode;
-	PAD = win 0x5, android32 0x5, android64 0x5;
+	PAD = win 0x5, android32 0x5, android64 0x5, ios 0x5;
 	gd::unordered_map<int, GJValueTween> m_unk224;
-	PAD = win 0x10, android32 0x10, android64 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10, ios 0x10;
 	gd::unordered_map<int, GameObjectPhysics> m_unk250;
-	PAD = win 0x18, android32 0x18, android64 0x24;
+	PAD = win 0x18, android32 0x18, android64 0x24, ios 0x24;
 	cocos2d::CCPoint m_unk284;
 	int m_unk288;
 	int m_unk28c;
@@ -6938,13 +6938,13 @@ class GJGameState {
 	bool m_unk2c8;
 	bool m_unk2c9;
 	bool m_unk2ca;
-	PAD = win 0x6, android32 0x6, android64 0x6;
+	PAD = win 0x6, android32 0x6, android64 0x6, ios 0x6;
 	bool m_unk2d0;
 	bool m_unk2d1;
-	PAD = win 0x10, android32 0x10, android64 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10, ios 0x10;
 	double m_unk2e4; // unsure type
 	cocos2d::CCPoint m_unk2e8;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	gd::unordered_map<int, EnhancedGameObject*> m_unk2f4;
 	gd::map<std::pair<GJGameEvent, int>, gd::vector<EventTriggerInstance>> m_unk310;
 	gd::map<std::pair<GJGameEvent, int>, int> m_unk328;
@@ -6964,13 +6964,13 @@ class GJGameState {
 	gd::vector<DynamicObjectAction> m_unk404;
 	bool m_unk410;
 	bool m_unk411;
-	PAD = win 0x4, android32 0x4, android64 0x4;
+	PAD = win 0x4, android32 0x4, android64 0x4, ios 0x4;
 	gd::unordered_map<int, gd::vector<int>> m_unk418;
 	gd::map<std::pair<int, int>, SFXTriggerInstance> m_unk434;
 	gd::unordered_map<int, SongChannelState> m_unk44c;
 	gd::unordered_map<int, gd::vector<SongTriggerState>> m_unk468;
 	gd::vector<SFXTriggerState> m_unk484;
-	PAD = win 0x1c, android32 0x1c, android64 0x1c;
+	PAD = win 0x1c, android32 0x1c, android64 0x1c, ios 0x1c;
 }
 
 [[link(android)]]
