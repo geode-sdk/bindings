@@ -6443,7 +6443,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	static GJDropDownLayer* create(char const*, float, bool);
 	static GJDropDownLayer* create(char const*);
 
-	bool init(char const*, float, bool);
+	bool init(char const*, float, bool) = ios 0x3af004;
 	bool init(char const*);
 
 	virtual void draw() = ios 0x3af784;
