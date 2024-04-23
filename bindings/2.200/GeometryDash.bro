@@ -1261,7 +1261,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getActiveOrderSpawnObjects();
 	TodoReturn getGroup(int) = win 0x1a4eb0, mac 0x1097a0;
 
-	void setGroupParent(GameObject*, int);
+	void setGroupParent(GameObject*, int) = mac 0x129f80;
 	void setStartPosObject(StartPosObject*) = win 0x195FC0;
 
 	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
@@ -7907,6 +7907,10 @@ class ColorActionSprite : cocos2d::CCNode {
 	~ColorActionSprite();
 
 	virtual bool init() = mac 0x2b25c0;
+
+	float m_opacity;
+	cocos2d::ccColor3B m_color;
+	cocos2d::ccColor3B m_copyColor;
 }
 
 [[link(android)]]

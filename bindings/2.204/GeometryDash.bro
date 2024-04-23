@@ -1583,6 +1583,10 @@ class ColorActionSprite : cocos2d::CCNode {
 	static ColorActionSprite* create() = win 0x1d8bf0;
 
 	virtual bool init() = win 0x1d8cb0;
+
+	float m_opacity;
+	cocos2d::ccColor3B m_color;
+	cocos2d::ccColor3B m_copyColor;
 }
 
 [[link(android)]]
