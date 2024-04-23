@@ -16,6 +16,7 @@
 // GEODE_MEMBER_CHECK(EditorUI, m_updateTimeMarkers, 0x244);
 // GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 // GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x440);
+GEODE_MEMBER_CHECK(EditorUI, m_updatedSpeedObjects, 0x30c);
 
 // // LevelEditorLayer
 // GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x5d8);
@@ -98,15 +99,19 @@
 GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x158);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x780);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc90);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe80);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3290);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32e8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3480);
 
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x35a0);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x35c0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x35d8);
+GEODE_MEMBER_CHECK(PlayLayer, m_colorKeyDict, 0x36e0);
 
 GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
 GEODE_MEMBER_CHECK(GJDropDownLayer, m_mainLayer, 0x248);

@@ -2970,10 +2970,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	PAD = android32 0xc, android64 0xc;
 	bool m_swipeEnabled;
-	PAD = android32 0x3, android64 0x3;
+	PAD = android32 0x7, android64 0x7;
 	bool m_updatedSpeedObjects;
 
-	PAD = android32 0x1b, android64 0x1f;
+	PAD = android32 0x17, android64 0x1b;
 
 	cocos2d::CCArray* m_selectedObjects; // 0x338 on a64
 

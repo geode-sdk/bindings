@@ -1651,7 +1651,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
-	PAD = win 0x134, android32 0x134, android64 0x21c, mac 0x1fc;
+	cocos2d::CCArray* m_objects;
+	PAD = win 0x134, android32 0x134, android64 0x21c, mac 0x1cc;
+	cocos2d::CCDictionary* m_linkedGroupDict;
+	int m_lastUsedLinkedID;
+	cocos2d::CCNode* m_unknownE90;
+	cocos2d::CCNode* m_unknownE98;
+	cocos2d::CCNode* m_unknownEA0;
 	cocos2d::CCLayer* m_objectLayer;
 	PAD = win 0x70, android32 0x70, android64 0xec, mac 0xb4;
 	std::array<float, 2000> m_massiveFloatArray;
@@ -1674,7 +1680,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = mac 0x128;
 	UILayer* m_uiLayer;
-	PAD = win 0x20a, android32 0x1ea, android64 0x340, mac 0x1f0;
+	PAD = mac 0x50;
+	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; 
+	PAD = mac 0x180;
+	GJGameLoadingLayer* m_loadingLayer;
 }
 
 [[link(android)]]
@@ -3406,7 +3415,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn groupWasDisabled() = mac 0x586280;
 	/* unverified signature */
 	bool isSettingsObject() = mac 0x591b00;
-	TodoReturn objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x13c2d0, mac 0x5875c0;
+	static GameObject* objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x13c2d0, mac 0x5875c0;
 	TodoReturn perspectiveFrame(char const*, int);
 	TodoReturn resetColorGroups();
 	TodoReturn setupColorSprite(int, bool);
@@ -4122,11 +4131,11 @@ class ParticleGameObject : EnhancedGameObject {
 	/* unverified signature */
 	void setParticleString(gd::string);
 
-	TodoReturn updateParticle() = mac 0x19b470;
+	void updateParticle() = mac 0x19b470;
 	void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = mac 0x19a850;
 	TodoReturn updateParticleAngle(float, cocos2d::CCParticleSystemQuad*) = mac 0x19b0d0;
 	TodoReturn updateParticleScale(float);
-	TodoReturn updateParticleStruct() = mac 0x19ac10;
+	void updateParticleStruct() = mac 0x19ac10;
 	TodoReturn applyParticleSettings(cocos2d::CCParticleSystemQuad*);
 	TodoReturn createParticlePreviewArt();
 	TodoReturn createAndAddCustomParticle();
@@ -5884,7 +5893,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn timeObjectChanged();
 	TodoReturn updateBlendValues();
 	TodoReturn updateGameObjects() = mac 0xd9c00;
-	TodoReturn updateObjectLabel(GameObject*) = mac 0xe4f50;
+	static void updateObjectLabel(GameObject*) = mac 0xe4f50;
 	TodoReturn updatePreviewAnim() = mac 0xf0810;
 	TodoReturn findStartPosObject();
 	TodoReturn pasteParticleState(ParticleGameObject*, cocos2d::CCArray*);
@@ -6193,7 +6202,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void pasteObjects(gd::string, bool) = win 0xca640;
 	TodoReturn removeOffset(GameObject*);
 	void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType) = win 0xd5910, mac 0x42ec0;
-	void selectObject(GameObject*, bool);
+	void selectObject(GameObject*, bool) = mac 0x32190;
 	void showMaxError() = mac 0x38120;
 	TodoReturn toggleLockUI(bool) = mac 0x30d20;
 	TodoReturn updateSlider();
@@ -6393,7 +6402,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	PAD = android32 0x28, mac 0x48;
     EditButtonBar* m_editButtonBar;
 
-	PAD = android32 0x30, mac 0x38;
+	Slider* m_positionSlider;
+
+	PAD = mac 0xc;
+	bool m_swipeEnabled;
+	PAD = mac 0x7;
+	bool m_updatedSpeedObjects;
+
+	PAD = mac 0x1b;
 
 	cocos2d::CCArray* m_selectedObjects;
 
@@ -6647,13 +6663,21 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void dialogClosed(DialogLayer*) = win 0x2e12b0;
 
 	// those are all wrong except for mac
-	PAD = win 0x1ec, android32 0x1ec, android64 0x2c4, mac 0xfc;
+	PAD = mac 0x2c;
+	cocos2d::CCArray* m_coinArray;
+	PAD = mac 0xc8;
 	cocos2d::CCArray* m_circleWaveArray;
 	PAD = mac 0x18;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
 	PAD = mac 0x10;
 	cocos2d::CCSprite* m_progressBar;
-	PAD = mac 0x178;
+	PAD = mac 0x100;
+	cocos2d::CCDictionary* m_colorKeyDict;
+	gd::vector<int> m_keyColors; // type not really accurate
+	gd::vector<int> m_keyOpacities; // type not really accurate
+	gd::vector<int> m_keyPulses; // type not really accurate
+	int m_nextColorKey;
+	PAD = mac 0x24;
 }
 
 
@@ -12772,7 +12796,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 	~GJGameLoadingLayer();
 
 	void gameLayerDidUnload() = mac 0xfa680;
-	GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel*, bool) = win 0x1c6430, mac 0x150f10;
+	static GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel*, bool) = win 0x1c6430, mac 0x150f10;
 	void loadLevel() = mac 0x151490;
 
 	virtual void onEnter() = mac 0x151500;
