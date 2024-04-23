@@ -2581,7 +2581,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onPasteWColor(cocos2d::CCObject* sender);
 	void onReGroup(cocos2d::CCObject* sender);
 	void onResetUnusedColors(cocos2d::CCObject* sender) = ios 0x39bcd0;
-	void onResume(cocos2d::CCObject* sender);
+	void onResume(cocos2d::CCObject* sender) = ios 0x39b878;
 	void onSave(cocos2d::CCObject* sender);
 	void onSaveAndExit(cocos2d::CCObject* sender) = ios 0x39b974;
 	void onSaveAndPlay(cocos2d::CCObject* sender) = ios 0x39b8e4;
@@ -3022,9 +3022,9 @@ class EditTriggersPopup : SetupTriggerPopup {
 [[link(android)]]
 class EffectGameObject : EnhancedGameObject {
 	// virtual ~EffectGameObject();
-	// EffectGameObject();
+	// EffectGameObject() = ios 0x39784c;
 
-	static EffectGameObject* create(char const*);
+	static EffectGameObject* create(char const*) = ios 0x25c830;
 
 	TodoReturn getTargetColorIndex();
 	bool init(char const*) = ios 0x26a7fc;
@@ -3873,7 +3873,7 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 
 	static FriendsProfilePage* create(UserListType);
 
-	bool init(UserListType);
+	bool init(UserListType) = ios 0x1dbaac;
 	void onBlocked(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender) = ios 0x1dc248;
@@ -4505,7 +4505,7 @@ class GameManager : GManager {
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	TodoReturn iconKey(int, IconType);
 	UnlockType iconTypeToUnlockType(IconType);
-	bool isColorUnlocked(int, UnlockType);
+	bool isColorUnlocked(int, UnlockType) = ios 0x319548;
 	bool isIconLoaded(int, int);
 	bool isIconUnlocked(int, IconType) = ios 0x319178;
 	TodoReturn itemPurchased(char const*);
@@ -8170,7 +8170,7 @@ class GJUserScore : cocos2d::CCNode {
 	// virtual ~GJUserScore();
 
 	static GJUserScore* create();
-	static GJUserScore* create(cocos2d::CCDictionary*);
+	static GJUserScore* create(cocos2d::CCDictionary*) = ios 0x99f48;
 
 	bool isCurrentUser();
 	TodoReturn mergeWithScore(GJUserScore*);
@@ -9966,7 +9966,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 
 	static MenuGameLayer* create() = ios 0x39833c;
 
-	void destroyPlayer();
+	void destroyPlayer() = ios 0x399500;
 	TodoReturn getBGColor(int) = ios 0x3987c8;
 	void resetPlayer() = ios 0x398bcc;
 	void tryJump(float);
@@ -11068,8 +11068,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void toggleFlyMode(bool, bool) = ios 0x231f78;
 	void toggleGhostEffect(GhostType) = ios 0x22fed8;
 	void togglePlatformerMode(bool val) {
-        m_isPlatformer = val;
-    }
+            m_isPlatformer = val;
+        }
 	void togglePlayerScale(bool, bool) = ios 0x22fbb8;
 	void toggleRobotMode(bool, bool) = ios 0x2339b4;
 	void toggleRollMode(bool, bool) = ios 0x2336c4;
@@ -11363,7 +11363,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	CheckpointObject* createCheckpoint() = ios 0x120f78;
 	void createObjectsFromSetupFinished() = ios 0x11d7c4;
 	void delayedFullReset() = ios 0x122f60;
-	void delayedResetLevel();
+	void delayedResetLevel() = ios 0x12095c;
 	void fullReset() = ios 0x122fd4;
 	float getCurrentPercent() = ios 0x11fa08;
 	int getCurrentPercentInt();
@@ -13963,7 +13963,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	static ShaderLayer* create();
 
 	TodoReturn objectPosToShaderPos(cocos2d::CCPoint);
-	void performCalculations();
+	void performCalculations() = ios 0x27ac58;
 	TodoReturn preBulgeShader();
 	TodoReturn preChromaticGlitchShader();
 	TodoReturn preChromaticShader();

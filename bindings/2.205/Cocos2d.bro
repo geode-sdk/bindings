@@ -1224,7 +1224,7 @@ class cocos2d::CCSprite {
 	static cocos2d::CCSprite* create(char const*) = ios 0x240214;
 	static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&);
 	static cocos2d::CCSprite* create();
-	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*);
+	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = ios 0x240290;
 	static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = ios 0x240310;
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*);
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
@@ -1467,8 +1467,8 @@ class cocos2d::CCDictionary {
 	void removeObjectForKey(gd::string const&) = ios 0x4206a8;
 	void removeObjectForKey(intptr_t) = ios 0x420a9c;
 	void removeObjectsForKeys(cocos2d::CCArray*);
-	cocos2d::CCString const* valueForKey(gd::string const&);
-	cocos2d::CCString const* valueForKey(intptr_t);
+	cocos2d::CCString const* valueForKey(gd::string const&) = ios 0x41f534;
+	cocos2d::CCString const* valueForKey(intptr_t) = ios 0x41f9ac;
 	bool writeToFile(char const*);
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
@@ -1746,7 +1746,7 @@ class cocos2d::CCMenu {
 	// CCMenu(cocos2d::CCMenu const&);
 	// CCMenu();
 	void alignItemsHorizontally() = ios 0x1db48c;
-	void alignItemsHorizontallyWithPadding(float);
+	void alignItemsHorizontallyWithPadding(float) = ios 0x1db494;
 	// void alignItemsInColumns(unsigned int, ...);
 	// void alignItemsInColumns(unsigned int, char*);
 	void alignItemsInColumnsWithArray(cocos2d::CCArray*);
@@ -2232,4 +2232,25 @@ class cocos2d::CCFadeOut {
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void update(float);
 	virtual cocos2d::CCActionInterval* reverse();
+}
+
+
+[[link(win, android)]]
+class cocos2d::CCMoveBy {
+	static cocos2d::CCMoveBy* create(float, cocos2d::CCPoint const&) = ios 0x131a64;
+
+	bool initWithDuration(float, cocos2d::CCPoint const&);
+
+	// CCMoveBy(cocos2d::CCMoveBy const&);
+	// CCMoveBy();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCEaseOut {
+	static cocos2d::CCEaseOut* create(cocos2d::CCActionInterval*, float) = ios 0x273b9c;
 }
