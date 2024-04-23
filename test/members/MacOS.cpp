@@ -155,4 +155,6 @@ GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
 GEODE_MEMBER_CHECK(CustomSongCell, m_songInfoObject, 0x230);
 GEODE_MEMBER_CHECK(SongInfoObject, m_songID, 0x13c);
 
+GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x230);
+
 #endif

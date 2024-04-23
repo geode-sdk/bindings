@@ -8401,6 +8401,9 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn reset() = mac 0x2b7070;
 
 	virtual bool init() = win 0x1d6f50, mac 0x2b6e10;
+
+	PAD = android32 0x90, mac 0xf0, android64 0x120, win 0x9c;
+	cocos2d::CCDictionary* m_colorActionDict;
 }
 
 [[link(android)]]
