@@ -3304,7 +3304,7 @@ class GameObject : CCSpritePlus {
 	~GameObject();
 
 	TodoReturn getGroupID(int) = mac 0x585ef0;
-	TodoReturn getColorKey(bool, bool) = win 0x13be40, mac 0x586990;
+	int getColorKey(bool, bool) = win 0x13be40, mac 0x586990;
 	TodoReturn getBallFrame(int);
 	TodoReturn getBoxOffset();
 	TodoReturn getGlowFrame(gd::string);
