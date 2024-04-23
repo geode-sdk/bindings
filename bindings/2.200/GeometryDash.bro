@@ -5986,7 +5986,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	bool m_playTestSmoothFix;
 
 	// haven't verified the mac padding
-	PAD = win 0xf, android32 0xf, android64 0xf, mac 0xf;
+	PAD = win 0xf, android32 0xf, android64 0xf, mac 0x17;
 
 	cocos2d::CCArray* m_unkArr0;
 	cocos2d::CCArray* m_unkArr1;
