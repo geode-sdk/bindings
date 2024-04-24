@@ -8850,7 +8850,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 	TodoReturn refreshTabs();
 	TodoReturn scene(LeaderboardState);
 	TodoReturn selectLeaderboard(LeaderboardState);
-	TodoReturn setupLevelBrowser(cocos2d::CCArray*);
+	void setupLevelBrowser(cocos2d::CCArray*) = win 0x22E640;
 	TodoReturn setupTabs();
 	TodoReturn toggleTabButtons();
 
@@ -9441,7 +9441,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 	TodoReturn getSpriteButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, cocos2d::CCPoint, int);
 	bool init(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x258060;
 	bool isCorrect(char const*);
-	TodoReturn loadScores();
+	void loadScores() = win 0x2592F0;
 	void onChangeMode(cocos2d::CCObject* sender) = win 0x2595f0;
 	void onChangeType(cocos2d::CCObject* sender) = win 0x2595a0;
 	void onClose(cocos2d::CCObject* sender) = win 0x6a750;
