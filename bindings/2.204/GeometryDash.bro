@@ -8960,7 +8960,7 @@ class LevelCell : TableViewCell {
 	void onClick(cocos2d::CCObject* sender) = win 0x80e80;
 	void onToggle(cocos2d::CCObject* sender) = win 0x7da40;
 	void onViewProfile(cocos2d::CCObject* sender) = win 0x80f70;
-	TodoReturn updateBGColor(int);
+	TodoReturn updateBGColor(int) = win 0x80E10;
 	TodoReturn updateCellMode(int) = win 0x80d80;
 	TodoReturn updateToggle();
 
