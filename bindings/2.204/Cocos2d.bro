@@ -719,6 +719,7 @@ class cocos2d::CCEGLView {
 	// CCEGLView(cocos2d::CCEGLView const&);
 	virtual void swapBuffers();
 	void toggleFullScreen(bool, bool);
+	void pollEvents();
 	// rest are in extras
 }
 
@@ -1342,4 +1343,11 @@ class cocos2d::extension::CCScale9Sprite {
 	virtual bool initWithSpriteFrameName(const char*);
 	virtual bool updateWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect);
 	virtual void setSpriteFrame(cocos2d::CCSpriteFrame*);
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
+	static cocos2d::extension::CCHttpClient* getInstance();
+	static void destroyInstance();
+	void send(cocos2d::extension::CCHttpRequest* request);
 }
