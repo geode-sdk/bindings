@@ -138,7 +138,7 @@ class AchievementCell : TableViewCell {
 	AchievementCell(char const*, float, float);
 
 	void loadFromDict(cocos2d::CCDictionary*) = win 0x7c730;
-	TodoReturn updateBGColor(int) = win 0x7D560;
+	void updateBGColor(int) = win 0x7D560;
 
 	virtual bool init();
 	virtual void draw();
