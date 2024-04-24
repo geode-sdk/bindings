@@ -1537,6 +1537,10 @@ class ColorActionSprite : cocos2d::CCNode {
 	static ColorActionSprite* create();
 
 	virtual bool init();
+
+	float m_opacity;
+	cocos2d::ccColor3B m_color;
+	cocos2d::ccColor3B m_copyColor;
 }
 
 [[link(android)]]
@@ -2970,10 +2974,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	PAD = android32 0xc, android64 0xc;
 	bool m_swipeEnabled;
-	PAD = android32 0x3, android64 0x3;
+	PAD = android32 0x7, android64 0x7;
 	bool m_updatedSpeedObjects;
 
-	PAD = android32 0x1b, android64 0x1f;
+	PAD = android32 0x17, android64 0x1b;
 
 	cocos2d::CCArray* m_selectedObjects; // 0x338 on a64
 
@@ -6634,6 +6638,9 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn wouldCreateLoop(InheritanceNode*, int);
 
 	virtual bool init();
+
+	PAD = android32 0x90, mac 0xf0, android64 0x120, win 0x9c;
+	cocos2d::CCDictionary* m_colorActionDict;
 }
 
 [[link(android)]]
