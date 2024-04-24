@@ -160,7 +160,9 @@ GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedMode, 0x338);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
 
-GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x1FC)
-GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x210)
+GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x1FC);
+GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x210);
+
+GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x198);
 
 #endif
