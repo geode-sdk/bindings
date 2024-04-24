@@ -5766,6 +5766,10 @@ class GhostTrailEffect : cocos2d::CCNode {
 
 	virtual bool init() = win 0x46bc0;
 	virtual void draw() {}
+
+	PAD = win 0x30;
+	cocos2d::ccColor3B m_color;
+	PAD = win 0xc;
 }
 
 [[link(android)]]
