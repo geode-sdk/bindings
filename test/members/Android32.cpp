@@ -128,7 +128,7 @@ GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
-GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x1bc);
+GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x1c0);
 GEODE_MEMBER_CHECK(EditorUI, m_transformControl, 0x218);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x22c);
 GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x230);
@@ -160,7 +160,9 @@ GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedMode, 0x338);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
 
-GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x1FC)
-GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x210)
+GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x1FC);
+GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x210);
+
+GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x198);
 
 #endif
