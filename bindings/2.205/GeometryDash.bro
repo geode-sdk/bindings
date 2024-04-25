@@ -6098,7 +6098,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn sortGroups();
 	TodoReturn sortSectionVector();
 	TodoReturn sortStickyGroups();
-	TodoReturn spawnGroupTriggered(int, float, bool, gd::vector<int> const&, int, int);
+	void spawnGroupTriggered(int, float, bool, gd::vector<int> const&, int, int);
 	TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
 	TodoReturn spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint);
 	TodoReturn spawnParticleTrigger(int, cocos2d::CCPoint, float, float);
@@ -6161,7 +6161,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateCameraOffsetX(float, float, int, float, int, int);
 	TodoReturn updateCameraOffsetY(float, float, int, float, int, int);
 	TodoReturn updateCollisionBlocks();
-	TodoReturn updateCounters(int, int);
+	void updateCounters(int, int);
 	void updateDualGround(PlayerObject*, int, bool, float);
 	TodoReturn updateEnterEffects(float);
 	TodoReturn updateExtendedCollision(GameObject*, bool);
@@ -6259,7 +6259,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
-	PAD = android32 0x28c, android64 0x514;
+	PAD = android32 0x64, android64 0xC0;
+	GJEffectManager* m_effectManager;
+	PAD = android32 0x224, android64 0x448;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
@@ -6544,7 +6546,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn colorForPulseEffect(cocos2d::ccColor3B const&, PulseEffectAction*);
 	TodoReturn controlActionsForControlID(int, GJActionCommand);
 	TodoReturn controlActionsForTrigger(EffectGameObject*, GJActionCommand);
-	TodoReturn countForItem(int);
+	int countForItem(int);
 	TodoReturn createFollowCommand(float, float, float, int, int, int, int);
 	TodoReturn createKeyframeCommand(int, cocos2d::CCArray*, GameObject*, int, int, bool, float, float, float, float, float, float, gd::vector<int> const&);
 	TodoReturn createMoveCommand(cocos2d::CCPoint, int, float, int, float, bool, bool, bool, bool, float, float, int, int);
@@ -6626,7 +6628,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn updateColorAction(ColorAction*);
 	TodoReturn updateColorEffects(float);
 	TodoReturn updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B);
-	TodoReturn updateCountForItem(int, int);
+	void updateCountForItem(int, int);
 	TodoReturn updateEffects(float);
 	void updateOpacityAction(OpacityEffectAction*);
 	void updateOpacityEffects(float);

@@ -68,6 +68,7 @@ GEODE_MEMBER_CHECK(GJGameState, m_unk2e8, 0x2e8);
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d60);
 
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5f8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_effectManager, 0x664);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x88C); //used in PlayLayer::destroyPlayer for example // no silly createPlayer() is easier
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x890);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelSettings, 0x894);
@@ -164,5 +165,6 @@ GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x1FC);
 GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x210);
 
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x198);
+//GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x210);
 
 #endif
