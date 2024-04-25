@@ -423,7 +423,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 		CC_SAFE_RELEASE(m_entries);
 	}
 
-	static BoomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = ios 0x1011fc;
+	static BoomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float);
 
 	TodoReturn addObjectToList(cocos2d::CCNode*);
 	bool init(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = ios 0x1d3a64;
@@ -2866,7 +2866,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void updateObjectInfoLabel() = ios 0x3e4078;
 	TodoReturn updatePlaybackBtn() = ios 0x3e2a1c;
 	TodoReturn updateSlider() = ios 0x3e1010;
-	TodoReturn updateSpecialUIElements() = ios 0x3e4078;
+	TodoReturn updateSpecialUIElements(); // inlined on ios
 	void updateZoom(float) = ios 0x3eae70;
 	float valueFromXPos(float);
 	float xPosFromValue(float);
@@ -4049,8 +4049,8 @@ class GameLevelManager : cocos2d::CCNode {
 	char const* getTopArtistsKey(int page) {
 	    return cocos2d::CCString::createWithFormat("topArtists_%i", page)->getCString();
 	}
-	char const* getUploadMessageKey(int) = ios 0xa7d28;
-	char const* getUserInfoKey(int) = ios 0xa6e08;
+	char const* getUploadMessageKey(int);
+	char const* getUserInfoKey(int);
 	void getUserList(UserListType) = ios 0xabd6c;
 	void getUserMessages(bool, int, int) = ios 0xa7308;
 	void getUsers(GJSearchObject*) = ios 0xa6bf8;
@@ -4537,7 +4537,7 @@ class GameManager : GManager {
 	TodoReturn playSFXTrigger(SFXTriggerGameObject*);
 	TodoReturn prepareDPadSettings() = ios 0x321504;
 	TodoReturn printGJLog() = ios 0x3209a8;
-	TodoReturn queueReloadMenu() = ios 0x323d54;
+	TodoReturn queueReloadMenu();
 	TodoReturn rateGame();
 	void recountUserStats(gd::string) = ios 0x320098;
 	void reloadAll(bool switchModes, bool toFullscreen, bool borderless, bool unused) = ios 0x323d54;
@@ -8338,7 +8338,7 @@ class GraphicsReloadLayer : cocos2d::CCLayer {
 	static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool);
 
 	bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool);
-	TodoReturn performReload() = ios 0xff194;
+	TodoReturn performReload();
 	static cocos2d::CCScene* scene(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool);
 }
 
@@ -10952,7 +10952,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void flashPlayer(float, float, cocos2d::ccColor3B, cocos2d::ccColor3B);
 	void flipGravity(bool, bool) = ios 0x226c50;
 	TodoReturn flipMod();
-	void gameEventTriggered(int, int) = ios 0x1e7bd0;
+	void gameEventTriggered(int, int);
 	TodoReturn getActiveMode() = ios 0x231f28;
 	TodoReturn getCurrentXVelocity() = ios 0x225350;
 	TodoReturn getModifiedSlopeYVel();
@@ -11079,7 +11079,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn touchedObject(GameObject*) = ios 0x236480;
 	void tryPlaceCheckpoint() = ios 0x226438;
 	TodoReturn unrotateGameplayObject(GameObject*) = ios 0x228fa8;
-	TodoReturn unrotatePreSlopeObjects() = ios 0x228e48;
+	TodoReturn unrotatePreSlopeObjects();
 	void updateCheckpointMode(bool);
 	void updateCheckpointTest() = ios 0x226364;
 	void updateCollide(PlayerCollisionDirection, GameObject*) = ios 0x22c8a4;
@@ -11390,7 +11390,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void playEndAnimationToPos(cocos2d::CCPoint) = ios 0x11cf20;
 	void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = ios 0x11d328;
 	TodoReturn playReplay(gd::string);
-	void prepareCreateObjectsFromSetup(gd::string&) = ios 0x1170d8;
+	void prepareCreateObjectsFromSetup(gd::string&);
 	void prepareMusic(bool) = ios 0x11ad30;
 	void processCreateObjectsFromSetup() = ios 0x1170d8;
 	TodoReturn processLoadedMoveActions();
@@ -12032,7 +12032,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	void showLockedChest();
 	void showShop(int);
 	TodoReturn switchToOpenedState(CCMenuItemSpriteExtra*) = ios 0x2f0a60;
-	TodoReturn updateBackButton() = ios 0x349548;
+	TodoReturn updateBackButton();
 	TodoReturn updateUnlockedLabel() = ios 0x2f0b48;
 
 	virtual void onExit() = ios 0x2f5768;
@@ -14712,8 +14712,8 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	TodoReturn scrollToIndexPath(CCIndexPath&);
 	TodoReturn touchFinish(cocos2d::CCTouch*) = ios 0x306abc;
 
-	virtual void onEnter() = ios 0x150fa8;
-	virtual void onExit() = ios 0x151074;
+	virtual void onEnter() = ios 0x3062e8;
+	virtual void onExit() = ios 0x3062ec;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x306428;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x306be0;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x306a6c;

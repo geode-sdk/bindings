@@ -2212,7 +2212,7 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCFadeIn {
-	static cocos2d::CCFadeIn* create(float) = ios 0x193adc;
+	static cocos2d::CCFadeIn* create(float) = ios 0x193774;
 
 	// CCFadeIn(cocos2d::CCFadeIn const&);
 	// CCFadeIn();
@@ -2237,7 +2237,7 @@ class cocos2d::CCFadeOut {
 
 [[link(win, android)]]
 class cocos2d::CCMoveBy {
-	static cocos2d::CCMoveBy* create(float, cocos2d::CCPoint const&) = ios 0x131a64;
+	static cocos2d::CCMoveBy* create(float, cocos2d::CCPoint const&) = ios 0x192508;
 
 	bool initWithDuration(float, cocos2d::CCPoint const&);
 
