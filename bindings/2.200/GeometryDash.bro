@@ -10928,7 +10928,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getFMODStatus(int) = win 0x3ae60;
 	TodoReturn pauseAllAudio() = mac 0x3bc2e0;
 	void pauseAllMusic() = win 0x380c0, mac 0x3c50c0;
-	TodoReturn preloadEffect(gd::string) = win 0x37780;
+	void preloadEffect(gd::string) = win 0x37780;
 	TodoReturn updateChannel(int, AudioTargetType, AudioModType, float, float) = win 0x36f70;
 	TodoReturn channelStopped(FMOD::Channel*, bool);
 	void enableMetering() = mac 0x3c1a10;
