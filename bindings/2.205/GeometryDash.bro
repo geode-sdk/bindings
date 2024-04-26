@@ -3811,7 +3811,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	static FRequestProfilePage* create(bool);
 
 	TodoReturn deleteSelected() = ios 0x1bc1f0;
-	bool init(bool);
+	bool init(bool) = ios 0x1bb1f4;
 	bool isCorrect(char const*);
 	void loadPage(int) = ios 0x1bbfd4;
 	void onClose(cocos2d::CCObject* sender);
@@ -3990,7 +3990,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getGJChallenges() = ios 0xad264;
 	void getGJDailyLevelState(GJTimedLevelType);
 	void getGJRewards(int) = ios 0xacd98;
-	void getGJUserInfo(int) = ios 0xa6e08;
+	void getGJUserInfo(int accID) = ios 0xa6e08;
 	int getHighestLevelOrder();
 	int getIntForKey(char const*) = ios 0xadf3c;
 	void getLeaderboardScores(char const*);
@@ -4067,9 +4067,9 @@ class GameLevelManager : cocos2d::CCNode {
 	bool hasRatedDemon(int) = ios 0xa4250;
 	bool hasRatedLevelStars(int) = ios 0xa4028;
 	bool hasReportedLevel(int) = ios 0xadb00;
-	void invalidateMessages(bool, bool);
-	void invalidateRequests(bool, bool);
-	void invalidateUserList(UserListType, bool) = ios 0xaade4;
+	void invalidateMessages(bool, bool) = ios 0xa839c;
+	void invalidateRequests(bool, bool) = ios 0xaade4;
+	void invalidateUserList(UserListType, bool) = ios 0xabf28;
 	bool isDLActive(char const* tag) = ios 0x9cea4;
 	bool isFollowingUser(int) = ios 0x9db50; // fairly sure
 	bool isTimeValid(char const*, float);
@@ -4164,7 +4164,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void resetDailyLevelState(GJTimedLevelType);
 	void resetGauntlets();
     inline void resetStoredUserInfo(int id) {
-        m_storedUserInfo->removeObjectForKey(id);
+        m_storedUserInfo->removeObjectForKey(id); // ios 0xa72bc moment
     }
 	void resetStoredUserList(UserListType) = ios 0xab288;
 	void resetTimerForKey(char const*);
@@ -5528,19 +5528,19 @@ class GameToolbox {
 	static gd::string getTimeString(int) = ios 0x4e8bc;
 	static TodoReturn hsvFromString(gd::string const&, char const*);
 	static TodoReturn intToShortString(int);
-	static TodoReturn intToString(int) = ios 0x51184;
+	static gd::string intToString(int) = ios 0x51184;
 	static bool isIOS();
 	static bool isRateEasing(int);
 	static TodoReturn mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
 	static TodoReturn mergeDictsSkipConflict(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
-	static TodoReturn msToTimeString(int, int);
+	static gd::string msToTimeString(int, int) = ios 0x516b8;
 	static TodoReturn multipliedColorValue(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
 	static TodoReturn openAppPage();
 	static TodoReturn openRateURL(gd::string, gd::string);
 	static TodoReturn particleFromString(gd::string const&, cocos2d::CCParticleSystemQuad*, bool) = ios 0x506f4;
 	static TodoReturn particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool) = ios 0x507c8;
 	static TodoReturn particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&) = ios 0x4fd70;
-	static TodoReturn pointsToString(int) = ios 0x51800;
+	static gd::string pointsToString(int) = ios 0x51800;
 	static TodoReturn postClipVisit() = ios 0x4d088;
 	static TodoReturn preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = ios 0x4cfa4;
 	static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
@@ -7177,8 +7177,8 @@ class GJLevelScoreCell : TableViewCell {
 	// virtual ~GJLevelScoreCell();
 	GJLevelScoreCell(char const*, float, float);
 
-	void loadFromScore(GJUserScore*);
-	void onViewProfile(cocos2d::CCObject* sender);
+	void loadFromScore(GJUserScore*) = ios 0x109314;
+	void onViewProfile(cocos2d::CCObject* sender) = ios 0x111848;
 	TodoReturn updateBGColor(int);
 
 	virtual bool init() = ios 0x11183c;
@@ -14174,7 +14174,7 @@ class SimplePlayer : cocos2d::CCSprite {
 	inline void setSecondColor(cocos2d::_ccColor3B const& color) {
 		m_secondLayer->setColor(color);
 		updateColors();
-	}
+	} // ios 0x30df40 moment
 	void updateColors() = ios 0x30cedc;
 	void updatePlayerFrame(int, IconType) = ios 0x30a32c;
 
