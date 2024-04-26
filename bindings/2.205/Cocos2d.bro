@@ -2254,3 +2254,22 @@ class cocos2d::CCMoveBy {
 class cocos2d::CCEaseOut {
 	static cocos2d::CCEaseOut* create(cocos2d::CCActionInterval*, float) = ios 0x273b9c;
 }
+
+[[link(win, android)]]
+class cocos2d::CCSpawn {
+	static cocos2d::CCSpawn* create(cocos2d::CCArray*);
+	// static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...);
+	static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = ios 0x191a74;
+	// static cocos2d::CCSpawn* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
+
+	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
+
+	// CCSpawn(cocos2d::CCSpawn const&);
+	// CCSpawn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual void stop();
+	virtual cocos2d::CCActionInterval* reverse();
+}
