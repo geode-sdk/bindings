@@ -1598,7 +1598,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
 	TodoReturn updateBlending(bool) = win 0x1d8990;
 	TodoReturn updateCopyLabel(int, bool) = win 0x1d86c0;
 	void updateOpacity(float) = win 0x1d8840;
-	TodoReturn updateValues(ColorAction*) = win 0x1d8a80;
+	void updateValues(ColorAction*) = win 0x1d8a80;
 
 	virtual bool init() = win 0x1d86a0;
 }
@@ -2709,7 +2709,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	static EditorUI* create(LevelEditorLayer*);
 
 	TodoReturn activateRotationControl(cocos2d::CCObject*) = win 0xd83d0;
-	TodoReturn activateScaleControl(cocos2d::CCObject*) = win 0xcc130;
+	void activateScaleControl(cocos2d::CCObject*) = win 0xcc130;
 	TodoReturn activateTransformControl(cocos2d::CCObject*);
 	TodoReturn addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*);
 	TodoReturn addSnapPosition(cocos2d::CCPoint);
@@ -2887,8 +2887,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = win 0xd6080;
 	TodoReturn rotationforCommand(EditCommand);
 	void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType) = win 0xd64b0;
-	TodoReturn selectAll() = win 0xc9750;
-	TodoReturn selectAllWithDirection(bool) = win 0xc9890;
+	void selectAll() = win 0xc9750;
+	void selectAllWithDirection(bool) = win 0xc9890;
 	void selectBuildTab(int) = win 0xcbf00;
 	void selectObject(GameObject*, bool) = win 0xc8aa0;
 	void selectObjects(cocos2d::CCArray*, bool) = win 0xc8d40;
@@ -9207,7 +9207,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	void updateLevelFont(int) = win 0x2458c0;
 	TodoReturn updateObjectColors(cocos2d::CCArray*);
 	static void updateObjectLabel(GameObject*) = win 0x23e710;
-	TodoReturn updateOptions() = win 0x23afa0;
+	void updateOptions() = win 0x23afa0;
 	TodoReturn updatePreviewAnim() = win 0x247c90;
 	void updatePreviewParticle(ParticleGameObject*) = win 0x247ec0;
 	TodoReturn updatePreviewParticles() = win 0x247e20;
