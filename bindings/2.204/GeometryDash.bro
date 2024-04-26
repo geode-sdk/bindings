@@ -2421,8 +2421,8 @@ class DemonFilterSelectLayer : FLAlertLayer {
 
 	static DemonFilterSelectLayer* create() = win 0x267340;
 
-	void onClose(cocos2d::CCObject* sender);
-	TodoReturn selectRating(cocos2d::CCObject*);
+	void onClose(cocos2d::CCObject* sender) = win 0x267940;
+	void selectRating(cocos2d::CCObject* sender) = win 0x2678b0;
 
 	virtual bool init() = win 0x2673e0;
 	virtual void keyBackClicked() = win 0x267980;
