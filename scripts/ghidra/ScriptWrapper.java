@@ -64,11 +64,11 @@ public class ScriptWrapper {
             InputWithButtonsDialog.show(
                 this,
                 "Ghidra environment has not been set up",
-                "<html>It appears you have not run RecoverClassesFromRttiScript yet!<br>" + 
-                "It is highly recommended to run the script before doing any Broma " + 
-                "synchronization, as it makes decompilations much better by adding " + 
-                "vtables, and it is also required for importing/exporting members.<br>" + 
-                "If you would like to proceed anyway, you may do so, but note that " + 
+                "<html>It appears you have not run RecoverClassesFromRttiScript yet!<br>" +
+                "It is highly recommended to run the script before doing any Broma " +
+                "synchronization, as it makes decompilations much better by adding " +
+                "vtables, and it is also required for importing/exporting members.<br>" +
+                "If you would like to proceed anyway, you may do so, but note that " +
                 "some things may not work properly.</html>",
                 List.of("Proceed Anyway")
             );
@@ -88,12 +88,13 @@ public class ScriptWrapper {
             case "x86:LE:64:default": return Optional.of(Platform.MAC);
             case "ARM:LE:32:v8":      return Optional.of(Platform.ANDROID32);
             case "AARCH64:LE:64:v8A": return Optional.of(Platform.ANDROID64);
+            case "AARCH64:LE:64:AppleSilicon": return Optional.of(Platform.IOS);
         }
         return Optional.empty();
     }
 
     /**
-     * Java {@code assert}s don't run in Ghidra scripts... so here's this function instead 
+     * Java {@code assert}s don't run in Ghidra scripts... so here's this function instead
      * to assert that the script code is running correctly!
      * @param cond Condition to require to be true
      * @param fmt Format string for error message
@@ -103,7 +104,7 @@ public class ScriptWrapper {
     static void rtassert(boolean cond, String fmt, Object... args) throws Error {
         if (!cond) {
             throw new Error(MessageFormat.format(
-                fmt + " - this is an error in SyncBromaScript itself, " + 
+                fmt + " - this is an error in SyncBromaScript itself, " +
                 "please report it to the Geode devs!", args
             ));
         }
@@ -176,7 +177,7 @@ public class ScriptWrapper {
             var nameIter = Arrays.asList(type.name.value.split("::")).listIterator();
             String name = null;
             DataTypePath typePath = null;
-    
+
             // Root category is the same as where RecoverClassesFromRTTIScript places them
             CategoryPath category = new CategoryPath("/ClassDataTypes");
 
@@ -204,7 +205,7 @@ public class ScriptWrapper {
                     typePath = new DataTypePath(category, ns);
                 }
             }
-        
+
             ScriptWrapper.rtassert(name != null, "Data type doesn't have a name (GRAB_TYPE regex is invalid)");
 
             // Try to get this type
@@ -305,7 +306,7 @@ public class ScriptWrapper {
             List.of("Continue")
         );
     }
-    
+
     void updateTypeDatabase() throws Exception {
         this.printfmt("Updating type database...");
 
@@ -479,7 +480,7 @@ public class ScriptWrapper {
         var org = wrapped.getLanguage(new LanguageID(langID))
             .getCompilerSpecByID(new CompilerSpecID(compID))
             .getDataOrganization();
-        
+
         if (type instanceof Pointer) {
             return org.getPointerSize();
         }
@@ -500,13 +501,13 @@ public class ScriptWrapper {
         }
         return type.getLength();
     }
-    
+
     static String formatType(DataType type) {
         try {
             return ScriptWrapper.formatType(((Pointer) type).getDataType()) + "*";
         }
         catch(ClassCastException ignore) {}
-        
+
         try {
             return String.join("::", ((Composite) type).getCategoryPath().asList()).replace("ClassDataTypes::", "");
         }

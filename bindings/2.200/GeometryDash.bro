@@ -6663,7 +6663,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void boostPlayer(float) = win 0x2d2d30, mac 0x3e75b0;
 	TodoReturn createRobot(int) = mac 0x3dd580;
 	TodoReturn flashPlayer(float, float, cocos2d::_ccColor3B, cocos2d::_ccColor3B) = mac 0x3efee0;
-	TodoReturn flipGravity(bool, bool) = win 0x2CDDB0, mac 0x3e4a80;
+	void flipGravity(bool, bool) = win 0x2CDDB0, mac 0x3e4a80;
 	TodoReturn gravityDown();
 	void resetStreak() = mac 0x3e4520;
 	void setupStreak() = mac 0x3ddd10;
@@ -6737,7 +6737,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void toggleRobotMode(bool, bool) = win 0x2CF0C0, mac 0x3f9320;
 	void toggleSwingMode(bool, bool) = win 0x2CE680, mac 0x3f7ec0;
 	void updateGlowColor() = win 0x2d0ca0, mac 0x3fa940;
-	TodoReturn updatePlayerArt() = win 0x2CCAC0, mac 0x3f66e0;
+	void updatePlayerArt() = win 0x2CCAC0, mac 0x3f66e0;
 	void updateSwingFire() = win 0x2ce8b0;
 	TodoReturn canStickToGround();
 	void deactivateStreak(bool) = mac 0x3de280;
