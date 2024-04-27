@@ -2456,9 +2456,9 @@ class DrawGridLayer : cocos2d::CCLayer {
 	TodoReturn removeFromGuides(GameObject*);
 	TodoReturn removeFromSpeedObjects(EffectGameObject*);
 	TodoReturn sortSpeedObjects();
-	float timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int);
+	float timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int) = win 0x24b2a0;
 	TodoReturn updateMusicGuideTime(float);
-	TodoReturn updateTimeMarkers();
+	TodoReturn updateTimeMarkers() = win 0x24b240;
 
 	virtual void update(float) = win 0x24b310;
 	virtual void draw() = win 0x24b4c0;
@@ -9062,9 +9062,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getSavedEditorPosition(int);
 	TodoReturn getSavedEditorPositions();
 	TodoReturn getSectionCount();
-	TodoReturn getSelectedEditorOrder();
+	TodoReturn getSelectedEditorOrder() = win 0x242c40;
 	TodoReturn getSelectedEffectPos();
-	TodoReturn getSelectedOrderChannel();
+	TodoReturn getSelectedOrderChannel() = win 0x242c10;
 	TodoReturn getSFXIDs();
 	TodoReturn getSongIDs(bool&);
 	TodoReturn getTriggerGroup(int);
@@ -9117,7 +9117,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn shouldBlend(int);
 	TodoReturn sortBatchnodeChildren(float);
 	TodoReturn spawnGroupPreview(int, float, float, float, float, float, bool, bool);
-	TodoReturn stopPlayback();
+	TodoReturn stopPlayback() = win 0x246060;
 	TodoReturn stopTriggersInGroup(int, float);
 	TodoReturn timeObjectChanged();
 	TodoReturn toggleBackground(bool);
@@ -9138,7 +9138,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateBlendValues();
 	TodoReturn updateEditor(float);
 	TodoReturn updateEditorMode() = win 0x2423a0;
-	TodoReturn updateGameObjects();
+	TodoReturn updateGameObjects() = win 0x242cd0;
 	TodoReturn updateGridLayer();
 	TodoReturn updateGridLayerParent();
 	TodoReturn updateKeyframeObjects();
@@ -12166,7 +12166,7 @@ class SelectArtLayer : FLAlertLayer {
 	static SelectArtLayer* create(SelectArtType, int) = win 0x26fcb0;
 
 	bool init(SelectArtType, int) = win 0x26fd60;
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x270af0;
 	void onSelectCustom(cocos2d::CCObject* sender);
 	TodoReturn selectArt(cocos2d::CCObject*);
 	TodoReturn updateSelectedCustom(int);
@@ -12585,7 +12585,7 @@ class SetupAreaAnimTriggerPopup : SetupAreaTintTriggerPopup {
 
 	static SetupAreaAnimTriggerPopup* create(EnterEffectObject*, cocos2d::CCArray*, int) = win 0x322760;
 
-	TodoReturn createValueControlAdvancedAnim(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float min, float max, int, int, GJInputStyle) = win 0x323820;
+	TodoReturn createValueControlAdvancedAnim(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float min, float max, int, int, GJInputStyle) = win 0x370030;
 	bool init(EnterEffectObject*, cocos2d::CCArray*, int) = win 0x322810;
 	void onDeactivateAnimValue(cocos2d::CCObject* sender);
 	TodoReturn updateTargetIDLabel();
