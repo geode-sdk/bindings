@@ -100,6 +100,7 @@ GEODE_MEMBER_CHECK(GameStatsManager, m_activePath, 0x250);
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d80);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x148);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5e0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_effectManager, 0x650);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x878);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x87c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9b8);
@@ -110,6 +111,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x2aa0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isTestMode, 0x2aac);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b50);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c48);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x2d6c);
 
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x2db0);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x2e38);
@@ -117,6 +119,7 @@ GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x2e4c);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e58);
 GEODE_MEMBER_CHECK(PlayLayer, m_colorKeyDict, 0x2f30);
 GEODE_MEMBER_CHECK(PlayLayer, m_nextColorKey, 0x2f58);
+GEODE_MEMBER_CHECK(PlayLayer, m_debugDrawNode, 0x2d70);
 // CustomSongWidget
 
 GEODE_MEMBER_CHECK(CustomSongWidget, m_songInfoObject, 0x110);
@@ -230,7 +233,8 @@ GEODE_MEMBER_CHECK(CCApplication, m_bMouseControl, 0x88);
 GEODE_MEMBER_CHECK(AppDelegate, m_runningScene, 0xA8);
 
 GEODE_SIZE_CHECK(EditorUI, 0x3c0);
-GEODE_MEMBER_CHECK(EditorUI, m_unk1b8, 0x1b8);
+GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x178);
+// GEODE_MEMBER_CHECK(EditorUI, m_unk1b8, 0x1b8);
 // GEODE_MEMBER_CHECK(EditorUI, m_unk1ec, 0x1ec);
 GEODE_MEMBER_CHECK(EditorUI, m_rotationControl, 0x208);
 GEODE_MEMBER_CHECK(EditorUI, m_transformControl, 0x21c);
@@ -249,5 +253,10 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e24);
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
 
 GEODE_MEMBER_CHECK(GJPathSprite, m_pathNumber, 0x1fc);
+
+GEODE_MEMBER_CHECK(PointNode, m_point, 0x34);
+
+GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x1a4);
+//GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x200);
 
 #endif
