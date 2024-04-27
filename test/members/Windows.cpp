@@ -100,6 +100,7 @@ GEODE_MEMBER_CHECK(GameStatsManager, m_activePath, 0x250);
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d80);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x148);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x5e0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_effectManager, 0x650);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x878);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x87c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9b8);
@@ -251,6 +252,10 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e24);
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
 
 GEODE_MEMBER_CHECK(GJPathSprite, m_pathNumber, 0x1fc);
+
 GEODE_MEMBER_CHECK(PointNode, m_point, 0x34);
+
+GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x1a4);
+//GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x200);
 
 #endif
