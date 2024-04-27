@@ -11737,7 +11737,7 @@ class RateLevelLayer : FLAlertLayer {
 	bool init(int);
 	void onClose(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender);
-	TodoReturn selectRating(cocos2d::CCObject*);
+	void selectRating(cocos2d::CCObject*);
 
 	virtual void keyBackClicked();
 }
