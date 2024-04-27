@@ -5087,7 +5087,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 		return cocos2d::CCString::createWithFormat("T%i", time)->getCString();
 	}
 	inline gd::string getLevelLenKey() {
-		GameLevelManager::sharedState()->getLengthStr(checkTime(0), checkTime(1), checkTime(2), checkTime(3), checkTime(4), checkTime(5));
+		return GameLevelManager::sharedState()->getLengthStr(checkTime(0), checkTime(1), checkTime(2), checkTime(3), checkTime(4), checkTime(5));
 	}
 	GJSearchObject* getSearchObject(SearchType, gd::string) = mac 0x5f0380, win 0x25F210;
 	gd::string getSearchDiffKey() = mac 0x5f0710;
