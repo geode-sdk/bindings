@@ -2750,7 +2750,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createRockEdges(cocos2d::CCArray*);
 	TodoReturn createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool);
 	TodoReturn createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool);
-	TodoReturn createUndoObject(UndoCommand, bool) = win 0xc9320;
+	UndoObject* createUndoObject(UndoCommand, bool) = win 0xc9320;
 	TodoReturn createUndoSelectObject(bool) = win 0xc9470;
 	TodoReturn deactivateRotationControl();
 	TodoReturn deactivateScaleControl() = win 0xcc2d0;

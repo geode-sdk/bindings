@@ -2715,7 +2715,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createRockEdges(cocos2d::CCArray*);
 	TodoReturn createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool);
 	TodoReturn createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool);
-	TodoReturn createUndoObject(UndoCommand, bool);
+	UndoObject* createUndoObject(UndoCommand, bool);
 	TodoReturn createUndoSelectObject(bool);
 	TodoReturn deactivateRotationControl();
 	TodoReturn deactivateScaleControl();
@@ -2965,7 +2965,6 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	PAD = android32 0x3c, android64 0x48;
 
 	cocos2d::CCLabelBMFont* m_objectInfoLabel;
-	PAD = android32 0xc, android64 0x18;
 	GJRotationControl* m_rotationControl;
 	cocos2d::CCPoint m_pivotPoint;
 	PAD = android32 0x4, android64 0x8;

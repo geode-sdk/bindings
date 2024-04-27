@@ -6249,7 +6249,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn smartTypeForKey(int);
 	void transformObject(GameObject*, EditCommand, bool) = mac 0x4ec40;
 	TodoReturn convertToBaseKey(int);
-	TodoReturn createUndoObject(UndoCommand, bool) = mac 0x40790;
+	UndoObject* createUndoObject(UndoCommand, bool) = mac 0x40790;
 	TodoReturn editButtonUsable() = mac 0x4b3b0;
 	TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -6405,7 +6405,6 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	PAD = android32 0x3c, mac 0x48;
 	cocos2d::CCLabelBMFont* m_objectInfoLabel;
-	PAD = android32 0xc, mac 0x18;
 	GJRotationControl* m_rotationControl;
 	cocos2d::CCPoint m_pivotPoint;
 	PAD = android32 0x4, mac 0x8;
