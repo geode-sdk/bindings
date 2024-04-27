@@ -233,7 +233,8 @@ GEODE_MEMBER_CHECK(CCApplication, m_bMouseControl, 0x88);
 GEODE_MEMBER_CHECK(AppDelegate, m_runningScene, 0xA8);
 
 GEODE_SIZE_CHECK(EditorUI, 0x3c0);
-GEODE_MEMBER_CHECK(EditorUI, m_unk1b8, 0x1b8);
+GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x178);
+// GEODE_MEMBER_CHECK(EditorUI, m_unk1b8, 0x1b8);
 // GEODE_MEMBER_CHECK(EditorUI, m_unk1ec, 0x1ec);
 GEODE_MEMBER_CHECK(EditorUI, m_rotationControl, 0x208);
 GEODE_MEMBER_CHECK(EditorUI, m_transformControl, 0x21c);
@@ -252,8 +253,10 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e24);
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
 
 GEODE_MEMBER_CHECK(GJPathSprite, m_pathNumber, 0x1fc);
+
 GEODE_MEMBER_CHECK(PointNode, m_point, 0x34);
 
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x1a4);
+//GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x200);
 
 #endif

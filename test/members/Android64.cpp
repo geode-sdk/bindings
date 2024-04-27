@@ -48,6 +48,7 @@ GEODE_MEMBER_CHECK(SimplePlayer, m_hasCustomGlowColor, 0x29c);
 
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x1a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x890);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_effectManager, 0x960);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xdb0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xdb8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownCD0, 0xdf0);
@@ -60,7 +61,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3208);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x3238);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3300);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3460);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34a8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x3498);
 
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x36d0);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37a0);
@@ -144,5 +145,6 @@ GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x290);
 GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x2B8);
 
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x260);
+//GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x318);
 
 #endif
