@@ -4901,7 +4901,7 @@ class GameStatsManager : cocos2d::CCNode {
 
 	void dataLoaded(DS_Dictionary*) = mac 0x89460;
 	void firstSetup();
-	TodoReturn hasUserCoin(char const*) = mac 0x6f490, win 0x16ecd0;
+	bool hasUserCoin(char const*) = mac 0x6f490, win 0x16ecd0;
 	static GameStatsManager* sharedState() = win 0x165df0, mac 0x5d0a0;
 	TodoReturn addStoreItem(int, int, int, int, ShopType) = win 0x167FB0, mac 0x662c0;
 	void encodeDataTo(DS_Dictionary*) = win 0x17DE70;
@@ -4957,7 +4957,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn collectVideoReward(int);
 	//TodoReturn completedChallenge(GJChallengeItem*);
 	TodoReturn completedStarLevel(GJGameLevel*) = mac 0x6d730, win 0x16d970;
-	TodoReturn hasPendingUserCoin(char const*) = mac 0x6f3c0, win 0x16ee40;
+	bool hasPendingUserCoin(char const*) = mac 0x6f3c0, win 0x16ee40;
 	TodoReturn incrementChallenge(GJChallengeType, int) = win 0x170E40;
 	TodoReturn storeChallengeTime(int) = mac 0x73130;
 	TodoReturn unlockSpecialChest(gd::string) = win 0x177940;
@@ -5087,7 +5087,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 		return cocos2d::CCString::createWithFormat("T%i", time)->getCString();
 	}
 	inline gd::string getLevelLenKey() {
-		GameLevelManager::sharedState()->getLengthStr(checkTime(0), checkTime(1), checkTime(2), checkTime(3), checkTime(4), checkTime(5));
+		return GameLevelManager::sharedState()->getLengthStr(checkTime(0), checkTime(1), checkTime(2), checkTime(3), checkTime(4), checkTime(5));
 	}
 	GJSearchObject* getSearchObject(SearchType, gd::string) = mac 0x5f0380, win 0x25F210;
 	gd::string getSearchDiffKey() = mac 0x5f0710;
@@ -10928,7 +10928,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getFMODStatus(int) = win 0x3ae60;
 	TodoReturn pauseAllAudio() = mac 0x3bc2e0;
 	void pauseAllMusic() = win 0x380c0, mac 0x3c50c0;
-	TodoReturn preloadEffect(gd::string) = win 0x37780;
+	void preloadEffect(gd::string) = win 0x37780;
 	TodoReturn updateChannel(int, AudioTargetType, AudioModType, float, float) = win 0x36f70;
 	TodoReturn channelStopped(FMOD::Channel*, bool);
 	void enableMetering() = mac 0x3c1a10;
@@ -12788,9 +12788,9 @@ class GJDifficultySprite : cocos2d::CCSprite {
 	bool init(int, GJDifficultyName) = win 0x211f80;
 	~GJDifficultySprite();
 
-	gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x212010;
+	gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x212010, mac 0x291e60;
 
-	void updateFeatureState(GJFeatureState) = win 0x2122c0;
+	void updateFeatureState(GJFeatureState) = win 0x2122c0, mac 0x292100;
 	void updateDifficultyFrame(int, GJDifficultyName) = win 0x212100, mac 0x291f80;
 	void updateFeatureStateFromLevel(GJGameLevel*) = mac 0x2920b0, win 0x212240;
 }

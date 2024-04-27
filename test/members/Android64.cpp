@@ -48,6 +48,7 @@ GEODE_MEMBER_CHECK(SimplePlayer, m_hasCustomGlowColor, 0x29c);
 
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x1a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x890);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_effectManager, 0x960);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xdb0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xdb8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownCD0, 0xdf0);
@@ -144,5 +145,6 @@ GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x290);
 GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x2B8);
 
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x260);
+//GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x318);
 
 #endif
