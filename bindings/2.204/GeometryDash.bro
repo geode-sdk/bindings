@@ -15,9 +15,9 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
 	TodoReturn verifyUnlink();
 
 	virtual void customSetup() = win 0x58b90;
-	virtual void layerHidden();
-	virtual TodoReturn accountStatusChanged();
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void layerHidden() = win 0x594f0;
+	virtual TodoReturn accountStatusChanged() = win 0x59220;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x59480;
 }
 
 [[link(android)]]
@@ -56,7 +56,7 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegate, FLAlertLayerProtocol {
 	// virtual ~AccountLoginLayer();
 
-	static AccountLoginLayer* create(gd::string);
+	static AccountLoginLayer* create(gd::string) = win 0x55bf0;
 
 	TodoReturn createTextBackground(cocos2d::CCPoint, char const*, cocos2d::CCSize);
 	TodoReturn createTextInput(cocos2d::CCPoint, cocos2d::CCSize, char const*, int);
@@ -81,14 +81,14 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
 	virtual void textInputClosed(CCTextInputNode*) = win 0x56f40;
 	virtual void textChanged(CCTextInputNode*) {}
 	virtual TodoReturn loginAccountFinished(int, int) = win 0x56680;
-	virtual TodoReturn loginAccountFailed(AccountError);
+	virtual TodoReturn loginAccountFailed(AccountError) = win 0x56840;
 }
 
 [[link(android)]]
 class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterDelegate, FLAlertLayerProtocol {
 	// virtual ~AccountRegisterLayer();
 
-	static AccountRegisterLayer* create();
+	static AccountRegisterLayer* create() = win 0x53b90;
 
 	TodoReturn createTextBackground(cocos2d::CCPoint, cocos2d::CCSize);
 	TodoReturn createTextInput(cocos2d::CCPoint, cocos2d::CCSize, gd::string, int);
@@ -106,7 +106,7 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 	TodoReturn validPassword(gd::string);
 	TodoReturn validUser(gd::string);
 
-	virtual bool init();
+	virtual bool init() = win 0x53c30;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked() = win 0x553d0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x54ef0;
@@ -129,7 +129,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 	bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x59800;
 	void show() = win 0x5a610;
 
-	virtual void setOpacity(unsigned char);
+	virtual void setOpacity(unsigned char) = win 0x5a850;
 }
 
 [[link(android)]]
@@ -152,12 +152,12 @@ class AchievementManager : cocos2d::CCNode {
 
 	TodoReturn achievementForUnlock(int, UnlockType) = win 0x1b290;
 	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x9bc0;
-	void addManualAchievements() = win 0xf74a;
+	void addManualAchievements() = win 0x9f60;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
 	TodoReturn checkAchFromUnlock(char const*);
-	TodoReturn dataLoaded(DS_Dictionary*);
-	TodoReturn encodeDataTo(DS_Dictionary*);
-	TodoReturn firstSetup();
+	void dataLoaded(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*);
+	void firstSetup();
 	TodoReturn getAchievementRewardDict();
 	cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x1ade0;
 	TodoReturn getAllAchievements();
@@ -219,7 +219,7 @@ class AchievementsLayer : GJDropDownLayer {
 	TodoReturn setupLevelBrowser(cocos2d::CCArray*);
 	void setupPageInfo(int, int, int);
 
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x5ad30;
 	virtual void customSetup() = win 0x5aab0;
 
 	int m_currentPage;
@@ -246,12 +246,12 @@ class AdToolbox {
 class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
 	// virtual ~AdvancedFollowEditObject();
 
-	static AdvancedFollowEditObject* create(char const*);
+	static AdvancedFollowEditObject* create(char const*) = win 0x396ba0;
 
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x397030;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x396c40;
 }
 
 [[link(android)]]
@@ -259,13 +259,13 @@ class AdvancedFollowTriggerObject : EffectGameObject {
 	// virtual ~AdvancedFollowTriggerObject();
 	// AdvancedFollowTriggerObject();
 
-	static AdvancedFollowTriggerObject* create(char const*);
+	static AdvancedFollowTriggerObject* create(char const*) = win 0x393950;
 
-	TodoReturn getAdvancedFollowID();
+	int getAdvancedFollowID() = win 0x3939f0;
 	bool init(char const*);
 
-	virtual TodoReturn customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
-	virtual gd::string getSaveString(GJBaseGameLayer*);
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x395bc0;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x393a50;
 }
 
 [[link(android)]]
@@ -277,18 +277,18 @@ class AdvFollowSetup {
 class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePartDelegate {
 	// virtual ~AnimatedGameObject();
 
-	static AnimatedGameObject* create(int);
+	static AnimatedGameObject* create(int) = win 0x39ab70;
 
-	TodoReturn animationForID(int, int);
+	TodoReturn animationForID(int, int) = win 0x39C630;
 	TodoReturn getTweenTime(int, int);
-	bool init(int);
-	TodoReturn playAnimation(int);
+	bool init(int) = win 0x39ac10;
+	TodoReturn playAnimation(int) = win 0x39C4E0;
 	TodoReturn setupAnimatedSize(int);
 	TodoReturn setupChildSprites();
 	TodoReturn updateChildSpriteColor(cocos2d::ccColor3B);
 	TodoReturn updateObjectAnimation();
 
-	virtual void setOpacity(unsigned char);
+	virtual void setOpacity(unsigned char) = win 0x39bb70;
 	virtual void setChildColor(cocos2d::ccColor3B const&);
 	virtual void resetObject();
 	virtual void activateObject();
@@ -340,7 +340,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	virtual void applicationDidEnterBackground() = win 0x5b4f0;
 	virtual void applicationWillEnterForeground() = win 0x5b530;
 	virtual void applicationWillBecomeActive() = win 0x5b4d0;
-	virtual void applicationWillResignActive();
+	virtual void applicationWillResignActive() = win 0x5b4e0;
 	virtual void trySaveGame(bool) = win 0x5b790;
 	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x5b930;
 
@@ -379,12 +379,12 @@ class ArtTriggerGameObject : EffectGameObject {
 class AudioEffectsLayer : cocos2d::CCLayerColor {
 	// virtual ~AudioEffectsLayer();
 
-	static AudioEffectsLayer* create(gd::string);
+	static AudioEffectsLayer* create(gd::string) = win 0x5bc60;
 
 	TodoReturn audioStep(float) = win 0x5beb0;
 	TodoReturn getBGSquare();
 	TodoReturn goingDown();
-	bool init(gd::string);
+	bool init(gd::string) = win 0x5bd20;
 	TodoReturn resetAudioVars();
 	TodoReturn triggerEffect(float) = win 0x5bf70;
 
@@ -396,7 +396,7 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
 class AudioLineGuideGameObject : EffectGameObject {
 	// virtual ~AudioLineGuideGameObject();
 
-	static AudioLineGuideGameObject* create();
+	static AudioLineGuideGameObject* create() = win 0x3b6730;
 
 	virtual bool init() = win 0x3b67d0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
@@ -520,12 +520,12 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	void updateDots(float) = win 0x1e820;
 	void updatePages() = win 0x1e710;
 
-	virtual void visit();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void registerWithTouchDispatcher();
+	virtual void visit() = win 0x1ea10;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1f420;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1f510;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1f760;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1f3f0;
+	virtual void registerWithTouchDispatcher() = win 0x1f270;
 }
 
 
@@ -541,18 +541,18 @@ class BoomScrollLayerDelegate {
 class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
 	// virtual ~BrowseSmartKeyLayer();
 
-	static BrowseSmartKeyLayer* create(GJSmartTemplate*, gd::string);
+	static BrowseSmartKeyLayer* create(GJSmartTemplate*, gd::string) = win 0x35c240;
 
 	TodoReturn addChanceToSelected(int, bool);
 	TodoReturn createTemplateObjects();
 	TodoReturn deletedSelectedItems();
 	TodoReturn getAllSelectedBlocks();
-	bool init(GJSmartTemplate*, gd::string);
+	bool init(GJSmartTemplate*, gd::string) = win 0x35c310;
 	void onButton(cocos2d::CCObject* sender);
 	void onPrefabObject(cocos2d::CCObject* sender);
 	TodoReturn updateChanceValues();
 
-	virtual void onBack(cocos2d::CCObject* sender);
+	virtual void onBack(cocos2d::CCObject* sender) = win 0x35cfe0;
 }
 
 [[link(android)]]
@@ -573,8 +573,8 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
 	void onTemplateObject(cocos2d::CCObject* sender);
 	TodoReturn updateDots();
 
-	virtual void keyBackClicked();
-	virtual void onBack(cocos2d::CCObject* sender);
+	virtual void keyBackClicked() = win 0x35c140;
+	virtual void onBack(cocos2d::CCObject* sender) = win 0x35c160;
 }
 
 [[link(android)]]
@@ -661,7 +661,7 @@ class ButtonSprite : cocos2d::CCSprite {
 class CameraTriggerGameObject : EffectGameObject {
 	// virtual ~CameraTriggerGameObject();
 
-	static CameraTriggerGameObject* create(char const*);
+	static CameraTriggerGameObject* create(char const*) = win 0x3b2aa0;
 
 	bool init(char const*);
 
@@ -696,10 +696,10 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 	void tweenToAnimationFinished() = win 0x219c0;
 	TodoReturn willPlayAnimation();
 
-	virtual void setOpacity(unsigned char);
-	virtual void setColor(cocos2d::ccColor3B const&);
-	virtual TodoReturn animationFinished(char const*);
-	virtual TodoReturn animationFinishedO(cocos2d::CCObject*);
+	virtual void setOpacity(unsigned char) = win 0x21ae0;
+	virtual void setColor(cocos2d::ccColor3B const&) = win 0x21b30;
+	virtual TodoReturn animationFinished(char const*) = win 0x21ac0;
+	virtual TodoReturn animationFinishedO(cocos2d::CCObject*) = win 0x21a90;
 }
 
 [[link(android)]]
@@ -771,10 +771,10 @@ class CCCircleWave : cocos2d::CCNode {
 	bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x232f0; // easeOut is only used in fadeOut
 	TodoReturn updatePosition(float);
 
-	virtual void setPosition(cocos2d::CCPoint const&);
-	virtual void removeMeAndCleanup();
-	virtual void draw();
-	virtual void updateTweenAction(float, char const*);
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x234f0;
+	virtual void removeMeAndCleanup() = win 0x239a0;
+	virtual void draw() = win 0x23840;
+	virtual void updateTweenAction(float, char const*) = win 0x235b0;
 
 	PAD = win 0x11;
 	cocos2d::ccColor3B m_color;
@@ -790,7 +790,7 @@ class CCContentLayer : cocos2d::CCLayerColor {
 	inline CCContentLayer() {}
 	~CCContentLayer();
 
-	static CCContentLayer* create(cocos2d::ccColor4B const&, float, float);
+	static CCContentLayer* create(cocos2d::ccColor4B const&, float, float) = win 0x239c0;
 
 	virtual void setPosition(cocos2d::CCPoint const&) = win 0x23b20;
 }
@@ -812,14 +812,14 @@ class CCCountdown : cocos2d::CCSprite {
 class CCCounterLabel : cocos2d::CCLabelBMFont {
 	// virtual ~CCCounterLabel();
 
-	static CCCounterLabel* create(int, char const*, FormatterType);
+	static CCCounterLabel* create(int, char const*, FormatterType) = win 0x23d00;
 
 	TodoReturn calculateStepSize(int);
 	TodoReturn disableCounter();
 	TodoReturn enableCounter();
 	TodoReturn fastUpdateCounter();
 	TodoReturn getTargetCount();
-	bool init(int, char const*, FormatterType);
+	bool init(int, char const*, FormatterType) = win 0x23db0;
 	void setTargetCount(int) = win 0x23e20;
 	TodoReturn updateCounter(float);
 	TodoReturn updateString();
@@ -1015,7 +1015,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 class CCMoveCNode : cocos2d::CCObject {
 	// virtual ~CCMoveCNode();
 
-	static CCMoveCNode* create();
+	static CCMoveCNode* create() = win 0x1dedf0;
 
 	bool init();
 	TodoReturn reset();
@@ -1048,14 +1048,14 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 	TodoReturn tweenSpriteTo(SpriteDescription*, float);
 	TodoReturn tweenToFrame(cocos2d::CCSpriteFrame*, float);
 
-	virtual void setScaleX(float);
-	virtual void setScaleY(float);
-	virtual void setScale(float);
-	virtual void setOpacity(unsigned char);
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
-	virtual void setDisplayFrame(cocos2d::CCSpriteFrame*);
-	virtual bool isFrameDisplayed(cocos2d::CCSpriteFrame*);
-	virtual cocos2d::CCSpriteFrame* displayFrame();
+	virtual void setScaleX(float) = win 0x27160;
+	virtual void setScaleY(float) = win 0x27190;
+	virtual void setScale(float) = win 0x27130;
+	virtual void setOpacity(unsigned char) = win 0x27310;
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = win 0x271c0;
+	virtual void setDisplayFrame(cocos2d::CCSpriteFrame*) = win 0x26e90;
+	virtual bool isFrameDisplayed(cocos2d::CCSpriteFrame*) = win 0x26fa0;
+	virtual cocos2d::CCSpriteFrame* displayFrame() = win 0x26fc0;
 }
 
 [[link(android)]]
@@ -1157,7 +1157,7 @@ class CCSpritePart : CCSpritePlus {
 	void setBeingUsed(bool);
 	TodoReturn updateDisplayFrame(gd::string);
 
-	virtual void setVisible(bool);
+	virtual void setVisible(bool) = win 0x276c0;
 }
 
 [[link(android)]]
@@ -1179,10 +1179,10 @@ class CCSpritePlus : cocos2d::CCSprite {
 	virtual void setRotation(float) = win 0x28950;
 	virtual void setRotationX(float) = win 0x289d0;
 	virtual void setRotationY(float) = win 0x28a50;
-	virtual bool initWithTexture(cocos2d::CCTexture2D*);
+	virtual bool initWithTexture(cocos2d::CCTexture2D*) = win 0x288d0;
 	virtual bool initWithSpriteFrameName(char const*) = win 0x288b0;
-	virtual void setFlipX(bool);
-	virtual void setFlipY(bool);
+	virtual void setFlipX(bool) = win 0x28ad0;
+	virtual void setFlipY(bool) = win 0x28b70;
 
 	cocos2d::CCArray* m_followers;
 	CCSpritePlus* m_followingSprite;
@@ -1394,7 +1394,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 
 	virtual bool init() = win 0x5c560;
 	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x5d860;
 	virtual void show() = win 0x5D6D0;
 
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
@@ -1451,7 +1451,7 @@ class CharacterColorPage : FLAlertLayer {
 
 	virtual bool init() = win 0x5ea50;
 	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x608d0;
 	virtual void show();
 
 	int m_colorMode;
@@ -1503,11 +1503,11 @@ class CheckpointObject : cocos2d::CCNode {
 class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~CollisionBlockPopup();
 
-	static CollisionBlockPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static CollisionBlockPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x60ab0;
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn determineStartValues();
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x60b60;
 	void onClose(cocos2d::CCObject* sender);
 	void onDynamicBlock(cocos2d::CCObject* sender);
 	void onItemIDArrow(cocos2d::CCObject* sender);
@@ -1516,7 +1516,7 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateItemID();
 	TodoReturn updateTextInputLabel();
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x61900;
 	virtual void show();
 	virtual void textInputClosed(CCTextInputNode*) = win 0x61660;
 	virtual void textChanged(CCTextInputNode*) = win 0x61670;
@@ -1600,7 +1600,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
 	void updateOpacity(float) = win 0x1d8840;
 	void updateValues(ColorAction*) = win 0x1d8a80;
 
-	virtual bool init();
+	virtual bool init() = win 0x1d86a0;
 }
 
 [[link(android)]]
@@ -1612,7 +1612,7 @@ class ColorSelectDelegate {
 class ColorSelectLiveOverlay : FLAlertLayer {
 	// virtual ~ColorSelectLiveOverlay();
 
-	static ColorSelectLiveOverlay* create(ColorAction*, ColorAction*, EffectGameObject*);
+	static ColorSelectLiveOverlay* create(ColorAction*, ColorAction*, EffectGameObject*) = win 0x61b20;
 
 	void closeColorSelect(cocos2d::CCObject*);
 	void colorValueChanged(cocos2d::ccColor3B);
@@ -1632,7 +1632,7 @@ class ColorSelectLiveOverlay : FLAlertLayer {
 	TodoReturn updateColorValue();
 	void updateOpacity();
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x62fa0;
 	virtual void show();
 
 	EffectGameObject* m_effectGameObject;
@@ -1717,7 +1717,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	void updateBGColor(int) = win 0x86090;
 	void updateLabelValues() = win 0x86240;
 
-	virtual bool init();
+	virtual bool init() = win 0x84460;
 	virtual void draw() = win 0x7d5b0;
 	virtual void likedItem(LikeItemType, int, bool) = win 0x861f0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x863d0;
@@ -1739,16 +1739,16 @@ class CommentUploadDelegate {
 class CommunityCreditNode : cocos2d::CCNode {
 	// virtual ~CommunityCreditNode();
 
-	static CommunityCreditNode* create(int, int, int, gd::string);
+	static CommunityCreditNode* create(int, int, int, gd::string) = win 0x68850;
 
-	bool init(int, int, int, gd::string);
+	bool init(int, int, int, gd::string) = win 0x68920;
 }
 
 [[link(android)]]
 class CommunityCreditsPage : FLAlertLayer {
 	// virtual ~CommunityCreditsPage();
 
-	static CommunityCreditsPage* create();
+	static CommunityCreditsPage* create() = win 0x68a70;
 
 	void FLAlert_Clicked(FLAlertLayer*, bool);
 	void goToPage(int);
@@ -1757,8 +1757,8 @@ class CommunityCreditsPage : FLAlertLayer {
 
 	virtual bool init() = win 0x68b10;
 	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual void show();
+	virtual void keyBackClicked() = win 0x6a770;
+	virtual void show() = win 0x6a5f0;
 }
 
 [[link(android)]]
@@ -1787,9 +1787,9 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 class ConfigureValuePopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~ConfigureValuePopup();
 
-	static ConfigureValuePopup* create(ConfigureValuePopupDelegate*, float, float, float, gd::string, gd::string);
+	static ConfigureValuePopup* create(ConfigureValuePopupDelegate*, float, float, float, gd::string, gd::string) = win 0x6c600;
 
-	bool init(ConfigureValuePopupDelegate*, float, float, float, gd::string, gd::string);
+	bool init(ConfigureValuePopupDelegate*, float, float, float, gd::string, gd::string) = win 0x6c740;
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	TodoReturn updateTextInputLabel();
@@ -1813,7 +1813,7 @@ class CountTriggerAction {
 class CountTriggerGameObject : EffectGameObject {
 	// virtual ~CountTriggerGameObject();
 
-	static CountTriggerGameObject* create(char const*);
+	static CountTriggerGameObject* create(char const*) = win 0x3b0640;
 
 	bool init(char const*);
 
@@ -1840,10 +1840,10 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x6ee20;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void registerWithTouchDispatcher() = win 0x6ee80;
+	virtual void keyBackClicked() = win 0x6ed10;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x6eeb0;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x6ece0;
 	virtual void onClose(cocos2d::CCObject* sender);
 	virtual void keyUp(cocos2d::enumKeyCodes) {}
 	virtual TodoReturn playMusic() = win 0x6e500;
@@ -1867,7 +1867,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
 	// virtual ~CreateParticlePopup();
 
 	static CreateParticlePopup* create(gd::string);
-	static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*, gd::string);
+	static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*, gd::string) = win 0x3380b0;
 	static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*);
 
 	TodoReturn centerAlignParticle(cocos2d::CCObject*);
@@ -1919,10 +1919,10 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
 	TodoReturn valueForParticleValue(gjParticleValue);
 	void willClose() = win 0x33f540;
 
-	virtual void update(float);
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void update(float) = win 0x33cbb0;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x33f6d0;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x33f7b0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x33fbd0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void keyBackClicked() = win 0x33f6c0;
 	virtual void sliderBegan(Slider*) = win 0x33ef20;
@@ -2018,25 +2018,25 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	static CustomizeObjectLayer* create(GameObject*, cocos2d::CCArray*) = win 0x763f0;
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	TodoReturn determineStartValues();
+	TodoReturn determineStartValues() = win 0x78e70;
 	int getActiveMode(bool) = win 0x79a00;
 	TodoReturn getButtonByTag(int);
 	TodoReturn getHSV();
 	void highlightSelected(ButtonSprite*) = win 0x7a1b0;
 	bool init(GameObject*, cocos2d::CCArray*) = win 0x764a0;
-	void onBreakApart(cocos2d::CCObject* sender);
-	void onBrowse(cocos2d::CCObject* sender);
-	void onClear(cocos2d::CCObject* sender);
+	void onBreakApart(cocos2d::CCObject* sender) = win 0x79e90;
+	void onBrowse(cocos2d::CCObject* sender) = win 0x78b50;
+	void onClear(cocos2d::CCObject* sender) = win 0x79e30;
 	void onClose(cocos2d::CCObject* sender) = win 0x7a2a0;
-	void onCopy(cocos2d::CCObject* sender);
-	void onEditColor(cocos2d::CCObject* sender);
-	void onHSV(cocos2d::CCObject* sender);
-	void onLiveEdit(cocos2d::CCObject* sender);
-	void onNextColorChannel(cocos2d::CCObject* sender);
-	void onPaste(cocos2d::CCObject* sender);
+	void onCopy(cocos2d::CCObject* sender) = win 0x78a30;
+	void onEditColor(cocos2d::CCObject* sender) = win 0x78ce0;
+	void onHSV(cocos2d::CCObject* sender) = win 0x79210;
+	void onLiveEdit(cocos2d::CCObject* sender) = win 0x789f0;
+	void onNextColorChannel(cocos2d::CCObject* sender) = win 0x79490;
+	void onPaste(cocos2d::CCObject* sender) = win 0x78a50;
 	void onSelectColor(cocos2d::CCObject* sender) = win 0x79fa0;
 	void onSelectMode(cocos2d::CCObject* sender) = win 0x79550;
-	void onSettings(cocos2d::CCObject* sender);
+	void onSettings(cocos2d::CCObject* sender) = win 0x78b20;
 	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x79af0;
 	TodoReturn recreateLayer();
 	void sliderChanged(cocos2d::CCObject*) = win 0x78930;
@@ -2101,8 +2101,8 @@ class CustomizeObjectSettingsPopup : SetupTriggerPopup {
 
 	bool init(GameObject*, cocos2d::CCArray*, CustomizeObjectLayer*) = win 0x7a3f0;
 
-	virtual void onClose(cocos2d::CCObject* sender);
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
+	virtual void onClose(cocos2d::CCObject* sender) = win 0x7a710;
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x7a670;
 }
 
 [[link(android)]]
@@ -2144,7 +2144,7 @@ class CustomSFXCell : TableViewCell, CustomSFXDelegate {
 	TodoReturn shouldReload();
 	void updateBGColor(int) = win 0x83760;
 
-	virtual bool init();
+	virtual bool init() = win 0x83650;
 	virtual void draw();
 	virtual void sfxObjectSelected(SFXInfoObject*) = win 0x83730;
 	virtual TodoReturn getActiveSFXID() = win 0x83340;
@@ -2154,7 +2154,7 @@ class CustomSFXCell : TableViewCell, CustomSFXDelegate {
 class CustomSFXDelegate {
 	virtual void sfxObjectSelected(SFXInfoObject*);
 	virtual TodoReturn getActiveSFXID();
-	virtual TodoReturn overridePlaySFX(SFXInfoObject*);
+	virtual TodoReturn overridePlaySFX(SFXInfoObject*) = win 0x7abe0;
 }
 
 [[link(android)]]
@@ -2202,9 +2202,9 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
 
 	virtual bool init();
 	virtual void draw();
-	virtual TodoReturn songIDChanged(int);
+	virtual TodoReturn songIDChanged(int) = win 0x83310;
 	virtual TodoReturn getActiveSongID();
-	virtual TodoReturn getSongFileName();
+	virtual TodoReturn getSongFileName() = win 0x83360;
 	virtual TodoReturn getLevelSettings();
 
 	SongInfoObject* m_songInfoObject;
@@ -2223,9 +2223,9 @@ class CustomSongDelegate {
 class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate, MusicBrowserDelegate {
 	// virtual ~CustomSongLayer();
 
-	static CustomSongLayer* create(CustomSongDelegate*);
+	static CustomSongLayer* create(CustomSongDelegate*) = win 0x8ef70;
 
-	bool init(CustomSongDelegate*);
+	bool init(CustomSongDelegate*) = win 0x8f010;
 	void onClose(cocos2d::CCObject* sender);
 	void onCreateLines(cocos2d::CCObject* sender);
 	void onMusicBrowser(cocos2d::CCObject* sender);
@@ -2235,7 +2235,7 @@ class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate
 	void onSongBrowser(cocos2d::CCObject* sender);
 	void showNewgroundsMessage();
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x8ffe0;
 	virtual void show();
 	virtual void textChanged(CCTextInputNode*) = win 0x8fdb0;
 	virtual void textInputOpened(CCTextInputNode*);
@@ -2347,7 +2347,7 @@ class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
 	void showSkipButton() = win 0x99ff0;
 	void updateTimeLabel(gd::string) = win 0x9a290;
 
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x9a260;
 
 	GJGameLevel* m_level;
 	DailyLevelPage* m_page;
@@ -2402,7 +2402,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 class DashRingObject : RingObject {
 	// virtual ~DashRingObject();
 
-	static DashRingObject* create(char const*);
+	static DashRingObject* create(char const*) = win 0x39a540;
 
 	bool init(char const*);
 
@@ -2419,13 +2419,13 @@ class DemonFilterDelegate {
 class DemonFilterSelectLayer : FLAlertLayer {
 	// virtual ~DemonFilterSelectLayer();
 
-	static DemonFilterSelectLayer* create();
+	static DemonFilterSelectLayer* create() = win 0x267340;
 
 	void onClose(cocos2d::CCObject* sender) = win 0x267940;
 	void selectRating(cocos2d::CCObject* sender) = win 0x2678b0;
 
 	virtual bool init() = win 0x2673e0;
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x267980;
 }
 
 [[link(android)]]
@@ -2460,9 +2460,9 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x9b3c0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x9b3e0;
 	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual TodoReturn fadeInTextFinished(TextArea*);
+	virtual void keyBackClicked() = win 0x9b320;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x9b700;
+	virtual TodoReturn fadeInTextFinished(TextArea*) = win 0x9b400;
 }
 
 [[link(android)]]
@@ -2504,8 +2504,8 @@ class DrawGridLayer : cocos2d::CCLayer {
 	TodoReturn updateMusicGuideTime(float);
 	TodoReturn updateTimeMarkers();
 
-	virtual void update(float);
-	virtual void draw();
+	virtual void update(float) = win 0x24b310;
+	virtual void draw() = win 0x24b4c0;
 }
 
 [[link(android)]]
@@ -2597,9 +2597,9 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	TodoReturn updateDescText(char const*);
 	TodoReturn verifyLevelName() = win 0x9f8f0;
 
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual void setIDPopupClosed(SetIDPopup*, int);
+	virtual void keyBackClicked() = win 0x9fb90;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x9fba0;
+	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x9f6c0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x9f160;
 	virtual void textInputOpened(CCTextInputNode*) = win 0x9e7c0;
 	virtual void textInputClosed(CCTextInputNode*) = win 0x9e570;
@@ -2622,7 +2622,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 class EditorOptionsLayer : GJOptionsLayer {
 	// virtual ~EditorOptionsLayer();
 
-	static EditorOptionsLayer* create();
+	static EditorOptionsLayer* create() = win 0x207350;
 
 	void onButtonRows(cocos2d::CCObject* sender);
 	void onButtonsPerRow(cocos2d::CCObject* sender);
@@ -2646,7 +2646,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onBuildHelper(cocos2d::CCObject* sender);
 	void onCopyWColor(cocos2d::CCObject* sender);
 	void onCreateExtras(cocos2d::CCObject* sender);
-	void onCreateLoop(cocos2d::CCObject* sender);
+	void onCreateLoop(cocos2d::CCObject* sender) = win 0xa2040;
 	void onCreateTemplate(cocos2d::CCObject* sender);
 	void onExitEditor(cocos2d::CCObject* sender) = win 0xa2ef0;
 	void onExitNoSave(cocos2d::CCObject* sender) = win 0xa2f50;
@@ -2691,7 +2691,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	TodoReturn uncheckAllPortals(cocos2d::CCObject*) = win 0xa1e70;
 	TodoReturn updateSongButton() = win 0xa25d0;
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0xa3070;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0xa3080;
 	virtual void customSetup() = win 0xa0730;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xa2fc0;
@@ -3002,7 +3002,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCArray* m_unk1cc;
 	float m_unk1d0;
 	PAD = win 0x30, android32 0x30;
-	cocos2d::CCLabelBMFont* m_unk204;
+	cocos2d::CCLabelBMFont* m_objectInfoLabel;
 	GJRotationControl* m_rotationControl;
 	PAD = win 0xc, android32 0xc;
 	GJScaleControl* m_scaleControl;
@@ -3113,7 +3113,7 @@ class EditTriggersPopup : SetupTriggerPopup {
 [[link(android)]]
 class EffectGameObject : EnhancedGameObject {
 	// virtual ~EffectGameObject();
-	// EffectGameObject();
+	// EffectGameObject() = win 0x38CFD0;
 
 	static EffectGameObject* create(char const*) = win 0x39c8b0;
 
@@ -3128,8 +3128,8 @@ class EffectGameObject : EnhancedGameObject {
 	TodoReturn updateSpecialColor() = win 0x39e750;
 	TodoReturn updateSpeedModType() = win 0x3a1c10;
 
-	virtual void setOpacity(unsigned char);
-	virtual TodoReturn firstSetup();
+	virtual void setOpacity(unsigned char) = win 0x39ccb0;
+	virtual void firstSetup();
 	virtual void customSetup() = win 0x39e950;
 	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x39ccf0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x39eb70;
@@ -3379,7 +3379,7 @@ class EndLevelLayer : GJDropDownLayer {
 	TodoReturn starEnterFinished() = win 0xe9440;
 	TodoReturn tryShowBanner(float);
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0xe9110;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0xea310;
 	virtual void customSetup() = win 0xe74f0;
 	virtual void showLayer(bool) = win 0xe8c20;
@@ -3407,7 +3407,7 @@ class EndPortalObject : GameObject {
 	TodoReturn updateColors(cocos2d::ccColor3B) = win 0xeb5b0;
 	TodoReturn updateEndPos(bool) = win 0xeb920;
 
-	virtual bool init();
+	virtual bool init() = win 0xeb210;
 	virtual void setPosition(cocos2d::CCPoint const&);
 	virtual void setVisible(bool);
 }
@@ -3508,7 +3508,7 @@ class EnhancedGameObject : GameObject {
 class EnhancedTriggerObject : EffectGameObject {
 	// virtual ~EnhancedTriggerObject();
 
-	static EnhancedTriggerObject* create(char const*);
+	static EnhancedTriggerObject* create(char const*) = win 0x3a7370;
 
 	bool init(char const*);
 
@@ -3535,7 +3535,7 @@ class EnterEffectInstance {
 class EnterEffectObject : EffectGameObject {
 	// virtual ~EnterEffectObject();
 
-	static EnterEffectObject* create(char const*);
+	static EnterEffectObject* create(char const*) = win 0x38e9c0;
 
 	bool init(char const*);
 	TodoReturn resetEnterAnimValues();
@@ -3549,7 +3549,7 @@ class EnterEffectObject : EffectGameObject {
 class EventLinkTrigger : EffectGameObject {
 	// virtual ~EventLinkTrigger();
 
-	static EventLinkTrigger* create();
+	static EventLinkTrigger* create() = win 0x3adfa0;
 
 	virtual bool init() = win 0x3ae040;
 	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
@@ -3582,10 +3582,10 @@ class ExplodeItemSprite : cocos2d::CCSprite {
 class ExtendedLayer : cocos2d::CCLayer {
 	// virtual ~ExtendedLayer();
 
-	static ExtendedLayer* create();
+	static ExtendedLayer* create() = win 0x1f930;
 
-	virtual bool init();
-	virtual void setPosition(cocos2d::CCPoint const&);
+	virtual bool init() = win 0x1f9d0;
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x1f9e0;
 }
 
 [[link(android)]]
@@ -3605,17 +3605,17 @@ class FileSaveManager : GManager {
 	TodoReturn loadDataFromFile(char const*);
 
 	virtual bool init();
-	virtual TodoReturn firstLoad();
+	virtual void firstLoad();
 }
 
 [[link(android)]]
 class FindBPMLayer : CreateGuidelinesLayer {
 	// virtual ~FindBPMLayer();
 
-	static FindBPMLayer* create(int);
+	static FindBPMLayer* create(int) = win 0x6eee0;
 
 	TodoReturn calculateBPM();
-	bool init(int);
+	bool init(int) = win 0x6ef80;
 
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x6f2f0;
 	virtual TodoReturn playMusic() = win 0x6f150;
@@ -3629,11 +3629,11 @@ class FindBPMLayer : CreateGuidelinesLayer {
 class FindObjectPopup : SetIDPopup {
 	// virtual ~FindObjectPopup();
 
-	static FindObjectPopup* create();
+	static FindObjectPopup* create() = win 0x210890;
 
 	void onFindObjectID(cocos2d::CCObject* sender);
 
-	virtual bool init();
+	virtual bool init() = win 0x210930;
 }
 
 [[link(android)]]
@@ -3735,9 +3735,11 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getActiveMusicChannel(int);
 	float getBackgroundMusicVolume();
 	TodoReturn getChannelGroup(int, bool) = win 0x35240;
-	float getEffectsVolume();
+	inline float getEffectsVolume() {
+		return m_sfxVolume;
+	}
 	TodoReturn getFMODStatus(int) = win 0x3b0f0;
-	TodoReturn getMeteringValue();
+	float getMeteringValue();
 	TodoReturn getMusicChannelID(int);
 	TodoReturn getMusicLengthMS(int) = win 0x3a570;
 	TodoReturn getMusicTime(int);
@@ -3860,14 +3862,14 @@ class FMODLevelVisualizer : cocos2d::CCNode {
 class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, RewardedVideoDelegate {
 	// virtual ~FollowRewardPage();
 
-	static FollowRewardPage* create();
+	static FollowRewardPage* create() = win 0xed030;
 
 	void onClose(cocos2d::CCObject* sender);
 	void onRewardedVideo(cocos2d::CCObject* sender);
 	void onSpecialItem(cocos2d::CCObject* sender);
 	TodoReturn switchToOpenedState(CCMenuItemSpriteExtra*);
 
-	virtual bool init();
+	virtual bool init() = win 0xed0d0;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual void show();
@@ -3890,7 +3892,7 @@ class FontObject : cocos2d::CCObject {
 class ForceBlockGameObject : EffectGameObject {
 	// virtual ~ForceBlockGameObject();
 
-	static ForceBlockGameObject* create(char const*);
+	static ForceBlockGameObject* create(char const*) = win 0x3b6c50;
 
 	TodoReturn calculateForceToTarget(GameObject*);
 	bool init(char const*);
@@ -3992,7 +3994,7 @@ class GameCell : TableViewCell {
 	void updateBGColor(int);
 
 	virtual bool init();
-	virtual void draw();
+	virtual void draw() = win 0x1dd40;
 }
 
 [[link(android)]]
@@ -4030,7 +4032,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* createAndGetMapPacks(gd::string) = win 0xf6e60;
 	cocos2d::CCArray* createAndGetScores(gd::string, GJScoreType);
 	GJGameLevel* createNewLevel() = win 0xf5130;
-	TodoReturn createNewLevelList() = win 0xf5ac0;
+	GJLevelList* createNewLevelList() = win 0xf5ac0;
 	TodoReturn createPageInfo(int, int, int) = win 0xf8ac0;
 	GJSmartTemplate* createSmartTemplate();
 	void dataLoaded(DS_Dictionary*) = win 0xfa620;
@@ -4089,7 +4091,7 @@ class GameLevelManager : cocos2d::CCNode {
 	bool getLenVal(int);
 	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x108160;
 	const char* getLevelDownloadKey(int levelID, bool isGauntlet){
-	    return cocos2d::CCString::createWithFormat("%i_%i", levelID, isGauntlet)->getCString();
+		return cocos2d::CCString::createWithFormat("%i_%i", levelID, isGauntlet)->getCString();
 	}
 	const char* getLevelKey(int levelID);
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1053a0;
@@ -4279,7 +4281,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
 	void storeDailyLevelState(int, int, GJTimedLevelType) = win 0x110bc0;
 	void storeFriendRequest(GJFriendRequest*);
-	void storeSearchResult(cocos2d::CCArray*, gd::string, char const*);
+	void storeSearchResult(cocos2d::CCArray* levels, gd::string pageInfo, char const* searchKey) = win 0xf8810;
 	void storeUserInfo(GJUserScore*);
 	void storeUserMessage(GJUserMessage*);
 	void storeUserMessageReply(int, GJUserMessage*);
@@ -4310,9 +4312,9 @@ class GameLevelManager : cocos2d::CCNode {
 	GJUserScore* userInfoForAccountID(int);
 	gd::string userNameForUserID(int) = win 0xf6290;
 	void verifyLevelState(GJGameLevel*) = win 0xf6510;
-	TodoReturn writeSpecialFilters(GJSearchObject*);
+	gd::string writeSpecialFilters(GJSearchObject*) = win 0xfca10;
 
-	virtual bool init();
+	virtual bool init() = win 0xf4c40;
 
 	PAD = win 0x8, android32 0x18, android64 0x30;
 	cocos2d::CCDictionary* m_mainLevels;
@@ -4533,7 +4535,7 @@ class GameManager : GManager {
     }
 
 	TodoReturn accountStatusChanged();
-	TodoReturn activeIconForType(IconType) = win 0x1270f0;
+	int activeIconForType(IconType) = win 0x1270f0;
 	TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string) = win 0x14da60;
 	TodoReturn addDuplicateLastFrame(int);
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int) = win 0x14d8c0;
@@ -4654,7 +4656,8 @@ class GameManager : GManager {
 	TodoReturn rewardedVideoAdFinished(int);
 	TodoReturn rewardedVideoHidden();
 	TodoReturn rewardedVideoHiddenDelayed();
-	TodoReturn safePopScene();
+	// partially inlined on windows
+	void safePopScene() = win 0x12e390;
 	TodoReturn saveAdTimer();
 	TodoReturn saveDPadLayout(int, bool) = win 0x12ac70;
 	void setGameVariable(char const*, bool) = win 0x1284e0;
@@ -4675,7 +4678,7 @@ class GameManager : GManager {
 	TodoReturn switchCustomObjects(int, int);
 	TodoReturn switchScreenMode(bool, bool);
 	TodoReturn syncPlatformAchievements();
-	TodoReturn toggleGameVariable(char const*);
+	TodoReturn toggleGameVariable(char const*) = win 0x128890;
 	TodoReturn tryCacheAd();
 	TodoReturn tryShowInterstitial(int, int, int);
 	TodoReturn unloadBackground() = win 0x127d40;
@@ -4694,11 +4697,11 @@ class GameManager : GManager {
 	TodoReturn videoAdHidden();
 	TodoReturn videoAdShowed();
 
-	virtual void update(float);
+	virtual void update(float) = win 0x12de70;
 	virtual bool init() = win 0x1215c0;
-	virtual TodoReturn encodeDataTo(DS_Dictionary*) = win 0x12d480;
-	virtual TodoReturn dataLoaded(DS_Dictionary*) = win 0x12b830;
-	virtual TodoReturn firstLoad() = win 0x12cb20;
+	virtual void encodeDataTo(DS_Dictionary*) = win 0x12d480;
+	virtual void dataLoaded(DS_Dictionary*) = win 0x12b830;
+	virtual void firstLoad() = win 0x12cb20;
 
 	cocos2d::CCDictionary* m_unkAnimationDict;
 	cocos2d::CCDictionary* m_unkAnimationDict2;
@@ -4930,10 +4933,10 @@ class GameObject : CCSpritePlus {
 	TodoReturn editorColorForMode(int);
 	TodoReturn fastRotateObject(float);
 	TodoReturn getActiveColorForMode(int, bool) = win 0x142d30;
-	TodoReturn getBallFrame(int);
+	TodoReturn getBallFrame(int); //inlined on windows
 	TodoReturn getBoundingRect();
 	TodoReturn getBoxOffset();
-	TodoReturn getColorFrame(gd::string);
+	TodoReturn getColorFrame(gd::string) = win 0x132f00;
 	TodoReturn getColorIndex();
 	gd::string getColorKey(bool, bool) = win 0x13df90;
 	TodoReturn getCustomZLayer();
@@ -4944,7 +4947,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn getLastPosition();
 	TodoReturn getMainColor();
 	TodoReturn getMainColorMode();
-	TodoReturn getObjectDirection();
+	TodoReturn getObjectDirection() = win 0x13D620;
 	TodoReturn getObjectRadius();
 	TodoReturn getObjectRectDirty();
 	TodoReturn getObjectRectPointer();
@@ -4966,7 +4969,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn groupWasDisabled();
 	TodoReturn groupWasEnabled();
 	TodoReturn hasSecondaryColor();
-	TodoReturn ignoreEditorDuration();
+	bool ignoreEditorDuration() = win 0x143d60;
 	TodoReturn ignoreEnter();
 	TodoReturn ignoreFade();
 	bool init(char const*);
@@ -4975,18 +4978,18 @@ class GameObject : CCSpritePlus {
 	bool isColorObject();
 	bool isColorTrigger();
 	bool isConfigurablePortal();
-	bool isEditorSpawnableTrigger();
+	bool isEditorSpawnableTrigger() = win 0x1431d0;
 	bool isFacingDown() = win 0x142180;
-	bool isFacingLeft();
+	bool isFacingLeft() = win 0x142220;
 	bool isSettingsObject();
-	bool isSpawnableTrigger();
+	bool isSpawnableTrigger() = win 0x1434e0;
 	bool isSpecialObject();
 	bool isSpeedObject() = win 0x143970;
-	bool isStoppableTrigger();
+	bool isStoppableTrigger() = win 0x143800;
 	bool isTrigger() = win 0x142ea0;
 	void loadGroupsFromString(gd::string) = win 0x13dc20;
 	TodoReturn makeInvisible();
-	TodoReturn objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x13e420;
+	static GameObject* objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x13e420;
 	TodoReturn opacityModForMode(int, bool);
 	TodoReturn parentForZLayer(int, bool, int);
 	TodoReturn perspectiveColorFrame(char const*, int);
@@ -5354,7 +5357,7 @@ class GameOptionsLayer : GJOptionsLayer {
 class GameOptionsTrigger : EffectGameObject {
 	// virtual ~GameOptionsTrigger();
 
-	static GameOptionsTrigger* create(char const*);
+	static GameOptionsTrigger* create(char const*) = win 0x3971d0;
 
 	bool init(char const*);
 
@@ -5418,7 +5421,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getCurrencyKey(GJGameLevel*) = win 0x171c70;
 	TodoReturn getDailyLevelKey(int) = win 0x173d60;
 	TodoReturn getDemonLevelKey(GJGameLevel*) = win 0x16fcb0;
-	TodoReturn getGauntletRewardKey(int) = win 0x179d00;
+	gd::string getGauntletRewardKey(int) = win 0x179d00;
 	TodoReturn getItemKey(int, int) = win 0x1729f0;
 	int getItemUnlockState(int, UnlockType) = win 0x176730;
 	int getItemUnlockStateLite(int, UnlockType);
@@ -5684,7 +5687,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 	void onPrev(cocos2d::CCObject* sender) = win 0x1880e0;
 	void onRefresh(cocos2d::CCObject* sender) = win 0x187770;
 	TodoReturn scene(int);
-	TodoReturn setupGauntlets() = win 0x187b90;
+	void setupGauntlets() = win 0x187b90;
 	TodoReturn unblockPlay();
 	TodoReturn updateArrows();
 
@@ -5784,7 +5787,7 @@ class GJAccountManager : cocos2d::CCNode {
 	void unlinkFromAccount() = win 0x18cb90;
 	void updateAccountSettings(int, int, int, gd::string, gd::string, gd::string) = win 0x18cc30;
 
-	virtual bool init();
+	virtual bool init() = win 0x18ab70;
 
 	cocos2d::CCDictionary* m_activeDownloads;
 	gd::string m_username;
@@ -5922,7 +5925,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn checkCameraLimitAfterTeleport(PlayerObject*, float);
 	TodoReturn checkCollision(int, int);
 	TodoReturn checkCollisionBlocks(EffectGameObject*, gd::vector<EffectGameObject*>*, int);
-	TodoReturn checkCollisions(PlayerObject*, float, bool) = win 0x19b310;
+	int checkCollisions(PlayerObject*, float, bool) = win 0x19b310;
 	TodoReturn checkRepellPlayer();
 	TodoReturn checkSpawnObjects() = win 0x1a1390;
 	TodoReturn claimMoveAction(int, bool);
@@ -5934,7 +5937,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x19c1b0;
 	TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
 	TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
-	TodoReturn controlAreaEffectWithID(int, int, GJActionCommand);
+	TodoReturn controlAreaEffectWithID(int, int, GJActionCommand) = win 0x1AC670;
 	TodoReturn controlDynamicCommand(EffectGameObject*, int, gd::vector<DynamicObjectAction>&, GJActionCommand);
 	TodoReturn controlDynamicMoveCommand(EffectGameObject*, int, GJActionCommand);
 	TodoReturn controlDynamicRotateCommand(EffectGameObject*, int, GJActionCommand);
@@ -6012,7 +6015,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void groupStickyObjects(cocos2d::CCArray*) = win 0x1a9b20;
 	void handleButton(bool down, int button, bool isPlayer1) = win 0x1b69f0; // button may be a PlayerButton enum
 	TodoReturn hasItem(int);
-	TodoReturn hasUniqueCoin(EffectGameObject*) = win 0x19d580;
+	bool hasUniqueCoin(EffectGameObject*) = win 0x19d580;
 	TodoReturn increaseBatchNodeCapacity() = win 0x194b40;
 	bool isFlipping();
 	bool isPlayer2Button(int);
@@ -6022,8 +6025,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void loadLevelSettings() = win 0x1bd7b0;
 	TodoReturn loadStartPosObject() = win 0x1b8d10;
 	TodoReturn loadUpToPosition(float, int, int) = win 0x1b8e80;
-	TodoReturn maxZOrderForShaderZ(int);
-	TodoReturn minZOrderForShaderZ(int);
+	TodoReturn maxZOrderForShaderZ(int) = win 0x1A8530;
+	TodoReturn minZOrderForShaderZ(int) = win 0x1A84A0;
 	TodoReturn modifyGroupPhysics(AdvancedFollowEditObject*, cocos2d::CCArray*);
 	TodoReturn modifyObjectPhysics(AdvancedFollowEditObject*, GameObjectPhysics&);
 	TodoReturn moveAreaObject(GameObject*, float, float);
@@ -6076,7 +6079,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processItems() = win 0x19d2b0;
 	TodoReturn processMoveActions() = win 0x1b1b90;
 	TodoReturn processMoveActionsStep(float, bool) = win 0x1afce0;
-	TodoReturn processOptionsTrigger(GameOptionsTrigger*);
+	TodoReturn processOptionsTrigger(GameOptionsTrigger*) = win 0x1A8A80;
 	TodoReturn processPlayerFollowActions(float) = win 0x1b2400;
 	TodoReturn processQueuedAudioTriggers() = win 0x1be520;
 	TodoReturn processQueuedButtons() = win 0x1b5b40;
@@ -6152,7 +6155,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn stopAllGroundActions();
 	TodoReturn stopCameraShake();
 	TodoReturn stopCustomEnterEffect(EnterEffectObject*, bool);
-	TodoReturn stopCustomEnterEffect(EnterEffectObject*);
+	TodoReturn stopCustomEnterEffect(EnterEffectObject*) = win 0x196890;
 	TodoReturn stopSFXTrigger(SFXTriggerGameObject*);
 	TodoReturn swapBackground(int);
 	TodoReturn swapGround(int);
@@ -6170,17 +6173,17 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn toggleGroup(int, bool);
 	TodoReturn toggleLockPlayer(bool, bool);
 	TodoReturn togglePlayerStreakBlend(bool);
-	TodoReturn togglePlayerVisibility(bool, bool);
-	TodoReturn togglePlayerVisibility(bool);
+	void togglePlayerVisibility(bool, bool) = win 0x1B9320;
+	TodoReturn togglePlayerVisibility(bool); //inlined on windows
 	TodoReturn transformAreaObjects(GameObject*, cocos2d::CCArray*, float, float, bool);
 	TodoReturn triggerAdvancedFollowCommand(AdvancedFollowTriggerObject*);
 	TodoReturn triggerAdvancedFollowEditCommand(AdvancedFollowEditObject*);
-	TodoReturn triggerAreaEffect(EnterEffectObject*);
+	TodoReturn triggerAreaEffect(EnterEffectObject*) = win 0x1AC210;
 	TodoReturn triggerAreaEffectAnimation(EnterEffectObject*);
 	TodoReturn triggerDynamicMoveCommand(EffectGameObject*);
 	TodoReturn triggerDynamicRotateCommand(EnhancedTriggerObject*);
-	TodoReturn triggerGradientCommand(GradientTriggerObject*);
-	TodoReturn triggerGravityChange(EffectGameObject*, int);
+	TodoReturn triggerGradientCommand(GradientTriggerObject*) = win 0x1A5450;
+	TodoReturn triggerGravityChange(EffectGameObject*, int) = win 0x1A86E0;
 	TodoReturn triggerMoveCommand(EffectGameObject*);
 	TodoReturn triggerRotateCommand(EnhancedTriggerObject*);
 	bool triggerShaderCommand(ShaderGameObject*) = win 0x1A6D40;
@@ -6192,7 +6195,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn unclaimParticle(char const*, cocos2d::CCParticleSystemQuad*);
 	void ungroupStickyObjects(cocos2d::CCArray*) = win 0x1a9c10;
 	TodoReturn unlinkAllEvents();
-	TodoReturn updateActiveEnterEffect(EnterEffectObject*);
+	TodoReturn updateActiveEnterEffect(EnterEffectObject*) = win 0x196450;
 	TodoReturn updateAllObjectSection();
 	TodoReturn updateAreaObjectLastValues(GameObject*);
 	TodoReturn updateAudioVisualizer() = win 0x1ca410;
@@ -6222,7 +6225,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateLevelColors() = win 0x194490;
 	TodoReturn updateMaxGameplayY() = win 0x1bd960;
 	TodoReturn updateMGArtSpeed(float, float);
-	TodoReturn updateMGOffsetY(float, float, int, float, int, int);
+	void updateMGOffsetY(float, float, int, float, int, int) = win 0x1B9680;
 	TodoReturn updateOBB2(cocos2d::CCRect);
 	TodoReturn updateParticles(float);
 	TodoReturn updatePlatformerTime() = win 0x1bcd60;
@@ -6349,8 +6352,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCLayer* m_objectLayer;
 	PAD = win 0x70, android32 0x70, android64 0xec;
 	std::array<float, 2000> m_massiveFloatArray;
-	PAD = win 0x110, android32 0x114, android64 0x1ec;
-	bool m_isPracticeMode;
+	PAD = win 0x48, android32 0x54, android64 0x98; // not sure about the android paddings
+	int m_leftSectionIndex; // 29b4 win, 29d4 android32, 30b4 android64
+	int m_rightSectionIndex;
+	int m_bottomSectionIndex;
+	int m_topSectionIndex;
+	PAD = win 0xB8, android32 0xB0, android64 0x144;
+	bool m_isPracticeMode; // 2a7c win, 2a94 android32, 3208 android64
 	bool m_practiceMusicSync;
 	float m_unk2a80;
 	cocos2d::CCNode* m_unk2a84;
@@ -6448,8 +6456,8 @@ class GJChestSprite : cocos2d::CCSprite {
 	bool init(int);
 	void switchToState(ChestSpriteState, bool) = win 0x2fa590;
 
-	virtual void setOpacity(unsigned char);
-	virtual void setColor(cocos2d::ccColor3B const&);
+	virtual void setOpacity(unsigned char) = win 0x2fa540;
+	virtual void setColor(cocos2d::ccColor3B const&) = win 0x2fa480;
 }
 
 [[link(android)]]
@@ -6474,10 +6482,10 @@ class GJColorSetupLayer : FLAlertLayer, ColorSelectDelegate, FLAlertLayerProtoco
 class GJComment : cocos2d::CCNode {
 	// virtual ~GJComment();
 
-	static GJComment* create();
+	static GJComment* create() = win 0x11b650;
 	static GJComment* create(cocos2d::CCDictionary*);
 
-	virtual bool init();
+	virtual bool init() = win 0x11b6f0;
 
 	gd::string m_commentString;
 	gd::string m_userName;
@@ -6680,7 +6688,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn runOpacityActionOnGroup(int, float, float, int, int);
 	TodoReturn runPulseEffect(int, bool, float, float, float, PulseEffectType, cocos2d::ccColor3B, cocos2d::ccHSVValue, int, bool, bool, bool, bool, int, int);
 	TodoReturn runTimerTrigger(int, double, bool, int, gd::vector<int> const&, int, int);
-	TodoReturn runTouchTriggerCommand(int, bool, TouchTriggerType, TouchTriggerControl, bool, gd::vector<int> const&, int, int);
+	TodoReturn runTouchTriggerCommand(int, bool, TouchTriggerType, TouchTriggerControl, bool, gd::vector<int> const&, int, int) = win 0x1E2760;
 	TodoReturn saveCompletedMove(int, double, double);
 	void saveToState(EffectManagerState&) = win 0x1e42a0;
 	void setColorAction(ColorAction*, int);
@@ -6761,8 +6769,8 @@ class GJFollowCommandLayer : SetupTriggerPopup {
 class GJFriendRequest : cocos2d::CCNode {
 	// virtual ~GJFriendRequest();
 
-	static GJFriendRequest* create() = win 0x1190e0;
-	static GJFriendRequest* create(cocos2d::CCDictionary*);
+	static GJFriendRequest* create() = win 0x1194e0;
+	static GJFriendRequest* create(cocos2d::CCDictionary*) = win 0x1190e0;
 
 	virtual bool init();
 }
@@ -7170,9 +7178,9 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 class GJGradientLayer : cocos2d::CCLayerGradient {
 	// virtual ~GJGradientLayer();
 
-	static GJGradientLayer* create();
+	static GJGradientLayer* create() = win 0x1ca710;
 
-	virtual bool init();
+	virtual bool init() = win 0x1ca7b0;
 }
 
 [[link(android)]]
@@ -7233,7 +7241,7 @@ class GJItemIcon : cocos2d::CCSprite {
 	TodoReturn toggleEnabledState(bool) = win 0x1f5870;
 	TodoReturn unlockedColorForType(int);
 
-	virtual void setOpacity(unsigned char);
+	virtual void setOpacity(unsigned char) = win 0x1f55e0;
 }
 
 [[link(android)]]
@@ -7243,13 +7251,13 @@ class GJLevelList : cocos2d::CCNode {
 	static GJLevelList* create() = win 0x11bf40;
 	static GJLevelList* create(cocos2d::CCDictionary*);
 
-	TodoReturn addLevelToList(GJGameLevel*);
+	TodoReturn addLevelToList(GJGameLevel*) = win 0x11c470;
 	TodoReturn completedLevels() = win 0x11cdd0;
 	TodoReturn createWithCoder(DS_Dictionary*);
-	TodoReturn dataLoaded(DS_Dictionary*) = win 0x11d290;
-	TodoReturn duplicateListLevels(GJLevelList*);
+	void dataLoaded(DS_Dictionary*) = win 0x11d290;
+	TodoReturn duplicateListLevels(GJLevelList*) = win 0x11c420;
 	TodoReturn frameForListDifficulty(int, DifficultyIconType) = win 0x11d7e0;
-	TodoReturn getListLevelsArray(cocos2d::CCArray*);
+	cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*) = win 0x11c7c0;
 	gd::string getUnpackedDescription() = win 0x11c1b0;
 	TodoReturn orderForLevel(int);
 	TodoReturn parseListLevels(gd::string);
@@ -7258,11 +7266,11 @@ class GJLevelList : cocos2d::CCNode {
 	TodoReturn reorderLevelStep(int, bool) = win 0x11c770;
 	void showListInfo() = win 0x11cef0;
 	TodoReturn totalLevels();
-	TodoReturn updateLevelsString();
+	TodoReturn updateLevelsString() = win 0x11ccb0;
 
-	virtual void encodeWithCoder(DS_Dictionary*);
+	virtual void encodeWithCoder(DS_Dictionary*) = win 0x11d5c0;
 	virtual bool canEncode();
-	virtual bool init();
+	virtual bool init() = win 0x11bfe0;
 
 	gd::vector<int> m_levels;
 	int m_listID;
@@ -7366,16 +7374,22 @@ class GJMapObject : cocos2d::CCNode {
 class GJMapPack : cocos2d::CCNode {
 	// virtual ~GJMapPack();
 
-	static GJMapPack* create();
-	static GJMapPack* create(cocos2d::CCDictionary*);
+	static GJMapPack* create() = win 0x117650;
+	static GJMapPack* create(cocos2d::CCDictionary*) = win 0x117050;
 
-	TodoReturn completedMaps();
-	TodoReturn hasCompletedMapPack();
+	int completedMaps() = win 0x117ab0;
+	bool hasCompletedMapPack() = win 0x117cd0;
 	TodoReturn parsePackColors(gd::string, gd::string);
 	TodoReturn parsePackLevels(gd::string);
-	TodoReturn totalMaps();
+	int totalMaps() {
+		if (this->m_levels) {
+			return this->m_levels->count();
+		}
 
-	virtual bool init();
+		return 0;
+	}
+
+	virtual bool init() = win 0x1176f0;
 
 	cocos2d::CCArray* m_levels;
 	int m_packID;
@@ -7408,7 +7422,7 @@ class GJMessageCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 	void updateBGColor(int);
 	TodoReturn updateToggle();
 
-	virtual bool init();
+	virtual bool init() = win 0x896b0;
 	virtual void draw();
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x8ad70;
 	virtual void uploadActionFinished(int, int) = win 0x8ae30;
@@ -7420,7 +7434,7 @@ class GJMessageCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, FLAlertLayerProtocol, DownloadMessageDelegate {
 	// virtual ~GJMessagePopup();
 
-	static GJMessagePopup* create(GJUserMessage*);
+	static GJMessagePopup* create(GJUserMessage*) = win 0x20c7d0;
 
 	void blockUser();
 	bool init(GJUserMessage*) = win 0x20c870;
@@ -7492,10 +7506,10 @@ class GJMultiplayerManager : cocos2d::CCNode {
 	void addDLToActive(char const* tag, cocos2d::CCObject* obj);
 	void addDLToActive(char const* tag);
 	TodoReturn createAndAddComment(gd::string, int) = win 0x1fbfc0;
-	TodoReturn dataLoaded(DS_Dictionary*);
-	TodoReturn encodeDataTo(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*);
 	TodoReturn exitLobby(int);
-	TodoReturn firstSetup();
+	void firstSetup();
 	TodoReturn getBasePostString();
 	cocos2d::CCObject* getDLObject(char const*);
 	TodoReturn getLastCommentIDForGame(int);
@@ -7575,9 +7589,9 @@ class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
 	TodoReturn unlockAnimationStep3();
 
 	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x200110;
 	virtual void show();
-	virtual TodoReturn didPurchaseItem(GJStoreItem*);
+	virtual TodoReturn didPurchaseItem(GJStoreItem*) = win 0x1fee60;
 }
 
 [[link(android)]]
@@ -7587,7 +7601,7 @@ class GJPathRewardPopup : FLAlertLayer {
 	static GJPathRewardPopup* create(int) = win 0x200930;
 
 	TodoReturn closePopup();
-	bool init(int);
+	bool init(int) = win 0x2009d0;
 	void onClaim(cocos2d::CCObject* sender);
 
 	virtual void keyBackClicked() {}
@@ -7605,9 +7619,9 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 	void onPath(cocos2d::CCObject* sender) = win 0x1fd0a0;
 
 	virtual bool init() = win 0x1fcbc0;
-	virtual void onExit();
+	virtual void onExit() = win 0x1fd060;
 	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x1fd200;
 	virtual void show() = win 0x5D6D0;
 }
 
@@ -7620,7 +7634,7 @@ class GJPathSprite : CCSpriteCOpacity {
 	TodoReturn addRankLabel(int);
 	TodoReturn addShardSprite();
 	TodoReturn changeToLockedArt();
-	bool init(int);
+	bool init(int) = win 0x2001e0;
 	TodoReturn updateState() = win 0x2002c0;
 
   int m_pathNumber;
@@ -7664,7 +7678,7 @@ class GJPromoPopup : FLAlertLayer {
 	bool init(gd::string) = win 0x216920;
 	void onClose(cocos2d::CCObject* sender);
 
-	virtual void onExit();
+	virtual void onExit() = win 0x216bb0;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual void show();
@@ -7714,7 +7728,7 @@ class GJRewardItem : cocos2d::CCObject {
 	TodoReturn createWithCoder(DS_Dictionary*) = win 0x1826b0;
 	TodoReturn createWithObject(GJRewardType, GJRewardObject*);
 	TodoReturn createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x181e10;
-	TodoReturn dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*);
 	TodoReturn getNextShardType(SpecialRewardItem);
 	TodoReturn getRandomNonMaxShardType();
 	TodoReturn getRandomShardType();
@@ -7743,11 +7757,11 @@ class GJRewardObject : cocos2d::CCObject {
 
 	TodoReturn createItemUnlock(UnlockType, int);
 	TodoReturn createWithCoder(DS_Dictionary*) = win 0x181d60;
-	TodoReturn dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*);
 	bool init(SpecialRewardItem, int, int);
 	bool isSpecialType();
 
-	virtual void encodeWithCoder(DS_Dictionary*);
+	virtual void encodeWithCoder(DS_Dictionary*) = win 0x181db0;
 	virtual bool canEncode();
 
 	SpecialRewardItem m_specialRewardItem;
@@ -7774,7 +7788,7 @@ class GJRobotSprite : CCAnimatedSprite {
 	void updateGlowColor(cocos2d::ccColor3B, bool) = win 0x217b10;
 
 	virtual void setOpacity(unsigned char) = win 0x217ff0;
-	virtual TodoReturn hideSecondary();
+	virtual TodoReturn hideSecondary() = win 0x218680;
 }
 
 [[link(android)]]
@@ -7825,11 +7839,11 @@ class GJRotationControl : cocos2d::CCLayer {
 	void setAngle(float);
 	TodoReturn updateSliderPosition(cocos2d::CCPoint);
 
-	virtual bool init();
-	virtual void draw();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool init() = win 0xddce0;
+	virtual void draw() = win 0xde140;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xddfd0;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xde0b0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xde120;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 }
 
@@ -7857,10 +7871,10 @@ class GJScaleControl : cocos2d::CCLayer {
 	TodoReturn valueFromScale(float);
 	TodoReturn valueFromSkew(float);
 
-	virtual bool init();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool init() = win 0xde260;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xdedc0;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xdef50;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xdf410;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 }
 
@@ -7887,9 +7901,9 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	void onViewProfile(cocos2d::CCObject* sender) = win 0x876f0;
 	TodoReturn updateBGColor(int);
 
-	virtual bool init();
+	virtual bool init() = win 0x83190;
 	virtual void draw();
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x87810;
 
 	GJUserScore* m_score;
 }
@@ -7983,7 +7997,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 class GJSmartBlockPreview : cocos2d::CCNode {
 	// virtual ~GJSmartBlockPreview();
 
-	static GJSmartBlockPreview* create(gd::string);
+	static GJSmartBlockPreview* create(gd::string) = win 0x222fc0;
 
 	TodoReturn addChance(int, int);
 	TodoReturn addCount(int);
@@ -7991,7 +8005,7 @@ class GJSmartBlockPreview : cocos2d::CCNode {
 	TodoReturn addTemplateGuide(gd::string, int);
 	TodoReturn addTemplateGuide(SmartPrefabResult, float);
 	TodoReturn createInfoLabel();
-	bool init(gd::string);
+	bool init(gd::string) = win 0x223080;
 	TodoReturn toggleSelectItem(bool);
 }
 
@@ -8012,10 +8026,10 @@ class GJSmartPrefab : cocos2d::CCObject {
 	static GJSmartPrefab* create() = win 0x222e20;
 
 	TodoReturn createWithCoder(DS_Dictionary*);
-	TodoReturn dataLoaded(DS_Dictionary*) = win 0x222ee0;
+	void dataLoaded(DS_Dictionary*) = win 0x222ee0;
 	bool init();
 
-	virtual void encodeWithCoder(DS_Dictionary*);
+	virtual void encodeWithCoder(DS_Dictionary*) = win 0x222f80;
 	virtual bool canEncode();
 }
 
@@ -8027,7 +8041,7 @@ class GJSmartTemplate : cocos2d::CCObject {
 
 	TodoReturn applyTransformationsForType(SmartBlockType, cocos2d::CCSprite*);
 	TodoReturn createWithCoder(DS_Dictionary*);
-	TodoReturn dataLoaded(DS_Dictionary*) = win 0x222ab0;
+	void dataLoaded(DS_Dictionary*) = win 0x222ab0;
 	TodoReturn flipBlockType(SmartBlockType, bool, bool);
 	TodoReturn flipBlockTypeX(SmartBlockType);
 	TodoReturn flipBlockTypeY(SmartBlockType);
@@ -8066,7 +8080,7 @@ class GJSmartTemplate : cocos2d::CCObject {
 	TodoReturn smartObjectToType(SmartGameObject*, cocos2d::CCPoint);
 	TodoReturn smartTypeToObjectKey(SmartBlockType);
 
-	virtual void encodeWithCoder(DS_Dictionary*);
+	virtual void encodeWithCoder(DS_Dictionary*) = win 0x222d30;
 	virtual bool canEncode();
 }
 
@@ -8087,8 +8101,8 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 	virtual void customSetup() = win 0x225080;
 	virtual void exitLayer(cocos2d::CCObject*) = win 0x225010;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2257d0;
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
-	virtual TodoReturn getSelectedCellIdx();
+	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x225990;
+	virtual TodoReturn getSelectedCellIdx() = win 0x2259d0;
 
 	int m_page;
 	int m_songID;
@@ -8105,7 +8119,7 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 class GJSpecialColorSelect : FLAlertLayer {
 	// virtual ~GJSpecialColorSelect();
 
-	static GJSpecialColorSelect* create(int, GJSpecialColorSelectDelegate*, ColorSelectType);
+	static GJSpecialColorSelect* create(int, GJSpecialColorSelectDelegate*, ColorSelectType) = win 0x225b40;
 
 	TodoReturn getButtonByTag(int);
 	TodoReturn highlightSelected(ButtonSprite*);
@@ -8114,7 +8128,7 @@ class GJSpecialColorSelect : FLAlertLayer {
 	void onSelectColor(cocos2d::CCObject* sender);
 	static const char* textForColorIdx(int) = win 0x2265d0;
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x226590;
 }
 
 [[link(android)]]
@@ -8179,10 +8193,10 @@ class GJTransformControl : cocos2d::CCLayer {
 	void updateButtons(bool, bool) = win 0xdffc0;
 	TodoReturn updateMinMaxPositions();
 
-	virtual bool init();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool init() = win 0xdf7a0;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xe0c60;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xe0de0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xe1330;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 }
 
@@ -8262,7 +8276,7 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
 	void onViewProfile(cocos2d::CCObject* sender);
 	TodoReturn updateBGColor(int);
 
-	virtual bool init();
+	virtual bool init() = win 0x88730;
 	virtual void draw();
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x891b0;
 	virtual void uploadActionFinished(int, int) = win 0x89350;
@@ -8292,7 +8306,7 @@ class GJUserScore : cocos2d::CCNode {
 	bool isCurrentUser() = win 0x118fa0;
 	TodoReturn mergeWithScore(GJUserScore*);
 
-	virtual bool init();
+	virtual bool init() = win 0x118f40;
 
 	gd::string m_userName;
 	gd::string m_userUDID;
@@ -8441,7 +8455,7 @@ class GooglePlayManager : cocos2d::CCNode {
 class GradientTriggerObject : EffectGameObject {
 	// virtual ~GradientTriggerObject();
 
-	static GradientTriggerObject* create();
+	static GradientTriggerObject* create() = win 0x3915d0;
 
 	virtual bool init() = win 0x391670;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
@@ -8454,7 +8468,7 @@ class GraphicsReloadLayer : cocos2d::CCLayer {
 
 	static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool) = win 0x2b8460;
 
-	bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
+	bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool) = win 0x2b8520;
 	TodoReturn performReload();
 	TodoReturn scene(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
 }
@@ -8494,13 +8508,13 @@ class GroupCommandObject2 {
 class HardStreak : cocos2d::CCDrawNode {
 	// virtual ~HardStreak();
 
-	static HardStreak* create();
+	static HardStreak* create() = win 0x2267c0;
 
-	TodoReturn addPoint(cocos2d::CCPoint) = win 0x227250;
+	void addPoint(cocos2d::CCPoint) = win 0x227250;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn clearBehindXPos(float);
 	TodoReturn createDuplicate();
-	TodoReturn firstSetup();
+	void firstSetup() = win 0x2268C0;
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
 	inline void reset() {
@@ -8526,16 +8540,16 @@ class HardStreak : cocos2d::CCDrawNode {
 class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
 	// virtual ~HSVLiveOverlay();
 
-	static HSVLiveOverlay* create(GameObject*, cocos2d::CCArray*);
+	static HSVLiveOverlay* create(GameObject*, cocos2d::CCArray*) = win 0x227740;
 
 	void closeColorSelect(cocos2d::CCObject*);
 	TodoReturn createHSVWidget(int);
 	TodoReturn determineStartValues();
-	bool init(GameObject*, cocos2d::CCArray*);
+	bool init(GameObject*, cocos2d::CCArray*) = win 0x2277f0;
 	void onSelectTab(cocos2d::CCObject* sender);
 	TodoReturn toggleControls(bool);
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x227ef0;
 	virtual void show();
 	virtual void hsvChanged(ConfigureHSVWidget*) = win 0x227f30;
 }
@@ -8550,12 +8564,12 @@ class HSVWidgetDelegate {
 class HSVWidgetPopup : FLAlertLayer {
 	// virtual ~HSVWidgetPopup();
 
-	static HSVWidgetPopup* create(cocos2d::ccHSVValue, HSVWidgetDelegate*, gd::string);
+	static HSVWidgetPopup* create(cocos2d::ccHSVValue, HSVWidgetDelegate*, gd::string) = win 0x6a970;
 
-	bool init(cocos2d::ccHSVValue, HSVWidgetDelegate*, gd::string);
+	bool init(cocos2d::ccHSVValue, HSVWidgetDelegate*, gd::string) = win 0x6aa50;
 	void onClose(cocos2d::CCObject* sender);
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x6adb0;
 }
 
 [[link(android)]]
@@ -8566,7 +8580,7 @@ class InfoAlertButton : CCMenuItemSpriteExtra {
 
 	bool init(gd::string, gd::string, float) = win 0x228230;
 
-	virtual void activate();
+	virtual void activate() = win 0x228330;
 }
 
 [[link(android)]]
@@ -8721,9 +8735,9 @@ class KeybindingsManager : cocos2d::CCNode {
 	TodoReturn commandForKeyMods(cocos2d::enumKeyCodes, GJKeyGroup);
 	TodoReturn commandForKeyNoMods(cocos2d::enumKeyCodes, GJKeyGroup);
 	TodoReturn commandToKeyForGroup(GJKeyGroup);
-	TodoReturn dataLoaded(DS_Dictionary*) = win 0x22d570;
-	TodoReturn encodeDataTo(DS_Dictionary*);
-	TodoReturn firstSetup();
+	void dataLoaded(DS_Dictionary*) = win 0x22d570;
+	void encodeDataTo(DS_Dictionary*);
+	void firstSetup();
 	TodoReturn groupForCommand(GJKeyCommand);
 	TodoReturn keyForCommand(GJKeyCommand);
 	TodoReturn keyToCommandForGroup(GJKeyGroup);
@@ -8735,7 +8749,7 @@ class KeybindingsManager : cocos2d::CCNode {
 class KeyframeAnimTriggerObject : EffectGameObject {
 	// virtual ~KeyframeAnimTriggerObject();
 
-	static KeyframeAnimTriggerObject* create();
+	static KeyframeAnimTriggerObject* create() = win 0x3a6cd0;
 
 	virtual bool init() = win 0x3a6d70;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
@@ -8746,7 +8760,7 @@ class KeyframeAnimTriggerObject : EffectGameObject {
 class KeyframeGameObject : EffectGameObject {
 	// virtual ~KeyframeGameObject();
 
-	static KeyframeGameObject* create();
+	static KeyframeGameObject* create() = win 0x3aaf20;
 
 	TodoReturn updateShadowObjects(GJBaseGameLayer*, EditorUI*);
 
@@ -8768,7 +8782,7 @@ class KeyframeObject {
 class LabelGameObject : EffectGameObject {
 	// virtual ~LabelGameObject();
 
-	static LabelGameObject* create();
+	static LabelGameObject* create() = win 0x3a8b90;
 
 	TodoReturn createLabel(gd::string);
 	TodoReturn queueUpdateLabel(gd::string);
@@ -8780,9 +8794,9 @@ class LabelGameObject : EffectGameObject {
 	TodoReturn updateLabelIfDirty();
 	TodoReturn updatePreviewLabel();
 
-	virtual bool init();
-	virtual void setOpacity(unsigned char);
-	virtual TodoReturn setupCustomSprites(gd::string) = win 0x14dda0;
+	virtual bool init() = win 0x3a8c30;
+	virtual void setOpacity(unsigned char) = win 0x3a8f20;
+	virtual void setupCustomSprites(gd::string) = win 0x3A8C70;
 	virtual TodoReturn addMainSpriteToParent(bool);
 	virtual void resetObject();
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
@@ -8906,11 +8920,11 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	static LevelBrowserLayer* create(GJSearchObject*) = win 0x232db0;
 
 	TodoReturn createNewLevel(cocos2d::CCObject*) = win 0x236600;
-	TodoReturn createNewList(cocos2d::CCObject*);
+	TodoReturn createNewList(cocos2d::CCObject*) = win 0x236690;
 	TodoReturn createNewSmartTemplate(cocos2d::CCObject*);
-	TodoReturn deleteSelected();
+	TodoReturn deleteSelected() = win 0x237600;
 	TodoReturn exitLayer(cocos2d::CCObject*);
-	TodoReturn getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*);
+	TodoReturn getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*) = win 0x2371f0;
 	gd::string getSearchTitle() = win 0x235390;
 	bool init(GJSearchObject*) = win 0x232e60;
 	bool isCorrect(char const*) = win 0x2343a0;
@@ -8931,7 +8945,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x235fd0;
 	void onRefresh(cocos2d::CCObject* sender) = win 0x236dc0;
 	void onRemoveAllFavorites(cocos2d::CCObject* sender);
-	void onSaved(cocos2d::CCObject* sender);
+	void onSaved(cocos2d::CCObject* sender) = win 0x236b20;
 	void onSavedMode(cocos2d::CCObject* sender) = win 0x236470;
 	void onSearch(cocos2d::CCObject* sender) = win 0x236f60;
 	void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x2376e0;
@@ -8950,8 +8964,8 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void registerWithTouchDispatcher() = win 0x237c20;
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyBackClicked() = win 0x236090;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2360b0;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x2358a0;
 	virtual void loadLevelsFailed(char const*, int) = win 0x2359a0;
 	virtual void setupPageInfo(gd::string, char const*) = win 0x2359e0;
@@ -8960,8 +8974,8 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	virtual void setTextPopupClosed(SetTextPopup*, gd::string) = win 0x237120;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x237760;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x235d80;
-	virtual TodoReturn updateResultArray(cocos2d::CCArray*);
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
+	virtual TodoReturn updateResultArray(cocos2d::CCArray*) = win 0x232bd0;
+	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x237b80;
 
 	bool m_unk;
 	bool m_allSelected;
@@ -9011,8 +9025,8 @@ class LevelCell : TableViewCell {
 	TodoReturn updateCellMode(int) = win 0x80d80;
 	TodoReturn updateToggle();
 
-	virtual bool init();
-	virtual void draw();
+	virtual bool init() = win 0x7d880;
+	virtual void draw() = win 0x80fb0;
 
 	CCMenuItemSpriteExtra* m_button;
 	GJGameLevel* m_level;
@@ -9495,7 +9509,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	void confirmOwnerDelete(cocos2d::CCObject*);
 	bool init(GJLevelList*) = win 0x25a280;
 	void onClaimReward(cocos2d::CCObject* sender);
-	TodoReturn onDelete();
+	void onDelete() = win 0x25dc30;
 	void onDescription(cocos2d::CCObject* sender);
 	void onFavorite(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
@@ -9506,12 +9520,12 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	void onShare(cocos2d::CCObject* sender);
 	void onToggleEditMode(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
-	TodoReturn ownerDelete();
-	TodoReturn scene(GJLevelList*);
-	TodoReturn updateEditMode();
+	void ownerDelete() = win 0x25dce0;
+	static cocos2d::CCScene* scene(GJLevelList*);
+	TodoReturn updateEditMode() = win 0x25d960;
 	TodoReturn updateSideButtons() = win 0x25d770;
 	TodoReturn updateStatsArt() = win 0x25bab0;
-	TodoReturn verifyListName();
+	TodoReturn verifyListName() = win 0x25e150;
 
 	virtual void onEnter() = win 0x25ba70;
 	virtual void onExit() = win 0x25ba90;
@@ -9560,9 +9574,9 @@ class LevelOptionsLayer : GJOptionsLayer {
 class LevelOptionsLayer2 : LevelOptionsLayer {
 	// virtual ~LevelOptionsLayer2();
 
-	static LevelOptionsLayer2* create(LevelSettingsObject*);
+	static LevelOptionsLayer2* create(LevelSettingsObject*) = win 0x271f10;
 
-	bool init(LevelSettingsObject*);
+	bool init(LevelSettingsObject*) = win 0x271fb0;
 
 	virtual void setupOptions() = win 0x272080;
 }
@@ -9700,28 +9714,28 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	bool init(LevelSettingsObject*, LevelEditorLayer*) = win 0x26CE20;
 	void onBGArt(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onCol(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x26f640;
+	void onCol(cocos2d::CCObject* sender) = win 0x26f7e0;
 	void onDisable(cocos2d::CCObject* sender);
-	void onFGArt(cocos2d::CCObject* sender);
-	void onGameplayMode(cocos2d::CCObject* sender);
-	void onGArt(cocos2d::CCObject* sender);
-	void onLiveEdit(cocos2d::CCObject* sender);
+	void onFGArt(cocos2d::CCObject* sender) = win 0x26f990;
+	void onGameplayMode(cocos2d::CCObject* sender) = win 0x26eff0;
+	void onGArt(cocos2d::CCObject* sender) = win 0x26f930;
+	void onLiveEdit(cocos2d::CCObject* sender) = win 0x26f760;
 	void onMode(cocos2d::CCObject* sender);
 	void onOptionToggle(cocos2d::CCObject* sender);
-	void onSelectFont(cocos2d::CCObject* sender);
+	void onSelectFont(cocos2d::CCObject* sender) = win 0x26f9d0;
 	void onSelectMode(cocos2d::CCObject* sender);
 	void onSelectSpeed(cocos2d::CCObject* sender);
 	void onSettings(cocos2d::CCObject* sender);
-	void onShowPicker(cocos2d::CCObject* sender);
+	void onShowPicker(cocos2d::CCObject* sender) = win 0x26f790;
 	void onSpeed(cocos2d::CCObject* sender);
 	void showPicker(ColorAction*);
 	TodoReturn updateColorSprite(ColorChannelSprite*) = win 0x26f870;
 	TodoReturn updateColorSprites() = win 0x26f810;
 	TodoReturn updateGameplayModeButtons();
 
-	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
+	virtual void registerWithTouchDispatcher() = win 0x26f2b0;
+	virtual void keyBackClicked() = win 0x26fbe0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
 	virtual void colorSelectClosed(cocos2d::CCNode*) = win 0x26f800;
 	virtual void selectArtClosed(SelectArtLayer*) = win 0x26f9f0;
@@ -9744,7 +9758,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 	TodoReturn setupColorsFromLegacyMode(cocos2d::CCDictionary*);
 	TodoReturn shouldUseYSection();
 
-	virtual bool init() = win 0x239a70;
+	virtual bool init() = win 0x24d390;
 
 	GJEffectManager* m_effectManager;
     // property kA2
@@ -9838,21 +9852,21 @@ class LevelSettingsObject : cocos2d::CCNode {
 [[link(android)]]
 class LevelTools {
 	static int artistForAudio(int) = win 0x2737c0;
-	TodoReturn base64DecodeString(gd::string) = win 0x2753e0;
-	TodoReturn base64EncodeString(gd::string) = win 0x275360;
-	TodoReturn createStarPackDict();
+	static gd::string base64DecodeString(gd::string) = win 0x2753e0;
+	static gd::string base64EncodeString(gd::string) = win 0x275360;
+	static cocos2d::CCDictionary* createStarPackDict();
 	static gd::string fbURLForArtist(int) = win 0x274010;
-	TodoReturn getAudioBPM(int);
+	static int getAudioBPM(int);
 	static gd::string getAudioFileName(int) = win 0x273430;
 	static gd::string getAudioString(int) = win 0x274140;
 	static gd::string getAudioTitle(int) = win 0x273090;
-	TodoReturn getLastGameplayReversed();
-	TodoReturn getLastGameplayRotated();
-	TodoReturn getLastTimewarp();
+	static TodoReturn getLastGameplayReversed();
+	static TodoReturn getLastGameplayRotated();
+	static TodoReturn getLastTimewarp();
 	static GJGameLevel* getLevel(int, bool) = win 0x2725d0;
-	TodoReturn getLevelList();
+	static TodoReturn getLevelList();
 	static SongInfoObject* getSongObject(int) = win 0x275040;
-	TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
+	static TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
 	static gd::string nameForArtist(int) = win 0x2738c0;
 	static gd::string ngURLForArtist(int) = win 0x273d90;
 	static TodoReturn offsetBPMForTrack(int);
@@ -9863,8 +9877,8 @@ class LevelTools {
 	static float timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int) = win 0x2743d0;
 	static TodoReturn toggleDebugLogging(bool);
 	static gd::string urlForAudio(int) = win 0x273a00;
-	TodoReturn valueForSpeedMod(int) = win 0x274380;
-	TodoReturn verifyLevelIntegrity(gd::string, int) = win 0x2751d0;
+	static TodoReturn valueForSpeedMod(int) = win 0x274380;
+	static bool verifyLevelIntegrity(gd::string, int) = win 0x2751d0;
 	static gd::string ytURLForArtist(int) = win 0x273ed0;
 }
 
@@ -9941,7 +9955,7 @@ class ListCell : TableViewCell {
 	TodoReturn updateBGColor(int);
 
 	virtual bool init();
-	virtual void draw();
+	virtual void draw() = win 0x1d890;
 }
 
 [[link(android)]]
@@ -9964,7 +9978,7 @@ class LoadingCircle : cocos2d::CCLayerColor {
 	}
 
 	virtual bool init() = win 0x484d0;
-	virtual void draw();
+	virtual void draw() = win 0x486f0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
@@ -10038,10 +10052,10 @@ class LocalLevelManager : GManager {
 	TodoReturn updateLevelOrder();
 	TodoReturn updateLevelRevision();
 
-	virtual bool init();
-	virtual TodoReturn encodeDataTo(DS_Dictionary*);
-	virtual TodoReturn dataLoaded(DS_Dictionary*);
-	virtual TodoReturn firstLoad();
+	virtual bool init() = win 0x2778d0;
+	virtual void encodeDataTo(DS_Dictionary*) = win 0x2785d0;
+	virtual void dataLoaded(DS_Dictionary*) = win 0x278620;
+	virtual void firstLoad() = win 0x278560;
 
 	cocos2d::CCArray* m_localLevels;
 	cocos2d::CCArray* m_LLM03;
@@ -10060,7 +10074,7 @@ class MapPackCell : TableViewCell {
 	TodoReturn reloadCell();
 	TodoReturn updateBGColor(int);
 
-	virtual bool init();
+	virtual bool init() = win 0x81250;
 	virtual void draw();
 }
 
@@ -10092,7 +10106,7 @@ class MapSelectLayer : cocos2d::CCLayer {
 class MenuGameLayer : cocos2d::CCLayer {
 	// virtual ~MenuGameLayer();
 
-	static MenuGameLayer* create();
+	static MenuGameLayer* create() = win 0x2791a0;
 
 	void destroyPlayer() = win 0x27AE40;
 	TodoReturn getBGColor(int);
@@ -10107,7 +10121,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void registerWithTouchDispatcher();
+	virtual void registerWithTouchDispatcher() = win 0x27b130;
 
 	bool m_unkBool1;
 	float m_deltaCount;
@@ -10298,7 +10312,7 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 	// virtual ~MoreVideoOptionsLayer();
 
-	static MoreVideoOptionsLayer* create();
+	static MoreVideoOptionsLayer* create() = win 0x2b5630;
 
 	void addToggle(char const*, char const*, char const*);
 	TodoReturn countForPage(int);
@@ -10319,8 +10333,8 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 	void pageKey(int);
 	void updateFPSButtons() = win 0x2b72e0;
 
-	virtual bool init();
-	virtual void keyBackClicked();
+	virtual bool init() = win 0x2b56d0;
+	virtual void keyBackClicked() = win 0x2b77f0;
 }
 
 [[link(android)]]
@@ -10367,7 +10381,7 @@ class MultilineBitmapFont : cocos2d::CCSprite {
 	TodoReturn readColorInfo(gd::string);
 	TodoReturn stringWithMaxWidth(gd::string, float, float);
 
-	virtual void setOpacity(unsigned char);
+	virtual void setOpacity(unsigned char) = win 0x492a0;
 }
 
 [[link(android)]]
@@ -10424,7 +10438,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 	TodoReturn trySetupMusicBrowser() = win 0x27fad0;
 	TodoReturn updatePageLabel() = win 0x280340;
 
-	virtual void update(float);
+	virtual void update(float) = win 0x27f5f0;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked() = win 0x2807c0;
 	virtual void musicActionFinished(GJMusicAction) = win 0x27fbd0;
@@ -10488,12 +10502,12 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void downloadSong(int) = win 0x283780;
 	void downloadSongFailed(int, GJSongError) = win 0x287be0;
 	void downloadSongFinished(int) = win 0x287b90;
-	TodoReturn encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*);
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	TodoReturn filterMusicByTag(int, cocos2d::CCArray*);
-	TodoReturn firstSetup();
+	void firstSetup();
 	TodoReturn generateCustomContentURL(gd::string) = win 0x287540;
-	TodoReturn generateResourceAssetList();
+	TodoReturn generateResourceAssetList() = win 0x28a5a0;
 	TodoReturn getAllMusicArtists(OptionsObjectDelegate*);
 	TodoReturn getAllMusicObjects();
 	TodoReturn getAllMusicTags(OptionsObjectDelegate*);
@@ -10562,7 +10576,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn tryUpdateMusicLibrary();
 	TodoReturn tryUpdateSFXLibrary() = win 0x2866f0;
 
-	virtual bool init();
+	virtual bool init() = win 0x282880;
 
 	cocos2d::CCDictionary* m_activeDownloads;
 	cocos2d::CCArray* m_musicDownloadDelegates;
@@ -10600,17 +10614,17 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
 	TodoReturn getFilesMatchingSearch(cocos2d::CCArray*, gd::string);
 	bool init();
 	TodoReturn updateFutureCount(cocos2d::CCArray*, cocos2d::CCArray*);
-	TodoReturn updateObjects();
+	TodoReturn updateObjects() = win 0x2898e0;
 
 	virtual TodoReturn updateObjects(AudioSortType);
-	virtual TodoReturn stateChanged(OptionsObject*);
+	virtual TodoReturn stateChanged(OptionsObject*) = win 0x2898d0;
 }
 
 [[link(android)]]
 class NewgroundsInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
 	// virtual ~NewgroundsInfoLayer();
 
-	static NewgroundsInfoLayer* create();
+	static NewgroundsInfoLayer* create() = win 0x90e90;
 
 	void onArtists(cocos2d::CCObject* sender);
 	void onChanges(cocos2d::CCObject* sender);
@@ -10620,9 +10634,9 @@ class NewgroundsInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
 	void onNewgrounds(cocos2d::CCObject* sender);
 	void onSupporter(cocos2d::CCObject* sender);
 
-	virtual bool init();
+	virtual bool init() = win 0x90f30;
 	virtual void keyBackClicked();
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x918e0;
 }
 
 [[link(android)]]
@@ -10804,23 +10818,23 @@ class OptionsObjectDelegate {
 class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
 	// virtual ~OptionsScrollLayer();
 
-	static OptionsScrollLayer* create(cocos2d::CCArray*, bool);
+	static OptionsScrollLayer* create(cocos2d::CCArray*, bool) = win 0x280890;
 
 	TodoReturn getRelevantObjects(cocos2d::CCArray*);
-	bool init(cocos2d::CCArray*, bool);
+	bool init(cocos2d::CCArray*, bool) = win 0x280940;
 	void onClose(cocos2d::CCObject* sender);
 	void setupList(cocos2d::CCArray*);
 
 	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
+	virtual void keyBackClicked() = win 0x280c40;
+	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x280c50;
 }
 
 [[link(android)]]
 class ParentalOptionsLayer : FLAlertLayer {
 	// virtual ~ParentalOptionsLayer();
 
-	static ParentalOptionsLayer* create();
+	static ParentalOptionsLayer* create() = win 0x2b78f0;
 
 	TodoReturn addToggle(char const*, char const*, char const*);
 	TodoReturn countForPage(int);
@@ -10839,7 +10853,7 @@ class ParentalOptionsLayer : FLAlertLayer {
 	void onToggle(cocos2d::CCObject* sender);
 	TodoReturn pageKey(int);
 
-	virtual bool init();
+	virtual bool init() = win 0x2b7990;
 	virtual void keyBackClicked();
 }
 
@@ -10902,14 +10916,14 @@ class ParticleGameObject : EnhancedGameObject {
 class ParticlePreviewLayer : cocos2d::CCLayerColor {
 	// virtual ~ParticlePreviewLayer();
 
-	static ParticlePreviewLayer* create(cocos2d::CCParticleSystemQuad*);
+	static ParticlePreviewLayer* create(cocos2d::CCParticleSystemQuad*) = win 0x33fc00;
 
 	bool init(cocos2d::CCParticleSystemQuad*);
 	TodoReturn postVisit();
 	TodoReturn preVisitWithClippingRect(cocos2d::CCRect);
 
-	virtual void draw();
-	virtual void visit();
+	virtual void draw() = win 0x33fd90;
+	virtual void visit() = win 0x33fce0;
 }
 
 [[link(android)]]
@@ -11047,7 +11061,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 	}
 	TodoReturn loopFireAnimation();
 
-	virtual bool init();
+	virtual bool init() = win 0x2dabe0;
 
 	float m_size;
 }
@@ -11069,11 +11083,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn buttonDown(PlayerButton);
 	TodoReturn canStickToGround();
 	TodoReturn checkSnapJumpToObject(GameObject*);
-	TodoReturn collidedWithObject(float, GameObject*, cocos2d::CCRect, bool);
-	TodoReturn collidedWithObject(float, GameObject*);
-	TodoReturn collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool);
-	TodoReturn collidedWithSlope(float, GameObject*, bool);
-	TodoReturn collidedWithSlopeInternal(float, GameObject*, bool);
+	void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x2cc3d0;
+	void collidedWithObject(float, GameObject*);
+	void collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x2cc450;
+	void collidedWithSlope(float, GameObject*, bool);
+	void collidedWithSlopeInternal(float, GameObject*, bool);
 	TodoReturn convertToClosestRotation(float);
 	TodoReturn copyAttributes(PlayerObject*);
 	void createFadeOutDartStreak() = win 0x2d2320;
@@ -11414,7 +11428,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_isDead;
 	bool m_isOnGround;
 	bool m_isGoingLeft;
-	bool m_unk7b3;
+	bool m_isSideways;
 	bool m_isSwing;
 	PAD = win 0x10, android32 0x10;
 	float m_unk7c8;
@@ -11810,10 +11824,10 @@ class PurchaseItemPopup : FLAlertLayer {
 class RandTriggerGameObject : ChanceTriggerGameObject {
 	// virtual ~RandTriggerGameObject();
 
-	static RandTriggerGameObject* create();
+	static RandTriggerGameObject* create() = win 0x3a9860;
 
-	TodoReturn getRandomGroupID();
-	TodoReturn getTotalChance();
+	int getRandomGroupID() = win 0x3a9950;
+	int getTotalChance();
 
 	virtual bool init() = win 0x3a9940;
 	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x3a9a00;
@@ -11825,7 +11839,7 @@ class RandTriggerGameObject : ChanceTriggerGameObject {
 class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	// virtual ~RateDemonLayer();
 
-	static RateDemonLayer* create(int);
+	static RateDemonLayer* create(int) = win 0x2f3510;
 
 	bool init(int) = win 0x2f35b0;
 	void onClose(cocos2d::CCObject* sender);
@@ -11850,14 +11864,14 @@ class RateLevelDelegate {
 class RateLevelLayer : FLAlertLayer {
 	// virtual ~RateLevelLayer();
 
-	static RateLevelLayer* create(int);
+	static RateLevelLayer* create(int) = win 0x2f3fd0;
 
-	bool init(int);
+	bool init(int) = win 0x2f4070;
 	void onClose(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender);
 	TodoReturn selectRating(cocos2d::CCObject*);
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x2f4630;
 }
 
 [[link(android)]]
@@ -11895,8 +11909,8 @@ class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
 	void onRewardedVideo(cocos2d::CCObject* sender);
 	TodoReturn setupLastProgress();
 
-	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
+	virtual void keyBackClicked() = win 0x2f62e0;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2f6190;
 	virtual void customSetup() = win 0x2f5650;
 	virtual void showLayer(bool) = win 0x2f6010;
 	virtual void enterAnimFinished() = win 0x2f6100;
@@ -11908,7 +11922,7 @@ class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
 [[link(android)]]
 class RewardedVideoDelegate {
 	virtual TodoReturn rewardedVideoFinished();
-	virtual TodoReturn shouldOffsetRewardCurrency();
+	virtual TodoReturn shouldOffsetRewardCurrency() = win 0xeb070;
 }
 
 [[link(android)]]
@@ -11949,7 +11963,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 	static RewardUnlockLayer* create(int, RewardsPage*) = win 0x2f7af0;
 
 	TodoReturn connectionTimeout();
-	bool init(int, RewardsPage*);
+	bool init(int, RewardsPage*) = win 0x2f7ba0;
 	TodoReturn labelEnterFinishedO(cocos2d::CCObject*);
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn playDropSound();
@@ -11993,7 +12007,7 @@ class RingObject : EffectGameObject {
 class RotateGameplayGameObject : EffectGameObject {
 	// virtual ~RotateGameplayGameObject();
 
-	static RotateGameplayGameObject* create();
+	static RotateGameplayGameObject* create() = win 0x3b9090;
 
 	TodoReturn updateGameplayRotation();
 
@@ -12007,17 +12021,17 @@ class RotateGameplayGameObject : EffectGameObject {
 class ScrollingLayer : cocos2d::CCLayerColor {
 	// virtual ~ScrollingLayer();
 
-	static ScrollingLayer* create(cocos2d::CCSize, cocos2d::CCPoint, float);
+	static ScrollingLayer* create(cocos2d::CCSize, cocos2d::CCPoint, float) = win 0x4c290;
 
 	TodoReturn getViewRect();
-	bool init(cocos2d::CCSize, cocos2d::CCPoint, float);
+	bool init(cocos2d::CCSize, cocos2d::CCPoint, float) = win 0x4c360;
 	void setStartOffset(cocos2d::CCPoint);
 
-	virtual void draw();
-	virtual void visit();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void draw() = win 0x4c510;
+	virtual void visit() = win 0x4c5f0;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4c640;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4c710;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4c810;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 }
 
@@ -12037,10 +12051,10 @@ class SearchButton : cocos2d::CCSprite {
 class SearchSFXPopup : SetTextPopup {
 	// virtual ~SearchSFXPopup();
 
-	static SearchSFXPopup* create(gd::string);
+	static SearchSFXPopup* create(gd::string) = win 0x37a130;
 
-	bool init(gd::string);
-	void onSearchFolders(cocos2d::CCObject* sender) = win 0x37a1f0;
+	bool init(gd::string) = win 0x37a1f0;
+	void onSearchFolders(cocos2d::CCObject* sender) = win 0x37a3f0;
 }
 
 [[link(android)]]
@@ -12219,38 +12233,38 @@ class SelectArtDelegate {
 class SelectArtLayer : FLAlertLayer {
 	// virtual ~SelectArtLayer();
 
-	static SelectArtLayer* create(SelectArtType, int);
+	static SelectArtLayer* create(SelectArtType, int) = win 0x26fcb0;
 
-	bool init(SelectArtType, int);
+	bool init(SelectArtType, int) = win 0x26fd60;
 	void onClose(cocos2d::CCObject* sender);
 	void onSelectCustom(cocos2d::CCObject* sender);
 	TodoReturn selectArt(cocos2d::CCObject*);
 	TodoReturn updateSelectedCustom(int);
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x270b20;
 }
 
 [[link(android)]]
 class SelectEventLayer : SetupTriggerPopup {
 	// virtual ~SelectEventLayer();
 
-	static SelectEventLayer* create(SetupEventLinkPopup*, gd::set<int>&);
+	static SelectEventLayer* create(SetupEventLinkPopup*, gd::set<int>&) = win 0x364ec0;
 
 	TodoReturn addToggle(int, gd::string);
-	bool init(SetupEventLinkPopup*, gd::set<int>&);
+	bool init(SetupEventLinkPopup*, gd::set<int>&) = win 0x364f70;
 	TodoReturn nextPosition();
 	void onInfo(cocos2d::CCObject* sender);
 
 	virtual void keyBackClicked();
-	virtual void onClose(cocos2d::CCObject* sender);
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
+	virtual void onClose(cocos2d::CCObject* sender) = win 0x365990;
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x365820;
 }
 
 [[link(android)]]
 class SelectFontLayer : FLAlertLayer {
 	// virtual ~SelectFontLayer();
 
-	static SelectFontLayer* create(LevelEditorLayer*);
+	static SelectFontLayer* create(LevelEditorLayer*) = win 0x204d30;
 
 	bool init(LevelEditorLayer*) = win 0x204DD0;
 	void onChangeFont(cocos2d::CCObject* sender) = win 0x205460;
@@ -12269,13 +12283,13 @@ class SelectListIconDelegate {
 class SelectListIconLayer : FLAlertLayer {
 	// virtual ~SelectListIconLayer();
 
-	static SelectListIconLayer* create(int);
+	static SelectListIconLayer* create(int) = win 0x25e6c0;
 
-	bool init(int);
+	bool init(int) = win 0x25e760;
 	void onClose(cocos2d::CCObject* sender);
 	void onSelect(cocos2d::CCObject* sender);
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x25ed70;
 }
 
 [[link(android)]]
@@ -12287,12 +12301,12 @@ class SelectPremadeDelegate {
 class SelectPremadeLayer : FLAlertLayer {
 	// virtual ~SelectPremadeLayer();
 
-	static SelectPremadeLayer* create();
+	static SelectPremadeLayer* create() = win 0x31af90;
 
 	void onClose(cocos2d::CCObject* sender);
 	void onSelectPremade(cocos2d::CCObject* sender);
 
-	virtual bool init();
+	virtual bool init() = win 0x31b030;
 	virtual void keyBackClicked();
 }
 
@@ -12317,7 +12331,7 @@ class SelectSettingLayer : FLAlertLayer {
 	void onSelect(cocos2d::CCObject* sender) = win 0x2715d0;
 	TodoReturn valueToIdx(SelectSettingType, int);
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x271690;
 
 	PAD = win 0x4;
 	int m_settingID;
@@ -12332,9 +12346,9 @@ class SelectSFXSortDelegate {
 class SelectSFXSortLayer : FLAlertLayer {
 	// virtual ~SelectSFXSortLayer();
 
-	static SelectSFXSortLayer* create(AudioSortType);
+	static SelectSFXSortLayer* create(AudioSortType) = win 0x37a410;
 
-	bool init(AudioSortType);
+	bool init(AudioSortType) = win 0x37a4b0;
 	void onClose(cocos2d::CCObject* sender);
 	void onSelect(cocos2d::CCObject* sender);
 
@@ -12345,12 +12359,12 @@ class SelectSFXSortLayer : FLAlertLayer {
 class SequenceTriggerGameObject : ChanceTriggerGameObject {
 	// virtual ~SequenceTriggerGameObject();
 
-	static SequenceTriggerGameObject* create();
+	static SequenceTriggerGameObject* create() = win 0x3a9fd0;
 
-	TodoReturn addCount(int, int);
-	TodoReturn addTarget(int, int);
-	TodoReturn deleteTarget(int);
-	TodoReturn reorderTarget(int, bool);
+	void addCount(int, int) = win 0x3aae20;
+	void addTarget(int, int) = win 0x3aad40;
+	void deleteTarget(int);
+	int reorderTarget(int, bool) = win 0x3aada0;
 	TodoReturn updateSequenceTotalCount();
 
 	virtual bool init() = win 0x3aa070;
@@ -12364,9 +12378,9 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
 	// virtual ~SetColorIDPopup();
 
-	static SetColorIDPopup* create(int);
+	static SetColorIDPopup* create(int) = win 0x210540;
 
-	bool init(int);
+	bool init(int) = win 0x2105e0;
 	void onSelectSpecialColor(cocos2d::CCObject* sender);
 
 	virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x2107c0;
@@ -12478,7 +12492,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 	void onResetValue(cocos2d::CCObject* sender) = win 0x210240;
 	TodoReturn updateTextInputLabel() = win 0x2102f0;
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x2104c0;
 	virtual void show() = win 0x2103a0;
 	virtual void textInputClosed(CCTextInputNode*);
 	virtual void textChanged(CCTextInputNode*) = win 0x210260;
@@ -12503,9 +12517,9 @@ class SetIDPopupDelegate {
 class SetItemIDLayer : SetupTriggerPopup {
 	// virtual ~SetItemIDLayer();
 
-	static SetItemIDLayer* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetItemIDLayer* create(EffectGameObject*, cocos2d::CCArray*) = win 0x317520;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3175d0;
 	TodoReturn updateEditorLabel();
 
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x317cf0;
@@ -12517,9 +12531,9 @@ class SetItemIDLayer : SetupTriggerPopup {
 class SetLevelOrderPopup : SetIDPopup {
 	// virtual ~SetLevelOrderPopup();
 
-	static SetLevelOrderPopup* create(int, int, int);
+	static SetLevelOrderPopup* create(int, int, int) = win 0x25e270;
 
-	bool init(int, int, int);
+	bool init(int, int, int) = win 0x25e320;
 	void onOrderButton(cocos2d::CCObject* sender);
 }
 
@@ -12527,9 +12541,9 @@ class SetLevelOrderPopup : SetIDPopup {
 class SetTargetIDLayer : SetupTriggerPopup {
 	// virtual ~SetTargetIDLayer();
 
-	static SetTargetIDLayer* create(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int);
+	static SetTargetIDLayer* create(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = win 0x317e80;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int);
+	bool init(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = win 0x317fb0;
 
 	virtual TodoReturn determineStartValues();
 	virtual void valueDidChange(int, float) = win 0x318250;
@@ -12547,7 +12561,7 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
 	void onResetValue(cocos2d::CCObject* sender);
 	TodoReturn updateTextInputLabel();
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x211c80;
 	virtual void show() = win 0x61860;
 	virtual void textInputClosed(CCTextInputNode*);
 	virtual void textChanged(CCTextInputNode*) = win 0x211b20;
@@ -12567,50 +12581,50 @@ class SetTextPopupDelegate {
 class SetupAdvFollowEditPhysicsPopup : SetupTriggerPopup {
 	// virtual ~SetupAdvFollowEditPhysicsPopup();
 
-	static SetupAdvFollowEditPhysicsPopup* create(AdvancedFollowEditObject*, cocos2d::CCArray*);
+	static SetupAdvFollowEditPhysicsPopup* create(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x31b580;
 
-	bool init(AdvancedFollowEditObject*, cocos2d::CCArray*);
+	bool init(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x31b630;
 
-	virtual TodoReturn valueDidChange(int, float);
+	virtual void valueDidChange(int, float) = win 0x31bda0;
 }
 
 [[link(android)]]
 class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
 	// virtual ~SetupAdvFollowPopup();
 
-	static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject*, cocos2d::CCArray*);
+	static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject*, cocos2d::CCArray*) = win 0x3184c0;
 
-	bool init(AdvancedFollowTriggerObject*, cocos2d::CCArray*);
-	void onMode(cocos2d::CCObject* sender);
-	void onPremade(cocos2d::CCObject* sender);
-	TodoReturn updateMode(int);
+	bool init(AdvancedFollowTriggerObject*, cocos2d::CCArray*) = win 0x318570;
+	void onMode(cocos2d::CCObject* sender) = win 0x31aa70;
+	void onPremade(cocos2d::CCObject* sender) = win 0x31ab60;
+	void updateMode(int) = win 0x31aaf0;
 
 	virtual void onClose(cocos2d::CCObject* sender);
-	virtual TodoReturn updateDefaultTriggerValues();
-	virtual TodoReturn valueDidChange(int, float);
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
-	virtual TodoReturn selectPremadeClosed(SelectPremadeLayer*, int);
+	virtual void updateDefaultTriggerValues() = win 0x31a670;
+	virtual void valueDidChange(int, float) = win 0x31a760;
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x31a9d0;
+	virtual void selectPremadeClosed(SelectPremadeLayer*, int) = win 0x31aba0;
 }
 
 [[link(android)]]
 class SetupAdvFollowRetargetPopup : SetupTriggerPopup {
 	// virtual ~SetupAdvFollowRetargetPopup();
 
-	static SetupAdvFollowRetargetPopup* create(AdvancedFollowEditObject*, cocos2d::CCArray*);
+	static SetupAdvFollowRetargetPopup* create(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x31bdf0;
 
-	bool init(AdvancedFollowEditObject*, cocos2d::CCArray*);
+	bool init(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x31bea0;
 
-	virtual TodoReturn updateDefaultTriggerValues();
-	virtual TodoReturn valueDidChange(int, float);
+	virtual void updateDefaultTriggerValues() = win 0x31a670;
+	virtual void valueDidChange(int, float) = win 0x31c220;
 }
 
 [[link(android)]]
 class SetupAnimationPopup : SetupTriggerPopup {
 	// virtual ~SetupAnimationPopup();
 
-	static SetupAnimationPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupAnimationPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x31c510;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x31c5c0;
 	void onAnimationIDArrow(cocos2d::CCObject* sender);
 	void onTargetIDArrow(cocos2d::CCObject* sender);
 	TodoReturn updateAnimationID();
@@ -12627,12 +12641,12 @@ class SetupAnimationPopup : SetupTriggerPopup {
 class SetupAnimSettingsPopup : SetupTriggerPopup {
 	// virtual ~SetupAnimSettingsPopup();
 
-	static SetupAnimSettingsPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupAnimSettingsPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x31d690;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x31d740;
 	TodoReturn updateAnimSettings();
 
-	virtual void onClose(cocos2d::CCObject* sender);
+	virtual void onClose(cocos2d::CCObject* sender) = win 0x31de20;
 }
 
 [[link(android)]]
@@ -12729,9 +12743,9 @@ class SetupAreaTriggerPopup : SetupAreaMoveTriggerPopup {
 class SetupArtSwitchPopup : SetupTriggerPopup, SelectArtDelegate {
 	// virtual ~SetupArtSwitchPopup();
 
-	static SetupArtSwitchPopup* create(ArtTriggerGameObject*, cocos2d::CCArray*, int);
+	static SetupArtSwitchPopup* create(ArtTriggerGameObject*, cocos2d::CCArray*, int) = win 0x36caa0;
 
-	bool init(ArtTriggerGameObject*, cocos2d::CCArray*, int);
+	bool init(ArtTriggerGameObject*, cocos2d::CCArray*, int) = win 0x36cbf0;
 	void onArt(cocos2d::CCObject* sender);
 
 	virtual void selectArtClosed(SelectArtLayer*) = win 0x36cff0;
@@ -12741,12 +12755,12 @@ class SetupArtSwitchPopup : SetupTriggerPopup, SelectArtDelegate {
 class SetupAudioLineGuidePopup : SetupTriggerPopup, SelectSettingDelegate {
 	// virtual ~SetupAudioLineGuidePopup();
 
-	static SetupAudioLineGuidePopup* create(AudioLineGuideGameObject*, cocos2d::CCArray*);
+	static SetupAudioLineGuidePopup* create(AudioLineGuideGameObject*, cocos2d::CCArray*) = win 0x36ba20;
 
-	bool init(AudioLineGuideGameObject*, cocos2d::CCArray*);
+	bool init(AudioLineGuideGameObject*, cocos2d::CCArray*) = win 0x36bad0;
 	void onSpeed(cocos2d::CCObject* sender);
 
-	virtual TodoReturn selectSettingClosed(SelectSettingLayer*);
+	virtual TodoReturn selectSettingClosed(SelectSettingLayer*) = win 0x36bfe0;
 }
 
 [[link(android)]]
@@ -12765,18 +12779,18 @@ class SetupAudioTriggerPopup : SetupTriggerPopup {
 class SetupBGSpeedTrigger : SetupTriggerPopup {
 	// virtual ~SetupBGSpeedTrigger();
 
-	static SetupBGSpeedTrigger* create(EffectGameObject*, cocos2d::CCArray*, int);
+	static SetupBGSpeedTrigger* create(EffectGameObject*, cocos2d::CCArray*, int) = win 0x335630;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*, int);
+	bool init(EffectGameObject*, cocos2d::CCArray*, int) = win 0x3356e0;
 }
 
 [[link(android)]]
 class SetupCameraEdgePopup : SetupTriggerPopup {
 	// virtual ~SetupCameraEdgePopup();
 
-	static SetupCameraEdgePopup* create(CameraTriggerGameObject*, cocos2d::CCArray*);
+	static SetupCameraEdgePopup* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x323e00;
 
-	bool init(CameraTriggerGameObject*, cocos2d::CCArray*);
+	bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x323eb0;
 	void onCameraEdge(cocos2d::CCObject* sender);
 	void onTargetIDArrow(cocos2d::CCObject* sender);
 	void onUnlockEdge(cocos2d::CCObject* sender);
@@ -12792,18 +12806,18 @@ class SetupCameraEdgePopup : SetupTriggerPopup {
 class SetupCameraGuidePopup : SetupTriggerPopup {
 	// virtual ~SetupCameraGuidePopup();
 
-	static SetupCameraGuidePopup* create(CameraTriggerGameObject*, cocos2d::CCArray*);
+	static SetupCameraGuidePopup* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x36c0d0;
 
-	bool init(CameraTriggerGameObject*, cocos2d::CCArray*);
+	bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x36c180;
 }
 
 [[link(android)]]
 class SetupCameraModePopup : SetupTriggerPopup {
 	// virtual ~SetupCameraModePopup();
 
-	static SetupCameraModePopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupCameraModePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x324f10;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x324fc0;
 	void onEditCameraSettings(cocos2d::CCObject* sender);
 	void onUnboundMode(cocos2d::CCObject* sender);
 	TodoReturn sliderChanged(cocos2d::CCObject*);
@@ -12813,7 +12827,7 @@ class SetupCameraModePopup : SetupTriggerPopup {
 	TodoReturn updateCameraPaddingLabel();
 	TodoReturn updateItemVisibility();
 
-	virtual TodoReturn determineStartValues();
+	virtual TodoReturn determineStartValues() = win 0x3257f0;
 	virtual void onClose(cocos2d::CCObject* sender);
 }
 
@@ -12821,9 +12835,9 @@ class SetupCameraModePopup : SetupTriggerPopup {
 class SetupCameraOffsetTrigger : SetupTriggerPopup {
 	// virtual ~SetupCameraOffsetTrigger();
 
-	static SetupCameraOffsetTrigger* create(CameraTriggerGameObject*, cocos2d::CCArray*);
+	static SetupCameraOffsetTrigger* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x325f60;
 
-	bool init(CameraTriggerGameObject*, cocos2d::CCArray*);
+	bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x326010;
 	void onEasing(cocos2d::CCObject* sender);
 	void onEasingRate(cocos2d::CCObject* sender);
 	void onTargetMode(cocos2d::CCObject* sender);
@@ -12881,27 +12895,27 @@ class SetupCameraRotatePopup : SetupTriggerPopup {
 class SetupCameraRotatePopup2 : SetupTriggerPopup {
 	// virtual ~SetupCameraRotatePopup2();
 
-	static SetupCameraRotatePopup2* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupCameraRotatePopup2* create(EffectGameObject*, cocos2d::CCArray*) = win 0x328470;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x328520;
 }
 
 [[link(android)]]
 class SetupCheckpointPopup : SetupTriggerPopup {
 	// virtual ~SetupCheckpointPopup();
 
-	static SetupCheckpointPopup* create(CheckpointGameObject*, cocos2d::CCArray*);
+	static SetupCheckpointPopup* create(CheckpointGameObject*, cocos2d::CCArray*) = win 0x366b80;
 
-	bool init(CheckpointGameObject*, cocos2d::CCArray*);
+	bool init(CheckpointGameObject*, cocos2d::CCArray*) = win 0x366c30;
 }
 
 [[link(android)]]
 class SetupCoinLayer : SetupTriggerPopup {
 	// virtual ~SetupCoinLayer();
 
-	static SetupCoinLayer* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupCoinLayer* create(EffectGameObject*, cocos2d::CCArray*) = win 0x36b340;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x36b3f0;
 }
 
 [[link(android)]]
@@ -12968,18 +12982,18 @@ class SetupCountTriggerPopup : SetupTriggerPopup {
 class SetupDashRingPopup : SetupTriggerPopup {
 	// virtual ~SetupDashRingPopup();
 
-	static SetupDashRingPopup* create(DashRingObject*, cocos2d::CCArray*);
+	static SetupDashRingPopup* create(DashRingObject*, cocos2d::CCArray*) = win 0x36da50;
 
-	bool init(DashRingObject*, cocos2d::CCArray*);
+	bool init(DashRingObject*, cocos2d::CCArray*) = win 0x36db00;
 }
 
 [[link(android)]]
 class SetupEndPopup : SetupTriggerPopup {
 	// virtual ~SetupEndPopup();
 
-	static SetupEndPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupEndPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x32c300;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x32c3b0;
 	void onLockY(cocos2d::CCObject* sender);
 	void onMultiActivate(cocos2d::CCObject* sender);
 	void onReversed(cocos2d::CCObject* sender);
@@ -12987,7 +13001,7 @@ class SetupEndPopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTextInputLabel();
 
-	virtual TodoReturn determineStartValues();
+	virtual TodoReturn determineStartValues() = win 0x32cba0;
 	virtual void onClose(cocos2d::CCObject* sender);
 	virtual void textInputClosed(CCTextInputNode*);
 	virtual void textChanged(CCTextInputNode*) = win 0x32cd90;
@@ -12997,9 +13011,9 @@ class SetupEndPopup : SetupTriggerPopup {
 class SetupEnterEffectPopup : SetupTriggerPopup, HSVWidgetDelegate {
 	// virtual ~SetupEnterEffectPopup();
 
-	static SetupEnterEffectPopup* create(EnterEffectObject*, cocos2d::CCArray*, int);
+	static SetupEnterEffectPopup* create(EnterEffectObject*, cocos2d::CCArray*, int) = win 0x32d400;
 
-	bool init(EnterEffectObject*, cocos2d::CCArray*, int);
+	bool init(EnterEffectObject*, cocos2d::CCArray*, int) = win 0x32d4b0;
 	void onEnterType(cocos2d::CCObject* sender);
 	void onHSV(cocos2d::CCObject* sender);
 	void onNextFreeEnterChannel(cocos2d::CCObject* sender);
@@ -13025,16 +13039,16 @@ class SetupEnterTriggerPopup : SetupTriggerPopup {
 	bool init(EnterEffectObject*, cocos2d::CCArray*) = win 0x2059e0;
 	void onEnterType(cocos2d::CCObject* sender);
 
-	virtual TodoReturn determineStartValues();
+	virtual TodoReturn determineStartValues() = win 0x205d20;
 }
 
 [[link(android)]]
 class SetupEventLinkPopup : SetupTriggerPopup {
 	// virtual ~SetupEventLinkPopup();
 
-	static SetupEventLinkPopup* create(EventLinkTrigger*, cocos2d::CCArray*);
+	static SetupEventLinkPopup* create(EventLinkTrigger*, cocos2d::CCArray*) = win 0x3647c0;
 
-	bool init(EventLinkTrigger*, cocos2d::CCArray*);
+	bool init(EventLinkTrigger*, cocos2d::CCArray*) = win 0x364870;
 	void onSelectEvent(cocos2d::CCObject* sender);
 	TodoReturn updateEventIDs(gd::set<int>&);
 }
@@ -13043,9 +13057,9 @@ class SetupEventLinkPopup : SetupTriggerPopup {
 class SetupForceBlockPopup : SetupTriggerPopup {
 	// virtual ~SetupForceBlockPopup();
 
-	static SetupForceBlockPopup* create(ForceBlockGameObject*, cocos2d::CCArray*);
+	static SetupForceBlockPopup* create(ForceBlockGameObject*, cocos2d::CCArray*) = win 0x36c4d0;
 
-	bool init(ForceBlockGameObject*, cocos2d::CCArray*);
+	bool init(ForceBlockGameObject*, cocos2d::CCArray*) = win 0x36c580;
 
 	virtual void valueDidChange(int, float) = win 0x36ca30;
 }
@@ -13054,9 +13068,9 @@ class SetupForceBlockPopup : SetupTriggerPopup {
 class SetupGameplayOffsetPopup : SetupTriggerPopup {
 	// virtual ~SetupGameplayOffsetPopup();
 
-	static SetupGameplayOffsetPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupGameplayOffsetPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x34a410;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x34a4c0;
 	void onDefaultValues(cocos2d::CCObject* sender);
 
 	virtual void updateInputValue(int, float&) = win 0x34ab70;
@@ -13070,9 +13084,9 @@ class SetupGameplayOffsetPopup : SetupTriggerPopup {
 class SetupGradientPopup : SetupTriggerPopup {
 	// virtual ~SetupGradientPopup();
 
-	static SetupGradientPopup* create(GradientTriggerObject*, cocos2d::CCArray*);
+	static SetupGradientPopup* create(GradientTriggerObject*, cocos2d::CCArray*) = win 0x32f140;
 
-	bool init(GradientTriggerObject*, cocos2d::CCArray*);
+	bool init(GradientTriggerObject*, cocos2d::CCArray*) = win 0x32f1f0;
 	void onBlending(cocos2d::CCObject* sender);
 	void onZLayer(cocos2d::CCObject* sender);
 	TodoReturn sliderChanged(cocos2d::CCObject*);
@@ -13137,9 +13151,9 @@ class SetupInstantCollisionTriggerPopup : SetupTriggerPopup {
 class SetupInstantCountPopup : SetupTriggerPopup {
 	// virtual ~SetupInstantCountPopup();
 
-	static SetupInstantCountPopup* create(CountTriggerGameObject*, cocos2d::CCArray*);
+	static SetupInstantCountPopup* create(CountTriggerGameObject*, cocos2d::CCArray*) = win 0x330620;
 
-	bool init(CountTriggerGameObject*, cocos2d::CCArray*);
+	bool init(CountTriggerGameObject*, cocos2d::CCArray*) = win 0x3306d0;
 	void onCountType(cocos2d::CCObject* sender);
 	void onEnableGroup(cocos2d::CCObject* sender);
 	void onTargetCountArrow(cocos2d::CCObject* sender);
@@ -13152,7 +13166,7 @@ class SetupInstantCountPopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTargetIDInputLabel();
 
-	virtual TodoReturn determineStartValues();
+	virtual TodoReturn determineStartValues() = win 0x331220;
 	virtual void onClose(cocos2d::CCObject* sender);
 	virtual void textChanged(CCTextInputNode*) = win 0x3313d0;
 }
@@ -13161,9 +13175,9 @@ class SetupInstantCountPopup : SetupTriggerPopup {
 class SetupInteractObjectPopup : SetupTriggerPopup {
 	// virtual ~SetupInteractObjectPopup();
 
-	static SetupInteractObjectPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupInteractObjectPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x3317b0;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x331860;
 	TodoReturn updateItems();
 
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x331eb0;
@@ -13205,18 +13219,18 @@ class SetupItemEditTriggerPopup : SetupTriggerPopup {
 class SetupKeyframeAnimPopup : SetupTriggerPopup {
 	// virtual ~SetupKeyframeAnimPopup();
 
-	static SetupKeyframeAnimPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupKeyframeAnimPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x332110;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3321c0;
 }
 
 [[link(android)]]
 class SetupKeyframePopup : SetupTriggerPopup {
 	// virtual ~SetupKeyframePopup();
 
-	static SetupKeyframePopup* create(KeyframeGameObject*, cocos2d::CCArray*, LevelEditorLayer*);
+	static SetupKeyframePopup* create(KeyframeGameObject*, cocos2d::CCArray*, LevelEditorLayer*) = win 0x332830;
 
-	bool init(KeyframeGameObject*, cocos2d::CCArray*, LevelEditorLayer*);
+	bool init(KeyframeGameObject*, cocos2d::CCArray*, LevelEditorLayer*) = win 0x3328e0;
 	void onTimeMode(cocos2d::CCObject* sender);
 	TodoReturn refreshPreviewArt();
 	TodoReturn updateTimeModeButtons();
@@ -13231,9 +13245,9 @@ class SetupKeyframePopup : SetupTriggerPopup {
 class SetupMGTrigger : SetupTriggerPopup {
 	// virtual ~SetupMGTrigger();
 
-	static SetupMGTrigger* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupMGTrigger* create(EffectGameObject*, cocos2d::CCArray*) = win 0x333f20;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x333fd0;
 	void onEasing(cocos2d::CCObject* sender);
 	void onEasingRate(cocos2d::CCObject* sender);
 	TodoReturn posFromSliderValue(float);
@@ -13277,9 +13291,9 @@ class SetupMoveCommandPopup : SetupTriggerPopup {
 class SetupObjectControlPopup : SetupTriggerPopup {
 	// virtual ~SetupObjectControlPopup();
 
-	static SetupObjectControlPopup* create(ObjectControlGameObject*, cocos2d::CCArray*);
+	static SetupObjectControlPopup* create(ObjectControlGameObject*, cocos2d::CCArray*) = win 0x36d7b0;
 
-	bool init(ObjectControlGameObject*, cocos2d::CCArray*);
+	bool init(ObjectControlGameObject*, cocos2d::CCArray*) = win 0x36d860;
 }
 
 [[link(android)]]
@@ -13288,9 +13302,9 @@ class SetupObjectOptions2Popup : SetupTriggerPopup {
 
 	static SetupObjectOptions2Popup* create(GameObject*, cocos2d::CCArray*) = win 0x316fe0;
 
-	bool init(GameObject*, cocos2d::CCArray*);
+	bool init(GameObject*, cocos2d::CCArray*) = win 0x317090;
 
-	virtual void onPlusButton(cocos2d::CCObject* sender);
+	virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x3173b0;
 }
 
 [[link(android)]]
@@ -13299,7 +13313,7 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
 
 	static SetupObjectOptionsPopup* create(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win 0x314f00;
 
-	bool init(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*);
+	bool init(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win 0x314fb0;
 	void onAlwaysHide(cocos2d::CCObject* sender);
 	void onApplyScaleStick(cocos2d::CCObject* sender);
 	void onCenterEffect(cocos2d::CCObject* sender);
@@ -13327,7 +13341,7 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
 
 	virtual void keyBackClicked();
 	virtual void show();
-	virtual TodoReturn determineStartValues();
+	virtual TodoReturn determineStartValues() = win 0x316170;
 	virtual void onClose(cocos2d::CCObject* sender);
 }
 
@@ -13335,9 +13349,9 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
 class SetupObjectTogglePopup : SetupTriggerPopup {
 	// virtual ~SetupObjectTogglePopup();
 
-	static SetupObjectTogglePopup* create(EffectGameObject*, cocos2d::CCArray*, bool);
+	static SetupObjectTogglePopup* create(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x336040;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*, bool);
+	bool init(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x3360f0;
 
 	virtual void onClose(cocos2d::CCObject* sender);
 	virtual void valueDidChange(int, float) = win 0x336620;
@@ -13347,9 +13361,9 @@ class SetupObjectTogglePopup : SetupTriggerPopup {
 class SetupOpacityPopup : SetupTriggerPopup {
 	// virtual ~SetupOpacityPopup();
 
-	static SetupOpacityPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupOpacityPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x336840;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3368f0;
 	void onTargetIDArrow(cocos2d::CCObject* sender);
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	TodoReturn updateDuration();
@@ -13359,7 +13373,7 @@ class SetupOpacityPopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTextInputLabel();
 
-	virtual TodoReturn determineStartValues();
+	virtual TodoReturn determineStartValues() = win 0x3374d0;
 	virtual void onClose(cocos2d::CCObject* sender);
 	virtual void textInputClosed(CCTextInputNode*);
 	virtual void textChanged(CCTextInputNode*) = win 0x337830;
@@ -13374,7 +13388,7 @@ class SetupOptionsTriggerPopup : SetupTriggerPopup {
 	TodoReturn addOption(int, gd::string);
 	bool init(GameOptionsTrigger*, cocos2d::CCArray*) = win 0x340440;
 
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x340a50;
 }
 
 [[link(android)]]
@@ -13396,25 +13410,25 @@ class SetupPickupTriggerPopup : SetupTriggerPopup {
 	TodoReturn updateState();
 
 	virtual void onPlusButton(cocos2d::CCObject* sender);
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x3410b0;
 }
 
 [[link(android)]]
 class SetupPlatformerEndPopup : SetupTriggerPopup {
 	// virtual ~SetupPlatformerEndPopup();
 
-	static SetupPlatformerEndPopup* create(EndTriggerGameObject*, cocos2d::CCArray*);
+	static SetupPlatformerEndPopup* create(EndTriggerGameObject*, cocos2d::CCArray*) = win 0x32ce80;
 
-	bool init(EndTriggerGameObject*, cocos2d::CCArray*);
+	bool init(EndTriggerGameObject*, cocos2d::CCArray*) = win 0x32cf40;
 }
 
 [[link(android)]]
 class SetupPlayerControlPopup : SetupTriggerPopup {
 	// virtual ~SetupPlayerControlPopup();
 
-	static SetupPlayerControlPopup* create(PlayerControlGameObject*, cocos2d::CCArray*);
+	static SetupPlayerControlPopup* create(PlayerControlGameObject*, cocos2d::CCArray*) = win 0x366020;
 
-	bool init(PlayerControlGameObject*, cocos2d::CCArray*);
+	bool init(PlayerControlGameObject*, cocos2d::CCArray*) = win 0x3660d0;
 }
 
 [[link(android)]]
@@ -13442,10 +13456,10 @@ class SetupPortalPopup : FLAlertLayer, TextInputDelegate {
 class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelegate, GJSpecialColorSelectDelegate {
 	// virtual ~SetupPulsePopup();
 
-	static SetupPulsePopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupPulsePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x341420;
 
 	TodoReturn getColorValue();
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3414d0;
 	void onCopy(cocos2d::CCObject* sender);
 	void onExclusive(cocos2d::CCObject* sender);
 	void onGroupMainOnly(cocos2d::CCObject* sender);
@@ -13493,15 +13507,15 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
 
 	static SetupRandAdvTriggerPopup* create(RandTriggerGameObject*, cocos2d::CCArray*) = win 0x346250;
 
-	TodoReturn addChance(int, int);
-	TodoReturn addChanceToObject(RandTriggerGameObject*, int, int);
-	TodoReturn callRemoveFromGroup(float);
+	void addChance(int, int) = win 0x346ce0;
+	void addChanceToObject(RandTriggerGameObject*, int, int) = win 0x346d70;
+	void callRemoveFromGroup(float); // = win 0x3479f0;
 	bool init(RandTriggerGameObject*, cocos2d::CCArray*) = win 0x346300;
-	void onAddChance(cocos2d::CCObject* sender);
-	void onRemoveFromGroup(cocos2d::CCObject* sender);
-	TodoReturn removeGroupID(int);
-	TodoReturn removeGroupIDFromObject(RandTriggerGameObject*, int);
-	TodoReturn updateGroupIDButtons();
+	void onAddChance(cocos2d::CCObject* sender) = win 0x347ad0;
+	void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x347a20;
+	void removeGroupID(int) = win 0x346de0;
+	void removeGroupIDFromObject(RandTriggerGameObject*, int) = win 0x346ee0;
+	void updateGroupIDButtons() = win 0x346f60;
 
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x346c40;
 	virtual void textChanged(CCTextInputNode*) {}
@@ -13542,14 +13556,14 @@ class SetupResetTriggerPopup : SetupTriggerPopup {
 class SetupReverbPopup : SetupTriggerPopup {
 	// virtual ~SetupReverbPopup();
 
-	static SetupReverbPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*);
+	static SetupReverbPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*) = win 0x34d9f0;
 
-	bool init(SFXTriggerGameObject*, cocos2d::CCArray*);
+	bool init(SFXTriggerGameObject*, cocos2d::CCArray*) = win 0x34daa0;
 	void onPlay(cocos2d::CCObject* sender);
 	void onReverb(cocos2d::CCObject* sender);
 	TodoReturn updateReverbLabel();
 
-	virtual void onClose(cocos2d::CCObject* sender);
+	virtual void onClose(cocos2d::CCObject* sender) = win 0x34e0d0;
 }
 
 [[link(android)]]
@@ -13573,9 +13587,9 @@ class SetupRotateCommandPopup : SetupTriggerPopup {
 class SetupRotateGameplayPopup : SetupTriggerPopup {
 	// virtual ~SetupRotateGameplayPopup();
 
-	static SetupRotateGameplayPopup* create(RotateGameplayGameObject*, cocos2d::CCArray*);
+	static SetupRotateGameplayPopup* create(RotateGameplayGameObject*, cocos2d::CCArray*) = win 0x349c10;
 
-	bool init(RotateGameplayGameObject*, cocos2d::CCArray*);
+	bool init(RotateGameplayGameObject*, cocos2d::CCArray*) = win 0x349cc0;
 
 	virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x34a300;
 	virtual void valueDidChange(int, float) = win 0x34a330;
@@ -13585,12 +13599,12 @@ class SetupRotateGameplayPopup : SetupTriggerPopup {
 class SetupRotatePopup : SetupTriggerPopup {
 	// virtual ~SetupRotatePopup();
 
-	static SetupRotatePopup* create(EnhancedGameObject*, cocos2d::CCArray*);
+	static SetupRotatePopup* create(EnhancedGameObject*, cocos2d::CCArray*) = win 0x34ac20;
 
-	bool init(EnhancedGameObject*, cocos2d::CCArray*);
+	bool init(EnhancedGameObject*, cocos2d::CCArray*) = win 0x34acd0;
 
-	virtual void onClose(cocos2d::CCObject* sender);
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
+	virtual void onClose(cocos2d::CCObject* sender) = win 0x34b030;
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x34b1b0;
 }
 
 [[link(android)]]
@@ -13600,32 +13614,32 @@ class SetupSequenceTriggerPopup : SetupTriggerPopup {
 	static SetupSequenceTriggerPopup* create(SequenceTriggerGameObject*) = win 0x34b450;
 
 	bool init(SequenceTriggerGameObject*) = win 0x34b4f0;
-	void onAddChance(cocos2d::CCObject* sender);
-	void onChangeOrder(cocos2d::CCObject* sender);
-	void onDeleteSelected(cocos2d::CCObject* sender);
-	void onSelect(cocos2d::CCObject* sender);
-	TodoReturn updateGroupIDButtons();
+	void onAddChance(cocos2d::CCObject* sender) = win 0x34c5e0;
+	void onChangeOrder(cocos2d::CCObject* sender) = win 0x34c670;
+	void onDeleteSelected(cocos2d::CCObject* sender) = win 0x34c6e0;
+	void onSelect(cocos2d::CCObject* sender) = win 0x34c570;
+	void updateGroupIDButtons() = win 0x34c110;
 
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x34c040;
 }
 
 [[link(android)]]
 class SetupSFXEditPopup : SetupAudioTriggerPopup {
 	// virtual ~SetupSFXEditPopup();
 
-	static SetupSFXEditPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*, bool);
+	static SetupSFXEditPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*, bool) = win 0x34f530;
 
-	bool init(SFXTriggerGameObject*, cocos2d::CCArray*, bool);
+	bool init(SFXTriggerGameObject*, cocos2d::CCArray*, bool) = win 0x34f5e0;
 }
 
 [[link(android)]]
 class SetupSFXPopup : SetupAudioTriggerPopup, CustomSFXDelegate, SFXBrowserDelegate {
 	// virtual ~SetupSFXPopup();
 
-	static SetupSFXPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*);
+	static SetupSFXPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*) = win 0x34e1b0;
 
 	TodoReturn createSFXWidget();
-	bool init(SFXTriggerGameObject*, cocos2d::CCArray*);
+	bool init(SFXTriggerGameObject*, cocos2d::CCArray*) = win 0x34e260;
 	void onBrowseSFX(cocos2d::CCObject* sender);
 	TodoReturn updateLength();
 
@@ -13635,17 +13649,17 @@ class SetupSFXPopup : SetupAudioTriggerPopup, CustomSFXDelegate, SFXBrowserDeleg
 	virtual void valueDidChange(int, float) = win 0x34f2b0;
 	virtual void sfxObjectSelected(SFXInfoObject*) {}
 	virtual TodoReturn getActiveSFXID();
-	virtual TodoReturn overridePlaySFX(SFXInfoObject*);
-	virtual TodoReturn sfxBrowserClosed(SFXBrowser*);
+	virtual TodoReturn overridePlaySFX(SFXInfoObject*) = win 0x34f270;
+	virtual TodoReturn sfxBrowserClosed(SFXBrowser*) = win 0x34f490;
 }
 
 [[link(android)]]
 class SetupShaderEffectPopup : SetupTriggerPopup {
 	// virtual ~SetupShaderEffectPopup();
 
-	static SetupShaderEffectPopup* create(EffectGameObject*, cocos2d::CCArray*, int);
+	static SetupShaderEffectPopup* create(EffectGameObject*, cocos2d::CCArray*, int) = win 0x34fe80;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*, int);
+	bool init(EffectGameObject*, cocos2d::CCArray*, int) = win 0x34ff30;
 	void onResetColors(cocos2d::CCObject* sender);
 	void onZLayer(cocos2d::CCObject* sender);
 	TodoReturn setupBulge();
@@ -13669,7 +13683,7 @@ class SetupShaderEffectPopup : SetupTriggerPopup {
 	TodoReturn updateZLayerButtons();
 	TodoReturn zLayerToString(int);
 
-	virtual TodoReturn toggleGroup(int, bool);
+	virtual TodoReturn toggleGroup(int, bool) = win 0x357390;
 	virtual void onClose(cocos2d::CCObject* sender);
 	virtual void updateDefaultTriggerValues() = win 0x350180;
 	virtual void valueDidChange(int, float) = win 0x3570a0;
@@ -13679,9 +13693,9 @@ class SetupShaderEffectPopup : SetupTriggerPopup {
 class SetupShakePopup : SetupTriggerPopup {
 	// virtual ~SetupShakePopup();
 
-	static SetupShakePopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupShakePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x357530;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3575e0;
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	TodoReturn updateDuration();
 	TodoReturn updateDurLabel(bool);
@@ -13717,7 +13731,7 @@ class SetupSmartBlockLayer : FLAlertLayer, TextInputDelegate, SelectArtDelegate 
 	void onSelectPremade(cocos2d::CCObject* sender);
 	void onSelectTemplate(cocos2d::CCObject* sender);
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x35a170;
 	virtual void show();
 	virtual void selectArtClosed(SelectArtLayer*) = win 0x35a120;
 }
@@ -13788,9 +13802,9 @@ class SetupSpawnPopup : SetupTriggerPopup {
 class SetupStaticCameraPopup : SetupTriggerPopup {
 	// virtual ~SetupStaticCameraPopup();
 
-	static SetupStaticCameraPopup* create(CameraTriggerGameObject*, cocos2d::CCArray*);
+	static SetupStaticCameraPopup* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x35f710;
 
-	bool init(CameraTriggerGameObject*, cocos2d::CCArray*);
+	bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x35f7c0;
 	TodoReturn updateState();
 
 	virtual void valueDidChange(int, float) = win 0x35fd60;
@@ -13805,17 +13819,17 @@ class SetupStopTriggerPopup : SetupTriggerPopup {
 
 	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x36d170;
 
-	virtual void onClose(cocos2d::CCObject* sender);
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
+	virtual void onClose(cocos2d::CCObject* sender) = win 0x36d6a0;
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x36d600;
 }
 
 [[link(android)]]
 class SetupTeleportPopup : SetupTriggerPopup {
 	// virtual ~SetupTeleportPopup();
 
-	static SetupTeleportPopup* create(TeleportPortalObject*, cocos2d::CCArray*, int, bool);
+	static SetupTeleportPopup* create(TeleportPortalObject*, cocos2d::CCArray*, int, bool) = win 0x35ff80;
 
-	bool init(TeleportPortalObject*, cocos2d::CCArray*, int, bool);
+	bool init(TeleportPortalObject*, cocos2d::CCArray*, int, bool) = win 0x360030;
 	void onTeleportGravity(cocos2d::CCObject* sender);
 	TodoReturn updateTeleportGravityState(int);
 
@@ -13832,7 +13846,7 @@ class SetupTimerControlTriggerPopup : SetupTriggerPopup {
 
 	bool init(TimerTriggerGameObject*, cocos2d::CCArray*) = win 0x361860;
 
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x361af0;
 }
 
 [[link(android)]]
@@ -13857,14 +13871,14 @@ class SetupTimerTriggerPopup : SetupTriggerPopup {
 class SetupTimeWarpPopup : SetupTriggerPopup {
 	// virtual ~SetupTimeWarpPopup();
 
-	static SetupTimeWarpPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupTimeWarpPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x361c90;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x361d40;
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	TodoReturn updateTimeWarp();
 	TodoReturn updateTimeWarpLabel();
 
-	virtual TodoReturn determineStartValues();
+	virtual TodoReturn determineStartValues() = win 0x362120;
 	virtual void onClose(cocos2d::CCObject* sender);
 }
 
@@ -13872,9 +13886,9 @@ class SetupTimeWarpPopup : SetupTriggerPopup {
 class SetupTouchTogglePopup : SetupTriggerPopup {
 	// virtual ~SetupTouchTogglePopup();
 
-	static SetupTouchTogglePopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupTouchTogglePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x362500;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3625a0;
 	void onControlMode(cocos2d::CCObject* sender);
 	void onDualTouchMode(cocos2d::CCObject* sender);
 	void onHoldMode(cocos2d::CCObject* sender);
@@ -13892,9 +13906,9 @@ class SetupTouchTogglePopup : SetupTriggerPopup {
 class SetupTransformPopup : SetupTriggerPopup {
 	// virtual ~SetupTransformPopup();
 
-	static SetupTransformPopup* create(TransformTriggerGameObject*, cocos2d::CCArray*);
+	static SetupTransformPopup* create(TransformTriggerGameObject*, cocos2d::CCArray*) = win 0x3635c0;
 
-	bool init(TransformTriggerGameObject*, cocos2d::CCArray*);
+	bool init(TransformTriggerGameObject*, cocos2d::CCArray*) = win 0x363670;
 }
 
 [[link(android)]]
@@ -13990,8 +14004,8 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	void updateValueControls(int, float) = win 0x371920;
 	void valueChanged(int, float) = win 0x371d80;
 
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void keyBackClicked();
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x377930;
+	virtual void keyBackClicked() = win 0x365a00;
 	virtual void show() = win 0x61860;
 	virtual void pageChanged() {}
 	virtual TodoReturn toggleGroup(int, bool) = win 0x36ea50;
@@ -14071,16 +14085,16 @@ class SFXBrowserDelegate {
 class SFXFolderObject : SFXInfoObject {
 	// virtual ~SFXFolderObject();
 
-	static SFXFolderObject* create(int, gd::string, int);
+	static SFXFolderObject* create(int, gd::string, int) = win 0x2893e0;
 
-	bool init(int, gd::string, int);
+	bool init(int, gd::string, int) = win 0x2894b0;
 }
 
 [[link(android)]]
 class SFXInfoObject : cocos2d::CCObject {
 	// virtual ~SFXInfoObject();
 
-	static SFXInfoObject* create(int, gd::string, int, int, int);
+	static SFXInfoObject* create(int, gd::string, int, int, int) = win 0x2891d0;
 
 	TodoReturn getLowerCaseName();
 	bool init(int, gd::string, int, int, int);
@@ -14097,7 +14111,7 @@ class SFXSearchResult : MusicSearchResult {
 	bool init(int);
 	void setActiveFolder(SFXFolderObject*);
 
-	virtual TodoReturn updateObjects(AudioSortType);
+	virtual TodoReturn updateObjects(AudioSortType) = win 0x289ff0;
 }
 
 [[link(android)]]
@@ -14132,7 +14146,7 @@ class ShaderGameObject : EffectGameObject {
 class ShaderLayer : cocos2d::CCLayer {
 	// virtual ~ShaderLayer();
 
-	static ShaderLayer* create();
+	static ShaderLayer* create() = win 0x37b720;
 
 	TodoReturn objectPosToShaderPos(cocos2d::CCPoint);
 	void performCalculations() = win 0x3836c0;
@@ -14177,11 +14191,11 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn setupSplitScreenShader();
 	TodoReturn toggleAntiAlias(bool);
 	TodoReturn triggerBulge(float, float, float, float, float, int, int, float, bool);
-	TodoReturn triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool);
+	TodoReturn triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool) = win 0x37F9B0;
 	TodoReturn triggerChromaticX(float, float, int, float, bool);
 	TodoReturn triggerChromaticY(float, float, int, float, bool);
 	TodoReturn triggerColorChange(float, float, float, float, float, float, float, int, float);
-	TodoReturn triggerGlitch(float, float, float, float, float, float, float, bool);
+	TodoReturn triggerGlitch(float, float, float, float, float, float, float, bool) = win 0x37F130;
 	TodoReturn triggerGrayscale(float, float, bool, int, int, float);
 	TodoReturn triggerHueShift(float, float, int, float);
 	TodoReturn triggerInvertColor(float, float, float, float, float, bool, bool, bool, int, float);
@@ -14199,7 +14213,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn triggerSplitScreenCols(float, float, int, float);
 	TodoReturn triggerSplitScreenRows(float, float, int, float);
 	TodoReturn tweenValue(float, float, int, float, int, float);
-	TodoReturn tweenValueAuto(float, int, float, int, float);
+	TodoReturn tweenValueAuto(float, int, float, int, float) = win 0x383A20;
 	TodoReturn updateEffectOffsets(cocos2d::CCPoint);
 	TodoReturn updateMotionBlurSpeedX(float, float);
 	TodoReturn updateMotionBlurSpeedY(float, float);
@@ -14207,8 +14221,8 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn updateShockWaveCenter(cocos2d::CCPoint);
 	bool updateZLayer(int, int, bool) = win 0x383F60;
 
-	virtual void update(float);
-	virtual bool init();
+	virtual void update(float) = win 0x37bde0;
+	virtual bool init() = win 0x37b7c0;
 	virtual void visit() = win 0x383810;
 }
 
@@ -14281,7 +14295,7 @@ class ShareLevelLayer : FLAlertLayer {
 class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
 	// virtual ~ShareLevelSettingsLayer();
 
-	static ShareLevelSettingsLayer* create(GJGameLevel*);
+	static ShareLevelSettingsLayer* create(GJGameLevel*) = win 0x389a70;
 
 	bool init(GJGameLevel*) = win 0x389b10;
 	void onClose(cocos2d::CCObject* sender);
@@ -14300,9 +14314,9 @@ class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
 class ShareListLayer : FLAlertLayer {
 	// virtual ~ShareListLayer();
 
-	static ShareListLayer* create(GJLevelList*);
+	static ShareListLayer* create(GJLevelList*) = win 0x25ee50;
 
-	bool init(GJLevelList*);
+	bool init(GJLevelList*) = win 0x25ef00;
 	void onClose(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
 	void onShare(cocos2d::CCObject* sender);
@@ -14440,9 +14454,9 @@ class Slider : cocos2d::CCLayer {
 	TodoReturn sliderEnded();
 	void updateBar() = win 0x4d590;
 
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d670;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d6b0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d690;
 
 	SliderTouchLogic* m_touchLogic;
 	cocos2d::CCSprite* m_sliderBar;
@@ -14487,7 +14501,7 @@ class SliderTouchLogic : cocos2d::CCMenu {
 
 	static SliderTouchLogic* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float) = win 0x4ccc0;
 
-	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float);
+	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float) = win 0x4ce50;
 	void setMaxOffset(float);
 	void setRotated(bool);
 
@@ -14509,9 +14523,9 @@ class SliderTouchLogic : cocos2d::CCMenu {
 class SmartGameObject : GameObject {
 	// virtual ~SmartGameObject();
 
-	static SmartGameObject* create(char const*);
+	static SmartGameObject* create(char const*) = win 0x397c20;
 
-	bool init(char const*);
+	bool init(char const*) = win 0x397cc0;
 	TodoReturn updateSmartFrame();
 
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
@@ -14543,7 +14557,7 @@ class SongCell : TableViewCell {
 	void onClick(cocos2d::CCObject* sender);
 	TodoReturn updateBGColor(int);
 
-	virtual bool init();
+	virtual bool init() = win 0x1da30;
 	virtual void draw();
 }
 
@@ -14572,7 +14586,7 @@ class SongInfoLayer : FLAlertLayer {
 class SongInfoObject : cocos2d::CCNode {
 	// virtual ~SongInfoObject();
 
-	static SongInfoObject* create(cocos2d::CCDictionary*);
+	static SongInfoObject* create(cocos2d::CCDictionary*) = win 0x287fe0;
 	static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority) = win 0x288650;
 	static SongInfoObject* create(int) = win 0x287f00;
 
@@ -14582,7 +14596,7 @@ class SongInfoObject : cocos2d::CCNode {
 	TodoReturn getTagsString();
 	bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority) = win 0x288860;
 
-	virtual void encodeWithCoder(DS_Dictionary*);
+	virtual void encodeWithCoder(DS_Dictionary*) = win 0x288d10;
 	virtual bool canEncode();
 
 	int m_songID;
@@ -14610,9 +14624,9 @@ class SongObject : cocos2d::CCObject {
 class SongOptionsLayer : FLAlertLayer {
 	// virtual ~SongOptionsLayer();
 
-	static SongOptionsLayer* create(CustomSongDelegate*);
+	static SongOptionsLayer* create(CustomSongDelegate*) = win 0x90140;
 
-	bool init(CustomSongDelegate*);
+	bool init(CustomSongDelegate*) = win 0x901e0;
 	void onClose(cocos2d::CCObject* sender);
 	void onFadeIn(cocos2d::CCObject* sender);
 	void onFadeOut(cocos2d::CCObject* sender);
@@ -14620,7 +14634,7 @@ class SongOptionsLayer : FLAlertLayer {
 	void onPlayback(cocos2d::CCObject* sender);
 	TodoReturn updatePlaybackBtn();
 
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x90e80;
 }
 
 [[link(android)]]
@@ -14650,7 +14664,7 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 	virtual TodoReturn songIDChanged(int) = win 0x92630;
 	virtual TodoReturn getActiveSongID() = win 0x92650;
 	virtual TodoReturn getSongFileName() = win 0x92660;
-	virtual TodoReturn getLevelSettings();
+	virtual TodoReturn getLevelSettings() = win 0x92720;
 }
 
 [[link(android)]]
@@ -14678,7 +14692,7 @@ class SongTriggerGameObject : SFXTriggerGameObject {
 class SpawnParticleGameObject : EffectGameObject {
 	// virtual ~SpawnParticleGameObject();
 
-	static SpawnParticleGameObject* create();
+	static SpawnParticleGameObject* create() = win 0x3b8660;
 
 	virtual bool init() = win 0x3b8700;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
@@ -14695,7 +14709,7 @@ class SpawnTriggerAction {
 class SpawnTriggerGameObject : EffectGameObject {
 	// virtual ~SpawnTriggerGameObject();
 
-	static SpawnTriggerGameObject* create();
+	static SpawnTriggerGameObject* create() = win 0x3ae840;
 
 	TodoReturn addRemap(int, int);
 	TodoReturn changeRemap(int, int, bool);
@@ -14849,7 +14863,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	// virtual ~TableView();
 	TableView(cocos2d::CCRect);
 
-	static TableView* create(TableViewDelegate*, TableViewDataSource*, TableViewCellDelegate*, cocos2d::CCRect);
+	static TableView* create(TableViewDelegate*, TableViewDataSource*, TableViewCellDelegate*, cocos2d::CCRect) = win 0x4fe90;
 
 	TodoReturn cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn cellForRowAtIndexPath(CCIndexPath&);
@@ -14872,10 +14886,10 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 
 	virtual void onEnter();
 	virtual void onExit();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x50d00;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x50e50;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x50da0;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x50df0;
 	virtual void registerWithTouchDispatcher();
 	virtual void scrollWheel(float, float) = win 0x50fd0;
 	virtual void scrllViewWillBeginDecelerating(CCScrollLayerExt*) {}
@@ -14926,9 +14940,9 @@ class TableViewCell : cocos2d::CCLayer {
 
 [[link(android)]]
 class TableViewCellDelegate {
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
+	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x224d20;
 	virtual TodoReturn getSelectedCellIdx();
-	virtual TodoReturn shouldSnapToSelected();
+	virtual TodoReturn shouldSnapToSelected() = win 0x1d800;
 }
 
 [[link(android)]]
@@ -15016,7 +15030,8 @@ class TextAlertPopup : cocos2d::CCNode {
 	static TextAlertPopup* create(gd::string, float, float, int, gd::string) = win 0x211c90;
 
 	bool init(gd::string, float, float, int, gd::string) = win 0x211de0;
-	void setAlertPosition(cocos2d::CCPoint, cocos2d::CCPoint);
+	void setAlertPosition(cocos2d::CCPoint, cocos2d::CCPoint) = win 0x212120;
+	// inlined on Windows
 	void setLabelColor(cocos2d::ccColor3B);
 }
 
@@ -15107,7 +15122,7 @@ class TextStyleSection : cocos2d::CCObject {
 class TimerTriggerGameObject : EffectGameObject {
 	// virtual ~TimerTriggerGameObject();
 
-	static TimerTriggerGameObject* create(char const*);
+	static TimerTriggerGameObject* create(char const*) = win 0x3b4520;
 
 	bool init(char const*);
 
@@ -15130,7 +15145,7 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
 	TodoReturn setupLeaderboard(cocos2d::CCArray*);
 	TodoReturn updateLevelsLabel();
 
-	virtual bool init();
+	virtual bool init() = win 0x3bd310;
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual void show();
@@ -15143,7 +15158,7 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
 class TOSPopup : FLAlertLayer {
 	// virtual ~TOSPopup();
 
-	static TOSPopup* create();
+	static TOSPopup* create() = win 0x212240;
 
 	void onClose(cocos2d::CCObject* sender);
 	void onPrivacy(cocos2d::CCObject* sender);
@@ -15157,7 +15172,7 @@ class TOSPopup : FLAlertLayer {
 class TransformTriggerGameObject : EffectGameObject {
 	// virtual ~TransformTriggerGameObject();
 
-	static TransformTriggerGameObject* create(char const*);
+	static TransformTriggerGameObject* create(char const*) = win 0x3b1350;
 
 	bool init(char const*);
 
@@ -15170,7 +15185,7 @@ class TransformTriggerGameObject : EffectGameObject {
 class TriggerControlGameObject : EffectGameObject {
 	// virtual ~TriggerControlGameObject();
 
-	static TriggerControlGameObject* create(char const*);
+	static TriggerControlGameObject* create(char const*) = win 0x3b8110;
 
 	bool init(char const*);
 	TodoReturn updateTriggerControlFrame();
@@ -15191,15 +15206,15 @@ class TriggerEffectDelegate {
 class TutorialLayer : FLAlertLayer {
 	// virtual ~TutorialLayer();
 
-	static TutorialLayer* create();
+	static TutorialLayer* create() = win 0x3be0a0;
 
 	void loadPage(int);
 	void onClose(cocos2d::CCObject* sender);
 	void onNext(cocos2d::CCObject* sender);
 	TodoReturn removeTutorialTexture();
 
-	virtual bool init();
-	virtual void keyBackClicked();
+	virtual bool init() = win 0x3be140;
+	virtual void keyBackClicked() = win 0x3bea00;
 }
 
 [[link(android)]]
@@ -15281,11 +15296,11 @@ class UILayer : cocos2d::CCLayerColor {
 class UIObjectSettingsPopup : SetupTriggerPopup {
 	// virtual ~UIObjectSettingsPopup();
 
-	static UIObjectSettingsPopup* create(UISettingsGameObject*, cocos2d::CCArray*);
+	static UIObjectSettingsPopup* create(UISettingsGameObject*, cocos2d::CCArray*) = win 0x367170;
 
-	bool init(UISettingsGameObject*, cocos2d::CCArray*);
+	bool init(UISettingsGameObject*, cocos2d::CCArray*) = win 0x367220;
 
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender);
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x3678c0;
 }
 
 [[link(android)]]
@@ -15300,9 +15315,9 @@ class UIOptionsLayer : SetupTriggerPopup {
 	void onSaveLoad(cocos2d::CCObject* sender);
 	TodoReturn toggleUIGroup(int);
 
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x215b10;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x215c60;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x215d90;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void registerWithTouchDispatcher();
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x215150;
@@ -15356,14 +15371,14 @@ class UndoObject : cocos2d::CCObject {
 class UpdateAccountSettingsPopup : FLAlertLayer, GJAccountSettingsDelegate {
 	// virtual ~UpdateAccountSettingsPopup();
 
-	static UpdateAccountSettingsPopup* create(GJAccountSettingsLayer*, int, int, int, gd::string, gd::string, gd::string);
+	static UpdateAccountSettingsPopup* create(GJAccountSettingsLayer*, int, int, int, gd::string, gd::string, gd::string) = win 0x20a3d0;
 
-	bool init(GJAccountSettingsLayer*, int, int, int, gd::string, gd::string, gd::string);
+	bool init(GJAccountSettingsLayer*, int, int, int, gd::string, gd::string, gd::string) = win 0x20a540;
 	void onClose(cocos2d::CCObject* sender);
 
-	virtual void keyBackClicked();
-	virtual TodoReturn updateSettingsFinished();
-	virtual TodoReturn updateSettingsFailed();
+	virtual void keyBackClicked() = win 0x20ab80;
+	virtual TodoReturn updateSettingsFinished() = win 0x20aa20;
+	virtual TodoReturn updateSettingsFailed() = win 0x20aab0;
 }
 
 [[link(android)]]
@@ -15396,9 +15411,9 @@ class UploadActionPopup : FLAlertLayer {
 class UploadListPopup : FLAlertLayer, ListUploadDelegate {
 	// virtual ~UploadListPopup();
 
-	static UploadListPopup* create(GJLevelList*);
+	static UploadListPopup* create(GJLevelList*) = win 0x2600f0;
 
-	bool init(GJLevelList*);
+	bool init(GJLevelList*) = win 0x260190;
 	void onBack(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onReturnToList(cocos2d::CCObject* sender);
@@ -15454,9 +15469,9 @@ class URLCell : TableViewCell {
 class URLViewLayer : GJDropDownLayer {
 	// virtual ~URLViewLayer();
 
-	static URLViewLayer* create(gd::string, cocos2d::CCArray*);
+	static URLViewLayer* create(gd::string, cocos2d::CCArray*) = win 0x2166a0;
 
-	bool init(gd::string, cocos2d::CCArray*);
+	bool init(gd::string, cocos2d::CCArray*) = win 0x216770;
 }
 
 [[link(android)]]
@@ -15496,7 +15511,7 @@ class VideoOptionsLayer : FLAlertLayer {
 	TodoReturn updateTextureQuality(int) = win 0x2b4de0;
 
 	virtual bool init() = win 0x2b3ec0;
-	virtual void keyBackClicked();
+	virtual void keyBackClicked() = win 0x2b52b0;
 }
 
 [[link(android)]]
