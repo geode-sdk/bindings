@@ -2782,11 +2782,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn editorLayerForArray(cocos2d::CCArray*, bool) = win 0xcbda0;
 	TodoReturn enableButton(CreateMenuItem*);
 	TodoReturn findAndSelectObject(int, bool) = win 0xaa870;
-	TodoReturn findSnapObject(cocos2d::CCArray*, float);
-	TodoReturn findSnapObject(cocos2d::CCPoint, float);
+	GameObject* findSnapObject(cocos2d::CCArray*, float) = win 0xd86a0;
+	GameObject* findSnapObject(cocos2d::CCPoint, float) = win 0xd85e0;
 	TodoReturn findTriggerTest();
-	TodoReturn flipObjectsX(cocos2d::CCArray*) = win 0xd5c20;
-	TodoReturn flipObjectsY(cocos2d::CCArray*) = win 0xd5e50;
+	void flipObjectsX(cocos2d::CCArray*) = win 0xd5c20;
+	void flipObjectsY(cocos2d::CCArray*) = win 0xd5e50;
 	TodoReturn getButton(char const*, int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
 	CreateMenuItem* getCreateBtn(int id, int bg) = win 0xC78A0;
 	TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
@@ -2886,7 +2886,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn resetUI() = win 0xa8b10;
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = win 0xd6080;
 	TodoReturn rotationforCommand(EditCommand);
-	void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType) = win 0xd64b0;
+	void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType, bool) = win 0xd64b0;
 	TodoReturn selectAll() = win 0xc9750;
 	TodoReturn selectAllWithDirection(bool) = win 0xc9890;
 	void selectBuildTab(int) = win 0xcbf00;
@@ -2920,10 +2920,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn toggleSpecialEditButtons();
 	TodoReturn toggleStickyControls(bool) = win 0xa6080;
 	TodoReturn toggleSwipe(cocos2d::CCObject*) = win 0xc87a0;
-	TodoReturn transformObject(GameObject*, EditCommand, bool) = win 0xd5780;
+	void transformObject(GameObject*, EditCommand, bool) = win 0xd5780;
 	void transformObjectCall(cocos2d::CCObject*) = win 0xd5360;
 	void transformObjectCall(EditCommand) = win 0xd5380;
-	TodoReturn transformObjects(cocos2d::CCArray*, cocos2d::CCPoint, float, float, float, float, float, float) = win 0xd6e40;
+	void transformObjects(cocos2d::CCArray*, cocos2d::CCPoint, float, float, float, float, float, float) = win 0xd6e40;
 	TodoReturn transformObjectsActive() = win 0xd6d20;
 	TodoReturn transformObjectsReset() = win 0xd6da0;
 	TodoReturn triggerSwipeMode();
@@ -2962,40 +2962,39 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn getUI() = win 0xa3aa0;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0xaa700;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xaa650;
-	virtual TodoReturn updateTransformControl() = win 0xcc870;
-	virtual TodoReturn transformChangeBegin() = win 0xccc50;
+	virtual void updateTransformControl() = win 0xcc870;
+	virtual void transformChangeBegin() = win 0xccc50;
 	virtual void transformChangeEnded() {}
 	virtual TodoReturn getTransformNode() = win 0xa3ab0;
-	virtual TodoReturn transformScaleXChanged(float) = win 0xd6ba0;
-	virtual TodoReturn transformScaleYChanged(float) = win 0xd6bc0;
-	virtual TodoReturn transformScaleXYChanged(float, float) = win 0xd6be0;
-	virtual TodoReturn transformSkewXChanged(float) = win 0xd6c10;
-	virtual TodoReturn transformSkewYChanged(float) = win 0xd6c30;
-	virtual TodoReturn transformRotationXChanged(float) = win 0xd6c50;
-	virtual TodoReturn transformRotationYChanged(float) = win 0xd6c70;
-	virtual TodoReturn transformRotationChanged(float) = win 0xd6c90;
-	virtual TodoReturn transformResetRotation() = win 0xd6cc0;
-	virtual TodoReturn transformRestoreRotation() = win 0xd6cf0;
+	virtual void transformScaleXChanged(float) = win 0xd6ba0;
+	virtual void transformScaleYChanged(float) = win 0xd6bc0;
+	virtual void transformScaleXYChanged(float, float) = win 0xd6be0;
+	virtual void transformSkewXChanged(float) = win 0xd6c10;
+	virtual void transformSkewYChanged(float) = win 0xd6c30;
+	virtual void transformRotationXChanged(float) = win 0xd6c50;
+	virtual void transformRotationYChanged(float) = win 0xd6c70;
+	virtual void transformRotationChanged(float) = win 0xd6c90;
+	virtual void transformResetRotation() = win 0xd6cc0;
+	virtual void transformRestoreRotation() = win 0xd6cf0;
 	virtual void songStateChanged() = win 0xca080;
 	virtual void colorSelectClosed(cocos2d::CCNode*) = win 0xd4930;
 	virtual void keyUp(cocos2d::enumKeyCodes) = win 0xdb210;
 	virtual void scrollWheel(float, float) = win 0xdb260;
-	virtual TodoReturn angleChangeBegin() = win 0xd84d0;
+	virtual void angleChangeBegin() = win 0xd84d0;
 	virtual void angleChangeEnded() {}
-	virtual TodoReturn angleChanged(float) = win 0xd84e0;
-	virtual TodoReturn updateScaleControl() = win 0xcc380;
-	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint) = win 0xccc60;
-	virtual TodoReturn scaleChangeBegin() = win 0xcc4b0;
+	virtual void angleChanged(float) = win 0xd84e0;
+	virtual void updateScaleControl() = win 0xcc380;
+	virtual void anchorPointMoved(cocos2d::CCPoint) = win 0xccc60;
+	virtual void scaleChangeBegin() = win 0xcc4b0;
 	virtual void scaleChangeEnded() {}
-	virtual TodoReturn scaleXChanged(float) = win 0xcc4c0;
-	virtual TodoReturn scaleYChanged(float) = win 0xcc540;
-	virtual void scaleXYChanged(float, float) = win 0xcc5c0;
+	virtual void scaleXChanged(float, bool) = win 0xcc4c0;
+	virtual void scaleYChanged(float, bool) = win 0xcc540;
+	virtual void scaleXYChanged(float, float, bool) = win 0xcc5c0;
 
 
-	PAD = win 0x60, android32 0x5c;
+	PAD = win 0x20, android32 0x1c;
 
-	float m_unk1b8;
-	float m_unk1bc;
+	GJTransformState m_transformState;
 	PAD = win 0x4, android32 0x4;
 	EditButtonBar* m_buttonBar;
 	PAD = win 0x4, android32 0x4;
@@ -3004,7 +3003,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	PAD = win 0x30, android32 0x30;
 	cocos2d::CCLabelBMFont* m_objectInfoLabel;
 	GJRotationControl* m_rotationControl;
-	PAD = win 0xc, android32 0xc;
+	cocos2d::CCPoint m_pivotPoint;
+	PAD = win 0x4, android32 0x4;
 	GJScaleControl* m_scaleControl;
 	GJTransformControl* m_transformControl;
 	cocos2d::CCNode* m_unk220;
@@ -7849,8 +7849,8 @@ class GJRotationControl : cocos2d::CCLayer {
 
 [[link(android)]]
 class GJRotationControlDelegate {
-	virtual TodoReturn angleChanged(float);
-	virtual TodoReturn angleChangeBegin();
+	virtual void angleChanged(float);
+	virtual void angleChangeBegin();
 	virtual void angleChangeEnded();
 }
 
@@ -7876,17 +7876,25 @@ class GJScaleControl : cocos2d::CCLayer {
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xdef50;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xdf410;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+
+	Slider* m_sliderX;
+	Slider* m_sliderY;
+	Slider* m_sliderXY;
+	float m_touchX;
+	float m_valueX;
+	float m_valueY;
+	// more stuff
 }
 
 [[link(android)]]
 class GJScaleControlDelegate {
-	virtual TodoReturn scaleXChanged(float);
-	virtual TodoReturn scaleYChanged(float);
-	virtual void scaleXYChanged(float, float);
-	virtual TodoReturn scaleChangeBegin();
+	virtual void scaleXChanged(float, bool);
+	virtual void scaleYChanged(float, bool);
+	virtual void scaleXYChanged(float, float, bool);
+	virtual void scaleChangeBegin();
 	virtual void scaleChangeEnded();
-	virtual TodoReturn updateScaleControl();
-	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint);
+	virtual void updateScaleControl();
+	virtual void anchorPointMoved(cocos2d::CCPoint);
 }
 
 [[link(android)]]
@@ -8202,20 +8210,20 @@ class GJTransformControl : cocos2d::CCLayer {
 
 [[link(android)]]
 class GJTransformControlDelegate {
-	virtual TodoReturn transformScaleXChanged(float);
-	virtual TodoReturn transformScaleYChanged(float);
-	virtual TodoReturn transformScaleXYChanged(float, float);
-	virtual TodoReturn transformRotationXChanged(float);
-	virtual TodoReturn transformRotationYChanged(float);
-	virtual TodoReturn transformRotationChanged(float);
-	virtual TodoReturn transformResetRotation();
-	virtual TodoReturn transformRestoreRotation();
-	virtual TodoReturn transformSkewXChanged(float);
-	virtual TodoReturn transformSkewYChanged(float);
-	virtual TodoReturn transformChangeBegin();
+	virtual void transformScaleXChanged(float);
+	virtual void transformScaleYChanged(float);
+	virtual void transformScaleXYChanged(float, float);
+	virtual void transformRotationXChanged(float);
+	virtual void transformRotationYChanged(float);
+	virtual void transformRotationChanged(float);
+	virtual void transformResetRotation();
+	virtual void transformRestoreRotation();
+	virtual void transformSkewXChanged(float);
+	virtual void transformSkewYChanged(float);
+	virtual void transformChangeBegin();
 	virtual void transformChangeEnded();
-	virtual TodoReturn updateTransformControl();
-	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint);
+	virtual void updateTransformControl();
+	virtual void anchorPointMoved(cocos2d::CCPoint);
 	virtual TodoReturn getTransformNode();
 	virtual TodoReturn getUI();
 }

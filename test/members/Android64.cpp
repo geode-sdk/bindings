@@ -60,7 +60,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3208);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x3238);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3300);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3460);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34a8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x3498);
 
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x36d0);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37a0);

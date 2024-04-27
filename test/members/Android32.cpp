@@ -154,6 +154,7 @@ GEODE_SIZE_CHECK(PlayLayer, 0x2F58);
 GEODE_MEMBER_CHECK(GameObject, m_hasExtendedCollision, 0x218);
 GEODE_MEMBER_CHECK(GameObject, m_scaleX, 0x3e8);
 
+GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x174);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x22c);
 GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x230);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
