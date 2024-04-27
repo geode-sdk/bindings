@@ -6397,7 +6397,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual void scaleYChanged(float) = mac 0x43550;
 	virtual void scaleXYChanged(float, float) = win 0xcb9b0, mac 0x43680;
 
-	PAD = android32 0x1c, mac 0x38;
+	PAD = android32 0x1c, mac 0x28;
 
 	GJTransformState m_transformState;
 	PAD = android32 0x4, mac 0x8;
