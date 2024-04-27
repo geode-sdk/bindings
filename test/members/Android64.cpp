@@ -62,8 +62,12 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3300);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3460);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34a8);
 
+GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x36d0);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37a0);
+GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x37c0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x37d8);
+GEODE_MEMBER_CHECK(PlayLayer, m_colorKeyDict, 0x38e8);
+GEODE_MEMBER_CHECK(PlayLayer, m_nextColorKey, 0x3938);
 
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4e4, 0x590);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk56c, 0x648);
@@ -84,6 +88,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xac0);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xb38);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk950, 0xbe8);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk948, 0xbe0);
+GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x703);
 
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x1d8);
 GEODE_MEMBER_CHECK(GameManager, m_levelEditorLayer, 0x1e0);
@@ -116,7 +121,7 @@ GEODE_MEMBER_CHECK(GameObject, m_isHighDetail, 0x4db);
 GEODE_MEMBER_CHECK(GameObject, m_isPassable, 0x4fd);
 GEODE_MEMBER_CHECK(GameObject, m_property155, 0x518);
 
-GEODE_MEMBER_CHECK(EffectGameObject, m_isMultiActivate, 0x670);
+GEODE_MEMBER_CHECK(EffectGameObject, m_isMultiTriggered, 0x670);
 GEODE_MEMBER_CHECK(EffectGameObject, m_isReverse, 0x6e4);
 GEODE_MEMBER_CHECK(EffectGameObject, m_objectLabel, 0x710);
 
@@ -127,7 +132,7 @@ GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2C8);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x3788);
 
 
-GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x250);
+GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x258);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
 GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x300);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x338);

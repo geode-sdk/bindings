@@ -173,6 +173,11 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
             single_output += format_strings::class_no_includes;
         }
 
+        // Hack: Include fmod.hpp if potentially needed.
+        if (can_find(cls.name, "FMOD")) {
+            single_output += "#include <fmod.hpp>\n";
+        }
+
         for (auto dep : cls.attributes.depends) {
             if (can_find(dep, "cocos2d::")) continue;
 
