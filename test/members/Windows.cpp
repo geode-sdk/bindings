@@ -253,8 +253,10 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x2e24);
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
 
 GEODE_MEMBER_CHECK(GJPathSprite, m_pathNumber, 0x1fc);
+
 GEODE_MEMBER_CHECK(PointNode, m_point, 0x34);
 
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x1a4);
+//GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x200);
 
 #endif
