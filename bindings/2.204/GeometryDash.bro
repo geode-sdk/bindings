@@ -8616,9 +8616,9 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	TodoReturn reloadWindow() = win 0x22bd00;
 	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x22b670;
 	void setupLevelInfo();
-	TodoReturn toggleCommentMode(cocos2d::CCObject*);
-	TodoReturn toggleExtendedMode(cocos2d::CCObject*);
-	TodoReturn toggleSmallCommentMode(cocos2d::CCObject*) = win 0x22bc10;
+	void toggleCommentMode(cocos2d::CCObject* sender) = win 0x22be50;
+	void toggleExtendedMode(cocos2d::CCObject* sender) = win 0x22bc10;
+	void toggleSmallCommentMode(cocos2d::CCObject* sender) = win 0x22bc60;
 	TodoReturn updateCommentModeButtons();
 	TodoReturn updateLevelsLabel();
 
