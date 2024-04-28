@@ -6264,7 +6264,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PlaybackMode m_playbackMode;
     PAD = android32 0x64, android64 0xC0, ios 0xC0;
     GJEffectManager* m_effectManager; // TODO: the offset for ios is not correct.
-    PAD = android32 0x224, android64 0x448, ios 0x43C;
+    PAD = android32 0x224, android64 0x44C, ios 0x43C;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
