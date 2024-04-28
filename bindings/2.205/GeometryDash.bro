@@ -8276,7 +8276,16 @@ class GJUserScore : cocos2d::CCNode {
 
 [[link(android)]]
 class GJValueTween {
-	TodoReturn step(float);
+	void step(float delta);
+	float	m_fromValue;
+	float	m_toValue;
+	float	m_duration;	
+	float	m_deltaTime;	
+	float	m_currentValue;	
+	int	m_easingType;
+	float	m_easingRate;	
+	bool	m_finished;	
+	bool	m_unkBool; // Maybe it's an Integer??
 }
 
 [[link(android)]]
