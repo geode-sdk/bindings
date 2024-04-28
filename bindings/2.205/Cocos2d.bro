@@ -2256,6 +2256,25 @@ class cocos2d::CCEaseOut {
 }
 
 [[link(win, android)]]
+class cocos2d::CCSpawn {
+	static cocos2d::CCSpawn* create(cocos2d::CCArray*);
+	// static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...);
+	static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = ios 0x191a74;
+	// static cocos2d::CCSpawn* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
+
+	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
+
+	// CCSpawn(cocos2d::CCSpawn const&);
+	// CCSpawn();
+    
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
+    virtual void stop();
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCScaleTo {
 	static cocos2d::CCScaleTo* create(float, float) = ios 0x1931e0;
 	static cocos2d::CCScaleTo* create(float, float, float) = ios 0x193278;
