@@ -11746,20 +11746,20 @@ class RateLevelLayer : FLAlertLayer {
 class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	// virtual ~RateStarsLayer();
 
-	static RateStarsLayer* create(int, bool, bool);
+	static RateStarsLayer* create(int, bool, bool) = ios 0x86278;
 
-	TodoReturn getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
-	bool init(int, bool, bool);
-	void onClose(cocos2d::CCObject* sender);
-	void onFeature(cocos2d::CCObject* sender);
-	void onRate(cocos2d::CCObject* sender);
+	CCMenuItemSpriteExtra* getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float) = ios 0x86890;
+	bool init(int, bool, bool) = ios 0x86304;
+	void onClose(cocos2d::CCObject* sender) = ios 0x86ad4;
+	void onFeature(cocos2d::CCObject* sender) = ios 0x86abc;
+	void onRate(cocos2d::CCObject* sender) = ios 0x86b30;
 	void onToggleCoins(cocos2d::CCObject* sender);
-	TodoReturn selectRating(cocos2d::CCObject*);
+	void selectRating(cocos2d::CCObject*) = ios 0x86958;
 
-	virtual void keyBackClicked();
-	virtual void uploadActionFinished(int, int);
-	virtual void uploadActionFailed(int, int);
-	virtual void onClosePopup(UploadActionPopup*);
+	virtual void keyBackClicked() = ios 0x86dec;
+	virtual void uploadActionFinished(int, int) = ios 0x86c50;
+	virtual void uploadActionFailed(int, int) = ios 0x86cdc;
+	virtual void onClosePopup(UploadActionPopup*) = ios 0x86d70;
 	PAD = win 0x10;
 	int m_starsRate;
 }
