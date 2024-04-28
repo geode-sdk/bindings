@@ -6258,13 +6258,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void removeAllCheckpoints() = ios 0x20d8b4;
 	virtual void toggleMusicInPractice() = ios 0x20d8b8;
 
-	PAD = win 0x8, android32 0x8, android64 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8, ios 0x2; // why 0x2 for iOS? i have no idea!
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
-	PAD = android32 0x64, android64 0xC0;
-	GJEffectManager* m_effectManager;
-	PAD = android32 0x224, android64 0x448;
+	PAD = android32 0x64, android64 0xC0, ios 0xC0;
+	GJEffectManager* m_effectManager; // TODO: the offset for ios is wrong.
+	PAD = android32 0x224, android64 0x448, ios 0x43C;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
@@ -6327,9 +6327,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = android32 0xb0, android64 0x148, ios 0x128;
 	UILayer* m_uiLayer;
-	PAD = android32 0x24, android64 0x40, ios 0x40;
+	PAD = android32 0x24, android64 0x30, ios 0x40;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c2c
-	PAD = android32 0x114, android64 0x1a0, ios 0x1a0;
+	PAD = android32 0x114, android64 0x1b0, ios 0x1a0;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode; // android32 = 0x2d50, android64 = 0x3668
 	PAD = android32 0x4, android64 0x8, ios 0x8;
