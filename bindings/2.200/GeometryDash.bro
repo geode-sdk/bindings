@@ -6224,8 +6224,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void deselectObject() = mac 0x36850;
 	TodoReturn doPasteInPlace(bool);
 	TodoReturn doPasteObjects(bool) = mac 0x41b00;
-	TodoReturn findSnapObject(cocos2d::CCPoint, float);
-	TodoReturn findSnapObject(cocos2d::CCArray*, float);
+	void findSnapObject(cocos2d::CCPoint, float);
+	void findSnapObject(cocos2d::CCArray*, float);
 	TodoReturn moveForCommand(EditCommand);
 	void moveObjectCall(EditCommand) = mac 0x4d7c0;
 	void moveObjectCall(cocos2d::CCObject*);
