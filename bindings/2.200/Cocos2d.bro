@@ -612,8 +612,8 @@ class cocos2d::CCLayerColor {
 [[link(win, android)]]
 class cocos2d::CCLayerGradient {
 	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = mac 0x48F140;
-	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
-	static cocos2d::CCLayerGradient* create();
+	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&) = mac 0x48f3f0;
+	static cocos2d::CCLayerGradient* create() = mac 0x48f480;
 
 	bool getShouldPremultiply() const;
 
@@ -1595,7 +1595,7 @@ class cocos2d::CCLabelBMFont {
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment) = mac 0x59ca60;
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = mac 0x59cb10;
 	static cocos2d::CCLabelBMFont* create() = mac 0x59c9f0;
-	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int);
+	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int) = mac 0x59cfe0;
 	static void purgeCachedData();
 
 	bool initWithString(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = mac 0x59cd10;
@@ -1685,7 +1685,7 @@ class cocos2d::CCArray {
 	static cocos2d::CCArray* createWithCapacity(unsigned int) = mac 0x6e3450;
 	static cocos2d::CCArray* createWithContentsOfFile(char const*);
 	static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*);
-	static cocos2d::CCArray* createWithObject(cocos2d::CCObject*);
+	static cocos2d::CCArray* createWithObject(cocos2d::CCObject*) = mac 0x6e31e0;
 
 	bool init() = mac 0x6e2fc0;
 	bool initWithArray(cocos2d::CCArray*);
@@ -1712,13 +1712,13 @@ class cocos2d::CCArray {
 	unsigned int indexOfObject(cocos2d::CCObject*) const;
 	void insertObject(cocos2d::CCObject*, unsigned int) = mac 0x6e3930;
 	bool isEqualToArray(cocos2d::CCArray*);
-	cocos2d::CCObject* lastObject();
+	cocos2d::CCObject* lastObject() = mac 0x6e3810;
 	cocos2d::CCObject* objectAtIndex(unsigned int) = mac 0x6e37f0;
 	cocos2d::CCObject* randomObject();
 	void recreateNewIndexes();
 	void reduceMemoryFootprint();
 	void removeAllObjects() = mac 0x6e39b0;
-	void removeLastObject(bool);
+	void removeLastObject(bool) = mac 0x6e3940;
 	void removeObject(cocos2d::CCObject*, bool) = mac 0x6e3960;
 	void removeObjectAtIndex(unsigned, bool) = mac 0x6e3970;
 	void removeObjectAtIndexChild(unsigned, bool) = mac 0x6e3980;
@@ -2190,9 +2190,9 @@ class cocos2d::CCDrawNode {
 	void setBlendFunc(cocos2d::_ccBlendFunc const&) = mac 0x5d6a90;
 
 	// CCDrawNode(cocos2d::CCDrawNode const&);
-	CCDrawNode() = mac 0x252ff0;
-	~CCDrawNode() = mac 0x2530a0;
-	void clear();
+	CCDrawNode() = mac 0x5d4f10;
+	~CCDrawNode() = mac 0x5d4f70;
+	void clear() = mac 0x5d6a60;
 	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int) = mac 0x5d6920;
 	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&) = mac 0x5d5950;
 	void drawDot(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
@@ -2205,7 +2205,7 @@ class cocos2d::CCDrawNode {
 	void listenBackToForeground(cocos2d::CCObject*);
 	void render();
 
-	virtual bool init() = mac 0x2530d0;
+	virtual bool init() = mac 0x5d5220;
 	virtual void draw() = mac 0x5d5410;
 }
 
