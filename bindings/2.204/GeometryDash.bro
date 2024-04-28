@@ -14242,9 +14242,9 @@ class ShardsPage : FLAlertLayer {
 
 	void FLAlert_Clicked(FLAlertLayer*, bool);
 	void goToPage(int);
-	void onClose(cocos2d::CCObject* sender);
-	void onIconInfo(cocos2d::CCObject* sender);
-	void onSwitchPage(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x6a750;
+	void onIconInfo(cocos2d::CCObject* sender) = win 0x385f80;
+	void onSwitchPage(cocos2d::CCObject* sender) = win 0x385fb0;
 
 	virtual bool init() = win 0x384320;
 	virtual void registerWithTouchDispatcher();
