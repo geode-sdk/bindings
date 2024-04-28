@@ -4602,7 +4602,7 @@ class GameManager : GManager {
 	bool isIconUnlocked(int, IconType) = win 0x121f90;
 	TodoReturn itemPurchased(char const*);
 	TodoReturn joinDiscord() = win 0x126fb0;
-	TodoReturn joinReddit() = win 0x127040;
+	void joinReddit() = win 0x127040;
 	int keyForIcon(int iconIdx, int iconEnum) {
 		return m_keyStartForIcon->at(iconEnum) + iconIdx - 1;
 	}
@@ -6200,7 +6200,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateAreaObjectLastValues(GameObject*);
 	TodoReturn updateAudioVisualizer() = win 0x1ca410;
 	TodoReturn updateBGArtSpeed(float, float);
-	TodoReturn updateCamera(float) = win 0x1be670;
+	void updateCamera(float) = win 0x1be670;
 	TodoReturn updateCameraBGArt(cocos2d::CCPoint, float);
 	TodoReturn updateCameraEdge(int, int);
 	void updateCameraMode(EffectGameObject*, bool) = win 0x19aaa0;

@@ -862,7 +862,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	virtual void unselected();
 
 	/// Set a new image for this button
-	/// Prefer using this over `setNormalImage` as the latter does not actually 
+	/// Prefer using this over `setNormalImage` as the latter does not actually
 	/// handle any of the special sizing operations `CCMenuItemSpriteExtra` has
 	/// @param sprite The sprite to replace this button's sprite with
 	/// @note Geode addition
@@ -871,8 +871,8 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		this->updateSprite();
 	}
 	/// Update the sizing of this button's image
-	/// If you for example have a `ButtonSprite` on this button and change the 
-	/// text, you need to call `updateSprite` afterwards to fix the button's 
+	/// If you for example have a `ButtonSprite` on this button and change the
+	/// text, you need to call `updateSprite` afterwards to fix the button's
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
@@ -950,8 +950,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	virtual void setEnabled(bool) = ios 0x198358;
 
 	/// Update the sizing of this toggle's image
-	/// If you for example have a `ButtonSprite` on this toggle and change the 
-	/// text, you need to call `updateSprite` afterwards to fix the toggle's 
+	/// If you for example have a `ButtonSprite` on this toggle and change the
+	/// text, you need to call `updateSprite` afterwards to fix the toggle's
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
@@ -15290,9 +15290,9 @@ class UploadActionPopup : FLAlertLayer {
 	void showSuccessMessage(gd::string message);
 
 	virtual void keyBackClicked();
-	
+
 	UploadPopupDelegate * m_delegate;
-    	TextArea * m_textArea;	
+    	TextArea * m_textArea;
     	LoadingCircle *	m_loadingCircle;
     	CCMenuItemSpriteExtra *	m_menuItemSpriteExtra;
     	bool m_succeeded;
