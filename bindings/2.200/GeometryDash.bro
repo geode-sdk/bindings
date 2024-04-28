@@ -5914,7 +5914,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn triggerFollowCommand(EffectGameObject*);
 	TodoReturn triggerRotateCommand(EffectGameObject*);
 	bool tryUpdateSpeedObject(EffectGameObject*, bool) = mac 0xe5400;
-	TodoReturn typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float);
+	bool typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float);
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn sortBatchnodeChildren(float);
 	TodoReturn toggleLockActiveLayer();
@@ -6121,7 +6121,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
-	TodoReturn getGridSnappedPos(cocos2d::CCPoint);
+	cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint);
 	TodoReturn getRandomStartKey(int);
 	TodoReturn getRelativeOffset(GameObject*) = mac 0x4ca710;
 	TodoReturn getSmartObjectKey(int, GJSmartDirection);
@@ -6489,6 +6489,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint m_cameraTest;
     cocos2d::CCPoint m_clickAtPosition;
     GameObject* m_selectedObject;
+	GameObject* m_snapObject;
 }
 
 [[link(android)]]

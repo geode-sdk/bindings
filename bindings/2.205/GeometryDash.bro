@@ -2757,7 +2757,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getCycledObject(cocos2d::CCArray*, bool);
 	TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&);
-	TodoReturn getGridSnappedPos(cocos2d::CCPoint);
+	cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint);
 	TodoReturn getGroupCenter(cocos2d::CCArray*, bool);
 	TodoReturn getGroupInfo(GameObject*, cocos2d::CCArray*, int&, int&, int&);
 	TodoReturn getLimitedPosition(cocos2d::CCPoint);
@@ -3048,7 +3048,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCPoint m_cameraTest;
 	cocos2d::CCPoint m_clickAtPosition;
 	GameObject* m_selectedObject;
-	void* m_unk530;
+	GameObject* m_snapObject;
 	void* m_unk538;
 	void* m_unk540;
 	int m_selectedTab;
@@ -9106,7 +9106,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn triggerPlayerFollowCommand(EffectGameObject*);
 	TodoReturn triggerRotateCommand(EffectGameObject*);
 	bool tryUpdateSpeedObject(EffectGameObject*, bool);
-	TodoReturn typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float);
+	bool typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float);
 	TodoReturn undoLastAction();
 	TodoReturn unlockAllLayers();
 	TodoReturn updateAnimateOnTriggerObjects(bool);
