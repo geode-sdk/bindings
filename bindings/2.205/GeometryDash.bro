@@ -6258,13 +6258,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void removeAllCheckpoints() = ios 0x20d8b4;
 	virtual void toggleMusicInPractice() = ios 0x20d8b8;
 
-	PAD = win 0x8, android32 0x8, android64 0x8, ios 0x2; // why 0x2 for iOS? i have no idea!
+	PAD = win 0x8, android32 0x8, android64 0x8;
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
-    PAD = android32 0x64, android64 0xC0, ios 0xC0;
-    GJEffectManager* m_effectManager; // TODO: the offset for ios is not correct.
-    PAD = android32 0x224, android64 0x44C, ios 0x43C;
+	PAD = android32 0x64, android64 0xC0;
+	GJEffectManager* m_effectManager;
+	PAD = android32 0x224, android64 0x448;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
