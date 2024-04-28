@@ -15277,7 +15277,6 @@ class UploadActionPopup : FLAlertLayer {
 
 	static UploadActionPopup* create(UploadPopupDelegate* delegate, gd::string str);
 
-<<<<<<< HEAD
 	void closePopup();
 	bool init(UploadPopupDelegate*, gd::string) = ios 0x2dff10;
 	void onClose(cocos2d::CCObject* sender);
