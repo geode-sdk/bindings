@@ -32,11 +32,13 @@ class SongChannelState {
 }
 
 class SongTriggerState {
-	PAD = win 0x10;
+	SongTriggerGameObject* m_songTriggerGameObject;
+	PAD = win 0xc;
 }
 
 class SFXTriggerState {
-	PAD = win 0xa0;
+	SFXTriggerGameObject* m_sfxTriggerGameObject;
+	PAD = win 0x9c;
 }
 
 class ChanceObject {
