@@ -11754,7 +11754,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	void onFeature(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender);
 	void onToggleCoins(cocos2d::CCObject* sender);
-	TodoReturn selectRating(cocos2d::CCObject*);
+	void selectRating(cocos2d::CCObject*);
 
 	virtual void keyBackClicked();
 	virtual void uploadActionFinished(int, int);
