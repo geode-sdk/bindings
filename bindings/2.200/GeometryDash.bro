@@ -315,7 +315,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	virtual void unselected() = mac 0x254f00;
 
 	/// Set a new image for this button
-	/// Prefer using this over `setNormalImage` as the latter does not actually 
+	/// Prefer using this over `setNormalImage` as the latter does not actually
 	/// handle any of the special sizing operations `CCMenuItemSpriteExtra` has
 	/// @param sprite The sprite to replace this button's sprite with
 	/// @note Geode addition
@@ -324,8 +324,8 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		this->updateSprite();
 	}
 	/// Update the sizing of this button's image
-	/// If you for example have a `ButtonSprite` on this button and change the 
-	/// text, you need to call `updateSprite` afterwards to fix the button's 
+	/// If you for example have a `ButtonSprite` on this button and change the
+	/// text, you need to call `updateSprite` afterwards to fix the button's
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
@@ -883,8 +883,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	virtual void unselected() = win 0x26130, mac 0x5cfa0;
 
 	/// Update the sizing of this toggle's image
-	/// If you for example have a `ButtonSprite` on this toggle and change the 
-	/// text, you need to call `updateSprite` afterwards to fix the toggle's 
+	/// If you for example have a `ButtonSprite` on this toggle and change the
+	/// text, you need to call `updateSprite` afterwards to fix the toggle's
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
@@ -1681,7 +1681,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = mac 0x128;
 	UILayer* m_uiLayer;
 	PAD = mac 0x50;
-	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; 
+	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
 	PAD = mac 0x180;
 	GJGameLoadingLayer* m_loadingLayer;
 }
@@ -5914,7 +5914,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn triggerFollowCommand(EffectGameObject*);
 	TodoReturn triggerRotateCommand(EffectGameObject*);
 	bool tryUpdateSpeedObject(EffectGameObject*, bool) = mac 0xe5400;
-	TodoReturn typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float);
+	bool typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float);
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn sortBatchnodeChildren(float);
 	TodoReturn toggleLockActiveLayer();
@@ -6121,7 +6121,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
-	TodoReturn getGridSnappedPos(cocos2d::CCPoint);
+	cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint);
 	TodoReturn getRandomStartKey(int);
 	TodoReturn getRelativeOffset(GameObject*) = mac 0x4ca710;
 	TodoReturn getSmartObjectKey(int, GJSmartDirection);
@@ -6224,8 +6224,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void deselectObject() = mac 0x36850;
 	TodoReturn doPasteInPlace(bool);
 	TodoReturn doPasteObjects(bool) = mac 0x41b00;
-	TodoReturn findSnapObject(cocos2d::CCPoint, float);
-	TodoReturn findSnapObject(cocos2d::CCArray*, float);
+	void findSnapObject(cocos2d::CCPoint, float);
+	void findSnapObject(cocos2d::CCArray*, float);
 	TodoReturn moveForCommand(EditCommand);
 	void moveObjectCall(EditCommand) = mac 0x4d7c0;
 	void moveObjectCall(cocos2d::CCObject*);
@@ -6489,6 +6489,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint m_cameraTest;
     cocos2d::CCPoint m_clickAtPosition;
     GameObject* m_selectedObject;
+	GameObject* m_snapObject;
 }
 
 [[link(android)]]
@@ -7117,7 +7118,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	PAD = win 0x4, mac 0x4;
 	PlayerFireBoostSprite* m_robotFire;
 	PAD = win 0x4, mac 0x4;
-	PlayLayer* m_playLayer;
+	GJBaseGameLayer* m_gameLayer;
 	cocos2d::CCLayer* m_parentLayer;
 	GJActionManager* m_actionManager;
 	PAD = win 0x4, mac 0x4;
@@ -10536,10 +10537,10 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 
 	TodoReturn getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
 
-	void onToggleCoins(cocos2d::CCObject* sender);
-	void onRate(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onFeature(cocos2d::CCObject* sender) = win 0x2edae0;
+	void onToggleCoins(cocos2d::CCObject* sender) = mac 0x26a1f0;
+	void onRate(cocos2d::CCObject* sender) = mac 0x26a2c0;
+	void onClose(cocos2d::CCObject* sender) = mac 0x26a270;
+	void onFeature(cocos2d::CCObject* sender) = win 0x2edae0, mac 0x26a240;
 
 	void selectRating(cocos2d::CCObject*) = win 0x2edbc0, mac 0x26a0a0;
 
