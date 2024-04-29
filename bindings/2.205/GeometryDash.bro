@@ -8285,7 +8285,7 @@ class GJValueTween {
 	int	m_easingType;
 	float	m_easingRate;	
 	bool	m_finished;	
-	bool	m_unkBool; // Maybe it's an Integer??
+	int	m_unkInt;
 }
 
 [[link(android)]]
