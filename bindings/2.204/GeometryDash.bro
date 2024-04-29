@@ -14302,7 +14302,7 @@ class ShareLevelLayer : FLAlertLayer {
 	void onClose(cocos2d::CCObject* sender);
 	void onSettings(cocos2d::CCObject* sender);
 	void onShare(cocos2d::CCObject* sender) = win 0x388f20;
-	TodoReturn selectRating(cocos2d::CCObject*);
+	void selectRating(cocos2d::CCObject*) = win 0x388da0;
 	TodoReturn setupStars();
 
 	virtual void keyBackClicked();
