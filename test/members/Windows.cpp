@@ -198,8 +198,8 @@ GEODE_MEMBER_CHECK(GJGameState, m_unk1f8, 0x1f8);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraPosition, 0x214);
 GEODE_MEMBER_CHECK(GJGameState, m_unk284, 0x294);
 GEODE_MEMBER_CHECK(GJGameState, m_unk2b8, 0x2b4);
-GEODE_MEMBER_CHECK(GJGameState, m_cameraScale, 0x0);
-GEODE_MEMBER_CHECK(GJGameState, m_targetCameraScale, 0x4);
+GEODE_MEMBER_CHECK(GJGameState, m_cameraZoom, 0x0);
+GEODE_MEMBER_CHECK(GJGameState, m_targetCameraZoom, 0x4);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraAngle, 0x17C);
 GEODE_MEMBER_CHECK(GJGameState, m_targetCameraAngle, 0x180);
 
