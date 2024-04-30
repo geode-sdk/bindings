@@ -8501,9 +8501,18 @@ class GJUserScore : cocos2d::CCNode {
 
 [[link(android)]]
 class GJValueTween {
-	void step(float);
+	void step(float delta);
 
-	PAD = win 0x28;
+	float m_fromValue;
+	float m_toValue;
+	float m_duration;	
+	float m_deltaTime;	
+	float m_currentValue;	
+	int m_easingType;
+	float m_easingRate;	
+	bool m_finished;
+	bool m_disabled;
+	PAD = win 0xa;
 }
 
 [[link(android)]]
@@ -14484,7 +14493,7 @@ class ShareLevelLayer : FLAlertLayer {
 	void onClose(cocos2d::CCObject* sender);
 	void onSettings(cocos2d::CCObject* sender);
 	void onShare(cocos2d::CCObject* sender) = win 0x388f20;
-	TodoReturn selectRating(cocos2d::CCObject*);
+	void selectRating(cocos2d::CCObject*) = win 0x388da0;
 	TodoReturn setupStars();
 
 	virtual void keyBackClicked();

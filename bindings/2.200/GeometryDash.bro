@@ -315,7 +315,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	virtual void unselected() = mac 0x254f00;
 
 	/// Set a new image for this button
-	/// Prefer using this over `setNormalImage` as the latter does not actually 
+	/// Prefer using this over `setNormalImage` as the latter does not actually
 	/// handle any of the special sizing operations `CCMenuItemSpriteExtra` has
 	/// @param sprite The sprite to replace this button's sprite with
 	/// @note Geode addition
@@ -324,8 +324,8 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		this->updateSprite();
 	}
 	/// Update the sizing of this button's image
-	/// If you for example have a `ButtonSprite` on this button and change the 
-	/// text, you need to call `updateSprite` afterwards to fix the button's 
+	/// If you for example have a `ButtonSprite` on this button and change the
+	/// text, you need to call `updateSprite` afterwards to fix the button's
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
@@ -883,8 +883,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	virtual void unselected() = win 0x26130, mac 0x5cfa0;
 
 	/// Update the sizing of this toggle's image
-	/// If you for example have a `ButtonSprite` on this toggle and change the 
-	/// text, you need to call `updateSprite` afterwards to fix the toggle's 
+	/// If you for example have a `ButtonSprite` on this toggle and change the
+	/// text, you need to call `updateSprite` afterwards to fix the toggle's
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
@@ -1681,7 +1681,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = mac 0x128;
 	UILayer* m_uiLayer;
 	PAD = mac 0x50;
-	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; 
+	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
 	PAD = mac 0x180;
 	GJGameLoadingLayer* m_loadingLayer;
 }
@@ -7118,7 +7118,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	PAD = win 0x4, mac 0x4;
 	PlayerFireBoostSprite* m_robotFire;
 	PAD = win 0x4, mac 0x4;
-	PlayLayer* m_playLayer;
+	GJBaseGameLayer* m_gameLayer;
 	cocos2d::CCLayer* m_parentLayer;
 	GJActionManager* m_actionManager;
 	PAD = win 0x4, mac 0x4;
