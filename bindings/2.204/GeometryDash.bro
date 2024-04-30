@@ -6982,8 +6982,8 @@ class GJGameState {
 	TodoReturn updateTweenAction(float, int);
 	TodoReturn updateTweenActions(float);
 
-	float m_unk0;
-	float m_unk4;
+	float m_cameraZoom;
+	float m_targetCameraZoom;
 	cocos2d::CCPoint m_unk8;
 	cocos2d::CCPoint m_unk10;
 	cocos2d::CCPoint m_unk18;
@@ -7033,8 +7033,8 @@ class GJGameState {
 	float m_unk170;
 	float m_unk174;
 	float m_unk178;
-	int m_unk17c;
-	int m_unk180;
+	float m_cameraAngle;
+	float m_targetCameraAngle;
 	bool m_unk184;
 	float m_unk188;
 	float m_unk18c;
@@ -7050,7 +7050,7 @@ class GJGameState {
 	PAD = win 0x8;
 	int m_unk1f8; // used in PlayLayer::getCurrentPercent
 	PAD = win 0x18;
-	cocos2d::CCPoint m_unk20c;
+	cocos2d::CCPoint m_cameraPosition;
 	PAD = win 0xa, android32 0xa, android64 0xa;
 	bool m_isDualMode;
 	PAD = win 0x5, android32 0x5, android64 0x5;
@@ -11679,12 +11679,17 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCArray* m_circleWaveArray;
 	PAD = win 0x10;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
-	PAD = win 0x8;
+	cocos2d::CCLabelBMFont* m_percentageLabel;
+	PAD = win 0x4;
 	cocos2d::CCSprite* m_progressBar;
-	PAD = win 0x5c;
+	PAD = win 0x55;
+	bool m_hasCompletedLevel;
+	PAD = win 0x6;
 	bool m_endLayerStars; // not verified on android
 	PAD = win 0x3;
-	PAD = win 0x74;
+	PAD = win 0x5b;
+	bool m_isPaused;
+	PAD = win 0x18;
 	cocos2d::CCDictionary* m_colorKeyDict;
 	gd::vector<int> m_keyColors; // type not really accurate
 	gd::vector<int> m_keyOpacities; // type not really accurate
