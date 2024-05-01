@@ -6903,8 +6903,8 @@ class GJGameState {
 	TodoReturn updateTweenAction(float, int);
 	TodoReturn updateTweenActions(float);
 
-	float m_unk0;
-	float m_unk4;
+	float m_cameraZoom;
+	float m_targetCameraZoom;
 	cocos2d::CCPoint m_unk8;
 	cocos2d::CCPoint m_unk10;
 	cocos2d::CCPoint m_unk18;
@@ -6954,8 +6954,8 @@ class GJGameState {
 	float m_unk170;
 	float m_unk174;
 	float m_unk178;
-	int m_unk17c;
-	int m_unk180;
+	float m_cameraAngle;
+	float m_targetCameraAngle;
 	bool m_unk184;
 	float m_unk188;
 	float m_unk18c;
@@ -6971,7 +6971,7 @@ class GJGameState {
 	PAD = win 0x10, android32 0x10, android64 0x10;
 	int m_unk1f8;
 	PAD = win 0x10, android32 0x10, android64 0x1c;
-	cocos2d::CCPoint m_unk20c;
+	cocos2d::CCPoint m_cameraPosition;
 	PAD = win 0xa, android32 0xa, android64 0xa;
 	bool m_isDualMode;
 	PAD = win 0x5, android32 0x5, android64 0x5;
@@ -8279,12 +8279,12 @@ class GJValueTween {
 	void step(float delta);
 	float	m_fromValue;
 	float	m_toValue;
-	float	m_duration;	
-	float	m_deltaTime;	
-	float	m_currentValue;	
+	float	m_duration;
+	float	m_deltaTime;
+	float	m_currentValue;
 	int	m_easingType;
-	float	m_easingRate;	
-	bool	m_finished;	
+	float	m_easingRate;
+	bool	m_finished;
 	int	m_unkInt;
 }
 
@@ -11542,7 +11542,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCArray* m_circleWaveArray;
 	PAD = android32 0x10, android64 0x18;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
-	PAD = android32 0x8, android64 0x10;
+	cocos2d::CCLabelBMFont* m_percentageLabel;
+	void* m_unkptr0;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = android32 0xD4, android64 0x108;
 	cocos2d::CCDictionary* m_colorKeyDict;
