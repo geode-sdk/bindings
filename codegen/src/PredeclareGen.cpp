@@ -4,6 +4,22 @@
 
 namespace { namespace format_strings {
 	char const* class_predeclare = "class {class_name};\n";
+
+    char const* todo_return_begin = R"GEN(
+struct TodoReturnPlaceholder {
+private:
+    TodoReturnPlaceholder() = default;
+    TodoReturnPlaceholder(TodoReturnPlaceholder const&) = default;
+    TodoReturnPlaceholder(TodoReturnPlaceholder&&) = default;
+    ~TodoReturnPlaceholder() = default;
+public:
+)GEN";
+
+    char const* todo_return_end = R"GEN(
+};
+)GEN";
+
+    char const* todo_return_friend = "    friend class {class_name};\n";
 }}
 
 std::string generatePredeclareHeader(Root const& root) {
@@ -17,6 +33,19 @@ std::string generatePredeclareHeader(Root const& root) {
             fmt::arg("class_name", cls.name)
         );
     }
+
+    output += ::format_strings::todo_return_begin;
+
+    for (auto& cls : root.classes) {
+        if (is_cocos_class(cls.name))
+            continue;
+
+        output += fmt::format(::format_strings::todo_return_friend,
+            fmt::arg("class_name", cls.name)
+        );
+    }
+
+    output += ::format_strings::todo_return_end;
 
     return output;
 }

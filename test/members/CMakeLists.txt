@@ -2,12 +2,10 @@ cmake_minimum_required(VERSION 3.21)
 
 project(TestMembers VERSION 1.0.0)
 
-include(../../cmake/CPM.cmake)
-set(MAT_JSON_AS_INTERFACE ON)
-CPMAddPackage("gh:geode-sdk/json#9f54cca")
-CPMAddPackage("gh:gulrak/filesystem#3e5b930")
-
 add_library(${PROJECT_NAME} SHARED)
+
+set(GEODE_IS_MEMBER_TEST ON)
+add_compile_definitions(GEODE_IS_MEMBER_TEST)
 
 # even though the other source files do nothing on windows,
 # they still take a little bit to compile, thanks to msvc being very fast!
@@ -20,8 +18,6 @@ endif()
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
 cmake_path(SET GEODE_LOADER_PATH $ENV{GEODE_SDK}/loader)
-cmake_path(SET GEODE_BINDINGS_REPO_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../)
-set(GEODE_CODEGEN_PATH ${CMAKE_CURRENT_BINARY_DIR}/codegenned)
 
 include($ENV{GEODE_SDK}/cmake/PlatformDetect.cmake)
 
@@ -38,16 +34,6 @@ if (NOT DEFINED GEODE_GD_VERSION)
 	endif()
 endif()
 
-include(Codegen.cmake)
-
-target_include_directories(${PROJECT_NAME} PRIVATE
-	${GEODE_CODEGEN_PATH}
-	${GEODE_LOADER_PATH}/include
-	${GEODE_LOADER_PATH}/include/Geode/cocos/include
-	${GEODE_LOADER_PATH}/include/Geode/cocos/extensions
-	${GEODE_LOADER_PATH}/include/Geode/fmod
-)
-
 if (WIN32)
 	# without this, some stl structures can have a wrong size when cross compiling from linux
 	add_compile_definitions(_HAS_ITERATOR_DEBUGGING=0)
@@ -63,6 +49,13 @@ if (USE_HACKY_SCRIPT)
 	target_compile_definitions(${PROJECT_NAME} PRIVATE -DUSE_HACKY_SCRIPT)
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ghc_filesystem mat-json)
+add_subdirectory(../.. bindings)
 
-add_dependencies(${PROJECT_NAME} CodegenRun)
+target_include_directories(${PROJECT_NAME} PRIVATE
+	${GEODE_MEMBER_TEST_CODEGEN_PATH}
+	${GEODE_LOADER_PATH}/include
+	${GEODE_LOADER_PATH}/include/Geode/cocos/include
+	${GEODE_LOADER_PATH}/include/Geode/cocos/extensions
+	${GEODE_LOADER_PATH}/include/Geode/fmod
+)
+target_link_directories(${PROJECT_NAME} PRIVATE ${GEODE_LOADER_PATH}/include/link)

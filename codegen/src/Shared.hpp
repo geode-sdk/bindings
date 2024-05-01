@@ -121,21 +121,19 @@ namespace codegen {
         return 0;
     }
 
-    inline BindStatus getStatusWithPlatform(Platform p, Field const& field) {
-        if ((field.missing & p) != Platform::None) return BindStatus::Missing;
+    inline BindStatus getStatusWithPlatform(Platform p, FunctionBindField const& fn) {
+        if ((fn.prototype.attributes.missing & p) != Platform::None) return BindStatus::Missing;
+        if ((fn.prototype.attributes.links & p) != Platform::None) return BindStatus::Binded;
 
-        if (auto fn = field.get_as<FunctionBindField>()) {
-            if ((field.links & p) != Platform::None) return BindStatus::Binded;
-            if (platformNumberWithPlatform(p, fn->binds) != -1) return BindStatus::NeedsBinding;
-        }
+        if (platformNumberWithPlatform(p, fn.binds) != -1) return BindStatus::NeedsBinding;
 
         return BindStatus::Unbindable;
     }
 
     inline BindStatus getStatusWithPlatform(Platform p, Function const& f) {
-        if ((f.missing & p) != Platform::None) return BindStatus::Missing;
+        if ((f.prototype.attributes.missing & p) != Platform::None) return BindStatus::Missing;
 
-        if ((f.links & p) != Platform::None) return BindStatus::Binded;
+        if ((f.prototype.attributes.links & p) != Platform::None) return BindStatus::Binded;
         if (platformNumberWithPlatform(p, f.binds) != -1) return BindStatus::NeedsBinding;
 
         return BindStatus::Unbindable;
@@ -151,8 +149,8 @@ namespace codegen {
         return false;
     }
 
-    inline BindStatus getStatus(Field const& field) {
-        return getStatusWithPlatform(codegen::platform, field);
+    inline BindStatus getStatus(FunctionBindField const& fn) {
+        return getStatusWithPlatform(codegen::platform, fn);
     }
 
     inline BindStatus getStatus(Function const& f) {
@@ -193,7 +191,7 @@ namespace codegen {
         if (codegen::platform != Platform::Windows) return "Default";
 
         if (auto fn = f.get_as<FunctionBindField>()) {
-            auto status = getStatus(f);
+            auto status = getStatus(*fn);
 
             if (fn->prototype.is_static) {
                 if (status == BindStatus::Binded) return "Cdecl";
@@ -259,7 +257,7 @@ namespace codegen {
                     && fn->prototype.type != FunctionType::Normal;
             };
 
-            if (codegen::getStatus(field) == BindStatus::NeedsBinding || codegen::platformNumber(field) != -1) {
+            if (codegen::getStatus(*fn) == BindStatus::NeedsBinding || codegen::platformNumber(field) != -1) {
                 if (is_cocos_class(field.parent) && codegen::platform == Platform::Windows) {
                     return fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
                 }
@@ -281,7 +279,7 @@ namespace codegen {
                     mangled
                 );
             }
-            else if (codegen::getStatus(field) == BindStatus::Binded && fn->prototype.type == FunctionType::Normal) {
+            else if (codegen::getStatus(*fn) == BindStatus::Binded && fn->prototype.type == FunctionType::Normal) {
                 return fmt::format(
                     "addresser::get{}Virtual(Resolve<{}>::func(&{}::{}))",
                     str_if("Non", !fn->prototype.is_virtual),

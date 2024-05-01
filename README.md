@@ -51,15 +51,15 @@ class Example : Base1, Base2 {
 }
 ```
 
-We are mainly only looking for new addresses for the latest version of GD (Update 2.202). However, if you are interested in documenting older versions, we will also accept those in the interests of the wider modding community. Please put them in the appropriate subfolder under bindings.
+We are mainly only looking for new addresses for the latest version of GD (Update 2.204 for Windows, 2.205 for Android, 2.200 for MacOS). However, if you are interested in documenting older versions, we will also accept those in the interests of the wider modding community. Please put them in the appropriate subfolder under bindings.
 
 ## SyncBromaScript
 
-You can automatically sync addresses from-and-to Broma using the [`SyncBromaScript`](scripts/SyncBromaScript.java) script for Ghidra. This script automatically pulls function names, signatures & addresses from Broma, adds them to your Ghidra project, and then adds any addresses you have found back into the Broma.
+You can automatically sync addresses from-and-to Broma using the [`SyncBromaScript`](scripts/ghidra/SyncBromaScript.java) script for Ghidra. This script automatically pulls function names, signatures & addresses from Broma, adds them to your Ghidra project, and then adds any addresses you have found back into the Broma.
 
 **To install SyncBromaScript**, open up the `Script Manager` in Ghidra, then select `Manage Script Directories` from the top right toolbar. Add the path to the `scripts` directory in your local copy of Bindings, then refresh your scripts in `Script Manager`. You should see a `GeodeSDK` category appear with `SyncBromaScript.java` in it
 
-**Before running SyncBromaScript**, you should set up your Ghidra to be a good scripting environment by running the built-in `RecoverClassesFromRttiScript.java` from Ghidra, as well as `SetupGhidraScript.java` from this repository. Note that `RecoverClassesFromRttiScript.java` can take over half an hour to finish.
+**Before running SyncBromaScript**, you should set up your Ghidra to be a good scripting environment by running the built-in `RecoverClassesFromRttiScript.java` from Ghidra. Note that `RecoverClassesFromRttiScript.java` can take over half an hour to finish.
 
 **To run SyncBromaScript**, open up the `Script Manager` in Ghidra and then double-click it to run the script. It should present you with a popup window of options.
 
