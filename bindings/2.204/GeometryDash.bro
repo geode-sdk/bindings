@@ -9602,7 +9602,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	bool m_challenge;
 	PAD = win 0x4, android32 0x4, android64 0x8;
 	cocos2d::CCSprite* m_playSprite;
-	void* m_unk11;
+	cocos2d::CCProgressTimer* m_progressTimer;
 	CustomSongWidget* m_songWidget;
 }
 
