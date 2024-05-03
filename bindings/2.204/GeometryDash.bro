@@ -897,7 +897,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	virtual void unselected() = win 0x25c80;
 
 	/// Set a new image for this button
-	/// Prefer using this over `setNormalImage` as the latter does not actually 
+	/// Prefer using this over `setNormalImage` as the latter does not actually
 	/// handle any of the special sizing operations `CCMenuItemSpriteExtra` has
 	/// @param sprite The sprite to replace this button's sprite with
 	/// @note Geode addition
@@ -906,8 +906,8 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		this->updateSprite();
 	}
 	/// Update the sizing of this button's image
-	/// If you for example have a `ButtonSprite` on this button and change the 
-	/// text, you need to call `updateSprite` afterwards to fix the button's 
+	/// If you for example have a `ButtonSprite` on this button and change the
+	/// text, you need to call `updateSprite` afterwards to fix the button's
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
@@ -990,8 +990,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	virtual void setEnabled(bool) = win 0x26160;
 
 	/// Update the sizing of this toggle's image
-	/// If you for example have a `ButtonSprite` on this toggle and change the 
-	/// text, you need to call `updateSprite` afterwards to fix the toggle's 
+	/// If you for example have a `ButtonSprite` on this toggle and change the
+	/// text, you need to call `updateSprite` afterwards to fix the toggle's
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
@@ -6232,7 +6232,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn sortStickyGroups() = win 0x1a99e0;
 	void spawnGroupTriggered(int groupID, float, bool, gd::vector<int> const&, int, int) = win 0x1A18A0;
 	TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
-	TodoReturn spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint) = win 0x1c2b80;
+	void spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint) = win 0x1c2b80;
 	TodoReturn spawnParticleTrigger(int, cocos2d::CCPoint, float, float);
 	TodoReturn spawnParticleTrigger(SpawnParticleGameObject*);
 	TodoReturn spawnPlayer2() = win 0x19d970;
@@ -8505,11 +8505,11 @@ class GJValueTween {
 
 	float m_fromValue;
 	float m_toValue;
-	float m_duration;	
-	float m_deltaTime;	
-	float m_currentValue;	
+	float m_duration;
+	float m_deltaTime;
+	float m_currentValue;
 	int m_easingType;
-	float m_easingRate;	
+	float m_easingRate;
 	bool m_finished;
 	bool m_disabled;
 	PAD = win 0xa;
@@ -8675,7 +8675,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	void addPoint(cocos2d::CCPoint) = win 0x227250;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn clearBehindXPos(float);
-	TodoReturn createDuplicate();
+	HardStreak* createDuplicate() = win 0x227390;
 	void firstSetup() = win 0x2268C0;
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
@@ -10739,7 +10739,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	gd::string pathForSong(int) = win 0x284070;
 	gd::string pathForSongFolder(int) = win 0x283ed0;
 	void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int) = win 0x2823c0;
-	void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x282260;
+	callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x282260;
 	void removeDLFromActive(char const*) = win 0x283c00;
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x2829d0;
 	static cocos2d::CCDictionary* responseToDict(gd::string, char const*) = win 0x283260;
@@ -15636,7 +15636,7 @@ class UploadActionPopup : FLAlertLayer {
 
 	virtual void keyBackClicked() = win 0x20b310;
 	UploadPopupDelegate * m_delegate;
-    	TextArea * m_textArea;	
+    	TextArea * m_textArea;
     	LoadingCircle *	m_loadingCircle;
     	CCMenuItemSpriteExtra *	m_menuItemSpriteExtra;
     	bool m_succeeded;
