@@ -1086,8 +1086,8 @@ class GJGameState {
 	// ~GJGameState();
 
 	// the hex offsets in member names are from android32 2.200
-	float m_unk0;
-	float m_unk4;
+	float m_cameraZoom;
+	float m_targetCameraZoom;
 	cocos2d::CCPoint m_unk8;
 	cocos2d::CCPoint m_unk10;
 	cocos2d::CCPoint m_unk18;
@@ -1137,8 +1137,8 @@ class GJGameState {
 	float m_unk170;
 	float m_unk174;
 	float m_unk178;
-	int m_unk17c;
-	int m_unk180;
+	float m_cameraAngle;
+	float m_targetCameraAngle;
 	bool m_unk184;
 	float m_unk188;
 	float m_unk18c;
@@ -1153,7 +1153,7 @@ class GJGameState {
 	PAD = win 0x10, android32 0x10, android64 0x10, mac 0x10;
 	int m_unk1f8;
 	PAD = win 0x10, android32 0x10, android64 0x1c, mac 0x1c;
-	cocos2d::CCPoint m_unk20c;
+	cocos2d::CCPoint m_cameraPosition;
 	PAD = win 0xa, android32 0xa, android64 0xa, mac 0xa;
 	bool m_isDualMode;
 	PAD = win 0x5, android32 0x5, android64 0x5, mac 0x5;
@@ -6684,7 +6684,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCArray* m_circleWaveArray;
 	PAD = mac 0x18;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
-	PAD = mac 0x10;
+	cocos2d::CCLabelBMFont* m_percentageLabel;
+	void* m_unkptr0;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = mac 0x100;
 	cocos2d::CCDictionary* m_colorKeyDict;
