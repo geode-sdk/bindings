@@ -12461,7 +12461,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateEditorOrder() = win 0x314b40;
 	TodoReturn updateEditorOrderLabel() = win 0x314850;
 	TodoReturn updateGroupIDButtons() = win 0x313810;
-	TodoReturn updateGroupIDLabel() = win 0x3147c0;
+	void updateGroupIDLabel() = win 0x3147c0;
 	TodoReturn updateOrderChannel() = win 0x314ab0;
 	TodoReturn updateOrderChannelLabel() = win 0x3148b0;
 	TodoReturn updateZLayerButtons();
