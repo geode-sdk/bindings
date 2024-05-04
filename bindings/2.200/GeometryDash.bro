@@ -8947,14 +8947,14 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn setupShader(bool);
 	TodoReturn triggerBulge(float, float, float, float, float, int, int, float, bool);
 	TodoReturn triggerSepia(float, float, int, float);
-	bool updateZLayer(int, int, bool);
+	bool updateZLayer(int, int, bool) = mac 0x3a94c0;
 	TodoReturn triggerGlitch(float, float, float, float, float, float, float, bool);
-	TodoReturn triggerPinchX(float, float, float, float, float, bool, int, int, float, bool);
-	TodoReturn triggerPinchY(float, float, float, float, float, bool, int, int, float, bool);
+	bool triggerPinchX(float, float, float, float, float, bool, int, int, float, bool) = mac 0x3af190;
+	bool triggerPinchY(float, float, float, float, float, bool, int, int, float, bool); // inlined
 	TodoReturn preBulgeShader();
 	TodoReturn prePinchShader();
 	TodoReturn preSepiaShader();
-	TodoReturn tweenValueAuto(float, int, float, int, float);
+	TodoReturn tweenValueAuto(float, int, float, int, float) = mac 0x3ac050;
 	void preCommonShader() = mac 0x3aa510;
 	void preGlitchShader() = mac 0x3ad250;
 	bool resetAllShaders();
@@ -8964,24 +8964,24 @@ class ShaderLayer : cocos2d::CCLayer {
     TodoReturn setupPinchShader() = win 0x37af60;
 	TodoReturn setupSepiaShader();
 	TodoReturn triggerGrayscale(float, float, bool, int, int, float);
-	TodoReturn triggerPixelateX(float, float, bool, bool, int, float, bool);
-	TodoReturn triggerPixelateY(float, float, bool, bool, int, float, bool);
-	bool triggerShockLine(float, float, bool, bool, bool, bool, float, float, float, float, float, float, int, bool, bool, bool, float, bool, float, int, float);
-	bool triggerShockWave(float, float, float, float, float, float, float, bool, float, float, float, int, bool, bool, bool, float, float, bool, float, int, float);
+	bool triggerPixelateX(float, float, bool, bool, int, float, bool) = mac 0x3ade10;
+	bool triggerPixelateY(float, float, bool, bool, int, float, bool); // inlined
+	bool triggerShockLine(float, float, bool, bool, bool, bool, float, float, float, float, float, float, int, bool, bool, bool, float, bool, float, int, float) = mac 0x3acad0;
+	bool triggerShockWave(float, float, float, float, float, float, float, bool, float, float, float, int, bool, bool, bool, float, float, bool, float, int, float) = mac 0x3abdd0;
 	TodoReturn preHueShiftShader();
 	void prePixelateShader() = mac 0x3adef0;
-	TodoReturn triggerChromaticX(float, float, int, float, bool);
-	TodoReturn triggerChromaticY(float, float, int, float, bool);
-	TodoReturn triggerLensCircle(float, float, float, float, int, int, float, float, int, float, bool);
-	TodoReturn triggerRadialBlur(float, float, float, float, int, float, float, bool, int, int, float, bool);
+	bool triggerChromaticX(float, float, int, float, bool) = mac 0x3ad780;
+	bool triggerChromaticY(float, float, int, float, bool); // inlined
+	bool triggerLensCircle(float, float, float, float, int, int, float, float, int, float, bool);
+	bool triggerRadialBlur(float, float, float, float, int, float, float, bool, int, int, float, bool);
 	void preChromaticShader() = mac 0x3ad7e0;
 	void preGrayscaleShader() = mac 0x3af3e0;
 	void preShockLineShader() = mac 0x3acd30;
 	void preShockWaveShader() = mac 0x3ac670;
 	TodoReturn triggerColorChange(float, float, float, float, float, float, float, int, float);
 	TodoReturn triggerInvertColor(float, float, float, float, float, bool, bool, bool, int, float);
-	TodoReturn triggerMotionBlurX(float, float, float, float, int, float, bool, int, int, float, bool, bool);
-	TodoReturn triggerMotionBlurY(float, float, float, float, int, float, bool, int, int, float, bool, bool);
+	bool triggerMotionBlurX(float, float, float, float, int, float, bool, int, int, float, bool, bool) = mac 0x3aeb10;
+	bool triggerMotionBlurY(float, float, float, float, int, float, bool, int, int, float, bool, bool) = mac 0x3aebe0;
 	void performCalculations() = win 0x37c330, mac 0x3afea0;
 	void preLensCircleShader() = mac 0x3ae720;
 	void preMotionBlurShader() = mac 0x3aecb0;
@@ -9009,8 +9009,8 @@ class ShaderLayer : cocos2d::CCLayer {
     TodoReturn setupShockWaveUniforms() = win 0x376b20;
     TodoReturn setupSplitScreenShader() = win 0x37be40;
 	TodoReturn triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool);
-	TodoReturn triggerSplitScreenCols(float, float, int, float);
-	TodoReturn triggerSplitScreenRows(float, float, int, float);
+	bool triggerSplitScreenCols(float, float, int, float) = mac 0x3afaf0;
+	bool triggerSplitScreenRows(float, float, int, float); // inlined
 	void updateMotionBlurSpeedX(float, float) = mac 0x3aef90;
 	void updateMotionBlurSpeedY(float, float) = mac 0x3aeff0;
 	void preChromaticGlitchShader() = mac 0x3adab0;
