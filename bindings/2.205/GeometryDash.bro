@@ -1552,7 +1552,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
 	TodoReturn updateBlending(bool);
 	TodoReturn updateCopyLabel(int, bool);
 	void updateOpacity(float) = ios 0x102d4;
-	TodoReturn updateValues(ColorAction*);
+	void updateValues(ColorAction*);
 
 	virtual bool init();
 }
