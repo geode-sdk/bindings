@@ -4128,7 +4128,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void limitSavedLevels() = ios 0x9d5ec;
 	void makeTimeStamp(char const*) = ios 0x9cbbc;
 	void markItemAsLiked(LikeItemType, int, bool, int) = ios 0xac7b8;
-	void markLevelAsDownloaded(int);
+	void markLevelAsDownloaded(int) = ios 0xa3888;
 	void markLevelAsRatedDemon(int);
 	void markLevelAsRatedStars(int) = ios 0xa40b0;
 	void markLevelAsReported(int) = ios 0xadb88;
@@ -7074,9 +7074,8 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	SimplePlayer* m_playerObject;
 	cocos2d::CCArray* m_tabButtons;
 	cocos2d::CCArray* m_pageButtons;
-	PAD = android32 0x8, win 0x8, android64 0x10;
+	PAD = android32 0x8, win 0x8, android64 0x10, ios 0x10;
 	bool m_hasClosed;
-	PAD = android32 0x3, win 0x3, android64 0x3;
 	IconType m_iconType;
 	gd::map<IconType, int> m_iconPages;
 	cocos2d::CCSprite* m_cursor1;
@@ -7143,7 +7142,7 @@ class GJHttpResult : cocos2d::CCNode {
 class GJItemIcon : cocos2d::CCSprite {
 	// virtual ~GJItemIcon();
 
-	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B);
+	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = ios 0x30e384;
 
 	void changeToLockedState(float) = ios 0x30cc78;
 	inline static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) {
@@ -11083,7 +11082,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void runNormalRotation() {
 		this->runNormalRotation(false, 1.0f);
 	}
-	void runNormalRotation(bool, float);
+	void runNormalRotation(bool, float) = ios 0x22432c;
 	void runRotateAction(bool, int) = ios 0x225ffc;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*) = ios 0x235fb8;
 	void setSecondColor(cocos2d::ccColor3B const&) = ios 0x22303c;
