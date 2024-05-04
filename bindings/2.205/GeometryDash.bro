@@ -1552,7 +1552,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
 	TodoReturn updateBlending(bool);
 	TodoReturn updateCopyLabel(int, bool);
 	void updateOpacity(float) = ios 0x102d4;
-	TodoReturn updateValues(ColorAction*);
+	void updateValues(ColorAction*);
 
 	virtual bool init();
 }
@@ -9131,7 +9131,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	void updateLevelFont(int);
 	TodoReturn updateObjectColors(cocos2d::CCArray*);
 	static void updateObjectLabel(GameObject*);
-	TodoReturn updateOptions();
+	void updateOptions();
 	TodoReturn updatePreviewAnim();
 	void updatePreviewParticle(ParticleGameObject*);
 	TodoReturn updatePreviewParticles();
@@ -12314,7 +12314,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateEditorOrder();
 	TodoReturn updateEditorOrderLabel();
 	TodoReturn updateGroupIDButtons();
-	TodoReturn updateGroupIDLabel();
+	void updateGroupIDLabel();
 	TodoReturn updateOrderChannel();
 	TodoReturn updateOrderChannelLabel();
 	TodoReturn updateZLayerButtons();
