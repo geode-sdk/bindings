@@ -1307,7 +1307,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     	}
 	void setString(gd::string) = win 0x2e9a0;
 	void updateBlinkLabel();
-	void updateBlinkLabelToChar(int);
+	void updateBlinkLabelToChar(int) = win 0x2f050;
 	void updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x2ff50;
 	void updateDefaultFontValues(gd::string) = win 0x2e7a0;
 	void updateLabel(gd::string) = win 0x2eac0;
@@ -1713,7 +1713,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	void onLike(cocos2d::CCObject* sender) = win 0x86110;
 	TodoReturn onUndelete();
 	void onUnhide(cocos2d::CCObject* sender);
-	void onViewProfile(cocos2d::CCObject* sender);
+	void onViewProfile(cocos2d::CCObject* sender) = win 0x86330;
 	void updateBGColor(int) = win 0x86090;
 	void updateLabelValues() = win 0x86240;
 
