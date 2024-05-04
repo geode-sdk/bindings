@@ -724,15 +724,15 @@ class cocos2d::CCEGLView {
 	void onGLFWCharCallback(GLFWwindow* window, unsigned int entered);
 	void onGLFWCursorEnterFunCallback(GLFWwindow* window, int entered);
 	void onGLFWDeviceChangeFunCallback(GLFWwindow* window);
-	void onGLFWError(int code, const char* description);
-	void onGLFWframebuffersize(GLFWwindow* window, int width, int height);
-	void onGLFWMouseMoveCallBack(GLFWwindow* window, double x, double y);
-	void onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int mods);
+	void onGLFWError(int code, char const* description);
 	void onGLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-	void onGLFWMouseScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+	void onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int mods);
+	void onGLFWMouseMoveCallBack(GLFWwindow* window, double x, double y);
+	void onGLFWMouseScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
 	void onGLFWWindowIconifyFunCallback(GLFWwindow* window, int iconified);
 	void onGLFWWindowPosCallback(GLFWwindow* window, int x, int y);
 	void onGLFWWindowSizeFunCallback(GLFWwindow* window, int width, int height);
+	void onGLFWframebuffersize(GLFWwindow* window, int width, int height);
 }
 
 [[link(win, android)]]
