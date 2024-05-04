@@ -7055,7 +7055,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void showUnlockPopupNew(int, UnlockType);
 	gd::string titleForUnlock(int, UnlockType);
 	void toggleGlow();
-	void updatePlayerColors();
+	void updatePlayerColors() = ios 0x30a200;
 	void updatePlayerName(char const*);
 
 	virtual bool init() = ios 0x3089f8;
