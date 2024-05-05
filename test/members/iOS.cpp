@@ -16,6 +16,9 @@ GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x35f0);
 GEODE_MEMBER_CHECK(GameLevelManager, m_uploadMessageDelegate, 0x340);
 
 GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x248);
+GEODE_MEMBER_CHECK(EditorUI, m_objectInfoLabel, 0x298);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x328);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x518);
 
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x34b8);
 GEODE_SIZE_CHECK(PlayLayer, 0x3780);
