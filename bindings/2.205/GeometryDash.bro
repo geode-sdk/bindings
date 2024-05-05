@@ -2954,13 +2954,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual void scaleYChanged(float, bool) = ios 0x3ec358;
 	virtual void scaleXYChanged(float, float, bool) = ios 0x3ec400;
 
-	PAD = android32 0x1c, android64 0x38, ios 0x38;
+	PAD = android32 0x1c, android64 0x38, ios 0x28;
 
 	GJTransformState m_transformState;
 	PAD = android32 0x4, android64 0x8, ios 0x8;
 	EditButtonBar* m_buttonBar;
 
-	PAD = android32 0x3c, android64 0x48;
+	PAD = android32 0x3c, android64 0x48, ios 0x48;
 
 	cocos2d::CCLabelBMFont* m_objectInfoLabel;
 	GJRotationControl* m_rotationControl;
@@ -2975,12 +2975,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     EditButtonBar* m_editButtonBar;
     Slider* m_positionSlider;
 
-	PAD = android32 0xc, android64 0xc;
+	PAD = android32 0xc, android64 0xc, ios 0xc;
 	bool m_swipeEnabled;
-	PAD = android32 0x7, android64 0x7;
+	PAD = android32 0x7, android64 0x7, ios 0x7;
 	bool m_updatedSpeedObjects;
 
-	PAD = android32 0x17, android64 0x1b;
+	PAD = android32 0x17, android64 0x1b, ios 0x1b;
 
 	cocos2d::CCArray* m_selectedObjects; // 0x338 on a64
 
@@ -3032,7 +3032,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	CCMenuItemSpriteExtra* m_layerNextBtn;
 	CCMenuItemSpriteExtra* m_layerPrevBtn;
 	CCMenuItemSpriteExtra* m_goToBaseBtn;
-	PAD = mac 0x20, win 0x10, android32 0x10, android64 0x20;
+	PAD = mac 0x20, win 0x10, android32 0x10, android64 0x20, ios 0x20;
 	int m_selectedCreateObjectID;
 	cocos2d::CCArray* m_createButtonArray;
 	cocos2d::CCArray* m_customObjectButtonArray;
@@ -3041,7 +3041,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	LevelEditorLayer* m_editorLayer;
 	cocos2d::CCPoint m_swipeStart;
 	cocos2d::CCPoint m_swipeEnd;
-	PAD = mac 0x8, win 0x8, android32 0x8, android64 0x8;
+	PAD = mac 0x8, win 0x8, android32 0x8, android64 0x8, ios 0x8;
 	cocos2d::CCPoint m_lastTouchPoint;
 	cocos2d::CCPoint m_cameraTest;
 	cocos2d::CCPoint m_clickAtPosition;
