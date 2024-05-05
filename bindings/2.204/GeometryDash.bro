@@ -6146,7 +6146,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn sortStickyGroups() = win 0x1a99e0;
 	void spawnGroupTriggered(int groupID, float, bool, gd::vector<int> const&, int, int) = win 0x1A18A0;
 	TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
-	void spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint) = win 0x1c2b80;
+	TodoReturn spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint) = win 0x1c2b80;
 	TodoReturn spawnParticleTrigger(int, cocos2d::CCPoint, float, float);
 	TodoReturn spawnParticleTrigger(SpawnParticleGameObject*);
 	TodoReturn spawnPlayer2() = win 0x19d970;
@@ -8299,6 +8299,8 @@ class GJUserMessage : cocos2d::CCNode {
 	static GJUserMessage* create() = win 0x119d90;
 	static GJUserMessage* create(cocos2d::CCDictionary*);
 
+	virtual bool init();
+
 	int m_messageID;
 }
 
@@ -8528,7 +8530,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	void addPoint(cocos2d::CCPoint) = win 0x227250;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn clearBehindXPos(float);
-	HardStreak* createDuplicate() = win 0x227390;
+	TodoReturn createDuplicate();
 	void firstSetup() = win 0x2268C0;
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
@@ -12459,7 +12461,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateEditorOrder() = win 0x314b40;
 	TodoReturn updateEditorOrderLabel() = win 0x314850;
 	TodoReturn updateGroupIDButtons() = win 0x313810;
-	void updateGroupIDLabel() = win 0x3147c0;
+	TodoReturn updateGroupIDLabel() = win 0x3147c0;
 	TodoReturn updateOrderChannel() = win 0x314ab0;
 	TodoReturn updateOrderChannelLabel() = win 0x3148b0;
 	TodoReturn updateZLayerButtons();
