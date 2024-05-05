@@ -1552,7 +1552,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
 	TodoReturn updateBlending(bool);
 	TodoReturn updateCopyLabel(int, bool);
 	void updateOpacity(float) = ios 0x102d4;
-	TodoReturn updateValues(ColorAction*);
+	void updateValues(ColorAction*);
 
 	virtual bool init();
 }
@@ -6105,7 +6105,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn sortStickyGroups();
 	void spawnGroupTriggered(int, float, bool, gd::vector<int> const&, int, int);
 	TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
-	TodoReturn spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint);
+	void spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint);
 	TodoReturn spawnParticleTrigger(int, cocos2d::CCPoint, float, float);
 	TodoReturn spawnParticleTrigger(SpawnParticleGameObject*);
 	TodoReturn spawnPlayer2();
@@ -8442,7 +8442,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	void addPoint(cocos2d::CCPoint);
 	TodoReturn clearAboveXPos(float);
 	TodoReturn clearBehindXPos(float);
-	TodoReturn createDuplicate();
+	HardStreak* createDuplicate();
 	void firstSetup();
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
@@ -9131,7 +9131,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	void updateLevelFont(int);
 	TodoReturn updateObjectColors(cocos2d::CCArray*);
 	static void updateObjectLabel(GameObject*);
-	TodoReturn updateOptions();
+	void updateOptions();
 	TodoReturn updatePreviewAnim();
 	void updatePreviewParticle(ParticleGameObject*);
 	TodoReturn updatePreviewParticles();
@@ -12314,7 +12314,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateEditorOrder();
 	TodoReturn updateEditorOrderLabel();
 	TodoReturn updateGroupIDButtons();
-	TodoReturn updateGroupIDLabel();
+	void updateGroupIDLabel();
 	TodoReturn updateOrderChannel();
 	TodoReturn updateOrderChannelLabel();
 	TodoReturn updateZLayerButtons();
