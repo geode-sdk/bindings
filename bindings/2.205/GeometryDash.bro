@@ -2954,10 +2954,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual void scaleYChanged(float, bool) = ios 0x3ec358;
 	virtual void scaleXYChanged(float, float, bool) = ios 0x3ec400;
 
-	PAD = android32 0x1c, android64 0x38;
+	PAD = android32 0x1c, android64 0x38, ios 0x38;
 
 	GJTransformState m_transformState;
-	PAD = android32 0x4, android64 0x8;
+	PAD = android32 0x4, android64 0x8, ios 0x8;
 	EditButtonBar* m_buttonBar;
 
 	PAD = android32 0x3c, android64 0x48;
