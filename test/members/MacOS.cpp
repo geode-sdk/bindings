@@ -16,6 +16,7 @@
 // GEODE_MEMBER_CHECK(EditorUI, m_updateTimeMarkers, 0x244);
 // GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 // GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x440);
+GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x1f8);
 GEODE_MEMBER_CHECK(EditorUI, m_updatedSpeedObjects, 0x30c);
 
 // // LevelEditorLayer

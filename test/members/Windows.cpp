@@ -120,6 +120,9 @@ GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e58);
 GEODE_MEMBER_CHECK(PlayLayer, m_colorKeyDict, 0x2f30);
 GEODE_MEMBER_CHECK(PlayLayer, m_nextColorKey, 0x2f58);
 GEODE_MEMBER_CHECK(PlayLayer, m_debugDrawNode, 0x2d70);
+GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x2F17);
+GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x2EB1);
+GEODE_MEMBER_CHECK(PlayLayer, m_percentageLabel, 0x2e50);
 // CustomSongWidget
 
 GEODE_MEMBER_CHECK(CustomSongWidget, m_songInfoObject, 0x110);
@@ -192,9 +195,13 @@ GEODE_SIZE_CHECK(GJGameState, 0x498);
 // GEODE_SIZE_CHECK(PlayerObject, 0x980); // 0x998 in 2.203
 
 GEODE_MEMBER_CHECK(GJGameState, m_unk1f8, 0x1f8);
-GEODE_MEMBER_CHECK(GJGameState, m_unk20c, 0x214);
+GEODE_MEMBER_CHECK(GJGameState, m_cameraPosition, 0x214);
 GEODE_MEMBER_CHECK(GJGameState, m_unk284, 0x294);
 GEODE_MEMBER_CHECK(GJGameState, m_unk2b8, 0x2b4);
+GEODE_MEMBER_CHECK(GJGameState, m_cameraZoom, 0x0);
+GEODE_MEMBER_CHECK(GJGameState, m_targetCameraZoom, 0x4);
+GEODE_MEMBER_CHECK(GJGameState, m_cameraAngle, 0x17C);
+GEODE_MEMBER_CHECK(GJGameState, m_targetCameraAngle, 0x180);
 
 GEODE_SIZE_CHECK(GameObject, 0x498); // crying
 GEODE_MEMBER_CHECK(GameObject, m_activeMainColorID, 0x22c);
