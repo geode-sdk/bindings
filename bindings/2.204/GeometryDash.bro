@@ -14364,8 +14364,8 @@ class SimplePlayer : cocos2d::CCSprite {
 	static SimplePlayer* create(int) = win 0x1f3e90;
 
 	TodoReturn asyncLoadIcon(int, IconType);
-	TodoReturn createRobotSprite(int) = win 0x1f45d0;
-	TodoReturn createSpiderSprite(int) = win 0x1f4620;
+	void createRobotSprite(int) = win 0x1f45d0;
+	void createSpiderSprite(int) = win 0x1f4620;
 	inline void disableCustomGlowColor() {
 		m_hasCustomGlowColor = false;
 	}
