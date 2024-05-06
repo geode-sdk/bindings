@@ -656,8 +656,8 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool);
 	bool initWithType(char const*, cocos2d::CCTexture2D*, bool);
 	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool);
-	TodoReturn runAnimation(gd::string);
-	TodoReturn runAnimationForced(gd::string);
+	void runAnimation(gd::string);
+	void runAnimationForced(gd::string);
 	TodoReturn stopTween();
 	TodoReturn switchToMode(spriteMode);
 	void tweenToAnimation(gd::string, float);
