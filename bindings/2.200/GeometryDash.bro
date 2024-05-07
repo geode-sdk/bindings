@@ -1684,7 +1684,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
 	PAD = mac 0x70;
 	gd::vector<gd::vector<int>*> m_sectionSomethings;
-	PAD = mac 0x8c;
+	PAD = mac 0xf8;
 	GJGameLoadingLayer* m_loadingLayer;
 }
 
@@ -6017,7 +6017,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	cocos2d::CCArray* m_unkArr6;
 
 	// haven't verified the mac padding
-	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x70;
+	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x8;
 
 	cocos2d::CCDictionary* m_unkDict1;
 	cocos2d::CCDictionary* m_unkDict2;

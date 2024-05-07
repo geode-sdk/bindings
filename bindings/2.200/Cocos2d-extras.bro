@@ -1077,30 +1077,6 @@ class cocos2d::CCEaseRateAction {
 }
 
 [[link(win, android)]]
-class cocos2d::CCEaseSineIn {
-	static cocos2d::CCEaseSineIn* create(cocos2d::CCActionInterval*);
-
-	// CCEaseSineIn(cocos2d::CCEaseSineIn const&);
-	// CCEaseSineIn();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
-class cocos2d::CCEaseSineOut {
-	static cocos2d::CCEaseSineOut* create(cocos2d::CCActionInterval*);
-
-	// CCEaseSineOut(cocos2d::CCEaseSineOut const&);
-	// CCEaseSineOut();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
 class cocos2d::CCEvent {
 	// CCEvent(cocos2d::CCEvent const&);
 	// CCEvent();
