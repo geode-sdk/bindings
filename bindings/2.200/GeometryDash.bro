@@ -315,7 +315,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	virtual void unselected() = mac 0x254f00;
 
 	/// Set a new image for this button
-	/// Prefer using this over `setNormalImage` as the latter does not actually 
+	/// Prefer using this over `setNormalImage` as the latter does not actually
 	/// handle any of the special sizing operations `CCMenuItemSpriteExtra` has
 	/// @param sprite The sprite to replace this button's sprite with
 	/// @note Geode addition
@@ -324,8 +324,8 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		this->updateSprite();
 	}
 	/// Update the sizing of this button's image
-	/// If you for example have a `ButtonSprite` on this button and change the 
-	/// text, you need to call `updateSprite` afterwards to fix the button's 
+	/// If you for example have a `ButtonSprite` on this button and change the
+	/// text, you need to call `updateSprite` afterwards to fix the button's
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
@@ -883,8 +883,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	virtual void unselected() = win 0x26130, mac 0x5cfa0;
 
 	/// Update the sizing of this toggle's image
-	/// If you for example have a `ButtonSprite` on this toggle and change the 
-	/// text, you need to call `updateSprite` afterwards to fix the toggle's 
+	/// If you for example have a `ButtonSprite` on this toggle and change the
+	/// text, you need to call `updateSprite` afterwards to fix the toggle's
 	/// content size
 	/// @note Geode addition
 	void updateSprite() {
@@ -1086,8 +1086,8 @@ class GJGameState {
 	// ~GJGameState();
 
 	// the hex offsets in member names are from android32 2.200
-	float m_unk0;
-	float m_unk4;
+	float m_cameraZoom;
+	float m_targetCameraZoom;
 	cocos2d::CCPoint m_unk8;
 	cocos2d::CCPoint m_unk10;
 	cocos2d::CCPoint m_unk18;
@@ -1137,8 +1137,8 @@ class GJGameState {
 	float m_unk170;
 	float m_unk174;
 	float m_unk178;
-	int m_unk17c;
-	int m_unk180;
+	float m_cameraAngle;
+	float m_targetCameraAngle;
 	bool m_unk184;
 	float m_unk188;
 	float m_unk18c;
@@ -1153,7 +1153,7 @@ class GJGameState {
 	PAD = win 0x10, android32 0x10, android64 0x10, mac 0x10;
 	int m_unk1f8;
 	PAD = win 0x10, android32 0x10, android64 0x1c, mac 0x1c;
-	cocos2d::CCPoint m_unk20c;
+	cocos2d::CCPoint m_cameraPosition;
 	PAD = win 0xa, android32 0xa, android64 0xa, mac 0xa;
 	bool m_isDualMode;
 	PAD = win 0x5, android32 0x5, android64 0x5, mac 0x5;
@@ -1681,8 +1681,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = mac 0x128;
 	UILayer* m_uiLayer;
 	PAD = mac 0x50;
-	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; 
-	PAD = mac 0x180;
+	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
+	PAD = mac 0x70;
+	gd::vector<gd::vector<int>*> m_sectionSomethings;
+	PAD = mac 0xf8;
 	GJGameLoadingLayer* m_loadingLayer;
 }
 
@@ -2347,7 +2349,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn getNormalPercent() = mac 0x5022b0;
 	/* unverified signature */
 	void setNormalPercent(int);
-	TodoReturn lengthKeyToString(int) = mac 0x528df0;
+	static gd::string lengthKeyToString(int key) = mac 0x528df0;
 	TodoReturn levelWasSubmitted();
 	TodoReturn storeNewLocalScore(int, int);
 	TodoReturn handleStatsConflict(GJGameLevel*);
@@ -3525,7 +3527,7 @@ class GameObject : CCSpritePlus {
 	virtual cocos2d::CCRect const& getObjectRect() = mac 0x582d20;
 	virtual cocos2d::CCRect getObjectRect(float, float) = win 0x138430, mac 0x582d50;
 	virtual TodoReturn getObjectRect2(float, float) = mac 0x582f90;
-	virtual TodoReturn getObjectTextureRect() = mac 0x583060;
+	virtual cocos2d::CCRect const& getObjectTextureRect() = mac 0x583060;
 	virtual TodoReturn getRealPosition() = mac 0x583300;
 	virtual void setStartPos(cocos2d::CCPoint) = mac 0x571510;
 	virtual void updateStartValues() = mac 0x571a70;
@@ -5087,7 +5089,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 		return cocos2d::CCString::createWithFormat("T%i", time)->getCString();
 	}
 	inline gd::string getLevelLenKey() {
-		GameLevelManager::sharedState()->getLengthStr(checkTime(0), checkTime(1), checkTime(2), checkTime(3), checkTime(4), checkTime(5));
+		return GameLevelManager::sharedState()->getLengthStr(checkTime(0), checkTime(1), checkTime(2), checkTime(3), checkTime(4), checkTime(5));
 	}
 	GJSearchObject* getSearchObject(SearchType, gd::string) = mac 0x5f0380, win 0x25F210;
 	gd::string getSearchDiffKey() = mac 0x5f0710;
@@ -5914,7 +5916,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn triggerFollowCommand(EffectGameObject*);
 	TodoReturn triggerRotateCommand(EffectGameObject*);
 	bool tryUpdateSpeedObject(EffectGameObject*, bool) = mac 0xe5400;
-	TodoReturn typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float);
+	bool typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float);
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn sortBatchnodeChildren(float);
 	TodoReturn toggleLockActiveLayer();
@@ -6050,39 +6052,39 @@ class ColorSelectDelegate {
 
 [[link(android)]]
 class GJRotationControlDelegate {
-	virtual TodoReturn angleChanged(float);
-	virtual TodoReturn angleChangeBegin();
+	virtual void angleChanged(float);
+	virtual void angleChangeBegin();
 	virtual TodoReturn angleChangeEnded();
 }
 
 [[link(android)]]
 class GJScaleControlDelegate {
-	virtual TodoReturn scaleXChanged(float);
-	virtual TodoReturn scaleYChanged(float);
+	virtual void scaleXChanged(float);
+	virtual void scaleYChanged(float);
 	virtual void scaleXYChanged(float, float);
-	virtual TodoReturn scaleChangeBegin();
+	virtual void scaleChangeBegin();
 	virtual TodoReturn scaleChangeEnded();
-	virtual TodoReturn updateScaleControl();
-	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint);
+	virtual void updateScaleControl();
+	virtual void anchorPointMoved(cocos2d::CCPoint);
 }
 
 
 [[link(android)]]
 class GJTransformControlDelegate {
-	virtual TodoReturn transformScaleXChanged(float);
-	virtual TodoReturn transformScaleYChanged(float);
-	virtual TodoReturn transformScaleXYChanged(float, float);
-	virtual TodoReturn transformRotationXChanged(float);
-	virtual TodoReturn transformRotationYChanged(float);
-	virtual TodoReturn transformRotationChanged(float);
-	virtual TodoReturn transformResetRotation();
-	virtual TodoReturn transformRestoreRotation();
-	virtual TodoReturn transformSkewXChanged(float);
-	virtual TodoReturn transformSkewYChanged(float);
-	virtual TodoReturn transformChangeBegin();
+	virtual void transformScaleXChanged(float);
+	virtual void transformScaleYChanged(float);
+	virtual void transformScaleXYChanged(float, float);
+	virtual void transformRotationXChanged(float);
+	virtual void transformRotationYChanged(float);
+	virtual void transformRotationChanged(float);
+	virtual void transformResetRotation();
+	virtual void transformRestoreRotation();
+	virtual void transformSkewXChanged(float);
+	virtual void transformSkewYChanged(float);
+	virtual void transformChangeBegin();
 	virtual TodoReturn transformChangeEnded();
-	virtual TodoReturn updateTransformControl();
-	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint);
+	virtual void updateTransformControl();
+	virtual void anchorPointMoved(cocos2d::CCPoint);
 	virtual TodoReturn getTransformNode();
 	virtual TodoReturn getUI();
 }
@@ -6113,7 +6115,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getCreateBtn(int, int);
 	TodoReturn getGroupInfo(GameObject*, cocos2d::CCArray*, int&, int&, int&);
 	TodoReturn getSnapAngle(GameObject*, cocos2d::CCArray*) = mac 0x4db40;
-	TodoReturn getTouchPoint(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	cocos2d::CCPoint getTouchPoint(cocos2d::CCTouch* touch, cocos2d::CCEvent*) {
+		auto dir = cocos2d::CCDirector::sharedDirector();
+		return convertToWorldSpace(dir->convertToGL(touch->getLocationInView()));
+	}
 	TodoReturn getGroupCenter(cocos2d::CCArray*, bool) = mac 0x3f570;
 	TodoReturn getCycledObject(cocos2d::CCArray*, bool);
 	TodoReturn getSimpleButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
@@ -6121,13 +6126,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
-	TodoReturn getGridSnappedPos(cocos2d::CCPoint);
+	cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint);
 	TodoReturn getRandomStartKey(int);
 	TodoReturn getRelativeOffset(GameObject*) = mac 0x4ca710;
 	TodoReturn getSmartObjectKey(int, GJSmartDirection);
 	TodoReturn getTransformState();
 	TodoReturn getLimitedPosition(cocos2d::CCPoint);
-	TodoReturn getSelectedObjects() = mac 0x406e0;
+	cocos2d::CCArray* getSelectedObjects() = mac 0x406e0;
 	TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&) = mac 0x4cf40;
 	TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint) = mac 0x326f0;
 	TodoReturn getXMin(int) = win 0xd7470, mac 0x329d0;
@@ -6224,8 +6229,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void deselectObject() = mac 0x36850;
 	TodoReturn doPasteInPlace(bool);
 	TodoReturn doPasteObjects(bool) = mac 0x41b00;
-	TodoReturn findSnapObject(cocos2d::CCPoint, float);
-	TodoReturn findSnapObject(cocos2d::CCArray*, float);
+	void findSnapObject(cocos2d::CCPoint, float);
+	void findSnapObject(cocos2d::CCArray*, float);
 	TodoReturn moveForCommand(EditCommand);
 	void moveObjectCall(EditCommand) = mac 0x4d7c0;
 	void moveObjectCall(cocos2d::CCObject*);
@@ -6247,14 +6252,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void setupCreateMenu() = mac 0x11500;
 	void setupDeleteMenu() = mac 0x105e0;
 	TodoReturn smartTypeForKey(int);
-	TodoReturn transformObject(GameObject*, EditCommand, bool) = mac 0x4ec40;
+	void transformObject(GameObject*, EditCommand, bool) = mac 0x4ec40;
 	TodoReturn convertToBaseKey(int);
-	TodoReturn createUndoObject(UndoCommand, bool) = mac 0x40790;
+	UndoObject* createUndoObject(UndoCommand, bool) = mac 0x40790;
 	TodoReturn editButtonUsable() = mac 0x4b3b0;
 	TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	void showMaxCoinError() = mac 0x383a0;
-	TodoReturn transformObjects(cocos2d::CCArray*, cocos2d::CCPoint, float, float, float, float, float, float);
+	void transformObjects(cocos2d::CCArray*, cocos2d::CCPoint, float, float, float, float, float, float);
 	TodoReturn triggerSwipeMode();
 	TodoReturn updateCreateMenu(bool) = mac 0x31c70;
 	TodoReturn updateDeleteMenu();
@@ -6297,7 +6302,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn checkLiveColorSelect();
 	TodoReturn closeLiveColorSelect();
 	void deselectObjectsColor();
-	TodoReturn processSelectObjects(cocos2d::CCArray*);
+	void processSelectObjects(cocos2d::CCArray*) = mac 0x40c30;
 	TodoReturn toggleStickyControls(bool);
 	void tryUpdateTimeMarkers();
 	TodoReturn canAllowMultiActivate(GameObject*, cocos2d::CCArray*);
@@ -6322,14 +6327,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCPoint* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = mac 0x37820;
 	TodoReturn toggleEditObjectButton();
 	TodoReturn transformObjectsActive();
-	TodoReturn activateRotationControl(cocos2d::CCObject*) = mac 0x41020;
+	void activateRotationControl(cocos2d::CCObject*) = mac 0x41020;
 	void resetObjectEditorValues(cocos2d::CCArray*);
 	TodoReturn updateSpecialUIElements();
 	TodoReturn activateTransformControl(cocos2d::CCObject*) = mac 0x437d0;
 	// /* unverified signature */
 	bool isLiveColorSelectTrigger(GameObject*);
 	TodoReturn menuItemFromObjectString(gd::string, int) = mac 0x35380;
-	TodoReturn toggleSpecialEditButtons() = mac 0x30f70;
+	void toggleSpecialEditButtons() = mac 0x30f70;
 	TodoReturn addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*);
 	TodoReturn deactivateRotationControl();
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool);
@@ -6368,45 +6373,62 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual TodoReturn getUI() = mac 0x57430;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = mac 0x36bd0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = mac 0x36a40;
-	virtual TodoReturn updateTransformControl() = mac 0x43bf0;
-	virtual TodoReturn transformChangeBegin() = mac 0x445a0;
+	virtual void updateTransformControl() = mac 0x43bf0;
+	virtual void transformChangeBegin() = mac 0x445a0;
 	virtual TodoReturn transformChangeEnded() = mac 0x44680;
 	virtual TodoReturn getTransformNode() = mac 0x57440;
-	virtual TodoReturn transformScaleXChanged(float) = mac 0x4fe20;
-	virtual TodoReturn transformScaleYChanged(float) = mac 0x50030;
-	virtual TodoReturn transformScaleXYChanged(float, float) = mac 0x50190;
-	virtual TodoReturn transformSkewXChanged(float) = mac 0x50300;
-	virtual TodoReturn transformSkewYChanged(float) = mac 0x50460;
-	virtual TodoReturn transformRotationXChanged(float) = mac 0x505c0;
-	virtual TodoReturn transformRotationYChanged(float) = mac 0x50720;
-	virtual TodoReturn transformRotationChanged(float) = mac 0x50880;
-	virtual TodoReturn transformResetRotation() = mac 0x509f0;
-	virtual TodoReturn transformRestoreRotation() = mac 0x50ae0;
+	virtual void transformScaleXChanged(float) = mac 0x4fe20;
+	virtual void transformScaleYChanged(float) = mac 0x50030;
+	virtual void transformScaleXYChanged(float, float) = mac 0x50190;
+	virtual void transformSkewXChanged(float) = mac 0x50300;
+	virtual void transformSkewYChanged(float) = mac 0x50460;
+	virtual void transformRotationXChanged(float) = mac 0x505c0;
+	virtual void transformRotationYChanged(float) = mac 0x50720;
+	virtual void transformRotationChanged(float) = mac 0x50880;
+	virtual void transformResetRotation() = mac 0x509f0;
+	virtual void transformRestoreRotation() = mac 0x50ae0;
 	virtual void songStateChanged() = mac 0x41300;
 	virtual void colorSelectClosed(cocos2d::CCNode*) = mac 0x4d3d0;
 	virtual void keyUp(cocos2d::enumKeyCodes) = mac 0x54720;
 	virtual void scrollWheel(float, float) = win 0xda6b0, mac 0x547c0;
-	virtual TodoReturn angleChangeBegin() = mac 0x516d0;
+	virtual void angleChangeBegin() = mac 0x516d0;
 	virtual TodoReturn angleChangeEnded() = mac 0x51710;
-	virtual TodoReturn angleChanged(float) = mac 0x51730;
-	virtual TodoReturn updateScaleControl() = mac 0x42700;
-	virtual TodoReturn anchorPointMoved(cocos2d::CCPoint) = mac 0x446a0;
-	virtual TodoReturn scaleChangeBegin() = mac 0x42dd0;
+	virtual void angleChanged(float) = mac 0x51730;
+	virtual void updateScaleControl() = mac 0x42700;
+	virtual void anchorPointMoved(cocos2d::CCPoint) = mac 0x446a0;
+	virtual void scaleChangeBegin() = mac 0x42dd0;
 	virtual TodoReturn scaleChangeEnded() = mac 0x42e10;
-	virtual TodoReturn scaleXChanged(float) = mac 0x42e30;
-	virtual TodoReturn scaleYChanged(float) = mac 0x43550;
+	virtual void scaleXChanged(float) = mac 0x42e30;
+	virtual void scaleYChanged(float) = mac 0x43550;
 	virtual void scaleXYChanged(float, float) = win 0xcb9b0, mac 0x43680;
 
-	PAD = android32 0xa8, mac 0xc8;
+	PAD = android32 0x1c, mac 0x28;
+
+	GJTransformState m_transformState;
+	PAD = android32 0x4, mac 0x8;
+	EditButtonBar* m_buttonBar;
+
+	PAD = android32 0x3c, mac 0x48;
 	cocos2d::CCLabelBMFont* m_objectInfoLabel;
-	PAD = android32 0x28, mac 0x48;
+	GJRotationControl* m_rotationControl;
+	cocos2d::CCPoint m_pivotPoint;
+	PAD = android32 0x4, mac 0x8;
+	GJScaleControl* m_scaleControl;
+	GJTransformControl* m_transformControl;
+	cocos2d::CCNode* m_unk220;
+	cocos2d::CCNode* m_unk224;
+    cocos2d::CCDictionary* m_editButtonDict; // win 0x228
+	EditButtonBar* m_createButtonBar;
     EditButtonBar* m_editButtonBar;
 
 	Slider* m_positionSlider;
 
 	PAD = mac 0xc;
 	bool m_swipeEnabled;
-	PAD = mac 0x7;
+	bool m_isSwiping;
+	PAD = mac 0x3;
+	bool m_isFreeMoving;
+	PAD = mac 0x2;
 	bool m_updatedSpeedObjects;
 
 	PAD = mac 0x1b;
@@ -6475,6 +6497,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint m_cameraTest;
     cocos2d::CCPoint m_clickAtPosition;
     GameObject* m_selectedObject;
+	GameObject* m_snapObject;
 }
 
 [[link(android)]]
@@ -6669,7 +6692,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCArray* m_circleWaveArray;
 	PAD = mac 0x18;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
-	PAD = mac 0x10;
+	cocos2d::CCLabelBMFont* m_percentageLabel;
+	void* m_unkptr0;
 	cocos2d::CCSprite* m_progressBar;
 	PAD = mac 0x100;
 	cocos2d::CCDictionary* m_colorKeyDict;
@@ -7103,7 +7127,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	PAD = win 0x4, mac 0x4;
 	PlayerFireBoostSprite* m_robotFire;
 	PAD = win 0x4, mac 0x4;
-	PlayLayer* m_playLayer;
+	GJBaseGameLayer* m_gameLayer;
 	cocos2d::CCLayer* m_parentLayer;
 	GJActionManager* m_actionManager;
 	PAD = win 0x4, mac 0x4;
@@ -10522,10 +10546,10 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 
 	TodoReturn getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
 
-	void onToggleCoins(cocos2d::CCObject* sender);
-	void onRate(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onFeature(cocos2d::CCObject* sender) = win 0x2edae0;
+	void onToggleCoins(cocos2d::CCObject* sender) = mac 0x26a1f0;
+	void onRate(cocos2d::CCObject* sender) = mac 0x26a2c0;
+	void onClose(cocos2d::CCObject* sender) = mac 0x26a270;
+	void onFeature(cocos2d::CCObject* sender) = win 0x2edae0, mac 0x26a240;
 
 	void selectRating(cocos2d::CCObject*) = win 0x2edbc0, mac 0x26a0a0;
 
@@ -12245,7 +12269,7 @@ class GJRotationControl : cocos2d::CCLayer {
 	void setAngle(float);
 
 	TodoReturn finishTouch();
-	TodoReturn updateSliderPosition(cocos2d::CCPoint);
+	void updateSliderPosition(cocos2d::CCPoint);
 
 	virtual bool init() = mac 0x54a10;
 	virtual void draw() = mac 0x55010;
@@ -12253,6 +12277,12 @@ class GJRotationControl : cocos2d::CCLayer {
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x54da0;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x54f00;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x54fd0;
+
+	cocos2d::CCPoint m_beginOffset;
+	cocos2d::CCPoint m_thumbPos;
+	cocos2d::CCSprite* m_sliderThumb;
+	float m_idk;
+	float m_rotation;
 }
 
 [[link(android)]]
