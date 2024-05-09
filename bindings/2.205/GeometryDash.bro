@@ -15170,6 +15170,26 @@ class UILayer : cocos2d::CCLayerColor {
 	// so instead, we removed the second CCKeyboardDelegate from the base class list
 	// and put this member here to take the place of its vtable
 	void* m_stupidDelegate;
+
+	void* m_pUnknown1;
+	cocos2d::CCMenu* m_checkpointMenu;
+	CCMenuItemSpriteExtra* m_pauseBtn;
+	bool m_bUnknown2;
+	bool m_bUnknown3;
+	bool m_p1Jumping;
+	bool m_p2Jumping;
+	bool m_checkpointBtnDown;
+	int m_p1TouchId;
+	int m_p2TouchId;
+	float m_clkTimer;
+	bool m_inPlatformer;
+	GJBaseGameLayer* m_gameLayer;
+	bool m_initialized;
+	cocos2d::CCArray* m_uiNodes;
+	bool m_dualMode;
+	bool m_dpadType;
+	bool m_editorMode;
+	cocos2d::CCArray* m_checkpointBtns;
 }
 
 [[link(android)]]
