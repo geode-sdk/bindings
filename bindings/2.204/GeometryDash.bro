@@ -6797,7 +6797,7 @@ class GJGameLevel : cocos2d::CCNode {
 	int getAverageDifficulty() = win 0x114180;
 	char const* getCoinKey(int) = win 0x114220;
 	TodoReturn getLastBuildPageForTab(int);
-	TodoReturn getLengthKey(int, bool) = win 0x1140c0;
+	TodoReturn getLengthKey(int length, bool platformer);
 	TodoReturn getListSnapshot();
 	TodoReturn getNormalPercent();
 	TodoReturn getSongName();
@@ -6806,7 +6806,7 @@ class GJGameLevel : cocos2d::CCNode {
 	inline bool isPlatformer() {
 		return m_levelLength == 5;
 	}
-	TodoReturn lengthKeyToString(int);
+	static gd::string lengthKeyToString(int key) = win 0x1140c0;
 	TodoReturn levelWasAltered();
 	TodoReturn levelWasSubmitted();
 	TodoReturn parseSettingsString(gd::string);

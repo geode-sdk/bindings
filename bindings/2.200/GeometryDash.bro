@@ -2349,7 +2349,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn getNormalPercent() = mac 0x5022b0;
 	/* unverified signature */
 	void setNormalPercent(int);
-	TodoReturn lengthKeyToString(int) = mac 0x528df0;
+	static gd::string lengthKeyToString(int key) = mac 0x528df0;
 	TodoReturn levelWasSubmitted();
 	TodoReturn storeNewLocalScore(int, int);
 	TodoReturn handleStatsConflict(GJGameLevel*);

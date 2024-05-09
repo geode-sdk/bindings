@@ -6727,7 +6727,7 @@ class GJGameLevel : cocos2d::CCNode {
 	inline bool isPlatformer() {
 		return m_levelLength == 5;
 	}
-	const char* lengthKeyToString(int);
+	static gd::string lengthKeyToString(int key);
 	void levelWasAltered();
 	void levelWasSubmitted();
 	void parseSettingsString(gd::string settings);
