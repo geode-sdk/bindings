@@ -5959,7 +5959,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn enterDualMode(GameObject*, bool);
 	TodoReturn exitStaticCamera(bool, bool, float, int, float, bool, float, bool);
 	TodoReturn flipFinished();
-	TodoReturn flipGravity(PlayerObject*, bool, bool) = win 0x19a5f0;
+	virtual void flipGravity(PlayerObject*, bool, bool) = win 0x19a5f0;
 	TodoReturn flipObjects() = win 0x1c8980;
 	TodoReturn gameEventToString(GJGameEvent);
 	void gameEventTriggered(GJGameEvent, int, int) = win 0x1b5bf0;
@@ -6047,7 +6047,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn playerCircleCollision(PlayerObject*, GameObject*);
 	TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
 	TodoReturn playerTouchedObject(PlayerObject*, GameObject*);
-	TodoReturn playerTouchedRing(PlayerObject*, RingObject*) = win 0x19eca0;
+	void playerTouchedRing(PlayerObject*, RingObject*) = win 0x19eca0;
 	TodoReturn playerTouchedTrigger(PlayerObject*, EffectGameObject*);
 	TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*) = win 0x19e530;
 	void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x19AB80;
@@ -11220,7 +11220,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn spawnCircle();
 	TodoReturn spawnCircle2();
 	TodoReturn spawnDualCircle() = win 0x2d1a50;
-	TodoReturn spawnFromPlayer(PlayerObject*, bool) = win 0x2d8f90;
+	void spawnFromPlayer(PlayerObject*, bool) = win 0x2d8f90;
 	TodoReturn spawnPortalCircle(cocos2d::ccColor3B, float) = win 0x2d1810;
 	TodoReturn spawnScaleCircle() = win 0x2d1920;
 	TodoReturn specialGroundHit();
@@ -11300,8 +11300,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerSpriteExtra(gd::string) = win 0x2d7840;
 	void updatePlayerSwingFrame(int) = win 0x2d74c0;
 	void updateRobotAnimationSpeed();
-	TodoReturn updateRotation(float, float);
-	TodoReturn updateRotation(float) = win 0x2cbd20;
+	void updateRotation(float, float);
+	void updateRotation(float) = win 0x2cbd20;
 	void updateShipRotation(float);
 	void updateShipSpriteExtra(gd::string) = win 0x2d7940;
 	TodoReturn updateSlopeRotation(float);

@@ -5918,7 +5918,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn enterDualMode(GameObject*, bool);
 	TodoReturn exitStaticCamera(bool, bool, float, int, float, bool, float, bool);
 	TodoReturn flipFinished();
-	TodoReturn flipGravity(PlayerObject*, bool, bool);
+	virtual void flipGravity(PlayerObject*, bool, bool);
 	TodoReturn flipObjects();
 	TodoReturn gameEventToString(GJGameEvent);
 	void gameEventTriggered(GJGameEvent, int, int);
@@ -6006,7 +6006,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn playerCircleCollision(PlayerObject*, GameObject*);
 	TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
 	TodoReturn playerTouchedObject(PlayerObject*, GameObject*);
-	TodoReturn playerTouchedRing(PlayerObject*, RingObject*);
+	void playerTouchedRing(PlayerObject*, RingObject*);
 	TodoReturn playerTouchedTrigger(PlayerObject*, EffectGameObject*);
 	TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*);
 	void playerWillSwitchMode(PlayerObject*, GameObject*);
@@ -11102,7 +11102,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn spawnCircle();
 	TodoReturn spawnCircle2();
 	TodoReturn spawnDualCircle();
-	TodoReturn spawnFromPlayer(PlayerObject*, bool);
+	void spawnFromPlayer(PlayerObject*, bool);
 	TodoReturn spawnPortalCircle(cocos2d::ccColor3B, float);
 	TodoReturn spawnScaleCircle();
 	TodoReturn specialGroundHit();
