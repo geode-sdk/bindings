@@ -27,7 +27,7 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 	static AccountLayer* create();
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	TodoReturn doBackup();
+	void doBackup();
 	TodoReturn doSync();
 	TodoReturn exitLayer();
 	TodoReturn hideLoadingUI();

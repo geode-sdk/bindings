@@ -28,7 +28,7 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 	static AccountLayer* create() = win 0x573e0;
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	TodoReturn doBackup() = win 0x57dc0;
+	void doBackup() = win 0x57dc0;
 	TodoReturn doSync() = win 0x57f20;
 	TodoReturn exitLayer();
 	TodoReturn hideLoadingUI();
@@ -5758,7 +5758,7 @@ class GJAccountManager : cocos2d::CCNode {
 
 	void addDLToActive(char const* tag, cocos2d::CCObject*) = win 0x18aba0;
 	void addDLToActive(char const* tag);
-	bool backupAccount(gd::string);
+	bool backupAccount(gd::string) = win 0x18b800;
 	void dataLoaded(DS_Dictionary*);
 	void encodeDataTo(DS_Dictionary*);
 	void firstSetup();
