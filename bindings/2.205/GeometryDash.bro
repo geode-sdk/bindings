@@ -5286,8 +5286,15 @@ class GameObjectCopy : cocos2d::CCObject {
 
 	bool init(GameObject*);
 	void resetObject();
-
+	
 	GameObject* m_object;
+	cocos2d::CCPoint m_position;
+	float m_rotationX;
+	float m_rotationY;
+	bool m_isFlipX;
+	bool m_isFlipY;
+	float m_customScaleX;
+	float m_customScaleY;
 }
 
 [[link(android)]]
