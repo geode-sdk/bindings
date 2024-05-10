@@ -4489,7 +4489,7 @@ class GameManager : GManager {
     }
 
 	TodoReturn accountStatusChanged();
-	int activeIconForType(IconType);
+	int activeIconForType(IconType) = ios 0x31de0c;
 	TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string);
 	TodoReturn addDuplicateLastFrame(int);
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int);
