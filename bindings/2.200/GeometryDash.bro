@@ -1140,7 +1140,7 @@ class GJGameState {
 	float m_cameraAngle;
 	float m_targetCameraAngle;
 	bool m_unk184;
-	float m_unk188;
+	float m_timeWarp;
 	float m_unk18c;
 	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
 	gd::unordered_map<int, int> m_unk198;
@@ -1676,7 +1676,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unk2aa4;
 	EndPortalObject* m_endPortal;
 	bool m_isTestMode;
-	PAD = win 0xd2, android32 0xba, android64 0xf0, mac 0xc0;
+	PAD = mac 0x19;
+	bool m_isDead;
+	PAD = win 0xd2, android32 0xba, android64 0xf0, mac 0xa8;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = mac 0x128;
 	UILayer* m_uiLayer;
@@ -5416,6 +5418,13 @@ class ObjectControlGameObject : EffectGameObject {
 
 	virtual bool init() = mac 0x1ce7e0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x1ce830;
+}
+
+class PlayerButtonCommand {
+	PlayerButton m_button;
+	bool m_isPush;
+	bool m_isPlayer2;
+	int m_step;
 }
 
 [[link(android)]]
@@ -15400,7 +15409,7 @@ class rtsha1 {
 }
 
 [[link(android)]]
-class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
+class UILayer : cocos2d::CCLayerColor {
 	static UILayer* create(GJBaseGameLayer*);
 
 	bool init(GJBaseGameLayer*) = mac 0x4a2e40;
@@ -15437,6 +15446,31 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	virtual void keyBackClicked() = mac 0x4a4580;
 	virtual void keyDown(cocos2d::enumKeyCodes) = mac 0x4a44e0;
 	virtual void keyUp(cocos2d::enumKeyCodes) = mac 0x4a4530;
+
+	// This member is here because rob managed to inhert CCKeyboardDelegate twice
+	// in this class, which ended up breaking addresser when trying to hook it.
+	// so instead, we removed the second CCKeyboardDelegate from the base class list
+	// and put this member here to take the place of its vtable
+	void* m_stupidDelegate;
+
+	void* m_pUnknown1;
+	cocos2d::CCMenu* m_checkpointMenu;
+	CCMenuItemSpriteExtra* m_pauseBtn;
+	bool m_bUnknown2;
+	bool m_bUnknown3;
+	bool m_p1Jumping;
+	bool m_p2Jumping;
+	bool m_checkpointBtnDown;
+	int m_p1TouchId;
+	int m_p2TouchId;
+	float m_clkTimer;
+	bool m_inPlatformer;
+	GJBaseGameLayer* m_gameLayer;
+	bool m_initialized;
+	cocos2d::CCArray* m_uiNodes;
+	bool m_dualMode;
+	bool m_dpadType;
+	bool m_editorMode;
 }
 
 [[link(android)]]

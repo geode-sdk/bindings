@@ -100,12 +100,14 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x3598);
 // GEODE_MEMBER_CHECK(GameLevelManager, m_userIDtoAccountIDDict, 0x200);
 
 GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x158);
+
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x780);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc90);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe80);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isDead, 0x30a2);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3290);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32e8);
@@ -124,6 +126,7 @@ GEODE_SIZE_CHECK(GameObject, 0x548);
 GEODE_SIZE_CHECK(PlayerObject, 0xb80);
 GEODE_SIZE_CHECK(PlayLayer, 0x3758);
 GEODE_SIZE_CHECK(GJGameState, 0x5d8);
+GEODE_SIZE_CHECK(UILayer, 0x278);
 
 GEODE_MEMBER_CHECK(GameObject, m_objectType, 0x398);
 GEODE_MEMBER_CHECK(GameObject, m_realXPosition, 0x3b0);
