@@ -664,11 +664,11 @@ class cocos2d::CCLayerColor {
 [[link(win, android)]]
 class cocos2d::CCLayerGradient {
 	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = ios 0x152138;
-	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const& start, cocos2d::_ccColor4B const& end, cocos2d::CCPoint const& v) {
+	inline static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const& start, cocos2d::_ccColor4B const& end, cocos2d::CCPoint const& v) {
 		create(start, end);
 		setVector(v);
 	}
-	static cocos2d::CCLayerGradient* create() {
+	inline static cocos2d::CCLayerGradient* create() {
 		create({ 0, 0, 0, 255 }, { 0, 0, 0, 255 });
 	}
 
