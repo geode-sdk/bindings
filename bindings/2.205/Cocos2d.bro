@@ -662,6 +662,48 @@ class cocos2d::CCLayerColor {
 }
 
 [[link(win, android)]]
+class cocos2d::CCLayerGradient {
+	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = ios 0x152138;
+	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const& start, cocos2d::_ccColor4B const& end, cocos2d::CCPoint const& v) {
+		create(start, end);
+		setVector(v);
+	}
+	static cocos2d::CCLayerGradient* create() {
+		create({ 0, 0, 0, 255 }, { 0, 0, 0, 255 });
+	}
+
+	bool getShouldPremultiply() const;
+
+	void setShouldPremultiply(bool);
+	void setValues(cocos2d::_ccColor3B const&, unsigned char, cocos2d::_ccColor3B const&, unsigned char, cocos2d::CCPoint const&) = ios 0x1525ec;
+
+	// CCLayerGradient(cocos2d::CCLayerGradient const&);
+	// CCLayerGradient();
+
+	virtual bool init() = ios 0x152238;
+
+	// seems like the override is missing from cocos side (or this shouldn't be here)
+	// hopefully figure that one out before it actually becomes important
+	// virtual void visit() = ios 0x152678;
+
+	virtual void updateColor() = ios 0x152350;
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = ios 0x152270;
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&) = ios 0x1522d0;
+	virtual cocos2d::_ccColor3B const& getStartColor() = ios 0x152548;
+	virtual void setStartColor(cocos2d::_ccColor3B const&) = ios 0x152550;
+	virtual cocos2d::_ccColor3B const& getEndColor() = ios 0x15257c;
+	virtual void setEndColor(cocos2d::_ccColor3B const&) = ios 0x15255c;
+	virtual unsigned char getStartOpacity() = ios 0x152594;
+	virtual void setStartOpacity(unsigned char) = ios 0x152584;
+	virtual unsigned char getEndOpacity() = ios 0x1525ac;
+	virtual void setEndOpacity(unsigned char) = ios 0x15259c;
+	virtual cocos2d::CCPoint const& getVector() = ios 0x1525e4;
+	virtual void setVector(cocos2d::CCPoint const&) = ios 0x1525b4;
+	virtual void setCompressedInterpolation(bool) = ios 0x152668;
+	virtual bool isCompressedInterpolation() = ios 0x152660;
+}
+
+[[link(win, android)]]
 class cocos2d::CCLayerRGBA {
 	static cocos2d::CCLayerRGBA* create();
 
