@@ -665,11 +665,12 @@ class cocos2d::CCLayerColor {
 class cocos2d::CCLayerGradient {
 	static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = ios 0x152138;
 	inline static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const& start, cocos2d::_ccColor4B const& end, cocos2d::CCPoint const& v) {
-		create(start, end);
-		setVector(v);
+		auto pRet = create(start, end);
+		pRet->setVector(v);
+		return pRet;
 	}
 	inline static cocos2d::CCLayerGradient* create() {
-		create({ 0, 0, 0, 255 }, { 0, 0, 0, 255 });
+		return create({ 0, 0, 0, 255 }, { 0, 0, 0, 255 });
 	}
 
 	bool getShouldPremultiply() const;
