@@ -11420,18 +11420,18 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	GJRobotSprite* m_robotSprite;
 	GJSpiderSprite* m_spiderSprite;
 	PAD = win 0x4, android32 0x4;
-	cocos2d::CCParticleSystemQuad* m_unk6dc;
+	cocos2d::CCParticleSystemQuad* m_playerGroundParticles;
 	cocos2d::CCParticleSystemQuad* m_trailingParticles; // 0x6d8
 	cocos2d::CCParticleSystemQuad* m_shipClickParticles; // 0x6dc
-	cocos2d::CCParticleSystemQuad* m_unk6e8;
+	cocos2d::CCParticleSystemQuad* m_vehicleGroundParticles;
 	cocos2d::CCParticleSystemQuad* m_ufoClickParticles; // 0x6e4
 	cocos2d::CCParticleSystemQuad* m_robotBurstParticles;
-	cocos2d::CCParticleSystemQuad* m_unk6f4;
+	cocos2d::CCParticleSystemQuad* m_dashParticles;
 	cocos2d::CCParticleSystemQuad* m_swingBurstParticles1; // 0x6f0
 	cocos2d::CCParticleSystemQuad* m_swingBurstParticles2; // 0x6f4
 	PAD = win 0x4, android32 0x4;
-	cocos2d::CCParticleSystemQuad* m_unk704;
-	cocos2d::CCParticleSystemQuad* m_unk708;
+	cocos2d::CCParticleSystemQuad* m_landParticles0;
+	cocos2d::CCParticleSystemQuad* m_landParticles1;
 	float m_unk70c;
 	float m_unk710;
 	PAD = win 0x64, android32 0x64;
