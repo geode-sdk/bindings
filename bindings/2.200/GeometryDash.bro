@@ -1140,7 +1140,7 @@ class GJGameState {
 	float m_cameraAngle;
 	float m_targetCameraAngle;
 	bool m_unk184;
-	float m_unk188;
+	float m_timeWarp;
 	float m_unk18c;
 	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
 	gd::unordered_map<int, int> m_unk198;
@@ -1676,7 +1676,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unk2aa4;
 	EndPortalObject* m_endPortal;
 	bool m_isTestMode;
-	PAD = win 0xd2, android32 0xba, android64 0xf0, mac 0xc0;
+	PAD = mac 0x19;
+	bool m_isDead;
+	PAD = win 0xd2, android32 0xba, android64 0xf0, mac 0xa8;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = mac 0x128;
 	UILayer* m_uiLayer;
@@ -2349,7 +2351,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn getNormalPercent() = mac 0x5022b0;
 	/* unverified signature */
 	void setNormalPercent(int);
-	TodoReturn lengthKeyToString(int) = mac 0x528df0;
+	static gd::string lengthKeyToString(int key) = mac 0x528df0;
 	TodoReturn levelWasSubmitted();
 	TodoReturn storeNewLocalScore(int, int);
 	TodoReturn handleStatsConflict(GJGameLevel*);
@@ -5416,6 +5418,13 @@ class ObjectControlGameObject : EffectGameObject {
 
 	virtual bool init() = mac 0x1ce7e0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x1ce830;
+}
+
+class PlayerButtonCommand {
+	PlayerButton m_button;
+	bool m_isPush;
+	bool m_isPlayer2;
+	int m_step;
 }
 
 [[link(android)]]
@@ -8955,14 +8964,14 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn setupShader(bool);
 	TodoReturn triggerBulge(float, float, float, float, float, int, int, float, bool);
 	TodoReturn triggerSepia(float, float, int, float);
-	bool updateZLayer(int, int, bool);
+	bool updateZLayer(int, int, bool) = mac 0x3a94c0;
 	TodoReturn triggerGlitch(float, float, float, float, float, float, float, bool);
-	TodoReturn triggerPinchX(float, float, float, float, float, bool, int, int, float, bool);
-	TodoReturn triggerPinchY(float, float, float, float, float, bool, int, int, float, bool);
+	bool triggerPinchX(float, float, float, float, float, bool, int, int, float, bool) = mac 0x3af190;
+	bool triggerPinchY(float, float, float, float, float, bool, int, int, float, bool); // inlined
 	TodoReturn preBulgeShader();
 	TodoReturn prePinchShader();
 	TodoReturn preSepiaShader();
-	TodoReturn tweenValueAuto(float, int, float, int, float);
+	TodoReturn tweenValueAuto(float, int, float, int, float) = mac 0x3ac050;
 	void preCommonShader() = mac 0x3aa510;
 	void preGlitchShader() = mac 0x3ad250;
 	bool resetAllShaders();
@@ -8972,24 +8981,24 @@ class ShaderLayer : cocos2d::CCLayer {
     TodoReturn setupPinchShader() = win 0x37af60;
 	TodoReturn setupSepiaShader();
 	TodoReturn triggerGrayscale(float, float, bool, int, int, float);
-	TodoReturn triggerPixelateX(float, float, bool, bool, int, float, bool);
-	TodoReturn triggerPixelateY(float, float, bool, bool, int, float, bool);
-	bool triggerShockLine(float, float, bool, bool, bool, bool, float, float, float, float, float, float, int, bool, bool, bool, float, bool, float, int, float);
-	bool triggerShockWave(float, float, float, float, float, float, float, bool, float, float, float, int, bool, bool, bool, float, float, bool, float, int, float);
+	bool triggerPixelateX(float, float, bool, bool, int, float, bool) = mac 0x3ade10;
+	bool triggerPixelateY(float, float, bool, bool, int, float, bool); // inlined
+	bool triggerShockLine(float, float, bool, bool, bool, bool, float, float, float, float, float, float, int, bool, bool, bool, float, bool, float, int, float) = mac 0x3acad0;
+	bool triggerShockWave(float, float, float, float, float, float, float, bool, float, float, float, int, bool, bool, bool, float, float, bool, float, int, float) = mac 0x3abdd0;
 	TodoReturn preHueShiftShader();
 	void prePixelateShader() = mac 0x3adef0;
-	TodoReturn triggerChromaticX(float, float, int, float, bool);
-	TodoReturn triggerChromaticY(float, float, int, float, bool);
-	TodoReturn triggerLensCircle(float, float, float, float, int, int, float, float, int, float, bool);
-	TodoReturn triggerRadialBlur(float, float, float, float, int, float, float, bool, int, int, float, bool);
+	bool triggerChromaticX(float, float, int, float, bool) = mac 0x3ad780;
+	bool triggerChromaticY(float, float, int, float, bool); // inlined
+	bool triggerLensCircle(float, float, float, float, int, int, float, float, int, float, bool);
+	bool triggerRadialBlur(float, float, float, float, int, float, float, bool, int, int, float, bool);
 	void preChromaticShader() = mac 0x3ad7e0;
 	void preGrayscaleShader() = mac 0x3af3e0;
 	void preShockLineShader() = mac 0x3acd30;
 	void preShockWaveShader() = mac 0x3ac670;
 	TodoReturn triggerColorChange(float, float, float, float, float, float, float, int, float);
 	TodoReturn triggerInvertColor(float, float, float, float, float, bool, bool, bool, int, float);
-	TodoReturn triggerMotionBlurX(float, float, float, float, int, float, bool, int, int, float, bool, bool);
-	TodoReturn triggerMotionBlurY(float, float, float, float, int, float, bool, int, int, float, bool, bool);
+	bool triggerMotionBlurX(float, float, float, float, int, float, bool, int, int, float, bool, bool) = mac 0x3aeb10;
+	bool triggerMotionBlurY(float, float, float, float, int, float, bool, int, int, float, bool, bool) = mac 0x3aebe0;
 	void performCalculations() = win 0x37c330, mac 0x3afea0;
 	void preLensCircleShader() = mac 0x3ae720;
 	void preMotionBlurShader() = mac 0x3aecb0;
@@ -9017,8 +9026,8 @@ class ShaderLayer : cocos2d::CCLayer {
     TodoReturn setupShockWaveUniforms() = win 0x376b20;
     TodoReturn setupSplitScreenShader() = win 0x37be40;
 	TodoReturn triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool);
-	TodoReturn triggerSplitScreenCols(float, float, int, float);
-	TodoReturn triggerSplitScreenRows(float, float, int, float);
+	bool triggerSplitScreenCols(float, float, int, float) = mac 0x3afaf0;
+	bool triggerSplitScreenRows(float, float, int, float); // inlined
 	void updateMotionBlurSpeedX(float, float) = mac 0x3aef90;
 	void updateMotionBlurSpeedY(float, float) = mac 0x3aeff0;
 	void preChromaticGlitchShader() = mac 0x3adab0;
@@ -15400,7 +15409,7 @@ class rtsha1 {
 }
 
 [[link(android)]]
-class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
+class UILayer : cocos2d::CCLayerColor {
 	static UILayer* create(GJBaseGameLayer*);
 
 	bool init(GJBaseGameLayer*) = mac 0x4a2e40;
@@ -15437,6 +15446,31 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 	virtual void keyBackClicked() = mac 0x4a4580;
 	virtual void keyDown(cocos2d::enumKeyCodes) = mac 0x4a44e0;
 	virtual void keyUp(cocos2d::enumKeyCodes) = mac 0x4a4530;
+
+	// This member is here because rob managed to inhert CCKeyboardDelegate twice
+	// in this class, which ended up breaking addresser when trying to hook it.
+	// so instead, we removed the second CCKeyboardDelegate from the base class list
+	// and put this member here to take the place of its vtable
+	void* m_stupidDelegate;
+
+	void* m_pUnknown1;
+	cocos2d::CCMenu* m_checkpointMenu;
+	CCMenuItemSpriteExtra* m_pauseBtn;
+	bool m_bUnknown2;
+	bool m_bUnknown3;
+	bool m_p1Jumping;
+	bool m_p2Jumping;
+	bool m_checkpointBtnDown;
+	int m_p1TouchId;
+	int m_p2TouchId;
+	float m_clkTimer;
+	bool m_inPlatformer;
+	GJBaseGameLayer* m_gameLayer;
+	bool m_initialized;
+	cocos2d::CCArray* m_uiNodes;
+	bool m_dualMode;
+	bool m_dpadType;
+	bool m_editorMode;
 }
 
 [[link(android)]]
