@@ -170,7 +170,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x628);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk644, 0x644);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk6a2, 0x6a2);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x6c8);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk708, 0x700);
+GEODE_MEMBER_CHECK(PlayerObject, m_landParticles1, 0x700);
 GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x770);
 GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x7ac);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
