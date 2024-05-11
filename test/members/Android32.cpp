@@ -142,6 +142,12 @@ GEODE_MEMBER_CHECK(ColorSelectPopup, m_colorAction, 0x2f0);
 // GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x794);
 // GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x804);
 
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x15c);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_sfxVolume, 0x160);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse1, 0x16c);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse2, 0x170);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse3, 0x174);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_metering, 0x17c);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x184);
 
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x16c);

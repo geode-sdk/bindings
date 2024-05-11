@@ -3786,7 +3786,12 @@ class FMODAudioEngine : cocos2d::CCNode {
 	PAD = win 0x60, android32 0x50, android64 0xac;
 	float m_musicVolume;
 	float m_sfxVolume;
-	PAD = win 0x1c, android32 0x20, android64 0x20;
+	PAD = win 0x8, android32 0x8, android64 0x8;
+	float m_pulse1;
+	float m_pulse2;
+	float m_pulse3;
+	int m_pulseCounter;
+	bool m_metering;
 	FMOD::Channel* m_backgroundMusicChannel;
 	FMOD::System* m_system;
 }

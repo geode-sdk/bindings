@@ -182,6 +182,12 @@ GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x9a4);
 
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x168);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_sfxVolume, 0x16c);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse1, 0x178);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse2, 0x17c);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse3, 0x180);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_metering, 0x188);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x190);
 
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x198);

@@ -3726,8 +3726,15 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn countActiveEffects();
 	TodoReturn countActiveMusic();
 	TodoReturn createStream(gd::string) = win 0x3aea0;
-	TodoReturn disableMetering();
-	TodoReturn enableMetering();
+	void disableMetering() {
+		this->m_metering = false;
+	}
+	void enableMetering() {
+		this->m_metering = true;
+		this->m_pulse1 = 0.1f;
+		this->m_pulse2 = 0.1f;
+		this->m_pulse3 = 0.0f;
+	}
 	TodoReturn fadeInBackgroundMusic(float);
 	TodoReturn fadeInMusic(float, int) = win 0x3a740;
 	TodoReturn fadeOutMusic(float, int);
@@ -3828,7 +3835,12 @@ class FMODAudioEngine : cocos2d::CCNode {
 	PAD = win 0x60, android32 0x50, android64 0xac;
 	float m_musicVolume;
 	float m_sfxVolume;
-	PAD = win 0x1c, android32 0x20, android64 0x20;
+	PAD = win 0x8, android32 0x8, android64 0x8;
+	float m_pulse1;
+	float m_pulse2;
+	float m_pulse3;
+	int m_pulseCounter;
+	bool m_metering;
 	FMOD::Channel* m_backgroundMusicChannel;
 	FMOD::System* m_system;
 	FMOD::Sound* m_sound;

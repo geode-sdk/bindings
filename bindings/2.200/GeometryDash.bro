@@ -11052,7 +11052,16 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	virtual void update(float) = win 0x33910, mac 0x3bcec0;
 
-	PAD = win 0x88, android32 0x7c, android64 0xdc, mac 0xa8;
+	PAD = win 0x60, android32 0x50, android64 0xac, mac 0x78;
+	float m_musicVolume;
+	float m_sfxVolume;
+	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
+	float m_pulse1;
+	float m_pulse2;
+	float m_pulse3;
+	int m_pulseCounter;
+	bool m_metering;
+	FMOD::Channel* m_backgroundMusicChannel;
 	FMOD::System* m_system;
 }
 
