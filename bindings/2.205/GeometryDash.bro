@@ -4508,7 +4508,7 @@ class GameManager : GManager {
 	TodoReturn colorForPos(int);
 	TodoReturn colorKey(int, UnlockType);
 	TodoReturn completedAchievement(gd::string) = ios 0x319e50;
-	int countForType(IconType);
+	int countForType(IconType) = ios 0x31deec;
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn didExitPlayscene() = ios 0x3237f8;
 	TodoReturn doQuickSave();
@@ -4549,7 +4549,7 @@ class GameManager : GManager {
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	TodoReturn iconKey(int, IconType);
-	UnlockType iconTypeToUnlockType(IconType);
+	UnlockType iconTypeToUnlockType(IconType) = ios 0x319240;
 	bool isColorUnlocked(int, UnlockType) = ios 0x319548;
 	bool isIconLoaded(int, int);
 	bool isIconUnlocked(int, IconType) = ios 0x319178;
