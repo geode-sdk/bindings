@@ -2641,22 +2641,22 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
 	TodoReturn doResetUnused() = win 0x242150;
 	bool init(LevelEditorLayer*) = win 0xa0020;
-	void onAlignX(cocos2d::CCObject* sender);
-	void onAlignY(cocos2d::CCObject* sender);
-	void onBuildHelper(cocos2d::CCObject* sender);
-	void onCopyWColor(cocos2d::CCObject* sender);
-	void onCreateExtras(cocos2d::CCObject* sender);
+	void onAlignX(cocos2d::CCObject* sender) = win 0xa2140;
+	void onAlignY(cocos2d::CCObject* sender) = win 0xa2170;
+	void onBuildHelper(cocos2d::CCObject* sender) = win 0xa2020;
+	void onCopyWColor(cocos2d::CCObject* sender) = win 0xa2060;
+	void onCreateExtras(cocos2d::CCObject* sender) = win 0xa1fe0;
 	void onCreateLoop(cocos2d::CCObject* sender) = win 0xa2040;
 	void onCreateTemplate(cocos2d::CCObject* sender);
 	void onExitEditor(cocos2d::CCObject* sender) = win 0xa2ef0;
 	void onExitNoSave(cocos2d::CCObject* sender) = win 0xa2f50;
-	void onHelp(cocos2d::CCObject* sender);
-	void onKeybindings(cocos2d::CCObject* sender);
-	void onNewGroupX(cocos2d::CCObject* sender);
-	void onNewGroupY(cocos2d::CCObject* sender);
-	void onOptions(cocos2d::CCObject* sender);
-	void onPasteWColor(cocos2d::CCObject* sender);
-	void onReGroup(cocos2d::CCObject* sender);
+	void onHelp(cocos2d::CCObject* sender) = win 0xa3040;
+	void onKeybindings(cocos2d::CCObject* sender) = win 0xa21a0;
+	void onNewGroupX(cocos2d::CCObject* sender) = win 0xa20a0;
+	void onNewGroupY(cocos2d::CCObject* sender) = win 0xa20c0;
+	void onOptions(cocos2d::CCObject* sender) = win 0xa1e50;
+	void onPasteWColor(cocos2d::CCObject* sender) = win 0xa2080;
+	void onReGroup(cocos2d::CCObject* sender) = win 0xa2000;
 	void onResetUnusedColors(cocos2d::CCObject* sender) = win 0xa1f30;
 	void onResume(cocos2d::CCObject* sender) = win 0xa2640;
 	void onSave(cocos2d::CCObject* sender) = win 0xa2e40;
@@ -2664,9 +2664,9 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xa2c90;
 	void onSelectAll(cocos2d::CCObject* sender) = win 0xa20e0;
 	void onSelectAllLeft(cocos2d::CCObject* sender) = win 0xa2100;
-	void onSelectAllRight(cocos2d::CCObject* sender);
+	void onSelectAllRight(cocos2d::CCObject* sender) = win 0xa2120;
 	void onSong(cocos2d::CCObject* sender) = win 0xa25a0;
-	void onUnlockAllLayers(cocos2d::CCObject* sender);
+	void onUnlockAllLayers(cocos2d::CCObject* sender) = win 0xa1fa0;
 	TodoReturn playStep2() = win 0xa2cf0;
 	TodoReturn playStep3() = win 0xa2dc0;
 	void saveLevel() = win 0xa26c0;
@@ -9598,7 +9598,7 @@ class LevelOptionsLayer : GJOptionsLayer {
 	static LevelOptionsLayer* create(LevelSettingsObject*);
 
 	bool init(LevelSettingsObject*);
-	void onSettings(cocos2d::CCObject* sender);
+	void onSettings(cocos2d::CCObject* sender) = win 0x271c10;
 
 	virtual void valueDidChange(int, float) = win 0x271c40;
 	virtual TodoReturn getValue(int) = win 0x271c60;
@@ -9749,7 +9749,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	bool init(LevelSettingsObject*, LevelEditorLayer*) = win 0x26CE20;
-	void onBGArt(cocos2d::CCObject* sender);
+	void onBGArt(cocos2d::CCObject* sender) = win 0x26f8f0;
 	void onClose(cocos2d::CCObject* sender) = win 0x26f640;
 	void onCol(cocos2d::CCObject* sender) = win 0x26f7e0;
 	void onDisable(cocos2d::CCObject* sender);
@@ -9760,9 +9760,9 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 	void onMode(cocos2d::CCObject* sender);
 	void onOptionToggle(cocos2d::CCObject* sender);
 	void onSelectFont(cocos2d::CCObject* sender) = win 0x26f9d0;
-	void onSelectMode(cocos2d::CCObject* sender);
-	void onSelectSpeed(cocos2d::CCObject* sender);
-	void onSettings(cocos2d::CCObject* sender);
+	void onSelectMode(cocos2d::CCObject* sender) = win 0x26f130;
+	void onSelectSpeed(cocos2d::CCObject* sender) = win 0x26f0f0;
+	void onSettings(cocos2d::CCObject* sender) = win 0x26f0d0;
 	void onShowPicker(cocos2d::CCObject* sender) = win 0x26f790;
 	void onSpeed(cocos2d::CCObject* sender);
 	void showPicker(ColorAction*);
