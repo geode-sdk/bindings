@@ -1922,7 +1922,7 @@ class GameManager : GManager {
 	void unloadIcons(int) = win 0x125a60;
 	void unlockColor(int, UnlockType) = mac 0x3560d0;
 	TodoReturn updateMusic();
-	TodoReturn countForType(IconType) = mac 0x35e6a0;
+	int countForType(IconType) = mac 0x35e6a0;
 	TodoReturn followTwitch() = mac 0x35e190;
 	TodoReturn getBGTexture(int) = mac 0x361150;
 	TodoReturn getMGTexture(int);
