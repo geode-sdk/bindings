@@ -1998,6 +1998,13 @@ class cocos2d::CCTouch {
 
 	// CCTouch(cocos2d::CCTouch const&);
 	// CCTouch();
+
+	// not 100% sure about these but at least m_prevPoint seems to be correct
+	int m_nId;
+	bool m_startPointCaptured;
+	CCPoint m_startPoint;
+	CCPoint m_point;
+	CCPoint m_prevPoint;
 }
 
 [[link(win, android)]]
