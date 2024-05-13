@@ -42,6 +42,38 @@ class cocos2d::CCMotionStreak {
 }
 
 [[link(win, android)]]
+class cocos2d::CCLayerGradient {
+    static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = ios 0x152138;
+    static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
+    static cocos2d::CCLayerGradient* create();
+
+    bool getShouldPremultiply() const;
+
+    void setShouldPremultiply(bool);
+    void setValues(cocos2d::_ccColor3B const&, unsigned char, cocos2d::_ccColor3B const&, unsigned char, cocos2d::CCPoint const&) = ios 0x1525EC;
+
+    // CCLayerGradient(cocos2d::CCLayerGradient const&);
+    // CCLayerGradient();
+
+    virtual bool init();
+
+    virtual void updateColor() = ios 0x152350;
+    virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = ios 0x152270;
+    virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
+    virtual cocos2d::_ccColor3B const& getStartColor();
+    virtual void setStartColor(cocos2d::_ccColor3B const&);
+    virtual cocos2d::_ccColor3B const& getEndColor();
+    virtual void setEndColor(cocos2d::_ccColor3B const&);
+    virtual unsigned char getStartOpacity();
+    virtual void setStartOpacity(unsigned char);
+    virtual unsigned char getEndOpacity();
+    virtual void setEndOpacity(unsigned char);
+    virtual cocos2d::CCPoint const& getVector();
+    virtual void setVector(cocos2d::CCPoint const&);
+    virtual void setCompressedInterpolation(bool);
+    virtual bool isCompressedInterpolation();
+}
+[[link(win, android)]]
 class cocos2d::CCScene {
 	static cocos2d::CCScene* create() = ios 0x248dd0;
 
