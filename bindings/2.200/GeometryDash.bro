@@ -1262,7 +1262,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getGroup(int) = win 0x1a4eb0, mac 0x1097a0;
 
 	void setGroupParent(GameObject*, int) = mac 0x129f80;
-	void setStartPosObject(StartPosObject*) = win 0x195FC0;
+	void setStartPosObject(StartPosObject*) = win 0x195FC0, mac 0x10e7a0;
 
 	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
 	TodoReturn applyShake(cocos2d::CCPoint&) = win 0x1BD670; //inlined on mac :(
@@ -4227,14 +4227,14 @@ class RingObject : EffectGameObject {
 
 [[link(android)]]
 class StartPosObject : EffectGameObject {
-	static StartPosObject* create();
+	static StartPosObject* create() = mac 0x1a5780;
 
 	~StartPosObject();
 
-	void setSettings(LevelSettingsObject*);
+	void setSettings(LevelSettingsObject*) = mac 0x1a5920;
 
 	void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = mac 0x1a59d0;
-	TodoReturn loadSettingsFromString(gd::string);
+	void loadSettingsFromString(gd::string) = mac 0x1a5970;
 
 	virtual bool init() = win 0x3A0D10, mac 0x1a5880;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x1a59e0;
