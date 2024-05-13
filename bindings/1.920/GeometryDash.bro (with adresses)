@@ -4831,19 +4831,19 @@ class MapPackCell {
 [[link(android)]]
 class MenuGameLayer : cocos2d::CCLayer {
 	// virtual ~MenuGameLayer();
-	// MenuGameLayer();
+	// MenuGameLayer() = win 0xad2f0;
 
-	static MenuGameLayer* create();
+	static MenuGameLayer* create() = win 0xad430;
 
-	void destroyPlayer();
-	TodoReturn getBGColor(int);
-	TodoReturn resetPlayer();
-	TodoReturn tryJump(float);
-	TodoReturn updateColor(float);
+	void destroyPlayer() = win 0xaec50;
+	TodoReturn getBGColor(int) = win 0xadea0;
+	TodoReturn resetPlayer() = win 0xae4f0;
+	TodoReturn tryJump(float) = win 0xadff0;
+	TodoReturn updateColor(float) = win 0xaddc0;
 
-	virtual void update(float);
-	virtual bool init();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void update(float) = win 0xae210;
+	virtual bool init() = win 0xad4d0;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xaef10;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -4854,28 +4854,28 @@ class MenuGameLayer : cocos2d::CCLayer {
 class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	// virtual ~MenuLayer();
 
-	static cocos2d::CCScene* scene(bool);
+	static cocos2d::CCScene* scene(bool) = win 0xaf1a0;
 
 	TodoReturn endGame();
-	TodoReturn node();
-	void onAchievements(cocos2d::CCObject* sender);
-	void onCreator(cocos2d::CCObject* sender);
+	TodoReturn node() = win 0xaf100;
+	void onAchievements(cocos2d::CCObject* sender) = win 0xb01a0;
+	void onCreator(cocos2d::CCObject* sender) = win 0xb0380;
 	void onEveryplay(cocos2d::CCObject* sender);
-	void onFacebook(cocos2d::CCObject* sender);
+	void onFacebook(cocos2d::CCObject* sender) = win 0xafe90;
 	void onFullVersion(cocos2d::CCObject* sender);
 	void onGameCenter(cocos2d::CCObject* sender);
-	void onGarage(cocos2d::CCObject* sender);
+	void onGarage(cocos2d::CCObject* sender) = win 0xb0460;
 	void onGooglePlayGames(cocos2d::CCObject* sender);
-	void onMoreGames(cocos2d::CCObject* sender);
-	void onOptions(cocos2d::CCObject* sender);
+	void onMoreGames(cocos2d::CCObject* sender) = win 0xb0070;
+	void onOptions(cocos2d::CCObject* sender) = win 0xb02e0;
 	TodoReturn onOptionsInstant();
-	void onPlay(cocos2d::CCObject* sender);
-	void onQuit(cocos2d::CCObject* sender);
-	void onRobTop(cocos2d::CCObject* sender);
-	void onStats(cocos2d::CCObject* sender);
+	void onPlay(cocos2d::CCObject* sender) = win 0xb0200;
+	void onQuit(cocos2d::CCObject* sender) = win 0xb05a0;
+	void onRobTop(cocos2d::CCObject* sender) = win 0xafe70;
+	void onStats(cocos2d::CCObject* sender) = win 0xb0350;
 	void onTrailer(cocos2d::CCObject* sender);
-	void onTwitter(cocos2d::CCObject* sender);
-	void onYouTube(cocos2d::CCObject* sender);
+	void onTwitter(cocos2d::CCObject* sender) = win 0xaff30;
+	void onYouTube(cocos2d::CCObject* sender) = win 0xaffd0;
 	void openOptions(bool);
 	TodoReturn showGCQuestion();
 	TodoReturn showPirateMessage();
@@ -4883,7 +4883,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	TodoReturn tryShowAd(float);
 	void willClose();
 
-	virtual bool init();
+	virtual bool init() = win 0xaf210;
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
 	virtual void googlePlaySignedIn();
