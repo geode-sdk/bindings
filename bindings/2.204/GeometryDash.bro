@@ -5540,7 +5540,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn tempClear();
 	void toggleEnableItem(UnlockType, int, bool) = win 0x176890;
 	TodoReturn trySelectActivePath() = win 0x16a350;
-	TodoReturn uncompleteLevel(GJGameLevel*);
+	void uncompleteLevel(GJGameLevel*) = win 0x170400;
 	TodoReturn unlockGauntletChest(int);
 	TodoReturn unlockPathChest(int);
 	TodoReturn unlockSecretChest(int) = win 0x17a8a0;
@@ -9134,7 +9134,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn dirtifyTriggers();
 	TodoReturn duplicateKeyframeAnimation(int);
 	TodoReturn fastUpdateDisabledGroups();
-	TodoReturn findGameObject(int) = win 0x23d260;
+	int findGameObject(int) = win 0x23d260;
 	TodoReturn findStartPosObject();
 	TodoReturn forceShowSelectedObjects(bool);
 	TodoReturn fullUpdateDisabledGroups();
@@ -10146,11 +10146,11 @@ class MenuGameLayer : cocos2d::CCLayer {
 	static MenuGameLayer* create() = win 0x2791a0;
 
 	void destroyPlayer() = win 0x27AE40;
-	TodoReturn getBGColor(int);
+	TodoReturn getBGColor(int) = win 0x279890;
 	void resetPlayer() = win 0x279fd0;
-	TodoReturn tryJump(float);
+	void tryJump(float) = win 0x2799a0;
 	TodoReturn updateColor(float) = win 0x2796d0;
-	TodoReturn updateColors();
+	void updateColors() = win 0x279810;
 
 	virtual void update(float) = win 0x279c60;
 	virtual bool init() = win 0x279240;
@@ -14368,7 +14368,7 @@ class ShareListLayer : FLAlertLayer {
 	bool init(GJLevelList*) = win 0x25ef00;
 	void onClose(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
-	void onShare(cocos2d::CCObject* sender);
+	void onShare(cocos2d::CCObject* sender) = win 0x25ff80;
 	void onUnlisted(cocos2d::CCObject* sender);
 	TodoReturn updateUnlistedF();
 
