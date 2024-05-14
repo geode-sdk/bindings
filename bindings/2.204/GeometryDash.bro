@@ -11130,8 +11130,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x2cc3d0;
 	void collidedWithObject(float, GameObject*);
 	void collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x2cc450;
-	void collidedWithSlope(float, GameObject*, bool);
-	void collidedWithSlopeInternal(float, GameObject*, bool);
+	void collidedWithSlope(float, GameObject*, bool) = win 0x2ca3c0;
+	void collidedWithSlopeInternal(float, GameObject*, bool) = win 0x2ca420;
 	TodoReturn convertToClosestRotation(float);
 	TodoReturn copyAttributes(PlayerObject*);
 	void createFadeOutDartStreak() = win 0x2d2320;
@@ -11206,8 +11206,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playSpawnEffect();
 	void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x2cf5b0;
 	void postCollision(float) = win 0x2c82f0;
-	TodoReturn preCollision() = win 0x2c81b0;
-	TodoReturn preSlopeCollision(float, GameObject*);
+	void preCollision() = win 0x2c81b0;
+	bool preSlopeCollision(float, GameObject*) = win 0x2c9ec0;
 	void propellPlayer(float, bool, int) = win 0x2d81b0;
 	void pushButton(PlayerButton) = win 0x2d1d30;
 	TodoReturn pushDown();
