@@ -2954,18 +2954,18 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual void scaleYChanged(float, bool) = ios 0x3ec358;
 	virtual void scaleXYChanged(float, float, bool) = ios 0x3ec400;
 
-	PAD = android32 0x1c, android64 0x38;
+	PAD = android32 0x1c, android64 0x38, ios 0x28;
 
 	GJTransformState m_transformState;
-	PAD = android32 0x4, android64 0x8;
+	PAD = android32 0x4, android64 0x8, ios 0x8;
 	EditButtonBar* m_buttonBar;
 
-	PAD = android32 0x3c, android64 0x48;
+	PAD = android32 0x3c, android64 0x48, ios 0x48;
 
 	cocos2d::CCLabelBMFont* m_objectInfoLabel;
 	GJRotationControl* m_rotationControl;
 	cocos2d::CCPoint m_pivotPoint;
-	PAD = android32 0x4, android64 0x8;
+	PAD = android32 0x4, android64 0x8, ios 0x8;
 	GJScaleControl* m_scaleControl;
 	GJTransformControl* m_transformControl;
 	cocos2d::CCNode* m_unk220;
@@ -2975,12 +2975,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     EditButtonBar* m_editButtonBar;
     Slider* m_positionSlider;
 
-	PAD = android32 0xc, android64 0xc;
+	PAD = android32 0xc, android64 0xc, ios 0xc;
 	bool m_swipeEnabled;
-	PAD = android32 0x7, android64 0x7;
+	PAD = android32 0x7, android64 0x7, ios 0x7;
 	bool m_updatedSpeedObjects;
 
-	PAD = android32 0x17, android64 0x1b;
+	PAD = android32 0x17, android64 0x1b, ios 0x1b;
 
 	cocos2d::CCArray* m_selectedObjects; // 0x338 on a64
 
@@ -3032,7 +3032,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	CCMenuItemSpriteExtra* m_layerNextBtn;
 	CCMenuItemSpriteExtra* m_layerPrevBtn;
 	CCMenuItemSpriteExtra* m_goToBaseBtn;
-	PAD = mac 0x20, win 0x10, android32 0x10, android64 0x20;
+	PAD = mac 0x20, win 0x10, android32 0x10, android64 0x20, ios 0x20;
 	int m_selectedCreateObjectID;
 	cocos2d::CCArray* m_createButtonArray;
 	cocos2d::CCArray* m_customObjectButtonArray;
@@ -3041,7 +3041,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	LevelEditorLayer* m_editorLayer;
 	cocos2d::CCPoint m_swipeStart;
 	cocos2d::CCPoint m_swipeEnd;
-	PAD = mac 0x8, win 0x8, android32 0x8, android64 0x8;
+	PAD = mac 0x8, win 0x8, android32 0x8, android64 0x8, ios 0x8;
 	cocos2d::CCPoint m_lastTouchPoint;
 	cocos2d::CCPoint m_cameraTest;
 	cocos2d::CCPoint m_clickAtPosition;
@@ -4128,7 +4128,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void limitSavedLevels() = ios 0x9d5ec;
 	void makeTimeStamp(char const*) = ios 0x9cbbc;
 	void markItemAsLiked(LikeItemType, int, bool, int) = ios 0xac7b8;
-	void markLevelAsDownloaded(int);
+	void markLevelAsDownloaded(int) = ios 0xa3888;
 	void markLevelAsRatedDemon(int);
 	void markLevelAsRatedStars(int) = ios 0xa40b0;
 	void markLevelAsReported(int) = ios 0xadb88;
@@ -4489,7 +4489,7 @@ class GameManager : GManager {
     }
 
 	TodoReturn accountStatusChanged();
-	int activeIconForType(IconType);
+	int activeIconForType(IconType) = ios 0x31de0c;
 	TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string);
 	TodoReturn addDuplicateLastFrame(int);
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int);
@@ -4508,7 +4508,7 @@ class GameManager : GManager {
 	TodoReturn colorForPos(int);
 	TodoReturn colorKey(int, UnlockType);
 	TodoReturn completedAchievement(gd::string) = ios 0x319e50;
-	int countForType(IconType);
+	int countForType(IconType) = ios 0x31deec;
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn didExitPlayscene() = ios 0x3237f8;
 	TodoReturn doQuickSave();
@@ -4549,7 +4549,7 @@ class GameManager : GManager {
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	TodoReturn iconKey(int, IconType);
-	UnlockType iconTypeToUnlockType(IconType);
+	UnlockType iconTypeToUnlockType(IconType) = ios 0x319240;
 	bool isColorUnlocked(int, UnlockType) = ios 0x319548;
 	bool isIconLoaded(int, int);
 	bool isIconUnlocked(int, IconType) = ios 0x319178;
@@ -7055,7 +7055,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void showUnlockPopupNew(int, UnlockType);
 	gd::string titleForUnlock(int, UnlockType);
 	void toggleGlow();
-	void updatePlayerColors();
+	void updatePlayerColors() = ios 0x30a200;
 	void updatePlayerName(char const*);
 
 	virtual bool init() = ios 0x3089f8;
@@ -7074,9 +7074,8 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	SimplePlayer* m_playerObject;
 	cocos2d::CCArray* m_tabButtons;
 	cocos2d::CCArray* m_pageButtons;
-	PAD = android32 0x8, win 0x8, android64 0x10;
+	PAD = android32 0x8, win 0x8, android64 0x10, ios 0x10;
 	bool m_hasClosed;
-	PAD = android32 0x3, win 0x3, android64 0x3;
 	IconType m_iconType;
 	gd::map<IconType, int> m_iconPages;
 	cocos2d::CCSprite* m_cursor1;
@@ -7143,7 +7142,7 @@ class GJHttpResult : cocos2d::CCNode {
 class GJItemIcon : cocos2d::CCSprite {
 	// virtual ~GJItemIcon();
 
-	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B);
+	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = ios 0x30e384;
 
 	void changeToLockedState(float) = ios 0x30cc78;
 	inline static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) {
@@ -11083,7 +11082,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void runNormalRotation() {
 		this->runNormalRotation(false, 1.0f);
 	}
-	void runNormalRotation(bool, float);
+	void runNormalRotation(bool, float) = ios 0x22432c;
 	void runRotateAction(bool, int) = ios 0x225ffc;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*) = ios 0x235fb8;
 	void setSecondColor(cocos2d::ccColor3B const&) = ios 0x22303c;
