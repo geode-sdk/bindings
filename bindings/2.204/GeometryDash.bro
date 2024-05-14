@@ -5540,7 +5540,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn tempClear();
 	void toggleEnableItem(UnlockType, int, bool) = win 0x176890;
 	TodoReturn trySelectActivePath() = win 0x16a350;
-	TodoReturn uncompleteLevel(GJGameLevel*) = win 0x170400;
+	void uncompleteLevel(GJGameLevel*) = win 0x170400;
 	TodoReturn unlockGauntletChest(int);
 	TodoReturn unlockPathChest(int);
 	TodoReturn unlockSecretChest(int) = win 0x17a8a0;
@@ -6092,7 +6092,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processAreaTransformGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool);
 	TodoReturn processAreaVisualActions(float);
 	TodoReturn processCameraObject(GameObject*, PlayerObject*);
-	TodoReturn processCommands(float) = win 0x1bd240;
+	void processCommands(float) = win 0x1bd240;
 	TodoReturn processDynamicObjectActions(int, float) = win 0x1b2740;
 	TodoReturn processFollowActions();
 	TodoReturn processItems() = win 0x19d2b0;
@@ -10145,11 +10145,11 @@ class MenuGameLayer : cocos2d::CCLayer {
 	static MenuGameLayer* create() = win 0x2791a0;
 
 	void destroyPlayer() = win 0x27AE40;
-	TodoReturn getBGColor(int);
+	TodoReturn getBGColor(int) = win 0x279890;
 	void resetPlayer() = win 0x279fd0;
-	TodoReturn tryJump(float) = win 0x2799a0;
+	void tryJump(float) = win 0x2799a0;
 	TodoReturn updateColor(float) = win 0x2796d0;
-	TodoReturn updateColors() = win 0x279810;
+	void updateColors() = win 0x279810;
 
 	virtual void update(float) = win 0x279c60;
 	virtual bool init() = win 0x279240;
