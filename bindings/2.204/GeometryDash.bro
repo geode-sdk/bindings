@@ -4608,7 +4608,7 @@ class GameManager : GManager {
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	TodoReturn iconKey(int, IconType) = win 0x121d30;
-	UnlockType iconTypeToUnlockType(IconType) = win 0x122090;
+	static UnlockType iconTypeToUnlockType(IconType) = win 0x122090;
 	bool isColorUnlocked(int, UnlockType) = win 0x122490;
 	bool isIconLoaded(int, int);
 	bool isIconUnlocked(int, IconType) = win 0x121f90;
