@@ -2401,6 +2401,7 @@ class GJGameLevel : cocos2d::CCNode {
 	int m_workingTime2;
 	bool m_lowDetailMode;
 	bool m_lowDetailModeToggled;
+	bool m_idkButSelectedWasIncorrectlyOffset;
 	bool m_selected;
 	bool m_localOrSaved;
 	geode::SeedValueRS m_isVerified;
@@ -7443,7 +7444,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     CCMenuItemSpriteExtra* m_lastBtn;
     CCMenuItemSpriteExtra* m_cancelSearchBtn;
     CCMenuItemSpriteExtra* m_refreshBtn;
-    cocos2d::CCArray* m_selected;
+    cocos2d::CCArray* m_levels;
     GJSearchObject* m_searchObject;
     cocos2d::CCLabelBMFont* m_countText;
     cocos2d::CCLabelBMFont* m_pageText;
