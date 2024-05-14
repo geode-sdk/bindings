@@ -6092,7 +6092,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processAreaTransformGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool);
 	TodoReturn processAreaVisualActions(float);
 	TodoReturn processCameraObject(GameObject*, PlayerObject*);
-	TodoReturn processCommands(float);
+	void processCommands(float) = win 0x1bd240;
 	TodoReturn processDynamicObjectActions(int, float) = win 0x1b2740;
 	TodoReturn processFollowActions();
 	TodoReturn processItems() = win 0x19d2b0;
@@ -7055,7 +7055,7 @@ class GJGameState {
 	float m_cameraAngle;
 	float m_targetCameraAngle;
 	bool m_unk184;
-	float m_unk188;
+	float m_timeWarp;
 	float m_unk18c;
 	int m_currentChannel;
 	int m_unk194;
@@ -11061,6 +11061,13 @@ class PlatformToolbox {
 	static TodoReturn tryShowRateDialog(gd::string);
 	static TodoReturn updateMouseControl();
 	static TodoReturn updateWindowedSize(float, float);
+}
+
+class PlayerButtonCommand {
+    PlayerButton m_button;
+    bool m_isPush;
+    bool m_isPlayer2;
+    int m_step;
 }
 
 [[link(android)]]
@@ -15325,12 +15332,24 @@ class UILayer : cocos2d::CCLayerColor {
 	// and put this member here to take the place of its vtable
 	void* m_stupidDelegate;
 
-	PAD = win 0xe;
+	void* m_pUnknown1;
+	cocos2d::CCMenu* m_checkpointMenu;
+	CCMenuItemSpriteExtra* m_pauseBtn;
+	bool m_bUnknown2;
+	bool m_bUnknown3;
 	bool m_p1Jumping;
 	bool m_p2Jumping;
-	PAD = win 0x4;
-	int m_unkP1Counter;
-	int m_unkP2Counter;
+	bool m_checkpointBtnDown;
+	int m_p1TouchId;
+	int m_p2TouchId;
+	float m_clkTimer;
+	bool m_inPlatformer;
+	GJBaseGameLayer* m_gameLayer;
+	bool m_initialized;
+	cocos2d::CCArray* m_uiNodes;
+	bool m_dualMode;
+	bool m_dpadType;
+	bool m_editorMode;
 }
 
 [[link(android)]]
