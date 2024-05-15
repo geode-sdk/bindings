@@ -1262,7 +1262,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getGroup(int) = win 0x1a4eb0, mac 0x1097a0;
 
 	void setGroupParent(GameObject*, int) = mac 0x129f80;
-	void setStartPosObject(StartPosObject*) = win 0x195FC0;
+	void setStartPosObject(StartPosObject*) = win 0x195FC0, mac 0x10e7a0;
 
 	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
 	TodoReturn applyShake(cocos2d::CCPoint&) = win 0x1BD670; //inlined on mac :(
@@ -1922,7 +1922,7 @@ class GameManager : GManager {
 	void unloadIcons(int) = win 0x125a60;
 	void unlockColor(int, UnlockType) = mac 0x3560d0;
 	TodoReturn updateMusic();
-	TodoReturn countForType(IconType) = mac 0x35e6a0;
+	int countForType(IconType) = mac 0x35e6a0;
 	TodoReturn followTwitch() = mac 0x35e190;
 	TodoReturn getBGTexture(int) = mac 0x361150;
 	TodoReturn getMGTexture(int);
@@ -2013,7 +2013,7 @@ class GameManager : GManager {
 	TodoReturn defaultYOffsetForBG2(int);
 	TodoReturn generateSecretNumber();
 	gd::string getPracticeMusicFile() = mac 0x354d60, win 0x11f990;
-	TodoReturn iconTypeToUnlockType(IconType) = mac 0x355a80;
+	UnlockType iconTypeToUnlockType(IconType) = mac 0x355a80;
 	TodoReturn unlockTypeToIconType(int) = mac 0x355c90;
 	TodoReturn addDuplicateLastFrame(int);
 	TodoReturn finishedLoadingGAsync(int);
@@ -4228,14 +4228,14 @@ class RingObject : EffectGameObject {
 
 [[link(android)]]
 class StartPosObject : EffectGameObject {
-	static StartPosObject* create();
+	static StartPosObject* create() = mac 0x1a5780;
 
 	~StartPosObject();
 
-	void setSettings(LevelSettingsObject*);
+	void setSettings(LevelSettingsObject*) = mac 0x1a5920;
 
 	void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = mac 0x1a59d0;
-	TodoReturn loadSettingsFromString(gd::string);
+	void loadSettingsFromString(gd::string) = mac 0x1a5970;
 
 	virtual bool init() = win 0x3A0D10, mac 0x1a5880;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = mac 0x1a59e0;

@@ -11081,8 +11081,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playSpawnEffect();
 	void playSpiderDashEffect(cocos2d::CCPoint, cocos2d::CCPoint);
 	void postCollision(float);
-	TodoReturn preCollision();
-	TodoReturn preSlopeCollision(float, GameObject*);
+	void preCollision();
+	bool preSlopeCollision(float, GameObject*);
 	void propellPlayer(float, bool, int);
 	void pushButton(PlayerButton);
 	TodoReturn pushDown();
