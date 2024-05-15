@@ -2724,7 +2724,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn changeSelectedObjects(cocos2d::CCArray*, bool);
 	TodoReturn checkDiffAfterTransformAnchor(cocos2d::CCPoint, cocos2d::CCArray*);
 	TodoReturn checkLiveColorSelect() = win 0xc8b70;
-	TodoReturn clickOnPosition(cocos2d::CCPoint) = win 0xa6870;
+	void clickOnPosition(cocos2d::CCPoint) = win 0xa6870;
 	TodoReturn closeLiveColorSelect() = win 0xd4550;
 	TodoReturn closeLiveHSVSelect() = win 0xd46d0;
 	void colorSelectClosed(cocos2d::ccColor3B);

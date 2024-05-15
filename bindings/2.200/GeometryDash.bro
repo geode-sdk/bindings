@@ -6254,7 +6254,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn addSnapPosition(cocos2d::CCPoint);
 	TodoReturn assignNewGroups(bool) = mac 0x487f0;
 	TodoReturn canSelectObject(GameObject*);
-	TodoReturn clickOnPosition(cocos2d::CCPoint);
+	void clickOnPosition(cocos2d::CCPoint);
 	TodoReturn createRockBases(cocos2d::CCArray*) = mac 0x5d8d90;
 	TodoReturn createRockEdges(cocos2d::CCArray*);
 	TodoReturn findTriggerTest();
