@@ -6293,7 +6293,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void toggleEnableRotate(cocos2d::CCObject*) = mac 0xfba0;
 	TodoReturn updateGridNodeSize(int);
 	TodoReturn updateGridNodeSize() = mac 0x32b80;
-	TodoReturn updateGroupIDLabel() = mac 0x302f0;
+	void updateGroupIDLabel() = mac 0x302f0;
 	TodoReturn copyObjectsDetailed(cocos2d::CCArray*);
 	TodoReturn createEdgeForObject(GameObject*, int);
 	TodoReturn editorLayerForArray(cocos2d::CCArray*, bool);
@@ -11338,7 +11338,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateEditorOrder();
 	TodoReturn updateZOrderLabel();
 	TodoReturn updateEditorLabel2();
-	TodoReturn updateGroupIDLabel();
+	void updateGroupIDLabel();
 	TodoReturn updateOrderChannel();
 	TodoReturn callRemoveFromGroup(float);
 	TodoReturn updateEditorLayerID();
