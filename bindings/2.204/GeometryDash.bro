@@ -9581,6 +9581,10 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	virtual void textInputOpened(CCTextInputNode*) = win 0x25df40;
 	virtual void textInputClosed(CCTextInputNode*) = win 0x25de10;
 	virtual void textChanged(CCTextInputNode*) = win 0x25e080;
+
+	cocos2d::CCMenu* m_buttonMenu;
+	gd::string m_unkString;
+	GJLevelList* m_levelList;
 }
 
 [[link(android)]]
@@ -10095,7 +10099,7 @@ class LocalLevelManager : GManager {
 	virtual void firstLoad() = win 0x278560;
 
 	cocos2d::CCArray* m_localLevels;
-	cocos2d::CCArray* m_LLM03;
+	cocos2d::CCArray* m_localLists;
 	gd::map<int, gd::string> m_mainLevels;
 }
 
