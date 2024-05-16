@@ -11005,8 +11005,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool);
 	void collidedWithObject(float, GameObject*);
 	void collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool);
-	void collidedWithSlope(float, GameObject*, bool);
-	void collidedWithSlopeInternal(float, GameObject*, bool);
+	void collidedWithSlope(float dt, GameObject* object, bool forced);
+	void collidedWithSlopeInternal(float dt, GameObject* object, bool forced);
 	TodoReturn convertToClosestRotation(float);
 	TodoReturn copyAttributes(PlayerObject*);
 	void createFadeOutDartStreak();
