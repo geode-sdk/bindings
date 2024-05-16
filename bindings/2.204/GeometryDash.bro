@@ -2995,7 +2995,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	PAD = win 0x20, android32 0x1c;
 
 	GJTransformState m_transformState;
-	PAD = win 0x4, android32 0x4;
+	bool m_isPlayingMusic;
 	EditButtonBar* m_buttonBar;
 	PAD = win 0x4, android32 0x4;
 	cocos2d::CCArray* m_unk1cc;
@@ -5107,7 +5107,7 @@ class GameObject : CCSpritePlus {
 	virtual bool isFlipY() = win 0x13aef0;
 	virtual void setRScaleX(float);
 	virtual void setRScaleY(float);
-	virtual void setRScale(float);
+	virtual void setRScale(float) = win 0x13b1d0;
 	virtual TodoReturn getRScaleX();
 	virtual TodoReturn getRScaleY();
 	virtual void setRRotation(float);
@@ -7305,7 +7305,7 @@ class GJLevelList : cocos2d::CCNode {
 	int m_original;
 	int m_diamonds;
 	int m_levelsToClaim;
-	bool m_unkBool;
+	bool m_isEditable;
 	bool m_unlisted;
 	bool m_friendsOnly;
 	bool m_uploaded;
