@@ -3716,7 +3716,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void loadMusic(gd::string);
 	TodoReturn pauseAllAudio();
 	TodoReturn pauseAllEffects();
-	TodoReturn pauseAllMusic();
+	void pauseAllMusic();
 	TodoReturn pauseEffect(unsigned int);
 	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int);
