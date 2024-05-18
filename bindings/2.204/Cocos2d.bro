@@ -721,6 +721,7 @@ class cocos2d::CCEGLView {
 	void toggleFullScreen(bool, bool);
 	void pollEvents();
 	void setupWindow(cocos2d::CCRect);
+	void end();
 	// rest are in extras (lie)
 	void onGLFWCharCallback(GLFWwindow* window, unsigned int entered);
 	void onGLFWCursorEnterFunCallback(GLFWwindow* window, int entered);
