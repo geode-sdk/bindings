@@ -2408,7 +2408,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	TodoReturn addToMainScene();
 	TodoReturn animateIn(DialogAnimationType);
 	TodoReturn animateInDialog();
-	TodoReturn animateInRandomSide();
+	void animateInRandomSide();
 	static DialogLayer* createDialogLayer(DialogObject*, cocos2d::CCArray*, int);
 	TodoReturn createWithObjects(cocos2d::CCArray*, int);
 	TodoReturn displayDialogObject(DialogObject*);
@@ -2672,6 +2672,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	// virtual ~EditorUI();
 
 	static EditorUI* create(LevelEditorLayer*);
+	static EditorUI* get() {
+        auto lel = LevelEditorLayer::get();
+        if (!lel) return nullptr;
+        return lel->m_editorUI;
+	}
 
 	TodoReturn activateRotationControl(cocos2d::CCObject*);
 	TodoReturn activateScaleControl(cocos2d::CCObject*);
@@ -5379,7 +5384,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn generateItemUnlockableData();
 	int getAwardedCurrencyForLevel(GJGameLevel*);
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*);
-	TodoReturn getBaseCurrency(int, bool, int);
+	int getBaseCurrency(int, bool, int);
 	int getBaseCurrencyForLevel(GJGameLevel*);
 	TodoReturn getBaseDiamonds(int);
 	TodoReturn getBonusDiamonds(int);
