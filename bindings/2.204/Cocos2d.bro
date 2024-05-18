@@ -1313,6 +1313,43 @@ class cocos2d::CCDelayTime {
 }
 
 [[link(win, android)]]
+class cocos2d::CCTextFieldTTF {
+	static cocos2d::CCTextFieldTTF* textFieldWithPlaceHolder(char const*, char const*, float);
+	static cocos2d::CCTextFieldTTF* textFieldWithPlaceHolder(char const*, cocos2d::CCSize const&, cocos2d::CCTextAlignment, char const*, float);
+
+	bool initWithPlaceHolder(char const*, char const*, float);
+	bool initWithPlaceHolder(char const*, cocos2d::CCSize const&, cocos2d::CCTextAlignment, char const*, float);
+
+	int getCharCount() const;
+	cocos2d::CCTextFieldDelegate* getDelegate() const;
+
+	void setDelegate(cocos2d::CCTextFieldDelegate*);
+
+	// CCTextFieldTTF(cocos2d::CCTextFieldTTF const&);
+	// CCTextFieldTTF();
+
+	virtual void draw();
+	virtual cocos2d::_ccColor3B const& getColorSpaceHolder();
+	virtual void setColorSpaceHolder(cocos2d::_ccColor3B const&);
+	virtual void setPlaceHolder(char const*);
+	virtual char const* getPlaceHolder();
+	virtual void setSecureTextEntry(bool);
+	virtual bool isSecureTextEntry();
+
+	virtual void setString(char const*);
+	virtual char const* getString();
+
+	virtual bool attachWithIME();
+	virtual bool detachWithIME();
+	virtual bool canAttachWithIME();
+	virtual bool canDetachWithIME();
+	virtual void insertText(char const*, int, cocos2d::enumKeyCodes);
+	virtual void deleteBackward();
+	virtual void deleteForward();
+	virtual char const* getContentText();
+}
+
+[[link(win, android)]]
 class cocos2d::extension::CCScale9Sprite {
 	static cocos2d::extension::CCScale9Sprite* create();
 	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*);
