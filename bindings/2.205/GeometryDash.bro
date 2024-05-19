@@ -5296,7 +5296,7 @@ class GameObjectCopy : cocos2d::CCObject {
 
 	bool init(GameObject*);
 	void resetObject();
-	
+
 	GameObject* m_object;
 	cocos2d::CCPoint m_position;
 	float m_rotationX;
@@ -11307,7 +11307,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_unk659;
 	bool m_unk65a;
 	bool m_unk65b; // midair ??
-	bool m_unk65c; // something to do with spider, when false the spider tp animation does not play
+	bool m_playEffects; // controls whether to play some things like death effects, spider dash anim
 	bool m_unk65d; // walking ???
 	bool m_unk65e;
 	bool m_unk65f;
