@@ -9723,6 +9723,9 @@ class DrawGridLayer : cocos2d::CCLayer {
 
 	virtual void update(float) = mac 0xf14b0;
 	virtual void draw() = mac 0xf1640;
+
+	PAD = mac 0x58;
+	LevelEditorLayer* m_editorLayer;
 }
 
 

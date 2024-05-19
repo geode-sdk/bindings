@@ -2506,6 +2506,9 @@ class DrawGridLayer : cocos2d::CCLayer {
 
 	virtual void update(float) = win 0x24b310;
 	virtual void draw() = win 0x24b4c0;
+
+	PAD = win 0x44;
+	LevelEditorLayer* m_editorLayer;
 }
 
 [[link(android)]]
@@ -6374,7 +6377,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCNode* m_unknownE98;
 	cocos2d::CCNode* m_unknownEA0;
 	cocos2d::CCLayer* m_objectLayer;
-	PAD = win 0x70, android32 0x70, android64 0xec;
+	PAD = win 0x10;
+	GJGroundLayer* m_groundLayer;
+	PAD = win 0x5c;
 	std::array<float, 2000> m_massiveFloatArray;
 	PAD = win 0x48, android32 0x54, android64 0x98; // not sure about the android paddings
 	int m_leftSectionIndex; // 29b4 win, 29d4 android32, 30b4 android64
@@ -9204,7 +9209,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	void removeSpecial(GameObject*) = win 0x23f2f0;
 	TodoReturn resetDelayedSpawnNodes();
 	TodoReturn resetEffectTriggerOptim(GameObject*, cocos2d::CCArray*);
-	TodoReturn resetMovingObjects();
+	void resetMovingObjects() = win 0x245830;
 	void resetObjectVector();
 	TodoReturn resetPlayback();
 	TodoReturn resetToggledGroups();
@@ -9250,9 +9255,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateObjectColors(cocos2d::CCArray*);
 	static void updateObjectLabel(GameObject*) = win 0x23e710;
 	void updateOptions() = win 0x23afa0;
-	TodoReturn updatePreviewAnim() = win 0x247c90;
+	void updatePreviewAnim() = win 0x247c90;
 	void updatePreviewParticle(ParticleGameObject*) = win 0x247ec0;
-	TodoReturn updatePreviewParticles() = win 0x247e20;
+	void updatePreviewParticles() = win 0x247e20;
 	TodoReturn updateToggledGroups();
 	TodoReturn validGroup(GameObject*, bool);
 
