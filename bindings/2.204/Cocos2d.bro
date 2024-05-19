@@ -720,6 +720,8 @@ class cocos2d::CCEGLView {
 	virtual void swapBuffers();
 	void toggleFullScreen(bool, bool);
 	void pollEvents();
+	void setupWindow(cocos2d::CCRect);
+	void end();
 	// rest are in extras (lie)
 	void onGLFWCharCallback(GLFWwindow* window, unsigned int entered);
 	void onGLFWCursorEnterFunCallback(GLFWwindow* window, int entered);
@@ -1091,6 +1093,7 @@ class cocos2d::CCLabelBMFont {
 
 [[link(win, android)]]
 class cocos2d::CCApplication {
+	virtual int run();
 	virtual void gameDidSave();
 	virtual void openURL(char const*);
 }

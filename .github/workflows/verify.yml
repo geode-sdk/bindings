@@ -109,8 +109,11 @@ jobs:
         key: codegen-${{ hashFiles('codegen/**') }}-${{ matrix.config.os }}
 
     - name: Set up android env
-      run: |
-        sudo apt install ninja-build
+      run: >
+        sudo apt install ninja-build &&
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test &&
+        sudo apt-get update &&
+        sudo apt-get install --only-upgrade libstdc++6
       if: matrix.config.os == 'ubuntu-latest'
 
     - name: Set GEODE_SDK

@@ -5,3 +5,4 @@ __scripts
 scripts/Bindings.json
 __optcall.xml
 __membercall.xml
+/.vs
