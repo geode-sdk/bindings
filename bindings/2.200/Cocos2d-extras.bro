@@ -2691,27 +2691,6 @@ class cocos2d::CCRenderTexture {
 }
 
 [[link(win, android)]]
-class cocos2d::CCRepeat {
-	static cocos2d::CCRepeat* create(cocos2d::CCFiniteTimeAction*, unsigned int);
-
-	bool initWithAction(cocos2d::CCFiniteTimeAction*, unsigned int);
-
-	cocos2d::CCFiniteTimeAction* getInnerAction();
-
-	void setInnerAction(cocos2d::CCFiniteTimeAction*);
-
-	// CCRepeat(cocos2d::CCRepeat const&);
-	// CCRepeat();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual bool isDone();
-	virtual void startWithTarget(cocos2d::CCNode*);
-	virtual void stop();
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
 class cocos2d::CCRepeatForever {
 	static cocos2d::CCRepeatForever* create(cocos2d::CCActionInterval*);
 
