@@ -1314,39 +1314,36 @@ class cocos2d::CCDelayTime {
 
 [[link(win, android)]]
 class cocos2d::CCTextFieldTTF {
-	static cocos2d::CCTextFieldTTF* textFieldWithPlaceHolder(char const*, char const*, float);
-	static cocos2d::CCTextFieldTTF* textFieldWithPlaceHolder(char const*, cocos2d::CCSize const&, cocos2d::CCTextAlignment, char const*, float);
-
-	bool initWithPlaceHolder(char const*, char const*, float);
-	bool initWithPlaceHolder(char const*, cocos2d::CCSize const&, cocos2d::CCTextAlignment, char const*, float);
-
-	int getCharCount() const;
-	cocos2d::CCTextFieldDelegate* getDelegate() const;
-
-	void setDelegate(cocos2d::CCTextFieldDelegate*);
-
-	// CCTextFieldTTF(cocos2d::CCTextFieldTTF const&);
 	// CCTextFieldTTF();
+	// virtual ~CCTextFieldTTF();
+
+	static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize);
+	static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize);
+
+	bool initWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize);
+	bool initWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize);
+
+	void setDelegate(cocos2d::CCTextFieldDelegate* var);
 
 	virtual void draw();
-	virtual cocos2d::_ccColor3B const& getColorSpaceHolder();
-	virtual void setColorSpaceHolder(cocos2d::_ccColor3B const&);
-	virtual void setPlaceHolder(char const*);
-	virtual char const* getPlaceHolder();
-	virtual void setSecureTextEntry(bool);
+	virtual const cocos2d::ccColor3B& getColorSpaceHolder();
+	virtual void setColorSpaceHolder(const cocos2d::ccColor3B& color);
+	virtual const char* getPlaceHolder();
+	virtual void setPlaceHolder(const char* text);
+	virtual void setSecureTextEntry(bool value);
 	virtual bool isSecureTextEntry();
 
-	virtual void setString(char const*);
-	virtual char const* getString();
+	virtual void setString(const char* text);
+	virtual const char* getString();
 
 	virtual bool attachWithIME();
 	virtual bool detachWithIME();
 	virtual bool canAttachWithIME();
 	virtual bool canDetachWithIME();
-	virtual void insertText(char const*, int, cocos2d::enumKeyCodes);
+	virtual void insertText(const char* text, int len, cocos2d::enumKeyCodes keyCode);
 	virtual void deleteBackward();
 	virtual void deleteForward();
-	virtual char const* getContentText();
+	virtual const char* getContentText();
 }
 
 [[link(win, android)]]
