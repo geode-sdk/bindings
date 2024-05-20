@@ -56,6 +56,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelSettings, 0xdc0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xfe8);
 //^ figuring the actual position of this member is left as an exercise to the reader
 //^^ alright
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer, 0x1010);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0x10dc);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3208);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x3238);

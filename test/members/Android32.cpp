@@ -76,6 +76,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownCD0, 0x8ac);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk918, 0x918);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0x954);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9c4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer, 0x9d8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xA40); //loop in init
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2a94);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x2ab8);
