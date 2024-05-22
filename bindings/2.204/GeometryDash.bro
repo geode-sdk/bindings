@@ -2827,7 +2827,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCPoint moveForCommand(EditCommand command) = win 0xd4a20;
 	void moveGamelayer(cocos2d::CCPoint) = win 0xa7070;
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0xd4f10;
-	void moveObjectCall(cocos2d::CCObject*);
+	void moveObjectCall(cocos2d::CCObject*) = win 0xd4d20;
 	void moveObjectCall(EditCommand) = win 0xd4d40;
 	TodoReturn offsetForKey(int) = win 0xdb460;
 	TodoReturn onAssignNewGroupID();
