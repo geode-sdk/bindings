@@ -2034,7 +2034,7 @@ class cocos2d::CCTouch {
 	inline cocos2d::CCPoint getDelta() const {
 		return getLocation() - getPreviousLocation();
 	}
-	inline int getID() const;
+	int getID() const;
 	cocos2d::CCPoint getLocation() const = ios 0x305508;
 	cocos2d::CCPoint getLocationInView() const = ios 0x3054fc;
 	inline cocos2d::CCPoint getPreviousLocation() const {
