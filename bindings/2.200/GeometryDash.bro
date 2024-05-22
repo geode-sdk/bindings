@@ -6721,19 +6721,19 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 [[link(android)]]
 class EditButtonBar : cocos2d::CCNode {
-	static EditButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int);
+	static EditButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int) = mac 0x5a6960;
 
-	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int);
-	~EditButtonBar();
+	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int) = mac 0x5a6a50;
+	~EditButtonBar() = mac 0x5a6900;
 
-	TodoReturn getPage();
+	int getPage() = mac 0x5a7270;
 
-	void onLeft(cocos2d::CCObject* sender);
-	void onRight(cocos2d::CCObject* sender);
+	void onLeft(cocos2d::CCObject* sender) = mac 0x5a71d0;
+	void onRight(cocos2d::CCObject* sender) = mac 0x5a7220;
 
-	TodoReturn reloadItems(int, int);
-	void loadFromItems(cocos2d::CCArray*, int, int, bool);
-	void goToPage(int);
+	void reloadItems(int, int) = mac 0x5a70c0;
+	void loadFromItems(cocos2d::CCArray*, int, int, bool) = mac 0x5a6b00;
+	void goToPage(int) = mac 0x5a7290;
 
 	cocos2d::CCPoint m_position;
 	int m_unknown;
