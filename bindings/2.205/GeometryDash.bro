@@ -2714,7 +2714,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createExtrasForObject(int, GameObject*, cocos2d::CCArray*);
 	TodoReturn createGlow();
 	void createLoop();
-	TodoReturn createMoveMenu();
+	void createMoveMenu();
 	TodoReturn createNewKeyframeAnim();
 	TodoReturn createObject(int, cocos2d::CCPoint);
 	TodoReturn createOutlines(cocos2d::CCArray*);
