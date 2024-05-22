@@ -2496,20 +2496,17 @@ class DynamicScrollDelegate {
 
 [[link(android)]]
 class EditButtonBar : cocos2d::CCNode {
-	// virtual ~EditButtonBar();
+	~EditButtonBar() = ios 0x41d74c;
 
 	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = ios 0x41d7ac;
 
-	TodoReturn getPage();
-	void goToPage(int);
-	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows);
+	int getPage() = ios 0x41df6c;
+	void goToPage(int) = ios 0x41df78;
+	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = ios 0x41d874;
 	void loadFromItems(cocos2d::CCArray*, int, int, bool) = ios 0x41d920;
-	void onLeft(cocos2d::CCObject* sender);
-	void onRight(cocos2d::CCObject* sender);
-	void reloadItems(int rowCount, int columnCount) {
-		if (m_buttonArray)
-			this->loadFromItems(m_buttonArray, rowCount, columnCount, m_unknown);
-	}
+	void onLeft(cocos2d::CCObject* sender) = ios 0x41df4c;
+	void onRight(cocos2d::CCObject* sender) = ios 0x41df5c;
+	void reloadItems(int rowCount, int columnCount) = ios 0x41de50;
 
 	cocos2d::CCPoint m_position;
 	int m_unknown;
