@@ -6734,6 +6734,13 @@ class EditButtonBar : cocos2d::CCNode {
 	TodoReturn reloadItems(int, int);
 	void loadFromItems(cocos2d::CCArray*, int, int, bool);
 	void goToPage(int);
+
+	cocos2d::CCPoint m_position;
+	int m_unknown;
+	bool m_unknownBool;
+	cocos2d::CCArray* m_buttonArray;
+	BoomScrollLayer* m_scrollLayer;
+	cocos2d::CCArray* m_pagesArray;
 }
 
 
