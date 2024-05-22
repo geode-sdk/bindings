@@ -2856,7 +2856,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool);
 	void resetObjectEditorValues(cocos2d::CCArray*);
 	TodoReturn resetSelectedObjectsColor();
-	TodoReturn resetUI();
+	void resetUI();
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint);
 	TodoReturn rotationforCommand(EditCommand);
 	void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType, bool);
@@ -2984,8 +2984,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	EditButtonBar* m_createButtonBar;
     EditButtonBar* m_editButtonBar;
     Slider* m_positionSlider;
-
-	PAD = android32 0xc, android64 0xc;
+	PAD = android32 0x8, android64 0x8;
+	float m_toolbarHeight;
 	bool m_swipeEnabled;
 	PAD = android32 0x7, android64 0x7;
 	bool m_updatedSpeedObjects;

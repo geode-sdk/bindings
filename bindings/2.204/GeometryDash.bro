@@ -2891,7 +2891,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0xcbc50;
 	void resetObjectEditorValues(cocos2d::CCArray*) = win 0xcca80;
 	TodoReturn resetSelectedObjectsColor() = win 0xd4990;
-	TodoReturn resetUI() = win 0xa8b10;
+	void resetUI() = win 0xa8b10;
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = win 0xd6080;
 	TodoReturn rotationforCommand(EditCommand);
 	void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType, bool) = win 0xd64b0;
@@ -3023,7 +3023,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	Slider* m_positionSlider;
 	float m_unk238;
 	float m_unk23c;
-	float m_unk240;
+	float m_toolbarHeight;
 	float m_unk244;
 	bool m_updatedSpeedObjects;
 
