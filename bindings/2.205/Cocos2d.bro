@@ -2031,14 +2031,24 @@ class cocos2d::CCString {
 
 [[link(win, android)]]
 class cocos2d::CCTouch {
-	cocos2d::CCPoint getDelta() const;
-	int getID() const;
+	inline cocos2d::CCPoint getDelta() const {
+		return getLocation() - getPreviousLocation();
+	}
+	inline int getID() const;
 	cocos2d::CCPoint getLocation() const = ios 0x305508;
-	cocos2d::CCPoint getLocationInView() const;
-	cocos2d::CCPoint getPreviousLocation() const;
-	cocos2d::CCPoint getPreviousLocationInView() const;
-	cocos2d::CCPoint getStartLocation() const;
-	cocos2d::CCPoint getStartLocationInView() const;
+	cocos2d::CCPoint getLocationInView() const = ios 0x3054fc;
+	inline cocos2d::CCPoint getPreviousLocation() const {
+		return CCDirector::sharedDirector()->convertToGL(m_prevPoint);
+	}
+	inline cocos2d::CCPoint getPreviousLocationInView() const {
+		return m_prevPoint;
+	}
+	inline cocos2d::CCPoint getStartLocation() const {
+		return CCDirector::sharedDirector()->convertToGL(m_startPoint);
+	}
+	inline cocos2d::CCPoint getStartLocationInView() const {
+		return m_startPoint;
+	}
 
 	void setTouchInfo(int, float, float);
 
