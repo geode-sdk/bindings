@@ -1370,7 +1370,9 @@ class cocos2d::CCLabelBMFont {
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = ios 0x301a44;
-	static cocos2d::CCLabelBMFont* create();
+	inline static cocos2d::CCLabelBMFont* create() {
+		create(nullptr, nullptr);
+	}
 	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int) = ios 0x301df4;
 	static void purgeCachedData() = ios 0x301a40;
 
