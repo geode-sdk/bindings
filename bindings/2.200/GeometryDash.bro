@@ -12853,7 +12853,7 @@ class GameEffectsManager : cocos2d::CCNode {
 class GJDifficultySprite : cocos2d::CCSprite {
 	static GJDifficultySprite* create(int, GJDifficultyName) = mac 0x291d10, win 0x211eb0;
 
-	bool init(int, GJDifficultyName) = win 0x211f80;
+	bool init(int, GJDifficultyName) = win 0x211f80, mac 0x291df0;
 	~GJDifficultySprite() = mac 0x292b40;
 
 	static gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x212010, mac 0x291e60;
