@@ -2970,7 +2970,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	PAD = android32 0x4, android64 0x8;
 	EditButtonBar* m_buttonBar;
 
-	PAD = android32 0x3c, android64 0x48;
+	PAD = android32 0x4, android64 0x8;
+	cocos2d::CCArray* m_unk1cc;
+	float m_gridSize;
+	PAD = android32 0x30, android64 0x34;
 
 	cocos2d::CCLabelBMFont* m_objectInfoLabel;
 	GJRotationControl* m_rotationControl;
