@@ -11431,7 +11431,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 			return percent;
 		}
 	}
-	int getCurrentPercentInt() = ios 0x11fa08;;
+	int getCurrentPercentInt() = ios 0x11fa08;
 	TodoReturn getEndPosition() = ios 0x11b104;
 	TodoReturn getLastCheckpoint() = ios 0x121d18;
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
