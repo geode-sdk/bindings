@@ -5834,7 +5834,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getSelectedEffectPos();
 	TodoReturn getNextFreeGradientID(cocos2d::CCArray*);
 	TodoReturn getNextFreeSFXGroupID(cocos2d::CCArray*);
-	TodoReturn getNextFreeEditorLayer(cocos2d::CCArray*);
+	int getNextFreeEditorLayer(cocos2d::CCArray*);
 	TodoReturn getSavedEditorPosition(int) = mac 0xe49f0;
 	TodoReturn getSelectedEditorOrder();
 	TodoReturn getNextFreeAreaEffectID(cocos2d::CCArray*);
