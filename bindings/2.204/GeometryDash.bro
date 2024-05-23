@@ -6556,11 +6556,13 @@ class GJDifficultySprite : cocos2d::CCSprite {
 
 	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x216be0;
 
-	gd::string getDifficultyFrame(int, GJDifficultyName);
+	static gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x216d40;
 	bool init(int, GJDifficultyName) = win 0x216cb0;
 	void updateDifficultyFrame(int, GJDifficultyName) = win 0x216e30;
 	void updateFeatureState(GJFeatureState) = win 0x216ff0;
 	void updateFeatureStateFromLevel(GJGameLevel*) = win 0x216f70;
+
+	GJFeatureState m_featureState;
 }
 
 [[link(android)]]
