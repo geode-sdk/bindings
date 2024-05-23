@@ -2539,12 +2539,12 @@ class EditButtonBar : cocos2d::CCNode {
 
 	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0x9b7e0;
 
-	int getPage() = win 0x49bf80;
-	void goToPage(int) = win 0x49bfd0;
+	int getPage() = win 0x9bf80;
+	void goToPage(int) = win 0x9bfd0;
 	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0x9b8e0;
 	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0x9b970;
-	void onLeft(cocos2d::CCObject* sender) = win 0x49c030;
-	void onRight(cocos2d::CCObject* sender) = win 0x49c090;
+	void onLeft(cocos2d::CCObject* sender) = win 0x9c030;
+	void onRight(cocos2d::CCObject* sender) = win 0x9c090;
 	void reloadItems(int rowCount, int columnCount) {
 		if (m_buttonArray) this->loadFromItems(m_buttonArray, rowCount, columnCount, false);
 	}
