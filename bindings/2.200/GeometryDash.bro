@@ -12861,6 +12861,8 @@ class GJDifficultySprite : cocos2d::CCSprite {
 	void updateFeatureState(GJFeatureState) = win 0x2122c0, mac 0x292100;
 	void updateDifficultyFrame(int, GJDifficultyName) = win 0x212100, mac 0x291f80;
 	void updateFeatureStateFromLevel(GJGameLevel*) = mac 0x2920b0, win 0x212240;
+
+	GJFeatureState m_featureState;
 }
 
 [[link(android)]]
