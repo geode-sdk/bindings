@@ -2986,7 +2986,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     EditButtonBar* m_editButtonBar;
     Slider* m_positionSlider;
 
-	PAD = android32 0xc, android64 0xc, ios 0x8;
+	PAD = android32 0x8, android64 0x8, ios 0x8;
 	float m_toolbarHeight;
 	bool m_swipeEnabled;
 	PAD = android32 0x7, android64 0x7, ios 0x7;
