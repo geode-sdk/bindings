@@ -1077,30 +1077,6 @@ class cocos2d::CCEaseRateAction {
 }
 
 [[link(win, android)]]
-class cocos2d::CCEaseSineIn {
-	static cocos2d::CCEaseSineIn* create(cocos2d::CCActionInterval*);
-
-	// CCEaseSineIn(cocos2d::CCEaseSineIn const&);
-	// CCEaseSineIn();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
-class cocos2d::CCEaseSineOut {
-	static cocos2d::CCEaseSineOut* create(cocos2d::CCActionInterval*);
-
-	// CCEaseSineOut(cocos2d::CCEaseSineOut const&);
-	// CCEaseSineOut();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
 class cocos2d::CCEvent {
 	// CCEvent(cocos2d::CCEvent const&);
 	// CCEvent();
@@ -2712,27 +2688,6 @@ class cocos2d::CCRenderTexture {
 	virtual void visit();
 	virtual cocos2d::CCSprite* getSprite();
 	virtual void setSprite(cocos2d::CCSprite*);
-}
-
-[[link(win, android)]]
-class cocos2d::CCRepeat {
-	static cocos2d::CCRepeat* create(cocos2d::CCFiniteTimeAction*, unsigned int);
-
-	bool initWithAction(cocos2d::CCFiniteTimeAction*, unsigned int);
-
-	cocos2d::CCFiniteTimeAction* getInnerAction();
-
-	void setInnerAction(cocos2d::CCFiniteTimeAction*);
-
-	// CCRepeat(cocos2d::CCRepeat const&);
-	// CCRepeat();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual bool isDone();
-	virtual void startWithTarget(cocos2d::CCNode*);
-	virtual void stop();
-	virtual cocos2d::CCActionInterval* reverse();
 }
 
 [[link(win, android)]]
