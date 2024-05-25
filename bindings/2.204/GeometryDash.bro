@@ -1860,6 +1860,9 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 	static CreateMenuItem* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0xddb80;
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x258f0;
+	
+    PAD = win 0x18;
+    int m_objectID;
 }
 
 [[link(android)]]
@@ -2569,7 +2572,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-	// virtual ~EditLevelLayer();
+	virtual ~EditLevelLayer() = win 0x9c6c0;
 
 	static EditLevelLayer* create(GJGameLevel*) = win 0x9c840;
 
@@ -2916,7 +2919,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void showUI(bool) = win 0xc9c10;
 	TodoReturn sliderChanged(cocos2d::CCObject*) = win 0xa6cd0;
 	TodoReturn smartTypeForKey(int);
-	TodoReturn spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
+	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0xc70a0;
 	TodoReturn toggleDuplicateButton();
 	TodoReturn toggleEditObjectButton() = win 0xd1680;
 	TodoReturn toggleEnableRotate(cocos2d::CCObject*) = win 0xc8900;
