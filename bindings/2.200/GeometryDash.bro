@@ -6734,6 +6734,13 @@ class EditButtonBar : cocos2d::CCNode {
 	TodoReturn reloadItems(int, int);
 	void loadFromItems(cocos2d::CCArray*, int, int, bool);
 	void goToPage(int);
+
+	cocos2d::CCPoint m_position;
+	int m_unknown;
+	bool m_unknownBool;
+	cocos2d::CCArray* m_buttonArray;
+	BoomScrollLayer* m_scrollLayer;
+	cocos2d::CCArray* m_pagesArray;
 }
 
 
@@ -7039,7 +7046,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_unk659;
 	bool m_unk65a;
 	bool m_unk65b; // midair ??
-	bool m_unk65c;
+	bool m_playEffects; // controls whether to play some things like death effects, spider dash anim
 	bool m_unk65d; // walking ???
 	bool m_unk65e;
 	bool m_unk65f;
@@ -9723,6 +9730,9 @@ class DrawGridLayer : cocos2d::CCLayer {
 
 	virtual void update(float) = mac 0xf14b0;
 	virtual void draw() = mac 0xf1640;
+
+	PAD = mac 0x58;
+	LevelEditorLayer* m_editorLayer;
 }
 
 
