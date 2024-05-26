@@ -11,6 +11,14 @@ class SongChannelState {
     
 }
 
+class SongTriggerState {
+
+}
+
+class SFXTriggerState {
+
+}
+
 class DynamicScrollDelegate {
 
 }
@@ -55,4 +63,8 @@ class GJTransformState {
 	cocos2d::CCPoint m_unk7;
 	float m_unk8;
 	float m_unk9;
+}
+
+class FMODQueuedMusic {
+
 }
