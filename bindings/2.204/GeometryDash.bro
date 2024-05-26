@@ -688,8 +688,8 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
 	bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
 	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
-	TodoReturn runAnimation(gd::string) = win 0x21640;
-	TodoReturn runAnimationForced(gd::string) = win 0x216c0;
+	void runAnimation(gd::string) = win 0x21640;
+	void runAnimationForced(gd::string) = win 0x216c0;
 	TodoReturn stopTween();
 	TodoReturn switchToMode(spriteMode) = win 0x214f0;
 	void tweenToAnimation(gd::string, float) = win 0x21750;
@@ -14599,8 +14599,8 @@ class SimplePlayer : cocos2d::CCSprite {
 	static SimplePlayer* create(int) = win 0x1f3e90;
 
 	TodoReturn asyncLoadIcon(int, IconType);
-	TodoReturn createRobotSprite(int) = win 0x1f45d0;
-	TodoReturn createSpiderSprite(int) = win 0x1f4620;
+	void createRobotSprite(int) = win 0x1f45d0;
+	void createSpiderSprite(int) = win 0x1f4620;
 	inline void disableCustomGlowColor() {
 		m_hasCustomGlowColor = false;
 	}
