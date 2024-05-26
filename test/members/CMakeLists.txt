@@ -57,5 +57,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 	${GEODE_LOADER_PATH}/include/Geode/cocos/include
 	${GEODE_LOADER_PATH}/include/Geode/cocos/extensions
 	${GEODE_LOADER_PATH}/include/Geode/fmod
+	${GeodeBindings_SOURCE_DIR}/bindings/include
 )
 target_link_directories(${PROJECT_NAME} PRIVATE ${GEODE_LOADER_PATH}/include/link)
