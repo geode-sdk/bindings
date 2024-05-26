@@ -3710,8 +3710,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn lengthForSound(gd::string);
 	TodoReturn loadAndPlayMusic(gd::string, unsigned int, int);
 	TodoReturn loadAudioState(FMODAudioState&) = ios 0x13e698;
-	void loadMusic(gd::string, float, float, float, bool, int, int) = ios 0x13ec68;
-	void loadMusic(gd::string) = ios 0x13ec68;
+	void loadMusic(gd::string, float, float, float, bool, int, int);
+	void loadMusic(gd::string);
 	TodoReturn pauseAllAudio() = ios 0x13d6c4;
 	TodoReturn pauseAllEffects();
 	TodoReturn pauseAllMusic() = ios 0x141980;
@@ -4992,9 +4992,9 @@ class GameObject : CCSpritePlus {
 	TodoReturn shouldShowPickupEffects();
 	TodoReturn slopeFloorTop() = ios 0x2690cc;
 	TodoReturn slopeWallLeft();
-	TodoReturn slopeYPos(cocos2d::CCRect) = ios 0x26914c;
-	TodoReturn slopeYPos(float) = ios 0x26914c;
-	TodoReturn slopeYPos(GameObject*) = ios 0x26914c;
+	TodoReturn slopeYPos(cocos2d::CCRect);
+	TodoReturn slopeYPos(float);
+	TodoReturn slopeYPos(GameObject*);
 	TodoReturn spawnDefaultPickupParticle(GJBaseGameLayer*) = ios 0x34d1d0;
 	TodoReturn updateBlendMode() = ios 0x26478c;
 	TodoReturn updateCustomColorType(short);
@@ -5424,8 +5424,8 @@ class GameStatsManager : cocos2d::CCNode {
 	bool hasUserCoin(char const*);
 	TodoReturn incrementActivePath(int);
 	TodoReturn incrementChallenge(GJChallengeType, int) = ios 0x335184;
-	TodoReturn incrementStat(char const*, int) = ios 0x331bc8;
-	TodoReturn incrementStat(char const*) = ios 0x331bc8;
+	TodoReturn incrementStat(char const*, int);
+	TodoReturn incrementStat(char const*);
 	bool isGauntletChestUnlocked(int);
 	bool isItemEnabled(UnlockType, int) = ios 0x33b328;
 	bool isItemUnlocked(UnlockType, int) = ios 0x335434;
@@ -5976,8 +5976,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn increaseBatchNodeCapacity() = ios 0x1e1784;
 	bool isFlipping() = ios 0x2057d0;
 	bool isPlayer2Button(int);
-	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B) = ios 0x1e79a0;
-	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::ccColor3B, float, float, int, bool, float) = ios 0x1e79a0;
+	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B);
+	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::ccColor3B, float, float, int, bool, float);
 	TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
 	void loadLevelSettings() = ios 0x205e58;
 	TodoReturn loadStartPosObject() = ios 0x200cc8;
@@ -11414,7 +11414,23 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset() = ios 0x122f60;
 	void delayedResetLevel() = ios 0x12095c;
 	void fullReset() = ios 0x122fd4;
-	float getCurrentPercent() = ios 0x11fa08;
+	float getCurrentPercent() {
+		float percent;
+
+		if (m_level->m_timestamp > 0) {
+			percent = static_cast<float>(m_gameState.m_unk1f8) / m_level->m_timestamp * 100.f;
+		} else {
+			percent = m_player1->getPosition().x / m_levelLength * 100.f;
+		}
+
+		if (percent >= 100.f) {
+			return 100.f;
+		} else if (percent <= 0.f) {
+			return 0.f;
+		} else {
+			return percent;
+		}
+	}
 	int getCurrentPercentInt() = ios 0x11fa08;
 	TodoReturn getEndPosition() = ios 0x11b104;
 	TodoReturn getLastCheckpoint() = ios 0x121d18;
