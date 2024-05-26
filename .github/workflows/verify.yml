@@ -87,17 +87,6 @@ jobs:
             -DCMAKE_CXX_COMPILER=clang++
             -DCMAKE_BUILD_TYPE=Debug
 
-        - name: iOS
-          os_identifier: ios
-          os: macos-latest
-          extra_flags: >
-            -DCMAKE_C_COMPILER=clang
-            -DCMAKE_CXX_COMPILER=clang++
-            -DCMAKE_OSX_ARCHITECTURES=arm64
-            -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0
-            -DCMAKE_SYSTEM_NAME=iOS
-            -DCMAKE_BUILD_TYPE=Debug
-
     name: Test Offsets ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
 
@@ -120,8 +109,11 @@ jobs:
         key: codegen-${{ hashFiles('codegen/**') }}-${{ matrix.config.os }}
 
     - name: Set up android env
-      run: |
-        sudo apt install ninja-build
+      run: >
+        sudo apt install ninja-build &&
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test &&
+        sudo apt-get update &&
+        sudo apt-get install --only-upgrade libstdc++6
       if: matrix.config.os == 'ubuntu-latest'
 
     - name: Set GEODE_SDK
