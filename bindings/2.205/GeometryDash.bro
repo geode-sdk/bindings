@@ -4539,7 +4539,7 @@ class GameManager : GManager {
 	int countForType(IconType);
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn didExitPlayscene();
-	TodoReturn doQuickSave();
+	void doQuickSave();
 	TodoReturn dpadConfigToString(UIButtonConfig&);
 	TodoReturn eventUnlockFeature(char const*);
 	void fadeInMenuMusic();
@@ -9085,7 +9085,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getNextColorChannel();
 	TodoReturn getNextFreeAreaEffectID(cocos2d::CCArray*);
 	TodoReturn getNextFreeBlockID(cocos2d::CCArray*);
-	TodoReturn getNextFreeEditorLayer(cocos2d::CCArray*);
+	int getNextFreeEditorLayer(cocos2d::CCArray*);
 	TodoReturn getNextFreeEnterChannel(cocos2d::CCArray*);
 	TodoReturn getNextFreeGradientID(cocos2d::CCArray*);
 	int getNextFreeGroupID(cocos2d::CCArray*);
