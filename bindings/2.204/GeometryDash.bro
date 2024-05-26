@@ -2583,15 +2583,14 @@ class EditButtonBar : cocos2d::CCNode {
 
 	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0x9b7e0;
 
-	TodoReturn getPage();
-	void goToPage(int);
+	int getPage() = win 0x9bf80;
+	void goToPage(int) = win 0x9bfd0;
 	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0x9b8e0;
 	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0x9b970;
-	void onLeft(cocos2d::CCObject* sender);
-	void onRight(cocos2d::CCObject* sender);
+	void onLeft(cocos2d::CCObject* sender) = win 0x9c030;
+	void onRight(cocos2d::CCObject* sender) = win 0x9c090;
 	void reloadItems(int rowCount, int columnCount) {
-		if (m_buttonArray)
-			this->loadFromItems(m_buttonArray, rowCount, columnCount, m_unknown);
+		if (m_buttonArray) this->loadFromItems(m_buttonArray, rowCount, columnCount, false);
 	}
 
 	cocos2d::CCPoint m_position;
@@ -6654,11 +6653,13 @@ class GJDifficultySprite : cocos2d::CCSprite {
 
 	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x216be0;
 
-	gd::string getDifficultyFrame(int, GJDifficultyName);
+	static gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x216d40;
 	bool init(int, GJDifficultyName) = win 0x216cb0;
 	void updateDifficultyFrame(int, GJDifficultyName) = win 0x216e30;
 	void updateFeatureState(GJFeatureState) = win 0x216ff0;
 	void updateFeatureStateFromLevel(GJGameLevel*) = win 0x216f70;
+
+	GJFeatureState m_featureState;
 }
 
 [[link(android)]]

@@ -6721,19 +6721,19 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 [[link(android)]]
 class EditButtonBar : cocos2d::CCNode {
-	static EditButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int);
+	static EditButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int) = mac 0x5a6960;
 
-	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int);
-	~EditButtonBar();
+	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, bool, int, int) = mac 0x5a6a50;
+	~EditButtonBar() = mac 0x5a6900;
 
-	TodoReturn getPage();
+	int getPage() = mac 0x5a7270;
 
-	void onLeft(cocos2d::CCObject* sender);
-	void onRight(cocos2d::CCObject* sender);
+	void onLeft(cocos2d::CCObject* sender) = mac 0x5a71d0;
+	void onRight(cocos2d::CCObject* sender) = mac 0x5a7220;
 
-	TodoReturn reloadItems(int, int);
-	void loadFromItems(cocos2d::CCArray*, int, int, bool);
-	void goToPage(int);
+	void reloadItems(int, int) = mac 0x5a70c0;
+	void loadFromItems(cocos2d::CCArray*, int, int, bool) = mac 0x5a6b00;
+	void goToPage(int) = mac 0x5a7290;
 
 	cocos2d::CCPoint m_position;
 	int m_unknown;
@@ -12861,14 +12861,16 @@ class GameEffectsManager : cocos2d::CCNode {
 class GJDifficultySprite : cocos2d::CCSprite {
 	static GJDifficultySprite* create(int, GJDifficultyName) = mac 0x291d10, win 0x211eb0;
 
-	bool init(int, GJDifficultyName) = win 0x211f80;
-	~GJDifficultySprite();
+	bool init(int, GJDifficultyName) = win 0x211f80, mac 0x291df0;
+	~GJDifficultySprite() = mac 0x292b40;
 
-	gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x212010, mac 0x291e60;
+	static gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x212010, mac 0x291e60;
 
 	void updateFeatureState(GJFeatureState) = win 0x2122c0, mac 0x292100;
 	void updateDifficultyFrame(int, GJDifficultyName) = win 0x212100, mac 0x291f80;
 	void updateFeatureStateFromLevel(GJGameLevel*) = mac 0x2920b0, win 0x212240;
+
+	GJFeatureState m_featureState;
 }
 
 [[link(android)]]

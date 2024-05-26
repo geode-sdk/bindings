@@ -2516,15 +2516,14 @@ class EditButtonBar : cocos2d::CCNode {
 
 	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows);
 
-	TodoReturn getPage();
+	int getPage();
 	void goToPage(int);
 	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows);
 	void loadFromItems(cocos2d::CCArray*, int, int, bool);
 	void onLeft(cocos2d::CCObject* sender);
 	void onRight(cocos2d::CCObject* sender);
 	void reloadItems(int rowCount, int columnCount) {
-		if (m_buttonArray)
-			this->loadFromItems(m_buttonArray, rowCount, columnCount, m_unknown);
+		if (m_buttonArray) this->loadFromItems(m_buttonArray, rowCount, columnCount, false);
 	}
 
 	cocos2d::CCPoint m_position;
@@ -6512,11 +6511,13 @@ class GJDifficultySprite : cocos2d::CCSprite {
 
 	static GJDifficultySprite* create(int, GJDifficultyName);
 
-	gd::string getDifficultyFrame(int, GJDifficultyName);
+	static gd::string getDifficultyFrame(int, GJDifficultyName);
 	bool init(int, GJDifficultyName);
 	void updateDifficultyFrame(int, GJDifficultyName);
 	void updateFeatureState(GJFeatureState);
 	void updateFeatureStateFromLevel(GJGameLevel*);
+
+	GJFeatureState m_featureState;
 }
 
 [[link(android)]]
