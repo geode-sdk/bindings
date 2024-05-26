@@ -865,12 +865,12 @@ class CCLightStrip : cocos2d::CCNode {
 	virtual void updateTweenAction(float value, char const* keyword);
 	float m_objectWidth;
     	float m_toWidth;
-   	float m_toHeight;	
+   	float m_toHeight;
     	float m_duration;
 	cocos2d::ccColor4B m_color;
     	float m_opacity;
     	float m_width;
-    	float m_height;	
+    	float m_height;
 }
 
 [[link(android)]]
@@ -1901,7 +1901,7 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 	static CreateMenuItem* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0xddb80;
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x258f0;
-	
+
     PAD = win 0x18;
     int m_objectID;
 }
@@ -3954,7 +3954,7 @@ class FMODAudioState {
 	gd::unordered_map<int,float> m_unkMapIntFloat10;
 	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic1;
 	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic2;
-	gd::unordered_map<int,FMODSoundState_padded> m_unkMapIntFMODSoundState; 
+	gd::unordered_map<int,FMODSoundState_padded> m_unkMapIntFMODSoundState;
 	int m_unkInt1;
 	int m_unkInt2;
 }
@@ -5134,7 +5134,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn setupColorSprite(int, bool);
 	TodoReturn setupPixelScale();
 	TodoReturn setupSpriteSize();
-	TodoReturn shouldBlendColor(GJSpriteColor*, bool) = win 0x133880;
+	bool shouldBlendColor(GJSpriteColor*, bool) = win 0x133880;
 	TodoReturn shouldLockX() = win 0x139d10;
 	TodoReturn shouldNotHideAnimFreeze();
 	TodoReturn shouldShowPickupEffects();
@@ -7216,7 +7216,7 @@ class GJGameState {
 	int m_cameraEdgeValue0;
 	int m_cameraEdgeValue1;
 	int m_cameraEdgeValue2;
-	int m_cameraEdgeValue3; 
+	int m_cameraEdgeValue3;
 	gd::unordered_map<int, GameObjectPhysics> m_gameObjectPhysics;
 	gd::vector<float> m_unkVecFloat1; // Assumed template param
 	unsigned int m_unkUint10;
@@ -11281,16 +11281,16 @@ class PlayerCheckpoint : cocos2d::CCNode {
 	bool m_isOnGround;
 	PAD = win 0x2;
 	int m_hasGhostTrail;
-	byte m_unkBytes1[4];
+	uint8_t m_unkBytes1[4];
 	float m_speed;
 	bool m_isHidden;
 	bool m_isGoingLeft;
-	byte m_unkBytes2[42];
+	uint8_t m_unkBytes2[42];
 	float m_unkFloat1;
 	int m_possiblyFlags;
 	int m_timeOrPercentRelated;
 	gd::vector<float> m_yPositionVector;
-	byte m_unkBytes3[8];
+	uint8_t m_unkBytes3[8];
 }
 
 [[link(android)]]
