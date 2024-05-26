@@ -6171,7 +6171,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onGroupSticky(cocos2d::CCObject* sender) = mac 0x10540;
 	void onToggleGuide(EffectGameObject*);
 	void onCreateButton(cocos2d::CCObject* sender);
-	TodoReturn onCreateObject(int) = mac 0x384d0;
+	void onCreateObject(int) = mac 0x384d0;
 	void onPasteInPlace(cocos2d::CCObject* sender);
 	void onStopPlaytest(cocos2d::CCObject* sender) = win 0xc95f0, mac 0x103a0;
 	void onGoToBaseLayer(cocos2d::CCObject* sender);
@@ -10377,6 +10377,14 @@ class GJScaleControl : cocos2d::CCLayer {
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x55880;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x55d30;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = mac 0x55e90;
+
+	Slider* m_sliderX;
+	Slider* m_sliderY;
+	Slider* m_sliderXY;
+	float m_touchX;
+	float m_valueX;
+	float m_valueY;
+	// more stuff
 }
 
 [[link(android)]]

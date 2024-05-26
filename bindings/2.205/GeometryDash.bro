@@ -2761,8 +2761,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void findSnapObject(cocos2d::CCArray*, float);
 	void findSnapObject(cocos2d::CCPoint, float);
 	TodoReturn findTriggerTest();
-	TodoReturn flipObjectsX(cocos2d::CCArray*);
-	TodoReturn flipObjectsY(cocos2d::CCArray*);
+	void flipObjectsX(cocos2d::CCArray*);
+	void flipObjectsY(cocos2d::CCArray*);
 	TodoReturn getButton(char const*, int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
 	CreateMenuItem* getCreateBtn(int id, int bg);
 	TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
@@ -2804,7 +2804,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onCopyState(cocos2d::CCObject* sender);
 	bool onCreate();
 	void onCreateButton(cocos2d::CCObject* sender);
-	TodoReturn onCreateObject(int);
+	void onCreateObject(int);
 	void onDelete(cocos2d::CCObject* sender);
 	void onDeleteAll(cocos2d::CCObject* sender);
 	void onDeleteCustomItem(cocos2d::CCObject* sender);
@@ -2899,7 +2899,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void transformObject(GameObject*, EditCommand, bool);
 	void transformObjectCall(cocos2d::CCObject*);
 	void transformObjectCall(EditCommand);
-	TodoReturn transformObjects(cocos2d::CCArray*, cocos2d::CCPoint, float, float, float, float, float, float);
+	void transformObjects(cocos2d::CCArray*, cocos2d::CCPoint, float, float, float, float, float, float);
 	TodoReturn transformObjectsActive();
 	TodoReturn transformObjectsReset();
 	TodoReturn triggerSwipeMode();
@@ -7825,6 +7825,14 @@ class GJScaleControl : cocos2d::CCLayer {
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+
+	Slider* m_sliderX;
+	Slider* m_sliderY;
+	Slider* m_sliderXY;
+	float m_touchX;
+	float m_valueX;
+	float m_valueY;
+	// more stuff
 }
 
 [[link(android)]]
