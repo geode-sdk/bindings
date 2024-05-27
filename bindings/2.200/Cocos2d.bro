@@ -1091,6 +1091,27 @@ class cocos2d::CCNodeRGBA {
 }
 
 [[link(win, android)]]
+class cocos2d::CCRepeat {
+	static cocos2d::CCRepeat* create(cocos2d::CCFiniteTimeAction*, unsigned int) = mac 0x3948c0;
+
+	bool initWithAction(cocos2d::CCFiniteTimeAction*, unsigned int);
+
+	cocos2d::CCFiniteTimeAction* getInnerAction();
+
+	void setInnerAction(cocos2d::CCFiniteTimeAction*);
+
+	// CCRepeat(cocos2d::CCRepeat const&);
+	// CCRepeat();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual bool isDone();
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual void stop();
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCRepeatForever {
 	static cocos2d::CCRepeatForever* create(cocos2d::CCActionInterval*) = mac 0x394830;
 
@@ -2079,7 +2100,7 @@ class cocos2d {
 	static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
 	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F) = mac 0x1e7250;
 	static void ccGLBindTexture2D(unsigned int) = mac 0x33a420;
-	static void ccGLBindTexture2DN(unsigned int, unsigned int);
+	static void ccGLBindTexture2DN(unsigned int, unsigned int) = mac 0x33a460;
 	static void ccGLBindVAO(unsigned int);
 	static void ccGLBlendFunc(unsigned int, unsigned int) = mac 0x33a370;
 	static void ccGLBlendResetToCache();
@@ -2295,19 +2316,21 @@ class cocos2d::CCMotionStreak {
 	void tintWithColor(cocos2d::_ccColor3B);
 	void updateFade(float) = mac 0x541b90;
 
-	virtual void update(float);
-	virtual void setPosition(cocos2d::CCPoint const&);
-	virtual void draw();
+	virtual ~CCMotionStreak() = mac 0x541360;
 
-	virtual unsigned char getOpacity();
-	virtual void setOpacity(unsigned char);
-	virtual void setOpacityModifyRGB(bool);
-	virtual bool isOpacityModifyRGB();
+	virtual void update(float) = mac 0x541bd0;
+	virtual void setPosition(cocos2d::CCPoint const&) = mac 0x541930;
+	virtual void draw() = mac 0x542220;
 
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
-	virtual cocos2d::_ccBlendFunc getBlendFunc();
-	virtual cocos2d::CCTexture2D* getTexture();
-	virtual void setTexture(cocos2d::CCTexture2D*);
+	virtual unsigned char getOpacity() = mac 0x541af0;
+	virtual void setOpacity(unsigned char) = mac 0x541ad0;
+	virtual void setOpacityModifyRGB(bool) = mac 0x541b10;
+	virtual bool isOpacityModifyRGB() = mac 0x541b30;
+
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = mac 0x541a90;
+	virtual cocos2d::_ccBlendFunc getBlendFunc() = mac 0x541ab0;
+	virtual cocos2d::CCTexture2D* getTexture() = mac 0x5419e0;
+	virtual void setTexture(cocos2d::CCTexture2D*) = mac 0x541a40;
 }
 
 [[link(win, android)]]

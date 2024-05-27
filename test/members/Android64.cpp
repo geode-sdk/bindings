@@ -56,6 +56,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelSettings, 0xdc0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xfe8);
 //^ figuring the actual position of this member is left as an exercise to the reader
 //^^ alright
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer, 0x1010);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0x10dc);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3208);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelLength, 0x3238);
@@ -77,7 +78,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x708);
 GEODE_MEMBER_CHECK(PlayerObject, m_iconSprite, 0x710);
 GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x788);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x870);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk708, 0x8e0);
+GEODE_MEMBER_CHECK(PlayerObject, m_landParticles1, 0x8e0);
 GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x950);
 GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x98c);
 GEODE_MEMBER_CHECK(PlayerObject, m_vehicleSize, 0x9c0);
@@ -95,6 +96,12 @@ GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x1d8);
 GEODE_MEMBER_CHECK(GameManager, m_levelEditorLayer, 0x1e0);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x1e8);
 
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x1e8);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_sfxVolume, 0x1ec);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse1, 0x1f8);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse2, 0x1fc);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse3, 0x200);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_metering, 0x208);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x218);
 
 GEODE_SIZE_CHECK(GJGameState, 0x6e8);

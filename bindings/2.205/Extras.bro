@@ -1,10 +1,3 @@
-class PlayerButtonCommand {
-    PlayerButton m_button;
-    bool m_isPush;
-    bool m_isPlayer2;
-    PAD = win 0x6, android32 0x6;
-}
-
 class FMODSound {
     
 }
@@ -23,6 +16,15 @@ class EventTriggerInstance {
 class SongChannelState {
     
 }
+
+class SongTriggerState {
+
+}
+
+class SFXTriggerState {
+
+}
+
 
 class ChanceObject {
 
@@ -75,5 +77,9 @@ class CAState {
 }
 
 class GJPointDouble {
+
+}
+
+class FMODQueuedMusic {
 
 }

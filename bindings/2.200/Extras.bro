@@ -1,10 +1,3 @@
-class PlayerButtonCommand {
-    PlayerButton m_button;
-    bool m_isPush;
-    bool m_isPlayer2;
-    PAD = win 0x6, android32 0x6;
-}
-
 class GJPointDouble {
     double x;
     double y;
@@ -16,6 +9,14 @@ class EventTriggerInstance {
 
 class SongChannelState {
     
+}
+
+class SongTriggerState {
+
+}
+
+class SFXTriggerState {
+
 }
 
 class DynamicScrollDelegate {
@@ -62,4 +63,8 @@ class GJTransformState {
 	cocos2d::CCPoint m_unk7;
 	float m_unk8;
 	float m_unk9;
+}
+
+class FMODQueuedMusic {
+
 }

@@ -170,7 +170,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x628);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk644, 0x644);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk6a2, 0x6a2);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x6c8);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk708, 0x700);
+GEODE_MEMBER_CHECK(PlayerObject, m_landParticles1, 0x700);
 GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x770);
 GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x7ac);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
@@ -182,6 +182,12 @@ GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x9a4);
 
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x168);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_sfxVolume, 0x16c);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse1, 0x178);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse2, 0x17c);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse3, 0x180);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_metering, 0x188);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x190);
 
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x198);
@@ -196,8 +202,8 @@ GEODE_SIZE_CHECK(GJGameState, 0x498);
 
 GEODE_MEMBER_CHECK(GJGameState, m_unk1f8, 0x1f8);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraPosition, 0x214);
-GEODE_MEMBER_CHECK(GJGameState, m_unk284, 0x294);
-GEODE_MEMBER_CHECK(GJGameState, m_unk2b8, 0x2b4);
+GEODE_MEMBER_CHECK(GJGameState, m_unkPoint31, 0x294);
+GEODE_MEMBER_CHECK(GJGameState, m_unkPoint32, 0x2b4);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraZoom, 0x0);
 GEODE_MEMBER_CHECK(GJGameState, m_targetCameraZoom, 0x4);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraAngle, 0x17C);
