@@ -11480,8 +11480,24 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset() = ios 0x122f60;
 	void delayedResetLevel() = ios 0x12095c;
 	void fullReset() = ios 0x122fd4;
-	float getCurrentPercent() = ios 0x11fa08;
-	int getCurrentPercentInt();
+	float getCurrentPercent() {
+		float percent;
+
+		if (m_level->m_timestamp > 0) {
+			percent = static_cast<float>(m_gameState.m_unk1f8) / m_level->m_timestamp * 100.f;
+		} else {
+			percent = m_player1->getPosition().x / m_levelLength * 100.f;
+		}
+
+		if (percent >= 100.f) {
+			return 100.f;
+		} else if (percent <= 0.f) {
+			return 0.f;
+		} else {
+			return percent;
+		}
+	}
+	int getCurrentPercentInt() = ios 0x11fa08;
 	TodoReturn getEndPosition() = ios 0x11b104;
 	TodoReturn getLastCheckpoint() = ios 0x121d18;
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
