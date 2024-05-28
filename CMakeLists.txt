@@ -148,7 +148,10 @@ if (GEODE_IS_MEMBER_TEST)
 endif()
 
 add_library(${PROJECT_NAME} ${GEODE_CODEGEN_PATH}/Geode/GeneratedSource.cpp)
-target_include_directories(${PROJECT_NAME} PUBLIC ${GEODE_CODEGEN_PATH})
+target_include_directories(${PROJECT_NAME} PUBLIC
+	${GEODE_CODEGEN_PATH}
+	${CMAKE_CURRENT_SOURCE_DIR}/bindings/include
+)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_VISIBILITY_PRESET hidden)
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)

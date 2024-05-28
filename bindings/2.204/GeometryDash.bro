@@ -688,8 +688,8 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
 	bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
 	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
-	TodoReturn runAnimation(gd::string) = win 0x21640;
-	TodoReturn runAnimationForced(gd::string) = win 0x216c0;
+	void runAnimation(gd::string) = win 0x21640;
+	void runAnimationForced(gd::string) = win 0x216c0;
 	TodoReturn stopTween();
 	TodoReturn switchToMode(spriteMode) = win 0x214f0;
 	void tweenToAnimation(gd::string, float) = win 0x21750;
@@ -857,12 +857,20 @@ class CCLightFlash : cocos2d::CCNode {
 class CCLightStrip : cocos2d::CCNode {
 	// virtual ~CCLightStrip();
 
-	static CCLightStrip* create(float, float, float, float, float);
+	static CCLightStrip* create(float width, float toWidth, float toHeight, float duration, float delay);
 
-	bool init(float, float, float, float, float);
+	bool init(float width, float toWidth, float toHeight, float duration, float delay);
 
 	virtual void draw();
-	virtual void updateTweenAction(float, char const*);
+	virtual void updateTweenAction(float value, char const* keyword);
+	float m_objectWidth;
+    	float m_toWidth;
+   	float m_toHeight;
+    	float m_duration;
+	cocos2d::ccColor4B m_color;
+    	float m_opacity;
+    	float m_width;
+    	float m_height;
 }
 
 [[link(android)]]
@@ -1189,6 +1197,7 @@ class CCSpritePlus : cocos2d::CCSprite {
 	bool m_hasFollower;
 	bool m_propagateScaleChanges;
 	bool m_propagateFlipChanges;
+	PAD = win 0x1;
 }
 
 [[link(android)]]
@@ -1486,9 +1495,9 @@ class CheckpointGameObject : EffectGameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int) = win 0x3afc50;
 }
 
-[[link(android)]]
+[[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState)]]
 class CheckpointObject : cocos2d::CCNode {
-	// virtual ~CheckpointObject();
+	// virtual ~CheckpointObject() = win 0x2eb810;
 	// CheckpointObject() = win 0x2db9f0;
 
 	static CheckpointObject* create() = win 0x2eb9a0;
@@ -1497,6 +1506,29 @@ class CheckpointObject : cocos2d::CCNode {
 	void setObject(GameObject*);
 
 	virtual bool init() = win 0x52e00;
+
+	GJGameState m_gameState;
+	GJShaderState m_shaderState;
+	FMODAudioState m_audioState;
+	GameObject* m_physicalCheckpointObject;
+	PlayerCheckpoint* m_player1Checkpoint;
+	PlayerCheckpoint* m_player2Checkpoint;
+	int m_unkInt1;
+	int m_unkInt2;
+	int m_unkInt3;
+	short m_unkShort1;
+	PAD = win 0x2;
+	int m_unkInt4;
+	int m_unkInt5;
+	gd::vector<DynamicSaveObject> m_vectorDynamicSaveObjects;
+	gd::vector<ActiveSaveObject1> m_vectorActiveSaveObjects1;
+	gd::vector<ActiveSaveObject2> m_vectorActiveSaveObjects2;
+	EffectManagerState m_effectManagerState;
+	cocos2d::CCArray* m_gradientTriggerObjectArray;
+	bool m_unkBool1;
+	PAD = win 0x3;
+	gd::unordered_map<int,SequenceTriggerState> m_sequenceTriggerStateUnorderedMap;
+	int m_unkGetsCopiedFromGameState;
 }
 
 [[link(android)]]
@@ -1522,6 +1554,12 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
 	virtual void textChanged(CCTextInputNode*) = win 0x61670;
 	virtual void textInputShouldOffset(CCTextInputNode*, float);
 	virtual void textInputReturn(CCTextInputNode*);
+}
+
+[[link(android)]]
+class CollisionTriggerAction {
+	PAD = win 0x20;
+	gd::vector<int> m_unkVecInt;
 }
 
 [[link(android)]]
@@ -1807,6 +1845,9 @@ class ConfigureValuePopupDelegate {
 [[link(android)]]
 class CountTriggerAction {
 	// CountTriggerAction(CountTriggerAction&&);
+
+	PAD = win 0x24;
+	gd::vector<int> m_unkVecInt;
 }
 
 [[link(android)]]
@@ -1860,7 +1901,7 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 	static CreateMenuItem* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0xddb80;
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x258f0;
-	
+
     PAD = win 0x18;
     int m_objectID;
 }
@@ -2542,15 +2583,14 @@ class EditButtonBar : cocos2d::CCNode {
 
 	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0x9b7e0;
 
-	TodoReturn getPage();
-	void goToPage(int);
+	int getPage() = win 0x9bf80;
+	void goToPage(int) = win 0x9bfd0;
 	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0x9b8e0;
 	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0x9b970;
-	void onLeft(cocos2d::CCObject* sender);
-	void onRight(cocos2d::CCObject* sender);
+	void onLeft(cocos2d::CCObject* sender) = win 0x9c030;
+	void onRight(cocos2d::CCObject* sender) = win 0x9c090;
 	void reloadItems(int rowCount, int columnCount) {
-		if (m_buttonArray)
-			this->loadFromItems(m_buttonArray, rowCount, columnCount, m_unknown);
+		if (m_buttonArray) this->loadFromItems(m_buttonArray, rowCount, columnCount, false);
 	}
 
 	cocos2d::CCPoint m_position;
@@ -3357,10 +3397,29 @@ class EffectGameObject : EnhancedGameObject {
 	PAD = android32 0x1, win 0x1;
 }
 
-[[link(android)]]
+[[link(android), depends(CAState), depends(PulseEffectAction), depends(CountTriggerAction), depends(OpacityEffectAction), depends(TouchToggleAction), depends(CollisionTriggerAction), depends(ToggleTriggerAction), depends(SpawnTriggerAction), depends(GroupCommandObject2), depends(TimerItem), depends(TimerTriggerAction)]]
 class EffectManagerState {
 	// ~EffectManagerState();
 	// EffectManagerState();
+
+	gd::vector<CAState> m_unkVecCAState;
+	gd::vector<PulseEffectAction> m_unkVecPulseEffectAction;
+	gd::unordered_map<int,gd::vector<PulseEffectAction>> m_unorderedMapInt_vectorPulseEffectAction;
+	gd::unordered_map<int,gd::vector<CountTriggerAction>> m_unorderedMapInt_vectorCountTriggerAction;
+	gd::unordered_set<int> m_unorderedSet_int1;
+	gd::map<int,int> m_mapInt_Int;
+	gd::unordered_map<int,OpacityEffectAction> m_unorderedMapInt_OpacityEffectAction;
+	gd::vector<TouchToggleAction> m_vectorTouchToggleAction;
+	gd::vector<CollisionTriggerAction> m_vectorCollisionTriggerAction;
+	gd::vector<ToggleTriggerAction> m_vectorToggleTriggerAction;
+	gd::vector<SpawnTriggerAction> m_vectorSpawnTriggerAction;
+	gd::unordered_map<int,int> m_unorderedMapInt_int;
+	gd::unordered_map<int,bool> m_unorderedMapInt_bool;
+	gd::vector<GroupCommandObject2> m_vectorGroupCommandObject2;
+	gd::unordered_map<int,std::pair<double,double>> m_unorderedMapInt_pair_double_double;
+	gd::unordered_set<int> m_unorderedSet_int2;
+	gd::unordered_map<int,TimerItem_padded> m_unorderedMapInt_TimerItem;
+	gd::unordered_map<int,gd::vector<TimerTriggerAction>> m_unorderedMapInt_vectorTimerTriggerAction;
 }
 
 [[link(android)]]
@@ -3421,6 +3480,8 @@ class EndPortalObject : GameObject {
 	virtual bool init() = win 0xeb210;
 	virtual void setPosition(cocos2d::CCPoint const&);
 	virtual void setVisible(bool);
+
+	PAD = win 0x8;
 }
 
 [[link(android)]]
@@ -3540,6 +3601,13 @@ class EnterEffectInstance {
 	TodoReturn loadValuesFromObject(EnterEffectObject*);
 	void setValue(int, float);
 	TodoReturn updateTransitions(float, GJBaseGameLayer*);
+
+	gd::map<int,EnterEffectAnimValue> m_enterEffectAnimMap;
+	PAD = win 0x8c;
+	GameObject* m_gameObject;
+	PAD = win 0x1c;
+	gd::vector<int> m_unkVecInt;
+	PAD = win 0x4;
 }
 
 [[link(android)]]
@@ -3765,29 +3833,29 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getNextChannelID();
 	TodoReturn getTweenContainer(AudioTargetType);
 	bool isChannelStopping(int);
-	bool isEffectLoaded(gd::string);
-	bool isMusicPlaying(gd::string, int) = win 0x383e0;
+	bool isEffectLoaded(gd::string path);
+	bool isMusicPlaying(gd::string path, int p1) = win 0x383e0;
 	bool isMusicPlaying(int);
-	bool isSoundReady(FMOD::Sound*);
-	TodoReturn lengthForSound(gd::string);
-	TodoReturn loadAndPlayMusic(gd::string, unsigned int, int);
+	bool isSoundReady(FMOD::Sound* sound);
+	TodoReturn lengthForSound(gd::string path);
+	TodoReturn loadAndPlayMusic(gd::string path, unsigned int p1, int p2);
 	TodoReturn loadAudioState(FMODAudioState&) = win 0x34000;
-	void loadMusic(gd::string, float, float, float, bool, int, int) = win 0x38740;
-	void loadMusic(gd::string) = win 0x386a0;
+	void loadMusic(gd::string path, float speed, float p2, float volume, bool p4, int p5, int p6) = win 0x38740;
+	void loadMusic(gd::string path) = win 0x386a0;
 	TodoReturn pauseAllAudio();
 	TodoReturn pauseAllEffects();
 	void pauseAllMusic() = win 0x38350;
 	TodoReturn pauseEffect(unsigned int);
 	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int) = win 0x350e0;
-	void playEffect(gd::string, float, float, float) = win 0x356e0;
-	void playEffect(gd::string) = win 0x35590;
-	void playEffectAdvanced(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, bool, int, int, float, int) = win 0x357b0;
-	TodoReturn playEffectAsync(gd::string) = win 0x35620;
-	void playMusic(gd::string, bool, float, int) = win 0x385b0;
-	void preloadEffect(gd::string) = win 0x37a10;
-	void preloadEffectAsync(gd::string);
-	TodoReturn preloadMusic(gd::string, bool, int);
+	void playEffect(gd::string path, float speed, float p2, float volume) = win 0x356e0;
+	void playEffect(gd::string path) = win 0x35590;
+	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x357b0;
+	TodoReturn playEffectAsync(gd::string path) = win 0x35620;
+	void playMusic(gd::string path, bool p1, float p2, int p3) = win 0x385b0;
+	void preloadEffect(gd::string path) = win 0x37a10;
+	void preloadEffectAsync(gd::string path);
+	TodoReturn preloadMusic(gd::string path, bool p1, int p2);
 	TodoReturn printResult(FMOD_RESULT);
 	TodoReturn queuedEffectFinishedLoading(gd::string) = win 0x391f0;
 	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x4361f0;
@@ -3824,12 +3892,12 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn stopChannelTweens(int, AudioTargetType);
 	TodoReturn stopMusic(int);
 	TodoReturn stopMusicNotInSet(std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >&);
-	TodoReturn storeEffect(FMOD::Sound*, gd::string) = win 0x37c00;
+	TodoReturn storeEffect(FMOD::Sound* sound, gd::string path) = win 0x37c00;
 	TodoReturn swapMusicIndex(int, int);
 	TodoReturn testFunction(int);
 	TodoReturn triggerQueuedMusic(FMODQueuedMusic) = win 0x39800;
 	TodoReturn unloadAllEffects() = win 0x38130;
-	TodoReturn unloadEffect(gd::string);
+	TodoReturn unloadEffect(gd::string path);
 	TodoReturn unregisterChannel(int);
 	void updateBackgroundFade() = win 0x38230;
 	TodoReturn updateChannel(int, AudioTargetType, AudioModType, float, float) = win 0x37200;
@@ -3868,6 +3936,27 @@ class FMODAudioEngine : cocos2d::CCNode {
 class FMODAudioState {
 	// ~FMODAudioState();
 	// FMODAudioState();
+
+	float m_unkFloat1;
+	float m_unkFloat2;
+	gd::map<std::pair<int,int>,FMODSoundTween> m_unkMapPairIntIntFMODSoundTween1;
+	gd::map<std::pair<int,int>,FMODSoundTween> m_unkMapPairIntIntFMODSoundTween2;
+	gd::map<std::pair<int,int>,FMODSoundTween> m_unkMapPairIntIntFMODSoundTween3;
+	gd::unordered_map<int,float> m_unkMapIntFloat1;
+	gd::unordered_map<int,float> m_unkMapIntFloat2;
+	gd::unordered_map<int,float> m_unkMapIntFloat3;
+	gd::unordered_map<int,float> m_unkMapIntFloat4;
+	gd::unordered_map<int,float> m_unkMapIntFloat5;
+	gd::unordered_map<int,float> m_unkMapIntFloat6;
+	gd::unordered_map<int,float> m_unkMapIntFloat7;
+	gd::unordered_map<int,float> m_unkMapIntFloat8;
+	gd::unordered_map<int,float> m_unkMapIntFloat9;
+	gd::unordered_map<int,float> m_unkMapIntFloat10;
+	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic1;
+	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic2;
+	gd::unordered_map<int,FMODSoundState_padded> m_unkMapIntFMODSoundState;
+	int m_unkInt1;
+	int m_unkInt2;
 }
 
 [[link(android)]]
@@ -4581,7 +4670,7 @@ class GameManager : GManager {
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn defaultYOffsetForBG2(int);
 	TodoReturn didExitPlayscene();
-	TodoReturn doQuickSave() = win 0x12de10;
+	void doQuickSave() = win 0x12de10;
 	TodoReturn dpadConfigToString(UIButtonConfig&);
 	TodoReturn eventUnlockFeature(char const*);
 	void fadeInMenuMusic() = win 0x1219f0;
@@ -4984,8 +5073,8 @@ class GameObject : CCSpritePlus {
 	TodoReturn getSecondaryColor();
 	TodoReturn getSecondaryColorMode();
 	TodoReturn getSlopeAngle();
-	TodoReturn getStartPos();
-	TodoReturn getType();
+	cocos2d::CCPoint* getStartPos(cocos2d::CCPoint*) = win 0xeb0f0;
+	GameObjectType getType() = win 0xeb0d0;
 	TodoReturn getUnmodifiedPosition();
 	TodoReturn groupColor(cocos2d::ccColor3B const&, bool);
 	TodoReturn groupOpacityMod() = win 0x13dd70;
@@ -5045,7 +5134,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn setupColorSprite(int, bool);
 	TodoReturn setupPixelScale();
 	TodoReturn setupSpriteSize();
-	TodoReturn shouldBlendColor(GJSpriteColor*, bool) = win 0x133880;
+	bool shouldBlendColor(GJSpriteColor*, bool) = win 0x133880;
 	TodoReturn shouldLockX() = win 0x139d10;
 	TodoReturn shouldNotHideAnimFreeze();
 	TodoReturn shouldShowPickupEffects();
@@ -5099,7 +5188,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn addMainSpriteToParent(bool) = win 0x13cf90;
 	virtual void resetObject();
 	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
-	virtual void activateObject();
+	virtual void activateObject() = win 0x133700;
 	virtual void deactivateObject(bool) = win 0x133790;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = win 0x13a500;
 	virtual cocos2d::CCRect const& getObjectRect() = win 0x13a570;
@@ -5159,7 +5248,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getTextKerning();
 	virtual void setObjectRectDirty(bool);
 	virtual void setOrientedRectDirty(bool);
-	virtual void setType(GameObjectType);
+	virtual void setType(GameObjectType) = win 0xeb0e0;
 
 	// windows members may be wrong! yay!
 
@@ -5756,6 +5845,10 @@ class GhostTrailEffect : cocos2d::CCNode {
 
 	virtual bool init() = win 0x46bc0;
 	virtual void draw() {}
+
+	PAD = win 0x30;
+	cocos2d::ccColor3B m_color;
+	PAD = win 0xc;
 }
 
 [[link(android)]]
@@ -6392,7 +6485,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0xB8, android32 0xB0, android64 0x144;
 	bool m_isPracticeMode; // 2a7c win, 2a94 android32, 3208 android64
 	bool m_practiceMusicSync;
-	float m_unk2a80;
+	float m_loadingProgress;
 	cocos2d::CCNode* m_unk2a84;
 	int m_unk2a88;
 	float m_unk2a8c;
@@ -6560,11 +6653,13 @@ class GJDifficultySprite : cocos2d::CCSprite {
 
 	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x216be0;
 
-	gd::string getDifficultyFrame(int, GJDifficultyName);
+	static gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x216d40;
 	bool init(int, GJDifficultyName) = win 0x216cb0;
 	void updateDifficultyFrame(int, GJDifficultyName) = win 0x216e30;
 	void updateFeatureState(GJFeatureState) = win 0x216ff0;
 	void updateFeatureStateFromLevel(GJGameLevel*) = win 0x216f70;
+
+	GJFeatureState m_featureState;
 }
 
 [[link(android)]]
@@ -7002,7 +7097,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 	bool m_editor;
 }
 
-[[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance)]]
+[[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance), depends(SFXTriggerState), depends(SongTriggerState), depends(EnterEffectAnimValue)]]
 class GJGameState {
 	// ~GJGameState();
 	// GJGameState() = win 0x18d990;
@@ -7017,124 +7112,171 @@ class GJGameState {
 
 	float m_cameraZoom;
 	float m_targetCameraZoom;
-	cocos2d::CCPoint m_unk8;
-	cocos2d::CCPoint m_unk10;
-	cocos2d::CCPoint m_unk18;
-	cocos2d::CCPoint m_unk20;
-	cocos2d::CCPoint m_unk28;
-	cocos2d::CCPoint m_unk30;
-	cocos2d::CCPoint m_unk38;
-	cocos2d::CCPoint m_unk40;
-	cocos2d::CCPoint m_unk48;
-	cocos2d::CCPoint m_unk50;
-	cocos2d::CCPoint m_unk58;
-	cocos2d::CCPoint m_unk60;
-	cocos2d::CCPoint m_unk68;
-	cocos2d::CCPoint m_unk70;
-	cocos2d::CCPoint m_unk78;
-	cocos2d::CCPoint m_unk80;
-	cocos2d::CCPoint m_unk88;
-	cocos2d::CCPoint m_unk90;
-	cocos2d::CCPoint m_unk98;
-	cocos2d::CCPoint m_unka0;
-	cocos2d::CCPoint m_unka8;
-	cocos2d::CCPoint m_unkb0;
-	cocos2d::CCPoint m_unkb8;
-	cocos2d::CCPoint m_unkc0;
-	cocos2d::CCPoint m_unkc8;
-	cocos2d::CCPoint m_unkd0;
-	cocos2d::CCPoint m_unkd8;
-	cocos2d::CCPoint m_unke0;
-	cocos2d::CCPoint m_unke8;
-	cocos2d::CCPoint m_unkf0;
-	bool m_unkf8;
-	int m_unkfc;
-	bool m_unk100;
-	int m_unk104;
-	bool m_unk108;
-	cocos2d::CCPoint m_unk10c;
-	PAD = win 0x10, android32 0x10, android64 0x10;
-	float m_unk124;
-	float m_unk128;
-	PAD = win 0x1c, android32 0x1c, android64 0x1c;
-	float m_unk148;
-	PAD = win 0x1c, android32 0x1c, android64 0x1c;
-	bool m_unk168;
-	bool m_unk169;
-	bool m_unk16a;
-	float m_unk16c;
-	float m_unk170;
-	float m_unk174;
-	float m_unk178;
+	cocos2d::CCPoint m_cameraOffset;
+	cocos2d::CCPoint m_unkPoint1;
+	cocos2d::CCPoint m_unkPoint2;
+	cocos2d::CCPoint m_unkPoint3;
+	cocos2d::CCPoint m_unkPoint4;
+	cocos2d::CCPoint m_unkPoint5;
+	cocos2d::CCPoint m_unkPoint6;
+	cocos2d::CCPoint m_unkPoint7;
+	cocos2d::CCPoint m_unkPoint8;
+	cocos2d::CCPoint m_unkPoint9;
+	cocos2d::CCPoint m_unkPoint10;
+	cocos2d::CCPoint m_unkPoint11;
+	cocos2d::CCPoint m_unkPoint12;
+	cocos2d::CCPoint m_unkPoint13;
+	cocos2d::CCPoint m_unkPoint14;
+	cocos2d::CCPoint m_unkPoint15;
+	cocos2d::CCPoint m_unkPoint16;
+	cocos2d::CCPoint m_unkPoint17;
+	cocos2d::CCPoint m_unkPoint18;
+	cocos2d::CCPoint m_unkPoint19;
+	cocos2d::CCPoint m_unkPoint20;
+	cocos2d::CCPoint m_unkPoint21;
+	cocos2d::CCPoint m_unkPoint22;
+	cocos2d::CCPoint m_unkPoint23;
+	cocos2d::CCPoint m_unkPoint24;
+	cocos2d::CCPoint m_unkPoint25;
+	cocos2d::CCPoint m_unkPoint26;
+	cocos2d::CCPoint m_unkPoint27;
+	cocos2d::CCPoint m_unkPoint28;
+	cocos2d::CCPoint m_unkPoint29;
+	bool m_unkBool1;
+	int m_unkInt1;
+	bool m_unkBool2;
+	int m_unkInt2;
+	bool m_unkBool3;
+	cocos2d::CCPoint m_unkPoint30;
+	float m_middleGroundOffsetY;
+	int m_unkInt3;
+	int m_unkInt4;
+	short m_unkShort1;
+	float m_unkFloat2;
+	float m_unkFloat3;
+	int m_unkInt5;
+	int m_unkInt6;
+	int m_unkInt7;
+	int m_unkInt8;
+	int m_unkInt9;
+	int m_unkInt10;
+	int m_unkInt11;
+	float m_unkFloat4;
+	unsigned int m_unkUint1;
+	float m_portalY;
+	bool m_unkBool4;
+	bool m_gravityRelated;
+	int m_unkInt12;
+	int m_unkInt13;
+	int m_unkInt14;
+	int m_unkInt15;
+	short m_unkShort2;
+	bool m_unkBool5;
+	bool m_unkBool6;
+	float m_unkFloat5;
+	float m_unkFloat6;
+	float m_unkFloat7;
+	float m_unkFloat8;
 	float m_cameraAngle;
 	float m_targetCameraAngle;
 	bool m_unk184;
 	float m_timeWarp;
-	float m_unk18c;
+	float m_timeWarpRelated;
 	int m_currentChannel;
-	int m_unk194;
-	gd::unordered_map<int, int> m_unk198;
-	gd::unordered_map<int, bool> m_unk1b4;
-	float m_unk1d0; // unsure types of all 4 floats
-	float m_unk1d4;
-	float m_unk1d8;
-	float m_unk1dc;
-	double m_unk1e0; // unsure type
-	PAD = win 0x8;
-	int m_unk1f8; // used in PlayLayer::getCurrentPercent
-	PAD = win 0x18;
+	int m_unkInt17;
+	gd::unordered_map<int, int> m_spawnChannelRelated0;
+	gd::unordered_map<int, bool> m_spawnChannelRelated1;
+	double m_unkDouble1;
+	double m_unkDouble2;
+	double m_unkDouble3;
+	unsigned int m_unkUint2;
+	unsigned int m_unkUint3;
+	int m_unk1f8; // Have to leave same name cause used in PlayLayer::getCurrentPercent m_currentProgress
+	unsigned int m_unkUint4;
+	unsigned int m_unkUint5;
+	unsigned int m_unkUint6;
+	unsigned int m_unkUint7;
+	GameObject* m_unkGameObjPtr1;
+	GameObject* m_unkGameObjPtr2;
 	cocos2d::CCPoint m_cameraPosition;
-	PAD = win 0xa, android32 0xa, android64 0xa;
+	bool m_unkBool8;
+	bool m_unkBool9;
+	bool m_unkBool10;
+	bool m_unkBool11;
+	bool m_unkBool12;
+	bool m_unkBool13;
+	bool m_unkBool14;
+	bool m_unkBool15;
+	bool m_unkBool16;
+	bool m_unkBool17;
 	bool m_isDualMode;
-	PAD = win 0x5, android32 0x5, android64 0x5;
-	gd::unordered_map<int, GJValueTween> m_unk224;
-	PAD = win 0x10, android32 0x10, android64 0x10;
-	gd::unordered_map<int, GameObjectPhysics> m_unk250;
-	PAD = win 0x18, android32 0x18, android64 0x24;
-	cocos2d::CCPoint m_unk284;
-	int m_unk288;
-	int m_unk28c;
-	bool m_unk290;
-	gd::map<std::pair<int, int>, int> m_unk298;
-	int m_unkidk;
-	cocos2d::CCPoint m_unk2b8;
-	cocos2d::CCPoint m_unk2c0;
-	bool m_unk2c8;
-	bool m_unk2c9;
-	bool m_unk2ca;
-	PAD = win 0x6, android32 0x6, android64 0x6;
-	bool m_unk2d0;
-	bool m_unk2d1;
-	PAD = win 0x10, android32 0x10, android64 0x10;
-	double m_unk2e4; // unsure type
-	cocos2d::CCPoint m_unk2e8;
-	PAD = win 0x4, android32 0x4, android64 0x4;
-	gd::unordered_map<int, EnhancedGameObject*> m_unk2f4;
-	gd::map<std::pair<GJGameEvent, int>, gd::vector<EventTriggerInstance>> m_unk310;
-	gd::map<std::pair<GJGameEvent, int>, int> m_unk328;
-	gd::unordered_map<int, gd::vector<EnterEffectInstance>> m_unk340;
-	gd::unordered_map<int, gd::vector<EnterEffectInstance>> m_unk35c;
-	gd::vector<int> m_unk378;
-	gd::vector<int> m_unk384;
-	gd::vector<EnterEffectInstance> m_unk390;
-	gd::vector<EnterEffectInstance> m_unk39c;
-	gd::vector<EnterEffectInstance> m_unk3a8;
-	gd::vector<EnterEffectInstance> m_unk3b4;
-	gd::vector<EnterEffectInstance> m_unk3c0;
-	gd::unordered_set<int> m_unk3cc;
-	bool m_unk3e8;
-	gd::vector<AdvancedFollowInstance> m_unk3ec;
-	gd::vector<DynamicObjectAction> m_unk3f8;
-	gd::vector<DynamicObjectAction> m_unk404;
-	bool m_unk410;
-	bool m_unk411;
-	PAD = win 0x4, android32 0x4, android64 0x4;
-	gd::unordered_map<int, gd::vector<int>> m_unk418;
-	gd::map<std::pair<int, int>, SFXTriggerInstance> m_unk434;
-	gd::unordered_map<int, SongChannelState> m_unk44c;
-	gd::unordered_map<int, gd::vector<SongTriggerState>> m_unk468;
-	gd::vector<SFXTriggerState> m_unk484;
-	PAD = win 0x1c, android32 0x1c, android64 0x1c;
+	bool m_unkBool18;
+	float m_unkFloat9;
+	gd::unordered_map<int, GJValueTween> m_tweenActions;
+	int m_cameraEdgeValue0;
+	int m_cameraEdgeValue1;
+	int m_cameraEdgeValue2;
+	int m_cameraEdgeValue3;
+	gd::unordered_map<int, GameObjectPhysics> m_gameObjectPhysics;
+	gd::vector<float> m_unkVecFloat1; // Assumed template param
+	unsigned int m_unkUint10;
+	unsigned int m_unkUint11;
+	unsigned int m_unkUint12;
+	cocos2d::CCPoint m_unkPoint31;
+	float m_unkFloat10;
+	unsigned int m_timeModRelated;
+	bool m_timeModRelated2;
+	gd::map<std::pair<int, int>, int> m_unkMapPairIntIntInt;
+	unsigned int m_unkUint13;
+	cocos2d::CCPoint m_unkPoint32;
+	cocos2d::CCPoint m_unkPoint33;
+	bool m_unkBool19;
+	bool m_unkBool20;
+	bool m_unkBool21;
+	bool m_unkBool22;
+	bool m_unkBool23;
+	bool m_unkBool24;
+	unsigned int m_unkUint14;
+	bool m_unkBool25;
+	bool m_cameraShakeEnabled;
+	float m_cameraShakeFactor;
+	unsigned int m_unkUint15;
+	unsigned int m_unkUint16;
+	uint64_t m_unkUint64_1;
+	cocos2d::CCPoint m_unkPoint34;
+	unsigned int dualRelated;
+	gd::unordered_map<int, EnhancedGameObject*> m_stateObjects;
+	gd::map<std::pair<GJGameEvent, int>, gd::vector<EventTriggerInstance>> m_unkMapPairGJGameEventIntVectorEventTriggerInstance;
+	gd::map<std::pair<GJGameEvent, int>, int> m_unkMapPairGJGameEventIntInt;
+	gd::unordered_map<int, std::vector<EnterEffectInstance>> m_unorderedMapEnterEffectInstanceVectors1;
+	gd::unordered_map<int, std::vector<EnterEffectInstance>> m_unorderedMapEnterEffectInstanceVectors2;
+	gd::vector<int> m_unkVecInt1;
+	gd::vector<int> m_unkVecInt2;
+	gd::vector<EnterEffectInstance> m_enterEffectInstances1;
+	gd::vector<EnterEffectInstance> m_enterEffectInstances2;
+	gd::vector<EnterEffectInstance> m_enterEffectInstances3;
+	gd::vector<EnterEffectInstance> m_enterEffectInstances4;
+	gd::vector<EnterEffectInstance> m_enterEffectInstances5;
+	gd::unordered_set<int> m_unkUnorderedSet1;
+	bool m_unkBool26;
+	gd::vector<AdvancedFollowInstance> m_advanceFollowInstances;
+	gd::vector<DynamicObjectAction> m_dynamicObjActions1;
+	gd::vector<DynamicObjectAction> m_dynamicObjActions2;
+	bool m_unkBool27;
+	bool m_unkBool28;
+	unsigned int m_unkUint17;
+	gd::unordered_map<int, std::vector<int>> unkUMap8;
+	gd::map<std::pair<int,int>, SFXTriggerInstance> proximityVolumeRelated;
+	gd::unordered_map<int, SongChannelState> m_songChannelStates;
+	gd::unordered_map<int, std::vector<SongTriggerState>> m_songTriggerStateVectors;
+	gd::vector<SFXTriggerState> m_sfxTriggerStates;
+	bool m_unkBool29;
+	unsigned int m_unkUint18;
+	int m_ground;
+	unsigned int m_unkUint19;
+	bool m_unkBool30;
+	unsigned int m_unkUint20;
+	bool m_unkBool31;
 }
 
 [[link(android)]]
@@ -7993,7 +8135,7 @@ class GJSearchObject : cocos2d::CCNode {
 	int m_searchMode;
 }
 
-[[link(android)]]
+[[link(android),  depends(GJValueTween)]]
 class GJShaderState {
 	TodoReturn reset();
 	TodoReturn stopTweenAction(int);
@@ -8002,6 +8144,10 @@ class GJShaderState {
 	TodoReturn tweenValue(float, float, int, float, int, float);
 	TodoReturn updateTweenAction(float, int);
 	TodoReturn updateTweenActions(float);
+
+	gd::unordered_map<int, GJValueTween> m_someIntToValueTweenMap;
+	gd::unordered_map<int, double> m_someIntToDoubleMap;
+	PAD = win 0x248;
 }
 
 [[link(android)]]
@@ -8398,6 +8544,7 @@ class GJUserScore : cocos2d::CCNode {
 [[link(android)]]
 class GJValueTween {
 	void step(float delta);
+
 	float m_fromValue;
 	float m_toValue;
 	float m_duration;
@@ -8407,6 +8554,7 @@ class GJValueTween {
 	float m_easingRate;
 	bool m_finished;
 	bool m_disabled;
+	PAD = win 0xa;
 }
 
 [[link(android)]]
@@ -8535,7 +8683,7 @@ class GravityEffectSprite : cocos2d::CCSprite {
 	virtual void draw();
 }
 
-[[link(android)]]
+[[link(android), depends(KeyframeObject)]]
 class GroupCommandObject2 {
 	// ~GroupCommandObject2();
 	// GroupCommandObject2();
@@ -8552,6 +8700,12 @@ class GroupCommandObject2 {
 	TodoReturn stepTransformCommand(float, bool, bool);
 	TodoReturn updateAction(int, float);
 	TodoReturn updateEffectAction(float, int);
+
+	PAD = win 0x1b4;
+	gd::vector<KeyframeObject> m_unkVecKeyframeObject;
+	PAD = win 0x10;
+	gd::vector<int> m_unkVecInt;
+	PAD = win 0xc;
 }
 
 [[link(android)]]
@@ -8826,6 +8980,20 @@ class KeyframeObject {
 	// KeyframeObject(KeyframeObject const&);
 
 	TodoReturn setupSpline(gd::vector<KeyframeObject*>&);
+
+	PAD = win 0x20;
+	gd::vector<double> m_unkVecDouble1;
+	gd::vector<double> m_unkVecDouble2;
+	gd::vector<double> m_unkVecDouble3;
+	gd::vector<double> m_unkVecDouble4;
+	gd::vector<double> m_unkVecDouble5;
+	PAD = win 0x34;
+	gd::vector<double> m_unkVecDouble6;
+	gd::vector<double> m_unkVecDouble7;
+	gd::vector<double> m_unkVecDouble8;
+	gd::vector<double> m_unkVecDouble9;
+	gd::vector<double> m_unkVecDouble10;
+	PAD = win 0x84;
 }
 
 [[link(android)]]
@@ -9160,7 +9328,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getNextColorChannel();
 	TodoReturn getNextFreeAreaEffectID(cocos2d::CCArray*);
 	TodoReturn getNextFreeBlockID(cocos2d::CCArray*);
-	TodoReturn getNextFreeEditorLayer(cocos2d::CCArray*) = win 0x241950;
+	int getNextFreeEditorLayer(cocos2d::CCArray*) = win 0x241950;
 	TodoReturn getNextFreeEnterChannel(cocos2d::CCArray*);
 	TodoReturn getNextFreeGradientID(cocos2d::CCArray*);
 	int getNextFreeGroupID(cocos2d::CCArray*) = win 0x241530;
@@ -9476,7 +9644,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	bool m_challenge;
 	PAD = win 0x4, android32 0x4, android64 0x8;
 	cocos2d::CCSprite* m_playSprite;
-	void* m_unk11;
+	cocos2d::CCProgressTimer* m_progressTimer;
 	CustomSongWidget* m_songWidget;
 }
 
@@ -10813,6 +10981,8 @@ class OnlineListDelegate {
 [[link(android)]]
 class OpacityEffectAction {
 	TodoReturn step(float);
+
+	PAD = win 0x2c;
 }
 
 [[link(android)]]
@@ -11095,6 +11265,32 @@ class PlayerCheckpoint : cocos2d::CCNode {
 	static PlayerCheckpoint* create() = win 0x2eb770;
 
 	virtual bool init() = win 0x52e00;
+
+	cocos2d::CCPoint m_position;
+	cocos2d::CCPoint m_lastPosition;
+	int m_unkInt1;
+	bool m_isUpsideDown;
+	bool m_unk7b3;
+	bool m_isShip;
+	bool m_isBall;
+	bool m_isBird;
+	bool m_isSwing;
+	bool m_isDart;
+	bool m_isRobot;
+	bool m_isSpider;
+	bool m_isOnGround;
+	PAD = win 0x2;
+	int m_hasGhostTrail;
+	uint8_t m_unkBytes1[4];
+	float m_speed;
+	bool m_isHidden;
+	bool m_isGoingLeft;
+	uint8_t m_unkBytes2[42];
+	float m_unkFloat1;
+	int m_possiblyFlags;
+	int m_timeOrPercentRelated;
+	gd::vector<float> m_yPositionVector;
+	uint8_t m_unkBytes3[8];
 }
 
 [[link(android)]]
@@ -11719,7 +11915,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCArray* m_coinArray;
 	PAD = win 0x5c;
 	float m_unksomefloat;
-	PAD = win 0x24;
+	CheckpointObject* m_unkCheckpointObject;
+	cocos2d::CCArray* m_checkpointArray;
+	PAD = win 0x1c;
 	cocos2d::CCArray* m_circleWaveArray;
 	PAD = win 0x10;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
@@ -11870,6 +12068,8 @@ class PulseEffectAction {
 	bool isFinished();
 	TodoReturn step(float);
 	TodoReturn valueForDelta(float, float, float, float);
+
+	PAD = win 0x48;
 }
 
 [[link(android)]]
@@ -14408,8 +14608,8 @@ class SimplePlayer : cocos2d::CCSprite {
 	static SimplePlayer* create(int) = win 0x1f3e90;
 
 	TodoReturn asyncLoadIcon(int, IconType);
-	TodoReturn createRobotSprite(int) = win 0x1f45d0;
-	TodoReturn createSpiderSprite(int) = win 0x1f4620;
+	void createRobotSprite(int) = win 0x1f45d0;
+	void createSpiderSprite(int) = win 0x1f4620;
 	inline void disableCustomGlowColor() {
 		m_hasCustomGlowColor = false;
 	}
@@ -14769,6 +14969,10 @@ class SpawnParticleGameObject : EffectGameObject {
 class SpawnTriggerAction {
 	bool isFinished();
 	TodoReturn step(float);
+
+	PAD = win 0x28;
+	GameObject* m_gameObject;
+	gd::vector<int> m_unkVecInt;
 }
 
 [[link(android)]]
@@ -15185,6 +15389,12 @@ class TextStyleSection : cocos2d::CCObject {
 }
 
 [[link(android)]]
+class TimerTriggerAction {
+	PAD = win 0x20;
+	gd::vector<int> m_unkVecInt;
+}
+
+[[link(android)]]
 class TimerTriggerGameObject : EffectGameObject {
 	// virtual ~TimerTriggerGameObject();
 
@@ -15195,6 +15405,12 @@ class TimerTriggerGameObject : EffectGameObject {
 	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*);
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&);
 	virtual gd::string getSaveString(GJBaseGameLayer*);
+}
+
+[[link(android)]]
+class ToggleTriggerAction {
+	PAD = win 0x14;
+	gd::vector<int> m_unkVecInt;
 }
 
 [[link(android)]]
@@ -15232,6 +15448,12 @@ class TOSPopup : FLAlertLayer {
 
 	virtual bool init() = win 0x2122e0;
 	virtual void keyBackClicked() {}
+}
+
+[[link(android)]]
+class TouchToggleAction {
+	PAD = win 0x20;
+	gd::vector<int> m_unkVecInt;
 }
 
 [[link(android)]]

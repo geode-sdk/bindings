@@ -3,19 +3,35 @@ class FMODSound {
 }
 
 class AdvancedFollowInstance {
-    
+	GameObject* m_gameObject;
+	PAD = win 0x18;
 }
 
 class SFXTriggerInstance {
-
+	PAD = win 0x10;
 }
 
 class EventTriggerInstance {
-
+	PAD = win 0x10;
+	gd::vector<int> m_unkVecInt;
 }
 
 class SongChannelState {
-    
+	PAD = win 0x4;
+	SongTriggerGameObject* m_songTriggerGameObject1;
+	PAD = win 0xc;
+	SongTriggerGameObject* m_songTriggerGameObject2;
+	PAD = win 0xc;
+}
+
+class SongTriggerState {
+	SongTriggerGameObject* m_songTriggerGameObject;
+	PAD = win 0xc;
+}
+
+class SFXTriggerState {
+	SFXTriggerGameObject* m_sfxTriggerGameObject;
+	PAD = win 0x9c;
 }
 
 class ChanceObject {
@@ -23,11 +39,11 @@ class ChanceObject {
 }
 
 class GameObjectPhysics {
-
+	PAD = win 0x28;
 }
 
 class DynamicObjectAction {
-
+	PAD = win 0x3c;
 }
 
 class GJTransformState {
@@ -70,4 +86,72 @@ class CAState {
 
 class GJPointDouble {
 
+}
+
+class DynamicSaveObject {
+    GameObject* m_gameObject;
+    unsigned int m_unkIntUnusedMaybe;
+    double m_unkDouble1;
+    double m_unkDouble2;
+    float m_unkFloat1;
+    float m_unkFloat2;
+    float m_unkFloat3;
+    float m_unkFloat4;
+    float m_unkFloat5;
+    float m_unkFloat6;
+}
+
+class ActiveSaveObject1 {
+	GameObject* m_gameObject;
+	bool m_unkBool1;
+	bool m_unkBool2;
+	PAD = win 0x2;
+}
+
+class ActiveSaveObject2 {
+	GameObject* m_gameObject;
+	EasingType m_easingType;
+}
+
+class SequenceTriggerState {
+	gd::unordered_map<int,float> m_unkUnorderedMap1;
+	gd::unordered_map<int,int> m_unkUnorderedMap2;
+}
+
+class FMODSoundTween {
+	PAD = win 0x28;
+}
+
+class FMODQueuedMusic {
+	gd::string m_unkString;
+	PAD = win 0x38;
+}
+
+class FMODSoundState {
+	gd::string m_unkString;
+	PAD = win 0xa4;
+}
+
+//Needed because pair<int,FMODSoundState> gets padded in gd but not when we compile it
+class FMODSoundState_padded {
+	PAD = win 0x4;
+	gd::string m_unkString;
+	PAD = win 0xa4;
+}
+
+class TimerItem {
+	PAD = win 0x38;
+	gd::vector<int> m_unkVecInt;
+	PAD = win 0x4;
+}
+
+//Needed because pair<int,TimerItem> gets padded in gd but not when we compile it
+class TimerItem_padded {
+	PAD = win 0x3c;
+	gd::vector<int> m_unkVecInt;
+	PAD = win 0x4;
+}
+
+class EnterEffectAnimValue {
+	PAD = win 0x20;
 }
