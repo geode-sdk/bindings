@@ -5945,7 +5945,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
 	TodoReturn createPlayer();
 	TodoReturn createPlayerCollisionBlock();
-	TodoReturn createTextLayers();
+	void createTextLayers();
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
 	void destroyObject(GameObject*);
 	TodoReturn enterDualMode(GameObject*, bool);

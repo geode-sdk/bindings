@@ -1360,7 +1360,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn buttonIDToButton(int);
 	TodoReturn controlEventLink(int, int, GJActionCommand);
 	void createBackground(int) = mac 0xff150;
-	TodoReturn createTextLayers() = win 0x193A90, mac 0x10b4b0;
+	void createTextLayers() = win 0x193A90, mac 0x10b4b0;
 	TodoReturn exitStaticCamera(bool, bool, float, int, float, bool, float, bool);
 	void loadUpToPosition(float, int, int) = win 0x1B4D10;
 	TodoReturn processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*);
