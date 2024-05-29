@@ -691,9 +691,8 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	// virtual ~CCBlockLayer();
 
 	static CCBlockLayer* create();
-
-	TodoReturn decrementForcePrio();
-	TodoReturn incrementForcePrio();
+	void decrementForcePrio();
+	void incrementForcePrio();
 
 	virtual bool init();
 	virtual void draw();
@@ -705,7 +704,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	virtual void keyBackClicked();
 	virtual void customSetup() {}
 	virtual void enterLayer();
-	virtual TodoReturn exitLayer();
+	virtual void exitLayer();
 	virtual void showLayer(bool);
 	virtual void hideLayer(bool);
 	virtual void layerVisible();
@@ -714,7 +713,8 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	virtual void disableUI() {}
 	virtual void enableUI() {}
 
-	void* m_unknown;
+	bool m_isShowing;
+    	bool m_unregistered;
 }
 
 [[link(android)]]
