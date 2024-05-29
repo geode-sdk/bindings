@@ -149,8 +149,8 @@ endif()
 
 add_library(${PROJECT_NAME} ${GEODE_CODEGEN_PATH}/Geode/GeneratedSource.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC
-    ${GEODE_CODEGEN_PATH}
-    ${CMAKE_CURRENT_SOURCE_DIR}/bindings/include
+	${GEODE_CODEGEN_PATH}
+	${CMAKE_CURRENT_SOURCE_DIR}/bindings/include
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_VISIBILITY_PRESET hidden)

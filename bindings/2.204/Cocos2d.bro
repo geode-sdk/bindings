@@ -720,7 +720,21 @@ class cocos2d::CCEGLView {
 	virtual void swapBuffers();
 	void toggleFullScreen(bool, bool);
 	void pollEvents();
-	// rest are in extras
+	void setupWindow(cocos2d::CCRect);
+	void end();
+	// rest are in extras (lie)
+	void onGLFWCharCallback(GLFWwindow* window, unsigned int entered);
+	void onGLFWCursorEnterFunCallback(GLFWwindow* window, int entered);
+	void onGLFWDeviceChangeFunCallback(GLFWwindow* window);
+	void onGLFWError(int code, char const* description);
+	void onGLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	void onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int mods);
+	void onGLFWMouseMoveCallBack(GLFWwindow* window, double x, double y);
+	void onGLFWMouseScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
+	void onGLFWWindowIconifyFunCallback(GLFWwindow* window, int iconified);
+	void onGLFWWindowPosCallback(GLFWwindow* window, int x, int y);
+	void onGLFWWindowSizeFunCallback(GLFWwindow* window, int width, int height);
+	void onGLFWframebuffersize(GLFWwindow* window, int width, int height);
 }
 
 [[link(win, android)]]
@@ -1079,6 +1093,7 @@ class cocos2d::CCLabelBMFont {
 
 [[link(win, android)]]
 class cocos2d::CCApplication {
+	virtual int run();
 	virtual void gameDidSave();
 	virtual void openURL(char const*);
 }
@@ -1295,6 +1310,40 @@ class cocos2d::CCDelayTime {
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void update(float);
 	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCTextFieldTTF {
+	// CCTextFieldTTF();
+	// virtual ~CCTextFieldTTF();
+
+	static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize);
+	static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize);
+
+	bool initWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize);
+	bool initWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize);
+
+	void setDelegate(cocos2d::CCTextFieldDelegate* var);
+
+	virtual void draw();
+	virtual const cocos2d::ccColor3B& getColorSpaceHolder();
+	virtual void setColorSpaceHolder(const cocos2d::ccColor3B& color);
+	virtual const char* getPlaceHolder();
+	virtual void setPlaceHolder(const char* text);
+	virtual void setSecureTextEntry(bool value);
+	virtual bool isSecureTextEntry();
+
+	virtual void setString(const char* text);
+	virtual const char* getString();
+
+	virtual bool attachWithIME();
+	virtual bool detachWithIME();
+	virtual bool canAttachWithIME();
+	virtual bool canDetachWithIME();
+	virtual void insertText(const char* text, int len, cocos2d::enumKeyCodes keyCode);
+	virtual void deleteBackward();
+	virtual void deleteForward();
+	virtual const char* getContentText();
 }
 
 [[link(win, android)]]

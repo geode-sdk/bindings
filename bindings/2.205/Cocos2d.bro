@@ -1,10 +1,10 @@
 [[link(win, android)]]
 class cocos2d::CCMotionStreak {
-	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
-	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*);
+	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = ios 0x17dd9c;
+	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = ios 0x17dc94;
 
-	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
-	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*);
+	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = ios 0x17de2c;
+	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = ios 0x17dd24;
 
 	bool getDontOpacityFade() const;
 	float getM_fMaxSeg() const;
@@ -13,32 +13,33 @@ class cocos2d::CCMotionStreak {
 	void setFastMode(bool);
 	void setM_fMaxSeg(float);
 	void setStartingPositionInitialized(bool);
-	void setStroke(float);
+	void setStroke(float) = ios 0x17e5e8;
 
 	// CCMotionStreak(cocos2d::CCMotionStreak const&);
-	// CCMotionStreak();
-	void enableRepeatMode(float);
+	CCMotionStreak() = ios 0x17db40;
+	~CCMotionStreak() = ios 0x17dbe0;
+	void enableRepeatMode(float) = ios 0x17e090;
 	bool isFastMode();
 	bool isStartingPositionInitialized();
 	void reset() = ios 0x17e5f0;
-	void resumeStroke();
-	void stopStroke();
+	void resumeStroke() = ios 0x17e0f4;
+	void stopStroke() = ios 0x17e0ec;
 	void tintWithColor(cocos2d::_ccColor3B);
-	void updateFade(float);
+	void updateFade(float) = ios 0x17e0dc;
 
-	virtual void update(float);
-	virtual void setPosition(cocos2d::CCPoint const&);
-	virtual void draw();
+	virtual void update(float) = ios 0x17e100;
+	virtual void setPosition(cocos2d::CCPoint const&) = ios 0x17dfd0;
+	virtual void draw() = ios 0x17e5fc;
 
-	virtual unsigned char getOpacity();
-	virtual void setOpacity(unsigned char);
-	virtual void setOpacityModifyRGB(bool);
-	virtual bool isOpacityModifyRGB();
+	virtual unsigned char getOpacity() { return 0; }
+	virtual void setOpacity(unsigned char) {}
+	virtual void setOpacityModifyRGB(bool) {}
+	virtual bool isOpacityModifyRGB() { return false; }
 
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
-	virtual cocos2d::_ccBlendFunc getBlendFunc();
-	virtual cocos2d::CCTexture2D* getTexture();
-	virtual void setTexture(cocos2d::CCTexture2D*);
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = ios 0x17e048;
+	virtual cocos2d::_ccBlendFunc getBlendFunc() = ios 0x17e058;
+	virtual cocos2d::CCTexture2D* getTexture() = ios 0x17dfe8;
+	virtual void setTexture(cocos2d::CCTexture2D*) = ios 0x17e038;
 }
 
 [[link(win, android)]]
@@ -1369,7 +1370,9 @@ class cocos2d::CCLabelBMFont {
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = ios 0x301a44;
-	static cocos2d::CCLabelBMFont* create();
+	inline static cocos2d::CCLabelBMFont* create() {
+		create(nullptr, nullptr);
+	}
 	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int) = ios 0x301df4;
 	static void purgeCachedData() = ios 0x301a40;
 
@@ -2028,14 +2031,24 @@ class cocos2d::CCString {
 
 [[link(win, android)]]
 class cocos2d::CCTouch {
-	cocos2d::CCPoint getDelta() const;
+	inline cocos2d::CCPoint getDelta() const {
+		return getLocation() - getPreviousLocation();
+	}
 	int getID() const;
 	cocos2d::CCPoint getLocation() const = ios 0x305508;
-	cocos2d::CCPoint getLocationInView() const;
-	cocos2d::CCPoint getPreviousLocation() const;
-	cocos2d::CCPoint getPreviousLocationInView() const;
-	cocos2d::CCPoint getStartLocation() const;
-	cocos2d::CCPoint getStartLocationInView() const;
+	cocos2d::CCPoint getLocationInView() const = ios 0x3054fc;
+	inline cocos2d::CCPoint getPreviousLocation() const {
+		return CCDirector::sharedDirector()->convertToGL(m_prevPoint);
+	}
+	inline cocos2d::CCPoint getPreviousLocationInView() const {
+		return m_prevPoint;
+	}
+	inline cocos2d::CCPoint getStartLocation() const {
+		return CCDirector::sharedDirector()->convertToGL(m_startPoint);
+	}
+	inline cocos2d::CCPoint getStartLocationInView() const {
+		return m_startPoint;
+	}
 
 	void setTouchInfo(int, float, float);
 
