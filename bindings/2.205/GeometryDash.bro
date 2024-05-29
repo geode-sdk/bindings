@@ -714,7 +714,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	virtual void enableUI() {}
 
 	bool m_isShowing;
-    	bool m_unregistered;
+    	bool m_registered;
 }
 
 [[link(android)]]
