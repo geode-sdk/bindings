@@ -724,7 +724,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 
 	static CCBlockLayer* create();
 
-	TodoReturn decrementForcePrio();
+	void decrementForcePrio();
 	TodoReturn incrementForcePrio();
 
 	virtual bool init() = win 0x22f00;
@@ -746,7 +746,8 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	virtual void disableUI() {}
 	virtual void enableUI() {}
 
-	void* m_unknown;
+	bool m_isShowing;
+    	bool m_unregistered;
 }
 
 [[link(android)]]
