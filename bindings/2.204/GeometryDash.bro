@@ -725,7 +725,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	static CCBlockLayer* create();
 
 	void decrementForcePrio();
-	TodoReturn incrementForcePrio();
+	void incrementForcePrio();
 
 	virtual bool init() = win 0x22f00;
 	virtual void draw() = win 0x230a0;
