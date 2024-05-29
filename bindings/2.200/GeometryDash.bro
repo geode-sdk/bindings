@@ -967,15 +967,15 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
 [[link(android)]]
 class LoadingLayer : cocos2d::CCLayer {
-	static cocos2d::CCScene* scene(bool);
-	static LoadingLayer* create(bool fromReload) = win 0x271A90, mac 0x380170;
+	static cocos2d::CCScene* scene(bool) = mac 0x380170;
+	static LoadingLayer* create(bool fromReload) = win 0x271A90, mac 0x380270;
 
 	bool init(bool fromReload) = win 0x271B30, mac 0x380350;
 
-	const char* getLoadingString() = win 0x272A20;
+	const char* getLoadingString() = win 0x272A20, mac 0x380ae0;
 
 	void loadAssets() = win 0x272390, mac 0x380ba0;
-	TodoReturn updateProgress(int);
+	void updateProgress(int) = mac 0x380b40;
 	void loadingFinished() = win 0x2722A0, mac 0x381310;
 
 	// 2.2, not tested
