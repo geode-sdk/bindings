@@ -9617,7 +9617,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x257b00;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2536e0;
 
-	void* m_unk0;
+	bool m_isBusy;
 	cocos2d::CCMenu* m_playBtnMenu;
 	GJGameLevel* m_level;
 	cocos2d::CCArray* m_coins;
