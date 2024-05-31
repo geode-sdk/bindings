@@ -690,16 +690,16 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 	void loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
 	void runAnimation(gd::string) = win 0x21640;
 	void runAnimationForced(gd::string) = win 0x216c0;
-	TodoReturn stopTween();
+	void stopTween();
 	void switchToMode(spriteMode) = win 0x214f0;
 	void tweenToAnimation(gd::string, float) = win 0x21750;
 	void tweenToAnimationFinished() = win 0x219c0;
-	TodoReturn willPlayAnimation();
+	void willPlayAnimation();
 
 	virtual void setOpacity(unsigned char) = win 0x21ae0;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x21b30;
-	virtual TodoReturn animationFinished(char const*) = win 0x21ac0;
-	virtual TodoReturn animationFinishedO(cocos2d::CCObject*) = win 0x21a90;
+	virtual void animationFinished(char const*) = win 0x21ac0;
+	virtual void animationFinishedO(cocos2d::CCObject*) = win 0x21a90;
 
 	gd::string m_unkString1;
 	gd::string m_unkString2;
@@ -7963,18 +7963,18 @@ class GJRobotSprite : CCAnimatedSprite {
 
 	static GJRobotSprite* create(int) = win 0x217510;
 
-	TodoReturn hideGlow();
+	void hideGlow();
 	bool init(int, gd::string) = win 0x2175e0;
 	bool init(int);
 	void showGlow();
-	TodoReturn updateColor01(cocos2d::ccColor3B);
-	TodoReturn updateColor02(cocos2d::ccColor3B);
+	void updateColor01(cocos2d::ccColor3B);
+	void updateColor02(cocos2d::ccColor3B);
 	void updateColors() = win 0x217b70;
 	void updateFrame(int) = win 0x2180b0;
 	void updateGlowColor(cocos2d::ccColor3B, bool) = win 0x217b10;
 
 	virtual void setOpacity(unsigned char) = win 0x217ff0;
-	virtual TodoReturn hideSecondary() = win 0x218680;
+	virtual void hideSecondary() = win 0x218680;
 
 	cocos2d::CCArray* m_unkArray;
 	bool m_hasExtra;
