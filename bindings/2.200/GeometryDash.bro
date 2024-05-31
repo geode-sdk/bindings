@@ -6986,7 +6986,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn getRealPosition() = mac 0x3fafd0;
 	virtual TodoReturn getOrientedBox() = mac 0x3fc2e0;
 	virtual TodoReturn getObjectRotation() = mac 0x3fc300;
-	virtual TodoReturn animationFinished(char const*) = mac 0x3fd190;
+	virtual void animationFinished(char const*) = mac 0x3fd190;
 
 	cocos2d::CCNode* m_mainLayer;
 	PAD = win 0x44, mac 0x48;
@@ -7214,7 +7214,7 @@ class SongInfoObject : cocos2d::CCNode {
 
 [[link(android)]]
 class AnimatedSpriteDelegate {
-	virtual TodoReturn animationFinished(char const*);
+	virtual void animationFinished(char const*);
 }
 
 
@@ -11642,7 +11642,7 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 
 	virtual void setOpacity(unsigned char) = mac 0x32f2d0;
 	virtual void setColor(cocos2d::_ccColor3B const&) = mac 0x32f380;
-	virtual TodoReturn animationFinished(char const*) = mac 0x32f2b0;
+	virtual void animationFinished(char const*) = mac 0x32f2b0;
 	virtual void animationFinishedO(cocos2d::CCObject*) = mac 0x32f280;
 
 	gd::string m_unkString1;
@@ -12705,7 +12705,7 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
 	virtual void activateObject() = mac 0x19f990;
 	virtual void deactivateObject(bool) = mac 0x19f9d0;
 	virtual void setObjectColor(cocos2d::_ccColor3B const&) = mac 0x19fb40;
-	virtual TodoReturn animationFinished(char const*) = mac 0x19fb70;
+	virtual void animationFinished(char const*) = mac 0x19fb70;
 }
 
 [[link(android)]]
@@ -12718,7 +12718,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 	TodoReturn startAnimating();
 	TodoReturn playReactAnimation();
 
-	virtual TodoReturn animationFinished(char const*) = mac 0x3057b0;
+	virtual void animationFinished(char const*) = mac 0x3057b0;
 }
 
 [[link(android)]]
