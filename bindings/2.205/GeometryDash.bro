@@ -651,22 +651,32 @@ class CCAlertCircle : cocos2d::CCNode {
 class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
 
-	TodoReturn cleanupSprite() = ios 0x3047f4;
-	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool) = ios 0x3040d4;
-	bool initWithType(char const*, cocos2d::CCTexture2D*, bool);
-	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool) = ios 0x3042fc;
+	void cleanupSprite() = ios 0x3047f4;
+	static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = ios 0x3040d4;
+	bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = ios 0x304198;
+	void loadType(char const*, cocos2d::CCTexture2D*, bool) = ios 0x3042fc;
 	void runAnimation(gd::string) = ios 0x304990;
 	void runAnimationForced(gd::string) = ios 0x3049f4;
-	TodoReturn stopTween();
-	TodoReturn switchToMode(spriteMode);
+	void stopTween() = ios 0x304cec;
+	void switchToMode(spriteMode) = ios 0x304884;
 	void tweenToAnimation(gd::string, float) = ios 0x304a9c;
-	void tweenToAnimationFinished();
-	TodoReturn willPlayAnimation();
+	void tweenToAnimationFinished() = ios 0x304c70;
+	void willPlayAnimation() = ios 0x304a6c;
 
 	virtual void setOpacity(unsigned char) = ios 0x304d74;
 	virtual void setColor(cocos2d::ccColor3B const&) = ios 0x304dd4;
 	virtual void animationFinished(char const*) = ios 0x304d5c;
 	virtual void animationFinishedO(cocos2d::CCObject*) = ios 0x304d28;
+
+	gd::string m_unkString1;
+	gd::string m_unkString2;
+	SpriteAnimationManager* m_animationManager;
+	cocos2d::CCSprite* m_sprite;
+	cocos2d::CCSprite* m_fbfSprite;
+	CCPartAnimSprite* m_paSprite;
+	spriteMode m_spriteMode;
+	gd::string m_currentAnim;
+	AnimatedSpriteDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -5508,7 +5518,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn storeSecretCoin(char const*) = ios 0x337930;
 	void storeUserCoin(char const*);
 	TodoReturn tempClear();
-	void toggleEnableItem(UnlockType, int, bool);
+	void toggleEnableItem(UnlockType, int, bool) = ios 0x33b3c0;
 	TodoReturn tryFixPathBug() = ios 0x335694;
 	TodoReturn trySelectActivePath();
 	TodoReturn uncompleteLevel(GJGameLevel*);
@@ -7730,20 +7740,32 @@ class GJRobotSprite : CCAnimatedSprite {
 	// virtual ~GJRobotSprite();
 	// GJRobotSprite();
 
-	static GJRobotSprite* create(int);
+	static GJRobotSprite* create(int) = ios 0x247bcc;
 
-	TodoReturn hideGlow();
-	bool init(int, gd::string);
-	bool init(int);
-	void showGlow();
-	TodoReturn updateColor01(cocos2d::ccColor3B) = ios 0x248694;
-	TodoReturn updateColor02(cocos2d::ccColor3B) = ios 0x24893c;
-	TodoReturn updateColors() = ios 0x2486a8;
-	TodoReturn updateFrame(int) = ios 0x2481a4;
+	void hideGlow() = ios 0x248680;
+	bool init(int, gd::string) = ios 0x247d18;
+	bool init(int) = ios 0x247c94;
+	void showGlow() = ios 0x24866c;
+	void updateColor01(cocos2d::ccColor3B) = ios 0x248694;
+	void updateColor02(cocos2d::ccColor3B) = ios 0x24893c;
+	void updateColors() = ios 0x2486a8;
+	void updateFrame(int) = ios 0x2481a4;
 	void updateGlowColor(cocos2d::ccColor3B, bool) = ios 0x24894c;
 
 	virtual void setOpacity(unsigned char) = ios 0x2489c8;
-	virtual TodoReturn hideSecondary() = ios 0x248aac;
+	virtual void hideSecondary() = ios 0x248aac;
+
+	cocos2d::CCArray* m_unkArray;
+	bool m_hasExtra;
+	cocos2d::ccColor3B m_color;
+	cocos2d::ccColor3B m_secondColor;
+	cocos2d::CCArray* m_secondArray;
+	cocos2d::CCSprite* m_glowSprite;
+	cocos2d::CCSprite* m_extraSprite;
+	IconType m_iconType;
+	int m_iconRequestID;
+	CCSpritePart* m_headSprite;
+	CCSpritePart* m_lastSprite;
 }
 
 [[link(android)]]
@@ -8104,9 +8126,9 @@ class GJSpecialColorSelectDelegate {
 class GJSpiderSprite : GJRobotSprite {
 	// virtual ~GJSpiderSprite();
 
-	static GJSpiderSprite* create(int);
+	static GJSpiderSprite* create(int) = ios 0x248b30;
 
-	bool init(int);
+	bool init(int) = ios 0x248bf8;
 }
 
 [[link(android)]]
