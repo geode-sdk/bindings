@@ -5518,7 +5518,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn storeSecretCoin(char const*) = ios 0x337930;
 	void storeUserCoin(char const*);
 	TodoReturn tempClear();
-	void toggleEnableItem(UnlockType, int, bool);
+	void toggleEnableItem(UnlockType, int, bool) = ios 0x33b3c0;
 	TodoReturn tryFixPathBug() = ios 0x335694;
 	TodoReturn trySelectActivePath();
 	TodoReturn uncompleteLevel(GJGameLevel*);
