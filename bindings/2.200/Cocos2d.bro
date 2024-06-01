@@ -916,12 +916,12 @@ class cocos2d::CCKeyboardDispatcher {
 
 	// CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
 	// CCKeyboardDispatcher();
-	void addDelegate(cocos2d::CCKeyboardDelegate*);
+	void addDelegate(cocos2d::CCKeyboardDelegate*) = mac 0x1e2380;
 	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool) = mac 0x1e2400;
 	void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
 	void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
 	char const* keyToString(cocos2d::enumKeyCodes) = mac 0x1e26d0;
-	void removeDelegate(cocos2d::CCKeyboardDelegate*);
+	void removeDelegate(cocos2d::CCKeyboardDelegate*) = mac 0x1e2240;
 	void updateModifierKeys(bool, bool, bool, bool);
 }
 
