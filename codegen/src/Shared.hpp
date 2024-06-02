@@ -274,7 +274,7 @@ namespace codegen {
                     return fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
                 }
                 else {
-                    return fmt::format("base::get() + 0xdsfdsfsdf{:x}", codegen::platformNumber(fn->binds));
+                    return fmt::format("base::get() + 0x{:x}", codegen::platformNumber(fn->binds));
                 }
             }
             else if (codegen::shouldAndroidBind(fn)) {
