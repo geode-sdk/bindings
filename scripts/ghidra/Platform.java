@@ -1,22 +1,34 @@
 
 public enum Platform {
     WINDOWS("Windows", "win", false),
-    MAC_INTEL("MacOS (x64)", "imac", true),
-    MAC_ARM("MacOS (ARM)", "m1", true),
-    ANDROID32("Android32", "android32", true),
-    ANDROID64("Android64", "android64", true);
+    MAC_INTEL("MacOS (x64)", "imac", true, "mac"),
+    MAC_ARM("MacOS (ARM)", "m1", true, "mac"),
+    ANDROID32("Android32", "android32", true, "android"),
+    ANDROID64("Android64", "android64", true, "android"),
+    IOS("iOS", "ios", true);
 
     private final String longName;
     private final String shortName;
     private final boolean singleBinary;
+    private final String groupName;
+
     private Platform(String longName, String shortName, boolean singleBinary) {
         this.longName = longName;
         this.shortName = shortName;
         this.singleBinary = singleBinary;
+        this.groupName = null;
     }
+
+    private Platform(String longName, String shortName, boolean singleBinary, String groupName) {
+        this.longName = longName;
+        this.shortName = shortName;
+        this.singleBinary = singleBinary;
+        this.groupName = groupName;
+    }
+
     public static Platform fromShortName(String shortName) {
         for (var v : Platform.values()) {
-            if (v.getShortName().equals(shortName)) {
+            if (v.respondsToName(shortName)) {
                 return v;
             }
         }
@@ -36,7 +48,20 @@ public enum Platform {
     public String getShortName() {
         return this.shortName;
     }
+    public String getGroupName() {
+        return this.groupName;
+    }
     public boolean hasSingleBinary() {
         return this.singleBinary;
+    }
+    public boolean respondsToName(String shortName) {
+        if (this.shortName.equals(shortName)) {
+            return true;
+        }
+        if (this.groupName != null && this.groupName.equals(shortName)) {
+            return true;
+        }
+
+        return false;
     }
 }

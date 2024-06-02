@@ -474,6 +474,7 @@ public class ScriptWrapper {
             case WINDOWS:   langID = "x86:LE:32:default"; compID = "windows"; break;
             case MAC_INTEL: langID = "x86:LE:64:default"; compID = "gcc"; break;
             case MAC_ARM:   langID = "AARCH64:LE:64:AppleSilicon"; compID = "default"; break;
+            case IOS:       langID = "AARCH64:LE:64:AppleSilicon"; compID = "default"; break;
             case ANDROID32: langID = "ARM:LE:32:v8";      compID = "default"; break;
             case ANDROID64: langID = "AARCH64:LE:64:v8A"; compID = "default"; break;
             default: throw new Exception("Unhandled Platform case in ScriptWrapper.sizeOfTypeOn");
