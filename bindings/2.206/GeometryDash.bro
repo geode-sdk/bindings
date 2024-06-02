@@ -2627,7 +2627,7 @@ class EditButtonBar : cocos2d::CCNode {
 	int getPage();
 	void goToPage(int);
 	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows);
-	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0x9999999;
+	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0xd0e10;
 	void onLeft(cocos2d::CCObject* sender);
 	void onRight(cocos2d::CCObject* sender);
 	void reloadItems(int rowCount, int columnCount) {
@@ -4330,9 +4330,9 @@ class GameLevelManager : cocos2d::CCNode {
 	int likeFromLikeKey(char const*);
 	void likeItem(LikeItemType, int, bool, int);
 	void limitSavedLevels();
-	void makeTimeStamp(char const*);
+	void makeTimeStamp(char const*) = 0x144730;
 	void markItemAsLiked(LikeItemType, int, bool, int);
-	void markLevelAsDownloaded(int) = win 0x9999999;
+	void markLevelAsDownloaded(int) = win 0x14dd80;
 	void markLevelAsRatedDemon(int);
 	void markLevelAsRatedStars(int);
 	void markLevelAsReported(int);
@@ -4423,7 +4423,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void saveFetchedLevels(cocos2d::CCArray*);
 	void saveFetchedMapPacks(cocos2d::CCArray*);
 	void saveGauntlet(GJMapPack*);
-	void saveLevel(GJGameLevel*);
+	void saveLevel(GJGameLevel*) = win 0x1438e0;
 	void saveLevelList(GJLevelList*);
 	void saveLocalScore(int, int, int);
 	void saveMapPack(GJMapPack*);
@@ -4455,7 +4455,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void updateDescription(int, gd::string);
 	void updateLevel(GJGameLevel*);
 	void updateLevelOrders();
-	void updateLevelRewards(GJGameLevel*);
+	void updateLevelRewards(GJGameLevel*) = win 0x1419b0;
 	void updateSavedLevelList(GJLevelList*);
 	void updateUsernames();
 	void updateUserScore() = win 0x14ffb0;
@@ -5551,7 +5551,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn addStoreItem(int, int, int, int, ShopType);
 	TodoReturn areChallengesLoaded();
 	TodoReturn areRewardsLoaded();
-	void awardCurrencyForLevel(GJGameLevel*);
+	void awardCurrencyForLevel(GJGameLevel*) = win 0x1d6500;
 	TodoReturn awardDiamondsForLevel(GJGameLevel*);
 	TodoReturn awardSecretKey();
 	TodoReturn checkAchievement(char const*);
