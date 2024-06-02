@@ -202,7 +202,7 @@ class AchievementNotifier : cocos2d::CCNode {
 	TodoReturn achievementDisplayFinished();
 	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
 	void showNextAchievement();
-	void willSwitchToScene(cocos2d::CCScene*) = win 0x9999999;
+	void willSwitchToScene(cocos2d::CCScene*) = win 0x9999999; // TODO: inlined
 
 	virtual bool init();
 }
@@ -828,7 +828,7 @@ class CCContentLayer : cocos2d::CCLayerColor {
 
 	static CCContentLayer* create(cocos2d::ccColor4B const&, float, float);
 
-	virtual void setPosition(cocos2d::CCPoint const&);
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x420f0;
 }
 
 [[link(android)]]
@@ -5624,7 +5624,9 @@ class GameStatsManager : cocos2d::CCNode {
 	bool hasCompletedDailyLevel(int) = win 0x1d8590;
 	bool hasCompletedDemonLevel(GJGameLevel*);
 	bool hasCompletedGauntletLevel(int);
-	bool hasCompletedLevel(GJGameLevel* level) = win 0x1d3ba0;
+	bool hasCompletedLevel(GJGameLevel* level) {
+		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
+	} // = win 0x1d3ba0
 	bool hasCompletedMainLevel(int levelID) {
 		return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
 	}
