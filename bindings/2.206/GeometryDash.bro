@@ -4251,7 +4251,9 @@ class GameLevelManager : cocos2d::CCNode {
 	const char* getLevelDownloadKey(int levelID, bool isGauntlet){
 		return cocos2d::CCString::createWithFormat("%i_%i", levelID, isGauntlet)->getCString();
 	}
-	const char* getLevelKey(int levelID);
+	const char* getLevelKey(int levelID) {
+		return cocos2d::CCString::createWithFormat("%i", levelID)->getCString();
+	}
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode);
 	char const* getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
 	char const* getLevelListKey(int);
@@ -4395,13 +4397,13 @@ class GameLevelManager : cocos2d::CCNode {
 	void parseRestoreData(gd::string);
 	void performNetworkTest();
 	void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0x13e230;
-	void processOnDownloadLevelCompleted(gd::string, gd::string, bool);
+	void processOnDownloadLevelCompleted(gd::string, gd::string, bool) = win 0x14cbc0;
 	void purgeUnusedLevels();
 	void rateDemon(int, int, bool);
 	void rateStars(int, int);
 	void readFriendRequest(int);
 	TodoReturn removeDelimiterChars(gd::string, bool) = win 0x1626a0;
-	void removeDLFromActive(char const*);
+	void removeDLFromActive(char const*) = win 0x144680;
 	void removeFriend(int);
 	void removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary*);
 	void removeUserFromList(int, UserListType);
@@ -4768,7 +4770,7 @@ class GameManager : GManager {
 	TodoReturn likeFacebook();
 	void loadBackground(int) = win 0x179870;
 	void loadBackgroundAsync(int);
-	void loadDeathEffect(int);
+	void loadDeathEffect(int) = win 0x3835e0;
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool);
 	TodoReturn loadFont(int);
@@ -5593,8 +5595,8 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getItemKey(int, int);
 	int getItemUnlockState(int, UnlockType) = win 0x1d7230;
 	int getItemUnlockStateLite(int, UnlockType);
-	gd::string getLevelKey(GJGameLevel*) = win 0x9999999;
-	gd::string getLevelKey(int, bool, bool, bool) = win 0x9999999;
+	gd::string getLevelKey(GJGameLevel*) = win 0x9999999; // TODO: inlined
+	gd::string getLevelKey(int, bool, bool, bool) = win 0x1d3950;
 	TodoReturn getListRewardKey(GJLevelList*);
 	char const* getMapPackKey(int);
 	TodoReturn getNextVideoAdReward();
@@ -5610,7 +5612,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getSpecialChestKeyForItem(int, UnlockType);
 	TodoReturn getSpecialRewardDescription(gd::string, bool);
 	TodoReturn getSpecialUnlockDescription(int, UnlockType, bool);
-	TodoReturn getStarLevelKey(GJGameLevel*);
+	TodoReturn getStarLevelKey(GJGameLevel*); // inlined
 	int getStat(char const*) = win 0x1cb1d0;
 	TodoReturn getStatFromKey(StatKey);
 	TodoReturn getStoreItem(int, int);
@@ -9370,7 +9372,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getDelayedSpawnNode();
 	TodoReturn getGridPos(cocos2d::CCPoint);
 	TodoReturn getLastObjectX();
-	gd::string getLevelString();
+	gd::string getLevelString() = win 0x2c31b0;
 	TodoReturn getLockedLayers();
 	TodoReturn getNextColorChannel();
 	TodoReturn getNextFreeAreaEffectID(cocos2d::CCArray*);
@@ -10017,10 +10019,10 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 class LevelSettingsObject : cocos2d::CCNode {
 	// virtual ~LevelSettingsObject();
 
-	static LevelSettingsObject* create();
+	static LevelSettingsObject* create() = win 0x2d1e50;
 
-	gd::string getSaveString();
-	static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary*) = win 0x9999999;
+	gd::string getSaveString() = win 0x2d2280;
+	static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary*) = win 0x2d3bb0;
 	static LevelSettingsObject* objectFromString(gd::string const& str) {
 		return objectFromDict(GameToolbox::stringSetupToDict(str, ","));
 	}
