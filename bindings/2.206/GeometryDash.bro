@@ -11921,8 +11921,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void postUpdate(float);
 	virtual TodoReturn checkForEnd();
 	virtual TodoReturn testTime();
-	virtual TodoReturn updateVerifyDamage();
-	virtual TodoReturn updateAttemptTime(float);
+	virtual void updateVerifyDamage();
+	virtual void updateAttemptTime(float);
 	virtual void updateVisibility(float);
 	virtual TodoReturn opacityForObject(GameObject*);
 	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int);
