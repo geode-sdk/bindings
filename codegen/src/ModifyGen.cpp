@@ -46,19 +46,24 @@ namespace geode::modifier {{
 }
 )GEN";
 
-        char const* modify_include = R"GEN(#include "modify/{file_name}"
+        char const* modify_include = R"GEN(#include "{base_directory}/{file_name}"
 )GEN";
     }
 }
 
 std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& singleFolder) {
     std::string output;
+    std::string base_directory = singleFolder.filename();
 
     for (auto& c : root.classes) {        
         if (c.name == "cocos2d") continue;
 
         std::string filename = (codegen::getUnqualifiedClassName(c.name) + ".hpp");
-        output += fmt::format(format_strings::modify_include, fmt::arg("file_name", filename));
+        output += fmt::format(
+            format_strings::modify_include,
+            fmt::arg("file_name", filename),
+            fmt::arg("base_directory", base_directory)
+        );
 
         std::string single_output;
 
