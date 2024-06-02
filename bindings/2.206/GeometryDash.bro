@@ -670,7 +670,7 @@ class ButtonSprite : cocos2d::CCSprite {
 
 	bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3e3a0;
 	bool init(cocos2d::CCSprite* topSprite, int width, int unused, float scale, float height, bool unkBool, char const* bgSprite, bool useNormalCCSpriteForBG) = win 0x3e070;
-	void setColor(cocos2d::ccColor3B) {
+	void setColor(cocos2d::ccColor3B color) {
 		// i love inlined funcs
 		m_label->setColor(color);
   		m_subSprite->setColor(color);
