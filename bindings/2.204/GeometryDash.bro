@@ -308,7 +308,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 	TodoReturn playReactAnimation() = win 0x21da20;
 	TodoReturn startAnimating() = win 0x21db40;
 
-	virtual TodoReturn animationFinished(char const*) = win 0x21db80;
+	virtual void animationFinished(char const*) = win 0x21db80;
 }
 
 [[link(android)]]
@@ -687,22 +687,32 @@ class CCAlertCircle : cocos2d::CCNode {
 class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
 
-	TodoReturn cleanupSprite() = win 0x21440;
-	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
+	void cleanupSprite() = win 0x21440;
+	static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20c80;
 	bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20;
-	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
+	void loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20ec0;
 	void runAnimation(gd::string) = win 0x21640;
 	void runAnimationForced(gd::string) = win 0x216c0;
-	TodoReturn stopTween();
-	TodoReturn switchToMode(spriteMode) = win 0x214f0;
+	void stopTween();
+	void switchToMode(spriteMode) = win 0x214f0;
 	void tweenToAnimation(gd::string, float) = win 0x21750;
 	void tweenToAnimationFinished() = win 0x219c0;
-	TodoReturn willPlayAnimation();
+	void willPlayAnimation();
 
 	virtual void setOpacity(unsigned char) = win 0x21ae0;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x21b30;
-	virtual TodoReturn animationFinished(char const*) = win 0x21ac0;
-	virtual TodoReturn animationFinishedO(cocos2d::CCObject*) = win 0x21a90;
+	virtual void animationFinished(char const*) = win 0x21ac0;
+	virtual void animationFinishedO(cocos2d::CCObject*) = win 0x21a90;
+
+	gd::string m_unkString1;
+	gd::string m_unkString2;
+	SpriteAnimationManager* m_animationManager;
+	cocos2d::CCSprite* m_sprite;
+	cocos2d::CCSprite* m_fbfSprite;
+	CCPartAnimSprite* m_paSprite;
+	spriteMode m_spriteMode;
+	gd::string m_currentAnim;
+	AnimatedSpriteDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -2964,15 +2974,15 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn sliderChanged(cocos2d::CCObject*) = win 0xa6cd0;
 	TodoReturn smartTypeForKey(int);
 	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0xc70a0;
-	TodoReturn toggleDuplicateButton();
-	TodoReturn toggleEditObjectButton() = win 0xd1680;
-	TodoReturn toggleEnableRotate(cocos2d::CCObject*) = win 0xc8900;
-	TodoReturn toggleFreeMove(cocos2d::CCObject*) = win 0xc8810;
+	void toggleDuplicateButton() = win 0xd1750;
+	void toggleEditObjectButton() = win 0xd1680;
+	void toggleEnableRotate(cocos2d::CCObject*) = win 0xc8900;
+	void toggleFreeMove(cocos2d::CCObject*) = win 0xc8810;
 	TodoReturn toggleLockUI(bool);
 	void toggleMode(cocos2d::CCObject*) = win 0xa8c20;
 	TodoReturn toggleObjectInfoLabel();
-	TodoReturn toggleSnap(cocos2d::CCObject*) = win 0xc8880;
-	TodoReturn toggleSpecialEditButtons();
+	void toggleSnap(cocos2d::CCObject*) = win 0xc8880;
+	void toggleSpecialEditButtons() = win 0xd1870;
 	TodoReturn toggleStickyControls(bool) = win 0xa6080;
 	TodoReturn toggleSwipe(cocos2d::CCObject*) = win 0xc87a0;
 	void transformObject(GameObject*, EditCommand, bool) = win 0xd5780;
@@ -2987,7 +2997,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void updateButtons() = win 0xa6310;
 	TodoReturn updateCreateMenu(bool) = win 0xc7d90;
 	TodoReturn updateDeleteButtons();
-	TodoReturn updateDeleteMenu();
+	void updateDeleteMenu() = win 0xaac50;
 	TodoReturn updateEditButtonColor(int, cocos2d::ccColor3B) = win 0xcc030;
 	TodoReturn updateEditColorButton();
 	TodoReturn updateEditMenu() = win 0xd0c90;
@@ -7956,18 +7966,30 @@ class GJRobotSprite : CCAnimatedSprite {
 
 	static GJRobotSprite* create(int) = win 0x217510;
 
-	TodoReturn hideGlow();
+	void hideGlow();
 	bool init(int, gd::string) = win 0x2175e0;
 	bool init(int);
 	void showGlow();
-	TodoReturn updateColor01(cocos2d::ccColor3B);
-	TodoReturn updateColor02(cocos2d::ccColor3B);
-	TodoReturn updateColors() = win 0x217b70;
-	TodoReturn updateFrame(int) = win 0x2180b0;
+	void updateColor01(cocos2d::ccColor3B);
+	void updateColor02(cocos2d::ccColor3B);
+	void updateColors() = win 0x217b70;
+	void updateFrame(int) = win 0x2180b0;
 	void updateGlowColor(cocos2d::ccColor3B, bool) = win 0x217b10;
 
 	virtual void setOpacity(unsigned char) = win 0x217ff0;
-	virtual TodoReturn hideSecondary() = win 0x218680;
+	virtual void hideSecondary() = win 0x218680;
+
+	cocos2d::CCArray* m_unkArray;
+	bool m_hasExtra;
+	cocos2d::ccColor3B m_color;
+	cocos2d::ccColor3B m_secondColor;
+	cocos2d::CCArray* m_secondArray;
+	cocos2d::CCSprite* m_glowSprite;
+	cocos2d::CCSprite* m_extraSprite;
+	IconType m_iconType;
+	int m_iconRequestID;
+	CCSpritePart* m_headSprite;
+	CCSpritePart* m_lastSprite;
 }
 
 [[link(android)]]

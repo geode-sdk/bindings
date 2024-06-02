@@ -113,11 +113,11 @@ GEODE_SIZE_CHECK(GameObject, 0x538);
 GEODE_SIZE_CHECK(EnhancedGameObject, 0x598);
 GEODE_SIZE_CHECK(EffectGameObject, 0x720);
 
-GEODE_MEMBER_CHECK(GJGameState, m_unk284, 0x30c);
-GEODE_MEMBER_CHECK(GJGameState, m_unk298, 0x320);
-GEODE_MEMBER_CHECK(GJGameState, m_unk2b8, 0x354);
-GEODE_MEMBER_CHECK(GJGameState, m_unk2e8, 0x388);
-GEODE_MEMBER_CHECK(GJGameState, m_unk484, 0x6b0);
+GEODE_MEMBER_CHECK(GJGameState, m_unkPoint31, 0x30c);
+GEODE_MEMBER_CHECK(GJGameState, m_unkMapPairIntIntInt, 0x320);
+GEODE_MEMBER_CHECK(GJGameState, m_unkPoint32, 0x354);
+GEODE_MEMBER_CHECK(GJGameState, m_unkPoint34, 0x388);
+GEODE_MEMBER_CHECK(GJGameState, m_sfxTriggerStates, 0x6b0);
 
 GEODE_MEMBER_CHECK(GameObject, m_hasExtendedCollision, 0x27c);
 GEODE_MEMBER_CHECK(GameObject, m_activeMainColorID, 0x290);

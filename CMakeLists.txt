@@ -156,7 +156,11 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_VISIBILITY_PRESET hidden)
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
-if (APPLE)
+if (WIN32)
+	if (MSVC)
+		target_compile_options(${PROJECT_NAME} PUBLIC /bigobj)
+	endif()
+elseif (APPLE)
 	target_compile_options(${PROJECT_NAME} PUBLIC -ffunction-sections -fdata-sections)
 	target_link_options(${PROJECT_NAME} PUBLIC -dead_strip)
 elseif (ANDROID)

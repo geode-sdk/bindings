@@ -218,6 +218,7 @@ enum class GJSongError {
     DownloadSongFailed = 1,
     DownloadSFXFailed = 2
 };
+enum class GJSongType {}; //probs normal and ncs
 enum class LikeItemType {
     Unknown = 0,
     Level = 1,
@@ -810,7 +811,7 @@ enum class GJHttpType {
     // Yet to be added by Robtop in 2.21
     // joinLobby = 0x39,
     // ExitMPLobby = 0x3a,
-    
+
     DeleteServerLevelList = 0x3e,
 };
 

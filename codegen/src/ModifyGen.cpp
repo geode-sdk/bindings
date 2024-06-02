@@ -46,19 +46,24 @@ namespace geode::modifier {{
 }
 )GEN";
 
-        char const* modify_include = R"GEN(#include "modify/{file_name}"
+        char const* modify_include = R"GEN(#include "{base_directory}/{file_name}"
 )GEN";
     }
 }
 
 std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& singleFolder) {
     std::string output;
+    std::string base_directory = singleFolder.filename().string();
 
     for (auto& c : root.classes) {        
         if (c.name == "cocos2d") continue;
 
         std::string filename = (codegen::getUnqualifiedClassName(c.name) + ".hpp");
-        output += fmt::format(format_strings::modify_include, fmt::arg("file_name", filename));
+        output += fmt::format(
+            format_strings::modify_include,
+            fmt::arg("file_name", filename),
+            fmt::arg("base_directory", base_directory)
+        );
 
         std::string single_output;
 
@@ -81,7 +86,8 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
         std::set<std::string> used;
         for (auto& f : c.fields) {
             if (auto fn = f.get_as<FunctionBindField>()) {
-                if (codegen::getStatus(*fn) == BindStatus::Missing)
+                auto status = codegen::getStatus(*fn);
+                if (status == BindStatus::Missing || status == BindStatus::Inlined)
                         continue;
 
                 if (fn->prototype.type == FunctionType::Normal && !used.count(fn->prototype.name)) {
@@ -109,7 +115,7 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
 
             auto status = codegen::getStatus(*fn);
 
-            if (status == BindStatus::Missing)
+            if (status == BindStatus::Missing || status == BindStatus::Inlined)
                 continue;
 
             if (status == BindStatus::NeedsBinding || codegen::platformNumber(f) != -1) {
