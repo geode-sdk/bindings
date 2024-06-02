@@ -218,6 +218,7 @@ enum class GJSongError {
     DownloadSongFailed = 1,
     DownloadSFXFailed = 2
 };
+enum class GJSongType {}; //probs normal and ncs
 enum class LikeItemType {
     Unknown = 0,
     Level = 1,
