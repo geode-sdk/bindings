@@ -170,89 +170,89 @@ std::string generateBindingSource(Root const& root) {
 		for (auto& f : c.fields) {
 			if (auto i = f.get_as<InlineField>()) {
 				// yeah there are no inlines on cocos
-			}  else if (auto fn = f.get_as<OutOfLineField>()) {
-				if (is_cocos_class(c.name) && (c.attributes.links & codegen::platform) != Platform::None) {
-					continue;
-				}
-
-				switch (fn->prototype.type) {
-					case FunctionType::Ctor:
-					case FunctionType::Dtor:
-						output += fmt::format(format_strings::ool_structor_function_definition,
-							fmt::arg("function_name", fn->prototype.name),
-							fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
-							fmt::arg("class_name", c.name),
-		                    fmt::arg("parameters", codegen::getParameters(fn->prototype)),
-							fmt::arg("definition", fn->inner)
-						);
-						break;
-					default:
-						output += fmt::format(format_strings::ool_function_definition,
-							fmt::arg("function_name", fn->prototype.name),
-							fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
-							fmt::arg("class_name", c.name),
-		                    fmt::arg("parameters", codegen::getParameters(fn->prototype)),
-							fmt::arg("definition", fn->inner),
-						    fmt::arg("return", fn->prototype.ret.name)
-						);
-						break;
-				}
-				
 			} else if (auto fn = f.get_as<FunctionBindField>()) {
-				char const* used_declare_format = nullptr;
-
-				if (
-					(
-						codegen::getStatus(*fn) == BindStatus::Unbindable && 
-						codegen::platformNumber(fn->binds) == -1 && 
-						fn->prototype.is_virtual && fn->prototype.type != FunctionType::Dtor
-					) || (
-						codegen::platformNumber(fn->binds) == 0x9999999
-					)
-				) {
-					used_declare_format = format_strings::declare_unimplemented_error;
-				}
-				else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && !codegen::shouldAndroidBind(fn)) {
-					continue;
-				}
-
-
-				if (!used_declare_format) {
-					switch (fn->prototype.type) {
-						case FunctionType::Normal:
-							used_declare_format = format_strings::declare_member;
-							break;
-						case FunctionType::Ctor:
-							if (c.superclasses.empty()) {
-								used_declare_format = format_strings::declare_constructor_begin;
-							}
-							else {
-								used_declare_format = format_strings::declare_constructor;
-							}
-							break;
-						case FunctionType::Dtor:
-							used_declare_format = format_strings::declare_destructor;
-							break;
+				if (codegen::getStatus(*fn) == BindStatus::Inlined) {
+					if (is_cocos_class(c.name) && (c.attributes.links & codegen::platform) != Platform::None) {
+						continue;
 					}
 
-					if (fn->prototype.is_static)
-						used_declare_format = format_strings::declare_static;
-					if (fn->prototype.is_virtual && fn->prototype.type != FunctionType::Dtor)
-						used_declare_format = format_strings::declare_virtual;
-				}
+					switch (fn->prototype.type) {
+						case FunctionType::Ctor:
+						case FunctionType::Dtor:
+							output += fmt::format(format_strings::ool_structor_function_definition,
+								fmt::arg("function_name", fn->prototype.name),
+								fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
+								fmt::arg("class_name", c.name),
+													fmt::arg("parameters", codegen::getParameters(fn->prototype)),
+								fmt::arg("definition", fn->inner)
+							);
+							break;
+						default:
+							output += fmt::format(format_strings::ool_function_definition,
+								fmt::arg("function_name", fn->prototype.name),
+								fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
+								fmt::arg("class_name", c.name),
+													fmt::arg("parameters", codegen::getParameters(fn->prototype)),
+								fmt::arg("definition", fn->inner),
+									fmt::arg("return", fn->prototype.ret.name)
+							);
+							break;
+					}
+				} else {
+					char const* used_declare_format = nullptr;
 
-				output += fmt::format(used_declare_format,
-					fmt::arg("class_name", c.name),
-					fmt::arg("unqualified_class_name", codegen::getUnqualifiedClassName(c.name)),
-					fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
-					fmt::arg("convention", codegen::getModifyConventionName(f)),
-					fmt::arg("function_name", fn->prototype.name),
-					fmt::arg("address_inline", codegen::getAddressString(c, f)),
-					fmt::arg("parameters", codegen::getParameters(fn->prototype)),
-					fmt::arg("parameter_types", codegen::getParameterTypes(fn->prototype)),
-					fmt::arg("arguments", codegen::getParameterNames(fn->prototype)),
-					fmt::arg("parameter_comma", str_if(", ", !fn->prototype.args.empty()))
-				);
+					if (
+						(
+							codegen::getStatus(*fn) == BindStatus::Unbindable && 
+							codegen::platformNumber(fn->binds) == -1 && 
+							fn->prototype.is_virtual && fn->prototype.type != FunctionType::Dtor
+						) || (
+							codegen::platformNumber(fn->binds) == 0x9999999
+						)
+					) {
+						used_declare_format = format_strings::declare_unimplemented_error;
+					}
+					else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && !codegen::shouldAndroidBind(fn)) {
+						continue;
+					}
+
+					if (!used_declare_format) {
+						switch (fn->prototype.type) {
+							case FunctionType::Normal:
+								used_declare_format = format_strings::declare_member;
+								break;
+							case FunctionType::Ctor:
+								if (c.superclasses.empty()) {
+									used_declare_format = format_strings::declare_constructor_begin;
+								}
+								else {
+									used_declare_format = format_strings::declare_constructor;
+								}
+								break;
+							case FunctionType::Dtor:
+								used_declare_format = format_strings::declare_destructor;
+								break;
+						}
+
+						if (fn->prototype.is_static)
+							used_declare_format = format_strings::declare_static;
+						if (fn->prototype.is_virtual && fn->prototype.type != FunctionType::Dtor)
+							used_declare_format = format_strings::declare_virtual;
+					}
+
+					output += fmt::format(used_declare_format,
+						fmt::arg("class_name", c.name),
+						fmt::arg("unqualified_class_name", codegen::getUnqualifiedClassName(c.name)),
+						fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
+						fmt::arg("convention", codegen::getModifyConventionName(f)),
+						fmt::arg("function_name", fn->prototype.name),
+						fmt::arg("address_inline", codegen::getAddressString(c, f)),
+						fmt::arg("parameters", codegen::getParameters(fn->prototype)),
+						fmt::arg("parameter_types", codegen::getParameterTypes(fn->prototype)),
+						fmt::arg("arguments", codegen::getParameterNames(fn->prototype)),
+						fmt::arg("parameter_comma", str_if(", ", !fn->prototype.args.empty()))
+					);
+				}
 			}
 		}
 	}
