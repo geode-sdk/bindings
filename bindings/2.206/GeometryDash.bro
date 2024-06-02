@@ -673,7 +673,7 @@ class ButtonSprite : cocos2d::CCSprite {
 	void setColor(cocos2d::ccColor3B) = win 0x9999999;
 	void setString(char const*) = win 0x3ec60;
 	void updateBGImage(char const*) = win 0x3e6a0;
-	void updateSpriteBGSize();
+	void updateSpriteBGSize() = win 0x3e7e0;
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
 
     PAD = mac 0x18, win 0x18;
@@ -2720,7 +2720,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
 	static EditorPauseLayer* create(LevelEditorLayer*);
 
-	TodoReturn doResetUnused();
+	TodoReturn doResetUnused() = win 0x2c7800;
 	bool init(LevelEditorLayer*);
 	void onAlignX(cocos2d::CCObject* sender);
 	void onAlignY(cocos2d::CCObject* sender);
@@ -2729,7 +2729,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onCreateExtras(cocos2d::CCObject* sender);
 	void onCreateLoop(cocos2d::CCObject* sender);
 	void onCreateTemplate(cocos2d::CCObject* sender);
-	void onExitEditor(cocos2d::CCObject* sender);
+	void onExitEditor(cocos2d::CCObject* sender) = win 0xda950;
 	void onExitNoSave(cocos2d::CCObject* sender);
 	void onHelp(cocos2d::CCObject* sender);
 	void onKeybindings(cocos2d::CCObject* sender);
@@ -2750,7 +2750,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onUnlockAllLayers(cocos2d::CCObject* sender);
 	TodoReturn playStep2();
 	TodoReturn playStep3();
-	void saveLevel();
+	void saveLevel() = win 0xd9f10;
 	TodoReturn toggleDebugDraw(cocos2d::CCObject*);
 	TodoReturn toggleEditorBackground(cocos2d::CCObject*);
 	TodoReturn toggleEditorColorMode(cocos2d::CCObject*);
@@ -2794,7 +2794,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         return lel->m_editorUI;
 	}
 
-	TodoReturn activateRotationControl(cocos2d::CCObject*);
+	TodoReturn activateRotationControl(cocos2d::CCObject*) = win 0x11efb0;
 	void activateScaleControl(cocos2d::CCObject*);
 	TodoReturn activateTransformControl(cocos2d::CCObject*);
 	TodoReturn addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*);
@@ -2859,10 +2859,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn editButtonUsable();
 	TodoReturn editColor();
 	TodoReturn editColorButtonUsable();
-	TodoReturn editGroup(cocos2d::CCObject*);
+	TodoReturn editGroup(cocos2d::CCObject*) = win 0x11b410;
 	TodoReturn editHSV();
-	TodoReturn editObject(cocos2d::CCObject*);
-	TodoReturn editObject2(cocos2d::CCObject*);
+	TodoReturn editObject(cocos2d::CCObject*) = win 0x1180a0;
+	TodoReturn editObject2(cocos2d::CCObject*) = win 0x11a030;
 	TodoReturn editObject3(cocos2d::CCObject*);
 	TodoReturn editObjectSpecial(int);
 	TodoReturn editorLayerForArray(cocos2d::CCArray*, bool);
@@ -2897,7 +2897,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getTouchPoint(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn getTransformState();
 	TodoReturn getXMin(int);
-	bool init(LevelEditorLayer* editorLayer);
+	bool init(LevelEditorLayer* editorLayer) = win 0xdba20;
 	bool isLiveColorSelectTrigger(GameObject*);
 	bool isSpecialSnapObject(int);
 	TodoReturn liveEditColorUsable();
@@ -2910,8 +2910,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn offsetForKey(int);
 	TodoReturn onAssignNewGroupID();
 	void onColorFilter(cocos2d::CCObject* sender);
-	void onCopy(cocos2d::CCObject* sender);
-	void onCopyState(cocos2d::CCObject* sender);
+	void onCopy(cocos2d::CCObject* sender) = win 0x10f480;
+	void onCopyState(cocos2d::CCObject* sender) = win 0x110650;
 	bool onCreate();
 	void onCreateButton(cocos2d::CCObject* sender);
 	void onCreateObject(int);
@@ -2919,36 +2919,36 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onDeleteAll(cocos2d::CCObject* sender);
 	void onDeleteCustomItem(cocos2d::CCObject* sender);
 	void onDeleteInfo(cocos2d::CCObject* sender);
-	void onDeleteSelected(cocos2d::CCObject* sender);
+	void onDeleteSelected(cocos2d::CCObject* sender) = win 0xe2920;
 	void onDeleteSelectedType(cocos2d::CCObject* sender);
 	void onDeleteStartPos(cocos2d::CCObject* sender);
-	void onDeselectAll(cocos2d::CCObject* sender);
-	void onDuplicate(cocos2d::CCObject* sender);
-	void onEditColor(cocos2d::CCObject* sender);
+	void onDeselectAll(cocos2d::CCObject* sender) = win 0x10d8e0;
+	void onDuplicate(cocos2d::CCObject* sender) = win 0x10ef70;
+	void onEditColor(cocos2d::CCObject* sender) = win 0x11ac40;
 	void onFindObject(cocos2d::CCObject* sender);
-	void onGoToBaseLayer(cocos2d::CCObject* sender);
-	void onGoToLayer(cocos2d::CCObject* sender);
-	void onGroupDown(cocos2d::CCObject* sender);
+	void onGoToBaseLayer(cocos2d::CCObject* sender) = win 0x110ad0;
+	void onGoToLayer(cocos2d::CCObject* sender) = win 0x110970;
+	void onGroupDown(cocos2d::CCObject* sender) = win 0x11b620;
 	void onGroupIDFilter(cocos2d::CCObject* sender);
-	void onGroupSticky(cocos2d::CCObject* sender);
-	void onGroupUp(cocos2d::CCObject* sender);
-	void onLockLayer(cocos2d::CCObject* sender);
+	void onGroupSticky(cocos2d::CCObject* sender) = win 0x10ec80;
+	void onGroupUp(cocos2d::CCObject* sender) = win 0x11b600;
+	void onLockLayer(cocos2d::CCObject* sender) = win 0x11b790;
 	void onNewCustomItem(cocos2d::CCObject* sender);
-	void onPaste(cocos2d::CCObject* sender);
-	void onPasteColor(cocos2d::CCObject* sender);
+	void onPaste(cocos2d::CCObject* sender) = win 0x10f610;
+	void onPasteColor(cocos2d::CCObject* sender) = win 0x110860;
 	void onPasteInPlace(cocos2d::CCObject* sender);
-	void onPasteState(cocos2d::CCObject* sender);
-	void onPause(cocos2d::CCObject* sender);
-	void onPlayback(cocos2d::CCObject* sender);
-	void onPlaytest(cocos2d::CCObject* sender);
+	void onPasteState(cocos2d::CCObject* sender) = win 0x1106d0;
+	void onPause(cocos2d::CCObject* sender) = win 0xddf70;
+	void onPlayback(cocos2d::CCObject* sender) = win 0x10df30;
+	void onPlaytest(cocos2d::CCObject* sender) = win 0x10e540;
 	void onResetSpecialFilter(cocos2d::CCObject* sender);
 	void onSelectBuildTab(cocos2d::CCObject* sender);
-	void onSettings(cocos2d::CCObject* sender);
-	void onStopPlaytest(cocos2d::CCObject* sender);
+	void onSettings(cocos2d::CCObject* sender) = win 0xddf10;
+	void onStopPlaytest(cocos2d::CCObject* sender) = win 0x10e8d0;
 	TodoReturn onTargetIDChange(int);
 	void onToggleGuide(EffectGameObject*);
 	TodoReturn onToggleSelectedOrder(EffectGameObject*);
-	void onUngroupSticky(cocos2d::CCObject* sender);
+	void onUngroupSticky(cocos2d::CCObject* sender) = win 0x10ecc0;
 	void onUpdateDeleteFilter(cocos2d::CCObject* sender);
 	TodoReturn orderDownCustomItem(cocos2d::CCObject*);
 	TodoReturn orderUpCustomItem(cocos2d::CCObject*);
@@ -2997,15 +2997,15 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
 	TodoReturn toggleDuplicateButton();
 	TodoReturn toggleEditObjectButton();
-	TodoReturn toggleEnableRotate(cocos2d::CCObject*);
-	TodoReturn toggleFreeMove(cocos2d::CCObject*);
+	TodoReturn toggleEnableRotate(cocos2d::CCObject*) = win 0x10c6a0;
+	TodoReturn toggleFreeMove(cocos2d::CCObject*) = win 0x10c520;
 	TodoReturn toggleLockUI(bool);
-	void toggleMode(cocos2d::CCObject*);
-	TodoReturn toggleObjectInfoLabel();
-	TodoReturn toggleSnap(cocos2d::CCObject*);
+	void toggleMode(cocos2d::CCObject*) = win 0xe1390;
+	TodoReturn toggleObjectInfoLabel() = win 0xdf2d0;
+	TodoReturn toggleSnap(cocos2d::CCObject*) = win 0x10c5c0;
 	TodoReturn toggleSpecialEditButtons();
 	TodoReturn toggleStickyControls(bool);
-	TodoReturn toggleSwipe(cocos2d::CCObject*);
+	TodoReturn toggleSwipe(cocos2d::CCObject*) = win 0x10c480;
 	void transformObject(GameObject*, EditCommand, bool);
 	void transformObjectCall(cocos2d::CCObject*);
 	void transformObjectCall(EditCommand);
@@ -3014,10 +3014,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn transformObjectsReset();
 	TodoReturn triggerSwipeMode();
 	TodoReturn tryUpdateTimeMarkers();
-	TodoReturn undoLastAction(cocos2d::CCObject*);
-	void updateButtons();
+	TodoReturn undoLastAction(cocos2d::CCObject*) = win 0x10dcc0;
+	void updateButtons() = win 0xde380;
 	TodoReturn updateCreateMenu(bool);
-	TodoReturn updateDeleteButtons();
+	TodoReturn updateDeleteButtons() = win 0xe3b50;
 	TodoReturn updateDeleteMenu();
 	TodoReturn updateEditButtonColor(int, cocos2d::ccColor3B);
 	TodoReturn updateEditColorButton();
@@ -3026,7 +3026,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn updateGridNodeSize(int);
 	TodoReturn updateGroupIDBtn2();
 	void updateGroupIDLabel();
-	void updateObjectInfoLabel();
+	void updateObjectInfoLabel() = win 0xdf360;
 	TodoReturn updatePlaybackBtn();
 	TodoReturn updateSlider();
 	TodoReturn updateSpecialUIElements();
@@ -3034,8 +3034,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	float valueFromXPos(float);
 	float xPosFromValue(float);
 	TodoReturn zoomGameLayer(bool);
-	void zoomIn(cocos2d::CCObject*);
-	void zoomOut(cocos2d::CCObject*);
+	void zoomIn(cocos2d::CCObject*) = win 0x10e9e0;
+	void zoomOut(cocos2d::CCObject*) = win 0x10ea30;
 
 	virtual void draw() = win 0x11ecb0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x11f7f0;
@@ -9412,7 +9412,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn processLoadedMoveActions();
 	TodoReturn quickUpdateAllPositions();
 	TodoReturn recreateGroups();
-	TodoReturn redoLastAction();
+	TodoReturn redoLastAction() = win 0x10dd30;
 	TodoReturn refreshSpecial(GameObject*);
 	TodoReturn removeAllObjects();
 	TodoReturn removeAllObjectsOfType(int);
