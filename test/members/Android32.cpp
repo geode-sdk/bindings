@@ -61,9 +61,9 @@ GEODE_SIZE_CHECK(LabelGameObject, 0x690);
 GEODE_SIZE_CHECK(TeleportPortalObject, 0x6a0);
 // GEODE_SIZE_CHECK(EventLinkTrigger, 0x688);
 
-GEODE_MEMBER_CHECK(GJGameState, m_unk284, 0x284);
-GEODE_MEMBER_CHECK(GJGameState, m_unk2b8, 0x2b4);
-GEODE_MEMBER_CHECK(GJGameState, m_unk2e8, 0x2e8);
+GEODE_MEMBER_CHECK(GJGameState, m_unkPoint31, 0x284);
+GEODE_MEMBER_CHECK(GJGameState, m_unkPoint32, 0x2b4);
+GEODE_MEMBER_CHECK(GJGameState, m_unkPoint34, 0x2e8);
 
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d60);
 
@@ -73,7 +73,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x88C); //used in PlayLayer::dest
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x890);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_levelSettings, 0x894);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownCD0, 0x8ac);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk918, 0x918);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownD70, 0x918);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0x954);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0x9c4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer, 0x9d8);

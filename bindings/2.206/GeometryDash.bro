@@ -6467,13 +6467,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void removeAllCheckpoints();
 	virtual TodoReturn toggleMusicInPractice();
 
-	PAD = win 0x8, android32 0x8, android64 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8, ios 0x8;
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
-	PAD = win 0x68;
+	PAD = win 0x68, android32 0x64, android64 0xC0;
 	GJEffectManager* m_effectManager;
-	PAD = win 0x222, android32 0x28c, android64 0x510;
+	PAD = win 0x222, android32 0x224, android64 0x448;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
@@ -6487,7 +6487,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<GameObject*> m_unknownD00;
 	gd::vector<GameObject*> m_unknownD18;
 	gd::vector<GameObject*> m_unknownD30;
-	gd::unordered_map<int, gd::unordered_set<int>> m_unknownD48;
+	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD48;
 	gd::vector<GameObject*> m_unknownD70;
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD88;
 	int m_unknownDB0;
@@ -6516,9 +6516,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCNode* m_unknownE98;
 	cocos2d::CCNode* m_unknownEA0;
 	cocos2d::CCLayer* m_objectLayer;
-	PAD = win 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x20;
 	GJGroundLayer* m_groundLayer;
-	PAD = win 0x5c;
+	PAD = win 0x5c, android32 0x64, android64 0xc4;
 	std::array<float, 2000> m_massiveFloatArray;
 	PAD = win 0x48, android32 0x54, android64 0x98; // not sure about the android paddings
 	int m_leftSectionIndex; // 29b4 win, 29d4 android32, 30b4 android64
