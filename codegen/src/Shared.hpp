@@ -194,18 +194,23 @@ namespace codegen {
 
         if (auto fn = f.get_as<FunctionBindField>()) {
             auto status = getStatus(*fn);
+            // TODO: have windows32 and windows64 separate?
 
             if (fn->prototype.is_static) {
-                if (status == BindStatus::Binded) return "Cdecl";
-                else return "Optcall";
-            }
-            else if (fn->prototype.is_virtual || fn->prototype.is_callback) {
-                return "Thiscall";
+                return "Default";
+                // if (status == BindStatus::Binded) return "Cdecl";
+                // else return "Optcall";
             }
             else {
-                if (status == BindStatus::Binded) return "Thiscall";
-                else return "Membercall";
+                return "Thiscall";
             }
+            // else if (fn->prototype.is_virtual || fn->prototype.is_callback) {
+            //     return "Thiscall";
+            // }
+            // else {
+            //     if (status == BindStatus::Binded) return "Thiscall";
+            //     else return "Membercall";
+            // }
         }
         else throw codegen::error("Tried to get convention of non-function");
     }
