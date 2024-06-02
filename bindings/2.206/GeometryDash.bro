@@ -4330,7 +4330,7 @@ class GameLevelManager : cocos2d::CCNode {
 	int likeFromLikeKey(char const*);
 	void likeItem(LikeItemType, int, bool, int);
 	void limitSavedLevels();
-	void makeTimeStamp(char const*) = 0x144730;
+	void makeTimeStamp(char const*) = win 0x144730;
 	void markItemAsLiked(LikeItemType, int, bool, int);
 	void markLevelAsDownloaded(int) = win 0x14dd80;
 	void markLevelAsRatedDemon(int);
