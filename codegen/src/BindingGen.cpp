@@ -4,7 +4,7 @@
 
 namespace { namespace format_strings {
     // requires: base_classes, class_name
-    char const* binding_include = R"GEN(#include "binding/{file_name}"
+    char const* binding_include = R"GEN(#include "{base_directory}/{file_name}"
 )GEN";
 
     char const* class_includes = R"GEN(#pragma once
@@ -121,10 +121,12 @@ std::string generateDocs(std::string const& docs) {
 
 std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder) {
     std::string output;
+    std::string base_directory = singleFolder.filename().string();
 
     {
         std::string filename = "Standalones.hpp";
-        output += fmt::format(format_strings::binding_include, 
+        output += fmt::format(format_strings::binding_include,
+            fmt::arg("base_directory", base_directory),
             fmt::arg("file_name", filename)
         );
 
@@ -157,12 +159,13 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
         writeFile(singleFolder / filename, single_output);
     }
 
-   	for (auto& cls : root.classes) {
+        for (auto& cls : root.classes) {
         if (is_cocos_class(cls.name))
             continue;
 
         std::string filename = (codegen::getUnqualifiedClassName(cls.name) + ".hpp");
-        output += fmt::format(format_strings::binding_include, 
+        output += fmt::format(format_strings::binding_include,
+            fmt::arg("base_directory", base_directory),
             fmt::arg("file_name", filename)
         );
 

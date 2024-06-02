@@ -99,7 +99,9 @@ namespace codegen {
 
     inline ptrdiff_t platformNumberWithPlatform(Platform p, PlatformNumber const& pn) {
         switch (p) {
-            case Platform::Mac: return pn.mac;
+            case Platform::Mac: return pn.imac;
+            case Platform::MacIntel: return pn.imac;
+            case Platform::MacArm: return pn.m1;
             case Platform::Windows: return pn.win;
             case Platform::iOS: return pn.ios;
             case Platform::Android: return pn.android32;
