@@ -4850,9 +4850,9 @@ class GameManager : GManager {
 	TodoReturn videoAdShowed();
 
 	virtual void update(float);
-	virtual bool init();
-	virtual void encodeDataTo(DS_Dictionary*);
-	virtual void dataLoaded(DS_Dictionary*);
+	virtual bool init() = win 0x172b80;
+	virtual void encodeDataTo(DS_Dictionary*) = win 0x17f3a0;
+	virtual void dataLoaded(DS_Dictionary*) = win 0x17d3e0;
 	virtual void firstLoad();
 
 	cocos2d::CCDictionary* m_unkAnimationDict;
@@ -5017,6 +5017,9 @@ class GameManager : GManager {
 	int m_unkSize4_19;
 	int m_unkSize4_20;
 	bool m_unkBool12;
+	float m_practicePosX;
+    	float m_practicePosY;
+    	float m_practiceOpacity;
 }
 
 [[link(android)]]
@@ -11859,7 +11862,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 			return percent;
 		}
 	}
-	int getCurrentPercentInt();
+	int getCurrentPercentInt() {
+		return std::floorf(this->getCurrentPercent());
+	};
 	TodoReturn getEndPosition();
 	TodoReturn getLastCheckpoint();
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
@@ -11930,7 +11935,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void updateEffectPositions();
 	void updateInfoLabel() = win 0x38f640;
 	TodoReturn updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&);
-	void updateProgressbar() = win 0x38eed0;
+	void updateProgressbar() = win 0x38efd0;
 	void updateScreenRotation(int, bool, bool, float, int, float, int, int);
 	void updateTimeWarp(EffectGameObject*, float);
 
@@ -11959,7 +11964,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn manualUpdateObjectColors(GameObject*);
 	virtual void checkpointActivated(CheckpointGameObject*);
 	virtual TodoReturn flipArt(bool);
-	virtual void updateTimeLabel(int, int, bool);
+	virtual void updateTimeLabel(int, int, bool) = win 0x38f170;
 	virtual TodoReturn checkSnapshot();
 	virtual void toggleProgressbar();
 	virtual TodoReturn toggleInfoLabel();
