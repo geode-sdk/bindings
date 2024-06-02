@@ -3480,7 +3480,7 @@ class EndLevelLayer : GJDropDownLayer {
 	void onEdit(cocos2d::CCObject* sender);
 	void onEveryplay(cocos2d::CCObject* sender);
 	void onLevelLeaderboard(cocos2d::CCObject* sender);
-	void onMenu(cocos2d::CCObject* sender);
+	void onMenu(cocos2d::CCObject* sender) = win 0x130f50;
 	void onReplay(cocos2d::CCObject* sender);
 	void playCoinEffect(float);
 	void playCurrencyEffect(float);
@@ -5593,7 +5593,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getItemKey(int, int);
 	int getItemUnlockState(int, UnlockType) = win 0x1d7230;
 	int getItemUnlockStateLite(int, UnlockType);
-	gd::string getLevelKey(GJGameLevel*) = win 0x1d3ba0;
+	gd::string getLevelKey(GJGameLevel*) = win 0x9999999;
 	gd::string getLevelKey(int, bool, bool, bool) = win 0x1d3950;
 	TodoReturn getListRewardKey(GJLevelList*);
 	char const* getMapPackKey(int);
@@ -5622,9 +5622,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool hasCompletedDailyLevel(int) = win 0x1d8590;
 	bool hasCompletedDemonLevel(GJGameLevel*);
 	bool hasCompletedGauntletLevel(int);
-	bool hasCompletedLevel(GJGameLevel* level) {
-		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
-	}
+	bool hasCompletedLevel(GJGameLevel* level) = win 0x1d3ba0;
 	bool hasCompletedMainLevel(int levelID) {
 		return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
 	}
@@ -10020,7 +10018,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 	static LevelSettingsObject* create();
 
 	gd::string getSaveString();
-	static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary*) = win 0x9999999;
+	static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary*) = win 0x2d3bb0;
 	static LevelSettingsObject* objectFromString(gd::string const& str) {
 		return objectFromDict(GameToolbox::stringSetupToDict(str, ","));
 	}
@@ -11229,7 +11227,7 @@ class PauseLayer : CCBlockLayer {
 	void onHelp(cocos2d::CCObject* sender);
 	void onNormalMode(cocos2d::CCObject* sender);
 	void onPracticeMode(cocos2d::CCObject* sender);
-	void onQuit(cocos2d::CCObject* sender);
+	void onQuit(cocos2d::CCObject* sender) = win 0x35cd70;
 	void onRecordReplays(cocos2d::CCObject* sender);
 	void onReplay(cocos2d::CCObject* sender);
 	void onRestart(cocos2d::CCObject* sender);
