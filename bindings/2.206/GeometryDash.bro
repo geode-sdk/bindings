@@ -7985,7 +7985,7 @@ class GJRobotSprite : CCAnimatedSprite {
 	// virtual ~GJRobotSprite();
 	// GJRobotSprite();
 
-	static GJRobotSprite* create(int);
+	static GJRobotSprite* create(int) = win 0x294360;
 
 	TodoReturn hideGlow();
 	bool init(int, gd::string);
@@ -8363,7 +8363,7 @@ class GJSpecialColorSelectDelegate {
 class GJSpiderSprite : GJRobotSprite {
 	// virtual ~GJSpiderSprite();
 
-	static GJSpiderSprite* create(int);
+	static GJSpiderSprite* create(int) = win 0x2957b0;
 
 	bool init(int);
 }
@@ -8750,7 +8750,7 @@ class HardStreak : cocos2d::CCDrawNode {
 
 	static HardStreak* create();
 
-	void addPoint(cocos2d::CCPoint);
+	void addPoint(cocos2d::CCPoint) = win 0x2a7200;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn clearBehindXPos(float);
 	TodoReturn createDuplicate();
@@ -11401,8 +11401,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn convertToClosestRotation(float);
 	TodoReturn copyAttributes(PlayerObject*);
 	void createFadeOutDartStreak();
-	void createRobot(int) = win 0x9999999;
-	void createSpider(int) = win 0x9999999;
+	void createRobot(int) = win 0x366050;
+	void createSpider(int) = win 0x366410;
 	void deactivateParticle();
 	void deactivateStreak(bool);
 	TodoReturn destroyFromHitHead();
@@ -11450,14 +11450,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool isSafeMode(float);
 	bool isSafeSpiderFlip(float);
 	TodoReturn levelFlipFinished();
-	bool levelFlipping();
+	bool levelFlipping() = win 0x379500;
 	TodoReturn levelWillFlip();
 	void loadFromCheckpoint(PlayerCheckpoint*);
 	TodoReturn lockPlayer();
 	TodoReturn logValues();
 	TodoReturn modeDidChange();
 	TodoReturn performSlideCheck();
-	void placeStreakPoint();
+	void placeStreakPoint() = win 0x37e690;
 	TodoReturn playBumpEffect(int, GameObject*);
 	TodoReturn playBurstEffect();
 	TodoReturn playCompleteEffect(bool, bool);
@@ -11490,7 +11490,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn resetCollisionValues();
 	void resetPlayerIcon();
 	TodoReturn resetStateVariables();
-	void resetStreak();
+	void resetStreak() = win 0x369730;
 	TodoReturn resetTouchedRings();
 	TodoReturn reverseMod();
 	void reversePlayer(EffectGameObject*);
@@ -11505,7 +11505,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 		this->runNormalRotation(false, 1.0f);
 	}
 	void runNormalRotation(bool, float) = win 0x9999999;
-	void runRotateAction(bool, int);
+	void runRotateAction(bool, int) = win 0x36b480;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x37b3b0;
 	void setupStreak() = win 0x366920;
@@ -11568,8 +11568,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateLastGroundObject(GameObject*);
 	TodoReturn updateMove(float);
 	void updatePlayerArt();
-	void updatePlayerBirdFrame(int);
-	void updatePlayerDartFrame(int);
+	void updatePlayerBirdFrame(int) = win 0x37c2f0;
+	void updatePlayerDartFrame(int) = win 0x37c9f0;
 	void updatePlayerForce(cocos2d::CCPoint, bool);
 	void updatePlayerFrame(int);
 	void updatePlayerGlow();
@@ -11591,8 +11591,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     }
 
 	void updatePlayerSpriteExtra(gd::string);
-	void updatePlayerSwingFrame(int);
-	void updateRobotAnimationSpeed();
+	void updatePlayerSwingFrame(int) = win 0x37c7c0;
+	void updateRobotAnimationSpeed() = win 0x37f0f0;
 	TodoReturn updateRotation(float, float);
 	TodoReturn updateRotation(float);
 	void updateShipRotation(float);
@@ -11605,7 +11605,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updateStreakBlend(bool);
 	TodoReturn updateStreaks(float);
 	void updateSwingFire();
-	void updateTimeMod(float, bool);
+	void updateTimeMod(float, bool) = win 0x37e710;
 	TodoReturn usingWallLimitedMode();
 	TodoReturn yStartDown();
 	TodoReturn yStartUp();
