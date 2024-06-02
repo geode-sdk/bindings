@@ -6255,7 +6255,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn removeTemporaryParticles();
 	TodoReturn reorderObjectSection(GameObject*);
 	TodoReturn reparentObject(cocos2d::CCNode*, cocos2d::CCNode*);
-	TodoReturn resetActiveEnterEffects();
+	void resetActiveEnterEffects() = win 0x1ff150;
 	TodoReturn resetAreaObjectValues(GameObject*, bool);
 	TodoReturn resetAudio();
 	void resetCamera();
@@ -6278,9 +6278,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
 	void setGroupParent(GameObject*, int);
 	void setStartPosObject(StartPosObject*);
-	TodoReturn setupLayers() = win 0x1f9870;
+	void setupLayers() = win 0x1f9870;
 	TodoReturn setupLevelStart(LevelSettingsObject*);
-	TodoReturn setupReplay(gd::string);
+	void setupReplay(gd::string) = win 0x229a20;
 	TodoReturn shakeCamera(float, float, float);
 	TodoReturn shouldExitHackedLevel();
 	TodoReturn sortAllGroupsX();
@@ -6310,7 +6310,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn syncBGTextures();
 	void teleportPlayer(TeleportPortalObject*, PlayerObject*);
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
-	void toggleAudioVisualizer(bool);
+	void toggleAudioVisualizer(bool) = win 0x237b90;
 	void toggleDualMode(GameObject*, bool, PlayerObject*, bool);
 	void toggleFlipped(bool, bool);
 	TodoReturn toggleGroup(int, bool);
@@ -6389,7 +6389,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn volumeForProximityEffect(SFXTriggerInstance&);
 
 	virtual void update(float);
-	virtual bool init();
+	virtual bool init() = win 0x1f7dd0;
 	virtual void visit();
 	virtual void postUpdate(float);
 	virtual TodoReturn checkForEnd();
@@ -6757,7 +6757,7 @@ class GJEffectManager : cocos2d::CCNode {
 	// virtual ~GJEffectManager();
 	// GJEffectManager();
 
-	static GJEffectManager* create();
+	static GJEffectManager* create() = win 0x248f30;
 
 	TodoReturn activeColorForIndex(int);
 	TodoReturn activeOpacityForIndex(int);
@@ -9924,7 +9924,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 
 	static LevelSelectLayer* create(int);
 
-	cocos2d::ccColor3B colorForPage(int) = win 0x2f8ee0;
+	cocos2d::ccColor3B colorForPage(int page) = win 0x2f8ee0;
 	TodoReturn getColorValue(int, int, float) = win 0x2f8bc0;
 	bool init(int page) = win 0x2f7d60;
 	void onBack(cocos2d::CCObject* sender) = win 0x2f9380;
@@ -11802,7 +11802,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual ~PlayLayer();
 	// PlayLayer();
 
-	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects);
+	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3827e0;
 	static PlayLayer* get() {
 		return GameManager::get()->m_playLayer;
 	}
@@ -11849,7 +11849,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn getTempMilliTime();
 	TodoReturn gravityEffectFinished();
 	void incrementJumps();
-	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects);
+	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x382890;
 	bool isGameplayActive();
 	void levelComplete();
 	TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
@@ -11865,9 +11865,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void playEndAnimationToPos(cocos2d::CCPoint);
 	void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool);
 	TodoReturn playReplay(gd::string);
-	void prepareCreateObjectsFromSetup(gd::string&);
+	void prepareCreateObjectsFromSetup(gd::string&) = win 0x389a50;
 	void prepareMusic(bool);
-	void processCreateObjectsFromSetup();
+	void processCreateObjectsFromSetup() = win 0x389d00;
 	TodoReturn processLoadedMoveActions();
 	TodoReturn queueCheckpoint();
 	void removeAllObjects();
@@ -15583,11 +15583,11 @@ class UILayer : cocos2d::CCLayerColor {
 	void enableEditorMode();
 	TodoReturn enableMenu();
 	void handleKeypress(cocos2d::enumKeyCodes, bool);
-	bool init(GJBaseGameLayer*);
+	bool init(GJBaseGameLayer*) = win 0x49fe60;
 	bool isJumpButtonPressed(bool);
 	void onCheck(cocos2d::CCObject* sender);
 	void onDeleteCheck(cocos2d::CCObject* sender);
-	void onPause(cocos2d::CCObject* sender);
+	void onPause(cocos2d::CCObject* sender) = win 0x4a1300;
 	TodoReturn processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*);
 	TodoReturn processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*);
 	TodoReturn refreshDpad();
