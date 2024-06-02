@@ -368,14 +368,18 @@ public class SyncBromaScript extends GhidraScript {
         }
 
         // Apply new signature
-        data.updateFunction(
-            conv.getGhidraName(),
-            bromaSig.returnType.orElse(null),
-            updateType,
-            true,
-            SourceType.USER_DEFINED,
-            bromaSig.parameters.toArray(Variable[]::new)
-        );
+        try {
+            data.updateFunction(
+                conv.getGhidraName(),
+                bromaSig.returnType.orElse(null),
+                updateType,
+                true,
+                SourceType.USER_DEFINED,
+                bromaSig.parameters.toArray(Variable[]::new)
+            );
+        } catch (Exception e) {
+            throw new Error("Died on: " + fullName + " with " + e.getMessage());
+        }
 
         // Set return type storage for custom cconvs
         if (shouldReorderParams && bromaSig.returnType.isPresent()) {
@@ -484,6 +488,10 @@ public class SyncBromaScript extends GhidraScript {
 
                 final var fullName = child.getName(true);
                 final var name = child.getName();
+
+                /*if(fullName.contains("~")) {
+                    continue;
+                }*/
                 
                 var bromaFuns = bromaClass.getFunctions(name);
                 if (bromaFuns.isEmpty()) {
