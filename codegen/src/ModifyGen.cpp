@@ -53,7 +53,7 @@ namespace geode::modifier {{
 
 std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& singleFolder) {
     std::string output;
-    std::string base_directory = singleFolder.filename();
+    std::string base_directory = singleFolder.filename().string();
 
     for (auto& c : root.classes) {        
         if (c.name == "cocos2d") continue;

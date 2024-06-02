@@ -121,7 +121,7 @@ std::string generateDocs(std::string const& docs) {
 
 std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder) {
     std::string output;
-    std::string base_directory = singleFolder.filename();
+    std::string base_directory = singleFolder.filename().string();
 
     {
         std::string filename = "Standalones.hpp";
