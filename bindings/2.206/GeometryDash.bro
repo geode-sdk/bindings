@@ -152,7 +152,7 @@ class AchievementManager : cocos2d::CCNode {
 
 	TodoReturn achievementForUnlock(int, UnlockType);
 	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int);
-	void addManualAchievements();
+	void addManualAchievements() = win 0x83c0;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
 	TodoReturn checkAchFromUnlock(char const*);
 	void dataLoaded(DS_Dictionary*);
@@ -9834,7 +9834,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	bool init(GJGameLevel*) = win 0x2f9570;
 	void onInfo(cocos2d::CCObject* sender);
 	void onMoreGames(cocos2d::CCObject* sender);
-	void onPlay(cocos2d::CCObject* sender);
+	void onPlay(cocos2d::CCObject* sender) = win 0x2fd2e0;
 	void onSecretDoor(cocos2d::CCObject* sender);
 	void onTheTower(cocos2d::CCObject* sender);
 	TodoReturn playCoinEffect();
@@ -9924,9 +9924,9 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 
 	static LevelSelectLayer* create(int);
 
-	cocos2d::ccColor3B colorForPage(int page) = win 0x2f8ee0;
+	cocos2d::ccColor3B colorForPage(int) = win 0x2f8ee0;
 	TodoReturn getColorValue(int, int, float) = win 0x2f8bc0;
-	bool init(int) = win 0x2f7d60;
+	bool init(int page) = win 0x2f7d60;
 	void onBack(cocos2d::CCObject* sender) = win 0x2f9380;
 	void onDownload(cocos2d::CCObject* sender) = win 0x2f8b00;
 	void onInfo(cocos2d::CCObject* sender) = win 0x2f9500;
@@ -10097,20 +10097,20 @@ class LevelTools {
 	static gd::string base64DecodeString(gd::string);
 	static gd::string base64EncodeString(gd::string);
 	static cocos2d::CCDictionary* createStarPackDict();
-	static gd::string fbURLForArtist(int);
+	static gd::string fbURLForArtist(int) = win 0x30a990;
 	static int getAudioBPM(int);
-	static gd::string getAudioFileName(int);
+	static gd::string getAudioFileName(int) = win 0x307cb0;
 	static gd::string getAudioString(int);
-	static gd::string getAudioTitle(int);
+	static gd::string getAudioTitle(int) = win 0x307130;
 	static TodoReturn getLastGameplayReversed();
 	static TodoReturn getLastGameplayRotated();
 	static TodoReturn getLastTimewarp();
-	static GJGameLevel* getLevel(int, bool);
+	static GJGameLevel* getLevel(int, bool) = win 0x304880;
 	static TodoReturn getLevelList();
 	static SongInfoObject* getSongObject(int);
 	static TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
-	static gd::string nameForArtist(int);
-	static gd::string ngURLForArtist(int);
+	static gd::string nameForArtist(int) = win 0x308950;
+	static gd::string ngURLForArtist(int) = win 0x309f70;
 	static TodoReturn offsetBPMForTrack(int);
 	static float posForTime(float, cocos2d::CCArray*, int, bool, int&);
 	static float posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int);
@@ -10118,10 +10118,10 @@ class LevelTools {
 	static TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*);
 	static float timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int);
 	static TodoReturn toggleDebugLogging(bool);
-	static gd::string urlForAudio(int);
+	static gd::string urlForAudio(int) = win 0x308c50;
 	static TodoReturn valueForSpeedMod(int);
-	static bool verifyLevelIntegrity(gd::string, int);
-	static gd::string ytURLForArtist(int);
+	static bool verifyLevelIntegrity(gd::string, int) = win 0x30ca60;
+	static gd::string ytURLForArtist(int) = win 0x30a410;
 }
 
 [[link(android)]]
