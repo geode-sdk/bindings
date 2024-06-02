@@ -4164,7 +4164,7 @@ class GameEffectsManager : cocos2d::CCNode {
 class GameLevelManager : cocos2d::CCNode {
 	// virtual ~GameLevelManager();
 
-	static GameLevelManager* sharedState() = win 0x9999999;
+	static GameLevelManager* sharedState() = win 0x13e1e0;
 	static GameLevelManager* get() {
 		return GameLevelManager::sharedState();
 	}
@@ -4298,7 +4298,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getUserMessages(bool, int, int);
 	void getUsers(GJSearchObject*);
 	void gotoLevelPage(GJGameLevel*);
-	void handleIt(bool, gd::string, gd::string, GJHttpType);
+	void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x13e4c0;
 	void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	void handleItND(cocos2d::CCNode*, void*);
 	bool hasDailyStateBeenLoaded(GJTimedLevelType);
@@ -4342,7 +4342,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void onDeleteServerLevelCompleted(gd::string response, gd::string tag);
 	void onDeleteServerLevelListCompleted(gd::string response, gd::string tag);
 	void onDeleteUserMessagesCompleted(gd::string response, gd::string tag);
-	void onDownloadLevelCompleted(gd::string response, gd::string tag);
+	void onDownloadLevelCompleted(gd::string response, gd::string tag) = win 0x14cbc0;
 	void onDownloadUserMessageCompleted(gd::string response, gd::string tag);
 	void onGetAccountCommentsCompleted(gd::string response, gd::string tag);
 	void onGetFriendRequestsCompleted(gd::string response, gd::string tag);
@@ -4364,7 +4364,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void onGetUserMessagesCompleted(gd::string response, gd::string tag);
 	void onGetUsersCompleted(gd::string response, gd::string tag);
 	void onLikeItemCompleted(gd::string response, gd::string tag);
-	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
+	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x13e3d0;
 	void onRateDemonCompleted(gd::string response, gd::string tag);
 	void onRateStarsCompleted(gd::string response, gd::string tag);
 	void onReadFriendRequestCompleted(gd::string response, gd::string tag);
@@ -4388,7 +4388,7 @@ class GameLevelManager : cocos2d::CCNode {
 	int pageFromCommentKey(char const*);
 	void parseRestoreData(gd::string);
 	void performNetworkTest();
-	void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType);
+	void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0x13e230;
 	void processOnDownloadLevelCompleted(gd::string, gd::string, bool);
 	void purgeUnusedLevels();
 	void rateDemon(int, int, bool);
@@ -6952,7 +6952,7 @@ class GJGameLevel : cocos2d::CCNode {
 	// virtual ~GJGameLevel();
 
 	static GJGameLevel* create();
-	static GJGameLevel* create(cocos2d::CCDictionary*, bool);
+	static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x162b70;
 	/*inline static GJGameLevel* createWithCoder(DS_Dictionary* dict) {
 		//inlined on windows
 		auto level = GJGameLevel::create();

@@ -526,6 +526,9 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1f760;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1f3f0;
 	virtual void registerWithTouchDispatcher() = win 0x1f270;
+
+	PAD = win 0x90;
+	int m_selectedLevelPage;
 }
 
 
@@ -9639,7 +9642,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x257b00;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2536e0;
 
-	void* m_unk0;
+	bool m_isBusy;
 	cocos2d::CCMenu* m_playBtnMenu;
 	GJGameLevel* m_level;
 	cocos2d::CCArray* m_coins;
@@ -9852,7 +9855,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	virtual void registerWithTouchDispatcher();
 	virtual void dialogClosed(DialogLayer*) = win 0x26c000;
 
-	void* m_unk;
+	bool m_isBusy;
 	GJGameLevel* m_level;
 }
 
