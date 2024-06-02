@@ -197,7 +197,7 @@ class AchievementManager : cocos2d::CCNode {
 class AchievementNotifier : cocos2d::CCNode {
 	// virtual ~AchievementNotifier();
 
-	static AchievementNotifier* sharedState();
+	static AchievementNotifier* sharedState() = win 0x39cd0;
 
 	TodoReturn achievementDisplayFinished();
 	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
@@ -670,7 +670,13 @@ class ButtonSprite : cocos2d::CCSprite {
 
 	bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3e3a0;
 	bool init(cocos2d::CCSprite* topSprite, int width, int unused, float scale, float height, bool unkBool, char const* bgSprite, bool useNormalCCSpriteForBG) = win 0x3e070;
-	void setColor(cocos2d::ccColor3B) = win 0x9999999;
+	void setColor(cocos2d::ccColor3B) {
+		// i love inlined funcs
+		m_label->setColor(color);
+  		m_subSprite->setColor(color);
+  		m_subBGSprite->setColor(color);
+  		m_BGSprite->setColor(color);
+	}
 	void setString(char const*) = win 0x3ec60;
 	void updateBGImage(char const*) = win 0x3e6a0;
 	void updateSpriteBGSize() = win 0x3e7e0;
@@ -4122,7 +4128,7 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 
 	static FriendsProfilePage* create(UserListType);
 
-	bool init(UserListType);
+	bool init(UserListType) = win 0x13b830;
 	void onBlocked(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
@@ -5849,7 +5855,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 	void onPrev(cocos2d::CCObject* sender);
 	void onRefresh(cocos2d::CCObject* sender);
 	TodoReturn scene(int);
-	void setupGauntlets();
+	void setupGauntlets() = win 0x1ece70;
 	TodoReturn unblockPlay();
 	TodoReturn updateArrows();
 
@@ -6188,7 +6194,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B);
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::ccColor3B, float, float, int, bool, float);
 	TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
-	void loadLevelSettings();
+	void loadLevelSettings() = win 0x229e30;
 	TodoReturn loadStartPosObject();
 	TodoReturn loadUpToPosition(float, int, int);
 	TodoReturn maxZOrderForShaderZ(int);
@@ -6205,7 +6211,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn optimizeMoveGroups();
 	TodoReturn orderSpawnObjects();
 	TodoReturn parentForZLayer(int, bool, int, int);
-	TodoReturn pauseAudio();
+	void pauseAudio() = win 0x227430;
 	TodoReturn performMathOperation(double, double, int);
 	TodoReturn performMathRounding(double, int);
 	void pickupItem(EffectGameObject*);
@@ -6389,7 +6395,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateLayerCapacity(gd::string);
 	TodoReturn updateLegacyLayerCapacity(int, int, int, int);
 	TodoReturn updateLevelColors() = win 0x1fd240;
-	TodoReturn updateMaxGameplayY();
+	void updateMaxGameplayY() = win 0x229ff0;
 	TodoReturn updateMGArtSpeed(float, float);
 	void updateMGOffsetY(float, float, int, float, int, int);
 	TodoReturn updateOBB2(cocos2d::CCRect);
@@ -8844,7 +8850,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	}
 	int getRealID();
 	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, cocos2d::CCPoint);
-	bool init(GJGameLevel*, GJUserScore*, GJLevelList*);
+	bool init(GJGameLevel*, GJUserScore*, GJLevelList*) = win 0x28a470;
 	bool isCorrect(char const*);
 	void loadPage(int, bool);
 	void onClose(cocos2d::CCObject* sender);
@@ -9098,7 +9104,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 
 	static LeaderboardsLayer* create(LeaderboardState);
 
-	bool init(LeaderboardState);
+	bool init(LeaderboardState) = win 0x2aed30;
 	bool isCorrect(char const*);
 	void onBack(cocos2d::CCObject* sender);
 	void onCreators(cocos2d::CCObject* sender);
@@ -9109,7 +9115,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 	TodoReturn refreshTabs();
 	TodoReturn scene(LeaderboardState);
 	TodoReturn selectLeaderboard(LeaderboardState);
-	void setupLevelBrowser(cocos2d::CCArray*);
+	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2afb80;
 	TodoReturn setupTabs();
 	TodoReturn toggleTabButtons();
 
@@ -9402,8 +9408,8 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn objectsAtPosition(cocos2d::CCPoint);
 	cocos2d::CCArray *objectsInRect(cocos2d::CCRect, bool);
 	void onPausePlaytest();
-	void onPlaytest();
-	void onResumePlaytest();
+	void onPlaytest() = win 0x2cbf90;
+	void onResumePlaytest() = win 0x2cc9c0;
 	void onStopPlaytest();
 	TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*);
 	TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*);
@@ -9603,7 +9609,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void downloadLevel();
 	TodoReturn incrementDislikes();
 	TodoReturn incrementLikes();
-	bool init(GJGameLevel*, bool);
+	bool init(GJGameLevel*, bool) = win 0x2d7620;
 	TodoReturn loadLevelStep();
 	void onAddToList(cocos2d::CCObject* sender);
 	void onBack(cocos2d::CCObject* sender);
@@ -11878,7 +11884,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void loadFromCheckpoint(CheckpointObject*);
 	TodoReturn loadLastCheckpoint();
 	CheckpointObject * markCheckpoint() = win 0x3940b0;
-	void onQuit();
+	void onQuit() = win 0x397540;
 	TodoReturn optimizeColorGroups();
 	TodoReturn optimizeOpacityGroups();
 	void pauseGame(bool);
@@ -12036,7 +12042,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool isCorrect(char const* key);
 	bool isOnWatchlist(int);
 	void loadPage(int) = win 0x3a2420;
-	void loadPageFromUserInfo(GJUserScore*);
+	void loadPageFromUserInfo(GJUserScore*) = win 0x39c890;
 	void onBlockUser(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender) = win 0x3a15b0;
 	void onComment(cocos2d::CCObject* sender);
@@ -12423,16 +12429,16 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	void onBack(cocos2d::CCObject* sender);
 	void onDoor(cocos2d::CCObject* sender);
 	void onSecretLevel(cocos2d::CCObject* sender);
-	void onSubmit(cocos2d::CCObject* sender);
+	void onSubmit(cocos2d::CCObject* sender) = win 0x3bf9c0;
 	void playCoinEffect();
 	TodoReturn scene();
 	void selectAThread();
 	void showCompletedLevel();
 	void showSecretLevel();
 	void updateMessageLabel(gd::string);
-	void updateSearchLabel(char const*);
+	void updateSearchLabel(char const*) = win 0x3c1650;
 
-	virtual bool init();
+	virtual bool init() = win 0x3bca90;
 	virtual void onExit();
 	virtual void keyBackClicked() = win 0x3c3fb0;
 	virtual void textInputOpened(CCTextInputNode*) = win 0x3c1430;
