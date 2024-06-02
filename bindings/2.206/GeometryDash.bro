@@ -7326,7 +7326,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onArrow(cocos2d::CCObject* sender) = win 0x263e50;
 	void onBack(cocos2d::CCObject* sender) = win 0x266f60;
 	void onInfo(cocos2d::CCObject* sender) = win 0x262a50;
-	void onNavigate(cocos2d::CCObject* sender) = win 0x1f1c80;
+	void onNavigate(cocos2d::CCObject* sender) = win 0x263f50;
 	void onPaint(cocos2d::CCObject* sender) = win 0x266d80;
 	void onSelect(cocos2d::CCObject* sender) = win 0x265100;
 	void onSelectTab(cocos2d::CCObject* sender) = win 0x263f80;
