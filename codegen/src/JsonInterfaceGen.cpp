@@ -13,6 +13,10 @@ std::string generateJsonInterface(Root const& root) {
             if (auto fn = f.get_as<FunctionBindField>()) {
                 auto status = codegen::getStatus(*fn);
 
+                if (status == BindStatus::Inlined) {
+                    continue;
+                }
+
                 if (
                     (
                         (status == BindStatus::Unbindable || status == BindStatus::Missing) && 

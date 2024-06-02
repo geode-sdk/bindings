@@ -216,7 +216,6 @@ std::string generateBindingSource(Root const& root) {
 						continue;
 					}
 
-
 					if (!used_declare_format) {
 						switch (fn->prototype.type) {
 							case FunctionType::Normal:
