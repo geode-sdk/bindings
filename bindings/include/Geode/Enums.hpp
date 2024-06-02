@@ -744,6 +744,8 @@ enum class GJScoreType {
     Creator = 1
 };
 
+enum class GJSongType {};
+
 enum class LevelLeaderboardType {
     Friends = 0,
     Global = 1,
@@ -810,7 +812,7 @@ enum class GJHttpType {
     // Yet to be added by Robtop in 2.21
     // joinLobby = 0x39,
     // ExitMPLobby = 0x3a,
-    
+
     DeleteServerLevelList = 0x3e,
 };
 
