@@ -25,7 +25,7 @@ public class PaddingInfo {
             return;
         }
         var matcher = Pattern.compile(
-            "(?<platform>offset|win|mac|android32|android64|ios)\\s*0x(?<addr>[0-9a-fA-F]+)"
+            "(?<platform>offset|win|imac|m1|android32|android64|ios)\\s*0x(?<addr>[0-9a-fA-F]+)"
         ).matcher(meta.group("meta"));
         this.platforms = new HashMap<Platform, Integer>();
         int offset = 0;
