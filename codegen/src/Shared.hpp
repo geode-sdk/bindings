@@ -55,6 +55,7 @@ inline bool is_cocos_class(std::string const& str) {
 
 enum class BindStatus {
     Binded,
+    Inlined,
     NeedsBinding,
     Unbindable,
     Missing,
@@ -127,6 +128,7 @@ namespace codegen {
         if ((fn.prototype.attributes.missing & p) != Platform::None) return BindStatus::Missing;
         if ((fn.prototype.attributes.links & p) != Platform::None) return BindStatus::Binded;
 
+        if (platformNumberWithPlatform(p, fn.binds) == -2) return BindStatus::Inlined;
         if (platformNumberWithPlatform(p, fn.binds) != -1) return BindStatus::NeedsBinding;
 
         return BindStatus::Unbindable;
@@ -134,8 +136,9 @@ namespace codegen {
 
     inline BindStatus getStatusWithPlatform(Platform p, Function const& f) {
         if ((f.prototype.attributes.missing & p) != Platform::None) return BindStatus::Missing;
-
         if ((f.prototype.attributes.links & p) != Platform::None) return BindStatus::Binded;
+
+        if (platformNumberWithPlatform(p, f.binds) == -2) return BindStatus::Inlined;
         if (platformNumberWithPlatform(p, f.binds) != -1) return BindStatus::NeedsBinding;
 
         return BindStatus::Unbindable;

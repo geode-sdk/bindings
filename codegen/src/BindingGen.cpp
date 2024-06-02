@@ -102,7 +102,11 @@ std::string generateAddressDocs(T const& f, PlatformNumber pn) {
                 nameForPlatform(platform)
             );
         }
-        
+        else if (status == BindStatus::Inlined) {
+            ret += fmt::format("     * @note[short] {}: Out of line\n", 
+                nameForPlatform(platform)
+            );
+        }
     }
 
     return ret;
@@ -244,10 +248,6 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
                     unimplementedField = true;
 
                 continue;
-            } else if (auto fn = field.get_as<OutOfLineField>()) {
-                fb = &fn->prototype;
-                addressDocs = "     * @note[short] Out of line\n";
-
             } else if (auto fn = field.get_as<FunctionBindField>()) {
                 if (codegen::getStatus(*fn) == BindStatus::Missing)
                     continue;
