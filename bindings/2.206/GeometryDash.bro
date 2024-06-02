@@ -501,18 +501,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	// virtual ~BoomScrollLayer();
 	BoomScrollLayer();
 
-	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2, cocos2d::CCArray* unk3, DynamicScrollDelegate* delegate) {
-		BoomScrollLayer* pRet = new BoomScrollLayer();
-
-		if (pRet && pRet->init(pages, unk1, unk2, unk3, delegate))
-		{
-			pRet->autorelease();
-			return pRet;
-		}
-
-		delete pRet;
-		return nullptr;
-	}
+	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2, cocos2d::CCArray* unk3, DynamicScrollDelegate* delegate) = win 0x3c1e0;
 	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2) {
 		return BoomScrollLayer::create(pages, unk1, unk2, nullptr, nullptr);
 	}
@@ -9935,21 +9924,21 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 
 	static LevelSelectLayer* create(int);
 
-	cocos2d::ccColor3B colorForPage(int page);
-	TodoReturn getColorValue(int, int, float);
+	cocos2d::ccColor3B colorForPage(int page) = win 0x2f8ee0;
+	TodoReturn getColorValue(int, int, float) = win 0x2f8bc0;
 	bool init(int) = win 0x2f7d60;
-	void onBack(cocos2d::CCObject* sender);
-	void onDownload(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onNext(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x2f9380;
+	void onDownload(cocos2d::CCObject* sender) = win 0x2f8b00;
+	void onInfo(cocos2d::CCObject* sender) = win 0x2f9500;
+	void onNext(cocos2d::CCObject* sender) = win 0x2f9280;
 	void onPlay(cocos2d::CCObject* sender);
-	void onPrev(cocos2d::CCObject* sender);
+	void onPrev(cocos2d::CCObject* sender) = win 0x2f9300;
 	static cocos2d::CCScene* scene(int) = win 0x2f7c30;
 	TodoReturn tryShowAd();
 
 	virtual void keyBackClicked();
-	virtual void keyDown(cocos2d::enumKeyCodes);
-	virtual void updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*);
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2f9420;
+	virtual void updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = win 0x2f8b50;
 	virtual void scrollLayerMoved(cocos2d::CCPoint);
 }
 
