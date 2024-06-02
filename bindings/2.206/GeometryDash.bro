@@ -2629,7 +2629,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-	virtual ~EditLevelLayer();
+	virtual ~EditLevelLayer() = win 0xd1980;
 
 	static EditLevelLayer* create(GJGameLevel*);
 
@@ -6011,7 +6011,7 @@ class GJAssetDownloadAction {
 
 [[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
-	~GJBaseGameLayer();
+	~GJBaseGameLayer() = win 0x1f6650;
 	// GJBaseGameLayer();
 
 	static GJBaseGameLayer* get() {
@@ -9153,7 +9153,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-	~LevelBrowserLayer();
+	~LevelBrowserLayer() = win 0x2b5530;
 
 	static LevelBrowserLayer* create(GJSearchObject*) = win 0x2b5760;
 
@@ -11799,7 +11799,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-	virtual ~PlayLayer();
+	virtual ~PlayLayer() = win 0x382540;
 	// PlayLayer();
 
 	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects);
@@ -11890,7 +11890,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void showCompleteText();
 	void showEndLayer();
 	void showHint();
-	void showNewBest(bool, int, int, bool, bool, bool);
+	void showNewBest(bool, int, int, bool, bool, bool) = win 0x3860c0;
 	void showRetryLayer();
 	void showTwoPlayerGuide();
 	TodoReturn spawnCircle();
