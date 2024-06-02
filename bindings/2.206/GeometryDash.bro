@@ -327,20 +327,20 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	TodoReturn checkSound();
 	TodoReturn hideLoadingCircle();
 	TodoReturn loadingIsFinished();
-	TodoReturn musicTest();
-	void pauseGame();
-	TodoReturn pauseSound();
-	void platformShutdown();
-	TodoReturn resumeSound();
+	bool musicTest() = win 0x81cf0;
+	void pauseGame() = win 0x81970;
+	TodoReturn pauseSound() = win 0x81a50;
+	void platformShutdown() = win 0x80f30;
+	TodoReturn resumeSound() = win 0x81bf0;
 	void setIdleTimerDisabled(bool);
-	void setupGLView();
+	void setupGLView() = win 0x80f50;
 	void showLoadingCircle(bool, bool, bool);
 
-	virtual bool applicationDidFinishLaunching();
-	virtual void applicationDidEnterBackground();
-	virtual void applicationWillEnterForeground();
-	virtual void applicationWillBecomeActive();
-	virtual void applicationWillResignActive();
+	virtual bool applicationDidFinishLaunching() = win 0x81370;
+	virtual void applicationDidEnterBackground() = win 0x81720;
+	virtual void applicationWillEnterForeground() = win 0x817a0;
+	virtual void applicationWillBecomeActive() = win 0x816c0;
+	virtual void applicationWillResignActive() = win 0x81710;
 	virtual void trySaveGame(bool) = win 0x81e30;
 	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x81f10;
 
@@ -3897,7 +3897,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void setMusicTimeMS(unsigned int, bool, int);
 	TodoReturn setup() = win 0x52d40;
 	TodoReturn setupAudioEngine() = win 0x53220;
-	TodoReturn start();
+	void start() = win 0x54400;
 	TodoReturn startMusic(int, int, int, int, bool, int);
 	TodoReturn stop();
 	void stopAllEffects();
