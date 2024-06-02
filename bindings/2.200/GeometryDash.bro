@@ -967,15 +967,15 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
 [[link(android)]]
 class LoadingLayer : cocos2d::CCLayer {
-	static cocos2d::CCScene* scene(bool);
-	static LoadingLayer* create(bool fromReload) = win 0x271A90, mac 0x380170;
+	static cocos2d::CCScene* scene(bool) = mac 0x380170;
+	static LoadingLayer* create(bool fromReload) = win 0x271A90, mac 0x380270;
 
 	bool init(bool fromReload) = win 0x271B30, mac 0x380350;
 
-	const char* getLoadingString() = win 0x272A20;
+	const char* getLoadingString() = win 0x272A20, mac 0x380ae0;
 
 	void loadAssets() = win 0x272390, mac 0x380ba0;
-	TodoReturn updateProgress(int);
+	void updateProgress(int) = mac 0x380b40;
 	void loadingFinished() = win 0x2722A0, mac 0x381310;
 
 	// 2.2, not tested
@@ -1360,7 +1360,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn buttonIDToButton(int);
 	TodoReturn controlEventLink(int, int, GJActionCommand);
 	void createBackground(int) = mac 0xff150;
-	TodoReturn createTextLayers() = win 0x193A90, mac 0x10b4b0;
+	void createTextLayers() = win 0x193A90, mac 0x10b4b0;
 	TodoReturn exitStaticCamera(bool, bool, float, int, float, bool, float, bool);
 	void loadUpToPosition(float, int, int) = win 0x1B4D10;
 	TodoReturn processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*);
@@ -6986,7 +6986,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual TodoReturn getRealPosition() = mac 0x3fafd0;
 	virtual TodoReturn getOrientedBox() = mac 0x3fc2e0;
 	virtual TodoReturn getObjectRotation() = mac 0x3fc300;
-	virtual TodoReturn animationFinished(char const*) = mac 0x3fd190;
+	virtual void animationFinished(char const*) = mac 0x3fd190;
 
 	cocos2d::CCNode* m_mainLayer;
 	PAD = win 0x44, mac 0x48;
@@ -7214,7 +7214,7 @@ class SongInfoObject : cocos2d::CCNode {
 
 [[link(android)]]
 class AnimatedSpriteDelegate {
-	virtual TodoReturn animationFinished(char const*);
+	virtual void animationFinished(char const*);
 }
 
 
@@ -9848,20 +9848,32 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 class GJRobotSprite : CCAnimatedSprite {
 	static GJRobotSprite* create(int) = win 0x2127D0, mac 0x5a0cc0;
 
-	bool init(int);
+	bool init(int) = mac 0x5a0e00;
 	bool init(int, gd::string) = mac 0x5a0e70;
-	~GJRobotSprite();
+	~GJRobotSprite() = mac 0x5a0bb0;
 
-	TodoReturn updateFrame(int) = win 0x213370, mac 0x5a13a0;
-	TodoReturn updateColors() = win 0x212e30, mac 0x5a1bd0;
-	TodoReturn updateColor01(cocos2d::_ccColor3B) = mac 0x5a1bb0;
-	TodoReturn updateColor02(cocos2d::_ccColor3B) = mac 0x5a1ef0;
+	void updateFrame(int) = win 0x213370, mac 0x5a13a0;
+	void updateColors() = win 0x212e30, mac 0x5a1bd0;
+	void updateColor01(cocos2d::_ccColor3B) = mac 0x5a1bb0;
+	void updateColor02(cocos2d::_ccColor3B) = mac 0x5a1ef0;
 	void updateGlowColor(cocos2d::_ccColor3B, bool) = win 0x212dd0, mac 0x5a1f10;
-	TodoReturn hideGlow() = mac 0x5a1b90;
+	void hideGlow() = mac 0x5a1b90;
 	void showGlow() = mac 0x5a1b70;
 
 	virtual void setOpacity(unsigned char) = mac 0x5a1f90;
-	virtual TodoReturn hideSecondary() = mac 0x5a20a0;
+	virtual void hideSecondary() = mac 0x5a20a0;
+
+	cocos2d::CCArray* m_unkArray;
+	bool m_hasExtra;
+	cocos2d::ccColor3B m_color;
+	cocos2d::ccColor3B m_secondColor;
+	cocos2d::CCArray* m_secondArray;
+	cocos2d::CCSprite* m_glowSprite;
+	cocos2d::CCSprite* m_extraSprite;
+	IconType m_iconType;
+	int m_iconRequestID;
+	CCSpritePart* m_headSprite;
+	CCSpritePart* m_lastSprite;
 }
 
 [[link(android)]]
@@ -10391,8 +10403,8 @@ class GJScaleControl : cocos2d::CCLayer {
 class GJSpiderSprite : GJRobotSprite {
 	static GJSpiderSprite* create(int) = mac 0x5a22a0;
 
-	bool init(int);
-	~GJSpiderSprite();
+	bool init(int) = mac 0x5a23f0;
+	~GJSpiderSprite() = mac 0x5a2190;
 }
 
 [[link(android)]]
@@ -11614,24 +11626,34 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
 
 [[link(android)]]
 class CCAnimatedSprite : cocos2d::CCSprite {
-	TodoReturn initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20, mac 0x32e2b0;
-	~CCAnimatedSprite();
+	bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x20d20, mac 0x32e2b0;
+	~CCAnimatedSprite() = mac 0x32f520;
 
-	TodoReturn runAnimation(gd::string) = win 0x21640, mac 0x32eda0;
-	TodoReturn switchToMode(spriteMode);
-	TodoReturn cleanupSprite();
-	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool);
+	void runAnimation(gd::string) = win 0x21640, mac 0x32eda0;
+	void switchToMode(spriteMode) = mac 0x32ec80;
+	void cleanupSprite() = mac 0x32ebe0;
+	static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = mac 0x32e1d0;
 	void tweenToAnimation(gd::string, float) = win 0x21750, mac 0x32eeb0;
-	TodoReturn willPlayAnimation();
-	TodoReturn runAnimationForced(gd::string);
-	void tweenToAnimationFinished();
-	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool);
-	TodoReturn stopTween();
+	void willPlayAnimation() = mac 0x32ee80;
+	void runAnimationForced(gd::string) = mac 0x32ee00;
+	void tweenToAnimationFinished() = mac 0x32f180;
+	void loadType(char const*, cocos2d::CCTexture2D*, bool) = mac 0x32e480;
+	void stopTween() = mac 0x32f240;
 
 	virtual void setOpacity(unsigned char) = mac 0x32f2d0;
 	virtual void setColor(cocos2d::_ccColor3B const&) = mac 0x32f380;
-	virtual TodoReturn animationFinished(char const*) = mac 0x32f2b0;
-	virtual TodoReturn animationFinishedO(cocos2d::CCObject*) = mac 0x32f280;
+	virtual void animationFinished(char const*) = mac 0x32f2b0;
+	virtual void animationFinishedO(cocos2d::CCObject*) = mac 0x32f280;
+
+	gd::string m_unkString1;
+	gd::string m_unkString2;
+	SpriteAnimationManager* m_animationManager;
+	cocos2d::CCSprite* m_sprite;
+	cocos2d::CCSprite* m_fbfSprite;
+	CCPartAnimSprite* m_paSprite;
+	spriteMode m_spriteMode;
+	gd::string m_currentAnim;
+	AnimatedSpriteDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -12683,7 +12705,7 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
 	virtual void activateObject() = mac 0x19f990;
 	virtual void deactivateObject(bool) = mac 0x19f9d0;
 	virtual void setObjectColor(cocos2d::_ccColor3B const&) = mac 0x19fb40;
-	virtual TodoReturn animationFinished(char const*) = mac 0x19fb70;
+	virtual void animationFinished(char const*) = mac 0x19fb70;
 }
 
 [[link(android)]]
@@ -12696,7 +12718,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 	TodoReturn startAnimating();
 	TodoReturn playReactAnimation();
 
-	virtual TodoReturn animationFinished(char const*) = mac 0x3057b0;
+	virtual void animationFinished(char const*) = mac 0x3057b0;
 }
 
 [[link(android)]]
@@ -13354,7 +13376,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 	bool init(int) = mac 0x53ce70, win 0x183860;
 	~GauntletSelectLayer() = win 0x1836F0;
 
-	void onBack(cocos2d::CCObject* sender) = win 0x184D50;
+	void onBack(cocos2d::CCObject* sender) = win 0x184D50, mac 0x53d9b0;
 	void onInfo(cocos2d::CCObject* sender) = win 0x1841F0;
 	void onNext(cocos2d::CCObject* sender) = win 0x184BA0;
 	void onPlay(cocos2d::CCObject* sender) = mac 0x53e4d0, win 0x184DC0;

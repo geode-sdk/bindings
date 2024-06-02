@@ -652,22 +652,32 @@ class CCAlertCircle : cocos2d::CCNode {
 class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
 
-	TodoReturn cleanupSprite();
-	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool);
+	void cleanupSprite();
+	static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool);
 	bool initWithType(char const*, cocos2d::CCTexture2D*, bool);
-	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool);
+	void loadType(char const*, cocos2d::CCTexture2D*, bool);
 	void runAnimation(gd::string);
 	void runAnimationForced(gd::string);
-	TodoReturn stopTween();
-	TodoReturn switchToMode(spriteMode);
+	void stopTween();
+	void switchToMode(spriteMode);
 	void tweenToAnimation(gd::string, float);
 	void tweenToAnimationFinished();
-	TodoReturn willPlayAnimation();
+	void willPlayAnimation();
 
 	virtual void setOpacity(unsigned char);
 	virtual void setColor(cocos2d::ccColor3B const&);
 	virtual void animationFinished(char const*);
 	virtual void animationFinishedO(cocos2d::CCObject*);
+
+	gd::string m_unkString1;
+	gd::string m_unkString2;
+	SpriteAnimationManager* m_animationManager;
+	cocos2d::CCSprite* m_sprite;
+	cocos2d::CCSprite* m_fbfSprite;
+	CCPartAnimSprite* m_paSprite;
+	spriteMode m_spriteMode;
+	gd::string m_currentAnim;
+	AnimatedSpriteDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -691,9 +701,8 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	// virtual ~CCBlockLayer();
 
 	static CCBlockLayer* create();
-
-	TodoReturn decrementForcePrio();
-	TodoReturn incrementForcePrio();
+	void decrementForcePrio();
+	void incrementForcePrio();
 
 	virtual bool init();
 	virtual void draw();
@@ -705,7 +714,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	virtual void keyBackClicked();
 	virtual void customSetup() {}
 	virtual void enterLayer();
-	virtual TodoReturn exitLayer();
+	virtual void exitLayer();
 	virtual void showLayer(bool);
 	virtual void hideLayer(bool);
 	virtual void layerVisible();
@@ -714,7 +723,8 @@ class CCBlockLayer : cocos2d::CCLayerColor {
 	virtual void disableUI() {}
 	virtual void enableUI() {}
 
-	void* m_unknown;
+	bool m_isShowing;
+    	bool m_registered;
 }
 
 [[link(android)]]
@@ -5945,7 +5955,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
 	TodoReturn createPlayer();
 	TodoReturn createPlayerCollisionBlock();
-	TodoReturn createTextLayers();
+	void createTextLayers();
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
 	void destroyObject(GameObject*);
 	TodoReturn enterDualMode(GameObject*, bool);
@@ -7734,18 +7744,30 @@ class GJRobotSprite : CCAnimatedSprite {
 
 	static GJRobotSprite* create(int);
 
-	TodoReturn hideGlow();
+	void hideGlow();
 	bool init(int, gd::string);
 	bool init(int);
 	void showGlow();
-	TodoReturn updateColor01(cocos2d::ccColor3B);
-	TodoReturn updateColor02(cocos2d::ccColor3B);
-	TodoReturn updateColors();
-	TodoReturn updateFrame(int);
+	void updateColor01(cocos2d::ccColor3B);
+	void updateColor02(cocos2d::ccColor3B);
+	void updateColors();
+	void updateFrame(int);
 	void updateGlowColor(cocos2d::ccColor3B, bool);
 
 	virtual void setOpacity(unsigned char);
-	virtual TodoReturn hideSecondary();
+	virtual void hideSecondary();
+
+	cocos2d::CCArray* m_unkArray;
+	bool m_hasExtra;
+	cocos2d::ccColor3B m_color;
+	cocos2d::ccColor3B m_secondColor;
+	cocos2d::CCArray* m_secondArray;
+	cocos2d::CCSprite* m_glowSprite;
+	cocos2d::CCSprite* m_extraSprite;
+	IconType m_iconType;
+	int m_iconRequestID;
+	CCSpritePart* m_headSprite;
+	CCSpritePart* m_lastSprite;
 }
 
 [[link(android)]]

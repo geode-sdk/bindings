@@ -257,7 +257,7 @@ class cocos2d::CCNode {
 	static cocos2d::CCNode* create();
 
 	CCNode();
-  ~CCNode();
+	~CCNode();
 
 	int getScriptHandler();
 	void scheduleUpdateWithPriorityLua(int, int);
@@ -417,11 +417,11 @@ class cocos2d::CCScheduler {
 class cocos2d::CCSpriteFrameCache {
 	bool init();
 	void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*);
-  void addSpriteFramesWithFile(const char*);
+	void addSpriteFramesWithFile(const char*);
 	void addSpriteFramesWithFile(const char*, const char*);
 	void addSpriteFramesWithFile(const char*, cocos2d::CCTexture2D*);
 	void addSpriteFrame(cocos2d::CCSpriteFrame*, const char*);
-  void removeSpriteFrames();
+	void removeSpriteFrames();
 	void removeUnusedSpriteFrames();
 	void removeSpriteFrameByName(const char*);
 	void removeSpriteFramesFromFile(const char*);
@@ -456,24 +456,24 @@ class cocos2d::CCKeyboardDispatcher {
 
 [[link(win, android)]]
 class DS_Dictionary {
-    bool getBoolForKey(const char*);
-    float getFloatForKey(const char*);
-    int getIntegerForKey(const char*);
-    gd::string getKey(const char*);
-    gd::string getStringForKey(const char*);
-    void setBoolForKey(const char*, bool, bool);
-    void setBoolForKey(const char*, bool);
-    void setFloatForKey(const char*, float, bool);
-    void setFloatForKey(const char*, float);
-    void setIntegerForKey(const char*, int, bool);
-    void setIntegerForKey(const char*, int);
-    void setStringForKey(const char*, gd::string const&, bool);
-    void setStringForKey(const char*, gd::string const&);
-    cocos2d::CCArray* getArrayForKey(const char*);
-    void setArrayForKey(const char*, cocos2d::CCArray*);
-    cocos2d::CCObject* getObjectForKey(const char*);
-    void setObjectForKey(const char*, cocos2d::CCObject*);
-    bool loadRootSubDictFromFile(const char*);
-    bool loadRootSubDictFromString(gd::string);
-    bool loadRootSubDictFromCompressedFile(const char*);
+	bool getBoolForKey(const char*);
+	float getFloatForKey(const char*);
+	int getIntegerForKey(const char*);
+	gd::string getKey(const char*);
+	gd::string getStringForKey(const char*);
+	void setBoolForKey(const char*, bool, bool);
+	void setBoolForKey(const char*, bool);
+	void setFloatForKey(const char*, float, bool);
+	void setFloatForKey(const char*, float);
+	void setIntegerForKey(const char*, int, bool);
+	void setIntegerForKey(const char*, int);
+	void setStringForKey(const char*, gd::string const&, bool);
+	void setStringForKey(const char*, gd::string const&);
+	cocos2d::CCArray* getArrayForKey(const char*);
+	void setArrayForKey(const char*, cocos2d::CCArray*);
+	cocos2d::CCObject* getObjectForKey(const char*);
+	void setObjectForKey(const char*, cocos2d::CCObject*);
+	bool loadRootSubDictFromFile(const char*);
+	bool loadRootSubDictFromString(gd::string);
+	bool loadRootSubDictFromCompressedFile(const char*);
 }

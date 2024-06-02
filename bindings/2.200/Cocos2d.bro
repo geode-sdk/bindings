@@ -916,12 +916,12 @@ class cocos2d::CCKeyboardDispatcher {
 
 	// CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
 	// CCKeyboardDispatcher();
-	void addDelegate(cocos2d::CCKeyboardDelegate*);
+	void addDelegate(cocos2d::CCKeyboardDelegate*) = mac 0x1e2380;
 	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool) = mac 0x1e2400;
 	void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
 	void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
 	char const* keyToString(cocos2d::enumKeyCodes) = mac 0x1e26d0;
-	void removeDelegate(cocos2d::CCKeyboardDelegate*);
+	void removeDelegate(cocos2d::CCKeyboardDelegate*) = mac 0x1e2240;
 	void updateModifierKeys(bool, bool, bool, bool);
 }
 
@@ -1254,8 +1254,8 @@ class cocos2d::CCSprite {
 	static cocos2d::CCSprite* create() = mac 0x266700;
 	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = mac 0x2665e0;
 	static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = mac 0x2666d0;
-	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = mac 0x266310;
-	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
+	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = mac 0x266180;
+	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = mac 0x266310;
 
 	unsigned int getAtlasIndex();
 	float getBlVertexMod() const;
