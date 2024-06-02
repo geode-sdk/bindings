@@ -3920,7 +3920,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void start() = win 0x54400;
 	TodoReturn startMusic(int, int, int, int, bool, int);
 	TodoReturn stop();
-	void stopAllEffects();
+	void stopAllEffects() = win 0x58a00;
 	void stopAllMusic();
 	TodoReturn stopAndGetFade(FMOD::Channel*);
 	TodoReturn stopAndRemoveMusic(int);
@@ -3935,7 +3935,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn swapMusicIndex(int, int);
 	TodoReturn testFunction(int);
 	TodoReturn triggerQueuedMusic(FMODQueuedMusic);
-	TodoReturn unloadAllEffects();
+	TodoReturn unloadAllEffects() = win 0x58bf0;
 	TodoReturn unloadEffect(gd::string path);
 	TodoReturn unregisterChannel(int);
 	void updateBackgroundFade();
@@ -6179,7 +6179,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getTargetGroupOrigin(int, int);
 	TodoReturn gravBumpPlayer(PlayerObject*, EffectGameObject*);
 	void groupStickyObjects(cocos2d::CCArray*);
-	void handleButton(bool down, int button, bool isPlayer1);
+	void handleButton(bool down, int button, bool isPlayer1) = win 0x2238a0;
 	TodoReturn hasItem(int);
 	bool hasUniqueCoin(EffectGameObject*);
 	TodoReturn increaseBatchNodeCapacity();
@@ -6239,7 +6239,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processAreaTransformGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool);
 	TodoReturn processAreaVisualActions(float);
 	TodoReturn processCameraObject(GameObject*, PlayerObject*);
-	void processCommands(float);
+	void processCommands(float) = win 0x229830;
 	TodoReturn processDynamicObjectActions(int, float);
 	TodoReturn processFollowActions();
 	TodoReturn processItems();
@@ -6248,7 +6248,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processOptionsTrigger(GameOptionsTrigger*);
 	TodoReturn processPlayerFollowActions(float);
 	TodoReturn processQueuedAudioTriggers();
-	TodoReturn processQueuedButtons();
+	TodoReturn processQueuedButtons() = win 0x221f00;
 	TodoReturn processRotationActions();
 	TodoReturn processSFXObjects();
 	TodoReturn processSFXState(SFXTriggerState*, SFXTriggerState*, int, float);
@@ -11015,7 +11015,7 @@ class ObjectManager : cocos2d::CCNode {
 class ObjectToolbox : cocos2d::CCNode {
 	// virtual ~ObjectToolbox();
 
-	static ObjectToolbox* sharedState();
+	static ObjectToolbox* sharedState() = win 0x327460;
 
 	TodoReturn allKeys();
 	float gridNodeSizeForKey(int);
@@ -11480,13 +11480,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void preCollision();
 	bool preSlopeCollision(float, GameObject*);
 	void propellPlayer(float, bool, int);
-	void pushButton(PlayerButton);
+	void pushButton(PlayerButton) = win 0x375f70;
 	TodoReturn pushDown();
 	void pushPlayer(float);
 	TodoReturn redirectDash(float);
 	TodoReturn redirectPlayerForce(float, float, float, float);
 	TodoReturn releaseAllButtons();
-	void releaseButton(PlayerButton);
+	void releaseButton(PlayerButton) = win 0x376200;
 	TodoReturn removeAllParticles();
 	void removePendingCheckpoint();
 	TodoReturn removePlacedCheckpoint();
@@ -11530,7 +11530,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void spiderTestJumpY(bool);
 	void startDashing(DashRingObject*);
 	TodoReturn stopBurstEffect();
-	void stopDashing();
+	void stopDashing() = win 0x3746b0;
 	TodoReturn stopParticles();
 	void stopPlatformerJumpAnimation();
 	TodoReturn stopRotation(bool, int);
