@@ -86,7 +86,8 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
         std::set<std::string> used;
         for (auto& f : c.fields) {
             if (auto fn = f.get_as<FunctionBindField>()) {
-                if (codegen::getStatus(*fn) == BindStatus::Missing)
+                auto status = codegen::getStatus(*fn);
+                if (status == BindStatus::Missing || status == BindStatus::Inlined)
                         continue;
 
                 if (fn->prototype.type == FunctionType::Normal && !used.count(fn->prototype.name)) {
@@ -114,7 +115,7 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
 
             auto status = codegen::getStatus(*fn);
 
-            if (status == BindStatus::Missing)
+            if (status == BindStatus::Missing || status == BindStatus::Inlined)
                 continue;
 
             if (status == BindStatus::NeedsBinding || codegen::platformNumber(f) != -1) {
