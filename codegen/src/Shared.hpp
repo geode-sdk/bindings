@@ -125,20 +125,22 @@ namespace codegen {
     }
 
     inline BindStatus getStatusWithPlatform(Platform p, FunctionBindField const& fn) {
+        if (platformNumberWithPlatform(p, fn.binds) == -2) return BindStatus::Inlined;
+
         if ((fn.prototype.attributes.missing & p) != Platform::None) return BindStatus::Missing;
         if ((fn.prototype.attributes.links & p) != Platform::None) return BindStatus::Binded;
 
-        if (platformNumberWithPlatform(p, fn.binds) == -2) return BindStatus::Inlined;
         if (platformNumberWithPlatform(p, fn.binds) != -1) return BindStatus::NeedsBinding;
 
         return BindStatus::Unbindable;
     }
 
     inline BindStatus getStatusWithPlatform(Platform p, Function const& f) {
+        if (platformNumberWithPlatform(p, f.binds) == -2) return BindStatus::Inlined;
+
         if ((f.prototype.attributes.missing & p) != Platform::None) return BindStatus::Missing;
         if ((f.prototype.attributes.links & p) != Platform::None) return BindStatus::Binded;
 
-        if (platformNumberWithPlatform(p, f.binds) == -2) return BindStatus::Inlined;
         if (platformNumberWithPlatform(p, f.binds) != -1) return BindStatus::NeedsBinding;
 
         return BindStatus::Unbindable;
@@ -272,7 +274,7 @@ namespace codegen {
                     return fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
                 }
                 else {
-                    return fmt::format("base::get() + 0x{:x}", codegen::platformNumber(fn->binds));
+                    return fmt::format("base::get() + 0xdsfdsfsdf{:x}", codegen::platformNumber(fn->binds));
                 }
             }
             else if (codegen::shouldAndroidBind(fn)) {
