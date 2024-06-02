@@ -6430,7 +6430,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void spawnObject(GameObject*, double, gd::vector<int> const&) = win 0x20b7d0;
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
-	virtual TodoReturn toggleGlitter(bool);
+	virtual void toggleGlitter(bool);
 	virtual void destroyPlayer(PlayerObject*, GameObject*) = win 0x2015c0;
 	virtual void updateDebugDraw() = win 0x216dc0;
 	virtual void addToSection(GameObject*) = win 0x2147c0;
@@ -11633,32 +11633,30 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void animationFinished(char const*) = win 0x3808b0;
 
 	cocos2d::CCNode* m_mainLayer;
-	PAD = win 0x44, android32 0x44;
+	PAD = win 0x44, imac 0x44, android32 0x44, android64 0x48, m1 0x48, ios 0x48;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
 	cocos2d::CCDictionary* m_unk4ec;
 	cocos2d::CCDictionary* m_unk4f0;
 	cocos2d::CCDictionary* m_unk4f4;
-	PAD = win 0x20, android32 0x20;
+	PAD = win 0x20, mac 0x20, android32 0x20, android64 0x20, ios 0x20;
 	float m_unk518;
-	TodoReturn toggleIgnoreDamage(bool);
 	bool m_unk51c;
 	bool m_unk51d;
 	bool m_unk51e;
 	bool m_unk51f;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	GameObject* m_collidedObject;
-	PAD = win 0x40, android32 0x40;
+	PAD = win 0x40, imac 0x40, android32 0x40, android64 0x50, m1 0x50, ios 0x50;
 	float m_unk568;
-	TodoReturn updateTestModeLabel();
 	cocos2d::CCSprite* m_unk56c;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	GameObject* m_unk574;
 	GameObject* m_unk578;
-	PAD = win 0x8, android32 0x8;
+	PAD = win 0x8, imac 0x8, android32 0x8, android64 0x0, m1 0x0, ios 0x0;
 	float unk_584;
 	int unk_588; // seems to always be 0, but when you respawn it's -1 until you move at least 1 block from the respawn place
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	cocos2d::CCArray* m_particleSystems;
 	gd::unordered_map<int, GJPointDouble> m_unk594; // insertions are in PlayerObject::rotateGameplayObject
 	gd::unordered_map<int, GameObject*> m_unk5b4;
@@ -11688,10 +11686,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCMotionStreak* m_shipStreak;
 	HardStreak* m_waveTrail;
 	float m_unk62c;
-	PAD = win 0x14, android32 0x14;
+	PAD = win 0x14, mac 0x14, android 0x14, ios 0x14;
 	float m_unk644;
 	float m_unk648;
-	PAD = win 0xc, android32 0xc;
+	PAD = win 0xc, mac 0xc, android 0xc, ios 0xc;
 	bool m_unk658;
 	bool m_unk659;
 	bool m_unk65a;
@@ -11700,19 +11698,20 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_unk65d; // walking ???
 	bool m_unk65e;
 	bool m_unk65f;
-	PAD = win 0x28, android32 0x28;
+	PAD = win 0x28, mac 0x28, android 0x28, ios 0x28;
 	float m_unk688;
 	float m_unk68c;
-	PAD = win 0x12, android32 0x12;
+	PAD = win 0x12, mac 0x12, android 0x12, ios 0x12;
 	bool m_unk6a2; // = GameManager::getGameVariable("0096")
 	bool m_unk6a3; // = GameManager::getGameVariable("0100")
-	PAD = win 0x18, android32 0x18;
-	int m_unk6c0;
+	PAD = win 0x18, mac 0x18, android 0x18, ios 0x18;
+	gd::unordered_set<int> m_unk6a4;
 	GameObject* m_objectSnappedTo;
-	PAD = win 0x4, android32 0x4;
+	int m_unk6c0;
+	PAD = win 0x4, imac 0x4, android32 0x4, android64 0xc, m1 0xc, ios 0xc; // android64 unsure
 	GJRobotSprite* m_robotSprite;
 	GJSpiderSprite* m_spiderSprite;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, imac 0x4, android32 0x4, android64 0x8, m1 0x8, ios 0x8;
 	cocos2d::CCParticleSystemQuad* m_playerGroundParticles;
 	cocos2d::CCParticleSystemQuad* m_trailingParticles; // 0x6d8
 	cocos2d::CCParticleSystemQuad* m_shipClickParticles; // 0x6dc
@@ -11722,20 +11721,19 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCParticleSystemQuad* m_dashParticles;
 	cocos2d::CCParticleSystemQuad* m_swingBurstParticles1; // 0x6f0
 	cocos2d::CCParticleSystemQuad* m_swingBurstParticles2; // 0x6f4
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	cocos2d::CCParticleSystemQuad* m_landParticles0;
 	cocos2d::CCParticleSystemQuad* m_landParticles1;
 	float m_unk70c;
-	void onCopyName(cocos2d::CCObject* sender);
 	float m_unk710;
-	PAD = win 0x64, android32 0x64;
+	PAD = win 0x60, mac 0x60, android 0x60, ios 0x60;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
-	PAD = win 0x24, android32 0x1c;
+	PAD = win 0x20, mac 0x20, android 0x20, ios 0x20;
 	double m_yVelocity;
 	bool m_isOnSlope;
 	bool m_wasOnSlope;
-	PAD = win 0x7, android32 0x7;
+	PAD = win 0x7, mac 0x7, android 0x7, ios 0x7;
 	bool m_isShip;
 	bool m_isBird;
 	bool m_isBall;
@@ -11748,7 +11746,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_isGoingLeft;
 	bool m_isSideways;
 	bool m_isSwing;
-	PAD = win 0x10, android32 0x10;
+	PAD = win 0x10, mac 0x10, android 0x10, ios 0x10;
 	float m_unk7c8;
 	float m_unk7cc; // unsure if float
 	float m_unk7d0;
@@ -11761,7 +11759,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCPoint m_unk7e8;
 	cocos2d::CCPoint m_unk7f0; // maybe m_lastPortalPos
 	bool m_unk7f8;
-	PAD = win 0x18, android32 0x18;
+	PAD = win 0x18, imac 0x18, android32 0x18, android64 0x1c, m1 0x1c, ios 0x1c;
 	cocos2d::CCPoint m_lastGroundedPos;
 	cocos2d::CCArray* m_touchingRings;
 	gd::unordered_set<int> m_unk828;
@@ -11771,51 +11769,50 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::ccColor3B m_playerColor1; // 0x816
 	cocos2d::ccColor3B m_playerColor2; // 0x819
 	cocos2d::CCPoint m_position;
-	PAD = win 0x14, android32 0x14;
-	float m_unk838;
-	PAD = win 0x4;
-	bool m_gamevar0060;
+	PAD = win 0x20, mac 0x20, android 0x20, ios 0x20;
+	bool m_gamevar0060; // used in init
 	bool m_gamevar0061;
 	bool m_gamevar0062;
-	PAD = win 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	gd::vector<float> m_unk880;
-	PAD = win 0x1c;
+    float m_unk838;
+	PAD = win 0x18, mac 0x18, android 0x18, ios 0x18;
 	double m_platformerXVelocity;
-	PAD = win 0x70;
+	PAD = win 0x70, mac 0x70, android 0x70, ios 0x70;
 	bool m_isPlatformer;
 	int m_unk8ec;
 	int m_unk8f0;
 	int m_unk8f4;
 	int m_unk8f8;
 	float m_gravityMod;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	cocos2d::CCPoint m_unk904;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	gd::map<int, bool> m_unk910;
 	float m_unk918; // increments whenever you're midiar?
 	float m_unk91c;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, mac 0x4, android32 0x4, ios 0x4;
 	gd::map<int, bool> m_unk924;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	gd::string m_unk930; // this is always "run" ???
 	bool m_unk948; // = getGameVariable("0123")
-	PAD = win 0x3, android32 0x3;
+	PAD = win 0x3, mac 0x3, android 0x3, ios 0x3;
 	int m_iconRequestID;
 	cocos2d::CCSpriteBatchNode* m_unk950;
 	cocos2d::CCSpriteBatchNode* m_unk954;
 	cocos2d::CCArray* m_unk958;
 	PlayerFireBoostSprite* m_robotFire;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, imac 0x4, android32 0x4, android64 0x8, m1 0x8, ios 0x8;
 	GJBaseGameLayer* m_gameLayer;
 	cocos2d::CCLayer* m_parentLayer;
 	GJActionManager* m_actionManager;
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	float m_unk974;
 	bool m_unk978;
 	bool m_unk979; // = isItemEnabled(0xc, 0x12);
 	bool m_unk97a; // = isItemEnabled(0xc, 0x13);
 	bool m_unk97b; // = isItemEnabled(0xc, 0x14);
-	PAD = win 0x4, android32 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 }
 
 [[link(android)]]
@@ -11974,7 +11971,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*) = win 0x391440;
 	virtual void dialogClosed(DialogLayer*) = win 0x3912a0;
 
-	PAD = win 0x24;
+	PAD = win 0x24, imac 0x24, android32 0x24, android64 0x2c, m1 0x2c, ios 0x2c;
 	cocos2d::CCArray* m_coinArray;
 	PAD = win 0x5c;
 	float m_unksomefloat;
@@ -12000,7 +11997,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	gd::vector<int> m_keyOpacities; // type not really accurate
 	gd::vector<int> m_keyPulses; // type not really accurate
 	int m_nextColorKey;
-	PAD = win 0x1c;
+	PAD = win 0x18, imac 0x18, android32 0x18, android64 0x24, m1 0x24, ios 0x24;
 }
 
 [[link(android)]]
