@@ -1667,7 +1667,7 @@ class ColorActionSprite : cocos2d::CCNode {
 class ColorChannelSprite : cocos2d::CCSprite {
 	// virtual ~ColorChannelSprite();
 
-	static ColorChannelSprite* create();
+	static ColorChannelSprite* create() = win 0x246c10;
 
 	TodoReturn updateBlending(bool);
 	TodoReturn updateCopyLabel(int, bool);
