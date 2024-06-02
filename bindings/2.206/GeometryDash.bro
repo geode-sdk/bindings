@@ -4017,7 +4017,7 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 	virtual void keyBackClicked();
 	virtual void show();
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
-	virtual TodoReturn rewardedVideoFinished();
+	virtual void rewardedVideoFinished();
 	virtual void updateRate();
 }
 
@@ -6871,7 +6871,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn updateColorEffects(float);
 	TodoReturn updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B);
 	void updateCountForItem(int, int);
-	virtual TodoReturn rewardedVideoFinished();
+	virtual void rewardedVideoFinished();
 	TodoReturn updateEffects(float);
 	void updateOpacityAction(OpacityEffectAction*);
 	void updateOpacityEffects(float);
@@ -7313,63 +7313,59 @@ class GJGameState {
 }
 
 [[link(android)]]
-class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, GameRateDelegate, ListButtonBarDelegate, DialogDelegate, CharacterColorDelegate {
+class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, GameRateDelegate, ListButtonBarDelegate, DialogDelegate, CharacterColorDelegate, RewardedVideoDelegate {
 	// virtual ~GJGarageLayer();
 	// GJGarageLayer();
 
-	TodoReturn achievementForUnlock(int, UnlockType);
-	gd::string descriptionForUnlock(int, UnlockType);
+	gd::string achievementForUnlock(int, UnlockType);
+	gd::string descriptionForUnlock(int, UnlockType) = win 0x266240;
 	cocos2d::CCArray* getItems(IconType) = win 0x264710;
 	cocos2d::CCArray* getItems(int, int, IconType, int) = win 0x2647d0;
-	TodoReturn getLockFrame(int, UnlockType);
+	gd::string getLockFrame(int, UnlockType);
 	static GJGarageLayer* node();
 	void onArrow(cocos2d::CCObject* sender) = win 0x263e50;
-	void onBack(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onNavigate(cocos2d::CCObject* sender) = win 0x263f50;
-	void onPaint(cocos2d::CCObject* sender);
-	void onSelect(cocos2d::CCObject* sender);
-	void onSelectTab(cocos2d::CCObject* sender);
-	void onShards(cocos2d::CCObject* sender);
-	void onShop(cocos2d::CCObject* sender);
-	void onSpecial(cocos2d::CCObject* sender);
-	void onToggleItem(cocos2d::CCObject* sender);
-	void playRainbowEffect();
-	TodoReturn playShadowEffect();
-	inline static cocos2d::CCScene* scene() {
-		auto scene = cocos2d::CCScene::create();
-		scene->addChild(GJGarageLayer::node());
-		return scene;
-	}
+	void onBack(cocos2d::CCObject* sender) = win 0x266f60;
+	void onInfo(cocos2d::CCObject* sender) = win 0x262a50;
+	void onNavigate(cocos2d::CCObject* sender) = win 0x1f1c80;
+	void onPaint(cocos2d::CCObject* sender) = win 0x266d80;
+	void onSelect(cocos2d::CCObject* sender) = win 0x265100;
+	void onSelectTab(cocos2d::CCObject* sender) = win 0x263f80;
+	void onShards(cocos2d::CCObject* sender) = win 0x266c30;
+	void onShop(cocos2d::CCObject* sender) = win 0x266f00;
+	void onSpecial(cocos2d::CCObject* sender) = win 0x265930;
+	void onToggleItem(cocos2d::CCObject* sender) = win 0x2657a0;
+	void playRainbowEffect() = win 0x266a40;
+	void playShadowEffect();
+	static cocos2d::CCScene* scene() = win 0x260f90;
 	void selectTab(IconType) = win 0x263fb0;
 	void setupIconSelect() = win 0x2631f0;
 	void setupPage(int, IconType) = win 0x264070;
 	void setupSpecialPage() = win 0x264a90;
 	void showUnlockPopupNew(int, UnlockType);
 	gd::string titleForUnlock(int, UnlockType);
-	TodoReturn toggleGlow();
+	void toggleGlow();
 	void updatePlayerColors() = win 0x2659b0;
-	TodoReturn updatePlayerName(char const*);
+	void updatePlayerName(char const*);
 
 	virtual bool init() = win 0x261150;
-	virtual void keyBackClicked();
-	virtual void textInputOpened(CCTextInputNode*);
-	virtual void textInputClosed(CCTextInputNode*);
+	virtual void keyBackClicked() = win 0x267100;
+	virtual void textInputOpened(CCTextInputNode*) = win 0x262c50;
+	virtual void textInputClosed(CCTextInputNode*) = win 0x262e40;
 	virtual void textChanged(CCTextInputNode*);
-	virtual void listButtonBarSwitchedPage(ListButtonBar*, int);
-	virtual void showUnlockPopup(int, UnlockType);
-	virtual void updateRate();
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
-	virtual void dialogClosed(DialogLayer*);
-	virtual void playerColorChanged();
+	virtual void listButtonBarSwitchedPage(ListButtonBar*, int) = win 0xc1450;
+	virtual void showUnlockPopup(int, UnlockType) = win 0x265b30;
+	virtual void updateRate() = win 0x266800;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2663d0;
+	virtual void dialogClosed(DialogLayer*) = win 0x266630;
+	virtual void playerColorChanged() = win 0x265980;
+	virtual void rewardedVideoFinished() = win 0x262c40;
 
 	CCTextInputNode* m_usernameInput;
 	SimplePlayer* m_playerObject;
 	cocos2d::CCArray* m_tabButtons;
 	cocos2d::CCArray* m_pageButtons;
-	PAD = android32 0x8, win 0x8, android64 0x10;
+	PAD = android32 0x8, win 0x10, android64 0x10, mac 0x10;
 	bool m_hasClosed;
-	PAD = android32 0x3, win 0x3, android64 0x3;
 	IconType m_iconType;
 	gd::map<IconType, int> m_iconPages;
 	cocos2d::CCSprite* m_cursor1;
@@ -7382,6 +7378,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	int m_iconID;
 	IconType m_selectedIconType;
 }
+
 [[link(android)]]
 class GJGradientLayer : cocos2d::CCLayerGradient {
 	// virtual ~GJGradientLayer();
@@ -8209,7 +8206,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual TodoReturn didPurchaseItem(GJStoreItem*);
-	virtual TodoReturn rewardedVideoFinished();
+	virtual void rewardedVideoFinished();
 	virtual void dialogClosed(DialogLayer*);
 }
 
@@ -12234,15 +12231,15 @@ class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
 	virtual void customSetup();
 	virtual void showLayer(bool);
 	virtual void enterAnimFinished();
-	virtual TodoReturn rewardedVideoFinished();
-	virtual TodoReturn shouldOffsetRewardCurrency();
+	virtual void rewardedVideoFinished();
+	virtual bool shouldOffsetRewardCurrency();
 	virtual void keyUp(cocos2d::enumKeyCodes) {}
 }
 
 [[link(android)]]
 class RewardedVideoDelegate {
-	virtual TodoReturn rewardedVideoFinished();
-	virtual TodoReturn shouldOffsetRewardCurrency();
+	virtual void rewardedVideoFinished();
+	virtual bool shouldOffsetRewardCurrency();
 }
 
 [[link(android)]]
