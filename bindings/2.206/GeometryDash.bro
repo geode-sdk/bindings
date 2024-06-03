@@ -725,8 +725,8 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 	void runAnimationForced(gd::string);
 	TodoReturn stopTween();
 	TodoReturn switchToMode(spriteMode);
-	void tweenToAnimation(gd::string, float);
-	void tweenToAnimationFinished();
+	void tweenToAnimation(gd::string, float) = win 0x3fe70;
+	void tweenToAnimationFinished() = win 0x40140;
 	TodoReturn willPlayAnimation();
 
 	virtual void setOpacity(unsigned char) = win 0x401f0, m1 0x2e0318;
@@ -2058,7 +2058,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 	// virtual ~CurrencyRewardLayer();
 	// CurrencyRewardLayer();
 
-	static CurrencyRewardLayer* create(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float);
+	static CurrencyRewardLayer* create(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9dd30;
 
 	TodoReturn createObjects(CurrencySpriteType, int, cocos2d::CCPoint, float);
 	TodoReturn createObjectsFull(CurrencySpriteType, int, cocos2d::CCSprite*, cocos2d::CCPoint, float);
@@ -2069,7 +2069,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 	TodoReturn incrementSpecialCount1(int);
 	TodoReturn incrementSpecialCount2(int);
 	TodoReturn incrementStarsCount(int);
-	bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float);
+	bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9df80;
 	TodoReturn pulseSprite(cocos2d::CCSprite*);
 
 	virtual void update(float) = m1 0x6bb3b8;
@@ -3466,25 +3466,26 @@ class EndLevelLayer : GJDropDownLayer {
 
 	static EndLevelLayer* create();
 
-	TodoReturn coinEnterFinished(cocos2d::CCPoint);
-	TodoReturn coinEnterFinishedO(cocos2d::CCObject*);
-	TodoReturn currencyEnterFinished();
-	TodoReturn diamondEnterFinished();
-	TodoReturn getCoinString();
-	TodoReturn getEndText();
-	void goEdit();
-	void onEdit(cocos2d::CCObject* sender);
+	TodoReturn coinEnterFinished(cocos2d::CCPoint) = win 0x131d20;
+	TodoReturn coinEnterFinishedO(cocos2d::CCObject*) = win 0x131ce0;
+	TodoReturn currencyEnterFinished() = win 0x1323d0;
+	TodoReturn diamondEnterFinished() = win 0x132860;
+	TodoReturn getCoinString() = win 0x130820;
+	const char* getEndText() = win 0x132c80;
+	void goEdit() = win 0x1311d0;
+	void onEdit(cocos2d::CCObject* sender) = win 0x1310d0;
 	void onEveryplay(cocos2d::CCObject* sender);
-	void onLevelLeaderboard(cocos2d::CCObject* sender);
+	void onHideLayer(cocos2d::CCObject* sender) = win 0x1312a0;
+	void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x130720;
 	void onMenu(cocos2d::CCObject* sender) = win 0x130f50;
-	void onReplay(cocos2d::CCObject* sender);
-	void onRestartCheckpoint(cocos2d::CCObject* sender);
+	void onReplay(cocos2d::CCObject* sender) = win 0x130f40;
+	void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x131380;
 	void playCoinEffect(float) = win 0x131aa0;
 	void playCurrencyEffect(float) = win 0x132050;
 	void playDiamondEffect(float) = win 0x1324e0;
-	void playEndEffect();
+	void playEndEffect() = win 0x132970;
 	void playStarEffect(float) = win 0x1315a0;
-	TodoReturn starEnterFinished();
+	TodoReturn starEnterFinished() = win 0x131940;
 	TodoReturn tryShowBanner(float);
 
 	virtual void keyBackClicked() = win 0x131590, m1 0x42bd68;
@@ -3510,10 +3511,10 @@ class EndPortalObject : GameObject {
 
 	static EndPortalObject* create();
 
-	TodoReturn getSpawnPos();
+	TodoReturn getSpawnPos() = win 0x134050;
 	TodoReturn triggerObject(GJBaseGameLayer*);
 	TodoReturn updateColors(cocos2d::ccColor3B);
-	TodoReturn updateEndPos(bool);
+	TodoReturn updateEndPos(bool) = win 0x1342c0;
 
 	virtual bool init() = m1 0x326498;
 	virtual void setPosition(cocos2d::CCPoint const&) = m1 0x326930;
@@ -3843,7 +3844,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn channelLinkSound(int, FMODSound*);
 	TodoReturn channelStopped(FMOD::Channel*, bool);
 	TodoReturn channelUnlinkSound(int);
-	void clearAllAudio();
+	void clearAllAudio() = win 0x54460;
 	TodoReturn countActiveEffects();
 	TodoReturn countActiveMusic();
 	TodoReturn createStream(gd::string);
@@ -3891,8 +3892,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int);
 	void playEffect(gd::string path, float speed, float p2, float volume) = win 0x55f60;
-	void playEffect(gd::string path);
-	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup);
+	void playEffect(gd::string path) = win 0x55ee0;
+	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56050;
 	TodoReturn playEffectAsync(gd::string path);
 	void playMusic(gd::string path, bool p1, float p2, int p3);
 	void preloadEffect(gd::string path);
@@ -5650,7 +5651,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool isSecretCoinValid(gd::string);
 	bool isSpecialChestLiteUnlockable(gd::string);
 	bool isSpecialChestUnlocked(gd::string) = win 0x1de960;
-	bool isStoreItemUnlocked(int);
+	bool isStoreItemUnlocked(int) = win 0x1dec10;
 	TodoReturn keyCostForSecretChest(int);
 	TodoReturn logCoins();
 	TodoReturn markLevelAsCompletedAndClaimed(GJGameLevel*);
@@ -6287,7 +6288,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn reparentObject(cocos2d::CCNode*, cocos2d::CCNode*);
 	void resetActiveEnterEffects() = win 0x1ff150;
 	TodoReturn resetAreaObjectValues(GameObject*, bool);
-	TodoReturn resetAudio();
+	TodoReturn resetAudio() = win 0x227690;
 	void resetCamera();
 	void resetGradientLayers();
 	TodoReturn resetGroupCounters(bool);
@@ -7140,7 +7141,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 	void gameLayerDidUnload();
 	bool init(GJGameLevel* level, bool editor);
 	void loadLevel();
-	static GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel* level, bool editor);
+	static GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel* level, bool editor) = win 0x237ed0;
 
 	virtual void onEnter();
 	virtual void onEnterTransitionDidFinish();
@@ -11884,7 +11885,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void incrementJumps();
 	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x382890;
 	bool isGameplayActive();
-	void levelComplete();
+	void levelComplete() = win 0x384850;
 	TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
 	TodoReturn loadDefaultColors();
 	TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&);
@@ -11895,8 +11896,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn optimizeColorGroups() = win 0x38b7f0;
 	TodoReturn optimizeOpacityGroups() = win 0x38ba80;
 	void pauseGame(bool);
-	void playEndAnimationToPos(cocos2d::CCPoint);
-	void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool);
+	void playEndAnimationToPos(cocos2d::CCPoint) = win 0x388570;
+	void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = win 0x388f00;
 	TodoReturn playReplay(gd::string);
 	void prepareCreateObjectsFromSetup(gd::string&) = win 0x389a50;
 	void prepareMusic(bool) = win 0x3972a0;
