@@ -1,14 +1,7 @@
 #pragma once
 
 struct TodoReturnPlaceholder;
-
-#ifdef GEODE_REVERT_TODO_RETURN
-    using TodoReturn = void;
-    #pragma message("Reverting TodoReturn to void. This behavior is deprecated and will be removed in a later update.")
-#else
-    #define GEODE_REVERT_TODO_RETURN 0
-    using TodoReturn = TodoReturnPlaceholder;
-#endif
+using TodoReturn = TodoReturnPlaceholder;
 
 // thanks pie
 enum class SearchType {
@@ -729,6 +722,7 @@ enum class IconType {
     Jetpack = 8,
     DeathEffect = 98,
     Special = 99,
+    Item = 100,
     ShipFire = 101,
 };
 
