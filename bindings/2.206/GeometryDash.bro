@@ -3835,7 +3835,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	// virtual ~FMODAudioEngine();
 	// FMODAudioEngine();
 
-	static FMODAudioEngine* sharedEngine();
+	static FMODAudioEngine* sharedEngine() = win 0x52250;
 
 	TodoReturn activateQueuedMusic(int);
 	TodoReturn channelForChannelID(int);
@@ -4351,7 +4351,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void onDownloadLevelCompleted(gd::string response, gd::string tag) = win 0x14cbc0;
 	void onDownloadUserMessageCompleted(gd::string response, gd::string tag);
 	void onGetAccountCommentsCompleted(gd::string response, gd::string tag);
-	void onGetFriendRequestsCompleted(gd::string response, gd::string tag);
+	void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x159b50;
 	void onGetGauntletsCompleted(gd::string response, gd::string tag);
 	void onGetGJChallengesCompleted(gd::string response, gd::string tag);
 	void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag);
@@ -6702,12 +6702,12 @@ class GJDailyLevelDelegate {
 class GJDifficultySprite : cocos2d::CCSprite {
 	// virtual ~GJDifficultySprite();
 
-	static GJDifficultySprite* create(int, GJDifficultyName);
+	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x292d60;
 
 	static gd::string getDifficultyFrame(int, GJDifficultyName);
 	bool init(int, GJDifficultyName);
 	void updateDifficultyFrame(int, GJDifficultyName);
-	void updateFeatureState(GJFeatureState);
+	void updateFeatureState(GJFeatureState) = win 0x292f40;
 	void updateFeatureStateFromLevel(GJGameLevel*);
 
 	GJFeatureState m_featureState;
@@ -6959,7 +6959,7 @@ class GJFriendRequest : cocos2d::CCNode {
 class GJGameLevel : cocos2d::CCNode {
 	// virtual ~GJGameLevel();
 
-	static GJGameLevel* create();
+	static GJGameLevel* create() = win 0x13cd90;
 	static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x162b70;
 	/*inline static GJGameLevel* createWithCoder(DS_Dictionary* dict) {
 		//inlined on windows
@@ -8537,8 +8537,8 @@ class GJUserMessage : cocos2d::CCNode {
 class GJUserScore : cocos2d::CCNode {
 	// virtual ~GJUserScore();
 
-	static GJUserScore* create();
-	static GJUserScore* create(cocos2d::CCDictionary*);
+	static GJUserScore* create() = win 0x13d890;
+	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x1688d0;
 
 	bool isCurrentUser();
 	TodoReturn mergeWithScore(GJUserScore*);
@@ -9609,7 +9609,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void confirmMoveToBottom(cocos2d::CCObject*);
 	void confirmMoveToTop(cocos2d::CCObject*);
 	void confirmOwnerDelete(cocos2d::CCObject*);
-	void downloadLevel();
+	void downloadLevel() = win 0x2da130;
 	TodoReturn incrementDislikes();
 	TodoReturn incrementLikes();
 	bool init(GJGameLevel*, bool) = win 0x2d7620;
@@ -9640,7 +9640,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	TodoReturn playStep3();
 	TodoReturn playStep4();
 	static cocos2d::CCScene* scene(GJGameLevel*, bool);
-	void setupLevelInfo();
+	void setupLevelInfo() = win 0x2daf80;
 	void setupPlatformerStats() = win 0x2da440;
 	void setupProgressBars() = win 0x2da870;
 	bool shouldDownloadLevel();
@@ -10243,7 +10243,7 @@ class LoadingCircle : cocos2d::CCLayerColor {
 
 	static LoadingCircle* create() = win 0x6a3c0, imac 0x4c8dc0;
 
-	void fadeAndRemove() = imac 0x4c90f0;
+	void fadeAndRemove() = win 0x6a6a0, imac 0x4c90f0;
 	void show() = win 0x6a5a0, imac 0x4c9000;
 
 	void setFade(bool fade) {
@@ -15168,7 +15168,7 @@ class StatsCell : TableViewCell {
 	void updateBGColor(int);
 
 	virtual bool init() = m1 0x1f89a4;
-	virtual void draw() = m1 0x1f9510;
+	virtual void draw() = win 0xabd00, m1 0x1f9510;
 }
 
 [[link(android)]]
