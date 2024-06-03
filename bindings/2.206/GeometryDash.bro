@@ -2344,7 +2344,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool init(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc5900;
 	void onCancelDownload(cocos2d::CCObject* sender);
 	void onDelete(cocos2d::CCObject* sender);
-	void onDownload(cocos2d::CCObject* sender);
+	void onDownload(cocos2d::CCObject* sender) = win 0xc7ed0;
 	void onGetSongInfo(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
 	void onMore(cocos2d::CCObject* sender);
@@ -2359,12 +2359,12 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	TodoReturn updateDownloadProgress(float);
 	TodoReturn updateError(GJSongError);
 	TodoReturn updateLengthMod(float);
-	void updateMultiAssetInfo(bool);
+	void updateMultiAssetInfo(bool) = win 0xc9960;
 	TodoReturn updatePlaybackBtn();
 	TodoReturn updateProgressBar(int);
-	void updateSongInfo();
+	void updateSongInfo() = win 0xc8800;
 	void updateSongObject(SongInfoObject*);
-	void updateWithMultiAssets(gd::string, gd::string, int);
+	void updateWithMultiAssets(gd::string, gd::string, int) = win 0xc9610;
 	TodoReturn verifySongID(int);
 
 	virtual void loadSongInfoFinished(SongInfoObject*) = win 0xc9f40, m1 0x54cf6c;
@@ -2391,9 +2391,11 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	CCMenuItemSpriteExtra* m_playbackBtn;
 	CCMenuItemSpriteExtra* m_moreBtn;
 	CCMenuItemSpriteExtra* m_deleteBtn;
+	CCMenuItemSpriteExtra* m_infoBtn;
 	cocos2d::CCSprite* m_sliderGroove;
 	cocos2d::CCSprite* m_sliderBar;
-	cocos2d::CCSprite* m_bgSpr;
+	cocos2d::CCSprite* m_ncsLogo;
+	cocos2d::extension::CCScale9Sprite* m_bgSpr;
 	CustomSongDelegate* m_songDelegate;
 	bool m_showSelectSongBtn;
 	bool m_showPlayMusicBtn;
@@ -2403,16 +2405,14 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	bool m_isMusicLibrary;
 	int m_customSongID;
 	float m_unkFloat;
-	bool m_unkBool1;
 	void* m_unkPtr;
+	void* m_unkPtr2;
 	bool m_hasLibrarySongs;
 	bool m_hasSFX;
 	bool m_unkBool2;
 	gd::map<int, bool> m_songs;
 	gd::map<int, bool> m_sfx;
 	gd::vector<CCObject*> m_undownloadedAssets;
-	int m_unkInt;
-	InfoAlertButton* m_assetInfoBtn;
 }
 
 [[link(android)]]
@@ -6972,7 +6972,7 @@ class GJGameLevel : cocos2d::CCNode {
 	void dataLoaded(DS_Dictionary*) = win 0x1658e0;
 	TodoReturn demonIconForDifficulty(DemonDifficultyType);
 	TodoReturn generateSettingsString();
-	gd::string getAudioFileName();
+	gd::string getAudioFileName() = win 0x164b80;
 	int getAverageDifficulty() = win 0x1649c0;
 	char const* getCoinKey(int);
 	TodoReturn getLastBuildPageForTab(int);
@@ -10760,7 +10760,10 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void addDLToActive(char const* tag);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x31c430;
 	void addSongObjectFromString(gd::string);
-	void clearSong(int);
+	void clearSong(int songID) = win inline {
+		const char* key = cocos2d::CCString::createWithFormat("%i", songID)->getCString();
+		m_songObjects->removeObjectForKey(key);
+	}
 	void clearUnusedSongs();
 	void createArtistsInfo(gd::string);
 	void createSongsInfo(gd::string, gd::string);
@@ -10799,9 +10802,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getSFXFolderPathForID(int, bool);
 	TodoReturn getSFXObject(int);
 	TodoReturn getSongDownloadKey(int);
-	void getSongInfo(int, bool);
+	void getSongInfo(int, bool) = win 0x31c680;
 	TodoReturn getSongInfoKey(int);
-	SongInfoObject* getSongInfoObject(int);
+	SongInfoObject* getSongInfoObject(int) = win 0x31e070;
 	TodoReturn getSongPriority();
 	void handleIt(bool, gd::string, gd::string, GJHttpType);
 	void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
@@ -10817,7 +10820,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	bool isSongDownloaded(int);
 	void limitDownloadedSongs();
 	void loadSongInfoFailed(int, GJSongError);
-	void loadSongInfoFinished(SongInfoObject*);
+	void loadSongInfoFinished(SongInfoObject*) = win 0x323150;
 	void musicActionFailed(GJMusicAction);
 	void musicActionFinished(GJMusicAction);
 	TodoReturn nameForTagID(int);
@@ -10826,7 +10829,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	void onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	void onGetCustomContentURLCompleted(gd::string, gd::string);
-	void onGetSongInfoCompleted(gd::string, gd::string);
+	void onGetSongInfoCompleted(gd::string, gd::string) = win 0x31c960;
 	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
@@ -10834,7 +10837,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void parseSFXLibrary();
 	gd::string pathForSFX(int);
 	gd::string pathForSFXFolder(int) = win 0x31e5e0;
-	gd::string pathForSong(int);
+	gd::string pathForSong(int) = win 0x31e400;
 	gd::string pathForSongFolder(int) = win 0x31e2b0;
 	void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
 	callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
