@@ -27,7 +27,8 @@ std::string generatePredeclareHeader(Root const& root);
 std::string generateBindingSource(Root const& root);
 std::string generateJsonInterface(Root const& root);
 
-inline void writeFile(ghc::filesystem::path const& writePath, std::string const& output) {
+// returns true if the file contents were different (overwritten), false otherwise
+inline bool writeFile(ghc::filesystem::path const& writePath, std::string const& output) {
     std::ifstream readfile;
     readfile >> std::noskipws;
     readfile.open(writePath);
@@ -39,7 +40,11 @@ inline void writeFile(ghc::filesystem::path const& writePath, std::string const&
         writefile.open(writePath);
         writefile << output;
         writefile.close();
+
+        return true;
     }
+
+    return false;
 }
 
 inline std::string str_if(std::string&& str, bool cond) {
