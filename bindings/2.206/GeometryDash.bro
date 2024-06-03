@@ -900,13 +900,13 @@ class CCLightStrip : cocos2d::CCNode {
 	virtual void draw();
 	virtual void updateTweenAction(float value, char const* keyword);
 	float m_objectWidth;
-    	float m_toWidth;
-   	float m_toHeight;
-    	float m_duration;
+	float m_toWidth;
+	float m_toHeight;
+	float m_duration;
 	cocos2d::ccColor4B m_color;
-    	float m_opacity;
-    	float m_width;
-    	float m_height;
+	float m_opacity;
+	float m_width;
+	float m_height;
 }
 
 [[link(android)]]
@@ -1819,7 +1819,6 @@ class CommunityCreditNode : cocos2d::CCNode {
 }
 
 [[link(android)]]
-	void onNCSBrowser(cocos2d::CCObject* sender);
 class CommunityCreditsPage : FLAlertLayer {
 	// virtual ~CommunityCreditsPage();
 
@@ -1858,7 +1857,6 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 	virtual void textChanged(CCTextInputNode*) = win 0x95d50;
 }
 
-	void onInfo(cocos2d::CCObject* sender);
 [[link(android)]]
 class ConfigureValuePopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~ConfigureValuePopup();
@@ -2312,6 +2310,7 @@ class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate
 	void onClose(cocos2d::CCObject* sender);
 	void onCreateLines(cocos2d::CCObject* sender);
 	void onMusicBrowser(cocos2d::CCObject* sender);
+	void onNCSBrowser(cocos2d::CCObject* sender);
 	void onNewgroundsBrowser(cocos2d::CCObject* sender);
 	void onOptions(cocos2d::CCObject* sender);
 	void onSearch(cocos2d::CCObject* sender);
@@ -2350,6 +2349,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onDelete(cocos2d::CCObject* sender);
 	void onDownload(cocos2d::CCObject* sender);
 	void onGetSongInfo(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender);
 	void onMore(cocos2d::CCObject* sender);
 	void onPlayback(cocos2d::CCObject* sender);
 	void onSelect(cocos2d::CCObject* sender);
@@ -2595,7 +2595,6 @@ class DrawGridLayer : cocos2d::CCLayer {
 	LevelEditorLayer* m_editorLayer;
 }
 
-	void onRestartCheckpoint(cocos2d::CCObject* sender);
 [[link(android)]]
 class DungeonBarsSprite : cocos2d::CCNode {
 	// virtual ~DungeonBarsSprite();
@@ -3482,6 +3481,7 @@ class EndLevelLayer : GJDropDownLayer {
 	void onLevelLeaderboard(cocos2d::CCObject* sender);
 	void onMenu(cocos2d::CCObject* sender) = win 0x130f50;
 	void onReplay(cocos2d::CCObject* sender);
+	void onRestartCheckpoint(cocos2d::CCObject* sender);
 	void playCoinEffect(float);
 	void playCurrencyEffect(float);
 	void playDiamondEffect(float);
@@ -5595,7 +5595,9 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getItemKey(int, int);
 	int getItemUnlockState(int, UnlockType) = win 0x1d7230;
 	int getItemUnlockStateLite(int, UnlockType);
-	gd::string getLevelKey(GJGameLevel*) = win 0x9999999; // TODO: inlined
+	gd::string getLevelKey(GJGameLevel* level) {
+		return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Local, level->m_dailyID, level->m_gauntletLevel);
+	}
 	gd::string getLevelKey(int, bool, bool, bool) = win 0x1d3950;
 	TodoReturn getListRewardKey(GJLevelList*);
 	char const* getMapPackKey(int);
@@ -6974,7 +6976,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn demonIconForDifficulty(DemonDifficultyType);
 	TodoReturn generateSettingsString();
 	gd::string getAudioFileName();
-	int getAverageDifficulty();
+	int getAverageDifficulty() = win 0x1649c0;
 	char const* getCoinKey(int);
 	TodoReturn getLastBuildPageForTab(int);
 	TodoReturn getLengthKey(int length, bool platformer);
@@ -9219,7 +9221,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void reloadAllObjects();
 	static cocos2d::CCScene* scene(GJSearchObject* search) = win 0x2b5710;
 	void setSearchObject(GJSearchObject*);
-	void setupLevelBrowser(cocos2d::CCArray*);
+	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2b8440;
 	void show();
 	void updateLevelsLabel();
 	void updatePageLabel();
