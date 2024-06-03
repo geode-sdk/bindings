@@ -6223,7 +6223,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn playerTouchedRing(PlayerObject*, RingObject*);
 	TodoReturn playerTouchedTrigger(PlayerObject*, EffectGameObject*);
 	TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*);
-	void playerWillSwitchMode(PlayerObject*, GameObject*);
+	void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x203a50;
 	TodoReturn playExitDualEffect(PlayerObject*);
 	TodoReturn playFlashEffect(float, int, float);
 	TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
@@ -11430,7 +11430,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	}
 	TodoReturn disablePlayerControls();
 	void disableSwingFire() = win 0x378f10;
-	void doReversePlayer(bool);
+	void doReversePlayer(bool) = win 0x376540;
 	void enableCustomGlowColor(cocos2d::_ccColor3B const& color) {
 		m_hasCustomGlowColor = true;
 		m_glowColor = color;
@@ -11439,7 +11439,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void exitPlatformerAnimateJump();
 	void fadeOutStreak2(float) = win 0x37e1a0;
 	void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor);
-	void flipGravity(bool, bool);
+	void flipGravity(bool, bool) = win 0x3781e0;
 	TodoReturn flipMod();
 	TodoReturn gameEventTriggered(int, int);
 	bool getActiveMode();
@@ -11550,20 +11550,20 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn stopStreak2();
 	void storeCollision(PlayerCollisionDirection, int);
 	TodoReturn switchedDirTo(PlayerButton);
-	void switchedToMode(GameObjectType);
+	void switchedToMode(GameObjectType) = win 0x379e40;
 	TodoReturn testForMoving(float, GameObject*);
-	void toggleBirdMode(bool, bool);
-	void toggleDartMode(bool, bool);
-	void toggleFlyMode(bool, bool);
+	void toggleBirdMode(bool, bool) = win 0x378830;
+	void toggleDartMode(bool, bool) = win 0x378fa0;
+	void toggleFlyMode(bool, bool) = win 0x378500;
 	void toggleGhostEffect(GhostType) = win 0x37ce40;
 	void togglePlatformerMode(bool val) {
         m_isPlatformer = val;
     }
-	void togglePlayerScale(bool, bool);
-	void toggleRobotMode(bool, bool);
-	void toggleRollMode(bool, bool);
-	void toggleSpiderMode(bool, bool);
-	void toggleSwingMode(bool, bool);
+	void togglePlayerScale(bool, bool) = win 0x37e710;
+	void toggleRobotMode(bool, bool) = win 0x379700;
+	void toggleRollMode(bool, bool) = win 0x379580;
+	void toggleSpiderMode(bool, bool) = win 0x379a80;
+	void toggleSwingMode(bool, bool) = win 0x378b30;
 	void toggleVisibility(bool);
 	TodoReturn touchedObject(GameObject*);
 	void tryPlaceCheckpoint();
@@ -11623,7 +11623,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updateStreakBlend(bool);
 	TodoReturn updateStreaks(float);
 	void updateSwingFire();
-	void updateTimeMod(float, bool) = win 0x37e710;
+	void updateTimeMod(float, bool) = win 0x37ed60;
 	TodoReturn usingWallLimitedMode();
 	TodoReturn yStartDown();
 	TodoReturn yStartUp();
@@ -15326,7 +15326,7 @@ class TableViewDelegate {
 class TeleportPortalObject : RingObject {
 	// virtual ~TeleportPortalObject();
 
-	static TeleportPortalObject* create(char const*, bool);
+	static TeleportPortalObject* create(char const*, bool) = win 0x485d20;
 
 	TodoReturn getTeleportXOff(cocos2d::CCNode*);
 	bool init(char const*, bool);
