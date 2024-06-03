@@ -54,7 +54,7 @@ class cocos2d::CCMotionStreak {
 
 [[link(win, android)]]
 class cocos2d::CCScene {
-	static cocos2d::CCScene* create();
+	static cocos2d::CCScene* create() = imac 0x28cbf0;
 
 	int getHighestChildZ();
 
@@ -781,7 +781,7 @@ class cocos2d::CCKeyboardDispatcher {
 
 [[link(win, android)]]
 class cocos2d::CCDirector {
-	static cocos2d::CCDirector* sharedDirector();
+	static cocos2d::CCDirector* sharedDirector() = imac 0x48b350;
 
 	float getActualDeltaTime() const;
 	double getAnimationInterval();
@@ -862,7 +862,7 @@ class cocos2d::CCDirector {
 	void purgeDirector();
 	bool pushScene(cocos2d::CCScene*);
 	void removeStatsLabel();
-	bool replaceScene(cocos2d::CCScene*);
+	bool replaceScene(cocos2d::CCScene*) = imac 0x48d110;
 	void resetSmoothFixCounter();
 	void reshapeProjection(cocos2d::CCSize const&);
 	void resume();
@@ -926,7 +926,7 @@ class cocos2d::CCSprite {
 	static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&);
 	static cocos2d::CCSprite* create();
 	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	static cocos2d::CCSprite* createWithSpriteFrameName(char const*);
+	static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = imac 0x284680;
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*);
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
 
@@ -1022,7 +1022,7 @@ class cocos2d::CCSprite {
 
 [[link(win, android)]]
 class cocos2d::CCLabelBMFont {
-	static cocos2d::CCLabelBMFont* create(char const*, char const*);
+	static cocos2d::CCLabelBMFont* create(char const*, char const*) = imac 0x5e0fa0;
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint);
@@ -1081,6 +1081,11 @@ class cocos2d::CCLabelBMFont {
 }
 
 [[link(win, android)]]
+class cocos2d::CCActionManager {
+	void addAction(cocos2d::CCAction*, cocos2d::CCNode*, bool) = imac 0x22f4d0;
+}
+
+[[link(win, android)]]
 class cocos2d::CCApplication {
 	virtual int run();
 	virtual void openURL(char const*) = m1 0x2b877c;
@@ -1110,7 +1115,7 @@ class cocos2d::CCArray {
 	void addObjectsFromArray(cocos2d::CCArray*);
 	unsigned int capacity() const;
 	bool containsObject(cocos2d::CCObject*) const;
-	unsigned int count() const;
+	unsigned int count() const = imac 0x72d2a0;
 	void exchangeObject(cocos2d::CCObject*, cocos2d::CCObject*);
 	void exchangeObjectAtIndex(unsigned int, unsigned int);
 	void fastRemoveObject(cocos2d::CCObject*);
@@ -1177,7 +1182,7 @@ class cocos2d::CCDictionary {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionFade {
-	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*);
+	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = imac 0xdc990;
 	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
 
 	// CCTransitionFade(cocos2d::CCTransitionFade const&);
@@ -1187,6 +1192,11 @@ class cocos2d::CCTransitionFade {
 	virtual void onExit();
 	virtual bool initWithDuration(float, cocos2d::CCScene*);
 	virtual bool initWithDuration(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
+}
+
+[[link(win, android)]]
+class cocos2d::CCCallFunc {
+	static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc) = imac 0x7b8f10;
 }
 
 [[link(win, android)]]
@@ -1290,7 +1300,7 @@ class cocos2d::CCMenu {
 
 [[link(win, android)]]
 class cocos2d::CCDelayTime {
-	static cocos2d::CCDelayTime* create(float);
+	static cocos2d::CCDelayTime* create(float) = imac 0x3ba690;
 
 	// CCDelayTime(cocos2d::CCDelayTime const&);
 	// CCDelayTime();

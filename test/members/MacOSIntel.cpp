@@ -16,14 +16,14 @@
 // GEODE_MEMBER_CHECK(EditorUI, m_updateTimeMarkers, 0x244);
 // GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 // GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x440);
-GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x1f8);
-GEODE_MEMBER_CHECK(EditorUI, m_updatedSpeedObjects, 0x30c);
+// GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x1f8);
+// GEODE_MEMBER_CHECK(EditorUI, m_updatedSpeedObjects, 0x30c);
 
 // // LevelEditorLayer
-// GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x5d8);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x35c0);
 // GEODE_MEMBER_CHECK(LevelEditorLayer, m_level, 0x618);
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3534);
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x3598);
+// GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3534);
+// GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x3598);
 
 // // PlayLayer
 // GEODE_MEMBER_CHECK(PlayLayer, unknown518, 0x518);
@@ -101,8 +101,9 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x3598);
 
 // GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x158);
 
-// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x780);
-// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc90);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x788);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_effectManager, 0x848);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc98);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe80);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
