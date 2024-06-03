@@ -5242,7 +5242,7 @@ class GameObject : CCSpritePlus {
 	virtual void activateObject() = m1 0x4eeb4c;
 	virtual void deactivateObject(bool) = m1 0x4eeed0;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = m1 0x4f3114;
-	virtual cocos2d::CCRect const& getObjectRect() = m1 0x4f31a0 = m1 0x4f318c;
+	virtual cocos2d::CCRect const& getObjectRect() = m1 0x4f318c;
 	virtual cocos2d::CCRect getObjectRect(float, float);
 	virtual TodoReturn getObjectRect2(float, float) = m1 0x4f3384;
 	virtual TodoReturn getObjectTextureRect() = m1 0x4f3448;
@@ -6441,7 +6441,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn activateEndTrigger(int, bool, bool) = m1 0xdf6d8;
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = m1 0xdf6dc;
 	virtual void toggleGlitter(bool) = m1 0xdf6e0;
-	virtual void destroyPlayer(PlayerObject*, GameObject*), m1 0xdf6e4;
+	virtual void destroyPlayer(PlayerObject*, GameObject*) = m1 0xdf6e4;
 	virtual void updateDebugDraw() = win 0x2015c0, m1 0xf2fe4;
 	virtual void addToSection(GameObject*) = win 0x2147c0, m1 0x10b35c;
 	virtual void addToGroup(GameObject*, int, bool) = win 0x214940, m1 0x109a60;
@@ -9184,7 +9184,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-	~LevelBrowserLayer() = m1 0x3f8e04 = m1 0x3f8e10;
+	~LevelBrowserLayer() = m1 0x3f8e10;
 
 	static LevelBrowserLayer* create(GJSearchObject*) = win 0x2b5760;
 
@@ -9953,7 +9953,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 
 [[link(android)]]
 class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
-	~LevelSelectLayer() = m1 0x3add30 = m1 0x3add3c;
+	~LevelSelectLayer() = m1 0x3add3c;
 
 	static LevelSelectLayer* create(int);
 
@@ -11829,7 +11829,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-	virtual ~PlayLayer() = m1 0x9a050 = m1 0x9a05c;
+	virtual ~PlayLayer() = m1 0x9a05c;
 	// PlayLayer();
 
 	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3827e0, m1 0x9a148;
@@ -11955,7 +11955,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn testTime() = m1 0xab568;
 	virtual void updateVerifyDamage() = m1 0xa7ee8;
 	virtual void updateAttemptTime(float) = win 0x391aa0, m1 0xa7f98;
-	virtual void updateVisibility(float) = m1 0xa4664 = win 0x38bfc0;
+	virtual void updateVisibility(float) = m1 0xa4664, win 0x38bfc0;
 	virtual TodoReturn opacityForObject(GameObject*) = m1 0xa63cc;
 	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int) = m1 0xa648c;
 	virtual TodoReturn activateEndTrigger(int, bool, bool) = win 0x388df0, m1 0xa367c;
