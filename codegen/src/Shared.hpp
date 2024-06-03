@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <unordered_set>
 #include <broma.hpp>
 #include <fmt/format.h>
 #include <fmt/ranges.h>
@@ -20,8 +21,8 @@ using namespace broma;
 #include "WindowsSymbol.hpp"
 
 std::string generateAddressHeader(Root const& root);
-std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& singleFolder);
-std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder);
+std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
+std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
 std::string generatePredeclareHeader(Root const& root);
 std::string generateBindingSource(Root const& root);
 std::string generateJsonInterface(Root const& root);
