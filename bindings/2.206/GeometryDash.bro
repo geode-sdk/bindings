@@ -11636,7 +11636,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setRotation(float);
 	virtual void setOpacity(unsigned char) = win 0x37bb00;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x37b320;
-	virtual void setFlipX(bool);
+	virtual void setFlipX(bool) = win 003807a0;
 	virtual void setFlipY(bool);
 	virtual void resetObject();
 	virtual cocos2d::CCPoint getRealPosition();
