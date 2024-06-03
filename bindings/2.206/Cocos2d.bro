@@ -588,7 +588,6 @@ class cocos2d::CCObject {
 	virtual int getTag() const;
 	virtual bool isEqual(cocos2d::CCObject const*) = m1 0x3f8c50;
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&) = m1 0x3f8c5c;
-	virtual void update(float) = m1 0x4ca18;
 	virtual void encodeWithCoder(DS_Dictionary*) = m1 0x3f8c84;
 	virtual bool canEncode() = m1 0x3f8c90;
 	virtual void setTag(int) = m1 0x3f8c7c;
@@ -656,8 +655,6 @@ class cocos2d::CCLayerRGBA {
 	virtual unsigned char getDisplayedOpacity() = m1 0x41ca98;
 	virtual unsigned char getOpacity() = m1 0x41ca88;
 	virtual void setOpacity(unsigned char) = m1 0x41caa8;
-	virtual void setOpacityModifyRGB(bool) = m1 0x9a7c;
-	virtual bool isOpacityModifyRGB() = m1 0x9a80;
 	virtual bool isCascadeColorEnabled() = m1 0x41d080;
 	virtual void setCascadeColorEnabled(bool) = m1 0x41d090;
 	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = m1 0x41cf4c;
@@ -895,8 +892,6 @@ class cocos2d::CCDirector {
 	virtual cocos2d::CCAccelerometer* getAccelerometer();
 	virtual void setAccelerometer(cocos2d::CCAccelerometer*);
 	virtual float getDeltaTime();
-	virtual void setSceneDelegate(cocos2d::CCSceneDelegate*);
-	virtual cocos2d::CCSceneDelegate* getSceneDelegate() const;
 }
 
 
@@ -916,8 +911,6 @@ class cocos2d::CCNodeRGBA {
 	virtual unsigned char getDisplayedOpacity() = m1 0x217380;
 	virtual unsigned char getOpacity() = m1 0x217370;
 	virtual void setOpacity(unsigned char) = m1 0x217390;
-	virtual void setOpacityModifyRGB(bool) = m1 0x4cbd4;
-	virtual bool isOpacityModifyRGB() = m1 0x4cbd8;
 	virtual bool isCascadeColorEnabled() = m1 0x217968;
 	virtual void setCascadeColorEnabled(bool) = m1 0x217978;
 	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = m1 0x217854;
@@ -1011,8 +1004,6 @@ class cocos2d::CCSprite {
 	virtual bool isFrameDisplayed(cocos2d::CCSpriteFrame*) = m1 0x22b370;
 	virtual cocos2d::CCSpriteFrame* displayFrame() = m1 0x22b414;
 	virtual void setDisplayFrameWithAnimationName(char const*, int) = m1 0x22b31c;
-	virtual bool isDirty() = m1 0x83350;
-	virtual void setDirty(bool) = m1 0x83358;
 	virtual void setTextureCoords(cocos2d::CCRect const&) = m1 0x229c68;
 	virtual void updateBlendFunc() = m1 0x22b570;
 	virtual void setReorderChildDirtyRecursively() = m1 0x22a6f8;
@@ -1025,8 +1016,6 @@ class cocos2d::CCSprite {
 	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = m1 0x22b204;
 	virtual void updateDisplayedOpacity(unsigned char) = m1 0x22b250;
 
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = m1 0x83338;
-	virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x83344;
 	virtual cocos2d::CCTexture2D* getTexture() = m1 0x22b708;
 	virtual void setTexture(cocos2d::CCTexture2D*) = m1 0x22b5c8;
 }
@@ -1094,7 +1083,6 @@ class cocos2d::CCLabelBMFont {
 [[link(win, android)]]
 class cocos2d::CCApplication {
 	virtual int run();
-	virtual void gameDidSave();
 	virtual void openURL(char const*) = m1 0x2b877c;
 }
 
@@ -1342,7 +1330,6 @@ class cocos2d::CCTextFieldTTF {
 	virtual bool canDetachWithIME();
 	virtual void insertText(const char* text, int len, cocos2d::enumKeyCodes keyCode);
 	virtual void deleteBackward();
-	virtual void deleteForward();
 	virtual const char* getContentText();
 }
 

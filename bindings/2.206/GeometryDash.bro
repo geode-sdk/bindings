@@ -645,7 +645,7 @@ class ButtonSprite : cocos2d::CCSprite {
 	}
 
 	static ButtonSprite* create(char const*, float);
-	static ButtonSprite* create(char const* a, int b, int c, float d, bool e, char const* f, char const* g, float h) {
+	static ButtonSprite* create(char const* a, int b, int c, float d, bool e, char const* f, char const* g, float h) = win inline {
         auto ret = new ButtonSprite();
         if (ret && ret->init(a, b, c, d, e, f, g, h)) {
             ret->autorelease();
@@ -656,7 +656,7 @@ class ButtonSprite : cocos2d::CCSprite {
 	}
 	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*);
 	static ButtonSprite* create(char const*, int, int, float, bool);
-	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float a, bool b, char const* bgSprite, bool noScaleSpriteForBG) {
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float a, bool b, char const* bgSprite, bool noScaleSpriteForBG) = win inline {
         auto ret = new ButtonSprite();
         if (ret && ret->init(topSprite, width, unused, height, a, b, bgSprite, noScaleSpriteForBG)) {
             ret->autorelease();
@@ -930,7 +930,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	}
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x43d60;
-	inline void setSizeMult(float mult) {
+	inline void setSizeMult(float mult) = win inline {
 		//inlined on windows, member is in CCMenuItemSprite
 		m_fSizeMult = mult;
 	}
@@ -2629,7 +2629,7 @@ class EditButtonBar : cocos2d::CCNode {
 	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0xd0e10;
 	void onLeft(cocos2d::CCObject* sender);
 	void onRight(cocos2d::CCObject* sender);
-	void reloadItems(int rowCount, int columnCount) {
+	void reloadItems(int rowCount, int columnCount) = win inline {
 		if (m_buttonArray) this->loadFromItems(m_buttonArray, rowCount, columnCount, false);
 	}
 
@@ -4338,7 +4338,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void markLevelAsRatedDemon(int);
 	void markLevelAsRatedStars(int);
 	void markLevelAsReported(int);
-	void markListAsDownloaded(int id) {
+	void markListAsDownloaded(int id) = win inline {
 		this->markLevelAsDownloaded(-id);
 	}
 	void messageWasRemoved(int, bool);
@@ -5595,7 +5595,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getItemKey(int, int);
 	int getItemUnlockState(int, UnlockType) = win 0x1d7230;
 	int getItemUnlockStateLite(int, UnlockType);
-	gd::string getLevelKey(GJGameLevel* level) {
+	gd::string getLevelKey(GJGameLevel* level) = win inline {
 		return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Local, level->m_dailyID, level->m_gauntletLevel);
 	}
 	gd::string getLevelKey(int, bool, bool, bool) = win 0x1d3950;
@@ -8668,7 +8668,7 @@ class GManager : cocos2d::CCNode {
 		saveGMTo(m_fileName);
 	}
 	TodoReturn saveData(DS_Dictionary*, gd::string);
-	void saveGMTo(gd::string) = win 0x9999999;
+	void saveGMTo(gd::string) = win 0x9999999, m1 0x666666;
 	TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
 	inline GManager() {}
 
@@ -10027,7 +10027,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 
 	gd::string getSaveString() = win 0x2d2280;
 	static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary*) = win 0x2d3bb0;
-	static LevelSettingsObject* objectFromString(gd::string const& str) {
+	static LevelSettingsObject* objectFromString(gd::string const& str) = win inline {
 		return objectFromDict(GameToolbox::stringSetupToDict(str, ","));
 	}
 	TodoReturn setupColorsFromLegacyMode(cocos2d::CCDictionary*);
@@ -10309,7 +10309,7 @@ class LoadingLayer : cocos2d::CCLayer {
 class LocalLevelManager : GManager {
 	// virtual ~LocalLevelManager();
 
-	static LocalLevelManager* sharedState() = win 0x30f5d0;
+	static LocalLevelManager* sharedState() = win 0x30f5d0, m1 0x666666;
 	inline static LocalLevelManager* get() {
         return LocalLevelManager::sharedState();
     }
@@ -11521,7 +11521,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void runNormalRotation() {
 		this->runNormalRotation(false, 1.0f);
 	}
-	void runNormalRotation(bool, float) = win 0x9999999;
+	void runNormalRotation(bool, float) = win 0x9999999, mac 0x666666;
 	void runRotateAction(bool, int) = win 0x36b480;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x37b3b0;
@@ -11591,7 +11591,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerFrame(int);
 	void updatePlayerGlow();
 	void updatePlayerJetpackFrame(int);
-	void updatePlayerRobotFrame(int id) {
+	void updatePlayerRobotFrame(int id) = win inline {
         if (id < 1) id = 1;
         else if (id > 0x43) id = 0x44;
 
@@ -11600,7 +11600,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerRollFrame(int);
 	void updatePlayerScale();
 	void updatePlayerShipFrame(int);
-	void updatePlayerSpiderFrame(int id) {
+	void updatePlayerSpiderFrame(int id) = win inline {
         if (id < 1) id = 1;
         else if (id > 0x44) id = 0x45;
 
@@ -11854,7 +11854,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset();
 	void delayedResetLevel();
 	void fullReset();
-	float getCurrentPercent() {
+	float getCurrentPercent() = win inline {
 		float percent;
 
 		if (m_level->m_timestamp > 0) {
@@ -11871,7 +11871,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 			return percent;
 		}
 	}
-	int getCurrentPercentInt() {
+	int getCurrentPercentInt() = win inline {
 		return std::floorf(this->getCurrentPercent());
 	}
 	TodoReturn getEndPosition();
@@ -14699,7 +14699,7 @@ class SimplePlayer : cocos2d::CCSprite {
 		m_secondLayer->setColor(color);
 		updateColors();
 	}
-	void updateColors() = win 0x267b60;
+	void updateColors() = win 0x267b60, m1 0x666666;
 	void updatePlayerFrame(int, IconType) = win 0x267f20;
 
 	virtual void setOpacity(unsigned char) = win 0x268680, m1 0x2fe1c4;
