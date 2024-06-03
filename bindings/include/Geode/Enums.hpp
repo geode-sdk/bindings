@@ -729,6 +729,7 @@ enum class IconType {
     Jetpack = 8,
     DeathEffect = 98,
     Special = 99,
+    Item = 100,
     ShipFire = 101,
 };
 
