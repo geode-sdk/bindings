@@ -6976,7 +6976,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn demonIconForDifficulty(DemonDifficultyType);
 	TodoReturn generateSettingsString();
 	gd::string getAudioFileName();
-	int getAverageDifficulty();
+	int getAverageDifficulty() = win 0x1649c0;
 	char const* getCoinKey(int);
 	TodoReturn getLastBuildPageForTab(int);
 	TodoReturn getLengthKey(int length, bool platformer);
