@@ -151,7 +151,7 @@ class AchievementManager : cocos2d::CCNode {
 	static AchievementManager* sharedState() = win 0x7d50;
 
 	TodoReturn achievementForUnlock(int, UnlockType);
-	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int);
+	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x7ea0;
 	void addManualAchievements() = win 0x83c0;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
 	TodoReturn checkAchFromUnlock(char const*);
@@ -163,10 +163,7 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn getAllAchievements();
 	cocos2d::CCArray* getAllAchievementsSorted(bool);
 	bool isAchievementAvailable(gd::string);
-	/*bool isAchievementEarned(char const* ach) {
-		int iVal1 = AchievementManager::percentForAchievement(ach);
-		return 99 < iVal1;
-	}*/
+	bool isAchievementEarned(char const* ach) = win 0x38c40;
 	TodoReturn limitForAchievement(gd::string);
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
 	TodoReturn notifyAchievementWithID(char const*);
@@ -3893,7 +3890,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseEffect(unsigned int);
 	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int);
-	void playEffect(gd::string path, float speed, float p2, float volume);
+	void playEffect(gd::string path, float speed, float p2, float volume) = win 0x55f60;
 	void playEffect(gd::string path);
 	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup);
 	TodoReturn playEffectAsync(gd::string path);
@@ -4805,14 +4802,14 @@ class GameManager : GManager {
 	TodoReturn removeIconDelegate(int);
 	TodoReturn reorderKey(int, bool);
 	void reportAchievementWithID(char const*, int, bool) = win 0x175280;
-	TodoReturn reportPercentageForLevel(int, int, bool);
+	void reportPercentageForLevel(int, int, bool) = win 0x1748a0;
 	TodoReturn resetAchievement(gd::string);
 	TodoReturn resetAdTimer();
 	TodoReturn resetAllIcons();
 	TodoReturn resetCoinUnlocks();
 	TodoReturn resetDPadSettings(bool);
 	TodoReturn resolutionForKey(int);
-	void returnToLastScene(GJGameLevel*);
+	void returnToLastScene(GJGameLevel*) = win 0x180350;
 	TodoReturn rewardedVideoAdFinished(int);
 	TodoReturn rewardedVideoHidden();
 	TodoReturn rewardedVideoHiddenDelayed();
@@ -4826,7 +4823,7 @@ class GameManager : GManager {
 	void setPlayerUserID(int);
 	void setUGV(char const*, bool) = win 0x17a310;
 	TodoReturn setupGameAnimations();
-	gd::string sheetNameForIcon(int, int);
+	gd::string sheetNameForIcon(int, int) = win 0x179460;
 	TodoReturn shortenAdTimer(float);
 	TodoReturn shouldShowInterstitial(int, int, int);
 	void showInterstitial();
@@ -5557,7 +5554,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn awardDiamondsForLevel(GJGameLevel*);
 	TodoReturn awardSecretKey();
 	TodoReturn checkAchievement(char const*) = win 0x1cb460;
-	TodoReturn checkCoinAchievement(GJGameLevel*);
+	void checkCoinAchievement(GJGameLevel*) = win 0x1d3430;
 	void checkCoinsForLevel(GJGameLevel*);
 	TodoReturn claimListReward(GJLevelList*);
 	TodoReturn collectReward(GJRewardType, GJRewardItem*);
@@ -5586,7 +5583,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getBonusDiamonds(int);
 	GJChallengeItem* getChallenge(int) = win 0x1d76f0;
 	TodoReturn getChallengeKey(GJChallengeItem*);
-	int getCollectedCoinsForLevel(GJGameLevel*);
+	int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1d37d0;
 	TodoReturn getCompletedMapPacks();
 	TodoReturn getCurrencyKey(GJGameLevel*);
 	TodoReturn getDailyLevelKey(int);
@@ -5637,7 +5634,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool hasCompletedStarLevel(GJGameLevel*);
 	bool hasPendingUserCoin(char const*) = win 0x1d5a00;
 	bool hasRewardBeenCollected(GJRewardType, int);
-	bool hasSecretCoin(char const*);
+	bool hasSecretCoin(char const*) = win 0x1d5ac0;
 	bool hasUserCoin(char const*) = win 0x1d5880;
 	TodoReturn incrementActivePath(int);
 	TodoReturn incrementChallenge(GJChallengeType, int) = win 0x1d7970;
@@ -9866,11 +9863,11 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	TodoReturn addSecretCoin();
 	TodoReturn addSecretDoor();
 	bool init(GJGameLevel*) = win 0x2f9570;
-	void onInfo(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender) = win 0x2fd820;
 	void onMoreGames(cocos2d::CCObject* sender);
 	void onPlay(cocos2d::CCObject* sender) = win 0x2fd2e0;
 	void onSecretDoor(cocos2d::CCObject* sender);
-	void onTheTower(cocos2d::CCObject* sender);
+	void onTheTower(cocos2d::CCObject* sender) = win 0x2fb760;
 	TodoReturn playCoinEffect();
 	TodoReturn playStep2();
 	TodoReturn playStep3();
@@ -10127,7 +10124,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 
 [[link(android)]]
 class LevelTools {
-	static int artistForAudio(int);
+	static int artistForAudio(int) = win 0x308880;
 	static gd::string base64DecodeString(gd::string);
 	static gd::string base64EncodeString(gd::string);
 	static cocos2d::CCDictionary* createStarPackDict();
@@ -10320,7 +10317,7 @@ class LocalLevelManager : GManager {
 	TodoReturn getCreatedLevels(int);
 	TodoReturn getCreatedLists(int);
 	TodoReturn getLevelsInNameGroups();
-	gd::string getMainLevelString(int);
+	gd::string getMainLevelString(int) = win 0x30f930;
 	TodoReturn markLevelsAsUnmodified();
 	TodoReturn moveLevelToTop(GJGameLevel*);
 	TodoReturn reorderLevels();
@@ -10836,9 +10833,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void parseMusicLibrary();
 	void parseSFXLibrary();
 	gd::string pathForSFX(int);
-	gd::string pathForSFXFolder(int);
+	gd::string pathForSFXFolder(int) = win 0x31e5e0;
 	gd::string pathForSong(int);
-	gd::string pathForSongFolder(int);
+	gd::string pathForSongFolder(int) = win 0x31e2b0;
 	void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
 	callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
 	void removeDLFromActive(char const*);
@@ -11833,7 +11830,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual ~PlayLayer() = m1 0x9a05c;
 	// PlayLayer();
 
-	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3827e0, m1 0x9a148;
+	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = m1 0x9a148;
 	static PlayLayer* get() {
 		return GameManager::get()->m_playLayer;
 	}
@@ -11914,7 +11911,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn saveDynamicSaveObjects(gd::vector<SavedObjectStateRef>&);
 	TodoReturn scanActiveSaveObjects();
 	TodoReturn scanDynamicSaveObjects() = win 0x394aa0;
-	static cocos2d::CCScene* scene(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = m1 0x9a088;
+	static cocos2d::CCScene* scene(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3827e0, m1 0x9a088;
 	TodoReturn screenFlipObject(GameObject*);
 	void setDamageVerifiedIdx(int);
 	void setupHasCompleted() = win 0x3835e0;
