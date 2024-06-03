@@ -2741,7 +2741,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onCreateLoop(cocos2d::CCObject* sender);
 	void onCreateTemplate(cocos2d::CCObject* sender);
 	void onExitEditor(cocos2d::CCObject* sender) = win 0xda950;
-	void onExitNoSave(cocos2d::CCObject* sender) = win 0xdaa20;
+	void onExitNoSave(cocos2d::CCObject* sender);
 	void onHelp(cocos2d::CCObject* sender);
 	void onKeybindings(cocos2d::CCObject* sender);
 	void onNewGroupX(cocos2d::CCObject* sender);
@@ -2750,10 +2750,10 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onPasteWColor(cocos2d::CCObject* sender);
 	void onReGroup(cocos2d::CCObject* sender);
 	void onResetUnusedColors(cocos2d::CCObject* sender);
-	void onResume(cocos2d::CCObject* sender) = win 0xd9d40;
-	void onSave(cocos2d::CCObject* sender) = win 0xda7e0;
-	void onSaveAndExit(cocos2d::CCObject* sender) = win 0xda910;
-	void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xda5a0;
+	void onResume(cocos2d::CCObject* sender);
+	void onSave(cocos2d::CCObject* sender);
+	void onSaveAndExit(cocos2d::CCObject* sender);
+	void onSaveAndPlay(cocos2d::CCObject* sender);
 	void onSelectAll(cocos2d::CCObject* sender);
 	void onSelectAllLeft(cocos2d::CCObject* sender);
 	void onSelectAllRight(cocos2d::CCObject* sender);
@@ -2826,7 +2826,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn closeLiveHSVSelect();
 	void colorSelectClosed(cocos2d::ccColor3B);
 	void constrainGameLayerPosition();
-	void constrainGameLayerPosition(float, float) = win 0x11e960;
+	void constrainGameLayerPosition(float, float);
 	TodoReturn convertKeyBasedOnNeighbors(int, int, cocos2d::CCPoint, cocos2d::CCArray*);
 	TodoReturn convertToBaseKey(int);
 	TodoReturn copyObjects(cocos2d::CCArray*, bool, bool);
@@ -2914,7 +2914,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn liveEditColorUsable();
 	TodoReturn menuItemFromObjectString(gd::string, int);
 	cocos2d::CCPoint moveForCommand(EditCommand command);
-	void moveGamelayer(cocos2d::CCPoint) = win 0xdf250;
+	void moveGamelayer(cocos2d::CCPoint);
 	void moveObject(GameObject*, cocos2d::CCPoint);
 	void moveObjectCall(cocos2d::CCObject*);
 	void moveObjectCall(EditCommand) = win 0x11bb90;
@@ -2974,7 +2974,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn processSmartObjectsFromType(int, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*);
 	void recreateButtonTabs();
 	TodoReturn redoLastAction(cocos2d::CCObject*);
-	void reloadCustomItems() = win 0xe1190;
+	void reloadCustomItems();
 	TodoReturn removeOffset(GameObject*);
 	TodoReturn replaceGroupID(GameObject*, int, int);
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool);
@@ -2986,7 +2986,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType, bool) = win 0x11d460;
 	void selectAll();
 	void selectAllWithDirection(bool);
-	void selectBuildTab(int) = win 0x110b20;
+	void selectBuildTab(int);
 	void selectObject(GameObject*, bool);
 	void selectObjects(cocos2d::CCArray*, bool);
 	void selectObjectsInRect(cocos2d::CCRect);
@@ -3027,7 +3027,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn tryUpdateTimeMarkers();
 	TodoReturn undoLastAction(cocos2d::CCObject*) = win 0x10dcc0;
 	void updateButtons() = win 0xde380;
-	TodoReturn updateCreateMenu(bool) = win 0x10b460;
+	TodoReturn updateCreateMenu(bool);
 	TodoReturn updateDeleteButtons() = win 0xe3b50;
 	TodoReturn updateDeleteMenu();
 	TodoReturn updateEditButtonColor(int, cocos2d::ccColor3B);
@@ -6272,7 +6272,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*);
 	TodoReturn processStateObjects();
 	TodoReturn processTransformActions(bool);
-	void queueButton(int, bool, bool); // inlined on windows
+	void queueButton(int, bool, bool);
 	TodoReturn reAddToStickyGroup(GameObject*);
 	TodoReturn recordAction(int, bool, bool);
 	TodoReturn rectIntersectsCircle(cocos2d::CCRect, cocos2d::CCPoint, float);
@@ -6715,7 +6715,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
 
 	static gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x292d60;
 	bool init(int, GJDifficultyName);
-	void updateDifficultyFrame(int, GJDifficultyName);
+	void updateDifficultyFrame(int, GJDifficultyName) = win 0x292e20;
 	void updateFeatureState(GJFeatureState) = win 0x292f40;
 	void updateFeatureStateFromLevel(GJGameLevel*);
 
@@ -6878,7 +6878,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn runTimerTrigger(int, double, bool, int, gd::vector<int> const&, int, int);
 	TodoReturn runTouchTriggerCommand(int, bool, TouchTriggerType, TouchTriggerControl, bool, gd::vector<int> const&, int, int);
 	TodoReturn saveCompletedMove(int, double, double);
-	void saveToState(EffectManagerState&) = win 0x251ba0;
+	void saveToState(EffectManagerState&);
 	void setColorAction(ColorAction*, int);
 	void setFollowing(int, int, bool);
 	void setupFromString(gd::string);
@@ -11235,13 +11235,13 @@ class PauseLayer : CCBlockLayer {
 	void musicSliderChanged(cocos2d::CCObject*);
 	void onEdit(cocos2d::CCObject* sender) = win 0x35c8f0;
 	void onHelp(cocos2d::CCObject* sender);
-	void onNormalMode(cocos2d::CCObject* sender) = win 0x35c640;
+	void onNormalMode(cocos2d::CCObject* sender);
 	void onPracticeMode(cocos2d::CCObject* sender) = win 0x35c560;
 	void onQuit(cocos2d::CCObject* sender) = win 0x35cd70;
 	void onRecordReplays(cocos2d::CCObject* sender);
 	void onReplay(cocos2d::CCObject* sender);
-	void onRestart(cocos2d::CCObject* sender) = win 0x35c7b0;
-	void onRestartFull(cocos2d::CCObject* sender) = win 0x35c850;
+	void onRestart(cocos2d::CCObject* sender);
+	void onRestartFull(cocos2d::CCObject* sender);
 	void onResume(cocos2d::CCObject* sender) = win 0x35c720;
 	void onSettings(cocos2d::CCObject* sender);
 	void onTime(cocos2d::CCObject* sender);
@@ -11845,7 +11845,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void addToGroupOld(GameObject*);
 	TodoReturn applyCustomEnterEffect(GameObject*, bool);
 	TodoReturn applyEnterEffect(GameObject*, int, bool);
-	bool canPauseGame(); //inlined on windows
+	bool canPauseGame();
 	TodoReturn checkpointWithID(int);
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
 	TodoReturn commitJumps();
