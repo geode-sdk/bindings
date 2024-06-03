@@ -451,12 +451,12 @@ public class ScriptWrapper {
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("unordered_set")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x40);
+            var point = new StructureDataType(cat, cat.getName(), 0x60);
             // todo: idk the structure...
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("set")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x10);
+            var point = new StructureDataType(cat, cat.getName(), 0x30);
             // todo: idk the structure...
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
