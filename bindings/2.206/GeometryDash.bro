@@ -7289,9 +7289,6 @@ class GJGameState {
 	bool m_unkBool20;
 	bool m_unkBool21;
 	bool m_unkBool22;
-	bool m_unkBool23;
-	bool m_unkBool24;
-	bool m_unkBool25;
 	unsigned int m_unkUint14;
 	bool m_unkBool26;
 	bool m_cameraShakeEnabled;
