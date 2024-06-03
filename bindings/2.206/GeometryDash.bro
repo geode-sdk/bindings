@@ -2780,7 +2780,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
 	virtual void keyBackClicked() = win 0xdac80;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0xdac90;
-	virtual void customSetup();
+	virtual void customSetup() = win 0xd6d50;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xdab60;
 
 	bool m_saved;
@@ -2912,7 +2912,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void moveGamelayer(cocos2d::CCPoint);
 	void moveObject(GameObject*, cocos2d::CCPoint);
 	void moveObjectCall(cocos2d::CCObject*);
-	void moveObjectCall(EditCommand);
+	void moveObjectCall(EditCommand) = win 0x11bb90;
 	TodoReturn offsetForKey(int);
 	TodoReturn onAssignNewGroupID();
 	void onColorFilter(cocos2d::CCObject* sender);
@@ -3014,7 +3014,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn toggleSwipe(cocos2d::CCObject*) = win 0x10c480;
 	void transformObject(GameObject*, EditCommand, bool);
 	void transformObjectCall(cocos2d::CCObject*);
-	void transformObjectCall(EditCommand);
+	void transformObjectCall(EditCommand) = win 0x11c340;
 	void transformObjects(cocos2d::CCArray*, cocos2d::CCPoint, float, float, float, float, float, float);
 	TodoReturn transformObjectsActive();
 	TodoReturn transformObjectsReset();
@@ -10520,7 +10520,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	void onGPSignIn(cocos2d::CCObject* sender);
 	void onGPSignOut(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
-	void onKeybindings(cocos2d::CCObject* sender);
+	void onKeybindings(cocos2d::CCObject* sender) = win 0xd9640;
 	void onNextPage(cocos2d::CCObject* sender);
 	void onParental(cocos2d::CCObject* sender);
 	void onPrevPage(cocos2d::CCObject* sender);
@@ -15623,7 +15623,7 @@ class UILayer : cocos2d::CCLayerColor {
 	TodoReturn editorPlaytest(bool);
 	void enableEditorMode();
 	TodoReturn enableMenu();
-	void handleKeypress(cocos2d::enumKeyCodes, bool);
+	void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x4a0b80;
 	bool init(GJBaseGameLayer*) = win 0x49fe60;
 	bool isJumpButtonPressed(bool);
 	void onCheck(cocos2d::CCObject* sender);
