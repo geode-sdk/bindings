@@ -7332,6 +7332,7 @@ class GJGameState {
 	bool m_unkBool30;
 	unsigned int m_unkUint20;
 	bool m_unkBool31;
+	PAD = win 0x8, mac 0x8, android 0x8, ios 0x8;
 }
 
 [[link(android)]]
