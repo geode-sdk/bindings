@@ -7318,7 +7318,7 @@ class GJGameState {
 	bool m_unkBool28;
 	bool m_unkBool29;
 	unsigned int m_unkUint17;
-	gd::unordered_map<int, std::vector<int>> unkUMap8;
+	gd::unordered_map<int, std::vector<int>> m_unkUMap8;
 	gd::map<std::pair<int,int>, SFXTriggerInstance> proximityVolumeRelated;
 	gd::unordered_map<int, SongChannelState> m_songChannelStates;
 	gd::unordered_map<int, std::vector<SongTriggerState>> m_songTriggerStateVectors;
@@ -7330,7 +7330,8 @@ class GJGameState {
 	bool m_unkBool31;
 	unsigned int m_unkUint20;
 	bool m_unkBool32;
-	PAD = win 0x8, mac 0x8, android 0x8, ios 0x8;
+	unsigned int m_unkUint21;
+	unsigned int m_unkUint22;
 }
 
 [[link(android)]]
