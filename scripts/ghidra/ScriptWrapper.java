@@ -318,14 +318,14 @@ public class ScriptWrapper {
 
         cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
         var stringDataUnion = new UnionDataType(cat, cat.getName());
-        stringDataUnion.add(new PointerDataType(CharDataType.dataType), 0x4, "ptr", "");
+        stringDataUnion.add(new PointerDataType(CharDataType.dataType), 0x8, "ptr", "");
         stringDataUnion.add(new ArrayDataType(CharDataType.dataType, 0x10, 0x1), 0x10, "data", "SSO");
 
         cat = this.createCategoryAll(category.extend("gd", "string"));
         var string = new StructureDataType(cat, cat.getName(), 0x0);
         string.add(stringDataUnion, 0x10, "data", "String data with SSO");
-        string.add(IntegerDataType.dataType, 0x4, "length", "The length of the string without the terminating null byte");
-        string.add(IntegerDataType.dataType, 0x4, "capacity", "The capacity of the string buffer");
+        string.add(LongLongDataType.dataType, 0x8, "length", "The length of the string without the terminating null byte");
+        string.add(LongLongDataType.dataType, 0x8, "capacity", "The capacity of the string buffer");
 
         manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
 
@@ -362,7 +362,6 @@ public class ScriptWrapper {
         color3B.add(ByteDataType.dataType, 0x1, "r", "Red component");
         color3B.add(ByteDataType.dataType, 0x1, "g", "Green component");
         color3B.add(ByteDataType.dataType, 0x1, "b", "Blue component");
-        color3B.add(Undefined1DataType.dataType);
         manager.addDataType(color3B, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::ccColor4B
@@ -436,28 +435,28 @@ public class ScriptWrapper {
 
         if (templated.startsWith("vector")) {
             var point = new StructureDataType(cat, cat.getName(), 0x0);
-            point.add(PointerDataType.dataType, 0x4, "start", "Pointer to the first element in the vector");
-            point.add(PointerDataType.dataType, 0x4, "last", "Pointer to one past the last element in the vector");
-            point.add(PointerDataType.dataType, 0x4, "capacity", "Pointer to the end of the current vector allocation");
+            point.add(PointerDataType.dataType, 0x8, "start", "Pointer to the first element in the vector");
+            point.add(PointerDataType.dataType, 0x8, "last", "Pointer to one past the last element in the vector");
+            point.add(PointerDataType.dataType, 0x8, "capacity", "Pointer to the end of the current vector allocation");
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("unordered_map")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x20);
+            var point = new StructureDataType(cat, cat.getName(), 0x40);
             // todo: idk the structure...
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("map")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x8);
+            var point = new StructureDataType(cat, cat.getName(), 0x10);
             // todo: idk the structure...
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("unordered_set")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x20);
+            var point = new StructureDataType(cat, cat.getName(), 0x40);
             // todo: idk the structure...
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("set")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x8);
+            var point = new StructureDataType(cat, cat.getName(), 0x10);
             // todo: idk the structure...
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
