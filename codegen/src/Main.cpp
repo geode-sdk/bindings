@@ -7,7 +7,8 @@ using namespace codegen;
 std::map<void const*, size_t> codegen::idMap;
 
 std::string generateMacHeader(std::string filebase, std::string file_ext) {
-    return fmt::format(R"GEN(
+    return fmt::format(R"GEN(#include <Geode/platform/platform.hpp>
+
 #ifdef GEODE_IS_ARM_MAC
 #include "{0}Arm.{1}"
 #else
