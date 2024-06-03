@@ -900,13 +900,13 @@ class CCLightStrip : cocos2d::CCNode {
 	virtual void draw();
 	virtual void updateTweenAction(float value, char const* keyword);
 	float m_objectWidth;
-    	float m_toWidth;
-   	float m_toHeight;
-    	float m_duration;
+	float m_toWidth;
+	float m_toHeight;
+	float m_duration;
 	cocos2d::ccColor4B m_color;
-    	float m_opacity;
-    	float m_width;
-    	float m_height;
+	float m_opacity;
+	float m_width;
+	float m_height;
 }
 
 [[link(android)]]
@@ -1819,7 +1819,6 @@ class CommunityCreditNode : cocos2d::CCNode {
 }
 
 [[link(android)]]
-	void onNCSBrowser(cocos2d::CCObject* sender);
 class CommunityCreditsPage : FLAlertLayer {
 	// virtual ~CommunityCreditsPage();
 
@@ -1858,7 +1857,6 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 	virtual void textChanged(CCTextInputNode*) = win 0x95d50;
 }
 
-	void onInfo(cocos2d::CCObject* sender);
 [[link(android)]]
 class ConfigureValuePopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~ConfigureValuePopup();
@@ -2312,6 +2310,7 @@ class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate
 	void onClose(cocos2d::CCObject* sender);
 	void onCreateLines(cocos2d::CCObject* sender);
 	void onMusicBrowser(cocos2d::CCObject* sender);
+	void onNCSBrowser(cocos2d::CCObject* sender);
 	void onNewgroundsBrowser(cocos2d::CCObject* sender);
 	void onOptions(cocos2d::CCObject* sender);
 	void onSearch(cocos2d::CCObject* sender);
@@ -2350,6 +2349,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onDelete(cocos2d::CCObject* sender);
 	void onDownload(cocos2d::CCObject* sender);
 	void onGetSongInfo(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender);
 	void onMore(cocos2d::CCObject* sender);
 	void onPlayback(cocos2d::CCObject* sender);
 	void onSelect(cocos2d::CCObject* sender);
@@ -2595,7 +2595,6 @@ class DrawGridLayer : cocos2d::CCLayer {
 	LevelEditorLayer* m_editorLayer;
 }
 
-	void onRestartCheckpoint(cocos2d::CCObject* sender);
 [[link(android)]]
 class DungeonBarsSprite : cocos2d::CCNode {
 	// virtual ~DungeonBarsSprite();
@@ -3482,6 +3481,7 @@ class EndLevelLayer : GJDropDownLayer {
 	void onLevelLeaderboard(cocos2d::CCObject* sender);
 	void onMenu(cocos2d::CCObject* sender);
 	void onReplay(cocos2d::CCObject* sender);
+	void onRestartCheckpoint(cocos2d::CCObject* sender);
 	void playCoinEffect(float);
 	void playCurrencyEffect(float);
 	void playDiamondEffect(float);
