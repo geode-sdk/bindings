@@ -6441,8 +6441,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn activateEndTrigger(int, bool, bool);
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&);
 	virtual void toggleGlitter(bool);
-	virtual void destroyPlayer(PlayerObject*, GameObject*) = win 0x2015c0;
-	virtual void updateDebugDraw() = win 0x216dc0;
+	virtual void destroyPlayer(PlayerObject*, GameObject*);
+	virtual void updateDebugDraw() = win 0x2015c0;
 	virtual void addToSection(GameObject*) = win 0x2147c0;
 	virtual void addToGroup(GameObject*, int, bool) = win 0x214940;
 	virtual void removeFromGroup(GameObject*, int) = win 0x2187e0;
@@ -11903,7 +11903,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn processLoadedMoveActions();
 	TodoReturn queueCheckpoint();
 	void removeAllObjects();
-	void removeCheckpoint(bool);
+	void removeCheckpoint(bool) = win 0x394910;
 	void removeFromGroupOld(GameObject*);
 	void resetLevel();
 	void resetLevelFromStart();
