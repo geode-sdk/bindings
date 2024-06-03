@@ -1540,9 +1540,17 @@ class CheckpointGameObject : EffectGameObject {
 [[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState)]]
 class CheckpointObject : cocos2d::CCNode {
 	// virtual ~CheckpointObject();
-	// CheckpointObject();
+	CheckpointObject() = win 0x381f50;
 
-	static CheckpointObject* create();
+	static CheckpointObject* create() = win inline {
+		auto ret = new CheckpointObject();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	TodoReturn getObject();
 	void setObject(GameObject*);
@@ -5040,7 +5048,7 @@ class GameManager : GManager {
 [[link(android)]]
 class GameObject : CCSpritePlus {
 	// virtual ~GameObject();
-	// GameObject();
+	GameObject() = win 0x133690;
 
 	TodoReturn addColorSprite(gd::string);
 	TodoReturn addColorSpriteToParent(bool);
@@ -5073,7 +5081,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn canRotateFree();
 	TodoReturn colorForMode(int, bool);
 	TodoReturn commonInteractiveSetup();
-	void commonSetup();
+	void commonSetup() = win 0x183d30;
 	TodoReturn copyGroups(GameObject*) = win 0x192980;
 	TodoReturn createAndAddParticle(int, char const*, int, cocos2d::tCCPositionType);
 	TodoReturn createColorGroupContainer(int);
@@ -5081,7 +5089,18 @@ class GameObject : CCSpritePlus {
 	void createGroupContainer(int);
 	TodoReturn createOpacityGroupContainer(int);
 	TodoReturn createSpriteColor(int);
-	static GameObject* createWithFrame(char const*);
+	static GameObject* createWithFrame(char const* name) = win inline {
+		auto ret = new GameObject();
+		ret->m_eObjType = cocos2d::CCObjectType::GameObject;
+		if (ret->initWithSpriteFrameName(name)) {
+			ret->commonSetup();
+			ret->m_bUnkBool2 = true;
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 	static GameObject* createWithKey(int);
 	void deselectObject(); // = win 0x141b70; actually updateObjectEditorColor, source: LevelEditorLayer::updateVisibility
 	inline void destroyObject() {
@@ -5246,7 +5265,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn addMainSpriteToParent(bool) = m1 0x4f5a14;
 	virtual void resetObject() = m1 0x4ee694;
 	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x173904;
-	virtual void activateObject() = m1 0x4eeb4c;
+	virtual void activateObject() = m1 0x4eeb4c, win 0x186b20;
 	virtual void deactivateObject(bool) = m1 0x4eeed0;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = m1 0x4f3114;
 	virtual cocos2d::CCRect const& getObjectRect() = m1 0x4f318c;
@@ -5254,7 +5273,7 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn getObjectRect2(float, float) = m1 0x4f3384;
 	virtual TodoReturn getObjectTextureRect() = m1 0x4f3448;
 	virtual cocos2d::CCPoint getRealPosition() = m1 0x4f36a0;
-	virtual void setStartPos(cocos2d::CCPoint) = m1 0x4ee578;
+	virtual void setStartPos(cocos2d::CCPoint) = m1 0x4ee578, win 0x186590;
 	virtual void updateStartValues() = m1 0x4ee9dc;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x326d1c;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x4f96a0;
@@ -9667,7 +9686,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2dfdb0, m1 0x26028c;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2d9d60, m1 0x25e098;
 
-	void* m_unk0;
+	bool m_isBusy;
 	cocos2d::CCMenu* m_playBtnMenu;
 	GJGameLevel* m_level;
 	cocos2d::CCArray* m_coins;
@@ -9881,7 +9900,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	virtual void registerWithTouchDispatcher() = m1 0x3b364c;
 	virtual void dialogClosed(DialogLayer*) = win 0x2fd200, m1 0x3b3254;
 
-	void* m_unk;
+	bool m_isBusy;
 	GJGameLevel* m_level;
 }
 
@@ -11333,7 +11352,7 @@ class PlayerButtonCommand {
 class PlayerCheckpoint : cocos2d::CCNode {
 	// virtual ~PlayerCheckpoint();
 
-	static PlayerCheckpoint* create();
+	static PlayerCheckpoint* create() = win 0x3979a0;
 
 	virtual bool init() = m1 0xab20c;
 
