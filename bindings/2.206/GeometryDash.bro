@@ -1106,12 +1106,21 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 
 	TodoReturn constraintContent();
 	TodoReturn doConstraintContent(bool);
-	TodoReturn getMaxY();
-	TodoReturn getMinY();
+	inline float getMaxY() {
+		return m_scrollLimitBottom;
+	}
+	inline float getMinY() {
+		return this->getContentSize().height - m_contentLayer->getContentSize().height - m_scrollLimitTop;
+	}
 	void moveToTop() = win 0x46180, imac 0x438240, m1 0x9999999;
 	void moveToTopWithOffset(float) = win 0x460e0, imac 0x4381a0, m1 0x9999999;
 	TodoReturn scrollingEnd();
-	void scrollLayer(float) = win 0x9999999, imac 0x438e00;
+	void scrollLayer(float offset) = win inline, imac 0x438e00, m1 0x3ab7bc {
+		float y = m_contentLayer->getPositionY() + offset;
+		float minY = getMinY();
+		float maxY = getMaxY();
+		m_contentLayer->setPositionY(y < minY ? minY : y > maxY ? maxY : y);
+	}
 	void setContentLayerSize(cocos2d::CCSize);
 	void setContentOffset(cocos2d::CCPoint, bool);
 	TodoReturn updateIndicators(float);
