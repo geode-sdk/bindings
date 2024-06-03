@@ -4721,7 +4721,7 @@ class GameManager : GManager {
 	TodoReturn colorForPos(int);
 	TodoReturn colorKey(int, UnlockType);
 	bool completedAchievement(gd::string);
-	static int countForType(IconType) = win 0x178d60;
+	int countForType(IconType) = win 0x178d60;
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn defaultYOffsetForBG2(int);
 	TodoReturn didExitPlayscene();
