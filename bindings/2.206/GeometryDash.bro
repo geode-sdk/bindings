@@ -11636,7 +11636,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setRotation(float);
 	virtual void setOpacity(unsigned char) = win 0x37bb00, m1 0x398408;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x37b320, m1 0x397e20;
-	virtual void setFlipX(bool) = m1 0x39a480;
+	virtual void setFlipX(bool) = win 0x3807a0, m1 0x39a480;
 	virtual void setFlipY(bool);
 	virtual void resetObject() = m1 0x390ae4;
 	virtual cocos2d::CCPoint getRealPosition() = m1 0x398604;
@@ -11922,7 +11922,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void showCompleteText();
 	void showEndLayer();
 	void showHint() = win 0x3912c0;
-	void showNewBest(bool, int, int, bool, bool, bool);
+	void showNewBest(bool, int, int, bool, bool, bool) = win 0x3860c0;
 	void showRetryLayer();
 	void showTwoPlayerGuide();
 	TodoReturn spawnCircle();
