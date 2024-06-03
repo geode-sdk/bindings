@@ -6484,13 +6484,16 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void removeAllCheckpoints() = m1 0xdf6fc;
 	virtual TodoReturn toggleMusicInPractice() = m1 0xdf700;
 
-	PAD = win 0x8, android32 0x8, android64 0x8, m1 0x8, imac 0x8, ios 0x8;
+	PAD = win 0x8, android 0x8, mac 0x8, ios 0x8;
 	GJGameState m_gameState;
 	GJGameLevel* m_level;
 	PlaybackMode m_playbackMode;
-	PAD = win 0x68, android32 0x64, android64 0xC0, imac 0xbc;
+	bool m_decimalPercentage;
+    	bool m_extraLDM;
+    	bool m_0173;
+	PAD = win 0xc9, android32 0x64, android64 0xC0, imac 0xbc;
 	GJEffectManager* m_effectManager;
-	PAD = win 0x222, android32 0x224, android64 0x448, imac 0x460;
+	PAD = win 0x448, android32 0x224, android64 0x448, imac 0x460;
 	PlayerObject* m_player1;
 	PlayerObject* m_player2;
 	LevelSettingsObject* m_levelSettings;
@@ -6511,11 +6514,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unknownDB8;
 	int m_unknownDBC;
 	int m_unknownDC0;
-	int m_unknownDC4;
-	int m_unknownDC8;
-	int m_unknownDCC;
-	int m_unknownDD0;
-	int m_unknownDD4;
 	cocos2d::CCDictionary* m_groupDict;
 	cocos2d::CCDictionary* m_staticGroupDict;
 	cocos2d::CCDictionary* m_optimizedGroupDict;
@@ -6529,13 +6527,14 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::unordered_map<int, std::pair<int, int>> m_unknownE58;
 	cocos2d::CCDictionary* m_linkedGroupDict;
 	int m_lastUsedLinkedID;
+	PAD = win 0x4; // might be an int
 	cocos2d::CCNode* m_unknownE90;
 	cocos2d::CCNode* m_unknownE98;
 	cocos2d::CCNode* m_unknownEA0;
 	cocos2d::CCLayer* m_objectLayer;
-	PAD = win 0x10, android32 0x10, android64 0x20;
+	PAD = win 0x20, android32 0x10, android64 0x20;
 	GJGroundLayer* m_groundLayer;
-	PAD = win 0x5c, android32 0x64, android64 0xc4;
+	PAD = win 0xb4, android32 0x64, android64 0xc4; // (for win) between 0x8 bytes, there is a member thats 0x8 size. I think its a CCDictionary*
 	std::array<float, 2000> m_massiveFloatArray;
 	PAD = win 0x48, android32 0x54, android64 0x98; // not sure about the android paddings
 	int m_leftSectionIndex; // 29b4 win, 29d4 android32, 30b4 android64
