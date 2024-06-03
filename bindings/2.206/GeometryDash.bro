@@ -824,7 +824,7 @@ class CCCircleWaveDelegate {
 [[link(android)]]
 class CCContentLayer : cocos2d::CCLayerColor {
 	inline CCContentLayer() {}
-	~CCContentLayer() = m1 0x6d4460 = m1 0x6d4464;
+	~CCContentLayer() = m1 0x6d4464;
 
 	static CCContentLayer* create(cocos2d::ccColor4B const&, float, float);
 
@@ -2652,7 +2652,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-	virtual ~EditLevelLayer() = m1 0x1a7544 = m1 0x1a7550;
+	virtual ~EditLevelLayer() = m1 0x1a7550;
 
 	static EditLevelLayer* create(GJGameLevel*);
 
