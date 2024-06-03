@@ -74,6 +74,8 @@ public:
 
 inline std::string nameForPlatform(Platform platform) {
     switch (platform) {
+        case Platform::MacArm: return "MacOS (ARM)";
+        case Platform::MacIntel: return "MacOS (Intel)";
         case Platform::Mac: return "MacOS";
         case Platform::Windows: return "Windows";
         case Platform::iOS: return "iOS";
@@ -88,7 +90,7 @@ template <class T>
 std::string generateAddressDocs(T const& f, PlatformNumber pn) {
     std::string ret;
 
-    for (auto platform : {Platform::Mac, Platform::Windows, Platform::iOS, Platform::Android}) {
+    for (auto platform : {Platform::MacArm, Platform::MacIntel, Platform::Windows, Platform::iOS, Platform::Android}) {
         auto status = codegen::getStatusWithPlatform(platform, f);
 
         if (status == BindStatus::NeedsBinding) {
