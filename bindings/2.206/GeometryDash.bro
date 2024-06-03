@@ -1540,9 +1540,17 @@ class CheckpointGameObject : EffectGameObject {
 [[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState)]]
 class CheckpointObject : cocos2d::CCNode {
 	// virtual ~CheckpointObject();
-	// CheckpointObject();
+	CheckpointObject() = win 0x381f50;
 
-	static CheckpointObject* create();
+	static CheckpointObject* create() = win inline {
+		auto ret = new CheckpointObject();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	TodoReturn getObject();
 	void setObject(GameObject*);
@@ -5040,7 +5048,7 @@ class GameManager : GManager {
 [[link(android)]]
 class GameObject : CCSpritePlus {
 	// virtual ~GameObject();
-	// GameObject();
+	GameObject() = win 0x133690;
 
 	TodoReturn addColorSprite(gd::string);
 	TodoReturn addColorSpriteToParent(bool);
@@ -5081,7 +5089,18 @@ class GameObject : CCSpritePlus {
 	void createGroupContainer(int);
 	TodoReturn createOpacityGroupContainer(int);
 	TodoReturn createSpriteColor(int);
-	static GameObject* createWithFrame(char const*);
+	static GameObject* createWithFrame(char const* name) = win inline {
+		auto ret = new GameObject();
+		ret->m_eObjType = cocos2d::CCObjectType::GameObject;
+		if (ret->initWithSpriteFrameName(name)) {
+			ret->commonSetup();
+			ret->m_bUnkBool2 = true;
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 	static GameObject* createWithKey(int);
 	void deselectObject(); // = win 0x141b70; actually updateObjectEditorColor, source: LevelEditorLayer::updateVisibility
 	inline void destroyObject() {
@@ -9676,7 +9695,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2dfdb0, m1 0x26028c;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2d9d60, m1 0x25e098;
 
-	void* m_unk0;
+	bool m_isBusy;
 	cocos2d::CCMenu* m_playBtnMenu;
 	GJGameLevel* m_level;
 	cocos2d::CCArray* m_coins;
@@ -9890,7 +9909,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	virtual void registerWithTouchDispatcher() = m1 0x3b364c;
 	virtual void dialogClosed(DialogLayer*) = win 0x2fd200, m1 0x3b3254;
 
-	void* m_unk;
+	bool m_isBusy;
 	GJGameLevel* m_level;
 }
 
@@ -11342,7 +11361,7 @@ class PlayerButtonCommand {
 class PlayerCheckpoint : cocos2d::CCNode {
 	// virtual ~PlayerCheckpoint();
 
-	static PlayerCheckpoint* create();
+	static PlayerCheckpoint* create() = win 0x3979a0;
 
 	virtual bool init() = m1 0xab20c;
 
