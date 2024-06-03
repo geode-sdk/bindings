@@ -4854,7 +4854,7 @@ class GameManager : GManager {
 	TodoReturn unlockColor(int, UnlockType);
 	TodoReturn unlockedPremium();
 	void unlockIcon(int, IconType);
-	IconType unlockTypeToIconType(UnlockType) = win 0x1739c0;
+	IconType unlockTypeToIconType(int) = win 0x1739c0;
 	void updateCustomFPS() = win 0x181010;
 	TodoReturn updateMusic();
 	void verifyAchievementUnlocks();
