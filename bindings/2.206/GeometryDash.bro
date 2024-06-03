@@ -460,7 +460,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 		CC_SAFE_RELEASE(m_entries);
 	}
 
-	static BoomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float);
+	static BoomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = m1 0x29dce8;
 
 	TodoReturn addObjectToList(cocos2d::CCNode*);
 	bool init(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = win 0x3b190;
@@ -821,7 +821,7 @@ class CCCircleWaveDelegate {
 [[link(android)]]
 class CCContentLayer : cocos2d::CCLayerColor {
 	inline CCContentLayer() {}
-	~CCContentLayer() = m1 0x6d4464;
+	~CCContentLayer() = m1 0x6d4460;
 
 	static CCContentLayer* create(cocos2d::ccColor4B const&, float, float);
 
@@ -1826,10 +1826,10 @@ class CommunityCreditsPage : FLAlertLayer {
 	void onClose(cocos2d::CCObject* sender);
 	void onSwitchPage(cocos2d::CCObject* sender);
 
-	virtual bool init();
-	virtual void registerWithTouchDispatcher();
-	virtual void keyBackClicked();
-	virtual void show();
+	virtual bool init() = m1 0x2ae0a8;
+	virtual void registerWithTouchDispatcher() = m1 0x2b03c8;
+	virtual void keyBackClicked() = m1 0x2b034c;
+	virtual void show() = m1 0x2b01c4;
 }
 
 [[link(android)]]
@@ -2649,7 +2649,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-	virtual ~EditLevelLayer() = m1 0x1a7550;
+	virtual ~EditLevelLayer() = m1 0x1a7544;
 
 	static EditLevelLayer* create(GJGameLevel*);
 
@@ -5239,7 +5239,7 @@ class GameObject : CCSpritePlus {
 	virtual void activateObject() = m1 0x4eeb4c;
 	virtual void deactivateObject(bool) = m1 0x4eeed0;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = m1 0x4f3114;
-	virtual cocos2d::CCRect const& getObjectRect() = m1 0x4f318c;
+	virtual cocos2d::CCRect const& getObjectRect() = m1 0x4f31a0;
 	virtual cocos2d::CCRect getObjectRect(float, float);
 	virtual TodoReturn getObjectRect2(float, float) = m1 0x4f3384;
 	virtual TodoReturn getObjectTextureRect() = m1 0x4f3448;
@@ -8666,7 +8666,7 @@ class GManager : cocos2d::CCNode {
 		saveGMTo(m_fileName);
 	}
 	TodoReturn saveData(DS_Dictionary*, gd::string);
-	void saveGMTo(gd::string) = win 0x9999999, m1 0x666666;
+	void saveGMTo(gd::string) = win 0x9999999, m1 0x9999999;
 	TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
 	inline GManager() {}
 
@@ -9182,7 +9182,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-	~LevelBrowserLayer() = m1 0x3f8e10;
+	~LevelBrowserLayer() = m1 0x3f8e04;
 
 	static LevelBrowserLayer* create(GJSearchObject*) = win 0x2b5760;
 
@@ -9951,7 +9951,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 
 [[link(android)]]
 class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
-	~LevelSelectLayer() = m1 0x3add3c;
+	~LevelSelectLayer() = m1 0x3add30;
 
 	static LevelSelectLayer* create(int);
 
@@ -10307,7 +10307,7 @@ class LoadingLayer : cocos2d::CCLayer {
 class LocalLevelManager : GManager {
 	// virtual ~LocalLevelManager();
 
-	static LocalLevelManager* sharedState() = win 0x30f5d0, m1 0x666666;
+	static LocalLevelManager* sharedState() = win 0x30f5d0, m1 0x9999999;
 	inline static LocalLevelManager* get() {
         return LocalLevelManager::sharedState();
     }
@@ -11519,7 +11519,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void runNormalRotation() {
 		this->runNormalRotation(false, 1.0f);
 	}
-	void runNormalRotation(bool, float) = win 0x9999999, m1 0x666666;
+	void runNormalRotation(bool, float) = win 0x9999999, m1 0x9999999;
 	void runRotateAction(bool, int) = win 0x36b480;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x37b3b0;
@@ -11827,7 +11827,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-	virtual ~PlayLayer() = m1 0x9a05c;
+	virtual ~PlayLayer() = m1 0x9a050;
 	// PlayLayer();
 
 	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = m1 0x9a148;
@@ -14697,7 +14697,7 @@ class SimplePlayer : cocos2d::CCSprite {
 		m_secondLayer->setColor(color);
 		updateColors();
 	}
-	void updateColors() = win 0x267b60, m1 0x666666;
+	void updateColors() = win 0x267b60, m1 0x9999999;
 	void updatePlayerFrame(int, IconType) = win 0x267f20;
 
 	virtual void setOpacity(unsigned char) = win 0x268680, m1 0x2fe1c4;
