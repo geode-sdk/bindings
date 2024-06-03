@@ -4763,7 +4763,7 @@ class GameManager : GManager {
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	TodoReturn iconKey(int, IconType);
-	static UnlockType iconTypeToUnlockType(IconType);
+	UnlockType iconTypeToUnlockType(IconType) = win 0x1738a0;
 	bool isColorUnlocked(int, UnlockType) = win 0x173ba0;
 	bool isIconLoaded(int, int);
 	bool isIconUnlocked(int, IconType) = win 0x173800;
@@ -4854,7 +4854,7 @@ class GameManager : GManager {
 	TodoReturn unlockColor(int, UnlockType);
 	TodoReturn unlockedPremium();
 	void unlockIcon(int, IconType);
-	TodoReturn unlockTypeToIconType(int) = win 0x1739c0;
+	IconType unlockTypeToIconType(UnlockType) = win 0x1739c0;
 	void updateCustomFPS() = win 0x181010;
 	TodoReturn updateMusic();
 	void verifyAchievementUnlocks();
@@ -5599,8 +5599,8 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getDailyLevelKey(int);
 	TodoReturn getDemonLevelKey(GJGameLevel*);
 	gd::string getGauntletRewardKey(int) = win 0x1de640;
-	TodoReturn getItemKey(int, int);
-	int getItemUnlockState(int, UnlockType) = win 0x1d7230;
+	gd::string getItemKey(int, int) = win 0x1d7230;
+	int getItemUnlockState(int, UnlockType);
 	int getItemUnlockStateLite(int, UnlockType);
 	gd::string getLevelKey(GJGameLevel* level) = win inline {
 		return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Local, level->m_dailyID, level->m_gauntletLevel);
@@ -5698,7 +5698,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn storeSecretCoin(char const*);
 	void storeUserCoin(char const*);
 	TodoReturn tempClear();
-	void toggleEnableItem(UnlockType, int, bool);
+	void toggleEnableItem(UnlockType, int, bool) = win 0x1dad90;
 	TodoReturn trySelectActivePath() = win 0x1ca740;
 	void uncompleteLevel(GJGameLevel*);
 	TodoReturn unlockGauntletChest(int);
