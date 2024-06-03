@@ -6130,7 +6130,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn controlTriggersWithControlID(int, GJActionCommand);
 	TodoReturn convertToClosestDirection(float, float);
 	void createBackground(int);
-	void createGroundLayer(int, int);
+	void createGroundLayer(int, int) = win 0x1fca10;
 	void createMiddleground(int);
 	TodoReturn createNewKeyframeAnim();
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
@@ -6711,9 +6711,9 @@ class GJDailyLevelDelegate {
 class GJDifficultySprite : cocos2d::CCSprite {
 	// virtual ~GJDifficultySprite();
 
-	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x292d60;
+	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x292c60;
 
-	static gd::string getDifficultyFrame(int, GJDifficultyName);
+	static gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x292d60;
 	bool init(int, GJDifficultyName);
 	void updateDifficultyFrame(int, GJDifficultyName);
 	void updateFeatureState(GJFeatureState) = win 0x292f40;
