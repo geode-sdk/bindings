@@ -1006,7 +1006,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x9999999;
 	TodoReturn normalTouch(cocos2d::CCObject*);
 	TodoReturn selectedTouch(cocos2d::CCObject*);
-	void setSizeMult(float mult) {
+	void setSizeMult(float mult) = win inline {
 		m_offButton->setSizeMult(mult);
 		m_onButton->setSizeMult(mult);
 
@@ -11521,7 +11521,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void runNormalRotation() {
 		this->runNormalRotation(false, 1.0f);
 	}
-	void runNormalRotation(bool, float) = win 0x9999999, mac 0x666666;
+	void runNormalRotation(bool, float) = win 0x9999999, m1 0x666666;
 	void runRotateAction(bool, int) = win 0x36b480;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x37b3b0;
