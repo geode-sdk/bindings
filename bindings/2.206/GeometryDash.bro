@@ -15283,7 +15283,6 @@ class TableViewCell : cocos2d::CCLayer {
 	CCIndexPath m_indexPath;
 	void* m_unknown2;
 	void* m_unknown3;
-	int m_unknownThing; // don't even know if this is an int, it's always set to 0
 	gd::string m_unknownString;
 	float m_width;
 	float m_height;
