@@ -5595,7 +5595,9 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getItemKey(int, int);
 	int getItemUnlockState(int, UnlockType) = win 0x1d7230;
 	int getItemUnlockStateLite(int, UnlockType);
-	gd::string getLevelKey(GJGameLevel*) = win 0x9999999; // TODO: inlined
+	gd::string getLevelKey(GJGameLevel* level) {
+		return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Local, level->m_dailyID, level->m_gauntletLevel);
+	}
 	gd::string getLevelKey(int, bool, bool, bool) = win 0x1d3950;
 	TodoReturn getListRewardKey(GJLevelList*);
 	char const* getMapPackKey(int);
@@ -9219,7 +9221,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void reloadAllObjects();
 	static cocos2d::CCScene* scene(GJSearchObject* search) = win 0x2b5710;
 	void setSearchObject(GJSearchObject*);
-	void setupLevelBrowser(cocos2d::CCArray*);
+	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2b8440;
 	void show();
 	void updateLevelsLabel();
 	void updatePageLabel();
