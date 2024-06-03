@@ -3779,8 +3779,8 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 		m_forcePrioRegistered = false;
 	}
 
-	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x50ac0;
-	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = win 0x50a10;
+	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x50ac0, m1 0x4083e8;
+	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = win 0x50a10, m1 0x4085d8;
 	static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2) {
 		return FLAlertLayer::create(delegate, title, desc, btn1, btn2, 300.0);
 	}
@@ -5623,10 +5623,10 @@ class GameStatsManager : cocos2d::CCNode {
 	bool hasCompletedDailyLevel(int) = win 0x1d8590;
 	bool hasCompletedDemonLevel(GJGameLevel*);
 	bool hasCompletedGauntletLevel(int) = win 0x1d3d70;
-	bool hasCompletedLevel(GJGameLevel* level) {
+	bool hasCompletedLevel(GJGameLevel* level) = win inline {
 		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
 	} // = win 0x1d3ba0
-	bool hasCompletedMainLevel(int levelID) {
+	bool hasCompletedMainLevel(int levelID) = win inline {
 		return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
 	}
 	bool hasCompletedMapPack(int);
@@ -6725,7 +6725,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         m_delegate = nullptr;
     }
 
-	bool init(char const*, float, bool) = win 0x2454f0;
+	bool init(char const*, float, bool) = win 0x2454f0, m1 0x519eac;
 	bool init(char const* title) {
 		return init(title, 220.0f, false);
 	}
@@ -14760,7 +14760,7 @@ class SlideInLayer : cocos2d::CCLayerColor {
 class Slider : cocos2d::CCLayer {
 	// virtual ~Slider();
 
-	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float) = win 0x70230;
+	static Slider* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float) = win 0x70230, m1 0x296e54;
 	static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) {
 		return Slider::create(target, handler, 1.f);
 	}
