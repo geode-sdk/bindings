@@ -3871,9 +3871,16 @@ class FLAlertLayerProtocol {
 [[link(android)]]
 class FMODAudioEngine : cocos2d::CCNode {
 	// virtual ~FMODAudioEngine();
-	// FMODAudioEngine();
+	FMODAudioEngine() = win 0x52250;
 
-	static FMODAudioEngine* sharedEngine();
+	static FMODAudioEngine* sharedEngine() = win inline {
+		auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x687dc0);
+		if (!*instancePtr) {
+			*instancePtr = new FMODAudioEngine();
+			(*instancePtr)->init();
+		}
+		return *instancePtr;
+	}
 
 	TodoReturn activateQueuedMusic(int);
 	TodoReturn channelForChannelID(int);
