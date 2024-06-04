@@ -11991,7 +11991,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCPoint m_unk7e8;
 	cocos2d::CCPoint m_unk7f0; // maybe m_lastPortalPos
 	bool m_unk7f8;
-	PAD = win 0x18, imac 0x18, android32 0x18, android64 0x1c, m1 0x1c, ios 0x1c;
+	PAD = win 0x19, imac 0x19, android32 0x19, android64 0x1d, m1 0x1d, ios 0x1d;
+	bool m_isLocked;
+	bool m_unka2b;
 	cocos2d::CCPoint m_lastGroundedPos;
 	cocos2d::CCArray* m_touchingRings;
 	gd::unordered_set<int> m_unk828;
