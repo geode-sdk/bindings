@@ -3241,7 +3241,7 @@ class EffectGameObject : EnhancedGameObject {
 	// virtual ~EffectGameObject();
 	// EffectGameObject();
 
-	static EffectGameObject* create(char const*) // should be inlined as well rip coins in pause menu;
+	static EffectGameObject* create(char const*); // inlined on windows
 
 	TodoReturn getTargetColorIndex();
 	bool init(char const*); // inlined on windows :(
