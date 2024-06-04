@@ -8591,7 +8591,7 @@ class GJUserMessage : cocos2d::CCNode {
 class GJUserScore : cocos2d::CCNode {
 	// virtual ~GJUserScore();
 
-	static GJUserScore* create() {
+	static GJUserScore* create() = imac 0x567170 {
 		auto ret = new GJUserScore();
 		if (ret->init()) {
 			ret->autorelease();
