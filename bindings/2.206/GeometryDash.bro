@@ -2353,7 +2353,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 
 	static CustomSongWidget* create(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc56f0;
 
-	void deleteSong();
+	void deleteSong() = win 0xc7360;
 	void downloadAssetFailed(int, GJAssetType, GJSongError);
 	void downloadAssetFinished(int, GJAssetType);
 	void downloadFailed();
@@ -2368,7 +2368,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onPlayback(cocos2d::CCObject* sender);
 	void onSelect(cocos2d::CCObject* sender);
 	TodoReturn processNextMultiAsset();
-	void showError(bool);
+	void showError(bool) = win 0xca910;
 	void startDownload();
 	TodoReturn startMonitorDownload();
 	TodoReturn startMultiAssetDownload();
@@ -3894,7 +3894,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getTweenContainer(AudioTargetType);
 	bool isChannelStopping(int);
 	bool isEffectLoaded(gd::string path);
-	bool isMusicPlaying(gd::string path, int p1);
+	bool isMusicPlaying(gd::string path, int p1) = win 0x58f20;
 	bool isMusicPlaying(int);
 	bool isSoundReady(FMOD::Sound* sound);
 	TodoReturn lengthForSound(gd::string path);
@@ -4208,7 +4208,7 @@ class GameLevelManager : cocos2d::CCNode {
 	GJLevelList* createNewLevelList() = win 0x140910;
 	TodoReturn createPageInfo(int, int, int);
 	GJSmartTemplate* createSmartTemplate();
-	void dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*) = win 0x145db0;
 	void deleteAccountComment(int, int);
 	void deleteComment(int, CommentType, int);
 	void deleteFriendRequests(int, cocos2d::CCArray*, bool);
@@ -4328,8 +4328,8 @@ class GameLevelManager : cocos2d::CCNode {
 	bool hasDownloadedLevel(int);
 	bool hasDownloadedList(int);
 	bool hasLikedAccountItem(LikeItemType, int, bool, int);
-	bool hasLikedItem(LikeItemType, int, bool, int);
-	bool hasLikedItemFullCheck(LikeItemType, int, int);
+	bool hasLikedItem(LikeItemType, int, bool, int) = win 0x15e9c0;
+	bool hasLikedItemFullCheck(LikeItemType, int, int) = win 0x15e930;
 	bool hasRatedDemon(int);
 	bool hasRatedLevelStars(int);
 	bool hasReportedLevel(int) = win 0x1623f0;
@@ -4345,7 +4345,7 @@ class GameLevelManager : cocos2d::CCNode {
 	int levelIDFromCommentKey(char const*);
 	int levelIDFromPostCommentKey(char const*);
 	int likeFromLikeKey(char const*);
-	void likeItem(LikeItemType, int, bool, int);
+	void likeItem(LikeItemType, int, bool, int) = win 0x15d8b0;
 	void limitSavedLevels() = win 0x144b70;
 	void makeTimeStamp(char const*) = win 0x144730;
 	void markItemAsLiked(LikeItemType, int, bool, int);
@@ -4491,7 +4491,7 @@ class GameLevelManager : cocos2d::CCNode {
 
 	virtual bool init() = win 0x13f890, m1 0x486344;
 
-	PAD = win 0x8, android32 0x18, android64 0x30;
+	PAD = win 0x10, android32 0x18, android64 0x30;
 	cocos2d::CCDictionary* m_mainLevels;
 	cocos2d::CCDictionary* m_searchFilters;
 	cocos2d::CCDictionary* m_onlineLevels;
@@ -5600,7 +5600,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn createSecretChestRewards();
 	TodoReturn createSpecialChestItems();
 	TodoReturn createStoreItems();
-	void dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*) = win 0x1e5c00;
 	void encodeDataTo(DS_Dictionary*) = win 0x1e5950;
 	void firstSetup();
 	TodoReturn generateItemUnlockableData();
@@ -5645,8 +5645,8 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getStatFromKey(StatKey);
 	TodoReturn getStoreItem(int, int);
 	TodoReturn getStoreItem(int);
-	int getTotalCollectedCurrency();
-	int getTotalCollectedDiamonds();
+	int getTotalCollectedCurrency() = win 0x1d8e50;
+	int getTotalCollectedDiamonds() = win 0x1d9720;
 	bool hasClaimedListReward(GJLevelList*);
 	bool hasCompletedChallenge(GJChallengeItem*);
 	bool hasCompletedDailyLevel(int) = win 0x1d8590;
@@ -5688,11 +5688,11 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn preSaveGameStats() = win 0x1e6f10;
 	TodoReturn processChallengeQueue(int) = win 0x1d81d0;
 	TodoReturn purchaseItem(int);
-	TodoReturn recountSpecialStats();
+	TodoReturn recountSpecialStats() = win 0x1d9a20;
 	TodoReturn recountUserCoins(bool);
 	TodoReturn registerRewardsFromItem(GJRewardItem*);
 	TodoReturn removeChallenge(int);
-	TodoReturn removeErrorFromSpecialChests();
+	TodoReturn removeErrorFromSpecialChests() = win 0x1e6c00;
 	TodoReturn removeQueuedChallenge(int);
 	TodoReturn removeQueuedSecondaryChallenge(int);
 	TodoReturn resetChallengeTimer();
@@ -7167,7 +7167,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 
 	void gameLayerDidUnload();
 	bool init(GJGameLevel* level, bool editor);
-	void loadLevel();
+	void loadLevel() = win 0x2380c0;
 	static GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel* level, bool editor) = win 0x237ed0;
 
 	virtual void onEnter();
@@ -8343,17 +8343,17 @@ class GJSmartTemplate : cocos2d::CCObject {
 class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelegate {
 	// virtual ~GJSongBrowser();
 
-	static GJSongBrowser* create();
+	static GJSongBrowser* create() = win 0x2a4b80;
 
-	void loadPage(int);
-	void onDeleteAll(cocos2d::CCObject* sender);
-	void onNextPage(cocos2d::CCObject* sender);
-	void onPrevPage(cocos2d::CCObject* sender);
+	void loadPage(int) = win 0x2a5180;
+	void onDeleteAll(cocos2d::CCObject* sender) = win 0x2a5430;
+	void onNextPage(cocos2d::CCObject* sender) = win 0x2a5410;
+	void onPrevPage(cocos2d::CCObject* sender) = win 0x2a5420;
 	void setupPageInfo(int, int, int);
 	TodoReturn setupSongBrowser(cocos2d::CCArray*);
 
-	virtual bool init() = m1 0x52f844;
-	virtual void customSetup() = m1 0x52faec;
+	virtual bool init() = m1 0x52f844, win 0x2a4d00;
+	virtual void customSetup() = m1 0x52faec, win 0x2a4e00;
 	virtual void exitLayer(cocos2d::CCObject*) = m1 0x52fabc;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2a5540, m1 0x530014;
 	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x5300d0;
@@ -10205,13 +10205,13 @@ class LikeItemDelegate {
 class LikeItemLayer : FLAlertLayer {
 	// virtual ~LikeItemLayer();
 
-	static LikeItemLayer* create(LikeItemType, int, int);
+	static LikeItemLayer* create(LikeItemType, int, int) = win 0x30d400;
 
-	bool init(LikeItemType, int, int);
+	bool init(LikeItemType, int, int) = win 0x30d500;
 	void onClose(cocos2d::CCObject* sender);
-	void onDislike(cocos2d::CCObject* sender);
-	void onLike(cocos2d::CCObject* sender);
-	void triggerLike(bool isLiked);
+	void onDislike(cocos2d::CCObject* sender) = win 0x30d8e0;
+	void onLike(cocos2d::CCObject* sender) = win 0x30d8d0;
+	void triggerLike(bool isLiked) = win 0x30d8f0;
 
 	virtual void keyBackClicked() = m1 0x52a750;
 
@@ -10785,7 +10785,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 
 	static MusicDownloadManager* sharedState() = win 0x31bca0;
 
-	void addDLToActive(char const* tag, cocos2d::CCObject* obj);
+	void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x31def0;
 	void addDLToActive(char const* tag);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x31c430;
 	void addSongObjectFromString(gd::string);
@@ -10796,23 +10796,23 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void clearUnusedSongs();
 	void createArtistsInfo(gd::string);
 	void createSongsInfo(gd::string, gd::string);
-	void dataLoaded(DS_Dictionary*);
+	void dataLoaded(DS_Dictionary*) = win 0x31e950;
 	void deleteSFX(int);
 	void deleteSong(int);
-	void downloadCustomSong(int);
+	void downloadCustomSong(int) = win 0x31f240;
 	void downloadMusicLibrary();
 	void downloadSFX(int);
 	void downloadSFXFailed(int, GJSongError);
 	void downloadSFXFinished(int);
 	void downloadSFXLibrary();
-	void downloadSong(int);
-	void downloadSongFailed(int, GJSongError);
+	void downloadSong(int) = win 0x31d960;
+	void downloadSongFailed(int, GJSongError) = win 0x323250;
 	void downloadSongFinished(int);
 	void encodeDataTo(DS_Dictionary*);
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	TodoReturn filterMusicByTag(int, cocos2d::CCArray*);
 	void firstSetup();
-	TodoReturn generateCustomContentURL(gd::string);
+	TodoReturn generateCustomContentURL(gd::string) = win 0x3227c0;
 	TodoReturn generateResourceAssetList();
 	TodoReturn getAllMusicArtists(OptionsObjectDelegate*);
 	TodoReturn getAllMusicObjects(GJSongType);
@@ -10820,8 +10820,8 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getAllSFXObjects(bool);
 	TodoReturn getAllSongs();
 	void getCustomContentURL();
-	cocos2d::CCObject* getDLObject(char const*);
-	TodoReturn getDownloadedSongs();
+	cocos2d::CCObject* getDLObject(char const*) = win 0x38f40;
+	TodoReturn getDownloadedSongs() = win 0x31d5a0;
 	TodoReturn getDownloadProgress(int);
 	TodoReturn getMusicArtistForID(int);
 	TodoReturn getMusicObject(int);
@@ -10842,7 +10842,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	bool isDLActive(char const* tag);
 	bool isMusicLibraryLoaded();
 	bool isResourceSFX(int);
-	bool isResourceSong(int);
+	bool isResourceSong(int) = win 0x5e480;
 	bool isRunningActionForSongID(int);
 	bool isSFXDownloaded(int);
 	bool isSFXLibraryLoaded();
@@ -10856,7 +10856,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void onDownloadMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	void onDownloadSFXCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	void onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
-	void onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
+	void onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x31dc50;
 	void onGetCustomContentURLCompleted(gd::string, gd::string);
 	void onGetSongInfoCompleted(gd::string, gd::string) = win 0x31c960;
 	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
@@ -10870,7 +10870,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	gd::string pathForSongFolder(int) = win 0x31e2b0;
 	void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
 	callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
-	void removeDLFromActive(char const*);
+	void removeDLFromActive(char const*) = win 0x31dfc0;
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
 	static cocos2d::CCDictionary* responseToDict(gd::string, char const*);
 	void showTOS(FLAlertLayerProtocol*);
