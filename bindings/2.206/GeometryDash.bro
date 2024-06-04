@@ -679,7 +679,7 @@ class ButtonSprite : cocos2d::CCSprite {
 	void updateSpriteBGSize() = win 0x3e7e0;
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
 
-    PAD = mac 0x18, win 0x18;
+    PAD = mac 0x18, win 0x18, android32 0x18, android64 0x18;
     cocos2d::CCLabelBMFont* m_label;
     cocos2d::CCSprite* m_subSprite;
     cocos2d::CCSprite* m_subBGSprite;
@@ -6320,7 +6320,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void resetCamera();
 	void resetGradientLayers();
 	TodoReturn resetGroupCounters(bool);
-	void resetLevelVariables();
+	void resetLevelVariables() = win 0x22a170;
 	TodoReturn resetMoveOptimizedValue();
 	void resetPlayer();
 	void resetSongTriggerValues() = win 0x5ceb0;
