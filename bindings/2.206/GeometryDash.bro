@@ -8828,6 +8828,9 @@ class GJUserScore : cocos2d::CCNode {
 	int m_friendReqCount;
 	int m_newFriendCount;
 	bool m_newFriendRequest;
+	gd::string m_demonInfo;
+	gd::string m_starsInfo;
+	gd::string m_platformerInfo;
 }
 
 [[link(android)]]
