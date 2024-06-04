@@ -9899,7 +9899,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	void onTheTower(cocos2d::CCObject* sender) = win 0x2fb760;
 	TodoReturn playCoinEffect();
 	TodoReturn playStep2();
-	TodoReturn playStep3();
+	void playStep3() = win 0x2fd720;
 	void updateDynamicPage(GJGameLevel*) = win 0x2fa200;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x2fdcc0, m1 0x3b3518;
