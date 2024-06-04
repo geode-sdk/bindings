@@ -7,6 +7,16 @@ using namespace geode::prelude;
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x36b0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x1a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x870);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xd98);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xda0);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x31e8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
+
+GEODE_SIZE_CHECK(PlayLayer, 0x3998);
+GEODE_MEMBER_CHECK(PlayLayer, m_checkpointArray, 0x37a0);
+GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37d0);
+GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x37f0);
+GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x3808);
 
 GEODE_SIZE_CHECK(GJGameState, 0x6C8);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraZoom, 0x0);
@@ -103,7 +113,7 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkBool10, 0x268);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint8, 0x26c);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool11, 0x270);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool12, 0x271);
-GEODE_MEMBER_CHECK(GJGameState, m_unkBool13, 0x272);
+GEODE_MEMBER_CHECK(GJGameState, m_isDualMode, 0x272);
 GEODE_MEMBER_CHECK(GJGameState, m_unkFloat9, 0x274);
 GEODE_MEMBER_CHECK(GJGameState, m_tweenActions, 0x278);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraEdgeValue0, 0x2b8);
