@@ -6320,7 +6320,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processStateObjects();
 	TodoReturn processTransformActions(bool);
 	void queueButton(int button, bool push, bool isPlayer2) = win inline {
-		if (button == 0) {
+		if (button <= 0 || button > 3) {
 			return;
 		}
 		PlayerButtonCommand command = {};
@@ -6752,9 +6752,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     	bool m_unk308a;
 	PAD = win 0x26;
 	bool m_started;
-	PAD = win 0xBE;
+	PAD = win 0xA6;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = win 0x140;
+	PAD = win 0x158;
 	UILayer* m_uiLayer;
 	PAD = win 0x60;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c48 win
