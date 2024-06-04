@@ -781,7 +781,7 @@ class cocos2d::CCKeyboardDispatcher {
 
 [[link(win, android)]]
 class cocos2d::CCDirector {
-	static cocos2d::CCDirector* sharedDirector() = imac 0x48b350;
+	static cocos2d::CCDirector* sharedDirector() = imac 0x48b350, m1 0x3f0da8;
 
 	float getActualDeltaTime() const;
 	double getAnimationInterval();
@@ -812,7 +812,7 @@ class cocos2d::CCDirector {
 	unsigned int getTotalFrames();
 	cocos2d::CCPoint getVisibleOrigin();
 	cocos2d::CCSize getVisibleSize();
-	cocos2d::CCSize getWinSize();
+	cocos2d::CCSize getWinSize() = m1 0x3f1edc;
 	cocos2d::CCSize getWinSizeInPixels();
 	float getZEye();
 
@@ -1182,7 +1182,7 @@ class cocos2d::CCDictionary {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionFade {
-	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = imac 0xdc990;
+	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = imac 0xdc990, m1 0x3ff708;
 	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
 
 	// CCTransitionFade(cocos2d::CCTransitionFade const&);
@@ -1196,7 +1196,7 @@ class cocos2d::CCTransitionFade {
 
 [[link(win, android)]]
 class cocos2d::CCCallFunc {
-	static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc) = imac 0x7b8f10;
+	static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc) = imac 0x7b8f10, m1 0x6bf45c;
 }
 
 [[link(win, android)]]
