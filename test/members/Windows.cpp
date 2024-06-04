@@ -180,6 +180,25 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkBool32, 0x6b8);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint21, 0x6bc);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint22, 0x6c0);
 
+GEODE_SIZE_CHECK(GameObject, 0x550);
+GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x310);
+
+GEODE_SIZE_CHECK(PlayerObject, 0xc48);
+GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x558);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk4e4, 0x5a8);
+GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x690);
+GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x730);
+GEODE_MEMBER_CHECK(PlayerObject, m_swingFireMiddle, 0x780);
+GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x7b0);
+GEODE_MEMBER_CHECK(PlayerObject, m_playEffects, 0x7e4);
+GEODE_MEMBER_CHECK(PlayerObject, m_gv0096, 0x82a);
+GEODE_MEMBER_CHECK(PlayerObject, m_gv0100, 0x82b);
+GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x8a0);
+GEODE_MEMBER_CHECK(PlayerObject, m_spiderSprite, 0x8a8);
+GEODE_MEMBER_CHECK(PlayerObject, m_robotFire, 0xc10);
+GEODE_MEMBER_CHECK(PlayerObject, m_gameLayer, 0xc20);
+GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0xc30);
+
 GEODE_SIZE_CHECK(TableViewCell, 0x230);
 
 #endif

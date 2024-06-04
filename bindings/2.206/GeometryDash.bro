@@ -11866,7 +11866,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_unk51f;
 	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	GameObject* m_collidedObject;
-	PAD = win 0x40, imac 0x40, android32 0x40, android64 0x50, m1 0x50, ios 0x50;
+	PAD = win 0x48, imac 0x40, android32 0x40, android64 0x50, m1 0x50, ios 0x50;
 	float m_unk568;
 	cocos2d::CCSprite* m_unk56c;
 	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
@@ -11905,10 +11905,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCMotionStreak* m_shipStreak;
 	HardStreak* m_waveTrail;
 	float m_unk62c;
-	PAD = win 0x14, mac 0x14, android 0x14, ios 0x14;
+	int m_unk630;
+	float m_unk634;
+	int m_unk638;
+	float m_unk63c;
+	int m_unk640;
 	float m_unk644;
 	float m_unk648;
-	PAD = win 0xc, mac 0xc, android 0xc, ios 0xc;
+	PAD = win 0x8, mac 0xc, android 0xc, ios 0xc;
 	bool m_unk658;
 	bool m_unk659;
 	bool m_unk65a;
@@ -11921,13 +11925,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_unk688;
 	float m_unk68c;
 	PAD = win 0x12, mac 0x12, android 0x12, ios 0x12;
-	bool m_unk6a2; // = GameManager::getGameVariable("0096")
-	bool m_unk6a3; // = GameManager::getGameVariable("0100")
+	bool m_gv0096; // = GameManager::getGameVariable("0096")
+	bool m_gv0100; // = GameManager::getGameVariable("0100")
 	PAD = win 0x18, mac 0x18, android 0x18, ios 0x18;
 	gd::unordered_set<int> m_unk6a4;
 	GameObject* m_objectSnappedTo;
 	int m_unk6c0;
-	PAD = win 0x4, imac 0x4, android32 0x4, android64 0xc, m1 0xc, ios 0xc; // android64 unsure
+	PAD = win 0x8, imac 0x4, android32 0x4, android64 0xc, m1 0xc, ios 0xc; // android64 unsure
 	GJRobotSprite* m_robotSprite;
 	GJSpiderSprite* m_spiderSprite;
 	PAD = win 0x4, imac 0x4, android32 0x4, android64 0x8, m1 0x8, ios 0x8;
