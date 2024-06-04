@@ -4334,7 +4334,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCScene* getSearchScene(char const*);
 	int getSplitIntFromKey(char const*, int);
 	cocos2d::CCArray* getStoredLevelComments(char const*) = win 0x157b80;
-	cocos2d::CCArray* getStoredOnlineLevels(char const*);
+	cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0x144320;
 	cocos2d::CCArray* getStoredUserList(UserListType);
 	GJUserMessage* getStoredUserMessage(int);
 	GJUserMessage* getStoredUserMessageReply(int);
@@ -13035,7 +13035,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~SetIDPopup();
 	// SetIDPopup();
 
-	static SetIDPopup* create(int, int, int, gd::string, gd::string, bool, int, float, bool, bool);
+	static SetIDPopup* create(int, int, int, gd::string, gd::string, bool, int, float, bool, bool) = win 0x289030;
 
 	bool init(int, int, int, gd::string, gd::string, bool, int, float, bool, bool) = win 0x289160;
 	void onCancel(cocos2d::CCObject* sender);
