@@ -201,5 +201,8 @@ GEODE_MEMBER_CHECK(PlayerObject, m_gameLayer, 0xc20);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0xc30);
 
 GEODE_SIZE_CHECK(TableViewCell, 0x230);
+GEODE_SIZE_CHECK(ChallengeNode, 0x168);
+GEODE_SIZE_CHECK(LeaderboardsLayer, 0x1f8);
+GEODE_SIZE_CHECK(MoreSearchLayer, 0x2c8);
 
 #endif
