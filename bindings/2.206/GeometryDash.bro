@@ -5371,7 +5371,7 @@ class GameObject : CCSpritePlus {
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
 
-	PAD = android32 0x4c, win 0x4c, android64 0x54;
+	PAD = android32 0x4c, win 0x54, android64 0x54;
 
 	cocos2d::CCSprite* m_glowSprite;
 
@@ -5506,7 +5506,7 @@ class GameObject : CCSpritePlus {
 
 	// property 103
 	bool m_isHighDetail;
-	PAD = android32 0x11, win 0x11, android64 0x21;
+	PAD = android32 0x11, win 0x21, android64 0x21;
 
 	// property 134
 	bool m_isPassable;
