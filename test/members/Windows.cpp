@@ -9,7 +9,8 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x1a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x870);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xd98);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xda0);
-// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x31e8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x31e8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3220);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x32f8);
 
