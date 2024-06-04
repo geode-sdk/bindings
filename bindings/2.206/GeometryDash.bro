@@ -12206,24 +12206,27 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*) = win 0x391440, m1 0xa7a3c;
 	virtual void dialogClosed(DialogLayer*) = win 0x3912a0, m1 0xa7a08;
 
-	PAD = win 0x24, imac 0x24, android32 0x24, android64 0x2c, m1 0x2c, ios 0x2c;
+	PAD = win 0x30, imac 0x30, android32 0x30, android64 0x2c, m1 0x2c, ios 0x2c;
 	cocos2d::CCArray* m_coinArray;
-	PAD = win 0x9c;
+	PAD = win 0x70;
+	cocos2d::CCLabelBMFont* m_statusLabel;
+	int m_unk3778;
+	PAD = win 0x18;
 	float m_unksomefloat;
 	CheckpointObject* m_unkCheckpointObject;
 	cocos2d::CCArray* m_checkpointArray;
 	cocos2d::CCArray* m_unk37a8;
-	PAD = win 0x10;
-	cocos2d::CCArray* m_unk37c0;
-	PAD = win 0x8;
+	PAD = win 0x20;
 	cocos2d::CCArray* m_circleWaveArray;
 	cocos2d::CCArray* m_unk37d8;
-	PAD = win 0x10;
+	cocos2d::CCArray* m_unk37e0;
+	PAD = win 0x8;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
 	cocos2d::CCLabelBMFont* m_percentageLabel;
-	void* m_unk3800;
+	bool m_0126;
+	PAD = win 0x7;
+	cocos2d::CCSprite* m_progressGroove;
 	cocos2d::CCSprite* m_progressBar;
-	cocos2d::CCSprite* m_unk3810;
 	// everything after this comment is probably wrong
 	PAD = win 0x55;
 	bool m_hasCompletedLevel;
