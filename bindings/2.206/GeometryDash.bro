@@ -15011,7 +15011,7 @@ class SongInfoObject : cocos2d::CCNode {
 	// virtual ~SongInfoObject();
 
 	static SongInfoObject* create(cocos2d::CCDictionary*);
-	static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority, gd::string unk1, bool unk2, int unk3, int unk4);
+	static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority, gd::string unk1, bool unk2, int unk3, int unk4) = win 0x3245a0;
 	static SongInfoObject* create(int);
 
 	TodoReturn addTags(gd::string);
