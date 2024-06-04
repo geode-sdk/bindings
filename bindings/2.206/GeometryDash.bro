@@ -2638,7 +2638,7 @@ class EditButtonBar : cocos2d::CCNode {
 	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows);
 
 	int getPage();
-	void goToPage(int);
+	void goToPage(int); // inlined on win
 	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows);
 	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0xd0e10;
 	void onLeft(cocos2d::CCObject* sender);
@@ -2666,7 +2666,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-	virtual ~EditLevelLayer() = m1 0x1a7550;
+	virtual ~EditLevelLayer() = m1 0x1a7550, win 0xd1980;
 
 	static EditLevelLayer* create(GJGameLevel*);
 
@@ -2893,7 +2893,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void flipObjectsX(cocos2d::CCArray*);
 	void flipObjectsY(cocos2d::CCArray*);
 	TodoReturn getButton(char const*, int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
-	CreateMenuItem* getCreateBtn(int id, int bg);
+	CreateMenuItem* getCreateBtn(int id, int bg) = win 0x10ae40;
 	TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getCycledObject(cocos2d::CCArray*, bool);
 	TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&);
@@ -2932,7 +2932,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onCopy(cocos2d::CCObject* sender) = win 0x10f480;
 	void onCopyState(cocos2d::CCObject* sender) = win 0x110650;
 	bool onCreate();
-	void onCreateButton(cocos2d::CCObject* sender);
+	void onCreateButton(cocos2d::CCObject* sender) = win 0x10b420;
 	void onCreateObject(int);
 	void onDelete(cocos2d::CCObject* sender);
 	void onDeleteAll(cocos2d::CCObject* sender);
@@ -2998,7 +2998,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void selectObject(GameObject*, bool);
 	void selectObjects(cocos2d::CCArray*, bool);
 	void selectObjectsInRect(cocos2d::CCRect);
-	void setupCreateMenu();
+	void setupCreateMenu() = win 0xe44b0;
 	void setupDeleteMenu();
 	void setupEditMenu();
 	TodoReturn setupTransformControl();
@@ -3041,7 +3041,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn updateEditButtonColor(int, cocos2d::ccColor3B);
 	TodoReturn updateEditColorButton();
 	TodoReturn updateEditMenu();
-	void updateGridNodeSize();
+	void updateGridNodeSize() = win 0xdf100;
 	TodoReturn updateGridNodeSize(int);
 	TodoReturn updateGroupIDBtn2();
 	void updateGroupIDLabel();
@@ -3220,10 +3220,10 @@ class EffectGameObject : EnhancedGameObject {
 	// virtual ~EffectGameObject();
 	// EffectGameObject();
 
-	static EffectGameObject* create(char const*);
+	static EffectGameObject* create(char const*) // should be inlined as well rip coins in pause menu;
 
 	TodoReturn getTargetColorIndex();
-	bool init(char const*);
+	bool init(char const*); // inlined on windows :(
 	TodoReturn playTriggerEffect();
 	TodoReturn resetSpawnTrigger();
 	void setTargetID(int);
@@ -3234,7 +3234,7 @@ class EffectGameObject : EnhancedGameObject {
 	TodoReturn updateSpeedModType() = win 0x47f6c0;
 
 	virtual void setOpacity(unsigned char) = win 0x479d90, m1 0x1727fc;
-	virtual void firstSetup() = m1 0x173c70;
+	virtual void firstSetup() = win 0x47c680, m1 0x173c70;
 	virtual void customSetup() = m1 0x1562b4;
 	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x172880;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x157800;
@@ -4412,7 +4412,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void parseRestoreData(gd::string);
 	void performNetworkTest();
 	void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0x13e230;
-	void processOnDownloadLevelCompleted(gd::string, gd::string, bool) = win 0x14cbc0;
+	void processOnDownloadLevelCompleted(gd::string response, gd::string tag, bool) = win 0x14cbc0;
 	void purgeUnusedLevels() = win 0x144e10;
 	void rateDemon(int, int, bool);
 	void rateStars(int, int);
@@ -5101,7 +5101,7 @@ class GameObject : CCSpritePlus {
 		delete ret;
 		return nullptr;
 	}
-	static GameObject* createWithKey(int);
+	static GameObject* createWithKey(int) = win 0x181810;
 	void deselectObject(); // = win 0x141b70; actually updateObjectEditorColor, source: LevelEditorLayer::updateVisibility
 	inline void destroyObject() {
 		m_unk34a = true;
@@ -6070,7 +6070,7 @@ class GJAssetDownloadAction {
 
 [[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
-	~GJBaseGameLayer();
+	~GJBaseGameLayer() = win 0x1f6650;
 	// GJBaseGameLayer();
 
 	static GJBaseGameLayer* get() {
@@ -9212,7 +9212,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-	~LevelBrowserLayer() = m1 0x3f8e10;
+	~LevelBrowserLayer() = m1 0x3f8e10, win 0x2b5530;
 
 	static LevelBrowserLayer* create(GJSearchObject*) = win 0x2b5760, imac 0x494190;
 	static cocos2d::CCScene* scene(GJSearchObject* search) = win 0x2b5710, imac 0x494150;
@@ -11865,7 +11865,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-	virtual ~PlayLayer() = m1 0x9a05c;
+	virtual ~PlayLayer() = m1 0x9a05c, win 0x382540;
 	// PlayLayer();
 
 	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3827e0, m1 0x9a148;
@@ -15237,7 +15237,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 	void onEmail(cocos2d::CCObject* sender);
 	void onGetReward(cocos2d::CCObject* sender);
 	void onLinks(cocos2d::CCObject* sender);
-	void onLowDetail(cocos2d::CCObject* sender);
+	void onLowDetail(cocos2d::CCObject* sender) = win 0x49d0c0;
 	void onPrivacy(cocos2d::CCObject* sender);
 	void onRequestAccess(cocos2d::CCObject* sender);
 	void onRobTop(cocos2d::CCObject* sender);
