@@ -44,7 +44,7 @@ while True:
         errors.append((name, expected, actual))
     i = e
 
-errors.sort(key=lambda x: x[0], reverse=True)
+errors.sort(key=lambda x: x[1])
 
 RESET = '\x1b[0m'
 
