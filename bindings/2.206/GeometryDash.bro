@@ -1099,7 +1099,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 	virtual cocos2d::CCSpriteFrame* displayFrame() = m1 0x3022a4;
 }
 
-[[link(android)]]
+[[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
 	// virtual ~CCScrollLayerExt();
 	CCScrollLayerExt(cocos2d::CCRect) = win 0x45bd0, imac 0x437b20;
@@ -14795,7 +14795,7 @@ class SlideInLayer : cocos2d::CCLayerColor {
 	virtual void enableUI() = m1 0x22e628;
 }
 
-[[link(android)]]
+[[link(android), depends(SliderTouchLogic)]]
 class Slider : cocos2d::CCLayer {
 	// virtual ~Slider();
 
@@ -14884,7 +14884,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 	bool m_vertical;
 }
 
-[[link(android)]]
+[[link(android), depends(SliderThumb)]]
 class SliderTouchLogic : cocos2d::CCMenu {
 	// virtual ~SliderTouchLogic();
 
