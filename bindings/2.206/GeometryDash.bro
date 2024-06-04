@@ -6319,7 +6319,16 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*);
 	TodoReturn processStateObjects();
 	TodoReturn processTransformActions(bool);
-	void queueButton(int, bool, bool) = win 0x2416e0;
+	void queueButton(int button, bool push, bool isPlayer2) = win inline {
+		if (button == 0) {
+			return;
+		}
+		PlayerButtonCommand command = {};
+		command.m_button = (PlayerButton) button;
+		command.m_isPush = push;
+		command.m_isPlayer2 = isPlayer2;
+		m_queuedButtons.push_back(command);
+	}
 	TodoReturn reAddToStickyGroup(GameObject*);
 	TodoReturn recordAction(int, bool, bool);
 	TodoReturn rectIntersectsCircle(cocos2d::CCRect, cocos2d::CCPoint, float);
@@ -12055,7 +12064,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void addToGroupOld(GameObject*);
 	TodoReturn applyCustomEnterEffect(GameObject*, bool);
 	TodoReturn applyEnterEffect(GameObject*, int, bool);
-	bool canPauseGame(); //inlined on windows
+	bool canPauseGame() = win inline {
+		return !m_isPaused && m_started;
+	}
 	TodoReturn checkpointWithID(int);
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
 	TodoReturn commitJumps();
