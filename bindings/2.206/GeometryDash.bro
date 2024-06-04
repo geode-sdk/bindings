@@ -3256,10 +3256,10 @@ class EffectGameObject : EnhancedGameObject {
 
 	virtual void setOpacity(unsigned char) = win 0x479d90, m1 0x1727fc;
 	virtual void firstSetup() = win 0x47c680, m1 0x173c70;
-	virtual void customSetup() = m1 0x1562b4;
-	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x172880;
-	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x157800;
-	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x14e5e8;
+	virtual void customSetup() = win 0x47c6a0, m1 0x1562b4;
+	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x479DD0, m1 0x172880;
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x47c900, m1 0x157800;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x47f960, m1 0x14e5e8;
 	virtual void setRScaleX(float) = m1 0x172504;
 	virtual void setRScaleY(float) = m1 0x172514;
 	virtual void triggerActivated(float) = m1 0x173be8;
@@ -6412,7 +6412,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn triggerAreaEffectAnimation(EnterEffectObject*);
 	TodoReturn triggerDynamicMoveCommand(EffectGameObject*);
 	TodoReturn triggerDynamicRotateCommand(EnhancedTriggerObject*);
-	TodoReturn triggerGradientCommand(GradientTriggerObject*);
+	TodoReturn triggerGradientCommand(GradientTriggerObject*) = win 0x210020;
 	TodoReturn triggerGravityChange(EffectGameObject*, int);
 	TodoReturn triggerMoveCommand(EffectGameObject*);
 	TodoReturn triggerRotateCommand(EnhancedTriggerObject*);
@@ -6455,7 +6455,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateLevelColors() = win 0x1fd240;
 	void updateMaxGameplayY() = win 0x229ff0;
 	TodoReturn updateMGArtSpeed(float, float);
-	void updateMGOffsetY(float, float, int, float, int, int);
+	void updateMGOffsetY(float, float, int, float, int, int) = win 0x226060;
 	TodoReturn updateOBB2(cocos2d::CCRect);
 	TodoReturn updateParticles(float);
 	TodoReturn updatePlatformerTime();
