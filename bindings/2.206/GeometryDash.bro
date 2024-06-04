@@ -6597,7 +6597,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0x8;
     	bool m_isDebugDrawEnabled;
     	bool m_unk3501;
-    	PAD = win 0x1AE; // we will never know the other members
+    	PAD = win 0x7; // we will never know the other members
 }
 
 [[link(android)]]
