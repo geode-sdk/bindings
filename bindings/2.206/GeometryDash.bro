@@ -1000,9 +1000,30 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	}
 
 	TodoReturn activeItem();
-	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x9999999, imac 0x5a780, m1 0x9999999;
-	TodoReturn normalTouch(cocos2d::CCObject*);
-	TodoReturn selectedTouch(cocos2d::CCObject*);
+	bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win inline, imac 0x5a780, m1 0x9999999 {
+		if (!CCMenuItem::initWithTarget(target, callback)) return false;
+
+		m_offButton = CCMenuItemSpriteExtra::create(off, nullptr, this, menu_selector(CCMenuItemToggler::normalTouch));
+		m_onButton = CCMenuItemSpriteExtra::create(on, nullptr, this, menu_selector(CCMenuItemToggler::selectedTouch));
+
+		this->addChild(m_offButton);
+		this->addChild(m_onButton);
+
+		m_offButton->getNormalImage()->setAnchorPoint({0.5f, 0.5f});
+		m_onButton->getNormalImage()->setAnchorPoint({0.5f, 0.5f});
+
+		auto imgoff = m_offButton->getNormalImage();
+		auto imgon = m_onButton->getNormalImage();
+
+		imgoff->setPosition(m_offButton->convertToNodeSpace({0.f, 0.f}));
+		imgon->setPosition(m_onButton->convertToNodeSpace({0.f, 0.f}));
+		m_notClickable = false;
+		this->toggle(false);
+
+		return true;
+	}
+	void normalTouch(cocos2d::CCObject*) = win 0x44700;
+	void selectedTouch(cocos2d::CCObject*) = win 0x44720;
 	void setSizeMult(float mult) = win inline {
 		m_offButton->setSizeMult(mult);
 		m_onButton->setSizeMult(mult);
