@@ -12273,8 +12273,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCLabelBMFont* m_percentageLabel;
 	bool m_0126;
 	PAD = win 0x7;
-	cocos2d::CCSprite* m_progressGroove;
 	cocos2d::CCSprite* m_progressBar;
+	cocos2d::CCSprite* m_progressFill;
 	// everything after this comment is probably wrong
 	PAD = win 0x55;
 	bool m_hasCompletedLevel;
