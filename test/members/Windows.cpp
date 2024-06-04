@@ -10,6 +10,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x870);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xd98);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xda0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x31e8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3220);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x32f8);
 
@@ -196,6 +197,8 @@ GEODE_MEMBER_CHECK(PlayerObject, m_gv0096, 0x82a);
 GEODE_MEMBER_CHECK(PlayerObject, m_gv0100, 0x82b);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x8a0);
 GEODE_MEMBER_CHECK(PlayerObject, m_spiderSprite, 0x8a8);
+GEODE_MEMBER_CHECK(PlayerObject, m_isLocked, 0xa2a);
+GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0xa2c);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotFire, 0xc10);
 GEODE_MEMBER_CHECK(PlayerObject, m_gameLayer, 0xc20);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0xc30);

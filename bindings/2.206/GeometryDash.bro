@@ -6532,7 +6532,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void toggleGlitter(bool) = m1 0xdf6e0;
 	virtual void destroyPlayer(PlayerObject*, GameObject*) = m1 0xdf6e4;
 	virtual void updateDebugDraw() = win 0x2015c0, m1 0xf2fe4;
-	virtual void addToSection(GameObject*) = win 0x2147c0, m1 0x10b35c;
+	virtual void addToSection(GameObject*) = win 0x216dc0, m1 0x10b35c;
 	virtual void addToGroup(GameObject*, int, bool) = win 0x214940, m1 0x109a60;
 	virtual void removeFromGroup(GameObject*, int) = win 0x2187e0, m1 0x109cb4;
 	virtual TodoReturn updateObjectSection(GameObject*) = m1 0x10c98c;
@@ -11735,7 +11735,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool levelFlipping() = win 0x379500;
 	TodoReturn levelWillFlip();
 	void loadFromCheckpoint(PlayerCheckpoint*);
-	TodoReturn lockPlayer();
+	void lockPlayer() = win 0x37d2e0;
 	TodoReturn logValues();
 	TodoReturn modeDidChange();
 	TodoReturn performSlideCheck();
@@ -12040,7 +12040,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCPoint m_unk7e8;
 	cocos2d::CCPoint m_unk7f0; // maybe m_lastPortalPos
 	bool m_unk7f8;
-	PAD = win 0x18, imac 0x18, android32 0x18, android64 0x1c, m1 0x1c, ios 0x1c;
+	PAD = win 0x19, imac 0x19, android32 0x19, android64 0x1d, m1 0x1d, ios 0x1d;
+	bool m_isLocked;
+	bool m_unka2b;
 	cocos2d::CCPoint m_lastGroundedPos;
 	cocos2d::CCArray* m_touchingRings;
 	gd::unordered_set<int> m_unk828;
@@ -12223,7 +12225,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void onEnterTransitionDidFinish() = win 0x397920, m1 0xab0c4;
 	virtual void onExit() = win 0x397950, m1 0xab108;
 	virtual void postUpdate(float) = win 0x391460, m1 0xa7b08;
-	virtual TodoReturn checkForEnd() = m1 0xa7dec;
+	virtual TodoReturn checkForEnd() = m1 0xa7dec, win 0x391830;
 	virtual TodoReturn testTime() = m1 0xab568;
 	virtual void updateVerifyDamage() = m1 0xa7ee8;
 	virtual void updateAttemptTime(float) = win 0x391aa0, m1 0xa7f98;
