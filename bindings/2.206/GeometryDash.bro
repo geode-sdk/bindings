@@ -2766,7 +2766,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onAlignY(cocos2d::CCObject* sender);
 	void onBuildHelper(cocos2d::CCObject* sender);
 	void onCopyWColor(cocos2d::CCObject* sender);
-	void onCreateExtras(cocos2d::CCObject* sender);
+	void onCreateExtras(cocos2d::CCObject* sender) = win 0xD9360;
 	void onCreateLoop(cocos2d::CCObject* sender);
 	void onCreateTemplate(cocos2d::CCObject* sender);
 	void onExitEditor(cocos2d::CCObject* sender) = win 0xda950;
@@ -2789,7 +2789,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onSong(cocos2d::CCObject* sender);
 	void onUnlockAllLayers(cocos2d::CCObject* sender);
 	TodoReturn playStep2() = win 0xda620;
-	TodoReturn playStep3();
+	TodoReturn playStep3() = win 0xda740;
 	void saveLevel() = win 0xd9f10;
 	TodoReturn toggleDebugDraw(cocos2d::CCObject*);
 	TodoReturn toggleEditorBackground(cocos2d::CCObject*);
@@ -2872,7 +2872,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createObject(int, cocos2d::CCPoint);
 	TodoReturn createOutlines(cocos2d::CCArray*);
 	TodoReturn createPrefab(GJSmartTemplate*, gd::string, int);
-	TodoReturn createRockBases(cocos2d::CCArray*);
+	TodoReturn createRockBases(cocos2d::CCArray*) = win 0x12B590;
 	TodoReturn createRockEdges(cocos2d::CCArray*);
 	TodoReturn createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool);
 	TodoReturn createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool);
@@ -2926,7 +2926,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getRandomStartKey(int);
 	TodoReturn getRelativeOffset(GameObject*);
-	cocos2d::CCArray* getSelectedObjects();
+	cocos2d::CCArray* getSelectedObjects() = win 0x10D320;
 	TodoReturn getSimpleButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
 	TodoReturn getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getSmartObjectKey(int, GJSmartDirection);
@@ -3030,7 +3030,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void showLiveColorSelectForModeSpecial(int);
 	void showMaxBasicError();
 	void showMaxCoinError();
-	void showMaxError();
+	void showMaxError() = win 0x10ED00;
 	void showUI(bool);
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	TodoReturn smartTypeForKey(int);
@@ -7348,7 +7348,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 	bool m_editor;
 }
 
-[[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance)]]
+[[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance), depends(SFXTriggerState), depends(SongTriggerState), depends(EnterEffectAnimValue)]]
 class GJGameState {
 	// ~GJGameState();
 	// GJGameState();
@@ -9561,7 +9561,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn copyParticleState(ParticleGameObject*);
 	GameObject* createObject(int, cocos2d::CCPoint, bool);
 	void createObjectsFromSetup(gd::string&);
-	cocos2d::CCArray* createObjectsFromString(gd::string const&, bool, bool);
+	cocos2d::CCArray* createObjectsFromString(gd::string const&, bool, bool) = win 0x2C0690;
 	TodoReturn dirtifyTriggers();
 	TodoReturn duplicateKeyframeAnimation(int);
 	TodoReturn fastUpdateDisabledGroups();
@@ -11608,7 +11608,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x3648d0;
 
 	void activateStreak();
-	TodoReturn addAllParticles();
+	TodoReturn addAllParticles() = win 0x3667D0;
 	TodoReturn addToTouchedRings(RingObject*);
 	TodoReturn addToYVelocity(double, int);
 	void animatePlatformerJump(float) = win 0x36adb0;
