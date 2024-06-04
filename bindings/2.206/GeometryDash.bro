@@ -4785,7 +4785,7 @@ class GameManager : GManager {
 	TodoReturn likeFacebook();
 	void loadBackground(int) = win 0x179870;
 	void loadBackgroundAsync(int);
-	void loadDeathEffect(int) = win 0x3835e0;
+	void loadDeathEffect(int); // inlined on windows
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool);
 	TodoReturn loadFont(int);
@@ -6291,7 +6291,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*);
 	TodoReturn processStateObjects();
 	TodoReturn processTransformActions(bool);
-	void queueButton(int, bool, bool); // inlined on windows
+	void queueButton(int, bool, bool) = win 0x2416e0;
 	TodoReturn reAddToStickyGroup(GameObject*);
 	TodoReturn recordAction(int, bool, bool);
 	TodoReturn rectIntersectsCircle(cocos2d::CCRect, cocos2d::CCPoint, float);
@@ -6476,12 +6476,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn updateDisabledObjectsLastPos(cocos2d::CCArray*) = m1 0xab574;
 	virtual TodoReturn toggleGroundVisibility(bool) = m1 0x1182dc;
 	virtual TodoReturn toggleMGVisibility(bool) = m1 0x1182e0;
-	virtual TodoReturn toggleHideAttempts(bool) = m1 0x1182e4;
+	virtual TodoReturn toggleHideAttempts(bool) = win 0x390390, m1 0x1182e4;
 	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) { return 0.f; }
 	virtual float posForTime(float) { return 0.f; }
 	virtual void resetSPTriggered() {}
-	virtual TodoReturn updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x2089f0, m1 0x118430;
-	virtual TodoReturn reverseDirection(EffectGameObject*) = win 0x208a50, m1 0xfad8c;
+	virtual TodoReturn updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x225e30, m1 0x118430;
+	virtual TodoReturn reverseDirection(EffectGameObject*) = win 0x2089f0, m1 0xfad8c;
 	virtual TodoReturn rotateGameplay(RotateGameplayGameObject*) = m1 0xfadd0;
 	virtual TodoReturn didRotateGameplay() = win 0x226100, m1 0xab578;
 	virtual TodoReturn updateTimeWarp(float) = win 0x226160, m1 0x118a98;
@@ -6560,7 +6560,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_rightSectionIndex;
 	int m_bottomSectionIndex;
 	int m_topSectionIndex;
-	PAD = win 0xB8, android32 0xB0, android64 0x144;
+	PAD = win 0x18E, android32 0xB0, android64 0x144;
 	bool m_isPracticeMode; // 2a7c win, 2a94 android32, 3208 android64
 	bool m_practiceMusicSync;
 	float m_loadingProgress;
@@ -6575,22 +6575,29 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unk2aa4;
 	EndPortalObject* m_endPortal;
 	bool m_isTestMode;
-	PAD = win 0x23;
+	bool m_unk3089;
+    	bool m_unk308a;
+	PAD = win 0x26;
 	bool m_started;
-	PAD = win 0x7C; // wrong, android32 0xba - 0x24, android64 0xf0 - 0x24;
+	PAD = win 0xBE;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = win 0xb0;
+	PAD = win 0x140;
 	UILayer* m_uiLayer;
-	PAD = win 0x38;
+	PAD = win 0x60;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c48 win
-	PAD = win 0x48;
+	PAD = win 0x100;
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection; // 2c9c win
-	PAD = win 0xc4;
-
-	GJGameLoadingLayer* m_loadingLayer; // 2d6c
-	cocos2d::CCDrawNode* m_debugDrawNode; // 2d74
-	PAD = win 0x4;
-	bool m_isDebugDrawEnabled;
+	PAD = win 0x10;
+	FMODLevelVisualizer* m_fModVisualizerBG;
+    	FMODLevelVisualizer* m_fModVisualizerSFX;
+    	bool m_showAudioVisualizer;
+    	PAD = win 0x67;
+	GJGameLoadingLayer* m_loadingLayer;
+	cocos2d::CCDrawNode* m_debugDrawNode;
+	PAD = win 0x8;
+    	bool m_isDebugDrawEnabled;
+    	bool m_unk3501;
+    	PAD = win 0x1AE; // we will never know the other members
 }
 
 [[link(android)]]
@@ -12002,9 +12009,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn toggleGroundVisibility(bool) = win 0x390350, m1 0xa6e14;
 	virtual TodoReturn toggleMGVisibility(bool) = win 0x390390, m1 0xa6e44;
 	virtual TodoReturn toggleHideAttempts(bool) = win 0x3901a0, m1 0xa6e54;
-	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x390230, m1 0xa6d3c;
-	virtual float posForTime(float) = win 0x390290, m1 0xa6db0;
-	virtual void resetSPTriggered() = m1 0xa6dd0;
+	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x3901a0, m1 0xa6d3c;
+	virtual float posForTime(float) = win 0x390230, m1 0xa6db0;
+	virtual void resetSPTriggered() = win 0x390290, m1 0xa6dd0;
 	virtual TodoReturn updateTimeWarp(float) = m1 0xa3594;
 	virtual TodoReturn playGravityEffect(bool) = win 0x38cf00, m1 0xa64f8;
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = m1 0xa63d4;
@@ -15670,8 +15677,8 @@ class UILayer : cocos2d::CCLayerColor {
 	void onCheck(cocos2d::CCObject* sender);
 	void onDeleteCheck(cocos2d::CCObject* sender);
 	void onPause(cocos2d::CCObject* sender) = win 0x4a1300;
-	TodoReturn processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*);
-	TodoReturn processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*);
+	TodoReturn processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*) = win 0x312bf0;
+	TodoReturn processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*) = win 0x4a1810;
 	TodoReturn refreshDpad();
 	void resetAllButtons();
 	void resetUINodeState();
