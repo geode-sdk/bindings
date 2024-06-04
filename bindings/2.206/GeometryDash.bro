@@ -11677,7 +11677,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool levelFlipping() = win 0x379500;
 	TodoReturn levelWillFlip();
 	void loadFromCheckpoint(PlayerCheckpoint*);
-	TodoReturn lockPlayer();
+	void lockPlayer() = win 0x37d2e0;
 	TodoReturn logValues();
 	TodoReturn modeDidChange();
 	TodoReturn performSlideCheck();
@@ -12159,7 +12159,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void onEnterTransitionDidFinish() = win 0x397920, m1 0xab0c4;
 	virtual void onExit() = win 0x397950, m1 0xab108;
 	virtual void postUpdate(float) = win 0x391460, m1 0xa7b08;
-	virtual TodoReturn checkForEnd() = m1 0xa7dec;
+	virtual TodoReturn checkForEnd() = m1 0xa7dec, win 0x391830;
 	virtual TodoReturn testTime() = m1 0xab568;
 	virtual void updateVerifyDamage() = m1 0xa7ee8;
 	virtual void updateAttemptTime(float) = win 0x391aa0, m1 0xa7f98;
