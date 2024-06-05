@@ -3502,7 +3502,7 @@ class EffectManagerState {
 	gd::vector<GroupCommandObject2> m_vectorGroupCommandObject2;
 	gd::unordered_map<int,std::pair<double,double>> m_unorderedMapInt_pair_double_double;
 	gd::unordered_set<int> m_unorderedSet_int2;
-	gd::unordered_map<int,TimerItem_padded> m_unorderedMapInt_TimerItem;
+	gd::unordered_map<int,TimerItem> m_unorderedMapInt_TimerItem;
 	gd::unordered_map<int,gd::vector<TimerTriggerAction>> m_unorderedMapInt_vectorTimerTriggerAction;
 }
 
@@ -4052,7 +4052,7 @@ class FMODAudioState {
 	gd::unordered_map<int,float> m_unkMapIntFloat10;
 	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic1;
 	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic2;
-	gd::unordered_map<int,FMODSoundState_padded> m_unkMapIntFMODSoundState;
+	gd::unordered_map<int,FMODSoundState> m_unkMapIntFMODSoundState;
 	int m_unkInt1;
 	int m_unkInt2;
 }
@@ -11613,12 +11613,15 @@ class PlayerCheckpoint : cocos2d::CCNode {
 	float m_speed;
 	bool m_isHidden;
 	bool m_isGoingLeft;
-	uint8_t m_unkBytes2[42];
+	uint8_t m_unkBytes2[27];
+	uint64_t m_maybeAPointer;
+	bool m_unkBool;
 	float m_unkFloat1;
 	int m_possiblyFlags;
 	int m_timeOrPercentRelated;
+	uint8_t m_unkBytes3[4];
 	gd::vector<float> m_yPositionVector;
-	uint8_t m_unkBytes3[8];
+	uint8_t m_unkBytes4[8];
 }
 
 [[link(android)]]
