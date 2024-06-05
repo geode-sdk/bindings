@@ -535,6 +535,8 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3dc70, m1 0x330548;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d7b0, m1 0x32ffec;
 	virtual void registerWithTouchDispatcher() = m1 0x32fe74;
+
+	PAD = win 0xD8;
 }
 
 
@@ -8828,6 +8830,10 @@ class GJUserScore : cocos2d::CCNode {
 	int m_friendReqCount;
 	int m_newFriendCount;
 	bool m_newFriendRequest;
+	gd::string m_unkString;
+	int m_unkInt;
+	int m_unkInt2;
+	void* m_unkSizeT;
 	gd::string m_demonInfo;
 	gd::string m_starsInfo;
 	gd::string m_platformerInfo;
