@@ -2724,7 +2724,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	void onUpdateDescription(cocos2d::CCObject* sender);
 	TodoReturn playStep2();
 	TodoReturn playStep3();
-	TodoReturn scene(GJGameLevel*) = win 0xd1af0;
+	static cocos2d::CCScene* scene(GJGameLevel*) = win 0xd1af0;
 	void setupLevelInfo();
 	TodoReturn updateDescText(char const*);
 	TodoReturn verifyLevelName();
@@ -7203,7 +7203,7 @@ class GJGameLevel : cocos2d::CCNode {
 	}*/
 
 	TodoReturn areCoinsVerified();
-	TodoReturn copyLevelInfo(GJGameLevel*);
+	void copyLevelInfo(GJGameLevel*) = win 0x165230;
 	void dataLoaded(DS_Dictionary*) = win 0x1658e0;
 	TodoReturn demonIconForDifficulty(DemonDifficultyType);
 	TodoReturn generateSettingsString();
@@ -9739,7 +9739,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn validGroup(GameObject*, bool);
 
 	virtual void draw();
-	virtual void postUpdate(float) = m1 0xd8f24;
+	virtual void postUpdate(float) = m1 0xd8f24, win 0x2cd530;
 	virtual void updateVisibility(float) = win 0x2cd520, m1 0xd2794;
 	virtual TodoReturn playerTookDamage(PlayerObject*) = m1 0xd8f10;
 	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int) = m1 0xd62b4;
@@ -11508,7 +11508,7 @@ class PauseLayer : CCBlockLayer {
 	void onRestart(cocos2d::CCObject* sender) = win 0x35c7b0;
 	void onRestartFull(cocos2d::CCObject* sender) = win 0x35c850;
 	void onResume(cocos2d::CCObject* sender) = win 0x35c720;
-	void onSettings(cocos2d::CCObject* sender);
+	void onSettings(cocos2d::CCObject* sender) = win 0x35b8e0;
 	void onTime(cocos2d::CCObject* sender);
 	void setupProgressBars();
 	void sfxSliderChanged(cocos2d::CCObject*);
