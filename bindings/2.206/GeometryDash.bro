@@ -6759,10 +6759,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_rightSectionIndex;
 	int m_bottomSectionIndex;
 	int m_topSectionIndex;
-	PAD = win 0x156, android32 0xB0, android64 0x144;
+	PAD = win 0x154, android32 0xB0, android64 0x144;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = win 0x0, android32 0x2;
+	PAD = win 0x2, android32 0x2;
 	float m_loadingProgress;
 	cocos2d::CCNode* m_unk2a84;
 	int m_unk2a88;
