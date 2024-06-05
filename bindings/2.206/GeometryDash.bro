@@ -676,7 +676,7 @@ class ButtonSprite : cocos2d::CCSprite {
   		m_subBGSprite->setColor(color);
   		m_BGSprite->setColor(color);
 	}
-	void setString(char const*) = win 0x3ec60, m1 0x9999999, imac 0x9999999;
+	void setString(char const*) = win 0x3ec60, m1 0x9999999, imac 0x92530;
 	void updateBGImage(char const*) = win 0x3e6a0, imac 0x92920;
 	void updateSpriteBGSize() = win 0x3e7e0;
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
@@ -4887,7 +4887,7 @@ class GameManager : GManager {
 	TodoReturn saveDPadLayout(int, bool);
 	void setGameVariable(char const*, bool) = win 0x179e80;
 	void setHasRatingPower(int);
-	void setIntGameVariable(char const*, int);
+	void setIntGameVariable(char const*, int) = imac 0x385a80;
 	void setPlayerUserID(int);
 	void setUGV(char const*, bool) = win 0x17a310;
 	TodoReturn setupGameAnimations();
@@ -7598,7 +7598,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void updatePlayerColors() = win 0x2659b0;
 	void updatePlayerName(char const*);
 
-	virtual bool init() = win 0x261150, m1 0x2f6b6c;
+	virtual bool init() = win 0x261150, m1 0x2f6b6c, imac 0x36a810;
 	virtual void keyBackClicked() = win 0x267100, m1 0x2fd42c;
 	virtual void textInputOpened(CCTextInputNode*) = win 0x262c50, m1 0x2f9f8c;
 	virtual void textInputClosed(CCTextInputNode*) = win 0x262e40, m1 0x2fa0e4;
@@ -10544,7 +10544,7 @@ class LoadingLayer : cocos2d::CCLayer {
 	const char* getLoadingString();
 	bool init(bool) = win 0x30db60, imac 0x3a5890, m1 0x9999999;
 	void loadAssets() = win 0x30e400, imac 0x3a60d0, m1 0x9999999;
-	void loadingFinished() = imac 0x9999999;
+	void loadingFinished() = imac 0x3a6870;
 	TodoReturn scene(bool) = m1 0x32bd2c, win 0x30da50;
 	TodoReturn updateProgress(int) = win 0x30e380;
 
@@ -13112,9 +13112,9 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~SetIDPopup();
 	// SetIDPopup();
 
-	static SetIDPopup* create(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x289030;
+	static SetIDPopup* create(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x289030, imac 0x2a6f20;
 
-	bool init(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x289160;
+	bool init(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x289160, imac 0x2a7270;
 	void onCancel(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onItemIDArrow(cocos2d::CCObject* sender);
@@ -13122,7 +13122,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateTextInputLabel() = win 0x289c90;
 
 	virtual void keyBackClicked() = win 0x289f10, m1 0x2497c0;
-	virtual void show() = win 0x289d40, m1 0x24973c;
+	virtual void show() = win 0x289d40, m1 0x24973c, imac 0x2a7f40;
 	virtual void textInputClosed(CCTextInputNode*) = m1 0x2495c8;
 	virtual void textChanged(CCTextInputNode*) = win 0x289b90, m1 0x2495e4;
 	virtual void valueChanged() {}
@@ -13182,7 +13182,7 @@ class SetTargetIDLayer : SetupTriggerPopup {
 class SetTextPopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~SetTextPopup();
 
-	static SetTextPopup* create(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float) = win 0x28ac50, m1 0x9999999, imac 0x9999999;
+	static SetTextPopup* create(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float) = win 0x28ac50, m1 0x9999999, imac 0x2a9b60;
 
 	bool init(gd::string, gd::string, int, gd::string, gd::string, bool, float) = win 0x28adc0;
 	void onCancel(cocos2d::CCObject* sender);
@@ -13191,7 +13191,7 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateTextInputLabel();
 
 	virtual void keyBackClicked() = win 0x28b910, m1 0x24c27c;
-	virtual void show() = win 0x8a220, m1 0x24c230, imac 0x9999999;
+	virtual void show() = win 0x8a220, m1 0x24c230, imac 0x2ab030;
 	virtual void textInputClosed(CCTextInputNode*) = m1 0x24c0f4;
 	virtual void textChanged(CCTextInputNode*) = win 0x28b700, m1 0x24c110;
 
@@ -15688,7 +15688,7 @@ class TextArea : cocos2d::CCSprite {
 	// virtual ~TextArea();
 	// TextArea();
 
-	static TextArea* create(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = win 0x75960, m1 0x9999999, imac 0x9999999;
+	static TextArea* create(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = win 0x75960, m1 0x9999999, imac 0x320310;
 
 	TodoReturn colorAllCharactersTo(cocos2d::ccColor3B);
 	TodoReturn colorAllLabels(cocos2d::ccColor3B);
