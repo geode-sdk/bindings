@@ -4018,7 +4018,6 @@ class FMODAudioEngine : cocos2d::CCNode {
 	PAD = win 0x8, android32 0x8, android64 0x8;
 	float m_pulse1;
 	float m_pulse2;
-	TodoReturn canItemBeUnlocked(int, UnlockType);
 	float m_pulse3;
 	int m_pulseCounter;
 	bool m_metering;
@@ -5728,8 +5727,8 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn incrementStat(char const*, int) = win 0x1ca5b0;
 	TodoReturn incrementStat(char const*);
 	bool isGauntletChestUnlocked(int);
-	bool isItemEnabled(UnlockType, int) = win 0x1dabe0;
-	bool isItemUnlocked(UnlockType, int);
+	bool isItemEnabled(UnlockType, int); //inline on windows
+	bool isItemUnlocked(UnlockType, int) = win 0x1dabe0;
 	bool isPathChestUnlocked(int);
 	bool isPathUnlocked(StatKey);
 	bool isSecretChestUnlocked(int);
@@ -12259,7 +12258,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void destroyPlayer(PlayerObject*, GameObject*) = win 0x3905a0, m1 0xa6fd8;
 	virtual TodoReturn toggleGroundVisibility(bool) = win 0x390350, m1 0xa6e14;
 	virtual TodoReturn toggleMGVisibility(bool) = win 0x390390, m1 0xa6e44;
-	virtual TodoReturn toggleHideAttempts(bool) = win 0x3901a0, m1 0xa6e54;
+	virtual TodoReturn toggleHideAttempts(bool) = m1 0xa6e54;
 	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x3901a0, m1 0xa6d3c;
 	virtual float posForTime(float) = win 0x390230, m1 0xa6db0;
 	virtual void resetSPTriggered() = win 0x390290, m1 0xa6dd0;
