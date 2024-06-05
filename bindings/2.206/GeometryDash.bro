@@ -6575,7 +6575,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_decimalPercentage;
 	bool m_extraLDM;
 	bool m_0173;
-	PAD = win 0xc9, android32 0x64, android64 0xC0, imac 0xbc;
+	PAD = win 0xc9, android32 0x61, android64 0xC0, imac 0xbc;
 	GJEffectManager* m_effectManager;
 	cocos2d::CCSpriteBatchNode* m_unk950;
 	cocos2d::CCSpriteBatchNode* m_unk958;
@@ -6642,7 +6642,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCSpriteBatchNode* m_unkb40;
 	cocos2d::CCSpriteBatchNode* m_unkb48;
 	cocos2d::CCSpriteBatchNode* m_unkb50;
-	PAD = win 0x8; // prolly also a batch node
+	PAD = win 0x8, android32 0x4; // prolly also a batch node
 	cocos2d::CCSpriteBatchNode* m_unkb60;
 	cocos2d::CCSpriteBatchNode* m_unkb68;
 	cocos2d::CCSpriteBatchNode* m_unkb70;
@@ -6734,6 +6734,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unknownDB8;
 	int m_unknownDBC;
 	int m_unknownDC0;
+	PAD = android32 0x18; // ????, even the 5 ints i removed didnt align
 	cocos2d::CCDictionary* m_groupDict;
 	cocos2d::CCDictionary* m_staticGroupDict;
 	cocos2d::CCDictionary* m_optimizedGroupDict;
@@ -6754,16 +6755,18 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCLayer* m_objectLayer;
 	PAD = win 0x20, android32 0x10, android64 0x20;
 	GJGroundLayer* m_groundLayer;
-	PAD = win 0xb4, android32 0x64, android64 0xc4; // (for win) between 0x8 bytes, there is a member thats 0x8 size. I think its a CCDictionary*
+	GJGroundLayer* m_groundLayer2;
+	PAD = win 0xac, android32 0x60, android64 0xc4; // (for win) between 0x8 bytes, there is a member thats 0x8 size. I think its a CCDictionary*
 	std::array<float, 2000> m_massiveFloatArray;
-	PAD = win 0x48, android32 0x54, android64 0x98; // not sure about the android paddings
+	PAD = win 0x80, android32 0x54, android64 0x98; // not sure about the android paddings
 	int m_leftSectionIndex; // 29b4 win, 29d4 android32, 30b4 android64
 	int m_rightSectionIndex;
 	int m_bottomSectionIndex;
 	int m_topSectionIndex;
-	PAD = win 0x18C, android32 0xB0, android64 0x144;
+	PAD = win 0x156, android32 0xB0, android64 0x144;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
+	PAD = android32 0x2;
 	float m_loadingProgress;
 	cocos2d::CCNode* m_unk2a84;
 	int m_unk2a88;
@@ -6777,12 +6780,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	EndPortalObject* m_endPortal;
 	bool m_isTestMode;
 	bool m_unk3089;
-    	bool m_unk308a;
+	bool m_unk308a;
 	PAD = win 0x26;
 	bool m_started;
 	PAD = win 0xA6;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = win 0x158;
+	PAD = win 0x158, android32 0xa8;
 	UILayer* m_uiLayer;
 	PAD = win 0x60;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c48 win
@@ -6795,7 +6798,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     	PAD = win 0x67;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode;
-	PAD = win 0x8;
+	PAD = win 0x8, android32 0x4;
     	bool m_isDebugDrawEnabled;
     	bool m_unk3501;
     	PAD = win 0x7; // we will never know the other members
