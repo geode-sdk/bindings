@@ -750,7 +750,7 @@ class cocos2d::CCTextureCache {
 
 [[link(win, android)]]
 class cocos2d::CCTouch {
-	cocos2d::CCPoint getLocation() const = imac 0x5a550;
+	cocos2d::CCPoint getLocation() const = imac 0x5a550, m1 0x4317f4;
 }
 
 [[link(win, android)]]
