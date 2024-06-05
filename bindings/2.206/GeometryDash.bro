@@ -3896,7 +3896,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	}
 
 	TodoReturn activateQueuedMusic(int);
-	TodoReturn channelForChannelID(int) = win 0x575d0;
+	FMOD::Channel* channelForChannelID(int) = win 0x575d0;
 	TodoReturn channelForUniqueID(int);
 	TodoReturn channelIDForUniqueID(int);
 	TodoReturn channelLinkSound(int, FMODSound*);
@@ -4821,7 +4821,7 @@ class GameManager : GManager {
 	TodoReturn getUnlockForAchievement(gd::string, int&, UnlockType&);
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
-	TodoReturn iconKey(int, IconType) = win 0x1735d0;
+	gd::string iconKey(int, IconType) = win 0x1735d0;
 	UnlockType iconTypeToUnlockType(IconType) = win 0x1738a0;
 	bool isColorUnlocked(int, UnlockType) = win 0x173ba0;
 	bool isIconLoaded(int, int);
@@ -5890,7 +5890,7 @@ class GameToolbox {
 	static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
 	static TodoReturn stringFromHSV(cocos2d::ccHSVValue, char const*);
 	static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*) = win 0x64640, imac 0x4fbb70;
-	static TodoReturn stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x642a0;
+	static std::map<std::string,std::string> stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x642a0;
 	static TodoReturn strongColor(cocos2d::ccColor3B);
 	static gd::string timestampToHumanReadable(time_t, time_t) = win 0x67cd0;
 	static TodoReturn transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue);
@@ -6498,7 +6498,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateParticles(float);
 	TodoReturn updatePlatformerTime();
 	TodoReturn updatePlayerCollisionBlocks();
-	TodoReturn updateProximityVolumeEffects() = win 0x231420;
+	void updateProximityVolumeEffects() = win 0x231420;
 	TodoReturn updateQueuedLabels();
 	TodoReturn updateReplay();
 	TodoReturn updateSavePositionObjects();
@@ -10774,7 +10774,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 
 	static MoreOptionsLayer* create();
 
-	TodoReturn addToggle(char const*, char const*, char const*) = win 0x353280;
+	void addToggle(char const*, char const*, char const*) = win 0x353280;
 	TodoReturn countForPage(int);
 	void goToPage(int);
 	TodoReturn incrementCountForPage(int);
@@ -12133,8 +12133,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	}
 	void addObject(GameObject*) = win 0x38a990;
 	void addToGroupOld(GameObject*);
-	TodoReturn applyCustomEnterEffect(GameObject*, bool) = win 0x38d580;
-	TodoReturn applyEnterEffect(GameObject*, int, bool) = win 0x38cbe2;
+	void applyCustomEnterEffect(GameObject*, bool) = win 0x38d580;
+	void applyEnterEffect(GameObject*, int, bool) = win 0x38cbe2;
 	bool canPauseGame() = win inline {
 		return !m_isPaused && m_started;
 	}
