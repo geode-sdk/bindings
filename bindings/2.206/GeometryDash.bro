@@ -6733,8 +6733,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unknownDB0;
 	int m_unknownDB8;
 	int m_unknownDBC;
-	int m_unknownDC0;
-	PAD = android32 0x18; // ????, even the 5 ints i removed didnt align
+	PAD = win 0x4, android32 0x1C;
 	cocos2d::CCDictionary* m_groupDict;
 	cocos2d::CCDictionary* m_staticGroupDict;
 	cocos2d::CCDictionary* m_optimizedGroupDict;
@@ -6766,7 +6765,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0x156, android32 0xB0, android64 0x144;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = android32 0x2;
+	PAD = win 0x1, android32 0x2;
 	float m_loadingProgress;
 	cocos2d::CCNode* m_unk2a84;
 	int m_unk2a88;
