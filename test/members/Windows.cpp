@@ -207,5 +207,9 @@ GEODE_SIZE_CHECK(TableViewCell, 0x230);
 GEODE_SIZE_CHECK(ChallengeNode, 0x168);
 GEODE_SIZE_CHECK(LeaderboardsLayer, 0x1f8);
 GEODE_SIZE_CHECK(MoreSearchLayer, 0x2c8);
+GEODE_SIZE_CHECK(GJUserScore, 0x310);
+GEODE_SIZE_CHECK(BoomScrollLayer, 0x270);
+GEODE_SIZE_CHECK(ButtonSprite, 0x2c0);
+GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
 
 #endif
