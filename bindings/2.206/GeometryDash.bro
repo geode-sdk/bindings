@@ -6965,7 +6965,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 
 	bool init(char const*, float, bool) = win 0x2454f0, m1 0x519eac;
 	bool init(char const* title) {
-		return init(title, 220.0f, false) = win 0x2454f0;
+		return init(title, 220.0f, false);
 	}
 
     static GJDropDownLayer* create(const char* title, float height, bool p2) {
