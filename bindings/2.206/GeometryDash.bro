@@ -3887,7 +3887,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	static FMODAudioEngine* sharedEngine() = win inline {
 		auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x687dc0);
 		if (!*instancePtr) {
-			*instancePtr = new FMODAudioEngine() = win 0x52250;
+			*instancePtr = new FMODAudioEngine();
 			(*instancePtr)->init();
 		}
 		return *instancePtr;
