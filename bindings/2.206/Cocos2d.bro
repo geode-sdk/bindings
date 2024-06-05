@@ -517,7 +517,7 @@ class cocos2d::CCScheduler {
 	void unscheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*);
 	void unscheduleUpdateForTarget(cocos2d::CCObject const*);
 
-	virtual void update(float) = imac 0x44d2a0;
+	virtual void update(float) = imac 0x44d2a0, m1 0x3be890;
 }
 
 [[link(win, android)]]
@@ -1085,8 +1085,8 @@ class cocos2d::CCSprite {
 	void setBlVertexMod(float);
 	void setBrVertexMod(float);
 	void setDontDraw(bool);
-	void setFlipX(bool) = imac 0x286360;
-	void setFlipY(bool) = imac 0x2863b0;
+	void setFlipX(bool) = imac 0x286360, m1 0x22ad7c;
+	void setFlipY(bool) = imac 0x2863b0, m1 0x22adb0;
 	void setTextureAtlas(cocos2d::CCTextureAtlas*);
 	void setTlVertexMod(float);
 	void setTrVertexMod(float);
@@ -1233,7 +1233,7 @@ class cocos2d::CCApplication {
 [[link(win, android)]]
 class cocos2d::CCArray {
 	// static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
-	static cocos2d::CCArray* create() = imac 0x72cc40, m1 0x63f894;
+	// static cocos2d::CCArray* create() = imac 0x72cc40, m1 0x63f894;
 	static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
 	static cocos2d::CCArray* createWithCapacity(unsigned int);
 	static cocos2d::CCArray* createWithContentsOfFile(char const*);
@@ -1249,12 +1249,12 @@ class cocos2d::CCArray {
 	// CCArray(cocos2d::CCArray const&);
 	// CCArray(unsigned int);
 	// CCArray();
-	void addObject(cocos2d::CCObject*) = imac 0x72cf20, m1 0x63faa4;
+	// void addObject(cocos2d::CCObject*) = imac 0x72cf20, m1 0x63faa4;
 	void addObjectNew(cocos2d::CCObject*);
 	void addObjectsFromArray(cocos2d::CCArray*);
 	unsigned int capacity() const;
 	bool containsObject(cocos2d::CCObject*) const;
-	unsigned int count() const = imac 0x72d2a0, m1 0x63fd7c;
+	// unsigned int count() const = imac 0x72d2a0, m1 0x63fd7c;
 	void exchangeObject(cocos2d::CCObject*, cocos2d::CCObject*);
 	void exchangeObjectAtIndex(unsigned int, unsigned int);
 	void fastRemoveObject(cocos2d::CCObject*);
@@ -1265,7 +1265,7 @@ class cocos2d::CCArray {
 	void insertObject(cocos2d::CCObject*, unsigned int);
 	bool isEqualToArray(cocos2d::CCArray*);
 	cocos2d::CCObject* lastObject() = imac 0x72d310;
-	cocos2d::CCObject* objectAtIndex(unsigned int) = imac 0x72d2f0, m1 0x63fdac;
+	// cocos2d::CCObject* objectAtIndex(unsigned int) = imac 0x72d2f0, m1 0x63fdac;
 	cocos2d::CCObject* randomObject();
 	void recreateNewIndexes();
 	void reduceMemoryFootprint();
@@ -1279,8 +1279,8 @@ class cocos2d::CCArray {
 	void reverseObjects();
 	cocos2d::CCString* stringAtIndex(unsigned int);
 
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+	// virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	// virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 }
 
 [[link(win, android)]]
@@ -1486,7 +1486,7 @@ class cocos2d::CCSpriteFrameCache {
 
 [[link(win, android)]]
 class cocos2d::CCString {
-	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x7b7370;
+	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x7b7370, m1 0x6bdb68;
 
 	char const* getCString() const = imac 0x7b6cc0, m1 0x6bd3dc;
 }
