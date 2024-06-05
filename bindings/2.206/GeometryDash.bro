@@ -6730,11 +6730,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD48;
 	gd::vector<GameObject*> m_unknownD70;
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD88;
-	int m_unknownDB0;
-	int m_unknownDB8;
-	int m_unknownDBC;
-	int m_unknownDC0;
-	PAD = android32 0x18; // ????, even the 5 ints i removed didnt align
+	PAD = win 0x10, android32 0x28;
 	cocos2d::CCDictionary* m_groupDict;
 	cocos2d::CCDictionary* m_staticGroupDict;
 	cocos2d::CCDictionary* m_optimizedGroupDict;
@@ -6748,7 +6744,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::unordered_map<int, std::pair<int, int>> m_unknownE58;
 	cocos2d::CCDictionary* m_linkedGroupDict;
 	int m_lastUsedLinkedID;
-	PAD = win 0x4; // might be an int
+	PAD = win 0x4, android32 0x0; // might be an int
 	cocos2d::CCNode* m_unknownE90;
 	cocos2d::CCNode* m_unknownE98;
 	cocos2d::CCNode* m_unknownEA0;
@@ -6766,7 +6762,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0x156, android32 0xB0, android64 0x144;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = android32 0x2;
+	PAD = win 0x0, android32 0x2;
 	float m_loadingProgress;
 	cocos2d::CCNode* m_unk2a84;
 	int m_unk2a88;
@@ -6793,15 +6789,15 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection; // 2c9c win
 	PAD = win 0x10;
 	FMODLevelVisualizer* m_fModVisualizerBG;
-    	FMODLevelVisualizer* m_fModVisualizerSFX;
-    	bool m_showAudioVisualizer;
-    	PAD = win 0x67;
+	FMODLevelVisualizer* m_fModVisualizerSFX;
+	bool m_showAudioVisualizer;
+	PAD = win 0x67;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode;
 	PAD = win 0x8, android32 0x4;
-    	bool m_isDebugDrawEnabled;
-    	bool m_unk3501;
-    	PAD = win 0x7; // we will never know the other members
+	bool m_isDebugDrawEnabled;
+	bool m_unk3501;
+	PAD = win 0x7; // we will never know the other members
 }
 
 [[link(android)]]
