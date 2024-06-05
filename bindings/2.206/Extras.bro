@@ -132,22 +132,8 @@ class FMODSoundState {
 	PAD = win 0xa4;
 }
 
-//Needed because pair<int,FMODSoundState> gets padded in gd but not when we compile it
-class FMODSoundState_padded {
-	PAD = win 0x4;
-	gd::string m_unkString;
-	PAD = win 0xa4;
-}
-
 class TimerItem {
 	PAD = win 0x38;
-	gd::vector<int> m_unkVecInt;
-	PAD = win 0x4;
-}
-
-//Needed because pair<int,TimerItem> gets padded in gd but not when we compile it
-class TimerItem_padded {
-	PAD = win 0x3c;
 	gd::vector<int> m_unkVecInt;
 	PAD = win 0x4;
 }
