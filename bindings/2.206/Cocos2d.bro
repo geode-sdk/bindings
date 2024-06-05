@@ -56,7 +56,7 @@ class cocos2d::CCMotionStreak {
 class cocos2d::CCScene {
 	static cocos2d::CCScene* create() = imac 0x28cbf0, m1 0x230538;
 
-	int getHighestChildZ() = imac 0x28cca0;
+	int getHighestChildZ() = imac 0x28cca0, m1 0x409998;
 
 	// CCScene(cocos2d::CCScene const&);
 	// CCScene();
@@ -348,7 +348,7 @@ class cocos2d::CCNode {
 	void setAdditionalTransform(cocos2d::CCAffineTransform const&);
 	void setUseChildIndex(bool);
 
-	cocos2d::CCRect boundingBox() = imac 0x26edf0;
+	cocos2d::CCRect boundingBox() = imac 0x26edf0, m1 0x215110;
 	void childrenAlloc();
 	cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = imac 0x270db0, m1 0x216f4c;
 	cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const&);
@@ -365,18 +365,18 @@ class cocos2d::CCNode {
 	void qsortAllChildrenWithIndex();
 	void resumeSchedulerAndActions();
 	cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x2700d0, m1 0x216408;
-	void schedule(cocos2d::SEL_SCHEDULE) = imac 0x270300;
+	void schedule(cocos2d::SEL_SCHEDULE) = imac 0x270300, m1 0x2165fc;
 	void schedule(cocos2d::SEL_SCHEDULE, float);
 	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float);
 	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
-	void scheduleUpdate() = imac 0x2701e0;
+	void scheduleUpdate() = imac 0x2701e0, m1 0x45c674;
 	void scheduleUpdateWithPriority(int);
 	void scheduleUpdateWithPriorityLua(int, int);
 	void sortAllChildrenNoIndex();
 	void sortAllChildrenWithIndex();
 	void stopAction(cocos2d::CCAction*);
 	void stopActionByTag(int);
-	void stopAllActions() = imac 0x26ef50;
+	void stopAllActions() = imac 0x26ef50, m1 0x2e937e;
 	void transform();
 	void transformAncestors();
 	void unschedule(cocos2d::SEL_SCHEDULE);
@@ -1065,7 +1065,7 @@ class cocos2d::CCSprite {
 	static cocos2d::CCSprite* create() = imac 0x2846b0;
 	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x284590, m1 0x229240;
 	static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = imac 0x284680, m1 0x22932c;
-	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x284130;
+	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x284130, m1 0x22905c;
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = imac 0x2842c0;
 
 	unsigned int getAtlasIndex();
@@ -1721,7 +1721,7 @@ class cocos2d {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker {
-	static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x356900;
+	static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x356900, m1 0x2e4df4;
 }
 
 [[link(win, android)]]
