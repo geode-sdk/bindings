@@ -1717,7 +1717,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
 
 	TodoReturn updateBlending(bool);
 	TodoReturn updateCopyLabel(int, bool);
-	void updateOpacity(float) = win 0x246eb0, imac 0x2d4750, m1 0x9999999;
+	void updateOpacity(float) = win 0x246eb0, imac 0x2d4750, m1 0x271850;
 	void updateValues(ColorAction*) = imac 0x2d49b0;
 
 	virtual bool init() = m1 0x27169c, imac 0x2d4570;
@@ -3840,7 +3840,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	}
 
 	TodoReturn incrementForcePrio();
-	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x50ce0, imac 0x4a50e0, m1 0x9999999;
+	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x50ce0, imac 0x4a50e0, m1 0x408540;
 	bool init(int) = win 0x50bd0;
 	void onBtn1(cocos2d::CCObject* sender) = win 0x51ac0, imac 0x4a5d60;
 	void onBtn2(cocos2d::CCObject* sender) = win 0x51b20, imac 0x4a5dc0;
@@ -6409,7 +6409,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn shouldExitHackedLevel();
 	TodoReturn sortAllGroupsX();
 	TodoReturn sortGroups();
-	TodoReturn sortSectionVector();
+	TodoReturn sortSectionVector() = win 0x217830;
 	TodoReturn sortStickyGroups();
 	void spawnGroupTriggered(int groupID, float, bool, gd::vector<int> const&, int, int);
 	TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
@@ -6431,7 +6431,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void switchToRobotMode(PlayerObject*, GameObject*, bool);
 	void switchToRollMode(PlayerObject*, GameObject*, bool);
 	void switchToSpiderMode(PlayerObject*, GameObject*, bool);
-	TodoReturn syncBGTextures();
+	TodoReturn syncBGTextures() = win 0x22a0d0;
 	void teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x200b70;
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
 	void toggleAudioVisualizer(bool) = win 0x237b90;
@@ -6642,7 +6642,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCSpriteBatchNode* m_unkb40;
 	cocos2d::CCSpriteBatchNode* m_unkb48;
 	cocos2d::CCSpriteBatchNode* m_unkb50;
-	PAD = win 0x8, android32 0x4; // prolly also a batch node
+	void* m_unkb5c; // prolly also a batch node
 	cocos2d::CCSpriteBatchNode* m_unkb60;
 	cocos2d::CCSpriteBatchNode* m_unkb68;
 	cocos2d::CCSpriteBatchNode* m_unkb70;
@@ -6730,7 +6730,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD48;
 	gd::vector<GameObject*> m_unknownD70;
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD88;
-	PAD = win 0x10, android32 0x28;
+	PAD = win 0x10, android32 0x28, android64 0x28;
 	cocos2d::CCDictionary* m_groupDict;
 	cocos2d::CCDictionary* m_staticGroupDict;
 	cocos2d::CCDictionary* m_optimizedGroupDict;
@@ -6744,7 +6744,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::unordered_map<int, std::pair<int, int>> m_unknownE58;
 	cocos2d::CCDictionary* m_linkedGroupDict;
 	int m_lastUsedLinkedID;
-	PAD = win 0x4, android32 0x0; // might be an int
+	PAD = win 0x4, android32 0x0, android64 0x4; // might be an int
 	cocos2d::CCNode* m_unknownE90;
 	cocos2d::CCNode* m_unknownE98;
 	cocos2d::CCNode* m_unknownEA0;
@@ -6762,7 +6762,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0x154, android32 0xB0, android64 0x144;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = win 0x2, android32 0x2;
+	PAD = win 0x2, android32 0x2, android64 0x0;
 	float m_loadingProgress;
 	cocos2d::CCNode* m_unk2a84;
 	int m_unk2a88;
@@ -6777,27 +6777,27 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_isTestMode;
 	bool m_unk3089;
 	bool m_unk308a;
-	PAD = win 0x26;
+	PAD = win 0x26, android64 0x26;
 	bool m_started;
-	PAD = win 0xA6;
+	PAD = win 0xA6, android64 0xa6;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = win 0x158, android32 0xa8;
+	PAD = win 0x158, android32 0xa8, android64 0x158;
 	UILayer* m_uiLayer;
-	PAD = win 0x60;
+	PAD = win 0x60, android64 0x60;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c48 win
-	PAD = win 0x100;
+	PAD = win 0x100, android64 0x100;
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection; // 2c9c win
-	PAD = win 0x10;
+	PAD = win 0x10, android64 0x10;
 	FMODLevelVisualizer* m_fModVisualizerBG;
 	FMODLevelVisualizer* m_fModVisualizerSFX;
 	bool m_showAudioVisualizer;
-	PAD = win 0x67;
+	PAD = win 0x67, android64 0x67;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode;
-	PAD = win 0x8, android32 0x4;
+	PAD = win 0x8, android32 0x4, android64 0x8;
 	bool m_isDebugDrawEnabled;
 	bool m_unk3501;
-	PAD = win 0x7; // we will never know the other members
+	PAD = win 0x7, android64 0x7; // we will never know the other members
 }
 
 [[link(android)]]
@@ -8374,9 +8374,9 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 class GJSearchObject : cocos2d::CCNode {
 	// virtual ~GJSearchObject();
 
-	static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x16c030, m1 0x9999999, imac 0x567a60;
-	static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x16bf00, m1 0x9999999, imac 0x567f10;
-	static GJSearchObject* create(SearchType searchType) = win 0x16be20, imac 0x567ea0;
+	static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x16c030, m1 0x4b59c8, imac 0x567a60;
+	static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x16bf00, m1 0x4b5e00, imac 0x567f10;
+	static GJSearchObject* create(SearchType searchType) = win 0x16be20, m1 0x4b5d94, imac 0x567ea0;
 	static GJSearchObject* createFromKey(char const* key) = win 0x16b720;
 
 	char const* getKey() = win 0x16c370;
@@ -12043,7 +12043,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_unk7cc; // unsure if float
 	float m_unk7d0;
 	bool m_isDashing;
-	PAD = win 0x8, android32 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8;
 	float m_vehicleSize;
 	float m_playerSpeed;
 	float m_unk7e0;
@@ -12085,7 +12085,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	gd::map<int, bool> m_unk910;
 	float m_unk918; // increments whenever you're midiar?
 	float m_unk91c;
-	PAD = win 0x4, mac 0x4, android32 0x4, ios 0x4;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	gd::map<int, bool> m_unk924;
 	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	gd::string m_unk930; // this is always "run" ???
@@ -12224,7 +12224,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	//void toggleDebugDraw(bool);
 	void togglePracticeMode(bool) = win 0x396780;
 	TodoReturn tryStartRecord();
-	void updateAttempts();
+	void updateAttempts() = win 0x396540;
 	void updateEffectPositions();
 	void updateInfoLabel() = win 0x38f640;
 	TodoReturn updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&);
@@ -12270,34 +12270,34 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	PAD = win 0x30, imac 0x30, android32 0x30, android64 0x2c, m1 0x2c, ios 0x2c;
 	cocos2d::CCArray* m_coinArray;
-	PAD = win 0x70;
+	PAD = win 0x70, android64 0x70;
 	cocos2d::CCLabelBMFont* m_statusLabel;
 	int m_unk3778;
-	PAD = win 0x18;
+	PAD = win 0x18, android64 0x18;
 	float m_unksomefloat;
 	CheckpointObject* m_unkCheckpointObject;
 	cocos2d::CCArray* m_checkpointArray;
 	cocos2d::CCArray* m_unk37a8;
-	PAD = win 0x20;
+	PAD = win 0x20, android64 0x20;
 	cocos2d::CCArray* m_circleWaveArray;
 	cocos2d::CCArray* m_unk37d8;
 	cocos2d::CCArray* m_unk37e0;
-	PAD = win 0x8;
+	PAD = win 0x8, android64 0x8;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
 	cocos2d::CCLabelBMFont* m_percentageLabel;
 	bool m_0126;
-	PAD = win 0x7;
+	PAD = win 0x7, android64 0x7;
 	cocos2d::CCSprite* m_progressBar;
 	cocos2d::CCSprite* m_progressFill;
 	// everything after this comment is probably wrong
-	PAD = win 0x55;
+	PAD = win 0x55, android64 0x55;
 	bool m_hasCompletedLevel;
-	PAD = win 0x6;
+	PAD = win 0x6, android64 0x6;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0x3;
-	PAD = win 0x5b;
+	PAD = win 0x3, android64 0x3;
+	PAD = win 0x5b, android64 0x5b;
 	bool m_isPaused;
-	PAD = win 0x18;
+	PAD = win 0x18, android64 0x18;
 	cocos2d::CCDictionary* m_colorKeyDict;
 	gd::vector<int> m_keyColors; // type not really accurate
 	gd::vector<int> m_keyOpacities; // type not really accurate
@@ -14885,13 +14885,13 @@ class ShareCommentDelegate {
 class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate, UploadPopupDelegate {
 	// virtual ~ShareCommentLayer();
 
-	static ShareCommentLayer* create(gd::string title, int charLimit, CommentType type, int ID, gd::string desc);
+	static ShareCommentLayer* create(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x460fe0;
 
-	bool init(gd::string title, int charLimit, CommentType type, int ID, gd::string desc);
+	bool init(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x4611f0;
 	void onClear(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onPercent(cocos2d::CCObject* sender);
-	void onShare(cocos2d::CCObject* sender);
+	void onShare(cocos2d::CCObject* sender) = win 0x462440;
 	void updateCharCountLabel();
 	void updateDescText(gd::string desc);
 	void updatePercentLabel();
