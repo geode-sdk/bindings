@@ -350,10 +350,10 @@ class cocos2d::CCNode {
 
 	cocos2d::CCRect boundingBox() = imac 0x26edf0;
 	void childrenAlloc();
-	cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = imac 0x270db0;
+	cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = imac 0x270db0, m1 0x31ba1c;
 	cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const&);
 	cocos2d::CCPoint convertToWindowSpace(cocos2d::CCPoint const&);
-	cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&) = imac 0x270df0;
+	cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&) = imac 0x270df0, m1 0x31b29c;
 	cocos2d::CCPoint convertToWorldSpaceAR(cocos2d::CCPoint const&);
 	cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*);
 	cocos2d::CCPoint convertTouchToNodeSpaceAR(cocos2d::CCTouch*);
@@ -619,18 +619,18 @@ class cocos2d::CCObject {
 	static cocos2d::CCObject* createWithCoder(DS_Dictionary*);
 
 	// CCObject(cocos2d::CCObject const&);
-	CCObject() = imac 0x493bf0;
-	~CCObject() = imac 0x493d00;
+	CCObject() = imac 0x493bf0, m1 0x3f89d0;
+	~CCObject() = imac 0x493d00, m1 0x3f8b38;
 
 	cocos2d::CCObjectType getObjType() const;
 
 	void setObjType(cocos2d::CCObjectType);
 
-	cocos2d::CCObject* autorelease() = imac 0x493e30;
+	cocos2d::CCObject* autorelease() = imac 0x493e30, m1 0x3f8c0c;
 	cocos2d::CCObject* copy();
 	bool isSingleReference() const;
-	void release() = imac 0x493e00;
-	void retain() = imac 0x493e20;
+	void release() = imac 0x493e00, m1 0x3f8bd8;
+	void retain() = imac 0x493e20, m1 0x3f8bfc;
 	unsigned int retainCount() const;
 
 	virtual int getTag() const = imac 0x493eb0;
@@ -1063,8 +1063,8 @@ class cocos2d::CCSprite {
 	static cocos2d::CCSprite* create(char const*) = imac 0x2843b0;
 	static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&);
 	static cocos2d::CCSprite* create() = imac 0x2846b0;
-	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x284590;
-	static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = imac 0x284680;
+	static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x284590, m1 0x229240;
+	static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = imac 0x284680, m1 0x31b038;
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x284130;
 	static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = imac 0x2842c0;
 
@@ -1536,7 +1536,7 @@ class cocos2d::CCMenuItemSprite {
 [[link(win, android)]]
 class cocos2d::CCMenu {
 	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...);
-	static cocos2d::CCMenu* create() = imac 0x79e7a0;
+	static cocos2d::CCMenu* create() = imac 0x79e7a0, m1 0x31b028;
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
     static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*);
     // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
@@ -1727,9 +1727,9 @@ class cocos2d::extension::CCControlColourPicker {
 [[link(win, android)]]
 class cocos2d::extension::CCScale9Sprite {
 	static cocos2d::extension::CCScale9Sprite* create();
-	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*) = imac 0x3fe8f0;
-	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*, cocos2d::CCRect) = imac 0x3fe810;
-	static cocos2d::extension::CCScale9Sprite* create(char const*) = imac 0x3fe560;
+	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*) = imac 0x3fe8f0, m1 0x3779d8;
+	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*, cocos2d::CCRect) = imac 0x3fe810, m1 0x3777b4;
+	static cocos2d::extension::CCScale9Sprite* create(char const*) = imac 0x3fe560, m1 0x377de4;
 	static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3fe390;
 
 	CCScale9Sprite() = imac 0x3fc930;
