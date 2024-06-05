@@ -982,7 +982,7 @@ class cocos2d::CCDirector {
 	void purgeDirector();
 	bool pushScene(cocos2d::CCScene*);
 	void removeStatsLabel();
-	bool replaceScene(cocos2d::CCScene*) = imac 0x48d110;
+	bool replaceScene(cocos2d::CCScene*) = imac 0x48d110, m1 0x3f2764;
 	void resetSmoothFixCounter();
 	void reshapeProjection(cocos2d::CCSize const&);
 	void resume();

@@ -4634,7 +4634,7 @@ class GameManager : GManager {
 		return GameManager::sharedState();
 	}
 
-	static GameManager* sharedState() = win 0x172b30, imac 0x3785a0, m1 0x31706c;
+	static GameManager* sharedState() = win 0x172b30, imac 0x3785a0, m1 0x303c64;
 
 	PlayLayer* getPlayLayer() {
 		return m_playLayer;
@@ -4857,7 +4857,7 @@ class GameManager : GManager {
 	TodoReturn queueReloadMenu();
 	TodoReturn rateGame();
 	void recountUserStats(gd::string);
-	void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x1807b0, imac 0x38d750;
+	void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x1807b0, imac 0x38d750, m1 0x3166d4;
 	void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
 		return this->reloadAll(switchingModes, toFullscreen, false, unused);
 	}
@@ -8767,7 +8767,7 @@ class GJUserMessage : cocos2d::CCNode {
 class GJUserScore : cocos2d::CCNode {
 	// virtual ~GJUserScore();
 
-	static GJUserScore* create() = imac 0x567170 {
+	static GJUserScore* create() = win inline, imac 0x567170 {
 		auto ret = new GJUserScore();
 		if (ret->init()) {
 			ret->autorelease();
@@ -13112,7 +13112,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~SetIDPopup();
 	// SetIDPopup();
 
-	static SetIDPopup* create(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x289030, imac 0x2a6f20;
+	static SetIDPopup* create(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x289030, imac 0x2a6f20, m1 0x24875c;
 
 	bool init(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x289160, imac 0x2a7270;
 	void onCancel(cocos2d::CCObject* sender);
