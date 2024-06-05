@@ -5592,7 +5592,7 @@ class GameOptionsLayer : GJOptionsLayer {
 	static GameOptionsLayer* create(GJBaseGameLayer*);
 
 	bool init(GJBaseGameLayer*);
-	void onPracticeMusicSync(cocos2d::CCObject* sender) = 0x28e010;
+	void onPracticeMusicSync(cocos2d::CCObject* sender) = win 0x28e010;
 	void onUIOptions(cocos2d::CCObject* sender);
 	void showPracticeMusicSyncUnlockInfo();
 
