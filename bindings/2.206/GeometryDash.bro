@@ -15318,7 +15318,7 @@ class SongsLayer : GJDropDownLayer {
 
 	static SongsLayer* create();
 
-	virtual void customSetup() = m1 0x46f5f8;
+	virtual void customSetup() = m1 0x46f5f8, win 0x468670;
 }
 
 [[link(android)]]
