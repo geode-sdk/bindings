@@ -11681,7 +11681,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 	float m_size;
 }
 
-[[link(android)]]
+[[link(android), depends(GJGameEvent)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	// virtual ~PlayerObject();
 	// PlayerObject();
@@ -11730,7 +11730,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn flipMod();
 	void gameEventTriggered(int p0, int p1) = win inline {
 		if (this->m_gameLayer)
-			this->m_gameLayer->gameEventTriggered(p0, p1, this->m_unk326);
+			this->m_gameLayer->gameEventTriggered(static_cast<GJGameEvent>(p0), p1, this->m_unk326);
 	}
 	bool getActiveMode();
 	TodoReturn getCurrentXVelocity();
@@ -11744,7 +11744,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn handleRotatedCollisionInternal(float, GameObject*, cocos2d::CCRect, bool, bool, bool) = win 0x36d1d0;
 	TodoReturn handleRotatedObjectCollision(float p0, GameObject* p1, cocos2d::CCRect p2, bool p3) = win inline {
 		return this->handleRotatedCollisionInternal(p0, p1, p2, p3, false, false);
-	};
+	}
 	TodoReturn handleRotatedSlopeCollision(float, GameObject*, bool);
 	TodoReturn hardFlipGravity();
 	TodoReturn hitGround(GameObject*, bool) = win 0x379f40;
@@ -11814,7 +11814,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void runNormalRotation() {
 		this->runNormalRotation(false, 1.0f);
 	}
-	void runNormalRotation(bool pUnk1, float, pUnk2) = win 0x9999999, m1 0x9999999;
+	void runNormalRotation(bool, float) = win 0x9999999, m1 0x9999999;
 	void runRotateAction(bool, int) = win 0x36b480;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x37b3b0;
