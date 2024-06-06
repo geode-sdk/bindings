@@ -9,6 +9,9 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x1a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x870);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xd98);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xda0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a50, 0x3160);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a84, 0x31f0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x3180);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x31e8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3220);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
@@ -212,4 +215,11 @@ GEODE_SIZE_CHECK(BoomScrollLayer, 0x270);
 GEODE_SIZE_CHECK(ButtonSprite, 0x2c0);
 GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
 
+GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
+GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
+GEODE_MEMBER_CHECK(TableViewCell, m_unknownString, 0x1f0);
+GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x220);
+
+
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x230);
 #endif
