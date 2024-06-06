@@ -212,4 +212,5 @@ GEODE_SIZE_CHECK(BoomScrollLayer, 0x270);
 GEODE_SIZE_CHECK(ButtonSprite, 0x2c0);
 GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
 
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x230);
 #endif
