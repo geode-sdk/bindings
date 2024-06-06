@@ -2086,7 +2086,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 	void onOnlyFullVersion(cocos2d::CCObject* sender);
 	void onPaths(cocos2d::CCObject* sender) = win 0x9bb20;
 	void onSavedLevels(cocos2d::CCObject* sender) = win 0x9b6b0;
-	void onSecretVault(cocos2d::CCObject* sender);
+	void onSecretVault(cocos2d::CCObject* sender) = win 0x9c8e0;
 	void onTopLists(cocos2d::CCObject* sender) = win 0x9bb40;
 	void onTreasureRoom(cocos2d::CCObject* sender) = win 0x9cfc0;
 	void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x9c530;
@@ -8448,7 +8448,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	static GJShopLayer* create(ShopType);
 
 	TodoReturn exitVideoAdItems();
-	bool init(ShopType);
+	bool init(ShopType) = win 0x297400;
 	void onBack(cocos2d::CCObject* sender);
 	void onCommunityCredits(cocos2d::CCObject* sender);
 	void onPlushies(cocos2d::CCObject* sender);
@@ -11360,7 +11360,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void onProgressBar(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender);
 	void onRecordReplays(cocos2d::CCObject* sender);
-	void onSecretVault(cocos2d::CCObject* sender);
+	void onSecretVault(cocos2d::CCObject* sender) = win 0x351450;
 	void onSoundtracks(cocos2d::CCObject* sender);
 	void onSupport(cocos2d::CCObject* sender);
 	void onVideo(cocos2d::CCObject* sender);
@@ -12808,7 +12808,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	TodoReturn updateMessageLabel(gd::string);
 	void updateSearchLabel(char const*);
 
-	virtual bool init() = m1 0x3388c4;
+	virtual bool init() = m1 0x3388c4, win 0x3ca010;
 	virtual void onExit() = m1 0x33cca8;
 	virtual void keyBackClicked() = win 0x3cdb70, m1 0x33cbb4;
 	virtual void textInputOpened(CCTextInputNode*) = m1 0x33bc9c;
