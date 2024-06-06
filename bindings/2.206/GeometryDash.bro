@@ -11681,7 +11681,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 	float m_size;
 }
 
-[[link(android), depends(GJGameEvent)]]
+[[link(android)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	// virtual ~PlayerObject();
 	// PlayerObject();
