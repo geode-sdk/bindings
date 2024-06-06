@@ -6402,7 +6402,17 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn rotateObject(GameObject*, float);
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
 	void setGroupParent(GameObject*, int);
-	void setStartPosObject(StartPosObject*);
+	void setStartPosObject(StartPosObject* startPos) = win inline {
+		if (startPos != m_startPosObject) {
+			if (startPos) {
+				startPos->retain();
+			}
+			if (m_startPosObject) {
+				m_startPosObject->release();
+			}
+			m_startPosObject = startPos;
+		}
+	}
 	void setupLayers() = win 0x1f9870;
 	TodoReturn setupLevelStart(LevelSettingsObject*);
 	void setupReplay(gd::string) = win 0x229a20;
@@ -6767,7 +6777,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_rightSectionIndex;
 	int m_bottomSectionIndex;
 	int m_topSectionIndex;
-	PAD = win 0x156, android32 0xB0, android64 0x144;
+	PAD = win 0xe8, android32 0x0, android64 0xd8; // TODO: fix android32 padding (member tests were broken)
+	StartPosObject* m_startPosObject; // 3180 win, 2a60 android32, 31a8 android64
+	PAD = win 0x5e, android32 0xac, android64 0x5c;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
 	PAD = win 0x0, android32 0x2, android64 0x0;
