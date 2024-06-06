@@ -11719,7 +11719,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void gameEventTriggered(int p0, int p1) = win inline {
 		if (this->m_gameLayer)
 			this->m_gameLayer->gameEventTriggered(p0, p1, this->m_unk326);
-	};
+	}
 	bool getActiveMode();
 	TodoReturn getCurrentXVelocity();
 	TodoReturn getModifiedSlopeYVel();
