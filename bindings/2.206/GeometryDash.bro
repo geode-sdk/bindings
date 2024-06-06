@@ -871,6 +871,9 @@ class CCIndexPath : cocos2d::CCObject {
 	// virtual ~CCIndexPath();
 
 	TodoReturn CCIndexPathWithSectionRow(int, int);
+
+	int m_row;
+	int m_section;
 }
 
 [[link(android)]]
