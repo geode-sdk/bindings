@@ -1125,7 +1125,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 [[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
 	// virtual ~CCScrollLayerExt();
-	CCScrollLayerExt(cocos2d::CCRect) = win 0x45bd0, imac 0x437b20, m1 0x41b2b0;
+	CCScrollLayerExt(cocos2d::CCRect) = win 0x45bd0, imac 0x437b20, m1 0x3aa6c8;
 
 	TodoReturn constraintContent();
 	TodoReturn doConstraintContent(bool);
@@ -3842,7 +3842,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	}
 
 	TodoReturn incrementForcePrio();
-	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x50ce0, imac 0x4a50e0, m1 0x408540;
+	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x50ce0, imac 0x4a50e0, m1 0x4086f8;
 	bool init(int) = win 0x50bd0;
 	void onBtn1(cocos2d::CCObject* sender) = win 0x51ac0, imac 0x4a5d60;
 	void onBtn2(cocos2d::CCObject* sender) = win 0x51b20, imac 0x4a5dc0;
