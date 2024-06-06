@@ -8156,7 +8156,7 @@ class GJPromoPopup : FLAlertLayer {
 	bool init(gd::string) = win 0x292920;
 	void onClose(cocos2d::CCObject* sender);
 
-	virtual void onExit() = m1 0x252da4;
+	virtual void onExit() = win 0x273190, m1 0x252da4;
 	virtual void registerWithTouchDispatcher() = m1 0x252eb4;
 	virtual void keyBackClicked() = m1 0x252de4;
 	virtual void show() = m1 0x252eec;
@@ -8216,7 +8216,7 @@ class GJRewardItem : cocos2d::CCObject {
 	bool isShardType(SpecialRewardItem);
 	TodoReturn rewardItemToStat(SpecialRewardItem);
 
-	virtual void encodeWithCoder(DS_Dictionary*) = m1 0x7f450;
+	virtual void encodeWithCoder(DS_Dictionary*) = win 0x1e7b00, m1 0x7f450;
 	virtual bool canEncode() = m1 0x7f4bc;
 
 	int m_chestID;
@@ -8384,7 +8384,7 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	void onBan(cocos2d::CCObject* sender);
 	void onCheck(cocos2d::CCObject* sender);
 	void onMoreLevels(cocos2d::CCObject* sender);
-	void onViewProfile(cocos2d::CCObject* sender);
+	void onViewProfile(cocos2d::CCObject* sender) = win 0xb70f0;
 	TodoReturn updateBGColor(int);
 
 	virtual bool init() = win 0xb2210, m1 0x1faca0;
@@ -8461,10 +8461,10 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 
 	TodoReturn exitVideoAdItems();
 	bool init(ShopType) = win 0x297400;
-	void onBack(cocos2d::CCObject* sender);
-	void onCommunityCredits(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x29a840;
+	void onCommunityCredits(cocos2d::CCObject* sender) = win 0x299680;
 	void onPlushies(cocos2d::CCObject* sender);
-	void onSelectItem(cocos2d::CCObject* sender);
+	void onSelectItem(cocos2d::CCObject* sender) = win 0x299850;
 	void onVideoAd(cocos2d::CCObject* sender);
 	TodoReturn scene(ShopType);
 	void showCantAffordMessage(GJStoreItem*);
@@ -12720,8 +12720,8 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
 	TodoReturn getMessage();
 	TodoReturn getThreadMessage();
 	TodoReturn nodeWithTag(int);
-	void onBack(cocos2d::CCObject* sender);
-	void onSubmit(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x3bc630;
+	void onSubmit(cocos2d::CCObject* sender) = win 0x3b85c0;
 	TodoReturn playCoinEffect();
 	TodoReturn scene();
 	TodoReturn selectAThread();
