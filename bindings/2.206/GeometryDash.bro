@@ -9872,7 +9872,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 
 	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x2d73f0;
 
-	void confirmClone(cocos2d::CCObject*);
+	void confirmClone(cocos2d::CCObject*) = win 0x2dd950;
 	void confirmDelete(cocos2d::CCObject*);
 	void confirmMoveToBottom(cocos2d::CCObject*);
 	void confirmMoveToTop(cocos2d::CCObject*);
