@@ -12708,8 +12708,8 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
 	TodoReturn getMessage();
 	TodoReturn getThreadMessage();
 	TodoReturn nodeWithTag(int);
-	void onBack(cocos2d::CCObject* sender);
-	void onSubmit(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x3bc630;
+	void onSubmit(cocos2d::CCObject* sender) = win 0x3b85c0;
 	TodoReturn playCoinEffect();
 	TodoReturn scene();
 	TodoReturn selectAThread();
