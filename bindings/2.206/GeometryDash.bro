@@ -10224,7 +10224,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	static LevelSelectLayer* create(int);
 
 	cocos2d::ccColor3B colorForPage(int page) = win 0x2f8ee0;
-	TodoReturn getColorValue(int, int, float) = win 0x2f8bc0;
+	TodoReturn getColorValue(int, int, float);
 	bool init(int page) = win 0x2f7d60;
 	void onBack(cocos2d::CCObject* sender) = win 0x2f9380;
 	void onDownload(cocos2d::CCObject* sender) = win 0x2f8b00;
