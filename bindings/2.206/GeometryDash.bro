@@ -3920,7 +3920,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	float fadeOutMusic(float, int) = win 0x5b2b0;
 	TodoReturn getActiveMusic(int);
 	TodoReturn getActiveMusicChannel(int);
-	float getBackgroundMusicVolume() win inline, m1 0x36927c {
+	float getBackgroundMusicVolume() = win inline, m1 0x36927c {
 		return m_musicVolume;
 	}
 	TodoReturn getChannelGroup(int, bool);
