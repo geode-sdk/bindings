@@ -1662,7 +1662,7 @@ class ColorAction : cocos2d::CCObject {
 	void loadFromState(CAState&);
 	TodoReturn resetAction();
 	void saveToState(CAState&);
-	TodoReturn setupFromMap(gd::map<gd::string, gd::string>&);
+	void setupFromMap(gd::map<gd::string, gd::string>&) = win 0x247e40;
 	void setupFromString(gd::string) = win 0x247d60;
 	TodoReturn step(float);
 	TodoReturn updateCustomColor(cocos2d::ccColor3B, cocos2d::ccColor3B);
@@ -3609,7 +3609,7 @@ class EnhancedGameObject : GameObject {
 	TodoReturn waitForAnimationTrigger();
 
 	virtual void customSetup() = m1 0x502290;
-	virtual void resetObject() = m1 0x501c24;
+	virtual void resetObject() = win 0x19A970, m1 0x501c24;
 	virtual void deactivateObject(bool) = m1 0x5033f4;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x501ed8;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x50345c;
@@ -3926,7 +3926,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	float getBackgroundMusicVolume() = win inline, m1 0x36927c {
 		return m_musicVolume;
 	}
-	TodoReturn getChannelGroup(int, bool);
+	FMOD::ChannelGroup* getChannelGroup(int, bool) = win 0x55c70;
 	inline float getEffectsVolume() {
 		return m_sfxVolume;
 	}
@@ -3959,7 +3959,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56050;
 	TodoReturn playEffectAsync(gd::string path);
 	void playMusic(gd::string path, bool p1, float p2, int p3);
-	void preloadEffect(gd::string path);
+	void preloadEffect(gd::string path) = win 0x583b0;
 	void preloadEffectAsync(gd::string path);
 	TodoReturn preloadMusic(gd::string path, bool p1, int p2);
 	TodoReturn printResult(FMOD_RESULT);
@@ -6287,7 +6287,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::ccColor3B, float, float, int, bool, float);
 	TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
 	void loadLevelSettings() = win 0x229e30;
-	TodoReturn loadStartPosObject();
+	void loadStartPosObject() = win 0x225710;
 	TodoReturn loadUpToPosition(float, int, int) = win 0x2258b0;
 	TodoReturn maxZOrderForShaderZ(int);
 	TodoReturn minZOrderForShaderZ(int);
@@ -6396,7 +6396,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void resetPlayer();
 	void resetSongTriggerValues() = win 0x5ceb0;
 	TodoReturn resetSpawnChannelIndex();
-	TodoReturn resetStaticCamera(bool, bool);
+	void resetStaticCamera(bool, bool) = win 0x22eef0;
 	TodoReturn resetStoppedAreaObjects();
 	TodoReturn restoreAllUIObjects();
 	TodoReturn restoreDefaultGameplayOffsetX();
@@ -6419,7 +6419,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 		}
 	}
 	void setupLayers() = win 0x1f9870;
-	TodoReturn setupLevelStart(LevelSettingsObject*);
+	void setupLevelStart(LevelSettingsObject*) = win 0x202d80;
 	void setupReplay(gd::string) = win 0x229a20;
 	TodoReturn shakeCamera(float, float, float);
 	TodoReturn shouldExitHackedLevel();
@@ -6456,8 +6456,16 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn toggleGroup(int, bool);
 	TodoReturn toggleLockPlayer(bool, bool);
 	TodoReturn togglePlayerStreakBlend(bool);
-	void togglePlayerVisibility(bool, bool);
-	TodoReturn togglePlayerVisibility(bool); //inlined on windows
+	void togglePlayerVisibility(bool visible, bool player1) = win inline {
+		if (player1)
+			this->m_player1->toggleVisibility(visible);
+		else
+			this->m_player2->toggleVisibility(visible);
+	}
+	void togglePlayerVisibility(bool visible) = win inline {
+		this->togglePlayerVisibility(visible, true);
+		this->togglePlayerVisibility(visible, false);
+	}
 	TodoReturn transformAreaObjects(GameObject*, cocos2d::CCArray*, float, float, bool);
 	TodoReturn triggerAdvancedFollowCommand(AdvancedFollowTriggerObject*);
 	TodoReturn triggerAdvancedFollowEditCommand(AdvancedFollowEditObject*);
@@ -7088,7 +7096,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn createTransformCommand(double, double, double, double, bool, float, int, int, int, float, bool, bool, int, int);
 	TodoReturn getAllColorActions();
 	TodoReturn getAllColorSprites();
-	ColorAction* getColorAction(int);
+	ColorAction* getColorAction(int) = win 0x39A00;
 	ColorActionSprite* getColorSprite(int);
 	TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
 	TodoReturn getMixedColor(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
@@ -11825,7 +11833,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void ringJump(RingObject*, bool) = win 0x376c30, m1 0x392b20;
 	void rotateGameplay(int, int, bool, float, float, bool, bool);
 	TodoReturn rotateGameplayObject(GameObject*);
-	TodoReturn rotateGameplayOnly(bool);
+	void rotateGameplayOnly(bool) = win 0x376890;
 	TodoReturn rotatePreSlopeObjects();
 	void runBallRotation(float);
 	void runBallRotation2();
@@ -11874,7 +11882,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void toggleRollMode(bool, bool) = win 0x379580;
 	void toggleSpiderMode(bool, bool) = win 0x379a80;
 	void toggleSwingMode(bool, bool) = win 0x378b30;
-	void toggleVisibility(bool);
+	void toggleVisibility(bool) = win 0x369590;
 	TodoReturn touchedObject(GameObject*);
 	void tryPlaceCheckpoint();
 	TodoReturn unrotateGameplayObject(GameObject*);
@@ -14857,7 +14865,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn setupPinchShader();
 	TodoReturn setupRadialBlurShader();
 	TodoReturn setupSepiaShader();
-	TodoReturn setupShader(bool);
+	TodoReturn setupShader(bool) = win 0x455f60;
 	TodoReturn setupShockLineUniforms();
 	TodoReturn setupShockWaveUniforms();
 	TodoReturn setupSplitScreenShader();
@@ -14891,11 +14899,11 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn updateMotionBlurSpeedY(float, float);
 	TodoReturn updateShockLineCenter(cocos2d::CCPoint);
 	TodoReturn updateShockWaveCenter(cocos2d::CCPoint);
-	bool updateZLayer(int, int, bool);
+	bool updateZLayer(int, int, bool); //inline on win
 
-	virtual void update(float) = m1 0x352250;
-	virtual bool init() = m1 0x350b50;
-	virtual void visit() = m1 0x356eb0;
+	virtual void update(float) = win 0x455e50, m1 0x352250;
+	virtual bool init() = win 0x456d00, m1 0x350b50;
+	virtual void visit() = win 0x45CE00, m1 0x356eb0;
 }
 
 [[link(android)]]
