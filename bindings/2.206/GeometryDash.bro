@@ -12380,7 +12380,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool isCorrect(char const* key);
 	bool isOnWatchlist(int);
 	void loadPage(int) = win 0x3a2420;
-	void loadPageFromUserInfo(GJUserScore*) = win 0x39c890, imac 0x7c6330;
+	void loadPageFromUserInfo(GJUserScore*) = win 0x39c890, imac 0x7c6330, m1 0x6cb934;
 	void onBlockUser(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender) = win 0x3a15b0;
 	void onComment(cocos2d::CCObject* sender);
@@ -15614,13 +15614,13 @@ class TableViewCell : cocos2d::CCLayer {
 
 	TodoReturn updateVisibility();
 
-	PAD = win 0x0, android32 0x0, android64 0x5; // wtf is this?
+	PAD = win 0x0, android32 0x0, android64 0x5, mac 0x5; // wtf is this?
 	bool m_unknown;
 	TableView* m_tableView;
 	CCIndexPath m_indexPath;
 	void* m_unknown2;
 	void* m_unknown3;
-	PAD = win 0x0, android32 0x4, android64 0x0; // wtf is this x2?
+	PAD = win 0x0, android32 0x4, android64 0x0, mac 0x0; // wtf is this x2?
 	gd::string m_unknownString;
 	float m_width;
 	float m_height;
