@@ -205,7 +205,7 @@ class AchievementNotifier : cocos2d::CCNode {
 		if (previousScene && previousScene != scene)
 		{
 			previousScene->retain();
-			scene->addChild(static_cast<cocos2d::CCNode*>(previousScene->getChildren()->objectAtIndex(0)), 105);
+			scene->addChild(static_cast<cocos2d::CCNode*>(previousScene->getChildren()->lastObject()), 105);
 			previousScene->release();
 			previousScene->resumeSchedulerAndActions();
 		}
