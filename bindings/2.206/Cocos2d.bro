@@ -56,7 +56,7 @@ class cocos2d::CCMotionStreak {
 class cocos2d::CCScene {
 	static cocos2d::CCScene* create() = imac 0x28cbf0, m1 0x230538;
 
-	int getHighestChildZ() = imac 0x28cca0, m1 0x409998;
+	int getHighestChildZ() = imac 0x28cca0, m1 0x230610;
 
 	// CCScene(cocos2d::CCScene const&);
 	// CCScene();
@@ -376,7 +376,7 @@ class cocos2d::CCNode {
 	void sortAllChildrenWithIndex();
 	void stopAction(cocos2d::CCAction*);
 	void stopActionByTag(int);
-	void stopAllActions() = imac 0x26ef50, m1 0x2e937e;
+	void stopAllActions() = imac 0x26ef50, m1 0x215290;
 	void transform();
 	void transformAncestors();
 	void unschedule(cocos2d::SEL_SCHEDULE);
@@ -720,6 +720,56 @@ class cocos2d::CCMouseDispatcher {
 	void forceAddDelegate(cocos2d::CCMouseDelegate*);
 	void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
 	void removeDelegate(cocos2d::CCMouseDelegate*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCTexture2D {
+	static void PVRImagesHavePremultipliedAlpha(bool);
+	static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
+	static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat);
+
+	bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int);
+	bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&);
+	bool initWithETCFile(char const*);
+	bool initWithImage(cocos2d::CCImage*);
+	bool initWithPVRFile(char const*);
+	bool initWithString(char const*, char const*, float);
+	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment);
+	bool initWithString(char const*, cocos2d::_ccFontDefinition*);
+
+	cocos2d::CCSize const& getContentSizeInPixels();
+
+	void setAliasTexParameters();
+	void setAntiAliasTexParameters();
+	void setTexParameters(cocos2d::_ccTexParams*) = mac 0x3e99e8;
+
+	// CCTexture2D(cocos2d::CCTexture2D const&);
+	~CCTexture2D();
+	CCTexture2D();
+	unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat);
+	unsigned int bitsPerPixelForFormat();
+	char const* description();
+	void drawAtPoint(cocos2d::CCPoint const&);
+	void drawInRect(cocos2d::CCRect const&);
+	void generateMipmap();
+	bool hasMipmaps();
+	bool hasPremultipliedAlpha();
+	void* keepData(void*, unsigned int);
+	void releaseData(void*);
+	void releaseGLTexture();
+	char const* stringForFormat();
+
+	virtual cocos2d::CCTexture2DPixelFormat getPixelFormat();
+	virtual unsigned int getPixelsWide();
+	virtual unsigned int getPixelsHigh();
+	virtual unsigned int getName();
+	virtual float getMaxS();
+	virtual void setMaxS(float);
+	virtual float getMaxT();
+	virtual void setMaxT(float);
+	virtual cocos2d::CCSize getContentSize();
+	virtual cocos2d::CCGLProgram* getShaderProgram();
+	virtual void setShaderProgram(cocos2d::CCGLProgram*);
 }
 
 [[link(win, android)]]
