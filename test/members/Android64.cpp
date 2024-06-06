@@ -29,6 +29,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xff0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer, 0x1018);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer2, 0x1020);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0x10e4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x31a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a9c, 0x3238);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x3198);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3308);
