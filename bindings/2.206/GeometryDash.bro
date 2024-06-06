@@ -6996,19 +6996,19 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         return nullptr;
 	}
 
-	virtual void draw() = m1 0x51a640;
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x51a67c;
+	virtual void draw() = win 0x41870, m1 0x51a640;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3B850, m1 0x51a67c;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
-	virtual void registerWithTouchDispatcher() = m1 0x51a330;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x51a330;
 	virtual void keyBackClicked() = win 0x245970, m1 0x51a368;
 	virtual void customSetup() {}
-	virtual void enterLayer() = m1 0x51a2f8;
+	virtual void enterLayer() = win 0x41720, m1 0x51a2f8;
 	virtual void exitLayer(cocos2d::CCObject*) = win 0x245990, m1 0x51a38c;
 	virtual void showLayer(bool) = win 0x2459d0, m1 0x51a3d8;
 	virtual void hideLayer(bool) = win 0x245b20, m1 0x51a4dc;
-	virtual void layerVisible() = m1 0x51a5e0;
+	virtual void layerVisible() = win 0x41820, m1 0x51a5e0;
 	virtual void layerHidden() = win 0x245c70, m1 0x51a5f0;
 	virtual void enterAnimFinished() {}
 	virtual void disableUI() = win 0x245930, m1 0x51a2d0;
