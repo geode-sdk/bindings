@@ -49,6 +49,7 @@ GEODE_SIZE_CHECK(CCBlockLayer, 0x1bc);
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d68);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x894);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x898);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa48);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b5c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2c10);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x2c28);

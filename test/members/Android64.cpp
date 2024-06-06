@@ -15,20 +15,6 @@ GEODE_SIZE_CHECK(CCMenu, 0x1b8);
 GEODE_SIZE_CHECK(CCMenuItem, 0x178);
 GEODE_SIZE_CHECK(CCMenuItemSprite, 0x190);
 
-GEODE_SIZE_CHECK(FLAlertLayer, 0x278);
-GEODE_SIZE_CHECK(BoomListView, 0x1d0);
-GEODE_SIZE_CHECK(CustomListView, 0x1d8);
-GEODE_SIZE_CHECK(CCMenuItemSpriteExtra, 0x1d8);
-GEODE_SIZE_CHECK(LoadingLayer, 0x1c8);
-GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
-GEODE_SIZE_CHECK(TableViewCell, 0x218);
-GEODE_SIZE_CHECK(Slider, 0x1c8);
-GEODE_SIZE_CHECK(SliderTouchLogic, 0x1e0);
-GEODE_SIZE_CHECK(CCScrollLayerExt, 0x200);
-GEODE_SIZE_CHECK(TableView, 0x290);
-GEODE_SIZE_CHECK(CCTextInputNode, 0x238);
-GEODE_SIZE_CHECK(CCTouchDispatcher, 0x90);
-GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x208);
 GEODE_MEMBER_CHECK(TableView, m_cellDelegate, 0x268);
 GEODE_MEMBER_CHECK(CCTextInputNode, m_textField, 0x1f8);
 
@@ -36,10 +22,19 @@ GEODE_MEMBER_CHECK(CCTextInputNode, m_textField, 0x1f8);
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3690);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xdb8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xdc0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xf10);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownE38, 0xf70);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xfc8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xff0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer, 0x1018);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer2, 0x1020);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0x10e4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a9c, 0x3238);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x3198);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3308);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x3490);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x3490); // wtf is this
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x35f0);
 
 GEODE_SIZE_CHECK(PlayLayer, 0x3970);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37b0);
@@ -92,8 +87,8 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_metering, 0x208);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x218);
 
 GEODE_SIZE_CHECK(SimplePlayer, 0x2a8);
-GEODE_SIZE_CHECK(EnhancedGameObject, 0x598);
-GEODE_SIZE_CHECK(EffectGameObject, 0x720);
+// GEODE_SIZE_CHECK(EnhancedGameObject, 0x598);
+// GEODE_SIZE_CHECK(EffectGameObject, 0x720);
 
 GEODE_MEMBER_CHECK(GameObject, m_hasExtendedCollision, 0x27c);
 GEODE_MEMBER_CHECK(GameObject, m_activeMainColorID, 0x290);
@@ -105,15 +100,11 @@ GEODE_MEMBER_CHECK(GameObject, m_isHighDetail, 0x4db);
 GEODE_MEMBER_CHECK(GameObject, m_isPassable, 0x4fd);
 GEODE_MEMBER_CHECK(GameObject, m_property155, 0x518);
 
-GEODE_MEMBER_CHECK(EffectGameObject, m_isMultiTriggered, 0x670);
-GEODE_MEMBER_CHECK(EffectGameObject, m_isReverse, 0x6e4);
-GEODE_MEMBER_CHECK(EffectGameObject, m_objectLabel, 0x710);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_circle, 0x278);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x2b0);
+GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2d0);
 
-GEODE_MEMBER_CHECK(LevelInfoLayer, m_circle, 0x270);
-GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x2A8);
-GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2C8);
-
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x3788);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x3790);
 
 GEODE_SIZE_CHECK(FLAlertLayer, 0x278);
 GEODE_SIZE_CHECK(BoomListView, 0x1d0);
@@ -121,7 +112,7 @@ GEODE_SIZE_CHECK(CustomListView, 0x1d8);
 GEODE_SIZE_CHECK(CCMenuItemSpriteExtra, 0x1d8);
 GEODE_SIZE_CHECK(LoadingLayer, 0x1c8);
 GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
-GEODE_SIZE_CHECK(TableViewCell, 0x218);
+// GEODE_SIZE_CHECK(TableViewCell, 0x218);
 GEODE_SIZE_CHECK(Slider, 0x1c8);
 GEODE_SIZE_CHECK(SliderTouchLogic, 0x1e0);
 GEODE_SIZE_CHECK(CCScrollLayerExt, 0x200);
@@ -129,7 +120,7 @@ GEODE_SIZE_CHECK(TableView, 0x290);
 GEODE_SIZE_CHECK(CCTextInputNode, 0x238);
 GEODE_SIZE_CHECK(CCTouchDispatcher, 0x90);
 
-GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x208);
+// GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x208);
 GEODE_MEMBER_CHECK(TableView, m_cellDelegate, 0x268);
 GEODE_MEMBER_CHECK(CCTextInputNode, m_textField, 0x1f8);
 
