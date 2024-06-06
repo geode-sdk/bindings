@@ -5884,7 +5884,7 @@ class GameToolbox {
 	static TodoReturn particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&);
 	static TodoReturn pointsToString(int) = win 0x68170;
 	static TodoReturn postClipVisit();
-	static TodoReturn preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect);
+	static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x62fd0;
 	static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
 	static TodoReturn saveParticleToString(cocos2d::CCParticleSystemQuad*);
 	static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
@@ -11237,7 +11237,7 @@ class NumberInputLayer : FLAlertLayer {
 	void onNumber(cocos2d::CCObject* sender);
 	TodoReturn updateNumberState();
 
-	virtual bool init() = m1 0x4000ac;
+	virtual bool init() = m1 0x4000ac, win 0x326bb0;
 	virtual void registerWithTouchDispatcher() = m1 0x400b3c;
 	virtual void keyBackClicked() = m1 0x400ac0;
 }
@@ -12145,7 +12145,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	CheckpointObject* createCheckpoint() = win 0x391b00;
 	void createObjectsFromSetupFinished() = win 0x38a4f0;
 	void delayedFullReset();
-	void delayedResetLevel();
+	void delayedResetLevel() = win 0x395700;
 	void fullReset() = win 0x395600;
 	float getCurrentPercent() = win inline {
 		float percent;
