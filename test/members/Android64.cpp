@@ -10,6 +10,7 @@ GEODE_SIZE_CHECK(CCNodeRGBA, 0x158);
 GEODE_SIZE_CHECK(CCLayer, 0x198);
 GEODE_SIZE_CHECK(CCLayerColor, 0x220);
 GEODE_SIZE_CHECK(CCSprite, 0x258);
+GEODE_SIZE_CHECK(CCLayer, 0x198);
 
 GEODE_SIZE_CHECK(CCMenu, 0x1b8);
 GEODE_SIZE_CHECK(CCMenuItem, 0x178);
@@ -29,9 +30,9 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xff0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer, 0x1018);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer2, 0x1020);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0x10e4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x3198);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x31a8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a9c, 0x3238);
-// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x3198);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3220);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3308);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x3490); // wtf is this
@@ -113,7 +114,6 @@ GEODE_SIZE_CHECK(CustomListView, 0x1d8);
 GEODE_SIZE_CHECK(CCMenuItemSpriteExtra, 0x1d8);
 GEODE_SIZE_CHECK(LoadingLayer, 0x1c8);
 GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
-// GEODE_SIZE_CHECK(TableViewCell, 0x218);
 GEODE_SIZE_CHECK(Slider, 0x1c8);
 GEODE_SIZE_CHECK(SliderTouchLogic, 0x1e0);
 GEODE_SIZE_CHECK(CCScrollLayerExt, 0x200);
@@ -121,7 +121,14 @@ GEODE_SIZE_CHECK(TableView, 0x290);
 GEODE_SIZE_CHECK(CCTextInputNode, 0x238);
 GEODE_SIZE_CHECK(CCTouchDispatcher, 0x90);
 
-// GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x208);
+GEODE_SIZE_CHECK(TableViewCell, 0x218);
+GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
+GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
+GEODE_MEMBER_CHECK(TableViewCell, m_unknownString, 0x1f0);
+GEODE_MEMBER_CHECK(TableViewCell, m_width, 0x1f8);
+GEODE_MEMBER_CHECK(TableViewCell, m_height, 0x1fc);
+GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x208);
+
 GEODE_MEMBER_CHECK(TableView, m_cellDelegate, 0x268);
 GEODE_MEMBER_CHECK(CCTextInputNode, m_textField, 0x1f8);
 
