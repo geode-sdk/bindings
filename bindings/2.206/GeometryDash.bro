@@ -8451,7 +8451,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	bool init(ShopType) = win 0x297400;
 	void onBack(cocos2d::CCObject* sender) = win 0x29a840;
 	void onCommunityCredits(cocos2d::CCObject* sender) = win 0x299680;
-	void onPlushies(cocos2d::CCObject* sender) = win 0x3aff0;
+	void onPlushies(cocos2d::CCObject* sender);
 	void onSelectItem(cocos2d::CCObject* sender) = win 0x299850;
 	void onVideoAd(cocos2d::CCObject* sender);
 	TodoReturn scene(ShopType);
