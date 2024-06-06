@@ -6782,7 +6782,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_topSectionIndex;
 	PAD = win 0xe8, android32 0x0, android64 0xd8; // TODO: fix android32 padding (member tests were broken)
 	StartPosObject* m_startPosObject; // 3180 win, 2a60 android32, 31a8 android64
-	PAD = win 0x5e, android32 0xac, android64 0x5c;
+	PAD = win 0x60, android32 0xac, android64 0x5c;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
 	PAD = win 0x0, android32 0x2, android64 0x0;
