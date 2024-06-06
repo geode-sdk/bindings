@@ -42,6 +42,8 @@ GEODE_MEMBER_CHECK(CCTextInputNode, m_textField, 0x17c);
 GEODE_MEMBER_CHECK(FLAlertLayer, m_buttonMenu, 0x1b8);
 GEODE_MEMBER_CHECK(FLAlertLayer, m_mainLayer, 0x1c8);
 GEODE_MEMBER_CHECK(TableView, m_cellArray, 0x1b0);
+GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x144);
+GEODE_MEMBER_CHECK(TableViewCell, m_unknownString, 0x184);
 GEODE_MEMBER_CHECK(TableViewCell, m_backgroundLayer, 0x190);
 GEODE_SIZE_CHECK(CCBlockLayer, 0x1bc);
 
@@ -49,11 +51,17 @@ GEODE_SIZE_CHECK(CCBlockLayer, 0x1bc);
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d68);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x894);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x898);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0x95c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownE38, 0x98c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa48);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a50, 0x2a50);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2a60);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a84, 0x2aa4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b5c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2c10);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x2c28);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x2ce4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_debugDrawNode, 0x2d58);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x2c28); // i dont even know anymore
 
 GEODE_SIZE_CHECK(PlayLayer, 0x2f60);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x2e24);
@@ -83,7 +91,6 @@ GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x610);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk644, 0x62c);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk658, 0x640);
 GEODE_MEMBER_CHECK(PlayerObject, m_gv0096, 0x68a);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk6a3, 0x68b);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk6a4, 0x6a4);
 GEODE_MEMBER_CHECK(PlayerObject, m_objectSnappedTo, 0x6c0);
 GEODE_MEMBER_CHECK(PlayerObject, m_spiderSprite, 0x6d0);

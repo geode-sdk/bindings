@@ -4012,7 +4012,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	virtual void update(float) = win 0x54510, m1 0x362540;
 
-	PAD = win 0xc4, android32 0x50, android64 0xac;
+	PAD = win 0xc4, android32 0x54, android64 0xac;
 	float m_musicVolume;
 	float m_sfxVolume;
 	PAD = win 0x8, android32 0x8, android64 0x8;
@@ -5404,7 +5404,7 @@ class GameObject : CCSpritePlus {
 	float m_unk28c;
 	short m_unk290;
 	bool m_unk292;
-	PAD = android32 0x5, win 0x5, android64 0x5;
+	PAD = android32 0x1, win 0x5, android64 0x5;
 	gd::string m_particleString;
 
 	PAD = android32 0x1, win 0x1, android64 0x1;
@@ -6755,7 +6755,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::unordered_map<int, std::pair<int, int>> m_unknownE58;
 	cocos2d::CCDictionary* m_linkedGroupDict;
 	int m_lastUsedLinkedID;
-	PAD = win 0x4, android32 0x0, android64 0x4; // might be an int
 	cocos2d::CCNode* m_unknownE90;
 	cocos2d::CCNode* m_unknownE98;
 	cocos2d::CCNode* m_unknownEA0;
@@ -6763,26 +6762,29 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCLayer* m_unkff8;
 	cocos2d::CCLayer* m_unk1000;
 	cocos2d::CCSprite* m_unk1008;
-	PAD = win 0x8, android 0x8;
+	void* m_unk1010;
 	GJGroundLayer* m_groundLayer;
 	GJGroundLayer* m_groundLayer2;
-	PAD = win 0x8, android64 0x8;
+	void* m_unk1028;
 	cocos2d::CCArray* m_unk1030;
 	cocos2d::CCDictionary* m_unk1038;
 	void* m_unk1040;
-	PAD = win 0x8c, android32 0x40, android64 0x9c; // (for win) between 0x8 bytes, there is a member thats 0x8 size. I think its a CCDictionary*
+	PAD = win 0x8c, android32 0x50, android64 0x9c; // (for win) between 0x8 bytes, there is a member thats 0x8 size. I think its a CCDictionary*
 	std::array<float, 2000> m_massiveFloatArray;
 	PAD = win 0x80, android32 0x54, android64 0x98; // not sure about the android paddings
 	int m_leftSectionIndex; // 29b4 win, 29d4 android32, 30b4 android64
 	int m_rightSectionIndex;
 	int m_bottomSectionIndex;
 	int m_topSectionIndex;
-	PAD = win 0xe8, android32 0x0, android64 0xd8; // TODO: fix android32 padding (member tests were broken)
+	PAD = win 0xc8, android32 0x64, android64 0xb8;
+	cocos2d::CCDictionary* m_unk2a50;
+	int m_unk2a54;
+	ShaderLayer* m_shaderLayer;
+	PAD = win 0x8, android32 0x4, android64 0x8;
 	StartPosObject* m_startPosObject; // 3180 win, 2a60 android32, 31a8 android64
-	PAD = win 0x5e, android32 0xac, android64 0x5c;
+	PAD = win 0x60, android32 0x38, android64 0x34;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
-	PAD = win 0x0, android32 0x2, android64 0x0;
 	float m_loadingProgress;
 	cocos2d::CCNode* m_unk2a84;
 	int m_unk2a88;
@@ -6797,25 +6799,32 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_isTestMode;
 	bool m_unk3089;
 	bool m_unk308a;
-	PAD = win 0x26, android64 0x26;
+	int m_unk322c;
+	int m_unk3230;
+	bool m_unk3234;
+	cocos2d::CCParticleSystemQuad* m_unk3238;
+	int m_unk323c;
+	PAD = win 0x6, android32 0x10, android64 0x6;
 	bool m_started;
-	PAD = win 0xA6, android64 0x8e;
+	PAD = win 0xA6, android32 0x66, android64 0xb8;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = win 0x158, android32 0xa8, android64 0x148;
+	PAD = win 0x148, android32 0xa0, android64 0x138;
+	cocos2d::CCDictionary* m_unk3458;
+	int m_unk3460;
 	UILayer* m_uiLayer;
 	cocos2d::CCArray* m_unk3470;
 	cocos2d::CCDictionary* m_unk3478;
 	cocos2d::CCNode* m_unk3480;
 	float m_unk3484;
-	PAD = win 0x44, android64 0x44;
+	PAD = win 0x44, android32 0x44, android64 0x44;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c48 win
-	PAD = win 0x100, android64 0xe0;
+	PAD = win 0x100, android32 0x58, android64 0xe0;
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection; // 2c9c win
-	PAD = win 0x10, android64 0x10;
+	PAD = win 0x10, android32 0xc, android64 0x10;
 	FMODLevelVisualizer* m_fModVisualizerBG;
 	FMODLevelVisualizer* m_fModVisualizerSFX;
 	bool m_showAudioVisualizer;
-	PAD = win 0x67, android64 0x67;
+	PAD = win 0x67, android32 0x67, android64 0x67;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode;
 	void* m_unk3678;
@@ -12289,42 +12298,47 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*) = win 0x391440, m1 0xa7a3c;
 	virtual void dialogClosed(DialogLayer*) = win 0x3912a0, m1 0xa7a08;
 
-	PAD = win 0x30, imac 0x30, android32 0x30, android64 0x2c, m1 0x2c, ios 0x2c;
+	PAD = win 0x30, imac 0x30, android32 0x24, android64 0x2c, m1 0x2c, ios 0x2c;
 	cocos2d::CCArray* m_coinArray;
-	PAD = win 0x70, android64 0x70;
+	PAD = win 0x70, android32 0x40, android64 0x70;
 	cocos2d::CCLabelBMFont* m_statusLabel;
 	int m_unk3778;
-	PAD = win 0x18, android64 0x18;
+	PAD = win 0x18, android32 0x18, android64 0x18;
 	float m_unksomefloat;
 	CheckpointObject* m_unkCheckpointObject;
 	cocos2d::CCArray* m_checkpointArray;
 	cocos2d::CCArray* m_unk37a8;
-	PAD = win 0x20, android64 0x20;
+	int m_unk37b0;
+	int m_unk37b4;
+	int m_unk37b8;
+	cocos2d::CCArray* m_unk37c0;
+	int m_unk37c8;
+	int m_unk37cc;
 	cocos2d::CCArray* m_circleWaveArray;
 	cocos2d::CCArray* m_unk37d8;
-	cocos2d::CCArray* m_unk37e0;
-	PAD = win 0x8, android64 0x8;
+	int m_unk37e0;
+	int m_unk37e4;
+	float m_unk37e8;
 	cocos2d::CCLabelBMFont* m_attemptLabel;
 	cocos2d::CCLabelBMFont* m_percentageLabel;
 	bool m_0126;
-	PAD = win 0x7, android64 0x7;
 	cocos2d::CCSprite* m_progressBar;
 	cocos2d::CCSprite* m_progressFill;
 	// everything after this comment is probably wrong
-	PAD = win 0x55, android64 0xf; // this makes zero sense
+	PAD = win 0x55, android32 0xf, android64 0xf; // this makes zero sense
 	bool m_hasCompletedLevel;
-	PAD = win 0x6, android64 0x6;
+	PAD = win 0x6, android32 0x6, android64 0x6;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0x3, android64 0x3;
-	PAD = win 0x5b, android64 0x5b;
+	PAD = win 0x3, android32 0x3, android64 0x3;
+	PAD = win 0x5b, android32 0x33, android64 0x5b;
 	bool m_isPaused;
-	PAD = win 0x18, android64 0x18;
+	PAD = win 0x18, android32 0x18, android64 0x18;
 	cocos2d::CCDictionary* m_colorKeyDict;
 	gd::vector<int> m_keyColors; // type not really accurate
 	gd::vector<int> m_keyOpacities; // type not really accurate
 	gd::vector<int> m_keyPulses; // type not really accurate
 	int m_nextColorKey;
-	PAD = win 0x50, imac 0x18, android32 0x18, android64 0x94, m1 0x24, ios 0x24;
+	PAD = win 0x50, imac 0x18, android32 0x80, android64 0x94, m1 0x24, ios 0x24;
 }
 
 [[link(android)]]
@@ -15597,11 +15611,13 @@ class TableViewCell : cocos2d::CCLayer {
 
 	TodoReturn updateVisibility();
 
+	PAD = win 0x0, android32 0x0, android64 0x5; // wtf is this?
 	bool m_unknown;
 	TableView* m_tableView;
 	CCIndexPath m_indexPath;
 	void* m_unknown2;
 	void* m_unknown3;
+	PAD = win 0x0, android32 0x4, android64 0x0; // wtf is this x2?
 	gd::string m_unknownString;
 	float m_width;
 	float m_height;
