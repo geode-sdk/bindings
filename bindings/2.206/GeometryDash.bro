@@ -199,7 +199,17 @@ class AchievementNotifier : cocos2d::CCNode {
 	TodoReturn achievementDisplayFinished();
 	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
 	void showNextAchievement();
-	void willSwitchToScene(cocos2d::CCScene*) = win 0x9999999, m1 0x6d4754, imac 0x7cfa80; // TODO: inlined
+	void willSwitchToScene(cocos2d::CCScene* scene) = win inline, m1 0x6d4754, imac 0x7cfa80 {
+		cocos2d::CCScene* previousScene = reinterpret_cast<cocos2d::CCScene*>(this->m_unknown2);
+
+		if (previousScene && previousScene != scene)
+		{
+			previousScene->retain();
+			scene->addChild(static_cast<cocos2d::CCNode*>(previousScene->getChildren()->objectAtIndex(0)), 105);
+			previousScene->release();
+			previousScene->resumeSchedulerAndActions();
+		}
+	}
 
 	virtual bool init() = m1 0x6d4578;
 }
