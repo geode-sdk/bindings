@@ -6400,7 +6400,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn prepareTransformParent(bool);
 	TodoReturn preResumeGame();
 	TodoReturn preUpdateVisibility(float);
-	TodoReturn processActivatedAudioTriggers(float) = win 0x232a70;
+	void processActivatedAudioTriggers(float) = win 0x232a70;
 	TodoReturn processAdvancedFollowAction(AdvancedFollowInstance&, bool, float);
 	TodoReturn processAdvancedFollowActions(float);
 	TodoReturn processAreaActions(float, bool);
