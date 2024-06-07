@@ -401,7 +401,7 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
 
 	static AudioEffectsLayer* create(gd::string);
 
-	TodoReturn audioStep(float);
+	void audioStep(float) = win 0x83720;
 	TodoReturn getBGSquare();
 	TodoReturn goingDown();
 	bool init(gd::string);
@@ -6280,7 +6280,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void handleButton(bool down, int button, bool isPlayer1) = win 0x2238a0;
 	TodoReturn hasItem(int);
 	bool hasUniqueCoin(EffectGameObject*) = win 0x207020;
-	TodoReturn increaseBatchNodeCapacity();
+	void increaseBatchNodeCapacity() = win 0x1fd9d0;
 	bool isFlipping();
 	bool isPlayer2Button(int);
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B);
@@ -6325,7 +6325,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn prepareTransformParent(bool);
 	TodoReturn preResumeGame();
 	TodoReturn preUpdateVisibility(float);
-	TodoReturn processActivatedAudioTriggers(float);
+	TodoReturn processActivatedAudioTriggers(float) = win 0x232a70;
 	TodoReturn processAdvancedFollowAction(AdvancedFollowInstance&, bool, float);
 	TodoReturn processAdvancedFollowActions(float);
 	TodoReturn processAreaActions(float, bool);
@@ -6345,7 +6345,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processMoveActionsStep(float, bool) = win 0x21bde0;
 	TodoReturn processOptionsTrigger(GameOptionsTrigger*);
 	TodoReturn processPlayerFollowActions(float);
-	TodoReturn processQueuedAudioTriggers();
+	void processQueuedAudioTriggers() = win 0x238b20;
 	TodoReturn processQueuedButtons() = win 0x221f00;
 	TodoReturn processRotationActions();
 	TodoReturn processSFXObjects();
@@ -6499,7 +6499,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateCameraOffsetY(float, float, int, float, int, int);
 	TodoReturn updateCollisionBlocks() = win 0x209060;
 	void updateCounters(int, int);
-	void updateDualGround(PlayerObject*, int, bool, float);
+	void updateDualGround(PlayerObject*, int, bool, float) = win 0x203ce0;
 	TodoReturn updateEnterEffects(float);
 	TodoReturn updateExtendedCollision(GameObject*, bool);
 	TodoReturn updateExtraGameLayers();
@@ -9789,7 +9789,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual void updateVisibility(float) = win 0x2cd520, m1 0xd2794;
 	virtual TodoReturn playerTookDamage(PlayerObject*) = m1 0xd8f10;
 	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int) = m1 0xd62b4;
-	virtual void updateDebugDraw() = m1 0xda0d4;
+	virtual void updateDebugDraw() = win 0x2ce170, m1 0xda0d4;
 	virtual void addToGroup(GameObject*, int, bool) = win 0x2cae40, m1 0xd6a70;
 	virtual void removeFromGroup(GameObject*, int) = win 0x2cbc10, m1 0xd6b28;
 	virtual TodoReturn updateObjectSection(GameObject*) = win 0x2cbea0, m1 0xd7b7c;
@@ -11280,7 +11280,7 @@ class NumberInputLayer : FLAlertLayer {
 class OBB2D : cocos2d::CCNode {
 	// virtual ~OBB2D();
 
-	static OBB2D* create(cocos2d::CCPoint, float, float, float);
+	static OBB2D* create(cocos2d::CCPoint, float, float, float) = win 0x6c390;
 
 	TodoReturn calculateWithCenter(cocos2d::CCPoint, float, float, float);
 	TodoReturn computeAxes();
@@ -11788,7 +11788,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn levelFlipFinished();
 	bool levelFlipping() = win 0x379500;
 	TodoReturn levelWillFlip();
-	void loadFromCheckpoint(PlayerCheckpoint*);
+	void loadFromCheckpoint(PlayerCheckpoint*) = win 0x394180;
 	void lockPlayer() = win 0x37d2e0;
 	TodoReturn logValues();
 	TodoReturn modeDidChange();
