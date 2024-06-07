@@ -1255,26 +1255,83 @@ class CCSpritePart : CCSpritePlus {
 [[link(android)]]
 class CCSpritePlus : cocos2d::CCSprite {
 	// virtual ~CCSpritePlus();
+	
+	/// Adds a follower to the sprite
+    /// @param follower Something that will follow this sprite
+	void addFollower(cocos2d::CCNode* follower);
 
-	TodoReturn addFollower(cocos2d::CCNode*);
-	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	TodoReturn createWithSpriteFrameName(char const*);
-	TodoReturn followSprite(CCSpritePlus*);
-	TodoReturn getFollower();
-	TodoReturn removeFollower(cocos2d::CCNode*);
-	TodoReturn stopFollow();
+	/// Creates a sprite by a given sprite frame 
+    /// @param frame the frame to give to the specific sprite
+    /// @return CCSpritePlus object and returns null if initialization fails
+	static CCSpritePlus* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame);
 
-	virtual void setScaleX(float) = win 0x47350, m1 0x3f089c;
-	virtual void setScaleY(float) = win 0x473d0, m1 0x3f0918;
-	virtual void setScale(float) = win 0x47460, m1 0x3f0994;
-	virtual void setPosition(cocos2d::CCPoint const&) = win 0x46f50, m1 0x3f056c;
-	virtual void setRotation(float) = win 0x46fe0, m1 0x3f05e0;
-	virtual void setRotationX(float) = win 0x47070, m1 0x3f0654;
+	/// Creates a sprite by a given sprite's frame name
+    /// @param frame the frame or filename to give to the specific sprite
+    /// @return CCSpritePlus object and returns null if initialization fails
+	static CCSpritePlus* createWithSpriteFrameName(char const* frame);
+	
+	/// Attaches a sprite to the sprite. and other way around
+    /// you can think of this as attaching 2 lego blocks together and letting 
+	/// it drag along.  
+    /// @param sprite the sprite to attach to the main sprite and vice versa
+	void followSprite(CCSpritePlus* sprite);
+	
+	/// Obtains the first following sprite if it has a follower on hand
+    /// @return nullptr if there is no follower avalible
+	CCSpritePlus* getFollower();
+
+	/// Removes a specific following sprite from this sprite.
+    /// @param sprite follower sprite that will be removed.
+	void removeFollower(cocos2d::CCNode* sprite);
+
+	/// Stops this child sprite from following it's given parent 
+	void stopFollow();
+
+	/// Sets X's scale on itself and it's followers
+    /// @param fScaleX the scale of X to set
+	virtual void setScaleX(float fScaleX) = win 0x47350, m1 0x3f089c;
+	
+	/// Sets Y's scale on itself and it's followers
+    /// @param fScaleY the scale of Y to set
+	virtual void setScaleY(float fScaleY) = win 0x473d0, m1 0x3f0918;
+
+	/// Sets the Scale of itself and it's followers 
+    /// @param fScale the scale value to set
+	virtual void setScale(float fScale) = win 0x47460, m1 0x3f0994;
+
+	/// Sets the position where the sprite will be at and it's followers
+    /// @param pos the position to place to the sprite and it's followers
+	virtual void setPosition(cocos2d::CCPoint const& pos) = win 0x46f50, m1 0x3f056c;
+
+	/// Sets the sprite's given rotation and it's followers
+    /// @param fRotation the rotation value to set
+	virtual void setRotation(float fRotation) = win 0x46fe0, m1 0x3f05e0;
+	
+	/// Sets the sprite's given rotation of X and it's followers
+    /// @param fRotationX the rotation of X to set.
+	virtual void setRotationX(float fRotationX) = win 0x47070, m1 0x3f0654;
+
+	/// Sets the sprite's given rotation of Y and it's followers
+    /// @param fRotationY the roation of Y to set 
 	virtual void setRotationY(float) = win 0x47100, m1 0x3f06c8;
-	virtual bool initWithTexture(cocos2d::CCTexture2D*) = win 0x46f30, m1 0x3f0558;
+
+	/// Initalizes the sprite using a texture
+    /// @param texture the texture to initalize the sprite with 
+    /// @return true if initalization succeeded.
+	virtual bool initWithTexture(cocos2d::CCTexture2D* texture) = win 0x46f30, m1 0x3f0558;
+
+	/// Initalizes the sprite with a frame name 
+    /// @param frame the frame to initalize the sprite with 
+    /// @return true if initalization succeeded 
 	virtual bool initWithSpriteFrameName(char const*) = win 0x46f20, m1 0x3f054c;
-	virtual void setFlipX(bool) = win 0x47190, m1 0x3f073c;
-	virtual void setFlipY(bool) = win 0x47270, m1 0x3f07ec;
+
+	/// Sets flipX to itself and it's followers
+    /// @param flipX the direction that the sprite should be flipped to
+	virtual void setFlipX(bool flipX) = win 0x47190, m1 0x3f073c;
+	
+	/// Sets flipY to itself and it's followers
+    /// @param flipY the direction that the sprite should be flipped to
+	virtual void setFlipY(bool flipY) = win 0x47270, m1 0x3f07ec;
 
 	cocos2d::CCArray* m_followers;
 	CCSpritePlus* m_followingSprite;
