@@ -1541,7 +1541,7 @@ class ChallengeNode : cocos2d::CCNode {
 class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, CurrencyRewardDelegate {
 	// virtual ~ChallengesPage();
 
-	static ChallengesPage* create();
+	static ChallengesPage* create() = win 0x9c770;
 
 	TodoReturn claimItem(ChallengeNode*, GJChallengeItem*, cocos2d::CCPoint);
 	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x849f0, m1 0x327c74;
