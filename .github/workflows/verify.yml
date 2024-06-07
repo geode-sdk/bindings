@@ -87,6 +87,7 @@ jobs:
             -DCMAKE_CXX_COMPILER=clang++
             -DCMAKE_BUILD_TYPE=Debug
             -DCMAKE_OSX_ARCHITECTURES=x86_64
+            -D USE_HACKY_SCRIPT=ON
 
         - name: macOS (ARM)
           os_identifier: mac-arm
@@ -96,6 +97,7 @@ jobs:
             -DCMAKE_CXX_COMPILER=clang++
             -DCMAKE_BUILD_TYPE=Debug
             -DCMAKE_OSX_ARCHITECTURES=arm64
+            -D USE_HACKY_SCRIPT=ON
 
     name: Test Offsets ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
