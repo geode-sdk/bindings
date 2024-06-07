@@ -1595,22 +1595,20 @@ class CheckpointObject : cocos2d::CCNode {
 	GameObject* m_physicalCheckpointObject;
 	PlayerCheckpoint* m_player1Checkpoint;
 	PlayerCheckpoint* m_player2Checkpoint;
+	void* m_maybeAPointer1;
 	int m_unkInt1;
-	int m_unkInt2;
-	int m_unkInt3;
 	short m_unkShort1;
 	PAD = win 0x2;
-	int m_unkInt4;
-	int m_unkInt5;
+	void* m_maybeAPointer2;
 	gd::vector<DynamicSaveObject> m_vectorDynamicSaveObjects;
 	gd::vector<ActiveSaveObject1> m_vectorActiveSaveObjects1;
 	gd::vector<ActiveSaveObject2> m_vectorActiveSaveObjects2;
 	EffectManagerState m_effectManagerState;
 	cocos2d::CCArray* m_gradientTriggerObjectArray;
 	bool m_unkBool1;
-	PAD = win 0x3;
+	PAD = win 0x7;
 	gd::unordered_map<int,SequenceTriggerState> m_sequenceTriggerStateUnorderedMap;
-	int m_unkGetsCopiedFromGameState;
+	void* m_maybeAPointer3;
 }
 
 [[link(android)]]

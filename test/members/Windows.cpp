@@ -222,4 +222,24 @@ GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x220);
 
 
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x230);
+
+GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
+GEODE_MEMBER_CHECK(CheckpointObject, m_gameState, 0x140);
+GEODE_MEMBER_CHECK(CheckpointObject, m_shaderState, 0x808);
+GEODE_MEMBER_CHECK(CheckpointObject, m_audioState, 0xad0);
+GEODE_MEMBER_CHECK(CheckpointObject, m_physicalCheckpointObject, 0xe50);
+GEODE_MEMBER_CHECK(CheckpointObject, m_player1Checkpoint, 0xe58);
+GEODE_MEMBER_CHECK(CheckpointObject, m_player2Checkpoint, 0xe60);
+GEODE_MEMBER_CHECK(CheckpointObject, m_maybeAPointer1, 0xe68);
+GEODE_MEMBER_CHECK(CheckpointObject, m_unkInt1, 0xe70);
+GEODE_MEMBER_CHECK(CheckpointObject, m_unkShort1, 0xe74);
+GEODE_MEMBER_CHECK(CheckpointObject, m_maybeAPointer2, 0xe78);
+GEODE_MEMBER_CHECK(CheckpointObject, m_vectorDynamicSaveObjects, 0xe80);
+GEODE_MEMBER_CHECK(CheckpointObject, m_vectorActiveSaveObjects1, 0xe98);
+GEODE_MEMBER_CHECK(CheckpointObject, m_vectorActiveSaveObjects2, 0xeb0);
+GEODE_MEMBER_CHECK(CheckpointObject, m_effectManagerState, 0xec8);
+GEODE_MEMBER_CHECK(CheckpointObject, m_gradientTriggerObjectArray, 0x1200);
+GEODE_MEMBER_CHECK(CheckpointObject, m_unkBool1, 0x1208);
+GEODE_MEMBER_CHECK(CheckpointObject, m_sequenceTriggerStateUnorderedMap, 0x1210);
+GEODE_MEMBER_CHECK(CheckpointObject, m_maybeAPointer3, 0x1250);
 #endif
