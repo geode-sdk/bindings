@@ -163,9 +163,9 @@ class cocos2d::CCParticleSystem {
 	void loadDefaults();
 	void loadScaledDefaults(float);
 	void resetSystem();
-	void resumeSystem();
+	void resumeSystem() = imac 0x7d6b10;
 	void saveDefaults();
-	void stopSystem();
+	void stopSystem() = imac 0x7d6ae0;
 	void toggleUniformColorMode(bool);
 	void updateVisible();
 
