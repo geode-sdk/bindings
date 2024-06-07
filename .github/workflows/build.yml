@@ -37,12 +37,18 @@ jobs:
         - name: Windows
           os: windows-latest
           id: win
+          extra_flags: ''
         - name: macOS
           os: macos-latest
           id: mac
+          extra_flags: >
+            -DCMAKE_OSX_ARCHITECTURES='x86_64;arm64'
+            -DCMAKE_AR='/usr/bin/ar'
+            -DCMAKE_RANLIB='/usr/bin/ranlib'
         - name: Linux
           os: ubuntu-latest
           id: linux
+          extra_flags: ''
 
     name: Build ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
@@ -71,6 +77,14 @@ jobs:
         7z x ninja.zip -o"$GITHUB_WORKSPACE/ninja"
         echo "$GITHUB_WORKSPACE/ninja" >> $GITHUB_PATH
 
+    - name: Update LLVM (Windows)
+      shell: bash
+      run: |
+        curl -L https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/LLVM-17.0.6-win64.exe -o llvm-inst.exe
+        7z x llvm-inst.exe -ollvm bin/clang.exe bin/clang++.exe bin/lld-link.exe bin/llvm-rc.exe bin/*.dll lib/clang/*/include/*
+        echo "$GITHUB_WORKSPACE/llvm/bin" >> $GITHUB_PATH
+      if: matrix.config.id == 'win'
+
     - name: Configure
       run: >
         cmake codegen -B codegen/build
@@ -78,6 +92,7 @@ jobs:
         -DCMAKE_C_COMPILER=clang
         -DCMAKE_CXX_COMPILER=clang++
         -G Ninja
+        ${{ matrix.config.extra_flags }}
 
     - name: Build
       run: cmake --build codegen/build --config Release --parallel
