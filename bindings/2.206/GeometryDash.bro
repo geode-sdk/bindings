@@ -417,7 +417,7 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
 
 	static AudioEffectsLayer* create(gd::string);
 
-	TodoReturn audioStep(float);
+	void audioStep(float) = win 0x83720;
 	TodoReturn getBGSquare();
 	TodoReturn goingDown();
 	bool init(gd::string);
@@ -6355,7 +6355,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void handleButton(bool down, int button, bool isPlayer1) = win 0x2238a0;
 	TodoReturn hasItem(int);
 	bool hasUniqueCoin(EffectGameObject*) = win 0x207020;
-	TodoReturn increaseBatchNodeCapacity();
+	void increaseBatchNodeCapacity() = win 0x1fd9d0;
 	bool isFlipping();
 	bool isPlayer2Button(int);
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B);
@@ -6400,7 +6400,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn prepareTransformParent(bool);
 	TodoReturn preResumeGame();
 	TodoReturn preUpdateVisibility(float);
-	TodoReturn processActivatedAudioTriggers(float);
+	void processActivatedAudioTriggers(float) = win 0x232a70;
 	TodoReturn processAdvancedFollowAction(AdvancedFollowInstance&, bool, float);
 	TodoReturn processAdvancedFollowActions(float);
 	TodoReturn processAreaActions(float, bool);
@@ -6420,7 +6420,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processMoveActionsStep(float, bool) = win 0x21bde0;
 	TodoReturn processOptionsTrigger(GameOptionsTrigger*);
 	TodoReturn processPlayerFollowActions(float);
-	TodoReturn processQueuedAudioTriggers();
+	void processQueuedAudioTriggers() = win 0x238b20;
 	TodoReturn processQueuedButtons() = win 0x221f00;
 	TodoReturn processRotationActions();
 	TodoReturn processSFXObjects();
@@ -7604,7 +7604,7 @@ class GJGameState {
 	double m_unkDouble3;
 	unsigned int m_unkUint2;
 	unsigned int m_unkUint3;
-	int m_unk1f8; // Have to leave same name cause used in PlayLayer::getCurrentPercent m_currentProgress
+	int m_currentProgress;
 	unsigned int m_unkUint4;
 	unsigned int m_unkUint5;
 	unsigned int m_unkUint6;
@@ -9139,7 +9139,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	void firstSetup();
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
-	inline void reset() {
+	void reset() = win inline {
 		this->clear();
 		m_pointArray->removeAllObjects();
 	}
@@ -9864,7 +9864,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	virtual void updateVisibility(float) = win 0x2cd520, imac 0xb7dd0, m1 0xd2794;
 	virtual TodoReturn playerTookDamage(PlayerObject*) = m1 0xd8f10;
 	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int) = m1 0xd62b4;
-	virtual void updateDebugDraw() = m1 0xda0d4;
+	virtual void updateDebugDraw() = win 0x2ce170, m1 0xda0d4;
 	virtual void addToGroup(GameObject*, int, bool) = win 0x2cae40, m1 0xd6a70;
 	virtual void removeFromGroup(GameObject*, int) = win 0x2cbc10, m1 0xd6b28;
 	virtual TodoReturn updateObjectSection(GameObject*) = win 0x2cbea0, m1 0xd7b7c;
@@ -11353,7 +11353,7 @@ class NumberInputLayer : FLAlertLayer {
 class OBB2D : cocos2d::CCNode {
 	// virtual ~OBB2D();
 
-	static OBB2D* create(cocos2d::CCPoint, float, float, float);
+	static OBB2D* create(cocos2d::CCPoint, float, float, float) = win 0x6c390;
 
 	TodoReturn calculateWithCenter(cocos2d::CCPoint, float, float, float);
 	TodoReturn computeAxes();
@@ -12259,25 +12259,18 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset();
 	void delayedResetLevel() = win 0x395700;
 	void fullReset() = win 0x395600;
-	float getCurrentPercent() = win inline {
+	float getCurrentPercent() = win 0x390520, imac inline {
 		float percent;
 
-		if (m_level->m_timestamp > 0) {
-			percent = static_cast<float>(m_gameState.m_unk1f8) / m_level->m_timestamp * 100.f;
-		} else {
-			percent = m_player1->getPosition().x / m_levelLength * 100.f;
-		}
+		if (this->m_level->m_timestamp > 0)
+			percent = static_cast<float>(this->m_gameState.m_currentProgress) / this->m_level->m_timestamp * 100.f;
+		else
+			percent = this->m_player1->getPosition().x / this->m_levelLength * 100.f;
 
-		if (percent >= 100.f) {
-			return 100.f;
-		} else if (percent <= 0.f) {
-			return 0.f;
-		} else {
-			return percent;
-		}
+		return std::clamp(percent, 0.f, 100.f);
 	}
 	int getCurrentPercentInt() = win inline {
-		return std::floorf(this->getCurrentPercent());
+		return static_cast<int>(this->getCurrentPercent());
 	}
 	TodoReturn getEndPosition();
 	TodoReturn getLastCheckpoint();
