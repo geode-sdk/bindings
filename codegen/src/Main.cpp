@@ -7,13 +7,35 @@ using namespace codegen;
 std::map<void const*, size_t> codegen::idMap;
 
 std::string generateMacHeader(std::string filebase, std::string file_ext) {
-    return fmt::format(R"GEN(
+    return fmt::format(R"GEN(#pragma once
+#include <Geode/platform/platform.hpp>
+
 #ifdef GEODE_IS_ARM_MAC
 #include "{0}Arm.{1}"
 #else
 #include "{0}Intel.{1}"
 #endif
 )GEN", filebase, file_ext);
+}
+
+std::string generateMacFolderHeader(std::string folder, std::string filename) {
+    return fmt::format(R"GEN(#pragma once
+#include <Geode/platform/platform.hpp>
+
+#ifdef GEODE_IS_ARM_MAC
+#include <Geode/{0}_arm/{1}>
+#else
+#include <Geode/{0}_intel/{1}>
+#endif
+)GEN", folder, filename);
+}
+
+void generateFolderAlias(ghc::filesystem::path const& writeDir, std::string baseName, std::unordered_set<std::string> const& files) {
+    auto outputDir = writeDir / baseName;
+
+    for (const auto& filename : files) {
+        writeFile(outputDir / filename, generateMacFolderHeader(baseName, filename));
+    }
 }
 
 int main(int argc, char** argv) try {
@@ -50,10 +72,10 @@ int main(int argc, char** argv) try {
         ghc::filesystem::create_directories(writeDir / "binding_intel");
         ghc::filesystem::create_directories(writeDir / "modify_arm");
         ghc::filesystem::create_directories(writeDir / "binding_arm");
-    } else {
-        ghc::filesystem::create_directories(writeDir / "modify");
-        ghc::filesystem::create_directories(writeDir / "binding");
     }
+
+    ghc::filesystem::create_directories(writeDir / "modify");
+    ghc::filesystem::create_directories(writeDir / "binding");
 
     Root root = broma::parse_file("Entry.bro");
 
@@ -72,20 +94,31 @@ int main(int argc, char** argv) try {
         // on macos, build both platform headers together and then let the preprocessor handle the platform selection
         // this is easier. but not by a lot
 
+        std::unordered_set<std::string> generatedModify{};
+        std::unordered_set<std::string> generatedBindings{};
+
+        bool generatedSourceChanged = false;
+
         codegen::platform = Platform::MacArm;
 
-        writeFile(writeDir / "GeneratedModifyArm.hpp", generateModifyHeader(root, writeDir / "modify_arm"));
-        writeFile(writeDir / "GeneratedBindingArm.hpp", generateBindingHeader(root, writeDir / "binding_arm"));
+        writeFile(writeDir / "GeneratedModifyArm.hpp", generateModifyHeader(root, writeDir / "modify_arm", &generatedModify));
+        writeFile(writeDir / "GeneratedBindingArm.hpp", generateBindingHeader(root, writeDir / "binding_arm", &generatedBindings));
         writeFile(writeDir / "GeneratedPredeclareArm.hpp", generatePredeclareHeader(root));
-        writeFile(writeDir / "GeneratedSourceArm.cpp", generateBindingSource(root));
+        if (writeFile(writeDir / "GeneratedSourceArm.cpp", generateBindingSource(root))) {
+            generatedSourceChanged = true;
+        }
+
         writeFile(writeDir / "CodegenDataArm.txt", generateJsonInterface(root));
 
         codegen::platform = Platform::MacIntel;
 
-        writeFile(writeDir / "GeneratedModifyIntel.hpp", generateModifyHeader(root, writeDir / "modify_intel"));
-        writeFile(writeDir / "GeneratedBindingIntel.hpp", generateBindingHeader(root, writeDir / "binding_intel"));
+        writeFile(writeDir / "GeneratedModifyIntel.hpp", generateModifyHeader(root, writeDir / "modify_intel", &generatedModify));
+        writeFile(writeDir / "GeneratedBindingIntel.hpp", generateBindingHeader(root, writeDir / "binding_intel", &generatedBindings));
         writeFile(writeDir / "GeneratedPredeclareIntel.hpp", generatePredeclareHeader(root));
-        writeFile(writeDir / "GeneratedSourceIntel.cpp", generateBindingSource(root));
+        if (writeFile(writeDir / "GeneratedSourceIntel.cpp", generateBindingSource(root))) {
+            generatedSourceChanged = true;
+        }
+
         writeFile(writeDir / "CodegenDataIntel.txt", generateJsonInterface(root));
 
         codegen::platform = Platform::Mac;
@@ -94,6 +127,15 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedBinding.hpp", generateMacHeader("GeneratedBinding", "hpp"));
         writeFile(writeDir / "GeneratedPredeclare.hpp", generateMacHeader("GeneratedPredeclare", "hpp"));
         writeFile(writeDir / "GeneratedSource.cpp", generateMacHeader("GeneratedSource", "cpp"));
+
+        auto now = std::chrono::system_clock::now();
+        if (generatedSourceChanged) {
+            // force cmake to rebuild generatedsource
+            ghc::filesystem::last_write_time(writeDir / "GeneratedSource.cpp", now);
+        }
+
+        generateFolderAlias(writeDir, "modify", generatedModify);
+        generateFolderAlias(writeDir, "binding", generatedBindings);
     } else {
         // writeFile(writeDir / "GeneratedAddress.cpp", generateAddressHeader(root));
         writeFile(writeDir / "GeneratedModify.hpp", generateModifyHeader(root, writeDir / "modify"));

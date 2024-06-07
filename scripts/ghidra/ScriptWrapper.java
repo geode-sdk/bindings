@@ -24,6 +24,7 @@ import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.FunctionDefinitionDataType;
 import ghidra.program.model.data.IntegerDataType;
 import ghidra.program.model.data.LongDataType;
+import ghidra.program.model.data.LongLongDataType;
 import ghidra.program.model.data.ParameterDefinition;
 import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.Pointer;
@@ -59,7 +60,7 @@ public class ScriptWrapper {
         if (
             manager.getCategory(category) == null &&
             // Mac has no symbol information to RE
-            this.autoDetectPlatform().map(p -> p != Platform.MAC).orElse(true)
+            this.autoDetectPlatform().map(p -> p != Platform.MAC_INTEL && p != Platform.MAC_ARM).orElse(true)
         ) {
             InputWithButtonsDialog.show(
                 this,
@@ -85,7 +86,8 @@ public class ScriptWrapper {
     Optional<Platform> autoDetectPlatform() {
         switch (wrapped.getCurrentProgram().getLanguageID().getIdAsString()) {
             case "x86:LE:32:default": return Optional.of(Platform.WINDOWS);
-            case "x86:LE:64:default": return Optional.of(Platform.MAC);
+            case "x86:LE:64:default": return Optional.of(Platform.MAC_INTEL);
+            case "AARCH64:LE:64:AppleSilicon": return Optional.of(Platform.MAC_ARM);
             case "ARM:LE:32:v8":      return Optional.of(Platform.ANDROID32);
             case "AARCH64:LE:64:v8A": return Optional.of(Platform.ANDROID64);
         }
@@ -317,14 +319,14 @@ public class ScriptWrapper {
 
         cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
         var stringDataUnion = new UnionDataType(cat, cat.getName());
-        stringDataUnion.add(new PointerDataType(CharDataType.dataType), 0x4, "ptr", "");
+        stringDataUnion.add(new PointerDataType(CharDataType.dataType), 0x8, "ptr", "");
         stringDataUnion.add(new ArrayDataType(CharDataType.dataType, 0x10, 0x1), 0x10, "data", "SSO");
 
         cat = this.createCategoryAll(category.extend("gd", "string"));
         var string = new StructureDataType(cat, cat.getName(), 0x0);
         string.add(stringDataUnion, 0x10, "data", "String data with SSO");
-        string.add(IntegerDataType.dataType, 0x4, "length", "The length of the string without the terminating null byte");
-        string.add(IntegerDataType.dataType, 0x4, "capacity", "The capacity of the string buffer");
+        string.add(LongLongDataType.dataType, 0x8, "length", "The length of the string without the terminating null byte");
+        string.add(LongLongDataType.dataType, 0x8, "capacity", "The capacity of the string buffer");
 
         manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
 
@@ -361,7 +363,6 @@ public class ScriptWrapper {
         color3B.add(ByteDataType.dataType, 0x1, "r", "Red component");
         color3B.add(ByteDataType.dataType, 0x1, "g", "Green component");
         color3B.add(ByteDataType.dataType, 0x1, "b", "Blue component");
-        color3B.add(Undefined1DataType.dataType);
         manager.addDataType(color3B, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::ccColor4B
@@ -435,28 +436,28 @@ public class ScriptWrapper {
 
         if (templated.startsWith("vector")) {
             var point = new StructureDataType(cat, cat.getName(), 0x0);
-            point.add(PointerDataType.dataType, 0x4, "start", "Pointer to the first element in the vector");
-            point.add(PointerDataType.dataType, 0x4, "last", "Pointer to one past the last element in the vector");
-            point.add(PointerDataType.dataType, 0x4, "capacity", "Pointer to the end of the current vector allocation");
+            point.add(PointerDataType.dataType, 0x8, "start", "Pointer to the first element in the vector");
+            point.add(PointerDataType.dataType, 0x8, "last", "Pointer to one past the last element in the vector");
+            point.add(PointerDataType.dataType, 0x8, "capacity", "Pointer to the end of the current vector allocation");
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("unordered_map")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x20);
+            var point = new StructureDataType(cat, cat.getName(), 0x40);
             // todo: idk the structure...
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("map")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x8);
+            var point = new StructureDataType(cat, cat.getName(), 0x10);
             // todo: idk the structure...
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("unordered_set")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x20);
+            var point = new StructureDataType(cat, cat.getName(), 0x40);
             // todo: idk the structure...
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("set")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x8);
+            var point = new StructureDataType(cat, cat.getName(), 0x10);
             // todo: idk the structure...
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
@@ -471,7 +472,9 @@ public class ScriptWrapper {
         String compID;
         switch (platform) {
             case WINDOWS:   langID = "x86:LE:32:default"; compID = "windows"; break;
-            case MAC:       langID = "x86:LE:64:default"; compID = "gcc"; break;
+            case MAC_INTEL: langID = "x86:LE:64:default"; compID = "gcc"; break;
+            case MAC_ARM:   langID = "AARCH64:LE:64:AppleSilicon"; compID = "default"; break;
+            case IOS:       langID = "AARCH64:LE:64:AppleSilicon"; compID = "default"; break;
             case ANDROID32: langID = "ARM:LE:32:v8";      compID = "default"; break;
             case ANDROID64: langID = "AARCH64:LE:64:v8A"; compID = "default"; break;
             default: throw new Exception("Unhandled Platform case in ScriptWrapper.sizeOfTypeOn");

@@ -1,6 +1,6 @@
 #include "Common.hpp"
 
-#ifdef GEODE_IS_MACOS
+#ifdef GEODE_IS_INTEL_MAC
 
 // // PlayerObject
 // GEODE_MEMBER_CHECK(PlayerObject, m_collisionLog, 0x518);
@@ -16,14 +16,14 @@
 // GEODE_MEMBER_CHECK(EditorUI, m_updateTimeMarkers, 0x244);
 // GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 // GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x440);
-GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x1f8);
-GEODE_MEMBER_CHECK(EditorUI, m_updatedSpeedObjects, 0x30c);
+// GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x1f8);
+// GEODE_MEMBER_CHECK(EditorUI, m_updatedSpeedObjects, 0x30c);
 
 // // LevelEditorLayer
-// GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x5d8);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x35c0);
 // GEODE_MEMBER_CHECK(LevelEditorLayer, m_level, 0x618);
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3534);
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x3598);
+// GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3534);
+// GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x3598);
 
 // // PlayLayer
 // GEODE_MEMBER_CHECK(PlayLayer, unknown518, 0x518);
@@ -99,74 +99,75 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x3598);
 // GEODE_MEMBER_CHECK(GameLevelManager, m_accountIDtoUserIDDict, 0x1f8);
 // GEODE_MEMBER_CHECK(GameLevelManager, m_userIDtoAccountIDDict, 0x200);
 
-GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x158);
+// GEODE_MEMBER_CHECK(GameLevelManager, m_mainLevels, 0x158);
 
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x780);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc90);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe80);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isDead, 0x30a2);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3290);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32e8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3480);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x788);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_effectManager, 0x848);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc98);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe80);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isDead, 0x30a2);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3290);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32e8);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3480);
 
-GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x35a0);
-GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x35c0);
-GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x35d8);
-GEODE_MEMBER_CHECK(PlayLayer, m_colorKeyDict, 0x36e0);
+// GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x35a0);
+// GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x35c0);
+// GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x35d8);
+// GEODE_MEMBER_CHECK(PlayLayer, m_colorKeyDict, 0x36e0);
 
-GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
-GEODE_MEMBER_CHECK(GJDropDownLayer, m_mainLayer, 0x248);
+// GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
+// GEODE_MEMBER_CHECK(GJDropDownLayer, m_mainLayer, 0x248);
 
-GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3488);
-GEODE_SIZE_CHECK(GameObject, 0x548);
-GEODE_SIZE_CHECK(PlayerObject, 0xb80);
-GEODE_SIZE_CHECK(PlayLayer, 0x3758);
-GEODE_SIZE_CHECK(GJGameState, 0x5d8);
-GEODE_SIZE_CHECK(UILayer, 0x278);
+// GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3488);
+// GEODE_SIZE_CHECK(GameObject, 0x548);
+// GEODE_SIZE_CHECK(PlayerObject, 0xb80);
+// GEODE_SIZE_CHECK(PlayLayer, 0x3758);
+// GEODE_SIZE_CHECK(GJGameState, 0x5d8);
+// GEODE_SIZE_CHECK(UILayer, 0x278);
 
-GEODE_MEMBER_CHECK(GameObject, m_objectType, 0x398);
-GEODE_MEMBER_CHECK(GameObject, m_realXPosition, 0x3b0);
-GEODE_MEMBER_CHECK(GameObject, m_realYPosition, 0x3b8);
-GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x3c0);
-GEODE_MEMBER_CHECK(GameObject, m_groups, 0x488);
-GEODE_MEMBER_CHECK(GameObject, m_colorGroups, 0x498);
-GEODE_MEMBER_CHECK(GameObject, m_opacityGroups, 0x4a8);
+// GEODE_MEMBER_CHECK(GameObject, m_objectType, 0x398);
+// GEODE_MEMBER_CHECK(GameObject, m_realXPosition, 0x3b0);
+// GEODE_MEMBER_CHECK(GameObject, m_realYPosition, 0x3b8);
+// GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x3c0);
+// GEODE_MEMBER_CHECK(GameObject, m_groups, 0x488);
+// GEODE_MEMBER_CHECK(GameObject, m_colorGroups, 0x498);
+// GEODE_MEMBER_CHECK(GameObject, m_opacityGroups, 0x4a8);
 
-GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
-GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x688);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk594, 0x698); // unsure
-GEODE_MEMBER_CHECK(PlayerObject, m_unk5b4, 0x6c0); // unsure
-GEODE_MEMBER_CHECK(PlayerObject, m_rotationSpeed, 0x6e8);
-GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x6f3);
-GEODE_MEMBER_CHECK(PlayerObject, m_hasGhostTrail, 0x6f4);
-GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x6f8);
-GEODE_MEMBER_CHECK(PlayerObject, m_swingFireMiddle, 0x748);
-GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x778);
-GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x830);
-GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x910);
-GEODE_MEMBER_CHECK(PlayerObject, m_glowColor, 0x911);
-GEODE_MEMBER_CHECK(PlayerObject, m_isShip, 0x941);
-GEODE_MEMBER_CHECK(PlayerObject, m_isRobot, 0x945);
-GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xa28);
-GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
+// GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
+// GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x688);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk594, 0x698); // unsure
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk5b4, 0x6c0); // unsure
+// GEODE_MEMBER_CHECK(PlayerObject, m_rotationSpeed, 0x6e8);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x6f3);
+// GEODE_MEMBER_CHECK(PlayerObject, m_hasGhostTrail, 0x6f4);
+// GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x6f8);
+// GEODE_MEMBER_CHECK(PlayerObject, m_swingFireMiddle, 0x748);
+// GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x778);
+// GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x830);
+// GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x910);
+// GEODE_MEMBER_CHECK(PlayerObject, m_glowColor, 0x911);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isShip, 0x941);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isRobot, 0x945);
+// GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xa28);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
 
-GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x1b8);
-GEODE_MEMBER_CHECK(FMODAudioEngine, m_sfxVolume, 0x1bc);
-GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse1, 0x1c8);
-GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse2, 0x1cc);
-GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse3, 0x1d0);
-GEODE_MEMBER_CHECK(FMODAudioEngine, m_metering, 0x1d8);
-GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
+// GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x1b8);
+// GEODE_MEMBER_CHECK(FMODAudioEngine, m_sfxVolume, 0x1bc);
+// GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse1, 0x1c8);
+// GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse2, 0x1cc);
+// GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse3, 0x1d0);
+// GEODE_MEMBER_CHECK(FMODAudioEngine, m_metering, 0x1d8);
+// GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 
-GEODE_MEMBER_CHECK(CustomSongCell, m_songInfoObject, 0x230);
-GEODE_MEMBER_CHECK(SongInfoObject, m_songID, 0x13c);
+// GEODE_MEMBER_CHECK(CustomSongCell, m_songInfoObject, 0x230);
+// GEODE_MEMBER_CHECK(SongInfoObject, m_songID, 0x13c);
 
-GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x230);
+// GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x230);
 
 #endif

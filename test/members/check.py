@@ -44,7 +44,15 @@ while True:
         errors.append((name, expected, actual))
     i = e
 
-errors.sort(key=lambda x: x[0], reverse=True)
+def get_class_name(x):
+    if '::' in x:
+        return x.split("::")[0]
+    elif 'sizeof(' in x:
+        return x.partition('sizeof(')[2].rpartition(')')[0]
+    else:
+        return x
+
+errors.sort(key=lambda x: (get_class_name(x[0]), x[1]))
 
 RESET = '\x1b[0m'
 

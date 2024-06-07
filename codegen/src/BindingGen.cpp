@@ -74,6 +74,8 @@ public:
 
 inline std::string nameForPlatform(Platform platform) {
     switch (platform) {
+        case Platform::MacArm: return "MacOS (ARM)";
+        case Platform::MacIntel: return "MacOS (Intel)";
         case Platform::Mac: return "MacOS";
         case Platform::Windows: return "Windows";
         case Platform::iOS: return "iOS";
@@ -88,7 +90,7 @@ template <class T>
 std::string generateAddressDocs(T const& f, PlatformNumber pn) {
     std::string ret;
 
-    for (auto platform : {Platform::Mac, Platform::Windows, Platform::iOS, Platform::Android}) {
+    for (auto platform : {Platform::MacArm, Platform::MacIntel, Platform::Windows, Platform::iOS, Platform::Android}) {
         auto status = codegen::getStatusWithPlatform(platform, f);
 
         if (status == BindStatus::NeedsBinding) {
@@ -123,7 +125,7 @@ std::string generateDocs(std::string const& docs) {
     return ret;
 }
 
-std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder) {
+std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles) {
     std::string output;
     std::string base_directory = singleFolder.filename().string();
 
@@ -133,6 +135,10 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
             fmt::arg("base_directory", base_directory),
             fmt::arg("file_name", filename)
         );
+
+        if (generatedFiles != nullptr) {
+            generatedFiles->insert(filename);
+        }
 
         std::string single_output;
         single_output += format_strings::class_includes;
@@ -172,6 +178,10 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
             fmt::arg("base_directory", base_directory),
             fmt::arg("file_name", filename)
         );
+
+        if (generatedFiles != nullptr) {
+            generatedFiles->insert(filename);
+        }
 
         std::string single_output;
         if (cls.name != "GDString") {

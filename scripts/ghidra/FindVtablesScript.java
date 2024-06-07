@@ -38,7 +38,7 @@ public class FindVtablesScript extends GhidraScript {
         MemoryBlock[] blocks = currentProgram.getMemory().getBlocks();
         for (MemoryBlock block : blocks) {
             if (block.getName().equals("__const")) {
-                if (block.getComment().equals("__DATA")) {
+                if (block.getComment().equals("__DATA") || block.getComment().equals("__DATA_CONST")) {
                     dataBlock = block;
                 }
                 else if (block.getComment().equals("__TEXT")) {
