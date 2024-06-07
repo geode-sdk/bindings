@@ -2916,7 +2916,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn deleteTypeFromObjects(int, cocos2d::CCArray*);
 	void deselectAll();
 	void deselectObject();
-	void deselectObject(GameObject*);
+	void deselectObject(GameObject*) = win 0x10d800;
 	void deselectObjectsColor();
 	TodoReturn deselectTargetPortals();
 	TodoReturn disableButton(CreateMenuItem*);
@@ -3046,8 +3046,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void selectAll();
 	void selectAllWithDirection(bool);
 	void selectBuildTab(int) = win 0x110b20;
-	void selectObject(GameObject*, bool);
-	void selectObjects(cocos2d::CCArray*, bool);
+	void selectObject(GameObject*, bool) = win 0x10c9f0;
+	void selectObjects(cocos2d::CCArray*, bool) = win 0x10cce0;
 	void selectObjectsInRect(cocos2d::CCRect);
 	void setupCreateMenu() = win 0xe44b0;
 	void setupDeleteMenu();
