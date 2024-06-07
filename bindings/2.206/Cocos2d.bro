@@ -871,9 +871,9 @@ class cocos2d::CCTextureCache {
 [[link(win, android)]]
 class cocos2d::CCTouch {
 	cocos2d::CCPoint getLocation() const = imac 0x5a550, m1 0x50be8;
-	cocos2d::CCPoint getPreviousLocation() const = imac 0x5a580;
-	cocos2d::CCPoint getStartLocation() const = imac 0x5a5b0;
-	cocos2d::CCPoint getDelta() const = imac 0x5a5e0;
+	cocos2d::CCPoint getPreviousLocation() const = imac 0x5a580, m1 0x50c14;
+	cocos2d::CCPoint getStartLocation() const = imac 0x5a5b0, m1 0x50c40;
+	cocos2d::CCPoint getDelta() const = imac 0x5a5e0, m1 0x50c6c;
 }
 
 [[link(win, android)]]
@@ -1305,7 +1305,7 @@ class cocos2d::CCLabelBMFont {
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint);
-	static cocos2d::CCLabelBMFont* create();
+	static cocos2d::CCLabelBMFont* create() = imac 0x5e0f30, m1 0x50b13c;
 	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int);
 	static void purgeCachedData();
 
@@ -1323,7 +1323,7 @@ class cocos2d::CCLabelBMFont {
 	void setFntFile(char const*) = imac 0x5e4670;
 	void setIsBatched(bool);
 	void setTargetArray(cocos2d::CCArray*);
-	void createFontChars() = imac 0x5e1780;
+	void createFontChars() = imac 0x5e1780, m1 0x50bb64;
 	int kerningAmountForFirst(unsigned short, unsigned short);
 	void limitLabelWidth(float, float, float) = imac 0x5e4790, m1 0x50e1f8;
 
@@ -1796,7 +1796,7 @@ class cocos2d {
 	static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
 	static cocos2d::CCRect CCRectFromString(char const*);
 	static cocos2d::CCSize CCSizeFromString(char const*);
-	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = imac 0x5dd4a0;
+	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = imac 0x5dd4a0; // inlined on m1
 	static void FNTConfigRemoveCache();
 	static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
 	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
