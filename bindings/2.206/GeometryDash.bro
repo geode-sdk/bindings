@@ -12259,16 +12259,18 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset();
 	void delayedResetLevel() = win 0x395700;
 	void fullReset() = win 0x395600;
-	float getCurrentPercent() = win 0x390520, imac inline {
-		float percent;
+	float getCurrentPercent() = win 0x390520;
+	// Comment out mac inline since GJBaseGameLayer doesn't even have pads
+	//float getCurrentPercent() = win 0x390520, imac inline {
+	//	float percent;
 
-		if (this->m_level->m_timestamp > 0)
-			percent = static_cast<float>(this->m_gameState.m_currentProgress) / this->m_level->m_timestamp * 100.f;
-		else
-			percent = this->m_player1->getPosition().x / this->m_levelLength * 100.f;
+	//	if (this->m_level->m_timestamp > 0)
+	//		percent = static_cast<float>(this->m_gameState.m_currentProgress) / this->m_level->m_timestamp * 100.f;
+	//	else
+	//		percent = this->m_player1->getPosition().x / this->m_levelLength * 100.f;
 
-		return std::clamp(percent, 0.f, 100.f);
-	}
+	//	return std::clamp(percent, 0.f, 100.f);
+	// }
 	int getCurrentPercentInt() = win inline {
 		return static_cast<int>(this->getCurrentPercent());
 	}
