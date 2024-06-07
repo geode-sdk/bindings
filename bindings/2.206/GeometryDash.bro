@@ -67,7 +67,7 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
 	void onClose(cocos2d::CCObject* sender);
 	void onForgotPassword(cocos2d::CCObject* sender);
 	void onForgotUser(cocos2d::CCObject* sender);
-	void onSubmit(cocos2d::CCObject* sender);
+	void onSubmit(cocos2d::CCObject* sender) = win 0x7B5D0;
 	TodoReturn resetLabel(int);
 	TodoReturn resetLabels();
 	void showLoadingUI();
@@ -82,6 +82,12 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
 	virtual void textChanged(CCTextInputNode*) {}
 	virtual TodoReturn loginAccountFinished(int, int);
 	virtual TodoReturn loginAccountFailed(AccountError);
+
+	CCTextInputNode* m_usernameInput;
+	CCTextInputNode* m_passwordInput;
+	cocos2d::CCLabelBMFont* m_usernameLabel;
+	cocos2d::CCLabelBMFont* m_passwordLabel;
+	PAD = win 0x40;
 }
 
 [[link(android)]]
@@ -4552,7 +4558,7 @@ class GameLevelOptionsLayer : GJOptionsLayer{
 
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
-	// virtual ~GameManager();
+	virtual ~GameManager() = win 0x172770;
 	// GameManager();
 
 	static GameManager* get() {
@@ -4782,7 +4788,7 @@ class GameManager : GManager {
 	TodoReturn queueReloadMenu();
 	TodoReturn rateGame();
 	void recountUserStats(gd::string);
-	void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x9999999;
+	void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x1807B0;
 	void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
 		return this->reloadAll(switchingModes, toFullscreen, false, unused);
 	}
@@ -4848,7 +4854,7 @@ class GameManager : GManager {
 	TodoReturn videoAdShowed();
 
 	virtual void update(float);
-	virtual bool init();
+	virtual bool init() = win 0x172B80;
 	virtual void encodeDataTo(DS_Dictionary*);
 	virtual void dataLoaded(DS_Dictionary*);
 	virtual void firstLoad();
@@ -5926,7 +5932,7 @@ class GJAccountManager : cocos2d::CCNode {
 	void getAccountBackupURL();
 	void getAccountSyncURL();
 	cocos2d::CCObject* getDLObject(char const*);
-	gd::string getShaPassword(gd::string);
+	gd::string getShaPassword(gd::string) = win 0x1F4FF0;
 	void handleIt(bool, gd::string, gd::string, GJHttpType);
 	void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	void handleItND(cocos2d::CCNode*, void*);
@@ -5986,7 +5992,7 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 	static GJAccountSettingsLayer* create(int);
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float);
-	bool init(int);
+	bool init(int) = win 0x27FCD0;
 	void onClose(cocos2d::CCObject* sender);
 	void onCommentSetting(cocos2d::CCObject* sender);
 	void onFriendRequests(cocos2d::CCObject* sender);
@@ -8653,12 +8659,12 @@ class GManager : cocos2d::CCNode {
 		saveGMTo(m_fileName);
 	}
 	TodoReturn saveData(DS_Dictionary*, gd::string);
-	void saveGMTo(gd::string) = win 0x9999999;
+	void saveGMTo(gd::string) = win 0x69370;
 	TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
 	inline GManager() {}
 
 	virtual bool init();
-	virtual void setup();
+	virtual void setup() = win 0x69350;
 	virtual void encodeDataTo(DS_Dictionary*);
 	virtual void dataLoaded(DS_Dictionary*);
 	virtual void firstLoad();
@@ -9955,7 +9961,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2f9420;
 	virtual void updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = win 0x2f8b50;
-	virtual void scrollLayerMoved(cocos2d::CCPoint);
+	virtual void scrollLayerMoved(cocos2d::CCPoint) = win 0x2F8BC0;
 }
 
 [[link(android)]]
@@ -10366,7 +10372,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 
 	static MenuGameLayer* create();
 
-	void destroyPlayer();
+	void destroyPlayer() = win 0x3129E0;
 	TodoReturn getBGColor(int);
 	void resetPlayer() = win 0x311db0;
 	void tryJump(float);
@@ -10634,12 +10640,12 @@ class MultilineBitmapFont : cocos2d::CCSprite {
 	// virtual ~MultilineBitmapFont();
 
 	TodoReturn createWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool);
-	TodoReturn initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool);
-	TodoReturn moveSpecialDescriptors(int, int);
-	TodoReturn readColorInfo(gd::string);
-	TodoReturn stringWithMaxWidth(gd::string, float, float);
+	bool initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = win 0x6A9B0;
+	unsigned int moveSpecialDescriptors(int, int) = win 0x6BBB0;
+	gd::string readColorInfo(gd::string) = win 0x6B2E0;
+	gd::string stringWithMaxWidth(gd::string, float, float) = win 0x6BC40;
 
-	virtual void setOpacity(unsigned char);
+	virtual void setOpacity(unsigned char) = win 0x492a0;
 }
 
 [[link(android)]]
@@ -12033,7 +12039,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool isOnWatchlist(int);
 	void loadPage(int) = win 0x3a2420;
 	void loadPageFromUserInfo(GJUserScore*) = win 0x39C890;
-	void onBlockUser(cocos2d::CCObject* sender) = 0x3A07E0;
+	void onBlockUser(cocos2d::CCObject* sender) = win 0x3A07E0;
 	void onClose(cocos2d::CCObject* sender) = win 0x3a15b0;
 	void onComment(cocos2d::CCObject* sender) = win 0x3A0230;
 	void onCommentHistory(cocos2d::CCObject* sender) = win 0x3A01A0;

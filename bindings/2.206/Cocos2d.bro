@@ -1400,3 +1400,7 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 	static void destroyInstance();
 	void send(cocos2d::extension::CCHttpRequest* request);
 }
+
+class cocos2d::CCTextureCache {
+	cocos2d::CCTexture2D* addImage(char const*, bool);
+}
