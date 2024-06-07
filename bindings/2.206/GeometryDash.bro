@@ -6528,7 +6528,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateShaderLayer(float) = win 0x212aa0;
 	TodoReturn updateSpecialGroupData() = win 0x1fecf0;
 	TodoReturn updateSpecialLabels();
-	void updateStaticCameraPos(cocos2d::CCPoint, bool, bool, bool, float, int, float);
+	void updateStaticCameraPos(cocos2d::CCPoint, bool, bool, bool, float, int, float) = win 0x22e360;
 	TodoReturn updateStaticCameraPosToGroup(int, bool, bool, bool, float, float, int, float, bool, float);
 	TodoReturn updateTimeMod(float, bool, bool);
 	TodoReturn updateTimerLabels();
