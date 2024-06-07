@@ -7529,7 +7529,7 @@ class GJGameState {
 	double m_unkDouble3;
 	unsigned int m_unkUint2;
 	unsigned int m_unkUint3;
-	int m_unk1f8; // Have to leave same name cause used in PlayLayer::getCurrentPercent m_currentProgress
+	int m_currentProgress;
 	unsigned int m_unkUint4;
 	unsigned int m_unkUint5;
 	unsigned int m_unkUint6;
