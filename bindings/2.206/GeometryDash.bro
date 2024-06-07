@@ -67,7 +67,7 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
 	void onClose(cocos2d::CCObject* sender);
 	void onForgotPassword(cocos2d::CCObject* sender);
 	void onForgotUser(cocos2d::CCObject* sender);
-	void onSubmit(cocos2d::CCObject* sender);
+	void onSubmit(cocos2d::CCObject* sender) = win 0x7B5D0;
 	TodoReturn resetLabel(int);
 	TodoReturn resetLabels();
 	void showLoadingUI();
@@ -82,6 +82,12 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
 	virtual void textChanged(CCTextInputNode*) {}
 	virtual TodoReturn loginAccountFinished(int, int) = win 0x7b150, m1 0x407330;
 	virtual TodoReturn loginAccountFailed(AccountError) = win 0x7b3a0, m1 0x40774c;
+
+	CCTextInputNode* m_usernameInput;
+	CCTextInputNode* m_passwordInput;
+	cocos2d::CCLabelBMFont* m_usernameLabel;
+	cocos2d::CCLabelBMFont* m_passwordLabel;
+	PAD = win 0x40;
 }
 
 [[link(android)]]
@@ -4633,7 +4639,7 @@ class GameLevelOptionsLayer : GJOptionsLayer{
 
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
-	// virtual ~GameManager();
+	virtual ~GameManager() = win 0x172770;
 	// GameManager();
 
 	static GameManager* get() {
@@ -4927,7 +4933,6 @@ class GameManager : GManager {
 	TodoReturn verifySyncedCoins();
 	TodoReturn videoAdHidden();
 	TodoReturn videoAdShowed();
-
 	virtual void update(float) = win 0x17ff60, m1 0x315d5c;
 	virtual bool init() = win 0x172b80, m1 0x303cd0;
 	virtual void encodeDataTo(DS_Dictionary*) = win 0x17f3a0, m1 0x3151c4;
@@ -6029,7 +6034,7 @@ class GJAccountManager : cocos2d::CCNode {
 	void getAccountBackupURL();
 	void getAccountSyncURL();
 	cocos2d::CCObject* getDLObject(char const*);
-	gd::string getShaPassword(gd::string);
+	gd::string getShaPassword(gd::string) = win 0x1F4FF0;
 	void handleIt(bool, gd::string, gd::string, GJHttpType);
 	void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	void handleItND(cocos2d::CCNode*, void*);
@@ -6089,7 +6094,7 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 	static GJAccountSettingsLayer* create(int);
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float);
-	bool init(int);
+	bool init(int) = win 0x27FCD0;
 	void onClose(cocos2d::CCObject* sender);
 	void onCommentSetting(cocos2d::CCObject* sender);
 	void onFriendRequests(cocos2d::CCObject* sender);
@@ -10268,7 +10273,6 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	void onPrev(cocos2d::CCObject* sender) = win 0x2f9300;
 	static cocos2d::CCScene* scene(int) = win 0x2f7c30;
 	TodoReturn tryShowAd();
-
 	virtual void keyBackClicked() = win 0x2f93d0, m1 0x3b09b8;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2f9420, m1 0x3b0a4c;
 	virtual void updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = win 0x2f8b50, m1 0x3aec58;
@@ -10961,11 +10965,10 @@ class MultilineBitmapFont : cocos2d::CCSprite {
 	// virtual ~MultilineBitmapFont();
 
 	TodoReturn createWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool);
-	TodoReturn initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool);
-	TodoReturn moveSpecialDescriptors(int, int);
-	TodoReturn readColorInfo(gd::string);
-	TodoReturn stringWithMaxWidth(gd::string, float, float);
-
+	bool initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = win 0x6A9B0;
+	unsigned int moveSpecialDescriptors(int, int) = win 0x6BBB0;
+	gd::string readColorInfo(gd::string) = win 0x6B2E0;
+	gd::string stringWithMaxWidth(gd::string, float, float) = win 0x6BC40;
 	virtual void setOpacity(unsigned char) = win 0x6b260, m1 0x3f73b4;
 }
 
@@ -12387,35 +12390,35 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 
 	void blockUser();
 	bool init(int accountID, bool ownProfile) = win 0x39b3b0, imac 0x7c4fa0;
-	bool isCorrect(char const* key);
+	bool isCorrect(char const* key) = win 0x3A22F0;
 	bool isOnWatchlist(int);
 	void loadPage(int) = win 0x3a2420;
 	void loadPageFromUserInfo(GJUserScore*) = win 0x39c890, imac 0x7c6330, m1 0x6cb934;
-	void onBlockUser(cocos2d::CCObject* sender);
+	void onBlockUser(cocos2d::CCObject* sender) = win 0x3A07E0;
 	void onClose(cocos2d::CCObject* sender) = win 0x3a15b0;
-	void onComment(cocos2d::CCObject* sender);
-	void onCommentHistory(cocos2d::CCObject* sender);
+	void onComment(cocos2d::CCObject* sender) = win 0x3A0230;
+	void onCommentHistory(cocos2d::CCObject* sender) = win 0x3A01A0;
 	void onFollow(cocos2d::CCObject* sender) = win 0x3a0a30;
-	void onFriend(cocos2d::CCObject* sender);
-	void onFriends(cocos2d::CCObject* sender);
-	void onMessages(cocos2d::CCObject* sender);
-	void onMyLevels(cocos2d::CCObject* sender);
-	void onMyLists(cocos2d::CCObject* sender) = win 0x3a0040;
-	void onNextPage(cocos2d::CCObject* sender);
-	void onPrevPage(cocos2d::CCObject* sender);
-	void onRequests(cocos2d::CCObject* sender);
-	void onSendMessage(cocos2d::CCObject* sender);
-	void onSettings(cocos2d::CCObject* sender);
-	void onTwitch(cocos2d::CCObject* sender);
-	void onTwitter(cocos2d::CCObject* sender);
-	void onUpdate(cocos2d::CCObject* sender) = win 0x39c360;
-	void onYouTube(cocos2d::CCObject* sender);
+	void onFriend(cocos2d::CCObject* sender) = win 0x3A03F0;
+	void onFriends(cocos2d::CCObject* sender) = win 0x3A20C0;
+	void onMessages(cocos2d::CCObject* sender) = win 0x3A2090;
+	void onMyLevels(cocos2d::CCObject* sender) = win 0x39FE90;
+	void onMyLists(cocos2d::CCObject* sender) = win 0x3A0040;
+	void onNextPage(cocos2d::CCObject* sender) = win 0x3A2B20;
+	void onPrevPage(cocos2d::CCObject* sender) = win 0x3A2B30;
+	void onRequests(cocos2d::CCObject* sender) = win 0x3A20F0;
+	void onSendMessage(cocos2d::CCObject* sender) = win 0x3A01E0;
+	void onSettings(cocos2d::CCObject* sender) = win 0x3A1EE0;
+	void onTwitch(cocos2d::CCObject* sender) = win 0x3A1D40;
+	void onTwitter(cocos2d::CCObject* sender) = win 0x3A1BB0;
+	void onUpdate(cocos2d::CCObject* sender) = win 0x39C360;
+	void onYouTube(cocos2d::CCObject* sender) = win 0x3A1A20;
 	TodoReturn setupComments();
 	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3a2710;
-	void showNoAccountError();
+	void showNoAccountError() = win 0x3A1640;
 	TodoReturn toggleMainPageVisibility(bool);
 	TodoReturn updateLevelsLabel();
-	TodoReturn updatePageArrows();
+	void updatePageArrows() = win 0x3A2AB0;
 
 	virtual void registerWithTouchDispatcher() = m1 0x6d2954;
 	virtual void keyBackClicked() = win 0x3a1630, m1 0x6d14b4;
