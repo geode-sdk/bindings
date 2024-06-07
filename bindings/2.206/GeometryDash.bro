@@ -103,8 +103,8 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 	TodoReturn hideLoadingUI();
 	void onClose(cocos2d::CCObject* sender);
 	void onSubmit(cocos2d::CCObject* sender);
-	TodoReturn resetLabel(int);
-	TodoReturn resetLabels();
+	void resetLabel(int) = imac 0x4a0f20;
+	void resetLabels() = imac 0x4a0e00;
 	void showLoadingUI();
 	TodoReturn toggleUI(bool);
 	TodoReturn updateLabel(AccountError);
@@ -1417,11 +1417,11 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	void setDelegate(TextInputDelegate* delegate) {
 		m_delegate = delegate;
 	}
-	void setMaxLabelScale(float v) {
+	void setMaxLabelScale(float v) = win inline, m1 inline, imac 0x9e840 {
 		m_maxLabelScale = v;
 		this->refreshLabel();
 	}
-	void setMaxLabelWidth(float v) {
+	void setMaxLabelWidth(float v) = win inline, m1 inline, imac 0x9e860 {
 		m_maxLabelWidth = v;
 		this->refreshLabel();
 	}
@@ -1429,34 +1429,36 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_maxLabelLength = v;
 		this->refreshLabel();
 	}
-	void setLabelPlaceholderScale(float v) {
+	void setLabelPlaceholderScale(float v) = win inline, m1 inline, imac 0x9e880 {
 		m_placeholderScale = v;
 		this->refreshLabel();
 	}
-	void setLabelPlaceholderColor(cocos2d::ccColor3B color) {
+	void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, m1 inline, imac 0x9e8a0 {
 		m_placeholderColor = color;
 		this->refreshLabel();
 	}
 	void setAllowedChars(gd::string filter) {
-        	m_allowedChars = filter;
-    	}
-    	cocos2d::CCLabelBMFont* getPlaceholderLabel() {
-        	return m_placeholderLabel;
-    	}
+		m_allowedChars = filter;
+	}
+	cocos2d::CCLabelBMFont* getPlaceholderLabel() {
+		return m_placeholderLabel;
+	}
 
-	void addTextArea(TextArea*) = win 0x4e6c0;
-	TodoReturn forceOffset();
+	void addTextArea(TextArea*) = win 0x4e6c0, imac 0x9de60;
+	void forceOffset() = imac 0xa02c0;
 	gd::string getString() {
 		return m_textField->getString();
 	}
 	bool init(float, float, char const*, char const*, int, char const*) = win 0x4e480, imac 0x9db00;
 	void refreshLabel() = win 0x4ecc0, imac 0x9e600, m1 0x8e628;
-	void setLabelNormalColor(cocos2d::ccColor3B color) {
-        	m_textColor = color;
-        	this->refreshLabel();
-    	}
+	void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, m1 inline, imac 0x9e8c0 {
+		m_textColor = color;
+		this->refreshLabel();
+	}
 	void setString(gd::string) = win 0x4e920, imac 0x9e450, m1 0x8e45c;
-	void updateBlinkLabel();
+	void updateBlinkLabel() {
+		this->updateBlinkLabelToChar(this->m_cursorPos);
+	}
 	void updateBlinkLabelToChar(int) = win 0x4efa0;
 	void updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x4fee0, m1 0x8ff48, imac 0xa02d0;
 	void updateDefaultFontValues(gd::string) = win 0x4e7b0;
@@ -1470,8 +1472,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	virtual void registerWithTouchDispatcher() = win 0x50650, m1 0x905dc, imac 0xa0a90;
 	virtual void textChanged() = win 0x4f590, m1 0x8eea4, imac 0x9efb0;
 	virtual void onClickTrackNode(bool) = win 0x4f570, m1 0x8ee84, imac 0x9ef90;
-	virtual void keyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&) = m1 0x8ec40;
-	virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&) = m1 0x8ed78;
+	virtual void keyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&) = win 0x4f390, m1 0x8ec40, imac 0x9ed30;
+	virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&) = win 0x4f4f0, m1 0x8ed78, imac 0x9ef10;
 	virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF* pSender, char const* text, int nLen, cocos2d::enumKeyCodes keyCodes) = win 0x4f620, m1 0x8efac, imac 0x9f0c0;
 	virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x4fa00, m1 0x8f5c0, imac 0x9f820;
 	virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x4fd30, m1 0x8f8ac, imac 0x9fb50;
@@ -1499,7 +1501,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	bool m_usePasswordChar;
 	bool m_forceOffset;
 	TextArea* m_textArea;
-	PAD = android32 0xc, android64 0x10;
+	PAD = win 0xa4, android32 0xc, android64 0x10, imac 0xa4; // verify imac pad
+	int m_cursorPos;
 }
 
 [[link(android)]]
@@ -10920,7 +10923,7 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	// virtual ~MoreSearchLayer();
 	inline MoreSearchLayer() {}
 
-	static MoreSearchLayer* create() {
+	static MoreSearchLayer* create() = win inline, m1 inline, imac 0x638980 {
         auto ret = new MoreSearchLayer();
         if (ret->init()) {
             ret->autorelease();
@@ -10953,7 +10956,7 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn toggleSongNodes(bool, bool);
 	TodoReturn updateAudioLabel();
 
-	virtual bool init() = win 0x2f2540, m1 0x559b2c;
+	virtual bool init() = win 0x2f2540, m1 0x559b2c, imac 0x639f30;
 	virtual void keyBackClicked() = win 0x2f72b0, m1 0x55bb44;
 	virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x55b9bc;
 	virtual void textInputReturn(CCTextInputNode*) = m1 0x55ba8c;
