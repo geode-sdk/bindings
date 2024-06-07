@@ -11147,7 +11147,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	void parseMusicLibrary();
 	void parseSFXLibrary();
-	gd::string pathForSFX(int);
+	gd::string pathForSFX(int) = win 0x31e730;
 	gd::string pathForSFXFolder(int) = win 0x31e5e0;
 	gd::string pathForSong(int) = win 0x31e400;
 	gd::string pathForSongFolder(int) = win 0x31e2b0;
