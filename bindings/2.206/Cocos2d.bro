@@ -163,9 +163,9 @@ class cocos2d::CCParticleSystem {
 	void loadDefaults();
 	void loadScaledDefaults(float);
 	void resetSystem();
-	void resumeSystem() = imac 0x7d6b10;
+	void resumeSystem();
 	void saveDefaults();
-	void stopSystem() = imac 0x7d6ae0;
+	void stopSystem();
 	void toggleUniformColorMode(bool);
 	void updateVisible();
 
@@ -794,40 +794,40 @@ class cocos2d::CCMouseDispatcher {
 
 [[link(win, android)]]
 class cocos2d::CCTexture2D {
-	static void PVRImagesHavePremultipliedAlpha(bool);
-	static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
-	static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat);
+	static void PVRImagesHavePremultipliedAlpha(bool) = m1 0x3e9984;
+	static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat() = m1 0x3e9b50;
+	static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat) = m1 0x3e9b44;
 
-	bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int);
+	bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = m1 0x3e8c34;
 	bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = m1 0x3e88a8;
-	bool initWithETCFile(char const*);
-	bool initWithImage(cocos2d::CCImage*);
-	bool initWithPVRFile(char const*);
-	bool initWithString(char const*, char const*, float);
-	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment);
-	bool initWithString(char const*, cocos2d::_ccFontDefinition*);
+	bool initWithETCFile(char const*) = m1 0x3e98bc;
+	bool initWithImage(cocos2d::CCImage*) = m1 0x3e8bc0;
+	bool initWithPVRFile(char const*) = m1 0x3e97e4;
+	bool initWithString(char const*, char const*, float) = m1 0x3e9444;
+	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment) = m1 0x3e94b4;
+	bool initWithString(char const*, cocos2d::_ccFontDefinition*) = m1 0x3e95e4;
 
-	cocos2d::CCSize const& getContentSizeInPixels();
+	cocos2d::CCSize const& getContentSizeInPixels() = m1 0x3e87f8;
 
-	void setAliasTexParameters();
-	void setAntiAliasTexParameters();
+	void setAliasTexParameters() = m1 0x3e9a80;
+	void setAntiAliasTexParameters() = m1 0x3e9ad0;
 	void setTexParameters(cocos2d::_ccTexParams*) = m1 0x3e99e8;
 
 	// CCTexture2D(cocos2d::CCTexture2D const&);
 	~CCTexture2D() = m1 0x3e8734;
 	CCTexture2D() = m1 0x3e8640;
-	unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat);
-	unsigned int bitsPerPixelForFormat();
-	char const* description();
-	void drawAtPoint(cocos2d::CCPoint const&);
-	void drawInRect(cocos2d::CCRect const&);
-	void generateMipmap();
-	bool hasMipmaps();
-	bool hasPremultipliedAlpha();
-	void* keepData(void*, unsigned int);
-	void releaseData(void*);
-	void releaseGLTexture();
-	char const* stringForFormat();
+	unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat) = m1 0x3e8b58;
+	unsigned int bitsPerPixelForFormat() = m1 0x3e9b5c;
+	char const* description() = m1 0x3e8b78;
+	void drawAtPoint(cocos2d::CCPoint const&) = m1 0x3e95ec;
+	void drawInRect(cocos2d::CCRect const&) = m1 0x3e96f0;
+	void generateMipmap() = m1 0x3e9990;
+	bool hasMipmaps() = m1 0x3e99e0;
+	bool hasPremultipliedAlpha() = m1 0x3e88a0;
+	void* keepData(void*, unsigned int) = m1 0x3e8898;
+	void releaseData(void*) = m1 0x3e8890;
+	void releaseGLTexture() = m1 0x3e8864;
+	char const* stringForFormat() = m1 0x3e9b20;
 
 	virtual cocos2d::CCTexture2DPixelFormat getPixelFormat() = m1 0x3e8780;
 	virtual unsigned int getPixelsWide() = m1 0x3e8788;
