@@ -10742,7 +10742,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	void onTwitch(cocos2d::CCObject* sender) = win 0x314d60;
 	void onTwitter(cocos2d::CCObject* sender) = win 0x314d20;
 	void onYouTube(cocos2d::CCObject* sender) = win 0x314d40;
-	TodoReturn openOptions(bool) = win 0x3150f0;
+	void openOptions(bool) = win 0x3150f0;
 	void showGCQuestion();
 	void showMeltdownPromo();
 	void showTOS() = win 0x314b20;
