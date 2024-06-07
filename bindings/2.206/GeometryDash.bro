@@ -9075,7 +9075,7 @@ class HardStreak : cocos2d::CCDrawNode {
 
 	virtual bool init() = m1 0x8cac0;
 
-	PAD = win 0x20;
+	PAD = win 0x20, android32 0x0, android64 0x0, m1 0x0, imac 0x0, ios 0x0; // everything thats 0x0 is untested, added for member test
 	cocos2d::CCArray* m_pointArray;
 	cocos2d::CCPoint m_currentPoint;
 	float m_waveSize;
