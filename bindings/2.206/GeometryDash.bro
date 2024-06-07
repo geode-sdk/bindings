@@ -12562,11 +12562,11 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 
 	CCMenuItemSpriteExtra* getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
 	bool init(int, bool, bool);
-	void onClose(cocos2d::CCObject* sender);
-	void onFeature(cocos2d::CCObject* sender);
-	void onRate(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x3a7140;
+	void onFeature(cocos2d::CCObject* sender) = win 0x3a6a30;
+	void onRate(cocos2d::CCObject* sender) = 0x3a6d90;
 	void onToggleCoins(cocos2d::CCObject* sender);
-	void selectRating(cocos2d::CCObject*);
+	void selectRating(cocos2d::CCObject*) = win 0x3a6ba0;
 
 	virtual void keyBackClicked() = win 0x3a7180, m1 0x22c93c;
 	virtual void uploadActionFinished(int, int) = win 0x3a6f80, m1 0x22c5b0;
@@ -14962,10 +14962,10 @@ class ShareLevelLayer : FLAlertLayer {
 
 	CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale);
 	bool init(GJGameLevel* level);
-	void onClose(cocos2d::CCObject* sender);
-	void onSettings(cocos2d::CCObject* sender);
-	void onShare(cocos2d::CCObject* sender);
-	void selectRating(cocos2d::CCObject*);
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0;
+	void onSettings(cocos2d::CCObject* sender) = win 0x4642f0;
+	void onShare(cocos2d::CCObject* sender) = 0x464440;
+	void selectRating(cocos2d::CCObject*) = 0x464160;
 	TodoReturn setupStars();
 
 	virtual void keyBackClicked() = m1 0x222e0c;
