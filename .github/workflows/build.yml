@@ -42,7 +42,7 @@ jobs:
           os: macos-latest
           id: mac
           extra_flags: >
-            -DCMAKE_OSX_ARCHITECTURES=x86_64;arm64
+            -DCMAKE_OSX_ARCHITECTURES='x86_64;arm64'
         - name: Linux
           os: ubuntu-latest
           id: linux
