@@ -1417,11 +1417,11 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	void setDelegate(TextInputDelegate* delegate) {
 		m_delegate = delegate;
 	}
-	void setMaxLabelScale(float v) = win inline, m1 inline, imac 0x9e840 {
+	void setMaxLabelScale(float v) = win inline, m1 0x8e824, imac 0x9e840 {
 		m_maxLabelScale = v;
 		this->refreshLabel();
 	}
-	void setMaxLabelWidth(float v) = win inline, m1 inline, imac 0x9e860 {
+	void setMaxLabelWidth(float v) = win inline, m1 0x8e82c, imac 0x9e860 {
 		m_maxLabelWidth = v;
 		this->refreshLabel();
 	}
@@ -1429,11 +1429,11 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_maxLabelLength = v;
 		this->refreshLabel();
 	}
-	void setLabelPlaceholderScale(float v) = win inline, m1 inline, imac 0x9e880 {
+	void setLabelPlaceholderScale(float v) = win inline, m1 0x8e834, imac 0x9e880 {
 		m_placeholderScale = v;
 		this->refreshLabel();
 	}
-	void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, m1 inline, imac 0x9e8a0 {
+	void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, m1 0x8e83c, imac 0x9e8a0 {
 		m_placeholderColor = color;
 		this->refreshLabel();
 	}
@@ -1444,14 +1444,14 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		return m_placeholderLabel;
 	}
 
-	void addTextArea(TextArea*) = win 0x4e6c0, imac 0x9de60;
-	void forceOffset() = imac 0xa02c0;
+	void addTextArea(TextArea*) = win 0x4e6c0, imac 0x9de60, m1 0x8dec4;
+	void forceOffset() = imac 0xa02c0, m1 0x8ff44;
 	gd::string getString() {
 		return m_textField->getString();
 	}
-	bool init(float, float, char const*, char const*, int, char const*) = win 0x4e480, imac 0x9db00;
+	bool init(float, float, char const*, char const*, int, char const*) = win 0x4e480, imac 0x9db00, m1 0x8db78;
 	void refreshLabel() = win 0x4ecc0, imac 0x9e600, m1 0x8e628;
-	void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, m1 inline, imac 0x9e8c0 {
+	void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, m1 0x8e84c, imac 0x9e8c0 {
 		m_textColor = color;
 		this->refreshLabel();
 	}
@@ -1459,10 +1459,10 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	void updateBlinkLabel() {
 		this->updateBlinkLabelToChar(this->m_cursorPos);
 	}
-	void updateBlinkLabelToChar(int) = win 0x4efa0;
+	void updateBlinkLabelToChar(int) = win 0x4efa0, imac 0x9e8e0, m1 0x8e860;
 	void updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x4fee0, m1 0x8ff48, imac 0xa02d0;
 	void updateDefaultFontValues(gd::string) = win 0x4e7b0;
-	void updateLabel(gd::string) = win 0x4e9c0, imac 0x9e0c0;
+	void updateLabel(gd::string) = win 0x4e9c0, imac 0x9e0c0, m1 0x8e134;
 
 	virtual void visit() = win 0x4e8b0, m1 0x8e400, imac 0x9e3f0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x50440, m1 0x903d8, imac 0xa0840;
