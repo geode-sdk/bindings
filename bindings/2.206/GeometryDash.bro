@@ -12564,7 +12564,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	bool init(int, bool, bool);
 	void onClose(cocos2d::CCObject* sender) = win 0x3a7140;
 	void onFeature(cocos2d::CCObject* sender) = win 0x3a6a30;
-	void onRate(cocos2d::CCObject* sender) = 0x3a6d90;
+	void onRate(cocos2d::CCObject* sender) = win 0x3a6d90;
 	void onToggleCoins(cocos2d::CCObject* sender);
 	void selectRating(cocos2d::CCObject*) = win 0x3a6ba0;
 
@@ -14964,8 +14964,8 @@ class ShareLevelLayer : FLAlertLayer {
 	bool init(GJGameLevel* level);
 	void onClose(cocos2d::CCObject* sender) = win 0x82fc0;
 	void onSettings(cocos2d::CCObject* sender) = win 0x4642f0;
-	void onShare(cocos2d::CCObject* sender) = 0x464440;
-	void selectRating(cocos2d::CCObject*) = 0x464160;
+	void onShare(cocos2d::CCObject* sender) = win 0x464440;
+	void selectRating(cocos2d::CCObject*) = win 0x464160;
 	TodoReturn setupStars();
 
 	virtual void keyBackClicked() = m1 0x222e0c;
