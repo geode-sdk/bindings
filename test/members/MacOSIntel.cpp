@@ -107,6 +107,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc98);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe80);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isDead, 0x30a2);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
