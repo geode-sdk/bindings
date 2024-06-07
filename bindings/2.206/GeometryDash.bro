@@ -14958,15 +14958,15 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 class ShareLevelLayer : FLAlertLayer {
 	// virtual ~ShareLevelLayer();
 
-	static ShareLevelLayer* create(GJGameLevel*);
+	static ShareLevelLayer* create(GJGameLevel*); // inlined
 
-	CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale);
-	bool init(GJGameLevel* level);
+	CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale); // also inlined
+	bool init(GJGameLevel* level) = win 0x463090;
 	void onClose(cocos2d::CCObject* sender) = win 0x82fc0;
 	void onSettings(cocos2d::CCObject* sender) = win 0x4642f0;
 	void onShare(cocos2d::CCObject* sender) = win 0x464440;
 	void selectRating(cocos2d::CCObject*) = win 0x464160;
-	TodoReturn setupStars();
+	void setupStars() = win 0x463d50;
 
 	virtual void keyBackClicked() = m1 0x222e0c;
 }
