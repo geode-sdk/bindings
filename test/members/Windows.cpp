@@ -220,7 +220,6 @@ GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
 GEODE_MEMBER_CHECK(TableViewCell, m_unknownString, 0x1f0);
 GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x220);
 
-
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x230);
 
 GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
@@ -242,4 +241,6 @@ GEODE_MEMBER_CHECK(CheckpointObject, m_gradientTriggerObjectArray, 0x1200);
 GEODE_MEMBER_CHECK(CheckpointObject, m_unkBool1, 0x1208);
 GEODE_MEMBER_CHECK(CheckpointObject, m_sequenceTriggerStateUnorderedMap, 0x1210);
 GEODE_MEMBER_CHECK(CheckpointObject, m_maybeAPointer3, 0x1250);
+
+GEODE_SIZE_CHECK(FMODAudioState, 0x380);
 #endif

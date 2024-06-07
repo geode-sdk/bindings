@@ -90,7 +90,6 @@ class GJPointDouble {
 
 class DynamicSaveObject {
     GameObject* m_gameObject;
-    unsigned int m_unkIntUnusedMaybe;
     double m_unkDouble1;
     double m_unkDouble2;
     float m_unkFloat1;
