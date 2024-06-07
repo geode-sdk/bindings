@@ -12181,25 +12181,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset();
 	void delayedResetLevel() = win 0x395700;
 	void fullReset() = win 0x395600;
-	float getCurrentPercent() = win inline {
-		float percent;
-
-		if (m_level->m_timestamp > 0) {
-			percent = static_cast<float>(m_gameState.m_unk1f8) / m_level->m_timestamp * 100.f;
-		} else {
-			percent = m_player1->getPosition().x / m_levelLength * 100.f;
-		}
-
-		if (percent >= 100.f) {
-			return 100.f;
-		} else if (percent <= 0.f) {
-			return 0.f;
-		} else {
-			return percent;
-		}
-	}
+	float getCurrentPercent() = win 0x390520;
 	int getCurrentPercentInt() = win inline {
-		return std::floorf(this->getCurrentPercent());
+		return static_cast<int>(this->getCurrentPercent());
 	}
 	TodoReturn getEndPosition();
 	TodoReturn getLastCheckpoint();
