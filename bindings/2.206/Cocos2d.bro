@@ -43,7 +43,7 @@ class cocos2d::CCMotionStreak {
 	void enableRepeatMode(float);
 	bool isFastMode();
 	bool isStartingPositionInitialized();
-	void reset();
+	void reset() = imac 0x57e280;
 	void resumeStroke();
 	void stopStroke();
 	void tintWithColor(cocos2d::_ccColor3B);
@@ -80,7 +80,7 @@ class cocos2d::CCScene {
 [[link(win, android)]]
 class cocos2d::CCShaderCache {
 	static void purgeSharedShaderCache();
-	static cocos2d::CCShaderCache* sharedShaderCache() = m1 0x1e0f90;
+	static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1fc770, m1 0x1e0f90;
 
 	bool init();
 
@@ -89,7 +89,7 @@ class cocos2d::CCShaderCache {
 	void addProgram(cocos2d::CCGLProgram*, char const*);
 	void loadDefaultShader(cocos2d::CCGLProgram*, int);
 	void loadDefaultShaders();
-	cocos2d::CCGLProgram* programForKey(char const*) = m1 0x1aef0c;
+	cocos2d::CCGLProgram* programForKey(char const*) = imac 0x1fd650, m1 0x1aef0c;
 	void reloadDefaultShaders();
 }
 
@@ -871,6 +871,9 @@ class cocos2d::CCTextureCache {
 [[link(win, android)]]
 class cocos2d::CCTouch {
 	cocos2d::CCPoint getLocation() const = imac 0x5a550, m1 0x50be8;
+	cocos2d::CCPoint getPreviousLocation() const = imac 0x5a580;
+	cocos2d::CCPoint getStartLocation() const = imac 0x5a5b0;
+	cocos2d::CCPoint getDelta() const = imac 0x5a5e0;
 }
 
 [[link(win, android)]]
@@ -1100,7 +1103,7 @@ class cocos2d::CCDirector {
 	void calculateDeltaTime();
 	void calculateMPF();
 	void checkSceneReference();
-	cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&);
+	cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = imac 0x48cc80;
 	cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&);
 	void createStatsLabel();
 	void drawScene() = m1 0x3f1560;
@@ -1317,10 +1320,10 @@ class cocos2d::CCLabelBMFont {
 	cocos2d::CCArray* getTargetArray() const;
 
 	void setExtraKerning(int);
-	void setFntFile(char const*);
+	void setFntFile(char const*) = imac 0x5e4670;
 	void setIsBatched(bool);
 	void setTargetArray(cocos2d::CCArray*);
-	void createFontChars();
+	void createFontChars() = imac 0x5e1780;
 	int kerningAmountForFirst(unsigned short, unsigned short);
 	void limitLabelWidth(float, float, float) = imac 0x5e4790, m1 0x50e1f8;
 
@@ -1380,7 +1383,7 @@ class cocos2d::CCArray {
 
 	bool init();
 	bool initWithArray(cocos2d::CCArray*);
-	bool initWithCapacity(unsigned int);
+	bool initWithCapacity(unsigned int) = imac 0x72cbb0;
 	bool initWithObject(cocos2d::CCObject*);
 	// bool initWithObjects(cocos2d::CCObject*, ...);
 
@@ -1521,12 +1524,12 @@ class cocos2d::CCDrawNode {
 
 	// CCDrawNode(cocos2d::CCDrawNode const&);
 	// CCDrawNode();
-	void clear();
+	void clear() = imac 0x61dd20;
 	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int);
 	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
 	void drawDot(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
 	bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::_ccColor4F const&);
-	bool drawPolygon(cocos2d::CCPoint *verts, unsigned int count, const cocos2d::ccColor4F &fillColor, float borderWidth, const cocos2d::ccColor4F &borderColor);
+	bool drawPolygon(cocos2d::CCPoint *verts, unsigned int count, const cocos2d::ccColor4F &fillColor, float borderWidth, const cocos2d::ccColor4F &borderColor) = imac 0x61cbd0;
 	void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
 	bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&);
 	void drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
@@ -1793,7 +1796,7 @@ class cocos2d {
 	static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
 	static cocos2d::CCRect CCRectFromString(char const*);
 	static cocos2d::CCSize CCSizeFromString(char const*);
-	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*);
+	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = imac 0x5dd4a0;
 	static void FNTConfigRemoveCache();
 	static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
 	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
