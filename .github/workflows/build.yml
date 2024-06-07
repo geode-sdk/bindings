@@ -37,12 +37,16 @@ jobs:
         - name: Windows
           os: windows-latest
           id: win
+          extra_flags: ''
         - name: macOS
           os: macos-latest
           id: mac
+          extra_flags: >
+            -DCMAKE_OSX_ARCHITECTURES='x86_64;arm64'
         - name: Linux
           os: ubuntu-latest
           id: linux
+          extra_flags: ''
 
     name: Build ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
@@ -77,6 +81,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_C_COMPILER=clang
         -DCMAKE_CXX_COMPILER=clang++
+        ${{ matrix.config.extra_flags }}
         -G Ninja
 
     - name: Build
