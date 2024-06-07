@@ -5878,13 +5878,13 @@ class GameToolbox {
 	static TodoReturn fast_rand_0_1();
 	static TodoReturn fast_rand_minus1_1();
 	static TodoReturn fast_rand();
-	static TodoReturn fast_srand(uint64_t);
+	static void fast_srand(uint64_t);
 	static TodoReturn gen_random(int);
 	static TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, cocos2d::SEL_CallFunc);
 	static TodoReturn getDropActionWEnd(float, float, float, cocos2d::CCAction*, float);
 	static TodoReturn getEasedAction(cocos2d::CCActionInterval*, int, float);
 	static TodoReturn getEasedValue(float, int, float) = win 0x67550;
-	static TodoReturn getfast_srand();
+	static uint64_t getfast_srand();
 	static TodoReturn getInvertedEasing(int);
 	static TodoReturn getLargestMergedIntDicts(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
 	static TodoReturn getMultipliedHSV(cocos2d::ccHSVValue const&, float);
@@ -9093,7 +9093,7 @@ class HardStreak : cocos2d::CCDrawNode {
 
 	virtual bool init() = m1 0x8cac0;
 
-	PAD = win 0x20;
+	PAD = win 0x20, android32 0x20, android64 0x20, m1 0x0, imac 0x0, ios 0x0; // everything thats 0x0 is untested, added for member test
 	cocos2d::CCArray* m_pointArray;
 	cocos2d::CCPoint m_currentPoint;
 	float m_waveSize;
@@ -10759,7 +10759,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	void onTwitch(cocos2d::CCObject* sender) = win 0x314d60;
 	void onTwitter(cocos2d::CCObject* sender) = win 0x314d20;
 	void onYouTube(cocos2d::CCObject* sender) = win 0x314d40;
-	TodoReturn openOptions(bool) = win 0x3150f0;
+	void openOptions(bool) = win 0x3150f0;
 	void showGCQuestion();
 	void showMeltdownPromo();
 	void showTOS() = win 0x314b20;
@@ -11163,7 +11163,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	void parseMusicLibrary();
 	void parseSFXLibrary();
-	gd::string pathForSFX(int);
+	gd::string pathForSFX(int) = win 0x31e730;
 	gd::string pathForSFXFolder(int) = win 0x31e5e0;
 	gd::string pathForSong(int) = win 0x31e400;
 	gd::string pathForSongFolder(int) = win 0x31e2b0;
@@ -14979,15 +14979,15 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 class ShareLevelLayer : FLAlertLayer {
 	// virtual ~ShareLevelLayer();
 
-	static ShareLevelLayer* create(GJGameLevel*);
+	static ShareLevelLayer* create(GJGameLevel*); // inlined
 
-	CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale);
-	bool init(GJGameLevel* level);
+	CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale); // also inlined
+	bool init(GJGameLevel* level) = win 0x463090;
 	void onClose(cocos2d::CCObject* sender) = win 0x82fc0;
 	void onSettings(cocos2d::CCObject* sender) = win 0x4642f0;
 	void onShare(cocos2d::CCObject* sender) = win 0x464440;
 	void selectRating(cocos2d::CCObject*) = win 0x464160;
-	TodoReturn setupStars();
+	void setupStars() = win 0x463d50;
 
 	virtual void keyBackClicked() = m1 0x222e0c;
 }
