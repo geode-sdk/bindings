@@ -2313,7 +2313,7 @@ class CustomListView : BoomListView {
 	inline CustomListView() {}
 	~CustomListView() {}
 
-	static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = win 0xa8600, m1 0x1e7194;
+	static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = win 0xa8600, m1 0x1e7194, imac 0x23bc80;
 
 	static CustomListView* create(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
 		return CustomListView::create(entries, nullptr, width, height, 0, type, 0.0f);
@@ -5493,7 +5493,7 @@ class GameObject : CCSpritePlus {
 	// property 108
 	int m_linkedGroup;
 
-	PAD = android32 0xc, win 0xc, android64 0xc;
+	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
 
 	cocos2d::CCSprite* m_colorSprite;
 
@@ -11993,7 +11993,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerBirdFrame(int) = win 0x37c2f0;
 	void updatePlayerDartFrame(int) = win 0x37c9f0;
 	void updatePlayerForce(cocos2d::CCPoint, bool);
-	void updatePlayerFrame(int) = win 0x37bc60, m1 0x2f8784, imac 0x36c630;
+	void updatePlayerFrame(int) = win 0x37bc60;
 	void updatePlayerGlow() = win 0x37e2b0;
 	void updatePlayerJetpackFrame(int) = win 0x37c0c0;
 	void updatePlayerRobotFrame(int id) = win inline {
@@ -15123,7 +15123,7 @@ class SimplePlayer : cocos2d::CCSprite {
 		updateColors();
 	}
 	void updateColors() = win 0x267b60, m1 0x9999999, imac 0x36ffb0;
-	void updatePlayerFrame(int, IconType) = win 0x267f20;
+	void updatePlayerFrame(int, IconType) = win 0x267f20, m1 0x2f8784, imac 0x36c630;
 
 	virtual void setOpacity(unsigned char) = win 0x268680, m1 0x2fe1c4;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x267b30, m1 0x2fde58;
