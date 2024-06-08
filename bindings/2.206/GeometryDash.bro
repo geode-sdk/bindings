@@ -4093,10 +4093,10 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	virtual void update(float) = win 0x54510, m1 0x362540;
 
-	PAD = win 0xc4, android32 0x54, android64 0xac;
+	PAD = win 0xc4, android32 0x54, android64 0xac, imac 0x7c, m1 0x7c;
 	float m_musicVolume;
 	float m_sfxVolume;
-	PAD = win 0x8, android32 0x8, android64 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8, imac 0x8, m1 0x8;
 	float m_pulse1;
 	float m_pulse2;
 	float m_pulse3;
