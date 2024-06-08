@@ -3068,12 +3068,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onPasteInPlace(cocos2d::CCObject* sender);
 	void onPasteState(cocos2d::CCObject* sender) = win 0x1106d0;
 	void onPause(cocos2d::CCObject* sender) = win 0xddf70;
-	void onPlayback(cocos2d::CCObject* sender) = win 0x10df30;
-	void onPlaytest(cocos2d::CCObject* sender) = win 0x10e540;
+	void onPlayback(cocos2d::CCObject* sender) = win 0x10df30, m1 0xe734;
+	void onPlaytest(cocos2d::CCObject* sender) = win 0x10e540, m1 0xe948;
 	void onResetSpecialFilter(cocos2d::CCObject* sender);
 	void onSelectBuildTab(cocos2d::CCObject* sender);
 	void onSettings(cocos2d::CCObject* sender) = win 0xddf10;
-	void onStopPlaytest(cocos2d::CCObject* sender) = win 0x10e8d0;
+	void onStopPlaytest(cocos2d::CCObject* sender) = win 0x10e8d0, m1 0xeb88;
 	TodoReturn onTargetIDChange(int);
 	void onToggleGuide(EffectGameObject*);
 	TodoReturn onToggleSelectedOrder(EffectGameObject*);
@@ -3120,7 +3120,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void showMaxBasicError();
 	void showMaxCoinError();
 	void showMaxError() = win 0x10ED00;
-	void showUI(bool);
+	void showUI(bool) = m1 0x392e4;
 	TodoReturn sliderChanged(cocos2d::CCObject*);
 	TodoReturn smartTypeForKey(int);
 	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
@@ -6488,7 +6488,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn rotateObject(GameObject*, float);
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
 	void setGroupParent(GameObject*, int);
-	void setStartPosObject(StartPosObject* startPos) = win inline, imac 0x1176d0 {
+	void setStartPosObject(StartPosObject* startPos) = win inline, imac 0x1176d0, m1 0xf48a8 {
 		if (startPos != m_startPosObject) {
 			if (startPos) {
 				startPos->retain();
@@ -6874,7 +6874,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCDictionary* m_unk2a50;
 	int m_unk2a54;
 	ShaderLayer* m_shaderLayer;
-	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8; // mac not verified
+	PAD = win 0x8, android32 0x4, android64 0x8, imac 0x8, m1 0x8;
 	StartPosObject* m_startPosObject; // 3180 win, 2a60 android32, 31a8 android64
 	PAD = win 0x60, android32 0x38, android64 0x34, mac 0x34; // mac not verified
 	bool m_isPracticeMode;
@@ -9796,7 +9796,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	void onPausePlaytest();
 	void onPlaytest() = win 0x2cbf90;
 	void onResumePlaytest() = win 0x2cc9c0;
-	void onStopPlaytest();
+	void onStopPlaytest() = m1 0xd8930;
 	TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*);
 	TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*);
 	TodoReturn pasteGroupState(GameObject*, cocos2d::CCArray*);
