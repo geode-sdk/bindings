@@ -503,7 +503,7 @@ class cocos2d::CCNode {
 	void transform();
 	void transformAncestors();
 	void unschedule(cocos2d::SEL_SCHEDULE);
-	void unscheduleAllSelectors();
+	void unscheduleAllSelectors() = imac 0x26ef70, m1 0x21529c;
 	void unscheduleUpdate();
 	void updateChildIndexes();
 

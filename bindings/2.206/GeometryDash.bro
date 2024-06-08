@@ -3987,7 +3987,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn channelLinkSound(int, FMODSound*);
 	TodoReturn channelStopped(FMOD::Channel*, bool);
 	TodoReturn channelUnlinkSound(int);
-	void clearAllAudio() = win 0x54460;
+	void clearAllAudio() = win 0x54460, imac 0x3e1f70, m1 0x3620ac;
 	TodoReturn countActiveEffects();
 	TodoReturn countActiveMusic();
 	TodoReturn createStream(gd::string);
@@ -4870,11 +4870,11 @@ class GameManager : GManager {
 	int countForType(IconType) = win 0x178d60, m1 0x30c648, imac 0x3826a0;
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn defaultYOffsetForBG2(int);
-	TodoReturn didExitPlayscene();
+	TodoReturn didExitPlayscene() = imac 0x38ccf0, m1 0x315cb0;
 	void doQuickSave();
 	TodoReturn dpadConfigToString(UIButtonConfig&) = win 0x17cde0;
 	TodoReturn eventUnlockFeature(char const*);
-	void fadeInMenuMusic() = win 0x173140;
+	void fadeInMenuMusic() = win 0x173140, imac 0x378e90, m1 0x3045f8;
 	void fadeInMusic(gd::string) = win 0x173230;
 	TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*);
 	TodoReturn finishedLoadingGAsync(int);
@@ -4965,7 +4965,7 @@ class GameManager : GManager {
 	TodoReturn resetCoinUnlocks();
 	TodoReturn resetDPadSettings(bool);
 	TodoReturn resolutionForKey(int);
-	void returnToLastScene(GJGameLevel*) = win 0x180350;
+	void returnToLastScene(GJGameLevel*) = win 0x180350, imac 0x38d180, m1 0x316184;
 	TodoReturn rewardedVideoAdFinished(int);
 	TodoReturn rewardedVideoHidden();
 	TodoReturn rewardedVideoHiddenDelayed();
@@ -4973,7 +4973,7 @@ class GameManager : GManager {
 	void safePopScene() = win 0x180700;
 	TodoReturn saveAdTimer();
 	TodoReturn saveDPadLayout(int, bool);
-	void setGameVariable(char const*, bool) = win 0x179e80;
+	void setGameVariable(char const*, bool) = win 0x179e80, imac 0x3854a0, m1 0x30f154;
 	void setHasRatingPower(int);
 	void setIntGameVariable(char const*, int) = imac 0x385a80;
 	void setPlayerUserID(int);
@@ -6475,7 +6475,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn reparentObject(cocos2d::CCNode*, cocos2d::CCNode*);
 	void resetActiveEnterEffects() = win 0x1ff150;
 	TodoReturn resetAreaObjectValues(GameObject*, bool);
-	TodoReturn resetAudio() = win 0x227690;
+	void resetAudio() = win 0x227690, imac 0x147000, m1 0x11a408;
 	void resetCamera() = win 0x22ec30, imac 0x14e1b0, m1 0x11fd2c;
 	void resetGradientLayers() = win 0x211790;
 	TodoReturn resetGroupCounters(bool);
@@ -11706,7 +11706,7 @@ class PlatformToolbox {
 	static void setKeyboardState(bool);
 	static TodoReturn shouldResumeSound();
 	static void showAchievements();
-	static void showCursor();
+	static void showCursor() = imac 0x4cdbd0, m1 0x42c894;
 	static TodoReturn signInGooglePlay();
 	static TodoReturn signOutGooglePlay();
 	static TodoReturn spriteFromSavedFile(gd::string);
@@ -12307,7 +12307,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void loadFromCheckpoint(CheckpointObject*) = win 0x394180, m1 0xa9b90;
 	TodoReturn loadLastCheckpoint();
 	CheckpointObject * markCheckpoint() = win 0x3940b0, imac 0xbbd80;
-	void onQuit() = win 0x397540;
+	void onQuit() = win 0x397540, imac 0xb3e90, m1 0xa0cb0;
 	TodoReturn optimizeColorGroups() = win 0x38b7f0;
 	TodoReturn optimizeOpacityGroups() = win 0x38ba80;
 	void pauseGame(bool) = win 0x396a50;
@@ -16054,7 +16054,7 @@ class UILayer : cocos2d::CCLayerColor {
 
 	static UILayer* create(GJBaseGameLayer*);
 
-	TodoReturn disableMenu() = imac 0x4d2bf0;
+	void disableMenu() = imac 0x4d2bf0, m1 0x430f10;
 	TodoReturn editorPlaytest(bool);
 	void enableEditorMode();
 	TodoReturn enableMenu();
