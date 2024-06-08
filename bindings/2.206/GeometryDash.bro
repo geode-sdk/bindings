@@ -1223,7 +1223,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
 	// virtual ~CCSpriteGrayscale();
 
 	static CCSpriteGrayscale* create(gd::string const&, cocos2d::CCRect const&);
-	static CCSpriteGrayscale* create(gd::string const&);
+	static CCSpriteGrayscale* create(gd::string const&) = m1 0x521c84;
 
 	static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame*); // inlined :broken_heart:
 	static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const&) = win 0x481a0;
@@ -1463,7 +1463,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		this->refreshLabel();
 	}
 	void setString(gd::string) = win 0x4e920, imac 0x9e450, m1 0x8e45c;
-	void updateBlinkLabel() {
+	void updateBlinkLabel() = win inline {
 		this->updateBlinkLabelToChar(this->m_textField->m_uCursorPos);
 	}
 	void updateBlinkLabelToChar(int) = win 0x4efa0, imac 0x9e8e0, m1 0x8e860;
