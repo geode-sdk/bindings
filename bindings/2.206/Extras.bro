@@ -19,19 +19,19 @@ class EventTriggerInstance {
 class SongChannelState {
 	PAD = win 0x4;
 	SongTriggerGameObject* m_songTriggerGameObject1;
-	PAD = win 0xc;
+	PAD = win 0x8;
 	SongTriggerGameObject* m_songTriggerGameObject2;
-	PAD = win 0xc;
+	PAD = win 0x8;
 }
 
 class SongTriggerState {
 	SongTriggerGameObject* m_songTriggerGameObject;
-	PAD = win 0xc;
+	PAD = win 0x8;
 }
 
 class SFXTriggerState {
 	SFXTriggerGameObject* m_sfxTriggerGameObject;
-	PAD = win 0x9c;
+	PAD = win 0xa0;
 }
 
 class ChanceObject {
