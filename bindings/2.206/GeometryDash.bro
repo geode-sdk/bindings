@@ -6187,21 +6187,21 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
         	m_commentSettings(nullptr)
     	{}
 
-	static GJAccountSettingsLayer* create(int);
-
-	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float);
-	bool init(int) = win 0x27FCD0;
+	static GJAccountSettingsLayer* create(int accountID);
+	
+	CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float);
+	bool init(int accountID) = win 0x27FCD0;
 	void onClose(cocos2d::CCObject* sender);
 	void onCommentSetting(cocos2d::CCObject* sender);
 	void onFriendRequests(cocos2d::CCObject* sender);
 	void onMessageSetting(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
 	TodoReturn updateScoreValues();
-
+	
 	virtual void keyBackClicked() = win 0x282670, m1 0x240128;
 	virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x23f964;
 	virtual void textInputReturn(CCTextInputNode*) = m1 0x23fa34;
-
+		
 	
 
 }
