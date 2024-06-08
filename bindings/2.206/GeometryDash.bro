@@ -4303,7 +4303,7 @@ class GameEffectsManager : cocos2d::CCNode {
 class GameLevelManager : cocos2d::CCNode {
 	// virtual ~GameLevelManager();
 
-	static GameLevelManager* sharedState() = win 0x13e1e0, m1 0x478590;
+	static GameLevelManager* sharedState() = win 0x13e1e0, m1 0x478590, imac 0x5233f0;
 	static GameLevelManager* get() {
 		return GameLevelManager::sharedState();
 	}
@@ -4410,7 +4410,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getNews();
 	int getNextFreeTemplateID();
 	gd::string getNextLevelName(gd::string);
-	void getOnlineLevels(GJSearchObject*) = win 0x148470;
+	void getOnlineLevels(GJSearchObject*) = win 0x148470, m1 0x49a918, imac 0x549df0;
 	char const* getPageInfo(char const*);
 	char const* getPostCommentKey(int);
 	const char *getRateStarsKey(int key);
@@ -4428,7 +4428,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCScene* getSearchScene(char const*);
 	int getSplitIntFromKey(char const*, int);
 	cocos2d::CCArray* getStoredLevelComments(char const*) = win 0x157b80;
-	cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0x144320;
+	cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0x144320, m1 0x4914d8, imac 0x53f3e0;
 	cocos2d::CCArray* getStoredUserList(UserListType);
 	GJUserMessage* getStoredUserMessage(int);
 	GJUserMessage* getStoredUserMessageReply(int);
@@ -8504,7 +8504,7 @@ class GJSearchObject : cocos2d::CCNode {
 	static GJSearchObject* create(SearchType searchType) = win 0x16be20, m1 0x4b5d94, imac 0x567ea0;
 	static GJSearchObject* createFromKey(char const* key) = win 0x16b720;
 
-	char const* getKey() = win 0x16c370;
+	char const* getKey() = win 0x16c370, m1 0x498c5c, imac 0x547b90;
 	char const* getNextPageKey();
 	GJSearchObject* getNextPageObject();
 	GJSearchObject* getPageObject(int page) = win 0x16c4c0;
@@ -10270,7 +10270,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	// virtual ~LevelSearchLayer();
 
 	static LevelSearchLayer* create(int);
-	static cocos2d::CCScene* scene(int) = win 0x2ebb10;
+	static cocos2d::CCScene* scene(int) = win 0x2ebb10, m1 0x5544e0, imac 0x634710;
 
 	bool checkDiff(int);
 	bool checkTime(int) = win 0x2f1dc0;
@@ -10285,7 +10285,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	inline char const* getTimeKey(int time) {
 		return cocos2d::CCString::createWithFormat("T%i", time)->getCString();
 	}
-	bool init(int) = win 0x2ebc60;
+	bool init(int) = win 0x2ebc60, m1 0x5546b0, imac 0x634960;
 	void onBack(cocos2d::CCObject* sender);
 	void onClearFreeSearch(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender) = win inline {
