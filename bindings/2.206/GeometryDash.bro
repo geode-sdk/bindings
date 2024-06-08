@@ -1501,7 +1501,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	bool m_usePasswordChar;
 	bool m_forceOffset;
 	TextArea* m_textArea;
-	PAD = android32 0xc, android64 0x10, win 0x18, m1 0x18, imac 0x18;
+	PAD = android32 0xc, android64 0x10, win 0x10, m1 0x18, imac 0x18;
 }
 
 [[link(android)]]
