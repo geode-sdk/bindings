@@ -17,7 +17,6 @@ class EventTriggerInstance {
 }
 
 class SongChannelState {
-	PAD = win 0x4;
 	SongTriggerGameObject* m_songTriggerGameObject1;
 	PAD = win 0x8;
 	SongTriggerGameObject* m_songTriggerGameObject2;
