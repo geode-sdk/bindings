@@ -11935,7 +11935,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void runNormalRotation() {
 		this->runNormalRotation(false, 1.0f);
 	}
-	void runNormalRotation(bool, float) = win 0x9999999, m1 0x9999999;
+	void runNormalRotation(bool, float) = win 0x9999999, m1 0x381364, mac 0x408ef0; // might be half inlined on mac
 	void runRotateAction(bool, int) = win 0x36b480;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x37b3b0;
@@ -12041,7 +12041,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn yStartDown();
 	TodoReturn yStartUp();
 
-	virtual void update(float) = m1 0x37ec58, win 0x366ee0;
+	virtual void update(float) = m1 0x37ec58, imac 0x405f60, win 0x366ee0;
 	virtual void setScaleX(float) = win 0x380860;
 	virtual void setScaleY(float) = win 0x380870;
 	virtual void setScale(float) = win 0x380880;
