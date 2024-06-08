@@ -2841,12 +2841,12 @@ class EditorOptionsLayer : GJOptionsLayer {
 
 	static EditorOptionsLayer* create();
 
-	void onButtonRows(cocos2d::CCObject* sender);
-	void onButtonsPerRow(cocos2d::CCObject* sender);
+	void onButtonRows(cocos2d::CCObject* sender) = win 0x27f4f0;
+	void onButtonsPerRow(cocos2d::CCObject* sender) = win 0x27f460;
 
 	virtual bool init() = m1 0x23c554;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x23cf50;
-	virtual void setupOptions() = m1 0x23c570;
+	virtual void setupOptions() = win 0x27eb80, m1 0x23c570;
 }
 
 [[link(android)]]
@@ -3069,7 +3069,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onGroupSticky(cocos2d::CCObject* sender) = win 0x10ec80;
 	void onGroupUp(cocos2d::CCObject* sender) = win 0x11b600;
 	void onLockLayer(cocos2d::CCObject* sender) = win 0x11b790;
-	void onNewCustomItem(cocos2d::CCObject* sender);
+	void onNewCustomItem(cocos2d::CCObject* sender) = win 0xe0530;
 	void onPaste(cocos2d::CCObject* sender) = win 0x10f610;
 	void onPasteColor(cocos2d::CCObject* sender) = win 0x110860;
 	void onPasteInPlace(cocos2d::CCObject* sender);
@@ -8580,7 +8580,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	void onPlushies(cocos2d::CCObject* sender);
 	void onSelectItem(cocos2d::CCObject* sender) = win 0x299850;
 	void onVideoAd(cocos2d::CCObject* sender);
-	TodoReturn scene(ShopType);
+	cocos2d::CCScene* scene(ShopType) = win 0x297280;
 	void showCantAffordMessage(GJStoreItem*);
 	void showReactMessage();
 	TodoReturn updateCurrencyCounter();
@@ -12974,7 +12974,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	void onBack(cocos2d::CCObject* sender);
 	void onChestType(cocos2d::CCObject* sender);
 	void onSelectItem(cocos2d::CCObject* sender);
-	void onShop(cocos2d::CCObject* sender);
+	void onShop(cocos2d::CCObject* sender) = win 0x3b19e0;
 	void onSpecialItem(cocos2d::CCObject* sender);
 	void onSwitchPage(cocos2d::CCObject* sender);
 	TodoReturn scene(bool) = win 0x3ae160;
@@ -14046,7 +14046,7 @@ class SetupMoveCommandPopup : SetupTriggerPopup {
 
 	static SetupMoveCommandPopup* create(EffectGameObject*, cocos2d::CCArray*);
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x26e780;
 	TodoReturn updateControlVisibility();
 
 	virtual void updateInputValue(int, float&) = m1 0x537db4;
@@ -14713,7 +14713,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	void createToggleValueControl(int, gd::string, cocos2d::CCPoint, bool, int, int, float);
 	void createToggleValueControlAdvanced(int, gd::string, cocos2d::CCPoint, bool, int, int, float, float, float, cocos2d::CCPoint);
 	void createValueControl(int, gd::string, cocos2d::CCPoint, float, float, float);
-	void createValueControlAdvanced(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float, float, int, int, GJInputStyle, int, bool);
+	void createValueControlAdvanced(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float, float, int, int, GJInputStyle, int, bool) = win 0x44a3a0;
 	void createValueControlWArrows(int, gd::string, cocos2d::CCPoint, float);
 	cocos2d::CCArray* getGroupContainer(int);
 	TodoReturn getMaxSliderValue(int);
@@ -15433,9 +15433,9 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 
 	static SongSelectNode* create(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool);
 
-	void audioNext(cocos2d::CCObject*);
-	void audioPrevious(cocos2d::CCObject*);
-	bool init(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool);
+	void audioNext(cocos2d::CCObject*) = win 0xc4cb0;
+	void audioPrevious(cocos2d::CCObject*) = win 0xc4cf0;
+	bool init(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool) = win 0xc42b0;
 	void onOpenCustomSong(cocos2d::CCObject* sender);
 	void onSongMode(cocos2d::CCObject* sender);
 	void onSongMode(int);
