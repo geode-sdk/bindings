@@ -1457,7 +1457,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	}
 	void setString(gd::string) = win 0x4e920, imac 0x9e450, m1 0x8e45c;
 	void updateBlinkLabel() {
-		this->updateBlinkLabelToChar(this->m_textField->m_uiCursorPos);
+		this->updateBlinkLabelToChar(this->m_textField->m_uCursorPos);
 	}
 	void updateBlinkLabelToChar(int) = win 0x4efa0, imac 0x9e8e0, m1 0x8e860;
 	void updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x4fee0, m1 0x8ff48, imac 0xa02d0;
