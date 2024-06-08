@@ -5959,9 +5959,13 @@ class GameToolbox {
 	static TodoReturn multipliedColorValue(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
 	static TodoReturn openAppPage();
 	static TodoReturn openRateURL(gd::string, gd::string);
-	static cocos2d::CCParticleSystemQuad* particleFromString(gd::string const&, cocos2d::CCParticleSystemQuad*, bool) = win 0x66a10;
-	static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool) = win 0x62660;
-	static cocos2d::ParticleStruct* particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&) = win 0x68810;
+	static cocos2d::CCParticleSystemQuad* particleFromString(gd::string const& str, cocos2d::CCParticleSystemQuad* system, bool p2) = win inline {
+		cocos2d::ParticleStruct ret;
+		GameToolbox::particleStringToStruct(str, ret);
+		return GameToolbox::particleFromStruct(ret, system, p2);
+	}
+	static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool) = win 0x66a10;
+	static void particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&) = win 0x65f50;
 	static TodoReturn pointsToString(int) = win 0x68170;
 	static TodoReturn postClipVisit();
 	static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x62fd0;
