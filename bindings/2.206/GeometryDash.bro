@@ -6186,6 +6186,9 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 	virtual void keyBackClicked() = win 0x282670, m1 0x240128;
 	virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x23f964;
 	virtual void textInputReturn(CCTextInputNode*) = m1 0x23fa34;
+
+	
+
 }
 
 [[link(android)]]
@@ -16196,6 +16199,20 @@ class UpdateAccountSettingsPopup : FLAlertLayer, GJAccountSettingsDelegate {
 	virtual void keyBackClicked() = win 0x282f90, m1 0x240d24;
 	virtual TodoReturn updateSettingsFinished() = win 0x282c10, m1 0x240b20;
 	virtual TodoReturn updateSettingsFailed() = win 0x282d10, m1 0x240c38;
+
+	int m_accountID;
+    	int m_messageStatus;
+    	int m_friendStatus;	
+    	int m_commentHistoryStatus;	
+    	gd::string m_youtubeURL;
+    	gd::string m_twitterURL;	
+    	gd::string m_twitchURL;
+    	CCTextInputNode *m_youtubeInput;	
+    	CCTextInputNode *m_twitterInput;	
+    	CCTextInputNode *m_twitchInput;
+    	cocos2d::CCArray *m_messageSettings;	
+    	cocos2d::CCArray *m_friendRequestSettings;	
+    	cocos2d::CCArray *m_commentSettings;	
 }
 
 [[link(android)]]
