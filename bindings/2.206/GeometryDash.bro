@@ -6171,6 +6171,21 @@ class GJAccountSettingsDelegate {
 [[link(android)]]
 class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 	// virtual ~GJAccountSettingsLayer();
+	inline GJAccountSettingsLayer() :
+        	m_accountID(0),
+        	m_messageStatus(0),
+        	m_friendStatus(0),
+        	m_commentHistoryStatus(0),
+        	m_youtubeURL(""),
+        	m_twitterURL(""),
+        	m_twitchURL(""),
+        	m_youtubeInput(nullptr),
+        	m_twitterInput(nullptr),
+        	m_twitchInput(nullptr),
+        	m_messageSettings(nullptr),
+       		m_friendRequestSettings(nullptr),
+        	m_commentSettings(nullptr)
+    	{}
 
 	static GJAccountSettingsLayer* create(int);
 
