@@ -9035,11 +9035,11 @@ class GManager : cocos2d::CCNode {
 	void loadDataFromFile(gd::string const&) = win 0x69610;
 	void loadFromCompressedString(gd::string&);
 	void loadFromString(gd::string&);
-	void save() = win inline, imac 0x4b61b0 {
+	void save() = win inline, imac 0x4b61b0, m1 0x4181c4 {
 		saveGMTo(m_fileName);
 	}
 	TodoReturn saveData(DS_Dictionary*, gd::string);
-	void saveGMTo(gd::string) = win 0x69520, m1 0x9999999, imac 0x4b62b0;
+	void saveGMTo(gd::string) = win 0x69520, m1 0x4182bc, imac 0x4b62b0;
 	TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
 	inline GManager() {}
 
@@ -9566,8 +9566,8 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
 	~LevelBrowserLayer() = m1 0x3f8e04, win 0x2b5530;
 
-	static LevelBrowserLayer* create(GJSearchObject*) = win 0x2b5760, imac 0x494190;
-	static cocos2d::CCScene* scene(GJSearchObject* search) = win 0x2b5710, m1 0x9999999, imac 0x494150;
+	static LevelBrowserLayer* create(GJSearchObject*) = win 0x2b5760, imac 0x494190, m1 0x3f8e88;
+	static cocos2d::CCScene* scene(GJSearchObject* search) = win 0x2b5710, m1 0x3f8e3c, imac 0x494150;
 
 	TodoReturn createNewLevel(cocos2d::CCObject*);
 	TodoReturn createNewList(cocos2d::CCObject*);
@@ -10246,7 +10246,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	bool init(GJGameLevel*) = win 0x2f9570, imac 0x43f130;
 	void onInfo(cocos2d::CCObject* sender) = win 0x2fd820;
 	void onMoreGames(cocos2d::CCObject* sender);
-	void onPlay(cocos2d::CCObject* sender) = win 0x2fd2e0, imac 0x43e730, m1 0x9999999;
+	void onPlay(cocos2d::CCObject* sender) = win 0x2fd2e0, imac 0x43e730, m1 0x3b0b5c;
 	void onSecretDoor(cocos2d::CCObject* sender);
 	void onTheTower(cocos2d::CCObject* sender) = win 0x2fb760;
 	TodoReturn playCoinEffect();
@@ -10687,7 +10687,7 @@ class LoadingLayer : cocos2d::CCLayer {
 class LocalLevelManager : GManager {
 	// virtual ~LocalLevelManager();
 
-	static LocalLevelManager* sharedState() = win 0x30f5d0, m1 0x9999999, imac 0x601110;
+	static LocalLevelManager* sharedState() = win 0x30f5d0, m1 0x527e4c, imac 0x601110;
 	inline static LocalLevelManager* get() {
         return LocalLevelManager::sharedState();
     }
@@ -12460,7 +12460,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	// virtual ~ProfilePage();
 	// ProfilePage();
 
-	static ProfilePage* create(int accountID, bool ownProfile) = win 0x39b1d0, m1 0x9999999, imac 0x7c4d90;
+	static ProfilePage* create(int accountID, bool ownProfile) = win 0x39b1d0, m1 0x6ca568, imac 0x7c4d90;
 
 	void blockUser();
 	bool init(int accountID, bool ownProfile) = win 0x39b3b0, imac 0x7c4fa0;
@@ -13310,7 +13310,7 @@ class SetTargetIDLayer : SetupTriggerPopup {
 class SetTextPopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~SetTextPopup();
 
-	static SetTextPopup* create(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float) = win 0x28ac50, m1 0x9999999, imac 0x2a9b60;
+	static SetTextPopup* create(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float) = win 0x28ac50, m1 0x24af3c, imac 0x2a9b60;
 
 	bool init(gd::string, gd::string, int, gd::string, gd::string, bool, float) = win 0x28adc0;
 	void onCancel(cocos2d::CCObject* sender);

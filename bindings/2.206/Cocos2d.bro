@@ -500,8 +500,8 @@ class cocos2d::CCNode {
 	virtual cocos2d::ccGLServerState getGLServerState() = m1 0x215088, imac 0x26ed50;
 	virtual void ignoreAnchorPointForPosition(bool) = m1 0x215038, imac 0x26ecc0;
 	virtual bool isIgnoreAnchorPointForPosition() = m1 0x215030, imac 0x26ecb0;
-	virtual void addChild(cocos2d::CCNode*) = m1 0x21550c, imac 0x26f1b0;
-	virtual void addChild(cocos2d::CCNode*, int) = m1 0x21551c, imac 0x26f190;
+	virtual void addChild(cocos2d::CCNode*) = m1 0x21551c, imac 0x26f1b0;
+	virtual void addChild(cocos2d::CCNode*, int) = m1 0x21550c, imac 0x26f190;
 	virtual void addChild(cocos2d::CCNode*, int, int) = m1 0x215390, imac 0x26f060;
 	virtual cocos2d::CCNode* getChildByTag(int) = m1 0x2152fc, imac 0x26efe0;
 	virtual cocos2d::CCArray* getChildren() = m1 0x214db8, imac 0x26e9f0;
@@ -1648,13 +1648,13 @@ class cocos2d::CCMenuItem {
 	// CCMenuItem();
 	cocos2d::CCRect rect();
 
-	virtual void activate() = imac 0x3c2120;
-	virtual void selected() = imac 0x3c2090;
-	virtual void unselected() = imac 0x3c20a0;
+	virtual void activate() = imac 0x3c2120, m1 0x3455b8;
+	virtual void selected() = imac 0x3c2090, m1 0x345534;
+	virtual void unselected() = imac 0x3c20a0, m1 0x345540;
 	virtual void registerScriptTapHandler(int) = m1 0x345548, imac 0x3c20b0;
 	virtual void unregisterScriptTapHandler() = m1 0x345578, imac 0x3c20e0;
 	virtual bool isEnabled() = m1 0x34563c, imac 0x3c21a0;
-	virtual void setEnabled(bool) = imac 0x3c2190;
+	virtual void setEnabled(bool) = imac 0x3c2190, m1 0x345634;
 	virtual bool isSelected() = m1 0x345660, imac 0x3c2200;
 }
 
@@ -1702,8 +1702,8 @@ class cocos2d::CCMenu {
 	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
 
 	virtual bool init() = m1 0x6a7100;
-	virtual void addChild(cocos2d::CCNode*) = m1 0x41bf40;
-	virtual void addChild(cocos2d::CCNode*, int) = m1 0x41c0c4;
+	virtual void addChild(cocos2d::CCNode*) = m1 0x6a7108;
+	virtual void addChild(cocos2d::CCNode*, int) = m1 0x6a710c;
 	virtual void addChild(cocos2d::CCNode*, int, int) = m1 0x6a7110;
 	virtual void removeChild(cocos2d::CCNode*, bool) = m1 0x6a71b8;
 	virtual void onExit() = m1 0x6a7170;
