@@ -172,4 +172,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 
 // GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x230);
 
+
+GEODE_SIZE_CHECK(CCTextInputNode, 0x258);
+
 #endif

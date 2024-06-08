@@ -225,4 +225,7 @@ GEODE_MEMBER_CHECK(CCScrollLayerExt, m_contentLayer, 0x1d8);
 
 
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x230);
+
+
+GEODE_SIZE_CHECK(CCTextInputNode, 0x268);
 #endif
