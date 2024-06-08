@@ -1089,7 +1089,7 @@ class cocos2d::CCKeyboardDispatcher {
 	// CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
 	// CCKeyboardDispatcher();
 	void addDelegate(cocos2d::CCKeyboardDelegate*);
-	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool) = m1 0x4c4a74;
+	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool) = m1 0x4c4a74, imac 0x578540;
 	void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
 	void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
 	char const* keyToString(cocos2d::enumKeyCodes);
