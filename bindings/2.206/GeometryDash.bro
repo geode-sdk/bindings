@@ -10813,7 +10813,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	void onOptions(cocos2d::CCObject* sender) = win 0x3150d0;
 	TodoReturn onOptionsInstant() = win 0x3150e0;
 	void onPlay(cocos2d::CCObject* sender) = win 0x315030;
-	void onQuit(cocos2d::CCObject* sender) = win 0x3155f0;
+	void onQuit(cocos2d::CCObject* sender) = win 0x3155f0, m1 0x31c6b4, imac 0x394500;
 	void onRobTop(cocos2d::CCObject* sender) = win 0x314ce0;
 	void onStats(cocos2d::CCObject* sender) = win 0x315270;
 	void onTrailer(cocos2d::CCObject* sender);
@@ -10832,10 +10832,10 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	TodoReturn willClose() = win 0x315710;
 
 	virtual bool init() = win 0x3130f0, m1 0x31af14, imac 0x392d40;
-	virtual void keyBackClicked() = win 0x3155e0, m1 0x31cdf4;
-	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3159c0, m1 0x31d06c;
-	virtual void googlePlaySignedIn() = win 0x314fe0, m1 0x31cba8;
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3157b0, m1 0x31ce00;
+	virtual void keyBackClicked() = win 0x3155e0, m1 0x31cdf4, imac 0x394cd0;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3159c0, m1 0x31d06c, imac 0x394f90;
+	virtual void googlePlaySignedIn() = win 0x314fe0, m1 0x31cba8, imac 0x394a40;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3157b0, m1 0x31ce00, imac 0x394d00;
 }
 
 [[link(android)]]
