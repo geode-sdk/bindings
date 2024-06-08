@@ -5481,7 +5481,7 @@ class GameObject : CCSpritePlus {
 	float m_unk28c;
 	short m_unk290;
 	bool m_unk292;
-	PAD = android32 0x1, win 0x5, android64 0x5;
+	PAD = android32 0x1, win 0x5, android64 0x5, mac 0x5;
 	gd::string m_particleString;
 
 	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
