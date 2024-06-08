@@ -9576,7 +9576,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	TodoReturn exitLayer(cocos2d::CCObject*);
 	TodoReturn getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*);
 	gd::string getSearchTitle() = win 0x2b8750;
-	bool init(GJSearchObject*) = win 0x2b57d0;
+	bool init(GJSearchObject*) = win 0x2b57d0, m1 0x3f8fc4, imac 0x494360;
 	bool isCorrect(char const*);
 	void loadPage(GJSearchObject*) = win 0x2b72b0;
 	void onClearSearch(cocos2d::CCObject* sender) = win 0x2bb510;
@@ -9601,7 +9601,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x2bbfc0;
 	void reloadAllObjects();
 	void setSearchObject(GJSearchObject*);
-	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2b8440;
+	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2b8440, m1 0x3fda3c, imac 0x4990a0;
 	void show();
 	void updateLevelsLabel();
 	void updatePageLabel();
