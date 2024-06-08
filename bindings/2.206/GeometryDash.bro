@@ -4004,7 +4004,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn fadeInMusic(float, int);
 	float fadeOutMusic(float, int) = win 0x5b2b0, m1 0x36bec0, imac 0x3ef250;
 	TodoReturn getActiveMusic(int);
-	FMOD::Channel* getActiveMusicChannel(int) = win 0x58e50, imac 0x3e5fd0, m1 0x364ca8;
+	FMOD::Channel* getActiveMusicChannel(int) = win 0x58e50, m1 0x364ca8, imac 0x3e5fd0;
 	float getBackgroundMusicVolume() = win inline, m1 0x36927c {
 		return m_musicVolume;
 	}
@@ -4036,9 +4036,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseEffect(unsigned int);
 	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int);
-	void playEffect(gd::string path, float speed, float p2, float volume) = win 0x55f60;
-	void playEffect(gd::string path) = win 0x55ee0;
-	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56050;
+	void playEffect(gd::string path, float speed, float p2, float volume) = win 0x55f60, m1 0x366d7c, imac 0x3e8a40;
+	void playEffect(gd::string path) = win 0x55ee0, m1 0x366c7c, imac 0x3e8960;
+	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56050, m1 0x364de4, imac 0x3e6190;
 	TodoReturn playEffectAsync(gd::string path);
 	void playMusic(gd::string path, bool p1, float p2, int p3);
 	void preloadEffect(gd::string path) = win 0x583b0;
@@ -7188,7 +7188,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn createTransformCommand(double, double, double, double, bool, float, int, int, int, float, bool, bool, int, int);
 	TodoReturn getAllColorActions();
 	TodoReturn getAllColorSprites();
-	ColorAction* getColorAction(int) = win 0x39A00;
+	ColorAction* getColorAction(int);
 	ColorActionSprite* getColorSprite(int);
 	TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
 	TodoReturn getMixedColor(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
@@ -8225,7 +8225,7 @@ class GJPathSprite : CCSpriteCOpacity {
 
 	TodoReturn addRankLabel(int);
 	TodoReturn addShardSprite() = win 0x277240;
-	TodoReturn changeToLockedArt() = win 0x276f80;
+	TodoReturn changeToLockedArt() = win 0x276f80, m1 0x2942e4, imac 0x300640;
 	bool init(int);
 	TodoReturn updateState() = win 0x276e00;
 
