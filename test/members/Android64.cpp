@@ -151,4 +151,6 @@ GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x2B8);
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x260);
 //GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x318);
 
+GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x1a0);
+
 #endif

@@ -2,11 +2,23 @@
 class cocos2d::CCEGLViewProtocol {
     CCEGLViewProtocol() = win 0xbac00;
     virtual ~CCEGLViewProtocol() = win 0xbacc0;
-    auto getViewPortRect() const;
+    auto getViewPortRect() const = m1 0x46da50;
     auto getScaleX() const;
     auto getScaleY() const;
-    virtual auto setDesignResolutionSize(float, float, ResolutionPolicy);
-	virtual void setFrameSize(float, float);
+
+	virtual cocos2d::CCSize const& getFrameSize() const = m1 0x46da58;
+	virtual void setFrameSize(float, float) = m1 0x46da60;
+	virtual cocos2d::CCSize getVisibleSize() const = m1 0x46daa4;
+	virtual cocos2d::CCPoint getVisibleOrigin() const = m1 0x46dad4;
+	virtual void setDesignResolutionSize(float, float, ResolutionPolicy) = m1 0x46d938;
+	virtual cocos2d::CCSize const& getDesignResolutionSize() const = m1 0x46da50;
+	virtual void setTouchDelegate(cocos2d::EGLTouchDelegate*) = m1 0x46db20;
+	virtual void setViewPortInPoints(float, float, float, float) = m1 0x46db28;
+	virtual void setScissorInPoints(float, float, float, float) = m1 0x46db54;
+	virtual bool isScissorEnabled() = m1 0x46db80;
+	virtual cocos2d::CCRect getScissorRect() = m1 0x46dba0;
+	virtual void setViewName(char const*) = m1 0x46dc30;
+	virtual void pollInputEvents() = m1 0x46e32c;
 }
 
 [[link(win, android)]]
@@ -31,7 +43,7 @@ class cocos2d::CCMotionStreak {
 	void enableRepeatMode(float);
 	bool isFastMode();
 	bool isStartingPositionInitialized();
-	void reset();
+	void reset() = imac 0x57e280;
 	void resumeStroke();
 	void stopStroke();
 	void tintWithColor(cocos2d::_ccColor3B);
@@ -63,6 +75,22 @@ class cocos2d::CCScene {
 	~CCScene() = imac 0x28cb70, m1 0x2149c0;
 
 	virtual bool init() = imac 0x28cba0, m1 0x2304e0;
+}
+
+[[link(win, android)]]
+class cocos2d::CCShaderCache {
+	static void purgeSharedShaderCache();
+	static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1fc770, m1 0x1e0f90;
+
+	bool init();
+
+	// CCShaderCache(cocos2d::CCShaderCache const&);
+	// CCShaderCache();
+	void addProgram(cocos2d::CCGLProgram*, char const*);
+	void loadDefaultShader(cocos2d::CCGLProgram*, int);
+	void loadDefaultShaders();
+	cocos2d::CCGLProgram* programForKey(char const*) = imac 0x1fd650, m1 0x1aef0c;
+	void reloadDefaultShaders();
 }
 
 [[link(win, android)]]
@@ -135,9 +163,9 @@ class cocos2d::CCParticleSystem {
 	void loadDefaults();
 	void loadScaledDefaults(float);
 	void resetSystem();
-	void resumeSystem();
+	void resumeSystem() = imac 0x7d6b10;
 	void saveDefaults();
-	void stopSystem();
+	void stopSystem() = imac 0x7d6ae0;
 	void toggleUniformColorMode(bool);
 	void updateVisible();
 
@@ -328,6 +356,48 @@ class cocos2d::CCFileUtils {
 	static cocos2d::CCFileUtils* sharedFileUtils() = imac 0x616a20, m1 0x53a6d0;
 	virtual bool shouldUseHD();
 	virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&);
+}
+
+[[link(win, android)]]
+class cocos2d::CCGLProgram {
+	bool initWithVertexShaderByteArray(char const*, char const*);
+	bool initWithVertexShaderFilename(char const*, char const*);
+
+	unsigned int const getProgram();
+	int getUniformLocationForName(char const*);
+
+	void setUniformLocationWith1f(int, float);
+	void setUniformLocationWith1i(int, int);
+	void setUniformLocationWith2f(int, float, float);
+	void setUniformLocationWith2fv(int, float*, unsigned int);
+	void setUniformLocationWith2i(int, int, int);
+	void setUniformLocationWith2iv(int, int*, unsigned int);
+	void setUniformLocationWith3f(int, float, float, float);
+	void setUniformLocationWith3fv(int, float*, unsigned int);
+	void setUniformLocationWith3i(int, int, int, int);
+	void setUniformLocationWith3iv(int, int*, unsigned int);
+	void setUniformLocationWith4f(int, float, float, float, float);
+	void setUniformLocationWith4fv(int, float*, unsigned int);
+	void setUniformLocationWith4i(int, int, int, int, int);
+	void setUniformLocationWith4iv(int, int*, unsigned int);
+	void setUniformLocationWithMatrix3fv(int, float*, unsigned int);
+	void setUniformLocationWithMatrix4fv(int, float*, unsigned int);
+	void setUniformsForBuiltins() = m1 0x3a8704;
+
+	// CCGLProgram(cocos2d::CCGLProgram const&);
+	// CCGLProgram();
+	void addAttribute(char const*, unsigned int);
+	bool compileShader(unsigned int*, unsigned int, char const*);
+	char const* description();
+	char const* fragmentShaderLog();
+	bool link();
+	// char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
+	char const* programLog();
+	void reset();
+	bool updateUniformLocation(int, void*, unsigned int);
+	void updateUniforms();
+	void use() = m1 0x3a758c;
+	char const* vertexShaderLog();
 }
 
 [[link(win, android)]]
@@ -716,7 +786,7 @@ class cocos2d::CCMouseDispatcher {
 	// CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
 	// CCMouseDispatcher();
 	void addDelegate(cocos2d::CCMouseDelegate*);
-	bool dispatchScrollMSG(float, float);
+	bool dispatchScrollMSG(float, float) = m1 0x1b0418;
 	void forceAddDelegate(cocos2d::CCMouseDelegate*);
 	void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
 	void removeDelegate(cocos2d::CCMouseDelegate*);
@@ -724,52 +794,52 @@ class cocos2d::CCMouseDispatcher {
 
 [[link(win, android)]]
 class cocos2d::CCTexture2D {
-	static void PVRImagesHavePremultipliedAlpha(bool);
-	static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
-	static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat);
+	static void PVRImagesHavePremultipliedAlpha(bool) = m1 0x3e9984, imac 0x483620;
+	static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat() = m1 0x3e9b50, imac 0x4837f0;
+	static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat) = m1 0x3e9b44, imac 0x4837e0;
 
-	bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int);
-	bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&);
-	bool initWithETCFile(char const*);
-	bool initWithImage(cocos2d::CCImage*);
-	bool initWithPVRFile(char const*);
-	bool initWithString(char const*, char const*, float);
-	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment);
-	bool initWithString(char const*, cocos2d::_ccFontDefinition*);
+	bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = m1 0x3e8c34, imac 0x4827a0;
+	bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = m1 0x3e88a8, imac 0x4823e0;
+	bool initWithETCFile(char const*) = m1 0x3e98bc, imac 0x483550;
+	bool initWithImage(cocos2d::CCImage*) = m1 0x3e8bc0, imac 0x482740;
+	bool initWithPVRFile(char const*) = m1 0x3e97e4, imac 0x483470;
+	bool initWithString(char const*, char const*, float) = m1 0x3e9444, imac 0x4830c0;
+	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment) = m1 0x3e94b4, imac 0x483120;
+	bool initWithString(char const*, cocos2d::_ccFontDefinition*) = m1 0x3e95e4, imac 0x483260;
 
-	cocos2d::CCSize const& getContentSizeInPixels();
+	cocos2d::CCSize const& getContentSizeInPixels() = m1 0x3e87f8, imac 0x4822e0;
 
-	void setAliasTexParameters();
-	void setAntiAliasTexParameters();
-	void setTexParameters(cocos2d::_ccTexParams*) = mac 0x3e99e8;
+	void setAliasTexParameters() = m1 0x3e9a80, imac 0x483710;
+	void setAntiAliasTexParameters() = m1 0x3e9ad0, imac 0x483760;
+	void setTexParameters(cocos2d::_ccTexParams*) = m1 0x3e99e8, imac 0x483680;
 
 	// CCTexture2D(cocos2d::CCTexture2D const&);
-	~CCTexture2D();
-	CCTexture2D();
-	unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat);
-	unsigned int bitsPerPixelForFormat();
-	char const* description();
-	void drawAtPoint(cocos2d::CCPoint const&);
-	void drawInRect(cocos2d::CCRect const&);
-	void generateMipmap();
-	bool hasMipmaps();
-	bool hasPremultipliedAlpha();
-	void* keepData(void*, unsigned int);
-	void releaseData(void*);
-	void releaseGLTexture();
-	char const* stringForFormat();
+	~CCTexture2D() = m1 0x3e8734, imac 0x4821e0;
+	CCTexture2D() = m1 0x3e8640, imac 0x4820e0;
+	unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat) = m1 0x3e8b58, imac 0x4826e0;
+	unsigned int bitsPerPixelForFormat() = m1 0x3e9b5c, imac 0x483800;
+	char const* description() = m1 0x3e8b78, imac 0x482700;
+	void drawAtPoint(cocos2d::CCPoint const&) = m1 0x3e95ec, imac 0x483270;
+	void drawInRect(cocos2d::CCRect const&) = m1 0x3e96f0, imac 0x483380;
+	void generateMipmap() = m1 0x3e9990, imac 0x483630;
+	bool hasMipmaps() = m1 0x3e99e0, imac 0x483670;
+	bool hasPremultipliedAlpha() = m1 0x3e88a0, imac 0x4823d0;
+	void* keepData(void*, unsigned int) = m1 0x3e8898, imac 0x4823c0;
+	void releaseData(void*) = m1 0x3e8890, imac 0x4823b0;
+	void releaseGLTexture() = m1 0x3e8864, imac 0x482380;
+	char const* stringForFormat() = m1 0x3e9b20, imac 0x4837b0;
 
-	virtual cocos2d::CCTexture2DPixelFormat getPixelFormat();
-	virtual unsigned int getPixelsWide();
-	virtual unsigned int getPixelsHigh();
-	virtual unsigned int getName();
-	virtual float getMaxS();
-	virtual void setMaxS(float);
-	virtual float getMaxT();
-	virtual void setMaxT(float);
-	virtual cocos2d::CCSize getContentSize();
-	virtual cocos2d::CCGLProgram* getShaderProgram();
-	virtual void setShaderProgram(cocos2d::CCGLProgram*);
+	virtual cocos2d::CCTexture2DPixelFormat getPixelFormat() = m1 0x3e8780, imac 0x482230;
+	virtual unsigned int getPixelsWide() = m1 0x3e8788, imac 0x482240;
+	virtual unsigned int getPixelsHigh() = m1 0x3e8790, imac 0x482250;
+	virtual unsigned int getName() = m1 0x3e8798, imac 0x482260;
+	virtual float getMaxS() = m1 0x3e8800, imac 0x4822f0;
+	virtual void setMaxS(float) = m1 0x3e8808, imac 0x482300;
+	virtual float getMaxT() = m1 0x3e8810, imac 0x482310;
+	virtual void setMaxT(float) = m1 0x3e8818, imac 0x482320;
+	virtual cocos2d::CCSize getContentSize() = m1 0x3e87a0, imac 0x482270;
+	virtual cocos2d::CCGLProgram* getShaderProgram() = m1 0x3e8820, imac 0x482330;
+	virtual void setShaderProgram(cocos2d::CCGLProgram*) = m1 0x3e8828, imac 0x482340;
 }
 
 [[link(win, android)]]
@@ -801,6 +871,9 @@ class cocos2d::CCTextureCache {
 [[link(win, android)]]
 class cocos2d::CCTouch {
 	cocos2d::CCPoint getLocation() const = imac 0x5a550, m1 0x50be8;
+	cocos2d::CCPoint getPreviousLocation() const = imac 0x5a580, m1 0x50c14;
+	cocos2d::CCPoint getStartLocation() const = imac 0x5a5b0, m1 0x50c40;
+	cocos2d::CCPoint getDelta() const = imac 0x5a5e0, m1 0x50c6c;
 }
 
 [[link(win, android)]]
@@ -848,11 +921,29 @@ class cocos2d::CCTouchDispatcher {
 	virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*);
 }
 
+[[link(win, android)]]
+class cocos2d::CCTouchHandler {
+	static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
+
+	cocos2d::CCTouchDelegate* getDelegate() = m1 0x3efbb0;
+	int getEnabledSelectors();
+	int getPriority() = m1 0x3efc24;
+
+	void setDelegate(cocos2d::CCTouchDelegate*);
+	void setEnalbedSelectors(int);
+	void setPriority(int);
+
+	// CCTouchHandler(cocos2d::CCTouchHandler const&);
+	// CCTouchHandler();
+
+	virtual bool initWithDelegate(cocos2d::CCTouchDelegate*, int);
+}
+
 [[link(win)]]
 class cocos2d::CCEGLView {
 	// CCEGLView();
 	// CCEGLView(cocos2d::CCEGLView const&);
-	virtual void swapBuffers();
+	virtual void swapBuffers() = m1 0x464e30;
 	void toggleFullScreen(bool, bool);
 	void pollEvents();
 	void setupWindow(cocos2d::CCRect);
@@ -945,7 +1036,7 @@ class cocos2d::CCKeyboardDispatcher {
 	// CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
 	// CCKeyboardDispatcher();
 	void addDelegate(cocos2d::CCKeyboardDelegate*);
-	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool);
+	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool) = m1 0x4c4a74;
 	void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
 	void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
 	char const* keyToString(cocos2d::enumKeyCodes);
@@ -1012,10 +1103,10 @@ class cocos2d::CCDirector {
 	void calculateDeltaTime();
 	void calculateMPF();
 	void checkSceneReference();
-	cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&);
+	cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = imac 0x48cc80;
 	cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&);
 	void createStatsLabel();
-	void drawScene();
+	void drawScene() = m1 0x3f1560;
 	void end();
 	bool isDisplayStats();
 	bool isNextDeltaTimeZero();
@@ -1214,7 +1305,7 @@ class cocos2d::CCLabelBMFont {
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint);
-	static cocos2d::CCLabelBMFont* create();
+	static cocos2d::CCLabelBMFont* create() = imac 0x5e0f30, m1 0x50b13c;
 	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int);
 	static void purgeCachedData();
 
@@ -1229,10 +1320,10 @@ class cocos2d::CCLabelBMFont {
 	cocos2d::CCArray* getTargetArray() const;
 
 	void setExtraKerning(int);
-	void setFntFile(char const*);
+	void setFntFile(char const*) = imac 0x5e4670, m1 0x50e100;
 	void setIsBatched(bool);
 	void setTargetArray(cocos2d::CCArray*);
-	void createFontChars();
+	void createFontChars() = imac 0x5e1780, m1 0x50bb64;
 	int kerningAmountForFirst(unsigned short, unsigned short);
 	void limitLabelWidth(float, float, float) = imac 0x5e4790, m1 0x50e1f8;
 
@@ -1292,7 +1383,7 @@ class cocos2d::CCArray {
 
 	bool init();
 	bool initWithArray(cocos2d::CCArray*);
-	bool initWithCapacity(unsigned int);
+	bool initWithCapacity(unsigned int) = imac 0x72cbb0;
 	bool initWithObject(cocos2d::CCObject*);
 	// bool initWithObjects(cocos2d::CCObject*, ...);
 
@@ -1433,12 +1524,12 @@ class cocos2d::CCDrawNode {
 
 	// CCDrawNode(cocos2d::CCDrawNode const&);
 	// CCDrawNode();
-	void clear();
+	void clear() = imac 0x61dd20;
 	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int);
 	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
 	void drawDot(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
 	bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::_ccColor4F const&);
-	bool drawPolygon(cocos2d::CCPoint *verts, unsigned int count, const cocos2d::ccColor4F &fillColor, float borderWidth, const cocos2d::ccColor4F &borderColor);
+	bool drawPolygon(cocos2d::CCPoint *verts, unsigned int count, const cocos2d::ccColor4F &fillColor, float borderWidth, const cocos2d::ccColor4F &borderColor) = imac 0x61cbd0;
 	void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
 	bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&);
 	void drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&);
@@ -1705,7 +1796,7 @@ class cocos2d {
 	static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
 	static cocos2d::CCRect CCRectFromString(char const*);
 	static cocos2d::CCSize CCSizeFromString(char const*);
-	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*);
+	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = imac 0x5dd4a0, m1 0x507a1c;
 	static void FNTConfigRemoveCache();
 	static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
 	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
@@ -1731,7 +1822,7 @@ class cocos2d {
 	static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
 	static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F) = imac 0x202f10;
 	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F) = imac 0x202e60, m1 0x1b4948;
-	static void ccGLBindTexture2D(unsigned int);
+	static void ccGLBindTexture2D(unsigned int) = m1 0x2e9b14;
 	static void ccGLBindTexture2DN(unsigned int, unsigned int);
 	static void ccGLBindVAO(unsigned int);
 	static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x35c1f0, m1 0x2e9a4c;
@@ -1740,7 +1831,7 @@ class cocos2d {
 	static void ccGLDeleteTexture(unsigned int);
 	static void ccGLDeleteTextureN(unsigned int, unsigned int);
 	static void ccGLEnable(cocos2d::ccGLServerState);
-	static void ccGLEnableVertexAttribs(unsigned int);
+	static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2e9c70;
 	static void ccGLInvalidateStateCache();
 	static void ccGLUseProgram(unsigned int);
 	static void ccPointSize(float);
