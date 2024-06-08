@@ -4839,7 +4839,7 @@ class GameManager : GManager {
     }
 
 	TodoReturn accountStatusChanged();
-	int activeIconForType(IconType) = win 0x178bf0;
+	int activeIconForType(IconType) = win 0x178bf0, m1 0x30c588, imac 0x382430;
 	TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string);
 	TodoReturn addDuplicateLastFrame(int);
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int);
@@ -4854,11 +4854,11 @@ class GameManager : GManager {
 	TodoReturn checkUsedIcons() = win 0x17b1a0;
 	TodoReturn claimItemsResponse(gd::string);
 	TodoReturn clearGJLog();
-	cocos2d::ccColor3B colorForIdx(int) = win 0x1784b0;
+	cocos2d::ccColor3B colorForIdx(int) = win 0x1784b0, m1 0x30b4e0, imac 0x381490;
 	TodoReturn colorForPos(int);
 	TodoReturn colorKey(int, UnlockType);
 	bool completedAchievement(gd::string);
-	int countForType(IconType) = win 0x178d60;
+	int countForType(IconType) = win 0x178d60, m1 0x30c648, imac 0x3826a0;
 	TodoReturn defaultFrameForAnimation(int);
 	TodoReturn defaultYOffsetForBG2(int);
 	TodoReturn didExitPlayscene();
@@ -4900,10 +4900,10 @@ class GameManager : GManager {
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	gd::string iconKey(int, IconType) = win 0x1735d0;
-	UnlockType iconTypeToUnlockType(IconType) = win 0x1738a0;
-	bool isColorUnlocked(int, UnlockType) = win 0x173ba0;
+	UnlockType iconTypeToUnlockType(IconType) = win 0x1738a0, m1 0x304f3c, imac 0x379930;
+	bool isColorUnlocked(int, UnlockType) = win 0x173ba0, m1 0x30533c, imac 0x379ed0;
 	bool isIconLoaded(int, int);
-	bool isIconUnlocked(int, IconType) = win 0x173800;
+	bool isIconUnlocked(int, IconType) = win 0x173800, m1 0x304e2c, imac 0x379870;
 	TodoReturn itemPurchased(char const*);
 	TodoReturn joinDiscord();
 	void joinReddit();
@@ -5854,7 +5854,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn storeSecretCoin(char const*);
 	void storeUserCoin(char const*);
 	TodoReturn tempClear();
-	void toggleEnableItem(UnlockType, int, bool) = win 0x1dad90;
+	void toggleEnableItem(UnlockType, int, bool) = win 0x1dad90, m1 0x6b1cc, imac 0x78870;
 	TodoReturn trySelectActivePath() = win 0x1ca740;
 	void uncompleteLevel(GJGameLevel*) = win 0x1d4740;
 	TodoReturn unlockGauntletChest(int);
@@ -7713,14 +7713,14 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void playRainbowEffect() = win 0x266a40;
 	void playShadowEffect();
 	static cocos2d::CCScene* scene() = win 0x260f90;
-	void selectTab(IconType) = win 0x263fb0;
+	void selectTab(IconType) = win 0x263fb0, m1 0x2fa4f4, imac 0x36e340;
 	void setupIconSelect() = win 0x2631f0;
 	void setupPage(int, IconType) = win 0x264070;
 	void setupSpecialPage() = win 0x264a90;
 	void showUnlockPopupNew(int, UnlockType);
 	gd::string titleForUnlock(int, UnlockType);
 	void toggleGlow();
-	void updatePlayerColors() = win 0x2659b0;
+	void updatePlayerColors() = win 0x2659b0, m1 0x2f8658, imac 0x36c500;
 	void updatePlayerName(char const*);
 
 	virtual bool init() = win 0x261150, m1 0x2f6b6c, imac 0x36a810;
@@ -11989,7 +11989,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerBirdFrame(int) = win 0x37c2f0;
 	void updatePlayerDartFrame(int) = win 0x37c9f0;
 	void updatePlayerForce(cocos2d::CCPoint, bool);
-	void updatePlayerFrame(int) = win 0x37bc60;
+	void updatePlayerFrame(int) = win 0x37bc60, m1 0x2f8784, imac 0x36c630;
 	void updatePlayerGlow() = win 0x37e2b0;
 	void updatePlayerJetpackFrame(int) = win 0x37c0c0;
 	void updatePlayerRobotFrame(int id) = win inline {
