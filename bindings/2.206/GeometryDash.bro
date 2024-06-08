@@ -15131,7 +15131,7 @@ class SimplePlayer : cocos2d::CCSprite {
 		m_secondLayer->setColor(color);
 		updateColors();
 	}
-	void updateColors() = win 0x267b60, m1 0x9999999, imac 0x36ffb0;
+	void updateColors() = win 0x267b60, m1 0x2fbf00, imac 0x36ffb0;
 	void updatePlayerFrame(int, IconType) = win 0x267f20, m1 0x2f8784, imac 0x36c630;
 
 	virtual void setOpacity(unsigned char) = win 0x268680, m1 0x2fe1c4;
