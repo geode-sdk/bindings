@@ -1377,8 +1377,8 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 
 	float m_hue;
     	float m_luminance[3];
-    	float m_colorMatrix[3][3];	
-    	float m_uHueLoc;
+    	std::array<std::array<float, 3>, 3> m_colorMatrix;	
+     	float m_uHueLoc;
     	float m_uAlphaLoc;
     	float m_uLumLoc;
 }
