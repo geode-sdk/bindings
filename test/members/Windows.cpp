@@ -246,4 +246,8 @@ GEODE_MEMBER_CHECK(CheckpointObject, m_sequenceTriggerStateUnorderedMap, 0x1210)
 GEODE_MEMBER_CHECK(CheckpointObject, m_maybeAPointer3, 0x1250);
 
 GEODE_SIZE_CHECK(FMODAudioState, 0x380);
+
+GEODE_SIZE_CHECK(GroupCommandObject2, 0x208);
+
+GEODE_SIZE_CHECK(KeyframeObject, 0x1c0);
 #endif

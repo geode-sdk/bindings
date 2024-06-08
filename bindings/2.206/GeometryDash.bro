@@ -9125,11 +9125,11 @@ class GroupCommandObject2 {
 	TodoReturn updateAction(int, float);
 	TodoReturn updateEffectAction(float, int);
 
-	PAD = win 0x1b4;
+	PAD = win 0x1b8; // there may be a pointer in there somewhere since it changed from 0x1b4
 	gd::vector<KeyframeObject> m_unkVecKeyframeObject;
-	PAD = win 0x10;
+	PAD = win 0x18; // changed from 0x10 so there may be ptr as well
 	gd::vector<int> m_unkVecInt;
-	PAD = win 0xc;
+	PAD = win 0x8;
 }
 
 [[link(android)]]
@@ -9411,13 +9411,13 @@ class KeyframeObject {
 	gd::vector<double> m_unkVecDouble3;
 	gd::vector<double> m_unkVecDouble4;
 	gd::vector<double> m_unkVecDouble5;
-	PAD = win 0x34;
+	PAD = win 0x29;
 	gd::vector<double> m_unkVecDouble6;
 	gd::vector<double> m_unkVecDouble7;
 	gd::vector<double> m_unkVecDouble8;
 	gd::vector<double> m_unkVecDouble9;
 	gd::vector<double> m_unkVecDouble10;
-	PAD = win 0x84;
+	PAD = win 0x80;
 }
 
 [[link(android)]]
