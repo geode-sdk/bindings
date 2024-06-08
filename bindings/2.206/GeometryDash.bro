@@ -1353,10 +1353,10 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 	TodoReturn createWithSpriteFrameName(gd::string const&);
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*);
-	TodoReturn getAlpha();
-	TodoReturn getHue();
-	TodoReturn getUniformLocations();
-	TodoReturn initShader();
+	float getAlpha();
+	float getHue();
+	void getUniformLocations();
+	void initShader();
 	void setCustomLuminance(float, float, float);
 	void setEvenLuminance(float);
 	void setHue(float);
@@ -1374,6 +1374,13 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 	virtual TodoReturn getShaderName() = m1 0x521c58;
 	virtual TodoReturn shaderBody() = m1 0x5225b0;
 	virtual void updateColor() = m1 0x5225c8;
+
+	float m_hue;
+    	float m_luminance[3];
+    	std::array<std::array<float, 3>, 3> m_colorMatrix;	
+     	float m_uHueLoc;
+    	float m_uAlphaLoc;
+    	float m_uLumLoc;
 }
 
 [[link(android)]]
