@@ -5347,7 +5347,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn parentForZLayer(int, bool, int);
 	TodoReturn perspectiveColorFrame(char const*, int);
 	TodoReturn perspectiveFrame(char const*, int);
-	void playDestroyObjectAnim(GJBaseGameLayer*) = 0x1a04e0;
+	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a04e0;
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float);
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float);
 	void playShineEffect() = win 0x18f3f0;
@@ -11556,7 +11556,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void onSoundtracks(cocos2d::CCObject* sender);
 	void onSupport(cocos2d::CCObject* sender);
 	void onVideo(cocos2d::CCObject* sender);
-	void sfxSliderChanged(cocos2d::CCObject*) = 0x351210;
+	void sfxSliderChanged(cocos2d::CCObject*) = win 0x351210;
 	TodoReturn tryEnableRecord();
 
 	virtual void customSetup() = win 0x3504c0, m1 0x6ad80c;
