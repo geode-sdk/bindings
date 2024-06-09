@@ -827,8 +827,17 @@ class CCCircleWave : cocos2d::CCNode {
 	virtual void draw() = win 0x41f50, m1 0x13d528;
 	virtual void updateTweenAction(float, char const*) = win 0x41cf0, m1 0x13d2d4;
 
-	PAD = win 0x11;
+	cocos2d::CCNode* m_target;
+	float m_width;
+	float m_radius;
+	float m_opacity;
 	cocos2d::ccColor3B m_color;
+	cocos2d::CCPoint m_position;
+	CircleMode m_circleMode;
+	int m_lineWidth;
+	float m_opacityMod;
+	bool m_blendAdditive;
+	CCCircleWaveDelegate* m_delegate;
 }
 
 [[link(android)]]
