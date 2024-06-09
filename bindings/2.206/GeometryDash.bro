@@ -6887,7 +6887,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	ShaderLayer* m_shaderLayer;
 	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8;
 	StartPosObject* m_startPosObject; // 3180 win, 2a60 android32, 31a8 android64
-	PAD = win 0x60, android32 0x38, android64 0x34, mac 0x34; // mac not verified
+	PAD = win 0x60, android32 0x38, android64 0x60, mac 0x34; // mac not verified
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
 	float m_loadingProgress;
@@ -6911,7 +6911,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unk323c;
 	PAD = win 0x6, android32 0x10, android64 0x6, mac 0x6; // mac not verified
 	bool m_started;
-	PAD = win 0xA6, android32 0x66, android64 0xb8, mac 0xb8; // mac not verified
+	PAD = win 0xA6, android32 0x66, android64 0x8e, mac 0xb8; // mac not verified
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
 	PAD = win 0x148, android32 0xa0, android64 0x138, mac 0x138; // mac not verified
 	cocos2d::CCDictionary* m_unk3458;

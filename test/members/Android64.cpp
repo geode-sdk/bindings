@@ -32,7 +32,9 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer2, 0x1020);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0x10e4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x3198);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x31a8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3220);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3210);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingProgress, 0x3214);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3248);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3308);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x3490); // wtf is this
