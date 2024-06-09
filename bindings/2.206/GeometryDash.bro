@@ -7390,9 +7390,9 @@ class GJGameLevel : cocos2d::CCNode {
 	gd::string getAudioFileName() = win 0x164b80;
 	int getAverageDifficulty() = win 0x1649c0, m1 0x4b14cc, imac 0x562d50;
 	char const* getCoinKey(int coinNumber) {
-		if(m_dailyID > 0) return cocos2d::CCString::createWithFormat("%i_%i_%i", m_levelID, coinNumber, m_dailyID)->getCString();
-		if(m_gauntletLevel) return cocos2d::CCString::createWithFormat("%i_%i_g", m_levelID, coinNumber)->getCString();
-		return cocos2d::CCString::createWithFormat("%i_%i", m_levelID, coinNumber)->getCString();
+		if(m_dailyID > 0) return cocos2d::CCString::createWithFormat("%i_%i_%i", m_levelID.value(), coinNumber, m_dailyID.value())->getCString();
+		if(m_gauntletLevel) return cocos2d::CCString::createWithFormat("%i_%i_g", m_levelID.value(), coinNumber)->getCString();
+		return cocos2d::CCString::createWithFormat("%i_%i", m_levelID.value(), coinNumber)->getCString();
 	}
 	TodoReturn getLastBuildPageForTab(int);
 	TodoReturn getLengthKey(int length, bool platformer);
