@@ -6174,7 +6174,32 @@ class GJAccountSettingsDelegate {
 class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 	// virtual ~GJAccountSettingsLayer();
 
-	static GJAccountSettingsLayer* create(int);
+        inline GJAccountSettingsLayer() {
+        m_accountID = 0;
+        m_messageStatus = 0;
+        m_friendStatus = 0;
+        m_commentHistoryStatus = 0;
+        m_youtubeURL = "";
+        m_twitterURL = "";
+        m_twitchURL = "";
+        m_youtubeInput = nullptr;
+        m_twitterInput = nullptr;
+        m_twitchInput = nullptr;
+        m_messageSettings = nullptr;
+        m_friendRequestSettings = nullptr;
+        m_commentSettings = nullptr;
+       }
+
+	static GJAccountSettingsLayer* create(int a1)
+        {
+        GJAccountSettingsLayer* pRet = new GJAccountSettingsLayer();
+        if (pRet && pRet->init(a1)) {
+        pRet->autorelease();
+        return pRet;
+        } 
+        CC_SAFE_DELETE(pRet);
+        return nullptr;
+        }
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float);
 	bool init(int) = win 0x27FCD0;
@@ -6188,6 +6213,20 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 	virtual void keyBackClicked() = win 0x282670, m1 0x240128;
 	virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x23f964;
 	virtual void textInputReturn(CCTextInputNode*) = m1 0x23fa34;
+
+        int m_accountID;
+        int m_messageStatus;
+        int m_friendStatus;    
+        int m_commentHistoryStatus;    
+        gd::string m_youtubeURL;
+        gd::string m_twitterURL;    
+        gd::string m_twitchURL;
+        CCTextInputNode* m_youtubeInput;    
+        CCTextInputNode* m_twitterInput;    
+        CCTextInputNode* m_twitchInput;
+        cocos2d::CCArray* m_messageSettings;    
+        cocos2d::CCArray* m_friendRequestSettings;    
+        cocos2d::CCArray* m_commentSettings;
 }
 
 [[link(android)]]
