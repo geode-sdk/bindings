@@ -1605,17 +1605,17 @@ class CharacterColorPage : FLAlertLayer {
 	int activeColorForMode(int mode);
 	TodoReturn checkColor(int, UnlockType);
 	int colorForIndex(int);
-	void createColorMenu();
+	void createColorMenu() = win 0x87600;
 	void FLAlert_Clicked(FLAlertLayer*, bool);
 	cocos2d::CCPoint offsetForIndex(int);
 	void onClose(cocos2d::CCObject* sender);
-	void onMode(cocos2d::CCObject* sender);
-	void onPlayerColor(cocos2d::CCObject* sender);
-	void toggleGlow(cocos2d::CCObject*);
+	void onMode(cocos2d::CCObject* sender) = win 0x87d00;
+	void onPlayerColor(cocos2d::CCObject* sender) = win 0x88550;
+	void toggleGlow(cocos2d::CCObject*) = win 0x87550;
 	TodoReturn toggleGlowItems(bool);
-	void toggleShip(cocos2d::CCObject*);
+	void toggleShip(cocos2d::CCObject*) = win 0x87430;
 	void updateColorMode(int);
-	void updateIconColors();
+	void updateIconColors() = win 0x88d30;
 
 	virtual bool init() = win 0x866e0, m1 0x585a10, imac 0x669d70;
 	virtual void registerWithTouchDispatcher() = m1 0x587994;
@@ -1643,14 +1643,14 @@ class CheckpointGameObject : EffectGameObject {
 	TodoReturn resetCheckpoint();
 	TodoReturn updateCheckpointSpriteVisibility();
 
-	virtual bool init() = m1 0x1889c0;
-	virtual void setupCustomSprites(gd::string) = m1 0x188e00;
-	virtual void resetObject() = m1 0x18a13c;
-	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x188a1c;
-	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x18a010;
-	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x18971c;
-	virtual void triggerActivated(float) = m1 0x188a34;
-	virtual TodoReturn restoreObject() = m1 0x18a194;
+	virtual bool init() = m1 0x1889c0, imac 0x1cee10;
+	virtual void setupCustomSprites(gd::string) = m1 0x188e00, imac 0x1cf260;
+	virtual void resetObject() = m1 0x18a13c, imac 0x1d0870;
+	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x188a1c, imac 0x1cee70;
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x18a010, imac 0x1d0730;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x18971c, imac 0x1cfc50;
+	virtual void triggerActivated(float) = m1 0x188a34, imac 0x1cee90;
+	virtual TodoReturn restoreObject() = m1 0x18a194, imac 0x1d08e0;
 	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x189380;
 }
 
@@ -11681,7 +11681,7 @@ class PauseLayer : CCBlockLayer {
 	void onQuit(cocos2d::CCObject* sender) = win 0x35cd70;
 	void onRecordReplays(cocos2d::CCObject* sender);
 	void onReplay(cocos2d::CCObject* sender);
-	void onRestart(cocos2d::CCObject* sender) = win 0x35c7b0;
+	void onRestart(cocos2d::CCObject* sender) = win 0x35c7b0, m1 0x35c00c, imac 0x3db4b0;
 	void onRestartFull(cocos2d::CCObject* sender) = win 0x35c850;
 	void onResume(cocos2d::CCObject* sender) = win 0x35c720;
 	void onSettings(cocos2d::CCObject* sender) = win 0x35b8e0;
@@ -12365,7 +12365,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void resetLevel() = win 0x3958b0, imac 0xb32d0, m1 0xa01f0, ios 0x11baf4;
 	void resetLevelFromStart() = win 0x395710;
 	void resume();
-	void resumeAndRestart(bool);
+	void resumeAndRestart(bool) = win 0x396d10, m1 0xaaddc, imac 0xbf770;
 	TodoReturn saveActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
 	TodoReturn saveDynamicSaveObjects(gd::vector<SavedObjectStateRef>&);
 	TodoReturn scanActiveSaveObjects();
