@@ -10860,8 +10860,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 	float m_deltaCount;
 	bool m_isDestroyingPlayer;
 	int m_initCount;
-	cocos2d::CCPoint* m_unused1;
-	int m_unused2;
+	cocos2d::CCPoint m_unused1;
 	PlayerObject* m_playerObject;
 	cocos2d::CCSprite* m_backgroundSprite;
 	GJGroundLayer* m_groundLayer;
@@ -12230,7 +12229,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCParticleSystemQuad* m_landParticles1;
 	float m_unk70c;
 	float m_unk710;
-	PAD = win 0x60, mac 0x60, android 0x60, ios 0x60;
+	PAD = win 0x5c, mac 0x5c, android 0x5c, ios 0x5c;
+	int m_playerStreak;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
 	PAD = win 0x20, mac 0x20, android 0x20, ios 0x20;
