@@ -3687,7 +3687,7 @@ class EnhancedGameObject : GameObject {
 	TodoReturn triggerAnimation();
 	TodoReturn updateRotateAction(float);
 	TodoReturn updateState(int);
-	TodoReturn updateUserCoin();
+	void updateUserCoin() = win 0x19c930;
 	TodoReturn waitForAnimationTrigger();
 
 	virtual void customSetup() = m1 0x502290;
@@ -5320,7 +5320,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn parentForZLayer(int, bool, int);
 	TodoReturn perspectiveColorFrame(char const*, int);
 	TodoReturn perspectiveFrame(char const*, int);
-	void playDestroyObjectAnim(GJBaseGameLayer*);
+	void playDestroyObjectAnim(GJBaseGameLayer*) = 0x1a04e0;
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float);
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float);
 	void playShineEffect() = win 0x18f3f0;
