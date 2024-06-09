@@ -1014,8 +1014,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 		auto sprOff = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
 		auto sprOn = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
 
-		float maxWidth = max(sprOff->getContentSize().width, sprOn->getContentSize().width);
-		float maxHeight = max(sprOff->getContentSize().height, sprOn->getContentSize().height);
+		float maxWidth = (std::max)(sprOff->getContentSize().width, sprOn->getContentSize().width);
+		float maxHeight = (std::max)(sprOff->getContentSize().height, sprOn->getContentSize().height);
 
 		sprOff->setScale(scale);
 		sprOn->setScale(scale);
