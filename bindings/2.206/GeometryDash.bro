@@ -1014,10 +1014,26 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 		auto sprOff = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
 		auto sprOn = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
 
+		float maxWidth = max(sprOff->getContentSize().width, sprOn->getContentSize().width);
+		float maxHeight = max(sprOff->getContentSize().height, sprOn->getContentSize().height);
+
 		sprOff->setScale(scale);
 		sprOn->setScale(scale);
 
-		return create(sprOff, sprOn, target, callback);
+		auto ret = create(sprOff, sprOn, target, callback);
+
+		ret->setContentSize({maxWidth, maxHeight});
+
+		ret->m_offButton->setContentSize({maxWidth, maxHeight});
+		ret->m_onButton->setContentSize({maxWidth, maxHeight});
+
+ 		ret->m_offButton->setPosition({maxWidth/2, maxHeight/2});
+		ret->m_onButton->setPosition({maxWidth/2, maxHeight/2});
+
+		sprOff->setPosition({maxWidth/2, maxHeight/2});
+		sprOn->setPosition({maxWidth/2, maxHeight/2});
+
+		return ret;
 	}
 
 	TodoReturn activeItem();
