@@ -4028,7 +4028,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 		this->m_pulse3 = 0.0f;
 	}
 	TodoReturn fadeInBackgroundMusic(float);
-	TodoReturn fadeInMusic(float, int);
+	void fadeInMusic(float, int) = win 0x5b170;
 	float fadeOutMusic(float, int) = win 0x5b2b0, m1 0x36bec0, imac 0x3ef250;
 	TodoReturn getActiveMusic(int);
 	FMOD::Channel* getActiveMusicChannel(int) = m1 0x364ca8, imac 0x3e5fd0; // win inlined
@@ -6304,9 +6304,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void activatePlayerControlTrigger(PlayerControlGameObject*);
 	TodoReturn activateResetTrigger(EffectGameObject*);
 	void activateSFXEditTrigger(SFXTriggerGameObject*);
-	void activateSFXTrigger(SFXTriggerGameObject*);
-	TodoReturn activateSongEditTrigger(SongTriggerGameObject*);
-	void activateSongTrigger(SongTriggerGameObject*);
+	void activateSFXTrigger(SFXTriggerGameObject*) = win 0x230d50;
+	void activateSongEditTrigger(SongTriggerGameObject*) = win 0x230f50;
+	void activateSongTrigger(SongTriggerGameObject*) = win 0x2306d0;
 	TodoReturn activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&);
 	TodoReturn addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType);
 	void addCustomEnterEffect(EnterEffectObject*, bool);
@@ -6500,7 +6500,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processMoveActionsStep(float, bool) = win 0x21bde0;
 	TodoReturn processOptionsTrigger(GameOptionsTrigger*);
 	TodoReturn processPlayerFollowActions(float);
-	void processQueuedAudioTriggers() = win 0x238b20;
+	void processQueuedAudioTriggers() = win 0x22ac10;
 	TodoReturn processQueuedButtons() = win 0x221f00;
 	TodoReturn processRotationActions();
 	TodoReturn processSFXObjects();
@@ -6521,7 +6521,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn reAddToStickyGroup(GameObject*);
 	TodoReturn recordAction(int, bool, bool);
 	TodoReturn rectIntersectsCircle(cocos2d::CCRect, cocos2d::CCPoint, float);
-	TodoReturn refreshCounterLabels();
+	void refreshCounterLabels() = win 0x225560;
 	void refreshKeyframeAnims() = imac 0x111860, m1 0xeecfc;
 	TodoReturn regenerateEnterEasingBuffers();
 	TodoReturn registerSpawnRemap(gd::vector<ChanceObject>&);
