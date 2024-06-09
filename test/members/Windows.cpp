@@ -200,6 +200,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_gv0096, 0x82a);
 GEODE_MEMBER_CHECK(PlayerObject, m_gv0100, 0x82b);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x8a0);
 GEODE_MEMBER_CHECK(PlayerObject, m_spiderSprite, 0x8a8);
+GEODE_MEMBER_CHECK(PlayerObject, m_playerStreak, 0x920);
 GEODE_MEMBER_CHECK(PlayerObject, m_isLocked, 0xa2a);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0xa2c);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotFire, 0xc10);
