@@ -250,4 +250,6 @@ GEODE_SIZE_CHECK(FMODAudioState, 0x380);
 GEODE_SIZE_CHECK(GroupCommandObject2, 0x208);
 
 GEODE_SIZE_CHECK(KeyframeObject, 0x1c0);
+
+GEODE_SIZE_CHECK(CCTextInputNode, 0x268);
 #endif

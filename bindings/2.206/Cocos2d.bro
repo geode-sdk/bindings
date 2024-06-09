@@ -119,9 +119,29 @@ class cocos2d::CCScene {
 }
 
 [[link(win, android)]]
+class cocos2d::CCSet {
+	static cocos2d::CCSet* create();
+
+	// CCSet(cocos2d::CCSet const&);
+	// CCSet();
+	void addObject(cocos2d::CCObject*);
+	cocos2d::CCObject* anyObject() = m1 0x6c5cec;
+	cocos2d::CCSetIterator begin();
+	bool containsObject(cocos2d::CCObject*);
+	cocos2d::CCSet* copy();
+	int count() = mac 0x775070;
+	cocos2d::CCSetIterator end();
+	cocos2d::CCSet* mutableCopy();
+	void removeAllObjects();
+	void removeObject(cocos2d::CCObject*);
+
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+}
+
+[[link(win, android)]]
 class cocos2d::CCShaderCache {
 	static void purgeSharedShaderCache();
-	static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1fc770, m1 0x1e0f90;
+	static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1fc770, m1 0x1aef0c;
 
 	bool init();
 
@@ -130,7 +150,7 @@ class cocos2d::CCShaderCache {
 	void addProgram(cocos2d::CCGLProgram*, char const*);
 	void loadDefaultShader(cocos2d::CCGLProgram*, int);
 	void loadDefaultShaders();
-	cocos2d::CCGLProgram* programForKey(char const*) = imac 0x1fd650, m1 0x1aef0c;
+	cocos2d::CCGLProgram* programForKey(char const*) = imac 0x1fd650, m1 0x1afe58;
 	void reloadDefaultShaders();
 }
 
@@ -488,8 +508,8 @@ class cocos2d::CCNode {
 	void qsortAllChildrenWithIndex();
 	void resumeSchedulerAndActions();
 	cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x2700d0, m1 0x216408;
-	void schedule(cocos2d::SEL_SCHEDULE) = imac 0x270300, m1 0x2165fc;
-	void schedule(cocos2d::SEL_SCHEDULE, float);
+	void schedule(cocos2d::SEL_SCHEDULE) = imac 0x270300, m1 0x2165bc;
+	void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x270360, m1 0x2165fc;
 	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float);
 	void scheduleOnce(cocos2d::SEL_SCHEDULE, float);
 	void scheduleUpdate() = imac 0x2701e0, m1 0x2164c4;
@@ -503,7 +523,7 @@ class cocos2d::CCNode {
 	void transform();
 	void transformAncestors();
 	void unschedule(cocos2d::SEL_SCHEDULE);
-	void unscheduleAllSelectors();
+	void unscheduleAllSelectors() = imac 0x26ef70, m1 0x21529c;
 	void unscheduleUpdate();
 	void updateChildIndexes();
 
@@ -630,7 +650,7 @@ class cocos2d::CCScheduler {
 	void resumeTarget(cocos2d::CCObject*);
 	void resumeTargets(cocos2d::CCSet*);
 	unsigned int scheduleScriptFunc(unsigned int, float, bool);
-	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool);
+	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool) = imac 0x44b680, m1 0x3bcbb4;
 	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool);
 	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool);
 	void unscheduleAll();
@@ -965,7 +985,7 @@ class cocos2d::CCTouchDispatcher {
 	void registerForcePrio(cocos2d::CCObject*, int) = imac 0x4d5890, m1 0x433730;
 	void removeAllDelegates();
 	void removeDelegate(cocos2d::CCTouchDelegate*);
-	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
+	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = m1 0x434208;
 	void unregisterForcePrio(cocos2d::CCObject*) = imac 0x4d5930, m1 0x4337e4;
 
 	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
@@ -996,7 +1016,7 @@ class cocos2d::CCTouchHandler {
 class cocos2d::CCEGLView {
 	// CCEGLView();
 	// CCEGLView(cocos2d::CCEGLView const&);
-	virtual void swapBuffers() = m1 0x464e30;
+	virtual void swapBuffers() = m1 0x58e2d0;
 	void toggleFullScreen(bool, bool);
 	void pollEvents();
 	void setupWindow(cocos2d::CCRect);
@@ -1479,7 +1499,7 @@ class cocos2d::CCArray {
 
 [[link(win, android)]]
 class cocos2d::CCDictionary {
-	static cocos2d::CCDictionary* create();
+	static cocos2d::CCDictionary* create() = imac 0x30f260, m1 0x2a0fac;
 	static cocos2d::CCDictionary* createWithContentsOfFile(char const*);
 	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*);
 	static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
@@ -1500,7 +1520,7 @@ class cocos2d::CCDictionary {
 	cocos2d::CCObject* objectForKey(gd::string const&);
 	//cocos2d::CCObject* objectForKey(int);
 	cocos2d::CCObject* randomObject();
-	void removeAllObjects();
+	void removeAllObjects() = imac 0x30ceb0, m1 0x29ee04;
 	void removeObjectForElememt(cocos2d::CCDictElement*);
 	void removeObjectForKey(gd::string const&);
 	//void removeObjectForKey(int);
