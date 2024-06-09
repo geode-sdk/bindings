@@ -7980,9 +7980,9 @@ class GJLevelScoreCell : TableViewCell {
 class GJListLayer : cocos2d::CCLayerColor {
 	// virtual ~GJListLayer();
 
-	static GJListLayer* create(BoomListView*, char const*, cocos2d::ccColor4B, float, float, int) = win 0x26d5e0, imac 0x5dadf0;
+	static GJListLayer* create(BoomListView*, char const*, cocos2d::ccColor4B, float, float, int) = win 0x26d5e0, m1 0x505a04, imac 0x5dadf0;
 
-	bool init(BoomListView*, char const*, cocos2d::ccColor4B, float, float, int) = win 0x26d710, imac 0x5daf00;
+	bool init(BoomListView*, char const*, cocos2d::ccColor4B, float, float, int) = win 0x26d710, m1 0x505af8, imac 0x5daf00;
 
 	BoomListView* m_listView;
 }
@@ -10703,8 +10703,8 @@ class LoadingCircle : cocos2d::CCLayerColor {
 
 	static LoadingCircle* create() = win 0x6a3c0, imac 0x4c8dc0, m1 0x4280fc;
 
-	void fadeAndRemove() = win 0x6a6a0, imac 0x4c90f0;
-	void show() = win 0x6a5a0, imac 0x4c9000;
+	void fadeAndRemove() = win 0x6a6a0, m1 0x4283ac, imac 0x4c90f0;
+	void show() = win 0x6a5a0, m1 0x4282b4, imac 0x4c9000;
 
 	void setFade(bool fade) {
 		m_fade = fade;
@@ -10719,8 +10719,8 @@ class LoadingCircle : cocos2d::CCLayerColor {
 	virtual void registerWithTouchDispatcher() = m1 0x42846c;
 
 	inline void setParentLayer(cocos2d::CCLayer* layer) {
-        m_parentLayer = layer;
-    }
+		m_parentLayer = layer;
+	}
 
 	cocos2d::CCSprite* m_sprite;
 	cocos2d::CCLayer* m_parentLayer;
