@@ -2417,7 +2417,7 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
 	virtual TodoReturn songIDChanged(int) = win 0xb23e0, m1 0x1f98dc;
 	virtual TodoReturn getActiveSongID() = m1 0x1f9938;
 	virtual TodoReturn getSongFileName() = win 0xb2440, m1 0x1f9970;
-	virtual void* getLevelSettings() = win inline, m1 0x1f9988 {
+	virtual LevelSettingsObject* getLevelSettings() = win inline, m1 0x1f9988 {
 		return nullptr;
 	}
 
@@ -2430,7 +2430,7 @@ class CustomSongDelegate {
 	virtual TodoReturn songIDChanged(int);
 	virtual TodoReturn getActiveSongID();
 	virtual TodoReturn getSongFileName();
-	virtual TodoReturn getLevelSettings();
+	virtual LevelSettingsObject* getLevelSettings();
 }
 
 [[link(android)]]
@@ -15498,7 +15498,7 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 	virtual TodoReturn songIDChanged(int) = win 0xc52a0, m1 0x1c53a4;
 	virtual TodoReturn getActiveSongID() = win 0xc52b0, m1 0x1c53c4;
 	virtual TodoReturn getSongFileName() = win 0xc52c0, m1 0x1c53d4;
-	virtual TodoReturn getLevelSettings() = win 0xc5380, m1 0x1c550c;
+	virtual LevelSettingsObject* getLevelSettings() = win 0xc5380, m1 0x1c550c;
 }
 
 [[link(android)]]
