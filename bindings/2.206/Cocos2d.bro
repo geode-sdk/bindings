@@ -119,9 +119,29 @@ class cocos2d::CCScene {
 }
 
 [[link(win, android)]]
+class cocos2d::CCSet {
+	static cocos2d::CCSet* create();
+
+	// CCSet(cocos2d::CCSet const&);
+	// CCSet();
+	void addObject(cocos2d::CCObject*);
+	cocos2d::CCObject* anyObject() = m1 0x6c5cec;
+	cocos2d::CCSetIterator begin();
+	bool containsObject(cocos2d::CCObject*);
+	cocos2d::CCSet* copy();
+	int count() = mac 0x775070;
+	cocos2d::CCSetIterator end();
+	cocos2d::CCSet* mutableCopy();
+	void removeAllObjects();
+	void removeObject(cocos2d::CCObject*);
+
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+}
+
+[[link(win, android)]]
 class cocos2d::CCShaderCache {
 	static void purgeSharedShaderCache();
-	static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1fc770, m1 0x1e0f90;
+	static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1fc770, m1 0x1aef0c;
 
 	bool init();
 
@@ -130,7 +150,7 @@ class cocos2d::CCShaderCache {
 	void addProgram(cocos2d::CCGLProgram*, char const*);
 	void loadDefaultShader(cocos2d::CCGLProgram*, int);
 	void loadDefaultShaders();
-	cocos2d::CCGLProgram* programForKey(char const*) = imac 0x1fd650, m1 0x1aef0c;
+	cocos2d::CCGLProgram* programForKey(char const*) = imac 0x1fd650, m1 0x1afe58;
 	void reloadDefaultShaders();
 }
 
@@ -965,7 +985,7 @@ class cocos2d::CCTouchDispatcher {
 	void registerForcePrio(cocos2d::CCObject*, int) = imac 0x4d5890, m1 0x433730;
 	void removeAllDelegates();
 	void removeDelegate(cocos2d::CCTouchDelegate*);
-	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
+	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = m1 0x434208;
 	void unregisterForcePrio(cocos2d::CCObject*) = imac 0x4d5930, m1 0x4337e4;
 
 	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
@@ -996,7 +1016,7 @@ class cocos2d::CCTouchHandler {
 class cocos2d::CCEGLView {
 	// CCEGLView();
 	// CCEGLView(cocos2d::CCEGLView const&);
-	virtual void swapBuffers() = m1 0x464e30;
+	virtual void swapBuffers() = m1 0x58e2d0;
 	void toggleFullScreen(bool, bool);
 	void pollEvents();
 	void setupWindow(cocos2d::CCRect);
