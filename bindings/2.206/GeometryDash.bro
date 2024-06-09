@@ -11474,7 +11474,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn exitLayer();
-	TodoReturn musicSliderChanged(cocos2d::CCObject*);
+	void musicSliderChanged(cocos2d::CCObject*) = win 0x351110;
 	void onAccount(cocos2d::CCObject* sender);
 	void onHelp(cocos2d::CCObject* sender);
 	void onMenuMusic(cocos2d::CCObject* sender);
@@ -11486,7 +11486,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void onSoundtracks(cocos2d::CCObject* sender);
 	void onSupport(cocos2d::CCObject* sender);
 	void onVideo(cocos2d::CCObject* sender);
-	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
+	void sfxSliderChanged(cocos2d::CCObject*) = 0x351210;
 	TodoReturn tryEnableRecord();
 
 	virtual void customSetup() = win 0x3504c0, m1 0x6ad80c;
