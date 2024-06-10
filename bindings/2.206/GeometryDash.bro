@@ -5302,11 +5302,9 @@ class GameObject : CCSpritePlus {
 	TodoReturn getMainColorMode();
 	TodoReturn getObjectDirection();
 	TodoReturn getObjectRadius();
-	TodoReturn getObjectRectDirty() = m1 0x1a13f4, win 0x133af0;
 	TodoReturn getObjectRectPointer();
 	TodoReturn getObjectZLayer();
 	TodoReturn getObjectZOrder();
-	TodoReturn getOrientedRectDirty() = m1 0x1a1404, win 0x133b10;
 	TodoReturn getOuterObjectRect();
 	TodoReturn getParentMode();
 	TodoReturn getRelativeSpriteColor(int);
@@ -5314,8 +5312,6 @@ class GameObject : CCSpritePlus {
 	TodoReturn getSecondaryColor();
 	TodoReturn getSecondaryColorMode();
 	TodoReturn getSlopeAngle();
-	cocos2d::CCPoint* getStartPos(cocos2d::CCPoint*) = m1 0x1a1424;
-	GameObjectType getType() = m1 0x1a1414;
 	TodoReturn getUnmodifiedPosition();
 	TodoReturn groupColor(cocos2d::ccColor3B const&, bool);
 	TodoReturn groupOpacityMod() = imac 0x5c7ab0, win 0x192cf0;
@@ -5487,9 +5483,13 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn canMultiActivate(bool) = m1 0x1a13e0;
 	virtual TodoReturn updateTextKerning(int) = m1 0x1a13e8;
 	virtual TodoReturn getTextKerning() = m1 0x1a13ec;
+	virtual TodoReturn getObjectRectDirty() = m1 0x1a13f4, win 0x133af0;
 	virtual void setObjectRectDirty(bool) = m1 0x1a13fc, win 0x133b00;
+	virtual TodoReturn getOrientedRectDirty() = m1 0x1a1404, win 0x133b10;
 	virtual void setOrientedRectDirty(bool) = m1 0x1a140c, win 0x133b20;
+	virtual GameObjectType getType() = m1 0x1a1414;
 	virtual void setType(GameObjectType) = m1 0x1a141c, win 0x133b40;
+	virtual cocos2d::CCPoint* getStartPos(cocos2d::CCPoint*) = m1 0x1a1424;
 
 	// windows members may be wrong! yay!
 
