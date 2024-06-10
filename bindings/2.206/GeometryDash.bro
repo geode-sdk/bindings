@@ -526,10 +526,10 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	TodoReturn getPage(int);
 	int getRelativePageForNum(int);
 	TodoReturn getRelativePosForPage(int);
-	TodoReturn getTotalPages();
+	int getTotalPages() = ios 0x132154;
 	bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c3b0;
 	void instantMoveToPage(int) = win 0x3cf40, ios 0x132724;
-	void moveToPage(int);
+	void moveToPage(int) = ios 0x1327fc;
 	void moveToPageEnded();
 	int pageNumberForPosition(cocos2d::CCPoint);
 	TodoReturn positionForPageWithNumber(int);
@@ -539,10 +539,10 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	void repositionPagesLooped() = win 0x3d1e0;
 	void selectPage(int);
 	void setDotScale(float); // inlined
-	void setPagesIndicatorPosition(cocos2d::CCPoint); // inline functions my beloved :heart:
+	void setPagesIndicatorPosition(cocos2d::CCPoint) = ios 0x131abc; // inline functions my beloved :heart:
 	void setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c720;
 	void togglePageIndicators(bool) = win 0x3cce0;
-	void updateDots(float) = win 0x3cae0;
+	void updateDots(float) = win 0x3cae0, ios 0x132170;
 	void updatePages() = win 0x3c9c0;
 
 	virtual void visit() = m1 0x32f6a8;
@@ -961,7 +961,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		//inlined on windows, member is in CCMenuItemSprite
 		m_fSizeMult = mult;
 	}
-	TodoReturn useAnimationType(MenuAnimationType);
+	void useAnimationType(MenuAnimationType) = ios 0x223ebc;
 
 	virtual void activate() = win 0x43ec0, m1 0x218e14;
 	virtual void selected() = win 0x43fd0, m1 0x218f64;
@@ -2681,19 +2681,19 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	static DialogLayer* create(DialogObject*, int);
 
 	TodoReturn addToMainScene();
-	void animateIn(DialogAnimationType);
+	void animateIn(DialogAnimationType) = ios 0x8aff8;
 	void animateInDialog();
 	void animateInRandomSide() = win 0xd09b0;
-	static DialogLayer* createDialogLayer(DialogObject*, cocos2d::CCArray*, int) = win 0xcfcd0;
-	TodoReturn createWithObjects(cocos2d::CCArray*, int);
+	static DialogLayer* createDialogLayer(DialogObject*, cocos2d::CCArray*, int) = win 0xcfcd0, ios 0x8a28c;
+	static DialogLayer* createWithObjects(cocos2d::CCArray*, int) = ios 0x8a318;
 	TodoReturn displayDialogObject(DialogObject*) = win 0xd02e0;
 	TodoReturn displayNextObject() = win 0xd0280;
 	TodoReturn finishCurrentAnimation();
 	TodoReturn handleDialogTap();
 	bool init(DialogObject*, cocos2d::CCArray*, int) = win 0xcfe20;
 	TodoReturn onClose();
-	TodoReturn updateChatPlacement(DialogChatPlacement);
-	TodoReturn updateNavButtonFrame() = win 0xd0630;
+	void updateChatPlacement(DialogChatPlacement) = ios 0x8ab34;
+	void updateNavButtonFrame() = win 0xd0630;
 
 	virtual void onEnter();
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xd08d0, m1 0x34e8b0;
@@ -2710,7 +2710,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 class DialogObject : cocos2d::CCObject {
 	// virtual ~DialogObject();
 
-	static DialogObject* create(gd::string, gd::string, int, float, bool, cocos2d::ccColor3B) = win 0xcfb10;
+	static DialogObject* create(gd::string, gd::string, int, float, bool, cocos2d::ccColor3B) = win 0xcfb10, ios 0x8a034;
 
 	bool init(gd::string, gd::string, int, float, bool, cocos2d::ccColor3B);
 }
@@ -5761,8 +5761,8 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn completedLevel(GJGameLevel*);
 	TodoReturn completedMapPack(GJMapPack*);
 	void completedStarLevel(GJGameLevel*);
-	TodoReturn countSecretChests(GJRewardType);
-	TodoReturn countUnlockedSecretChests(GJRewardType);
+	int countSecretChests(GJRewardType) = ios 0x34d200;
+	int countUnlockedSecretChests(GJRewardType) = ios 0x34d244;
 	TodoReturn createSecretChestItems();
 	TodoReturn createSecretChestRewards();
 	TodoReturn createSpecialChestItems() = win 0x1dae20;
@@ -7066,9 +7066,9 @@ class GJChallengeItem : cocos2d::CCObject {
 class GJChestSprite : cocos2d::CCSprite {
 	// virtual ~GJChestSprite();
 
-	static GJChestSprite* create(int);
+	static GJChestSprite* create(int) = ios 0x1cf3c0;
 
-	bool init(int);
+	bool init(int) = ios 0x1d17e4;
 	void switchToState(ChestSpriteState, bool);
 
 	virtual void setOpacity(unsigned char) = win 0x3ad3e0, m1 0x1ca94c;
@@ -10431,8 +10431,6 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2f9420, m1 0x3b0a4c;
 	virtual void updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = win 0x2f8b50, m1 0x3aec58;
 	virtual void scrollLayerMoved(cocos2d::CCPoint) = win 0x2f8bc0, m1 0x3b052c;
-
-	//getPageCount is a global function but used here, ios 0x131abc
 }
 
 [[link(android)]]
@@ -13039,32 +13037,33 @@ class SecretNumberLayer : cocos2d::CCLayer {
 [[link(android)]]
 class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDelegate {
 	// virtual ~SecretRewardsLayer();
+	// SecretRewardsLayer() = ios 0x2ff01c;
 
-	static SecretRewardsLayer* create(bool);
+	static SecretRewardsLayer* create(bool) = ios 0x2f8c5c;
+	cocos2d::CCScene* scene(bool) = win 0x3ae160, ios 0x2f8c10;
 
-	TodoReturn createSecondaryLayer(int);
-	TodoReturn generateChestItems(int);
+	TodoReturn createSecondaryLayer(int) = ios 0x2fadf4;
+	cocos2d::CCArray* generateChestItems(int) = ios 0x2fb19c;
 	TodoReturn getPageColor(int);
-	void goToPage(int);
-	bool init(bool) = win 0x3ae2c0;
-	TodoReturn moveToMainLayer(cocos2d::CCObject*);
-	TodoReturn moveToSecondaryLayer(int);
-	void onBack(cocos2d::CCObject* sender);
-	void onChestType(cocos2d::CCObject* sender);
+	void goToPage(int) = ios 0x2fa67c;
+	bool init(bool) = win 0x3ae2c0, ios 0x2f8cd0;
+	void moveToMainLayer(cocos2d::CCObject*) = ios 0x2facd4;
+	void moveToSecondaryLayer(int) = ios 0x2faabc;
+	void onBack(cocos2d::CCObject* sender) = ios 0x2fa1d8;
+	void onChestType(cocos2d::CCObject* sender) = ios 0x2fa244;
 	void onSelectItem(cocos2d::CCObject* sender);
-	void onShop(cocos2d::CCObject* sender) = win 0x3b19e0;
-	void onSpecialItem(cocos2d::CCObject* sender);
-	void onSwitchPage(cocos2d::CCObject* sender);
-	TodoReturn scene(bool) = win 0x3ae160;
+	void onShop(cocos2d::CCObject* sender) = win 0x3b19e0, ios 0x2fa52c;
+	void onSpecialItem(cocos2d::CCObject* sender) = ios 0x2fa80c;
+	void onSwitchPage(cocos2d::CCObject* sender) = ios 0x2fa624;
 	void showDialog01();
 	void showDialog03();
 	void showDialogDiamond();
 	void showDialogMechanic();
 	void showLockedChest();
 	void showShop(int);
-	TodoReturn switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x3b2120;
-	TodoReturn updateBackButton();
-	TodoReturn updateUnlockedLabel() = win 0x3b2200;
+	void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x3b2120, ios 0x2fa298;
+	void updateBackButton() = ios 0x2fabb4;
+	void updateUnlockedLabel() = win 0x3b2200, ios 0x2fa380;
 
 	virtual void onExit() = m1 0x564f80;
 	virtual void keyBackClicked() = win 0x3b26d0, m1 0x564f0c;
