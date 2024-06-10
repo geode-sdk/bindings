@@ -2025,7 +2025,7 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 	static void destroyInstance() = imac 0x441e60, m1 0x3b3d60;
 	void send(cocos2d::extension::CCHttpRequest* request) = imac 0x442d10, m1 0x3b4ac0, ios 0x2518c4;
 	bool lazyInitThreadSemphore() = imac 0x442160, m1 0x3b4074;
-	void dispatchResponseCallbacks() = imac 0x441ea0, m1 0x3b3da4;
+	void dispatchResponseCallbacks(float) = imac 0x441ea0, m1 0x3b3da4;
 }
 
 [[link(win, android)]]
