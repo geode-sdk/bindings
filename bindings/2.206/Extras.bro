@@ -43,7 +43,15 @@ class GameObjectPhysics {
 }
 
 class DynamicObjectAction {
-	PAD = win 0x3c;
+	GameObject* m_gameObject1;
+	GameObject* m_gameObject2;
+	GameObject* m_gameObject3;
+	GameObject* m_gameObject4;
+	GameObject* m_gameObject5;
+	GameObject* m_gameObject6;
+	GameObject* m_gameObject7;
+	GameObject* m_gameObject8;
+	PAD = win 0x20; // could there be a ptr in there?
 }
 
 class GJTransformState {
