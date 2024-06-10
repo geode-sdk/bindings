@@ -100,7 +100,7 @@ public class SyncBromaScript extends GhidraScript {
 
             this.waitForAnswers();
 
-            if (this.platform == Platform.WINDOWS32) {
+            if (this.platform == Platform.WINDOWS32 || this.platform == Platform.WINDOWS64) {
                 bromaFiles = List.of(this.selectedBromaFile);
             }
             this.bromaFiles = bromaFiles.stream()
