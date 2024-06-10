@@ -2669,6 +2669,19 @@ class DemonFilterSelectLayer : FLAlertLayer {
 	virtual void keyBackClicked() = win 0x2f7a10, m1 0x55c354;
 }
 
+// 2.205
+[[link(android)]]
+class DemonInfoPopup {
+	// ~DemonInfoPopup();
+
+	static DemonInfoPopup* create(int, int, int, int, int, int, int, int, int, int, int, int);
+
+	TodoReturn createFromString(gd::string);
+	bool init(int, int, int, int, int, int, int, int, int, int, int, int);
+	TodoReturn keyBackClicked();
+	void onClose(cocos2d::CCObject* sender);
+}
+
 [[link(android)]]
 class DialogDelegate {
 	virtual void dialogClosed(DialogLayer*) {}
@@ -15652,6 +15665,20 @@ class SpriteDescription : cocos2d::CCObject {
 [[link(android)]]
 class SpritePartDelegate {
 	virtual TodoReturn displayFrameChanged(cocos2d::CCObject*, gd::string);
+}
+
+[[link(android)]]
+class StarInfoPopup {
+	// virtual ~StarInfoPopup();
+
+	static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool);
+
+	TodoReturn createFromString(gd::string);
+	TodoReturn createFromStringMoons(gd::string);
+	bool init(int, int, int, int, int, int, int, int, int, bool);
+	void onClose(cocos2d::CCObject* sender);
+
+	virtual void keyBackClicked();
 }
 
 [[link(android)]]
