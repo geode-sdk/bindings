@@ -479,7 +479,7 @@ class cocos2d::CCGLProgram {
 	void setUniformLocationWith4iv(int, int*, unsigned int);
 	void setUniformLocationWithMatrix3fv(int, float*, unsigned int);
 	void setUniformLocationWithMatrix4fv(int, float*, unsigned int);
-	void setUniformsForBuiltins() = m1 0x3a8704;
+	void setUniformsForBuiltins() = m1 0x3a8704, imac 0x435940;
 
 	// CCGLProgram(cocos2d::CCGLProgram const&);
 	// CCGLProgram();
@@ -493,7 +493,7 @@ class cocos2d::CCGLProgram {
 	void reset();
 	bool updateUniformLocation(int, void*, unsigned int);
 	void updateUniforms();
-	void use() = m1 0x3a758c;
+	void use() = m1 0x3a758c, imac 0x434970;
 	char const* vertexShaderLog();
 }
 
@@ -1022,9 +1022,9 @@ class cocos2d::CCTouchDispatcher {
 class cocos2d::CCTouchHandler {
 	static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
 
-	cocos2d::CCTouchDelegate* getDelegate() = m1 0x3efbb0;
+	cocos2d::CCTouchDelegate* getDelegate() = m1 0x3efbb0, imac 0x48a010;
 	int getEnabledSelectors();
-	int getPriority() = m1 0x3efc24;
+	int getPriority() = m1 0x3efc24, imac 0x48a090;
 
 	void setDelegate(cocos2d::CCTouchDelegate*);
 	void setEnalbedSelectors(int);
@@ -1927,7 +1927,7 @@ class cocos2d {
 	static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
 	static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F) = imac 0x202f10;
 	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F) = imac 0x202e60, m1 0x1b4948;
-	static void ccGLBindTexture2D(unsigned int) = m1 0x2e9b14;
+	static void ccGLBindTexture2D(unsigned int) = m1 0x2e9b14, imac 0x35c2a0;
 	static void ccGLBindTexture2DN(unsigned int, unsigned int);
 	static void ccGLBindVAO(unsigned int);
 	static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x35c1f0, m1 0x2e9a4c;
@@ -1936,7 +1936,7 @@ class cocos2d {
 	static void ccGLDeleteTexture(unsigned int);
 	static void ccGLDeleteTextureN(unsigned int, unsigned int);
 	static void ccGLEnable(cocos2d::ccGLServerState);
-	static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2e9c70;
+	static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2e9c70, imac 0x35c3d0;
 	static void ccGLInvalidateStateCache();
 	static void ccGLUseProgram(unsigned int);
 	static void ccPointSize(float);
