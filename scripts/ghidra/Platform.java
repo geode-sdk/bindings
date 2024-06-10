@@ -1,6 +1,7 @@
 
 public enum Platform {
-    WINDOWS("Windows", "win", false),
+    WINDOWS32("Windows (32-bit)", "win32", false, "win"),
+    WINDOWS64("Windows (64-bit)", "win64", false, "win"),
     MAC_INTEL("MacOS (x64)", "imac", true, "mac"),
     MAC_ARM("MacOS (ARM)", "m1", true, "mac"),
     ANDROID32("Android32", "android32", true, "android"),

@@ -2175,7 +2175,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
 class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, DialogDelegate {
 	// virtual ~CreatorLayer();
 
-	static CreatorLayer* create() = win 0x9a190, ios 0xb7504;
+	static CreatorLayer* create() = ios 0xb7504;
 	static cocos2d::CCScene* scene() = win 0x9a190, ios 0xb74ac;
 
 	TodoReturn canPlayOnlineLevels();
@@ -6699,14 +6699,14 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual bool init() = win 0x1f7dd0, m1 0xe38c8, imac 0x102b70;
 	virtual void visit() = win 0x235f90, m1 0x127d48;
 	virtual void postUpdate(float);
-	virtual TodoReturn checkForEnd() = win 0x391830, m1 0xdf6c8;
+	virtual TodoReturn checkForEnd() = m1 0xdf6c8;
 	virtual TodoReturn testTime() = m1 0xdf6cc;
-	virtual void updateVerifyDamage() = win 0x391a00, m1 0xdf6d0;
-	virtual void updateAttemptTime(float) = win 0x391aa0, m1 0xdf6d4;
-	virtual void updateVisibility(float) = win 0x38bfc0;
-	virtual TodoReturn playerTookDamage(PlayerObject*) = win 0x2273b0, imac 0xc0020, m1 0xab56c;
+	virtual void updateVerifyDamage() = m1 0xdf6d0;
+	virtual void updateAttemptTime(float) = m1 0xdf6d4;
+	virtual void updateVisibility(float);
+	virtual TodoReturn playerTookDamage(PlayerObject*) = imac 0xc0020, m1 0xab56c;
 	virtual TodoReturn opacityForObject(GameObject*) = m1 0x11a318, win 0x2273b0;
-	virtual TodoReturn addToSpeedObjects(EffectGameObject*) = win 0x209900, imac 0xc0030, m1 0xab570;
+	virtual TodoReturn addToSpeedObjects(EffectGameObject*) = imac 0xc0030, m1 0xab570;
 	virtual void objectsCollided(int, int) = imac 0x11faa0, m1 0xfbafc, win 0x209900;
 	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int) = win 0x214160;
 	virtual void toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int) = win 0x214340, imac 0x1314b0, m1 0x109540;
@@ -6731,12 +6731,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x225e30, m1 0x118430;
 	virtual TodoReturn reverseDirection(EffectGameObject*) = m1 0xfad8c, win 0x2089f0;
 	virtual TodoReturn rotateGameplay(RotateGameplayGameObject*) = m1 0xfadd0, win 0x208a50;
-	virtual TodoReturn didRotateGameplay() = win 0x226100, m1 0xab578;
+	virtual TodoReturn didRotateGameplay() = m1 0xab578;
 	virtual TodoReturn updateTimeWarp(float) = win 0x226110, m1 0x118a98;
 	virtual TodoReturn updateTimeWarp(GameObject*, float) = win 0x226100, m1 0x118aa4;
 	virtual TodoReturn applyTimeWarp(float) = win 0x226160, m1 0x118ae0;
 	virtual TodoReturn playGravityEffect(bool) = m1 0xdf6e8;
-	virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x22fe90;
+	virtual TodoReturn manualUpdateObjectColors(GameObject*);
 	virtual TodoReturn createCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, bool) = win 0x22fe90, m1 0x1234a8;
 	virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x230190, m1 0x123828;
 	virtual TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = win 0x230390, m1 0x123a68;
@@ -12453,7 +12453,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void updateVisibility(float) = imac 0xb7dd0, m1 0xa4664, win 0x38bfc0;
 	virtual TodoReturn opacityForObject(GameObject*) = imac 0xba170, m1 0xa63cc, win 0x38cef0;
 	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int) = imac 0xba250, m1 0xa648c, win 0x38eba0;
-	virtual TodoReturn activateEndTrigger(int, bool, bool) = win 0x388df0, imac 0xb6c90, m1 0xa367c;
+	virtual TodoReturn activateEndTrigger(int, bool, bool) = imac 0xb6c90, m1 0xa367c;
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = win 0x388df0, imac 0xb7170, m1 0xa3ab0;
 	virtual void toggleGlitter(bool) = imac 0xbad40, m1 0xa6f00, win 0x390480;
 	virtual void destroyPlayer(PlayerObject*, GameObject*) = win 0x3905a0, imac 0xbae00, m1 0xa6fd8;
