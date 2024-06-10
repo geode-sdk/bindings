@@ -7753,7 +7753,7 @@ class GJGameState {
 	bool m_unkBool29;
 	unsigned int m_unkUint17;
 	gd::unordered_map<int, std::vector<int>> m_unkUMap8;
-	gd::map<std::pair<int,int>, SFXTriggerInstance> proximityVolumeRelated;
+	gd::map<std::pair<int,int>, SFXTriggerInstance> m_proximityVolumeRelated;
 	gd::unordered_map<int, SongChannelState> m_songChannelStates;
 	gd::unordered_map<int, std::vector<SongTriggerState>> m_songTriggerStateVectors;
 	gd::vector<SFXTriggerState> m_sfxTriggerStates;
@@ -12518,7 +12518,12 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	gd::vector<int> m_keyOpacities; // type not really accurate
 	gd::vector<int> m_keyPulses; // type not really accurate
 	int m_nextColorKey;
-	PAD = win 0x50, imac 0x18, android32 0x80, android64 0x94, m1 0x24, ios 0x24;
+	PAD = win 0x30, imac 0x18, android32 0x80, android64 0x94, m1 0x24, ios 0x24;
+	win {
+		bool m_tryPlaceCheckpoint;
+		CheckpointGameObject* m_triggeredCheckpointGameObject;
+	}
+	PAD = win 0x18;
 }
 
 [[link(android)]]

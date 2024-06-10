@@ -23,6 +23,8 @@ GEODE_MEMBER_CHECK(PlayLayer, m_checkpointArray, 0x37a0);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37d0);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x37f0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x3808);
+GEODE_MEMBER_CHECK(PlayLayer, m_tryPlaceCheckpoint, 0x3974);
+GEODE_MEMBER_CHECK(PlayLayer, m_triggeredCheckpointGameObject, 0x3978);
 
 GEODE_SIZE_CHECK(GJGameState, 0x6C8);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraZoom, 0x0);
@@ -172,7 +174,7 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkBool28, 0x5b0);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool29, 0x5b1);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint17, 0x5b4);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUMap8, 0x5b8);
-GEODE_MEMBER_CHECK(GJGameState, proximityVolumeRelated, 0x5f8);
+GEODE_MEMBER_CHECK(GJGameState, m_proximityVolumeRelated, 0x5f8);
 GEODE_MEMBER_CHECK(GJGameState, m_songChannelStates, 0x608);
 GEODE_MEMBER_CHECK(GJGameState, m_songTriggerStateVectors, 0x648);
 GEODE_MEMBER_CHECK(GJGameState, m_sfxTriggerStates, 0x688);

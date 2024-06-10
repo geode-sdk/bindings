@@ -9,6 +9,7 @@ class AdvancedFollowInstance {
 
 class SFXTriggerInstance {
 	PAD = win 0x10;
+	SFXTriggerGameObject* m_sfxTriggerGameObject;
 }
 
 class EventTriggerInstance {
