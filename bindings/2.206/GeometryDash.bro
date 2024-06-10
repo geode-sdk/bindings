@@ -4036,7 +4036,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 		return m_musicVolume;
 	}
 	FMOD::ChannelGroup* getChannelGroup(int, bool) = win 0x55c70;
-	inline float getEffectsVolume() = ios 0x14343c {
+	float getEffectsVolume() = ios 0x14343c {
 		return m_sfxVolume;
 	}
 	TodoReturn getFMODStatus(int) = ios 0x1450f8;
