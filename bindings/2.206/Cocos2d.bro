@@ -2,7 +2,7 @@
 class cocos2d::CCEGLViewProtocol {
     CCEGLViewProtocol() = win 0xbac00;
     virtual ~CCEGLViewProtocol() = win 0xbacc0;
-    auto getViewPortRect() const = m1 0x46da50;
+    auto getViewPortRect() const = m1 0x46e314, imac 0x518860;
     auto getScaleX() const;
     auto getScaleY() const;
 
@@ -149,11 +149,11 @@ class cocos2d::CCSet {
 	// CCSet(cocos2d::CCSet const&);
 	// CCSet();
 	void addObject(cocos2d::CCObject*);
-	cocos2d::CCObject* anyObject() = m1 0x6c5cec;
+	cocos2d::CCObject* anyObject() = m1 0x6c5cec, imac 0x7bfee0;
 	cocos2d::CCSetIterator begin();
 	bool containsObject(cocos2d::CCObject*);
 	cocos2d::CCSet* copy();
-	int count() = mac 0x775070;
+	int count() = m1 0x775070;
 	cocos2d::CCSetIterator end();
 	cocos2d::CCSet* mutableCopy();
 	void removeAllObjects();
@@ -883,7 +883,7 @@ class cocos2d::CCMouseDispatcher {
 	// CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
 	// CCMouseDispatcher();
 	void addDelegate(cocos2d::CCMouseDelegate*);
-	bool dispatchScrollMSG(float, float) = m1 0x1b0418;
+	bool dispatchScrollMSG(float, float) = m1 0x4c4a74, imac 0x578540;
 	void forceAddDelegate(cocos2d::CCMouseDelegate*);
 	void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
 	void removeDelegate(cocos2d::CCMouseDelegate*);
@@ -1009,7 +1009,7 @@ class cocos2d::CCTouchDispatcher {
 	void registerForcePrio(cocos2d::CCObject*, int) = imac 0x4d5890, m1 0x433730;
 	void removeAllDelegates();
 	void removeDelegate(cocos2d::CCTouchDelegate*);
-	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = m1 0x434208;
+	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = m1 0x434208, imac 0x4d62a0;
 	void unregisterForcePrio(cocos2d::CCObject*) = imac 0x4d5930, m1 0x4337e4;
 
 	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
@@ -1040,7 +1040,7 @@ class cocos2d::CCTouchHandler {
 class cocos2d::CCEGLView {
 	// CCEGLView();
 	// CCEGLView(cocos2d::CCEGLView const&);
-	virtual void swapBuffers() = m1 0x58e2d0;
+	virtual void swapBuffers() = m1 0x464e30, imac 0x50e130;
 	void toggleFullScreen(bool, bool);
 	void pollEvents();
 	void setupWindow(cocos2d::CCRect);
@@ -1105,9 +1105,9 @@ class cocos2d::CCIMEDispatcher {
 	void addDelegate(cocos2d::CCIMEDelegate*);
 	bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
 	bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
-	void dispatchDeleteBackward();
-	void dispatchDeleteForward();
-	void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes);
+	void dispatchDeleteBackward() = imac 0x4c6140, m1 0x425760;
+	void dispatchDeleteForward() = imac 0x4c6160;
+	void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = imac 0x4c6110, m1 0x425734;
 	void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
 	void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&);
 	void dispatchKeyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&);
@@ -1133,7 +1133,7 @@ class cocos2d::CCKeyboardDispatcher {
 	// CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
 	// CCKeyboardDispatcher();
 	void addDelegate(cocos2d::CCKeyboardDelegate*);
-	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool) = m1 0x4c4a74, imac 0x578540;
+	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool) = m1 0x1b0418, imac 0x1fdbe0;
 	void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
 	void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
 	char const* keyToString(cocos2d::enumKeyCodes);
@@ -1204,7 +1204,7 @@ class cocos2d::CCDirector {
 	cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = imac 0x48cc80;
 	cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&);
 	void createStatsLabel();
-	void drawScene() = m1 0x3f1560;
+	void drawScene() = m1 0x3f1560, imac 0x48bcd0;
 	void end();
 	bool isDisplayStats();
 	bool isNextDeltaTimeZero();
