@@ -815,7 +815,9 @@ class CCCircleWave : cocos2d::CCNode {
 	// CCCircleWave() = win 0x418b0;
 
 	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x41980;
-	static CCCircleWave* create(float, float, float, bool) = win 0x41980;
+	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = win inline {
+		return CCCircleWave::create(startRadius, endRadius, duration, fadeIn, true);
+	}
 
 	TodoReturn baseSetup(float);
 	TodoReturn followObject(cocos2d::CCNode*, bool);
@@ -10367,7 +10369,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	static LevelSearchLayer* create(int);
 	static cocos2d::CCScene* scene(int) = win 0x2ebb10, m1 0x5544e0, imac 0x634710;
 
-	bool checkDiff(int);
+	bool checkDiff(int) = win 0x2f1800;
 	bool checkTime(int) = win 0x2f1dc0;
 	void clearFilters();
 	void confirmClearFilters(cocos2d::CCObject*);
@@ -12767,14 +12769,14 @@ class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
 
 	TodoReturn getEndText();
 	void onEveryplay(cocos2d::CCObject* sender);
-	void onMenu(cocos2d::CCObject* sender);
+	void onMenu(cocos2d::CCObject* sender) = win 0x3a8110;
 	void onReplay(cocos2d::CCObject* sender);
 	void onRewardedVideo(cocos2d::CCObject* sender);
-	TodoReturn setupLastProgress();
+	TodoReturn setupLastProgress() = win 0x3a7a50;
 
 	virtual void keyBackClicked() = win 0x3a8230, m1 0x45c108;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3a80c0, m1 0x45c05c;
-	virtual void customSetup() = m1 0x45af98;
+	virtual void customSetup() = m1 0x45af98, win 0x3a72f0;
 	virtual void showLayer(bool) = m1 0x45bb78;
 	virtual void enterAnimFinished() = m1 0x45bc88;
 	virtual void rewardedVideoFinished() = win 0x3a7ff0, m1 0x45c04c;
