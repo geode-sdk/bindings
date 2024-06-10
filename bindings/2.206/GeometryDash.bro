@@ -11227,7 +11227,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 
 	static MusicDownloadManager* sharedState() = win 0x31bca0;
 
-	void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x31def0;
+	void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x31def0, imac 0x597180, m1 0x4dff40;
 	void addDLToActive(char const* tag);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x31c430;
 	void addSongObjectFromString(gd::string);
@@ -11241,13 +11241,13 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void dataLoaded(DS_Dictionary*) = win 0x31e950;
 	void deleteSFX(int);
 	void deleteSong(int);
-	void downloadCustomSong(int) = win 0x31f240;
+	void downloadCustomSong(int) = win 0x31f240, imac 0x596ad0, m1 0x4df8c4;
 	void downloadMusicLibrary();
 	void downloadSFX(int);
 	void downloadSFXFailed(int, GJSongError);
 	void downloadSFXFinished(int);
 	void downloadSFXLibrary();
-	void downloadSong(int) = win 0x31d960;
+	void downloadSong(int) = win 0x31d960, imac 0x5965c0, m1 0x4df478;
 	void downloadSongFailed(int, GJSongError) = win 0x323250;
 	void downloadSongFinished(int);
 	void encodeDataTo(DS_Dictionary*);
@@ -11275,7 +11275,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getSongDownloadKey(int);
 	void getSongInfo(int, bool) = win 0x31c680;
 	TodoReturn getSongInfoKey(int);
-	SongInfoObject* getSongInfoObject(int) = win 0x31e070;
+	SongInfoObject* getSongInfoObject(int) = win 0x31e070, imac 0x592c90, m1 0x4dc130;
 	TodoReturn getSongPriority();
 	void handleIt(bool, gd::string, gd::string, GJHttpType);
 	void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
