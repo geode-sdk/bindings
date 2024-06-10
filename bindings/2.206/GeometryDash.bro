@@ -8266,8 +8266,7 @@ class GJPathSprite : CCSpriteCOpacity {
 	TodoReturn changeToLockedArt() = win 0x276f80, m1 0x2942e4, imac 0x300640;
 	bool init(int);
 	TodoReturn updateState() = win 0x276e00;
-
-  int m_pathNumber;
+  	int m_pathNumber;
 }
 
 [[link(android)]]
