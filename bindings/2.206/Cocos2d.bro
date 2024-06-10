@@ -806,7 +806,7 @@ class cocos2d::CCLayerColor {
 	static cocos2d::CCLayerColor* create();
 
 	// CCLayerColor(cocos2d::CCLayerColor const&);
-	CCLayerColor() = imac 0x4bc3c0, m1 0x41d19c;
+	CCLayerColor() = imac 0x4bc3c0, m1 0x41d19c, ios 0x6bfd4;
 	~CCLayerColor() = imac 0x4bc600, m1 0x41d318;
 
 	void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
@@ -835,7 +835,7 @@ class cocos2d::CCLayerRGBA {
 	static cocos2d::CCLayerRGBA* create();
 
 	// CCLayerRGBA(cocos2d::CCLayerRGBA const&);
-	CCLayerRGBA() = imac 0x4bb5e0, m1 0x41c704;
+	CCLayerRGBA() = imac 0x4bb5e0, m1 0x41c704, ios 0x154480;
 	~CCLayerRGBA() = imac 0x4bb800, m1 0x41c86c;
 
 	virtual bool init() = imac 0x4bba70, m1 0x41c9fc;
@@ -1301,7 +1301,7 @@ class cocos2d::CCSprite {
 	void setBrVertexMod(float);
 	void setDontDraw(bool);
 	void setFlipX(bool) = imac 0x286360, m1 0x22ad7c, ios 0x249688;
-	void setFlipY(bool) = imac 0x2863b0, m1 0x22adb0;
+	void setFlipY(bool) = imac 0x2863b0, m1 0x22adb0, ios 0x2496bc;
 	void setTextureAtlas(cocos2d::CCTextureAtlas*);
 	void setTlVertexMod(float);
 	void setTrVertexMod(float);
@@ -1704,8 +1704,9 @@ class cocos2d::CCSpriteFrameCache {
 [[link(win, android)]]
 class cocos2d::CCString {
 	static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x7b7370, m1 0x6bdb68;
+	// static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x278aec;
 
-	char const* getCString() const = imac 0x7b6cc0, m1 0x6bd3dc;
+	char const* getCString() const = imac 0x7b6cc0, m1 0x6bd3dc, ios 0x2786d0;
 }
 
 [[link(win, android)]]
