@@ -132,7 +132,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 
 	static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest);
 
-	bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x7f040;
+	bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x7f040, ios 0x27a350;
 	void show();
 
 	virtual void setOpacity(unsigned char) = win 0x80870, m1 0x5474bc;
@@ -939,7 +939,7 @@ class CCLightStrip : cocos2d::CCNode {
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	~CCMenuItemSpriteExtra() {}
-	CCMenuItemSpriteExtra() {
+	CCMenuItemSpriteExtra() = ios 0x177268 {
 		m_scaleMultiplier = 1.0f;
 		m_baseScale = 1.0f;
 		m_animationEnabled = true;
@@ -956,7 +956,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		return CCMenuItemSpriteExtra::create(sprite, nullptr, target, callback);
 	}
 
-	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x43d60, m1 0x218c88;
+	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x43d60, m1 0x218c88, ios 0x223d80;
 	void setSizeMult(float mult) = win inline, ios 0x223f04 {
 		//inlined on windows, member is in CCMenuItemSprite
 		m_fSizeMult = mult;
@@ -1009,7 +1009,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	CCMenuItemToggler() {}
 	// virtual ~CCMenuItemToggler();
 
-	static CCMenuItemToggler* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x44360, m1 0x50d28, imac 0x5a6b0;
+	static CCMenuItemToggler* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x44360, m1 0x50d28, imac 0x5a6b0, ios 0x19cbf4;
 	static CCMenuItemToggler* createWithSize(const char* spr1, const char* spr2, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback, float scale) {
 		auto sprOff = cocos2d::CCSprite::createWithSpriteFrameName(spr1);
 		auto sprOn = cocos2d::CCSprite::createWithSpriteFrameName(spr2);
@@ -1046,7 +1046,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	}
 
 	TodoReturn activeItem();
-	bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win inline, imac 0x5a780, m1 0x50e0c {
+	bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win inline, imac 0x5a780, m1 0x50e0c, ios 0x19ccc4 {
 		if (!CCMenuItem::initWithTarget(target, callback)) return false;
 
 		m_offButton = CCMenuItemSpriteExtra::create(off, nullptr, this, menu_selector(CCMenuItemToggler::normalTouch));
@@ -1068,15 +1068,15 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 
 		return true;
 	}
-	void normalTouch(cocos2d::CCObject*) = win 0x44700;
-	void selectedTouch(cocos2d::CCObject*) = win 0x44720;
+	void normalTouch(cocos2d::CCObject*) = win 0x44700, ios 0x19ce74;
+	void selectedTouch(cocos2d::CCObject*) = win 0x44720, ios 0x19ce88;
 	void setSizeMult(float mult) = win inline {
 		m_offButton->setSizeMult(mult);
 		m_onButton->setSizeMult(mult);
 
 		this->toggle(this->m_toggled);
 	}
-	void toggle(bool) = win 0x44740, imac 0x5ab60, m1 0x51240;
+	void toggle(bool) = win 0x44740, imac 0x5ab60, m1 0x51240, ios 0x19ce9c;
 
 	bool isToggled() {
 		return m_toggled;
@@ -4063,7 +4063,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseEffect(unsigned int);
 	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int);
-	void playEffect(gd::string path, float speed, float p2, float volume) = win 0x55f60, m1 0x366d7c, imac 0x3e8a40;
+	void playEffect(gd::string path, float speed, float p2, float volume) = win 0x55f60, m1 0x366d7c, imac 0x3e8a40, ios 0x141c24;
 	void playEffect(gd::string path) = win 0x55ee0, m1 0x366c7c, imac 0x3e8960;
 	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56050, m1 0x364de4, imac 0x3e6190;
 	TodoReturn playEffectAsync(gd::string path);
@@ -8661,7 +8661,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	virtual void keyBackClicked() = win 0x29aa60, m1 0x2b4bb4;
 	virtual TodoReturn didPurchaseItem(GJStoreItem*) = win 0x29a0a0, m1 0x2b4548;
 	virtual void rewardedVideoFinished() = win 0x2997c0, m1 0x2b3f7c;
-	virtual void dialogClosed(DialogLayer*) = win 0x29c0c0, m1 0x2b5cb4;
+	virtual void dialogClosed(DialogLayer*) = win 0x29c0c0, m1 0x2b5cb4, ios 0x158204;
 }
 
 [[link(android)]]
@@ -10736,7 +10736,7 @@ class LoadingCircleSprite : cocos2d::CCSprite {
 	TodoReturn fadeInCircle(bool);
 	TodoReturn hideCircle();
 
-	virtual bool init() = m1 0x428590;
+	virtual bool init() = m1 0x428590, ios 0x3a36e0;
 }
 
 [[link(android)]]
