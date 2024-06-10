@@ -681,7 +681,7 @@ class cocos2d::CCScheduler {
 	void unscheduleAllForTarget(cocos2d::CCObject*);
 	void unscheduleAllWithMinPriority(int);
 	void unscheduleScriptEntry(unsigned int);
-	void unscheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*);
+	void unscheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*) = imac 0x44b190, m1 0x3bc6c0;
 	void unscheduleUpdateForTarget(cocos2d::CCObject const*);
 
 	virtual void update(float) = imac 0x44d2a0, m1 0x3be890;
@@ -2020,9 +2020,12 @@ class cocos2d::extension::CCScale9Sprite {
 
 [[link(win, android)]]
 class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
-	static cocos2d::extension::CCHttpClient* getInstance() = ios 0x250f04;
-	static void destroyInstance();
-	void send(cocos2d::extension::CCHttpRequest* request) = ios 0x2518c4;
+	// CCHttpClient() = imac 0x441fb0, m1 0x3b3ec8;
+	static cocos2d::extension::CCHttpClient* getInstance() = imac 0x441e00, m1 0x3b3cfc, ios 0x250f04;
+	static void destroyInstance() = imac 0x441e60, m1 0x3b3d60;
+	void send(cocos2d::extension::CCHttpRequest* request) = imac 0x442d10, m1 0x3b4ac0, ios 0x2518c4;
+	bool lazyInitThreadSemphore() = imac 0x442160, m1 0x3b4074;
+	void dispatchResponseCallbacks() = imac 0x441ea0, m1 0x3b3da4;
 }
 
 [[link(win, android)]]
