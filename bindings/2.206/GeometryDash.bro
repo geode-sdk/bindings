@@ -6946,7 +6946,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_rightSectionIndex;
 	int m_bottomSectionIndex;
 	int m_topSectionIndex;
-	PAD = win 0xc8, android32 0x64, android64 0xb8, mac 0xb8;
+	PAD = win 0x2;
+	bool m_isPlatformer;
+	PAD = win 0xc5, android32 0x61, android64 0xb5, mac 0xb5;
 	cocos2d::CCDictionary* m_unk2a50;
 	int m_unk2a54;
 	ShaderLayer* m_shaderLayer;
