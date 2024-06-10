@@ -2675,13 +2675,13 @@ class DemonFilterSelectLayer : FLAlertLayer {
 class DemonInfoPopup : FLAlertLayer {
 	// ~DemonInfoPopup();
 
-	static DemonInfoPopup* create(int, int, int, int, int, int, int, int, int, int, int, int) = win 0x3a3280;
-	static DemonInfoPopup* createFromString(gd::string) = win 0x3a2eb0;
+	static DemonInfoPopup* create(int, int, int, int, int, int, int, int, int, int, int, int) = win 0x3a3280, m1 0x6d2c7c, imac 0x7cde90;
+	static DemonInfoPopup* createFromString(gd::string) = win 0x3a2eb0, m1 0x6d0a5c, imac 0x7cbb30;
 
-	bool init(int, int, int, int, int, int, int, int, int, int, int, int) = win 0x3a33e0;
+	bool init(int, int, int, int, int, int, int, int, int, int, int, int) = win 0x3a33e0, m1 0x6d2dd8, imac 0x7ce020;
 
-	virtual void onClose(cocos2d::CCObject* sender);
-	virtual void keyBackClicked();
+	virtual void onClose(cocos2d::CCObject* sender) = m1 0x6d371c, imac 0x7ce980;
+	virtual void keyBackClicked() = m1 0x6d3758, imac 0x7ce9b0;
 }
 
 [[link(android)]]
@@ -15674,14 +15674,14 @@ class SpritePartDelegate {
 class StarInfoPopup : FLAlertLayer {
 	// virtual ~StarInfoPopup();
 
-	static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool) = win 0x3a42a0;
-	static StarInfoPopup* createFromString(gd::string) = win 0x3a3d10;
-	static StarInfoPopup* createFromStringMoons(gd::string) = win 0x3a3ff0;
+	static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool) = win 0x3a42a0, m1 0x6d37d4, imac 0x7cea20;
+	static StarInfoPopup* createFromString(gd::string) = win 0x3a3d10, m1 0x6d05b0, imac 0x7cb650;
+	static StarInfoPopup* createFromStringMoons(gd::string) = win 0x3a3ff0, m1 0x6d081c, imac 0x7cb8e0;
 
-	bool init(int, int, int, int, int, int, int, int, int, bool) = win 0x3a43e0;
+	bool init(int, int, int, int, int, int, int, int, int, bool) = win 0x3a43e0, m1 0x6d392c, imac 0x7cebb0;
 
-	virtual void onClose(cocos2d::CCObject* sender);
-	virtual void keyBackClicked();
+	virtual void onClose(cocos2d::CCObject* sender) = m1 0x6d4180, imac 0x7cf3a0;
+	virtual void keyBackClicked() = m1 0x6d41bc, imac 0x7cf3d0;
 }
 
 [[link(android)]]
