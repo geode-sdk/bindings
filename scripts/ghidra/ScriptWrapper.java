@@ -84,9 +84,10 @@ public class ScriptWrapper {
     }
 
     Optional<Platform> autoDetectPlatform() {
+        String id = wrapped.getCurrentProgram().getCompilerSpec().getCompilerSpecID().getIdAsString();
         switch (wrapped.getCurrentProgram().getLanguageID().getIdAsString()) {
-            case "x86:LE:32:default": return Optional.of(Platform.WINDOWS);
-            case "x86:LE:64:default": return Optional.of(Platform.MAC_INTEL);
+            case "x86:LE:32:default": return Optional.of(Platform.WINDOWS32);
+            case "x86:LE:64:default": return Optional.of(id.equals("windows") ? Platform.WINDOWS64 : Platform.MAC_INTEL);
             case "AARCH64:LE:64:AppleSilicon": return Optional.of(Platform.MAC_ARM);
             case "ARM:LE:32:v8":      return Optional.of(Platform.ANDROID32);
             case "AARCH64:LE:64:v8A": return Optional.of(Platform.ANDROID64);
@@ -471,7 +472,8 @@ public class ScriptWrapper {
         String langID;
         String compID;
         switch (platform) {
-            case WINDOWS:   langID = "x86:LE:32:default"; compID = "windows"; break;
+            case WINDOWS32:   langID = "x86:LE:32:default"; compID = "windows"; break;
+            case WINDOWS64:   langID = "x86:LE:64:default"; compID = "windows"; break;
             case MAC_INTEL: langID = "x86:LE:64:default"; compID = "gcc"; break;
             case MAC_ARM:   langID = "AARCH64:LE:64:AppleSilicon"; compID = "default"; break;
             case IOS:       langID = "AARCH64:LE:64:AppleSilicon"; compID = "default"; break;

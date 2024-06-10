@@ -88,7 +88,7 @@ public class SyncBromaScript extends GhidraScript {
             final var platforms = Arrays.asList(Platform.values()).stream().map(p -> p.getLongName()).toList();
 
             var platform = wrapper.autoDetectPlatform().orElse(null).getLongName();
-            var isWindows = platform != null && platform.equals(Platform.WINDOWS.getLongName());
+            var isWindows = platform != null && platform.equals(Platform.WINDOWS32.getLongName());
 
             this.choice("Target platform", platforms, platform, p -> this.platform = Platform.fromLongName(p));
             this.choice("Broma file (Windows-only)", bromaFiles, f -> this.selectedBromaFile = f);
@@ -100,7 +100,7 @@ public class SyncBromaScript extends GhidraScript {
 
             this.waitForAnswers();
 
-            if (this.platform == Platform.WINDOWS) {
+            if (this.platform == Platform.WINDOWS32 || this.platform == Platform.WINDOWS64) {
                 bromaFiles = List.of(this.selectedBromaFile);
             }
             this.bromaFiles = bromaFiles.stream()

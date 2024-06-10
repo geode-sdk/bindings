@@ -212,7 +212,7 @@ public class Broma {
         }
         
         public CConv getCallingConvention(Platform platform) {
-            if (platform != Platform.WINDOWS) {
+            if (platform != Platform.WINDOWS32) {
                 return CConv.DEFAULT;
             }
             if (dispatch.isPresent()) {
