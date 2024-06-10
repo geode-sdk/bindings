@@ -4390,7 +4390,9 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* getAllSmartTemplates();
 	cocos2d::CCDictionary* getAllUsedSongIDs();
 	gd::string getBasePostString() = win 0x146db0;
-	bool getBoolForKey(char const*) = win 0x2f1800;
+	bool getBoolForKey(char const* key) = win inline {
+		return m_searchFilters->valueForKey(key)->boolValue();
+	}
 	gd::string getCommentKey(int ID, int page, int mode, CommentKeyType keytype) {
 		return cocos2d::CCString::createWithFormat("comment_%i_%i_%i_%i", ID, page, mode, (int) keytype)->getCString();
 	}
