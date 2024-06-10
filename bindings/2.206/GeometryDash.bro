@@ -3714,7 +3714,7 @@ class EnhancedGameObject : GameObject {
 	TodoReturn triggerAnimation();
 	TodoReturn updateRotateAction(float);
 	TodoReturn updateState(int);
-	TodoReturn updateUserCoin();
+	void updateUserCoin() = win 0x19c930;
 	TodoReturn waitForAnimationTrigger();
 
 	virtual void customSetup() = m1 0x502290;
@@ -4028,7 +4028,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 		this->m_pulse3 = 0.0f;
 	}
 	TodoReturn fadeInBackgroundMusic(float);
-	TodoReturn fadeInMusic(float, int);
+	void fadeInMusic(float, int) = win 0x5b170;
 	float fadeOutMusic(float, int) = win 0x5b2b0, m1 0x36bec0, imac 0x3ef250;
 	TodoReturn getActiveMusic(int);
 	FMOD::Channel* getActiveMusicChannel(int) = m1 0x364ca8, imac 0x3e5fd0; // win inlined
@@ -5347,7 +5347,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn parentForZLayer(int, bool, int);
 	TodoReturn perspectiveColorFrame(char const*, int);
 	TodoReturn perspectiveFrame(char const*, int);
-	void playDestroyObjectAnim(GJBaseGameLayer*);
+	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a04e0;
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float);
 	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float);
 	void playShineEffect() = win 0x18f3f0;
@@ -6304,9 +6304,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void activatePlayerControlTrigger(PlayerControlGameObject*);
 	TodoReturn activateResetTrigger(EffectGameObject*);
 	void activateSFXEditTrigger(SFXTriggerGameObject*);
-	void activateSFXTrigger(SFXTriggerGameObject*);
-	TodoReturn activateSongEditTrigger(SongTriggerGameObject*);
-	void activateSongTrigger(SongTriggerGameObject*);
+	void activateSFXTrigger(SFXTriggerGameObject*) = win 0x230d50;
+	void activateSongEditTrigger(SongTriggerGameObject*) = win 0x230f50;
+	void activateSongTrigger(SongTriggerGameObject*) = win 0x2306d0;
 	TodoReturn activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&);
 	TodoReturn addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType);
 	void addCustomEnterEffect(EnterEffectObject*, bool);
@@ -6470,7 +6470,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x2087e0;
 	TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*);
 	void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x203a50;
-	TodoReturn playExitDualEffect(PlayerObject*);
+	void playExitDualEffect(PlayerObject*) = win 0x207710;
 	TodoReturn playFlashEffect(float, int, float);
 	TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
 	TodoReturn playSpeedParticle(float);
@@ -6500,7 +6500,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processMoveActionsStep(float, bool) = win 0x21bde0;
 	TodoReturn processOptionsTrigger(GameOptionsTrigger*);
 	TodoReturn processPlayerFollowActions(float);
-	void processQueuedAudioTriggers() = win 0x238b20;
+	void processQueuedAudioTriggers() = win 0x22ac10;
 	TodoReturn processQueuedButtons() = win 0x221f00;
 	TodoReturn processRotationActions();
 	TodoReturn processSFXObjects();
@@ -6521,7 +6521,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn reAddToStickyGroup(GameObject*);
 	TodoReturn recordAction(int, bool, bool);
 	TodoReturn rectIntersectsCircle(cocos2d::CCRect, cocos2d::CCPoint, float);
-	TodoReturn refreshCounterLabels();
+	void refreshCounterLabels() = win 0x225560;
 	void refreshKeyframeAnims() = imac 0x111860, m1 0xeecfc;
 	TodoReturn regenerateEnterEasingBuffers();
 	TodoReturn registerSpawnRemap(gd::vector<ChanceObject>&);
@@ -11547,7 +11547,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn exitLayer();
-	void musicSliderChanged(cocos2d::CCObject*) = ios 0xeec30;
+	void musicSliderChanged(cocos2d::CCObject*) = win 0x351110, ios 0xeec30;
 	void onAccount(cocos2d::CCObject* sender) = ios 0xee9dc;
 	void onHelp(cocos2d::CCObject* sender) = ios 0xee9ec;
 	void onMenuMusic(cocos2d::CCObject* sender) = ios 0xeecd8;
@@ -11559,7 +11559,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void onSoundtracks(cocos2d::CCObject* sender) = ios 0xeea38;
 	void onSupport(cocos2d::CCObject* sender) = ios 0xeea48;
 	void onVideo(cocos2d::CCObject* sender);
-	void sfxSliderChanged(cocos2d::CCObject*) = ios 0xeec9c;
+	void sfxSliderChanged(cocos2d::CCObject*) = win 0x351210, ios 0xeec9c;
 	TodoReturn tryEnableRecord();
 
 	virtual void customSetup() = win 0x3504c0, m1 0x6ad80c, ios 0xee0d4;
@@ -11971,7 +11971,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playerIsMovingUp();
 	TodoReturn playerTeleported();
 	TodoReturn playingEndEffect() = m1 0x398a84, imac 0x423eb0; // inlined on windows
-	TodoReturn playSpawnEffect();
+	void playSpawnEffect() = win 0x3754b0;
 	void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x373200;
 	void postCollision(float) = win 0x36b6b0;
 	void preCollision();
