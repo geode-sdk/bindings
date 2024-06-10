@@ -54,7 +54,11 @@ int main(int argc, char** argv) try {
     //     return 0;
     // }
 
-    if (p == "Win32") codegen::platform = Platform::Windows;
+    if (p == "Win32" || p == "Win64")  {
+        codegen::platform = Platform::Windows;
+        if (p == "Win32")
+            codegen::platformArch = PlatformArch::x86;
+    }
     else if (p == "MacOS") codegen::platform = Platform::Mac;
     else if (p == "iOS") codegen::platform = Platform::iOS;
     else if (p == "Android32") codegen::platform = Platform::Android32;
