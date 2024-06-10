@@ -2671,17 +2671,17 @@ class DemonFilterSelectLayer : FLAlertLayer {
 	virtual void keyBackClicked() = win 0x2f7a10, m1 0x55c354;
 }
 
-// 2.205
 [[link(android)]]
-class DemonInfoPopup {
+class DemonInfoPopup : FLAlertLayer {
 	// ~DemonInfoPopup();
 
-	static DemonInfoPopup* create(int, int, int, int, int, int, int, int, int, int, int, int);
+	static DemonInfoPopup* create(int, int, int, int, int, int, int, int, int, int, int, int) = win 0x3a3280;
+	static DemonInfoPopup* createFromString(gd::string) = win 0x3a2eb0;
 
-	TodoReturn createFromString(gd::string);
-	bool init(int, int, int, int, int, int, int, int, int, int, int, int);
-	TodoReturn keyBackClicked();
-	void onClose(cocos2d::CCObject* sender);
+	bool init(int, int, int, int, int, int, int, int, int, int, int, int) = win 0x3a33e0;
+
+	virtual void onClose(cocos2d::CCObject* sender);
+	virtual void keyBackClicked();
 }
 
 [[link(android)]]
@@ -15670,16 +15670,16 @@ class SpritePartDelegate {
 }
 
 [[link(android)]]
-class StarInfoPopup {
+class StarInfoPopup : FLAlertLayer {
 	// virtual ~StarInfoPopup();
 
-	static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool);
+	static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool) = win 0x3a42a0;
+	static StarInfoPopup* createFromString(gd::string) = win 0x3a3d10;
+	static StarInfoPopup* createFromStringMoons(gd::string) = win 0x3a3ff0;
 
-	TodoReturn createFromString(gd::string);
-	TodoReturn createFromStringMoons(gd::string);
-	bool init(int, int, int, int, int, int, int, int, int, bool);
-	void onClose(cocos2d::CCObject* sender);
+	bool init(int, int, int, int, int, int, int, int, int, bool) = win 0x3a43e0;
 
+	virtual void onClose(cocos2d::CCObject* sender);
 	virtual void keyBackClicked();
 }
 
