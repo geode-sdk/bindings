@@ -1771,8 +1771,8 @@ class ColorAction : cocos2d::CCObject {
 	void saveToState(CAState&);
 	void setupFromMap(gd::map<gd::string, gd::string>&) = win 0x247e40;
 	void setupFromString(gd::string) = win 0x247d60;
-	TodoReturn step(float) = win 0x247270;
-	TodoReturn updateCustomColor(cocos2d::ccColor3B, cocos2d::ccColor3B);
+	void step(float) = win 0x247270;
+	void updateCustomColor(cocos2d::ccColor3B, cocos2d::ccColor3B); //inline on windows
 	// TodoReturn writeSaveString(fmt::BasicWriter<char>&);
 
 	bool m_stepFinished;
@@ -2080,8 +2080,8 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x99750, m1 0x46b5a0;
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x46b670;
 	virtual void keyUp(cocos2d::enumKeyCodes) {}
-	virtual TodoReturn playMusic() = win 0x98e90, m1 0x46a9bc;
-	virtual TodoReturn registerTouch() = win 0x99850, m1 0x46b6e8;
+	virtual void playMusic() = win 0x98e90, m1 0x46a9bc;
+	virtual void registerTouch() = win 0x99850, m1 0x46b6e8;
 	virtual void onInfo(cocos2d::CCObject* sender) = win 0x99600, m1 0x46b4e8;
 	virtual void onRecord(cocos2d::CCObject* sender) = win 0x98d00, m1 0x46a8a8;
 	virtual TodoReturn recordingDidStop() = win 0x98ff0, m1 0x46aa5c;
@@ -3901,8 +3901,8 @@ class FindBPMLayer : CreateGuidelinesLayer {
 	bool init(int);
 
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x9a060, m1 0x46be80;
-	virtual TodoReturn playMusic() = win 0x99ed0, m1 0x46bcec;
-	virtual TodoReturn registerTouch() = win 0x99f70, m1 0x46bd88;
+	virtual void playMusic() = win 0x99ed0, m1 0x46bcec;
+	virtual void registerTouch() = win 0x99f70, m1 0x46bd88;
 	virtual void onInfo(cocos2d::CCObject* sender) {}
 	virtual void onRecord(cocos2d::CCObject* sender) = win 0x99c90, m1 0x46bc0c;
 	virtual TodoReturn recordingDidStop() = win 0x99e50, m1 0x46bc44;
@@ -7255,8 +7255,8 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn createTransformCommand(double, double, double, double, bool, float, int, int, int, float, bool, bool, int, int);
 	TodoReturn getAllColorActions();
 	TodoReturn getAllColorSprites();
-	ColorAction* getColorAction(int);
-	ColorActionSprite* getColorSprite(int);
+	ColorAction* getColorAction(int) = win 0x249eb0;
+	ColorActionSprite* getColorSprite(int) = win 0x249f70;
 	TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
 	TodoReturn getMixedColor(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
 	TodoReturn getMoveCommandNode(GroupCommandObject2*);
@@ -7327,11 +7327,11 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn tryGetMoveCommandNode(int);
 	TodoReturn updateActiveOpacityEffects();
 	TodoReturn updateColorAction(ColorAction*);
-	TodoReturn updateColorEffects(float) = imac 0x2db6c0;
-	TodoReturn updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B);
+	void updateColorEffects(float) = imac 0x2db6c0; //inline on windows
+	void updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B); //inline on windows
 	void updateCountForItem(int, int);
 	virtual void rewardedVideoFinished();
-	TodoReturn updateEffects(float) = win 0x24a150, imac 0x2db590;
+	void updateEffects(float) = win 0x24a150, imac 0x2db590;
 	void updateOpacityAction(OpacityEffectAction*);
 	void updateOpacityEffects(float);
 	TodoReturn updatePulseEffects(float) = win 0x24f480, imac 0x2db890;
@@ -12337,7 +12337,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void addObject(GameObject*) = win 0x38a990, imac 0xb24e0;
 	void addToGroupOld(GameObject*);
 	void applyCustomEnterEffect(GameObject*, bool) = win 0x38d580;
-	void applyEnterEffect(GameObject*, int, bool) = win 0x38cbe2;
+	void applyEnterEffect(GameObject*, int, bool) = win 0x38e270;
 	bool canPauseGame() = win inline {
 		return !m_isPaused && m_started;
 	}
