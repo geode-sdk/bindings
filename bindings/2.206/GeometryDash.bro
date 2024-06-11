@@ -206,7 +206,8 @@ class AchievementNotifier : cocos2d::CCNode {
 	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
 	void showNextAchievement();
 	void willSwitchToScene(cocos2d::CCScene* scene) = win inline, m1 0x6d4754, imac 0x7cfa80 {
-		cocos2d::CCScene* previousScene = reinterpret_cast<cocos2d::CCScene*>(this->m_unknown2);
+		// cocos2d::CCScene* previousScene = reinterpret_cast<cocos2d::CCScene*>(this->m_unknown2);
+		cocos2d::CCScene* previousScene = nullptr;
 
 		if (previousScene && previousScene != scene)
 		{
