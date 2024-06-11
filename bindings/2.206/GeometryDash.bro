@@ -4943,7 +4943,7 @@ class GameManager : GManager {
 		return m_iconRequestID++;
 	}
 	int getIntGameVariable(char const*) = win 0x17a6e0;
-	TodoReturn getMenuMusicFile() = ios 0x322c64;
+	gd::string getMenuMusicFile() = win 0x172db0, ios 0x322c64;
 	TodoReturn getMGTexture(int);
 	TodoReturn getNextUniqueObjectKey();
 	TodoReturn getNextUsedKey(int, bool);
