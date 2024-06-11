@@ -4106,7 +4106,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void setChannelVolume(int, AudioTargetType, float);
 	void setChannelVolumeMod(int, AudioTargetType, float) = win 0x580d0;
 	void setEffectsVolume(float);
-	void setMusicTimeMS(unsigned int, bool, int);
+	void setMusicTimeMS(unsigned int ms, bool, int channel) = win 0x5af40;
 	void setup() = win 0x52d40, m1 0x36103c, imac 0x3e0e30, ios 0x13e5f0;
 	TodoReturn setupAudioEngine() = win 0x53220;
 	void start() = win 0x54400;
@@ -11200,7 +11200,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 	TodoReturn trySetupMusicBrowser();
 	TodoReturn updatePageLabel();
 
-	virtual void update(float) = m1 0x53d678;
+	virtual void update(float) = win 0x318ad0, m1 0x53d678;
 	virtual void registerWithTouchDispatcher() = m1 0x53e660;
 	virtual void keyBackClicked() = win 0x31a1b0, m1 0x53e544;
 	virtual void musicActionFinished(GJMusicAction) = win 0x3193d0, m1 0x53df48;
