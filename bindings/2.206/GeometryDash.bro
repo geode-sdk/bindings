@@ -2846,7 +2846,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	void onMoveToTop();
 	void onPlay(cocos2d::CCObject* sender);
 	void onSetFolder(cocos2d::CCObject* sender);
-	void onShare(cocos2d::CCObject* sender) = win 0xd4c80, imac 0x35eeb0, m1 0x1a90d4, ios 0xebd04;
+	void onShare(cocos2d::CCObject* sender) = win 0xd4c80, m1 0x1a90d4, ios 0xebd04;
 	void onTest(cocos2d::CCObject* sender);
 	void onUpdateDescription(cocos2d::CCObject* sender);
 	TodoReturn playStep2();
@@ -6627,7 +6627,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x200b70;
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
 	void toggleAudioVisualizer(bool) = win 0x237b90, imac 0x1047d0;
-	void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x207160;
+	void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x207160, m1 0xf5020, imac 0x117fa0;
 	void toggleFlipped(bool, bool) = win 0x235880;
 	TodoReturn toggleGroup(int, bool) = imac 0x131520;
 	TodoReturn toggleLockPlayer(bool, bool) = win 0x37d510;
@@ -9813,7 +9813,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         return GameManager::sharedState()->m_levelEditorLayer;
     }
 
-	static LevelEditorLayer* create(GJGameLevel*, bool) = win 0x2be3b0, imac 0xdeb30;
+	static LevelEditorLayer* create(GJGameLevel*, bool) = win 0x2be3b0, m1 0xc5550, imac 0xdeb30;
 
 	TodoReturn activateTriggerEffect(EffectGameObject*, float, float, float, bool);
 	TodoReturn addDelayedSpawn(EffectGameObject*, float);
@@ -9877,7 +9877,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getTriggerGroup(int);
 	void handleAction(bool, cocos2d::CCArray*) = win 0x2c2ab0;
 	TodoReturn hasAction(bool);
-	bool init(GJGameLevel*, bool) = win 0x2be440, imac 0xdeba0;
+	bool init(GJGameLevel*, bool) = win 0x2be440, m1 0xc55e4, imac 0xdeba0;
 	bool isLayerLocked(int layer) {
 		if (layer < 10000 && m_layerLockingEnabled) {
 			return m_lockedLayers.at(layer);
@@ -10264,7 +10264,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	void onListInfo(cocos2d::CCObject* sender);
 	void onRefreshLevelList(cocos2d::CCObject* sender);
 	void onSelectIcon(cocos2d::CCObject* sender);
-	void onShare(cocos2d::CCObject* sender);
+	void onShare(cocos2d::CCObject* sender) = imac 0x35eeb0;
 	void onToggleEditMode(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
 	void ownerDelete();
@@ -11731,7 +11731,7 @@ class PauseLayer : CCBlockLayer {
 	void onReplay(cocos2d::CCObject* sender);
 	void onRestart(cocos2d::CCObject* sender) = win 0x35c7b0, m1 0x35c00c, imac 0x3db4b0;
 	void onRestartFull(cocos2d::CCObject* sender) = win 0x35c850;
-	void onResume(cocos2d::CCObject* sender) = win 0x35c720;
+	void onResume(cocos2d::CCObject* sender) = win 0x35c720, m1 0x35bdf0, imac 0x3db280;
 	void onSettings(cocos2d::CCObject* sender) = win 0x35b8e0;
 	void onTime(cocos2d::CCObject* sender);
 	void setupProgressBars();
@@ -12054,7 +12054,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void stopStreak2() = imac 0x424840, m1 0x39934c;
 	void storeCollision(PlayerCollisionDirection, int);
 	TodoReturn switchedDirTo(PlayerButton) = win 0x375e60;
-	void switchedToMode(GameObjectType) = win 0x379e40;
+	void switchedToMode(GameObjectType) = win 0x379e40, m1 0x391544, imac 0x41bfc0;
 	TodoReturn testForMoving(float, GameObject*);
 	void toggleBirdMode(bool, bool) = win 0x378830;
 	void toggleDartMode(bool, bool) = win 0x378fa0;
@@ -12064,9 +12064,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         m_isPlatformer = val;
     }
 	void togglePlayerScale(bool, bool) = win 0x37e710;
-	void toggleRobotMode(bool, bool) = win 0x379700;
+	void toggleRobotMode(bool, bool) = win 0x379700, m1 0x396af0, imac 0x421cf0;
 	void toggleRollMode(bool, bool) = win 0x379580;
-	void toggleSpiderMode(bool, bool) = win 0x379a80;
+	void toggleSpiderMode(bool, bool) = win 0x379a80, m1 0x396f64, imac 0x4221b0;
 	void toggleSwingMode(bool, bool) = win 0x378b30;
 	void toggleVisibility(bool) = win 0x369590;
 	TodoReturn touchedObject(GameObject*);
@@ -12392,7 +12392,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn getTempMilliTime() = win 0x3c070;
 	TodoReturn gravityEffectFinished();
 	void incrementJumps();
-	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x382890, imac 0xabc70;
+	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x382890, m1 0x9a1e4, imac 0xabc70;
 	bool isGameplayActive();
 	void levelComplete() = win 0x384850, m1 0xa1078, imac 0xb4290;
 	TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
