@@ -229,6 +229,12 @@ GEODE_MEMBER_CHECK(CCScrollLayerExt, m_contentLayer, 0x1d8);
 
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x230);
 
+GEODE_SIZE_CHECK(CCTextInputNode, 0x268);
+
+GEODE_MEMBER_CHECK(Slider, m_touchLogic, 0x198);
+
+GEODE_MEMBER_CHECK(SliderTouchLogic, m_activateThumb, 0x1d8);
+
 GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
 GEODE_MEMBER_CHECK(CheckpointObject, m_gameState, 0x140);
 GEODE_MEMBER_CHECK(CheckpointObject, m_shaderState, 0x808);
@@ -254,6 +260,4 @@ GEODE_SIZE_CHECK(FMODAudioState, 0x380);
 GEODE_SIZE_CHECK(GroupCommandObject2, 0x208);
 
 GEODE_SIZE_CHECK(KeyframeObject, 0x1c0);
-
-GEODE_SIZE_CHECK(CCTextInputNode, 0x268);
 #endif

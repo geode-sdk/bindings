@@ -206,7 +206,8 @@ class AchievementNotifier : cocos2d::CCNode {
 	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
 	void showNextAchievement();
 	void willSwitchToScene(cocos2d::CCScene* scene) = win inline, m1 0x6d4754, imac 0x7cfa80 {
-		cocos2d::CCScene* previousScene = reinterpret_cast<cocos2d::CCScene*>(this->m_unknown2);
+		// cocos2d::CCScene* previousScene = reinterpret_cast<cocos2d::CCScene*>(this->m_unknown2);
+		cocos2d::CCScene* previousScene = nullptr;
 
 		if (previousScene && previousScene != scene)
 		{
@@ -3035,7 +3036,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn editButtonUsable();
 	TodoReturn editColor();
 	TodoReturn editColorButtonUsable();
-	TodoReturn editGroup(cocos2d::CCObject*) = win 0x11b410;
+	void editGroup(cocos2d::CCObject*) = win 0x11b410, m1 0x2cf3c, imac 0x2c790;
 	TodoReturn editHSV();
 	TodoReturn editObject(cocos2d::CCObject*) = win 0x1180a0;
 	TodoReturn editObject2(cocos2d::CCObject*) = win 0x11a030;
@@ -4055,21 +4056,21 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getFMODStatus(int) = ios 0x1450f8;
 	float getMeteringValue();
 	TodoReturn getMusicChannelID(int);
-	TodoReturn getMusicLengthMS(int);
+	unsigned int getMusicLengthMS(int channel) = win 0x5b0e0;
 	TodoReturn getMusicTime(int);
-	TodoReturn getMusicTimeMS(int);
+	unsigned int getMusicTimeMS(int channel) = win 0x5b080;
 	TodoReturn getNextChannelID();
 	TodoReturn getTweenContainer(AudioTargetType);
 	bool isChannelStopping(int);
 	bool isEffectLoaded(gd::string path);
 	bool isMusicPlaying(gd::string path, int p1) = win 0x58f20, imac 0x3ebaa0;
-	bool isMusicPlaying(int) = win 0x58e50;
+	bool isMusicPlaying(int channel) = win 0x58e50;
 	bool isSoundReady(FMOD::Sound* sound);
 	TodoReturn lengthForSound(gd::string path);
 	TodoReturn loadAndPlayMusic(gd::string path, unsigned int p1, int p2);
 	TodoReturn loadAudioState(FMODAudioState&);
-	void loadMusic(gd::string path, float speed, float p2, float volume, bool p4, int p5, int p6);
-	void loadMusic(gd::string path) = win 0x592b0;
+	void loadMusic(gd::string path, float speed, float p2, float volume, bool p4, int p5, int p6) = win 0x592b0;
+	void loadMusic(gd::string path);
 	TodoReturn pauseAllAudio();
 	TodoReturn pauseAllEffects();
 	void pauseAllMusic();
@@ -4080,7 +4081,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void playEffect(gd::string path) = win 0x55ee0, m1 0x366c7c, imac 0x3e8960;
 	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56050, m1 0x364de4, imac 0x3e6190;
 	TodoReturn playEffectAsync(gd::string path);
-	void playMusic(gd::string path, bool p1, float p2, int p3);
+	void playMusic(gd::string path, bool p1, float fadeInTime, int channel) = win 0x59140;
 	void preloadEffect(gd::string path) = win 0x583b0;
 	void preloadEffectAsync(gd::string path);
 	TodoReturn preloadMusic(gd::string path, bool p1, int p2);
@@ -4103,7 +4104,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void setChannelVolume(int, AudioTargetType, float);
 	void setChannelVolumeMod(int, AudioTargetType, float) = win 0x580d0;
 	void setEffectsVolume(float);
-	void setMusicTimeMS(unsigned int, bool, int);
+	void setMusicTimeMS(unsigned int ms, bool, int channel) = win 0x5af40;
 	void setup() = win 0x52d40, m1 0x36103c, imac 0x3e0e30, ios 0x13e5f0;
 	TodoReturn setupAudioEngine() = win 0x53220;
 	void start() = win 0x54400;
@@ -4940,7 +4941,7 @@ class GameManager : GManager {
 		return m_iconRequestID++;
 	}
 	int getIntGameVariable(char const*) = win 0x17a6e0;
-	TodoReturn getMenuMusicFile() = ios 0x322c64;
+	TodoReturn getMenuMusicFile() = ios 0x322c64, win 0x172db0;
 	TodoReturn getMGTexture(int);
 	TodoReturn getNextUniqueObjectKey();
 	TodoReturn getNextUsedKey(int, bool);
@@ -4980,7 +4981,7 @@ class GameManager : GManager {
 	TodoReturn lockIcon(int, IconType);
 	TodoReturn logLoadedIconInfo();
 	void openEditorGuide();
-	void playMenuMusic() = ios 0x322df4;
+	void playMenuMusic() = ios 0x322df4, win 0x172ec0;
 	TodoReturn playSFXTrigger(SFXTriggerGameObject*);
 	TodoReturn prepareDPadSettings();
 	TodoReturn printGJLog();
@@ -9859,7 +9860,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	int getNextFreeEditorLayer(cocos2d::CCArray*);
 	TodoReturn getNextFreeEnterChannel(cocos2d::CCArray*);
 	TodoReturn getNextFreeGradientID(cocos2d::CCArray*);
-	int getNextFreeGroupID(cocos2d::CCArray*);
+	int getNextFreeGroupID(cocos2d::CCArray*) = win 0x2c6cb0, m1 0xd37e0, imac 0xef5f0;
 	TodoReturn getNextFreeItemID(cocos2d::CCArray*);
 	TodoReturn getNextFreeOrderChannel(cocos2d::CCArray*);
 	TodoReturn getNextFreeSFXGroupID(cocos2d::CCArray*);
@@ -11199,7 +11200,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 	TodoReturn trySetupMusicBrowser();
 	TodoReturn updatePageLabel();
 
-	virtual void update(float) = m1 0x53d678;
+	virtual void update(float) = win 0x318ad0, m1 0x53d678;
 	virtual void registerWithTouchDispatcher() = m1 0x53e660;
 	virtual void keyBackClicked() = win 0x31a1b0, m1 0x53e544;
 	virtual void musicActionFinished(GJMusicAction) = win 0x3193d0, m1 0x53df48;
@@ -13277,13 +13278,13 @@ class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
 class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	// virtual ~SetGroupIDLayer();
 
-	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*);
+	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*) = m1 0x2a305c, imac 0x3115c0;
 
 	TodoReturn addGroupID(int);
 	void callRemoveFromGroup(float);
 	TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int);
 	TodoReturn determineStartValues();
-	bool init(GameObject* obj, cocos2d::CCArray* objs) = win 0x3cde60;
+	bool init(GameObject* obj, cocos2d::CCArray* objs) = win 0x3cde60, m1 0x2a31bc, imac 0x311790;
 	void onAddGroup(cocos2d::CCObject* sender);
 	void onAddGroupParent(cocos2d::CCObject* sender);
 	void onAnim(cocos2d::CCObject* sender);
@@ -15309,7 +15310,9 @@ class Slider : cocos2d::CCLayer {
 	TodoReturn disableSlider();
 	TodoReturn disableTouch();
 	TodoReturn enableSlider();
-	TodoReturn getLiveDragging();
+	bool getLiveDragging() {
+		return m_touchLogic->m_activateThumb;
+	}
 	SliderThumb* getThumb() {
 		return m_touchLogic->m_thumb;
 	}
