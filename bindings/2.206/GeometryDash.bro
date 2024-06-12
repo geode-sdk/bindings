@@ -7181,6 +7181,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         m_mainLayer = nullptr;
         m_closeOnHide = false;
         m_delegate = nullptr;
+		m_fastMenu = false;
     }
 
 	bool init(char const*, float, bool) = win 0x2454f0, m1 0x519eac, ios 0x3bb304;
