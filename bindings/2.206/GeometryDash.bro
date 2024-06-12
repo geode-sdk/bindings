@@ -963,7 +963,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	}
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x43d60, m1 0x218c88, ios 0x223d80;
-	void setSizeMult(float mult) = win inline, ios 0x223f04 {
+	void setSizeMult(float mult) = win inline, m1 inline, ios 0x223f04 {
 		//inlined on windows, member is in CCMenuItemSprite
 		m_fSizeMult = mult;
 	}
@@ -6514,7 +6514,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getTargetGroupOrigin(int, int);
 	TodoReturn gravBumpPlayer(PlayerObject*, EffectGameObject*);
 	void groupStickyObjects(cocos2d::CCArray*);
-	void handleButton(bool down, int button, bool isPlayer1) = win 0x2238a0;
+	void handleButton(bool down, int button, bool isPlayer1) = win 0x2238a0, m1 0x114ea0;
 	TodoReturn hasItem(int);
 	bool hasUniqueCoin(EffectGameObject*) = win 0x207020;
 	void increaseBatchNodeCapacity() = win 0x1fd9d0;
@@ -6574,7 +6574,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processAreaTransformGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool);
 	TodoReturn processAreaVisualActions(float) = imac 0x1389e0;
 	TodoReturn processCameraObject(GameObject*, PlayerObject*);
-	void processCommands(float) = win 0x229830;
+	void processCommands(float) = win 0x229830, m1 0x11b6d8;
 	TodoReturn processDynamicObjectActions(int, float);
 	TodoReturn processFollowActions();
 	TodoReturn processItems();
@@ -10974,7 +10974,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	void onGameCenter(cocos2d::CCObject* sender);
 	void onGarage(cocos2d::CCObject* sender) = win 0x315420, ios 0x277324;
 	void onGooglePlayGames(cocos2d::CCObject* sender);
-	void onMoreGames(cocos2d::CCObject* sender) = win 0x314da0, ios 0x277644;
+	void onMoreGames(cocos2d::CCObject* sender) = win 0x314da0, ios 0x277644, m1 0x31c630;
 	void onMyProfile(cocos2d::CCObject* sender) = win 0x314c40, ios 0x2776c8;
 	void onNewgrounds(cocos2d::CCObject* sender) = win 0x3154b0, ios 0x2774b8;
 	void onOptions(cocos2d::CCObject* sender) = win 0x3150d0, ios 0x277420;
@@ -12209,7 +12209,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setScale(float) = win 0x380880;
 	virtual void setPosition(cocos2d::CCPoint const&) = m1 0x3973cc, win 0x37a650;
 	virtual void setVisible(bool) = m1 0x39a4f8, win 0x380890;
-	virtual void setRotation(float) = win 0x380790; // merged thunk
+	virtual void setRotation(float) = m1 0x39a47c, win 0x380790; // merged thunk
 	virtual void setOpacity(unsigned char) = win 0x37bb00, m1 0x398408;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x37b320, m1 0x397e20;
 	virtual void setFlipX(bool) = win 0x3807a0, m1 0x39a480;
@@ -12344,7 +12344,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_unk7cc; // unsure if float
 	float m_unk7d0;
 	bool m_isDashing;
-	PAD = win 0x8, android32 0x8, android64 0x8;
+	PAD = win 0x8, mac 0x0, android32 0x8, android64 0x8;
 	float m_vehicleSize;
 	float m_playerSpeed;
 	float m_unk7e0;
