@@ -4167,9 +4167,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void stopAllEffects() = win 0x58a00, imac 0x3e2040, m1 0x362154, ios 0x13f128;
 	void stopAllMusic() = win inline, m1 0x362440, imac 0x3e2820, ios 0x13f1d4 {
 		if (m_backgroundMusicChannel) m_backgroundMusicChannel->stop();
-		m_audioState->m_unkMapIntFloat7.clear();
-		m_audioState->m_unkMapIntFloat8.clear();
-		m_audioState->m_unkMapIntFloat9.clear();
+		m_audioState.m_unkMapIntFloat7.clear();
+		m_audioState.m_unkMapIntFloat8.clear();
+		m_audioState.m_unkMapIntFloat9.clear();
 	}
 	TodoReturn stopAndGetFade(FMOD::Channel*);
 	TodoReturn stopAndRemoveMusic(int);
