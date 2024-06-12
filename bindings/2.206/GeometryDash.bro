@@ -9821,22 +9821,22 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 [[link(android)]]
 class LevelCell : TableViewCell {
 	// virtual ~LevelCell();
-	LevelCell(char const*, float, float);
+	LevelCell(char const*, float, float) = m1 0x1f4a04, imac 0x24a640;
 
-	static LevelCell* create(float, float);
+	static LevelCell* create(float, float) = m1 0x1f4904, imac 0x24a540;
 
 	void loadCustomLevelCell() = win 0xac110, m1 0x1f5430, imac 0x24b030;
 	void loadFromLevel(GJGameLevel*) = win 0xabf30, m1 0x1ea748, imac 0x23fd90;
 	void loadLocalLevelCell() = win 0xaea50, m1 0x1f4aa4, imac 0x24a710;
-	void onClick(cocos2d::CCObject* sender) = win 0xaf4e0;
-	void onToggle(cocos2d::CCObject* sender);
-	void onViewProfile(cocos2d::CCObject* sender) = win 0xaf700;
+	void onClick(cocos2d::CCObject* sender) = win 0xaf4e0, m1 0x1f7d40, imac 0x24dca0;
+	void onToggle(cocos2d::CCObject* sender) = win 0xac0f0, m1 0x1f7d28, imac 0x24dc80;
+	void onViewProfile(cocos2d::CCObject* sender) = win 0xaf700, m1 0x1f7ea4, imac 0x24de00;
 	void updateBGColor(int);
 	TodoReturn updateCellMode(int);
 	TodoReturn updateToggle();
 
-	virtual bool init() = win 0xabf10, m1 0x1f4a88;
-	virtual void draw() = win 0xaf740, m1 0x1f7ee4;
+	virtual bool init() = win 0xabf10, m1 0x1f4a88, imac 0x24a6e0;
+	virtual void draw() = win 0xaf740, m1 0x1f7ee4, imac 0x24de30;
 
 	CCMenuItemSpriteExtra* m_button;
 	GJGameLevel* m_level;
