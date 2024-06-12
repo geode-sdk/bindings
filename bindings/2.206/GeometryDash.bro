@@ -3237,7 +3237,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn toggleSpecialEditButtons();
 	TodoReturn toggleStickyControls(bool);
 	TodoReturn toggleSwipe(cocos2d::CCObject*) = win 0x10c480;
-	void transformObject(GameObject*, EditCommand, bool);
+	void transformObject(GameObject*, EditCommand, bool) = win 0x11c890;
 	void transformObjectCall(cocos2d::CCObject*);
 	void transformObjectCall(EditCommand) = win 0x11c340;
 	void transformObjects(cocos2d::CCArray*, cocos2d::CCPoint, float, float, float, float, float, float) = win 0x11da50;
@@ -6605,7 +6605,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn removeBackground();
 	TodoReturn removeCustomEnterEffects(int, bool);
 	void removeFromGroupParents(GameObject*);
-	void removeFromGroups(GameObject*);
+	void removeFromGroups(GameObject*) = win 0x2148b0;
 	TodoReturn removeFromStickyGroup(GameObject*);
 	TodoReturn removeGroundLayer();
 	TodoReturn removeGroupParent(int);
