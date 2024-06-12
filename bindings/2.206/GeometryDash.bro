@@ -1785,7 +1785,6 @@ class ColorAction : cocos2d::CCObject {
 		m_fromOpacity = state.m_fromOpacity;
 		m_toOpacity = state.m_toOpacity;
 		m_deltaTime = state.m_deltaTime;
-		m_unknown3 = state.m_unknown3;
 		m_copyHSV = state.m_copyHSV;
 	}
 	TodoReturn resetAction();
@@ -1805,7 +1804,6 @@ class ColorAction : cocos2d::CCObject {
 		state.m_fromOpacity = m_fromOpacity;
 		state.m_toOpacity = m_toOpacity;
 		state.m_deltaTime = m_deltaTime;
-		state.m_unknown3 = m_unknown3;
 		state.m_copyHSV = m_copyHSV;
 	}
 	void setupFromMap(gd::map<gd::string, gd::string>&) = win 0x247e40;
@@ -2931,7 +2929,12 @@ class EditorOptionsLayer : GJOptionsLayer {
 [[link(android)]]
 class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	// virtual ~EditorPauseLayer();
-	// EditorPauseLayer();
+	EditorPauseLayer() {
+		m_saved = false;
+		m_guidelinesOffButton = nullptr;
+		m_guidelinesOnButton = nullptr;
+		m_editorLayer = nullptr;
+	}
 
 	static EditorPauseLayer* create(LevelEditorLayer*) = win inline {
 		auto ret = new EditorPauseLayer();
@@ -3106,7 +3109,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	}
 	TodoReturn getGroupCenter(cocos2d::CCArray*, bool) = win 0x11ed20;
 	TodoReturn getGroupInfo(GameObject*, cocos2d::CCArray*, int&, int&, int&);
-	TodoReturn getLimitedPosition(cocos2d::CCPoint) = win 0x11c280;
+	cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint) = win 0x11c280;
 	TodoReturn getModeBtn(char const*, int);
 	TodoReturn getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getRandomStartKey(int);
