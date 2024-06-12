@@ -10227,7 +10227,7 @@ class LevelListCell : TableViewCell {
 	static LevelListCell* create(float, float);
 
 	void loadFromList(GJLevelList*) = win 0xbc320;
-	void onClick(cocos2d::CCObject* sender);
+	void onClick(cocos2d::CCObject* sender) = win 0x0bd700;
 	void onListInfo(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
 	TodoReturn updateBGColor(int);
@@ -10249,20 +10249,20 @@ class LevelListDeleteDelegate {
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
 	// virtual ~LevelListLayer();
 
-	static LevelListLayer* create(GJLevelList*);
+	static LevelListLayer* create(GJLevelList*) = win 0x2e2f60;
 
 	void cloneList();
 	void confirmClone(cocos2d::CCObject*);
 	void confirmDelete(cocos2d::CCObject*);
-	void confirmOwnerDelete(cocos2d::CCObject*);
-	bool init(GJLevelList*);
+	void confirmOwnerDelete(cocos2d::CCObject*) = win 0x2e8070;
+	bool init(GJLevelList*) = win 0x2e3190;
 	void onClaimReward(cocos2d::CCObject* sender);
 	void onDelete();
 	void onDescription(cocos2d::CCObject* sender);
-	void onFavorite(cocos2d::CCObject* sender);
+	void onFavorite(cocos2d::CCObject* sender) = win 0x2e7200;
 	void onInfo(cocos2d::CCObject* sender);
 	void onLike(cocos2d::CCObject* sender);
-	void onListInfo(cocos2d::CCObject* sender);
+	void onListInfo(cocos2d::CCObject* sender) = win 0x2e4c10;
 	void onRefreshLevelList(cocos2d::CCObject* sender);
 	void onSelectIcon(cocos2d::CCObject* sender);
 	void onShare(cocos2d::CCObject* sender);
@@ -10271,15 +10271,15 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	void ownerDelete();
 	static cocos2d::CCScene* scene(GJLevelList*);
 	TodoReturn updateEditMode();
-	TodoReturn updateSideButtons();
-	TodoReturn updateStatsArt();
+	TodoReturn updateSideButtons() = win 0x2e7680;
+	TodoReturn updateStatsArt() = win 0x2e4c70;
 	TodoReturn verifyListName();
 
 	virtual void onEnter() = m1 0x2ed43c;
 	virtual void onExit() = m1 0x2ed474;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x2e63a0, m1 0x2ed888;
 	virtual void loadLevelsFailed(char const*, int) = m1 0x2edb20;
-	virtual void onBack(cocos2d::CCObject* sender) = m1 0x2edf8c;
+	virtual void onBack(cocos2d::CCObject* sender) = win 0x2bc85c, m1 0x2edf8c;
 	virtual void shareCommentClosed(gd::string, ShareCommentLayer*) = win 0x2e7400, m1 0x2ee934;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2e7020, m1 0x2ee4d4;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2e6b50, m1 0x2ede40;
