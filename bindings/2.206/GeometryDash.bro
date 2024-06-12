@@ -1556,7 +1556,7 @@ class ChallengeNode : cocos2d::CCNode {
 	// virtual ~ChallengeNode();
 	inline ChallengeNode() {}
 
-	static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) {
+	static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win inline, m1 0x328294, imac 0x3a1490 {
 		auto ret = new ChallengeNode();
 		if (ret->init(challengeItem, challengesPage, isNew)) {
 			ret->autorelease();
@@ -1566,7 +1566,7 @@ class ChallengeNode : cocos2d::CCNode {
 		return nullptr;
 	}
 
-	bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win 0x85490, m1 0x328808;
+	bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win 0x85490, m1 0x328808, imac 0x3a1a50;
 	void onClaimReward(cocos2d::CCObject* sender);
 	void updateTimeLabel(gd::string);
 
@@ -5861,8 +5861,8 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getDailyLevelKey(int);
 	TodoReturn getDemonLevelKey(GJGameLevel*);
 	gd::string getGauntletRewardKey(int) = win 0x1de640;
-	gd::string getItemKey(int, int) = win 0x1d7230;
-	int getItemUnlockState(int itemID, UnlockType unlockType) {
+	gd::string getItemKey(int, int) = win 0x1d7230, m1 0x5a2d4, imac 0x65010;
+	int getItemUnlockState(int itemID, UnlockType unlockType) = win inline, m1 0x6ad24, imac 0x78400 {
 		auto key = getItemKey(itemID, (int) unlockType);
 		if(auto object = m_unlockedItems->objectForKey(key))
 			return object->getTag();
@@ -6209,7 +6209,7 @@ class GJAccountManager : cocos2d::CCNode {
 		return GJAccountManager::sharedState();
 	}
 
-	static GJAccountManager* sharedState() = win 0x1f1220, m1 0xba1b0;
+	static GJAccountManager* sharedState() = win 0x1f1220, m1 0xba1b0, imac 0xd2800;
 
 	void addDLToActive(char const* tag, cocos2d::CCObject*);
 	void addDLToActive(char const* tag);
@@ -6293,7 +6293,7 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 		m_commentSettings = nullptr;
 	}
 
-	static GJAccountSettingsLayer* create(int a1) {
+	static GJAccountSettingsLayer* create(int a1) = win inline, m1 0x23d89c, imac 0x29b2f0 {
 		GJAccountSettingsLayer* pRet = new GJAccountSettingsLayer();
 		if (pRet && pRet->init(a1)) {
 			pRet->autorelease();
@@ -6306,7 +6306,7 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 	}
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float);
-	bool init(int) = win 0x27FCD0;
+	bool init(int) = win 0x27FCD0, m1 0x23d9b4, imac 0x29b470;
 	void onClose(cocos2d::CCObject* sender);
 	void onCommentSetting(cocos2d::CCObject* sender);
 	void onFriendRequests(cocos2d::CCObject* sender);
@@ -9633,17 +9633,17 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 	// virtual ~LeaderboardsLayer();
 	inline LeaderboardsLayer() {}
 
-	static LeaderboardsLayer* create(LeaderboardState state) {
-        auto ret = new LeaderboardsLayer();
-        if (ret->init(state)) {
-            ret->autorelease();
-            return ret;
-        }
-        delete ret;
-        return nullptr;
+	static LeaderboardsLayer* create(LeaderboardState state) = win inline, m1 0x46fc3c, imac 0x51a6d0 {
+		auto ret = new LeaderboardsLayer();
+		if (ret->init(state)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
 	}
 
-	bool init(LeaderboardState) = win 0x2aed30;
+	bool init(LeaderboardState) = win 0x2aed30, m1 0x46fd08, imac 0x51a7d0;
 	bool isCorrect(char const*);
 	void onBack(cocos2d::CCObject* sender);
 	void onCreators(cocos2d::CCObject* sender);
@@ -11933,7 +11933,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 
 	static PlayerFireBoostSprite* create() = win 0x380cd0;
 
-	void animateFireIn() {
+	void animateFireIn() = win inline, m1 0x396058, imac 0x4211c0 {
 		this->stopAllActions();
 
 		auto scaleto = cocos2d::CCScaleTo::create(0.06f, m_size * 0.6f, m_size * 1.5f);
@@ -11941,12 +11941,12 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 		auto sequence = cocos2d::CCSequence::create(scaleto, callfunc, nullptr);
 		this->runAction(sequence);
 	}
-	void animateFireOut() {
+	void animateFireOut() = win inline, m1 0x3960d8, imac 0x421230 {
 		this->stopAllActions();
 		auto action = cocos2d::CCScaleTo::create(0.4f, 0.01f, 0.01f);
 		this->runAction(action);
 	}
-	void loopFireAnimation() = win 0x380dd0;
+	void loopFireAnimation() = win 0x380dd0, m1 0x395d88, imac 0x420f00;
 
 	virtual bool init() = m1 0x39aa50;
 
