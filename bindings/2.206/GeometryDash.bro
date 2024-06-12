@@ -7774,7 +7774,7 @@ class GJGameState {
 	GameObject* m_unkGameObjPtr2;
 	cocos2d::CCPoint m_cameraPosition;
 	bool m_unkBool10;
-	unsigned int m_unkUint8;
+	float m_levelFlipping;
 	bool m_unkBool11;
 	bool m_unkBool12;
 	bool m_isDualMode;
