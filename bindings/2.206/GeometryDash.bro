@@ -4165,7 +4165,12 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn startMusic(int, int, int, int, bool, int);
 	TodoReturn stop();
 	void stopAllEffects() = win 0x58a00, imac 0x3e2040, m1 0x362154, ios 0x13f128;
-	void stopAllMusic() = ios 0x13f1d4;
+	void stopAllMusic() = win inline, m1 0x362440, imac 0x3e2820, ios 0x13f1d4 {
+		if (m_backgroundMusicChannel) m_backgroundMusicChannel->stop();
+		m_audioState->m_unkMapIntFloat7.clear();
+		m_audioState->m_unkMapIntFloat8.clear();
+		m_audioState->m_unkMapIntFloat9.clear();
+	}
 	TodoReturn stopAndGetFade(FMOD::Channel*);
 	TodoReturn stopAndRemoveMusic(int);
 	TodoReturn stopChannel(FMOD::Channel*, bool, float);
@@ -4194,10 +4199,10 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	virtual void update(float) = win 0x54510, m1 0x362540, imac 0x3e2ac0;
 
-	PAD = win 0xc4, android32 0x54, android64 0xac, imac 0x7c, m1 0x7c;
+	PAD = win 0xc4, android32 0x54, android64 0xac, mac 0x7c;
 	float m_musicVolume;
 	float m_sfxVolume;
-	PAD = win 0x8, android32 0x8, android64 0x8, imac 0x8, m1 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
 	float m_pulse1;
 	float m_pulse2;
 	float m_pulse3;
@@ -4213,6 +4218,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	int m_version;
 	void* m_extraDriverData;
 	int m_musicOffset;
+	FMODAudioState m_audioState;
 }
 
 [[link(android)]]
