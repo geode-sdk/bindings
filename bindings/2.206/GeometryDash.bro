@@ -1677,7 +1677,7 @@ class CheckpointGameObject : EffectGameObject {
 	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x188a1c, imac 0x1cee70;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x18a010, imac 0x1d0730;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x18971c, imac 0x1cfc50;
-	virtual void triggerActivated(float) = m1 0x188a34, imac 0x1cee90;
+	virtual void triggerActivated(float) = m1 0x188a34, imac 0x1cee90, win 0x48d650;
 	virtual TodoReturn restoreObject() = m1 0x18a194, imac 0x1d08e0;
 	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x189380;
 }
@@ -5571,7 +5571,9 @@ class GameObject : CCSpritePlus {
 	float m_currentScaleX;
 	float m_currentScaleY;
 
-	PAD = android32 0x10, win 0x10, android64 0x10, mac 0x10;
+	PAD = android32 0x3, win 0x3, android64 0x3, mac 0x3;
+	bool m_unk3ef;
+	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
 
 	// property 343
 	short m_enterChannel;
@@ -11846,15 +11848,16 @@ class PlayerCheckpoint : cocos2d::CCNode {
 	float m_speed;
 	bool m_isHidden;
 	bool m_isGoingLeft;
-	uint8_t m_unkBytes2[27];
-	uint64_t m_maybeAPointer;
+	uint8_t m_unkBytes2[34];
+	bool m_hideAttemptCount;
+	uint8_t m_unkBytes3[7];
 	bool m_unkBool;
 	float m_unkFloat1;
 	int m_possiblyFlags;
 	int m_timeOrPercentRelated;
-	uint8_t m_unkBytes3[4];
+	uint8_t m_unkBytes4[4];
 	gd::vector<float> m_yPositionVector;
-	uint8_t m_unkBytes4[8];
+	uint8_t m_unkBytes5[8];
 }
 
 [[link(android)]]
