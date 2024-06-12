@@ -774,6 +774,9 @@ class CCAnimateFrameCache : cocos2d::CCObject {
 class CCBlockLayer : cocos2d::CCLayerColor {
 	// virtual ~CCBlockLayer();
 
+	CCBlockLayer() {
+		m_unknown = nullptr;
+	}
 	static CCBlockLayer* create();
 
 	TodoReturn decrementForcePrio();
@@ -3105,7 +3108,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getCycledObject(cocos2d::CCArray*, bool);
 	TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&);
 	cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint pos) = win inline {
-		return this->getLimitedPosition(std::floorf(pos.x), std::floorf(pos.y));
+		return this->getLimitedPosition(ccp(std::floorf(pos.x), std::floorf(pos.y)));
 	}
 	TodoReturn getGroupCenter(cocos2d::CCArray*, bool) = win 0x11ed20;
 	TodoReturn getGroupInfo(GameObject*, cocos2d::CCArray*, int&, int&, int&);
@@ -3132,7 +3135,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn menuItemFromObjectString(gd::string, int);
 	cocos2d::CCPoint moveForCommand(EditCommand command);
 	void moveGamelayer(cocos2d::CCPoint) = win 0xdf250;
-	void moveObject(GameObject*, cocos2d::CCPoint);
+	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x11be20;
 	void moveObjectCall(cocos2d::CCObject*);
 	void moveObjectCall(EditCommand) = win 0x11bb90;
 	TodoReturn offsetForKey(int) = win 0x122780;
@@ -5321,7 +5324,7 @@ class GameObject : CCSpritePlus {
 		if (!m_groups) {
 			auto groups = new short[size];
 			memset(groups, 0, size * sizeof(short));
-			m_groups = groups;
+			m_groups = reinterpret_cast<decltype(m_groups)>(groups);
 		}
 	}
 	TodoReturn createOpacityGroupContainer(int);
