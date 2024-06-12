@@ -11976,7 +11976,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void collidedWithSlope(float dt, GameObject* object , bool forced);
 	void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x36d8a0;
 	TodoReturn convertToClosestRotation(float);
-	TodoReturn copyAttributes(PlayerObject*);
+	void copyAttributes(PlayerObject*) = win 0x37e4b0;
 	void createFadeOutDartStreak() = win 0x376690;
 	void createRobot(int) = win 0x366050;
 	void createSpider(int) = win 0x366410;
