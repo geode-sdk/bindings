@@ -11982,7 +11982,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void collidedWithSlope(float dt, GameObject* object , bool forced);
 	void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x36d8a0;
 	TodoReturn convertToClosestRotation(float);
-	TodoReturn copyAttributes(PlayerObject*);
+	void copyAttributes(PlayerObject*) = win 0x37e4b0, imac 0x4249f0, m1 0x3994b4;
 	void createFadeOutDartStreak() = win 0x376690;
 	void createRobot(int) = win 0x366050;
 	void createSpider(int) = win 0x366410;
@@ -11995,7 +11995,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	}
 	TodoReturn disablePlayerControls();
 	void disableSwingFire() = win 0x378f10, m1 0x3924d4, imac 0x41d060;
-	void doReversePlayer(bool) = win 0x376540;
+	void doReversePlayer(bool) = win 0x376540, m1 0x383584, imac 0x40b5e0;
 	void enableCustomGlowColor(cocos2d::_ccColor3B const& color) {
 		m_hasCustomGlowColor = true;
 		m_glowColor = color;
@@ -12004,7 +12004,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void exitPlatformerAnimateJump();
 	void fadeOutStreak2(float) = win 0x37e1a0, m1 0x392438, imac 0x41cfd0;
 	void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor);
-	void flipGravity(bool, bool) = win 0x3781e0;
+	void flipGravity(bool, bool) = win 0x3781e0, m1 0x3848b4, imac 0x40c9c0;
 	TodoReturn flipMod();
 	void gameEventTriggered(int p0, int p1) = win inline, m1 0xf2c98 {
 		if (this->m_gameLayer)
@@ -12125,18 +12125,18 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn switchedDirTo(PlayerButton) = win 0x375e60;
 	void switchedToMode(GameObjectType) = win 0x379e40;
 	TodoReturn testForMoving(float, GameObject*);
-	void toggleBirdMode(bool, bool) = win 0x378830;
-	void toggleDartMode(bool, bool) = win 0x378fa0;
-	void toggleFlyMode(bool, bool) = win 0x378500;
+	void toggleBirdMode(bool, bool) = win 0x378830, m1 0x395124, imac 0x4201d0;
+	void toggleDartMode(bool, bool) = win 0x378fa0, m1 0x396120, imac 0x421270;
+	void toggleFlyMode(bool, bool) = win 0x378500, m1 0x3946ec, imac 0x41f6e0;
 	void toggleGhostEffect(GhostType) = win 0x37ce40, m1 0x391a70, imac 0x41c590;
 	void togglePlatformerMode(bool val) {
         m_isPlatformer = val;
     }
-	void togglePlayerScale(bool, bool) = win 0x37e710;
-	void toggleRobotMode(bool, bool) = win 0x379700;
-	void toggleRollMode(bool, bool) = win 0x379580;
-	void toggleSpiderMode(bool, bool) = win 0x379a80;
-	void toggleSwingMode(bool, bool) = win 0x378b30;
+	void togglePlayerScale(bool, bool) = win 0x37e710, m1 0x3916bc, imac 0x41c110;
+	void toggleRobotMode(bool, bool) = win 0x379700, m1 0x396af0, imac 0x421cf0;
+	void toggleRollMode(bool, bool) = win 0x379580, m1 0x396724, imac 0x421930;
+	void toggleSpiderMode(bool, bool) = win 0x379a80, m1 0x396f64, imac 0x4221b0;
+	void toggleSwingMode(bool, bool) = win 0x378b30, m1 0x395760, imac 0x420890;
 	void toggleVisibility(bool) = win 0x369590;
 	TodoReturn touchedObject(GameObject*);
 	void tryPlaceCheckpoint();
@@ -12198,7 +12198,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updateStreakBlend(bool);
 	TodoReturn updateStreaks(float);
 	void updateSwingFire() = win 0x378de0;
-	void updateTimeMod(float, bool) = win 0x37ed60;
+	void updateTimeMod(float, bool) = win 0x37ed60, m1 0x37e3e4, imac 0x405680;
 	TodoReturn usingWallLimitedMode();
 	TodoReturn yStartDown();
 	TodoReturn yStartUp();
