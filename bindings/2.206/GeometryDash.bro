@@ -515,8 +515,8 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	// virtual ~BoomScrollLayer();
 	BoomScrollLayer();
 
-	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2, cocos2d::CCArray* unk3, DynamicScrollDelegate* delegate) = win 0x3c1e0, m1 0x29dd98, ios 0x1316d8;
-	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2) {
+	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2, cocos2d::CCArray* unk3, DynamicScrollDelegate* delegate) = win 0x3c1e0, m1 0x32e06c, imac 0x3a7d30, ios 0x1316d8;
+	static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2) = win inline, m1 0x32e43c, imac 0x3a8120 {
 		return BoomScrollLayer::create(pages, unk1, unk2, nullptr, nullptr);
 	}
 
@@ -528,7 +528,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	int getRelativePageForNum(int);
 	TodoReturn getRelativePosForPage(int);
 	int getTotalPages() = ios 0x132154;
-	bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c3b0;
+	bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c3b0, m1 0x32e124, imac 0x3a7dc0;
 	void instantMoveToPage(int) = win 0x3cf40, ios 0x132724;
 	void moveToPage(int) = ios 0x1327fc;
 	void moveToPageEnded();
@@ -1557,13 +1557,13 @@ class ChallengeNode : cocos2d::CCNode {
 	inline ChallengeNode() {}
 
 	static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) {
-        auto ret = new ChallengeNode();
-        if (ret->init(challengeItem, challengesPage, isNew)) {
-            ret->autorelease();
-            return ret;
-        }
-        delete ret;
-        return nullptr;
+		auto ret = new ChallengeNode();
+		if (ret->init(challengeItem, challengesPage, isNew)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
 	}
 
 	bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win 0x85490, m1 0x328808;
@@ -7231,39 +7231,39 @@ class GJDifficultySprite : cocos2d::CCSprite {
 [[link(android)]]
 class GJDropDownLayer : cocos2d::CCLayerColor {
 	// virtual ~GJDropDownLayer();
-    inline GJDropDownLayer() {
-        m_endPosition = cocos2d::CCPointMake(0.f, 0.f);
-        m_startPosition = cocos2d::CCPointMake(0.f, 0.f);
-        m_buttonMenu = nullptr;
-        m_listLayer = nullptr;
-        m_mainLayer = nullptr;
-        m_closeOnHide = false;
-        m_delegate = nullptr;
+	inline GJDropDownLayer() {
+		m_endPosition = cocos2d::CCPointMake(0.f, 0.f);
+		m_startPosition = cocos2d::CCPointMake(0.f, 0.f);
+		m_buttonMenu = nullptr;
+		m_listLayer = nullptr;
+		m_mainLayer = nullptr;
+		m_closeOnHide = false;
+		m_delegate = nullptr;
 		m_fastMenu = false;
-    }
+	}
 
-	bool init(char const*, float, bool) = win 0x2454f0, m1 0x519eac, ios 0x3bb304;
-	bool init(char const* title) {
+	bool init(char const*, float, bool) = win 0x2454f0, m1 0x519eac, imac 0x5f18a0, ios 0x3bb304;
+	bool init(char const* title) = win inline, m1 0x51a2bc, imac 0x5f1cd0 {
 		return init(title, 220.0f, false);
 	}
 
-    static GJDropDownLayer* create(const char* title, float height, bool p2) {
-        GJDropDownLayer* pRet = new GJDropDownLayer();
-        if (pRet && pRet->init(title, height, p2)) {
-            pRet->autorelease();
-            return pRet;
-        }
-        CC_SAFE_DELETE(pRet);
-        return nullptr;
-    }
-	static GJDropDownLayer* create(const char* title) {
+	static GJDropDownLayer* create(const char* title, float height, bool p2) = win inline, m1 0x519d90, imac 0x5f1770 {
 		GJDropDownLayer* pRet = new GJDropDownLayer();
-        if (pRet && pRet->init(title)) {
-            pRet->autorelease();
-            return pRet;
-        }
-        CC_SAFE_DELETE(pRet);
-        return nullptr;
+		if (pRet && pRet->init(title, height, p2)) {
+			pRet->autorelease();
+			return pRet;
+		}
+		CC_SAFE_DELETE(pRet);
+		return nullptr;
+	}
+	static GJDropDownLayer* create(const char* title) = win inline, m1 0x51a2ac, imac 0x5f1cb0 {
+		GJDropDownLayer* pRet = new GJDropDownLayer();
+		if (pRet && pRet->init(title)) {
+			pRet->autorelease();
+			return pRet;
+		}
+		CC_SAFE_DELETE(pRet);
+		return nullptr;
 	}
 
 	virtual void draw() = win 0x41870, m1 0x51a640;
