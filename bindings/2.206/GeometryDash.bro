@@ -7179,7 +7179,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         m_buttonMenu = nullptr;
         m_listLayer = nullptr;
         m_mainLayer = nullptr;
-        m_hidden = false;
+        m_closeOnHide = false;
         m_delegate = nullptr;
     }
 
