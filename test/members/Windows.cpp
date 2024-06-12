@@ -115,7 +115,7 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkGameObjPtr1, 0x250);
 GEODE_MEMBER_CHECK(GJGameState, m_unkGameObjPtr2, 0x258);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraPosition, 0x260);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool10, 0x268);
-GEODE_MEMBER_CHECK(GJGameState, m_unkUint8, 0x26c);
+GEODE_MEMBER_CHECK(GJGameState, m_levelFlipping, 0x26c);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool11, 0x270);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool12, 0x271);
 GEODE_MEMBER_CHECK(GJGameState, m_isDualMode, 0x272);

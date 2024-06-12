@@ -2550,7 +2550,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onInfo(cocos2d::CCObject* sender);
 	void onMore(cocos2d::CCObject* sender);
 	void onPlayback(cocos2d::CCObject* sender);
-	void onSelect(cocos2d::CCObject* sender);
+	void onSelect(cocos2d::CCObject* sender) = win 0xc8170;
 	TodoReturn processNextMultiAsset();
 	void showError(bool) = win 0xca910;
 	void startDownload();
