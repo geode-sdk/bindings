@@ -7230,9 +7230,9 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	cocos2d::CCMenu* m_buttonMenu;
 	GJListLayer* m_listLayer;
 	cocos2d::CCLayer* m_mainLayer;
-	bool m_hidden;
+	bool m_closeOnHide;
 	GJDropDownLayerDelegate* m_delegate;
-	bool m_unknown;
+	bool m_fastMenu;
 }
 
 [[link(android)]]
