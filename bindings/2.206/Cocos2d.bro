@@ -1774,7 +1774,7 @@ class cocos2d::CCMenuItem {
 
 	int getScriptTapHandler();
 
-	void setTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = ios inline, imac 0x3c2210, m1 0x345668 {
+	void setTarget(cocos2d::CCObject* rec, cocos2d::SEL_MenuHandler selector) = ios inline, imac 0x3c2210, m1 0x345668 {
 		m_pListener = rec;
 		m_pfnSelector = selector;
 	}
