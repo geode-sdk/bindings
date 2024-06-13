@@ -2709,17 +2709,17 @@ class DemonFilterSelectLayer : FLAlertLayer {
 	virtual void keyBackClicked() = win 0x2f7a10, m1 0x55c354;
 }
 
-// 2.205
 [[link(android)]]
-class DemonInfoPopup {
+class DemonInfoPopup : FLAlertLayer {
 	// ~DemonInfoPopup();
 
-	static DemonInfoPopup* create(int, int, int, int, int, int, int, int, int, int, int, int);
+	static DemonInfoPopup* create(int, int, int, int, int, int, int, int, int, int, int, int) = win 0x3a3280, m1 0x6d2c7c, imac 0x7cde90;
+	static DemonInfoPopup* createFromString(gd::string) = win 0x3a2eb0, m1 0x6d0a5c, imac 0x7cbb30;
 
-	TodoReturn createFromString(gd::string);
-	bool init(int, int, int, int, int, int, int, int, int, int, int, int);
-	TodoReturn keyBackClicked();
-	void onClose(cocos2d::CCObject* sender);
+	bool init(int, int, int, int, int, int, int, int, int, int, int, int) = win 0x3a33e0, m1 0x6d2dd8, imac 0x7ce020;
+
+	virtual void onClose(cocos2d::CCObject* sender) = m1 0x6d371c, imac 0x7ce980;
+	virtual void keyBackClicked() = m1 0x6d3758, imac 0x7ce9b0;
 }
 
 [[link(android)]]
@@ -12685,6 +12685,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	void onRequests(cocos2d::CCObject* sender) = win 0x3A20F0;
 	void onSendMessage(cocos2d::CCObject* sender) = win 0x3A01E0;
 	void onSettings(cocos2d::CCObject* sender) = win 0x3A1EE0;
+	void onStatInfo(cocos2d::CCObject* sender) = win 0x39f6a0, m1 0x6cdfe0, imac 0x7c8e70;
 	void onTwitch(cocos2d::CCObject* sender) = win 0x3A1D40;
 	void onTwitter(cocos2d::CCObject* sender) = win 0x3A1BB0;
 	void onUpdate(cocos2d::CCObject* sender) = win 0x39C360;
@@ -15766,17 +15767,17 @@ class SpritePartDelegate {
 }
 
 [[link(android)]]
-class StarInfoPopup {
+class StarInfoPopup : FLAlertLayer {
 	// virtual ~StarInfoPopup();
 
-	static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool);
+	static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool) = win 0x3a42a0, m1 0x6d37d4, imac 0x7cea20;
+	static StarInfoPopup* createFromString(gd::string) = win 0x3a3d10, m1 0x6d05b0, imac 0x7cb650;
+	static StarInfoPopup* createFromStringMoons(gd::string) = win 0x3a3ff0, m1 0x6d081c, imac 0x7cb8e0;
 
-	TodoReturn createFromString(gd::string);
-	TodoReturn createFromStringMoons(gd::string);
-	bool init(int, int, int, int, int, int, int, int, int, bool);
-	void onClose(cocos2d::CCObject* sender);
+	bool init(int, int, int, int, int, int, int, int, int, bool) = win 0x3a43e0, m1 0x6d392c, imac 0x7cebb0;
 
-	virtual void keyBackClicked();
+	virtual void onClose(cocos2d::CCObject* sender) = m1 0x6d4180, imac 0x7cf3a0;
+	virtual void keyBackClicked() = m1 0x6d41bc, imac 0x7cf3d0;
 }
 
 [[link(android)]]
