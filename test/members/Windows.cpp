@@ -225,7 +225,15 @@ GEODE_MEMBER_CHECK(CCScrollLayerExt, m_verticalScrollbar, 0x1c0);
 GEODE_MEMBER_CHECK(CCScrollLayerExt, m_contentLayer, 0x1d8);
 
 
+GEODE_SIZE_CHECK(FMODAudioEngine, 0x888);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicChannels, 0x140);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x230);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_audioState, 0x270);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_channelIDToChannel, 0x648);
+
+GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat7, 0x1b8);
+GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat8, 0x1f8);
+GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat9, 0x238);
 
 GEODE_SIZE_CHECK(CCTextInputNode, 0x268);
 

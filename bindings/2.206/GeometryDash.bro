@@ -2549,7 +2549,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void onGetSongInfo(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
 	void onMore(cocos2d::CCObject* sender);
-	void onPlayback(cocos2d::CCObject* sender);
+	void onPlayback(cocos2d::CCObject* sender) = win 0xc81d0;
 	void onSelect(cocos2d::CCObject* sender) = win 0xc8170;
 	TodoReturn processNextMultiAsset();
 	void showError(bool) = win 0xca910;
@@ -4061,7 +4061,7 @@ class FLAlertLayerProtocol {
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 }
 
-[[link(android)]]
+[[link(android), depends(FMODAudioState), depends(FMODMusic)]]
 class FMODAudioEngine : cocos2d::CCNode {
 	// virtual ~FMODAudioEngine();
 	FMODAudioEngine() = win 0x52250, ios 0x145344;
@@ -4099,7 +4099,10 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void fadeInMusic(float, int) = win 0x5b170;
 	float fadeOutMusic(float, int) = win 0x5b2b0, m1 0x36bec0, imac 0x3ef250;
 	TodoReturn getActiveMusic(int);
-	FMOD::Channel* getActiveMusicChannel(int) = m1 0x364ca8, imac 0x3e5fd0; // win inlined
+	FMOD::Channel* getActiveMusicChannel(int musicChannel) = m1 0x364ca8, imac 0x3e5fd0, win inline {
+		// TODO: this might do other checks or whatever but i cant be bothered
+		return m_channelIDToChannel[m_musicChannels[musicChannel].m_channelID];
+	}
 	float getBackgroundMusicVolume() = win inline, m1 0x36927c, ios 0x14341c {
 		return m_musicVolume;
 	}
@@ -4123,7 +4126,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn lengthForSound(gd::string path);
 	TodoReturn loadAndPlayMusic(gd::string path, unsigned int p1, int p2);
 	TodoReturn loadAudioState(FMODAudioState&);
-	void loadMusic(gd::string path, float speed, float p2, float volume, bool p4, int p5, int p6) = win 0x592b0;
+	void loadMusic(gd::string path, float speed, float p2, float volume, bool shouldLoop, int p5, int p6) = win 0x592b0;
 	void loadMusic(gd::string path);
 	TodoReturn pauseAllAudio();
 	TodoReturn pauseAllEffects();
@@ -4135,7 +4138,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void playEffect(gd::string path) = win 0x55ee0, m1 0x366c7c, imac 0x3e8960;
 	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56050, m1 0x364de4, imac 0x3e6190;
 	TodoReturn playEffectAsync(gd::string path);
-	void playMusic(gd::string path, bool p1, float fadeInTime, int channel) = win 0x59140;
+	void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x59140;
 	void preloadEffect(gd::string path) = win 0x583b0;
 	void preloadEffectAsync(gd::string path);
 	TodoReturn preloadMusic(gd::string path, bool p1, int p2);
@@ -4199,7 +4202,11 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	virtual void update(float) = win 0x54510, m1 0x362540, imac 0x3e2ac0;
 
-	PAD = win 0xc4, android32 0x54, android64 0xac, mac 0x7c;
+	// not sure on the name, the system is quite confusing
+	gd::unordered_map<int, FMODMusic> m_musicChannels;
+	// key and value types are obviously wrong
+	gd::unordered_map<void*, void*> m_unkMap180;
+	gd::unordered_map<void*, void*> m_unkMap1c0;
 	float m_musicVolume;
 	float m_sfxVolume;
 	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
@@ -4219,6 +4226,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void* m_extraDriverData;
 	int m_musicOffset;
 	FMODAudioState m_audioState;
+	PAD = win 0x58;
+	gd::unordered_map<int, FMOD::Channel*> m_channelIDToChannel;
+	PAD = win 0x200;
 }
 
 [[link(android)]]
@@ -4257,6 +4267,13 @@ class FMODLevelVisualizer : cocos2d::CCNode {
 	void updateVisualizer(float, float, float) = win 0x28cb10, imac 0x2ac670;
 
 	virtual bool init() = imac 0x2ac230, m1 0x24d36c;
+}
+
+class FMODMusic {
+	int m_channelID;
+	void* m_unk; // something allocated in fmod, dont know which class though
+	gd::string m_filePath;
+	// there might be other things, hard to know the size
 }
 
 [[link(android)]]
