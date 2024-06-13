@@ -11561,11 +11561,28 @@ class OptionsCell : TableViewCell {
 [[link(android)]]
 class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	// virtual ~OptionsLayer();
+	inline OptionsLayer() {
+		m_optionsMenu = nullptr;
+		m_unknown = nullptr;
+		m_layerChoice = 0;
+		m_recordReplays = false;
+		m_musicSlider = nullptr;
+		m_sfxSlider = nullptr;
+		m_lastVaultDialog = -1;
+	}
 
-	static OptionsLayer* create() = ios 0xedfcc;
+	static OptionsLayer* create() = win inline, ios 0xedfcc {
+		auto ret = new OptionsLayer();
+		if (ret->init("Settings")) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	TodoReturn exitLayer();
+	void exitLayer();
 	void musicSliderChanged(cocos2d::CCObject*) = win 0x351110, ios 0xeec30;
 	void onAccount(cocos2d::CCObject* sender) = ios 0xee9dc;
 	void onHelp(cocos2d::CCObject* sender) = ios 0xee9ec;
@@ -11579,11 +11596,19 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void onSupport(cocos2d::CCObject* sender) = ios 0xeea48;
 	void onVideo(cocos2d::CCObject* sender);
 	void sfxSliderChanged(cocos2d::CCObject*) = win 0x351210, ios 0xeec9c;
-	TodoReturn tryEnableRecord();
+	void tryEnableRecord();
 
 	virtual void customSetup() = win 0x3504c0, m1 0x6ad80c, ios 0xee0d4;
-	virtual void layerHidden() = m1 0x6aebcc;
+	virtual void layerHidden() = win 0x351cb0, m1 0x6aebcc;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
+
+	cocos2d::CCMenu* m_optionsMenu;
+	void* m_unknown;
+	int m_layerChoice;
+	bool m_recordReplays;
+	Slider* m_musicSlider;
+	Slider* m_sfxSlider;
+	int m_lastVaultDialog;
 }
 
 [[link(android)]]
