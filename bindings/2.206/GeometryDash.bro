@@ -200,12 +200,12 @@ class AchievementManager : cocos2d::CCNode {
 class AchievementNotifier : cocos2d::CCNode {
 	// virtual ~AchievementNotifier();
 
-	static AchievementNotifier* sharedState() = win 0x39cd0, imac 0x7cf810, m1 0x6d44fc;
+	static AchievementNotifier* sharedState() = win 0x39cd0, imac 0x7cf810, m1 0x6d44fc, ios 0x226bb8;
 
-	TodoReturn achievementDisplayFinished();
-	TodoReturn notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
+	void achievementDisplayFinished();
+	void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
 	void showNextAchievement();
-	void willSwitchToScene(cocos2d::CCScene* scene) = win inline, m1 0x6d4754, imac 0x7cfa80 {
+	void willSwitchToScene(cocos2d::CCScene* scene) = win inline, m1 0x6d4754, imac 0x7cfa80, ios 0x226dec {
 		// cocos2d::CCScene* previousScene = reinterpret_cast<cocos2d::CCScene*>(this->m_unknown2);
 		cocos2d::CCScene* previousScene = nullptr;
 
@@ -332,7 +332,7 @@ class AnimatedSpriteDelegate {
 
 [[link(android)]]
 class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
-	// virtual ~AppDelegate();
+	// virtual ~AppDelegate() = ios 0x1b7c90;
 	inline static AppDelegate* get() {
         return static_cast<AppDelegate*>(cocos2d::CCApplication::sharedApplication());
     }
@@ -350,13 +350,13 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	void setupGLView() = win 0x80f50;
 	void showLoadingCircle(bool, bool, bool);
 
-	virtual bool applicationDidFinishLaunching() = win 0x81370, m1 0x585084, imac 0x6692b0;
-	virtual void applicationDidEnterBackground() = win 0x81720, m1 0x5852fc, imac 0x669550;
-	virtual void applicationWillEnterForeground() = win 0x817a0, m1 0x585434, imac 0x669690;
-	virtual void applicationWillBecomeActive() = win 0x816c0, m1 0x585218, imac 0x669450;
-	virtual void applicationWillResignActive() = win 0x81710, m1 0x58522c, imac 0x669470;
-	virtual void trySaveGame(bool) = win 0x81e30, m1 0x5856b4, imac 0x669920;
-	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x81f10, m1 0x58578c, imac 0x669a00;
+	virtual bool applicationDidFinishLaunching() = win 0x81370, m1 0x585084, imac 0x6692b0, ios 0x278e40;
+	virtual void applicationDidEnterBackground() = win 0x81720, m1 0x5852fc, imac 0x669550, ios 0x279024;
+	virtual void applicationWillEnterForeground() = win 0x817a0, m1 0x585434, imac 0x669690, ios 0x2790dc;
+	virtual void applicationWillBecomeActive() = win 0x816c0, m1 0x585218, imac 0x669450, ios 0x278fa4;
+	virtual void applicationWillResignActive() = win 0x81710, m1 0x58522c, imac 0x669470, ios 0x278fbc;
+	virtual void trySaveGame(bool) = win 0x81e30, m1 0x5856b4, imac 0x669920, ios 0x2792a8;
+	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x81f10, m1 0x58578c, imac 0x669a00, ios 0x279378;
 
 	PAD = win 0x4, android32 0xC, android64 0x18;
 	cocos2d::CCScene* m_runningScene;
@@ -4034,7 +4034,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x51c90, m1 0x409718, imac 0x4a61b0, ios 0x2bce28;
 	virtual void registerWithTouchDispatcher() = win 0x51ee0, m1 0x4099dc, imac 0x4a6460, ios 0x2bd0a0;
 	virtual void keyBackClicked() = win 0x51a00, m1 0x4093d0, imac 0x4a5ed0;
-	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x51980, m1 0x409334, imac 0x4a5e20;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x51980, m1 0x409334, imac 0x4a5e20, ios 0x2bcc1c;
 	virtual void show() = win 0x51d10, m1 0x409838, imac 0x4a62b0, ios 0x2bcf18;
 
 	cocos2d::CCMenu* m_buttonMenu;
@@ -10429,7 +10429,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	bool init(GJGameLevel*) = win 0x2f9570, imac 0x43f130;
 	void onInfo(cocos2d::CCObject* sender) = win 0x2fd820;
 	void onMoreGames(cocos2d::CCObject* sender);
-	void onPlay(cocos2d::CCObject* sender) = win 0x2fd2e0, imac 0x43e730, m1 0x3b0b5c;
+	void onPlay(cocos2d::CCObject* sender) = win 0x2fd2e0, imac 0x43e730, m1 0x3b0b5c, ios 0x40c32c;
 	void onSecretDoor(cocos2d::CCObject* sender);
 	void onTheTower(cocos2d::CCObject* sender) = win 0x2fb760;
 	TodoReturn playCoinEffect();

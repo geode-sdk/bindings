@@ -555,7 +555,7 @@ class cocos2d::CCNode {
 	unsigned int numberOfRunningActions();
 	void pauseSchedulerAndActions();
 	void qsortAllChildrenWithIndex();
-	void resumeSchedulerAndActions();
+	void resumeSchedulerAndActions() = ios 0x24c6fc;
 	cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x2700d0, m1 0x216408, ios 0x24ca08;
 	void schedule(cocos2d::SEL_SCHEDULE) = imac 0x270300, m1 0x2165bc;
 	void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x270360, m1 0x2165fc;
