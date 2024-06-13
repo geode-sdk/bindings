@@ -174,7 +174,7 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
 	TodoReturn notifyAchievementWithID(char const*);
 	TodoReturn percentageForCount(int, int);
-	int percentForAchievement(char const*);
+	int percentForAchievement(char const*) = imac 0x790af0;
 	void reportAchievementWithID(char const*, int, bool);
 	void reportPlatformAchievementWithID(char const*, int);
 	void resetAchievement(char const*);
@@ -2737,13 +2737,13 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	void animateIn(DialogAnimationType) = ios 0x8aff8;
 	void animateInDialog();
 	void animateInRandomSide() = win 0xd09b0;
-	static DialogLayer* createDialogLayer(DialogObject*, cocos2d::CCArray*, int) = win 0xcfcd0, ios 0x8a28c;
+	static DialogLayer* createDialogLayer(DialogObject*, cocos2d::CCArray*, int) = win 0xcfcd0, ios 0x8a28c, imac 0x3cac70;
 	static DialogLayer* createWithObjects(cocos2d::CCArray*, int) = ios 0x8a318, imac 0x3cadb0;
 	TodoReturn displayDialogObject(DialogObject*) = win 0xd02e0;
 	TodoReturn displayNextObject() = win 0xd0280;
 	TodoReturn finishCurrentAnimation();
 	TodoReturn handleDialogTap();
-	bool init(DialogObject*, cocos2d::CCArray*, int) = win 0xcfe20;
+	bool init(DialogObject*, cocos2d::CCArray*, int) = win 0xcfe20, imac 0x3cadd0;
 	TodoReturn onClose();
 	void updateChatPlacement(DialogChatPlacement) = ios 0x8ab34;
 	void updateNavButtonFrame() = win 0xd0630;
@@ -4513,7 +4513,7 @@ class GameLevelManager : cocos2d::CCNode {
 	gd::string getLengthStr(bool, bool, bool, bool, bool, bool);
 	const char *getLenKey(int len);
 	bool getLenVal(int);
-	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x155fd0;
+	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x155fd0, imac 0x557010;
 	const char* getLevelDownloadKey(int levelID, bool isGauntlet){
 		return cocos2d::CCString::createWithFormat("%i_%i", levelID, isGauntlet)->getCString();
 	}
@@ -4733,7 +4733,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void updateLevelRewards(GJGameLevel*) = win 0x1419b0;
 	void updateSavedLevelList(GJLevelList*);
 	void updateUsernames();
-	void updateUserScore() = win 0x14ffb0, ios 0xa4158;
+	void updateUserScore() = win 0x14ffb0, ios 0xa4158, imac 0x54f880;
 	void uploadAccountComment(gd::string);
 	void uploadComment(gd::string, CommentType, int, int);
 	void uploadFriendRequest(int, gd::string);
@@ -8687,7 +8687,7 @@ class GJSearchObject : cocos2d::CCNode {
 	char const* getKey() = win 0x16c370, m1 0x498c5c, imac 0x547b90;
 	char const* getNextPageKey();
 	GJSearchObject* getNextPageObject() = imac 0x5687d0;
-	GJSearchObject* getPageObject(int page) = win 0x16c4c0;
+	GJSearchObject* getPageObject(int page) = win 0x16c4c0, imac 0x5687f0;
 	GJSearchObject* getPrevPageObject();
 	char const* getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x16c630;
 	bool init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
@@ -9405,7 +9405,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, cocos2d::CCPoint) = win 0x2aa3b0;
 	bool init(GJGameLevel*, GJUserScore*, GJLevelList*) = win 0x2a8470, m1 0x6C0A74, imac 0x7BA6B0;
 	bool isCorrect(char const*);
-	void loadPage(int, bool) = win 0x2abd50;
+	void loadPage(int, bool) = win 0x2abd50, imac 0x7bd7a0;
 	void onClose(cocos2d::CCObject* sender) = win 0x2abb90;
 	void onComment(cocos2d::CCObject* sender) = win 0x2aaff0;
 	void onCopyLevelID(cocos2d::CCObject* sender) = win 0x2aac70;
@@ -11039,7 +11039,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	TodoReturn deleteSelected();
 	bool init(bool);
 	bool isCorrect(char const*);
-	void loadPage(int);
+	void loadPage(int) = imac 0x22a2b0;
 	void onClose(cocos2d::CCObject* sender);
 	void onDeleteSelected(cocos2d::CCObject* sender);
 	void onNextPage(cocos2d::CCObject* sender) = imac 0x22a220;
