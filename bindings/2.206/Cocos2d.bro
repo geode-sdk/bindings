@@ -524,12 +524,12 @@ class cocos2d::CCGLProgram {
 
 [[link(win, android)]]
 class cocos2d::CCNode {
-	static cocos2d::CCNode* create() = imac 0x26ee60, m1 0x215170;
+	static cocos2d::CCNode* create() = imac 0x26ee60, m1 0x215170, ios 0x24bbfc;
 	static void resetGlobalOrderOfArrival();
 
 	// CCNode(cocos2d::CCNode const&);
 	CCNode() = imac 0x26e330, m1 0x214860, ios 0x24b328;
-	~CCNode() = imac 0x26e640, m1 0x2149c0;
+	~CCNode() = imac 0x26e640, m1 0x2149c0, ios 0x24b484;
 
 	cocos2d::CCAction* getActionByTag(int) = m1 0x216454, imac 0x270140;
 	cocos2d::CCComponent* getComponent(char const*) const;
@@ -718,7 +718,7 @@ class cocos2d::CCLayer {
 
 	// CCLayer(cocos2d::CCLayer const&);
 	CCLayer() = imac 0x4ba060, m1 0x41b2b0, ios 0x1530a0;
-  ~CCLayer() = imac 0x4ba350, m1 0x41b4e0;
+  ~CCLayer() = imac 0x4ba350, m1 0x41b4e0, ios 0x15314c; // this is ~CCLayerColor :ned:
 
 	cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
 	cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();
@@ -812,7 +812,7 @@ class cocos2d::CCObject {
 
 	// CCObject(cocos2d::CCObject const&);
 	CCObject() = imac 0x493bf0, m1 0x3f89d0, ios 0x88324;
-	~CCObject() = imac 0x493d00, m1 0x3f8aa8;
+	~CCObject() = imac 0x493d00, m1 0x3f8aa8, ios 0x8836c;
 
 	cocos2d::CCObjectType getObjType() const;
 
@@ -885,7 +885,7 @@ class cocos2d::CCLayerRGBA {
 
 	// CCLayerRGBA(cocos2d::CCLayerRGBA const&);
 	CCLayerRGBA() = imac 0x4bb5e0, m1 0x41c704, ios 0x154480;
-	~CCLayerRGBA() = imac 0x4bb800, m1 0x41c86c, ios 0x24b484;
+	~CCLayerRGBA() = imac 0x4bb800, m1 0x41c86c;
 
 	virtual bool init() = imac 0x4bba70, m1 0x41c9fc;
 
@@ -1287,7 +1287,7 @@ class cocos2d::CCNodeRGBA {
 
 	// CCNodeRGBA(cocos2d::CCNodeRGBA const&);
 	CCNodeRGBA() = imac 0x271180, m1 0x21727c, ios 0x24d5b0;
-	~CCNodeRGBA() = imac 0x2711e0, m1 0x2172e0;
+	~CCNodeRGBA() = imac 0x2711e0, m1 0x2172e0, ios 0x24b484; // this is actually ~CCNode, ~CCNodeRGBA is just that :ned_explosion:
 
 	virtual bool init() = m1 0x2172f8, imac 0x271210, ios 0x24d5fc;
 
@@ -1360,7 +1360,7 @@ class cocos2d::CCSprite {
 
 	// CCSprite(cocos2d::CCSprite const&);
 	CCSprite() = imac 0x284b40, m1 0x2297c4, ios 0x2481c8;
-	~CCSprite() = imac 0x284c40, m1 0x229898;
+	~CCSprite() = imac 0x284c40, m1 0x229898, ios 0x248250;
 	bool isFlipX() = imac 0x2863a0;
 	bool isFlipY() = imac 0x2863f0;
 	bool isTextureRectRotated();
@@ -1766,7 +1766,7 @@ class cocos2d::CCString {
 
 [[link(win, android)]]
 class cocos2d::CCMenuItem {
-	~CCMenuItem() = imac 0x3c1fc0, m1 0x345478;
+	~CCMenuItem() = imac 0x3c1fc0, m1 0x345478, ios 0x531c4;
 	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 	static cocos2d::CCMenuItem* create();
 
@@ -1774,7 +1774,10 @@ class cocos2d::CCMenuItem {
 
 	int getScriptTapHandler();
 
-	void setTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3c2210, m1 0x345668;
+	void setTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3c2210, m1 0x345668, ios inline { // doesn't exist on ios :ned:
+		m_pListener = rec;
+		m_pfnSelector = selector;
+	}
 
 	// CCMenuItem(cocos2d::CCMenuItem const&);
 	// CCMenuItem();
@@ -1945,15 +1948,24 @@ class cocos2d {
 	static void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
 	static void ccDrawFree();
 	static void ccDrawInit();
-	static void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = imac 0x202c30, m1 0x1b4738;
+	static void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = imac 0x202c30, m1 0x1b4738, ios 0x25bbec;
 	static void ccDrawLines(cocos2d::CCPoint const*, unsigned int);
 	static void ccDrawPoint(cocos2d::CCPoint const&);
 	static void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
 	static void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
 	static void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
 	static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
-	static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F) = imac 0x202f10;
-	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F) = imac 0x202e60, m1 0x1b4948;
+	static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F) = imac 0x202f10, ios 0x25bd94;
+	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F) = imac 0x202e60, m1 0x1b4948, ios inline {
+		CCPoint vertices[] = {
+			origin,
+			CCPoint{destination.x, origin.y},
+			destination,
+			CCPoint{origin.x, destination.y}
+		};
+
+		ccDrawSolidPoly(vertices, 4, color);
+	}
 	static void ccGLBindTexture2D(unsigned int) = m1 0x2e9b14, imac 0x35c2a0;
 	static void ccGLBindTexture2DN(unsigned int, unsigned int);
 	static void ccGLBindVAO(unsigned int);

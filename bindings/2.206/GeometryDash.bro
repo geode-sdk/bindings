@@ -661,7 +661,7 @@ class ButtonSprite : cocos2d::CCSprite {
 	}
 
 	static ButtonSprite* create(char const*, float);
-	static ButtonSprite* create(char const* a, int b, int c, float d, bool e, char const* f, char const* g, float h) = win inline, imac 0x92140, m1 0x8295c {
+	static ButtonSprite* create(char const* a, int b, int c, float d, bool e, char const* f, char const* g, float h) = win inline, imac 0x92140, m1 0x8295c, ios 0x65d30 {
         auto ret = new ButtonSprite();
         if (ret->init(a, b, c, d, e, f, g, h)) {
             ret->autorelease();
@@ -670,9 +670,9 @@ class ButtonSprite : cocos2d::CCSprite {
         delete ret;
         return nullptr;
 	}
-	static ButtonSprite* create(char const*, int, int, float, bool, char const*, char const*);
+	static ButtonSprite* create(char const*, int, int, float, bool, char const* font, char const* bg);
 	static ButtonSprite* create(char const*, int, int, float, bool) = imac 0x920f0;
-	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float a, bool b, char const* bgSprite, bool noScaleSpriteForBG) = win inline, imac 0x918c0, m1 0x82188, ios 0x65d30 {
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float a, bool b, char const* bgSprite, bool noScaleSpriteForBG) = win inline, imac 0x918c0, m1 0x82188, ios 0x655fc {
         auto ret = new ButtonSprite();
         if (ret->init(topSprite, width, unused, height, a, b, bgSprite, noScaleSpriteForBG)) {
             ret->autorelease();
@@ -685,7 +685,7 @@ class ButtonSprite : cocos2d::CCSprite {
 	static ButtonSprite* create(cocos2d::CCSprite*);
 
 	bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3e3a0, ios 0x65e04;
-	bool init(cocos2d::CCSprite* topSprite, int width, int unused, float scale, float height, bool unkBool, char const* bgSprite, bool useNormalCCSpriteForBG) = win 0x3e070;
+	bool init(cocos2d::CCSprite* topSprite, int width, int unused, float scale, float height, bool unkBool, char const* bgSprite, bool useNormalCCSpriteForBG) = win 0x3e070, ios 0x656c8;
 	void setColor(cocos2d::_ccColor3B const& color) {
 		// i love inlined funcs
 		m_label->setColor(color);
@@ -9845,7 +9845,7 @@ class LevelCell : TableViewCell {
 
 	void loadCustomLevelCell() = win 0xac110, m1 0x1f5430, imac 0x24b030;
 	void loadFromLevel(GJGameLevel*) = win 0xabf30, m1 0x1ea748, imac 0x23fd90, ios 0x104524;
-	void loadLocalLevelCell() = win 0xaea50, m1 0x1f4aa4, imac 0x24a710;
+	void loadLocalLevelCell() = win 0xaea50, m1 0x1f4aa4, imac 0x24a710, ios 0x10d7cc;
 	void onClick(cocos2d::CCObject* sender) = win 0xaf4e0, m1 0x1f7d40, imac 0x24dca0;
 	void onToggle(cocos2d::CCObject* sender) = win 0xac0f0, m1 0x1f7d28, imac 0x24dc80;
 	void onViewProfile(cocos2d::CCObject* sender) = win 0xaf700, m1 0x1f7ea4, imac 0x24de00;
@@ -12545,7 +12545,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void showCompleteText() = win 0x385470, m1 0xa1f00, imac 0xb5380;
 	void showEndLayer();
 	void showHint() = win 0x3912c0;
-	void showNewBest(bool, int, int, bool, bool, bool) = win 0x3860c0;
+	void showNewBest(bool, int, int, bool, bool, bool) = win 0x3860c0, ios 0x11db7c;
 	void showRetryLayer();
 	void showTwoPlayerGuide();
 	TodoReturn spawnCircle();
@@ -14768,7 +14768,7 @@ class SetupSpawnPopup : SetupTriggerPopup {
 
 	static SetupSpawnPopup* create(EffectGameObject*, cocos2d::CCArray*);
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = ios 0xf91b0;
 	void onAddRemap(cocos2d::CCObject* sender);
 	void onDeleteRemap(cocos2d::CCObject* sender);
 	void onSelectRemap(cocos2d::CCObject* sender);
