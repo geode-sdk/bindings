@@ -1814,9 +1814,9 @@ class cocos2d::CCMenu {
 	virtual void onExit() = m1 0x6a7170;
 	virtual void registerWithTouchDispatcher() = m1 0x6a726c;
 
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a72c8;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a75b0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a74c0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a7548;
 }
 
@@ -1978,44 +1978,44 @@ class cocos2d::extension::CCScale9Sprite {
 	static cocos2d::extension::CCScale9Sprite* create(char const*) = imac 0x3fe560, m1 0x3779d8;
 	static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3fe390, m1 0x3777b4, ios 0x2261a8;
 
-	CCScale9Sprite() = imac 0x3fc930;
-	~CCScale9Sprite() = imac 0x3fcb10;
+	CCScale9Sprite() = imac 0x3fc930, m1 0x3760c0;
+	~CCScale9Sprite() = imac 0x3fcb10, m1 0x376174;
 
-	virtual bool init() = imac 0x3fcb40;
+	virtual bool init() = imac 0x3fcb40, m1 0x37623c;
 	virtual void setContentSize(const cocos2d::CCSize& size) = imac 0x3fdcd0, m1 0x37713c;
-	virtual void visit();
-	virtual GLubyte getOpacity();
-	virtual void setOpacity(GLubyte opacity);
-	virtual void updateDisplayedOpacity(GLubyte parentOpacity);
-	virtual const cocos2d::ccColor3B& getColor();
-	virtual void setColor(const cocos2d::ccColor3B& color);
-	virtual void updateDisplayedColor(const cocos2d::ccColor3B& parentColor);
-	virtual void setOpacityModifyRGB(bool bValue);
-	virtual bool isOpacityModifyRGB();
-	virtual cocos2d::CCSize getPreferredSize();
-	virtual void setPreferredSize(cocos2d::CCSize);
-	virtual cocos2d::CCRect getCapInsets();
-	virtual void setCapInsets(cocos2d::CCRect);
-	virtual float getInsetLeft();
-	virtual void setInsetLeft(float);
-	virtual float getInsetTop();
-	virtual void setInsetTop(float);
-	virtual float getInsetRight();
-	virtual void setInsetRight(float);
-	virtual float getInsetBottom();
-	virtual void setInsetBottom(float);
-	virtual bool initWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect);
-	virtual bool initWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, cocos2d::CCRect);
-	virtual bool initWithFile(const char*, cocos2d::CCRect, cocos2d::CCRect);
-	virtual bool initWithFile(const char*, cocos2d::CCRect);
-	virtual bool initWithFile(cocos2d::CCRect, const char*);
-	virtual bool initWithFile(const char*);
-	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*, cocos2d::CCRect);
-	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	virtual bool initWithSpriteFrameName(const char*, cocos2d::CCRect);
-	virtual bool initWithSpriteFrameName(const char*);
-	virtual bool updateWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect);
-	virtual void setSpriteFrame(cocos2d::CCSpriteFrame*);
+	virtual void visit() = m1 0x3784c4;
+	virtual GLubyte getOpacity() = m1 0x378810;
+	virtual void setOpacity(GLubyte opacity) = m1 0x378698;
+	virtual void updateDisplayedOpacity(GLubyte parentOpacity) = m1 0x378318;
+	virtual const cocos2d::ccColor3B& getColor() = m1 0x378688;
+	virtual void setColor(const cocos2d::ccColor3B& color) = m1 0x3784f8;
+	virtual void updateDisplayedColor(const cocos2d::ccColor3B& parentColor) = m1 0x378384;
+	virtual void setOpacityModifyRGB(bool bValue) = m1 0x378198;
+	virtual bool isOpacityModifyRGB() = m1 0x378308;
+	virtual cocos2d::CCSize getPreferredSize() = m1 0x377fe8;
+	virtual void setPreferredSize(cocos2d::CCSize) = m1 0x377fb4;
+	virtual cocos2d::CCRect getCapInsets() = m1 0x37808c;
+	virtual void setCapInsets(cocos2d::CCRect) = m1 0x377ff4;
+	virtual float getInsetLeft() = m1 0x378484;
+	virtual void setInsetLeft(float) = m1 0x3784a4;
+	virtual float getInsetTop() = m1 0x37848c;
+	virtual void setInsetTop(float) = m1 0x3784ac;
+	virtual float getInsetRight() = m1 0x378494;
+	virtual void setInsetRight(float) = m1 0x3784b4;
+	virtual float getInsetBottom() = m1 0x37849c;
+	virtual void setInsetBottom(float) = m1 0x3784bc;
+	virtual bool initWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect) = m1 0x376308;
+	virtual bool initWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, cocos2d::CCRect) = m1 0x37629c;
+	virtual bool initWithFile(const char*, cocos2d::CCRect, cocos2d::CCRect) = m1 0x377614;
+	virtual bool initWithFile(const char*, cocos2d::CCRect) = m1 0x377754;
+	virtual bool initWithFile(cocos2d::CCRect, const char*) = m1 0x377868;
+	virtual bool initWithFile(const char*) = m1 0x377988;
+	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*, cocos2d::CCRect) = m1 0x377a60;
+	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x377b98;
+	virtual bool initWithSpriteFrameName(const char*, cocos2d::CCRect) = m1 0x377c70;
+	virtual bool initWithSpriteFrameName(const char*) = m1 0x377d94;
+	virtual bool updateWithBatchNode(cocos2d::CCSpriteBatchNode*, cocos2d::CCRect, bool, cocos2d::CCRect) = m1 0x3763ac;
+	virtual void setSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x3783f0;
 }
 
 [[link(win, android)]]

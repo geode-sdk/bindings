@@ -238,6 +238,10 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
             } else if (auto m = field.get_as<MemberField>()) {
 
                 if (m->platform == Platform::None || (m->platform & codegen::platform) != Platform::None) {
+                    auto* opt = std::getenv("CODEGEN_FORCE_PUBLIC_MEMBER");
+                    if (opt != nullptr && std::string_view(opt) == "1") {
+                        unimplementedField = false;
+                    }
                     single_output += fmt::format(format_strings::member_definition,
                         fmt::arg("private", unimplementedField ? "private:\n" : ""),
                         fmt::arg("public", unimplementedField ? "\npublic:" : ""),
