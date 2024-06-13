@@ -155,7 +155,7 @@ class cocos2d::CCSet {
 	cocos2d::CCSetIterator begin();
 	bool containsObject(cocos2d::CCObject*);
 	cocos2d::CCSet* copy();
-	int count(); // NOT m1 0x775070 who is putting in these bogus addresses
+	int count() = m1 0x6c5ae4;
 	cocos2d::CCSetIterator end();
 	cocos2d::CCSet* mutableCopy();
 	void removeAllObjects();
