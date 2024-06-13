@@ -85,19 +85,21 @@ class cocos2d::CCMotionStreak {
 	void tintWithColor(cocos2d::_ccColor3B);
 	void updateFade(float);
 
-	virtual void update(float);
-	virtual void setPosition(cocos2d::CCPoint const&);
-	virtual void draw();
+	~CCMotionStreak() = m1 0x4c9930;
 
-	virtual unsigned char getOpacity();
-	virtual void setOpacity(unsigned char);
-	virtual void setOpacityModifyRGB(bool);
-	virtual bool isOpacityModifyRGB();
+	virtual void update(float) = m1 0x4ca018;
+	virtual void setPosition(cocos2d::CCPoint const&) = m1 0x4c9e20;
+	virtual void draw() = m1 0x4ca54c;
 
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc);
-	virtual cocos2d::_ccBlendFunc getBlendFunc();
-	virtual cocos2d::CCTexture2D* getTexture();
-	virtual void setTexture(cocos2d::CCTexture2D*);
+	virtual unsigned char getOpacity() = m1 0x4c9f80;
+	virtual void setOpacity(unsigned char) = m1 0x4c9f78;
+	virtual void setOpacityModifyRGB(bool) = m1 0x4c9f90;
+	virtual bool isOpacityModifyRGB() = m1 0x4c9f98;
+
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = m1 0x4c9f58;
+	virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x4c9f68;
+	virtual cocos2d::CCTexture2D* getTexture() = m1 0x4c9eb8;
+	virtual void setTexture(cocos2d::CCTexture2D*) = m1 0x4c9ec8;
 }
 
 [[link(win, android)]]
@@ -1638,6 +1640,7 @@ class cocos2d::CCDrawNode {
 
 	// CCDrawNode(cocos2d::CCDrawNode const&);
 	// CCDrawNode();
+	~CCDrawNode() = m1 0x53f0dc;
 	void clear() = imac 0x61dd20;
 	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int);
 	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
@@ -1651,7 +1654,7 @@ class cocos2d::CCDrawNode {
 	void listenBackToForeground(cocos2d::CCObject*);
 	void render();
 
-	virtual bool init();
+	virtual bool init() = m1 0x53f2dc;
 	virtual void draw() = m1 0x53f49c;
 }
 
