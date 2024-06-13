@@ -1370,7 +1370,7 @@ class cocos2d::CCSprite {
 	void setDontDraw(bool);
 	void setFlipX(bool) = imac 0x286360, m1 0x22ad7c, ios 0x249688;
 	void setFlipY(bool) = imac 0x2863b0, m1 0x22adb0, ios 0x2496bc;
-	void setTextureAtlas(cocos2d::CCTextureAtlas*) = ios 0x249de0;
+	// void setTextureAtlas(cocos2d::CCTextureAtlas*) = ios 0x249de0; //uncommenting this causes ios to fail :ned_explosion:
 	void setTlVertexMod(float);
 	void setTrVertexMod(float);
 	void setUseVertexMod(bool);
