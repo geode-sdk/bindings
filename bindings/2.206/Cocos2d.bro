@@ -1669,19 +1669,19 @@ class cocos2d::CCSpriteBatchNode {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteFrame {
-	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&);
-	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
-	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
-	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
+	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&) = m1 0x2e6228, imac 0x358210;
+	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e67d4, imac 0x358930;
+	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = m1 0x2e63cc, imac 0x358410;
+	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e6570, imac 0x358610;
 
-	bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
-	bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
-	bool initWithTextureFilename(char const*, cocos2d::CCRect const&);
-	bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&);
+	bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = m1 0x2e64b0, imac 0x358520;
+	bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e6674, imac 0x358740;
+	bool initWithTextureFilename(char const*, cocos2d::CCRect const&) = m1 0x2e630c, imac 0x358320;
+	bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e68d8, imac 0x358a60;
 
 	gd::string getFrameName() const;
-	cocos2d::CCPoint const& getOffset();
-	cocos2d::CCPoint const& getOffsetInPixels();
+	cocos2d::CCPoint const& getOffset() = m1 0x2e6e28, imac 0x359100;
+	cocos2d::CCPoint const& getOffsetInPixels() = m1 0x2e6e9c, imac 0x3591a0;
 	cocos2d::CCSize const& getOriginalSize();
 	cocos2d::CCSize const& getOriginalSizeInPixels();
 	cocos2d::CCRect const& getRect();
@@ -1689,20 +1689,20 @@ class cocos2d::CCSpriteFrame {
 	cocos2d::CCTexture2D* getTexture() = imac 0x359240, m1 0x2e6f10;
 
 	void setFrameName(gd::string);
-	void setOffset(cocos2d::CCPoint const&);
-	void setOffsetInPixels(cocos2d::CCPoint const&);
+	void setOffset(cocos2d::CCPoint const&) = m1 0x2e6e30, imac 0x359110;
+	void setOffsetInPixels(cocos2d::CCPoint const&) = m1 0x2e6ea4, imac 0x3591b0;
 	void setOriginalSize(cocos2d::CCSize const&);
 	void setOriginalSizeInPixels(cocos2d::CCSize const&);
-	void setRect(cocos2d::CCRect const&);
-	void setRectInPixels(cocos2d::CCRect const&);
+	void setRect(cocos2d::CCRect const&) = m1 0x2e6cec, imac 0x358f40;
+	void setRectInPixels(cocos2d::CCRect const&) = m1 0x2e6d88, imac 0x359020;
 	void setRotated(bool);
-	void setTexture(cocos2d::CCTexture2D*);
+	void setTexture(cocos2d::CCTexture2D*) = m1 0x2e6ca8, imac 0x358f00;
 
 	// CCSpriteFrame(cocos2d::CCSpriteFrame const&);
 	// CCSpriteFrame();
 	bool isRotated();
 
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x2e6b98, imac 0x358db0;
 }
 
 [[link(win, android)]]
