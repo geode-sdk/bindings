@@ -9403,7 +9403,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	}
 	int getRealID();
 	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, cocos2d::CCPoint) = win 0x2aa3b0;
-	bool init(GJGameLevel*, GJUserScore*, GJLevelList*) = win 0x2a8470;
+	bool init(GJGameLevel*, GJUserScore*, GJLevelList*) = win 0x2a8470, m1 0x6C0A74, imac 0x7BA6B0;
 	bool isCorrect(char const*);
 	void loadPage(int, bool) = win 0x2abd50;
 	void onClose(cocos2d::CCObject* sender) = win 0x2abb90;
@@ -9418,7 +9418,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	void onRefreshComments(cocos2d::CCObject* sender);
 	void onSimilar(cocos2d::CCObject* sender);
 	TodoReturn reloadWindow() = win 0x2acc50;
-	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x2ac2c0;
+	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x2ac2c0, m1 0x6C3A5C, imac 0x7BDB50;
 	void setupLevelInfo() = win 0x2aa4f0;
 	void toggleCommentMode(cocos2d::CCObject* sender) = win 0x2ace70;
 	void toggleExtendedMode(cocos2d::CCObject* sender) = win 0x2acb00;
@@ -12705,10 +12705,10 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	void onStatInfo(cocos2d::CCObject* sender) = win 0x39f6a0, m1 0x6cdfe0, imac 0x7c8e70;
 	void onTwitch(cocos2d::CCObject* sender) = win 0x3A1D40;
 	void onTwitter(cocos2d::CCObject* sender) = win 0x3A1BB0;
-	void onUpdate(cocos2d::CCObject* sender) = win 0x39C360;
+	void onUpdate(cocos2d::CCObject* sender) = win 0x39C360, m1 0x6CB634, imac 0x7BE330;
 	void onYouTube(cocos2d::CCObject* sender) = win 0x3A1A20;
 	TodoReturn setupComments();
-	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3a2710;
+	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3a2710, m1 0x6CB804, imac 0x7C61F0;
 	void showNoAccountError() = win 0x3A1640;
 	TodoReturn toggleMainPageVisibility(bool);
 	TodoReturn updateLevelsLabel();
@@ -15823,7 +15823,7 @@ class StatsCell : TableViewCell {
 	void updateBGColor(int);
 
 	virtual bool init() = m1 0x1f89a4;
-	virtual void draw() = win 0xabd00, m1 0x1f9510;
+	virtual void draw() = win 0xabd00, m1 0x1f9510, imac 0x24F4A0;
 }
 
 [[link(android)]]
