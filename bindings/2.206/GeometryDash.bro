@@ -2300,7 +2300,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	TodoReturn getButtonByTag(int) = win 0xa7b10;
 	TodoReturn getHSV();
 	void highlightSelected(ButtonSprite*) = win 0xa7dc0;
-	bool init(GameObject*, cocos2d::CCArray*) = win 0xa32f0, m1 0x1a2700;
+	bool init(GameObject*, cocos2d::CCArray*) = win 0xa32f0, imac 0x1eef50, m1 0x1a2700;
 	void onBreakApart(cocos2d::CCObject* sender);
 	void onBrowse(cocos2d::CCObject* sender);
 	void onClear(cocos2d::CCObject* sender);
@@ -2312,12 +2312,12 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onNextColorChannel(cocos2d::CCObject* sender);
 	void onPaste(cocos2d::CCObject* sender);
 	void onSelectColor(cocos2d::CCObject* sender);
-	void onSelectMode(cocos2d::CCObject* sender) = win 0xa6ed0;
+	void onSelectMode(cocos2d::CCObject* sender) = win 0xa6ed0, imac 0x1f13b0;
 	void onSettings(cocos2d::CCObject* sender);
 	void onUpdateCustomColor(cocos2d::CCObject* sender);
 	TodoReturn recreateLayer();
 	void sliderChanged(cocos2d::CCObject*);
-	void toggleVisible() = win 0xa70e0, m1 0x1a645c;
+	void toggleVisible() = win 0xa70e0, imac 0x1f3120, m1 0x1a645c;
 	void updateChannelLabel(int);
 	void updateColorSprite() = win 0xa6410;
 	void updateCurrentSelection();
@@ -5950,7 +5950,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool isSecretCoin(gd::string);
 	bool isSecretCoinValid(gd::string);
 	bool isSpecialChestLiteUnlockable(gd::string);
-	bool isSpecialChestUnlocked(gd::string) = win 0x1de960, m1 0x6ac30;
+	bool isSpecialChestUnlocked(gd::string) = win 0x1de960, imac 0x78310, m1 0x6ac30;
 	bool isStoreItemUnlocked(int) = win 0x1dec10;
 	TodoReturn keyCostForSecretChest(int);
 	TodoReturn logCoins();
@@ -8137,7 +8137,7 @@ class GJMapPack : cocos2d::CCNode {
 	static GJMapPack* create(cocos2d::CCDictionary*);
 
 	int completedMaps();
-	bool hasCompletedMapPack() = win 0x168810, m1 0x4b4f88;
+	bool hasCompletedMapPack() = win 0x168810, imac 0x57b857, m1 0x4b4f88;
 	TodoReturn parsePackColors(gd::string, gd::string);
 	TodoReturn parsePackLevels(gd::string);
 	int totalMaps() {
