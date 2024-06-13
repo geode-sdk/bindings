@@ -1988,7 +1988,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	void updateLabelValues();
 
 	virtual bool init() = win 0xb3770, m1 0x1fa3bc;
-	virtual void draw() = m1 0x1fa684;
+	virtual void draw() = m1 0x1fa684, imac 0x250CB0;
 	virtual void likedItem(LikeItemType, int, bool) = win 0xb5ae0, m1 0x1fa730;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xb5d50, m1 0x1faaac;
 
