@@ -249,8 +249,8 @@ class AdToolbox {
 	TodoReturn hasCachedInterstitial();
 	TodoReturn hasCachedRewardedVideo();
 	bool isShowingAd();
-	TodoReturn queueRefreshBanner();
-	TodoReturn setupAds();
+	void queueRefreshBanner();
+	void setupAds() = ios 0x309394;
 	void showDebug();
 	void showInterstitial();
 	void showRewardedVideo();
@@ -4023,7 +4023,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 
 	void incrementForcePrio() = ios 0x2bcb0c;
 	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x50ce0, imac 0x4a50e0, m1 0x4086f8, ios 0x2bc0e8;
-	bool init(int) = win 0x50bd0;
+	bool init(int) = win 0x50bd0, ios 0x2bca5c;
 	void onBtn1(cocos2d::CCObject* sender) = win 0x51ac0, imac 0x4a5d60, ios 0x2bcb5c;
 	void onBtn2(cocos2d::CCObject* sender) = win 0x51b20, imac 0x4a5dc0, ios 0x2bcbbc;
 
@@ -4975,7 +4975,7 @@ class GameManager : GManager {
 	TodoReturn addIconDelegate(cocos2d::CCObject*, int);
 	TodoReturn addNewCustomObject(gd::string);
 	TodoReturn addToGJLog(cocos2d::CCString*);
-	TodoReturn applicationDidEnterBackground();
+	void applicationDidEnterBackground() = ios 0x32de70;
 	TodoReturn applicationWillEnterForeground() = win 0x17fff0;
 	TodoReturn calculateBaseKeyForIcons();
 	TodoReturn canShowRewardedVideo();
@@ -5053,7 +5053,7 @@ class GameManager : GManager {
 	TodoReturn loadIconAsync(int, int, int, cocos2d::CCObject*);
 	void loadMiddleground(int) = win 0x1799d0;
 	void loadMiddlegroundAsync(int);
-	TodoReturn loadVideoSettings();
+	void loadVideoSettings() = ios 0x32bcec;
 	TodoReturn lockColor(int, UnlockType);
 	TodoReturn lockIcon(int, IconType);
 	TodoReturn logLoadedIconInfo();
@@ -5105,7 +5105,7 @@ class GameManager : GManager {
 	void showInterstitial();
 	void showInterstitialForced();
 	void showMainMenuAd();
-	TodoReturn startUpdate();
+	void startUpdate() = ios 0x322c1c;
 	TodoReturn stringForCustomObject(int);
 	TodoReturn subYouTube();
 	TodoReturn switchCustomObjects(int, int);
@@ -6232,7 +6232,7 @@ class GJAccountManager : cocos2d::CCNode {
 		return GJAccountManager::sharedState();
 	}
 
-	static GJAccountManager* sharedState() = win 0x1f1220, m1 0xba1b0, imac 0xd2800;
+	static GJAccountManager* sharedState() = win 0x1f1220, m1 0xba1b0, imac 0xd2800, ios 0x3a7cd4;
 
 	void addDLToActive(char const* tag, cocos2d::CCObject*);
 	void addDLToActive(char const* tag);
@@ -8292,7 +8292,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
 class GJObjectDecoder : cocos2d::CCNode, ObjectDecoderDelegate {
 	// virtual ~GJObjectDecoder();
 
-	static GJObjectDecoder* sharedDecoder();
+	static GJObjectDecoder* sharedDecoder() = ios 0x227094;
 
 	virtual bool init();
 	virtual TodoReturn getDecodedObject(int, DS_Dictionary*) = win 0x271ea0, m1 0x64412c;
@@ -10870,7 +10870,7 @@ class LoadingLayer : cocos2d::CCLayer {
 class LocalLevelManager : GManager {
 	// virtual ~LocalLevelManager();
 
-	static LocalLevelManager* sharedState() = win 0x30f5d0, m1 0x527e4c, imac 0x601110;
+	static LocalLevelManager* sharedState() = win 0x30f5d0, m1 0x527e4c, imac 0x601110, ios 0x1d1c58;
 	inline static LocalLevelManager* get() {
         return LocalLevelManager::sharedState();
     }
@@ -11570,7 +11570,7 @@ class ObjectControlGameObject : EffectGameObject {
 class ObjectDecoder {
 	// virtual ~ObjectDecoder();
 
-	static ObjectDecoder* sharedDecoder();
+	static ObjectDecoder* sharedDecoder() = ios 0x246034;
 
 	TodoReturn getDecodedObject(int, DS_Dictionary*);
 
@@ -11890,7 +11890,7 @@ class PlatformToolbox {
 	static TodoReturn loadAndDecryptFileToString(char const*, char const*);
 	static TodoReturn logEvent(char const*);
 	static TodoReturn onGameLaunch();
-	static TodoReturn onNativePause();
+	static void onNativePause() = ios 0x1774c8;
 	static TodoReturn onNativeResume();
 	static TodoReturn onToggleKeyboard();
 	static TodoReturn openAppPage();
@@ -11911,12 +11911,12 @@ class PlatformToolbox {
 	static TodoReturn spriteFromSavedFile(gd::string);
 	static TodoReturn toggleCallGLFinish(bool);
 	static TodoReturn toggleCPUSleepMode(bool);
-	static TodoReturn toggleForceTimer(bool);
+	static void toggleForceTimer(bool) = ios 0x17798c;
 	static void toggleFullScreen(bool) = ios 0x177934;
 	static TodoReturn toggleLockCursor(bool);
 	static TodoReturn toggleMouseControl(bool);
-	static TodoReturn toggleSmoothFix(bool);
-	static TodoReturn toggleVerticalSync(bool);
+	static void toggleSmoothFix(bool) = ios 0x177990;
+	static void toggleVerticalSync(bool) = ios 0x177988;
 	static TodoReturn tryShowRateDialog(gd::string);
 	static TodoReturn updateMouseControl();
 	static TodoReturn updateWindowedSize(float, float);
@@ -12676,12 +12676,12 @@ class PriceLabel : cocos2d::CCNode {
 [[link(android)]]
 class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, CommentUploadDelegate, UserInfoDelegate, UploadActionDelegate, UploadPopupDelegate, LeaderboardManagerDelegate {
 	// virtual ~ProfilePage();
-	// ProfilePage();
+	// ProfilePage() = ios 0x1a9c90;
 
-	static ProfilePage* create(int accountID, bool ownProfile) = win 0x39b1d0, m1 0x6ca568, imac 0x7c4d90;
+	static ProfilePage* create(int accountID, bool ownProfile) = win 0x39b1d0, m1 0x6ca568, imac 0x7c4d90, ios 0x1a24a4;
 
 	void blockUser();
-	bool init(int accountID, bool ownProfile) = win 0x39b3b0, imac 0x7c4fa0;
+	bool init(int accountID, bool ownProfile) = win 0x39b3b0, imac 0x7c4fa0, ios 0x1a2528;
 	bool isCorrect(char const* key) = win 0x3A22F0;
 	bool isOnWatchlist(int);
 	void loadPage(int) = win 0x3a2420;
@@ -12720,7 +12720,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3a1000, m1 0x6d0f28;
 	virtual void updateUserScoreFinished() = win 0x3a1780, m1 0x6d15a8;
 	virtual void updateUserScoreFailed() = win 0x3a1870, m1 0x6d163c;
-	virtual void getUserInfoFinished(GJUserScore*) = win 0x3a2120, m1 0x6d19e0, imac 0x7ccb50;
+	virtual void getUserInfoFinished(GJUserScore*) = win 0x3a2120, m1 0x6d19e0, imac 0x7ccb50, ios 0x1a7ba0;
 	virtual void getUserInfoFailed(int) = win 0x3a2210, m1 0x6d1ce8;
 	virtual void userInfoChanged(GJUserScore*) = win 0x3a2270, m1 0x6d1dc0;
 	virtual void loadCommentsFinished(cocos2d::CCArray*, char const*) = win 0x3a2860, m1 0x6d1fd4;

@@ -1208,7 +1208,7 @@ class cocos2d::CCDirector {
 	void setDefaultValues();
 	void setDelegate(cocos2d::CCDirectorDelegate*);
 	void setDeltaTime(float);
-	void setDepthTest(bool);
+	void setDepthTest(bool) = ios 0x1811b4;
 	void setDisplayStats(bool);
 	void setDontCallWillSwitch(bool);
 	void setGLDefaultValues();
@@ -1216,7 +1216,7 @@ class cocos2d::CCDirector {
 	void setNextScene();
 	void setNotificationNode(cocos2d::CCNode*);
 	void setOpenGLView(cocos2d::CCEGLView*);
-	void setProjection(cocos2d::ccDirectorProjection);
+	void setProjection(cocos2d::ccDirectorProjection) = ios 0x1811e4;
 	void setSceneReference(cocos2d::CCScene*);
 	void setSmoothFix(bool);
 	void setSmoothFixCheck(bool);
@@ -1238,7 +1238,7 @@ class cocos2d::CCDirector {
 	bool isPaused();
 	bool isSendCleanupToScene();
 	int levelForSceneInStack(cocos2d::CCScene*);
-	void pause();
+	void pause() = ios 0x1821c4;
 	void popScene();
 	bool popSceneWithTransition(float, cocos2d::PopTransition);
 	void popToRootScene() = ios 0x181f3c;
@@ -1252,7 +1252,7 @@ class cocos2d::CCDirector {
 	void resetSmoothFixCounter();
 	void reshapeProjection(cocos2d::CCSize const&);
 	void resume();
-	void runWithScene(cocos2d::CCScene*);
+	void runWithScene(cocos2d::CCScene*) = ios 0x181c54;
 	int sceneCount();
 	void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
 	void showFPSLabel();
