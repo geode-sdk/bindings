@@ -391,6 +391,18 @@ class cocos2d::CCParticleSystemQuad {
 }
 
 [[link(win, android)]]
+class cocos2d::CCFadeIn {
+    static cocos2d::CCFadeIn* create(float) = imac 0x3bde30, m1 0x341bc8;
+
+    // CCFadeIn(cocos2d::CCFadeIn const&);
+    // CCFadeIn();
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x3bded0, m1 0x341c54;
+    virtual void update(float);
+    virtual cocos2d::CCActionInterval* reverse() = imac 0x3be270, m1 0x341fcc;
+}
+
+[[link(win, android)]]
 class cocos2d::CCFadeOut {
 	static cocos2d::CCFadeOut* create(float) = m1 0x341e0c, imac 0x3be0a0;
 
