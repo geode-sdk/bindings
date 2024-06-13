@@ -567,7 +567,7 @@ class cocos2d::CCNode {
 	void sortAllChildrenNoIndex();
 	void sortAllChildrenWithIndex();
 	void stopAction(cocos2d::CCAction*);
-	void stopActionByTag(int);
+	void stopActionByTag(int) = ios 0x24ca40;
 	void stopAllActions() = imac 0x26ef50, m1 0x215290, ios 0x24bd0c;
 	void transform();
 	void transformAncestors();
@@ -1021,7 +1021,7 @@ class cocos2d::CCTouchDispatcher {
 	// CCTouchDispatcher();
 	void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = ios 0x159a34;
 	void addStandardDelegate(cocos2d::CCTouchDelegate*, int);
-	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = imac 0x4d59b0, m1 0x433870;
+	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = imac 0x4d59b0, m1 0x433870, ios 0x159a4c;
 	void decrementForcePrio(int);
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*);
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*) = imac 0x4d5fe0, m1 0x433f14;
@@ -1117,7 +1117,7 @@ class cocos2d::CCImage {
 
 [[link(win, android)]]
 class cocos2d::CCIMEDelegate {
-	~CCIMEDelegate() = imac 0x4c5c10, m1 0x425098;
+	~CCIMEDelegate() = imac 0x4c5c10, m1 0x425098, ios 0x1dd354;
 	virtual bool attachWithIME() = imac 0x4c5c40, m1 0x425210;
 	virtual bool detachWithIME() = imac 0x4c5e30, m1 0x425450;
 	virtual void deleteForward() {}
@@ -1125,7 +1125,7 @@ class cocos2d::CCIMEDelegate {
 
 [[link(win, android)]]
 class cocos2d::CCIMEDispatcher {
-	static cocos2d::CCIMEDispatcher* sharedDispatcher();
+	static cocos2d::CCIMEDispatcher* sharedDispatcher() = ios 0x1dd254;
 
 	// CCIMEDispatcher();
 
@@ -1142,7 +1142,7 @@ class cocos2d::CCIMEDispatcher {
 	void dispatchKeyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&);
 	char const* getContentText();
 	bool hasDelegate();
-	void removeDelegate(cocos2d::CCIMEDelegate*);
+	void removeDelegate(cocos2d::CCIMEDelegate*) = ios 0x1dd398;
 }
 
 [[link(win, android)]]
@@ -1786,7 +1786,7 @@ class cocos2d::CCMenuItem {
 	virtual void registerScriptTapHandler(int) = m1 0x345548, imac 0x3c20b0;
 	virtual void unregisterScriptTapHandler() = m1 0x345578, imac 0x3c20e0;
 	virtual bool isEnabled() = m1 0x34563c, imac 0x3c21a0;
-	virtual void setEnabled(bool) = imac 0x3c2190, m1 0x345634;
+	virtual void setEnabled(bool) = imac 0x3c2190, m1 0x345634, ios 0x53218;
 	virtual bool isSelected() = m1 0x345660, imac 0x3c2200;
 }
 
