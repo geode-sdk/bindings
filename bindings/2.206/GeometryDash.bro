@@ -9756,7 +9756,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	gd::string getSearchTitle() = win 0x2b8750;
 	bool init(GJSearchObject*) = win 0x2b57d0, m1 0x3f8fc4, imac 0x494360;
 	bool isCorrect(char const*);
-	void loadPage(GJSearchObject*) = win 0x2b72b0;
+	void loadPage(GJSearchObject*) = win 0x2b72b0, m1 0x3fc3cc, imac 0x497710;
 	void onClearSearch(cocos2d::CCObject* sender) = win 0x2bb510;
 	void onDeleteAll(cocos2d::CCObject* sender);
 	void onDeleteSelected(cocos2d::CCObject* sender) = win 0x2bbc80;
@@ -9784,7 +9784,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void updateLevelsLabel();
 	void updatePageLabel();
 
-	virtual void onEnter() = win 0x2bc620, m1 0x3ff9cc;
+	virtual void onEnter() = win 0x2bc620, m1 0x3ff9cc, imac 0x49b3f0;
 	virtual void onEnterTransitionDidFinish();
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3ffc98;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
