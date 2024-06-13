@@ -1631,12 +1631,12 @@ class CharacterColorDelegate {
 class CharacterColorPage : FLAlertLayer {
 	// virtual ~CharacterColorPage();
 
-	static CharacterColorPage* create();
+	static CharacterColorPage* create() = ios 0x12f2cc;
 
 	int activeColorForMode(int mode);
 	TodoReturn checkColor(int, UnlockType);
 	int colorForIndex(int);
-	void createColorMenu() = win 0x87600;
+	void createColorMenu() = win 0x87600, ios 0x1300e8;
 	void FLAlert_Clicked(FLAlertLayer*, bool);
 	cocos2d::CCPoint offsetForIndex(int);
 	void onClose(cocos2d::CCObject* sender);
@@ -1648,7 +1648,7 @@ class CharacterColorPage : FLAlertLayer {
 	void updateColorMode(int);
 	void updateIconColors() = win 0x88d30;
 
-	virtual bool init() = win 0x866e0, m1 0x585a10, imac 0x669d70;
+	virtual bool init() = win 0x866e0, m1 0x585a10, imac 0x669d70, ios 0x12f38c;
 	virtual void registerWithTouchDispatcher() = m1 0x587994;
 	virtual void keyBackClicked() = win 0x88f90, m1 0x5878e8;
 	virtual void show() = m1 0x587760;
@@ -1863,12 +1863,12 @@ class ColorActionSprite : cocos2d::CCNode {
 class ColorChannelSprite : cocos2d::CCSprite {
 	// virtual ~ColorChannelSprite();
 
-	static ColorChannelSprite* create() = win 0x246c10, imac 0x2d44d0, m1 0x2715f4;
+	static ColorChannelSprite* create() = win 0x246c10, imac 0x2d44d0, m1 0x2715f4, ios 0xc730;
 
 	TodoReturn updateBlending(bool);
 	TodoReturn updateCopyLabel(int, bool);
-	void updateOpacity(float) = win 0x246eb0, imac 0x2d4750, m1 0x271850;
-	void updateValues(ColorAction*) = imac 0x2d49b0;
+	void updateOpacity(float) = win 0x246eb0, imac 0x2d4750, m1 0x271850, ios 0xc978;
+	void updateValues(ColorAction*) = imac 0x2d49b0, ios 0xcbdc;
 
 	virtual bool init() = m1 0x27169c, imac 0x2d4570;
 }
@@ -7185,7 +7185,7 @@ class GJColorSetupLayer : FLAlertLayer, ColorSelectDelegate, FLAlertLayerProtoco
 	void onColor(cocos2d::CCObject* sender);
 	void onPage(cocos2d::CCObject* sender);
 	void showPage(int);
-	TodoReturn updateSpriteColor(ColorChannelSprite*, cocos2d::CCLabelBMFont*, int);
+	void updateSpriteColor(ColorChannelSprite*, cocos2d::CCLabelBMFont*, int) = ios 0x19a2e8;
 	TodoReturn updateSpriteColors();
 
 	virtual void keyBackClicked() = win 0x2453e0, m1 0x1b7dc8;
@@ -7871,19 +7871,19 @@ class GJGameState {
 [[link(android)]]
 class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, GameRateDelegate, ListButtonBarDelegate, DialogDelegate, CharacterColorDelegate, RewardedVideoDelegate {
 	// virtual ~GJGarageLayer();
-	// GJGarageLayer();
+	// GJGarageLayer() = ios 0x31a060;
 
 	gd::string achievementForUnlock(int, UnlockType);
 	gd::string descriptionForUnlock(int, UnlockType) = win 0x266240;
 	cocos2d::CCArray* getItems(IconType) = win 0x264710;
 	cocos2d::CCArray* getItems(int, int, IconType, int) = win 0x2647d0;
 	gd::string getLockFrame(int, UnlockType);
-	static GJGarageLayer* node();
+	static GJGarageLayer* node() = ios 0x312750;
 	void onArrow(cocos2d::CCObject* sender) = win 0x263e50;
 	void onBack(cocos2d::CCObject* sender) = win 0x266f60;
 	void onInfo(cocos2d::CCObject* sender) = win 0x262a50;
 	void onNavigate(cocos2d::CCObject* sender) = win 0x263f50;
-	void onPaint(cocos2d::CCObject* sender) = win 0x266d80;
+	void onPaint(cocos2d::CCObject* sender) = win 0x266d80, ios 0x31520c;
 	void onSelect(cocos2d::CCObject* sender) = win 0x265100;
 	void onSelectTab(cocos2d::CCObject* sender) = win 0x263f80;
 	void onShards(cocos2d::CCObject* sender) = win 0x266c30;
@@ -7892,7 +7892,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onToggleItem(cocos2d::CCObject* sender) = win 0x2657a0;
 	void playRainbowEffect() = win 0x266a40;
 	void playShadowEffect();
-	static cocos2d::CCScene* scene() = win 0x260f90;
+	static cocos2d::CCScene* scene() = win 0x260f90, ios 0x31270c;
 	void selectTab(IconType) = win 0x263fb0, m1 0x2fa4f4, imac 0x36e340;
 	void setupIconSelect() = win 0x2631f0;
 	void setupPage(int, IconType) = win 0x264070, m1 0x2fa624;
@@ -7903,7 +7903,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void updatePlayerColors() = win 0x2659b0, m1 0x2f8658, imac 0x36c500;
 	void updatePlayerName(char const*);
 
-	virtual bool init() = win 0x261150, m1 0x2f6b6c, imac 0x36a810;
+	virtual bool init() = win 0x261150, m1 0x2f6b6c, imac 0x36a810, ios 0x3127c4;
 	virtual void keyBackClicked() = win 0x267100, m1 0x2fd42c;
 	virtual void textInputOpened(CCTextInputNode*) = win 0x262c50, m1 0x2f9f8c;
 	virtual void textInputClosed(CCTextInputNode*) = win 0x262e40, m1 0x2fa0e4;
