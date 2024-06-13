@@ -522,8 +522,8 @@ class BoomScrollLayer : cocos2d::CCLayer {
 
 	TodoReturn addPage(cocos2d::CCLayer*, int);
 	TodoReturn addPage(cocos2d::CCLayer*);
-	TodoReturn cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	TodoReturn claimTouch(cocos2d::CCTouch*);
+	void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x132b48;
+	void claimTouch(cocos2d::CCTouch*) = ios 0x132ae4;
 	TodoReturn getPage(int);
 	int getRelativePageForNum(int);
 	TodoReturn getRelativePosForPage(int);
@@ -548,7 +548,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 
 	virtual void visit() = m1 0x32f6a8;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d890, m1 0x3301bc;
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d940, m1 0x330288;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d940, m1 0x330288, ios 0x132cf0;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3dc70, m1 0x330548;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d7b0, m1 0x32ffec;
 	virtual void registerWithTouchDispatcher() = m1 0x32fe74;

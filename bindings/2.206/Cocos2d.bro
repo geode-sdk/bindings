@@ -885,7 +885,7 @@ class cocos2d::CCLayerRGBA {
 
 	// CCLayerRGBA(cocos2d::CCLayerRGBA const&);
 	CCLayerRGBA() = imac 0x4bb5e0, m1 0x41c704, ios 0x154480;
-	~CCLayerRGBA() = imac 0x4bb800, m1 0x41c86c;
+	~CCLayerRGBA() = imac 0x4bb800, m1 0x41c86c, ios 0x15314c;
 
 	virtual bool init() = imac 0x4bba70, m1 0x41c9fc;
 
@@ -1015,7 +1015,16 @@ class cocos2d::CCTouchDispatcher {
 	int getTargetPrio() const;
 
 	void setDispatchEvents(bool) = imac 0x4d56d0;
-	void setPriority(int, cocos2d::CCTouchDelegate*) = imac 0x4d6130, m1 0x434088;
+	void setPriority(int p1, cocos2d::CCTouchDelegate* p2) = ios inline, imac 0x4d6130, m1 0x434088 {
+		auto* handler = this->findHandler(p2);
+		auto priority = handler->getPriority();
+
+		if (p1 != priority) {
+			handler->setPriority(p1);
+			this->rearrangeHandlers(m_pTargetedHandlers);
+			this->rearrangeHandlers(m_pStandardHandlers);
+		}
+	}
 
 	// CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
 	// CCTouchDispatcher();
@@ -1023,7 +1032,7 @@ class cocos2d::CCTouchDispatcher {
 	void addStandardDelegate(cocos2d::CCTouchDelegate*, int);
 	void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = imac 0x4d59b0, m1 0x433870, ios 0x159a4c;
 	void decrementForcePrio(int);
-	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*);
+	cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*) = ios 0x159ef0;
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*) = imac 0x4d5fe0, m1 0x433f14;
 	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*);
 	void forceRemoveAllDelegates();
@@ -1942,7 +1951,7 @@ class cocos2d {
 	static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
 	static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
 	static void ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
-	static void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char) = imac 0x204480, m1 0x1b5c34;
+	static void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char) = imac 0x204480, m1 0x1b5c34, ios 0x25c2b0;
 	static void ccDrawColor4F(float, float, float, float);
 	static void ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
 	static void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
@@ -1969,7 +1978,7 @@ class cocos2d {
 	static void ccGLBindTexture2D(unsigned int) = m1 0x2e9b14, imac 0x35c2a0;
 	static void ccGLBindTexture2DN(unsigned int, unsigned int);
 	static void ccGLBindVAO(unsigned int);
-	static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x35c1f0, m1 0x2e9a4c;
+	static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x35c1f0, m1 0x2e9a4c, ios 0x19a514;
 	static void ccGLBlendResetToCache() = imac 0x35c250;
 	static void ccGLDeleteProgram(unsigned int);
 	static void ccGLDeleteTexture(unsigned int);
