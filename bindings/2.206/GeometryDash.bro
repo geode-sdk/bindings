@@ -4134,8 +4134,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseEffect(unsigned int);
 	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int);
-	void playEffect(gd::string path, float speed, float p2, float volume) = win 0x55f60, m1 0x366d7c, imac 0x3e8a40, ios 0x141c24;
-	void playEffect(gd::string path) = win 0x55ee0, m1 0x366c7c, imac 0x3e8960;
+	void playEffect(gd::string path, float speed, float p2, float volume) = win 0x55f60, m1 0x366c7c, imac 0x3e8a40, ios 0x141c24;
+	void playEffect(gd::string path) = win 0x55ee0, m1 0x366d7c, imac 0x3e8960;
 	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56050, m1 0x364de4, imac 0x3e6190;
 	TodoReturn playEffectAsync(gd::string path);
 	void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x59140;
@@ -5842,7 +5842,7 @@ class GameStatsManager : cocos2d::CCNode {
 	int accountIDForIcon(int, UnlockType);
 	TodoReturn addSimpleSpecialChestReward(gd::string, UnlockType, int, bool);
 	void addSpecialRewardDescription(gd::string, gd::string);
-	TodoReturn addStoreItem(int, int, int, int, ShopType) = win 0x1ca0b0;
+	TodoReturn addStoreItem(int, int, int, int, ShopType) = win 0x1ca0b0, m1 0x5a4f0;
 	TodoReturn areChallengesLoaded();
 	TodoReturn areRewardsLoaded();
 	void awardCurrencyForLevel(GJGameLevel*) = win 0x1d6500;
@@ -5862,14 +5862,14 @@ class GameStatsManager : cocos2d::CCNode {
 	void completedStarLevel(GJGameLevel*);
 	int countSecretChests(GJRewardType) = ios 0x34d200;
 	int countUnlockedSecretChests(GJRewardType) = ios 0x34d244;
-	TodoReturn createSecretChestItems();
+	TodoReturn createSecretChestItems() = m1 0x538c4;
 	TodoReturn createSecretChestRewards();
-	TodoReturn createSpecialChestItems() = win 0x1dae20;
-	TodoReturn createStoreItems() = win 0x1c78e0;
+	TodoReturn createSpecialChestItems() = win 0x1dae20, m1 0x53a08;
+	TodoReturn createStoreItems() = win 0x1c78e0, m1 0x51980;
 	void dataLoaded(DS_Dictionary*) = win 0x1e5c00;
 	void encodeDataTo(DS_Dictionary*) = win 0x1e5950;
 	void firstSetup();
-	TodoReturn generateItemUnlockableData();
+	TodoReturn generateItemUnlockableData() = m1 0x598fc;
 	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d6020;
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*);
 	int getBaseCurrency(int, bool, int);
@@ -5943,7 +5943,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn incrementStat(char const*);
 	bool isGauntletChestUnlocked(int);
 	bool isItemEnabled(UnlockType, int); //inline on windows
-	bool isItemUnlocked(UnlockType, int) = win 0x1dabe0, ios 0x33fda8;
+	bool isItemUnlocked(UnlockType, int) = win 0x1dabe0, ios 0x33fda8, m1 0x5ead0;
 	bool isPathChestUnlocked(int);
 	bool isPathUnlocked(StatKey);
 	bool isSecretChestUnlocked(int);
@@ -5976,7 +5976,7 @@ class GameStatsManager : cocos2d::CCNode {
 	void setStarsForMapPack(int, int);
 	void setStat(char const*, int) = win 0x1cb2f0;
 	void setStatIfHigher(char const*, int);
-	TodoReturn setupIconCredits() = win 0x1ba150;
+	TodoReturn setupIconCredits() = win 0x1ba150, m1 0x2b9bf4;
 	TodoReturn shopTypeForItemID(int);
 	TodoReturn shouldAwardSecretKey();
 	TodoReturn starsForMapPack(int);
@@ -10545,10 +10545,10 @@ class LevelSettingsDelegate {
 class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate, SelectSettingDelegate, FLAlertLayerProtocol, CustomSongLayerDelegate, TextInputDelegate {
 	// virtual ~LevelSettingsLayer();
 
-	static LevelSettingsLayer* create(LevelSettingsObject*, LevelEditorLayer*);
+	static LevelSettingsLayer* create(LevelSettingsObject*, LevelEditorLayer*) = m1 0x20e4dc;
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	bool init(LevelSettingsObject*, LevelEditorLayer*);
+	bool init(LevelSettingsObject*, LevelEditorLayer*) = m1 0x20e644;
 	void onBGArt(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onCol(cocos2d::CCObject* sender);
