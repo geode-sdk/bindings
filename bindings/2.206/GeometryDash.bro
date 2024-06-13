@@ -10885,7 +10885,7 @@ class LocalLevelManager : GManager {
 	TodoReturn markLevelsAsUnmodified();
 	TodoReturn moveLevelToTop(GJGameLevel*);
 	TodoReturn reorderLevels();
-	TodoReturn tryLoadMainLevelString(int);
+	TodoReturn tryLoadMainLevelString(int) = ios 0x1d1db8;
 	TodoReturn updateLevelOrder();
 	TodoReturn updateLevelRevision();
 
