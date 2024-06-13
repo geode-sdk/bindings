@@ -2652,7 +2652,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 	TodoReturn exitDailyNode(DailyLevelNode*, float);
 	TodoReturn getDailyTime();
 	TodoReturn getDailyTimeString(int) = win 0xcd4f0;
-	bool init(GJTimedLevelType) = win 0xcb4c0, m1 0x1d930c;
+	bool init(GJTimedLevelType) = win 0xcb4c0, imac 0x22bbd0, m1 0x1d930c;
 	void onClose(cocos2d::CCObject* sender);
 	void onTheSafe(cocos2d::CCObject* sender);
 	TodoReturn refreshDailyPage();
@@ -2705,7 +2705,7 @@ class DemonFilterSelectLayer : FLAlertLayer {
 	void onClose(cocos2d::CCObject* sender);
 	void selectRating(cocos2d::CCObject* sender);
 
-	virtual bool init() = win 0x2f72c0, m1 0x55bd74;
+	virtual bool init() = win 0x2f72c0, imac 0x63c460, m1 0x55bd74;
 	virtual void keyBackClicked() = win 0x2f7a10, m1 0x55c354;
 }
 
@@ -2871,7 +2871,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	void confirmClone(cocos2d::CCObject*);
 	void confirmDelete(cocos2d::CCObject*);
 	void confirmMoveToTop(cocos2d::CCObject*);
-	bool init(GJGameLevel*) = win 0xd1c80, m1 0x1a7764;
+	bool init(GJGameLevel*) = win 0xd1c80, imac 0x1f4710, m1 0x1a7764;
 	void onBack(cocos2d::CCObject* sender);
 	void onClone();
 	void onDelete();
