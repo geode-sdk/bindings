@@ -10086,8 +10086,8 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	bool m_unkBool5;
 	bool m_playTestSmoothFix;
 
-	// haven't verified the mac padding
-	PAD = win 0xf, android32 0xf, android64 0xf, mac 0xf;
+	// haven't verified the mac and ios paddings
+	PAD = win 0xf, android32 0xf, android64 0xf, mac 0xf, ios 0xf;
 
 	cocos2d::CCArray* m_unkArr0;
 	cocos2d::CCArray* m_unkArr1;
@@ -10101,8 +10101,8 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	cocos2d::CCDictionary* m_unkDict3;
 	cocos2d::CCArray* m_unkArr5;
 
-	// haven't verified the mac padding
-	PAD = win 0x8, android32 0x8, android64 0x10, mac 0x10;
+	// haven't verified the mac and ios paddings
+	PAD = win 0x8, android32 0x8, android64 0x10, mac 0x10, ios 0x10;
 
 	cocos2d::CCDictionary* m_unkDict4;
 	cocos2d::CCArray* m_unkArr7;
@@ -10110,13 +10110,13 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	bool m_unkBool2;
 	geode::SeedValueRSV m_coinCount;
 
-	// haven't verified the mac padding
-	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
+	// haven't verified the mac and ios paddings
+	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8, ios 0x8;
 
 	cocos2d::CCArray* m_unkArr6;
 
-	// haven't verified the mac padding
-	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x8;
+	// haven't verified the mac and ios paddings
+	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
 
 	cocos2d::CCDictionary* m_unkDict1;
 	cocos2d::CCDictionary* m_unkDict2;
@@ -10124,8 +10124,8 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	bool m_unkBool1;
     short m_currentLayer;
 
-	// haven't verified the mac padding
-	PAD = win 0x18, android32 0x18, android64 0x24, mac 0x24;
+	// haven't verified the mac and ios paddings
+	PAD = win 0x18, android32 0x18, android64 0x24, mac 0x24, ios 0x24;
 
 	EditorUI* m_editorUI;
 	cocos2d::CCArray* m_undoObjects;
