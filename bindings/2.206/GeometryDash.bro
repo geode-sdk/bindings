@@ -1584,14 +1584,14 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	static ChallengesPage* create(); // inlined on win
 
 	TodoReturn claimItem(ChallengeNode*, GJChallengeItem*, cocos2d::CCPoint);
-	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x849f0, m1 0x327c74;
+	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x849f0, imac 0x3a0dd0, m1 0x327c74;
 	TodoReturn exitNodeAtSlot(int, float) = win 0x84c80;
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn tryGetChallenges();
 	TodoReturn updateDots();
 	callback void updateTimers(float) = win 0x84d70;
 
-	virtual bool init() = win 0x83ca0, m1 0x326f90;
+	virtual bool init() = win 0x83ca0, imac 0x3a0090, m1 0x326f90;
 	virtual void registerWithTouchDispatcher() = m1 0x3285b8;
 	virtual void keyBackClicked() = win 0x85190, m1 0x32851c;
 	virtual void show() = m1 0x328390;
@@ -1976,7 +1976,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 
 	TodoReturn incrementDislikes();
 	TodoReturn incrementLikes();
-	void loadFromComment(GJComment*) = win 0xb3790, m1 0x1edab0;
+	void loadFromComment(GJComment*) = win 0xb3790, imac 0x242fa0, m1 0x1edab0;
 	void onConfirmDelete(cocos2d::CCObject* sender) = win 0xb5be0;
 	TodoReturn onDelete();
 	void onGoToLevel(cocos2d::CCObject* sender);
