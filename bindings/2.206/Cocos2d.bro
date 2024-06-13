@@ -540,7 +540,7 @@ class cocos2d::CCNode {
 	void setAdditionalTransform(cocos2d::CCAffineTransform const&);
 	void setUseChildIndex(bool);
 
-	cocos2d::CCRect boundingBox() = imac 0x26edf0, m1 0x215110;
+	cocos2d::CCRect boundingBox() = imac 0x26edf0, m1 0x215110, ios 0x24bb9c;
 	void childrenAlloc();
 	cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = imac 0x270db0, m1 0x216f4c, ios 0x24d424;
 	cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const&);
@@ -993,7 +993,7 @@ class cocos2d::CCTextureCache {
 [[link(win, android)]]
 class cocos2d::CCTouch {
 	//getLocationInView() = ios 0x30f2a4;
-	cocos2d::CCPoint getLocation() const = imac 0x5a550, m1 0x50be8;
+	cocos2d::CCPoint getLocation() const = imac 0x5a550, m1 0x50be8, ios 0x30f2b0;
 	cocos2d::CCPoint getPreviousLocation() const = imac 0x5a580, m1 0x50c14;
 	cocos2d::CCPoint getStartLocation() const = imac 0x5a5b0, m1 0x50c40;
 	cocos2d::CCPoint getDelta() const = imac 0x5a5e0, m1 0x50c6c;
@@ -1454,7 +1454,7 @@ class cocos2d::CCLabelBMFont {
 	int kerningAmountForFirst(unsigned short, unsigned short);
 	void limitLabelWidth(float, float, float) = imac 0x5e4790, m1 0x50e1f8, ios 0x30d9bc;
 
-	~CCLabelBMFont() = imac 0x5e1630, m1 0x50b970;
+	~CCLabelBMFont() = imac 0x5e1630, m1 0x50b970, ios 0x30bcdc;
 	virtual bool init() = m1 0x50b848, imac 0x5e13d0;
 	virtual void setScaleX(float) = m1 0x50e0a8, imac 0x5e4630;
 	virtual void setScaleY(float) = m1 0x50e0d4, imac 0x5e4650;
@@ -1628,7 +1628,7 @@ class cocos2d::CCTransitionScene {
 	// CCTransitionScene(cocos2d::CCTransitionScene const&);
 	// CCTransitionScene();
 
-	~CCTransitionScene() = imac 0xd8700, m1 0xbf8d4;
+	~CCTransitionScene() = imac 0xd8700, m1 0xbf8d4, ios 0x1d72d4;
 
 	virtual void onEnter() = imac 0xd8b40, m1 0xbfd3c;
 	virtual void onExit() = imac 0xd8b90, m1 0xbfd90;
@@ -2012,13 +2012,40 @@ class cocos2d::extension::CCControlColourPicker {
 [[link(win, android)]]
 class cocos2d::extension::CCScale9Sprite {
 	static cocos2d::extension::CCScale9Sprite* create();
-	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*) = imac 0x3fe8f0, m1 0x377de4;
-	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const*, cocos2d::CCRect) = imac 0x3fe810, m1 0x377ce0;
-	static cocos2d::extension::CCScale9Sprite* create(char const*) = imac 0x3fe560, m1 0x3779d8;
+	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName) = ios inline, imac 0x3fe8f0, m1 0x377de4 {
+		CCScale9Sprite* ret = new CCScale9Sprite;
+		if (ret->initWithSpriteFrameName(spriteFrameName)) {
+			ret->autorelease();
+			return ret;
+		}
+
+		delete ret;
+		return nullptr;
+	}
+	static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName, cocos2d::CCRect capInsets) = ios inline, imac 0x3fe810, m1 0x377ce0 {
+		CCScale9Sprite* ret = new CCScale9Sprite;
+		if (ret->initWithSpriteFrameName(spriteFrameName, capInsets)) {
+			ret->autorelease();
+			return ret;
+		}
+
+		delete ret;
+		return nullptr;
+	}
+	static cocos2d::extension::CCScale9Sprite* create(char const* pszname) = ios inline, imac 0x3fe560, m1 0x3779d8 {
+		CCScale9Sprite* ret = new CCScale9Sprite;
+		if (ret->initWithFile(pszname)) {
+			ret->autorelease();
+			return ret;
+		}
+
+		delete ret;
+		return nullptr;
+	}
 	static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3fe390, m1 0x3777b4, ios 0x2261a8;
 
-	CCScale9Sprite() = imac 0x3fc930, m1 0x3760c0;
-	~CCScale9Sprite() = imac 0x3fcb10, m1 0x376174;
+	CCScale9Sprite() = imac 0x3fc930, m1 0x3760c0, ios 0x224b84;
+	~CCScale9Sprite() = imac 0x3fcb10, m1 0x376174, ios 0x224c34;
 
 	virtual bool init() = imac 0x3fcb40, m1 0x37623c;
 	virtual void setContentSize(const cocos2d::CCSize& size) = imac 0x3fdcd0, m1 0x37713c;
