@@ -1191,7 +1191,7 @@ class cocos2d::CCDirector {
 
 	float getActualDeltaTime() const;
 	double getAnimationInterval();
-	//float getContentScaleFactor() = ios 0x18231c; // todo: uncomment since this breaks ios building
+	float getContentScaleFactor();// = ios 0x18231c; // todo: uncomment since this breaks ios building
 	cocos2d::CCDirectorDelegate* getDelegate() const;
 	bool getDontCallWillSwitch() const;
 	void getFPSImageData(unsigned char**, unsigned int*);
@@ -1205,7 +1205,7 @@ class cocos2d::CCDirector {
 	cocos2d::CCScene* getSceneReference() const;
 	float getScreenScaleFactor();
 	float getScreenScaleFactorH();
-	//float getScreenScaleFactorMax() = ios 0x1825f4;
+	float getScreenScaleFactorMax();// = ios 0x1825f4;
 	float getScreenScaleFactorW();
 	float getSecondsPerFrame();
 	bool getSmoothFix() const;
@@ -1370,7 +1370,7 @@ class cocos2d::CCSprite {
 	void setDontDraw(bool);
 	void setFlipX(bool) = imac 0x286360, m1 0x22ad7c, ios 0x249688;
 	void setFlipY(bool) = imac 0x2863b0, m1 0x22adb0, ios 0x2496bc;
-	// void setTextureAtlas(cocos2d::CCTextureAtlas*) = ios 0x249de0; //uncommenting this causes ios to fail :ned_explosion:
+	void setTextureAtlas(cocos2d::CCTextureAtlas*);// = ios 0x249de0; //uncommenting this causes ios to fail :ned_explosion:
 	void setTlVertexMod(float);
 	void setTrVertexMod(float);
 	void setUseVertexMod(bool);
