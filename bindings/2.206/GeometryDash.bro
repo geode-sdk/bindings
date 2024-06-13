@@ -10047,7 +10047,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn validGroup(GameObject*, bool);
 
 	virtual void draw();
-	virtual void postUpdate(float) = m1 0xd8f24, win 0x2cd530;
+	virtual void postUpdate(float) = m1 0xd8f24, imac 0xf5f20, win 0x2cd530;
 	virtual void updateVisibility(float) = win 0x2c5380, imac 0xb7dd0, m1 0xd2794;
 	virtual TodoReturn playerTookDamage(PlayerObject*) = m1 0xd8f10, win 0x2cd520;
 	virtual void updateColor(cocos2d::ccColor3B&, float, int, bool, float, cocos2d::ccHSVValue&, int, bool, EffectGameObject*, int, int) = m1 0xd62b4, win 0x2c9d00;
@@ -12253,7 +12253,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setVisible(bool) = m1 0x39a4f8, win 0x380890;
 	virtual void setRotation(float) = m1 0x39a47c, win 0x380790; // merged thunk
 	virtual void setOpacity(unsigned char) = win 0x37bb00, m1 0x398408;
-	virtual void setColor(cocos2d::ccColor3B const&) = win 0x37b320, m1 0x397e20;
+	virtual void setColor(cocos2d::ccColor3B const&) = win 0x37b320, m1 0x397e20, imac 0x423230;
 	virtual void setFlipX(bool) = win 0x3807a0, m1 0x39a480;
 	virtual void setFlipY(bool);
 	virtual void resetObject() = m1 0x390ae4;
@@ -15343,7 +15343,7 @@ class SimplePlayer : cocos2d::CCSprite {
 	void updatePlayerFrame(int, IconType) = win 0x267f20, m1 0x2f8784, imac 0x36c630;
 
 	virtual void setOpacity(unsigned char) = win 0x268680, m1 0x2fe1c4;
-	virtual void setColor(cocos2d::ccColor3B const&) = win 0x267b30, m1 0x2fde58;
+	virtual void setColor(cocos2d::ccColor3B const&) = win 0x267b30, m1 0x2fde58, imac 0x3721a0;
 
 	inline void setGlowOutline(cocos2d::ccColor3B color) {
 		enableCustomGlowColor(color);
