@@ -3994,7 +3994,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
 		}
 	}
-	FLAlertLayer() {
+	FLAlertLayer() { // ios 0xa7ec : this seems too small?
 		m_buttonMenu = nullptr;
 		m_controlConnected = -1;
 		m_mainLayer = nullptr;
@@ -4033,7 +4033,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x51c20, m1 0x409658, imac 0x4a6110, ios 0x2bcd68;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x51c90, m1 0x409718, imac 0x4a61b0, ios 0x2bce28;
 	virtual void registerWithTouchDispatcher() = win 0x51ee0, m1 0x4099dc, imac 0x4a6460, ios 0x2bd0a0;
-	virtual void keyBackClicked() = win 0x51a00, m1 0x4093d0, imac 0x4a5ed0;
+	virtual void keyBackClicked() = win 0x51a00, m1 0x4093d0, imac 0x4a5ed0, ios 0x2bcc4c;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x51980, m1 0x409334, imac 0x4a5e20, ios 0x2bcc1c;
 	virtual void show() = win 0x51d10, m1 0x409838, imac 0x4a62b0, ios 0x2bcf18;
 
