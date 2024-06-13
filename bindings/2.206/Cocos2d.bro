@@ -85,21 +85,21 @@ class cocos2d::CCMotionStreak {
 	void tintWithColor(cocos2d::_ccColor3B);
 	void updateFade(float);
 
-	~CCMotionStreak() = m1 0x4c9930;
+	~CCMotionStreak() = imac 0x57d3e0, m1 0x4c9930;
 
-	virtual void update(float) = m1 0x4ca018;
-	virtual void setPosition(cocos2d::CCPoint const&) = m1 0x4c9e20;
-	virtual void draw() = m1 0x4ca54c;
+	virtual void update(float) = imac 0x57dc50, m1 0x4ca018;
+	virtual void setPosition(cocos2d::CCPoint const&) = imac 0x57d9b0, m1 0x4c9e20;
+	virtual void draw() = imac 0x57e2a0, m1 0x4ca54c;
 
-	virtual unsigned char getOpacity() = m1 0x4c9f80;
-	virtual void setOpacity(unsigned char) = m1 0x4c9f78;
-	virtual void setOpacityModifyRGB(bool) = m1 0x4c9f90;
-	virtual bool isOpacityModifyRGB() = m1 0x4c9f98;
+	virtual unsigned char getOpacity() = imac 0x57db60, m1 0x4c9f80;
+	virtual void setOpacity(unsigned char) = imac 0x57db40, m1 0x4c9f78;
+	virtual void setOpacityModifyRGB(bool) = imac 0x57db80, m1 0x4c9f90;
+	virtual bool isOpacityModifyRGB() = imac 0x57dba0, m1 0x4c9f98;
 
-	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = m1 0x4c9f58;
-	virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x4c9f68;
-	virtual cocos2d::CCTexture2D* getTexture() = m1 0x4c9eb8;
-	virtual void setTexture(cocos2d::CCTexture2D*) = m1 0x4c9ec8;
+	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = imac 0x57db00, m1 0x4c9f58;
+	virtual cocos2d::_ccBlendFunc getBlendFunc() = imac 0x57db20, m1 0x4c9f68;
+	virtual cocos2d::CCTexture2D* getTexture() = imac 0x57da50, m1 0x4c9eb8;
+	virtual void setTexture(cocos2d::CCTexture2D*) = imac 0x57da70, m1 0x4c9ec8;
 }
 
 [[link(win, android)]]
