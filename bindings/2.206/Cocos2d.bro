@@ -1774,7 +1774,7 @@ class cocos2d::CCMenuItem {
 
 	int getScriptTapHandler();
 
-	void setTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3c2210, m1 0x345668, ios inline { // doesn't exist on ios :ned:
+	void setTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = ios inline, imac 0x3c2210, m1 0x345668 {
 		m_pListener = rec;
 		m_pfnSelector = selector;
 	}
@@ -1956,7 +1956,7 @@ class cocos2d {
 	static void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
 	static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
 	static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F) = imac 0x202f10, ios 0x25bd94;
-	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F) = imac 0x202e60, m1 0x1b4948, ios inline {
+	static void ccDrawSolidRect(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::_ccColor4F) = ios inline, imac 0x202e60, m1 0x1b4948 {
 		CCPoint vertices[] = {
 			origin,
 			CCPoint{destination.x, origin.y},
