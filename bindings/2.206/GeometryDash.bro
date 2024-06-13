@@ -12006,7 +12006,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	// virtual ~PlayerObject();
 	// PlayerObject();
 
-	static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x3648d0;
+	static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x3648d0, m1 0x37c5c0, imac 0x403500;
 
 	void activateStreak() = win 0x37e0a0, m1 0x38447c;
 	TodoReturn addAllParticles() = win 0x3667D0;
@@ -12070,7 +12070,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn hitGround(GameObject*, bool) = win 0x379f40;
 	TodoReturn hitGroundNoJump(GameObject*, bool);
 	void incrementJumps() = win 0x36acd0;
-	bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x364970, m1 0x37c678;
+	bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x364970, m1 0x37c678, imac 0x403590;
 	bool isBoostValid(float);
 	bool isFlying();
 	bool isInBasicMode();
@@ -12141,7 +12141,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void runRotateAction(bool, int) = win 0x36b480;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x37b3b0, m1 0x37fac8, imac 0x407090;
-	void setupStreak() = win 0x366920;
+	void setupStreak() = win 0x366920, m1 0x37e59c, imac 0x405810;
 	void setYVelocity(double, int) = win 0x366e70;
 	TodoReturn spawnCircle();
 	TodoReturn spawnCircle2();
