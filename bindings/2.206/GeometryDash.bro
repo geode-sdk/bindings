@@ -7051,9 +7051,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCDictionary* m_unk2a50;
 	void* m_unk2a54;
 	ShaderLayer* m_shaderLayer;
-	PAD = win 0x8, android32 0x4, android64 0x8, mac 0xC;
+	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8;
 	StartPosObject* m_startPosObject; // 3180 win, 2a60 android32, 31a8 android64
-	PAD = win 0x60, android32 0x38, android64 0x60, mac 0x5C;
+	PAD = win 0x60, android32 0x38, android64 0x60, mac 0x60;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
 	float m_loadingProgress;
