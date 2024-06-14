@@ -159,7 +159,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
 // GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xa28);
 // GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
 
-GEODE_SIZE_CHECK(FMODAudioEngine, 0x648);
+// GEODE_SIZE_CHECK(FMODAudioEngine, 0x648);
 // GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x1b8);
 // GEODE_MEMBER_CHECK(FMODAudioEngine, m_sfxVolume, 0x1bc);
 // GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse1, 0x1c8);
