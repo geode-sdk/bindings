@@ -107,7 +107,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc98);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe80);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf6C);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf6c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2fd8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
