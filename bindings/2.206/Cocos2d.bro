@@ -1199,7 +1199,7 @@ class cocos2d::CCKeyboardDispatcher {
 	void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
 	char const* keyToString(cocos2d::enumKeyCodes);
 	void removeDelegate(cocos2d::CCKeyboardDelegate*);
-	void updateModifierKeys(bool, bool, bool, bool);
+	void updateModifierKeys(bool, bool, bool, bool) = m1 0x1b06c0, imac 0x1fde80;
 }
 
 [[link(win, android)]]
