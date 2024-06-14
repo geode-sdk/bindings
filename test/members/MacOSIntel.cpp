@@ -20,7 +20,7 @@
 // GEODE_MEMBER_CHECK(EditorUI, m_updatedSpeedObjects, 0x30c);
 
 // // LevelEditorLayer
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x35c0);
+// GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x35c0);
 // GEODE_MEMBER_CHECK(LevelEditorLayer, m_level, 0x618);
 // GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3534);
 // GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x3598);
@@ -104,11 +104,13 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_editorUI, 0x35c0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x788);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_effectManager, 0x848);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xc98);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe80);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
-// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf64); //should be f68 i think but that didnt line up so whatever
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf6c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2fd8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
-// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3048);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isDead, 0x30a2);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3290);
@@ -158,7 +160,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 // GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xa28);
 // GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
 
-GEODE_SIZE_CHECK(FMODAudioEngine, 0x648);
+// GEODE_SIZE_CHECK(FMODAudioEngine, 0x648);
 // GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x1b8);
 // GEODE_MEMBER_CHECK(FMODAudioEngine, m_sfxVolume, 0x1bc);
 // GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse1, 0x1c8);
