@@ -7043,15 +7043,15 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0x8c, android32 0x50, android64 0x9c, mac 0x64; // (for win) between 0x8 bytes, there is a member thats 0x8 size. I think its a CCDictionary*
 	std::array<float, 2000> m_massiveFloatArray;
 	PAD = win 0x80, android32 0x54, android64 0x98, mac 0x70; // not sure about the android paddings
-	int m_leftSectionIndex; // these 4 ints can be found in GJBaseGameLayer::updateDebugDraw
+	int m_leftSectionIndex; // these 4 ints can be found in GJBaseGameLayer::updateDebugDraw  12060
 	int m_rightSectionIndex;
 	int m_bottomSectionIndex;
 	int m_topSectionIndex;
 	PAD = win 0xc8, android32 0x64, android64 0xb8, mac 0x9c;
 	cocos2d::CCDictionary* m_unk2a50;
-	int m_unk2a54;
+	void* m_unk2a54;
 	ShaderLayer* m_shaderLayer;
-	PAD = win 0x8, android32 0x4, android64 0x8, mac 0xc;
+	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8;
 	StartPosObject* m_startPosObject; // 3180 win, 2a60 android32, 31a8 android64
 	PAD = win 0x60, android32 0x38, android64 0x60, mac 0x5C;
 	bool m_isPracticeMode;
