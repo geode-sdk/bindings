@@ -8,6 +8,10 @@ GEODE_SIZE_CHECK(FMODAudioEngine, 0x648);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 
 
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
+
+
 GEODE_SIZE_CHECK(CCTextInputNode, 0x258);
 
 #endif
