@@ -16282,7 +16282,7 @@ class UILayer : cocos2d::CCLayerColor {
 	TodoReturn editorPlaytest(bool);
 	void enableEditorMode();
 	TodoReturn enableMenu() = imac 0x4d34a0;
-	void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x4a0b80, m1 0x6b4338;
+	void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x4a0b80, m1 0x43103c;
 	bool init(GJBaseGameLayer*) = win 0x49fe60, imac 0x4d1a70, m1 0x42fe64;
 	bool isJumpButtonPressed(bool) = m1 0x431774;
 	void onCheck(cocos2d::CCObject* sender);
