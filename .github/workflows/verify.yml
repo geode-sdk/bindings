@@ -111,7 +111,7 @@ jobs:
       with:
         repository: geode-sdk/geode
         # TODO: this is temporary
-        ref: new-index-but-better
+        ref: main
         path: geode
 
     - name: Set up codegen binary cache

@@ -7498,7 +7498,7 @@ class GJFriendRequest : cocos2d::CCNode {
 class GJGameLevel : cocos2d::CCNode {
 	// virtual ~GJGameLevel();
 
-	static GJGameLevel* create() = win 0x1642d0, ios 0x95224;
+	static GJGameLevel* create() = win 0x1642d0, ios 0x95224, m1 0x486e78;
 	static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x162b70;
 	/*inline static GJGameLevel* createWithCoder(DS_Dictionary* dict) {
 		//inlined on windows
@@ -7509,10 +7509,10 @@ class GJGameLevel : cocos2d::CCNode {
 
 	TodoReturn areCoinsVerified();
 	void copyLevelInfo(GJGameLevel*) = win 0x165230;
-	void dataLoaded(DS_Dictionary*) = win 0x1658e0;
+	void dataLoaded(DS_Dictionary*) = win 0x1658e0, m1 0x4b2db0;
 	TodoReturn demonIconForDifficulty(DemonDifficultyType) = imac 0x566800;
 	TodoReturn generateSettingsString();
-	gd::string getAudioFileName() = win 0x164b80;
+	gd::string getAudioFileName() = win 0x164b80, m1 0x4b1710;
 	int getAverageDifficulty() = win 0x1649c0, m1 0x4b14cc, imac 0x562d50;
 	char const* getCoinKey(int coinNumber) {
 		if(m_dailyID > 0) return cocos2d::CCString::createWithFormat("%i_%i_%i", m_levelID.value(), coinNumber, m_dailyID.value())->getCString();
@@ -8007,13 +8007,13 @@ class GJItemIcon : cocos2d::CCSprite {
 class GJLevelList : cocos2d::CCNode {
 	// virtual ~GJLevelList();
 
-	static GJLevelList* create() = win 0x16de90;
+	static GJLevelList* create() = win 0x16de90, m1 0x487c24;
 	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16de90;
 
 	TodoReturn addLevelToList(GJGameLevel*);
 	TodoReturn completedLevels();
 	TodoReturn createWithCoder(DS_Dictionary*);
-	void dataLoaded(DS_Dictionary*) = win 0x16f3c0;
+	void dataLoaded(DS_Dictionary*) = win 0x16f3c0, m1 0x4b8464;
 	TodoReturn duplicateListLevels(GJLevelList*);
 	TodoReturn frameForListDifficulty(int, DifficultyIconType);
 	cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*);
@@ -9332,7 +9332,6 @@ class HardStreak : cocos2d::CCDrawNode {
 
 	virtual bool init() = m1 0x8cac0;
 
-	PAD = win 0x20, android32 0x20, android64 0x20, m1 0x0, imac 0x0, ios 0x0; // everything thats 0x0 is untested, added for member test
 	cocos2d::CCArray* m_pointArray;
 	cocos2d::CCPoint m_currentPoint;
 	float m_waveSize;
@@ -11329,7 +11328,7 @@ class MusicDownloadDelegate {
 class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	// virtual ~MusicDownloadManager();
 
-	static MusicDownloadManager* sharedState() = win 0x31bca0;
+	static MusicDownloadManager* sharedState() = win 0x31bca0, m1 0x4da8a4;
 
 	void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x31def0, imac 0x597180, m1 0x4dff40;
 	void addDLToActive(char const* tag);
@@ -11414,7 +11413,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void parseSFXLibrary();
 	gd::string pathForSFX(int) = win 0x31e730;
 	gd::string pathForSFXFolder(int) = win 0x31e5e0;
-	gd::string pathForSong(int) = win 0x31e400;
+	gd::string pathForSong(int) = win 0x31e400, m1 0x4df2bc;
 	gd::string pathForSongFolder(int) = win 0x31e2b0;
 	void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
 	callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
