@@ -116,6 +116,21 @@ class cocos2d::CCMotionStreak {
 }
 
 [[link(win, android)]]
+class cocos2d::CCMoveBy {
+	static cocos2d::CCMoveBy* create(float, cocos2d::CCPoint const&) = m1 0x33f6c0, imac 0x3bb420;
+
+	bool initWithDuration(float, cocos2d::CCPoint const&);
+
+	// CCMoveBy(cocos2d::CCMoveBy const&);
+	// CCMoveBy();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCMoveTo {
 	static cocos2d::CCMoveTo* create(float, cocos2d::CCPoint const&) = m1 0x33fa54, imac 0x3bb800, ios 0x1975a4;
 
