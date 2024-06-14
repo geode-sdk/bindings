@@ -1630,6 +1630,19 @@ class CharacterColorDelegate {
 [[link(android)]]
 class CharacterColorPage : FLAlertLayer {
 	// virtual ~CharacterColorPage();
+	CharacterColorPage() = win inline {
+		m_colorMode = 0;
+		m_height = 0.f;
+		m_width = 0.f;
+		m_playerObjects = nullptr;
+		m_modeButtons = nullptr;
+		m_colorButtons = nullptr;
+		m_cursors = nullptr;
+		m_delegate = nullptr;
+		m_glowToggler = nullptr;
+		m_glowLabel = nullptr;
+		FLAlertLayer();
+	}
 
 	static CharacterColorPage* create() = ios 0x12f2cc;
 
@@ -1649,7 +1662,7 @@ class CharacterColorPage : FLAlertLayer {
 	void updateIconColors() = win 0x88d30;
 
 	virtual bool init() = win 0x866e0, m1 0x585a10, imac 0x669d70, ios 0x12f38c;
-	virtual void registerWithTouchDispatcher() = m1 0x587994;
+	virtual void registerWithTouchDispatcher() = m1 0x587994 win 0x51ee0 /* just took the flalertlayer one meow */;;
 	virtual void keyBackClicked() = win 0x88f90, m1 0x5878e8;
 	virtual void show() = m1 0x587760;
 
@@ -9085,7 +9098,7 @@ class GJUserScore : cocos2d::CCNode {
 	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x1688d0;
 	GJUserScore() = win 0x13d890;
 
-	bool isCurrentUser();
+	bool isCurrentUser() = win 0x16a2c0;
 	TodoReturn mergeWithScore(GJUserScore*);
 
 	virtual bool init() = win 0x16a270, m1 0x4b525c;
