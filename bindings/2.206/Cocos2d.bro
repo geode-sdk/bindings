@@ -2026,6 +2026,74 @@ class cocos2d {
 }
 
 [[link(win, android)]]
+class DS_Dictionary {
+	DS_Dictionary() = m1 0x13e1c8;
+	void addBoolValuesToMapForKey(gd::map<gd::string, bool>&, char const*, bool);
+	void addBoolValuesToMapForKeySpecial(gd::map<gd::string, bool>&, char const*, bool);
+	void checkCompatibility();
+	gd::string cleanStringWhiteSpace(gd::string const&);
+	static void copyFile(char const*, char const*);
+	cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
+	gd::vector<gd::string> getAllKeys();
+	cocos2d::CCArray* getArrayForKey(char const*, bool);
+	bool getBoolForKey(char const*);
+	cocos2d::CCDictionary* getDictForKey(char const*, bool);
+	float getFloatForKey(char const*);
+	unsigned int getIndexOfKey(char const*);
+	unsigned int getIndexOfKeyWithClosestAlphaNumericalMatch(char const*);
+	int getIntegerForKey(char const*);
+	gd::string getKey(unsigned int);
+	unsigned int getNumKeys();
+	cocos2d::CCObject* getObjectForKey(char const*);
+	gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
+	cocos2d::CCRect getRectForKey(char const*);
+	gd::vector<gd::string> getStringArrayForKey(char const*);
+	gd::string getStringForKey(char const*);
+	gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
+	cocos2d::CCPoint getVec2ForKey(char const*);
+	bool loadRootSubDictFromCompressedFile(char const*);
+	bool loadRootSubDictFromFile(char const*);
+	bool loadRootSubDictFromString(gd::string const&) = m1 0x13f9b4;
+	bool rectFromString(gd::string const&, cocos2d::CCRect&);
+	void removeAllKeys();
+	void removeKey(unsigned int);
+	void removeKey(char const*);
+	bool saveRootSubDictToCompressedFile(char const*);
+	bool saveRootSubDictToFile(char const*);
+	gd::string saveRootSubDictToString() = m1 0x140bcc;
+	void setArrayForKey(char const*, cocos2d::CCArray*);
+	void setBoolForKey(char const*, bool, bool);
+	void setBoolForKey(char const*, bool);
+	void setBoolMapForKey(char const*, gd::map<gd::string, bool>&);
+	void setDictForKey(char const*, cocos2d::CCDictionary*);
+	void setFloatForKey(char const*, float);
+	void setFloatForKey(char const*, float, bool);
+	void setIntegerForKey(char const*, int);
+	void setIntegerForKey(char const*, int, bool);
+	void setObjectForKey(char const*, cocos2d::CCObject*);
+	void setRectArrayForKey(char const*, gd::vector<cocos2d::CCRect> const&);
+	void setRectArrayForKey(char const*, gd::vector<cocos2d::CCRect> const&, bool);
+	void setRectForKey(char const*, cocos2d::CCRect const&);
+	void setRectForKey(char const*, cocos2d::CCRect const&, bool);
+	void setStringArrayForKey(char const*, gd::vector<gd::string> const&);
+	void setStringArrayForKey(char const*, gd::vector<gd::string> const&, bool);
+	void setStringForKey(char const*, gd::string const&);
+	void setStringForKey(char const*, gd::string const&, bool);
+	void setSubDictForKey(char const*);
+	void setSubDictForKey(char const*, bool, bool);
+	void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&);
+	void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&, bool);
+	void setVec2ForKey(char const*, cocos2d::CCPoint const&);
+	void setVec2ForKey(char const*, cocos2d::CCPoint const&, bool);
+	void split(gd::string const&, char const*, gd::vector<gd::string>&);
+	bool splitWithForm(gd::string const&, gd::vector<gd::string>&);
+	void stepBackToRootSubDict();
+	bool stepIntoSubDictWithKey(char const*) = m1 0x14113c;
+	void stepOutOfSubDict();
+	bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
+}
+
+[[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker {
 	static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x356900, m1 0x2e4df4, ios 0x1ba76c;
 }
@@ -2122,7 +2190,7 @@ class cocos2d::ZipUtils {
 	static gd::string base64URLDecode(gd::string const&);
 	static gd::string base64URLEncode(gd::string const&);
 	static void ccDecodeEncodedPvr(unsigned int*, int);
-	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**);
+	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**) = m1 0x1b1220;
 	static int ccInflateCCZFile(char const*, unsigned char**);
 	static int ccInflateGZipFile(char const*, unsigned char**);
 	static int ccInflateMemory(unsigned char*, unsigned int, unsigned char**);
@@ -2137,4 +2205,18 @@ class cocos2d::ZipUtils {
 	static gd::string encryptDecryptWKey(gd::string const&, gd::string);
 	static unsigned char hexToChar(gd::string const&);
 	static gd::string urlDecode(gd::string const&);
+}
+
+[[link(win, android)]]
+class pugi::xml_document {
+	xml_document() = m1 0x56bb98;
+	~xml_document() = m1 0x56bcec;
+}
+
+[[link(win, android)]]
+class pugi::xml_node {
+	// i'm not bothering
+	xml_node() = m1 inline {
+		_root = nullptr;
+	}
 }
