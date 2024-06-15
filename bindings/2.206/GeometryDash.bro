@@ -6143,7 +6143,7 @@ class GauntletNode : cocos2d::CCNode {
 	TodoReturn frameForType(GauntletType) = win 0x1ef420;
 	bool init(GJMapPack*) = win 0x1edf90, imac 0x57abf0, m1 0x4c6d84;
 	static gd::string nameForType(GauntletType) = win 0x1f0590;
-	TodoReturn onClaimReward();
+	void onClaimReward();
 }
 
 [[link(android)]]
@@ -6475,9 +6475,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
 	void destroyObject(GameObject*) = win 0x206b50;
 	TodoReturn enterDualMode(GameObject*, bool);
-	TodoReturn exitStaticCamera(bool, bool, float, int, float, bool, float, bool) = win 0x22e7a0;
+	void exitStaticCamera(bool, bool, float, int, float, bool, float, bool) = win 0x22e7a0;
 	TodoReturn flipFinished();
-	TodoReturn flipGravity(PlayerObject*, bool, bool) = win 0x203660;
+	void flipGravity(PlayerObject*, bool, bool) = win 0x203660;
 	TodoReturn flipObjects();
 	TodoReturn gameEventToString(GJGameEvent);
 	void gameEventTriggered(GJGameEvent, int, int) = win 0x221fb0, m1 0xf2c98;
@@ -12228,8 +12228,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerSpriteExtra(gd::string);
 	void updatePlayerSwingFrame(int) = win 0x37c7c0, m1 0x395b5c, imac 0x420cd0;
 	void updateRobotAnimationSpeed() = win 0x37f0f0;
-	TodoReturn updateRotation(float, float) = win 0x36b230;
-	TodoReturn updateRotation(float) = win 0x36f0b0;
+	void updateRotation(float, float) = win 0x36b230;
+	void updateRotation(float) = win 0x36f0b0;
 	void updateShipRotation(float) = win 0x36ecd0;
 	void updateShipSpriteExtra(gd::string);
 	TodoReturn updateSlopeRotation(float);
@@ -13391,7 +13391,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onAddGroup(cocos2d::CCObject* sender);
 	void onAddGroupParent(cocos2d::CCObject* sender);
 	void onAnim(cocos2d::CCObject* sender);
-	TodoReturn onArrow(int, int);
+	void onArrow(int, int);
 	void onArrowLeft(cocos2d::CCObject* sender);
 	void onArrowRight(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
