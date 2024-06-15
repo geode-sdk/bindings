@@ -11879,7 +11879,9 @@ class PlatformToolbox {
 	static TodoReturn getRawPath(char const*);
 	static TodoReturn getUniqueUserID();
 	static TodoReturn getUserID();
-	static TodoReturn hideCursor();
+	static void hideCursor() = win inline, imac 0x4cdbb0, m1 0x42c87c {
+		cocos2d::CCEGLView::sharedOpenGLView()->showCursor(false);
+	}
 	static bool isControllerConnected() = win inline, imac 0x4cea70, m1 0x42d470, ios 0x177980 {
 		#ifdef GEODE_IS_WINDOWS
 			return cocos2d::CCApplication::sharedApplication()->getControllerConnected();
@@ -11910,7 +11912,9 @@ class PlatformToolbox {
 	static void setKeyboardState(bool);
 	static TodoReturn shouldResumeSound();
 	static void showAchievements();
-	static void showCursor() = imac 0x4cdbd0, m1 0x42c894;
+	static void showCursor() = win inline, imac 0x4cdbd0, m1 0x42c894 {
+		cocos2d::CCEGLView::sharedOpenGLView()->showCursor(true);
+	}
 	static TodoReturn signInGooglePlay();
 	static TodoReturn signOutGooglePlay();
 	static TodoReturn spriteFromSavedFile(gd::string);
