@@ -1076,7 +1076,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	}
 	void normalTouch(cocos2d::CCObject*) = win 0x44700, ios 0x19ce74;
 	void selectedTouch(cocos2d::CCObject*) = win 0x44720, ios 0x19ce88;
-	void setSizeMult(float mult) = win inline {
+	void setSizeMult(float mult) = win inline, imac 0x5ac30, m1 0x51318 {
 		m_offButton->setSizeMult(mult);
 		m_onButton->setSizeMult(mult);
 
