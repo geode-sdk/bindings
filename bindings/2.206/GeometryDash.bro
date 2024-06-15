@@ -12645,8 +12645,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	bool m_hasCompletedLevel;
 	PAD = win 0x6, android32 0x6, android64 0x6;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0x3, android32 0x3, android64 0x3;
-	PAD = win 0x5b, android32 0x33, android64 0x5b;
+	PAD = win 0x54, android32 0x8, android64 0x54;
 	bool m_isPaused;
 	PAD = win 0x18, android32 0x18, android64 0x18;
 	cocos2d::CCDictionary* m_colorKeyDict;
