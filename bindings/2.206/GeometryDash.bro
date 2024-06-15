@@ -10214,7 +10214,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void setupProgressBars() = win 0x2da870, imac 0x2bce50, m1 0x25c4a0;
 	bool shouldDownloadLevel();
 	void showSongWarning() = imac 0x2c00c0, m1 0x25f624;
-	void showUpdateAlert(UpdateResponse); = win 0x2dc060, imac 0x2bfc20, m1 0x25f1c4;
+	void showUpdateAlert(UpdateResponse) = win 0x2dc060, imac 0x2bfc20, m1 0x25f1c4;
 	void tryCloneLevel(cocos2d::CCObject*) = win 0x2dd4f0, imac 0x2bdee0, m1 0x25d588;
 	TodoReturn tryShowAd();
 	void updateLabelValues() = win 0x2df060, imac 0x2bebc0, m1 0x25e294;
