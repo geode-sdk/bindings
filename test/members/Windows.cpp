@@ -115,7 +115,7 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkGameObjPtr1, 0x250);
 GEODE_MEMBER_CHECK(GJGameState, m_unkGameObjPtr2, 0x258);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraPosition, 0x260);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool10, 0x268);
-GEODE_MEMBER_CHECK(GJGameState, m_unkUint8, 0x26c);
+GEODE_MEMBER_CHECK(GJGameState, m_levelFlipping, 0x26c);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool11, 0x270);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool12, 0x271);
 GEODE_MEMBER_CHECK(GJGameState, m_isDualMode, 0x272);
@@ -225,7 +225,15 @@ GEODE_MEMBER_CHECK(CCScrollLayerExt, m_verticalScrollbar, 0x1c0);
 GEODE_MEMBER_CHECK(CCScrollLayerExt, m_contentLayer, 0x1d8);
 
 
+GEODE_SIZE_CHECK(FMODAudioEngine, 0x888);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicChannels, 0x140);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x230);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_audioState, 0x270);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_channelIDToChannel, 0x648);
+
+GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat7, 0x1b8);
+GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat8, 0x1f8);
+GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat9, 0x238);
 
 GEODE_SIZE_CHECK(CCTextInputNode, 0x268);
 

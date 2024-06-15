@@ -7,7 +7,9 @@ using namespace codegen;
 std::map<void const*, size_t> codegen::idMap;
 
 std::string generateMacHeader(std::string filebase, std::string file_ext) {
-    return fmt::format(R"GEN(#pragma once
+    auto header_guard = file_ext == "cpp" ? "" : "#pragma once";
+
+    return fmt::format(R"GEN({2}
 #include <Geode/platform/platform.hpp>
 
 #ifdef GEODE_IS_ARM_MAC
@@ -15,7 +17,7 @@ std::string generateMacHeader(std::string filebase, std::string file_ext) {
 #else
 #include "{0}Intel.{1}"
 #endif
-)GEN", filebase, file_ext);
+)GEN", filebase, file_ext, header_guard);
 }
 
 std::string generateMacFolderHeader(std::string folder, std::string filename) {
