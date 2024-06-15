@@ -2025,7 +2025,7 @@ class CommunityCreditsPage : FLAlertLayer {
 	void onClose(cocos2d::CCObject* sender);
 	void onSwitchPage(cocos2d::CCObject* sender);
 
-	virtual bool init() = m1 0x2ae0a8;
+	virtual bool init() = m1 0x2ae0a8, win 0x927f0;
 	virtual void registerWithTouchDispatcher() = m1 0x2b03c8;
 	virtual void keyBackClicked() = m1 0x2b034c;
 	virtual void show() = m1 0x2b01c4;
@@ -4326,7 +4326,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	static FRequestProfilePage* create(bool);
 
 	TodoReturn deleteSelected();
-	bool init(bool);
+	bool init(bool) = win 0x139500;
 	bool isCorrect(char const*);
 	void loadPage(int);
 	void onClose(cocos2d::CCObject* sender);
@@ -4336,7 +4336,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	void onSentRequests(cocos2d::CCObject* sender);
 	void onToggleAllObjects(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
-	void setupCommentsBrowser(cocos2d::CCArray*);
+	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x13b100;
 	TodoReturn untoggleAll();
 	TodoReturn updateLevelsLabel();
 	TodoReturn updatePageArrows();
@@ -4392,7 +4392,7 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 	void onBlocked(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
-	void setupUsersBrowser(cocos2d::CCArray*, UserListType);
+	void setupUsersBrowser(cocos2d::CCArray*, UserListType) = win 0x13bf40;
 
 	virtual void registerWithTouchDispatcher() = m1 0x581780;
 	virtual void keyBackClicked() = win 0x13c770, m1 0x581774, imac 0x665510;
@@ -11037,7 +11037,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	static MessagesProfilePage* create(bool);
 
 	TodoReturn deleteSelected();
-	bool init(bool);
+	bool init(bool) = win 0x315d70;
 	bool isCorrect(char const*);
 	void loadPage(int) = imac 0x22a2b0;
 	void onClose(cocos2d::CCObject* sender);
@@ -11047,7 +11047,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	void onSentMessages(cocos2d::CCObject* sender);
 	void onToggleAllObjects(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
-	void setupCommentsBrowser(cocos2d::CCArray*);
+	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x317690;
 	TodoReturn untoggleAll();
 	TodoReturn updateLevelsLabel();
 	TodoReturn updatePageArrows();
