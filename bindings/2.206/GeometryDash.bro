@@ -11880,7 +11880,7 @@ class PlatformToolbox {
 	static TodoReturn getUniqueUserID();
 	static TodoReturn getUserID();
 	static void hideCursor() = win inline, imac 0x4cdbb0, m1 0x42c87c {
-		cocos2d::CCEGLView::sharedOpenGLView()->showCursor(true);
+		cocos2d::CCEGLView::sharedOpenGLView()->showCursor(false);
 	}
 	static bool isControllerConnected() = win inline, imac 0x4cea70, m1 0x42d470, ios 0x177980 {
 		#ifdef GEODE_IS_WINDOWS
