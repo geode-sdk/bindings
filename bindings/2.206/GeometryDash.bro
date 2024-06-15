@@ -2832,7 +2832,7 @@ class DynamicScrollDelegate {
 class EditButtonBar : cocos2d::CCNode {
 	// virtual ~EditButtonBar();
 
-	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows);
+	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0xd0cb0;
 
 	int getPage();
 	void goToPage(int); // inlined on win
@@ -10200,8 +10200,8 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void onSetFolder(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender) = win 0x2deaf0;
-	TodoReturn playStep2();
-	void playStep3() = m1 0x25f804;
+	void playStep2() = win 0x2dd1a0;
+	void playStep3() = win 0x2dd280, m1 0x25f804;
 	void playStep4() = m1 0x25f940;
 	static cocos2d::CCScene* scene(GJGameLevel*, bool);
 	void setupLevelInfo() = win 0x2daf80, m1 0x25b5b8;
