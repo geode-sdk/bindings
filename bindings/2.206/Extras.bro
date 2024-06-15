@@ -136,7 +136,7 @@ class FMODQueuedMusic {
 
 class FMODSoundState {
 	gd::string m_unkString;
-	PAD = win 0xa4;
+	PAD = win 0x9c;
 }
 
 class TimerItem {
