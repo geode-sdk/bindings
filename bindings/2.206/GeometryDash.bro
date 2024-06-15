@@ -2830,7 +2830,7 @@ class DynamicScrollDelegate {
 class EditButtonBar : cocos2d::CCNode {
 	// virtual ~EditButtonBar();
 
-	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows);
+	static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = win 0xd0cb0;
 
 	int getPage();
 	void goToPage(int); // inlined on win
@@ -8029,7 +8029,7 @@ class GJLevelList : cocos2d::CCNode {
 	TodoReturn totalLevels();
 	TodoReturn updateLevelsString();
 
-	virtual void encodeWithCoder(DS_Dictionary*) = m1 0x4b8794;
+	virtual void encodeWithCoder(DS_Dictionary*) = win 0x16f6e0, m1 0x4b8794;
 	virtual bool canEncode() = m1 0x4b89cc;
 	virtual bool init() = m1 0x4b6c9c;
 
@@ -10202,8 +10202,8 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void onSetFolder(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender) = win 0x2deaf0;
-	TodoReturn playStep2();
-	void playStep3() = m1 0x25f804;
+	void playStep2() = win 0x2dd1a0;
+	void playStep3() = win 0x2dd280, m1 0x25f804;
 	void playStep4() = m1 0x25f940;
 	static cocos2d::CCScene* scene(GJGameLevel*, bool);
 	void setupLevelInfo() = win 0x2daf80, m1 0x25b5b8;
@@ -13077,25 +13077,25 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 
 	static SecretLayer2* create();
 
-	gd::string getBasicMessage();
-	gd::string getErrorMessage();
-	gd::string getMessage();
-	gd::string getThreadMessage();
-	TodoReturn nodeWithTag(int);
-	void onBack(cocos2d::CCObject* sender);
-	void onDoor(cocos2d::CCObject* sender);
-	void onSecretLevel(cocos2d::CCObject* sender);
+	gd::string getBasicMessage() = win 0x3c22a0;
+	gd::string getErrorMessage() = win 0x3c2e00;
+	gd::string getMessage() = win 0x3c19d0;
+	gd::string getThreadMessage() = win 0x3c1bb0;
+	TodoReturn nodeWithTag(int); // inlined on windows
+	void onBack(cocos2d::CCObject* sender) = win 0x3c3f00;
+	void onDoor(cocos2d::CCObject* sender) = win 0x3bf060;
+	void onSecretLevel(cocos2d::CCObject* sender) = win 0x3bede0;
 	void onSubmit(cocos2d::CCObject* sender) = win 0x3bf9c0;
-	void playCoinEffect();
-	TodoReturn scene();
-	void selectAThread();
-	void showCompletedLevel();
-	void showSecretLevel();
-	void updateMessageLabel(gd::string);
+	void playCoinEffect() = win 0x3c3a80;
+	TodoReturn scene() = win 0x3bc910;
+	void selectAThread(); // inlined on windows
+	void showCompletedLevel() = win 0x3be090;
+	void showSecretLevel() = win 0x3bdf20;
+	void updateMessageLabel(gd::string) = win 0x3c1940;
 	void updateSearchLabel(char const*) = win 0x3c1650;
 
 	virtual bool init() = win 0x3bca90, m1 0x40a32c;
-	virtual void onExit() = m1 0x410058;
+	virtual void onExit() = win 0x3c3fc0, m1 0x410058;
 	virtual void keyBackClicked() = win 0x3c3fb0, m1 0x40ff6c;
 	virtual void textInputOpened(CCTextInputNode*) = win 0x3c1430, m1 0x40efbc;
 	virtual void textInputClosed(CCTextInputNode*) = win 0x3c1580, m1 0x40f09c;
@@ -13127,7 +13127,7 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
 	TodoReturn scene();
 	void showUnlockDialog();
 
-	virtual bool init() = m1 0x41039c;
+	virtual bool init() = win 0x3c4540, m1 0x41039c;
 	virtual void onExit() = m1 0x414e18;
 	virtual void keyBackClicked() = win 0x3c9c80, m1 0x414e0c;
 	virtual void dialogClosed(DialogLayer*) = win 0x3c9680, m1 0x414ad4;
