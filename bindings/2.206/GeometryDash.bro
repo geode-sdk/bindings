@@ -8027,7 +8027,7 @@ class GJLevelList : cocos2d::CCNode {
 	TodoReturn totalLevels();
 	TodoReturn updateLevelsString();
 
-	virtual void encodeWithCoder(DS_Dictionary*) = m1 0x4b8794;
+	virtual void encodeWithCoder(DS_Dictionary*) = win 0x16f6e0, m1 0x4b8794;
 	virtual bool canEncode() = m1 0x4b89cc;
 	virtual bool init() = m1 0x4b6c9c;
 
