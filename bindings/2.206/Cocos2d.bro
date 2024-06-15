@@ -1167,7 +1167,7 @@ class cocos2d::CCIMEDispatcher {
 	bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
 	bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
 	void dispatchDeleteBackward() = imac 0x4c6140, m1 0x425760;
-	void dispatchDeleteForward() = imac 0x4c6160;
+	void dispatchDeleteForward() = imac 0x4c6160, m1 0x425780;
 	void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = imac 0x4c6110, m1 0x425734;
 	void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
 	void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&);
@@ -1199,7 +1199,7 @@ class cocos2d::CCKeyboardDispatcher {
 	void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
 	char const* keyToString(cocos2d::enumKeyCodes);
 	void removeDelegate(cocos2d::CCKeyboardDelegate*);
-	void updateModifierKeys(bool, bool, bool, bool);
+	void updateModifierKeys(bool, bool, bool, bool) = m1 0x1b06c0, imac 0x1fde80;
 }
 
 [[link(win, android)]]

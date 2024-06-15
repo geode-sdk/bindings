@@ -963,7 +963,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	}
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x43d60, imac 0x272d90, m1 0x218c88, ios 0x223d80;
-	void setSizeMult(float mult) = win inline, m1 inline, ios 0x223f04 {
+	void setSizeMult(float mult) = win inline, m1 inline, imac inline, ios 0x223f04 {
 		//inlined on windows, member is in CCMenuItemSprite
 		m_fSizeMult = mult;
 	}
