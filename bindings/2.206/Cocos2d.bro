@@ -583,14 +583,14 @@ class cocos2d::CCNode {
 	void scheduleUpdateWithPriorityLua(int, int);
 	void sortAllChildrenNoIndex();
 	void sortAllChildrenWithIndex();
-	void stopAction(cocos2d::CCAction*);
-	void stopActionByTag(int) = ios 0x24ca40;
+	void stopAction(cocos2d::CCAction*) = imac 0x270100, m1 0x216440;
+	void stopActionByTag(int) = imac 0x270120, m1 0x216448, ios 0x24ca40;
 	void stopAllActions() = imac 0x26ef50, m1 0x215290, ios 0x24bd0c;
 	void transform();
 	void transformAncestors();
 	void unschedule(cocos2d::SEL_SCHEDULE);
 	void unscheduleAllSelectors() = imac 0x26ef70, m1 0x21529c;
-	void unscheduleUpdate();
+	void unscheduleUpdate() = imac 0x2702b0, m1 0x216570;
 	void updateChildIndexes();
 
 	virtual void update(float) = m1 0x21666c, imac 0x2703e0, ios 0x24cba4;
@@ -1280,7 +1280,7 @@ class cocos2d::CCDirector {
 	void popToSceneStackLevel(int);
 	void purgeCachedData();
 	void purgeDirector();
-	bool pushScene(cocos2d::CCScene*) = ios 0x181c80;
+	bool pushScene(cocos2d::CCScene*) = imac 0x48d060, m1 0x3f269c, ios 0x181c80;
 	void removeStatsLabel() = ios 0x182250;
 	bool replaceScene(cocos2d::CCScene*) = imac 0x48d110, m1 0x3f2764, ios 0x181d08;
 	void resetSmoothFixCounter();
