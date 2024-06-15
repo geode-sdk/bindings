@@ -16039,9 +16039,9 @@ class TeleportPortalObject : RingObject {
 class TextAlertPopup : cocos2d::CCNode {
 	// virtual ~TextAlertPopup();
 
-	static TextAlertPopup* create(gd::string, float, float, int, gd::string) = win 0x28b920;
+	static TextAlertPopup* create(gd::string, float, float, int, gd::string) = win 0x28b920, imac 0x2ab0c0, m1 0x24c288;
 
-	bool init(gd::string, float, float, int, gd::string) = win 0x28ba50;
+	bool init(gd::string, float, float, int, gd::string) = win 0x28ba50, imac 0x2ab2e0, m1 0x24c4d0;
 	void setAlertPosition(cocos2d::CCPoint, cocos2d::CCPoint);
 	// inlined on Windows
 	void setLabelColor(cocos2d::ccColor3B);
