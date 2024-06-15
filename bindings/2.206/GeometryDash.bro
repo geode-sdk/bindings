@@ -13066,25 +13066,25 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 
 	static SecretLayer2* create();
 
-	gd::string getBasicMessage();
-	gd::string getErrorMessage();
-	gd::string getMessage();
-	gd::string getThreadMessage();
-	TodoReturn nodeWithTag(int);
-	void onBack(cocos2d::CCObject* sender);
-	void onDoor(cocos2d::CCObject* sender);
-	void onSecretLevel(cocos2d::CCObject* sender);
+	gd::string getBasicMessage() = win 0x3c22a0;
+	gd::string getErrorMessage() = win 0x3c2e00;
+	gd::string getMessage() = win 0x3c19d0;
+	gd::string getThreadMessage() = win 0x3c1bb0;
+	TodoReturn nodeWithTag(int); // inlined on windows
+	void onBack(cocos2d::CCObject* sender) = win 0x3c3f00;
+	void onDoor(cocos2d::CCObject* sender) = win 0x3bf060;
+	void onSecretLevel(cocos2d::CCObject* sender) = win 0x3bede0;
 	void onSubmit(cocos2d::CCObject* sender) = win 0x3bf9c0;
-	void playCoinEffect();
-	TodoReturn scene();
-	void selectAThread();
-	void showCompletedLevel();
-	void showSecretLevel();
-	void updateMessageLabel(gd::string);
+	void playCoinEffect() = win 0x3c3a80;
+	TodoReturn scene() = win 0x3bc910;
+	void selectAThread(); // inlined on windows
+	void showCompletedLevel() = win 0x3be090;
+	void showSecretLevel() = win 0x3bdf20;
+	void updateMessageLabel(gd::string) = win 0x3c1940;
 	void updateSearchLabel(char const*) = win 0x3c1650;
 
 	virtual bool init() = win 0x3bca90, m1 0x40a32c;
-	virtual void onExit() = m1 0x410058;
+	virtual void onExit() = win 0x3c3fc0, m1 0x410058;
 	virtual void keyBackClicked() = win 0x3c3fb0, m1 0x40ff6c;
 	virtual void textInputOpened(CCTextInputNode*) = win 0x3c1430, m1 0x40efbc;
 	virtual void textInputClosed(CCTextInputNode*) = win 0x3c1580, m1 0x40f09c;
@@ -13116,7 +13116,7 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
 	TodoReturn scene();
 	void showUnlockDialog();
 
-	virtual bool init() = m1 0x41039c;
+	virtual bool init() = win 0x3c4540, m1 0x41039c;
 	virtual void onExit() = m1 0x414e18;
 	virtual void keyBackClicked() = win 0x3c9c80, m1 0x414e0c;
 	virtual void dialogClosed(DialogLayer*) = win 0x3c9680, m1 0x414ad4;
