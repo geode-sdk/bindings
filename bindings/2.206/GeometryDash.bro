@@ -12641,7 +12641,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCSprite* m_progressBar;
 	cocos2d::CCSprite* m_progressFill;
 	// everything after this comment is probably wrong
-	PAD = win 0x55, android32 0xf, android64 0xf; // this makes zero sense
+	PAD = win 0x2d, android32 0xf, android64 0xf; // this makes zero sense
 	bool m_hasCompletedLevel;
 	PAD = win 0x6, android32 0x6, android64 0x6;
 	bool m_endLayerStars; // not verified on android
