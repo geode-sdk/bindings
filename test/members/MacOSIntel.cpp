@@ -32,6 +32,7 @@
 // GEODE_MEMBER_CHECK(PlayLayer, m_replayInputs, 0x6a8);
 // GEODE_MEMBER_CHECK(PlayLayer, m_level, 0x728);
 // GEODE_MEMBER_CHECK(PlayLayer, m_shouldTryToKick, 0x7a8);
+GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x3508);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x368D);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36F7);
 

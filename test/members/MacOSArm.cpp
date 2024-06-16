@@ -3,6 +3,7 @@
 #ifdef GEODE_IS_ARM_MAC
 
 // GEODE_SIZE_CHECK(PlayLayer, 0x3790);
+GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x3508);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x368D);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36F7);
 

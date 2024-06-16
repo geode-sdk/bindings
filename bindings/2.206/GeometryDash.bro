@@ -12618,10 +12618,10 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*) = win 0x391440, m1 0xa7a3c;
 	virtual void dialogClosed(DialogLayer*) = win 0x3912a0, m1 0xa7a08;
 
-	PAD = win 0x30, imac 0x30, android32 0x24, android64 0x2c, m1 0x2c, ios 0x2c;
-	cocos2d::CCArray* m_coinArray;
+	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x2c;
+	cocos2d::CCArray* m_coinArray; // 13576
 	PAD = win 0x70, android32 0x40, android64 0x70;
-	cocos2d::CCLabelBMFont* m_statusLabel;
+	cocos2d::CCLabelBMFont* m_statusLabel; // 13696
 	int m_unk3778;
 	PAD = win 0x18, android32 0x18, android64 0x18;
 	float m_unksomefloat;
