@@ -6822,8 +6822,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn updateObjectSection(GameObject*) = m1 0x10c98c, win 0x2187e0;
 	virtual TodoReturn updateDisabledObjectsLastPos(cocos2d::CCArray*) = m1 0xab574;
 	virtual TodoReturn toggleGroundVisibility(bool) = m1 0x1182dc;
-	virtual TodoReturn toggleMGVisibility(bool) = m1 0x1182e0;
-	virtual TodoReturn toggleHideAttempts(bool) = m1 0x1182e4;
+	virtual void toggleMGVisibility(bool) = m1 0x1182e0;
+	virtual void toggleHideAttempts(bool) = m1 0x1182e4, win 0x3aff0;
 	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) { return 0.f; }
 	virtual float posForTime(float) { return 0.f; }
 	virtual void resetSPTriggered() {}
@@ -7088,8 +7088,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCArray* m_unk3470;
 	cocos2d::CCDictionary* m_unk3478;
 	cocos2d::CCNode* m_unk3480;
-	float m_unk3484;
-	PAD = win 0x44, android32 0x44, android64 0x44, mac 0x44; // mac not verified
+	double m_timePlayed;
+	PAD = win 0x40, android32 0x40, android64 0x40, mac 0x40; // mac not verified
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c48 win
 	PAD = win 0x100, android32 0x58, android64 0xe0, mac 0xe0; // mac not verified
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection; // 2c9c win
@@ -12591,8 +12591,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void toggleGlitter(bool) = imac 0xbad40, m1 0xa6f00, win 0x390480;
 	virtual void destroyPlayer(PlayerObject*, GameObject*) = win 0x3905a0, imac 0xbae00, m1 0xa6fd8;
 	virtual TodoReturn toggleGroundVisibility(bool) = win 0x3902d0, m1 0xa6e14;
-	virtual TodoReturn toggleMGVisibility(bool) = m1 0xa6e44, win 0x390350;
-	virtual TodoReturn toggleHideAttempts(bool) = m1 0xa6e54, win 0x390390;
+	virtual void toggleMGVisibility(bool) = m1 0xa6e44, win 0x390350;
+	virtual void toggleHideAttempts(bool) = m1 0xa6e54, win 0x390390;
 	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x3901a0, m1 0xa6d3c;
 	virtual float posForTime(float) = win 0x390230, m1 0xa6db0;
 	virtual void resetSPTriggered() = win 0x390290, m1 0xa6dd0;
