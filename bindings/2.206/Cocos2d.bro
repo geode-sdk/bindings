@@ -210,7 +210,7 @@ class cocos2d::CCShaderCache {
 
 [[link(win, android)]]
 class cocos2d::CCParticleSystem {
-	static cocos2d::CCParticleSystem* create(char const*);
+	static cocos2d::CCParticleSystem* create(char const*) = imac 0x7d3960, m1 0x6d8070;
 	static cocos2d::CCParticleSystem* createWithTotalParticles(unsigned int);
 
 	void initParticle(cocos2d::sCCParticle*);
