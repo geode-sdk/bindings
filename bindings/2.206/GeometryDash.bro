@@ -7093,13 +7093,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	float m_unk3484;
 	PAD = win 0x44, android32 0x44, android64 0x44, mac 0x3c;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c48 win
-	PAD = win 0x100, android32 0x58, android64 0xe0, mac 0xe0; // mac not verified
+	PAD = win 0x100, android32 0x58, android64 0xe0, mac 0xe8; // mac not verified
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection; // 2c9c win
-	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10; // mac not verified
+	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10;
 	FMODLevelVisualizer* m_fModVisualizerBG;
 	FMODLevelVisualizer* m_fModVisualizerSFX;
 	bool m_showAudioVisualizer;
-	PAD = win 0x67, android32 0x67, android64 0x67, mac 0x67; // mac not verified
+	PAD = win 0x67, android32 0x67, android64 0x67, mac 0x67;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode;
 	void* m_unk3678;
@@ -7687,7 +7687,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 
 	void gameLayerDidUnload();
 	bool init(GJGameLevel* level, bool editor);
-	void loadLevel() = win 0x2380c0;
+	void loadLevel() = win 0x2380c0, m1 0x129940;
 	static GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel* level, bool editor) = win 0x237ed0;
 
 	virtual void onEnter();
