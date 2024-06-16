@@ -12869,7 +12869,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	static RateStarsLayer* create(int, bool, bool);
 
 	CCMenuItemSpriteExtra* getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
-	bool init(int, bool, bool);
+	bool init(int, bool, bool) = win 0x3f4920;
 	void onClose(cocos2d::CCObject* sender) = win 0x3a7140;
 	void onFeature(cocos2d::CCObject* sender) = win 0x3a6a30;
 	void onRate(cocos2d::CCObject* sender) = win 0x3a6d90;
