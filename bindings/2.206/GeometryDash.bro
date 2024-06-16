@@ -7079,11 +7079,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_unk3234;
 	cocos2d::CCParticleSystemQuad* m_unk3238;
 	int m_unk323c;
-	PAD = win 0x6, android32 0x10, android64 0x6, mac 0x6; // mac not verified, i think everything below this is not correct
+	PAD = win 0x6, android32 0x10, android64 0x6, mac 0x6; // mac not verified
 	bool m_started;
-	PAD = win 0xA6, android32 0x66, android64 0x8e, mac 0xb8; // mac not verified
+	PAD = win 0xA6, android32 0x66, android64 0x8e, mac 0xa0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = win 0x148, android32 0xa0, android64 0x138, mac 0x138; // mac not verified
+	PAD = win 0x148, android32 0xa0, android64 0x138, mac 0x118;
 	cocos2d::CCDictionary* m_unk3458;
 	int m_unk3460;
 	UILayer* m_uiLayer;
