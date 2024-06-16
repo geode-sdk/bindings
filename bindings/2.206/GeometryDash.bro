@@ -6456,7 +6456,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn clearActivatedAudioTriggers();
 	TodoReturn clearPickedUpItems();
 	TodoReturn collectedObject(EffectGameObject*);
-	void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x205420, m1 0xf7500;
+	void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x205420, imac 0x11a8f0, m1 0xf7500;
 	TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
 	TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
 	TodoReturn controlAreaEffectWithID(int, int, GJActionCommand);
@@ -6568,9 +6568,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn playAnimationCommand(int, int);
 	TodoReturn playerCircleCollision(PlayerObject*, GameObject*) = win 0x202950;
 	TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
-	TodoReturn playerTouchedObject(PlayerObject*, GameObject*);
-	TodoReturn playerTouchedRing(PlayerObject*, RingObject*) = win 0x2086d0;
-	TodoReturn playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x2087e0;
+	void playerTouchedObject(PlayerObject*, GameObject*);
+	void playerTouchedRing(PlayerObject*, RingObject*) = win 0x2086d0, imac 0x11ca30, m1 0xf8dd0;
+	void playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x2087e0;
 	TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*);
 	void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x203a50;
 	void playExitDualEffect(PlayerObject*) = win 0x207710;
@@ -12100,9 +12100,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playBumpEffect(int, GameObject*) = win 0x37da60;
 	TodoReturn playBurstEffect();
 	void playCompleteEffect(bool, bool) = win 0x3621d0, m1 0x1bfebc, imac 0x20eb00;
-	void playDeathEffect() = win 0x35d0c0;
+	void playDeathEffect() = win 0x35d0c0, imac 0x206990, m1 0x1b7ef4;
 	void playDynamicSpiderRun() = win 0x37f4e0;
-	void playerDestroyed(bool) = win 0x375d70;
+	void playerDestroyed(bool) = win 0x375d70, imac 0x41cdd0, m1 0x392264;
 	bool playerIsFalling(float);
 	TodoReturn playerIsFallingBugged();
 	TodoReturn playerIsMovingUp();
