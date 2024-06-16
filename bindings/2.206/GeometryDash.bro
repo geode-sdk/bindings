@@ -12480,7 +12480,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void applyCustomEnterEffect(GameObject*, bool) = win 0x38d580;
 	void applyEnterEffect(GameObject*, int, bool) = win 0x38cbe2;
 	bool canPauseGame() = win inline, m1 0xaac6c {
-		return !m_isPaused && m_started;
+		return !m_hasCompletedLevel && m_started;
 	}
 	TodoReturn checkpointWithID(int);
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
@@ -12641,12 +12641,11 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCSprite* m_progressBar;
 	cocos2d::CCSprite* m_progressFill;
 	// everything after this comment is probably wrong
-	PAD = win 0x55, android32 0xf, android64 0xf; // this makes zero sense
+	PAD = win 0x7d, android32 0x4d, android64 0x75;
 	bool m_hasCompletedLevel;
 	PAD = win 0x6, android32 0x6, android64 0x6;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0x3, android32 0x3, android64 0x3;
-	PAD = win 0x5b, android32 0x33, android64 0x5b;
+	PAD = win 0x62, android32 0x5e, android64 0x62;
 	bool m_isPaused;
 	PAD = win 0x18, android32 0x18, android64 0x18;
 	cocos2d::CCDictionary* m_colorKeyDict;
@@ -12654,7 +12653,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	gd::vector<int> m_keyOpacities; // type not really accurate
 	gd::vector<int> m_keyPulses; // type not really accurate
 	int m_nextColorKey;
-	PAD = win 0x50, imac 0x18, android32 0x80, android64 0x94, m1 0x24, ios 0x24;
+	PAD = win 0x28, imac 0x18, android32 0x18, android64 0x2c, m1 0x24, ios 0x24;
 }
 
 [[link(android)]]
