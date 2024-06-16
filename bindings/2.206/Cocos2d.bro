@@ -454,8 +454,7 @@ class cocos2d::CCProgressTimer {
 
 	// CCProgressTimer(cocos2d::CCProgressTimer const&);
 	// CCProgressTimer();
-	~CCProgressTimer() = imac 0x60f680, m1 0x534320;
-
+	
 	cocos2d::CCPoint boundaryTexCoord(char);
 	bool isReverseDirection();
 	cocos2d::_ccTex2F textureCoordFromAlphaPoint(cocos2d::CCPoint);
