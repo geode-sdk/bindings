@@ -5531,8 +5531,8 @@ class GameObject : CCSpritePlus {
 	virtual void activateObject() = m1 0x4eeb4c, win 0x186b20;
 	virtual void deactivateObject(bool) = m1 0x4eeed0, win 0x186bd0;
 	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = m1 0x4f3114, win 0x18d690, imac 0x5c3ce0;
-	virtual cocos2d::CCRect const& getObjectRect() = win 0x18d6e0, m1 0x4f31a0, imac 0x5c3d50;
-	virtual cocos2d::CCRect getObjectRect(float, float) = win 0x18d700;
+	virtual cocos2d::CCRect const& getObjectRect() = win 0x18d6e0, m1 0x4f31ec, imac 0x5c3d50;
+	virtual cocos2d::CCRect getObjectRect(float, float) = win 0x18d700, m1 0x4f31a0;
 	virtual TodoReturn getObjectRect2(float, float) = m1 0x4f3384, win 0x18d890;
 	virtual TodoReturn getObjectTextureRect() = m1 0x4f3448, win 0x18d930;
 	virtual cocos2d::CCPoint getRealPosition() = m1 0x4f36a0, win 0x18db60;
@@ -6447,7 +6447,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn checkCameraLimitAfterTeleport(PlayerObject*, float) = win 0x229770;
 	TodoReturn checkCollision(int, int);
 	TodoReturn checkCollisionBlocks(EffectGameObject*, gd::vector<EffectGameObject*>*, int) = win 0x209650;
-	int checkCollisions(PlayerObject*, float, bool) = win 0x204350;
+	int checkCollisions(PlayerObject*, float, bool) = win 0x204350, m1 0xf661c;
 	TodoReturn checkRepellPlayer() = win 0x2294a0;
 	TodoReturn checkSpawnObjects() = win 0x20b080;
 	TodoReturn claimMoveAction(int, bool);
@@ -12118,7 +12118,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void preCollision();
 	bool preSlopeCollision(float, GameObject*) = win 0x36d370;
 	void propellPlayer(float, bool, int) = win 0x37d860;
-	void pushButton(PlayerButton) = win 0x375f70;
+	void pushButton(PlayerButton) = win 0x375f70, m1 0x27f4b0;
 	TodoReturn pushDown();
 	void pushPlayer(float);
 	TodoReturn redirectDash(float);
