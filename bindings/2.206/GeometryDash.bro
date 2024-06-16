@@ -3130,7 +3130,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getXMin(int);
 	bool init(LevelEditorLayer* editorLayer) = win 0xdba20, m1 0xb790, imac 0x94c0;
 	bool isLiveColorSelectTrigger(GameObject*);
-	bool isSpecialSnapObject(int);
+	bool isSpecialSnapObject(int) = win 0x124e40;
 	TodoReturn liveEditColorUsable();
 	TodoReturn menuItemFromObjectString(gd::string, int);
 	cocos2d::CCPoint moveForCommand(EditCommand command) = win 0x11b9b0;
@@ -3138,7 +3138,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x11be20;
 	void moveObjectCall(cocos2d::CCObject*);
 	void moveObjectCall(EditCommand) = win 0x11bb90;
-	TodoReturn offsetForKey(int) = win 0x122780;
+	cocos2d::CCPoint offsetForKey(int) = win 0x122780;
 	TodoReturn onAssignNewGroupID();
 	void onColorFilter(cocos2d::CCObject* sender);
 	void onCopy(cocos2d::CCObject* sender) = win 0x10f480;
@@ -6456,7 +6456,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn clearActivatedAudioTriggers();
 	TodoReturn clearPickedUpItems();
 	TodoReturn collectedObject(EffectGameObject*);
-	void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x205420, m1 0xf7500;
+	void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x205420, imac 0x11a8f0, m1 0xf7500;
 	TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
 	TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
 	TodoReturn controlAreaEffectWithID(int, int, GJActionCommand);
@@ -6568,9 +6568,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn playAnimationCommand(int, int);
 	TodoReturn playerCircleCollision(PlayerObject*, GameObject*) = win 0x202950;
 	TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
-	TodoReturn playerTouchedObject(PlayerObject*, GameObject*);
-	TodoReturn playerTouchedRing(PlayerObject*, RingObject*) = win 0x2086d0;
-	TodoReturn playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x2087e0;
+	void playerTouchedObject(PlayerObject*, GameObject*);
+	void playerTouchedRing(PlayerObject*, RingObject*) = win 0x2086d0, imac 0x11ca30, m1 0xf8dd0;
+	void playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x2087e0;
 	TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*);
 	void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x203a50;
 	void playExitDualEffect(PlayerObject*) = win 0x207710;
@@ -9961,7 +9961,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getSongIDs(bool&);
 	TodoReturn getTriggerGroup(int);
 	void handleAction(bool, cocos2d::CCArray*) = win 0x2c2ab0;
-	TodoReturn hasAction(bool);
+	bool hasAction(bool);
 	bool init(GJGameLevel*, bool) = win 0x2be440, imac 0xdeba0, m1 0xc55e4;
 	bool isLayerLocked(int layer) {
 		if (layer < 10000 && m_layerLockingEnabled) {
@@ -9984,7 +9984,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn processLoadedMoveActions();
 	TodoReturn quickUpdateAllPositions();
 	TodoReturn recreateGroups();
-	TodoReturn redoLastAction() = win 0x10dd30;
+	void redoLastAction() = win inline {
+		return this->handleAction(false, m_redoObjects);
+	}
 	TodoReturn refreshSpecial(GameObject*);
 	TodoReturn removeAllObjects();
 	TodoReturn removeAllObjectsOfType(int) = win 0x2c2830;
@@ -10028,7 +10030,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn triggerRotateCommand(EffectGameObject*);
 	bool tryUpdateSpeedObject(EffectGameObject*, bool) = win 0x2c4e10;
 	bool typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float) = win 0x2c10c0;
-	TodoReturn undoLastAction();
+	void undoLastAction() = win inline {
+		return this->handleAction(true, m_undoObjects);
+	}
 	TodoReturn unlockAllLayers();
 	TodoReturn updateAnimateOnTriggerObjects(bool);
 	TodoReturn updateArt(float);
@@ -12100,9 +12104,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playBumpEffect(int, GameObject*) = win 0x37da60;
 	TodoReturn playBurstEffect();
 	void playCompleteEffect(bool, bool) = win 0x3621d0, m1 0x1bfebc, imac 0x20eb00;
-	void playDeathEffect() = win 0x35d0c0;
+	void playDeathEffect() = win 0x35d0c0, imac 0x206990, m1 0x1b7ef4;
 	void playDynamicSpiderRun() = win 0x37f4e0;
-	void playerDestroyed(bool) = win 0x375d70;
+	void playerDestroyed(bool) = win 0x375d70, imac 0x41cdd0, m1 0x392264;
 	bool playerIsFalling(float);
 	TodoReturn playerIsFallingBugged();
 	TodoReturn playerIsMovingUp();
