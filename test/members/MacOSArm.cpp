@@ -18,6 +18,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3158);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk3458, 0x3288);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32f8);
 
 
 GEODE_SIZE_CHECK(CCTextInputNode, 0x258);
