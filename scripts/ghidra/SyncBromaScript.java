@@ -23,6 +23,7 @@ import ghidra.program.model.data.DataTypeConflictHandler;
 import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.FloatDataType;
+import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined;
@@ -515,11 +516,22 @@ public class SyncBromaScript extends GhidraScript {
                         }
                         for (var i = 0; i < paramCount; i += 1) {
                             var param = fun.getParameter(i);
-                            if (!param.getDataType().isEquivalent(sig.parameters.get(i).getDataType())) {
+                            var ghidraDataType = param.getDataType();
+                            var ghidraPointerDataType = ghidraDataType;
+                            if (ghidraDataType instanceof PointerDataType) {
+                                ghidraPointerDataType = ((PointerDataType)ghidraDataType).getDataType();
+                            }
+                            var bromaDataType = sig.parameters.get(i).getDataType();
+                            if (
+                                !ghidraDataType.isEquivalent(bromaDataType) &&
+                                !ghidraPointerDataType.isEquivalent(bromaDataType)
+                            ) {
                                 wrapper.printfmt(
-                                    "types {0} and {1} are not equal",
-                                    param.getDataType().getDisplayName(),
-                                    sig.parameters.get(i).getDataType().getDisplayName()
+                                    "types {0} and {1} are not equal ({2} != {3})",
+                                    ghidraDataType.getDisplayName(),
+                                    bromaDataType.getDisplayName(),
+                                    ghidraDataType.getClass().getName(),
+                                    bromaDataType.getClass().getName()
                                 );
                                 continue tryMatchFun;
                             }
