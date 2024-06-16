@@ -3264,7 +3264,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void updateZoom(float);
 	float valueFromXPos(float);
 	float xPosFromValue(float);
-	TodoReturn zoomGameLayer(bool);
+	void zoomGameLayer(bool);
 	void zoomIn(cocos2d::CCObject*) = win 0x10e9e0;
 	void zoomOut(cocos2d::CCObject*) = win 0x10ea30;
 
