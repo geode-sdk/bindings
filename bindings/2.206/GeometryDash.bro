@@ -3130,7 +3130,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getXMin(int);
 	bool init(LevelEditorLayer* editorLayer) = win 0xdba20, m1 0xb790, imac 0x94c0;
 	bool isLiveColorSelectTrigger(GameObject*);
-	bool isSpecialSnapObject(int);
+	bool isSpecialSnapObject(int) = win 0x124e40;
 	TodoReturn liveEditColorUsable();
 	TodoReturn menuItemFromObjectString(gd::string, int);
 	cocos2d::CCPoint moveForCommand(EditCommand command) = win 0x11b9b0;
@@ -3138,7 +3138,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x11be20;
 	void moveObjectCall(cocos2d::CCObject*);
 	void moveObjectCall(EditCommand) = win 0x11bb90;
-	TodoReturn offsetForKey(int) = win 0x122780;
+	cocos2d::CCPoint offsetForKey(int) = win 0x122780;
 	TodoReturn onAssignNewGroupID();
 	void onColorFilter(cocos2d::CCObject* sender);
 	void onCopy(cocos2d::CCObject* sender) = win 0x10f480;
@@ -9961,7 +9961,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getSongIDs(bool&);
 	TodoReturn getTriggerGroup(int);
 	void handleAction(bool, cocos2d::CCArray*) = win 0x2c2ab0;
-	TodoReturn hasAction(bool);
+	bool hasAction(bool);
 	bool init(GJGameLevel*, bool) = win 0x2be440, imac 0xdeba0, m1 0xc55e4;
 	bool isLayerLocked(int layer) {
 		if (layer < 10000 && m_layerLockingEnabled) {
@@ -9984,7 +9984,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn processLoadedMoveActions();
 	TodoReturn quickUpdateAllPositions();
 	TodoReturn recreateGroups();
-	TodoReturn redoLastAction() = win 0x10dd30;
+	void redoLastAction() = win inline {
+		return this->handleAction(false, m_redoObjects);
+	}
 	TodoReturn refreshSpecial(GameObject*);
 	TodoReturn removeAllObjects();
 	TodoReturn removeAllObjectsOfType(int) = win 0x2c2830;
@@ -10028,7 +10030,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn triggerRotateCommand(EffectGameObject*);
 	bool tryUpdateSpeedObject(EffectGameObject*, bool) = win 0x2c4e10;
 	bool typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float) = win 0x2c10c0;
-	TodoReturn undoLastAction();
+	void undoLastAction() = win inline {
+		return this->handleAction(true, m_undoObjects);
+	}
 	TodoReturn unlockAllLayers();
 	TodoReturn updateAnimateOnTriggerObjects(bool);
 	TodoReturn updateArt(float);
