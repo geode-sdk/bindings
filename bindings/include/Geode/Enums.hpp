@@ -678,6 +678,7 @@ enum class EasingType {
 };
 
 enum class GJDifficulty {
+    NA = -1,
     Auto = 0,
     Easy = 1,
     Normal = 2,
