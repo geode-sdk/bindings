@@ -6638,7 +6638,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn removeGroupParent(int);
 	TodoReturn removeKeyframe(KeyframeGameObject*);
 	TodoReturn removeMiddleground();
-	void removeObjectFromSection(GameObject*) = win 0x2175f0, imac 0x1332c0;
+	void removeObjectFromSection(GameObject*) = win 0x2175f0, m1 0xfb364, imac 0x1332c0;
 	TodoReturn removePlayer2();
 	TodoReturn removeTemporaryParticles();
 	TodoReturn reorderObjectSection(GameObject*) = imac 0x11f2d0;
@@ -6712,7 +6712,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn syncBGTextures() = win 0x22a0d0, m1 0x11f12c;
 	void teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x200b70, m1 0xf2288;
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
-	void toggleAudioVisualizer(bool) = win 0x237b90, imac 0x1047d0;
+	void toggleAudioVisualizer(bool) = win 0x237b90, imac 0x1047d0, m1 0xe4b14;
 	void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x207160, m1 0xf5020, imac 0x117fa0;
 	void toggleFlipped(bool, bool) = win 0x235880;
 	TodoReturn toggleGroup(int, bool) = imac 0x131520;
@@ -7079,11 +7079,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_unk3234;
 	cocos2d::CCParticleSystemQuad* m_unk3238;
 	int m_unk323c;
-	PAD = win 0x6, android32 0x10, android64 0x6, mac 0x6; // mac not verified, i think everything below this is not correct
+	PAD = win 0x6, android32 0x10, android64 0x6, mac 0x6; // mac not verified
 	bool m_started;
-	PAD = win 0xA6, android32 0x66, android64 0x8e, mac 0xb8; // mac not verified
+	PAD = win 0xA6, android32 0x66, android64 0x8e, mac 0xa0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = win 0x148, android32 0xa0, android64 0x138, mac 0x138; // mac not verified
+	PAD = win 0x148, android32 0xa0, android64 0x138, mac 0x118;
 	cocos2d::CCDictionary* m_unk3458;
 	int m_unk3460;
 	UILayer* m_uiLayer;
@@ -7091,15 +7091,15 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCDictionary* m_unk3478;
 	cocos2d::CCNode* m_unk3480;
 	float m_unk3484;
-	PAD = win 0x44, android32 0x44, android64 0x44, mac 0x44; // mac not verified
+	PAD = win 0x44, android32 0x44, android64 0x44, mac 0x3c;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections; // 2c48 win
-	PAD = win 0x100, android32 0x58, android64 0xe0, mac 0xe0; // mac not verified
+	PAD = win 0x100, android32 0x58, android64 0xe0, mac 0xe8; // mac not verified
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection; // 2c9c win
-	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10; // mac not verified
+	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10;
 	FMODLevelVisualizer* m_fModVisualizerBG;
 	FMODLevelVisualizer* m_fModVisualizerSFX;
 	bool m_showAudioVisualizer;
-	PAD = win 0x67, android32 0x67, android64 0x67, mac 0x67; // mac not verified
+	PAD = win 0x67, android32 0x67, android64 0x67, mac 0x67;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode;
 	void* m_unk3678;
@@ -7687,7 +7687,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 
 	void gameLayerDidUnload();
 	bool init(GJGameLevel* level, bool editor);
-	void loadLevel() = win 0x2380c0;
+	void loadLevel() = win 0x2380c0, m1 0x129940;
 	static GJGameLoadingLayer* transitionToLoadingLayer(GJGameLevel* level, bool editor) = win 0x237ed0;
 
 	virtual void onEnter();
@@ -12618,13 +12618,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*) = win 0x391440, m1 0xa7a3c;
 	virtual void dialogClosed(DialogLayer*) = win 0x3912a0, m1 0xa7a08;
 
-	PAD = win 0x30, imac 0x30, android32 0x24, android64 0x2c, m1 0x2c, ios 0x2c;
+	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x2c;
 	cocos2d::CCArray* m_coinArray;
-	PAD = win 0x70, android32 0x40, android64 0x70;
+	PAD = win 0x70, android32 0x40, android64 0x70, mac 0x70;
 	cocos2d::CCLabelBMFont* m_statusLabel;
 	int m_unk3778;
-	PAD = win 0x18, android32 0x18, android64 0x18;
-	float m_unksomefloat;
+	PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18;
+	float m_unkSomeFloat;
 	CheckpointObject* m_unkCheckpointObject;
 	cocos2d::CCArray* m_checkpointArray;
 	cocos2d::CCArray* m_unk37a8;
@@ -12645,11 +12645,11 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCSprite* m_progressBar;
 	cocos2d::CCSprite* m_progressFill;
 	// everything after this comment is probably wrong
-	PAD = win 0x7d, android32 0x4d, android64 0x75;
+	PAD = win 0x7d, android32 0x4d, android64 0x75, mac 0x65;
 	bool m_hasCompletedLevel;
-	PAD = win 0x6, android32 0x6, android64 0x6;
+	PAD = win 0x6, android32 0x6, android64 0x6, mac 0x6;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0x62, android32 0x5e, android64 0x62;
+	PAD = win 0x62, android32 0x5e, android64 0x62, mac 0x62;
 	bool m_isPaused;
 	PAD = win 0x18, android32 0x18, android64 0x18;
 	cocos2d::CCDictionary* m_colorKeyDict;
