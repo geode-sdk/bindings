@@ -6638,7 +6638,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn removeGroupParent(int);
 	TodoReturn removeKeyframe(KeyframeGameObject*);
 	TodoReturn removeMiddleground();
-	void removeObjectFromSection(GameObject*) = win 0x2175f0, imac 0x1332c0;
+	void removeObjectFromSection(GameObject*) = win 0x2175f0, m1 0xfb364, imac 0x1332c0;
 	TodoReturn removePlayer2();
 	TodoReturn removeTemporaryParticles();
 	TodoReturn reorderObjectSection(GameObject*) = imac 0x11f2d0;
@@ -12619,12 +12619,12 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void dialogClosed(DialogLayer*) = win 0x3912a0, m1 0xa7a08;
 
 	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x2c;
-	cocos2d::CCArray* m_coinArray; // 13576
-	PAD = win 0x70, android32 0x40, android64 0x70;
-	cocos2d::CCLabelBMFont* m_statusLabel; // 13696
+	cocos2d::CCArray* m_coinArray;
+	PAD = win 0x70, android32 0x40, android64 0x70, mac 0x70;
+	cocos2d::CCLabelBMFont* m_statusLabel;
 	int m_unk3778;
-	PAD = win 0x18, android32 0x18, android64 0x18;
-	float m_unksomefloat;
+	PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18;
+	float m_unkSomeFloat;
 	CheckpointObject* m_unkCheckpointObject;
 	cocos2d::CCArray* m_checkpointArray;
 	cocos2d::CCArray* m_unk37a8;
@@ -12646,7 +12646,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCSprite* m_progressFill;
 	// everything after this comment is probably wrong
 	PAD = win 0x7d, android32 0x4d, android64 0x75;
-	bool m_hasCompletedLevel;
+	bool m_hasCompletedLevel; // 0x368d
 	PAD = win 0x6, android32 0x6, android64 0x6;
 	bool m_endLayerStars; // not verified on android
 	PAD = win 0x62, android32 0x5e, android64 0x62;

@@ -4,6 +4,7 @@
 
 // GEODE_SIZE_CHECK(PlayLayer, 0x3790);
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x3508);
+GEODE_MEMBER_CHECK(PlayLayer, m_unkSomeFloat, 0x35a4);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x368D);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36F7);
 
