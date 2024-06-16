@@ -214,9 +214,9 @@ class cocos2d::CCParticleSystem {
 	static cocos2d::CCParticleSystem* createWithTotalParticles(unsigned int);
 
 	void initParticle(cocos2d::sCCParticle*);
-	bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool);
-	bool initWithDictionary(cocos2d::CCDictionary*, bool);
-	bool initWithFile(char const*, bool);
+	bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool) = imac 0x7d3ca0, m1 0x6d83ec;
+	bool initWithDictionary(cocos2d::CCDictionary*, bool) = imac 0x7d55d0, m1 0x6d9bf8;
+	bool initWithFile(char const*, bool) = imac 0x7d39c0, m1 0x6d80f4;
 
 	unsigned int getAtlasIndex() const;
 	bool getDontCleanupOnFinish() const;
@@ -390,7 +390,7 @@ class cocos2d::CCParticleSystem {
 
 [[link(win, android)]]
 class cocos2d::CCParticleSystemQuad {
-	static cocos2d::CCParticleSystemQuad* create(char const*, bool);
+	static cocos2d::CCParticleSystemQuad* create(char const*, bool) = imac 0x60dce0, m1 0x532fec;
 	static cocos2d::CCParticleSystemQuad* create();
 	static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool);
 
@@ -1590,13 +1590,13 @@ class cocos2d::CCArray {
 [[link(win, android)]]
 class cocos2d::CCDictionary {
 	static cocos2d::CCDictionary* create() = imac 0x30f260, m1 0x2a0fac, ios 0x42d318;
-	static cocos2d::CCDictionary* createWithContentsOfFile(char const*);
-	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*);
+	static cocos2d::CCDictionary* createWithContentsOfFile(char const*) = imac 0x30f3e0, m1 0x2a1138;
+	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*) = imac 0x30f2e0, m1 0x2a1030;
 	static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
 
 	gd::string getFirstKey();
 
-	void setObject(cocos2d::CCObject*, gd::string const&) = ios 0x42c778;
+	void setObject(cocos2d::CCObject*, gd::string const&) = ios 0x42c778, imac 0x30d960, m1 0x29f8f0;
 	//void setObject(cocos2d::CCObject*, int);
 	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
 	//void setObjectUnSafe(cocos2d::CCObject*, int);

@@ -446,7 +446,7 @@ class BitmapFontCache : cocos2d::CCObject {
 
 	static BitmapFontCache* sharedFontCache() = ios 0x303f5c;
 
-	FontObject* fontWithConfigFile(char const*, float) = ios 0x304048;
+	FontObject* fontWithConfigFile(char const*, float) = ios 0x304048, imac 0x21a7e0, m1 0x1caed8;
 	bool init();
 	static void purgeSharedFontCache() = ios 0x303fc8;
 }
@@ -11228,7 +11228,7 @@ class MPLobbyLayer : cocos2d::CCLayer, GJMPDelegate, UploadPopupDelegate, Upload
 class MultilineBitmapFont : cocos2d::CCSprite {
 	// virtual ~MultilineBitmapFont();
 
-	static MultilineBitmapFont* createWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = ios 0x244948;
+	static MultilineBitmapFont* createWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = ios 0x244948, imac 0x490240, m1 0x3f5744;
 	bool initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = win 0x6A9B0, ios 0x244a6c;
 	unsigned int moveSpecialDescriptors(int, int) = win 0x6BBB0;
 	gd::string readColorInfo(gd::string) = win 0x6B2E0;
@@ -11602,7 +11602,7 @@ class ObjectManager : cocos2d::CCNode {
 	void setLoaded(char const*);
 	void setup() = ios 0x25cea8;
 
-	virtual bool init() = m1 0x6a957c;
+	virtual bool init() = m1 0x6a957c, imac 0x7a1760;
 }
 
 [[link(android)]]
@@ -12102,7 +12102,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void playCompleteEffect(bool, bool) = win 0x3621d0, m1 0x1bfebc, imac 0x20eb00;
 	void playDeathEffect() = win 0x35d0c0;
 	void playDynamicSpiderRun() = win 0x37f4e0;
-	void playerDestroyed(bool) = win 0x375d70;
+	void playerDestroyed(bool) = win 0x375d70, m1 0x392264, imac 0x41cdd0;
 	bool playerIsFalling(float);
 	TodoReturn playerIsFallingBugged();
 	TodoReturn playerIsMovingUp();
@@ -12491,7 +12491,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset();
 	void delayedResetLevel() = win 0x395700;
 	void fullReset() = win 0x395600, m1 0xaa510;
-	float getCurrentPercent() = win 0x390520, imac inline {
+	float getCurrentPercent() = win 0x390520, imac inline, m1 inline {
 		float percent;
 
 		if (this->m_level->m_timestamp > 0)
@@ -12574,7 +12574,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void updateEffectPositions() = imac 0xbba40;
 	void updateInfoLabel() = win 0x38f640, imac 0xb0120;
 	TodoReturn updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&);
-	void updateProgressbar() = win 0x38efd0, imac 0xb1f90;
+	void updateProgressbar() = win 0x38efd0, imac 0xb1f90, m1 0x9f28c;
 	void updateScreenRotation(int, bool, bool, float, int, float, int, int);
 	void updateTimeWarp(EffectGameObject*, float);
 	void updateTestModeLabel() = win 0x384760;
