@@ -435,7 +435,7 @@ class cocos2d::CCParticleSystemQuad {
 
 [[link(win, android)]]
 class cocos2d::CCProgressTimer {
-	static cocos2d::CCProgressTimer* create(cocos2d::CCSprite*);
+	static cocos2d::CCProgressTimer* create(cocos2d::CCSprite*) = imac 0x60f290, m1 0x533fc4;
 
 	bool initWithSprite(cocos2d::CCSprite*);
 
@@ -454,6 +454,8 @@ class cocos2d::CCProgressTimer {
 
 	// CCProgressTimer(cocos2d::CCProgressTimer const&);
 	// CCProgressTimer();
+	~CCProgressTimer() = imac 0x60f680, m1 0x534320;
+
 	cocos2d::CCPoint boundaryTexCoord(char);
 	bool isReverseDirection();
 	cocos2d::_ccTex2F textureCoordFromAlphaPoint(cocos2d::CCPoint);
