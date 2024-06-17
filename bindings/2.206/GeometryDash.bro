@@ -322,7 +322,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 	TodoReturn playReactAnimation();
 	TodoReturn startAnimating();
 
-	virtual TodoReturn animationFinished(char const*) = m1 0x2b7254;
+	virtual void animationFinished(char const*) = m1 0x2b7254;
 }
 
 [[link(android)]]
@@ -720,22 +720,32 @@ class CCAlertCircle : cocos2d::CCNode {
 class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
 
-	TodoReturn cleanupSprite();
-	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool);
-	bool initWithType(char const*, cocos2d::CCTexture2D*, bool);
-	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool);
-	void runAnimation(gd::string);
-	void runAnimationForced(gd::string);
-	TodoReturn stopTween();
-	TodoReturn switchToMode(spriteMode);
-	void tweenToAnimation(gd::string, float) = win 0x3fe70;
-	void tweenToAnimationFinished() = win 0x40140;
-	TodoReturn willPlayAnimation();
+	void cleanupSprite() = m1 0x2dfaf8, imac 0x3509d0;
+	static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = m1 0x2df14c, imac 0x34ffe0;
+	bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x3f140, m1 0x2df220, imac 0x3500c0;
+	void loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x3f360, m1 0x2df40c, imac 0x3502a0;
+	void runAnimation(gd::string) = win 0x3fe00, m1 0x2dfc94, imac 0x350b90;
+	void runAnimationForced(gd::string) = m1 0x2dfd7c, imac 0x350c60;
+	void stopTween() = m1 0x2e0290, imac 0x351190;
+	void switchToMode(spriteMode) = win 0x3fe70, m1 0x2dfb88, imac 0x350a70;
+	void tweenToAnimation(gd::string, float) = win 0x3fe70, m1 0x2dfea4, imac 0x350d70;
+	void tweenToAnimationFinished() = win 0x40140, m1 0x2e01a0, imac 0x3510a0;
+	void willPlayAnimation() = m1 0x2dfe74, imac 0x350d40;
 
-	virtual void setOpacity(unsigned char) = win 0x401f0, m1 0x2e0318;
-	virtual void setColor(cocos2d::ccColor3B const&) = win 0x40250, m1 0x2e03c8;
-	virtual TodoReturn animationFinished(char const*) = win 0x401d0, m1 0x2e0300, imac 0x351200;
-	virtual TodoReturn animationFinishedO(cocos2d::CCObject*) = win 0x40190, m1 0x2e02cc;
+	virtual void setOpacity(unsigned char) = win 0x401f0, m1 0x2e0318, imac 0x351220;
+	virtual void setColor(cocos2d::ccColor3B const&) = win 0x40250, m1 0x2e03c8, imac 0x3512d0;
+	virtual void animationFinished(char const*) = win 0x401d0, m1 0x2e0300, imac 0x351200;
+	virtual void animationFinishedO(cocos2d::CCObject*) = win 0x40190, m1 0x2e02cc, imac 0x3511d0;
+
+	gd::string m_unkString1;
+	gd::string m_unkString2;
+	SpriteAnimationManager* m_animationManager;
+	cocos2d::CCSprite* m_sprite;
+	cocos2d::CCSprite* m_fbfSprite;
+	CCPartAnimSprite* m_paSprite;
+	spriteMode m_spriteMode;
+	gd::string m_currentAnim;
+	AnimatedSpriteDelegate* m_delegate;
 }
 
 [[link(android)]]
