@@ -848,7 +848,7 @@ class CCCircleWaveDelegate {
 [[link(android)]]
 class CCContentLayer : cocos2d::CCLayerColor {
 	inline CCContentLayer() {}
-	~CCContentLayer() = m1 0x6d4460, imac 0x7cf740, imac 0x7cf730;
+	~CCContentLayer() = m1 0x6d4460, imac 0x4bc530;
 
 	static CCContentLayer* create(cocos2d::ccColor4B const&, float, float);
 
@@ -2857,7 +2857,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-	virtual ~EditLevelLayer() = m1 0x1a7544, win 0xd1980, imac 0x1f4400;
+	virtual ~EditLevelLayer() = m1 0x1a7544, win 0xd1980, imac 0x1f42c0;
 
 	static EditLevelLayer* create(GJGameLevel*);
 
@@ -4833,7 +4833,7 @@ class GameLevelOptionsLayer : GJOptionsLayer{
 
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
-	virtual ~GameManager() = win 0x172770, imac 0x38e070;
+	virtual ~GameManager() = win 0x172770, imac 0x38ddc0;
 	// GameManager() = win 0x1721e0, ios 0x32eafc;
 
 	static GameManager* get() {
@@ -9751,7 +9751,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-	~LevelBrowserLayer() = m1 0x3f8e04, win 0x2b5530, imac 0x4940d0;
+	~LevelBrowserLayer() = m1 0x3f8e04, win 0x2b5530, imac 0x493f50;
 	// LevelBrowserLayer() = ios 0x259734;
 
 	static LevelBrowserLayer* create(GJSearchObject*) = win 0x2b5760, imac 0x494190, m1 0x3f8e88, ios 0x41d1c4;
@@ -10530,7 +10530,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 
 [[link(android)]]
 class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
-	~LevelSelectLayer() = m1 0x3add30, imac 0x43b690;
+	~LevelSelectLayer() = m1 0x3add30, imac 0x4ba220;
 	
 	static LevelSelectLayer* create(int) = ios 0x40a26c;
 
@@ -12474,7 +12474,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-	virtual ~PlayLayer() = m1 0x9a050, win 0x382540, imac 0xabac0;
+	virtual ~PlayLayer() = m1 0x9a050, win 0x382540, imac 0xab7d0;
 	// PlayLayer();
 
 	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = m1 0x9a148, imac 0xabbf0;
