@@ -4839,7 +4839,7 @@ class GameLevelOptionsLayer : GJOptionsLayer{
 
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
-	virtual ~GameManager() = win 0x1721e0;
+	virtual ~GameManager() = win 0x172770;
 	// GameManager() = win 0x1721e0, ios 0x32eafc;
 
 	static GameManager* get() {
