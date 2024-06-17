@@ -12495,7 +12495,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset();
 	void delayedResetLevel() = win 0x395700, imac 0xbb940, m1 0xa79c8;
 	void fullReset() = win 0x395600, m1 0xaa510;
-	float getCurrentPercent() = win 0x390520, imac inline {
+	float getCurrentPercent() = win 0x390520, imac inline, m1 inline {
 		float percent;
 
 		if (this->m_level->m_timestamp > 0)
@@ -12505,7 +12505,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 		return std::clamp(percent, 0.f, 100.f);
 	}
-	int getCurrentPercentInt() = win inline {
+	int getCurrentPercentInt() = win inline, imac inline, m1 inline {
 		return static_cast<int>(this->getCurrentPercent());
 	}
 	TodoReturn getEndPosition();
@@ -12578,7 +12578,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void updateEffectPositions() = imac 0xbba40;
 	void updateInfoLabel() = win 0x38f640, imac 0xb0120;
 	TodoReturn updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&);
-	void updateProgressbar() = win 0x38efd0, imac 0xb1f90;
+	void updateProgressbar() = win 0x38efd0, imac 0xb1f90, m1 0x9f28c;
 	void updateScreenRotation(int, bool, bool, float, int, float, int, int);
 	void updateTimeWarp(EffectGameObject*, float);
 	void updateTestModeLabel() = win 0x384760;
@@ -12608,7 +12608,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = m1 0xa63d4, win 0x38cf00;
 	virtual void checkpointActivated(CheckpointGameObject*) = win 0x391ae0, m1 0xa800c;
 	virtual TodoReturn flipArt(bool) = win 0x38f610, m1 0xa6cd8;
-	virtual void updateTimeLabel(int, int, bool) = win 0x38f170, m1 0xa68fc;
+	virtual void updateTimeLabel(int, int, bool) = win 0x38f170, imac 0xba6f0, m1 0xa68fc;
 	virtual TodoReturn checkSnapshot() = m1 0xaa490;
 	virtual void toggleProgressbar() = win 0x38f370, m1 0xa6ad4;
 	virtual TodoReturn toggleInfoLabel() = win 0x390120, m1 0xa6cf8;
