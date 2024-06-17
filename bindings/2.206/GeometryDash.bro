@@ -322,7 +322,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 	TodoReturn playReactAnimation();
 	TodoReturn startAnimating();
 
-	virtual TodoReturn animationFinished(char const*) = m1 0x2b7254, imac 0x3273d0;
+	virtual void animationFinished(char const*) = m1 0x2b7254, imac 0x3273d0;
 }
 
 [[link(android)]]
@@ -720,22 +720,32 @@ class CCAlertCircle : cocos2d::CCNode {
 class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
 
-	TodoReturn cleanupSprite();
-	TodoReturn createWithType(char const*, cocos2d::CCTexture2D*, bool);
-	bool initWithType(char const*, cocos2d::CCTexture2D*, bool);
-	TodoReturn loadType(char const*, cocos2d::CCTexture2D*, bool);
-	void runAnimation(gd::string);
-	void runAnimationForced(gd::string);
-	TodoReturn stopTween();
-	TodoReturn switchToMode(spriteMode);
-	void tweenToAnimation(gd::string, float) = win 0x3fe70;
-	void tweenToAnimationFinished() = win 0x40140;
-	TodoReturn willPlayAnimation();
+	void cleanupSprite() = m1 0x2dfaf8, imac 0x3509d0;
+	static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = m1 0x2df14c, imac 0x34ffe0;
+	bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x3f140, m1 0x2df220, imac 0x3500c0;
+	void loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x3f360, m1 0x2df40c, imac 0x3502a0;
+	void runAnimation(gd::string) = win 0x3fe00, m1 0x2dfc94, imac 0x350b90;
+	void runAnimationForced(gd::string) = m1 0x2dfd7c, imac 0x350c60;
+	void stopTween() = m1 0x2e0290, imac 0x351190;
+	void switchToMode(spriteMode) = win 0x3fe70, m1 0x2dfb88, imac 0x350a70;
+	void tweenToAnimation(gd::string, float) = win 0x3fe70, m1 0x2dfea4, imac 0x350d70;
+	void tweenToAnimationFinished() = win 0x40140, m1 0x2e01a0, imac 0x3510a0;
+	void willPlayAnimation() = m1 0x2dfe74, imac 0x350d40;
 
 	virtual void setOpacity(unsigned char) = win 0x401f0, m1 0x2e0318, imac 0x351220;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x40250, m1 0x2e03c8, imac 0x3512d0;
-	virtual TodoReturn animationFinished(char const*) = win 0x401d0, m1 0x2e0300, imac 0x351200;
-	virtual TodoReturn animationFinishedO(cocos2d::CCObject*) = win 0x40190, m1 0x2e02cc, imac 0x3511d0;
+	virtual void animationFinished(char const*) = win 0x401d0, m1 0x2e0300, imac 0x351200;
+	virtual void animationFinishedO(cocos2d::CCObject*) = win 0x40190, m1 0x2e02cc, imac 0x3511d0;
+
+	gd::string m_unkString1;
+	gd::string m_unkString2;
+	SpriteAnimationManager* m_animationManager;
+	cocos2d::CCSprite* m_sprite;
+	cocos2d::CCSprite* m_fbfSprite;
+	CCPartAnimSprite* m_paSprite;
+	spriteMode m_spriteMode;
+	gd::string m_currentAnim;
+	AnimatedSpriteDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -8522,20 +8532,32 @@ class GJRobotSprite : CCAnimatedSprite {
 	// virtual ~GJRobotSprite();
 	// GJRobotSprite();
 
-	static GJRobotSprite* create(int) = win 0x294360;
+	static GJRobotSprite* create(int) = win 0x294360, m1 0x50e80c, imac 0x5e4f50;
 
-	TodoReturn hideGlow() = imac 0x5e5f80;
-	bool init(int, gd::string);
-	bool init(int);
-	void showGlow() = imac 0x5e5f60;
-	void updateColor01(cocos2d::ccColor3B) = imac 0x5e5fa0;
+	void hideGlow() = m1 0x50f694, imac 0x5e5f80;
+	bool init(int, gd::string) = win 0x294410, m1 0x50e9cc, imac 0x5e5100;
+	bool init(int) = m1 0x50e93c, imac 0x5e5090;
+	void showGlow() = m1 0x50f680, imac 0x5e5f60;
+	void updateColor01(cocos2d::ccColor3B) = m1 0x50f6a8, imac 0x5e5fa0;
 	void updateColor02(cocos2d::ccColor3B) = m1 0x50f954, imac 0x5e62e0;
-	void updateColors() = win 0x294ba0;
-	TodoReturn updateFrame(int);
-	void updateGlowColor(cocos2d::ccColor3B, bool);
+	void updateColors() = win 0x294ba0, m1 0x50f6bc, imac 0x5e5fc0;
+	void updateFrame(int) = win 0x295150, m1 0x50ef7c, imac 0x5e5720;
+	void updateGlowColor(cocos2d::ccColor3B, bool) = m1 0x50f964, imac 0x5e6300;
 
 	virtual void setOpacity(unsigned char) = win 0x295050, m1 0x50f9e0, imac 0x5e6380;
-	virtual TodoReturn hideSecondary() = win 0x295740, m1 0x50fac4, imac 0x5e6490;
+	virtual void hideSecondary() = win 0x295740, m1 0x50fac4, imac 0x5e6490;
+
+	cocos2d::CCArray* m_unkArray;
+	bool m_hasExtra;
+	cocos2d::ccColor3B m_color;
+	cocos2d::ccColor3B m_secondColor;
+	cocos2d::CCArray* m_secondArray;
+	cocos2d::CCSprite* m_glowSprite;
+	cocos2d::CCSprite* m_extraSprite;
+	IconType m_iconType;
+	int m_iconRequestID;
+	CCSpritePart* m_headSprite;
+	CCSpritePart* m_lastSprite;
 }
 
 [[link(android)]]
@@ -8900,9 +8922,9 @@ class GJSpecialColorSelectDelegate {
 class GJSpiderSprite : GJRobotSprite {
 	// virtual ~GJSpiderSprite();
 
-	static GJSpiderSprite* create(int) = win 0x2957b0;
+	static GJSpiderSprite* create(int) = win 0x2957b0, m1 0x50fc60, imac 0x5e6690;
 
-	bool init(int);
+	bool init(int) = m1 0x50fd94, imac 0x5e67e0;
 }
 
 [[link(android)]]
