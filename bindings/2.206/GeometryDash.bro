@@ -1328,15 +1328,15 @@ class CCSpritePlus : cocos2d::CCSprite {
 
 	/// Sets the Scale of itself and it's followers
     /// @param fScale the scale value to set
-	virtual void setScale(float fScale) = win 0x47460, m1 0x3f0994;
+	virtual void setScale(float fScale) = win 0x47460, imac 0x48af40, m1 0x3f0994;
 
 	/// Sets the position where the sprite will be at and it's followers
     /// @param pos the position to place to the sprite and it's followers
-	virtual void setPosition(cocos2d::CCPoint const& pos) = win 0x46f50, m1 0x3f056c;
+	virtual void setPosition(cocos2d::CCPoint const& pos) = win 0x46f50, imac 0x48aaa0, m1 0x3f056c;
 
 	/// Sets the sprite's given rotation and it's followers
     /// @param fRotation the rotation value to set
-	virtual void setRotation(float fRotation) = win 0x46fe0, m1 0x3f05e0;
+	virtual void setRotation(float fRotation) = win 0x46fe0, imac 0x48af40, m1 0x3f05e0;
 
 	/// Sets the sprite's given rotation of X and it's followers
     /// @param fRotationX the rotation of X to set.
@@ -1703,7 +1703,7 @@ class CheckpointObject : cocos2d::CCNode {
 	TodoReturn getObject();
 	void setObject(GameObject*);
 
-	virtual bool init() = win 0x767c0, m1 0xab33c;
+	virtual bool init() = win 0x767c0, imac 0xbfd90, m1 0xab33c;
 
 	GJGameState m_gameState;
 	GJShaderState m_shaderState;
@@ -5511,10 +5511,10 @@ class GameObject : CCSpritePlus {
 	virtual void update(float) = m1 0x4ef094;
 	virtual void setScaleX(float) = win 0x18e290, m1 0x4f3d18;
 	virtual void setScaleY(float) = win 0x18e370, m1 0x4f3db8;
-	virtual void setScale(float) = win 0x18e460, m1 0x4f3e58;
-	virtual void setPosition(cocos2d::CCPoint const&) = win 0x18dba0, m1 0x4f3740;
-	virtual void setVisible(bool) = win 0x18ec90, m1 0x4f44a8;
-	virtual void setRotation(float) = m1 0x4f39e0, win 0x18de40;
+	virtual void setScale(float) = win 0x18e460, imac 0x5c4ab0, m1 0x4f3e58;
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x18dba0, imac 0x5c43f0, m1 0x4f3740;
+	virtual void setVisible(bool) = win 0x18ec90, imac 0x5c51b0, m1 0x4f44a8;
+	virtual void setRotation(float) = win 0x18de40, imac 0x5c4660, m1 0x4f39e0;
 	virtual void setRotationX(float) = m1 0x4f3ac8, win 0x18df90;
 	virtual void setRotationY(float) = m1 0x4f3ba4, win 0x18e0e0;
 	virtual void setOpacity(unsigned char) = win 0x18e840, m1 0x4f417c, imac 0x5c4e10;
@@ -6595,7 +6595,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn processAreaTransformGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool);
 	TodoReturn processAreaVisualActions(float) = imac 0x1389e0;
 	TodoReturn processCameraObject(GameObject*, PlayerObject*);
-	void processCommands(float) = win 0x229830, m1 0x11b6d8;
+	void processCommands(float) = win 0x229830, imac 0x148740, m1 0x11b6d8;
 	TodoReturn processDynamicObjectActions(int, float);
 	TodoReturn processFollowActions();
 	TodoReturn processItems();
@@ -11948,7 +11948,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
 
 	static PlayerCheckpoint* create() = win 0x3979a0;
 
-	virtual bool init() = m1 0xab20c;
+	virtual bool init() = imac 0xbfbc0, m1 0xab20c;
 
 	cocos2d::CCPoint m_position;
 	cocos2d::CCPoint m_lastPosition;
@@ -12264,7 +12264,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setScale(float) = win 0x380880;
 	virtual void setPosition(cocos2d::CCPoint const&) = m1 0x3973cc, win 0x37a650;
 	virtual void setVisible(bool) = m1 0x39a4f8, win 0x380890;
-	virtual void setRotation(float) = m1 0x39a47c, win 0x380790; // merged thunk
+	virtual void setRotation(float) = win 0x380790, imac 0x425c40, m1 0x39a47c; // merged thunk
 	virtual void setOpacity(unsigned char) = win 0x37bb00, m1 0x398408;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x37b320, m1 0x397e20, imac 0x423230;
 	virtual void setFlipX(bool) = win 0x3807a0, m1 0x39a480;
@@ -12521,7 +12521,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
 	TodoReturn loadDefaultColors();
 	TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&);
-	void loadFromCheckpoint(CheckpointObject*) = win 0x394180, m1 0xa9b90;
+	void loadFromCheckpoint(CheckpointObject*) = win 0x394180, imac 0xbe490, m1 0xa9b90;
 	TodoReturn loadLastCheckpoint();
 	CheckpointObject * markCheckpoint() = win 0x3940b0, imac 0xbbd80;
 	void onQuit() = win 0x397540, imac 0xb3e90, m1 0xa0cb0;
