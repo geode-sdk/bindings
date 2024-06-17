@@ -10212,7 +10212,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void playStep2() = win 0x2dd1a0, imac 0x2c01b0, m1 0x25f744;
 	void playStep3() = win 0x2dd280, imac 0x2c0270, m1 0x25f804;
 	void playStep4() = win 0x2dd400, imac 0x2c03b0, m1 0x25f940;
-	static cocos2d::CCScene* scene(GJGameLevel*, bool);
+	static cocos2d::CCScene* scene(GJGameLevel*, bool) = win 0x2d73a0;
 	void setupLevelInfo() = win 0x2daf80, imac 0x2bbeb0, m1 0x25b5b8;
 	void setupPlatformerStats() = win 0x2da440, imac 0x2bcb10, m1 0x25c0f8;
 	void setupProgressBars() = win 0x2da870, imac 0x2bce50, m1 0x25c4a0;
