@@ -1680,6 +1680,52 @@ class cocos2d::CCDictionary {
 }
 
 [[link(win, android)]]
+class cocos2d::CCRenderTexture {
+	static cocos2d::CCRenderTexture* create(int, int) = m1 0x526fe4;
+	static cocos2d::CCRenderTexture* create(int, int, cocos2d::CCTexture2DPixelFormat) = m1 0x526adc;
+	static cocos2d::CCRenderTexture* create(int, int, cocos2d::CCTexture2DPixelFormat, unsigned int) = m1 0x526bbc;
+
+	bool initWithWidthAndHeight(int, int, cocos2d::CCTexture2DPixelFormat);
+	bool initWithWidthAndHeight(int, int, cocos2d::CCTexture2DPixelFormat, unsigned int) = m1 0x526ca4;
+
+	cocos2d::_ccColor4F const& getClearColor() const;
+	float getClearDepth() const;
+	unsigned int getClearFlags() const;
+	int getClearStencil() const;
+
+	void setAutoDraw(bool);
+	void setClearColor(cocos2d::_ccColor4F const&);
+	void setClearDepth(float);
+	void setClearFlags(unsigned int);
+	void setClearStencil(float);
+
+	// CCRenderTexture(cocos2d::CCRenderTexture const&);
+	CCRenderTexture() = m1 0x5268fc;
+	void begin() = m1 0x5270d8;
+	void beginWithClear(float, float, float, float, float, int, unsigned int);
+	void beginWithClear(float, float, float, float);
+	void beginWithClear(float, float, float, float, float);
+	void beginWithClear(float, float, float, float, float, int);
+	void clear(float, float, float, float);
+	void clearDepth(float);
+	void clearStencil(int);
+	void end() = m1 0x527584;
+	void endToLua();
+	bool isAutoDraw() const;
+	void listenToBackground(cocos2d::CCObject*);
+	void listenToForeground(cocos2d::CCObject*);
+	cocos2d::CCImage* newCCImage(bool) = m1 0x527a30;
+	bool saveToFile(char const*);
+	bool saveToFile(char const*, cocos2d::eImageFormat);
+	void updateInternalScale(float, float);
+
+	virtual void draw() = m1 0x527814;
+	virtual void visit() = m1 0x527788;
+	virtual cocos2d::CCSprite* getSprite() = m1 0x526a34;
+	virtual void setSprite(cocos2d::CCSprite*) = m1 0x526a3c;
+}
+
+[[link(win, android)]]
 class cocos2d::CCRepeatForever {
 	static cocos2d::CCRepeatForever* create(cocos2d::CCActionInterval*) = imac 0x3b9b90, m1 0x33e16c, ios 0x1964d4;
 
