@@ -860,10 +860,10 @@ class cocos2d::CCLayerGradient {
 
 	virtual bool init() = imac 0x4bd860;
 
-	virtual void updateColor();
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&);
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&);
-	virtual cocos2d::_ccColor3B const& getStartColor();
+	virtual void updateColor() = imac 0x4bd9a0;
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = imac 0x4bd890;
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&) = imac 0x4bd8f0;
+	virtual cocos2d::_ccColor3B const& getStartColor() = imac 0x4bdb90;
 	virtual void setStartColor(cocos2d::_ccColor3B const&) = imac 0x4bdba0;
 	virtual cocos2d::_ccColor3B const& getEndColor() = imac 0x4bdbf0;
 	virtual void setEndColor(cocos2d::_ccColor3B const&) = imac 0x4bdbc0;
@@ -872,7 +872,7 @@ class cocos2d::CCLayerGradient {
 	virtual unsigned char getEndOpacity() = imac 0x4bdc50;
 	virtual void setEndOpacity(unsigned char) = imac 0x4bdc30;
 	virtual cocos2d::CCPoint const& getVector() = imac 0x4bdc90;
-	virtual void setVector(cocos2d::CCPoint const&);
+	virtual void setVector(cocos2d::CCPoint const&) = imac 0x4bdc60;
 	virtual void setCompressedInterpolation(bool) = imac 0x4bdd30;
 	virtual bool isCompressedInterpolation() = imac 0x4bdd20;
 }
@@ -1587,7 +1587,7 @@ class cocos2d::CCActionManager {
 class cocos2d::CCApplication {
 	static cocos2d::CCApplication* sharedApplication() = imac 0x328170, m1 0x2b7f38, ios 0x1b7dcc;
 	virtual int run();
-	virtual void openURL(char const*) = m1 0x2b877c;
+	virtual void openURL(char const*) = m1 0x2b877c, imac 0x328f80;
 }
 
 [[link(win, android)]]
@@ -1955,11 +1955,11 @@ class cocos2d::CCMenu {
 	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
 
 	virtual bool init() = m1 0x6a7100, imac 0x79ec00;
-	virtual void addChild(cocos2d::CCNode*) = m1 0x6a7108;
-	virtual void addChild(cocos2d::CCNode*, int) = m1 0x6a710c;
-	virtual void addChild(cocos2d::CCNode*, int, int) = m1 0x6a7110;
-	virtual void removeChild(cocos2d::CCNode*, bool) = m1 0x6a71b8;
-	virtual void onExit() = m1 0x6a7170;
+	virtual void addChild(cocos2d::CCNode*) = m1 0x6a7108, imac 0x79ec10;
+	virtual void addChild(cocos2d::CCNode*, int) = m1 0x6a710c, imac 0x79ec20;
+	virtual void addChild(cocos2d::CCNode*, int, int) = m1 0x6a7110, imac 0x79ec30;
+	virtual void removeChild(cocos2d::CCNode*, bool) = m1 0x6a71b8, imac 0x79ecd0;
+	virtual void onExit() = m1 0x6a7170, imac 0x79ec80;
 	virtual void registerWithTouchDispatcher() = m1 0x6a726c;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a72c8, imac 0x79edd0;
