@@ -12493,7 +12493,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	CheckpointObject* createCheckpoint() = win 0x391b00;
 	void createObjectsFromSetupFinished() = win 0x38a4f0;
 	void delayedFullReset();
-	void delayedResetLevel() = win 0x395700;
+	void delayedResetLevel() = win 0x395700, imac 0xbb940, m1 0xa79c8;
 	void fullReset() = win 0x395600, m1 0xaa510;
 	float getCurrentPercent() = win 0x390520, imac inline {
 		float percent;
