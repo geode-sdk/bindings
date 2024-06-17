@@ -144,6 +144,19 @@ class cocos2d::CCMoveTo {
 }
 
 [[link(win, android)]]
+class cocos2d::CCScaleBy {
+	static cocos2d::CCScaleBy* create(float, float) = imac 0x3bd6d0, m1 0x341544;
+	static cocos2d::CCScaleBy* create(float, float, float);
+
+	// CCScaleBy(cocos2d::CCScaleBy const&);
+	// CCScaleBy();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCScaleTo {
 	static cocos2d::CCScaleTo* create(float, float) = m1 0x3411e8, imac 0x3bd2f0, ios 0x197f20;
 	static cocos2d::CCScaleTo* create(float, float, float);
@@ -210,13 +223,13 @@ class cocos2d::CCShaderCache {
 
 [[link(win, android)]]
 class cocos2d::CCParticleSystem {
-	static cocos2d::CCParticleSystem* create(char const*);
+	static cocos2d::CCParticleSystem* create(char const*) = imac 0x7d3960, m1 0x6d8070;
 	static cocos2d::CCParticleSystem* createWithTotalParticles(unsigned int);
 
 	void initParticle(cocos2d::sCCParticle*);
-	bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool);
-	bool initWithDictionary(cocos2d::CCDictionary*, bool);
-	bool initWithFile(char const*, bool);
+	bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool) = imac 0x7d3ca0, m1 0x6d83ec;
+	bool initWithDictionary(cocos2d::CCDictionary*, bool) = imac 0x7d55d0, m1 0x6d9bf8;
+	bool initWithFile(char const*, bool) = imac 0x7d39c0, m1 0x6d80f4;
 
 	unsigned int getAtlasIndex() const;
 	bool getDontCleanupOnFinish() const;
@@ -390,7 +403,7 @@ class cocos2d::CCParticleSystem {
 
 [[link(win, android)]]
 class cocos2d::CCParticleSystemQuad {
-	static cocos2d::CCParticleSystemQuad* create(char const*, bool);
+	static cocos2d::CCParticleSystemQuad* create(char const*, bool) = imac 0x60dce0, m1 0x532fec;
 	static cocos2d::CCParticleSystemQuad* create();
 	static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool);
 
@@ -418,6 +431,47 @@ class cocos2d::CCParticleSystemQuad {
 	virtual void postStep();
 
 	virtual void setTexture(cocos2d::CCTexture2D*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCProgressTimer {
+	static cocos2d::CCProgressTimer* create(cocos2d::CCSprite*) = imac 0x60f290, m1 0x533fc4;
+
+	bool initWithSprite(cocos2d::CCSprite*);
+
+	cocos2d::CCPoint getBarChangeRate() const;
+	float getPercentage();
+	cocos2d::CCSprite* getSprite();
+	cocos2d::CCProgressTimerType getType();
+
+	void setAnchorPoint(cocos2d::CCPoint);
+	void setBarChangeRate(cocos2d::CCPoint);
+	void setPercentage(float);
+	void setReverseDirection(bool);
+	void setReverseProgress(bool);
+	void setSprite(cocos2d::CCSprite*);
+	void setType(cocos2d::CCProgressTimerType);
+
+	// CCProgressTimer(cocos2d::CCProgressTimer const&);
+	// CCProgressTimer();
+	
+	cocos2d::CCPoint boundaryTexCoord(char);
+	bool isReverseDirection();
+	cocos2d::_ccTex2F textureCoordFromAlphaPoint(cocos2d::CCPoint);
+	void updateBar();
+	void updateColor();
+	void updateProgress();
+	void updateRadial();
+	cocos2d::_ccVertex2F vertexFromAlphaPoint(cocos2d::CCPoint);
+
+	virtual cocos2d::_ccColor3B const& getColor() const;
+	virtual unsigned char getOpacity() const;
+	virtual void draw();
+	virtual cocos2d::CCPoint getMidpoint();
+	virtual void setMidpoint(cocos2d::CCPoint);
+
+	virtual void setColor(cocos2d::_ccColor3B const&);
+	virtual void setOpacity(unsigned char);
 }
 
 [[link(win, android)]]
@@ -1525,6 +1579,8 @@ class cocos2d::CCLabelBMFont {
 [[link(win, android)]]
 class cocos2d::CCActionManager {
 	void addAction(cocos2d::CCAction*, cocos2d::CCNode*, bool) = imac 0x22f4d0, m1 0x1dcf98, ios 0x304c44;
+	void pauseTarget(cocos2d::CCObject*) = imac 0x22f210, m1 0x1dcc88;
+	void resumeTarget(cocos2d::CCObject*) = imac 0x22f2f0, m1 0x1dcd84;
 }
 
 [[link(win, android)]]
@@ -1590,13 +1646,13 @@ class cocos2d::CCArray {
 [[link(win, android)]]
 class cocos2d::CCDictionary {
 	static cocos2d::CCDictionary* create() = imac 0x30f260, m1 0x2a0fac, ios 0x42d318;
-	static cocos2d::CCDictionary* createWithContentsOfFile(char const*);
-	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*);
+	static cocos2d::CCDictionary* createWithContentsOfFile(char const*) = imac 0x30f3e0, m1 0x2a1138;
+	static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*) = imac 0x30f2e0, m1 0x2a1030;
 	static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
 
 	gd::string getFirstKey();
 
-	void setObject(cocos2d::CCObject*, gd::string const&) = ios 0x42c778;
+	void setObject(cocos2d::CCObject*, gd::string const&) = ios 0x42c778, imac 0x30d960, m1 0x29f8f0;
 	//void setObject(cocos2d::CCObject*, int);
 	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
 	//void setObjectUnSafe(cocos2d::CCObject*, int);
@@ -1658,6 +1714,16 @@ class cocos2d::CCTransitionFade {
 }
 
 [[link(win, android)]]
+class cocos2d::CCTransitionRotoZoom {
+	static cocos2d::CCTransitionRotoZoom* create(float, cocos2d::CCScene*);
+
+	// CCTransitionRotoZoom(cocos2d::CCTransitionRotoZoom const&);
+	// CCTransitionRotoZoom();
+
+	virtual void onEnter() = imac 0xd8fc0, m1 0xc0184;
+}
+
+[[link(win, android)]]
 class cocos2d::CCTransitionScene {
 	// CCTransitionScene(cocos2d::CCTransitionScene const&);
 	// CCTransitionScene();
@@ -1670,6 +1736,22 @@ class cocos2d::CCTransitionScene {
 	virtual void draw() = imac 0xd88f0, m1 0xbfaf0;
 	virtual bool initWithDuration(float, cocos2d::CCScene*) = imac 0xd8820, m1 0xbf9f8;
 	virtual void sceneOrder() = imac 0xd88e0, m1 0xbfae4;
+}
+
+[[link(win, android)]]
+class cocos2d::CCBlink {
+	static cocos2d::CCBlink* create(float, unsigned int) = imac 0x3bda90, m1 0x341884;
+
+	bool initWithDuration(float, unsigned int);
+
+	// CCBlink(cocos2d::CCBlink const&);
+	// CCBlink();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual void stop();
+	virtual cocos2d::CCActionInterval* reverse();
 }
 
 [[link(win, android)]]

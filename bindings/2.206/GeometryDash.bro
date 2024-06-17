@@ -446,7 +446,7 @@ class BitmapFontCache : cocos2d::CCObject {
 
 	static BitmapFontCache* sharedFontCache() = ios 0x303f5c;
 
-	FontObject* fontWithConfigFile(char const*, float) = ios 0x304048;
+	FontObject* fontWithConfigFile(char const*, float) = ios 0x304048, imac 0x21a7e0, m1 0x1caed8;
 	bool init();
 	static void purgeSharedFontCache() = ios 0x303fc8;
 }
@@ -11216,7 +11216,7 @@ class MPLobbyLayer : cocos2d::CCLayer, GJMPDelegate, UploadPopupDelegate, Upload
 class MultilineBitmapFont : cocos2d::CCSprite {
 	// virtual ~MultilineBitmapFont();
 
-	static MultilineBitmapFont* createWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = ios 0x244948;
+	static MultilineBitmapFont* createWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = ios 0x244948, imac 0x490240, m1 0x3f5744;
 	bool initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = win 0x6A9B0, ios 0x244a6c;
 	unsigned int moveSpecialDescriptors(int, int) = win 0x6BBB0;
 	gd::string readColorInfo(gd::string) = win 0x6B2E0;
@@ -11590,7 +11590,7 @@ class ObjectManager : cocos2d::CCNode {
 	void setLoaded(char const*);
 	void setup() = ios 0x25cea8;
 
-	virtual bool init() = m1 0x6a957c;
+	virtual bool init() = m1 0x6a957c, imac 0x7a1760;
 }
 
 [[link(android)]]
