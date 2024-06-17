@@ -44,7 +44,8 @@ GEODE_SIZE_CHECK(PlayLayer, 0x3970);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37b0);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x37d0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x37e8);
-GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x386d);
+GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x386d);
+GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x38d7);
 
 GEODE_SIZE_CHECK(GameObject, 0x538);
 GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x310);
