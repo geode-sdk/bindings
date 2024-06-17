@@ -8522,20 +8522,32 @@ class GJRobotSprite : CCAnimatedSprite {
 	// virtual ~GJRobotSprite();
 	// GJRobotSprite();
 
-	static GJRobotSprite* create(int) = win 0x294360;
+	static GJRobotSprite* create(int) = win 0x294360, m1 0x50e80c, imac 0x5e4f50;
 
-	TodoReturn hideGlow() = imac 0x5e5f80;
-	bool init(int, gd::string);
-	bool init(int);
-	void showGlow() = imac 0x5e5f60;
-	void updateColor01(cocos2d::ccColor3B) = imac 0x5e5fa0;
+	void hideGlow() = m1 0x50f694, imac 0x5e5f80;
+	bool init(int, gd::string) = win 0x294410, m1 0x50e9cc, imac 0x5e5100;
+	bool init(int) = m1 0x50e93c, imac 0x5e5090;
+	void showGlow() = m1 0x50f680, imac 0x5e5f60;
+	void updateColor01(cocos2d::ccColor3B) = m1 0x50f6a8, imac 0x5e5fa0;
 	void updateColor02(cocos2d::ccColor3B) = m1 0x50f954, imac 0x5e62e0;
-	void updateColors() = win 0x294ba0;
-	TodoReturn updateFrame(int);
-	void updateGlowColor(cocos2d::ccColor3B, bool);
+	void updateColors() = win 0x294ba0, m1 0x50f6bc, imac 0x5e5fc0;
+	void updateFrame(int) = win 0x295150, m1 0x50ef7c, imac 0x5e5720;
+	void updateGlowColor(cocos2d::ccColor3B, bool) = m1 0x50f964, imac 0x5e6300;
 
-	virtual void setOpacity(unsigned char) = win 0x295050, m1 0x50f9e0;
-	virtual TodoReturn hideSecondary() = win 0x295740, m1 0x50fac4;
+	virtual void setOpacity(unsigned char) = win 0x295050, m1 0x50f9e0, imac 0x5e6380;
+	virtual void hideSecondary() = win 0x295740, m1 0x50fac4, imac 0x5e6490;
+
+	cocos2d::CCArray* m_unkArray;
+	bool m_hasExtra;
+	cocos2d::ccColor3B m_color;
+	cocos2d::ccColor3B m_secondColor;
+	cocos2d::CCArray* m_secondArray;
+	cocos2d::CCSprite* m_glowSprite;
+	cocos2d::CCSprite* m_extraSprite;
+	IconType m_iconType;
+	int m_iconRequestID;
+	CCSpritePart* m_headSprite;
+	CCSpritePart* m_lastSprite;
 }
 
 [[link(android)]]
@@ -8900,9 +8912,9 @@ class GJSpecialColorSelectDelegate {
 class GJSpiderSprite : GJRobotSprite {
 	// virtual ~GJSpiderSprite();
 
-	static GJSpiderSprite* create(int) = win 0x2957b0;
+	static GJSpiderSprite* create(int) = win 0x2957b0, m1 0x50fc60, imac 0x5e6690;
 
-	bool init(int);
+	bool init(int) = m1 0x50fd94, imac 0x5e67e0;
 }
 
 [[link(android)]]
