@@ -661,26 +661,10 @@ class ButtonSprite : cocos2d::CCSprite {
 	}
 
 	static ButtonSprite* create(char const*, float);
-	static ButtonSprite* create(char const* a, int b, int c, float d, bool e, char const* f, char const* g, float h) = win inline, imac 0x92140, m1 0x8295c, ios 0x65d30 {
-        auto ret = new ButtonSprite();
-        if (ret->init(a, b, c, d, e, f, g, h)) {
-            ret->autorelease();
-            return ret;
-        }
-        delete ret;
-        return nullptr;
-	}
+	static ButtonSprite* create(char const* a, int b, int c, float d, bool e, char const* f, char const* g, float h) = win 0x3e2d0, imac 0x92140, m1 0x8295c, ios 0x65d30;
 	static ButtonSprite* create(char const*, int, int, float, bool, char const* font, char const* bg);
 	static ButtonSprite* create(char const*, int, int, float, bool) = imac 0x920f0;
-	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float a, bool b, char const* bgSprite, bool noScaleSpriteForBG) = win inline, imac 0x918c0, m1 0x82188, ios 0x655fc {
-        auto ret = new ButtonSprite();
-        if (ret->init(topSprite, width, unused, height, a, b, bgSprite, noScaleSpriteForBG)) {
-            ret->autorelease();
-            return ret;
-        }
-        delete ret;
-        return nullptr;
-	}
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float a, bool b, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3dfc0, imac 0x918c0, m1 0x82188, ios 0x655fc;
 	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool);
 	static ButtonSprite* create(cocos2d::CCSprite*);
 
@@ -698,13 +682,13 @@ class ButtonSprite : cocos2d::CCSprite {
 	void updateSpriteBGSize() = win 0x3e7e0;
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
 
-    PAD = mac 0x18, win 0x18, android32 0x18, android64 0x18;
-    cocos2d::CCLabelBMFont* m_label;
-    cocos2d::CCSprite* m_subSprite;
-    cocos2d::CCSprite* m_subBGSprite;
-    cocos2d::extension::CCScale9Sprite* m_BGSprite;
-    PAD = mac 0xC, win 0xC;
-    cocos2d::CCPoint m_spritePosition;
+	PAD = mac 0x18, win 0x18, android32 0x18, android64 0x18;
+	cocos2d::CCLabelBMFont* m_label;
+	cocos2d::CCSprite* m_subSprite;
+	cocos2d::CCSprite* m_subBGSprite;
+	cocos2d::extension::CCScale9Sprite* m_BGSprite;
+	PAD = mac 0xC, win 0xC;
+	cocos2d::CCPoint m_spritePosition;
 	PAD = win 0x18;
 	//sizeof is 0x238 on android32 pls add to checks later, its also 0x2c0 on windows
 }
