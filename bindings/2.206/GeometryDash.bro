@@ -2538,31 +2538,31 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	static CustomSongWidget* create(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc56f0;
 
 	void deleteSong() = win 0xc7360;
-	void downloadAssetFailed(int, GJAssetType, GJSongError);
-	void downloadAssetFinished(int, GJAssetType);
-	void downloadFailed();
+	void downloadAssetFailed(int, GJAssetType, GJSongError) = win 0xca6a0;
+	void downloadAssetFinished(int, GJAssetType) = win 0xca5e0;
+	void downloadFailed() = win 0xca840;
 	TodoReturn getSongInfoIfUnloaded();
 	bool init(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc5900, imac 0x625c40, m1 0x5477dc;
-	void onCancelDownload(cocos2d::CCObject* sender);
-	void onDelete(cocos2d::CCObject* sender);
+	void onCancelDownload(cocos2d::CCObject* sender) = win 0xc7db0;
+	void onDelete(cocos2d::CCObject* sender) = win 0xc7240;
 	void onDownload(cocos2d::CCObject* sender) = win 0xc7ed0;
-	void onGetSongInfo(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onMore(cocos2d::CCObject* sender);
+	void onGetSongInfo(cocos2d::CCObject* sender) = win 0xc7e40;
+	void onInfo(cocos2d::CCObject* sender) = win 0xc6f50;
+	void onMore(cocos2d::CCObject* sender) = win 0xc7560;
 	void onPlayback(cocos2d::CCObject* sender) = win 0xc81d0;
 	void onSelect(cocos2d::CCObject* sender) = win 0xc8170;
-	TodoReturn processNextMultiAsset();
+	void processNextMultiAsset() = win 0xca440;
 	void showError(bool) = win 0xca910;
-	void startDownload();
+	void startDownload() = win 0xc80b0;
 	TodoReturn startMonitorDownload();
-	TodoReturn startMultiAssetDownload();
+	void startMultiAssetDownload() = win 0xca2a0;
 	TodoReturn toggleUpdateButton(bool);
-	TodoReturn updateDownloadProgress(float);
+	void updateDownloadProgress(float) = win 0xc6ac0;
 	TodoReturn updateError(GJSongError);
 	TodoReturn updateLengthMod(float);
 	void updateMultiAssetInfo(bool) = win 0xc9960;
 	TodoReturn updatePlaybackBtn();
-	TodoReturn updateProgressBar(int);
+	void updateProgressBar(int) = win 0xc86a0;
 	void updateSongInfo() = win 0xc8800;
 	void updateSongObject(SongInfoObject*);
 	void updateWithMultiAssets(gd::string, gd::string, int) = win 0xc9610;
@@ -4839,7 +4839,7 @@ class GameLevelOptionsLayer : GJOptionsLayer{
 
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
-	virtual ~GameManager() = win 0x172770;
+	virtual ~GameManager() = win 0x1721e0;
 	// GameManager() = win 0x1721e0, ios 0x32eafc;
 
 	static GameManager* get() {
@@ -11425,7 +11425,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void removeDLFromActive(char const*) = win 0x31dfc0;
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
 	static cocos2d::CCDictionary* responseToDict(gd::string, char const*);
-	void showTOS(FLAlertLayerProtocol*);
+	void showTOS(FLAlertLayerProtocol*) = win 0x31e7f0;
 	void songStateChanged();
 	TodoReturn stopDownload(int);
 	TodoReturn storeMusicObject(SongInfoObject*);
