@@ -322,7 +322,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 	TodoReturn playReactAnimation();
 	TodoReturn startAnimating();
 
-	virtual void animationFinished(char const*) = m1 0x2b7254;
+	virtual void animationFinished(char const*) = m1 0x2b7254, imac 0x3273d0;
 }
 
 [[link(android)]]
