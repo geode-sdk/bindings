@@ -10438,9 +10438,9 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	// virtual ~LevelPage();
 	LevelPage() {}
 
-	static LevelPage* create(GJGameLevel*) = win inline, ios 0x40ac08 {
+	static LevelPage* create(GJGameLevel* level) = win inline, ios 0x40ac08 {
 		auto ret = new LevelPage();
-		if (ret->init()) {
+		if (ret->init(level)) {
 			ret->autorelease();
 			return ret;
 		}
