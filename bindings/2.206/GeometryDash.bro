@@ -10464,8 +10464,8 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x2fdcc0, m1 0x3b3518, imac 0x441430;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3b3630, imac 0x441590;
-	virtual void registerWithTouchDispatcher() = m1 0x3b364c, imac 0x4415d0;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x6fd20, m1 0x3b3630, imac 0x441590;
+	virtual void registerWithTouchDispatcher() = win 0x99990, m1 0x3b364c, imac 0x4415d0;
 	virtual void dialogClosed(DialogLayer*) = win 0x2fd200, m1 0x3b3254, imac 0x441180;
 
 	bool m_isBusy;
