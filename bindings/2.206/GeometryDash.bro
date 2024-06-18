@@ -1805,8 +1805,8 @@ class ColorAction : cocos2d::CCObject {
 	}
 	void setupFromMap(gd::map<gd::string, gd::string>&) = win 0x247e40;
 	void setupFromString(gd::string) = win 0x247d60;
-	TodoReturn step(float) = win 0x247270;
-	TodoReturn updateCustomColor(cocos2d::ccColor3B, cocos2d::ccColor3B);
+	void step(float) = win 0x247270;
+	void updateCustomColor(cocos2d::ccColor3B, cocos2d::ccColor3B); //inline on windows
 	// TodoReturn writeSaveString(fmt::BasicWriter<char>&);
 
 	bool m_stepFinished;
@@ -7425,11 +7425,11 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn tryGetMoveCommandNode(int);
 	TodoReturn updateActiveOpacityEffects();
 	TodoReturn updateColorAction(ColorAction*);
-	TodoReturn updateColorEffects(float) = imac 0x2db6c0;
-	TodoReturn updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B);
+	void updateColorEffects(float) = imac 0x2db6c0; //inline on windows
+	void updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B); //inline on windows
 	void updateCountForItem(int, int);
 	virtual void rewardedVideoFinished();
-	TodoReturn updateEffects(float) = win 0x24a150, imac 0x2db590;
+	void updateEffects(float) = win 0x24a150, imac 0x2db590;
 	void updateOpacityAction(OpacityEffectAction*);
 	void updateOpacityEffects(float);
 	TodoReturn updatePulseEffects(float) = win 0x24f480, imac 0x2db890;
@@ -12488,7 +12488,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void addObject(GameObject*) = win 0x38a990, imac 0xb24e0;
 	void addToGroupOld(GameObject*);
 	void applyCustomEnterEffect(GameObject*, bool) = win 0x38d580;
-	void applyEnterEffect(GameObject*, int, bool) = win 0x38cbe2;
+
+	void applyEnterEffect(GameObject*, int, bool) = win 0x38e270;
 	bool canPauseGame() = win inline, m1 0xaac6c {
 		return !m_hasCompletedLevel && m_started;
 	}
