@@ -10439,16 +10439,16 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 
 	static LevelPage* create(GJGameLevel*) = ios 0x40ac08;
 
-	TodoReturn addSecretCoin();
-	TodoReturn addSecretDoor();
+	void addSecretCoin() = win 0x2fbe20;
+	void addSecretDoor() = win 0x2fc530;
 	bool init(GJGameLevel*) = win 0x2f9570, imac 0x43f130, m1 0x3b145c;
 	void onInfo(cocos2d::CCObject* sender) = win 0x2fd820;
 	void onMoreGames(cocos2d::CCObject* sender);
 	void onPlay(cocos2d::CCObject* sender) = win 0x2fd2e0, imac 0x43e730, m1 0x3b0b5c, ios 0x40c32c;
-	void onSecretDoor(cocos2d::CCObject* sender);
+	void onSecretDoor(cocos2d::CCObject* sender) = win 0x2fc740;
 	void onTheTower(cocos2d::CCObject* sender) = win 0x2fb760;
-	TodoReturn playCoinEffect();
-	TodoReturn playStep2();
+	void playCoinEffect() = win 0x2fc060;
+	void playStep2() = win 0x2fd640;
 	void playStep3() = win 0x2fd720;
 	void updateDynamicPage(GJGameLevel*) = win 0x2fa200, imac 0x43c820, m1 0x3aecd4;
 
@@ -10461,6 +10461,24 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 
 	bool m_isBusy;
 	GJGameLevel* m_level;
+	cocos2d::CCMenu* m_levelMenu;
+	cocos2d::extension::CCScale9Sprite* m_levelDisplay;
+	cocos2d::CCLabelBMFont* m_normalProgressLabel;
+	cocos2d::CCLabelBMFont* m_practiceProgressLabel;
+	cocos2d::CCLabelBMFont* m_nameLabel;
+	cocos2d::CCLabelBMFont* m_starsLabel;
+	float m_progressWidth;
+	cocos2d::CCSprite* m_normalProgressBar;
+	cocos2d::CCSprite* m_practiceProgressBar;
+	cocos2d::CCSprite* m_difficultySprite;
+	cocos2d::CCSprite* m_starsSprite;
+	cocos2d::CCSize m_levelDisplaySize;
+	cocos2d::CCArray* m_coins;
+	cocos2d::CCArray* m_dynamicObjects;
+	cocos2d::CCArray* m_levelObjects;
+	cocos2d::CCArray* m_progressObjects;
+	GameObject* m_coinObject;
+	cocos2d::CCSprite* m_secretDoor;
 }
 
 [[link(android)]]
