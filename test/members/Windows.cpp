@@ -221,6 +221,7 @@ GEODE_SIZE_CHECK(EditorPauseLayer, 0x270);
 GEODE_SIZE_CHECK(GJAccountSettingsLayer, 0x320);
 //GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
 GEODE_SIZE_CHECK(OptionsLayer, 0x298);
+GEODE_SIZE_CHECK(LevelPage, 0x240);
 
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
