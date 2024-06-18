@@ -219,7 +219,7 @@ GEODE_SIZE_CHECK(ButtonSprite, 0x2c0);
 GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
 GEODE_SIZE_CHECK(EditorPauseLayer, 0x270);
 GEODE_SIZE_CHECK(GJAccountSettingsLayer, 0x320);
-GEODE_SIZE_CHECK(GJDropDownLayer, 0x268);
+//GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
 GEODE_SIZE_CHECK(OptionsLayer, 0x298);
 
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);

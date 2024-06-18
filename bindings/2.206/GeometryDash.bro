@@ -3004,6 +3004,8 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     CCMenuItemSpriteExtra* m_guidelinesOffButton;
     CCMenuItemSpriteExtra* m_guidelinesOnButton;
     LevelEditorLayer* m_editorLayer;
+	PAD = win 0x20;
+
 }
 
 [[link(android), depends(GJTransformState)]]
