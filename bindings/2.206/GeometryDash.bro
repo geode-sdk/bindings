@@ -7930,7 +7930,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	ListButtonBar* m_iconSelection;
 	CCMenuItemSpriteExtra* m_leftArrow;
 	CCMenuItemSpriteExtra* m_rightArrow;
-	cocos2d::CCMenu* m_iconSelectionMenu;
+	cocos2d::CCMenu* m_navDotMenu;
 	int m_iconID;
 	IconType m_selectedIconType;
 }
