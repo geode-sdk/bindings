@@ -10436,8 +10436,17 @@ class LevelOptionsLayer2 : LevelOptionsLayer {
 [[link(android)]]
 class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	// virtual ~LevelPage();
+	LevelPage() {}
 
-	static LevelPage* create(GJGameLevel*) = ios 0x40ac08;
+	static LevelPage* create(GJGameLevel*) = win inline, ios 0x40ac08 {
+		auto ret = new LevelPage();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	void addSecretCoin() = win 0x2fbe20;
 	void addSecretDoor() = win 0x2fc530;
