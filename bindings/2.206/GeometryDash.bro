@@ -5307,7 +5307,7 @@ class GameObject : CCSpritePlus {
 	// virtual ~GameObject();
 	GameObject() = win 0x133690;
 
-	TodoReturn addColorSprite(gd::string);
+	void addColorSprite(gd::string) = win 0x1847f0, imac 0x5ad230, m1 0x4edac4;
 	TodoReturn addColorSpriteToParent(bool);
 	TodoReturn addColorSpriteToSelf();
 	TodoReturn addCustomBlackChild(gd::string, float, bool);
