@@ -10440,7 +10440,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	// virtual ~LevelPage();
 	LevelPage() {}
 
-	static LevelPage* create(GJGameLevel* level) = win inline, ios 0x40ac08 {
+	static LevelPage* create(GJGameLevel* level) = win inline, imac 0x43c580, m1 0x3aea48, ios 0x40ac08 {
 		auto ret = new LevelPage();
 		if (ret->init(level)) {
 			ret->autorelease();
@@ -10450,17 +10450,17 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 		return nullptr;
 	}
 
-	void addSecretCoin() = win 0x2fbe20;
-	void addSecretDoor() = win 0x2fc530;
+	void addSecretCoin() = win 0x2fbe20, imac 0x43dde0, m1 0x3b0314;
+	void addSecretDoor() = win 0x2fc530, imac 0x440360, m1 0x3b2b7c;
 	bool init(GJGameLevel*) = win 0x2f9570, imac 0x43f130, m1 0x3b145c;
-	void onInfo(cocos2d::CCObject* sender) = win 0x2fd820;
-	void onMoreGames(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender) = win 0x2fd820, imac 0x43ea10, m1 0x3b0e74;
+	void onMoreGames(cocos2d::CCObject* sender) = imac 0x4404d0, m1 0x3b26d0;
 	void onPlay(cocos2d::CCObject* sender) = win 0x2fd2e0, imac 0x43e730, m1 0x3b0b5c, ios 0x40c32c;
-	void onSecretDoor(cocos2d::CCObject* sender) = win 0x2fc740;
-	void onTheTower(cocos2d::CCObject* sender) = win 0x2fb760;
-	void playCoinEffect() = win 0x2fc060;
-	void playStep2() = win 0x2fd640;
-	void playStep3() = win 0x2fd720;
+	void onSecretDoor(cocos2d::CCObject* sender) = win 0x2fc740, imac 0x440980, m1 0x3b2b7c;
+	void onTheTower(cocos2d::CCObject* sender) = win 0x2fb760, imac 0x43fdc0, m1 0x3b2018;
+	void playCoinEffect() = win 0x2fc060, imac 0x440530, m1 0x3b2734;
+	void playStep2() = win 0x2fd640, imac 0x4412a0, m1 0x3b33a4;
+	void playStep3() = win 0x2fd720, imac 0x441360, m1 0x3b3464;
 	void updateDynamicPage(GJGameLevel*) = win 0x2fa200, imac 0x43c820, m1 0x3aecd4;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x2fdcc0, m1 0x3b3518, imac 0x441430;
