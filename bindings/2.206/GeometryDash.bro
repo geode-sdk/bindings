@@ -8933,7 +8933,7 @@ class GJSpiderSprite : GJRobotSprite {
 class GJSpriteColor {
 	// GJSpriteColor();
 
-	TodoReturn getColorMode();
+	int getColorMode();
 
 	int m_colorID;
 	int m_defaultColorID;
