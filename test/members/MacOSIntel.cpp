@@ -32,7 +32,10 @@
 // GEODE_MEMBER_CHECK(PlayLayer, m_replayInputs, 0x6a8);
 // GEODE_MEMBER_CHECK(PlayLayer, m_level, 0x728);
 // GEODE_MEMBER_CHECK(PlayLayer, m_shouldTryToKick, 0x7a8);
+GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x3508);
+GEODE_MEMBER_CHECK(PlayLayer, m_unkSomeFloat, 0x35a4);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x368D);
+GEODE_MEMBER_CHECK(PlayLayer, m_endLayerStars, 0x3694);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36F7);
 
 // // GameManager
@@ -114,10 +117,11 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2fd8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isDead, 0x30a2);
-// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3150);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3158);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk3458, 0x3288);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3290);
-// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32e8);
-// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3480);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32f8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 
 // GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x35a0);
 // GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x35c0);
