@@ -8388,13 +8388,13 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 class GJPathSprite : CCSpriteCOpacity {
 	// virtual ~GJPathSprite();
 
-	static GJPathSprite* create(int) = win 0x276c30; // inlined on mac
+	static GJPathSprite* create(int) = win 0x276c30, m1 0x2914a0, imac 0x2fd4e0; // inlined on mac
 
-	TodoReturn addRankLabel(int);
-	TodoReturn addShardSprite() = win 0x277240;
-	TodoReturn changeToLockedArt() = win 0x276f80, m1 0x2942e4, imac 0x300640;
-	bool init(int);
-	TodoReturn updateState() = win 0x276e00;
+	void addRankLabel(int) = m1 0x295688, imac 0x301b70;
+	void addShardSprite() = win 0x277240, m1 0x29512c, imac 0x301650;
+	void changeToLockedArt() = win 0x276f80, m1 0x2942e4, imac 0x300640;
+	bool init(int) = m1 0x295578, imac 0x301a60;
+	void updateState() = win 0x276e00, m1 0x29154c, imac 0x2fd580;
 
 	int m_pathNumber;
 }
