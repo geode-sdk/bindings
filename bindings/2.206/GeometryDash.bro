@@ -8334,23 +8334,28 @@ class GJOptionsLayer : SetupTriggerPopup {
 class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
 	// virtual ~GJPathPage();
 
-	static GJPathPage* create(int, GJPathsLayer*);
+	static GJPathPage* create(int, GJPathsLayer*) = win 0x273250, m1 0x2916fc, imac 0x2fd710;
 
-	bool init(int, GJPathsLayer*);
-	void onActivatePath(cocos2d::CCObject* sender);
-	void onBack(cocos2d::CCObject* sender);
-	void onIconInfo(cocos2d::CCObject* sender);
-	void onUnlock(cocos2d::CCObject* sender);
-	TodoReturn playUnlockAnimation() = imac 0x2ffb70; // inlined on m1
-	void showCantAffordMessage(GJStoreItem*);
-	TodoReturn unlockAnimationFinished();
-	TodoReturn unlockAnimationStep2();
-	TodoReturn unlockAnimationStep3();
+	bool init(int, GJPathsLayer*) = win 0x273380, m1 0x291bec, imac 0x2fdcf0;
+	void onActivatePath(cocos2d::CCObject* sender) = win 0x274ed0, m1 0x29392c, imac 0x2ffb30;
+	void onBack(cocos2d::CCObject* sender) = win 0x276b80, m1 0x293564, imac 0x2ff7c0;
+	void onIconInfo(cocos2d::CCObject* sender) = win 0x274f00, m1 0x293614, imac 0x2ff850;
+	void onUnlock(cocos2d::CCObject* sender) = win 0x275100, m1 0x293820, imac 0x2ffa40;
+	void playUnlockAnimation() = win 0x275950, m1 0x293958, imac 0x2ffb70; // inlined on m1
+	void showCantAffordMessage(GJStoreItem*) = win 0x275280, m1 0x293f08, imac 0x300220;
+	void unlockAnimationFinished() = win 0x276a90, m1 0x294854, imac 0x300c00;
+	void unlockAnimationStep2() = win 0x275fa0, m1 0x29460c, imac 0x300920;
+	void unlockAnimationStep3() = win 0x276220, m1 0x2949b0, imac 0x300d60;
 
 	virtual void registerWithTouchDispatcher() = m1 0x2953bc, imac 0x3018a0;
 	virtual void keyBackClicked() = win 0x276c20, m1 0x295258, imac 0x301760;
 	virtual void show() = m1 0x2953f4, imac 0x3018e0;
-	virtual TodoReturn didPurchaseItem(GJStoreItem*) = win 0x2750f0, m1 0x293954, imac 0x2ffb60;
+	virtual void didPurchaseItem(GJStoreItem*) = win 0x2750f0, m1 0x293954, imac 0x2ffb60;
+
+	GJPathsLayer* m_pathsLayer;
+	int m_pathNumber;
+	bool m_animationPlaying;
+	int m_dialogIndex;
 }
 
 [[link(android)]]
@@ -8445,7 +8450,7 @@ class GJPromoPopup : FLAlertLayer {
 
 [[link(android)]]
 class GJPurchaseDelegate {
-	virtual TodoReturn didPurchaseItem(GJStoreItem*);
+	virtual void didPurchaseItem(GJStoreItem*);
 }
 
 [[link(android)]]
@@ -8771,7 +8776,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2b6290, imac 0x326190;
 	virtual void registerWithTouchDispatcher() = m1 0x2b62ac, imac 0x3261d0;
 	virtual void keyBackClicked() = win 0x29aa60, m1 0x2b4bb4, imac 0x3246c0;
-	virtual TodoReturn didPurchaseItem(GJStoreItem*) = win 0x29a0a0, m1 0x2b4548, imac 0x323fc0;
+	virtual void didPurchaseItem(GJStoreItem*) = win 0x29a0a0, m1 0x2b4548, imac 0x323fc0;
 	virtual void rewardedVideoFinished() = win 0x2997c0, m1 0x2b3f7c, imac 0x323970;
 	virtual void dialogClosed(DialogLayer*) = win 0x29c0c0, m1 0x2b5cb4, ios 0x158204, imac 0x325ba0;
 }
