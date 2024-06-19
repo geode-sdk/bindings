@@ -10,11 +10,14 @@ GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36F7);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 
 
+GEODE_SIZE_CHECK(GJBaseGameLayer, 0x350);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf6c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2fd8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x4d9);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x4e4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x4c1);
 
 
 GEODE_SIZE_CHECK(CCTextInputNode, 0x258);
