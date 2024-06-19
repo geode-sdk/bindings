@@ -8390,7 +8390,7 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 	virtual void keyBackClicked() = win 0x2731f0, m1 0x291924, imac 0x2fd9d0;
 	virtual void show() = m1 0x291a2c, imac 0x2fdae0;
 
-	CCSprite* m_closeSprite;
+	cocos2d::CCSprite* m_closeSprite;
 	bool m_running;
 }
 
