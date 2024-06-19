@@ -12699,7 +12699,12 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	gd::vector<int> m_keyOpacities; // type not really accurate
 	gd::vector<int> m_keyPulses; // type not really accurate
 	int m_nextColorKey;
-	PAD = win 0x28, imac 0x18, android32 0x18, android64 0x2c, m1 0x24, ios 0x24;
+	PAD = win 0xc, imac 0x18, android32 0x18, android64 0x2c, m1 0x24, ios 0x24;
+	win {
+		bool m_tryPlaceCheckpoint;
+		CheckpointGameObject* m_triggeredCheckpointGameObject;
+	}
+	PAD = win 0x10;
 }
 
 [[link(android)]]
