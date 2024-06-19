@@ -2131,7 +2131,7 @@ class cocos2d {
 		ccDrawSolidPoly(vertices, 4, color);
 	}
 	static void ccGLBindTexture2D(unsigned int) = m1 0x2e9b14, imac 0x35c2a0;
-	static void ccGLBindTexture2DN(unsigned int, unsigned int);
+	static void ccGLBindTexture2DN(unsigned int, unsigned int) = m1 0x2e9b60, imac 0x35c2e0;
 	static void ccGLBindVAO(unsigned int);
 	static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x35c1f0, m1 0x2e9a4c, ios 0x19a514;
 	static void ccGLBlendResetToCache() = imac 0x35c250;
@@ -2141,7 +2141,7 @@ class cocos2d {
 	static void ccGLEnable(cocos2d::ccGLServerState) = ios 0x19a64c;
 	static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2e9c70, imac 0x35c3d0, ios 0x19a650;
 	static void ccGLInvalidateStateCache();
-	static void ccGLUseProgram(unsigned int);
+	static void ccGLUseProgram(unsigned int) = m1 0x2e9a30, imac 0x35c1d0;
 	static void ccPointSize(float);
 	static void ccSetProjectionMatrixDirty();
 	static bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
