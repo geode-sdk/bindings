@@ -72,11 +72,11 @@ class cocos2d::CCEaseElasticOut {
 
 [[link(win, android)]]
 class cocos2d::CCMotionStreak {
-	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
-	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*);
+	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x57d6b0, m1 0x4c9b74;
+	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x57d500, m1 0x4c99e4;
 
-	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
-	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*);
+	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x57d7e0, m1 0x4c9c7c;
+	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x57d640, m1 0x4c9afc;
 
 	bool getDontOpacityFade() const;
 	float getM_fMaxSeg() const;
@@ -92,8 +92,8 @@ class cocos2d::CCMotionStreak {
 	void enableRepeatMode(float);
 	bool isFastMode();
 	bool isStartingPositionInitialized();
-	void reset() = imac 0x57e280;
-	void resumeStroke();
+	void reset() = imac 0x57e280, m1 0x4ca540;
+	void resumeStroke() = imac 0x57dc40, m1 0x4ca00c;
 	void stopStroke();
 	void tintWithColor(cocos2d::_ccColor3B);
 	void updateFade(float);
