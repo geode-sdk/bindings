@@ -8362,31 +8362,36 @@ class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
 class GJPathRewardPopup : FLAlertLayer {
 	// virtual ~GJPathRewardPopup();
 
-	static GJPathRewardPopup* create(int);
+	static GJPathRewardPopup* create(int) = m1 0x291828, imac 0x2fd890;
 
-	TodoReturn closePopup();
-	bool init(int);
-	void onClaim(cocos2d::CCObject* sender);
+	void closePopup() = m1 0x295d7c, imac 0x302230; // merged with GJPathsLayer::onClose on win
+	bool init(int) = win 0x277aa0, m1 0x295784, imac 0x301c60;
+	void onClaim(cocos2d::CCObject* sender) = win 0x277f80, m1 0x295c20, imac 0x302100;
 
 	virtual void keyBackClicked() {}
+
+	int m_pathNumber;
 }
 
 [[link(android)]]
 class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 	// virtual ~GJPathsLayer();
 
-	static GJPathsLayer* create() = win 0x272940;
+	static GJPathsLayer* create() = win 0x272940, m1 0x290e38, imac 0x2fce10;
 
-	TodoReturn darkenButtons(bool);
-	static gd::string nameForPath(int) = win 0x2726d0, imac 0x2fcc70;
-	void onClose(cocos2d::CCObject* sender);
-	void onPath(cocos2d::CCObject* sender) = win 0x272fc0;
+	void darkenButtons(bool) = m1 0x2916b0, imac 0x2fd6d0;
+	static gd::string nameForPath(int) = win 0x2726d0, m1 0x290c88, imac 0x2fcc70;
+	void onClose(cocos2d::CCObject* sender) = win 0x273190, m1 0x291438, imac 0x2fd480;
+	void onPath(cocos2d::CCObject* sender) = win 0x272fc0, m1 0x2915d0, imac 0x2fd600;
 
 	virtual bool init() = win 0x272a40, m1 0x290f38, imac 0x2fcf60;
-	virtual void onExit() = m1 0x291660, imac 0x2fd680;
+	virtual void onExit() = win 0x272f70, m1 0x291660, imac 0x2fd680;
 	virtual void registerWithTouchDispatcher() = m1 0x2919f4, imac 0x2fdaa0;
 	virtual void keyBackClicked() = win 0x2731f0, m1 0x291924, imac 0x2fd9d0;
 	virtual void show() = m1 0x291a2c, imac 0x2fdae0;
+
+	CCSprite* m_closeSprite;
+	bool m_running;
 }
 
 [[link(android)]]
@@ -8442,7 +8447,7 @@ class GJPromoPopup : FLAlertLayer {
 	bool init(gd::string) = win 0x292920;
 	void onClose(cocos2d::CCObject* sender);
 
-	virtual void onExit() = win 0x273190, m1 0x252da4, imac 0x2b2650;
+	virtual void onExit() = win 0x292c20, m1 0x252da4, imac 0x2b2650;
 	virtual void registerWithTouchDispatcher() = m1 0x252eb4, imac 0x2b2760;
 	virtual void keyBackClicked() = m1 0x252de4, imac 0x2b2690;
 	virtual void show() = m1 0x252eec, imac 0x2b27a0;
