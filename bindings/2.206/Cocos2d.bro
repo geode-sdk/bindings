@@ -1518,8 +1518,8 @@ class cocos2d::CCLabelBMFont {
 
 	static cocos2d::CCLabelBMFont* create(char const*, char const*) = imac 0x5e0fa0, m1 0x50b404, ios 0x30b814;
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
-	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment);
-	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = ios 0x30b754;
+	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment) = imac 0x5e0ef0, m1 0x50b1c0;
+	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = imac 0x5e0e50, m1 0x50b284, ios 0x30b754;
 	static cocos2d::CCLabelBMFont* create() = imac 0x5e0d30, m1 0x50b13c;
 	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int);
 	static void purgeCachedData();
@@ -1978,7 +1978,7 @@ class cocos2d::CCMenu {
 	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1e1964;
 	static cocos2d::CCMenu* create() = imac 0x79e7a0, m1 0x6a6d34, ios 0x1e1940;
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
-    static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = imac 0x79ebf0;
+    static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = imac 0x79ebf0, m1 0x6a70e0;
     // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
 
 	bool initWithArray(cocos2d::CCArray*);
