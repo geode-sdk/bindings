@@ -678,7 +678,7 @@ class ButtonSprite : cocos2d::CCSprite {
   		m_BGSprite->setColor(color);
 	}
 	void setString(char const*) = win 0x3ec60, m1 0x82d08, imac 0x92530;
-	void updateBGImage(char const*) = win 0x3e6a0, imac 0x92920, ios 0x663f4;
+	void updateBGImage(char const*) = win 0x3e6a0, imac 0x92920, m1 0x830ac, ios 0x663f4;
 	void updateSpriteBGSize() = win 0x3e7e0;
 	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
 
@@ -6064,7 +6064,7 @@ class GameToolbox {
 	static TodoReturn contentScaleClipRect(cocos2d::CCRect&);
 	static TodoReturn createHashString(gd::string const&, int);
 	static CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCArray*);
-	static CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCNode*, float, float, float, cocos2d::CCPoint, char const*, bool, int, cocos2d::CCArray*) = win 0x63080, ios 0x4a4f8;
+	static CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCNode*, float, float, float, cocos2d::CCPoint, char const*, bool, int, cocos2d::CCArray*) = win 0x63080, imac 0x4f9b80, m1 0x4528d0, ios 0x4a4f8;
 	static TodoReturn doWeHaveInternet();
 	static TodoReturn easeToText(int);
 	static TodoReturn fast_rand_0_1();
