@@ -22,6 +22,8 @@ GEODE_MEMBER_CHECK(PlayLayer, m_checkpointArray, 0x37a0);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37d0);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x37f0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x3808);
+GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x3895);
+GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x38ff);
 
 GEODE_SIZE_CHECK(GJGameState, 0x6C8);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraZoom, 0x0);
@@ -215,6 +217,11 @@ GEODE_SIZE_CHECK(GJUserScore, 0x310);
 GEODE_SIZE_CHECK(BoomScrollLayer, 0x270);
 GEODE_SIZE_CHECK(ButtonSprite, 0x2c0);
 GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
+GEODE_SIZE_CHECK(EditorPauseLayer, 0x270);
+GEODE_SIZE_CHECK(GJAccountSettingsLayer, 0x320);
+//GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
+GEODE_SIZE_CHECK(OptionsLayer, 0x298);
+GEODE_SIZE_CHECK(LevelPage, 0x240);
 
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
@@ -237,6 +244,7 @@ GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat9, 0x238);
 
 GEODE_SIZE_CHECK(CCTextInputNode, 0x268);
 
+GEODE_SIZE_CHECK(Slider, 0x1c8);
 GEODE_MEMBER_CHECK(Slider, m_touchLogic, 0x198);
 
 GEODE_MEMBER_CHECK(SliderTouchLogic, m_activateThumb, 0x1d8);
