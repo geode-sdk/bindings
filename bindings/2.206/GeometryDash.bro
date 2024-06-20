@@ -4128,11 +4128,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn pauseAllEffects();
 	void pauseAllMusic();
 	TodoReturn pauseEffect(unsigned int);
-	void pauseMusic(int musicChannel) = win inline {
-		auto* channel = this->getActiveMusicChannel(musicChannel);
-		if (channel)
-			channel->setPaused(true);
-	}
+	TodoReturn pauseMusic(int);
 	TodoReturn pitchForIdx(int);
 	void playEffect(gd::string path, float speed, float p2, float volume) = win 0x55f60, m1 0x366d7c, imac 0x3e8a40, ios 0x141c24;
 	void playEffect(gd::string path) = win 0x55ee0, m1 0x366c7c, imac 0x3e8960;
@@ -4153,11 +4149,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn resumeAllMusic() = win 0x58ec0, imac 0x3ebb30;
 	TodoReturn resumeAudio();
 	TodoReturn resumeEffect(unsigned int);
-	void resumeMusic(int musicChannel) = win inline {
-		auto* channel = this->getActiveMusicChannel(musicChannel);
-		if (channel)
-			channel->setPaused(false);
-	}
+	TodoReturn resumeMusic(int);
 	TodoReturn reverbToString(FMODReverbPreset);
 	TodoReturn saveAudioState(FMODAudioState&);
 	void setBackgroundMusicVolume(float) = ios 0x143424;
@@ -9406,11 +9398,16 @@ class HSVWidgetPopup : FLAlertLayer {
 class InfoAlertButton : CCMenuItemSpriteExtra {
 	// virtual ~InfoAlertButton();
 
-	static InfoAlertButton* create(gd::string, gd::string, float) = win 0x2a7e50;
+	static InfoAlertButton* create(gd::string, gd::string, float) = win 0x2a7e50, m1 0x4c9214, imac 0x57cca0;
 
-	bool init(gd::string, gd::string, float);
+	bool init(gd::string, gd::string, float) = m1 0x4c94b0, imac 0x57cf20;
 
-	virtual void activate() = m1 0x4c9554, imac 0x57cfc0;
+	virtual void activate() = win 0x2a8050, m1 0x4c9554, imac 0x57cfc0;
+
+	gd::string m_title;
+	gd::string m_description;
+	float m_textScale;
+	bool m_scroll;
 }
 
 [[link(android)]]
