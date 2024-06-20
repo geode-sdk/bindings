@@ -5009,7 +5009,14 @@ class GameManager : GManager {
 	TodoReturn framesForAnimation(int);
 	TodoReturn frameTimeForAnimation(int);
 	TodoReturn generateSecretNumber();
-	TodoReturn getBGTexture(int) = imac 0x3853b0, m1 0x30f070, ios 0x329838; //  = win 0x127dc0; actually loadBackground, source: LevelSettingsLayer::selectArtClosed
+	
+	const char* getBGTexture(int id) = imac 0x3853b0, m1 0x30f070, ios 0x329838, win inline {
+		return cocos2d::CCString::createWithFormat(
+			"game_bg_%02d_001.png",
+			std::clamp(id, 1, 59)
+		)->getCString();
+	}
+
 	TodoReturn getFontFile(int) = imac 0x384950;
 	TodoReturn getFontTexture(int);
 	bool getGameVariable(char const*) = win 0x17a0e0, imac 0x378d40, m1 0x304480, ios 0x322f5c;
