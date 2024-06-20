@@ -812,15 +812,15 @@ class CCCircleWave : cocos2d::CCNode {
 	// virtual ~CCCircleWave();
 	// CCCircleWave() = win 0x418b0;
 
-	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x41980;
-	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = win inline {
+	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x41980, imac 0x173740, m1 0x13cef4;
+	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = imac 0x173730, m1 0x13ceec, win inline {
 		return CCCircleWave::create(startRadius, endRadius, duration, fadeIn, true);
 	}
 
 	TodoReturn baseSetup(float);
-	TodoReturn followObject(cocos2d::CCNode*, bool);
-	bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x41a30;
-	TodoReturn updatePosition(float) = win 0x41cb0, imac 0x173ab0;
+	TodoReturn followObject(cocos2d::CCNode*, bool) = imac 0x173af0, m1 0x13d244;
+	bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x41a30, imac 0x173820, m1 0x13cfc0;
+	TodoReturn updatePosition(float) = win 0x41cb0, imac 0x173ab0, m1 0x13d1f8;
 
 	virtual void setPosition(cocos2d::CCPoint const&) = win 0x41c70, m1 0x13d1c4, imac 0x173a80;
 	virtual void removeMeAndCleanup() = win 0x42080, m1 0x13d660, imac 0x173f10;
@@ -4017,7 +4017,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 
 	void incrementForcePrio() = ios 0x2bcb0c;
 	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x50ce0, imac 0x4a50e0, m1 0x4086f8, ios 0x2bc0e8;
-	bool init(int) = win 0x50bd0, ios 0x2bca5c;
+	bool init(int) = win 0x50bd0, imac 0x4a5c40, m1 0x409150, ios 0x2bca5c;
 	void onBtn1(cocos2d::CCObject* sender) = win 0x51ac0, imac 0x4a5d60, ios 0x2bcb5c;
 	void onBtn2(cocos2d::CCObject* sender) = win 0x51b20, imac 0x4a5dc0, ios 0x2bcbbc;
 
@@ -5007,7 +5007,14 @@ class GameManager : GManager {
 	TodoReturn framesForAnimation(int);
 	TodoReturn frameTimeForAnimation(int);
 	TodoReturn generateSecretNumber();
-	TodoReturn getBGTexture(int) = imac 0x3853b0, m1 0x30f070, ios 0x329838; //  = win 0x127dc0; actually loadBackground, source: LevelSettingsLayer::selectArtClosed
+	
+	const char* getBGTexture(int id) = imac 0x3853b0, m1 0x30f070, ios 0x329838, win inline {
+		return cocos2d::CCString::createWithFormat(
+			"game_bg_%02d_001.png",
+			std::clamp(id, 1, 59)
+		)->getCString();
+	}
+
 	TodoReturn getFontFile(int) = imac 0x384950;
 	TodoReturn getFontTexture(int);
 	bool getGameVariable(char const*) = win 0x17a0e0, imac 0x378d40, m1 0x304480, ios 0x322f5c;
@@ -5039,7 +5046,7 @@ class GameManager : GManager {
 	}
 	TodoReturn levelIsPremium(int, int);
 	TodoReturn likeFacebook();
-	void loadBackground(int) = win 0x179870;
+	void loadBackground(int) = win 0x179870, imac 0x384b90, m1 0x30e7ec;
 	void loadBackgroundAsync(int);
 	void loadDeathEffect(int); // inlined on windows
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
@@ -5047,7 +5054,7 @@ class GameManager : GManager {
 	TodoReturn loadFont(int);
 	void loadGround(int) = win 0x179c20;
 	void loadGroundAsync(int);
-	cocos2d::CCTexture2D* loadIcon(int, int, int) = win 0x178e70;
+	cocos2d::CCTexture2D* loadIcon(int, int, int) = win 0x178e70, imac 0x383830, m1 0x30d514;
 	TodoReturn loadIconAsync(int, int, int, cocos2d::CCObject*);
 	void loadMiddleground(int) = win 0x1799d0;
 	void loadMiddlegroundAsync(int);
@@ -7892,13 +7899,13 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onShop(cocos2d::CCObject* sender) = win 0x266f00;
 	void onSpecial(cocos2d::CCObject* sender) = win 0x265930;
 	void onToggleItem(cocos2d::CCObject* sender) = win 0x2657a0;
-	void playRainbowEffect() = win 0x266a40;
+	void playRainbowEffect() = win 0x266a40, imac 0x370230, m1 0x2fc130;
 	void playShadowEffect();
 	static cocos2d::CCScene* scene() = win 0x260f90, ios 0x31270c;
 	void selectTab(IconType) = win 0x263fb0, m1 0x2fa4f4, imac 0x36e340;
 	void setupIconSelect() = win 0x2631f0;
 	void setupPage(int, IconType) = win 0x264070, m1 0x2fa624, imac 0x36e480;
-	void setupSpecialPage() = win 0x264a90;
+	void setupSpecialPage() = win 0x264a90, imac 0x36eb00, m1 0x2fac80;
 	void showUnlockPopupNew(int, UnlockType);
 	gd::string titleForUnlock(int, UnlockType);
 	void toggleGlow();
@@ -12317,7 +12324,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void animationFinished(char const*) = win 0x3808b0, m1 0x39a5d0, imac 0x425df0;
 
 	cocos2d::CCNode* m_mainLayer;
-	PAD = win 0x44, imac 0x44, android32 0x44, android64 0x48, m1 0x48, ios 0x48;
+	PAD = win 0x44, android32 0x44, android64 0x48, mac 0x48, ios 0x48;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
 	cocos2d::CCDictionary* m_unk4ec;
@@ -12331,13 +12338,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_unk51f;
 	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	GameObject* m_collidedObject;
-	PAD = win 0x48, imac 0x40, android32 0x3c, android64 0x50, m1 0x50, ios 0x50;
+	PAD = win 0x48, android32 0x3c, android64 0x50, mac 0x50, ios 0x50;
 	float m_unk568;
 	cocos2d::CCSprite* m_unk56c;
 	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	GameObject* m_unk574;
 	GameObject* m_unk578;
-	PAD = win 0x8, imac 0x8, android32 0xC, android64 0x0, m1 0x0, ios 0x0;
+	PAD = win 0x8, android32 0xC, android64 0x0, mac 0x0, ios 0x0;
 	float unk_584;
 	int unk_588; // seems to always be 0, but when you respawn it's -1 until you move at least 1 block from the respawn place
 	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
@@ -12377,7 +12384,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	int m_unk640;
 	float m_unk644;
 	float m_unk648;
-	PAD = win 0x8, imac 0xc, android32 0xc, android64 0x8, m1 0x8, ios 0x8;
+	PAD = win 0x8, android32 0xc, android64 0x8, mac 0x8, ios 0x8;
 	bool m_unk658;
 	bool m_unk659;
 	bool m_unk65a;
@@ -12396,10 +12403,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	gd::unordered_set<int> m_unk6a4;
 	GameObject* m_objectSnappedTo;
 	int m_unk6c0;
-	PAD = win 0x8, imac 0x4, android32 0x4, android64 0xc, m1 0xc, ios 0xc; // android64 unsure
+	PAD = win 0x8, android32 0x4, android64 0xc, mac 0xc, ios 0xc; // android64 unsure
 	GJRobotSprite* m_robotSprite;
 	GJSpiderSprite* m_spiderSprite;
-	PAD = win 0x4, imac 0x4, android32 0x4, android64 0x8, m1 0x8, ios 0x8;
+	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
 	cocos2d::CCParticleSystemQuad* m_playerGroundParticles;
 	cocos2d::CCParticleSystemQuad* m_trailingParticles; // 0x6d8
 	cocos2d::CCParticleSystemQuad* m_shipClickParticles; // 0x6dc
@@ -12449,7 +12456,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCPoint m_unk7e8;
 	cocos2d::CCPoint m_unk7f0; // maybe m_lastPortalPos
 	bool m_unk7f8;
-	PAD = win 0x19, imac 0x19, android32 0x19, android64 0x1d, m1 0x1d, ios 0x1d;
+	PAD = win 0x19, android32 0x19, android64 0x1d, mac 0x1d, ios 0x1d;
 	bool m_isLocked;
 	bool m_unka2b;
 	cocos2d::CCPoint m_lastGroundedPos;
@@ -12494,7 +12501,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCSpriteBatchNode* m_unk954;
 	cocos2d::CCArray* m_unk958;
 	PlayerFireBoostSprite* m_robotFire;
-	PAD = win 0x4, imac 0x4, android32 0x4, android64 0x8, m1 0x8, ios 0x8;
+	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
 	GJBaseGameLayer* m_gameLayer;
 	cocos2d::CCLayer* m_parentLayer;
 	GJActionManager* m_actionManager;

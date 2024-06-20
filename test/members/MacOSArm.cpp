@@ -25,6 +25,29 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x3420);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 
 
+// GEODE_SIZE_CHECK(PlayerObject, 0xbe8);
+GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
+// GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x688);
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk594, 0x698); // unsure
+// GEODE_MEMBER_CHECK(PlayerObject, m_unk5b4, 0x6c0); // unsure
+// GEODE_MEMBER_CHECK(PlayerObject, m_rotationSpeed, 0x6e8);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x6f3);
+// GEODE_MEMBER_CHECK(PlayerObject, m_hasGhostTrail, 0x6f4);
+GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x6f8);
+// GEODE_MEMBER_CHECK(PlayerObject, m_swingFireMiddle, 0x748);
+GEODE_MEMBER_CHECK(PlayerObject, m_regularTrail, 0x768);
+GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x778);
+GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x850);
+// GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x910);
+// GEODE_MEMBER_CHECK(PlayerObject, m_glowColor, 0x911);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isShip, 0x941);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isRobot, 0x945);
+// GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xa28);
+// GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
+
+
 GEODE_SIZE_CHECK(CCTextInputNode, 0x258);
 
 #endif
