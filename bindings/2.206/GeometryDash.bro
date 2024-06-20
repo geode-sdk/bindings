@@ -1638,7 +1638,7 @@ class CharacterColorPage : FLAlertLayer {
 		FLAlertLayer();
 	}
 
-	static CharacterColorPage* create() = ios 0x12f2cc, m1 0x585908;
+	static CharacterColorPage* create() = ios 0x12f2cc, m1 0x585908, imac 0x669c10;
 
 	int activeColorForMode(int mode);
 	TodoReturn checkColor(int, UnlockType);
