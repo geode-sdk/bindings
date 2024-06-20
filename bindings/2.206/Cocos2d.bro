@@ -1806,7 +1806,7 @@ class cocos2d::CCCallFunc {
 }
 
 [[link(win, android)]]
-class cocos2d::CCClippingNode : public cocos2d::CCNode {
+class cocos2d::CCClippingNode : cocos2d::CCNode {
     static cocos2d::CCClippingNode* create() = imac 0x72c380, m1 0x63f068;
     static cocos2d::CCClippingNode* create(cocos2d::CCNode*) = imac 0x72c410, m1 0x63f0f0;
 
