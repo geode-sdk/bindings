@@ -9117,7 +9117,7 @@ class GJUserScore : cocos2d::CCNode {
 	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x1688d0;
 	GJUserScore() = win 0x13d890;
 
-	bool isCurrentUser() = win 0x16a2c0, m1 0x4b52d0;
+	bool isCurrentUser() = win 0x16a2c0, m1 0x4b52d0, imac 0x567360;
 	TodoReturn mergeWithScore(GJUserScore*);
 
 	virtual bool init() = win 0x16a270, m1 0x4b525c, imac 0x5672d0;
