@@ -155,7 +155,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
 // GEODE_MEMBER_CHECK(PlayerObject, m_rotationSpeed, 0x6e8);
 // GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x6f3);
 // GEODE_MEMBER_CHECK(PlayerObject, m_hasGhostTrail, 0x6f4);
-// GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x6f8);
+GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x6f8);
 // GEODE_MEMBER_CHECK(PlayerObject, m_swingFireMiddle, 0x748);
 GEODE_MEMBER_CHECK(PlayerObject, m_regularTrail, 0x768);
 GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x778);
