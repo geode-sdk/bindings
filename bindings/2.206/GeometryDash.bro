@@ -9406,11 +9406,16 @@ class HSVWidgetPopup : FLAlertLayer {
 class InfoAlertButton : CCMenuItemSpriteExtra {
 	// virtual ~InfoAlertButton();
 
-	static InfoAlertButton* create(gd::string, gd::string, float) = win 0x2a7e50;
+	static InfoAlertButton* create(gd::string, gd::string, float) = win 0x2a7e50, m1 0x4c9214, imac 0x57cca0;
 
-	bool init(gd::string, gd::string, float);
+	bool init(gd::string, gd::string, float) = m1 0x4c94b0, imac 0x57cf20;
 
-	virtual void activate() = m1 0x4c9554, imac 0x57cfc0;
+	virtual void activate() = win 0x2a8050, m1 0x4c9554, imac 0x57cfc0;
+
+	gd::string m_title;
+	gd::string m_description;
+	float m_textScale;
+	bool m_scroll;
 }
 
 [[link(android)]]
