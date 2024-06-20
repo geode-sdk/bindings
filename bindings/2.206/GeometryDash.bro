@@ -1638,7 +1638,7 @@ class CharacterColorPage : FLAlertLayer {
 		FLAlertLayer();
 	}
 
-	static CharacterColorPage* create() = ios 0x12f2cc;
+	static CharacterColorPage* create() = ios 0x12f2cc, m1 0x585908;
 
 	int activeColorForMode(int mode);
 	TodoReturn checkColor(int, UnlockType);
@@ -9117,7 +9117,7 @@ class GJUserScore : cocos2d::CCNode {
 	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x1688d0;
 	GJUserScore() = win 0x13d890;
 
-	bool isCurrentUser() = win 0x16a2c0;
+	bool isCurrentUser() = win 0x16a2c0, m1 0x4b52d0;
 	TodoReturn mergeWithScore(GJUserScore*);
 
 	virtual bool init() = win 0x16a270, m1 0x4b525c, imac 0x5672d0;
@@ -12270,7 +12270,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateJumpVariables();
 	TodoReturn updateLastGroundObject(GameObject*);
 	TodoReturn updateMove(float) = win 0x368220;
-	void updatePlayerArt() = win 0x376890;
+	void updatePlayerArt() = win 0x376890, m1 0x3940fc;
 	void updatePlayerBirdFrame(int) = win 0x37c2f0, m1 0x3954e0, imac 0x4205f0;
 	void updatePlayerDartFrame(int) = win 0x37c9f0, m1 0x3964f0, imac 0x4216e0;
 	void updatePlayerForce(cocos2d::CCPoint, bool);
