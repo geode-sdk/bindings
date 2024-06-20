@@ -72,11 +72,11 @@ class cocos2d::CCEaseElasticOut {
 
 [[link(win, android)]]
 class cocos2d::CCMotionStreak {
-	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
-	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*);
+	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x57d6b0, m1 0x4c9b74;
+	static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x57d500, m1 0x4c99e4;
 
-	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*);
-	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*);
+	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x57d7e0, m1 0x4c9c7c;
+	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x57d640, m1 0x4c9afc;
 
 	bool getDontOpacityFade() const;
 	float getM_fMaxSeg() const;
@@ -88,12 +88,36 @@ class cocos2d::CCMotionStreak {
 	void setStroke(float);
 
 	// CCMotionStreak(cocos2d::CCMotionStreak const&);
-	// CCMotionStreak();
+	CCMotionStreak() = imac inline, m1 inline {
+		m_bFastMode = false;
+		m_bStartingPositionInitialized = false;
+		m_pTexture = nullptr;
+		m_fStroke = 0.0f;
+		m_fFadeDelta = 0.0f;
+		m_fMinSeg = 0.0f;
+		m_uMaxPoints = 0;
+		m_uNuPoints = 0;
+		m_uPreviousNuPoints = 0;
+		m_pPointVertexes = nullptr;
+		m_pPointState = nullptr;
+		m_pColorPointer = nullptr;
+		m_pTexCoords = nullptr;
+
+		m_bRepeatMode = false;
+		m_fRepeatSpeed = 1.0f;
+		m_fRepeatTime = 0.0f;
+		m_bDontOpacityFade = false;
+		m_tPositionR = cocos2d::CCPointZero;
+		
+		m_tBlendFunc.src = GL_SRC_ALPHA;
+		m_tBlendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
+	}
+
 	void enableRepeatMode(float);
 	bool isFastMode();
 	bool isStartingPositionInitialized();
-	void reset() = imac 0x57e280;
-	void resumeStroke();
+	void reset() = imac 0x57e280, m1 0x4ca540;
+	void resumeStroke() = imac 0x57dc40, m1 0x4ca00c;
 	void stopStroke();
 	void tintWithColor(cocos2d::_ccColor3B);
 	void updateFade(float);
@@ -521,10 +545,10 @@ class cocos2d::CCFileUtils {
 	virtual gd::string addSuffix(gd::string, gd::string);
 	virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const&);
 	virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const&);
-	virtual gd::string fullPathForFilename(char const*, bool);
+	virtual gd::string fullPathForFilename(char const*, bool) = imac 0x4445e0, m1 0x3b606c;
 	virtual char const* fullPathFromRelativeFile(char const*, char const*);
 	gd::string getAndroidPath() const;
-	virtual unsigned char* getFileData(char const*, char const*, unsigned long*);
+	virtual unsigned char* getFileData(char const*, char const*, unsigned long*) = imac 0x443aa0, m1 0x3b5588;
 	virtual unsigned char* getFileDataFromZip(char const*, char const*, unsigned long*);
 	virtual gd::string getFullPathForDirectoryAndFilename(gd::string const&, gd::string const&);
 	virtual gd::string getNewFilename(char const*);
@@ -1806,6 +1830,32 @@ class cocos2d::CCCallFunc {
 }
 
 [[link(win, android)]]
+class cocos2d::CCClippingNode : cocos2d::CCNode {
+    static cocos2d::CCClippingNode* create() = imac 0x72c380, m1 0x63f068;
+    static cocos2d::CCClippingNode* create(cocos2d::CCNode*) = imac 0x72c410, m1 0x63f0f0;
+
+    // CCClippingNode();
+    // virtual ~CCClippingNode();
+
+    virtual bool init() = imac 0x72c4c0, m1 0x63f190;
+    virtual bool init(cocos2d::CCNode*) = imac 0x72c4e0, m1 0x63f1a0;
+    virtual void onEnter() = imac 0x72c550, m1 0x63f210;
+    virtual void onEnterTransitionDidFinish() = imac 0x72c580, m1 0x63f23c;
+    virtual void onExit() = imac 0x72c5e0, m1 0x63f298;
+    virtual void onExitTransitionDidStart() = imac 0x72c5b0, m1 0x63f268;
+    virtual void visit() = imac 0x72c610, m1 0x63f2c8;
+
+    cocos2d::CCNode* getStencil() const = imac 0x72c970, m1 0x63f5f0;
+    void setStencil(cocos2d::CCNode*) = imac 0x72c980, m1 0x63f5f8;
+
+    float getAlphaThreshold() const = imac 0x72c9c0, m1 0x63f63c;
+    void setAlphaThreshold(float) = imac 0x72c9d0, m1 0x63f644;
+
+    bool isInverted() const = imac 0x72c9e0, m1 0x63f64c;
+    void setInverted(bool) = imac 0x72c9f0, m1 0x63f654;
+}
+
+[[link(win, android)]]
 class cocos2d::CCDrawNode {
 	static cocos2d::CCDrawNode* create() = imac 0x61c020, m1 0x53f1b8;
 
@@ -2098,7 +2148,7 @@ class cocos2d {
 	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = imac 0x5dd4a0, m1 0x507a1c;
 	static void FNTConfigRemoveCache();
 	static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
-	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
+	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&) = imac 0x23b660, m1 0x1e6c34;
 	static cocos2d::CCSize __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&);
 	static cocos2d::CCPoint ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
 	static void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
