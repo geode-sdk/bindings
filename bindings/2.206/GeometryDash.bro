@@ -812,15 +812,15 @@ class CCCircleWave : cocos2d::CCNode {
 	// virtual ~CCCircleWave();
 	// CCCircleWave() = win 0x418b0;
 
-	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x41980;
-	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = win inline {
+	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x41980, imac 0x173740, m1 0x13cef4;
+	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = imac 0x173730, m1 0x13ceec, win inline {
 		return CCCircleWave::create(startRadius, endRadius, duration, fadeIn, true);
 	}
 
 	TodoReturn baseSetup(float);
-	TodoReturn followObject(cocos2d::CCNode*, bool);
-	bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x41a30;
-	TodoReturn updatePosition(float) = win 0x41cb0, imac 0x173ab0;
+	TodoReturn followObject(cocos2d::CCNode*, bool) = imac 0x173af0, m1 0x13d244;
+	bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x41a30, imac 0x173820, m1 0x13cfc0;
+	TodoReturn updatePosition(float) = win 0x41cb0, imac 0x173ab0, m1 0x13d1f8;
 
 	virtual void setPosition(cocos2d::CCPoint const&) = win 0x41c70, m1 0x13d1c4, imac 0x173a80;
 	virtual void removeMeAndCleanup() = win 0x42080, m1 0x13d660, imac 0x173f10;
@@ -4019,7 +4019,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 
 	void incrementForcePrio() = ios 0x2bcb0c;
 	bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x50ce0, imac 0x4a50e0, m1 0x4086f8, ios 0x2bc0e8;
-	bool init(int) = win 0x50bd0, ios 0x2bca5c;
+	bool init(int) = win 0x50bd0, imac 0x4a5c40, m1 0x409150, ios 0x2bca5c;
 	void onBtn1(cocos2d::CCObject* sender) = win 0x51ac0, imac 0x4a5d60, ios 0x2bcb5c;
 	void onBtn2(cocos2d::CCObject* sender) = win 0x51b20, imac 0x4a5dc0, ios 0x2bcbbc;
 
@@ -5041,7 +5041,7 @@ class GameManager : GManager {
 	}
 	TodoReturn levelIsPremium(int, int);
 	TodoReturn likeFacebook();
-	void loadBackground(int) = win 0x179870;
+	void loadBackground(int) = win 0x179870, imac 0x384b90, m1 0x30e7ec;
 	void loadBackgroundAsync(int);
 	void loadDeathEffect(int); // inlined on windows
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
@@ -5049,7 +5049,7 @@ class GameManager : GManager {
 	TodoReturn loadFont(int);
 	void loadGround(int) = win 0x179c20;
 	void loadGroundAsync(int);
-	cocos2d::CCTexture2D* loadIcon(int, int, int) = win 0x178e70;
+	cocos2d::CCTexture2D* loadIcon(int, int, int) = win 0x178e70, imac 0x383830, m1 0x30d514;
 	TodoReturn loadIconAsync(int, int, int, cocos2d::CCObject*);
 	void loadMiddleground(int) = win 0x1799d0;
 	void loadMiddlegroundAsync(int);
@@ -7890,13 +7890,13 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onShop(cocos2d::CCObject* sender) = win 0x266f00;
 	void onSpecial(cocos2d::CCObject* sender) = win 0x265930;
 	void onToggleItem(cocos2d::CCObject* sender) = win 0x2657a0;
-	void playRainbowEffect() = win 0x266a40;
+	void playRainbowEffect() = win 0x266a40, imac 0x370230, m1 0x2fc130;
 	void playShadowEffect();
 	static cocos2d::CCScene* scene() = win 0x260f90, ios 0x31270c;
 	void selectTab(IconType) = win 0x263fb0, m1 0x2fa4f4, imac 0x36e340;
 	void setupIconSelect() = win 0x2631f0;
 	void setupPage(int, IconType) = win 0x264070, m1 0x2fa624, imac 0x36e480;
-	void setupSpecialPage() = win 0x264a90;
+	void setupSpecialPage() = win 0x264a90, imac 0x36eb00, m1 0x2fac80;
 	void showUnlockPopupNew(int, UnlockType);
 	gd::string titleForUnlock(int, UnlockType);
 	void toggleGlow();

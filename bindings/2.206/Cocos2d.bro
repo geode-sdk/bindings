@@ -521,10 +521,10 @@ class cocos2d::CCFileUtils {
 	virtual gd::string addSuffix(gd::string, gd::string);
 	virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const&);
 	virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const&);
-	virtual gd::string fullPathForFilename(char const*, bool);
+	virtual gd::string fullPathForFilename(char const*, bool) = imac 0x4445e0, m1 0x3b606c;
 	virtual char const* fullPathFromRelativeFile(char const*, char const*);
 	gd::string getAndroidPath() const;
-	virtual unsigned char* getFileData(char const*, char const*, unsigned long*);
+	virtual unsigned char* getFileData(char const*, char const*, unsigned long*) = imac 0x443aa0, m1 0x3b5588;
 	virtual unsigned char* getFileDataFromZip(char const*, char const*, unsigned long*);
 	virtual gd::string getFullPathForDirectoryAndFilename(gd::string const&, gd::string const&);
 	virtual gd::string getNewFilename(char const*);
