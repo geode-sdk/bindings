@@ -226,7 +226,7 @@ class cocos2d::CCParticleSystem {
 	static cocos2d::CCParticleSystem* create(char const*) = imac 0x7d3960, m1 0x6d8070;
 	static cocos2d::CCParticleSystem* createWithTotalParticles(unsigned int);
 
-	void initParticle(cocos2d::sCCParticle*);
+	void initParticle(cocos2d::sCCParticle*) = m1 0x6d9fbc, imac 0x7d5a60;
 	bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool) = imac 0x7d3ca0, m1 0x6d83ec;
 	bool initWithDictionary(cocos2d::CCDictionary*, bool) = imac 0x7d55d0, m1 0x6d9bf8;
 	bool initWithFile(char const*, bool) = imac 0x7d39c0, m1 0x6d80f4;
@@ -290,14 +290,14 @@ class cocos2d::CCParticleSystem {
 	bool isFull();
 	void loadDefaults();
 	void loadScaledDefaults(float);
-	void resetSystem();
-	void resumeSystem() = imac 0x7d6b10;
+	void resetSystem() = m1 0x6dac50, imac 0x7d6b20;
+	void resumeSystem() = m1 0x6dac44, imac 0x7d6b10;
 	void saveDefaults();
 	void stopSystem() = m1 0x6dac30, imac 0x7d6ae0;
 	void toggleUniformColorMode(bool);
 	void updateVisible();
 
-	virtual void update(float);
+	virtual void update(float) = m1 0x6dad94, imac 0x7d6cd0;
 	virtual bool init();
 	virtual void setScaleX(float);
 	virtual void setScaleY(float);
