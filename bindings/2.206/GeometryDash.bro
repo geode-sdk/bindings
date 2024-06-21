@@ -11407,7 +11407,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void createSongsInfo(gd::string, gd::string) = win 0x31cda0;
 	void dataLoaded(DS_Dictionary*) = win 0x31e950;
 	void deleteSFX(int);
-	void deleteSong(int);
+	void deleteSong(int) = win 0x31e400;
 	void downloadCustomSong(int) = win 0x31f240, imac 0x596ad0, m1 0x4df8c4;
 	void downloadMusicLibrary();
 	void downloadSFX(int);
