@@ -12890,7 +12890,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 
 	bool init(int);
 	void onClose(cocos2d::CCObject* sender);
-	void onRate(cocos2d::CCObject* sender);
+	void onRate(cocos2d::CCObject* sender) = win 0x3A54D0;
 	void selectRating(cocos2d::CCObject*) = win 0x3a5350;
 
 	virtual void keyBackClicked() = win 0x3a5890, m1 0x225914, imac 0x280930;
@@ -15931,7 +15931,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 	void onLinks(cocos2d::CCObject* sender);
 	void onLowDetail(cocos2d::CCObject* sender) = win 0x49d0c0;
 	void onPrivacy(cocos2d::CCObject* sender);
-	void onRequestAccess(cocos2d::CCObject* sender);
+	void onRequestAccess(cocos2d::CCObject* sender) = win 0x49CCA0;
 	void onRobTop(cocos2d::CCObject* sender);
 	void onSFX(cocos2d::CCObject* sender);
 	void onTOS(cocos2d::CCObject* sender);
@@ -16508,13 +16508,13 @@ class UploadActionDelegate {
 class UploadActionPopup : FLAlertLayer {
 	// virtual ~UploadActionPopup();
 
-	static UploadActionPopup* create(UploadPopupDelegate* delegate, gd::string str);
+	static UploadActionPopup* create(UploadPopupDelegate* delegate, gd::string str) = win 0x282FA0;
 
 	void closePopup();
 	bool init(UploadPopupDelegate* delegate, gd::string str);
 	void onClose(cocos2d::CCObject* sender);
 	void showFailMessage(gd::string message);
-	void showSuccessMessage(gd::string message);
+	void showSuccessMessage(gd::string message) = win 0x283540;
 
 	virtual void keyBackClicked() = win 0x2837a0, m1 0x24172c, imac 0x29f790;
 	UploadPopupDelegate * m_delegate;
