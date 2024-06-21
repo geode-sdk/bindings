@@ -42,6 +42,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x6f8);
 GEODE_MEMBER_CHECK(PlayerObject, m_regularTrail, 0x768);
 GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x778);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x850);
+GEODE_MEMBER_CHECK(PlayerObject, m_gameLayer, 0xbc0);
 // GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x910);
 // GEODE_MEMBER_CHECK(PlayerObject, m_glowColor, 0x911);
 // GEODE_MEMBER_CHECK(PlayerObject, m_isShip, 0x941);
