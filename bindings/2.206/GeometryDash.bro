@@ -4266,9 +4266,9 @@ class FMODAudioState {
 class FMODLevelVisualizer : cocos2d::CCNode {
 	// virtual ~FMODLevelVisualizer();
 
-	static FMODLevelVisualizer* create() = win 0x28c5d0, imac 0x2ac1c0;
+	static FMODLevelVisualizer* create() = win 0x28c5d0, imac 0x2ac1c0, m1 0x24d2e4;
 
-	void updateVisualizer(float, float, float) = win 0x28cb10, imac 0x2ac670;
+	void updateVisualizer(float, float, float) = win 0x28cb10, imac 0x2ac670, m1 0x24d7dc;
 
 	virtual bool init() = imac 0x2ac230, m1 0x24d36c;
 }
@@ -12314,9 +12314,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn yStartUp();
 
 	virtual void update(float) = m1 0x37ec58, imac 0x405f60, win 0x366ee0;
-	virtual void setScaleX(float) = win 0x380860, imac 0x425cd0;
-	virtual void setScaleY(float) = win 0x380870, imac 0x425ce0;
-	virtual void setScale(float) = win 0x380880, imac 0x425cf0;
+	virtual void setScaleX(float) = m1 0x39a4ec, win 0x380860, imac 0x425cd0;
+	virtual void setScaleY(float) = m1 0x39a4f0, win 0x380870, imac 0x425ce0;
+	virtual void setScale(float) = m1 0x39a4f4, win 0x380880, imac 0x425cf0;
 	virtual void setPosition(cocos2d::CCPoint const&) = m1 0x3973cc, win 0x37a650, imac 0x422650;
 	virtual void setVisible(bool) = m1 0x39a4f8, win 0x380890, imac 0x425d00;
 	virtual void setRotation(float) = win 0x380790, imac 0x425c40, m1 0x39a47c; // merged thunk
