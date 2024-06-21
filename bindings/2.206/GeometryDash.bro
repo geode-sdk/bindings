@@ -16508,19 +16508,23 @@ class UploadActionDelegate {
 class UploadActionPopup : FLAlertLayer {
 	// virtual ~UploadActionPopup();
 
-	static UploadActionPopup* create(UploadPopupDelegate* delegate, gd::string str);
+	static UploadActionPopup* create(UploadPopupDelegate* delegate, gd::string str) = win 0x282fa0, m1 0x240e30, imac 0x29ee10;
 
-	void closePopup();
-	bool init(UploadPopupDelegate* delegate, gd::string str);
-	void onClose(cocos2d::CCObject* sender);
-	void showFailMessage(gd::string message);
-	void showSuccessMessage(gd::string message);
+	void closePopup() = win inline, m1 0x2416f0, imac 0x29f760 {
+		this->setKeypadEnabled(false);
+		this->removeFromParentAndCleanup(true);
+	}
+	bool init(UploadPopupDelegate* delegate, gd::string str) = win 0x2830e0, m1 0x240fe8, imac 0x29f010;
+	void onClose(cocos2d::CCObject* sender) = win 0x283750, m1 0x2413f4, imac 0x29f460;
+	void showFailMessage(gd::string message) = win 0x283650, m1 0x2415ac, imac 0x29f610;
+	void showSuccessMessage(gd::string message) = win 0x283540, m1 0x241454, imac 0x29f4b0;
 
 	virtual void keyBackClicked() = win 0x2837a0, m1 0x24172c, imac 0x29f790;
-	UploadPopupDelegate * m_delegate;
-    	TextArea * m_textArea;
-    	LoadingCircle *	m_loadingCircle;
-    	CCMenuItemSpriteExtra *	m_menuItemSpriteExtra;
+
+	UploadPopupDelegate* m_delegate;
+    	TextArea* m_textArea;
+    	LoadingCircle* m_loadingCircle;
+    	CCMenuItemSpriteExtra* m_closeButton;
     	bool m_succeeded;
 }
 
