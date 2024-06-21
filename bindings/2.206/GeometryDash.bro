@@ -2859,7 +2859,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
 	virtual ~EditLevelLayer() = m1 0x1a7544, win 0xd1980, imac 0x1f42c0;
 
-	static EditLevelLayer* create(GJGameLevel*);
+	static EditLevelLayer* create(GJGameLevel*) = m1 0x1a757c;
 
 	TodoReturn closeTextInputs();
 	void confirmClone(cocos2d::CCObject*);
@@ -3257,12 +3257,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn updatePlaybackBtn();
 	TodoReturn updateSlider() = win 0xdf040;
 	TodoReturn updateSpecialUIElements();
-	void updateZoom(float);
+	void updateZoom(float) = m1 0x39504;
 	float valueFromXPos(float);
 	float xPosFromValue(float);
 	void zoomGameLayer(bool);
-	void zoomIn(cocos2d::CCObject*) = win 0x10e9e0;
-	void zoomOut(cocos2d::CCObject*) = win 0x10ea30;
+	void zoomIn(cocos2d::CCObject*) = win 0x10e9e0, m1 0xec6c;
+	void zoomOut(cocos2d::CCObject*) = win 0x10ea30, m1 0xecbc;
 
 	virtual void draw() = win 0x11ecb0, m1 0x47170, imac 0x4eba0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x11f7f0, m1 0x47b58, imac 0x4f660;
@@ -5087,7 +5087,7 @@ class GameManager : GManager {
 	void reloadAllStep2() = win 0x180850, ios 0x32e444, imac 0x38d7f0, m1 0x316774;
 	void reloadAllStep3() = win 0x180a10, ios 0x32e52c;
 	void reloadAllStep4() = win 0x180b10, ios 0x32e5ac;
-	void reloadAllStep5() = win 0x180ba0, ios 0x32e618;
+	void reloadAllStep5() = win 0x180ba0, ios 0x32e618, m1 0x316948, imac 0x38d9e0;
 	TodoReturn reloadMenu();
 	TodoReturn removeCustomObject(int);
 	TodoReturn removeIconDelegate(int);
