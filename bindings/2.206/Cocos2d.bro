@@ -1864,7 +1864,7 @@ class cocos2d::CCDrawNode {
 	void setBlendFunc(cocos2d::_ccBlendFunc const&) = imac 0x61dd50, m1 0x540d14;
 
 	// CCDrawNode(cocos2d::CCDrawNode const&);
-	// CCDrawNode();
+	CCDrawNode() = imac 0x61bd60, m1 0x53ef80;
 	~CCDrawNode() = imac 0x61bef0, m1 0x53f0dc;
 	void clear() = imac 0x61dd20, m1 0x540cfc;
 	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int) = imac 0x61db70, m1 0x540b60;
