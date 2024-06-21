@@ -4813,7 +4813,7 @@ class GameLevelManager : cocos2d::CCNode {
 	LevelDeleteDelegate* m_levelDeleteDelegate;
 	LevelListDeleteDelegate* m_levelListDeleteDelegate;
 	UserInfoDelegate* m_userInfoDelegate;
-	void* m_unkDelegate;
+	UploadPopupDelegate* m_uploadPopupDelegate;
 	UserListDelegate* m_userListDelegate;
 	FriendRequestDelegate* m_friendRequestDelegate;
 	MessageListDelegate* m_messageListDelegate;
