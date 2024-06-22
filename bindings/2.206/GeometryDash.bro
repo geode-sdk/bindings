@@ -3620,7 +3620,7 @@ class EffectGameObject : EnhancedGameObject {
 	int m_collectiblePoints;
 	// property 463
 	bool m_hasNoAnimation;
-	PAD = android 0x1f, win 0x1f;
+	PAD = android32 0x1f, android64 0x23, win 0x23;
 	// property 148
 	float m_gravityValue;
 	// property 284
@@ -3653,7 +3653,7 @@ class EffectGameObject : EnhancedGameObject {
 	PAD = android 0xb, win 0xb;
 	// property 12
 	int m_secretCoinID;
-	PAD = android 0x1c, win 0x1c;
+	PAD = android32 0x1c, android64 0x24, win 0x24;
 	// property 280
 	bool m_ignoreGroupParent;
 	// property 281

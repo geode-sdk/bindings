@@ -190,6 +190,18 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkUint22, 0x6c0);
 GEODE_SIZE_CHECK(GameObject, 0x550);
 GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x310);
 
+GEODE_SIZE_CHECK(EnhancedGameObject, 0x5b8);
+
+GEODE_SIZE_CHECK(EffectGameObject, 0x740);
+GEODE_MEMBER_CHECK(EffectGameObject, m_hasCenterEffect, 0x5d2);
+GEODE_MEMBER_CHECK(EffectGameObject, m_times360, 0x61c);
+GEODE_MEMBER_CHECK(EffectGameObject, m_fadeOutDuration, 0x650);
+GEODE_MEMBER_CHECK(EffectGameObject, m_isDualMode, 0x680);
+GEODE_MEMBER_CHECK(EffectGameObject, m_collectiblePoints, 0x6b0);
+GEODE_MEMBER_CHECK(EffectGameObject, m_isSinglePTouch, 0x6dc);
+GEODE_MEMBER_CHECK(EffectGameObject, m_secretCoinID, 0x710);
+GEODE_MEMBER_CHECK(EffectGameObject, m_ignoreGroupParent, 0x738);
+
 GEODE_SIZE_CHECK(PlayerObject, 0xc48);
 GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x558);
 GEODE_MEMBER_CHECK(PlayerObject, m_unk4e4, 0x5a8);
