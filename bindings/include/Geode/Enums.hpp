@@ -533,9 +533,11 @@ enum class MenuAnimationType {
 };
 
 enum class ShopType {
-    Normal,
-    Secret,
-    Community
+    Normal = 0,
+    Secret = 1,
+    Community = 2,
+    Mechanic = 3,
+    Diamond = 4
 };
 
 // Geode Addition
