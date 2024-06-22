@@ -372,6 +372,7 @@ class cocos2d::CCParticleSystem {
 
 	// CCParticleSystem(cocos2d::CCParticleSystem const&);
 	// CCParticleSystem();
+	~CCParticleSystem() = imac 0x7d5860, m1 0x6d9dec; 
 	bool addParticle();
 	void calculateWorldSpace();
 	bool isFull();
