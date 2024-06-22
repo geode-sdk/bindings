@@ -10379,13 +10379,13 @@ class LevelListDeleteDelegate {
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
 	// virtual ~LevelListLayer();
 
-	static LevelListLayer* create(GJLevelList*) = win 0x2e2f60;
+	static LevelListLayer* create(GJLevelList*) = win 0x2e2f60, m1 0x2e9f54, imac 0x35c730;
 
 	void cloneList();
 	void confirmClone(cocos2d::CCObject*);
 	void confirmDelete(cocos2d::CCObject*);
 	void confirmOwnerDelete(cocos2d::CCObject*) = win 0x2e8070;
-	bool init(GJLevelList*) = win 0x2e3190;
+	bool init(GJLevelList*) = win 0x2e3190, m1 0x2ea074, imac 0x35c820;
 	void onClaimReward(cocos2d::CCObject* sender);
 	void onDelete();
 	void onDescription(cocos2d::CCObject* sender);
