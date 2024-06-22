@@ -2795,10 +2795,10 @@ class DrawGridLayer : cocos2d::CCLayer {
 	virtual void update(float) = win 0x2d0350, m1 0xdbf54, imac 0xf9a00;
 	virtual void draw() = win 0x2d0550, m1 0xdc064, imac 0xf9b90;
 
-	PAD = win 0x70;
+	PAD = win 0x70, android32 0x40, android64 0x68;
 	void onHideLayer(cocos2d::CCObject* sender);
 	LevelEditorLayer* m_editorLayer;
-	PAD = win 0x6c;
+	PAD = win 0x6c, android32 0x3c, android64 0x54;
 	float m_gridSize;
 }
 

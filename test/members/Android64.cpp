@@ -47,6 +47,13 @@ GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x37e8);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x386d);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x38d7);
 
+GEODE_SIZE_CHECK(DrawGridLayer, 0x260);
+GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x200);
+GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x25c);
+
+GEODE_SIZE_CHECK(LevelEditorLayer, 0x39d8);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x37b8);
+
 GEODE_SIZE_CHECK(GameObject, 0x538);
 GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x310);
 
