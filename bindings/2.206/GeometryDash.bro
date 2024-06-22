@@ -3109,7 +3109,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 		auto size = m_editorLayer->m_drawGridLayer->m_gridSize;
 		auto xVal = std::floorf(pos.x / size);
 		auto yVal = std::floorf(pos.y / size);
-		return this->getLimitedPosition(ccp((pos.x + 0.5) * size, (pos.y + 0.5) * size));
+		return this->getLimitedPosition(ccp((xVal + 0.5) * size, (yVal + 0.5) * size));
 	}
 	TodoReturn getGroupCenter(cocos2d::CCArray*, bool) = win 0x11ed20;
 	TodoReturn getGroupInfo(GameObject*, cocos2d::CCArray*, int&, int&, int&);
