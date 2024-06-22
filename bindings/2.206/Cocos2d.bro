@@ -505,6 +505,7 @@ class cocos2d::CCParticleSystemQuad {
 
 	// CCParticleSystemQuad(cocos2d::CCParticleSystemQuad const&);
 	// CCParticleSystemQuad();
+	~CCParticleSystemQuad() = imac 0x60dc00, m1 0x532f54;
 	bool allocMemory();
 	void listenBackToForeground(cocos2d::CCObject*);
 	void setupVBO();
