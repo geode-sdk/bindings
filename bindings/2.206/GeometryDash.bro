@@ -4543,7 +4543,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getNews();
 	int getNextFreeTemplateID();
 	gd::string getNextLevelName(gd::string);
-	void getOnlineLevels(GJSearchObject*) = win 0x148470, m1 0x49a918, imac 0x549df0;
+	void getOnlineLevels(GJSearchObject*) = win 0x148470, m1 0x497fc0, imac 0x546bd0;
 	char const* getPageInfo(char const*);
 	char const* getPostCommentKey(int);
 	const char *getRateStarsKey(int key);
