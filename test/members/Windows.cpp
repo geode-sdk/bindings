@@ -25,6 +25,14 @@ GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x3808);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x3895);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x38ff);
 
+GEODE_SIZE_CHECK(LevelEditorLayer, 0x39e8);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3754);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x37d8);
+
+GEODE_SIZE_CHECK(DrawGridLayer, 0x280);
+GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x208);
+GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x278);
+
 GEODE_SIZE_CHECK(GJGameState, 0x6C8);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraZoom, 0x0);
 GEODE_MEMBER_CHECK(GJGameState, m_targetCameraZoom, 0x4);

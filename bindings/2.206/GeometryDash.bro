@@ -2795,9 +2795,11 @@ class DrawGridLayer : cocos2d::CCLayer {
 	virtual void update(float) = win 0x2d0350, m1 0xdbf54, imac 0xf9a00;
 	virtual void draw() = win 0x2d0550, m1 0xdc064, imac 0xf9b90;
 
-	PAD = win 0x44;
+	PAD = win 0x70;
 	void onHideLayer(cocos2d::CCObject* sender);
 	LevelEditorLayer* m_editorLayer;
+	PAD = win 0x68;
+	float m_gridSize;
 }
 
 [[link(android)]]
@@ -3104,7 +3106,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getCycledObject(cocos2d::CCArray*, bool);
 	TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&);
 	cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint pos) = win inline {
-		return this->getLimitedPosition(ccp(std::floorf(pos.x), std::floorf(pos.y)));
+		auto size = m_editorLayer->m_drawGridLayer->m_gridSize;
+		auto xVal = std::floorf(pos.x / size);
+		auto yVal = std::floorf(pos.y / size);
+		return this->getLimitedPosition(ccp((pos.x + 0.5) * size, (pos.y + 0.5) * size));
 	}
 	TodoReturn getGroupCenter(cocos2d::CCArray*, bool) = win 0x11ed20;
 	TodoReturn getGroupInfo(GameObject*, cocos2d::CCArray*, int&, int&, int&);
@@ -10138,7 +10143,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	cocos2d::CCArray* m_unkArr5;
 
 	// haven't verified the mac and ios paddings
-	PAD = win 0x8, android32 0x8, android64 0x10, mac 0x10, ios 0x10;
+	PAD = win 0x10, android32 0x8, android64 0x10, mac 0x10, ios 0x10;
 
 	cocos2d::CCDictionary* m_unkDict4;
 	cocos2d::CCArray* m_unkArr7;
@@ -10152,7 +10157,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	cocos2d::CCArray* m_unkArr6;
 
 	// haven't verified the mac and ios paddings
-	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
+	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
 
 	cocos2d::CCDictionary* m_unkDict1;
 	cocos2d::CCDictionary* m_unkDict2;
@@ -10161,7 +10166,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     short m_currentLayer;
 
 	// haven't verified the mac and ios paddings
-	PAD = win 0x18, android32 0x18, android64 0x24, mac 0x24, ios 0x24;
+	PAD = win 0x24, android32 0x18, android64 0x24, mac 0x24, ios 0x24;
 
 	EditorUI* m_editorUI;
 	cocos2d::CCArray* m_undoObjects;
@@ -10171,9 +10176,12 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	bool m_unkBool;
 	bool m_previewMode;
 
-	PAD = win 0x86, android32 0x7a, android64 0xfa;
+	// 2.206 win pad unknown
+	PAD = win 0xfa, android32 0x7a, android64 0xfa;
 
 	gd::vector<bool> m_lockedLayers;
+
+	PAD = win 0xe8;
 }
 
 [[link(android)]]
