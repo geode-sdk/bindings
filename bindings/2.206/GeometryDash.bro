@@ -5274,7 +5274,7 @@ class GameManager : GManager {
 	int m_texQuality;
 	bool m_somethingInMenuLayer;
 	void* m_unkPtr4;
-	bool m_unkBool9;
+	bool m_ropeGarageEnter;
 	int m_unkSize4_12;
 	int m_unkSize4_13;
 	bool m_unkBool10;
@@ -8774,7 +8774,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	void onPlushies(cocos2d::CCObject* sender);
 	void onSelectItem(cocos2d::CCObject* sender) = win 0x299850;
 	void onVideoAd(cocos2d::CCObject* sender);
-	cocos2d::CCScene* scene(ShopType) = win 0x297280;
+	static cocos2d::CCScene* scene(ShopType) = win 0x297280;
 	void showCantAffordMessage(GJStoreItem*);
 	void showReactMessage();
 	TodoReturn updateCurrencyCounter();
@@ -13242,7 +13242,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	// SecretRewardsLayer() = ios 0x2ff01c;
 
 	static SecretRewardsLayer* create(bool) = ios 0x2f8c5c;
-	cocos2d::CCScene* scene(bool) = win 0x3ae160, ios 0x2f8c10;
+	static cocos2d::CCScene* scene(bool fromShop) = win 0x3ae160, ios 0x2f8c10;
 
 	TodoReturn createSecondaryLayer(int) = ios 0x2fadf4;
 	cocos2d::CCArray* generateChestItems(int) = ios 0x2fb19c;
@@ -13251,7 +13251,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	bool init(bool) = win 0x3ae2c0, imac 0x63d020, ios 0x2f8cd0, m1 0x55c7dc;
 	void moveToMainLayer(cocos2d::CCObject*) = ios 0x2facd4;
 	void moveToSecondaryLayer(int) = ios 0x2faabc;
-	void onBack(cocos2d::CCObject* sender) = ios 0x2fa1d8;
+	void onBack(cocos2d::CCObject* sender) = win 0x3b24f0, ios 0x2fa1d8;
 	void onChestType(cocos2d::CCObject* sender) = ios 0x2fa244;
 	void onSelectItem(cocos2d::CCObject* sender);
 	void onShop(cocos2d::CCObject* sender) = win 0x3b19e0, ios 0x2fa52c;
