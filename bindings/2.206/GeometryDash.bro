@@ -10181,7 +10181,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 
 	gd::vector<bool> m_lockedLayers;
 
-	PAD = win 0xe8;
+	PAD = win 0xe8, android32 0x70, android64 0xf0;
 }
 
 [[link(android)]]
