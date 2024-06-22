@@ -394,7 +394,7 @@ class AudioAssetsBrowser {
 	virtual void keyBackClicked() = m1 0x6c70c4, imac 0x7c1470;
 	virtual TodoReturn musicActionFinished(GJMusicAction) = m1 0x6c7070, imac 0x7c1390;
 	virtual TodoReturn musicActionFailed(GJMusicAction) = m1 0x6c707c, imac 0x7c13c0;
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x6c7090, imac 0x7c1400;
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x6c7090, imac 0x7c1400;
 	virtual TodoReturn getSelectedCellIdx() = m1 0x6c70a0, imac 0x7c1420;
 	virtual TodoReturn getCellDelegateType() = m1 0x6c70b0, imac 0x7c1440;
 }
@@ -8904,7 +8904,7 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 	virtual void customSetup() = m1 0x52faec, win 0x2a4e00, imac 0x609cd0;
 	virtual void exitLayer(cocos2d::CCObject*) = m1 0x52fabc, imac 0x609ca0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2a5540, m1 0x530014, imac 0x60a260;
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x5300d0, imac 0x60a340;
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x5300d0, imac 0x60a340;
 	virtual TodoReturn getSelectedCellIdx() = m1 0x530130, imac 0x60a3a0;
 
 	int m_page;
@@ -9838,8 +9838,8 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	virtual void setTextPopupClosed(SetTextPopup*, gd::string) = win 0x2bb830, m1 0x3ff1dc, imac 0x49ab50;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2bc060, m1 0x3ff3dc, imac 0x49ada0;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2b95e0, m1 0x3febf0, imac 0x49a560;
-	virtual TodoReturn updateResultArray(cocos2d::CCArray*) = win 0x2b54e0, m1 0x3ffcc0, imac 0x49b700;
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x3ffa78, imac 0x49b470;
+	virtual void updateResultArray(cocos2d::CCArray*) = win 0x2b54e0, m1 0x3ffcc0, imac 0x49b700;
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x3ffa78, imac 0x49b470;
 
 	bool m_unk;
 	bool m_allSelected;
@@ -10263,7 +10263,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	virtual void keyBackClicked() = win 0x2e0370, imac 0x2c0ec0, m1 0x26042c;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2e0380, imac 0x2c0ef0, m1 0x260438;
 	virtual void numberInputClosed(NumberInputLayer*) = win 0x2dd780, imac 0x2c05f0, m1 0x25fb78;
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = imac 0x2be8a0, m1 0x25df40;
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = imac 0x2be8a0, m1 0x25df40;
 	virtual void levelDownloadFinished(GJGameLevel*) = win 0x2dbb60, imac 0x2bf730, m1 0x25ecf0;
 	virtual void levelDownloadFailed(int) = win 0x2dbec0, imac 0x2bfac0, m1 0x25f070;
 	virtual void levelUpdateFinished(GJGameLevel*, UpdateResponse) = win 0x2dbff0, imac 0x2bfbb0, m1 0x25f154;
@@ -10379,7 +10379,7 @@ class LevelListDeleteDelegate {
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
 	// virtual ~LevelListLayer();
 
-	static LevelListLayer* create(GJLevelList*) = win 0x2e2f60, m1 0x2e9f54, imac 0x35c730;
+	static LevelListLayer* create(GJLevelList*) = m1 0x2e9ff4, imac 0x35c7c0;
 
 	void cloneList();
 	void confirmClone(cocos2d::CCObject*);
@@ -10399,24 +10399,24 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	void onToggleEditMode(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
 	void ownerDelete();
-	static cocos2d::CCScene* scene(GJLevelList*);
+	static cocos2d::CCScene* scene(GJLevelList*) = win 0x2e2f60, m1 0x2e9f54, imac 0x35c730;
 	TodoReturn updateEditMode();
 	TodoReturn updateSideButtons() = win 0x2e7680;
 	TodoReturn updateStatsArt() = win 0x2e4c70;
 	TodoReturn verifyListName();
 
-	virtual void onEnter() = m1 0x2ed43c, imac 0x35ff50;
-	virtual void onExit() = m1 0x2ed474, imac 0x35ff80;
+	virtual void onEnter() = win 0x2e4c20, m1 0x2ed43c, imac 0x35ff50;
+	virtual void onExit() = win 0x2e4c50, m1 0x2ed474, imac 0x35ff80;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x2e63a0, m1 0x2ed888, imac 0x360390;
-	virtual void loadLevelsFailed(char const*, int) = m1 0x2edb20, imac 0x360630;
+	virtual void loadLevelsFailed(char const*, int) = win 0x2b90e0, m1 0x2edb20, imac 0x360630;
 	virtual void onBack(cocos2d::CCObject* sender) = win 0x2bc85c, m1 0x2edf8c, imac 0x360b70;
 	virtual void shareCommentClosed(gd::string, ShareCommentLayer*) = win 0x2e7400, m1 0x2ee934, imac 0x361580;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2e7020, m1 0x2ee4d4, imac 0x3610c0;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2e6b50, m1 0x2ede40, imac 0x360a10;
-	virtual TodoReturn updateResultArray(cocos2d::CCArray*) = m1 0x2edf84, imac 0x360b50;
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x2edb2c, imac 0x360660;
+	virtual void updateResultArray(cocos2d::CCArray*) = win 0x2e6bf0, m1 0x2edf84, imac 0x360b50;
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x2e6700, m1 0x2edb2c, imac 0x360660;
 	virtual void likedItem(LikeItemType, int, bool) = win 0x2e7620, m1 0x2eea78, imac 0x3616c0;
-	virtual TodoReturn iconSelectClosed(SelectListIconLayer*) = win 0x2e78d0, m1 0x2eec58, imac 0x361900;
+	virtual void iconSelectClosed(SelectListIconLayer*) = win 0x2e78d0, m1 0x2eec58, imac 0x361900;
 	virtual void levelListDeleteFinished(int) = win 0x2e81f0, m1 0x2eed88, imac 0x361a90;
 	virtual void levelListDeleteFailed(int) = win 0x2e8320, m1 0x2eee74, imac 0x361b90;
 	virtual void textInputOpened(CCTextInputNode*) = win 0x2e86e0, m1 0x2ef1b4, imac 0x361ee0;
@@ -11364,7 +11364,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 	virtual void musicActionFailed(GJMusicAction) = win 0x319440, m1 0x53e018, imac 0x61ac70;
 	virtual TodoReturn sliderEnded(Slider*) = win 0x319110, m1 0x53d7f4, imac 0x61a390;
 	virtual void setTextPopupClosed(SetTextPopup*, gd::string) = win 0x319f20, m1 0x53e2ac, imac 0x61af20;
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x53e244, imac 0x61aea0;
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x53e244, imac 0x61aea0;
 	virtual TodoReturn getSelectedCellIdx() = m1 0x53e29c, imac 0x61af00;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x31a0c0, m1 0x53e47c, imac 0x61b130;
 }
@@ -11795,7 +11795,7 @@ class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
 
 	virtual void registerWithTouchDispatcher() = m1 0x53ee20, imac 0x61bc10;
 	virtual void keyBackClicked() = win 0x31a670, m1 0x53ecfc, imac 0x61bae0;
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x53ee58, imac 0x61bc50;
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x53ee58, imac 0x61bc50;
 }
 
 [[link(android)]]
@@ -13333,7 +13333,7 @@ class SelectFontLayer : FLAlertLayer {
 
 [[link(android)]]
 class SelectListIconDelegate {
-	virtual TodoReturn iconSelectClosed(SelectListIconLayer*);
+	virtual void iconSelectClosed(SelectListIconLayer*);
 }
 
 [[link(android)]]
@@ -15128,7 +15128,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
 	virtual void musicActionFailed(GJMusicAction) = win 0x453aa0, m1 0x3baf34, imac 0x4498d0;
 	virtual TodoReturn sortSelectClosed(SelectSFXSortLayer*) = win 0x4545c0, m1 0x3bb2a8, imac 0x449ca0;
 	virtual void setTextPopupClosed(SetTextPopup*, gd::string) = win 0x4548a0, m1 0x3bb52c, imac 0x449f60;
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x3bb5e8, imac 0x44a020;
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x3bb5e8, imac 0x44a020;
 	virtual TodoReturn getSelectedCellIdx() = m1 0x3bb748, imac 0x44a190;
 	virtual TodoReturn shouldSnapToSelected() = m1 0x3bb758, imac 0x44a1b0;
 }
@@ -16033,7 +16033,7 @@ class TableViewCell : cocos2d::CCLayer {
 
 [[link(android)]]
 class TableViewCellDelegate {
-	virtual TodoReturn cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
 	virtual TodoReturn getSelectedCellIdx();
 	virtual TodoReturn shouldSnapToSelected();
 }
