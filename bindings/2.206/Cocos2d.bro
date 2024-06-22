@@ -372,6 +372,7 @@ class cocos2d::CCParticleSystem {
 
 	// CCParticleSystem(cocos2d::CCParticleSystem const&);
 	// CCParticleSystem();
+	~CCParticleSystem() = imac 0x7d5860, m1 0x6d9dec; 
 	bool addParticle();
 	void calculateWorldSpace();
 	bool isFull();
@@ -505,6 +506,7 @@ class cocos2d::CCParticleSystemQuad {
 
 	// CCParticleSystemQuad(cocos2d::CCParticleSystemQuad const&);
 	// CCParticleSystemQuad();
+	~CCParticleSystemQuad() = imac 0x60dc00, m1 0x532f54;
 	bool allocMemory();
 	void listenBackToForeground(cocos2d::CCObject*);
 	void setupVBO();
