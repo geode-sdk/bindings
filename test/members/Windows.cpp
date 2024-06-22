@@ -31,7 +31,7 @@ GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x37d8);
 
 GEODE_SIZE_CHECK(DrawGridLayer, 0x280);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x208);
-GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x278);
+GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x27c);
 
 GEODE_SIZE_CHECK(GJGameState, 0x6C8);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraZoom, 0x0);
