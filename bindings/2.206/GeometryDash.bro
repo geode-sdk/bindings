@@ -6104,7 +6104,7 @@ class GameToolbox {
 	static TodoReturn getResponse(cocos2d::extension::CCHttpResponse*);
 	static gd::string getTimeString(int, bool) = win 0x64830;
 	static TodoReturn hsvFromString(gd::string const&, char const*);
-	static TodoReturn intToShortString(int);
+	static gd::string intToShortString(int) = win 0x67b30, imac 0x501e80, m1 0x459ec8;
 	static TodoReturn intToString(int) = win 0x67a70;
 	static bool isIOS();
 	static bool isRateEasing(int);
@@ -12689,7 +12689,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	int m_unk3778;
 	PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18;
 	float m_unkSomeFloat;
-	CheckpointObject* m_unkCheckpointObject;
+	CheckpointObject* m_currentCheckpoint;
 	cocos2d::CCArray* m_checkpointArray;
 	cocos2d::CCArray* m_unk37a8;
 	int m_unk37b0;
