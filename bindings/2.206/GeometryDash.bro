@@ -5045,9 +5045,9 @@ class GameManager : GManager {
 	TodoReturn iconAndTypeForKey(int, int&, int&);
 	gd::string iconKey(int, IconType) = win 0x1735d0;
 	UnlockType iconTypeToUnlockType(IconType) = win 0x1738a0, m1 0x304f3c, imac 0x379930;
-	bool isColorUnlocked(int, UnlockType) = win 0x173ba0, m1 0x30533c, imac 0x379ed0;
+	bool isColorUnlocked(int, UnlockType) = win 0x173ba0, m1 0x30533c, imac 0x379ed0, ios 0x3239A4;
 	bool isIconLoaded(int, int);
-	bool isIconUnlocked(int, IconType) = win 0x173800, m1 0x304e2c, imac 0x379870;
+	bool isIconUnlocked(int, IconType) = win 0x173800, m1 0x304e2c, imac 0x379870, ios 0x3235D4;
 	TodoReturn itemPurchased(char const*);
 	TodoReturn joinDiscord();
 	void joinReddit();
@@ -5900,7 +5900,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getDemonLevelKey(GJGameLevel*);
 	gd::string getGauntletRewardKey(int) = win 0x1de640, imac 0x78b30, m1 0x6b494;
 	gd::string getItemKey(int, int) = win 0x1d7230, m1 0x5a2d4, imac 0x65010;
-	int getItemUnlockState(int itemID, UnlockType unlockType) = win inline, m1 0x6ad24, imac 0x78400 {
+	int getItemUnlockState(int itemID, UnlockType unlockType) = win inline, m1 0x6ad24, imac 0x78400, ios 0x345CF8 {
 		auto key = getItemKey(itemID, (int) unlockType);
 		if(auto object = m_unlockedItems->objectForKey(key))
 			return object->getTag();
@@ -5957,7 +5957,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn incrementStat(char const*, int) = win 0x1ca5b0;
 	TodoReturn incrementStat(char const*);
 	bool isGauntletChestUnlocked(int);
-	bool isItemEnabled(UnlockType, int); //inline on windows
+	bool isItemEnabled(UnlockType, int) = ios 0x345D80; //inline on windows
 	bool isItemUnlocked(UnlockType, int) = win 0x1dabe0, ios 0x33fda8, m1 0x5ead0;
 	bool isPathChestUnlocked(int);
 	bool isPathUnlocked(StatKey);
@@ -7904,14 +7904,14 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onShards(cocos2d::CCObject* sender) = win 0x266c30;
 	void onShop(cocos2d::CCObject* sender) = win 0x266f00;
 	void onSpecial(cocos2d::CCObject* sender) = win 0x265930;
-	void onToggleItem(cocos2d::CCObject* sender) = win 0x2657a0;
+	void onToggleItem(cocos2d::CCObject* sender) = win 0x2657a0, ios 0x316C4C;
 	void playRainbowEffect() = win 0x266a40, imac 0x370230, m1 0x2fc130;
 	void playShadowEffect();
 	static cocos2d::CCScene* scene() = win 0x260f90, ios 0x31270c;
 	void selectTab(IconType) = win 0x263fb0, m1 0x2fa4f4, imac 0x36e340;
 	void setupIconSelect() = win 0x2631f0;
-	void setupPage(int, IconType) = win 0x264070, m1 0x2fa624, imac 0x36e480;
-	void setupSpecialPage() = win 0x264a90, imac 0x36eb00, m1 0x2fac80;
+	void setupPage(int, IconType) = win 0x264070, m1 0x2fa624, imac 0x36e480, ios 0x315810;
+	void setupSpecialPage() = win 0x264a90, imac 0x36eb00, m1 0x2fac80, ios 0x315DE0;
 	void showUnlockPopupNew(int, UnlockType);
 	gd::string titleForUnlock(int, UnlockType);
 	void toggleGlow();
@@ -8005,14 +8005,14 @@ class GJItemIcon : cocos2d::CCSprite {
 
 	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B);
 
-	void changeToLockedState(float) = win 0x2694c0;
+	void changeToLockedState(float) = win 0x2694c0, ios 0x316AB8;
 	static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x268880;
 	TodoReturn createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B);
 	void darkenStoreItem(cocos2d::ccColor3B) = win 0x2691d0;
 	TodoReturn darkenStoreItem(ShopType);
-	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x2689a0;
+	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x2689a0, ios 0x3186D4;
 	float scaleForType(UnlockType) = win 0x2695a0;
-	TodoReturn toggleEnabledState(bool) = win 0x269400;
+	TodoReturn toggleEnabledState(bool) = win 0x269400, ios 0x316B94;
 	TodoReturn unlockedColorForType(int);
 
 	virtual void setOpacity(unsigned char) = win 0x2690b0, m1 0x2fea70, imac 0x372e20;
