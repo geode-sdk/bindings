@@ -5327,7 +5327,7 @@ class GameObject : CCSpritePlus {
 	// virtual ~GameObject();
 	GameObject() = win 0x133690;
 
-	TodoReturn addColorSprite(gd::string);
+	void addColorSprite(gd::string) = win 0x1847f0, imac 0x5ad230, m1 0x4edac4;
 	TodoReturn addColorSpriteToParent(bool);
 	TodoReturn addColorSpriteToSelf();
 	TodoReturn addCustomBlackChild(gd::string, float, bool);
@@ -5358,7 +5358,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn canRotateFree();
 	TodoReturn colorForMode(int, bool);
 	TodoReturn commonInteractiveSetup();
-	void commonSetup() = win 0x183d30;
+	void commonSetup() = win 0x183d30, imac 0x5aa930, m1 0x4ed04c;
 	TodoReturn copyGroups(GameObject*) = win 0x192980, imac 0x5c70a0;
 	TodoReturn createAndAddParticle(int, char const*, int, cocos2d::tCCPositionType);
 	TodoReturn createColorGroupContainer(int);
@@ -5371,8 +5371,8 @@ class GameObject : CCSpritePlus {
 		}
 	}
 	TodoReturn createOpacityGroupContainer(int);
-	TodoReturn createSpriteColor(int);
-	static GameObject* createWithFrame(char const* name) = win inline {
+	void createSpriteColor(int) = m1 0x4ed1f8, imac 0x5aaaf0;
+	static GameObject* createWithFrame(char const* name) = win inline, imac 0x5aa890, m1 0x4ecf80 {
 		auto ret = new GameObject();
 		ret->m_eObjType = cocos2d::CCObjectType::GameObject;
 		if (ret->initWithSpriteFrameName(name)) {
@@ -5440,7 +5440,7 @@ class GameObject : CCSpritePlus {
 	bool ignoreEditorDuration();
 	TodoReturn ignoreEnter();
 	TodoReturn ignoreFade();
-	bool init(char const*);
+	bool init(char const*) = imac 0x5aa900, m1 0x4ed010;
 	bool isBasicEnterEffect(int);
 	bool isBasicTrigger();
 	bool isColorObject();
@@ -5457,7 +5457,7 @@ class GameObject : CCSpritePlus {
 	bool isTrigger();
 	void loadGroupsFromString(gd::string);
 	TodoReturn makeInvisible() = imac 0x5c59f0;
-	static GameObject* objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x193220;
+	static GameObject* objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x193220, m1 0x4f775c, imac 0x5c8800;
 	TodoReturn opacityModForMode(int, bool);
 	TodoReturn parentForZLayer(int, bool, int);
 	TodoReturn perspectiveColorFrame(char const*, int);
@@ -7950,7 +7950,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	ListButtonBar* m_iconSelection;
 	CCMenuItemSpriteExtra* m_leftArrow;
 	CCMenuItemSpriteExtra* m_rightArrow;
-	cocos2d::CCMenu* m_iconSelectionMenu;
+	cocos2d::CCMenu* m_navDotMenu;
 	int m_iconID;
 	IconType m_selectedIconType;
 }
@@ -8953,17 +8953,16 @@ class GJSpiderSprite : GJRobotSprite {
 class GJSpriteColor {
 	// GJSpriteColor();
 
-	TodoReturn getColorMode();
+	int getColorMode();
 
 	int m_colorID;
-    int m_defaultColorID;
-    float m_opacity;
+	int m_defaultColorID;
+	float m_opacity;
 	float m_baseOpacity;
-    cocos2d::ccHSVValue m_hsv;
-    bool m_usesHSV;
-    bool m_usesCustomBlend;
+	cocos2d::ccHSVValue m_hsv;
+	bool m_usesHSV;
+	bool m_usesCustomBlend;
 	cocos2d::ccColor3B m_customColor;
-
 }
 
 [[link(android)]]
