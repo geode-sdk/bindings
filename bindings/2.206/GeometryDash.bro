@@ -9789,41 +9789,41 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	TodoReturn createNewSmartTemplate(cocos2d::CCObject*);
 	TodoReturn deleteSelected();
 	TodoReturn exitLayer(cocos2d::CCObject*);
-	TodoReturn getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*);
+	cocos2d::CCArray* getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*) = win 0x2bb8f0;
 	gd::string getSearchTitle() = win 0x2b8750;
 	bool init(GJSearchObject*) = win 0x2b57d0, m1 0x3f8fc4, imac 0x494360, ios 0x41d238;
-	bool isCorrect(char const*);
+	bool isCorrect(char const*) = win 0x2b70e0;
 	void loadPage(GJSearchObject*) = win 0x2b72b0, m1 0x3fc3cc, imac 0x497710;
 	void onClearSearch(cocos2d::CCObject* sender) = win 0x2bb510;
-	void onDeleteAll(cocos2d::CCObject* sender);
+	void onDeleteAll(cocos2d::CCObject* sender) = win 0x2baf60;
 	void onDeleteSelected(cocos2d::CCObject* sender) = win 0x2bbc80;
-	void onFavorites(cocos2d::CCObject* sender);
+	void onFavorites(cocos2d::CCObject* sender) = win 0x2bada0;
 	void onGoToFolder(cocos2d::CCObject* sender) = win 0x2b9530;
 	void onGoToLastPage(cocos2d::CCObject* sender) = win 0x2b93b0;
 	void onGoToPage(cocos2d::CCObject* sender) = win 0x2b9420;
 	void onHelp(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender) = win 0x2b9b60;
-	void onLocalMode(cocos2d::CCObject* sender);
+	void onLocalMode(cocos2d::CCObject* sender) = win 0x2ba9e0;
 	void onMyOnlineLevels(cocos2d::CCObject* sender) = win 0x2babd0;
 	void onNew(cocos2d::CCObject* sender) = win 0x2ba530;
 	void onNextPage(cocos2d::CCObject* sender) = win 0x2b9910;
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x2b9990;
 	void onRefresh(cocos2d::CCObject* sender) = win 0x2bb3d0;
-	void onRemoveAllFavorites(cocos2d::CCObject* sender);
-	void onSaved(cocos2d::CCObject* sender);
-	void onSavedMode(cocos2d::CCObject* sender);
+	void onRemoveAllFavorites(cocos2d::CCObject* sender) = win 0x2bb100;
+	void onSaved(cocos2d::CCObject* sender) = win 0x2bae80;
+	void onSavedMode(cocos2d::CCObject* sender) = win 0x2ba900;
 	void onSearch(cocos2d::CCObject* sender) = win 0x2bb5b0;
 	void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x2bbfc0;
 	void reloadAllObjects();
 	void setSearchObject(GJSearchObject*);
 	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2b8440, m1 0x3fda3c, imac 0x4990a0;
-	void show();
+	void show() = win 0x2bc7d0;
 	void updateLevelsLabel();
-	void updatePageLabel();
+	void updatePageLabel() = win 0x2b97e0;
 
 	virtual void onEnter() = win 0x2bc620, m1 0x3ff9cc, imac 0x49b3f0;
 	virtual void onEnterTransitionDidFinish() = imac 0x49b590;
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3ffc98, imac 0x49b680;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3b850, m1 0x3ffc98, imac 0x49b680;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
@@ -9839,7 +9839,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2bc060, m1 0x3ff3dc, imac 0x49ada0;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2b95e0, m1 0x3febf0, imac 0x49a560;
 	virtual void updateResultArray(cocos2d::CCArray*) = win 0x2b54e0, m1 0x3ffcc0, imac 0x49b700;
-	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x3ffa78, imac 0x49b470;
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x2bc6c0, m1 0x3ffa78, imac 0x49b470;
 
 	bool m_unk;
 	bool m_allSelected;
@@ -9869,6 +9869,9 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	bool m_unk2;
 	int m_listHeight;
 	float m_unkFloat;
+	float m_unkFloat2;
+	TableViewCellDelegate* m_delegate;
+	bool m_cached;
 }
 
 [[link(android)]]
