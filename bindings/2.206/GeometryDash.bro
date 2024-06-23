@@ -9864,12 +9864,11 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	LoadingCircle* m_circle;
 	int m_lastPage;
 	bool m_isOverlay;
-	PAD = win 0x4, android32 0x4;
+	cocos2d::CCScene* m_scene;
 	int m_zOffset;
 	bool m_unk2;
 	int m_listHeight;
-	PAD = win 0x16, android32 0x16;
-
+	float m_unkFloat;
 }
 
 [[link(android)]]
@@ -10378,8 +10377,17 @@ class LevelListDeleteDelegate {
 [[link(android)]]
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
 	// virtual ~LevelListLayer();
+	LevelListLayer() {}
 
-	static LevelListLayer* create(GJLevelList*) = m1 0x2e9ff4, imac 0x35c7c0;
+	static LevelListLayer* create(GJLevelList* list) = win inline, m1 0x2e9ff4, imac 0x35c7c0 {
+		auto ret = new LevelListLayer();
+		if (ret->init(list)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	void cloneList();
 	void confirmClone(cocos2d::CCObject*);
