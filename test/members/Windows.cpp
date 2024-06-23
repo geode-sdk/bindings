@@ -242,6 +242,9 @@ GEODE_SIZE_CHECK(GJAccountSettingsLayer, 0x320);
 //GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
 GEODE_SIZE_CHECK(OptionsLayer, 0x298);
 GEODE_SIZE_CHECK(LevelPage, 0x240);
+GEODE_SIZE_CHECK(LevelBrowserLayer, 0x320);
+GEODE_SIZE_CHECK(LevelListLayer, 0x3d8);
+GEODE_SIZE_CHECK(SelectListIconLayer, 0x290);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
@@ -252,9 +255,6 @@ GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x220);
 
 GEODE_MEMBER_CHECK(CCScrollLayerExt, m_verticalScrollbar, 0x1c0);
 GEODE_MEMBER_CHECK(CCScrollLayerExt, m_contentLayer, 0x1d8);
-
-GEODE_SIZE_CHECK(LevelBrowserLayer, 0x320);
-GEODE_SIZE_CHECK(LevelListLayer, 0x3d8);
 
 GEODE_SIZE_CHECK(FMODAudioEngine, 0x888);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicChannels, 0x140);
