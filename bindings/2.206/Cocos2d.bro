@@ -372,6 +372,7 @@ class cocos2d::CCParticleSystem {
 
 	// CCParticleSystem(cocos2d::CCParticleSystem const&);
 	// CCParticleSystem();
+	~CCParticleSystem() = imac 0x7d5860, m1 0x6d9dec; 
 	bool addParticle();
 	void calculateWorldSpace();
 	bool isFull();
@@ -505,6 +506,7 @@ class cocos2d::CCParticleSystemQuad {
 
 	// CCParticleSystemQuad(cocos2d::CCParticleSystemQuad const&);
 	// CCParticleSystemQuad();
+	~CCParticleSystemQuad() = imac 0x60dc00, m1 0x532f54;
 	bool allocMemory();
 	void listenBackToForeground(cocos2d::CCObject*);
 	void setupVBO();
@@ -1265,7 +1267,7 @@ class cocos2d::CCEGLView {
 [[link(win, android)]]
 class cocos2d::CCImage {
 	bool initWithImageData(void*, int, cocos2d::CCImage::EImageFormat, int, int, int, int) = imac 0x492d80, m1 0x3f7f58;
-	bool initWithImageFile(char const*, cocos2d::CCImage::EImageFormat);
+	bool initWithImageFile(char const*, cocos2d::CCImage::EImageFormat) = imac 0x492b70, m1 0x3f7d24;
 	bool initWithImageFileThreadSafe(char const*, cocos2d::CCImage::EImageFormat);
 	bool initWithString(char const*, int, int, cocos2d::CCImage::ETextAlign, char const*, int);
 
@@ -1749,15 +1751,15 @@ class cocos2d::CCDictionary {
 	cocos2d::CCArray* allKeysForObject(cocos2d::CCObject*);
 	char const* charForKey(gd::string const&);
 	unsigned int count() = imac 0x30d090;
-	cocos2d::CCObject* objectForKey(gd::string const&) = ios 0x42bb44, imac 0x30d7b0;
+	cocos2d::CCObject* objectForKey(gd::string const&) = ios 0x42bb44, imac 0x30d7b0, m1 0x29f408;
 	//cocos2d::CCObject* objectForKey(int);
 	cocos2d::CCObject* randomObject();
 	void removeAllObjects() = imac 0x30ceb0, m1 0x29ee04;
 	void removeObjectForElememt(cocos2d::CCDictElement*);
-	void removeObjectForKey(gd::string const&) = imac 0x30ed00;
+	void removeObjectForKey(gd::string const&) = imac 0x30ed00, m1 0x2a0608;
 	//void removeObjectForKey(int);
 	void removeObjectsForKeys(cocos2d::CCArray*);
-	cocos2d::CCString const* valueForKey(gd::string const&);
+	cocos2d::CCString const* valueForKey(gd::string const&) = ios 0x42BAB0;
 	//cocos2d::CCString const* valueForKey(int);
 	bool writeToFile(char const*);
 
@@ -2059,6 +2061,8 @@ class cocos2d::CCString {
 	char const* getCString() const = imac 0x7b6cc0, m1 0x6bd3dc, ios 0x2786d0;
 	//intValue = ios 0x2787d4;
 	//createWithContentsOfFile = ios 0x278b74;
+
+	bool boolValue() const = ios 0x278884;
 }
 
 [[link(win, android)]]
