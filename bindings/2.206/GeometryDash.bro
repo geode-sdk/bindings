@@ -10393,34 +10393,34 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	}
 
 	void cloneList();
-	void confirmClone(cocos2d::CCObject*);
-	void confirmDelete(cocos2d::CCObject*);
+	void confirmClone(cocos2d::CCObject*) = win 0x2e7bc0;
+	void confirmDelete(cocos2d::CCObject*) = win 0x2e7f40;
 	void confirmOwnerDelete(cocos2d::CCObject*) = win 0x2e8070;
 	bool init(GJLevelList*) = win 0x2e3190, m1 0x2ea074, imac 0x35c820;
-	void onClaimReward(cocos2d::CCObject* sender);
-	void onDelete();
-	void onDescription(cocos2d::CCObject* sender);
+	void onClaimReward(cocos2d::CCObject* sender) = win 0x2e5bb0;
+	void onDelete() = win 0x2e7cb0;
+	void onDescription(cocos2d::CCObject* sender) = win 0x2e7330;
 	void onFavorite(cocos2d::CCObject* sender) = win 0x2e7200;
-	void onInfo(cocos2d::CCObject* sender);
-	void onLike(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender) = win 0x2e7500;
+	void onLike(cocos2d::CCObject* sender) = win 0x2e7540;
 	void onListInfo(cocos2d::CCObject* sender) = win 0x2e4c10;
-	void onRefreshLevelList(cocos2d::CCObject* sender);
-	void onSelectIcon(cocos2d::CCObject* sender);
-	void onShare(cocos2d::CCObject* sender) = imac 0x35eeb0;
-	void onToggleEditMode(cocos2d::CCObject* sender);
-	void onViewProfile(cocos2d::CCObject* sender);
+	void onRefreshLevelList(cocos2d::CCObject* sender) = win 0x2e61e0;
+	void onSelectIcon(cocos2d::CCObject* sender) = win 0x2e7780;
+	void onShare(cocos2d::CCObject* sender) = win 0x2e78f0, imac 0x35eeb0;
+	void onToggleEditMode(cocos2d::CCObject* sender) = win 0x2e7b80;
+	void onViewProfile(cocos2d::CCObject* sender) = win 0x2e71c0;
 	void ownerDelete();
 	static cocos2d::CCScene* scene(GJLevelList*) = win 0x2e2f60, m1 0x2e9f54, imac 0x35c730;
-	TodoReturn updateEditMode();
-	TodoReturn updateSideButtons() = win 0x2e7680;
-	TodoReturn updateStatsArt() = win 0x2e4c70;
-	TodoReturn verifyListName();
+	void updateEditMode();
+	void updateSideButtons() = win 0x2e7680;
+	void updateStatsArt() = win 0x2e4c70;
+	void verifyListName();
 
 	virtual void onEnter() = win 0x2e4c20, m1 0x2ed43c, imac 0x35ff50;
 	virtual void onExit() = win 0x2e4c50, m1 0x2ed474, imac 0x35ff80;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x2e63a0, m1 0x2ed888, imac 0x360390;
 	virtual void loadLevelsFailed(char const*, int) = win 0x2b90e0, m1 0x2edb20, imac 0x360630;
-	virtual void onBack(cocos2d::CCObject* sender) = win 0x2bc85c, m1 0x2edf8c, imac 0x360b70;
+	virtual void onBack(cocos2d::CCObject* sender) = win 0x2e6c00, m1 0x2edf8c, imac 0x360b70;
 	virtual void shareCommentClosed(gd::string, ShareCommentLayer*) = win 0x2e7400, m1 0x2ee934, imac 0x361580;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2e7020, m1 0x2ee4d4, imac 0x3610c0;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2e6b50, m1 0x2ede40, imac 0x360a10;
@@ -10435,8 +10435,18 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	virtual void textChanged(CCTextInputNode*) = win 0x2e8840, m1 0x2ef2b8, imac 0x361fb0;
 
 	cocos2d::CCMenu* m_buttonMenu;
-	gd::string m_unkString;
+	gd::string m_searchKey1;
 	GJLevelList* m_levelList;
+	gd::string m_searchKey2;
+	CCMenuItemSpriteExtra* m_likeButton;
+	bool m_deleted;
+	CCTextInputNode* m_titleInput;
+	int m_editMode;
+	cocos2d::CCArray* m_objects;
+	cocos2d::CCSprite* m_diffSprite;
+	cocos2d::CCSprite* m_featureSprite;
+	cocos2d::CCPoint m_rewardPosition;
+	bool m_exited;
 }
 
 [[link(android)]]
