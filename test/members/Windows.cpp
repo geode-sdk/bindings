@@ -253,6 +253,7 @@ GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x220);
 GEODE_MEMBER_CHECK(CCScrollLayerExt, m_verticalScrollbar, 0x1c0);
 GEODE_MEMBER_CHECK(CCScrollLayerExt, m_contentLayer, 0x1d8);
 
+GEODE_SIZE_CHECK(LevelListLayer, 0x3d8);
 
 GEODE_SIZE_CHECK(FMODAudioEngine, 0x888);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicChannels, 0x140);
