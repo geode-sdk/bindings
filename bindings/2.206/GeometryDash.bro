@@ -10405,7 +10405,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	void onLike(cocos2d::CCObject* sender) = win 0x2e7540;
 	void onListInfo(cocos2d::CCObject* sender) = win 0x2e4c10;
 	void onRefreshLevelList(cocos2d::CCObject* sender) = win 0x2e61e0;
-	void onSelectIcon(cocos2d::CCObject* sender) = win 0x2e7780;
+	void onSelectIcon(cocos2d::CCObject* sender) = win 0x2e7780, m1 0x2ec3f0, imac 0x35ee60;
 	void onShare(cocos2d::CCObject* sender) = win 0x2e78f0, imac 0x35eeb0;
 	void onToggleEditMode(cocos2d::CCObject* sender) = win 0x2e7b80;
 	void onViewProfile(cocos2d::CCObject* sender) = win 0x2e71c0;
@@ -13354,20 +13354,33 @@ class SelectFontLayer : FLAlertLayer {
 
 [[link(android)]]
 class SelectListIconDelegate {
-	virtual void iconSelectClosed(SelectListIconLayer*);
+	virtual void iconSelectClosed(SelectListIconLayer*) {};
 }
 
 [[link(android)]]
 class SelectListIconLayer : FLAlertLayer {
 	// virtual ~SelectListIconLayer();
+	SelectListIconLayer() {}
 
-	static SelectListIconLayer* create(int);
+	static SelectListIconLayer* create(int difficulty) = win inline, m1 0x2eeb54, imac 0x35ee60 {
+		auto ret = new SelectListIconLayer();
+		if (ret->init(difficulty)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(int);
-	void onClose(cocos2d::CCObject* sender);
-	void onSelect(cocos2d::CCObject* sender);
+	bool init(int) = win 0x2e8cb0, m1 0x2ef9e4, imac 0x362770;
+	void onClose(cocos2d::CCObject* sender) = win 0x2e9560, m1 0x2f0034, imac 0x362d60;
+	void onSelect(cocos2d::CCObject* sender) = win 0x2e94a0, m1 0x2eff3c, imac 0x362ca0;
 
 	virtual void keyBackClicked() = win 0x2e95a0, m1 0x2f008c, imac 0x362db0;
+
+	cocos2d::CCArray* m_difficulties;
+	int m_currentDifficulty;
+	SelectListIconDelegate* m_delegate;
 }
 
 [[link(android)]]
