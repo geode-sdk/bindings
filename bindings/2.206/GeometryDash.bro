@@ -5939,7 +5939,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getStoreItem(int);
 	int getTotalCollectedCurrency() = win 0x1d8e50;
 	int getTotalCollectedDiamonds() = win 0x1d9720;
-	bool hasClaimedListReward(GJLevelList*);
+	bool hasClaimedListReward(GJLevelList*) = win 0x1d84b0;
 	bool hasCompletedChallenge(GJChallengeItem*);
 	bool hasCompletedDailyLevel(int) = win 0x1d8590;
 	bool hasCompletedDemonLevel(GJGameLevel*);
@@ -8028,7 +8028,7 @@ class GJLevelList : cocos2d::CCNode {
 	// virtual ~GJLevelList();
 
 	static GJLevelList* create() = win 0x16de90, m1 0x487c24;
-	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16de90;
+	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16d5a0;
 
 	TodoReturn addLevelToList(GJGameLevel*);
 	TodoReturn completedLevels();
