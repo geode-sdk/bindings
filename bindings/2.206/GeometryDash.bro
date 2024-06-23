@@ -5963,7 +5963,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn incrementStat(char const*);
 	bool isGauntletChestUnlocked(int);
 	bool isItemEnabled(UnlockType, int) = ios 0x345D80; //inline on windows
-	bool isItemUnlocked(UnlockType, int) = win 0x1dabe0, ios 0x33fda8, m1 0x5ead0;
+	bool isItemUnlocked(UnlockType, int) = win 0x1dabe0, ios 0x33fda8, m1 0x5ead0, imac 0x6a450;
 	bool isPathChestUnlocked(int);
 	bool isPathUnlocked(StatKey);
 	bool isSecretChestUnlocked(int);
