@@ -13363,9 +13363,9 @@ class SelectListIconLayer : FLAlertLayer {
 
 	static SelectListIconLayer* create(int);
 
-	bool init(int) = win 0x2e8cb0;
-	void onClose(cocos2d::CCObject* sender) = win 0x2e9560;
-	void onSelect(cocos2d::CCObject* sender) = win 0x;
+	bool init(int);
+	void onClose(cocos2d::CCObject* sender);
+	void onSelect(cocos2d::CCObject* sender);
 
 	virtual void keyBackClicked() = win 0x2e95a0, m1 0x2f008c, imac 0x362db0;
 }
