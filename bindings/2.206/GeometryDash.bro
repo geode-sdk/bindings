@@ -13354,7 +13354,7 @@ class SelectFontLayer : FLAlertLayer {
 
 [[link(android)]]
 class SelectListIconDelegate {
-	virtual void iconSelectClosed(SelectListIconLayer*) {};
+	virtual void iconSelectClosed(SelectListIconLayer*) {}
 }
 
 [[link(android)]]
