@@ -9699,7 +9699,18 @@ class LeaderboardManagerDelegate {
 [[link(android)]]
 class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertLayerProtocol {
 	// virtual ~LeaderboardsLayer();
-	inline LeaderboardsLayer() {}
+	inline LeaderboardsLayer() {
+		m_list = nullptr;
+		m_userScores = nullptr;
+		m_state = LeaderboardState::Default;
+		m_topBtn = nullptr;
+		m_globalBtn = nullptr;
+		m_creatorsBtn = nullptr;
+		m_friendsBtn = nullptr;
+		m_circle = nullptr;
+		m_noInternet = nullptr;
+		m_tabs = nullptr;
+	}
 
 	static LeaderboardsLayer* create(LeaderboardState state) = win inline, m1 0x46fc3c, imac 0x51a6d0 {
 		auto ret = new LeaderboardsLayer();
