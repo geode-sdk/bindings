@@ -3799,7 +3799,7 @@ class EnhancedGameObject : GameObject {
 	void updateUserCoin() = win 0x19c930;
 	TodoReturn waitForAnimationTrigger();
 
-	virtual void customSetup() = m1 0x502290, imac 0x5d5220;
+	virtual void customSetup() = win 0x19afb0, m1 0x502290, imac 0x5d5220;
 	virtual void resetObject() = win 0x19A970, m1 0x501c24, imac 0x5d4a60;
 	virtual void deactivateObject(bool) = m1 0x5033f4, imac 0x5d80e0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x501ed8, imac 0x5d4d40;
@@ -5385,18 +5385,7 @@ class GameObject : CCSpritePlus {
 	}
 	TodoReturn createOpacityGroupContainer(int);
 	void createSpriteColor(int) = m1 0x4ed1f8, imac 0x5aaaf0;
-	static GameObject* createWithFrame(char const* name) = win inline, imac 0x5aa890, m1 0x4ecf80 {
-		auto ret = new GameObject();
-		ret->m_eObjType = cocos2d::CCObjectType::GameObject;
-		if (ret->initWithSpriteFrameName(name)) {
-			ret->commonSetup();
-			ret->m_bUnkBool2 = true;
-			ret->autorelease();
-			return ret;
-		}
-		delete ret;
-		return nullptr;
-	}
+	static GameObject* createWithFrame(char const* name) = win 0x183c60, imac 0x5aa890, m1 0x4ecf80;
 	static GameObject* createWithKey(int) = win 0x181810;
 	void deselectObject(); // = win 0x141b70; actually updateObjectEditorColor, source: LevelEditorLayer::updateVisibility
 	inline void destroyObject() {
@@ -7532,7 +7521,7 @@ class GJGameLevel : cocos2d::CCNode {
 	// virtual ~GJGameLevel();
 
 	static GJGameLevel* create() = win 0x1642d0, imac 0x533810, m1 0x486e78, ios 0x95224;
-	static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x162b70;
+	static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x162b70, m1 0x4891fc, imac 0x535f20;
 	/*inline static GJGameLevel* createWithCoder(DS_Dictionary* dict) {
 		//inlined on windows
 		auto level = GJGameLevel::create();
@@ -7542,10 +7531,10 @@ class GJGameLevel : cocos2d::CCNode {
 
 	TodoReturn areCoinsVerified();
 	void copyLevelInfo(GJGameLevel*) = win 0x165230;
-	void dataLoaded(DS_Dictionary*) = win 0x1658e0, m1 0x4b2db0;
+	void dataLoaded(DS_Dictionary*) = win 0x1658e0, m1 0x4b2db0, imac 0x564a60;
 	TodoReturn demonIconForDifficulty(DemonDifficultyType) = imac 0x566800;
 	TodoReturn generateSettingsString();
-	gd::string getAudioFileName() = win 0x164b80, m1 0x4b1710;
+	gd::string getAudioFileName() = win 0x164b80, m1 0x4b1710, imac 0x562f90;
 	int getAverageDifficulty() = win 0x1649c0, m1 0x4b14cc, imac 0x562d50;
 	char const* getCoinKey(int coinNumber) {
 		if(m_dailyID > 0) return cocos2d::CCString::createWithFormat("%i_%i_%i", m_levelID.value(), coinNumber, m_dailyID.value())->getCString();
@@ -8049,13 +8038,13 @@ class GJItemIcon : cocos2d::CCSprite {
 class GJLevelList : cocos2d::CCNode {
 	// virtual ~GJLevelList();
 
-	static GJLevelList* create() = win 0x16de90, m1 0x487c24;
-	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16d5a0;
+	static GJLevelList* create() = win 0x16de90, m1 0x487c24, imac 0x5346e0;
+	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16d5a0, m1 0x4877e8, imac 0x534200;
 
 	TodoReturn addLevelToList(GJGameLevel*);
 	TodoReturn completedLevels();
 	TodoReturn createWithCoder(DS_Dictionary*);
-	void dataLoaded(DS_Dictionary*) = win 0x16f3c0, m1 0x4b8464;
+	void dataLoaded(DS_Dictionary*) = win 0x16f3c0, m1 0x4b8464, imac 0x56ac60;
 	TodoReturn duplicateListLevels(GJLevelList*);
 	TodoReturn frameForListDifficulty(int, DifficultyIconType);
 	cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*);
@@ -11463,7 +11452,7 @@ class MusicDownloadDelegate {
 class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	// virtual ~MusicDownloadManager();
 
-	static MusicDownloadManager* sharedState() = win 0x31bca0, m1 0x4da8a4;
+	static MusicDownloadManager* sharedState() = win 0x31bca0, m1 0x4da8a4, imac 0x5912f0;
 
 	void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x31def0, imac 0x597180, m1 0x4dff40;
 	void addDLToActive(char const* tag);
@@ -11548,7 +11537,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void parseSFXLibrary();
 	gd::string pathForSFX(int) = win 0x31e730;
 	gd::string pathForSFXFolder(int) = win 0x31e5e0;
-	gd::string pathForSong(int) = win 0x31e400, m1 0x4df2bc;
+	gd::string pathForSong(int) = win 0x31e400, m1 0x4df2bc, imac 0x596410;
 	gd::string pathForSongFolder(int) = win 0x31e2b0;
 	void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int);
 	callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
