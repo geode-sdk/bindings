@@ -22,6 +22,30 @@ class cocos2d::CCEGLViewProtocol {
 }
 
 [[link(win, android)]]
+class cocos2d::CCEaseIn {
+	static cocos2d::CCEaseIn* create(cocos2d::CCActionInterval*, float) = imac 0x51cbe0, m1 0x471f80;
+
+	// CCEaseIn(cocos2d::CCEaseIn const&);
+	// CCEaseIn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCEaseOut {
+	static cocos2d::CCEaseOut* create(cocos2d::CCActionInterval*, float) = imac 0x51ce00, m1 0x472190;
+
+	// CCEaseOut(cocos2d::CCEaseOut const&);
+	// CCEaseOut();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCEaseInOut {
 	static cocos2d::CCEaseInOut* create(cocos2d::CCActionInterval*, float) = m1 0x4723a8, imac 0x51d020, ios 0x27befc;
 
@@ -1378,6 +1402,8 @@ class cocos2d::CCDirector {
 	cocos2d::CCSize getWinSizeInPixels();
 	float getZEye();
 	//getScreenTop = ios 0x18260c, idk if i should add the function
+	//getScreenBottom() = ios 0x182614
+	//getScreenLeft() = ios 0x18261C
 
 	void setActualDeltaTime(float);
 	void setAlphaBlending(bool);
@@ -1697,15 +1723,15 @@ class cocos2d::CCArray {
 	// CCArray(cocos2d::CCArray const&);
 	// CCArray(unsigned int);
 	// CCArray();
-	// void addObject(cocos2d::CCObject*) = imac 0x72cf20, m1 0x63faa4, ios 0x259b6c;
+	void addObject(cocos2d::CCObject*) = imac 0x72cf20, m1 0x63faa4, ios 0x259b6c;
 	void addObjectNew(cocos2d::CCObject*);
-	void addObjectsFromArray(cocos2d::CCArray*);
+	void addObjectsFromArray(cocos2d::CCArray*) = ios 0x259BFC;
 	unsigned int capacity() const;
 	bool containsObject(cocos2d::CCObject*) const;
 	// unsigned int count() const = imac 0x72d2a0, m1 0x63fd7c, ios 0x259c08;
 	void exchangeObject(cocos2d::CCObject*, cocos2d::CCObject*);
 	void exchangeObjectAtIndex(unsigned int, unsigned int);
-	void fastRemoveObject(cocos2d::CCObject*);
+	void fastRemoveObject(cocos2d::CCObject*) = ios 0x259CE8;
 	void fastRemoveObjectAtIndex(unsigned int);
 	void fastRemoveObjectAtIndexChild(unsigned int);
 	void fastRemoveObjectAtIndexNew(unsigned int);
@@ -1750,17 +1776,17 @@ class cocos2d::CCDictionary {
 	cocos2d::CCArray* allKeys();
 	cocos2d::CCArray* allKeysForObject(cocos2d::CCObject*);
 	char const* charForKey(gd::string const&);
-	unsigned int count() = imac 0x30d090;
+	unsigned int count() = imac 0x30d090, m1 0x29efd0;
 	cocos2d::CCObject* objectForKey(gd::string const&) = ios 0x42bb44, imac 0x30d7b0, m1 0x29f408;
-	//cocos2d::CCObject* objectForKey(int);
+	cocos2d::CCObject* objectForKey(intptr_t) = imac 0x30d7b0, m1 0x29f714;
 	cocos2d::CCObject* randomObject();
 	void removeAllObjects() = imac 0x30ceb0, m1 0x29ee04;
 	void removeObjectForElememt(cocos2d::CCDictElement*);
 	void removeObjectForKey(gd::string const&) = imac 0x30ed00, m1 0x2a0608;
 	//void removeObjectForKey(int);
 	void removeObjectsForKeys(cocos2d::CCArray*);
-	cocos2d::CCString const* valueForKey(gd::string const&) = ios 0x42BAB0;
-	//cocos2d::CCString const* valueForKey(int);
+	cocos2d::CCString const* valueForKey(gd::string const&) = imac 0x30d3a0, m1 0x29f368, ios 0x42BAB0;
+	cocos2d::CCString const* valueForKey(intptr_t) = imac 0x30d8e0, m1 0x29f850;
 	bool writeToFile(char const*);
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
@@ -2112,7 +2138,7 @@ class cocos2d::CCMenuItemSprite {
 
 [[link(win, android)]]
 class cocos2d::CCMenu {
-	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1e1964;
+	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1e1964, m1 0x6a6d58;
 	static cocos2d::CCMenu* create() = imac 0x79e7a0, m1 0x6a6d34, ios 0x1e1940;
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
     static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = imac 0x79ebf0, m1 0x6a70e0;
@@ -2125,7 +2151,7 @@ class cocos2d::CCMenu {
 	// CCMenu(cocos2d::CCMenu const&);
 	// CCMenu();
 	void alignItemsHorizontally();
-	void alignItemsHorizontallyWithPadding(float) = ios 0x1e220c;
+	void alignItemsHorizontallyWithPadding(float) = imac 0x79f410, m1 0x6a78f0, ios 0x1e220c;
 	// void alignItemsInColumns(unsigned int, ...);
 	// void alignItemsInColumns(unsigned int, char*);
 	void alignItemsInColumnsWithArray(cocos2d::CCArray*);
@@ -2306,7 +2332,7 @@ class cocos2d {
 
 [[link(win, android)]]
 class DS_Dictionary {
-	DS_Dictionary() = m1 0x13e1c8;
+	DS_Dictionary() = m1 0x13e1c8, imac 0x174e70;
 	void addBoolValuesToMapForKey(gd::map<gd::string, bool>&, char const*, bool);
 	void addBoolValuesToMapForKeySpecial(gd::map<gd::string, bool>&, char const*, bool);
 	void checkCompatibility();
@@ -2332,14 +2358,14 @@ class DS_Dictionary {
 	cocos2d::CCPoint getVec2ForKey(char const*);
 	bool loadRootSubDictFromCompressedFile(char const*);
 	bool loadRootSubDictFromFile(char const*);
-	bool loadRootSubDictFromString(gd::string const&) = m1 0x13f9b4;
+	bool loadRootSubDictFromString(gd::string const&) = m1 0x13f9b4, imac 0x1766d0;
 	bool rectFromString(gd::string const&, cocos2d::CCRect&);
 	void removeAllKeys();
 	void removeKey(unsigned int);
 	void removeKey(char const*);
 	bool saveRootSubDictToCompressedFile(char const*);
 	bool saveRootSubDictToFile(char const*);
-	gd::string saveRootSubDictToString() = m1 0x140bcc;
+	gd::string saveRootSubDictToString() = m1 0x140bcc, imac 0x177d40;
 	void setArrayForKey(char const*, cocos2d::CCArray*);
 	void setBoolForKey(char const*, bool, bool);
 	void setBoolForKey(char const*, bool);
@@ -2367,7 +2393,7 @@ class DS_Dictionary {
 	void split(gd::string const&, char const*, gd::vector<gd::string>&);
 	bool splitWithForm(gd::string const&, gd::vector<gd::string>&);
 	void stepBackToRootSubDict();
-	bool stepIntoSubDictWithKey(char const*) = m1 0x14113c;
+	bool stepIntoSubDictWithKey(char const*) = m1 0x14113c, imac 0x178380;
 	void stepOutOfSubDict();
 	bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
 }
@@ -2469,7 +2495,7 @@ class cocos2d::ZipUtils {
 	static gd::string base64URLDecode(gd::string const&);
 	static gd::string base64URLEncode(gd::string const&);
 	static void ccDecodeEncodedPvr(unsigned int*, int);
-	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**) = m1 0x1b1220;
+	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**) = m1 0x1b1220, imac 0x1ff6c0;
 	static int ccInflateCCZFile(char const*, unsigned char**);
 	static int ccInflateGZipFile(char const*, unsigned char**);
 	static int ccInflateMemory(unsigned char*, unsigned int, unsigned char**);
@@ -2477,7 +2503,7 @@ class cocos2d::ZipUtils {
 	static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int);
 	static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
 	static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-	static gd::string compressString(gd::string const&, bool, int);
+	static gd::string compressString(gd::string const&, bool, int) = m1 0x1b0f10, imac 0x1ff430;
 	static gd::string decompressString2(unsigned char*, bool, int, int);
 	static gd::string decompressString(gd::string const&, bool, int);
 	static gd::string encryptDecrypt(gd::string const&, int);
@@ -2488,14 +2514,14 @@ class cocos2d::ZipUtils {
 
 [[link(win, android)]]
 class pugi::xml_document {
-	xml_document() = m1 0x56bb98;
-	~xml_document() = m1 0x56bcec;
+	xml_document() = m1 0x56bb98, imac 0x64d800;
+	~xml_document() = m1 0x56bcec, imac 0x64d950;
 }
 
 [[link(win, android)]]
 class pugi::xml_node {
 	// i'm not bothering
-	xml_node() = m1 inline {
+	xml_node() = m1 inline, imac inline {
 		_root = nullptr;
 	}
 }
