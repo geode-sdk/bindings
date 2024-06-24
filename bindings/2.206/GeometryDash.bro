@@ -2879,7 +2879,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	void onLowDetailMode(cocos2d::CCObject* sender);
 	void onMoveToTop();
 	void onPlay(cocos2d::CCObject* sender);
-	void onSetFolder(cocos2d::CCObject* sender);
+	void onSetFolder(cocos2d::CCObject* sender) = win 0xd5d20;
 	void onShare(cocos2d::CCObject* sender) = win 0xd4c80, m1 0x1a90d4, ios 0xebd04;
 	void onTest(cocos2d::CCObject* sender);
 	void onUpdateDescription(cocos2d::CCObject* sender);
@@ -4468,7 +4468,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void deleteFriendRequests(int, cocos2d::CCArray*, bool);
 	void deleteLevel(GJGameLevel*) = win 0x140640, imac 0x533f10, m1 0x4874e4;
 	void deleteLevelComment(int, int);
-	void deleteLevelList(GJLevelList*);
+	void deleteLevelList(GJLevelList*) = win 0x140ef0;
 	void deleteSentFriendRequest(int) = imac 0x55bc60;
 	void deleteServerLevel(int) = win 0x14eb70, imac 0x54e760, m1 0x49e9a0;
 	void deleteServerLevelList(int);
@@ -6256,7 +6256,7 @@ class GJAccountManager : cocos2d::CCNode {
 
 	void addDLToActive(char const* tag, cocos2d::CCObject*);
 	void addDLToActive(char const* tag);
-	bool backupAccount(gd::string);
+	bool backupAccount(gd::string) = win 0x1f2bc0;
 	void dataLoaded(DS_Dictionary*);
 	void encodeDataTo(DS_Dictionary*);
 	void firstSetup();
@@ -11002,9 +11002,9 @@ class LocalLevelManager : GManager {
 	TodoReturn updateLevelRevision();
 
 	virtual bool init() = win 0x30f670, m1 0x527fcc, imac 0x6012b0;
-	virtual void encodeDataTo(DS_Dictionary*) = m1 0x52936c, imac 0x6028e0;
-	virtual void dataLoaded(DS_Dictionary*) = m1 0x5293c4, imac 0x602940;
-	virtual void firstLoad() = m1 0x5292f0, imac 0x602850;
+	virtual void encodeDataTo(DS_Dictionary*) = win 0x310040, m1 0x52936c, imac 0x6028e0;
+	virtual void dataLoaded(DS_Dictionary*) = win 0x3100a0, m1 0x5293c4, imac 0x602940;
+	virtual void firstLoad() = win 0x30ffb0, m1 0x5292f0, imac 0x602850;
 
 	cocos2d::CCArray* m_localLevels;
 	cocos2d::CCArray* m_localLists;
