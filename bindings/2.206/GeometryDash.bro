@@ -4410,11 +4410,11 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 
 	static FriendsProfilePage* create(UserListType);
 
-	bool init(UserListType) = win 0x13b830;
+	bool init(UserListType type) = win 0x13b830, imac 0x664670, m1 0x58095c;
 	void onBlocked(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
-	void setupUsersBrowser(cocos2d::CCArray*, UserListType) = win 0x13bf40;
+	void setupUsersBrowser(cocos2d::CCArray* users, UserListType type) = win 0x13bf40, imac 0x664f20, m1 0x58116c;
 
 	virtual void registerWithTouchDispatcher() = m1 0x581780, imac 0x665540;
 	virtual void keyBackClicked() = win 0x13c770, m1 0x581774, imac 0x665510;
@@ -4422,6 +4422,16 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 	virtual void getUserListFailed(UserListType, GJErrorCode) = win 0x13c3f0, m1 0x581514, imac 0x6652d0;
 	virtual void userListChanged(cocos2d::CCArray*, UserListType) = m1 0x581644, imac 0x6653e0;
 	virtual void forceReloadList(UserListType) = win 0x13c460, m1 0x581660, imac 0x665420;
+
+	UserListType m_type;
+	cocos2d::CCLabelBMFont* m_noInternet;
+	cocos2d::CCLabelBMFont* m_totalFriends;
+	GJCommentListLayer* m_listLayer;
+	LoadingCircle* m_circle;
+	void* m_unk532;
+	cocos2d::CCArray* m_users;
+	CCMenuItemSpriteExtra* m_refreshBtn;
+
 }
 
 [[link(android)]]
@@ -4545,7 +4555,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1527e0;
 	char const* getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
 	char const* getLevelListKey(int);
-	void getLevelLists(GJSearchObject*) = win 0x14af50;
+	void getLevelLists(GJSearchObject*) = win 0x14af50, imac 0x549df0;
 	void getLevelSaveData() = win 0x149640, m1 0x498ffc, imac 0x548020, ios 0xa04b0;
 	char const* getLikeAccountItemKey(LikeItemType, int, bool, int);
 	char const* getLikeItemKey(LikeItemType, int, bool, int);
@@ -4580,7 +4590,7 @@ class GameLevelManager : cocos2d::CCNode {
 	int getSplitIntFromKey(char const*, int);
 	cocos2d::CCArray* getStoredLevelComments(char const*) = win 0x157b80;
 	cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0x144320, m1 0x4914d8, imac 0x53f3e0;
-	cocos2d::CCArray* getStoredUserList(UserListType);
+	cocos2d::CCArray* getStoredUserList(UserListType) = m1 0x4abfa8, imac 0x55d490;
 	GJUserMessage* getStoredUserMessage(int);
 	GJUserMessage* getStoredUserMessageReply(int);
 	double getTimeLeft(char const*, float) = win 0x144970;
