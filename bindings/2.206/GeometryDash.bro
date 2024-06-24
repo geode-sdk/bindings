@@ -2799,7 +2799,7 @@ class DrawGridLayer : cocos2d::CCLayer {
 	TodoReturn removeAudioLineObject(AudioLineGuideGameObject*);
 	TodoReturn removeFromEffects(EffectGameObject*);
 	TodoReturn removeFromGuides(GameObject*);
-	TodoReturn removeFromSpeedObjects(EffectGameObject*);
+	TodoReturn removeFromSpeedObjects(EffectGameObject*) = ios 0x36CE70;
 	TodoReturn sortSpeedObjects();
 	float timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int);
 	TodoReturn updateMusicGuideTime(float);
