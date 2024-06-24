@@ -10253,7 +10253,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	// virtual ~LevelInfoLayer();
 	// LevelInfoLayer();
 
-	static LevelInfoLayer* create(GJGameLevel*, bool) = win 0x2d73f0, imac 0x2b8e60, m1 0x258874;
+	static LevelInfoLayer* create(GJGameLevel* level, bool challenge) = win 0x2d73f0, imac 0x2b8e60, m1 0x258874;
 
 	void confirmClone(cocos2d::CCObject*) = win 0x2dd950, imac 0x2bddb0, m1 0x25d43c;
 	void confirmDelete(cocos2d::CCObject*) = win 0x2ddac0, imac 0x2bd590, m1 0x25cc14;
@@ -10263,7 +10263,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void downloadLevel() = win 0x2da130, imac 0x2bbdc0, m1 0x25b4e0;
 	void incrementDislikes();
 	void incrementLikes();
-	bool init(GJGameLevel*, bool) = win 0x2d7620, imac 0x2b9040, m1 0x2589c8;
+	bool init(GJGameLevel* level, bool challenge) = win 0x2d7620, imac 0x2b9040, m1 0x2589c8;
 	void loadLevelStep() = win 0x2dd350, imac 0x2c0300, m1 0x25f890;
 	void onAddToList(cocos2d::CCObject* sender) = win 0x2d9b20, imac 0x2be840, m1 0x25dee8;
 	void onBack(cocos2d::CCObject* sender) = win 0x2e0280, imac 0x2be000, m1 0x25d6c4;
@@ -10291,7 +10291,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void playStep2() = win 0x2dd1a0, imac 0x2c01b0, m1 0x25f744;
 	void playStep3() = win 0x2dd280, imac 0x2c0270, m1 0x25f804;
 	void playStep4() = win 0x2dd400, imac 0x2c03b0, m1 0x25f940;
-	static cocos2d::CCScene* scene(GJGameLevel*, bool) = win 0x2d73a0;
+	static cocos2d::CCScene* scene(GJGameLevel* level, bool challenge) = win 0x2d73a0;
 	void setupLevelInfo() = win 0x2daf80, imac 0x2bbeb0, m1 0x25b5b8;
 	void setupPlatformerStats() = win 0x2da440, imac 0x2bcb10, m1 0x25c0f8;
 	void setupProgressBars() = win 0x2da870, imac 0x2bce50, m1 0x25c4a0;
