@@ -1378,6 +1378,8 @@ class cocos2d::CCDirector {
 	cocos2d::CCSize getWinSizeInPixels();
 	float getZEye();
 	//getScreenTop = ios 0x18260c, idk if i should add the function
+	//getScreenBottom() = ios 0x182614
+	//getScreenLeft() = ios 0x18261C
 
 	void setActualDeltaTime(float);
 	void setAlphaBlending(bool);
@@ -1697,15 +1699,15 @@ class cocos2d::CCArray {
 	// CCArray(cocos2d::CCArray const&);
 	// CCArray(unsigned int);
 	// CCArray();
-	// void addObject(cocos2d::CCObject*) = imac 0x72cf20, m1 0x63faa4, ios 0x259b6c;
+	void addObject(cocos2d::CCObject*) = imac 0x72cf20, m1 0x63faa4, ios 0x259b6c;
 	void addObjectNew(cocos2d::CCObject*);
-	void addObjectsFromArray(cocos2d::CCArray*);
+	void addObjectsFromArray(cocos2d::CCArray*) = ios 0x259BFC;
 	unsigned int capacity() const;
 	bool containsObject(cocos2d::CCObject*) const;
 	// unsigned int count() const = imac 0x72d2a0, m1 0x63fd7c, ios 0x259c08;
 	void exchangeObject(cocos2d::CCObject*, cocos2d::CCObject*);
 	void exchangeObjectAtIndex(unsigned int, unsigned int);
-	void fastRemoveObject(cocos2d::CCObject*);
+	void fastRemoveObject(cocos2d::CCObject*) = ios 0x259CE8;
 	void fastRemoveObjectAtIndex(unsigned int);
 	void fastRemoveObjectAtIndexChild(unsigned int);
 	void fastRemoveObjectAtIndexNew(unsigned int);
