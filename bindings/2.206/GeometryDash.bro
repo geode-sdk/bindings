@@ -3990,7 +3990,7 @@ class FindObjectPopup : SetIDPopup {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-	~FLAlertLayer() = ios 0x2bbd80, imac 0x4a49c0 , win 0x50960{
+	~FLAlertLayer() = ios 0x2bbd80, imac 0x4a49c0, win 0x50960 {
 		if (m_forcePrioRegistered) {
 			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
 		}
