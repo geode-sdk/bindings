@@ -7904,14 +7904,22 @@ class GJGameState {
 [[link(android)]]
 class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, GameRateDelegate, ListButtonBarDelegate, DialogDelegate, CharacterColorDelegate, RewardedVideoDelegate {
 	// virtual ~GJGarageLayer();
-	// GJGarageLayer() = ios 0x31a060;
+	GJGarageLayer() = ios 0x31a060 {}
 
 	gd::string achievementForUnlock(int, UnlockType);
 	gd::string descriptionForUnlock(int, UnlockType) = win 0x266240;
 	cocos2d::CCArray* getItems(IconType) = win 0x264710, m1 0x2fb2e8, imac 0x36f1c0;
 	cocos2d::CCArray* getItems(int, int, IconType, int) = win 0x2647d0;
 	gd::string getLockFrame(int, UnlockType);
-	static GJGarageLayer* node() = win 0x260f90, ios 0x312750, imac 0x36a6a0, m1 0x2f6a6c;
+	static GJGarageLayer* node() = win inline, ios 0x312750, imac 0x36a6a0, m1 0x2f6a6c {
+		auto ret = new GJGarageLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 	void onArrow(cocos2d::CCObject* sender) = win 0x263e50;
 	void onBack(cocos2d::CCObject* sender) = win 0x266f60;
 	void onInfo(cocos2d::CCObject* sender) = win 0x262a50;
@@ -7966,6 +7974,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	cocos2d::CCMenu* m_navDotMenu;
 	int m_iconID;
 	IconType m_selectedIconType;
+	bool m_unkBool;
 }
 
 [[link(android)]]
