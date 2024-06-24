@@ -2555,7 +2555,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	TodoReturn updateError(GJSongError);
 	TodoReturn updateLengthMod(float);
 	void updateMultiAssetInfo(bool) = win 0xc9960;
-	TodoReturn updatePlaybackBtn();
+	void updatePlaybackBtn() = win 0xc85b0;
 	void updateProgressBar(int) = win 0xc86a0;
 	void updateSongInfo() = win 0xc8800;
 	void updateSongObject(SongInfoObject*);
@@ -15706,7 +15706,7 @@ class SongOptionsLayer : FLAlertLayer {
 	void onFadeOut(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
 	void onPlayback(cocos2d::CCObject* sender);
-	TodoReturn updatePlaybackBtn();
+	void updatePlaybackBtn();
 
 	virtual void keyBackClicked() = win 0xc2b20, m1 0x1c2fac, imac 0x211f30;
 }
