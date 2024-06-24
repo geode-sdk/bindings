@@ -1656,7 +1656,7 @@ class CharacterColorPage : FLAlertLayer {
 	void updateIconColors() = win 0x88d30;
 
 	virtual bool init() = win 0x866e0, m1 0x585a10, imac 0x669d70, ios 0x12f38c;
-	virtual void registerWithTouchDispatcher() = m1 0x587994, imac 0x66bd60, win 0x51ee0 /* just took the flalertlayer one meow */;
+	virtual void registerWithTouchDispatcher() = m1 0x587994, imac 0x66bd60, win 0x41750;
 	virtual void keyBackClicked() = win 0x88f90, m1 0x5878e8, imac 0x66bcc0;
 	virtual void show() = m1 0x587760, imac 0x66bb30;
 
