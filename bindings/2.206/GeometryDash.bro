@@ -176,7 +176,7 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn percentageForCount(int, int);
 	int percentForAchievement(char const*) = imac 0x790af0, win 0x38c60;
 	void reportAchievementWithID(char const*, int, bool); //win: inlined
-	void reportPlatformAchievementWithID(char const*, int); //win: inlined
+	void reportPlatformAchievementWithID(char const*, int);
 	void resetAchievement(char const*);
 	TodoReturn resetAchievements();
 	TodoReturn setup();
