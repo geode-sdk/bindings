@@ -13,6 +13,7 @@ GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36F7);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 
 
+GEODE_SIZE_CHECK(GJBaseGameLayer, 0x34c0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf6c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2fd8);
@@ -20,6 +21,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3158);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk3458, 0x3288);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3298);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32f8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x3420);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
