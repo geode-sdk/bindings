@@ -1624,8 +1624,21 @@ class CharacterColorDelegate {
 [[link(android)]]
 class CharacterColorPage : FLAlertLayer {
 	// virtual ~CharacterColorPage();
+	CharacterColorPage() = win inline {
+		m_colorMode = 0;
+		m_height = 0.f;
+		m_width = 0.f;
+		m_playerObjects = nullptr;
+		m_modeButtons = nullptr;
+		m_colorButtons = nullptr;
+		m_cursors = nullptr;
+		m_delegate = nullptr;
+		m_glowToggler = nullptr;
+		m_glowLabel = nullptr;
+		FLAlertLayer();
+	}
 
-	static CharacterColorPage* create() = ios 0x12f2cc;
+	static CharacterColorPage* create() = ios 0x12f2cc, m1 0x585908, imac 0x669c10;
 
 	int activeColorForMode(int mode);
 	TodoReturn checkColor(int, UnlockType);
@@ -1643,7 +1656,7 @@ class CharacterColorPage : FLAlertLayer {
 	void updateIconColors() = win 0x88d30;
 
 	virtual bool init() = win 0x866e0, m1 0x585a10, imac 0x669d70, ios 0x12f38c;
-	virtual void registerWithTouchDispatcher() = m1 0x587994, imac 0x66bd60;
+	virtual void registerWithTouchDispatcher() = m1 0x587994, imac 0x66bd60, win 0x41750;
 	virtual void keyBackClicked() = win 0x88f90, m1 0x5878e8, imac 0x66bcc0;
 	virtual void show() = m1 0x587760, imac 0x66bb30;
 
@@ -8217,7 +8230,7 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
 
 	void blockUser();
 	bool init(GJUserMessage*);
-	void loadFromGJMessage(GJUserMessage*);
+	void loadFromGJMessage(GJUserMessage*) = win 0x0285be0, imac 0x2a2980, m1 0x2445b4, ios 0x2eb808;
 	void onBlock(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onRemove(cocos2d::CCObject* sender);
@@ -9126,7 +9139,7 @@ class GJUserScore : cocos2d::CCNode {
 	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x1688d0;
 	GJUserScore() = win 0x13d890;
 
-	bool isCurrentUser();
+	bool isCurrentUser() = win 0x16a2c0, m1 0x4b52d0, imac 0x567360;
 	TodoReturn mergeWithScore(GJUserScore*);
 
 	virtual bool init() = win 0x16a270, m1 0x4b525c, imac 0x5672d0;
