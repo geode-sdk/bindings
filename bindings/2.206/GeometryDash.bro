@@ -2948,7 +2948,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 		m_editorLayer = nullptr;
 	}
 
-	static EditorPauseLayer* create(LevelEditorLayer*) = win inline {
+	static EditorPauseLayer* create(LevelEditorLayer*) = win inline, imac 0x28ce10, m1 0x230728 {
 		auto ret = new EditorPauseLayer();
 		if (ret && ret->init(LevelEditorLayer::get())) {
 			ret->autorelease();
@@ -3183,13 +3183,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onPasteColor(cocos2d::CCObject* sender) = win 0x110860;
 	void onPasteInPlace(cocos2d::CCObject* sender);
 	void onPasteState(cocos2d::CCObject* sender) = win 0x1106d0;
-	void onPause(cocos2d::CCObject* sender) = win 0xddf70;
+	void onPause(cocos2d::CCObject* sender) = win 0xddf70, imac 0x2abd0, m1 0x2ba08;
 	void onPlayback(cocos2d::CCObject* sender) = win 0x10df30, m1 0xe734;
 	void onPlaytest(cocos2d::CCObject* sender) = win 0x10e540, m1 0xe948, imac 0xca00;
 	void onResetSpecialFilter(cocos2d::CCObject* sender);
 	void onSelectBuildTab(cocos2d::CCObject* sender) = win 0x110af0;
 	void onSettings(cocos2d::CCObject* sender) = win 0xddf10;
-	void onStopPlaytest(cocos2d::CCObject* sender) = win 0x10e8d0, m1 0xeb88;
+	void onStopPlaytest(cocos2d::CCObject* sender) = win 0x10e8d0, m1 0xeb88, imac 0xcc40;
 	TodoReturn onTargetIDChange(int);
 	void onToggleGuide(EffectGameObject*);
 	TodoReturn onToggleSelectedOrder(EffectGameObject*);
@@ -3236,7 +3236,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void showMaxBasicError();
 	void showMaxCoinError();
 	void showMaxError() = win 0x10ED00;
-	void showUI(bool) = m1 0x392e4, win 0x10dda0;
+	void showUI(bool) = imac 0x3dd70, m1 0x392e4, win 0x10dda0;
 	void sliderChanged(cocos2d::CCObject*) = win 0xdef40, ios 0x3CF9B4;
 	TodoReturn smartTypeForKey(int);
 	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
@@ -4410,7 +4410,7 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 
 	static FriendsProfilePage* create(UserListType);
 
-	bool init(UserListType) = win 0x13b830;
+	bool init(UserListType) = win 0x13b830, imac 0x664670, m1 0x58095c;
 	void onBlocked(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onUpdate(cocos2d::CCObject* sender);
@@ -4509,7 +4509,7 @@ class GameLevelManager : cocos2d::CCNode {
 	gd::string getCommentKey(int ID, int page, int mode, CommentKeyType keytype) {
 		return cocos2d::CCString::createWithFormat("comment_%i_%i_%i_%i", ID, page, mode, (int) keytype)->getCString();
 	}
-	cocos2d::CCArray* getCompletedLevels(bool) = win 0x142d40;
+	cocos2d::CCArray* getCompletedLevels(bool) = win 0x142d40, imac 0x53c430, m1 0x48e9e0;
 	int getDailyID(GJTimedLevelType) = imac 0x560e90;
 	double getDailyTimer(GJTimedLevelType) = imac 0x560ef0;
 	char const* getDeleteCommentKey(int, int, int);
@@ -4527,7 +4527,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getGauntletsearchKey(int);
 	void getGJChallenges() = win 0x15fee0;
 	void getGJDailyLevelState(GJTimedLevelType) = win 0x161140;
-	void getGJRewards(int) = win 0x15eaa0;
+	void getGJRewards(int) = win 0x15eaa0, m1 0x4ae6d4, imac 0x55fc50;
 	void getGJUserInfo(int) = win 0x153fe0, m1 0x4a36d8, imac 0x5542e0;
 	int getHighestLevelOrder() = imac 0x53c1a0;
 	int getIntForKey(char const*);
@@ -6116,7 +6116,7 @@ class GameToolbox {
 	static TodoReturn multipliedColorValue(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
 	static TodoReturn openAppPage();
 	static TodoReturn openRateURL(gd::string, gd::string);
-	static cocos2d::CCParticleSystemQuad* particleFromString(gd::string const& str, cocos2d::CCParticleSystemQuad* system, bool p2) = win inline {
+	static cocos2d::CCParticleSystemQuad* particleFromString(gd::string const& str, cocos2d::CCParticleSystemQuad* system, bool p2) = win inline, imac 0x500b10, m1 0x458ac0 {
 		cocos2d::ParticleStruct ret;
 		GameToolbox::particleStringToStruct(str, ret);
 		return GameToolbox::particleFromStruct(ret, system, p2);
@@ -8718,7 +8718,7 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	void onBan(cocos2d::CCObject* sender);
 	void onCheck(cocos2d::CCObject* sender);
 	void onMoreLevels(cocos2d::CCObject* sender);
-	void onViewProfile(cocos2d::CCObject* sender) = win 0xb70f0;
+	void onViewProfile(cocos2d::CCObject* sender) = win 0xb70f0, imac 0x2513b0, m1 0x1facac;
 	TodoReturn updateBGColor(int);
 
 	virtual bool init() = win 0xb2210, m1 0x1faca0, imac 0x251390;
@@ -9124,7 +9124,7 @@ class GJUserMessage : cocos2d::CCNode {
 class GJUserScore : cocos2d::CCNode {
 	// virtual ~GJUserScore();
 
-	static GJUserScore* create() = win inline, imac 0x567170 {
+	static GJUserScore* create() = win inline, imac 0x567170, m1 0x4b5174 {
 		auto ret = new GJUserScore();
 		if (ret->init()) {
 			ret->autorelease();
@@ -9134,7 +9134,7 @@ class GJUserScore : cocos2d::CCNode {
 		delete ret;
 		return nullptr;
 	}
-	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x1688d0;
+	static GJUserScore* create(cocos2d::CCDictionary*) = win 0x1688d0, imac 0x53a5f0, m1 0x48ce74;
 	GJUserScore() = win 0x13d890;
 
 	bool isCurrentUser() = win 0x16a2c0, m1 0x4b52d0, imac 0x567360;
@@ -13205,14 +13205,14 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	void onBack(cocos2d::CCObject* sender) = win 0x3c3f00;
 	void onDoor(cocos2d::CCObject* sender) = win 0x3bf060;
 	void onSecretLevel(cocos2d::CCObject* sender) = win 0x3bede0;
-	void onSubmit(cocos2d::CCObject* sender) = win 0x3bf9c0;
+	void onSubmit(cocos2d::CCObject* sender) = win 0x3bf9c0, imac 0x4a81c0, m1 0x40b560;
 	void playCoinEffect() = win 0x3c3a80;
 	TodoReturn scene() = win 0x3bc910;
 	void selectAThread(); // inlined on windows
 	void showCompletedLevel() = win 0x3be090;
 	void showSecretLevel() = win 0x3bdf20;
 	void updateMessageLabel(gd::string) = win 0x3c1940;
-	void updateSearchLabel(char const*) = win 0x3c1650;
+	void updateSearchLabel(char const*) = win 0x3c1650, imac 0x4a7ee0, m1 0x40b294;
 
 	virtual bool init() = win 0x3bca90, m1 0x40a32c, imac 0x4a6f10;
 	virtual void onExit() = win 0x3c3fc0, m1 0x410058, imac 0x4ad060;
@@ -15510,10 +15510,10 @@ class SimplePlayer : cocos2d::CCSprite {
 	GJSpiderSprite* m_spiderSprite;
 	int m_unknown;
 	bool m_hasGlowOutline;
-	PAD = win 0x7, android32 0x7, android64 0x7;
+	PAD = win 0x7, android 0x7, mac 0x7, ios 0x7;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
-	PAD = win 0x4, android32 0x4, android64 0x8;
+	PAD = win 0x4, imac 0x4, android32 0x4, android64 0x8, m1 0x8, ios 0x8;
 }
 
 [[link(android)]]
