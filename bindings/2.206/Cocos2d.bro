@@ -718,7 +718,7 @@ class cocos2d::CCNode {
 	void resumeSchedulerAndActions() = ios 0x24c6fc, imac 0x26fd80, m1 0x2160c4;
 	cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x2700d0, m1 0x216408, ios 0x24ca08;
 	void schedule(cocos2d::SEL_SCHEDULE) = imac 0x270300, m1 0x2165bc, ios 0x24cb34;
-	void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x270360, m1 0x2165fc, 0x24cb58;
+	void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x270360, m1 0x2165fc, ios 0x24cb58;
 	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float);
 	void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = imac 0x270390, m1 0x21661c;
 	void scheduleUpdate() = imac 0x2701e0, m1 0x2164c4, ios 0x24cab0;
