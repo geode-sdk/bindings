@@ -8008,7 +8008,6 @@ class GJHttpResult : cocos2d::CCNode {
 class GJItemIcon : cocos2d::CCSprite {
 	// virtual ~GJItemIcon();
 
-
 	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = m1 0x2fe438; //win: inlined
 	void changeToLockedState(float) = win 0x2694c0, ios 0x316AB8;
 	static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x268880;
