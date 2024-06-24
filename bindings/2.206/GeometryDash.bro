@@ -3065,9 +3065,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool);
 	UndoObject* createUndoObject(UndoCommand, bool) = win 0x10d3d0;
 	TodoReturn createUndoSelectObject(bool) = win 0x10d6f0;
-	TodoReturn deactivateRotationControl();
-	TodoReturn deactivateScaleControl() = win 0x111010;
-	TodoReturn deactivateTransformControl() = win 0x111660;
+	TodoReturn deactivateRotationControl() = ios 0x3CFABC;
+	TodoReturn deactivateScaleControl() = win 0x111010, ios 0x3CFB8C;
+	TodoReturn deactivateTransformControl() = win 0x111660, ios 0x3CFCA0;
 	void deleteObject(GameObject*, bool);
 	TodoReturn deleteSmartBlocksFromObjects(cocos2d::CCArray*);
 	TodoReturn deleteTypeFromObjects(int, cocos2d::CCArray*);
@@ -3114,7 +3114,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getGroupCenter(cocos2d::CCArray*, bool) = win 0x11ed20;
 	TodoReturn getGroupInfo(GameObject*, cocos2d::CCArray*, int&, int&, int&);
 	cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint) = win 0x11c280;
-	TodoReturn getModeBtn(char const*, int);
+	CCMenuItemSpriteExtra* getModeBtn(char const*, int) = ios 0x247D9C;
 	TodoReturn getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getRandomStartKey(int);
 	TodoReturn getRelativeOffset(GameObject*);
@@ -3129,7 +3129,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getTouchPoint(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn getTransformState();
 	TodoReturn getXMin(int);
-	bool init(LevelEditorLayer* editorLayer) = win 0xdba20, m1 0xb790, imac 0x94c0;
+	bool init(LevelEditorLayer* editorLayer) = win 0xdba20, m1 0xb790, imac 0x94c0, ios 0x3CDA60;
 	bool isLiveColorSelectTrigger(GameObject*);
 	bool isSpecialSnapObject(int) = win 0x124e40;
 	TodoReturn liveEditColorUsable();
@@ -3224,7 +3224,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void showMaxCoinError();
 	void showMaxError() = win 0x10ED00;
 	void showUI(bool) = m1 0x392e4, win 0x10dda0;
-	void sliderChanged(cocos2d::CCObject*) = win 0xdef40;
+	void sliderChanged(cocos2d::CCObject*) = win 0xdef40, ios 0x3CF9B4;
 	TodoReturn smartTypeForKey(int);
 	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
 	TodoReturn toggleDuplicateButton();
@@ -8634,7 +8634,7 @@ class GJRotateCommandLayer : SetupTriggerPopup {
 class GJRotationControl : cocos2d::CCLayer {
 	// virtual ~GJRotationControl();
 
-	static GJRotationControl* create();
+	static GJRotationControl* create() = ios 0x3CFA48;
 
 	TodoReturn finishTouch() = win 0x125490;
 	void setAngle(float);
@@ -8659,7 +8659,7 @@ class GJRotationControlDelegate {
 class GJScaleControl : cocos2d::CCLayer {
 	// virtual ~GJScaleControl();
 
-	static GJScaleControl* create();
+	static GJScaleControl* create() = ios 0x3CFB18;
 
 	TodoReturn finishTouch();
 	TodoReturn loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&);
@@ -8989,7 +8989,7 @@ class GJStoreItem : cocos2d::CCNode {
 class GJTransformControl : cocos2d::CCLayer {
 	// virtual ~GJTransformControl();
 
-	static GJTransformControl* create();
+	static GJTransformControl* create() = ios 0x3CFC2C;
 
 	TodoReturn applyRotation(float);
 	TodoReturn calculateRotationOffset();
