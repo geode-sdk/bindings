@@ -3799,7 +3799,7 @@ class EnhancedGameObject : GameObject {
 	void updateUserCoin() = win 0x19c930;
 	TodoReturn waitForAnimationTrigger();
 
-	virtual void customSetup() = m1 0x502290, imac 0x5d5220;
+	virtual void customSetup() = win 0x19afb0, m1 0x502290, imac 0x5d5220;
 	virtual void resetObject() = win 0x19A970, m1 0x501c24, imac 0x5d4a60;
 	virtual void deactivateObject(bool) = m1 0x5033f4, imac 0x5d80e0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x501ed8, imac 0x5d4d40;
@@ -5385,18 +5385,7 @@ class GameObject : CCSpritePlus {
 	}
 	TodoReturn createOpacityGroupContainer(int);
 	void createSpriteColor(int) = m1 0x4ed1f8, imac 0x5aaaf0;
-	static GameObject* createWithFrame(char const* name) = win inline, imac 0x5aa890, m1 0x4ecf80 {
-		auto ret = new GameObject();
-		ret->m_eObjType = cocos2d::CCObjectType::GameObject;
-		if (ret->initWithSpriteFrameName(name)) {
-			ret->commonSetup();
-			ret->m_bUnkBool2 = true;
-			ret->autorelease();
-			return ret;
-		}
-		delete ret;
-		return nullptr;
-	}
+	static GameObject* createWithFrame(char const* name) = win 0x183c60, imac 0x5aa890, m1 0x4ecf80;
 	static GameObject* createWithKey(int) = win 0x181810;
 	void deselectObject(); // = win 0x141b70; actually updateObjectEditorColor, source: LevelEditorLayer::updateVisibility
 	inline void destroyObject() {
