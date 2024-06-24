@@ -228,8 +228,8 @@ class AchievementsLayer : GJDropDownLayer {
 	static AchievementsLayer* create(); //win: inlined
 
 	void loadPage(int) = win 0x80cd0;
-	void onNextPage(cocos2d::CCObject* sender); //win: inlined
-	void onPrevPage(cocos2d::CCObject* sender); //win: inlined
+	void onNextPage(cocos2d::CCObject* sender) = win 0x80eb0;
+	void onPrevPage(cocos2d::CCObject* sender) = win 0x80ec0;
 	TodoReturn setupLevelBrowser(cocos2d::CCArray*); //win: inlined
 	void setupPageInfo(int, int, int); //win: inlined
 
