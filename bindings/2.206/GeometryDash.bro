@@ -7979,7 +7979,7 @@ class GJGradientLayer : cocos2d::CCLayerGradient {
 class GJGroundLayer : cocos2d::CCLayer {
 	// virtual ~GJGroundLayer();
 
-	static GJGroundLayer* create(int, int) = win 0x26bfe0, ios 0x32198;
+	static GJGroundLayer* create(int, int) = win 0x26bfe0, ios 0x32198, imac 0x5F4210, m1 0x51C2D0;
 
 	void createLine(int) = win 0x26c890;
 	TodoReturn deactivateGround();
