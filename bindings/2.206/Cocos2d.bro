@@ -1689,7 +1689,7 @@ class cocos2d::CCApplication {
 class cocos2d::CCArray {
 	// static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
 	// static cocos2d::CCArray* create() = imac 0x72cc40, m1 0x63f894, ios 0x2599ec;
-	static cocos2d::CCArray* createWithArray(cocos2d::CCArray*) = m1 0x63faac;
+	// static cocos2d::CCArray* createWithArray(cocos2d::CCArray*) = m1 0x63faac;
 	// static cocos2d::CCArray* createWithCapacity(unsigned int) = ios 0x259b9c;
 	static cocos2d::CCArray* createWithContentsOfFile(char const*);
 	static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*);
@@ -1697,7 +1697,7 @@ class cocos2d::CCArray {
 
 	bool init();
 	bool initWithArray(cocos2d::CCArray*);
-	bool initWithCapacity(unsigned int) = imac 0x72cbb0;
+	// bool initWithCapacity(unsigned int) = imac 0x72cbb0;
 	bool initWithObject(cocos2d::CCObject*);
 	// bool initWithObjects(cocos2d::CCObject*, ...);
 
@@ -1724,7 +1724,7 @@ class cocos2d::CCArray {
 	cocos2d::CCObject* randomObject();
 	void recreateNewIndexes();
 	void reduceMemoryFootprint();
-	void removeAllObjects() = m1 0x63ff34;
+	// void removeAllObjects() = m1 0x63ff34;
 	// void removeLastObject(bool) = imac 0x72d440;
 	void removeObject(cocos2d::CCObject*, bool);
 	// void removeObjectAtIndex(unsigned int, bool) = m1 0x63ff18, ios 0x259CF0;
