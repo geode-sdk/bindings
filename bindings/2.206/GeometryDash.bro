@@ -7989,7 +7989,7 @@ class GJGradientLayer : cocos2d::CCLayerGradient {
 class GJGroundLayer : cocos2d::CCLayer {
 	// virtual ~GJGroundLayer();
 
-	static GJGroundLayer* create(int, int) = win 0x26bfe0, ios 0x32198;
+	static GJGroundLayer* create(int, int) = win 0x26bfe0, imac 0x5f4210, m1 0x51c2d0, ios 0x32198;
 
 	void createLine(int) = win 0x26c890;
 	TodoReturn deactivateGround();
@@ -11114,30 +11114,30 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
 	void endGame() = ios 0x277ddc;
 	void firstNetworkTest() = win 0x314950, ios 0x2778b8;
-	void onAchievements(cocos2d::CCObject* sender) = win 0x314e80, ios 0x2773d4;
-	void onCreator(cocos2d::CCObject* sender) = win 0x315390, ios 0x27737c;
-	void onDaily(cocos2d::CCObject* sender) = win 0x314700, ios 0x277854;
-	void onDiscord(cocos2d::CCObject* sender) = win 0x314d80, ios 0x277620;
+	void onAchievements(cocos2d::CCObject* sender) = win 0x314e80, imac 0x394230, m1 0x31c39c, ios 0x2773d4;
+	void onCreator(cocos2d::CCObject* sender) = win 0x315390, imac 0x3941a0, m1 0x31c320, ios 0x27737c;
+	void onDaily(cocos2d::CCObject* sender) = win 0x314700, imac 0x3947c0, m1 0x31c96c, ios 0x277854;
+	void onDiscord(cocos2d::CCObject* sender) = win 0x314d80, imac 0x394460, m1 0x31c60c, ios 0x277620;
 	void onEveryplay(cocos2d::CCObject* sender);
-	void onFacebook(cocos2d::CCObject* sender) = win 0x314d00, ios 0x277590;
+	void onFacebook(cocos2d::CCObject* sender) = win 0x314d00, imac 0x3943e0, m1 0x31c57c, ios 0x277590;
 	void onFreeLevels(cocos2d::CCObject* sender);
 	void onFullVersion(cocos2d::CCObject* sender);
 	void onGameCenter(cocos2d::CCObject* sender) = ios 0x2778cc;
-	void onGarage(cocos2d::CCObject* sender) = win 0x315420, ios 0x277324;
+	void onGarage(cocos2d::CCObject* sender) = win 0x315420, imac 0x394110, m1 0x31c2a4, ios 0x277324;
 	void onGooglePlayGames(cocos2d::CCObject* sender);
-	void onMoreGames(cocos2d::CCObject* sender) = win 0x314da0, ios 0x277644, m1 0x31c630;
-	void onMyProfile(cocos2d::CCObject* sender) = win 0x314c40, ios 0x2776c8;
-	void onNewgrounds(cocos2d::CCObject* sender) = win 0x3154b0, ios 0x2774b8;
-	void onOptions(cocos2d::CCObject* sender) = win 0x3150d0, ios 0x277420;
+	void onMoreGames(cocos2d::CCObject* sender) = win 0x314da0, imac 0x394480, m1 0x31c630, ios 0x277644;
+	void onMyProfile(cocos2d::CCObject* sender) = win 0x314c40, imac 0x3945d0, m1 0x31c78c, ios 0x2776c8;
+	void onNewgrounds(cocos2d::CCObject* sender) = win 0x3154b0, imac 0x3942f0, m1 0x31c480, ios 0x2774b8;
+	void onOptions(cocos2d::CCObject* sender) = win 0x3150d0, imac 0x394270, m1 0x31c3e8, ios 0x277420;
 	void onOptionsInstant() = win 0x3150e0, ios 0x276044;
-	void onPlay(cocos2d::CCObject* sender) = win 0x315030, ios 0x2772c8;
+	void onPlay(cocos2d::CCObject* sender) = win 0x315030, imac 0x394080, m1 0x31c224, ios 0x2772c8;
 	void onQuit(cocos2d::CCObject* sender) = win 0x3155f0, m1 0x31c6b4, imac 0x394500;
-	void onRobTop(cocos2d::CCObject* sender) = win 0x314ce0, ios 0x27756c;
-	void onStats(cocos2d::CCObject* sender) = win 0x315270, ios 0x27746c;
+	void onRobTop(cocos2d::CCObject* sender) = win 0x314ce0, imac 0x3943c0, m1 0x31c558, ios 0x27756c;
+	void onStats(cocos2d::CCObject* sender) = win 0x315270, imac 0x3942b0, m1 0x31c434, ios 0x27746c;
 	void onTrailer(cocos2d::CCObject* sender);
-	void onTwitch(cocos2d::CCObject* sender) = win 0x314d60, ios 0x2775fc;
-	void onTwitter(cocos2d::CCObject* sender) = win 0x314d20, ios 0x2775b4;
-	void onYouTube(cocos2d::CCObject* sender) = win 0x314d40, ios 0x2775d8;
+	void onTwitch(cocos2d::CCObject* sender) = win 0x314d60, imac 0x394440, m1 0x31c5e8, ios 0x2775fc;
+	void onTwitter(cocos2d::CCObject* sender) = win 0x314d20, imac 0x394400, m1 0x31c5a0, ios 0x2775b4;
+	void onYouTube(cocos2d::CCObject* sender) = win 0x314d40, imac 0x394420, m1 0x31c5c4, ios 0x2775d8;
 	void openOptions(bool videoOptions) = win 0x3150f0, ios 0x277acc;
 	void showGCQuestion();
 	void showMeltdownPromo();
