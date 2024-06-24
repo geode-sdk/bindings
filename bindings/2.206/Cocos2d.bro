@@ -2497,7 +2497,7 @@ class pugi::xml_document {
 [[link(win, android)]]
 class pugi::xml_node {
 	// i'm not bothering
-	xml_node() = m1 inline {
+	xml_node() = m1 inline, imac inline {
 		_root = nullptr;
 	}
 }
