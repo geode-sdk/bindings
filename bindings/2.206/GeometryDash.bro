@@ -5100,7 +5100,29 @@ class GameManager : GManager {
 	TodoReturn likeFacebook();
 	void loadBackground(int) = win 0x179870, imac 0x384b90, m1 0x30e7ec;
 	void loadBackgroundAsync(int);
-	void loadDeathEffect(int); // inlined on windows
+	
+	void loadDeathEffect(int id) = imac 0x384a10, m1 0x30e674, win inline {
+		if (id < 1) id = 1;
+		if (id > 19) id = 20;
+		if (id != m_loadedDeathEffect) {
+			if (1 < m_loadedDeathEffect) {
+				cocos2d::CCTextureCache::sharedTextureCache()->removeTextureForKey(
+					cocos2d::CCString::createWithFormat("PlayerExplosion_%02d.png", m_loadedDeathEffect-1)->getCString()
+				);
+			}
+			if (1 < id) {
+				cocos2d::CCTextureCache::sharedTextureCache()->addImage(
+					cocos2d::CCString::createWithFormat("PlayerExplosion_%02d.png", id-1)->getCString(),
+					false
+				);
+				cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(
+					cocos2d::CCString::createWithFormat("PlayerExplosion_%02d.plist", id-1)->getCString()
+				);
+			}
+			m_loadedDeathEffect = id;
+		}
+	}
+
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool);
 	TodoReturn loadFont(int);
