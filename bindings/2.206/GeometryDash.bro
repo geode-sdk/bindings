@@ -3969,7 +3969,7 @@ class ExtendedLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class FileOperation {
-	static std::string getFilePath();
+	static gd::string getFilePath();
 	static void readFile();
 	static void saveFile();
 }
