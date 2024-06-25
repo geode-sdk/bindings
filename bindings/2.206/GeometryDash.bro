@@ -5031,7 +5031,7 @@ class GameManager : GManager {
 	TodoReturn dpadConfigToString(UIButtonConfig&) = win 0x17cde0;
 	TodoReturn eventUnlockFeature(char const*);
 	void fadeInMenuMusic() = win 0x173140, imac 0x378e90, m1 0x3045f8, ios 0x323038;
-	void fadeInMusic(gd::string) = win 0x173230, ios 0x3230c4;
+	void fadeInMusic(gd::string) = win 0x173230, ios 0x3230c4, imac 0x378f60, m1 0x3046f0;
 	TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*);
 	TodoReturn finishedLoadingGAsync(int);
 	TodoReturn finishedLoadingGAsync1(cocos2d::CCObject*);
@@ -5061,7 +5061,7 @@ class GameManager : GManager {
 		return m_iconRequestID++;
 	}
 	int getIntGameVariable(char const*) = win 0x17a6e0, ios 0x329d2c;
-	gd::string getMenuMusicFile() = win 0x172db0, ios 0x322c64;
+	gd::string getMenuMusicFile() = win 0x172db0, ios 0x322c64, imac 0x378890, m1 0x303f34;
 	TodoReturn getMGTexture(int);
 	TodoReturn getNextUniqueObjectKey();
 	TodoReturn getNextUsedKey(int, bool);
