@@ -5190,7 +5190,7 @@ class GameManager : GManager {
 	TodoReturn switchCustomObjects(int, int);
 	TodoReturn switchScreenMode(bool, bool);
 	TodoReturn syncPlatformAchievements();
-	void toggleGameVariable(char const*) = win 0x17a260, ios 0x329a70;
+	void toggleGameVariable(char const*) = win 0x17a260, ios 0x329a70, imac 0x385700, m1 0x30f3c8;
 	TodoReturn tryCacheAd();
 	TodoReturn tryShowInterstitial(int, int, int);
 	TodoReturn unloadBackground();
@@ -7964,7 +7964,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onSelectTab(cocos2d::CCObject* sender) = win 0x263f80, imac 0x36e1b0;
 	void onShards(cocos2d::CCObject* sender) = win 0x266c30;
 	void onShop(cocos2d::CCObject* sender) = win 0x266f00;
-	void onSpecial(cocos2d::CCObject* sender) = win 0x265930;
+	void onSpecial(cocos2d::CCObject* sender) = win 0x265930, imac 0x36f510, m1 0x2fb65c;
 	void onToggleItem(cocos2d::CCObject* sender) = win 0x2657a0, ios 0x316C4C;
 	void playRainbowEffect() = win 0x266a40, imac 0x370230, m1 0x2fc130;
 	void playShadowEffect();
