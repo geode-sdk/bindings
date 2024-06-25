@@ -1285,7 +1285,7 @@ class cocos2d::CCEGLView {
 	void onGLFWWindowPosCallback(GLFWwindow* window, int x, int y);
 	void onGLFWWindowSizeFunCallback(GLFWwindow* window, int width, int height);
 	void onGLFWframebuffersize(GLFWwindow* window, int width, int height);
-	// sharedOpenGLView() = ios 0x130f38
+	// sharedOpenGLView() = ios 0x130f38, imac 0x50df50
 }
 
 [[link(win, android)]]
