@@ -6148,8 +6148,8 @@ class GameToolbox {
 	static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool) = win 0x66a10;
 	static void particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&) = win 0x65f50;
 	static TodoReturn pointsToString(int) = win 0x68170;
-	static TodoReturn postClipVisit() = ios 0x4a3bc;
-	static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x62fd0, ios 0x4a2d8;
+	static void postClipVisit() = ios 0x4a3bc, m1 0x452740;
+	static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x62fd0, ios 0x4a2d8, m1 0x452658;
 	static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
 	static TodoReturn saveParticleToString(cocos2d::CCParticleSystemQuad*);
 	static TodoReturn saveStringToFile(gd::string const&, gd::string const&);

@@ -731,7 +731,7 @@ class cocos2d::CCNode {
 	cocos2d::CCPoint convertToWindowSpace(cocos2d::CCPoint const&);
 	cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&) = imac 0x270df0, m1 0x216f94, ios 0x24d46c;
 	cocos2d::CCPoint convertToWorldSpaceAR(cocos2d::CCPoint const&);
-	cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*);
+	cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*) = m1 0x2170f8;
 	cocos2d::CCPoint convertTouchToNodeSpaceAR(cocos2d::CCTouch*);
 	char const* description();
 	void detachChild(cocos2d::CCNode*, bool);
