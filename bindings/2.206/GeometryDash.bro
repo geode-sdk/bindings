@@ -957,7 +957,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	}
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x43d60, imac 0x272d90, m1 0x218c88, ios 0x223d80;
-	void setSizeMult(float mult) = win inline, m1 inline, imac inline, ios 0x223f04 {
+	void setSizeMult(float mult) = win inline, m1 0x218e0c, imac inline, ios 0x223f04 {
 		//inlined on windows, member is in CCMenuItemSprite
 		m_fSizeMult = mult;
 	}
@@ -2550,14 +2550,14 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 	void downloadFailed() = win 0xca840;
 	TodoReturn getSongInfoIfUnloaded();
 	bool init(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc5900, imac 0x625c40, m1 0x5477dc;
-	void onCancelDownload(cocos2d::CCObject* sender) = win 0xc7db0;
-	void onDelete(cocos2d::CCObject* sender) = win 0xc7240;
-	void onDownload(cocos2d::CCObject* sender) = win 0xc7ed0;
-	void onGetSongInfo(cocos2d::CCObject* sender) = win 0xc7e40;
-	void onInfo(cocos2d::CCObject* sender) = win 0xc6f50;
-	void onMore(cocos2d::CCObject* sender) = win 0xc7560;
-	void onPlayback(cocos2d::CCObject* sender) = win 0xc81d0;
-	void onSelect(cocos2d::CCObject* sender) = win 0xc8170;
+	void onCancelDownload(cocos2d::CCObject* sender) = win 0xc7db0, m1 0x548acc;
+	void onDelete(cocos2d::CCObject* sender) = win 0xc7240, m1 0x548b08;
+	void onDownload(cocos2d::CCObject* sender) = win 0xc7ed0, m1 0x548874;
+	void onGetSongInfo(cocos2d::CCObject* sender) = win 0xc7e40, m1 0x548c44;
+	void onInfo(cocos2d::CCObject* sender) = win 0xc6f50, m1 0x549aec;
+	void onMore(cocos2d::CCObject* sender) = win 0xc7560, m1 0x548fb0;
+	void onPlayback(cocos2d::CCObject* sender) = win 0xc81d0, m1 0x548cd8;
+	void onSelect(cocos2d::CCObject* sender) = win 0xc8170, m1 0x548be8;
 	void processNextMultiAsset() = win 0xca440;
 	void showError(bool) = win 0xca910;
 	void startDownload() = win 0xc80b0;
@@ -6614,7 +6614,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void playerTouchedRing(PlayerObject*, RingObject*) = win 0x2086d0, imac 0x11ca30, m1 0xf8dd0;
 	void playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x2087e0;
 	TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*);
-	void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x203a50;
+	void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x203a50, m1 0xf5a6c;
 	void playExitDualEffect(PlayerObject*) = win 0x207710;
 	TodoReturn playFlashEffect(float, int, float);
 	TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
@@ -6747,7 +6747,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn swapBackground(int);
 	TodoReturn swapGround(int);
 	TodoReturn swapMiddleground(int);
-	void switchToFlyMode(PlayerObject*, GameObject*, bool, int);
+	void switchToFlyMode(PlayerObject*, GameObject*, bool, int) = m1 0xf5330;
 	void switchToRobotMode(PlayerObject*, GameObject*, bool);
 	void switchToRollMode(PlayerObject*, GameObject*, bool);
 	void switchToSpiderMode(PlayerObject*, GameObject*, bool);
@@ -12219,7 +12219,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	}
 	TodoReturn handleRotatedSlopeCollision(float, GameObject*, bool);
 	TodoReturn hardFlipGravity();
-	TodoReturn hitGround(GameObject*, bool) = win 0x379f40;
+	void hitGround(GameObject*, bool) = win 0x379f40, m1 0x38b4b4;
 	TodoReturn hitGroundNoJump(GameObject*, bool);
 	void incrementJumps() = win 0x36acd0, imac 0x40c980, m1 0x38487c;
 	bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x364970, m1 0x37c678, imac 0x403590;
@@ -12227,7 +12227,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool isFlying() = imac 0x40a810, m1 0x38285c;
 	bool isInBasicMode();
 	bool isInNormalMode();
-	bool isSafeFlip(float);
+	bool isSafeFlip(float) = m1 0x38b488;
 	bool isSafeHeadTest();
 	bool isSafeMode(float);
 	bool isSafeSpiderFlip(float);
@@ -12254,7 +12254,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void playSpawnEffect() = win 0x3754b0;
 	void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x373200, imac 0x417a50, m1 0x38d940;
 	void postCollision(float) = win 0x36b6b0;
-	void preCollision();
+	void preCollision() = m1 0x3855d8;
 	bool preSlopeCollision(float, GameObject*) = win 0x36d370;
 	void propellPlayer(float, bool, int) = win 0x37d860, imac 0x424240, m1 0x398e28;
 	void pushButton(PlayerButton) = win 0x375f70, imac 0x41d330, m1 0x27f4b0;
@@ -12338,7 +12338,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn unrotatePreSlopeObjects();
 	TodoReturn updateCheckpointMode(bool);
 	TodoReturn updateCheckpointTest();
-	void updateCollide(PlayerCollisionDirection, GameObject*) = win 0x372080;
+	void updateCollide(PlayerCollisionDirection, GameObject*) = win 0x372080, m1 0x38bb70;
 	void updateCollideBottom(float, GameObject*);
 	void updateCollideLeft(float, GameObject*);
 	void updateCollideRight(float, GameObject*);
