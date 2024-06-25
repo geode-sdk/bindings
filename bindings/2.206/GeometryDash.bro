@@ -10623,7 +10623,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	void onStarAward(cocos2d::CCObject* sender);
 	void onSuggested(cocos2d::CCObject* sender) = win 0x2f0b60;
 	void onTrending(cocos2d::CCObject* sender) = win 0x2f0c20;
-	void toggleDifficulty(cocos2d::CCObject*);
+	void toggleDifficulty(cocos2d::CCObject*) = win 0x2f18e0, m1 0x557a00, imac 0x637cc0;
 	void toggleDifficultyNum(int, bool) = win 0x2f1c40;
 	void toggleStar(cocos2d::CCObject*);
 	void toggleTime(cocos2d::CCObject*);
