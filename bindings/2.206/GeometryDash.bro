@@ -2698,20 +2698,34 @@ class DashRingObject : RingObject {
 
 [[link(android)]]
 class DemonFilterDelegate {
-	virtual void demonFilterSelectClosed(int);
+	virtual void demonFilterSelectClosed(int) {}
 }
 
 [[link(android)]]
 class DemonFilterSelectLayer : FLAlertLayer {
 	// virtual ~DemonFilterSelectLayer();
+	DemonFilterSelectLayer() {}
 
-	static DemonFilterSelectLayer* create();
+	static DemonFilterSelectLayer* create() = win inline, m1 0x5584ec, imac 0x638730 {
+		auto ret = new DemonFilterSelectLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	void onClose(cocos2d::CCObject* sender);
-	void selectRating(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x2f79c0, m1 0x55c2f4, imac 0x63ca00;
+	void selectRating(cocos2d::CCObject* sender) = win 0x2f7900, m1 0x55c22c, imac 0x63c940;
 
-	virtual bool init() = win 0x2f72c0, imac 0x63c460, m1 0x55bd74;
+	virtual bool init() = win 0x2f72c0, m1 0x55bd74, imac 0x63c460;
 	virtual void keyBackClicked() = win 0x2f7a10, m1 0x55c354, imac 0x63ca50;
+
+	cocos2d::CCArray* m_demons;
+	void* m_unkPtr;
+	int m_currentDemon;
+	DemonFilterDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -3953,9 +3967,9 @@ class ExtendedLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class FileOperation {
-	TodoReturn getFilePath();
-	TodoReturn readFile();
-	TodoReturn saveFile();
+	static gd::string getFilePath();
+	static void readFile();
+	static void saveFile();
 }
 
 [[link(android)]]
@@ -4410,7 +4424,7 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 
 	bool init(UserListType type) = win 0x13b830, imac 0x664670, m1 0x58095c;
 	void onBlocked(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x13c6b0;
 	void onUpdate(cocos2d::CCObject* sender);
 	void setupUsersBrowser(cocos2d::CCArray* users, UserListType type) = win 0x13bf40, imac 0x664f20, m1 0x58116c;
 
@@ -5029,7 +5043,7 @@ class GameManager : GManager {
 	TodoReturn dpadConfigToString(UIButtonConfig&) = win 0x17cde0;
 	TodoReturn eventUnlockFeature(char const*);
 	void fadeInMenuMusic() = win 0x173140, imac 0x378e90, m1 0x3045f8, ios 0x323038;
-	void fadeInMusic(gd::string) = win 0x173230, ios 0x3230c4;
+	void fadeInMusic(gd::string) = win 0x173230, ios 0x3230c4, imac 0x378f60, m1 0x3046f0;
 	TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*);
 	TodoReturn finishedLoadingGAsync(int);
 	TodoReturn finishedLoadingGAsync1(cocos2d::CCObject*);
@@ -5059,7 +5073,7 @@ class GameManager : GManager {
 		return m_iconRequestID++;
 	}
 	int getIntGameVariable(char const*) = win 0x17a6e0, ios 0x329d2c;
-	gd::string getMenuMusicFile() = win 0x172db0, ios 0x322c64;
+	gd::string getMenuMusicFile() = win 0x172db0, ios 0x322c64, imac 0x378890, m1 0x303f34;
 	TodoReturn getMGTexture(int);
 	TodoReturn getNextUniqueObjectKey();
 	TodoReturn getNextUsedKey(int, bool);
@@ -10621,11 +10635,11 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	void onSearch(cocos2d::CCObject* sender) = win 0x2f10a0;
 	void onSearchMode(cocos2d::CCObject* sender) = win 0x2edf50;
 	void onSearchUser(cocos2d::CCObject* sender) = win 0x2f12e0;
-	void onSpecialDemon(cocos2d::CCObject* sender);
+	void onSpecialDemon(cocos2d::CCObject* sender) = win 0x2edbb0, m1 0x557ee4, imac 0x638190;
 	void onStarAward(cocos2d::CCObject* sender);
 	void onSuggested(cocos2d::CCObject* sender) = win 0x2f0b60;
 	void onTrending(cocos2d::CCObject* sender) = win 0x2f0c20;
-	void toggleDifficulty(cocos2d::CCObject*);
+	void toggleDifficulty(cocos2d::CCObject*) = win 0x2f18e0, m1 0x557a00, imac 0x637cc0;
 	void toggleDifficultyNum(int, bool) = win 0x2f1c40;
 	void toggleStar(cocos2d::CCObject*);
 	void toggleTime(cocos2d::CCObject*);
