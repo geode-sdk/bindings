@@ -6686,7 +6686,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn reorderObjectSection(GameObject*) = imac 0x11f2d0;
 	TodoReturn reparentObject(cocos2d::CCNode*, cocos2d::CCNode*) = m1 0x63fd70;
 	void resetActiveEnterEffects() = win 0x1ff150, m1 0xef414;
-	TodoReturn resetAreaObjectValues(GameObject*, bool);
+	TodoReturn resetAreaObjectValues(GameObject*, bool) = win 0x2184c0;
 	void resetAudio() = win 0x227690, imac 0x147000, m1 0x11a408;
 	void resetCamera() = win 0x22ec30, imac 0x14e1b0, m1 0x11fd2c;
 	void resetGradientLayers() = win 0x211790;
@@ -10072,7 +10072,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn pasteGroupState(GameObject*, cocos2d::CCArray*);
 	TodoReturn pasteParticleState(ParticleGameObject*, cocos2d::CCArray*);
 	void processLoadedMoveActions() = imac 0xb7be0, m1 0xa44a4;
-	TodoReturn quickUpdateAllPositions();
+	TodoReturn quickUpdateAllPositions() = win 0x2cbd20;
 	TodoReturn recreateGroups();
 	void redoLastAction() = win inline {
 		return this->handleAction(false, m_redoObjects);
