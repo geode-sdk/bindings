@@ -5100,7 +5100,29 @@ class GameManager : GManager {
 	TodoReturn likeFacebook();
 	void loadBackground(int) = win 0x179870, imac 0x384b90, m1 0x30e7ec;
 	void loadBackgroundAsync(int);
-	void loadDeathEffect(int); // inlined on windows
+	
+	void loadDeathEffect(int id) = imac 0x384a10, m1 0x30e674, win inline {
+		if (id < 1) id = 1;
+		if (id > 19) id = 20;
+		if (id != m_loadedDeathEffect) {
+			if (1 < m_loadedDeathEffect) {
+				cocos2d::CCTextureCache::sharedTextureCache()->removeTextureForKey(
+					cocos2d::CCString::createWithFormat("PlayerExplosion_%02d.png", m_loadedDeathEffect-1)->getCString()
+				);
+			}
+			if (1 < id) {
+				cocos2d::CCTextureCache::sharedTextureCache()->addImage(
+					cocos2d::CCString::createWithFormat("PlayerExplosion_%02d.png", id-1)->getCString(),
+					false
+				);
+				cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(
+					cocos2d::CCString::createWithFormat("PlayerExplosion_%02d.plist", id-1)->getCString()
+				);
+			}
+			m_loadedDeathEffect = id;
+		}
+	}
+
 	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string);
 	TodoReturn loadDPadLayout(int, bool);
 	TodoReturn loadFont(int);
@@ -5168,7 +5190,7 @@ class GameManager : GManager {
 	TodoReturn switchCustomObjects(int, int);
 	TodoReturn switchScreenMode(bool, bool);
 	TodoReturn syncPlatformAchievements();
-	void toggleGameVariable(char const*) = win 0x17a260, ios 0x329a70;
+	void toggleGameVariable(char const*) = win 0x17a260, ios 0x329a70, imac 0x385700, m1 0x30f3c8;
 	TodoReturn tryCacheAd();
 	TodoReturn tryShowInterstitial(int, int, int);
 	TodoReturn unloadBackground();
@@ -7942,7 +7964,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onSelectTab(cocos2d::CCObject* sender) = win 0x263f80, imac 0x36e1b0;
 	void onShards(cocos2d::CCObject* sender) = win 0x266c30;
 	void onShop(cocos2d::CCObject* sender) = win 0x266f00;
-	void onSpecial(cocos2d::CCObject* sender) = win 0x265930;
+	void onSpecial(cocos2d::CCObject* sender) = win 0x265930, imac 0x36f510, m1 0x2fb65c;
 	void onToggleItem(cocos2d::CCObject* sender) = win 0x2657a0, ios 0x316C4C;
 	void playRainbowEffect() = win 0x266a40, imac 0x370230, m1 0x2fc130;
 	void playShadowEffect();
