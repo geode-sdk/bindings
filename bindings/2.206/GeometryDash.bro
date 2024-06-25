@@ -2700,7 +2700,7 @@ class DashRingObject : RingObject {
 
 [[link(android)]]
 class DemonFilterDelegate {
-	virtual void demonFilterSelectClosed(int);
+	virtual void demonFilterSelectClosed(int) {}
 }
 
 [[link(android)]]
