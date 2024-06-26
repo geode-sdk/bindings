@@ -250,6 +250,7 @@ GEODE_SIZE_CHECK(LevelListLayer, 0x3d8);
 GEODE_SIZE_CHECK(SelectListIconLayer, 0x290);
 GEODE_SIZE_CHECK(GJGarageLayer, 0x260);
 GEODE_SIZE_CHECK(DemonFilterSelectLayer, 0x298);
+GEODE_SIZE_CHECK(UndoObject, 0xa0);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 

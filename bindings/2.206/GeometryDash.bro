@@ -3079,7 +3079,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createExtrasForObject(int, GameObject*, cocos2d::CCArray*);
 	TodoReturn createGlow();
 	void createLoop();
-	void createMoveMenu();
+	void createMoveMenu() = win 0x116ee0;
 	TodoReturn createNewKeyframeAnim();
 	TodoReturn createObject(int, cocos2d::CCPoint) = win 0x10c3e0;
 	TodoReturn createOutlines(cocos2d::CCArray*);
@@ -3148,9 +3148,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getSmartObjectKey(int, GJSmartDirection);
 	TodoReturn getSnapAngle(GameObject*, cocos2d::CCArray*);
-	CCMenuItemSpriteExtra* getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
-	CCMenuItemSpriteExtra* getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
-	CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
+	CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset) = win 0xded70;
+	CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline {
+		return this->getSpriteButton(spriteFrameName, selector, menu, scale, 1, {0, 0});
+	}
+	CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset) = win 0xdee00;
 	TodoReturn getTouchPoint(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn getTransformState();
 	TodoReturn getXMin(int);
@@ -3287,7 +3289,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn updatePlaybackBtn();
 	TodoReturn updateSlider() = win 0xdf040;
 	TodoReturn updateSpecialUIElements();
-	void updateZoom(float) = m1 0x39504;
+	void updateZoom(float) = m1 0x39504, win 0x10ea80;
 	float valueFromXPos(float);
 	float xPosFromValue(float);
 	void zoomGameLayer(bool);
@@ -5622,8 +5624,8 @@ class GameObject : CCSpritePlus {
 	virtual TodoReturn activatedByPlayer(PlayerObject*) = m1 0x1a1364, imac 0x1ed250;
 	virtual TodoReturn hasBeenActivatedByPlayer(PlayerObject*) = m1 0x1a1368, imac 0x1ed260;
 	virtual TodoReturn hasBeenActivated() = m1 0x1a1370, imac 0x1ed270;
-	virtual TodoReturn getOrientedBox() = m1 0x4ffd60, win 0x197550, imac 0x5d2440;
-	virtual TodoReturn updateOrientedBox() = m1 0x4ffdf4, win 0x1975b0, imac 0x5d24c0;
+	virtual OBB2D* getOrientedBox() = m1 0x4ffd60, win 0x197550, imac 0x5d2440;
+	virtual void updateOrientedBox() = m1 0x4ffdf4, win 0x1975b0, imac 0x5d24c0;
 	virtual TodoReturn getObjectRotation() = m1 0x5058b0, win 0x197530, imac 0x5dac70;
 	virtual TodoReturn updateMainColor(cocos2d::ccColor3B const&) = m1 0x500864, win 0x197fb0, imac 0x5d30c0;
 	virtual TodoReturn updateSecondaryColor(cocos2d::ccColor3B const&) = m1 0x500d6c, win 0x197fc0, imac 0x5d35d0;
@@ -5697,8 +5699,12 @@ class GameObject : CCSpritePlus {
 	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
 
 	cocos2d::CCSprite* m_colorSprite;
+	
+	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
 
-	PAD = android32 0x13, win 0x13, android64 0x13, mac 0x13;
+	float m_objectRadius;
+
+	PAD = android32 0xE, win 0xE, android64 0xE, mac 0xE;
 
 	int m_uniqueID;
 	GameObjectType m_objectType;
@@ -10490,8 +10496,8 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	void ownerDelete();
 	static cocos2d::CCScene* scene(GJLevelList*) = win 0x2e2f60, m1 0x2e9f54, imac 0x35c730;
 	void updateEditMode();
-	void updateSideButtons() = win 0x2e7680;
-	void updateStatsArt() = win 0x2e4c70;
+	void updateSideButtons() = win 0x2e7680, m1 0x2ec578, imac 0x35f010;
+	void updateStatsArt() = win 0x2e4c70, m1 0x2ec60c, imac 0x35f0a0;
 	void verifyListName();
 
 	virtual void onEnter() = win 0x2e4c20, m1 0x2ed43c, imac 0x35ff50;
@@ -11717,7 +11723,7 @@ class OBB2D : cocos2d::CCNode {
 
 	static OBB2D* create(cocos2d::CCPoint, float, float, float) = win 0x6c390;
 
-	TodoReturn calculateWithCenter(cocos2d::CCPoint, float, float, float);
+	void calculateWithCenter(cocos2d::CCPoint, float, float, float) = win 0x6c560, m1 0x5250c0;
 	TodoReturn computeAxes();
 	TodoReturn getBoundingRect();
 	bool init(cocos2d::CCPoint, float, float, float);
@@ -12437,7 +12443,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void setFlipY(bool) = imac 0x425cc0;
 	virtual void resetObject() = m1 0x390ae4, imac 0x41b180;
 	virtual cocos2d::CCPoint getRealPosition() = m1 0x398604, imac 0x423a20;
-	virtual TodoReturn getOrientedBox() = m1 0x3997ac, imac 0x424d80;
+	virtual OBB2D* getOrientedBox() = m1 0x3997ac, imac 0x424d80;
 	virtual TodoReturn getObjectRotation() = m1 0x3997d8, imac 0x424da0;
 	virtual void animationFinished(char const*) = win 0x3808b0, m1 0x39a5d0, imac 0x425df0;
 
@@ -12540,7 +12546,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_unk70c;
 	float m_unk710;
 	int m_playerStreak;
-	PAD = win 0x5c, mac 0x5c, android 0x5c, ios 0x5c;
+	PAD = win 0x2C, mac 0x2C, android 0x2C, ios 0x2C;
+	float m_blackOrbRelated;
+	PAD = win 0x2C, mac 0x2C, android 0x2C, ios 0x2C;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
 	PAD = win 0x18, mac 0x18, android 0x1c, ios 0x1c;
@@ -16595,14 +16603,37 @@ class UISettingsGameObject : EffectGameObject {
 
 [[link(android)]]
 class UndoObject : cocos2d::CCObject {
-	// virtual ~UndoObject();
-	// UndoObject();
+	virtual ~UndoObject() {
+		if (m_objectCopy) m_objectCopy->release();
+		if (m_objects) m_objects->release();
+	}
+	UndoObject() {
+		m_objectCopy = nullptr;
+		m_objects = nullptr;
+		// some of the floats are set to 1.0 but idk which who cares
+	}
 
 	static UndoObject* create(GameObject*, UndoCommand);
-	static UndoObject* createWithArray(cocos2d::CCArray*, UndoCommand);
+	static UndoObject* createWithArray(cocos2d::CCArray* arrOfObjects, UndoCommand command) {
+		auto* ret = new UndoObject();
+		if (ret->init(arrOfObjects, command)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 	static UndoObject* createWithTransformObjects(cocos2d::CCArray*, UndoCommand);
 
-	bool init(cocos2d::CCArray*, UndoCommand);
+	bool init(cocos2d::CCArray* array, UndoCommand command) {
+		m_command = command;
+		if (array != nullptr) {
+			m_objects = cocos2d::CCArray::create();
+			m_objects->addObjectsFromArray(array);
+			m_objects->retain();
+		}
+		return true;
+	}
 	bool init(GameObject*, UndoCommand);
 	TodoReturn initWithTransformObjects(cocos2d::CCArray*, UndoCommand);
 	void setObjects(cocos2d::CCArray*);
@@ -16611,6 +16642,7 @@ class UndoObject : cocos2d::CCObject {
 	UndoCommand m_command;
 	cocos2d::CCArray* m_objects;
 	bool m_redo;
+	GJTransformState m_transformState;
 }
 
 [[link(android)]]
