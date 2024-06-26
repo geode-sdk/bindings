@@ -8136,7 +8136,7 @@ class GJLevelList : cocos2d::CCNode {
 	int m_uploadDate;
 	int m_updateDate;
 	cocos2d::CCDictionary* m_k97;
-	int m_listType;
+	GJLevelType m_listType;
 	int m_M_ID;
 }
 
