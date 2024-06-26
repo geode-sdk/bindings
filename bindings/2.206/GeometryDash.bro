@@ -1574,9 +1574,18 @@ class ChallengeNode : cocos2d::CCNode {
 [[link(android)]]
 class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, CurrencyRewardDelegate {
 	// virtual ~ChallengesPage();
-
-	static ChallengesPage* create(); // inlined on win
-
+	inline ChallengesPage() {}
+	
+	static ChallengesPage* create() = win inline {
+		auto ret = new ChallengesPage();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	
 	TodoReturn claimItem(ChallengeNode*, GJChallengeItem*, cocos2d::CCPoint);
 	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x849f0, imac 0x3a0dd0, m1 0x327c74;
 	TodoReturn exitNodeAtSlot(int, float) = win 0x84c80;
@@ -1586,7 +1595,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	callback void updateTimers(float) = win 0x84d70;
 
 	virtual bool init() = win 0x83ca0, imac 0x3a0090, m1 0x326f90;
-	virtual void registerWithTouchDispatcher() = m1 0x3285b8, imac 0x3a17c0;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x3285b8, imac 0x3a17c0;
 	virtual void keyBackClicked() = win 0x85190, m1 0x32851c, imac 0x3a1730;
 	virtual void show() = m1 0x328390, imac 0x3a1590;
 
