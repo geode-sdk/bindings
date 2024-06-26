@@ -16608,7 +16608,7 @@ class UndoObject : cocos2d::CCObject {
 	}
 	static UndoObject* createWithTransformObjects(cocos2d::CCArray*, UndoCommand);
 
-	bool init(cocos2d::CCArray* array, UndoCommand command) = win inline {
+	bool init(cocos2d::CCArray* array, UndoCommand command) {
 		m_command = command;
 		if (array != nullptr) {
 			m_objects = cocos2d::CCArray::create();
