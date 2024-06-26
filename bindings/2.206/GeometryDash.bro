@@ -167,15 +167,15 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn getAchievementRewardDict();
 	cocos2d::CCDictionary* getAchievementsWithID(char const*);
 	TodoReturn getAllAchievements();
-	cocos2d::CCArray* getAllAchievementsSorted(bool);
+	cocos2d::CCArray* getAllAchievementsSorted(bool) = win 0x38d20;
 	bool isAchievementAvailable(gd::string);
 	bool isAchievementEarned(char const* ach) = win 0x38c40, ios 0xe9c90, imac 0x790ad0;
 	TodoReturn limitForAchievement(gd::string);
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
 	TodoReturn notifyAchievementWithID(char const*);
 	TodoReturn percentageForCount(int, int);
-	int percentForAchievement(char const*) = imac 0x790af0;
-	void reportAchievementWithID(char const*, int, bool);
+	int percentForAchievement(char const*) = imac 0x790af0, win 0x38c60;
+	void reportAchievementWithID(char const*, int, bool); //win: inlined
 	void reportPlatformAchievementWithID(char const*, int);
 	void resetAchievement(char const*);
 	TodoReturn resetAchievements();
@@ -225,16 +225,16 @@ class AchievementNotifier : cocos2d::CCNode {
 class AchievementsLayer : GJDropDownLayer {
 	// virtual ~AchievementsLayer();
 
-	static AchievementsLayer* create();
+	static AchievementsLayer* create(); //win: inlined
 
-	void loadPage(int);
-	void onNextPage(cocos2d::CCObject* sender);
-	void onPrevPage(cocos2d::CCObject* sender);
-	TodoReturn setupLevelBrowser(cocos2d::CCArray*);
-	void setupPageInfo(int, int, int);
+	void loadPage(int) = win 0x80cd0;
+	void onNextPage(cocos2d::CCObject* sender) = win 0x80eb0;
+	void onPrevPage(cocos2d::CCObject* sender) = win 0x80ec0;
+	TodoReturn setupLevelBrowser(cocos2d::CCArray*); //win: inlined
+	void setupPageInfo(int, int, int); //win: inlined
 
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x80c30, m1 0x3009d0, imac 0x375020;
-	virtual void customSetup() = m1 0x300570, imac 0x374b60;
+	virtual void customSetup() = m1 0x300570, imac 0x374b60, win 0x80980;
 
 	int m_currentPage;
 }
@@ -2811,7 +2811,7 @@ class DrawGridLayer : cocos2d::CCLayer {
 	TodoReturn removeAudioLineObject(AudioLineGuideGameObject*);
 	TodoReturn removeFromEffects(EffectGameObject*);
 	TodoReturn removeFromGuides(GameObject*);
-	TodoReturn removeFromSpeedObjects(EffectGameObject*);
+	TodoReturn removeFromSpeedObjects(EffectGameObject*) = ios 0x36CE70;
 	TodoReturn sortSpeedObjects();
 	float timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int);
 	TodoReturn updateMusicGuideTime(float);
@@ -3000,7 +3000,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onUnlockAllLayers(cocos2d::CCObject* sender);
 	TodoReturn playStep2() = win 0xda620;
 	TodoReturn playStep3() = win 0xda740;
-	void saveLevel() = win 0xd9f10;
+	void saveLevel() = win 0xd9f10, m1 0x233bac;
 	TodoReturn toggleDebugDraw(cocos2d::CCObject*);
 	TodoReturn toggleEditorBackground(cocos2d::CCObject*);
 	TodoReturn toggleEditorColorMode(cocos2d::CCObject*);
@@ -4015,7 +4015,7 @@ class FindObjectPopup : SetIDPopup {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-	~FLAlertLayer() = ios 0x2bbd80, imac 0x4a49c0 {
+	~FLAlertLayer() = ios 0x2bbd80, imac 0x4a49c0, win 0x50960 {
 		if (m_forcePrioRegistered) {
 			cocos2d::CCTouchDispatcher::get()->unregisterForcePrio(this);
 		}
@@ -4503,7 +4503,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void deleteFriendRequests(int, cocos2d::CCArray*, bool);
 	void deleteLevel(GJGameLevel*) = win 0x140640, imac 0x533f10, m1 0x4874e4;
 	void deleteLevelComment(int, int);
-	void deleteLevelList(GJLevelList*) = win 0x140ef0;
+	void deleteLevelList(GJLevelList*) = win 0x140ef0, m1 0x487d30;
 	void deleteSentFriendRequest(int) = imac 0x55bc60;
 	void deleteServerLevel(int) = win 0x14eb70, imac 0x54e760, m1 0x49e9a0;
 	void deleteServerLevelList(int);
@@ -5987,7 +5987,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getStoreItem(int);
 	int getTotalCollectedCurrency() = win 0x1d8e50;
 	int getTotalCollectedDiamonds() = win 0x1d9720;
-	bool hasClaimedListReward(GJLevelList*) = win 0x1d84b0;
+	bool hasClaimedListReward(GJLevelList*) = win 0x1d84b0, m1 0x67584, imac 0x74400;
 	bool hasCompletedChallenge(GJChallengeItem*);
 	bool hasCompletedDailyLevel(int) = win 0x1d8590;
 	bool hasCompletedDemonLevel(GJGameLevel*);
@@ -6708,7 +6708,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn reorderObjectSection(GameObject*) = imac 0x11f2d0;
 	TodoReturn reparentObject(cocos2d::CCNode*, cocos2d::CCNode*) = m1 0x63fd70;
 	void resetActiveEnterEffects() = win 0x1ff150, m1 0xef414;
-	TodoReturn resetAreaObjectValues(GameObject*, bool);
+	TodoReturn resetAreaObjectValues(GameObject*, bool) = win 0x2184c0;
 	void resetAudio() = win 0x227690, imac 0x147000, m1 0x11a408;
 	void resetCamera() = win 0x22ec30, imac 0x14e1b0, m1 0x11fd2c;
 	void resetGradientLayers() = win 0x211790;
@@ -8067,8 +8067,7 @@ class GJHttpResult : cocos2d::CCNode {
 class GJItemIcon : cocos2d::CCSprite {
 	// virtual ~GJItemIcon();
 
-	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = m1 0x2fe438;
-
+	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = m1 0x2fe438; //win: inlined
 	void changeToLockedState(float) = win 0x2694c0, ios 0x316AB8;
 	static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x268880;
 	TodoReturn createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B);
@@ -8138,7 +8137,7 @@ class GJLevelList : cocos2d::CCNode {
 	int m_uploadDate;
 	int m_updateDate;
 	cocos2d::CCDictionary* m_k97;
-	int m_listType;
+	GJLevelType m_listType;
 	int m_M_ID;
 }
 
@@ -9875,7 +9874,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void loadPage(GJSearchObject*) = win 0x2b72b0, m1 0x3fc3cc, imac 0x497710;
 	void onClearSearch(cocos2d::CCObject* sender) = win 0x2bb510;
 	void onDeleteAll(cocos2d::CCObject* sender) = win 0x2baf60;
-	void onDeleteSelected(cocos2d::CCObject* sender) = win 0x2bbc80;
+	void onDeleteSelected(cocos2d::CCObject* sender) = win 0x2bbc80, m1 0x3fabe0;
 	void onFavorites(cocos2d::CCObject* sender) = win 0x2bada0;
 	void onGoToFolder(cocos2d::CCObject* sender) = win 0x2b9530;
 	void onGoToLastPage(cocos2d::CCObject* sender) = win 0x2b93b0;
@@ -10096,7 +10095,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn pasteGroupState(GameObject*, cocos2d::CCArray*);
 	TodoReturn pasteParticleState(ParticleGameObject*, cocos2d::CCArray*);
 	void processLoadedMoveActions() = imac 0xb7be0, m1 0xa44a4;
-	TodoReturn quickUpdateAllPositions();
+	TodoReturn quickUpdateAllPositions() = win 0x2cbd20;
 	TodoReturn recreateGroups();
 	void redoLastAction() = win inline {
 		return this->handleAction(false, m_redoObjects);
@@ -13132,7 +13131,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 	void onClose(cocos2d::CCObject* sender);
 	TodoReturn playDropSound();
 	TodoReturn playLabelEffect(int, int, cocos2d::CCSprite*, cocos2d::CCPoint, float);
-	TodoReturn playRewardEffect();
+	TodoReturn playRewardEffect() = win 0x3aad20;
 	TodoReturn readyToCollect(GJRewardItem*);
 	void showCloseButton();
 	void showCollectReward(GJRewardItem*);
