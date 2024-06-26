@@ -9877,14 +9877,14 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void onFavorites(cocos2d::CCObject* sender) = win 0x2bada0;
 	void onGoToFolder(cocos2d::CCObject* sender) = win 0x2b9530;
 	void onGoToLastPage(cocos2d::CCObject* sender) = win 0x2b93b0;
-	void onGoToPage(cocos2d::CCObject* sender) = win 0x2b9420;
+	void onGoToPage(cocos2d::CCObject* sender) = win 0x2b9420, m1 0x3faab0, imac 0x495f20;
 	void onHelp(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender) = win 0x2b9b60;
 	void onLocalMode(cocos2d::CCObject* sender) = win 0x2ba9e0;
 	void onMyOnlineLevels(cocos2d::CCObject* sender) = win 0x2babd0;
 	void onNew(cocos2d::CCObject* sender) = win 0x2ba530;
-	void onNextPage(cocos2d::CCObject* sender) = win 0x2b9910;
-	void onPrevPage(cocos2d::CCObject* sender) = win 0x2b9990;
+	void onNextPage(cocos2d::CCObject* sender) = win 0x2b9910, m1 0x3fa970, imac 0x495dc0;
+	void onPrevPage(cocos2d::CCObject* sender) = win 0x2b9990, m1 0x3fa93c, imac 0x495d80;
 	void onRefresh(cocos2d::CCObject* sender) = win 0x2bb3d0;
 	void onRemoveAllFavorites(cocos2d::CCObject* sender) = win 0x2bb100;
 	void onSaved(cocos2d::CCObject* sender) = win 0x2bae80;
@@ -13653,16 +13653,16 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 
 	static SetIDPopup* create(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x289030, imac 0x2a6f20, m1 0x24875c;
 
-	bool init(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x289160, imac 0x2a7270;
-	void onCancel(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onItemIDArrow(cocos2d::CCObject* sender);
-	void onResetValue(cocos2d::CCObject* sender);
-	TodoReturn updateTextInputLabel() = win 0x289c90;
+	bool init(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x289160, imac 0x2a7270, m1 0x248a7c;
+	void onCancel(cocos2d::CCObject* sender) = win 0x289dd0, imac 0x2a7c10, m1 0x2493fc;
+	void onClose(cocos2d::CCObject* sender) = win 0x289e70, imac 0x2a7b10, m1 0x2492fc;
+	void onItemIDArrow(cocos2d::CCObject* sender) = win 0x289b20, imac 0x2a7bc0, m1 0x2493a0;
+	void onResetValue(cocos2d::CCObject* sender) = win 0x289b70, imac 0x2a7ba0, m1 0x249394;
+	void updateTextInputLabel() = win 0x289c90, imac 0x2a7cb0, m1 0x24949c;
 
 	virtual void keyBackClicked() = win 0x289f10, m1 0x2497c0, imac 0x2a7fc0;
 	virtual void show() = win 0x289d40, m1 0x24973c, imac 0x2a7f40;
-	virtual void textInputClosed(CCTextInputNode*) = m1 0x2495c8, imac 0x2a7de0;
+	virtual void textInputClosed(CCTextInputNode*) = win 0x89f80, m1 0x2495c8, imac 0x2a7de0;
 	virtual void textChanged(CCTextInputNode*) = win 0x289b90, m1 0x2495e4, imac 0x2a7e20;
 	virtual void valueChanged() {}
 
