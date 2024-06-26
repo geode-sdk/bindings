@@ -10029,7 +10029,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn applyAttributeState(GameObject*, GameObject*);
 	TodoReturn applyGroupState(GameObject*, GameObject*);
 	TodoReturn breakApartTextObject(TextGameObject*);
-	TodoReturn canPasteState();
+	bool canPasteState();
 	TodoReturn clearPlayerPoints();
 	TodoReturn clearTouchPoints();
 	TodoReturn copyObjectState(GameObject*);
