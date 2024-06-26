@@ -2229,7 +2229,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 	TodoReturn checkQuestsStatus() = win 0x9d810, ios 0xb8a08;
 	void onAdventureMap(cocos2d::CCObject* sender) = win 0x9c3a0;
 	void onBack(cocos2d::CCObject* sender) = win 0x9d9c0, ios 0xb90d0;
-	void onChallenge(cocos2d::CCObject* sender) = win 0x9c770;
+	void onChallenge(cocos2d::CCObject* sender) = win 0x9c770, imac 0x2948b0, m1 0x2378f4;
 	void onDailyLevel(cocos2d::CCObject* sender) = win 0x9c510;
 	void onEventLevel(cocos2d::CCObject* sender) = win 0x9c550;
 	void onFameLevels(cocos2d::CCObject* sender);
