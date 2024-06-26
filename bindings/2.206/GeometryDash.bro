@@ -15430,7 +15430,7 @@ class ShareLevelLayer : FLAlertLayer {
 	bool init(GJGameLevel* level) = win 0x463090, m1 0x221788, imac 0x27c1f0;
 	void onClose(cocos2d::CCObject* sender) = win 0x82fc0;
 	void onSettings(cocos2d::CCObject* sender) = win 0x4642f0;
-	void onShare(cocos2d::CCObject* sender) = win 0x464440;
+	void onShare(cocos2d::CCObject* sender) = win 0x464440, m1 0x222794, imac 0x27d380;
 	void selectRating(cocos2d::CCObject*) = win 0x464160;
 	void setupStars() = win 0x463d50;
 
