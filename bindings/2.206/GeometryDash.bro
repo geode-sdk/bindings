@@ -12548,7 +12548,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_streakRelated1;
 	bool m_streakRelated2;
 	bool m_streakRelated3;
-	ShipStreak m_shipStreakRelated; // ShipStreak*
+	ShipStreak m_shipStreakType;
 	double m_unk3c0;
 	double m_unk3c8;
 	double m_unk3d0;
