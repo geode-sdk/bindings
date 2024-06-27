@@ -29,8 +29,6 @@ GEODE_SIZE_CHECK(LevelEditorLayer, 0x39e8);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3754);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x37d8);
 
-GEODE_SIZE_CHECK(EditLevelLayer, 0x210);
-
 GEODE_SIZE_CHECK(DrawGridLayer, 0x280);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x208);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x27c);
@@ -239,7 +237,9 @@ GEODE_SIZE_CHECK(GJUserScore, 0x310);
 GEODE_SIZE_CHECK(BoomScrollLayer, 0x270);
 GEODE_SIZE_CHECK(ButtonSprite, 0x2c0);
 GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
+GEODE_SIZE_CHECK(EditLevelLayer, 0x210);
 GEODE_SIZE_CHECK(EditorPauseLayer, 0x270);
+GEODE_SIZE_CHECK(PauseLayer, 0x238);
 GEODE_SIZE_CHECK(GJAccountSettingsLayer, 0x320);
 //GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
 GEODE_SIZE_CHECK(OptionsLayer, 0x298);
