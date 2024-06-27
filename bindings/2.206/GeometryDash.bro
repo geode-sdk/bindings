@@ -1247,13 +1247,13 @@ class CCSpriteCOpacity : cocos2d::CCSprite {
 class CCSpriteGrayscale : CCSpriteWithHue {
 	// virtual ~CCSpriteGrayscale();
 
-	static CCSpriteGrayscale* create(gd::string const&, cocos2d::CCRect const&);
-	static CCSpriteGrayscale* create(gd::string const&) = m1 0x521c84;
+	static CCSpriteGrayscale* create(gd::string const& file, cocos2d::CCRect const& rect) = m1 0x522d90, imac 0x5fb690;
+	static CCSpriteGrayscale* create(gd::string const& file) = m1 0x521c84, imac 0x5fb5d0;
 
-	static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame*); // inlined :broken_heart:
-	static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const&) = win 0x481a0;
-	TodoReturn createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
-	TodoReturn createWithTexture(cocos2d::CCTexture2D*);
+	static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = m1 0x52307c, imac 0x5fb930;
+	static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const& frameName) = win 0x481a0, m1 0x523178, imac 0x5fba10;
+	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool unk) = m1 0x522f88, imac 0x5fb860;
+	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture) = m1 0x522e70, imac 0x5fb760;
 
 	virtual TodoReturn getShaderName() = m1 0x522ca0, imac 0x5fb5b0;
 	virtual TodoReturn shaderBody() = m1 0x522b78, imac 0x5fb3b0;
@@ -12680,7 +12680,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void removeCheckpoint(bool) = win 0x394910;
 	void removeFromGroupOld(GameObject*);
 	void resetLevel() = win 0x3958b0, imac 0xb32d0, m1 0xa01f0, ios 0x11baf4;
-	void resetLevelFromStart() = win 0x395710, m1 0xaa7c0;
+	void resetLevelFromStart() = win 0x395710, m1 0xaa7c0; // inline on imac :broken_heart:
 	void resume();
 	void resumeAndRestart(bool) = win 0x396d10, m1 0xaaddc, imac 0xbf770;
 	TodoReturn saveActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
