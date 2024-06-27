@@ -2889,7 +2889,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 }
 
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-	EditLevelLayer() = win inline {}
+	EditLevelLayer() = win inline, imac inline, m1 inline {}
 	virtual ~EditLevelLayer() = m1 0x1a7544, win 0xd1980, imac 0x1f42c0;
 
 	static EditLevelLayer* create(GJGameLevel* level) = win inline, imac 0x1f45e0, m1 0x1a7680 {
