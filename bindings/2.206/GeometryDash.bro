@@ -12470,6 +12470,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float unk_584;
 	int unk_588; // seems to always be 0, but when you respawn it's -1 until you move at least 1 block from the respawn place
 	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
+	bool m_unk134;
 	cocos2d::CCArray* m_particleSystems;
 	gd::unordered_map<int, GJPointDouble> m_unk594; // insertions are in PlayerObject::rotateGameplayObject
 	gd::unordered_map<int, GameObject*> m_unk5b4;
@@ -12544,9 +12545,26 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_unk70c;
 	float m_unk710;
 	int m_playerStreak;
-	PAD = win 0x2C, mac 0x2C, android 0x2C, ios 0x2C;
-	float m_blackOrbRelated;
-	PAD = win 0x2C, mac 0x2C, android 0x2C, ios 0x2C;
+	float m_streakRelated1;
+	bool m_streakRelated2;
+	bool m_streakRelated3;
+	ShipStreak m_shipStreakRelated; // ShipStreak*
+	double m_unk3c0;
+	double m_unk3c8;
+	double m_unk3d0;
+	double m_blackOrbRelated;
+	bool m_unk3e0;
+	bool m_unk3e1;
+	bool m_unk3e2; // used to be m_blackOrbRelated
+	bool m_unk3e3;
+	double m_collisionTopRelated;
+	double m_collisionBottomRelated;
+	double m_collisionLeftRelated;
+	double m_collisionRightRelated;
+	bool m_streakRelated4;
+	bool m_canPlaceCheckpoint; // could also be related to hitGround but its referenced a lot as an if condition to call tryPlaceCheckpoint
+	cocos2d::ccColor3B m_unk40a;
+	cocos2d::ccColor3B m_secondColorRelated;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
 	PAD = win 0x18, mac 0x18, android 0x1c, ios 0x1c;
