@@ -11242,41 +11242,61 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 [[link(android)]]
 class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJDropDownLayerDelegate {
 	// virtual ~MoreOptionsLayer();
-	// MoreOptionsLayer() = ios 0xf508c;
+	MoreOptionsLayer() = ios 0xf508c {}
 
-	static MoreOptionsLayer* create() = ios 0xeed0c;
+	static MoreOptionsLayer* create() = win inline, m1 0x6ae8a4, imac 0x7a73e0, ios 0xeed0c {
+		auto ret = new MoreOptionsLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	void addToggle(char const*, char const*, char const*) = win 0x353280, ios 0xf00d0;
-	TodoReturn countForPage(int);
-	void goToPage(int) = ios 0xf07e4;
-	TodoReturn incrementCountForPage(int);
-	TodoReturn infoKey(int);
-	TodoReturn layerForPage(int);
-	TodoReturn layerKey(int);
-	TodoReturn nextPosition(int);
-	TodoReturn objectKey(int);
-	TodoReturn objectsForPage(int) = ios 0xf0474;
+	int countForPage(int) = win 0x3538e0;
+	void goToPage(int) = win 0x353d00, ios 0xf07e4;
+	void incrementCountForPage(int);
+	const char* infoKey(int);
+	cocos2d::CCLayer* layerForPage(int) = win 0x353b40;
+	const char* layerKey(int);
+	cocos2d::CCPoint nextPosition(int);
+	const char* objectKey(int);
+	cocos2d::CCArray* objectsForPage(int) = win 0x3539b0, ios 0xf0474;
 	void offsetToNextPage(); // inlined on ios
-	void onClose(cocos2d::CCObject* sender) = ios 0xf0720;
-	void onFMODDebug(cocos2d::CCObject* sender) = ios 0xf05c0;
+	void onClose(cocos2d::CCObject* sender) = win 0x354fa0, ios 0xf0720;
+	void onFMODDebug(cocos2d::CCObject* sender) = win 0x354b10, ios 0xf05c0;
 	void onGPSignIn(cocos2d::CCObject* sender);
 	void onGPSignOut(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender) = win 0x354dc0;
 	void onKeybindings(cocos2d::CCObject* sender) = win 0xd9640;
-	void onNextPage(cocos2d::CCObject* sender) = ios 0xf07d8;
-	void onParental(cocos2d::CCObject* sender) = ios 0xf0704;
-	void onPrevPage(cocos2d::CCObject* sender) = ios 0xf07cc;
-	void onSongBrowser(cocos2d::CCObject* sender) = ios 0xf0568;
-	void onToggle(cocos2d::CCObject* sender);
-	TodoReturn pageKey(int);
-	TodoReturn toggleGP();
+	void onNextPage(cocos2d::CCObject* sender) = win 0x353ce0, ios 0xf07d8;
+	void onParental(cocos2d::CCObject* sender) = win 0x354cb0, ios 0xf0704;
+	void onPrevPage(cocos2d::CCObject* sender) = win 0x353cf0, ios 0xf07cc;
+	void onSongBrowser(cocos2d::CCObject* sender) = win 0x354aa0, ios 0xf0568;
+	void onToggle(cocos2d::CCObject* sender) = win 0x3542a0;
+	const char* pageKey(int);
+	void toggleGP();
 
 	virtual bool init() = win 0x351e90, imac 0x7a79a0, m1 0x6aed54, ios 0xeefb4;
 	virtual void keyBackClicked() = win 0x355100, m1 0x6b1f1c, imac 0x7aac00;
-	virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x6b1f28, imac 0x7aac30;
-	virtual void textInputReturn(CCTextInputNode*) = m1 0x6b1ff8, imac 0x7aacf0;
+	virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x79fd0, m1 0x6b1f28, imac 0x7aac30;
+	virtual void textInputReturn(CCTextInputNode*) = win 0x7a030, m1 0x6b1ff8, imac 0x7aacf0;
 	virtual void googlePlaySignedIn() = win 0x355110, m1 0x6b20b0, imac 0x7aada0;
 	virtual void dropDownLayerWillClose(GJDropDownLayer*) = win 0x354c60, m1 0x6b1df8, imac 0x7aaa80;
+
+	int m_page;
+	int m_toggleCount;
+	int m_pageCount;
+	cocos2d::CCDictionary* m_variables;
+	cocos2d::CCDictionary* m_objects;
+	CCMenuItemSpriteExtra* m_leftBtn;
+	CCMenuItemSpriteExtra* m_rightBtn;
+	CCTextInputNode* m_offsetInput;
+	CCMenuItemSpriteExtra* m_gpSignInBtn;
+	CCMenuItemSpriteExtra* m_gpSignOutBtn;
+	cocos2d::CCLabelBMFont* m_categoryLabel;
 }
 
 [[link(android)]]
@@ -11830,7 +11850,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 		m_lastVaultDialog = -1;
 	}
 
-	static OptionsLayer* create() = win inline, ios 0xedfcc {
+	static OptionsLayer* create() = win inline, m1 0x6ad67c, imac 0x7a60c0, ios 0xedfcc {
 		auto ret = new OptionsLayer();
 		if (ret->init("Settings")) {
 			ret->autorelease();
@@ -11846,7 +11866,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void onAccount(cocos2d::CCObject* sender) = ios 0xee9dc;
 	void onHelp(cocos2d::CCObject* sender) = ios 0xee9ec;
 	void onMenuMusic(cocos2d::CCObject* sender) = ios 0xeecd8;
-	void onOptions(cocos2d::CCObject* sender) = win 0x3512f0, ios 0xeea08;
+	void onOptions(cocos2d::CCObject* sender) = win 0x3512f0, m1 0x6ae1f8, imac 0x7a6d70, ios 0xeea08;
 	void onProgressBar(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender) = ios 0xeea24;
 	void onRecordReplays(cocos2d::CCObject* sender);
