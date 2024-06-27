@@ -2948,7 +2948,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	bool m_unk;
 	bool m_lowDetailModeTriggered;
 	GJLevelType m_levelType;
-	PAD = win 0x24;
+	PAD = win 0x1c;
 }
 
 [[link(android)]]
