@@ -5076,14 +5076,14 @@ class GameManager : GManager {
 	int getIconRequestID() {
 		return m_iconRequestID++;
 	}
-	int getIntGameVariable(char const*) = win 0x17a6e0, ios 0x329d2c;
+	int getIntGameVariable(char const*) = win 0x17a6e0, imac 0x385ba0, m1 0x30f8f0, ios 0x329d2c;
 	gd::string getMenuMusicFile() = win 0x172db0, ios 0x322c64, imac 0x378890, m1 0x303f34;
 	TodoReturn getMGTexture(int);
 	TodoReturn getNextUniqueObjectKey();
 	TodoReturn getNextUsedKey(int, bool);
 	TodoReturn getOrderedCustomObjectKeys();
 	TodoReturn getPracticeMusicFile();
-	bool getUGV(char const*) = win 0x17a470, ios 0x329ba0;
+	bool getUGV(char const*) = win 0x17a470, imac 0x385930, m1 0x30f644, ios 0x329ba0;
 	TodoReturn getUnlockForAchievement(gd::string, int&, UnlockType&);
 	TodoReturn groundHasSecondaryColor(int);
 	TodoReturn iconAndTypeForKey(int, int&, int&);
@@ -5176,9 +5176,9 @@ class GameManager : GManager {
 	TodoReturn saveDPadLayout(int, bool);
 	void setGameVariable(char const*, bool) = win 0x179e80, imac 0x3854a0, m1 0x30f154, ios 0x32991c;
 	void setHasRatingPower(int);
-	void setIntGameVariable(char const*, int) = imac 0x385a80;
+	void setIntGameVariable(char const*, int) = win 0x17a5e0, imac 0x385a80, m1 0x30f7c0;
 	void setPlayerUserID(int);
-	void setUGV(char const*, bool) = win 0x17a310, ios 0x329ab0;
+	void setUGV(char const*, bool) = win 0x17a310, m1 0x30f4a0, imac 0x3857c0, ios 0x329ab0;
 	TodoReturn setupGameAnimations();
 	gd::string sheetNameForIcon(int, int) = win 0x179460, m1 0x30cad8, imac 0x382cb0;
 	TodoReturn shortenAdTimer(float);
@@ -10582,7 +10582,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 	}
 
 	void addSecretCoin() = win 0x2fbe20, imac 0x43dde0, m1 0x3b0314;
-	void addSecretDoor() = win 0x2fc530, imac 0x440360, m1 0x3b2b7c;
+	void addSecretDoor() = win 0x2fc530, imac 0x440360, m1 0x3b2564;
 	bool init(GJGameLevel*) = win 0x2f9570, imac 0x43f130, m1 0x3b145c;
 	void onInfo(cocos2d::CCObject* sender) = win 0x2fd820, imac 0x43ea10, m1 0x3b0e74;
 	void onMoreGames(cocos2d::CCObject* sender) = imac 0x4404d0, m1 0x3b26d0;
