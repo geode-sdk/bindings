@@ -6651,7 +6651,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn positionUIObjects();
 	TodoReturn prepareSavePositionObjects();
 	TodoReturn prepareTransformParent(bool);
-	TodoReturn preResumeGame() = m1 0x11a3ac;
+	void preResumeGame() = m1 0x11a3ac;
 	TodoReturn preUpdateVisibility(float);
 	void processActivatedAudioTriggers(float) = win 0x232a70;
 	TodoReturn processAdvancedFollowAction(AdvancedFollowInstance&, bool, float);
@@ -12576,7 +12576,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCPoint m_unk7e8;
 	cocos2d::CCPoint m_unk7f0; // maybe m_lastPortalPos
 	bool m_unk7f8;
-	PAD = win 0x19, android32 0x19, android64 0x1d, mac 0x1d, ios 0x1d;
+	PAD = win 0x7, android32 0x7, android64 0x7, mac 0x7, ios 0x7;
+	float m_platformerVelocityRelated;
+	PAD = win 0xE, android32 0xE, android64 0x12, mac 0x12, ios 0x12;
 	bool m_isLocked;
 	bool m_unka2b;
 	cocos2d::CCPoint m_lastGroundedPos;
@@ -12597,7 +12599,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     float m_unk838;
 	PAD = win 0x18, mac 0x18, android 0x18, ios 0x18;
 	double m_platformerXVelocity;
-	PAD = win 0x70, mac 0x70, android 0x70, ios 0x70;
+	bool m_holdingRight;
+	bool m_holdingLeft;
+	PAD = win 0x6E, mac 0x6E, android 0x6E, ios 0x6E;
 	bool m_isPlatformer;
 	int m_unk8ec;
 	int m_unk8f0;
@@ -12606,7 +12610,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_gravityMod;
 	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	cocos2d::CCPoint m_unk904;
-	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
+	bool m_affectedByForces;
+	PAD = win 0x3, mac 0x3, android 0x3, ios 0x3;
 	gd::map<int, bool> m_unk910;
 	float m_unk918; // increments whenever you're midiar?
 	float m_unk91c;
