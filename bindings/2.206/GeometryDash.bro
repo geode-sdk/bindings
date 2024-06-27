@@ -2888,8 +2888,8 @@ class EditGameObjectPopup : SetupTriggerPopup {
 	bool init(EffectGameObject*, cocos2d::CCArray*, bool);
 }
 
-[[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
+	EditLevelLayer() = win inline {}
 	virtual ~EditLevelLayer() = m1 0x1a7544, win 0xd1980, imac 0x1f42c0;
 
 	static EditLevelLayer* create(GJGameLevel*) = m1 0x1a757c;
@@ -2940,6 +2940,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	bool m_unk;
 	bool m_lowDetailModeTriggered;
 	GJLevelType m_levelType;
+	PAD = win 0x24;
 }
 
 [[link(android)]]
