@@ -2890,9 +2890,18 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
+	EditLevelLayer() = win inline, imac inline, m1 inline {}
 	virtual ~EditLevelLayer() = m1 0x1a7544, win 0xd1980, imac 0x1f42c0;
 
-	static EditLevelLayer* create(GJGameLevel*) = m1 0x1a757c;
+	static EditLevelLayer* create(GJGameLevel* level) = win inline, imac 0x1f45e0, m1 0x1a7680 {
+		auto ret = new EditLevelLayer();
+		if (ret && ret->init(level)) {
+			ret->autorelease();
+			return ret;
+		}
+		CC_SAFE_DELETE(ret);
+		return nullptr;
+	}
 
 	TodoReturn closeTextInputs();
 	void confirmClone(cocos2d::CCObject*);
@@ -2916,7 +2925,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	void onUpdateDescription(cocos2d::CCObject* sender);
 	TodoReturn playStep2();
 	TodoReturn playStep3();
-	static cocos2d::CCScene* scene(GJGameLevel*) = win 0xd1af0;
+	static cocos2d::CCScene* scene(GJGameLevel*) = win 0xd1af0, imac 0x1f4480, m1 0x1a757c;
 	void setupLevelInfo();
 	TodoReturn updateDescText(char const*);
 	TodoReturn verifyLevelName();
@@ -2940,6 +2949,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 	bool m_unk;
 	bool m_lowDetailModeTriggered;
 	GJLevelType m_levelType;
+	PAD = win 0x1c;
 }
 
 [[link(android)]]
@@ -12027,13 +12037,21 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class PauseLayer : CCBlockLayer {
 	// virtual ~PauseLayer();
-	// PauseLayer();
+	PauseLayer() = win inline {}
 
-	static PauseLayer* create(bool) = imac 0x3d9bb0, m1 0x35a7b4;
+	static PauseLayer* create(bool p0) = win inline, imac 0x3d9bb0, m1 0x35a7b4 {
+		auto ret = new PauseLayer();
+		if (ret && ret->init(p0)) {
+			ret->autorelease();
+			return ret;
+		}
+		CC_SAFE_DELETE(ret);
+		return nullptr;
+	}
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	void goEdit() = win 0x35cac0, imac 0x3db8e0, m1 0x35c470;
-	bool init(bool) = imac 0x5208d0, m1 0x475acc;
+	bool init(bool) = win 0x41660, imac 0x5208d0, m1 0x475acc;
 	void musicSliderChanged(cocos2d::CCObject*);
 	void onEdit(cocos2d::CCObject* sender) = win 0x35c8f0, imac 0x3db1b0, m1 0x35bd28;
 	void onHelp(cocos2d::CCObject* sender);
@@ -12056,6 +12074,8 @@ class PauseLayer : CCBlockLayer {
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x35cec0, m1 0x35c658, imac 0x3dbaa0;
 	virtual void customSetup() = win 0x35abc0, m1 0x35a888, imac 0x3d9cc0;
 	virtual void keyUp(cocos2d::enumKeyCodes) {}
+
+	PAD = win 0x10;
 }
 
 [[link(android)]]
@@ -12469,30 +12489,39 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void animationFinished(char const*) = win 0x3808b0, m1 0x39a5d0, imac 0x425df0;
 
 	cocos2d::CCNode* m_mainLayer;
-	PAD = win 0x44, android32 0x44, android64 0x48, mac 0x48, ios 0x48;
+	PAD = win 0x3E, android32 0x3E, android64 0x42, mac 0x42, ios 0x42;
+	bool m_slopeRelated;
+	PAD = win 0x6, android32 0x6, android64 0x4, mac 0x4, ios 0x4;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
 	cocos2d::CCDictionary* m_unk4ec;
 	cocos2d::CCDictionary* m_unk4f0;
 	cocos2d::CCDictionary* m_unk4f4;
-	PAD = win 0x20, mac 0x20, android 0x20, ios 0x20;
+	int m_unk4f8;
+    	int m_unk4fc;
+    	int m_unk500;
+    	int m_unk508;
+    	int m_unk50C;
+    	int m_unk510;
+    	GameObject* m_unk514;
 	float m_unk518;
 	bool m_unk51c;
 	bool m_unk51d;
 	bool m_unk51e;
 	bool m_unk51f;
-	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
+	float m_unk523;
+    	bool m_checkpointModeRelated;
 	GameObject* m_collidedObject;
 	PAD = win 0x48, android32 0x3c, android64 0x50, mac 0x50, ios 0x50;
 	float m_unk568;
 	cocos2d::CCSprite* m_unk56c;
-	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
+	bool m_ballRotating;
 	GameObject* m_unk574;
 	GameObject* m_unk578;
 	PAD = win 0x8, android32 0xC, android64 0x0, mac 0x0, ios 0x0;
 	float unk_584;
 	int unk_588; // seems to always be 0, but when you respawn it's -1 until you move at least 1 block from the respawn place
-	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
+    	bool m_unk134;
 	cocos2d::CCArray* m_particleSystems;
 	gd::unordered_map<int, GJPointDouble> m_unk594; // insertions are in PlayerObject::rotateGameplayObject
 	gd::unordered_map<int, GameObject*> m_unk5b4;
@@ -12567,9 +12596,26 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_unk70c;
 	float m_unk710;
 	int m_playerStreak;
-	PAD = win 0x2C, mac 0x2C, android 0x2C, ios 0x2C;
-	float m_blackOrbRelated;
-	PAD = win 0x2C, mac 0x2C, android 0x2C, ios 0x2C;
+	float m_streakRelated1;
+	bool m_streakRelated2;
+	bool m_streakRelated3;
+	ShipStreak m_shipStreakType;
+	double m_unk3c0;
+	double m_unk3c8;
+	double m_unk3d0;
+	double m_blackOrbRelated;
+	bool m_unk3e0;
+	bool m_unk3e1;
+	bool m_unk3e2; // used to be m_blackOrbRelated
+	bool m_unk3e3;
+	double m_collisionTopRelated;
+	double m_collisionBottomRelated;
+	double m_collisionLeftRelated;
+	double m_collisionRightRelated;
+	bool m_streakRelated4;
+	bool m_canPlaceCheckpoint; // could also be related to hitGround but its referenced a lot as an if condition to call tryPlaceCheckpoint
+	cocos2d::ccColor3B m_unk40a;
+	cocos2d::ccColor3B m_secondColorRelated;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
 	PAD = win 0x18, mac 0x18, android 0x1c, ios 0x1c;
@@ -12577,7 +12623,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	PAD = win 0x8, mac 0x8, android 0x8, ios 0x8;
 	bool m_isOnSlope;
 	bool m_wasOnSlope;
-	PAD = win 0x7, mac 0x7, android 0x7, ios 0x7;
+	PAD = win 0x2, mac 0x2, android 0x2, ios 0x2;
+	float m_slopeVelocityRelated;
+	PAD = win 0x1, mac 0x1, android 0x1, ios 0x1;
 	bool m_isShip;
 	bool m_isBird;
 	bool m_isBall;
@@ -12623,7 +12671,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_gamevar0062;
 	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	gd::vector<float> m_unk880;
-    float m_unk838;
+    	float m_unk838;
 	PAD = win 0x18, mac 0x18, android 0x18, ios 0x18;
 	double m_platformerXVelocity;
 	bool m_holdingRight;
@@ -12702,7 +12750,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 		if (this->m_level->m_timestamp > 0)
 			percent = static_cast<float>(this->m_gameState.m_currentProgress) / this->m_level->m_timestamp * 100.f;
 		else
-			percent = this->m_player1->getPosition().x / this->m_levelLength * 100.f;
+			percent = reinterpret_cast<cocos2d::CCNode*>(this->m_player1)->getPosition().x / this->m_levelLength * 100.f;
 
 		return std::clamp(percent, 0.f, 100.f);
 	}
