@@ -26,7 +26,7 @@ GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x3808);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x3895);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x38ff);
 GEODE_MEMBER_CHECK(PlayLayer, m_tryPlaceCheckpoint, 0x3974);
-GEODE_MEMBER_CHECK(PlayLayer, m_triggeredCheckpointGameObject, 0x3978);
+GEODE_MEMBER_CHECK(PlayLayer, m_activatedCheckpoint, 0x3978);
 
 GEODE_SIZE_CHECK(LevelEditorLayer, 0x39e8);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3754);

@@ -30,6 +30,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xff0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer, 0x1018);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer2, 0x1020);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0x10e4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x30b4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x3198);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x31a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3210);
@@ -44,8 +45,10 @@ GEODE_SIZE_CHECK(PlayLayer, 0x3970);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37b0);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x37d0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x37e8);
+GEODE_MEMBER_CHECK(PlayLayer, m_jumps, 0x3860);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x386d);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x38d7);
+GEODE_MEMBER_CHECK(PlayLayer, m_infoLabel, 0x38e0);
 
 GEODE_SIZE_CHECK(DrawGridLayer, 0x260);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x200);
