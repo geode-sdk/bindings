@@ -12027,7 +12027,7 @@ class PauseLayer : CCBlockLayer {
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	void goEdit() = win 0x35cac0, imac 0x3db8e0, m1 0x35c470;
-	bool init(bool) = imac 0x5208d0, m1 0x475acc;
+	bool init(bool) = win 0x41660, imac 0x5208d0, m1 0x475acc;
 	void musicSliderChanged(cocos2d::CCObject*);
 	void onEdit(cocos2d::CCObject* sender) = win 0x35c8f0, imac 0x3db1b0, m1 0x35bd28;
 	void onHelp(cocos2d::CCObject* sender);
@@ -12465,7 +12465,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void animationFinished(char const*) = win 0x3808b0, m1 0x39a5d0, imac 0x425df0;
 
 	cocos2d::CCNode* m_mainLayer;
-	PAD = win 0x44, android32 0x44, android64 0x48, mac 0x48, ios 0x48;
+	PAD = win 0x3E, android32 0x3E, android64 0x42, mac 0x42, ios 0x42;
+	bool m_slopeRelated;
+	PAD = win 0x6, android32 0x6, android64 0x6, mac 0x6, ios 0x6;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
 	cocos2d::CCDictionary* m_unk4ec;
@@ -12597,7 +12599,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	PAD = win 0x8, mac 0x8, android 0x8, ios 0x8;
 	bool m_isOnSlope;
 	bool m_wasOnSlope;
-	PAD = win 0x7, mac 0x7, android 0x7, ios 0x7;
+	PAD = win 0x2, mac 0x2, android 0x2, ios 0x2;
+	float m_slopeVelocityRelated;
+	PAD = win 0x1, mac 0x1, android 0x1, ios 0x1;
 	bool m_isShip;
 	bool m_isBird;
 	bool m_isBall;
