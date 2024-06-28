@@ -200,6 +200,7 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkUint22, 0x6c0);
 
 GEODE_SIZE_CHECK(GameObject, 0x550);
 GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x310);
+GEODE_MEMBER_CHECK(GameObject, m_uniqueID, 0x39c);
 
 GEODE_SIZE_CHECK(EnhancedGameObject, 0x5b8);
 
@@ -226,8 +227,11 @@ GEODE_MEMBER_CHECK(PlayerObject, m_gv0100, 0x82b);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x8a0);
 GEODE_MEMBER_CHECK(PlayerObject, m_spiderSprite, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_playerStreak, 0x920);
+GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x980);
 GEODE_MEMBER_CHECK(PlayerObject, m_isLocked, 0xa2a);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0xa2c);
+GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xb70);
+GEODE_MEMBER_CHECK(PlayerObject, m_unk910, 0xb98);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotFire, 0xc10);
 GEODE_MEMBER_CHECK(PlayerObject, m_gameLayer, 0xc20);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0xc30);

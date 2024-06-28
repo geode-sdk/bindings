@@ -5708,7 +5708,7 @@ class GameObject : CCSpritePlus {
 
 	float m_objectRadius;
 
-	PAD = android32 0xE, win 0xE, android64 0xE, mac 0xE;
+	PAD = android32 0xA, win 0xA, android64 0xA, mac 0xA;
 
 	int m_uniqueID;
 	GameObjectType m_objectType;
