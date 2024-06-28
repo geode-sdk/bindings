@@ -5104,7 +5104,7 @@ class GameManager : GManager {
 	TodoReturn likeFacebook();
 	void loadBackground(int) = win 0x179870, imac 0x384b90, m1 0x30e7ec;
 	void loadBackgroundAsync(int);
-	
+
 	void loadDeathEffect(int id) = imac 0x384a10, m1 0x30e674, win inline {
 		if (id < 1) id = 1;
 		if (id > 19) id = 20;
@@ -5198,7 +5198,7 @@ class GameManager : GManager {
 	TodoReturn tryCacheAd();
 	TodoReturn tryShowInterstitial(int, int, int);
 	TodoReturn unloadBackground();
-	void unloadIcon(int, int, int);
+	void unloadIcon(int, int, int) = win 0x1791d0, imac 0x383f80, m1 0x30dc24;
 	void unloadIcons(int);
 	TodoReturn unlockColor(int, UnlockType);
 	TodoReturn unlockedPremium();
@@ -5703,7 +5703,7 @@ class GameObject : CCSpritePlus {
 	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
 
 	cocos2d::CCSprite* m_colorSprite;
-	
+
 	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
 
 	float m_objectRadius;
