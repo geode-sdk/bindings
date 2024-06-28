@@ -12577,7 +12577,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	double m_unk3c0;
 	double m_unk3c8;
 	double m_unk3d0;
-	double m_blackOrbRelated;
+	double m_unk3d8;
 	bool m_unk3e0;
 	bool m_unk3e1;
 	bool m_unk3e2; // used to be m_blackOrbRelated
