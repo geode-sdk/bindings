@@ -41,7 +41,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x3490); // wtf is this
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34a0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3548);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x35f0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x35f0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3668);
 
 

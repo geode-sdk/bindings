@@ -25,7 +25,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3158);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk3458, 0x3288);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3298);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32f8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x3420);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x3420);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 
 
