@@ -29,7 +29,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x3420);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 
 
-// GEODE_SIZE_CHECK(PlayerObject, 0xbe8);
+// GEODE_SIZE_CHECK(PlayerObject, 0xbe8); 
 GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
 // GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
 // GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
