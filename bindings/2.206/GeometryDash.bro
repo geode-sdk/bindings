@@ -9987,7 +9987,7 @@ class LevelCell : TableViewCell {
 	void onToggle(cocos2d::CCObject* sender) = win 0xac0f0, m1 0x1f7d28, imac 0x24dc80;
 	void onViewProfile(cocos2d::CCObject* sender) = win 0xaf700, m1 0x1f7ea4, imac 0x24de00;
 	void updateBGColor(int);
-	TodoReturn updateCellMode(int) = imac 0x24a0e0;
+	void updateCellMode(int) = imac 0x24a0e0, win 0xaf250, m1 0x1f4538;
 	TodoReturn updateToggle();
 
 	virtual bool init() = win 0xabf10, m1 0x1f4a88, imac 0x24a6e0;
