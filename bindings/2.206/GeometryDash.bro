@@ -7184,8 +7184,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	PAD = win 0x70, android32 0x38, android64 0x68, mac 0x40; // mac not verified
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection;
 	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10;
-	FMODLevelVisualizer* m_fModVisualizerBG;
-	FMODLevelVisualizer* m_fModVisualizerSFX;
+	FMODLevelVisualizer* m_audioVisualizerBG;
+	FMODLevelVisualizer* m_audioVisualizerSFX;
 	bool m_showAudioVisualizer;
 	PAD = win 0x67, android32 0x67, android64 0x67, mac 0x67;
 	GJGameLoadingLayer* m_loadingLayer;
