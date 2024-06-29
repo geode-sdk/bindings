@@ -39,7 +39,11 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3248);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3308);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x3490); // wtf is this
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34a0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3548);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x35f0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3668);
+
 
 GEODE_SIZE_CHECK(PlayLayer, 0x3970);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37b0);
