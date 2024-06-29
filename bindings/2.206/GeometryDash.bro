@@ -8019,7 +8019,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	SimplePlayer* m_playerObject;
 	cocos2d::CCArray* m_tabButtons;
 	cocos2d::CCArray* m_pageButtons;
-	cocos2d::CCSprite* m_numberOneFan;
+	cocos2d::CCNode* m_unknown;
 	cocos2d::CCSprite* m_supporter;
 	bool m_hasClosed;
 	IconType m_iconType;
