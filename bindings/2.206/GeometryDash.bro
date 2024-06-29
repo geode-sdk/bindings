@@ -8019,7 +8019,8 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	SimplePlayer* m_playerObject;
 	cocos2d::CCArray* m_tabButtons;
 	cocos2d::CCArray* m_pageButtons;
-	PAD = android32 0x8, win 0x10, android64 0x10, mac 0x10;
+	cocos2d::CCSprite* m_numberOneFan;
+	cocos2d::CCSprite* m_supporter;
 	bool m_hasClosed;
 	IconType m_iconType;
 	gd::map<IconType, int> m_iconPages;
@@ -8032,7 +8033,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	cocos2d::CCMenu* m_navDotMenu;
 	int m_iconID;
 	IconType m_selectedIconType;
-	bool m_unkBool;
+	bool m_videoPlaying;
 }
 
 [[link(android)]]
@@ -8089,7 +8090,7 @@ class GJItemIcon : cocos2d::CCSprite {
 	// virtual ~GJItemIcon();
 	GJItemIcon() {}
 
-	static GJItemIcon* create(UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7) = win inline, m1 0x2fe438 {
+	static GJItemIcon* create(UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7) = win inline, m1 0x2fe438, imac 0x3727b0 {
 		auto ret = new GJItemIcon();
 		if (ret->init(p0, p1, p2, p3, p4, p5, p6, p7)) {
 			ret->autorelease();
@@ -8098,15 +8099,15 @@ class GJItemIcon : cocos2d::CCSprite {
 		delete ret;
 		return nullptr;
  	}
-	void changeToLockedState(float) = win 0x2694c0, ios 0x316AB8;
-	static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x268880;
-	static GJItemIcon* createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B) = win 0x268750;
-	void darkenStoreItem(cocos2d::ccColor3B) = win 0x2691d0;
-	void darkenStoreItem(ShopType) = win 0x269150;
-	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x2689a0, ios 0x3186D4;
-	float scaleForType(UnlockType) = win 0x2695a0;
+	void changeToLockedState(float) = win 0x2694c0, m1 0x2fbbf4, imac 0x36fcd0, ios 0x316AB8;
+	static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x268880, m1 0x2fb6d0, imac 0x36f580;
+	static GJItemIcon* createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B) = win 0x268750, m1 0x2fe41c, imac 0x372780;
+	void darkenStoreItem(cocos2d::ccColor3B) = win 0x2691d0, m1 0x2fec04, imac 0x372fc0;
+	void darkenStoreItem(ShopType) = win 0x269150, m1 0x2fbbcc, imac 0x36fc60;
+	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x2689a0, m1 0x2fe540, imac 0x3728c0, ios 0x3186D4;
+	float scaleForType(UnlockType) = win 0x2695a0, m1 0x2fb6f0, imac 0x36f5b0;
 	void toggleEnabledState(bool) = win 0x269400, ios 0x316B94;
-	cocos2d::ccColor3B unlockedColorForType(int);
+	static cocos2d::ccColor3B unlockedColorForType(int) = m1 0x2feb9c, imac 0x372f60;
 
 	virtual void setOpacity(unsigned char) = win 0x2690b0, m1 0x2fea70, imac 0x372e20;
 
