@@ -12476,6 +12476,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	DashRingObject* m_dashRingObject;
 	int m_unk40; // unsure if int
 	int m_unk44; // unsure if int
+	int m_unk48; // unsure if int
 	bool m_slopeRelated;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
@@ -12682,10 +12683,6 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	double m_unk4b0;
 	bool m_unk4b8;
 	bool m_unk4b9; // hitGround
-	bool m_unk4ba;
-	bool m_unk4bb; // related to controls
-	bool m_unk4bc;
-	bool m_unk4bd;
 	bool m_isLocked;
 	bool m_unka2b;
 	cocos2d::CCPoint m_lastGroundedPos;
