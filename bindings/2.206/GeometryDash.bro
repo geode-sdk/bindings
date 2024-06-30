@@ -13852,15 +13852,19 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
 
 	static SetTextPopup* create(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float) = win 0x28ac50, m1 0x24af3c, imac 0x2a9b60;
 
-	bool init(gd::string, gd::string, int, gd::string, gd::string, bool, float) = win 0x28adc0;
-	void onCancel(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onResetValue(cocos2d::CCObject* sender);
-	TodoReturn updateTextInputLabel();
+	bool init(gd::string, gd::string, int, gd::string, gd::string, bool, float) = win 0x28adc0, m1 0x24b7b4, imac 0x2aa530;
+	void onCancel(cocos2d::CCObject* sender) = win 0x28b7f0, m1 0x24bff4, imac 0x2aadf0;
+	void onClose(cocos2d::CCObject* sender) = win 0x28b880, m1 0x24be84, imac 0x2aac80;
+	void onResetValue(cocos2d::CCObject* sender) = win 0x28b6a0, m1 0x24bfc4, imac 0x2aadc0;
+	void updateTextInputLabel() = win inline, m1 0x24c000, imac 0x2aae10 {
+		m_disableDelegate = true;
+		m_input->setString(m_value);
+		m_disableDelegate = false;
+	}
 
 	virtual void keyBackClicked() = win 0x28b910, m1 0x24c27c, imac 0x2ab090;
 	virtual void show() = win 0x8a220, m1 0x24c230, imac 0x2ab030;
-	virtual void textInputClosed(CCTextInputNode*) = m1 0x24c0f4, imac 0x2aaf00;
+	virtual void textInputClosed(CCTextInputNode*) = win 0x89f80, m1 0x24c0f4, imac 0x2aaf00;
 	virtual void textChanged(CCTextInputNode*) = win 0x28b700, m1 0x24c110, imac 0x2aaf40;
 
 	CCTextInputNode* m_input;
