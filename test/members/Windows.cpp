@@ -205,6 +205,7 @@ GEODE_MEMBER_CHECK(GameObject, m_glowSprite, 0x2f0);
 GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x310);
 GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x3c8);
 GEODE_MEMBER_CHECK(GameObject, m_startRotationX, 0x3d4);
+GEODE_MEMBER_CHECK(GameObject, m_startFlipX, 0x3ec);
 GEODE_MEMBER_CHECK(GameObject, m_groups, 0x490);
 GEODE_MEMBER_CHECK(GameObject, m_lastPosition, 0x4d0);
 

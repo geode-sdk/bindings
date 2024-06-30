@@ -5756,12 +5756,12 @@ class GameObject : CCSpritePlus {
 	float m_startScaleX;
 	float m_startScaleY;
 
-	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
+	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8;
 
 	bool m_startFlipX;
 	bool m_startFlipY;
 
-	PAD = android32 0xa, win 0xa, android64 0xa, mac 0xa;
+	PAD = android32 0x12, win 0x12, android64 0x12, mac 0x12;
 
 	// property 343
 	short m_enterChannel;
