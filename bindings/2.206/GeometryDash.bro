@@ -5689,7 +5689,20 @@ class GameObject : CCSpritePlus {
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
 
-	PAD = android32 0x4c, win 0x54, android64 0x54, mac 0x54;
+	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
+
+	float m_rotationXOffset;
+
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
+
+	float m_rotationYOffset;
+
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
+
+	float m_scaleXOffset;
+	float m_scaleYOffset;
+
+	PAD = android32 0x28, win 0x30, android64 0x30, mac 0x30;
 
 	cocos2d::CCSprite* m_glowSprite;
 
@@ -5736,12 +5749,19 @@ class GameObject : CCSpritePlus {
 	// property 372
 	bool m_hasNoAudioScale;
 	bool m_unk34a;
-	PAD = android32 0x11, win 0x11, android64 0x11, mac 0x11;
+	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
 
-	float m_currentScaleX;
-	float m_currentScaleY;
+	float m_startRotationX;
+	float m_startRotationY;
+	float m_startScaleX;
+	float m_startScaleY;
 
-	PAD = android32 0x10, win 0x10, android64 0x10, mac 0x10;
+	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
+
+	bool m_startFlipX;
+	bool m_startFlipY;
+
+	PAD = android32 0xa, win 0xa, android64 0xa, mac 0xa;
 
 	// property 343
 	short m_enterChannel;

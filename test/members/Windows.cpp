@@ -199,7 +199,14 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkUint21, 0x6bc);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint22, 0x6c0);
 
 GEODE_SIZE_CHECK(GameObject, 0x550);
+GEODE_MEMBER_CHECK(GameObject, m_outerSectionIndex, 0x278);
+GEODE_MEMBER_CHECK(GameObject, m_scaleXOffset, 0x2b8);
+GEODE_MEMBER_CHECK(GameObject, m_glowSprite, 0x2f0);
 GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x310);
+GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x3c8);
+GEODE_MEMBER_CHECK(GameObject, m_startRotationX, 0x3d4);
+GEODE_MEMBER_CHECK(GameObject, m_groups, 0x490);
+GEODE_MEMBER_CHECK(GameObject, m_lastPosition, 0x4d0);
 
 GEODE_SIZE_CHECK(EnhancedGameObject, 0x5b8);
 
