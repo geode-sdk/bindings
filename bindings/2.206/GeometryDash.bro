@@ -940,14 +940,16 @@ class CCLightStrip : cocos2d::CCNode {
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	~CCMenuItemSpriteExtra() {}
 	CCMenuItemSpriteExtra() = ios 0x177268 {
-		m_scaleMultiplier = 1.0f;
-		m_baseScale = 1.0f;
-		m_animationEnabled = true;
+		m_animationEnabled = false; //this is changed to true in init
 		m_colorEnabled = false;
-		m_unknown1 = 0.0f;
-		m_colorDip = 0.0f;
+		m_colorDip = 0.784314f;
+		m_scaleMultiplier = 1.f; //this is changed to 1.26f in init
+		m_volume = 1.f;
+		m_duration = 0.3f;
+		m_unselectedDuration = 0.4f;
 		m_animationType = MenuAnimationType::Scale;
 		m_unknown4 = 0;
+		//m_baseScale is initialized in init
 	}
 
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x43cc0, imac 0x272d00, m1 0x218bd0, ios 0x223cdc;
@@ -993,12 +995,13 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	float m_baseScale;
 	bool m_animationEnabled;
 	bool m_colorEnabled;
-	float m_unknown1;
-	gd::string m_unknown2;
-	gd::string m_unknown3;
+	float m_volume;
+	gd::string m_activateSound; //canonical name most likely: clickSound_
+	gd::string m_selectSound;
 	float m_colorDip;
-	cocos2d::CCPoint m_destPosition;
 	cocos2d::CCPoint m_offset;
+	float m_duration;
+	float m_unselectedDuration;
 	MenuAnimationType m_animationType;
 	cocos2d::CCPoint m_startPosition;
 	int m_unknown4;
