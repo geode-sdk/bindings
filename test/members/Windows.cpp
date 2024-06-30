@@ -200,6 +200,7 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkUint22, 0x6c0);
 
 GEODE_SIZE_CHECK(GameObject, 0x550);
 GEODE_MEMBER_CHECK(GameObject, m_outerSectionIndex, 0x278);
+GEODE_MEMBER_CHECK(GameObject, m_positionXOffset, 0x2a0);
 GEODE_MEMBER_CHECK(GameObject, m_scaleXOffset, 0x2b8);
 GEODE_MEMBER_CHECK(GameObject, m_glowSprite, 0x2f0);
 GEODE_MEMBER_CHECK(GameObject, m_someSprite, 0x308);

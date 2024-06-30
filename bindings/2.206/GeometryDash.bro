@@ -5689,7 +5689,10 @@ class GameObject : CCSpritePlus {
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
 
-	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
+
+	float m_positionXOffset;
+	float m_positionYOffset;
 
 	float m_rotationXOffset;
 
@@ -5741,8 +5744,8 @@ class GameObject : CCSpritePlus {
 	int m_unk326;
 
 	PAD = android32 0xa, win 0xa, android64 0xa, mac 0xa;
-	double m_realXPosition;
-	double m_realYPosition;
+	double m_positionX;
+	double m_positionY;
 	cocos2d::CCPoint m_startPosition;
 	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
 
