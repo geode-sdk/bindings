@@ -4561,7 +4561,7 @@ class GameLevelManager : cocos2d::CCNode {
 	gd::string getActiveDailyID(bool, bool, bool, bool, bool, bool, bool, bool);
 	char const* getDiffKey(int);
 	bool getDiffVal(int);
-	gd::string getFolderName(int, bool);
+	gd::string getFolderName(int, bool) = win 0x1453c0, m1 0x4935bc, imac 0x541610;
 	char const* getFriendRequestKey(bool, int);
 	void getFriendRequests(bool, int, int);
 	char const* getGauntletKey(int);
@@ -4774,7 +4774,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void setActiveSmartTemplate(GJSmartTemplate*);
 	void setBoolForKey(bool, char const*);
 	void setDiffVal(int, bool) = win 0x1624c0;
-	void setFolderName(int, gd::string, bool);
+	void setFolderName(int, gd::string, bool) = m1 0x493740, imac 0x541790;
 	void setIntForKey(int, char const*);
 	void setLenVal(int, bool) = win 0x1625b0;
 	void setLevelFeatured(int, int, bool);
@@ -13684,13 +13684,16 @@ class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
 class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
 	// virtual ~SetFolderPopup();
 
-	static SetFolderPopup* create(int value, bool isCreated, gd::string title) = win 0x28a310;
+	static SetFolderPopup* create(int value, bool isCreated, gd::string title) = win 0x28a310, m1 0x24a738, imac 0x2a92f0;
 
-	bool init(int value, bool isCreated, gd::string title) = win 0x28a450;
-	void onSetFolderName(cocos2d::CCObject* sender) = win 0x28a810;
+	bool init(int value, bool isCreated, gd::string title) = win 0x28a450, m1 0x24a920, imac 0x2a9550;
+	void onSetFolderName(cocos2d::CCObject* sender) = win 0x28a810, m1 0x24abe0, imac 0x2a9830;
 
-	virtual void valueChanged() = m1 0x24add0, imac 0x2a9a10;
+	virtual void valueChanged() = win 0x28a6d0, m1 0x24add0, imac 0x2a9a10;
 	virtual void setTextPopupClosed(SetTextPopup*, gd::string) = win 0x28aa10, m1 0x24b3b8, imac 0x2aa060;
+
+	bool m_isCreated;
+	cocos2d::CCLabelBMFont* m_titleLabel;
 }
 
 [[link(android)]]
