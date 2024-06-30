@@ -950,13 +950,13 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		m_unknown4 = 0;
 	}
 
-	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x43cc0, imac 0x272d00, m1 0x218bd0, ios 0x223cdc;
+	static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x43cc0, imac 0x272d00, m1 0x218bd0, ios 0x223cdc;
 
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) {
 		return CCMenuItemSpriteExtra::create(sprite, nullptr, target, callback);
 	}
 
-	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x43d60, imac 0x272d90, m1 0x218c88, ios 0x223d80;
+	bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x43d60, imac 0x272d90, m1 0x218c88, ios 0x223d80;
 	void setSizeMult(float mult) = win inline, imac 0x272f10, m1 0x218e0c, ios 0x223f04 {
 		//inlined on windows, member is in CCMenuItemSprite
 		m_fSizeMult = mult;
