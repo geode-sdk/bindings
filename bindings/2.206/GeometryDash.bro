@@ -5452,7 +5452,7 @@ class GameObject : CCSpritePlus {
 	void deselectObject(); // = win 0x141b70; actually updateObjectEditorColor, source: LevelEditorLayer::updateVisibility
 	inline void destroyObject() {
 		m_unk34a = true;
-		m_unk292 = true;
+		m_unk306 = true;
 		setOpacity(0);
 	}
 	void determineSlopeDirection() = win 0x192300, imac 0x5c6ad0;
@@ -5708,11 +5708,11 @@ class GameObject : CCSpritePlus {
 
 	PAD = android32 0x8, win 0x4, android64 0x4, mac 0x4;
 
-	float m_unk288;
-	float m_unk28c;
-	short m_unk290;
-	bool m_unk292;
-	PAD = android32 0x1, win 0x5, android64 0x5, mac 0x5;
+	PAD = android32 0x6, win 0x6, android64 0x6, mac 0x6;
+
+	bool m_unk306;
+
+	cocos2d::CCSprite* m_someSprite;
 	gd::string m_particleString;
 
 	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
