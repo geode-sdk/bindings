@@ -5761,7 +5761,7 @@ class GameObject : CCSpritePlus {
 	bool m_startFlipX;
 	bool m_startFlipY;
 
-	PAD = android32 0x12, win 0x12, android64 0x12, mac 0x12;
+	PAD = android32 0xe, win 0xe, android64 0xe, mac 0xe;
 
 	// property 343
 	short m_enterChannel;
