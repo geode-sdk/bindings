@@ -13684,9 +13684,9 @@ class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
 class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
 	// virtual ~SetFolderPopup();
 
-	static SetFolderPopup* create(int, bool, gd::string) = win 0x28a310;
+	static SetFolderPopup* create(int value, bool isCreated, gd::string title) = win 0x28a310;
 
-	bool init(int, bool, gd::string) = win 0x28a450;
+	bool init(int value, bool isCreated, gd::string title) = win 0x28a450;
 	void onSetFolderName(cocos2d::CCObject* sender) = win 0x28a810;
 
 	virtual void valueChanged() = m1 0x24add0, imac 0x2a9a10;
