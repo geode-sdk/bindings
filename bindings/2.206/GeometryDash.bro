@@ -12465,18 +12465,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void animationFinished(char const*) = win 0x3808b0, m1 0x39a5d0, imac 0x425df0;
 
 	cocos2d::CCNode* m_mainLayer;
-	bool m_unk8;
-	bool m_unk9;
-	bool m_unka;
-	double m_unkf; // related to m_yVelocity
-	double m_unk17;
-	double m_unk1f;
-	double m_unk27;
-	double m_unk2f;
-	DashRingObject* m_dashRingObject;
-	int m_unk40; // unsure if int
-	int m_unk44; // unsure if int
+	PAD = win 0x3E, android32 0x3E, android64 0x42, mac 0x42, ios 0x42;
 	bool m_slopeRelated;
+	PAD = win 0x6, android32 0x6, android64 0x6, mac 0x6, ios 0x6;
 	cocos2d::CCNode* m_unk4e4;
 	cocos2d::CCDictionary* m_unk4e8;
 	cocos2d::CCDictionary* m_unk4ec;
@@ -12497,23 +12488,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_unk523;
     	bool m_checkpointModeRelated;
 	GameObject* m_collidedObject;
-	GameObject* m_lastGroundObject;
-	GameObject* m_objectCollideLeft;
-	GameObject* m_objectCollideRight;
-	int m_unk538;
-	double m_unk540;
-	double m_unkd8; // related to y velocity
-	double m_unke0;
-	double m_unke8;
-	double m_unkf0;
-	double m_unkf8; // related to platformer x velocity
-	bool m_unk100;
+	PAD = win 0x48, android32 0x3c, android64 0x50, mac 0x50, ios 0x50;
 	float m_unk568;
 	cocos2d::CCSprite* m_unk56c;
 	bool m_ballRotating;
 	GameObject* m_unk574;
 	GameObject* m_unk578;
-	//PAD = win 0x8, android32 0xC, android64 0x0, mac 0x0, ios 0x0; // commenting this doesnt really change alignment...
+	PAD = win 0x8, android32 0xC, android64 0x0, mac 0x0, ios 0x0;
 	float unk_584;
 	int unk_588; // seems to always be 0, but when you respawn it's -1 until you move at least 1 block from the respawn place
     	bool m_unk134;
@@ -12553,7 +12534,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	int m_unk640;
 	float m_unk644;
 	float m_unk648;
-	double m_unk650;
+	PAD = win 0x8, android32 0xc, android64 0x8, mac 0x8, ios 0x8;
 	bool m_unk658;
 	bool m_unk659;
 	bool m_unk65a;
@@ -12562,34 +12543,20 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_unk65d; // walking ???
 	bool m_unk65e;
 	bool m_unk65f;
-	bool m_unk660;
-	bool m_unk661;
-	double m_unk668;
-	double m_unk670;
-	double m_unk678;
-	double m_unk680;
+	PAD = win 0x28, mac 0x28, android 0x28, ios 0x28;
 	float m_unk688;
 	float m_unk68c;
-	cocos2d::ccColor3B m_unk68f; // related to flash player
-	cocos2d::ccColor3B m_unk692;
-	// these 2 bools are related to ccColor3B??
-	bool m_unk2b6;
-	bool m_unk2b7;
-	double m_unk2b8;
-	bool m_unk2c0; // unused
-	bool m_unk2c1; // unused
+	PAD = win 0x12, mac 0x12, android 0x12, ios 0x12;
 	bool m_gv0096; // = GameManager::getGameVariable("0096")
 	bool m_gv0100; // = GameManager::getGameVariable("0100")
-	double m_unk2c8;
-	double m_unk2d0;
-	bool m_unk2d8;
+	PAD = win 0x18, mac 0x18, android32 0x18, android64 0x1a, ios 0x18;
 	gd::unordered_set<int> m_unk6a4;
 	GameObject* m_objectSnappedTo;
-	CheckpointObject* m_unk6c0;
-	int m_unk328;
+	int m_unk6c0;
+	PAD = win 0x8, android32 0x4, android64 0xc, mac 0xc, ios 0xc; // android64 unsure
 	GJRobotSprite* m_robotSprite;
 	GJSpiderSprite* m_spiderSprite;
-	bool m_unk340;
+	PAD = win 0x4, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
 	cocos2d::CCParticleSystemQuad* m_playerGroundParticles;
 	cocos2d::CCParticleSystemQuad* m_trailingParticles; // 0x6d8
 	cocos2d::CCParticleSystemQuad* m_shipClickParticles; // 0x6dc
@@ -12599,7 +12566,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCParticleSystemQuad* m_dashParticles;
 	cocos2d::CCParticleSystemQuad* m_swingBurstParticles1; // 0x6f0
 	cocos2d::CCParticleSystemQuad* m_swingBurstParticles2; // 0x6f4
-	bool m_unk390;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	cocos2d::CCParticleSystemQuad* m_landParticles0;
 	cocos2d::CCParticleSystemQuad* m_landParticles1;
 	float m_unk70c;
@@ -12609,7 +12576,6 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_streakRelated2;
 	bool m_streakRelated3;
 	ShipStreak m_shipStreakType;
-	// the 4 doubles are related to slope physics??
 	double m_unk3c0;
 	double m_unk3c8;
 	double m_unk3d0;
@@ -12628,27 +12594,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::ccColor3B m_secondColorRelated;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
-	bool m_unk414;
-	bool m_unk415;
-	bool m_unk416;
-	bool m_unk417;
-	bool m_unk418;
-	bool m_unk419;
-	bool m_unk41a;
-	bool m_unk41b;
-	bool m_unk41c;
-	bool m_unk41d;
-	bool m_unk41e;
-	int m_unk420;
-	int m_unk424;
-	int m_unk428;
-	bool m_unk42c;
+	PAD = win 0x18, mac 0x18, android 0x1c, ios 0x1c;
 	double m_yVelocity;
-	double m_unk438;
+	PAD = win 0x8, mac 0x8, android 0x8, ios 0x8;
 	bool m_isOnSlope;
 	bool m_wasOnSlope;
+	PAD = win 0x2, mac 0x2, android 0x2, ios 0x2;
 	float m_slopeVelocityRelated;
-	bool m_unk448;
+	PAD = win 0x1, mac 0x1, android 0x1, ios 0x1;
 	bool m_isShip;
 	bool m_isBird;
 	bool m_isBall;
@@ -12661,14 +12614,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool m_isGoingLeft;
 	bool m_isSideways;
 	bool m_isSwing;
-	int m_unk7bc;
-	double m_unk7c0;
+	PAD = win 0x10, mac 0x10, android 0x10, ios 0x10;
 	float m_unk7c8;
 	float m_unk7cc; // unsure if float
 	float m_unk7d0;
 	bool m_isDashing;
-	int m_unk7d4;
-	int m_unk7d8; // gameEventTriggered
+	PAD = win 0x8, mac 0x8, android 0x8, ios 0x8;
 	float m_vehicleSize;
 	float m_playerSpeed;
 	float m_unk7e0;
@@ -12676,16 +12627,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::CCPoint m_unk7e8;
 	cocos2d::CCPoint m_unk7f0; // maybe m_lastPortalPos
 	bool m_unk7f8;
-	PAD = win 0x7, android32 0x7, android64 0x7, mac 0x7, ios 0x7; // ????
+	PAD = win 0x7, android32 0x7, android64 0x7, mac 0x7, ios 0x7;
 	float m_platformerVelocityRelated;
-	bool m_unk4a8;
-	double m_unk4b0;
-	bool m_unk4b8;
-	bool m_unk4b9; // hitGround
-	bool m_unk4ba;
-	bool m_unk4bb; // related to controls
-	bool m_unk4bc;
-	bool m_unk4bd;
+	PAD = win 0xE, android32 0xE, android64 0x12, mac 0x12, ios 0x12;
 	bool m_isLocked;
 	bool m_unka2b;
 	cocos2d::CCPoint m_lastGroundedPos;
@@ -12697,65 +12641,37 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	cocos2d::ccColor3B m_playerColor1; // 0x816
 	cocos2d::ccColor3B m_playerColor2; // 0x819
 	cocos2d::CCPoint m_position;
-	bool m_unk520; // unused
-	bool m_unk521;
-	double m_unk528;
-	bool m_unk530; // unused
-	float m_unk534;
-	float m_unkF538;
-	float m_unk53c;
+	PAD = win 0x20, mac 0x20, android 0x20, ios 0x20;
 	bool m_gamevar0060; // used in init
 	bool m_gamevar0061;
 	bool m_gamevar0062;
-	int m_unk544;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	gd::vector<float> m_unk880;
     	float m_unk838;
-	int m_unk564;
-	int m_unkI568;
-	int m_unkI56c;
-	int m_unk570;
-	int m_unkI574;
-	int m_unkI578;
+	PAD = win 0x18, mac 0x18, android 0x18, ios 0x18;
 	double m_platformerXVelocity;
 	bool m_holdingRight;
 	bool m_holdingLeft;
-	bool m_unk58a;
-	double m_unk590;
-	bool m_unk598;
-	float m_unk59c;
-	bool m_unk5a0;
-	bool m_unk5a1;
-	double m_unk5a8;
-	bool m_unk5b0;
-	double m_unk5b8;
-	bool m_unk5c0;
-	int m_unk5c4;
-	double m_unk5c8;
-	double m_unk5d0;
-	double m_unk5d8;
-	bool m_unk5e0;
-	bool m_unkB5e1;
-	bool m_unk5e2;
-	bool m_unk5e3;
-	double m_unk5e8;
-	double m_unk5f0;
+	PAD = win 0x6E, mac 0x6E, android 0x6E, ios 0x6E;
 	bool m_isPlatformer;
 	int m_unk8ec;
 	int m_unk8f0;
 	int m_unk8f4;
 	int m_unk8f8;
 	float m_gravityMod;
-	int m_unkI610;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	cocos2d::CCPoint m_unk904;
 	bool m_affectedByForces;
+	PAD = win 0x3, mac 0x3, android 0x3, ios 0x3;
 	gd::map<int, bool> m_unk910;
 	float m_unk918; // increments whenever you're midiar?
 	float m_unk91c;
-	bool m_unk920;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	gd::map<int, bool> m_unk924;
-	bool m_unk928;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	gd::string m_unk930; // this is always "run" ???
 	bool m_unk948; // = getGameVariable("0123")
+	PAD = win 0x3, mac 0x3, android 0x3, ios 0x3;
 	int m_iconRequestID;
 	cocos2d::CCSpriteBatchNode* m_unk950;
 	cocos2d::CCSpriteBatchNode* m_unk954;
@@ -12765,14 +12681,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	GJBaseGameLayer* m_gameLayer;
 	cocos2d::CCLayer* m_parentLayer;
 	GJActionManager* m_actionManager;
-	bool m_unk970;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 	float m_unk974;
 	bool m_unk978;
 	bool m_unk979; // = isItemEnabled(0xc, 0x12);
 	bool m_unk97a; // = isItemEnabled(0xc, 0x13);
 	bool m_unk97b; // = isItemEnabled(0xc, 0x14);
-	bool m_unk97c;
-	bool m_unk97d;
+	PAD = win 0x4, mac 0x4, android 0x4, ios 0x4;
 }
 
 [[link(android)]]
