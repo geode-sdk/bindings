@@ -9452,7 +9452,9 @@ class GroupCommandObject2 {
 
 	PAD = win 0x1b8; // there may be a pointer in there somewhere since it changed from 0x1b4
 	gd::vector<KeyframeObject> m_unkVecKeyframeObject;
-	PAD = win 0x18; // changed from 0x10 so there may be ptr as well
+	PAD = win 0x8;
+	GameObject* m_gameObject;
+	PAD = win 0x8;
 	gd::vector<int> m_unkVecInt;
 	PAD = win 0x8;
 }
