@@ -8144,6 +8144,8 @@ class GJLevelList : cocos2d::CCNode {
 	TodoReturn frameForListDifficulty(int, DifficultyIconType);
 	cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*);
 	gd::string getUnpackedDescription() = win 0x16e2b0;
+	void handleStatsConflict(GJLevelList*) = m1 0x4b6d14, imac 0x569100;
+	bool hasMatchingLevels(GJLevelList*) = m1 0x4b6d2c, win 0x16e0a0, imac 0x569120;
 	TodoReturn orderForLevel(int);
 	TodoReturn parseListLevels(gd::string);
 	TodoReturn removeLevelFromList(int);
@@ -11065,7 +11067,7 @@ class LoadingCircleSprite : cocos2d::CCSprite {
 class LoadingLayer : cocos2d::CCLayer {
 	// virtual ~LoadingLayer();
 
-	static LoadingLayer* create(bool) = win 0x30da50, m1 0x32be04, ios 0x1df9ac;
+	static LoadingLayer* create(bool) = m1 0x32be04, ios 0x1df9ac; //incorrectly claimed as win 0x30da50 - this is scene
 
 	const char* getLoadingString() = win 0x30ee90, ios 0x1e0130;
 	bool init(bool) = win 0x30db60, imac 0x3a5890, m1 0x32bec4, ios 0x1dfa60;
@@ -11105,7 +11107,7 @@ class LocalLevelManager : GManager {
 	TodoReturn reorderLevels();
 	TodoReturn tryLoadMainLevelString(int) = ios 0x1d1db8;
 	TodoReturn updateLevelOrder() = win 0x30ff30;
-	TodoReturn updateLevelRevision() = win 0x30fba0, m1 0x528ad0;
+	TodoReturn updateLevelRevision() = win 0x30fba0, m1 0x528ad0, imac 0x601f90;
 
 	virtual bool init() = win 0x30f670, m1 0x527fcc, imac 0x6012b0;
 	virtual void encodeDataTo(DS_Dictionary*) = win 0x310040, m1 0x52936c, imac 0x6028e0;
