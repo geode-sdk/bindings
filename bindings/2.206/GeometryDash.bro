@@ -10736,7 +10736,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
 	~LevelSelectLayer() = m1 0x3add30, imac 0x4ba220;
 
-	static LevelSelectLayer* create(int) = ios 0x40a26c;
+	static LevelSelectLayer* create(int) = win 0x2f7c30, ios 0x40a26c;
 
 	cocos2d::ccColor3B colorForPage(int page) = win 0x2f8ee0;
 	TodoReturn getColorValue(int, int, float);
@@ -11065,9 +11065,9 @@ class LoadingCircleSprite : cocos2d::CCSprite {
 class LoadingLayer : cocos2d::CCLayer {
 	// virtual ~LoadingLayer();
 
-	static LoadingLayer* create(bool) = m1 0x32be04, ios 0x1df9ac;
+	static LoadingLayer* create(bool) = win 0x30da50, m1 0x32be04, ios 0x1df9ac;
 
-	const char* getLoadingString() = ios 0x1e0130;
+	const char* getLoadingString() = win 0x30ee90, ios 0x1e0130;
 	bool init(bool) = win 0x30db60, imac 0x3a5890, m1 0x32bec4, ios 0x1dfa60;
 	void loadAssets() = win 0x30e400, imac 0x3a60d0, m1 0x32c720, ios 0x1e020c;
 	void loadingFinished() = imac 0x3a6870;
@@ -13179,9 +13179,9 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
 	// virtual ~RetryLevelLayer();
 
-	static RetryLevelLayer* create();
+	static RetryLevelLayer* create() = win 0x389490;
 
-	TodoReturn getEndText();
+	const char* getEndText();
 	void onEveryplay(cocos2d::CCObject* sender);
 	void onMenu(cocos2d::CCObject* sender) = win 0x3a8110;
 	void onReplay(cocos2d::CCObject* sender);
