@@ -6751,7 +6751,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn removePlayer2();
 	TodoReturn removeTemporaryParticles();
 	TodoReturn reorderObjectSection(GameObject*) = imac 0x11f2d0;
-	TodoReturn reparentObject(cocos2d::CCNode*, cocos2d::CCNode*) = m1 0x63fd70;
+	TodoReturn reparentObject(cocos2d::CCNode*, cocos2d::CCNode*); //this was set to m1 0x63fd70 - that is incorrect
 	void resetActiveEnterEffects() = win 0x1ff150, m1 0xef414;
 	TodoReturn resetAreaObjectValues(GameObject*, bool) = win 0x2184c0;
 	void resetAudio() = win 0x227690, imac 0x147000, m1 0x11a408;
@@ -7643,7 +7643,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn getNormalPercent();
 	TodoReturn getSongName();
 	gd::string getUnpackedLevelDescription() = win 0x1678e0;
-	void handleStatsConflict(GJGameLevel*) = win 0x167410;
+	void handleStatsConflict(GJGameLevel*) = win 0x167410, imac 0x543750, m1 0x495334;
 	inline bool isPlatformer() {
 		return m_levelLength == 5;
 	}
@@ -11098,14 +11098,14 @@ class LocalLevelManager : GManager {
 	TodoReturn getAllLevelsWithName(gd::string);
 	TodoReturn getCreatedLevels(int);
 	TodoReturn getCreatedLists(int);
-	TodoReturn getLevelsInNameGroups();
+	TodoReturn getLevelsInNameGroups() = m1 0x528540;
 	gd::string getMainLevelString(int) = win 0x30f930;
 	TodoReturn markLevelsAsUnmodified();
 	TodoReturn moveLevelToTop(GJGameLevel*);
 	TodoReturn reorderLevels();
 	TodoReturn tryLoadMainLevelString(int) = ios 0x1d1db8;
 	TodoReturn updateLevelOrder() = win 0x30ff30;
-	TodoReturn updateLevelRevision() = win 0x30fba0;
+	TodoReturn updateLevelRevision() = win 0x30fba0, m1 0x528ad0;
 
 	virtual bool init() = win 0x30f670, m1 0x527fcc, imac 0x6012b0;
 	virtual void encodeDataTo(DS_Dictionary*) = win 0x310040, m1 0x52936c, imac 0x6028e0;

@@ -1750,13 +1750,13 @@ class cocos2d::CCArray {
 	void reduceMemoryFootprint();
 	// void removeAllObjects() = m1 0x63ff34;
 	// void removeLastObject(bool) = imac 0x72d440;
-	void removeObject(cocos2d::CCObject*, bool);
+	void removeObject(cocos2d::CCObject*, bool) = m1 0x63ff10;
 	// void removeObjectAtIndex(unsigned int, bool) = m1 0x63ff18, ios 0x259CF0;
 	void removeObjectAtIndexChild(unsigned int, bool);
 	void removeObjectsInArray(cocos2d::CCArray*);
 	void replaceObjectAtIndex(unsigned int, cocos2d::CCObject*, bool);
 	void reverseObjects();
-	cocos2d::CCString* stringAtIndex(unsigned int) = ios 0x259c14;
+	cocos2d::CCString* stringAtIndex(unsigned int) = ios 0x259c14, m1 0x63fd9c;
 
 	// virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	// virtual void acceptVisitor(cocos2d::CCDataVisitor&);
@@ -1778,7 +1778,7 @@ class cocos2d::CCDictionary {
 
 	// CCDictionary(cocos2d::CCDictionary const&);
 	// CCDictionary();
-	cocos2d::CCArray* allKeys();
+	cocos2d::CCArray* allKeys() = m1 0x29efec;
 	cocos2d::CCArray* allKeysForObject(cocos2d::CCObject*);
 	char const* charForKey(gd::string const&);
 	unsigned int count() = imac 0x30d090, m1 0x29efd0;
@@ -2353,13 +2353,13 @@ class DS_Dictionary {
 	static void copyFile(char const*, char const*);
 	cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
 	gd::vector<gd::string> getAllKeys();
-	cocos2d::CCArray* getArrayForKey(char const*, bool);
+	cocos2d::CCArray* getArrayForKey(char const*, bool) = m1 0x14497c;
 	bool getBoolForKey(char const*);
 	cocos2d::CCDictionary* getDictForKey(char const*, bool);
 	float getFloatForKey(char const*);
 	unsigned int getIndexOfKey(char const*);
 	unsigned int getIndexOfKeyWithClosestAlphaNumericalMatch(char const*);
-	int getIntegerForKey(char const*);
+	int getIntegerForKey(char const*) = m1 0x141c08;
 	gd::string getKey(unsigned int);
 	unsigned int getNumKeys();
 	cocos2d::CCObject* getObjectForKey(char const*);
