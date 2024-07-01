@@ -7643,7 +7643,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn getNormalPercent();
 	TodoReturn getSongName();
 	gd::string getUnpackedLevelDescription() = win 0x1678e0;
-	TodoReturn handleStatsConflict(GJGameLevel*);
+	void handleStatsConflict(GJGameLevel*) = win 0x167410;
 	inline bool isPlatformer() {
 		return m_levelLength == 5;
 	}
@@ -8137,7 +8137,7 @@ class GJLevelList : cocos2d::CCNode {
 	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16d5a0, m1 0x4877e8, imac 0x534200;
 
 	TodoReturn addLevelToList(GJGameLevel*);
-	TodoReturn completedLevels();
+	TodoReturn completedLevels() = win 0x16ef90;
 	TodoReturn createWithCoder(DS_Dictionary*);
 	void dataLoaded(DS_Dictionary*) = win 0x16f3c0, m1 0x4b8464, imac 0x56ac60;
 	TodoReturn duplicateListLevels(GJLevelList*);
@@ -11104,8 +11104,8 @@ class LocalLevelManager : GManager {
 	TodoReturn moveLevelToTop(GJGameLevel*);
 	TodoReturn reorderLevels();
 	TodoReturn tryLoadMainLevelString(int) = ios 0x1d1db8;
-	TodoReturn updateLevelOrder();
-	TodoReturn updateLevelRevision();
+	TodoReturn updateLevelOrder() = win 0x30ff30;
+	TodoReturn updateLevelRevision() = win 0x30fba0;
 
 	virtual bool init() = win 0x30f670, m1 0x527fcc, imac 0x6012b0;
 	virtual void encodeDataTo(DS_Dictionary*) = win 0x310040, m1 0x52936c, imac 0x6028e0;
