@@ -3466,9 +3466,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 class EditTriggersPopup : SetupTriggerPopup {
 	// virtual ~EditTriggersPopup();
 
-	static EditTriggersPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static EditTriggersPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x27c920, m1 0x239848, imac 0x296a30;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x27ca30, m1 0x2399d0, imac 0x296c60;
 
 	virtual TodoReturn determineStartValues() = imac 0x296f20;
 	virtual void onClose(cocos2d::CCObject* sender) = imac 0x296f30;
@@ -12455,7 +12455,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateJumpVariables();
 	TodoReturn updateLastGroundObject(GameObject*);
 	TodoReturn updateMove(float) = win 0x368220;
-	void updatePlayerArt() = win 0x376890, m1 0x3940fc;
+	void updatePlayerArt() = win 0x376890, m1 0x3940fc, imac 0x41f0a0;
 	void updatePlayerBirdFrame(int) = win 0x37c2f0, m1 0x3954e0, imac 0x4205f0;
 	void updatePlayerDartFrame(int) = win 0x37c9f0, m1 0x3964f0, imac 0x4216e0;
 	void updatePlayerForce(cocos2d::CCPoint, bool);
