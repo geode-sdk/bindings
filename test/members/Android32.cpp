@@ -62,7 +62,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b5c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2c10);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c34);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x2c88);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x2ce4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x2ce4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x2d54);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_debugDrawNode, 0x2d58);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x2c28); // i dont even know anymore
