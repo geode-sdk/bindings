@@ -11197,7 +11197,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	static cocos2d::CCScene* scene(bool) = win 0x312f60, imac 0x392b80, m1 0x31ad64, ios 0x275ef0;
 	// static MenuLayer* create() = ios 0x275f90;
 
-	void endGame() = ios 0x277ddc;
+	void endGame() = win 0x315a30, ios 0x277ddc;
 	void firstNetworkTest() = win 0x314950, ios 0x2778b8;
 	void onAchievements(cocos2d::CCObject* sender) = win 0x314e80, imac 0x394230, m1 0x31c39c, ios 0x2773d4;
 	void onCreator(cocos2d::CCObject* sender) = win 0x315390, imac 0x3941a0, m1 0x31c320, ios 0x27737c;
@@ -11239,6 +11239,14 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3159c0, m1 0x31d06c, imac 0x394f90;
 	virtual void googlePlaySignedIn() = win 0x314fe0, m1 0x31cba8, imac 0x394a40;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3157b0, m1 0x31ce00, imac 0x394d00, ios 0x277c30;
+
+	bool m_showingTOS;
+	cocos2d::CCSprite* m_gpSprite;
+	cocos2d::CCSprite* m_viewProfileSprite;
+	cocos2d::CCLabelBMFont* m_profileLabel;
+	CCMenuItemSpriteExtra* m_profileButton;
+	void* m_unknown;
+	MenuGameLayer* m_menuGameLayer;
 }
 
 [[link(android)]]
