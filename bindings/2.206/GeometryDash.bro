@@ -11160,23 +11160,31 @@ class MapSelectLayer : cocos2d::CCLayer {
 [[link(android)]]
 class MenuGameLayer : cocos2d::CCLayer {
 	// virtual ~MenuGameLayer();
-	// MenuGameLayer() = ios 0x3a4d88;
+	MenuGameLayer() = ios 0x3a4d88 {}
 
-	static MenuGameLayer* create() = ios 0x3a3858;
+	static MenuGameLayer* create() = win inline, imac 0x5044b0, m1 0x45c1f0, ios 0x3a3858 {
+		auto ret = new MenuGameLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	void destroyPlayer() = win 0x3129e0, m1 0x45d628;
-	TodoReturn getBGColor(int);
+	void destroyPlayer() = win 0x3129e0, imac 0x505ac0, m1 0x45d628;
+	cocos2d::ccColor3B getBGColor(int) = win 0x311340, imac 0x504a10, m1 0x45c6e4;
 	void resetPlayer() = win 0x311db0, imac 0x504f10, m1 0x45cc04;
 	void tryJump(float) = win 0x311610, imac 0x504ab0, m1 0x45c7e8;
 	void updateColor(float) = win 0x3111f0, imac 0x504d10, m1 0x45ca58;
-	void updateColors();
+	void updateColors() = imac 0x5056e0, m1 0x45d2b8;
 
 	virtual void update(float) = win 0x3118e0, m1 0x45d330, imac 0x505750;
 	virtual bool init() = win 0x310ac0, m1 0x45c2d0, imac 0x5045b0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x312c60, m1 0x45d824, imac 0x505cc0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x45d94c, imac 0x505e20;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x6fd20, m1 0x45d94c, imac 0x505e20;
 	virtual void registerWithTouchDispatcher() = win 0x312e10, m1 0x45d968, imac 0x505e60;
 
 	bool m_unkBool1;
