@@ -8849,7 +8849,7 @@ class GJScaleControl : cocos2d::CCLayer {
 	float m_changedValueX;
 	float m_changedValueY;
 	bool m_scale1Lock;
-	short m_scaleType;
+	short m_scaleButtonType;
 	cocos2d::CCLabelBMFont* m_scaleXLabel;
 	cocos2d::CCLabelBMFont* m_scaleYLabel;
 	cocos2d::CCLabelBMFont* m_scaleLabel;
@@ -9167,24 +9167,49 @@ class GJTransformControl : cocos2d::CCLayer {
 
 	TodoReturn applyRotation(float);
 	TodoReturn calculateRotationOffset();
-	TodoReturn finishTouch();
+	void finishTouch();
 	void loadFromState(GJTransformState&);
 	TodoReturn loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&);
 	TodoReturn logCurrentZeroPos();
-	void onToggleLockScale(cocos2d::CCObject* sender);
-	TodoReturn refreshControl() = win 0x127180;
+	void onToggleLockScale(cocos2d::CCObject* sender) = win 0x127310;
+	void refreshControl() = win 0x127180;
 	void saveToState(GJTransformState&);
-	TodoReturn scaleButtons(float);
+	void scaleButtons(float) = win 0x1273a0;
 	TodoReturn spriteByTag(int);
 	TodoReturn updateAnchorSprite(cocos2d::CCPoint);
 	void updateButtons(bool, bool) = win 0x127460;
 	TodoReturn updateMinMaxPositions();
 
-	virtual bool init() = m1 0x4b358, imac 0x53870;
+	virtual bool init() = win 0x126c30, m1 0x4b358, imac 0x53870;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1282c0, m1 0x4b7dc, imac 0x53d20;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x128490, m1 0x4bbd0, imac 0x541f0;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1289f0, m1 0x4c0e8, imac 0x547a0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x6fd20, m1 0x4c2c0, imac 0x549b0;
+
+	// 2lazy
+	cocos2d::CCNode* m_mainNodeParent;
+	cocos2d::CCNode* m_mainNode;
+	cocos2d::CCArray* m_unk1;
+	int m_touchID;
+	short m_transformButtonType;
+	GJTransformControlDelegate* m_delegate;
+	cocos2d::CCPoint m_cursorDifference;
+	cocos2d::CCPoint m_unk2;
+	cocos2d::CCPoint m_unk3;
+	cocos2d::CCPoint m_unk4;
+	cocos2d::CCPoint m_unk5;
+	cocos2d::CCPoint m_unk6;
+	cocos2d::CCPoint m_unk7;
+	cocos2d::CCArray* m_warpSprites;
+	cocos2d::CCPoint m_rotatePosition;
+	CCMenuItemSpriteExtra* m_warpLockButton;
+	float m_unk8;
+	float m_unk9;
+	bool m_warpLocked;
+	float m_unk10;
+	float m_unk11;
+	float m_unk12;
+	float m_buttonScale;
 }
 
 [[link(android)]]
