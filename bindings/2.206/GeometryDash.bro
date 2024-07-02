@@ -6263,13 +6263,25 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
 [[link(android)]]
 class GauntletNode : cocos2d::CCNode {
 	// virtual ~GauntletNode();
+	GauntletNode() {}
 
-	static GauntletNode* create(GJMapPack*);
+	static GauntletNode* create(GJMapPack* gauntlet) = win inline, imac 0x57a2f0, m1 0x4c64d0 {
+		auto ret = new GauntletNode();
+		if (ret->init(gauntlet)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn frameForType(GauntletType) = win 0x1ef420;
+	static gd::string frameForType(GauntletType) = win 0x1ef420, imac 0x57c810, m1 0x4c8adc;
 	bool init(GJMapPack*) = win 0x1edf90, imac 0x57abf0, m1 0x4c6d84;
-	static gd::string nameForType(GauntletType) = win 0x1f0590;
-	void onClaimReward();
+	static gd::string nameForType(GauntletType) = win 0x1f0590, imac 0x57c320, m1 0x4c84a0;
+	void onClaimReward() = win 0x1ef3e0, imac 0x57ab20, m1 0x4c6cd8;
+
+	cocos2d::CCNode* m_gauntletInfoNode;
+	cocos2d::CCNode* m_rewardNode;
 }
 
 [[link(android)]]
