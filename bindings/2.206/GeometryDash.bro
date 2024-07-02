@@ -6264,7 +6264,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 
 	void goToPage(int, bool);
 	bool init(int) = win 0x1ebd80, imac 0x578d40, m1 0x4c50d8;
-	void onBack(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x1ed7b0, imac 0x579880, m1 0x4c5b24;
 	void onInfo(cocos2d::CCObject* sender);
 	void onNext(cocos2d::CCObject* sender);
 	void onPlay(cocos2d::CCObject* sender);
