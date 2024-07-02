@@ -8811,7 +8811,7 @@ class GJScaleControl : cocos2d::CCLayer {
 		m_scaleLocked = false;
 	}
 
-	static GJScaleControl* create() = win inline, ios 0x3CFB18 {
+	static GJScaleControl* create() = win inline, m1 0xde2c, imac 0xbe50, ios 0x3CFB18 {
 		auto ret = new GJScaleControl();
 		if (ret->init()) {
 			ret->autorelease();
@@ -8822,16 +8822,16 @@ class GJScaleControl : cocos2d::CCLayer {
 	}
 
 	void finishTouch();
-	void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&) = win 0x125d20;
-	void onToggleLockScale(cocos2d::CCObject* sender) = win 0x125c90;
-	float scaleFromValue(float);
-	float skewFromValue(float);
-	void sliderChanged(cocos2d::CCObject* sender) = win 0x126330;
-	void updateLabelX(float) = win 0x126ab0;
-	void updateLabelXY(float) = win 0x126bb0;
-	void updateLabelY(float) = win 0x126b30;
-	float valueFromScale(float);
-	float valueFromSkew(float);
+	void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&) = win 0x125d20, m1 0x3abb0, imac 0x3f770;
+	void onToggleLockScale(cocos2d::CCObject* sender) = win 0x125c90, m1 0x4a7c4, imac 0x52a60;
+	float scaleFromValue(float) = m1 0x4a99c, imac 0x52c30;
+	float skewFromValue(float) = m1 0x4a9d8, imac 0x52c70;
+	void sliderChanged(cocos2d::CCObject* sender) = win 0x126330, m1 0x4a834, imac 0x52ac0;
+	void updateLabelX(float) = win 0x126ab0, m1 0x4a864, imac 0x52b10;
+	void updateLabelXY(float) = win 0x126bb0, m1 0x4a934, imac 0x52bd0;
+	void updateLabelY(float) = win 0x126b30, m1 0x4a8cc, imac 0x52b70;
+	float valueFromScale(float) = m1 0x4a83c, imac 0x52ad0;
+	float valueFromSkew(float) = m1 0x4a9f0, imac 0x52cc0;
 
 	virtual bool init() = win 0x125850, m1 0x4a3e0, imac 0x52650;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x126340, m1 0x4aa18, imac 0x52d00;
