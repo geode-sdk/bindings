@@ -16,6 +16,9 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x31e8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3220);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x32f8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34b8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3560);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3688);
 
 GEODE_SIZE_CHECK(PlayLayer, 0x3998);
 GEODE_MEMBER_CHECK(PlayLayer, m_checkpointArray, 0x37a0);
@@ -196,7 +199,18 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkUint21, 0x6bc);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint22, 0x6c0);
 
 GEODE_SIZE_CHECK(GameObject, 0x550);
+GEODE_MEMBER_CHECK(GameObject, m_outerSectionIndex, 0x278);
+GEODE_MEMBER_CHECK(GameObject, m_positionXOffset, 0x2a0);
+GEODE_MEMBER_CHECK(GameObject, m_scaleXOffset, 0x2b8);
+GEODE_MEMBER_CHECK(GameObject, m_glowSprite, 0x2f0);
+GEODE_MEMBER_CHECK(GameObject, m_someSprite, 0x308);
 GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x310);
+GEODE_MEMBER_CHECK(GameObject, m_colorSprite, 0x380);
+GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x3c8);
+GEODE_MEMBER_CHECK(GameObject, m_startRotationX, 0x3d4);
+GEODE_MEMBER_CHECK(GameObject, m_startFlipX, 0x3ec);
+GEODE_MEMBER_CHECK(GameObject, m_groups, 0x490);
+GEODE_MEMBER_CHECK(GameObject, m_lastPosition, 0x4d0);
 
 GEODE_SIZE_CHECK(EnhancedGameObject, 0x5b8);
 
@@ -249,6 +263,7 @@ GEODE_SIZE_CHECK(GJGarageLayer, 0x260);
 GEODE_SIZE_CHECK(DemonFilterSelectLayer, 0x298);
 GEODE_SIZE_CHECK(UndoObject, 0xa0);
 GEODE_SIZE_CHECK(GJItemIcon, 0x278);
+GEODE_SIZE_CHECK(ChallengesPage, 0x2c0);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
