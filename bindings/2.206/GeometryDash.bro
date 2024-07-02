@@ -8741,19 +8741,36 @@ class GJRotateCommandLayer : SetupTriggerPopup {
 [[link(android)]]
 class GJRotationControl : cocos2d::CCLayer {
 	// virtual ~GJRotationControl();
+	GJRotationControl() {}
 
-	static GJRotationControl* create() = ios 0x3CFA48;
+	static GJRotationControl* create() = win inline, m1 0xdca8, imac 0xbcc0, ios 0x3CFA48 {
+		auto ret = new GJRotationControl();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn finishTouch() = win 0x125490;
-	void setAngle(float);
-	TodoReturn updateSliderPosition(cocos2d::CCPoint);
+	void finishTouch() = win 0x125490, m1 0xdd84, imac 0xbdb0;
+	void setAngle(float) = m1 0x49ea4, imac 0x520d0;
+	void updateSliderPosition(cocos2d::CCPoint) = m1 0x49f24, imac 0x52150;
 
-	virtual bool init() = m1 0x49db0, imac 0x51fe0;
-	virtual void draw() = m1 0x4a378, imac 0x525e0;
+	virtual bool init() = win 0x125370, m1 0x49db0, imac 0x51fe0;
+	virtual void draw() = win 0x1257d0, m1 0x4a378, imac 0x525e0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x125510, m1 0x4a014, imac 0x52250;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x125610, m1 0x4a128, imac 0x52370;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1257b0, m1 0x4a264, imac 0x524d0;
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x4a35c, imac 0x525a0;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x6fd20, m1 0x4a35c, imac 0x525a0;
+
+	cocos2d::CCPoint m_cursorDifference;
+	cocos2d::CCPoint m_controlPosition;
+	cocos2d::CCSprite* m_controlSprite;
+	float m_startingRotation;
+	float m_currentRotation;
+	int m_touchID;
+	GJRotationControlDelegate* m_delegate;
 }
 
 [[link(android)]]
