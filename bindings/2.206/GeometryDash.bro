@@ -6289,7 +6289,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 	// virtual ~GauntletSelectLayer();
 	GauntletSelectLayer() {}
 
-	static GauntletSelectLayer* create(int p0) = win inline {
+	static GauntletSelectLayer* create(int p0) = win inline, imac 0x578c50, m1 0x4c5010 {
 		auto ret = new GauntletSelectLayer();
 		if (ret->init(p0)) {
 			ret->autorelease();
@@ -6299,18 +6299,18 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 		return nullptr;
 	}
 
-	void goToPage(int, bool) = win 0x1ed600;
+	void goToPage(int, bool) = win 0x1ed600, imac 0x57a7f0, m1 0x4c69b0;
 	bool init(int) = win 0x1ebd80, imac 0x578d40, m1 0x4c50d8;
 	void onBack(cocos2d::CCObject* sender) = win 0x1ed7b0, imac 0x579880, m1 0x4c5b24;
-	void onInfo(cocos2d::CCObject* sender) = win 0x1ec8f0;
-	void onNext(cocos2d::CCObject* sender) = win 0x1ed5c0;
-	void onPlay(cocos2d::CCObject* sender) = win 0x1ed870;
-	void onPrev(cocos2d::CCObject* sender) = win 0x1ed5e0;
-	void onRefresh(cocos2d::CCObject* sender) = win 0x1eca30;
-	static cocos2d::CCScene* scene(int) = win 0x1ebc50;
+	void onInfo(cocos2d::CCObject* sender) = win 0x1ec8f0, imac 0x5798f0, m1 0x4c5b98;
+	void onNext(cocos2d::CCObject* sender) = win 0x1ed5c0, imac 0x579860, m1 0x4c5b10;
+	void onPlay(cocos2d::CCObject* sender) = win 0x1ed870, imac 0x57a370, m1 0x4c6560;
+	void onPrev(cocos2d::CCObject* sender) = win 0x1ed5e0, imac 0x579840, m1 0x4c5afc;
+	void onRefresh(cocos2d::CCObject* sender) = win 0x1eca30, imac 0x5799a0, m1 0x4c5c50;
+	static cocos2d::CCScene* scene(int) = win 0x1ebc50, imac 0x578b30, m1 0x4c4f30;
 	void setupGauntlets() = win 0x1ece70, imac 0x579a60, m1 0x4c5cf8;
-	void unblockPlay() = win 0x1ed760;
-	void updateArrows();
+	void unblockPlay() = win 0x1ed760, imac 0x57a8e0, m1 0x4c6aa4;
+	void updateArrows() = imac 0x579f80, m1 0x4c618c;
 
 	virtual void onExit() = win 0x1edf40, m1 0x4c6d18, imac 0x57ab60;
 	virtual void keyBackClicked() = win 0x1ed860, m1 0x4c6bec, imac 0x57aa30;
