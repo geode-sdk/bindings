@@ -116,6 +116,9 @@ if (NOT SKIP_BUILDING_CODEGEN)
 	)
 
 	set(ENV{SCCACHE_C_CUSTOM_CACHE_BUSTER} PREV_SCCACHE_C_CUSTOM_CACHE_BUSTER)
+else()
+	message(STATUS "Skipping building Codegen")
+	message(VERBOSE "Codegen CMake args were: '${GEODE_CODEGEN_CMAKE_ARGS}'")
 endif()
 
 message(STATUS "Running Codegen")
