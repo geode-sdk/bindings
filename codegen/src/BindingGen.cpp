@@ -226,6 +226,8 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
         }
 
         bool unimplementedField = false;
+        int numUnnamed = 0;
+
         for (auto field : cls.fields) {
             MemberFunctionProto* fb;
             char const* used_format = format_strings::function_definition;
@@ -242,6 +244,16 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
                     if (opt != nullptr && std::string_view(opt) == "1") {
                         unimplementedField = false;
                     }
+
+                    // Generate name for unnamed fields.
+                    if (m->name == "_") {
+                        m->name = fmt::format(
+                            "__unk_{}_{}",
+                            codegen::getUnqualifiedClassName(cls.name),
+                            ++numUnnamed
+                        );
+                    }
+
                     single_output += fmt::format(format_strings::member_definition,
                         fmt::arg("private", unimplementedField ? "private:\n" : ""),
                         fmt::arg("public", unimplementedField ? "\npublic:" : ""),
