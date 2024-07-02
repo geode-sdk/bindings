@@ -3060,9 +3060,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	static EditorUI* create(LevelEditorLayer*) = imac 0x9460;
 	static EditorUI* get() {
-        auto lel = LevelEditorLayer::get();
-        if (!lel) return nullptr;
-        return lel->m_editorUI;
+		auto lel = LevelEditorLayer::get();
+		if (!lel) return nullptr;
+		return lel->m_editorUI;
 	}
 
 	TodoReturn activateRotationControl(cocos2d::CCObject*) = win 0x11efb0;
