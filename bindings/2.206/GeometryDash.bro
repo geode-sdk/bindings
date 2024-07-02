@@ -6295,7 +6295,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 	void onPlay(cocos2d::CCObject* sender) = win 0x1ed870;
 	void onPrev(cocos2d::CCObject* sender) = win 0x1ed5e0;
 	void onRefresh(cocos2d::CCObject* sender) = win 0x1eca30;
-	static CCScene* scene(int) = win 0x1ebc50;
+	static cocos2d::CCScene* scene(int) = win 0x1ebc50;
 	void setupGauntlets() = win 0x1ece70, imac 0x579a60, m1 0x4c5cf8;
 	void unblockPlay() = win 0x1ed760;
 	void updateArrows();
@@ -6316,7 +6316,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 	bool m_playing;
 	TextArea* m_tryAgainText;
 	LoadingCircle* m_loadingCircle;
-	CCDictionary* m_gauntlets;
+	cocos2d::CCDictionary* m_gauntlets;
 	bool m_playBlocked;
 }
 
