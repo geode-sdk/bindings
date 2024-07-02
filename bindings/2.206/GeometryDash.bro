@@ -9013,11 +9013,20 @@ class GJSpriteColor {
 [[link(android)]]
 class GJStoreItem : cocos2d::CCNode {
 	// virtual ~GJStoreItem();
+	GJStoreItem(); // win inline
 
-	static GJStoreItem* create(int, int, int, int, ShopType);
+	static GJStoreItem* create(int unk, int typeID, UnlockType type, int price, ShopType shopType); // win inline
 
 	TodoReturn getCurrencyKey();
-	bool init(int, int, int, int, ShopType);
+	bool init(int, int, int, int, ShopType type);
+
+	int m_unk0x28;
+	int m_unk; // 0x29, this is the unk var in create
+	int m_unk0x2a;
+	int m_typeID; // 0x2b
+	UnlockType m_unlockType; // 0x2c
+	int m_price; // 0x2d
+	ShopType m_shopType; // 0x2e
 }
 
 [[link(android)]]
