@@ -4837,7 +4837,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCDictionary* m_onlineLevels;
 	cocos2d::CCDictionary* m_unkDict;
 	cocos2d::CCDictionary* m_followedCreators;
-	cocos2d::CCDictionary* m_GLM21;
+	cocos2d::CCDictionary* m_favoriteLists;
 	cocos2d::CCDictionary* m_downloadedLevels;
 	cocos2d::CCDictionary* m_likedLevels;
 	cocos2d::CCDictionary* m_ratedLevels;
