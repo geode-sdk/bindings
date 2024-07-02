@@ -11276,8 +11276,8 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
         return nullptr;
 	}
 
-	TodoReturn audioNext(cocos2d::CCObject*);
-	TodoReturn audioPrevious(cocos2d::CCObject*);
+	void audioNext(cocos2d::CCObject* sender) = win 0x2f6180;
+	void audioPrevious(cocos2d::CCObject* sender) = win 0x2f62a0;
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0x2f6c50;
 	void onClose(cocos2d::CCObject* sender) = win 0x2f6eb0;
 	void onCoins(cocos2d::CCObject* sender);
@@ -11295,9 +11295,9 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	void onSongMode(cocos2d::CCObject* sender) = win 0x2f6500;
 	void onTwoPlayer(cocos2d::CCObject* sender);
 	void onUncompleted(cocos2d::CCObject* sender);
-	TodoReturn selectSong(int);
+	void selectSong(int songID) = win 0x2f63c0;
 	TodoReturn toggleSongNodes(bool, bool);
-	TodoReturn updateAudioLabel();
+	void updateAudioLabel() = win 0x2f5ec0;
 
 	virtual bool init() = win 0x2f2540, m1 0x559b2c, imac 0x639f30;
 	virtual void keyBackClicked() = win 0x2f72b0, m1 0x55bb44, imac 0x63c100;
