@@ -6245,19 +6245,37 @@ class GameToolbox {
 [[link(android)]]
 class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
 	// virtual ~GauntletLayer();
+	GauntletLayer() {}
 
-	static GauntletLayer* create(GauntletType) = imac 0x3954e0, m1 0x31d474;
+	static GauntletLayer* create(GauntletType gauntletType) = win inline, imac 0x3954e0, m1 0x31d474 {
+		auto ret = new GauntletLayer();
+		if (ret->init(gauntletType)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	bool init(GauntletType) = win 0x1e93d0, imac 0x3956d0, m1 0x31d624;
-	void onBack(cocos2d::CCObject* sender);
-	void onLevel(cocos2d::CCObject* sender);
-	TodoReturn scene(GauntletType);
-	TodoReturn setupGauntlet(cocos2d::CCArray*) = win 0x1e9fd0;
-	TodoReturn unlockActiveItem();
+	void onBack(cocos2d::CCObject* sender) = win 0x1eb5e0;
+	void onLevel(cocos2d::CCObject* sender) = win 0x1eaf60;
+	static cocos2d::CCScene* scene(GauntletType) = win 0x1e90b0;
+	void setupGauntlet(cocos2d::CCArray*) = win 0x1e9fd0;
+	void unlockActiveItem() = win 0x1eafd0;
 
 	virtual void keyBackClicked() = win 0x1eb630, m1 0x31f6f8, imac 0x3978b0;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x1e9bc0, m1 0x31ebdc, imac 0x396e80;
 	virtual void loadLevelsFailed(char const*, int) = win 0x1e9dd0, m1 0x31ed74, imac 0x397010;
+
+	cocos2d::CCArray* m_levels;
+	LoadingCircle* m_loadingCircle;
+	GauntletType m_gauntletType;
+	cocos2d::CCSprite* m_backgroundSprite;
+	void* m_unkPtr;
+	CCMenuItemSpriteExtra* m_activeItemButton;
+	cocos2d::CCArray* m_activeObjects;
+	TextArea* m_tryAgainText;
 }
 
 [[link(android)]]
@@ -6319,7 +6337,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x1ecb50, m1 0x4c61dc, imac 0x579fd0;
 	virtual void loadLevelsFailed(char const*, int) = win 0x1ecd00, m1 0x4c6374, imac 0x57a180;
 
-	cocos2d::CCSprite* m_background;
+	cocos2d::CCSprite* m_backgroundSprite;
 	BoomScrollLayer* m_scrollLayer;
 	CCMenuItemSpriteExtra* m_leftButton;
 	CCMenuItemSpriteExtra* m_rightButton;
