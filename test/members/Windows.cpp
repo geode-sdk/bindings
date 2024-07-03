@@ -17,6 +17,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x31e8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3220);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x32f8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_timePlayed, 0x3488);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34b8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3560);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3688);
