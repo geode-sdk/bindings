@@ -7307,7 +7307,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	float m_unk3484;
 	PAD = win 0xc, android32 0x4, android64 0x4, mac 0x4;
 	bool m_canPause; 
-	PAD = win 0x27, android32 0xB, android64 0xF, mac 0x38;
+	PAD = win 0x20, android32 0xB, android64 0xF, mac 0x30;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
 	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90;
 	gd::vector<gd::vector<int>*> m_sectionSizes;
