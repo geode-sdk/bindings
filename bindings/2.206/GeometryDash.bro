@@ -6247,7 +6247,7 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
 	// virtual ~GauntletLayer();
 	GauntletLayer() {}
 
-	static GauntletLayer* create(GauntletType gauntletType) = win inline, imac 0x3954e0, m1 0x31d474 {
+	static GauntletLayer* create(GauntletType gauntletType) = win inline, imac 0x3955f0, m1 0x31d55c {
 		auto ret = new GauntletLayer();
 		if (ret->init(gauntletType)) {
 			ret->autorelease();
@@ -6258,11 +6258,11 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
 	}
 
 	bool init(GauntletType) = win 0x1e93d0, imac 0x3956d0, m1 0x31d624;
-	void onBack(cocos2d::CCObject* sender) = win 0x1eb5e0;
-	void onLevel(cocos2d::CCObject* sender) = win 0x1eaf60;
-	static cocos2d::CCScene* scene(GauntletType) = win 0x1e90b0;
-	void setupGauntlet(cocos2d::CCArray*) = win 0x1e9fd0;
-	void unlockActiveItem() = win 0x1eafd0;
+	void onBack(cocos2d::CCObject* sender) = win 0x1eb5e0, imac 0x395d40, m1 0x31dc80;
+	void onLevel(cocos2d::CCObject* sender) = win 0x1eaf60, imac 0x397270, m1 0x31f034;
+	static cocos2d::CCScene* scene(GauntletType) = win 0x1e90b0, imac 0x3954e0, m1 0x31d474;
+	void setupGauntlet(cocos2d::CCArray*) = win 0x1e9fd0, imac 0x395d90, m1 0x31dcc8;
+	void unlockActiveItem() = win 0x1eafd0, imac 0x3972b0, m1 0x31f078;
 
 	virtual void keyBackClicked() = win 0x1eb630, m1 0x31f6f8, imac 0x3978b0;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x1e9bc0, m1 0x31ebdc, imac 0x396e80;
@@ -6353,15 +6353,34 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 [[link(android)]]
 class GauntletSprite : cocos2d::CCNode {
 	// virtual ~GauntletSprite();
+	GauntletSprite() {}
 
-	static GauntletSprite* create(GauntletType, bool);
+	static GauntletSprite* create(GauntletType gauntletType, bool locked) = win inline, imac 0x3971a0, m1 0x31ef10 {
+		auto ret = new GauntletSprite();
+		if (ret->init(gauntletType, locked)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn addLockedSprite();
-	TodoReturn addNormalSprite();
-	TodoReturn colorForType(GauntletType);
-	bool init(GauntletType, bool);
-	TodoReturn luminanceForType(GauntletType);
-	TodoReturn toggleLockedSprite(bool);
+	void addLockedSprite() = win 0x1eb6c0, imac 0x397aa0, m1 0x31f930;
+	void addNormalSprite() = imac 0x3979d0, m1 0x31f834;
+	cocos2d::ccColor3B colorForType(GauntletType) = imac 0x397da0, m1 0x31fc4c;
+	bool init(GauntletType gauntletType, bool locked) = win inline, imac 0x397950, m1 0x31f78c {
+		if (!CCNode::init()) return false;
+
+		m_gauntletType = gauntletType;
+		this->setContentSize({ 60.0f, 60.0f });
+		this->toggleLockedSprite(locked);
+
+		return true;
+	}
+	float luminanceForType(GauntletType) = imac 0x397d70, m1 0x31fc2c;
+	void toggleLockedSprite(bool) = win 0x1eb9f0, imac 0x397880, m1 0x31f6b8;
+
+	GauntletType m_gauntletType;
 }
 
 [[link(android)]]
