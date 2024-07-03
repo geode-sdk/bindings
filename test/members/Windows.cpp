@@ -265,6 +265,10 @@ GEODE_SIZE_CHECK(UndoObject, 0xa0);
 GEODE_SIZE_CHECK(MenuGameLayer, 0x1d0);
 GEODE_SIZE_CHECK(GJItemIcon, 0x278);
 GEODE_SIZE_CHECK(ChallengesPage, 0x2c0);
+GEODE_SIZE_CHECK(GauntletLayer, 0x1e0);
+GEODE_SIZE_CHECK(GauntletNode, 0x150);
+GEODE_SIZE_CHECK(GauntletSelectLayer, 0x1f8);
+GEODE_SIZE_CHECK(GauntletSprite, 0x148);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
