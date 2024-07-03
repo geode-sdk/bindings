@@ -6264,72 +6264,142 @@ class GameToolbox {
 [[link(android)]]
 class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
 	// virtual ~GauntletLayer();
+	GauntletLayer() {}
 
-	static GauntletLayer* create(GauntletType) = imac 0x3954e0, m1 0x31d474;
+	static GauntletLayer* create(GauntletType gauntletType) = win inline, imac 0x3955f0, m1 0x31d55c {
+		auto ret = new GauntletLayer();
+		if (ret->init(gauntletType)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	bool init(GauntletType) = win 0x1e93d0, imac 0x3956d0, m1 0x31d624;
-	void onBack(cocos2d::CCObject* sender);
-	void onLevel(cocos2d::CCObject* sender);
-	TodoReturn scene(GauntletType);
-	TodoReturn setupGauntlet(cocos2d::CCArray*) = win 0x1e9fd0;
-	TodoReturn unlockActiveItem();
+	void onBack(cocos2d::CCObject* sender) = win 0x1eb5e0, imac 0x395d40, m1 0x31dc80;
+	void onLevel(cocos2d::CCObject* sender) = win 0x1eaf60, imac 0x397270, m1 0x31f034;
+	static cocos2d::CCScene* scene(GauntletType) = win 0x1e90b0, imac 0x3954e0, m1 0x31d474;
+	void setupGauntlet(cocos2d::CCArray*) = win 0x1e9fd0, imac 0x395d90, m1 0x31dcc8;
+	void unlockActiveItem() = win 0x1eafd0, imac 0x3972b0, m1 0x31f078;
 
 	virtual void keyBackClicked() = win 0x1eb630, m1 0x31f6f8, imac 0x3978b0;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x1e9bc0, m1 0x31ebdc, imac 0x396e80;
 	virtual void loadLevelsFailed(char const*, int) = win 0x1e9dd0, m1 0x31ed74, imac 0x397010;
+
+	cocos2d::CCArray* m_levels;
+	LoadingCircle* m_loadingCircle;
+	GauntletType m_gauntletType;
+	cocos2d::CCSprite* m_backgroundSprite;
+	void* m_unkPtr;
+	CCMenuItemSpriteExtra* m_activeItemButton;
+	cocos2d::CCArray* m_activeObjects;
+	TextArea* m_tryAgainText;
 }
 
 [[link(android)]]
 class GauntletNode : cocos2d::CCNode {
 	// virtual ~GauntletNode();
+	GauntletNode() {}
 
-	static GauntletNode* create(GJMapPack*);
+	static GauntletNode* create(GJMapPack* gauntlet) = win inline, imac 0x57a2f0, m1 0x4c64d0 {
+		auto ret = new GauntletNode();
+		if (ret->init(gauntlet)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn frameForType(GauntletType) = win 0x1ef420;
+	static gd::string frameForType(GauntletType) = win 0x1ef420, imac 0x57c810, m1 0x4c8adc;
 	bool init(GJMapPack*) = win 0x1edf90, imac 0x57abf0, m1 0x4c6d84;
-	static gd::string nameForType(GauntletType) = win 0x1f0590;
-	void onClaimReward();
+	static gd::string nameForType(GauntletType) = win 0x1f0590, imac 0x57c320, m1 0x4c84a0;
+	void onClaimReward() = win 0x1ef3e0, imac 0x57ab20, m1 0x4c6cd8;
+
+	cocos2d::CCNode* m_gauntletInfoNode;
+	cocos2d::CCNode* m_rewardNode;
 }
 
 [[link(android)]]
 class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelManagerDelegate {
 	// virtual ~GauntletSelectLayer();
+	GauntletSelectLayer() {}
 
-	static GauntletSelectLayer* create(int) = win 0x1ebc50;
+	static GauntletSelectLayer* create(int p0) = win inline, imac 0x578c50, m1 0x4c5010 {
+		auto ret = new GauntletSelectLayer();
+		if (ret->init(p0)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	void goToPage(int, bool);
+	void goToPage(int, bool) = win 0x1ed600, imac 0x57a7f0, m1 0x4c69b0;
 	bool init(int) = win 0x1ebd80, imac 0x578d40, m1 0x4c50d8;
 	void onBack(cocos2d::CCObject* sender) = win 0x1ed7b0, imac 0x579880, m1 0x4c5b24;
-	void onInfo(cocos2d::CCObject* sender);
-	void onNext(cocos2d::CCObject* sender);
-	void onPlay(cocos2d::CCObject* sender);
-	void onPrev(cocos2d::CCObject* sender);
-	void onRefresh(cocos2d::CCObject* sender);
-	TodoReturn scene(int);
-	void setupGauntlets() = win 0x1ece70, imac 0x579a60,  m1 0x4c5cf8;
-	TodoReturn unblockPlay();
-	TodoReturn updateArrows();
+	void onInfo(cocos2d::CCObject* sender) = win 0x1ec8f0, imac 0x5798f0, m1 0x4c5b98;
+	void onNext(cocos2d::CCObject* sender) = win 0x1ed5c0, imac 0x579860, m1 0x4c5b10;
+	void onPlay(cocos2d::CCObject* sender) = win 0x1ed870, imac 0x57a370, m1 0x4c6560;
+	void onPrev(cocos2d::CCObject* sender) = win 0x1ed5e0, imac 0x579840, m1 0x4c5afc;
+	void onRefresh(cocos2d::CCObject* sender) = win 0x1eca30, imac 0x5799a0, m1 0x4c5c50;
+	static cocos2d::CCScene* scene(int) = win 0x1ebc50, imac 0x578b30, m1 0x4c4f30;
+	void setupGauntlets() = win 0x1ece70, imac 0x579a60, m1 0x4c5cf8;
+	void unblockPlay() = win 0x1ed760, imac 0x57a8e0, m1 0x4c6aa4;
+	void updateArrows() = imac 0x579f80, m1 0x4c618c;
 
-	virtual void onExit() = m1 0x4c6d18, imac 0x57ab60;
+	virtual void onExit() = win 0x1edf40, m1 0x4c6d18, imac 0x57ab60;
 	virtual void keyBackClicked() = win 0x1ed860, m1 0x4c6bec, imac 0x57aa30;
 	virtual void scrollLayerWillScrollToPage(BoomScrollLayer*, int) = win 0x1ed770, m1 0x4c6b4c, imac 0x57a990;
-	virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int) = m1 0x4c6aac, imac 0x57a8f0;
+	virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int) = win 0x1ed770, m1 0x4c6aac, imac 0x57a8f0;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x1ecb50, m1 0x4c61dc, imac 0x579fd0;
 	virtual void loadLevelsFailed(char const*, int) = win 0x1ecd00, m1 0x4c6374, imac 0x57a180;
+
+	cocos2d::CCSprite* m_backgroundSprite;
+	BoomScrollLayer* m_scrollLayer;
+	CCMenuItemSpriteExtra* m_leftButton;
+	CCMenuItemSpriteExtra* m_rightButton;
+	CCMenuItemSpriteExtra* m_refreshButton;
+	bool m_exiting;
+	bool m_playing;
+	TextArea* m_tryAgainText;
+	LoadingCircle* m_loadingCircle;
+	cocos2d::CCDictionary* m_gauntlets;
+	bool m_playBlocked;
 }
 
 [[link(android)]]
 class GauntletSprite : cocos2d::CCNode {
 	// virtual ~GauntletSprite();
+	GauntletSprite() {}
 
-	static GauntletSprite* create(GauntletType, bool);
+	static GauntletSprite* create(GauntletType gauntletType, bool locked) = win inline, imac 0x3971a0, m1 0x31ef10 {
+		auto ret = new GauntletSprite();
+		if (ret->init(gauntletType, locked)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn addLockedSprite();
-	TodoReturn addNormalSprite();
-	TodoReturn colorForType(GauntletType);
-	bool init(GauntletType, bool);
-	TodoReturn luminanceForType(GauntletType);
-	TodoReturn toggleLockedSprite(bool);
+	void addLockedSprite() = win 0x1eb6c0, imac 0x397aa0, m1 0x31f930;
+	void addNormalSprite() = imac 0x3979d0, m1 0x31f834;
+	cocos2d::ccColor3B colorForType(GauntletType) = imac 0x397da0, m1 0x31fc4c;
+	bool init(GauntletType gauntletType, bool locked) = win inline, imac 0x397950, m1 0x31f78c {
+		if (!CCNode::init()) return false;
+
+		m_gauntletType = gauntletType;
+		this->setContentSize({ 60.0f, 60.0f });
+		this->toggleLockedSprite(locked);
+
+		return true;
+	}
+	float luminanceForType(GauntletType) = imac 0x397d70, m1 0x31fc2c;
+	void toggleLockedSprite(bool) = win 0x1eb9f0, imac 0x397880, m1 0x31f6b8;
+
+	GauntletType m_gauntletType;
 }
 
 [[link(android)]]
