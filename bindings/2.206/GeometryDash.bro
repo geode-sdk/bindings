@@ -4011,11 +4011,22 @@ class ExplodeItemSprite : cocos2d::CCSprite {
 [[link(android)]]
 class ExtendedLayer : cocos2d::CCLayer {
 	// virtual ~ExtendedLayer();
+	ExtendedLayer() {}
 
-	static ExtendedLayer* create();
+	static ExtendedLayer* create() = win inline {
+		auto ret = new ExtendedLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	virtual bool init() = imac 0x3aa760;
-	virtual void setPosition(cocos2d::CCPoint const&) = m1 0x3307bc, imac 0x3aa770;
+	virtual bool init() = win 0x3de10, imac 0x3aa760;
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x3de30, m1 0x3307bc, imac 0x3aa770;
+
+	BoomScrollLayerDelegate* m_delegate;
 }
 
 [[link(android)]]
