@@ -8961,7 +8961,7 @@ class GJScaleControl : cocos2d::CCLayer {
 	Slider* m_sliderX;
 	Slider* m_sliderY;
 	Slider* m_sliderXY;
-	float m_touchX;
+	int m_touchID;
 	float m_valueX;
 	float m_valueY;
 	int m_unkSize4;
