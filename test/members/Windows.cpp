@@ -269,6 +269,7 @@ GEODE_SIZE_CHECK(GauntletLayer, 0x1e0);
 GEODE_SIZE_CHECK(GauntletNode, 0x150);
 GEODE_SIZE_CHECK(GauntletSelectLayer, 0x1f8);
 GEODE_SIZE_CHECK(GauntletSprite, 0x148);
+GEODE_SIZE_CHECK(CreatorLayer, 0x1c0);
 GEODE_SIZE_CHECK(GJRotationControl, 0x1c8);
 GEODE_SIZE_CHECK(GJScaleControl, 0x210);
 
