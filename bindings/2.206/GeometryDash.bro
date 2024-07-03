@@ -8921,7 +8921,7 @@ class GJScaleControl : cocos2d::CCLayer {
 		m_changedValueX = 0.0f;
 		m_changedValueY = 0.0f;
 		m_scale1Lock = false;
-		m_scaleType = 0;
+		m_scaleButtonType = 0;
 		m_delegate = nullptr;
 		m_upperBound = 2.0f;
 		m_lowerBound = 0.5f;
