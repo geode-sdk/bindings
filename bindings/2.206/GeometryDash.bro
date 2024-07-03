@@ -1855,6 +1855,7 @@ class ColorAction : cocos2d::CCObject {
 	cocos2d::ccHSVValue m_copyHSV;
 	int m_copyID;
 	bool m_unknown;
+	bool m_unknown2;
 	bool m_copyOpacity;
 	ColorActionSprite* m_colorSprite;
 	// more stuff
@@ -1888,10 +1889,27 @@ class ColorChannelSprite : cocos2d::CCSprite {
 
 	static ColorChannelSprite* create() = win 0x246c10, imac 0x2d44d0, m1 0x2715f4, ios 0xc730;
 
-	TodoReturn updateBlending(bool);
-	TodoReturn updateCopyLabel(int, bool);
-	void updateOpacity(float) = win 0x246eb0, imac 0x2d4750, m1 0x271850, ios 0xc978;
-	void updateValues(ColorAction*) = imac 0x2d49b0, ios 0xcbdc;
+	void updateBlending(bool enabled) = win 0x247000;
+	void updateCopyLabel(int channelID, bool copyOpacity) = win 0x246cf0;
+	void updateOpacity(float alpha) = win 0x246eb0, imac 0x2d4750, m1 0x271850, ios 0xc978;
+	void updateValues(ColorAction* action) = win inline, imac 0x2d49b0, ios 0xcbdc {
+		if (!action) {
+			this->setColor(cocos2d::ccWHITE);
+			this->updateCopyLabel(0, false);
+			this->updateOpacity(1.f);
+			this->updateBlending(false);
+			return;
+		}
+		this->updateCopyLabel(action->m_copyID, action->m_copyOpacity);
+		this->updateOpacity(action->m_fromOpacity);
+		this->updateBlending(action->m_blending);
+		if (action->m_copyID != 0 && !action->m_copyOpacity) {
+			this->setColor(cocos2d::ccGRAY);
+		}
+		else {
+			this->setColor(action->m_fromColor);
+		}
+	}
 
 	virtual bool init() = m1 0x27169c, imac 0x2d4570;
 }
@@ -2346,21 +2364,32 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onBreakApart(cocos2d::CCObject* sender);
 	void onBrowse(cocos2d::CCObject* sender);
 	void onClear(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0xa7ef0;
 	void onCopy(cocos2d::CCObject* sender);
 	void onEditColor(cocos2d::CCObject* sender);
 	void onHSV(cocos2d::CCObject* sender);
 	void onLiveEdit(cocos2d::CCObject* sender);
 	void onNextColorChannel(cocos2d::CCObject* sender);
 	void onPaste(cocos2d::CCObject* sender);
-	void onSelectColor(cocos2d::CCObject* sender);
+	void onSelectColor(cocos2d::CCObject* sender) = win 0xa7b90;
 	void onSelectMode(cocos2d::CCObject* sender) = win 0xa6ed0, imac 0x1f13b0;
 	void onSettings(cocos2d::CCObject* sender);
-	void onUpdateCustomColor(cocos2d::CCObject* sender);
+	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0xa7490;
 	TodoReturn recreateLayer();
 	void sliderChanged(cocos2d::CCObject*);
 	void toggleVisible() = win 0xa70e0, imac 0x1f3120, m1 0x1a645c;
-	void updateChannelLabel(int);
+	void updateChannelLabel(int channel) {
+		if (channel > 999) {
+			m_selectedColorLabel->setString(GJSpecialColorSelect::textForColorIdx(channel));
+		}
+		else if (channel > 0) {
+			// Technically not identical to RobTop impl which uses `CCString::createWithFormat`
+			m_selectedColorLabel->setString(std::to_string(channel).c_str());
+		}
+		else {
+			m_selectedColorLabel->setString(" ");
+		}
+	}
 	void updateColorSprite() = win 0xa6410;
 	void updateCurrentSelection();
 	void updateCustomColorLabels() = win 0xa7a80;
@@ -3064,7 +3093,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	TodoReturn toggleHideInvisible(cocos2d::CCObject*);
 	TodoReturn toggleIgnoreDamage(cocos2d::CCObject*);
 	TodoReturn togglePlaytestMusic(cocos2d::CCObject*);
-	TodoReturn togglePreviewAnim(cocos2d::CCObject*);
+	void togglePreviewAnim(cocos2d::CCObject*) = win 0xd9810;
 	TodoReturn togglePreviewParticles(cocos2d::CCObject*);
 	TodoReturn togglePreviewShaders(cocos2d::CCObject*);
 	TodoReturn toggleRecordOrder(cocos2d::CCObject*);
@@ -3098,7 +3127,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	}
 
 	TodoReturn activateRotationControl(cocos2d::CCObject*) = win 0x11efb0;
-	void activateScaleControl(cocos2d::CCObject*);
+	void activateScaleControl(cocos2d::CCObject*) = win 0x110e10;
 	void activateTransformControl(cocos2d::CCObject*) = win 0x111460;
 	TodoReturn addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*);
 	TodoReturn addSnapPosition(cocos2d::CCPoint);
@@ -3211,11 +3240,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	bool isLiveColorSelectTrigger(GameObject*);
 	bool isSpecialSnapObject(int) = win 0x124e40;
 	TodoReturn liveEditColorUsable();
-	TodoReturn menuItemFromObjectString(gd::string, int);
+	CreateMenuItem* menuItemFromObjectString(gd::string, int) = win 0x10ac30;
 	cocos2d::CCPoint moveForCommand(EditCommand command) = win 0x11b9b0;
 	void moveGamelayer(cocos2d::CCPoint) = win 0xdf250;
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x11be20;
-	void moveObjectCall(cocos2d::CCObject*);
+	void moveObjectCall(cocos2d::CCObject*) = win 0x11bb60;
 	void moveObjectCall(EditCommand) = win 0x11bb90;
 	cocos2d::CCPoint offsetForKey(int) = win 0x122780;
 	TodoReturn onAssignNewGroupID();
@@ -3279,7 +3308,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0x1105b0;
 	void resetObjectEditorValues(cocos2d::CCArray*);
 	TodoReturn resetSelectedObjectsColor();
-	void resetUI();
+	void resetUI() = win 0xe1270;
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = win 0x11d040;
 	TodoReturn rotationforCommand(EditCommand);
 	void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType, bool) = win 0x11d460;
@@ -3304,7 +3333,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void showUI(bool) = imac 0x3dd70, m1 0x392e4, win 0x10dda0;
 	void sliderChanged(cocos2d::CCObject*) = win 0xdef40, ios 0x3CF9B4;
 	TodoReturn smartTypeForKey(int);
-	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
+	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0x10a330;
 	TodoReturn toggleDuplicateButton();
 	TodoReturn toggleEditObjectButton() = win 0x116aa0;
 	void toggleEnableRotate(cocos2d::CCObject*) = win 0x10c6a0;
@@ -9229,10 +9258,10 @@ class GJSpecialColorSelect : FLAlertLayer {
 
 	TodoReturn getButtonByTag(int);
 	TodoReturn highlightSelected(ButtonSprite*);
-	bool init(int, GJSpecialColorSelectDelegate*, ColorSelectType);
+	bool init(int, GJSpecialColorSelectDelegate*, ColorSelectType) = win 0x2a5850;
 	void onClose(cocos2d::CCObject* sender);
 	void onSelectColor(cocos2d::CCObject* sender);
-	static const char* textForColorIdx(int);
+	static const char* textForColorIdx(int) = win 0x2a6490;
 
 	TodoReturn tryShowAd();
 	virtual void keyBackClicked() = win 0x2a6440, m1 0x553bc8, imac 0x633bf0;
@@ -10429,7 +10458,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	void updateLevelFont(int) = win 0x2cb350;
 	TodoReturn updateObjectColors(cocos2d::CCArray*) = win 0x2c6410;
 	static void updateObjectLabel(GameObject*) = win 0x2c3bc0;
-	void updateOptions() = m1 0xc694c;
+	void updateOptions() = win 0x2bf650, m1 0xc694c;
 	void updatePreviewAnim();
 	void updatePreviewParticle(ParticleGameObject*) = imac 0x1ad850;
 	void updatePreviewParticles() = win 0x2cdb20;
@@ -12087,7 +12116,7 @@ class ObjectToolbox : cocos2d::CCNode {
 	static ObjectToolbox* sharedState() = win 0x327460, ios 0x287bdc;
 
 	TodoReturn allKeys();
-	float gridNodeSizeForKey(int);
+	float gridNodeSizeForKey(int key) = win 0x34f350;
 	const char* intKeyToFrame(int key) {
 		return m_allKeys[key].c_str();
 	}
@@ -13977,7 +14006,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateEditorOrder();
 	TodoReturn updateEditorOrderLabel();
 	TodoReturn updateGroupIDButtons();
-	void updateGroupIDLabel();
+	void updateGroupIDLabel() = win 0x3d26d0;
 	TodoReturn updateOrderChannel();
 	TodoReturn updateOrderChannelLabel();
 	TodoReturn updateZLayerButtons();
@@ -16657,7 +16686,7 @@ class TextAreaDelegate {
 class TextGameObject : GameObject {
 	// virtual ~TextGameObject();
 
-	static TextGameObject* create(cocos2d::CCTexture2D*);
+	static TextGameObject* create(cocos2d::CCTexture2D*) = win 0x19d4f0;
 
 	bool init(cocos2d::CCTexture2D*);
 	void updateTextObject(gd::string, bool) = win 0x19d5e0;
