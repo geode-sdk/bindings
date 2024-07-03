@@ -3092,9 +3092,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 	static EditorUI* create(LevelEditorLayer*) = imac 0x9460;
 	static EditorUI* get() {
-        auto lel = LevelEditorLayer::get();
-        if (!lel) return nullptr;
-        return lel->m_editorUI;
+		auto lel = LevelEditorLayer::get();
+		if (!lel) return nullptr;
+		return lel->m_editorUI;
 	}
 
 	TodoReturn activateRotationControl(cocos2d::CCObject*) = win 0x11efb0;
@@ -8860,19 +8860,44 @@ class GJRotateCommandLayer : SetupTriggerPopup {
 [[link(android)]]
 class GJRotationControl : cocos2d::CCLayer {
 	// virtual ~GJRotationControl();
+	GJRotationControl() {
+		m_cursorDifference = cocos2d::CCPointMake(0.0f, 0.0f);
+		m_controlPosition = cocos2d::CCPointMake(0.0f, 0.0f);
+		m_controlSprite = nullptr;
+		m_startingRotation = 0.0f;
+		m_currentRotation = 0.0f;
+		m_touchID = -1;
+		m_delegate = nullptr;
+	}
 
-	static GJRotationControl* create() = ios 0x3CFA48;
+	static GJRotationControl* create() = win inline, m1 0xdca8, imac 0xbcc0, ios 0x3CFA48 {
+		auto ret = new GJRotationControl();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn finishTouch() = win 0x125490;
-	void setAngle(float);
-	TodoReturn updateSliderPosition(cocos2d::CCPoint);
+	void finishTouch() = win 0x125490, m1 0xdd84, imac 0xbdb0;
+	void setAngle(float) = m1 0x49ea4, imac 0x520d0;
+	void updateSliderPosition(cocos2d::CCPoint) = m1 0x49f24, imac 0x52150;
 
-	virtual bool init() = m1 0x49db0, imac 0x51fe0;
-	virtual void draw() = m1 0x4a378, imac 0x525e0;
+	virtual bool init() = win 0x125370, m1 0x49db0, imac 0x51fe0;
+	virtual void draw() = win 0x1257d0, m1 0x4a378, imac 0x525e0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x125510, m1 0x4a014, imac 0x52250;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x125610, m1 0x4a128, imac 0x52370;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1257b0, m1 0x4a264, imac 0x524d0;
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x4a35c, imac 0x525a0;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x6fd20, m1 0x4a35c, imac 0x525a0;
+
+	cocos2d::CCPoint m_cursorDifference;
+	cocos2d::CCPoint m_controlPosition;
+	cocos2d::CCSprite* m_controlSprite;
+	float m_startingRotation;
+	float m_currentRotation;
+	int m_touchID;
+	GJRotationControlDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -8885,25 +8910,53 @@ class GJRotationControlDelegate {
 [[link(android)]]
 class GJScaleControl : cocos2d::CCLayer {
 	// virtual ~GJScaleControl();
+	GJScaleControl() {
+		m_sliderX = nullptr;
+		m_sliderY = nullptr;
+		m_sliderXY = nullptr;
+		m_touchID = -1;
+		m_valueX = = 0.0f;
+		m_valueY = 0.0f;
+		m_unkSize4 = 0;
+		m_changedValueX = 0.0f;
+		m_changedValueY = 0.0f;
+		m_scale1Lock = false;
+		m_scaleType = 0;
+		m_delegate = nullptr;
+		m_upperBound = 2.0f;
+		m_lowerBound = 0.5f;
+		m_senderTag = 0;
+		m_scaleLockButton = nullptr;
+		m_scaleLocked = false;
+	}
 
-	static GJScaleControl* create() = ios 0x3CFB18;
+	static GJScaleControl* create() = win inline, m1 0xde2c, imac 0xbe50, ios 0x3CFB18 {
+		auto ret = new GJScaleControl();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn finishTouch();
-	TodoReturn loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&);
-	TodoReturn scaleFromValue(float);
-	TodoReturn skewFromValue(float);
-	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn updateLabelX(float);
-	TodoReturn updateLabelXY(float);
-	TodoReturn updateLabelY(float);
-	TodoReturn valueFromScale(float);
-	TodoReturn valueFromSkew(float);
+	void finishTouch();
+	void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&) = win 0x125d20, m1 0x3abb0, imac 0x3f770;
+	void onToggleLockScale(cocos2d::CCObject* sender) = win 0x125c90, m1 0x4a7c4, imac 0x52a60;
+	float scaleFromValue(float) = m1 0x4a99c, imac 0x52c30;
+	float skewFromValue(float) = m1 0x4a9d8, imac 0x52c70;
+	void sliderChanged(cocos2d::CCObject* sender) = win 0x126330, m1 0x4a834, imac 0x52ac0;
+	void updateLabelX(float) = win 0x126ab0, m1 0x4a864, imac 0x52b10;
+	void updateLabelXY(float) = win 0x126bb0, m1 0x4a934, imac 0x52bd0;
+	void updateLabelY(float) = win 0x126b30, m1 0x4a8cc, imac 0x52b70;
+	float valueFromScale(float) = m1 0x4a83c, imac 0x52ad0;
+	float valueFromSkew(float) = m1 0x4a9f0, imac 0x52cc0;
 
-	virtual bool init() = m1 0x4a3e0, imac 0x52650;
+	virtual bool init() = win 0x125850, m1 0x4a3e0, imac 0x52650;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x126340, m1 0x4aa18, imac 0x52d00;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x126550, m1 0x4abb4, imac 0x52ef0;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x126970, m1 0x4affc, imac 0x533c0;
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x4b124, imac 0x53520;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x6fd20, m1 0x4b124, imac 0x53520;
 
 	Slider* m_sliderX;
 	Slider* m_sliderY;
@@ -8911,7 +8964,20 @@ class GJScaleControl : cocos2d::CCLayer {
 	float m_touchX;
 	float m_valueX;
 	float m_valueY;
-	// more stuff
+	int m_unkSize4;
+	float m_changedValueX;
+	float m_changedValueY;
+	bool m_scale1Lock;
+	short m_scaleButtonType;
+	cocos2d::CCLabelBMFont* m_scaleXLabel;
+	cocos2d::CCLabelBMFont* m_scaleYLabel;
+	cocos2d::CCLabelBMFont* m_scaleLabel;
+	GJScaleControlDelegate* m_delegate;
+	float m_upperBound;
+	float m_lowerBound;
+	int m_senderTag;
+	CCMenuItemSpriteExtra* m_scaleLockButton;
+	bool m_scaleLocked;
 }
 
 [[link(android)]]
@@ -9229,24 +9295,49 @@ class GJTransformControl : cocos2d::CCLayer {
 
 	TodoReturn applyRotation(float);
 	TodoReturn calculateRotationOffset();
-	TodoReturn finishTouch();
+	void finishTouch();
 	void loadFromState(GJTransformState&);
 	TodoReturn loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&);
 	TodoReturn logCurrentZeroPos();
-	void onToggleLockScale(cocos2d::CCObject* sender);
-	TodoReturn refreshControl() = win 0x127180;
+	void onToggleLockScale(cocos2d::CCObject* sender) = win 0x127310;
+	void refreshControl() = win 0x127180;
 	void saveToState(GJTransformState&);
-	TodoReturn scaleButtons(float);
+	void scaleButtons(float) = win 0x1273a0;
 	TodoReturn spriteByTag(int);
 	TodoReturn updateAnchorSprite(cocos2d::CCPoint);
 	void updateButtons(bool, bool) = win 0x127460;
 	TodoReturn updateMinMaxPositions();
 
-	virtual bool init() = m1 0x4b358, imac 0x53870;
+	virtual bool init() = win 0x126c30, m1 0x4b358, imac 0x53870;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1282c0, m1 0x4b7dc, imac 0x53d20;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x128490, m1 0x4bbd0, imac 0x541f0;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1289f0, m1 0x4c0e8, imac 0x547a0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x6fd20, m1 0x4c2c0, imac 0x549b0;
+
+	// 2lazy
+	cocos2d::CCNode* m_mainNodeParent;
+	cocos2d::CCNode* m_mainNode;
+	cocos2d::CCArray* m_unk1;
+	int m_touchID;
+	short m_transformButtonType;
+	GJTransformControlDelegate* m_delegate;
+	cocos2d::CCPoint m_cursorDifference;
+	cocos2d::CCPoint m_unk2;
+	cocos2d::CCPoint m_unk3;
+	cocos2d::CCPoint m_unk4;
+	cocos2d::CCPoint m_unk5;
+	cocos2d::CCPoint m_unk6;
+	cocos2d::CCPoint m_unk7;
+	cocos2d::CCArray* m_warpSprites;
+	cocos2d::CCPoint m_rotatePosition;
+	CCMenuItemSpriteExtra* m_warpLockButton;
+	float m_unk8;
+	float m_unk9;
+	bool m_warpLocked;
+	float m_unk10;
+	float m_unk11;
+	float m_unk12;
+	float m_buttonScale;
 }
 
 [[link(android)]]
