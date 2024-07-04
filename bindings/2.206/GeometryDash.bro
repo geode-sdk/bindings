@@ -2378,7 +2378,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	TodoReturn recreateLayer();
 	void sliderChanged(cocos2d::CCObject*);
 	void toggleVisible() = win 0xa70e0, imac 0x1f3120, m1 0x1a645c;
-	void updateChannelLabel(int channel) {
+	void updateChannelLabel(int channel) = win inline {
 		if (channel > 999) {
 			m_selectedColorLabel->setString(GJSpecialColorSelect::textForColorIdx(channel));
 		}
