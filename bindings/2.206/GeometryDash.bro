@@ -2376,7 +2376,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	TodoReturn recreateLayer();
 	void sliderChanged(cocos2d::CCObject*);
 	void toggleVisible() = win 0xa70e0, imac 0x1f3120, m1 0x1a645c;
-	void updateChannelLabel(int channel) {
+	void updateChannelLabel(int channel) = win inline {
 		if (channel > 999) {
 			m_selectedColorLabel->setString(GJSpecialColorSelect::textForColorIdx(channel));
 		}
@@ -7337,7 +7337,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCNode* m_unk3480;
 	double m_timePlayed;
 	PAD = win 0x8, android32 0x0, android64 0x0, mac 0x0;
-	bool m_canPause;
+	bool m_cantPause;
 	PAD = win 0x18, android32 0xB, android64 0xF, mac 0x30;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
 	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90;
@@ -13040,7 +13040,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	void applyEnterEffect(GameObject*, int, bool) = win 0x38e270;
 	bool canPauseGame() = win inline, m1 0xaac6c {
-		return !m_hasCompletedLevel && m_started;
+		return !m_hasCompletedLevel && !m_cantPause;
 	}
 	TodoReturn checkpointWithID(int);
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
