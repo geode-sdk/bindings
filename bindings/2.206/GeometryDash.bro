@@ -4752,7 +4752,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x159b50;
 	void onGetGauntletsCompleted(gd::string response, gd::string tag);
 	void onGetGJChallengesCompleted(gd::string response, gd::string tag);
-	void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag);
+	void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag) = win 0x1614b0;
 	void onGetGJRewardsCompleted(gd::string response, gd::string tag);
 	void onGetGJUserInfoCompleted(gd::string response, gd::string tag);
 	void onGetLeaderboardScoresCompleted(gd::string response, gd::string tag);
@@ -7416,10 +7416,10 @@ class GJChallengeItem : cocos2d::CCObject {
 class GJChestSprite : cocos2d::CCSprite {
 	// virtual ~GJChestSprite();
 
-	static GJChestSprite* create(int) = ios 0x1cf3c0;
+	static GJChestSprite* create(int) = win 0x3ad250, ios 0x1cf3c0;
 
 	bool init(int) = ios 0x1d17e4;
-	void switchToState(ChestSpriteState, bool);
+	void switchToState(ChestSpriteState, bool) = win 0x3ad450;
 
 	virtual void setOpacity(unsigned char) = win 0x3ad3e0, m1 0x1ca94c, imac 0x21a180;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x3ad320, m1 0x1ca878, imac 0x21a090;
