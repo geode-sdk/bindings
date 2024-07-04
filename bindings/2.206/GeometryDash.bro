@@ -11230,13 +11230,18 @@ class LikeItemLayer : FLAlertLayer {
 class ListButtonBar : cocos2d::CCNode {
 	// virtual ~ListButtonBar();
 
-	static ListButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = win 0x698f0;
+	static ListButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = win 0x698f0, m1 0x372be8, imac 0x3f8aa0;
 
-	TodoReturn getPage();
-	void goToPage(int);
-	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = win 0x69a00;
-	void onLeft(cocos2d::CCObject* sender);
-	void onRight(cocos2d::CCObject* sender);
+	int getPage() = m1 0x3732ec, imac 0x3f9200;
+	void goToPage(int) = win 0x69f00, m1 0x3732f8, imac 0x3f9220;
+	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = win 0x69a00, m1 0x372ccc, imac 0x3f8b70;
+	void onLeft(cocos2d::CCObject* sender) = win 0x69fb0, m1 0x3731d4, imac 0x3f90d0;
+	void onRight(cocos2d::CCObject* sender) = win 0x69f90, m1 0x373260, imac 0x3f9170;
+
+	BoomScrollLayer* m_scrollLayer;
+	cocos2d::CCArray* m_pages;
+	ListButtonBarDelegate* m_delegate;
+	bool m_useMoveAnimation;
 }
 
 [[link(android)]]
@@ -11248,9 +11253,9 @@ class ListButtonBarDelegate {
 class ListButtonPage : cocos2d::CCLayer {
 	// virtual ~ListButtonPage();
 
-	static ListButtonPage* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float) = win 0x69fd0;
+	static ListButtonPage* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float) = win 0x69fd0, m1 0x3730cc, imac 0x3f8fc0;
 
-	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float);
+	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float) = m1 0x373374, imac 0x3f92a0;
 }
 
 [[link(android)]]
