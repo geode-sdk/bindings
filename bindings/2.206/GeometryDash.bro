@@ -2176,7 +2176,7 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 
-    PAD = win 0x18;
+    PAD = android64 0x18, win 0x18;
     int m_objectID;
 }
 
@@ -2737,7 +2737,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 
 	virtual void registerWithTouchDispatcher() = m1 0x1db5e0, imac 0x22dc60;
 	virtual void keyBackClicked() = m1 0x1db544, imac 0x22dbd0;
-	virtual void show() = m1 0x1db3b8, imac 0x22da30;
+	virtual void show() = win 0xccb90, m1 0x1db3b8, imac 0x22da30;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 	virtual void dailyStatusFinished(GJTimedLevelType) = win 0xcc8d0, m1 0x1daa90, imac 0x22d0d0;
 	virtual void dailyStatusFailed(GJTimedLevelType, GJErrorCode) = win 0xccb90, m1 0x1dae7c, imac 0x22d510;
@@ -7796,7 +7796,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn levelWasSubmitted();
 	TodoReturn parseSettingsString(gd::string);
 	void saveNewScore(int, int);
-	void savePercentage(int percent, bool, int clicks, int attempts, bool) = win 0x164540, imac 0x562730, m1 0xf06c4;
+	void savePercentage(int percent, bool, int clicks, int attempts, bool) = win 0x164540, m1 0x4b0f44, imac 0x562730;
 	TodoReturn scoreStringToVector(gd::string&, gd::vector<int>&);
 	TodoReturn scoreVectorToString(gd::vector<int>&, int);
 	void setAccountID(int);
@@ -10568,11 +10568,11 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	bool m_previewMode;
 
 	// 2.206 win pad unknown
-	PAD = win 0xfa, android32 0x7a, android64 0xfa;
+	PAD = win 0xfa, android32 0x7a, android64 0xf4;
 
 	gd::vector<bool> m_lockedLayers;
 
-	PAD = win 0xe8, android32 0x90, android64 0xf0;
+	PAD = win 0xe8, android32 0x90, android64 0xf8;
 }
 
 [[link(android)]]
@@ -11241,13 +11241,18 @@ class LikeItemLayer : FLAlertLayer {
 class ListButtonBar : cocos2d::CCNode {
 	// virtual ~ListButtonBar();
 
-	static ListButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = win 0x698f0;
+	static ListButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = win 0x698f0, m1 0x372be8, imac 0x3f8aa0;
 
-	TodoReturn getPage();
-	void goToPage(int);
-	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = win 0x69a00;
-	void onLeft(cocos2d::CCObject* sender);
-	void onRight(cocos2d::CCObject* sender);
+	int getPage() = m1 0x3732ec, imac 0x3f9200;
+	void goToPage(int) = win 0x69f00, m1 0x3732f8, imac 0x3f9220;
+	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = win 0x69a00, m1 0x372ccc, imac 0x3f8b70;
+	void onLeft(cocos2d::CCObject* sender) = win 0x69fb0, m1 0x3731d4, imac 0x3f90d0;
+	void onRight(cocos2d::CCObject* sender) = win 0x69f90, m1 0x373260, imac 0x3f9170;
+
+	BoomScrollLayer* m_scrollLayer;
+	cocos2d::CCArray* m_pages;
+	ListButtonBarDelegate* m_delegate;
+	bool m_useMoveAnimation;
 }
 
 [[link(android)]]
@@ -11259,9 +11264,9 @@ class ListButtonBarDelegate {
 class ListButtonPage : cocos2d::CCLayer {
 	// virtual ~ListButtonPage();
 
-	static ListButtonPage* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float) = win 0x69fd0;
+	static ListButtonPage* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float) = win 0x69fd0, m1 0x3730cc, imac 0x3f8fc0;
 
-	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float);
+	bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float) = m1 0x373374, imac 0x3f92a0;
 }
 
 [[link(android)]]
@@ -12764,8 +12769,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerSpriteExtra(gd::string);
 	void updatePlayerSwingFrame(int) = win 0x37c7c0, m1 0x395b5c, imac 0x420cd0;
 	void updateRobotAnimationSpeed() = win 0x37f0f0;
-	void updateRotation(float, float) = win 0x36b230;
-	void updateRotation(float) = win 0x36f0b0;
+	void updateRotation(float, float) = win 0x36b230, imac 0x40bab0, m1 0x383a84;
+	void updateRotation(float) = win 0x36f0b0, imac 0x416180, m1 0x38c360;
 	void updateShipRotation(float) = win 0x36ecd0;
 	void updateShipSpriteExtra(gd::string);
 	TodoReturn updateSlopeRotation(float);
