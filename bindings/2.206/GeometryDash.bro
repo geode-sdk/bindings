@@ -654,47 +654,64 @@ class ButtonSprite : cocos2d::CCSprite {
 		return create(caption, width, 0, scale, absolute, font, texture, height);
 	}
 
-	static ButtonSprite* create(char const* caption) = ios 0x65cf0 {
-		return ButtonSprite::create(caption, 0, 0, "goldFont.fnt", "GJ_button_01.png", .0f, 1.f);
+	static ButtonSprite* create(char const* caption) = imac 0x920c0, m1 0x828f8, ios 0x65cf0 {
+		return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, 1.f);
 	}
 	static ButtonSprite* create(char const* caption, const char* font, const char* texture) {
-		return ButtonSprite::create(caption, 0, 0, font, texture, .0f, 1.f);
+		return ButtonSprite::create(caption, 0, false, font, texture, .0f, 1.f);
 	}
 	static ButtonSprite* create(char const* caption, const char* font, const char* texture, float scale) {
-		return ButtonSprite::create(caption, 0, 0, font, texture, .0f, scale);
+		return ButtonSprite::create(caption, 0, false, font, texture, .0f, scale);
 	}
 
-	static ButtonSprite* create(char const*, float);
-	static ButtonSprite* create(char const* a, int b, int c, float d, bool e, char const* f, char const* g, float h) = win 0x3e2d0, imac 0x92140, m1 0x8295c, ios 0x65d30;
-	static ButtonSprite* create(char const*, int, int, float, bool, char const* font, char const* bg);
-	static ButtonSprite* create(char const*, int, int, float, bool) = imac 0x920f0;
-	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float a, bool b, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3dfc0, imac 0x918c0, m1 0x82188, ios 0x655fc;
-	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool);
-	static ButtonSprite* create(cocos2d::CCSprite*);
+	static ButtonSprite* create(char const* caption, float scale) = imac 0x92110, m1 0x82938 {
+		return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, scale);
+	}
+	static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x3e2d0, imac 0x92140, m1 0x8295c, ios 0x65d30;
+	static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg) = imac 0x92280, m1 0x82a88 {
+		return ButtonSprite::create(caption, width, p2, scale, absolute, font, bg, .0f);
+	}
+	static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute) = imac 0x920f0, m1 0x82920 {
+		return ButtonSprite::create(caption, width, p2, scale, absolute, "goldFont.fnt", "GJ_button_01.png", .0f);
+	}
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3dfc0, imac 0x918c0, m1 0x82188, ios 0x655fc;
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute) = imac 0x918a0, m1 0x82178 {
+		return ButtonSprite::create(topSprite, width, unused, height, scale, absolute, "GJ_button_01.png", false);
+	}
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite) = imac 0x91870, m1 0x82154 {
+		return ButtonSprite::create(topSprite, 0, 0, .0f, 1.f, false, "GJ_button_01.png", false);
+	}
 
-	bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3e3a0, ios 0x65e04;
-	bool init(cocos2d::CCSprite* topSprite, int width, int unused, float scale, float height, bool unkBool, char const* bgSprite, bool useNormalCCSpriteForBG) = win 0x3e070, ios 0x656c8;
-	void setColor(cocos2d::_ccColor3B const& color) {
+	bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3e3a0, imac 0x92290, m1 0x82a90, ios 0x65e04;
+	bool init(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3e070, imac 0x91a00, m1 0x822b4, ios 0x656c8;
+	void setColor(cocos2d::_ccColor3B const& color) = win inline, imac 0x92a70, m1 0x831f0 {
 		// i love inlined funcs
-		m_label->setColor(color);
-  		m_subSprite->setColor(color);
-  		m_subBGSprite->setColor(color);
-  		m_BGSprite->setColor(color);
+		if (m_label) m_label->setColor(color);
+  		if (m_subSprite) m_subSprite->setColor(color);
+  		if (m_subBGSprite) m_subBGSprite->setColor(color);
+  		if (m_BGSprite) m_BGSprite->setColor(color);
 	}
-	void setString(char const*) = win 0x3ec60, m1 0x82d08, imac 0x92530;
+	void setString(char const*) = win 0x3ec60, imac 0x92530, m1 0x82d08;
 	void updateBGImage(char const*) = win 0x3e6a0, imac 0x92920, m1 0x830ac, ios 0x663f4;
-	void updateSpriteBGSize() = win 0x3e7e0;
-	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
+	void updateSpriteBGSize() = win 0x3e7e0, imac 0x91c90, m1 0x82508;
+	void updateSpriteOffset(cocos2d::CCPoint offset) = win inline, imac 0x92a40, m1 0x831c8 {
+		m_spritePosition = offset;
+		this->updateSpriteBGSize();
+	}
 
-	PAD = mac 0x18, win 0x18, android32 0x18, android64 0x18;
+	int m_mode;
+	float m_width;
+	float m_unkFloat;
+	float m_scale;
+	float m_height;
+	bool m_absolute;
 	cocos2d::CCLabelBMFont* m_label;
 	cocos2d::CCSprite* m_subSprite;
 	cocos2d::CCSprite* m_subBGSprite;
 	cocos2d::extension::CCScale9Sprite* m_BGSprite;
-	PAD = mac 0xC, win 0xC;
+	cocos2d::CCPoint m_textOffset;
 	cocos2d::CCPoint m_spritePosition;
-	PAD = win 0x18;
-	//sizeof is 0x238 on android32 pls add to checks later, its also 0x2c0 on windows
+	gd::string m_caption;
 }
 
 [[link(android)]]
