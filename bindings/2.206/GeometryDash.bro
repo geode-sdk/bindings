@@ -2176,7 +2176,7 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 
-    PAD = win 0x18;
+    PAD = android64 0x18, win 0x18;
     int m_objectID;
 }
 
@@ -10555,7 +10555,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	bool m_previewMode;
 
 	// 2.206 win pad unknown
-	PAD = win 0xfa, android32 0x7a, android64 0xfa;
+	PAD = win 0xfa, android32 0x74, android64 0xf4;
 
 	gd::vector<bool> m_lockedLayers;
 
