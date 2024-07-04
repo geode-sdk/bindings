@@ -524,23 +524,23 @@ class BoomScrollLayer : cocos2d::CCLayer {
 		return BoomScrollLayer::create(pages, unk1, unk2, nullptr, nullptr);
 	}
 
-	TodoReturn addPage(cocos2d::CCLayer*, int);
-	TodoReturn addPage(cocos2d::CCLayer*);
+	void addPage(cocos2d::CCLayer*, int);
+	void addPage(cocos2d::CCLayer*);
 	void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x132b48;
 	void claimTouch(cocos2d::CCTouch*) = ios 0x132ae4;
-	TodoReturn getPage(int);
+	int getPage(int);
 	int getRelativePageForNum(int);
-	TodoReturn getRelativePosForPage(int);
+	cocos2d::CCPoint getRelativePosForPage(int);
 	int getTotalPages() = ios 0x132154;
 	bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c3b0, m1 0x32e124, imac 0x3a7dc0;
 	void instantMoveToPage(int) = win 0x3cf40, ios 0x132724;
 	void moveToPage(int) = ios 0x1327fc;
-	void moveToPageEnded();
-	int pageNumberForPosition(cocos2d::CCPoint);
-	TodoReturn positionForPageWithNumber(int);
-	TodoReturn quickUpdate(); // inlined D:
-	TodoReturn removePage(cocos2d::CCLayer*);
-	TodoReturn removePageWithNumber(int);
+	void moveToPageEnded() = win 0x3cdb0;
+	int pageNumberForPosition(cocos2d::CCPoint) = win 0x3ce40;
+	cocos2d::CCPoint positionForPageWithNumber(int);
+	void quickUpdate(); // inlined D:
+	void removePage(cocos2d::CCLayer*);
+	void removePageWithNumber(int);
 	void repositionPagesLooped() = win 0x3d1e0;
 	void selectPage(int);
 	void setDotScale(float); // inlined
@@ -550,12 +550,12 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	void updateDots(float) = win 0x3cae0, ios 0x132170;
 	void updatePages() = win 0x3c9c0;
 
-	virtual void visit() = m1 0x32f6a8, imac 0x3a9570;
+	virtual void visit() = win 0x3cd50, m1 0x32f6a8, imac 0x3a9570;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d890, m1 0x3301bc, imac 0x3aa0a0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d940, m1 0x330288, ios 0x132cf0, imac 0x3aa190;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3dc70, m1 0x330548, imac 0x3aa4b0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d7b0, m1 0x32ffec, imac 0x3a9ee0;
-	virtual void registerWithTouchDispatcher() = m1 0x32fe74, imac 0x3a9d50;
+	virtual void registerWithTouchDispatcher() = win 0x3d720, m1 0x32fe74, imac 0x3a9d50;
 
 	PAD = win 0xD8;
 }
