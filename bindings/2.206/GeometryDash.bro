@@ -12758,8 +12758,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerSpriteExtra(gd::string);
 	void updatePlayerSwingFrame(int) = win 0x37c7c0, m1 0x395b5c, imac 0x420cd0;
 	void updateRobotAnimationSpeed() = win 0x37f0f0;
-	void updateRotation(float, float) = win 0x36b230;
-	void updateRotation(float) = win 0x36f0b0;
+	void updateRotation(float, float) = win 0x36b230, imac 0x40bab0, m1 0x383a84;
+	void updateRotation(float) = win 0x36f0b0, imac 0x416180, m1 0x38c360;
 	void updateShipRotation(float) = win 0x36ecd0;
 	void updateShipSpriteExtra(gd::string);
 	TodoReturn updateSlopeRotation(float);
