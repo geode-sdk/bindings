@@ -10557,11 +10557,11 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	bool m_previewMode;
 
 	// 2.206 win pad unknown
-	PAD = win 0xfa, android32 0x74, android64 0xf4;
+	PAD = win 0xfa, android32 0x78, android64 0xf4;
 
 	gd::vector<bool> m_lockedLayers;
 
-	PAD = win 0xe8, android32 0x90, android64 0xf0;
+	PAD = win 0xe8, android32 0x94, android64 0xf8;
 }
 
 [[link(android)]]
