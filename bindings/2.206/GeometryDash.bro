@@ -7870,9 +7870,9 @@ class GJGameState {
 	int m_unkInt17;
 	gd::unordered_map<int, int> m_spawnChannelRelated0;
 	gd::unordered_map<int, bool> m_spawnChannelRelated1;
-	double m_unkDouble1;
-	double m_unkDouble2;
-	double m_unkDouble3;
+	double m_totalTime; // time since entering the level
+	double m_levelTime; // time since attempt started
+	double m_unkDouble3; // always equal to m_totalTime?
 	unsigned int m_unkUint2;
 	unsigned int m_unkUint3;
 	int m_currentProgress;
