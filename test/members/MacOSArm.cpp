@@ -5,6 +5,7 @@
 // GEODE_SIZE_CHECK(PlayLayer, 0x3790);
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x3508);
 GEODE_MEMBER_CHECK(PlayLayer, m_unkSomeFloat, 0x35a4);
+GEODE_MEMBER_CHECK(PlayLayer, m_jumps, 0x3680);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x368D);
 GEODE_MEMBER_CHECK(PlayLayer, m_endLayerStars, 0x3694);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36F7);
@@ -16,6 +17,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x34c0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf6c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x2f14);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2fd8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
@@ -23,11 +25,11 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3158);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk3458, 0x3288);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3298);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32f8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x3420);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x3420);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 
 
-// GEODE_SIZE_CHECK(PlayerObject, 0xbe8);
+// GEODE_SIZE_CHECK(PlayerObject, 0xbe8); 
 GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
 // GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
 // GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);

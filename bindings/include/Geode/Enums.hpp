@@ -533,9 +533,11 @@ enum class MenuAnimationType {
 };
 
 enum class ShopType {
-    Normal,
-    Secret,
-    Community
+    Normal = 0,
+    Secret = 1,
+    Community = 2,
+    Mechanic = 3,
+    Diamond = 4
 };
 
 // Geode Addition
@@ -867,4 +869,14 @@ enum class Speed {
 enum class CircleMode {
     Filled = 0,
     Outline = 1,
+};
+
+enum class ShipStreak {
+    None = 0,
+    ShipFire1 = 1,
+    ShipFire2 = 2,
+    ShipFire3 = 3,
+    ShipFire4 = 4,
+    ShipFire5 = 5,
+    ShipFire6 = 6,
 };

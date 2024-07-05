@@ -16,6 +16,9 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x31e8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3220);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x32f8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34b8);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3560);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3688);
 
 GEODE_SIZE_CHECK(PlayLayer, 0x3998);
 GEODE_MEMBER_CHECK(PlayLayer, m_checkpointArray, 0x37a0);
@@ -24,6 +27,14 @@ GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x37f0);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x3808);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x3895);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x38ff);
+
+GEODE_SIZE_CHECK(LevelEditorLayer, 0x39e8);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3754);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x37d8);
+
+GEODE_SIZE_CHECK(DrawGridLayer, 0x280);
+GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x208);
+GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x27c);
 
 GEODE_SIZE_CHECK(GJGameState, 0x6C8);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraZoom, 0x0);
@@ -188,7 +199,30 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkUint21, 0x6bc);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint22, 0x6c0);
 
 GEODE_SIZE_CHECK(GameObject, 0x550);
+GEODE_MEMBER_CHECK(GameObject, m_outerSectionIndex, 0x278);
+GEODE_MEMBER_CHECK(GameObject, m_positionXOffset, 0x2a0);
+GEODE_MEMBER_CHECK(GameObject, m_scaleXOffset, 0x2b8);
+GEODE_MEMBER_CHECK(GameObject, m_glowSprite, 0x2f0);
+GEODE_MEMBER_CHECK(GameObject, m_someSprite, 0x308);
 GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x310);
+GEODE_MEMBER_CHECK(GameObject, m_colorSprite, 0x380);
+GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x3c8);
+GEODE_MEMBER_CHECK(GameObject, m_startRotationX, 0x3d4);
+GEODE_MEMBER_CHECK(GameObject, m_startFlipX, 0x3ec);
+GEODE_MEMBER_CHECK(GameObject, m_groups, 0x490);
+GEODE_MEMBER_CHECK(GameObject, m_lastPosition, 0x4d0);
+
+GEODE_SIZE_CHECK(EnhancedGameObject, 0x5b8);
+
+GEODE_SIZE_CHECK(EffectGameObject, 0x740);
+GEODE_MEMBER_CHECK(EffectGameObject, m_hasCenterEffect, 0x5d2);
+GEODE_MEMBER_CHECK(EffectGameObject, m_times360, 0x61c);
+GEODE_MEMBER_CHECK(EffectGameObject, m_fadeOutDuration, 0x650);
+GEODE_MEMBER_CHECK(EffectGameObject, m_isDualMode, 0x680);
+GEODE_MEMBER_CHECK(EffectGameObject, m_collectiblePoints, 0x6b0);
+GEODE_MEMBER_CHECK(EffectGameObject, m_isSinglePTouch, 0x6dc);
+GEODE_MEMBER_CHECK(EffectGameObject, m_secretCoinID, 0x710);
+GEODE_MEMBER_CHECK(EffectGameObject, m_ignoreGroupParent, 0x738);
 
 GEODE_SIZE_CHECK(PlayerObject, 0xc48);
 GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x558);
@@ -222,6 +256,24 @@ GEODE_SIZE_CHECK(GJAccountSettingsLayer, 0x320);
 //GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
 GEODE_SIZE_CHECK(OptionsLayer, 0x298);
 GEODE_SIZE_CHECK(LevelPage, 0x240);
+GEODE_SIZE_CHECK(LevelBrowserLayer, 0x320);
+GEODE_SIZE_CHECK(LevelListLayer, 0x3d8);
+GEODE_SIZE_CHECK(SelectListIconLayer, 0x290);
+GEODE_SIZE_CHECK(GJGarageLayer, 0x260);
+GEODE_SIZE_CHECK(DemonFilterSelectLayer, 0x298);
+GEODE_SIZE_CHECK(UndoObject, 0xa0);
+GEODE_SIZE_CHECK(MenuGameLayer, 0x1d0);
+GEODE_SIZE_CHECK(GJItemIcon, 0x278);
+GEODE_SIZE_CHECK(ChallengesPage, 0x2c0);
+GEODE_SIZE_CHECK(GauntletLayer, 0x1e0);
+GEODE_SIZE_CHECK(GauntletNode, 0x150);
+GEODE_SIZE_CHECK(GauntletSelectLayer, 0x1f8);
+GEODE_SIZE_CHECK(GauntletSprite, 0x148);
+GEODE_SIZE_CHECK(CreatorLayer, 0x1c0);
+GEODE_SIZE_CHECK(GJRotationControl, 0x1c8);
+GEODE_SIZE_CHECK(GJScaleControl, 0x210);
+
+GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
@@ -230,7 +282,6 @@ GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x220);
 
 GEODE_MEMBER_CHECK(CCScrollLayerExt, m_verticalScrollbar, 0x1c0);
 GEODE_MEMBER_CHECK(CCScrollLayerExt, m_contentLayer, 0x1d8);
-
 
 GEODE_SIZE_CHECK(FMODAudioEngine, 0x888);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicChannels, 0x140);
