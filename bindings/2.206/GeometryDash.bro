@@ -6061,10 +6061,10 @@ class GameStatsManager : cocos2d::CCNode {
 	void encodeDataTo(DS_Dictionary*) = win 0x1e5950;
 	void firstSetup();
 	TodoReturn generateItemUnlockableData() = m1 0x598fc;
-	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d6020;
+	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d62c0;
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*);
 	int getBaseCurrency(int, bool, int);
-	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1d62c0;
+	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1d6020;
 	TodoReturn getBaseDiamonds(int) = imac 0x709e0;
 	TodoReturn getBonusDiamonds(int);
 	GJChallengeItem* getChallenge(int) = win 0x1d76f0, ios 0x343c80;
