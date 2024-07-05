@@ -870,3 +870,13 @@ enum class CircleMode {
     Filled = 0,
     Outline = 1,
 };
+
+enum class ShipStreak {
+    None = 0,
+    ShipFire1 = 1,
+    ShipFire2 = 2,
+    ShipFire3 = 3,
+    ShipFire4 = 4,
+    ShipFire5 = 5,
+    ShipFire6 = 6,
+};
