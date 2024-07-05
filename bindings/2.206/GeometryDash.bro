@@ -2176,7 +2176,7 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 
-    PAD = android64 0x18, win 0x18;
+    gd::string m_spriteFileName;
     int m_objectID;
 }
 
