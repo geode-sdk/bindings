@@ -3787,7 +3787,7 @@ class EffectGameObject : EnhancedGameObject {
 	bool m_ignoreGroupParent;
 	// property 281
 	bool m_ignoreLinkedObjects;
-	PAD = android 0x1, win 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x49;
 }
 
 [[link(android), depends(CAState), depends(PulseEffectAction), depends(CountTriggerAction), depends(OpacityEffectAction), depends(TouchToggleAction), depends(CollisionTriggerAction), depends(ToggleTriggerAction), depends(SpawnTriggerAction), depends(GroupCommandObject2), depends(TimerItem), depends(TimerTriggerAction)]]
@@ -3970,7 +3970,7 @@ class EnhancedGameObject : GameObject {
 	bool m_isNoMultiActivate; // used in platformer stuff
 	// property 99
 	bool m_isMultiActivate;
-	PAD = android32 0x4, win 0x4;
+	PAD = android32 0x4, win 0x4, android64 0x48;
 }
 
 [[link(android)]]
@@ -16429,7 +16429,6 @@ class StartPosObject : EffectGameObject {
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x175cd0, imac 0x1b89f0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x175cd4, imac 0x1b8a00, win 0x485c70;
 
-	PAD = win 0x0, android32 0x0, android64 0x48, mac 0x0;
 	LevelSettingsObject* m_startSettings;
 }
 
