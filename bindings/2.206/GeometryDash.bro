@@ -16429,6 +16429,7 @@ class StartPosObject : EffectGameObject {
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x175cd0, imac 0x1b89f0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x175cd4, imac 0x1b8a00, win 0x485c70;
 
+	PAD = win 0x0, android32 0x0, android64 0x48, mac 0x0;
 	LevelSettingsObject* m_startSettings;
 }
 
