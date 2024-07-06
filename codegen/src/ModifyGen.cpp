@@ -6,7 +6,7 @@
 namespace {
     namespace format_strings {
         // requires: class_name, class_include
-        char const* modify_start = R"GEN(#pragma once
+        constexpr char const* modify_start = R"GEN(#pragma once
 #include <Geode/modify/Modify.hpp>
 #include <Geode/modify/Field.hpp>
 {class_include}
@@ -23,7 +23,7 @@ namespace geode::modifier {{
 		void apply() override {{
 )GEN";
 
-        char const* statics_declare_identifier = R"GEN(
+        constexpr char const* statics_declare_identifier = R"GEN(
 	#ifndef GEODE_STATICS_{function_name}
 		#define GEODE_STATICS_{function_name}
 		GEODE_AS_STATIC_FUNCTION({function_name}) 
@@ -31,22 +31,22 @@ namespace geode::modifier {{
 )GEN";
 
         // requires: index, class_name, arg_types, function_name, raw_arg_types, non_virtual
-        char const* apply_function = R"GEN(
+        constexpr char const* apply_function = R"GEN(
 			GEODE_APPLY_MODIFY_FOR_FUNCTION({address_inline}, {function_convention}, {class_name}, {function_name}, {parameter_types}))GEN";
 
-        char const* apply_constructor = R"GEN(
+        constexpr char const* apply_constructor = R"GEN(
 			GEODE_APPLY_MODIFY_FOR_CONSTRUCTOR({address_inline}, {function_convention}, {class_name}, {parameter_types}))GEN";
 
-        char const* apply_destructor = R"GEN(
+        constexpr char const* apply_destructor = R"GEN(
 			GEODE_APPLY_MODIFY_FOR_DESTRUCTOR({address_inline}, {function_convention}, {class_name}))GEN";
 
-        char const* modify_end = R"GEN(
+        constexpr char const* modify_end = R"GEN(
 		}
 	};
 }
 )GEN";
 
-        char const* modify_include = R"GEN(#include "{base_directory}/{file_name}"
+        constexpr char const* modify_include = R"GEN(#include "{base_directory}/{file_name}"
 )GEN";
     }
 }
