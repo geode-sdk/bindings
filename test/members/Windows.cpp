@@ -299,4 +299,6 @@ GEODE_SIZE_CHECK(Slider, 0x1c8);
 GEODE_MEMBER_CHECK(Slider, m_touchLogic, 0x198);
 
 GEODE_MEMBER_CHECK(SliderTouchLogic, m_activateThumb, 0x1d8);
+
+GEODE_MEMBER_CHECK(StartPosObject, m_startSettings, 0x740);
 #endif
