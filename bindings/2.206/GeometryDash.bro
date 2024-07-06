@@ -12806,7 +12806,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void updateProgressbar() = win 0x38efd0, imac 0xb1f90, m1 0x9f28c;
 	void updateScreenRotation(int, bool, bool, float, int, float, int, int);
 	void updateTimeWarp(EffectGameObject*, float);
-	void updateTestModeLabel() = win 0x384760;
+	void updateTestModeLabel() = win 0x384760, imac 0xb3f40, m1 0xa0d3c;
 
 	virtual void onEnterTransitionDidFinish() = win 0x397920, m1 0xab0c4, imac 0xbfa80;
 	virtual void onExit() = win 0x397950, m1 0xab108, imac 0xbfab0;
