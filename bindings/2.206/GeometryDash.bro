@@ -3069,9 +3069,9 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
 	TodoReturn doResetUnused() = win 0x2c7800;
 	bool init(LevelEditorLayer*) = win 0xd66f0, imac 0x28cf10, m1 0x230800;
-	void onAlignX(cocos2d::CCObject* sender);
-	void onAlignY(cocos2d::CCObject* sender);
-	void onBuildHelper(cocos2d::CCObject* sender);
+	void onAlignX(cocos2d::CCObject* sender) = win 0xd95e0;
+	void onAlignY(cocos2d::CCObject* sender) = win 0xd9610;
+	void onBuildHelper(cocos2d::CCObject* sender) = win 0xd93b0;
 	void onCopyWColor(cocos2d::CCObject* sender);
 	void onCreateExtras(cocos2d::CCObject* sender) = win 0xD9360;
 	void onCreateLoop(cocos2d::CCObject* sender);
@@ -3210,9 +3210,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn editColorButtonUsable();
 	void editGroup(cocos2d::CCObject*) = win 0x11b410, m1 0x2cf3c, imac 0x2c790;
 	TodoReturn editHSV();
-	TodoReturn editObject(cocos2d::CCObject*) = win 0x1180a0;
-	TodoReturn editObject2(cocos2d::CCObject*) = win 0x11a030;
-	TodoReturn editObject3(cocos2d::CCObject*);
+	void editObject(cocos2d::CCObject*) = win 0x1180a0;
+	void editObject2(cocos2d::CCObject*) = win 0x11a030;
+	void editObject3(cocos2d::CCObject*);
 	TodoReturn editObjectSpecial(int);
 	TodoReturn editorLayerForArray(cocos2d::CCArray*, bool);
 	TodoReturn enableButton(CreateMenuItem*);
