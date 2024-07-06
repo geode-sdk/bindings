@@ -48,12 +48,14 @@ namespace geode::modifier {{
         constexpr char const* apply_destructor = R"GEN(
 			GEODE_APPLY_MODIFY_FOR_DESTRUCTOR({address_inline}, {function_convention}, {class_name}))GEN";
 
-        constexpr char const* modify_end = R"GEN(
-        char const* apply_error = R"GEN(
+        constexpr char const* apply_error = R"GEN(
 			GEODE_APPLY_MODIFY_FOR_FUNCTION_ERROR({class_name}, {function_name}, {comma_parameter_types}))GEN";
 
         constexpr char const* apply_error_inline = R"GEN(
 			GEODE_APPLY_MODIFY_FOR_FUNCTION_ERROR_INLINE({class_name}, {function_name}, {parameter_types}))GEN";
+
+        constexpr char const* apply_error_defined = R"GEN(
+            GEODE_APPLY_MODIFY_FOR_FUNCTION_ERROR_DEFINED({class_name}, {function_name}, {parameter_types}))GEN";
 
         constexpr char const* modify_end = R"GEN(
 		}
@@ -140,7 +142,12 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
 
             std::string format_string;
             if (status == BindStatus::Missing && fn->prototype.type == FunctionType::Normal) {
-                format_string = format_strings::apply_error;
+                if (is_cocos_class(c.name)) {
+                    format_string = format_strings::apply_error_defined;
+                }
+                else {
+                    format_string = format_strings::apply_error;
+                }
             }
             else if (status == BindStatus::Inlined && fn->prototype.type == FunctionType::Normal) {
                 format_string = format_strings::apply_error_inline;
@@ -161,7 +168,12 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
                 }
             }
             else if (fn->prototype.type == FunctionType::Normal) {
-                format_string = format_strings::apply_error;
+                if (is_cocos_class(c.name)) {
+                    format_string = format_strings::apply_error_defined;
+                }
+                else {
+                    format_string = format_strings::apply_error;
+                }
             }
             else {
                 continue;
