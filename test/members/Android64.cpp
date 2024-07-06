@@ -170,4 +170,6 @@ GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x260);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x1a0);
 
+GEODE_MEMBER_CHECK(StartPosObject, m_startSettings, 0x720);
+
 #endif
