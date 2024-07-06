@@ -67,6 +67,8 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x2d54);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_debugDrawNode, 0x2d58);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x2c28); // i dont even know anymore
 
+// GEODE_MEMBER_CHECK(GJGameState, m_currentProgress, ); // please someone anyone do this
+
 GEODE_SIZE_CHECK(PlayLayer, 0x2f60);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x2e24);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x2e38);
@@ -165,5 +167,7 @@ GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x210);
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x198);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
+
+GEODE_MEMBER_CHECK(StartPosObject, m_startSettings, 0x664);
 
 #endif
