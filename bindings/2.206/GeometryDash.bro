@@ -6061,10 +6061,10 @@ class GameStatsManager : cocos2d::CCNode {
 	void encodeDataTo(DS_Dictionary*) = win 0x1e5950;
 	void firstSetup();
 	TodoReturn generateItemUnlockableData() = m1 0x598fc;
-	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d6020;
+	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d62c0;
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*);
-	int getBaseCurrency(int, bool, int);
-	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1d62c0;
+	int getBaseCurrency(int stars, bool featured, int levelID);
+	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1d6020;
 	TodoReturn getBaseDiamonds(int) = imac 0x709e0;
 	TodoReturn getBonusDiamonds(int);
 	GJChallengeItem* getChallenge(int) = win 0x1d76f0, ios 0x343c80;
@@ -6734,7 +6734,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn createPlayerCollisionBlock() = win 0x208c00;
 	void createTextLayers() = win 0x1ffa50;
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
-	void destroyObject(GameObject*) = win 0x206b50;
+	void destroyObject(GameObject*) = win 0x206b50, imac 0x11cd80, m1 0xf9108;
 	void enterDualMode(GameObject*, bool) = imac 0x11e160, m1 0xfa400;
 	void exitStaticCamera(bool, bool, float, int, float, bool, float, bool) = win 0x22e7a0;
 	TodoReturn flipFinished();
@@ -6821,7 +6821,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void pauseAudio() = win 0x227430, imac 0x146fa0, m1 0x11a3b8;
 	TodoReturn performMathOperation(double, double, int);
 	TodoReturn performMathRounding(double, int);
-	void pickupItem(EffectGameObject*) = win 0x206c70;
+	void pickupItem(EffectGameObject*) = win 0x206c70, imac 0x11cf50, m1 0xf9320;
 	TodoReturn playAnimationCommand(int, int);
 	TodoReturn playerCircleCollision(PlayerObject*, GameObject*) = win 0x202950;
 	TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
