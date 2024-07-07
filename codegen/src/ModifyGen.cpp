@@ -104,21 +104,24 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
 
         std::string statics;
         std::string concepts;
-        std::set<std::string> used;
+        std::set<std::string> staticsUsed;
+        std::set<std::string> conceptsUsed;
         for (auto& f : c.fields) {
             if (auto fn = f.get_as<FunctionBindField>()) {
                 auto status = codegen::getStatus(*fn);
-                if (fn->prototype.type == FunctionType::Normal && !used.count(fn->prototype.name)) {
-
-                    if (status != BindStatus::Missing && status != BindStatus::Inlined) {
+                if (fn->prototype.type == FunctionType::Normal) {
+                    if (status != BindStatus::Missing && status != BindStatus::Inlined && !staticsUsed.count(fn->prototype.name)) {
+                        staticsUsed.insert(fn->prototype.name);
                         statics += fmt::format(
                             format_strings::statics_declare_identifier, fmt::arg("function_name", fn->prototype.name)
                         );
                     }
-                    used.insert(fn->prototype.name);
-                    concepts += fmt::format(
-                        format_strings::concepts_declare_identifier, fmt::arg("function_name", fn->prototype.name)
-                    );
+                    if (!conceptsUsed.count(fn->prototype.name)) {
+                        conceptsUsed.insert(fn->prototype.name);
+                        concepts += fmt::format(
+                            format_strings::concepts_declare_identifier, fmt::arg("function_name", fn->prototype.name)
+                        );
+                    }
                 }
             }
         }
