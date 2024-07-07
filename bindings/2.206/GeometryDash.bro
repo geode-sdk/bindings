@@ -4652,7 +4652,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getGJUserInfo(int) = win 0x153fe0, m1 0x4a36d8, imac 0x5542e0;
 	int getHighestLevelOrder() = imac 0x53c1a0;
 	int getIntForKey(char const*);
-	void getLeaderboardScores(char const*);
+	void getLeaderboardScores(char const*) = win 0x151ca0;
 	gd::string getLengthStr(bool, bool, bool, bool, bool, bool);
 	const char *getLenKey(int len);
 	bool getLenVal(int);
@@ -4839,7 +4839,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
 	void resetStoredUserList(UserListType);
 	void resetTimerForKey(char const*) = win 0x144ac0;
-	static cocos2d::CCDictionary* responseToDict(gd::string, bool);
+	static cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x1628d0;
 	void restoreItems();
 	void saveFetchedLevelLists(cocos2d::CCArray*);
 	void saveFetchedLevels(cocos2d::CCArray*) = win 0x141e70;
@@ -10107,7 +10107,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 	void onWeek(cocos2d::CCObject* sender);
 	TodoReturn refreshTabs();
 	TodoReturn scene(LeaderboardState);
-	TodoReturn selectLeaderboard(LeaderboardState);
+	void selectLeaderboard(LeaderboardState) = win 0x2afe10;
 	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2afb80;
 	TodoReturn setupTabs();
 	TodoReturn toggleTabButtons();
