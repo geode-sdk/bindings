@@ -426,7 +426,7 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
 	TodoReturn getBGSquare();
 	TodoReturn goingDown();
 	bool init(gd::string);
-	TodoReturn resetAudioVars() = m1 0x41ab8c = m1 0x41ab8c;
+	TodoReturn resetAudioVars() = m1 0x41ab8c;
 	TodoReturn triggerEffect(float);
 
 	virtual void draw() {}
