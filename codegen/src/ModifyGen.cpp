@@ -149,7 +149,7 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
                     format_string = format_strings::apply_error;
                 }
             }
-            else if (status == BindStatus::Inlined && fn->prototype.type == FunctionType::Normal) {
+            else if (status == BindStatus::Inlined && fn->prototype.type == FunctionType::Normal || codegen::platformNumber(fn->binds) == 0x9999999) {
                 format_string = format_strings::apply_error_inline;
             }
             else if (status == BindStatus::NeedsBinding && codegen::platformNumber(f) > 0 || status == BindStatus::Binded) {
