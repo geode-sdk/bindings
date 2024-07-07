@@ -11329,9 +11329,9 @@ class LoadingCircleSprite : cocos2d::CCSprite {
 
 	static LoadingCircleSprite* create() = win 0x6a7b0, m1 0x4284a4, imac 0x4c91e0;
 
-	void fadeInCircle(bool zeroOpacity) = win inline, m1 0x4285fc, imac 0x4c9350 {
+	void fadeInCircle(bool reverseOpacity) = win inline, m1 0x4285fc, imac 0x4c9350 {
 		this->stopActionByTag(0);
-		if (zeroOpacity) this->setOpacity(0);
+		if (reverseOpacity) this->setOpacity(0);
 		this->setVisible(true);
 		auto fadeAction = cocos2d::CCFadeTo::create(.4f, 200);
 		fadeAction->setTag(0);
