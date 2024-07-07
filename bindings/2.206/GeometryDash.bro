@@ -654,47 +654,64 @@ class ButtonSprite : cocos2d::CCSprite {
 		return create(caption, width, 0, scale, absolute, font, texture, height);
 	}
 
-	static ButtonSprite* create(char const* caption) = ios 0x65cf0 {
-		return ButtonSprite::create(caption, 0, 0, "goldFont.fnt", "GJ_button_01.png", .0f, 1.f);
+	static ButtonSprite* create(char const* caption) = imac 0x920c0, m1 0x828f8, ios 0x65cf0 {
+		return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, 1.f);
 	}
 	static ButtonSprite* create(char const* caption, const char* font, const char* texture) {
-		return ButtonSprite::create(caption, 0, 0, font, texture, .0f, 1.f);
+		return ButtonSprite::create(caption, 0, false, font, texture, .0f, 1.f);
 	}
 	static ButtonSprite* create(char const* caption, const char* font, const char* texture, float scale) {
-		return ButtonSprite::create(caption, 0, 0, font, texture, .0f, scale);
+		return ButtonSprite::create(caption, 0, false, font, texture, .0f, scale);
 	}
 
-	static ButtonSprite* create(char const*, float);
-	static ButtonSprite* create(char const* a, int b, int c, float d, bool e, char const* f, char const* g, float h) = win 0x3e2d0, imac 0x92140, m1 0x8295c, ios 0x65d30;
-	static ButtonSprite* create(char const*, int, int, float, bool, char const* font, char const* bg);
-	static ButtonSprite* create(char const*, int, int, float, bool) = imac 0x920f0;
-	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float a, bool b, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3dfc0, imac 0x918c0, m1 0x82188, ios 0x655fc;
-	static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool);
-	static ButtonSprite* create(cocos2d::CCSprite*);
+	static ButtonSprite* create(char const* caption, float scale) = imac 0x92110, m1 0x82938 {
+		return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, scale);
+	}
+	static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x3e2d0, imac 0x92140, m1 0x8295c, ios 0x65d30;
+	static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg) = imac 0x92280, m1 0x82a88 {
+		return ButtonSprite::create(caption, width, p2, scale, absolute, font, bg, .0f);
+	}
+	static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute) = imac 0x920f0, m1 0x82920 {
+		return ButtonSprite::create(caption, width, p2, scale, absolute, "goldFont.fnt", "GJ_button_01.png", .0f);
+	}
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3dfc0, imac 0x918c0, m1 0x82188, ios 0x655fc;
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute) = imac 0x918a0, m1 0x82178 {
+		return ButtonSprite::create(topSprite, width, unused, height, scale, absolute, "GJ_button_01.png", false);
+	}
+	static ButtonSprite* create(cocos2d::CCSprite* topSprite) = imac 0x91870, m1 0x82154 {
+		return ButtonSprite::create(topSprite, 0, 0, .0f, 1.f, false, "GJ_button_01.png", false);
+	}
 
-	bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3e3a0, ios 0x65e04;
-	bool init(cocos2d::CCSprite* topSprite, int width, int unused, float scale, float height, bool unkBool, char const* bgSprite, bool useNormalCCSpriteForBG) = win 0x3e070, ios 0x656c8;
-	void setColor(cocos2d::_ccColor3B const& color) {
+	bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3e3a0, imac 0x92290, m1 0x82a90, ios 0x65e04;
+	bool init(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3e070, imac 0x91a00, m1 0x822b4, ios 0x656c8;
+	void setColor(cocos2d::_ccColor3B const& color) = win inline, imac 0x92a70, m1 0x831f0 {
 		// i love inlined funcs
-		m_label->setColor(color);
-  		m_subSprite->setColor(color);
-  		m_subBGSprite->setColor(color);
-  		m_BGSprite->setColor(color);
+		if (m_label) m_label->setColor(color);
+  		if (m_subSprite) m_subSprite->setColor(color);
+  		if (m_subBGSprite) m_subBGSprite->setColor(color);
+  		if (m_BGSprite) m_BGSprite->setColor(color);
 	}
-	void setString(char const*) = win 0x3ec60, m1 0x82d08, imac 0x92530;
+	void setString(char const*) = win 0x3ec60, imac 0x92530, m1 0x82d08;
 	void updateBGImage(char const*) = win 0x3e6a0, imac 0x92920, m1 0x830ac, ios 0x663f4;
-	void updateSpriteBGSize() = win 0x3e7e0;
-	TodoReturn updateSpriteOffset(cocos2d::CCPoint);
+	void updateSpriteBGSize() = win 0x3e7e0, imac 0x91c90, m1 0x82508;
+	void updateSpriteOffset(cocos2d::CCPoint offset) = win inline, imac 0x92a40, m1 0x831c8 {
+		m_spritePosition = offset;
+		this->updateSpriteBGSize();
+	}
 
-	PAD = mac 0x18, win 0x18, android32 0x18, android64 0x18;
+	int m_mode;
+	float m_width;
+	float m_unkFloat;
+	float m_scale;
+	float m_height;
+	bool m_absolute;
 	cocos2d::CCLabelBMFont* m_label;
 	cocos2d::CCSprite* m_subSprite;
 	cocos2d::CCSprite* m_subBGSprite;
 	cocos2d::extension::CCScale9Sprite* m_BGSprite;
-	PAD = mac 0xC, win 0xC;
+	cocos2d::CCPoint m_textOffset;
 	cocos2d::CCPoint m_spritePosition;
-	PAD = win 0x18;
-	//sizeof is 0x238 on android32 pls add to checks later, its also 0x2c0 on windows
+	gd::string m_caption;
 }
 
 [[link(android)]]
@@ -2176,7 +2193,7 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 
-    PAD = android64 0x18, win 0x18;
+    gd::string m_spriteFileName;
     int m_objectID;
 }
 
@@ -3052,9 +3069,9 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
 	TodoReturn doResetUnused() = win 0x2c7800;
 	bool init(LevelEditorLayer*) = win 0xd66f0, imac 0x28cf10, m1 0x230800;
-	void onAlignX(cocos2d::CCObject* sender);
-	void onAlignY(cocos2d::CCObject* sender);
-	void onBuildHelper(cocos2d::CCObject* sender);
+	void onAlignX(cocos2d::CCObject* sender) = win 0xd95e0;
+	void onAlignY(cocos2d::CCObject* sender) = win 0xd9610;
+	void onBuildHelper(cocos2d::CCObject* sender) = win 0xd93b0;
 	void onCopyWColor(cocos2d::CCObject* sender);
 	void onCreateExtras(cocos2d::CCObject* sender) = win 0xD9360;
 	void onCreateLoop(cocos2d::CCObject* sender);
@@ -3193,9 +3210,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn editColorButtonUsable();
 	void editGroup(cocos2d::CCObject*) = win 0x11b410, m1 0x2cf3c, imac 0x2c790;
 	TodoReturn editHSV();
-	TodoReturn editObject(cocos2d::CCObject*) = win 0x1180a0;
-	TodoReturn editObject2(cocos2d::CCObject*) = win 0x11a030;
-	TodoReturn editObject3(cocos2d::CCObject*);
+	void editObject(cocos2d::CCObject*) = win 0x1180a0;
+	void editObject2(cocos2d::CCObject*) = win 0x11a030;
+	void editObject3(cocos2d::CCObject*);
 	TodoReturn editObjectSpecial(int);
 	TodoReturn editorLayerForArray(cocos2d::CCArray*, bool);
 	TodoReturn enableButton(CreateMenuItem*);
@@ -5265,7 +5282,7 @@ class GameManager : GManager {
 	void showInterstitialForced();
 	void showMainMenuAd();
 	void startUpdate() = ios 0x322c1c;
-	TodoReturn stringForCustomObject(int);
+	gd::string stringForCustomObject(int customObjectID) = win 0x17a940;
 	TodoReturn subYouTube();
 	TodoReturn switchCustomObjects(int, int);
 	TodoReturn switchScreenMode(bool, bool);
@@ -6044,10 +6061,10 @@ class GameStatsManager : cocos2d::CCNode {
 	void encodeDataTo(DS_Dictionary*) = win 0x1e5950;
 	void firstSetup();
 	TodoReturn generateItemUnlockableData() = m1 0x598fc;
-	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d6020;
+	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d62c0;
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*);
-	int getBaseCurrency(int, bool, int);
-	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1d62c0;
+	int getBaseCurrency(int stars, bool featured, int levelID);
+	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1d6020;
 	TodoReturn getBaseDiamonds(int) = imac 0x709e0;
 	TodoReturn getBonusDiamonds(int);
 	GJChallengeItem* getChallenge(int) = win 0x1d76f0, ios 0x343c80;
@@ -6717,7 +6734,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn createPlayerCollisionBlock() = win 0x208c00;
 	void createTextLayers() = win 0x1ffa50;
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
-	void destroyObject(GameObject*) = win 0x206b50;
+	void destroyObject(GameObject*) = win 0x206b50, imac 0x11cd80, m1 0xf9108;
 	void enterDualMode(GameObject*, bool) = imac 0x11e160, m1 0xfa400;
 	void exitStaticCamera(bool, bool, float, int, float, bool, float, bool) = win 0x22e7a0;
 	TodoReturn flipFinished();
@@ -6804,7 +6821,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void pauseAudio() = win 0x227430, imac 0x146fa0, m1 0x11a3b8;
 	TodoReturn performMathOperation(double, double, int);
 	TodoReturn performMathRounding(double, int);
-	void pickupItem(EffectGameObject*) = win 0x206c70;
+	void pickupItem(EffectGameObject*) = win 0x206c70, imac 0x11cf50, m1 0xf9320;
 	TodoReturn playAnimationCommand(int, int);
 	TodoReturn playerCircleCollision(PlayerObject*, GameObject*) = win 0x202950;
 	TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
@@ -8034,9 +8051,9 @@ class GJGameState {
 	int m_unkInt17;
 	gd::unordered_map<int, int> m_spawnChannelRelated0;
 	gd::unordered_map<int, bool> m_spawnChannelRelated1;
-	double m_unkDouble1;
-	double m_unkDouble2;
-	double m_unkDouble3;
+	double m_totalTime; // time since entering the level
+	double m_levelTime; // time since attempt started
+	double m_unkDouble3; // always equal to m_totalTime?
 	unsigned int m_unkUint2;
 	unsigned int m_unkUint3;
 	int m_currentProgress;
@@ -13990,7 +14007,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onNextFreeEditorLayer1(cocos2d::CCObject* sender);
 	void onNextFreeEditorLayer2(cocos2d::CCObject* sender);
 	void onNextFreeOrderChannel(cocos2d::CCObject* sender);
-	void onNextGroupID1(cocos2d::CCObject* sender);
+	void onNextGroupID1(cocos2d::CCObject* sender) = win 0x3d14d0;
 	void onPaste(cocos2d::CCObject* sender);
 	void onRemoveFromGroup(cocos2d::CCObject* sender);
 	void onSmoothEase(cocos2d::CCObject* sender);
