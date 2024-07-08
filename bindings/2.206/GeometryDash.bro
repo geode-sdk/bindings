@@ -4972,9 +4972,9 @@ class GameLevelManager : cocos2d::CCNode {
 class GameLevelOptionsLayer : GJOptionsLayer{
     // virtual ~GameLevelOptionsLayer();
 
-    static GameLevelOptionsLayer* create(GJGameLevel*);
+    static GameLevelOptionsLayer* create(GJGameLevel*) = win 0x28e750;
 
-    bool init(GJGameLevel*);
+    bool init(GJGameLevel*) = win 0x27adc0;
 
     virtual void setupOptions() = m1 0x24effc, imac 0x2ae150;
     virtual void didToggle(int) = m1 0x24f068, imac 0x2ae1c0;
