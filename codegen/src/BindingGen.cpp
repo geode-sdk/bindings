@@ -4,10 +4,10 @@
 
 namespace { namespace format_strings {
     // requires: base_classes, class_name
-    char const* binding_include = R"GEN(#include "{base_directory}/{file_name}"
+    constexpr char const* binding_include = R"GEN(#include "{base_directory}/{file_name}"
 )GEN";
 
-    char const* class_includes = R"GEN(#pragma once
+    constexpr char const* class_includes = R"GEN(#pragma once
 #include <stdexcept>
 #include <Geode/platform/platform.hpp>
 #include <Geode/c++stl/gdstdlib.hpp>
@@ -19,34 +19,34 @@ namespace { namespace format_strings {
 
 )GEN";
 
-    char const* class_no_includes = R"GEN(#pragma once
+    constexpr char const* class_no_includes = R"GEN(#pragma once
 #include <Geode/platform/platform.hpp>
 #include <stdexcept>
 
 )GEN";
     
-    char const* class_include_prereq = R"GEN(#include "{file_name}"
+    constexpr char const* class_include_prereq = R"GEN(#include "{file_name}"
 )GEN";
 
-    char const* class_start = R"GEN(
+    constexpr char const* class_start = R"GEN(
 class {class_name}{base_classes} {{
 public:
     static constexpr auto CLASS_NAME = "{class_name}";
 )GEN";
 
-	char const* custom_constructor = R"GEN(    GEODE_CUSTOM_CONSTRUCTOR_GD({class_name}, {first_base})
+	constexpr char const* custom_constructor = R"GEN(    GEODE_CUSTOM_CONSTRUCTOR_GD({class_name}, {first_base})
 )GEN";
 
-	char const* custom_constructor_cutoff = R"GEN(    GEODE_CUSTOM_CONSTRUCTOR_CUTOFF({class_name}, {first_base})
+	constexpr char const* custom_constructor_cutoff = R"GEN(    GEODE_CUSTOM_CONSTRUCTOR_CUTOFF({class_name}, {first_base})
 )GEN";
 
-    char const* function_definition = R"GEN(
+    constexpr char const* function_definition = R"GEN(
     /**
 {docs}{docs_addresses}     */
     {static}{virtual}{return_type} {function_name}({parameters}){const};
 )GEN";
 
-    char const* error_definition = R"GEN(    
+    constexpr char const* error_definition = R"GEN(    
 private:
     [[deprecated("{class_name}::{function_name} not implemented")]]
     /**
@@ -55,20 +55,20 @@ private:
 public:
 )GEN";
 
-    char const* structor_definition = R"GEN(
+    constexpr char const* structor_definition = R"GEN(
     /**
 {docs}{docs_addresses}     */
     {function_name}({parameters});
 )GEN";
     
     // requires: type, member_name, array
-    char const* member_definition = R"GEN({private}    {type} {member_name};{public}
+    constexpr char const* member_definition = R"GEN({private}    {type} {member_name};{public}
 )GEN";
 
-    char const* pad_definition = R"GEN(    GEODE_PAD({hardcode});
+    constexpr char const* pad_definition = R"GEN(    GEODE_PAD({hardcode});
 )GEN";
 
-    char const* class_end = R"GEN(};
+    constexpr char const* class_end = R"GEN(};
 )GEN";
 }}
 
