@@ -16673,31 +16673,31 @@ class TextArea : cocos2d::CCSprite {
 
 	static TextArea* create(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = win 0x75960, m1 0x2b0bf8, imac 0x320310, ios 0xf7ed8;
 
-	TodoReturn colorAllCharactersTo(cocos2d::ccColor3B);
-	TodoReturn colorAllLabels(cocos2d::ccColor3B);
-	TodoReturn fadeIn(float, bool);
-	TodoReturn fadeInCharacters(float, float);
-	TodoReturn fadeOut(float);
-	TodoReturn fadeOutAndRemove();
-	TodoReturn finishFade();
+	void colorAllCharactersTo(cocos2d::ccColor3B) = win 0x76110;
+	void colorAllLabels(cocos2d::ccColor3B);
+	void fadeIn(float, bool);
+	void fadeInCharacters(float, float) = win 0x763a0;
+	void fadeOut(float);
+	void fadeOutAndRemove();
+	void finishFade() = win 0x760b0;
 	void hideAll() = ios 0xf8380;
 	bool init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = ios 0xf8004;
 	void setIgnoreColorCode(bool);
 	void setString(gd::string) = win 0x75ba0, imac 0x320680, m1 0x2b0f30, ios 0xf80fc;
 	void showAll();
-	TodoReturn stopAllCharacterActions();
+	void stopAllCharacterActions() = win 0x75ff0;
 
-	virtual void update(float) = m1 0x2b1950, imac 0x3210f0;
+	virtual void update(float) = win 0x761c0, m1 0x2b1950, imac 0x3210f0;
 	virtual void draw() {}
 	virtual void setOpacity(unsigned char) = win 0x760d0, m1 0x2b17a8, imac 0x320f40;
 
-	bool m_disableColor;            // 0x1e4
-	MultilineBitmapFont* m_label;   // 0x1e8
-	float m_width;                  // 0x1ec
-	int m_unknown;                  // 0x1f0
-	gd::string m_fontFile;          // 0x1f4
-	float m_height;                 // 0x20c
-	PAD = win 0x4;
+	bool m_disableColor;
+	MultilineBitmapFont* m_label;
+	float m_width;
+	int m_unknown;
+	gd::string m_fontFile;
+	float m_height;
+	bool m_unk;
 	cocos2d::CCPoint m_anchorPoint;
 }
 
