@@ -1514,21 +1514,21 @@ class cocos2d::CCNodeRGBA {
 
 [[link(win, android)]]
 class cocos2d::CCSequence {
-	static cocos2d::CCSequence* create(cocos2d::CCArray*) = m1 0x33d400, imac 0x3b8e10;
-	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
-	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
+	static cocos2d::CCSequence* create(cocos2d::CCArray*) = imac 0x3b8e10, m1 0x33d400;
+	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3b8aa0, m1 0x33d1fc;
+	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3b8970, m1 0x33d0dc;
 	static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = imac 0x3b8b50, m1 0x33d224, ios 0x195fb4;
 
-	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
+	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3b8a40, m1 0x33d198;
 
 	// CCSequence(cocos2d::CCSequence const&);
 	// CCSequence();
 
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual void startWithTarget(cocos2d::CCNode*);
-	virtual void stop();
-	virtual cocos2d::CCActionInterval* reverse();
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x3b9050, m1 0x33d5f0;
+	virtual void update(float) = imac 0x3b92f0, m1 0x33d87c;
+	virtual void startWithTarget(cocos2d::CCNode*) = imac 0x3b9280, m1 0x33d7f4;
+	virtual void stop() = imac 0x3b92c0, m1 0x33d83c;
+	virtual cocos2d::CCActionInterval* reverse() = imac 0x3b9440, m1 0x33da10;
 }
 
 [[link(win, android)]]
