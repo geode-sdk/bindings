@@ -9774,19 +9774,50 @@ class HardStreak : cocos2d::CCDrawNode {
 [[link(android)]]
 class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
 	// virtual ~HSVLiveOverlay();
+	HSVLiveOverlay() {
+		m_object = nullptr;
+		m_objects = nullptr;
+		m_unkArray1 = nullptr;
+		m_unkArray2 = nullptr;
+		m_delegate = nullptr;
+		m_activeTab = -1;
+		m_widget = nullptr;
+		m_unkBool1 = false;
+		m_unkBool2 = false;
+		m_unkBool3 = false;
+	}
 
-	static HSVLiveOverlay* create(GameObject*, cocos2d::CCArray*);
+	static HSVLiveOverlay* create(GameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x20d8cc, imac 0x2668a0 {
+		auto ret = new HSVLiveOverlay();
+		if (ret->init(object, objects)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	void closeColorSelect(cocos2d::CCObject*);
-	TodoReturn createHSVWidget(int);
-	TodoReturn determineStartValues();
-	bool init(GameObject*, cocos2d::CCArray*);
-	void onSelectTab(cocos2d::CCObject* sender);
-	TodoReturn toggleControls(bool);
+	void closeColorSelect(cocos2d::CCObject* sender) = win 0x2a7a60, m1 0x20ddf0, imac 0x266e20;
+	void createHSVWidget(int) = win 0x2a7ae0, m1 0x20df7c, imac 0x266fa0;
+	void determineStartValues() = win 0x2a7860, m1 0x20de50, imac 0x266e70;
+	bool init(GameObject*, cocos2d::CCArray*) = win 0x2a73c0, m1 0x20da00, imac 0x266a20;
+	void onSelectTab(cocos2d::CCObject* sender) = win 0x2a7ab0, m1 0x20df30, imac 0x266f60;
+	void toggleControls(bool) = m1 0x20e1e0, imac 0x267230;
 
 	virtual void keyBackClicked() = win 0x2a7c80, m1 0x20e0dc, imac 0x267120;
-	virtual void show() = m1 0x20e194, imac 0x2671d0;
+	virtual void show() = win 0x8a220, m1 0x20e194, imac 0x2671d0;
 	virtual void hsvChanged(ConfigureHSVWidget*) = win 0x2a7cd0, m1 0x20e248, imac 0x2672a0;
+
+	GameObject* m_object;
+	cocos2d::CCArray* m_objects;
+	cocos2d::CCArray* m_controls;
+	cocos2d::CCArray* m_unkArray;
+	ColorSelectDelegate* m_delegate;
+	int m_activeTab;
+	ConfigureHSVWidget* m_widget;
+	bool m_unkBool1;
+	bool m_unkBool2;
+	bool m_unkBool3;
 }
 
 [[link(android)]]
