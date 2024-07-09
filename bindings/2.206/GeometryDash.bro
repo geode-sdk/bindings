@@ -10177,7 +10177,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	void updateLevelFont(int) = win 0x2cb350;
 	TodoReturn updateObjectColors(cocos2d::CCArray*) = win 0x2c6410;
 	static void updateObjectLabel(GameObject*) = win 0x2c3bc0;
-	void updateOptions() = m1 0xc694c;
+	void updateOptions() = win 0x2bf650, m1 0xc694c;
 	void updatePreviewAnim();
 	void updatePreviewParticle(ParticleGameObject*) = imac 0x1ad850;
 	void updatePreviewParticles() = win 0x2cdb20;
