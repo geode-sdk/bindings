@@ -1459,6 +1459,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_usePasswordChar = false;
 		m_forceOffset = false;
 		m_textArea = nullptr;
+		m_decimals = 0;
+		m_kerningAmount = 0;
 	}
 
 	static CCTextInputNode* create(float, float, char const*, char const*, int, char const*) = win 0x4e270, imac 0x9d950, m1 0x8da20, ios 0x178444;
@@ -1557,9 +1559,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	bool m_usePasswordChar;
 	bool m_forceOffset;
 	TextArea* m_textArea;
-	int m_unkSize4_1;
-	int m_unkSize4_2;
-	int m_unkSize4_3;
+	InputValueType m_valueType;
+	int m_decimals;
+	int m_kerningAmount;
 }
 
 [[link(android)]]
