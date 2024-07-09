@@ -5789,11 +5789,11 @@ class GameObject : CCSpritePlus {
 
 	PAD = android32 0x8, win 0x4, android64 0x4, mac 0x4;
 
-	float m_unk288;
-	float m_unk28c;
-	short m_unk290;
-	bool m_unk292;
-	PAD = android32 0x1, win 0x5, android64 0x5, mac 0x5;
+	PAD = android32 0x6, win 0x6, android64 0x6, mac 0x6;
+
+	bool m_unk306;
+
+	cocos2d::CCSprite* m_someSprite;
 	gd::string m_particleString;
 
 	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
@@ -5808,7 +5808,7 @@ class GameObject : CCSpritePlus {
 	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
 
 	cocos2d::CCSprite* m_colorSprite;
-	
+
 	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
 
 	float m_objectRadius;
@@ -5822,18 +5822,20 @@ class GameObject : CCSpritePlus {
 	int m_unk326;
 
 	PAD = android32 0xa, win 0xa, android64 0xa, mac 0xa;
-	double m_realXPosition;
-	double m_realYPosition;
+	double m_positionX;
+	double m_positionY;
 	cocos2d::CCPoint m_startPosition;
 	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
 
 	// property 372
 	bool m_hasNoAudioScale;
 	bool m_unk34a;
-	PAD = android32 0x11, win 0x11, android64 0x11, mac 0x11;
+	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
 
-	float m_currentScaleX;
-	float m_currentScaleY;
+	float m_startRotationX;
+	float m_startRotationY;
+	float m_startScaleX;
+	float m_startScaleY;
 
 	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8;
 
@@ -5971,7 +5973,7 @@ class GameObjectCopy : cocos2d::CCObject {
 	static GameObjectCopy* create(GameObject*);
 
 	bool init(GameObject*);
-	void resetObject();
+	void resetObject() = win 0x2cfda0;
 
 	GameObject* m_object;
 	cocos2d::CCPoint m_position;
@@ -6058,10 +6060,10 @@ class GameStatsManager : cocos2d::CCNode {
 	void encodeDataTo(DS_Dictionary*) = win 0x1e5950;
 	void firstSetup();
 	TodoReturn generateItemUnlockableData() = m1 0x598fc;
-	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d6020;
+	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d62c0;
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*);
-	int getBaseCurrency(int, bool, int);
-	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1d62c0;
+	int getBaseCurrency(int stars, bool featured, int levelID);
+	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1d6020;
 	TodoReturn getBaseDiamonds(int) = imac 0x709e0;
 	TodoReturn getBonusDiamonds(int);
 	GJChallengeItem* getChallenge(int) = win 0x1d76f0, ios 0x343c80;
