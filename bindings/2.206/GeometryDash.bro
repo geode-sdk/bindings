@@ -2091,22 +2091,35 @@ class CommunityCreditsPage : FLAlertLayer {
 class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 	// virtual ~ConfigureHSVWidget();
 
-	static ConfigureHSVWidget* create(cocos2d::ccHSVValue, bool, bool);
+	static ConfigureHSVWidget* create(cocos2d::ccHSVValue, bool, bool) = win 0x95140, m1 0x3ac04c, imac 0x439770;
 
-	TodoReturn createTextInputNode(cocos2d::CCPoint, int);
-	TodoReturn getHSV(GameObject*, cocos2d::CCArray*, int);
-	bool init(cocos2d::ccHSVValue, bool, bool);
-	TodoReturn onClose();
-	void onResetHSV(cocos2d::CCObject* sender);
-	void onToggleSConst(cocos2d::CCObject* sender);
-	void onToggleVConst(cocos2d::CCObject* sender);
-	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn updateLabels();
-	TodoReturn updateSliders();
+	void createTextInputNode(cocos2d::CCPoint, int) = win 0x95af0, m1 0x3acccc, imac 0x43a4c0;
+	static cocos2d::ccHSVValue getHSV(GameObject*, cocos2d::CCArray*, int) = win 0x96890, m1 0x3ada2c, imac 0x43b280;
+	bool init(cocos2d::ccHSVValue, bool, bool) = win 0x95210, m1 0x3ac39c, imac 0x439b20;
+	void onClose() = m1 0x3ac120, imac 0x439840;
+	void onResetHSV(cocos2d::CCObject* sender) = win 0x96300, m1 0x3ad158, imac 0x43a8e0;
+	void onToggleSConst(cocos2d::CCObject* sender) = win 0x96200, m1 0x3ad070, imac 0x43a800;
+	void onToggleVConst(cocos2d::CCObject* sender) = win 0x96280, m1 0x3ad0e4, imac 0x43a870;
+	void sliderChanged(cocos2d::CCObject* sender) = win 0x960e0, m1 0x3acf28, imac 0x43a6f0;
+	void updateLabels() = win 0x96380, m1 0x3ad1d0, imac 0x43a960;
+	void updateSliders() = win 0x96010, m1 0x3ad704, imac 0x43af00;
 
 	virtual void textInputOpened(CCTextInputNode*) {}
 	virtual void textInputClosed(CCTextInputNode*) = win 0x89f80, m1 0x3ad7c8, imac 0x43afe0;
 	virtual void textChanged(CCTextInputNode*) = win 0x95d50, m1 0x3ad7e4, imac 0x43b020;
+
+	cocos2d::CCLabelBMFont* m_hueLabel;
+	cocos2d::CCLabelBMFont* m_saturationLabel;
+	cocos2d::CCLabelBMFont* m_brightnessLabel;
+	Slider* m_hueSlider;
+	Slider* m_saturationSlider;
+	Slider* m_brightnessSlider;
+	cocos2d::ccHSVValue m_hsv;
+	bool m_mixed;
+	HSVWidgetDelegate* m_delegate;
+	bool m_addInputs;
+	bool m_updating;
+	cocos2d::CCDictionary* m_inputs;
 }
 
 [[link(android)]]
