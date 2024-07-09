@@ -2526,6 +2526,29 @@ class cocos2d::ZipUtils {
 }
 
 [[link(win, android)]]
+class cocos2d::CCSpeed {
+	static cocos2d::CCSpeed* create(cocos2d::CCActionInterval*, float) = imac 0x5feea0;
+
+	bool initWithAction(cocos2d::CCActionInterval*, float);
+
+	cocos2d::CCActionInterval* getInnerAction();
+	float getSpeed();
+
+	void setInnerAction(cocos2d::CCActionInterval*);
+	void setSpeed(float);
+
+	// CCSpeed(cocos2d::CCSpeed const&);
+	// CCSpeed();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual bool isDone();
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual void stop();
+	virtual void step(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class pugi::xml_document {
 	xml_document() = m1 0x56bb98, imac 0x64d800;
 	~xml_document() = m1 0x56bcec, imac 0x64d950;
