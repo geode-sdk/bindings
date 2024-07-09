@@ -1870,6 +1870,7 @@ class ColorAction : cocos2d::CCObject {
 	cocos2d::ccHSVValue m_copyHSV;
 	int m_copyID;
 	bool m_unknown;
+	bool m_unknown2;
 	bool m_copyOpacity;
 	ColorActionSprite* m_colorSprite;
 	// more stuff
@@ -1903,10 +1904,27 @@ class ColorChannelSprite : cocos2d::CCSprite {
 
 	static ColorChannelSprite* create() = win 0x246c10, imac 0x2d44d0, m1 0x2715f4, ios 0xc730;
 
-	TodoReturn updateBlending(bool);
-	TodoReturn updateCopyLabel(int, bool);
-	void updateOpacity(float) = win 0x246eb0, imac 0x2d4750, m1 0x271850, ios 0xc978;
-	void updateValues(ColorAction*) = imac 0x2d49b0, ios 0xcbdc;
+	void updateBlending(bool enabled) = win 0x247000;
+	void updateCopyLabel(int channelID, bool copyOpacity) = win 0x246cf0;
+	void updateOpacity(float alpha) = win 0x246eb0, imac 0x2d4750, m1 0x271850, ios 0xc978;
+	void updateValues(ColorAction* action) = win inline, imac 0x2d49b0, ios 0xcbdc {
+		if (!action) {
+			this->setColor(cocos2d::ccWHITE);
+			this->updateCopyLabel(0, false);
+			this->updateOpacity(1.f);
+			this->updateBlending(false);
+			return;
+		}
+		this->updateCopyLabel(action->m_copyID, action->m_copyOpacity);
+		this->updateOpacity(action->m_fromOpacity);
+		this->updateBlending(action->m_blending);
+		if (action->m_copyID != 0 && !action->m_copyOpacity) {
+			this->setColor(cocos2d::ccGRAY);
+		}
+		else {
+			this->setColor(action->m_fromColor);
+		}
+	}
 
 	virtual bool init() = m1 0x27169c, imac 0x2d4570;
 }
@@ -2173,7 +2191,7 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 
-    PAD = win 0x18;
+    gd::string m_spriteFileName;
     int m_objectID;
 }
 
@@ -2252,6 +2270,12 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
 [[link(android)]]
 class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, DialogDelegate {
 	// virtual ~CreatorLayer();
+	CreatorLayer() {
+		m_secretDoorSprite = nullptr;
+		m_questsSprite = nullptr;
+		m_vaultDialogIndex = -1;
+		m_versusDialogIndex = 0;
+	}
 
 	static CreatorLayer* create() = ios 0xb7504;
 	static cocos2d::CCScene* scene() = win 0x9a190, ios 0xb74ac;
