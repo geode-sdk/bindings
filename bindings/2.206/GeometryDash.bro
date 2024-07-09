@@ -9351,7 +9351,7 @@ class GJTransformControl : cocos2d::CCLayer {
 	void onToggleLockScale(cocos2d::CCObject* sender) = win 0x127310;
 	void refreshControl() = win 0x127180;
 	void saveToState(GJTransformState&);
-	TodoReturn scaleButtons(float);
+	void scaleButtons(float) = win 0x1273a0;
 	TodoReturn spriteByTag(int);
 	TodoReturn updateAnchorSprite(cocos2d::CCPoint);
 	void updateButtons(bool, bool) = win 0x127460;
@@ -11493,48 +11493,60 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 	static cocos2d::CCScene* scene(bool) = win 0x312f60, imac 0x392b80, m1 0x31ad64, ios 0x275ef0;
 	// static MenuLayer* create() = ios 0x275f90;
 
-	void endGame() = ios 0x277ddc;
-	void firstNetworkTest() = win 0x314950, ios 0x2778b8;
+	void endGame() = win 0x315a30, imac 0x394f60, m1 0x31d060, ios 0x277ddc;
+	void firstNetworkTest() = win 0x314950, imac 0x394820, m1 0x31c9d0, ios 0x2778b8;
 	void onAchievements(cocos2d::CCObject* sender) = win 0x314e80, imac 0x394230, m1 0x31c39c, ios 0x2773d4;
 	void onCreator(cocos2d::CCObject* sender) = win 0x315390, imac 0x3941a0, m1 0x31c320, ios 0x27737c;
 	void onDaily(cocos2d::CCObject* sender) = win 0x314700, imac 0x3947c0, m1 0x31c96c, ios 0x277854;
 	void onDiscord(cocos2d::CCObject* sender) = win 0x314d80, imac 0x394460, m1 0x31c60c, ios 0x277620;
-	void onEveryplay(cocos2d::CCObject* sender);
+	void onEveryplay(cocos2d::CCObject* sender) {}
 	void onFacebook(cocos2d::CCObject* sender) = win 0x314d00, imac 0x3943e0, m1 0x31c57c, ios 0x277590;
-	void onFreeLevels(cocos2d::CCObject* sender);
-	void onFullVersion(cocos2d::CCObject* sender);
-	void onGameCenter(cocos2d::CCObject* sender) = ios 0x2778cc;
+	void onFreeLevels(cocos2d::CCObject* sender) = imac 0x394c40, m1 0x31cd68;
+	void onFullVersion(cocos2d::CCObject* sender) = imac 0x394c20, m1 0x31cd48;
+	void onGameCenter(cocos2d::CCObject* sender) = imac 0x3948b0, m1 0x31ca40, ios 0x2778cc;
 	void onGarage(cocos2d::CCObject* sender) = win 0x315420, imac 0x394110, m1 0x31c2a4, ios 0x277324;
-	void onGooglePlayGames(cocos2d::CCObject* sender);
+	void onGooglePlayGames(cocos2d::CCObject* sender) = imac 0x394a10, m1 0x31cb80;
 	void onMoreGames(cocos2d::CCObject* sender) = win 0x314da0, imac 0x394480, m1 0x31c630, ios 0x277644;
 	void onMyProfile(cocos2d::CCObject* sender) = win 0x314c40, imac 0x3945d0, m1 0x31c78c, ios 0x2776c8;
 	void onNewgrounds(cocos2d::CCObject* sender) = win 0x3154b0, imac 0x3942f0, m1 0x31c480, ios 0x2774b8;
 	void onOptions(cocos2d::CCObject* sender) = win 0x3150d0, imac 0x394270, m1 0x31c3e8, ios 0x277420;
-	void onOptionsInstant() = win 0x3150e0, ios 0x276044;
+	void onOptionsInstant() = win 0x3150e0, imac 0x392ce0, m1 0x31aeac, ios 0x276044;
 	void onPlay(cocos2d::CCObject* sender) = win 0x315030, imac 0x394080, m1 0x31c224, ios 0x2772c8;
-	void onQuit(cocos2d::CCObject* sender) = win 0x3155f0, m1 0x31c6b4, imac 0x394500;
+	void onQuit(cocos2d::CCObject* sender) = win 0x3155f0, imac 0x394500, m1 0x31c6b4;
 	void onRobTop(cocos2d::CCObject* sender) = win 0x314ce0, imac 0x3943c0, m1 0x31c558, ios 0x27756c;
 	void onStats(cocos2d::CCObject* sender) = win 0x315270, imac 0x3942b0, m1 0x31c434, ios 0x27746c;
-	void onTrailer(cocos2d::CCObject* sender);
+	void onTrailer(cocos2d::CCObject* sender) = imac 0x394c90, m1 0x31cdb4;
 	void onTwitch(cocos2d::CCObject* sender) = win 0x314d60, imac 0x394440, m1 0x31c5e8, ios 0x2775fc;
 	void onTwitter(cocos2d::CCObject* sender) = win 0x314d20, imac 0x394400, m1 0x31c5a0, ios 0x2775b4;
 	void onYouTube(cocos2d::CCObject* sender) = win 0x314d40, imac 0x394420, m1 0x31c5c4, ios 0x2775d8;
-	void openOptions(bool videoOptions) = win 0x3150f0, ios 0x277acc;
-	void showGCQuestion();
-	void showMeltdownPromo();
-	void showTOS() = win 0x314b20, imac 0x597f20, m1 0x4e0a90, ios 0x277870;
-	TodoReturn syncPlatformAchievements(float);
-	TodoReturn tryShowAd(float);
-	void updateUserProfileButton() = win 0x314850, ios 0x277728;
-	void videoOptionsClosed();
-	void videoOptionsOpened() = ios 0x277b54;
-	void willClose() = win 0x315710, ios 0x275e78;
+	void openOptions(bool videoOptions) = win 0x3150f0, imac 0x394b60, m1 0x31cca4, ios 0x277acc;
+	void showGCQuestion() = imac 0x394900, m1 0x31ca88;
+	void showMeltdownPromo() {}
+	void showTOS() = win 0x314b20, imac 0x3947e0, m1 0x31c988, ios 0x277870;
+	void syncPlatformAchievements(float) = imac 0x394b10, m1 0x31cc74;
+	void tryShowAd(float) = imac 0x394850, m1 0x31c9e8;
+	void updateUserProfileButton() = win 0x314850, imac 0x394630, m1 0x31c7ec, ios 0x277728;
+	void videoOptionsClosed() = win inline, imac 0x394c00, m1 0x31cd3c {
+		m_menuGameLayer->m_videoOptionsOpen = false
+	}
+	void videoOptionsOpened() = win inline, imac 0x394be0, m1 0x31cd2c, ios 0x277b54 {
+		m_menuGameLayer->m_videoOptionsOpen = true;
+	}
+	void willClose() = win 0x315710, imac 0x3928a0, m1 0x31ab68, ios 0x275e78;
 
 	virtual bool init() = win 0x3130f0, m1 0x31af14, imac 0x392d40, ios 0x27604c;
 	virtual void keyBackClicked() = win 0x3155e0, m1 0x31cdf4, imac 0x394cd0, ios 0x277b74;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3159c0, m1 0x31d06c, imac 0x394f90;
 	virtual void googlePlaySignedIn() = win 0x314fe0, m1 0x31cba8, imac 0x394a40;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3157b0, m1 0x31ce00, imac 0x394d00, ios 0x277c30;
+
+	bool m_showingTOS;
+	cocos2d::CCSprite* m_gpSprite;
+	cocos2d::CCSprite* m_viewProfileSprite;
+	cocos2d::CCLabelBMFont* m_profileLabel;
+	CCMenuItemSpriteExtra* m_profileButton;
+	void* m_unknown;
+	MenuGameLayer* m_menuGameLayer;
 }
 
 [[link(android)]]
@@ -11582,41 +11594,61 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 [[link(android)]]
 class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJDropDownLayerDelegate {
 	// virtual ~MoreOptionsLayer();
-	// MoreOptionsLayer() = ios 0xf508c;
+	MoreOptionsLayer() = ios 0xf508c {}
 
-	static MoreOptionsLayer* create() = ios 0xeed0c;
+	static MoreOptionsLayer* create() = win inline, m1 0x6ae8a4, imac 0x7a73e0, ios 0xeed0c {
+		auto ret = new MoreOptionsLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	void addToggle(char const*, char const*, char const*) = win 0x353280, ios 0xf00d0;
-	TodoReturn countForPage(int);
-	void goToPage(int) = ios 0xf07e4;
-	TodoReturn incrementCountForPage(int);
-	TodoReturn infoKey(int);
-	TodoReturn layerForPage(int);
-	TodoReturn layerKey(int);
-	TodoReturn nextPosition(int);
-	TodoReturn objectKey(int);
-	TodoReturn objectsForPage(int) = ios 0xf0474;
+	int countForPage(int) = win 0x3538e0;
+	void goToPage(int) = win 0x353d00, ios 0xf07e4;
+	void incrementCountForPage(int);
+	const char* infoKey(int);
+	cocos2d::CCLayer* layerForPage(int) = win 0x353b40;
+	const char* layerKey(int);
+	cocos2d::CCPoint nextPosition(int);
+	const char* objectKey(int);
+	cocos2d::CCArray* objectsForPage(int) = win 0x3539b0, ios 0xf0474;
 	void offsetToNextPage(); // inlined on ios
-	void onClose(cocos2d::CCObject* sender) = ios 0xf0720;
-	void onFMODDebug(cocos2d::CCObject* sender) = ios 0xf05c0;
+	void onClose(cocos2d::CCObject* sender) = win 0x354fa0, ios 0xf0720;
+	void onFMODDebug(cocos2d::CCObject* sender) = win 0x354b10, ios 0xf05c0;
 	void onGPSignIn(cocos2d::CCObject* sender);
 	void onGPSignOut(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender) = win 0x354dc0;
 	void onKeybindings(cocos2d::CCObject* sender) = win 0xd9640;
-	void onNextPage(cocos2d::CCObject* sender) = ios 0xf07d8;
-	void onParental(cocos2d::CCObject* sender) = ios 0xf0704;
-	void onPrevPage(cocos2d::CCObject* sender) = ios 0xf07cc;
-	void onSongBrowser(cocos2d::CCObject* sender) = ios 0xf0568;
-	void onToggle(cocos2d::CCObject* sender);
-	TodoReturn pageKey(int);
-	TodoReturn toggleGP();
+	void onNextPage(cocos2d::CCObject* sender) = win 0x353ce0, ios 0xf07d8;
+	void onParental(cocos2d::CCObject* sender) = win 0x354cb0, ios 0xf0704;
+	void onPrevPage(cocos2d::CCObject* sender) = win 0x353cf0, ios 0xf07cc;
+	void onSongBrowser(cocos2d::CCObject* sender) = win 0x354aa0, ios 0xf0568;
+	void onToggle(cocos2d::CCObject* sender) = win 0x3542a0;
+	const char* pageKey(int);
+	void toggleGP();
 
 	virtual bool init() = win 0x351e90, imac 0x7a79a0, m1 0x6aed54, ios 0xeefb4;
 	virtual void keyBackClicked() = win 0x355100, m1 0x6b1f1c, imac 0x7aac00;
-	virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x6b1f28, imac 0x7aac30;
-	virtual void textInputReturn(CCTextInputNode*) = m1 0x6b1ff8, imac 0x7aacf0;
+	virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x79fd0, m1 0x6b1f28, imac 0x7aac30;
+	virtual void textInputReturn(CCTextInputNode*) = win 0x7a030, m1 0x6b1ff8, imac 0x7aacf0;
 	virtual void googlePlaySignedIn() = win 0x355110, m1 0x6b20b0, imac 0x7aada0;
 	virtual void dropDownLayerWillClose(GJDropDownLayer*) = win 0x354c60, m1 0x6b1df8, imac 0x7aaa80;
+
+	int m_page;
+	int m_toggleCount;
+	int m_pageCount;
+	cocos2d::CCDictionary* m_variables;
+	cocos2d::CCDictionary* m_objects;
+	CCMenuItemSpriteExtra* m_leftBtn;
+	CCMenuItemSpriteExtra* m_rightBtn;
+	CCTextInputNode* m_offsetInput;
+	CCMenuItemSpriteExtra* m_gpSignInBtn;
+	CCMenuItemSpriteExtra* m_gpSignOutBtn;
+	cocos2d::CCLabelBMFont* m_categoryLabel;
 }
 
 [[link(android)]]
