@@ -837,7 +837,7 @@ class cocos2d::CCNode {
 	virtual bool isRunning() = m1 0x215018, imac 0x26ec80, ios 0x24baa4;
 	virtual void registerScriptHandler(int) = m1 0x216340, imac 0x270000, ios 0x24c940;
 	virtual void unregisterScriptHandler() = m1 0x216370, imac 0x270030, ios 0x24c970;
-	virtual void onEnter() = m1 0x215fd8, imac 0x26fca0, ios 0x1538f0;
+	virtual void onEnter() = m1 0x215fd8, imac 0x26fca0, ios 0x24c63c;
 	virtual void onEnterTransitionDidFinish() = m1 0x216108, imac 0x26fdc0, ios 0x153a84;
 	virtual void onExit() = m1 0x21622c, imac 0x26fee0, ios 0x1539bc;
 	virtual void onExitTransitionDidStart() = m1 0x216190, imac 0x26fe40, ios 0x24c7c4;
@@ -2123,7 +2123,7 @@ class cocos2d::CCMenuItem {
 	// CCMenuItem();
 	cocos2d::CCRect rect();
 
-	virtual void activate() = imac 0x3c2120, m1 0x3455b8;
+	virtual void activate() = imac 0x3c2120, m1 0x3455b8, ios 0x5329c;
 	virtual void selected() = imac 0x3c2090, m1 0x345534;
 	virtual void unselected() = imac 0x3c20a0, m1 0x345540;
 	virtual void registerScriptTapHandler(int) = m1 0x345548, imac 0x3c20b0;
@@ -2186,7 +2186,7 @@ class cocos2d::CCMenu {
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a72c8, imac 0x79edd0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a75b0, imac 0x79f080;
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a74c0, imac 0x79efa0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a74c0, imac 0x79efa0, ios 0x1e1ecc;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a7548, imac 0x79f020, ios 0x1e1f54;
 }
 
