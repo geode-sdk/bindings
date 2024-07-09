@@ -963,8 +963,8 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	CCMenuItemSpriteExtra() = ios 0x177268 {
 		m_animationEnabled = false; //this is changed to true in init
 		m_colorEnabled = false;
-		m_colorDip = 0.0f;
-		m_scaleMultiplier = 1.0f;
+		m_colorDip = 0.784314f;
+		m_scaleMultiplier = 1.f; //this is changed to 1.26f in init
 		m_volume = 1.f;
 		m_duration = 0.3f;
 		m_unselectedDuration = 0.4f;
@@ -979,7 +979,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 		return CCMenuItemSpriteExtra::create(sprite, nullptr, target, callback);
 	}
 
-	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x43d60, imac 0x272d90, m1 0x218c88, ios 0x223d80;
+	bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x43d60, imac 0x272d90, m1 0x218c88, ios 0x223d80;
 	void setSizeMult(float mult) = win inline, imac 0x272f10, m1 0x218e0c, ios 0x223f04 {
 		//inlined on windows, member is in CCMenuItemSprite
 		m_fSizeMult = mult;
@@ -1016,12 +1016,13 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	float m_baseScale;
 	bool m_animationEnabled;
 	bool m_colorEnabled;
-	float m_unknown1;
-	gd::string m_unknown2;
-	gd::string m_unknown3;
+	float m_volume;
+	gd::string m_activateSound; //canonical name most likely: clickSound_
+	gd::string m_selectSound;
 	float m_colorDip;
-	cocos2d::CCPoint m_destPosition;
 	cocos2d::CCPoint m_offset;
+	float m_duration;
+	float m_unselectedDuration;
 	MenuAnimationType m_animationType;
 	cocos2d::CCPoint m_startPosition;
 	int m_unknown4;
