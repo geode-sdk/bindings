@@ -130,12 +130,16 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 class AchievementBar : cocos2d::CCNodeRGBA {
 	// virtual ~AchievementBar();
 
+	AchievementBar(unsigned int idk) = win 0x7eff0;
+
 	static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest);
 
 	bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x7f040, ios 0x27a350;
-	void show();
+	void show() = win 0x805f0;
 
 	virtual void setOpacity(unsigned char) = win 0x80870, m1 0x5474bc, imac 0x6258a0;
+
+	PAD = win 0x48;
 }
 
 [[link(android)]]
@@ -203,8 +207,8 @@ class AchievementNotifier : cocos2d::CCNode {
 	static AchievementNotifier* sharedState() = win 0x39cd0, imac 0x7cf810, m1 0x6d44fc, ios 0x226bb8;
 
 	void achievementDisplayFinished();
-	void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest);
-	void showNextAchievement();
+	void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest) = win 0x39db0;
+	void showNextAchievement() = win 0x39e90;
 	void willSwitchToScene(cocos2d::CCScene* scene) = win inline, m1 0x6d4754, imac 0x7cfa80, ios 0x226dec {
 		// cocos2d::CCScene* previousScene = reinterpret_cast<cocos2d::CCScene*>(this->m_unknown2);
 		cocos2d::CCScene* previousScene = nullptr;
@@ -650,14 +654,14 @@ class ButtonSprite : cocos2d::CCSprite {
 		return create(caption, width, 0, scale, absolute, font, texture, height);
 	}
 
-	static ButtonSprite* create(char const* caption) = ios 0x65cf0 {
-		return ButtonSprite::create(caption, 0, 0, "goldFont.fnt", "GJ_button_01.png", .0f, 1.f);
+	static ButtonSprite* create(char const* caption) = imac 0x920c0, m1 0x828f8, ios 0x65cf0 {
+		return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, 1.f);
 	}
 	static ButtonSprite* create(char const* caption, const char* font, const char* texture) {
-		return ButtonSprite::create(caption, 0, 0, font, texture, .0f, 1.f);
+		return ButtonSprite::create(caption, 0, false, font, texture, .0f, 1.f);
 	}
 	static ButtonSprite* create(char const* caption, const char* font, const char* texture, float scale) {
-		return ButtonSprite::create(caption, 0, 0, font, texture, .0f, scale);
+		return ButtonSprite::create(caption, 0, false, font, texture, .0f, scale);
 	}
 
 	static ButtonSprite* create(char const*, float);
