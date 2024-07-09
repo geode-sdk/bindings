@@ -54,12 +54,16 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x898);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0x95c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownE38, 0x98c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa48);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x29d4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a50, 0x2a50);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2a60);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a84, 0x2aa4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b5c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2c10);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_fModVisualizerBG, 0x2ce4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c34);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x2c88);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x2ce4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x2d54);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_debugDrawNode, 0x2d58);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x2c28); // i dont even know anymore
 
@@ -67,6 +71,7 @@ GEODE_SIZE_CHECK(PlayLayer, 0x2f60);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x2e24);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x2e38);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e44);
+GEODE_MEMBER_CHECK(PlayLayer, m_jumps, 0x2e8c);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x2e99);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x2eff);
 
