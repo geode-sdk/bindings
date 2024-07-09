@@ -13521,7 +13521,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	// virtual ~RewardsPage();
 	inline RewardsPage() {}
 
-	static RewardsPage* create() = win inline {
+	static RewardsPage* create() = win inline, imac 0x214b50, m1 0x1c590c {
 		auto ret = new RewardsPage();
 		if (ret->init()) {
 			ret->autorelease();
