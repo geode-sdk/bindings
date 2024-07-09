@@ -1459,7 +1459,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_usePasswordChar = false;
 		m_forceOffset = false;
 		m_textArea = nullptr;
-		m_decimals = 0;
+		m_valueType = (InputValueType)0;
+		m_decimalPlaces = 0;
 		m_kerningAmount = 0;
 	}
 
@@ -1560,7 +1561,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	bool m_forceOffset;
 	TextArea* m_textArea;
 	InputValueType m_valueType;
-	int m_decimals;
+	int m_decimalPlaces;
 	int m_kerningAmount;
 }
 
