@@ -6292,8 +6292,8 @@ class GameToolbox {
 	static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool) = win 0x66a10;
 	static void particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&) = win 0x65f50;
 	static TodoReturn pointsToString(int) = win 0x68170;
-	static TodoReturn postClipVisit() = ios 0x4a3bc;
-	static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x62fd0, ios 0x4a2d8;
+	static void postClipVisit() = ios 0x4a3bc, m1 0x452740, imac 0x4f99e0;
+	static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x62fd0, ios 0x4a2d8, m1 0x452658, imac 0x4f98e0;
 	static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
 	static TodoReturn saveParticleToString(cocos2d::CCParticleSystemQuad*);
 	static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
@@ -6309,19 +6309,37 @@ class GameToolbox {
 [[link(android)]]
 class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
 	// virtual ~GauntletLayer();
+	GauntletLayer() {}
 
-	static GauntletLayer* create(GauntletType) = imac 0x3954e0, m1 0x31d474;
+	static GauntletLayer* create(GauntletType gauntletType) = win inline, imac 0x3955f0, m1 0x31d55c {
+		auto ret = new GauntletLayer();
+		if (ret->init(gauntletType)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	bool init(GauntletType) = win 0x1e93d0, imac 0x3956d0, m1 0x31d624;
-	void onBack(cocos2d::CCObject* sender);
-	void onLevel(cocos2d::CCObject* sender);
-	TodoReturn scene(GauntletType);
-	TodoReturn setupGauntlet(cocos2d::CCArray*) = win 0x1e9fd0;
-	TodoReturn unlockActiveItem();
+	void onBack(cocos2d::CCObject* sender) = win 0x1eb5e0, imac 0x395d40, m1 0x31dc80;
+	void onLevel(cocos2d::CCObject* sender) = win 0x1eaf60, imac 0x397270, m1 0x31f034;
+	static cocos2d::CCScene* scene(GauntletType) = win 0x1e90b0, imac 0x3954e0, m1 0x31d474;
+	void setupGauntlet(cocos2d::CCArray*) = win 0x1e9fd0, imac 0x395d90, m1 0x31dcc8;
+	void unlockActiveItem() = win 0x1eafd0, imac 0x3972b0, m1 0x31f078;
 
 	virtual void keyBackClicked() = win 0x1eb630, m1 0x31f6f8, imac 0x3978b0;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x1e9bc0, m1 0x31ebdc, imac 0x396e80;
 	virtual void loadLevelsFailed(char const*, int) = win 0x1e9dd0, m1 0x31ed74, imac 0x397010;
+
+	cocos2d::CCArray* m_levels;
+	LoadingCircle* m_loadingCircle;
+	GauntletType m_gauntletType;
+	cocos2d::CCSprite* m_backgroundSprite;
+	void* m_unkPtr;
+	CCMenuItemSpriteExtra* m_activeItemButton;
+	cocos2d::CCArray* m_activeObjects;
+	TextArea* m_tryAgainText;
 }
 
 [[link(android)]]
