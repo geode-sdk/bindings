@@ -13519,8 +13519,17 @@ class RewardedVideoDelegate {
 [[link(android)]]
 class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	// virtual ~RewardsPage();
+	inline RewardsPage() {}
 
-	static RewardsPage* create();
+	static RewardsPage* create() = win inline {
+		auto ret = new RewardsPage();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	static char const* getRewardFrame(int, int);
 	void onClose(cocos2d::CCObject* sender);
@@ -13531,9 +13540,9 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	callback void updateTimers(float) = win 0x3a9860;
 
 	virtual bool init() = win 0x3a8710, imac 0x214cc0, m1 0x1c5a20;
-	virtual void registerWithTouchDispatcher() = m1 0x1c71c0, imac 0x216580;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x1c71c0, imac 0x216580;
 	virtual void keyBackClicked() = m1 0x1c7144, imac 0x216510;
-	virtual void show() = m1 0x1c6fec, imac 0x2163b0;
+	virtual void show() = win 0x3a18c0, m1 0x1c6fec, imac 0x2163b0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 	virtual void rewardsStatusFinished(int) = win 0x3a95a0, m1 0x1c6c90, imac 0x216030;
 	virtual void rewardsStatusFailed() = win 0x3a9790, m1 0x1c6ee8, imac 0x2162c0;
