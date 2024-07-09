@@ -883,7 +883,7 @@ class CCCountdown : cocos2d::CCSprite {
 	static CCCountdown* create();
 
 	TodoReturn lapFinished();
-	TodoReturn startTimerWithSeconds(float, cocos2d::SEL_CallFunc, cocos2d::CCNode*);
+	void startTimerWithSeconds(float, cocos2d::SEL_CallFunc, cocos2d::CCNode*);
 
 	virtual bool init() = m1 0x6d7a88, imac 0x7d32c0;
 	virtual void setOpacity(unsigned char) = m1 0x6d7e38, imac 0x7d3690;
@@ -9694,11 +9694,11 @@ class GradientTriggerObject : EffectGameObject {
 class GraphicsReloadLayer : cocos2d::CCLayer {
 	// virtual ~GraphicsReloadLayer();
 
-	static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
+	static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool);
 
-	bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
+	bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool);
 	TodoReturn performReload();
-	static cocos2d::CCScene* scene(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
+	static cocos2d::CCScene* scene(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool);
 }
 
 [[link(android)]]
@@ -13566,8 +13566,17 @@ class RewardedVideoDelegate {
 [[link(android)]]
 class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	// virtual ~RewardsPage();
+	inline RewardsPage() {}
 
-	static RewardsPage* create();
+	static RewardsPage* create() = win inline, imac 0x214b50, m1 0x1c590c {
+		auto ret = new RewardsPage();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	static char const* getRewardFrame(int, int);
 	void onClose(cocos2d::CCObject* sender);
@@ -13578,9 +13587,9 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	callback void updateTimers(float) = win 0x3a9860;
 
 	virtual bool init() = win 0x3a8710, imac 0x214cc0, m1 0x1c5a20;
-	virtual void registerWithTouchDispatcher() = m1 0x1c71c0, imac 0x216580;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x1c71c0, imac 0x216580;
 	virtual void keyBackClicked() = m1 0x1c7144, imac 0x216510;
-	virtual void show() = m1 0x1c6fec, imac 0x2163b0;
+	virtual void show() = win 0x3a18c0, m1 0x1c6fec, imac 0x2163b0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 	virtual void rewardsStatusFinished(int) = win 0x3a95a0, m1 0x1c6c90, imac 0x216030;
 	virtual void rewardsStatusFailed() = win 0x3a9790, m1 0x1c6ee8, imac 0x2162c0;
