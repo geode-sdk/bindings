@@ -3141,12 +3141,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	}
 
 	TodoReturn activateRotationControl(cocos2d::CCObject*) = win 0x11efb0;
-	void activateScaleControl(cocos2d::CCObject*);
+	void activateScaleControl(cocos2d::CCObject*) = win 0x110e10;
 	void activateTransformControl(cocos2d::CCObject*) = win 0x111460;
 	TodoReturn addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*);
 	TodoReturn addSnapPosition(cocos2d::CCPoint);
 	TodoReturn alignObjects(cocos2d::CCArray*, bool);
-	TodoReturn applyOffset(GameObject*) = win 0x11e8d0;
+	void applyOffset(GameObject*) = win 0x11e8d0;
 	TodoReturn applySpecialOffset(cocos2d::CCPoint, GameObject*, cocos2d::CCPoint);
 	TodoReturn arrayContainsClass(cocos2d::CCArray*, int);
 	TodoReturn assignNewGroups(bool);
@@ -3207,9 +3207,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn editColorButtonUsable();
 	void editGroup(cocos2d::CCObject*) = win 0x11b410, m1 0x2cf3c, imac 0x2c790;
 	TodoReturn editHSV();
-	TodoReturn editObject(cocos2d::CCObject*) = win 0x1180a0;
-	TodoReturn editObject2(cocos2d::CCObject*) = win 0x11a030;
-	TodoReturn editObject3(cocos2d::CCObject*);
+	void editObject(cocos2d::CCObject*) = win 0x1180a0;
+	void editObject2(cocos2d::CCObject*) = win 0x11a030;
+	void editObject3(cocos2d::CCObject*);
 	TodoReturn editObjectSpecial(int);
 	TodoReturn editorLayerForArray(cocos2d::CCArray*, bool);
 	TodoReturn enableButton(CreateMenuItem*);
@@ -3254,11 +3254,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	bool isLiveColorSelectTrigger(GameObject*);
 	bool isSpecialSnapObject(int) = win 0x124e40;
 	TodoReturn liveEditColorUsable();
-	TodoReturn menuItemFromObjectString(gd::string, int);
+	CreateMenuItem* menuItemFromObjectString(gd::string, int) = win 0x10ac30;
 	cocos2d::CCPoint moveForCommand(EditCommand command) = win 0x11b9b0;
 	void moveGamelayer(cocos2d::CCPoint) = win 0xdf250;
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x11be20;
-	void moveObjectCall(cocos2d::CCObject*);
+	void moveObjectCall(cocos2d::CCObject*) = win 0x11bb60;
 	void moveObjectCall(EditCommand) = win 0x11bb90;
 	cocos2d::CCPoint offsetForKey(int) = win 0x122780;
 	TodoReturn onAssignNewGroupID();
@@ -3292,7 +3292,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onPasteInPlace(cocos2d::CCObject* sender);
 	void onPasteState(cocos2d::CCObject* sender) = win 0x1106d0;
 	void onPause(cocos2d::CCObject* sender) = win 0xddf70, imac 0x2abd0, m1 0x2ba08;
-	void onPlayback(cocos2d::CCObject* sender) = win 0x10df30, m1 0xe734;
+	void onPlayback(cocos2d::CCObject* sender) = win 0x10df30, m1 0xe734, imac 0xc7a0;
 	void onPlaytest(cocos2d::CCObject* sender) = win 0x10e540, m1 0xe948, imac 0xca00;
 	void onResetSpecialFilter(cocos2d::CCObject* sender);
 	void onSelectBuildTab(cocos2d::CCObject* sender) = win 0x110af0;
@@ -3317,12 +3317,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void recreateButtonTabs() = m1 0x322b8;
 	void redoLastAction(cocos2d::CCObject*) = win 0x10dd30;
 	void reloadCustomItems() = win 0xe1190;
-	TodoReturn removeOffset(GameObject*) = win 0x11e840;
+	void removeOffset(GameObject*) = win 0x11e840;
 	TodoReturn replaceGroupID(GameObject*, int, int);
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0x1105b0;
 	void resetObjectEditorValues(cocos2d::CCArray*);
 	TodoReturn resetSelectedObjectsColor();
-	void resetUI();
+	void resetUI() = win 0xe1270;
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = win 0x11d040;
 	TodoReturn rotationforCommand(EditCommand);
 	void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType, bool) = win 0x11d460;
@@ -3336,7 +3336,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void setupDeleteMenu();
 	void setupEditMenu();
 	TodoReturn setupTransformControl();
-	static bool shouldDeleteObject(GameObject*);
+	bool shouldDeleteObject(GameObject*) = win 0xe27f0;
 	TodoReturn shouldSnap(GameObject*);
 	void showDeleteConfirmation();
 	void showLiveColorSelectForMode(int);
@@ -3347,7 +3347,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void showUI(bool) = imac 0x3dd70, m1 0x392e4, win 0x10dda0;
 	void sliderChanged(cocos2d::CCObject*) = win 0xdef40, ios 0x3CF9B4;
 	TodoReturn smartTypeForKey(int);
-	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*);
+	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0x10a330;
 	TodoReturn toggleDuplicateButton();
 	TodoReturn toggleEditObjectButton() = win 0x116aa0;
 	void toggleEnableRotate(cocos2d::CCObject*) = win 0x10c6a0;
@@ -3541,9 +3541,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 class EditTriggersPopup : SetupTriggerPopup {
 	// virtual ~EditTriggersPopup();
 
-	static EditTriggersPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static EditTriggersPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x27c920, m1 0x239848, imac 0x296a30;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x27ca30, m1 0x2399d0, imac 0x296c60;
 
 	virtual TodoReturn determineStartValues() = imac 0x296f20;
 	virtual void onClose(cocos2d::CCObject* sender) = imac 0x296f30;
@@ -4636,7 +4636,7 @@ class GameLevelManager : cocos2d::CCNode {
 	gd::string getActiveDailyID(bool, bool, bool, bool, bool, bool, bool, bool);
 	char const* getDiffKey(int);
 	bool getDiffVal(int);
-	gd::string getFolderName(int, bool);
+	gd::string getFolderName(int, bool) = win 0x1453c0, m1 0x4935bc, imac 0x541610;
 	char const* getFriendRequestKey(bool, int);
 	void getFriendRequests(bool, int, int);
 	char const* getGauntletKey(int);
@@ -4766,7 +4766,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x159b50;
 	void onGetGauntletsCompleted(gd::string response, gd::string tag);
 	void onGetGJChallengesCompleted(gd::string response, gd::string tag);
-	void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag);
+	void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag) = win 0x1614b0;
 	void onGetGJRewardsCompleted(gd::string response, gd::string tag);
 	void onGetGJUserInfoCompleted(gd::string response, gd::string tag);
 	void onGetLeaderboardScoresCompleted(gd::string response, gd::string tag);
@@ -4849,7 +4849,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void setActiveSmartTemplate(GJSmartTemplate*);
 	void setBoolForKey(bool, char const*);
 	void setDiffVal(int, bool) = win 0x1624c0;
-	void setFolderName(int, gd::string, bool);
+	void setFolderName(int, gd::string, bool) = m1 0x493740, imac 0x541790;
 	void setIntForKey(int, char const*);
 	void setLenVal(int, bool) = win 0x1625b0;
 	void setLevelFeatured(int, int, bool);
