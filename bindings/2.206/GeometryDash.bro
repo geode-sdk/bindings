@@ -6345,40 +6345,73 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
 [[link(android)]]
 class GauntletNode : cocos2d::CCNode {
 	// virtual ~GauntletNode();
+	GauntletNode() {}
 
-	static GauntletNode* create(GJMapPack*);
+	static GauntletNode* create(GJMapPack* gauntlet) = win inline, imac 0x57a2f0, m1 0x4c64d0 {
+		auto ret = new GauntletNode();
+		if (ret->init(gauntlet)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn frameForType(GauntletType) = win 0x1ef420;
+	static gd::string frameForType(GauntletType) = win 0x1ef420, imac 0x57c810, m1 0x4c8adc;
 	bool init(GJMapPack*) = win 0x1edf90, imac 0x57abf0, m1 0x4c6d84;
-	static gd::string nameForType(GauntletType) = win 0x1f0590;
-	void onClaimReward();
+	static gd::string nameForType(GauntletType) = win 0x1f0590, imac 0x57c320, m1 0x4c84a0;
+	void onClaimReward() = win 0x1ef3e0, imac 0x57ab20, m1 0x4c6cd8;
+
+	cocos2d::CCNode* m_gauntletInfoNode;
+	cocos2d::CCNode* m_rewardNode;
 }
 
 [[link(android)]]
 class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelManagerDelegate {
 	// virtual ~GauntletSelectLayer();
+	GauntletSelectLayer() {}
 
-	static GauntletSelectLayer* create(int) = win 0x1ebc50;
+	static GauntletSelectLayer* create(int p0) = win inline, imac 0x578c50, m1 0x4c5010 {
+		auto ret = new GauntletSelectLayer();
+		if (ret->init(p0)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	void goToPage(int, bool);
+	void goToPage(int, bool) = win 0x1ed600, imac 0x57a7f0, m1 0x4c69b0;
 	bool init(int) = win 0x1ebd80, imac 0x578d40, m1 0x4c50d8;
-	void onBack(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onNext(cocos2d::CCObject* sender);
-	void onPlay(cocos2d::CCObject* sender);
-	void onPrev(cocos2d::CCObject* sender);
-	void onRefresh(cocos2d::CCObject* sender);
-	TodoReturn scene(int);
-	void setupGauntlets() = win 0x1ece70, imac 0x579a60,  m1 0x4c5cf8;
-	TodoReturn unblockPlay();
-	TodoReturn updateArrows();
+	void onBack(cocos2d::CCObject* sender) = win 0x1ed7b0, imac 0x579880, m1 0x4c5b24;
+	void onInfo(cocos2d::CCObject* sender) = win 0x1ec8f0, imac 0x5798f0, m1 0x4c5b98;
+	void onNext(cocos2d::CCObject* sender) = win 0x1ed5c0, imac 0x579860, m1 0x4c5b10;
+	void onPlay(cocos2d::CCObject* sender) = win 0x1ed870, imac 0x57a370, m1 0x4c6560;
+	void onPrev(cocos2d::CCObject* sender) = win 0x1ed5e0, imac 0x579840, m1 0x4c5afc;
+	void onRefresh(cocos2d::CCObject* sender) = win 0x1eca30, imac 0x5799a0, m1 0x4c5c50;
+	static cocos2d::CCScene* scene(int) = win 0x1ebc50, imac 0x578b30, m1 0x4c4f30;
+	void setupGauntlets() = win 0x1ece70, imac 0x579a60, m1 0x4c5cf8;
+	void unblockPlay() = win 0x1ed760, imac 0x57a8e0, m1 0x4c6aa4;
+	void updateArrows() = imac 0x579f80, m1 0x4c618c;
 
-	virtual void onExit() = m1 0x4c6d18, imac 0x57ab60;
+	virtual void onExit() = win 0x1edf40, m1 0x4c6d18, imac 0x57ab60;
 	virtual void keyBackClicked() = win 0x1ed860, m1 0x4c6bec, imac 0x57aa30;
 	virtual void scrollLayerWillScrollToPage(BoomScrollLayer*, int) = win 0x1ed770, m1 0x4c6b4c, imac 0x57a990;
-	virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int) = m1 0x4c6aac, imac 0x57a8f0;
+	virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int) = win 0x1ed770, m1 0x4c6aac, imac 0x57a8f0;
 	virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x1ecb50, m1 0x4c61dc, imac 0x579fd0;
 	virtual void loadLevelsFailed(char const*, int) = win 0x1ecd00, m1 0x4c6374, imac 0x57a180;
+
+	cocos2d::CCSprite* m_backgroundSprite;
+	BoomScrollLayer* m_scrollLayer;
+	CCMenuItemSpriteExtra* m_leftButton;
+	CCMenuItemSpriteExtra* m_rightButton;
+	CCMenuItemSpriteExtra* m_refreshButton;
+	bool m_exiting;
+	bool m_playing;
+	TextArea* m_tryAgainText;
+	LoadingCircle* m_loadingCircle;
+	cocos2d::CCDictionary* m_gauntlets;
+	bool m_playBlocked;
 }
 
 [[link(android)]]
