@@ -4899,7 +4899,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCDictionary* m_onlineLevels;
 	cocos2d::CCDictionary* m_unkDict;
 	cocos2d::CCDictionary* m_followedCreators;
-	cocos2d::CCDictionary* m_GLM21;
+	cocos2d::CCDictionary* m_favoriteLists;
 	cocos2d::CCDictionary* m_downloadedLevels;
 	cocos2d::CCDictionary* m_likedLevels;
 	cocos2d::CCDictionary* m_ratedLevels;
@@ -5194,7 +5194,7 @@ class GameManager : GManager {
 	TodoReturn likeFacebook();
 	void loadBackground(int) = win 0x179870, imac 0x384b90, m1 0x30e7ec;
 	void loadBackgroundAsync(int);
-	
+
 	void loadDeathEffect(int id) = imac 0x384a10, m1 0x30e674, win inline {
 		if (id < 1) id = 1;
 		if (id > 19) id = 20;
@@ -5279,7 +5279,7 @@ class GameManager : GManager {
 	void showInterstitialForced();
 	void showMainMenuAd();
 	void startUpdate() = ios 0x322c1c;
-	TodoReturn stringForCustomObject(int);
+	gd::string stringForCustomObject(int customObjectID) = win 0x17a940;
 	TodoReturn subYouTube();
 	TodoReturn switchCustomObjects(int, int);
 	TodoReturn switchScreenMode(bool, bool);
@@ -5288,7 +5288,7 @@ class GameManager : GManager {
 	TodoReturn tryCacheAd();
 	TodoReturn tryShowInterstitial(int, int, int);
 	TodoReturn unloadBackground();
-	void unloadIcon(int, int, int);
+	void unloadIcon(int, int, int) = win 0x1791d0, imac 0x383f80, m1 0x30dc24;
 	void unloadIcons(int);
 	TodoReturn unlockColor(int, UnlockType);
 	TodoReturn unlockedPremium();
@@ -5530,7 +5530,7 @@ class GameObject : CCSpritePlus {
 	void deselectObject(); // = win 0x141b70; actually updateObjectEditorColor, source: LevelEditorLayer::updateVisibility
 	inline void destroyObject() {
 		m_unk34a = true;
-		m_unk292 = true;
+		m_unk306 = true;
 		setOpacity(0);
 	}
 	void determineSlopeDirection() = win 0x192300, imac 0x5c6ad0;
@@ -5555,7 +5555,7 @@ class GameObject : CCSpritePlus {
 	gd::string getColorKey(bool, bool);
 	TodoReturn getCustomZLayer();
 	TodoReturn getGlowFrame(gd::string);
-	TodoReturn getGroupDisabled();
+	TodoReturn getGroupDisabled() = m1 0x4f660c, imac 0x5c73e0;
 	TodoReturn getGroupID(int) = imac 0x5c7080;
 	TodoReturn getGroupString();
 	TodoReturn getLastPosition() = imac 0x5d3a00;
@@ -5754,8 +5754,7 @@ class GameObject : CCSpritePlus {
 
 	// windows members may be wrong! yay!
 
-	PAD = android32 0x5, win 0x3, android64 0x5, mac 0x5; // i will not question the windows pad
-
+	int m_someOtherIndex;
 	int m_innerSectionIndex;
 	int m_outerSectionIndex;
 	int m_middleSectionIndex;
@@ -5768,7 +5767,23 @@ class GameObject : CCSpritePlus {
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
 
-	PAD = android32 0x4c, win 0x54, android64 0x54, mac 0x54;
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
+
+	float m_positionXOffset;
+	float m_positionYOffset;
+
+	float m_rotationXOffset;
+
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
+
+	float m_rotationYOffset;
+
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
+
+	float m_scaleXOffset;
+	float m_scaleYOffset;
+
+	PAD = android32 0x28, win 0x30, android64 0x30, mac 0x30;
 
 	cocos2d::CCSprite* m_glowSprite;
 
