@@ -2277,8 +2277,16 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 		m_versusDialogIndex = 0;
 	}
 
-	static CreatorLayer* create() = ios 0xb7504;
-	static cocos2d::CCScene* scene() = win 0x9a190, ios 0xb74ac;
+	static CreatorLayer* create() = win inline, imac 0x2933e0, m1 0x236598, ios 0xb7504 {
+		auto ret = new CreatorLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static cocos2d::CCScene* scene() = win 0x9a190, imac 0x2932c0, m1 0x2364b4, ios 0xb74ac;
 
 	TodoReturn canPlayOnlineLevels();
 	TodoReturn checkQuestsStatus() = win 0x9d810, ios 0xb8a08;
