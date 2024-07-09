@@ -9799,12 +9799,15 @@ class HSVWidgetDelegate {
 class HSVWidgetPopup : FLAlertLayer {
 	// virtual ~HSVWidgetPopup();
 
-	static HSVWidgetPopup* create(cocos2d::ccHSVValue, HSVWidgetDelegate*, gd::string);
+	static HSVWidgetPopup* create(cocos2d::ccHSVValue, HSVWidgetDelegate*, gd::string) = win 0x94c00, m1 0x3abab4, imac 0x439140;
 
-	bool init(cocos2d::ccHSVValue, HSVWidgetDelegate*, gd::string);
-	void onClose(cocos2d::CCObject* sender);
+	bool init(cocos2d::ccHSVValue, HSVWidgetDelegate*, gd::string) = win 0x94d20, m1 0x3abc74, imac 0x439340;
+	void onClose(cocos2d::CCObject* sender) = win 0x95050, m1 0x3abfa0, imac 0x4396b0;
 
 	virtual void keyBackClicked() = win 0x95130, m1 0x3ac170, imac 0x4398a0;
+
+	ConfigureHSVWidget* m_widget;
+	HSVWidgetDelegate* m_delegate;
 }
 
 [[link(android)]]
