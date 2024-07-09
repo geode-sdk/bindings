@@ -2969,8 +2969,8 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-	EditLevelLayer() = win inline, imac inline, m1 inline {}
-	virtual ~EditLevelLayer() = m1 0x1a7544, win 0xd1980, imac 0x1f42c0;
+	EditLevelLayer() {}
+	virtual ~EditLevelLayer() = win 0xd1980, imac 0x1f42c0, m1 0x1a7544;
 
 	static EditLevelLayer* create(GJGameLevel* level) = win inline, imac 0x1f45e0, m1 0x1a7680 {
 		auto ret = new EditLevelLayer();
@@ -2982,32 +2982,32 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 		return nullptr;
 	}
 
-	TodoReturn closeTextInputs();
-	void confirmClone(cocos2d::CCObject*);
-	void confirmDelete(cocos2d::CCObject*);
-	void confirmMoveToTop(cocos2d::CCObject*);
+	void closeTextInputs() = win 0xd3cd0, imac 0x1f7980, m1 0x1aa858;
+	void confirmClone(cocos2d::CCObject*) = win 0xd5ad0, imac 0x1f7150, m1 0x1aa014;
+	void confirmDelete(cocos2d::CCObject*) = win 0xd5330, imac 0x1f6f90, m1 0x1a9e54;
+	void confirmMoveToTop(cocos2d::CCObject*) = win 0xd5bf0, imac 0x1f7220, m1 0x1aa0ec;
 	bool init(GJGameLevel*) = win 0xd1c80, imac 0x1f4710, m1 0x1a7764;
-	void onBack(cocos2d::CCObject* sender);
-	void onClone();
-	void onDelete();
-	void onEdit(cocos2d::CCObject* sender);
-	void onGuidelines(cocos2d::CCObject* sender);
-	void onHelp(cocos2d::CCObject* sender);
-	void onLevelInfo(cocos2d::CCObject* sender) = win 0xd3270;
-	void onLevelLeaderboard(cocos2d::CCObject* sender);
-	void onLowDetailMode(cocos2d::CCObject* sender);
-	void onMoveToTop();
-	void onPlay(cocos2d::CCObject* sender);
-	void onSetFolder(cocos2d::CCObject* sender) = win 0xd5d20;
-	void onShare(cocos2d::CCObject* sender) = win 0xd4c80, m1 0x1a90d4, ios 0xebd04, imac 0x1f61c0;
-	void onTest(cocos2d::CCObject* sender);
-	void onUpdateDescription(cocos2d::CCObject* sender);
-	TodoReturn playStep2();
-	TodoReturn playStep3();
+	void onBack(cocos2d::CCObject* sender) = win 0xd5e40, imac 0x1f73f0, m1 0x1aa2b8;
+	void onClone() = imac 0x1f8a70, m1 0x1ab8d8;
+	void onDelete() = imac 0x1f87c0, m1 0x1ab60c;
+	void onEdit(cocos2d::CCObject* sender) = win 0xd4af0, imac 0x1f5f30, m1 0x1a8e3c;
+	void onGuidelines(cocos2d::CCObject* sender) = win 0xd3050, imac 0x1f78a0, m1 0x1aa77c;
+	void onHelp(cocos2d::CCObject* sender) = win 0xd59b0, imac 0x1f7080, m1 0x1a9f3c;
+	void onLevelInfo(cocos2d::CCObject* sender) = win 0xd3270, imac 0x1f75c0, m1 0x1aa488;
+	void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0xd31c0, imac 0x1f73a0, m1 0x1aa274;
+	void onLevelOptions(cocos2d::CCObject* sender) = win 0xd3240, imac 0x1f7960, m1 0x1aa838;
+	void onMoveToTop() = imac 0x1f8b60, m1 0x1ab9b8;
+	void onPlay(cocos2d::CCObject* sender) = win 0xd4690, imac 0x1f6080, m1 0x1a8f80;
+	void onSetFolder(cocos2d::CCObject* sender) = win 0xd5d20, imac 0x1f7300, m1 0x1aa1cc;
+	void onShare(cocos2d::CCObject* sender) = win 0xd4c80, imac 0x1f61c0, m1 0x1a90d4, ios 0xebd04;
+	void onTest(cocos2d::CCObject* sender) = imac 0x1f8720, m1 0x1ab57c;
+	void onUpdateDescription(cocos2d::CCObject* sender) = win 0xd49c0, imac 0x1f6eb0, m1 0x1a9d74;
+	void playStep2() = win 0xd4850, imac 0x1f8610, m1 0x1ab46c;
+	void playStep3() = win 0xd4930, imac 0x1f86d0, m1 0x1ab52c;
 	static cocos2d::CCScene* scene(GJGameLevel*) = win 0xd1af0, imac 0x1f4480, m1 0x1a757c;
-	void setupLevelInfo();
-	TodoReturn updateDescText(char const*);
-	TodoReturn verifyLevelName();
+	void setupLevelInfo() = win 0xd3490, imac 0x1f66e0, m1 0x1a9554;
+	void updateDescText(char const*) = imac 0x1f5f20, m1 0x1a8e38;
+	void verifyLevelName() = win 0xd5ff0, imac 0x1f80c0, m1 0x1aaf90;
 
 	virtual void keyBackClicked() = win 0xd62d0, m1 0x1abb90, imac 0x1f8d50;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0xd62e0, m1 0x1abb9c, imac 0x1f8d80;
@@ -3022,13 +3022,12 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 
 	cocos2d::CCMenu* m_buttonMenu;
 	GJGameLevel* m_level;
-	TextArea* m_descriptionInput;
-	cocos2d::CCArray* m_someArray;
+	cocos2d::CCArray* m_textInputs;
 	cocos2d::CCLabelBMFont* m_folderLabel;
-	bool m_unk;
-	bool m_lowDetailModeTriggered;
+	bool m_exiting;
 	GJLevelType m_levelType;
-	PAD = win 0x1c;
+	gd::string m_levelName;
+	UploadActionPopup* m_descriptionPopup;
 }
 
 [[link(android)]]
