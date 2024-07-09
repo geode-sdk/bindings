@@ -11311,12 +11311,12 @@ class LoadingCircle : cocos2d::CCLayerColor {
 	}
 
 	virtual bool init() = win 0x6a4c0, m1 0x4281f8, imac 0x4c8f30, ios 0x3a3394;
-	virtual void draw() = m1 0x42845c, ios 0x3a35f8, imac 0x4c9180;
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x4286c8, imac 0x4c9400;
+	virtual void draw() = win 0x6a740, m1 0x42845c, ios 0x3a35f8, imac 0x4c9180;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x4286c8, imac 0x4c9400 { return true; }
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
-	virtual void registerWithTouchDispatcher() = m1 0x42846c, ios 0x3a3608, imac 0x4c91a0;
+	virtual void registerWithTouchDispatcher() = win 0x6a760, m1 0x42846c, ios 0x3a3608, imac 0x4c91a0;
 
 	inline void setParentLayer(cocos2d::CCLayer* layer) {
 		m_parentLayer = layer;
@@ -11331,12 +11331,23 @@ class LoadingCircle : cocos2d::CCLayerColor {
 class LoadingCircleSprite : cocos2d::CCSprite {
 	// virtual ~LoadingCircleSprite();
 
-	static LoadingCircleSprite* create();
+	static LoadingCircleSprite* create() = win 0x6a7b0, m1 0x4284a4, imac 0x4c91e0;
 
-	TodoReturn fadeInCircle(bool);
-	TodoReturn hideCircle();
+	void fadeInCircle(bool reverseOpacity) = win inline, m1 0x4285fc, imac 0x4c9350 {
+		this->stopActionByTag(0);
+		if (reverseOpacity) this->setOpacity(0);
+		this->setVisible(true);
+		auto fadeAction = cocos2d::CCFadeTo::create(.4f, 200);
+		fadeAction->setTag(0);
+		this->runAction(fadeAction);
+	}
+	void hideCircle() = win inline, m1 0x428680, imac 0x4c93c0 {
+		this->stopActionByTag(0);
+		this->setOpacity(0);
+		this->setVisible(false);
+	}
 
-	virtual bool init() = m1 0x428590, ios 0x3a36e0, imac 0x4c92e0;
+	virtual bool init() = win 0x6a840, m1 0x428590, imac 0x4c92e0, ios 0x3a36e0;
 }
 
 [[link(android)]]
