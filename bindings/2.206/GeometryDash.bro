@@ -883,7 +883,7 @@ class CCCountdown : cocos2d::CCSprite {
 	static CCCountdown* create();
 
 	TodoReturn lapFinished();
-	TodoReturn startTimerWithSeconds(float, cocos2d::SEL_CallFunc, cocos2d::CCNode*);
+	void startTimerWithSeconds(float, cocos2d::SEL_CallFunc, cocos2d::CCNode*);
 
 	virtual bool init() = m1 0x6d7a88, imac 0x7d32c0;
 	virtual void setOpacity(unsigned char) = m1 0x6d7e38, imac 0x7d3690;
@@ -9681,11 +9681,11 @@ class GradientTriggerObject : EffectGameObject {
 class GraphicsReloadLayer : cocos2d::CCLayer {
 	// virtual ~GraphicsReloadLayer();
 
-	static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
+	static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool);
 
-	bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
+	bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool);
 	TodoReturn performReload();
-	static cocos2d::CCScene* scene(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool);
+	static cocos2d::CCScene* scene(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool);
 }
 
 [[link(android)]]
