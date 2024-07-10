@@ -16724,17 +16724,17 @@ class TextArea : cocos2d::CCSprite {
 	int m_unknown;
 	gd::string m_fontFile;
 	float m_height;
-	bool m_unk1;
+	bool m_unkBool;
 	cocos2d::CCPoint m_anchorPoint;
 	bool m_visible;
 	float m_scale;
 	int m_rectHeight;
 	int m_rectWidth;
-	float m_unk2;
-	cocos2d::CCPoint m_unk3;
+	float m_maxWidth;
+	cocos2d::CCPoint m_unkPoint;
 	TextAreaDelegate* m_delegate;
-	void* m_unk4;
-	float m_unk5;
+	cocos2d::CCDictionary* m_fadeCharacters;
+	float m_elapsed;
 }
 
 [[link(android)]]
