@@ -6,19 +6,19 @@ class cocos2d::CCEGLViewProtocol {
     auto getScaleX() const;
     auto getScaleY() const;
 
-	virtual cocos2d::CCSize const& getFrameSize() const = m1 0x46da58;
-	virtual void setFrameSize(float, float) = m1 0x46da60;
-	virtual cocos2d::CCSize getVisibleSize() const = m1 0x46daa4;
-	virtual cocos2d::CCPoint getVisibleOrigin() const = m1 0x46dad4;
-	virtual void setDesignResolutionSize(float, float, ResolutionPolicy) = m1 0x46d938;
-	virtual cocos2d::CCSize const& getDesignResolutionSize() const = m1 0x46da50;
-	virtual void setTouchDelegate(cocos2d::EGLTouchDelegate*) = m1 0x46db20, imac 0x518010;
-	virtual void setViewPortInPoints(float, float, float, float) = m1 0x46db28;
-	virtual void setScissorInPoints(float, float, float, float) = m1 0x46db54;
-	virtual bool isScissorEnabled() = m1 0x46db80;
-	virtual cocos2d::CCRect getScissorRect() = m1 0x46dba0;
-	virtual void setViewName(char const*) = m1 0x46dc30;
-	virtual void pollInputEvents() = m1 0x46e32c;
+	virtual cocos2d::CCSize const& getFrameSize() const = m1 0x46da58, ios 0x2f78d4;
+	virtual void setFrameSize(float, float) = m1 0x46da60, ios 0x2f78dc;
+	virtual cocos2d::CCSize getVisibleSize() const = m1 0x46daa4, ios 0x2f7920;
+	virtual cocos2d::CCPoint getVisibleOrigin() const = m1 0x46dad4, ios 0x2f7950;
+	virtual void setDesignResolutionSize(float, float, ResolutionPolicy) = m1 0x46d938, ios 0x2f77b8;
+	virtual cocos2d::CCSize const& getDesignResolutionSize() const = m1 0x46da50, ios 0x2f78cc;
+	virtual void setTouchDelegate(cocos2d::EGLTouchDelegate*) = m1 0x46db20, imac 0x518010, ios 0x2f799c;
+	virtual void setViewPortInPoints(float, float, float, float) = m1 0x46db28, ios 0x2f79a4;
+	virtual void setScissorInPoints(float, float, float, float) = m1 0x46db54, ios 0x2f79d0;
+	virtual bool isScissorEnabled() = m1 0x46db80, ios 0x2f79fc;
+	virtual cocos2d::CCRect getScissorRect() = m1 0x46dba0, ios 0x2f7a1c;
+	virtual void setViewName(char const*) = m1 0x46dc30, ios 0x2f7aac;
+	virtual void pollInputEvents() = m1 0x46e32c, ios 0x2f7ac8;
 }
 
 [[link(win, android)]]
