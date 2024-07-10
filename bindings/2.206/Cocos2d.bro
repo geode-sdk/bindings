@@ -916,9 +916,9 @@ class cocos2d::CCLayer {
 	void unregisterScriptKeypadHandler();
 
 	virtual bool init() = m1 0x41b670, imac 0x4ba5c0, ios 0x153204;
-	virtual void onEnter() = m1 0x41bf40, imac 0x4baeb0;
-	virtual void onEnterTransitionDidFinish() = m1 0x41c0c4, imac 0x4bb040;
-	virtual void onExit() = m1 0x41c004, imac 0x4baf70;
+	virtual void onEnter() = m1 0x41bf40, imac 0x4baeb0, ios 0x1538f0;
+	virtual void onEnterTransitionDidFinish() = m1 0x41c0c4, imac 0x4bb040, ios 0x153a84;
+	virtual void onExit() = m1 0x41c004, imac 0x4baf70, ios 0x1539bc;
 	virtual void registerWithTouchDispatcher() = m1 0x41b7d4, imac 0x4ba740;
 	virtual void registerScriptTouchHandler(int, bool, int, bool) = m1 0x41b848, imac 0x4ba7c0, ios 0x153340;
 	virtual void unregisterScriptTouchHandler() = m1 0x41b8a8, imac 0x4ba820, ios 0x1533a0;
@@ -951,10 +951,10 @@ class cocos2d::CCLayer {
 
 	virtual void didAccelerate(cocos2d::CCAcceleration*) = m1 0x41bb2c, imac 0x4baa90, ios 0x1535d4;
 
-	virtual void keyBackClicked() = m1 0x41bd98, imac 0x4bad10, ios 0x1537c8;
-	virtual void keyMenuClicked() = m1 0x41be40, imac 0x4badb0, ios 0x153824;
+	virtual void keyBackClicked() = m1 0x41bd98, imac 0x4bad10, ios 0x1537c8, ios 0x1537c8;
+	virtual void keyMenuClicked() = m1 0x41be40, imac 0x4badb0, ios 0x153824, ios 0x153824;
 
-	virtual void keyDown(cocos2d::enumKeyCodes) = m1 0x41bed0, imac 0x4bae30;
+	virtual void keyDown(cocos2d::enumKeyCodes) = m1 0x41bed0, imac 0x4bae30, ios 0x1538b4;
 }
 
 [[link(win, android)]]
