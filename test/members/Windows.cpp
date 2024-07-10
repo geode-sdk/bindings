@@ -34,6 +34,7 @@ GEODE_MEMBER_CHECK(PlayLayer, m_activatedCheckpoint, 0x3978);
 
 GEODE_SIZE_CHECK(LevelEditorLayer, 0x39e8);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3754);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x37a8);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x37d8);
 
 GEODE_SIZE_CHECK(DrawGridLayer, 0x280);
