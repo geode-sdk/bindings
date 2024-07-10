@@ -6061,10 +6061,10 @@ class GameStatsManager : cocos2d::CCNode {
 	void encodeDataTo(DS_Dictionary*) = win 0x1e5950;
 	void firstSetup();
 	TodoReturn generateItemUnlockableData() = m1 0x598fc;
-	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d62c0;
+	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d62c0, imac 0x702b0, m1 0x6421c;
 	TodoReturn getAwardedDiamondsForLevel(GJGameLevel*);
 	int getBaseCurrency(int stars, bool featured, int levelID);
-	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1d6020;
+	int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1d6020, imac 0x700e0, m1 0x63fe4;
 	TodoReturn getBaseDiamonds(int) = imac 0x709e0;
 	TodoReturn getBonusDiamonds(int);
 	GJChallengeItem* getChallenge(int) = win 0x1d76f0, ios 0x343c80;
@@ -6126,7 +6126,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool hasCompletedStarLevel(GJGameLevel*);
 	bool hasPendingUserCoin(char const*) = win 0x1d5a00, m1 0x63484, imac 0x6f5b0;
 	bool hasRewardBeenCollected(GJRewardType, int);
-	bool hasSecretCoin(char const*) = win 0x1d5ac0;
+	bool hasSecretCoin(char const*) = win 0x1d5ac0, imac 0x6cd6, m1 0x60c9c;
 	bool hasUserCoin(char const*) = win 0x1d5880, m1 0x6356c, imac 0x6f690;
 	TodoReturn incrementActivePath(int);
 	TodoReturn incrementChallenge(GJChallengeType, int) = win 0x1d7970;
