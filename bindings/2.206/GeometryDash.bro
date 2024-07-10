@@ -9782,8 +9782,8 @@ class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
 	HSVLiveOverlay() {
 		m_object = nullptr;
 		m_objects = nullptr;
-		m_unkArray1 = nullptr;
-		m_unkArray2 = nullptr;
+		m_controls = nullptr;
+		m_unkArray = nullptr;
 		m_delegate = nullptr;
 		m_activeTab = -1;
 		m_widget = nullptr;
