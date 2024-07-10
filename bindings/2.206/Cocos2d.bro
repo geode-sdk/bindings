@@ -2182,7 +2182,7 @@ class cocos2d::CCMenu {
 	virtual void addChild(cocos2d::CCNode*, int, int) = m1 0x6a7110, imac 0x79ec30;
 	virtual void removeChild(cocos2d::CCNode*, bool) = m1 0x6a71b8, imac 0x79ecd0;
 	virtual void onExit() = m1 0x6a7170, imac 0x79ec80;
-	virtual void registerWithTouchDispatcher() = m1 0x6a726c;
+	virtual void registerWithTouchDispatcher() = m1 0x6a726c, imac 0x79ed80;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a72c8, imac 0x79edd0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a75b0, imac 0x79f080;
