@@ -1459,6 +1459,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_usePasswordChar = false;
 		m_forceOffset = false;
 		m_textArea = nullptr;
+		m_valueType = (InputValueType)0;
+		m_decimalPlaces = 0;
+		m_kerningAmount = 0;
 	}
 
 	static CCTextInputNode* create(float, float, char const*, char const*, int, char const*) = win 0x4e270, imac 0x9d950, m1 0x8da20, ios 0x178444;
@@ -1493,7 +1496,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		m_placeholderColor = color;
 		this->refreshLabel();
 	}
-	void setAllowedChars(gd::string filter) = ios 0x178b2c {
+	void setAllowedChars(gd::string filter) = win inline, m1 0x8e3f8, imac 0x9e3d0, ios 0x178b2c {
 		m_allowedChars = filter;
 	}
 	cocos2d::CCLabelBMFont* getPlaceholderLabel() {
@@ -1502,7 +1505,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 
 	void addTextArea(TextArea*) = win 0x4e6c0, imac 0x9de60, m1 0x8dec4;
 	void forceOffset() = imac 0xa02c0, m1 0x8ff44;
-	gd::string getString() = ios 0x178c4c {
+	gd::string getString() = win inline, m1 0x8e57c, imac 0x9e560, ios 0x178c4c {
 		return m_textField->getString();
 	}
 	bool init(float, float, char const*, char const*, int, char const*) = win 0x4e480, imac 0x9db00, m1 0x8db78, ios 0x1784f8;
@@ -1512,12 +1515,12 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		this->refreshLabel();
 	}
 	void setString(gd::string) = win 0x4e920, imac 0x9e450, m1 0x8e45c, ios 0x178b90;
-	void updateBlinkLabel() = win inline {
+	void updateBlinkLabel() = win inline, m1 0x8e818, imac 0x9e820 {
 		this->updateBlinkLabelToChar(this->m_textField->m_uCursorPos);
 	}
 	void updateBlinkLabelToChar(int) = win 0x4efa0, imac 0x9e8e0, m1 0x8e860;
 	void updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x4fee0, m1 0x8ff48, imac 0xa02d0, ios 0x179ffc;
-	void updateDefaultFontValues(gd::string) = win 0x4e7b0;
+	void updateDefaultFontValues(gd::string) = win 0x4e7b0, m1 0x8de1c, imac 0x9ddc0;
 	void updateLabel(gd::string) = win 0x4e9c0, imac 0x9e0c0, m1 0x8e134, ios 0x178894;
 
 	virtual void visit() = win 0x4e8b0, m1 0x8e400, imac 0x9e3f0, ios 0x178b34;
@@ -1557,7 +1560,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	bool m_usePasswordChar;
 	bool m_forceOffset;
 	TextArea* m_textArea;
-	PAD = android32 0xc, android64 0x10, win 0x10, m1 0x10, imac 0x10;
+	InputValueType m_valueType;
+	int m_decimalPlaces;
+	int m_kerningAmount;
 }
 
 [[link(android)]]
