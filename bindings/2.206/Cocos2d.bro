@@ -2354,8 +2354,8 @@ class DS_Dictionary {
 	cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
 	gd::vector<gd::string> getAllKeys();
 	cocos2d::CCArray* getArrayForKey(char const*, bool) = m1 0x14497c, imac 0x17c470;
-	bool getBoolForKey(char const*);
-	cocos2d::CCDictionary* getDictForKey(char const*, bool);
+	bool getBoolForKey(char const*) = imac 0x1791d0;
+	cocos2d::CCDictionary* getDictForKey(char const*, bool) = imac 0x17d470;
 	float getFloatForKey(char const*);
 	unsigned int getIndexOfKey(char const*);
 	unsigned int getIndexOfKeyWithClosestAlphaNumericalMatch(char const*);
@@ -2366,7 +2366,7 @@ class DS_Dictionary {
 	gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
 	cocos2d::CCRect getRectForKey(char const*);
 	gd::vector<gd::string> getStringArrayForKey(char const*);
-	gd::string getStringForKey(char const*);
+	gd::string getStringForKey(char const*) = imac 0x179410;
 	gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
 	cocos2d::CCPoint getVec2ForKey(char const*);
 	bool loadRootSubDictFromCompressedFile(char const*);
