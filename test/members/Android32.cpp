@@ -140,9 +140,6 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x184);
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x16c);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 
-GEODE_MEMBER_CHECK(GameLevelManager, m_dailyID, 0x15c);
-GEODE_MEMBER_CHECK(GameLevelManager, m_storedUserInfo, 0x1c4);
-
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
 GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x1c0);
