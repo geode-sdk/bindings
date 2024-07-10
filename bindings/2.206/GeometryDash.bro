@@ -2038,13 +2038,13 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	TodoReturn incrementDislikes();
 	TodoReturn incrementLikes();
 	void loadFromComment(GJComment*) = win 0xb3790, imac 0x242fa0, m1 0x1edab0;
-	void onConfirmDelete(cocos2d::CCObject* sender) = win 0xb5be0;
+	void onConfirmDelete(cocos2d::CCObject* sender) = win 0xb5be0, imac 0x250bc0;
 	TodoReturn onDelete();
-	void onGoToLevel(cocos2d::CCObject* sender);
-	void onLike(cocos2d::CCObject* sender) = win 0xb5980;
+	void onGoToLevel(cocos2d::CCObject* sender) = imac 0x2509f0;
+	void onLike(cocos2d::CCObject* sender) = win 0xb5980, imac 0x250ac0;
 	TodoReturn onUndelete();
-	void onUnhide(cocos2d::CCObject* sender);
-	void onViewProfile(cocos2d::CCObject* sender);
+	void onUnhide(cocos2d::CCObject* sender) = imac 0x250aa0;
+	void onViewProfile(cocos2d::CCObject* sender) = imac 0x2509c0;
 	void updateBGColor(int);
 	void updateLabelValues();
 
@@ -4594,7 +4594,7 @@ class GameLevelManager : cocos2d::CCNode {
 	}
 
 	void acceptFriendRequest(int, int);
-	int accountIDForUserID(int userID);
+	int accountIDForUserID(int userID) = imac 0x5359a0;
 	void addDLToActive(char const*) = win 0x1445c0;
 	bool areGauntletsLoaded();
 	void banUser(int);
@@ -4711,7 +4711,7 @@ class GameLevelManager : cocos2d::CCNode {
 	GJLevelList* getSavedLevelList(int);
 	cocos2d::CCArray* getSavedLevelLists(int);
 	cocos2d::CCArray* getSavedLevels(bool, int) = win 0x1428f0, imac 0x53bed0, m1 0x48e4e0;
-	TodoReturn getSavedMapPack(int);
+	TodoReturn getSavedMapPack(int) = imac 0x5485f0;
 	cocos2d::CCScene* getSearchScene(char const*);
 	int getSplitIntFromKey(char const*, int);
 	cocos2d::CCArray* getStoredLevelComments(char const*) = win 0x157b80;
@@ -4884,7 +4884,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void storeUserNames(gd::string usernameString);
 	void submitUserInfo();
 	void suggestLevelStars(int, int, int);
-	gd::string tryGetUsername(int) = win 0x141660;
+	gd::string tryGetUsername(int) = win 0x141660, imac 0x5354a0;
 	CommentType typeFromCommentKey(char const*);
 	LikeItemType typeFromLikeKey(char const*);
 	void unblockUser(int);
@@ -4905,7 +4905,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void uploadUserMessage(int, gd::string, gd::string) = win 0x155010, imac 0x556070, m1 0x4a5270;
 	int userIDForAccountID(int);
 	GJUserScore* userInfoForAccountID(int);
-	gd::string userNameForUserID(int) = win 0x1414e0;
+	gd::string userNameForUserID(int) = win 0x1414e0, imac 0x535320;
 	void verifyLevelState(GJGameLevel*);
 	gd::string writeSpecialFilters(GJSearchObject*) = win 0x1481b0;
 
@@ -10240,7 +10240,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	TodoReturn deleteSelected();
 	TodoReturn exitLayer(cocos2d::CCObject*);
 	cocos2d::CCArray* getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*) = win 0x2bb8f0;
-	gd::string getSearchTitle() = win 0x2b8750;
+	gd::string getSearchTitle() = win 0x2b8750, imac 0x4993a0;
 	bool init(GJSearchObject*) = win 0x2b57d0, m1 0x3f8fc4, imac 0x494360, ios 0x41d238;
 	bool isCorrect(char const*) = win 0x2b70e0;
 	void loadPage(GJSearchObject*) = win 0x2b72b0, m1 0x3fc3cc, imac 0x497710;
@@ -11284,12 +11284,12 @@ class LikeItemDelegate {
 class LikeItemLayer : FLAlertLayer {
 	// virtual ~LikeItemLayer();
 
-	static LikeItemLayer* create(LikeItemType, int, int) = win 0x30d400;
+	static LikeItemLayer* create(LikeItemType, int, int) = win 0x30d400, imac 0x603930;
 
-	bool init(LikeItemType, int, int) = win 0x30d500;
-	void onClose(cocos2d::CCObject* sender);
-	void onDislike(cocos2d::CCObject* sender) = win 0x30d8e0;
-	void onLike(cocos2d::CCObject* sender) = win 0x30d8d0;
+	bool init(LikeItemType, int, int) = win 0x30d500, imac 0x603aa0;
+	void onClose(cocos2d::CCObject* sender) = imac 0x603e70;
+	void onDislike(cocos2d::CCObject* sender) = win 0x30d8e0, imac 0x603f20;
+	void onLike(cocos2d::CCObject* sender) = win 0x30d8d0, imac 0x603ea0;
 	void triggerLike(bool isLiked) = win 0x30d8f0;
 
 	virtual void keyBackClicked() = m1 0x52a750, imac 0x604020;
