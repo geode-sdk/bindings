@@ -1504,10 +1504,10 @@ class cocos2d::CCNodeRGBA {
 	virtual unsigned char getDisplayedOpacity() = m1 0x217380, imac 0x2712c0;
 	virtual unsigned char getOpacity() = m1 0x217370, imac 0x2712a0;
 	virtual void setOpacity(unsigned char) = m1 0x217390, imac 0x2712e0;
-	virtual bool isCascadeColorEnabled() = m1 0x217968, imac 0x2719c0;
+	virtual bool isCascadeColorEnabled() = m1 0x217968, imac 0x2719c0, ios 0x24d9b4;
 	virtual void setCascadeColorEnabled(bool) = m1 0x217978, imac 0x2719e0;
 	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = m1 0x217854, imac 0x2717a0;
-	virtual bool isCascadeOpacityEnabled() = m1 0x217688, imac 0x2715b0;
+	virtual bool isCascadeOpacityEnabled() = m1 0x217688, imac 0x2715b0, ios 0x24d79c;
 	virtual void setCascadeOpacityEnabled(bool) = m1 0x217698, imac 0x2715d0;
 	virtual void updateDisplayedOpacity(unsigned char) = m1 0x2174e8, imac 0x271420;
 }
@@ -1748,7 +1748,7 @@ class cocos2d::CCArray {
 	cocos2d::CCObject* randomObject();
 	void recreateNewIndexes();
 	void reduceMemoryFootprint();
-	// void removeAllObjects() = m1 0x63ff34;
+	// void removeAllObjects() = m1 0x63ff34, ios 0x259d00;
 	// void removeLastObject(bool) = imac 0x72d440;
 	void removeObject(cocos2d::CCObject*, bool) = m1 0x63ff10, imac 0x72d460;
 	// void removeObjectAtIndex(unsigned int, bool) = m1 0x63ff18, ios 0x259CF0;
