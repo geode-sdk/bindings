@@ -173,12 +173,12 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn getAllAchievements();
 	cocos2d::CCArray* getAllAchievementsSorted(bool) = win 0x38d20;
 	bool isAchievementAvailable(gd::string);
-	bool isAchievementEarned(char const* ach) = win 0x38c40, ios 0xe9c90, imac 0x790ad0;
+	bool isAchievementEarned(char const* ach) = win 0x38c40, ios 0xe9c90, imac 0x790ad0, m1 0x697604;
 	TodoReturn limitForAchievement(gd::string);
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
 	TodoReturn notifyAchievementWithID(char const*);
 	TodoReturn percentageForCount(int, int);
-	int percentForAchievement(char const*) = imac 0x790af0, win 0x38c60;
+	int percentForAchievement(char const*) = imac 0x790af0, m1 0x697620, win 0x38c60;
 	void reportAchievementWithID(char const*, int, bool); //win: inlined
 	void reportPlatformAchievementWithID(char const*, int);
 	void resetAchievement(char const*);
