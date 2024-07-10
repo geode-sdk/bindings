@@ -884,7 +884,7 @@ class cocos2d::CCScheduler {
 	void resumeTargets(cocos2d::CCSet*);
 	unsigned int scheduleScriptFunc(unsigned int, float, bool);
 	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool) = imac 0x44b680, m1 0x3bcbb4;
-	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool) = imac 0x44b660;
+	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool) = imac 0x44b660, m1 0x3bcba4;
 	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool) = imac 0x44c260;
 	void unscheduleAll();
 	void unscheduleAllForTarget(cocos2d::CCObject*);
