@@ -16754,32 +16754,41 @@ class TextArea : cocos2d::CCSprite {
 
 	static TextArea* create(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = win 0x75960, m1 0x2b0bf8, imac 0x320310, ios 0xf7ed8;
 
-	TodoReturn colorAllCharactersTo(cocos2d::ccColor3B);
-	TodoReturn colorAllLabels(cocos2d::ccColor3B);
-	TodoReturn fadeIn(float, bool);
-	TodoReturn fadeInCharacters(float, float);
-	TodoReturn fadeOut(float);
-	TodoReturn fadeOutAndRemove();
-	TodoReturn finishFade();
-	void hideAll() = ios 0xf8380;
-	bool init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = ios 0xf8004;
-	void setIgnoreColorCode(bool);
+	void colorAllCharactersTo(cocos2d::ccColor3B) = win 0x76110, imac 0x320fb0, m1 0x2b1814;
+	void colorAllLabels(cocos2d::ccColor3B) = imac 0x321060, m1 0x2b18d8;
+	void fadeIn(float, bool) = imac 0x320c80, m1 0x2b14c8;
+	void fadeInCharacters(float, float) = win 0x763a0, imac 0x3212a0, m1 0x2b1aac;
+	void fadeOut(float) = imac 0x320e40, m1 0x2b16a0;
+	void fadeOutAndRemove() = imac 0x320de0, m1 0x2b1630;
+	void finishFade() = win 0x760b0, imac 0x320db0, m1 0x2b160c;
+	void hideAll() = imac 0x320a10, m1 0x2b1244, ios 0xf8380;
+	bool init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = imac 0x320530, m1 0x2b0df0, ios 0xf8004;
+	void setIgnoreColorCode(bool) = imac 0x3209f0, m1 0x2b1230;
 	void setString(gd::string) = win 0x75ba0, imac 0x320680, m1 0x2b0f30, ios 0xf80fc;
-	void showAll();
-	TodoReturn stopAllCharacterActions();
+	void showAll() = imac 0x320ba0, m1 0x2b13e4;
+	void stopAllCharacterActions() = win 0x75ff0, imac 0x320ae0, m1 0x2b131c;
 
-	virtual void update(float) = m1 0x2b1950, imac 0x3210f0;
+	virtual void update(float) = win 0x761c0, m1 0x2b1950, imac 0x3210f0;
 	virtual void draw() {}
 	virtual void setOpacity(unsigned char) = win 0x760d0, m1 0x2b17a8, imac 0x320f40;
 
-	bool m_disableColor;            // 0x1e4
-	MultilineBitmapFont* m_label;   // 0x1e8
-	float m_width;                  // 0x1ec
-	int m_unknown;                  // 0x1f0
-	gd::string m_fontFile;          // 0x1f4
-	float m_height;                 // 0x20c
-	PAD = win 0x4;
+	bool m_disableColor;
+	MultilineBitmapFont* m_label;
+	float m_width;
+	int m_unknown;
+	gd::string m_fontFile;
+	float m_height;
+	bool m_unkBool;
 	cocos2d::CCPoint m_anchorPoint;
+	bool m_allShown;
+	float m_scale;
+	int m_rectHeight;
+	int m_rectWidth;
+	float m_maxWidth;
+	cocos2d::CCPoint m_unkPoint;
+	TextAreaDelegate* m_delegate;
+	cocos2d::CCDictionary* m_fadeCharacters;
+	float m_elapsed;
 }
 
 [[link(android)]]
