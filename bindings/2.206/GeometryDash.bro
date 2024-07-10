@@ -3233,7 +3233,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getGroupCenter(cocos2d::CCArray*, bool) = win 0x11ed20;
 	TodoReturn getGroupInfo(GameObject*, cocos2d::CCArray*, int&, int&, int&);
 	cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint) = win 0x11c280;
-	CCMenuItemSpriteExtra* getModeBtn(char const*, int) = ios 0x247D9C;
+	CCMenuItemSpriteExtra* getModeBtn(char const*, int);
 	TodoReturn getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getRandomStartKey(int);
 	TodoReturn getRelativeOffset(GameObject*);
@@ -7511,11 +7511,11 @@ class GJDifficultySprite : cocos2d::CCSprite {
 
 	static GJDifficultySprite* create(int, GJDifficultyName) = win 0x292c60, m1 0x253070, imac 0x2b2920, ios 0x2f62c8;
 
-	static gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x292d40, m1 0x253214, imac 0x2b2a70;
-	bool init(int, GJDifficultyName) = m1 0x25317c, imac 0x2b2a00;
-	void updateDifficultyFrame(int, GJDifficultyName) = win 0x292e20, m1 0x253350, imac 0x2b2ba0;
-	void updateFeatureState(GJFeatureState) = win 0x292f40, m1 0x2534c8, imac 0x2b2d20;
-	void updateFeatureStateFromLevel(GJGameLevel*) = m1 0x253490, imac 0x2b2cd0;
+	static gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x292d40, m1 0x253214, imac 0x2b2a70, ios 0x2f63f4;
+	bool init(int, GJDifficultyName) = m1 0x25317c, imac 0x2b2a00, ios 0x2f6370;
+	void updateDifficultyFrame(int, GJDifficultyName) = win 0x292e20, m1 0x253350, imac 0x2b2ba0, ios 0x2f64b4;
+	void updateFeatureState(GJFeatureState) = win 0x292f40, m1 0x2534c8, imac 0x2b2d20, ios 0x2f662c;
+	void updateFeatureStateFromLevel(GJGameLevel*) = m1 0x253490, imac 0x2b2cd0, ios 0x2f65f4;
 
 	GJFeatureState m_featureState;
 }
@@ -10279,18 +10279,18 @@ class LevelCell : TableViewCell {
 
 	static LevelCell* create(float, float) = m1 0x1f4904, imac 0x24a540, ios 0x10d698;
 
-	void loadCustomLevelCell() = win 0xac110, m1 0x1f5430, imac 0x24b030;
+	void loadCustomLevelCell() = win 0xac110, m1 0x1f5430, imac 0x24b030, ios 0x10e0dc;
 	void loadFromLevel(GJGameLevel*) = win 0xabf30, m1 0x1ea748, imac 0x23fd90, ios 0x104524;
 	void loadLocalLevelCell() = win 0xaea50, m1 0x1f4aa4, imac 0x24a710, ios 0x10d7cc;
-	void onClick(cocos2d::CCObject* sender) = win 0xaf4e0, m1 0x1f7d40, imac 0x24dca0;
-	void onToggle(cocos2d::CCObject* sender) = win 0xac0f0, m1 0x1f7d28, imac 0x24dc80;
-	void onViewProfile(cocos2d::CCObject* sender) = win 0xaf700, m1 0x1f7ea4, imac 0x24de00;
-	void updateBGColor(int);
-	void updateCellMode(int) = imac 0x24a0e0, win 0xaf250, m1 0x1f4538;
-	TodoReturn updateToggle();
+	void onClick(cocos2d::CCObject* sender) = win 0xaf4e0, m1 0x1f7d40, imac 0x24dca0, ios 0x1106a4;
+	void onToggle(cocos2d::CCObject* sender) = win 0xac0f0, m1 0x1f7d28, imac 0x24dc80, ios 0x11068c;
+	void onViewProfile(cocos2d::CCObject* sender) = win 0xaf700, m1 0x1f7ea4, imac 0x24de00, ios 0x1107dc;
+	void updateBGColor(int) = ios 0x1046b8;
+	void updateCellMode(int) = win 0xaf250, imac 0x24a0e0, m1 0x1f4538, ios 0x10d484;
+	void updateToggle() = imac 0x24a0b0, m1 0x1f451c;
 
-	virtual bool init() = win 0xabf10, m1 0x1f4a88, imac 0x24a6e0;
-	virtual void draw() = win 0xaf740, m1 0x1f7ee4, imac 0x24de30;
+	virtual bool init() = win 0xabf10, m1 0x1f4a88, imac 0x24a6e0, ios 0x10d7b0;
+	virtual void draw() = win 0xaf740, m1 0x1f7ee4, imac 0x24de30, ios 0x11081c;
 
 	CCMenuItemSpriteExtra* m_button;
 	GJGameLevel* m_level;
@@ -10608,9 +10608,9 @@ class LevelFeatureLayer : FLAlertLayer {
 [[link(android)]]
 class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDelegate, RateLevelDelegate, LikeItemDelegate, FLAlertLayerProtocol, LevelDeleteDelegate, NumberInputDelegate, SetIDPopupDelegate, TableViewCellDelegate {
 	// virtual ~LevelInfoLayer();
-	// LevelInfoLayer();
+	// LevelInfoLayer() = ios 0x31658;
 
-	static LevelInfoLayer* create(GJGameLevel* level, bool challenge) = win 0x2d73f0, imac 0x2b8e60, m1 0x258874;
+	static LevelInfoLayer* create(GJGameLevel* level, bool challenge) = win 0x2d73f0, imac 0x2b8e60, m1 0x258874, ios 0x2abc0;
 
 	void confirmClone(cocos2d::CCObject*) = win 0x2dd950, imac 0x2bddb0, m1 0x25d43c;
 	void confirmDelete(cocos2d::CCObject*) = win 0x2ddac0, imac 0x2bd590, m1 0x25cc14;
@@ -10620,7 +10620,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void downloadLevel() = win 0x2da130, imac 0x2bbdc0, m1 0x25b4e0;
 	void incrementDislikes();
 	void incrementLikes();
-	bool init(GJGameLevel* level, bool challenge) = win 0x2d7620, imac 0x2b9040, m1 0x2589c8;
+	bool init(GJGameLevel* level, bool challenge) = win 0x2d7620, imac 0x2b9040, m1 0x2589c8, ios 0x2ac44;
 	void loadLevelStep() = win 0x2dd350, imac 0x2c0300, m1 0x25f890;
 	void onAddToList(cocos2d::CCObject* sender) = win 0x2d9b20, imac 0x2be840, m1 0x25dee8;
 	void onBack(cocos2d::CCObject* sender) = win 0x2e0280, imac 0x2be000, m1 0x25d6c4;
@@ -10660,20 +10660,20 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	void updateLabelValues() = win 0x2df060, imac 0x2bebc0, m1 0x25e294;
 	void updateSideButtons() = win 0x2de650, imac 0x2bdae0, m1 0x25d14c;
 
-	virtual void keyBackClicked() = win 0x2e0370, imac 0x2c0ec0, m1 0x26042c;
-	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2e0380, imac 0x2c0ef0, m1 0x260438;
-	virtual void numberInputClosed(NumberInputLayer*) = win 0x2dd780, imac 0x2c05f0, m1 0x25fb78;
-	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = imac 0x2be8a0, m1 0x25df40;
-	virtual void levelDownloadFinished(GJGameLevel*) = win 0x2dbb60, imac 0x2bf730, m1 0x25ecf0;
-	virtual void levelDownloadFailed(int) = win 0x2dbec0, imac 0x2bfac0, m1 0x25f070;
-	virtual void levelUpdateFinished(GJGameLevel*, UpdateResponse) = win 0x2dbff0, imac 0x2bfbb0, m1 0x25f154;
-	virtual void levelUpdateFailed(int) = win 0x2dc150, imac 0x2bfda0, m1 0x25f354;
-	virtual void levelDeleteFinished(int) = win 0x2dc280, imac 0x2bfea0, m1 0x25f43c;
-	virtual void levelDeleteFailed(int) = win 0x2dc3c0, imac 0x2bffb0, m1 0x25f530;
-	virtual void rateLevelClosed() = win 0x2de360, imac 0x2c0bb0, m1 0x260148;
-	virtual void likedItem(LikeItemType, int, bool) = win 0x2de5e0, imac 0x2c0be0, m1 0x260154;
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2dfdb0, imac 0x2c0cf0, m1 0x26028c;
-	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2d9d60, imac 0x2be9d0, m1 0x25e098;
+	virtual void keyBackClicked() = win 0x2e0370, imac 0x2c0ec0, m1 0x26042c, ios 0x2f39c;
+	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2e0380, imac 0x2c0ef0, m1 0x260438, ios 0x315d0;
+	virtual void numberInputClosed(NumberInputLayer*) = win 0x2dd780, imac 0x2c05f0, m1 0x25fb78, ios 0x30ffc;
+	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = imac 0x2be8a0, m1 0x25df40, ios 0x2f9c4;
+	virtual void levelDownloadFinished(GJGameLevel*) = win 0x2dbb60, imac 0x2bf730, m1 0x25ecf0, ios 0x305f0;
+	virtual void levelDownloadFailed(int) = win 0x2dbec0, imac 0x2bfac0, m1 0x25f070, ios 0x30870;
+	virtual void levelUpdateFinished(GJGameLevel*, UpdateResponse) = win 0x2dbff0, imac 0x2bfbb0, m1 0x25f154, ios 0x30930;
+	virtual void levelUpdateFailed(int) = win 0x2dc150, imac 0x2bfda0, m1 0x25f354, ios 0x30a50;
+	virtual void levelDeleteFinished(int) = win 0x2dc280, imac 0x2bfea0, m1 0x25f43c, ios 0x30b14;
+	virtual void levelDeleteFailed(int) = win 0x2dc3c0, imac 0x2bffb0, m1 0x25f530, ios 0x30be4;
+	virtual void rateLevelClosed() = win 0x2de360, imac 0x2c0bb0, m1 0x260148, ios 0x2eefc;
+	virtual void likedItem(LikeItemType, int, bool) = win 0x2de5e0, imac 0x2c0be0, m1 0x260154, ios 0x31428;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2dfdb0, imac 0x2c0cf0, m1 0x26028c, ios 0x314a0;
+	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2d9d60, imac 0x2be9d0, m1 0x25e098, ios 0x2faec;
 
 	bool m_isBusy;
 	cocos2d::CCMenu* m_playBtnMenu;
