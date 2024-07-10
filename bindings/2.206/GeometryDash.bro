@@ -10566,9 +10566,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     short m_currentLayer;
 
 	// haven't verified the mac and ios paddings
-	PAD = win 0x14, android32 0x4, android64 0x14, mac 0x14, ios 0x14;
+	PAD = win 0x1c, android32 0x10, android64 0x1c, mac 0x1c, ios 0x1c;
 	float m_trailTimer;
-	PAD = win 0xc, android32 0x8, android64 0xc, mac 0xc, ios 0xc;
+	PAD = win 0x4, android32 0x4, android64 0x4, mac 0x4, ios 0x4;
 
 	EditorUI* m_editorUI;
 	cocos2d::CCArray* m_undoObjects;
