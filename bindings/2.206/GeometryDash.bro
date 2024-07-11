@@ -4132,7 +4132,7 @@ class ExtendedLayer : cocos2d::CCLayer {
 	// virtual ~ExtendedLayer();
 	ExtendedLayer() {}
 
-	static ExtendedLayer* create() = win inline {
+	static ExtendedLayer* create() = win inline, m1 0x32e4e0, imac 0x3a81a0 {
 		auto ret = new ExtendedLayer();
 		if (ret->init()) {
 			ret->autorelease();
@@ -4142,7 +4142,7 @@ class ExtendedLayer : cocos2d::CCLayer {
 		return nullptr;
 	}
 
-	virtual bool init() = win 0x3de10, imac 0x3aa760;
+	virtual bool init() = win 0x3de10, m1 0x3307b8, imac 0x3aa760;
 	virtual void setPosition(cocos2d::CCPoint const&) = win 0x3de30, m1 0x3307bc, imac 0x3aa770;
 
 	BoomScrollLayerDelegate* m_delegate;
