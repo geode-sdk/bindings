@@ -447,12 +447,32 @@ class AudioLineGuideGameObject : EffectGameObject {
 [[link(android)]]
 class BitmapFontCache : cocos2d::CCObject {
 	// virtual ~BitmapFontCache();
+	BitmapFontCache() {}
 
-	static BitmapFontCache* sharedFontCache() = ios 0x303f5c;
+	static BitmapFontCache* sharedFontCache() = win inline, ios 0x303f5c {
+		auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x687db0);
+		if (!*instancePtr) {
+			*instancePtr = new BitmapFontCache();
+			(*instancePtr)->init();
+		}
+		return *instancePtr;
+	}
 
-	FontObject* fontWithConfigFile(char const*, float) = ios 0x304048, imac 0x21a7e0, m1 0x1caed8;
-	bool init();
-	static void purgeSharedFontCache() = ios 0x303fc8;
+	FontObject* fontWithConfigFile(char const*, float) = win 0x3a530, ios 0x304048, imac 0x21a7e0, m1 0x1caed8;
+	bool init() = win inline {
+		m_cache = cocos2d::CCDictionary::create();
+		m_cache->retain();
+		return true;
+	}
+	static void purgeSharedFontCache() = win inline, ios 0x303fc8 {
+		auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x687db0);
+		if (*instancePtr) {
+			(*instancePtr)->release();
+			*instancePtr = nullptr;
+		}
+	}
+
+	cocos2d::CCDictionary* m_cache;
 }
 
 [[link(android)]]
