@@ -11927,8 +11927,29 @@ class MPLobbyLayer : cocos2d::CCLayer, GJMPDelegate, UploadPopupDelegate, Upload
 [[link(android)]]
 class MultilineBitmapFont : cocos2d::CCSprite {
 	// virtual ~MultilineBitmapFont();
+	MultilineBitmapFont() {
+		m_specialDescriptors = nullptr;
+		m_characters = nullptr;
+		m_lines = nullptr;
+		m_unkInt = 0;
+		m_unkBool = false;
+		m_unkPtr = nullptr;
+		m_height = 0;
+		m_width = 0;
+		m_position = cocos2d::CCPointMake(0.f, 0.f);
+		m_maxWidth = 0.f;
+		m_disableColor = false;
+	}
 
-	static MultilineBitmapFont* createWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = ios 0x244948, imac 0x490240, m1 0x3f5744;
+	static MultilineBitmapFont* createWithFont(char const* p0, gd::string p1, float p2, float p3, cocos2d::CCPoint p4, int p5, bool p6) = win inline, ios 0x244948, imac 0x490240, m1 0x3f5744 {
+		auto ret = new MultilineBitmapFont();
+		if (ret->initWithFont(p0, p1, p2, p3, p4, p5, p6)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 	bool initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = win 0x6A9B0, ios 0x244a6c;
 	unsigned int moveSpecialDescriptors(int, int) = win 0x6BBB0;
 	gd::string readColorInfo(gd::string) = win 0x6B2E0;
