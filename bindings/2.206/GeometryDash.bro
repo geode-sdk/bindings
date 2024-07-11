@@ -11898,7 +11898,21 @@ class MultilineBitmapFont : cocos2d::CCSprite {
 	unsigned int moveSpecialDescriptors(int, int) = win 0x6BBB0;
 	gd::string readColorInfo(gd::string) = win 0x6B2E0;
 	gd::string stringWithMaxWidth(gd::string, float, float) = win 0x6BC40;
+
 	virtual void setOpacity(unsigned char) = win 0x6b260, m1 0x3f73b4, imac 0x4920d0;
+
+	std::array<int, 300> m_hugeIntArray;
+	cocos2d::CCArray* m_specialDescriptors;
+	cocos2d::CCArray* m_characters;
+	cocos2d::CCArray* m_lines;
+	int m_unkInt;
+	bool m_unkBool;
+	void* m_unkPtr;
+	int m_height;
+	int m_width;
+	cocos2d::CCPoint m_position;
+	float m_maxWidth;
+	bool m_disableColor;
 }
 
 [[link(android)]]
