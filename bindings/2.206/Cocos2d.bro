@@ -1547,9 +1547,7 @@ class cocos2d::CCSprite {
 	cocos2d::CCPoint const& getOffsetPosition();
 	cocos2d::_ccV3F_C4B_T2F_Quad getQuad();
 	cocos2d::CCTextureAtlas* getTextureAtlas();
-	cocos2d::CCRect const& getTextureRect() = ios inline {
-		return m_obRect;
-	}
+	cocos2d::CCRect const& getTextureRect();// = ios inline { return m_obRect; }
 	float getTlVertexMod() const;
 	float getTrVertexMod() const;
 	cocos2d::CCPoint const& getUnflippedOffsetPosition();
