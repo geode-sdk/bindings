@@ -528,9 +528,13 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	void addPage(cocos2d::CCLayer*);
 	void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x132b48;
 	void claimTouch(cocos2d::CCTouch*) = ios 0x132ae4;
-	int getPage(int);
-	int getRelativePageForNum(int);
-	cocos2d::CCPoint getRelativePosForPage(int);
+	cocos2d::CCLayer* getPage(int);
+	int getRelativePageForNum(int page) = win inline, m1 0x32f5d4, imac 0x3a9490 {
+		return page < 1 ? page : page % getTotalPages();
+	}
+	cocos2d::CCPoint getRelativePosForPage(int page) = win inline, m1 0x32f230, imac 0x3a8ff0 {
+		return { this->getContentSize().width - m_pageOffset * page, 0.f };
+	}
 	int getTotalPages() = win inline, m1 0x32ef28, imac 0x3a8ca0, ios 0x132154 {
 		return m_dynamic ? m_dynamicObjects->count() : m_pages->count();
 	}
@@ -538,8 +542,10 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	void instantMoveToPage(int) = win 0x3cf40, m1 0x32f894, imac 0x3a9760, ios 0x132724;
 	void moveToPage(int) = win 0x3d020, m1 0x32f96c, imac 0x3a9840, ios 0x1327fc;
 	void moveToPageEnded() = win 0x3cdb0, m1 0x32f700, m1 0x3a95d0;
-	int pageNumberForPosition(cocos2d::CCPoint) = win 0x3ce40;
-	cocos2d::CCPoint positionForPageWithNumber(int);
+	int pageNumberForPosition(cocos2d::CCPoint) = win 0x3ce40, m1 0x32f4e4, imac 0x3a93b0;
+	cocos2d::CCPoint positionForPageWithNumber(int page) = win inline, m1 0x32f840, imac 0x3a9710 {
+		return { this->getContentSize().width + m_pageOffset * page, 0.f };
+	}
 	void quickUpdate() = win inline, m1 0x32fbe0, imac 0x3a9ab0 {
 		if (m_pageMoving) {
 			m_pageMoving = false;
@@ -602,7 +608,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	cocos2d::ccColor4B m_unkColor1;
 	cocos2d::ccColor4B m_unkColor2;
 	int m_page;
-	float m_unkFloat5;
+	float m_pageOffset;
 	void* m_unkPtr;
 	bool m_doVisit;
 	cocos2d::CCRect m_clippingRect;
