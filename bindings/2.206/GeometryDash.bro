@@ -524,40 +524,98 @@ class BoomScrollLayer : cocos2d::CCLayer {
 		return BoomScrollLayer::create(pages, unk1, unk2, nullptr, nullptr);
 	}
 
-	TodoReturn addPage(cocos2d::CCLayer*, int);
-	TodoReturn addPage(cocos2d::CCLayer*);
-	void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x132b48;
-	void claimTouch(cocos2d::CCTouch*) = ios 0x132ae4;
-	TodoReturn getPage(int);
-	int getRelativePageForNum(int);
-	TodoReturn getRelativePosForPage(int);
-	int getTotalPages() = ios 0x132154;
+	void addPage(cocos2d::CCLayer*, int) = m1 0x32fc38, imac 0x3a9b10;
+	void addPage(cocos2d::CCLayer*) = m1 0x32fcac, imac 0x3a9b90;
+	void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x32ff10, imac 0x3a9e00, ios 0x132b48;
+	void claimTouch(cocos2d::CCTouch*) = m1 0x32feac, imac 0x3a9d90, ios 0x132ae4;
+	cocos2d::CCLayer* getPage(int) = win inline, m1 0x32f280, imac 0x3a9040 {
+		auto index = m_page;
+		if (m_dynamic) index = index % m_pages->count();
+		return static_cast<cocos2d::CCLayer*>(m_pages->objectAtIndex(index));
+	}
+	int getRelativePageForNum(int page) = win inline, m1 0x32f5d4, imac 0x3a9490 {
+		return page < 1 ? page : page % getTotalPages();
+	}
+	cocos2d::CCPoint getRelativePosForPage(int page) = win inline, m1 0x32f230, imac 0x3a8ff0 {
+		return { this->getContentSize().width - m_pageOffset * page, 0.f };
+	}
+	int getTotalPages() = win inline, m1 0x32ef28, imac 0x3a8ca0, ios 0x132154 {
+		return m_dynamic ? m_dynamicObjects->count() : m_pages->count();
+	}
 	bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c3b0, m1 0x32e124, imac 0x3a7dc0;
-	void instantMoveToPage(int) = win 0x3cf40, ios 0x132724;
-	void moveToPage(int) = ios 0x1327fc;
-	void moveToPageEnded();
-	int pageNumberForPosition(cocos2d::CCPoint);
-	TodoReturn positionForPageWithNumber(int);
-	TodoReturn quickUpdate(); // inlined D:
-	TodoReturn removePage(cocos2d::CCLayer*);
-	TodoReturn removePageWithNumber(int);
-	void repositionPagesLooped() = win 0x3d1e0;
-	void selectPage(int);
-	void setDotScale(float); // inlined
-	void setPagesIndicatorPosition(cocos2d::CCPoint) = ios 0x131abc; // inline functions my beloved :heart:
-	void setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c720;
-	void togglePageIndicators(bool) = win 0x3cce0;
-	void updateDots(float) = win 0x3cae0, ios 0x132170;
-	void updatePages() = win 0x3c9c0;
+	void instantMoveToPage(int) = win 0x3cf40, m1 0x32f894, imac 0x3a9760, ios 0x132724;
+	void moveToPage(int) = win 0x3d020, m1 0x32f96c, imac 0x3a9840, ios 0x1327fc;
+	void moveToPageEnded() = win 0x3cdb0, m1 0x32f700, m1 0x3a95d0;
+	int pageNumberForPosition(cocos2d::CCPoint) = win 0x3ce40, m1 0x32f4e4, imac 0x3a93b0;
+	cocos2d::CCPoint positionForPageWithNumber(int page) = win inline, m1 0x32f840, imac 0x3a9710 {
+		return { this->getContentSize().width + m_pageOffset * page, 0.f };
+	}
+	void quickUpdate() = win inline, m1 0x32fbe0, imac 0x3a9ab0 {
+		if (m_pageMoving) {
+			m_pageMoving = false;
+			m_extendedLayer->stopActionByTag(2);
+			m_extendedLayer->setPosition(m_position);
+			this->moveToPageEnded();
+		}
+	}
+	void removePage(cocos2d::CCLayer*) = m1 0x32fd18, imac 0x3a9c00;
+	void removePageWithNumber(int) = m1 0x32fdac, imac 0x3a9c90;
+	void repositionPagesLooped() = win 0x3d1e0, m1 0x32e6d0, imac 0x3a83b0;
+	void selectPage(int) = m1 0x32fb28, imac 0x3a9a00;
+	void setDotScale(float scale) = win inline, m1 0x32f1c8, imac 0x3a8f80 {
+		for (int i = 0; i < m_dots->count(); i++) {
+			static_cast<cocos2d::CCSprite*>(m_dots->objectAtIndex(i))->setScale(scale);
+		}
+	}
+	void setPagesIndicatorPosition(cocos2d::CCPoint) = m1 0x32e588, imac 0x3a8260, ios 0x131abc;
+	void setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c720, m1 0x32ece0, imac 0x3a8a50;
+	void togglePageIndicators(bool) = win 0x3cce0, m1 0x32f63c, imac 0x3a9500;
+	void updateDots(float) = win 0x3cae0, m1 0x32ef44, imac 0x3a8cd0, ios 0x132170;
+	void updatePages() = win 0x3c9c0, m1 0x32e5b0, imac 0x3a8290;
 
-	virtual void visit() = m1 0x32f6a8, imac 0x3a9570;
+	virtual void visit() = win 0x3cd50, m1 0x32f6a8, imac 0x3a9570;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d890, m1 0x3301bc, imac 0x3aa0a0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d940, m1 0x330288, ios 0x132cf0, imac 0x3aa190;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3dc70, m1 0x330548, imac 0x3aa4b0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d7b0, m1 0x32ffec, imac 0x3a9ee0;
-	virtual void registerWithTouchDispatcher() = m1 0x32fe74, imac 0x3a9d50;
+	virtual void registerWithTouchDispatcher() = win 0x3d720, m1 0x32fe74, imac 0x3a9d50;
 
-	PAD = win 0xD8;
+	cocos2d::CCArray* m_dots;
+	int m_slowPage;
+	float m_touchX;
+	float m_touchQuotient;
+	bool m_looped;
+	DynamicScrollDelegate* m_dynamicDelegate;
+	cocos2d::CCArray* m_dynamicObjects;
+	bool m_dynamic;
+	int m_touchType;
+	bool m_ignoreTouchCancel;
+	cocos2d::CCTouch* m_touch;
+	cocos2d::CCArray* m_pages;
+	double m_touchTime;
+	cocos2d::CCPoint m_position;
+	ExtendedLayer* m_extendedLayer;
+	cocos2d::CCRect m_rect;
+	float m_unkFloat1;
+	float m_maxSpeed;
+	float m_minSpeed;
+	float m_unkFloat2;
+	BoomScrollLayerDelegate* m_delegate;
+	bool m_pageMoving;
+	bool m_pagesInvisible;
+	float m_unkFloat3;
+	float m_unkFloat4;
+	float m_width;
+	bool m_cancelAndStealTouch;
+	bool m_dotsVisible;
+	cocos2d::CCPoint m_dotPosition;
+	cocos2d::ccColor4B m_unkColor1;
+	cocos2d::ccColor4B m_unkColor2;
+	int m_page;
+	float m_pageOffset;
+	void* m_unkPtr;
+	bool m_doVisit;
+	cocos2d::CCRect m_clippingRect;
 }
 
 
@@ -4072,11 +4130,22 @@ class ExplodeItemSprite : cocos2d::CCSprite {
 [[link(android)]]
 class ExtendedLayer : cocos2d::CCLayer {
 	// virtual ~ExtendedLayer();
+	ExtendedLayer() {}
 
-	static ExtendedLayer* create();
+	static ExtendedLayer* create() = win inline, m1 0x32e4e0, imac 0x3a81a0 {
+		auto ret = new ExtendedLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	virtual bool init() = imac 0x3aa760;
-	virtual void setPosition(cocos2d::CCPoint const&) = m1 0x3307bc, imac 0x3aa770;
+	virtual bool init() = win 0x3de10, imac 0x3aa760;
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0x3de30, m1 0x3307bc, imac 0x3aa770;
+
+	BoomScrollLayerDelegate* m_delegate;
 }
 
 [[link(android)]]
