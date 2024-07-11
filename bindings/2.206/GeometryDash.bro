@@ -16972,12 +16972,12 @@ class TextStyleSection : cocos2d::CCObject {
 	static TextStyleSection* create(int, int, TextStyleType) = win 0x6c320;
 
 	static TextStyleSection* createColoredSection(cocos2d::ccColor3B p0, int p1, int p2) = win inline {
-		auto ret = TextStyleSection::create(p1, p2, TextStyleType::Color);
+		auto ret = TextStyleSection::create(p1, p2, TextStyleType::Colored);
 		ret->m_color = p0;
 		return ret;
 	}
 	static TextStyleSection* createDelaySection(int p0, float p1) = win inline {
-		auto ret = TextStyleSection::create(p0, -1, TextStyleType::Delay);
+		auto ret = TextStyleSection::create(p0, -1, TextStyleType::Delayed);
 		ret->m_unkDelay = p1;
 		return ret;
 	}
