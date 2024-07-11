@@ -4536,11 +4536,26 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 [[link(android)]]
 class FontObject : cocos2d::CCObject {
 	// virtual ~FontObject();
+	FontObject() {}
 
-	TodoReturn createWithConfigFile(char const*, float);
-	float getFontWidth(int) = ios 0x30470c;
-	TodoReturn initWithConfigFile(char const*, float);
-	TodoReturn parseConfigFile(char const*, float);
+	static FontObject* createWithConfigFile(char const* p0, float p1) = win inline {
+		auto ret = new FontObject();
+		if (ret->init(p0, p1)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	int getFontWidth(int p0) = win inline, ios 0x30470c {
+		return m_hugeIntArray[p0];
+	}
+	bool initWithConfigFile(char const* p0, float p1) = win inline {
+		parseConfigFile(p0, p1);
+	}
+	void parseConfigFile(char const*, float) = win 0x3a7d0;
+
+	std::array<int, 300> m_hugeIntArray;
 }
 
 [[link(android)]]
