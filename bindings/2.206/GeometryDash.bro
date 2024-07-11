@@ -16992,11 +16992,16 @@ class TextStyleSection : cocos2d::CCObject {
 		ret->m_unkShake2 = p3;
 		return ret;
 	}
-	bool init(int, int, TextStyleType);
+	bool init(int p0, int p1, TextStyleType p2) = win inline {
+		m_styleType = p2;
+		m_unkParam1 = p0;
+		m_unkParam2 = p1;
+		return true;
+	}
 
+	TextStyleType m_styleType;
 	int m_unkParam1;
 	int m_unkParam2;
-	TextStyleType m_styleType;
 	cocos2d::ccColor3B m_color;
 	float m_unkInstant;
 	float m_unkDelay;
