@@ -6647,7 +6647,7 @@ class GJAssetDownloadAction {
 [[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	~GJBaseGameLayer() = win 0x1f6650;
-	// GJBaseGameLayer();
+	// GJBaseGameLayer() = ios 0x1256b4;
 
 	static GJBaseGameLayer* get() {
 		return GameManager::get()->m_gameLayer;
@@ -6729,7 +6729,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void createMiddleground(int) = win 0x1fc890;
 	TodoReturn createNewKeyframeAnim();
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
-	TodoReturn createPlayer() = win 0x1fc0c0;
+	void createPlayer() = win 0x1fc0c0, ios 0x1e73b8;
 	TodoReturn createPlayerCollisionBlock() = win 0x208c00;
 	void createTextLayers() = win 0x1ffa50;
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
@@ -12431,7 +12431,7 @@ class PlatformToolbox {
 	static TodoReturn getRawPath(char const*);
 	static TodoReturn getUniqueUserID();
 	static TodoReturn getUserID();
-	static void hideCursor() = win inline, imac 0x4cdbb0, m1 0x42c87c {
+	static void hideCursor() = win inline, imac 0x4cdbb0, m1 0x42c87c, ios 0x1779b4 {
 		cocos2d::CCEGLView::sharedOpenGLView()->showCursor(false);
 	}
 	static bool isControllerConnected() = win inline, imac 0x4cea70, m1 0x42d470, ios 0x177980 {
@@ -12474,7 +12474,7 @@ class PlatformToolbox {
 	static TodoReturn toggleCPUSleepMode(bool);
 	static void toggleForceTimer(bool) = ios 0x17798c;
 	static void toggleFullScreen(bool) = ios 0x177934;
-	static TodoReturn toggleLockCursor(bool);
+	static void toggleLockCursor(bool) = ios 0x1779c4;
 	static TodoReturn toggleMouseControl(bool);
 	static void toggleSmoothFix(bool) = ios 0x177990;
 	static void toggleVerticalSync(bool) = ios 0x177988;
@@ -13057,9 +13057,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
 	virtual ~PlayLayer() = m1 0x9a050, win 0x382540, imac 0xab7d0;
-	// PlayLayer();
+	// PlayLayer() = ios 0x1253e0;
 
-	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = m1 0x9a148, imac 0xabbf0;
+	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = m1 0x9a148, imac 0xabbf0, ios 0x11782c;
 	static PlayLayer* get() {
 		return GameManager::get()->m_playLayer;
 	}
@@ -13104,7 +13104,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn getTempMilliTime() = win 0x3c070;
 	TodoReturn gravityEffectFinished();
 	void incrementJumps() = imac 0xbf5a0, m1 0xaabec;
-	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x382890, imac 0xabc70, m1 0x9a1e4;
+	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x382890, imac 0xabc70, m1 0x9a1e4, ios 0x1178b8;
 	bool isGameplayActive();
 	void levelComplete() = win 0x384850, m1 0xa1078, imac 0xb4290;
 	TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
@@ -13120,9 +13120,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void playEndAnimationToPos(cocos2d::CCPoint) = win 0x388570, imac 0xb6ca0, m1 0xa3680;
 	void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = win 0x388f00, m1 0xa3bb8, imac 0xb7260;
 	TodoReturn playReplay(gd::string);
-	void prepareCreateObjectsFromSetup(gd::string&) = win 0x389a50, imac 0xaccb0, m1 0x9b03c;
+	void prepareCreateObjectsFromSetup(gd::string&) = win 0x389a50, imac 0xaccb0, m1 0x9b03c, ios 0x118304;
 	void prepareMusic(bool) = win 0x3972a0;
-	void processCreateObjectsFromSetup() = win 0x389d00, imac 0xad0e0, m1 0x9b3fc;
+	void processCreateObjectsFromSetup() = win 0x389d00, imac 0xad0e0, m1 0x9b3fc, ios 0x1185ec;
 	TodoReturn processLoadedMoveActions();
 	TodoReturn queueCheckpoint();
 	void removeAllObjects();
@@ -13160,7 +13160,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	TodoReturn takeStateSnapshot();
 	TodoReturn toggleBGEffectVisibility(bool);
 	TodoReturn toggleGhostEffect(int);
-	//void toggleDebugDraw(bool);
+	//void toggleDebugDraw(bool) = ios 0x118288;
 	void togglePracticeMode(bool practiceMode) = win 0x396780, m1 0xaa64c, imac 0xbefe0, ios 0x124804;
 	TodoReturn tryStartRecord();
 	void updateAttempts() = win 0x396540, m1 0xaa844;
@@ -13170,7 +13170,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void updateProgressbar() = win 0x38efd0, imac 0xb1f90, m1 0x9f28c;
 	void updateScreenRotation(int, bool, bool, float, int, float, int, int);
 	void updateTimeWarp(EffectGameObject*, float);
-	void updateTestModeLabel() = win 0x384760;
+	void updateTestModeLabel() = win 0x384760, ios 0x11c510;
 
 	virtual void onEnterTransitionDidFinish() = win 0x397920, m1 0xab0c4, imac 0xbfa80;
 	virtual void onExit() = win 0x397950, m1 0xab108, imac 0xbfab0;
