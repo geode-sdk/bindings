@@ -147,8 +147,8 @@ class AchievementCell : TableViewCell {
 	// virtual ~AchievementCell();
 	AchievementCell(char const*, float, float);
 
-	void loadFromDict(cocos2d::CCDictionary*) = win 0xaa740;
-	void updateBGColor(int);
+	void loadFromDict(cocos2d::CCDictionary*) = win 0xaa740, ios 0x102be4;
+	void updateBGColor(int) = ios 0x103ac0;
 
 	virtual bool init() = m1 0x1f47b0, imac 0x24a370;
 	virtual void draw() = m1 0x1f481c, imac 0x24a3e0;
@@ -2032,7 +2032,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 
 	TodoReturn incrementDislikes();
 	TodoReturn incrementLikes();
-	void loadFromComment(GJComment*) = win 0xb3790, imac 0x242fa0, m1 0x1edab0;
+	void loadFromComment(GJComment*) = win 0xb3790, imac 0x242fa0, m1 0x1edab0, ios 0x1075b0;
 	void onConfirmDelete(cocos2d::CCObject* sender) = win 0xb5be0;
 	TodoReturn onDelete();
 	void onGoToLevel(cocos2d::CCObject* sender);
@@ -2040,7 +2040,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	TodoReturn onUndelete();
 	void onUnhide(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
-	void updateBGColor(int);
+	void updateBGColor(int) = ios 0x108fdc;
 	void updateLabelValues();
 
 	virtual bool init() = win 0xb3770, m1 0x1fa3bc, imac 0x250990;
@@ -9045,12 +9045,12 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 	// virtual ~GJScoreCell();
 	GJScoreCell(char const*, float, float);
 
-	void loadFromScore(GJUserScore*) = win 0xb6010, imac 0x245130, m1 0x1ef8c0;
+	void loadFromScore(GJUserScore*) = win 0xb6010, imac 0x245130, m1 0x1ef8c0, ios 0x109108;
 	void onBan(cocos2d::CCObject* sender);
 	void onCheck(cocos2d::CCObject* sender);
 	void onMoreLevels(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender) = win 0xb70f0, imac 0x2513b0, m1 0x1facac;
-	TodoReturn updateBGColor(int);
+	TodoReturn updateBGColor(int) = ios 0x109088;
 
 	virtual bool init() = win 0xb2210, m1 0x1faca0, imac 0x251390;
 	virtual void draw() = m1 0x1faf40, imac 0x251650;
@@ -9456,14 +9456,14 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
 	// virtual ~GJUserCell();
 	GJUserCell(char const*, float, float);
 
-	void loadFromScore(GJUserScore*) = win 0xb8300;
+	void loadFromScore(GJUserScore*) = win 0xb8300, ios 0x10ae98;
 	void onCancelFriendRequest(cocos2d::CCObject* sender);
 	void onRemoveFriend(cocos2d::CCObject* sender);
 	void onSendMessage(cocos2d::CCObject* sender);
 	void onUnblockUser(cocos2d::CCObject* sender) = ios 0x112c38;
 	void onViewFriendRequest(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
-	TodoReturn updateBGColor(int);
+	TodoReturn updateBGColor(int) = ios 0x10ae18;
 
 	virtual bool init() = win 0xb82e0, m1 0x1fb578, imac 0x251fd0;
 	virtual void draw() = m1 0x1fbd64, imac 0x2527a0;
@@ -10756,7 +10756,7 @@ class LevelListCell : TableViewCell {
 
 	static LevelListCell* create(float, float);
 
-	void loadFromList(GJLevelList*) = win 0xbc320, imac 0x240be0, m1 0x1eb538;
+	void loadFromList(GJLevelList*) = win 0xbc320, imac 0x240be0, m1 0x1eb538, ios 0x105284;
 	void onClick(cocos2d::CCObject* sender) = win 0x0bd700;
 	void onListInfo(cocos2d::CCObject* sender);
 	void onViewProfile(cocos2d::CCObject* sender);
@@ -16193,9 +16193,9 @@ class SongCell : TableViewCell {
 	// virtual ~SongCell();
 	SongCell(char const*, float, float);
 
-	void loadFromObject(SongObject*) = win 0xb1ca0;
+	void loadFromObject(SongObject*) = win 0xb1ca0, ios 0x106afc;
 	void onClick(cocos2d::CCObject* sender);
-	TodoReturn updateBGColor(int);
+	TodoReturn updateBGColor(int) = ios 0x106f2c;
 
 	virtual bool init() = m1 0x1f96b4, imac 0x24f6f0;
 	virtual void draw() = m1 0x1f96e4, imac 0x24f730;
@@ -16467,8 +16467,8 @@ class StatsCell : TableViewCell {
 	StatsCell(char const*, float, float);
 
 	TodoReturn getTitleFromKey(char const*);
-	void loadFromObject(StatsObject*) = win 0xb0a20;
-	void updateBGColor(int);
+	void loadFromObject(StatsObject*) = win 0xb0a20, ios 0x1067a4;
+	void updateBGColor(int) = ios 0x106a9c;
 
 	virtual bool init() = m1 0x1f89a4, imac 0x24ea90;
 	virtual void draw() = win 0xabd00, m1 0x1f9510, imac 0x24F4A0;
