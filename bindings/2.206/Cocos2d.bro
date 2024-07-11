@@ -1489,7 +1489,18 @@ class cocos2d::CCDirector {
 
 [[link(win, android)]]
 class cocos2d::CCNodeRGBA {
-	static cocos2d::CCNodeRGBA* create();
+	static cocos2d::CCNodeRGBA* create() = ios inline {
+		auto pRet = new cocos2d::CCNodeRGBA();
+
+		if (pRet->init())
+		{
+			pRet->autorelease();
+			return pRet;
+		}
+
+		delete pRet;
+		return nullptr;
+	}
 
 	// CCNodeRGBA(cocos2d::CCNodeRGBA const&);
 	CCNodeRGBA() = imac 0x271180, m1 0x21727c, ios 0x24d5b0;
@@ -1498,10 +1509,10 @@ class cocos2d::CCNodeRGBA {
 	virtual bool init() = m1 0x2172f8, imac 0x271210, ios 0x24d5fc;
 
 	virtual void setColor(cocos2d::_ccColor3B const&) = m1 0x2176c8, imac 0x271630, ios 0x24d7dc;
-	virtual cocos2d::_ccColor3B const& getColor() = m1 0x2176a8, imac 0x2715f0;
-	virtual cocos2d::_ccColor3B const& getDisplayedColor() = m1 0x2176b8, imac 0x271610;
-	virtual unsigned char getDisplayedOpacity() = m1 0x217380, imac 0x2712c0;
-	virtual unsigned char getOpacity() = m1 0x217370, imac 0x2712a0;
+	virtual cocos2d::_ccColor3B const& getColor() = m1 0x2176a8, imac 0x2715f0, ios 0x24d7bc;
+	virtual cocos2d::_ccColor3B const& getDisplayedColor() = m1 0x2176b8, imac 0x271610, ios 0x24d7cc;
+	virtual unsigned char getDisplayedOpacity() = m1 0x217380, imac 0x2712c0, ios 0x24d620;
+	virtual unsigned char getOpacity() = m1 0x217370, imac 0x2712a0, ios 0x24d610;
 	virtual void setOpacity(unsigned char) = m1 0x217390, imac 0x2712e0, ios 0x24d630;
 	virtual bool isCascadeColorEnabled() = m1 0x217968, imac 0x2719c0, ios 0x24d9b4;
 	virtual void setCascadeColorEnabled(bool) = m1 0x217978, imac 0x2719e0, ios 0x24d9c4;
