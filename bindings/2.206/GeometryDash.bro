@@ -5165,7 +5165,7 @@ class GameManager : GManager {
 	TodoReturn getFontTexture(int);
 	bool getGameVariable(char const*) = win 0x17a0e0, imac 0x378d40, m1 0x304480, ios 0x322f5c;
 	TodoReturn getGTexture(int) = ios 0x3298d0;
-	int getIconRequestID() {
+	int getIconRequestID() = ios 0x328cb8 {
 		return m_iconRequestID++;
 	}
 	int getIntGameVariable(char const*) = win 0x17a6e0, imac 0x385ba0, m1 0x30f8f0, ios 0x329d2c;
@@ -6300,7 +6300,7 @@ class GameToolbox {
 	static TodoReturn stringFromHSV(cocos2d::ccHSVValue, char const*);
 	static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*) = win 0x64640, imac 0x4fbb70;
 	static gd::map<gd::string,gd::string> stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x642a0;
-	static TodoReturn strongColor(cocos2d::ccColor3B);
+	static TodoReturn strongColor(cocos2d::ccColor3B) = ios 0x4bbd8;
 	static gd::string timestampToHumanReadable(time_t, time_t) = win 0x67cd0;
 	static TodoReturn transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue);
 	static TodoReturn transformColor(cocos2d::ccColor3B const&, float, float, float);
@@ -8842,15 +8842,15 @@ class GJRobotSprite : CCAnimatedSprite {
 
 	static GJRobotSprite* create(int) = win 0x294360, m1 0x50e80c, imac 0x5e4f50;
 
-	void hideGlow() = m1 0x50f694, imac 0x5e5f80;
+	void hideGlow() = m1 0x50f694, imac 0x5e5f80, ios 0x250244;
 	bool init(int, gd::string) = win 0x294410, m1 0x50e9cc, imac 0x5e5100;
 	bool init(int) = m1 0x50e93c, imac 0x5e5090;
-	void showGlow() = m1 0x50f680, imac 0x5e5f60;
-	void updateColor01(cocos2d::ccColor3B) = m1 0x50f6a8, imac 0x5e5fa0;
-	void updateColor02(cocos2d::ccColor3B) = m1 0x50f954, imac 0x5e62e0;
+	void showGlow() = m1 0x50f680, imac 0x5e5f60, ios 0x250230;
+	void updateColor01(cocos2d::ccColor3B) = m1 0x50f6a8, imac 0x5e5fa0, ios 0x250258;
+	void updateColor02(cocos2d::ccColor3B) = m1 0x50f954, imac 0x5e62e0, ios 0x250500;
 	void updateColors() = win 0x294ba0, m1 0x50f6bc, imac 0x5e5fc0;
 	void updateFrame(int) = win 0x295150, m1 0x50ef7c, imac 0x5e5720;
-	void updateGlowColor(cocos2d::ccColor3B, bool) = m1 0x50f964, imac 0x5e6300;
+	void updateGlowColor(cocos2d::ccColor3B, bool) = m1 0x50f964, imac 0x5e6300, ios 0x250510;
 
 	virtual void setOpacity(unsigned char) = win 0x295050, m1 0x50f9e0, imac 0x5e6380;
 	virtual void hideSecondary() = win 0x295740, m1 0x50fac4, imac 0x5e6490;
@@ -13300,7 +13300,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	bool isCorrect(char const* key) = win 0x3A22F0;
 	bool isOnWatchlist(int);
 	void loadPage(int) = win 0x3a2420;
-	void loadPageFromUserInfo(GJUserScore*) = win 0x39c890, imac 0x7c6330, m1 0x6cb934;
+	void loadPageFromUserInfo(GJUserScore*) = win 0x39c890, imac 0x7c6330, m1 0x6cb934, ios 0x1a36b4;
 	void onBlockUser(cocos2d::CCObject* sender) = win 0x3A07E0;
 	void onClose(cocos2d::CCObject* sender) = win 0x3a15b0;
 	void onComment(cocos2d::CCObject* sender) = win 0x3A0230;
@@ -15963,7 +15963,7 @@ class SimpleObject : cocos2d::CCObject {
 class SimplePlayer : cocos2d::CCSprite {
 	// virtual ~SimplePlayer();
 
-	static SimplePlayer* create(int) = win 0x2672d0, m1 0x2f84a4, imac 0x36c360;
+	static SimplePlayer* create(int) = win 0x2672d0, m1 0x2f84a4, imac 0x36c360, ios 0x313e7c;
 
 	TodoReturn asyncLoadIcon(int, IconType);
 	void createRobotSprite(int); // win inlined
@@ -15971,25 +15971,25 @@ class SimplePlayer : cocos2d::CCSprite {
 	inline void disableCustomGlowColor() {
 		m_hasCustomGlowColor = false;
 	}
-	inline void enableCustomGlowColor(cocos2d::_ccColor3B const& color) {
+	inline void enableCustomGlowColor(cocos2d::_ccColor3B const& color) { // ios 0x317144
 		m_hasCustomGlowColor = true;
 		m_glowColor = color;
 	}
 	TodoReturn hideAll();
 	TodoReturn hideSecondary();
 	TodoReturn iconFinishedLoading(int, IconType);
-	bool init(int) = win 0x2673c0;
+	bool init(int) = win 0x2673c0, ios 0x317cb4;
 	void setColors(cocos2d::ccColor3B const&, cocos2d::ccColor3B const&);
 	void setFrames(char const*, char const*, char const*, char const*, char const*);
-	void setSecondColor(cocos2d::_ccColor3B const& color) = m1 0x2fdeb8, imac 0x372200, win inline {
+	void setSecondColor(cocos2d::_ccColor3B const& color) = m1 0x2fdeb8, imac 0x372200, ios 0x3181d0, win inline {
 		m_secondLayer->setColor(color);
 		updateColors();
 	}
-	void updateColors() = win 0x267b60, m1 0x2fbf00, imac 0x36ffb0;
-	void updatePlayerFrame(int, IconType) = win 0x267f20, m1 0x2f8784, imac 0x36c630;
+	void updateColors() = win 0x267b60, m1 0x2fbf00, imac 0x36ffb0, ios 0x316d1c;
+	void updatePlayerFrame(int, IconType) = win 0x267f20, m1 0x2f8784, imac 0x36c630, ios 0x314140;
 
-	virtual void setOpacity(unsigned char) = win 0x268680, m1 0x2fe1c4, imac 0x372500;
-	virtual void setColor(cocos2d::ccColor3B const&) = win 0x267b30, m1 0x2fde58, imac 0x3721a0;
+	virtual void setOpacity(unsigned char) = win 0x268680, m1 0x2fe1c4, imac 0x372500, ios 0x3184d4;
+	virtual void setColor(cocos2d::ccColor3B const&) = win 0x267b30, m1 0x2fde58, imac 0x3721a0, ios 0x318170;
 
 	inline void setGlowOutline(cocos2d::ccColor3B color) {
 		enableCustomGlowColor(color);
