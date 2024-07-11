@@ -557,7 +557,42 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d7b0, m1 0x32ffec, imac 0x3a9ee0;
 	virtual void registerWithTouchDispatcher() = win 0x3d720, m1 0x32fe74, imac 0x3a9d50;
 
-	PAD = win 0xD8;
+	cocos2d::CCArray* m_dots;
+	int m_slowPage;
+	float m_touchX;
+	float m_touchQuotient;
+	bool m_elastic;
+	DynamicScrollDelegate* m_dynamicDelegate;
+	cocos2d::CCArray* m_dynamicObjects;
+	bool m_dynamic;
+	int m_touchType;
+	bool m_ignoreTouchCancel;
+	cocos2d::CCTouch* m_touch;
+	cocos2d::CCArray* m_pages;
+	double m_touchTime;
+	cocos2d::CCPoint m_firstPosition;
+	ExtendedLayer* m_extendedLayer;
+	cocos2d::CCRect m_rect;
+	float m_unkFloat1;
+	float m_maxSpeed;
+	float m_minSpeed;
+	float m_unkFloat2;
+	BoomScrollLayerDelegate* m_delegate;
+	bool m_pageMoving;
+	bool m_pagesInvisible;
+	float m_unkFloat3;
+	float m_unkFloat4;
+	float m_width;
+	bool m_cancelAndStealTouch;
+	bool m_dotsVisible;
+	cocos2d::CCPoint m_dotPosition;
+	cocos2d::ccColor4B m_unkColor1;
+	cocos2d::ccColor4B m_unkColor2;
+	int m_page;
+	float m_unkFloat5;
+	void* m_unkPtr;
+	bool m_doVisit;
+	cocos2d::CCRect m_clippingRect;
 }
 
 
