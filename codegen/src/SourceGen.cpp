@@ -1,7 +1,7 @@
 #include "Shared.hpp"
 
 namespace { namespace format_strings {
-	char const* source_start = R"GEN(
+	constexpr char const* source_start = R"GEN(
 #include <stdexcept>
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/addresser.hpp>
@@ -41,7 +41,7 @@ auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadat
 
 )GEN";
 
-	char const* declare_member = R"GEN(
+	constexpr char const* declare_member = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({class_name}{const}*{parameter_comma}{parameter_types});
 	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
@@ -52,7 +52,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
-	char const* declare_virtual = R"GEN(
+	constexpr char const* declare_virtual = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	auto self = addresser::thunkAdjust(Resolve<{parameter_types}>::func(&{class_name}::{function_name}), this);
 	using FunctionType = decltype({function_name}({arguments}))(*)({class_name}{const}*{parameter_comma}{parameter_types});
@@ -64,7 +64,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
-	char const* declare_static = R"GEN(
+	constexpr char const* declare_static = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({parameter_types});
 	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
@@ -75,7 +75,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
-	char const* declare_destructor = R"GEN(
+	constexpr char const* declare_destructor = R"GEN(
 {class_name}::{function_name}({parameters}) {{
 	// basically we destruct it once by calling the gd function, 
 	// then lock it, so that other gd destructors dont get called
@@ -93,7 +93,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
-	char const* declare_constructor = R"GEN(
+	constexpr char const* declare_constructor = R"GEN(
 {class_name}::{function_name}({parameters}) : {class_name}(geode::CutoffConstructor, sizeof({class_name})) {{
 	// here we construct it as normal as we can, then destruct it
 	// using the generated functions. this ensures no memory gets leaked
@@ -109,7 +109,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
-	char const* declare_constructor_begin = R"GEN(
+	constexpr char const* declare_constructor_begin = R"GEN(
 {class_name}::{function_name}({parameters}) {{
 	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
 	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
@@ -120,21 +120,21 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
-	char const* declare_unimplemented_error = R"GEN(
+	constexpr char const* declare_unimplemented_error = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	throw std::runtime_error("{class_name}::{function_name} not implemented");
 }}
 )GEN";
 
-	char const* ool_function_definition = R"GEN(
+	constexpr char const* ool_function_definition = R"GEN(
 {return} {class_name}::{function_name}({parameters}){const} {definition}
 )GEN";
 
-	char const* ool_structor_function_definition = R"GEN(
+	constexpr char const* ool_structor_function_definition = R"GEN(
 {class_name}::{function_name}({parameters}){const} {definition}
 )GEN";
 
-	char const* declare_standalone = R"GEN(
+	constexpr char const* declare_standalone = R"GEN(
 auto {function_name}({parameters}) -> decltype({function_name}({arguments})) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({parameter_types});
 	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{

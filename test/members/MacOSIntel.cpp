@@ -24,6 +24,7 @@
 // GEODE_MEMBER_CHECK(LevelEditorLayer, m_level, 0x618);
 // GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3534);
 // GEODE_MEMBER_CHECK(LevelEditorLayer, m_undoObjects, 0x3598);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x35b8);
 
 // // PlayLayer
 // GEODE_MEMBER_CHECK(PlayLayer, unknown518, 0x518);
