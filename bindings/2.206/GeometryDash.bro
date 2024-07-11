@@ -524,11 +524,15 @@ class BoomScrollLayer : cocos2d::CCLayer {
 		return BoomScrollLayer::create(pages, unk1, unk2, nullptr, nullptr);
 	}
 
-	void addPage(cocos2d::CCLayer*, int);
-	void addPage(cocos2d::CCLayer*);
-	void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x132b48;
-	void claimTouch(cocos2d::CCTouch*) = ios 0x132ae4;
-	cocos2d::CCLayer* getPage(int);
+	void addPage(cocos2d::CCLayer*, int) = m1 0x32fc38, imac 0x3a9b10;
+	void addPage(cocos2d::CCLayer*) = m1 0x32fcac, imac 0x3a9b90;
+	void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x32ff10, imac 0x3a9e00, ios 0x132b48;
+	void claimTouch(cocos2d::CCTouch*) = m1 0x32feac, imac 0x3a9d90, ios 0x132ae4;
+	cocos2d::CCLayer* getPage(int) = win inline, m1 0x32f280, imac 0x3a9040 {
+		auto index = m_page;
+		if (m_dynamic) index = index % m_pages->count();
+		return static_cast<cocos2d::CCLayer*>(m_pages->objectAtIndex(index));
+	}
 	int getRelativePageForNum(int page) = win inline, m1 0x32f5d4, imac 0x3a9490 {
 		return page < 1 ? page : page % getTotalPages();
 	}
@@ -560,7 +564,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	void selectPage(int) = m1 0x32fb28, imac 0x3a9a00;
 	void setDotScale(float scale) = win inline, m1 0x32f1c8, imac 0x3a8f80 {
 		for (int i = 0; i < m_dots->count(); i++) {
-			static_cast<CCSprite*>(m_dots->objectAtIndex(i))->setScale(scale);
+			static_cast<cocos2d::CCSprite*>(m_dots->objectAtIndex(i))->setScale(scale);
 		}
 	}
 	void setPagesIndicatorPosition(cocos2d::CCPoint) = m1 0x32e588, imac 0x3a8260, ios 0x131abc;
