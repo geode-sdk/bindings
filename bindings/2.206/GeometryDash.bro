@@ -16913,13 +16913,39 @@ class TextInputDelegate {
 class TextStyleSection : cocos2d::CCObject {
 	// virtual ~TextStyleSection();
 
-	static TextStyleSection* create(int, int, TextStyleType);
+	static TextStyleSection* create(int, int, TextStyleType) = win 0x6c320;
 
-	TodoReturn createColoredSection(cocos2d::ccColor3B, int, int);
-	TodoReturn createDelaySection(int, float);
-	TodoReturn createInstantSection(int, int, float);
-	TodoReturn createShakeSection(int, int, int, int);
+	static TextStyleSection* createColoredSection(cocos2d::ccColor3B p0, int p1, int p2) = win inline {
+		auto ret = TextStyleSection::create(p1, p2, TextStyleType::Color);
+		ret->m_color = p0;
+		return ret;
+	}
+	static TextStyleSection* createDelaySection(int p0, float p1) = win inline {
+		auto ret = TextStyleSection::create(p0, -1, TextStyleType::Delay);
+		ret->m_unkDelay = p1;
+		return ret;
+	}
+	static TextStyleSection* createInstantSection(int p0, int p1, float p2) = win inline {
+		auto ret = TextStyleSection::create(p0, p1, TextStyleType::Instant);
+		ret->m_unkInstant = p2;
+		return ret;
+	}
+	static TextStyleSection* createShakeSection(int p0, int p1, int p2, int p3) = win inline {
+		auto ret = TextStyleSection::create(p0, p1, TextStyleType::Shake);
+		ret->m_unkShake1 = p2;
+		ret->m_unkShake2 = p3;
+		return ret;
+	}
 	bool init(int, int, TextStyleType);
+
+	int m_unkParam1;
+	int m_unkParam2;
+	TextStyleType m_styleType;
+	cocos2d::ccColor3B m_color;
+	float m_unkInstant;
+	float m_unkDelay;
+	int m_unkShake1;
+	int m_unkShake2;
 }
 
 [[link(android)]]
