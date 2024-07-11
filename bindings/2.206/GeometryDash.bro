@@ -4552,6 +4552,7 @@ class FontObject : cocos2d::CCObject {
 	}
 	bool initWithConfigFile(char const* p0, float p1) = win inline {
 		parseConfigFile(p0, p1);
+		return true;
 	}
 	void parseConfigFile(char const*, float) = win 0x3a7d0;
 
