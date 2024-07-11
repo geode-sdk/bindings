@@ -977,21 +977,21 @@ class cocos2d::CCLayerGradient {
 
 	virtual bool init() = imac 0x4bd860, ios 0x154b80;
 
-	virtual void updateColor() = imac 0x4bd9a0;
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = imac 0x4bd890;
-	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&) = imac 0x4bd8f0;
-	virtual cocos2d::_ccColor3B const& getStartColor() = imac 0x4bdb90;
-	virtual void setStartColor(cocos2d::_ccColor3B const&) = imac 0x4bdba0;
-	virtual cocos2d::_ccColor3B const& getEndColor() = imac 0x4bdbf0;
-	virtual void setEndColor(cocos2d::_ccColor3B const&) = imac 0x4bdbc0;
-	virtual unsigned char getStartOpacity() = imac 0x4bdc20;
-	virtual void setStartOpacity(unsigned char) = imac 0x4bdc00;
-	virtual unsigned char getEndOpacity() = imac 0x4bdc50;
-	virtual void setEndOpacity(unsigned char) = imac 0x4bdc30;
-	virtual cocos2d::CCPoint const& getVector() = imac 0x4bdc90;
+	virtual void updateColor() = imac 0x4bd9a0, ios 0x154c98;
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&) = imac 0x4bd890, ios 0x154bb8;
+	virtual bool initWithColor(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&, cocos2d::CCPoint const&) = imac 0x4bd8f0, ios 0x154c18;
+	virtual cocos2d::_ccColor3B const& getStartColor() = imac 0x4bdb90, ios 0x154e90;
+	virtual void setStartColor(cocos2d::_ccColor3B const&) = imac 0x4bdba0, ios 0x154e98;
+	virtual cocos2d::_ccColor3B const& getEndColor() = imac 0x4bdbf0, ios 0x154ec4;
+	virtual void setEndColor(cocos2d::_ccColor3B const&) = imac 0x4bdbc0, ios 0x154ea4;
+	virtual unsigned char getStartOpacity() = imac 0x4bdc20, ios 0x154edc;
+	virtual void setStartOpacity(unsigned char) = imac 0x4bdc00, ios 0x154ecc;
+	virtual unsigned char getEndOpacity() = imac 0x4bdc50, ios 0x154ef4;
+	virtual void setEndOpacity(unsigned char) = imac 0x4bdc30, ios 0x154ee4;
+	virtual cocos2d::CCPoint const& getVector() = imac 0x4bdc90, ios 0x154f2c;
 	virtual void setVector(cocos2d::CCPoint const&) = imac 0x4bdc60, ios 0x154efc;
-	virtual void setCompressedInterpolation(bool) = imac 0x4bdd30;
-	virtual bool isCompressedInterpolation() = imac 0x4bdd20;
+	virtual void setCompressedInterpolation(bool) = imac 0x4bdd30, ios 0x154fb0;
+	virtual bool isCompressedInterpolation() = imac 0x4bdd20, ios 0x154fa8;
 }
 
 [[link(win, android)]]
@@ -1060,8 +1060,8 @@ class cocos2d::CCLayerColor {
 	virtual bool initWithColor(cocos2d::_ccColor4B const&) = m1 0x41da28, imac 0x4bcf40, ios 0x1547f8;
 	virtual void updateColor() = m1 0x41dba4, imac 0x4bd0e0, ios 0x1548a8;
 
-	virtual void setColor(cocos2d::_ccColor3B const&) = m1 0x41dcec, imac 0x4bd200;
-	virtual void setOpacity(unsigned char) = m1 0x41de98, imac 0x4bd380;
+	virtual void setColor(cocos2d::_ccColor3B const&) = m1 0x41dcec, imac 0x4bd200, ios 0x1549c8;
+	virtual void setOpacity(unsigned char) = m1 0x41de98, imac 0x4bd380, ios 0x154a24;
 
 	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = m1 0x41d4b8, imac 0x4bc890, ios 0x154530;
 	virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x41d4a8, imac 0x4bc870, ios 0x154520;
