@@ -4540,7 +4540,7 @@ class FontObject : cocos2d::CCObject {
 
 	static FontObject* createWithConfigFile(char const* p0, float p1) = win inline {
 		auto ret = new FontObject();
-		if (ret->init(p0, p1)) {
+		if (ret->initWithConfigFile(p0, p1)) {
 			ret->autorelease();
 			return ret;
 		}
