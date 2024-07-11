@@ -531,24 +531,37 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	int getPage(int);
 	int getRelativePageForNum(int);
 	cocos2d::CCPoint getRelativePosForPage(int);
-	int getTotalPages() = ios 0x132154;
+	int getTotalPages() = win inline, m1 0x32ef28, imac 0x3a8ca0, ios 0x132154 {
+		return m_dynamic ? m_dynamicObjects->count() : m_pages->count();
+	}
 	bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c3b0, m1 0x32e124, imac 0x3a7dc0;
-	void instantMoveToPage(int) = win 0x3cf40, ios 0x132724;
-	void moveToPage(int) = win 0x3d020, ios 0x1327fc;
-	void moveToPageEnded() = win 0x3cdb0;
+	void instantMoveToPage(int) = win 0x3cf40, m1 0x32f894, imac 0x3a9760, ios 0x132724;
+	void moveToPage(int) = win 0x3d020, m1 0x32f96c, imac 0x3a9840, ios 0x1327fc;
+	void moveToPageEnded() = win 0x3cdb0, m1 0x32f700, m1 0x3a95d0;
 	int pageNumberForPosition(cocos2d::CCPoint) = win 0x3ce40;
 	cocos2d::CCPoint positionForPageWithNumber(int);
-	void quickUpdate(); // inlined D:
-	void removePage(cocos2d::CCLayer*);
-	void removePageWithNumber(int);
-	void repositionPagesLooped() = win 0x3d1e0;
-	void selectPage(int);
-	void setDotScale(float); // inlined
-	void setPagesIndicatorPosition(cocos2d::CCPoint) = ios 0x131abc; // inline functions my beloved :heart:
-	void setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c720;
-	void togglePageIndicators(bool) = win 0x3cce0;
-	void updateDots(float) = win 0x3cae0, ios 0x132170;
-	void updatePages() = win 0x3c9c0;
+	void quickUpdate() = win inline, m1 0x32fbe0, imac 0x3a9ab0 {
+		if (m_pageMoving) {
+			m_pageMoving = false;
+			m_extendedLayer->stopActionByTag(2);
+			m_extendedLayer->setPosition(m_position);
+			this->moveToPageEnded();
+		}
+	}
+	void removePage(cocos2d::CCLayer*) = m1 0x32fd18, imac 0x3a9c00;
+	void removePageWithNumber(int) = m1 0x32fdac, imac 0x3a9c90;
+	void repositionPagesLooped() = win 0x3d1e0, m1 0x32e6d0, imac 0x3a83b0;
+	void selectPage(int) = m1 0x32fb28, imac 0x3a9a00;
+	void setDotScale(float scale) = win inline, m1 0x32f1c8, imac 0x3a8f80 {
+		for (int i = 0; i < m_dots->count(); i++) {
+			static_cast<CCSprite*>(m_dots->objectAtIndex(i))->setScale(scale);
+		}
+	}
+	void setPagesIndicatorPosition(cocos2d::CCPoint) = m1 0x32e588, imac 0x3a8260, ios 0x131abc;
+	void setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c720, m1 0x32ece0, imac 0x3a8a50;
+	void togglePageIndicators(bool) = win 0x3cce0, m1 0x32f63c, imac 0x3a9500;
+	void updateDots(float) = win 0x3cae0, m1 0x32ef44, imac 0x3a8cd0, ios 0x132170;
+	void updatePages() = win 0x3c9c0, m1 0x32e5b0, imac 0x3a8290;
 
 	virtual void visit() = win 0x3cd50, m1 0x32f6a8, imac 0x3a9570;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d890, m1 0x3301bc, imac 0x3aa0a0;
@@ -561,7 +574,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	int m_slowPage;
 	float m_touchX;
 	float m_touchQuotient;
-	bool m_elastic;
+	bool m_looped;
 	DynamicScrollDelegate* m_dynamicDelegate;
 	cocos2d::CCArray* m_dynamicObjects;
 	bool m_dynamic;
@@ -570,7 +583,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	cocos2d::CCTouch* m_touch;
 	cocos2d::CCArray* m_pages;
 	double m_touchTime;
-	cocos2d::CCPoint m_firstPosition;
+	cocos2d::CCPoint m_position;
 	ExtendedLayer* m_extendedLayer;
 	cocos2d::CCRect m_rect;
 	float m_unkFloat1;
