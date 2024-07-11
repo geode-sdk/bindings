@@ -1903,8 +1903,8 @@ class cocos2d::CCTransitionFade {
 
 	virtual void onEnter() = imac 0xdca80;
 	virtual void onExit() = imac 0xdcbb0;
-	virtual bool initWithDuration(float, cocos2d::CCScene*) = imac 0xdca60;
-	virtual bool initWithDuration(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&) = imac 0xdca10;
+	virtual bool initWithDuration(float, cocos2d::CCScene*) = imac 0xdca60, m1 0xc37a8;
+	virtual bool initWithDuration(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&) = imac 0xdca10, m1 0xc3764;
 }
 
 [[link(win, android)]]
