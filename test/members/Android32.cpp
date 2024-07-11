@@ -80,6 +80,7 @@ GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x17c);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x1bc);
 
 GEODE_SIZE_CHECK(LevelEditorLayer, 0x2f48);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x2e04);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x2e24);
 
 GEODE_SIZE_CHECK(GameObject, 0x488);

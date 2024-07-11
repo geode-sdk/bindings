@@ -884,7 +884,7 @@ class cocos2d::CCScheduler {
 	void resumeTargets(cocos2d::CCSet*);
 	unsigned int scheduleScriptFunc(unsigned int, float, bool);
 	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool) = imac 0x44b680, m1 0x3bcbb4;
-	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool) = imac 0x44b660;
+	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool) = imac 0x44b660, m1 0x3bcba4;
 	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool) = imac 0x44c260;
 	void unscheduleAll();
 	void unscheduleAllForTarget(cocos2d::CCObject*);
@@ -1514,21 +1514,21 @@ class cocos2d::CCNodeRGBA {
 
 [[link(win, android)]]
 class cocos2d::CCSequence {
-	static cocos2d::CCSequence* create(cocos2d::CCArray*) = m1 0x33d400, imac 0x3b8e10;
-	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...);
-	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
+	static cocos2d::CCSequence* create(cocos2d::CCArray*) = imac 0x3b8e10, m1 0x33d400;
+	// static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3b8aa0, m1 0x33d1fc;
+	static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3b8970, m1 0x33d0dc;
 	static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = imac 0x3b8b50, m1 0x33d224, ios 0x195fb4;
 
-	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
+	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3b8a40, m1 0x33d198;
 
 	// CCSequence(cocos2d::CCSequence const&);
 	// CCSequence();
 
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual void startWithTarget(cocos2d::CCNode*);
-	virtual void stop();
-	virtual cocos2d::CCActionInterval* reverse();
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x3b9050, m1 0x33d5f0;
+	virtual void update(float) = imac 0x3b92f0, m1 0x33d87c;
+	virtual void startWithTarget(cocos2d::CCNode*) = imac 0x3b9280, m1 0x33d7f4;
+	virtual void stop() = imac 0x3b92c0, m1 0x33d83c;
+	virtual cocos2d::CCActionInterval* reverse() = imac 0x3b9440, m1 0x33da10;
 }
 
 [[link(win, android)]]
@@ -2098,10 +2098,10 @@ class cocos2d::CCString {
 	// static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x278aec;
 
 	char const* getCString() const = imac 0x7b6cc0, m1 0x6bd3dc, ios 0x2786d0;
-	//intValue = ios 0x2787d4;
 	//createWithContentsOfFile = ios 0x278b74;
 
 	bool boolValue() const = ios 0x278884;
+	int intValue() const = imac 0x7b6f90, m1 0x6bd754; // ios 0x2787d4;
 }
 
 [[link(win, android)]]
@@ -2182,7 +2182,7 @@ class cocos2d::CCMenu {
 	virtual void addChild(cocos2d::CCNode*, int, int) = m1 0x6a7110, imac 0x79ec30;
 	virtual void removeChild(cocos2d::CCNode*, bool) = m1 0x6a71b8, imac 0x79ecd0;
 	virtual void onExit() = m1 0x6a7170, imac 0x79ec80;
-	virtual void registerWithTouchDispatcher() = m1 0x6a726c;
+	virtual void registerWithTouchDispatcher() = m1 0x6a726c, imac 0x79ed80;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a72c8, imac 0x79edd0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a75b0, imac 0x79f080;
@@ -2354,8 +2354,8 @@ class DS_Dictionary {
 	cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
 	gd::vector<gd::string> getAllKeys();
 	cocos2d::CCArray* getArrayForKey(char const*, bool) = m1 0x14497c, imac 0x17c470;
-	bool getBoolForKey(char const*);
-	cocos2d::CCDictionary* getDictForKey(char const*, bool);
+	bool getBoolForKey(char const*) = imac 0x1791d0;
+	cocos2d::CCDictionary* getDictForKey(char const*, bool) = imac 0x17d470;
 	float getFloatForKey(char const*);
 	unsigned int getIndexOfKey(char const*);
 	unsigned int getIndexOfKeyWithClosestAlphaNumericalMatch(char const*);
@@ -2366,7 +2366,7 @@ class DS_Dictionary {
 	gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
 	cocos2d::CCRect getRectForKey(char const*);
 	gd::vector<gd::string> getStringArrayForKey(char const*);
-	gd::string getStringForKey(char const*);
+	gd::string getStringForKey(char const*) = imac 0x179410;
 	gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
 	cocos2d::CCPoint getVec2ForKey(char const*);
 	bool loadRootSubDictFromCompressedFile(char const*);
