@@ -986,9 +986,9 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	}
 	void useAnimationType(MenuAnimationType) = ios 0x223ebc;
 
-	virtual void activate() = win 0x43ec0, imac 0x272f20, m1 0x218e14;
-	virtual void selected() = win 0x43fd0, m1 0x218f64, imac 0x273090;
-	virtual void unselected() = win 0x441f0, m1 0x2191a4, imac 0x273300;
+	virtual void activate() = win 0x43ec0, imac 0x272f20, m1 0x218e14, ios 0x223f0c;
+	virtual void selected() = win 0x43fd0, m1 0x218f64, imac 0x273090, ios 0x223fec;
+	virtual void unselected() = win 0x441f0, m1 0x2191a4, imac 0x273300, ios 0x2241c4;
 
 	/// Set a new image for this button
 	/// Prefer using this over `setNormalImage` as the latter does not actually
