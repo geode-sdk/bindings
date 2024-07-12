@@ -3431,19 +3431,19 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	virtual void scaleXYChanged(float, float, bool) = win 0x1113b0, m1 0x3b810, imac 0x40690;
 
 
-	PAD = win 0x40, android32 0x1c, android64 0x38, mac 0x28;
+	PAD = win 0x40, android32 0x1c, android64 0x38, mac 0x28, ios 0x28;
 
 	GJTransformState m_transformState;
 	bool m_isPlayingMusic;
 	EditButtonBar* m_buttonBar;
-	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8;
+	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
 	cocos2d::CCArray* m_unk1cc;
 	float m_gridSize;
-	PAD = win 0x34, android32 0x30, android64 0x34, mac 0x34;
+	PAD = win 0x34, android32 0x30, android64 0x34, mac 0x34, ios 0x34;
 	cocos2d::CCLabelBMFont* m_objectInfoLabel;
 	GJRotationControl* m_rotationControl;
 	cocos2d::CCPoint m_pivotPoint;
-	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8;
+	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
 	GJScaleControl* m_scaleControl;
 	GJTransformControl* m_transformControl;
 	cocos2d::CCNode* m_unk220;
@@ -3458,9 +3458,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	float m_unk244;
 	bool m_updatedSpeedObjects;
 
-	PAD = win 0xf, android32 0xf, android64 0xf, mac 0xf;
+	PAD = win 0xf, android32 0xf, android64 0xf, mac 0xf, ios 0xf;
 	cocos2d::CCArray* m_unk258;
-	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
+	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8, ios 0x8;
 
 	cocos2d::CCArray* m_selectedObjects; // win 0x264
 
@@ -3487,7 +3487,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	CCMenuItemSpriteExtra* m_editGroupBtn;
 	CCMenuItemSpriteExtra* m_editHSVBtn;
 	CCMenuItemSpriteExtra* m_editSpecialBtn;
-	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8;
+	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
 	CCMenuItemSpriteExtra* m_copyPasteBtn;
 	CCMenuItemSpriteExtra* m_copyBtn;
 	CCMenuItemSpriteExtra* m_pasteBtn;
@@ -3514,7 +3514,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	ButtonSprite* m_unk31c;
 	ButtonSprite* m_unk320;
 	int m_selectedCreateObjectID;
-	PAD = win 0x10, android32 0x8, android64 0x10, mac 0x10;
+	PAD = win 0x10, android32 0x8, android64 0x10, mac 0x10, ios 0x10;
 	cocos2d::CCArray* m_createButtonArray;
 	cocos2d::CCArray* m_customObjectButtonArray;
 	cocos2d::CCArray* m_unknownArray9;
@@ -3522,7 +3522,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	LevelEditorLayer* m_editorLayer; // win 0x340
 	cocos2d::CCPoint m_swipeStart;
 	cocos2d::CCPoint m_swipeEnd;
-	PAD = mac 0x8, win 0x8, android32 0x8, android64 0x8;
+	PAD = mac 0x8, win 0x8, android32 0x8, android64 0x8, ios 0x8;
 	cocos2d::CCPoint m_lastTouchPoint;
 	cocos2d::CCPoint m_cameraTest;
 	cocos2d::CCPoint m_clickAtPosition;
@@ -5667,12 +5667,12 @@ class GameObject : CCSpritePlus {
 	// TodoReturn updateSecondaryColor();
 
 	virtual void update(float) = m1 0x4ef094, imac 0x5b2ca0;
-	virtual void setScaleX(float) = win 0x18e290, m1 0x4f3d18, imac 0x5c4970;
-	virtual void setScaleY(float) = win 0x18e370, m1 0x4f3db8, imac 0x5c4a10;
-	virtual void setScale(float) = win 0x18e460, imac 0x5c4ab0, m1 0x4f3e58;
+	virtual void setScaleX(float) = win 0x18e290, m1 0x4f3d18, imac 0x5c4970, ios 0x26b0a4;
+	virtual void setScaleY(float) = win 0x18e370, m1 0x4f3db8, imac 0x5c4a10, ios 0x26b13c;
+	virtual void setScale(float) = win 0x18e460, imac 0x5c4ab0, m1 0x4f3e58, ios 0x26b1d4;
 	virtual void setPosition(cocos2d::CCPoint const&) = win 0x18dba0, imac 0x5c43f0, m1 0x4f3740;
 	virtual void setVisible(bool) = win 0x18ec90, imac 0x5c51b0, m1 0x4f44a8;
-	virtual void setRotation(float) = win 0x18de40, imac 0x5c4660, m1 0x4f39e0;
+	virtual void setRotation(float) = win 0x18de40, imac 0x5c4660, m1 0x4f39e0, ios 0x26ad98;
 	virtual void setRotationX(float) = m1 0x4f3ac8, win 0x18df90, imac 0x5c4730;
 	virtual void setRotationY(float) = m1 0x4f3ba4, win 0x18e0e0, imac 0x5c47f0;
 	virtual void setOpacity(unsigned char) = win 0x18e840, m1 0x4f417c, imac 0x5c4e10;
@@ -5761,59 +5761,59 @@ class GameObject : CCSpritePlus {
 
 	// property 511
 	bool m_hasExtendedCollision;
-	PAD = android32 0x13, win 0x13, android64 0x13, mac 0x13;
+	PAD = android32 0x13, win 0x13, android64 0x13, mac 0x13, ios 0x13;
 
 	// somehow related to property 155 and 156 if anyone wants to reverse engineer
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
 
-	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4, ios 0x4;
 
 	float m_positionXOffset;
 	float m_positionYOffset;
 
 	float m_rotationXOffset;
 
-	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4, ios 0x4;
 
 	float m_rotationYOffset;
 
-	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4, ios 0x4;
 
 	float m_scaleXOffset;
 	float m_scaleYOffset;
 
-	PAD = android32 0x28, win 0x30, android64 0x30, mac 0x30;
+	PAD = android32 0x28, win 0x30, android64 0x30, mac 0x30, ios 0x30;
 
 	cocos2d::CCSprite* m_glowSprite;
 
-	PAD = android32 0x8, win 0x4, android64 0x4, mac 0x4;
+	PAD = android32 0x8, win 0x4, android64 0x4, mac 0x4, ios 0x4;
 
-	PAD = android32 0x6, win 0x6, android64 0x6, mac 0x6;
+	PAD = android32 0x6, win 0x6, android64 0x6, mac 0x6, ios 0x6;
 
 	bool m_unk306;
 
 	cocos2d::CCSprite* m_someSprite;
 	gd::string m_particleString;
 
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
 
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3e, win 0x3e, android64 0x3e, mac 0x3e;
+	PAD = android32 0x3e, win 0x3e, android64 0x3e, mac 0x3e, ios 0x3e;
 
 	// property 108
 	int m_linkedGroup;
 
-	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
+	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc, ios 0xc;
 
 	cocos2d::CCSprite* m_colorSprite;
 
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
 
 	float m_objectRadius;
 
-	PAD = android32 0xA, win 0xA, android64 0xA, mac 0xA;
+	PAD = android32 0xA, win 0xA, android64 0xA, mac 0xA, ios 0xA;
 
 	int m_uniqueID;
 	GameObjectType m_objectType;
@@ -5821,36 +5821,36 @@ class GameObject : CCSpritePlus {
 	// used in PlayerObject::gameEventTriggered
 	int m_unk326;
 
-	PAD = android32 0xa, win 0xa, android64 0xa, mac 0xa;
+	PAD = android32 0xa, win 0xa, android64 0xa, mac 0xa, ios 0xa;
 	double m_positionX;
 	double m_positionY;
 	cocos2d::CCPoint m_startPosition;
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
 
 	// property 372
 	bool m_hasNoAudioScale;
 	bool m_unk34a;
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
 
 	float m_startRotationX;
 	float m_startRotationY;
 	float m_startScaleX;
 	float m_startScaleY;
 
-	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8;
+	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8, ios 0x8;
 
 	bool m_startFlipX;
 	bool m_startFlipY;
 	bool m_unk3ee;
 	bool m_unk3ef;
 
-	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
+	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc, ios 0xc;
 
 	// property 343
 	short m_enterChannel;
 	// property 446
 	short m_objectMaterial;
-	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4, ios 0x4;
 
 	// property 96
 	bool m_hasNoGlow;
@@ -5860,7 +5860,7 @@ class GameObject : CCSpritePlus {
 
 	// property 1
 	int m_objectID;
-	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8;
+	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8, ios 0x8;
 
 	// property 497
 	short m_customColorType;
@@ -5872,30 +5872,30 @@ class GameObject : CCSpritePlus {
 	bool m_hasNoEffects;
 	// property 507
 	bool m_hasNoParticles;
-	PAD = android32 0x16, win 0x16, android64 0x16, mac 0x16;
+	PAD = android32 0x16, win 0x16, android64 0x16, mac 0x16, ios 0x16;
 
 	// property 53
 	int m_property53;
-	PAD = android32 0x18, win 0x18, android64 0x18, mac 0x18;
+	PAD = android32 0x18, win 0x18, android64 0x18, mac 0x18, ios 0x18;
 
 	// property 21, also used with 41 and 43
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
-	PAD = android32 0xc, win 0xa, android64 0xc, mac 0xc; // i will not question the windows pad
+	PAD = android32 0xc, win 0xa, android64 0xc, mac 0xc, ios 0xc; // i will not question the windows pad
 
 	// property 24
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
 
 	bool m_isSelected;
 
-	PAD = android32 0xe, win 0xe, android64 0xe, mac 0xe;
+	PAD = android32 0xe, win 0xe, android64 0xe, mac 0xe, ios 0xe;
 
 	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1;
+	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
 
 	// property 34
 	bool m_hasGroupParent;
@@ -5922,19 +5922,19 @@ class GameObject : CCSpritePlus {
 	short m_editorLayer;
 	// property 61
 	short m_editorLayer2;
-	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8;
+	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8, ios 0x8;
 
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x9, win 0x9, android64 0x9, mac 0x9;
+	PAD = android32 0x9, win 0x9, android64 0x9, mac 0x9, ios 0x9;
 
 	cocos2d::CCPoint m_lastPosition;
 
-	PAD = android32 0x1b, win 0x1b, android64 0x1b, mac 0x1b;
+	PAD = android32 0x1b, win 0x1b, android64 0x1b, mac 0x1b, ios 0x;
 
 	// property 103
 	bool m_isHighDetail;
-	PAD = android32 0x11, win 0x21, android64 0x21, mac 0x21;
+	PAD = android32 0x11, win 0x21, android64 0x21, mac 0x21, ios 0x21;
 
 	// property 134
 	bool m_isPassable;
@@ -5956,14 +5956,14 @@ class GameObject : CCSpritePlus {
 	bool m_isDontBoostY;
 	// property 509
 	bool m_isDontBoostX;
-	PAD = android32 0x11, win 0x11, android64 0x11, mac 0x11;
+	PAD = android32 0x11, win 0x11, android64 0x11, mac 0x11, ios 0x11;
 
 	// property 155
 	int m_property155;
 	// property 156
 	int m_property156;
 
-	PAD = android32 0x12, win 0x12, android64 0x12, mac 0x12; // TODO: yeah someone pls fix windows pads
+	PAD = android32 0x12, win 0x12, android64 0x12, mac 0x12, ios 0x12; // TODO: yeah someone pls fix windows pads
 }
 
 [[link(android)]]
