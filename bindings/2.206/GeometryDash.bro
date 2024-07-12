@@ -11130,24 +11130,41 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 [[link(android)]]
 class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
 	~LevelSelectLayer() = m1 0x3add30, imac 0x4ba220;
+	LevelSelectLayer() {}
 
-	static LevelSelectLayer* create(int) = win 0x2f7c30, ios 0x40a26c;
+	static LevelSelectLayer* create(int page) = win inline, imac 0x43b830, m1 0x3ade50, ios 0x40a26c {
+		auto ret = new LevelSelectLayer();
+		if (ret->init(page)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	cocos2d::ccColor3B colorForPage(int page) = win 0x2f8ee0;
-	TodoReturn getColorValue(int, int, float);
+	cocos2d::ccColor3B colorForPage(int page) = win 0x2f8ee0, imac 0x43e410, m1 0x3b0928;
+	cocos2d::ccColor3B getColorValue(int, int, float) = imac 0x43e170, m1 0x3b0680;
 	bool init(int page) = win 0x2f7d60, ios 0x40a328, imac 0x43b920, m1 0x3adf18;
-	void onBack(cocos2d::CCObject* sender) = win 0x2f9380, ios 0x40ad2c;
-	void onDownload(cocos2d::CCObject* sender) = win 0x2f8b00, ios 0x40ac74;
-	void onInfo(cocos2d::CCObject* sender) = win 0x2f9500, ios 0x40ad74;
-	void onNext(cocos2d::CCObject* sender) = win 0x2f9280, ios 0x40acfc;
-	void onPlay(cocos2d::CCObject* sender);
-	void onPrev(cocos2d::CCObject* sender) = win 0x2f9300, ios 0x40accc;
+	void onBack(cocos2d::CCObject* sender) = win 0x2f9380, ios 0x40ad2c, imac 0x43c720, m1 0x3aebd4;
+	void onDownload(cocos2d::CCObject* sender) = win 0x2f8b00, ios 0x40ac74, imac 0x43c670, m1 0x3aeb1c;
+	void onInfo(cocos2d::CCObject* sender) = win 0x2f9500, ios 0x40ad74, imac 0x43c770, m1 0x3aec1c;
+	void onNext(cocos2d::CCObject* sender) = win 0x2f9280, ios 0x40acfc, imac 0x43c6f0, m1 0x3aeba4;
+	void onPlay(cocos2d::CCObject* sender) = imac 0x43e6e0, m1 0x3b0b24;
+	void onPrev(cocos2d::CCObject* sender) = win 0x2f9300, ios 0x40accc, imac 0x43c6c0, m1 0x3aeb74;
 	static cocos2d::CCScene* scene(int) = win 0x2f7c30, ios 0x40a220, imac 0x43b710, m1 0x3add68;
-	TodoReturn tryShowAd();
+	void tryShowAd() = imac 0x43c790, m1 0x3aec38;
+
 	virtual void keyBackClicked() = win 0x2f93d0, m1 0x3b09b8, imac 0x43e490;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2f9420, m1 0x3b0a4c, imac 0x43e530;
 	virtual void updatePageWithObject(cocos2d::CCObject*, cocos2d::CCObject*) = win 0x2f8b50, m1 0x3aec58, imac 0x43c7b0;
 	virtual void scrollLayerMoved(cocos2d::CCPoint) = win 0x2f8bc0, m1 0x3b052c, imac 0x43e000;
+
+	float m_width;
+	cocos2d::CCSprite* m_backgroundSprite;
+	GJGroundLayer* m_groundLayer;
+	BoomScrollLayer* m_scrollLayer;
+	void* m_unknown;
+	bool m_masterDetectiveUnlocked;
 }
 
 [[link(android)]]
