@@ -11779,43 +11779,43 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	// virtual ~MoreSearchLayer();
 	inline MoreSearchLayer() {}
 
-	static MoreSearchLayer* create() = win inline, m1 inline, imac 0x638980 {
-        auto ret = new MoreSearchLayer();
-        if (ret->init()) {
-            ret->autorelease();
-            return ret;
-        }
-        delete ret;
-        return nullptr;
+	static MoreSearchLayer* create() = win inline, m1 0x5586e4, imac 0x638980 {
+		auto ret = new MoreSearchLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
 	}
 
-	void audioNext(cocos2d::CCObject* sender) = win 0x2f6180;
-	void audioPrevious(cocos2d::CCObject* sender) = win 0x2f62a0;
-	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0x2f6c50;
-	void onClose(cocos2d::CCObject* sender) = win 0x2f6eb0;
-	void onCoins(cocos2d::CCObject* sender);
-	void onCompleted(cocos2d::CCObject* sender);
-	void onEpic(cocos2d::CCObject* sender);
-	void onFeatured(cocos2d::CCObject* sender);
-	void onFollowed(cocos2d::CCObject* sender);
-	void onFriends(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onLegendary(cocos2d::CCObject* sender);
-	void onMythic(cocos2d::CCObject* sender);
-	void onNoStar(cocos2d::CCObject* sender);
-	void onOriginal(cocos2d::CCObject* sender);
-	void onSongFilter(cocos2d::CCObject* sender) = win 0x2f57e0;
-	void onSongMode(cocos2d::CCObject* sender) = win 0x2f6500;
-	void onTwoPlayer(cocos2d::CCObject* sender);
-	void onUncompleted(cocos2d::CCObject* sender);
-	void selectSong(int songID) = win 0x2f63c0;
-	TodoReturn toggleSongNodes(bool, bool);
-	void updateAudioLabel() = win 0x2f5ec0;
+	void audioNext(cocos2d::CCObject* sender) = win 0x2f6180, m1 0x55b558, imac 0x63bb40;
+	void audioPrevious(cocos2d::CCObject* sender) = win 0x2f62a0, m1 0x55b4e4, imac 0x63bad0;
+	void createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0x2f6c50, m1 0x55adcc, imac 0x63b400;
+	void onClose(cocos2d::CCObject* sender) = win 0x2f6eb0, m1 0x55ace8, imac 0x63b320;
+	void onCoins(cocos2d::CCObject* sender) = win 0x2f55e0, m1 0x55b104, imac 0x63b6e0;
+	void onCompleted(cocos2d::CCObject* sender) = win 0x2f4580, m1 0x55b084, imac 0x63b660;
+	void onEpic(cocos2d::CCObject* sender) = win 0x2f49b0, m1 0x55b2d4, imac 0x63b8c0;
+	void onFeatured(cocos2d::CCObject* sender) = win 0x2f47a0, m1 0x55b294, imac 0x63b880;
+	void onFollowed(cocos2d::CCObject* sender) = m1 0x55b6a0, imac 0x63bc60;
+	void onFriends(cocos2d::CCObject* sender) = m1 0x55b6e0, imac 0x63bca0;
+	void onInfo(cocos2d::CCObject* sender) = win 0x2f6b00, m1 0x55b5c8, imac 0x63bbb0;
+	void onLegendary(cocos2d::CCObject* sender) = win 0x2f4bb0, m1 0x55b314, imac 0x63b900;
+	void onMythic(cocos2d::CCObject* sender) = win 0x2f4dd0, m1 0x55b354, imac 0x63b940;
+	void onNoStar(cocos2d::CCObject* sender) = win 0x2f53e0, m1 0x55b254, imac 0x63b840;
+	void onOriginal(cocos2d::CCObject* sender) = win 0x2f4fd0, m1 0x55b0c4, imac 0x63b6a0;
+	void onSongFilter(cocos2d::CCObject* sender) = win 0x2f57e0, m1 0x55b184, imac 0x63b760;
+	void onSongMode(cocos2d::CCObject* sender) = win 0x2f6500, m1 0x55b394, imac 0x63b980;
+	void onTwoPlayer(cocos2d::CCObject* sender) = win 0x2f51e0, m1 0x55b144, imac 0x63b720;
+	void onUncompleted(cocos2d::CCObject* sender) = win 0x2f4350, m1 0x55b044, imac 0x63b620;
+	void selectSong(int songID) = win 0x2f63c0, m1 0x55b824, imac 0x63be20;
+	void toggleSongNodes(bool, bool) = win 0x2f69c0, m1 0x55b720, imac 0x63bce0;
+	void updateAudioLabel() = win 0x2f5ec0, m1 0x55b86c, imac 0x63be70;
 
 	virtual bool init() = win 0x2f2540, m1 0x559b2c, imac 0x639f30;
 	virtual void keyBackClicked() = win 0x2f72b0, m1 0x55bb44, imac 0x63c100;
-	virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x55b9bc, imac 0x63bf90;
-	virtual void textInputReturn(CCTextInputNode*) = m1 0x55ba8c, imac 0x63c050;
+	virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x79fd0, m1 0x55b9bc, imac 0x63bf90;
+	virtual void textInputReturn(CCTextInputNode*) = win 0x7a030, m1 0x55ba8c, imac 0x63c050;
 
 	cocos2d::CCLabelBMFont* m_audioTrackName;
 	CCMenuItemSpriteExtra* m_songLeftBtn;
@@ -11823,7 +11823,9 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	CCMenuItemSpriteExtra* m_normalBtn;
 	CCMenuItemSpriteExtra* m_customBtn;
 	CCTextInputNode* m_enterSongID;
-	PAD = win 0x18;
+	cocos2d::CCArray* m_commonSongNodes;
+	cocos2d::CCArray* m_normalSongNodes;
+	cocos2d::CCArray* m_customSongNodes;
 }
 
 [[link(android)]]
