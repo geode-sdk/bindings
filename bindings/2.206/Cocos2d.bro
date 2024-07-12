@@ -1999,6 +1999,19 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		CC_SAFE_RELEASE(m_pStencil);
 	}
 
+	// in normal cocos this is just a static func at the top of the file: https://github.com/cocos2d/cocos2d-x/blob/v2/cocos2dx/misc_nodes/CCClippingNode.cpp#L40
+	void setProgram(CCNode *n, CCGLProgram *p)
+	{
+	    n->setShaderProgram(p);
+	    if (!n->getChildren()) return;
+	    
+	    CCObject* pObj = NULL;
+	    CCARRAY_FOREACH(n->getChildren(), pObj)
+	    {
+	        setProgram((CCNode*)pObj, p);
+	    }
+	}
+
 	virtual bool init() = imac 0x72c4c0, m1 0x63f190, ios inline {
 		return init(nullptr);
 	}
@@ -2012,8 +2025,6 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		m_bInverted = false;
 		// get (only once) the number of bits of the stencil buffer
 		static bool once = true;
-		// geode change
-		static int g_sStencilBits = -1;
 
 		if (once)
 		{
@@ -2251,6 +2262,9 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 	void setInverted(bool bInverted) = imac 0x72c9f0, m1 0x63f654, ios inline {
 		m_bInverted = bInverted;
 	}
+
+	// geode "addition"
+	int g_sStencilBits;
 }
 
 [[link(win, android)]]
