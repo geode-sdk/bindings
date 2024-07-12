@@ -13233,7 +13233,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 		else
 			percent = reinterpret_cast<cocos2d::CCNode*>(this->m_player1)->getPosition().x / this->m_levelLength * 100.f;
 
-		return std::clamp(percent, 0.f, 100.f);
+		if(percent < 0.f) return 0.f;
+		if(percent > 100.f) return 100.f;
+		return percent;
 	}
 	int getCurrentPercentInt() = win inline, imac inline, m1 inline {
 		return static_cast<int>(this->getCurrentPercent());
