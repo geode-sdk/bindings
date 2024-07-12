@@ -2098,10 +2098,10 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	void loadFromComment(GJComment*) = win 0xb3790, imac 0x242fa0, m1 0x1edab0;
 	void onConfirmDelete(cocos2d::CCObject* sender) = win 0xb5be0, imac 0x250bc0;
 	TodoReturn onDelete();
-	void onGoToLevel(cocos2d::CCObject* sender) = imac 0x2509f0;
-	void onLike(cocos2d::CCObject* sender) = win 0xb5980, imac 0x250ac0;
+	void onGoToLevel(cocos2d::CCObject* sender) = imac 0x2509f0, m1 0x1fa408;
+	void onLike(cocos2d::CCObject* sender) = win 0xb5980, imac 0x250ac0, m1 0x1fa4bc;
 	TodoReturn onUndelete();
-	void onUnhide(cocos2d::CCObject* sender) = imac 0x250aa0;
+	void onUnhide(cocos2d::CCObject* sender) = imac 0x250aa0, m1 0x1fa4b0;
 	void onViewProfile(cocos2d::CCObject* sender) = imac 0x2509c0;
 	void updateBGColor(int);
 	void updateLabelValues();
@@ -4663,7 +4663,7 @@ class GameLevelManager : cocos2d::CCNode {
 	}
 
 	void acceptFriendRequest(int, int);
-	int accountIDForUserID(int userID) = imac 0x5359a0;
+	int accountIDForUserID(int userID) = imac 0x5359a0, m1 0x488ce0;
 	void addDLToActive(char const*) = win 0x1445c0;
 	bool areGauntletsLoaded();
 	void banUser(int);
@@ -4772,12 +4772,12 @@ class GameLevelManager : cocos2d::CCNode {
 	const char *getRateStarsKey(int key);
 	char const* getReportKey(int);
 	GJGameLevel* getSavedDailyLevel(int) = win 0x143740, m1 0x490530, imac 0x53e2d0;
-	GJGameLevel* getSavedDailyLevelFromLevelID(int) = imac 0x53e5a0;
+	GJGameLevel* getSavedDailyLevelFromLevelID(int) = imac 0x53e5a0, m1 0x49080c;
 	GJGameLevel* getSavedGauntlet(int);
 	GJGameLevel* getSavedGauntletLevel(int) = imac 0x53e3c0;
 	GJGameLevel* getSavedLevel(GJGameLevel*);
 	GJGameLevel* getSavedLevel(int) = win 0x143670, imac 0x53e4b0, m1 0x490718;
-	GJLevelList* getSavedLevelList(int);
+	GJLevelList* getSavedLevelList(int) = m1 0x49af28;
 	cocos2d::CCArray* getSavedLevelLists(int);
 	cocos2d::CCArray* getSavedLevels(bool, int) = win 0x1428f0, imac 0x53bed0, m1 0x48e4e0;
 	TodoReturn getSavedMapPack(int) = imac 0x5485f0;
@@ -4953,7 +4953,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void storeUserNames(gd::string usernameString);
 	void submitUserInfo();
 	void suggestLevelStars(int, int, int);
-	gd::string tryGetUsername(int) = win 0x141660, imac 0x5354a0;
+	gd::string tryGetUsername(int) = win 0x141660, imac 0x5354a0, m1 0x4889e0;
 	CommentType typeFromCommentKey(char const*);
 	LikeItemType typeFromLikeKey(char const*);
 	void unblockUser(int);
@@ -4974,7 +4974,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void uploadUserMessage(int, gd::string, gd::string) = win 0x155010, imac 0x556070, m1 0x4a5270;
 	int userIDForAccountID(int);
 	GJUserScore* userInfoForAccountID(int);
-	gd::string userNameForUserID(int) = win 0x1414e0, imac 0x535320;
+	gd::string userNameForUserID(int) = win 0x1414e0, imac 0x535320, m1 0x488848;
 	void verifyLevelState(GJGameLevel*);
 	gd::string writeSpecialFilters(GJSearchObject*) = win 0x1481b0;
 
@@ -10309,7 +10309,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	TodoReturn deleteSelected();
 	TodoReturn exitLayer(cocos2d::CCObject*);
 	cocos2d::CCArray* getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*) = win 0x2bb8f0;
-	gd::string getSearchTitle() = win 0x2b8750, imac 0x4993a0;
+	gd::string getSearchTitle() = win 0x2b8750, imac 0x4993a0, m1 0x3fdccc;
 	bool init(GJSearchObject*) = win 0x2b57d0, m1 0x3f8fc4, imac 0x494360, ios 0x41d238;
 	bool isCorrect(char const*) = win 0x2b70e0;
 	void loadPage(GJSearchObject*) = win 0x2b72b0, m1 0x3fc3cc, imac 0x497710;
@@ -11353,12 +11353,12 @@ class LikeItemDelegate {
 class LikeItemLayer : FLAlertLayer {
 	// virtual ~LikeItemLayer();
 
-	static LikeItemLayer* create(LikeItemType, int, int) = win 0x30d400, imac 0x603930;
+	static LikeItemLayer* create(LikeItemType, int, int) = win 0x30d400, imac 0x603930, m1 0x52a0d0;
 
-	bool init(LikeItemType, int, int) = win 0x30d500, imac 0x603aa0;
-	void onClose(cocos2d::CCObject* sender) = imac 0x603e70;
-	void onDislike(cocos2d::CCObject* sender) = win 0x30d8e0, imac 0x603f20;
-	void onLike(cocos2d::CCObject* sender) = win 0x30d8d0, imac 0x603ea0;
+	bool init(LikeItemType, int, int) = win 0x30d500, imac 0x603aa0, m1 0x52a1f4;
+	void onClose(cocos2d::CCObject* sender) = imac 0x603e70, m1 0x52a5a8;
+	void onDislike(cocos2d::CCObject* sender) = win 0x30d8e0, imac 0x603f20, m1 0x52a65c;
+	void onLike(cocos2d::CCObject* sender) = win 0x30d8d0, imac 0x603ea0, m1 0x52a5e4;
 	void triggerLike(bool isLiked) = win 0x30d8f0;
 
 	virtual void keyBackClicked() = m1 0x52a750, imac 0x604020;
@@ -12054,7 +12054,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	void handleItND(cocos2d::CCNode*, void*);
 	TodoReturn incrementPriorityForSong(int);
-	bool isDLActive(char const* tag);
+	bool isDLActive(char const* tag) = m1 0x4dbec8;
 	bool isMusicLibraryLoaded();
 	bool isResourceSFX(int);
 	bool isResourceSong(int id) = win inline {
@@ -12064,7 +12064,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	bool isSFXDownloaded(int) = imac 0x5977f0;
 	bool isSFXLibraryLoaded();
 	bool isSongDownloaded(int) = win 0x31e180, imac 0x595ea0, m1 0x4e04c0;
-	void limitDownloadedSongs() = imac 0x5961a0;
+	void limitDownloadedSongs() = imac 0x5961a0, m1 0x4df024;
 	void loadSongInfoFailed(int, GJSongError);
 	void loadSongInfoFinished(SongInfoObject*) = win 0x323150;
 	void musicActionFailed(GJMusicAction);
@@ -12073,7 +12073,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void onDownloadMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	void onDownloadSFXCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = imac 0x59ce00;
 	void onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
-	void onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x31dc50, imac 0x596ee0;
+	void onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x31dc50, imac 0x596ee0, m1 0x4dfcc8;
 	void onGetCustomContentURLCompleted(gd::string, gd::string) = imac 0x592330;
 	void onGetSongInfoCompleted(gd::string, gd::string) = win 0x31c960, imac 0x592040;
 	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = imac 0x591590;
@@ -12087,7 +12087,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	gd::string pathForSongFolder(int) = win 0x31e2b0, imac 0x5975b0, m1 0x4e0314;
 	void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int) = imac 0x5917a0;
 	callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = imac 0x591400;
-	void removeDLFromActive(char const*) = win 0x31dfc0, imac 0x592b30;
+	void removeDLFromActive(char const*) = win 0x31dfc0, imac 0x592b30, m1 0x4dbfac;
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
 	static cocos2d::CCDictionary* responseToDict(gd::string, char const*);
 	void showTOS(FLAlertLayerProtocol*) = win 0x31e7f0;
