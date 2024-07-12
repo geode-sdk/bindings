@@ -5930,7 +5930,7 @@ class GameObject : CCSpritePlus {
 
 	cocos2d::CCPoint m_lastPosition;
 
-	PAD = android32 0x1b, win 0x1b, android64 0x1b, mac 0x1b, ios 0x;
+	PAD = android32 0x1b, win 0x1b, android64 0x1b, mac 0x1b, ios 0x1b;
 
 	// property 103
 	bool m_isHighDetail;
