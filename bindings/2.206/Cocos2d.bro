@@ -1069,26 +1069,37 @@ class cocos2d::CCLayerColor {
 
 [[link(win, android)]]
 class cocos2d::CCLayerRGBA {
-	static cocos2d::CCLayerRGBA* create();
+	static cocos2d::CCLayerRGBA* create() = ios inline {
+		auto pRet = new cocos2d::CCLayerRGBA();
+
+		if (pRet->init())
+		{
+			pRet->autorelease();
+			return pRet;
+		}
+
+		delete pRet;
+		return nullptr;
+	}
 
 	// CCLayerRGBA(cocos2d::CCLayerRGBA const&);
 	CCLayerRGBA() = imac 0x4bb5e0, m1 0x41c704, ios 0x154480;
 	~CCLayerRGBA() = imac 0x4bb800, m1 0x41c86c, ios 0x15314c;
 
-	virtual bool init() = imac 0x4bba70, m1 0x41c9fc;
+	virtual bool init() = imac 0x4bba70, m1 0x41c9fc, ios 0x154060;
 
-	virtual void setColor(cocos2d::_ccColor3B const&) = m1 0x41cc20, imac 0x4bbcb0;
-	virtual cocos2d::_ccColor3B const& getColor() = m1 0x41cc00, imac 0x4bbc70;
-	virtual cocos2d::_ccColor3B const& getDisplayedColor() = m1 0x41cc10, imac 0x4bbc90;
-	virtual unsigned char getDisplayedOpacity() = m1 0x41ca98, imac 0x4bbb10;
-	virtual unsigned char getOpacity() = m1 0x41ca88, imac 0x4bbaf0;
-	virtual void setOpacity(unsigned char) = m1 0x41caa8, imac 0x4bbb30;
-	virtual bool isCascadeColorEnabled() = m1 0x41d080, imac 0x4bc210;
-	virtual void setCascadeColorEnabled(bool) = m1 0x41d090, imac 0x4bc230;
-	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = m1 0x41cf4c, imac 0x4bbfb0;
-	virtual bool isCascadeOpacityEnabled() = m1 0x41d060, imac 0x4bc1d0;
-	virtual void setCascadeOpacityEnabled(bool) = m1 0x41d070, imac 0x4bc1f0;
-	virtual void updateDisplayedOpacity(unsigned char) = m1 0x41cdac, imac 0x4bbe20;
+	virtual void setColor(cocos2d::_ccColor3B const&) = m1 0x41cc20, imac 0x4bbcb0, ios 0x15419c;
+	virtual cocos2d::_ccColor3B const& getColor() = m1 0x41cc00, imac 0x4bbc70, ios 0x15417c;
+	virtual cocos2d::_ccColor3B const& getDisplayedColor() = m1 0x41cc10, imac 0x4bbc90, ios 0x15418c;
+	virtual unsigned char getDisplayedOpacity() = m1 0x41ca98, imac 0x4bbb10, ios 0x1540cc;
+	virtual unsigned char getOpacity() = m1 0x41ca88, imac 0x4bbaf0, ios 0x1540bc;
+	virtual void setOpacity(unsigned char) = m1 0x41caa8, imac 0x4bbb30, ios 0x1540dc;
+	virtual bool isCascadeColorEnabled() = m1 0x41d080, imac 0x4bc210, ios 0x154460;
+	virtual void setCascadeColorEnabled(bool) = m1 0x41d090, imac 0x4bc230, ios 0x154470;
+	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = m1 0x41cf4c, imac 0x4bbfb0, ios 0x154338;
+	virtual bool isCascadeOpacityEnabled() = m1 0x41d060, imac 0x4bc1d0, ios 0x154440;
+	virtual void setCascadeOpacityEnabled(bool) = m1 0x41d070, imac 0x4bc1f0, ios 0x154450;
+	virtual void updateDisplayedOpacity(unsigned char) = m1 0x41cdac, imac 0x4bbe20, ios 0x15426c;
 }
 
 [[link(win, android)]]
