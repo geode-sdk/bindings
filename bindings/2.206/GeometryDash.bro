@@ -4918,7 +4918,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void resetCommentTimersForLevelID(int, CommentKeyType) = win 0x158ed0, imac 0x55a6d0;
 	void resetDailyLevelState(GJTimedLevelType) = imac 0x560e10;
 	void resetGauntlets();
-    inline void resetStoredUserInfo(int id) = win inline, imac 0x554c00 {
+    void resetStoredUserInfo(int id) = win inline, imac 0x554c00 {
         m_storedUserInfo->removeObjectForKey(id);
     }
 	void resetStoredUserList(UserListType);
