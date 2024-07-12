@@ -1976,7 +1976,7 @@ class cocos2d::CCCallFunc {
 
 [[link(win, android)]]
 class cocos2d::CCClippingNode : cocos2d::CCNode {
-    static cocos2d::CCClippingNode* create() = imac 0x72c380, m1 0x63f068, ios inline {
+	static cocos2d::CCClippingNode* create() = imac 0x72c380, m1 0x63f068, ios inline {
 		auto pRet = new CCClippingNode();
 
 		if (pRet->init())
@@ -1986,9 +1986,9 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		}
 
 		delete pRet;
-		return nullptr
+		return nullptr;
 	}
-    static cocos2d::CCClippingNode* create(cocos2d::CCNode* stencil) = imac 0x72c410, m1 0x63f0f0, ios inline {
+	static cocos2d::CCClippingNode* create(cocos2d::CCNode* stencil) = imac 0x72c410, m1 0x63f0f0, ios inline {
 		auto pRet = new CCClippingNode();
 
 		if (pRet->init(stencil))
@@ -1998,7 +1998,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		}
 
 		delete pRet;
-		return nullptr
+		return nullptr;
 	}
 
 	CCClippingNode() = ios inline {
@@ -2006,15 +2006,15 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		m_fAlphaThreshold = 0.0f;
 		m_bInverted = false;
 	}
-    virtual ~CCClippingNode() = ios inline {
+	virtual ~CCClippingNode() = ios inline {
 		CC_SAFE_RELEASE(m_pStencil);
 	}
 
-    virtual bool init() = imac 0x72c4c0, m1 0x63f190, ios inline {
+	virtual bool init() = imac 0x72c4c0, m1 0x63f190, ios inline {
 		return init(nullptr);
 	}
 
-    virtual bool init(cocos2d::CCNode* pStencil) = imac 0x72c4e0, m1 0x63f1a0, ios inline {
+	virtual bool init(cocos2d::CCNode* pStencil) = imac 0x72c4e0, m1 0x63f1a0, ios inline {
 		CC_SAFE_RELEASE(m_pStencil);
 	    m_pStencil = pStencil;
 	    CC_SAFE_RETAIN(m_pStencil);
@@ -2036,49 +2036,51 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 	    return true;
 	}
 
-    virtual void onEnter() = imac 0x72c550, m1 0x63f210, ios inline {
+	virtual void onEnter() = imac 0x72c550, m1 0x63f210, ios inline {
 		CCNode::onEnter();
-    	m_pStencil->onEnter();
+    		m_pStencil->onEnter();
 	}
-    virtual void onEnterTransitionDidFinish() = imac 0x72c580, m1 0x63f23c, ios inline {
+	virtual void onEnterTransitionDidFinish() = imac 0x72c580, m1 0x63f23c, ios inline {
 		CCNode::onEnterTransitionDidFinish();
-    	m_pStencil->onEnterTransitionDidFinish();
+    		m_pStencil->onEnterTransitionDidFinish();
 	}
-    virtual void onExit() = imac 0x72c5e0, m1 0x63f298, ios inline {
+	virtual void onExit() = imac 0x72c5e0, m1 0x63f298, ios inline {
 		m_pStencil->onExit();
-    	CCNode::onExit();
+    		CCNode::onExit();
 	}
-    virtual void onExitTransitionDidStart() = imac 0x72c5b0, m1 0x63f268, ios inline {
+	virtual void onExitTransitionDidStart() = imac 0x72c5b0, m1 0x63f268, ios inline {
 		m_pStencil->onExitTransitionDidStart();
-    	CCNode::onExitTransitionDidStart();
+    		CCNode::onExitTransitionDidStart();
 	}
 
-    virtual void visit() = imac 0x72c610, m1 0x63f2c8, ios inline {
+	virtual void visit() = imac 0x72c610, m1 0x63f2c8, ios inline {
 		// im lazy, do it later
 	}
 
-    cocos2d::CCNode* getStencil() const = imac 0x72c970, m1 0x63f5f0, ios inline {
+	cocos2d::CCNode* getStencil() const = imac 0x72c970, m1 0x63f5f0, ios inline {
 		return m_pStencil;
 	}
-    void setStencil(cocos2d::CCNode* pStencil) = imac 0x72c980, m1 0x63f5f8, ios inline {
+	void setStencil(cocos2d::CCNode* pStencil) = imac 0x72c980, m1 0x63f5f8, ios inline {
 		CC_SAFE_RELEASE(m_pStencil);
 	    m_pStencil = pStencil;
 	    CC_SAFE_RETAIN(m_pStencil);
 	}
 
-    float getAlphaThreshold() const = imac 0x72c9c0, m1 0x63f63c, ios inline {
+	float getAlphaThreshold() const = imac 0x72c9c0, m1 0x63f63c, ios inline {
 		return m_fAlphaThreshold;
 	}
-    void setAlphaThreshold(float fAlphaThreshold) = imac 0x72c9d0, m1 0x63f644, ios inline {
+	void setAlphaThreshold(float fAlphaThreshold) = imac 0x72c9d0, m1 0x63f644, ios inline {
 		m_fAlphaThreshold = fAlphaThreshold;
 	}
 
-    bool isInverted() const = imac 0x72c9e0, m1 0x63f64c, ios inline {
+	bool isInverted() const = imac 0x72c9e0, m1 0x63f64c, ios inline {
 		return m_bInverted;
 	}
-    void setInverted(bool bInverted) = imac 0x72c9f0, m1 0x63f654, ios inline {
+	void setInverted(bool bInverted) = imac 0x72c9f0, m1 0x63f654, ios inline {
 		m_bInverted = bInverted;
 	}
+
+	GLint g_sStencilBits = -1;
 }
 
 [[link(win, android)]]
