@@ -2016,24 +2016,27 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
 	virtual bool init(cocos2d::CCNode* pStencil) = imac 0x72c4e0, m1 0x63f1a0, ios inline {
 		CC_SAFE_RELEASE(m_pStencil);
-	    m_pStencil = pStencil;
-	    CC_SAFE_RETAIN(m_pStencil);
+		m_pStencil = pStencil;
+		CC_SAFE_RETAIN(m_pStencil);
 	    
-	    m_fAlphaThreshold = 1;
-	    m_bInverted = false;
-	    // get (only once) the number of bits of the stencil buffer
-	    static bool once = true;
-	    if (once)
-	    {
-	        glGetIntegerv(GL_STENCIL_BITS, &g_sStencilBits);
-	        if (g_sStencilBits <= 0)
-	        {
-	            CCLOG("Stencil buffer is not enabled.");
-	        }
-	        once = false;
-	    }
+		m_fAlphaThreshold = 1;
+		m_bInverted = false;
+		// get (only once) the number of bits of the stencil buffer
+		static bool once = true;
+		// geode change
+		static int g_sStencilBits = -1;
+
+		if (once)
+		{
+			glGetIntegerv(GL_STENCIL_BITS, &g_sStencilBits);
+			if (g_sStencilBits <= 0)
+			{
+				CCLOG("Stencil buffer is not enabled.");
+			}
+			once = false;
+		}
 	    
-	    return true;
+		return true;
 	}
 
 	virtual void onEnter() = imac 0x72c550, m1 0x63f210, ios inline {
@@ -2062,8 +2065,8 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 	}
 	void setStencil(cocos2d::CCNode* pStencil) = imac 0x72c980, m1 0x63f5f8, ios inline {
 		CC_SAFE_RELEASE(m_pStencil);
-	    m_pStencil = pStencil;
-	    CC_SAFE_RETAIN(m_pStencil);
+		m_pStencil = pStencil;
+		CC_SAFE_RETAIN(m_pStencil);
 	}
 
 	float getAlphaThreshold() const = imac 0x72c9c0, m1 0x63f63c, ios inline {
@@ -2079,8 +2082,6 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 	void setInverted(bool bInverted) = imac 0x72c9f0, m1 0x63f654, ios inline {
 		m_bInverted = bInverted;
 	}
-
-	GLint g_sStencilBits = -1;
 }
 
 [[link(win, android)]]
