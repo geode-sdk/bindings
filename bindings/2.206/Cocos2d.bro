@@ -1069,18 +1069,7 @@ class cocos2d::CCLayerColor {
 
 [[link(win, android)]]
 class cocos2d::CCLayerRGBA {
-	static cocos2d::CCLayerRGBA* create() = ios inline {
-		auto pRet = new cocos2d::CCLayerRGBA();
-
-		if (pRet->init())
-		{
-			pRet->autorelease();
-			return pRet;
-		}
-
-		delete pRet;
-		return nullptr;
-	}
+	static cocos2d::CCLayerRGBA* create();
 
 	// CCLayerRGBA(cocos2d::CCLayerRGBA const&);
 	CCLayerRGBA() = imac 0x4bb5e0, m1 0x41c704, ios 0x154480;
