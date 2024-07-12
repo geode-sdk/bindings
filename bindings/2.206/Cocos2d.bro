@@ -1976,28 +1976,109 @@ class cocos2d::CCCallFunc {
 
 [[link(win, android)]]
 class cocos2d::CCClippingNode : cocos2d::CCNode {
-    static cocos2d::CCClippingNode* create() = imac 0x72c380, m1 0x63f068;
-    static cocos2d::CCClippingNode* create(cocos2d::CCNode*) = imac 0x72c410, m1 0x63f0f0;
+    static cocos2d::CCClippingNode* create() = imac 0x72c380, m1 0x63f068, ios inline {
+		auto pRet = new CCClippingNode();
 
-    // CCClippingNode();
-    // virtual ~CCClippingNode();
+		if (pRet->init())
+		{
+			pRet->autorelease();
+			return pRet;
+		}
 
-    virtual bool init() = imac 0x72c4c0, m1 0x63f190;
-    virtual bool init(cocos2d::CCNode*) = imac 0x72c4e0, m1 0x63f1a0;
-    virtual void onEnter() = imac 0x72c550, m1 0x63f210;
-    virtual void onEnterTransitionDidFinish() = imac 0x72c580, m1 0x63f23c;
-    virtual void onExit() = imac 0x72c5e0, m1 0x63f298;
-    virtual void onExitTransitionDidStart() = imac 0x72c5b0, m1 0x63f268;
-    virtual void visit() = imac 0x72c610, m1 0x63f2c8;
+		delete pRet;
+		return nullptr
+	}
+    static cocos2d::CCClippingNode* create(cocos2d::CCNode* stencil) = imac 0x72c410, m1 0x63f0f0, ios inline {
+		auto pRet = new CCClippingNode();
 
-    cocos2d::CCNode* getStencil() const = imac 0x72c970, m1 0x63f5f0;
-    void setStencil(cocos2d::CCNode*) = imac 0x72c980, m1 0x63f5f8;
+		if (pRet->init(stencil))
+		{
+			pRet->autorelease();
+			return pRet;
+		}
 
-    float getAlphaThreshold() const = imac 0x72c9c0, m1 0x63f63c;
-    void setAlphaThreshold(float) = imac 0x72c9d0, m1 0x63f644;
+		delete pRet;
+		return nullptr
+	}
 
-    bool isInverted() const = imac 0x72c9e0, m1 0x63f64c;
-    void setInverted(bool) = imac 0x72c9f0, m1 0x63f654;
+	CCClippingNode() = ios inline {
+		m_pStencil = nullptr;
+		m_fAlphaThreshold = 0.0f;
+		m_bInverted = false;
+	}
+    virtual ~CCClippingNode() = ios inline {
+		CC_SAFE_RELEASE(m_pStencil);
+	}
+
+    virtual bool init() = imac 0x72c4c0, m1 0x63f190, ios inline {
+		return init(nullptr);
+	}
+
+    virtual bool init(cocos2d::CCNode* pStencil) = imac 0x72c4e0, m1 0x63f1a0, ios inline {
+		CC_SAFE_RELEASE(m_pStencil);
+	    m_pStencil = pStencil;
+	    CC_SAFE_RETAIN(m_pStencil);
+	    
+	    m_fAlphaThreshold = 1;
+	    m_bInverted = false;
+	    // get (only once) the number of bits of the stencil buffer
+	    static bool once = true;
+	    if (once)
+	    {
+	        glGetIntegerv(GL_STENCIL_BITS, &g_sStencilBits);
+	        if (g_sStencilBits <= 0)
+	        {
+	            CCLOG("Stencil buffer is not enabled.");
+	        }
+	        once = false;
+	    }
+	    
+	    return true;
+	}
+
+    virtual void onEnter() = imac 0x72c550, m1 0x63f210, ios inline {
+		CCNode::onEnter();
+    	m_pStencil->onEnter();
+	}
+    virtual void onEnterTransitionDidFinish() = imac 0x72c580, m1 0x63f23c, ios inline {
+		CCNode::onEnterTransitionDidFinish();
+    	m_pStencil->onEnterTransitionDidFinish();
+	}
+    virtual void onExit() = imac 0x72c5e0, m1 0x63f298, ios inline {
+		m_pStencil->onExit();
+    	CCNode::onExit();
+	}
+    virtual void onExitTransitionDidStart() = imac 0x72c5b0, m1 0x63f268, ios inline {
+		m_pStencil->onExitTransitionDidStart();
+    	CCNode::onExitTransitionDidStart();
+	}
+
+    virtual void visit() = imac 0x72c610, m1 0x63f2c8, ios inline {
+		// im lazy, do it later
+	}
+
+    cocos2d::CCNode* getStencil() const = imac 0x72c970, m1 0x63f5f0, ios inline {
+		return m_pStencil;
+	}
+    void setStencil(cocos2d::CCNode* pStencil) = imac 0x72c980, m1 0x63f5f8, ios inline {
+		CC_SAFE_RELEASE(m_pStencil);
+	    m_pStencil = pStencil;
+	    CC_SAFE_RETAIN(m_pStencil);
+	}
+
+    float getAlphaThreshold() const = imac 0x72c9c0, m1 0x63f63c, ios inline {
+		return m_fAlphaThreshold;
+	}
+    void setAlphaThreshold(float fAlphaThreshold) = imac 0x72c9d0, m1 0x63f644, ios inline {
+		m_fAlphaThreshold = fAlphaThreshold;
+	}
+
+    bool isInverted() const = imac 0x72c9e0, m1 0x63f64c, ios inline {
+		return m_bInverted;
+	}
+    void setInverted(bool bInverted) = imac 0x72c9f0, m1 0x63f654, ios inline {
+		m_bInverted = bInverted;
+	}
 }
 
 [[link(win, android)]]
