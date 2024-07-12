@@ -134,6 +134,14 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
             fmt::arg("class_include", class_include)
         );
 
+        #ifndef GEODE_IS_WINDOWS
+        if (can_find(c.name, "CCEGLView")) {
+            single_output += format_strings::modify_end;
+            writeFile(singleFolder / filename, single_output);
+            continue;
+        }
+        #endif
+
         // modify
         for (auto& f : c.fields) {
             auto fn = f.get_as<FunctionBindField>();
