@@ -2000,7 +2000,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 	}
 
 	// in normal cocos this is just a static func at the top of the file: https://github.com/cocos2d/cocos2d-x/blob/v2/cocos2dx/misc_nodes/CCClippingNode.cpp#L40
-	void setProgram(CCNode *n, CCGLProgram *p)
+	inline void setProgram(CCNode *n, CCGLProgram *p)
 	{
 	    n->setShaderProgram(p);
 	    if (!n->getChildren()) return;
@@ -2028,11 +2028,11 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
 		if (once)
 		{
-			glGetIntegerv(GL_STENCIL_BITS, &g_sStencilBits);
-			if (g_sStencilBits <= 0)
-			{
-				CCLOG("Stencil buffer is not enabled.");
-			}
+			//glGetIntegerv(GL_STENCIL_BITS, &g_sStencilBits);
+			//if (g_sStencilBits <= 0)
+			//{
+			//	CCLOG("Stencil buffer is not enabled.");
+			//}
 			once = false;
 		}
 	    
@@ -2058,12 +2058,12 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
 	virtual void visit() = imac 0x72c610, m1 0x63f2c8, ios inline {
 		// if stencil buffer disabled
-		if (g_sStencilBits < 1)
-		{
-			// draw everything, as if there where no stencil
-			CCNode::visit();
-			return;
-		}
+		//if (g_sStencilBits < 1)
+		//{
+		//	// draw everything, as if there where no stencil
+		//	CCNode::visit();
+		//	return;
+		//}
     
 		// return fast (draw nothing, or draw everything if in inverted mode) if:
 		// - nil stencil node
@@ -2084,14 +2084,14 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		static GLint layer = -1;
     
 		// all the _stencilBits are in use?
-		if (layer + 1 == g_sStencilBits)
+		if (false) // this definetly wont break anything :clueless: //if (layer + 1 == g_sStencilBits)
 		{
 			// warn once
 			static bool once = true;
 			if (once)
 			{
 				char warning[200] = {0};
-				snprintf(warning, sizeof(warning), "Nesting more than %d stencils is not supported. Everything will be drawn without stencil for this node and its childs.", g_sStencilBits);
+				//snprintf(warning, sizeof(warning), "Nesting more than %d stencils is not supported. Everything will be drawn without stencil for this node and its childs.", g_sStencilBits);
 				CCLOG("%s", warning);
             
 				once = false;
@@ -2262,9 +2262,6 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 	void setInverted(bool bInverted) = imac 0x72c9f0, m1 0x63f654, ios inline {
 		m_bInverted = bInverted;
 	}
-
-	// geode "addition"
-	int g_sStencilBits;
 }
 
 [[link(win, android)]]
