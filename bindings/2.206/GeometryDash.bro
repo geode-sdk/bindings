@@ -7878,7 +7878,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn getLastBuildPageForTab(int);
 	TodoReturn getLengthKey(int length, bool platformer) = imac 0x562c70;
 	TodoReturn getListSnapshot();
-	TodoReturn getNormalPercent() = imac 0x30d420;
+	TodoReturn getNormalPercent();
 	TodoReturn getSongName();
 	gd::string getUnpackedLevelDescription() = win 0x1678e0, imac 0x566710;
 	void handleStatsConflict(GJGameLevel*) = win 0x167410, imac 0x543750, m1 0x495334;

@@ -1797,7 +1797,7 @@ class cocos2d::CCDictionary {
 	cocos2d::CCArray* allKeysForObject(cocos2d::CCObject*);
 	char const* charForKey(gd::string const&);
 	unsigned int count() = imac 0x30d090, m1 0x29efd0;
-	cocos2d::CCObject* objectForKey(gd::string const&) = ios 0x42bb44, imac 0x30d7b0, m1 0x29f408;
+	cocos2d::CCObject* objectForKey(gd::string const&) = ios 0x42bb44, imac 0x30d420, m1 0x29f408;
 	cocos2d::CCObject* objectForKey(intptr_t) = imac 0x30d7b0, m1 0x29f714;
 	cocos2d::CCObject* randomObject();
 	void removeAllObjects() = imac 0x30ceb0, m1 0x29ee04;
