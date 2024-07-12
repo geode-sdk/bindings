@@ -1268,27 +1268,42 @@ class cocos2d::CCTouchHandler {
 	virtual bool initWithDelegate(cocos2d::CCTouchDelegate*, int);
 }
 
-[[link(win)]]
+[[link(win, android)]]
 class cocos2d::CCEGLView {
 	// CCEGLView();
 	// CCEGLView(cocos2d::CCEGLView const&);
 	virtual void swapBuffers() = m1 0x464e30, imac 0x50e130;
-	void toggleFullScreen(bool, bool);
-	void pollEvents();
-	void setupWindow(cocos2d::CCRect);
 	void end();
-	// rest are in extras (lie)
+
+	[[missing(android, mac, ios)]]
+	void toggleFullScreen(bool, bool);
+	[[missing(android, mac, ios)]]
+	void pollEvents();
+	[[missing(android, mac, ios)]]
+	void setupWindow(cocos2d::CCRect);
+	[[missing(android, mac, ios)]]
 	void onGLFWCharCallback(GLFWwindow* window, unsigned int entered);
+	[[missing(android, mac, ios)]]
 	void onGLFWCursorEnterFunCallback(GLFWwindow* window, int entered);
+	[[missing(android, mac, ios)]]
 	void onGLFWDeviceChangeFunCallback(GLFWwindow* window);
+	[[missing(android, mac, ios)]]
 	void onGLFWError(int code, char const* description);
+	[[missing(android, mac, ios)]]
 	void onGLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	[[missing(android, mac, ios)]]
 	void onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int mods);
+	[[missing(android, mac, ios)]]
 	void onGLFWMouseMoveCallBack(GLFWwindow* window, double x, double y);
+	[[missing(android, mac, ios)]]
 	void onGLFWMouseScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
+	[[missing(android, mac, ios)]]
 	void onGLFWWindowIconifyFunCallback(GLFWwindow* window, int iconified);
+	[[missing(android, mac, ios)]]
 	void onGLFWWindowPosCallback(GLFWwindow* window, int x, int y);
+	[[missing(android, mac, ios)]]
 	void onGLFWWindowSizeFunCallback(GLFWwindow* window, int width, int height);
+	[[missing(android, mac, ios)]]
 	void onGLFWframebuffersize(GLFWwindow* window, int width, int height);
 	// sharedOpenGLView() = ios 0x130f38, imac 0x50df50
 }
@@ -1903,8 +1918,8 @@ class cocos2d::CCTransitionFade {
 
 	virtual void onEnter() = imac 0xdca80;
 	virtual void onExit() = imac 0xdcbb0;
-	virtual bool initWithDuration(float, cocos2d::CCScene*) = imac 0xdca60;
-	virtual bool initWithDuration(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&) = imac 0xdca10;
+	virtual bool initWithDuration(float, cocos2d::CCScene*) = imac 0xdca60, m1 0xc37a8;
+	virtual bool initWithDuration(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&) = imac 0xdca10, m1 0xc3764;
 }
 
 [[link(win, android)]]
@@ -2151,7 +2166,7 @@ class cocos2d::CCMenuItemSprite {
 
 [[link(win, android)]]
 class cocos2d::CCMenu {
-	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1e1964, m1 0x6a6d58;
+	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1e1964, m1 0x6a6d58, imac 0x79e7b0;
 	static cocos2d::CCMenu* create() = imac 0x79e7a0, m1 0x6a6d34, ios 0x1e1940;
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
     static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = imac 0x79ebf0, m1 0x6a70e0;
@@ -2346,17 +2361,17 @@ class cocos2d {
 [[link(win, android)]]
 class DS_Dictionary {
 	DS_Dictionary() = m1 0x13e1c8, imac 0x174e70;
-	void addBoolValuesToMapForKey(gd::map<gd::string, bool>&, char const*, bool);
-	void addBoolValuesToMapForKeySpecial(gd::map<gd::string, bool>&, char const*, bool);
+	void addBoolValuesToMapForKey(gd::map<gd::string, bool>&, char const*, bool) = imac 0x17d2b0;
+	void addBoolValuesToMapForKeySpecial(gd::map<gd::string, bool>&, char const*, bool) = imac 0x17cf60;
 	void checkCompatibility();
 	gd::string cleanStringWhiteSpace(gd::string const&);
 	static void copyFile(char const*, char const*);
 	cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
 	gd::vector<gd::string> getAllKeys();
 	cocos2d::CCArray* getArrayForKey(char const*, bool) = m1 0x14497c, imac 0x17c470;
-	bool getBoolForKey(char const*) = imac 0x1791d0;
-	cocos2d::CCDictionary* getDictForKey(char const*, bool) = imac 0x17d470;
-	float getFloatForKey(char const*);
+	bool getBoolForKey(char const*) = imac 0x1791d0, m1 0x141d14;
+	cocos2d::CCDictionary* getDictForKey(char const*, bool) = imac 0x17d470, m1 0x145800;
+	float getFloatForKey(char const*) = m1 0x141e0c;
 	unsigned int getIndexOfKey(char const*);
 	unsigned int getIndexOfKeyWithClosestAlphaNumericalMatch(char const*);
 	int getIntegerForKey(char const*) = m1 0x141c08, imac 0x179090;
@@ -2366,7 +2381,7 @@ class DS_Dictionary {
 	gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
 	cocos2d::CCRect getRectForKey(char const*);
 	gd::vector<gd::string> getStringArrayForKey(char const*);
-	gd::string getStringForKey(char const*) = imac 0x179410;
+	gd::string getStringForKey(char const*) = imac 0x179410, m1 0x141f2c;
 	gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
 	cocos2d::CCPoint getVec2ForKey(char const*);
 	bool loadRootSubDictFromCompressedFile(char const*);
@@ -2505,7 +2520,7 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 class cocos2d::ZipUtils {
 	static gd::string base64DecodeEnc(gd::string const&, gd::string);
 	static gd::string base64EncodeEnc(gd::string const&, gd::string);
-	static gd::string base64URLDecode(gd::string const&);
+	static gd::string base64URLDecode(gd::string const&) = imac 0x2003f0;
 	static gd::string base64URLEncode(gd::string const&);
 	static void ccDecodeEncodedPvr(unsigned int*, int);
 	static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**) = m1 0x1b1220, imac 0x1ff6c0;
