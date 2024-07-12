@@ -1236,7 +1236,7 @@ class cocos2d::CCTouchDispatcher {
 	void registerForcePrio(cocos2d::CCObject*, int) = imac 0x4d5890, m1 0x433730, ios 0x159944;
 	void removeAllDelegates();
 	void removeDelegate(cocos2d::CCTouchDelegate*) = ios 0x159dbc, imac 0x4d5e40, m1 0x433d44;
-	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = m1 0x434208, imac 0x4d62a0;
+	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = m1 0x434208, imac 0x4d62a0, ios 0x159fb8;
 	void unregisterForcePrio(cocos2d::CCObject*) = imac 0x4d5930, m1 0x4337e4, ios 0x1599c0;
 
 	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4d68e0;
@@ -1264,7 +1264,7 @@ class cocos2d::CCTouchHandler {
 	// CCTouchHandler(cocos2d::CCTouchHandler const&);
 	// CCTouchHandler();
 
-	virtual bool initWithDelegate(cocos2d::CCTouchDelegate*, int);
+	virtual bool initWithDelegate(cocos2d::CCTouchDelegate*, int) = ios 0xc43c;
 }
 
 [[link(win)]]
