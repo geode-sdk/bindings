@@ -166,7 +166,7 @@ class AchievementManager : cocos2d::CCNode {
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
 	TodoReturn checkAchFromUnlock(char const*);
 	void dataLoaded(DS_Dictionary*) = imac 0x7908f0, m1 0x697460;
-	void encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*) = imac 0x790960;
 	void firstSetup();
 	TodoReturn getAchievementRewardDict();
 	cocos2d::CCDictionary* getAchievementsWithID(char const*);
@@ -4694,7 +4694,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void deleteUserMessages(GJUserMessage* message, cocos2d::CCArray* messages, bool isSender) = win 0x155680, m1 0x4a5858, imac 0x5566e0;
 	void downloadLevel(int, bool) = win 0x14c650, imac 0x54b6c0, m1 0x49bed4;
 	void downloadUserMessage(int, bool);
-	void encodeDataTo(DS_Dictionary*) = win 0x1458b0;
+	void encodeDataTo(DS_Dictionary*) = win 0x1458b0, imac 0x541e10;
 	void firstSetup();
 	void followUser(int);
 	GJFriendRequest* friendRequestFromAccountID(int);
@@ -5223,7 +5223,7 @@ class GameManager : GManager {
 	TodoReturn defaultYOffsetForBG2(int);
 	TodoReturn didExitPlayscene() = imac 0x38ccf0, m1 0x315cb0;
 	void doQuickSave();
-	TodoReturn dpadConfigToString(UIButtonConfig&) = win 0x17cde0;
+	TodoReturn dpadConfigToString(UIButtonConfig&) = win 0x17cde0, imac 0x388940;
 	TodoReturn eventUnlockFeature(char const*);
 	void fadeInMenuMusic() = win 0x173140, imac 0x378e90, m1 0x3045f8, ios 0x323038;
 	void fadeInMusic(gd::string) = win 0x173230, ios 0x3230c4, imac 0x378f60, m1 0x3046f0;
@@ -6144,7 +6144,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn createSpecialChestItems() = win 0x1dae20, m1 0x53a08;
 	TodoReturn createStoreItems() = win 0x1c78e0, m1 0x51980;
 	void dataLoaded(DS_Dictionary*) = win 0x1e5c00, imac 0x8c990, m1 0x7da1c;
-	void encodeDataTo(DS_Dictionary*) = win 0x1e5950;
+	void encodeDataTo(DS_Dictionary*) = win 0x1e5950, imac 0x8c4b0;
 	void firstSetup();
 	TodoReturn generateItemUnlockableData() = m1 0x598fc;
 	int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1d62c0, imac 0x702b0, m1 0x6421c;
@@ -6585,7 +6585,7 @@ class GJAccountManager : cocos2d::CCNode {
 	void addDLToActive(char const* tag);
 	bool backupAccount(gd::string) = win 0x1f2bc0;
 	void dataLoaded(DS_Dictionary*) = imac 0xd7f90, m1 0xbf188;
-	void encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*) = imac 0xd7f30;
 	void firstSetup();
 	void getAccountBackupURL();
 	void getAccountSyncURL();
@@ -8649,7 +8649,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
 	void addDLToActive(char const* tag);
 	TodoReturn createAndAddComment(gd::string, int);
 	void dataLoaded(DS_Dictionary*) = imac 0x669130, m1 0x584f3c;
-	void encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*) = imac 0x669120;
 	TodoReturn exitLobby(int);
 	void firstSetup();
 	TodoReturn getBasePostString();
@@ -10084,7 +10084,7 @@ class KeybindingsManager : cocos2d::CCNode {
 	TodoReturn commandForKeyNoMods(cocos2d::enumKeyCodes, GJKeyGroup);
 	TodoReturn commandToKeyForGroup(GJKeyGroup);
 	void dataLoaded(DS_Dictionary*) = imac 0x4efcc0, m1 0x449e60;
-	void encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*) = imac 0x4efc80;
 	void firstSetup();
 	TodoReturn groupForCommand(GJKeyCommand);
 	TodoReturn keyForCommand(GJKeyCommand);
@@ -12042,7 +12042,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void downloadSong(int) = win 0x31d960, imac 0x5965c0, m1 0x4df478;
 	void downloadSongFailed(int, GJSongError) = win 0x323250;
 	void downloadSongFinished(int);
-	void encodeDataTo(DS_Dictionary*);
+	void encodeDataTo(DS_Dictionary*) = imac 0x598060;
 	TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
 	TodoReturn filterMusicByTag(int, cocos2d::CCArray*);
 	void firstSetup();
