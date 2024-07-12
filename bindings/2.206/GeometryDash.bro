@@ -1465,7 +1465,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 	void getUniformLocations();
 	void initShader();
 	void setCustomLuminance(float, float, float);
-	void setEvenLuminance(float);
+	void setEvenLuminance(float) = imac 0x5fb1b0;
 	void setHue(float);
 	void setHueDegrees(float);
 	void setLuminance(float);
@@ -9330,7 +9330,7 @@ class GJSmartTemplate : cocos2d::CCObject {
 class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelegate {
 	// virtual ~GJSongBrowser();
 
-	static GJSongBrowser* create() = win 0x2a4b80;
+	static GJSongBrowser* create() = win 0x2a4b80, imac 0x6095f0;
 
 	void loadPage(int) = win 0x2a5180;
 	void onDeleteAll(cocos2d::CCObject* sender) = win 0x2a5430;
@@ -10918,7 +10918,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	void confirmDelete(cocos2d::CCObject*) = win 0x2e7f40;
 	void confirmOwnerDelete(cocos2d::CCObject*) = win 0x2e8070;
 	bool init(GJLevelList*) = win 0x2e3190, m1 0x2ea074, imac 0x35c820;
-	void onClaimReward(cocos2d::CCObject* sender) = win 0x2e5bb0;
+	void onClaimReward(cocos2d::CCObject* sender) = win 0x2e5bb0, imac 0x35ffa0;
 	void onDelete() = win 0x2e7cb0;
 	void onDescription(cocos2d::CCObject* sender) = win 0x2e7330;
 	void onFavorite(cocos2d::CCObject* sender) = win 0x2e7200;
@@ -11746,7 +11746,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 		return nullptr;
 	}
 
-	void addToggle(char const*, char const*, char const*) = win 0x353280, ios 0xf00d0;
+	void addToggle(char const*, char const*, char const*) = win 0x353280, ios 0xf00d0, imac 0x7a8ca0;
 	int countForPage(int) = win 0x3538e0;
 	void goToPage(int) = win 0x353d00, ios 0xf07e4;
 	void incrementCountForPage(int);
@@ -11766,7 +11766,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	void onNextPage(cocos2d::CCObject* sender) = win 0x353ce0, ios 0xf07d8;
 	void onParental(cocos2d::CCObject* sender) = win 0x354cb0, ios 0xf0704;
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x353cf0, ios 0xf07cc;
-	void onSongBrowser(cocos2d::CCObject* sender) = win 0x354aa0, ios 0xf0568;
+	void onSongBrowser(cocos2d::CCObject* sender) = win 0x354aa0, ios 0xf0568, imac 0x7a9420;
 	void onToggle(cocos2d::CCObject* sender) = win 0x3542a0;
 	const char* pageKey(int);
 	void toggleGP();
