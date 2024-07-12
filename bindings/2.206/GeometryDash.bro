@@ -4781,7 +4781,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* getSavedLevelLists(int);
 	cocos2d::CCArray* getSavedLevels(bool, int) = win 0x1428f0, imac 0x53bed0, m1 0x48e4e0;
 	TodoReturn getSavedMapPack(int) = imac 0x5485f0;
-	cocos2d::CCScene* getSearchScene(char const*);
+	cocos2d::CCScene* getSearchScene(char const*) = imac 0x53fd70;
 	int getSplitIntFromKey(char const*, int);
 	cocos2d::CCArray* getStoredLevelComments(char const*) = win 0x157b80;
 	cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0x144320, m1 0x4914d8, imac 0x53f3e0;
@@ -9153,7 +9153,7 @@ class GJSearchObject : cocos2d::CCNode {
 	static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x16c030, m1 0x4b59c8, imac 0x567a60, ios 0xb1b88;
 	static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x16bf00, m1 0x4b5e00, imac 0x567f10, ios 0xb1ee4;
 	static GJSearchObject* create(SearchType searchType) = win 0x16be20, m1 0x4b5d94, imac 0x567ea0, ios 0xb1dd4;
-	static GJSearchObject* createFromKey(char const* key) = win 0x16b720;
+	static GJSearchObject* createFromKey(char const* key) = win 0x16b720, imac 0x53fd90;
 
 	char const* getKey() = win 0x16c370, m1 0x498c5c, imac 0x547b90;
 	char const* getNextPageKey();
