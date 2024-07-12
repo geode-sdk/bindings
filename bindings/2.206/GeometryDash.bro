@@ -158,14 +158,14 @@ class AchievementCell : TableViewCell {
 class AchievementManager : cocos2d::CCNode {
 	// virtual ~AchievementManager();
 
-	static AchievementManager* sharedState() = win 0x7d50, ios 0xb9340, imac 0x738f50;
+	static AchievementManager* sharedState() = win 0x7d50, ios 0xb9340, imac 0x738f50, m1 0x64a8e4;
 
 	TodoReturn achievementForUnlock(int, UnlockType) = win 0x39390;
 	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x7ea0;
 	void addManualAchievements() = win 0x83c0;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
 	TodoReturn checkAchFromUnlock(char const*);
-	void dataLoaded(DS_Dictionary*) = imac 0x7908f0;
+	void dataLoaded(DS_Dictionary*) = imac 0x7908f0, m1 0x697460;
 	void encodeDataTo(DS_Dictionary*);
 	void firstSetup();
 	TodoReturn getAchievementRewardDict();
@@ -2096,7 +2096,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	TodoReturn incrementDislikes();
 	TodoReturn incrementLikes();
 	void loadFromComment(GJComment*) = win 0xb3790, imac 0x242fa0, m1 0x1edab0;
-	void onConfirmDelete(cocos2d::CCObject* sender) = win 0xb5be0, imac 0x250bc0;
+	void onConfirmDelete(cocos2d::CCObject* sender) = win 0xb5be0, imac 0x250bc0, m1 0x1fa59c;
 	TodoReturn onDelete();
 	void onGoToLevel(cocos2d::CCObject* sender) = imac 0x2509f0, m1 0x1fa408;
 	void onLike(cocos2d::CCObject* sender) = win 0xb5980, imac 0x250ac0, m1 0x1fa4bc;
@@ -4680,7 +4680,7 @@ class GameLevelManager : cocos2d::CCNode {
 	GJLevelList* createNewLevelList() = win 0x140910;
 	TodoReturn createPageInfo(int, int, int);
 	GJSmartTemplate* createSmartTemplate();
-	void dataLoaded(DS_Dictionary*) = win 0x145db0, imac 0x542370;
+	void dataLoaded(DS_Dictionary*) = win 0x145db0, imac 0x542370, m1 0x4941e4;
 	void deleteAccountComment(int, int);
 	void deleteComment(int, CommentType, int);
 	void deleteFriendRequests(int, cocos2d::CCArray*, bool);
@@ -5210,7 +5210,7 @@ class GameManager : GManager {
 	TodoReturn applicationWillEnterForeground() = win 0x17fff0;
 	TodoReturn calculateBaseKeyForIcons();
 	TodoReturn canShowRewardedVideo();
-	TodoReturn checkSteamAchievementUnlock() = imac 0x37b8f0;
+	TodoReturn checkSteamAchievementUnlock() = imac 0x37b8f0, m1 0x306d78;
 	TodoReturn checkUsedIcons() = win 0x17b1a0;
 	TodoReturn claimItemsResponse(gd::string);
 	TodoReturn clearGJLog();
@@ -5304,7 +5304,7 @@ class GameManager : GManager {
 		}
 	}
 
-	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string) = imac 0x3897c0;
+	TodoReturn loadDpadFromString(UIButtonConfig&, gd::string) = imac 0x3897c0, m1 0x312b6c;
 	TodoReturn loadDPadLayout(int, bool);
 	TodoReturn loadFont(int);
 	void loadGround(int) = win 0x179c20;
@@ -5320,11 +5320,11 @@ class GameManager : GManager {
 	void openEditorGuide();
 	void playMenuMusic() = ios 0x322df4, win 0x172ec0;
 	TodoReturn playSFXTrigger(SFXTriggerGameObject*);
-	TodoReturn prepareDPadSettings() = imac 0x389af0;
+	TodoReturn prepareDPadSettings() = imac 0x389af0, m1 0x312eb0;
 	TodoReturn printGJLog();
 	void queueReloadMenu() = ios 0x32e304;
 	TodoReturn rateGame();
-	void recountUserStats(gd::string) = imac 0x3869d0;
+	void recountUserStats(gd::string) = imac 0x3869d0, m1 0x310600;
 	void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x1807b0, imac 0x38d750, m1 0x3166d4, ios 0x32e3a4;
 	void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
 		return this->reloadAll(switchingModes, toFullscreen, false, unused);
@@ -5383,8 +5383,8 @@ class GameManager : GManager {
 	IconType unlockTypeToIconType(int) = win 0x1739c0;
 	void updateCustomFPS() = win 0x181010;
 	TodoReturn updateMusic();
-	void verifyAchievementUnlocks() = imac 0x37ba10;
-	TodoReturn verifyCoinUnlocks() = imac 0x37bc10;
+	void verifyAchievementUnlocks() = imac 0x37ba10, m1 0x306e90;
+	TodoReturn verifyCoinUnlocks() = imac 0x37bc10, m1 0x307098;
 	TodoReturn verifyStarUnlocks();
 	TodoReturn verifySyncedCoins();
 	TodoReturn videoAdHidden();
@@ -6126,24 +6126,24 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn awardDiamondsForLevel(GJGameLevel*);
 	TodoReturn awardSecretKey();
 	TodoReturn checkAchievement(char const*) = win 0x1cb460;
-	void checkCoinAchievement(GJGameLevel*) = win 0x1d3430, imac 0x6c870;
+	void checkCoinAchievement(GJGameLevel*) = win 0x1d3430, imac 0x6c870, m1 0x60780;
 	void checkCoinsForLevel(GJGameLevel*);
 	TodoReturn claimListReward(GJLevelList*);
 	TodoReturn collectReward(GJRewardType, GJRewardItem*);
 	TodoReturn collectVideoReward(int);
 	TodoReturn completedChallenge(GJChallengeItem*);
 	TodoReturn completedDailyLevel(GJGameLevel*);
-	void completedDemonLevel(GJGameLevel*) = imac 0x6d6f0;
+	void completedDemonLevel(GJGameLevel*) = imac 0x6d6f0, m1 0x616dc;
 	TodoReturn completedLevel(GJGameLevel*);
 	TodoReturn completedMapPack(GJMapPack*);
-	void completedStarLevel(GJGameLevel*) = imac 0x6d880;
+	void completedStarLevel(GJGameLevel*) = imac 0x6d880, m1 0x6186c;
 	int countSecretChests(GJRewardType) = ios 0x34d200;
 	int countUnlockedSecretChests(GJRewardType) = ios 0x34d244;
 	TodoReturn createSecretChestItems() = m1 0x538c4;
 	TodoReturn createSecretChestRewards();
 	TodoReturn createSpecialChestItems() = win 0x1dae20, m1 0x53a08;
 	TodoReturn createStoreItems() = win 0x1c78e0, m1 0x51980;
-	void dataLoaded(DS_Dictionary*) = win 0x1e5c00, imac 0x8c990;
+	void dataLoaded(DS_Dictionary*) = win 0x1e5c00, imac 0x8c990, m1 0x7da1c;
 	void encodeDataTo(DS_Dictionary*) = win 0x1e5950;
 	void firstSetup();
 	TodoReturn generateItemUnlockableData() = m1 0x598fc;
@@ -6216,8 +6216,8 @@ class GameStatsManager : cocos2d::CCNode {
 	bool hasUserCoin(char const*) = win 0x1d5880, m1 0x6356c, imac 0x6f690;
 	TodoReturn incrementActivePath(int);
 	TodoReturn incrementChallenge(GJChallengeType, int) = win 0x1d7970;
-	TodoReturn incrementStat(char const*, int) = win 0x1ca5b0, m1 0x5ad30, imac 0x65ad0;
-	TodoReturn incrementStat(char const*);
+	TodoReturn incrementStat(char const*, int) = win 0x1ca5b0, m1 0x5ad38, imac 0x65ad0;
+	TodoReturn incrementStat(char const*) = m1 0x5ad30;
 	bool isGauntletChestUnlocked(int);
 	bool isItemEnabled(UnlockType, int) = ios 0x345D80; //inline on windows
 	bool isItemUnlocked(UnlockType, int) = win 0x1dabe0, ios 0x33fda8, m1 0x5ead0, imac 0x6a450;
@@ -6237,7 +6237,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn preSaveGameStats() = win 0x1e6f10;
 	TodoReturn processChallengeQueue(int) = win 0x1d81d0;
 	TodoReturn purchaseItem(int);
-	TodoReturn recountSpecialStats() = win 0x1d9a20, imac 0x762a0;
+	TodoReturn recountSpecialStats() = win 0x1d9a20, imac 0x762a0, m1 0x691e4;
 	TodoReturn recountUserCoins(bool);
 	TodoReturn registerRewardsFromItem(GJRewardItem*);
 	TodoReturn removeChallenge(int);
@@ -6275,7 +6275,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn unlockSpecialChest(gd::string);
 	TodoReturn updateActivePath(StatKey);
 	gd::string usernameForAccountID(int);
-	TodoReturn verifyUserCoins() = imac 0x6f1d0;
+	TodoReturn verifyUserCoins() = imac 0x6f1d0, m1 0x630a4;
 
 	virtual bool init() = m1 0x518d8, win 0x1c7280, imac 0x5b350;
 
@@ -6365,7 +6365,7 @@ class GameToolbox {
 	static TodoReturn intToString(int) = win 0x67a70;
 	static bool isIOS();
 	static bool isRateEasing(int);
-	static TodoReturn mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*) = imac 0x4fa060;
+	static TodoReturn mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*) = imac 0x4fa060, m1 0x452dc8;
 	static TodoReturn mergeDictsSkipConflict(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
 	static TodoReturn msToTimeString(int, int);
 	static TodoReturn multipliedColorValue(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
@@ -6584,7 +6584,7 @@ class GJAccountManager : cocos2d::CCNode {
 	void addDLToActive(char const* tag, cocos2d::CCObject*);
 	void addDLToActive(char const* tag);
 	bool backupAccount(gd::string) = win 0x1f2bc0;
-	void dataLoaded(DS_Dictionary*) = imac 0xd7f90;
+	void dataLoaded(DS_Dictionary*) = imac 0xd7f90, m1 0xbf188;
 	void encodeDataTo(DS_Dictionary*);
 	void firstSetup();
 	void getAccountBackupURL();
@@ -8642,13 +8642,13 @@ class GJMPDelegate {
 class GJMultiplayerManager : cocos2d::CCNode {
 	// virtual ~GJMultiplayerManager();
 
-	static GJMultiplayerManager* sharedState() = win 0x270430, imac 0x665610;
+	static GJMultiplayerManager* sharedState() = win 0x270430, imac 0x665610, m1 0x581828;
 
 	void addComment(gd::string, int);
 	void addDLToActive(char const* tag, cocos2d::CCObject* obj);
 	void addDLToActive(char const* tag);
 	TodoReturn createAndAddComment(gd::string, int);
-	void dataLoaded(DS_Dictionary*) = imac 0x669130;
+	void dataLoaded(DS_Dictionary*) = imac 0x669130, m1 0x584f3c;
 	void encodeDataTo(DS_Dictionary*);
 	TodoReturn exitLobby(int);
 	void firstSetup();
@@ -8675,7 +8675,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
 class GJObjectDecoder : cocos2d::CCNode, ObjectDecoderDelegate {
 	// virtual ~GJObjectDecoder();
 
-	static GJObjectDecoder* sharedDecoder() = ios 0x227094;
+	static GJObjectDecoder* sharedDecoder() = ios 0x227094, m1 0x644080;
 
 	virtual bool init() = imac 0x731e10;
 	virtual TodoReturn getDecodedObject(int, DS_Dictionary*) = win 0x271ea0, m1 0x64412c, imac 0x731e20;
@@ -10077,13 +10077,13 @@ class KeybindingsLayer : FLAlertLayer {
 class KeybindingsManager : cocos2d::CCNode {
 	// virtual ~KeybindingsManager();
 
-	static KeybindingsManager* sharedState() = win 0x2ae710, imac 0x4ef660;
+	static KeybindingsManager* sharedState() = win 0x2ae710, imac 0x4ef660, m1 0x449860;
 
 	TodoReturn commandForKey(cocos2d::enumKeyCodes, GJKeyGroup, bool, bool, bool);
 	TodoReturn commandForKeyMods(cocos2d::enumKeyCodes, GJKeyGroup);
 	TodoReturn commandForKeyNoMods(cocos2d::enumKeyCodes, GJKeyGroup);
 	TodoReturn commandToKeyForGroup(GJKeyGroup);
-	void dataLoaded(DS_Dictionary*) = imac 0x4efcc0;
+	void dataLoaded(DS_Dictionary*) = imac 0x4efcc0, m1 0x449e60;
 	void encodeDataTo(DS_Dictionary*);
 	void firstSetup();
 	TodoReturn groupForCommand(GJKeyCommand);
@@ -12011,9 +12011,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void clearUnusedSongs();
 	void createArtistsInfo(gd::string) = win 0x31d150;
 	void createSongsInfo(gd::string, gd::string) = win 0x31cda0;
-	void dataLoaded(DS_Dictionary*) = win 0x31e950, imac 0x5980c0;
+	void dataLoaded(DS_Dictionary*) = win 0x31e950, imac 0x5980c0, m1 0x4e0c34;
 	void deleteSFX(int);
-	void deleteSong(int) = imac 0x5962e0;
+	void deleteSong(int) = imac 0x5962e0, m1 0x4df158;
 	void downloadCustomSong(int) = win 0x31f240, imac 0x596ad0, m1 0x4df8c4;
 	void downloadMusicLibrary();
 	void downloadSFX(int) = imac 0x59c9e0, m1 0x4e4cc8;
@@ -12240,7 +12240,7 @@ class ObjectControlGameObject : EffectGameObject {
 class ObjectDecoder {
 	// virtual ~ObjectDecoder();
 
-	static ObjectDecoder* sharedDecoder() = ios 0x246034;
+	static ObjectDecoder* sharedDecoder() = ios 0x246034, m1 0x6a61f4;
 
 	TodoReturn getDecodedObject(int, DS_Dictionary*);
 
@@ -16656,7 +16656,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	TodoReturn checkFirstCell(TableViewCell*);
 	TodoReturn checkLastCell(TableViewCell*);
 	TodoReturn claimTouch(cocos2d::CCTouch*);
-	TodoReturn deleteTableViewCell(TableViewCell*);
+	TodoReturn deleteTableViewCell(TableViewCell*) = m1 0x54e858;
 	TodoReturn dequeueReusableCellWithIdentifier(char const*);
 	TodoReturn initTableViewCells();
 	bool isDuplicateIndexPath(CCIndexPath&);

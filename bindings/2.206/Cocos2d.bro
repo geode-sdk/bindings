@@ -2354,9 +2354,9 @@ class DS_Dictionary {
 	cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
 	gd::vector<gd::string> getAllKeys();
 	cocos2d::CCArray* getArrayForKey(char const*, bool) = m1 0x14497c, imac 0x17c470;
-	bool getBoolForKey(char const*) = imac 0x1791d0;
-	cocos2d::CCDictionary* getDictForKey(char const*, bool) = imac 0x17d470;
-	float getFloatForKey(char const*);
+	bool getBoolForKey(char const*) = imac 0x1791d0, m1 0x141d14;
+	cocos2d::CCDictionary* getDictForKey(char const*, bool) = imac 0x17d470, m1 0x145800;
+	float getFloatForKey(char const*) = m1 0x141e0c;
 	unsigned int getIndexOfKey(char const*);
 	unsigned int getIndexOfKeyWithClosestAlphaNumericalMatch(char const*);
 	int getIntegerForKey(char const*) = m1 0x141c08, imac 0x179090;
@@ -2366,7 +2366,7 @@ class DS_Dictionary {
 	gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
 	cocos2d::CCRect getRectForKey(char const*);
 	gd::vector<gd::string> getStringArrayForKey(char const*);
-	gd::string getStringForKey(char const*) = imac 0x179410;
+	gd::string getStringForKey(char const*) = imac 0x179410, m1 0x141f2c;
 	gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
 	cocos2d::CCPoint getVec2ForKey(char const*);
 	bool loadRootSubDictFromCompressedFile(char const*);
