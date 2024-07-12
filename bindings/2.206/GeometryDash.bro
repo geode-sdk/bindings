@@ -4918,7 +4918,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void resetCommentTimersForLevelID(int, CommentKeyType) = win 0x158ed0, imac 0x55a6d0;
 	void resetDailyLevelState(GJTimedLevelType) = imac 0x560e10;
 	void resetGauntlets();
-    inline void resetStoredUserInfo(int id) {
+    inline void resetStoredUserInfo(int id) = win inline, imac 0x554c00 {
         m_storedUserInfo->removeObjectForKey(id);
     }
 	void resetStoredUserList(UserListType);
@@ -6591,7 +6591,7 @@ class GJAccountManager : cocos2d::CCNode {
 	void getAccountSyncURL();
 	cocos2d::CCObject* getDLObject(char const*);
 	gd::string getShaPassword(gd::string) = win 0x1F4FF0;
-	void handleIt(bool, gd::string, gd::string, GJHttpType);
+	void handleIt(bool, gd::string, gd::string, GJHttpType) = imac 0xd2c80;
 	void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	void handleItND(cocos2d::CCNode*, void*);
 	bool isDLActive(char const* tag);
@@ -6603,7 +6603,7 @@ class GJAccountManager : cocos2d::CCNode {
 	void onLoginAccountCompleted(gd::string, gd::string);
 	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	void onRegisterAccountCompleted(gd::string, gd::string);
-	void onSyncAccountCompleted(gd::string, gd::string);
+	void onSyncAccountCompleted(gd::string, gd::string) = imac 0xd44b0;
 	void onUpdateAccountSettingsCompleted(gd::string, gd::string);
 	void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
 	void registerAccount(gd::string, gd::string, gd::string);
@@ -7025,7 +7025,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	}
 	void setupLayers() = win 0x1f9870, m1 0xe4c84;
 	void setupLevelStart(LevelSettingsObject*) = win 0x202d80, m1 0xf48f0;
-	void setupReplay(gd::string) = win 0x229a20;
+	void setupReplay(gd::string) = win 0x229a20, imac 0x14c060;
 	TodoReturn shakeCamera(float, float, float) = imac 0x14f790;
 	TodoReturn shouldExitHackedLevel();
 	TodoReturn sortAllGroupsX();
