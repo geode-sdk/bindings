@@ -4708,7 +4708,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* getAllSmartTemplates();
 	cocos2d::CCDictionary* getAllUsedSongIDs();
 	gd::string getBasePostString() = win 0x146db0;
-	bool getBoolForKey(char const* key) = win inline {
+	bool getBoolForKey(char const* key) = win inline, imac 0x3c0d2c {
 		return m_searchFilters->valueForKey(key)->boolValue();
 	}
 	gd::string getCommentKey(int ID, int page, int mode, CommentKeyType keytype) {
@@ -10327,14 +10327,14 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void onNew(cocos2d::CCObject* sender) = win 0x2ba530;
 	void onNextPage(cocos2d::CCObject* sender) = win 0x2b9910, m1 0x3fa970, imac 0x495dc0;
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x2b9990, m1 0x3fa93c, imac 0x495d80;
-	void onRefresh(cocos2d::CCObject* sender) = win 0x2bb3d0;
+	void onRefresh(cocos2d::CCObject* sender) = win 0x2bb3d0, imac 0x496e10;
 	void onRemoveAllFavorites(cocos2d::CCObject* sender) = win 0x2bb100;
 	void onSaved(cocos2d::CCObject* sender) = win 0x2bae80;
 	void onSavedMode(cocos2d::CCObject* sender) = win 0x2ba900;
 	void onSearch(cocos2d::CCObject* sender) = win 0x2bb5b0;
 	void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x2bbfc0;
 	void reloadAllObjects();
-	void setSearchObject(GJSearchObject*);
+	void setSearchObject(GJSearchObject*) = imac 0x495d30;
 	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2b8440, m1 0x3fda3c, imac 0x4990a0;
 	void show() = win 0x2bc7d0;
 	void updateLevelsLabel();
@@ -10914,21 +10914,21 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	}
 
 	void cloneList();
-	void confirmClone(cocos2d::CCObject*) = win 0x2e7bc0;
-	void confirmDelete(cocos2d::CCObject*) = win 0x2e7f40;
-	void confirmOwnerDelete(cocos2d::CCObject*) = win 0x2e8070;
+	void confirmClone(cocos2d::CCObject*) = win 0x2e7bc0, imac 0x35e990;
+	void confirmDelete(cocos2d::CCObject*) = win 0x2e7f40, imac 0x35ec40;
+	void confirmOwnerDelete(cocos2d::CCObject*) = win 0x2e8070, imac 0x35eb20;
 	bool init(GJLevelList*) = win 0x2e3190, m1 0x2ea074, imac 0x35c820;
 	void onClaimReward(cocos2d::CCObject* sender) = win 0x2e5bb0, imac 0x35ffa0;
 	void onDelete() = win 0x2e7cb0;
-	void onDescription(cocos2d::CCObject* sender) = win 0x2e7330;
-	void onFavorite(cocos2d::CCObject* sender) = win 0x2e7200;
-	void onInfo(cocos2d::CCObject* sender) = win 0x2e7500;
-	void onLike(cocos2d::CCObject* sender) = win 0x2e7540;
-	void onListInfo(cocos2d::CCObject* sender) = win 0x2e4c10;
-	void onRefreshLevelList(cocos2d::CCObject* sender) = win 0x2e61e0;
+	void onDescription(cocos2d::CCObject* sender) = win 0x2e7330, imac 0x35ed30;
+	void onFavorite(cocos2d::CCObject* sender) = win 0x2e7200, imac 0x35ea70;
+	void onInfo(cocos2d::CCObject* sender) = win 0x2e7500, imac 0x35e8e0;
+	void onLike(cocos2d::CCObject* sender) = win 0x2e7540, imac 0x35e910;
+	void onListInfo(cocos2d::CCObject* sender) = win 0x2e4c10, imac 0x35eff0;
+	void onRefreshLevelList(cocos2d::CCObject* sender) = win 0x2e61e0, imac 0x35e7c0;
 	void onSelectIcon(cocos2d::CCObject* sender) = win 0x2e7780, m1 0x2ec3f0, imac 0x35ee60;
 	void onShare(cocos2d::CCObject* sender) = win 0x2e78f0, imac 0x35eeb0;
-	void onToggleEditMode(cocos2d::CCObject* sender) = win 0x2e7b80;
+	void onToggleEditMode(cocos2d::CCObject* sender) = win 0x2e7b80, imac 0x35ee20;
 	void onViewProfile(cocos2d::CCObject* sender) = win 0x2e71c0;
 	void ownerDelete();
 	static cocos2d::CCScene* scene(GJLevelList*) = win 0x2e2f60, m1 0x2e9f54, imac 0x35c730;
