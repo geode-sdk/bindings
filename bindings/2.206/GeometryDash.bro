@@ -834,7 +834,7 @@ class CCCircleWave : cocos2d::CCNode {
 	// CCCircleWave() = win 0x418b0;
 
 	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x41980, imac 0x173740, m1 0x13cef4;
-	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = imac 0x173730, m1 0x13ceec, win inline {
+	static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = imac 0x173730, m1 0x13ceec, ios 0x177c18, win inline {
 		return CCCircleWave::create(startRadius, endRadius, duration, fadeIn, true);
 	}
 
@@ -5127,7 +5127,7 @@ class GameManager : GManager {
 	TodoReturn checkUsedIcons() = win 0x17b1a0;
 	TodoReturn claimItemsResponse(gd::string);
 	TodoReturn clearGJLog();
-	cocos2d::ccColor3B colorForIdx(int) = win 0x1784b0, m1 0x30b4e0, imac 0x381490;
+	cocos2d::ccColor3B colorForIdx(int) = win 0x1784b0, m1 0x30b4e0, imac 0x381490, ios 0x327988;
 	TodoReturn colorForPos(int);
 	TodoReturn colorKey(int, UnlockType);
 	bool completedAchievement(gd::string);
@@ -6037,9 +6037,9 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn areRewardsLoaded();
 	void awardCurrencyForLevel(GJGameLevel*) = win 0x1d6500, ios 0x3429d4;
 	void awardDiamondsForLevel(GJGameLevel*) = ios 0x342e8c;
-	TodoReturn awardSecretKey();
+	TodoReturn awardSecretKey() = ios 0x34d288;
 	TodoReturn checkAchievement(char const*) = win 0x1cb460;
-	void checkCoinAchievement(GJGameLevel*) = win 0x1d3430;
+	void checkCoinAchievement(GJGameLevel*) = win 0x1d3430, ios 0x34076c;
 	void checkCoinsForLevel(GJGameLevel*);
 	TodoReturn claimListReward(GJLevelList*);
 	TodoReturn collectReward(GJRewardType, GJRewardItem*);
@@ -6047,7 +6047,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn completedChallenge(GJChallengeItem*);
 	TodoReturn completedDailyLevel(GJGameLevel*);
 	void completedDemonLevel(GJGameLevel*);
-	TodoReturn completedLevel(GJGameLevel*);
+	TodoReturn completedLevel(GJGameLevel*) = ios 0x340f6c;
 	TodoReturn completedMapPack(GJMapPack*);
 	void completedStarLevel(GJGameLevel*);
 	int countSecretChests(GJRewardType) = ios 0x34d200;
@@ -6122,7 +6122,7 @@ class GameStatsManager : cocos2d::CCNode {
 	}
 	bool hasCompletedMapPack(int);
 	bool hasCompletedOnlineLevel(int) = win 0x1d3c40;
-	bool hasCompletedStarLevel(GJGameLevel*);
+	bool hasCompletedStarLevel(GJGameLevel*) = ios 0x340ef4;
 	bool hasPendingUserCoin(char const*) = win 0x1d5a00, m1 0x63484, imac 0x6f5b0;
 	bool hasRewardBeenCollected(GJRewardType, int);
 	bool hasSecretCoin(char const*) = win 0x1d5ac0;
@@ -6776,7 +6776,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getParticleKey2(gd::string);
 	TodoReturn getPlayerButtonID(int, bool);
 	TodoReturn getPlayTimerFullSeconds();
-	TodoReturn getPlayTimerMilli();
+	TodoReturn getPlayTimerMilli() = ios 0x20bfe0;
 	TeleportPortalObject* getPortalTarget(TeleportPortalObject*);
 	cocos2d::CCPoint getPortalTargetPos(TeleportPortalObject*, GameObject*, PlayerObject*);
 	TodoReturn getRecordString();
@@ -6855,7 +6855,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void processCommands(float) = win 0x229830, imac 0x148740, m1 0x11b6d8;
 	TodoReturn processDynamicObjectActions(int, float) = win 0x21ea80;
 	TodoReturn processFollowActions() = win 0x220d80;
-	TodoReturn processItems();
+	TodoReturn processItems() = ios 0x1f42a4;
 	TodoReturn processMoveActions() = win 0x21ddb0;
 	TodoReturn processMoveActionsStep(float, bool) = win 0x21bde0;
 	TodoReturn processOptionsTrigger(GameOptionsTrigger*);
@@ -7778,7 +7778,7 @@ class GJGameLevel : cocos2d::CCNode {
 		return level;
 	}*/
 
-	TodoReturn areCoinsVerified();
+	bool areCoinsVerified() = ios 0xb10f8;
 	void copyLevelInfo(GJGameLevel*) = win 0x165230;
 	void dataLoaded(DS_Dictionary*) = win 0x1658e0, m1 0x4b2db0, imac 0x564a60;
 	TodoReturn demonIconForDifficulty(DemonDifficultyType) = imac 0x566800;
@@ -7804,7 +7804,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn levelWasAltered();
 	TodoReturn levelWasSubmitted();
 	TodoReturn parseSettingsString(gd::string);
-	void saveNewScore(int, int);
+	void saveNewScore(int, int) = ios 0xae84c;
 	void savePercentage(int percent, bool, int clicks, int attempts, bool) = win 0x164540, m1 0x4b0f44, imac 0x562730, ios 0xae180;
 	TodoReturn scoreStringToVector(gd::string&, gd::vector<int>&);
 	TodoReturn scoreVectorToString(gd::vector<int>&, int);
@@ -12658,7 +12658,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void placeStreakPoint() = win 0x37e690;
 	TodoReturn playBumpEffect(int, GameObject*) = win 0x37da60;
 	TodoReturn playBurstEffect();
-	void playCompleteEffect(bool, bool) = win 0x3621d0, m1 0x1bfebc, imac 0x20eb00;
+	void playCompleteEffect(bool, bool) = win 0x3621d0, m1 0x1bfebc, imac 0x20eb00, ios 0x63758;
 	void playDeathEffect() = win 0x35d0c0, imac 0x206990, m1 0x1b7ef4, ios 0x5de28;
 	void playDynamicSpiderRun() = win 0x37f4e0;
 	void playerDestroyed(bool) = win 0x375d70, imac 0x41cdd0, m1 0x392264, ios 0x237eb8;
@@ -13099,23 +13099,23 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	int getCurrentPercentInt() = win inline, imac inline, m1 inline, ios inline { // i love this
 		return static_cast<int>(this->getCurrentPercent());
 	}
-	TodoReturn getEndPosition();
+	TodoReturn getEndPosition() = ios 0x11c7bc;
 	TodoReturn getLastCheckpoint();
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
 	TodoReturn getRelativeModNew(cocos2d::CCPoint, float, float, bool, bool);
-	TodoReturn getTempMilliTime() = win 0x3c070;
+	TodoReturn getTempMilliTime() = win 0x3c070, ios 0x1181a8;
 	TodoReturn gravityEffectFinished();
 	void incrementJumps() = imac 0xbf5a0, m1 0xaabec;
 	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x382890, imac 0xabc70, m1 0x9a1e4, ios 0x1178b8;
 	bool isGameplayActive();
-	void levelComplete() = win 0x384850, m1 0xa1078, imac 0xb4290;
+	void levelComplete() = win 0x384850, m1 0xa1078, imac 0xb4290, ios 0x11c818;
 	TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
 	TodoReturn loadDefaultColors() = m1 0x9f46c;
 	TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&) = imac 0xbe9d0, m1 0xaa070;
 	void loadFromCheckpoint(CheckpointObject*) = win 0x394180, imac 0xbe490, m1 0xa9b90;
 	TodoReturn loadLastCheckpoint();
 	CheckpointObject * markCheckpoint() = win 0x3940b0, imac 0xbbd80, m1 0xa7d28;
-	void onQuit() = win 0x397540, imac 0xb3e90, m1 0xa0cb0;
+	void onQuit() = win 0x397540, imac 0xb3e90, m1 0xa0cb0, ios 0x11c484;
 	TodoReturn optimizeColorGroups() = win 0x38b7f0;
 	TodoReturn optimizeOpacityGroups() = win 0x38ba80;
 	void pauseGame(bool) = win 0x396a50, imac 0xbf630, m1 0xaac94;
@@ -13143,14 +13143,14 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void setDamageVerifiedIdx(int);
 	void setupHasCompleted() = win 0x3835e0, imac 0xadb00, m1 0x9bc4c;
 	TodoReturn shouldBlend(int);
-	void showCompleteEffect() = win 0x385aa0, m1 0xa1b28, imac 0xb4f00;
-	void showCompleteText() = win 0x385470, m1 0xa1f00, imac 0xb5380;
+	void showCompleteEffect() = win 0x385aa0, m1 0xa1b28, imac 0xb4f00, ios 0x11d058;
+	void showCompleteText() = win 0x385470, m1 0xa1f00, imac 0xb5380, ios 0x11d3b0;
 	void showEndLayer();
 	void showHint() = win 0x3912c0, ios 0x121ea4;
 	void showNewBest(bool, int, int, bool, bool, bool) = win 0x3860c0, ios 0x11db7c, m1 0xa2ac8, imac 0xb5fd0;
 	void showRetryLayer() = ios 0x12200c;
 	void showTwoPlayerGuide();
-	TodoReturn spawnCircle();
+	void spawnCircle() = ios 0x11cfb0;
 	TodoReturn spawnFirework();
 	void startGame() = win 0x3847f0, imac 0xb3e30, m1 0xa0c54;
 	void startGameDelayed();
