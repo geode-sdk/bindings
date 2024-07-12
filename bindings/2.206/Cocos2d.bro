@@ -2218,13 +2218,13 @@ class cocos2d::CCMenuItem {
 	cocos2d::CCRect rect();
 
 	virtual void activate() = imac 0x3c2120, m1 0x3455b8, ios 0x5329c;
-	virtual void selected() = imac 0x3c2090, m1 0x345534;
-	virtual void unselected() = imac 0x3c20a0, m1 0x345540;
-	virtual void registerScriptTapHandler(int) = m1 0x345548, imac 0x3c20b0;
-	virtual void unregisterScriptTapHandler() = m1 0x345578, imac 0x3c20e0;
-	virtual bool isEnabled() = m1 0x34563c, imac 0x3c21a0;
-	virtual void setEnabled(bool) = imac 0x3c2190, m1 0x345634, ios 0x53218;
-	virtual bool isSelected() = m1 0x345660, imac 0x3c2200;
+	virtual void selected() = imac 0x3c2090, m1 0x345534, ios 0x53218;
+	virtual void unselected() = imac 0x3c20a0, m1 0x345540, ios 0x53224;
+	virtual void registerScriptTapHandler(int) = m1 0x345548, imac 0x3c20b0, ios 0x5322c;
+	virtual void unregisterScriptTapHandler() = m1 0x345578, imac 0x3c20e0, ios 0x5325c;
+	virtual bool isEnabled() = m1 0x34563c, imac 0x3c21a0, ios 0x53320;
+	virtual void setEnabled(bool) = imac 0x3c2190, m1 0x345634, ios 0x53318;
+	virtual bool isSelected() = m1 0x345660, imac 0x3c2200, ios 0x53344;
 }
 
 [[link(win, android)]]
@@ -2267,7 +2267,7 @@ class cocos2d::CCMenu {
 	void alignItemsInRowsWithArray(cocos2d::CCArray*);
 	void alignItemsVertically();
 	void alignItemsVerticallyWithPadding(float);
-	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*);
+	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = ios 0x1e1e80;
 	cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
 
 	virtual bool init() = m1 0x6a7100, imac 0x79ec00, ios 0x1e1c54;
@@ -2276,10 +2276,10 @@ class cocos2d::CCMenu {
 	virtual void addChild(cocos2d::CCNode*, int, int) = m1 0x6a7110, imac 0x79ec30, ios 0x1e1c64;
 	virtual void removeChild(cocos2d::CCNode*, bool) = m1 0x6a71b8, imac 0x79ecd0, ios 0x1e1d0c;
 	virtual void onExit() = m1 0x6a7170, imac 0x79ec80, ios 0x1e1cc4;
-	virtual void registerWithTouchDispatcher() = m1 0x6a726c;
+	virtual void registerWithTouchDispatcher() = m1 0x6a726c, ios 0x1e1d7c;
 
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a72c8, imac 0x79edd0;
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a75b0, imac 0x79f080;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a72c8, imac 0x79edd0, ios 0x1e1dd8;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a75b0, imac 0x79f080, ios 0x1e1fbc;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a74c0, imac 0x79efa0, ios 0x1e1ecc;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x6a7548, imac 0x79f020, ios 0x1e1f54;
 }
