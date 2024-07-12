@@ -4707,7 +4707,7 @@ class GameLevelManager : cocos2d::CCNode {
 	GJSmartTemplate* getActiveSmartTemplate();
 	cocos2d::CCArray* getAllSmartTemplates();
 	cocos2d::CCDictionary* getAllUsedSongIDs();
-	gd::string getBasePostString() = win 0x146db0;
+	gd::string getBasePostString() = win 0x146db0, imac 0x543ce0;
 	bool getBoolForKey(char const* key) = win inline, imac 0x3c0d2c {
 		return m_searchFilters->valueForKey(key)->boolValue();
 	}
@@ -4976,7 +4976,7 @@ class GameLevelManager : cocos2d::CCNode {
 	GJUserScore* userInfoForAccountID(int) = imac 0x535980;
 	gd::string userNameForUserID(int) = win 0x1414e0, imac 0x535320, m1 0x488848;
 	void verifyLevelState(GJGameLevel*);
-	gd::string writeSpecialFilters(GJSearchObject*) = win 0x1481b0;
+	gd::string writeSpecialFilters(GJSearchObject*) = win 0x1481b0, imac 0x5466e0;
 
 	virtual bool init() = win 0x13f890, m1 0x486344, imac 0x532b20;
 
