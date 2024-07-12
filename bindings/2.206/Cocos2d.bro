@@ -620,9 +620,9 @@ class cocos2d::CCFadeTo {
 	// CCFadeTo(cocos2d::CCFadeTo const&);
 	// CCFadeTo();
 
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-	virtual void update(float);
-	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = ios 0x1988b0;
+	virtual void update(float) = ios 0x1989fc;
+	virtual void startWithTarget(cocos2d::CCNode*) = ios 0x198998;
 }
 
 [[link(win, android)]]
@@ -939,7 +939,7 @@ class cocos2d::CCLayer {
 	virtual void setMouseEnabled(bool) = m1 0x41bcf4, imac 0x4bac60, ios 0x153760;
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x41c0fc, imac 0x4bb080, ios 0x153ac4;
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x41c1bc, imac 0x4bb110;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x41c1bc, imac 0x4bb110, ios 0x153b74;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x41c25c, imac 0x4bb190, ios 0x153c14;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x41c2fc, imac 0x4bb210, ios 0x153cb4;
 	virtual void ccTouchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*) = m1 0x41c39c, imac 0x4bb290, ios 0x153d54;
@@ -2007,7 +2007,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 	    CCObject* pObj = NULL;
 	    CCARRAY_FOREACH(n->getChildren(), pObj)
 	    {
-	        setProgram((CCNode*)pObj, p);
+	        // setProgram((CCNode*)pObj, p); // this causes build to fail
 	    }
 	}
 
