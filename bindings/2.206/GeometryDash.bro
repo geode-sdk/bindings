@@ -7528,6 +7528,10 @@ class GJChestSprite : cocos2d::CCSprite {
 
 	virtual void setOpacity(unsigned char) = win 0x3ad3e0, m1 0x1ca94c, imac 0x21a180;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x3ad320, m1 0x1ca878, imac 0x21a090;
+
+	int m_type;
+	ChestSpriteState m_spriteState;
+	bool m_dark;
 }
 
 [[link(android)]]
@@ -13685,21 +13689,33 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 
 	static RewardUnlockLayer* create(int, RewardsPage*);
 
-	TodoReturn connectionTimeout();
+	void connectionTimeout();
 	bool init(int, RewardsPage*);
-	TodoReturn labelEnterFinishedO(cocos2d::CCObject*);
+	void labelEnterFinishedO(cocos2d::CCObject*);
 	void onClose(cocos2d::CCObject* sender);
-	TodoReturn playDropSound();
-	TodoReturn playLabelEffect(int, int, cocos2d::CCSprite*, cocos2d::CCPoint, float);
-	TodoReturn playRewardEffect() = win 0x3aad20;
-	TodoReturn readyToCollect(GJRewardItem*);
+	void playDropSound();
+	void playLabelEffect(int, int, cocos2d::CCSprite*, cocos2d::CCPoint, float);
+	void playRewardEffect() = win 0x3aad20;
+	bool readyToCollect(GJRewardItem*);
 	void showCloseButton();
 	void showCollectReward(GJRewardItem*);
-	TodoReturn step2();
-	TodoReturn step3();
+	void step2();
+	void step3();
 
 	virtual void keyBackClicked() {}
 	virtual void currencyWillExit(CurrencyRewardLayer*) = win 0x3ad1f0, m1 0x1ca7c8, imac 0x219f90;
+
+	cocos2d::CCArray* m_backgroundObjects;
+	RewardsPage* m_rewardsPage;
+	GJChestSprite* m_chestSprite;
+	int m_chestType;
+	bool m_rewardCollected;
+	bool m_animationPlayed;
+	GJRewardItem* m_rewardItem;
+	cocos2d::CCLabelBMFont* m_wrongLabel;
+	CCMenuItemSpriteExtra* m_deleteBtn;
+	CCMenuItemSpriteExtra* m_rewardBtn;
+	float m_unkFloat;
 }
 
 [[link(android)]]
