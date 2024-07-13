@@ -4750,7 +4750,7 @@ class GameLevelManager : cocos2d::CCNode {
 	const char* getLevelKey(int levelID) {
 		return cocos2d::CCString::createWithFormat("%i", levelID)->getCString();
 	}
-	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1527e0, imac 0x5529f0;
+	void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x1527e0, imac 0x5529f0, m1 0x4a2140;
 	char const* getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode);
 	char const* getLevelListKey(int);
 	void getLevelLists(GJSearchObject*) = win 0x14af50, imac 0x549df0, m1 0x49a918;
@@ -12589,7 +12589,7 @@ class PlatformToolbox {
 	static bool isHD();
 	static bool isLocalPlayerAuthenticated() = ios 0x1774e8;
 	static bool isLowMemoryDevice();
-	static bool isNetworkAvailable();
+	static bool isNetworkAvailable() = m1 0x42c7f0;
 	static bool isSignedInGooglePlay();
 	static TodoReturn loadAndDecryptFileToString(char const*, char const*);
 	static TodoReturn logEvent(char const*);
@@ -13787,9 +13787,9 @@ class ScrollingLayer : cocos2d::CCLayerColor {
 class SearchButton : cocos2d::CCSprite {
 	// virtual ~SearchButton();
 
-	static SearchButton* create(char const*, char const*, float, char const*) = win 0x2f21f0, imac 0x637810;
+	static SearchButton* create(char const*, char const*, float, char const*) = win 0x2f21f0, imac 0x637810, m1 0x557558;
 
-	bool init(char const*, char const*, float, char const*) = win 0x2f22c0, imac 0x639960;
+	bool init(char const*, char const*, float, char const*) = win 0x2f22c0, imac 0x639960, m1 0x5596d8;
 
 	cocos2d::CCLabelBMFont* m_label;
 	cocos2d::CCSprite* m_icon;
