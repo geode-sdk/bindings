@@ -4788,7 +4788,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* getStoredUserList(UserListType) = m1 0x4abfa8, imac 0x55d490;
 	GJUserMessage* getStoredUserMessage(int);
 	GJUserMessage* getStoredUserMessageReply(int);
-	double getTimeLeft(char const*, float) = win 0x144970, imac 0x53fa50;
+	double getTimeLeft(char const*, float) = win 0x144970, imac 0x53fa50, m1 0x491bd8;
 	void getTopArtists(int page, int total);
 	const char* getTopArtistsKey(int page){
 		return cocos2d::CCString::createWithFormat("topArtists_%i", page)->getCString();
@@ -4829,7 +4829,7 @@ class GameLevelManager : cocos2d::CCNode {
 	int likeFromLikeKey(char const*);
 	void likeItem(LikeItemType, int, bool, int) = win 0x15d8b0;
 	void limitSavedLevels() = win 0x144b70, imac 0x540710, m1 0x4927c8;
-	void makeTimeStamp(char const*) = win 0x144730, imac 0x53f2c0;
+	void makeTimeStamp(char const*) = win 0x144730, imac 0x53f2c0, m1 0x49139c;
 	void markItemAsLiked(LikeItemType, int, bool, int);
 	void markLevelAsDownloaded(int) = win 0x14dd80;
 	void markLevelAsRatedDemon(int);
@@ -4915,7 +4915,7 @@ class GameLevelManager : cocos2d::CCNode {
 		}
 	}
 	void resetAllTimers();
-	void resetCommentTimersForLevelID(int, CommentKeyType) = win 0x158ed0, imac 0x55a6d0;
+	void resetCommentTimersForLevelID(int, CommentKeyType) = win 0x158ed0, imac 0x55a6d0, m1 0x4a9328;
 	void resetDailyLevelState(GJTimedLevelType) = imac 0x560e10, m1 0x4af77c;
 	void resetGauntlets();
     void resetStoredUserInfo(int id) = win inline, imac 0x554c00 {
@@ -8406,7 +8406,7 @@ class GJLevelList : cocos2d::CCNode {
 	TodoReturn removeLevelFromList(int);
 	TodoReturn reorderLevel(int, int);
 	TodoReturn reorderLevelStep(int, bool);
-	void showListInfo() = win 0x16eff0, imac 0x56a850;
+	void showListInfo() = win 0x16eff0, imac 0x56a850, m1 0x4b8028;
 	TodoReturn totalLevels() = imac 0x56a7e0, m1 0x4b7fb4;
 	TodoReturn updateLevelsString();
 
@@ -10019,7 +10019,7 @@ class ItemInfoPopup : FLAlertLayer {
 
 	static ItemInfoPopup* create(int, UnlockType) = win 0x269640, m1 0x2fc484, imac 0x3705b0;
 
-	bool init(int, UnlockType) = win 0x269730, imac 0x3731a0;
+	bool init(int, UnlockType) = win 0x269730, imac 0x3731a0, m1 0x2fed78;
 	bool isUnlockedByDefault(int, UnlockType);
 	TodoReturn nameForUnlockType(int, UnlockType) = win 0x26b660;
 	void onClose(cocos2d::CCObject* sender);
