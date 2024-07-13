@@ -3879,12 +3879,12 @@ class EffectManagerState {
 	gd::vector<CollisionTriggerAction> m_vectorCollisionTriggerAction;
 	gd::vector<ToggleTriggerAction> m_vectorToggleTriggerAction;
 	gd::vector<SpawnTriggerAction> m_vectorSpawnTriggerAction;
-	gd::unordered_map<int,int> m_unorderedMapInt_int;
+	gd::unordered_map<int,int> m_itemCountMap;
 	gd::unordered_map<int,bool> m_unorderedMapInt_bool;
 	gd::vector<GroupCommandObject2> m_vectorGroupCommandObject2;
 	gd::unordered_map<int,std::pair<double,double>> m_unorderedMapInt_pair_double_double;
 	gd::unordered_set<int> m_unorderedSet_int2;
-	gd::unordered_map<int,TimerItem> m_unorderedMapInt_TimerItem;
+	gd::unordered_map<int,TimerItem> m_timerItemMap;
 	gd::unordered_map<int,gd::vector<TimerTriggerAction>> m_unorderedMapInt_vectorTimerTriggerAction;
 }
 
@@ -7801,6 +7801,12 @@ class GJEffectManager : cocos2d::CCNode {
 
 	PAD = android32 0x90, mac 0xf0, android64 0x120, win 0x9c;
 	cocos2d::CCDictionary* m_colorActionDict;
+	PAD = win 0x144;
+	gd::unordered_map<int,int> m_itemCountMap;
+	gd::unordered_map<int,int> m_persistentItemCountMap;
+	gd::unordered_set<int> m_persistentTimerItemSet;
+	gd::unordered_map<int,TimerItem> m_timerItemMap;
+	PAD = win 0x370;
 }
 
 [[link(android)]]

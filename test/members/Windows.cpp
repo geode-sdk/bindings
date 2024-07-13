@@ -339,4 +339,10 @@ GEODE_SIZE_CHECK(FMODAudioState, 0x380);
 GEODE_SIZE_CHECK(GroupCommandObject2, 0x208);
 
 GEODE_SIZE_CHECK(KeyframeObject, 0x1c0);
+
+GEODE_SIZE_CHECK(GJEffectManager, 0x7a0);
+GEODE_MEMBER_CHECK(GJEffectManager, m_itemCountMap, 0x330);
+GEODE_MEMBER_CHECK(GJEffectManager, m_persistentItemCountMap, 0x370);
+GEODE_MEMBER_CHECK(GJEffectManager, m_persistentTimerItemSet, 0x3b0);
+GEODE_MEMBER_CHECK(GJEffectManager, m_timerItemMap, 0x3f0);
 #endif
