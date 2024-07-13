@@ -3043,6 +3043,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 	bool init(EffectGameObject*, cocos2d::CCArray*, bool);
 }
 
+[[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
 	EditLevelLayer() {}
 	virtual ~EditLevelLayer() = win 0xd1980, imac 0x1f42c0, m1 0x1a7544;
