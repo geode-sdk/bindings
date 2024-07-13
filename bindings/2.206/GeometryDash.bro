@@ -4284,7 +4284,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 		return *instancePtr;
 	}
 	static FMODAudioEngine* get() {
-		return FMODAudioEngine::sharedState();
+		return FMODAudioEngine::sharedEngine();
 	}
 
 	TodoReturn activateQueuedMusic(int);
