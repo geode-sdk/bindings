@@ -11163,7 +11163,8 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
 	cocos2d::CCSprite* m_backgroundSprite;
 	GJGroundLayer* m_groundLayer;
 	BoomScrollLayer* m_scrollLayer;
-	void* m_unknown;
+	int m_unknown;
+	int m_scrolls;
 	bool m_masterDetectiveUnlocked;
 }
 
