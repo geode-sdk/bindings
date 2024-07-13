@@ -4283,6 +4283,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 		}
 		return *instancePtr;
 	}
+	static FMODAudioEngine* get() {
+		return FMODAudioEngine::sharedState();
+	}
 
 	TodoReturn activateQueuedMusic(int);
 	FMOD::Channel* channelForChannelID(int) = win 0x575d0, m1 0x3638d8, imac 0x3e4320;
