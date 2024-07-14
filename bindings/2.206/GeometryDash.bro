@@ -447,12 +447,32 @@ class AudioLineGuideGameObject : EffectGameObject {
 [[link(android)]]
 class BitmapFontCache : cocos2d::CCObject {
 	// virtual ~BitmapFontCache();
+	BitmapFontCache() {}
 
-	static BitmapFontCache* sharedFontCache() = ios 0x303f5c;
+	static BitmapFontCache* sharedFontCache() = win inline, imac 0x21a640, m1 0x1cad50, ios 0x303f5c {
+		auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x687db0);
+		if (!*instancePtr) {
+			*instancePtr = new BitmapFontCache();
+			(*instancePtr)->init();
+		}
+		return *instancePtr;
+	}
 
-	FontObject* fontWithConfigFile(char const*, float) = ios 0x304048, imac 0x21a7e0, m1 0x1caed8;
-	bool init();
-	static void purgeSharedFontCache() = ios 0x303fc8;
+	FontObject* fontWithConfigFile(char const*, float) = win 0x3a530, ios 0x304048, imac 0x21a7e0, m1 0x1caed8;
+	bool init() = win inline, imac 0x21a6c0, m1 0x1cadc8 {
+		m_cache = cocos2d::CCDictionary::create();
+		m_cache->retain();
+		return true;
+	}
+	static void purgeSharedFontCache() = win inline, imac 0x21a6f0, m1 0x1cadf4, ios 0x303fc8 {
+		auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x687db0);
+		if (*instancePtr) {
+			(*instancePtr)->release();
+			*instancePtr = nullptr;
+		}
+	}
+
+	cocos2d::CCDictionary* m_cache;
 }
 
 [[link(android)]]
@@ -567,7 +587,10 @@ class BoomScrollLayer : cocos2d::CCLayer {
 			static_cast<cocos2d::CCSprite*>(m_dots->objectAtIndex(i))->setScale(scale);
 		}
 	}
-	void setPagesIndicatorPosition(cocos2d::CCPoint) = m1 0x32e588, imac 0x3a8260, ios 0x131abc;
+	void setPagesIndicatorPosition(cocos2d::CCPoint pos) = win inline, m1 0x32e588, imac 0x3a8260, ios 0x131abc {
+		m_dotPosition = pos;
+		this->updateDots(0.f);
+	}
 	void setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c720, m1 0x32ece0, imac 0x3a8a50;
 	void togglePageIndicators(bool) = win 0x3cce0, m1 0x32f63c, imac 0x3a9500;
 	void updateDots(float) = win 0x3cae0, m1 0x32ef44, imac 0x3a8cd0, ios 0x132170;
@@ -4519,11 +4542,27 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 [[link(android)]]
 class FontObject : cocos2d::CCObject {
 	// virtual ~FontObject();
+	FontObject() {}
 
-	TodoReturn createWithConfigFile(char const*, float);
-	float getFontWidth(int) = ios 0x30470c;
-	TodoReturn initWithConfigFile(char const*, float);
-	TodoReturn parseConfigFile(char const*, float);
+	static FontObject* createWithConfigFile(char const* p0, float p1) = win inline, m1 0x1cb140, imac 0x21aa40 {
+		auto ret = new FontObject();
+		if (ret->initWithConfigFile(p0, p1)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	int getFontWidth(int p0) = win inline, m1 0x1cba44, imac 0x21b480, ios 0x30470c {
+		return m_hugeIntArray[p0];
+	}
+	bool initWithConfigFile(char const* p0, float p1) = win inline, m1 0x1cb1b4, imac 0x21aab0 {
+		this->parseConfigFile(p0, p1);
+		return true;
+	}
+	void parseConfigFile(char const*, float) = win 0x3a7d0, m1 0x1cb1cc, imac 0x21aac0;
+
+	std::array<int, 300> m_hugeIntArray;
 }
 
 [[link(android)]]
@@ -11914,13 +11953,48 @@ class MPLobbyLayer : cocos2d::CCLayer, GJMPDelegate, UploadPopupDelegate, Upload
 [[link(android)]]
 class MultilineBitmapFont : cocos2d::CCSprite {
 	// virtual ~MultilineBitmapFont();
+	MultilineBitmapFont() {
+		m_specialDescriptors = nullptr;
+		m_characters = nullptr;
+		m_lines = nullptr;
+		m_unkInt = 0;
+		m_unkBool = false;
+		m_unkPtr = nullptr;
+		m_height = 0;
+		m_width = 0;
+		m_position = cocos2d::CCPointMake(0.f, 0.f);
+		m_maxWidth = 0.f;
+		m_disableColor = false;
+	}
 
-	static MultilineBitmapFont* createWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = ios 0x244948, imac 0x490240, m1 0x3f5744;
-	bool initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = win 0x6A9B0, ios 0x244a6c;
-	unsigned int moveSpecialDescriptors(int, int) = win 0x6BBB0;
-	gd::string readColorInfo(gd::string) = win 0x6B2E0;
-	gd::string stringWithMaxWidth(gd::string, float, float) = win 0x6BC40;
+	static MultilineBitmapFont* createWithFont(char const* p0, gd::string p1, float p2, float p3, cocos2d::CCPoint p4, int p5, bool p6) = win inline, ios 0x244948, imac 0x490240, m1 0x3f5744 {
+		auto ret = new MultilineBitmapFont();
+		if (ret->initWithFont(p0, p1, p2, p3, p4, p5, p6)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	bool initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = win 0x6A9B0, m1 0x3f5910, imac 0x490410, ios 0x244a6c;
+	unsigned int moveSpecialDescriptors(int, int) = win 0x6BBB0, m1 0x3f7494, imac 0x4921d0;
+	gd::string readColorInfo(gd::string) = win 0x6B2E0, m1 0x3f6170, imac 0x490de0;
+	gd::string stringWithMaxWidth(gd::string, float, float) = win 0x6BC40, m1 0x3f6dd8, imac 0x491aa0;
+
 	virtual void setOpacity(unsigned char) = win 0x6b260, m1 0x3f73b4, imac 0x4920d0;
+
+	std::array<int, 300> m_hugeIntArray;
+	cocos2d::CCArray* m_specialDescriptors;
+	cocos2d::CCArray* m_characters;
+	cocos2d::CCArray* m_lines;
+	int m_unkInt;
+	bool m_unkBool;
+	void* m_unkPtr;
+	int m_height;
+	int m_width;
+	cocos2d::CCPoint m_position;
+	float m_maxWidth;
+	bool m_disableColor;
 }
 
 [[link(android)]]
@@ -16923,13 +16997,44 @@ class TextInputDelegate {
 class TextStyleSection : cocos2d::CCObject {
 	// virtual ~TextStyleSection();
 
-	static TextStyleSection* create(int, int, TextStyleType);
+	static TextStyleSection* create(int, int, TextStyleType) = win 0x6c320, m1 0x3f786c, imac 0x4925f0;
 
-	TodoReturn createColoredSection(cocos2d::ccColor3B, int, int);
-	TodoReturn createDelaySection(int, float);
-	TodoReturn createInstantSection(int, int, float);
-	TodoReturn createShakeSection(int, int, int, int);
-	bool init(int, int, TextStyleType);
+	static TextStyleSection* createColoredSection(cocos2d::ccColor3B p0, int p1, int p2) = win inline, m1 0x3f7530, imac 0x492260 {
+		auto ret = TextStyleSection::create(p1, p2, TextStyleType::Colored);
+		ret->m_color = p0;
+		return ret;
+	}
+	static TextStyleSection* createDelaySection(int p0, float p1) = win inline, m1 0x3f76c0, imac 0x3f76c0 {
+		auto ret = TextStyleSection::create(p0, -1, TextStyleType::Delayed);
+		ret->m_delay = p1;
+		return ret;
+	}
+	static TextStyleSection* createInstantSection(int p0, int p1, float p2) = win inline, m1 0x3f75b4, imac 0x4922e0 {
+		auto ret = TextStyleSection::create(p0, p1, TextStyleType::Instant);
+		ret->m_instantTime = p2;
+		return ret;
+	}
+	static TextStyleSection* createShakeSection(int p0, int p1, int p2, int p3) = win inline, m1 0x3f7638, imac 0x492360 {
+		auto ret = TextStyleSection::create(p0, p1, TextStyleType::Shake);
+		ret->m_shakeIntensity = p2;
+		ret->m_shakesPerSecond = p3;
+		return ret;
+	}
+	bool init(int p0, int p1, TextStyleType p2) = win inline, m1 0x3f78e0, imac 0x492660 {
+		m_styleType = p2;
+		m_startIndex = p0;
+		m_endIndex = p1;
+		return true;
+	}
+
+	TextStyleType m_styleType;
+	int m_startIndex;
+	int m_endIndex;
+	cocos2d::ccColor3B m_color;
+	float m_instantTime;
+	float m_delay;
+	int m_shakeIntensity;
+	int m_shakesPerSecond;
 }
 
 [[link(android)]]
