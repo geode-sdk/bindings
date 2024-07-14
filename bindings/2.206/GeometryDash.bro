@@ -4544,7 +4544,7 @@ class FontObject : cocos2d::CCObject {
 	// virtual ~FontObject();
 	FontObject() {}
 
-	static FontObject* createWithConfigFile(char const* p0, float p1) = win inline {
+	static FontObject* createWithConfigFile(char const* p0, float p1) = win inline, m1 0x1cb140, imac 0x21aa40 {
 		auto ret = new FontObject();
 		if (ret->initWithConfigFile(p0, p1)) {
 			ret->autorelease();
@@ -4553,14 +4553,14 @@ class FontObject : cocos2d::CCObject {
 		delete ret;
 		return nullptr;
 	}
-	int getFontWidth(int p0) = win inline, ios 0x30470c {
+	int getFontWidth(int p0) = win inline, m1 0x1cba44, imac 0x21b480, ios 0x30470c {
 		return m_hugeIntArray[p0];
 	}
-	bool initWithConfigFile(char const* p0, float p1) = win inline {
+	bool initWithConfigFile(char const* p0, float p1) = win inline, m1 0x1cb1b4, imac 0x21aab0 {
 		this->parseConfigFile(p0, p1);
 		return true;
 	}
-	void parseConfigFile(char const*, float) = win 0x3a7d0;
+	void parseConfigFile(char const*, float) = win 0x3a7d0, m1 0x1cb1cc, imac 0x21aac0;
 
 	std::array<int, 300> m_hugeIntArray;
 }
@@ -16997,30 +16997,30 @@ class TextInputDelegate {
 class TextStyleSection : cocos2d::CCObject {
 	// virtual ~TextStyleSection();
 
-	static TextStyleSection* create(int, int, TextStyleType) = win 0x6c320;
+	static TextStyleSection* create(int, int, TextStyleType) = win 0x6c320, m1 0x3f786c, imac 0x4925f0;
 
-	static TextStyleSection* createColoredSection(cocos2d::ccColor3B p0, int p1, int p2) = win inline {
+	static TextStyleSection* createColoredSection(cocos2d::ccColor3B p0, int p1, int p2) = win inline, m1 0x3f7530, imac 0x492260 {
 		auto ret = TextStyleSection::create(p1, p2, TextStyleType::Colored);
 		ret->m_color = p0;
 		return ret;
 	}
-	static TextStyleSection* createDelaySection(int p0, float p1) = win inline {
+	static TextStyleSection* createDelaySection(int p0, float p1) = win inline, m1 0x3f76c0, imac 0x3f76c0 {
 		auto ret = TextStyleSection::create(p0, -1, TextStyleType::Delayed);
 		ret->m_delay = p1;
 		return ret;
 	}
-	static TextStyleSection* createInstantSection(int p0, int p1, float p2) = win inline {
+	static TextStyleSection* createInstantSection(int p0, int p1, float p2) = win inline, m1 0x3f75b4, imac 0x4922e0 {
 		auto ret = TextStyleSection::create(p0, p1, TextStyleType::Instant);
 		ret->m_instantTime = p2;
 		return ret;
 	}
-	static TextStyleSection* createShakeSection(int p0, int p1, int p2, int p3) = win inline {
+	static TextStyleSection* createShakeSection(int p0, int p1, int p2, int p3) = win inline, m1 0x3f7638, imac 0x492360 {
 		auto ret = TextStyleSection::create(p0, p1, TextStyleType::Shake);
 		ret->m_shakeIntensity = p2;
 		ret->m_shakesPerSecond = p3;
 		return ret;
 	}
-	bool init(int p0, int p1, TextStyleType p2) = win inline {
+	bool init(int p0, int p1, TextStyleType p2) = win inline, m1 0x3f78e0, imac 0x492660 {
 		m_styleType = p2;
 		m_startIndex = p0;
 		m_endIndex = p1;
