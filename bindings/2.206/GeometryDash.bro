@@ -449,7 +449,7 @@ class BitmapFontCache : cocos2d::CCObject {
 	// virtual ~BitmapFontCache();
 	BitmapFontCache() {}
 
-	static BitmapFontCache* sharedFontCache() = win inline, ios 0x303f5c {
+	static BitmapFontCache* sharedFontCache() = win inline, imac 0x21a640, m1 0x1cad50, ios 0x303f5c {
 		auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x687db0);
 		if (!*instancePtr) {
 			*instancePtr = new BitmapFontCache();
@@ -459,12 +459,12 @@ class BitmapFontCache : cocos2d::CCObject {
 	}
 
 	FontObject* fontWithConfigFile(char const*, float) = win 0x3a530, ios 0x304048, imac 0x21a7e0, m1 0x1caed8;
-	bool init() = win inline {
+	bool init() = win inline, imac 0x21a6c0, m1 0x1cadc8 {
 		m_cache = cocos2d::CCDictionary::create();
 		m_cache->retain();
 		return true;
 	}
-	static void purgeSharedFontCache() = win inline, ios 0x303fc8 {
+	static void purgeSharedFontCache() = win inline, imac 0x21a6f0, m1 0x1cadf4, ios 0x303fc8 {
 		auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x687db0);
 		if (*instancePtr) {
 			(*instancePtr)->release();
@@ -11976,10 +11976,10 @@ class MultilineBitmapFont : cocos2d::CCSprite {
 		delete ret;
 		return nullptr;
 	}
-	bool initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = win 0x6A9B0, ios 0x244a6c;
-	unsigned int moveSpecialDescriptors(int, int) = win 0x6BBB0;
-	gd::string readColorInfo(gd::string) = win 0x6B2E0;
-	gd::string stringWithMaxWidth(gd::string, float, float) = win 0x6BC40;
+	bool initWithFont(char const*, gd::string, float, float, cocos2d::CCPoint, int, bool) = win 0x6A9B0, m1 0x3f5910, imac 0x490410, ios 0x244a6c;
+	unsigned int moveSpecialDescriptors(int, int) = win 0x6BBB0, m1 0x3f7494, imac 0x4921d0;
+	gd::string readColorInfo(gd::string) = win 0x6B2E0, m1 0x3f6170, imac 0x490de0;
+	gd::string stringWithMaxWidth(gd::string, float, float) = win 0x6BC40, m1 0x3f6dd8, imac 0x491aa0;
 
 	virtual void setOpacity(unsigned char) = win 0x6b260, m1 0x3f73b4, imac 0x4920d0;
 
