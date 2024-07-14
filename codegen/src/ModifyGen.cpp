@@ -144,7 +144,10 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
             auto status = codegen::getStatus(*fn);
 
             std::string format_string;
-            if (status == BindStatus::Missing && fn->prototype.type == FunctionType::Normal) {
+            if (status == BindStatus::Missing) {
+                format_string = format_strings::apply_error;
+            }
+            else if (status == BindStatus::Unbindable && fn->prototype.type == FunctionType::Normal) {
                 if (is_cocos_class(c.name)) {
                     format_string = format_strings::apply_error_defined;
                 }
@@ -155,7 +158,7 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
             else if (status == BindStatus::Inlined && fn->prototype.type == FunctionType::Normal || codegen::platformNumber(fn->binds) == 0x9999999) {
                 format_string = format_strings::apply_error_inline;
             }
-            else if (status == BindStatus::NeedsBinding && codegen::platformNumber(f) > 0 || status == BindStatus::Binded) {
+            else if ((status == BindStatus::NeedsBinding && codegen::platformNumber(f) > 0) || status == BindStatus::Binded) {
                 // only if has an address
                 // allow bound functions (including ctors/dtors)
                 switch (fn->prototype.type) {
