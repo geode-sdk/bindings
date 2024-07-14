@@ -16959,8 +16959,8 @@ class TextArea : cocos2d::CCSprite {
 	float m_maxWidth;
 	cocos2d::CCPoint m_unkPoint;
 	TextAreaDelegate* m_delegate;
-	cocos2d::CCDictionary* m_fadeCharacters;
-	float m_elapsed;
+	cocos2d::CCDictionary* m_shakeCharacters;
+	float m_shakeElapsed;
 }
 
 [[link(android)]]
