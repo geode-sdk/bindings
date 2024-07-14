@@ -2408,7 +2408,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 	// virtual ~CurrencyRewardLayer();
 	// CurrencyRewardLayer();
 
-	static CurrencyRewardLayer* create(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9dd30, m1 0x6b865c, imac 0x7b1a90;
+	static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType, float, float time) = win 0x9dd30, m1 0x6b865c, imac 0x7b1a90;
 
 	TodoReturn createObjects(CurrencySpriteType, int, cocos2d::CCPoint, float) = m1 0x6ba6d4, imac 0x7b3ca0;
 	TodoReturn createObjectsFull(CurrencySpriteType, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = m1 0x6ba798;
@@ -6132,7 +6132,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn collectReward(GJRewardType, GJRewardItem*);
 	TodoReturn collectVideoReward(int);
 	TodoReturn completedChallenge(GJChallengeItem*) = imac 0x74180;
-	void completedDailyLevel(GJGameLevel*) = win 0x1d8680, imac 0x74840, m1 0x679d0;
+	GJRewardItem* completedDailyLevel(GJGameLevel*) = win 0x1d8680, imac 0x74840, m1 0x679d0;
 	void completedDemonLevel(GJGameLevel*) = imac 0x6d6f0, m1 0x616dc;
 	TodoReturn completedLevel(GJGameLevel*) = imac 0x6d5d0;
 	TodoReturn completedMapPack(GJMapPack*);
