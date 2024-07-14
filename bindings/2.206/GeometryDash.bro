@@ -13670,7 +13670,15 @@ class RewardedVideoDelegate {
 [[link(android)]]
 class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	// virtual ~RewardsPage();
-	inline RewardsPage() {}
+	RewardsPage() {
+		m_leftLabel = nullptr;
+		m_rightLabel = nullptr;
+		m_leftChest = nullptr;
+		m_rightChest = nullptr;
+		m_leftOpen = false;
+		m_rightOpen = false;
+		m_openLayer = nullptr;
+	}
 
 	static RewardsPage* create() = win inline, imac 0x214b50, m1 0x1c590c {
 		auto ret = new RewardsPage();
@@ -13682,17 +13690,21 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 		return nullptr;
 	}
 
-	static char const* getRewardFrame(int, int);
+	static char const* getRewardFrame(int type, int state) = win inline {
+		return cocos2d::CCString::createWithFormat("chest_%02d_%02d_001.png", type, state)->getCString();
+	}
 	void onClose(cocos2d::CCObject* sender);
 	void onFreeStuff(cocos2d::CCObject* sender) = win 0x3a9c20;
 	void onReward(cocos2d::CCObject* sender) = win 0x3a9460;
-	TodoReturn tryGetRewards();
-	TodoReturn unlockLayerClosed(RewardUnlockLayer*);
+	void tryGetRewards() = win 0x3a9810;
+	void unlockLayerClosed(RewardUnlockLayer* layer) = win inline {
+		if (m_openLayer == layer) m_openLayer = nullptr;
+	}
 	callback void updateTimers(float) = win 0x3a9860;
 
 	virtual bool init() = win 0x3a8710, imac 0x214cc0, m1 0x1c5a20;
 	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x1c71c0, imac 0x216580;
-	virtual void keyBackClicked() = m1 0x1c7144, imac 0x216510;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x1c7144, imac 0x216510;
 	virtual void show() = win 0x3a18c0, m1 0x1c6fec, imac 0x2163b0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 	virtual void rewardsStatusFinished(int) = win 0x3a95a0, m1 0x1c6c90, imac 0x216030;
@@ -13704,27 +13716,29 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 	CCMenuItemSpriteExtra* m_rightChest;
 	bool m_leftOpen;
 	bool m_rightOpen;
-	cocos2d::CCNode* m_openLayer;
+	RewardUnlockLayer* m_openLayer;
 }
 
 [[link(android)]]
 class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 	// virtual ~RewardUnlockLayer();
 
-	static RewardUnlockLayer* create(int, RewardsPage*) = m1 0x1c6b60;
+	static RewardUnlockLayer* create(int, RewardsPage*) = win 0x3a9c50, m1 0x1c6b60;
 
-	void connectionTimeout();
-	bool init(int, RewardsPage*) = m1 0x1c74a0;
+	void connectionTimeout() = win 0x3aab00;
+	bool init(int, RewardsPage*) = win 0x3a9d80, m1 0x1c74a0;
 	void labelEnterFinishedO(cocos2d::CCObject*);
-	void onClose(cocos2d::CCObject* sender);
-	void playDropSound();
-	void playLabelEffect(int, int, cocos2d::CCSprite*, cocos2d::CCPoint, float);
+	void onClose(cocos2d::CCObject* sender) = win 0x3ad200;
+	void playDropSound() = win 0x3aab60;
+	void playLabelEffect(int, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = win 0x3ac240;
 	void playRewardEffect() = win 0x3aad20;
-	bool readyToCollect(GJRewardItem*);
-	void showCloseButton();
-	void showCollectReward(GJRewardItem*) = m1 0x1c6e24;
-	void step2();
-	void step3();
+	bool readyToCollect(GJRewardItem* item) = win inline {
+		return item ? m_chestType == item->m_rewardType : false;
+	}
+	void showCloseButton() = win 0x3ac1d0;
+	bool showCollectReward(GJRewardItem*) = win 0x3aaa40, m1 0x1c6e24;
+	void step2() = win 0x3aac00;
+	void step3() = win 0x3aad00;
 
 	virtual void keyBackClicked() {}
 	virtual void currencyWillExit(CurrencyRewardLayer*) = win 0x3ad1f0, m1 0x1ca7c8, imac 0x219f90;
@@ -13737,7 +13751,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 	bool m_animationPlayed;
 	GJRewardItem* m_rewardItem;
 	cocos2d::CCLabelBMFont* m_wrongLabel;
-	CCMenuItemSpriteExtra* m_deleteBtn;
+	CCMenuItemSpriteExtra* m_closeBtn;
 	CCMenuItemSpriteExtra* m_rewardBtn;
 	float m_unkFloat;
 }
