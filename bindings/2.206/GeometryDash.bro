@@ -13430,7 +13430,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x2c;
 	cocos2d::CCArray* m_coinArray;
-	PAD = win 0x6F, android32 0x3F, android64 0x6F, mac 0x6F;
+	PAD = win 0x6E, android32 0x3E, android64 0x6E, mac 0x6E;
 	bool m_isIgnoreDamageEnabled;
 	cocos2d::CCLabelBMFont* m_statusLabel;
 	int m_unk3778;
