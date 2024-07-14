@@ -16982,35 +16982,35 @@ class TextStyleSection : cocos2d::CCObject {
 	}
 	static TextStyleSection* createDelaySection(int p0, float p1) = win inline {
 		auto ret = TextStyleSection::create(p0, -1, TextStyleType::Delayed);
-		ret->m_unkDelay = p1;
+		ret->m_delay = p1;
 		return ret;
 	}
 	static TextStyleSection* createInstantSection(int p0, int p1, float p2) = win inline {
 		auto ret = TextStyleSection::create(p0, p1, TextStyleType::Instant);
-		ret->m_unkInstant = p2;
+		ret->m_instantTime = p2;
 		return ret;
 	}
 	static TextStyleSection* createShakeSection(int p0, int p1, int p2, int p3) = win inline {
 		auto ret = TextStyleSection::create(p0, p1, TextStyleType::Shake);
-		ret->m_unkShake1 = p2;
-		ret->m_unkShake2 = p3;
+		ret->m_shakeIntensity = p2;
+		ret->m_shakesPerSecond = p3;
 		return ret;
 	}
 	bool init(int p0, int p1, TextStyleType p2) = win inline {
 		m_styleType = p2;
-		m_unkParam1 = p0;
-		m_unkParam2 = p1;
+		m_startIndex = p0;
+		m_endIndex = p1;
 		return true;
 	}
 
 	TextStyleType m_styleType;
-	int m_unkParam1;
-	int m_unkParam2;
+	int m_startIndex;
+	int m_endIndex;
 	cocos2d::ccColor3B m_color;
-	float m_unkInstant;
-	float m_unkDelay;
-	int m_unkShake1;
-	int m_unkShake2;
+	float m_instantTime;
+	float m_delay;
+	int m_shakeIntensity;
+	int m_shakesPerSecond;
 }
 
 [[link(android)]]
