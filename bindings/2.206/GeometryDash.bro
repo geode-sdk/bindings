@@ -8806,7 +8806,7 @@ class GJOptionsLayer : SetupTriggerPopup {
 	virtual TodoReturn didToggleGV(gd::string) = m1 0x21472c, imac 0x26e1d0;
 	virtual void didToggle(int) {}
 
-	PAD = win 0x44, android32 0x2c, android64 0x3c;
+	PAD = win 0x44, android32 0x30, android64 0x3c;
 }
 
 [[link(android)]]
