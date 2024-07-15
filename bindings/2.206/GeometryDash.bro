@@ -2843,7 +2843,7 @@ class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
 class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate, LevelDownloadDelegate {
 	// virtual ~DailyLevelPage();
 
-	static DailyLevelPage* create(GJTimedLevelType) = win 0xcb380;
+	static DailyLevelPage* create(GJTimedLevelType) = win 0xcb380, imac 0x22ba40, m1 0x1d91d8;
 
 	TodoReturn claimLevelReward(DailyLevelNode*, GJGameLevel*, cocos2d::CCPoint) = win 0xce4c0, m1 0x1db618;
 	TodoReturn createDailyNode(GJGameLevel*, bool, float, bool) = win 0xcd130, m1 0x1da8ac;
@@ -16523,7 +16523,7 @@ class SongInfoObject : cocos2d::CCNode {
 	gd::string m_youtubeVideo;
 	gd::string m_youtubeChannel;
 	gd::string m_songUrl;
-	gd::string m_artistID;
+	int m_artistID;
 	float m_fileSize;
 	bool m_isUnkownSong;
 	int m_priority;
