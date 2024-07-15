@@ -2842,7 +2842,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 	TodoReturn getDailyTime();
 	TodoReturn getDailyTimeString(int) = win 0xcd4f0, m1 0x1da2b0;
 	bool init(GJTimedLevelType) = win 0xcb4c0, imac 0x22bbd0, m1 0x1d930c;
-	void onClose(cocos2d::CCObject* sender) = m1 0x1da208;
+	void onClose(cocos2d::CCObject* sender) = win 0x85150, m1 0x1da208;
 	void onTheSafe(cocos2d::CCObject* sender) = win 0xce960, m1 0x1da254;
 	TodoReturn refreshDailyPage();
 	TodoReturn skipDailyLevel(DailyLevelNode*, GJGameLevel*);
