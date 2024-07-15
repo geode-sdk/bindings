@@ -1990,10 +1990,10 @@ class ColorChannelSprite : cocos2d::CCSprite {
 
 	static ColorChannelSprite* create() = win 0x246c10, imac 0x2d44d0, m1 0x2715f4, ios 0xc730;
 
-	void updateBlending(bool enabled) = win 0x247000;
-	void updateCopyLabel(int channelID, bool copyOpacity) = win 0x246cf0;
+	void updateBlending(bool enabled) = win 0x247000, imac 0x2d48a0, m1 0x2719b0;
+	void updateCopyLabel(int channelID, bool copyOpacity) = win 0x246cf0, imac 0x2d4590, m1 0x2716a8;
 	void updateOpacity(float alpha) = win 0x246eb0, imac 0x2d4750, m1 0x271850, ios 0xc978;
-	void updateValues(ColorAction* action) = win inline, imac 0x2d49b0, ios 0xcbdc {
+	void updateValues(ColorAction* action) = win inline, imac 0x2d49b0, m1 0x271ab8, ios 0xcbdc {
 		if (!action) {
 			this->setColor(cocos2d::ccWHITE);
 			this->updateCopyLabel(0, false);
@@ -2012,7 +2012,11 @@ class ColorChannelSprite : cocos2d::CCSprite {
 		}
 	}
 
-	virtual bool init() = m1 0x27169c, imac 0x2d4570;
+	virtual bool init() = win 0x246cd0, m1 0x27169c, imac 0x2d4570;
+
+	cocos2d::CCLabelBMFont* m_copyLabel;
+	cocos2d::CCLabelBMFont* m_opacityLabel;
+	cocos2d::CCLabelBMFont* m_blendingLabel;
 }
 
 [[link(android)]]
@@ -16958,8 +16962,8 @@ class TextArea : cocos2d::CCSprite {
 	float m_maxWidth;
 	cocos2d::CCPoint m_unkPoint;
 	TextAreaDelegate* m_delegate;
-	cocos2d::CCDictionary* m_fadeCharacters;
-	float m_elapsed;
+	cocos2d::CCDictionary* m_shakeCharacters;
+	float m_shakeElapsed;
 }
 
 [[link(android)]]
