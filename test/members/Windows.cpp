@@ -283,8 +283,12 @@ GEODE_SIZE_CHECK(CreatorLayer, 0x1c0);
 GEODE_SIZE_CHECK(GJRotationControl, 0x1c8);
 GEODE_SIZE_CHECK(GJScaleControl, 0x210);
 GEODE_SIZE_CHECK(EditLevelLayer, 0x210);
+GEODE_SIZE_CHECK(LevelSelectLayer, 0x1d8);
 GEODE_SIZE_CHECK(BoomScrollLayer, 0x270);
 GEODE_SIZE_CHECK(ExtendedLayer, 0x1a0);
+GEODE_SIZE_CHECK(MultilineBitmapFont, 0x748);
+GEODE_SIZE_CHECK(FontObject, 0x4e8);
+GEODE_SIZE_CHECK(BitmapFontCache, 0x40);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
