@@ -13465,9 +13465,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	bool m_inResetDelay;
 	int m_lastAttemptPercent;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0x3a, android32 0x14, android64 0x3a, mac 0x3a;
+	PAD = win 0x3a, android32 0x29, android64 0x3a, mac 0x3a;
 	double m_attemptTime;
-	PAD = win 0x1f, android32 0x12, android64 0x1f, mac 0x1f;
+	PAD = win 0x1f, android32 0x27, android64 0x1f, mac 0x1f;
 	bool m_isPaused;
 	bool m_disableGravityEffect;
 	cocos2d::CCLabelBMFont* m_infoLabel;
