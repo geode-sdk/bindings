@@ -2934,20 +2934,24 @@ class DialogDelegate {
 class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	// virtual ~DialogLayer();
 
-	static DialogLayer* create(DialogObject*, int) = imac 0x3cac60;
+	static DialogLayer* create(DialogObject* object, int background) = win inline, imac 0x3cac60 {
+		return DialogLayer::createDialogLayer(object, nullptr, background);
+	}
 
-	TodoReturn addToMainScene();
+	void addToMainScene() = win 0xd07e0;
 	void animateIn(DialogAnimationType) = ios 0x8aff8;
 	void animateInDialog();
 	void animateInRandomSide() = win 0xd09b0;
-	static DialogLayer* createDialogLayer(DialogObject*, cocos2d::CCArray*, int) = win 0xcfcd0, ios 0x8a28c, imac 0x3cac70;
-	static DialogLayer* createWithObjects(cocos2d::CCArray*, int) = ios 0x8a318, imac 0x3cadb0;
-	TodoReturn displayDialogObject(DialogObject*) = win 0xd02e0;
-	TodoReturn displayNextObject() = win 0xd0280;
-	TodoReturn finishCurrentAnimation();
-	TodoReturn handleDialogTap();
+	static DialogLayer* createDialogLayer(DialogObject* object, cocos2d::CCArray* objects, int background) = win 0xcfcd0, ios 0x8a28c, imac 0x3cac70;
+	static DialogLayer* createWithObjects(cocos2d::CCArray* objects, int background) = win inline, ios 0x8a318, imac 0x3cadb0 {
+		return DialogLayer::createDialogLayer(nullptr, objects, background);
+	}
+	voi displayDialogObject(DialogObject*) = win 0xd02e0;
+	void displayNextObject() = win 0xd0280;
+	void finishCurrentAnimation();
+	void handleDialogTap() = win 0xd06b0;
 	bool init(DialogObject*, cocos2d::CCArray*, int) = win 0xcfe20, imac 0x3cadd0;
-	TodoReturn onClose();
+	void onClose() = win 0xd0850;
 	void updateChatPlacement(DialogChatPlacement) = ios 0x8ab34;
 	void updateNavButtonFrame() = win 0xd0630;
 
@@ -2956,17 +2960,32 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xd0900, m1 0x34e928, imac 0x3cbd90;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xd0920, m1 0x34e968, imac 0x3cbdf0;
-	virtual void registerWithTouchDispatcher() = m1 0x34e9ac, imac 0x3cbe40;
+	virtual void registerWithTouchDispatcher() = win 0x51ee0, m1 0x34e9ac, imac 0x3cbe40;
 	virtual void keyBackClicked() = win 0xd0840, m1 0x34e78c, imac 0x3cbc00;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0xd0bf0, m1 0x34ed5c, imac 0x3cc220;
 	virtual TodoReturn fadeInTextFinished(TextArea*) = win 0xd0940, m1 0x34e9e8, imac 0x3cbe90;
+
+	float m_animateTime;
+	cocos2d::CCLayer* m_mainLayer;
+	cocos2d::CCLabelBMFont* m_characterLabel;
+	TextArea* m_textArea;
+	cocos2d::CCSprite* m_characterSprite;
+	cocos2d::CCArray* m_dialogObjects;
+	int m_touchID;
+	cocos2d::CCSprite* m_navButtonSprite;
+	bool m_animating;
+	bool m_skippable;
+	DialogDelegate* m_delegate;
+	bool m_handleTap;
+	DialogAnimationType m_animationType;
+	bool m_noRemove;
 }
 
 [[link(android)]]
 class DialogObject : cocos2d::CCObject {
 	// virtual ~DialogObject();
 
-	static DialogObject* create(gd::string, gd::string, int, float, bool, cocos2d::ccColor3B) = win 0xcfb10, ios 0x8a034;
+	static DialogObject* create(gd::string character, gd::string text, int characterFrame, float textScale, bool skippable, cocos2d::ccColor3B color) = win 0xcfb10, ios 0x8a034;
 
 	bool init(gd::string, gd::string, int, float, bool, cocos2d::ccColor3B);
 }
