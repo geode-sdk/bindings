@@ -12235,7 +12235,7 @@ class OBB2D : cocos2d::CCNode {
 
 	static OBB2D* create(cocos2d::CCPoint, float, float, float) = win 0x6c390;
 
-	void calculateWithCenter(cocos2d::CCPoint, float, float, float) = win 0x6c560, m1 0x5250c0;
+	void calculateWithCenter(cocos2d::CCPoint, float, float, float) = win 0x6c560, imac 0x5fdf50, m1 0x5250c0;
 	TodoReturn computeAxes();
 	TodoReturn getBoundingRect();
 	bool init(cocos2d::CCPoint, float, float, float);
@@ -13306,7 +13306,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	//void toggleDebugDraw(bool);
 	void togglePracticeMode(bool) = win 0x396780, m1 0xaa64c, imac 0xbefe0;
 	TodoReturn tryStartRecord();
-	void updateAttempts() = win 0x396540, m1 0xaa844;
+	void updateAttempts() = win 0x396540, imac 0xbf1f0, m1 0xaa844;
 	void updateEffectPositions() = imac 0xbba40;
 	void updateInfoLabel() = win 0x38f640, imac 0xb0120;
 	TodoReturn updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&);
