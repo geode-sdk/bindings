@@ -2946,7 +2946,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	static DialogLayer* createWithObjects(cocos2d::CCArray* objects, int background) = win inline, ios 0x8a318, imac 0x3cadb0 {
 		return DialogLayer::createDialogLayer(nullptr, objects, background);
 	}
-	voi displayDialogObject(DialogObject*) = win 0xd02e0;
+	void displayDialogObject(DialogObject*) = win 0xd02e0;
 	void displayNextObject() = win 0xd0280;
 	void finishCurrentAnimation();
 	void handleDialogTap() = win 0xd06b0;
@@ -2988,6 +2988,13 @@ class DialogObject : cocos2d::CCObject {
 	static DialogObject* create(gd::string character, gd::string text, int characterFrame, float textScale, bool skippable, cocos2d::ccColor3B color) = win 0xcfb10, ios 0x8a034;
 
 	bool init(gd::string, gd::string, int, float, bool, cocos2d::ccColor3B);
+
+	gd::string m_character;
+	gd::string m_text;
+	int m_characterFrame;
+	cocos2d::ccColor3B m_color;
+	float m_textScale;
+	bool m_skippable;
 }
 
 [[link(android)]]
