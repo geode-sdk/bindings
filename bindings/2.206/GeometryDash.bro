@@ -5380,7 +5380,7 @@ class GameManager : GManager {
 	TodoReturn removeIconDelegate(int);
 	TodoReturn reorderKey(int, bool);
 	void reportAchievementWithID(char const*, int, bool) = win 0x175280, m1 0x306c60;
-	void reportPercentageForLevel(int, int, bool) = win 0x1748a0;
+	void reportPercentageForLevel(int levelID, int percentage, bool isPlatformer) = win 0x1748a0;
 	TodoReturn resetAchievement(gd::string);
 	TodoReturn resetAdTimer();
 	TodoReturn resetAllIcons();
@@ -7932,7 +7932,7 @@ class GJGameLevel : cocos2d::CCNode {
 	TodoReturn levelWasSubmitted();
 	TodoReturn parseSettingsString(gd::string);
 	void saveNewScore(int, int);
-	void savePercentage(int percent, bool, int clicks, int attempts, bool) = win 0x164540, m1 0x4b0f44, imac 0x562730;
+	void savePercentage(int percent, bool isPracticeMode, int clicks, int attempts, bool isChkValid) = win 0x164540, m1 0x4b0f44, imac 0x562730;
 	TodoReturn scoreStringToVector(gd::string&, gd::vector<int>&);
 	TodoReturn scoreVectorToString(gd::vector<int>&, int);
 	void setAccountID(int);
@@ -13430,7 +13430,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x2c;
 	cocos2d::CCArray* m_coinArray;
-	PAD = win 0x70, android32 0x40, android64 0x70, mac 0x70;
+	PAD = win 0x6E, android32 0x3E, android64 0x6E, mac 0x6E;
+	bool m_isIgnoreDamageEnabled;
 	cocos2d::CCLabelBMFont* m_statusLabel;
 	int m_unk3778;
 	PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18;
@@ -13464,7 +13465,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	bool m_inResetDelay;
 	int m_lastAttemptPercent;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0x62, android32 0x5e, android64 0x62, mac 0x62;
+	PAD = win 0x3a, android32 0x29, android64 0x3a, mac 0x3a;
+	double m_attemptTime;
+	PAD = win 0x1f, android32 0x27, android64 0x1f, mac 0x1f;
 	bool m_isPaused;
 	bool m_disableGravityEffect;
 	cocos2d::CCLabelBMFont* m_infoLabel;
