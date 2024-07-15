@@ -4575,20 +4575,23 @@ class FMODMusic {
 class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, RewardedVideoDelegate {
 	// virtual ~FollowRewardPage();
 
-	static FollowRewardPage* create();
+	static FollowRewardPage* create() = win 0x135ab0, m1 0x39bfcc, imac 0x4283d0;
 
-	void onClose(cocos2d::CCObject* sender);
-	void onRewardedVideo(cocos2d::CCObject* sender);
-	void onSpecialItem(cocos2d::CCObject* sender);
-	TodoReturn switchToOpenedState(CCMenuItemSpriteExtra*);
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x39cfd8, imac 0x429630;
+	void onRewardedVideo(cocos2d::CCObject* sender) = m1 0x39da94, imac 0x42a170;
+	void onSpecialItem(cocos2d::CCObject* sender) = win 0x137a40, m1 0x39d014, imac 0x429660;
+	void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x138be0, m1 0x39d668, imac 0x429d50;
 
-	virtual bool init() = m1 0x39c0dc, imac 0x428540;
-	virtual void registerWithTouchDispatcher() = m1 0x39e0c0, imac 0x42a7f0;
-	virtual void keyBackClicked() = m1 0x39e044, imac 0x42a780;
-	virtual void show() = m1 0x39de2c, imac 0x42a550;
+	virtual bool init() = win 0x135bd0, m1 0x39c0dc, imac 0x428540;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x39e0c0, imac 0x42a7f0;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x39e044, imac 0x42a780;
+	virtual void show() = win 0x84fb0, m1 0x39de2c, imac 0x42a550;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x138cc0, m1 0x39dfb0, imac 0x42a6d0;
 	virtual void rewardedVideoFinished() = win 0x137a30, m1 0x39de1c, imac 0x42a530;
 	virtual void updateRate() = win 0x137640, m1 0x39d754, imac 0x429e20;
+
+	cocos2d::CCArray* m_chests;
+	bool m_videoPlaying;
 }
 
 [[link(android)]]
@@ -13812,7 +13815,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 
 	static char const* getRewardFrame(int, int);
 	void onClose(cocos2d::CCObject* sender);
-	void onFreeStuff(cocos2d::CCObject* sender) = win 0x3a9c20;
+	void onFreeStuff(cocos2d::CCObject* sender) = win 0x3a9c20, m1 0x1c668c, imac 0x215a40;
 	void onReward(cocos2d::CCObject* sender) = win 0x3a9460;
 	TodoReturn tryGetRewards();
 	TodoReturn unlockLayerClosed(RewardUnlockLayer*);
