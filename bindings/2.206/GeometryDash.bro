@@ -3188,6 +3188,11 @@ class EditorOptionsLayer : GJOptionsLayer {
 	virtual bool init() = m1 0x23c554, imac 0x299e60;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x23cf50, imac 0x29a840;
 	virtual void setupOptions() = win 0x27eb80, m1 0x23c570, imac 0x299e90;
+
+	int m_buttonsPerRow;
+	int m_buttonRows;
+	cocos2d::CCLabelBMFont* m_buttonsPerRowLabel;
+	cocos2d::CCLabelBMFont* m_buttonRowsLabel;
 }
 
 [[link(android)]]
@@ -8800,6 +8805,8 @@ class GJOptionsLayer : SetupTriggerPopup {
 	virtual void setupOptions() {}
 	virtual TodoReturn didToggleGV(gd::string) = m1 0x21472c, imac 0x26e1d0;
 	virtual void didToggle(int) {}
+
+	PAD = win 0x48, android32 0x30, android64 0x40;
 }
 
 [[link(android)]]
@@ -15924,7 +15931,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) {}
 	virtual TodoReturn valuePopupClosed(ConfigureValuePopup*, float) = win 0x4512a0, m1 0x1e5b60, imac 0x23a630;
 
-	PAD = android32 0xac;
+	PAD = android32 0xac, win 0x118, android64 0x138;
 }
 
 [[link(android)]]
