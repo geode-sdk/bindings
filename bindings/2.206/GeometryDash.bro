@@ -4575,20 +4575,23 @@ class FMODMusic {
 class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, RewardedVideoDelegate {
 	// virtual ~FollowRewardPage();
 
-	static FollowRewardPage* create();
+	static FollowRewardPage* create() = win 0x135ab0, m1 0x39bfcc, imac 0x4283d0;
 
-	void onClose(cocos2d::CCObject* sender);
-	void onRewardedVideo(cocos2d::CCObject* sender);
-	void onSpecialItem(cocos2d::CCObject* sender);
-	TodoReturn switchToOpenedState(CCMenuItemSpriteExtra*);
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x39cfd8, imac 0x429630;
+	void onRewardedVideo(cocos2d::CCObject* sender) = m1 0x39da94, imac 0x42a170;
+	void onSpecialItem(cocos2d::CCObject* sender) = win 0x137a40, m1 0x39d014, imac 0x429660;
+	void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x138be0, m1 0x39d668, imac 0x429d50;
 
-	virtual bool init() = m1 0x39c0dc, imac 0x428540;
-	virtual void registerWithTouchDispatcher() = m1 0x39e0c0, imac 0x42a7f0;
-	virtual void keyBackClicked() = m1 0x39e044, imac 0x42a780;
-	virtual void show() = m1 0x39de2c, imac 0x42a550;
+	virtual bool init() = win 0x135bd0, m1 0x39c0dc, imac 0x428540;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x39e0c0, imac 0x42a7f0;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x39e044, imac 0x42a780;
+	virtual void show() = win 0x84fb0, m1 0x39de2c, imac 0x42a550;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x138cc0, m1 0x39dfb0, imac 0x42a6d0;
 	virtual void rewardedVideoFinished() = win 0x137a30, m1 0x39de1c, imac 0x42a530;
 	virtual void updateRate() = win 0x137640, m1 0x39d754, imac 0x429e20;
+
+	cocos2d::CCArray* m_chests;
+	bool m_videoPlaying;
 }
 
 [[link(android)]]
@@ -6292,7 +6295,7 @@ class GameStatsManager : cocos2d::CCNode {
 	int getTotalCollectedDiamonds() = win 0x1d9720, m1 0x68cf4;
 	bool hasClaimedListReward(GJLevelList*) = win 0x1d84b0, m1 0x67584, imac 0x74400;
 	bool hasCompletedChallenge(GJChallengeItem*);
-	bool hasCompletedDailyLevel(int) = win 0x1d8590, m1 0x678bc, imac 0x74730;
+	bool hasCompletedDailyLevel(int) = win 0x1d8590, m1 0x678bc;
 	bool hasCompletedDemonLevel(GJGameLevel*);
 	bool hasCompletedGauntletLevel(int) = win 0x1d3d70;
 	bool hasCompletedLevel(GJGameLevel* level) = win inline, m1 0x61134, imac 0x6d1d0 {
@@ -10432,7 +10435,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void reloadAllObjects();
 	void setSearchObject(GJSearchObject*) = imac 0x495d30, m1 0x3fa8f4;
 	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2b8440, m1 0x3fda3c, imac 0x4990a0;
-	void show() = win 0x2bc7d0, m1 0x3ffc14, imac 0x49b600;
+	void show() = win 0x2bc7d0;
 	void updateLevelsLabel();
 	void updatePageLabel() = win 0x2b97e0;
 
@@ -13330,7 +13333,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
 	virtual ~PlayLayer() = m1 0x9a050, win 0x382540, imac 0xab7d0;
-	PlayLayer() = win 0x381b80;
+	// PlayLayer();
 
 	static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = m1 0x9a148, imac 0xabbf0;
 	static PlayLayer* get() {
@@ -13812,7 +13815,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 
 	static char const* getRewardFrame(int, int);
 	void onClose(cocos2d::CCObject* sender);
-	void onFreeStuff(cocos2d::CCObject* sender) = win 0x3a9c20;
+	void onFreeStuff(cocos2d::CCObject* sender) = win 0x3a9c20, m1 0x1c668c, imac 0x215a40;
 	void onReward(cocos2d::CCObject* sender) = win 0x3a9460;
 	TodoReturn tryGetRewards();
 	TodoReturn unlockLayerClosed(RewardUnlockLayer*);
