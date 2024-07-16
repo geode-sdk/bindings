@@ -13831,17 +13831,17 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 		return nullptr;
 	}
 
-	static char const* getRewardFrame(int type, int state) = win inline {
+	static char const* getRewardFrame(int type, int state) = win inline, m1 0x1c66b8, imac 0x215a70 {
 		return cocos2d::CCString::createWithFormat("chest_%02d_%02d_001.png", type, state)->getCString();
 	}
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x1c6650, imac 0x215a10;
 	void onFreeStuff(cocos2d::CCObject* sender) = win 0x3a9c20, m1 0x1c668c, imac 0x215a40;
-	void onReward(cocos2d::CCObject* sender) = win 0x3a9460;
-	void tryGetRewards() = win 0x3a9810;
-	void unlockLayerClosed(RewardUnlockLayer* layer) = win inline {
+	void onReward(cocos2d::CCObject* sender) = win 0x3a9460, m1 0x1c66e0, imac 0x215a90;
+	void tryGetRewards() = win 0x3a9810, m1 0x1c6f5c, imac 0x216320;
+	void unlockLayerClosed(RewardUnlockLayer* layer) = win inline, m1 0x1c71f8, imac 0x2165c0 {
 		if (m_openLayer == layer) m_openLayer = nullptr;
 	}
-	callback void updateTimers(float) = win 0x3a9860;
+	callback void updateTimers(float) = win 0x3a9860, m1 0x1c6800, imac 0x215b90;
 
 	virtual bool init() = win 0x3a8710, imac 0x214cc0, m1 0x1c5a20;
 	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x1c71c0, imac 0x216580;
