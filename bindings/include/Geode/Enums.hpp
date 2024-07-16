@@ -506,6 +506,7 @@ enum class BoomListType {
 };
 
 enum class CurrencySpriteType {
+    Icon = 0,
     Orb = 1,
     Star = 2,
     Diamond = 3,
