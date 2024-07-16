@@ -14107,7 +14107,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	cocos2d::ccColor3B getPageColor(int) = imac 0x63f1b0, m1 0x55e820;
 	void goToPage(int page) = win inline, ios 0x2fa67c, imac 0x63f060, m1 0x55e690 {
 		if (m_inMainLayer) m_mainScrollLayer->moveToPage(page);
-		else m_secondaryScrollLayer->goToPage(page);
+		else m_secondaryScrollLayer->moveToPage(page);
 	}
 	bool init(bool) = win 0x3ae2c0, imac 0x63d020, ios 0x2f8cd0, m1 0x55c7dc;
 	void moveToMainLayer(cocos2d::CCObject*) = ios 0x2facd4, imac 0x63fb20, m1 0x55e0ec;
