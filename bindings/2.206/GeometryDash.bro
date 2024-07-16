@@ -13874,7 +13874,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 	void playLabelEffect(int, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = win 0x3ac240, m1 0x1ca0d4, imac 0x2198a0;
 	void playRewardEffect() = win 0x3aad20, m1 0x1c83c0, imac 0x217960;
 	bool readyToCollect(GJRewardItem* item) = win inline, m1 0x1c6e04, imac 0x2161d0 {
-		return item ? m_chestType == item->m_rewardType : false;
+		return item ? m_chestType == (int)item->m_rewardType : false;
 	}
 	void showCloseButton() = win 0x3ac1d0, m1 0x1ca74c, imac 0x219f00;
 	bool showCollectReward(GJRewardItem*) = win 0x3aaa40, m1 0x1c6e24, imac 0x2161f0;
