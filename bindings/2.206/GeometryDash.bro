@@ -14091,7 +14091,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 		m_lockedDialogIndex = 0;
 	}
 
-	static SecretRewardsLayer* create(bool fromShop) = win inline, ios 0x2f8c5c {
+	static SecretRewardsLayer* create(bool fromShop) = win inline, ios 0x2f8c5c, imac 0x63cf00, m1 0x55c6f4 {
 		auto ret = new SecretRewardsLayer();
 		if (ret->init(fromShop)) {
 			ret->autorelease();
@@ -14100,35 +14100,35 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 		delete ret;
 		return nullptr;
 	}
-	static cocos2d::CCScene* scene(bool fromShop) = win 0x3ae160, ios 0x2f8c10;
+	static cocos2d::CCScene* scene(bool fromShop) = win 0x3ae160, ios 0x2f8c10, imac 0x63cec0, m1 0x55c6a8;
 
-	void createSecondaryLayer(int) = win 0x3b0720, ios 0x2fadf4;
-	cocos2d::CCArray* generateChestItems(int) = win 0x3b0b70, ios 0x2fb19c;
-	cocos2d::ccColor3B getPageColor(int);
-	void goToPage(int page) = win inline, ios 0x2fa67c {
+	void createSecondaryLayer(int) = win 0x3b0720, ios 0x2fadf4, imac 0x63fc70, m1 0x55f2b0;
+	cocos2d::CCArray* generateChestItems(int) = win 0x3b0b70, ios 0x2fb19c, imac 0x640100, m1 0x55f6ec;
+	cocos2d::ccColor3B getPageColor(int) = imac 0x63f1b0, m1 0x55e820;
+	void goToPage(int page) = win inline, ios 0x2fa67c, imac 0x63f060, m1 0x55e690 {
 		if (m_inMainLayer) m_mainScrollLayer->moveToPage(page);
 		else m_secondaryScrollLayer->goToPage(page);
 	}
 	bool init(bool) = win 0x3ae2c0, imac 0x63d020, ios 0x2f8cd0, m1 0x55c7dc;
-	void moveToMainLayer(cocos2d::CCObject*) = ios 0x2facd4;
-	void moveToSecondaryLayer(int) = ios 0x2faabc;
+	void moveToMainLayer(cocos2d::CCObject*) = ios 0x2facd4, imac 0x63fb20, m1 0x55e0ec;
+	void moveToSecondaryLayer(int) = ios 0x2faabc, imac 0x63f650, m1 0x55ec98;
 	void onBack(cocos2d::CCObject* sender) = win 0x3b24f0, ios 0x2fa1d8, imac 0x63eae0, m1 0x55e0ec;
-	void onChestType(cocos2d::CCObject* sender) = win 0x3b0490, ios 0x2fa244;
-	void onSelectItem(cocos2d::CCObject* sender) = win 0x3b1520;
-	void onShop(cocos2d::CCObject* sender) = win 0x3b19e0, ios 0x2fa52c;
-	void onSpecialItem(cocos2d::CCObject* sender) = win 0x3b1de0, ios 0x2fa80c;
-	void onSwitchPage(cocos2d::CCObject* sender) = win 0x3b01a0, ios 0x2fa624;
-	void showDialog01() = win 0x3b2720;
-	void showDialog03() = win 0x3b4030;
-	void showDialogDiamond() = win 0x3b6530;
-	void showDialogMechanic() = win 0x3b52d0;
-	void showLockedChest();
-	void showShop(int shop) = win inline {
+	void onChestType(cocos2d::CCObject* sender) = win 0x3b0490, ios 0x2fa244, imac 0x63eb50, m1 0x55e158;
+	void onSelectItem(cocos2d::CCObject* sender) = win 0x3b1520, imac 0x640fc0, m1 0x5603c4;
+	void onShop(cocos2d::CCObject* sender) = win 0x3b19e0, ios 0x2fa52c, imac 0x63ee90, m1 0x55e4bc;
+	void onSpecialItem(cocos2d::CCObject* sender) = win 0x3b1de0, ios 0x2fa80c, imac 0x63f200, m1 0x55e850;
+	void onSwitchPage(cocos2d::CCObject* sender) = win 0x3b01a0, ios 0x2fa624, imac 0x63efe0, m1 0x55e600;
+	void showDialog01() = win 0x3b2720, imac 0x641370, m1 0x5607b4;
+	void showDialog03() = win 0x3b4030, imac 0x643050, m1 0x561f70;
+	void showDialogDiamond() = win 0x3b6530, imac 0x645b50, m1 0x564250;
+	void showDialogMechanic() = win 0x3b52d0, imac 0x6445c0, m1 0x5630f8;
+	void showLockedChest() = imac 0x63f770, m1 0x55ed90;
+	void showShop(int shop) = win inline, imac 0x646860, m1 0x564d38 {
 		if (cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionMoveInT::create(0.5f, GJShopLayer::scene((ShopType)shop)))) this->setKeypadEnabled(false);
 	}
-	void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x3b2120, ios 0x2fa298;
-	void updateBackButton() = win 0x3b05e0, ios 0x2fabb4;
-	void updateUnlockedLabel() = win 0x3b2200, ios 0x2fa380;
+	void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x3b2120, ios 0x2fa298, imac 0x63eb90, m1 0x55e1ac;
+	void updateBackButton() = win 0x3b05e0, ios 0x2fabb4, imac 0x63fa10, m1 0x55f054;
+	void updateUnlockedLabel() = win 0x3b2200, ios 0x2fa380, imac 0x63ec60, m1 0x55e294;
 
 	virtual void onExit() = win 0x3b26e0, m1 0x564f80, imac 0x646ab0;
 	virtual void keyBackClicked() = win 0x3b26d0, m1 0x564f0c, imac 0x646a20;
