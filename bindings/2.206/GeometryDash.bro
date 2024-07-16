@@ -14074,7 +14074,22 @@ class SecretNumberLayer : cocos2d::CCLayer {
 [[link(android)]]
 class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDelegate {
 	// virtual ~SecretRewardsLayer();
-	// SecretRewardsLayer() = ios 0x2ff01c;
+	SecretRewardsLayer() = ios 0x2ff01c {
+		m_mainLayer = nullptr;
+		m_secondaryLayer = nullptr;
+		m_chestCounter = nullptr;
+		m_chestCounters = nullptr;
+		m_backSprite = nullptr;
+		m_unkSize4_2 = 0;
+		m_secondaryScrollLayer = nullptr;
+		m_scratchDialogIndex = 0;
+		m_potborDialogIndex = 0;
+		m_diamondDialogIndex = 0;
+		m_mechanicDialogIndex = 0;
+		m_inMainLayer = false;
+		m_rewardType = GJRewardType::Unknown;
+		m_lockedDialogIndex = 0;
+	}
 
 	static SecretRewardsLayer* create(bool) = ios 0x2f8c5c;
 	static cocos2d::CCScene* scene(bool fromShop) = win 0x3ae160, ios 0x2f8c10;
@@ -14097,8 +14112,8 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	void onSwitchPage(cocos2d::CCObject* sender) = win 0x3b01a0, ios 0x2fa624;
 	void showDialog01() = win 0x3b2720;
 	void showDialog03() = win 0x3b4030;
-	void showDialogDiamond() = win 0x3b52d0;
-	void showDialogMechanic() = win 0x3b6530;
+	void showDialogDiamond() = win 0x3b6530;
+	void showDialogMechanic() = win 0x3b52d0;
 	void showLockedChest();
 	void showShop(int shop) = win inline {
 		if (cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionMoveInT::create(0.5f, GJShopLayer::scene((ShopType)shop)))) this->setKeypadEnabled(false);
@@ -14107,10 +14122,33 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	void updateBackButton() = win 0x3b05e0, ios 0x2fabb4;
 	void updateUnlockedLabel() = win 0x3b2200, ios 0x2fa380;
 
-	virtual void onExit() = m1 0x564f80, imac 0x646ab0;
+	virtual void onExit() = win 0x3b26e0, m1 0x564f80, imac 0x646ab0;
 	virtual void keyBackClicked() = win 0x3b26d0, m1 0x564f0c, imac 0x646a20;
 	virtual void dialogClosed(DialogLayer*) = win 0x3b1bf0, m1 0x564da8, imac 0x6468d0;
 	virtual void scrollLayerMoved(cocos2d::CCPoint) = win 0x3b0260, m1 0x55e6e4, imac 0x63f0a0;
+
+	cocos2d::CCLayer* m_mainLayer;
+	cocos2d::CCLayer* m_secondaryLayer;
+	cocos2d::CCLabelBMFont* m_chestLabel;
+	cocos2d::CCLabelBMFont* m_chestCounter;
+	cocos2d::CCDictionary* m_chestCounters;
+	cocos2d::CCLabelBMFont* m_keysLabel;
+	void* m_unknown;
+	CCMenuItemSpriteExtra* m_leftButton;
+	CCMenuItemSpriteExtra* m_rightButton;
+	cocos2d::CCSprite* m_backSprite;
+	int m_unkSize4_1;
+	int m_unkSize4_2;
+	BoomScrollLayer* m_mainScrollLayer;
+	BoomScrollLayer* m_secondaryScrollLayer;
+	cocos2d::CCSprite* m_backgroundSprite;
+	int m_scratchDialogIndex;
+	int m_potborDialogIndex;
+	int m_diamondDialogIndex;
+	int m_mechanicDialogIndex;
+	bool m_inMainLayer;
+	GJRewardType m_rewardType;
+	int m_lockedDialogIndex;
 }
 
 [[link(android)]]
