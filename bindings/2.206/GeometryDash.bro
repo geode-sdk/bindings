@@ -2478,12 +2478,12 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 	CurrencySprite* m_shardsSprite;
 	cocos2d::CCSpriteBatchNode* m_currencyBatchNode;
 	cocos2d::CCSpriteBatchNode* m_orbBatchNode;
-	int m_playerOrbs;
-	int m_playerStars;
-	int m_playerMoons;
-	int m_playerDiamonds;
-	int m_playerKeys;
-	int m_playerShards;
+	int m_orbs;
+	int m_stars;
+	int m_moons;
+	int m_diamonds;
+	int m_keys;
+	int m_shards;
 	int m_elapsed;
 	int m_unknown;
 	float m_time;
