@@ -2451,12 +2451,42 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 	void createUnlockObject(cocos2d::CCSprite* sprite, cocos2d::CCPoint position, float time) = win inline, m1 0x6ba73c, imac 0x7b3cf0 {
 		this->createObjectsFull(CurrencySpriteType::Icon, 1, sprite, position, time);
 	}
-	void incrementCount(int) = m1 0x6bba28, imac 0x7b51f0;
-	void incrementDiamondsCount(int) = m1 0x6bbcc8, imac 0x7b5640;
-	void incrementMoonsCount(int) = m1 0x6bbe18, imac 0x7b54d0;
-	void incrementSpecialCount1(int) = m1 0x6bc0b8, imac 0x7b5920;
-	void incrementSpecialCount2(int) = m1 0x6bbf68, imac 0x7b57b0;
-	void incrementStarsCount(int) = m1 0x6bbb78, imac 0x7b5360;
+	void incrementCount(int count) = win inline, m1 0x6bba28, imac 0x7b51f0 {
+		if (m_orbsLabel == nullptr) return;
+		m_orbs += count;
+		this->pulseSprite(m_orbsSprite);
+		m_orbsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementDiamondsCount(int count) = win inline, m1 0x6bbcc8, imac 0x7b5640 {
+		if (m_diamondsLabel == nullptr) return;
+		m_diamonds += count;
+		this->pulseSprite(m_diamondsSprite);
+		m_diamondsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementMoonsCount(int count) = win inline, m1 0x6bbe18, imac 0x7b54d0 {
+		if (m_moonsLabel == nullptr) return;
+		m_moons += count;
+		this->pulseSprite(m_moonsSprite);
+		m_moonsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementSpecialCount1(int count) = win inline, m1 0x6bc0b8, imac 0x7b5920 {
+		if (m_keysLabel == nullptr) return;
+		m_keys += count;
+		this->pulseSprite(m_keysSprite);
+		m_keysLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementSpecialCount2(int count) = win inline, m1 0x6bbf68, imac 0x7b57b0 {
+		if (m_shardsLabel == nullptr) return;
+		m_shards += count;
+		this->pulseSprite(m_shardsSprite);
+		m_shardsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementStarsCount(int count) = win inline, m1 0x6bbb78, imac 0x7b5360 {
+		if (m_starsLabel == nullptr) return;
+		m_stars += count;
+		this->pulseSprite(m_starsSprite);
+		m_starsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
 	bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9df80, m1 0x6b8764, imac 0x7b1b70;
 	void pulseSprite(cocos2d::CCSprite*) = win 0xa12c0, m1 0x6bc208, imac 0x7b5a90;
 
