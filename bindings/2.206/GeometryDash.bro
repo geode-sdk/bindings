@@ -14079,27 +14079,32 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 	static SecretRewardsLayer* create(bool) = ios 0x2f8c5c;
 	static cocos2d::CCScene* scene(bool fromShop) = win 0x3ae160, ios 0x2f8c10;
 
-	TodoReturn createSecondaryLayer(int) = ios 0x2fadf4;
-	cocos2d::CCArray* generateChestItems(int) = ios 0x2fb19c;
-	TodoReturn getPageColor(int);
-	void goToPage(int) = ios 0x2fa67c;
+	void createSecondaryLayer(int) = win 0x3b0720, ios 0x2fadf4;
+	cocos2d::CCArray* generateChestItems(int) = win 0x3b0b70, ios 0x2fb19c;
+	cocos2d::ccColor3B getPageColor(int);
+	void goToPage(int page) = win inline, ios 0x2fa67c {
+		if (m_inMainLayer) m_mainScrollLayer->moveToPage(page);
+		else m_secondaryScrollLayer->goToPage(page);
+	}
 	bool init(bool) = win 0x3ae2c0, imac 0x63d020, ios 0x2f8cd0, m1 0x55c7dc;
 	void moveToMainLayer(cocos2d::CCObject*) = ios 0x2facd4;
 	void moveToSecondaryLayer(int) = ios 0x2faabc;
 	void onBack(cocos2d::CCObject* sender) = win 0x3b24f0, ios 0x2fa1d8, imac 0x63eae0, m1 0x55e0ec;
-	void onChestType(cocos2d::CCObject* sender) = ios 0x2fa244;
-	void onSelectItem(cocos2d::CCObject* sender);
+	void onChestType(cocos2d::CCObject* sender) = win 0x3b0490, ios 0x2fa244;
+	void onSelectItem(cocos2d::CCObject* sender) = win 0x3b1520;
 	void onShop(cocos2d::CCObject* sender) = win 0x3b19e0, ios 0x2fa52c;
-	void onSpecialItem(cocos2d::CCObject* sender) = ios 0x2fa80c;
-	void onSwitchPage(cocos2d::CCObject* sender) = ios 0x2fa624;
-	void showDialog01();
-	void showDialog03();
-	void showDialogDiamond();
-	void showDialogMechanic();
+	void onSpecialItem(cocos2d::CCObject* sender) = win 0x3b1de0, ios 0x2fa80c;
+	void onSwitchPage(cocos2d::CCObject* sender) = win 0x3b01a0, ios 0x2fa624;
+	void showDialog01() = win 0x3b2720;
+	void showDialog03() = win 0x3b4030;
+	void showDialogDiamond() = win 0x3b52d0;
+	void showDialogMechanic() = win 0x3b6530;
 	void showLockedChest();
-	void showShop(int);
+	void showShop(int shop) = win inline {
+		if (cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionMoveInT::create(0.5f, GJShopLayer::scene((ShopType)shop)))) this->setKeypadEnabled(false);
+	}
 	void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x3b2120, ios 0x2fa298;
-	void updateBackButton() = ios 0x2fabb4;
+	void updateBackButton() = win 0x3b05e0, ios 0x2fabb4;
 	void updateUnlockedLabel() = win 0x3b2200, ios 0x2fa380;
 
 	virtual void onExit() = m1 0x564f80, imac 0x646ab0;
