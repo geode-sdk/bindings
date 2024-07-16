@@ -7615,15 +7615,21 @@ class GJChallengeItem : cocos2d::CCObject {
 class GJChestSprite : cocos2d::CCSprite {
 	// virtual ~GJChestSprite();
 
-	static GJChestSprite* create(int) = win 0x3ad250, ios 0x1cf3c0;
+	static GJChestSprite* create(int) = win 0x3ad250, m1 0x1c80d4, imac 0x217690, ios 0x1cf3c0;
 
-	bool init(int) = ios 0x1d17e4;
-	void switchToState(ChestSpriteState, bool) = win 0x3ad450;
+	bool init(int chestType) = win inline, m1 0x1ca814, imac 0x21a030, ios 0x1d17e4 {
+		if (!cocos2d::CCSprite::init()) return false;
+		m_chestType = chestType;
+		this->setContentSize({ 0, 0 });
+		this->switchToState(ChestSpriteState::Closed, false);
+		return true;
+	}
+	void switchToState(ChestSpriteState, bool) = win 0x3ad450, m1 0x1c92f8, imac 0x218b10;
 
 	virtual void setOpacity(unsigned char) = win 0x3ad3e0, m1 0x1ca94c, imac 0x21a180;
 	virtual void setColor(cocos2d::ccColor3B const&) = win 0x3ad320, m1 0x1ca878, imac 0x21a090;
 
-	int m_type;
+	int m_chestType;
 	ChestSpriteState m_spriteState;
 	bool m_dark;
 }
