@@ -13864,22 +13864,22 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 	// virtual ~RewardUnlockLayer();
 
-	static RewardUnlockLayer* create(int, RewardsPage*) = win 0x3a9c50, m1 0x1c6b60;
+	static RewardUnlockLayer* create(int, RewardsPage*) = win 0x3a9c50, m1 0x1c6b60, imac 0x215ec0;
 
-	void connectionTimeout() = win 0x3aab00;
-	bool init(int, RewardsPage*) = win 0x3a9d80, m1 0x1c74a0;
-	void labelEnterFinishedO(cocos2d::CCObject*);
-	void onClose(cocos2d::CCObject* sender) = win 0x3ad200;
-	void playDropSound() = win 0x3aab60;
-	void playLabelEffect(int, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = win 0x3ac240;
-	void playRewardEffect() = win 0x3aad20;
-	bool readyToCollect(GJRewardItem* item) = win inline {
+	void connectionTimeout() = win 0x3aab00, m1 0x1c8358, imac 0x2178f0;
+	bool init(int, RewardsPage*) = win 0x3a9d80, m1 0x1c74a0, imac 0x2169a0;
+	void labelEnterFinishedO(cocos2d::CCObject*) = win inline, m1 0x1ca7c4, imac 0x219f80 {}
+	void onClose(cocos2d::CCObject* sender) = win 0x3ad200, m1 0x1c8300, imac 0x217890;
+	void playDropSound() = win 0x3aab60, m1 0x1c81a4, imac 0x217750;
+	void playLabelEffect(int, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = win 0x3ac240, m1 0x1ca0d4, imac 0x2198a0;
+	void playRewardEffect() = win 0x3aad20, m1 0x1c83c0, imac 0x217960;
+	bool readyToCollect(GJRewardItem* item) = win inline, m1 0x1c6e04, imac 0x2161d0 {
 		return item ? m_chestType == item->m_rewardType : false;
 	}
-	void showCloseButton() = win 0x3ac1d0;
-	bool showCollectReward(GJRewardItem*) = win 0x3aaa40, m1 0x1c6e24;
-	void step2() = win 0x3aac00;
-	void step3() = win 0x3aad00;
+	void showCloseButton() = win 0x3ac1d0, m1 0x1ca74c, imac 0x219f00;
+	bool showCollectReward(GJRewardItem*) = win 0x3aaa40, m1 0x1c6e24, imac 0x2161f0;
+	void step2() = win 0x3aac00, m1 0x1c8230, imac 0x2177c0;
+	void step3() = win 0x3aad00, m1 0x1ca0bc, imac 0x219880;
 
 	virtual void keyBackClicked() {}
 	virtual void currencyWillExit(CurrencyRewardLayer*) = win 0x3ad1f0, m1 0x1ca7c8, imac 0x219f90;
