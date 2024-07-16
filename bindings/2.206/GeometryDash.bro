@@ -7801,12 +7801,12 @@ class GJEffectManager : cocos2d::CCNode {
 
 	PAD = android32 0x90, mac 0xf0, android64 0x120, win 0x9c;
 	cocos2d::CCDictionary* m_colorActionDict;
-	PAD = win 0x144;
+	PAD = android32 0x58, android64 0xb0, win 0x144;
 	gd::unordered_map<int,int> m_itemCountMap;
 	gd::unordered_map<int,int> m_persistentItemCountMap;
 	gd::unordered_set<int> m_persistentTimerItemSet;
 	gd::unordered_map<int,TimerItem> m_timerItemMap;
-	PAD = win 0x370;
+	PAD = android32 0x1c8, android64 0x378, win 0x370;
 }
 
 [[link(android)]]

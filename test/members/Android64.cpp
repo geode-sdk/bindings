@@ -166,8 +166,12 @@ GEODE_MEMBER_CHECK(EditorUI, m_selectedTab, 0x548);
 GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x290);
 GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x2B8);
 
+GEODE_SIZE_CHECK(GJEffectManager, 0x770);
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x260);
-//GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x318);
+GEODE_MEMBER_CHECK(GJEffectManager, m_itemCountMap, 0x318);
+GEODE_MEMBER_CHECK(GJEffectManager, m_persistentItemCountMap, 0x350);
+GEODE_MEMBER_CHECK(GJEffectManager, m_persistentTimerItemSet, 0x388);
+GEODE_MEMBER_CHECK(GJEffectManager, m_timerItemMap, 0x3c0);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x1a0);
 
