@@ -14091,7 +14091,15 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 		m_lockedDialogIndex = 0;
 	}
 
-	static SecretRewardsLayer* create(bool) = ios 0x2f8c5c;
+	static SecretRewardsLayer* create(bool fromShop) = win inline, ios 0x2f8c5c {
+		auto ret = new SecretRewardsLayer();
+		if (ret->init(fromShop)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 	static cocos2d::CCScene* scene(bool fromShop) = win 0x3ae160, ios 0x2f8c10;
 
 	void createSecondaryLayer(int) = win 0x3b0720, ios 0x2fadf4;
