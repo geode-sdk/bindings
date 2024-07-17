@@ -1188,7 +1188,7 @@ class cocos2d::CCTouch {
 	cocos2d::CCPoint getStartLocation() const = imac 0x5a5b0, m1 0x50c40, ios inline {
 		return CCDirector::sharedDirector()->convertToGL(m_startPoint);
 	}
-	cocos2d::CCPoint getDelta() const = imac 0x5a5e0, m1 0x50c6c, ios inline (
+	cocos2d::CCPoint getDelta() const = imac 0x5a5e0, m1 0x50c6c, ios inline {
 		return getLocation() - getPreviousLocation();
 	}
 }
