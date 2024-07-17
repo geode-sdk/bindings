@@ -9081,7 +9081,7 @@ class GJSearchObject : cocos2d::CCNode {
 	GJSearchObject* getPrevPageObject();
 	char const* getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x16c630;
 	bool init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
-	bool isLevelSearchObject() = win 0x16c910, m1 0x4b684c, imac 0x568be0;
+	bool isLevelSearchObject() = win 0x16c910, m1 0x4b684c, imac 0x568be0, ios 0xb25b8;
 
 	SearchType m_searchType;
 	gd::string m_searchQuery;
