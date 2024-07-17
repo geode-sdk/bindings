@@ -1572,7 +1572,7 @@ class CCURLObject : cocos2d::CCObject {
 [[link(android), depends(ChallengesPage), depends(GJChallengeItem)]]
 class ChallengeNode : cocos2d::CCNode {
 	// virtual ~ChallengeNode();
-	inline ChallengeNode() = ios 0x3a618 {}
+	inline ChallengeNode() {} //  = ios 0x3a618
 
 	static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win inline, m1 0x328294, imac 0x3a1490, ios 0x394e4 {
 		auto ret = new ChallengeNode();
