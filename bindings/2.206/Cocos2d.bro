@@ -2334,8 +2334,8 @@ class cocos2d::CCSpriteBatchNode {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteFrame {
-	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&) = m1 0x2e6228, imac 0x358210, ios inline {
-		auto pSpriteFrame = new CCSpriteFrame();;
+	static cocos2d::CCSpriteFrame* create(char const* filename, cocos2d::CCRect const& rect) = m1 0x2e6228, imac 0x358210, ios inline {
+		auto pSpriteFrame = new CCSpriteFrame();
 		pSpriteFrame->initWithTextureFilename(filename, rect);
 		pSpriteFrame->autorelease();
 		
