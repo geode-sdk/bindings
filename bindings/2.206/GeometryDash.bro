@@ -10905,7 +10905,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 
 	void addSecretCoin() = win 0x2fbe20, imac 0x43dde0, m1 0x3b0314;
 	void addSecretDoor() = win 0x2fc530, imac 0x440360, m1 0x3b2564;
-	bool init(GJGameLevel*) = win 0x2f9570, imac 0x43f130, m1 0x3b145c;
+	bool init(GJGameLevel*) = win 0x2f9570, imac 0x43f130, m1 0x3b145c, ios 0x40c8e4;
 	void onInfo(cocos2d::CCObject* sender) = win 0x2fd820, imac 0x43ea10, m1 0x3b0e74;
 	void onMoreGames(cocos2d::CCObject* sender) = imac 0x4404d0, m1 0x3b26d0;
 	void onPlay(cocos2d::CCObject* sender) = win 0x2fd2e0, imac 0x43e730, m1 0x3b0b5c, ios 0x40c32c;
