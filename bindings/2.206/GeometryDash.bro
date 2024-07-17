@@ -3744,7 +3744,7 @@ class EffectGameObject : EnhancedGameObject {
 	float m_duration;
 	// property 35
 	float m_opacity;
-	PAD = android 0x4, win 0x4;
+	PAD = android32 0x4, android64 0x4, win 0x4;
 	// property 51
 	int m_targetGroupID;
 	// property 71
@@ -4082,17 +4082,17 @@ class EnhancedGameObject : GameObject {
 	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x2000b0, imac 0x2577a0;
 	virtual TodoReturn updateAnimateOnTrigger(bool) = m1 0x201478, imac 0x2596c0;
 
-	PAD = android32 0x25, win 0x2a;
+	PAD = android32 0x25, win 0x2a, android64 0x22;
 
 	bool m_hasCustomAnimation;
 	bool m_hasCustomRotation;
 	// property 98
 	bool m_disableRotation;
-	PAD = android32 0x3, win 0x3;
+	PAD = android32 0x3, win 0x3, android64 0x3;
 
 	// property 97
 	float m_rotationSpeed;
-	PAD = android32 0xc, win 0xc;
+	PAD = android32 0xc, win 0xc, android64 0xc;
 
 	// property 106
 	bool m_animationRandomizedStart;
@@ -4110,15 +4110,15 @@ class EnhancedGameObject : GameObject {
 	int m_singleFrame;
 	// property 592
 	bool m_animationOffset;
-	PAD = android32 0xf, win 0xf;
+	PAD = android32 0xf, win 0xf, android64 0xf;
 
 	// property 214
 	bool m_animateOnlyWhenActive;
 	// property 444
 	bool m_isNoMultiActivate; // used in platformer stuff
 	// property 99
-	bool m_isMultiActivate;
-	PAD = android32 0x4, win 0x4;
+	bool m_isMultiActivate; // 0x592
+	PAD = android32 0x4, win 0x4, android64 0x8;
 }
 
 [[link(android)]]
