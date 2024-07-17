@@ -6077,7 +6077,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getCurrencyKey(GJGameLevel*);
 	TodoReturn getDailyLevelKey(int);
 	TodoReturn getDemonLevelKey(GJGameLevel*);
-	gd::string getGauntletRewardKey(int) = win 0x1de640, imac 0x78b30, m1 0x6b494;
+	gd::string getGauntletRewardKey(int) = win 0x1de640, imac 0x78b30, m1 0x6b494, ios 0x345fec;
 	gd::string getItemKey(int, int) = win 0x1d7230, m1 0x5a2d4, imac 0x65010;
 	int getItemUnlockState(int itemID, UnlockType unlockType) = win inline, m1 0x6ad24, imac 0x78400, ios 0x345CF8 {
 		auto key = getItemKey(itemID, (int) unlockType);
@@ -6135,7 +6135,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn incrementChallenge(GJChallengeType, int) = win 0x1d7970;
 	void incrementStat(char const*, int) = win 0x1ca5b0, m1 0x5ad30, ios 0x33c544;
 	TodoReturn incrementStat(char const*);
-	bool isGauntletChestUnlocked(int);
+	bool isGauntletChestUnlocked(int) = ios 0x345b38;
 	bool isItemEnabled(UnlockType, int) = ios 0x345D80; //inline on windows
 	bool isItemUnlocked(UnlockType, int) = win 0x1dabe0, ios 0x33fda8, m1 0x5ead0, imac 0x6a450;
 	bool isPathChestUnlocked(int);
@@ -6144,7 +6144,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool isSecretCoin(gd::string);
 	bool isSecretCoinValid(gd::string);
 	bool isSpecialChestLiteUnlockable(gd::string);
-	bool isSpecialChestUnlocked(gd::string) = win 0x1de960, imac 0x78310, m1 0x6ac30;
+	bool isSpecialChestUnlocked(gd::string) = win 0x1de960, imac 0x78310, m1 0x6ac30, ios 0x345c7c;
 	bool isStoreItemUnlocked(int) = win 0x1dec10;
 	TodoReturn keyCostForSecretChest(int);
 	TodoReturn logCoins();
@@ -6186,7 +6186,7 @@ class GameStatsManager : cocos2d::CCNode {
 	void toggleEnableItem(UnlockType, int, bool) = win 0x1dad90, m1 0x6b1cc, imac 0x78870;
 	TodoReturn trySelectActivePath() = win 0x1ca740;
 	void uncompleteLevel(GJGameLevel*) = win 0x1d4740;
-	TodoReturn unlockGauntletChest(int);
+	void unlockGauntletChest(int) = ios 0x346404;
 	TodoReturn unlockPathChest(int);
 	TodoReturn unlockSecretChest(int);
 	TodoReturn unlockSpecialChest(gd::string);
@@ -6364,7 +6364,7 @@ class GauntletNode : cocos2d::CCNode {
 	static gd::string frameForType(GauntletType) = win 0x1ef420, imac 0x57c810, m1 0x4c8adc;
 	bool init(GJMapPack*) = win 0x1edf90, imac 0x57abf0, m1 0x4c6d84, ios 0x1caa9c;
 	static gd::string nameForType(GauntletType) = win 0x1f0590, imac 0x57c320, m1 0x4c84a0;
-	void onClaimReward() = win 0x1ef3e0, imac 0x57ab20, m1 0x4c6cd8;
+	void onClaimReward() = win 0x1ef3e0, imac 0x57ab20, m1 0x4c6cd8, ios 0x1ca9f4;
 
 	cocos2d::CCNode* m_gauntletInfoNode;
 	cocos2d::CCNode* m_rewardNode;
@@ -8439,7 +8439,7 @@ class GJMapPack : cocos2d::CCNode {
 	static GJMapPack* create(cocos2d::CCDictionary*);
 
 	int completedMaps();
-	bool hasCompletedMapPack() = win 0x168810, imac 0x57b857, m1 0x4b4f88;
+	bool hasCompletedMapPack() = win 0x168810, imac 0x57b857, m1 0x4b4f88, ios 0xb1614;
 	TodoReturn parsePackColors(gd::string, gd::string);
 	TodoReturn parsePackLevels(gd::string);
 	int totalMaps() {
