@@ -2373,7 +2373,7 @@ class cocos2d::CCSpriteFrame {
 	void setTexture(cocos2d::CCTexture2D*) = m1 0x2e6ca8, imac 0x358f00;
 
 	// CCSpriteFrame(cocos2d::CCSpriteFrame const&);
-	// CCSpriteFrame();
+	CCSpriteFrame();
 	~CCSpriteFrame() = ios 0x25de00;
 
 	bool isRotated();
