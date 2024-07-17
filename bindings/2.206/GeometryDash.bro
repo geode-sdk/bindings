@@ -4520,9 +4520,9 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
 class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, UserListDelegate {
 	// virtual ~FriendsProfilePage();
 
-	static FriendsProfilePage* create(UserListType);
+	static FriendsProfilePage* create(UserListType) = ios 0x1e2744;
 
-	bool init(UserListType type) = win 0x13b830, imac 0x664670, m1 0x58095c;
+	bool init(UserListType type) = win 0x13b830, imac 0x664670, m1 0x58095c, ios 0x1e2824;
 	void onBlocked(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender) = win 0x13c6b0;
 	void onUpdate(cocos2d::CCObject* sender);
