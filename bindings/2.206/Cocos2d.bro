@@ -319,7 +319,7 @@ class cocos2d::CCSet {
 [[link(win, android)]]
 class cocos2d::CCShaderCache {
 	static void purgeSharedShaderCache();
-	static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1fc770, m1 0x1aef0c;
+	static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1fc770, m1 0x1aef0c, ios 0x12ea44;
 
 	bool init();
 
@@ -328,7 +328,7 @@ class cocos2d::CCShaderCache {
 	void addProgram(cocos2d::CCGLProgram*, char const*) = m1 0x1aff3c;
 	void loadDefaultShader(cocos2d::CCGLProgram*, int);
 	void loadDefaultShaders();
-	cocos2d::CCGLProgram* programForKey(char const*) = imac 0x1fd650, m1 0x1afe58;
+	cocos2d::CCGLProgram* programForKey(char const*) = imac 0x1fd650, m1 0x1afe58, ios 0x12f128;
 	void reloadDefaultShaders();
 }
 
@@ -548,9 +548,9 @@ class cocos2d::CCParticleSystemQuad {
 
 [[link(win, android)]]
 class cocos2d::CCProgressTimer {
-	static cocos2d::CCProgressTimer* create(cocos2d::CCSprite*) = imac 0x60f290, m1 0x533fc4;
+	static cocos2d::CCProgressTimer* create(cocos2d::CCSprite*) = imac 0x60f290, m1 0x533fc4, ios 0x405f9c;
 
-	bool initWithSprite(cocos2d::CCSprite*);
+	bool initWithSprite(cocos2d::CCSprite*) = ios 0x405ff4;
 
 	cocos2d::CCPoint getBarChangeRate() const;
 	float getPercentage();
@@ -559,23 +559,23 @@ class cocos2d::CCProgressTimer {
 
 	void setAnchorPoint(cocos2d::CCPoint);
 	void setBarChangeRate(cocos2d::CCPoint);
-	void setPercentage(float);
+	void setPercentage(float) = ios 0x4060c4;
 	void setReverseDirection(bool);
 	void setReverseProgress(bool);
-	void setSprite(cocos2d::CCSprite*);
+	void setSprite(cocos2d::CCSprite*) = ios 0x406110;
 	void setType(cocos2d::CCProgressTimerType);
 
 	// CCProgressTimer(cocos2d::CCProgressTimer const&);
-	// CCProgressTimer();
+	// CCProgressTimer() = ios 0x405f18;
 
 	cocos2d::CCPoint boundaryTexCoord(char);
 	bool isReverseDirection();
-	cocos2d::_ccTex2F textureCoordFromAlphaPoint(cocos2d::CCPoint);
-	void updateBar();
-	void updateColor();
-	void updateProgress();
-	void updateRadial();
-	cocos2d::_ccVertex2F vertexFromAlphaPoint(cocos2d::CCPoint);
+	cocos2d::_ccTex2F textureCoordFromAlphaPoint(cocos2d::CCPoint) = ios 0x406340;
+	void updateBar() = ios 0x406830;
+	void updateColor() = ios 0x406248;
+	void updateProgress() = ios 0x4061fc;
+	void updateRadial() = ios 0x406474;
+	cocos2d::_ccVertex2F vertexFromAlphaPoint(cocos2d::CCPoint) = ios 0x4063f4;
 
 	virtual cocos2d::_ccColor3B const& getColor() const;
 	virtual unsigned char getOpacity() const;
@@ -1040,7 +1040,18 @@ class cocos2d::CCOrbitCamera {
 class cocos2d::CCLayerColor {
 	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&) = imac 0x4bcc40, m1 0x41d7ac, ios 0x15461c;
 	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float) = imac 0x4bca80, m1 0x41d638, ios 0x154540;
-	static cocos2d::CCLayerColor* create();
+	static cocos2d::CCLayerColor* create() = ios inline {
+		CCLayerColor* pRet = new CCLayerColor();
+		if (pRet && pRet->init())
+		{
+			pRet->autorelease();
+		}
+		else
+		{
+			CC_SAFE_DELETE(pRet);
+		}
+		return pRet;
+	}
 
 	// CCLayerColor(cocos2d::CCLayerColor const&);
 	CCLayerColor() = imac 0x4bc3c0, m1 0x41d19c, ios 0x6bfd4;
@@ -2650,6 +2661,7 @@ class cocos2d {
 	static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
 	static float ccpToAngle(cocos2d::CCPoint const&);
 	static char const* cocos2dVersion();
+	static float clampf(float, float, float) = ios 0x1baa70;
 }
 
 [[link(win, android)]]
