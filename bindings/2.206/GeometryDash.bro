@@ -5653,7 +5653,7 @@ class GameManager : GManager {
 	int m_unkSize4_18;
 	int m_unkSize4_19;
 	int m_unkSize4_20;
-	bool m_unkBool12;
+	bool m_shouldResetShader;
 	float m_practicePosX;
 	float m_practicePosY;
 	float m_practiceOpacity;
@@ -16213,7 +16213,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn preInvertColorShader();
 	TodoReturn preLensCircleShader();
 	TodoReturn preMotionBlurShader();
-	TodoReturn prepareTargetContainer();
+	cocos2d::CCPoint prepareTargetContainer() = win 0x45a4e0;
 	TodoReturn prePinchShader();
 	TodoReturn prePixelateShader();
 	TodoReturn preRadialBlurShader();
@@ -16237,7 +16237,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn setupPinchShader();
 	TodoReturn setupRadialBlurShader();
 	TodoReturn setupSepiaShader();
-	TodoReturn setupShader(bool) = win 0x455f60, m1 0x350c14;
+	void setupShader(bool) = win 0x455f60, m1 0x350c14;
 	TodoReturn setupShockLineUniforms();
 	TodoReturn setupShockWaveUniforms();
 	TodoReturn setupSplitScreenShader();
