@@ -2807,7 +2807,7 @@ class DemonFilterSelectLayer : FLAlertLayer {
 	void onClose(cocos2d::CCObject* sender) = win 0x2f79c0, m1 0x55c2f4, imac 0x63ca00;
 	void selectRating(cocos2d::CCObject* sender) = win 0x2f7900, m1 0x55c22c, imac 0x63c940;
 
-	virtual bool init() = win 0x2f72c0, m1 0x55bd74, imac 0x63c460;
+	virtual bool init() = win 0x2f72c0, m1 0x55bd74, imac 0x63c460, ios 0x5d628;
 	virtual void keyBackClicked() = win 0x2f7a10, m1 0x55c354, imac 0x63ca50;
 
 	cocos2d::CCArray* m_demons;
