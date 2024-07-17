@@ -1182,9 +1182,15 @@ class cocos2d::CCTextureCache {
 class cocos2d::CCTouch {
 	//getLocationInView() = ios 0x30f2a4;
 	cocos2d::CCPoint getLocation() const = imac 0x5a550, m1 0x50be8, ios 0x30f2b0;
-	cocos2d::CCPoint getPreviousLocation() const = imac 0x5a580, m1 0x50c14;
-	cocos2d::CCPoint getStartLocation() const = imac 0x5a5b0, m1 0x50c40;
-	cocos2d::CCPoint getDelta() const = imac 0x5a5e0, m1 0x50c6c;
+	cocos2d::CCPoint getPreviousLocation() const = imac 0x5a580, m1 0x50c14, ios inline {
+		return CCDirector::sharedDirector()->convertToGL(m_prevPoint);
+	}
+	cocos2d::CCPoint getStartLocation() const = imac 0x5a5b0, m1 0x50c40, ios inline {
+		return CCDirector::sharedDirector()->convertToGL(m_startPoint);
+	}
+	cocos2d::CCPoint getDelta() const = imac 0x5a5e0, m1 0x50c6c, ios inline (
+		return getLocation() - getPreviousLocation();
+	}
 }
 
 [[link(win, android)]]
@@ -1649,7 +1655,18 @@ class cocos2d::CCLabelBMFont {
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment) = imac 0x5e0ef0, m1 0x50b1c0;
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = imac 0x5e0e50, m1 0x50b284, ios 0x30b754;
-	static cocos2d::CCLabelBMFont* create() = imac 0x5e0d30, m1 0x50b13c;
+	static cocos2d::CCLabelBMFont* create() = imac 0x5e0d30, m1 0x50b13c, ios inline {
+		auto pRet = new CCLabelBMFont();
+
+		if (pRet && pRet->init())
+		{
+			pRet->autorelease();
+			return pRet;
+		}
+
+		CC_SAFE_DELETE(pRet);
+		return nullptr;
+	}
 	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int);
 	static void purgeCachedData();
 
@@ -1667,7 +1684,7 @@ class cocos2d::CCLabelBMFont {
 	void setFntFile(char const*) = imac 0x5e4670, m1 0x50e100;
 	void setIsBatched(bool);
 	void setTargetArray(cocos2d::CCArray*);
-	void createFontChars() = imac 0x5e1780, m1 0x50bb64;
+	void createFontChars() = imac 0x5e1780, m1 0x50bb64, ios 0x30beb0;
 	int kerningAmountForFirst(unsigned short, unsigned short);
 	void limitLabelWidth(float, float, float) = imac 0x5e4790, m1 0x50e1f8, ios 0x30d9bc;
 
@@ -1787,7 +1804,7 @@ class cocos2d::CCDictionary {
 	//void setObjectUnSafe(cocos2d::CCObject*, int);
 
 	// CCDictionary(cocos2d::CCDictionary const&);
-	// CCDictionary();
+	// CCDictionary() = ios 0x42b75c;
 	cocos2d::CCArray* allKeys() = m1 0x29efec, imac 0x30d0b0, ios 0x42b91c;
 	cocos2d::CCArray* allKeysForObject(cocos2d::CCObject*);
 	char const* charForKey(gd::string const&);
@@ -2317,7 +2334,13 @@ class cocos2d::CCSpriteBatchNode {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteFrame {
-	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&) = m1 0x2e6228, imac 0x358210;
+	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&) = m1 0x2e6228, imac 0x358210, ios inline {
+		auto pSpriteFrame = new CCSpriteFrame();;
+		pSpriteFrame->initWithTextureFilename(filename, rect);
+		pSpriteFrame->autorelease();
+		
+		return pSpriteFrame;
+	}
 	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e67d4, imac 0x358930;
 	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = m1 0x2e63cc, imac 0x358410;
 	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e6570, imac 0x358610;
@@ -2554,7 +2577,7 @@ class cocos2d {
 	static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
 	static cocos2d::CCRect CCRectFromString(char const*);
 	static cocos2d::CCSize CCSizeFromString(char const*);
-	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = imac 0x5dd4a0, m1 0x507a1c;
+	static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = imac 0x5dd4a0, m1 0x507a1c, ios 0x3093fc;
 	static void FNTConfigRemoveCache();
 	static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
 	static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&) = imac 0x23b660, m1 0x1e6c34;
