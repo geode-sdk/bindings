@@ -1500,7 +1500,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 		return m_placeholderLabel;
 	}
 
-	void addTextArea(TextArea*) = win 0x4e6c0, imac 0x9de60, m1 0x8dec4;
+	void addTextArea(TextArea*) = win 0x4e6c0, imac 0x9de60, m1 0x8dec4, ios 0x178760;
 	void forceOffset() = imac 0xa02c0, m1 0x8ff44;
 	gd::string getString() = ios 0x178c4c {
 		return m_textField->getString();
@@ -15878,26 +15878,27 @@ class ShareCommentDelegate {
 [[link(android)]]
 class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate, UploadPopupDelegate {
 	// virtual ~ShareCommentLayer();
+	ShareCommentLayer() = ios 0x1df87c;
 
-	static ShareCommentLayer* create(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x460fe0;
+	static ShareCommentLayer* create(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x460fe0, ios 0x1ddefc;
 
-	bool init(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x4611f0;
-	void onClear(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onPercent(cocos2d::CCObject* sender);
-	void onShare(cocos2d::CCObject* sender) = win 0x462440;
-	void updateCharCountLabel();
+	bool init(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x4611f0, ios 0x1de04c;
+	void onClear(cocos2d::CCObject* sender) = ios 0x1deebc;
+	void onClose(cocos2d::CCObject* sender) = ios 0x1def78;
+	void onPercent(cocos2d::CCObject* sender) = ios 0x1dedf0;
+	void onShare(cocos2d::CCObject* sender) = win 0x462440, ios 0x1defcc;
+	void updateCharCountLabel() = ios 0x1df5d8;
 	void updateDescText(gd::string desc);
 	void updatePercentLabel();
 
-	virtual void registerWithTouchDispatcher() = m1 0x513870, imac 0x5eaab0;
-	virtual void keyBackClicked() = win 0x462820, m1 0x5137c8, imac 0x5eaa00;
-	virtual void textInputOpened(CCTextInputNode* textInput) {}
-	virtual void textInputClosed(CCTextInputNode* textInput) = win 0x462870, m1 0x5138a8, imac 0x5eaaf0;
-	virtual void textChanged(CCTextInputNode* textInput) = win 0x4629b0, m1 0x513a2c, imac 0x5eac70;
-	virtual void uploadActionFinished(int ID, int unk) = win 0x462c00, m1 0x513cac, imac 0x5eaed0;
-	virtual void uploadActionFailed(int ID, int unk) = win 0x462c90, m1 0x513de4, imac 0x5eafd0;
-	virtual void onClosePopup(UploadActionPopup*) = win 0x462d40, m1 0x513f44, imac 0x5eb0f0;
+	virtual void registerWithTouchDispatcher() = m1 0x513870, imac 0x5eaab0, ios 0x1df408;
+	virtual void keyBackClicked() = win 0x462820, m1 0x5137c8, imac 0x5eaa00, ios 0x1df360;
+	virtual void textInputOpened(CCTextInputNode* textInput) = ios 0x1df514 {}
+	virtual void textInputClosed(CCTextInputNode* textInput) = win 0x462870, m1 0x5138a8, imac 0x5eaaf0, ios 0x1df440;
+	virtual void textChanged(CCTextInputNode* textInput) = win 0x4629b0, m1 0x513a2c, imac 0x5eac70, ios 0x1df51c;
+	virtual void uploadActionFinished(int ID, int unk) = win 0x462c00, m1 0x513cac, imac 0x5eaed0, ios 0x1df6dc;
+	virtual void uploadActionFailed(int ID, int unk) = win 0x462c90, m1 0x513de4, imac 0x5eafd0, ios 0x1df76c;
+	virtual void onClosePopup(UploadActionPopup*) = win 0x462d40, m1 0x513f44, imac 0x5eb0f0, ios 0x1df7f0;
 }
 
 [[link(android)]]
