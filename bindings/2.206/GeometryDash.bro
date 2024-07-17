@@ -1254,16 +1254,16 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 	TodoReturn dirtify();
 	TodoReturn getSpriteForKey(char const*);
 	TodoReturn initWithAnimDesc(char const*, cocos2d::CCTexture2D*, bool);
-	void setColor(cocos2d::ccColor3B);
+	void setColor(cocos2d::ccColor3B*) = win 0x45940;
 	void setFlipX(bool);
 	void setFlipY(bool);
 	TodoReturn transformSprite(SpriteDescription*);
 	TodoReturn tweenSpriteTo(SpriteDescription*, float);
 	TodoReturn tweenToFrame(cocos2d::CCSpriteFrame*, float);
 
-	virtual void setScaleX(float) = m1 0x302588, imac 0x376d90;
-	virtual void setScaleY(float) = m1 0x3025b0, imac 0x376db0;
-	virtual void setScale(float) = m1 0x302560, imac 0x376d70;
+	virtual void setScaleX(float) = win 0x45830, m1 0x302588, imac 0x376d90;
+	virtual void setScaleY(float) = win 0x45850, m1 0x3025b0, imac 0x376db0;
+	virtual void setScale(float) = win 0x45810, m1 0x302560, imac 0x376d70;
 	virtual void setOpacity(unsigned char) = win 0x45a20, m1 0x302874, imac 0x377020;
 	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = win 0x45870, m1 0x3025d8, imac 0x376dd0;
 	virtual void setDisplayFrame(cocos2d::CCSpriteFrame*) = m1 0x30212c, imac 0x376940;
@@ -1273,7 +1273,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 
 [[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
-	// virtual ~CCScrollLayerExt() = ios 0x311ab8;
+	// virtual ~CCScrollLayerExt() = win 0x46210, ios 0x311ab8;
 	CCScrollLayerExt(cocos2d::CCRect) = win 0x45bd0, imac 0x437b20, m1 0x3aa6c8, ios 0x3113dc;
 
 	TodoReturn constraintContent();
@@ -1345,7 +1345,7 @@ class CCSpriteCOpacity : cocos2d::CCSprite {
 	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
 	TodoReturn createWithSpriteFrameName(char const*);
 
-	virtual void setOpacity(unsigned char) = m1 0x3f0cc0, imac 0x48b250;
+	virtual void setOpacity(unsigned char) = win 0x47540, m1 0x3f0cc0, imac 0x48b250;
 }
 
 [[link(android)]]
@@ -1412,7 +1412,7 @@ class CCSpritePlus : cocos2d::CCSprite {
 
 	/// Removes a specific following sprite from this sprite.
     /// @param sprite follower sprite that will be removed.
-	void removeFollower(cocos2d::CCNode* sprite);
+	void removeFollower(cocos2d::CCNode* sprite) = win 0x474f0;
 
 	/// Stops this child sprite from following it's given parent
 	void stopFollow();
@@ -1480,7 +1480,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 	static CCSpriteWithHue* create(gd::string const&);
 
 	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	TodoReturn createWithSpriteFrameName(gd::string const&);
+	TodoReturn createWithSpriteFrameName(gd::string const&) = win 0x47610;
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*);
 	float getAlpha();
@@ -1503,7 +1503,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x52246c, win 0x477e0, imac 0x5fab60;
 	virtual TodoReturn getShaderName() = m1 0x521c58, imac 0x5fa3e0;
 	virtual TodoReturn shaderBody() = m1 0x5225b0, imac 0x5faca0;
-	virtual void updateColor() = m1 0x5225c8, imac 0x5facc0;
+	virtual void updateColor() = win 0x47a90, m1 0x5225c8, imac 0x5facc0;
 
 	float m_hue;
 	float m_luminance[3];
@@ -1515,7 +1515,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 
 [[link(android)]]
 class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTextFieldDelegate {
-	// virtual ~CCTextInputNode() = ios 0x17834c;
+	// virtual ~CCTextInputNode() = win 0x48500, ios 0x17834c;
 	CCTextInputNode() = ios 0x17a66c {
 		m_numberInput = false;
 		m_caption = "";
@@ -2824,8 +2824,8 @@ class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
 
 	bool init(GJGameLevel*, DailyLevelPage*, bool) = win 0xcea30, imac 0x22e0c0, m1 0x1dba2c, ios 0x1c59c0;
 	void onClaimReward(cocos2d::CCObject* sender) = win 0xcf660, imac 0x22eb10, m1 0x1dc504;
-	void onSkipLevel(cocos2d::CCObject* sender);
-	void showSkipButton();
+	void onSkipLevel(cocos2d::CCObject* sender) = win 0xcf780;
+	void showSkipButton() = win 0xcf600;
 	void updateTimeLabel(gd::string);
 
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xcf9a0, m1 0x1dc7fc, imac 0x22edd0;
@@ -11708,7 +11708,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 	void updateColors() = imac 0x5056e0, m1 0x45d2b8;
 
 	virtual void update(float) = win 0x3118e0, m1 0x45d330, imac 0x505750;
-	virtual bool init() = win 0x310ac0, m1 0x45c2d0, imac 0x5045b0;
+	virtual bool init() = win 0x310ac0, m1 0x45c2d0, imac 0x50;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x312c60, m1 0x45d824, imac 0x505cc0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
@@ -13845,9 +13845,9 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 	static RewardUnlockLayer* create(int, RewardsPage*) = win 0x3a9c50, m1 0x1c6b60;
 
 	TodoReturn connectionTimeout();
-	bool init(int, RewardsPage*) = m1 0x1c74a0;
+	bool init(int, RewardsPage*) = win 0x3a9d80, m1 0x1c74a0;
 	TodoReturn labelEnterFinishedO(cocos2d::CCObject*);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x3ad200;
 	TodoReturn playDropSound();
 	TodoReturn playLabelEffect(int, int, cocos2d::CCSprite*, cocos2d::CCPoint, float);
 	TodoReturn playRewardEffect() = win 0x3aad20;
@@ -16192,7 +16192,7 @@ class ShareLevelLayer : FLAlertLayer {
 	void selectRating(cocos2d::CCObject*) = win 0x464160;
 	void setupStars() = win 0x463d50;
 
-	virtual void keyBackClicked() = m1 0x222e0c, imac 0x27da30;
+	virtual void keyBackClicked() = win 0x465260, m1 0x222e0c, imac 0x27da30;
 }
 
 [[link(android)]]
@@ -17453,7 +17453,7 @@ class UploadListPopup : FLAlertLayer, ListUploadDelegate {
 
 	static UploadListPopup* create(GJLevelList*);
 
-	bool init(GJLevelList*);
+	bool init(GJLevelList*) = win 0x2eaca0;
 	void onBack(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onReturnToList(cocos2d::CCObject* sender);
