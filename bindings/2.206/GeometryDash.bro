@@ -6121,7 +6121,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool hasCompletedLevel(GJGameLevel* level) = win inline, m1 0x61134, imac 0x6d1d0 {
 		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
 	} // = win 0x1d3ba0
-	bool hasCompletedMainLevel(int levelID) = win inline, m1 0x610a0, imac 0x6d160 {
+	bool hasCompletedMainLevel(int levelID) = win inline, m1 0x610a0, imac 0x6d160, ios 0x340c98 {
 		return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
 	}
 	bool hasCompletedMapPack(int);
