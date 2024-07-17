@@ -6113,7 +6113,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getStoreItem(int);
 	int getTotalCollectedCurrency() = win 0x1d8e50;
 	int getTotalCollectedDiamonds() = win 0x1d9720;
-	bool hasClaimedListReward(GJLevelList*) = win 0x1d84b0, m1 0x67584, imac 0x74400;
+	bool hasClaimedListReward(GJLevelList*) = win 0x1d84b0, m1 0x67584, imac 0x74400, ios 0x3440e0;
 	bool hasCompletedChallenge(GJChallengeItem*);
 	bool hasCompletedDailyLevel(int) = win 0x1d8590;
 	bool hasCompletedDemonLevel(GJGameLevel*);
@@ -10784,9 +10784,9 @@ class LevelListDeleteDelegate {
 [[link(android)]]
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
 	// virtual ~LevelListLayer();
-	LevelListLayer() {}
+	LevelListLayer() = ios 0x259620 {}
 
-	static LevelListLayer* create(GJLevelList* list) = win inline, m1 0x2e9ff4, imac 0x35c7c0 {
+	static LevelListLayer* create(GJLevelList* list) = win inline, m1 0x2e9ff4, imac 0x35c7c0, ios 0x2528f4 {
 		auto ret = new LevelListLayer();
 		if (ret->init(list)) {
 			ret->autorelease();
@@ -10800,7 +10800,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	void confirmClone(cocos2d::CCObject*) = win 0x2e7bc0;
 	void confirmDelete(cocos2d::CCObject*) = win 0x2e7f40;
 	void confirmOwnerDelete(cocos2d::CCObject*) = win 0x2e8070;
-	bool init(GJLevelList*) = win 0x2e3190, m1 0x2ea074, imac 0x35c820;
+	bool init(GJLevelList*) = win 0x2e3190, m1 0x2ea074, imac 0x35c820, ios 0x252968;
 	void onClaimReward(cocos2d::CCObject* sender) = win 0x2e5bb0;
 	void onDelete() = win 0x2e7cb0;
 	void onDescription(cocos2d::CCObject* sender) = win 0x2e7330;
@@ -10817,7 +10817,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	static cocos2d::CCScene* scene(GJLevelList*) = win 0x2e2f60, m1 0x2e9f54, imac 0x35c730;
 	void updateEditMode();
 	void updateSideButtons() = win 0x2e7680, m1 0x2ec578, imac 0x35f010;
-	void updateStatsArt() = win 0x2e4c70, m1 0x2ec60c, imac 0x35f0a0;
+	void updateStatsArt() = win 0x2e4c70, m1 0x2ec60c, imac 0x35f0a0, ios 0x254a3c;
 	void verifyListName();
 
 	virtual void onEnter() = win 0x2e4c20, m1 0x2ed43c, imac 0x35ff50;
