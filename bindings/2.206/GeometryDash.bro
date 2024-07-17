@@ -10706,9 +10706,9 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 	cocos2d::CCSprite* m_starsIcon;
 	cocos2d::CCLabelBMFont* m_starsLabel; //win 0x290
 	cocos2d::CCArray* m_icons; //0x298
-	PAD = win 0x10, android32 0x10, android64 0x10, mac 0x10;
+	PAD = win 0x10, android32 0x10, android64 0x10, mac 0x10, ios 0x10;
 	bool m_challenge;
-	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8;
+	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
 	cocos2d::CCSprite* m_playSprite;
 	cocos2d::CCProgressTimer* m_progressTimer;
 	CustomSongWidget* m_songWidget; //0x2d0
