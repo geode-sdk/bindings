@@ -2373,17 +2373,7 @@ class cocos2d::CCSpriteFrame {
 	void setTexture(cocos2d::CCTexture2D*) = m1 0x2e6ca8, imac 0x358f00;
 
 	// CCSpriteFrame(cocos2d::CCSpriteFrame const&);
-	CCSpriteFrame() = ios inline {
-		m_obOffset = CCPointMake(0, 0);
-		m_obOriginalSize = CCSizeMake(0, 0);
-		m_obRectInPixels = CCRectMake(0, 0, 0, 0);
-		m_bRotated = false;
-		m_obRect = CCRectMake(0, 0, 0, 0);
-		m_obOffsetInPixels = CCPointMake(0, 0);
-		m_obOriginalSizeInPixels = CCSizeMake(0, 0);
-		m_pobTexture = nullptr;
-		m_strTextureFilename = "";
-	}
+	// CCSpriteFrame();
 	~CCSpriteFrame() = ios 0x25de00;
 
 	bool isRotated();
