@@ -9387,7 +9387,9 @@ class GJShaderState {
 	int m_lensCircleUnk170;
 	bool m_lensCircleUnk174;
 	bool m_lensCircleAdditive;
-	cocos2d::ccColor3B m_lensCircleTint;
+	char m_lensCircleTintR;
+	char m_lensCircleTintG;
+	char m_lensCircleTintB;
 	cocos2d::CCPoint m_lensCircleUnk17c;
 	cocos2d::CCPoint m_lensCircleUnk184;
 	float m_radialBlurUnk18c;
@@ -16192,7 +16194,7 @@ class ShaderGameObject : EffectGameObject {
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x15babc, imac 0x1989f0;
 }
 
-[[link(android)]]
+[[link(android), depends(GJShaderState)]]
 class ShaderLayer : cocos2d::CCLayer {
 	// virtual ~ShaderLayer();
 
@@ -16274,6 +16276,123 @@ class ShaderLayer : cocos2d::CCLayer {
 	virtual void update(float) = win 0x455e50, m1 0x352250, imac 0x3cfaa0;
 	virtual bool init() = win 0x456d00, m1 0x350b50, imac 0x3ce300;
 	virtual void visit() = win 0x45CE00, m1 0x356eb0, imac 0x3d5910;
+
+	GJShaderState m_state;
+	bool m_unk3c0;
+	cocos2d::CCGLProgram* m_shader;
+	cocos2d::CCRenderTexture* m_renderTexture;
+	cocos2d::CCSprite* m_sprite;
+	bool m_antiAlias;
+	bool m_targetAntiAlias;
+	void* m_unk3d4;
+	GJBaseGameLayer* m_gameLayer;
+	cocos2d::CCPoint m_somePosition;
+	float m_someRotationDeg;
+	float m_shockWaveTimeMult;
+	cocos2d::CCSize m_textureContentSize;
+	cocos2d::CCSize m_targetTextureSize;
+	// how much bigger is the texture compared to visibleSize
+	cocos2d::CCSize m_targetTextureSizeExtra;
+	int m_textureScaleUniform;
+	int m_textureScaleInvUniform;
+	int m_shaderPositionUniform;
+	int m_blurRefColorUniform;
+	int m_blurUseRefUniform;
+	int m_blurIntensityUniform;
+	int m_blurOnlyEmptyUniform;
+	int m_shockWaveTimeUniform;
+	int m_shockWaveTime1Uniform;
+	int m_shockWaveTime2Uniform;
+	int m_shockWaveTime3Uniform;
+	int m_shockWaveTime4Uniform;
+	int m_shockWaveStrengthUniform;
+	int m_shockWaveWavesUniform;
+	int m_shockWaveCenterUniform;
+	int m_shockWaveInvertUniform;
+	int m_shockWaveMinSizeUniform;
+	int m_shockWaveMaxSizeUniform;
+	int m_shockWaveMaxDistValUniform;
+	float m_shockWaveTime1;
+	float m_shockWaveTime2;
+	float m_shockWaveTime3;
+	float m_shockWaveTime4;
+	float m_shockWaveMaxDistVal;
+	float m_shockWaveMinSize;
+	float m_shockWaveMaxSize;
+	bool m_shockWaveUnk46c;
+	int m_shockLineTimeUniform;
+	int m_shockLineTime1Uniform;
+	int m_shockLineTime2Uniform;
+	int m_shockLineTime3Uniform;
+	int m_shockLineTime4Uniform;
+	int m_shockLineAxisUniform;
+	int m_shockLineDirectionUniform;
+	int m_shockLineDualUniform;
+	int m_shockLineWavesUniform;
+	int m_shockLineStrengthUniform;
+	int m_shockLineCenterUniform;
+	int m_shockLineMaxDistValUniform;
+	float m_shockLineTime1;
+	float m_shockLineTime2;
+	float m_shockLineTime3;
+	float m_shockLineTime4;
+	float m_shockLineMaxDistVal;
+	int m_unk4b4;
+	int m_unk4b8;
+	int m_unk4bc;
+	int m_glitchBotUniform;
+	int m_glitchTopUniform;
+	int m_glitchXOffsetUniform;
+	int m_glitchColOffsetUniform;
+	int m_glitchRndUniform;
+	int m_chromaticXOffUniform;
+	int m_chromaticYOffUniform;
+	int m_cGRGBOffsetUniform;
+	int m_cGYOffsetUniform;
+	int m_cGTimeUniform;
+	int m_cGStrengthUniform;
+	int m_cGHeightUniform;
+	int m_cGLineThickUniform;
+	int m_cGLineStrengthUniform;
+	int m_lensCircleOriginUniform;
+	int m_lensCircleStartUniform;
+	int m_lensCircleEndUniform;
+	int m_lensCircleStrengthUniform;
+	int m_lensCircleTintUniform;
+	int m_lensCircleAdditiveUniform;
+	int m_radialBlurCenterUniform;
+	int m_radialBlurValueUniform;
+	int m_blurFadeUniform;
+	int m_motionBlurValueUniform;
+	int m_motionBlurMultUniform;
+	int m_motionBlurDualUniform;
+	int m_bulgeValueUniform;
+	int m_bulgeValue2Uniform;
+	int m_bulgeOriginUniform;
+	int m_bulgeRadiusUniform;
+	int m_pinchValueUniform;
+	int m_pinchCenterPosUniform;
+	int m_pinchCalcUniform;
+	int m_pinchRadiusUniform;
+	int m_grayscaleValueUniform;
+	int m_grayscaleTintUniform;
+	int m_grayscaleUseLumUniform;
+	int m_sepiaValueUniform;
+	int m_invertColorValueUniform;
+	int m_hueShiftCosAUniform;
+	int m_hueShiftSinAUniform;
+	int m_colorChangeCUniform;
+	int m_colorChangeBUniform;
+	int m_rowmodUniform;
+	int m_colmodUniform;
+	int m_rowmodCalcUniform;
+	int m_colmodCalcUniform;
+	int m_splitXStartUniform;
+	int m_splitXRangeUniform;
+	int m_splitXRangeMultUniform;
+	int m_splitYStartUniform;
+	int m_splitYRangeUniform;
+	int m_splitYRangeMultUniform;
 }
 
 [[link(android)]]
