@@ -2335,13 +2335,10 @@ class cocos2d::CCSpriteBatchNode {
 [[link(win, android)]]
 class cocos2d::CCSpriteFrame {
 	static cocos2d::CCSpriteFrame* create(char const* filename, cocos2d::CCRect const& rect) = m1 0x2e6228, imac 0x358210, ios inline {
-		auto pSpriteFrame = new CCSpriteFrame();
-		pSpriteFrame->initWithTextureFilename(filename, rect);
-		pSpriteFrame->autorelease();
-		
-		return pSpriteFrame;
+		CCRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
+		return create(filename, rect, false, CCPointZero, rectInPixels.size);
 	}
-	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e67d4, imac 0x358930;
+	static cocos2d::CCSpriteFrame* create(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e67d4, imac 0x358930, ios 0x25da40;
 	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = m1 0x2e63cc, imac 0x358410;
 	static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e6570, imac 0x358610;
 
@@ -2373,8 +2370,8 @@ class cocos2d::CCSpriteFrame {
 	void setTexture(cocos2d::CCTexture2D*) = m1 0x2e6ca8, imac 0x358f00;
 
 	// CCSpriteFrame(cocos2d::CCSpriteFrame const&);
-	CCSpriteFrame();
-	~CCSpriteFrame() = ios 0x25de00;
+	// CCSpriteFrame();
+	// ~CCSpriteFrame() = ios 0x25de00;
 
 	bool isRotated();
 
