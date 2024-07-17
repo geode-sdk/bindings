@@ -4688,12 +4688,12 @@ class GameLevelManager : cocos2d::CCNode {
 	char const* getPostCommentKey(int);
 	const char *getRateStarsKey(int key);
 	char const* getReportKey(int);
-	GJGameLevel* getSavedDailyLevel(int) = win 0x143740, m1 0x490530, imac 0x53e2d0;
+	GJGameLevel* getSavedDailyLevel(int) = win 0x143740, m1 0x490530, imac 0x53e2d0, ios 0x9b21c;
 	GJGameLevel* getSavedDailyLevelFromLevelID(int) = imac 0x53e5a0;
 	GJGameLevel* getSavedGauntlet(int);
 	GJGameLevel* getSavedGauntletLevel(int);
 	GJGameLevel* getSavedLevel(GJGameLevel*);
-	GJGameLevel* getSavedLevel(int) = win 0x143670, imac 0x53e4b0, m1 0x490718;
+	GJGameLevel* getSavedLevel(int) = win 0x143670, imac 0x53e4b0, m1 0x490718, ios 0x9b324;
 	GJLevelList* getSavedLevelList(int);
 	cocos2d::CCArray* getSavedLevelLists(int);
 	cocos2d::CCArray* getSavedLevels(bool, int) = win 0x1428f0;
@@ -6050,7 +6050,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn collectVideoReward(int);
 	TodoReturn completedChallenge(GJChallengeItem*);
 	TodoReturn completedDailyLevel(GJGameLevel*);
-	void completedDemonLevel(GJGameLevel*);
+	void completedDemonLevel(GJGameLevel*) = ios 0x34106c;
 	TodoReturn completedLevel(GJGameLevel*) = ios 0x340f6c;
 	TodoReturn completedMapPack(GJMapPack*);
 	void completedStarLevel(GJGameLevel*);
@@ -6118,7 +6118,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool hasCompletedDailyLevel(int) = win 0x1d8590;
 	bool hasCompletedDemonLevel(GJGameLevel*);
 	bool hasCompletedGauntletLevel(int) = win 0x1d3d70;
-	bool hasCompletedLevel(GJGameLevel* level) = win inline, m1 0x61134, imac 0x6d1d0 {
+	bool hasCompletedLevel(GJGameLevel* level) = win inline, m1 0x61134, imac 0x6d1d0, ios 0x340d14 {
 		return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
 	} // = win 0x1d3ba0
 	bool hasCompletedMainLevel(int levelID) = win inline, m1 0x610a0, imac 0x6d160, ios 0x340c98 {
@@ -6279,7 +6279,7 @@ class GameToolbox {
 	static gd::string getTimeString(int, bool) = win 0x64830;
 	static TodoReturn hsvFromString(gd::string const&, char const*);
 	static gd::string intToShortString(int) = win 0x67b30, imac 0x501e80, m1 0x459ec8;
-	static TodoReturn intToString(int) = win 0x67a70;
+	static TodoReturn intToString(int) = win 0x67a70, ios 0x4e558;
 	static bool isIOS();
 	static bool isRateEasing(int);
 	static TodoReturn mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
