@@ -343,8 +343,8 @@ GEODE_SIZE_CHECK(GroupCommandObject2, 0x208);
 
 GEODE_SIZE_CHECK(KeyframeObject, 0x1c0);
 
-GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x218);
-GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x228);
+GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x80);
+GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x88);
 //GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintR, 0x176);
 //GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintG, 0x177);
 //GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintB, 0x178);

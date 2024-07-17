@@ -171,8 +171,8 @@ GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x260);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x1a0);
 
-GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x208);
-GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x218);
+GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x70);
+GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x78);
 //GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintR, 0x176);
 //GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintG, 0x177);
 //GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintB, 0x178);
