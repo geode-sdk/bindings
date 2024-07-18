@@ -9473,12 +9473,12 @@ class GJShaderState {
 	bool m_cGUnk151;
 	bool m_cGUnk152;
 	bool m_cGUnk153;
-	float m_pixelateUnk154;
-	float m_pixelateUnk158;
-	bool m_pixelateUnk15c;
-	bool m_pixelateUnk15d;
-	bool m_pixelateUnk15e;
-	bool m_pixelateUnk15f;
+	float m_pixelateTargetX;
+	float m_pixelateTargetY;
+	bool m_pixelateSnapGrid;
+	bool m_pixelatePixelating;
+	bool m_pixelateRelative;
+	bool m_pixelateHardEdges;
 	float m_lensCircleUnk160;
 	float m_lensCircleUnk164;
 	float m_lensCircleStrength;
