@@ -17067,7 +17067,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 [[link(android), depends(CCIndexPath)]]
 class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	// virtual ~TableView() = ios 0x30f51c;
-	TableView(cocos2d::CCRect rect) = ios 0x30f3f4 {
+	inline TableView(cocos2d::CCRect rect) : CCScrollLayerExt(rect) {
 		m_touchStartPosition2 = cocos2d::CCPointMake(0.f, 0.f);
 		m_unknown2 = cocos2d::CCPointMake(0.f, 0.f);
 		m_touchPosition2 = cocos2d::CCPointMake(0.f, 0.f);
