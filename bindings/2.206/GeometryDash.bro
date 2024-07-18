@@ -13715,7 +13715,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	void updateMessageLabel(gd::string) = win 0x3c1940;
 	void updateSearchLabel(char const*) = win 0x3c1650, imac 0x4a7ee0, m1 0x40b294;
 
-	virtual bool init() = win 0x3bca90, m1 0x40a32c, imac 0x4a6f10;
+	virtual bool init() = win 0x3bca90, m1 0x40a32c, imac 0x4a6f10, ios 0x31a4f0;
 	virtual void onExit() = win 0x3c3fc0, m1 0x410058, imac 0x4ad060;
 	virtual void keyBackClicked() = win 0x3c3fb0, m1 0x40ff6c, imac 0x4acf70;
 	virtual void textInputOpened(CCTextInputNode*) = win 0x3c1430, m1 0x40efbc, imac 0x4abff0;
