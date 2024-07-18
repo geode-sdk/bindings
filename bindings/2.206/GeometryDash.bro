@@ -4732,7 +4732,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void invalidateRequests(bool, bool) = win 0x15d1b0;
 	void invalidateUserList(UserListType, bool) = win 0x15ce80;
 	bool isDLActive(char const* tag) = win 0x144500;
-	bool isFollowingUser(int) = win 0x1452f0, imac 0x541020, m1 0x492fc8;
+	bool isFollowingUser(int) = win 0x1452f0, imac 0x541020, m1 0x492fc8, ios 0x9cb54;
 	bool isTimeValid(char const*, float) = win 0x144830, imac 0x53f4d0, m1 0x4915d8;
 	bool isUpdateValid(int id) = win inline, imac 0x54d630, m1 0x49d9dc {
 		const char* str = cocos2d::CCString::createWithFormat("%i", id)->getCString();
