@@ -160,7 +160,7 @@ class cocos2d::CCMotionStreak {
 	void setStroke(float);
 
 	// CCMotionStreak(cocos2d::CCMotionStreak const&);
-	CCMotionStreak() = imac inline, m1 inline {
+	CCMotionStreak() = imac inline, m1 inline, ios 0x182810 {
 		m_bFastMode = false;
 		m_bStartingPositionInitialized = false;
 		m_pTexture = nullptr;
@@ -194,7 +194,7 @@ class cocos2d::CCMotionStreak {
 	void tintWithColor(cocos2d::_ccColor3B);
 	void updateFade(float);
 
-	~CCMotionStreak() = imac 0x57d3e0, m1 0x4c9930;
+	~CCMotionStreak() = imac 0x57d3e0, m1 0x4c9930, ios 0x1828b0;
 
 	virtual void update(float) = imac 0x57dc50, m1 0x4ca018;
 	virtual void setPosition(cocos2d::CCPoint const&) = imac 0x57d9b0, m1 0x4c9e20;
@@ -1821,7 +1821,7 @@ class cocos2d::CCDictionary {
 	char const* charForKey(gd::string const&);
 	unsigned int count() = imac 0x30d090, m1 0x29efd0;
 	cocos2d::CCObject* objectForKey(gd::string const&) = ios 0x42bb44, imac 0x30d7b0, m1 0x29f408;
-	cocos2d::CCObject* objectForKey(intptr_t) = imac 0x30d7b0, m1 0x29f714;
+	cocos2d::CCObject* objectForKey(intptr_t) = imac 0x30d7b0, m1 0x29f714, ios 0x42bdf4;
 	cocos2d::CCObject* randomObject();
 	void removeAllObjects() = imac 0x30ceb0, m1 0x29ee04;
 	void removeObjectForElememt(cocos2d::CCDictElement*);
@@ -2293,15 +2293,15 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
 [[link(win, android)]]
 class cocos2d::CCDrawNode {
-	static cocos2d::CCDrawNode* create() = imac 0x61c020, m1 0x53f1b8;
+	static cocos2d::CCDrawNode* create() = imac 0x61c020, m1 0x53f1b8, ios 0x48364;
 
 	cocos2d::_ccBlendFunc getBlendFunc() const = imac 0x61dd40, m1 0x540d0c;
 
 	void setBlendFunc(cocos2d::_ccBlendFunc const&) = imac 0x61dd50, m1 0x540d14;
 
 	// CCDrawNode(cocos2d::CCDrawNode const&);
-	CCDrawNode() = imac 0x61bd60, m1 0x53ef80;
-	~CCDrawNode() = imac 0x61bef0, m1 0x53f0dc;
+	CCDrawNode() = imac 0x61bd60, m1 0x53ef80, ios 0x48268;
+	~CCDrawNode() = imac 0x61bef0, m1 0x53f0dc, ios 0x482e0;
 	void clear() = imac 0x61dd20, m1 0x540cfc;
 	void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int) = imac 0x61db70, m1 0x540b60;
 	void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&) = imac 0x61c9b0, m1 0x53fa38;
@@ -2316,7 +2316,7 @@ class cocos2d::CCDrawNode {
 	void render() = imac 0x61c290, m1 0x53f414;
 
 	virtual bool init() = imac 0x61c130, m1 0x53f2dc;
-	virtual void draw() = imac 0x61c320, m1 0x53f49c;
+	virtual void draw() = imac 0x61c320, m1 0x53f49c, ios 0x485bc;
 }
 
 [[link(win, android)]]
