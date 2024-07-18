@@ -6,19 +6,19 @@ class cocos2d::CCEGLViewProtocol {
     auto getScaleX() const;
     auto getScaleY() const;
 
-	virtual cocos2d::CCSize const& getFrameSize() const = m1 0x46da58;
-	virtual void setFrameSize(float, float) = m1 0x46da60;
-	virtual cocos2d::CCSize getVisibleSize() const = m1 0x46daa4;
-	virtual cocos2d::CCPoint getVisibleOrigin() const = m1 0x46dad4;
-	virtual void setDesignResolutionSize(float, float, ResolutionPolicy) = m1 0x46d938;
-	virtual cocos2d::CCSize const& getDesignResolutionSize() const = m1 0x46da50;
-	virtual void setTouchDelegate(cocos2d::EGLTouchDelegate*) = m1 0x46db20, imac 0x518010;
-	virtual void setViewPortInPoints(float, float, float, float) = m1 0x46db28;
-	virtual void setScissorInPoints(float, float, float, float) = m1 0x46db54;
-	virtual bool isScissorEnabled() = m1 0x46db80;
-	virtual cocos2d::CCRect getScissorRect() = m1 0x46dba0;
-	virtual void setViewName(char const*) = m1 0x46dc30;
-	virtual void pollInputEvents() = m1 0x46e32c;
+	virtual cocos2d::CCSize const& getFrameSize() const = imac 0x517f00, m1 0x46da58;
+	virtual void setFrameSize(float, float) = imac 0x517f10, m1 0x46da60;
+	virtual cocos2d::CCSize getVisibleSize() const = imac 0x517f50, m1 0x46daa4;
+	virtual cocos2d::CCPoint getVisibleOrigin() const = imac 0x517fa0, m1 0x46dad4;
+	virtual void setDesignResolutionSize(float, float, ResolutionPolicy) = imac 0x517db0, m1 0x46d938;
+	virtual cocos2d::CCSize const& getDesignResolutionSize() const = imac 0x517ef0, m1 0x46da50;
+	virtual void setTouchDelegate(cocos2d::EGLTouchDelegate*) = imac 0x518010, m1 0x46db20;
+	virtual void setViewPortInPoints(float, float, float, float) = imac 0x50e1c0, m1 0x46db28;
+	virtual void setScissorInPoints(float, float, float, float) = imac 0x50e2b0, m1 0x46db54;
+	virtual bool isScissorEnabled() = imac 0x5180a0, m1 0x46db80;
+	virtual cocos2d::CCRect getScissorRect() = imac 0x5180c0, m1 0x46dba0;
+	virtual void setViewName(char const*) = imac 0x518160, m1 0x46dc30;
+	virtual void pollInputEvents() = imac 0x518890, m1 0x46e32c;
 }
 
 [[link(win, android)]]
@@ -2533,7 +2533,7 @@ class cocos2d::ZipUtils {
 	static void ccSetPvrEncryptionKeyPart(int, unsigned int);
 	static gd::string compressString(gd::string const&, bool, int) = m1 0x1b0f10, imac 0x1ff430;
 	static gd::string decompressString2(unsigned char*, bool, int, int);
-	static gd::string decompressString(gd::string const&, bool, int) = imac 0x1ffaf0;
+	static gd::string decompressString(gd::string const&, bool, int) = imac 0x1ffaf0, m1 0x1b1664;
 	static gd::string encryptDecrypt(gd::string const&, int);
 	static gd::string encryptDecryptWKey(gd::string const&, gd::string);
 	static unsigned char hexToChar(gd::string const&);
