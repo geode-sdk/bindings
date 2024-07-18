@@ -17092,7 +17092,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 		m_idk2 = false;
 	}
 
-	static TableView* create(TableViewDelegate* tvd, TableViewDataSource* tvds, TableViewCellDelegate* tvcd, cocos2d::CCRect rect) = win inline, ios 0x30f340 {
+	static TableView* create(TableViewDelegate* tvd, TableViewDataSource* tvds, TableViewCellDelegate* tvcd, cocos2d::CCRect rect) = win inline, m1 0x54dea8, imac 0x62cd90, ios 0x30f340 {
 		auto ret = new TableView(rect);
 		ret->m_tableDelegate = tvd;
 		ret->m_dataSource = tvds;
