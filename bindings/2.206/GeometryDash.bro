@@ -16442,7 +16442,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	bool triggerSplitScreenRows(float, float, int, float);
 	TodoReturn tweenValue(float, float, int, float, int, float);
 	TodoReturn tweenValueAuto(float, int, float, int, float);
-	TodoReturn updateEffectOffsets(cocos2d::CCPoint);
+	void updateEffectOffsets(cocos2d::CCPoint) = win 0x456fb0;
 	TodoReturn updateMotionBlurSpeedX(float, float) = m1 0x355f40;
 	TodoReturn updateMotionBlurSpeedY(float, float) = m1 0x355f74;
 	TodoReturn updateShockLineCenter(cocos2d::CCPoint);
