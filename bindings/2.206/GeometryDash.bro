@@ -11662,7 +11662,7 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	// virtual ~MoreSearchLayer();
 	inline MoreSearchLayer() {}
 
-	static MoreSearchLayer* create() = win inline, m1 inline, imac 0x638980 {
+	static MoreSearchLayer* create() = win inline, m1 inline, imac 0x638980, ios 0x5aaf8 {
         auto ret = new MoreSearchLayer();
         if (ret->init()) {
             ret->autorelease();
@@ -11695,7 +11695,7 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn toggleSongNodes(bool, bool);
 	void updateAudioLabel() = win 0x2f5ec0;
 
-	virtual bool init() = win 0x2f2540, m1 0x559b2c, imac 0x639f30;
+	virtual bool init() = win 0x2f2540, m1 0x559b2c, imac 0x639f30, ios 0x5b884;
 	virtual void keyBackClicked() = win 0x2f72b0, m1 0x55bb44, imac 0x63c100;
 	virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x55b9bc, imac 0x63bf90;
 	virtual void textInputReturn(CCTextInputNode*) = m1 0x55ba8c, imac 0x63c050;
