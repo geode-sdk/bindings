@@ -17067,9 +17067,40 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 [[link(android), depends(CCIndexPath)]]
 class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	// virtual ~TableView() = ios 0x30f51c;
-	TableView(cocos2d::CCRect) = ios 0x30f3f4;
+	inline TableView(cocos2d::CCRect rect) : CCScrollLayerExt(rect) {
+		m_touchStartPosition2 = cocos2d::CCPointMake(0.f, 0.f);
+		m_unknown2 = cocos2d::CCPointMake(0.f, 0.f);
+		m_touchPosition2 = cocos2d::CCPointMake(0.f, 0.f);
+		m_tableDelegate = nullptr;
+		m_dataSource = nullptr;
+		m_cellDelegate = nullptr;
+		m_unused2 = false;
+		m_vScrollbarVisible = false;
+		m_hScrollbarVisible = false;
+		m_disableHorizontal = false;
+		m_unused3 = nullptr;
+		m_delegate = this;
+		m_touchOutOfBoundary = false;
+		m_array2 = cocos2d::CCArray::create();
+		m_array2->retain();
+		m_cellArray = cocos2d::CCArray::create();
+		m_cellArray->retain();
+		m_array3 = cocos2d::CCArray::create();
+		m_array3->retain();
+		m_touchLastY = 0.f;
+		m_cancellingTouches = false;
+		m_idk2 = false;
+	}
 
-	static TableView* create(TableViewDelegate*, TableViewDataSource*, TableViewCellDelegate*, cocos2d::CCRect) = ios 0x30f340;
+	static TableView* create(TableViewDelegate* tvd, TableViewDataSource* tvds, TableViewCellDelegate* tvcd, cocos2d::CCRect rect) = win inline, m1 0x54dea8, imac 0x62cd90, ios 0x30f340 {
+		auto ret = new TableView(rect);
+		ret->m_tableDelegate = tvd;
+		ret->m_dataSource = tvds;
+		ret->m_cellDelegate = tvcd;
+		ret->setPosition({ 0.f, 0.f });
+		ret->autorelease();
+		return ret;
+	}
 
 	void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x310134;
 	TodoReturn cellForRowAtIndexPath(CCIndexPath&);
@@ -17117,11 +17148,12 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	virtual TodoReturn getCellDelegateType();
 	TableViewDataSource* m_dataSource;
 	TableViewCellDelegate* m_cellDelegate;
-	int m_unused2;
+	bool m_unused2;
 	void* m_unused3;
 	int m_unused4;
 	float m_touchLastY;
 	bool m_cancellingTouches;
+	bool m_idk2;
 }
 
 [[link(android), depends(CCIndexPath)]]
