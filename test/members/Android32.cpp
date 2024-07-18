@@ -167,4 +167,14 @@ GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x198);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
 
+GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x38);
+GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x40);
+GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintR, 0x176);
+GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintG, 0x177);
+GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintB, 0x178);
+
+GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x3c4);
+GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x3d8);
+GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x590);
+
 #endif

@@ -342,4 +342,15 @@ GEODE_SIZE_CHECK(FMODAudioState, 0x380);
 GEODE_SIZE_CHECK(GroupCommandObject2, 0x208);
 
 GEODE_SIZE_CHECK(KeyframeObject, 0x1c0);
+
+GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x80);
+GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x88);
+//GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintR, 0x176);
+//GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintG, 0x177);
+//GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintB, 0x178);
+
+GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x468);
+GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x490);
+GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x64c);
+
 #endif
