@@ -7776,8 +7776,8 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn timeForItem(int);
 	TodoReturn timerExists(int);
 	TodoReturn toggleGroup(int, bool);
-	TodoReturn toggleItemPersistent(int, bool);
-	TodoReturn toggleTimerPersistent(int, bool);
+	void toggleItemPersistent(int, bool);
+	void toggleTimerPersistent(int, bool);
 	TodoReturn transferPersistentItems();
 	TodoReturn traverseInheritanceChain(InheritanceNode*);
 	TodoReturn tryGetMoveCommandNode(int);
