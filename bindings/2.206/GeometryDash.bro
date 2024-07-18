@@ -1254,7 +1254,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 	TodoReturn dirtify();
 	TodoReturn getSpriteForKey(char const*);
 	TodoReturn initWithAnimDesc(char const*, cocos2d::CCTexture2D*, bool);
-	void setColor(cocos2d::ccColor3B*) = win 0x45940;
+	void setColor(cocos2d::ccColor3B) = win 0x45940;
 	void setFlipX(bool);
 	void setFlipY(bool);
 	TodoReturn transformSprite(SpriteDescription*);
@@ -11708,7 +11708,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 	void updateColors() = imac 0x5056e0, m1 0x45d2b8;
 
 	virtual void update(float) = win 0x3118e0, m1 0x45d330, imac 0x505750;
-	virtual bool init() = win 0x310ac0, m1 0x45c2d0, imac 0x50;
+	virtual bool init() = win 0x310ac0, m1 0x45c2d0, imac 0x5045b0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x312c60, m1 0x45d824, imac 0x505cc0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
