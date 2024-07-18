@@ -1254,16 +1254,16 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 	TodoReturn dirtify();
 	TodoReturn getSpriteForKey(char const*);
 	TodoReturn initWithAnimDesc(char const*, cocos2d::CCTexture2D*, bool);
-	void setColor(cocos2d::ccColor3B);
+	void setColor(cocos2d::ccColor3B) = win 0x45940;
 	void setFlipX(bool);
 	void setFlipY(bool);
 	TodoReturn transformSprite(SpriteDescription*);
 	TodoReturn tweenSpriteTo(SpriteDescription*, float);
 	TodoReturn tweenToFrame(cocos2d::CCSpriteFrame*, float);
 
-	virtual void setScaleX(float) = m1 0x302588, imac 0x376d90;
-	virtual void setScaleY(float) = m1 0x3025b0, imac 0x376db0;
-	virtual void setScale(float) = m1 0x302560, imac 0x376d70;
+	virtual void setScaleX(float) = win 0x45830, m1 0x302588, imac 0x376d90;
+	virtual void setScaleY(float) = win 0x45850, m1 0x3025b0, imac 0x376db0;
+	virtual void setScale(float) = win 0x45810, m1 0x302560, imac 0x376d70;
 	virtual void setOpacity(unsigned char) = win 0x45a20, m1 0x302874, imac 0x377020;
 	virtual void setBlendFunc(cocos2d::_ccBlendFunc) = win 0x45870, m1 0x3025d8, imac 0x376dd0;
 	virtual void setDisplayFrame(cocos2d::CCSpriteFrame*) = m1 0x30212c, imac 0x376940;
@@ -1273,7 +1273,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 
 [[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
-	// virtual ~CCScrollLayerExt() = ios 0x311ab8;
+	// virtual ~CCScrollLayerExt() = win 0x46210, ios 0x311ab8;
 	CCScrollLayerExt(cocos2d::CCRect) = win 0x45bd0, imac 0x437b20, m1 0x3aa6c8, ios 0x3113dc;
 
 	TodoReturn constraintContent();
@@ -1345,7 +1345,7 @@ class CCSpriteCOpacity : cocos2d::CCSprite {
 	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
 	TodoReturn createWithSpriteFrameName(char const*);
 
-	virtual void setOpacity(unsigned char) = m1 0x3f0cc0, imac 0x48b250;
+	virtual void setOpacity(unsigned char) = win 0x47540, m1 0x3f0cc0, imac 0x48b250;
 }
 
 [[link(android)]]
@@ -1412,7 +1412,7 @@ class CCSpritePlus : cocos2d::CCSprite {
 
 	/// Removes a specific following sprite from this sprite.
     /// @param sprite follower sprite that will be removed.
-	void removeFollower(cocos2d::CCNode* sprite);
+	void removeFollower(cocos2d::CCNode* sprite) = win 0x474f0;
 
 	/// Stops this child sprite from following it's given parent
 	void stopFollow();
@@ -1480,7 +1480,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 	static CCSpriteWithHue* create(gd::string const&);
 
 	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	TodoReturn createWithSpriteFrameName(gd::string const&);
+	TodoReturn createWithSpriteFrameName(gd::string const&) = win 0x47610;
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
 	TodoReturn createWithTexture(cocos2d::CCTexture2D*);
 	float getAlpha();
@@ -1503,7 +1503,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x52246c, win 0x477e0, imac 0x5fab60;
 	virtual TodoReturn getShaderName() = m1 0x521c58, imac 0x5fa3e0;
 	virtual TodoReturn shaderBody() = m1 0x5225b0, imac 0x5faca0;
-	virtual void updateColor() = m1 0x5225c8, imac 0x5facc0;
+	virtual void updateColor() = win 0x47a90, m1 0x5225c8, imac 0x5facc0;
 
 	float m_hue;
 	float m_luminance[3];
@@ -1515,7 +1515,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 
 [[link(android)]]
 class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTextFieldDelegate {
-	// virtual ~CCTextInputNode() = ios 0x17834c;
+	// virtual ~CCTextInputNode() = win 0x48500, ios 0x17834c;
 	CCTextInputNode() = ios 0x17a66c {
 		m_numberInput = false;
 		m_caption = "";
@@ -2444,33 +2444,122 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 
 	static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType, float, float time) = win 0x9dd30, m1 0x6b865c, imac 0x7b1a90;
 
-	TodoReturn createObjects(CurrencySpriteType, int, cocos2d::CCPoint, float) = m1 0x6ba6d4, imac 0x7b3ca0;
-	TodoReturn createObjectsFull(CurrencySpriteType, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = m1 0x6ba798;
-	TodoReturn createUnlockObject(cocos2d::CCSprite*, cocos2d::CCPoint, float) = m1 0x6ba73c;
-	TodoReturn incrementCount(int) = m1 0x6bba28;
-	TodoReturn incrementDiamondsCount(int) = m1 0x6bbcc8;
-	TodoReturn incrementMoonsCount(int) = m1 0x6bbe18;
-	TodoReturn incrementSpecialCount1(int) = m1 0x6bc0b8;
-	TodoReturn incrementSpecialCount2(int) = m1 0x6bbf68;
-	TodoReturn incrementStarsCount(int) = m1 0x6bbb78;
-	bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9df80, m1 0x6b8764;
-	TodoReturn pulseSprite(cocos2d::CCSprite*) = m1 0x6bc208;
+	void createObjects(CurrencySpriteType type, int count, cocos2d::CCPoint position, float time) = win inline, m1 0x6ba6d4, imac 0x7b3ca0 {
+		this->createObjectsFull(type, count, nullptr, position, time);
+	}
+	void createObjectsFull(CurrencySpriteType, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = win 0x9fc00, m1 0x6ba798, imac 0x7b3d40;
+	void createUnlockObject(cocos2d::CCSprite* sprite, cocos2d::CCPoint position, float time) = win inline, m1 0x6ba73c, imac 0x7b3cf0 {
+		this->createObjectsFull(CurrencySpriteType::Icon, 1, sprite, position, time);
+	}
+	void incrementCount(int count) = win inline, m1 0x6bba28, imac 0x7b51f0 {
+		if (m_orbsLabel == nullptr) return;
+		m_orbs += count;
+		this->pulseSprite(m_orbsSprite);
+		m_orbsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementDiamondsCount(int count) = win inline, m1 0x6bbcc8, imac 0x7b5640 {
+		if (m_diamondsLabel == nullptr) return;
+		m_diamonds += count;
+		this->pulseSprite(m_diamondsSprite);
+		m_diamondsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementMoonsCount(int count) = win inline, m1 0x6bbe18, imac 0x7b54d0 {
+		if (m_moonsLabel == nullptr) return;
+		m_moons += count;
+		this->pulseSprite(m_moonsSprite);
+		m_moonsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementSpecialCount1(int count) = win inline, m1 0x6bc0b8, imac 0x7b5920 {
+		if (m_keysLabel == nullptr) return;
+		m_keys += count;
+		this->pulseSprite(m_keysSprite);
+		m_keysLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementSpecialCount2(int count) = win inline, m1 0x6bbf68, imac 0x7b57b0 {
+		if (m_shardsLabel == nullptr) return;
+		m_shards += count;
+		this->pulseSprite(m_shardsSprite);
+		m_shardsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementStarsCount(int count) = win inline, m1 0x6bbb78, imac 0x7b5360 {
+		if (m_starsLabel == nullptr) return;
+		m_stars += count;
+		this->pulseSprite(m_starsSprite);
+		m_starsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9df80, m1 0x6b8764, imac 0x7b1b70;
+	void pulseSprite(cocos2d::CCSprite*) = win 0xa12c0, m1 0x6bc208, imac 0x7b5a90;
 
-	virtual void update(float) = m1 0x6bb3b8, imac 0x7b4aa0;
+	virtual void update(float) = win 0xa08f0, m1 0x6bb3b8, imac 0x7b4aa0;
+
+	CurrencyRewardDelegate* m_delegate;
+	cocos2d::CCArray* m_objects;
+	cocos2d::CCLabelBMFont* m_orbsLabel;
+	cocos2d::CCLabelBMFont* m_starsLabel;
+	cocos2d::CCLabelBMFont* m_moonsLabel;
+	cocos2d::CCLabelBMFont* m_diamondsLabel;
+	cocos2d::CCLabelBMFont* m_keysLabel;
+	cocos2d::CCLabelBMFont* m_shardsLabel;
+	cocos2d::CCSprite* m_orbsSprite;
+	cocos2d::CCSprite* m_starsSprite;
+	cocos2d::CCSprite* m_moonsSprite;
+	cocos2d::CCSprite* m_diamondsSprite;
+	CurrencySprite* m_keysSprite;
+	CurrencySprite* m_shardsSprite;
+	cocos2d::CCSpriteBatchNode* m_currencyBatchNode;
+	cocos2d::CCSpriteBatchNode* m_orbBatchNode;
+	int m_orbs;
+	int m_stars;
+	int m_moons;
+	int m_diamonds;
+	int m_keys;
+	int m_shards;
+	float m_elapsed;
+	int m_unknown;
+	float m_time;
+	cocos2d::CCPoint m_orbsPosition;
+	cocos2d::CCPoint m_starsPosition;
+	cocos2d::CCPoint m_moonsPosition;
+	cocos2d::CCPoint m_diamondsPosition;
+	cocos2d::CCPoint m_keysPosition;
+	cocos2d::CCPoint m_shardsPosition;
+	bool m_particlesAdded;
+	bool m_objectsAdded;
+	cocos2d::CCNode* m_mainNode;
+	int m_rewardCount;
+	CurrencyRewardType m_rewardType;
 }
 
 [[link(android)]]
 class CurrencySprite : CCSpritePlus {
 	// virtual ~CurrencySprite();
-	// CurrencySprite();
+	CurrencySprite() = win 0x9dbf0;
 
-	static CurrencySprite* create(CurrencySpriteType, bool);
+	static CurrencySprite* create(CurrencySpriteType type, bool burst) = win inline, m1 0x6ba5e0, imac 0x7b3ba0 {
+		auto ret = new CurrencySprite();
+		if (ret->init(type, burst)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn createWithSprite(cocos2d::CCSprite*);
-	bool init(CurrencySpriteType, bool);
-	TodoReturn initWithSprite(cocos2d::CCSprite*);
-	TodoReturn rewardToSpriteType(int);
-	TodoReturn spriteTypeToStat(CurrencySpriteType);
+	static CurrencySprite* createWithSprite(cocos2d::CCSprite*) = win 0xa2ae0, m1 0x6bb2d8, imac 0x7b49b0;
+	bool init(CurrencySpriteType, bool) = win 0xa1390, m1 0x6bc3d0, imac 0x7b5c70;
+	bool initWithSprite(cocos2d::CCSprite*) = m1 0x6bcc84, imac 0x7b6560;
+	static CurrencySpriteType rewardToSpriteType(int) = win 0xa2d00, m1 0x6bce3c, imac 0x7b6710;
+	static gd::string spriteTypeToStat(CurrencySpriteType) = win 0xa2da0, m1 0x6ba4a8, imac 0x7b3ac0;
+
+	float m_unkFloat1;
+	float m_unkFloat2;
+	float m_unkFloat3;
+	float m_remaining;
+	int m_count;
+	cocos2d::CCParticleSystemQuad* m_particleSystem;
+	CurrencySpriteType m_spriteType;
+	cocos2d::CCPoint m_position;
+	cocos2d::CCSprite* m_burstSprite;
 }
 
 [[link(android)]]
@@ -2824,8 +2913,8 @@ class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
 
 	bool init(GJGameLevel*, DailyLevelPage*, bool) = win 0xcea30, imac 0x22e0c0, m1 0x1dba2c, ios 0x1c59c0;
 	void onClaimReward(cocos2d::CCObject* sender) = win 0xcf660, imac 0x22eb10, m1 0x1dc504;
-	void onSkipLevel(cocos2d::CCObject* sender);
-	void showSkipButton();
+	void onSkipLevel(cocos2d::CCObject* sender) = win 0xcf780;
+	void showSkipButton() = win 0xcf600;
 	void updateTimeLabel(gd::string);
 
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xcf9a0, m1 0x1dc7fc, imac 0x22edd0;
@@ -5653,7 +5742,7 @@ class GameManager : GManager {
 	int m_unkSize4_18;
 	int m_unkSize4_19;
 	int m_unkSize4_20;
-	bool m_unkBool12;
+	bool m_shouldResetShader;
 	float m_practicePosX;
 	float m_practicePosY;
 	float m_practiceOpacity;
@@ -9311,7 +9400,155 @@ class GJShaderState {
 
 	gd::unordered_map<int, GJValueTween> m_someIntToValueTweenMap;
 	gd::unordered_map<int, double> m_someIntToDoubleMap;
-	PAD = win 0x248;
+	double m_time;
+	double m_prevTime;
+	double m_startTime;
+	float m_textureScaleX;
+	float m_textureScaleY;
+	cocos2d::ccColor3B m_blurRefColor;
+	float m_blurIntensity;
+	int m_blurUnk60;
+	bool m_blurOnlyEmpty;
+	float m_shockWaveUnk68;
+	float m_shockWaveUnk6c;
+	float m_shockWaveUnk70;
+	float m_shockWaveUnk74;
+	float m_shockWaveUnk78;
+	float m_shockWaveUnk7c;
+	float m_shockWaveUnk80;
+	float m_shockWaveUnk84;
+	float m_shockWaveUnk88;
+	bool m_shockWaveInvert;
+	float m_shockWaveUnk90;
+	float m_shockWaveUnk94;
+	int m_shockWaveUnk98;
+	bool m_shockWaveUnk9c;
+	bool m_shockWaveCenterMoving;
+	bool m_shockWaveUnk9e;
+	float m_shockWaveUnka0;
+	cocos2d::CCPoint m_shockWaveUnka4;
+	bool m_shockWaveCenterDirty;
+	cocos2d::CCPoint m_shockWaveCenter;
+	double m_shockLineUnkb8;
+	float m_shockLineUnkc0;
+	float m_shockLineUnkc4;
+	float m_shockLineUnkc8;
+	bool m_shockLineAxis;
+	bool m_shockLineDirection;
+	bool m_shockLineDual;
+	bool m_shockLineUnkcf;
+	float m_shockLineUnkd0;
+	float m_shockLineUnkd4;
+	float m_shockLineUnkd8;
+	float m_shockLineUnkdc;
+	float m_shockLineUnke0;
+	float m_shockLineUnke4;
+	int m_shockLineUnke8;
+	bool m_shockLineUnkec;
+	bool m_shockLineCenterMoving;
+	bool m_shockLineUnkee;
+	float m_shockLineUnkf0;
+	cocos2d::CCPoint m_shockLineUnkf4;
+	bool m_shockLineCenterDirty;
+	cocos2d::CCPoint m_shockLineCenter;
+	float m_glitchUnk108;
+	float m_glitchUnk10c;
+	float m_glitchUnk110;
+	float m_glitchUnk114;
+	float m_glitchUnk118;
+	float m_glitchUnk11c;
+	bool m_glitchUnk120;
+	float m_chromaticUnk124;
+	float m_chromaticUnk128;
+	bool m_chromaticUnk12c;
+	float m_cGUnk130;
+	float m_cGUnk134;
+	float m_cGUnk138;
+	float m_cGUnk13c;
+	float m_cGUnk140;
+	float m_cGUnk144;
+	float m_cGUnk148;
+	float m_cGUnk14c;
+	bool m_cGUnk150;
+	bool m_cGUnk151;
+	bool m_cGUnk152;
+	bool m_cGUnk153;
+	float m_pixelateUnk154;
+	float m_pixelateUnk158;
+	bool m_pixelateUnk15c;
+	bool m_pixelateUnk15d;
+	bool m_pixelateUnk15e;
+	bool m_pixelateUnk15f;
+	float m_lensCircleUnk160;
+	float m_lensCircleUnk164;
+	float m_lensCircleStrength;
+	int m_lensCircleUnk16c;
+	int m_lensCircleUnk170;
+	bool m_lensCircleUnk174;
+	bool m_lensCircleAdditive;
+	char m_lensCircleTintR;
+	char m_lensCircleTintG;
+	char m_lensCircleTintB;
+	cocos2d::CCPoint m_lensCircleUnk17c;
+	cocos2d::CCPoint m_lensCircleUnk184;
+	float m_radialBlurUnk18c;
+	float m_radialBlurUnk190;
+	bool m_radialBlurUnk194;
+	int m_radialBlurUnk198;
+	cocos2d::CCPoint m_radialBlurUnk19c;
+	cocos2d::CCPoint m_radialBlurUnk1a4;
+	float m_motionBlurUnk1ac;
+	float m_motionBlurUnk1b0;
+	float m_motionBlurSpeedX;
+	float m_motionBlurSpeedY;
+	float m_motionBlurUnk1bc;
+	float m_motionBlurUnk1c0;
+	int m_motionBlurUnk1c4;
+	int m_motionBlurUnk1c8;
+	bool m_motionBlurDual;
+	bool m_motionBlurUnk1cd;
+	float m_bulgeValue;
+	bool m_bulgeUnk1d4;
+	int m_bulgeUnk1d8;
+	float m_bulgeRadius;
+	cocos2d::CCPoint m_bulgeUnk1e0;
+	cocos2d::CCPoint m_bulgeUnk1e8;
+	float m_pinchUnk1f0;
+	float m_pinchUnk1f4;
+	bool m_pinchUnk1f8;
+	bool m_pinchUnk1f9;
+	int m_pinchUnk1fc;
+	int m_pinchUnk200;
+	cocos2d::CCPoint m_pinchUnk204;
+	cocos2d::CCPoint m_pinchUnk20c;
+	bool m_pinchUnk214;
+	float m_pinchUnk218;
+	cocos2d::CCPoint m_pinchUnk21c;
+	float m_grayscaleValue;
+	bool m_grayscaleUseLum;
+	int m_grayscaleUnk22c;
+	cocos2d::ccColor3B m_grayscaleTint;
+	float m_sepiaValue;
+	float m_invertColorEditRGB;
+	float m_invertColorR;
+	float m_invertColorG;
+	float m_invertColorB;
+	bool m_invertColorClampRGB;
+	float m_hueShiftDegrees;
+	float m_colorChangeCR;
+	float m_colorChangeCG;
+	float m_colorChangeCB;
+	float m_colorChangeBR;
+	float m_colorChangeBG;
+	float m_colorChangeBB;
+	float m_splitUnk268;
+	float m_splitUnk26c;
+	bool m_splitUnk260;
+	int m_blurRefChannel;
+	int m_somethingZLayerUnk278;
+	bool m_zLayerDirty;
+	bool m_somethingZLayerUnk27d;
+	bool m_usesShaders;
 }
 
 [[link(android)]]
@@ -14110,38 +14347,89 @@ class SecretNumberLayer : cocos2d::CCLayer {
 [[link(android)]]
 class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDelegate {
 	// virtual ~SecretRewardsLayer();
-	// SecretRewardsLayer() = ios 0x2ff01c;
+	SecretRewardsLayer() = ios 0x2ff01c {
+		m_mainLayer = nullptr;
+		m_secondaryLayer = nullptr;
+		m_chestCounter = nullptr;
+		m_chestCounters = nullptr;
+		m_backSprite = nullptr;
+		m_unkSize4_2 = 0;
+		m_secondaryScrollLayer = nullptr;
+		m_scratchDialogIndex = 0;
+		m_potborDialogIndex = 0;
+		m_diamondDialogIndex = 0;
+		m_mechanicDialogIndex = 0;
+		m_inMainLayer = false;
+		m_rewardType = GJRewardType::Unknown;
+		m_lockedDialogIndex = 0;
+	}
 
-	static SecretRewardsLayer* create(bool) = ios 0x2f8c5c;
-	static cocos2d::CCScene* scene(bool fromShop) = win 0x3ae160, ios 0x2f8c10;
+	static SecretRewardsLayer* create(bool fromShop) = win inline, ios 0x2f8c5c, imac 0x63cf00, m1 0x55c6f4 {
+		auto ret = new SecretRewardsLayer();
+		if (ret->init(fromShop)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static cocos2d::CCScene* scene(bool fromShop) = win 0x3ae160, ios 0x2f8c10, imac 0x63cec0, m1 0x55c6a8;
 
-	TodoReturn createSecondaryLayer(int) = ios 0x2fadf4;
-	cocos2d::CCArray* generateChestItems(int) = ios 0x2fb19c;
-	TodoReturn getPageColor(int);
-	void goToPage(int) = ios 0x2fa67c;
+	void createSecondaryLayer(int) = win 0x3b0720, ios 0x2fadf4, imac 0x63fc70, m1 0x55f2b0;
+	cocos2d::CCArray* generateChestItems(int) = win 0x3b0b70, ios 0x2fb19c, imac 0x640100, m1 0x55f6ec;
+	cocos2d::ccColor3B getPageColor(int) = imac 0x63f1b0, m1 0x55e820;
+	void goToPage(int page) = win inline, ios 0x2fa67c, imac 0x63f060, m1 0x55e690 {
+		if (m_inMainLayer) m_mainScrollLayer->moveToPage(page);
+		else m_secondaryScrollLayer->moveToPage(page);
+	}
 	bool init(bool) = win 0x3ae2c0, imac 0x63d020, ios 0x2f8cd0, m1 0x55c7dc;
-	void moveToMainLayer(cocos2d::CCObject*) = ios 0x2facd4;
-	void moveToSecondaryLayer(int) = ios 0x2faabc;
+	void moveToMainLayer(cocos2d::CCObject*) = ios 0x2facd4, imac 0x63fb20, m1 0x55e0ec;
+	void moveToSecondaryLayer(int) = ios 0x2faabc, imac 0x63f650, m1 0x55ec98;
 	void onBack(cocos2d::CCObject* sender) = win 0x3b24f0, ios 0x2fa1d8, imac 0x63eae0, m1 0x55e0ec;
-	void onChestType(cocos2d::CCObject* sender) = ios 0x2fa244;
-	void onSelectItem(cocos2d::CCObject* sender);
-	void onShop(cocos2d::CCObject* sender) = win 0x3b19e0, ios 0x2fa52c;
-	void onSpecialItem(cocos2d::CCObject* sender) = ios 0x2fa80c;
-	void onSwitchPage(cocos2d::CCObject* sender) = ios 0x2fa624;
-	void showDialog01();
-	void showDialog03();
-	void showDialogDiamond();
-	void showDialogMechanic();
-	void showLockedChest();
-	void showShop(int);
-	void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x3b2120, ios 0x2fa298;
-	void updateBackButton() = ios 0x2fabb4;
-	void updateUnlockedLabel() = win 0x3b2200, ios 0x2fa380;
+	void onChestType(cocos2d::CCObject* sender) = win 0x3b0490, ios 0x2fa244, imac 0x63eb50, m1 0x55e158;
+	void onSelectItem(cocos2d::CCObject* sender) = win 0x3b1520, imac 0x640fc0, m1 0x5603c4;
+	void onShop(cocos2d::CCObject* sender) = win 0x3b19e0, ios 0x2fa52c, imac 0x63ee90, m1 0x55e4bc;
+	void onSpecialItem(cocos2d::CCObject* sender) = win 0x3b1de0, ios 0x2fa80c, imac 0x63f200, m1 0x55e850;
+	void onSwitchPage(cocos2d::CCObject* sender) = win 0x3b01a0, ios 0x2fa624, imac 0x63efe0, m1 0x55e600;
+	void showDialog01() = win 0x3b2720, imac 0x641370, m1 0x5607b4;
+	void showDialog03() = win 0x3b4030, imac 0x643050, m1 0x561f70;
+	void showDialogDiamond() = win 0x3b6530, imac 0x645b50, m1 0x564250;
+	void showDialogMechanic() = win 0x3b52d0, imac 0x6445c0, m1 0x5630f8;
+	void showLockedChest() = imac 0x63f770, m1 0x55ed90;
+	void showShop(int shop) = win inline, imac 0x646860, m1 0x564d38 {
+		if (cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionMoveInT::create(0.5f, GJShopLayer::scene((ShopType)shop)))) this->setKeypadEnabled(false);
+	}
+	void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x3b2120, ios 0x2fa298, imac 0x63eb90, m1 0x55e1ac;
+	void updateBackButton() = win 0x3b05e0, ios 0x2fabb4, imac 0x63fa10, m1 0x55f054;
+	void updateUnlockedLabel() = win 0x3b2200, ios 0x2fa380, imac 0x63ec60, m1 0x55e294;
 
-	virtual void onExit() = m1 0x564f80, imac 0x646ab0;
+	virtual void onExit() = win 0x3b26e0, m1 0x564f80, imac 0x646ab0;
 	virtual void keyBackClicked() = win 0x3b26d0, m1 0x564f0c, imac 0x646a20;
 	virtual void dialogClosed(DialogLayer*) = win 0x3b1bf0, m1 0x564da8, imac 0x6468d0;
 	virtual void scrollLayerMoved(cocos2d::CCPoint) = win 0x3b0260, m1 0x55e6e4, imac 0x63f0a0;
+
+	cocos2d::CCLayer* m_mainLayer;
+	cocos2d::CCLayer* m_secondaryLayer;
+	cocos2d::CCLabelBMFont* m_chestLabel;
+	cocos2d::CCLabelBMFont* m_chestCounter;
+	cocos2d::CCDictionary* m_chestCounters;
+	cocos2d::CCLabelBMFont* m_keysLabel;
+	void* m_unknown;
+	CCMenuItemSpriteExtra* m_leftButton;
+	CCMenuItemSpriteExtra* m_rightButton;
+	cocos2d::CCSprite* m_backSprite;
+	int m_unkSize4_1;
+	int m_unkSize4_2;
+	BoomScrollLayer* m_mainScrollLayer;
+	BoomScrollLayer* m_secondaryScrollLayer;
+	cocos2d::CCSprite* m_backgroundSprite;
+	int m_scratchDialogIndex;
+	int m_potborDialogIndex;
+	int m_diamondDialogIndex;
+	int m_mechanicDialogIndex;
+	bool m_inMainLayer;
+	GJRewardType m_rewardType;
+	int m_lockedDialogIndex;
 }
 
 [[link(android)]]
@@ -16082,7 +16370,7 @@ class ShaderGameObject : EffectGameObject {
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x15babc, imac 0x1989f0;
 }
 
-[[link(android)]]
+[[link(android), depends(GJShaderState)]]
 class ShaderLayer : cocos2d::CCLayer {
 	// virtual ~ShaderLayer();
 
@@ -16101,7 +16389,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn preInvertColorShader();
 	TodoReturn preLensCircleShader();
 	TodoReturn preMotionBlurShader();
-	TodoReturn prepareTargetContainer();
+	cocos2d::CCPoint prepareTargetContainer() = win 0x45a4e0;
 	TodoReturn prePinchShader();
 	TodoReturn prePixelateShader();
 	TodoReturn preRadialBlurShader();
@@ -16125,7 +16413,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn setupPinchShader();
 	TodoReturn setupRadialBlurShader();
 	TodoReturn setupSepiaShader();
-	TodoReturn setupShader(bool) = win 0x455f60, m1 0x350c14;
+	void setupShader(bool) = win 0x455f60, m1 0x350c14;
 	TodoReturn setupShockLineUniforms();
 	TodoReturn setupShockWaveUniforms();
 	TodoReturn setupSplitScreenShader();
@@ -16164,6 +16452,123 @@ class ShaderLayer : cocos2d::CCLayer {
 	virtual void update(float) = win 0x455e50, m1 0x352250, imac 0x3cfaa0;
 	virtual bool init() = win 0x456d00, m1 0x350b50, imac 0x3ce300;
 	virtual void visit() = win 0x45CE00, m1 0x356eb0, imac 0x3d5910;
+
+	GJShaderState m_state;
+	bool m_unk3c0;
+	cocos2d::CCGLProgram* m_shader;
+	cocos2d::CCRenderTexture* m_renderTexture;
+	cocos2d::CCSprite* m_sprite;
+	bool m_antiAlias;
+	bool m_targetAntiAlias;
+	void* m_unk3d4;
+	GJBaseGameLayer* m_gameLayer;
+	cocos2d::CCPoint m_somePosition;
+	float m_someRotationDeg;
+	float m_shockWaveTimeMult;
+	cocos2d::CCSize m_textureContentSize;
+	cocos2d::CCSize m_targetTextureSize;
+	// how much bigger is the texture compared to visibleSize
+	cocos2d::CCSize m_targetTextureSizeExtra;
+	int m_textureScaleUniform;
+	int m_textureScaleInvUniform;
+	int m_shaderPositionUniform;
+	int m_blurRefColorUniform;
+	int m_blurUseRefUniform;
+	int m_blurIntensityUniform;
+	int m_blurOnlyEmptyUniform;
+	int m_shockWaveTimeUniform;
+	int m_shockWaveTime1Uniform;
+	int m_shockWaveTime2Uniform;
+	int m_shockWaveTime3Uniform;
+	int m_shockWaveTime4Uniform;
+	int m_shockWaveStrengthUniform;
+	int m_shockWaveWavesUniform;
+	int m_shockWaveCenterUniform;
+	int m_shockWaveInvertUniform;
+	int m_shockWaveMinSizeUniform;
+	int m_shockWaveMaxSizeUniform;
+	int m_shockWaveMaxDistValUniform;
+	float m_shockWaveTime1;
+	float m_shockWaveTime2;
+	float m_shockWaveTime3;
+	float m_shockWaveTime4;
+	float m_shockWaveMaxDistVal;
+	float m_shockWaveMinSize;
+	float m_shockWaveMaxSize;
+	bool m_shockWaveUnk46c;
+	int m_shockLineTimeUniform;
+	int m_shockLineTime1Uniform;
+	int m_shockLineTime2Uniform;
+	int m_shockLineTime3Uniform;
+	int m_shockLineTime4Uniform;
+	int m_shockLineAxisUniform;
+	int m_shockLineDirectionUniform;
+	int m_shockLineDualUniform;
+	int m_shockLineWavesUniform;
+	int m_shockLineStrengthUniform;
+	int m_shockLineCenterUniform;
+	int m_shockLineMaxDistValUniform;
+	float m_shockLineTime1;
+	float m_shockLineTime2;
+	float m_shockLineTime3;
+	float m_shockLineTime4;
+	float m_shockLineMaxDistVal;
+	int m_unk4b4;
+	int m_unk4b8;
+	int m_unk4bc;
+	int m_glitchBotUniform;
+	int m_glitchTopUniform;
+	int m_glitchXOffsetUniform;
+	int m_glitchColOffsetUniform;
+	int m_glitchRndUniform;
+	int m_chromaticXOffUniform;
+	int m_chromaticYOffUniform;
+	int m_cGRGBOffsetUniform;
+	int m_cGYOffsetUniform;
+	int m_cGTimeUniform;
+	int m_cGStrengthUniform;
+	int m_cGHeightUniform;
+	int m_cGLineThickUniform;
+	int m_cGLineStrengthUniform;
+	int m_lensCircleOriginUniform;
+	int m_lensCircleStartUniform;
+	int m_lensCircleEndUniform;
+	int m_lensCircleStrengthUniform;
+	int m_lensCircleTintUniform;
+	int m_lensCircleAdditiveUniform;
+	int m_radialBlurCenterUniform;
+	int m_radialBlurValueUniform;
+	int m_blurFadeUniform;
+	int m_motionBlurValueUniform;
+	int m_motionBlurMultUniform;
+	int m_motionBlurDualUniform;
+	int m_bulgeValueUniform;
+	int m_bulgeValue2Uniform;
+	int m_bulgeOriginUniform;
+	int m_bulgeRadiusUniform;
+	int m_pinchValueUniform;
+	int m_pinchCenterPosUniform;
+	int m_pinchCalcUniform;
+	int m_pinchRadiusUniform;
+	int m_grayscaleValueUniform;
+	int m_grayscaleTintUniform;
+	int m_grayscaleUseLumUniform;
+	int m_sepiaValueUniform;
+	int m_invertColorValueUniform;
+	int m_hueShiftCosAUniform;
+	int m_hueShiftSinAUniform;
+	int m_colorChangeCUniform;
+	int m_colorChangeBUniform;
+	int m_rowmodUniform;
+	int m_colmodUniform;
+	int m_rowmodCalcUniform;
+	int m_colmodCalcUniform;
+	int m_splitXStartUniform;
+	int m_splitXRangeUniform;
+	int m_splitXRangeMultUniform;
+	int m_splitYStartUniform;
+	int m_splitYRangeUniform;
+	int m_splitYRangeMultUniform;
 }
 
 [[link(android)]]
@@ -16228,7 +16633,7 @@ class ShareLevelLayer : FLAlertLayer {
 	void selectRating(cocos2d::CCObject*) = win 0x464160;
 	void setupStars() = win 0x463d50;
 
-	virtual void keyBackClicked() = m1 0x222e0c, imac 0x27da30;
+	virtual void keyBackClicked() = win 0x465260, m1 0x222e0c, imac 0x27da30;
 }
 
 [[link(android)]]
@@ -16838,9 +17243,40 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 [[link(android), depends(CCIndexPath)]]
 class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	// virtual ~TableView() = ios 0x30f51c;
-	TableView(cocos2d::CCRect) = ios 0x30f3f4;
+	inline TableView(cocos2d::CCRect rect) : CCScrollLayerExt(rect) {
+		m_touchStartPosition2 = cocos2d::CCPointMake(0.f, 0.f);
+		m_unknown2 = cocos2d::CCPointMake(0.f, 0.f);
+		m_touchPosition2 = cocos2d::CCPointMake(0.f, 0.f);
+		m_tableDelegate = nullptr;
+		m_dataSource = nullptr;
+		m_cellDelegate = nullptr;
+		m_unused2 = false;
+		m_vScrollbarVisible = false;
+		m_hScrollbarVisible = false;
+		m_disableHorizontal = false;
+		m_unused3 = nullptr;
+		m_delegate = this;
+		m_touchOutOfBoundary = false;
+		m_array2 = cocos2d::CCArray::create();
+		m_array2->retain();
+		m_cellArray = cocos2d::CCArray::create();
+		m_cellArray->retain();
+		m_array3 = cocos2d::CCArray::create();
+		m_array3->retain();
+		m_touchLastY = 0.f;
+		m_cancellingTouches = false;
+		m_idk2 = false;
+	}
 
-	static TableView* create(TableViewDelegate*, TableViewDataSource*, TableViewCellDelegate*, cocos2d::CCRect) = ios 0x30f340;
+	static TableView* create(TableViewDelegate* tvd, TableViewDataSource* tvds, TableViewCellDelegate* tvcd, cocos2d::CCRect rect) = win inline, m1 0x54dea8, imac 0x62cd90, ios 0x30f340 {
+		auto ret = new TableView(rect);
+		ret->m_tableDelegate = tvd;
+		ret->m_dataSource = tvds;
+		ret->m_cellDelegate = tvcd;
+		ret->setPosition({ 0.f, 0.f });
+		ret->autorelease();
+		return ret;
+	}
 
 	void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x310134;
 	TodoReturn cellForRowAtIndexPath(CCIndexPath&);
@@ -16888,11 +17324,12 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	virtual TodoReturn getCellDelegateType();
 	TableViewDataSource* m_dataSource;
 	TableViewCellDelegate* m_cellDelegate;
-	int m_unused2;
+	bool m_unused2;
 	void* m_unused3;
 	int m_unused4;
 	float m_touchLastY;
 	bool m_cancellingTouches;
+	bool m_idk2;
 }
 
 [[link(android), depends(CCIndexPath)]]
@@ -17489,7 +17926,7 @@ class UploadListPopup : FLAlertLayer, ListUploadDelegate {
 
 	static UploadListPopup* create(GJLevelList*);
 
-	bool init(GJLevelList*);
+	bool init(GJLevelList*) = win 0x2eaca0;
 	void onBack(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onReturnToList(cocos2d::CCObject* sender);
