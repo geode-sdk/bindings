@@ -80,6 +80,7 @@ GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x17c);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x1bc);
 
 GEODE_SIZE_CHECK(LevelEditorLayer, 0x2f48);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x2e04);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x2e24);
 
 GEODE_SIZE_CHECK(GameObject, 0x488);
@@ -165,5 +166,15 @@ GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x210);
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x198);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
+
+GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x38);
+GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x40);
+GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintR, 0x176);
+GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintG, 0x177);
+GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintB, 0x178);
+
+GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x3c4);
+GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x3d8);
+GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x590);
 
 #endif

@@ -4,7 +4,10 @@ project(Codegen LANGUAGES C CXX)
 include(../cmake/CPM.cmake)
 
 CPMAddPackage("gh:fmtlib/fmt#10.1.1")
-CPMAddPackage("gh:geode-sdk/Broma#4974750")
+CPMAddPackage("gh:geode-sdk/Broma#9ea686e")
+CPMAddPackage("gh:geode-sdk/json#3a79c51")
+
+target_compile_definitions(fmt PUBLIC -DFMT_CONSTEVAL=)
 
 file(GLOB SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
@@ -22,7 +25,7 @@ add_executable(${PROJECT_NAME}
 )
 target_compile_features(Codegen PUBLIC cxx_std_17)
 
-target_link_libraries(Codegen PRIVATE fmt::fmt Broma)
+target_link_libraries(Codegen PRIVATE fmt::fmt Broma mat-json)
 target_include_directories(Codegen PRIVATE 
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 )

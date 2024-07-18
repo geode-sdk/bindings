@@ -59,6 +59,7 @@ GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x200);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x25c);
 
 GEODE_SIZE_CHECK(LevelEditorLayer, 0x39d8);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x3788);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x37b8);
 
 GEODE_SIZE_CHECK(GameObject, 0x538);
@@ -106,7 +107,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_metering, 0x208);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x218);
 
 GEODE_SIZE_CHECK(SimplePlayer, 0x2a8);
-// GEODE_SIZE_CHECK(EnhancedGameObject, 0x598);
+GEODE_SIZE_CHECK(EnhancedGameObject, 0x598);
 // GEODE_SIZE_CHECK(EffectGameObject, 0x720);
 
 GEODE_MEMBER_CHECK(GameObject, m_hasExtendedCollision, 0x27c);
@@ -169,5 +170,15 @@ GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x260);
 //GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x318);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x1a0);
+
+GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x70);
+GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x78);
+//GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintR, 0x176);
+//GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintG, 0x177);
+//GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintB, 0x178);
+
+GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x458);
+GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x480);
+GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x63c);
 
 #endif
