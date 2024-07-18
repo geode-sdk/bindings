@@ -15869,7 +15869,7 @@ class ShardsPage : FLAlertLayer {
 	void onIconInfo(cocos2d::CCObject* sender);
 	void onSwitchPage(cocos2d::CCObject* sender);
 
-	virtual bool init() = win 0x45de70, imac 0x4cf860, m1 0x42df74;
+	virtual bool init() = win 0x45de70, imac 0x4cf860, m1 0x42df74, ios 0x3aaf40;
 	virtual void registerWithTouchDispatcher() = m1 0x42fcc8, imac 0x4d1890;
 	virtual void keyBackClicked() = m1 0x42fc4c, imac 0x4d1820;
 	virtual void show() = m1 0x42fac4, imac 0x4d1690;
