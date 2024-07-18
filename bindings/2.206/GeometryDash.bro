@@ -2444,33 +2444,122 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 
 	static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType, float, float time) = win 0x9dd30, m1 0x6b865c, imac 0x7b1a90;
 
-	TodoReturn createObjects(CurrencySpriteType, int, cocos2d::CCPoint, float) = m1 0x6ba6d4, imac 0x7b3ca0;
-	TodoReturn createObjectsFull(CurrencySpriteType, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = m1 0x6ba798;
-	TodoReturn createUnlockObject(cocos2d::CCSprite*, cocos2d::CCPoint, float) = m1 0x6ba73c;
-	TodoReturn incrementCount(int) = m1 0x6bba28;
-	TodoReturn incrementDiamondsCount(int) = m1 0x6bbcc8;
-	TodoReturn incrementMoonsCount(int) = m1 0x6bbe18;
-	TodoReturn incrementSpecialCount1(int) = m1 0x6bc0b8;
-	TodoReturn incrementSpecialCount2(int) = m1 0x6bbf68;
-	TodoReturn incrementStarsCount(int) = m1 0x6bbb78;
-	bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9df80, m1 0x6b8764;
-	TodoReturn pulseSprite(cocos2d::CCSprite*) = m1 0x6bc208;
+	void createObjects(CurrencySpriteType type, int count, cocos2d::CCPoint position, float time) = win inline, m1 0x6ba6d4, imac 0x7b3ca0 {
+		this->createObjectsFull(type, count, nullptr, position, time);
+	}
+	void createObjectsFull(CurrencySpriteType, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = win 0x9fc00, m1 0x6ba798, imac 0x7b3d40;
+	void createUnlockObject(cocos2d::CCSprite* sprite, cocos2d::CCPoint position, float time) = win inline, m1 0x6ba73c, imac 0x7b3cf0 {
+		this->createObjectsFull(CurrencySpriteType::Icon, 1, sprite, position, time);
+	}
+	void incrementCount(int count) = win inline, m1 0x6bba28, imac 0x7b51f0 {
+		if (m_orbsLabel == nullptr) return;
+		m_orbs += count;
+		this->pulseSprite(m_orbsSprite);
+		m_orbsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementDiamondsCount(int count) = win inline, m1 0x6bbcc8, imac 0x7b5640 {
+		if (m_diamondsLabel == nullptr) return;
+		m_diamonds += count;
+		this->pulseSprite(m_diamondsSprite);
+		m_diamondsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementMoonsCount(int count) = win inline, m1 0x6bbe18, imac 0x7b54d0 {
+		if (m_moonsLabel == nullptr) return;
+		m_moons += count;
+		this->pulseSprite(m_moonsSprite);
+		m_moonsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementSpecialCount1(int count) = win inline, m1 0x6bc0b8, imac 0x7b5920 {
+		if (m_keysLabel == nullptr) return;
+		m_keys += count;
+		this->pulseSprite(m_keysSprite);
+		m_keysLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementSpecialCount2(int count) = win inline, m1 0x6bbf68, imac 0x7b57b0 {
+		if (m_shardsLabel == nullptr) return;
+		m_shards += count;
+		this->pulseSprite(m_shardsSprite);
+		m_shardsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	void incrementStarsCount(int count) = win inline, m1 0x6bbb78, imac 0x7b5360 {
+		if (m_starsLabel == nullptr) return;
+		m_stars += count;
+		this->pulseSprite(m_starsSprite);
+		m_starsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+	}
+	bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9df80, m1 0x6b8764, imac 0x7b1b70;
+	void pulseSprite(cocos2d::CCSprite*) = win 0xa12c0, m1 0x6bc208, imac 0x7b5a90;
 
-	virtual void update(float) = m1 0x6bb3b8, imac 0x7b4aa0;
+	virtual void update(float) = win 0xa08f0, m1 0x6bb3b8, imac 0x7b4aa0;
+
+	CurrencyRewardDelegate* m_delegate;
+	cocos2d::CCArray* m_objects;
+	cocos2d::CCLabelBMFont* m_orbsLabel;
+	cocos2d::CCLabelBMFont* m_starsLabel;
+	cocos2d::CCLabelBMFont* m_moonsLabel;
+	cocos2d::CCLabelBMFont* m_diamondsLabel;
+	cocos2d::CCLabelBMFont* m_keysLabel;
+	cocos2d::CCLabelBMFont* m_shardsLabel;
+	cocos2d::CCSprite* m_orbsSprite;
+	cocos2d::CCSprite* m_starsSprite;
+	cocos2d::CCSprite* m_moonsSprite;
+	cocos2d::CCSprite* m_diamondsSprite;
+	CurrencySprite* m_keysSprite;
+	CurrencySprite* m_shardsSprite;
+	cocos2d::CCSpriteBatchNode* m_currencyBatchNode;
+	cocos2d::CCSpriteBatchNode* m_orbBatchNode;
+	int m_orbs;
+	int m_stars;
+	int m_moons;
+	int m_diamonds;
+	int m_keys;
+	int m_shards;
+	float m_elapsed;
+	int m_unknown;
+	float m_time;
+	cocos2d::CCPoint m_orbsPosition;
+	cocos2d::CCPoint m_starsPosition;
+	cocos2d::CCPoint m_moonsPosition;
+	cocos2d::CCPoint m_diamondsPosition;
+	cocos2d::CCPoint m_keysPosition;
+	cocos2d::CCPoint m_shardsPosition;
+	bool m_particlesAdded;
+	bool m_objectsAdded;
+	cocos2d::CCNode* m_mainNode;
+	int m_rewardCount;
+	CurrencyRewardType m_rewardType;
 }
 
 [[link(android)]]
 class CurrencySprite : CCSpritePlus {
 	// virtual ~CurrencySprite();
-	// CurrencySprite();
+	CurrencySprite() = win 0x9dbf0;
 
-	static CurrencySprite* create(CurrencySpriteType, bool);
+	static CurrencySprite* create(CurrencySpriteType type, bool burst) = win inline, m1 0x6ba5e0, imac 0x7b3ba0 {
+		auto ret = new CurrencySprite();
+		if (ret->init(type, burst)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn createWithSprite(cocos2d::CCSprite*);
-	bool init(CurrencySpriteType, bool);
-	TodoReturn initWithSprite(cocos2d::CCSprite*);
-	TodoReturn rewardToSpriteType(int);
-	TodoReturn spriteTypeToStat(CurrencySpriteType);
+	static CurrencySprite* createWithSprite(cocos2d::CCSprite*) = win 0xa2ae0, m1 0x6bb2d8, imac 0x7b49b0;
+	bool init(CurrencySpriteType, bool) = win 0xa1390, m1 0x6bc3d0, imac 0x7b5c70;
+	bool initWithSprite(cocos2d::CCSprite*) = m1 0x6bcc84, imac 0x7b6560;
+	static CurrencySpriteType rewardToSpriteType(int) = win 0xa2d00, m1 0x6bce3c, imac 0x7b6710;
+	static gd::string spriteTypeToStat(CurrencySpriteType) = win 0xa2da0, m1 0x6ba4a8, imac 0x7b3ac0;
+
+	float m_unkFloat1;
+	float m_unkFloat2;
+	float m_unkFloat3;
+	float m_remaining;
+	int m_count;
+	cocos2d::CCParticleSystemQuad* m_particleSystem;
+	CurrencySpriteType m_spriteType;
+	cocos2d::CCPoint m_position;
+	cocos2d::CCSprite* m_burstSprite;
 }
 
 [[link(android)]]
