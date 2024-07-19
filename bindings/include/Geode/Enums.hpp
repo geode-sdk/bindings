@@ -339,7 +339,12 @@ enum class PlayerCollisionDirection {
     Left = 2,
     Right = 3
 };
-enum class ChestSpriteState {};
+enum class ChestSpriteState {
+    Locked = 1,
+    Closed = 2,
+    Opening = 3,
+    Opened = 4
+};
 enum class FormatterType {};
 enum class AudioModType {};
 enum class GJAreaActionType {};
@@ -506,6 +511,7 @@ enum class BoomListType {
 };
 
 enum class CurrencySpriteType {
+    Icon = 0,
     Orb = 1,
     Star = 2,
     Diamond = 3,
