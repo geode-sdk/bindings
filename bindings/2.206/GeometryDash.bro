@@ -4479,7 +4479,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 		// TODO: this might do other checks or whatever but i cant be bothered
 		return m_channelIDToChannel[m_musicChannels[musicChannel].m_channelID];
 	}
-	float getBackgroundMusicVolume() = win inline, m1 0x36927c, ios 0x14341c {
+	float getBackgroundMusicVolume() = win inline, imac 0x3eba30, m1 0x36927c, ios 0x14341c {
 		return m_musicVolume;
 	}
 	FMOD::ChannelGroup* getChannelGroup(int, bool) = win 0x55c70;
@@ -4540,11 +4540,17 @@ class FMODAudioEngine : cocos2d::CCNode {
 	}
 	TodoReturn reverbToString(FMODReverbPreset);
 	TodoReturn saveAudioState(FMODAudioState&);
-	void setBackgroundMusicVolume(float) = ios 0x143424;
+	void setBackgroundMusicVolume(float volume) = win inline, imac 0x3eba40, m1 0x369284, ios 0x143424 {
+		m_musicVolume = volume;
+		if (m_backgroundMusicChannel) m_backgroundMusicChannel->setVolume(volume);
+	}
 	void setChannelPitch(int, AudioTargetType, float);
 	void setChannelVolume(int, AudioTargetType, float);
 	void setChannelVolumeMod(int, AudioTargetType, float) = win 0x580d0;
-	void setEffectsVolume(float);
+	void setEffectsVolume(float volume) = win inline, imac 0x3eba80, m1 0x3692a4 {
+		m_sfxVolume = volume;
+		if (m_globalChannel) m_globalChannel->setVolume(volume);
+	}
 	void setMusicTimeMS(unsigned int ms, bool, int channel) = win 0x5af40;
 	void setup() = win 0x52d40, m1 0x36103c, imac 0x3e0e30, ios 0x13e5f0;
 	TodoReturn setupAudioEngine() = win 0x53220;
@@ -5504,7 +5510,7 @@ class GameManager : GManager {
 	TodoReturn lockIcon(int, IconType);
 	TodoReturn logLoadedIconInfo();
 	void openEditorGuide();
-	void playMenuMusic() = ios 0x322df4, win 0x172ec0;
+	void playMenuMusic() = win 0x172ec0, imac 0x378b00, m1 0x304208, ios 0x322df4;
 	TodoReturn playSFXTrigger(SFXTriggerGameObject*);
 	TodoReturn prepareDPadSettings() = imac 0x389af0, m1 0x312eb0;
 	TodoReturn printGJLog();
@@ -12738,7 +12744,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	void exitLayer();
-	void musicSliderChanged(cocos2d::CCObject*) = win 0x351110, ios 0xeec30;
+	void musicSliderChanged(cocos2d::CCObject*) = win 0x351110, imac 0x7a72e0, m1 0x6ae7b8, ios 0xeec30;
 	void onAccount(cocos2d::CCObject* sender) = win 0x351bd0, ios 0xee9dc;
 	void onHelp(cocos2d::CCObject* sender) = win 0x351b80, ios 0xee9ec;
 	void onMenuMusic(cocos2d::CCObject* sender) = ios 0xeecd8;
@@ -12750,7 +12756,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void onSoundtracks(cocos2d::CCObject* sender) = ios 0xeea38;
 	void onSupport(cocos2d::CCObject* sender) = win 0x351c90, ios 0xeea48;
 	void onVideo(cocos2d::CCObject* sender);
-	void sfxSliderChanged(cocos2d::CCObject*) = win 0x351210, ios 0xeec9c;
+	void sfxSliderChanged(cocos2d::CCObject*) = win 0x351210, imac 0x7a7350, m1 0x6ae828, ios 0xeec9c;
 	void tryEnableRecord();
 
 	virtual void customSetup() = win 0x3504c0, imac 0x7a6300, m1 0x6ad80c, ios 0xee0d4;
@@ -12911,7 +12917,7 @@ class PauseLayer : CCBlockLayer {
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	void goEdit() = win 0x35cac0, imac 0x3db8e0, m1 0x35c470;
 	bool init(bool) = win 0x41660, imac 0x5208d0, m1 0x475acc;
-	void musicSliderChanged(cocos2d::CCObject*);
+	void musicSliderChanged(cocos2d::CCObject*) = win 0x35c4d0, imac 0x3db520, m1 0x35c06c;
 	void onEdit(cocos2d::CCObject* sender) = win 0x35c8f0, imac 0x3db1b0, m1 0x35bd28;
 	void onHelp(cocos2d::CCObject* sender);
 	void onNormalMode(cocos2d::CCObject* sender) = win 0x35c640, imac 0x3db360, m1 0x35bebc;
@@ -12925,7 +12931,7 @@ class PauseLayer : CCBlockLayer {
 	void onSettings(cocos2d::CCObject* sender) = win 0x35b8e0, m1 0x35c048, imac 0x3db4f0;
 	void onTime(cocos2d::CCObject* sender);
 	void setupProgressBars();
-	void sfxSliderChanged(cocos2d::CCObject*);
+	void sfxSliderChanged(cocos2d::CCObject*) = imac 0x3db560, m1 0x35c0ac; // merged with OptionsLayer::sfxSliderChanged on Windows
 	TodoReturn tryShowBanner(float);
 	void tryQuit(cocos2d::CCObject* sender) = win 0x35cb90, imac 0x3db3b0, m1 0x35bf08;
 
