@@ -16397,7 +16397,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn preMotionBlurShader();
 	cocos2d::CCPoint prepareTargetContainer() = win 0x45a4e0;
 	TodoReturn prePinchShader();
-	TodoReturn prePixelateShader();
+	void prePixelateShader() = win 0x45a300;
 	TodoReturn preRadialBlurShader();
 	TodoReturn preSepiaShader();
 	TodoReturn preShockLineShader();
@@ -16423,7 +16423,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn setupShockLineUniforms();
 	TodoReturn setupShockWaveUniforms();
 	TodoReturn setupSplitScreenShader();
-	TodoReturn toggleAntiAlias(bool);
+	void toggleAntiAlias(bool) = win 0x456c90;
 	bool triggerBulge(float, float, float, float, float, int, int, float, bool);
 	TodoReturn triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool);
 	TodoReturn triggerChromaticX(float, float, int, float, bool);
@@ -16465,7 +16465,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	cocos2d::CCRenderTexture* m_renderTexture;
 	cocos2d::CCSprite* m_sprite;
 	bool m_antiAlias;
-	bool m_targetAntiAlias;
+	bool m_configuredAntiAlias;
 	void* m_unk3d4;
 	GJBaseGameLayer* m_gameLayer;
 	cocos2d::CCPoint m_somePosition;
