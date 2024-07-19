@@ -349,7 +349,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	void pauseGame() = win 0x81970;
 	TodoReturn pauseSound() = win 0x81a50;
 	void platformShutdown() = win 0x80f30;
-	TodoReturn resumeSound() = win 0x81bf0;
+	void resumeSound() = win 0x81bf0, imac 0x669780, m1 0x585520;
 	void setIdleTimerDisabled(bool);
 	void setupGLView() = win 0x80f50;
 	void showLoadingCircle(bool, bool, bool) = ios 0x2793c0;
@@ -4486,7 +4486,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	float getEffectsVolume() = ios 0x14343c, imac 0x3eba70, m1 0x36929c {
 		return m_sfxVolume;
 	}
-	TodoReturn getFMODStatus(int) = ios 0x1450f8;
+	TodoReturn getFMODStatus(int) = win 0x5ba00, ios 0x1450f8;
 	float getMeteringValue() = imac 0x3e7ec0;
 	TodoReturn getMusicChannelID(int);
 	unsigned int getMusicLengthMS(int channel) = win 0x5b0e0;
@@ -4502,11 +4502,15 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn lengthForSound(gd::string path);
 	TodoReturn loadAndPlayMusic(gd::string path, unsigned int p1, int p2);
 	TodoReturn loadAudioState(FMODAudioState&);
-	void loadMusic(gd::string path, float speed, float p2, float volume, bool shouldLoop, int p5, int p6) = win 0x592b0;
-	void loadMusic(gd::string path);
-	TodoReturn pauseAllAudio();
-	TodoReturn pauseAllEffects();
-	void pauseAllMusic();
+	void loadMusic(gd::string path, float speed, float p2, float volume, bool shouldLoop, int p5, int p6) = win 0x592b0, imac 0x3e5890, m1 0x364748;
+	void loadMusic(gd::string path) {
+		this->loadMusic(path, 1.f, 0.f, 1.f, false, 0, 0);
+	}
+	void pauseAllAudio() = imac 0x3e1ed0, m1 0x362018;
+	void pauseAllEffects() {
+		m_globalChannel->setPaused(true);
+	}
+	void pauseAllMusic() = imac 0x3ebae0, m1 0x3692f4;
 	TodoReturn pauseEffect(unsigned int);
 	void pauseMusic(int musicChannel) = win inline {
 		auto* channel = this->getActiveMusicChannel(musicChannel);
@@ -4519,20 +4523,24 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56050, m1 0x364de4, imac 0x3e6190;
 	TodoReturn playEffectAsync(gd::string path);
 	void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x59140, imac 0x3ebff0, m1 0x3697a8;
-	void preloadEffect(gd::string path) = win 0x583b0;
+	void preloadEffect(gd::string path) = win 0x583b0, imac 0x3e1580, m1 0x3616a4;
 	void preloadEffectAsync(gd::string path);
 	TodoReturn preloadMusic(gd::string path, bool p1, int p2);
 	TodoReturn printResult(FMOD_RESULT);
 	TodoReturn queuedEffectFinishedLoading(gd::string);
-	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int);
+	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x56a70;
 	void queueStartMusic(gd::string audioFilename, float, float, float, bool, int ms, int, int, int, int, bool, int, bool) = win 0x59a40;
 	TodoReturn registerChannel(FMOD::Channel*, int, int);
 	void releaseRemovedSounds();
-	TodoReturn resumeAllAudio() = imac 0x3e1f20;
-	TodoReturn resumeAllEffects();
-	TodoReturn resumeAllMusic() = win 0x58ec0, imac 0x3ebb30;
-	TodoReturn resumeAudio();
-	TodoReturn resumeEffect(unsigned int);
+	void resumeAllAudio() = imac 0x3e1f20, m1 0x362064;
+	void resumeAllEffects() = win inline, imac 0x3eb510, m1 0x368fcc {
+		m_globalChannel->setPaused(false);
+	}
+	void resumeAllMusic() = win 0x58ec0, imac 0x3ebb30, m1 0x369340;
+	void resumeAudio() = win inline, imac 0x3e1d90, m1 0x361edc {
+		this->start();
+	}
+	void resumeEffect(unsigned int) {}
 	void resumeMusic(int musicChannel) = win inline {
 		auto* channel = this->getActiveMusicChannel(musicChannel);
 		if (channel)
@@ -4556,7 +4564,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn setupAudioEngine() = win 0x53220;
 	void start() = win 0x54400;
 	TodoReturn startMusic(int, int, int, int, bool, int);
-	TodoReturn stop();
+	void stop();
 	void stopAllEffects() = win 0x58a00, imac 0x3e2040, m1 0x362154, ios 0x13f128;
 	void stopAllMusic() = win inline, m1 0x362440, imac 0x3e2820, ios 0x13f1d4 {
 		if (m_backgroundMusicChannel) m_backgroundMusicChannel->stop();
@@ -4566,7 +4574,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	}
 	TodoReturn stopAndGetFade(FMOD::Channel*);
 	TodoReturn stopAndRemoveMusic(int);
-	TodoReturn stopChannel(FMOD::Channel*, bool, float);
+	void stopChannel(FMOD::Channel*, bool, float) = win 0x57960;
 	TodoReturn stopChannel(int, AudioTargetType, bool, float);
 	TodoReturn stopChannel(int);
 	TodoReturn stopChannelTween(int, AudioTargetType, AudioModType);
@@ -15870,15 +15878,15 @@ class SetupSFXEditPopup : SetupAudioTriggerPopup {
 class SetupSFXPopup : SetupAudioTriggerPopup, CustomSFXDelegate, SFXBrowserDelegate {
 	// virtual ~SetupSFXPopup();
 
-	static SetupSFXPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*);
+	static SetupSFXPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*) = win 0x41ba10, imac 0x4c27a0, m1 0x4226d8;
 
 	TodoReturn createSFXWidget();
-	bool init(SFXTriggerGameObject*, cocos2d::CCArray*);
+	bool init(SFXTriggerGameObject*, cocos2d::CCArray*) = win 0x41bb60, imac 0x4c2a10, m1 0x42287c;
 	void onBrowseSFX(cocos2d::CCObject* sender);
 	TodoReturn updateLength();
 
 	virtual void pageChanged() = m1 0x423934, imac 0x4c3dc0;
-	virtual void onClose(cocos2d::CCObject* sender) = m1 0x423988, imac 0x4c3e10;
+	virtual void onClose(cocos2d::CCObject* sender) = win 0x41cab0, m1 0x423988, imac 0x4c3e10;
 	virtual void onPlusButton(cocos2d::CCObject* sender) = m1 0x423e6c, imac 0x4c43b0;
 	virtual void valueDidChange(int, float) = m1 0x423d48, imac 0x4c4290;
 	virtual void sfxObjectSelected(SFXInfoObject*) {}
