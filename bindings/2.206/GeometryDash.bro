@@ -4479,7 +4479,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 		// TODO: this might do other checks or whatever but i cant be bothered
 		return m_channelIDToChannel[m_musicChannels[musicChannel].m_channelID];
 	}
-	float getBackgroundMusicVolume() = win inline, imac 0x3eba30, m1 0x36927c, ios 0x14341c {
+	float getBackgroundMusicVolume() = win inline, m1 0x36927c, ios 0x14341c {
 		return m_musicVolume;
 	}
 	FMOD::ChannelGroup* getChannelGroup(int, bool) = win 0x55c70;
@@ -4540,17 +4540,11 @@ class FMODAudioEngine : cocos2d::CCNode {
 	}
 	TodoReturn reverbToString(FMODReverbPreset);
 	TodoReturn saveAudioState(FMODAudioState&);
-	void setBackgroundMusicVolume(float volume) = win inline, imac 0x3eba40, m1 0x369284, ios 0x143424 {
-		m_musicVolume = volume;
-		if (m_backgroundMusicChannel) m_backgroundMusicChannel->setVolume(volume);
-	}
+	void setBackgroundMusicVolume(float) = ios 0x143424;
 	void setChannelPitch(int, AudioTargetType, float);
 	void setChannelVolume(int, AudioTargetType, float);
 	void setChannelVolumeMod(int, AudioTargetType, float) = win 0x580d0;
-	void setEffectsVolume(float volume) = win inline, imac 0x3eba80, m1 0x3692a4 {
-		m_sfxVolume = volume;
-		if (m_globalChannel) m_globalChannel->setVolume(volume);
-	}
+	void setEffectsVolume(float);
 	void setMusicTimeMS(unsigned int ms, bool, int channel) = win 0x5af40;
 	void setup() = win 0x52d40, m1 0x36103c, imac 0x3e0e30, ios 0x13e5f0;
 	TodoReturn setupAudioEngine() = win 0x53220;
@@ -5510,7 +5504,7 @@ class GameManager : GManager {
 	TodoReturn lockIcon(int, IconType);
 	TodoReturn logLoadedIconInfo();
 	void openEditorGuide();
-	void playMenuMusic() = win 0x172ec0, imac 0x378b00, m1 0x304208, ios 0x322df4;
+	void playMenuMusic() = ios 0x322df4, win 0x172ec0;
 	TodoReturn playSFXTrigger(SFXTriggerGameObject*);
 	TodoReturn prepareDPadSettings() = imac 0x389af0, m1 0x312eb0;
 	TodoReturn printGJLog();
@@ -12744,7 +12738,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	void exitLayer();
-	void musicSliderChanged(cocos2d::CCObject*) = win 0x351110, imac 0x7a72e0, m1 0x6ae7b8, ios 0xeec30;
+	void musicSliderChanged(cocos2d::CCObject*) = win 0x351110, ios 0xeec30;
 	void onAccount(cocos2d::CCObject* sender) = win 0x351bd0, ios 0xee9dc;
 	void onHelp(cocos2d::CCObject* sender) = win 0x351b80, ios 0xee9ec;
 	void onMenuMusic(cocos2d::CCObject* sender) = ios 0xeecd8;
@@ -12756,7 +12750,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void onSoundtracks(cocos2d::CCObject* sender) = ios 0xeea38;
 	void onSupport(cocos2d::CCObject* sender) = win 0x351c90, ios 0xeea48;
 	void onVideo(cocos2d::CCObject* sender);
-	void sfxSliderChanged(cocos2d::CCObject*) = win 0x351210, imac 0x7a7350, m1 0x6ae828, ios 0xeec9c;
+	void sfxSliderChanged(cocos2d::CCObject*) = win 0x351210, ios 0xeec9c;
 	void tryEnableRecord();
 
 	virtual void customSetup() = win 0x3504c0, imac 0x7a6300, m1 0x6ad80c, ios 0xee0d4;
@@ -12917,7 +12911,7 @@ class PauseLayer : CCBlockLayer {
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	void goEdit() = win 0x35cac0, imac 0x3db8e0, m1 0x35c470;
 	bool init(bool) = win 0x41660, imac 0x5208d0, m1 0x475acc;
-	void musicSliderChanged(cocos2d::CCObject*) = win 0x35c4d0, imac 0x3db520, m1 0x35c06c;
+	void musicSliderChanged(cocos2d::CCObject*);
 	void onEdit(cocos2d::CCObject* sender) = win 0x35c8f0, imac 0x3db1b0, m1 0x35bd28;
 	void onHelp(cocos2d::CCObject* sender);
 	void onNormalMode(cocos2d::CCObject* sender) = win 0x35c640, imac 0x3db360, m1 0x35bebc;
@@ -12931,7 +12925,7 @@ class PauseLayer : CCBlockLayer {
 	void onSettings(cocos2d::CCObject* sender) = win 0x35b8e0, m1 0x35c048, imac 0x3db4f0;
 	void onTime(cocos2d::CCObject* sender);
 	void setupProgressBars();
-	void sfxSliderChanged(cocos2d::CCObject*) = imac 0x3db560, m1 0x35c0ac; // merged with OptionsLayer::sfxSliderChanged on Windows
+	void sfxSliderChanged(cocos2d::CCObject*);
 	TodoReturn tryShowBanner(float);
 	void tryQuit(cocos2d::CCObject* sender) = win 0x35cb90, imac 0x3db3b0, m1 0x35bf08;
 
@@ -16397,7 +16391,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn preMotionBlurShader();
 	cocos2d::CCPoint prepareTargetContainer() = win 0x45a4e0;
 	TodoReturn prePinchShader();
-	void prePixelateShader() = win 0x45a300;
+	TodoReturn prePixelateShader();
 	TodoReturn preRadialBlurShader();
 	TodoReturn preSepiaShader();
 	TodoReturn preShockLineShader();
@@ -16423,7 +16417,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn setupShockLineUniforms();
 	TodoReturn setupShockWaveUniforms();
 	TodoReturn setupSplitScreenShader();
-	void toggleAntiAlias(bool) = win 0x456c90;
+	TodoReturn toggleAntiAlias(bool);
 	bool triggerBulge(float, float, float, float, float, int, int, float, bool);
 	TodoReturn triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool);
 	TodoReturn triggerChromaticX(float, float, int, float, bool);
@@ -16455,9 +16449,9 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn updateShockWaveCenter(cocos2d::CCPoint);
 	bool updateZLayer(int, int, bool); //inline on win
 
-	virtual bool init() = win 0x455e50, m1 0x350b50, imac 0x3ce300;
-	virtual void update(float) = win 0x456d00, m1 0x352250, imac 0x3cfaa0;
-	virtual void visit() = win 0x45ce00, m1 0x356eb0, imac 0x3d5910;
+	virtual void update(float) = win 0x455e50, m1 0x352250, imac 0x3cfaa0;
+	virtual bool init() = win 0x456d00, m1 0x350b50, imac 0x3ce300;
+	virtual void visit() = win 0x45CE00, m1 0x356eb0, imac 0x3d5910;
 
 	GJShaderState m_state;
 	bool m_unk3c0;
@@ -16465,7 +16459,7 @@ class ShaderLayer : cocos2d::CCLayer {
 	cocos2d::CCRenderTexture* m_renderTexture;
 	cocos2d::CCSprite* m_sprite;
 	bool m_antiAlias;
-	bool m_configuredAntiAlias;
+	bool m_targetAntiAlias;
 	void* m_unk3d4;
 	GJBaseGameLayer* m_gameLayer;
 	cocos2d::CCPoint m_somePosition;
@@ -17303,13 +17297,13 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	TodoReturn scrollToIndexPath(CCIndexPath&);
 	TodoReturn touchFinish(cocos2d::CCTouch*);
 
-	virtual void onEnter() = imac 0x62e110;
-	virtual void onExit() = imac 0x62e120;
+	virtual void onEnter() = imac 0x62e110 { cocos2d::CCLayer::onEnter(); }
+	virtual void onExit() = imac 0x62e120 { cocos2d::CCLayer::onExit(); }
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x73d60, m1 0x54f1d8, ios 0x3101d0, imac 0x62e2c0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x73ff0, m1 0x54fc20, ios 0x310988, imac 0x62ee00;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x73f10, m1 0x54f9d8, imac 0x62ebc0;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x73f70, m1 0x54fb44, imac 0x62ed40;
-	virtual void registerWithTouchDispatcher() = m1 0x54f060, ios 0x310098, imac 0x62e130;
+	virtual void registerWithTouchDispatcher() = win 0x3d720, m1 0x54f060, ios 0x310098, imac 0x62e130;
 	virtual void scrollWheel(float, float) = win 0x745a0, m1 0x54fd14, ios 0x310a50, imac 0x62eef0;
 	virtual void scrllViewWillBeginDecelerating(CCScrollLayerExt*) {}
 	virtual void scrollViewDidEndDecelerating(CCScrollLayerExt*) {}
