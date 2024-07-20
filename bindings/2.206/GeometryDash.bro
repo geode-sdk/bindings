@@ -13203,7 +13203,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn playerIsMovingUp();
 	TodoReturn playerTeleported();
 	TodoReturn playingEndEffect() = m1 0x398a84, imac 0x423eb0; // inlined on windows
-	void playSpawnEffect() = win 0x3754b0;
+	void playSpawnEffect() = win 0x3754b0, imac 0x41c710, m1 0x391bb4;
 	void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x373200, imac 0x417a50, m1 0x38d940;
 	void postCollision(float) = win 0x36b6b0, m1 0x385734, imac 0x40d9d0;
 	void preCollision() = m1 0x3855d8;
