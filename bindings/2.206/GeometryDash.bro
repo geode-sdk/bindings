@@ -3325,7 +3325,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onResetUnusedColors(cocos2d::CCObject* sender);
 	void onResume(cocos2d::CCObject* sender) = win 0xd9d40, imac 0x28f5e0, m1 0x232c7c;
 	void onSave(cocos2d::CCObject* sender) = win 0xda7e0;
-	void onSaveAndExit(cocos2d::CCObject* sender) = win 0xda910;
+	void onSaveAndExit(cocos2d::CCObject* sender) = win 0xda910, imac 0x28f6c0, m1 0x232d78;
 	void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xda5a0, imac 0x28f650, m1 0x232ce8;
 	void onSelectAll(cocos2d::CCObject* sender) = win 0xd9470;
 	void onSelectAllLeft(cocos2d::CCObject* sender) = win 0xd95a0;
