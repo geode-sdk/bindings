@@ -16991,9 +16991,26 @@ class SongInfoObject : cocos2d::CCNode {
 class SongObject : cocos2d::CCObject {
 	// virtual ~SongObject();
 
-	static SongObject* create(int);
+	SongObject() = win inline {
+		m_audioID = 0;
+	}
 
-	bool init(int);
+	static SongObject* create(int audioID) = win inline {
+		auto ret = new SongObject();
+		if(ret->init(audioID)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+
+	bool init(int audioID) = win inline {
+		m_audioID = audioID;
+		return true;
+	}
+
+	int m_audioID;
 }
 
 [[link(android)]]
