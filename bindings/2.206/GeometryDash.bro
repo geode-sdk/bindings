@@ -7639,9 +7639,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCDictionary* m_unk3478;
 	cocos2d::CCNode* m_unk3480;
 	double m_timePlayed;
-	PAD = win 0x8, android32 0x0, android64 0x0, mac 0x0;
+	bool m_levelEndAnimationStarted;
+	PAD = win 0x7, android32 0x0, android64 0x0, mac 0x0;
 	bool m_cantPause;
-	PAD = win 0x18, android32 0xB, android64 0xF, mac 0x30;
+	PAD = win 0x18, android32 0x7, android64 0x7, mac 0x30;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
 	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90;
 	gd::vector<gd::vector<int>*> m_sectionSizes;
@@ -8430,8 +8431,8 @@ class GJGameState {
 	bool m_unkBool31;
 	unsigned int m_unkUint20;
 	bool m_unkBool32;
-	unsigned int m_unkUint21;
-	unsigned int m_unkUint22;
+	unsigned int m_pauseCounter;
+	unsigned int m_pauseBufferTimer;
 }
 
 [[link(android)]]
