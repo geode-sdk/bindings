@@ -182,6 +182,8 @@ enum class PlayerButton {
     Right = 3,
 };
 enum class GhostType {
+    Disabled = 0,
+    Enabled = 1,
 };
 enum class TableViewCellEditingStyle {
 };
