@@ -16788,7 +16788,7 @@ class Slider : cocos2d::CCLayer {
 		return Slider::create(target, handler, 1.f);
 	}
 	static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, float scale) = imac 0x3033e0 {
-		return Slider::create(target, handler, "sliderBar.png", "slidergroove.png", "sliderthumb.png", "sliderthumbsel.png", idk);
+		return Slider::create(target, handler, "sliderBar.png", "slidergroove.png", "sliderthumb.png", "sliderthumbsel.png", scale);
 	}
 
 	TodoReturn disableSlider();
