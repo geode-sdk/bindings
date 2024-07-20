@@ -200,8 +200,8 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkUint19, 0x6ac);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool31, 0x6b0);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint20, 0x6b4);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool32, 0x6b8);
-GEODE_MEMBER_CHECK(GJGameState, m_unkUint21, 0x6bc);
-GEODE_MEMBER_CHECK(GJGameState, m_unkUint22, 0x6c0);
+GEODE_MEMBER_CHECK(GJGameState, m_pauseCounter, 0x6bc);
+GEODE_MEMBER_CHECK(GJGameState, m_pauseBufferTimer, 0x6c0);
 
 GEODE_SIZE_CHECK(GameObject, 0x550);
 GEODE_MEMBER_CHECK(GameObject, m_outerSectionIndex, 0x278);
