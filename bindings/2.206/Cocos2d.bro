@@ -666,15 +666,17 @@ class cocos2d::CCFileUtils {
 
 [[link(win, android)]]
 class cocos2d::CCGLProgram {
-	bool initWithVertexShaderByteArray(char const*, char const*);
-	bool initWithVertexShaderFilename(char const*, char const*);
+	virtual bool initWithVertexShaderByteArray(char const*, char const*) = m1 0x3a71ac;
+	virtual bool initWithVertexShaderFilename(char const*, char const*);
 
 	unsigned int const getProgram();
-	int getUniformLocationForName(char const*);
+	int getUniformLocationForName(char const* rndm) = win inline, m1 inline {
+		return glGetUniformLocation(getProgram(), rndm);
+	}
 
-	void setUniformLocationWith1f(int, float);
+	void setUniformLocationWith1f(int, float) = m1 0x3a82b4;
 	void setUniformLocationWith1i(int, int);
-	void setUniformLocationWith2f(int, float, float);
+	void setUniformLocationWith2f(int, float, float) = m1 0x3a8314;
 	void setUniformLocationWith2fv(int, float*, unsigned int);
 	void setUniformLocationWith2i(int, int, int);
 	void setUniformLocationWith2iv(int, int*, unsigned int);
@@ -691,18 +693,18 @@ class cocos2d::CCGLProgram {
 	void setUniformsForBuiltins() = m1 0x3a8704, imac 0x435940, ios 0x13c230;
 
 	// CCGLProgram(cocos2d::CCGLProgram const&);
-	// CCGLProgram();
-	void addAttribute(char const*, unsigned int);
+	CCGLProgram() = m1 0x3a6fd8;
+	virtual void addAttribute(char const*, unsigned int) = m1 0x3a744c;
 	bool compileShader(unsigned int*, unsigned int, char const*);
 	char const* description();
 	char const* fragmentShaderLog();
-	bool link();
+	virtual bool link() = m1 0x3a75e8;
 	// char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
 	char const* programLog();
-	void reset() = m1 0x3a89bc;
-	bool updateUniformLocation(int, void*, unsigned int);
-	void updateUniforms();
-	void use() = m1 0x3a758c, imac 0x434970, ios 0x13b990;
+	virtual void reset() = m1 0x3a89bc;
+	virtual bool updateUniformLocation(int, void*, unsigned int) = m1 0x3a7b14;
+	virtual void updateUniforms() = m1 0x3a7460;
+	virtual void use() = m1 0x3a758c, imac 0x434970, ios 0x13b990;
 	char const* vertexShaderLog();
 }
 
@@ -1402,7 +1404,7 @@ class cocos2d::CCDirector {
 	int getSmoothFixCounter() const;
 	unsigned int getTotalFrames();
 	cocos2d::CCPoint getVisibleOrigin();
-	cocos2d::CCSize getVisibleSize();
+	cocos2d::CCSize getVisibleSize() = m1 0x3f2538;
 	cocos2d::CCSize getWinSize() = m1 0x3f1edc, imac 0x48c750, ios 0x1818b4;
 	cocos2d::CCSize getWinSizeInPixels();
 	float getZEye();
