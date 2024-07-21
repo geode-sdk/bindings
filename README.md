@@ -16,7 +16,7 @@ class Example : Base1, Base2 {
     /// @param param This param does things
     /// @param other This controls how the other param acts
     /// @returns A number depicting what it did
-    int binding(float param, bool other) = win 0x123456, mac 0x789012;
+    int binding(float param, bool other) = win 0x123456, m1 0x789012;
 
     // If the binding is inlined on some platform, provide a reconstructed 
     // definition for it
@@ -24,6 +24,10 @@ class Example : Base1, Base2 {
         if (x) {
             // Do stuff
         }
+    }
+
+    void otherInlined() = win inline, imac 0x442110 {
+        // code
     }
 
     // Statics and virtuals are as you'd expect
@@ -36,18 +40,15 @@ class Example : Base1, Base2 {
     // Remember to use fully qualified names for Cocos2d classes
     void onTrigger(cocos2d::CCObject*);
 
-    // Some functions that are passed as callbacks have unpredictable calling 
-    // conventions. Use the `callback` keyword if a function is __thiscall 
-    // when it would otherwise be inferred as __membercall
-    callback void unpredictable(float);
-
     // Add members like you would on a C++ class
     // Members are in the format m_camelCase
     int m_jumpCount;
     // Add pads for skipping members, platform dependant
-    PAD = win 0x18, android32 0x4, android64 0x8;
+    PAD = win 0x20, android32 0x4, android64 0x8, imac 0x10, m1 0x10;
     // Use std::array for C arrays
     std::array<float, 2000> m_lastYPositions;
+    // There are shortcuts for some platform combinations
+    PAD = android 0x10, mac 0x18;
 }
 ```
 
@@ -72,4 +73,4 @@ You can automatically sync addresses from-and-to Broma using the [`SyncBromaScri
 | Game version | The version of GD you have open in Ghidra, with which you want to merge bindings. Only options that have a bindings directory are shown. |
 | Import from Broma | Import function signatures & addresses from Broma into Ghidra. This assumes that Broma is always correct for everything; if there is a signature mismatch, or an incorrect address in Broma, you will have to manually edit the Broma file to fix the conflict. |
 | Export to Broma | Export function addresses, parameter names, and return types from Ghidra into Broma. Signatures are not exported; Broma is always used as the source of truth for function signatures. |
-| Set optcall & membercall | This option only matters on Windows; automatically corrects the calling convention for functions that use the optimized `__fastcall` / `__thiscall` conventions. This will only set the custom convention for functions where it makes a difference; also, if the signature of the function changes, you will need to rerun the script to have it correct the calling convention again. |
+| Set optcall & membercall | This option only matters on Windows before 2.206; automatically corrects the calling convention for functions that use the optimized `__fastcall` / `__thiscall` conventions. This will only set the custom convention for functions where it makes a difference; also, if the signature of the function changes, you will need to rerun the script to have it correct the calling convention again. |
