@@ -319,14 +319,41 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
 [[link(android)]]
 class AnimatedShopKeeper : CCAnimatedSprite {
 	// virtual ~AnimatedShopKeeper();
+	AnimatedShopKeeper() {
+		m_type = ShopType::Normal;
+		m_idleInt1 = 0;
+		m_idleInt2 = 0;
+		m_looking = false;
+		m_reacting = false;
+		m_reactCount = 0;
+		m_gruntIndex = 0;
+	}
 
-	static AnimatedShopKeeper* create(ShopType);
+	static AnimatedShopKeeper* create(ShopType type) = win inline {
+		auto ret = new AnimatedShopKeeper();
+		if (ret->init(type)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(ShopType);
-	TodoReturn playReactAnimation();
-	TodoReturn startAnimating();
+	bool init(ShopType type) = win inline {
+		//todo
+	}
+	void playReactAnimation() = win 0x29d5f0;
+	void startAnimating() = win 0x29d880;
 
-	virtual void animationFinished(char const*) = m1 0x2b7254, imac 0x3273d0;
+	virtual void animationFinished(char const*) = win 0x29d910, m1 0x2b7254, imac 0x3273d0;
+
+	ShopType m_type;
+	int m_idleInt1;
+	int m_idleInt2;
+	bool m_looking;
+	bool m_reacting;
+	int m_reactCount;
+	int m_gruntIndex;
 }
 
 [[link(android)]]
