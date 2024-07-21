@@ -9584,7 +9584,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 		m_affordDialogIndex = 0;
 	}
 
-	static GJShopLayer* create(ShopType type) = win inline {
+	static GJShopLayer* create(ShopType type) = win inline, m1 0x2b1fb0, imac 0x3218f0 {
 		auto ret = new GJShopLayer();
 		if (ret->init(type)) {
 			ret->autorelease();
@@ -9594,17 +9594,17 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 		return nullptr;
 	}
 
-	void exitVideoAdItems();
-	bool init(ShopType) = win 0x297400;
-	void onBack(cocos2d::CCObject* sender) = win 0x29a840;
-	void onCommunityCredits(cocos2d::CCObject* sender) = win 0x299680;
-	void onPlushies(cocos2d::CCObject* sender);
-	void onSelectItem(cocos2d::CCObject* sender) = win 0x299850;
-	void onVideoAd(cocos2d::CCObject* sender);
-	static cocos2d::CCScene* scene(ShopType) = win 0x297280;
-	void showCantAffordMessage(GJStoreItem*) = win 0x2999d0;
-	void showReactMessage() = win 0x29aa70;
-	void updateCurrencyCounter() = win 0x299820;
+	void exitVideoAdItems() = m1 0x2b3eb4, imac 0x3238a0;
+	bool init(ShopType) = win 0x297400, m1 0x2b2094, imac 0x321a00;
+	void onBack(cocos2d::CCObject* sender) = win 0x29a840, m1 0x2b39b0, imac 0x3233c0;
+	void onCommunityCredits(cocos2d::CCObject* sender) = win 0x299680, m1 0x2b3938, imac 0x323340;
+	void onPlushies(cocos2d::CCObject* sender) = m1 0x2b3934, imac 0x323330;
+	void onSelectItem(cocos2d::CCObject* sender) = win 0x299850, m1 0x2b3b6c, imac 0x323570;
+	void onVideoAd(cocos2d::CCObject* sender) = m1 0x2b3964, imac 0x323370;
+	static cocos2d::CCScene* scene(ShopType) = win 0x297280, m1 0x2b1eac, imac 0x3217b0;
+	void showCantAffordMessage(GJStoreItem*) = win 0x2999d0, m1 0x2b4068, imac 0x323e80;
+	void showReactMessage() = win 0x29aa70, m1 0x2b4bc0, imac 0x3246f0;
+	void updateCurrencyCounter() = win 0x299820, m1 0x2b3fd8, imac 0x3239c0;
 
 	virtual void onExit() = win 0x299400, m1 0x2b3cb0, imac 0x323680;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x29c3c0, m1 0x2b5e94, imac 0x325d60;
@@ -9811,7 +9811,7 @@ class GJStoreItem : cocos2d::CCNode {
 		m_shopType = ShopType::Normal;
 	}	
 
-	static GJStoreItem* create(int index, int typeID, UnlockType type, int price, ShopType shopType) = win inline {
+	static GJStoreItem* create(int index, int typeID, UnlockType type, int price, ShopType shopType) = win inline, m1 0x5a628, imac 0x653b0 {
 		auto ret = new GJStoreItem();
 		if (ret->init(index, typeID, type, price, shopType)) {
 			ret->autorelease();
@@ -9821,10 +9821,10 @@ class GJStoreItem : cocos2d::CCNode {
 		return nullptr;
 	}
 
-	gd::string getCurrencyKey() = win inline {
+	gd::string getCurrencyKey() = win inline, m1 0x5a9f4, imac 0x65770 {
 		return m_shopType == ShopType::Diamond ? "29" : "14";
 	}
-	bool init(int index, int typeID, UnlockType type, int price, ShopType shopType) = win inline {
+	bool init(int index, int typeID, UnlockType type, int price, ShopType shopType) = win inline, m1 0x7fc10, imac 0x8ed20 {
 		if (!CCNode::init()) return false;
 		m_index = index;
 		m_typeID = typeID;
@@ -14003,13 +14003,16 @@ class PurchaseItemPopup : FLAlertLayer {
 	// virtual ~PurchaseItemPopup();
 	// PurchaseItemPopup();
 
-	static PurchaseItemPopup* create(GJStoreItem*);
+	static PurchaseItemPopup* create(GJStoreItem*) = win 0x29c5d0, m1 0x2b4444, imac 0x323e80;
 
-	bool init(GJStoreItem*);
-	void onClose(cocos2d::CCObject* sender);
-	void onPurchase(cocos2d::CCObject* sender);
+	bool init(GJStoreItem*) = win 0x29c6c0, m1 0x2b6508, imac 0x326540;
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x2b7040, imac 0x3271d0;
+	void onPurchase(cocos2d::CCObject* sender) = win 0x29d570, m1 0x2b707c, imac 0x327200;
 
-	virtual void keyBackClicked() = m1 0x2b70f0, imac 0x327270;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x2b70f0, imac 0x327270;
+
+	GJStoreItem* m_storeItem;
+	GJPurchaseDelegate* m_delegate;
 }
 
 [[link(android)]]
