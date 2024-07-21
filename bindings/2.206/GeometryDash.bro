@@ -2155,9 +2155,9 @@ class CommentUploadDelegate {
 class CommunityCreditNode : cocos2d::CCNode {
 	// virtual ~CommunityCreditNode();
 
-	static CommunityCreditNode* create(int, int, int, gd::string) = win 0x926b0;
+	static CommunityCreditNode* create(int, int, int, gd::string) = win 0x926b0, m1 0x2adbac, imac 0x31cd40;
 
-	bool init(int unlockType, int iconID, int unknown, gd::string author) = win inline {
+	bool init(int unlockType, int iconID, int unknown, gd::string author) = win inline, m1 0x2add1c, imac 0x31cec0 {
 		if (!CCNode::init()) return false;
 		m_unlockType = unlockType;
 		m_iconID = iconID;
@@ -2182,7 +2182,7 @@ class CommunityCreditsPage : FLAlertLayer {
 		m_page = -1;
 	}
 
-	static CommunityCreditsPage* create() = win inline {
+	static CommunityCreditsPage* create() = win inline, m1 0x2adfa4, imac 0x31d260 {
 		auto ret = new CommunityCreditsPage();
 		if (ret->init()) {
 			ret->autorelease();
@@ -2193,9 +2193,9 @@ class CommunityCreditsPage : FLAlertLayer {
 	}
 
 	void FLAlert_Clicked(FLAlertLayer*, bool);
-	void goToPage(int) = win 0x94830;
-	void onClose(cocos2d::CCObject* sender) = win 0x82fc0;
-	void onSwitchPage(cocos2d::CCObject* sender) = win 0x947f0;
+	void goToPage(int) = win 0x94830, m1 0x2b00a0, imac 0x31f610;
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x2b0024, imac 0x31f5a0;
+	void onSwitchPage(cocos2d::CCObject* sender) = win 0x947f0, m1 0x2b0060, imac 0x31f5d0;
 
 	virtual bool init() = win 0x927f0, m1 0x2ae0a8, imac 0x31d3b0;
 	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x2b03c8, imac 0x31f930;
