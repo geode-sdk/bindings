@@ -3125,7 +3125,7 @@ class DrawGridLayer : cocos2d::CCLayer {
 	TodoReturn addToSpeedObjects(EffectGameObject*);
 	TodoReturn getPortalMinMax(GameObject*);
 	bool init(cocos2d::CCNode*, LevelEditorLayer*);
-	void loadTimeMarkers(gd::string);
+	void loadTimeMarkers(gd::string) = win 0x2d0030;
 	float posForTime(float);
 	void postUpdate();
 	TodoReturn removeAudioLineObject(AudioLineGuideGameObject*);
@@ -3135,7 +3135,7 @@ class DrawGridLayer : cocos2d::CCLayer {
 	TodoReturn sortSpeedObjects();
 	float timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int);
 	TodoReturn updateMusicGuideTime(float);
-	TodoReturn updateTimeMarkers();
+	void updateTimeMarkers();
 
 	virtual void update(float) = win 0x2d0350, m1 0xdbf54, imac 0xf9a00;
 	virtual void draw() = win 0x2d0550, m1 0xdc064, imac 0xf9b90;
@@ -11699,8 +11699,8 @@ class LevelTools {
 	static gd::string nameForArtist(int) = win 0x308950;
 	static gd::string ngURLForArtist(int) = win 0x309f70;
 	static TodoReturn offsetBPMForTrack(int);
-	static float posForTime(float, cocos2d::CCArray*, int, bool, int&);
-	static float posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int);
+	static float posForTime(float time, cocos2d::CCArray* p1, int p2, bool p3, int& p4);
+	static float posForTimeInternal(float time, cocos2d::CCArray* gameObjects, int speedmodValue, bool disabledSpeedmod, bool, bool, int&, int) = win 0x30c400;
 	static TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
 	static TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*);
 	static float timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int);
