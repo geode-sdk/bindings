@@ -9602,9 +9602,9 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	void onSelectItem(cocos2d::CCObject* sender) = win 0x299850;
 	void onVideoAd(cocos2d::CCObject* sender);
 	static cocos2d::CCScene* scene(ShopType) = win 0x297280;
-	void showCantAffordMessage(GJStoreItem*);
-	void showReactMessage();
-	void updateCurrencyCounter();
+	void showCantAffordMessage(GJStoreItem*) = win 0x2999d0;
+	void showReactMessage() = win 0x29aa70;
+	void updateCurrencyCounter() = win 0x299820;
 
 	virtual void onExit() = win 0x299400, m1 0x2b3cb0, imac 0x323680;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x29c3c0, m1 0x2b5e94, imac 0x325d60;
@@ -9804,15 +9804,35 @@ class GJSpriteColor {
 class GJStoreItem : cocos2d::CCNode {
 	// virtual ~GJStoreItem();
 	GJStoreItem() {
-		
+		m_index = 0;
+		m_typeID = 0;
+		m_unlockType = 0;
+		m_price = 0;
+		m_shopType = ShopType::Normal;
 	}	
 
-	static GJStoreItem* create(int index, int typeID, UnlockType type, int price, ShopType shopType); // win inline
+	static GJStoreItem* create(int index, int typeID, UnlockType type, int price, ShopType shopType) = win inline {
+		auto ret = new GJStoreItem();
+		if (ret->init(index, typeID, type, price, shopType)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	gd::string getCurrencyKey() = win inline {
 		return m_shopType == ShopType::Diamond ? "29" : "14";
 	}
-	bool init(int, int, int, int, ShopType type);
+	bool init(int index, int typeID, UnlockType type, int price, ShopType shopType) = win inline {
+		if (!CCNode::init()) return false;
+		m_index = index;
+		m_typeID = typeID;
+		m_unlockType = unlockType;
+		m_price = price;
+		m_shopType = shopType;
+		return true;
+	}
 
 	geode::SeedValueRSV m_index;
 	geode::SeedValueRSV m_typeID;
