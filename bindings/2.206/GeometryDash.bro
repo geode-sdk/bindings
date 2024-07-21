@@ -17946,10 +17946,10 @@ class UploadActionPopup : FLAlertLayer {
 	virtual void keyBackClicked() = win 0x2837a0, m1 0x24172c, imac 0x29f790;
 
 	UploadPopupDelegate* m_delegate;
-    	TextArea* m_textArea;
-    	LoadingCircle* m_loadingCircle;
-    	CCMenuItemSpriteExtra* m_closeButton;
-    	bool m_succeeded;
+	TextArea* m_textArea;
+	LoadingCircle* m_loadingCircle;
+	CCMenuItemSpriteExtra* m_closeButton;
+	bool m_succeeded;
 }
 
 [[link(android)]]
