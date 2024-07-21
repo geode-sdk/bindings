@@ -9817,7 +9817,7 @@ class GJStoreItem : cocos2d::CCNode {
 		m_shopType = ShopType::Normal;
 	}	
 
-	static GJStoreItem* create(int index, int typeID, UnlockType unlockType, int price, ShopType shopType) = win inline, m1 0x5a628, imac 0x653b0 {
+	static GJStoreItem* create(int index, int typeID, int unlockType, int price, ShopType shopType) = win inline, m1 0x5a628, imac 0x653b0 {
 		auto ret = new GJStoreItem();
 		if (ret->init(index, typeID, unlockType, price, shopType)) {
 			ret->autorelease();
@@ -9830,7 +9830,7 @@ class GJStoreItem : cocos2d::CCNode {
 	gd::string getCurrencyKey() = win inline, m1 0x5a9f4, imac 0x65770 {
 		return m_shopType == ShopType::Diamond ? "29" : "14";
 	}
-	bool init(int index, int typeID, UnlockType unlockType, int price, ShopType shopType) = win inline, m1 0x7fc10, imac 0x8ed20 {
+	bool init(int index, int typeID, int unlockType, int price, ShopType shopType) = win inline, m1 0x7fc10, imac 0x8ed20 {
 		if (!CCNode::init()) return false;
 		m_index = index;
 		m_typeID = typeID;
