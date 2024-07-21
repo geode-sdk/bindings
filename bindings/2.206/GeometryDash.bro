@@ -4510,7 +4510,13 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void pauseAllEffects() {
 		m_globalChannel->setPaused(true);
 	}
-	void pauseAllMusic() = imac 0x3ebae0, m1 0x3692f4;
+	void pauseAllMusic() = win inline, imac 0x3ebae0, m1 0x3692f4 {
+		for (auto& [id, channel] : m_musicChannels) {
+			auto ch = this->channelForChannelID(channel.m_channelID);
+			if (ch)
+				ch->setPaused(true);
+		}
+	}
 	TodoReturn pauseEffect(unsigned int);
 	void pauseMusic(int musicChannel) = win inline {
 		auto* channel = this->getActiveMusicChannel(musicChannel);
