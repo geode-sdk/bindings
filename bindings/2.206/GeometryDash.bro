@@ -7124,7 +7124,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn positionUIObjects();
 	TodoReturn prepareSavePositionObjects();
 	TodoReturn prepareTransformParent(bool);
-	TodoReturn preResumeGame();
+	void preResumeGame() = m1 0x11a3ac;
 	TodoReturn preUpdateVisibility(float);
 	void processActivatedAudioTriggers(float) = win 0x232a70;
 	TodoReturn processAdvancedFollowAction(AdvancedFollowInstance&, bool, float);
@@ -8566,17 +8566,17 @@ class GJItemIcon : cocos2d::CCSprite {
 	// virtual ~GJItemIcon();
 	GJItemIcon() {}
 
-	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B);
+	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = m1 0x2fe438;
 
-	void changeToLockedState(float) = win 0x2694c0;
-	static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x268880;
-	TodoReturn createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B);
-	void darkenStoreItem(cocos2d::ccColor3B) = win 0x2691d0;
-	TodoReturn darkenStoreItem(ShopType);
-	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x2689a0;
-	float scaleForType(UnlockType) = win 0x2695a0;
+	void changeToLockedState(float) = win 0x2694c0, m1 0x2fbbf4;
+	static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x268880, m1 0x2fb6d0;
+	GJItemIcon * createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B) = m1 0x2fe41c;
+	void darkenStoreItem(cocos2d::ccColor3B) = win 0x2691d0, m1 0x2fec04;
+	void darkenStoreItem(ShopType) = m1 0x2fbbcc;
+	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x2689a0, m1 0x2fe540;
+	float scaleForType(UnlockType) = win 0x2695a0, m1 0x2fb6f0;
 	TodoReturn toggleEnabledState(bool) = win 0x269400;
-	TodoReturn unlockedColorForType(int);
+	cocos2d::ccColor3B * unlockedColorForType(int) = m1 0x2feb9c;
 
 	virtual void setOpacity(unsigned char) = win 0x2690b0, m1 0x2fea70, imac 0x372e20;
 
@@ -13299,7 +13299,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateJumpVariables();
 	TodoReturn updateLastGroundObject(GameObject*);
 	TodoReturn updateMove(float) = win 0x368220;
-	void updatePlayerArt() = win 0x376890;
+	void updatePlayerArt() = win 0x376890, m1 0x3940fc;
 	void updatePlayerBirdFrame(int) = win 0x37c2f0, m1 0x3954e0, imac 0x4205f0;
 	void updatePlayerDartFrame(int) = win 0x37c9f0, m1 0x3964f0, imac 0x4216e0;
 	void updatePlayerForce(cocos2d::CCPoint, bool);
@@ -13325,8 +13325,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerSpriteExtra(gd::string);
 	void updatePlayerSwingFrame(int) = win 0x37c7c0, m1 0x395b5c, imac 0x420cd0;
 	void updateRobotAnimationSpeed() = win 0x37f0f0;
-	void updateRotation(float, float) = win 0x36b230;
-	void updateRotation(float) = win 0x36f0b0;
+	void updateRotation(float, float) = win 0x36b230, m1 0x383a84;
+	void updateRotation(float) = win 0x36f0b0, m1 0x38c360;
 	void updateShipRotation(float) = win 0x36ecd0;
 	void updateShipSpriteExtra(gd::string);
 	TodoReturn updateSlopeRotation(float);
@@ -16387,23 +16387,23 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn objectPosToShaderPos(cocos2d::CCPoint);
 	void performCalculations() = win 0x45c4b0, imac 0x3d55f0, m1 0x356bf8;
 	TodoReturn preBulgeShader();
-	TodoReturn preChromaticGlitchShader();
-	TodoReturn preChromaticShader();
+	TodoReturn preChromaticGlitchShader() = m1 0x354cbc;
+	TodoReturn preChromaticShader() = m1 0x354a48;
 	TodoReturn preColorChangeShader();
-	TodoReturn preCommonShader();
-	TodoReturn preGlitchShader();
+	TodoReturn preCommonShader() = m1 0x352414;
+	TodoReturn preGlitchShader() = m1 0x354584;
 	TodoReturn preGrayscaleShader();
 	TodoReturn preHueShiftShader();
 	TodoReturn preInvertColorShader();
-	TodoReturn preLensCircleShader();
+	TodoReturn preLensCircleShader() = m1 0x355784;
 	TodoReturn preMotionBlurShader();
 	cocos2d::CCPoint prepareTargetContainer() = win 0x45a4e0, m1 0x35529c;
 	TodoReturn prePinchShader();
-	void prePixelateShader() = win 0x45a300;
-	TodoReturn preRadialBlurShader();
+	void prePixelateShader() = win 0x45a300, m1 0x355078;
+	TodoReturn preRadialBlurShader() = m1 0x355a20;
 	TodoReturn preSepiaShader();
-	TodoReturn preShockLineShader();
-	TodoReturn preShockWaveShader();
+	TodoReturn preShockLineShader() = m1 0x35416c;
+	TodoReturn preShockWaveShader() = m1 0x353c0c;
 	TodoReturn preSplitScreenShader();
 	bool resetAllShaders() = win 0x45d940;
 	TodoReturn resetTargetContainer();
@@ -16425,7 +16425,15 @@ class ShaderLayer : cocos2d::CCLayer {
 	TodoReturn setupShockLineUniforms() = m1 0x3517ac;
 	TodoReturn setupShockWaveUniforms() = m1 0x3515e0;
 	TodoReturn setupSplitScreenShader() = m1 0x3520cc;
-	TodoReturn toggleAntiAlias(bool) = win 0x456c90;
+	void toggleAntiAlias(bool toggled) = win 0x456c90, m1 inline {
+		if (m_antiAlias != toggled) {
+			m_antiAlias = toggled;
+			if (!toggled)
+				m_sprite->getTexture()->setAliasTexParameters();
+			else
+				m_sprite->getTexture()->setAntiAliasTexParameters();
+		}
+	}
 	bool triggerBulge(float, float, float, float, float, int, int, float, bool);
 	TodoReturn triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool);
 	TodoReturn triggerChromaticX(float, float, int, float, bool);

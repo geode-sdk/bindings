@@ -671,7 +671,7 @@ class cocos2d::CCGLProgram {
 
 	unsigned int const getProgram();
 	int getUniformLocationForName(char const* rndm) = win inline, m1 inline {
-		return glGetUniformLocation(getProgram(), rndm);
+		return glGetUniformLocation(m_uProgram, rndm);
 	}
 
 	void setUniformLocationWith1f(int, float) = m1 0x3a82b4;
@@ -694,6 +694,7 @@ class cocos2d::CCGLProgram {
 
 	// CCGLProgram(cocos2d::CCGLProgram const&);
 	CCGLProgram() = m1 0x3a6fd8;
+	~CCGLProgram() = m1 0x3a7018;
 	void addAttribute(char const*, unsigned int) = m1 0x3a744c;
 	bool compileShader(unsigned int*, unsigned int, char const*);
 	char const* description();
@@ -1853,7 +1854,7 @@ class cocos2d::CCRenderTexture {
 	cocos2d::CCImage* newCCImage(bool) = m1 0x527a30;
 	bool saveToFile(char const*);
 	bool saveToFile(char const*, cocos2d::eImageFormat);
-	void updateInternalScale(float, float);
+	void updateInternalScale(float, float) = m1 0x5270b8;
 
 	virtual void draw() = m1 0x527814;
 	virtual void visit() = m1 0x527788;
