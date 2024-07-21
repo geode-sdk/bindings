@@ -9569,10 +9569,32 @@ class GJShaderState {
 [[link(android)]]
 class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, RewardedVideoDelegate {
 	// virtual ~GJShopLayer();
+	GJShopLayer() {
+		m_closing = false;
+		m_currencyLabel = nullptr;
+		m_shopItems = nullptr;
+		m_type = ShopType::Normal;
+		m_sheetName = "";
+		m_unkNode1 = nullptr;
+		m_unkNode2 = nullptr;
+		m_videoPlaying = false;
+		m_unkBool = false;
+		m_shopKeeper = nullptr;
+		m_zolgurothDialogIndex = 0;
+		m_affordDialogIndex = 0;
+	}
 
-	static GJShopLayer* create(ShopType);
+	static GJShopLayer* create(ShopType type) = win inline {
+		auto ret = new GJShopLayer();
+		if (ret->init(type)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn exitVideoAdItems();
+	void exitVideoAdItems();
 	bool init(ShopType) = win 0x297400;
 	void onBack(cocos2d::CCObject* sender) = win 0x29a840;
 	void onCommunityCredits(cocos2d::CCObject* sender) = win 0x299680;
@@ -9582,18 +9604,31 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	static cocos2d::CCScene* scene(ShopType) = win 0x297280;
 	void showCantAffordMessage(GJStoreItem*);
 	void showReactMessage();
-	TodoReturn updateCurrencyCounter();
+	void updateCurrencyCounter();
 
-	virtual void onExit() = m1 0x2b3cb0, imac 0x323680;
+	virtual void onExit() = win 0x299400, m1 0x2b3cb0, imac 0x323680;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x29c3c0, m1 0x2b5e94, imac 0x325d60;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) {}
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2b6290, imac 0x326190;
-	virtual void registerWithTouchDispatcher() = m1 0x2b62ac, imac 0x3261d0;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x6fd20, m1 0x2b6290, imac 0x326190;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x2b62ac, imac 0x3261d0;
 	virtual void keyBackClicked() = win 0x29aa60, m1 0x2b4bb4, imac 0x3246c0;
 	virtual void didPurchaseItem(GJStoreItem*) = win 0x29a0a0, m1 0x2b4548, imac 0x323fc0;
 	virtual void rewardedVideoFinished() = win 0x2997c0, m1 0x2b3f7c, imac 0x323970;
 	virtual void dialogClosed(DialogLayer*) = win 0x29c0c0, m1 0x2b5cb4, ios 0x158204, imac 0x325ba0;
+
+	bool m_closing;
+	CCCounterLabel* m_currencyLabel;
+	cocos2d::CCDictionary* m_shopItems;
+	ShopType m_type;
+	gd::string m_sheetName;
+	cocos2d::CCNode* m_unkNode1;
+	cocos2d::CCNode* m_unkNode2;
+	bool m_videoPlaying;
+	bool m_unkBool;
+	AnimatedShopKeeper* m_shopKeeper;
+	int m_zolgurothDialogIndex;
+	int m_affordDialogIndex;
 }
 
 [[link(android)]]
@@ -9768,20 +9803,22 @@ class GJSpriteColor {
 [[link(android)]]
 class GJStoreItem : cocos2d::CCNode {
 	// virtual ~GJStoreItem();
-	GJStoreItem(); // win inline
+	GJStoreItem() {
+		
+	}	
 
-	static GJStoreItem* create(int unk, int typeID, UnlockType type, int price, ShopType shopType); // win inline
+	static GJStoreItem* create(int index, int typeID, UnlockType type, int price, ShopType shopType); // win inline
 
-	TodoReturn getCurrencyKey();
+	gd::string getCurrencyKey() = win inline {
+		return m_shopType == ShopType::Diamond ? "29" : "14";
+	}
 	bool init(int, int, int, int, ShopType type);
 
-	int m_unk0x28;
-	int m_unk; // 0x29, this is the unk var in create
-	int m_unk0x2a;
-	int m_typeID; // 0x2b
-	UnlockType m_unlockType; // 0x2c
-	int m_price; // 0x2d
-	ShopType m_shopType; // 0x2e
+	geode::SeedValueRSV m_index;
+	geode::SeedValueRSV m_typeID;
+	geode::SeedValueRSV m_unlockType;
+	geode::SeedValueRSV m_price;
+	ShopType m_shopType;
 }
 
 [[link(android)]]
