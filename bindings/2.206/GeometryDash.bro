@@ -25,31 +25,56 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 	// virtual ~AccountLayer();
 	// AccountLayer();
 
-	static AccountLayer* create();
+	static AccountLayer* create() = win 0x7bf70;
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	void doBackup();
-	TodoReturn doSync();
-	TodoReturn exitLayer();
-	TodoReturn hideLoadingUI();
-	void onBackup(cocos2d::CCObject* sender);
-	void onHelp(cocos2d::CCObject* sender);
-	void onLogin(cocos2d::CCObject* sender);
-	void onMore(cocos2d::CCObject* sender);
-	void onRegister(cocos2d::CCObject* sender);
-	void onSync(cocos2d::CCObject* sender);
-	void showLoadingUI();
-	TodoReturn toggleUI(bool);
-	TodoReturn updatePage(bool);
+	void doSync();
+	void exitLayer() {
+		this->setKeypadEnabled(false);
+		this->disableUI();
+		this->hideLayer(m_fastMenu);
+	}
+	void hideLoadingUI() {
+		this->toggleUI(true);
+		m_loadingCircle->setVisible(false);
+	}
+	void onBackup(cocos2d::CCObject* sender) = win 0x7c9e0; 
+	void onHelp(cocos2d::CCObject* sender) = win 0x7cfb0; 
+	void onLogin(cocos2d::CCObject* sender) = win 0x7c820; 
+	void onMore(cocos2d::CCObject* sender) = win 0x7d0d0; 
+	void onRegister(cocos2d::CCObject* sender) = win 0x7c860; 
+	void onSync(cocos2d::CCObject* sender) = win 0x7cd30; 
+	void showLoadingUI() {
+		this->toggleUI(false);
+		m_loadingCircle->setVisible(true);
+	}
+	void toggleUI(bool enable) {
+		m_buttonMenu->setEnabled(enable);
+		this->setKeypadEnabled(enable);
+	}
+	void updatePage(bool) = win 0x7d130;
 
-	virtual void customSetup() = m1 0xb6d88, win 0x7c0d0, imac 0xcf0e0;
-	virtual void layerHidden() = m1 0xb8e88, imac 0xd12e0;
+	virtual void customSetup() = win 0x7c0d0, m1 0xb6d88, imac 0xcf0e0;
+	virtual void layerHidden() = win 0x7de20, m1 0xb8e88, imac 0xd12e0;
 	virtual TodoReturn backupAccountFinished() = win 0x7d500, m1 0xb8444, imac 0xd0830;
 	virtual TodoReturn backupAccountFailed(BackupAccountError, int) = win 0x7d6b0, m1 0xb8604, imac 0xd09f0;
 	virtual TodoReturn syncAccountFinished() = win 0x7d9c0, m1 0xb8974, imac 0xd0da0;
 	virtual TodoReturn syncAccountFailed(BackupAccountError, int) = win 0x7db80, m1 0xb8adc, imac 0xd0f20;
 	virtual TodoReturn accountStatusChanged() = win 0x7d120, m1 0xb8430, imac 0xd0800;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x7dd10, m1 0xb8d58, imac 0xd11c0;
+
+	cocos2d::CCLabelBMFont* m_linkedAccountTitle;
+	TextArea* m_textArea;
+	CCMenuItemSpriteExtra* m_loginButton;
+	CCMenuItemSpriteExtra* m_registerButton;
+	CCMenuItemSpriteExtra* m_backupButton;
+	CCMenuItemSpriteExtra* m_syncButton;
+	CCMenuItemSpriteExtra* m_helpButton;
+	CCMenuItemSpriteExtra* m_moreButton;
+	LoadingCircle* m_loadingCircle;
+	int m_accountHelpRelated;
+	bool m_isLoggedIn;
 }
 
 [[link(android)]]
@@ -1765,7 +1790,7 @@ class CharacterColorPage : FLAlertLayer {
 	void createColorMenu() = win 0x87600, ios 0x1300e8, m1 0x586a8c, imac 0x66ae50;
 	void FLAlert_Clicked(FLAlertLayer*, bool);
 	cocos2d::CCPoint offsetForIndex(int);
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x88f50; 
 	void onMode(cocos2d::CCObject* sender) = win 0x87d00, m1 0x586740, imac 0x66ab00;
 	void onPlayerColor(cocos2d::CCObject* sender) = win 0x88550, m1 0x5873e4, imac 0x66b7c0;
 	void toggleGlow(cocos2d::CCObject*) = win 0x87550, m1 0x586e64, imac 0x66b220;
@@ -2155,26 +2180,57 @@ class CommentUploadDelegate {
 class CommunityCreditNode : cocos2d::CCNode {
 	// virtual ~CommunityCreditNode();
 
-	static CommunityCreditNode* create(int, int, int, gd::string);
+	static CommunityCreditNode* create(int, int, int, gd::string) = win 0x926b0, m1 0x2adbac, imac 0x31cd40;
 
-	bool init(int, int, int, gd::string);
+	bool init(int unlockType, int iconID, int unknown, gd::string author) = win inline, m1 0x2add1c, imac 0x31cec0 {
+		if (!CCNode::init()) return false;
+		m_unlockType = unlockType;
+		m_iconID = iconID;
+		m_unknown = unknown;
+		m_author = author;
+		return true;
+	}
+
+	int m_unlockType;
+	int m_iconID;
+	int m_unknown;
+	gd::string m_author;
 }
 
 [[link(android)]]
 class CommunityCreditsPage : FLAlertLayer {
 	// virtual ~CommunityCreditsPage();
+	CommunityCreditsPage() {
+		m_pageObjects = nullptr;
+		m_prevButton = nullptr;
+		m_nextButton = nullptr;
+		m_page = -1;
+	}
 
-	static CommunityCreditsPage* create();
+	static CommunityCreditsPage* create() = win inline, m1 0x2adfa4, imac 0x31d260 {
+		auto ret = new CommunityCreditsPage();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	void FLAlert_Clicked(FLAlertLayer*, bool);
-	void goToPage(int);
-	void onClose(cocos2d::CCObject* sender);
-	void onSwitchPage(cocos2d::CCObject* sender);
+	void goToPage(int) = win 0x94830, m1 0x2b00a0, imac 0x31f610;
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x2b0024, imac 0x31f5a0;
+	void onSwitchPage(cocos2d::CCObject* sender) = win 0x947f0, m1 0x2b0060, imac 0x31f5d0;
 
-	virtual bool init() = m1 0x2ae0a8, win 0x927f0, imac 0x31d3b0;
-	virtual void registerWithTouchDispatcher() = m1 0x2b03c8, imac 0x31f930;
-	virtual void keyBackClicked() = m1 0x2b034c, imac 0x31f8c0;
-	virtual void show() = m1 0x2b01c4, imac 0x31f730;
+	virtual bool init() = win 0x927f0, m1 0x2ae0a8, imac 0x31d3b0;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x2b03c8, imac 0x31f930;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x2b034c, imac 0x31f8c0;
+	virtual void show() = win 0x94950, m1 0x2b01c4, imac 0x31f730;
+
+	cocos2d::CCDictionary* m_pageObjects;
+	CCMenuItemSpriteExtra* m_prevButton;
+	CCMenuItemSpriteExtra* m_nextButton;
+	int m_page;
 }
 
 [[link(android)]]
@@ -4587,7 +4643,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn stopChannelTweens(int, AudioTargetType);
 	TodoReturn stopMusic(int);
 	TodoReturn stopMusicNotInSet(std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >&);
-	TodoReturn storeEffect(FMOD::Sound* sound, gd::string path);
+	TodoReturn storeEffect(FMOD::Sound* sound, gd::string path) = win 0x58660; 
 	TodoReturn swapMusicIndex(int, int);
 	TodoReturn testFunction(int);
 	TodoReturn triggerQueuedMusic(FMODQueuedMusic);
@@ -6564,7 +6620,7 @@ class GameToolbox {
 	static TodoReturn getLargestMergedIntDicts(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
 	static TodoReturn getMultipliedHSV(cocos2d::ccHSVValue const&, float);
 	static TodoReturn getRelativeOffset(GameObject*, cocos2d::CCPoint) = win 0x63380;
-	static TodoReturn getResponse(cocos2d::extension::CCHttpResponse*) = imac 0x4f9610;
+	static TodoReturn getResponse(cocos2d::extension::CCHttpResponse*) = win 0x62d20, imac 0x4f9610;
 	static gd::string getTimeString(int, bool) = win 0x64830, imac 0x4fc280, m1 0x454db4;
 	static TodoReturn hsvFromString(gd::string const&, char const*);
 	static gd::string intToShortString(int) = win 0x67b30, imac 0x501e80, m1 0x459ec8;
@@ -6797,21 +6853,21 @@ class GJAccountManager : cocos2d::CCNode {
 	void getAccountSyncURL();
 	cocos2d::CCObject* getDLObject(char const*);
 	gd::string getShaPassword(gd::string) = win 0x1F4FF0;
-	void handleIt(bool, gd::string, gd::string, GJHttpType) = imac 0xd2c80;
+	void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1f1590, imac 0xd2c80;
 	void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	void handleItND(cocos2d::CCNode*, void*);
 	bool isDLActive(char const* tag);
 	void linkToAccount(gd::string, gd::string, int, int);
 	void loginAccount(gd::string, gd::string);
-	void onBackupAccountCompleted(gd::string, gd::string);
-	void onGetAccountBackupURLCompleted(gd::string, gd::string);
-	void onGetAccountSyncURLCompleted(gd::string, gd::string);
-	void onLoginAccountCompleted(gd::string, gd::string);
-	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
-	void onRegisterAccountCompleted(gd::string, gd::string);
-	void onSyncAccountCompleted(gd::string, gd::string) = imac 0xd44b0;
-	void onUpdateAccountSettingsCompleted(gd::string, gd::string);
-	void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
+	void onBackupAccountCompleted(gd::string, gd::string) = win 0x1f30f0; 
+	void onGetAccountBackupURLCompleted(gd::string, gd::string) = win 0x1f28f0; 
+	void onGetAccountSyncURLCompleted(gd::string, gd::string) = win 0x1f3840; 
+	void onLoginAccountCompleted(gd::string, gd::string) = win 0x1f21b0; 
+	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x1f1490; 
+	void onRegisterAccountCompleted(gd::string, gd::string) = win 0x1f1bc0; 
+	void onSyncAccountCompleted(gd::string, gd::string) = win 0x1f3d80, imac 0xd44b0;
+	void onUpdateAccountSettingsCompleted(gd::string, gd::string) = win 0x1f4e90; 
+	void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x1f1340; 
 	void registerAccount(gd::string, gd::string, gd::string);
 	void removeDLFromActive(char const*);
 	bool syncAccount(gd::string);
@@ -16921,7 +16977,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 
 	static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
 
-	float getValue() = ios 0x2ff24c {
+	float getValue() = win 0x6fdc0, ios 0x2ff24c {
 		return (this->getScaleX() * m_length * .5f +
 				(m_vertical ?
 					this->getPositionY() :
@@ -17010,7 +17066,7 @@ class SongInfoLayer : FLAlertLayer {
 	static SongInfoLayer* create(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string, int);
 	static SongInfoLayer* create(int);
 
-	bool init(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string, int);
+	bool init(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string, int) = win 0x466b00; 
 	void onBPM(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onDownload(cocos2d::CCObject* sender);
