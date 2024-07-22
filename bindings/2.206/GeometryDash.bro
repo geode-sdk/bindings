@@ -340,7 +340,20 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 	}
 
 	bool init(ShopType type) = win inline {
-		//todo
+		m_type = type;
+		auto shopkeeper = "GJShopKeeper";
+		switch (type) {
+			case ShopType::Secret: shopkeeper = "GJShopKeeper2"; break;
+			case ShopType::Community: shopkeeper = "GJShopKeeper3"; break;
+			case ShopType::Mechanic: shopkeeper = "GJShopKeeper4"; break;
+			case ShopType::Diamond: shopkeeper = "GJShopKeeper5"; break;
+			default: shopkeeper = "GJShopKeeper"; break;
+		}
+		if (!CCAnimatedSprite::initWithType(shopkeeper, nullptr, false)) return false;
+		m_idleInt2 = (rand() / 32767.f) * 5.f + 10.f;
+		m_idleInt1 = (rand() / 32767.f) * 2.f + 1.f;
+		m_animationManager->stopAnimations();
+		return true;
 	}
 	void playReactAnimation() = win 0x29d5f0;
 	void startAnimating() = win 0x29d880;
@@ -17187,18 +17200,33 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn initWithOwner(CCAnimatedSprite*, gd::string);
 	TodoReturn loadAnimations(gd::string);
 	TodoReturn offsetCurrentAnimation(float);
-	TodoReturn overridePrio() = win 0x72f30;
+	void overridePrio() = win 0x72f30;
 	TodoReturn playSound(gd::string);
 	TodoReturn playSoundForAnimation(gd::string);
 	TodoReturn queueAnimation(gd::string);
 	TodoReturn resetAnimState();
 	TodoReturn runAnimation(gd::string);
 	TodoReturn runQueuedAnimation();
-	TodoReturn stopAnimations();
+	void stopAnimations() = win inline {
+		this->overridePrio();
+		if (m_sprite->m_paSprite) m_sprite->m_paSprite->stopAllActions();
+		if (m_sprite->m_fbfSprite) m_sprite->m_fbfSprite->stopAllActions();
+	}
 	TodoReturn storeAnimation(cocos2d::CCAnimate*, cocos2d::CCAnimate*, gd::string, int, spriteMode, cocos2d::CCSpriteFrame*);
 	TodoReturn storeSoundForAnimation(cocos2d::CCString*, gd::string, float);
 	TodoReturn switchToFirstFrameOfAnimation(gd::string);
 	TodoReturn updateAnimationSpeed(float);
+
+	CCAnimatedSprite* m_sprite;
+	cocos2d::CCDictionary* m_animationDict1;
+	cocos2d::CCDictionary* m_animationDict2;
+	cocos2d::CCDictionary* m_animationDict3;
+	gd::string m_queuedAnimation;
+	float m_speed;
+	cocos2d::CCDictionary* m_animationDict4;
+	cocos2d::CCDictionary* m_animationDict5;
+	gd::string m_currentAnimation;
+	gd::string m_nextAnimation;
 }
 
 [[link(android)]]
