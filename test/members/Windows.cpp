@@ -294,6 +294,7 @@ GEODE_SIZE_CHECK(BitmapFontCache, 0x40);
 GEODE_SIZE_CHECK(SecretRewardsLayer, 0x238);
 GEODE_SIZE_CHECK(CurrencySprite, 0x2a8);
 GEODE_SIZE_CHECK(CommunityCreditsPage, 0x298);
+GEODE_SIZE_CHECK(AccountLayer, 0x2d0);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
