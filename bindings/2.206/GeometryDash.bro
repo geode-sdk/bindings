@@ -886,6 +886,7 @@ class CCAlertCircle : cocos2d::CCNode {
 [[link(android)]]
 class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
+	CCAnimatedSprite() = win 0x3f030;
 
 	void cleanupSprite() = m1 0x2dfaf8, imac 0x3509d0;
 	static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = m1 0x2df14c, imac 0x34ffe0;
