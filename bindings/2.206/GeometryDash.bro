@@ -354,7 +354,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 		m_gruntIndex = 0;
 	}
 
-	static AnimatedShopKeeper* create(ShopType type) = win inline {
+	static AnimatedShopKeeper* create(ShopType type) = win inline, m1 0x2b3750, imac 0x323160 {
 		auto ret = new AnimatedShopKeeper();
 		if (ret->init(type)) {
 			ret->autorelease();
@@ -364,7 +364,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 		return nullptr;
 	}
 
-	bool init(ShopType type) = win inline {
+	bool init(ShopType type) = win inline, m1 0x2b7188, imac 0x327320 {
 		m_type = type;
 		auto shopkeeper = "GJShopKeeper";
 		switch (type) {
@@ -380,8 +380,8 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 		m_animationManager->stopAnimations();
 		return true;
 	}
-	void playReactAnimation() = win 0x29d5f0;
-	void startAnimating() = win 0x29d880;
+	void playReactAnimation() = win 0x29d5f0, m1 0x2b6030, imac 0x325f10;
+	void startAnimating() = win 0x29d880, m1 0x2b38b0, imac 0x3232d0;
 
 	virtual void animationFinished(char const*) = win 0x29d910, m1 0x2b7254, imac 0x3273d0;
 
