@@ -2180,26 +2180,57 @@ class CommentUploadDelegate {
 class CommunityCreditNode : cocos2d::CCNode {
 	// virtual ~CommunityCreditNode();
 
-	static CommunityCreditNode* create(int, int, int, gd::string);
+	static CommunityCreditNode* create(int, int, int, gd::string) = win 0x926b0, m1 0x2adbac, imac 0x31cd40;
 
-	bool init(int, int, int, gd::string);
+	bool init(int unlockType, int iconID, int unknown, gd::string author) = win inline, m1 0x2add1c, imac 0x31cec0 {
+		if (!CCNode::init()) return false;
+		m_unlockType = unlockType;
+		m_iconID = iconID;
+		m_unknown = unknown;
+		m_author = author;
+		return true;
+	}
+
+	int m_unlockType;
+	int m_iconID;
+	int m_unknown;
+	gd::string m_author;
 }
 
 [[link(android)]]
 class CommunityCreditsPage : FLAlertLayer {
 	// virtual ~CommunityCreditsPage();
+	CommunityCreditsPage() {
+		m_pageObjects = nullptr;
+		m_prevButton = nullptr;
+		m_nextButton = nullptr;
+		m_page = -1;
+	}
 
-	static CommunityCreditsPage* create();
+	static CommunityCreditsPage* create() = win inline, m1 0x2adfa4, imac 0x31d260 {
+		auto ret = new CommunityCreditsPage();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	void FLAlert_Clicked(FLAlertLayer*, bool);
-	void goToPage(int);
-	void onClose(cocos2d::CCObject* sender);
-	void onSwitchPage(cocos2d::CCObject* sender);
+	void goToPage(int) = win 0x94830, m1 0x2b00a0, imac 0x31f610;
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x2b0024, imac 0x31f5a0;
+	void onSwitchPage(cocos2d::CCObject* sender) = win 0x947f0, m1 0x2b0060, imac 0x31f5d0;
 
-	virtual bool init() = m1 0x2ae0a8, win 0x927f0, imac 0x31d3b0;
-	virtual void registerWithTouchDispatcher() = m1 0x2b03c8, imac 0x31f930;
-	virtual void keyBackClicked() = m1 0x2b034c, imac 0x31f8c0;
-	virtual void show() = m1 0x2b01c4, imac 0x31f730;
+	virtual bool init() = win 0x927f0, m1 0x2ae0a8, imac 0x31d3b0;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x2b03c8, imac 0x31f930;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x2b034c, imac 0x31f8c0;
+	virtual void show() = win 0x94950, m1 0x2b01c4, imac 0x31f730;
+
+	cocos2d::CCDictionary* m_pageObjects;
+	CCMenuItemSpriteExtra* m_prevButton;
+	CCMenuItemSpriteExtra* m_nextButton;
+	int m_page;
 }
 
 [[link(android)]]
