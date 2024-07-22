@@ -590,7 +590,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 	bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3c3b0, m1 0x32e124, imac 0x3a7dc0;
 	void instantMoveToPage(int) = win 0x3cf40, m1 0x32f894, imac 0x3a9760, ios 0x132724;
 	void moveToPage(int) = win 0x3d020, m1 0x32f96c, imac 0x3a9840, ios 0x1327fc;
-	void moveToPageEnded() = win 0x3cdb0, m1 0x32f700, m1 0x3a95d0;
+	void moveToPageEnded() = win 0x3cdb0, m1 0x32f700, imac 0x3a95d0;
 	int pageNumberForPosition(cocos2d::CCPoint) = win 0x3ce40, m1 0x32f4e4, imac 0x3a93b0;
 	cocos2d::CCPoint positionForPageWithNumber(int page) = win inline, m1 0x32f840, imac 0x3a9710 {
 		return { this->getContentSize().width + m_pageOffset * page, 0.f };
