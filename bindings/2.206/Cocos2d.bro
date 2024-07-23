@@ -2427,7 +2427,7 @@ class DS_Dictionary {
 }
 
 [[link(win, android)]]
-class ObjectDecoder {
+class ObjectDecoder : cocos2d::CCNode {
 	// virtual ~ObjectDecoder();
 
 	static ObjectDecoder* sharedDecoder() = ios 0x246034, m1 0x6a61f4, imac 0x79de60;
