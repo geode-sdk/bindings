@@ -181,4 +181,7 @@ GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x458);
 GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x480);
 GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x63c);
 
+GEODE_SIZE_CHECK(CCLightFlash, 0x168);
+GEODE_SIZE_CHECK(CCLightStrip, 0x160);
+
 #endif

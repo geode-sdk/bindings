@@ -185,4 +185,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 
 GEODE_SIZE_CHECK(CCTextInputNode, 0x258);
 
+GEODE_SIZE_CHECK(CCLightFlash, 0x168);
+GEODE_SIZE_CHECK(CCLightStrip, 0x160);
+
 #endif

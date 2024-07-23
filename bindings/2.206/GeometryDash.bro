@@ -1007,27 +1007,72 @@ class CCIndexPath : cocos2d::CCObject {
 class CCLightFlash : cocos2d::CCNode {
 	// virtual ~CCLightFlash();
 
-	static CCLightFlash* create();
+	static CCLightFlash* create() = win inline, imac 0x50e4e0, m1 0x46510c {
+		auto ret = new CCLightFlash();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		CC_SAFE_DELETE(ret);
+		return nullptr;
+	}
 
-	TodoReturn cleanupFlash();
-	void fadeAndRemove();
-	TodoReturn playEffect(cocos2d::CCPoint, cocos2d::ccColor3B, float, float, float, float, float, float, float, float, float, float, float, float, float, float, int, bool, bool, float);
-	TodoReturn removeLights();
-	void showFlash();
+	void cleanupFlash() = win 0x42e00, imac 0x50edd0, m1 0x50edd0;
+	void fadeAndRemove() = imac 0x50ebf0, m1 0x465718;
+	void playEffect(cocos2d::CCPoint, cocos2d::ccColor3B, float, float, float, float, float, float, float, float, float, float, float, float, float, float, int, bool, bool, float) = win 0x42520, imac 0x50e560, m1 0x465178;
+	void removeLights() = win 0x42da0, imac 0x50ed70, m1 0x465894;
+	void showFlash() = win 0x42a60, imac 0x50eab0, m1 0x4655ec;
 
-	virtual bool init() = m1 0x465170, imac 0x50e550;
+	virtual bool init() = win inline, m1 0x465170, imac 0x50e550 {
+		return true;
+	}
+
+	cocos2d::CCArray* m_lightStripArray;
+    cocos2d::CCLayerColor* m_layerColor;
+    bool m_dontFadeOut;
+    cocos2d::CCNode* m_mainLayer;
+    int m_layerColorZOrder;
 }
 
 [[link(android)]]
 class CCLightStrip : cocos2d::CCNode {
 	// virtual ~CCLightStrip();
 
-	static CCLightStrip* create(float width, float toWidth, float toHeight, float duration, float delay);
+	static CCLightStrip* create(float width, float toWidth, float toHeight, float duration, float delay) = win inline, imac 0x50ea00, m1 0x465538 {
+		auto ret = new CCLightStrip();
+		if (ret->init(width, toWidth, toHeight, duration, delay)) {
+			ret->autorelease();
+			return ret;
+		}
+		CC_SAFE_DELETE(ret);
+		return nullptr;
+	}
 
-	bool init(float width, float toWidth, float toHeight, float duration, float delay);
+	bool init(float width, float toWidth, float toHeight, float duration, float delay) = win inline, imac 0x50eee0, m1 0x4659e8 {
+		this->m_toWidth = toWidth;
+		this->m_toHeight = toHeight;
+		this->m_objectWidth = width;
+		this->m_duration = duration;
+		this->m_width = width;
+		this->m_opacity = 255.f;
+		this->m_height = 1.f;
 
-	virtual void draw() = m1 0x465b00, imac 0x50f020;
-	virtual void updateTweenAction(float value, char const* keyword) = m1 0x465c58, imac 0x50f1b0;
+		this->setVisible(false);
+
+		auto* delayAction = cocos2d::CCDelayTime::create(this->m_delay);
+		auto* heightActionTween = cocos2d::CCActionTween::create(this->m_duration, "height", this->m_height, this->m_toHeight);
+		auto* widthActionTween = cocos2d::CCActionTween::create(this->m_duration, "width", this->m_width, this->m_toWidth);
+		auto* heightEaseOutAction = cocos2d::CCEaseOut::create(heightActionTween, 2.f);
+		auto* widthEaseOutAction = cocos2d::CCEaseOut::create(widthActionTween, 2.f);
+		auto* spawnEaseOutActions = cocos2d::CCSpawn::create(heightEaseOutAction, widthEaseOutAction, nullptr);
+		auto* lightStripSequence = cocos2d::CCSequence::create(delayAction, cocos2d::CCShow::create(), spawnEaseOutActions, nullptr);
+
+		cocos2d::CCDirector::sharedDirector()->getActionManager()->addAction(lightStripSequence, this, false);
+	}
+
+	virtual void draw() = win 0x42e30, imac 0x50f020, m1 0x465b00;
+	virtual void updateTweenAction(float value, char const* keyword) = win 0x42ff0, imac 0x50f1b0, m1 0x465c58;
+
 	float m_objectWidth;
 	float m_toWidth;
 	float m_toHeight;
