@@ -1005,6 +1005,13 @@ class CCIndexPath : cocos2d::CCObject {
 
 [[link(android)]]
 class CCLightFlash : cocos2d::CCNode {
+	CCLightFlash() = win inline {
+		m_lightStripArray = nullptr;
+		m_layerColor = nullptr;
+		m_dontFadeOut = false;
+		m_mainLayer = nullptr;
+		m_layerColorZOrder = 0;
+	}
 	// virtual ~CCLightFlash();
 
 	static CCLightFlash* create() = win inline, imac 0x50e4e0, m1 0x46510c {
@@ -1036,6 +1043,15 @@ class CCLightFlash : cocos2d::CCNode {
 
 [[link(android)]]
 class CCLightStrip : cocos2d::CCNode {
+	CCLightStrip() = win inline {
+		m_objectWidth = .0f;
+		m_toWidth = .0f;
+		m_toHeight = .0f;
+		m_duration = .0f;
+		m_opacity = .0f;
+		m_width = .0f;
+		m_height = .0f;
+	}
 	// virtual ~CCLightStrip();
 
 	static CCLightStrip* create(float width, float toWidth, float toHeight, float duration, float delay) = win inline, imac 0x50ea00, m1 0x465538 {
