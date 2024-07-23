@@ -2823,7 +2823,7 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
 	virtual TodoReturn songIDChanged(int) = win 0xb23e0, m1 0x1f98dc, imac 0x24fa00;
 	virtual TodoReturn getActiveSongID() = m1 0x1f9938, imac 0x24fa80;
 	virtual TodoReturn getSongFileName() = win 0xb2440, m1 0x1f9970, imac 0x24fae0;
-	virtual LevelSettingsObject* getLevelSettings() = win inline, m1 0x1f9988, imac 0x24fb00;
+	virtual LevelSettingsObject* getLevelSettings() = win 0x81fb0, m1 0x1f9988, imac 0x24fb00;
 
 	SongInfoObject* m_songInfoObject;
 	bool m_unkBool;
