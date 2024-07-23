@@ -12709,17 +12709,6 @@ class ObjectControlGameObject : EffectGameObject {
 }
 
 [[link(android)]]
-class ObjectDecoder {
-	// virtual ~ObjectDecoder();
-
-	static ObjectDecoder* sharedDecoder() = ios 0x246034, m1 0x6a61f4, imac 0x79de60;
-
-	TodoReturn getDecodedObject(int, DS_Dictionary*);
-
-	virtual bool init() = imac 0x79ded0;
-}
-
-[[link(android)]]
 class ObjectDecoderDelegate {
 	virtual TodoReturn getDecodedObject(int, DS_Dictionary*);
 }

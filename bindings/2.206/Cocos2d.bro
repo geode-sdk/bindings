@@ -2427,6 +2427,17 @@ class DS_Dictionary {
 }
 
 [[link(win, android)]]
+class ObjectDecoder {
+	// virtual ~ObjectDecoder();
+
+	static ObjectDecoder* sharedDecoder() = ios 0x246034, m1 0x6a61f4, imac 0x79de60;
+
+	TodoReturn getDecodedObject(int, DS_Dictionary*);
+
+	virtual bool init() = imac 0x79ded0;
+}
+
+[[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker {
 	static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x356900, m1 0x2e4df4, ios 0x1ba76c;
 }
