@@ -4185,7 +4185,7 @@ class EndLevelLayer : GJDropDownLayer {
 	void goEdit() = win 0x1311d0;
 	void onEdit(cocos2d::CCObject* sender) = win 0x1310d0;
 	void onEveryplay(cocos2d::CCObject* sender);
-	void onHideLayer(cocos2d::CCObject* sender) = win 0x1312a0;
+	void onHideLayer(cocos2d::CCObject* sender) = win 0x1312a0, m1 0x42aef0, imac 0x4cbff0
 	void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x130720;
 	void onMenu(cocos2d::CCObject* sender) = win 0x130f50;
 	void onReplay(cocos2d::CCObject* sender) = win 0x130f40;
@@ -4222,7 +4222,7 @@ class EndPortalObject : GameObject {
 	static EndPortalObject* create();
 
 	TodoReturn getSpawnPos() = win 0x134050, imac 0x39f810, m1 0x3268cc;
-	TodoReturn triggerObject(GJBaseGameLayer*) = imac 0x39f780, m1 0x326838;
+	void triggerObject(GJBaseGameLayer*) = imac 0x39f780, m1 0x326838;
 	TodoReturn updateColors(cocos2d::ccColor3B);
 	TodoReturn updateEndPos(bool) = win 0x1342c0, imac 0x39fa00, m1 0x326a8c;
 
