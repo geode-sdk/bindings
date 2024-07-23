@@ -1028,10 +1028,10 @@ class CCLightFlash : cocos2d::CCNode {
 	}
 
 	cocos2d::CCArray* m_lightStripArray;
-    cocos2d::CCLayerColor* m_layerColor;
-    bool m_dontFadeOut;
-    cocos2d::CCNode* m_mainLayer;
-    int m_layerColorZOrder;
+	cocos2d::CCLayerColor* m_layerColor;
+	bool m_dontFadeOut;
+	cocos2d::CCNode* m_mainLayer;
+	int m_layerColorZOrder;
 }
 
 [[link(android)]]
