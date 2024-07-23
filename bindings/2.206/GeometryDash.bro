@@ -12969,7 +12969,7 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 }
 
 [[link(android)]]
-class PauseLayer : CCBlockLayer {
+class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	// virtual ~PauseLayer();
 	PauseLayer() = win inline {}
 
@@ -12985,7 +12985,10 @@ class PauseLayer : CCBlockLayer {
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	void goEdit() = win 0x35cac0, imac 0x3db8e0, m1 0x35c470;
-	bool init(bool) = imac 0x3d9ca0, m1 0x35a880;
+	bool init(bool p0) = win inline, imac 0x3d9ca0, m1 0x35a880 {
+		m_unkBool1 = p0;
+		return CCBlockLayer::init();
+	}
 	void musicSliderChanged(cocos2d::CCObject*) = win 0x35c4d0, imac 0x3db520, m1 0x35c06c;
 	void onEdit(cocos2d::CCObject* sender) = win 0x35c8f0, imac 0x3db1b0, m1 0x35bd28;
 	void onHelp(cocos2d::CCObject* sender);
@@ -13007,9 +13010,11 @@ class PauseLayer : CCBlockLayer {
 	virtual void keyBackClicked() = win 0x35cf90, m1 0x35c734, imac 0x3dbba0;
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x35cec0, m1 0x35c658, imac 0x3dbaa0;
 	virtual void customSetup() = win 0x35abc0, m1 0x35a888, imac 0x3d9cc0;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x35cd20, m1 0x35c5a8, imac 0x3dba20;
 	virtual void keyUp(cocos2d::enumKeyCodes) {}
 
-	PAD = win 0x10;
+	bool m_unkBool1;
+	bool m_unkBool2;
 }
 
 [[link(android)]]
