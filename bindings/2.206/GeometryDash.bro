@@ -16602,8 +16602,8 @@ class ShaderLayer : cocos2d::CCLayer {
 	bool m_configuredAntiAlias;
 	void* m_unk3d4;
 	GJBaseGameLayer* m_gameLayer;
-	cocos2d::CCPoint m_somePosition;
-	float m_someRotationDeg;
+	cocos2d::CCPoint m_savedCameraPosition;
+	float m_savedCameraRotation;
 	float m_shockWaveTimeMult;
 	cocos2d::CCSize m_textureContentSize;
 	cocos2d::CCSize m_targetTextureSize;
