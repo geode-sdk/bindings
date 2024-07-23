@@ -1443,7 +1443,7 @@ class cocos2d::CCDirector {
 	void setSceneReference(cocos2d::CCScene*);
 	void setSmoothFix(bool);
 	void setSmoothFixCheck(bool);
-	void setViewport();
+	void setViewport() = m1 0x3f2298;
 
 	// CCDirector(cocos2d::CCDirector const&);
 	// CCDirector();
