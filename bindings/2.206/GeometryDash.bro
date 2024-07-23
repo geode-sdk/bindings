@@ -1075,7 +1075,7 @@ class CCLightStrip : cocos2d::CCNode {
 
 		this->setVisible(false);
 
-		auto* delayAction = cocos2d::CCDelayTime::create(this->m_delay);
+		auto* delayAction = cocos2d::CCDelayTime::create(delay);
 		auto* heightActionTween = cocos2d::CCActionTween::create(this->m_duration, "height", this->m_height, this->m_toHeight);
 		auto* widthActionTween = cocos2d::CCActionTween::create(this->m_duration, "width", this->m_width, this->m_toWidth);
 		auto* heightEaseOutAction = cocos2d::CCEaseOut::create(heightActionTween, 2.f);
