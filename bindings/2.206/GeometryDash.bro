@@ -1109,6 +1109,8 @@ class CCLightStrip : cocos2d::CCNode {
 		auto* lightStripSequence = cocos2d::CCSequence::create(delayAction, cocos2d::CCShow::create(), spawnEaseOutActions, nullptr);
 
 		cocos2d::CCDirector::sharedDirector()->getActionManager()->addAction(lightStripSequence, this, false);
+
+		return true;
 	}
 
 	virtual void draw() = win 0x42e30, imac 0x50f020, m1 0x465b00;
