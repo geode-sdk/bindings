@@ -291,7 +291,7 @@ class cocos2d::CCScene {
 
 	// CCScene(cocos2d::CCScene const&);
 	// CCScene() = ios 0x2508a4;
-	~CCScene() = imac 0x28cb70, m1 0x2149c0, ios 0x24b484;
+	~CCScene() = imac 0x28cb70, m1 0x2304c8, ios 0x24b484;
 
 	virtual bool init() = imac 0x28cba0, m1 0x2304e0;
 }
