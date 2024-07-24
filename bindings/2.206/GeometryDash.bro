@@ -879,12 +879,12 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 class CCAnimateFrameCache : cocos2d::CCObject {
 	// virtual ~CCAnimateFrameCache();
 
-	static CCAnimateFrameCache* sharedSpriteFrameCache() = ios 0x1bd0ac;
+	static CCAnimateFrameCache* sharedSpriteFrameCache() = win 0x405d0, ios 0x1bd0ac;
 
-	TodoReturn addCustomSpriteFramesWithFile(char const*);
+	void addCustomSpriteFramesWithFile(char const*);
 	TodoReturn addDict(cocos2d::CCDictionary*, char const*);
 	TodoReturn addDict(DS_Dictionary*, char const*);
-	void addSpriteFramesWithFile(char const*) = ios 0x1bd3c0;
+	void addSpriteFramesWithFile(char const*) = win 0x40660, ios 0x1bd3c0;
 	bool init();
 	TodoReturn purgeSharedSpriteFrameCache();
 	void removeSpriteFrames() = ios 0x1bd4f0;
@@ -6156,7 +6156,7 @@ class GameObject : CCSpritePlus {
 	virtual void setOrientedRectDirty(bool) = m1 0x1a140c, win 0x133b20, imac 0x1ed3b0;
 	virtual GameObjectType getType() = m1 0x1a1414, imac 0x1ed3c0;
 	virtual void setType(GameObjectType) = m1 0x1a141c, win 0x133b40, imac 0x1ed3d0;
-	virtual cocos2d::CCPoint* getStartPos(cocos2d::CCPoint*) = m1 0x1a1424, imac 0x1ed3e0;
+	virtual cocos2d::CCPoint getStartPos() = m1 0x1a1424, win 0x133b50, imac 0x1ed3e0;
 
 	// windows members may be wrong! yay!
 
@@ -7507,7 +7507,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn createCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, bool) = win 0x22fe90, m1 0x1234a8, imac 0x152660;
 	virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x230190, m1 0x123828, imac 0x1529b0;
 	virtual TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = win 0x230390, m1 0x123a68, imac 0x152bb0;
-	virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*) = m1 0x1247e0, imac 0x153b30;
+	virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*) = win 0x231f30, m1 0x1247e0, imac 0x153b30;
 	virtual void checkpointActivated(CheckpointGameObject*) = win 0x235b70;
 	virtual TodoReturn flipArt(bool) = m1 0x127a88, imac 0x157ec0;
 	virtual TodoReturn addKeyframe(KeyframeGameObject*) = win 0x223b30, m1 0x115768, imac 0x1405b0;
@@ -12785,13 +12785,13 @@ class ObjectManager : cocos2d::CCNode {
 	TodoReturn animLoaded(char const*);
 	TodoReturn getDefinition(char const*);
 	TodoReturn getGlobalAnimCopy(char const*);
-	static ObjectManager* instance() = ios 0x25c9a8;
+	static ObjectManager* instance() = win 0x6cee0, ios 0x25c9a8;
 	TodoReturn loadCopiedAnimations();
 	TodoReturn loadCopiedSets();
 	TodoReturn purgeObjectManager() = ios 0x25ca10;
 	TodoReturn replaceAllOccurencesOfString(cocos2d::CCString*, cocos2d::CCString*, cocos2d::CCDictionary*);
 	void setLoaded(char const*);
-	void setup() = ios 0x25cea8;
+	void setup() = win 0x6cfd0, ios 0x25cea8;
 
 	virtual bool init() = m1 0x6a957c, imac 0x7a1760;
 }
