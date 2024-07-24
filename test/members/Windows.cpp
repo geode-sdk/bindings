@@ -295,6 +295,7 @@ GEODE_SIZE_CHECK(SecretRewardsLayer, 0x238);
 GEODE_SIZE_CHECK(CurrencySprite, 0x2a8);
 GEODE_SIZE_CHECK(CommunityCreditsPage, 0x298);
 GEODE_SIZE_CHECK(AccountLayer, 0x2d0);
+GEODE_SIZE_CHECK(AnimatedShopKeeper, 0x300);
 GEODE_SIZE_CHECK(GJShopLayer, 0x218);
 GEODE_SIZE_CHECK(GJStoreItem, 0x178);
 

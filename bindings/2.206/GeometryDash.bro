@@ -344,14 +344,54 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
 [[link(android)]]
 class AnimatedShopKeeper : CCAnimatedSprite {
 	// virtual ~AnimatedShopKeeper();
+	AnimatedShopKeeper() {
+		m_type = ShopType::Normal;
+		m_idleInt1 = 0;
+		m_idleInt2 = 0;
+		m_looking = false;
+		m_reacting = false;
+		m_reactCount = 0;
+		m_gruntIndex = 0;
+	}
 
-	static AnimatedShopKeeper* create(ShopType);
+	static AnimatedShopKeeper* create(ShopType type) = win inline, m1 0x2b3750, imac 0x323160 {
+		auto ret = new AnimatedShopKeeper();
+		if (ret->init(type)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(ShopType);
-	TodoReturn playReactAnimation();
-	TodoReturn startAnimating();
+	bool init(ShopType type) = win inline, m1 0x2b7188, imac 0x327320 {
+		m_type = type;
+		auto shopkeeper = "GJShopKeeper";
+		switch (type) {
+			case ShopType::Secret: shopkeeper = "GJShopKeeper2"; break;
+			case ShopType::Community: shopkeeper = "GJShopKeeper3"; break;
+			case ShopType::Mechanic: shopkeeper = "GJShopKeeper4"; break;
+			case ShopType::Diamond: shopkeeper = "GJShopKeeper5"; break;
+			default: shopkeeper = "GJShopKeeper"; break;
+		}
+		if (!CCAnimatedSprite::initWithType(shopkeeper, nullptr, false)) return false;
+		m_idleInt2 = (rand() / 32767.f) * 5.f + 10.f;
+		m_idleInt1 = (rand() / 32767.f) * 2.f + 1.f;
+		m_animationManager->stopAnimations();
+		return true;
+	}
+	void playReactAnimation() = win 0x29d5f0, m1 0x2b6030, imac 0x325f10;
+	void startAnimating() = win 0x29d880, m1 0x2b38b0, imac 0x3232d0;
 
-	virtual void animationFinished(char const*) = m1 0x2b7254, imac 0x3273d0;
+	virtual void animationFinished(char const*) = win 0x29d910, m1 0x2b7254, imac 0x3273d0;
+
+	ShopType m_type;
+	int m_idleInt1;
+	int m_idleInt2;
+	bool m_looking;
+	bool m_reacting;
+	int m_reactCount;
+	int m_gruntIndex;
 }
 
 [[link(android)]]
@@ -846,6 +886,7 @@ class CCAlertCircle : cocos2d::CCNode {
 [[link(android)]]
 class CCAnimatedSprite : cocos2d::CCSprite {
 	// virtual ~CCAnimatedSprite();
+	CCAnimatedSprite() = win 0x3f030;
 
 	void cleanupSprite() = m1 0x2dfaf8, imac 0x3509d0;
 	static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = m1 0x2df14c, imac 0x34ffe0;
@@ -17323,18 +17364,33 @@ class SpriteAnimationManager : cocos2d::CCNode {
 	TodoReturn initWithOwner(CCAnimatedSprite*, gd::string);
 	TodoReturn loadAnimations(gd::string);
 	TodoReturn offsetCurrentAnimation(float);
-	TodoReturn overridePrio() = win 0x72f30;
+	void overridePrio() = win 0x72f30;
 	TodoReturn playSound(gd::string);
 	TodoReturn playSoundForAnimation(gd::string);
 	TodoReturn queueAnimation(gd::string);
 	TodoReturn resetAnimState();
 	TodoReturn runAnimation(gd::string);
 	TodoReturn runQueuedAnimation();
-	TodoReturn stopAnimations();
+	void stopAnimations() = win inline {
+		this->overridePrio();
+		if (m_sprite->m_paSprite) m_sprite->m_paSprite->stopAllActions();
+		if (m_sprite->m_fbfSprite) m_sprite->m_fbfSprite->stopAllActions();
+	}
 	TodoReturn storeAnimation(cocos2d::CCAnimate*, cocos2d::CCAnimate*, gd::string, int, spriteMode, cocos2d::CCSpriteFrame*);
 	TodoReturn storeSoundForAnimation(cocos2d::CCString*, gd::string, float);
 	TodoReturn switchToFirstFrameOfAnimation(gd::string);
 	TodoReturn updateAnimationSpeed(float);
+
+	CCAnimatedSprite* m_sprite;
+	cocos2d::CCDictionary* m_animationDict1;
+	cocos2d::CCDictionary* m_animationDict2;
+	cocos2d::CCDictionary* m_animationDict3;
+	gd::string m_queuedAnimation;
+	float m_speed;
+	cocos2d::CCDictionary* m_animationDict4;
+	cocos2d::CCDictionary* m_animationDict5;
+	gd::string m_currentAnimation;
+	gd::string m_nextAnimation;
 }
 
 [[link(android)]]
