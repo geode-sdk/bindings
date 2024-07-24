@@ -11759,90 +11759,118 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 
 	static LevelSettingsLayer* create(LevelSettingsObject*, LevelEditorLayer*) = win 0x2fe200, m1 0x20e4dc, imac 0x267640;
 
-	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
+	void createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0x300d30, m1 0x211020, imac 0x26a520;
 	bool init(LevelSettingsObject*, LevelEditorLayer*) = win 0x2fe3f0, m1 0x20e644, imac 0x267840;
-	void onBGArt(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onCol(cocos2d::CCObject* sender);
-	void onDisable(cocos2d::CCObject* sender);
-	void onFGArt(cocos2d::CCObject* sender);
-	void onGameplayMode(cocos2d::CCObject* sender);
-	void onGArt(cocos2d::CCObject* sender);
-	void onLiveEdit(cocos2d::CCObject* sender);
-	void onMode(cocos2d::CCObject* sender);
-	void onOptionToggle(cocos2d::CCObject* sender);
-	void onSelectFont(cocos2d::CCObject* sender);
-	void onSelectMode(cocos2d::CCObject* sender);
-	void onSelectSpeed(cocos2d::CCObject* sender);
-	void onSettings(cocos2d::CCObject* sender);
-	void onShowPicker(cocos2d::CCObject* sender);
-	void onSpeed(cocos2d::CCObject* sender);
-	void showPicker(ColorAction*);
-	TodoReturn updateColorSprite(ColorChannelSprite*);
-	TodoReturn updateColorSprites();
-	TodoReturn updateGameplayModeButtons();
+	void onBGArt(cocos2d::CCObject* sender) = win 0x3015c0, m1 0x210dd0, imac 0x26a280;
+	void onClose(cocos2d::CCObject* sender) = win 0x3011b0, m1 0x210f30, imac 0x26a410;
+	void onCol(cocos2d::CCObject* sender) = win 0x3013b0, m1 0x2108d0, imac 0x269d30;
+	void onDisable(cocos2d::CCObject* sender) = win 0x300f80, m1 0x211278, imac 0x26a730;
+	void onFGArt(cocos2d::CCObject* sender) = win 0x301690, m1 0x210ed4, imac 0x26a3b0;
+	void onGameplayMode(cocos2d::CCObject* sender) = win 0x300900, m1 0x210c48, imac 0x26a100;
+	void onGArt(cocos2d::CCObject* sender) = win 0x301610, m1 0x210e0c, imac 0x26a2c0;
+	void onLiveEdit(cocos2d::CCObject* sender) = win 0x3012f0, m1 0x210c04, imac 0x26a0c0;
+	void onMode(cocos2d::CCObject* sender) = win 0x300ad0, m1 0x211334, imac 0x26a800;
+	void onOptionToggle(cocos2d::CCObject* sender) = win 0x300fa0, m1 0x21128c, imac 0x26a750;
+	void onSelectFont(cocos2d::CCObject* sender) = win 0x3016e0, m1 0x210f10, imac 0x26a3f0;
+	void onSelectMode(cocos2d::CCObject* sender) = m1 0x2119a4, imac 0x26afa0;
+	void onSelectSpeed(cocos2d::CCObject* sender) = m1 0x211a64, imac 0x26b060;
+	void onSettings(cocos2d::CCObject* sender) = win 0x300a10, m1 0x211370, imac 0x26a850;
+	void onShowPicker(cocos2d::CCObject* sender) = win 0x301340, m1 0x21087c, imac 0x269cd0;
+	void onSpeed(cocos2d::CCObject* sender) = win 0x300a80, m1 0x2112f8, imac 0x26a7c0;
+	void showPicker(ColorAction*) = m1 0x211b94, imac 0x26b180;
+	void updateColorSprite(ColorChannelSprite*) = win 0x301460, m1 0x211bd4, imac 0x26b1f0;
+	void updateColorSprites() = win 0x3013f0, m1 0x2108f0, imac 0x269d50;
+	void updateGameplayModeButtons() = win 0x300940, m1 0x210d1c, imac 0x26a1d0;
 
-	virtual void registerWithTouchDispatcher() = m1 0x211810, imac 0x26ae10;
+	virtual void registerWithTouchDispatcher() = win 0x300cb0, m1 0x211810, imac 0x26ae10;
 	virtual void keyBackClicked() = win 0x301b50, m1 0x212060, imac 0x26b740;
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = m1 0x211c80, imac 0x26b2a0;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xc1450, m1 0x211c80, imac 0x26b2a0;
 	virtual void colorSelectClosed(cocos2d::CCNode*) = win 0x3013e0, m1 0x211bc8, imac 0x26b1c0;
 	virtual void selectArtClosed(SelectArtLayer*) = win 0x301800, m1 0x211e60, imac 0x26b4d0;
-	virtual TodoReturn selectSettingClosed(SelectSettingLayer*) = win 0x300b30, m1 0x211654, imac 0x26ac40;
-	virtual void textInputClosed(CCTextInputNode*) = m1 0x211868, imac 0x26ae60;
+	virtual void selectSettingClosed(SelectSettingLayer*) = win 0x300b30, m1 0x211654, imac 0x26ac40;
+	virtual void textInputClosed(CCTextInputNode*) = win 0x89f80, m1 0x211868, imac 0x26ae60;
 	virtual void textChanged(CCTextInputNode*) = win 0x300fe0, m1 0x211884, imac 0x26aea0;
+
+	SongSelectNode* m_songSelectNode;
+	Speed m_speed;
+	ColorChannelSprite* m_bgColorSprite;
+	ColorChannelSprite* m_gColorSprite;
+	ColorChannelSprite* m_g2ColorSprite;
+	ColorChannelSprite* m_lineColorSprite;
+	ColorChannelSprite* m_mgColorSprite;
+	ColorChannelSprite* m_mg2ColorSprite;
+	cocos2d::CCSprite* m_moreColorsSprite;
+	cocos2d::CCSprite* m_backgroundSprite;
+	cocos2d::CCSprite* m_groundSprite;
+	cocos2d::CCSprite* m_middlegroundSprite;
+	cocos2d::CCSprite* m_speedSprite;
+	cocos2d::CCSprite* m_modeSprite;
+	LevelSettingsObject* m_settingsObject;
+	void* m_unkPtr;
+	cocos2d::CCArray* m_modeToggles;
+	cocos2d::CCArray* m_speedButtons;
+	LevelSettingsDelegate* m_delegate;
+	LevelEditorLayer* m_editorLayer;
+	CCTextInputNode* m_orderInput;
+	CCTextInputNode* m_channelInput;
+	CCMenuItemSpriteExtra* m_classicButton;
+	CCMenuItemSpriteExtra* m_platformerButton;
+	bool m_disableInput;
 }
 
 [[link(android)]]
 class LevelSettingsObject : cocos2d::CCNode {
 	// virtual ~LevelSettingsObject();
 
-	static LevelSettingsObject* create() = win 0x2d1e50;
+	static LevelSettingsObject* create() = win 0x2d1e50, imac 0xe1630, m1 0xc7908;
 
-	gd::string getSaveString() = win 0x2d2280;
+	gd::string getSaveString() = win 0x2d2280, imac 0xe7a00, m1 0xcd150;
 	static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary*) = win 0x2d3bb0, imac 0xfb9f0, m1 0xdd7ac;
 	static LevelSettingsObject* objectFromString(gd::string const& str) = win inline, imac 0xe35f0, m1 0xc9300 {
 		return objectFromDict(GameToolbox::stringSetupToDict(str, ","));
 	}
-	TodoReturn setupColorsFromLegacyMode(cocos2d::CCDictionary*);
-	TodoReturn shouldUseYSection();
+	void setupColorsFromLegacyMode(cocos2d::CCDictionary*) = win 0x2d53d0, imac 0xfd0b0, m1 0xded64;
+	bool shouldUseYSection() = win inline, imac 0xfb9d0, m1 0xdd78c {
+		return m_platformerMode || m_dynamicLevelHeight;
+	}
 
 	virtual bool init() = m1 0xdd638, win 0x2d1f80, imac 0xfb840;
 
 	GJEffectManager* m_effectManager;
-    // property kA2
-    int m_startMode;
+	// property kA2
+	int m_startMode;
 	// property kA4
-    Speed m_startSpeed;
+	Speed m_startSpeed;
 	// property kA3
-    bool m_startMini;
+	bool m_startMini;
 	// property kA8
-    bool m_startDual;
+	bool m_startDual;
 	// property kA28
 	bool m_mirrorMode;
 	// property kA29
 	bool m_rotateGameplay;
 	// property kA10
-    bool m_twoPlayerMode;
+	bool m_twoPlayerMode;
 	// property kA22
 	bool m_platformerMode;
 	// property kA13
-    float m_songOffset;
+	float m_songOffset;
 	// property kA15
-    bool m_fadeIn;
+	bool m_fadeIn;
 	// property kA16
-    bool m_fadeOut;
+	bool m_fadeOut;
 	// property kA6
-    int m_backgroundIndex;
+	int m_backgroundIndex;
 	// property kA7
-    int m_groundIndex;
+	int m_groundIndex;
 	// property kA18
-    int m_fontIndex;
+	int m_fontIndex;
 	// property kA25
 	int m_middleGroundIndex;
 	// property kA9
-    bool m_startsWithStartPos;
+	bool m_startsWithStartPos;
 	// property kA11
-    bool m_isFlipped;
+	bool m_isFlipped;
 	// property kA20
 	bool m_reverseGameplay;
 	// property kA21
@@ -11852,15 +11880,15 @@ class LevelSettingsObject : cocos2d::CCNode {
 	// property kA26
 	int m_targetChannel;
 
-    GJGameLevel* m_level;
+	GJGameLevel* m_level;
 	// property kA14
-    gd::string m_guidelineString;
+	gd::string m_guidelineString;
 
-    int m_defaultSongID;
+	bool m_unkBool;
 	// property kS39
-    int m_colorPage;
+	int m_colorPage;
 	// property kA17
-    int m_groundLineIndex;
+	int m_groundLineIndex;
 	// property kA23
 	bool m_propertykA23;
 	// property kA24
@@ -11895,6 +11923,8 @@ class LevelSettingsObject : cocos2d::CCNode {
 	bool m_allowStaticRotate;
 	// property kA42
 	bool m_reverseSync;
+	// property kA45
+	bool m_propertykA45;
 }
 
 [[link(android)]]
@@ -14764,7 +14794,7 @@ class SelectPremadeLayer : FLAlertLayer {
 
 [[link(android)]]
 class SelectSettingDelegate {
-	virtual TodoReturn selectSettingClosed(SelectSettingLayer*);
+	virtual void selectSettingClosed(SelectSettingLayer*);
 }
 
 [[link(android)]]
@@ -15219,7 +15249,7 @@ class SetupAudioLineGuidePopup : SetupTriggerPopup, SelectSettingDelegate {
 	bool init(AudioLineGuideGameObject*, cocos2d::CCArray*);
 	void onSpeed(cocos2d::CCObject* sender);
 
-	virtual TodoReturn selectSettingClosed(SelectSettingLayer*) = win 0x444910, m1 0x4d5abc, imac 0x58b4c0;
+	virtual void selectSettingClosed(SelectSettingLayer*) = win 0x444910, m1 0x4d5abc, imac 0x58b4c0;
 }
 
 [[link(android)]]
