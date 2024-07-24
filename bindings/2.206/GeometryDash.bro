@@ -13456,7 +13456,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updateSpecial(float);
 	TodoReturn updateStateVariables();
 	TodoReturn updateStaticForce(float, float, bool);
-	void updateStreakBlend(bool) = imac 0x405e50, m1 0x10994c;
+	void updateStreakBlend(bool) = imac 0x405e50, m1 0x37eb80;
 	TodoReturn updateStreaks(float);
 	void updateSwingFire() = win 0x378de0;
 	void updateTimeMod(float, bool) = win 0x37ed60, m1 0x37e3e4, imac 0x405680;
@@ -14513,7 +14513,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 		else m_secondaryScrollLayer->moveToPage(page);
 	}
 	bool init(bool) = win 0x3ae2c0, imac 0x63d020, ios 0x2f8cd0, m1 0x55c7dc;
-	void moveToMainLayer(cocos2d::CCObject*) = ios 0x2facd4, imac 0x63fb20, m1 0x55e0ec;
+	void moveToMainLayer(cocos2d::CCObject*) = ios 0x2facd4, imac 0x63fb20, m1 0x55f180;
 	void moveToSecondaryLayer(int) = ios 0x2faabc, imac 0x63f650, m1 0x55ec98;
 	void onBack(cocos2d::CCObject* sender) = win 0x3b24f0, ios 0x2fa1d8, imac 0x63eae0, m1 0x55e0ec;
 	void onChestType(cocos2d::CCObject* sender) = win 0x3b0490, ios 0x2fa244, imac 0x63eb50, m1 0x55e158;
