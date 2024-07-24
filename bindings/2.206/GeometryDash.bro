@@ -12050,7 +12050,8 @@ class ListUploadDelegate {
 [[link(android)]]
 class LoadingCircle : cocos2d::CCLayerColor {
 	// virtual ~LoadingCircle();
-
+	LoadingCircle() {}
+	
 	static LoadingCircle* create() = win 0x6a3c0, imac 0x4c8dc0, m1 0x4280fc, ios 0x3a32a8;
 
 	void fadeAndRemove() = win 0x6a6a0, m1 0x4283ac, imac 0x4c90f0, ios 0x3a3544;
