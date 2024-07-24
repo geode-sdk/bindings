@@ -10711,12 +10711,12 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 	void onInfo(cocos2d::CCObject* sender);
 	void onTop(cocos2d::CCObject* sender);
 	void onWeek(cocos2d::CCObject* sender);
-	TodoReturn refreshTabs();
+	void refreshTabs() = win 0x2afce0;
 	static cocos2d::CCScene* scene(LeaderboardState);
 	void selectLeaderboard(LeaderboardState) = win 0x2afe10, imac 0x51b440, m1 0x4708ec;
 	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2afb80;
 	TodoReturn setupTabs();
-	TodoReturn toggleTabButtons();
+	void toggleTabButtons() = win 0x2b0060;
 
 	virtual void keyBackClicked() = win 0x2b0fb0, m1 0x471864, imac 0x51c490;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2b0f00, m1 0x47180c, imac 0x51c430;
