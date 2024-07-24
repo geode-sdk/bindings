@@ -6596,7 +6596,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn updateActivePath(StatKey);
 	gd::string usernameForAccountID(int);
 	void verifyPathAchievements() = win 0x1caf70;
-	void verifyUserCoins() = win 0x1f57a0, imac 0x6f1d0, m1 0x630a4;
+	void verifyUserCoins() = win 0x1d57a0, imac 0x6f1d0, m1 0x630a4;
 
 	virtual bool init() = m1 0x518d8, win 0x1c7280, imac 0x5b350;
 
