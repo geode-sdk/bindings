@@ -11711,7 +11711,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 	void* m_unkPtr;
 	cocos2d::CCArray* m_modeToggles;
 	cocos2d::CCArray* m_speedButtons;
-    LevelSettingsDelegate* m_delegate;
+	LevelSettingsDelegate* m_delegate;
 	LevelEditorLayer* m_editorLayer;
 	CCTextInputNode* m_orderInput;
 	CCTextInputNode* m_channelInput;
@@ -11739,40 +11739,40 @@ class LevelSettingsObject : cocos2d::CCNode {
 	virtual bool init() = m1 0xdd638, win 0x2d1f80, imac 0xfb840;
 
 	GJEffectManager* m_effectManager;
-    // property kA2
-    int m_startMode;
+	// property kA2
+	int m_startMode;
 	// property kA4
-    Speed m_startSpeed;
+	Speed m_startSpeed;
 	// property kA3
-    bool m_startMini;
+	bool m_startMini;
 	// property kA8
-    bool m_startDual;
+	bool m_startDual;
 	// property kA28
 	bool m_mirrorMode;
 	// property kA29
 	bool m_rotateGameplay;
 	// property kA10
-    bool m_twoPlayerMode;
+	bool m_twoPlayerMode;
 	// property kA22
 	bool m_platformerMode;
 	// property kA13
-    float m_songOffset;
+	float m_songOffset;
 	// property kA15
-    bool m_fadeIn;
+	bool m_fadeIn;
 	// property kA16
-    bool m_fadeOut;
+	bool m_fadeOut;
 	// property kA6
-    int m_backgroundIndex;
+	int m_backgroundIndex;
 	// property kA7
-    int m_groundIndex;
+	int m_groundIndex;
 	// property kA18
-    int m_fontIndex;
+	int m_fontIndex;
 	// property kA25
 	int m_middleGroundIndex;
 	// property kA9
-    bool m_startsWithStartPos;
+	bool m_startsWithStartPos;
 	// property kA11
-    bool m_isFlipped;
+	bool m_isFlipped;
 	// property kA20
 	bool m_reverseGameplay;
 	// property kA21
@@ -11782,15 +11782,15 @@ class LevelSettingsObject : cocos2d::CCNode {
 	// property kA26
 	int m_targetChannel;
 
-    GJGameLevel* m_level;
+	GJGameLevel* m_level;
 	// property kA14
-    gd::string m_guidelineString;
+	gd::string m_guidelineString;
 
-    bool m_unkBool;
+	bool m_unkBool;
 	// property kS39
-    int m_colorPage;
+	int m_colorPage;
 	// property kA17
-    int m_groundLineIndex;
+	int m_groundLineIndex;
 	// property kA23
 	bool m_propertykA23;
 	// property kA24
