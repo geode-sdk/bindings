@@ -9044,8 +9044,9 @@ class GJMultiplayerManager : cocos2d::CCNode {
 	virtual bool init() = m1 0x583214, imac 0x6671e0;
 }
 
+// TODO: add back ObjectDecoderDelegate after cocos-headers update
 [[link(android)]]
-class GJObjectDecoder : cocos2d::CCNode, ObjectDecoderDelegate {
+class GJObjectDecoder : cocos2d::CCNode {
 	// virtual ~GJObjectDecoder();
 
 	static GJObjectDecoder* sharedDecoder() = ios 0x227094, m1 0x644080, imac 0x731d90;

@@ -2426,11 +2426,6 @@ class DS_Dictionary {
 }
 
 [[link(win, android)]]
-class ObjectDecoderDelegate {
-	virtual cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
-}
-
-[[link(win, android)]]
 class ObjectDecoder : cocos2d::CCNode {
 	// virtual ~ObjectDecoder();
 
