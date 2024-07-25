@@ -99,7 +99,7 @@ jobs:
             -DCMAKE_OSX_ARCHITECTURES=arm64
             -D USE_HACKY_SCRIPT=ON
 
-        - name: iOS (ARM)
+        - name: iOS
           os_identifier: ios
           os: macos-latest
           extra_flags: >
