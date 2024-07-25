@@ -34,6 +34,7 @@ GEODE_MEMBER_CHECK(PlayLayer, m_activatedCheckpoint, 0x3978);
 
 GEODE_SIZE_CHECK(LevelEditorLayer, 0x39e8);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3754);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x37a8);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x37d8);
 
 GEODE_SIZE_CHECK(DrawGridLayer, 0x280);
@@ -199,8 +200,8 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkUint19, 0x6ac);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool31, 0x6b0);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint20, 0x6b4);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool32, 0x6b8);
-GEODE_MEMBER_CHECK(GJGameState, m_unkUint21, 0x6bc);
-GEODE_MEMBER_CHECK(GJGameState, m_unkUint22, 0x6c0);
+GEODE_MEMBER_CHECK(GJGameState, m_pauseCounter, 0x6bc);
+GEODE_MEMBER_CHECK(GJGameState, m_pauseBufferTimer, 0x6c0);
 
 GEODE_SIZE_CHECK(GameObject, 0x550);
 GEODE_MEMBER_CHECK(GameObject, m_outerSectionIndex, 0x278);
@@ -260,7 +261,9 @@ GEODE_SIZE_CHECK(GJUserScore, 0x310);
 GEODE_SIZE_CHECK(BoomScrollLayer, 0x270);
 GEODE_SIZE_CHECK(ButtonSprite, 0x2c0);
 GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
+GEODE_SIZE_CHECK(EditLevelLayer, 0x210);
 GEODE_SIZE_CHECK(EditorPauseLayer, 0x270);
+GEODE_SIZE_CHECK(PauseLayer, 0x238);
 GEODE_SIZE_CHECK(GJAccountSettingsLayer, 0x320);
 //GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
 GEODE_SIZE_CHECK(OptionsLayer, 0x298);
@@ -282,6 +285,19 @@ GEODE_SIZE_CHECK(CreatorLayer, 0x1c0);
 GEODE_SIZE_CHECK(GJRotationControl, 0x1c8);
 GEODE_SIZE_CHECK(GJScaleControl, 0x210);
 GEODE_SIZE_CHECK(EditLevelLayer, 0x210);
+GEODE_SIZE_CHECK(LevelSelectLayer, 0x1d8);
+GEODE_SIZE_CHECK(BoomScrollLayer, 0x270);
+GEODE_SIZE_CHECK(ExtendedLayer, 0x1a0);
+GEODE_SIZE_CHECK(MultilineBitmapFont, 0x748);
+GEODE_SIZE_CHECK(FontObject, 0x4e8);
+GEODE_SIZE_CHECK(BitmapFontCache, 0x40);
+GEODE_SIZE_CHECK(SecretRewardsLayer, 0x238);
+GEODE_SIZE_CHECK(CurrencySprite, 0x2a8);
+GEODE_SIZE_CHECK(CommunityCreditsPage, 0x298);
+GEODE_SIZE_CHECK(AccountLayer, 0x2d0);
+GEODE_SIZE_CHECK(AnimatedShopKeeper, 0x300);
+GEODE_SIZE_CHECK(GJShopLayer, 0x218);
+GEODE_SIZE_CHECK(GJStoreItem, 0x178);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
@@ -335,4 +351,18 @@ GEODE_SIZE_CHECK(FMODAudioState, 0x380);
 GEODE_SIZE_CHECK(GroupCommandObject2, 0x208);
 
 GEODE_SIZE_CHECK(KeyframeObject, 0x1c0);
+
+GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x80);
+GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x88);
+//GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintR, 0x176);
+//GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintG, 0x177);
+//GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintB, 0x178);
+
+GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x468);
+GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x490);
+GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x64c);
+
+GEODE_SIZE_CHECK(CCLightFlash, 0x168);
+GEODE_SIZE_CHECK(CCLightStrip, 0x160);
+
 #endif

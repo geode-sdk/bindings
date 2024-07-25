@@ -196,7 +196,7 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
         }
 
         for (auto dep : cls.attributes.depends) {
-            if (can_find(dep, "cocos2d::")) continue;
+            if (is_cocos_class(dep)) continue;
 
             std::string depfilename = (codegen::getUnqualifiedClassName(dep) + ".hpp");
 
