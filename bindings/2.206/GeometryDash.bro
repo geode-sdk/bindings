@@ -12902,11 +12902,6 @@ class ObjectControlGameObject : EffectGameObject {
 }
 
 [[link(android)]]
-class ObjectDecoderDelegate {
-	virtual cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
-}
-
-[[link(android)]]
 class ObjectManager : cocos2d::CCNode {
 	// virtual ~ObjectManager();
 
