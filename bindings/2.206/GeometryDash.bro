@@ -9051,7 +9051,7 @@ class GJObjectDecoder : cocos2d::CCNode, ObjectDecoderDelegate {
 	static GJObjectDecoder* sharedDecoder() = ios 0x227094, m1 0x644080, imac 0x731d90;
 
 	virtual bool init() = imac 0x731e10;
-	virtual TodoReturn getDecodedObject(int, DS_Dictionary*) = win 0x271ea0, m1 0x64412c, imac 0x731e20;
+	virtual cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = win 0x271ea0, m1 0x64412c, imac 0x731e20;
 }
 
 [[link(android)]]
@@ -12904,7 +12904,7 @@ class ObjectControlGameObject : EffectGameObject {
 
 [[link(android)]]
 class ObjectDecoderDelegate {
-	virtual TodoReturn getDecodedObject(int, DS_Dictionary*);
+	virtual cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
 }
 
 [[link(android)]]
