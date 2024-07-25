@@ -12,6 +12,12 @@ if (NOT DEFINED GEODE_LOADER_PATH)
 	message(FATAL_ERROR "GEODE_LOADER_PATH is not defined.")
 endif()
 
+option(
+	BINDINGS_VERSIONED_ONLY
+	"Disables inclusion of the unversioned Enums header, allowing for builds on older Geode/Geometry Dash versions."
+	OFF
+)
+
 if (NOT GEODE_BINDINGS_PATH)
 	set(GEODE_BINDINGS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bindings/${GEODE_GD_VERSION})
 endif()
@@ -153,8 +159,13 @@ endif()
 add_library(${PROJECT_NAME} ${GEODE_CODEGEN_PATH}/Geode/GeneratedSource.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC
 	${GEODE_CODEGEN_PATH}
-	${CMAKE_CURRENT_SOURCE_DIR}/bindings/include
 )
+
+if (NOT BINDINGS_VERSIONED_ONLY)
+	target_include_directories(${PROJECT_NAME} PUBLIC
+		${CMAKE_CURRENT_SOURCE_DIR}/bindings/include
+	)
+endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_VISIBILITY_PRESET hidden)
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
