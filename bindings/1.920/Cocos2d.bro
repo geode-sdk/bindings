@@ -510,7 +510,7 @@ class DS_Dictionary {
 	bool loadRootSubDictFromCompressedFile(const char*);
 }
 
-[[link(android)]]
+[[link(win, android)]]
 class ObjectDecoder {
 	// virtual ~ObjectDecoder();
 

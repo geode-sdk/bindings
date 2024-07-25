@@ -5227,11 +5227,6 @@ class OBB2D : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class ObjectDecoderDelegate {
-	virtual cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
-}
-
-[[link(android)]]
 class ObjectManager {
 	// virtual ~ObjectManager();
 
