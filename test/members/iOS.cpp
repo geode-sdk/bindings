@@ -1,7 +1,5 @@
 #include "Common.hpp"
 
-// COPIED FROM MacOSArm.cpp
-
 #ifdef GEODE_IS_IOS
 
 // GEODE_SIZE_CHECK(PlayLayer, 0x3790);
