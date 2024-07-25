@@ -1825,7 +1825,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 		return nullptr;
 	}
 	
-	void claimItem(ChallengeNode*, GJChallengeItem*, cocos2d::CCPoint) = imac 0x3a1800, m1 0x3285f0;
+	void claimItem(ChallengeNode*, GJChallengeItem*, cocos2d::CCPoint) = win 0x851e0, imac 0x3a1800, m1 0x3285f0;
 	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x849f0, imac 0x3a0dd0, m1 0x327c74;
 	TodoReturn exitNodeAtSlot(int, float) = win 0x84c80, imac 0x3a12a0, m1 0x3280c8;
 	void onClose(cocos2d::CCObject* sender) = m1 0x327968, imac 0x3a0ac0;
