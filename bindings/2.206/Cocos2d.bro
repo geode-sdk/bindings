@@ -2747,16 +2747,17 @@ class DS_Dictionary {
 	bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
 }
 
-[[link(win, android)]]
-class ObjectDecoder : cocos2d::CCNode {
-	// virtual ~ObjectDecoder();
-
-	static ObjectDecoder* sharedDecoder() = ios 0x246034, m1 0x6a61f4, imac 0x79de60;
-
-	cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
-
-	virtual bool init() = imac 0x79ded0;
-}
+// TODO: you can uncomment this after the next Geode update ☺️👍
+//[[link(win, android)]]
+//class ObjectDecoder {
+//	// virtual ~ObjectDecoder();
+//
+//	static ObjectDecoder* sharedDecoder() = ios 0x246034, m1 0x6a61f4, imac 0x79de60;
+//
+//	cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
+//
+//	virtual bool init() = imac 0x79ded0;
+//}
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker {
