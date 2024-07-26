@@ -138,6 +138,7 @@ GEODE_SIZE_CHECK(CCScrollLayerExt, 0x200);
 GEODE_SIZE_CHECK(TableView, 0x290);
 GEODE_SIZE_CHECK(CCTextInputNode, 0x238);
 GEODE_SIZE_CHECK(CCTouchDispatcher, 0x90);
+GEODE_SIZE_CHECK(AccountLayer, 0x2d0);
 
 GEODE_SIZE_CHECK(TableViewCell, 0x218);
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
@@ -180,5 +181,8 @@ GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x78);
 GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x458);
 GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x480);
 GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x63c);
+
+GEODE_SIZE_CHECK(CCLightFlash, 0x168);
+GEODE_SIZE_CHECK(CCLightStrip, 0x160);
 
 #endif
