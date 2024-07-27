@@ -1936,7 +1936,7 @@ class CheckpointGameObject : EffectGameObject {
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x18a010, imac 0x1d0730;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x18971c, imac 0x1cfc50;
 	virtual void triggerActivated(float) = m1 0x188a34, imac 0x1cee90, win 0x48d650;
-	virtual TodoReturn restoreObject() = m1 0x18a194, imac 0x1d08e0;
+	virtual void restoreObject() = m1 0x18a194, imac 0x1d08e0;
 	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x189380, imac 0x1cf840;
 }
 
@@ -3979,12 +3979,12 @@ class EffectGameObject : EnhancedGameObject {
 	virtual void setRScaleX(float) = m1 0x172504, imac 0x1b4370;
 	virtual void setRScaleY(float) = m1 0x172514, imac 0x1b4390;
 	virtual void triggerActivated(float) = m1 0x173be8, imac 0x1b6410;
-	virtual TodoReturn restoreObject() = m1 0x173998, imac 0x1b61d0;
-	virtual TodoReturn spawnXPosition() = m1 0x173ba8, imac 0x1b63d0;
-	virtual TodoReturn canReverse() = m1 0x173df0, imac 0x1b6570;
+	virtual void restoreObject() = m1 0x173998, imac 0x1b61d0;
+	virtual float spawnXPosition() = m1 0x173ba8, imac 0x1b63d0;
+	virtual bool canReverse() = m1 0x173df0, imac 0x1b6570;
 	virtual bool isSpecialSpawnObject() = m1 0x173e7c, imac 0x1b65e0;
-	virtual TodoReturn canBeOrdered() = m1 0x173e84, imac 0x1b65f0;
-	virtual TodoReturn getObjectLabel() = m1 0x1a1550, imac 0x1ed550;
+	virtual bool canBeOrdered() = m1 0x173e84, imac 0x1b65f0;
+	virtual cocos2d::CCLabelBMFont* getObjectLabel() = m1 0x1a1550, imac 0x1ed550;
 	virtual void setObjectLabel(cocos2d::CCLabelBMFont*) = m1 0x1a1558, imac 0x1ed560;
 	virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*) = m1 0x173908, imac 0x1b6130;
 
@@ -4316,18 +4316,18 @@ class EnhancedGameObject : GameObject {
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x501ed8, imac 0x5d4d40;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x50345c, imac 0x5d8140;
 	virtual void triggerActivated(float) = m1 0x501d50, imac 0x5d4bd0;
-	virtual TodoReturn restoreObject() = m1 0x501ca0, imac 0x5d4b00;
-	virtual TodoReturn animationTriggered() = m1 0x501e50, imac 0x5d4ca0;
-	virtual TodoReturn activatedByPlayer(PlayerObject*) = m1 0x501d5c, imac 0x5d4be0;
-	virtual TodoReturn hasBeenActivatedByPlayer(PlayerObject*) = m1 0x501dbc, imac 0x5d4c30;
+	virtual void restoreObject() = m1 0x501ca0, imac 0x5d4b00;
+	virtual void animationTriggered() = m1 0x501e50, imac 0x5d4ca0;
+	virtual void activatedByPlayer(PlayerObject*) = m1 0x501d5c, imac 0x5d4be0;
+	virtual bool hasBeenActivatedByPlayer(PlayerObject*) = m1 0x501dbc, imac 0x5d4c30;
 	TodoReturn resumeAudio();
 	TodoReturn resumeAudioDelayed();
-	virtual TodoReturn hasBeenActivated() = m1 0x501e30, imac 0x5d4c80;
-	virtual TodoReturn saveActiveColors() = m1 0x501e60, imac 0x5d4cc0;
-	virtual TodoReturn canAllowMultiActivate() = m1 0x501b2c, imac 0x5d4760;
-	virtual TodoReturn getHasSyncedAnimation() = m1 0x1a1528, imac 0x1ed500;
-	virtual TodoReturn getHasRotateAction() = m1 0x1a1530, imac 0x1ed510;
-	virtual TodoReturn canMultiActivate(bool) = m1 0x501d2c, imac 0x5d4bb0;
+	virtual bool hasBeenActivated() = m1 0x501e30, imac 0x5d4c80;
+	virtual void saveActiveColors() = m1 0x501e60, imac 0x5d4cc0;
+	virtual bool canAllowMultiActivate() = m1 0x501b2c, imac 0x5d4760;
+	virtual bool getHasSyncedAnimation() = m1 0x1a1528, imac 0x1ed500;
+	virtual bool getHasRotateAction() = m1 0x1a1530, imac 0x1ed510;
+	virtual bool canMultiActivate(bool) = m1 0x501d2c, imac 0x5d4bb0;
 	virtual TodoReturn powerOnObject(int) = m1 0x501cd8, imac 0x5d4b40;
 	virtual TodoReturn powerOffObject() = m1 0x501cec, imac 0x5d4b60;
 	virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*) = m1 0x173994, imac 0x1b61c0;
@@ -10755,13 +10755,13 @@ class LabelGameObject : EffectGameObject {
 	virtual bool init() = m1 0x1786d4, imac 0x1bbd40;
 	virtual void setOpacity(unsigned char) = win 0x487310, m1 0x178b30, imac 0x1bc1b0;
 	virtual void setupCustomSprites(gd::string) = m1 0x178704, imac 0x1bbd70;
-	virtual TodoReturn addMainSpriteToParent(bool) = m1 0x1793fc, imac 0x1bcb50;
+	virtual void addMainSpriteToParent(bool) = m1 0x1793fc, imac 0x1bcb50;
 	virtual void resetObject() = m1 0x17a074, imac 0x1bdab0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x1791b8, imac 0x1bc8e0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x179454, imac 0x1bcbb0;
 	virtual void setObjectColor(cocos2d::ccColor3B const&) = m1 0x1793b4, imac 0x1bcb00;
-	virtual TodoReturn updateTextKerning(int) = m1 0x178bb4, imac 0x1bc230;
-	virtual TodoReturn getTextKerning() = m1 0x1a1638, imac 0x1ed720;
+	virtual void updateTextKerning(int) = m1 0x178bb4, imac 0x1bc230;
+	virtual int getTextKerning() = m1 0x1a1638, imac 0x1ed720;
 
 	PAD = android32 0x11;
 
@@ -13114,20 +13114,20 @@ class ParticleGameObject : EnhancedGameObject {
 	virtual void setRotationY(float) = m1 0x16c65c, imac 0x1ad950;
 	virtual void setChildColor(cocos2d::ccColor3B const&) = m1 0x16c8ec, imac 0x1adbd0;
 	virtual void customSetup() = m1 0x16b874, imac 0x1acbc0;
-	virtual TodoReturn addMainSpriteToParent(bool) = m1 0x16b920, imac 0x1acc90;
+	virtual void addMainSpriteToParent(bool) = m1 0x16b920, imac 0x1acc90;
 	virtual void resetObject() = m1 0x16cab8, imac 0x1addc0;
 	virtual void deactivateObject(bool) = m1 0x16ca74, imac 0x1add80;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x16b608, imac 0x1ac8e0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x16ccac, imac 0x1adfc0;
-	virtual TodoReturn claimParticle() = m1 0x16ba00, imac 0x1acd70;
-	virtual TodoReturn unclaimParticle() = m1 0x16bfc8, imac 0x1ad310;
-	virtual TodoReturn particleWasActivated() = m1 0x16c054, imac 0x1ad390;
+	virtual void claimParticle() = m1 0x16ba00, imac 0x1acd70;
+	virtual void unclaimParticle() = m1 0x16bfc8, imac 0x1ad310;
+	virtual void particleWasActivated() = m1 0x16c054, imac 0x1ad390;
 	virtual void setObjectColor(cocos2d::ccColor3B const&) = m1 0x16c7f8, imac 0x1adae0;
-	virtual TodoReturn blendModeChanged() = m1 0x16b8f0, imac 0x1acc50;
-	virtual TodoReturn updateParticleColor(cocos2d::ccColor3B const&) = m1 0x1a1520, imac 0x1ed4e0;
-	virtual TodoReturn updateParticleOpacity(unsigned char) = m1 0x1a1524, imac 0x1ed4f0;
-	virtual TodoReturn updateMainParticleOpacity(unsigned char) = m1 0x16c9e0, imac 0x1adcc0;
-	virtual TodoReturn updateSecondaryParticleOpacity(unsigned char) = m1 0x16ca2c, imac 0x1add20;
+	virtual void blendModeChanged() = m1 0x16b8f0, imac 0x1acc50;
+	virtual void updateParticleColor(cocos2d::ccColor3B const&) = m1 0x1a1520, imac 0x1ed4e0;
+	virtual void updateParticleOpacity(unsigned char) = m1 0x1a1524, imac 0x1ed4f0;
+	virtual void updateMainParticleOpacity(unsigned char) = m1 0x16c9e0, imac 0x1adcc0;
+	virtual void updateSecondaryParticleOpacity(unsigned char) = m1 0x16ca2c, imac 0x1add20;
 	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x16cb20, imac 0x1ade20;
 	virtual TodoReturn updateAnimateOnTrigger(bool) = m1 0x16cc5c, imac 0x1adf70;
 
@@ -13619,7 +13619,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void resetObject() = m1 0x390ae4, imac 0x41b180;
 	virtual cocos2d::CCPoint getRealPosition() = m1 0x398604, imac 0x423a20;
 	virtual OBB2D* getOrientedBox() = m1 0x3997ac, imac 0x424d80;
-	virtual TodoReturn getObjectRotation() = m1 0x3997d8, imac 0x424da0;
+	virtual float getObjectRotation() = m1 0x3997d8, imac 0x424da0;
 	virtual void animationFinished(char const*) = win 0x3808b0, m1 0x39a5d0, imac 0x425df0;
 
 	cocos2d::CCNode* m_mainLayer;
@@ -14426,7 +14426,7 @@ class RingObject : EffectGameObject {
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x16e080, imac 0x1af710;
 	virtual void setRScale(float) = m1 0x16df30, imac 0x1af560;
 	virtual void triggerActivated(float) = m1 0x16dd88, imac 0x1af3b0;
-	virtual TodoReturn shouldDrawEditorHitbox() = m1 0x16df64, imac 0x1af5a0;
+	virtual bool shouldDrawEditorHitbox() = m1 0x16df64, imac 0x1af5a0;
 	virtual TodoReturn powerOnObject(int) = m1 0x16dd94, imac 0x1af3c0;
 
 	bool m_claimTouch;
@@ -17390,8 +17390,8 @@ class SpecialAnimGameObject : EnhancedGameObject {
 	virtual void resetObject() = m1 0x16d79c, imac 0x1aecf0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x16d7a8, imac 0x1aed10;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x16d808, imac 0x1aed70;
-	virtual TodoReturn updateMainColor(cocos2d::ccColor3B const&) = m1 0x16d77c, imac 0x1aecb0;
-	virtual TodoReturn updateSecondaryColor(cocos2d::ccColor3B const&) = m1 0x16d78c, imac 0x1aecd0;
+	virtual void updateMainColor(cocos2d::ccColor3B const&) = m1 0x16d77c, imac 0x1aecb0;
+	virtual void updateSecondaryColor(cocos2d::ccColor3B const&) = m1 0x16d78c, imac 0x1aecd0;
 	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x2012e8, imac 0x259570;
 }
 
@@ -17811,8 +17811,8 @@ class TextGameObject : GameObject {
 
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x504f98, imac 0x5da200;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x50514c, imac 0x5da380;
-	virtual TodoReturn updateTextKerning(int) = m1 0x504ce4, imac 0x5d9f80;
-	virtual TodoReturn getTextKerning() = m1 0x505998, imac 0x5dad80;
+	virtual void updateTextKerning(int) = m1 0x504ce4, imac 0x5d9f80;
+	virtual int getTextKerning() = m1 0x505998, imac 0x5dad80;
 
 	gd::string m_text;
 	// property 488
