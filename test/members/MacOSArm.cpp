@@ -199,4 +199,7 @@ GEODE_MEMBER_CHECK(GJShaderState, m_pixelateTargetY, 0x170);
 
 GEODE_SIZE_CHECK(CCTextInputNode, 0x258);
 
+GEODE_SIZE_CHECK(CCLightFlash, 0x168);
+GEODE_SIZE_CHECK(CCLightStrip, 0x160);
+
 #endif

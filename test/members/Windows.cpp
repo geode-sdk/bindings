@@ -233,7 +233,7 @@ GEODE_MEMBER_CHECK(EffectGameObject, m_ignoreGroupParent, 0x738);
 
 GEODE_SIZE_CHECK(PlayerObject, 0xc48);
 GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x558);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk4e4, 0x5a8);
+GEODE_MEMBER_CHECK(PlayerObject, m_maybeLastGroundObject, 0x5a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x690);
 GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x730);
 GEODE_MEMBER_CHECK(PlayerObject, m_swingFireMiddle, 0x780);
@@ -248,7 +248,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x980);
 GEODE_MEMBER_CHECK(PlayerObject, m_isLocked, 0xa2a);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0xa2c);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xb70);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk910, 0xb98);
+GEODE_MEMBER_CHECK(PlayerObject, m_jumpPadRelated, 0xb98);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotFire, 0xc10);
 GEODE_MEMBER_CHECK(PlayerObject, m_gameLayer, 0xc20);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0xc30);
@@ -295,6 +295,9 @@ GEODE_SIZE_CHECK(SecretRewardsLayer, 0x238);
 GEODE_SIZE_CHECK(CurrencySprite, 0x2a8);
 GEODE_SIZE_CHECK(CommunityCreditsPage, 0x298);
 GEODE_SIZE_CHECK(AccountLayer, 0x2d0);
+GEODE_SIZE_CHECK(AnimatedShopKeeper, 0x300);
+GEODE_SIZE_CHECK(GJShopLayer, 0x218);
+GEODE_SIZE_CHECK(GJStoreItem, 0x178);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
@@ -358,5 +361,8 @@ GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x88);
 GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x468);
 GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x490);
 GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x64c);
+
+GEODE_SIZE_CHECK(CCLightFlash, 0x168);
+GEODE_SIZE_CHECK(CCLightStrip, 0x160);
 
 #endif
