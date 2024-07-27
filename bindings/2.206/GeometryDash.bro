@@ -5934,7 +5934,7 @@ class GameObject : CCSpritePlus {
 
 	void addColorSprite(gd::string) = win 0x1847f0, imac 0x5ad230, m1 0x4edac4;
 	void addColorSpriteToParent(bool);
-    void addColorSpriteToSelf();
+	void addColorSpriteToSelf();
 	cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool);
 	cocos2d::CCSprite* addCustomChild(gd::string, cocos2d::CCPoint, int);
 	cocos2d::CCSprite* addCustomColorChild(gd::string);
@@ -9581,7 +9581,7 @@ class GJSearchObject : cocos2d::CCNode {
 	int m_searchMode;
 }
 
-[[link(android),	depends(GJValueTween)]]
+[[link(android),  depends(GJValueTween)]]
 class GJShaderState {
 	TodoReturn reset();
 	TodoReturn stopTweenAction(int);
