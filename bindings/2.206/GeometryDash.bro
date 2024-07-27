@@ -5981,8 +5981,8 @@ class GameObject : CCSpritePlus {
 	static GameObject* createWithKey(int) = win 0x181810, imac 0x5a5d30, m1 0x4ecab8;
 	void deselectObject(); // = win 0x141b70; actually updateObjectEditorColor, source: LevelEditorLayer::updateVisibility
 	inline void destroyObject() {
-		m_unk34a = true;
-		m_unk306 = true;
+		m_isDisabled = true;
+		m_isDisabled2 = true;
 		setOpacity(0);
 	}
 	void determineSlopeDirection() = win 0x192300, imac 0x5c6ad0, m1 0x4f5cf0;
