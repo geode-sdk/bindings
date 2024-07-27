@@ -695,6 +695,7 @@ class cocos2d::CCGLProgram {
 	// CCGLProgram(cocos2d::CCGLProgram const&);
 	CCGLProgram() = m1 0x3a6fd8;
 	~CCGLProgram() = m1 0x3a7018;
+	
 	void addAttribute(char const*, unsigned int) = m1 0x3a744c;
 	bool compileShader(unsigned int*, unsigned int, char const*);
 	char const* description();
@@ -2258,8 +2259,8 @@ class cocos2d::CCTextFieldTTF {
 	virtual void setSecureTextEntry(bool value);
 	virtual bool isSecureTextEntry();
 
-	virtual void setString(const char* text);
-	virtual const char* getString();
+	virtual void setString(const char* text) = m1 0x21e6fc;
+	virtual const char* getString() = m1 0x21e970;
 
 	virtual bool attachWithIME();
 	virtual bool detachWithIME();

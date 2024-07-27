@@ -4545,9 +4545,9 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getFMODStatus(int) = win 0x5ba00, ios 0x1450f8;
 	float getMeteringValue() = imac 0x3e7ec0;
 	TodoReturn getMusicChannelID(int);
-	unsigned int getMusicLengthMS(int channel) = win 0x5b0e0;
+	unsigned int getMusicLengthMS(int channel) = win 0x5b0e0, m1 0x36ba10;
 	TodoReturn getMusicTime(int);
-	unsigned int getMusicTimeMS(int channel) = win 0x5b080;
+	unsigned int getMusicTimeMS(int channel) = win 0x5b080, m1 0x36b920;
 	TodoReturn getNextChannelID();
 	TodoReturn getTweenContainer(AudioTargetType);
 	bool isChannelStopping(int);
@@ -12506,7 +12506,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getAllSFXObjects(bool);
 	TodoReturn getAllSongs();
 	void getCustomContentURL() = win 0x31ee40, imac 0x5986c0, m1 0x4e11c8;
-	cocos2d::CCObject* getDLObject(char const*) = win 0x38f40;
+	cocos2d::CCObject* getDLObject(char const*) = win 0x38f40, m1 0x4dbea0;
 	cocos2d::CCArray* getDownloadedSongs() = win 0x31d5a0;
 	TodoReturn getDownloadProgress(int);
 	TodoReturn getMusicArtistForID(int);
@@ -12516,7 +12516,11 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getSFXFolderObjectForID(int);
 	TodoReturn getSFXFolderPathForID(int, bool);
 	TodoReturn getSFXObject(int);
-	TodoReturn getSongDownloadKey(int);
+	TodoReturn getSongDownloadKey(int song) = m1 inline {
+		cocos2d::CCString::createWithFormat(song);
+		cocos2d::CCString::getCString();
+		return;
+	}
 	void getSongInfo(int, bool) = win 0x31c680, imac 0x592de0, m1 0x4dc278;
 	TodoReturn getSongInfoKey(int);
 	SongInfoObject* getSongInfoObject(int) = win 0x31e070, imac 0x592c90, m1 0x4dc130;
@@ -12525,7 +12529,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	void handleItND(cocos2d::CCNode*, void*);
 	TodoReturn incrementPriorityForSong(int);
-	bool isDLActive(char const* tag) = m1 0x4dbec8;
+	bool isDLActive(char const* tag);
 	bool isMusicLibraryLoaded();
 	bool isResourceSFX(int);
 	bool isResourceSong(int id) = win inline {
