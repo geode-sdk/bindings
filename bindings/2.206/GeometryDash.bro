@@ -6336,7 +6336,7 @@ class GameObject : CCSpritePlus {
 	bool m_unk40E;
 	float m_unk410;
 	float m_unk414;
-	bool m_someSpriteLocked;
+	bool m_particleLocked;
 	int m_property53;
 	bool m_gmUnkBool4Related;
 	bool m_unk421;
@@ -17165,7 +17165,7 @@ class SmartGameObject : GameObject {
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x16af34, imac 0x1ac0c0;
 
 	bool m_property157;
-	PAD = android32 0x9;
+	PAD = android32 0x5;
 }
 
 [[link(android)]]
