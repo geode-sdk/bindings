@@ -6208,6 +6208,8 @@ class GameObject : CCSpritePlus {
 	int m_innerSectionIndex;
 	int m_outerSectionIndex;
 	int m_middleSectionIndex;
+
+	// property 511
 	bool m_hasExtendedCollision;
 	cocos2d::ccColor3B m_maybeGroupColor;
 	bool m_unk280;
@@ -6218,12 +6220,15 @@ class GameObject : CCSpritePlus {
 	bool m_isGroupDisabled;
 	bool m_unk28B;
 	bool m_unk28c;
+
+	// somehow related to property 155 and 156 if anyone wants to reverse engineer
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
 	bool m_baseUsesHSV;
 	bool m_detailUsesHSV;
 	float m_positionXOffset;
 	float m_positionYOffset;
+
 	float m_rotationXOffset;
 	float m_unk2A8;
 	float m_rotationYOffset;
@@ -6238,10 +6243,6 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCPoint m_customBoxOffset;
 	bool m_boxOffsetCalculated;
 	cocos2d::CCPoint m_boxOffset;
-	//char m_unk2DC;
-	//char m_unk2DD;
-	//char m_unk2DE;
-	//char m_unk2DF;
 	OBB2D* m_orientedBox;
 	bool m_shouldUseOuterOb;
 	cocos2d::CCSprite* m_glowSprite;
@@ -6254,6 +6255,8 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCParticleSystemQuad* m_particle;
 	gd::string m_particleString;
 	bool m_hasParticles;
+
+	// property 146
 	bool m_particleUseObjectColor;
 	bool m_hasColorSprite;
 	cocos2d::CCPoint m_unk31c;
@@ -6270,6 +6273,8 @@ class GameObject : CCSpritePlus {
 	bool m_unk353;
 	bool m_canRotateFree;
 	bool m_isMirroredByScale;
+
+	// property 108
 	int m_linkedGroup;
 	int m_unk35C;
 	short m_colorType;
@@ -6286,6 +6291,8 @@ class GameObject : CCSpritePlus {
 	float m_spriteHeightScale;
 	int m_uniqueID;
 	GameObjectType m_objectType;
+
+	// used in PlayerObject::gameEventTriggered
 	GameObjectType m_savedObjectType;
 	int m_unk390;
 	float m_unmodifiedPositionX;
@@ -6294,6 +6301,8 @@ class GameObject : CCSpritePlus {
 	double m_positionY;
 	cocos2d::CCPoint m_startPosition;
 	bool m_unk3b8;
+
+	// property 372
 	bool m_hasNoAudioScale;
 	bool m_isDisabled;
 	float m_startRotationX;
@@ -6311,12 +6320,21 @@ class GameObject : CCSpritePlus {
 	bool m_unk3DE;
 	short m_unk3E0;
 	short m_unk3E2;
+
+	// property 343
 	short m_enterChannel;
+	// property 446
 	short m_objectMaterial;
 	bool m_unk3E8;
 	short m_parentMode;
+
+	// property 96
 	bool m_hasNoGlow;
+
+	// property 23
 	int m_targetColor;
+
+	// property 1
 	int m_objectID;
 	bool m_unk3F8;
 	bool m_isSolid;
@@ -6325,10 +6343,16 @@ class GameObject : CCSpritePlus {
 	bool m_unk3FC;
 	bool m_unk3FD;
 	bool m_customSpriteColor;
+
+	// property 497
 	short m_customColorType;
+	// property 67
 	bool m_isDontEnter;
+	// property 64
 	bool m_isDontFade;
+	// property 116
 	bool m_hasNoEffects;
+	// property 507
 	bool m_hasNoParticles;
 	int m_defaultZOrder;
 	bool m_unk40C;
@@ -6337,6 +6361,8 @@ class GameObject : CCSpritePlus {
 	float m_unk410;
 	float m_unk414;
 	bool m_particleLocked;
+
+	// property 53
 	int m_property53;
 	bool m_gmUnkBool4Related;
 	bool m_unk421;
@@ -6347,12 +6373,18 @@ class GameObject : CCSpritePlus {
 	int m_slopeDirection;
 	bool m_maybeShouldFixSlopes;
 	float m_opacityMod2;
+
+	// property 21, also used with 41 and 43
 	GJSpriteColor* m_baseColor;
+	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
 	bool m_unk448;
-	int m_defaultZLayer;
+	ZLayer m_defaultZLayer;
 	bool m_zFixedZLayer;
+
+	// property 24
 	ZLayer m_zLayer;
+	// property 25
 	int m_zOrder;
 	bool m_unk45c;
 	bool m_isSelected;
@@ -6360,22 +6392,37 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCPoint m_unk464;
 	bool m_shouldUpdateColorSprite;
 	bool m_unk46d;
+
+	// property 34
 	bool m_hasGroupParent;
+	// property 279
 	bool m_hasAreaParent;
+	// property 128
 	float m_scaleX;
+	// property 129
 	float m_scaleY;
+
+	// property 57
 	std::array<short, 10>* m_groups;
+	// used with property 57
 	short m_groupCount;
+	// used with property 274
 	bool m_hasGroupParentsString;
+
 	std::array<short, 10>* m_colorGroups;
 	short m_colorGroupCount;
 	std::array<short, 10>* m_opacityGroups;
 	short m_opacityGroupCount;
+
+	// property 20
 	short m_editorLayer;
+	// property 61
 	short m_editorLayer2;
 	int m_enabledGroupsCounter;
 	bool m_unk4ac;
 	bool m_unk4ad;
+
+	// property 121
 	bool m_isNoTouch;
 	cocos2d::CCSize m_unk4b0;
 	cocos2d::CCPoint m_lastPosition;
@@ -6391,6 +6438,8 @@ class GameObject : CCSpritePlus {
 	bool m_unk4D8;
 	bool m_unk4D9;
 	bool m_unk4DA;
+
+	// property 103
 	bool m_isHighDetail;
 	ColorActionSprite* m_unk4E0;
 	ColorActionSprite* m_unk4E8;
@@ -6400,22 +6449,36 @@ class GameObject : CCSpritePlus {
 	bool m_isDecoration2;
 	bool m_unk4fb;
 	bool m_maybeNotColorable;
+
+	// property 134
 	bool m_isPassable;
+	// property 135
 	bool m_isHide;
+	// property 136
 	bool m_isNonStickX;
+	// property 289
 	bool m_isNonStickY;
+	// property 137
 	bool m_isIceBlock;
+	// property 193
 	bool m_isGripSlope;
+	// property 356
 	bool m_isScaleStick;
+	// property 495
 	bool m_isExtraSticky;
+	// property 496
 	bool m_isDontBoostY;
+	// property 509
 	bool m_isDontBoostX;
 	bool m_unk507;
 	bool m_unk508;
 	float m_unk50C;
 	float m_pixelScaleX;
 	float m_pixelScaleY;
+
+	// property 155
 	int m_property155;
+	// property 156
 	int m_property156;
 	GLubyte m_areaOpacityRelated;
 	float m_areaOpacityRelated2;
