@@ -14348,7 +14348,7 @@ class RateLevelLayer : FLAlertLayer {
 		m_submitButton = nullptr;
 		m_difficulties = nullptr;
 		m_levelID = 0;
-		m_difficultyRate = 0;
+		m_levelRate = 0;
 		m_delegate = nullptr;
 	}
 
@@ -14372,7 +14372,7 @@ class RateLevelLayer : FLAlertLayer {
 	CCMenuItemSpriteExtra* m_submitButton;
 	cocos2d::CCArray* m_difficulties;
 	int m_levelID;
-	int m_difficultyRate;
+	int m_levelRate;
 	RateLevelDelegate* m_delegate;
 }
 
