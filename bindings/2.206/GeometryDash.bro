@@ -3599,7 +3599,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void deselectObjectsColor();
 	TodoReturn deselectTargetPortals();
 	TodoReturn disableButton(CreateMenuItem*);
-	void doCopyObjects(bool) = win 0x10f490;
+	void doCopyObjects(bool) = win 0x10f490, m1 0x48fcc;
 	TodoReturn doPasteInPlace(bool);
 	void doPasteObjects(bool) = win 0x10f620;
 	TodoReturn dynamicGroupUpdate(bool);
@@ -3659,14 +3659,17 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn liveEditColorUsable();
 	CreateMenuItem* menuItemFromObjectString(gd::string, int) = win 0x10ac30;
 	cocos2d::CCPoint moveForCommand(EditCommand command) = win 0x11b9b0;
-	void moveGamelayer(cocos2d::CCPoint) = win 0xdf250;
+	void moveGamelayer(cocos2d::CCPoint) = win 0xdf250, m1 0x2fba8;
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x11be20;
 	void moveObjectCall(cocos2d::CCObject*) = win 0x11bb60;
-	void moveObjectCall(EditCommand) = win 0x11bb90;
+	void moveObjectCall(EditCommand) = win 0x11bb90, m1 0x444f4;
 	cocos2d::CCPoint offsetForKey(int) = win 0x122780;
 	TodoReturn onAssignNewGroupID();
 	void onColorFilter(cocos2d::CCObject* sender);
-	void onCopy(cocos2d::CCObject* sender) = win 0x10f480;
+	void onCopy(cocos2d::CCObject* sender) = win 0x10f480, m1 inline {
+		EditorUI *thing = (EditorUI *)sender;
+		thing->doCopyObjects(0);
+	}
 	void onCopyState(cocos2d::CCObject* sender) = win 0x110650;
 	bool onCreate() = win 0x10b8b0;
 	void onCreateButton(cocos2d::CCObject* sender) = win 0x10b420;
@@ -3764,7 +3767,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void toggleSwipe(cocos2d::CCObject*) = win 0x10c480;
 	void transformObject(GameObject*, EditCommand, bool) = win 0x11c890;
 	void transformObjectCall(cocos2d::CCObject*);
-	void transformObjectCall(EditCommand) = win 0x11c340;
+	void transformObjectCall(EditCommand) = win 0x11c340, m1 0x44914;
 	void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x11da50;
 	TodoReturn transformObjectsActive();
 	TodoReturn transformObjectsReset();
@@ -12712,10 +12715,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getSFXFolderObjectForID(int);
 	TodoReturn getSFXFolderPathForID(int, bool);
 	TodoReturn getSFXObject(int);
-	TodoReturn getSongDownloadKey(int song) = m1 inline {
-		cocos2d::CCString::createWithFormat(song);
-		cocos2d::CCString::getCString();
-		return;
+	const char * getSongDownloadKey(int song) = m1 inline {
+		std::string song_str = std::to_string(song);
+		return cocos2d::CCString::createWithFormat(song_str.c_str())->getCString();
 	}
 	void getSongInfo(int, bool) = win 0x31c680, imac 0x592de0, m1 0x4dc278;
 	TodoReturn getSongInfoKey(int);

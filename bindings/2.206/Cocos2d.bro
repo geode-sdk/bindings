@@ -2037,12 +2037,12 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		return nullptr;
 	}
 
-	CCClippingNode() = ios inline {
+	CCClippingNode() = m1 0x63ef58, ios inline {
 		m_pStencil = nullptr;
 		m_fAlphaThreshold = 0.0f;
 		m_bInverted = false;
 	}
-	virtual ~CCClippingNode() = ios inline {
+	virtual ~CCClippingNode() = m1 0x63f028, ios inline {
 		CC_SAFE_RELEASE(m_pStencil);
 	}
 
