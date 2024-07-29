@@ -244,13 +244,13 @@ class AchievementNotifier : cocos2d::CCNode {
 	void willSwitchToScene(cocos2d::CCScene* scene) = win inline, m1 0x6d4754, imac 0x7cfa80, ios 0x226dec {
 		this->m_nextScene = scene;
 
-		if (this->m_achievementBar && this->m_achievementBar->getParent() != this->m_nextScene)
+		if (this->m_activeAchievementBar && this->m_activeAchievementBar->getParent() != this->m_nextScene)
 		{
-			this->m_achievementBar->retain();
-			this->m_achievementBar->removeFromParentAndCleanup(false);
-			this->nextScene->addChild(this->m_achievementBar, 105);
-			this->m_achievementBar->release();
-			this->m_achievementBar->resumeSchedulerAndActions();
+			this->m_activeAchievementBar->retain();
+			this->m_activeAchievementBar->removeFromParentAndCleanup(false);
+			this->m_nextScene->addChild(this->m_activeAchievementBar, 105);
+			this->m_activeAchievementBar->release();
+			this->m_activeAchievementBar->resumeSchedulerAndActions();
 		}
 	}
 
