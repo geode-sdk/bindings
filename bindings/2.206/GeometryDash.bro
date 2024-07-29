@@ -165,14 +165,14 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 	virtual void setOpacity(unsigned char) = win 0x80870, m1 0x5474bc, imac 0x6258a0;
 
 	cocos2d::CCLayerColor* m_layerColor;
-    int m_unkUnused;
-    cocos2d::CCScene* m_nextScene;
-    cocos2d::extension::CCScale9Sprite* m_bg;
-    cocos2d::extension::CCScale9Sprite* m_bg2;
-    cocos2d::CCSprite* m_achievementGlowSprite;
-    cocos2d::CCSprite* m_achievementSprite;
-    cocos2d::CCLabelBMFont* m_titleLabel;
-    TextArea* m_achievementDescription;
+	int m_unkUnused;
+	cocos2d::CCScene* m_nextScene;
+	cocos2d::extension::CCScale9Sprite* m_bg;
+	cocos2d::extension::CCScale9Sprite* m_bg2;
+	cocos2d::CCSprite* m_achievementGlowSprite;
+	cocos2d::CCSprite* m_achievementSprite;
+	cocos2d::CCLabelBMFont* m_titleLabel;
+	TextArea* m_achievementDescription;
 }
 
 [[link(android)]]
@@ -257,8 +257,8 @@ class AchievementNotifier : cocos2d::CCNode {
 	virtual bool init() = m1 0x6d4578, imac 0x7cf8a0;
 
 	cocos2d::CCScene* m_nextScene;
-    cocos2d::CCArray* m_achievementBarArray;
-    AchievementBar* m_activeAchievementBar;
+	cocos2d::CCArray* m_achievementBarArray;
+	AchievementBar* m_activeAchievementBar;
 }
 
 [[link(android)]]
