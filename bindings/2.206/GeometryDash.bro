@@ -164,7 +164,15 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 
 	virtual void setOpacity(unsigned char) = win 0x80870, m1 0x5474bc, imac 0x6258a0;
 
-	PAD = win 0x48;
+	cocos2d::CCLayerColor* m_layerColor;
+    int m_unkUnused;
+    cocos2d::CCScene* m_nextScene;
+    cocos2d::extension::CCScale9Sprite* m_bg;
+    cocos2d::extension::CCScale9Sprite* m_bg2;
+    cocos2d::CCSprite* m_achievementGlowSprite;
+    cocos2d::CCSprite* m_achievementSprite;
+    cocos2d::CCLabelBMFont* m_titleLabel;
+    TextArea* m_achievementDescription;
 }
 
 [[link(android)]]
@@ -216,10 +224,9 @@ class AchievementManager : cocos2d::CCNode {
 	cocos2d::CCArray* m_allAchievements;
 	cocos2d::CCDictionary* m_platformAchievements;
 	cocos2d::CCDictionary* m_achievementUnlocks;
-	PAD = win 0x4;
+	void* m_unkPtrUnused;
 	cocos2d::CCDictionary* m_reportedAchievements;
 	bool m_dontNotify;
-	PAD = win 0x3;
 	cocos2d::CCArray* m_allAchievementsSorted;
 	int m_order;
 	cocos2d::CCDictionary* m_unAchieved;
@@ -235,19 +242,23 @@ class AchievementNotifier : cocos2d::CCNode {
 	void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest) = win 0x39db0;
 	void showNextAchievement() = win 0x39e90;
 	void willSwitchToScene(cocos2d::CCScene* scene) = win inline, m1 0x6d4754, imac 0x7cfa80, ios 0x226dec {
-		// cocos2d::CCScene* previousScene = reinterpret_cast<cocos2d::CCScene*>(this->m_unknown2);
-		cocos2d::CCScene* previousScene = nullptr;
+		this->m_nextScene = scene;
 
-		if (previousScene && previousScene != scene)
+		if (this->m_achievementBar && this->m_achievementBar->getParent() != this->m_nextScene)
 		{
-			previousScene->retain();
-			scene->addChild(static_cast<cocos2d::CCNode*>(previousScene->getChildren()->lastObject()), 105);
-			previousScene->release();
-			previousScene->resumeSchedulerAndActions();
+			this->m_achievementBar->retain();
+			this->m_achievementBar->removeFromParentAndCleanup(false);
+			this->nextScene->addChild(this->m_achievementBar, 105);
+			this->m_achievementBar->release();
+			this->m_achievementBar->resumeSchedulerAndActions();
 		}
 	}
 
 	virtual bool init() = m1 0x6d4578, imac 0x7cf8a0;
+
+	cocos2d::CCScene* m_nextScene;
+    cocos2d::CCArray* m_achievementBarArray;
+    AchievementBar* m_activeAchievementBar;
 }
 
 [[link(android)]]
