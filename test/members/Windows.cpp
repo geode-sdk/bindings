@@ -298,6 +298,7 @@ GEODE_SIZE_CHECK(AccountLayer, 0x2d0);
 GEODE_SIZE_CHECK(AnimatedShopKeeper, 0x300);
 GEODE_SIZE_CHECK(GJShopLayer, 0x218);
 GEODE_SIZE_CHECK(GJStoreItem, 0x178);
+GEODE_SIZE_CHECK(ShardsPage, 0x2a0);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
