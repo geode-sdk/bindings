@@ -14293,21 +14293,47 @@ class RandTriggerGameObject : ChanceTriggerGameObject {
 [[link(android)]]
 class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	// virtual ~RateDemonLayer();
+	RateDemonLayer() {
+		m_uploadFinished = false;
+		m_submitButton = nullptr;
+		m_demons = nullptr;
+		m_unkPtr = nullptr;
+		m_levelID = 0;
+		m_demonRate = 0;
+		m_moderator = false;
+		m_popup = nullptr;
+		m_delegate = nullptr;
+	}
 
-	static RateDemonLayer* create(int);
+	static RateDemonLayer* create(int levelID) = win inline, m1 0x224bd8, imac 0x27fc10 {
+		auto ret = new RateDemonLayer();
+		if (ret->init(levelID)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(int);
-	void onClose(cocos2d::CCObject* sender);
-	void onRate(cocos2d::CCObject* sender) = win 0x3A54D0;
-	void selectRating(cocos2d::CCObject*) = win 0x3a5350;
+	bool init(int) = win 0x3a4d80, m1 0x224cf8, imac 0x27fd80;
+	void onClose(cocos2d::CCObject* sender) = win 0x3a5850, m1 0x2253e4, imac 0x280470;
+	void onRate(cocos2d::CCObject* sender) = win 0x3A54D0, m1 0x225440, imac 0x2804c0;
+	void selectRating(cocos2d::CCObject*) = win 0x3a5350, m1 0x2252d8, imac 0x280380;
 
 	virtual void keyBackClicked() = win 0x3a5890, m1 0x225914, imac 0x280930;
 	virtual void uploadActionFinished(int, int) = win 0x3a5670, m1 0x225568, imac 0x2805f0;
 	virtual void uploadActionFailed(int, int) = win 0x3a5700, m1 0x2256b8, imac 0x2806e0;
 	virtual void onClosePopup(UploadActionPopup*) = win 0x3a57d0, m1 0x225828, imac 0x280850;
 
-	PAD = win 0x12;
+	bool m_uploadFinished;
+	CCMenuItemSpriteExtra* m_submitButton;
+	cocos2d::CCArray* m_demons;
+	void* m_unkPtr;
+	int m_levelID;
 	int m_demonRate;
+	bool m_moderator;
+	UploadActionPopup* m_popup;
+	RateLevelDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -14318,15 +14344,36 @@ class RateLevelDelegate {
 [[link(android)]]
 class RateLevelLayer : FLAlertLayer {
 	// virtual ~RateLevelLayer();
+	RateLevelLayer() {
+		m_submitButton = nullptr;
+		m_difficulties = nullptr;
+		m_levelID = 0;
+		m_levelRate = 0;
+		m_delegate = nullptr;
+	}
 
-	static RateLevelLayer* create(int);
+	static RateLevelLayer* create(int levelID) = win inline, m1 0x4bc2b0, imac 0x56f270 {
+		auto ret = new RateLevelLayer();
+		if (ret->init(levelID)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(int) = win 0x3a59b0;
-	void onClose(cocos2d::CCObject* sender);
-	void onRate(cocos2d::CCObject* sender);
-	TodoReturn selectRating(cocos2d::CCObject*);
+	bool init(int) = win 0x3a59b0, m1 0x4bc3b4, imac 0x56f3b0;
+	void onClose(cocos2d::CCObject* sender) = win 0x3a6060, m1 0x4bcb6c, imac 0x56fb50;
+	void onRate(cocos2d::CCObject* sender) = win 0x3a6010, m1 0x4bcbc8, imac 0x56fba0;
+	void selectRating(cocos2d::CCObject* sender) = win 0x3a5ec0, m1 0x4bca50, imac 0x56fa70;
 
 	virtual void keyBackClicked() = win 0x3a60a0, m1 0x4bcc30, imac 0x56fbf0;
+
+	CCMenuItemSpriteExtra* m_submitButton;
+	cocos2d::CCArray* m_difficulties;
+	int m_levelID;
+	int m_levelRate;
+	RateLevelDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -14334,22 +14381,33 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 	// virtual ~RateStarsLayer();
 	RateStarsLayer() = ios 0x84680;
 
-	static RateStarsLayer* create(int, bool, bool) = ios 0x83aa8;
+	static RateStarsLayer* create(int, bool, bool) = win 0x3a6230, imac 0x2877a0, m1 0x22ba18, ios 0x83aa8;
 
-	CCMenuItemSpriteExtra* getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float) = ios 0x840c0;
+	CCMenuItemSpriteExtra* getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float) = win 0x3a6a60, imac 0x287f80, m1 0x22c17c, ios 0x840c0;
 	bool init(int, bool, bool) = win 0x3a6380, imac 0x287930, m1 0x22bb60, ios 0x83b34;
-	void onClose(cocos2d::CCObject* sender) = win 0x3a7140, ios 0x84304;
-	void onFeature(cocos2d::CCObject* sender) = win 0x3a6a30, ios 0x842ec;
-	void onRate(cocos2d::CCObject* sender) = win 0x3a6d90, ios 0x84360;
-	void onToggleCoins(cocos2d::CCObject* sender);
-	void selectRating(cocos2d::CCObject*) = win 0x3a6ba0, ios 0x84188;
+	void onClose(cocos2d::CCObject* sender) = win 0x3a7140, imac 0x288220, m1 0x22c428, ios 0x84304;
+	void onFeature(cocos2d::CCObject* sender) = win 0x3a6a30, imac 0x2881f0, m1 0x22c410, ios 0x842ec;
+	void onRate(cocos2d::CCObject* sender) = win 0x3a6d90, imac 0x288270, m1 0x22c484, ios 0x84360;
+	void onToggleCoins(cocos2d::CCObject* sender) = imac 0x2881a0, m1 0x22c3b8;
+	void selectRating(cocos2d::CCObject*) = win 0x3a6ba0, imac 0x288050, m1 0x22c244, ios 0x84188;
 
 	virtual void keyBackClicked() = win 0x3a7180, m1 0x22c93c, imac 0x2886f0, ios 0x8461c;
 	virtual void uploadActionFinished(int, int) = win 0x3a6f80, m1 0x22c5b0, imac 0x2883b0, ios 0x84480;
 	virtual void uploadActionFailed(int, int) = win 0x3a7000, m1 0x22c6f0, imac 0x2884a0, ios 0x8450c;
 	virtual void onClosePopup(UploadActionPopup*) = win 0x3a70c0, m1 0x22c850, imac 0x288610, ios 0x845a0;
-	PAD = win 0x10;
+
+	bool m_uploadFinished;
+	bool m_moderator;
+	CCMenuItemSpriteExtra* m_submitButton;
+	cocos2d::CCArray* m_buttons;
+	int m_levelID;
 	int m_starsRate;
+	bool m_coinsToggled;
+	cocos2d::CCSprite* m_coinSprite;
+	UploadActionPopup* m_popup;
+	GJDifficultySprite* m_difficultySprite;
+	int m_featureState;
+	RateLevelDelegate* m_delegate;
 }
 
 [[link(android)]]
