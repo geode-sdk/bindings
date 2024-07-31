@@ -11489,7 +11489,21 @@ class LevelListDeleteDelegate {
 [[link(android)]]
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
 	// virtual ~LevelListLayer();
-	LevelListLayer() = ios 0x259620 {}
+	LevelListLayer() = ios 0x259620 {
+		m_buttonMenu = nullptr;
+		m_searchKey1 = "";
+		m_levelList = nullptr;
+		m_searchKey2 = "";
+		m_likeButton = nullptr;
+		m_exiting = false;
+		m_titleInput = nullptr;
+		m_editMode = 0;
+		m_objects = nullptr;
+		m_diffSprite = nullptr;
+		m_featureSprite = nullptr;
+		m_rewardPosition = cocos2d::CCPointMake(0.f, 0.f);
+		m_exited = false;
+	}
 
 	static LevelListLayer* create(GJLevelList* list) = win inline, m1 0x2e9ff4, imac 0x35c7c0, ios 0x2528f4 {
 		auto ret = new LevelListLayer();
@@ -11501,13 +11515,13 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 		return nullptr;
 	}
 
-	void cloneList();
+	void cloneList() = win 0x2e7cb0;
 	void confirmClone(cocos2d::CCObject*) = win 0x2e7bc0, imac 0x35e990, m1 0x2ebf08;
 	void confirmDelete(cocos2d::CCObject*) = win 0x2e7f40, imac 0x35ec40, m1 0x2ec1b0;
 	void confirmOwnerDelete(cocos2d::CCObject*) = win 0x2e8070, imac 0x35eb20, m1 0x2ec0a8;
 	bool init(GJLevelList*) = win 0x2e3190, m1 0x2ea074, imac 0x35c820, ios 0x252968;
 	void onClaimReward(cocos2d::CCObject* sender) = win 0x2e5bb0, imac 0x35ffa0, m1 0x2ed49c;
-	void onDelete() = win 0x2e7cb0;
+	void onDelete();
 	void onDescription(cocos2d::CCObject* sender) = win 0x2e7330, imac 0x35ed30, m1 0x2ec2a8;
 	void onFavorite(cocos2d::CCObject* sender) = win 0x2e7200, imac 0x35ea70, m1 0x2ebff8;
 	void onInfo(cocos2d::CCObject* sender) = win 0x2e7500, imac 0x35e8e0, m1 0x2ebe60;
@@ -11548,7 +11562,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	GJLevelList* m_levelList;
 	gd::string m_searchKey2;
 	CCMenuItemSpriteExtra* m_likeButton;
-	bool m_deleted;
+	bool m_exiting;
 	CCTextInputNode* m_titleInput;
 	int m_editMode;
 	cocos2d::CCArray* m_objects;
