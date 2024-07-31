@@ -19,13 +19,15 @@ using namespace broma;
 
 #include "AndroidSymbol.hpp"
 #include "WindowsSymbol.hpp"
+#include <matjson.hpp>
 
 std::string generateAddressHeader(Root const& root);
 std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
 std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
 std::string generatePredeclareHeader(Root const& root);
 std::string generateBindingSource(Root const& root);
-std::string generateJsonInterface(Root const& root);
+std::string generateTextInterface(Root const& root);
+matjson::Value generateJsonInterface(Root const& root);
 
 // returns true if the file contents were different (overwritten), false otherwise
 inline bool writeFile(ghc::filesystem::path const& writePath, std::string const& output) {
@@ -56,7 +58,7 @@ inline bool can_find(std::string const& str, char const* text) {
 }
 
 inline bool is_cocos_class(std::string const& str) {
-    return can_find(str, "cocos2d") || can_find(str, "pugi::") || str == "DS_Dictionary";
+    return can_find(str, "cocos2d") || can_find(str, "pugi::") || str == "DS_Dictionary" || str == "ObjectDecoder" || str == "ObjectDecoderDelegate";
 }
 
 enum class BindStatus {
@@ -98,8 +100,8 @@ namespace codegen {
     }
 
     template <typename... Args>
-    inline codegen_error error(Args... args) {
-        return codegen_error(fmt::format(args...).c_str());
+    inline codegen_error error(fmt::format_string<Args...> fmt, Args... args) {
+        return codegen_error(fmt::format(fmt, args...).c_str());
     }
 
     inline Platform platform;

@@ -450,8 +450,40 @@ class cocos2d::extension::CCHttpClient {
 }
 
 [[link(win, android)]]
+class cocos2d::CCIMEDispatcher {
+	static cocos2d::CCIMEDispatcher* sharedDispatcher();
+
+	// CCIMEDispatcher();
+
+	void addDelegate(cocos2d::CCIMEDelegate*);
+	bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
+	bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
+	void dispatchDeleteBackward();
+	void dispatchInsertText(char const*, int);
+	void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
+	void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&);
+	void dispatchKeyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&);
+	void dispatchKeyboardWillHide();
+	void dispatchKeyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&);
+	char const* getContentText();
+	bool hasDelegate();
+	void removeDelegate(cocos2d::CCIMEDelegate*);
+}
+
+[[link(win, android)]]
 class cocos2d::CCKeyboardDispatcher {
 	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool);
+}
+
+[[link(win, android)]]
+class cocos2d::CCMouseDispatcher {
+	// CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
+	// CCMouseDispatcher();
+	void addDelegate(cocos2d::CCMouseDelegate*);
+	bool dispatchScrollMSG(float, float);
+	void forceAddDelegate(cocos2d::CCMouseDelegate*);
+	void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
+	void removeDelegate(cocos2d::CCMouseDelegate*);
 }
 
 [[link(win, android)]]
@@ -476,4 +508,19 @@ class DS_Dictionary {
 	bool loadRootSubDictFromFile(const char*);
 	bool loadRootSubDictFromString(gd::string);
 	bool loadRootSubDictFromCompressedFile(const char*);
+}
+
+[[link(win, android)]]
+class ObjectDecoder {
+	// virtual ~ObjectDecoder();
+
+	static ObjectDecoder* sharedDecoder();
+
+	cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*);
+
+	virtual bool init();
+	virtual ObjectDecoderDelegate* getDelegate() const;
+	virtual void setDelegate(ObjectDecoderDelegate*);
+
+	// ObjectDecoderDelegate* m_delegate;
 }

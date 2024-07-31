@@ -80,6 +80,7 @@ GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x17c);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x1bc);
 
 GEODE_SIZE_CHECK(LevelEditorLayer, 0x2f48);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x2e04);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x2e24);
 
 GEODE_SIZE_CHECK(GameObject, 0x488);
@@ -101,10 +102,10 @@ GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x580);
 GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x5cb);
 GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x5d0);
 GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x610);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk644, 0x62c);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk658, 0x640);
+GEODE_MEMBER_CHECK(PlayerObject, m_trailingParticleLife, 0x630);
+GEODE_MEMBER_CHECK(PlayerObject, m_padRingRelated, 0x640);
 GEODE_MEMBER_CHECK(PlayerObject, m_gv0096, 0x68a);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk6a4, 0x6a4);
+GEODE_MEMBER_CHECK(PlayerObject, m_ringRelatedSet, 0x6a4);
 GEODE_MEMBER_CHECK(PlayerObject, m_objectSnappedTo, 0x6c0);
 GEODE_MEMBER_CHECK(PlayerObject, m_spiderSprite, 0x6d0);
 GEODE_MEMBER_CHECK(PlayerObject, m_playerGroundParticles, 0x6d8);
@@ -113,14 +114,14 @@ GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x770);
 GEODE_MEMBER_CHECK(PlayerObject, m_isDart, 0x7ac);
 GEODE_MEMBER_CHECK(PlayerObject, m_vehicleSize, 0x7e0);
 GEODE_MEMBER_CHECK(PlayerObject, m_playerSpeed, 0x7e4);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk7e0, 0x7e8);
+GEODE_MEMBER_CHECK(PlayerObject, m_shipRotation, 0x7e8);
 GEODE_MEMBER_CHECK(PlayerObject, m_lastGroundedPos, 0x81c);
 GEODE_MEMBER_CHECK(PlayerObject, m_touchingRings, 0x824);
 GEODE_MEMBER_CHECK(PlayerObject, m_position, 0x850);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk880, 0x880);
+GEODE_MEMBER_CHECK(PlayerObject, m_playerFollowFloats, 0x880);
 GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0x8a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0x920);
-GEODE_MEMBER_CHECK(PlayerObject, m_unk930, 0x988);
+GEODE_MEMBER_CHECK(PlayerObject, m_currentRobotAnimation, 0x988);
 GEODE_MEMBER_CHECK(PlayerObject, m_gameLayer, 0x9a8);
 GEODE_MEMBER_CHECK(PlayerObject, m_parentLayer, 0x9ac);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x9b0);
@@ -165,5 +166,15 @@ GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x210);
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x198);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x158);
+
+GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x38);
+GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x40);
+GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintR, 0x176);
+GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintG, 0x177);
+GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintB, 0x178);
+
+GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x3c4);
+GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x3d8);
+GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x590);
 
 #endif
