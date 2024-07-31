@@ -1936,7 +1936,7 @@ class CheckpointGameObject : EffectGameObject {
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x18a010, imac 0x1d0730;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x18971c, imac 0x1cfc50;
 	virtual void triggerActivated(float) = m1 0x188a34, imac 0x1cee90, win 0x48d650;
-	virtual TodoReturn restoreObject() = m1 0x18a194, imac 0x1d08e0;
+	virtual void restoreObject() = m1 0x18a194, imac 0x1d08e0;
 	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x189380, imac 0x1cf840;
 }
 
@@ -3979,12 +3979,12 @@ class EffectGameObject : EnhancedGameObject {
 	virtual void setRScaleX(float) = m1 0x172504, imac 0x1b4370;
 	virtual void setRScaleY(float) = m1 0x172514, imac 0x1b4390;
 	virtual void triggerActivated(float) = m1 0x173be8, imac 0x1b6410;
-	virtual TodoReturn restoreObject() = m1 0x173998, imac 0x1b61d0;
-	virtual TodoReturn spawnXPosition() = m1 0x173ba8, imac 0x1b63d0;
-	virtual TodoReturn canReverse() = m1 0x173df0, imac 0x1b6570;
+	virtual void restoreObject() = m1 0x173998, imac 0x1b61d0;
+	virtual float spawnXPosition() = m1 0x173ba8, imac 0x1b63d0;
+	virtual bool canReverse() = m1 0x173df0, imac 0x1b6570;
 	virtual bool isSpecialSpawnObject() = m1 0x173e7c, imac 0x1b65e0;
-	virtual TodoReturn canBeOrdered() = m1 0x173e84, imac 0x1b65f0;
-	virtual TodoReturn getObjectLabel() = m1 0x1a1550, imac 0x1ed550;
+	virtual bool canBeOrdered() = m1 0x173e84, imac 0x1b65f0;
+	virtual cocos2d::CCLabelBMFont* getObjectLabel() = m1 0x1a1550, imac 0x1ed550;
 	virtual void setObjectLabel(cocos2d::CCLabelBMFont*) = m1 0x1a1558, imac 0x1ed560;
 	virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*) = m1 0x173908, imac 0x1b6130;
 
@@ -4316,18 +4316,18 @@ class EnhancedGameObject : GameObject {
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x501ed8, imac 0x5d4d40;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x50345c, imac 0x5d8140;
 	virtual void triggerActivated(float) = m1 0x501d50, imac 0x5d4bd0;
-	virtual TodoReturn restoreObject() = m1 0x501ca0, imac 0x5d4b00;
-	virtual TodoReturn animationTriggered() = m1 0x501e50, imac 0x5d4ca0;
-	virtual TodoReturn activatedByPlayer(PlayerObject*) = m1 0x501d5c, imac 0x5d4be0;
-	virtual TodoReturn hasBeenActivatedByPlayer(PlayerObject*) = m1 0x501dbc, imac 0x5d4c30;
+	virtual void restoreObject() = m1 0x501ca0, imac 0x5d4b00;
+	virtual void animationTriggered() = m1 0x501e50, imac 0x5d4ca0;
+	virtual void activatedByPlayer(PlayerObject*) = m1 0x501d5c, imac 0x5d4be0;
+	virtual bool hasBeenActivatedByPlayer(PlayerObject*) = m1 0x501dbc, imac 0x5d4c30;
 	TodoReturn resumeAudio();
 	TodoReturn resumeAudioDelayed();
-	virtual TodoReturn hasBeenActivated() = m1 0x501e30, imac 0x5d4c80;
-	virtual TodoReturn saveActiveColors() = m1 0x501e60, imac 0x5d4cc0;
-	virtual TodoReturn canAllowMultiActivate() = m1 0x501b2c, imac 0x5d4760;
-	virtual TodoReturn getHasSyncedAnimation() = m1 0x1a1528, imac 0x1ed500;
-	virtual TodoReturn getHasRotateAction() = m1 0x1a1530, imac 0x1ed510;
-	virtual TodoReturn canMultiActivate(bool) = m1 0x501d2c, imac 0x5d4bb0;
+	virtual bool hasBeenActivated() = m1 0x501e30, imac 0x5d4c80;
+	virtual void saveActiveColors() = m1 0x501e60, imac 0x5d4cc0;
+	virtual bool canAllowMultiActivate() = m1 0x501b2c, imac 0x5d4760;
+	virtual bool getHasSyncedAnimation() = m1 0x1a1528, imac 0x1ed500;
+	virtual bool getHasRotateAction() = m1 0x1a1530, imac 0x1ed510;
+	virtual bool canMultiActivate(bool) = m1 0x501d2c, imac 0x5d4bb0;
 	virtual TodoReturn powerOnObject(int) = m1 0x501cd8, imac 0x5d4b40;
 	virtual TodoReturn powerOffObject() = m1 0x501cec, imac 0x5d4b60;
 	virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*) = m1 0x173994, imac 0x1b61c0;
@@ -5931,41 +5931,41 @@ class GameObject : CCSpritePlus {
 	GameObject() = win 0x133690;
 
 	void addColorSprite(gd::string) = win 0x1847f0, imac 0x5ad230, m1 0x4edac4;
-	TodoReturn addColorSpriteToParent(bool);
-	TodoReturn addColorSpriteToSelf();
-	TodoReturn addCustomBlackChild(gd::string, float, bool);
-	TodoReturn addCustomChild(gd::string, cocos2d::CCPoint, int);
-	TodoReturn addCustomColorChild(gd::string);
-	TodoReturn addEmptyGlow();
-	TodoReturn addGlow(gd::string);
-	TodoReturn addInternalChild(cocos2d::CCSprite*, gd::string, cocos2d::CCPoint, int);
-	TodoReturn addInternalCustomColorChild(gd::string, cocos2d::CCPoint, int);
-	TodoReturn addInternalGlowChild(gd::string, cocos2d::CCPoint);
-	TodoReturn addNewSlope01(bool);
-	TodoReturn addNewSlope01Glow(bool);
-	TodoReturn addNewSlope02(bool);
-	TodoReturn addNewSlope02Glow(bool);
-	TodoReturn addRotation(float, float);
-	TodoReturn addRotation(float);
-	TodoReturn addToColorGroup(int);
+	void addColorSpriteToParent(bool);
+	void addColorSpriteToSelf();
+	cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool);
+	cocos2d::CCSprite* addCustomChild(gd::string, cocos2d::CCPoint, int);
+	cocos2d::CCSprite* addCustomColorChild(gd::string);
+	void addEmptyGlow();
+	void addGlow(gd::string);
+	cocos2d::CCSprite* addInternalChild(cocos2d::CCSprite*, gd::string, cocos2d::CCPoint, int);
+	cocos2d::CCSprite* addInternalCustomColorChild(gd::string, cocos2d::CCPoint, int);
+	cocos2d::CCSprite* addInternalGlowChild(gd::string, cocos2d::CCPoint);
+	void addNewSlope01(bool);
+	void addNewSlope01Glow(bool);
+	void addNewSlope02(bool);
+	void addNewSlope02Glow(bool);
+	void addRotation(float, float);
+	void addRotation(float);
+	void addToColorGroup(int);
 	void addToCustomScaleX(float) = imac 0x5c4cb0, m1 0x4f4054;
 	void addToCustomScaleY(float) = imac 0x5c4cf0, m1 0x4f407c;
-	TodoReturn addToOpacityGroup(int);
-	TodoReturn addToTempOffset(double, double);
-	TodoReturn assignUniqueID();
-	TodoReturn belongsToGroup(int);
-	TodoReturn calculateOrientedBox();
-	TodoReturn canChangeCustomColor();
-	TodoReturn canChangeMainColor();
-	TodoReturn canChangeSecondaryColor();
-	TodoReturn canRotateFree();
-	TodoReturn colorForMode(int, bool);
-	TodoReturn commonInteractiveSetup();
+	void addToOpacityGroup(int);
+	void addToTempOffset(double, double);
+	void assignUniqueID();
+	bool belongsToGroup(int);
+	void calculateOrientedBox();
+	bool canChangeCustomColor();
+	bool canChangeMainColor();
+	bool canChangeSecondaryColor();
+	bool canRotateFree();
+	cocos2d::ccColor3B colorForMode(int, bool); // could be a ptr
+	void commonInteractiveSetup();
 	void commonSetup() = win 0x183d30, imac 0x5aa930, m1 0x4ed04c;
 	void copyGroups(GameObject*) = win 0x192980, imac 0x5c70a0, m1 0x4f6300;
-	TodoReturn createAndAddParticle(int, char const*, int, cocos2d::tCCPositionType);
-	TodoReturn createColorGroupContainer(int);
-	TodoReturn createGlow(gd::string);
+	cocos2d::CCParticleSystemQuad* createAndAddParticle(int, char const*, int, cocos2d::tCCPositionType);
+	void createColorGroupContainer(int);
+	void createGlow(gd::string);
 	void createGroupContainer(int size) = win inline {
 		if (!m_groups) {
 			auto groups = new short[size];
@@ -5973,65 +5973,65 @@ class GameObject : CCSpritePlus {
 			m_groups = reinterpret_cast<decltype(m_groups)>(groups);
 		}
 	}
-	TodoReturn createOpacityGroupContainer(int);
+	void createOpacityGroupContainer(int);
 	void createSpriteColor(int) = m1 0x4ed1f8, imac 0x5aaaf0;
 	static GameObject* createWithFrame(char const* name) = win 0x183c60, imac 0x5aa890, m1 0x4ecf80;
 	static GameObject* createWithKey(int) = win 0x181810, imac 0x5a5d30, m1 0x4ecab8;
 	void deselectObject(); // = win 0x141b70; actually updateObjectEditorColor, source: LevelEditorLayer::updateVisibility
 	inline void destroyObject() {
-		m_unk34a = true;
-		m_unk306 = true;
+		m_isDisabled = true;
+		m_isDisabled2 = true;
 		setOpacity(0);
 	}
 	void determineSlopeDirection() = win 0x192300, imac 0x5c6ad0, m1 0x4f5cf0;
-	TodoReturn didScaleXChange();
-	TodoReturn didScaleYChange();
-	TodoReturn dirtifyObjectPos();
-	TodoReturn dirtifyObjectRect();
-	TodoReturn disableObject();
-	TodoReturn dontCountTowardsLimit();
-	TodoReturn duplicateAttributes(GameObject*);
-	TodoReturn duplicateColorMode(GameObject*);
+	bool didScaleXChange();
+	bool didScaleYChange();
+	void dirtifyObjectPos();
+	void dirtifyObjectRect();
+	void disableObject();
+	bool dontCountTowardsLimit();
+	void duplicateAttributes(GameObject*);
+	void duplicateColorMode(GameObject*);
 	void duplicateValues(GameObject*) = win 0x197e00;
-	TodoReturn editorColorForCustomMode(int);
-	TodoReturn editorColorForMode(int) = win 0x197060;
-	TodoReturn fastRotateObject(float);
-	TodoReturn getActiveColorForMode(int, bool);
-	TodoReturn getBallFrame(int); //inlined on windows
-	TodoReturn getBoundingRect();
-	TodoReturn getBoxOffset();
-	TodoReturn getColorFrame(gd::string);
-	TodoReturn getColorIndex();
+	cocos2d::ccColor3B editorColorForCustomMode(int);
+	cocos2d::ccColor3B editorColorForMode(int) = win 0x197060;
+	void fastRotateObject(float);
+	cocos2d::ccColor3B getActiveColorForMode(int, bool);
+	char* getBallFrame(int); //inlined on windows
+	cocos2d::CCRect getBoundingRect();
+	cocos2d::CCPoint getBoxOffset();
+	gd::string getColorFrame(gd::string);
+	int getColorIndex();
 	gd::string getColorKey(bool, bool);
-	TodoReturn getCustomZLayer();
-	TodoReturn getGlowFrame(gd::string);
-	TodoReturn getGroupDisabled() = m1 0x4f660c, imac 0x5c73e0;
+	ZLayer getCustomZLayer();
+	gd::string getGlowFrame(gd::string);
+	bool getGroupDisabled() = m1 0x4f660c, imac 0x5c73e0;
 	int getGroupID(int) = imac 0x5c7080, m1 0x4f62e0;
-	TodoReturn getGroupString();
+	gd::string getGroupString();
 	cocos2d::CCPoint getLastPosition() = imac 0x5d3a00, m1 0x501170;
-	TodoReturn getMainColor();
-	TodoReturn getMainColorMode();
-	TodoReturn getObjectDirection();
-	TodoReturn getObjectRadius();
-	TodoReturn getObjectRectPointer();
-	TodoReturn getObjectZLayer();
-	TodoReturn getObjectZOrder();
-	TodoReturn getOuterObjectRect();
-	TodoReturn getParentMode();
-	TodoReturn getRelativeSpriteColor(int);
-	TodoReturn getScalePosDelta();
-	TodoReturn getSecondaryColor();
-	TodoReturn getSecondaryColorMode();
-	TodoReturn getSlopeAngle();
-	TodoReturn getUnmodifiedPosition();
-	TodoReturn groupColor(cocos2d::ccColor3B const&, bool);
+	GJSpriteColor* getMainColor();
+	int getMainColorMode();
+	int getObjectDirection(); // probably a enum
+	float getObjectRadius();
+	cocos2d::CCRect* getObjectRectPointer();
+	ZLayer getObjectZLayer();
+	int getObjectZOrder();
+	cocos2d::CCRect getOuterObjectRect();
+	int getParentMode();
+	GJSpriteColor* getRelativeSpriteColor(int);
+	cocos2d::CCPoint getScalePosDelta();
+	GJSpriteColor* getSecondaryColor();
+	int getSecondaryColorMode();
+	float getSlopeAngle();
+	cocos2d::CCPoint getUnmodifiedPosition();
+	cocos2d::ccColor3B groupColor(cocos2d::ccColor3B const&, bool);
 	float groupOpacityMod() = imac 0x5c7ab0, win 0x192cf0, m1 0x4f6c58;
-	TodoReturn groupWasDisabled();
-	TodoReturn groupWasEnabled();
-	TodoReturn hasSecondaryColor();
+	void groupWasDisabled();
+	void groupWasEnabled();
+	bool hasSecondaryColor();
 	bool ignoreEditorDuration();
-	TodoReturn ignoreEnter();
-	TodoReturn ignoreFade();
+	bool ignoreEnter();
+	bool ignoreFade();
 	bool init(char const*) = imac 0x5aa900, m1 0x4ed010;
 	bool isBasicEnterEffect(int);
 	bool isBasicTrigger();
@@ -6050,27 +6050,27 @@ class GameObject : CCSpritePlus {
 	void loadGroupsFromString(gd::string);
 	TodoReturn makeInvisible() = imac 0x5c59f0, m1 0x4f4c30;
 	static GameObject* objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x193220, m1 0x4f775c, imac 0x5c8800;
-	TodoReturn opacityModForMode(int, bool);
-	TodoReturn parentForZLayer(int, bool, int);
-	TodoReturn perspectiveColorFrame(char const*, int);
-	TodoReturn perspectiveFrame(char const*, int);
+	float opacityModForMode(int, bool);
+	cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int);
+	gd::string perspectiveColorFrame(char const*, int);
+	gd::string perspectiveFrame(char const*, int);
 	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a04e0;
-	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float);
-	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float);
+	void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float);
+	void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float);
 	void playShineEffect() = win 0x18f3f0, imac 0x5c5a90, m1 0x4f4cac;
-	TodoReturn quickUpdatePosition();
-	TodoReturn quickUpdatePosition2();
-	TodoReturn removeColorSprite();
-	TodoReturn removeGlow();
-	TodoReturn reorderColorSprite();
-	TodoReturn resetColorGroups();
-	TodoReturn resetGroupDisabled();
-	TodoReturn resetGroups();
-	TodoReturn resetMainColorMode();
-	TodoReturn resetMID();
-	TodoReturn resetMoveOffset();
-	TodoReturn resetRScaleForced();
-	TodoReturn resetSecondaryColorMode();
+	void quickUpdatePosition();
+	void quickUpdatePosition2();
+	void removeColorSprite();
+	void removeGlow();
+	void reorderColorSprite();
+	void resetColorGroups();
+	void resetGroupDisabled();
+	void resetGroups();
+	void resetMainColorMode();
+	void resetMID();
+	void resetMoveOffset();
+	void resetRScaleForced();
+	void resetSecondaryColorMode();
 	void setAreaOpacity(float, float, int);
 	void setCustomZLayer(int);
 	void setDefaultMainColorMode(int);
@@ -6079,42 +6079,42 @@ class GameObject : CCSpritePlus {
 	void setLastPosition(cocos2d::CCPoint const&) = imac 0x5d3a10, m1 0x501178;
 	void setMainColorMode(int);
 	void setSecondaryColorMode(int);
-	TodoReturn setupColorSprite(int, bool);
-	TodoReturn setupPixelScale();
-	TodoReturn setupSpriteSize();
+	void setupColorSprite(int, bool);
+	void setupPixelScale();
+	void setupSpriteSize();
 	bool shouldBlendColor(GJSpriteColor*, bool);
-	TodoReturn shouldLockX();
-	TodoReturn shouldNotHideAnimFreeze();
-	TodoReturn shouldShowPickupEffects();
-	TodoReturn slopeFloorTop();
-	TodoReturn slopeWallLeft();
-	TodoReturn slopeYPos(cocos2d::CCRect);
+	bool shouldLockX();
+	bool shouldNotHideAnimFreeze();
+	bool shouldShowPickupEffects();
+	bool slopeFloorTop();
+	bool slopeWallLeft();
+	double slopeYPos(cocos2d::CCRect);
 	double slopeYPos(float) = win 0x1973f0;
-	TodoReturn slopeYPos(GameObject*);
-	TodoReturn spawnDefaultPickupParticle(GJBaseGameLayer*);
-	TodoReturn updateBlendMode();
-	TodoReturn updateCustomColorType(short);
+	double slopeYPos(GameObject*);
+	void spawnDefaultPickupParticle(GJBaseGameLayer*);
+	void updateBlendMode();
+	void updateCustomColorType(short);
 	void updateCustomScaleX(float) = win 0x18e690, imac 0x5b24b0, m1 0x4ee91c;
 	void updateCustomScaleY(float) = win 0x18e720, imac 0x5b2530, m1 0x4ee97c;
-	TodoReturn updateHSVState();
+	void updateHSVState();
 	void updateIsOriented() = win 0x197770, imac 0x5d2660, m1 0x4fff78;
-	TodoReturn updateMainColorOnly();
-	TodoReturn updateMainOpacity();
+	void updateMainColorOnly();
+	void updateMainOpacity();
 	void updateObjectEditorColor() = win 0x197330;
-	TodoReturn updateSecondaryColorOnly();
-	TodoReturn updateSecondaryOpacity();
-	TodoReturn updateStartPos();
-	TodoReturn updateUnmodifiedPositions();
-	TodoReturn usesFreezeAnimation();
-	TodoReturn usesSpecialAnimation();
+	void updateSecondaryColorOnly();
+	void updateSecondaryOpacity();
+	void updateStartPos();
+	void updateUnmodifiedPositions();
+	void usesFreezeAnimation();
+	void usesSpecialAnimation();
 
 	// MSVC changed virtual table ordering somewhere between what Rob uses
 	// and now, and now virtual functions that have non virtual overloads
 	// are added to the first of the vtable regardless of the order
 	// defined in the header. This is why we simply can not use these
 	// two functions since defining them would break the vtable layout.
-	// TodoReturn updateMainColor();
-	// TodoReturn updateSecondaryColor();
+	// void updateMainColor();
+	// void updateSecondaryColor();
 
 	virtual void update(float) = m1 0x4ef094, imac 0x5b2ca0;
 	virtual void setScaleX(float) = win 0x18e290, m1 0x4f3d18, imac 0x5c4970, ios 0x26b0a4;
@@ -6133,76 +6133,74 @@ class GameObject : CCSpritePlus {
 	virtual void firstSetup() = m1 0x173c88, imac 0x1b64a0;
 	virtual void customSetup() = m1 0x4ef098, win 0x186e60, imac 0x5b2cb0;
 	virtual void setupCustomSprites(gd::string) = m1 0x3bef18, win 0x1a4f40, imac 0x44d950;
-	virtual TodoReturn addMainSpriteToParent(bool) = m1 0x4f5a14, win 0x191d90, imac 0x5c67e0;
+	virtual void addMainSpriteToParent(bool) = m1 0x4f5a14, win 0x191d90, imac 0x5c67e0;
 	virtual void resetObject() = m1 0x4ee694, win 0x186710, imac 0x5b2160;
 	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x173904, imac 0x1b6120;
 	virtual void activateObject() = m1 0x4eeb4c, win 0x186b20, imac 0x5b2780;
 	virtual void deactivateObject(bool) = m1 0x4eeed0, win 0x186bd0, imac 0x5b2af0;
-	virtual TodoReturn transferObjectRect(cocos2d::CCRect&) = m1 0x4f3114, win 0x18d690, imac 0x5c3ce0;
+	virtual void transferObjectRect(cocos2d::CCRect&) = m1 0x4f3114, win 0x18d690, imac 0x5c3ce0;
 	virtual cocos2d::CCRect const& getObjectRect() = win 0x18d6e0, m1 0x4f31ec, imac 0x5c3d50;
 	virtual cocos2d::CCRect getObjectRect(float, float) = win 0x18d700, m1 0x4f31a0, imac 0x5c3d80;
-	virtual TodoReturn getObjectRect2(float, float) = m1 0x4f3384, win 0x18d890, imac 0x5c3fc0;
-	virtual TodoReturn getObjectTextureRect() = m1 0x4f3448, win 0x18d930, imac 0x5c4090;
+	virtual cocos2d::CCRect getObjectRect2(float, float) = m1 0x4f3384, win 0x18d890, imac 0x5c3fc0;
+	virtual cocos2d::CCRect getObjectTextureRect() = m1 0x4f3448, win 0x18d930, imac 0x5c4090;
 	virtual cocos2d::CCPoint getRealPosition() = m1 0x4f36a0, win 0x18db60, imac 0x5c4330;
 	virtual void setStartPos(cocos2d::CCPoint) = m1 0x4ee578, win 0x186590, imac 0x5b2050;
 	virtual void updateStartValues() = m1 0x4ee9dc, win 0x186960, imac 0x5b25b0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x326d1c, imac 0x39fd10;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x4f96a0, win 0x194d10, imac 0x5ca7c0;
-	virtual TodoReturn claimParticle() = m1 0x4f45f0, win 0x18edb0, imac 0x5c5310;
-	virtual TodoReturn unclaimParticle() = m1 0x4f4b90, win 0x18f2e0, imac 0x5c5910;
-	virtual TodoReturn particleWasActivated() = m1 0x4f4bf8, imac 0x5c5980;
+	virtual void claimParticle() = m1 0x4f45f0, win 0x18edb0, imac 0x5c5310;
+	virtual void unclaimParticle() = m1 0x4f4b90, win 0x18f2e0, imac 0x5c5910;
+	virtual void particleWasActivated() = m1 0x4f4bf8, imac 0x5c5980;
 	virtual bool isFlipX() = m1 0x4f3c60, win 0x18e1e0, imac 0x5c48b0;
 	virtual bool isFlipY() = m1 0x4f3c68, win 0x18e1f0, imac 0x5c48c0;
 	virtual void setRScaleX(float) = m1 0x4f3ef8, win 0x18e550, imac 0x5c4b50;
 	virtual void setRScaleY(float) = m1 0x4f3f2c, win 0x18e590, imac 0x5c4b90;
 	virtual void setRScale(float) = m1 0x4f3f60, win 0x18e5d0, imac 0x5c4bd0;
-	virtual TodoReturn getRScaleX() = m1 0x4f3fe4, win 0x18e610, imac 0x5c4c50;
-	virtual TodoReturn getRScaleY() = m1 0x4f401c, win 0x18e650, imac 0x5c4c80;
+	virtual float getRScaleX() = m1 0x4f3fe4, win 0x18e610, imac 0x5c4c50;
+	virtual float getRScaleY() = m1 0x4f401c, win 0x18e650, imac 0x5c4c80;
 	virtual void setRRotation(float) = m1 0x4f3948, win 0x18ddb0, imac 0x5c45e0;
 	virtual void triggerActivated(float) = m1 0x1a135c, imac 0x1ed230;
 	virtual void setObjectColor(cocos2d::ccColor3B const&) = m1 0x4fef58, win 0x196ac0, imac 0x5d16e0;
 	virtual void setGlowColor(cocos2d::ccColor3B const&) = m1 0x4ff218, win 0x196db0, imac 0x5d1970;
-	virtual TodoReturn restoreObject() = m1 0x4f4c18, win 0x18f3d0, imac 0x5c59c0;
-	virtual TodoReturn animationTriggered() = m1 0x1a1360, imac 0x1ed240;
+	virtual void restoreObject() = m1 0x4f4c18, win 0x18f3d0, imac 0x5c59c0;
+	virtual void animationTriggered() = m1 0x1a1360, imac 0x1ed240;
 	virtual void selectObject(cocos2d::ccColor3B) = m1 0x4ff2fc, win 0x196e80, imac 0x5d1a30;
-	virtual TodoReturn activatedByPlayer(PlayerObject*) = m1 0x1a1364, imac 0x1ed250;
-	virtual TodoReturn hasBeenActivatedByPlayer(PlayerObject*) = m1 0x1a1368, imac 0x1ed260;
-	virtual TodoReturn hasBeenActivated() = m1 0x1a1370, imac 0x1ed270;
+	virtual void activatedByPlayer(PlayerObject*) = m1 0x1a1364, imac 0x1ed250;
+	virtual bool hasBeenActivatedByPlayer(PlayerObject*) = m1 0x1a1368, imac 0x1ed260;
+	virtual bool hasBeenActivated() = m1 0x1a1370, imac 0x1ed270;
 	virtual OBB2D* getOrientedBox() = m1 0x4ffd60, win 0x197550, imac 0x5d2440;
 	virtual void updateOrientedBox() = m1 0x4ffdf4, win 0x1975b0, imac 0x5d24c0;
-	virtual TodoReturn getObjectRotation() = m1 0x5058b0, win 0x197530, imac 0x5dac70;
-	virtual TodoReturn updateMainColor(cocos2d::ccColor3B const&) = m1 0x500864, win 0x197fb0, imac 0x5d30c0;
-	virtual TodoReturn updateSecondaryColor(cocos2d::ccColor3B const&) = m1 0x500d6c, win 0x197fc0, imac 0x5d35d0;
+	virtual float getObjectRotation() = m1 0x5058b0, win 0x197530, imac 0x5dac70;
+	virtual void updateMainColor(cocos2d::ccColor3B const&) = m1 0x500864, win 0x197fb0, imac 0x5d30c0;
+	virtual void updateSecondaryColor(cocos2d::ccColor3B const&) = m1 0x500d6c, win 0x197fc0, imac 0x5d35d0;
 	virtual void addToGroup(int) = m1 0x4f6170, win 0x1927d0, imac 0x5c6f40;
 	virtual void removeFromGroup(int) = m1 0x4f624c, win 0x1928f0, imac 0x5c6ff0;
-	virtual TodoReturn saveActiveColors() = m1 0x4feda0, win 0x196910, imac 0x5d1520;
-	virtual TodoReturn spawnXPosition() = m1 0x1a1378, win 0x133ad0, imac 0x1ed280;
-	virtual TodoReturn canAllowMultiActivate() = m1 0x1a1398, imac 0x1ed2a0;
-	virtual TodoReturn blendModeChanged() = m1 0x1a13a0, imac 0x1ed2b0;
-	virtual TodoReturn updateParticleColor(cocos2d::ccColor3B const&) = m1 0x4ff150, win 0x196ca0, imac 0x5d18b0;
-	virtual TodoReturn updateParticleOpacity(unsigned char) = m1 0x4f4420, win 0x18eae0, imac 0x5c5130;
-	virtual TodoReturn updateMainParticleOpacity(unsigned char) = m1 0x1a13a4, imac 0x1ed2c0;
-	virtual TodoReturn updateSecondaryParticleOpacity(unsigned char) = m1 0x1a13a8, imac 0x1ed2d0;
-	virtual TodoReturn canReverse() = m1 0x1a13ac, imac 0x1ed2e0;
+	virtual void saveActiveColors() = m1 0x4feda0, win 0x196910, imac 0x5d1520;
+	virtual float spawnXPosition() = m1 0x1a1378, win 0x133ad0, imac 0x1ed280;
+	virtual bool canAllowMultiActivate() = m1 0x1a1398, imac 0x1ed2a0;
+	virtual void blendModeChanged() = m1 0x1a13a0, imac 0x1ed2b0;
+	virtual void updateParticleColor(cocos2d::ccColor3B const&) = m1 0x4ff150, win 0x196ca0, imac 0x5d18b0;
+	virtual void updateParticleOpacity(unsigned char) = m1 0x4f4420, win 0x18eae0, imac 0x5c5130;
+	virtual void updateMainParticleOpacity(unsigned char) = m1 0x1a13a4, imac 0x1ed2c0;
+	virtual void updateSecondaryParticleOpacity(unsigned char) = m1 0x1a13a8, imac 0x1ed2d0;
+	virtual bool canReverse() = m1 0x1a13ac, imac 0x1ed2e0;
 	virtual bool isSpecialSpawnObject() = m1 0x1a13b4, imac 0x1ed2f0;
-	virtual TodoReturn canBeOrdered() = m1 0x1a13bc, imac 0x1ed300;
-	virtual TodoReturn getObjectLabel() = m1 0x1a13c4, imac 0x1ed310;
+	virtual bool canBeOrdered() = m1 0x1a13bc, imac 0x1ed300;
+	virtual cocos2d::CCLabelBMFont* getObjectLabel() = m1 0x1a13c4, imac 0x1ed310;
 	virtual void setObjectLabel(cocos2d::CCLabelBMFont*) = m1 0x1a13cc, imac 0x1ed320;
-	virtual TodoReturn shouldDrawEditorHitbox() = m1 0x501ae4, imac 0x5d4710;
-	virtual TodoReturn getHasSyncedAnimation() = m1 0x1a13d0, imac 0x1ed330;
-	virtual TodoReturn getHasRotateAction() = m1 0x1a13d8, imac 0x1ed340;
-	virtual TodoReturn canMultiActivate(bool) = m1 0x1a13e0, imac 0x1ed350;
-	virtual TodoReturn updateTextKerning(int) = m1 0x1a13e8, imac 0x1ed360;
-	virtual TodoReturn getTextKerning() = m1 0x1a13ec, imac 0x1ed370;
-	virtual TodoReturn getObjectRectDirty() = m1 0x1a13f4, win 0x133af0, imac 0x1ed380;
+	virtual bool shouldDrawEditorHitbox() = m1 0x501ae4, imac 0x5d4710;
+	virtual bool getHasSyncedAnimation() = m1 0x1a13d0, imac 0x1ed330;
+	virtual bool getHasRotateAction() = m1 0x1a13d8, imac 0x1ed340;
+	virtual bool canMultiActivate(bool) = m1 0x1a13e0, imac 0x1ed350;
+	virtual void updateTextKerning(int) = m1 0x1a13e8, imac 0x1ed360;
+	virtual int getTextKerning() = m1 0x1a13ec, imac 0x1ed370;
+	virtual bool getObjectRectDirty() = m1 0x1a13f4, win 0x133af0, imac 0x1ed380;
 	virtual void setObjectRectDirty(bool) = m1 0x1a13fc, win 0x133b00, imac 0x1ed390;
-	virtual TodoReturn getOrientedRectDirty() = m1 0x1a1404, win 0x133b10, imac 0x1ed3a0;
+	virtual bool getOrientedRectDirty() = m1 0x1a1404, win 0x133b10, imac 0x1ed3a0;
 	virtual void setOrientedRectDirty(bool) = m1 0x1a140c, win 0x133b20, imac 0x1ed3b0;
 	virtual GameObjectType getType() = m1 0x1a1414, imac 0x1ed3c0;
 	virtual void setType(GameObjectType) = m1 0x1a141c, win 0x133b40, imac 0x1ed3d0;
 	virtual cocos2d::CCPoint getStartPos() = m1 0x1a1424, win 0x133b50, imac 0x1ed3e0;
-
-	// windows members may be wrong! yay!
 
 	int m_someOtherIndex;
 	int m_innerSectionIndex;
@@ -6211,96 +6209,122 @@ class GameObject : CCSpritePlus {
 
 	// property 511
 	bool m_hasExtendedCollision;
-	PAD = android32 0x13, win 0x13, android64 0x13, mac 0x13, ios 0x13;
+	cocos2d::ccColor3B m_maybeGroupColor;
+	bool m_unk280;
+	bool m_unk281;
+	float m_blackChildRelated;
+	bool m_unk288;
+	bool m_editorEnabled;
+	bool m_isGroupDisabled;
+	bool m_unk28B;
+	bool m_unk28c;
 
 	// somehow related to property 155 and 156 if anyone wants to reverse engineer
 	int m_activeMainColorID;
 	int m_activeDetailColorID;
-
-	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4, ios 0x4;
-
+	bool m_baseUsesHSV;
+	bool m_detailUsesHSV;
 	float m_positionXOffset;
 	float m_positionYOffset;
 
 	float m_rotationXOffset;
-
-	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4, ios 0x4;
-
+	float m_unk2A8;
 	float m_rotationYOffset;
-
-	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4, ios 0x4;
-
+	float m_unk2B0;
 	float m_scaleXOffset;
 	float m_scaleYOffset;
-
-	PAD = android32 0x28, win 0x30, android64 0x30, mac 0x30, ios 0x30;
-
+	float m_unk2BC;
+	float m_unk2C0;
+	bool m_tempOffsetXRelated;
+	bool m_isFlipX;
+	bool m_isFlipY;
+	cocos2d::CCPoint m_customBoxOffset;
+	bool m_boxOffsetCalculated;
+	cocos2d::CCPoint m_boxOffset;
+	OBB2D* m_orientedBox;
+	bool m_shouldUseOuterOb;
 	cocos2d::CCSprite* m_glowSprite;
-
-	PAD = android32 0x8, win 0x4, android64 0x4, mac 0x4, ios 0x4;
-
-	PAD = android32 0x6, win 0x6, android64 0x6, mac 0x6, ios 0x6;
-
-	bool m_unk306;
-
-	cocos2d::CCSprite* m_someSprite;
+	int m_unk2F8;
+	float m_width;
+	float m_height;
+	bool m_hasSpecialChild;
+	bool m_isActivated;
+	bool m_isDisabled2;
+	cocos2d::CCParticleSystemQuad* m_particle;
 	gd::string m_particleString;
-
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
+	bool m_hasParticles;
 
 	// property 146
 	bool m_particleUseObjectColor;
-	PAD = android32 0x3e, win 0x3e, android64 0x3e, mac 0x3e, ios 0x3e;
+	bool m_hasColorSprite;
+	cocos2d::CCPoint m_unk31c;
+	bool m_isSomeSpriteScalable;
+	cocos2d::CCRect m_textureRect;
+	bool m_isDirty;
+	bool m_isObjectPosDirty;
+	bool m_isUnmodifiedPosDirty;
+	float m_unk33C;
+	cocos2d::CCRect m_objectRect;
+	bool m_isObjectRectDirty;
+	bool m_isOrientedBoxDirty;
+	bool m_colorSpriteLocked;
+	bool m_unk353;
+	bool m_canRotateFree;
+	bool m_isMirroredByScale;
 
 	// property 108
 	int m_linkedGroup;
-
-	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc, ios 0xc;
-
+	int m_unk35C;
+	short m_colorType;
+	short m_childColorType;
+	bool m_shouldBlendBase;
+	bool m_shouldBlendDetail;
+	bool m_hasCustomChild;
+	bool m_unk367;
 	cocos2d::CCSprite* m_colorSprite;
-
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
-
+	bool m_unk370;
 	float m_objectRadius;
-
-	PAD = android32 0xA, win 0xA, android64 0xA, mac 0xA, ios 0xA;
-
+	bool m_isRotationAligned;
+	float m_spriteWidthScale;
+	float m_spriteHeightScale;
 	int m_uniqueID;
 	GameObjectType m_objectType;
 
 	// used in PlayerObject::gameEventTriggered
-	int m_unk326;
-
-	PAD = android32 0xa, win 0xa, android64 0xa, mac 0xa, ios 0xa;
+	GameObjectType m_savedObjectType;
+	int m_unk390;
+	float m_unmodifiedPositionX;
+	float m_unmodifiedPositionY;
 	double m_positionX;
 	double m_positionY;
 	cocos2d::CCPoint m_startPosition;
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
+	bool m_unk3b8;
 
 	// property 372
 	bool m_hasNoAudioScale;
-	bool m_unk34a;
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
-
+	bool m_isDisabled;
 	float m_startRotationX;
 	float m_startRotationY;
 	float m_startScaleX;
 	float m_startScaleY;
-
-	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8, ios 0x8;
-
+	float m_customScaleX;
+	float m_customScaleY;
 	bool m_startFlipX;
 	bool m_startFlipY;
 	bool m_unk3ee;
-	bool m_unk3ef;
-
-	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc, ios 0xc;
+	bool m_isInvisible;
+	int m_unk3D8;
+	short m_unk3DC;
+	bool m_unk3DE;
+	short m_unk3E0;
+	short m_unk3E2;
 
 	// property 343
 	short m_enterChannel;
 	// property 446
 	short m_objectMaterial;
-	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4, ios 0x4;
+	bool m_unk3E8;
+	short m_parentMode;
 
 	// property 96
 	bool m_hasNoGlow;
@@ -6310,7 +6334,13 @@ class GameObject : CCSpritePlus {
 
 	// property 1
 	int m_objectID;
-	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8, ios 0x8;
+	bool m_unk3F8;
+	bool m_isSolid;
+	bool m_ignoreEnter;
+	bool m_ignoreFade;
+	bool m_unk3FC;
+	bool m_unk3FD;
+	bool m_customSpriteColor;
 
 	// property 497
 	short m_customColorType;
@@ -6322,30 +6352,44 @@ class GameObject : CCSpritePlus {
 	bool m_hasNoEffects;
 	// property 507
 	bool m_hasNoParticles;
-	PAD = android32 0x16, win 0x16, android64 0x16, mac 0x16, ios 0x16;
+	int m_defaultZOrder;
+	bool m_unk40C;
+	bool m_colorZLayerRelated;
+	bool m_unk40E;
+	float m_unk410;
+	float m_unk414;
+	bool m_particleLocked;
 
 	// property 53
 	int m_property53;
-	PAD = android32 0x18, win 0x18, android64 0x18, mac 0x18, ios 0x18;
+	bool m_gmUnkBool4Related;
+	bool m_unk421;
+	bool m_unk422;
+	bool m_cantColorGlow;
+	float m_opacityMod;
+	bool m_slopeBugged;
+	int m_slopeDirection;
+	bool m_maybeShouldFixSlopes;
+	float m_opacityMod2;
 
 	// property 21, also used with 41 and 43
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
-	PAD = android32 0xc, win 0xa, android64 0xc, mac 0xc, ios 0xc; // i will not question the windows pad
+	bool m_unk448;
+	ZLayer m_defaultZLayer;
+	bool m_zFixedZLayer;
 
 	// property 24
 	ZLayer m_zLayer;
 	// property 25
 	int m_zOrder;
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
-
+	bool m_unk45c;
 	bool m_isSelected;
-
-	PAD = android32 0xe, win 0xe, android64 0xe, mac 0xe, ios 0xe;
-
-	bool m_shouldUpdateColorSprite; // m_shouldUpdateColorSprite
-	PAD = android32 0x1, win 0x1, android64 0x1, mac 0x1, ios 0x1;
+	float m_unk460;
+	cocos2d::CCPoint m_unk464;
+	bool m_shouldUpdateColorSprite;
+	bool m_unk46d;
 
 	// property 34
 	bool m_hasGroupParent;
@@ -6372,19 +6416,37 @@ class GameObject : CCSpritePlus {
 	short m_editorLayer;
 	// property 61
 	short m_editorLayer2;
-	PAD = android32 0x8, win 0x8, android64 0x8, mac 0x8, ios 0x8;
+	int m_enabledGroupsCounter;
+	bool m_unk4ac;
+	bool m_unk4ad;
 
 	// property 121
 	bool m_isNoTouch;
-	PAD = android32 0x9, win 0x9, android64 0x9, mac 0x9, ios 0x9;
-
+	cocos2d::CCSize m_unk4b0;
 	cocos2d::CCPoint m_lastPosition;
-
-	PAD = android32 0x1b, win 0x1b, android64 0x1b, mac 0x1b, ios 0x1b;
+	int m_unk4C0;
+	int m_unk4C4;
+	int m_unk4C8;
+	int m_unk4CC;
+	int m_unk4D0;
+	bool m_unk4D4;
+	bool m_unk4D5;
+	bool m_unk4D6;
+	bool m_unk4D7;
+	bool m_unk4D8;
+	bool m_unk4D9;
+	bool m_unk4DA;
 
 	// property 103
 	bool m_isHighDetail;
-	PAD = android32 0x11, win 0x21, android64 0x21, mac 0x21, ios 0x21;
+	ColorActionSprite* m_unk4E0;
+	ColorActionSprite* m_unk4E8;
+	GJEffectManager* m_goEffectManager;
+	bool m_unk4F8;
+	bool m_isDecoration;
+	bool m_isDecoration2;
+	bool m_unk4fb;
+	bool m_maybeNotColorable;
 
 	// property 134
 	bool m_isPassable;
@@ -6406,14 +6468,23 @@ class GameObject : CCSpritePlus {
 	bool m_isDontBoostY;
 	// property 509
 	bool m_isDontBoostX;
-	PAD = android32 0x11, win 0x11, android64 0x11, mac 0x11, ios 0x11;
+	bool m_unk507;
+	bool m_unk508;
+	float m_unk50C;
+	float m_pixelScaleX;
+	float m_pixelScaleY;
 
 	// property 155
 	int m_property155;
 	// property 156
 	int m_property156;
-
-	PAD = android32 0x12, win 0x12, android64 0x12, mac 0x12, ios 0x12; // TODO: yeah someone pls fix windows pads
+	GLubyte m_areaOpacityRelated;
+	float m_areaOpacityRelated2;
+	int m_areaOpacityRelated3;
+	int m_unk52C;
+	bool m_unk530;
+	bool m_unk531;
+	bool m_unk532;
 }
 
 [[link(android)]]
@@ -10747,13 +10818,13 @@ class LabelGameObject : EffectGameObject {
 	virtual bool init() = m1 0x1786d4, imac 0x1bbd40;
 	virtual void setOpacity(unsigned char) = win 0x487310, m1 0x178b30, imac 0x1bc1b0;
 	virtual void setupCustomSprites(gd::string) = m1 0x178704, imac 0x1bbd70;
-	virtual TodoReturn addMainSpriteToParent(bool) = m1 0x1793fc, imac 0x1bcb50;
+	virtual void addMainSpriteToParent(bool) = m1 0x1793fc, imac 0x1bcb50;
 	virtual void resetObject() = m1 0x17a074, imac 0x1bdab0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x1791b8, imac 0x1bc8e0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x179454, imac 0x1bcbb0;
 	virtual void setObjectColor(cocos2d::ccColor3B const&) = m1 0x1793b4, imac 0x1bcb00;
-	virtual TodoReturn updateTextKerning(int) = m1 0x178bb4, imac 0x1bc230;
-	virtual TodoReturn getTextKerning() = m1 0x1a1638, imac 0x1ed720;
+	virtual void updateTextKerning(int) = m1 0x178bb4, imac 0x1bc230;
+	virtual int getTextKerning() = m1 0x1a1638, imac 0x1ed720;
 
 	PAD = android32 0x11;
 
@@ -13120,20 +13191,20 @@ class ParticleGameObject : EnhancedGameObject {
 	virtual void setRotationY(float) = m1 0x16c65c, imac 0x1ad950;
 	virtual void setChildColor(cocos2d::ccColor3B const&) = m1 0x16c8ec, imac 0x1adbd0;
 	virtual void customSetup() = m1 0x16b874, imac 0x1acbc0;
-	virtual TodoReturn addMainSpriteToParent(bool) = m1 0x16b920, imac 0x1acc90;
+	virtual void addMainSpriteToParent(bool) = m1 0x16b920, imac 0x1acc90;
 	virtual void resetObject() = m1 0x16cab8, imac 0x1addc0;
 	virtual void deactivateObject(bool) = m1 0x16ca74, imac 0x1add80;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x16b608, imac 0x1ac8e0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x16ccac, imac 0x1adfc0;
-	virtual TodoReturn claimParticle() = m1 0x16ba00, imac 0x1acd70;
-	virtual TodoReturn unclaimParticle() = m1 0x16bfc8, imac 0x1ad310;
-	virtual TodoReturn particleWasActivated() = m1 0x16c054, imac 0x1ad390;
+	virtual void claimParticle() = m1 0x16ba00, imac 0x1acd70;
+	virtual void unclaimParticle() = m1 0x16bfc8, imac 0x1ad310;
+	virtual void particleWasActivated() = m1 0x16c054, imac 0x1ad390;
 	virtual void setObjectColor(cocos2d::ccColor3B const&) = m1 0x16c7f8, imac 0x1adae0;
-	virtual TodoReturn blendModeChanged() = m1 0x16b8f0, imac 0x1acc50;
-	virtual TodoReturn updateParticleColor(cocos2d::ccColor3B const&) = m1 0x1a1520, imac 0x1ed4e0;
-	virtual TodoReturn updateParticleOpacity(unsigned char) = m1 0x1a1524, imac 0x1ed4f0;
-	virtual TodoReturn updateMainParticleOpacity(unsigned char) = m1 0x16c9e0, imac 0x1adcc0;
-	virtual TodoReturn updateSecondaryParticleOpacity(unsigned char) = m1 0x16ca2c, imac 0x1add20;
+	virtual void blendModeChanged() = m1 0x16b8f0, imac 0x1acc50;
+	virtual void updateParticleColor(cocos2d::ccColor3B const&) = m1 0x1a1520, imac 0x1ed4e0;
+	virtual void updateParticleOpacity(unsigned char) = m1 0x1a1524, imac 0x1ed4f0;
+	virtual void updateMainParticleOpacity(unsigned char) = m1 0x16c9e0, imac 0x1adcc0;
+	virtual void updateSecondaryParticleOpacity(unsigned char) = m1 0x16ca2c, imac 0x1add20;
 	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x16cb20, imac 0x1ade20;
 	virtual TodoReturn updateAnimateOnTrigger(bool) = m1 0x16cc5c, imac 0x1adf70;
 
@@ -13625,7 +13696,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	virtual void resetObject() = m1 0x390ae4, imac 0x41b180;
 	virtual cocos2d::CCPoint getRealPosition() = m1 0x398604, imac 0x423a20;
 	virtual OBB2D* getOrientedBox() = m1 0x3997ac, imac 0x424d80;
-	virtual TodoReturn getObjectRotation() = m1 0x3997d8, imac 0x424da0;
+	virtual float getObjectRotation() = m1 0x3997d8, imac 0x424da0;
 	virtual void animationFinished(char const*) = win 0x3808b0, m1 0x39a5d0, imac 0x425df0;
 
 	cocos2d::CCNode* m_mainLayer;
@@ -14558,7 +14629,7 @@ class RingObject : EffectGameObject {
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x16e080, imac 0x1af710;
 	virtual void setRScale(float) = m1 0x16df30, imac 0x1af560;
 	virtual void triggerActivated(float) = m1 0x16dd88, imac 0x1af3b0;
-	virtual TodoReturn shouldDrawEditorHitbox() = m1 0x16df64, imac 0x1af5a0;
+	virtual bool shouldDrawEditorHitbox() = m1 0x16df64, imac 0x1af5a0;
 	virtual TodoReturn powerOnObject(int) = m1 0x16dd94, imac 0x1af3c0;
 
 	bool m_claimTouch;
@@ -17318,7 +17389,7 @@ class SmartGameObject : GameObject {
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x16af34, imac 0x1ac0c0;
 
 	bool m_property157;
-	PAD = android32 0x9;
+	PAD = android32 0x5;
 }
 
 [[link(android)]]
@@ -17543,8 +17614,8 @@ class SpecialAnimGameObject : EnhancedGameObject {
 	virtual void resetObject() = m1 0x16d79c, imac 0x1aecf0;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x16d7a8, imac 0x1aed10;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x16d808, imac 0x1aed70;
-	virtual TodoReturn updateMainColor(cocos2d::ccColor3B const&) = m1 0x16d77c, imac 0x1aecb0;
-	virtual TodoReturn updateSecondaryColor(cocos2d::ccColor3B const&) = m1 0x16d78c, imac 0x1aecd0;
+	virtual void updateMainColor(cocos2d::ccColor3B const&) = m1 0x16d77c, imac 0x1aecb0;
+	virtual void updateSecondaryColor(cocos2d::ccColor3B const&) = m1 0x16d78c, imac 0x1aecd0;
 	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x2012e8, imac 0x259570;
 }
 
@@ -17964,8 +18035,8 @@ class TextGameObject : GameObject {
 
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x504f98, imac 0x5da200;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x50514c, imac 0x5da380;
-	virtual TodoReturn updateTextKerning(int) = m1 0x504ce4, imac 0x5d9f80;
-	virtual TodoReturn getTextKerning() = m1 0x505998, imac 0x5dad80;
+	virtual void updateTextKerning(int) = m1 0x504ce4, imac 0x5d9f80;
+	virtual int getTextKerning() = m1 0x505998, imac 0x5dad80;
 
 	gd::string m_text;
 	// property 488
