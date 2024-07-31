@@ -1948,7 +1948,7 @@ class CheckpointGameObject : EffectGameObject {
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x18971c, imac 0x1cfc50;
 	virtual void triggerActivated(float) = m1 0x188a34, imac 0x1cee90, win 0x48d650;
 	virtual TodoReturn restoreObject() = m1 0x18a194, imac 0x1d08e0;
-	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x189380, imac 0x1cf840;
+	virtual void updateSyncedAnimation(float, int) = m1 0x189380, imac 0x1cf840;
 }
 
 [[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState)]]
@@ -4342,7 +4342,7 @@ class EnhancedGameObject : GameObject {
 	virtual TodoReturn powerOnObject(int) = m1 0x501cd8, imac 0x5d4b40;
 	virtual TodoReturn powerOffObject() = m1 0x501cec, imac 0x5d4b60;
 	virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*) = m1 0x173994, imac 0x1b61c0;
-	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x2000b0, imac 0x2577a0;
+	virtual void updateSyncedAnimation(float, int) = win 0x19ddf0, imac 0x2577a0, m1 0x2000b0;
 	virtual TodoReturn updateAnimateOnTrigger(bool) = m1 0x201478, imac 0x2596c0;
 
 	PAD = android32 0x25, win 0x2a, android64 0x22;
@@ -6066,8 +6066,8 @@ class GameObject : CCSpritePlus {
 	TodoReturn perspectiveColorFrame(char const*, int);
 	TodoReturn perspectiveFrame(char const*, int);
 	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a04e0;
-	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float);
-	TodoReturn playPickupAnimation(cocos2d::CCSprite*, float, float, float, float);
+	void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float) = win 0x1a0000;
+	void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float) = win 0x19ff10;
 	void playShineEffect() = win 0x18f3f0, imac 0x5c5a90, m1 0x4f4cac;
 	TodoReturn quickUpdatePosition();
 	TodoReturn quickUpdatePosition2();
@@ -13129,7 +13129,7 @@ class ParticleGameObject : EnhancedGameObject {
 	virtual TodoReturn updateParticleOpacity(unsigned char) = m1 0x1a1524, imac 0x1ed4f0;
 	virtual TodoReturn updateMainParticleOpacity(unsigned char) = m1 0x16c9e0, imac 0x1adcc0;
 	virtual TodoReturn updateSecondaryParticleOpacity(unsigned char) = m1 0x16ca2c, imac 0x1add20;
-	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x16cb20, imac 0x1ade20;
+	virtual void updateSyncedAnimation(float, int) = m1 0x16cb20, imac 0x1ade20;
 	virtual TodoReturn updateAnimateOnTrigger(bool) = m1 0x16cc5c, imac 0x1adf70;
 
 	gd::string m_particleData;
@@ -17519,7 +17519,7 @@ class SpecialAnimGameObject : EnhancedGameObject {
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x16d808, imac 0x1aed70;
 	virtual TodoReturn updateMainColor(cocos2d::ccColor3B const&) = m1 0x16d77c, imac 0x1aecb0;
 	virtual TodoReturn updateSecondaryColor(cocos2d::ccColor3B const&) = m1 0x16d78c, imac 0x1aecd0;
-	virtual TodoReturn updateSyncedAnimation(float, int) = m1 0x2012e8, imac 0x259570;
+	virtual void updateSyncedAnimation(float, int) = m1 0x2012e8, imac 0x259570;
 }
 
 [[link(android)]]
