@@ -8736,17 +8736,24 @@ class GJItemIcon : cocos2d::CCSprite {
 	// virtual ~GJItemIcon();
 	GJItemIcon() {}
 
-	static GJItemIcon* create(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = m1 0x2fe438;
-
-	void changeToLockedState(float) = win 0x2694c0, m1 0x2fbbf4;
-	static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x268880, m1 0x2fb6d0;
-	GJItemIcon * createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B) = m1 0x2fe41c;
-	void darkenStoreItem(cocos2d::ccColor3B) = win 0x2691d0, m1 0x2fec04;
-	void darkenStoreItem(ShopType) = m1 0x2fbbcc;
-	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x2689a0, m1 0x2fe540;
-	float scaleForType(UnlockType) = win 0x2695a0, m1 0x2fb6f0;
-	TodoReturn toggleEnabledState(bool) = win 0x269400;
-	cocos2d::ccColor3B * unlockedColorForType(int) = m1 0x2feb9c;
+	static GJItemIcon* create(UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7) = win inline, m1 0x2fe438, imac 0x3727b0 {
+		auto ret = new GJItemIcon();
+		if (ret->init(p0, p1, p2, p3, p4, p5, p6, p7)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+ 	}
+	void changeToLockedState(float) = win 0x2694c0, m1 0x2fbbf4, imac 0x36fcd0, ios 0x316AB8;
+	static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x268880, m1 0x2fb6d0, imac 0x36f580;
+	static GJItemIcon* createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B) = win 0x268750, m1 0x2fe41c, imac 0x372780;
+	void darkenStoreItem(cocos2d::ccColor3B) = win 0x2691d0, m1 0x2fec04, imac 0x372fc0;
+	void darkenStoreItem(ShopType) = win 0x269150, m1 0x2fbbcc, imac 0x36fc60;
+	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x2689a0, m1 0x2fe540, imac 0x3728c0, ios 0x3186D4;
+	float scaleForType(UnlockType) = win 0x2695a0, m1 0x2fb6f0, imac 0x36f5b0;
+	void toggleEnabledState(bool) = win 0x269400, ios 0x316B94;
+	static cocos2d::ccColor3B unlockedColorForType(int) = m1 0x2feb9c, imac 0x372f60;
 
 	virtual void setOpacity(unsigned char) = win 0x2690b0, m1 0x2fea70, imac 0x372e20;
 
@@ -12729,10 +12736,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn getSFXFolderObjectForID(int);
 	TodoReturn getSFXFolderPathForID(int, bool);
 	TodoReturn getSFXObject(int);
-	const char * getSongDownloadKey(int song) = m1 inline {
-		std::string song_str = std::to_string(song);
-		return cocos2d::CCString::createWithFormat(song_str.c_str())->getCString();
-	}
+	TodoReturn getSongDownloadKey(int);
 	void getSongInfo(int, bool) = win 0x31c680, imac 0x592de0, m1 0x4dc278;
 	TodoReturn getSongInfoKey(int);
 	SongInfoObject* getSongInfoObject(int) = win 0x31e070, imac 0x592c90, m1 0x4dc130;
@@ -13567,7 +13571,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateJumpVariables();
 	TodoReturn updateLastGroundObject(GameObject*);
 	TodoReturn updateMove(float) = win 0x368220;
-	void updatePlayerArt() = win 0x376890, m1 0x3940fc;
+	void updatePlayerArt() = win 0x376890, m1 0x3940fc, imac 0x41f0a0;
 	void updatePlayerBirdFrame(int) = win 0x37c2f0, m1 0x3954e0, imac 0x4205f0;
 	void updatePlayerDartFrame(int) = win 0x37c9f0, m1 0x3964f0, imac 0x4216e0;
 	void updatePlayerForce(cocos2d::CCPoint, bool);
@@ -13593,8 +13597,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void updatePlayerSpriteExtra(gd::string);
 	void updatePlayerSwingFrame(int) = win 0x37c7c0, m1 0x395b5c, imac 0x420cd0;
 	void updateRobotAnimationSpeed() = win 0x37f0f0;
-	void updateRotation(float, float) = win 0x36b230, m1 0x383a84;
-	void updateRotation(float) = win 0x36f0b0, m1 0x38c360;
+	void updateRotation(float, float) = win 0x36b230, imac 0x40bab0, m1 0x383a84;
+	void updateRotation(float) = win 0x36f0b0, imac 0x416180, m1 0x38c360;
 	void updateShipRotation(float) = win 0x36ecd0;
 	void updateShipSpriteExtra(gd::string);
 	TodoReturn updateSlopeRotation(float);
