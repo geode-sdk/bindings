@@ -3478,7 +3478,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onExitEditor(cocos2d::CCObject* sender) = win 0xda950;
 	void onExitNoSave(cocos2d::CCObject* sender) = win 0xdaa20;
 	void onHelp(cocos2d::CCObject* sender);
-	void onKeybindings(cocos2d::CCObject* sender);
+	void onKeybindings(cocos2d::CCObject* sender) = m1 0x2335b0;
 	void onNewGroupX(cocos2d::CCObject* sender);
 	void onNewGroupY(cocos2d::CCObject* sender);
 	void onOptions(cocos2d::CCObject* sender);
@@ -12378,7 +12378,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	void onGPSignIn(cocos2d::CCObject* sender);
 	void onGPSignOut(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender) = win 0x354dc0;
-	void onKeybindings(cocos2d::CCObject* sender) = win 0xd9640;
+	void onKeybindings(cocos2d::CCObject* sender) = win 0xd9640, m1 0x6b1048;
 	void onNextPage(cocos2d::CCObject* sender) = win 0x353ce0, ios 0xf07d8;
 	void onParental(cocos2d::CCObject* sender) = win 0x354cb0, ios 0xf0704;
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x353cf0, ios 0xf07cc;
