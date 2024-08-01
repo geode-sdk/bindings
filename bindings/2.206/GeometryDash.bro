@@ -3564,7 +3564,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn closeLiveHSVSelect();
 	void colorSelectClosed(cocos2d::ccColor3B);
 	void constrainGameLayerPosition();
-	void constrainGameLayerPosition(float, float) = win 0x11e960;
+	void constrainGameLayerPosition(float, float) = win 0x11e960, m1 0x2bc50;
 	TodoReturn convertKeyBasedOnNeighbors(int, int, cocos2d::CCPoint, cocos2d::CCArray*);
 	TodoReturn convertToBaseKey(int);
 	TodoReturn copyObjects(cocos2d::CCArray*, bool, bool);
@@ -3585,7 +3585,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createRockEdges(cocos2d::CCArray*);
 	TodoReturn createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool);
 	TodoReturn createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool);
-	UndoObject* createUndoObject(UndoCommand, bool) = win 0x10d3d0;
+	UndoObject* createUndoObject(UndoCommand, bool) = win 0x10d3d0, m1 0x38940;
 	TodoReturn createUndoSelectObject(bool) = win 0x10d6f0;
 	TodoReturn deactivateRotationControl() = ios 0x3CFABC;
 	TodoReturn deactivateScaleControl() = win 0x111010, ios 0x3CFB8C;
@@ -3599,7 +3599,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void deselectObjectsColor();
 	TodoReturn deselectTargetPortals();
 	TodoReturn disableButton(CreateMenuItem*);
-	void doCopyObjects(bool) = win 0x10f490, m1 0x48fcc;
+	void doCopyObjects(bool) = win 0x10f490, m1 0x39c0c;
 	TodoReturn doPasteInPlace(bool);
 	void doPasteObjects(bool) = win 0x10f620;
 	TodoReturn dynamicGroupUpdate(bool);
@@ -10018,12 +10018,12 @@ class GJTransformControl : cocos2d::CCLayer {
 	TodoReturn loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&);
 	TodoReturn logCurrentZeroPos();
 	void onToggleLockScale(cocos2d::CCObject* sender) = win 0x127310;
-	void refreshControl() = win 0x127180;
+	void refreshControl() = win 0x127180, m1 0x44694;
 	void saveToState(GJTransformState&);
 	void scaleButtons(float) = win 0x1273a0;
 	TodoReturn spriteByTag(int);
 	TodoReturn updateAnchorSprite(cocos2d::CCPoint);
-	void updateButtons(bool, bool) = win 0x127460;
+	void updateButtons(bool, bool) = win 0x127460, m1 0x44c3c;
 	TodoReturn updateMinMaxPositions();
 
 	virtual bool init() = win 0x126c30, m1 0x4b358, imac 0x53870;
@@ -10634,7 +10634,7 @@ class ItemTriggerGameObject : EffectGameObject {
 class KeybindingsLayer : FLAlertLayer {
 	// virtual ~KeybindingsLayer();
 
-	static KeybindingsLayer* create();
+	static KeybindingsLayer* create() = m1 0x538bec;
 
 	TodoReturn addKeyPair(char const*, char const*);
 	TodoReturn countForPage(int);
@@ -11089,7 +11089,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getNextFreeSFXID(cocos2d::CCArray*);
 	TodoReturn getObjectRect(GameObject*, bool, bool) = win 0x2c1df0;
 	TodoReturn getRelativeOffset(GameObject*);
-	TodoReturn getSavedEditorPosition(int);
+	TodoReturn getSavedEditorPosition(int) = m1 0xd17c0;
 	TodoReturn getSavedEditorPositions();
 	TodoReturn getSectionCount();
 	TodoReturn getSelectedEditorOrder();
@@ -11143,7 +11143,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn reverseObjectChanged(EffectGameObject*);
 	TodoReturn rotationForSlopeNearObject(GameObject*);
 	TodoReturn runColorEffect(EffectGameObject*, int, float, float, bool);
-	TodoReturn saveEditorPosition(cocos2d::CCPoint&, int);
+	TodoReturn saveEditorPosition(cocos2d::CCPoint&, int) = m1 0xd17a8;
 	static cocos2d::CCScene* scene(GJGameLevel* level, bool p1) = win inline {
 		auto scene = cocos2d::CCScene::create();
 		auto layer = LevelEditorLayer::create(level, p1);
@@ -17217,7 +17217,7 @@ class Slider : cocos2d::CCLayer {
 
 	TodoReturn disableSlider();
 	void disableTouch() = imac 0x303b10, m1 0x297408;
-	TodoReturn enableSlider();
+	TodoReturn enableSlider() = m1 0x297364;
 	bool getLiveDragging() {
 		return m_touchLogic->m_activateThumb;
 	}
@@ -18307,7 +18307,7 @@ class UndoObject : cocos2d::CCObject {
 		// some of the floats are set to 1.0 but idk which who cares
 	}
 
-	static UndoObject* create(GameObject*, UndoCommand);
+	static UndoObject* create(GameObject*, UndoCommand) = m1 0xc9aec;
 	static UndoObject* createWithArray(cocos2d::CCArray* arrOfObjects, UndoCommand command) {
 		auto* ret = new UndoObject();
 		if (ret->init(arrOfObjects, command)) {

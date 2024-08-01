@@ -1903,7 +1903,7 @@ class cocos2d::CCRenderTexture {
 
 [[link(win, android)]]
 class cocos2d::CCRepeat {
-	static cocos2d::CCRepeat* create(cocos2d::CCFiniteTimeAction*, unsigned int) = m1 0x33daf8, imac 0x3b9530;
+	static cocos2d::CCRepeat* create(cocos2d::CCFiniteTimeAction*, unsigned int) = m1 0x33daf0, imac 0x3b9530;
 
 	bool initWithAction(cocos2d::CCFiniteTimeAction*, unsigned int);
 
@@ -2042,7 +2042,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		m_fAlphaThreshold = 0.0f;
 		m_bInverted = false;
 	}
-	virtual ~CCClippingNode() = m1 0x63f028, ios inline {
+	virtual ~CCClippingNode() = m1 0x63efb0, ios inline {
 		CC_SAFE_RELEASE(m_pStencil);
 	}
 
