@@ -7498,7 +7498,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateSavePositionObjects();
 	void updateShaderLayer(float) = win 0x212aa0, imac 0x12fdd0, m1 0x107d80;
 	void updateSpecialGroupData() = win 0x1fecf0, imac 0x10aa20, m1 0xea268;
-	TodoReturn updateSpecialLabels() = win 0x228fb0;
+	void updateSpecialLabels() = win 0x228fb0;
 	void updateStaticCameraPos(cocos2d::CCPoint, bool, bool, bool, float, int, float) = win 0x22e360, imac 0x1191c0, m1 0xf60ec;
 	TodoReturn updateStaticCameraPosToGroup(int, bool, bool, bool, float, float, int, float, bool, float) = win 0x22df70;
 	TodoReturn updateTimeMod(float, bool, bool);
@@ -10865,6 +10865,10 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 
 	virtual void keyBackClicked() = win 0x2b52c0, m1 0x21d698, imac 0x277aa0;
 	virtual void dialogClosed(DialogLayer*) = win 0x2b4940, m1 0x21d4c8, imac 0x2778c0;
+
+	PAD = win 0x8;
+	bool m_isBusy;
+	int m_unk1ac;
 }
 
 [[link(android)]]

@@ -373,4 +373,7 @@ GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x64c);
 GEODE_SIZE_CHECK(CCLightFlash, 0x168);
 GEODE_SIZE_CHECK(CCLightStrip, 0x160);
 
+GEODE_SIZE_CHECK(LevelAreaInnerLayer, 0x1b0);
+GEODE_MEMBER_CHECK(LevelAreaInnerLayer, m_isBusy, 0x1a8);
+
 #endif
