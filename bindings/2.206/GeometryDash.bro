@@ -5974,7 +5974,7 @@ class GameObject : CCSpritePlus {
 	TodoReturn commonInteractiveSetup();
 	void commonSetup() = win 0x183d30, imac 0x5aa930, m1 0x4ed04c;
 	void copyGroups(GameObject*) = win 0x192980, imac 0x5c70a0, m1 0x4f6300;
-	TodoReturn createAndAddParticle(int, char const*, int, cocos2d::tCCPositionType);
+	cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x18eb60, imac 0x5bdd50, m1 0x4f1e1c;
 	TodoReturn createColorGroupContainer(int);
 	TodoReturn createGlow(gd::string);
 	void createGroupContainer(int size) = win inline {
@@ -7790,8 +7790,15 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_topSectionIndex;
 	PAD = win 0x2, android32 0x2, android64 0x2, mac 0x2;
 	bool m_isPlatformer;
-	PAD = win 0xc5, android32 0x61, android64 0xb5, mac 0x99;
-	cocos2d::CCDictionary* m_unk2a50;
+	PAD = win 0x20, android32 0x0, android64 0x20, mac 0x20;
+    cocos2d::CCDictionary* m_portalParticlesDict;
+    cocos2d::CCDictionary* m_customParticles;
+    cocos2d::CCArray* m_unclaimedParticles;
+    PAD = win 0x3c, android32 0x0, android64 0x3c, mac 0x3c;
+    cocos2d::CCDictionary* m_customParticlesDictArray;
+    cocos2d::CCArray* m_temporaryParticles;
+    PAD = win 0x3c, android32 0x0, android64 0x3c, mac 0x3c;
+    cocos2d::CCDictionary* m_unk2a50;
 	void* m_unk2a54;
 	ShaderLayer* m_shaderLayer;
 	bool m_bUnk31a0;
