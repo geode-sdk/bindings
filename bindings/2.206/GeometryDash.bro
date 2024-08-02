@@ -3708,7 +3708,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onUpdateDeleteFilter(cocos2d::CCObject* sender);
 	void orderDownCustomItem(cocos2d::CCObject*) = win 0xe0bf0;
 	void orderUpCustomItem(cocos2d::CCObject*) = win 0xe0b60;
-	TodoReturn pasteObjects(gd::string, bool);
+	void pasteObjects(gd::string, bool);
 	TodoReturn playCircleAnim(cocos2d::CCPoint, float, float);
 	TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
