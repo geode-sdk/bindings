@@ -14974,15 +14974,15 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onAddGroup(cocos2d::CCObject* sender);
 	void onAddGroupParent(cocos2d::CCObject* sender);
 	void onAnim(cocos2d::CCObject* sender);
-	void onArrow(int, int);
-	void onArrowLeft(cocos2d::CCObject* sender);
-	void onArrowRight(cocos2d::CCObject* sender);
+	void onArrow(int tag, int increment) = win 0x3d05e0;
+	void onArrowLeft(cocos2d::CCObject* sender) = win 0x3d0580;
+	void onArrowRight(cocos2d::CCObject* sender) = win 0x3d05b0;
 	void onClose(cocos2d::CCObject* sender);
 	void onCopy(cocos2d::CCObject* sender);
 	void onExtra(cocos2d::CCObject* sender);
 	void onExtra2(cocos2d::CCObject* sender);
-	void onNextFreeEditorLayer1(cocos2d::CCObject* sender);
-	void onNextFreeEditorLayer2(cocos2d::CCObject* sender);
+	void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = win 0x3d23b0;
+	void onNextFreeEditorLayer2(cocos2d::CCObject* sender) = win 0x3d2420;
 	void onNextFreeOrderChannel(cocos2d::CCObject* sender);
 	void onNextGroupID1(cocos2d::CCObject* sender) = win 0x3d14d0;
 	void onPaste(cocos2d::CCObject* sender);
@@ -14993,10 +14993,10 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onZLayer(cocos2d::CCObject* sender);
 	void onZLayerShift(cocos2d::CCObject* sender);
 	TodoReturn removeGroupID(int);
-	TodoReturn updateEditorLabel();
-	TodoReturn updateEditorLabel2();
-	TodoReturn updateEditorLayerID();
-	TodoReturn updateEditorLayerID2();
+	void updateEditorLabel() = win 0x3d2520;
+	void updateEditorLabel2() = win 0x3d25b0;
+	void updateEditorLayerID() = win 0x3d22b0;
+	void updateEditorLayerID2() = win 0x3d2330;
 	TodoReturn updateEditorOrder();
 	TodoReturn updateEditorOrderLabel();
 	TodoReturn updateGroupIDButtons();
@@ -15004,8 +15004,8 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	TodoReturn updateOrderChannel();
 	TodoReturn updateOrderChannelLabel();
 	TodoReturn updateZLayerButtons();
-	TodoReturn updateZOrder();
-	TodoReturn updateZOrderLabel();
+	void updateZOrder() = win 0x3d2490;
+	void updateZOrderLabel() = win 0x3d2640;
 
 	virtual void keyBackClicked() = win 0x3d2ee0, m1 0x2a7bb0, imac 0x316750;
 	virtual void textInputClosed(CCTextInputNode*) = m1 0x2a7494, imac 0x315fd0;
