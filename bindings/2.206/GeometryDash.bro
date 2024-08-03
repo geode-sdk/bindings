@@ -1826,7 +1826,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	// virtual ~ChallengesPage();
 	inline ChallengesPage() {}
 
-	static ChallengesPage* create() = win inline, ios 0x38560 {
+	static ChallengesPage* create() = win inline, ios 0x38560, imac 0x39ff20, m1 0x326e74 {
 		auto ret = new ChallengesPage();
 		if (ret->init()) {
 			ret->autorelease();
@@ -1847,7 +1847,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	virtual bool init() = win 0x83ca0, imac 0x3a0090, m1 0x326f90, ios 0x38638;
 	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x3285b8, imac 0x3a17c0;
 	virtual void keyBackClicked() = win 0x85190, m1 0x32851c, imac 0x3a1730;
-	virtual void show() = m1 0x328390, imac 0x3a1590;
+	virtual void show() = win 0x84fb0, m1 0x328390, imac 0x3a1590;
 
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 
@@ -6545,7 +6545,7 @@ class GameStatsManager : cocos2d::CCNode {
 	GJChallengeItem* getChallenge(int) = win 0x1d76f0, ios 0x343c80, imac 0x73ca0, m1 0x66dbc;
 	TodoReturn getChallengeKey(GJChallengeItem*);
 	int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1d37d0;
-	TodoReturn getCompletedMapPacks();
+	cocos2d::CCArray* getCompletedMapPacks() = win 0x1d4cf0, imac 0x6e4a0, m1 0x62524;
 	TodoReturn getCurrencyKey(GJGameLevel*);
 	TodoReturn getDailyLevelKey(int);
 	TodoReturn getDemonLevelKey(GJGameLevel*);
