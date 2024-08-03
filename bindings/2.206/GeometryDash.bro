@@ -15081,7 +15081,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onExtra2(cocos2d::CCObject* sender);
 	void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = win 0x3d23b0;
 	void onNextFreeEditorLayer2(cocos2d::CCObject* sender) = win 0x3d2420;
-	void onNextFreeOrderChannel(cocos2d::CCObject* sender);
+	void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x3d28c0;
 	void onNextGroupID1(cocos2d::CCObject* sender) = win 0x3d14d0;
 	void onPaste(cocos2d::CCObject* sender);
 	void onRemoveFromGroup(cocos2d::CCObject* sender);
@@ -15095,12 +15095,12 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void updateEditorLabel2() = win 0x3d25b0;
 	void updateEditorLayerID() = win 0x3d22b0;
 	void updateEditorLayerID2() = win 0x3d2330;
-	TodoReturn updateEditorOrder();
-	TodoReturn updateEditorOrderLabel();
+	void updateEditorOrder() = win 0x3d2a90;
+	void updateEditorOrderLabel() = win 0x3d2760;
 	TodoReturn updateGroupIDButtons();
 	void updateGroupIDLabel() = win 0x3d26d0;
-	TodoReturn updateOrderChannel();
-	TodoReturn updateOrderChannelLabel();
+	void updateOrderChannel() = win 0x3d29c0;
+	void updateOrderChannelLabel() = win 0x3d2810;
 	TodoReturn updateZLayerButtons();
 	void updateZOrder() = win 0x3d2490;
 	void updateZOrderLabel() = win 0x3d2640;
