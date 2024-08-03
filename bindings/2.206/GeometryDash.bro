@@ -8769,20 +8769,20 @@ class GJLevelList : cocos2d::CCNode {
 	static GJLevelList* create() = win 0x16de90, m1 0x487c24, imac 0x5346e0;
 	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16d5a0, m1 0x4877e8, imac 0x534200;
 
-	TodoReturn addLevelToList(GJGameLevel*);
+	void addLevelToList(GJGameLevel* level) = win 0x16E610;
 	TodoReturn completedLevels() = win 0x16ef90, imac 0x56a800, m1 0x4b7fc4;
 	TodoReturn createWithCoder(DS_Dictionary*);
 	void dataLoaded(DS_Dictionary*) = win 0x16f3c0, m1 0x4b8464, imac 0x56ac60;
 	TodoReturn duplicateListLevels(GJLevelList*);
 	TodoReturn frameForListDifficulty(int, DifficultyIconType) = imac 0x56b220, m1 0x4b89d4;
-	cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*);
+	cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*) = win 0x16E890;
 	gd::string getUnpackedDescription() = win 0x16e2b0, imac 0x5692c0, m1 0x4b6ecc;
 	void handleStatsConflict(GJLevelList*) = m1 0x4b6d14, imac 0x569100;
 	bool hasMatchingLevels(GJLevelList*) = m1 0x4b6d2c, win 0x16e0a0, imac 0x569120;
 	TodoReturn orderForLevel(int);
 	TodoReturn parseListLevels(gd::string);
 	TodoReturn removeLevelFromList(int);
-	TodoReturn reorderLevel(int, int);
+	void reorderLevel(int levelID, int newPosition) = win 0x16E7A0;
 	TodoReturn reorderLevelStep(int, bool);
 	void showListInfo() = win 0x16eff0, imac 0x56a850, m1 0x4b8028;
 	TodoReturn totalLevels() = imac 0x56a7e0, m1 0x4b7fb4;
