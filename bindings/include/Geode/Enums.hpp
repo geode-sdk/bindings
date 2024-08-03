@@ -888,3 +888,10 @@ enum class ShipStreak {
     ShipFire5 = 5,
     ShipFire6 = 6,
 };
+
+// Geode Addition
+enum class GameOptionsSetting {
+    Off = -1,
+    Disabled = 0,
+    On = 1,
+};
