@@ -5053,7 +5053,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* createAndGetMapPacks(gd::string) = win 0x142370;
 	cocos2d::CCArray* createAndGetScores(gd::string, GJScoreType);
 	GJGameLevel* createNewLevel() = win 0x13fe60;
-	GJLevelList* createNewLevelList() = win 0x140910, m1 0x48b638, imac 0x538bb0;
+	GJLevelList* createNewLevelList() = win 0x140910, m1 0x4877e8, imac 0x534200;
 	TodoReturn createPageInfo(int, int, int);
 	GJSmartTemplate* createSmartTemplate();
 	void dataLoaded(DS_Dictionary*) = win 0x145db0, imac 0x542370, m1 0x4941e4;
