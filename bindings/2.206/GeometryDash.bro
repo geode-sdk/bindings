@@ -4604,7 +4604,12 @@ class FLAlertLayerProtocol {
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 }
 
-[[link(android), depends(FMODAudioState), depends(FMODMusic), depends(FMODSound)]]
+[[link(android)]]
+class FMODQueuedEffect {
+	PAD = win 0x70, android32 0x48, android64 0x58;
+}
+
+[[link(android), depends(FMODAudioState), depends(FMODMusic), depends(FMODSound), depends(FMODQueuedEffect)]]
 class FMODAudioEngine : cocos2d::CCNode {
 	// virtual ~FMODAudioEngine();
 	FMODAudioEngine() = win 0x52250, ios 0x145344;
@@ -4770,7 +4775,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void updateMetering();
 	void updateQueuedEffects() = win 0x59cd0;
 	void updateQueuedMusic();
-	TodoReturn updateReverb(FMODReverbPreset, bool) = win 0x53580;
+	void updateReverb(FMODReverbPreset, bool) = win 0x53580;
 	void updateTemporaryEffects() = win 0x5a220;
 	TodoReturn waitUntilSoundReady(FMOD::Sound*);
 
@@ -4778,31 +4783,51 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	// not sure on the name, the system is quite confusing
 	gd::unordered_map<int, FMODMusic> m_musicChannels;
-	// key and value types are obviously wrong
-	gd::unordered_map<void*, void*> m_unkMap180;
-	gd::unordered_map<void*, void*> m_unkMap1c0;
+	gd::unordered_map<gd::string, FMODMusic> m_unkMap180;
+	gd::unordered_set<gd::string> m_unkMap1c0;
 	float m_musicVolume;
 	float m_sfxVolume;
-	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
+	int m_unusedInt164;
+	int m_unusedInt168;
 	float m_pulse1;
 	float m_pulse2;
 	float m_pulse3;
 	int m_pulseCounter;
 	bool m_metering;
-	FMOD::Channel* m_backgroundMusicChannel;
+	FMOD::ChannelGroup* m_backgroundMusicChannel;
 	FMOD::System* m_system;
-	FMOD::Sound* m_sound;
-	FMOD::Channel* m_currentSoundChannel;
-	FMOD::Channel* m_globalChannel;
-	FMOD::DSP* m_DSP;
+	FMOD::DSP* m_mainDSP;
+	FMOD::DSP* m_globalChannelDSP;
+	FMOD::ChannelGroup* m_globalChannel;
+	FMOD::ChannelGroup* m_channelGroup2;
 	FMOD_RESULT m_lastResult;
-	int m_version;
-	void* m_extraDriverData;
-	int m_musicOffset;
+	int m_sampleRate;
+	bool m_reducedQuality;
+	bool m_unkBool1a1;
+	int m_unkInt1a4;
+	bool m_unkBool1a8;
+	int m_unkInt1ac;
 	FMODAudioState m_audioState;
-	PAD = win 0x58;
+	gd::vector<FMOD::Sound*> m_unkSoundVector;
+	gd::unordered_map<int, FMOD::DSP*> m_unkDSPMap384;
 	gd::unordered_map<int, FMOD::Channel*> m_channelIDToChannel;
-	PAD = win 0x200;
+	gd::unordered_set<int> m_unkIntSet3bc;
+	FMODReverbPreset m_reverbPreset;
+	gd::unordered_map<int, int> m_unkMapIntInt3dc;
+	gd::unordered_map<int, int> m_unkMapIntInt3f8;
+	gd::unordered_map<int, gd::string> m_unkMapIntString414;
+	gd::vector<FMODQueuedEffect> m_queuedEffects;
+	gd::unordered_map<gd::string, FMOD::Sound*> m_unkMapStringSound43c;
+	gd::unordered_map<int, FMOD::ChannelGroup*> m_unkMapIntChannelGroup458;
+	gd::unordered_map<int, FMOD::ChannelGroup*> m_unkMapIntChannelGroup474;
+	int m_unkInt490;
+	int m_unkInt494;
+	int m_unkInt498;
+	int m_unkInt49c;
+	int m_unkInt4a0;
+	int m_unkInt4a4;
+	int m_unkInt4a8;
+	int m_unkInt4ac;
 }
 
 [[link(android)]]
@@ -4828,6 +4853,7 @@ class FMODAudioState {
 	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic1;
 	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic2;
 	gd::unordered_map<int,FMODSoundState> m_unkMapIntFMODSoundState;
+	PAD = win 0x0, android32 0x4, android64 0x0, mac 0x0; // welcome to today's episode of "this makes no f****ng sense"
 	int m_unkInt1;
 	int m_unkInt2;
 }
