@@ -5053,7 +5053,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* createAndGetMapPacks(gd::string) = win 0x142370;
 	cocos2d::CCArray* createAndGetScores(gd::string, GJScoreType);
 	GJGameLevel* createNewLevel() = win 0x13fe60;
-	GJLevelList* createNewLevelList() = win 0x140910;
+	GJLevelList* createNewLevelList() = win 0x140910, m1 0x48b638, imac 0x538bb0;
 	TodoReturn createPageInfo(int, int, int);
 	GJSmartTemplate* createSmartTemplate();
 	void dataLoaded(DS_Dictionary*) = win 0x145db0, imac 0x542370, m1 0x4941e4;
@@ -5084,7 +5084,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* getAllSmartTemplates();
 	cocos2d::CCDictionary* getAllUsedSongIDs();
 	gd::string getBasePostString() = win 0x146db0, imac 0x543ce0, m1 0x495830;
-	bool getBoolForKey(char const* key) = win inline, imac 0x3c0d2c, m1 0x4b0870 {
+	bool getBoolForKey(char const* key) = win inline, imac 0x561e50, m1 0x4b0870 {
 		return m_searchFilters->valueForKey(key)->boolValue();
 	}
 	gd::string getCommentKey(int ID, int page, int mode, CommentKeyType keytype) {
@@ -8793,7 +8793,7 @@ class GJLevelList : cocos2d::CCNode {
 	// virtual ~GJLevelList();
 
 	static GJLevelList* create() = win 0x16de90, m1 0x487c24, imac 0x5346e0;
-	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16d5a0, m1 0x4877e8, imac 0x534200;
+	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16d5a0, m1 0x48b638, imac 0x538bb0;
 
 	void addLevelToList(GJGameLevel* level) = win 0x16E610;
 	TodoReturn completedLevels() = win 0x16ef90, imac 0x56a800, m1 0x4b7fc4;
