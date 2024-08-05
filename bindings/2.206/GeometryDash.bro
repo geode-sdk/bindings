@@ -1851,8 +1851,8 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 
-	virtual TodoReturn challengeStatusFinished() = win 0x84690, m1 0x327ef8, imac 0x3a1090;
-	virtual TodoReturn challengeStatusFailed() = win 0x848d0, m1 0x3281b0, imac 0x3a13a0;
+	virtual void challengeStatusFinished() = win 0x84690, m1 0x327ef8, imac 0x3a1090;
+	virtual void challengeStatusFailed() = win 0x848d0, m1 0x3281b0, imac 0x3a13a0;
 	virtual void currencyWillExit(CurrencyRewardLayer*) = win 0x85470, m1 0x328720, imac 0x3a1930;
 
 	cocos2d::CCArray* m_dots;
@@ -1943,7 +1943,7 @@ class CheckpointGameObject : EffectGameObject {
 	virtual bool init() = m1 0x1889c0, imac 0x1cee10;
 	virtual void setupCustomSprites(gd::string) = m1 0x188e00, imac 0x1cf260;
 	virtual void resetObject() = m1 0x18a13c, imac 0x1d0870;
-	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x188a1c, imac 0x1cee70;
+	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x48d630, m1 0x188a1c, imac 0x1cee70;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x18a010, imac 0x1d0730;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x18971c, imac 0x1cfc50;
 	virtual void triggerActivated(float) = m1 0x188a34, imac 0x1cee90, win 0x48d650;
@@ -3968,7 +3968,7 @@ class EffectGameObject : EnhancedGameObject {
 	// virtual ~EffectGameObject();
 	// EffectGameObject();
 
-	static EffectGameObject* create(char const*); // inlined on windows
+	static EffectGameObject* create(char const*) = imac 0x1b42e0, m1 0x172460; // inlined on windows
 
 	TodoReturn getTargetColorIndex();
 	bool init(char const*); // inlined on windows :(
@@ -5228,7 +5228,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void onGetAccountCommentsCompleted(gd::string response, gd::string tag);
 	void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x159b50;
 	void onGetGauntletsCompleted(gd::string response, gd::string tag);
-	void onGetGJChallengesCompleted(gd::string response, gd::string tag);
+	void onGetGJChallengesCompleted(gd::string response, gd::string tag) = win 0x160330, imac 0x52f7e0, m1 0x4835e0;
 	void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag) = win 0x1614b0, imac 0x5305e0, m1 0x4841cc;
 	void onGetGJRewardsCompleted(gd::string response, gd::string tag);
 	void onGetGJUserInfoCompleted(gd::string response, gd::string tag);
@@ -7879,8 +7879,8 @@ class GJBigSpriteNode : cocos2d::CCNode {
 
 [[link(android)]]
 class GJChallengeDelegate {
-	virtual TodoReturn challengeStatusFinished();
-	virtual TodoReturn challengeStatusFailed();
+	virtual void challengeStatusFinished();
+	virtual void challengeStatusFailed();
 }
 
 [[link(android)]]
