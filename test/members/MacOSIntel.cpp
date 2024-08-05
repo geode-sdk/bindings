@@ -114,7 +114,6 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe80);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xea8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf6c);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPlatformer, 0x2f2e);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_portalParticlesDict, 0x2f50);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_customParticles, 0x2f58);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unclaimedParticles, 0x2f60);
