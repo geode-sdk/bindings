@@ -172,7 +172,6 @@ GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x850);
 // GEODE_MEMBER_CHECK(PlayerObject, m_isRobot, 0x945);
 // GEODE_MEMBER_CHECK(PlayerObject, m_platformerXVelocity, 0xa28);
 // GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
-// GEODE_MEMBER_CHECK(PlayerObject, m_isPlatformer, 0xaa0);
 
 // GEODE_SIZE_CHECK(FMODAudioEngine, 0x648);
 // GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x1b8);
