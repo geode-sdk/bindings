@@ -2246,8 +2246,10 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 	virtual void colorValueChanged(cocos2d::ccColor3B) = win 0x8ff40, m1 0x6482e8, imac 0x7368b0;
 	virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x91e80, m1 0x64a358, imac 0x7389d0;
 
-	PAD = android32 0x40, win 0x40;
+	PAD = android32 0x40, android64 0x70, win 0x70;
 	ColorAction* m_colorAction;
+	PAD = android32 0x1c, android64 0x20, win 0x20;
+	ConfigureHSVWidget* m_hsvWidget;
 }
 
 [[link(android)]]
@@ -2754,7 +2756,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onClose(cocos2d::CCObject* sender) = win 0xa7ef0;
 	void onCopy(cocos2d::CCObject* sender);
 	void onEditColor(cocos2d::CCObject* sender);
-	void onHSV(cocos2d::CCObject* sender);
+	void onHSV(cocos2d::CCObject* sender) = win 0xa6a60;
 	void onLiveEdit(cocos2d::CCObject* sender);
 	void onNextColorChannel(cocos2d::CCObject* sender);
 	void onPaste(cocos2d::CCObject* sender);
@@ -6780,7 +6782,7 @@ class GameToolbox {
 	static gd::map<gd::string,gd::string> stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x642a0;
 	static TodoReturn strongColor(cocos2d::ccColor3B) = ios 0x4bbd8;
 	static gd::string timestampToHumanReadable(time_t, time_t) = win 0x67cd0;
-	static TodoReturn transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue);
+	static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue) = win 0x63ca0;
 	static TodoReturn transformColor(cocos2d::ccColor3B const&, float, float, float);
 }
 
@@ -10051,7 +10053,9 @@ class GJTransformControl : cocos2d::CCLayer {
 	void refreshControl() = win 0x127180;
 	void saveToState(GJTransformState&);
 	void scaleButtons(float) = win 0x1273a0;
-	TodoReturn spriteByTag(int);
+	cocos2d::CCSprite* spriteByTag(int tag) {
+		return static_cast<cocos2d::CCSprite*>(m_warpSprites->objectAtIndex(tag - 1));
+	}
 	TodoReturn updateAnchorSprite(cocos2d::CCPoint);
 	void updateButtons(bool, bool) = win 0x127460;
 	TodoReturn updateMinMaxPositions();
@@ -10070,7 +10074,7 @@ class GJTransformControl : cocos2d::CCLayer {
 	short m_transformButtonType;
 	GJTransformControlDelegate* m_delegate;
 	cocos2d::CCPoint m_cursorDifference;
-	cocos2d::CCPoint m_unk2;
+	cocos2d::CCPoint m_touchStart;
 	cocos2d::CCPoint m_unk3;
 	cocos2d::CCPoint m_unk4;
 	cocos2d::CCPoint m_unk5;
@@ -10079,8 +10083,8 @@ class GJTransformControl : cocos2d::CCLayer {
 	cocos2d::CCArray* m_warpSprites;
 	cocos2d::CCPoint m_rotatePosition;
 	CCMenuItemSpriteExtra* m_warpLockButton;
-	float m_unk8;
-	float m_unk9;
+	float m_scaleX;
+	float m_scaleY;
 	bool m_warpLocked;
 	float m_unk10;
 	float m_unk11;
