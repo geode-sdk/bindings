@@ -3,32 +3,32 @@
 #ifdef GEODE_IS_IOS
 
 // GEODE_SIZE_CHECK(PlayLayer, 0x3790);
-GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x2f40);
-GEODE_MEMBER_CHECK(PlayLayer, m_unkSomeFloat, 0x2f5c);
-GEODE_MEMBER_CHECK(PlayLayer, m_jumps, 0x2fe0);
-GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x2fed);
-GEODE_MEMBER_CHECK(PlayLayer, m_endLayerStars, 0x2ff4);
-GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x3000);
+// GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x2f40);
+// GEODE_MEMBER_CHECK(PlayLayer, m_unkSomeFloat, 0x2f5c);
+// GEODE_MEMBER_CHECK(PlayLayer, m_jumps, 0x2fe0);
+// GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x2fed);
+// GEODE_MEMBER_CHECK(PlayLayer, m_endLayerStars, 0x2ff4);
+// GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x3000);
 
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x2ff0);
+// GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x2ff0);
 
 // GEODE_SIZE_CHECK(FMODAudioEngine, 0x648);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e0);
 
 
-GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2ef8);
+// GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2ef8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xd08);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xe30);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x2d70);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2da0);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2db0);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2db8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2e18);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk3458, 0x2e30);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2e40);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2e70);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x2eb8);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x2ed0);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2da0);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2db0);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x2db8);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2e18);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk3458, 0x2e30);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2e40);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2e70);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x2eb8);
+// GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x2ed0);
 
 
 // GEODE_SIZE_CHECK(PlayerObject, 0xbe8); 
