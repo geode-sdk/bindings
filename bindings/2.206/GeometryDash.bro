@@ -7794,10 +7794,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCDictionary* m_portalParticlesDict;
     cocos2d::CCDictionary* m_customParticles;
     cocos2d::CCArray* m_unclaimedParticles;
-    PAD = win 0x3c, android32 0x0, android64 0x3c, mac 0x24;
+    PAD = win 0x3c, android32 0x0, android64 0x34, mac 0x24;
     cocos2d::CCDictionary* m_customParticlesDictArray;
     cocos2d::CCArray* m_temporaryParticles;
-    PAD = win 0x3c, android32 0x0, android64 0x3c, mac 0x3c;
+    PAD = win 0x3c, android32 0x0, android64 0x34, mac 0x3c;
     cocos2d::CCDictionary* m_unk2a50;
 	void* m_unk2a54;
 	ShaderLayer* m_shaderLayer;
