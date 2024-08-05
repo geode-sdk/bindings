@@ -4604,7 +4604,12 @@ class FLAlertLayerProtocol {
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 }
 
-[[link(android), depends(FMODAudioState), depends(FMODMusic), depends(FMODSound)]]
+[[link(android)]]
+class FMODQueuedEffect {
+	PAD = win 0x70, android32 0x48, android64 0x58;
+}
+
+[[link(android), depends(FMODAudioState), depends(FMODMusic), depends(FMODSound), depends(FMODQueuedEffect)]]
 class FMODAudioEngine : cocos2d::CCNode {
 	// virtual ~FMODAudioEngine();
 	FMODAudioEngine() = win 0x52250, ios 0x145344;
@@ -4737,7 +4742,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	}
 	void setMusicTimeMS(unsigned int ms, bool, int channel) = win 0x5af40;
 	void setup() = win 0x52d40, m1 0x36103c, imac 0x3e0e30, ios 0x13e5f0;
-	TodoReturn setupAudioEngine() = win 0x53220;
+	void setupAudioEngine() = win 0x53220;
 	void start() = win 0x54400;
 	TodoReturn startMusic(int, int, int, int, bool, int);
 	void stop();
@@ -4770,7 +4775,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	void updateMetering();
 	void updateQueuedEffects() = win 0x59cd0;
 	void updateQueuedMusic();
-	TodoReturn updateReverb(FMODReverbPreset, bool) = win 0x53580;
+	void updateReverb(FMODReverbPreset, bool) = win 0x53580;
 	void updateTemporaryEffects() = win 0x5a220;
 	TodoReturn waitUntilSoundReady(FMOD::Sound*);
 
@@ -4778,31 +4783,51 @@ class FMODAudioEngine : cocos2d::CCNode {
 
 	// not sure on the name, the system is quite confusing
 	gd::unordered_map<int, FMODMusic> m_musicChannels;
-	// key and value types are obviously wrong
-	gd::unordered_map<void*, void*> m_unkMap180;
-	gd::unordered_map<void*, void*> m_unkMap1c0;
+	gd::unordered_map<gd::string, FMODMusic> m_unkMap180;
+	gd::unordered_set<gd::string> m_unkMap1c0;
 	float m_musicVolume;
 	float m_sfxVolume;
-	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8;
+	int m_unusedInt164;
+	int m_unusedInt168;
 	float m_pulse1;
 	float m_pulse2;
 	float m_pulse3;
 	int m_pulseCounter;
 	bool m_metering;
-	FMOD::Channel* m_backgroundMusicChannel;
+	FMOD::ChannelGroup* m_backgroundMusicChannel;
 	FMOD::System* m_system;
-	FMOD::Sound* m_sound;
-	FMOD::Channel* m_currentSoundChannel;
-	FMOD::Channel* m_globalChannel;
-	FMOD::DSP* m_DSP;
+	FMOD::DSP* m_mainDSP;
+	FMOD::DSP* m_globalChannelDSP;
+	FMOD::ChannelGroup* m_globalChannel;
+	FMOD::ChannelGroup* m_channelGroup2;
 	FMOD_RESULT m_lastResult;
-	int m_version;
-	void* m_extraDriverData;
-	int m_musicOffset;
+	int m_sampleRate;
+	bool m_reducedQuality;
+	bool m_unkBool1a1;
+	int m_unkInt1a4;
+	bool m_unkBool1a8;
+	int m_unkInt1ac;
 	FMODAudioState m_audioState;
-	PAD = win 0x58;
+	gd::vector<FMOD::Sound*> m_unkSoundVector;
+	gd::unordered_map<int, FMOD::DSP*> m_unkDSPMap384;
 	gd::unordered_map<int, FMOD::Channel*> m_channelIDToChannel;
-	PAD = win 0x200;
+	gd::unordered_set<int> m_unkIntSet3bc;
+	FMODReverbPreset m_reverbPreset;
+	gd::unordered_map<int, int> m_unkMapIntInt3dc;
+	gd::unordered_map<int, int> m_unkMapIntInt3f8;
+	gd::unordered_map<int, gd::string> m_unkMapIntString414;
+	gd::vector<FMODQueuedEffect> m_queuedEffects;
+	gd::unordered_map<gd::string, FMOD::Sound*> m_unkMapStringSound43c;
+	gd::unordered_map<int, FMOD::ChannelGroup*> m_unkMapIntChannelGroup458;
+	gd::unordered_map<int, FMOD::ChannelGroup*> m_unkMapIntChannelGroup474;
+	int m_unkInt490;
+	int m_unkInt494;
+	int m_unkInt498;
+	int m_unkInt49c;
+	int m_unkInt4a0;
+	int m_unkInt4a4;
+	int m_unkInt4a8;
+	int m_unkInt4ac;
 }
 
 [[link(android)]]
@@ -4828,6 +4853,7 @@ class FMODAudioState {
 	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic1;
 	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic2;
 	gd::unordered_map<int,FMODSoundState> m_unkMapIntFMODSoundState;
+	PAD = win 0x0, android32 0x4, android64 0x0, mac 0x0; // welcome to today's episode of "this makes no f****ng sense"
 	int m_unkInt1;
 	int m_unkInt2;
 }
@@ -5053,7 +5079,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* createAndGetMapPacks(gd::string) = win 0x142370;
 	cocos2d::CCArray* createAndGetScores(gd::string, GJScoreType);
 	GJGameLevel* createNewLevel() = win 0x13fe60;
-	GJLevelList* createNewLevelList() = win 0x140910;
+	GJLevelList* createNewLevelList() = win 0x140910, m1 0x4877e8, imac 0x534200;
 	TodoReturn createPageInfo(int, int, int);
 	GJSmartTemplate* createSmartTemplate();
 	void dataLoaded(DS_Dictionary*) = win 0x145db0, imac 0x542370, m1 0x4941e4;
@@ -5084,7 +5110,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* getAllSmartTemplates();
 	cocos2d::CCDictionary* getAllUsedSongIDs();
 	gd::string getBasePostString() = win 0x146db0, imac 0x543ce0, m1 0x495830;
-	bool getBoolForKey(char const* key) = win inline, imac 0x3c0d2c, m1 0x4b0870 {
+	bool getBoolForKey(char const* key) = win inline, imac 0x561e50, m1 0x4b0870 {
 		return m_searchFilters->valueForKey(key)->boolValue();
 	}
 	gd::string getCommentKey(int ID, int page, int mode, CommentKeyType keytype) {
@@ -8800,22 +8826,22 @@ class GJLevelList : cocos2d::CCNode {
 	// virtual ~GJLevelList();
 
 	static GJLevelList* create() = win 0x16de90, m1 0x487c24, imac 0x5346e0;
-	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16d5a0, m1 0x4877e8, imac 0x534200;
+	static GJLevelList* create(cocos2d::CCDictionary*) = win 0x16d5a0, m1 0x48b638, imac 0x538bb0;
 
-	TodoReturn addLevelToList(GJGameLevel*);
+	void addLevelToList(GJGameLevel* level) = win 0x16E610;
 	TodoReturn completedLevels() = win 0x16ef90, imac 0x56a800, m1 0x4b7fc4;
 	TodoReturn createWithCoder(DS_Dictionary*);
 	void dataLoaded(DS_Dictionary*) = win 0x16f3c0, m1 0x4b8464, imac 0x56ac60;
 	TodoReturn duplicateListLevels(GJLevelList*);
 	TodoReturn frameForListDifficulty(int, DifficultyIconType) = imac 0x56b220, m1 0x4b89d4;
-	cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*);
+	cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*) = win 0x16E890;
 	gd::string getUnpackedDescription() = win 0x16e2b0, imac 0x5692c0, m1 0x4b6ecc;
 	void handleStatsConflict(GJLevelList*) = m1 0x4b6d14, imac 0x569100;
 	bool hasMatchingLevels(GJLevelList*) = m1 0x4b6d2c, win 0x16e0a0, imac 0x569120;
 	TodoReturn orderForLevel(int);
 	TodoReturn parseListLevels(gd::string);
 	TodoReturn removeLevelFromList(int);
-	TodoReturn reorderLevel(int, int);
+	void reorderLevel(int levelID, int newPosition) = win 0x16E7A0;
 	TodoReturn reorderLevelStep(int, bool);
 	void showListInfo() = win 0x16eff0, imac 0x56a850, m1 0x4b8028;
 	TodoReturn totalLevels() = imac 0x56a7e0, m1 0x4b7fb4;
@@ -13050,7 +13076,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 	void onProgressBar(cocos2d::CCObject* sender);
 	void onRate(cocos2d::CCObject* sender) = ios 0xeea24;
 	void onRecordReplays(cocos2d::CCObject* sender);
-	void onSecretVault(cocos2d::CCObject* sender) = win 0x351450, ios 0xeea58;
+	void onSecretVault(cocos2d::CCObject* sender) = win 0x351450, imac 0x7a7060, m1 0x6ae50c, ios 0xeea58;
 	void onSoundtracks(cocos2d::CCObject* sender) = ios 0xeea38;
 	void onSupport(cocos2d::CCObject* sender) = win 0x351c90, ios 0xeea48;
 	void onVideo(cocos2d::CCObject* sender);
@@ -14692,7 +14718,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 	gd::string getThreadMessage() = win 0x3c1bb0;
 	TodoReturn nodeWithTag(int); // inlined on windows
 	void onBack(cocos2d::CCObject* sender) = win 0x3c3f00, imac 0x4a8150, m1 0x40b4ec;
-	void onDoor(cocos2d::CCObject* sender) = win 0x3bf060;
+	void onDoor(cocos2d::CCObject* sender) = win 0x3bf060, imac 0x4a98e0, m1 0x40ca48;
 	void onSecretLevel(cocos2d::CCObject* sender) = win 0x3bede0;
 	void onSubmit(cocos2d::CCObject* sender) = win 0x3bf9c0, imac 0x4a81c0, m1 0x40b560;
 	void playCoinEffect() = win 0x3c3a80;
@@ -14727,7 +14753,7 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
 	void onBack(cocos2d::CCObject* sender);
 	void onChest01(cocos2d::CCObject* sender);
 	void onChest02(cocos2d::CCObject* sender);
-	void onClick(cocos2d::CCObject* sender);
+	void onClick(cocos2d::CCObject* sender) = win 0x3c6980;
 	TodoReturn revealStep1();
 	TodoReturn revealStep2();
 	TodoReturn revealStep3();
@@ -15079,16 +15105,16 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onAddGroup(cocos2d::CCObject* sender);
 	void onAddGroupParent(cocos2d::CCObject* sender);
 	void onAnim(cocos2d::CCObject* sender);
-	void onArrow(int, int);
-	void onArrowLeft(cocos2d::CCObject* sender);
-	void onArrowRight(cocos2d::CCObject* sender);
+	void onArrow(int tag, int increment) = win 0x3d05e0;
+	void onArrowLeft(cocos2d::CCObject* sender) = win 0x3d0580;
+	void onArrowRight(cocos2d::CCObject* sender) = win 0x3d05b0;
 	void onClose(cocos2d::CCObject* sender);
 	void onCopy(cocos2d::CCObject* sender);
 	void onExtra(cocos2d::CCObject* sender);
 	void onExtra2(cocos2d::CCObject* sender);
-	void onNextFreeEditorLayer1(cocos2d::CCObject* sender);
-	void onNextFreeEditorLayer2(cocos2d::CCObject* sender);
-	void onNextFreeOrderChannel(cocos2d::CCObject* sender);
+	void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = win 0x3d23b0;
+	void onNextFreeEditorLayer2(cocos2d::CCObject* sender) = win 0x3d2420;
+	void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x3d28c0;
 	void onNextGroupID1(cocos2d::CCObject* sender) = win 0x3d14d0;
 	void onPaste(cocos2d::CCObject* sender);
 	void onRemoveFromGroup(cocos2d::CCObject* sender);
@@ -15098,19 +15124,19 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onZLayer(cocos2d::CCObject* sender);
 	void onZLayerShift(cocos2d::CCObject* sender);
 	TodoReturn removeGroupID(int);
-	TodoReturn updateEditorLabel();
-	TodoReturn updateEditorLabel2();
-	TodoReturn updateEditorLayerID();
-	TodoReturn updateEditorLayerID2();
-	TodoReturn updateEditorOrder();
-	TodoReturn updateEditorOrderLabel();
+	void updateEditorLabel() = win 0x3d2520;
+	void updateEditorLabel2() = win 0x3d25b0;
+	void updateEditorLayerID() = win 0x3d22b0;
+	void updateEditorLayerID2() = win 0x3d2330;
+	void updateEditorOrder() = win 0x3d2a90;
+	void updateEditorOrderLabel() = win 0x3d2760;
 	TodoReturn updateGroupIDButtons();
 	void updateGroupIDLabel() = win 0x3d26d0;
-	TodoReturn updateOrderChannel();
-	TodoReturn updateOrderChannelLabel();
+	void updateOrderChannel() = win 0x3d29c0;
+	void updateOrderChannelLabel() = win 0x3d2810;
 	TodoReturn updateZLayerButtons();
-	TodoReturn updateZOrder();
-	TodoReturn updateZOrderLabel();
+	void updateZOrder() = win 0x3d2490;
+	void updateZOrderLabel() = win 0x3d2640;
 
 	virtual void keyBackClicked() = win 0x3d2ee0, m1 0x2a7bb0, imac 0x316750;
 	virtual void textInputClosed(CCTextInputNode*) = m1 0x2a7494, imac 0x315fd0;
