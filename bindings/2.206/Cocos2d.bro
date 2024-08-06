@@ -1693,7 +1693,7 @@ class cocos2d::CCLabelBMFont {
 		CC_SAFE_DELETE(pRet);
 		return nullptr;
 	}
-	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int);
+	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int) = m1 0x50b780, imac 0x5e1320;
 	static void purgeCachedData();
 
 	bool initWithString(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = ios 0x30b864, imac 0x5e1050, m1 0x50b4cc;
