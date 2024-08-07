@@ -5139,7 +5139,9 @@ class GameLevelManager : cocos2d::CCNode {
 	void getGJRewards(int) = win 0x15eaa0, m1 0x4ae6d4, imac 0x55fc50;
 	void getGJUserInfo(int) = win 0x153fe0, m1 0x4a36d8, imac 0x5542e0;
 	int getHighestLevelOrder() = imac 0x53c1a0, m1 0x48e784;
-	int getIntForKey(char const*) = imac 0x561c80, m1 0x4b0678;
+	int getIntForKey(char const*) = win inline, imac 0x561c80, m1 0x4b0678 {
+		return m_searchFilters->valueForKey(key)->intValue();
+	}
 	void getLeaderboardScores(char const*) = win 0x151ca0, imac 0x552110, m1 0x4a1918;
 	gd::string getLengthStr(bool, bool, bool, bool, bool, bool) = imac 0x545f70, m1 0x497484;
 	const char *getLenKey(int len);
@@ -5338,10 +5340,14 @@ class GameLevelManager : cocos2d::CCNode {
 	void saveLocalScore(int, int, int);
 	void saveMapPack(GJMapPack*);
 	void setActiveSmartTemplate(GJSmartTemplate*);
-	void setBoolForKey(bool, char const*);
+	void setBoolForKey(bool, char const*) = win inline, m1 0x4b0760, imac 0x561d60 {
+		m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", (int)value), key);
+	}
 	void setDiffVal(int, bool) = win 0x1624c0;
 	void setFolderName(int, gd::string, bool) = m1 0x493740, imac 0x541790;
-	void setIntForKey(int, char const*);
+	void setIntForKey(int, char const*) = win inline, m1 0x4b056c, imac 0x561b90 {
+		m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", value), key);
+	}
 	void setLenVal(int, bool) = win 0x1625b0;
 	void setLevelFeatured(int, int, bool);
 	void setLevelStars(int, int, bool);
@@ -11762,10 +11768,10 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	void onSuggested(cocos2d::CCObject* sender) = win 0x2f0b60;
 	void onTrending(cocos2d::CCObject* sender) = win 0x2f0c20;
 	void toggleDifficulty(cocos2d::CCObject*) = win 0x2f18e0, m1 0x557a00, imac 0x637cc0;
-	void toggleDifficultyNum(int, bool) = win 0x2f1c40;
-	void toggleStar(cocos2d::CCObject*);
+	void toggleDifficultyNum(int, bool) = win 0x2f1c40, m1 0x5581b0, imac 0x638420;
+	void toggleStar(cocos2d::CCObject*) = win 0x2f15d0, m1 0x5580c0, imac 0x638350;
 	void toggleTime(cocos2d::CCObject*);
-	void toggleTimeNum(int, bool) = win 0x2f2050;
+	void toggleTimeNum(int, bool) = win 0x2f2050, m1 0x558334, imac 0x638590;
 	void updateSearchLabel(char const*) = win 0x2ef440;
 
 	virtual void keyBackClicked() = win 0x2f21e0, m1 0x559628, imac 0x6398b0;
@@ -12015,7 +12021,7 @@ class LevelTools {
 	static int getAudioBPM(int);
 	static gd::string getAudioFileName(int) = win 0x307cb0;
 	static gd::string getAudioString(int);
-	static gd::string getAudioTitle(int) = win 0x307130;
+	static gd::string getAudioTitle(int) = win 0x307130, m1 0x45fe8c, imac 0x508a10;
 	static TodoReturn getLastGameplayReversed();
 	static TodoReturn getLastGameplayRotated();
 	static TodoReturn getLastTimewarp();
