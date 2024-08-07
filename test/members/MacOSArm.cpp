@@ -30,6 +30,34 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32f8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x3420);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 
+GEODE_MEMBER_CHECK(EnterEffectInstance, m_gameObject, 0x18);
+GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkVecInt, 0x20);
+
+GEODE_MEMBER_CHECK(CountTriggerAction, m_unkVecInt, 0x0);
+
+GEODE_MEMBER_CHECK(CollisionTriggerAction, m_unkVecInt, 0x0);
+
+GEODE_MEMBER_CHECK(EventTriggerInstance, m_unkVecInt, 0x0);
+
+GEODE_SIZE_CHECK(KeyframeObject, 0xf0);
+GEODE_MEMBER_CHECK(KeyframeObject, m_unkVecDouble1, 0x0);
+GEODE_MEMBER_CHECK(KeyframeObject, m_unkVecDouble2, 0x18);
+GEODE_MEMBER_CHECK(KeyframeObject, m_unkVecDouble3, 0x30);
+GEODE_MEMBER_CHECK(KeyframeObject, m_unkVecDouble4, 0x48);
+GEODE_MEMBER_CHECK(KeyframeObject, m_unkVecDouble5, 0x60);
+GEODE_MEMBER_CHECK(KeyframeObject, m_unkVecDouble6, 0x78);
+GEODE_MEMBER_CHECK(KeyframeObject, m_unkVecDouble7, 0x90);
+GEODE_MEMBER_CHECK(KeyframeObject, m_unkVecDouble8, 0xa8);
+GEODE_MEMBER_CHECK(KeyframeObject, m_unkVecDouble9, 0xc0);
+GEODE_MEMBER_CHECK(KeyframeObject, m_unkVecDouble10, 0xd8);
+
+GEODE_MEMBER_CHECK(GroupCommandObject2, m_unkVecKeyframeObject, 0x0);
+GEODE_MEMBER_CHECK(GroupCommandObject2, m_gameObject, 0x18);
+GEODE_MEMBER_CHECK(GroupCommandObject2, m_unkVecInt, 0x20);
+
+GEODE_MEMBER_CHECK(SongChannelState, m_songTriggerGameObject1, 0x0);
+GEODE_MEMBER_CHECK(SongChannelState, m_songTriggerGameObject2, 0x8);
+
 
 // GEODE_SIZE_CHECK(PlayerObject, 0xbe8); 
 GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);

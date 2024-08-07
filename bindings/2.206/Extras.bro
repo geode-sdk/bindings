@@ -8,20 +8,20 @@ class AdvancedFollowInstance {
 }
 
 class SFXTriggerInstance {
-	PAD = win 0x10;
+	PAD = win 0x10, m1 0x0;
 	SFXTriggerGameObject* m_sfxTriggerGameObject;
 }
 
 class EventTriggerInstance {
-	PAD = win 0x10;
+	PAD = win 0x10, m1 0x0;
 	gd::vector<int> m_unkVecInt;
 }
 
 class SongChannelState {
 	SongTriggerGameObject* m_songTriggerGameObject1;
-	PAD = win 0x8;
+	PAD = win 0x8, m1 0x0;
 	SongTriggerGameObject* m_songTriggerGameObject2;
-	PAD = win 0x8;
+	PAD = win 0x8, m1 0x0;
 }
 
 class SongTriggerState {
@@ -140,9 +140,9 @@ class FMODSoundState {
 }
 
 class TimerItem {
-	PAD = win 0x38;
+	PAD = win 0x38, m1 0x0;
 	gd::vector<int> m_unkVecInt;
-	PAD = win 0x4;
+	PAD = win 0x4, m1 0x0;
 }
 
 class EnterEffectAnimValue {

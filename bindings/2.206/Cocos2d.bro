@@ -713,7 +713,7 @@ class cocos2d::CCGLProgram {
 [[link(win, android)]]
 class cocos2d::CCNode {
 	static cocos2d::CCNode* create() = imac 0x26ee60, m1 0x215170, ios 0x24bbfc;
-	static void resetGlobalOrderOfArrival();
+	static void resetGlobalOrderOfArrival() = m1 0x214850;
 
 	// CCNode(cocos2d::CCNode const&);
 	CCNode() = imac 0x26e330, m1 0x214860, ios 0x24b328;
@@ -741,7 +741,7 @@ class cocos2d::CCNode {
 	void detachChild(cocos2d::CCNode*, bool);
 	void insertChild(cocos2d::CCNode*, int);
 	unsigned int numberOfRunningActions();
-	void pauseSchedulerAndActions();
+	void pauseSchedulerAndActions() = m1 0x2162fc;
 	void qsortAllChildrenWithIndex() = m1 0x215ce4, imac 0x26f9b0;
 	void resumeSchedulerAndActions() = ios 0x24c6fc, imac 0x26fd80, m1 0x2160c4;
 	cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x2700d0, m1 0x216408, ios 0x24ca08;
@@ -1405,7 +1405,7 @@ class cocos2d::CCKeyboardDispatcher {
 	void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
 	void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
 	char const* keyToString(cocos2d::enumKeyCodes) = m1 0x1b06d8, imac 0x1fdeb0;
-	void removeDelegate(cocos2d::CCKeyboardDelegate*);
+	void removeDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x1b0228;
 	void updateModifierKeys(bool, bool, bool, bool) = m1 0x1b06c0, imac 0x1fde80;
 }
 
