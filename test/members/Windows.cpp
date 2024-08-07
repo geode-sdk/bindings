@@ -314,9 +314,18 @@ GEODE_MEMBER_CHECK(CCScrollLayerExt, m_contentLayer, 0x1d8);
 
 GEODE_SIZE_CHECK(FMODAudioEngine, 0x888);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicChannels, 0x140);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_backgroundMusicChannel, 0x228);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x230);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_mainDSP, 0x238);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_globalChannelDSP, 0x240);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_globalChannel, 0x248);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_channelGroup2, 0x250);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_lastResult, 0x258);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_sampleRate, 0x25c);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_reducedQuality, 0x260);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_audioState, 0x270);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_channelIDToChannel, 0x648);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_reverbPreset, 0x6c8);
 
 GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat7, 0x1b8);
 GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat8, 0x1f8);
