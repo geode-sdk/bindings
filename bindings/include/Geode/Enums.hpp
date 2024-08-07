@@ -182,6 +182,8 @@ enum class PlayerButton {
     Right = 3,
 };
 enum class GhostType {
+    Disabled = 0,
+    Enabled = 1,
 };
 enum class TableViewCellEditingStyle {
 };
@@ -339,7 +341,12 @@ enum class PlayerCollisionDirection {
     Left = 2,
     Right = 3
 };
-enum class ChestSpriteState {};
+enum class ChestSpriteState {
+    Locked = 1,
+    Closed = 2,
+    Opening = 3,
+    Opened = 4
+};
 enum class FormatterType {};
 enum class AudioModType {};
 enum class GJAreaActionType {};
@@ -506,6 +513,7 @@ enum class BoomListType {
 };
 
 enum class CurrencySpriteType {
+    Icon = 0,
     Orb = 1,
     Star = 2,
     Diamond = 3,
@@ -869,4 +877,21 @@ enum class Speed {
 enum class CircleMode {
     Filled = 0,
     Outline = 1,
+};
+
+enum class ShipStreak {
+    None = 0,
+    ShipFire1 = 1,
+    ShipFire2 = 2,
+    ShipFire3 = 3,
+    ShipFire4 = 4,
+    ShipFire5 = 5,
+    ShipFire6 = 6,
+};
+
+// Geode Addition
+enum class GameOptionsSetting {
+    Off = -1,
+    Disabled = 0,
+    On = 1,
 };

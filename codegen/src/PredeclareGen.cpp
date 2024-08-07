@@ -3,9 +3,9 @@
 #include <set>
 
 namespace { namespace format_strings {
-	char const* class_predeclare = "class {class_name};\n";
+	constexpr char const* class_predeclare = "class {class_name};\n";
 
-    char const* todo_return_begin = R"GEN(
+    constexpr char const* todo_return_begin = R"GEN(
 struct TodoReturnPlaceholder {
 private:
     TodoReturnPlaceholder() = default;
@@ -15,11 +15,11 @@ private:
 public:
 )GEN";
 
-    char const* todo_return_end = R"GEN(
+    constexpr char const* todo_return_end = R"GEN(
 };
 )GEN";
 
-    char const* todo_return_friend = "    friend class {class_name};\n";
+    constexpr char const* todo_return_friend = "    friend class {class_name};\n";
 }}
 
 std::string generatePredeclareHeader(Root const& root) {

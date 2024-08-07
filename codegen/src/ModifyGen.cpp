@@ -6,13 +6,14 @@
 namespace {
     namespace format_strings {
         // requires: class_name, class_include
-        char const* modify_start = R"GEN(#pragma once
+        constexpr char const* modify_start = R"GEN(#pragma once
 #include <Geode/modify/Modify.hpp>
 #include <Geode/modify/Field.hpp>
 {class_include}
 using namespace geode::modifier;
 namespace geode::modifier {{
     {statics}
+    {concepts}
 
 	template<class Der>
 	struct ModifyDerive<Der, {class_name}> : ModifyBase<ModifyDerive<Der, {class_name}>> {{
@@ -23,30 +24,46 @@ namespace geode::modifier {{
 		void apply() override {{
 )GEN";
 
-        char const* statics_declare_identifier = R"GEN(
+        constexpr char const* statics_declare_identifier = R"GEN(
 	#ifndef GEODE_STATICS_{function_name}
 		#define GEODE_STATICS_{function_name}
 		GEODE_AS_STATIC_FUNCTION({function_name}) 
 	#endif
 )GEN";
 
+        char const* concepts_declare_identifier = R"GEN(
+	#ifndef GEODE_CONCEPT_CHECK_{function_name}
+		#define GEODE_CONCEPT_CHECK_{function_name}
+		GEODE_CONCEPT_FUNCTION_CHECK({function_name}) 
+	#endif
+)GEN";
+
         // requires: index, class_name, arg_types, function_name, raw_arg_types, non_virtual
-        char const* apply_function = R"GEN(
+        constexpr char const* apply_function = R"GEN(
 			GEODE_APPLY_MODIFY_FOR_FUNCTION({address_inline}, {function_convention}, {class_name}, {function_name}, {parameter_types}))GEN";
 
-        char const* apply_constructor = R"GEN(
+        constexpr char const* apply_constructor = R"GEN(
 			GEODE_APPLY_MODIFY_FOR_CONSTRUCTOR({address_inline}, {function_convention}, {class_name}, {parameter_types}))GEN";
 
-        char const* apply_destructor = R"GEN(
+        constexpr char const* apply_destructor = R"GEN(
 			GEODE_APPLY_MODIFY_FOR_DESTRUCTOR({address_inline}, {function_convention}, {class_name}))GEN";
 
-        char const* modify_end = R"GEN(
+        constexpr char const* apply_error = R"GEN(
+			GEODE_APPLY_MODIFY_FOR_FUNCTION_ERROR({class_name}, {function_name}, {comma_parameter_types}))GEN";
+
+        constexpr char const* apply_error_inline = R"GEN(
+			GEODE_APPLY_MODIFY_FOR_FUNCTION_ERROR_INLINE({class_name}, {function_name}, {parameter_types}))GEN";
+
+        constexpr char const* apply_error_defined = R"GEN(
+            GEODE_APPLY_MODIFY_FOR_FUNCTION_ERROR_DEFINED({class_name}, {function_name}, {parameter_types}))GEN";
+
+        constexpr char const* modify_end = R"GEN(
 		}
 	};
 }
 )GEN";
 
-        char const* modify_include = R"GEN(#include "{base_directory}/{file_name}"
+        constexpr char const* modify_include = R"GEN(#include "{base_directory}/{file_name}"
 )GEN";
     }
 }
@@ -86,18 +103,25 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
         }
 
         std::string statics;
-        std::set<std::string> used;
+        std::string concepts;
+        std::set<std::string> staticsUsed;
+        std::set<std::string> conceptsUsed;
         for (auto& f : c.fields) {
             if (auto fn = f.get_as<FunctionBindField>()) {
                 auto status = codegen::getStatus(*fn);
-                if (status == BindStatus::Missing || status == BindStatus::Inlined)
-                        continue;
-
-                if (fn->prototype.type == FunctionType::Normal && !used.count(fn->prototype.name)) {
-                    used.insert(fn->prototype.name);
-                    statics += fmt::format(
-                        format_strings::statics_declare_identifier, fmt::arg("function_name", fn->prototype.name)
-                    );
+                if (fn->prototype.type == FunctionType::Normal) {
+                    if (status != BindStatus::Missing && status != BindStatus::Inlined && !staticsUsed.count(fn->prototype.name)) {
+                        staticsUsed.insert(fn->prototype.name);
+                        statics += fmt::format(
+                            format_strings::statics_declare_identifier, fmt::arg("function_name", fn->prototype.name)
+                        );
+                    }
+                    if (!conceptsUsed.count(fn->prototype.name)) {
+                        conceptsUsed.insert(fn->prototype.name);
+                        concepts += fmt::format(
+                            format_strings::concepts_declare_identifier, fmt::arg("function_name", fn->prototype.name)
+                        );
+                    }
                 }
             }
         }
@@ -105,6 +129,7 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
         single_output += fmt::format(
             format_strings::modify_start,
             fmt::arg("statics", statics),
+            fmt::arg("concepts", concepts),
             fmt::arg("class_name", c.name),
             fmt::arg("class_include", class_include)
         );
@@ -118,38 +143,57 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
 
             auto status = codegen::getStatus(*fn);
 
-            if (status == BindStatus::Missing || status == BindStatus::Inlined)
-                continue;
-
-            if (status == BindStatus::NeedsBinding || codegen::platformNumber(f) != -1) {
-                // only if has an address
-            } else if (status == BindStatus::Binded) {
-                // allow bound functions (including ctors/dtors)
-            } else {
-                continue;
-            }
-
             std::string format_string;
-
-            switch (fn->prototype.type) {
-                case FunctionType::Normal:
-                    format_string = format_strings::apply_function;
-                    break;
-                case FunctionType::Ctor:
-                    format_string = format_strings::apply_constructor;
-                    break;
-                case FunctionType::Dtor:
-                    format_string = format_strings::apply_destructor;
-                    break;
+            if (status == BindStatus::Missing) {
+                format_string = format_strings::apply_error;
+            }
+            else if (status == BindStatus::Unbindable && fn->prototype.type == FunctionType::Normal) {
+                if (is_cocos_class(c.name)) {
+                    format_string = format_strings::apply_error_defined;
+                }
+                else {
+                    format_string = format_strings::apply_error;
+                }
+            }
+            else if (status == BindStatus::Inlined && fn->prototype.type == FunctionType::Normal || codegen::platformNumber(fn->binds) == 0x9999999) {
+                format_string = format_strings::apply_error_inline;
+            }
+            else if ((status == BindStatus::NeedsBinding && codegen::platformNumber(f) > 0) || status == BindStatus::Binded) {
+                // only if has an address
+                // allow bound functions (including ctors/dtors)
+                switch (fn->prototype.type) {
+                    case FunctionType::Normal:
+                        format_string = format_strings::apply_function;
+                        break;
+                    case FunctionType::Ctor:
+                        format_string = format_strings::apply_constructor;
+                        break;
+                    case FunctionType::Dtor:
+                        format_string = format_strings::apply_destructor;
+                        break;
+                }
+            }
+            else if (fn->prototype.type == FunctionType::Normal) {
+                if (is_cocos_class(c.name)) {
+                    format_string = format_strings::apply_error_defined;
+                }
+                else {
+                    format_string = format_strings::apply_error;
+                }
+            }
+            else {
+                continue;
             }
 
+            auto parameter_types = codegen::getParameterTypes(fn->prototype);
             single_output += fmt::format(
                 format_string,
                 fmt::arg("address_inline", codegen::getAddressString(c, f)),
                 fmt::arg("class_name", c.name),
                 fmt::arg("function_name", fn->prototype.name),
                 fmt::arg("function_convention", codegen::getModifyConventionName(f)),
-                fmt::arg("parameter_types", codegen::getParameterTypes(fn->prototype))
+                fmt::arg("parameter_types", parameter_types),
+                fmt::arg("comma_parameter_types", parameter_types.empty() ? "" : ", " + parameter_types)
             );
         }
 
