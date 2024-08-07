@@ -98,6 +98,7 @@ GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x1d8);
 GEODE_MEMBER_CHECK(GameManager, m_levelEditorLayer, 0x1e0);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x1e8);
 
+GEODE_SIZE_CHECK(FMODAudioEngine, 0x820);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x1e8);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_sfxVolume, 0x1ec);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse1, 0x1f8);
