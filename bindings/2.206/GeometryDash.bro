@@ -14134,13 +14134,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*) = win 0x391440, m1 0xa7a3c, imac 0xbba00;
 	virtual void dialogClosed(DialogLayer*) = win 0x3912a0, m1 0xa7a08, imac 0xbb9a0;
 
-	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x2c;
+	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x30;
 	cocos2d::CCArray* m_coinArray;
-	PAD = win 0x6E, android32 0x3E, android64 0x6E, mac 0x6E;
+	PAD = win 0x6E, android32 0x3E, android64 0x6E, mac 0x6E, ios 0x6e;
 	bool m_isIgnoreDamageEnabled;
 	cocos2d::CCLabelBMFont* m_statusLabel;
 	int m_unk3778;
-	PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18;
+	PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18, ios 0x18;
 	float m_unkSomeFloat;
 	CheckpointObject* m_currentCheckpoint;
 	cocos2d::CCArray* m_checkpointArray;
@@ -14162,7 +14162,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCSprite* m_progressBar;
 	cocos2d::CCSprite* m_progressFill;
 	// everything after this comment is probably wrong
-	PAD = win 0x6e, android32 0x40, android64 0x66, mac 0x56;
+	PAD = win 0x6e, android32 0x40, android64 0x66, mac 0x56, ios 0x56;
 	int m_jumps;
 	bool m_hasJumped;
 	int m_uncommittedJumps; // PlayLayer::commitJumps
@@ -14171,9 +14171,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	bool m_inResetDelay;
 	int m_lastAttemptPercent;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0x3a, android32 0x29, android64 0x3a, mac 0x3a;
+	PAD = win 0x3a, android32 0x29, android64 0x3a, mac 0x3a, ios 0x3a;
 	double m_attemptTime;
-	PAD = win 0x1f, android32 0x27, android64 0x1f, mac 0x1f;
+	PAD = win 0x1f, android32 0x27, android64 0x1f, mac 0x1f, ios 0x1f;
 	bool m_isPaused;
 	bool m_disableGravityEffect;
 	cocos2d::CCLabelBMFont* m_infoLabel;
