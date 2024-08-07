@@ -1,4 +1,4 @@
-// clang-format off
+e// clang-format off
 
 [[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
@@ -3802,7 +3802,7 @@ class EnhancedGameObject : GameObject {
 	static EnhancedGameObject* create(char const*);
 
 	TodoReturn createRotateAction(float, int);
-	bool init(char const*);
+	bool init(char const*) = win 0x19a7c0;
 	TodoReturn previewAnimateOnTrigger();
 	TodoReturn refreshRotateAction();
 	TodoReturn resetSyncedAnimation();
