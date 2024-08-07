@@ -5139,7 +5139,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getGJRewards(int) = win 0x15eaa0, m1 0x4ae6d4, imac 0x55fc50;
 	void getGJUserInfo(int) = win 0x153fe0, m1 0x4a36d8, imac 0x5542e0;
 	int getHighestLevelOrder() = imac 0x53c1a0, m1 0x48e784;
-	int getIntForKey(char const*) = win inline, imac 0x561c80, m1 0x4b0678 {
+	int getIntForKey(char const* key) = win inline, imac 0x561c80, m1 0x4b0678 {
 		return m_searchFilters->valueForKey(key)->intValue();
 	}
 	void getLeaderboardScores(char const*) = win 0x151ca0, imac 0x552110, m1 0x4a1918;
@@ -5340,12 +5340,12 @@ class GameLevelManager : cocos2d::CCNode {
 	void saveLocalScore(int, int, int);
 	void saveMapPack(GJMapPack*);
 	void setActiveSmartTemplate(GJSmartTemplate*);
-	void setBoolForKey(bool, char const*) = win inline, m1 0x4b0760, imac 0x561d60 {
+	void setBoolForKey(bool value, char const* key) = win inline, m1 0x4b0760, imac 0x561d60 {
 		m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", (int)value), key);
 	}
 	void setDiffVal(int, bool) = win 0x1624c0;
 	void setFolderName(int, gd::string, bool) = m1 0x493740, imac 0x541790;
-	void setIntForKey(int, char const*) = win inline, m1 0x4b056c, imac 0x561b90 {
+	void setIntForKey(int value, char const* key) = win inline, m1 0x4b056c, imac 0x561b90 {
 		m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", value), key);
 	}
 	void setLenVal(int, bool) = win 0x1625b0;
