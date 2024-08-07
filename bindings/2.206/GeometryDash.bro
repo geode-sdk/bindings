@@ -1,4 +1,4 @@
-e// clang-format off
+// clang-format off
 
 [[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
