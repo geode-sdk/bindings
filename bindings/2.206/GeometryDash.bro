@@ -1980,7 +1980,7 @@ class CheckpointObject : cocos2d::CCNode {
 	void* m_maybeAPointer1;
 	int m_unkInt1;
 	short m_unkShort1;
-	PAD = win 0x2, m1 0x2;
+	PAD = win 0x2;
 	void* m_maybeAPointer2;
 	gd::vector<DynamicSaveObject> m_vectorDynamicSaveObjects;
 	gd::vector<ActiveSaveObject1> m_vectorActiveSaveObjects1;
@@ -1988,11 +1988,9 @@ class CheckpointObject : cocos2d::CCNode {
 	EffectManagerState m_effectManagerState;
 	cocos2d::CCArray* m_gradientTriggerObjectArray;
 	bool m_unkBool1;
-	PAD = win 0x7, m1 0x0;
+	PAD = win 0x7;
 	gd::unordered_map<int,SequenceTriggerState> m_sequenceTriggerStateUnorderedMap;
-	PAD = m1 0x1;
 	void* m_maybeAPointer3;
-	int m_unkGetsCopiedFromGameState;
 }
 
 [[link(android)]]
@@ -2022,7 +2020,7 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
 
 [[link(android)]]
 class CollisionTriggerAction {
-	PAD = win 0x20, m1 0x0;
+	PAD = win 0x20;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -2414,7 +2412,7 @@ class ConfigureValuePopupDelegate {
 class CountTriggerAction {
 	// CountTriggerAction(CountTriggerAction&&);
 
-	PAD = win 0x24, m1 0x0;
+	PAD = win 0x24;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -4418,11 +4416,11 @@ class EnterEffectInstance {
 	void updateTransitions(float, GJBaseGameLayer*) = imac 0x5dc680, m1 0x506dcc;
 
 	gd::map<int,EnterEffectAnimValue> m_enterEffectAnimMap;
-	PAD = win 0x8c, m1 0x0;
+	PAD = win 0x8c;
 	GameObject* m_gameObject;
-	PAD = win 0x1c, m1 0x0;
+	PAD = win 0x1c;
 	gd::vector<int> m_unkVecInt;
-	PAD = win 0x4, m1 0x0;
+	PAD = win 0x4;
 }
 
 [[link(android)]]
@@ -10460,13 +10458,13 @@ class GroupCommandObject2 {
 	TodoReturn updateAction(int, float);
 	TodoReturn updateEffectAction(float, int);
 
-	PAD = win 0x1b8, m1 0x0; // there may be a pointer in there somewhere since it changed from 0x1b4
+	PAD = win 0x1b8; // there may be a pointer in there somewhere since it changed from 0x1b4
 	gd::vector<KeyframeObject> m_unkVecKeyframeObject;
-	PAD = win 0x8, m1 0x0;
+	PAD = win 0x8;
 	GameObject* m_gameObject;
-	PAD = win 0x8, m1 0x0;
+	PAD = win 0x8;
 	gd::vector<int> m_unkVecInt;
-	PAD = win 0x8, m1 0x0;
+	PAD = win 0x8;
 }
 
 [[link(android)]]
@@ -10782,19 +10780,19 @@ class KeyframeObject {
 
 	TodoReturn setupSpline(gd::vector<KeyframeObject*>&);
 
-	PAD = win 0x20, m1 0x0;
+	PAD = win 0x20;
 	gd::vector<double> m_unkVecDouble1;
 	gd::vector<double> m_unkVecDouble2;
 	gd::vector<double> m_unkVecDouble3;
 	gd::vector<double> m_unkVecDouble4;
 	gd::vector<double> m_unkVecDouble5;
-	PAD = win 0x29, m1 0x0;
+	PAD = win 0x29;
 	gd::vector<double> m_unkVecDouble6;
 	gd::vector<double> m_unkVecDouble7;
 	gd::vector<double> m_unkVecDouble8;
 	gd::vector<double> m_unkVecDouble9;
 	gd::vector<double> m_unkVecDouble10;
-	PAD = win 0x80, m1 0x0;
+	PAD = win 0x80;
 }
 
 [[link(android)]]
@@ -13381,7 +13379,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
 	bool m_isRobot;
 	bool m_isSpider;
 	bool m_isOnGround;
-	PAD = win 0x2, m1 0x2;
+	PAD = win 0x2;
 	int m_hasGhostTrail;
 	uint8_t m_unkBytes1[4];
 	float m_speed;
@@ -17587,7 +17585,7 @@ class SpawnTriggerAction {
 	bool isFinished();
 	TodoReturn step(float);
 
-	PAD = win 0x28, m1 0x0;
+	PAD = win 0x28;
 	GameObject* m_gameObject;
 	gd::vector<int> m_unkVecInt;
 }
@@ -18106,7 +18104,7 @@ class TextStyleSection : cocos2d::CCObject {
 
 [[link(android)]]
 class TimerTriggerAction {
-	PAD = win 0x20, m1 0x0;
+	PAD = win 0x20;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -18125,7 +18123,7 @@ class TimerTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class ToggleTriggerAction {
-	PAD = win 0x14, m1 0x0;
+	PAD = win 0x14;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -18169,7 +18167,7 @@ class TOSPopup : FLAlertLayer {
 
 [[link(android)]]
 class TouchToggleAction {
-	PAD = win 0x20, m1 0x0;
+	PAD = win 0x20;
 	gd::vector<int> m_unkVecInt;
 }
 
