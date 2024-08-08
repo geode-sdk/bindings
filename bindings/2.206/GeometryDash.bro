@@ -8080,6 +8080,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_rotatedCountDisplay;
 	int m_followedCountDisplay;
 
+	int m_unknown3684;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode;
 	void* m_unk3678;
