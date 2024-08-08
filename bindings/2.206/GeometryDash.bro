@@ -7824,14 +7824,14 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_topSectionIndex;
 	PAD = win 0x2, android32 0x2, android64 0x2, mac 0x2, ios 0x2;
 	bool m_isPlatformer;
-	PAD = win 0x20, android32 0x14, android64 0x20, mac 0x20;
+	PAD = win 0x20, android32 0x14, android64 0x20, mac 0x20, ios 0x20;
 	cocos2d::CCDictionary* m_portalParticlesDict;
 	cocos2d::CCDictionary* m_customParticles;
 	cocos2d::CCArray* m_unclaimedParticles;
-	PAD = win 0x3c, android32 0x1c, android64 0x34, mac 0x24;
+	PAD = win 0x3c, android32 0x1c, android64 0x34, mac 0x24, ios 0x24;
 	cocos2d::CCDictionary* m_customParticlesDictArray;
 	cocos2d::CCArray* m_temporaryParticles;
-	PAD = win 0x3c, android32 0x1c, android64 0x34, mac 0x24;
+	PAD = win 0x3c, android32 0x1c, android64 0x34, mac 0x24, ios 0x24;
 	cocos2d::CCDictionary* m_unk2a50;
 	void* m_unk2a54;
 	ShaderLayer* m_shaderLayer;
