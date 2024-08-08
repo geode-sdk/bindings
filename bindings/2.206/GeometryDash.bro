@@ -7957,9 +7957,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsSizes;
 	gd::vector<gd::vector<int>*> m_collisionBlockSectionSizes;
 	gd::vector<gd::vector<bool>*> m_nonEffectObjectsFlags;
-	double m_unknown35c0;
-	double m_unknown35c8;
-	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10, ios 0x10;
+	float m_unknown35c0;
+	float m_unknown35c4;
+	float m_unknown35c8;
+	float m_unknown35cc;
+	gd::map<int, int> m_stickyGroups;
 	FMODLevelVisualizer* m_audioVisualizerBG;
 	FMODLevelVisualizer* m_audioVisualizerSFX;
 	bool m_showAudioVisualizer;
