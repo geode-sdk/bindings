@@ -7995,6 +7995,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::ccColor3B m_unk3298;
     int m_resumeTimer;
     bool m_unk32a0;
+	int m_unk32a4;
     gd::string m_unk32a8;
     cocos2d::CCObject* m_unk32c8;
     int m_unk32d0;
