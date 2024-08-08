@@ -1826,7 +1826,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	// virtual ~ChallengesPage();
 	inline ChallengesPage() {}
 
-	static ChallengesPage* create() = win inline, ios 0x38560 {
+	static ChallengesPage* create() = win inline, ios 0x38560, imac 0x39ff20, m1 0x326e74 {
 		auto ret = new ChallengesPage();
 		if (ret->init()) {
 			ret->autorelease();
@@ -1847,12 +1847,12 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	virtual bool init() = win 0x83ca0, imac 0x3a0090, m1 0x326f90, ios 0x38638;
 	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x3285b8, imac 0x3a17c0;
 	virtual void keyBackClicked() = win 0x85190, m1 0x32851c, imac 0x3a1730;
-	virtual void show() = m1 0x328390, imac 0x3a1590;
+	virtual void show() = win 0x84fb0, m1 0x328390, imac 0x3a1590;
 
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
 
-	virtual TodoReturn challengeStatusFinished() = win 0x84690, m1 0x327ef8, imac 0x3a1090;
-	virtual TodoReturn challengeStatusFailed() = win 0x848d0, m1 0x3281b0, imac 0x3a13a0;
+	virtual void challengeStatusFinished() = win 0x84690, m1 0x327ef8, imac 0x3a1090;
+	virtual void challengeStatusFailed() = win 0x848d0, m1 0x3281b0, imac 0x3a13a0;
 	virtual void currencyWillExit(CurrencyRewardLayer*) = win 0x85470, m1 0x328720, imac 0x3a1930;
 
 	cocos2d::CCArray* m_dots;
@@ -1943,7 +1943,7 @@ class CheckpointGameObject : EffectGameObject {
 	virtual bool init() = m1 0x1889c0, imac 0x1cee10;
 	virtual void setupCustomSprites(gd::string) = m1 0x188e00, imac 0x1cf260;
 	virtual void resetObject() = m1 0x18a13c, imac 0x1d0870;
-	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x188a1c, imac 0x1cee70;
+	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x48d630, m1 0x188a1c, imac 0x1cee70;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x18a010, imac 0x1d0730;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x18971c, imac 0x1cfc50;
 	virtual void triggerActivated(float) = m1 0x188a34, imac 0x1cee90, win 0x48d650;
@@ -3975,7 +3975,7 @@ class EffectGameObject : EnhancedGameObject {
 	// virtual ~EffectGameObject();
 	// EffectGameObject();
 
-	static EffectGameObject* create(char const*); // inlined on windows
+	static EffectGameObject* create(char const*) = imac 0x1b42e0, m1 0x172460; // inlined on windows
 
 	TodoReturn getTargetColorIndex();
 	bool init(char const*); // inlined on windows :(
@@ -5144,7 +5144,9 @@ class GameLevelManager : cocos2d::CCNode {
 	void getGJRewards(int) = win 0x15eaa0, m1 0x4ae6d4, imac 0x55fc50;
 	void getGJUserInfo(int) = win 0x153fe0, m1 0x4a36d8, imac 0x5542e0;
 	int getHighestLevelOrder() = imac 0x53c1a0, m1 0x48e784;
-	int getIntForKey(char const*) = imac 0x561c80, m1 0x4b0678;
+	int getIntForKey(char const* key) = win inline, imac 0x561c80, m1 0x4b0678 {
+		return m_searchFilters->valueForKey(key)->intValue();
+	}
 	void getLeaderboardScores(char const*) = win 0x151ca0, imac 0x552110, m1 0x4a1918;
 	gd::string getLengthStr(bool, bool, bool, bool, bool, bool) = imac 0x545f70, m1 0x497484;
 	const char *getLenKey(int len);
@@ -5261,7 +5263,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void onGetAccountCommentsCompleted(gd::string response, gd::string tag);
 	void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x159b50;
 	void onGetGauntletsCompleted(gd::string response, gd::string tag);
-	void onGetGJChallengesCompleted(gd::string response, gd::string tag);
+	void onGetGJChallengesCompleted(gd::string response, gd::string tag) = win 0x160330, imac 0x52f7e0, m1 0x4835e0;
 	void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag) = win 0x1614b0, imac 0x5305e0, m1 0x4841cc;
 	void onGetGJRewardsCompleted(gd::string response, gd::string tag);
 	void onGetGJUserInfoCompleted(gd::string response, gd::string tag);
@@ -5343,10 +5345,14 @@ class GameLevelManager : cocos2d::CCNode {
 	void saveLocalScore(int, int, int);
 	void saveMapPack(GJMapPack*);
 	void setActiveSmartTemplate(GJSmartTemplate*);
-	void setBoolForKey(bool, char const*);
+	void setBoolForKey(bool value, char const* key) = win inline, m1 0x4b0760, imac 0x561d60 {
+		m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", (int)value), key);
+	}
 	void setDiffVal(int, bool) = win 0x1624c0;
 	void setFolderName(int, gd::string, bool) = m1 0x493740, imac 0x541790;
-	void setIntForKey(int, char const*);
+	void setIntForKey(int value, char const* key) = win inline, m1 0x4b056c, imac 0x561b90 {
+		m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", value), key);
+	}
 	void setLenVal(int, bool) = win 0x1625b0;
 	void setLevelFeatured(int, int, bool);
 	void setLevelStars(int, int, bool);
@@ -6578,7 +6584,7 @@ class GameStatsManager : cocos2d::CCNode {
 	GJChallengeItem* getChallenge(int) = win 0x1d76f0, ios 0x343c80, imac 0x73ca0, m1 0x66dbc;
 	TodoReturn getChallengeKey(GJChallengeItem*);
 	int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1d37d0;
-	TodoReturn getCompletedMapPacks();
+	cocos2d::CCArray* getCompletedMapPacks() = win 0x1d4cf0, imac 0x6e4a0, m1 0x62524;
 	TodoReturn getCurrencyKey(GJGameLevel*);
 	TodoReturn getDailyLevelKey(int);
 	TodoReturn getDemonLevelKey(GJGameLevel*);
@@ -7631,7 +7637,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_decimalPercentage;
 	bool m_extraLDM;
 	bool m_0173;
-	PAD = win 0xc9, android32 0x61, android64 0xC0, mac 0xac;
+	PAD = win 0xc9, android32 0x61, android64 0xC0, mac 0xac, ios 0xac;
 	GJEffectManager* m_effectManager;
 	cocos2d::CCSpriteBatchNode* m_unk950;
 	cocos2d::CCSpriteBatchNode* m_unk958;
@@ -7786,7 +7792,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD48;
 	gd::vector<GameObject*> m_unknownD70;
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD88;
-	PAD = win 0x10, android32 0x28, android64 0x18, mac 0x28;
+	PAD = win 0x10, android32 0x28, android64 0x18, mac 0x28, ios 0x28;
 	cocos2d::CCDictionary* m_groupDict;
 	cocos2d::CCDictionary* m_staticGroupDict;
 	cocos2d::CCDictionary* m_optimizedGroupDict;
@@ -7814,25 +7820,25 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCArray* m_unk1030;
 	cocos2d::CCDictionary* m_unk1038;
 	void* m_unk1040;
-	PAD = win 0x8c, android32 0x50, android64 0x9c, mac 0x64; // (for win) between 0x8 bytes, there is a member thats 0x8 size. I think its a CCDictionary*
+	PAD = win 0x8c, android32 0x50, android64 0x9c, mac 0x64, ios 0x64; // (for win) between 0x8 bytes, there is a member thats 0x8 size. I think its a CCDictionary*
 	std::array<float, 2000> m_massiveFloatArray;
-	PAD = win 0x78, android32 0x4c, android64 0x90, mac 0x68; // not sure about the android paddings
+	PAD = win 0x78, android32 0x4c, android64 0x90, mac 0x68, ios 0x68; // not sure about the android paddings
 	int m_attempts; // found in EndLevelLayer::customSetup
 	bool m_bUnk30b8;
 	int m_leftSectionIndex; // these 4 ints can be found in GJBaseGameLayer::updateDebugDraw or GJBaseGameLayer::updateObjectSection (easier)
 	int m_rightSectionIndex;
 	int m_bottomSectionIndex;
 	int m_topSectionIndex;
-	PAD = win 0x2, android32 0x2, android64 0x2, mac 0x2;
+	PAD = win 0x2, android32 0x2, android64 0x2, mac 0x2, ios 0x2;
 	bool m_isPlatformer;
-	PAD = win 0xc5, android32 0x61, android64 0xb5, mac 0x99;
+	PAD = win 0xc5, android32 0x61, android64 0xb5, mac 0x99, ios 0x99;
 	cocos2d::CCDictionary* m_unk2a50;
 	void* m_unk2a54;
 	ShaderLayer* m_shaderLayer;
 	bool m_bUnk31a0;
 	bool m_bUnk31a1;
 	StartPosObject* m_startPosObject; // 3180 win, 2a60 android32, 31a8 android64
-	PAD = win 0x60, android32 0x38, android64 0x60, mac 0x60;
+	PAD = win 0x60, android32 0x38, android64 0x60, mac 0x60, ios 0x60;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
 	float m_loadingProgress;
@@ -7854,11 +7860,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_unk3234;
 	cocos2d::CCParticleSystemQuad* m_unk3238;
 	int m_unk323c;
-	PAD = win 0x6, android32 0x10, android64 0x6, mac 0x6; // mac not verified
+	PAD = win 0x6, android32 0x10, android64 0x6, mac 0x6, ios 0x6; // mac not verified
 	bool m_started;
-	PAD = win 0xA6, android32 0x66, android64 0x8e, mac 0xa0;
+	PAD = win 0xA6, android32 0x66, android64 0x8e, mac 0xa0, ios 0xa0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = win 0x148, android32 0xa0, android64 0x138, mac 0x118;
+	PAD = win 0x148, android32 0xa0, android64 0x138, mac 0x118, ios 0x118;
 	cocos2d::CCDictionary* m_unk3458;
 	int m_unk3460;
 	UILayer* m_uiLayer;
@@ -7867,19 +7873,19 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCNode* m_unk3480;
 	double m_timePlayed;
 	bool m_levelEndAnimationStarted;
-	PAD = win 0x7, android32 0x0, android64 0x0, mac 0x0;
+	PAD = win 0x7, android32 0x0, android64 0x0, mac 0x0, ios 0x0;
 	bool m_cantPause;
-	PAD = win 0x18, android32 0x7, android64 0x7, mac 0x30;
+	PAD = win 0x18, android32 0x7, android64 0x7, mac 0x30, ios 0x30;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
-	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90;
+	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90, ios 0x90;
 	gd::vector<gd::vector<int>*> m_sectionSizes;
-	PAD = win 0x70, android32 0x38, android64 0x68, mac 0x40; // mac not verified
+	PAD = win 0x70, android32 0x38, android64 0x68, mac 0x40, ios 0x40; // mac not verified
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection;
-	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10;
+	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10, ios 0x10;
 	FMODLevelVisualizer* m_audioVisualizerBG;
 	FMODLevelVisualizer* m_audioVisualizerSFX;
 	bool m_showAudioVisualizer;
-	PAD = win 0x67, android32 0x67, android64 0x67, mac 0x67;
+	PAD = win 0x67, android32 0x67, android64 0x67, mac 0x67, ios 0x67;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode;
 	void* m_unk3678;
@@ -7914,8 +7920,8 @@ class GJBigSpriteNode : cocos2d::CCNode {
 
 [[link(android)]]
 class GJChallengeDelegate {
-	virtual TodoReturn challengeStatusFinished();
-	virtual TodoReturn challengeStatusFailed();
+	virtual void challengeStatusFinished();
+	virtual void challengeStatusFailed();
 }
 
 [[link(android)]]
@@ -11769,10 +11775,10 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	void onSuggested(cocos2d::CCObject* sender) = win 0x2f0b60;
 	void onTrending(cocos2d::CCObject* sender) = win 0x2f0c20;
 	void toggleDifficulty(cocos2d::CCObject*) = win 0x2f18e0, m1 0x557a00, imac 0x637cc0;
-	void toggleDifficultyNum(int, bool) = win 0x2f1c40;
-	void toggleStar(cocos2d::CCObject*);
+	void toggleDifficultyNum(int, bool) = win 0x2f1c40, m1 0x5581b0, imac 0x638420;
+	void toggleStar(cocos2d::CCObject*) = win 0x2f15d0, m1 0x5580c0, imac 0x638350;
 	void toggleTime(cocos2d::CCObject*);
-	void toggleTimeNum(int, bool) = win 0x2f2050;
+	void toggleTimeNum(int, bool) = win 0x2f2050, m1 0x558334, imac 0x638590;
 	void updateSearchLabel(char const*) = win 0x2ef440;
 
 	virtual void keyBackClicked() = win 0x2f21e0, m1 0x559628, imac 0x6398b0;
@@ -12022,7 +12028,7 @@ class LevelTools {
 	static int getAudioBPM(int);
 	static gd::string getAudioFileName(int) = win 0x307cb0, m1 0x4605c4;
 	static gd::string getAudioString(int);
-	static gd::string getAudioTitle(int) = win 0x307130, m1 0x45fe8c;
+	static gd::string getAudioTitle(int) = win 0x307130, m1 0x45fe8c, imac 0x508a10;
 	static TodoReturn getLastGameplayReversed();
 	static TodoReturn getLastGameplayRotated();
 	static TodoReturn getLastTimewarp();
@@ -14141,13 +14147,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*) = win 0x391440, m1 0xa7a3c, imac 0xbba00;
 	virtual void dialogClosed(DialogLayer*) = win 0x3912a0, m1 0xa7a08, imac 0xbb9a0;
 
-	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x2c;
+	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x30;
 	cocos2d::CCArray* m_coinArray;
-	PAD = win 0x6E, android32 0x3E, android64 0x6E, mac 0x6E;
+	PAD = win 0x6E, android32 0x3E, android64 0x6E, mac 0x6E, ios 0x6e;
 	bool m_isIgnoreDamageEnabled;
 	cocos2d::CCLabelBMFont* m_statusLabel;
 	int m_unk3778;
-	PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18;
+	PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18, ios 0x18;
 	float m_unkSomeFloat;
 	CheckpointObject* m_currentCheckpoint;
 	cocos2d::CCArray* m_checkpointArray;
@@ -14169,7 +14175,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCSprite* m_progressBar;
 	cocos2d::CCSprite* m_progressFill;
 	// everything after this comment is probably wrong
-	PAD = win 0x6e, android32 0x40, android64 0x66, mac 0x56;
+	PAD = win 0x6e, android32 0x40, android64 0x66, mac 0x56, ios 0x56;
 	int m_jumps;
 	bool m_hasJumped;
 	int m_uncommittedJumps; // PlayLayer::commitJumps
@@ -14178,9 +14184,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	bool m_inResetDelay;
 	int m_lastAttemptPercent;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0x3a, android32 0x29, android64 0x3a, mac 0x3a;
+	PAD = win 0x3a, android32 0x29, android64 0x3a, mac 0x3a, ios 0x3a;
 	double m_attemptTime;
-	PAD = win 0x1f, android32 0x27, android64 0x1f, mac 0x1f;
+	PAD = win 0x1f, android32 0x27, android64 0x1f, mac 0x1f, ios 0x1f;
 	bool m_isPaused;
 	bool m_disableGravityEffect;
 	cocos2d::CCLabelBMFont* m_infoLabel;
