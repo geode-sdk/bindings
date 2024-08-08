@@ -7868,6 +7868,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unke50;
 	gd::vector<GameObject*> m_unke90;
 	int m_unkea8;
+	int m_unkeac;
 	gd::vector<GameObject*> m_unkeb0;
 	int m_unkec8;
 	int m_unkecc;
