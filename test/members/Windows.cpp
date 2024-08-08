@@ -9,6 +9,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x1a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x870);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xd98);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xda0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xef8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPlatformer, 0x3096);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a50, 0x3160);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a84, 0x31f0);
