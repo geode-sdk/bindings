@@ -7945,11 +7945,23 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unknown3494; // used in updateSpecialLabels
 	gd::string m_pointsString;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
-	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90, ios 0x90;
+	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_nonEffectObjects;
+	gd::vector<gd::vector<GameObject*>*> m_collisionBlockSections;
+	gd::vector<GameObject*> m_calcNonEffectObjects;
+	int m_calcNonEffectObjectsSize;
+	gd::vector<GameObject*> m_calcCollisionBlockObjects;
+	int m_calcCollisionBlockObjectsSize;
+	gd::vector<GameObject*> m_calcCollisionBlockObjects2;
+	int m_calcCollisionBlockObjects2Size;
 	gd::vector<gd::vector<int>*> m_sectionSizes;
-	PAD = win 0x70, android32 0x38, android64 0x68, mac 0x58, ios 0x58; // mac not verified
-	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection;
-	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10, ios 0x10;
+	gd::vector<gd::vector<int>*> m_nonEffectObjectsSizes;
+	gd::vector<gd::vector<int>*> m_collisionBlockSectionSizes;
+	gd::vector<gd::vector<bool>*> m_nonEffectObjectsFlags;
+	float m_unknown35c0;
+	float m_unknown35c4;
+	float m_unknown35c8;
+	float m_unknown35cc;
+	gd::unordered_map<int, int> m_stickyGroups;
 	FMODLevelVisualizer* m_audioVisualizerBG;
 	FMODLevelVisualizer* m_audioVisualizerSFX;
 	bool m_showAudioVisualizer;
@@ -14080,7 +14092,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	void applyEnterEffect(GameObject*, int, bool) = win 0x38e270;
 	bool canPauseGame() = win inline, m1 0xaac6c, imac 0xbf610 {
-		return !m_hasCompletedLevel && !m_cantPause;
+		return !m_hasCompletedLevel && !m_levelEndAnimationStarted;
 	}
 	TodoReturn checkpointWithID(int);
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
