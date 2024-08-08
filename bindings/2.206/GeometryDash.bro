@@ -5329,12 +5329,16 @@ class GameLevelManager : cocos2d::CCNode {
 	void resetTimerForKey(char const*) = win 0x144ac0;
 	static cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x1628d0, imac 0x538380, m1 0x48aeb8;
 	void restoreItems();
-	void saveFetchedLevelLists(cocos2d::CCArray*);
+	void saveFetchedLevelLists(cocos2d::CCArray* lists) = win inline, m1 0x48bca4, imac 0x539210 {
+		for (int i = 0; i < lists->count(); i++) {
+			this->saveLevelList(static_cast<GJLevelList*>(lists->objectAtIndex(i)));
+		}
+	}
 	void saveFetchedLevels(cocos2d::CCArray*) = win 0x141e70, imac 0x538600, m1 0x48b144;
 	void saveFetchedMapPacks(cocos2d::CCArray*);
 	void saveGauntlet(GJMapPack*);
 	void saveLevel(GJGameLevel*) = win 0x1438e0;
-	void saveLevelList(GJLevelList*);
+	void saveLevelList(GJLevelList*) = win 0x14b7a0, m1 0x48bd08, imac 0x539270;
 	void saveLocalScore(int, int, int);
 	void saveMapPack(GJMapPack*);
 	void setActiveSmartTemplate(GJSmartTemplate*);
