@@ -4855,9 +4855,7 @@ class FMODAudioState {
 	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic1;
 	gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic2;
 	gd::unordered_map<int,FMODSoundState> m_unkMapIntFMODSoundState;
-	PAD = win 0x0, android32 0x4, android64 0x0, mac 0x0; // welcome to today's episode of "this makes no f****ng sense"
-	int m_unkInt1;
-	int m_unkInt2;
+	int64_t m_unkInt1;
 }
 
 [[link(android)]]
@@ -7944,9 +7942,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCNode* m_unk3480;
 	double m_timePlayed;
 	bool m_levelEndAnimationStarted;
-	PAD = win 0x7, android32 0x0, android64 0x0, mac 0x0, ios 0x0;
-	bool m_cantPause;
-	PAD = win 0x18, android32 0x7, android64 0x7, mac 0x30, ios 0x30;
+	int m_unknown3494; // used in updateSpecialLabels
+	gd::string m_pointsString;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
 	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90, ios 0x90;
 	gd::vector<gd::vector<int>*> m_sectionSizes;
@@ -9096,7 +9093,7 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
 
 	void blockUser();
 	bool init(GJUserMessage*);
-	void loadFromGJMessage(GJUserMessage*) = win 0x0285be0, imac 0x2a2980, m1 0x2445b4, ios 0x2eb808;
+	void loadFromGJMessage(GJUserMessage*) = win 0x285be0, imac 0x2a2980, m1 0x2445b4, ios 0x2eb808;
 	void onBlock(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onRemove(cocos2d::CCObject* sender);
@@ -11608,7 +11605,7 @@ class LevelListCell : TableViewCell {
 	static LevelListCell* create(float, float);
 
 	void loadFromList(GJLevelList*) = win 0xbc320, imac 0x240be0, m1 0x1eb538, ios 0x105284;
-	void onClick(cocos2d::CCObject* sender) = win 0x0bd700, imac 0x2550b0, m1 0x1fdf64;
+	void onClick(cocos2d::CCObject* sender) = win 0xbd700, imac 0x2550b0, m1 0x1fdf64;
 	void onListInfo(cocos2d::CCObject* sender) = imac 0x2551c0, m1 0x1fe064;
 	void onViewProfile(cocos2d::CCObject* sender) = imac 0x255190, m1 0x1fe02c;
 	TodoReturn updateBGColor(int);
