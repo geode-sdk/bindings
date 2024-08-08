@@ -63,6 +63,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x29d4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a50, 0x2a50);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2a60);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a84, 0x2aa4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioEffectsLayer, 0x2b04);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b5c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2c10);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c34);
