@@ -184,5 +184,6 @@ GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x63c);
 
 GEODE_SIZE_CHECK(CCLightFlash, 0x168);
 GEODE_SIZE_CHECK(CCLightStrip, 0x160);
+GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3c8);
 
 #endif
