@@ -14092,7 +14092,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
 	void applyEnterEffect(GameObject*, int, bool) = win 0x38e270;
 	bool canPauseGame() = win inline, m1 0xaac6c, imac 0xbf610 {
-		return !m_hasCompletedLevel && !m_cantPause;
+		return !m_hasCompletedLevel && !m_levelEndAnimationStarted;
 	}
 	TodoReturn checkpointWithID(int);
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
