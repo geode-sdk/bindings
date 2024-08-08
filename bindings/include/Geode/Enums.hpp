@@ -356,7 +356,10 @@ enum class TouchTriggerControl {};
 enum class SmartPrefabResult {};
 enum class AudioSortType {};
 enum class spriteMode {};
-enum class GJAssetType {};
+enum class GJAssetType {
+    Song = 1,
+    SFX = 2
+};
 enum class CommentKeyType {
     Level = 0,
     User = 1,
