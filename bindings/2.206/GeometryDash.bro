@@ -7965,7 +7965,32 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	FMODLevelVisualizer* m_audioVisualizerBG;
 	FMODLevelVisualizer* m_audioVisualizerSFX;
 	bool m_showAudioVisualizer;
-	PAD = win 0x67, android32 0x67, android64 0x67, mac 0x67, ios 0x67;
+
+	int m_areaMovedCount;
+	int m_areaScaledCount;
+	int m_areaRotatedCount;
+	int m_areaColorCount;
+	int m_areaMovedCountTotal;
+	int m_areaScaledCountTotal;
+	int m_areaRotatedCountTotal;
+	int m_areaColorCountTotal;
+	int m_movedCount;
+	int m_scaledCount;
+	int m_rotatedCount;
+	int m_followedCount;
+	int m_areaMovedCountDisplay;
+	int m_areaScaledCountDisplay;
+	int m_areaRotatedCountDisplay;
+	int m_areaColorCountDisplay;
+	int m_areaMovedCountTotalDisplay;
+	int m_areaScaledCountTotalDisplay;
+	int m_areaRotatedCountTotalDisplay;
+	int m_areaColorCountTotalDisplay;
+	int m_movedCountDisplay;
+	int m_scaledCountDisplay;
+	int m_rotatedCountDisplay;
+	int m_followedCountDisplay;
+
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode;
 	void* m_unk3678;
