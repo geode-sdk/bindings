@@ -2246,8 +2246,10 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 	virtual void colorValueChanged(cocos2d::ccColor3B) = win 0x8ff40, m1 0x6482e8, imac 0x7368b0;
 	virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x91e80, m1 0x64a358, imac 0x7389d0;
 
-	PAD = android32 0x40, win 0x40;
+	PAD = android32 0x40, android64 0x70, win 0x70;
 	ColorAction* m_colorAction;
+	PAD = android32 0x1c, android64 0x20, win 0x20;
+	ConfigureHSVWidget* m_hsvWidget;
 }
 
 [[link(android)]]
@@ -2754,7 +2756,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	void onClose(cocos2d::CCObject* sender) = win 0xa7ef0;
 	void onCopy(cocos2d::CCObject* sender);
 	void onEditColor(cocos2d::CCObject* sender);
-	void onHSV(cocos2d::CCObject* sender);
+	void onHSV(cocos2d::CCObject* sender) = win 0xa6a60;
 	void onLiveEdit(cocos2d::CCObject* sender);
 	void onNextColorChannel(cocos2d::CCObject* sender);
 	void onPaste(cocos2d::CCObject* sender);
@@ -5137,7 +5139,9 @@ class GameLevelManager : cocos2d::CCNode {
 	void getGJRewards(int) = win 0x15eaa0, m1 0x4ae6d4, imac 0x55fc50;
 	void getGJUserInfo(int) = win 0x153fe0, m1 0x4a36d8, imac 0x5542e0;
 	int getHighestLevelOrder() = imac 0x53c1a0, m1 0x48e784;
-	int getIntForKey(char const*) = imac 0x561c80, m1 0x4b0678;
+	int getIntForKey(char const* key) = win inline, imac 0x561c80, m1 0x4b0678 {
+		return m_searchFilters->valueForKey(key)->intValue();
+	}
 	void getLeaderboardScores(char const*) = win 0x151ca0, imac 0x552110, m1 0x4a1918;
 	gd::string getLengthStr(bool, bool, bool, bool, bool, bool) = imac 0x545f70, m1 0x497484;
 	const char *getLenKey(int len);
@@ -5336,10 +5340,14 @@ class GameLevelManager : cocos2d::CCNode {
 	void saveLocalScore(int, int, int);
 	void saveMapPack(GJMapPack*);
 	void setActiveSmartTemplate(GJSmartTemplate*);
-	void setBoolForKey(bool, char const*);
+	void setBoolForKey(bool value, char const* key) = win inline, m1 0x4b0760, imac 0x561d60 {
+		m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", (int)value), key);
+	}
 	void setDiffVal(int, bool) = win 0x1624c0;
 	void setFolderName(int, gd::string, bool) = m1 0x493740, imac 0x541790;
-	void setIntForKey(int, char const*);
+	void setIntForKey(int value, char const* key) = win inline, m1 0x4b056c, imac 0x561b90 {
+		m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", value), key);
+	}
 	void setLenVal(int, bool) = win 0x1625b0;
 	void setLevelFeatured(int, int, bool);
 	void setLevelStars(int, int, bool);
@@ -6806,7 +6814,7 @@ class GameToolbox {
 	static gd::map<gd::string,gd::string> stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x642a0;
 	static TodoReturn strongColor(cocos2d::ccColor3B) = ios 0x4bbd8;
 	static gd::string timestampToHumanReadable(time_t, time_t) = win 0x67cd0;
-	static TodoReturn transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue);
+	static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue) = win 0x63ca0;
 	static TodoReturn transformColor(cocos2d::ccColor3B const&, float, float, float);
 }
 
@@ -7622,7 +7630,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_decimalPercentage;
 	bool m_extraLDM;
 	bool m_0173;
-	PAD = win 0xc9, android32 0x61, android64 0xC0, mac 0xac;
+	PAD = win 0xc9, android32 0x61, android64 0xC0, mac 0xac, ios 0xac;
 	GJEffectManager* m_effectManager;
 	cocos2d::CCSpriteBatchNode* m_unk950;
 	cocos2d::CCSpriteBatchNode* m_unk958;
@@ -7777,7 +7785,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD48;
 	gd::vector<GameObject*> m_unknownD70;
 	gd::unordered_map<int, gd::vector<GameObject*>> m_unknownD88;
-	PAD = win 0x10, android32 0x28, android64 0x18, mac 0x28;
+	PAD = win 0x10, android32 0x28, android64 0x18, mac 0x28, ios 0x28;
 	cocos2d::CCDictionary* m_groupDict;
 	cocos2d::CCDictionary* m_staticGroupDict;
 	cocos2d::CCDictionary* m_optimizedGroupDict;
@@ -7805,16 +7813,16 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCArray* m_unk1030;
 	cocos2d::CCDictionary* m_unk1038;
 	void* m_unk1040;
-	PAD = win 0x8c, android32 0x50, android64 0x9c, mac 0x64; // (for win) between 0x8 bytes, there is a member thats 0x8 size. I think its a CCDictionary*
+	PAD = win 0x8c, android32 0x50, android64 0x9c, mac 0x64, ios 0x64; // (for win) between 0x8 bytes, there is a member thats 0x8 size. I think its a CCDictionary*
 	std::array<float, 2000> m_massiveFloatArray;
-	PAD = win 0x78, android32 0x4c, android64 0x90, mac 0x68; // not sure about the android paddings
+	PAD = win 0x78, android32 0x4c, android64 0x90, mac 0x68, ios 0x68; // not sure about the android paddings
 	int m_attempts; // found in EndLevelLayer::customSetup
 	bool m_bUnk30b8;
 	int m_leftSectionIndex; // these 4 ints can be found in GJBaseGameLayer::updateDebugDraw or GJBaseGameLayer::updateObjectSection (easier)
 	int m_rightSectionIndex;
 	int m_bottomSectionIndex;
 	int m_topSectionIndex;
-	PAD = win 0x2, android32 0x2, android64 0x2, mac 0x2;
+	PAD = win 0x2, android32 0x2, android64 0x2, mac 0x2, ios 0x2;
 	bool m_isPlatformer;
 	PAD = win 0x20, android32 0x14, android64 0x20, mac 0x20;
 	cocos2d::CCDictionary* m_portalParticlesDict;
@@ -7830,7 +7838,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_bUnk31a0;
 	bool m_bUnk31a1;
 	StartPosObject* m_startPosObject; // 3180 win, 2a60 android32, 31a8 android64
-	PAD = win 0x60, android32 0x38, android64 0x60, mac 0x60;
+	PAD = win 0x60, android32 0x38, android64 0x60, mac 0x60, ios 0x60;
 	bool m_isPracticeMode;
 	bool m_practiceMusicSync;
 	float m_loadingProgress;
@@ -7852,11 +7860,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_unk3234;
 	cocos2d::CCParticleSystemQuad* m_unk3238;
 	int m_unk323c;
-	PAD = win 0x6, android32 0x10, android64 0x6, mac 0x6; // mac not verified
+	PAD = win 0x6, android32 0x10, android64 0x6, mac 0x6, ios 0x6; // mac not verified
 	bool m_started;
-	PAD = win 0xA6, android32 0x66, android64 0x8e, mac 0xa0;
+	PAD = win 0xA6, android32 0x66, android64 0x8e, mac 0xa0, ios 0xa0;
 	gd::vector<PlayerButtonCommand> m_queuedButtons;
-	PAD = win 0x148, android32 0xa0, android64 0x138, mac 0x118;
+	PAD = win 0x148, android32 0xa0, android64 0x138, mac 0x118, ios 0x118;
 	cocos2d::CCDictionary* m_unk3458;
 	int m_unk3460;
 	UILayer* m_uiLayer;
@@ -7865,19 +7873,19 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCNode* m_unk3480;
 	double m_timePlayed;
 	bool m_levelEndAnimationStarted;
-	PAD = win 0x7, android32 0x0, android64 0x0, mac 0x0;
+	PAD = win 0x7, android32 0x0, android64 0x0, mac 0x0, ios 0x0;
 	bool m_cantPause;
-	PAD = win 0x18, android32 0x7, android64 0x7, mac 0x30;
+	PAD = win 0x18, android32 0x7, android64 0x7, mac 0x30, ios 0x30;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
-	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90;
+	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90, ios 0x90;
 	gd::vector<gd::vector<int>*> m_sectionSizes;
-	PAD = win 0x70, android32 0x38, android64 0x68, mac 0x40; // mac not verified
+	PAD = win 0x70, android32 0x38, android64 0x68, mac 0x40, ios 0x40; // mac not verified
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection;
-	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10;
+	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10, ios 0x10;
 	FMODLevelVisualizer* m_audioVisualizerBG;
 	FMODLevelVisualizer* m_audioVisualizerSFX;
 	bool m_showAudioVisualizer;
-	PAD = win 0x67, android32 0x67, android64 0x67, mac 0x67;
+	PAD = win 0x67, android32 0x67, android64 0x67, mac 0x67, ios 0x67;
 	GJGameLoadingLayer* m_loadingLayer;
 	cocos2d::CCDrawNode* m_debugDrawNode;
 	void* m_unk3678;
@@ -10084,7 +10092,9 @@ class GJTransformControl : cocos2d::CCLayer {
 	void refreshControl() = win 0x127180;
 	void saveToState(GJTransformState&);
 	void scaleButtons(float) = win 0x1273a0;
-	TodoReturn spriteByTag(int);
+	cocos2d::CCSprite* spriteByTag(int tag) {
+		return static_cast<cocos2d::CCSprite*>(m_warpSprites->objectAtIndex(tag - 1));
+	}
 	TodoReturn updateAnchorSprite(cocos2d::CCPoint);
 	void updateButtons(bool, bool) = win 0x127460;
 	TodoReturn updateMinMaxPositions();
@@ -10103,7 +10113,7 @@ class GJTransformControl : cocos2d::CCLayer {
 	short m_transformButtonType;
 	GJTransformControlDelegate* m_delegate;
 	cocos2d::CCPoint m_cursorDifference;
-	cocos2d::CCPoint m_unk2;
+	cocos2d::CCPoint m_touchStart;
 	cocos2d::CCPoint m_unk3;
 	cocos2d::CCPoint m_unk4;
 	cocos2d::CCPoint m_unk5;
@@ -10112,8 +10122,8 @@ class GJTransformControl : cocos2d::CCLayer {
 	cocos2d::CCArray* m_warpSprites;
 	cocos2d::CCPoint m_rotatePosition;
 	CCMenuItemSpriteExtra* m_warpLockButton;
-	float m_unk8;
-	float m_unk9;
+	float m_scaleX;
+	float m_scaleY;
 	bool m_warpLocked;
 	float m_unk10;
 	float m_unk11;
@@ -11765,10 +11775,10 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 	void onSuggested(cocos2d::CCObject* sender) = win 0x2f0b60;
 	void onTrending(cocos2d::CCObject* sender) = win 0x2f0c20;
 	void toggleDifficulty(cocos2d::CCObject*) = win 0x2f18e0, m1 0x557a00, imac 0x637cc0;
-	void toggleDifficultyNum(int, bool) = win 0x2f1c40;
-	void toggleStar(cocos2d::CCObject*);
+	void toggleDifficultyNum(int, bool) = win 0x2f1c40, m1 0x5581b0, imac 0x638420;
+	void toggleStar(cocos2d::CCObject*) = win 0x2f15d0, m1 0x5580c0, imac 0x638350;
 	void toggleTime(cocos2d::CCObject*);
-	void toggleTimeNum(int, bool) = win 0x2f2050;
+	void toggleTimeNum(int, bool) = win 0x2f2050, m1 0x558334, imac 0x638590;
 	void updateSearchLabel(char const*) = win 0x2ef440;
 
 	virtual void keyBackClicked() = win 0x2f21e0, m1 0x559628, imac 0x6398b0;
@@ -12018,7 +12028,7 @@ class LevelTools {
 	static int getAudioBPM(int);
 	static gd::string getAudioFileName(int) = win 0x307cb0;
 	static gd::string getAudioString(int);
-	static gd::string getAudioTitle(int) = win 0x307130;
+	static gd::string getAudioTitle(int) = win 0x307130, m1 0x45fe8c, imac 0x508a10;
 	static TodoReturn getLastGameplayReversed();
 	static TodoReturn getLastGameplayRotated();
 	static TodoReturn getLastTimewarp();
@@ -14137,13 +14147,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual void circleWaveWillBeRemoved(CCCircleWave*) = win 0x391440, m1 0xa7a3c, imac 0xbba00;
 	virtual void dialogClosed(DialogLayer*) = win 0x3912a0, m1 0xa7a08, imac 0xbb9a0;
 
-	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x2c;
+	PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x30;
 	cocos2d::CCArray* m_coinArray;
-	PAD = win 0x6E, android32 0x3E, android64 0x6E, mac 0x6E;
+	PAD = win 0x6E, android32 0x3E, android64 0x6E, mac 0x6E, ios 0x6e;
 	bool m_isIgnoreDamageEnabled;
 	cocos2d::CCLabelBMFont* m_statusLabel;
 	int m_unk3778;
-	PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18;
+	PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18, ios 0x18;
 	float m_unkSomeFloat;
 	CheckpointObject* m_currentCheckpoint;
 	cocos2d::CCArray* m_checkpointArray;
@@ -14165,7 +14175,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	cocos2d::CCSprite* m_progressBar;
 	cocos2d::CCSprite* m_progressFill;
 	// everything after this comment is probably wrong
-	PAD = win 0x6e, android32 0x40, android64 0x66, mac 0x56;
+	PAD = win 0x6e, android32 0x40, android64 0x66, mac 0x56, ios 0x56;
 	int m_jumps;
 	bool m_hasJumped;
 	int m_uncommittedJumps; // PlayLayer::commitJumps
@@ -14174,9 +14184,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	bool m_inResetDelay;
 	int m_lastAttemptPercent;
 	bool m_endLayerStars; // not verified on android
-	PAD = win 0x3a, android32 0x29, android64 0x3a, mac 0x3a;
+	PAD = win 0x3a, android32 0x29, android64 0x3a, mac 0x3a, ios 0x3a;
 	double m_attemptTime;
-	PAD = win 0x1f, android32 0x27, android64 0x1f, mac 0x1f;
+	PAD = win 0x1f, android32 0x27, android64 0x1f, mac 0x1f, ios 0x1f;
 	bool m_isPaused;
 	bool m_disableGravityEffect;
 	cocos2d::CCLabelBMFont* m_infoLabel;
