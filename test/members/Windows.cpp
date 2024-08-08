@@ -213,14 +213,14 @@ GEODE_MEMBER_CHECK(GameObject, m_outerSectionIndex, 0x278);
 GEODE_MEMBER_CHECK(GameObject, m_positionXOffset, 0x2a0);
 GEODE_MEMBER_CHECK(GameObject, m_scaleXOffset, 0x2b8);
 GEODE_MEMBER_CHECK(GameObject, m_glowSprite, 0x2f0);
-GEODE_MEMBER_CHECK(GameObject, m_someSprite, 0x308);
+GEODE_MEMBER_CHECK(GameObject, m_particle, 0x308);
 GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x310);
 GEODE_MEMBER_CHECK(GameObject, m_colorSprite, 0x380);
 GEODE_MEMBER_CHECK(GameObject, m_uniqueID, 0x39c);
 GEODE_MEMBER_CHECK(GameObject, m_startPosition, 0x3c8);
 GEODE_MEMBER_CHECK(GameObject, m_startRotationX, 0x3d4);
 GEODE_MEMBER_CHECK(GameObject, m_startFlipX, 0x3ec);
-GEODE_MEMBER_CHECK(GameObject, m_unk3ef, 0x3ef);
+GEODE_MEMBER_CHECK(GameObject, m_isInvisible, 0x3ef);
 GEODE_MEMBER_CHECK(GameObject, m_groups, 0x490);
 GEODE_MEMBER_CHECK(GameObject, m_lastPosition, 0x4d0);
 
