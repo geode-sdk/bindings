@@ -54,10 +54,16 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x898);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0x95c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownE38, 0x98c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa48);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_portalParticlesDict, 0x2a04);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_customParticles, 0x2a08);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unclaimedParticles, 0x2a0c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_customParticlesDictArray, 0x2a2c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_temporaryParticles, 0x2a30);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x29d4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a50, 0x2a50);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2a60);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a84, 0x2aa4);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioEffectsLayer, 0x2b04);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x2b5c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x2c10);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x2c34);
@@ -130,6 +136,8 @@ GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0x9b0);
 
 // following are from 2.205 so might not all be right
 
+GEODE_SIZE_CHECK(FMODAudioEngine, 0x4b0);
+GEODE_SIZE_CHECK(FMODAudioState, 0x1c8);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_musicVolume, 0x15c);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_sfxVolume, 0x160);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse1, 0x16c);
@@ -137,6 +145,17 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse2, 0x170);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_pulse3, 0x174);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_metering, 0x17c);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x184);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_mainDSP, 0x188);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_globalChannelDSP, 0x18c);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_globalChannel, 0x190);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_channelGroup2, 0x194);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_lastResult, 0x198);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_sampleRate, 0x19c);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_reducedQuality, 0x1a0);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_audioState, 0x1b0);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_unkSoundVector, 0x378);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_queuedEffects, 0x430);
+GEODE_MEMBER_CHECK(FMODAudioEngine, m_unkMapIntChannelGroup474, 0x474);
 
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x16c);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
