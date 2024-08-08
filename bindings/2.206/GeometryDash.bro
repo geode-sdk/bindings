@@ -7947,7 +7947,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
 	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90, ios 0x90;
 	gd::vector<gd::vector<int>*> m_sectionSizes;
-	PAD = win 0x70, android32 0x38, android64 0x68, mac 0x40, ios 0x40; // mac not verified
+	PAD = win 0x70, android32 0x38, android64 0x68, mac 0x58, ios 0x58; // mac not verified
 	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection;
 	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10, ios 0x10;
 	FMODLevelVisualizer* m_audioVisualizerBG;
