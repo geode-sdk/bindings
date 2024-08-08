@@ -7945,10 +7945,18 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unknown3494; // used in updateSpecialLabels
 	gd::string m_pointsString;
 	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_sections;
-	PAD = win 0x90, android32 0x48, android64 0x90, mac 0x90, ios 0x90;
+	gd::vector<gd::vector<gd::vector<GameObject*>*>*> m_nonEffectObjects;
+	gd::vector<gd::vector<GameObject*>*> m_collisionBlockSections;
+	gd::vector<GameObject*> m_nonEffectObjects;
+	int m_nonEffectObjectsSize;
+	gd::vector<GameObject*> m_collisionBlockObjects;
+	int m_collisionBlockObjectsSize;
+	gd::vector<GameObject*> m_updatedCollisionBlockObjects;
+	int m_updatedCollisionBlockObjectsSize;
 	gd::vector<gd::vector<int>*> m_sectionSizes;
-	PAD = win 0x70, android32 0x38, android64 0x68, mac 0x58, ios 0x58; // mac not verified
-	gd::vector<gd::vector<int>*> m_nonEffectObjectsPerSection;
+	gd::vector<gd::vector<int>*> m_nonEffectObjectsSizes;
+	gd::vector<gd::vector<int>*> m_collisionBlockSectionSizes;
+	gd::vector<gd::vector<bool>*> m_nonEffectObjectsFlags;
 	PAD = win 0x10, android32 0xc, android64 0x10, mac 0x10, ios 0x10;
 	FMODLevelVisualizer* m_audioVisualizerBG;
 	FMODLevelVisualizer* m_audioVisualizerSFX;
