@@ -25,6 +25,8 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_temporaryParticles, 0x3118);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_timePlayed, 0x3488);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x34b8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3560);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_stickyGroups, 0x35d0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x3610);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3688);
 
 GEODE_SIZE_CHECK(PlayLayer, 0x3998);

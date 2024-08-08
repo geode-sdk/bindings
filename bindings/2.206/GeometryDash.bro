@@ -7961,7 +7961,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	float m_unknown35c4;
 	float m_unknown35c8;
 	float m_unknown35cc;
-	gd::map<int, int> m_stickyGroups;
+	gd::unordered_map<int, int> m_stickyGroups;
 	FMODLevelVisualizer* m_audioVisualizerBG;
 	FMODLevelVisualizer* m_audioVisualizerSFX;
 	bool m_showAudioVisualizer;
