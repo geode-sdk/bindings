@@ -533,7 +533,10 @@ class cocos2d::CCParticleSystemQuad {
 	~CCParticleSystemQuad() = imac 0x60dc00, m1 0x532f54;
 	bool allocMemory() = imac 0x60d5a0, m1 0x532bd4;
 	void listenBackToForeground(cocos2d::CCObject*);
-	void setupVBO() = imac 0x60d990, m1 0x532d28;
+	[[missing(mac, ios)]]
+	void setupVBO();
+	[[missing(win, android)]]
+	void setupVBOandVAO() = imac 0x60d990, m1 0x532d28;
 	void updateTexCoords();
 
 	virtual void draw() = imac 0x60e640, m1 0x53393c;
