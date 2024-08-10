@@ -16955,7 +16955,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) {}
 	virtual TodoReturn valuePopupClosed(ConfigureValuePopup*, float) = win 0x4512a0, m1 0x1e5b60, imac 0x23a630;
 
-	PAD = android32 0xac, win 0x118, android64 0x138;
+	PAD = android32 0xac, win 0x118, android64 0x138, mac 0x120, ios 0x120;
 }
 
 [[link(android)]]
