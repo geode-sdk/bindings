@@ -3721,7 +3721,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onUpdateDeleteFilter(cocos2d::CCObject* sender);
 	void orderDownCustomItem(cocos2d::CCObject*) = win 0xe0bf0;
 	void orderUpCustomItem(cocos2d::CCObject*) = win 0xe0b60;
-	TodoReturn pasteObjects(gd::string, bool);
+	void pasteObjects(gd::string, bool);
 	TodoReturn playCircleAnim(cocos2d::CCPoint, float, float);
 	TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -4312,7 +4312,7 @@ class EnhancedGameObject : GameObject {
 	static EnhancedGameObject* create(char const*);
 
 	TodoReturn createRotateAction(float, int);
-	bool init(char const*);
+	bool init(char const*) = win 0x19a7c0;
 	TodoReturn previewAnimateOnTrigger();
 	TodoReturn refreshRotateAction();
 	TodoReturn resetSyncedAnimation();
@@ -7599,8 +7599,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateCameraBGArt(cocos2d::CCPoint, float);
 	TodoReturn updateCameraEdge(int, int);
 	void updateCameraMode(EffectGameObject*, bool);
-	TodoReturn updateCameraOffsetX(float, float, int, float, int, int) = win 0x225f20, imac 0x144270, m1 0x118618;
-	TodoReturn updateCameraOffsetY(float, float, int, float, int, int) = win 0x225fc0, imac 0x144370, m1 0x1186ec;
+	void updateCameraOffsetX(float, float, int, float, int, int) = win 0x225f20, imac 0x144270, m1 0x118618;
+	void updateCameraOffsetY(float, float, int, float, int, int) = win 0x225fc0, imac 0x144370, m1 0x1186ec;
 	void updateCollisionBlocks() = win 0x209060;
 	void updateCounters(int, int);
 	void updateDualGround(PlayerObject*, int, bool, float) = win 0x203ce0, imac 0x118660, m1 0xf568c;
@@ -7673,7 +7673,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) { return 0.f; }
 	virtual float posForTime(float) { return 0.f; }
 	virtual void resetSPTriggered() {}
-	virtual TodoReturn updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x225e30, m1 0x118430, imac 0x144030;
+	virtual void updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x225e30, m1 0x118430, imac 0x144030;
 	virtual TodoReturn reverseDirection(EffectGameObject*) = m1 0xfad8c, win 0x2089f0, imac 0x11ec40;
 	virtual void rotateGameplay(RotateGameplayGameObject*) = m1 0xfadd0, win 0x208a50, imac 0x11ec80;
 	virtual TodoReturn didRotateGameplay() = m1 0xab578, imac 0xc0050;
