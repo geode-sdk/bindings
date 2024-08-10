@@ -60,7 +60,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unclaimedParticles, 0x2a0c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_claimedParticles, 0x2a2c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_temporaryParticles, 0x2a30);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x29d4);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a50, 0x2a50);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gradientLayers, 0x2a50);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2a60);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk2a84, 0x2aa4);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioEffectsLayer, 0x2b04);
