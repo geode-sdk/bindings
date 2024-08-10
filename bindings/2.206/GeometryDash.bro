@@ -18166,11 +18166,25 @@ class TeleportPortalObject : RingObject {
 class TextAlertPopup : cocos2d::CCNode {
 	// virtual ~TextAlertPopup();
 
-	static TextAlertPopup* create(gd::string, float, float, int, gd::string) = win 0x28b920, imac 0x2ab0c0, m1 0x24c288;
+	static TextAlertPopup* create(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x28b920, imac 0x2ab0c0, m1 0x24c288;
 
-	bool init(gd::string, float, float, int, gd::string) = win 0x28ba50, imac 0x2ab2e0, m1 0x24c4d0;
-	void setAlertPosition(cocos2d::CCPoint, cocos2d::CCPoint);
-	void setLabelColor(cocos2d::ccColor3B) = imac 0x2ab5f0, m1 0x24c7d4; // inlined on Windows
+	bool init(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x28ba50, imac 0x2ab2e0, m1 0x24c4d0;
+	void setAlertPosition(cocos2d::CCPoint windowOffset, cocos2d::CCPoint pointOffset) = win inline, imac 0x2ab630, m1 0x24c810 {
+		if (!m_label) return;
+
+		auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+		this->setPosition({
+			windowOffset.x * winSize.width + m_width / 2 + pointOffset.x,
+			windowOffset.y * winSize.height + m_height / 2 + pointOffset.y
+		});
+	}
+	void setLabelColor(cocos2d::ccColor3B color) = win inline, imac 0x2ab5f0, m1 0x24c7d4 {
+		if (m_label) m_label->setColor(color);
+	}
+
+	float m_width;
+	float m_height;
+	cocos2d::CCLabelBMFont* m_label;
 }
 
 [[link(android)]]
