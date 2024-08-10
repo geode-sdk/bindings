@@ -7315,7 +7315,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void createMiddleground(int) = win 0x1fc890;
 	TodoReturn createNewKeyframeAnim();
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
-	void createPlayer() = win 0x1fc0c0, ios 0x1e73b8;
+	void createPlayer() = win 0x1fc0c0, imac 0x1072f0, m1 0xe72e0, ios 0x1e73b8;
 	TodoReturn createPlayerCollisionBlock() = win 0x208c00;
 	void createTextLayers() = win 0x1ffa50, m1 0xf09d4, imac 0x113b80;
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
