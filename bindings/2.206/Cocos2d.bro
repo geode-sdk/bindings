@@ -520,7 +520,7 @@ class cocos2d::CCParticleSystemQuad {
 	static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool);
 
 	void initIndices();
-	void initTexCoordsWithRect(cocos2d::CCRect const&);
+	void initTexCoordsWithRect(cocos2d::CCRect const&) = imac 0x60dea0, m1 0x5331b4;
 
 	unsigned char getOpacity();
 
@@ -531,19 +531,22 @@ class cocos2d::CCParticleSystemQuad {
 	// CCParticleSystemQuad(cocos2d::CCParticleSystemQuad const&);
 	// CCParticleSystemQuad();
 	~CCParticleSystemQuad() = imac 0x60dc00, m1 0x532f54;
-	bool allocMemory();
+	bool allocMemory() = imac 0x60d5a0, m1 0x532bd4;
 	void listenBackToForeground(cocos2d::CCObject*);
+	[[missing(mac, ios)]]
 	void setupVBO();
+	[[missing(win, android)]]
+	void setupVBOandVAO() = imac 0x60d990, m1 0x532d28;
 	void updateTexCoords();
 
-	virtual void draw();
-	virtual void setBatchNode(cocos2d::CCParticleBatchNode*);
-	virtual void setTotalParticles(unsigned int);
-	virtual bool initWithTotalParticles(unsigned int, bool);
-	virtual void updateQuadWithParticle(cocos2d::sCCParticle*, cocos2d::CCPoint const&);
-	virtual void postStep();
+	virtual void draw() = imac 0x60e640, m1 0x53393c;
+	virtual void setBatchNode(cocos2d::CCParticleBatchNode*) = imac 0x60ec20, m1 0x533c10;
+	virtual void setTotalParticles(unsigned int) = imac 0x60e700, m1 0x533a00;
+	virtual bool initWithTotalParticles(unsigned int, bool) = imac 0x60d260, m1 0x532af0;
+	virtual void updateQuadWithParticle(cocos2d::sCCParticle*, cocos2d::CCPoint const&) = imac 0x60e2a0, m1 0x533618;
+	virtual void postStep() = imac 0x60e5f0, m1 0x5338f0;
 
-	virtual void setTexture(cocos2d::CCTexture2D*);
+	virtual void setTexture(cocos2d::CCTexture2D*) = imac 0x60e0f0, m1 0x533430;
 }
 
 [[link(win, android)]]
@@ -1693,7 +1696,7 @@ class cocos2d::CCLabelBMFont {
 		CC_SAFE_DELETE(pRet);
 		return nullptr;
 	}
-	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int);
+	static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int) = m1 0x50b780, imac 0x5e1320;
 	static void purgeCachedData();
 
 	bool initWithString(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = ios 0x30b864, imac 0x5e1050, m1 0x50b4cc;
