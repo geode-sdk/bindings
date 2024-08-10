@@ -6101,7 +6101,7 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int);
 	gd::string perspectiveColorFrame(char const*, int);
 	gd::string perspectiveFrame(char const*, int);
-	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a04e0;
+	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a04e0, imac 0x25a310, m1 0x201d4c;
 	void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float) = win 0x1a0000;
 	void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float) = win 0x19ff10;
 	void playShineEffect() = win 0x18f3f0, imac 0x5c5a90, m1 0x4f4cac;
