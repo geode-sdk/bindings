@@ -1,6 +1,6 @@
 #include "Common.hpp"
 
-#ifdef GEODE_IS_ARM_MAC
+#ifdef GEODE_IS_IOS
 
 // GEODE_SIZE_CHECK(PlayLayer, 0x3790);
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x3508);
@@ -20,12 +20,6 @@ GEODE_SIZE_CHECK(GJBaseGameLayer, 0x34c0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf6c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x2f14);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPlatformer, 0x2f2e);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_portalParticlesDict, 0x2f50);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_customParticles, 0x2f58);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unclaimedParticles, 0x2f60);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_customParticlesDictArray, 0x2f90);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_temporaryParticles, 0x2f98);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2fd8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);

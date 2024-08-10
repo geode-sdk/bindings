@@ -99,6 +99,18 @@ jobs:
             -DCMAKE_OSX_ARCHITECTURES=arm64
             -D USE_HACKY_SCRIPT=ON
 
+        - name: iOS
+          os_identifier: ios
+          os: macos-latest
+          extra_flags: >
+            -DCMAKE_C_COMPILER=clang
+            -DCMAKE_CXX_COMPILER=clang++
+            -DCMAKE_BUILD_TYPE=Debug
+            -DCMAKE_OSX_ARCHITECTURES=arm64
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0
+            -DCMAKE_SYSTEM_NAME=iOS
+            -D USE_HACKY_SCRIPT=ON
+
     name: Test Offsets ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
 
