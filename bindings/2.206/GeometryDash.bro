@@ -3790,12 +3790,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void updateButtons() = win 0xde380;
 	void updateCreateMenu(bool) = win 0x10b460, imac 0x2e500, m1 0x2eaf8;
 	void updateDeleteButtons() = win 0xe3b50, imac 0x32420, m1 0x32754;
-	void updateDeleteMenu() = win inline {
+	void updateDeleteMenu() {
 		m_deleteMenu->setVisible(m_selectedMode == 1);
 	}
 	TodoReturn updateEditButtonColor(int, cocos2d::ccColor3B);
 	TodoReturn updateEditColorButton();
-	void updateEditMenu() = win inline {
+	void updateEditMenu() {
 		m_editButtonBar->setVisible(m_selectedMode == 3);
 	}
 	void updateGridNodeSize() = win 0xdf100, imac 0x2f410, m1 0x2fa1c;
