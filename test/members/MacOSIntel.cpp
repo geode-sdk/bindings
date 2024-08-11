@@ -193,5 +193,6 @@ GEODE_SIZE_CHECK(CCTextInputNode, 0x258);
 
 GEODE_SIZE_CHECK(CCLightFlash, 0x168);
 GEODE_SIZE_CHECK(CCLightStrip, 0x160);
+GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3b0);
 
 #endif
