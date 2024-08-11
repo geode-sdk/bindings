@@ -3589,7 +3589,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn createExtrasForObject(int, GameObject*, cocos2d::CCArray*);
 	TodoReturn createGlow();
 	void createLoop();
-	void createMoveMenu() = win 0x116ee0;
+	void createMoveMenu() = win 0x116ee0, m1 0x40df0, imac 0x468a0;
 	TodoReturn createNewKeyframeAnim();
 	TodoReturn createObject(int, cocos2d::CCPoint) = win 0x10c3e0;
 	TodoReturn createOutlines(cocos2d::CCArray*);
@@ -3636,7 +3636,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void flipObjectsX(cocos2d::CCArray*) = win 0x11cc80;
 	void flipObjectsY(cocos2d::CCArray*) = win 0x11ce60;
 	TodoReturn getButton(char const*, int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
-	CreateMenuItem* getCreateBtn(int id, int bg) = win 0x10ae40;
+	CreateMenuItem* getCreateBtn(int id, int bg) = win 0x10ae40, m1 0x33d6c, imac 0x33a60;
 	TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
 	TodoReturn getCycledObject(cocos2d::CCArray*, bool);
 	TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&);
@@ -3748,9 +3748,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void selectObject(GameObject*, bool) = win 0x10c9f0;
 	void selectObjects(cocos2d::CCArray*, bool) = win 0x10cce0;
 	void selectObjectsInRect(cocos2d::CCRect);
-	void setupCreateMenu() = win 0xe44b0;
-	void setupDeleteMenu();
-	void setupEditMenu();
+	void setupCreateMenu() = win 0xe44b0, m1 0xfbc4, imac 0xdda0;
+	void setupDeleteMenu() = win 0xe1470, m1 0xeda0, imac 0xce80;
+	void setupEditMenu() = win inline, m1 0x2b8bc, imac 0x2aa80 {
+		this->createMoveMenu();
+		this->updateEditMenu();
+	}
 	TodoReturn setupTransformControl();
 	bool shouldDeleteObject(GameObject*) = win 0xe27f0;
 	TodoReturn shouldSnap(GameObject*);
@@ -3785,12 +3788,16 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn tryUpdateTimeMarkers();
 	void undoLastAction(cocos2d::CCObject*) = win 0x10dcc0;
 	void updateButtons() = win 0xde380;
-	TodoReturn updateCreateMenu(bool) = win 0x10b460, imac 0x2e500, m1 0x2eaf8;
-	TodoReturn updateDeleteButtons() = win 0xe3b50, imac 0x32420, m1 0x32754;
-	TodoReturn updateDeleteMenu();
+	void updateCreateMenu(bool) = win 0x10b460, imac 0x2e500, m1 0x2eaf8;
+	void updateDeleteButtons() = win 0xe3b50, imac 0x32420, m1 0x32754;
+	void updateDeleteMenu() {
+		m_deleteMenu->setVisible(m_selectedMode == 1);
+	}
 	TodoReturn updateEditButtonColor(int, cocos2d::ccColor3B);
 	TodoReturn updateEditColorButton();
-	TodoReturn updateEditMenu();
+	void updateEditMenu() {
+		m_editButtonBar->setVisible(m_selectedMode == 3);
+	}
 	void updateGridNodeSize() = win 0xdf100, imac 0x2f410, m1 0x2fa1c;
 	TodoReturn updateGridNodeSize(int);
 	TodoReturn updateGroupIDBtn2();
