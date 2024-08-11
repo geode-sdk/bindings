@@ -3444,13 +3444,13 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 class EditorOptionsLayer : GJOptionsLayer {
 	// virtual ~EditorOptionsLayer();
 
-	static EditorOptionsLayer* create();
+	static EditorOptionsLayer* create() = m1 0x23c3b4, imac 0x299c00;
 
-	void onButtonRows(cocos2d::CCObject* sender) = win 0x27f4f0;
-	void onButtonsPerRow(cocos2d::CCObject* sender) = win 0x27f460;
+	void onButtonRows(cocos2d::CCObject* sender) = win 0x27f4f0, m1 0x23ced0, imac 0x29a7d0;
+	void onButtonsPerRow(cocos2d::CCObject* sender) = win 0x27f460, m1 0x23ce48, imac 0x29a750;
 
-	virtual bool init() = m1 0x23c554, imac 0x299e60;
-	virtual void onClose(cocos2d::CCObject* sender) = m1 0x23cf50, imac 0x29a840;
+	virtual bool init() = win 0x27eb50, m1 0x23c554, imac 0x299e60;
+	virtual void onClose(cocos2d::CCObject* sender) = win 0x27f580, m1 0x23cf50, imac 0x29a840;
 	virtual void setupOptions() = win 0x27eb80, m1 0x23c570, imac 0x299e90;
 
 	int m_buttonsPerRow;
@@ -5475,12 +5475,14 @@ class GameLevelManager : cocos2d::CCNode {
 class GameLevelOptionsLayer : GJOptionsLayer{
     // virtual ~GameLevelOptionsLayer();
 
-    static GameLevelOptionsLayer* create(GJGameLevel*) = win 0x28e750;
+    static GameLevelOptionsLayer* create(GJGameLevel*) = win 0x28e750, m1 0x24edd8, imac 0x2ade70;
 
-    bool init(GJGameLevel*);
+    bool init(GJGameLevel*) = m1 0x24ef94, imac 0x2ae0f0;
 
-    virtual void setupOptions() = m1 0x24effc, imac 0x2ae150;
-    virtual void didToggle(int) = m1 0x24f068, imac 0x2ae1c0;
+    virtual void setupOptions() = win 0x28e8b0, m1 0x24effc, imac 0x2ae150;
+    virtual void didToggle(int) = win 0x28e930, m1 0x24f068, imac 0x2ae1c0;
+
+	GJGameLevel* m_level;
 }
 
 [[link(android), depends(UIButtonConfig)]]
@@ -6569,15 +6571,19 @@ class GameObjectEditorState {
 class GameOptionsLayer : GJOptionsLayer {
 	// virtual ~GameOptionsLayer();
 
-	static GameOptionsLayer* create(GJBaseGameLayer*);
+	static GameOptionsLayer* create(GJBaseGameLayer*) = m1 0x24db08, imac 0x2ac900;
 
-	bool init(GJBaseGameLayer*);
-	void onPracticeMusicSync(cocos2d::CCObject* sender) = win 0x28e010;
-	void onUIOptions(cocos2d::CCObject* sender);
-	void showPracticeMusicSyncUnlockInfo();
+	bool init(GJBaseGameLayer*) = m1 0x24dcb8, imac 0x2ac900;
+	void onPracticeMusicSync(cocos2d::CCObject* sender) = win 0x28e010, m1 0x24e468, imac 0x2ad370;
+	void onUIOptions(cocos2d::CCObject* sender) = win 0x28e0f0, m1 0x24e3dc, imac 0x2ad2e0;
+	void onUIPOptions(cocos2d::CCObject* sender) = win 0x28e110, m1 0x24e3fc, imac 0x2ad300;
+	void showPracticeMusicSyncUnlockInfo() = win 0x28d7b0, m1 0x24e4dc, imac 0x2ad3f0;
 
-	virtual void setupOptions() = m1 0x24dd10, imac 0x2acbc0;
-	virtual void didToggle(int) = m1 0x24eaf0, imac 0x2ada80;
+	virtual void setupOptions() = win 0x28cd60, m1 0x24dd10, imac 0x2acbc0;
+	virtual void didToggle(int) = win 0x28e260, m1 0x24eaf0, imac 0x2ada80;
+
+	GJBaseGameLayer* m_baseGameLayer;
+	int m_practiceDialogIndex;
 }
 
 [[link(android)]]
@@ -9338,33 +9344,44 @@ class GJOptionsLayer : SetupTriggerPopup {
 	// virtual ~GJOptionsLayer();
 	// GJOptionsLayer();
 
-	static GJOptionsLayer* create(int);
+	static GJOptionsLayer* create(int) = m1 0x23a7ec, imac 0x297d60;
 
-	TodoReturn addGVToggle(char const*, char const*, char const*);
-	TodoReturn addToggle(char const*, int, bool, char const*);
-	TodoReturn addToggleInternal(char const*, int, bool, char const*);
-	TodoReturn countForPage(int);
-	void goToPage(int);
-	TodoReturn incrementCountForPage(int);
-	TodoReturn infoKey(int);
-	bool init(int);
-	TodoReturn layerForPage(int);
-	TodoReturn layerKey(int);
-	TodoReturn nextPosition(int);
-	TodoReturn objectKey(int);
-	TodoReturn objectsForPage(int);
-	TodoReturn offsetToNextPage();
-	void onInfo(cocos2d::CCObject* sender);
-	void onNextPage(cocos2d::CCObject* sender);
-	void onPrevPage(cocos2d::CCObject* sender);
-	void onToggle(cocos2d::CCObject* sender);
-	TodoReturn pageKey(int);
+	void addGVToggle(char const*, char const*, char const*) = win 0x27d8f0, m1 0x23b080, imac 0x298780;
+	void addToggle(char const*, int, bool, char const*) = m1 0x23b644, imac 0x298d70;
+	void addToggleInternal(char const*, int, bool, char const*) = win 0x27da30, m1 0x23b1bc, imac 0x2988a0;
+	int countForPage(int) = win 0x27df30, m1 0x23bf6c, imac 0x299660;
+	void goToPage(int) = win 0x27e450, m1 0x23ac6c, imac 0x298310;
+	void incrementCountForPage(int) = win 0x27e000, m1 0x23ba8c, imac 0x2991a0;
+	const char* infoKey(int) = m1 0x23bd70, imac 0x299480;
+	bool init(int) = win 0x27d5b0, m1 0x23a984, imac 0x297fb0;
+	cocos2d::CCLayer* layerForPage(int) = win 0x27e290, m1 0x23b740, imac 0x298e80;
+	const char* layerKey(int) = m1 0x23c0b4, imac 0x299790;
+	cocos2d::CCPoint nextPosition(int) = m1 0x23b648, imac 0x298d80;
+	const char* objectKey(int) = m1 0x23c08c, imac 0x299770;
+	cocos2d::CCArray* objectsForPage(int) = win 0x27e100, m1 0x23bbb8, imac 0x2992b0;
+	void offsetToNextPage() = m1 0x23b058, imac 0x298740;
+	void onInfo(cocos2d::CCObject* sender) = win 0x27e970, m1 0x23bd98, imac 0x2994a0;
+	void onNextPage(cocos2d::CCObject* sender) = win 0x27e430, m1 0x23ac54, imac 0x2982d0;
+	void onPrevPage(cocos2d::CCObject* sender) = win 0x27e440, m1 0x23ac60, imac 0x2982f0;
+	void onToggle(cocos2d::CCObject* sender) = win 0x27e860, m1 0x23b90c, imac 0x299060;
+	const char* pageKey(int) = m1 0x23c064, imac 0x299750;
 
 	virtual void setupOptions() {}
-	virtual TodoReturn didToggleGV(gd::string) = m1 0x21472c, imac 0x26e1d0;
+	virtual void didToggleGV(gd::string) = win 0x1e8fa0, m1 0x21472c, imac 0x26e1d0;
 	virtual void didToggle(int) {}
 
-	PAD = win 0x44, android32 0x30, android64 0x3c;
+	float m_gap;
+	int m_page;
+	int m_togglesPerPage;
+	int m_toggleCount;
+	int m_maxPage;
+	float m_maxLabelScale;
+	float m_maxLabelWidth;
+	cocos2d::CCDictionary* m_values;
+	cocos2d::CCDictionary* m_variables;
+	CCMenuItemSpriteExtra* m_prevButton;
+	CCMenuItemSpriteExtra* m_nextButton;
+	float m_offset;
 }
 
 [[link(android)]]
@@ -11860,24 +11877,26 @@ class LevelManagerDelegate {
 class LevelOptionsLayer : GJOptionsLayer {
 	// virtual ~LevelOptionsLayer();
 
-	static LevelOptionsLayer* create(LevelSettingsObject*);
+	static LevelOptionsLayer* create(LevelSettingsObject*) = m1 0x211390, imac 0x26a870;
 
-	bool init(LevelSettingsObject*);
-	void onSettings(cocos2d::CCObject* sender);
+	bool init(LevelSettingsObject*) = win 0x3039d0, m1 0x213bdc, imac 0x26d520;
+	void onSettings(cocos2d::CCObject* sender) = win 0x303f00, m1 0x2140a4, imac 0x26da20;
 
 	virtual void valueDidChange(int, float) = win 0x3040e0, m1 0x214280, imac 0x26dcc0;
 	virtual TodoReturn getValue(int) = win 0x304100, m1 0x214298, imac 0x26dce0;
 	virtual void setupOptions() = win 0x303a40, m1 0x213c34, imac 0x26d570;
 	virtual void didToggle(int) = win 0x304120, m1 0x2142b4, imac 0x26dd00;
+
+	LevelSettingsObject* m_settingsObject;
 }
 
 [[link(android)]]
 class LevelOptionsLayer2 : LevelOptionsLayer {
 	// virtual ~LevelOptionsLayer2();
 
-	static LevelOptionsLayer2* create(LevelSettingsObject*);
+	static LevelOptionsLayer2* create(LevelSettingsObject*) = m1 0x2140e4, imac 0x26da60;
 
-	bool init(LevelSettingsObject*);
+	bool init(LevelSettingsObject*) = m1 0x214468, imac 0x26dec0;
 
 	virtual void setupOptions() = win 0x304380, m1 0x214564, imac 0x26dfc0;
 }

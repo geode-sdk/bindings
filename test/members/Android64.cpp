@@ -146,6 +146,7 @@ GEODE_SIZE_CHECK(CCTextInputNode, 0x238);
 GEODE_SIZE_CHECK(CCTouchDispatcher, 0x90);
 GEODE_SIZE_CHECK(AccountLayer, 0x2d0);
 GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3c8);
+GEODE_SIZE_CHECK(GJOptionsLayer, 0x408);
 
 GEODE_SIZE_CHECK(TableViewCell, 0x218);
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);

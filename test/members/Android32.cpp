@@ -177,6 +177,7 @@ GEODE_MEMBER_CHECK(GameObject, m_hasExtendedCollision, 0x218);
 GEODE_MEMBER_CHECK(GameObject, m_scaleX, 0x3e8);
 
 GEODE_SIZE_CHECK(SetupTriggerPopup, 0x2a8);
+GEODE_SIZE_CHECK(GJOptionsLayer, 0x2d8);
 
 GEODE_MEMBER_CHECK(ColorSelectPopup, m_colorAction, 0x2f0);
 
