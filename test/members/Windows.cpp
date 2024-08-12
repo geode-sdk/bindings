@@ -309,6 +309,7 @@ GEODE_SIZE_CHECK(GJStoreItem, 0x178);
 GEODE_SIZE_CHECK(ShardsPage, 0x2a0);
 GEODE_SIZE_CHECK(RateDemonLayer, 0x2c8);
 GEODE_SIZE_CHECK(RateLevelLayer, 0x298);
+GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3a8);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
@@ -391,7 +392,9 @@ GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x64c);
 GEODE_SIZE_CHECK(CCLightFlash, 0x168);
 GEODE_SIZE_CHECK(CCLightStrip, 0x160);
 
+GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3a8);
+GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
+
 GEODE_SIZE_CHECK(LevelAreaInnerLayer, 0x1b0);
 GEODE_MEMBER_CHECK(LevelAreaInnerLayer, m_isBusy, 0x1a8);
-
 #endif
