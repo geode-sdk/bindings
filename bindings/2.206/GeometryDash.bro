@@ -13167,6 +13167,8 @@ class NodePoint : cocos2d::CCObject {
 	static NodePoint* create(cocos2d::CCPoint);
 
 	bool init(cocos2d::CCPoint);
+
+	cocos2d::CCPoint m_point;
 }
 
 [[link(android)]]
