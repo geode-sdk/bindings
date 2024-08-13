@@ -1843,8 +1843,8 @@ class cocos2d::CCDictionary {
 	cocos2d::CCObject* randomObject();
 	void removeAllObjects() = imac 0x30ceb0, m1 0x29ee04;
 	void removeObjectForElememt(cocos2d::CCDictElement*);
-	void removeObjectForKey(gd::string const&) = imac 0x30ed00, m1 0x2a0608;
-	//void removeObjectForKey(int);
+	void removeObjectForKey(gd::string const&) = imac 0x30e7f0, m1 0x2a0608;
+	void removeObjectForKey(intptr_t) = imac 0x30ed00, m1 0x2a0a78;
 	void removeObjectsForKeys(cocos2d::CCArray*);
 	cocos2d::CCString const* valueForKey(gd::string const&) = imac 0x30d3a0, m1 0x29f368, ios 0x42BAB0;
 	cocos2d::CCString const* valueForKey(intptr_t) = imac 0x30d8e0, m1 0x29f850;
