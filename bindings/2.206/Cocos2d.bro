@@ -1828,7 +1828,7 @@ class cocos2d::CCDictionary {
 	gd::string getFirstKey();
 
 	void setObject(cocos2d::CCObject*, gd::string const&) = ios 0x42c778, imac 0x30d960, m1 0x29f8f0;
-	//void setObject(cocos2d::CCObject*, int);
+	void setObject(cocos2d::CCObject*, intptr_t) = imac 0x30e2e0, m1 0x2a0138;
 	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
 	//void setObjectUnSafe(cocos2d::CCObject*, int);
 
