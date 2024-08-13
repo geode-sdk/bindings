@@ -6110,7 +6110,7 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int);
 	gd::string perspectiveColorFrame(char const*, int);
 	gd::string perspectiveFrame(char const*, int);
-	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a04e0;
+	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a04e0, imac 0x25a310, m1 0x201d4c;
 	void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float) = win 0x1a0000;
 	void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float) = win 0x19ff10;
 	void playShineEffect() = win 0x18f3f0, imac 0x5c5a90, m1 0x4f4cac;
@@ -7328,7 +7328,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void createMiddleground(int) = win 0x1fc890;
 	TodoReturn createNewKeyframeAnim();
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
-	void createPlayer() = win 0x1fc0c0, ios 0x1e73b8;
+	void createPlayer() = win 0x1fc0c0, imac 0x1072f0, m1 0xe72e0, ios 0x1e73b8;
 	TodoReturn createPlayerCollisionBlock() = win 0x208c00;
 	void createTextLayers() = win 0x1ffa50, m1 0xf09d4, imac 0x113b80;
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
@@ -7546,7 +7546,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn sortStickyGroups();
 	void spawnGroupTriggered(int groupID, float, bool, gd::vector<int> const&, int, int);
 	TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
-	void spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint);
+	cocos2d::CCParticleSystemQuad* spawnParticle(char const* plist, int zOrder, cocos2d::tCCPositionType positionType, cocos2d::CCPoint position) = win 0x22f3f0, imac 0x151480, m1 0x1222ec;
 	TodoReturn spawnParticleTrigger(int, cocos2d::CCPoint, float, float);
 	TodoReturn spawnParticleTrigger(SpawnParticleGameObject*);
 	TodoReturn spawnPlayer2();
@@ -7952,15 +7952,15 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	GameObject* m_player2CollisionBlock;
 	int m_particleCount;
 	int m_customParticleCount;
-	int m_maybeParticleLimit;
-	cocos2d::CCDictionary* m_portalParticlesDict;
-	cocos2d::CCDictionary* m_customParticles;
-	cocos2d::CCArray* m_unclaimedParticles;
-	gd::unordered_map<int, gd::string> m_umapIntString;
-	cocos2d::CCDictionary* m_customParticlesDictArray;
-	cocos2d::CCArray* m_temporaryParticles;
-	gd::unordered_set<int> m_usetInt;
-	cocos2d::CCDictionary* m_unk2a50;
+	int m_particleSystemLimit; // limit per key in m_particlesDict
+	cocos2d::CCDictionary* m_particlesDict; // CCDictionary<gd::string, CCArray<CCParticleSystemQuad*>>
+	cocos2d::CCDictionary* m_customParticles; // same type as m_particlesDict
+	cocos2d::CCArray* m_unclaimedParticles;  // CCArray<CCParticleSystemQuad*>
+	gd::unordered_map<int, gd::string> m_particleCountToParticleString;
+	cocos2d::CCDictionary* m_claimedParticles; // same type as m_particlesDict
+	cocos2d::CCArray* m_temporaryParticles;  // same type as m_unclaimedParticles
+	gd::unordered_set<int> m_customParticlesUIDs;
+	cocos2d::CCDictionary* m_gradientLayers; // CCDictionary<int, CCLayerGradient>
 	void* m_unk2a54;
 	ShaderLayer* m_shaderLayer;
 	bool m_bUnk31a0;
