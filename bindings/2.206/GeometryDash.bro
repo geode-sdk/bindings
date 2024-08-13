@@ -13768,13 +13768,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void preCollision() = m1 0x3855d8, imac 0x40d7d0;
 	bool preSlopeCollision(float, GameObject*) = win 0x36d370;
 	void propellPlayer(float, bool, int) = win 0x37d860, imac 0x424240, m1 0x398e28;
-	void pushButton(PlayerButton) = win 0x375f70, imac 0x41d330, m1 0x27f4b0;
+	void pushButton(PlayerButton) = win 0x375f70, imac 0x41d330, m1 0x393880;
 	TodoReturn pushDown();
 	void pushPlayer(float);
 	TodoReturn redirectDash(float);
 	TodoReturn redirectPlayerForce(float, float, float, float);
 	void releaseAllButtons() = win 0x37d110, imac 0x423a90, m1 0x398664;
-	void releaseButton(PlayerButton) = win 0x376200, imac 0x41e7b0, m1 0x393880;
+	void releaseButton(PlayerButton) = win 0x376200, imac 0x41e7b0, m1 0x392760;
 	TodoReturn removeAllParticles();
 	void removePendingCheckpoint() = win 0x3801a0;
 	TodoReturn removePlacedCheckpoint();
