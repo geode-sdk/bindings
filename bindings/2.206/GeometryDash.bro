@@ -13242,7 +13242,7 @@ class ObjectManager : cocos2d::CCNode {
 class ObjectToolbox : cocos2d::CCNode {
 	// virtual ~ObjectToolbox();
 
-	static ObjectToolbox* sharedState() = win 0x327460, ios 0x287bdc;
+	static ObjectToolbox* sharedState() = win 0x327460, ios 0x287bdc, m1 0x591edc, imac 0x677660;
 
 	TodoReturn allKeys();
 	float gridNodeSizeForKey(int key) = win 0x34f350;
@@ -13251,7 +13251,7 @@ class ObjectToolbox : cocos2d::CCNode {
 	}
 	TodoReturn perspectiveBlockFrame(int);
 
-	virtual bool init() = m1 0x592004, imac 0x6777a0;
+	virtual bool init() = win 0x327520, m1 0x592004, imac 0x6777a0;
 
 	gd::map<int, gd::string> m_allKeys;
 }
