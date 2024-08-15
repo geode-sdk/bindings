@@ -1058,7 +1058,7 @@ class cocos2d::CCLayerGradient {
 [[link(win, android)]]
 class cocos2d::CCCopying
 {
-	virtual CCObject* copyWithZone(CCZone* pZone)  { return 0; }
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 }
 
 //[[link(win, android)]]
