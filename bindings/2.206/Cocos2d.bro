@@ -713,17 +713,17 @@ class cocos2d::CCGLProgram {
 class cocos2d::CCRGBAProtocol
 {
 	virtual void setColor(const ccColor3B& color);
-	virtual const ccColor3B& getColor(void);
-	virtual const ccColor3B& getDisplayedColor(void);
-	virtual GLubyte getDisplayedOpacity(void);
-	virtual GLubyte getOpacity(void);
+	virtual const ccColor3B& getColor();
+	virtual const ccColor3B& getDisplayedColor();
+	virtual GLubyte getDisplayedOpacity();
+	virtual GLubyte getOpacity();
 	virtual void setOpacity(GLubyte opacity);
 	virtual void setOpacityModifyRGB(bool bValue);
-	virtual bool isOpacityModifyRGB(void);
-	virtual bool isCascadeColorEnabled(void);
+	virtual bool isOpacityModifyRGB();
+	virtual bool isCascadeColorEnabled();
 	virtual void setCascadeColorEnabled(bool cascadeColorEnabled);
 	virtual void updateDisplayedColor(const ccColor3B& color);
-	virtual bool isCascadeOpacityEnabled(void);
+	virtual bool isCascadeOpacityEnabled();
 	virtual void setCascadeOpacityEnabled(bool cascadeOpacityEnabled);
 	virtual void updateDisplayedOpacity(GLubyte opacity);
 }
@@ -1061,13 +1061,13 @@ class cocos2d::CCCopying
 	virtual CCObject* copyWithZone(CCZone* pZone)  { return 0; }
 }
 
-[[link(win, android)]]
-class cocos2d::CCDestructor : cocos2d::CCCopying {
-	static std::unordered_map<void*, bool>& destructorLock();
-	static bool& globalLock();
-	static bool& lock(void* self);
-	~CCDestructor();
-}
+//[[link(win, android)]]
+//class cocos2d::CCDestructor : cocos2d::CCCopying {
+//	static std::unordered_map<void*, bool>& destructorLock();
+//	static bool& globalLock();
+//	static bool& lock(void* self);
+//	~CCDestructor();
+//}
 
 [[link(win, android)]]
 class cocos2d::CCObject : cocos2d::CCDestructor {
@@ -1652,13 +1652,13 @@ class cocos2d::CCSequence {
 class cocos2d::CCBlendProtocol
 {
 	virtual void setBlendFunc(ccBlendFunc blendFunc);
-	virtual ccBlendFunc getBlendFunc(void);
+	virtual ccBlendFunc getBlendFunc();
 }
 
 [[link(win, android)]]
 class cocos2d::CCTextureProtocol : cocos2d::CCBlendProtocol
 {
-	virtual CCTexture2D* getTexture(void);
+	virtual CCTexture2D* getTexture();
 	virtual void setTexture(CCTexture2D *texture);
 }
 
