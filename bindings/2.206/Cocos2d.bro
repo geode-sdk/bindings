@@ -1293,39 +1293,37 @@ class cocos2d::CCEGLView {
 	// CCEGLView(cocos2d::CCEGLView const&);
 	virtual void swapBuffers() = m1 0x464e30, imac 0x50e130;
 	void end();
-	
-	win {
-		[[missing(android, mac, ios)]]
-		void toggleFullScreen(bool, bool);
-		[[missing(android, mac, ios)]]
-		void pollEvents();
-		[[missing(android, mac, ios)]]
-		void setupWindow(cocos2d::CCRect);
-		[[missing(android, mac, ios)]]
-		void onGLFWCharCallback(GLFWwindow* window, unsigned int entered);
-		[[missing(android, mac, ios)]]
-		void onGLFWCursorEnterFunCallback(GLFWwindow* window, int entered);
-		[[missing(android, mac, ios)]]
-		void onGLFWDeviceChangeFunCallback(GLFWwindow* window);
-		[[missing(android, mac, ios)]]
-		void onGLFWError(int code, char const* description);
-		[[missing(android, mac, ios)]]
-		void onGLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-		[[missing(android, mac, ios)]]
-		void onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int mods);
-		[[missing(android, mac, ios)]]
-		void onGLFWMouseMoveCallBack(GLFWwindow* window, double x, double y);
-		[[missing(android, mac, ios)]]
-		void onGLFWMouseScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
-		[[missing(android, mac, ios)]]
-		void onGLFWWindowIconifyFunCallback(GLFWwindow* window, int iconified);
-		[[missing(android, mac, ios)]]
-		void onGLFWWindowPosCallback(GLFWwindow* window, int x, int y);
-		[[missing(android, mac, ios)]]
-		void onGLFWWindowSizeFunCallback(GLFWwindow* window, int width, int height);
-		[[missing(android, mac, ios)]]
-		void onGLFWframebuffersize(GLFWwindow* window, int width, int height);
-	}
+
+	[[missing(android, mac, ios)]]
+	void toggleFullScreen(bool, bool);
+	[[missing(android, mac, ios)]]
+	void pollEvents();
+	[[missing(android, mac, ios)]]
+	void setupWindow(cocos2d::CCRect);
+	[[missing(android, mac, ios)]]
+	void onGLFWCharCallback(GLFWwindow* window, unsigned int entered);
+	[[missing(android, mac, ios)]]
+	void onGLFWCursorEnterFunCallback(GLFWwindow* window, int entered);
+	[[missing(android, mac, ios)]]
+	void onGLFWDeviceChangeFunCallback(GLFWwindow* window);
+	[[missing(android, mac, ios)]]
+	void onGLFWError(int code, char const* description);
+	[[missing(android, mac, ios)]]
+	void onGLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	[[missing(android, mac, ios)]]
+	void onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int mods);
+	[[missing(android, mac, ios)]]
+	void onGLFWMouseMoveCallBack(GLFWwindow* window, double x, double y);
+	[[missing(android, mac, ios)]]
+	void onGLFWMouseScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
+	[[missing(android, mac, ios)]]
+	void onGLFWWindowIconifyFunCallback(GLFWwindow* window, int iconified);
+	[[missing(android, mac, ios)]]
+	void onGLFWWindowPosCallback(GLFWwindow* window, int x, int y);
+	[[missing(android, mac, ios)]]
+	void onGLFWWindowSizeFunCallback(GLFWwindow* window, int width, int height);
+	[[missing(android, mac, ios)]]
+	void onGLFWframebuffersize(GLFWwindow* window, int width, int height);
 	// sharedOpenGLView() = ios 0x130f38, imac 0x50df50
 }
 
