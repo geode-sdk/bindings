@@ -1055,11 +1055,11 @@ class cocos2d::CCLayerGradient {
 	virtual bool isCompressedInterpolation() = imac 0x4bdd20, m1 0x41e788, ios 0x154fa8;
 }
 
-[[link(win, android)]]
-class cocos2d::CCCopying
-{
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-}
+//[[link(win, android)]]
+//class cocos2d::CCCopying
+//{
+//	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+//}
 
 //[[link(win, android)]]
 //class cocos2d::CCDestructor : cocos2d::CCCopying {
