@@ -6110,7 +6110,7 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int);
 	gd::string perspectiveColorFrame(char const*, int);
 	gd::string perspectiveFrame(char const*, int);
-	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a04e0;
+	void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a04e0, imac 0x25a310, m1 0x201d4c;
 	void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float) = win 0x1a0000;
 	void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float) = win 0x19ff10;
 	void playShineEffect() = win 0x18f3f0, imac 0x5c5a90, m1 0x4f4cac;
@@ -7328,7 +7328,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void createMiddleground(int) = win 0x1fc890;
 	TodoReturn createNewKeyframeAnim();
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
-	void createPlayer() = win 0x1fc0c0, ios 0x1e73b8;
+	void createPlayer() = win 0x1fc0c0, imac 0x1072f0, m1 0xe72e0, ios 0x1e73b8;
 	TodoReturn createPlayerCollisionBlock() = win 0x208c00;
 	void createTextLayers() = win 0x1ffa50, m1 0xf09d4, imac 0x113b80;
 	TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
@@ -7546,7 +7546,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn sortStickyGroups();
 	void spawnGroupTriggered(int groupID, float, bool, gd::vector<int> const&, int, int);
 	TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
-	void spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint);
+	cocos2d::CCParticleSystemQuad* spawnParticle(char const* plist, int zOrder, cocos2d::tCCPositionType positionType, cocos2d::CCPoint position) = win 0x22f3f0, imac 0x151480, m1 0x1222ec;
 	TodoReturn spawnParticleTrigger(int, cocos2d::CCPoint, float, float);
 	TodoReturn spawnParticleTrigger(SpawnParticleGameObject*);
 	TodoReturn spawnPlayer2();
@@ -7952,15 +7952,15 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	GameObject* m_player2CollisionBlock;
 	int m_particleCount;
 	int m_customParticleCount;
-	int m_maybeParticleLimit;
-	cocos2d::CCDictionary* m_portalParticlesDict;
-	cocos2d::CCDictionary* m_customParticles;
-	cocos2d::CCArray* m_unclaimedParticles;
-	gd::unordered_map<int, gd::string> m_umapIntString;
-	cocos2d::CCDictionary* m_customParticlesDictArray;
-	cocos2d::CCArray* m_temporaryParticles;
-	gd::unordered_set<int> m_usetInt;
-	cocos2d::CCDictionary* m_unk2a50;
+	int m_particleSystemLimit; // limit per key in m_particlesDict
+	cocos2d::CCDictionary* m_particlesDict; // CCDictionary<gd::string, CCArray<CCParticleSystemQuad*>>
+	cocos2d::CCDictionary* m_customParticles; // same type as m_particlesDict
+	cocos2d::CCArray* m_unclaimedParticles;  // CCArray<CCParticleSystemQuad*>
+	gd::unordered_map<int, gd::string> m_particleCountToParticleString;
+	cocos2d::CCDictionary* m_claimedParticles; // same type as m_particlesDict
+	cocos2d::CCArray* m_temporaryParticles;  // same type as m_unclaimedParticles
+	gd::unordered_set<int> m_customParticlesUIDs;
+	cocos2d::CCDictionary* m_gradientLayers; // CCDictionary<int, CCLayerGradient>
 	void* m_unk2a54;
 	ShaderLayer* m_shaderLayer;
 	bool m_bUnk31a0;
@@ -11247,7 +11247,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	virtual void setTextPopupClosed(SetTextPopup*, gd::string) = win 0x2bb830, m1 0x3ff1dc, imac 0x49ab50;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2bc060, m1 0x3ff3dc, imac 0x49ada0;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2b95e0, m1 0x3febf0, imac 0x49a560;
-	virtual void updateResultArray(cocos2d::CCArray*) = win 0x2b54e0, m1 0x3ffcc0, imac 0x49b700;
+	virtual cocos2d::CCArray* updateResultArray(cocos2d::CCArray*) = win 0x2b54e0, m1 0x3ffcc0, imac 0x49b700;
 	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x2bc6c0, m1 0x3ffa78, imac 0x49b470;
 
 	bool m_unk;
@@ -11849,7 +11849,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 	virtual void shareCommentClosed(gd::string, ShareCommentLayer*) = win 0x2e7400, m1 0x2ee934, imac 0x361580;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2e7020, m1 0x2ee4d4, imac 0x3610c0;
 	virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2e6b50, m1 0x2ede40, imac 0x360a10;
-	virtual void updateResultArray(cocos2d::CCArray*) = win 0x2e6bf0, m1 0x2edf84, imac 0x360b50;
+	virtual cocos2d::CCArray* updateResultArray(cocos2d::CCArray*) = win 0x2e6bf0, m1 0x2edf84, imac 0x360b50;
 	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x2e6700, m1 0x2edb2c, imac 0x360660;
 	virtual void likedItem(LikeItemType, int, bool) = win 0x2e7620, m1 0x2eea78, imac 0x3616c0;
 	virtual void iconSelectClosed(SelectListIconLayer*) = win 0x2e78d0, m1 0x2eec58, imac 0x361900;
@@ -13177,6 +13177,8 @@ class NodePoint : cocos2d::CCObject {
 	static NodePoint* create(cocos2d::CCPoint);
 
 	bool init(cocos2d::CCPoint);
+
+	cocos2d::CCPoint m_point;
 }
 
 [[link(android)]]
@@ -13250,7 +13252,7 @@ class ObjectManager : cocos2d::CCNode {
 class ObjectToolbox : cocos2d::CCNode {
 	// virtual ~ObjectToolbox();
 
-	static ObjectToolbox* sharedState() = win 0x327460, ios 0x287bdc;
+	static ObjectToolbox* sharedState() = win 0x327460, ios 0x287bdc, m1 0x591edc, imac 0x677660;
 
 	TodoReturn allKeys();
 	float gridNodeSizeForKey(int key) = win 0x34f350;
@@ -13259,7 +13261,7 @@ class ObjectToolbox : cocos2d::CCNode {
 	}
 	TodoReturn perspectiveBlockFrame(int);
 
-	virtual bool init() = m1 0x592004, imac 0x6777a0;
+	virtual bool init() = win 0x327520, m1 0x592004, imac 0x6777a0;
 
 	gd::map<int, gd::string> m_allKeys;
 }
