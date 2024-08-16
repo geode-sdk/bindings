@@ -8103,7 +8103,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void* m_unk3678;
 	bool m_isDebugDrawEnabled;
 	bool m_unk3501;
-	GameObject* m_unk3688;
+	GameObject* m_anticheatSpike;
 }
 
 [[link(android)]]
