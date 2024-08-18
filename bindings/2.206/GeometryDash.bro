@@ -2959,6 +2959,11 @@ class CustomSongDelegate {
 [[link(android)]]
 class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate, MusicBrowserDelegate {
 	// virtual ~CustomSongLayer();
+	CustomSongLayer() {
+		m_songDelegate = nullptr;
+		m_songIDInput = nullptr;
+		m_delegate = nullptr;
+	}
 
 	static CustomSongLayer* create(CustomSongDelegate* delegate) = win inline, m1 0x1c0908, imac 0x20f620 {
 		auto ret = new CustomSongLayer();
