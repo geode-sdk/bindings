@@ -2960,28 +2960,41 @@ class CustomSongDelegate {
 class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate, MusicBrowserDelegate {
 	// virtual ~CustomSongLayer();
 
-	static CustomSongLayer* create(CustomSongDelegate*);
+	static CustomSongLayer* create(CustomSongDelegate* delegate) = win inline, m1 0x1c0908, imac 0x20f620 {
+		auto ret = new CustomSongLayer();
+		if (ret->init(delegate)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(CustomSongDelegate*);
-	void onClose(cocos2d::CCObject* sender);
-	void onCreateLines(cocos2d::CCObject* sender);
-	void onMusicBrowser(cocos2d::CCObject* sender);
-	void onNCSBrowser(cocos2d::CCObject* sender);
-	void onNewgroundsBrowser(cocos2d::CCObject* sender);
-	void onOptions(cocos2d::CCObject* sender);
-	void onSearch(cocos2d::CCObject* sender);
-	void onSongBrowser(cocos2d::CCObject* sender);
-	void showNewgroundsMessage();
+	bool init(CustomSongDelegate*) = win 0xc0240, m1 0x1c0a24, imac 0x20f790;
+	void onClose(cocos2d::CCObject* sender) = win 0xc19d0, m1 0x1c159c, imac 0x2103f0;
+	void onCreateLines(cocos2d::CCObject* sender) = win 0xc1740, m1 0x1c16f0, imac 0x210550;
+	void onMusicBrowser(cocos2d::CCObject* sender) = win 0xc14e0, m1 0x1c168c, imac 0x2104e0;
+	void onNCSBrowser(cocos2d::CCObject* sender) = win 0xc1540, m1 0x1c1670, imac 0x2104c0;
+	void onNewgroundsBrowser(cocos2d::CCObject* sender) = win 0xc1640, m1 0x1c16d4, imac 0x210530;
+	void onOptions(cocos2d::CCObject* sender) = win 0xc0ec0, m1 0x1c1728, imac 0x210590;
+	void onSearch(cocos2d::CCObject* sender) = win 0xc0fc0, m1 0x1c1748, imac 0x2105b0;
+	void onSongBrowser(cocos2d::CCObject* sender) = win 0xc1460, m1 0x1c160c, imac 0x210460;
+	void showNewgroundsMessage() = m1 0x1c18bc, imac 0x210720;
 
 	virtual void keyBackClicked() = win 0xc1aa0, m1 0x1c20a0, imac 0x210f40;
-	virtual void show() = m1 0x1c2184, imac 0x211020;
-	virtual void textChanged(CCTextInputNode*) = m1 0x1c1b70, imac 0x2109d0;
-	virtual void textInputOpened(CCTextInputNode*) = m1 0x1c1af0, imac 0x210970;
-	virtual void textInputClosed(CCTextInputNode*) = m1 0x1c1a70, imac 0x210910;
-	virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x1c1b90, imac 0x2109f0;
-	virtual void textInputReturn(CCTextInputNode*) = m1 0x1c1c60, imac 0x210ab0;
+	virtual void show() = win 0xc1ab0, m1 0x1c2184, imac 0x211020;
+	virtual void textChanged(CCTextInputNode*) = win 0xc1450, m1 0x1c1b70, imac 0x2109d0;
+	virtual void textInputOpened(CCTextInputNode*) = win 0xc13a0, m1 0x1c1af0, imac 0x210970;
+	virtual void textInputClosed(CCTextInputNode*) = win 0xc13a0, m1 0x1c1a70, imac 0x210910;
+	virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x79fd0, m1 0x1c1b90, imac 0x2109f0;
+	virtual void textInputReturn(CCTextInputNode*) = win 0x7a030, m1 0x1c1c60, imac 0x210ab0;
 	virtual void dropDownLayerWillClose(GJDropDownLayer*) = win 0xc1830, m1 0x1c1f10, imac 0x210de0;
 	virtual void musicBrowserClosed(MusicBrowser*) = win 0xc1900, m1 0x1c1fd8, imac 0x210e90;
+
+	CustomSongDelegate* m_songDelegate;
+	CCTextInputNode* m_songIDInput;
+	CustomSongWidget* m_songWidget;
+	CustomSongLayerDelegate* m_delegate;
 }
 
 [[link(android)]]
