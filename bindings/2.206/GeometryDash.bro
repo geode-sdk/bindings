@@ -39,12 +39,12 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 		this->toggleUI(true);
 		m_loadingCircle->setVisible(false);
 	}
-	void onBackup(cocos2d::CCObject* sender) = win 0x7c9e0; 
-	void onHelp(cocos2d::CCObject* sender) = win 0x7cfb0; 
-	void onLogin(cocos2d::CCObject* sender) = win 0x7c820; 
-	void onMore(cocos2d::CCObject* sender) = win 0x7d0d0; 
-	void onRegister(cocos2d::CCObject* sender) = win 0x7c860; 
-	void onSync(cocos2d::CCObject* sender) = win 0x7cd30; 
+	void onBackup(cocos2d::CCObject* sender) = win 0x7c9e0;
+	void onHelp(cocos2d::CCObject* sender) = win 0x7cfb0;
+	void onLogin(cocos2d::CCObject* sender) = win 0x7c820;
+	void onMore(cocos2d::CCObject* sender) = win 0x7d0d0;
+	void onRegister(cocos2d::CCObject* sender) = win 0x7c860;
+	void onSync(cocos2d::CCObject* sender) = win 0x7cd30;
 	void showLoadingUI() {
 		this->toggleUI(false);
 		m_loadingCircle->setVisible(true);
@@ -1835,7 +1835,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 		delete ret;
 		return nullptr;
 	}
-	
+
 	void claimItem(ChallengeNode*, GJChallengeItem*, cocos2d::CCPoint) = win 0x851e0, imac 0x3a1800, m1 0x3285f0;
 	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x849f0, imac 0x3a0dd0, m1 0x327c74, ios 0x38fc0;
 	TodoReturn exitNodeAtSlot(int, float) = win 0x84c80, imac 0x3a12a0, m1 0x3280c8;
@@ -1905,7 +1905,7 @@ class CharacterColorPage : FLAlertLayer {
 	void createColorMenu() = win 0x87600, ios 0x1300e8, m1 0x586a8c, imac 0x66ae50;
 	void FLAlert_Clicked(FLAlertLayer*, bool);
 	cocos2d::CCPoint offsetForIndex(int);
-	void onClose(cocos2d::CCObject* sender) = win 0x88f50; 
+	void onClose(cocos2d::CCObject* sender) = win 0x88f50;
 	void onMode(cocos2d::CCObject* sender) = win 0x87d00, m1 0x586740, imac 0x66ab00;
 	void onPlayerColor(cocos2d::CCObject* sender) = win 0x88550, m1 0x5873e4, imac 0x66b7c0;
 	void toggleGlow(cocos2d::CCObject*) = win 0x87550, m1 0x586e64, imac 0x66b220;
@@ -3010,7 +3010,43 @@ class CustomSongLayerDelegate {
 [[link(android), depends(GJAssetDownloadAction)]]
 class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProtocol {
 	// virtual ~CustomSongWidget();
-	//CustomSongWidget() = ios 0xfff38;
+	CustomSongWidget() = win inline, ios 0xfff38 {
+		m_songInfoObject = nullptr;
+		m_buttonMenu = nullptr;
+		m_songLabel = nullptr;
+		m_artistLabel = nullptr;
+		m_songIDLabel = nullptr;
+		m_errorLabel = nullptr;
+		m_downloadBtn = nullptr;
+		m_cancelDownloadBtn = nullptr;
+		m_selectSongBtn = nullptr;
+		m_getSongInfoBtn = nullptr;
+		m_playbackBtn = nullptr;
+		m_moreBtn = nullptr;
+		m_deleteBtn = nullptr;
+		m_infoBtn = nullptr;
+		m_sliderGroove = nullptr;
+		m_sliderBar = nullptr;
+		m_ncsLogo = nullptr;
+		m_bgSpr = nullptr;
+		m_songDelegate = nullptr;
+		m_showSelectSongBtn = false;
+		m_showPlayMusicBtn = false;
+		m_showDownloadBtn = false;
+		m_isNotDownloading = false;
+		m_isRobtopSong = false;
+		m_isMusicLibrary = false;
+		m_customSongID = 0;
+		m_lengthMod = 0.f;
+		m_unkPtr = nullptr;
+		m_unkPtr2 = nullptr;
+		m_hasLibrarySongs = false;
+		m_hasSFX = false;
+		m_unkBool2 = false;
+		m_songs = {};
+		m_sfx = {};
+		m_undownloadedAssets = {};
+	}
 
 	static CustomSongWidget* create(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc56f0, imac 0x625a90, m1 0x547684, ios 0xfb090;
 
@@ -4789,7 +4825,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn stopChannelTweens(int, AudioTargetType);
 	TodoReturn stopMusic(int);
 	TodoReturn stopMusicNotInSet(std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >&);
-	TodoReturn storeEffect(FMOD::Sound* sound, gd::string path) = win 0x58660; 
+	TodoReturn storeEffect(FMOD::Sound* sound, gd::string path) = win 0x58660;
 	TodoReturn swapMusicIndex(int, int);
 	TodoReturn testFunction(int);
 	TodoReturn triggerQueuedMusic(FMODQueuedMusic);
@@ -7127,15 +7163,15 @@ class GJAccountManager : cocos2d::CCNode {
 	bool isDLActive(char const* tag);
 	void linkToAccount(gd::string, gd::string, int, int);
 	void loginAccount(gd::string, gd::string);
-	void onBackupAccountCompleted(gd::string, gd::string) = win 0x1f30f0; 
-	void onGetAccountBackupURLCompleted(gd::string, gd::string) = win 0x1f28f0; 
-	void onGetAccountSyncURLCompleted(gd::string, gd::string) = win 0x1f3840; 
-	void onLoginAccountCompleted(gd::string, gd::string) = win 0x1f21b0; 
-	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x1f1490; 
-	void onRegisterAccountCompleted(gd::string, gd::string) = win 0x1f1bc0; 
+	void onBackupAccountCompleted(gd::string, gd::string) = win 0x1f30f0;
+	void onGetAccountBackupURLCompleted(gd::string, gd::string) = win 0x1f28f0;
+	void onGetAccountSyncURLCompleted(gd::string, gd::string) = win 0x1f3840;
+	void onLoginAccountCompleted(gd::string, gd::string) = win 0x1f21b0;
+	void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x1f1490;
+	void onRegisterAccountCompleted(gd::string, gd::string) = win 0x1f1bc0;
 	void onSyncAccountCompleted(gd::string, gd::string) = win 0x1f3d80, imac 0xd44b0, m1 0xbbb7c;
-	void onUpdateAccountSettingsCompleted(gd::string, gd::string) = win 0x1f4e90; 
-	void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x1f1340; 
+	void onUpdateAccountSettingsCompleted(gd::string, gd::string) = win 0x1f4e90;
+	void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x1f1340;
 	void registerAccount(gd::string, gd::string, gd::string);
 	void removeDLFromActive(char const*);
 	bool syncAccount(gd::string);
@@ -7949,7 +7985,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	gd::map<std::pair<int, int>, int> m_mapTupleIntIntIntTupleIntIntInt;
 	bool m_increasedLayerCapacity;
 	std::array<float, 2000> m_massiveFloatArray;
-	
+
 	gd::map<std::pair<int, int>, int> m_mapPairIntIntPairFloatFloat;
 	gd::vector<float> field_3058;
 	gd::unordered_map<int, int> m_umapIntInt3;
@@ -10285,7 +10321,7 @@ class GJStoreItem : cocos2d::CCNode {
 		m_unlockType = 0;
 		m_price = 0;
 		m_shopType = ShopType::Normal;
-	}	
+	}
 
 	static GJStoreItem* create(int index, int typeID, int unlockType, int price, ShopType shopType) = win inline, m1 0x5a628, imac 0x653b0 {
 		auto ret = new GJStoreItem();
@@ -12385,7 +12421,7 @@ class ListUploadDelegate {
 class LoadingCircle : cocos2d::CCLayerColor {
 	// virtual ~LoadingCircle();
 	LoadingCircle() {}
-	
+
 	static LoadingCircle* create() = win 0x6a3c0, imac 0x4c8dc0, m1 0x4280fc, ios 0x3a32a8;
 
 	void fadeAndRemove() = win 0x6a6a0, m1 0x4283ac, imac 0x4c90f0, ios 0x3a3544;
@@ -13091,7 +13127,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
 	static cocos2d::CCDictionary* responseToDict(gd::string, char const*);
 	void showTOS(FLAlertLayerProtocol*) = win 0x31e7f0;
-	void songStateChanged() = imac 0x592c00, m1 0x4dc0a0;
+	void songStateChanged() = win 0x31c620, imac 0x592c00, m1 0x4dc0a0;
 	TodoReturn stopDownload(int) = imac 0x592a00, m1 0x4dbe6c;
 	TodoReturn storeMusicObject(SongInfoObject*);
 	TodoReturn storeSFXInfoObject(SFXInfoObject*);
@@ -17708,7 +17744,7 @@ class SongInfoLayer : FLAlertLayer {
 	static SongInfoLayer* create(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string, int);
 	static SongInfoLayer* create(int);
 
-	bool init(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string, int) = win 0x466b00; 
+	bool init(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string, int) = win 0x466b00;
 	void onBPM(cocos2d::CCObject* sender);
 	void onClose(cocos2d::CCObject* sender);
 	void onDownload(cocos2d::CCObject* sender);
