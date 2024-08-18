@@ -706,6 +706,7 @@ enum class GJDifficulty {
 };
 
 enum class GJLevelType {
+    Default = 0,
     Local = 1,
     Editor = 2,
     Saved = 3
