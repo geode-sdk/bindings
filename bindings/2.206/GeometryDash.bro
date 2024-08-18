@@ -6929,7 +6929,7 @@ class GameToolbox {
 	static void postClipVisit() = ios 0x4a3bc, m1 0x452740, imac 0x4f99e0;
 	static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x62fd0, ios 0x4a2d8, m1 0x452658, imac 0x4f98e0;
 	static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
-	static gd::string saveParticleToString(cocos2d::CCParticleSystemQuad*) = win 0x64ce0;
+	static gd::string saveParticleToString(cocos2d::CCParticleSystemQuad*) = win 0x64ce0, imac 0x4fc740, m1 0x455230;
 	static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
 	static TodoReturn stringFromHSV(cocos2d::ccHSVValue, char const*);
 	static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*) = win 0x64640, imac 0x4fbb70, m1 0x4546ec;
