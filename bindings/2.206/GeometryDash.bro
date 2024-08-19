@@ -15212,6 +15212,11 @@ class SelectEventLayer : SetupTriggerPopup {
 [[link(android)]]
 class SelectFontLayer : FLAlertLayer {
 	// virtual ~SelectFontLayer();
+	SelectFontLayer() {
+		m_font = -1;
+		m_editorLayer = nullptr;
+		m_fontLabel = nullptr;
+	}
 
 	static SelectFontLayer* create(LevelEditorLayer* editorLayer) = win inline, m1 0x238ed8, imac 0x296020 {
 		auto ret = new SelectFontLayer();
