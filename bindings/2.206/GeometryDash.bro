@@ -6609,7 +6609,7 @@ class GameOptionsLayer : GJOptionsLayer {
 
 	static GameOptionsLayer* create(GJBaseGameLayer*) = m1 0x24db08, imac 0x2ac900;
 
-	bool init(GJBaseGameLayer*) = m1 0x24dcb8, imac 0x2ac900;
+	bool init(GJBaseGameLayer*) = m1 0x24dcb8, imac 0x2acb70;
 	void onPracticeMusicSync(cocos2d::CCObject* sender) = win 0x28e010, m1 0x24e468, imac 0x2ad370;
 	void onUIOptions(cocos2d::CCObject* sender) = win 0x28e0f0, m1 0x24e3dc, imac 0x2ad2e0;
 	void onUIPOptions(cocos2d::CCObject* sender) = win 0x28e110, m1 0x24e3fc, imac 0x2ad300;
