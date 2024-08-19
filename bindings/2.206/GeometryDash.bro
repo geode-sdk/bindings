@@ -15231,14 +15231,26 @@ class SelectEventLayer : SetupTriggerPopup {
 class SelectFontLayer : FLAlertLayer {
 	// virtual ~SelectFontLayer();
 
-	static SelectFontLayer* create(LevelEditorLayer*) = win 0x3016e0;
+	static SelectFontLayer* create(LevelEditorLayer* editorLayer) = win inline, m1 0x238ed8, imac 0x296020 {
+		auto ret = new SelectFontLayer();
+		if (ret->init(editorLayer)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(LevelEditorLayer*) = win 0x27c060;
-	void onChangeFont(cocos2d::CCObject* sender) = win 0x27c880;
-	void onClose(cocos2d::CCObject* sender);
-	TodoReturn updateFontLabel();
+	bool init(LevelEditorLayer*) = win 0x27c060, m1 0x238fdc, imac 0x296160;
+	void onChangeFont(cocos2d::CCObject* sender) = win 0x27c880, m1 0x2395f8, imac 0x296770;
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x2395bc, imac 0x296740;
+	void updateFontLabel() = win 0x27c680, m1 0x239690, imac 0x296810;
 
-	virtual void keyBackClicked() = m1 0x239790, imac 0x296930;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x239790, imac 0x296930;
+
+	int m_font;
+	LevelEditorLayer* m_editorLayer;
+	cocos2d::CCLabelBMFont* m_fontLabel;
 }
 
 [[link(android)]]
