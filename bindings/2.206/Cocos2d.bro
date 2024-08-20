@@ -107,11 +107,11 @@ class cocos2d::CCEaseExponentialIn {
 }
 
 [[link(win, android)]]
-class cocos2d::CCEaseExponentialOut {
-	static cocos2d::CCEaseExponentialOut* create(cocos2d::CCActionInterval*) = imac 0x51d480, m1 0x472804;
+class cocos2d::CCEaseExponentialInOut {
+	static cocos2d::CCEaseExponentialInOut* create(cocos2d::CCActionInterval*) = imac 0x51d680, m1 0x472a0c;
 
-	// CCEaseExponentialOut(cocos2d::CCEaseExponentialOut const&);
-	// CCEaseExponentialOut();
+	// CCEaseExponentialInOut(cocos2d::CCEaseExponentialInOut const&);
+	// CCEaseExponentialInOut();
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void update(float);
@@ -119,11 +119,11 @@ class cocos2d::CCEaseExponentialOut {
 }
 
 [[link(win, android)]]
-class cocos2d::CCEaseExponentialInOut {
-	static cocos2d::CCEaseExponentialInOut* create(cocos2d::CCActionInterval*) = imac 0x51d680, m1 0x472a0c;
+class cocos2d::CCEaseExponentialOut {
+	static cocos2d::CCEaseExponentialOut* create(cocos2d::CCActionInterval*) = imac 0x51d480, m1 0x472804;
 
-	// CCEaseExponentialInOut(cocos2d::CCEaseExponentialInOut const&);
-	// CCEaseExponentialInOut();
+	// CCEaseExponentialOut(cocos2d::CCEaseExponentialOut const&);
+	// CCEaseExponentialOut();
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void update(float);
