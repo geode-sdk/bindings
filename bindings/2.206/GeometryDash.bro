@@ -6,18 +6,24 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
 
 	static AccountHelpLayer* create();
 
-	TodoReturn doUnlink();
-	TodoReturn exitLayer();
+	void doUnlink();
+	void exitLayer();
 	void onAccountManagement(cocos2d::CCObject* sender);
 	void onReLogin(cocos2d::CCObject* sender);
 	void onUnlink(cocos2d::CCObject* sender);
-	TodoReturn updatePage();
-	TodoReturn verifyUnlink();
+	void updatePage();
+	void verifyUnlink();
 
 	virtual void customSetup() = win 0x7df90, m1 0xb9358, imac 0xd1910;
 	virtual void layerHidden() = m1 0xba0e4, imac 0xd2740;
 	virtual TodoReturn accountStatusChanged() = win 0x7e690, m1 0xb9f98, imac 0xd2600;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x7e970, m1 0xb9fa4, imac 0xd2630;
+	
+	cocos2d::CCLabelBMFont* m_loginStatusLabel;
+	TextArea* m_textArea;
+	CCMenuItemSpriteExtra* m_refreshLoginButton;
+	CCMenuItemSpriteExtra* m_unlinkAccountButton;
+	bool m_unk290;
 }
 
 [[link(android)]]
@@ -81,23 +87,23 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegate, FLAlertLayerProtocol {
 	// virtual ~AccountLoginLayer();
 
-	static AccountLoginLayer* create(gd::string);
+	static AccountLoginLayer* create(gd::string) = win 0x7a140;
 
 	TodoReturn createTextBackground(cocos2d::CCPoint, char const*, cocos2d::CCSize);
 	TodoReturn createTextInput(cocos2d::CCPoint, cocos2d::CCSize, char const*, int);
 	TodoReturn createTextLabel(cocos2d::CCPoint, char const*, cocos2d::CCSize);
-	TodoReturn disableNodes();
-	TodoReturn hideLoadingUI();
-	bool init(gd::string);
+	void disableNodes();
+	void hideLoadingUI();
+	bool init(gd::string) = win 0x7a2e0;
 	void onClose(cocos2d::CCObject* sender);
 	void onForgotPassword(cocos2d::CCObject* sender);
 	void onForgotUser(cocos2d::CCObject* sender);
 	void onSubmit(cocos2d::CCObject* sender) = win 0x7B5D0;
-	TodoReturn resetLabel(int);
-	TodoReturn resetLabels();
+	void resetLabel(int);
+	void resetLabels();
 	void showLoadingUI();
-	TodoReturn toggleUI(bool);
-	TodoReturn updateLabel(AccountError);
+	void toggleUI(bool);
+	void updateLabel(AccountError);
 
 	virtual void registerWithTouchDispatcher() = m1 0x407e04, imac 0x4a46b0;
 	virtual void keyBackClicked() = win 0x7b9b0, m1 0x407cb4, imac 0x4a4570;
@@ -112,7 +118,9 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
 	CCTextInputNode* m_passwordInput;
 	cocos2d::CCLabelBMFont* m_usernameLabel;
 	cocos2d::CCLabelBMFont* m_passwordLabel;
-	PAD = win 0x40;
+	LoadingCircle* m_loadingCircle;
+	gd::string m_username;
+	gd::string m_password;
 }
 
 [[link(android)]]
@@ -454,15 +462,17 @@ class ArtistCell : TableViewCell {
 
 	virtual bool init() = m1 0x1f9e28, imac 0x250270;
 	virtual void draw() = m1 0x1fa094, imac 0x2504f0;
+
+	SongInfoObject* m_songInfo;
 }
 
 [[link(android)]]
-class AudioAssetsBrowser {
+class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDelegate {
 	// virtual ~AudioAssetsBrowser();
 
-	static AudioAssetsBrowser* create(gd::vector<int>&, gd::vector<int>&);
+	static AudioAssetsBrowser* create(gd::vector<int>& songIds, gd::vector<int>& sfxIds);
 
-	bool init(gd::vector<int>&, gd::vector<int>&);
+	bool init(gd::vector<int>& songIds, gd::vector<int>& sfxIds);
 	void onClose(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
 	void onPage(cocos2d::CCObject* sender);
@@ -472,11 +482,18 @@ class AudioAssetsBrowser {
 
 	virtual void registerWithTouchDispatcher() = m1 0x6c7140, imac 0x7c14e0;
 	virtual void keyBackClicked() = m1 0x6c70c4, imac 0x7c1470;
-	virtual TodoReturn musicActionFinished(GJMusicAction) = m1 0x6c7070, imac 0x7c1390;
-	virtual TodoReturn musicActionFailed(GJMusicAction) = m1 0x6c707c, imac 0x7c13c0;
+	virtual void musicActionFinished(GJMusicAction) = m1 0x6c7070, imac 0x7c1390;
+	virtual void musicActionFailed(GJMusicAction) = m1 0x6c707c, imac 0x7c13c0;
 	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x6c7090, imac 0x7c1400;
 	virtual TodoReturn getSelectedCellIdx() = m1 0x6c70a0, imac 0x7c1420;
 	virtual TodoReturn getCellDelegateType() = m1 0x6c70b0, imac 0x7c1440;
+
+	cocos2d::CCArray* m_songInfoObjects;
+	GJCommentListLayer* m_songList;
+	cocos2d::CCLabelBMFont* m_pageIndicatorLabel;
+	gd::vector<int> m_songsIds;
+	gd::vector<int> m_sfxIds;
+	LoadingCircleSprite* m_loadingCircle;
 }
 
 [[link(android)]]
@@ -892,6 +909,8 @@ class CCAlertCircle : cocos2d::CCNode {
 
 	virtual bool init() = m1 0x13da28, imac 0x1742b0;
 	virtual void draw() = m1 0x13dad4, imac 0x174340;
+
+	CCCircleAlert* m_circleAlert;
 }
 
 [[link(android)]]
@@ -2271,7 +2290,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 	void onLike(cocos2d::CCObject* sender) = win 0xb5980, imac 0x250ac0, m1 0x1fa4bc;
 	TodoReturn onUndelete();
 
-	void onUnhide(cocos2d::CCObject* sender) = imac 0x250aa0, m1 0x1fa4b0;
+	void onUnhide(cocos2d::CCObject* sender) = win 0xb5e90, imac 0x250aa0, m1 0x1fa4b0;
 	void onViewProfile(cocos2d::CCObject* sender) = imac 0x2509c0, m1 0x1fa3d4;
 	void updateBGColor(int) = ios 0x108fdc;
 	void updateLabelValues();
@@ -3158,7 +3177,7 @@ class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
 	GJGameLevel* m_level;
 	DailyLevelPage* m_page;
 	cocos2d::CCLabelBMFont* m_timeLabel;
-	PAD = win 0x8, android32 0x8;
+	cocos2d::CCPoint m_unkPoint;
 	CCMenuItemSpriteExtra* m_skipButton;
 	bool m_unkBool;
 	bool m_needsDownloading;
@@ -18927,6 +18946,9 @@ class WorldLevelPage : FLAlertLayer {
 
 	virtual void keyBackClicked() = m1 0x34d2a0, imac 0x3ca580;
 	virtual void show() = m1 0x34d158, imac 0x3ca440;
+	
+	GJWorldNode* m_worldNode;
+	GJGameLevel* m_level;
 }
 
 [[link(android)]]
