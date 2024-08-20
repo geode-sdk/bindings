@@ -2408,18 +2408,26 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 [[link(android)]]
 class ConfigureValuePopup : FLAlertLayer, TextInputDelegate {
 	// virtual ~ConfigureValuePopup();
-	TodoReturn positionInfoObjects();
 
-	static ConfigureValuePopup* create(ConfigureValuePopupDelegate*, float, float, float, gd::string, gd::string);
+	static ConfigureValuePopup* create(ConfigureValuePopupDelegate*, float, float, float, gd::string, gd::string) = win 0x96b90, m1 0x550944, imac 0x62fca0;
 
-	bool init(ConfigureValuePopupDelegate*, float, float, float, gd::string, gd::string);
-	void onClose(cocos2d::CCObject* sender);
-	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn updateTextInputLabel();
+	bool init(ConfigureValuePopupDelegate*, float, float, float, gd::string, gd::string) = win 0x96d40, m1 0x550c04, imac 0x62ff90;
+	void onClose(cocos2d::CCObject* sender) = win 0x97720, m1 0x5513a4, imac 0x630800;
+	void sliderChanged(cocos2d::CCObject* sender) = win 0x974f0, m1 0x551420, imac 0x630880;
+	void updateTextInputLabel() = win 0x97540, m1 0x551464, imac 0x6308d0;
 
 	virtual void keyBackClicked() = win 0x977a0, m1 0x551684, imac 0x630b30;
-	virtual void textInputClosed(CCTextInputNode*) = m1 0x551568, imac 0x6309e0;
+	virtual void textInputClosed(CCTextInputNode*) = win 0x89f80, m1 0x551568, imac 0x6309e0;
 	virtual void textChanged(CCTextInputNode*) = win 0x975d0, m1 0x551584, imac 0x630a20;
+
+	float m_value;
+	float m_minimum;
+	float m_maximum;
+	bool m_enableDelegate;
+	bool m_disableTextDelegate;
+	ConfigureValuePopupDelegate* m_delegate;
+	CCTextInputNode* m_input;
+	Slider* m_slider;
 }
 
 [[link(android)]]
