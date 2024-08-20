@@ -95,11 +95,35 @@ class cocos2d::CCEaseElasticOut {
 }
 
 [[link(win, android)]]
+class cocos2d::CCEaseExponentialIn {
+	static cocos2d::CCEaseExponentialIn* create(cocos2d::CCActionInterval*) = imac 0x51d280, m1 0x4725ec;
+
+	// CCEaseExponentialIn(cocos2d::CCEaseExponentialIn const&);
+	// CCEaseExponentialIn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCEaseExponentialOut {
 	static cocos2d::CCEaseExponentialOut* create(cocos2d::CCActionInterval*) = imac 0x51d480, m1 0x472804;
 
 	// CCEaseExponentialOut(cocos2d::CCEaseExponentialOut const&);
 	// CCEaseExponentialOut();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCEaseExponentialInOut {
+	static cocos2d::CCEaseExponentialInOut* create(cocos2d::CCActionInterval*) = imac 0x51d680, m1 0x472a0c;
+
+	// CCEaseExponentialInOut(cocos2d::CCEaseExponentialInOut const&);
+	// CCEaseExponentialInOut();
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void update(float);
@@ -2010,6 +2034,11 @@ class cocos2d::CCCallFunc {
 }
 
 [[link(win, android)]]
+class cocos2d::CCCallFuncN {
+	static cocos2d::CCCallFuncN* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncN) = imac 0x7b9320, m1 0x6bf8a4;
+}
+
+[[link(win, android)]]
 class cocos2d::CCClippingNode : cocos2d::CCNode {
 	static cocos2d::CCClippingNode* create() = imac 0x72c380, m1 0x63f068, ios inline {
 		auto pRet = new CCClippingNode();
@@ -2543,6 +2572,22 @@ class cocos2d::CCRotateBy {
 	virtual void update(float);
 	virtual void startWithTarget(cocos2d::CCNode*);
 	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCRotateTo {
+	static cocos2d::CCRotateTo* create(float, float) = imac 0x3baa90, m1 0x33eeb0;
+	static cocos2d::CCRotateTo* create(float, float, float);
+
+	bool initWithDuration(float, float);
+	bool initWithDuration(float, float, float);
+
+	// CCRotateTo(cocos2d::CCRotateTo const&);
+	// CCRotateTo();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
 }
 
 [[link(win, android)]]
