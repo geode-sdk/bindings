@@ -4895,7 +4895,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void gravityEffectFinished() = mac 0x7cec0;
     void hasItem(int) = mac 0x7cee0;
     void hasUniqueCoin(GameObject*) = mac 0x77510, win 0x202250;
-    void incrementJumps() = mac 0x7ff40, win 0x20cf63;
+    void incrementJumps() = mac 0x7ff40;
     bool init(GJGameLevel*) = mac 0x6b5f0, win 0x1fb780;
     void isFlipping() = mac 0x76100;
     void levelComplete() = mac 0x72b80, win 0x1fd3d0;
