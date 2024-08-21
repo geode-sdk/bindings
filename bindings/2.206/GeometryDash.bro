@@ -17889,9 +17889,9 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 	void audioNext(cocos2d::CCObject* sender) = win 0xc4cb0, imac 0x213f00, m1 0x1c4ecc;
 	void audioPrevious(cocos2d::CCObject* sender) = win 0xc4cf0, imac 0x213ec0, m1 0x1c4e98;
 	bool init(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool) = win 0xc42b0, imac 0x2135a0, m1 0x1c4568;
-	void onOpenCustomSong(cocos2d::CCObject* sender) = win 0xc5000;
-	void onSongMode(cocos2d::CCObject* sender) = win 0xc4d20;
-	void onSongMode(int) = win 0xc4d50;
+	void onOpenCustomSong(cocos2d::CCObject* sender) = win 0xc5000, imac 0x213f70, m1 0x1c4f38;
+	void onSongMode(cocos2d::CCObject* sender) = win 0xc4d20, imac 0x213f40, m1 0x1c4f04;
+	void onSongMode(int) = win 0xc4d50, imac 0x214010, m1 0x1c4fb8;
 	void selectSong(int id) = win inline {
 		auto songID = id;
 		if (songID > 21) songID = 21;
@@ -17900,9 +17900,9 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 		m_selectedSongID = songID;
 		this->updateAudioLabel();
 	}
-	void showCustomSongSelect() = win 0xc5080;
+	void showCustomSongSelect() = win 0xc5080, imac 0x20f620, m1 0x1c0908;
 	void updateAudioLabel() = win 0xc4bc0, imac 0x213dd0, m1 0x1c4d80;
-	void updateWidgetVisibility() = win 0xc4f70;
+	void updateWidgetVisibility() = win 0xc4f70, imac 0x214210, m1 0x1c518c;
 
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xc51e0, m1 0x1c5254, imac 0x2142e0;
 	virtual void customSongLayerClosed() = win 0xc5270, m1 0x1c533c, imac 0x2143c0;
@@ -17915,9 +17915,9 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 	bool m_isCustomSong;
 	bool m_songChanged;
 	cocos2d::CCLabelBMFont* m_audioLabel;
-	cocos2d::CCArray* m_unkArray1;
-	cocos2d::CCArray* m_unkArray2;
-	cocos2d::CCArray* m_unkArray3;
+	cocos2d::CCArray* m_selectSongObjects;
+	cocos2d::CCArray* m_normalSongObjects;
+	cocos2d::CCArray* m_changeSongObjects;
 	CCMenuItemSpriteExtra* m_normalButton;
 	CCMenuItemSpriteExtra* m_customButton;
 	CCMenuItemSpriteExtra* m_selectButton;
