@@ -17884,18 +17884,25 @@ class SongPlaybackDelegate {
 class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDelegate, CustomSongDelegate {
 	// virtual ~SongSelectNode();
 
-	static SongSelectNode* create(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool) = imac 0x213480, m1 0x1c4458;
+	static SongSelectNode* create(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool) = win 0xc4180, imac 0x213480, m1 0x1c4458;
 
-	void audioNext(cocos2d::CCObject*) = win 0xc4cb0, imac 0x213f00, m1 0x1c4ecc;
-	void audioPrevious(cocos2d::CCObject*) = win 0xc4cf0, imac 0x213ec0, m1 0x1c4e98;
+	void audioNext(cocos2d::CCObject* sender) = win 0xc4cb0, imac 0x213f00, m1 0x1c4ecc;
+	void audioPrevious(cocos2d::CCObject* sender) = win 0xc4cf0, imac 0x213ec0, m1 0x1c4e98;
 	bool init(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool) = win 0xc42b0, imac 0x2135a0, m1 0x1c4568;
-	void onOpenCustomSong(cocos2d::CCObject* sender);
-	void onSongMode(cocos2d::CCObject* sender);
-	void onSongMode(int);
-	TodoReturn selectSong(int);
-	void showCustomSongSelect();
+	void onOpenCustomSong(cocos2d::CCObject* sender) = win 0xc5000;
+	void onSongMode(cocos2d::CCObject* sender) = win 0xc4d20;
+	void onSongMode(int) = win 0xc4d50;
+	void selectSong(int id) = win inline {
+		auto songID = id;
+		if (songID > 21) songID = 21;
+		m_songChanged = true;
+		if (songID < 0) songID = 0;
+		m_selectedSongID = songID;
+		this->updateAudioLabel();
+	}
+	void showCustomSongSelect() = win 0xc5080;
 	void updateAudioLabel() = win 0xc4bc0, imac 0x213dd0, m1 0x1c4d80;
-	TodoReturn updateWidgetVisibility();
+	void updateWidgetVisibility() = win 0xc4f70;
 
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xc51e0, m1 0x1c5254, imac 0x2142e0;
 	virtual void customSongLayerClosed() = win 0xc5270, m1 0x1c533c, imac 0x2143c0;
@@ -17905,6 +17912,18 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 	virtual LevelSettingsObject* getLevelSettings() = win 0xc5380, m1 0x1c550c, imac 0x2145b0;
 
 	int m_selectedSongID;
+	bool m_isCustomSong;
+	bool m_songChanged;
+	cocos2d::CCLabelBMFont* m_audioLabel;
+	cocos2d::CCArray* m_unkArray1;
+	cocos2d::CCArray* m_unkArray2;
+	cocos2d::CCArray* m_unkArray3;
+	CCMenuItemSpriteExtra* m_normalButton;
+	CCMenuItemSpriteExtra* m_customButton;
+	CCMenuItemSpriteExtra* m_selectButton;
+	CCMenuItemSpriteExtra* m_changeButton;
+	CustomSongWidget* m_songWidget;
+	LevelSettingsObject* m_settingsObject;
 }
 
 [[link(android)]]
