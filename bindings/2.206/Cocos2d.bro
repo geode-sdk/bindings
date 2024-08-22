@@ -1094,7 +1094,7 @@ class cocos2d::CCOrbitCamera {
 class cocos2d::CCLayerColor {
 	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&) = imac 0x4bcc40, m1 0x41d7ac, ios 0x15461c;
 	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float) = imac 0x4bca80, m1 0x41d638, ios 0x154540;
-	static cocos2d::CCLayerColor* create() = ios inline {
+	static cocos2d::CCLayerColor* create() = imac 0x4bc8b0, m1 0x41d4c8, ios inline {
 		CCLayerColor* pRet = new CCLayerColor();
 		if (pRet && pRet->init())
 		{
