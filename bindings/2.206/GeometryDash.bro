@@ -3602,7 +3602,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	TodoReturn toggleHideInvisible(cocos2d::CCObject*);
 	TodoReturn toggleIgnoreDamage(cocos2d::CCObject*);
 	TodoReturn togglePlaytestMusic(cocos2d::CCObject*);
-	void togglePreviewAnim(cocos2d::CCObject*) = win 0xd9810;
+	void togglePreviewAnim(cocos2d::CCObject*) = win 0xd9810, m1 0x233518, imac 0x28ff60;
 	TodoReturn togglePreviewParticles(cocos2d::CCObject*);
 	TodoReturn togglePreviewShaders(cocos2d::CCObject*);
 	TodoReturn toggleRecordOrder(cocos2d::CCObject*);
@@ -11564,7 +11564,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	void updateOptions() = win 0x2bf650, imac 0xe03a0, m1 0xc694c;
 	void updatePreviewAnim();
 	void updatePreviewParticle(ParticleGameObject*) = imac 0x1ad850, m1 0x16c540;
-	void updatePreviewParticles() = win 0x2cdb20;
+	void updatePreviewParticles() = win 0x2cdb20, m1 0xd4b04, imac 0xf09e0;
 	TodoReturn updateToggledGroups();
 	TodoReturn validGroup(GameObject*, bool);
 
