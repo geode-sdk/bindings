@@ -82,6 +82,19 @@ class cocos2d::CCEaseBounceOut {
 }
 
 [[link(win, android)]]
+class cocos2d::CCEaseElasticIn {
+	static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval*);
+	static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval*, float);
+
+	// CCEaseElasticIn(cocos2d::CCEaseElasticIn const&);
+	// CCEaseElasticIn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCEaseElasticOut {
 	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*) = imac 0x51e430, m1 0x473730;
 	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*, float) = ios 0x27c6e0, imac 0x51e350, m1 0x473664;
@@ -261,6 +274,20 @@ class cocos2d::CCMoveTo {
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void startWithTarget(cocos2d::CCNode*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCRemoveSelf {
+	static cocos2d::CCRemoveSelf* create(bool);
+
+	bool init(bool);
+
+	// CCRemoveSelf(cocos2d::CCRemoveSelf const&);
+	// CCRemoveSelf();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCFiniteTimeAction* reverse();
 }
 
 [[link(win, android)]]

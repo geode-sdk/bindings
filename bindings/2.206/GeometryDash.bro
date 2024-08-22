@@ -2515,7 +2515,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
 	TodoReturn getPageInputNodes(int);
 	TodoReturn getPageMenu(int);
 	TodoReturn getPageSliders(int);
-	bool init(ParticleGameObject*, cocos2d::CCArray*, gd::string) = win 0x400f70;
+	bool init(ParticleGameObject*, cocos2d::CCArray*, gd::string) = win 0x400f70, m1 0x3e0240, imac 0x4787e0;
 	TodoReturn maxSliderValueForType(gjParticleValue);
 	TodoReturn minSliderValueForType(gjParticleValue);
 	void onAnimateActiveOnly(cocos2d::CCObject* sender);
@@ -2775,22 +2775,22 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	int getActiveMode(bool) = win 0xa72a0;
 	TodoReturn getButtonByTag(int) = win 0xa7b10;
 	TodoReturn getHSV();
-	void highlightSelected(ButtonSprite*) = win 0xa7dc0;
+	void highlightSelected(ButtonSprite*) = win 0xa7dc0, m1 0x1a5fac, imac 0x1f2c00;
 	bool init(GameObject*, cocos2d::CCArray*) = win 0xa32f0, imac 0x1eef50, m1 0x1a2700, ios 0x53b8c;
 	void onBreakApart(cocos2d::CCObject* sender);
 	void onBrowse(cocos2d::CCObject* sender);
 	void onClear(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender) = win 0xa7ef0;
+	void onClose(cocos2d::CCObject* sender) = win 0xa7ef0, m1 0x1a46ec, imac 0x1f11d0;
 	void onCopy(cocos2d::CCObject* sender);
 	void onEditColor(cocos2d::CCObject* sender);
 	void onHSV(cocos2d::CCObject* sender) = win 0xa6a60;
 	void onLiveEdit(cocos2d::CCObject* sender);
 	void onNextColorChannel(cocos2d::CCObject* sender);
 	void onPaste(cocos2d::CCObject* sender);
-	void onSelectColor(cocos2d::CCObject* sender) = win 0xa7b90;
+	void onSelectColor(cocos2d::CCObject* sender) = win 0xa7b90, m1 0x1a4e80, imac 0x1f19a0;
 	void onSelectMode(cocos2d::CCObject* sender) = win 0xa6ed0, imac 0x1f13b0, m1 0x1a4888, ios 0x55b84;
 	void onSettings(cocos2d::CCObject* sender);
-	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0xa7490;
+	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0xa7490, m1 0x1a4f48, imac 0x1f1a50;
 	TodoReturn recreateLayer();
 	void sliderChanged(cocos2d::CCObject*);
 	void toggleVisible() = win 0xa70e0, imac 0x1f3120, m1 0x1a645c, ios 0x56ee8;
@@ -2808,7 +2808,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	}
 	void updateColorSprite() = win 0xa6410;
 	void updateCurrentSelection();
-	void updateCustomColorLabels() = win 0xa7a80;
+	void updateCustomColorLabels() = win 0xa7a80, m1 0x1a501c, imac 0x1f1b20;
 	void updateHSVButtons() = win 0xa6860;
 	void updateKerningLabel();
 	void updateSelected(int) = win 0xa7c50;
@@ -3653,7 +3653,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn changeSelectedObjects(cocos2d::CCArray*, bool);
 	TodoReturn checkDiffAfterTransformAnchor(cocos2d::CCPoint, cocos2d::CCArray*) = win 0x111c70;
 	TodoReturn checkLiveColorSelect();
-	void clickOnPosition(cocos2d::CCPoint) = win 0xdebe0;
+	void clickOnPosition(cocos2d::CCPoint) = win 0xdebe0, m1 0x2e3e0, imac 0x2dda0;
 	TodoReturn closeLiveColorSelect();
 	TodoReturn closeLiveHSVSelect();
 	void colorSelectClosed(cocos2d::ccColor3B);
@@ -3752,7 +3752,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	bool isSpecialSnapObject(int) = win 0x124e40;
 	TodoReturn liveEditColorUsable();
 	CreateMenuItem* menuItemFromObjectString(gd::string, int) = win 0x10ac30;
-	cocos2d::CCPoint moveForCommand(EditCommand command) = win 0x11b9b0;
+	cocos2d::CCPoint moveForCommand(EditCommand command) = win 0x11b9b0, m1 0x44338, imac 0x4ab70;
 	void moveGamelayer(cocos2d::CCPoint) = win 0xdf250;
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x11be20;
 	void moveObjectCall(cocos2d::CCObject*) = win 0x11bb60;
@@ -3782,7 +3782,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onGroupIDFilter(cocos2d::CCObject* sender) = win 0xe3620;
 	void onGroupSticky(cocos2d::CCObject* sender) = win 0x10ec80;
 	void onGroupUp(cocos2d::CCObject* sender) = win 0x11b600;
-	void onLockLayer(cocos2d::CCObject* sender) = win 0x11b790;
+	void onLockLayer(cocos2d::CCObject* sender) = win 0x11b790, m1 0x2d26c, imac 0x2cb20;
 	void onNewCustomItem(cocos2d::CCObject* sender) = win 0xe0530;
 	void onPaste(cocos2d::CCObject* sender) = win 0x10f610;
 	void onPasteColor(cocos2d::CCObject* sender) = win 0x110860;
@@ -3826,8 +3826,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void selectAll();
 	void selectAllWithDirection(bool);
 	void selectBuildTab(int) = win 0x110b20, imac 0x341f0, m1 0x34460;
-	void selectObject(GameObject*, bool) = win 0x10c9f0;
-	void selectObjects(cocos2d::CCArray*, bool) = win 0x10cce0;
+	void selectObject(GameObject*, bool) = win 0x10c9f0, m1 0x2efdc, imac 0x2ea20;
+	void selectObjects(cocos2d::CCArray*, bool) = win 0x10cce0, m1 0x37e74, imac 0x3c7a0;
 	void selectObjectsInRect(cocos2d::CCRect);
 	void setupCreateMenu() = win 0xe44b0, m1 0xfbc4, imac 0xdda0;
 	void setupDeleteMenu() = win 0xe1470, m1 0xeda0, imac 0xce80;
@@ -11425,7 +11425,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn addPlayer2Point(cocos2d::CCPoint, bool);
 	TodoReturn addPlayerCollisionBlock();
 	TodoReturn addPlayerPoint(cocos2d::CCPoint);
-	void addSpecial(GameObject*) = win 0x2c4120;
+	void addSpecial(GameObject*) = win 0x2c4120, m1 0xc9bc4, imac 0xe3fe0;
 	TodoReturn addToRedoList(UndoObject*);
 	TodoReturn addTouchPoint(cocos2d::CCPoint);
 	TodoReturn addToUndoList(UndoObject*, bool);
@@ -11507,7 +11507,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn removeAllObjectsOfType(int) = win 0x2c2830;
 	TodoReturn removeObject(GameObject*, bool);
 	TodoReturn removePlayerCollisionBlock();
-	void removeSpecial(GameObject*) = win 0x2c4830;
+	void removeSpecial(GameObject*) = win 0x2c4830, m1 0xcbe28, imac 0xe64c0;
 	TodoReturn resetDelayedSpawnNodes();
 	TodoReturn resetEffectTriggerOptim(GameObject*, cocos2d::CCArray*);
 	void resetMovingObjects();
@@ -13326,7 +13326,7 @@ class ObjectToolbox : cocos2d::CCNode {
 	static ObjectToolbox* sharedState() = win 0x327460, ios 0x287bdc, m1 0x591edc, imac 0x677660;
 
 	TodoReturn allKeys();
-	float gridNodeSizeForKey(int key) = win 0x34f350;
+	float gridNodeSizeForKey(int key) = win 0x34f350, m1 0x63ed04, imac 0x7276e0;
 	const char* intKeyToFrame(int key) {
 		return m_allKeys[key].c_str();
 	}
