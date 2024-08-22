@@ -354,7 +354,7 @@ class cocos2d::CCAction {
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x525d78, imac 0x5feca0;
 	virtual void update(float) = m1 0x525e54, imac 0x5fed90;
-	virtual void setTag(int);// = m1 0x1b6e5c, imac 0x205680;
+	//virtual void setTag(int) = m1 0x1b6e5c, imac 0x205680;
 	virtual bool isDone() = m1 0x525e48, imac 0x5fed70;
 	virtual void startWithTarget(cocos2d::CCNode*) = m1 0x525e38, imac 0x5fed50;
 	virtual void stop() = m1 0x525e40, imac 0x5fed60;
