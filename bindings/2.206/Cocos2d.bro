@@ -84,7 +84,7 @@ class cocos2d::CCEaseBounceOut {
 [[link(win, android)]]
 class cocos2d::CCEaseElasticIn {
 	static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval*);
-	static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval*, float);
+	static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval*, float) = m1 0x4733fc, imac 0x51e0c0;
 
 	// CCEaseElasticIn(cocos2d::CCEaseElasticIn const&);
 	// CCEaseElasticIn();
@@ -278,7 +278,7 @@ class cocos2d::CCMoveTo {
 
 [[link(win, android)]]
 class cocos2d::CCRemoveSelf {
-	static cocos2d::CCRemoveSelf* create(bool);
+	static cocos2d::CCRemoveSelf* create(bool) = m1 0x6bedbc, imac 0x7b8890;
 
 	bool init(bool);
 

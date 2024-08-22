@@ -2505,7 +2505,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
 
 	static CreateParticlePopup* create(gd::string);
 	static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*, gd::string);
-	static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*) = win 0x400d80;
+	static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*) = win 0x400d80, m1 0x3dfefc, imac 0x4787c0;
 
 	TodoReturn centerAlignParticle(cocos2d::CCObject*);
 	TodoReturn createParticleSlider(gjParticleValue, int, bool, cocos2d::CCPoint, cocos2d::CCArray*);
@@ -2521,7 +2521,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
 	void onAnimateActiveOnly(cocos2d::CCObject* sender);
 	void onAnimateOnTrigger(cocos2d::CCObject* sender);
 	void onCalcEmission(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender) = win 0x409b20;
+	void onClose(cocos2d::CCObject* sender) = win 0x409b20, m1 0x3e3e40, imac 0x47d110;
 	void onCopySettings(cocos2d::CCObject* sender);
 	void onDuplicateColor(cocos2d::CCObject* sender);
 	void onDurationForever(cocos2d::CCObject* sender);
@@ -2772,7 +2772,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
 	TodoReturn determineStartValues();
-	int getActiveMode(bool) = win 0xa72a0;
+	int getActiveMode(bool) = win 0xa72a0, m1 0x1a57a4, imac 0x1f22e0;
 	TodoReturn getButtonByTag(int) = win 0xa7b10;
 	TodoReturn getHSV();
 	void highlightSelected(ButtonSprite*) = win 0xa7dc0, m1 0x1a5fac, imac 0x1f2c00;
@@ -2794,7 +2794,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 	TodoReturn recreateLayer();
 	void sliderChanged(cocos2d::CCObject*);
 	void toggleVisible() = win 0xa70e0, imac 0x1f3120, m1 0x1a645c, ios 0x56ee8;
-	void updateChannelLabel(int channel) = win inline {
+	void updateChannelLabel(int channel) = win inline, m1 0x1a5a24, imac 0x1f2580 {
 		if (channel > 999) {
 			m_selectedColorLabel->setString(GJSpecialColorSelect::textForColorIdx(channel));
 		}
@@ -2806,12 +2806,12 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 			m_selectedColorLabel->setString(" ");
 		}
 	}
-	void updateColorSprite() = win 0xa6410;
+	void updateColorSprite() = win 0xa6410, m1 0x1a5954, imac 0x1f24b0;
 	void updateCurrentSelection();
 	void updateCustomColorLabels() = win 0xa7a80, m1 0x1a501c, imac 0x1f1b20;
 	void updateHSVButtons() = win 0xa6860;
 	void updateKerningLabel();
-	void updateSelected(int) = win 0xa7c50;
+	void updateSelected(int) = win 0xa7c50, m1 0x1a5e54, imac 0x1f2a70;
 
 	virtual void keyBackClicked() = win 0xa7fd0, m1 0x1a693c, imac 0x1f3620;
 	virtual void textInputOpened(CCTextInputNode*) = win 0xa7560, m1 0x1a6590, imac 0x1f3280;
@@ -3396,10 +3396,9 @@ class DrawGridLayer : cocos2d::CCLayer {
 	virtual void update(float) = win 0x2d0350, m1 0xdbf54, imac 0xf9a00;
 	virtual void draw() = win 0x2d0550, m1 0xdc064, imac 0xf9b90;
 
-	PAD = win 0x70, android32 0x40, android64 0x68;
-	void onHideLayer(cocos2d::CCObject* sender);
+	PAD = win 0x70, android32 0x40, android64 0x68, mac 0x58;
 	LevelEditorLayer* m_editorLayer;
-	PAD = win 0x6c, android32 0x3c, android64 0x54;
+	PAD = win 0x6c, android32 0x3c, android64 0x54, mac 0x64;
 	float m_gridSize;
 }
 
@@ -3437,7 +3436,7 @@ class EditButtonBar : cocos2d::CCNode {
 	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0xd0e10, imac 0x5eb4f0, m1 0x514340;
 	void onLeft(cocos2d::CCObject* sender) = win 0xd1800;
 	void onRight(cocos2d::CCObject* sender) = win 0xd1790;
-	void reloadItems(int rowCount, int columnCount) = win inline {
+	void reloadItems(int rowCount, int columnCount) = win inline, m1 0x514870, imac 0x5ebab0 {
 		if (m_buttonArray) this->loadFromItems(m_buttonArray, rowCount, columnCount, false);
 	}
 
@@ -3569,7 +3568,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onCreateExtras(cocos2d::CCObject* sender) = win 0xD9360;
 	void onCreateLoop(cocos2d::CCObject* sender);
 	void onCreateTemplate(cocos2d::CCObject* sender);
-	void onExitEditor(cocos2d::CCObject* sender) = win 0xda950; // inlined on macos (both m1 and imac)
+	void onExitEditor(cocos2d::CCObject* sender) = win 0xda950, m1 0x23417c, imac 0x290c90; // inlined on macos (both m1 and imac)
 	void onExitNoSave(cocos2d::CCObject* sender) = win 0xdaa20, m1 0x232ed4, imac 0x28f810;
 	void onHelp(cocos2d::CCObject* sender);
 	void onKeybindings(cocos2d::CCObject* sender);
@@ -3740,7 +3739,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getSmartObjectKey(int, GJSmartDirection);
 	TodoReturn getSnapAngle(GameObject*, cocos2d::CCArray*);
 	CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset) = win 0xded70;
-	CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline {
+	CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, m1 0xe104, imac 0xc140 {
 		return this->getSpriteButton(spriteFrameName, selector, menu, scale, 1, {0, 0});
 	}
 	CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset) = win 0xdee00;
@@ -4097,7 +4096,7 @@ class EffectGameObject : EnhancedGameObject {
 	float m_duration;
 	// property 35
 	float m_opacity;
-	PAD = android32 0x4, android64 0x4, win 0x4;
+	PAD = android32 0x4, android64 0x4, win 0x4, mac 0x4;
 	// property 51
 	int m_targetGroupID;
 	// property 71
@@ -10300,10 +10299,10 @@ class GJSpecialColorSelect : FLAlertLayer {
 
 	TodoReturn getButtonByTag(int);
 	TodoReturn highlightSelected(ButtonSprite*);
-	bool init(int, GJSpecialColorSelectDelegate*, ColorSelectType) = win 0x2a5850;
+	bool init(int, GJSpecialColorSelectDelegate*, ColorSelectType) = win 0x2a5850, m1 0x551cec, imac 0x6312c0;
 	void onClose(cocos2d::CCObject* sender);
 	void onSelectColor(cocos2d::CCObject* sender);
-	static const char* textForColorIdx(int) = win 0x2a6490;
+	static const char* textForColorIdx(int) = win 0x2a6490, m1 0x553980, imac 0x6339a0;
 
 	TodoReturn tryShowAd();
 	virtual void keyBackClicked() = win 0x2a6440, m1 0x553bc8, imac 0x633bf0;
@@ -11559,7 +11558,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateGridLayerParent();
 	TodoReturn updateKeyframeObjects();
 	TodoReturn updateKeyframeVisibility(bool);
-	void updateLevelFont(int) = win 0x2cb350;
+	void updateLevelFont(int) = win 0x2cb350, m1 0xd6eb8, imac 0xf3a60;
 	TodoReturn updateObjectColors(cocos2d::CCArray*) = win 0x2c6410;
 	static void updateObjectLabel(GameObject*) = win 0x2c3bc0;
 	void updateOptions() = win 0x2bf650, imac 0xe03a0, m1 0xc694c;
@@ -13481,7 +13480,7 @@ class ParticleGameObject : EnhancedGameObject {
 	TodoReturn applyParticleSettings(cocos2d::CCParticleSystemQuad*);
 	TodoReturn createAndAddCustomParticle();
 	TodoReturn createParticlePreviewArt();
-	void setParticleString(gd::string) = win 0x4746b0;
+	void setParticleString(gd::string) = win 0x4746b0, m1 0x16c1a8, imac 0x1ad4d0;
 	void updateParticle() = win 0x474740;
 	TodoReturn updateParticleAngle(float, cocos2d::CCParticleSystemQuad*);
 	TodoReturn updateParticlePreviewArtOpacity(float);
@@ -15467,7 +15466,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void updateEditorOrder() = win 0x3d2a90;
 	void updateEditorOrderLabel() = win 0x3d2760;
 	TodoReturn updateGroupIDButtons();
-	void updateGroupIDLabel() = win 0x3d26d0;
+	void updateGroupIDLabel() = win 0x3d26d0, m1 0x2a5fac, imac 0x3148d0;
 	void updateOrderChannel() = win 0x3d29c0;
 	void updateOrderChannelLabel() = win 0x3d2810;
 	TodoReturn updateZLayerButtons();

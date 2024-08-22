@@ -70,4 +70,7 @@ GEODE_SIZE_CHECK(CCLightStrip, 0x160);
 GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3b0);
 GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
 
+GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x1f0);
+GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x25c);
+
 #endif
