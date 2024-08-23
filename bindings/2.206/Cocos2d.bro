@@ -229,7 +229,7 @@ class cocos2d::CCMotionStreak {
 	void resumeStroke() = imac 0x57dc40, m1 0x4ca00c;
 	void stopStroke();
 	void tintWithColor(cocos2d::_ccColor3B);
-	void updateFade(float);
+	void updateFade(float) = imac 0x57dc10;
 
 	~CCMotionStreak() = imac 0x57d3e0, m1 0x4c9930, ios 0x1828b0;
 
@@ -380,7 +380,7 @@ class cocos2d::CCSet {
 
 	// CCSet(cocos2d::CCSet const&);
 	// CCSet();
-	void addObject(cocos2d::CCObject*);
+	void addObject(cocos2d::CCObject*) = imac 0x7bfd10;
 	cocos2d::CCObject* anyObject() = m1 0x6c5cec, imac 0x7bfee0;
 	cocos2d::CCSetIterator begin();
 	bool containsObject(cocos2d::CCObject*);
@@ -389,7 +389,7 @@ class cocos2d::CCSet {
 	cocos2d::CCSetIterator end();
 	cocos2d::CCSet* mutableCopy();
 	void removeAllObjects();
-	void removeObject(cocos2d::CCObject*);
+	void removeObject(cocos2d::CCObject*) = imac 0x7bfdc0;
 
 	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
 }
@@ -479,7 +479,7 @@ class cocos2d::CCParticleSystem {
 	void calculateWorldSpace();
 	bool isFull();
 	void loadDefaults();
-	void loadScaledDefaults(float);
+	void loadScaledDefaults(float) = imac 0x7d84c0;
 	void resetSystem() = m1 0x6dac50, imac 0x7d6b20;
 	void resumeSystem() = m1 0x6dac44, imac 0x7d6b10;
 	void saveDefaults();
@@ -721,13 +721,13 @@ class cocos2d::CCFileUtils {
 	virtual unsigned char* getFileData(char const*, char const*, unsigned long*) = imac 0x443aa0, m1 0x3b5588, ios 0x15c230;
 	virtual unsigned char* getFileDataFromZip(char const*, char const*, unsigned long*) = ios 0x15c380;
 	virtual gd::string getFullPathForDirectoryAndFilename(gd::string const&, gd::string const&) = ios 0x15de60;
-	virtual gd::string getNewFilename(char const*) = ios 0x15c4a4;
+	virtual gd::string getNewFilename(char const*) = ios 0x15c4a4, imac 0x42cb30;
 	virtual gd::string getPathForFilename(gd::string const&, gd::string const&, gd::string const&) = ios 0x15c778;
 	virtual gd::vector<gd::string> const& getSearchPaths() = ios 0x15d620;
 	virtual gd::vector<gd::string> const& getSearchResolutionsOrder() = ios 0x15d618;
-	virtual gd::string getWritablePath2() = ios 0x15df8c;
+	virtual gd::string getWritablePath2() = ios 0x15df8c, imac 0x446e30;
 	virtual bool init() = ios 0x15c07c;
-	virtual bool isAbsolutePath(gd::string const&) = ios 0x15ded0;
+	virtual bool isAbsolutePath(gd::string const&) = ios 0x15ded0, imac 0x446d70;
 	virtual bool isPopupNotify() = ios 0x15defc;
 	virtual void loadFilenameLookupDictionaryFromFile(char const*) = ios 0x15dcf0;
 	virtual void purgeCachedEntries();
@@ -737,7 +737,7 @@ class cocos2d::CCFileUtils {
 	virtual void removeSearchPath(char const*) = ios 0x15db00;
 	void setAndroidPath(gd::string);
 	virtual void setFilenameLookupDictionary(cocos2d::CCDictionary*) = ios 0x15dc88;
-	virtual void setPopupNotify(bool) = ios 0x15def0;
+	virtual void setPopupNotify(bool) = ios 0x15def0, imac 0x446d90;
 	virtual void setSearchPaths(gd::vector<gd::string> const&) = ios 0x15d628;
 	virtual void setSearchResolutionsOrder(gd::vector<gd::string> const&) = ios 0x15d210;
 	static cocos2d::CCFileUtils* sharedFileUtils() = imac 0x616a20, m1 0x53a6d0, ios 0x246868;
@@ -824,11 +824,11 @@ class cocos2d::CCNode {
 	cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x2700d0, m1 0x216408, ios 0x24ca08;
 	void schedule(cocos2d::SEL_SCHEDULE) = imac 0x270300, m1 0x2165bc, ios 0x24cb34;
 	void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x270360, m1 0x2165fc, ios 0x24cb58;
-	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float);
+	void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = imac 0x270330;
 	void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = imac 0x270390, m1 0x21661c;
 	void scheduleUpdate() = imac 0x2701e0, m1 0x2164c4, ios 0x24cab0;
-	void scheduleUpdateWithPriority(int);
-	void scheduleUpdateWithPriorityLua(int, int);
+	void scheduleUpdateWithPriority(int) = imac 0x270210;
+	void scheduleUpdateWithPriorityLua(int, int) = imac 0x270240;
 	void sortAllChildrenNoIndex() = ios 0x24c258;
 	void sortAllChildrenWithIndex() = ios 0x24c368;
 	void stopAction(cocos2d::CCAction*) = imac 0x270100, m1 0x216440;
@@ -968,7 +968,7 @@ class cocos2d::CCScheduler {
 	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool) = imac 0x44b660, m1 0x3bcba4;
 	void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool) = imac 0x44c260, m1 0x3bd840, ios 0x1b6dbc;
 	void unscheduleAll();
-	void unscheduleAllForTarget(cocos2d::CCObject*);
+	void unscheduleAllForTarget(cocos2d::CCObject*) = imac 0x44c820;
 	void unscheduleAllWithMinPriority(int);
 	void unscheduleScriptEntry(unsigned int);
 	void unscheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*) = imac 0x44b190, m1 0x3bc6c0;
@@ -1089,7 +1089,7 @@ class cocos2d::CCObject {
 
 	cocos2d::CCObject* autorelease() = imac 0x493e30, m1 0x3f8c0c, ios 0x88458;
 	cocos2d::CCObject* copy();
-	bool isSingleReference() const;
+	bool isSingleReference() const = imac 0x493e60;
 	void release() = imac 0x493e00, m1 0x3f8bd8, ios 0x88424;
 	void retain() = imac 0x493e20, m1 0x3f8bfc, ios 0x88448;
 	unsigned int retainCount() const;
@@ -1264,7 +1264,7 @@ class cocos2d::CCTextureCache {
 	bool reloadTexture(char const*);
 	void removeAllTextures();
 	void removeTexture(cocos2d::CCTexture2D*);
-	void removeTextureForKey(char const*);
+	void removeTextureForKey(char const*) = imac 0x5f87d0;
 	void removeUnusedTextures();
 	cocos2d::CCDictionary* snapshotTextures();
 	cocos2d::CCTexture2D* textureForKey(char const*) = imac 0x5f8850, m1 0x5207c8, ios 0x1160fc;
@@ -1296,7 +1296,7 @@ class cocos2d::CCTouchDelegate {
 
 [[link(win, android)]]
 class cocos2d::CCTouchDispatcher {
-	bool init();
+	bool init() = imac 0x4d56e0;
 
 	int getTargetPrio() const;
 
@@ -1322,7 +1322,7 @@ class cocos2d::CCTouchDispatcher {
 	cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*) = imac 0x4d5fe0, m1 0x433f14, ios 0x159ef0;
 	void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*);
 	void forceRemoveAllDelegates();
-	void forceRemoveDelegate(cocos2d::CCTouchDelegate*);
+	void forceRemoveDelegate(cocos2d::CCTouchDelegate*) = imac 0x4d5d40;
 	void incrementForcePrio(int);
 	bool isDispatchEvents();
 	bool isUsingForcePrio() = imac 0x4d5980, m1 0x433848;
@@ -1528,10 +1528,10 @@ class cocos2d::CCDirector {
 	void setDefaultValues();
 	void setDelegate(cocos2d::CCDirectorDelegate*);
 	void setDeltaTime(float);
-	void setDepthTest(bool) = ios 0x1811b4;
+	void setDepthTest(bool) = ios 0x1811b4, imac 0x48ba80;
 	void setDisplayStats(bool);
 	void setDontCallWillSwitch(bool);
-	void setGLDefaultValues();
+	void setGLDefaultValues() = imac 0x48ba10;
 	void setNextDeltaTimeZero(bool);
 	void setNextScene();
 	void setNotificationNode(cocos2d::CCNode*);
@@ -1549,7 +1549,7 @@ class cocos2d::CCDirector {
 	void calculateMPF();
 	void checkSceneReference();
 	cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = imac 0x48cc80, m1 0x3f236c, ios 0x181ab4;
-	cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&);
+	cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&) = imac 0x48cda0;
 	void createStatsLabel();
 	void drawScene() = m1 0x3f1560, imac 0x48bcd0;
 	void end();
@@ -1563,21 +1563,21 @@ class cocos2d::CCDirector {
 	bool popSceneWithTransition(float, cocos2d::PopTransition) = m1 0x3f2950, imac 0x48d2f0;
 	void popToRootScene() = ios 0x181f3c;
 	void popToSceneInStack(cocos2d::CCScene*);
-	void popToSceneStackLevel(int);
+	void popToSceneStackLevel(int) = imac 0x48d560;
 	void purgeCachedData();
-	void purgeDirector();
+	void purgeDirector() = imac 0x48d5d0;
 	bool pushScene(cocos2d::CCScene*) = imac 0x48d060, m1 0x3f269c, ios 0x181c80;
-	void removeStatsLabel() = ios 0x182250;
+	void removeStatsLabel() = ios 0x182250, imac 0x48d7e0;
 	bool replaceScene(cocos2d::CCScene*) = imac 0x48d110, m1 0x3f2764, ios 0x181d08;
 	void resetSmoothFixCounter();
 	void reshapeProjection(cocos2d::CCSize const&);
-	void resume();
-	void runWithScene(cocos2d::CCScene*) = ios 0x181c54;
+	void resume() = imac 0x48d760;
+	void runWithScene(cocos2d::CCScene*) = ios 0x181c54, imac 0x48cfc0;
 	int sceneCount();
 	void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
 	void showFPSLabel();
 	void showStats();
-	void toggleShowFPS(bool, gd::string, cocos2d::CCPoint);
+	void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = imac 0x48c630;
 	void updateContentScale(cocos2d::TextureQuality) = ios 0x1819cc;
 	void updateScreenScale(cocos2d::CCSize);
 	void willSwitchToScene(cocos2d::CCScene*) = imac 0x48cf70, m1 0x3f2580;
@@ -1759,7 +1759,7 @@ class cocos2d::CCLabelBMFont {
 	CCLabelBMFont() = ios 0x30bc1c, m1 0x50b898, imac 0x5e1420;
 
 	static cocos2d::CCLabelBMFont* create(char const*, char const*) = imac 0x5e0fa0, m1 0x50b404, ios 0x30b814;
-	static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
+	static cocos2d::CCLabelBMFont* create(char const*, char const*, float) = imac 0x5e0ef0;
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment) = imac 0x5e0ef0, m1 0x50b1c0;
 	static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = imac 0x5e0e50, m1 0x50b284, ios 0x30b754;
 	static cocos2d::CCLabelBMFont* create() = imac 0x5e0d30, m1 0x50b13c, ios inline {
@@ -1848,12 +1848,12 @@ class cocos2d::CCArray {
 	// static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
 	// static cocos2d::CCArray* create() = imac 0x72cc40, m1 0x63f894, ios 0x2599ec;
 	// static cocos2d::CCArray* createWithArray(cocos2d::CCArray*) = m1 0x63faac;
-	// static cocos2d::CCArray* createWithCapacity(unsigned int) = ios 0x259b9c;
+	// static cocos2d::CCArray* createWithCapacity(unsigned int) = ios 0x259b9c, imac 0x72cf50;
 	static cocos2d::CCArray* createWithContentsOfFile(char const*);
 	static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*);
 	static cocos2d::CCArray* createWithObject(cocos2d::CCObject*);
 
-	bool init();
+	bool init() = imac 0x72cac0;
 	bool initWithArray(cocos2d::CCArray*);
 	// bool initWithCapacity(unsigned int) = imac 0x72cbb0;
 	bool initWithObject(cocos2d::CCObject*);
@@ -1906,7 +1906,7 @@ class cocos2d::CCDictionary {
 	gd::string getFirstKey();
 
 	void setObject(cocos2d::CCObject*, gd::string const&) = ios 0x42c778, imac 0x30d960, m1 0x29f8f0;
-	//void setObject(cocos2d::CCObject*, int);
+	//void setObject(cocos2d::CCObject*, int) = imac 0x30d960;
 	void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
 	//void setObjectUnSafe(cocos2d::CCObject*, int);
 
@@ -1920,7 +1920,7 @@ class cocos2d::CCDictionary {
 	cocos2d::CCObject* objectForKey(intptr_t) = imac 0x30d7b0, m1 0x29f714, ios 0x42bdf4;
 	cocos2d::CCObject* randomObject();
 	void removeAllObjects() = imac 0x30ceb0, m1 0x29ee04;
-	void removeObjectForElememt(cocos2d::CCDictElement*);
+	void removeObjectForElememt(cocos2d::CCDictElement*) = imac 0x30ebb0;
 	void removeObjectForKey(gd::string const&) = imac 0x30ed00, m1 0x2a0608;
 	//void removeObjectForKey(int);
 	void removeObjectsForKeys(cocos2d::CCArray*);
@@ -2030,7 +2030,7 @@ class cocos2d::CCTransitionMoveInT {
 [[link(win, android)]]
 class cocos2d::CCTransitionFade {
 	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = imac 0xdc990, m1 0xc36e4, ios 0x1d79bc;
-	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&);
+	static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&) = imac 0xdc8f0;
 
 	// CCTransitionFade(cocos2d::CCTransitionFade const&);
 	// CCTransitionFade();
@@ -2132,7 +2132,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 	inline void setProgram(CCNode *n, CCGLProgram *p) {
 	    n->setShaderProgram(p);
 	    if (!n->getChildren()) return;
-	    
+
 	    CCObject* pObj = NULL;
 	    CCARRAY_FOREACH(n->getChildren(), pObj)
 	    {
@@ -2148,7 +2148,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		CC_SAFE_RELEASE(m_pStencil);
 		m_pStencil = pStencil;
 		CC_SAFE_RETAIN(m_pStencil);
-	    
+
 		m_fAlphaThreshold = 1;
 		m_bInverted = false;
 		// get (only once) the number of bits of the stencil buffer
@@ -2163,7 +2163,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 			//}
 			once = false;
 		}
-	    
+
 		return true;
 	}
 
@@ -2192,7 +2192,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		//	CCNode::visit();
 		//	return;
 		//}
-    
+
 		// return fast (draw nothing, or draw everything if in inverted mode) if:
 		// - nil stencil node
 		// - or stencil node invisible:
@@ -2205,12 +2205,12 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 			}
 			return;
 		}
-    
+
 		// store the current stencil layer (position in the stencil buffer),
 		// this will allow nesting up to n CCClippingNode,
 		// where n is the number of bits of the stencil buffer.
 		static GLint layer = -1;
-    
+
 		// all the _stencilBits are in use?
 		if (false) // this definetly wont break anything :clueless: //if (layer + 1 == g_sStencilBits)
 		{
@@ -2221,27 +2221,27 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 				char warning[200] = {0};
 				//snprintf(warning, sizeof(warning), "Nesting more than %d stencils is not supported. Everything will be drawn without stencil for this node and its childs.", g_sStencilBits);
 				CCLOG("%s", warning);
-            
+
 				once = false;
 			}
 			// draw everything, as if there where no stencil
 			CCNode::visit();
 			return;
 		}
-    
+
 		///////////////////////////////////
 		// INIT
-    
+
 		// increment the current layer
 		layer++;
-    
+
 		// mask of the current layer (ie: for layer 3: 00000100)
 		GLint mask_layer = 0x1 << layer;
 		// mask of all layers less than the current (ie: for layer 3: 00000011)
 		GLint mask_layer_l = mask_layer - 1;
 		// mask of all layers less than or equal to the current (ie: for layer 3: 00000111)
 		GLint mask_layer_le = mask_layer | mask_layer_l;
-    
+
 		// manually save the stencil state
 		GLboolean currentStencilEnabled = GL_FALSE;
 		GLuint currentStencilWriteMask = ~0;
@@ -2259,23 +2259,23 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		glGetIntegerv(GL_STENCIL_FAIL, (GLint *)&currentStencilFail);
 		glGetIntegerv(GL_STENCIL_PASS_DEPTH_FAIL, (GLint *)&currentStencilPassDepthFail);
 		glGetIntegerv(GL_STENCIL_PASS_DEPTH_PASS, (GLint *)&currentStencilPassDepthPass);
-    
+
 		// enable stencil use
 		glEnable(GL_STENCIL_TEST);
 		// check for OpenGL error while enabling stencil test
 		CHECK_GL_ERROR_DEBUG();
-    
+
 		// all bits on the stencil buffer are readonly, except the current layer bit,
 		// this means that operation like glClear or glStencilOp will be masked with this value
 		glStencilMask(mask_layer);
-    
+
 		//glClear(GL_STENCIL_BUFFER_BIT);
 		// manually save the depth test state
 		//GLboolean currentDepthTestEnabled = GL_TRUE;
 		GLboolean currentDepthWriteMask = GL_TRUE;
 		//currentDepthTestEnabled = glIsEnabled(GL_DEPTH_TEST);
 		glGetBooleanv(GL_DEPTH_WRITEMASK, &currentDepthWriteMask);
-    
+
 		// disable depth test while drawing the stencil
 		//glDisable(GL_DEPTH_TEST);
 		// disable update to the depth buffer while drawing the stencil,
@@ -2283,10 +2283,10 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		// it should never prevent something else to be drawn,
 		// only disabling depth buffer update should do
 		glDepthMask(GL_FALSE);
-    
+
 		///////////////////////////////////
 		// CLEAR STENCIL BUFFER
-    
+
 		// manually clear the stencil buffer by drawing a fullscreen rectangle on it
 		// setup the stencil test func like this:
 		// for each pixel in the fullscreen rectangle
@@ -2295,14 +2295,14 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		//     if in inverted mode: set the current layer value to 1 in the stencil buffer
 		glStencilFunc(GL_NEVER, mask_layer, mask_layer);
 		glStencilOp(!m_bInverted ? GL_ZERO : GL_REPLACE, GL_KEEP, GL_KEEP);
-    
+
 		// draw a fullscreen solid rectangle to clear the stencil buffer
 		//ccDrawSolidRect(CCPointZero, ccpFromSize([[CCDirector sharedDirector] winSize]), ccc4f(1, 1, 1, 1));
 		ccDrawSolidRect(CCPointZero, ccpFromSize(CCDirector::sharedDirector()->getWinSize()), ccc4f(1, 1, 1, 1));
-    
+
 		///////////////////////////////////
 		// DRAW CLIPPING STENCIL
-    
+
 		// setup the stencil test func like this:
 		// for each pixel in the stencil node
 		//     never draw it into the frame buffer
@@ -2310,7 +2310,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		//     if in inverted mode: set the current layer value to 0 in the stencil buffer
 		glStencilFunc(GL_NEVER, mask_layer, mask_layer);
 		glStencilOp(!m_bInverted ? GL_REPLACE : GL_ZERO, GL_KEEP, GL_KEEP);
-    
+
 		// enable alpha test only if the alpha threshold < 1,
 		// indeed if alpha threshold == 1, every pixel will be drawn anyways
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
@@ -2341,17 +2341,17 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 			// we need to recursively apply this shader to all the nodes in the stencil node
 			// XXX: we should have a way to apply shader to all nodes without having to do this
 			// setProgram(m_pStencil, program); // this causes fail
-       
+
 #endif
     	}
-    
+
 		// draw the stencil node as if it was one of our child
 		// (according to the stencil test func/op and alpha (or alpha shader) test)
 		kmGLPushMatrix();
 		transform();
 		m_pStencil->visit();
 		kmGLPopMatrix();
-    
+
 		// restore alpha test state
 		if (m_fAlphaThreshold < 1)
 		{
@@ -2507,8 +2507,8 @@ class cocos2d::CCSpriteFrameCache {
 	void removeSpriteFrames();
 	void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*);
 	void removeSpriteFramesFromFile(char const*);
-	void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*);
-	void removeUnusedSpriteFrames();
+	void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*) = imac 0x31c450;
+	void removeUnusedSpriteFrames() = imac 0x31bd10;
 	cocos2d::CCSpriteFrame* spriteFrameByName(char const*) = imac 0x31c720, m1 0x2ad664, ios 0x3c5bcc;
 	//purgeSharedSpriteFrameCache = ios 0x3c4dd4
 }
@@ -2574,7 +2574,7 @@ class cocos2d::CCMenuItemSprite {
 class cocos2d::CCMenu {
 	// static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1e1964, m1 0x6a6d58, imac 0x79e7b0;
 	static cocos2d::CCMenu* create() = imac 0x79e7a0, m1 0x6a6d34, ios 0x1e1940;
-	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
+	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*) = imac 0x79e9a0;
     static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = imac 0x79ebf0, m1 0x6a70e0;
     // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
 
