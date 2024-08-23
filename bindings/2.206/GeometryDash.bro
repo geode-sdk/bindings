@@ -17900,7 +17900,7 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 		m_selectedSongID = songID;
 		this->updateAudioLabel();
 	}
-	void showCustomSongSelect() = win 0xc5080, imac 0x20f620, m1 0x1c0908;
+	void showCustomSongSelect() = win 0xc5080, imac 0x2142a0, m1 0x1c5220;
 	void updateAudioLabel() = win 0xc4bc0, imac 0x213dd0, m1 0x1c4d80;
 	void updateWidgetVisibility() = win 0xc4f70, imac 0x214210, m1 0x1c518c;
 
