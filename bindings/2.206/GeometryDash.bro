@@ -4804,7 +4804,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn registerChannel(FMOD::Channel*, int, int);
 	void releaseRemovedSounds();
 	void resumeAllAudio() = imac 0x3e1f20, m1 0x362064;
-	void resumeAllEffects() = win inline, imac 0x3eb510, m1 0x368fcc {
+	void resumeAllEffects() = win inline, imac 0x3eb610, m1 0x368fcc {
 		m_globalChannel->setPaused(false);
 	}
 	void resumeAllMusic() = win 0x58ec0, imac 0x3ebb30, m1 0x369340;
@@ -15295,7 +15295,7 @@ class SelectListIconLayer : FLAlertLayer {
 	// virtual ~SelectListIconLayer();
 	SelectListIconLayer() {}
 
-	static SelectListIconLayer* create(int difficulty) = win inline, m1 0x2eeb54, imac 0x35ee60 {
+	static SelectListIconLayer* create(int difficulty) = win inline, m1 0x2eeb54, imac 0x3617b0 {
 		auto ret = new SelectListIconLayer();
 		if (ret->init(difficulty)) {
 			ret->autorelease();
@@ -18461,7 +18461,7 @@ class TextStyleSection : cocos2d::CCObject {
 		ret->m_color = p0;
 		return ret;
 	}
-	static TextStyleSection* createDelaySection(int p0, float p1) = win inline, m1 0x3f76c0, imac 0x3f76c0 {
+	static TextStyleSection* createDelaySection(int p0, float p1) = win inline, m1 0x3f76c0, imac 0x4923f0 {
 		auto ret = TextStyleSection::create(p0, -1, TextStyleType::Delayed);
 		ret->m_delay = p1;
 		return ret;
