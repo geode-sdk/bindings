@@ -82,6 +82,19 @@ class cocos2d::CCEaseBounceOut {
 }
 
 [[link(win, android)]]
+class cocos2d::CCEaseElasticIn {
+	static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval*);
+	static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval*, float) = m1 0x4733fc, imac 0x51e0c0;
+
+	// CCEaseElasticIn(cocos2d::CCEaseElasticIn const&);
+	// CCEaseElasticIn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCEaseElasticOut {
 	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*) = imac 0x51e430, m1 0x473730;
 	static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*, float) = ios 0x27c6e0, imac 0x51e350, m1 0x473664;
@@ -264,6 +277,20 @@ class cocos2d::CCMoveTo {
 }
 
 [[link(win, android)]]
+class cocos2d::CCRemoveSelf {
+	static cocos2d::CCRemoveSelf* create(bool) = m1 0x6bedbc, imac 0x7b8890;
+
+	bool init(bool);
+
+	// CCRemoveSelf(cocos2d::CCRemoveSelf const&);
+	// CCRemoveSelf();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCFiniteTimeAction* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCScaleBy {
 	static cocos2d::CCScaleBy* create(float, float) = imac 0x3bd6d0, m1 0x341544;
 	static cocos2d::CCScaleBy* create(float, float, float);
@@ -305,6 +332,33 @@ class cocos2d::CCTintTo {
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual void update(float);
 	virtual void startWithTarget(cocos2d::CCNode*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCAction {
+	static cocos2d::CCAction* create();
+
+	cocos2d::CCNode* getOriginalTarget();
+	float getSpeedMod() const;
+	int getTag();
+	cocos2d::CCNode* getTarget();
+
+	void setOriginalTarget(cocos2d::CCNode*);
+	void setSpeedMod(float);
+	void setTarget(cocos2d::CCNode*);
+
+	// CCAction(cocos2d::CCAction const&);
+	CCAction() = m1 0x525c48, imac 0x5feb30;
+	~CCAction() = m1 0x525cb8, imac 0x5febd0;
+	char const* description();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x525d78, imac 0x5feca0;
+	virtual void update(float) = m1 0x525e54, imac 0x5fed90;
+	//virtual void setTag(int) = m1 0x1b6e5c, imac 0x205680;
+	virtual bool isDone() = m1 0x525e48, imac 0x5fed70;
+	virtual void startWithTarget(cocos2d::CCNode*) = m1 0x525e38, imac 0x5fed50;
+	virtual void stop() = m1 0x525e40, imac 0x5fed60;
+	virtual void step(float) = m1 0x525e50, imac 0x5fed80;
 }
 
 [[link(win, android)]]
@@ -1067,7 +1121,7 @@ class cocos2d::CCOrbitCamera {
 class cocos2d::CCLayerColor {
 	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&) = imac 0x4bcc40, m1 0x41d7ac, ios 0x15461c;
 	static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float) = imac 0x4bca80, m1 0x41d638, ios 0x154540;
-	static cocos2d::CCLayerColor* create() = ios inline {
+	static cocos2d::CCLayerColor* create() = imac 0x4bc8b0, m1 0x41d4c8, ios inline {
 		CCLayerColor* pRet = new CCLayerColor();
 		if (pRet && pRet->init())
 		{
@@ -2736,7 +2790,7 @@ class DS_Dictionary {
 	gd::string cleanStringWhiteSpace(gd::string const&);
 	static void copyFile(char const*, char const*);
 	cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
-	gd::vector<gd::string> getAllKeys();
+	gd::vector<gd::string> getAllKeys() = m1 0x1416bc, imac 0x178ac0;
 	cocos2d::CCArray* getArrayForKey(char const*, bool) = m1 0x14497c, imac 0x17c470;
 	bool getBoolForKey(char const*) = imac 0x1791d0, m1 0x141d14;
 	cocos2d::CCDictionary* getDictForKey(char const*, bool) = imac 0x17d470, m1 0x145800;
@@ -2753,7 +2807,7 @@ class DS_Dictionary {
 	gd::string getStringForKey(char const*) = imac 0x179410, m1 0x141f2c;
 	gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
 	cocos2d::CCPoint getVec2ForKey(char const*);
-	bool loadRootSubDictFromCompressedFile(char const*);
+	bool loadRootSubDictFromCompressedFile(char const*) = m1 0x13f600, imac 0x176240;
 	bool loadRootSubDictFromFile(char const*);
 	bool loadRootSubDictFromString(gd::string const&) = m1 0x13f9b4, imac 0x1766d0;
 	bool rectFromString(gd::string const&, cocos2d::CCRect&);
@@ -2791,7 +2845,7 @@ class DS_Dictionary {
 	bool splitWithForm(gd::string const&, gd::vector<gd::string>&);
 	void stepBackToRootSubDict();
 	bool stepIntoSubDictWithKey(char const*) = m1 0x14113c, imac 0x178380;
-	void stepOutOfSubDict();
+	void stepOutOfSubDict() = m1 0x141364, imac 0x178690;
 	bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
 }
 
