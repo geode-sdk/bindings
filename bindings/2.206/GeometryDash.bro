@@ -647,7 +647,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 		return static_cast<cocos2d::CCLayer*>(m_pages->objectAtIndex(index));
 	}
 	int getRelativePageForNum(int page) = win inline, m1 0x32f5d4, imac 0x3a9490 {
-		return page < 1 ? page : page % getTotalPages() = imac 0x3a8ca0;
+		return page < 1 ? page : page % getTotalPages();
 	}
 	cocos2d::CCPoint getRelativePosForPage(int page) = win inline, m1 0x32f230, imac 0x3a8ff0 {
 		return { this->getContentSize().width - m_pageOffset * page, 0.f };
