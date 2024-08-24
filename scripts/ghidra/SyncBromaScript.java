@@ -641,7 +641,6 @@ public class SyncBromaScript extends GhidraScript {
 
     private void handleImportMembers() throws Exception {
         final var manager = currentProgram.getDataTypeManager();
-        final var organization = manager.getDataOrganization();
 
         wrapper.printfmt("Importing members...");
         for (var bro : this.bromas) {
@@ -691,7 +690,7 @@ public class SyncBromaScript extends GhidraScript {
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
                         boolean isPointer = memType instanceof PointerDataType;
-                        length = isPointer ? organization.getPointerSize() : memType.getLength();
+                        length = isPointer ? manager.getDataOrganization().getPointerSize() : memType.getLength();
                         int alignment = isPointer ? length : memType.getAlignment();
                         offset = (offset + alignment - 1) / alignment * alignment;
                     }
