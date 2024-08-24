@@ -690,8 +690,10 @@ public class SyncBromaScript extends GhidraScript {
                     int length;
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
-                        length = memType instanceof PointerDataType ? organization.getPointerSize() : memType.getLength();
-                        offset += offset % (memType instanceof PointerDataType ? organization.getPointerSize() : memType.getAlignment());
+                        boolean isPointer = memType instanceof PointerDataType;
+                        length = isPointer ? organization.getPointerSize() : memType.getLength();
+                        int alignment = isPointer ? length : memType.getAlignment();
+                        offset = (offset + alignment - 1) / alignment * alignment;
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
@@ -728,17 +730,16 @@ public class SyncBromaScript extends GhidraScript {
                                 );
                             }
                         }
-                        int memLength = memType instanceof PointerDataType ? organization.getPointerSize() : memType.getLength();
-                        for (int i = memLength; i > 0; i -= 1) {
+                        for (int i = length; i > 0; i -= 1) {
                             classDataMembers.clearAtOffset(offset + i - 1);
                         }
                         classDataMembers.replaceAtOffset(
                             offset,
-                            memType, memLength,
+                            memType, length,
                             mem.name.get().value,
                             mem.getComment().orElse(null)
                         );
-                        offset += memLength;
+                        offset += length;
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
