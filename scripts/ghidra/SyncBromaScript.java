@@ -641,6 +641,7 @@ public class SyncBromaScript extends GhidraScript {
 
     private void handleImportMembers() throws Exception {
         final var manager = currentProgram.getDataTypeManager();
+        final var organization = manager.getDataOrganization();
 
         wrapper.printfmt("Importing members...");
         for (var bro : this.bromas) {
@@ -689,8 +690,8 @@ public class SyncBromaScript extends GhidraScript {
                     int length;
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
-                        length = memType.getLength();
-                        offset += offset % memType.getAlignment();
+                        length = memType instanceof PointerDataType ? organization.getPointerSize() : memType.getLength();
+                        offset += offset % (memType instanceof PointerDataType ? organization.getPointerSize() : memType.getAlignment());
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
@@ -727,16 +728,17 @@ public class SyncBromaScript extends GhidraScript {
                                 );
                             }
                         }
-                        for (int i = memType.getLength(); i > 0; i -= 1) {
+                        int memLength = memType instanceof PointerDataType ? organization.getPointerSize() : memType.getLength();
+                        for (int i = memLength; i > 0; i -= 1) {
                             classDataMembers.clearAtOffset(offset + i - 1);
                         }
                         classDataMembers.replaceAtOffset(
                             offset,
-                            memType, memType.getLength(),
+                            memType, memLength,
                             mem.name.get().value,
                             mem.getComment().orElse(null)
                         );
-                        offset += memType.getLength();
+                        offset += memLength;
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
