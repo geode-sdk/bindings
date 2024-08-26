@@ -463,14 +463,14 @@ public class ScriptWrapper {
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("map")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x10);
+            var point = new StructureDataType(cat, cat.getName(), 0x0);
             point.add(PointerDataType.dataType, 0x8, "ptr", "The pointer to the main node of the map");
             point.add(UnsignedLongLongDataType.dataType, 0x8, "length", "The length of the map");
             point.setPackingEnabled(true);
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("unordered_set")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x40);
+            var point = new StructureDataType(cat, cat.getName(), 0x0);
             point.add(FloatDataType.dataType, 0x4, "traits", "");
             point.add(PointerDataType.dataType, 0x8, "listptr", "");
             point.add(UnsignedLongLongDataType.dataType, 0x8, "listlen", "");
@@ -483,7 +483,7 @@ public class ScriptWrapper {
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("set")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x10);
+            var point = new StructureDataType(cat, cat.getName(), 0x0);
             point.add(PointerDataType.dataType, 0x8, "ptr", "The pointer to the main node of the set");
             point.add(UnsignedLongLongDataType.dataType, 0x8, "length", "The length of the set");
             point.setPackingEnabled(true);
