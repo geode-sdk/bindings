@@ -31,7 +31,6 @@ import ghidra.program.model.data.Pointer;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.ShortDataType;
 import ghidra.program.model.data.StructureDataType;
-import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.UnionDataType;
 import ghidra.program.model.data.UnsignedCharDataType;
 import ghidra.program.model.data.UnsignedIntegerDataType;
