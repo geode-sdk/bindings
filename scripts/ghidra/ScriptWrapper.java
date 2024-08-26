@@ -24,7 +24,7 @@ import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.FunctionDefinitionDataType;
 import ghidra.program.model.data.IntegerDataType;
 import ghidra.program.model.data.LongDataType;
-import ghidra.program.model.data.LongLongDataType;
+import ghidra.program.model.data.UnsignedLongLongDataType;
 import ghidra.program.model.data.ParameterDefinition;
 import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.Pointer;
@@ -326,8 +326,9 @@ public class ScriptWrapper {
         cat = this.createCategoryAll(category.extend("gd", "string"));
         var string = new StructureDataType(cat, cat.getName(), 0x0);
         string.add(stringDataUnion, 0x10, "data", "String data with SSO");
-        string.add(LongLongDataType.dataType, 0x8, "length", "The length of the string without the terminating null byte");
-        string.add(LongLongDataType.dataType, 0x8, "capacity", "The capacity of the string buffer");
+        string.add(UnsignedLongLongDataType.dataType, 0x8, "length", "The length of the string without the terminating null byte");
+        string.add(UnsignedLongLongDataType.dataType, 0x8, "capacity", "The capacity of the string buffer");
+        string.setPackingEnabled(true);
 
         manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
 
@@ -337,6 +338,7 @@ public class ScriptWrapper {
         var point = new StructureDataType(cat, cat.getName(), 0x0);
         point.add(FloatDataType.dataType, 0x4, "x", "X position of the point");
         point.add(FloatDataType.dataType, 0x4, "y", "Y position of the point");
+        point.setPackingEnabled(true);
         manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::CCSize
@@ -345,6 +347,7 @@ public class ScriptWrapper {
         var size = new StructureDataType(cat, cat.getName(), 0x0);
         size.add(FloatDataType.dataType, 0x4, "width", "Width of the size");
         size.add(FloatDataType.dataType, 0x4, "height", "Height of the size");
+        size.setPackingEnabled(true);
         manager.addDataType(size, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::CCRect
@@ -355,6 +358,7 @@ public class ScriptWrapper {
         rect.add(FloatDataType.dataType, 0x4, "y", "Y position of the rect");
         rect.add(FloatDataType.dataType, 0x4, "width", "Width of the rect");
         rect.add(FloatDataType.dataType, 0x4, "height", "Height of the rect");
+        rect.setPackingEnabled(true);
         manager.addDataType(rect, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::ccColor3B
@@ -364,6 +368,7 @@ public class ScriptWrapper {
         color3B.add(ByteDataType.dataType, 0x1, "r", "Red component");
         color3B.add(ByteDataType.dataType, 0x1, "g", "Green component");
         color3B.add(ByteDataType.dataType, 0x1, "b", "Blue component");
+        color3B.setPackingEnabled(true);
         manager.addDataType(color3B, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::ccColor4B
@@ -374,6 +379,7 @@ public class ScriptWrapper {
         color4B.add(ByteDataType.dataType, 0x1, "g", "Green component");
         color4B.add(ByteDataType.dataType, 0x1, "b", "Blue component");
         color4B.add(ByteDataType.dataType, 0x1, "a", "Alpha component");
+        color4B.setPackingEnabled(true);
         manager.addDataType(color4B, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::ccHSVValue
@@ -385,8 +391,7 @@ public class ScriptWrapper {
         ccHSVValue.add(FloatDataType.dataType, 0x4, "v", "Lightness");
         ccHSVValue.add(ByteDataType.dataType, 0x1, "saturationChecked", "");
         ccHSVValue.add(ByteDataType.dataType, 0x1, "brightnessChecked", "");
-        ccHSVValue.add(Undefined1DataType.dataType);
-        ccHSVValue.add(Undefined1DataType.dataType);
+        ccHSVValue.setPackingEnabled(true);
         manager.addDataType(ccHSVValue, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::SEL_MenuHandler
@@ -421,6 +426,7 @@ public class ScriptWrapper {
                     case 'V': ty.add(IntegerDataType.dataType, 0x4, "value", "The original value of the protected value"); break;
                 }
             }
+            ty.setPackingEnabled(true);
             manager.addDataType(ty, DataTypeConflictHandler.REPLACE_HANDLER);
         }
     }
@@ -440,26 +446,47 @@ public class ScriptWrapper {
             point.add(PointerDataType.dataType, 0x8, "start", "Pointer to the first element in the vector");
             point.add(PointerDataType.dataType, 0x8, "last", "Pointer to one past the last element in the vector");
             point.add(PointerDataType.dataType, 0x8, "capacity", "Pointer to the end of the current vector allocation");
+            point.setPackingEnabled(true);
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("unordered_map")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x40);
-            // todo: idk the structure...
+            var point = new StructureDataType(cat, cat.getName(), 0x0);
+            point.add(FloatDataType.dataType, 0x4, "traits", "");
+            point.add(PointerDataType.dataType, 0x8, "listptr", "");
+            point.add(UnsignedLongLongDataType.dataType, 0x8, "listlen", "");
+            point.add(PointerDataType.dataType, 0x8, "vstart", "");
+            point.add(PointerDataType.dataType, 0x8, "vlast", "");
+            point.add(PointerDataType.dataType, 0x8, "vcapacity", "");
+            point.add(UnsignedLongLongDataType.dataType, 0x8, "mask", "");
+            point.add(UnsignedLongLongDataType.dataType, 0x8, "max", "");
+            point.setPackingEnabled(true);
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("map")) {
             var point = new StructureDataType(cat, cat.getName(), 0x10);
-            // todo: idk the structure...
+            point.add(PointerDataType.dataType, 0x8, "ptr", "The pointer to the main node of the map");
+            point.add(UnsignedLongLongDataType.dataType, 0x8, "length", "The length of the map");
+            point.setPackingEnabled(true);
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("unordered_set")) {
             var point = new StructureDataType(cat, cat.getName(), 0x40);
-            // todo: idk the structure...
+            point.add(FloatDataType.dataType, 0x4, "traits", "");
+            point.add(PointerDataType.dataType, 0x8, "listptr", "");
+            point.add(UnsignedLongLongDataType.dataType, 0x8, "listlen", "");
+            point.add(PointerDataType.dataType, 0x8, "vstart", "");
+            point.add(PointerDataType.dataType, 0x8, "vlast", "");
+            point.add(PointerDataType.dataType, 0x8, "vcapacity", "");
+            point.add(UnsignedLongLongDataType.dataType, 0x8, "mask", "");
+            point.add(UnsignedLongLongDataType.dataType, 0x8, "max", "");
+            point.setPackingEnabled(true);
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("set")) {
             var point = new StructureDataType(cat, cat.getName(), 0x10);
-            // todo: idk the structure...
+            point.add(PointerDataType.dataType, 0x8, "ptr", "The pointer to the main node of the set");
+            point.add(UnsignedLongLongDataType.dataType, 0x8, "length", "The length of the set");
+            point.setPackingEnabled(true);
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else {
