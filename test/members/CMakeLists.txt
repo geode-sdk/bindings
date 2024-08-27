@@ -12,7 +12,7 @@ add_compile_definitions(GEODE_IS_MEMBER_TEST)
 if (WIN32)
 	target_sources(${PROJECT_NAME} PRIVATE Windows.cpp)
 else()
-	target_sources(${PROJECT_NAME} PRIVATE MacOSArm.cpp MacOSIntel.cpp Android32.cpp Android64.cpp)
+	target_sources(${PROJECT_NAME} PRIVATE MacOSArm.cpp MacOSIntel.cpp Android32.cpp Android64.cpp iOS.cpp)
 endif()
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)

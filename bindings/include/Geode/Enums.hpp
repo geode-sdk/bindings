@@ -356,7 +356,10 @@ enum class TouchTriggerControl {};
 enum class SmartPrefabResult {};
 enum class AudioSortType {};
 enum class spriteMode {};
-enum class GJAssetType {};
+enum class GJAssetType {
+    Song = 1,
+    SFX = 2
+};
 enum class CommentKeyType {
     Level = 0,
     User = 1,
@@ -703,6 +706,7 @@ enum class GJDifficulty {
 };
 
 enum class GJLevelType {
+    Default = 0,
     Local = 1,
     Editor = 2,
     Saved = 3
@@ -887,4 +891,11 @@ enum class ShipStreak {
     ShipFire4 = 4,
     ShipFire5 = 5,
     ShipFire6 = 6,
+};
+
+// Geode Addition
+enum class GameOptionsSetting {
+    Off = -1,
+    Disabled = 0,
+    On = 1,
 };

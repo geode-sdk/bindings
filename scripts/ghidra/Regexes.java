@@ -58,7 +58,7 @@ public class Regexes {
                 "\\(\\s*(?<params>(?:{1}\\s*,?\\s*)*)\\)" +
                 "(?:"+
                     // Grab the platforms
-                    "(?:\\s*=\\s*(?<platforms>(?:\\w+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+))" + 
+                    "(?:\\s*=\\s*(?<platforms>(?:\\w+\\s+(?:0x[0-9a-fA-F]+|inline)\\s*,?\\s*)+))" + 
                     // Or the body
                     "|(?<inlinebody>(?=\\s*\\'{'))" +
                     // Or where we can add platforms

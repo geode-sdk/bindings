@@ -107,7 +107,7 @@ function shouldKeepSymbol(sym) {
     let keep = sym && sym.includes('::') && !sym.match(/(typeinfo|vtable|thunk|guard variable)/);
     if (!keep) return false;
     let className = sym.split('::')[0];
-    keep = !className.match(/^(_JNIEnv|internal|tinyxml2|cocos2d|DS_Dictionary|ObjectDecoder|pugi|__cxx|__gnu_cxx|std|fmt|llvm|tk|xml_|MD5|rtsha1)/);
+    keep = !className.match(/^(_JNIEnv|internal|tinyxml2|cocos2d|DS_Dictionary|ObjectDecoder|ObjectDecoderDelegate|pugi|__cxx|__gnu_cxx|std|fmt|llvm|tk|xml_|MD5|rtsha1)/);
     keep = keep && className !== "FMOD" && !sym.startsWith('FMOD_') && className != "tk";
     keep = keep && !enumClasses.includes(className);
     keep = keep && className != "CCContentManager";
