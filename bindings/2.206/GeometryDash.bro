@@ -1520,7 +1520,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
 	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture) = m1 0x522e70, imac 0x5fb760;
 
 	virtual TodoReturn getShaderName() = m1 0x522ca0, imac 0x5fb5b0, ios 0x1af7d8;
-	virtual char* shaderBody() = m1 0x522b78, imac 0x5fb3b0, ios 0x1af704;
+	virtual char* shaderBody() = win 0x47f80, m1 0x522b78, imac 0x5fb3b0, ios 0x1af704;
 }
 
 [[link(android)]]
@@ -1661,7 +1661,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool) = m1 0x52216c, imac 0x5fa890;
 	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x52246c, win 0x477e0, imac 0x5fab60, ios 0x1af228;
 	virtual TodoReturn getShaderName() = m1 0x521c58, imac 0x5fa3e0, ios 0x1aee70;
-	virtual char* shaderBody() = win 0x47f80, m1 0x5225b0, imac 0x5faca0, ios 0x1af334;
+	virtual char* shaderBody() = m1 0x5225b0, imac 0x5faca0, ios 0x1af334;
 	virtual void updateColor() = win 0x47a90, m1 0x5225c8, imac 0x5facc0;
 
 	float m_hue;
