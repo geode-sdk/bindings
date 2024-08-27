@@ -1510,17 +1510,57 @@ class CCSpriteCOpacity : cocos2d::CCSprite {
 [[link(android)]]
 class CCSpriteGrayscale : CCSpriteWithHue {
 	// virtual ~CCSpriteGrayscale();
+	CCSpriteGrayscale() {}
 
-	static CCSpriteGrayscale* create(gd::string const& file, cocos2d::CCRect const& rect) = m1 0x522d90, imac 0x5fb690;
-	static CCSpriteGrayscale* create(gd::string const& file) = m1 0x521c84, imac 0x5fb5d0;
-
-	static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = m1 0x52307c, imac 0x5fb930;
+	static CCSpriteGrayscale* create(gd::string const& file, cocos2d::CCRect const& rect) = win inline, m1 0x522d90, imac 0x5fb690 {
+		auto ret = new CCSpriteGrayscale();
+		if (ret->initWithFile(file.c_str(), rect)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteGrayscale* create(gd::string const& file) = win inline, m1 0x522cc4, imac 0x5fb5d0 {
+		auto ret = new CCSpriteGrayscale();
+		if (ret->initWithFile(file.c_str())) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = win inline, m1 0x52307c, imac 0x5fb930 {
+		auto ret = new CCSpriteGrayscale();
+		if (ret->initWithSpriteFrame(frame)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 	static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const& frameName) = win 0x481a0, m1 0x523178, imac 0x5fba10;
-	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool unk) = m1 0x522f88, imac 0x5fb860;
-	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture) = m1 0x522e70, imac 0x5fb760;
+	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool rotated) = win inline, m1 0x522f88, imac 0x5fb860 {
+		auto ret = new CCSpriteGrayscale();
+		if (ret->initWithTexture(texture, rect, rotated)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture) = win inline, m1 0x522e70, imac 0x5fb760 {
+		auto ret = new CCSpriteGrayscale();
+		if (ret->initWithTexture(texture)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	virtual TodoReturn getShaderName() = m1 0x522ca0, imac 0x5fb5b0, ios 0x1af7d8;
-	virtual char* shaderBody() = m1 0x522b78, imac 0x5fb3b0, ios 0x1af704;
+	virtual gd::string getShaderName() = win 0x48140, m1 0x522ca0, imac 0x5fb5b0, ios 0x1af7d8;
+	virtual const char* shaderBody() = win 0x47f80, m1 0x522b78, imac 0x5fb3b0, ios 0x1af704;
 }
 
 [[link(android)]]
@@ -1633,43 +1673,115 @@ class CCSpritePlus : cocos2d::CCSprite {
 [[link(android)]]
 class CCSpriteWithHue : cocos2d::CCSprite {
 	// virtual ~CCSpriteWithHue();
-	// CCSpriteWithHue();
+	CCSpriteWithHue() {}
 
-	static CCSpriteWithHue* create(gd::string const&, cocos2d::CCRect const&);
-	static CCSpriteWithHue* create(gd::string const&);
+	static CCSpriteWithHue* create(gd::string const& file, cocos2d::CCRect const& rect) = win inline, m1 0x521d50, imac 0x5fa4d0 {
+		auto ret = new CCSpriteWithHue();
+		if (ret->initWithFile(file.c_str(), rect)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteWithHue* create(gd::string const& file) = win inline, m1 0x521c84, imac 0x5fa410 {
+		auto ret = new CCSpriteWithHue();
+		if (ret->initWithFile(file.c_str())) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteWithHue* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = win inline, m1 0x52203c, imac 0x5fa770 {
+		auto ret = new CCSpriteWithHue();
+		if (ret->initWithSpriteFrame(frame)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteWithHue* createWithSpriteFrameName(gd::string const&) = win 0x47610, m1 0x522138, imac 0x5fa850;
+	static CCSpriteWithHue* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool rotated) = win inline, m1 0x521f48, imac 0x5fa6a0 {
+		auto ret = new CCSpriteWithHue();
+		if (ret->initWithTexture(texture, rect, rotated)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteWithHue* createWithTexture(cocos2d::CCTexture2D* texture) = win inline, m1 0x521e30, imac 0x5fa5a0 {
+		auto ret = new CCSpriteWithHue();
+		if (ret->initWithTexture(texture)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	TodoReturn createWithSpriteFrameName(gd::string const&) = win 0x47610;
-	TodoReturn createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
-	TodoReturn createWithTexture(cocos2d::CCTexture2D*);
-	float getAlpha();
-	float getHue();
-	void getUniformLocations();
-	void initShader();
-	void setCustomLuminance(float, float, float);
-	void setEvenLuminance(float) = imac 0x5fb1b0, m1 0x5229c0;
-	void setHue(float);
-	void setHueDegrees(float);
-	void setLuminance(float);
-	TodoReturn setupDefaultSettings();
-	TodoReturn updateColorMatrix();
-	TodoReturn updateHue(float);
+	float getAlpha() = win inline, m1 0x522950, imac 0x5fb130 {
+		return _displayedOpacity / 255.f;
+	}
+	float getHue() = win inline, m1 0x522968, imac 0x5fb150 {
+		return m_hue;
+	}
+	void getUniformLocations() = win inline, m1 0x52252c, imac 0x5fac30 {
+		m_uHueLoc = glGetUniformLocation(m_pShaderProgram->getProgram(), "u_hue");
+		m_uAlphaLoc = glGetUniformLocation(m_pShaderProgram->getProgram(), "u_alpha");
+		m_uLumLoc = glGetUniformLocation(m_pShaderProgram->getProgram(), "u_lum");
+	}
+	void initShader() = win 0x47850, m1 0x5221c4, imac 0x5fa8f0;
+	void setCustomLuminance(float r, float g, float b) = win inline, m1 0x5229e0, imac 0x5fb1e0 {
+		m_luminance[0] = r;
+		m_luminance[1] = g;
+		m_luminance[2] = b;
+	}
+	void setEvenLuminance(float luminance) = win inline, m1 0x5229c0, imac 0x5fb1b0 {
+		m_luminance[0] = luminance * 0.33f;
+		m_luminance[1] = luminance * 0.33f;
+		m_luminance[2] = luminance * 0.33f;
+	}
+	void setHue(float hue) = win inline, m1 0x5224fc, imac 0x5fabe0 {
+		m_hue = hue;
+		this->updateColorMatrix();
+	}
+	void setHueDegrees(float degrees) = win inline, m1 0x522970, imac 0x5fb160 {
+		auto deg = degrees;
+		while (deg < 0.f) deg += 360.f;
+		this->setHue(deg / 360.f * 6.28318548f);
+	}
+	void setLuminance(float luminance) = win inline, m1 0x522504, imac 0x5fac00 {
+		m_luminance[0] = luminance * 0.21f;
+		m_luminance[1] = luminance * 0.72f;
+		m_luminance[2] = luminance * 0.07f;
+	}
+	void setupDefaultSettings() = win inline, m1 0x5221b0, imac 0x5fa8d0 {
+		m_hue = 0.f;
+		this->setLuminance(1.f);
+	}
+	void updateColorMatrix() = win 0x47ab0, m1 0x5225ec, imac 0x5face0;
+	void updateHue(float) = win inline, m1 0x5224d0, imac 0x5fabb0 {
+		this->setHue(m_hue + 0.05235988f);
+	}
 
-	virtual void draw() = m1 0x5229f0, imac 0x5fb200, ios 0x1af588;
-	virtual bool initWithTexture(cocos2d::CCTexture2D*) = m1 0x52245c, imac 0x5faad0;
-	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = m1 0x5223e0, imac 0x5fab40;
-	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool) = m1 0x52216c, imac 0x5fa890;
-	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x52246c, win 0x477e0, imac 0x5fab60, ios 0x1af228;
-	virtual TodoReturn getShaderName() = m1 0x521c58, imac 0x5fa3e0, ios 0x1aee70;
-	virtual char* shaderBody() = m1 0x5225b0, imac 0x5faca0, ios 0x1af334;
+	virtual void draw() = win 0x47da0, m1 0x5229f0, imac 0x5fb200, ios 0x1af588;
+	virtual bool initWithTexture(cocos2d::CCTexture2D*) = win 0x47770, m1 0x52245c, imac 0x5faad0;
+	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = win 0x477d0, m1 0x5223e0, imac 0x5fab40;
+	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool) = win 0x47710, m1 0x52216c, imac 0x5fa890;
+	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = win 0x477e0, m1 0x52246c, imac 0x5fab60, ios 0x1af228;
+	virtual gd::string getShaderName() = win 0x47580, m1 0x521c58, imac 0x5fa3e0, ios 0x1aee70;
+	virtual const char* shaderBody() = win 0x47a80, m1 0x5225b0, imac 0x5faca0, ios 0x1af334;
 	virtual void updateColor() = win 0x47a90, m1 0x5225c8, imac 0x5facc0;
 
 	float m_hue;
-	float m_luminance[3];
+	std::array<float, 3> m_luminance;
 	std::array<std::array<float, 3>, 3> m_colorMatrix;
-	float m_uHueLoc;
-	float m_uAlphaLoc;
-	float m_uLumLoc;
+	int m_uHueLoc;
+	int m_uAlphaLoc;
+	int m_uLumLoc;
 }
 
 [[link(android)]]
