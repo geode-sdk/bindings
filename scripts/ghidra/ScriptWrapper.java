@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.data.ArrayDataType;
@@ -141,6 +143,38 @@ public class ScriptWrapper {
         return ret;
     }
 
+    DataType getArrayType(String name) {
+        var arrayMatch = Pattern.compile("^array<(.+), (\\d+)>$").matcher(name);
+        if (!arrayMatch.matches()) {
+            printfmt("Array type {0} doesn't match the expected format", name);
+            return new ArrayDataType(new PointerDataType(VoidDataType.dataType), 0);
+        }
+        var type = arrayMatch.group(1);
+        var size = Integer.parseInt(arrayMatch.group(2));
+        DataType inner = null;
+        if (type.matches("bool|char|short|int|long|float|double|void|uchar|ushort|uint|ulong")) {
+            switch (type) {
+                case "bool": inner = BooleanDataType.dataType; break;
+                case "char": inner = CharDataType.dataType; break;
+                case "short": inner = ShortDataType.dataType; break;
+                case "int": inner = IntegerDataType.dataType; break;
+                case "long": inner = LongDataType.dataType; break;
+                case "float": inner = FloatDataType.dataType; break;
+                case "double": inner = DoubleDataType.dataType; break;
+                case "void": inner = VoidDataType.dataType; break;
+                case "uchar": inner = UnsignedCharDataType.dataType; break;
+                case "ushort": inner = UnsignedShortDataType.dataType; break;
+                case "uint": inner = UnsignedIntegerDataType.dataType; break;
+                case "ulong": inner = UnsignedLongDataType.dataType; break;
+            }
+        }
+        else if (type.startsWith("std::array")) {
+            inner = this.getArrayType(type.substring(5));
+        }
+
+        return new ArrayDataType(inner != null ? inner : new PointerDataType(VoidDataType.dataType), inner != null ? size : 0);
+    }
+
     DataType addOrGetType(Broma.Type type) throws Exception {
         final var manager = wrapped.getCurrentProgram().getDataTypeManager();
 
@@ -162,6 +196,10 @@ public class ScriptWrapper {
         // STL containers are fully known
         else if (type.name.value.startsWith("gd::")) {
             result = this.updateTypeDatabaseWithSTL(type.name.value.substring(4));
+        }
+        // Array types
+        else if (type.name.value.startsWith("std::array")) {
+            result = this.getArrayType(type.name.value.substring(5) + type.template.get().value);
         }
         // Broma-specific type
         else if (type.name.value.equals("TodoReturn")) {
