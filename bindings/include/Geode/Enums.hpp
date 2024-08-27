@@ -86,6 +86,7 @@ enum class GameObjectType {
     GravityTogglePortal = 42,
     SpiderOrb = 43,
     SpiderPad = 44,
+    EnterEffectObject = 45,
     TeleportOrb = 46,
     AnimatedHazard = 47,
 };
