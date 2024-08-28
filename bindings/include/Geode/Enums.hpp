@@ -86,6 +86,7 @@ enum class GameObjectType {
     GravityTogglePortal = 42,
     SpiderOrb = 43,
     SpiderPad = 44,
+    EnterEffectObject = 45,
     TeleportOrb = 46,
     AnimatedHazard = 47,
 };
@@ -706,6 +707,7 @@ enum class GJDifficulty {
 };
 
 enum class GJLevelType {
+    Default = 0,
     Local = 1,
     Editor = 2,
     Saved = 3
