@@ -1902,10 +1902,8 @@ class CharacterColorDelegate {
 [[link(android)]]
 class CharacterColorPage : FLAlertLayer {
 	// virtual ~CharacterColorPage();
-	CharacterColorPage() = win inline {
+	CharacterColorPage() {
 		m_colorMode = 0;
-		m_height = 0.f;
-		m_width = 0.f;
 		m_playerObjects = nullptr;
 		m_modeButtons = nullptr;
 		m_colorButtons = nullptr;
@@ -1913,10 +1911,17 @@ class CharacterColorPage : FLAlertLayer {
 		m_delegate = nullptr;
 		m_glowToggler = nullptr;
 		m_glowLabel = nullptr;
-		FLAlertLayer();
 	}
 
-	static CharacterColorPage* create() = ios 0x12f2cc, m1 0x585908, imac 0x669c10;
+	static CharacterColorPage* create() = win inline, ios 0x12f2cc, m1 0x585908, imac 0x669c10 {
+		auto ret = new CharacterColorPage();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	int activeColorForMode(int mode);
 	TodoReturn checkColor(int, UnlockType);
