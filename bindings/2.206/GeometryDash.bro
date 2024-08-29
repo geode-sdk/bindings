@@ -7650,21 +7650,20 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn swapGround(int);
 	TodoReturn swapMiddleground(int);
 	void switchToFlyMode(PlayerObject* player, GameObject* object, bool unused, int type) = win inline, m1 0xf5330, imac 0x118300, ios 0x1f0570 {
-		auto objectType = (GameObjectType)type;
-		player->switchedToMode(objectType);
+		player->switchedToMode((GameObjectType)type);
 		auto cameraObject = this->processCameraObject(object, player);
 		auto noEffects = cameraObject && cameraObject->m_hasNoEffects;
-		switch (objectType) {
-			case GameObjectType::ShipPortal:
+		switch (type) {
+			case 5:
 				player->toggleFlyMode(true, noEffects);
 				break;
-			case GameObjectType::UfoPortal:
+			case 19:
 				player->toggleBirdMode(true, noEffects);
 				break;
-			case GameObjectType::WavePortal:
+			case 26:
 				player->toggleDartMode(true, noEffects);
 				break;
-			case GameObjectType::SwingPortal:
+			case 41:
 				player->toggleSwingMode(true, noEffects);
 				break;
 		}
@@ -7781,7 +7780,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void spawnObject(GameObject*, double, gd::vector<int> const&) = win 0x20b7d0, imac 0x121460, m1 0xfcf18;
 	virtual TodoReturn activateEndTrigger(int, bool, bool) = m1 0xdf6d8, imac 0xfd9d0;
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = m1 0xdf6dc, imac 0xfd9e0;
-	virtual void toggleGlitter(bool) = m1 0xdf6e0, imac 0xfd9f0;
+	virtual void toggleGlitter(bool) = m1 0xdf6e0, imac 0xfd9f0 {}
 	virtual void destroyPlayer(PlayerObject*, GameObject*) = m1 0xdf6e4, imac 0xfda00;
 	virtual void updateDebugDraw() = win 0x2015c0, imac 0x115b10, m1 0xf2fe4;
 	virtual void addToSection(GameObject*) = win 0x216dc0, imac 0x1336e0, m1 0x10b35c;
