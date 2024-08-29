@@ -10810,7 +10810,26 @@ class HardStreak : cocos2d::CCDrawNode {
 	void addPoint(cocos2d::CCPoint p0) = win 0x2a7200, imac 0x9d260, m1 0x8d3d4;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn clearBehindXPos(float);
-	TodoReturn createDuplicate();
+	HardStreak* createDuplicate() = win inline {
+		auto ret = HardStreak::create();
+		ret->setBlendFunc(this->getBlendFunc());
+		ret->m_currentPoint = m_currentPoint;
+		ret->m_isSolid = m_isSolid;
+		ret->m_waveSize = m_waveSize;
+		ret->m_isSolid = m_isSolid;
+		ret->m_isFlipped = m_isFlipped;
+		ret->m_pulseSize = m_pulseSize;
+		ret->setOpacity(this->getOpacity());
+		ret->setColor(this->getColor());
+
+		CCObject* obj;
+		CCARRAY_FOREACH(m_pointArray, obj){
+			auto nodePoint = static_cast<PointNode*>(obj);
+			ret->addPoint(nodePoint->m_point);
+		}
+
+		return ret;
+	}
 	void firstSetup();
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
