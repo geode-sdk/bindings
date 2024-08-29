@@ -7670,21 +7670,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 		}
 		this->toggleGlitter(true);
 	}
-	void switchToRobotMode(PlayerObject* player, GameObject* object, bool unused) = win inline, m1 0xf5534, imac 0x118500, ios 0x1f06e8 {
-		player->switchedToMode(GameObjectType::RobotPortal);
-		auto cameraObject = this->processCameraObject(object, player);
-		player->toggleRobotMode(true, cameraObject && cameraObject->m_hasNoEffects);
-	}
-	void switchToRollMode(PlayerObject* player, GameObject* object, bool unused) = win inline, m1 0xf5488, imac 0x118450, ios 0x1f0680 {
-		player->switchedToMode(GameObjectType::BallPortal);
-		auto cameraObject = this->processCameraObject(object, player);
-		player->toggleRollMode(true, cameraObject && cameraObject->m_hasNoEffects);
-	}
-	void switchToSpiderMode(PlayerObject* player, GameObject* object, bool unused) = win inline, m1 0xf55e0, imac 0x1185b0, ios 0x1f0750 {
-		player->switchedToMode(GameObjectType::SpiderPortal);
-		auto cameraObject = this->processCameraObject(object, player);
-		player->toggleSpiderMode(true, cameraObject && cameraObject->m_hasNoEffects);
-	}
+	void switchToRobotMode(PlayerObject* player, GameObject* object, bool unused) = win 0x203780, m1 0xf5534, imac 0x118500, ios 0x1f06e8;
+	void switchToRollMode(PlayerObject* player, GameObject* object, bool unused) = win 0x203960, m1 0xf5488, imac 0x118450, ios 0x1f0680;
+	void switchToSpiderMode(PlayerObject* player, GameObject* object, bool unused) = win 0x203870, m1 0xf55e0, imac 0x1185b0, ios 0x1f0750;
 	void syncBGTextures() = win 0x22a0d0, m1 0x11f12c, imac 0x14d040;
 	void teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x200b70, m1 0xf2288, imac 0x114ca0;
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
