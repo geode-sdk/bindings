@@ -7970,7 +7970,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x230190, m1 0x123828, imac 0x1529b0;
 	virtual TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = win 0x230390, m1 0x123a68, imac 0x152bb0;
 	virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*) = win 0x231f30, m1 0x1247e0, imac 0x153b30;
-	virtual void checkpointActivated(CheckpointGameObject*) = win 0x235b70;
+	virtual void checkpointActivated(CheckpointGameObject*) = win 0x235b70, m1 0x127a8c, imac 0x157ed0;
 	virtual TodoReturn flipArt(bool) = m1 0x127a88, imac 0x157ec0;
 	virtual void addKeyframe(KeyframeGameObject*) = win 0x223b30, m1 0x115768, imac 0x1405b0;
 	virtual void updateTimeLabel(int, int, bool) = m1 0xdf6ec, imac 0xfda20;
