@@ -1510,17 +1510,57 @@ class CCSpriteCOpacity : cocos2d::CCSprite {
 [[link(android)]]
 class CCSpriteGrayscale : CCSpriteWithHue {
 	// virtual ~CCSpriteGrayscale();
+	CCSpriteGrayscale() {}
 
-	static CCSpriteGrayscale* create(gd::string const& file, cocos2d::CCRect const& rect) = m1 0x522d90, imac 0x5fb690;
-	static CCSpriteGrayscale* create(gd::string const& file) = m1 0x521c84, imac 0x5fb5d0;
-
-	static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = m1 0x52307c, imac 0x5fb930;
+	static CCSpriteGrayscale* create(gd::string const& file, cocos2d::CCRect const& rect) = win inline, m1 0x522d90, imac 0x5fb690 {
+		auto ret = new CCSpriteGrayscale();
+		if (ret->initWithFile(file.c_str(), rect)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteGrayscale* create(gd::string const& file) = win inline, m1 0x522cc4, imac 0x5fb5d0 {
+		auto ret = new CCSpriteGrayscale();
+		if (ret->initWithFile(file.c_str())) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = win inline, m1 0x52307c, imac 0x5fb930 {
+		auto ret = new CCSpriteGrayscale();
+		if (ret->initWithSpriteFrame(frame)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 	static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const& frameName) = win 0x481a0, m1 0x523178, imac 0x5fba10;
-	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool unk) = m1 0x522f88, imac 0x5fb860;
-	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture) = m1 0x522e70, imac 0x5fb760;
+	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool rotated) = win inline, m1 0x522f88, imac 0x5fb860 {
+		auto ret = new CCSpriteGrayscale();
+		if (ret->initWithTexture(texture, rect, rotated)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture) = win inline, m1 0x522e70, imac 0x5fb760 {
+		auto ret = new CCSpriteGrayscale();
+		if (ret->initWithTexture(texture)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	virtual TodoReturn getShaderName() = m1 0x522ca0, imac 0x5fb5b0, ios 0x1af7d8;
-	virtual char* shaderBody() = m1 0x522b78, imac 0x5fb3b0, ios 0x1af704;
+	virtual gd::string getShaderName() = win 0x48140, m1 0x522ca0, imac 0x5fb5b0, ios 0x1af7d8;
+	virtual const char* shaderBody() = win 0x47f80, m1 0x522b78, imac 0x5fb3b0, ios 0x1af704;
 }
 
 [[link(android)]]
@@ -1633,43 +1673,115 @@ class CCSpritePlus : cocos2d::CCSprite {
 [[link(android)]]
 class CCSpriteWithHue : cocos2d::CCSprite {
 	// virtual ~CCSpriteWithHue();
-	// CCSpriteWithHue();
+	CCSpriteWithHue() {}
 
-	static CCSpriteWithHue* create(gd::string const&, cocos2d::CCRect const&);
-	static CCSpriteWithHue* create(gd::string const&);
+	static CCSpriteWithHue* create(gd::string const& file, cocos2d::CCRect const& rect) = win inline, m1 0x521d50, imac 0x5fa4d0 {
+		auto ret = new CCSpriteWithHue();
+		if (ret->initWithFile(file.c_str(), rect)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteWithHue* create(gd::string const& file) = win inline, m1 0x521c84, imac 0x5fa410 {
+		auto ret = new CCSpriteWithHue();
+		if (ret->initWithFile(file.c_str())) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteWithHue* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = win inline, m1 0x52203c, imac 0x5fa770 {
+		auto ret = new CCSpriteWithHue();
+		if (ret->initWithSpriteFrame(frame)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteWithHue* createWithSpriteFrameName(gd::string const&) = win 0x47610, m1 0x522138, imac 0x5fa850;
+	static CCSpriteWithHue* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool rotated) = win inline, m1 0x521f48, imac 0x5fa6a0 {
+		auto ret = new CCSpriteWithHue();
+		if (ret->initWithTexture(texture, rect, rotated)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static CCSpriteWithHue* createWithTexture(cocos2d::CCTexture2D* texture) = win inline, m1 0x521e30, imac 0x5fa5a0 {
+		auto ret = new CCSpriteWithHue();
+		if (ret->initWithTexture(texture)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-	TodoReturn createWithSpriteFrameName(gd::string const&) = win 0x47610;
-	TodoReturn createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool);
-	TodoReturn createWithTexture(cocos2d::CCTexture2D*);
-	float getAlpha();
-	float getHue();
-	void getUniformLocations();
-	void initShader();
-	void setCustomLuminance(float, float, float);
-	void setEvenLuminance(float) = imac 0x5fb1b0, m1 0x5229c0;
-	void setHue(float);
-	void setHueDegrees(float);
-	void setLuminance(float);
-	TodoReturn setupDefaultSettings();
-	TodoReturn updateColorMatrix();
-	TodoReturn updateHue(float);
+	float getAlpha() = win inline, m1 0x522950, imac 0x5fb130 {
+		return _displayedOpacity / 255.f;
+	}
+	float getHue() = win inline, m1 0x522968, imac 0x5fb150 {
+		return m_hue;
+	}
+	void getUniformLocations() = win inline, m1 0x52252c, imac 0x5fac30 {
+		m_uHueLoc = glGetUniformLocation(m_pShaderProgram->getProgram(), "u_hue");
+		m_uAlphaLoc = glGetUniformLocation(m_pShaderProgram->getProgram(), "u_alpha");
+		m_uLumLoc = glGetUniformLocation(m_pShaderProgram->getProgram(), "u_lum");
+	}
+	void initShader() = win 0x47850, m1 0x5221c4, imac 0x5fa8f0;
+	void setCustomLuminance(float r, float g, float b) = win inline, m1 0x5229e0, imac 0x5fb1e0 {
+		m_luminance[0] = r;
+		m_luminance[1] = g;
+		m_luminance[2] = b;
+	}
+	void setEvenLuminance(float luminance) = win inline, m1 0x5229c0, imac 0x5fb1b0 {
+		m_luminance[0] = luminance * 0.33f;
+		m_luminance[1] = luminance * 0.33f;
+		m_luminance[2] = luminance * 0.33f;
+	}
+	void setHue(float hue) = win inline, m1 0x5224fc, imac 0x5fabe0 {
+		m_hue = hue;
+		this->updateColorMatrix();
+	}
+	void setHueDegrees(float degrees) = win inline, m1 0x522970, imac 0x5fb160 {
+		auto deg = degrees;
+		while (deg < 0.f) deg += 360.f;
+		this->setHue(deg / 360.f * 6.28318548f);
+	}
+	void setLuminance(float luminance) = win inline, m1 0x522504, imac 0x5fac00 {
+		m_luminance[0] = luminance * 0.21f;
+		m_luminance[1] = luminance * 0.72f;
+		m_luminance[2] = luminance * 0.07f;
+	}
+	void setupDefaultSettings() = win inline, m1 0x5221b0, imac 0x5fa8d0 {
+		m_hue = 0.f;
+		this->setLuminance(1.f);
+	}
+	void updateColorMatrix() = win 0x47ab0, m1 0x5225ec, imac 0x5face0;
+	void updateHue(float) = win inline, m1 0x5224d0, imac 0x5fabb0 {
+		this->setHue(m_hue + 0.05235988f);
+	}
 
-	virtual void draw() = m1 0x5229f0, imac 0x5fb200, ios 0x1af588;
-	virtual bool initWithTexture(cocos2d::CCTexture2D*) = m1 0x52245c, imac 0x5faad0;
-	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = m1 0x5223e0, imac 0x5fab40;
-	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool) = m1 0x52216c, imac 0x5fa890;
-	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x52246c, win 0x477e0, imac 0x5fab60, ios 0x1af228;
-	virtual TodoReturn getShaderName() = m1 0x521c58, imac 0x5fa3e0, ios 0x1aee70;
-	virtual char* shaderBody() = m1 0x5225b0, imac 0x5faca0, ios 0x1af334;
+	virtual void draw() = win 0x47da0, m1 0x5229f0, imac 0x5fb200, ios 0x1af588;
+	virtual bool initWithTexture(cocos2d::CCTexture2D*) = win 0x47770, m1 0x52245c, imac 0x5faad0;
+	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = win 0x477d0, m1 0x5223e0, imac 0x5fab40;
+	virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool) = win 0x47710, m1 0x52216c, imac 0x5fa890;
+	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = win 0x477e0, m1 0x52246c, imac 0x5fab60, ios 0x1af228;
+	virtual gd::string getShaderName() = win 0x47580, m1 0x521c58, imac 0x5fa3e0, ios 0x1aee70;
+	virtual const char* shaderBody() = win 0x47a80, m1 0x5225b0, imac 0x5faca0, ios 0x1af334;
 	virtual void updateColor() = win 0x47a90, m1 0x5225c8, imac 0x5facc0;
 
 	float m_hue;
-	float m_luminance[3];
+	std::array<float, 3> m_luminance;
 	std::array<std::array<float, 3>, 3> m_colorMatrix;
-	float m_uHueLoc;
-	float m_uAlphaLoc;
-	float m_uLumLoc;
+	int m_uHueLoc;
+	int m_uAlphaLoc;
+	int m_uLumLoc;
 }
 
 [[link(android)]]
@@ -1902,10 +2014,8 @@ class CharacterColorDelegate {
 [[link(android)]]
 class CharacterColorPage : FLAlertLayer {
 	// virtual ~CharacterColorPage();
-	CharacterColorPage() = win inline {
+	CharacterColorPage() {
 		m_colorMode = 0;
-		m_height = 0.f;
-		m_width = 0.f;
 		m_playerObjects = nullptr;
 		m_modeButtons = nullptr;
 		m_colorButtons = nullptr;
@@ -1913,10 +2023,17 @@ class CharacterColorPage : FLAlertLayer {
 		m_delegate = nullptr;
 		m_glowToggler = nullptr;
 		m_glowLabel = nullptr;
-		FLAlertLayer();
 	}
 
-	static CharacterColorPage* create() = ios 0x12f2cc, m1 0x585908, imac 0x669c10;
+	static CharacterColorPage* create() = win inline, ios 0x12f2cc, m1 0x585908, imac 0x669c10 {
+		auto ret = new CharacterColorPage();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	int activeColorForMode(int mode);
 	TodoReturn checkColor(int, UnlockType);
@@ -2221,54 +2338,99 @@ class ColorSelectLiveOverlay : FLAlertLayer {
 class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelegate, GJSpecialColorSelectDelegate {
 	// virtual ~ColorSelectPopup();
 
-	static ColorSelectPopup* create(cocos2d::ccColor3B) = win 0x8c220;
-	static ColorSelectPopup* create(ColorAction*);
-	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x8c220, imac 0x7320f0;
-	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static ColorSelectPopup* create(cocos2d::ccColor3B color) = win inline, m1 0x644514, imac 0x7323f0 {
+		auto action = ColorAction::create();
+		action->m_color = color;
+		return ColorSelectPopup::create(action);
+	}
+	static ColorSelectPopup* create(ColorAction* action) = win inline, m1 0x644504, imac 0x7323d0 {
+		return ColorSelectPopup::create(nullptr, nullptr, action);
+	}
+	static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array, ColorAction* action) = win 0x8c220, m1 0x64430c, imac 0x7320f0;
+	static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array) = win inline, m1 0x64430c, imac 0x7320e0 {
+		return ColorSelectPopup::create(effect, array, nullptr);
+	}
 
 	void closeColorSelect(cocos2d::CCObject*) = win 0x8fc90, imac 0x734ba0;
-	TodoReturn colorToHex(cocos2d::ccColor3B);
-	TodoReturn getColorValue();
-	TodoReturn hexToColor(gd::string);
-	bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x8c410, imac 0x732420;
-	void onCopy(cocos2d::CCObject* sender);
-	void onCopyOpacity(cocos2d::CCObject* sender);
-	void onDefault(cocos2d::CCObject* sender);
-	void onHSVLegacyMode(cocos2d::CCObject* sender);
-	void onPaste(cocos2d::CCObject* sender);
-	void onPlayerColor1(cocos2d::CCObject* sender);
-	void onPlayerColor2(cocos2d::CCObject* sender);
-	void onSelectSpecialColor(cocos2d::CCObject* sender);
-	void onTintGround(cocos2d::CCObject* sender);
-	void onToggleHSVMode(cocos2d::CCObject* sender);
-	void onToggleTintMode(cocos2d::CCObject* sender);
-	void onUpdateCopyColor(cocos2d::CCObject* sender);
-	void onUpdateCustomColor(cocos2d::CCObject* sender);
-	TodoReturn selectColor(cocos2d::ccColor3B);
-	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn updateColorLabels();
-	TodoReturn updateColorValue();
-	TodoReturn updateCopyColor();
-	TodoReturn updateCopyColorTextInputLabel();
-	TodoReturn updateCustomColorIdx();
-	TodoReturn updateDuration();
-	void updateDurLabel() = imac 0x734fd0, m1 0x646c84;
-	TodoReturn updateHSVMode();
-	TodoReturn updateHSVValue();
-	void updateOpacity();
-	void updateOpacityLabel();
-	TodoReturn updateTextInputLabel();
+	static gd::string colorToHex(cocos2d::ccColor3B) = win 0x90ec0;
+	cocos2d::ccColor3B const& getColorValue();
+	static cocos2d::ccColor3B hexToColor(gd::string) = win 0x90250;
+	bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x8c410, m1 0x644550, imac 0x732420;
+	void onCopy(cocos2d::CCObject* sender) = win 0x8f550;
+	void onCopyOpacity(cocos2d::CCObject* sender) = win 0x8f2f0;
+	void onDefault(cocos2d::CCObject* sender) = win 0x8f650;
+	void onHSVLegacyMode(cocos2d::CCObject* sender) = win 0x8f260;
+	void onPaste(cocos2d::CCObject* sender) = win 0x8f5d0;
+	void onPlayerColor1(cocos2d::CCObject* sender) = win 0x8f390;
+	void onPlayerColor2(cocos2d::CCObject* sender) = win 0x8f470;
+	void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x91c80;
+	void onTintGround(cocos2d::CCObject* sender) = win 0x8f110;
+	void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x91cf0;
+	void onToggleTintMode(cocos2d::CCObject* sender) = win 0x8f1a0;
+	void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x91c10;
+	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x91440;
+	void selectColor(cocos2d::ccColor3B);
+	void sliderChanged(cocos2d::CCObject* sender) = win 0x8f920;
+	void updateColorLabels() = win 0x90070;
+	void updateColorValue();
+	void updateCopyColor() = win 0x92020;
+	void updateCopyColorTextInputLabel() = win 0x92290;
+	void updateCustomColorIdx() = win 0x91a60;
+	void updateDuration() = win 0x8fa10;
+	void updateDurLabel() = win 0x8fb50, imac 0x734fd0, m1 0x646c84;
+	void updateHSVMode() = win 0x91d30;
+	void updateHSVValue();
+	void updateOpacity() = win 0x8faa0;
+	void updateOpacityLabel() = win 0x8fc20;
+	void updateTextInputLabel() = win 0x91b00;
 
-	virtual void show() = m1 0x649d8c, imac 0x738340;
-	virtual TodoReturn determineStartValues() = m1 0x647c48, imac 0x7360c0;
+	virtual void show() = win 0x91390, m1 0x649d8c, imac 0x738340;
+	virtual TodoReturn determineStartValues() = win 0x8eb80, m1 0x647c48, imac 0x7360c0;
 	virtual void textChanged(CCTextInputNode*) = win 0x914c0, m1 0x649e58, imac 0x738430;
 	virtual void colorValueChanged(cocos2d::ccColor3B) = win 0x8ff40, m1 0x6482e8, imac 0x7368b0;
 	virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x91e80, m1 0x64a358, imac 0x7389d0;
 
-	PAD = android32 0x40, android64 0x70, win 0x70;
+	cocos2d::extension::CCControlColourPicker* m_colorPicker;
+	bool m_unk3c0;
+	cocos2d::CCLabelBMFont* m_opacityLabel;
+	Slider* m_fadeTimeSlider;
+	Slider* m_opacitySlider;
+	CCMenuItemToggler* m_playerColor1Toggle;
+	CCMenuItemToggler* m_playerColor2Toggle;
+	cocos2d::ccColor3B m_originalColor;
+	cocos2d::CCSprite* m_currentColorSprite;
+	cocos2d::CCSprite* m_originalColorSprite;
+	cocos2d::ccColor3B m_currentColor;
+	ColorSelectDelegate* m_delegate;
+	float m_fadeTime;
+	int m_playerColor;
+	int m_blending;
+	float m_opacity;
 	ColorAction* m_colorAction;
-	PAD = android32 0x1c, android64 0x20, win 0x20;
+	CCTextInputNode* m_colorInput;
+	bool m_backgroundTrigger;
+	bool m_tintGround;
+	bool m_legacyHSV;
+	bool m_colorTrigger;
+	bool m_noChannel;
+	bool m_newColorTrigger;
+	int m_colorID;
+	bool m_initalizing;
+	int m_copyColorID;
+	bool m_copyOpacity;
 	ConfigureHSVWidget* m_hsvWidget;
+	cocos2d::ccHSVValue m_hsv;
+	cocos2d::CCArray* m_colorObjects;
+	cocos2d::CCArray* m_copyObjects;
+	CCTextInputNode* m_copyColorInput;
+	CCTextInputNode* m_fadeTimeInput;
+	void* m_unk488;
+	void* m_unk490;
+	bool m_showCopyObjects;
+	CCTextInputNode* m_rInput;
+	CCTextInputNode* m_gInput;
+	CCTextInputNode* m_bInput;
+	CCTextInputNode* m_hexInput;
 }
 
 [[link(android)]]
@@ -2491,7 +2653,7 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
 class CreateMenuItem : CCMenuItemSpriteExtra {
 	// virtual ~CreateMenuItem();
 
-	static CreateMenuItem* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+	static CreateMenuItem* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x125290;
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 
@@ -3846,7 +4008,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void showUI(bool) = imac 0x3dd70, m1 0x392e4, win 0x10dda0;
 	void sliderChanged(cocos2d::CCObject*) = win 0xdef40, ios 0x3CF9B4, imac 0xbbd0;
 	TodoReturn smartTypeForKey(int);
-	cocos2d::CCSprite* spriteFromObjectString(gd::string, bool, bool, int, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0x10a330;
+	cocos2d::CCSprite* spriteFromObjectString(gd::string str, bool, bool, int objLimit, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0x10a330;
 	TodoReturn toggleDuplicateButton();
 	TodoReturn toggleEditObjectButton() = win 0x116aa0;
 	void toggleEnableRotate(cocos2d::CCObject*) = win 0x10c6a0;
@@ -4017,7 +4179,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	ButtonSprite* m_unk31c;
 	ButtonSprite* m_unk320;
 	int m_selectedCreateObjectID;
-	PAD = win 0x10, android32 0x8, android64 0x10, mac 0x10, ios 0x10;
+	void* m_unk324;
+	int m_selectedObjectIndex;
 	cocos2d::CCArray* m_createButtonArray;
 	cocos2d::CCArray* m_customObjectButtonArray;
 	cocos2d::CCArray* m_unknownArray9;
@@ -4025,7 +4188,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	LevelEditorLayer* m_editorLayer; // win 0x340
 	cocos2d::CCPoint m_swipeStart;
 	cocos2d::CCPoint m_swipeEnd;
-	PAD = mac 0x8, win 0x8, android32 0x8, android64 0x8, ios 0x8;
+	PAD = mac 0x8, win 0x8, android32 0x8, android64 0x8, ios 0x8; // could be a CCPoint
 	cocos2d::CCPoint m_lastTouchPoint;
 	cocos2d::CCPoint m_cameraTest;
 	cocos2d::CCPoint m_clickAtPosition;
@@ -7529,7 +7692,16 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void processAreaTintGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, bool);
 	void processAreaTransformGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x219a30;
 	void processAreaVisualActions(float) = imac 0x1389e0, m1 0x10f310;
-	TodoReturn processCameraObject(GameObject*, PlayerObject*);
+	GameObject* processCameraObject(GameObject* object, PlayerObject* player) = win inline, m1 0xf45bc, imac 0x1173a0, ios 0x1efd94 {
+		if (object) {
+			player->m_lastPortalPos = object->getPosition();
+			player->m_lastActivatedPortal = object;
+		}
+		auto ret = object;
+		if (m_gameState.m_isDualMode && m_gameState.m_unkGameObjPtr2) ret = m_gameState.m_unkGameObjPtr2;
+		if (object) m_gameState.m_unkGameObjPtr1 = object;
+		return ret;
+	}
 	void processCommands(float) = win 0x229830, imac 0x148740, m1 0x11b6d8;
 	void processDynamicObjectActions(int, float) = win 0x21ea80;
 	void processFollowActions() = win 0x220d80;
@@ -7640,10 +7812,29 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn swapBackground(int);
 	TodoReturn swapGround(int);
 	TodoReturn swapMiddleground(int);
-	void switchToFlyMode(PlayerObject*, GameObject*, bool, int) = m1 0xf5330, imac 0x118300;
-	void switchToRobotMode(PlayerObject*, GameObject*, bool) = imac 0x118500;
-	void switchToRollMode(PlayerObject*, GameObject*, bool) = imac 0x118450;
-	void switchToSpiderMode(PlayerObject*, GameObject*, bool) = imac 0x1185b0;
+	void switchToFlyMode(PlayerObject* player, GameObject* object, bool unused, int type) = win inline, m1 0xf5330, imac 0x118300, ios 0x1f0570 {
+		player->switchedToMode((GameObjectType)type);
+		auto cameraObject = this->processCameraObject(object, player);
+		auto noEffects = cameraObject && cameraObject->m_hasNoEffects;
+		switch (type) {
+			case 5:
+				player->toggleFlyMode(true, noEffects);
+				break;
+			case 19:
+				player->toggleBirdMode(true, noEffects);
+				break;
+			case 26:
+				player->toggleDartMode(true, noEffects);
+				break;
+			case 41:
+				player->toggleSwingMode(true, noEffects);
+				break;
+		}
+		this->toggleGlitter(true);
+	}
+	void switchToRobotMode(PlayerObject*, GameObject*, bool) = win 0x203780, m1 0xf5534, imac 0x118500, ios 0x1f06e8;
+	void switchToRollMode(PlayerObject*, GameObject*, bool) = win 0x203960, m1 0xf5488, imac 0x118450, ios 0x1f0680;
+	void switchToSpiderMode(PlayerObject*, GameObject*, bool) = win 0x203870, m1 0xf55e0, imac 0x1185b0, ios 0x1f0750;
 	void syncBGTextures() = win 0x22a0d0, m1 0x11f12c, imac 0x14d040;
 	void teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x200b70, m1 0xf2288, imac 0x114ca0;
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
@@ -7752,7 +7943,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void spawnObject(GameObject*, double, gd::vector<int> const&) = win 0x20b7d0, imac 0x121460, m1 0xfcf18;
 	virtual TodoReturn activateEndTrigger(int, bool, bool) = m1 0xdf6d8, imac 0xfd9d0;
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = m1 0xdf6dc, imac 0xfd9e0;
-	virtual void toggleGlitter(bool) = m1 0xdf6e0, imac 0xfd9f0;
+	virtual void toggleGlitter(bool) = m1 0xdf6e0, imac 0xfd9f0 {}
 	virtual void destroyPlayer(PlayerObject*, GameObject*) = m1 0xdf6e4, imac 0xfda00;
 	virtual void updateDebugDraw() = win 0x2015c0, imac 0x115b10, m1 0xf2fe4;
 	virtual void addToSection(GameObject*) = win 0x216dc0, imac 0x1336e0, m1 0x10b35c;
@@ -10781,7 +10972,26 @@ class HardStreak : cocos2d::CCDrawNode {
 	void addPoint(cocos2d::CCPoint p0) = win 0x2a7200, imac 0x9d260, m1 0x8d3d4;
 	TodoReturn clearAboveXPos(float);
 	TodoReturn clearBehindXPos(float);
-	TodoReturn createDuplicate();
+	HardStreak* createDuplicate() = win inline {
+		auto ret = HardStreak::create();
+		ret->setBlendFunc(this->getBlendFunc());
+		ret->m_currentPoint = m_currentPoint;
+		ret->m_isSolid = m_isSolid;
+		ret->m_waveSize = m_waveSize;
+		ret->m_isSolid = m_isSolid;
+		ret->m_isFlipped = m_isFlipped;
+		ret->m_pulseSize = m_pulseSize;
+		ret->setOpacity(this->getOpacity());
+		ret->setColor(this->getColor());
+
+		CCObject* obj;
+		CCARRAY_FOREACH(m_pointArray, obj){
+			auto nodePoint = static_cast<PointNode*>(obj);
+			ret->addPoint(nodePoint->m_point);
+		}
+
+		return ret;
+	}
 	void firstSetup();
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
