@@ -2338,7 +2338,7 @@ class ColorSelectLiveOverlay : FLAlertLayer {
 class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelegate, GJSpecialColorSelectDelegate {
 	// virtual ~ColorSelectPopup();
 
-	static ColorSelectPopup* create(cocos2d::ccColor3B) = win inline, m1 0x644514, imac 0x7323f0 {
+	static ColorSelectPopup* create(cocos2d::ccColor3B color) = win inline, m1 0x644514, imac 0x7323f0 {
 		auto action = ColorAction::create();
 		action->m_color = color;
 		return ColorSelectPopup::create(action);
@@ -2346,8 +2346,8 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 	static ColorSelectPopup* create(ColorAction*) = win inline, m1 0x644504, imac 0x7323d0 {
 		return ColorSelectPopup::create(nullptr, nullptr, action);
 	}
-	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x8c220, m1 0x64430c, imac 0x7320f0;
-	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*) = win inline, m1 0x64430c, imac 0x7320e0 {
+	static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array, ColorAction* action) = win 0x8c220, m1 0x64430c, imac 0x7320f0;
+	static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array) = win inline, m1 0x64430c, imac 0x7320e0 {
 		return ColorSelectPopup::create(effect, array, nullptr);
 	}
 
