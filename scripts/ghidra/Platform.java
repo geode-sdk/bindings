@@ -57,7 +57,7 @@ public enum Platform {
     }
     public boolean respondsToName(String shortName, Platform curPlatform) {
         if (this.shortName.equals(shortName)) {
-            if (this == Platform.WINDOWS32 || this == Platform.WINDOWS64) {
+            if ((this == Platform.WINDOWS32 || this == Platform.WINDOWS64) && (curPlatform == Platform.WINDOWS32 || curPlatform == Platform.WINDOWS64)) {
                 return this == curPlatform;
             }
             return true;
