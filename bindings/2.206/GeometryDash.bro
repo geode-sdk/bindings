@@ -2338,54 +2338,99 @@ class ColorSelectLiveOverlay : FLAlertLayer {
 class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelegate, GJSpecialColorSelectDelegate {
 	// virtual ~ColorSelectPopup();
 
-	static ColorSelectPopup* create(cocos2d::ccColor3B) = win 0x8c220;
-	static ColorSelectPopup* create(ColorAction*);
-	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x8c220, imac 0x7320f0;
-	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static ColorSelectPopup* create(cocos2d::ccColor3B) = win inline, m1 0x644514, imac 0x7323f0 {
+		auto action = ColorAction::create();
+		action->m_color = color;
+		return ColorSelectPopup::create(action);
+	}
+	static ColorSelectPopup* create(ColorAction*) = win inline, m1 0x644504, imac 0x7323d0 {
+		return ColorSelectPopup::create(nullptr, nullptr, action);
+	}
+	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x8c220, m1 0x64430c, imac 0x7320f0;
+	static ColorSelectPopup* create(EffectGameObject*, cocos2d::CCArray*) = win inline, m1 0x64430c, imac 0x7320e0 {
+		return ColorSelectPopup::create(effect, array, nullptr);
+	}
 
 	void closeColorSelect(cocos2d::CCObject*) = win 0x8fc90, imac 0x734ba0;
-	TodoReturn colorToHex(cocos2d::ccColor3B);
-	TodoReturn getColorValue();
-	TodoReturn hexToColor(gd::string);
-	bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x8c410, imac 0x732420;
-	void onCopy(cocos2d::CCObject* sender);
-	void onCopyOpacity(cocos2d::CCObject* sender);
-	void onDefault(cocos2d::CCObject* sender);
-	void onHSVLegacyMode(cocos2d::CCObject* sender);
-	void onPaste(cocos2d::CCObject* sender);
-	void onPlayerColor1(cocos2d::CCObject* sender);
-	void onPlayerColor2(cocos2d::CCObject* sender);
-	void onSelectSpecialColor(cocos2d::CCObject* sender);
-	void onTintGround(cocos2d::CCObject* sender);
-	void onToggleHSVMode(cocos2d::CCObject* sender);
-	void onToggleTintMode(cocos2d::CCObject* sender);
-	void onUpdateCopyColor(cocos2d::CCObject* sender);
-	void onUpdateCustomColor(cocos2d::CCObject* sender);
-	TodoReturn selectColor(cocos2d::ccColor3B);
-	TodoReturn sliderChanged(cocos2d::CCObject*);
-	TodoReturn updateColorLabels();
-	TodoReturn updateColorValue();
-	TodoReturn updateCopyColor();
-	TodoReturn updateCopyColorTextInputLabel();
-	TodoReturn updateCustomColorIdx();
-	TodoReturn updateDuration();
-	void updateDurLabel() = imac 0x734fd0, m1 0x646c84;
-	TodoReturn updateHSVMode();
-	TodoReturn updateHSVValue();
-	void updateOpacity();
-	void updateOpacityLabel();
-	TodoReturn updateTextInputLabel();
+	static gd::string colorToHex(cocos2d::ccColor3B) = win 0x90ec0;
+	cocos2d::ccColor3B const& getColorValue();
+	static cocos2d::ccColor3B hexToColor(gd::string) = win 0x90250;
+	bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x8c410, m1 0x644550, imac 0x732420;
+	void onCopy(cocos2d::CCObject* sender) = win 0x8f550;
+	void onCopyOpacity(cocos2d::CCObject* sender) = win 0x8f2f0;
+	void onDefault(cocos2d::CCObject* sender) = win 0x8f650;
+	void onHSVLegacyMode(cocos2d::CCObject* sender) = win 0x8f260;
+	void onPaste(cocos2d::CCObject* sender) = win 0x8f5d0;
+	void onPlayerColor1(cocos2d::CCObject* sender) = win 0x8f390;
+	void onPlayerColor2(cocos2d::CCObject* sender) = win 0x8f470;
+	void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x91c80;
+	void onTintGround(cocos2d::CCObject* sender) = win 0x8f110;
+	void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x91cf0;
+	void onToggleTintMode(cocos2d::CCObject* sender) = win 0x8f1a0;
+	void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x91c10;
+	void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x91440;
+	void selectColor(cocos2d::ccColor3B);
+	void sliderChanged(cocos2d::CCObject* sender) = win 0x8f920;
+	void updateColorLabels() = win 0x90070;
+	void updateColorValue();
+	void updateCopyColor() = win 0x92020;
+	void updateCopyColorTextInputLabel() = win 0x92290;
+	void updateCustomColorIdx() = win 0x91a60;
+	void updateDuration() = win 0x8fa10;
+	void updateDurLabel() = win 0x8fb50, imac 0x734fd0, m1 0x646c84;
+	void updateHSVMode() = win 0x91d30;
+	void updateHSVValue();
+	void updateOpacity() = win 0x8faa0;
+	void updateOpacityLabel() = win 0x8fc20;
+	void updateTextInputLabel() = win 0x91b00;
 
-	virtual void show() = m1 0x649d8c, imac 0x738340;
-	virtual TodoReturn determineStartValues() = m1 0x647c48, imac 0x7360c0;
+	virtual void show() = win 0x91390, m1 0x649d8c, imac 0x738340;
+	virtual TodoReturn determineStartValues() = win 0x8eb80, m1 0x647c48, imac 0x7360c0;
 	virtual void textChanged(CCTextInputNode*) = win 0x914c0, m1 0x649e58, imac 0x738430;
 	virtual void colorValueChanged(cocos2d::ccColor3B) = win 0x8ff40, m1 0x6482e8, imac 0x7368b0;
 	virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x91e80, m1 0x64a358, imac 0x7389d0;
 
-	PAD = android32 0x40, android64 0x70, win 0x70;
+	cocos2d::extension::CCControlColourPicker* m_colorPicker;
+	bool m_unk3c0;
+	cocos2d::CCLabelBMFont* m_opacityLabel;
+	Slider* m_fadeTimeSlider;
+	Slider* m_opacitySlider;
+	CCMenuItemToggler* m_playerColor1Toggle;
+	CCMenuItemToggler* m_playerColor2Toggle;
+	cocos2d::ccColor3B m_originalColor;
+	cocos2d::CCSprite* m_currentColorSprite;
+	cocos2d::CCSprite* m_originalColorSprite;
+	cocos2d::ccColor3B m_currentColor;
+	ColorSelectDelegate* m_delegate;
+	float m_fadeTime;
+	int m_playerColor;
+	int m_blending;
+	float m_opacity;
 	ColorAction* m_colorAction;
-	PAD = android32 0x1c, android64 0x20, win 0x20;
+	CCTextInputNode* m_colorInput;
+	bool m_backgroundTrigger;
+	bool m_tintGround;
+	bool m_legacyHSV;
+	bool m_colorTrigger;
+	bool m_noChannel;
+	bool m_newColorTrigger;
+	int m_colorID;
+	bool m_initalizing;
+	int m_copyColorID;
+	bool m_copyOpacity;
 	ConfigureHSVWidget* m_hsvWidget;
+	cocos2d::ccHSVValue m_hsv;
+	cocos2d::CCArray* m_colorObjects;
+	cocos2d::CCArray* m_copyObjects;
+	CCTextInputNode* m_copyColorInput;
+	CCTextInputNode* m_fadeTimeInput;
+	void* m_unk488;
+	void* m_unk490;
+	bool m_showCopyObjects;
+	CCTextInputNode* m_rInput;
+	CCTextInputNode* m_gInput;
+	CCTextInputNode* m_bInput;
+	CCTextInputNode* m_hexInput;
 }
 
 [[link(android)]]
