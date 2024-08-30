@@ -2343,7 +2343,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 		action->m_color = color;
 		return ColorSelectPopup::create(action);
 	}
-	static ColorSelectPopup* create(ColorAction*) = win inline, m1 0x644504, imac 0x7323d0 {
+	static ColorSelectPopup* create(ColorAction* action) = win inline, m1 0x644504, imac 0x7323d0 {
 		return ColorSelectPopup::create(nullptr, nullptr, action);
 	}
 	static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array, ColorAction* action) = win 0x8c220, m1 0x64430c, imac 0x7320f0;
