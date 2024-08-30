@@ -7692,7 +7692,16 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void processAreaTintGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, bool);
 	void processAreaTransformGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x219a30;
 	void processAreaVisualActions(float) = imac 0x1389e0, m1 0x10f310;
-	TodoReturn processCameraObject(GameObject*, PlayerObject*);
+	GameObject* processCameraObject(GameObject* object, PlayerObject* player) = win inline, m1 0xf45bc, imac 0x1173a0, ios 0x1efd94 {
+		if (object) {
+			player->m_lastPortalPos = object->getPosition();
+			player->m_lastActivatedPortal = object;
+		}
+		auto ret = object;
+		if (m_gameState.m_isDualMode && m_gameState.m_unkGameObjPtr2) ret = m_gameState.m_unkGameObjPtr2;
+		if (object) m_gameState.m_unkGameObjPtr1 = object;
+		return ret;
+	}
 	void processCommands(float) = win 0x229830, imac 0x148740, m1 0x11b6d8;
 	void processDynamicObjectActions(int, float) = win 0x21ea80;
 	void processFollowActions() = win 0x220d80;
@@ -7803,10 +7812,29 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn swapBackground(int);
 	TodoReturn swapGround(int);
 	TodoReturn swapMiddleground(int);
-	void switchToFlyMode(PlayerObject*, GameObject*, bool, int) = m1 0xf5330, imac 0x118300;
-	void switchToRobotMode(PlayerObject*, GameObject*, bool) = imac 0x118500;
-	void switchToRollMode(PlayerObject*, GameObject*, bool) = imac 0x118450;
-	void switchToSpiderMode(PlayerObject*, GameObject*, bool) = imac 0x1185b0;
+	void switchToFlyMode(PlayerObject* player, GameObject* object, bool unused, int type) = win inline, m1 0xf5330, imac 0x118300, ios 0x1f0570 {
+		player->switchedToMode((GameObjectType)type);
+		auto cameraObject = this->processCameraObject(object, player);
+		auto noEffects = cameraObject && cameraObject->m_hasNoEffects;
+		switch (type) {
+			case 5:
+				player->toggleFlyMode(true, noEffects);
+				break;
+			case 19:
+				player->toggleBirdMode(true, noEffects);
+				break;
+			case 26:
+				player->toggleDartMode(true, noEffects);
+				break;
+			case 41:
+				player->toggleSwingMode(true, noEffects);
+				break;
+		}
+		this->toggleGlitter(true);
+	}
+	void switchToRobotMode(PlayerObject*, GameObject*, bool) = win 0x203780, m1 0xf5534, imac 0x118500, ios 0x1f06e8;
+	void switchToRollMode(PlayerObject*, GameObject*, bool) = win 0x203960, m1 0xf5488, imac 0x118450, ios 0x1f0680;
+	void switchToSpiderMode(PlayerObject*, GameObject*, bool) = win 0x203870, m1 0xf55e0, imac 0x1185b0, ios 0x1f0750;
 	void syncBGTextures() = win 0x22a0d0, m1 0x11f12c, imac 0x14d040;
 	void teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x200b70, m1 0xf2288, imac 0x114ca0;
 	TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
@@ -7915,7 +7943,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void spawnObject(GameObject*, double, gd::vector<int> const&) = win 0x20b7d0, imac 0x121460, m1 0xfcf18;
 	virtual TodoReturn activateEndTrigger(int, bool, bool) = m1 0xdf6d8, imac 0xfd9d0;
 	virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = m1 0xdf6dc, imac 0xfd9e0;
-	virtual void toggleGlitter(bool) = m1 0xdf6e0, imac 0xfd9f0;
+	virtual void toggleGlitter(bool) = m1 0xdf6e0, imac 0xfd9f0 {}
 	virtual void destroyPlayer(PlayerObject*, GameObject*) = m1 0xdf6e4, imac 0xfda00;
 	virtual void updateDebugDraw() = win 0x2015c0, imac 0x115b10, m1 0xf2fe4;
 	virtual void addToSection(GameObject*) = win 0x216dc0, imac 0x1336e0, m1 0x10b35c;
