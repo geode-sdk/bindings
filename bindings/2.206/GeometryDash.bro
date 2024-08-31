@@ -3822,9 +3822,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void constrainGameLayerPosition(float, float) = win 0x11e960, imac 0x2ae30;
 	TodoReturn convertKeyBasedOnNeighbors(int, int, cocos2d::CCPoint, cocos2d::CCArray*);
 	TodoReturn convertToBaseKey(int);
-	TodoReturn copyObjects(cocos2d::CCArray*, bool, bool);
+	void copyObjects(cocos2d::CCArray* objects, bool copyColors, bool sort);
 	TodoReturn copyObjectsDetailed(cocos2d::CCArray*);
-	cocos2d::CCArray* createCustomItems() = win 0xe0c80, imac 0x31990;
+	cocos2d::CCArray* createCustomItems() = win 0xe0c80, imac 0x31990, m1 0x31cb4;
 	TodoReturn createEdgeForObject(GameObject*, int);
 	TodoReturn createExtraObject(int, cocos2d::CCPoint, GameObject*, cocos2d::CCArray*, int, int);
 	TodoReturn createExtras(cocos2d::CCArray*);
@@ -3974,7 +3974,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn processSmartObjectsFromType(int, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*);
 	void recreateButtonTabs() = m1 0x322b8, imac 0x31fb0;
 	void redoLastAction(cocos2d::CCObject*) = win 0x10dd30;
-	void reloadCustomItems() = win 0xe1190;
+	void reloadCustomItems() = win 0xe1190, ios 0x3f13c8, mac inline {
+		GameManager* gm = GameManager::sharedState();
+		int buttonsPerRow = gm->getIntGameVariable("0049");
+		int buttonRows = gm->getIntGameVariable("0050");
+		cocos2d::CCArray* customItems = createCustomItems();
+		m_buttonBar->loadFromItems(customItems,buttonsPerRow,buttonRows,true);
+	}
 	void removeOffset(GameObject*) = win 0x11e840;
 	TodoReturn replaceGroupID(GameObject*, int, int);
 	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0x1105b0;
@@ -5868,7 +5874,7 @@ class GameManager : GManager {
 	TodoReturn addDuplicateLastFrame(int);
 	TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int);
 	TodoReturn addIconDelegate(cocos2d::CCObject*, int);
-	TodoReturn addNewCustomObject(gd::string);
+	void addNewCustomObject(gd::string str) = win 0x17a7c0, imac 0x385ed0, m1 0x30fc34, ios 0x329f58;
 	TodoReturn addToGJLog(cocos2d::CCString*);
 	void applicationDidEnterBackground() = ios 0x32de70;
 	TodoReturn applicationWillEnterForeground() = win 0x17fff0;
