@@ -12856,9 +12856,7 @@ class LocalLevelManager : GManager {
 [[link(android)]]
 class MapPackCell : TableViewCell {
 	// virtual ~MapPackCell();
-	MapPackCell(char const* str, float width, float height) : TableViewCell(str, width, height) {
-		this->init();
-	}
+	MapPackCell(char const*, float, float);
 
 	void loadFromMapPack(GJMapPack*) = win 0xaf940, m1 0x1ea984, imac 0x23ffb0;
 	void onClaimReward(cocos2d::CCObject* sender) = win 0xb0540, m1 0x1f848c, imac 0x24e520;
