@@ -12866,7 +12866,7 @@ class MapPackCell : TableViewCell {
 		this->loadFromMapPack(m_mapPack);
 	}
 	void updateBGColor(int idx) = win inline, m1 0x1eb4b8, imac 0x240b80 {
-		m_backgroundLayer->setColor(idx % 2 == 0 ? ccColor3B { 161, 88, 44 } : ccColor3B { 194, 114, 62 });
+		m_backgroundLayer->setColor(idx % 2 == 0 ? cocos2d::ccColor3B { 161, 88, 44 } : cocos2d::ccColor3B { 194, 114, 62 });
 		m_backgroundLayer->setOpacity(255);
 	}
 
