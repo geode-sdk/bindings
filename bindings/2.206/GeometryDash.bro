@@ -12856,17 +12856,30 @@ class LocalLevelManager : GManager {
 [[link(android)]]
 class MapPackCell : TableViewCell {
 	// virtual ~MapPackCell();
-	MapPackCell(char const*, float, float);
+	MapPackCell(char const* str, float width, float height) : TableViewCell(str, width, height) {
+		this->init();
+	}
 
 	void loadFromMapPack(GJMapPack*) = win 0xaf940, m1 0x1ea984, imac 0x23ffb0;
-	void onClaimReward(cocos2d::CCObject* sender);
-	void onClick(cocos2d::CCObject* sender);
-	TodoReturn playCompleteEffect();
-	TodoReturn reloadCell();
-	TodoReturn updateBGColor(int);
+	void onClaimReward(cocos2d::CCObject* sender) = win 0xb0540, m1 0x1f848c, imac 0x24e520;
+	void onClick(cocos2d::CCObject* sender) = win 0xb0420, m1 0x1f8294, imac 0x24e330;
+	void playCompleteEffect() = win 0xb05c0, m1 0x1f8508, imac 0x24e5a0;
+	void reloadCell() = win inline, m1 0x1f44dc, imac 0x24a030 {
+		this->loadFromMapPack(m_mapPack);
+	}
+	void updateBGColor(int idx) = win inline, m1 0x1eb4b8, imac 0x240b80 {
+		m_backgroundLayer->setColor(idx % 2 == 0 ? ccColor3B { 161, 88, 44 } : ccColor3B { 194, 114, 62 });
+		m_backgroundLayer->setOpacity(255);
+	}
 
 	virtual bool init() = win 0xaf8e0, m1 0x1f824c, imac 0x24e2e0;
-	virtual void draw() = m1 0x1f8744, imac 0x24e7d0;
+	virtual void draw() = win 0xabd00, m1 0x1f8744, imac 0x24e7d0;
+
+	GJMapPack* m_mapPack;
+	CCMenuItemSpriteExtra* m_viewButton;
+	CCMenuItemSpriteExtra* m_rewardButton;
+	cocos2d::CCArray* m_rewardLabels;
+	cocos2d::CCArray* m_rewardSprites;
 }
 
 [[link(android)]]
