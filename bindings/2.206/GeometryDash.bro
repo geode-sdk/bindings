@@ -9514,15 +9514,38 @@ class GJMapObject : cocos2d::CCNode {
 [[link(android)]]
 class GJMapPack : cocos2d::CCNode {
 	// virtual ~GJMapPack();
+	GJMapPack() {
+		m_levels = nullptr;
+		m_packID = 0;
+		m_difficulty = GJDifficulty::Auto;
+		m_stars = 0;
+		m_coins = 0;
+		m_packName = "";
+		m_levelStrings = "";
+		m_MId = 0;
+		m_isGauntlet = false;
+	}
 
-	static GJMapPack* create();
-	static GJMapPack* create(cocos2d::CCDictionary*);
+	static GJMapPack* create() = win inline, m1 0x4b4a58, imac 0x566970 {
+		auto ret = new GJMapPack();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+	static GJMapPack* create(cocos2d::CCDictionary*) = win 0x1679a0, m1 0x48c0a8, imac 0x539620;
 
-	int completedMaps() = imac 0x566e40;
-	bool hasCompletedMapPack() = win 0x168810, imac 0x566ef0, m1 0x4b4f88, ios 0xb1614;
-	TodoReturn parsePackColors(gd::string, gd::string);
-	TodoReturn parsePackLevels(gd::string);
-	int totalMaps() {
+	int completedMaps() = win 0x168810, m1 0x4b4ec4, imac 0x566e40;
+	bool hasCompletedMapPack() = win inline, imac 0x566ef0, m1 0x4b4f88, ios 0xb1614 {
+		auto total = this->totalMaps();
+		if (total > 0) return this->completedMaps() >= total;
+		else return 0;
+	}
+	void parsePackColors(gd::string, gd::string) = win 0x168560, m1 0x4b4c00, imac 0x566b40;
+	void parsePackLevels(gd::string) = m1 0x4b4afc, imac 0x566a30;
+	int totalMaps() = win inline, m1 0x48c988, imac 0x53a080 {
 		if (this->m_levels) {
 			return this->m_levels->count();
 		}
@@ -9530,7 +9553,7 @@ class GJMapPack : cocos2d::CCNode {
 		return 0;
 	}
 
-	virtual bool init() = m1 0x4b4e64, imac 0x566dc0;
+	virtual bool init() = win 0x168500, m1 0x4b4e64, imac 0x566dc0;
 
 	cocos2d::CCArray* m_levels;
 	int m_packID;
@@ -9543,10 +9566,6 @@ class GJMapPack : cocos2d::CCNode {
 	cocos2d::ccColor3B m_barColour;
 	int m_MId;
 	bool m_isGauntlet;
-
-
-
-
 }
 
 [[link(android)]]
@@ -18086,7 +18105,7 @@ class SongInfoLayer : FLAlertLayer {
 class SongInfoObject : cocos2d::CCNode {
 	// virtual ~SongInfoObject();
 
-	static SongInfoObject* create(cocos2d::CCDictionary*) = imac 0x539620;
+	static SongInfoObject* create(cocos2d::CCDictionary*);
 	static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority, gd::string unk1, bool unk2, int unk3, int unk4) = win 0x3245a0;
 	static SongInfoObject* create(int);
 
