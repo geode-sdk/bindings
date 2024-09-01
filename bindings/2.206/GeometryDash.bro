@@ -129,21 +129,21 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 
 	static AccountRegisterLayer* create();
 
-	TodoReturn createTextBackground(cocos2d::CCPoint, cocos2d::CCSize);
-	TodoReturn createTextInput(cocos2d::CCPoint, cocos2d::CCSize, gd::string, int);
-	TodoReturn createTextLabel(cocos2d::CCPoint, gd::string, cocos2d::CCSize);
-	TodoReturn disableNodes();
-	TodoReturn hideLoadingUI();
+	cocos2d::extension::CCScale9Sprite* createTextBackground(cocos2d::CCPoint, cocos2d::CCSize);
+	CCTextInputNode* createTextInput(cocos2d::CCPoint, cocos2d::CCSize, gd::string, int);
+	cocos2d::CCLabelBMFont* createTextLabel(cocos2d::CCPoint, gd::string, cocos2d::CCSize);
+	void disableNodes();
+	void hideLoadingUI();
 	void onClose(cocos2d::CCObject* sender);
 	void onSubmit(cocos2d::CCObject* sender);
 	void resetLabel(int) = imac 0x4a0f20, m1 0x404a94;
 	void resetLabels() = imac 0x4a0e00, m1 0x404964;
 	void showLoadingUI();
-	TodoReturn toggleUI(bool);
-	TodoReturn updateLabel(AccountError);
-	TodoReturn validEmail(gd::string);
-	TodoReturn validPassword(gd::string);
-	TodoReturn validUser(gd::string);
+	void toggleUI(bool);
+	void updateLabel(AccountError);
+	bool validEmail(gd::string);
+	bool validPassword(gd::string);
+	bool validUser(gd::string);
 
 	virtual bool init() = m1 0x40293c, imac 0x49e910;
 	virtual void registerWithTouchDispatcher() = m1 0x4051d4, imac 0x4a1690;
@@ -157,6 +157,19 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 	virtual bool allowTextInput(CCTextInputNode*) = win 0x7a080, m1 0x405c3c, imac 0x4a2340;
 	virtual TodoReturn registerAccountFinished() = win 0x786a0, m1 0x4043e8, imac 0x4a0870;
 	virtual TodoReturn registerAccountFailed(AccountError) = win 0x788c0, m1 0x404580, imac 0x4a0a10;
+
+	CCTextInputNode* m_usernameField;
+	CCTextInputNode* m_passwordField;
+	CCTextInputNode* m_confirmPasswordField;
+	CCTextInputNode* m_emailField;
+	CCTextInputNode* m_verifyEmailField;
+	cocos2d::CCLabelBMFont* m_usernameLabel;
+	cocos2d::CCLabelBMFont* m_passwordLabel;
+	cocos2d::CCLabelBMFont* m_confirmPasswordLabel;
+	cocos2d::CCLabelBMFont* m_emailLabel;
+	cocos2d::CCLabelBMFont* m_verifyEmailLabel;
+	LoadingCircle* m_loadingCircle;
+	bool m_lockInput;
 }
 
 [[link(android)]]
@@ -272,19 +285,43 @@ class AchievementNotifier : cocos2d::CCNode {
 [[link(android)]]
 class AchievementsLayer : GJDropDownLayer {
 	// virtual ~AchievementsLayer();
+	AchievementsLayer() = win inline {
+		m_currentPage = 0;
+		m_nextPageButton = nullptr;
+		m_prevPageButton = nullptr;
+		m_pageLabel = nullptr;
+		m_unkPoint = cocos2d::CCPoint { 0.f, 0.f };
+	}
 
-	static AchievementsLayer* create(); //win: inlined
+	static AchievementsLayer* create() = win inline {
+		auto ret = new AchievementsLayer();
+		if (ret->init("Achievements")) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	void loadPage(int) = win 0x80cd0;
 	void onNextPage(cocos2d::CCObject* sender) = win 0x80eb0;
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x80ec0;
-	TodoReturn setupLevelBrowser(cocos2d::CCArray*); //win: inlined
+	void setupLevelBrowser(cocos2d::CCArray* arr) = win inline {
+		m_listLayer->removeChildByTag(9, true);
+		auto* listView = CustomListView::create(arr, BoomListType::Default, 220.f, 356.f);
+		listView->setTag(9);
+		m_listLayer->addChild(listView, 6);
+	}
 	void setupPageInfo(int, int, int); //win: inlined
 
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x80c30, m1 0x3009d0, imac 0x375020;
 	virtual void customSetup() = m1 0x300570, imac 0x374b60, win 0x80980;
 
 	int m_currentPage;
+	CCMenuItemSpriteExtra* m_nextPageButton;
+	CCMenuItemSpriteExtra* m_prevPageButton;
+	cocos2d::CCLabelBMFont* m_pageLabel;
+	cocos2d::CCPoint m_unkPoint;
 }
 
 [[link(android)]]
@@ -3567,13 +3604,41 @@ class DrawGridLayer : cocos2d::CCLayer {
 [[link(android)]]
 class DungeonBarsSprite : cocos2d::CCNode {
 	// virtual ~DungeonBarsSprite();
+	DungeonBarsSprite() {
+		m_barsSprite = nullptr;
+	}
 
-	static DungeonBarsSprite* create();
+	static DungeonBarsSprite* create() = win inline {
+		auto ret = new DungeonBarsSprite();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn animateOutBars();
+	void animateOutBars() = win inline {
+		auto a1 = cocos2d::CCMoveBy::create(0.08, { -1.5f, 0.0f });
+		auto a2 = cocos2d::CCMoveBy::create(0.08, { 1.5f, 0.0f });
+		auto a3 = cocos2d::CCMoveBy::create(0.08, { -1.5f, 0.0f });
+		auto a4 = cocos2d::CCMoveBy::create(0.08, { 1.5f, 0.0f });
+		auto a5 = cocos2d::CCMoveBy::create(0.08, { -1.5f, 0.0f });
+		auto a6 = cocos2d::CCMoveBy::create(0.08, { 1.5f, 0.0f });
+		auto a7 = cocos2d::CCMoveBy::create(2.5, { 0.0f, -130.0f });
+		
+		auto seq = cocos2d::CCSequence::create(
+			a1, a2, a3, a4, a5, a6,
+			cocos2d::CCEaseElasticIn::create(a7, 1.6f),
+			nullptr
+		);
+		this->m_barsSprite->runAction(seq);
+	}
 
-	virtual bool init() = m1 0x414e48, imac 0x4b2440;
-	virtual void visit() = m1 0x414ec8, imac 0x4b24c0;
+	virtual bool init() = win 0x3c9cd0, m1 0x414e48, imac 0x4b2440;
+	virtual void visit() = win 0x3c9d50, m1 0x414ec8, imac 0x4b24c0;
+
+	cocos2d::CCSprite* m_barsSprite;
 }
 
 [[link(android)]]
