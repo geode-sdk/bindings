@@ -15724,7 +15724,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onArrow(int tag, int increment) = win 0x3d05e0;
 	void onArrowLeft(cocos2d::CCObject* sender) = win 0x3d0580;
 	void onArrowRight(cocos2d::CCObject* sender) = win 0x3d05b0;
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x3d2b60, m1 0x2a4f2c, imac 0x3136a0;
 	void onCopy(cocos2d::CCObject* sender);
 	void onExtra(cocos2d::CCObject* sender);
 	void onExtra2(cocos2d::CCObject* sender);
