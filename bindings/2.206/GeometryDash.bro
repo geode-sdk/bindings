@@ -6101,7 +6101,7 @@ class GameManager : GManager {
 	void showInterstitialForced();
 	void showMainMenuAd();
 	void startUpdate() = ios 0x322c1c;
-	gd::string stringForCustomObject(int customObjectID) = win 0x17a940;
+	gd::string stringForCustomObject(int customObjectID) = win 0x17a940, imac 0x386070, m1 0x30fdcc;
 	TodoReturn subYouTube();
 	TodoReturn switchCustomObjects(int, int);
 	TodoReturn switchScreenMode(bool, bool);
