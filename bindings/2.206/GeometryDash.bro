@@ -15648,7 +15648,7 @@ class SelectSettingLayer : FLAlertLayer {
 		return idxToValue(m_type, m_settingID);
 	}
 	static int idxToValue(SelectSettingType type, int idx) = win inline, m1 0x213aac, imac 0x26d3b0 {
-		if (type != SelectSettingType::Speed) return idx;
+		if (type != SelectSettingType::StartingSpeed) return idx;
 
 		switch (idx) {
 			case 0: return 1;
