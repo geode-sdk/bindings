@@ -392,7 +392,11 @@ enum class GJFeatureState {
 };
 enum class GJKeyGroup {};
 enum class GJKeyCommand {};
-enum class SelectSettingType {};
+enum class SelectSettingType {
+    StartingModeClassic = 0,
+    StartingModePlatformer = 1,
+    StartingSpeed = 2,
+};
 enum class gjParticleValue {
     MaxParticles = 1,
     Duration = 2,
