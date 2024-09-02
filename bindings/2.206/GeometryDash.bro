@@ -6101,7 +6101,7 @@ class GameManager : GManager {
 	void showInterstitialForced();
 	void showMainMenuAd();
 	void startUpdate() = ios 0x322c1c;
-	gd::string stringForCustomObject(int customObjectID) = win 0x17a940;
+	gd::string stringForCustomObject(int customObjectID) = win 0x17a940, imac 0x386070, m1 0x30fdcc;
 	TodoReturn subYouTube();
 	TodoReturn switchCustomObjects(int, int);
 	TodoReturn switchScreenMode(bool, bool);
@@ -7031,7 +7031,7 @@ class GameStatsManager : cocos2d::CCNode {
 		return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
 	}
 	bool hasCompletedMapPack(int);
-	bool hasCompletedOnlineLevel(int) = win 0x1d3c40, imac 0x6d270;
+	bool hasCompletedOnlineLevel(int) = win 0x1d3c40, m1 0x611f0, imac 0x6d270;
 	bool hasCompletedStarLevel(GJGameLevel*) = ios 0x340ef4;
 	bool hasPendingUserCoin(char const*) = win 0x1d5a00, m1 0x63484, imac 0x6f5b0;
 	bool hasRewardBeenCollected(GJRewardType, int);
@@ -15734,7 +15734,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 	void onArrow(int tag, int increment) = win 0x3d05e0;
 	void onArrowLeft(cocos2d::CCObject* sender) = win 0x3d0580;
 	void onArrowRight(cocos2d::CCObject* sender) = win 0x3d05b0;
-	void onClose(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x3d2b60, m1 0x2a4f2c, imac 0x3136a0;
 	void onCopy(cocos2d::CCObject* sender);
 	void onExtra(cocos2d::CCObject* sender);
 	void onExtra2(cocos2d::CCObject* sender);
@@ -17277,7 +17277,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	float getTruncatedValueByTag(int, float);
 	void goToPage(int, bool) = win 0x448780;
 	void hideAll();
-	bool init(EffectGameObject*, cocos2d::CCArray*, float, float, int) = win 0x448070, imac 0x230620;
+	bool init(EffectGameObject*, cocos2d::CCArray*, float, float, int) = win 0x448070, m1 0x1de048, imac 0x230620;
 	void onCustomEaseArrow(int, bool) = win 0x451c30;
 	void onCustomEaseArrowDown(cocos2d::CCObject* sender) = win 0x451c00;
 	void onCustomEaseArrowUp(cocos2d::CCObject* sender) = win 0x451bd0;
