@@ -17267,7 +17267,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	float getTruncatedValueByTag(int, float);
 	void goToPage(int, bool) = win 0x448780;
 	void hideAll();
-	bool init(EffectGameObject*, cocos2d::CCArray*, float, float, int) = win 0x448070, imac 0x230620;
+	bool init(EffectGameObject*, cocos2d::CCArray*, float, float, int) = win 0x448070, m1 0x1de048, imac 0x230620;
 	void onCustomEaseArrow(int, bool) = win 0x451c30;
 	void onCustomEaseArrowDown(cocos2d::CCObject* sender) = win 0x451c00;
 	void onCustomEaseArrowUp(cocos2d::CCObject* sender) = win 0x451bd0;
