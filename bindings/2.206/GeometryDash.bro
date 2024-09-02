@@ -15507,15 +15507,27 @@ class SelectArtDelegate {
 class SelectArtLayer : FLAlertLayer {
 	// virtual ~SelectArtLayer();
 
-	static SelectArtLayer* create(SelectArtType, int);
+	static SelectArtLayer* create(SelectArtType, int) = win 0x301b60, m1 0x211ca0, imac 0x26b2c0;
 
-	bool init(SelectArtType, int);
-	void onClose(cocos2d::CCObject* sender);
-	void onSelectCustom(cocos2d::CCObject* sender);
-	TodoReturn selectArt(cocos2d::CCObject*);
-	TodoReturn updateSelectedCustom(int);
+	bool init(SelectArtType, int) = win 0x301c70, m1 0x2122d4, imac 0x26baf0;
+	void onClose(cocos2d::CCObject* sender) = win 0x302a40, m1 0x212d60, imac 0x26c5f0;
+	void onSelectCustom(cocos2d::CCObject* sender) = win 0x302980, m1 0x212dc0, imac 0x26c640;
+	void selectArt(cocos2d::CCObject* sender) = win 0x3028c0, m1 0x212c78, imac 0x26c520;
+	void updateSelectedCustom(int idx) = win inline, m1 0x211dd0, imac 0x26b430 {
+		if (m_lineSprites) {
+			m_line = idx;
+			this->onSelectCustom(nullptr);
+		}
+	}
 
 	virtual void keyBackClicked() = win 0x302a90, m1 0x212e68, imac 0x26c700;
+
+	cocos2d::CCArray* m_artSprites;
+	cocos2d::CCArray* m_lineSprites;
+	int m_art;
+	int m_line;
+	SelectArtType m_type;
+	SelectArtDelegate* m_delegate;
 }
 
 [[link(android)]]
