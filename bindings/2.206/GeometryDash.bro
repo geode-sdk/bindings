@@ -15647,7 +15647,7 @@ class SelectSettingLayer : FLAlertLayer {
 	int getSelectedValue() = win inline, m1 0x2117c4, imac 0x26ad90 {
 		return idxToValue(m_type, m_settingID);
 	}
-	int idxToValue(SelectSettingType type, int idx) = win inline, m1 0x213aac, imac 0x26d3b0 {
+	static int idxToValue(SelectSettingType type, int idx) = win inline, m1 0x213aac, imac 0x26d3b0 {
 		if (type != SelectSettingType::Speed) return idx;
 
 		switch (idx) {
@@ -15660,8 +15660,8 @@ class SelectSettingLayer : FLAlertLayer {
 	bool init(SelectSettingType, int) = win 0x302bf0, m1 0x213154, imac 0x26cae0;
 	void onClose(cocos2d::CCObject* sender) = win 0x303890, m1 0x213a4c, imac 0x26d360;
 	void onSelect(cocos2d::CCObject* sender) = win 0x3037e0, m1 0x213974, imac 0x26d2b0;
-	int valueToIdx(SelectSettingType type, int value) = win inline, m1 0x213708, imac 0x26d0a0 {
-		if (type != SelectSettingType::Speed) return value;
+	static int valueToIdx(SelectSettingType type, int value) = win inline, m1 0x213708, imac 0x26d0a0 {
+		if (type != SelectSettingType::StartingSpeed) return value;
 
 		switch (value) {
 			case 0: return 1;
