@@ -1474,6 +1474,12 @@ class cocos2d::CCEGLView {
 	void onGLFWWindowSizeFunCallback(GLFWwindow* window, int width, int height);
 	[[missing(android, mac, ios)]]
 	void onGLFWframebuffersize(GLFWwindow* window, int width, int height);
+	// [[missing(android, mac, ios)]]
+    // static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, bool);
+	// [[missing(android, mac, ios)]]
+	// static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, bool, GLFWvidmode const&, GLFWmonitor*);
+	// [[missing(android, mac, ios)]]
+	// static cocos2d::CCEGLView* createWithRect(gd::string const&, cocos2d::CCRect, float);
 	// sharedOpenGLView() = ios 0x130f38, imac 0x50df50
 }
 
@@ -2092,7 +2098,7 @@ class cocos2d::CCRenderTexture {
 
 [[link(win, android)]]
 class cocos2d::CCRepeat {
-	static cocos2d::CCRepeat* create(cocos2d::CCFiniteTimeAction*, unsigned int) = m1 0x33daf8, imac 0x3b9530;
+	static cocos2d::CCRepeat* create(cocos2d::CCFiniteTimeAction*, unsigned int) = m1 0x33daf0, imac 0x3b9530;
 
 	bool initWithAction(cocos2d::CCFiniteTimeAction*, unsigned int);
 
