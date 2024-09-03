@@ -14099,7 +14099,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool isFlying() = win inline, imac 0x40a810, m1 0x38285c {
 		return m_isShip || m_isBird || m_isDart || m_isSwing;
 	}
-	bool isInBasicMode();
+	bool isInBasicMode() = win inline, m1 0x38d8e0, imac 0x4179f0 {
+		return !this->isFlying() && !m_isBall && !m_isSpider;
+	}
 	bool isInNormalMode() = win inline, m1 0x3812f4, imac 0x408e90 {
 		return !this->isFlying() && !m_isBall && !m_isRobot && !m_isSpider;
 	}
