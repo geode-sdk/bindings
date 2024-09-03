@@ -10571,17 +10571,20 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
 class GJSpecialColorSelect : FLAlertLayer {
 	// virtual ~GJSpecialColorSelect();
 
-	static GJSpecialColorSelect* create(int, GJSpecialColorSelectDelegate*, ColorSelectType);
+	static GJSpecialColorSelect* create(int, GJSpecialColorSelectDelegate*, ColorSelectType) = win 0x2a5740, m1 0x551bcc, imac 0x631150;
 
-	TodoReturn getButtonByTag(int);
-	TodoReturn highlightSelected(ButtonSprite*);
+	ButtonSprite* getButtonByTag(int) = m1 0x553a84, imac 0x633ab0;
+	void highlightSelected(ButtonSprite*) = m1 0x553b14, imac 0x633b30;
 	bool init(int, GJSpecialColorSelectDelegate*, ColorSelectType) = win 0x2a5850, m1 0x551cec, imac 0x6312c0;
-	void onClose(cocos2d::CCObject* sender);
-	void onSelectColor(cocos2d::CCObject* sender);
+	void onClose(cocos2d::CCObject* sender) = win 0x2a63f0, m1 0x553924, imac 0x633950;
+	void onSelectColor(cocos2d::CCObject* sender) = win 0x2a6310, m1 0x5539a8, imac 0x6339d0;
 	static const char* textForColorIdx(int) = win 0x2a6490, m1 0x553980, imac 0x6339a0;
 
-	TodoReturn tryShowAd();
 	virtual void keyBackClicked() = win 0x2a6440, m1 0x553bc8, imac 0x633bf0;
+
+	GJSpecialColorSelectDelegate* m_delegate;
+	int m_colorID;
+	cocos2d::CCArray* m_buttonSprites;
 }
 
 [[link(android)]]
