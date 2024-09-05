@@ -11840,7 +11840,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateKeyframeObjects() = imac 0xef050;
 	TodoReturn updateKeyframeVisibility(bool);
 	void updateLevelFont(int) = win 0x2cb350, m1 0xd6eb8, imac 0xf3a60;
-	TodoReturn updateObjectColors(cocos2d::CCArray*) = win 0x2c6410;
+	void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x2c6410, imac 0xef100, m1 0xd32f8;
 	static void updateObjectLabel(GameObject*) = win 0x2c3bc0, imac 0xed6b0;
 	void updateOptions() = win 0x2bf650, imac 0xe03a0, m1 0xc694c;
 	void updatePreviewAnim();
@@ -18505,7 +18505,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	cocos2d::CCPoint m_touchStartPosition2;
 	cocos2d::CCPoint m_unknown2;
 	cocos2d::CCPoint m_touchPosition2;
-	void* m_idk;
+	TableViewCell* m_touchedCell;
 	bool m_touchMoved;
 	cocos2d::CCArray* m_cellArray;
 	cocos2d::CCArray* m_array2;
