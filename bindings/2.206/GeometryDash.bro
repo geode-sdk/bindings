@@ -11755,7 +11755,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getSFXIDs();
 	TodoReturn getSongIDs(bool&) = imac 0xec770;
 	TodoReturn getTriggerGroup(int);
-	void handleAction(bool, cocos2d::CCArray*) = win 0x2c2ab0, imac 0xe6d50;
+	void handleAction(bool, cocos2d::CCArray*) = win 0x2c2ab0, m1 0xcc634, imac 0xe6d50;
 	bool hasAction(bool);
 	bool init(GJGameLevel*, bool) = win 0x2be440, imac 0xdeba0, m1 0xc55e4, ios 0x365434;
 	bool isLayerLocked(int layer) {
