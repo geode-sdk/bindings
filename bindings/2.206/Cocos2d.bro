@@ -378,7 +378,7 @@ class cocos2d::CCScene {
 class cocos2d::CCSet {
 	static cocos2d::CCSet* create();
 
-	CCSet(cocos2d::CCSet const&) = imac 0x7bf970, m1 0x6c576c;
+	//CCSet(cocos2d::CCSet const&) = imac 0x7bf970, m1 0x6c576c;
 	CCSet() = imac 0x7bf920, m1 0x6c570c;
 	~CCSet() = imac 0x7bfa70, m1 0x6c5868;
 	void addObject(cocos2d::CCObject*) = imac 0x7bfd10, m1 0x6c5af0;
