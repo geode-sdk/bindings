@@ -391,7 +391,7 @@ class cocos2d::CCSet {
 	void removeAllObjects();
 	void removeObject(cocos2d::CCObject*) = imac 0x7bfdc0;
 
-	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&) = imac 0x7bfbe0, m1 0x6c59bc;
 }
 
 [[link(win, android)]]
