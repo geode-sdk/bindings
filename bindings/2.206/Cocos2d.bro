@@ -379,11 +379,11 @@ class cocos2d::CCSet {
 	static cocos2d::CCSet* create();
 
 	// CCSet(cocos2d::CCSet const&);
-	// CCSet();
-	void addObject(cocos2d::CCObject*) = imac 0x7bfd10;
+	CCSet() = imac 0x7bf8d0, m1 0x6c56ac;
+	void addObject(cocos2d::CCObject*) = imac 0x7bfd10, m1 0x6c5af0;
 	cocos2d::CCObject* anyObject() = m1 0x6c5cec, imac 0x7bfee0;
 	cocos2d::CCSetIterator begin();
-	bool containsObject(cocos2d::CCObject*);
+	bool containsObject(cocos2d::CCObject*) = imac 0x7bfe70, m1 0x6c5c84;
 	cocos2d::CCSet* copy();
 	int count() = m1 0x6c5ae4, imac 0x7bfd00;
 	cocos2d::CCSetIterator end();
@@ -1192,6 +1192,21 @@ class cocos2d::CCMouseDispatcher {
 	void forceAddDelegate(cocos2d::CCMouseDelegate*);
 	void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
 	void removeDelegate(cocos2d::CCMouseDelegate*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCTargetedTouchHandler {
+    static cocos2d::CCTargetedTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
+
+    bool initWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
+
+    cocos2d::CCSet* getClaimedTouches() = imac 0x48a430, m1 0x3eff84;
+
+    void setSwallowsTouches(bool);
+
+    // CCTargetedTouchHandler(cocos2d::CCTargetedTouchHandler const&);
+    // CCTargetedTouchHandler();
+    bool isSwallowsTouches();
 }
 
 [[link(win, android)]]
