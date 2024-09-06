@@ -4994,8 +4994,8 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn getTweenContainer(AudioTargetType);
 	bool isChannelStopping(int);
 	bool isEffectLoaded(gd::string path);
-	bool isMusicPlaying(gd::string path, int p1) = win 0x58f20, imac 0x3ebaa0, m1 0x369394;
-	bool isMusicPlaying(int channel) = win 0x58e50, imac 0x3ebb90, m1 0x3692b8;
+	bool isMusicPlaying(gd::string path, int p1) = win 0x58f20, imac 0x3ebb90, m1 0x369394;
+	bool isMusicPlaying(int channel) = win 0x58e50, imac 0x3ebaa0, m1 0x3692b8;
 	bool isSoundReady(FMOD::Sound* sound);
 	TodoReturn lengthForSound(gd::string path);
 	TodoReturn loadAndPlayMusic(gd::string path, unsigned int p1, int p2);
@@ -11755,7 +11755,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn getSFXIDs();
 	TodoReturn getSongIDs(bool&) = imac 0xec770;
 	TodoReturn getTriggerGroup(int);
-	void handleAction(bool, cocos2d::CCArray*) = win 0x2c2ab0, imac 0xe6d50;
+	void handleAction(bool, cocos2d::CCArray*) = win 0x2c2ab0, m1 0xcc634, imac 0xe6d50;
 	bool hasAction(bool);
 	bool init(GJGameLevel*, bool) = win 0x2be440, imac 0xdeba0, m1 0xc55e4, ios 0x365434;
 	bool isLayerLocked(int layer) {
@@ -11840,7 +11840,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	TodoReturn updateKeyframeObjects() = imac 0xef050;
 	TodoReturn updateKeyframeVisibility(bool);
 	void updateLevelFont(int) = win 0x2cb350, m1 0xd6eb8, imac 0xf3a60;
-	TodoReturn updateObjectColors(cocos2d::CCArray*) = win 0x2c6410;
+	void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x2c6410, imac 0xef100, m1 0xd32f8;
 	static void updateObjectLabel(GameObject*) = win 0x2c3bc0, imac 0xed6b0;
 	void updateOptions() = win 0x2bf650, imac 0xe03a0, m1 0xc694c;
 	void updatePreviewAnim();
@@ -16716,13 +16716,13 @@ class SetupPersistentItemTriggerPopup : SetupTriggerPopup {
 class SetupPickupTriggerPopup : SetupTriggerPopup {
 	// virtual ~SetupPickupTriggerPopup();
 
-	static SetupPickupTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
+	static SetupPickupTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x40b3f0;
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
-	TodoReturn updateState();
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x40b500;
+	void updateState() = win 0x40bc20;
 
-	virtual void onPlusButton(cocos2d::CCObject* sender) = m1 0x50a20, imac 0x5a2f0;
-	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = m1 0x50a58, imac 0x5a330;
+	virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x3f9210, m1 0x50a20, imac 0x5a2f0;
+	virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x40bc90, m1 0x50a58, imac 0x5a330;
 }
 
 [[link(android)]]
@@ -18505,7 +18505,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	cocos2d::CCPoint m_touchStartPosition2;
 	cocos2d::CCPoint m_unknown2;
 	cocos2d::CCPoint m_touchPosition2;
-	void* m_idk;
+	TableViewCell* m_touchedCell;
 	bool m_touchMoved;
 	cocos2d::CCArray* m_cellArray;
 	cocos2d::CCArray* m_array2;

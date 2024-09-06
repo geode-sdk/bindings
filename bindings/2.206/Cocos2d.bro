@@ -378,20 +378,21 @@ class cocos2d::CCScene {
 class cocos2d::CCSet {
 	static cocos2d::CCSet* create();
 
-	// CCSet(cocos2d::CCSet const&);
-	// CCSet();
-	void addObject(cocos2d::CCObject*) = imac 0x7bfd10;
+	//CCSet(cocos2d::CCSet const&) = imac 0x7bf970, m1 0x6c576c;
+	CCSet() = imac 0x7bf920, m1 0x6c570c;
+	~CCSet() = imac 0x7bfa70, m1 0x6c5868;
+	void addObject(cocos2d::CCObject*) = imac 0x7bfd10, m1 0x6c5af0;
 	cocos2d::CCObject* anyObject() = m1 0x6c5cec, imac 0x7bfee0;
-	cocos2d::CCSetIterator begin();
-	bool containsObject(cocos2d::CCObject*);
+	cocos2d::CCSetIterator begin() = imac 0x7bfec0, m1 0x6c5cd4;
+	bool containsObject(cocos2d::CCObject*) = imac 0x7bfe70, m1 0x6c5c84;
 	cocos2d::CCSet* copy();
 	int count() = m1 0x6c5ae4, imac 0x7bfd00;
-	cocos2d::CCSetIterator end();
-	cocos2d::CCSet* mutableCopy();
+	cocos2d::CCSetIterator end() = imac 0x7bfed0, m1 0x6c5ce0;
+	cocos2d::CCSet* mutableCopy() = imac 0x7bfcc0, m1 0x6c5a9c;
 	void removeAllObjects();
 	void removeObject(cocos2d::CCObject*) = imac 0x7bfdc0;
 
-	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&) = imac 0x7bfbe0, m1 0x6c59bc;
 }
 
 [[link(win, android)]]
@@ -1195,6 +1196,21 @@ class cocos2d::CCMouseDispatcher {
 }
 
 [[link(win, android)]]
+class cocos2d::CCTargetedTouchHandler {
+    static cocos2d::CCTargetedTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
+
+    bool initWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
+
+    cocos2d::CCSet* getClaimedTouches() = imac 0x48a430, m1 0x3eff84;
+
+    void setSwallowsTouches(bool);
+
+    // CCTargetedTouchHandler(cocos2d::CCTargetedTouchHandler const&);
+    // CCTargetedTouchHandler();
+    bool isSwallowsTouches();
+}
+
+[[link(win, android)]]
 class cocos2d::CCTexture2D {
 	static void PVRImagesHavePremultipliedAlpha(bool) = m1 0x3e9984, imac 0x483620;
 	static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat() = m1 0x3e9b50, imac 0x4837f0, ios 0x134744;
@@ -1402,6 +1418,12 @@ class cocos2d::CCEGLView {
 	void onGLFWWindowSizeFunCallback(GLFWwindow* window, int width, int height);
 	[[missing(android, mac, ios)]]
 	void onGLFWframebuffersize(GLFWwindow* window, int width, int height);
+	// [[missing(android, mac, ios)]]
+    // static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, bool);
+	// [[missing(android, mac, ios)]]
+	// static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, bool, GLFWvidmode const&, GLFWmonitor*);
+	// [[missing(android, mac, ios)]]
+	// static cocos2d::CCEGLView* createWithRect(gd::string const&, cocos2d::CCRect, float);
 	// sharedOpenGLView() = ios 0x130f38, imac 0x50df50
 }
 
@@ -1980,7 +2002,7 @@ class cocos2d::CCRenderTexture {
 
 [[link(win, android)]]
 class cocos2d::CCRepeat {
-	static cocos2d::CCRepeat* create(cocos2d::CCFiniteTimeAction*, unsigned int) = m1 0x33daf8, imac 0x3b9530;
+	static cocos2d::CCRepeat* create(cocos2d::CCFiniteTimeAction*, unsigned int) = m1 0x33daf0, imac 0x3b9530;
 
 	bool initWithAction(cocos2d::CCFiniteTimeAction*, unsigned int);
 
