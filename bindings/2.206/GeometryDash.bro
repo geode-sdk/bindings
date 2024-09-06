@@ -8676,7 +8676,7 @@ class GJDropDownLayerDelegate {
 	virtual void dropDownLayerWillClose(GJDropDownLayer*) {}
 }
 
-[[link(android)]]
+[[link(android), depends(DynamicMoveCalculation)]]
 class GJEffectManager : cocos2d::CCNode {
 	// virtual ~GJEffectManager();
 	// GJEffectManager();
@@ -8783,7 +8783,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn updateColorAction(ColorAction*);
 	void updateColorEffects(float) = imac 0x2db6c0, m1 0x2776a8; //inline on windows
 	void updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B); //inline on windows
-	void updateCountForItem(int, int);
+	void updateCountForItem(int, int) = win 0x250790;
 	virtual void rewardedVideoFinished();
 	void updateEffects(float) = win 0x24a150, imac 0x2db590, m1 0x2775a4;
 	void updateOpacityAction(OpacityEffectAction*);
@@ -8797,8 +8797,49 @@ class GJEffectManager : cocos2d::CCNode {
 
 	virtual bool init() = m1 0x275984, imac 0x2d8d70;
 
-	PAD = android32 0x90, mac 0xf0, android64 0x120, win 0x9c;
+	void* m_unk140;
+	cocos2d::CCDictionary* m_unkObject148;
+	cocos2d::CCDictionary* m_unkDict150;
+	gd::vector<PulseEffectAction> m_pulseEffectVector; // 0x158
+	gd::unordered_map<int, gd::vector<PulseEffectAction>> m_pulseEffectMap; // 0x170
+	gd::unordered_map<int, OpacityEffectAction> m_opacityEffectMap; // 0x1a8
+	gd::vector<TouchToggleAction> m_unkVector1e0;
+	gd::unordered_map<int, gd::vector<CountTriggerAction>> m_unkMap1f8;
+	gd::vector<CollisionTriggerAction> m_unkVector230;
+	gd::vector<ToggleTriggerAction> m_unkVector248;
 	cocos2d::CCDictionary* m_colorActionDict;
+	cocos2d::CCDictionary* m_unkDict268;
+	gd::vector<InheritanceNode*> m_unkVector270;
+	gd::unordered_map<int, bool> m_unkMap288;
+	gd::vector<ColorAction*> m_unkVector2c0;
+	gd::vector<ColorActionSprite*> m_unkVector2d8;
+	gd::vector<bool> m_unkVector2f0;
+	gd::unordered_map<int, int> m_itemIDs;
+	gd::unordered_map<int, int> m_unkMap350;
+	gd::unordered_set<int> m_unkMap388;
+	gd::unordered_map<int, TimerItem> m_unkMap3c0;
+	gd::unordered_map<int, std::vector<TimerTriggerAction>> m_unkMap3f8;
+	cocos2d::CCArray* m_unkArray430;
+	gd::vector<bool> m_unkVector438;
+	gd::unordered_set<int> m_unkMap460;
+	gd::map<int, int> m_unkMap498;
+	gd::unordered_set<int> m_unkMap4c8;
+	gd::vector<SpawnTriggerAction> m_nukVector500;
+	gd::vector<GroupCommandObject2*> m_unkVector518;
+	gd::vector<GroupCommandObject2*> m_unkVector530;
+	gd::vector<CCObject*> m_unkVector548; // idk the type
+	gd::vector<GroupCommandObject2> m_unkVector560;
+	gd::unordered_map<int, std::pair<double, double>> m_unkMap578;
+	gd::vector<GroupCommandObject2*> m_unkVector5b0;
+	gd::unordered_map<int, gd::vector<GroupCommandObject2*>> m_unkMap5c8;
+	gd::vector<GroupCommandObject2*> m_unkVector600;
+	gd::unordered_map<int, CCMoveCNode*> m_unkMap618;
+	gd::unordered_map<int, CCMoveCNode*> m_unkMap650;
+	gd::unordered_map<int, CCMoveCNode*> m_unkMap688;
+	gd::vector<CCMoveCNode*> m_unkVector6c0;
+	gd::vector<CCMoveCNode*> m_unkVector6d8;
+	gd::vector<CCMoveCNode*> m_unkVector6f0;
+	gd::vector<DynamicMoveCalculation> m_unkVector708;
 }
 
 [[link(android)]]
