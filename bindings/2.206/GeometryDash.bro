@@ -2650,9 +2650,15 @@ class CountTriggerGameObject : EffectGameObject {
 
 	bool init(char const*);
 
-	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x18a2e8, imac 0x1d0a40;
+	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x48ea30, m1 0x18a2e8, imac 0x1d0a40;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x18a520, imac 0x1d0cc0;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x18a89c, imac 0x1d10f0;
+
+	int m_pickupCount;
+	int m_pickupTriggerMode; // 1 = multiply, 2 = divide
+	bool m_unkPickupBool1;
+	bool m_unkPickupBool2;
+	float m_pickupTriggerMultiplier;
 }
 
 [[link(android)]]
@@ -7957,7 +7963,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void updateCameraOffsetX(float, float, int, float, int, int) = win 0x225f20, imac 0x144270, m1 0x118618;
 	void updateCameraOffsetY(float, float, int, float, int, int) = win 0x225fc0, imac 0x144370, m1 0x1186ec;
 	void updateCollisionBlocks() = win 0x209060;
-	void updateCounters(int, int);
+	void updateCounters(int, int) = win 0x223e70;
 	void updateDualGround(PlayerObject*, int, bool, float) = win 0x203ce0, imac 0x118660, m1 0xf568c;
 	void updateEnterEffects(float) = imac 0x113110, m1 0xf01b0;
 	TodoReturn updateExtendedCollision(GameObject*, bool);
@@ -8700,7 +8706,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn colorForPulseEffect(cocos2d::ccColor3B const&, PulseEffectAction*);
 	TodoReturn controlActionsForControlID(int, GJActionCommand);
 	TodoReturn controlActionsForTrigger(EffectGameObject*, GJActionCommand);
-	int countForItem(int);
+	int countForItem(int) = win 0x2506d0;
 	TodoReturn createFollowCommand(float, float, float, int, int, int, int);
 	TodoReturn createKeyframeCommand(int, cocos2d::CCArray*, GameObject*, int, int, bool, float, float, float, float, float, float, gd::vector<int> const&);
 	TodoReturn createMoveCommand(cocos2d::CCPoint, int, float, int, float, bool, bool, bool, bool, float, float, int, int);
@@ -8747,7 +8753,7 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn removePersistentFromAllItems();
 	TodoReturn removePersistentFromAllTimers();
 	TodoReturn removeTriggeredID(int, int);
-	TodoReturn reset() = win 0x249350, imac 0x2d8fd0;
+	void reset() = win 0x249350, imac 0x2d8fd0;
 	TodoReturn resetEffects() = win 0x24a2d0;
 	TodoReturn resetMoveActions();
 	TodoReturn resetTempGroupCommands(bool);
@@ -8840,6 +8846,14 @@ class GJEffectManager : cocos2d::CCNode {
 	gd::vector<CCMoveCNode*> m_unkVector6d8;
 	gd::vector<CCMoveCNode*> m_unkVector6f0;
 	gd::vector<DynamicMoveCalculation> m_unkVector708;
+    gd::map<std::pair<int, int>, gd::vector<GroupCommandObject2*>> m_unkMap770;
+    float m_unk780;
+    float m_unk784;
+    float m_unk788;
+    float m_unk78C;
+    float m_unk790;
+    float m_unk794;
+    bool m_unk798;
 }
 
 [[link(android)]]
@@ -16506,14 +16520,14 @@ class SetupInstantCountPopup : SetupTriggerPopup {
 
 	static SetupInstantCountPopup* create(CountTriggerGameObject*, cocos2d::CCArray*);
 
-	bool init(CountTriggerGameObject*, cocos2d::CCArray*);
+	bool init(CountTriggerGameObject*, cocos2d::CCArray*) = win 0x3f7260;
 	void onCountType(cocos2d::CCObject* sender);
 	void onEnableGroup(cocos2d::CCObject* sender);
 	void onTargetCountArrow(cocos2d::CCObject* sender);
 	void onTargetID2Arrow(cocos2d::CCObject* sender);
-	void onTargetIDArrow(cocos2d::CCObject* sender);
+	void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x3f11c0;
 	TodoReturn updateCountTextInputLabel();
-	TodoReturn updateItemID();
+	void updateItemID() = win 0x3eeb30;
 	TodoReturn updateItemIDInputLabel();
 	TodoReturn updateTargetCount();
 	TodoReturn updateTargetID();
