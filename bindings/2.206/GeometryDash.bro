@@ -4097,7 +4097,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn toggleSpecialEditButtons();
 	TodoReturn toggleStickyControls(bool);
 	void toggleSwipe(cocos2d::CCObject*) = win 0x10c480;
-	void transformObject(GameObject*, EditCommand, bool) = win 0x11c890;
+	void transformObject(GameObject*, EditCommand, bool) = win 0x11c890, imac 0x4c1f0;
 	void transformObjectCall(cocos2d::CCObject*) = m1 0x43774;
 	void transformObjectCall(EditCommand) = win 0x11c340, m1 0x44914, imac 0x4b1a0;
 	void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x11da50;
