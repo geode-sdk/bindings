@@ -3985,7 +3985,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn liveEditColorUsable();
 	CreateMenuItem* menuItemFromObjectString(gd::string, int) = win 0x10ac30, imac 0x31d10, m1 0x3201c;
 	cocos2d::CCPoint moveForCommand(EditCommand command) = win 0x11b9b0, m1 0x44338, imac 0x4ab70;
-	void moveGamelayer(cocos2d::CCPoint) = win 0xdf250, imac 0x2f5f0;
+	void moveGamelayer(cocos2d::CCPoint) = win 0xdf250, imac 0x2f5f0, m1 0x2fba8;
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x11be20, imac 0x3f0a0;
 	void moveObjectCall(cocos2d::CCObject*) = win 0x11bb60, m1 0x43740, imac 0x49d10;
 	void moveObjectCall(EditCommand) = win 0x11bb90, m1 0x444f4, imac 0x4ad70;
@@ -4097,9 +4097,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn toggleSpecialEditButtons();
 	TodoReturn toggleStickyControls(bool);
 	void toggleSwipe(cocos2d::CCObject*) = win 0x10c480;
-	void transformObject(GameObject*, EditCommand, bool) = win 0x11c890, imac 0x4c1f0;
-	void transformObjectCall(cocos2d::CCObject*);
-	void transformObjectCall(EditCommand) = win 0x11c340, imac 0x4b1a0;
+	void transformObject(GameObject*, EditCommand, bool) = win 0x11c890;
+	void transformObjectCall(cocos2d::CCObject*) = m1 0x43774;
+	void transformObjectCall(EditCommand) = win 0x11c340, m1 0x44914, imac 0x4b1a0;
 	void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x11da50;
 	TodoReturn transformObjectsActive();
 	TodoReturn transformObjectsReset();
@@ -12909,13 +12909,13 @@ class MapPackCell : TableViewCell {
 class MapSelectLayer : cocos2d::CCLayer {
 	// virtual ~MapSelectLayer();
 
-	static MapSelectLayer* create();
+	static MapSelectLayer* create() = m1 0x20b194;
 
 	TodoReturn checkTouchMonster(cocos2d::CCPoint);
 	TodoReturn createObjectAtPoint(cocos2d::CCPoint);
 	TodoReturn getConstrainedMapPos(cocos2d::CCPoint);
 	void onBack(cocos2d::CCObject* sender);
-	static cocos2d::CCScene* scene();
+	static cocos2d::CCScene* scene() = m1 0x20b150;
 
 	virtual void update(float) = m1 0x20c178, imac 0x264ef0;
 	virtual bool init() = m1 0x20b278, imac 0x263ea0;
@@ -12927,6 +12927,20 @@ class MapSelectLayer : cocos2d::CCLayer {
 	virtual void registerWithTouchDispatcher() = m1 0x20ce68, imac 0x265d10;
 	virtual void keyBackClicked() = m1 0x20c364, imac 0x2650d0;
 	virtual void scrollWheel(float, float) = m1 0x20bf58, imac 0x264cb0;
+
+	GJBigSprite* m_bigSprite;
+	SimplePlayer* m_player;
+	cocos2d::CCNode* m_mainLayer;
+	bool m_unloadTexturesOnExit;
+	bool m_backPressed;
+	bool m_blockExit;
+	bool m_inTouch;
+	double m_lastTouchTime;
+	bool m_editMode;
+	cocos2d::CCPoint m_lastTouchPos;
+	cocos2d::CCPoint m_mapPos;
+	cocos2d::CCArray* m_monsters;
+	LevelEditorLayer* m_editorLayer;
 }
 
 [[link(android)]]
