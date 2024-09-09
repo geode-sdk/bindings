@@ -34,8 +34,16 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 	static AccountLayer* create() = win 0x7bf70;
 
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-	void doBackup();
-	void doSync();
+	void doBackup() = win inline, m1 0xb82c4, imac 0xd06a0 {
+		this->updatePage(false);
+		if (!GJAccountManager::sharedState()->getAccountBackupURL()) this->backupAccountFailed((BackupAccountError)-1, 0);
+		else this->showLoadingUI();
+	}
+	void doSync() = win inline, m1 0xb83a0, imac 0xd0770 {
+		this->updatePage(false);
+		if (!GJAccountManager::sharedState()->getAccountSyncURL()) this->syncAccountFailed((BackupAccountError)-1, 0);
+		else this->showLoadingUI();
+	}
 	void exitLayer() {
 		this->setKeypadEnabled(false);
 		this->disableUI();
@@ -7419,8 +7427,8 @@ class GJAccountManager : cocos2d::CCNode {
 	void dataLoaded(DS_Dictionary*) = imac 0xd7f90, m1 0xbf188;
 	void encodeDataTo(DS_Dictionary*) = imac 0xd7f30, m1 0xbf130;
 	void firstSetup();
-	void getAccountBackupURL();
-	void getAccountSyncURL();
+	bool getAccountBackupURL() = win 0x1f25a0;
+	bool getAccountSyncURL() = win 0x1f3500;
 	cocos2d::CCObject* getDLObject(char const*);
 	gd::string getShaPassword(gd::string) = win 0x1F4FF0;
 	void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1f1590, imac 0xd2c80, m1 0xba5d4;
