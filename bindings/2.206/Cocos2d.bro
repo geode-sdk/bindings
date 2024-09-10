@@ -773,6 +773,7 @@ class cocos2d::CCGLProgram {
 	void setUniformsForBuiltins() = m1 0x3a8704, imac 0x435940, ios 0x13c230;
 
 	// CCGLProgram(cocos2d::CCGLProgram const&);
+	~CCGLProgram() = m1 0x3a7194;
 	CCGLProgram() = m1 0x3a6fd8;
 	void addAttribute(char const*, unsigned int) = m1 0x3a744c;
 	bool compileShader(unsigned int*, unsigned int, char const*);
