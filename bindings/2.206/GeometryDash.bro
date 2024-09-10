@@ -2646,7 +2646,15 @@ class ConfigureValuePopupDelegate {
 class CountTriggerAction {
 	// CountTriggerAction(CountTriggerAction&&);
 
-	PAD = win 0x24;
+	bool m_unk0;
+	int m_previousCount;
+	int m_targetCount;
+	int m_targetGroup;
+	bool m_unk10;
+	int m_unk14;
+	int m_unk18;
+	int m_itemID;
+	bool m_multiActivate;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -8811,14 +8819,14 @@ class GJEffectManager : cocos2d::CCNode {
 
 	virtual bool init() = m1 0x275984, imac 0x2d8d70;
 
-	void* m_unk140;
+	TriggerEffectDelegate* m_triggerEffectDelegate;
 	cocos2d::CCDictionary* m_unkObject148;
 	cocos2d::CCDictionary* m_unkDict150;
 	gd::vector<PulseEffectAction> m_pulseEffectVector; // 0x158
 	gd::unordered_map<int, gd::vector<PulseEffectAction>> m_pulseEffectMap; // 0x170
 	gd::unordered_map<int, OpacityEffectAction> m_opacityEffectMap; // 0x1a8
 	gd::vector<TouchToggleAction> m_unkVector1e0;
-	gd::unordered_map<int, gd::vector<CountTriggerAction>> m_unkMap1f8;
+	gd::unordered_map<int, gd::vector<CountTriggerAction>> m_countTriggerActions;
 	gd::vector<CollisionTriggerAction> m_unkVector230;
 	gd::vector<ToggleTriggerAction> m_unkVector248;
 	cocos2d::CCDictionary* m_colorActionDict;
