@@ -2646,7 +2646,15 @@ class ConfigureValuePopupDelegate {
 class CountTriggerAction {
 	// CountTriggerAction(CountTriggerAction&&);
 
-	PAD = win 0x24;
+	bool m_unk0;
+	int m_previousCount;
+	int m_targetCount;
+	int m_targetGroup;
+	bool m_unk10;
+	int m_unk14;
+	int m_unk18;
+	int m_itemID;
+	bool m_multiActivate;
 	gd::vector<int> m_unkVecInt;
 }
 
@@ -7183,7 +7191,7 @@ class GameToolbox {
 	static CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, float buttonScale, float maxLabelScale, float maxLabelWidth, cocos2d::CCPoint labelOffset, char const* font, bool labelTop, int labelTag, cocos2d::CCArray* container) = win 0x63080, imac 0x4f9b80, m1 0x4528d0, ios 0x4a4f8;
 	static bool doWeHaveInternet();
 	static TodoReturn easeToText(int);
-	static TodoReturn fast_rand_0_1() = imac 0x4fc6c0;
+	static float fast_rand_0_1() = imac 0x4fc6c0, m1 0x4551ac;
 	static TodoReturn fast_rand_minus1_1();
 	static TodoReturn fast_rand();
 	static void fast_srand(uint64_t) = m1 0x45516c, imac 0x4fc670;
@@ -8811,14 +8819,14 @@ class GJEffectManager : cocos2d::CCNode {
 
 	virtual bool init() = m1 0x275984, imac 0x2d8d70;
 
-	void* m_unk140;
+	TriggerEffectDelegate* m_triggerEffectDelegate;
 	cocos2d::CCDictionary* m_unkObject148;
 	cocos2d::CCDictionary* m_unkDict150;
 	gd::vector<PulseEffectAction> m_pulseEffectVector; // 0x158
 	gd::unordered_map<int, gd::vector<PulseEffectAction>> m_pulseEffectMap; // 0x170
 	gd::unordered_map<int, OpacityEffectAction> m_opacityEffectMap; // 0x1a8
 	gd::vector<TouchToggleAction> m_unkVector1e0;
-	gd::unordered_map<int, gd::vector<CountTriggerAction>> m_unkMap1f8;
+	gd::unordered_map<int, gd::vector<CountTriggerAction>> m_countTriggerActions;
 	gd::vector<CollisionTriggerAction> m_unkVector230;
 	gd::vector<ToggleTriggerAction> m_unkVector248;
 	cocos2d::CCDictionary* m_colorActionDict;
