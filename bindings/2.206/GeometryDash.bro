@@ -7724,8 +7724,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void increaseBatchNodeCapacity() = win 0x1fd9d0;
 	bool isFlipping();
 	bool isPlayer2Button(int);
-	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B);
-	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::ccColor3B, float, float, int, bool, float) = imac 0x1154f0;
+	void lightningFlash(cocos2d::CCPoint to, cocos2d::ccColor3B color);
+	void lightningFlash(cocos2d::CCPoint from, cocos2d::CCPoint to, cocos2d::ccColor3B color, float lineWidth, float duration, int displacement, bool flash, float opacity) = win 0x235db0, imac 0x1154f0, m1 0xf2a4c;
 	TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
 	void loadLevelSettings() = win 0x229e30, imac 0x14cce0, m1 0x11edfc;
 	void loadStartPosObject() = win 0x225710;
