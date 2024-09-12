@@ -5545,7 +5545,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getUserList(UserListType) = win 0x15c5e0, m1 0x4aca14, imac 0x55df10;
 	void getUserMessages(bool, int, int);
 	void getUsers(GJSearchObject*) = win 0x153920, m1 0x4a32f0, imac 0x553eb0;
-	void gotoLevelPage(GJGameLevel*) = win 0x143f60;
+	void gotoLevelPage(GJGameLevel*) = win 0x143f60, m1 0x490f94, imac 0x53eee0;
 	void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x13e4c0, imac 0x523b00, m1 0x478b88;
 	void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	void handleItND(cocos2d::CCNode*, void*);
@@ -11535,14 +11535,19 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 
 	bool init(LeaderboardState) = win 0x2aed30, m1 0x46fd08, imac 0x51a7d0, ios 0x3b976c;
 	bool isCorrect(char const*);
-	void onBack(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x2b0f30, m1 0x470a18, imac 0x51b560;
 	void onCreators(cocos2d::CCObject* sender);
 	void onGlobal(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender);
 	void onTop(cocos2d::CCObject* sender);
 	void onWeek(cocos2d::CCObject* sender);
 	void refreshTabs() = win 0x2afce0;
-	static cocos2d::CCScene* scene(LeaderboardState);
+	static cocos2d::CCScene* scene(LeaderboardState state) = win inline, m1 0x46fb50, imac 0x51a5a0 {
+		auto scene = cocos2d::CCScene::create();
+		auto layer = LeaderboardsLayer::create(state);
+		scene->addChild(layer);
+		return scene;
+	}
 	void selectLeaderboard(LeaderboardState) = win 0x2afe10, imac 0x51b440, m1 0x4708ec;
 	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2afb80;
 	TodoReturn setupTabs();
