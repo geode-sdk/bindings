@@ -9790,16 +9790,7 @@ class GJObjectDecoder : cocos2d::CCNode {
 [[link(android)]]
 class GJOptionsLayer : SetupTriggerPopup {
 	// virtual ~GJOptionsLayer();
-	GJOptionsLayer() = win 0x27adc0 {
-		m_gap = 48.f;
-		m_maxPage = 0;
-		m_offset = 0.f;
-		m_page = -1;
-		m_togglesPerPage = 10;
-		m_toggleCount = 0;
-		m_maxLabelScale = .5f;
-		m_maxLabelWidth = 130.f;
-	}
+	GJOptionsLayer() = win 0x27adc0;
 
 	static GJOptionsLayer* create(int) = m1 0x23a7ec, imac 0x297d60;
 
