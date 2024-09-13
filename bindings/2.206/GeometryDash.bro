@@ -4726,7 +4726,7 @@ class EnhancedGameObject : GameObject {
 	bool m_isNoMultiActivate; // used in platformer stuff
 	// property 99
 	bool m_isMultiActivate; // 0x592
-	PAD = android32 0x6, win 0x6, android64 0x6, mac 0x6;
+	PAD = android32 0x4, win 0x4, android64 0x4, mac 0x4;
 }
 
 [[link(android)]]
