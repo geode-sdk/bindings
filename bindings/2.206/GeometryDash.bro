@@ -18684,6 +18684,7 @@ class TableViewCellDelegate {
 	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
 	virtual TodoReturn getSelectedCellIdx();
 	virtual TodoReturn shouldSnapToSelected();
+	virtual TodoReturn getCellDelegateType();
 }
 
 [[link(android)]]
