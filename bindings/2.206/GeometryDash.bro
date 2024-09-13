@@ -7083,7 +7083,7 @@ class GameStatsManager : cocos2d::CCNode {
 	void incrementStat(char const*, int) = win 0x1ca5b0, m1 0x5ad38, imac 0x65ad0, ios 0x33c544;
 	TodoReturn incrementStat(char const*) = m1 0x5ad30;
 	bool isGauntletChestUnlocked(int) = ios 0x345b38;
-	bool isItemEnabled(UnlockType type, int id) = win inline, ios 0x345D80, imac 0x787e0 {
+	bool isItemEnabled(UnlockType type, int id) = win inline, ios 0x345D80, imac 0x787e0, m1 0x6b108 {
 		return this->isItemUnlocked(type, id) && m_enabledItems->valueForKey(this->getItemKey(id, (int)type))->boolValue();
 	}
 	bool isItemUnlocked(UnlockType, int) = win 0x1dabe0, ios 0x33fda8, m1 0x5ead0, imac 0x6a450;
