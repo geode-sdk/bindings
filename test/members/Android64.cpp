@@ -126,10 +126,6 @@ GEODE_MEMBER_CHECK(GameObject, m_isHighDetail, 0x4db);
 GEODE_MEMBER_CHECK(GameObject, m_isPassable, 0x4fd);
 GEODE_MEMBER_CHECK(GameObject, m_property155, 0x518);
 
-GEODE_MEMBER_CHECK(EffectGameObject, m_unknownBool, 0x597);
-GEODE_MEMBER_CHECK(EffectGameObject, m_targetGroupID, 0x5a8);
-GEODE_MEMBER_CHECK(EffectGameObject, m_ignoreLinkedObjects, 0x719);
-
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_circle, 0x278);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x2b0);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_songWidget, 0x2d0);
