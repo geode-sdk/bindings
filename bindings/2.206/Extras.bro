@@ -148,3 +148,7 @@ class TimerItem {
 class EnterEffectAnimValue {
 	PAD = win 0x20;
 }
+
+class DynamicMoveCalculation {
+	// todo
+}

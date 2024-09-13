@@ -175,7 +175,12 @@ GEODE_MEMBER_CHECK(EditorUI, m_selectedTab, 0x548);
 GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x290);
 GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x2B8);
 
+GEODE_MEMBER_CHECK(GJEffectManager, m_unkDict150, 0x150);
+GEODE_MEMBER_CHECK(GJEffectManager, m_pulseEffectVector, 0x158);
+GEODE_MEMBER_CHECK(GJEffectManager, m_pulseEffectMap, 0x170);
+GEODE_MEMBER_CHECK(GJEffectManager, m_pulseEffectMap, 0x170);
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x260);
+GEODE_MEMBER_CHECK(GJEffectManager, m_unkVector708, 0x708);
 //GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x318);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x1a0);
