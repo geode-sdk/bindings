@@ -18650,7 +18650,6 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	cocos2d::CCArray* m_array2;
 	cocos2d::CCArray* m_array3;
 	TableViewDelegate* m_tableDelegate;
-	virtual TodoReturn getCellDelegateType();
 	TableViewDataSource* m_dataSource;
 	TableViewCellDelegate* m_cellDelegate;
 	bool m_unused2;
