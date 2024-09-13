@@ -37,6 +37,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3388);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x3420);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 
+GEODE_SIZE_CHECK(EnhancedGameObject, 0x5a8);
 GEODE_SIZE_CHECK(EffectGameObject, 0x730);
 
 // GEODE_SIZE_CHECK(PlayerObject, 0xbe8); 
