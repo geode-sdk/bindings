@@ -6906,7 +6906,7 @@ class GameObjectEditorState {
 [[link(android)]]
 class GameOptionsLayer : GJOptionsLayer {
 	// virtual ~GameOptionsLayer();
-	GameOptionsLayer() {
+	GameOptionsLayer() = win inline {
 		m_practiceDialogIndex = 0;
 	}
 
@@ -12734,7 +12734,7 @@ class LevelTools {
 	static TodoReturn getLastTimewarp();
 	static GJGameLevel* getLevel(int, bool) = win 0x304880, imac 0x5064b0;
 	static TodoReturn getLevelList();
-	static SongInfoObject* getSongObject(int id) = win inline {
+	static SongInfoObject* getSongObject(int id) = win inline, m1 0x463120, imac 0x50c1e0 {
 		auto artistID = artistForAudio(id);
 		return SongInfoObject::create(id, getAudioTitle(id), nameForArtist(artistID), artistID, 0.f, "", "", "", 0, "", false, 0, -1);
 	}
@@ -13177,7 +13177,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	const char* objectKey(int);
 	cocos2d::CCArray* objectsForPage(int) = win 0x3539b0, ios 0xf0474;
 	void offsetToNextPage(); // inlined on ios
-	void onClose(cocos2d::CCObject* sender) = win 0x354fa0, ios 0xf0720;
+	void onClose(cocos2d::CCObject* sender) = win 0x354fa0, ios 0xf0720, m1 0x6b0b04, imac 0x7a9780;
 	void onFMODDebug(cocos2d::CCObject* sender) = win 0x354b10, ios 0xf05c0, m1 0x6b07e8, imac 0x7a9480;
 	void onGPSignIn(cocos2d::CCObject* sender);
 	void onGPSignOut(cocos2d::CCObject* sender);
@@ -18225,7 +18225,7 @@ class SongInfoObject : cocos2d::CCNode {
 
 	static SongInfoObject* create(cocos2d::CCDictionary*) = imac 0x539620;
 	static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority, gd::string unk1, bool unk2, int unk3, int unk4) = win 0x3245a0;
-	static SongInfoObject* create(int) = win 0x323450;
+	static SongInfoObject* create(int) = win 0x323450, m1 0x4e707c, imac 0x59f080;
 
 	TodoReturn addTags(gd::string);
 	TodoReturn containsTag(int);
