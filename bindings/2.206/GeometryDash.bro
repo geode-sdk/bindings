@@ -4411,7 +4411,7 @@ class EffectGameObject : EnhancedGameObject {
 	bool m_isDynamicMode;
 	// property 544
 	bool m_isSilent;
-	PAD = android 0x6, win 0x6;
+	PAD = android 0x6, win 0x6, mac 0x6;
 	// property 68
 	float m_rotationDegrees;
 	// property 69
@@ -4472,17 +4472,17 @@ class EffectGameObject : EnhancedGameObject {
 	bool m_isDualMode;
 	// property 76
 	int m_animationID;
-	PAD = android 0x8, win 0x8;
+	PAD = android 0x8, win 0x8, mac 0x8;
 	// property 87
 	bool m_isMultiTriggered;
-	PAD = android 0x2, win 0x2;
+	PAD = android 0x2, win 0x2, mac 0x2;
 	// property 93
 	bool m_triggerOnExit;
 	// property 95
 	int m_itemID2;
 	// property 534
 	int m_property534;
-	PAD = android 0x1, win 0x1;
+	PAD = android 0x1, win 0x1, mac 0x1;
 	// property 94
 	bool m_isDynamicBlock;
 	// property 80
@@ -4505,12 +4505,12 @@ class EffectGameObject : EnhancedGameObject {
 	int m_collectiblePoints;
 	// property 463
 	bool m_hasNoAnimation;
-	PAD = android32 0x1f, android64 0x23, win 0x23;
+	PAD = android32 0x1f, android64 0x23, win 0x23, mac 0x23;
 	// property 148
 	float m_gravityValue;
 	// property 284
 	bool m_isSinglePTouch;
-	PAD = android 0x3, win 0x3;
+	PAD = android 0x3, win 0x3, mac 0x3;
 	// property 371
 	float m_zoomValue;
 	// property 111
@@ -4535,15 +4535,15 @@ class EffectGameObject : EnhancedGameObject {
 	int m_channelValue;
 	// property 117
 	bool m_isReverse;
-	PAD = android 0xb, win 0xb;
+	PAD = android 0xb, win 0xb, mac 0xb;
 	// property 12
 	int m_secretCoinID;
-	PAD = android32 0x1c, android64 0x24, win 0x24;
+	PAD = android32 0x1c, android64 0x24, win 0x24, mac 0x24;
 	// property 280
 	bool m_ignoreGroupParent;
 	// property 281
 	bool m_ignoreLinkedObjects;
-	PAD = android 0x1, win 0x1;
+	PAD = android 0x1, win 0x1, mac 0x1;
 }
 
 [[link(android), depends(CAState), depends(PulseEffectAction), depends(CountTriggerAction), depends(OpacityEffectAction), depends(TouchToggleAction), depends(CollisionTriggerAction), depends(ToggleTriggerAction), depends(SpawnTriggerAction), depends(GroupCommandObject2), depends(TimerItem), depends(TimerTriggerAction)]]
@@ -4690,17 +4690,18 @@ class EnhancedGameObject : GameObject {
 	virtual void updateSyncedAnimation(float, int) = win 0x19ddf0, imac 0x2577a0, m1 0x2000b0;
 	virtual TodoReturn updateAnimateOnTrigger(bool) = m1 0x201478, imac 0x2596c0;
 
-	PAD = android32 0x25, win 0x2a, android64 0x22;
+	// mac is probably wrong
+	PAD = android32 0x25, win 0x2a, android64 0x22, mac 0x22;
 
 	bool m_hasCustomAnimation;
 	bool m_hasCustomRotation;
 	// property 98
 	bool m_disableRotation;
-	PAD = android32 0x3, win 0x3, android64 0x3;
+	PAD = android32 0x3, win 0x3, android64 0x3, mac 0x3;
 
 	// property 97
 	float m_rotationSpeed;
-	PAD = android32 0xc, win 0xc, android64 0xc;
+	PAD = android32 0xc, win 0xc, android64 0xc, mac 0xc;
 
 	// property 106
 	bool m_animationRandomizedStart;
@@ -4718,7 +4719,7 @@ class EnhancedGameObject : GameObject {
 	int m_singleFrame;
 	// property 592
 	bool m_animationOffset;
-	PAD = android32 0xf, win 0xf, android64 0xf;
+	PAD = android32 0xf, win 0xf, android64 0xf, mac 0xf;
 
 	// property 214
 	bool m_animateOnlyWhenActive;
@@ -4726,7 +4727,7 @@ class EnhancedGameObject : GameObject {
 	bool m_isNoMultiActivate; // used in platformer stuff
 	// property 99
 	bool m_isMultiActivate; // 0x592
-	PAD = android32 0x4, win 0x4, android64 0x8;
+	PAD = android32 0x6, win 0x6, android64 0x6, mac 0x6;
 }
 
 [[link(android)]]
