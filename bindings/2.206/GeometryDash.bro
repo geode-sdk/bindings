@@ -4690,7 +4690,6 @@ class EnhancedGameObject : GameObject {
 	virtual void updateSyncedAnimation(float, int) = win 0x19ddf0, imac 0x2577a0, m1 0x2000b0;
 	virtual TodoReturn updateAnimateOnTrigger(bool) = m1 0x201478, imac 0x2596c0;
 
-	// mac is probably wrong
 	PAD = android32 0x25, win 0x2a, android64 0x22, mac 0x22;
 
 	bool m_hasCustomAnimation;
