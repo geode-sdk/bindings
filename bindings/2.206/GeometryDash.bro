@@ -7727,7 +7727,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn gravBumpPlayer(PlayerObject*, EffectGameObject*) = imac 0x11c8e0, m1 0xf8c48;
 	void groupStickyObjects(cocos2d::CCArray*) = imac 0x132930;
 	void handleButton(bool down, int button, bool isPlayer1) = win 0x2238a0, imac 0x13fc40, m1 0x114ea0;
-	TodoReturn hasItem(int);
+	bool hasItem(int) = m1 0xf9bac, imac 0x11d8a0;
 	bool hasUniqueCoin(EffectGameObject*) = win 0x207020, imac 0x11ce50, m1 0xf91ec;
 	void increaseBatchNodeCapacity() = win 0x1fd9d0;
 	bool isFlipping();
@@ -8347,7 +8347,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	int m_unk2a90;
 	int m_unk2a94;
 	int m_unk2a98;
-	cocos2d::CCDictionary* m_unk2a9c;
+	cocos2d::CCDictionary* m_collectedItems; // can be found in GJBaseGameLayer::pickupItem/hasItem
 	float m_levelLength;
 	int m_unk2aa4;
 	EndPortalObject* m_endPortal;

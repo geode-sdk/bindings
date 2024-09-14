@@ -40,6 +40,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x3198);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x31a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3210);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingProgress, 0x3214);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_collectedItems, 0x3238);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3248);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3308);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
