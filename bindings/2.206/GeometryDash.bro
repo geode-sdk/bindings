@@ -4111,7 +4111,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn toggleObjectInfoLabel() = win 0xdf2d0;
 	void toggleSnap(cocos2d::CCObject*) = win 0x10c5c0;
 	TodoReturn toggleSpecialEditButtons();
-	TodoReturn toggleStickyControls(bool);
+	void toggleStickyControls(bool enable) = win inline, imac 0x2d430, m1 0x2da98 {
+		m_stickyControlsEnabled = enable;
+		m_linkBtn->setEnabled(enable);
+  		m_linkBtn->setVisible(enable);
+  		m_unlinkBtn->setEnabled(enable);
+  		m_unlinkBtn->setVisible(enable);
+	}
 	void toggleSwipe(cocos2d::CCObject*) = win 0x10c480;
 	void transformObject(GameObject*, EditCommand, bool) = win 0x11c890, imac 0x4c1f0;
 	void transformObjectCall(cocos2d::CCObject*) = m1 0x43774;
@@ -4215,8 +4221,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	float m_toolbarHeight;
 	float m_unk244;
 	bool m_updatedSpeedObjects;
+	bool m_unkBool1;
+	bool m_unkBool2;
+	bool m_stickyControlsEnabled;
 
-	PAD = win 0xf, android32 0xf, android64 0xf, mac 0xf, ios 0xf;
+	PAD = win 0xc, android32 0xc, android64 0xc, mac 0xc, ios 0xc;
 	cocos2d::CCArray* m_unk258;
 	PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8, ios 0x8;
 
