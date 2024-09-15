@@ -1510,6 +1510,18 @@ class cocos2d::CCKeyboardDispatcher {
 }
 
 [[link(win, android)]]
+class cocos2d::CCKeypadDispatcher {
+	// CCKeypadDispatcher(cocos2d::CCKeypadDispatcher const&);
+	// CCKeypadDispatcher();
+
+	void addDelegate(cocos2d::CCKeypadDelegate*);
+	bool dispatchKeypadMSG(cocos2d::ccKeypadMSGType);
+	void forceAddDelegate(cocos2d::CCKeypadDelegate*);
+	void forceRemoveDelegate(cocos2d::CCKeypadDelegate*);
+	void removeDelegate(cocos2d::CCKeypadDelegate*);
+}
+
+[[link(win, android)]]
 class cocos2d::CCDirector {
 	static cocos2d::CCDirector* sharedDirector() = imac 0x48b350, m1 0x3f0da8, ios 0x180c2c;
 
