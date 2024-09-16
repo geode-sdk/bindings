@@ -3102,7 +3102,7 @@ class CustomListView : BoomListView {
 	}
 
 	float getCellHeight(BoomListType) = ios 0x102794, imac 0x23ce80;
-	TodoReturn reloadAll() = win 0xaa280, imac 0x249a00;
+	void reloadAll() = win 0xaa280, imac 0x249a00;
 
 	virtual void setupList(float) = win 0xa9bb0, m1 0x1f3900, imac 0x2491d0;
 	virtual TableViewCell* getListCell(char const*) = m1 0x1e72a4, imac 0x23bdc0;
@@ -11676,7 +11676,9 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 	void onSavedMode(cocos2d::CCObject* sender) = win 0x2ba900;
 	void onSearch(cocos2d::CCObject* sender) = win 0x2bb5b0;
 	void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x2bbfc0, imac 0x496300;
-	void reloadAllObjects();
+	void reloadAllObjects() {
+		static_cast<CustomListView*>(m_list->m_listView)->reloadAll();
+	}
 	void setSearchObject(GJSearchObject*) = imac 0x495d30, m1 0x3fa8f4;
 	void setupLevelBrowser(cocos2d::CCArray*) = win 0x2b8440, m1 0x3fda3c, imac 0x4990a0;
 	void show() = win 0x2bc7d0, m1 0x3ffc14, imac 0x49b600;
