@@ -2498,7 +2498,7 @@ class cocos2d::CCSpriteFrame {
 	bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e68d8, imac 0x358a60, ios 0x25db44;
 
 	gd::string getFrameName() const = m1 inline, imac inline {
-		return m_pszFrameName;
+		return m_strFrameName;
 	}
 	cocos2d::CCPoint const& getOffset() = m1 0x2e6e28, imac 0x359100;
 	cocos2d::CCPoint const& getOffsetInPixels() = m1 0x2e6e9c, imac 0x3591a0;
