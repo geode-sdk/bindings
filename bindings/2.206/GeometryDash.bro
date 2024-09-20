@@ -16626,6 +16626,15 @@ class SetupInstantCountPopup : SetupTriggerPopup {
 	virtual TodoReturn determineStartValues() = m1 0x51bab0, imac 0x5f3870;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x51bff8, imac 0x5f3ea0;
 	virtual void textChanged(CCTextInputNode*) = win 0x3f8340, m1 0x51bd74, imac 0x5f3bb0;
+
+	CCTextInputNode* m_unk3a8;
+	CCTextInputNode* m_unk3b0;
+	CCTextInputNode* m_unk3b8;
+	int m_itemID;
+	int m_targetID;
+	int m_targetCount;
+	int m_unk3cc; // uninit
+	int m_mode; // 0 = equals, 1 = larger, 2 = smaller
 }
 
 [[link(android)]]
