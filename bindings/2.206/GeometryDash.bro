@@ -15464,8 +15464,23 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 [[link(android)]]
 class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
 	// virtual ~SecretLayer3();
+	SecretLayer3() {
+		m_lockInput = false;
+		m_locksArray = nullptr;
+		m_demonEyes = nullptr;
+		m_demonBody = nullptr;
+		m_secretChest = nullptr;
+	}
 
-	static SecretLayer3* create();
+	static SecretLayer3* create() = win inline {
+		auto ret = new SecretLayer3();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
 	TodoReturn animateEyes();
 	TodoReturn firstInteractionStep1();
@@ -15488,6 +15503,13 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
 	virtual void onExit() = m1 0x414e18, imac 0x4b2400;
 	virtual void keyBackClicked() = win 0x3c9c80, m1 0x414e0c, imac 0x4b23d0;
 	virtual void dialogClosed(DialogLayer*) = win 0x3c9680, m1 0x414ad4, imac 0x4b20b0;
+
+	DungeonBarsSprite* m_dungeonBars;
+	bool m_lockInput;
+	cocos2d::CCArray* m_locksArray;
+	cocos2d::CCSprite* m_demonEyes;
+	cocos2d::CCSprite* m_demonBody;
+	CCMenuItemSpriteExtra* m_secretChest;
 }
 
 [[link(android)]]
@@ -19334,7 +19356,7 @@ class VideoOptionsLayer : FLAlertLayer {
 
 	static VideoOptionsLayer* create() = win 0x355140, ios 0xeed80;
 
-	void createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float, bool) = ios 0xf21a8;
+	CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float, bool, cocos2d::CCArray*) = ios 0xf21a8;
 	void onAdvanced(cocos2d::CCObject* sender) = ios 0xf2810;
 	void onApply(cocos2d::CCObject* sender) = ios 0xf24ac, imac 0x7ac480;
 	void onClose(cocos2d::CCObject* sender) = ios 0xf2454;
@@ -19352,6 +19374,19 @@ class VideoOptionsLayer : FLAlertLayer {
 
 	virtual bool init() = win 0x355250, m1 0x6b23b4, ios 0xf154c, imac 0x7ab1a0;
 	virtual void keyBackClicked() = win 0x356df0, m1 0x6b3cb4, imac 0x7acc20;
+
+	CCMenuItemSpriteExtra* m_prevResolutionBtn;
+	CCMenuItemSpriteExtra* m_nextResolutionBtn;
+	cocos2d::CCLabelBMFont* m_windowedResolutionLabel;
+	cocos2d::CCLabelBMFont* m_selectedResolutionLabel;
+	cocos2d::CCLabelBMFont* m_qualityLabel;
+	int m_textureQuality;
+	cocos2d::CCArray* m_availableResolutions;
+	CCMenuItemToggler* m_borderlessToggle;
+	cocos2d::CCLabelBMFont* m_borderlessLabel;
+	bool m_windowed;
+	bool m_borderless;
+	int m_currentResolution;
 }
 
 [[link(android)]]
