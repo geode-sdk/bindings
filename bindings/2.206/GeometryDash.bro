@@ -14219,9 +14219,15 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void incrementJumps() = win 0x36acd0, imac 0x40c980, m1 0x38487c;
 	bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x364970, m1 0x37c678, imac 0x403590, ios 0x227dd4;
 	bool isBoostValid(float);
-	bool isFlying() = imac 0x40a810, m1 0x38285c;
-	bool isInBasicMode();
-	bool isInNormalMode();
+	bool isFlying() = win inline, imac 0x40a810, m1 0x38285c {
+		return m_isShip || m_isBird || m_isDart || m_isSwing;
+	}
+	bool isInBasicMode() = win inline, m1 0x38d8e0, imac 0x4179f0 {
+		return !this->isFlying() && !m_isBall && !m_isSpider;
+	}
+	bool isInNormalMode() = win inline, m1 0x3812f4, imac 0x408e90 {
+		return !this->isFlying() && !m_isBall && !m_isRobot && !m_isSpider;
+	}
 	bool isSafeFlip(float) = m1 0x38b488, imac 0x415120;
 	bool isSafeHeadTest();
 	bool isSafeMode(float);
@@ -14284,7 +14290,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void runNormalRotation() {
 		this->runNormalRotation(false, 1.0f);
 	}
-	void runNormalRotation(bool, float) = win 0x9999999, m1 0x381364, mac 0x408ef0;
+	void runNormalRotation(bool, float) = win 0x9999999, m1 0x381364, imac 0x408ef0;
 	void runRotateAction(bool, int) = win 0x36b480;
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x37b3b0, m1 0x37fac8, imac 0x407090;
