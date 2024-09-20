@@ -4050,7 +4050,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onUpdateDeleteFilter(cocos2d::CCObject* sender);
 	void orderDownCustomItem(cocos2d::CCObject*) = win 0xe0bf0;
 	void orderUpCustomItem(cocos2d::CCObject*) = win 0xe0b60;
-	void pasteObjects(gd::string, bool);
+	cocos2d::CCArray* pasteObjects(gd::string, bool, bool) = win 0x10f8a0;
 	TodoReturn playCircleAnim(cocos2d::CCPoint, float, float);
 	TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -6184,7 +6184,7 @@ class GameManager : GManager {
 	int m_unkSize4_3;
 	bool m_loaded;
 	bool m_googlePlaySignedIn;
-	gd::string m_unknownString;
+	gd::string m_editorClipboard;
 	int m_unkSize4_4;
 	PlayLayer* m_playLayer;
 	LevelEditorLayer* m_levelEditorLayer;
