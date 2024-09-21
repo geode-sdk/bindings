@@ -245,7 +245,7 @@ enum class DifficultyIconType {
     NoText = 2
 };
 enum class GauntletType {
-    Fire = 0,
+    Fire = 1,
     Ice = 2,
     Poison = 3,
     Shadow = 4,

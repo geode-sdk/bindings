@@ -7892,7 +7892,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void setupLayers() = win 0x1f9870, m1 0xe4c84, imac 0x104950;
 	void setupLevelStart(LevelSettingsObject*) = win 0x202d80, m1 0xf48f0, imac 0x117720;
 	void setupReplay(gd::string) = win 0x229a20, imac 0x14c060, m1 0x11e2c8;
-	void shakeCamera(float, float, float) = imac 0x14f790, m1 0x120cf8, ios 0x20df2c;
+	void shakeCamera(float duration, float strength, float interval) = win 0x22ad80, imac 0x14f790, m1 0x120cf8, ios 0x20df2c;
 	TodoReturn shouldExitHackedLevel() = imac 0x107120;
 	TodoReturn sortAllGroupsX();
 	TodoReturn sortGroups() = imac 0x10ae60;
