@@ -10145,9 +10145,9 @@ class GJRotationControl : cocos2d::CCLayer {
 
 [[link(android)]]
 class GJRotationControlDelegate {
-	virtual void angleChanged(float);
-	virtual void angleChangeBegin();
-	virtual void angleChangeEnded();
+	virtual void angleChanged(float angle) {}
+	virtual void angleChangeBegin() {}
+	virtual void angleChangeEnded() {}
 }
 
 [[link(android)]]
@@ -10230,13 +10230,13 @@ class GJScaleControl : cocos2d::CCLayer {
 
 [[link(android)]]
 class GJScaleControlDelegate {
-	virtual void scaleXChanged(float, bool);
-	virtual void scaleYChanged(float, bool);
-	virtual void scaleXYChanged(float, float, bool);
-	virtual void scaleChangeBegin();
-	virtual void scaleChangeEnded();
-	virtual void updateScaleControl();
-	virtual void anchorPointMoved(cocos2d::CCPoint);
+	virtual void scaleXChanged(float scaleX, bool lock) {}
+	virtual void scaleYChanged(float scaleY, bool lock) {}
+	virtual void scaleXYChanged(float scaleX, float scaleY, bool lock) {}
+	virtual void scaleChangeBegin() {}
+	virtual void scaleChangeEnded() {}
+	virtual void updateScaleControl() {}
+	virtual void anchorPointMoved(cocos2d::CCPoint newAnchor) {}
 }
 
 [[link(android)]]
