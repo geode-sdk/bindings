@@ -18082,22 +18082,35 @@ class Slider : cocos2d::CCLayer {
 		return Slider::create(target, handler, "sliderBar.png", "slidergroove.png", "sliderthumb.png", "sliderthumbsel.png", scale);
 	}
 
-	TodoReturn disableSlider();
+	void disableSlider();
 	void disableTouch() = imac 0x303b10, m1 0x297408;
-	TodoReturn enableSlider();
+	void enableSlider();
 	bool getLiveDragging() {
 		return m_touchLogic->m_activateThumb;
 	}
 	SliderThumb* getThumb() {
 		return m_touchLogic->m_thumb;
 	}
-	float getValue();
-	TodoReturn hideGroove(bool);
+	float getValue() {
+		return this->getThumb()->getValue();
+	}
+	void hideGroove(bool visibility) {
+		m_groove->setVisible(!visibility);
+	}
 	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float) = win 0x70360, imac 0x303620, m1 0x296f64;
-	void setBarVisibility(bool) = imac 0x303c00, ios 0x2ffdc8, m1 0x2974b4;
-	void setLiveDragging(bool);
-	void setMaxOffset(float);
-	void setRotated(bool);
+	void setBarVisibility(bool visibility) = imac 0x303c00, ios 0x2ffdc8, m1 0x2974b4, win inline {
+		m_sliderBar->setVisible(visibility);
+	}
+	void setLiveDragging(bool activateThumb) {
+		m_touchLogic->m_activateThumb = activateThumb;
+	}
+	void setMaxOffset(float offset) {
+		m_touchLogic->setMaxOffset(offset);
+	}
+	void setRotated(bool rotated) {
+		m_touchLogic->setRotated(rotated);
+		m_groove->setRotation((rotated) ? -90 : 0);
+	}
 	void setValue(float val) = win 0x70710, imac 0x303960, m1 0x29727c, ios 0x2ffccc;
 	TodoReturn sliderBegan();
 	TodoReturn sliderEnded();
@@ -18147,8 +18160,18 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 
 	float getValue() = win 0x6fdc0, ios 0x2ff24c, m1 0x296090, imac 0x3025d0;
 	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
-	void setMaxOffset(float);
-	void setRotated(bool);
+	void setMaxOffset(float offset) {
+		float value = getValue();
+		m_length = offset;
+		this->setPosition({0, 0});
+		setValue(value);
+	}
+	void setRotated(bool rotated) {
+		float value = getValue();
+		m_vertical = rotated;
+		this->setPosition({0, 0});
+		setValue(value);
+	}
 	void setValue(float) = win 0x6fe50, imac 0x302670, ios 0x2ff2d0, m1 0x296114;
 
 	float m_length;
@@ -18162,8 +18185,15 @@ class SliderTouchLogic : cocos2d::CCMenu {
 	static SliderTouchLogic* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float) = imac 0x302890;
 
 	bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float);
-	void setMaxOffset(float);
-	void setRotated(bool);
+	void setMaxOffset(float offset) {
+		float newOffset = m_thumb->getScale() * offset;
+		m_length = newOffset;
+		m_thumb->setMaxOffset(newOffset);
+	}
+	void setRotated(bool rotated) {
+		m_rotated = rotated;
+		m_thumb->setRotated(rotated);
+	}
 
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x6ffc0, m1 0x29676c, imac 0x302d40;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x700b0, m1 0x296980, imac 0x302f70;
