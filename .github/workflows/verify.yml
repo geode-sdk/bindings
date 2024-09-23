@@ -54,6 +54,7 @@ jobs:
         config:
         - name: Windows
           os: windows-2022
+          target: Win64
           prefixes: ''
           extra_flags: >
             -A x64
@@ -61,6 +62,7 @@ jobs:
 
         - name: Android32
           os: ubuntu-latest
+          target: Android32
           prefixes: ''
           extra_flags: >
             -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_LATEST_HOME/build/cmake/android.toolchain.cmake
@@ -71,6 +73,7 @@ jobs:
 
         - name: Android64
           os: ubuntu-latest
+          target: Android64
           prefixes: ''
           extra_flags: >
             -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_LATEST_HOME/build/cmake/android.toolchain.cmake
@@ -82,6 +85,7 @@ jobs:
         - name: macOS (x64)
           os_identifier: mac
           os: macos-latest
+          target: MacOS
           extra_flags: >
             -DCMAKE_C_COMPILER=clang
             -DCMAKE_CXX_COMPILER=clang++
@@ -92,6 +96,7 @@ jobs:
         - name: macOS (ARM)
           os_identifier: mac-arm
           os: macos-latest
+          target: MacOS
           extra_flags: >
             -DCMAKE_C_COMPILER=clang
             -DCMAKE_CXX_COMPILER=clang++
@@ -163,3 +168,18 @@ jobs:
 
     - name: Show Errors
       run: python test/members/check.py build
+
+    - name: Checkout Texture Loader
+      if: ${{ matrix.config.target != '' }}
+      uses: actions/checkout@v4
+      with:
+        repository: geode-sdk/textureldr
+        path: textureldr
+
+    - name: Build Texture Loader
+      if: ${{ matrix.config.target != '' }}
+      uses: geode-sdk/build-geode-mod@main
+      with:
+        path: textureldr
+        combine: true
+        target: ${{ matrix.config.target }}
