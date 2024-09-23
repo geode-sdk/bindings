@@ -19031,7 +19031,7 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
 	CCMenuItemSpriteExtra* m_nextButton;
 	CCMenuItemSpriteExtra* m_prevButton;
 	void* m_unkPtr;
-	CCLabelBMFont* m_pageInfoLabel;
+	cocos2d::CCLabelBMFont* m_pageInfoLabel;
 	int m_itemCount;
 	int m_pageStartIdx;
 	int m_pageEndIdx;
