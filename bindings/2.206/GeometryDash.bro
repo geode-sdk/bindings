@@ -18631,6 +18631,8 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 		m_dataSource = nullptr;
 		m_cellDelegate = nullptr;
 		m_unused2 = false;
+		this->setTouchEnabled(true);
+		this->setMouseEnabled(true);
 		m_vScrollbarVisible = false;
 		m_hScrollbarVisible = false;
 		m_disableHorizontal = false;
