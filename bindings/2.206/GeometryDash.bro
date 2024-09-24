@@ -18677,8 +18677,8 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	TodoReturn scrollToIndexPath(CCIndexPath&);
 	TodoReturn touchFinish(cocos2d::CCTouch*);
 
-	virtual void onEnter() = imac 0x62e110 { cocos2d::CCLayer::onEnter(); }
-	virtual void onExit() = imac 0x62e120 { cocos2d::CCLayer::onExit(); }
+	virtual void onEnter() = win 0x51f30, m1 0x54f058, imac 0x62e110;
+	virtual void onExit() = win 0x73d50, m1 0x54f05c, imac 0x62e120;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x73d60, m1 0x54f1d8, ios 0x3101d0, imac 0x62e2c0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x73ff0, m1 0x54fc20, ios 0x310988, imac 0x62ee00;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x73f10, m1 0x54f9d8, imac 0x62ebc0;
