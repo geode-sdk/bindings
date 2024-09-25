@@ -40,6 +40,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x3198);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x31a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3210);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingProgress, 0x3214);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_collectedItems, 0x3238);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_endPortal, 0x3248);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3308);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3468);
@@ -175,7 +176,12 @@ GEODE_MEMBER_CHECK(EditorUI, m_selectedTab, 0x548);
 GEODE_MEMBER_CHECK(ChallengesPage, m_dots, 0x290);
 GEODE_MEMBER_CHECK(ChallengesPage, m_challengeNodes, 0x2B8);
 
+GEODE_MEMBER_CHECK(GJEffectManager, m_unkDict150, 0x150);
+GEODE_MEMBER_CHECK(GJEffectManager, m_pulseEffectVector, 0x158);
+GEODE_MEMBER_CHECK(GJEffectManager, m_pulseEffectMap, 0x170);
+GEODE_MEMBER_CHECK(GJEffectManager, m_pulseEffectMap, 0x170);
 GEODE_MEMBER_CHECK(GJEffectManager, m_colorActionDict, 0x260);
+GEODE_MEMBER_CHECK(GJEffectManager, m_unkVector708, 0x708);
 //GEODE_MEMBER_CHECK(GJEffectManager, m_itemIDs, 0x318);
 
 GEODE_MEMBER_CHECK(HardStreak, m_pointArray, 0x1a0);
