@@ -2031,7 +2031,7 @@ class cocos2d::CCLightning {
 		return this->initWithStrikePoint(p1, CCPointZero, .5f);
 	}
 
-	//CCLightning() = win 0x43580, m1 0x510068, imac 0x5e6a90;
+	CCLightning() = win 0x43580, m1 0x510068, imac 0x5e6a90;
 	~CCLightning() = win 0x43650, m1 0x5101fc, imac 0x5e6c80;
 
 	void strike() = win 0x43a00, m1 0x510628, imac 0x5e7160;
