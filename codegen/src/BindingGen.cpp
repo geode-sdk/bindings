@@ -34,6 +34,13 @@ public:
     static constexpr auto CLASS_NAME = "{class_name}";
 )GEN";
 
+    constexpr char const* ns_class_start = R"GEN(
+namespace {namespace} {{
+class {class_name}{base_classes} {{
+public:
+    static constexpr auto CLASS_NAME = "{class_name}";
+)GEN";
+
 	constexpr char const* custom_constructor = R"GEN(    GEODE_CUSTOM_CONSTRUCTOR_GD({class_name}, {first_base})
 )GEN";
 
@@ -69,6 +76,10 @@ public:
 )GEN";
 
     constexpr char const* class_end = R"GEN(};
+)GEN";
+
+    constexpr char const* ns_class_end = R"GEN(};
+}
 )GEN";
 }}
 
@@ -208,11 +219,20 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
             !cls.superclasses.empty()
         );
 
-        single_output += fmt::format(::format_strings::class_start,
-            fmt::arg("class_name", cls.name),
-            fmt::arg("base_classes", supers)//,
-            // fmt::arg("hidden", str_if("GEODE_HIDDEN ", (codegen::platform & (Platform::Mac | Platform::iOS)) != Platform::None))
-        );
+        auto ns_index = cls.name.rfind("::");
+        if (ns_index == std::string::npos) {
+            single_output += fmt::format(::format_strings::class_start,
+                fmt::arg("class_name", cls.name),
+                fmt::arg("base_classes", supers)//,
+                // fmt::arg("hidden", str_if("GEODE_HIDDEN ", (codegen::platform & (Platform::Mac | Platform::iOS)) != Platform::None))
+            );
+        } else {
+            single_output += fmt::format(::format_strings::ns_class_start,
+                fmt::arg("namespace", cls.name.substr(0, ns_index)),
+                fmt::arg("class_name", cls.name.substr(ns_index + 2)),
+                fmt::arg("base_classes", supers)
+            );
+        }
 
         // what.
         if (!cls.superclasses.empty()) {
@@ -294,7 +314,11 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
         }
 
         // if (hasClass)
-        single_output += ::format_strings::class_end;
+        if (ns_index == std::string::npos) {
+            single_output += format_strings::class_end;
+        } else {
+            single_output += format_strings::ns_class_end;
+        }
 
         writeFile(singleFolder / filename, single_output);
     }
