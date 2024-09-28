@@ -38,7 +38,7 @@ public:
 namespace {namespace} {{
 class {class_name}{base_classes} {{
 public:
-    static constexpr auto CLASS_NAME = "{class_name}";
+    static constexpr auto CLASS_NAME = "{namespace}::{class_name}";
 )GEN";
 
 	constexpr char const* custom_constructor = R"GEN(    GEODE_CUSTOM_CONSTRUCTOR_GD({class_name}, {first_base})
@@ -240,7 +240,7 @@ std::string generateBindingHeader(Root const& root, ghc::filesystem::path const&
                 is_cocos_class(cls.superclasses[0]) 
                     ? format_strings::custom_constructor_cutoff
                     : format_strings::custom_constructor,
-                fmt::arg("class_name", cls.name),
+                fmt::arg("class_name", codegen::getUnqualifiedClassName(cls.name)),
                 fmt::arg("first_base", cls.superclasses[0])
             );
         }
