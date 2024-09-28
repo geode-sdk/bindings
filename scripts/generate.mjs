@@ -111,6 +111,7 @@ function shouldKeepSymbol(sym) {
     keep = keep && className !== "FMOD" && !sym.startsWith('FMOD_') && className != "tk";
     keep = keep && !enumClasses.includes(className);
     keep = keep && className != "CCContentManager";
+    keep = keep || className.includes("CCLightning");
     return keep;
 }
 
