@@ -2175,7 +2175,7 @@ class CheckpointObject : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class cocos2d::CCLightning {
+class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
 	static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x436c0, m1 0x5103ec, imac 0x5e6ee0, ios 0x3560c8;
 	static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint p1) = win inline, m1 0x510288, imac 0x5e6d30, ios inline {
 		auto ret = new CCLightning();
