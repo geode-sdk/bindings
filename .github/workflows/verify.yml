@@ -185,6 +185,8 @@ jobs:
       uses: hiimjustin000/build-geode-mod@test-stuff
       with:
         path: textureldr
+        configure-args: >
+          -D SKIP_BUILDING_CODEGEN=OFF
         bindings: ${{ github.repository }}
         bindings-ref: ${{ github.ref }}
         target: ${{ matrix.config.target }}
