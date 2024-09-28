@@ -126,9 +126,9 @@ jobs:
     - name: Checkout geode
       uses: actions/checkout@v4
       with:
-        repository: geode-sdk/geode
+        repository: hiimjustin000/geode
         # TODO: this is temporary
-        ref: main
+        ref: patch-2
         path: geode
 
     - name: Set up codegen binary cache
