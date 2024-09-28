@@ -182,7 +182,7 @@ jobs:
 
     - name: Build Texture Loader
       if: ${{ matrix.config.target != '' }}
-      uses: hiimjustin000/build-geode-mod@patch-1
+      uses: hiimjustin000/build-geode-mod@test-stuff
       with:
         path: textureldr
         bindings: ${{ github.repository }}
