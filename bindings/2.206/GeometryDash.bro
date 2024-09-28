@@ -2193,7 +2193,7 @@ class cocos2d::CCLightning {
 	}
 
 	CCLightning() = win 0x43580, m1 0x510068, imac 0x5e6a90, ios 0x355fc4;
-	~CCLightning() = win 0x43650, m1 0x5101fc, imac 0x5e6c80, ios 0x35606c;
+	// ~CCLightning() = win 0x43650, m1 0x5101fc, imac 0x5e6c80, ios 0x35606c;
 
 	void strike() = win 0x43a00, m1 0x510628, imac 0x5e7160, ios 0x356240;
 	void strikeFinished() = win 0x43a70, m1 0x51087c, imac 0x5e73f0, ios 0x3563ac;
@@ -2221,6 +2221,27 @@ class cocos2d::CCLightning {
 	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = win 0x43b40, m1 0x51096c, imac 0x5e75a0, ios 0x35649c;
 	virtual bool isCascadeColorEnabled() = win 0x43b50, m1 0x510994, imac 0x5e75e0, ios 0x3564c4;
 	virtual void setCascadeColorEnabled(bool) = win 0x43b60, m1 0x5109a4, imac 0x5e7600, ios 0x3564d4;
+
+	cocos2d::CCPoint m_strikePoint;
+	cocos2d::CCPoint m_strikePoint2;
+	bool m_split;
+	int m_displacement;
+	int m_minDisplacement;
+	uint64_t m_seed;
+	float m_lineWidth;
+	bool m_unkBool;
+	bool m_removeAfterFinished;
+	float m_duration;
+	float m_opacityModify;
+	std::array<cocos2d::CCPoint, 200>* m_lightningPoints;
+	uint32_t m_numPoints;
+	uint8_t m_displayedOpacity;
+	uint8_t m_opacity;
+	cocos2d::ccColor3B m_displayedColor;
+	cocos2d::ccColor3B m_color;
+	bool m_cascadeColorEnabled;
+	bool m_cascadeOpacityEnabled;
+	bool m_opacityModifyEnabled;
 }
 
 [[link(android)]]
