@@ -94,7 +94,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 )GEN";
 
 	constexpr char const* declare_constructor = R"GEN(
-{class_name}::{function_name}({parameters}) : {class_name}(geode::CutoffConstructor, sizeof({class_name})) {{
+{class_name}::{function_name}({parameters}) : {unqualified_class_name}(geode::CutoffConstructor, sizeof({class_name})) {{
 	// here we construct it as normal as we can, then destruct it
 	// using the generated functions. this ensures no memory gets leaked
 	// no crashes :pray:
