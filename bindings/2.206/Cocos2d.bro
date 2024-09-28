@@ -2013,55 +2013,6 @@ class cocos2d::CCRenderTexture {
 	virtual void setSprite(cocos2d::CCSprite*) = m1 0x526a3c, imac 0x5ffa70;
 }
 
-[[link(android)]]
-class cocos2d::CCLightning {
-	static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x436c0, m1 0x5103ec, imac 0x5e6ee0;
-	static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint p1) = win inline, m1 0x510288, imac 0x5e6d30 {
-		auto ret = new CCLightning();
-		if (ret->initWithStrikePoint(p1)) {
-			ret->autorelease();
-			return ret;
-		}
-		delete ret;
-		return nullptr;
-	}
-
-	bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x43760, m1 0x510504, imac 0x5e7020;
-	bool initWithStrikePoint(cocos2d::CCPoint p1) = win inline, m1 0x510398, imac 0x5e6e80 {
-		return this->initWithStrikePoint(p1, CCPointZero, .5f);
-	}
-
-	CCLightning() = win 0x43580, m1 0x510068, imac 0x5e6a90;
-	// ~CCLightning() = win 0x43650, m1 0x5101fc, imac 0x5e6c80;
-
-	void strike() = win 0x43a00, m1 0x510628, imac 0x5e7160;
-	void strikeFinished() = win 0x43a70, m1 0x51087c, imac 0x5e73f0;
-	void strikeRandom() = win inline, m1 0x510794, imac 0x5e7310 {
-		m_seed = rand();
-		this->strike();
-	}
-	void strikeWithSeed(uint64_t seed) = win inline, m1 0x51080c, imac 0x5e7380 {
-		m_seed = seed;
-		this->strike();
-	}
-
-	virtual void draw() = win 0x43880, m1 0x510694, imac 0x5e71c0;
-	virtual void setColor(cocos2d::_ccColor3B const&) = win 0x43ad0, m1 0x5108e0, imac 0x5e74a0;
-	virtual cocos2d::_ccColor3B const& getColor() = win 0x43ac0, m1 0x5108d0, imac 0x5e7480;
-	virtual cocos2d::_ccColor3B const& getDisplayedColor() = win 0x43b30, m1 0x51095c, imac 0x5e7580;
-	virtual unsigned char getDisplayedOpacity() = win 0x43aa0, m1 0x5108a4, imac 0x5e7430;
-	virtual unsigned char getOpacity() = win 0x43a90, m1 0x510894, imac 0x5e7410;
-	virtual void setOpacity(unsigned char) = win 0x43ab0, m1 0x5108c0, imac 0x5e7460;
-	virtual void setOpacityModifyRGB(bool) = win 0x43af0, m1 0x51091c, imac 0x5e7500;
-	virtual bool isOpacityModifyRGB() = win 0x43ae0, m1 0x51090c, imac 0x5e74e0;
-	virtual bool isCascadeColorEnabled() = win 0x43b50, m1 0x510994, imac 0x5e75e0;
-	virtual void setCascadeColorEnabled(bool) = win 0x43b60, m1 0x5109a4, imac 0x5e7600;
-	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = win 0x43b40, m1 0x51096c, imac 0x5e75a0;
-	virtual bool isCascadeOpacityEnabled() = win 0x43b10, m1 0x51093c, imac 0x5e7540;
-	virtual void setCascadeOpacityEnabled(bool) = win 0x43b20, m1 0x51094c, imac 0x5e7560;
-	virtual void updateDisplayedOpacity(unsigned char) = win 0x43b00, m1 0x51092c, imac 0x5e7520;
-}
-
 [[link(win, android)]]
 class cocos2d::CCRepeat {
 	static cocos2d::CCRepeat* create(cocos2d::CCFiniteTimeAction*, unsigned int) = m1 0x33daf0, imac 0x3b9530;
