@@ -5430,7 +5430,7 @@ class GameLevelManager : cocos2d::CCNode {
 	cocos2d::CCArray* createAndGetLevels(gd::string) = imac 0x535c60, m1 0x488f5c;
 	cocos2d::CCArray* createAndGetMapPacks(gd::string) = win 0x142370;
 	cocos2d::CCArray* createAndGetScores(gd::string, GJScoreType);
-	GJGameLevel* createNewLevel() = win 0x13fe60;
+	GJGameLevel* createNewLevel() = win 0x13fe60, m1 0x486b68, imac 0x5334d0;
 	GJLevelList* createNewLevelList() = win 0x140910, m1 0x4877e8, imac 0x534200;
 	TodoReturn createPageInfo(int, int, int);
 	GJSmartTemplate* createSmartTemplate();
@@ -12453,7 +12453,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 		return cocos2d::CCString::createWithFormat("T%i", time)->getCString();
 	}
 	bool init(int) = win 0x2ebc60, m1 0x5546b0, imac 0x634960, ios 0x57aa0;
-	void onBack(cocos2d::CCObject* sender);
+	void onBack(cocos2d::CCObject* sender) = win 0x2f1560, imac 0x6383d0, m1 0x558158;
 	void onClearFreeSearch(cocos2d::CCObject* sender) = win 0x2f1520, m1 0x5574e8, imac 0x6377c0;
 	void onClose(cocos2d::CCObject* sender) = win inline {
 		m_searchInput->onClickTrackNode(false);
