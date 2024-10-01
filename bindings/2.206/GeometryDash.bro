@@ -15710,15 +15710,27 @@ class SelectArtDelegate {
 class SelectArtLayer : FLAlertLayer {
 	// virtual ~SelectArtLayer();
 
-	static SelectArtLayer* create(SelectArtType, int);
+	static SelectArtLayer* create(SelectArtType, int) = win 0x301b60, m1 0x211ca0, imac 0x26b2c0;
 
-	bool init(SelectArtType, int);
-	void onClose(cocos2d::CCObject* sender);
-	void onSelectCustom(cocos2d::CCObject* sender);
-	TodoReturn selectArt(cocos2d::CCObject*);
-	TodoReturn updateSelectedCustom(int);
+	bool init(SelectArtType, int) = win 0x301c70, m1 0x2122d4, imac 0x26baf0;
+	void onClose(cocos2d::CCObject* sender) = win 0x302a40, m1 0x212d60, imac 0x26c5f0;
+	void onSelectCustom(cocos2d::CCObject* sender) = win 0x302980, m1 0x212dc0, imac 0x26c640;
+	void selectArt(cocos2d::CCObject* sender) = win 0x3028c0, m1 0x212c78, imac 0x26c520;
+	void updateSelectedCustom(int idx) = win inline, m1 0x211dd0, imac 0x26b430 {
+		if (m_lineSprites) {
+			m_line = idx;
+			this->onSelectCustom(nullptr);
+		}
+	}
 
 	virtual void keyBackClicked() = win 0x302a90, m1 0x212e68, imac 0x26c700;
+
+	cocos2d::CCArray* m_artSprites;
+	cocos2d::CCArray* m_lineSprites;
+	int m_art;
+	int m_line;
+	SelectArtType m_type;
+	SelectArtDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -15826,22 +15838,48 @@ class SelectSettingDelegate {
 class SelectSettingLayer : FLAlertLayer {
 	// virtual ~SelectSettingLayer();
 
-	static SelectSettingLayer* create(SelectSettingType, int);
+	static SelectSettingLayer* create(SelectSettingType, int) = win 0x302ae0, m1 0x21153c, imac 0x26aae0;
 
-	TodoReturn frameForItem(SelectSettingType, int);
-	TodoReturn frameForValue(SelectSettingType, int);
-	TodoReturn getSelectedFrame();
-	TodoReturn getSelectedValue();
-	TodoReturn idxToValue(SelectSettingType, int);
-	bool init(SelectSettingType, int);
-	void onClose(cocos2d::CCObject* sender);
-	void onSelect(cocos2d::CCObject* sender);
-	TodoReturn valueToIdx(SelectSettingType, int);
+	static gd::string frameForItem(SelectSettingType, int) = win 0x303340, m1 0x213734, imac 0x26d0d0;
+	static gd::string frameForValue(SelectSettingType type, int value) = win inline, m1 0x2112d0, imac 0x26a780 {
+		return frameForItem(type, valueToIdx(type, value));
+	}
+	gd::string getSelectedFrame() = win inline, m1 0x2117f8, imac 0x26adc0 {
+		return frameForValue(m_type, m_settingID);
+	}
+	int getSelectedValue() = win inline, m1 0x2117c4, imac 0x26ad90 {
+		return idxToValue(m_type, m_settingID);
+	}
+	static int idxToValue(SelectSettingType type, int idx) = win inline, m1 0x213aac, imac 0x26d3b0 {
+		if (type != SelectSettingType::StartingSpeed) return idx;
+
+		switch (idx) {
+			case 0: return 1;
+			case 1: return 0;
+			case 2: case 3: case 4: return idx;
+			default: return 0;
+		}
+	}
+	bool init(SelectSettingType, int) = win 0x302bf0, m1 0x213154, imac 0x26cae0;
+	void onClose(cocos2d::CCObject* sender) = win 0x303890, m1 0x213a4c, imac 0x26d360;
+	void onSelect(cocos2d::CCObject* sender) = win 0x3037e0, m1 0x213974, imac 0x26d2b0;
+	static int valueToIdx(SelectSettingType type, int value) = win inline, m1 0x213708, imac 0x26d0a0 {
+		if (type != SelectSettingType::StartingSpeed) return value;
+
+		switch (value) {
+			case 0: return 1;
+			case 1: return 0;
+			case 2: case 3: case 4: return value;
+			default: return 1;
+		}
+	}
 
 	virtual void keyBackClicked() = win 0x3038e0, m1 0x213ad8, imac 0x26d3e0;
 
-	PAD = win 0x4;
+	cocos2d::CCArray* m_settingSprites;
 	int m_settingID;
+	SelectSettingType m_type;
+	SelectSettingDelegate* m_delegate;
 }
 
 [[link(android)]]
