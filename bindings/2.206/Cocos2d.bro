@@ -3048,3 +3048,74 @@ class pugi::xml_node {
 		_root = nullptr;
 	}
 }
+
+[[link(android)]]
+class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
+	static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x436c0, m1 0x5103ec, imac 0x5e6ee0, ios 0x3560c8;
+	static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint p1) = win inline, m1 0x510288, imac 0x5e6d30, ios inline {
+		auto ret = new CCLightning();
+		if (ret->initWithStrikePoint(p1)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
+
+	bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x43760, m1 0x510504, imac 0x5e7020, ios 0x356160;
+	bool initWithStrikePoint(cocos2d::CCPoint p1) = win inline, m1 0x510398, imac 0x5e6e80, ios inline {
+		return this->initWithStrikePoint(p1, CCPointZero, .5f);
+	}
+
+	CCLightning() = win 0x43580, m1 0x510068, imac 0x5e6a90, ios 0x355fc4;
+	// ~CCLightning() = win 0x43650, m1 0x5101fc, imac 0x5e6c80, ios 0x35606c;
+
+	void strike() = win 0x43a00, m1 0x510628, imac 0x5e7160, ios 0x356240;
+	void strikeFinished() = win 0x43a70, m1 0x51087c, imac 0x5e73f0, ios 0x3563ac;
+	void strikeRandom() = win inline, m1 0x510794, imac 0x5e7310, ios inline {
+		m_seed = rand();
+		this->strike();
+	}
+	void strikeWithSeed(uint64_t seed) = win inline, m1 0x51080c, imac 0x5e7380, ios inline {
+		m_seed = seed;
+		this->strike();
+	}
+
+	virtual void draw() = win 0x43880, m1 0x510694, imac 0x5e71c0, ios 0x3562ac;
+	virtual bool isOpacityModifyRGB() = win 0x43ae0, m1 0x51090c, imac 0x5e74e0, ios 0x35643c;
+	virtual void setOpacityModifyRGB(bool) = win 0x43af0, m1 0x51091c, imac 0x5e7500, ios 0x35644c;
+	virtual unsigned char getOpacity() = win 0x43a90, m1 0x510894, imac 0x5e7410, ios 0x3563c4;
+	virtual unsigned char getDisplayedOpacity() = win 0x43aa0, m1 0x5108a4, imac 0x5e7430, ios 0x3563d4;
+	virtual void setOpacity(unsigned char) = win 0x43ab0, m1 0x5108c0, imac 0x5e7460, ios 0x3563f0;
+	virtual void updateDisplayedOpacity(unsigned char) = win 0x43b00, m1 0x51092c, imac 0x5e7520, ios 0x35645c;
+	virtual bool isCascadeOpacityEnabled() = win 0x43b10, m1 0x51093c, imac 0x5e7540, ios 0x35646c;
+	virtual void setCascadeOpacityEnabled(bool) = win 0x43b20, m1 0x51094c, imac 0x5e7560, ios 0x35647c;
+	virtual cocos2d::_ccColor3B const& getColor() = win 0x43ac0, m1 0x5108d0, imac 0x5e7480, ios 0x356400;
+	virtual cocos2d::_ccColor3B const& getDisplayedColor() = win 0x43b30, m1 0x51095c, imac 0x5e7580, ios 0x35648c;
+	virtual void setColor(cocos2d::_ccColor3B const&) = win 0x43ad0, m1 0x5108e0, imac 0x5e74a, ios 0x356410;
+	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = win 0x43b40, m1 0x51096c, imac 0x5e75a0, ios 0x35649c;
+	virtual bool isCascadeColorEnabled() = win 0x43b50, m1 0x510994, imac 0x5e75e0, ios 0x3564c4;
+	virtual void setCascadeColorEnabled(bool) = win 0x43b60, m1 0x5109a4, imac 0x5e7600, ios 0x3564d4;
+
+	cocos2d::CCPoint m_strikePoint;
+	cocos2d::CCPoint m_strikePoint2;
+	bool m_split;
+	int m_displacement;
+	int m_minDisplacement;
+	uint64_t m_seed;
+	float m_lineWidth;
+	bool m_unkBool;
+	bool m_removeAfterFinished;
+	float m_duration;
+	float m_opacityModify;
+	std::array<cocos2d::CCPoint, 200>* m_lightningPoints;
+	uint32_t m_numPoints;
+	uint8_t m_displayedOpacity;
+	uint8_t m_opacity;
+	cocos2d::ccColor3B m_displayedColor;
+	cocos2d::ccColor3B m_color;
+	bool m_cascadeColorEnabled;
+	bool m_cascadeOpacityEnabled;
+	bool m_opacityModifyEnabled;
+}
+
