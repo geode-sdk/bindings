@@ -1522,6 +1522,18 @@ class cocos2d::CCKeyboardDispatcher {
 }
 
 [[link(win, android)]]
+class cocos2d::CCKeypadDispatcher {
+	// CCKeypadDispatcher(cocos2d::CCKeypadDispatcher const&);
+	// CCKeypadDispatcher();
+
+	void addDelegate(cocos2d::CCKeypadDelegate*);
+	bool dispatchKeypadMSG(cocos2d::ccKeypadMSGType);
+	void forceAddDelegate(cocos2d::CCKeypadDelegate*);
+	void forceRemoveDelegate(cocos2d::CCKeypadDelegate*);
+	void removeDelegate(cocos2d::CCKeypadDelegate*);
+}
+
+[[link(win, android)]]
 class cocos2d::CCDirector {
 	static cocos2d::CCDirector* sharedDirector() = imac 0x48b350, m1 0x3f0da8, ios 0x180c2c;
 
@@ -2497,7 +2509,9 @@ class cocos2d::CCSpriteFrame {
 	}
 	bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e68d8, imac 0x358a60, ios 0x25db44;
 
-	gd::string getFrameName() const;
+	gd::string getFrameName() const = m1 inline, imac inline {
+		return m_strFrameName;
+	}
 	cocos2d::CCPoint const& getOffset() = m1 0x2e6e28, imac 0x359100;
 	cocos2d::CCPoint const& getOffsetInPixels() = m1 0x2e6e9c, imac 0x3591a0;
 	cocos2d::CCSize const& getOriginalSize();
@@ -2533,7 +2547,7 @@ class cocos2d::CCSpriteFrameCache {
 
 	// CCSpriteFrameCache();
 	// CCSpriteFrameCache(cocos2d::CCSpriteFrameCache const&);
-	void addSpriteFrame(cocos2d::CCSpriteFrame*, char const*);
+	void addSpriteFrame(cocos2d::CCSpriteFrame*, char const*) = m1 0x2aca14, imac 0x31bbf0;
 	void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*) = m1 0x2ab7d8, imac 0x31acd0;
 	void addSpriteFramesWithFile(char const*, char const*);
 	void addSpriteFramesWithFile(char const*) = imac 0x31b8b0, m1 0x2ac58c, ios 0x3c5734;

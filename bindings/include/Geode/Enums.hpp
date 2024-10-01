@@ -245,7 +245,7 @@ enum class DifficultyIconType {
     NoText = 2
 };
 enum class GauntletType {
-    Fire = 0,
+    Fire = 1,
     Ice = 2,
     Poison = 3,
     Shadow = 4,
@@ -395,7 +395,11 @@ enum class GJFeatureState {
 };
 enum class GJKeyGroup {};
 enum class GJKeyCommand {};
-enum class SelectSettingType {};
+enum class SelectSettingType {
+    StartingModeClassic = 0,
+    StartingModePlatformer = 1,
+    StartingSpeed = 2,
+};
 enum class gjParticleValue {
     MaxParticles = 1,
     Duration = 2,
