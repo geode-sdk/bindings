@@ -2015,7 +2015,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 	void claimItem(ChallengeNode*, GJChallengeItem*, cocos2d::CCPoint) = win 0x851e0, imac 0x3a1800, m1 0x3285f0;
 	ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x849f0, imac 0x3a0dd0, m1 0x327c74, ios 0x38fc0;
 	TodoReturn exitNodeAtSlot(int, float) = win 0x84c80, imac 0x3a12a0, m1 0x3280c8;
-	void onClose(cocos2d::CCObject* sender) = m1 0x327968, imac 0x3a0ac0;
+	void onClose(cocos2d::CCObject* sender) = win 0x85150, m1 0x327968, imac 0x3a0ac0;
 	TodoReturn tryGetChallenges();
 	TodoReturn updateDots() = imac 0x3a0fc0, m1 0x327e50;
 	callback void updateTimers(float) = win 0x84d70, imac 0x3a0b00, m1 0x3279b4;
@@ -2430,7 +2430,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 	void updateTextInputLabel() = win 0x91b00;
 
 	virtual void show() = win 0x91390, m1 0x649d8c, imac 0x738340;
-	virtual TodoReturn determineStartValues() = win 0x8eb80, m1 0x647c48, imac 0x7360c0;
+	virtual void determineStartValues() = win 0x8eb80, m1 0x647c48, imac 0x7360c0;
 	virtual void textChanged(CCTextInputNode*) = win 0x914c0, m1 0x649e58, imac 0x738430;
 	virtual void colorValueChanged(cocos2d::ccColor3B) = win 0x8ff40, m1 0x6482e8, imac 0x7368b0;
 	virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x91e80, m1 0x64a358, imac 0x7389d0;
@@ -4313,7 +4313,7 @@ class EditTriggersPopup : SetupTriggerPopup {
 
 	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x27ca30, m1 0x2399d0, imac 0x296c60;
 
-	virtual TodoReturn determineStartValues() = imac 0x296f20;
+	virtual void determineStartValues() = imac 0x296f20;
 	virtual void onClose(cocos2d::CCObject* sender) = imac 0x296f30;
 }
 
@@ -6915,10 +6915,29 @@ class GameObjectEditorState {
 [[link(android)]]
 class GameOptionsLayer : GJOptionsLayer {
 	// virtual ~GameOptionsLayer();
+	GameOptionsLayer() = win inline {
+		m_practiceDialogIndex = 0;
+	}
 
-	static GameOptionsLayer* create(GJBaseGameLayer*) = m1 0x24db08, imac 0x2ac900;
+	static GameOptionsLayer* create(GJBaseGameLayer* baseGameLayer) = win inline, m1 0x24db08, imac 0x2ac900 {
+		auto ret = new GameOptionsLayer();
+		if (ret->init(baseGameLayer)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(GJBaseGameLayer*) = m1 0x24dcb8, imac 0x2acb70;
+	bool init(GJBaseGameLayer* baseGameLayer) = win inline, m1 0x24dcb8, imac 0x2acb70 {
+		m_baseGameLayer = baseGameLayer;
+		m_gap = 40.f;
+		m_maxLabelScale = .4f;
+		if (!GJOptionsLayer::init(2)) return false;
+		this->preSetup();
+		this->postSetup();
+		return true;
+	}
 	void onPracticeMusicSync(cocos2d::CCObject* sender) = win 0x28e010, m1 0x24e468, imac 0x2ad370;
 	void onUIOptions(cocos2d::CCObject* sender) = win 0x28e0f0, m1 0x24e3dc, imac 0x2ad2e0;
 	void onUIPOptions(cocos2d::CCObject* sender) = win 0x28e110, m1 0x24e3fc, imac 0x2ad300;
@@ -7073,7 +7092,9 @@ class GameStatsManager : cocos2d::CCNode {
 	void incrementStat(char const*, int) = win 0x1ca5b0, m1 0x5ad38, imac 0x65ad0, ios 0x33c544;
 	TodoReturn incrementStat(char const*) = m1 0x5ad30;
 	bool isGauntletChestUnlocked(int) = ios 0x345b38;
-	bool isItemEnabled(UnlockType, int) = ios 0x345D80, imac 0x787e0; //inline on windows
+	bool isItemEnabled(UnlockType type, int id) = win inline, ios 0x345D80, imac 0x787e0, m1 0x6b108 {
+		return this->isItemUnlocked(type, id) && m_enabledItems->valueForKey(this->getItemKey(id, (int)type))->boolValue();
+	}
 	bool isItemUnlocked(UnlockType, int) = win 0x1dabe0, ios 0x33fda8, m1 0x5ead0, imac 0x6a450;
 	bool isPathChestUnlocked(int);
 	bool isPathUnlocked(StatKey);
@@ -8076,7 +8097,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x230190, m1 0x123828, imac 0x1529b0;
 	virtual TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = win 0x230390, m1 0x123a68, imac 0x152bb0;
 	virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*) = win 0x231f30, m1 0x1247e0, imac 0x153b30;
-	virtual void checkpointActivated(CheckpointGameObject*) = win 0x235b70;
+	virtual void checkpointActivated(CheckpointGameObject*) = win 0x235b70, m1 0x127a8c, imac 0x157ed0;
 	virtual TodoReturn flipArt(bool) = m1 0x127a88, imac 0x157ec0;
 	virtual void addKeyframe(KeyframeGameObject*) = win 0x223b30, m1 0x115768, imac 0x1405b0;
 	virtual void updateTimeLabel(int, int, bool) = m1 0xdf6ec, imac 0xfda20;
@@ -8931,7 +8952,7 @@ class GJFollowCommandLayer : SetupTriggerPopup {
 	TodoReturn updateYMod();
 	TodoReturn updateYModLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x270af8, imac 0x2d37d0;
+	virtual void determineStartValues() = m1 0x270af8, imac 0x2d37d0;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x2714c8, imac 0x2d43a0;
 	virtual void textChanged(CCTextInputNode*) = win 0x260230, m1 0x271070, imac 0x2d3de0;
 }
@@ -9801,7 +9822,7 @@ class GJObjectDecoder : cocos2d::CCNode {
 [[link(android)]]
 class GJOptionsLayer : SetupTriggerPopup {
 	// virtual ~GJOptionsLayer();
-	// GJOptionsLayer();
+	GJOptionsLayer() = win 0x27adc0;
 
 	static GJOptionsLayer* create(int) = m1 0x23a7ec, imac 0x297d60;
 
@@ -9946,7 +9967,7 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
 	TodoReturn updateYMod();
 	TodoReturn updateYModLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x2f4998, imac 0x367ea0;
+	virtual void determineStartValues() = m1 0x2f4998, imac 0x367ea0;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x2f5504, imac 0x368c30;
 	virtual void textChanged(CCTextInputNode*) = win 0x27a1a0, m1 0x2f4f38, imac 0x3684c0;
 }
@@ -10117,7 +10138,7 @@ class GJRotateCommandLayer : SetupTriggerPopup {
 	TodoReturn updateTextInputLabel2();
 	TodoReturn updateTimesLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x7778, imac 0x43f0;
+	virtual void determineStartValues() = m1 0x7778, imac 0x43f0;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x8444, imac 0x5340;
 	virtual void textChanged(CCTextInputNode*) = m1 0x7fe8, imac 0x4da0;
 	virtual TodoReturn valuePopupClosed(ConfigureValuePopup*, float) = m1 0x7c2c, imac 0x4910;
@@ -12752,7 +12773,10 @@ class LevelTools {
 	static TodoReturn getLastTimewarp();
 	static GJGameLevel* getLevel(int, bool) = win 0x304880, imac 0x5064b0;
 	static TodoReturn getLevelList();
-	static SongInfoObject* getSongObject(int);
+	static SongInfoObject* getSongObject(int id) = win inline, m1 0x463120, imac 0x50c1e0 {
+		auto artistID = artistForAudio(id);
+		return SongInfoObject::create(id, getAudioTitle(id), nameForArtist(artistID), artistID, 0.f, "", "", "", 0, "", false, 0, -1);
+	}
 	static TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
 	static gd::string nameForArtist(int) = win 0x308950;
 	static gd::string ngURLForArtist(int) = win 0x309f70;
@@ -13221,7 +13245,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	const char* objectKey(int);
 	cocos2d::CCArray* objectsForPage(int) = win 0x3539b0, ios 0xf0474;
 	void offsetToNextPage(); // inlined on ios
-	void onClose(cocos2d::CCObject* sender) = win 0x354fa0, ios 0xf0720;
+	void onClose(cocos2d::CCObject* sender) = win 0x354fa0, ios 0xf0720, m1 0x6b0b04, imac 0x7a9780;
 	void onFMODDebug(cocos2d::CCObject* sender) = win 0x354b10, ios 0xf05c0, m1 0x6b07e8, imac 0x7a9480;
 	void onGPSignIn(cocos2d::CCObject* sender);
 	void onGPSignOut(cocos2d::CCObject* sender);
@@ -14031,7 +14055,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	void onSettings(cocos2d::CCObject* sender) = win 0x35b8e0, m1 0x35c048, imac 0x3db4f0;
 	void onTime(cocos2d::CCObject* sender);
 	void setupProgressBars();
-	void sfxSliderChanged(cocos2d::CCObject*) = imac 0x3db560, m1 0x35c0ac; // merged with OptionsLayer::sfxSliderChanged on Windows
+	void sfxSliderChanged(cocos2d::CCObject*) = win 0x351210, imac 0x3db560, m1 0x35c0ac; // merged with OptionsLayer::sfxSliderChanged on Windows
 	TodoReturn tryShowBanner(float);
 	void tryQuit(cocos2d::CCObject* sender) = win 0x35cb90, imac 0x3db3b0, m1 0x35bf08, ios 0x14e164;
 
@@ -16094,7 +16118,7 @@ class SetTargetIDLayer : SetupTriggerPopup {
 
 	bool init(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int);
 
-	virtual TodoReturn determineStartValues() = imac 0x2b65b0;
+	virtual void determineStartValues() = imac 0x2b65b0;
 	virtual void valueDidChange(int, float) = m1 0x256504, imac 0x2b65c0;
 }
 
@@ -16185,7 +16209,7 @@ class SetupAnimationPopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTextInputLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x35a324, imac 0x3d9640;
+	virtual void determineStartValues() = m1 0x35a324, imac 0x3d9640;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x35a6bc, imac 0x3d9a60;
 	virtual void textChanged(CCTextInputNode*) = win 0x3dec60, m1 0x35a50c, imac 0x3d9870;
 }
@@ -16268,7 +16292,7 @@ class SetupAreaTintTriggerPopup : SetupAreaMoveTriggerPopup, HSVWidgetDelegate {
 	void onHSV(cocos2d::CCObject* sender);
 	TodoReturn updateHSVButton();
 
-	virtual TodoReturn determineStartValues() = win 0x3e5440, m1 0x43ec98, imac 0x4e2ad0;
+	virtual void determineStartValues() = win 0x3e5440, m1 0x43ec98, imac 0x4e2ad0;
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x3e5750, m1 0x43ef98, imac 0x4e2de0;
 	virtual void valueDidChange(int, float) = win 0x3e5280, m1 0x43eba8, imac 0x4e29e0;
 	virtual void hsvPopupClosed(HSVWidgetPopup*, cocos2d::ccHSVValue) = win 0x3e5660, m1 0x43eddc, imac 0x4e2c50;
@@ -16350,7 +16374,7 @@ class SetupCameraEdgePopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTextInputLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x4da060, imac 0x590a20;
+	virtual void determineStartValues() = m1 0x4da060, imac 0x590a20;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x4da2b0, imac 0x590cc0;
 	virtual void textChanged(CCTextInputNode*) = win 0x3e8bc0, m1 0x4da1c4, imac 0x590bb0;
 }
@@ -16380,7 +16404,7 @@ class SetupCameraModePopup : SetupTriggerPopup {
 	TodoReturn updateCameraPaddingLabel();
 	TodoReturn updateItemVisibility();
 
-	virtual TodoReturn determineStartValues() = m1 0x4161c4, imac 0x4b3bb0;
+	virtual void determineStartValues() = m1 0x4161c4, imac 0x4b3bb0;
 	virtual void onClose(cocos2d::CCObject* sender) = imac 0x4b3ea0;
 }
 
@@ -16411,7 +16435,7 @@ class SetupCameraOffsetTrigger : SetupTriggerPopup {
 	TodoReturn updateValueXLabel();
 	TodoReturn updateValueYLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x58bb44, imac 0x6706c0;
+	virtual void determineStartValues() = m1 0x58bb44, imac 0x6706c0;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x58c53c, imac 0x6711f0;
 	virtual void textChanged(CCTextInputNode*) = win 0x3ec2f0, m1 0x58c2b4, imac 0x670ec0;
 	virtual TodoReturn valuePopupClosed(ConfigureValuePopup*, float) = win 0x3eb9f0, m1 0x58bf40, imac 0x670a90;
@@ -16438,7 +16462,7 @@ class SetupCameraRotatePopup : SetupTriggerPopup {
 	TodoReturn updateMoveCommandEasing();
 	TodoReturn updateMoveCommandEasingRate();
 
-	virtual TodoReturn determineStartValues() = m1 0x4272ac, imac 0x4c7d50;
+	virtual void determineStartValues() = m1 0x4272ac, imac 0x4c7d50;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x427994, imac 0x4c8510;
 	virtual void textChanged(CCTextInputNode*) = m1 0x42776c, imac 0x4c82a0;
 	virtual TodoReturn valuePopupClosed(ConfigureValuePopup*, float) = m1 0x427520, imac 0x4c7fd0;
@@ -16502,7 +16526,7 @@ class SetupCollisionTriggerPopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTargetIDInputLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x3212f4, imac 0x399730;
+	virtual void determineStartValues() = m1 0x3212f4, imac 0x399730;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x321880, imac 0x399dc0;
 	virtual void textChanged(CCTextInputNode*) = win 0x3ee6c0, m1 0x321608, imac 0x399ad0;
 }
@@ -16526,7 +16550,7 @@ class SetupCountTriggerPopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTargetIDInputLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x2580fc, imac 0x2b8570;
+	virtual void determineStartValues() = m1 0x2580fc, imac 0x2b8570;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x2585e0, imac 0x2b8b00;
 	virtual void textChanged(CCTextInputNode*) = win 0x3f1250, m1 0x2583b8, imac 0x2b88a0;
 }
@@ -16554,7 +16578,7 @@ class SetupEndPopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTextInputLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x5914f4, imac 0x676a30;
+	virtual void determineStartValues() = m1 0x5914f4, imac 0x676a30;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x59177c, imac 0x676d50;
 	virtual void textInputClosed(CCTextInputNode*) = m1 0x591674, imac 0x676c00;
 	virtual void textChanged(CCTextInputNode*) = win 0x3f2760, m1 0x591690, imac 0x676c40;
@@ -16573,7 +16597,7 @@ class SetupEnterEffectPopup : SetupTriggerPopup, HSVWidgetDelegate {
 	void onNextFreeEnterEffectID(cocos2d::CCObject* sender);
 	TodoReturn updateHSVButton();
 
-	virtual TodoReturn determineStartValues() = win 0x3f5180, m1 0x375ab4, imac 0x3fc2d0;
+	virtual void determineStartValues() = win 0x3f5180, m1 0x375ab4, imac 0x3fc2d0;
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x3f5760, m1 0x375ea4, imac 0x3fc6f0;
 	virtual void updateInputValue(int, float&) = m1 0x376020, imac 0x3fc890;
 	virtual TodoReturn updateInputNode(int, float) = m1 0x375fec, imac 0x3fc860;
@@ -16592,7 +16616,7 @@ class SetupEnterTriggerPopup : SetupTriggerPopup {
 	bool init(EnterEffectObject*, cocos2d::CCArray*);
 	void onEnterType(cocos2d::CCObject* sender);
 
-	virtual TodoReturn determineStartValues() = m1 0x23a45c, imac 0x297850;
+	virtual void determineStartValues() = m1 0x23a45c, imac 0x297850;
 }
 
 [[link(android)]]
@@ -16648,7 +16672,7 @@ class SetupGradientPopup : SetupTriggerPopup {
 	TodoReturn updateGradientLabels(bool);
 	TodoReturn updateZLayerButtons();
 
-	virtual TodoReturn determineStartValues() = win 0x3f6a70, m1 0x524cd4, imac 0x5fda40;
+	virtual void determineStartValues() = win 0x3f6a70, m1 0x524cd4, imac 0x5fda40;
 	virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x3f6b80, m1 0x524e04, imac 0x5fdb60;
 	virtual TodoReturn updateToggleItem(int, bool) = win 0x3f6c00, m1 0x524e60, imac 0x5fdbb0;
 	virtual void valueDidChange(int, float) = win 0x3f7010, m1 0x525010, imac 0x5fdd70;
@@ -16719,7 +16743,7 @@ class SetupInstantCountPopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTargetIDInputLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x51bab0, imac 0x5f3870;
+	virtual void determineStartValues() = m1 0x51bab0, imac 0x5f3870;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x51bff8, imac 0x5f3ea0;
 	virtual void textChanged(CCTextInputNode*) = win 0x3f8340, m1 0x51bd74, imac 0x5f3bb0;
 
@@ -16826,7 +16850,7 @@ class SetupMGTrigger : SetupTriggerPopup {
 	TodoReturn updateMoveCommandPosY();
 	TodoReturn updateValueYLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x4684f8, imac 0x511cc0;
+	virtual void determineStartValues() = m1 0x4684f8, imac 0x511cc0;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x468c68, imac 0x512520;
 	virtual void textChanged(CCTextInputNode*) = win 0x3fd430, m1 0x468a48, imac 0x5122c0;
 	virtual TodoReturn valuePopupClosed(ConfigureValuePopup*, float) = m1 0x46879c, imac 0x511f80;
@@ -16903,7 +16927,7 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
 
 	virtual void keyBackClicked() = m1 0x2aa6f8, imac 0x319b30;
 	virtual void show() = m1 0x2aa71c, imac 0x319b70;
-	virtual TodoReturn determineStartValues() = win 0x3d48d0, m1 0x2aa448, imac 0x319720;
+	virtual void determineStartValues() = win 0x3d48d0, m1 0x2aa448, imac 0x319720;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x2aa768, imac 0x319bd0;
 }
 
@@ -16935,7 +16959,7 @@ class SetupOpacityPopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTextInputLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x4fba4, imac 0x591c0;
+	virtual void determineStartValues() = m1 0x4fba4, imac 0x591c0;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x500a8, imac 0x597c0;
 	virtual void textInputClosed(CCTextInputNode*) = m1 0x4fe60, imac 0x59520;
 	virtual void textChanged(CCTextInputNode*) = win 0x400650, m1 0x4fe7c, imac 0x59560;
@@ -17055,7 +17079,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
 	TodoReturn updateTextInputLabel();
 
 	virtual void show() = m1 0x337eec, imac 0x3b31d0;
-	virtual TodoReturn determineStartValues() = m1 0x336e30, imac 0x3b1e70;
+	virtual void determineStartValues() = m1 0x336e30, imac 0x3b1e70;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x337848, imac 0x3b2a40;
 	virtual void textChanged(CCTextInputNode*) = win 0x410d50, m1 0x337f48, imac 0x3b3250;
 	virtual void colorValueChanged(cocos2d::ccColor3B) = win 0x410a90, m1 0x3379d4, imac 0x3b2c20;
@@ -17100,7 +17124,7 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
 	TodoReturn updateTextInputLabel();
 	TodoReturn updateTextInputLabel2();
 
-	virtual TodoReturn determineStartValues() = m1 0x5187fc, imac 0x5efe20;
+	virtual void determineStartValues() = m1 0x5187fc, imac 0x5efe20;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x518d24, imac 0x5f0400;
 	virtual void textChanged(CCTextInputNode*) = win 0x4154e0, m1 0x518a84, imac 0x5f0110;
 }
@@ -17266,7 +17290,7 @@ class SetupShakePopup : SetupTriggerPopup {
 	TodoReturn updateShake();
 	TodoReturn updateShakeLabel(bool);
 
-	virtual TodoReturn determineStartValues() = m1 0x58d65c, imac 0x672480;
+	virtual void determineStartValues() = m1 0x58d65c, imac 0x672480;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x58dcb8, imac 0x672b60;
 	virtual void textChanged(CCTextInputNode*) = win 0x42a580, m1 0x58d998, imac 0x6727e0;
 }
@@ -17395,7 +17419,7 @@ class SetupTeleportPopup : SetupTriggerPopup {
 	void onTeleportGravity(cocos2d::CCObject* sender);
 	TodoReturn updateTeleportGravityState(int);
 
-	virtual TodoReturn determineStartValues() = imac 0x35ae30;
+	virtual void determineStartValues() = imac 0x35ae30;
 	virtual void updateDefaultTriggerValues() = m1 0x2e8840, imac 0x35ae40;
 	virtual void valueDidChange(int, float) = m1 0x2e895c, imac 0x35af60;
 }
@@ -17440,7 +17464,7 @@ class SetupTimeWarpPopup : SetupTriggerPopup {
 	TodoReturn updateTimeWarp();
 	TodoReturn updateTimeWarpLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x464ad8, imac 0x50dd50;
+	virtual void determineStartValues() = m1 0x464ad8, imac 0x50dd50;
 	virtual void onClose(cocos2d::CCObject* sender) = imac 0x50dee0;
 }
 
@@ -17459,7 +17483,7 @@ class SetupTouchTogglePopup : SetupTriggerPopup {
 	TodoReturn updateTargetID();
 	TodoReturn updateTextInputLabel();
 
-	virtual TodoReturn determineStartValues() = m1 0x2559d8, imac 0x2b5890;
+	virtual void determineStartValues() = m1 0x2559d8, imac 0x2b5890;
 	virtual void onClose(cocos2d::CCObject* sender) = m1 0x255cac, imac 0x2b5bd0;
 	virtual void textChanged(CCTextInputNode*) = win 0x438ed0, m1 0x255ba4, imac 0x2b5ab0;
 }
@@ -17530,8 +17554,14 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	void onSpawnedByTrigger(cocos2d::CCObject* sender) = win 0x449a40;
 	void onToggleTriggerValue(cocos2d::CCObject* sender) = win 0x44be30;
 	void onTouchTriggered(cocos2d::CCObject* sender) = win 0x449950;
-	void postSetup();
-	void preSetup();
+	void postSetup() = win inline {
+		this->updateDefaultTriggerValues();
+		m_disableTextDelegate = false;
+	}
+	void preSetup() = win inline {
+		m_disableTextDelegate = true;
+		this->determineStartValues();
+	}
 	void refreshGroupVisibility();
 	void removeObjectFromGroup(cocos2d::CCObject*, int);
 	void removeObjectFromPage(cocos2d::CCObject*, int);
@@ -17571,7 +17601,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	virtual void show() = win 0x8a220, m1 0x1e0df0, imac 0x234850;
 	virtual void pageChanged() {}
 	virtual TodoReturn toggleGroup(int, bool) = win 0x448a80, m1 0x1dea6c, imac 0x231150;
-	virtual TodoReturn determineStartValues() = win 0x4497d0, m1 0x1dfbdc, imac 0x232430;
+	virtual void determineStartValues() = win 0x4497d0, m1 0x1dfbdc, imac 0x232430;
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x449e10, m1 0x1e0e3c, imac 0x2348b0;
 	virtual void textInputClosed(CCTextInputNode*) = win 0x89f80, m1 0x1dfee4, imac 0x2327b0;
 	virtual void textChanged(CCTextInputNode*) = win 0x449c50, m1 0x1dff00, imac 0x2327f0;
@@ -17642,7 +17672,7 @@ class SetupZoomTriggerPopup : SetupTriggerPopup {
 
 	bool init(EffectGameObject*, cocos2d::CCArray*);
 
-	virtual TodoReturn determineStartValues() = imac 0x3200b0;
+	virtual void determineStartValues() = imac 0x3200b0;
 	virtual void onClose(cocos2d::CCObject* sender) = imac 0x3200c0;
 }
 
@@ -18368,7 +18398,7 @@ class SongInfoObject : cocos2d::CCNode {
 
 	static SongInfoObject* create(cocos2d::CCDictionary*);
 	static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority, gd::string unk1, bool unk2, int unk3, int unk4) = win 0x3245a0;
-	static SongInfoObject* create(int);
+	static SongInfoObject* create(int) = win 0x323450, m1 0x4e707c, imac 0x59f080;
 
 	TodoReturn addTags(gd::string);
 	TodoReturn containsTag(int);
@@ -18388,7 +18418,9 @@ class SongInfoObject : cocos2d::CCNode {
 	gd::string m_songUrl;
 	int m_artistID;
 	float m_fileSize;
-	bool m_isUnkownSong;
+	int m_unkInt1;
+	gd::string m_unkString1;
+	bool m_isUnknownSong;
 	int m_priority;
 }
 
@@ -18793,7 +18825,6 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 	cocos2d::CCArray* m_array2;
 	cocos2d::CCArray* m_array3;
 	TableViewDelegate* m_tableDelegate;
-	virtual TodoReturn getCellDelegateType();
 	TableViewDataSource* m_dataSource;
 	TableViewCellDelegate* m_cellDelegate;
 	bool m_unused2;
@@ -18828,6 +18859,7 @@ class TableViewCellDelegate {
 	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
 	virtual TodoReturn getSelectedCellIdx();
 	virtual TodoReturn shouldSnapToSelected();
+	virtual TodoReturn getCellDelegateType();
 }
 
 [[link(android)]]

@@ -1007,8 +1007,8 @@ class cocos2d::CCLayer {
 	int excuteScriptTouchHandler(int, cocos2d::CCTouch*);
 	void registerScriptAccelerateHandler(int);
 	void registerScriptKeypadHandler(int);
-	void unregisterScriptAccelerateHandler();
-	void unregisterScriptKeypadHandler();
+	void unregisterScriptAccelerateHandler() = m1 0x41b4b4, imac 0x4ba320;
+	void unregisterScriptKeypadHandler() = m1 0x41b488, imac 0x4ba2f0;
 
 	virtual bool init() = m1 0x41b670, imac 0x4ba5c0, ios 0x153204;
 	virtual void onEnter() = m1 0x41bf40, imac 0x4baeb0, ios 0x1538f0;
