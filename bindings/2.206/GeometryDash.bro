@@ -11866,13 +11866,13 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	gd::string getLevelString() = win 0x2c31b0, imac 0xe7660;
 	TodoReturn getLockedLayers();
 	TodoReturn getNextColorChannel();
-	TodoReturn getNextFreeAreaEffectID(cocos2d::CCArray*);
+	int getNextFreeAreaEffectID(cocos2d::CCArray*) = win 0x2c7350;
 	TodoReturn getNextFreeBlockID(cocos2d::CCArray*);
 	int getNextFreeEditorLayer(cocos2d::CCArray*);
 	TodoReturn getNextFreeEnterChannel(cocos2d::CCArray*);
-	TodoReturn getNextFreeGradientID(cocos2d::CCArray*);
+	int getNextFreeGradientID(cocos2d::CCArray*) = win 0x2c7430;
 	int getNextFreeGroupID(cocos2d::CCArray*) = win 0x2c6cb0, m1 0xd37e0, imac 0xef5f0;
-	TodoReturn getNextFreeItemID(cocos2d::CCArray*);
+	int getNextFreeItemID(cocos2d::CCArray*) = win 0x2c6f30;
 	TodoReturn getNextFreeOrderChannel(cocos2d::CCArray*);
 	TodoReturn getNextFreeSFXGroupID(cocos2d::CCArray*);
 	TodoReturn getNextFreeSFXID(cocos2d::CCArray*);
@@ -11896,7 +11896,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 		}
 		return false;
 	}
-	TodoReturn objectAtPosition(cocos2d::CCPoint) = win 0x2c16a0;
+	GameObject* objectAtPosition(cocos2d::CCPoint) = win 0x2c16a0;
 	TodoReturn objectMoved(GameObject*) = imac 0xedcf0;
 	TodoReturn objectsAtPosition(cocos2d::CCPoint) = imac 0xe5c40;
 	cocos2d::CCArray* objectsInRect(cocos2d::CCRect, bool);
