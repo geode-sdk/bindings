@@ -19016,25 +19016,51 @@ class ToggleTriggerAction {
 [[link(android)]]
 class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
 	// virtual ~TopArtistsLayer();
+	TopArtistsLayer() {
+		m_topArtists = nullptr;
+		m_listLayer = nullptr;
+		m_loadingCircle = nullptr;
+		m_page = 0;
+	}
 
-	static TopArtistsLayer* create();
+	static TopArtistsLayer* create() = win inline, m1 0x2a15b8, imac 0x30f920 {
+		auto ret = new TopArtistsLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool isCorrect(char const*);
-	void loadPage(int);
-	void onClose(cocos2d::CCObject* sender);
-	void onNextPage(cocos2d::CCObject* sender);
-	void onPrevPage(cocos2d::CCObject* sender);
-	TodoReturn setupLeaderboard(cocos2d::CCArray*);
-	TodoReturn updateLevelsLabel();
+	bool isCorrect(char const*) = m1 0x2a2018, imac 0x310450;
+	void loadPage(int) = win 0x49eab0, m1 0x2a269c, imac 0x310b20;
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x2a1de4, imac 0x3101f0;
+	void onNextPage(cocos2d::CCObject* sender) = win 0x49ef20, m1 0x2a1e2c, imac 0x310240;
+	void onPrevPage(cocos2d::CCObject* sender) = win 0x49ef30, m1 0x2a1e20, imac 0x310220;
+	void setupLeaderboard(cocos2d::CCArray*) = win 0x49e780, m1 0x2a1e38, imac 0x310260;
+	void updateLevelsLabel() = m1 0x2a2614, imac 0x310a80;
 
 	virtual bool init() = win 0x49df70, m1 0x2a16c0, imac 0x30fa80;
-	virtual void registerWithTouchDispatcher() = m1 0x2a1fe0, imac 0x310410;
-	TodoReturn doPause();
-	virtual void keyBackClicked() = m1 0x2a1f64, imac 0x3103a0;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x2a1fe0, imac 0x310410;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x2a1f64, imac 0x3103a0;
 	virtual void show() = win 0x84fb0, m1 0x2a2a5c, imac 0x310ee0;
 	virtual void loadListFinished(cocos2d::CCArray*, char const*) = win 0x49e710, m1 0x2a2020, imac 0x310460;
 	virtual void loadListFailed(char const*) = win 0x49e770, m1 0x2a20e4, imac 0x310520;
 	virtual void setupPageInfo(gd::string, char const*) = win 0x49e8d0, m1 0x2a210c, imac 0x310560;
+
+	cocos2d::CCArray* m_topArtists;
+	GJCommentListLayer* m_listLayer;
+	LoadingCircle* m_loadingCircle;
+	CCMenuItemSpriteExtra* m_nextButton;
+	CCMenuItemSpriteExtra* m_prevButton;
+	void* m_unkPtr;
+	cocos2d::CCLabelBMFont* m_pageInfoLabel;
+	int m_itemCount;
+	int m_pageStartIdx;
+	int m_pageEndIdx;
+	int m_unkSize4;
+	int m_page;
 }
 
 [[link(android)]]
