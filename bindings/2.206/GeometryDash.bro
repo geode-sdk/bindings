@@ -3105,7 +3105,7 @@ class CustomListView : BoomListView {
 	void reloadAll() = win 0xaa280, imac 0x249a00, m1 0x1f3f7c;
 
 	virtual void setupList(float) = win 0xa9bb0, m1 0x1f3900, imac 0x2491d0;
-	virtual TableViewCell* getListCell(char const*) = m1 0x1e72a4, imac 0x23bdc0;
+	virtual TableViewCell* getListCell(char const*) = m1 0x1e72a4, imac 0x23bdc0, win 0xa8730;
 	virtual void loadCell(TableViewCell*, int) = win 0xa94f0, m1 0x1e82d8, imac 0x23d950;
 
 	int m_unknown;
@@ -5082,7 +5082,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 			channel->setPaused(false);
 	}
 	TodoReturn reverbToString(FMODReverbPreset);
-	TodoReturn saveAudioState(FMODAudioState&);
+	TodoReturn saveAudioState(FMODAudioState&) = win 0x54a70;
 	void setBackgroundMusicVolume(float volume) = win inline, imac 0x3eba40, m1 0x369284, ios 0x143424 {
 		m_musicVolume = volume;
 		if (m_backgroundMusicChannel) m_backgroundMusicChannel->setVolume(volume);
@@ -7631,7 +7631,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
 	void applySFXEditTrigger(int, int, SFXTriggerGameObject*);
 	void applyShake(cocos2d::CCPoint&);
-	void assignNewStickyGroups(cocos2d::CCArray*);
+	void assignNewStickyGroups(cocos2d::CCArray*) = win 0x215530;
 	TodoReturn asyncBGLoaded(int);
 	TodoReturn asyncGLoaded(int);
 	TodoReturn asyncMGLoaded(int);
@@ -7734,7 +7734,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn getTargetGroup(int, int);
 	TodoReturn getTargetGroupOrigin(int, int);
 	TodoReturn gravBumpPlayer(PlayerObject*, EffectGameObject*) = imac 0x11c8e0, m1 0xf8c48;
-	void groupStickyObjects(cocos2d::CCArray*) = imac 0x132930;
+	void groupStickyObjects(cocos2d::CCArray*) = imac 0x132930, win 0x215350;
 	void handleButton(bool down, int button, bool isPlayer1) = win 0x2238a0, imac 0x13fc40, m1 0x114ea0;
 	bool hasItem(int) = m1 0xf9bac, imac 0x11d8a0;
 	bool hasUniqueCoin(EffectGameObject*) = win 0x207020, imac 0x11ce50, m1 0xf91ec;
@@ -7754,7 +7754,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void moveAreaObject(GameObject*, float, float) = win 0x21b2c0;
 	TodoReturn moveCameraToPos(cocos2d::CCPoint);
 	void moveObject(GameObject*, double, double, bool);
-	void moveObjects(cocos2d::CCArray*, double, double, bool);
+	void moveObjects(cocos2d::CCArray*, double, double, bool) = win 0x21e550;
 	void moveObjectsSilent(int, double, double);
 	TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
 	GJGameEvent objectTypeToGameEvent(int) = win 0x222520, imac 0x118d00, m1 0xf5ca0;
@@ -7791,7 +7791,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void processAreaFadeGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, bool);
 	void processAreaMoveGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x21ace0;
 	void processAreaRotateGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x21a5a0;
-	void processAreaTintGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, bool);
+	void processAreaTintGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, bool) = win 0x21b3b0;
 	void processAreaTransformGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x219a30;
 	void processAreaVisualActions(float) = imac 0x1389e0, m1 0x10f310;
 	GameObject* processCameraObject(GameObject* object, PlayerObject* player) = win inline, m1 0xf45bc, imac 0x1173a0, ios 0x1efd94 {
@@ -7978,7 +7978,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn tryGetObject(int) = win 0x214d80;
 	TodoReturn tryResumeAudio() = imac 0x147030;
 	TodoReturn unclaimParticle(char const*, cocos2d::CCParticleSystemQuad*);
-	void ungroupStickyObjects(cocos2d::CCArray*) = imac 0x132a50;
+	void ungroupStickyObjects(cocos2d::CCArray*) = imac 0x132a50, win 0x215470;
 	TodoReturn unlinkAllEvents();
 	TodoReturn updateActiveEnterEffect(EnterEffectObject*);
 	TodoReturn updateAllObjectSection() = imac 0x14cfd0;
