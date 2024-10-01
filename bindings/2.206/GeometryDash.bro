@@ -12917,13 +12917,31 @@ class LocalLevelManager : GManager {
 
 	static LocalLevelManager* sharedState() = win 0x30f5d0, m1 0x527e4c, imac 0x601110, ios 0x1d1c58;
 	inline static LocalLevelManager* get() {
-        return LocalLevelManager::sharedState();
-    }
+		return LocalLevelManager::sharedState();
+	}
 
 	cocos2d::CCDictionary* getAllLevelsInDict() = win 0x30fa40;
 	TodoReturn getAllLevelsWithName(gd::string);
-	TodoReturn getCreatedLevels(int);
-	TodoReturn getCreatedLists(int);
+	cocos2d::CCArray* getCreatedLevels(int folder) = win inline, m1 0x5290f4, imac 0x602660 {
+		if (folder < 1) return m_localLevels;
+		auto ret = cocos2d::CCArray::create();
+		CCObject* obj;
+		CCARRAY_FOREACH(m_localLevels, obj) {
+			if (!obj) return ret;
+			if (static_cast<GJGameLevel*>(obj)->m_levelFolder == folder) ret->addObject(obj);
+		}
+		return ret;
+	}
+	cocos2d::CCArray* getCreatedLists(int folder) = win inline, m1 0x529260, imac 0x6027c0 {
+		if (folder < 1) return m_localLists;
+		auto ret = cocos2d::CCArray::create();
+		CCObject* obj;
+		CCARRAY_FOREACH(m_localLists, obj) {
+			if (!obj) return ret;
+			if (static_cast<GJLevelList*>(obj)->m_folder == folder) ret->addObject(obj);
+		}
+		return ret;
+	}
 	cocos2d::CCDictionary* getLevelsInNameGroups() = m1 0x528540, imac 0x601940;
 	gd::string getMainLevelString(int) = win 0x30f930;
 	TodoReturn markLevelsAsUnmodified();
