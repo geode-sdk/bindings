@@ -312,6 +312,7 @@ GEODE_SIZE_CHECK(RateLevelLayer, 0x298);
 GEODE_SIZE_CHECK(CustomSongLayer, 0x2b0);
 GEODE_SIZE_CHECK(SelectFontLayer, 0x290);
 GEODE_SIZE_CHECK(CCSpriteWithHue, 0x298);
+GEODE_SIZE_CHECK(TopArtistsLayer, 0x2d0);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
