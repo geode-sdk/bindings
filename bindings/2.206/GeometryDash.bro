@@ -7944,7 +7944,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x207160, m1 0xf5020, imac 0x117fa0;
 	void toggleFlipped(bool, bool) = win 0x235880, imac 0x11c4e0, m1 0xf8868;
 	void toggleGroup(int, bool) = imac 0x131520, m1 0x1095c0;
-	TodoReturn toggleLockPlayer(bool, bool) = win 0x37d510;
+	void toggleLockPlayer(bool disable, bool p2) = win inline, m1 0x1099c0, imac 0x1319a0 {
+		auto player = p2 ? m_player2 : m_player1;
+		if (disable) player->disablePlayerControls();
+		else player->enablePlayerControls();
+	}
 	void togglePlayerStreakBlend(bool) = imac 0x131910, m1 0x10994c;
 	void togglePlayerVisibility(bool visible, bool player1) = win inline {
 		if (player1)
@@ -14199,14 +14203,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void disableCustomGlowColor() {
 		m_hasCustomGlowColor = false;
 	}
-	TodoReturn disablePlayerControls();
+	void disablePlayerControls() = win 0x37d3c0, m1 0x3987e8, imac 0x423c30;
 	void disableSwingFire() = win 0x378f10, m1 0x3924d4, imac 0x41d060, ios 0x238034;
 	void doReversePlayer(bool) = win 0x376540, m1 0x383584, imac 0x40b5e0;
 	void enableCustomGlowColor(cocos2d::_ccColor3B const& color) {
 		m_hasCustomGlowColor = true;
 		m_glowColor = color;
 	}
-	void enablePlayerControls();
+	void enablePlayerControls() = win 0x37d510, m1 0x398844, imac 0x423c90;
 	void exitPlatformerAnimateJump();
 	void fadeOutStreak2(float) = win 0x37e1a0, m1 0x392438, imac 0x41cfd0, ios 0x237f98;
 	void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = imac 0x418210;
