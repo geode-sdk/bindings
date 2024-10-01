@@ -58,6 +58,18 @@ class cocos2d::CCEaseInOut {
 }
 
 [[link(win, android)]]
+class cocos2d::CCEaseBackIn {
+	static cocos2d::CCEaseBackIn* create(cocos2d::CCActionInterval*) = m1 0x474784, imac 0x51f410;
+
+	// CCEaseBackIn(cocos2d::CCEaseBackIn const&);
+	// CCEaseBackIn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual cocos2d::CCActionInterval* reverse();
+}
+
+[[link(win, android)]]
 class cocos2d::CCEaseBackOut {
 	static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*) = ios 0x27cedc, m1 0x47495c, imac 0x51f5f0;
 
@@ -3010,6 +3022,25 @@ class cocos2d::ZipUtils {
 	static gd::string encryptDecryptWKey(gd::string const&, gd::string);
 	static unsigned char hexToChar(gd::string const&);
 	static gd::string urlDecode(gd::string const&);
+}
+
+[[link(win, android)]]
+class cocos2d::CCSpawn {
+	static cocos2d::CCSpawn* create(cocos2d::CCArray*);
+	// static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...) = m1 0x33e430, imac 0x3b9e30;
+	static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = m1 0x33e5ec, imac 0x3ba120;
+	// static cocos2d::CCSpawn* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
+
+	bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);
+
+	// CCSpawn(cocos2d::CCSpawn const&);
+	// CCSpawn();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual void startWithTarget(cocos2d::CCNode*);
+	virtual void stop();
+	virtual cocos2d::CCActionInterval* reverse();
 }
 
 [[link(win, android)]]
