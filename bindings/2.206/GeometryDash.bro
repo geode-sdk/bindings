@@ -1473,6 +1473,12 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 	virtual void setDisplayFrame(cocos2d::CCSpriteFrame*) = m1 0x30212c, imac 0x376940;
 	virtual bool isFrameDisplayed(cocos2d::CCSpriteFrame*) = m1 0x30228c, imac 0x376ab0;
 	virtual cocos2d::CCSpriteFrame* displayFrame() = m1 0x3022a4, imac 0x376ad0;
+
+	cocos2d::CCDictionary* m_spritePartIDs;
+	cocos2d::CCSpriteFrame* m_spriteFrame;
+	bool m_hasChanged;
+	cocos2d::CCSize m_unkSize;
+	cocos2d::CCArray* m_spriteParts;
 }
 
 [[link(android), depends(CCContentLayer)]]
@@ -1624,6 +1630,10 @@ class CCSpritePart : CCSpritePlus {
 	TodoReturn updateDisplayFrame(gd::string);
 
 	virtual void setVisible(bool) = win 0x45bb0, m1 0x302c48, imac 0x377410;
+
+	bool m_isBeingUsed;
+	gd::string m_spriteFrameName;
+	SpritePartDelegate* m_delegate;
 }
 
 [[link(android)]]
