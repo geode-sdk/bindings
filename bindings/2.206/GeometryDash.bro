@@ -9371,10 +9371,10 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 		delete ret;
 		return nullptr;
 	}
-	void onArrow(cocos2d::CCObject* sender) = win 0x263e50;
+	void onArrow(cocos2d::CCObject* sender) = win 0x263e50, m1 0x2fa3b8, imac 0x36e1e0;
 	void onBack(cocos2d::CCObject* sender) = win 0x266f60, imac 0x36d620;
 	void onInfo(cocos2d::CCObject* sender) = win 0x262a50;
-	void onNavigate(cocos2d::CCObject* sender) = win 0x263f50;
+	void onNavigate(cocos2d::CCObject* sender) = win 0x263f50, m1 0x2fac48, imac 0x36ead0;
 	void onPaint(cocos2d::CCObject* sender) = win 0x266d80, ios 0x31520c;
 	void onSelect(cocos2d::CCObject* sender) = win 0x265100, m1 0x2fb710, imac 0x36f5e0;
 	void onSelectTab(cocos2d::CCObject* sender) = win 0x263f80, imac 0x36e1b0, m1 0x2fa384;
@@ -15072,7 +15072,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3a2710, m1 0x6CB804, imac 0x7C61F0;
 	void showNoAccountError() = win 0x3A1640;
 	TodoReturn toggleMainPageVisibility(bool);
-	void toggleShip(cocos2d::CCObject* sender) = win 0x39f5f0;
+	void toggleShip(cocos2d::CCObject* sender) = win 0x39f5f0, m1 0x6ce55c, imac 0x7c9460;
 	TodoReturn updateLevelsLabel();
 	void updatePageArrows() = win 0x3A2AB0;
 
