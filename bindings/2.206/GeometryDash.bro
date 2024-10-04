@@ -14258,8 +14258,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn convertToClosestRotation(float);
 	void copyAttributes(PlayerObject*) = win 0x37e4b0, imac 0x4249f0, m1 0x3994b4;
 	void createFadeOutDartStreak() = win 0x376690;
-	void createRobot(int) = win 0x366050;
-	void createSpider(int) = win 0x366410;
+	void createRobot(int) = win 0x366050, m1 0x37dcd4, imac 0x404e20;
+	void createSpider(int) = win 0x366410, m1 0x37e0ac, imac 0x405290;
 	void deactivateParticle() = m1 0x3828c8, imac 0x40a870; // inlined on windows
 	void deactivateStreak(bool) = imac 0x405d80;
 	TodoReturn destroyFromHitHead();
