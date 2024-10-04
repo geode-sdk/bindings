@@ -9498,7 +9498,7 @@ class GJItemIcon : cocos2d::CCSprite {
 	void darkenStoreItem(cocos2d::ccColor3B) = win 0x2691d0, m1 0x2fec04, imac 0x372fc0;
 	void darkenStoreItem(ShopType) = win 0x269150, m1 0x2fbbcc, imac 0x36fc60;
 	bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x2689a0, m1 0x2fe540, imac 0x3728c0, ios 0x3186D4;
-	float scaleForType(UnlockType) = win 0x2695a0, m1 0x2fb6f0, imac 0x36f5b0;
+	static float scaleForType(UnlockType) = win 0x2695a0, m1 0x2fb6f0, imac 0x36f5b0;
 	void toggleEnabledState(bool) = win 0x269400, ios 0x316B94;
 	static cocos2d::ccColor3B unlockedColorForType(int) = m1 0x2feb9c, imac 0x372f60;
 
@@ -15072,6 +15072,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 	void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3a2710, m1 0x6CB804, imac 0x7C61F0;
 	void showNoAccountError() = win 0x3A1640;
 	TodoReturn toggleMainPageVisibility(bool);
+	void toggleShip(cocos2d::CCObject* sender) = win 0x39f5f0;
 	TodoReturn updateLevelsLabel();
 	void updatePageArrows() = win 0x3A2AB0;
 
@@ -18135,7 +18136,7 @@ class SimplePlayer : cocos2d::CCSprite {
 	TodoReturn iconFinishedLoading(int, IconType);
 	bool init(int) = win 0x2673c0, ios 0x317cb4;
 	void setColors(cocos2d::ccColor3B const&, cocos2d::ccColor3B const&);
-	void setFrames(char const*, char const*, char const*, char const*, char const*);
+	void setFrames(char const*, char const*, char const*, char const*, char const*) = win 0x268450;
 	void setSecondColor(cocos2d::_ccColor3B const& color) = m1 0x2fdeb8, imac 0x372200, ios 0x3181d0, win inline {
 		m_secondLayer->setColor(color);
 		updateColors();
