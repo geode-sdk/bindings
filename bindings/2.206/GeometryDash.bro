@@ -13015,7 +13015,7 @@ class LocalLevelManager : GManager {
 
 	cocos2d::CCArray* m_localLevels;
 	cocos2d::CCArray* m_localLists;
-	gd::map<int, gd::string> m_mainLevels;
+	gd::unordered_map<int, gd::string> m_mainLevels;
 }
 
 [[link(android)]]
