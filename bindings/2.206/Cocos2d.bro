@@ -1201,11 +1201,11 @@ class cocos2d::CCLayerRGBA {
 class cocos2d::CCMouseDispatcher {
 	// CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
 	// CCMouseDispatcher();
-	void addDelegate(cocos2d::CCMouseDelegate*);
+	void addDelegate(cocos2d::CCMouseDelegate*) = m1 0x4c49e0, imac 0x5784c0;
 	bool dispatchScrollMSG(float, float) = m1 0x4c4a74, imac 0x578540;
-	void forceAddDelegate(cocos2d::CCMouseDelegate*);
-	void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
-	void removeDelegate(cocos2d::CCMouseDelegate*);
+	void forceAddDelegate(cocos2d::CCMouseDelegate*) = m1 0x4c4a38, imac 0x578510;
+	void forceRemoveDelegate(cocos2d::CCMouseDelegate*) = m1 0x4c4944, imac 0x578430;
+	void removeDelegate(cocos2d::CCMouseDelegate*) = m1 0x4c4884, imac 0x578380;
 }
 
 [[link(win, android)]]
@@ -2577,8 +2577,8 @@ class cocos2d::CCString {
 [[link(win, android)]]
 class cocos2d::CCMenuItem {
 	~CCMenuItem() = imac 0x3c1fc0, m1 0x345478, ios 0x531c4;
-	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-	static cocos2d::CCMenuItem* create();
+	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x3452f0, imac 0x3c1e10;
+	static cocos2d::CCMenuItem* create() = m1 0x345248, imac 0x3c1d50;
 
 	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3c1ee0, m1 0x3453ac, ios 0x53154;
 
