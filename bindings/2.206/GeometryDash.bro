@@ -11417,10 +11417,10 @@ class ItemInfoPopup : FLAlertLayer {
 	static ItemInfoPopup* create(int, UnlockType) = win 0x269640, m1 0x2fc484, imac 0x3705b0;
 
 	bool init(int, UnlockType) = win 0x269730, imac 0x3731a0, m1 0x2fed78;
-	bool isUnlockedByDefault(int, UnlockType);
-	TodoReturn nameForUnlockType(int, UnlockType) = win 0x26b660, imac 0x374620;
-	void onClose(cocos2d::CCObject* sender);
-	void onCredit(cocos2d::CCObject* sender);
+	bool isUnlockedByDefault(int, UnlockType) = m1 0x300334, imac 0x374900;
+	static gd::string nameForUnlockType(int, UnlockType) = win 0x26b660, m1 0x2fffe4, imac 0x374620;
+	void onClose(cocos2d::CCObject* sender) = m1 0x3002f8, imac 0x3748d0;
+	void onCredit(cocos2d::CCObject* sender) = win 0x26b630, m1 0x300360, imac 0x374930;
 
 	virtual void keyBackClicked() = m1 0x300394, imac 0x374960;
 
