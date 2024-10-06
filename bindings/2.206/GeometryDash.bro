@@ -8053,7 +8053,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void updateShaderLayer(float) = win 0x212aa0, imac 0x12fdd0, m1 0x107d80;
 	void updateSpecialGroupData() = win 0x1fecf0, imac 0x10aa20, m1 0xea268;
 	TodoReturn updateSpecialLabels() = win 0x228fb0;
-	void updateStaticCameraPos(cocos2d::CCPoint, bool, bool, bool, float, int, float) = win 0x22e360, imac 0x1191c0, m1 0xf60ec;
+	void updateStaticCameraPos(cocos2d::CCPoint pos, bool staticX, bool staticY, bool followOrSmoothEase, float time, int easingType, float easingRate) = win 0x22e360, imac 0x1191c0, m1 0xf60ec;
 	TodoReturn updateStaticCameraPosToGroup(int, bool, bool, bool, float, float, int, float, bool, float) = win 0x22df70;
 	TodoReturn updateTimeMod(float, bool, bool);
 	TodoReturn updateTimerLabels() = win 0x2251f0;
