@@ -294,7 +294,9 @@ enum class GauntletType {
     Galaxy = 0x2F,
     Universe = 0x30,
     Discord = 0x31,
-    Split = 0x32
+    Split = 0x32,
+    NCS = 0x33,
+    NCS2 = 0x34
 };
 enum class GJMPErrorCode {};
 enum class GJTimedLevelType {
