@@ -689,8 +689,10 @@ public class SyncBromaScript extends GhidraScript {
                     int length;
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get());
-                        length = memType.getLength();
-                        offset += offset % memType.getAlignment();
+                        boolean isPointer = memType instanceof PointerDataType;
+                        length = isPointer ? manager.getDataOrganization().getPointerSize() : memType.getLength();
+                        int alignment = isPointer ? length : memType.getAlignment();
+                        offset = (offset + alignment - 1) / alignment * alignment;
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
@@ -727,16 +729,16 @@ public class SyncBromaScript extends GhidraScript {
                                 );
                             }
                         }
-                        for (int i = memType.getLength(); i > 0; i -= 1) {
+                        for (int i = length; i > 0; i -= 1) {
                             classDataMembers.clearAtOffset(offset + i - 1);
                         }
                         classDataMembers.replaceAtOffset(
                             offset,
-                            memType, memType.getLength(),
+                            memType, length,
                             mem.name.get().value,
                             mem.getComment().orElse(null)
                         );
-                        offset += memType.getLength();
+                        offset += length;
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
@@ -814,7 +816,7 @@ public class SyncBromaScript extends GhidraScript {
 
             // Handle exporting paddings
             if (mem.getDataType() instanceof Undefined) {
-                var pad = new PaddingInfo(mem.getComment());
+                var pad = new PaddingInfo(mem.getComment(), args.platform);
 
                 // If this padding is different between different platforms, 
                 // skip any members inside that padding region 
@@ -833,7 +835,7 @@ public class SyncBromaScript extends GhidraScript {
                         int lastPaddingIndex = i;
                         int originalPadRegionEndIndex = type.getNumComponents() - 1;
                         for (var j = i; j < type.getNumComponents(); j += 1) {
-                            var opad = new PaddingInfo(type.getComponent(j).getComment());
+                            var opad = new PaddingInfo(type.getComponent(j).getComment(), args.platform);
                             if (opad.offset == pad.offset) {
                                 lastPaddingIndex = j;
                             }
@@ -886,7 +888,7 @@ public class SyncBromaScript extends GhidraScript {
                 else {
                     var length = 0;
                     for (var j = i; j < type.getNumComponents(); j += 1) {
-                        var opad = new PaddingInfo(type.getComponent(j).getComment());
+                        var opad = new PaddingInfo(type.getComponent(j).getComment(), args.platform);
                         if (opad.offset != pad.offset) {
                             break;
                         }
