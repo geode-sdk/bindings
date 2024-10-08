@@ -7700,8 +7700,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn controlTriggersWithControlID(int, GJActionCommand);
 	TodoReturn convertToClosestDirection(float, float) = win 0x21f0b0;
 	void createBackground(int) = win 0x1fc5d0, imac 0x107650, m1 0xe7620;
-	void createGroundLayer(int, int) = win 0x1fca10, imac 0x107bd0;
-	void createMiddleground(int) = win 0x1fc890, imac 0x107de0;
+	void createGroundLayer(int, int) = win 0x1fca10, imac 0x107bd0, m1 0xe7b5c;
+	void createMiddleground(int) = win 0x1fc890, imac 0x107de0, m1 0xe7d40;
 	TodoReturn createNewKeyframeAnim();
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
 	void createPlayer() = win 0x1fc0c0, imac 0x1072f0, m1 0xe72e0, ios 0x1e73b8;
