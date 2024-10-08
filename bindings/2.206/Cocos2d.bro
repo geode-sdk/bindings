@@ -200,11 +200,15 @@ class cocos2d::CCMotionStreak {
 	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x57d640, m1 0x4c9afc;
 
 	bool getDontOpacityFade() const;
-	float getM_fMaxSeg() const;
+	float getM_fMaxSeg() const {
+		return m_fMaxSeg;
+	}
 
 	void setDontOpacityFade(bool);
 	void setFastMode(bool);
-	void setM_fMaxSeg(float);
+	void setM_fMaxSeg(float maxSeg) {
+		m_fMaxSeg = maxSeg;
+	}
 	void setStartingPositionInitialized(bool);
 	void setStroke(float);
 
@@ -239,7 +243,7 @@ class cocos2d::CCMotionStreak {
 	bool isStartingPositionInitialized();
 	void reset() = imac 0x57e280, m1 0x4ca540;
 	void resumeStroke() = imac 0x57dc40, m1 0x4ca00c;
-	void stopStroke();
+	void stopStroke() = imac 0x57dc30, m1 0x4ca004;
 	void tintWithColor(cocos2d::_ccColor3B);
 	void updateFade(float) = imac 0x57dc10;
 
