@@ -1478,7 +1478,7 @@ class cocos2d::CCIMEDelegate {
 
 [[link(win, android)]]
 class cocos2d::CCIMEDispatcher {
-	static cocos2d::CCIMEDispatcher* sharedDispatcher() = ios 0x1dd254;
+	static cocos2d::CCIMEDispatcher* sharedDispatcher() = m1 0x424f7c, imac 0x4c5990, ios 0x1dd254;
 
 	// CCIMEDispatcher();
 
@@ -1494,7 +1494,7 @@ class cocos2d::CCIMEDispatcher {
 	void dispatchKeyboardWillHide();
 	void dispatchKeyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&);
 	char const* getContentText();
-	bool hasDelegate();
+	bool hasDelegate() = m1 0x425720, imac 0x4c60f0;
 	void removeDelegate(cocos2d::CCIMEDelegate*) = ios 0x1dd398;
 }
 
