@@ -5699,7 +5699,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void saveFetchedLevels(cocos2d::CCArray*) = win 0x141e70, imac 0x538600, m1 0x48b144;
 	void saveFetchedMapPacks(cocos2d::CCArray*);
 	void saveGauntlet(GJMapPack*);
-	void saveLevel(GJGameLevel*) = win 0x1438e0;
+	void saveLevel(GJGameLevel*) = win 0x1438e0, imac 0x53E5F0, m1 0x490844;
 	void saveLevelList(GJLevelList*) = win 0x14b7a0, m1 0x48bd08, imac 0x539270;
 	void saveLocalScore(int, int, int);
 	void saveMapPack(GJMapPack*);
