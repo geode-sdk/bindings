@@ -312,6 +312,7 @@ GEODE_SIZE_CHECK(RateLevelLayer, 0x298);
 GEODE_SIZE_CHECK(CustomSongLayer, 0x2b0);
 GEODE_SIZE_CHECK(SelectFontLayer, 0x290);
 GEODE_SIZE_CHECK(CCSpriteWithHue, 0x298);
+GEODE_SIZE_CHECK(TopArtistsLayer, 0x2d0);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
@@ -399,4 +400,9 @@ GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
 
 GEODE_SIZE_CHECK(LevelAreaInnerLayer, 0x1b0);
 GEODE_MEMBER_CHECK(LevelAreaInnerLayer, m_isBusy, 0x1a8);
+
+GEODE_MEMBER_CHECK(CountTriggerGameObject, m_pickupTriggerMode, 0x744);
+
+GEODE_SIZE_CHECK(GJEffectManager, 0x7a0)
+
 #endif

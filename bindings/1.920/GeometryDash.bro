@@ -1114,71 +1114,96 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 }
 
 [[link(android)]]
-class CheckpointObject {
+class CheckpointObject : cocos2d::CCNode {
 	// virtual ~CheckpointObject();
 	// CheckpointObject();
 
 	static CheckpointObject* create();
 
-	TodoReturn getActiveEnterEffect();
-	TodoReturn getBgColorAction();
-	TodoReturn getCameraPos();
-	TodoReturn getColorAction(ColorAction*, cocos2d::ccColor3B);
-	TodoReturn getCustomColor01Action();
-	TodoReturn getCustomColor02Action();
-	TodoReturn getCustomColor03Action();
-	TodoReturn getCustomColor04Action();
-	TodoReturn getDLineColorAction();
-	TodoReturn getDualMode();
-	TodoReturn getGColorAction();
-	TodoReturn getIsFlipped();
-	TodoReturn getLineColorAction();
-	TodoReturn getObjColorAction();
-	TodoReturn getObject();
-	TodoReturn getPlayerCheck01();
-	TodoReturn getPlayerCheck02();
-	TodoReturn getPortalObject();
-	TodoReturn getTimeStamp();
+	ColorAction* getColorAction(ColorAction*, cocos2d::ccColor3B);
+	GameObject* getObject();
 	void setObject(GameObject*);
 
 	virtual bool init();
+	virtual PlayerCheckpoint* getPlayerCheck01() const;
 	virtual void setPlayerCheck01(PlayerCheckpoint*);
+	virtual PlayerCheckpoint* getPlayerCheck02() const;
 	virtual void setPlayerCheck02(PlayerCheckpoint*);
+	virtual bool getDualMode() const;
 	virtual void setDualMode(bool);
+	virtual bool getIsFlipped() const;
 	virtual void setIsFlipped(bool);
+	virtual cocos2d::CCPoint getCameraPos() const;
 	virtual void setCameraPos(cocos2d::CCPoint);
+	virtual ColorAction* getBgColorAction() const;
 	virtual void setBgColorAction(ColorAction*);
+	virtual ColorAction* getLineColorAction() const;
 	virtual void setLineColorAction(ColorAction*);
+	virtual ColorAction* getObjColorAction() const;
 	virtual void setObjColorAction(ColorAction*);
+	virtual ColorAction* getGColorAction() const;
 	virtual void setGColorAction(ColorAction*);
+	virtual ColorAction* getDLineColorAction() const;
 	virtual void setDLineColorAction(ColorAction*);
+	virtual ColorAction* getCustomColor01Action() const;
 	virtual void setCustomColor01Action(ColorAction*);
+	virtual ColorAction* getCustomColor02Action() const;
 	virtual void setCustomColor02Action(ColorAction*);
+	virtual ColorAction* getCustomColor03Action() const;
 	virtual void setCustomColor03Action(ColorAction*);
+	virtual ColorAction* getCustomColor04Action() const;
 	virtual void setCustomColor04Action(ColorAction*);
+	virtual EnterEffect getActiveEnterEffect() const;
 	virtual void setActiveEnterEffect(EnterEffect);
+	virtual GameObject* getPortalObject() const;
 	virtual void setPortalObject(GameObject*);
+	virtual double getTimeStamp() const;
 	virtual void setTimeStamp(double);
+
+	GameObject* m_object;
+	PlayerCheckpoint* m_playerCheck01;
+	PlayerCheckpoint* m_playerCheck02;
+	bool m_dualMode;
+	bool m_isFlipped;
+	cocos2d::CCPoint m_cameraPos;
+	ColorAction* m_bgColorAction;
+	ColorAction* m_lineColorAction;
+	ColorAction* m_objColorAction;
+	ColorAction* m_gColorAction;
+	ColorAction* m_dLineColorAction;
+	ColorAction* m_customColor01Action;
+	ColorAction* m_customColor02Action;
+	ColorAction* m_customColor03Action;
+	ColorAction* m_customColor04Action;
+	EnterEffect m_activeEnterEffect;
+	GameObject* m_portalObject;
+	double m_timeStamp;
 }
 
 [[link(android)]]
-class ColorAction {
+class ColorAction : cocos2d::CCNode {
 	// virtual ~ColorAction();
 
 	static ColorAction* create(cocos2d::ccColor3B, cocos2d::ccColor3B, float, double, bool);
 
-	TodoReturn getBlend();
-	TodoReturn getDuration();
-	TodoReturn getFromColor();
-	TodoReturn getTimeStamp();
-	TodoReturn getToColor();
 	bool init(cocos2d::ccColor3B, cocos2d::ccColor3B, float, double, bool);
 
+	virtual cocos2d::ccColor3B getFromColor() const;
 	virtual void setFromColor(cocos2d::ccColor3B);
+	virtual cocos2d::ccColor3B getToColor() const;
 	virtual void setToColor(cocos2d::ccColor3B);
+	virtual float getDuration() const;
 	virtual void setDuration(float);
+	virtual double getTimeStamp() const;
 	virtual void setTimeStamp(double);
+	virtual bool getBlend() const;
 	virtual void setBlend(bool);
+
+	cocos2d::ccColor3B m_fromColor;
+	cocos2d::ccColor3B m_toColor;
+	float m_duration;
+	double m_timeStamp;
+	bool m_blend;
 }
 
 [[link(android)]]
@@ -5147,13 +5172,16 @@ class MyLevelsLayer {
 }
 
 [[link(android)]]
-class NodePoint {
+class NodePoint : cocos2d::CCObject {
 	// virtual ~NodePoint();
 
 	static NodePoint* create(cocos2d::CCPoint);
 
-	TodoReturn getPoint();
 	bool init(cocos2d::CCPoint);
+
+	virtual cocos2d::CCPoint getPoint() const;
+
+	cocos2d::CCPoint m_point;
 }
 
 [[link(android)]]
@@ -5244,21 +5272,24 @@ class ObjectManager {
 }
 
 [[link(android)]]
-class ObjectToolbox {
+class ObjectToolbox : cocos2d::CCNode {
 	// virtual ~ObjectToolbox();
 
 	static ObjectToolbox* sharedState();
+	static cocos2d::CCDictionary* stringSetupToDict(gd::string, char const*);
+	static gd::map<gd::string, gd::string> stringSetupToMap(gd::string, char const*);
 
-	TodoReturn allKeys();
-	TodoReturn frameToKey(char const*);
-	TodoReturn gridNodeSizeForKey(int);
-	TodoReturn intKeyToFrame(int);
-	TodoReturn keyToFrame(char const*);
-	TodoReturn perspectiveBlockFrame(int);
-	TodoReturn stringSetupToDict(gd::string, char const*);
-	TodoReturn stringSetupToMap(gd::string, char const*);
+	cocos2d::CCArray* allKeys();
+	const char* frameToKey(char const*);
+	float gridNodeSizeForKey(int);
+	const char* intKeyToFrame(int);
+	const char* keyToFrame(char const*);
+	const char* perspectiveBlockFrame(int);
 
 	virtual bool init();
+
+	cocos2d::CCDictionary* m_frameToKeyDict;
+	cocos2d::CCDictionary* m_keyToFrameDict;
 }
 
 [[link(android)]]
@@ -5464,13 +5495,13 @@ class PlayerObject : GameObject {
 	TodoReturn levelFlipFinished();
 	TodoReturn levelFlipping();
 	TodoReturn levelWillFlip();
-	TodoReturn loadFromCheckpoint(PlayerCheckpoint*);
+	void loadFromCheckpoint(PlayerCheckpoint*);
 	TodoReturn lockPlayer();
 	TodoReturn logValues();
 	TodoReturn placeStreakPoint();
 	TodoReturn playBurstEffect();
 	TodoReturn playerDestroyed(bool) = win 0xddda0;
-	TodoReturn playerIsFalling();
+	bool playerIsFalling();
 	TodoReturn postCollision();
 	TodoReturn preCollision();
 	TodoReturn preSlopeCollision(float, GameObject*);
@@ -5489,7 +5520,7 @@ class PlayerObject : GameObject {
 	TodoReturn runBallRotation2();
 	TodoReturn runNormalRotation();
 	TodoReturn runRotateAction(bool);
-	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
+	void saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&);
 	TodoReturn setupStreak() = win 0xd98f0;
 	TodoReturn spawnCircle();
@@ -5740,7 +5771,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn claimParticle(gd::string);
 	TodoReturn clearPickedUpItems();
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
-	TodoReturn createCheckpoint();
+	CheckpointObject* createCheckpoint();
 	TodoReturn createObjectsFromSetup(gd::string);
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
 	TodoReturn delayedResetLevel();
@@ -5782,7 +5813,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	bool isFlipping();
 	void levelComplete();
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B);
-	TodoReturn loadLastCheckpoint();
+	void loadLastCheckpoint();
 	TodoReturn markCheckpoint();
 	TodoReturn moveCameraToPos(cocos2d::CCPoint);
 	TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
@@ -7125,7 +7156,7 @@ class UploadPopup : FLAlertLayer, LevelUploadDelegate {
 }
 
 [[link(android)]]
-class VideoOptionsLayer {
+class VideoOptionsLayer : FLAlertLayer {
 	// virtual ~VideoOptionsLayer();
 
 	static VideoOptionsLayer* create();
@@ -7140,10 +7171,20 @@ class VideoOptionsLayer {
 	void onResolutionPrev(cocos2d::CCObject* sender);
 	void onTextureQualityNext(cocos2d::CCObject* sender);
 	void onTextureQualityPrev(cocos2d::CCObject* sender);
-	TodoReturn toggleResolution();
-	TodoReturn updateResolution(int);
-	TodoReturn updateTextureQuality(int);
+	void toggleResolution();
+	void updateResolution(int);
+	void updateTextureQuality(int);
 
 	virtual bool init();
 	virtual void keyBackClicked();
+
+	CCMenuItemSpriteExtra* m_prevResolution;
+	CCMenuItemSpriteExtra* m_nextResolution;
+	cocos2d::CCLabelBMFont* m_resolutionLabel;
+	cocos2d::CCLabelBMFont* m_resolutionText;
+	cocos2d::CCLabelBMFont* m_qualityLabel;
+	cocos2d::TextureQuality m_quality;
+	cocos2d::CCArray* m_resolutions;
+	bool m_isFullscreen;
+	int m_currentResolution;
 }
