@@ -9355,7 +9355,27 @@ class GJGameState {
 [[link(android)]]
 class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, GameRateDelegate, ListButtonBarDelegate, DialogDelegate, CharacterColorDelegate, RewardedVideoDelegate {
 	// virtual ~GJGarageLayer();
-	GJGarageLayer() = ios 0x31a060 {}
+	GJGarageLayer() = ios 0x31a060, win inline, android64 inline {
+		m_usernameInput = nullptr;
+		m_playerObject = nullptr;
+		m_tabButtons = nullptr;
+		m_pageButtons = nullptr;
+		m_unknown = nullptr;
+		m_supporter = nullptr;
+		bool m_hasClosed = false;
+		m_iconType = IconType::Cube;
+		m_iconPages = {};
+		m_cursor1 = nullptr;
+		m_cursor2 = nullptr;
+		m_currentIcon = nullptr;
+		m_iconSelection = nullptr;
+		m_leftArrow = nullptr;
+		m_rightArrow = nullptr;
+		m_navDotMenu = nullptr;
+		m_iconID = 0;
+		m_selectedIconType = IconType::Cube;
+		m_videoPlaying = false;
+	}
 
 	gd::string achievementForUnlock(int, UnlockType);
 	gd::string descriptionForUnlock(int, UnlockType) = win 0x266240;
