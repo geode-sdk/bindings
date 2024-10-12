@@ -3129,7 +3129,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
 	virtual void setCascadeOpacityEnabled(bool) = win 0x43b20, m1 0x51094c, imac 0x5e7560, ios 0x35647c;
 	virtual cocos2d::_ccColor3B const& getColor() = win 0x43ac0, m1 0x5108d0, imac 0x5e7480, ios 0x356400;
 	virtual cocos2d::_ccColor3B const& getDisplayedColor() = win 0x43b30, m1 0x51095c, imac 0x5e7580, ios 0x35648c;
-	virtual void setColor(cocos2d::_ccColor3B const&) = win 0x43ad0, m1 0x5108e0, imac 0x5e74a, ios 0x356410;
+	virtual void setColor(cocos2d::_ccColor3B const&) = win 0x43ad0, m1 0x5108e0, imac 0x5e74a0, ios 0x356410;
 	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = win 0x43b40, m1 0x51096c, imac 0x5e75a0, ios 0x35649c;
 	virtual bool isCascadeColorEnabled() = win 0x43b50, m1 0x510994, imac 0x5e75e0, ios 0x3564c4;
 	virtual void setCascadeColorEnabled(bool) = win 0x43b60, m1 0x5109a4, imac 0x5e7600, ios 0x3564d4;
