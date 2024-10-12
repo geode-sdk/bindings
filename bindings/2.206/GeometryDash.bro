@@ -13266,7 +13266,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 
 	void addToggle(char const*, char const*, char const*) = win 0x353280, ios 0xf00d0, imac 0x7a8ca0, m1 0x6b004c;
 	int countForPage(int) = win 0x3538e0;
-	void goToPage(int) = win 0x353d00, ios 0xf07e4;
+	void goToPage(int) = win 0x353d00, ios 0xf07e4, m1 0x6b0bc8, imac 0x789860;
 	void incrementCountForPage(int);
 	const char* infoKey(int);
 	cocos2d::CCLayer* layerForPage(int) = win 0x353b40;
@@ -13281,9 +13281,9 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 	void onGPSignOut(cocos2d::CCObject* sender);
 	void onInfo(cocos2d::CCObject* sender) = win 0x354dc0;
 	void onKeybindings(cocos2d::CCObject* sender) = win 0xd9640, m1 0x6b1048, imac 0x7a9d10;
-	void onNextPage(cocos2d::CCObject* sender) = win 0x353ce0, ios 0xf07d8;
+	void onNextPage(cocos2d::CCObject* sender) = win 0x353ce0, ios 0xf07d8, m1 0x6b0bbc, imac 0x7a9840;
 	void onParental(cocos2d::CCObject* sender) = win 0x354cb0, ios 0xf0704;
-	void onPrevPage(cocos2d::CCObject* sender) = win 0x353cf0, ios 0xf07cc;
+	void onPrevPage(cocos2d::CCObject* sender) = win 0x353cf0, ios 0xf07cc, m1 0x6b0bb0, imac 0x7a9820;
 	void onSongBrowser(cocos2d::CCObject* sender) = win 0x354aa0, ios 0xf0568, imac 0x7a9420, m1 0x6b0790;
 	void onToggle(cocos2d::CCObject* sender) = win 0x3542a0;
 	const char* pageKey(int);
