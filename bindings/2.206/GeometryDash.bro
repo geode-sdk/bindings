@@ -5025,7 +5025,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	float getEffectsVolume() = ios 0x14343c, imac 0x3eba70, m1 0x36929c {
 		return m_sfxVolume;
 	}
-	TodoReturn getFMODStatus(int) = win 0x5ba00, ios 0x1450f8;
+	gd::string getFMODStatus(int) = win 0x5ba00, m1 0x36c1ac, imac 0x3ef5e0, ios 0x1450f8;
 	float getMeteringValue() = imac 0x3e7ec0, m1 0x366518;
 	TodoReturn getMusicChannelID(int);
 	unsigned int getMusicLengthMS(int channel) = win 0x5b0e0;
