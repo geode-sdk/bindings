@@ -5168,7 +5168,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	int m_sampleRate;
 	bool m_reducedQuality;
 	bool m_unkBool1a1;
-	int m_unkInt1a4;
+	int m_musicOffset;
 	bool m_unkBool1a8;
 	int m_unkInt1ac;
 	FMODAudioState m_audioState;
