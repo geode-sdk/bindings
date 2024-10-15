@@ -200,11 +200,15 @@ class cocos2d::CCMotionStreak {
 	bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x57d640, m1 0x4c9afc;
 
 	bool getDontOpacityFade() const;
-	float getM_fMaxSeg() const;
+	float getM_fMaxSeg() const {
+		return m_fMaxSeg;
+	}
 
 	void setDontOpacityFade(bool);
 	void setFastMode(bool);
-	void setM_fMaxSeg(float);
+	void setM_fMaxSeg(float maxSeg) {
+		m_fMaxSeg = maxSeg;
+	}
 	void setStartingPositionInitialized(bool);
 	void setStroke(float);
 
@@ -239,7 +243,7 @@ class cocos2d::CCMotionStreak {
 	bool isStartingPositionInitialized();
 	void reset() = imac 0x57e280, m1 0x4ca540;
 	void resumeStroke() = imac 0x57dc40, m1 0x4ca00c;
-	void stopStroke();
+	void stopStroke() = imac 0x57dc30, m1 0x4ca004;
 	void tintWithColor(cocos2d::_ccColor3B);
 	void updateFade(float) = imac 0x57dc10;
 
@@ -1201,11 +1205,11 @@ class cocos2d::CCLayerRGBA {
 class cocos2d::CCMouseDispatcher {
 	// CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
 	// CCMouseDispatcher();
-	void addDelegate(cocos2d::CCMouseDelegate*);
+	void addDelegate(cocos2d::CCMouseDelegate*) = m1 0x4c49e0, imac 0x5784c0;
 	bool dispatchScrollMSG(float, float) = m1 0x4c4a74, imac 0x578540;
-	void forceAddDelegate(cocos2d::CCMouseDelegate*);
-	void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
-	void removeDelegate(cocos2d::CCMouseDelegate*);
+	void forceAddDelegate(cocos2d::CCMouseDelegate*) = m1 0x4c4a38, imac 0x578510;
+	void forceRemoveDelegate(cocos2d::CCMouseDelegate*) = m1 0x4c4944, imac 0x578430;
+	void removeDelegate(cocos2d::CCMouseDelegate*) = m1 0x4c4884, imac 0x578380;
 }
 
 [[link(win, android)]]
@@ -1478,7 +1482,7 @@ class cocos2d::CCIMEDelegate {
 
 [[link(win, android)]]
 class cocos2d::CCIMEDispatcher {
-	static cocos2d::CCIMEDispatcher* sharedDispatcher() = ios 0x1dd254;
+	static cocos2d::CCIMEDispatcher* sharedDispatcher() = m1 0x424f7c, imac 0x4c5990, ios 0x1dd254;
 
 	// CCIMEDispatcher();
 
@@ -1494,7 +1498,7 @@ class cocos2d::CCIMEDispatcher {
 	void dispatchKeyboardWillHide();
 	void dispatchKeyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&);
 	char const* getContentText();
-	bool hasDelegate();
+	bool hasDelegate() = m1 0x425720, imac 0x4c60f0;
 	void removeDelegate(cocos2d::CCIMEDelegate*) = ios 0x1dd398;
 }
 
@@ -2469,6 +2473,8 @@ class cocos2d::CCDrawNode {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteBatchNode {
+	static cocos2d::CCSpriteBatchNode* createWithTexture(cocos2d::CCTexture2D*, unsigned int) = m1 0x13b070, imac 0x171580;
+
 	bool initWithTexture(cocos2d::CCTexture2D*, unsigned int) = imac 0x171670, m1 0x13b124, ios 0x1e0a4c;
 
 	CCSpriteBatchNode() = imac 0x171940, m1 0x13b3c8, ios 0x1e0c98;
@@ -2577,8 +2583,8 @@ class cocos2d::CCString {
 [[link(win, android)]]
 class cocos2d::CCMenuItem {
 	~CCMenuItem() = imac 0x3c1fc0, m1 0x345478, ios 0x531c4;
-	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-	static cocos2d::CCMenuItem* create();
+	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x3452f0, imac 0x3c1e10;
+	static cocos2d::CCMenuItem* create() = m1 0x345248, imac 0x3c1d50;
 
 	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3c1ee0, m1 0x3453ac, ios 0x53154;
 
@@ -3123,7 +3129,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
 	virtual void setCascadeOpacityEnabled(bool) = win 0x43b20, m1 0x51094c, imac 0x5e7560, ios 0x35647c;
 	virtual cocos2d::_ccColor3B const& getColor() = win 0x43ac0, m1 0x5108d0, imac 0x5e7480, ios 0x356400;
 	virtual cocos2d::_ccColor3B const& getDisplayedColor() = win 0x43b30, m1 0x51095c, imac 0x5e7580, ios 0x35648c;
-	virtual void setColor(cocos2d::_ccColor3B const&) = win 0x43ad0, m1 0x5108e0, imac 0x5e74a, ios 0x356410;
+	virtual void setColor(cocos2d::_ccColor3B const&) = win 0x43ad0, m1 0x5108e0, imac 0x5e74a0, ios 0x356410;
 	virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = win 0x43b40, m1 0x51096c, imac 0x5e75a0, ios 0x35649c;
 	virtual bool isCascadeColorEnabled() = win 0x43b50, m1 0x510994, imac 0x5e75e0, ios 0x3564c4;
 	virtual void setCascadeColorEnabled(bool) = win 0x43b60, m1 0x5109a4, imac 0x5e7600, ios 0x3564d4;

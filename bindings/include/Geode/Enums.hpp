@@ -294,7 +294,9 @@ enum class GauntletType {
     Galaxy = 0x2F,
     Universe = 0x30,
     Discord = 0x31,
-    Split = 0x32
+    Split = 0x32,
+    NCS = 0x33,
+    NCS2 = 0x34
 };
 enum class GJMPErrorCode {};
 enum class GJTimedLevelType {
@@ -380,8 +382,17 @@ enum class TextStyleType {
     Shake = 3,
     Delayed = 4
 };
-enum class InputValueType {};
-enum class GJInputStyle {};
+enum class InputValueType {
+    Float = 1,
+    Int = 2,
+    Uint = 3,
+};
+enum class GJInputStyle {
+    // Golden label
+    GoldLabel = 0,
+    // chatFont label
+    ChatLabel = 1,
+};
 enum class GJDifficultyName {
     Short = 0,
     Long = 1
