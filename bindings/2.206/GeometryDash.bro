@@ -17044,9 +17044,9 @@ class SetupRotateCommandPopup : SetupTriggerPopup {
 
 	static SetupRotateCommandPopup* create(EffectGameObject*, cocos2d::CCArray*);
 
-	bool init(EffectGameObject*, cocos2d::CCArray*);
+	bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x295a60;
 	void onInfiniteDuration(cocos2d::CCObject* sender);
-	TodoReturn updateControlVisibility();
+	void updateControlVisibility() = win 0x296ec0;
 
 	virtual TodoReturn updateInputNode(int, float) = imac 0x6b90;
 	virtual void valueDidChange(int, float) = m1 0x97bc, imac 0x6ba0;
@@ -17155,7 +17155,7 @@ class SetupShaderEffectPopup : SetupTriggerPopup {
 	TodoReturn updateZLayerButtons();
 	TodoReturn zLayerToString(int);
 
-	virtual TodoReturn toggleGroup(int, bool) = m1 0x26b028, imac 0x2cce80;
+	virtual void toggleGroup(int, bool) = m1 0x26b028, imac 0x2cce80;
 	virtual void onClose(cocos2d::CCObject* sender) = imac 0x2ccec0;
 	virtual void updateDefaultTriggerValues() = m1 0x26a714, imac 0x2cc610;
 	virtual void valueDidChange(int, float) = m1 0x26acfc, imac 0x2ccb50;
@@ -17480,7 +17480,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	virtual void keyBackClicked() = win 0x43b940, m1 0x1e0f74, imac 0x234a10;
 	virtual void show() = win 0x8a220, m1 0x1e0df0, imac 0x234850;
 	virtual void pageChanged() {}
-	virtual TodoReturn toggleGroup(int, bool) = win 0x448a80, m1 0x1dea6c, imac 0x231150;
+	virtual void toggleGroup(int group, bool visible) = win 0x448a80, m1 0x1dea6c, imac 0x231150;
 	virtual TodoReturn determineStartValues() = win 0x4497d0, m1 0x1dfbdc, imac 0x232430;
 	virtual void onClose(cocos2d::CCObject* sender) = win 0x449e10, m1 0x1e0e3c, imac 0x2348b0;
 	virtual void textInputClosed(CCTextInputNode*) = win 0x89f80, m1 0x1dfee4, imac 0x2327b0;
