@@ -2794,7 +2794,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3e7ce0, imac 0x481700;
 	virtual void keyBackClicked() = win 0x409c60, m1 0x3e7680, imac 0x481030;
 	virtual void sliderBegan(Slider*) = win 0x4093a0, m1 0x3e7530, imac 0x480ef0;
-	virtual TodoReturn sliderEnded(Slider*) = win 0x409460, m1 0x3e7648, imac 0x480fd0;
+	virtual void sliderEnded(Slider*) = win 0x409460, m1 0x3e7648, imac 0x480fd0;
 	virtual void colorSelectClosed(cocos2d::CCNode*) = win 0x406a10, m1 0x3e6b94, imac 0x4803c0;
 	virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x3e768c, imac 0x481060;
 	virtual void textInputReturn(CCTextInputNode*) = m1 0x3e775c, imac 0x481120;
@@ -13532,7 +13532,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 	virtual void keyBackClicked() = win 0x31a1b0, m1 0x53e544, imac 0x61b1d0;
 	virtual void musicActionFinished(GJMusicAction) = win 0x3193d0, m1 0x53df48, imac 0x61ab70;
 	virtual void musicActionFailed(GJMusicAction) = win 0x319440, m1 0x53e018, imac 0x61ac70;
-	virtual TodoReturn sliderEnded(Slider*) = win 0x319110, m1 0x53d7f4, imac 0x61a390;
+	virtual void sliderEnded(Slider*) = win 0x319110, m1 0x53d7f4, imac 0x61a390;
 	virtual void setTextPopupClosed(SetTextPopup*, gd::string) = win 0x319f20, m1 0x53e2ac, imac 0x61af20;
 	virtual void cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x53e244, imac 0x61aea0;
 	virtual TodoReturn getSelectedCellIdx() = m1 0x53e29c, imac 0x61af00;
@@ -17639,7 +17639,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 	virtual void textInputReturn(CCTextInputNode*) = win 0x7a030, m1 0x1e1068, imac 0x234b10;
 	virtual void updateInputValue(int, float&) {}
 	virtual void sliderBegan(Slider*) = win 0x449f50, m1 0x1e1120, imac 0x234bc0;
-	virtual TodoReturn sliderEnded(Slider*) = win 0x44a020, m1 0x1e11f8, imac 0x234ca0;
+	virtual void sliderEnded(Slider*) = win 0x44a020, m1 0x1e11f8, imac 0x234ca0;
 	virtual void onPlusButton(cocos2d::CCObject* sender) {}
 	virtual void onCustomButton(cocos2d::CCObject* sender) {}
 	virtual void updateDefaultTriggerValues() = win 0x44bae0, m1 0x1e374c, imac 0x237210;
@@ -18299,7 +18299,7 @@ class Slider : cocos2d::CCLayer {
 [[link(android)]]
 class SliderDelegate {
 	virtual void sliderBegan(Slider*) {}
-	virtual TodoReturn sliderEnded(Slider*);
+	virtual void sliderEnded(Slider*) {}
 }
 
 [[link(android)]]
