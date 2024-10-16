@@ -675,8 +675,8 @@ class cocos2d::CCProgressTimer {
 	void updateRadial() = ios 0x406474;
 	cocos2d::_ccVertex2F vertexFromAlphaPoint(cocos2d::CCPoint) = ios 0x4063f4;
 
-	virtual cocos2d::_ccColor3B const& getColor() const, ios 0x4062c0;
-	virtual unsigned char getOpacity() const, ios 0x406330;
+	virtual cocos2d::_ccColor3B const& getColor() const = ios 0x4062c0;
+	virtual unsigned char getOpacity() const = ios 0x406330;
 	virtual void draw() = ios 0x406dc4;
 	virtual cocos2d::CCPoint getMidpoint() = ios 0x406cec;
 	virtual void setMidpoint(cocos2d::CCPoint) = ios 0x406cf8;
