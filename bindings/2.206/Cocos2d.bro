@@ -652,7 +652,7 @@ class cocos2d::CCProgressTimer {
 
 	cocos2d::CCPoint getBarChangeRate() const;
 	float getPercentage();
-	cocos2d::CCSprite* getSprite();
+	// cocos2d::CCSprite* getSprite();
 	cocos2d::CCProgressTimerType getType();
 
 	void setAnchorPoint(cocos2d::CCPoint);
