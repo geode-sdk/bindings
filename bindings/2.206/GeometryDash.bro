@@ -655,7 +655,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 	virtual float cellHeightForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x3b590, m1 0x29e088, imac 0x30be60, ios 0x1d9a10;
 	virtual void didSelectRowAtIndexPath(CCIndexPath&, TableView*) = ios 0x1d9a20 {}
 	virtual int numberOfRowsInSection(unsigned int, TableView*) = win 0x3b5a0, m1 0x29e0a0, imac 0x30bea0, ios 0x1d9a28;
-	virtual unsigned int numberOfSectionsInTableView(TableView*) { return 1, ios 0x1d9a38; }
+	virtual unsigned int numberOfSectionsInTableView(TableView*) = ios 0x1d9a38 { return 1; }
 	virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath&, TableView*) = win 0x3b5c0, m1 0x29e0c0, imac 0x30bef0, ios 0x1d9a48;
 	virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&) = ios 0x1d9f1c {}
 	virtual void TableViewWillReloadCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) = ios 0x1d9a08 {}
@@ -12926,7 +12926,7 @@ class LoadingCircle : cocos2d::CCLayerColor {
 
 	virtual bool init() = win 0x6a4c0, m1 0x4281f8, imac 0x4c8f30, ios 0x3a3394;
 	virtual void draw() = win 0x6a740, m1 0x42845c, ios 0x3a35f8, imac 0x4c9180;
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x4286c8, imac 0x4c9400 { return true, ios 0x3a3794; }
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x4286c8, imac 0x4c9400, ios 0x3a3794 { return true; }
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x3a379c {}
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x3a37a0 {}
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = ios 0x3a37a4 {}
