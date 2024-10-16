@@ -14845,26 +14845,15 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	void delayedFullReset();
 	void delayedResetLevel() = win 0x395700, imac 0xbb940, m1 0xa79c8;
 	void fullReset() = win 0x395600, m1 0xaa510, imac 0xbee70;
-	float getCurrentPercent() = win 0x390520, ios 0x1210b4, imac inline, m1 inline {
-		float percent;
-
-		if (this->m_level->m_timestamp > 0)
-			percent = static_cast<float>(this->m_gameState.m_currentProgress) / this->m_level->m_timestamp * 100.f;
-		else
-			percent = reinterpret_cast<cocos2d::CCNode*>(this->m_player1)->getPosition().x / this->m_levelLength * 100.f;
-
-		if(percent < 0.f) return 0.f;
-		if(percent > 100.f) return 100.f;
-		return percent;
-	}
-	int getCurrentPercentInt() = win inline, imac inline, m1 inline, ios inline { // i love this
+	float getCurrentPercent() = win 0x390520, ios 0x1210b4, imac 0xba680, m1 0xa688c;
+	int getCurrentPercentInt() = win inline, imac 0xbad90, m1 0xa6f64, ios inline { // i love this
 		return static_cast<int>(this->getCurrentPercent());
 	}
 	TodoReturn getEndPosition() = ios 0x11c7bc;
 	TodoReturn getLastCheckpoint();
 	TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
 	TodoReturn getRelativeModNew(cocos2d::CCPoint, float, float, bool, bool);
-	TodoReturn getTempMilliTime() = win 0x3c070, ios 0x1181a8;
+	double getTempMilliTime() = m1 0x9adec, imac 0xaca90, ios 0x1181a8;
 	TodoReturn gravityEffectFinished();
 	void incrementJumps() = imac 0xbf5a0, m1 0xaabec;
 	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x382890, imac 0xabc70, m1 0x9a1e4, ios 0x1178b8;
