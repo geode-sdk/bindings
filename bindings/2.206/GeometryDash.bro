@@ -3888,7 +3888,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	// virtual ~EditorUI();
 	//EditorUI() = ios 0x404c78;
 
-	static EditorUI* create(LevelEditorLayer*) = imac 0x9460, m1 0xb710, ios 0x3cd9ec;
+	static EditorUI* create(LevelEditorLayer*) = win 0x0db070, imac 0x9460, m1 0xb710, ios 0x3cd9ec;
 	static EditorUI* get() {
 		auto lel = LevelEditorLayer::get();
 		if (!lel) return nullptr;
@@ -11870,7 +11870,7 @@ class LevelDownloadDelegate {
 [[link(android)]]
 class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	// virtual ~LevelEditorLayer();
-	// LevelEditorLayer() = ios 0x377530;
+	LevelEditorLayer() = win 0x2bd440, ios 0x377530;
 
     static LevelEditorLayer* get() {
         return GameManager::sharedState()->m_levelEditorLayer;
