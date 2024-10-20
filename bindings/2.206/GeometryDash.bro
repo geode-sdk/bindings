@@ -6123,7 +6123,7 @@ class GameManager : GManager {
 	TodoReturn resetAllIcons();
 	TodoReturn resetCoinUnlocks();
 	TodoReturn resetDPadSettings(bool);
-	TodoReturn resolutionForKey(int) = ios 0x32e658;
+	TodoReturn resolutionForKey(int) = ios 0x32e658, m1 0x316998;
 	void returnToLastScene(GJGameLevel*) = win 0x180350, imac 0x38d180, m1 0x316184;
 	TodoReturn rewardedVideoAdFinished(int);
 	TodoReturn rewardedVideoHidden();
@@ -14116,7 +14116,7 @@ class PlatformToolbox {
 	static TodoReturn downloadAndSavePromoImage(gd::string, gd::string);
 	static TodoReturn gameDidSave();
 	static TodoReturn getDeviceRefreshRate();
-	static TodoReturn getDisplaySize() = ios 0x17793c;
+	static TodoReturn getDisplaySize() = ios 0x17793c, m1 0x42d3ac;
 	static TodoReturn getRawPath(char const*);
 	static TodoReturn getUniqueUserID();
 	static TodoReturn getUserID();
