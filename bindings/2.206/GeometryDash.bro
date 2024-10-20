@@ -12974,7 +12974,7 @@ class LoadingLayer : cocos2d::CCLayer {
 	bool init(bool) = win 0x30db60, imac 0x3a5890, m1 0x32bec4, ios 0x1dfa60;
 	void loadAssets() = win 0x30e400, imac 0x3a60d0, m1 0x32c720, ios 0x1e020c;
 	void loadingFinished() = imac 0x3a6870, m1 0x32ce30;
-	cocos2d::CCScene* scene(bool) = m1 0x32bd2c, win 0x30da50, ios 0x1df968, imac 0x3a56b0;
+	static cocos2d::CCScene* scene(bool) = m1 0x32bd2c, win 0x30da50, ios 0x1df968, imac 0x3a56b0;
 	void updateProgress(int) = win 0x30e380, ios 0x1e01a0, imac 0x3a6070;
 
 	bool m_unknown;
