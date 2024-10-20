@@ -3886,7 +3886,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 [[link(android), depends(GJTransformState)]]
 class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJRotationControlDelegate, GJScaleControlDelegate, GJTransformControlDelegate, MusicDownloadDelegate, SetIDPopupDelegate {
 	// virtual ~EditorUI();
-	//EditorUI() = ios 0x404c78;
+	EditorUI() = win 0x0db070, ios 0x404c78;
 
 	static EditorUI* create(LevelEditorLayer*) = imac 0x9460, m1 0xb710, ios 0x3cd9ec;
 	static EditorUI* get() {
@@ -11870,7 +11870,7 @@ class LevelDownloadDelegate {
 [[link(android)]]
 class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 	// virtual ~LevelEditorLayer();
-	// LevelEditorLayer() = ios 0x377530;
+	LevelEditorLayer() = win 0x2bd440, ios 0x377530;
 
     static LevelEditorLayer* get() {
         return GameManager::sharedState()->m_levelEditorLayer;
