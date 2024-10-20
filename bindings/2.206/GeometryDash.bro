@@ -3886,9 +3886,9 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 [[link(android), depends(GJTransformState)]]
 class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJRotationControlDelegate, GJScaleControlDelegate, GJTransformControlDelegate, MusicDownloadDelegate, SetIDPopupDelegate {
 	// virtual ~EditorUI();
-	//EditorUI() = ios 0x404c78;
+	EditorUI() = win 0x0db070, ios 0x404c78;
 
-	static EditorUI* create(LevelEditorLayer*) = win 0x0db070, imac 0x9460, m1 0xb710, ios 0x3cd9ec;
+	static EditorUI* create(LevelEditorLayer*) = imac 0x9460, m1 0xb710, ios 0x3cd9ec;
 	static EditorUI* get() {
 		auto lel = LevelEditorLayer::get();
 		if (!lel) return nullptr;
