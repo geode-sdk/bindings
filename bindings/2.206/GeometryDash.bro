@@ -5754,7 +5754,7 @@ class GameLevelManager : cocos2d::CCNode {
 
 	virtual bool init() = win 0x13f890, m1 0x486344, imac 0x532b20, ios 0x94bac;
 
-	PAD = win 0x10, android32 0x18, android64 0x30, mac 0x18;
+	gd::set<gd::string> m_queuedLists;
 	cocos2d::CCDictionary* m_mainLevels;
 	cocos2d::CCDictionary* m_searchFilters;
 	cocos2d::CCDictionary* m_onlineLevels;
@@ -5821,9 +5821,12 @@ class GameLevelManager : cocos2d::CCNode {
 	GJDailyLevelDelegate* m_GJDailyLevelDelegate;
 	OnlineListDelegate* m_onlineListDelegate;
 	int m_unkDownload;
-	PAD = win 0x4;
+	int m_mapPack;
 	gd::string m_unkStr3;
 	cocos2d::CCString* m_unkStr4;
+	cocos2d::CCArray* m_smartTemplates;
+	GJSmartTemplate* m_smartTemplate;
+	bool m_testedNetwork;
 }
 
 [[link(android)]]
