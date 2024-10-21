@@ -18063,7 +18063,7 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 			m_charCountLabel->setColor({ 0, 0, 0 });
 			m_charCountLabel->setOpacity(125);
 		}
-		m_charCountLabel->setString(cocos2d::CCString::createWIthFormat("%i", m_charLimit - m_descText.size())->getCString());
+		m_charCountLabel->setString(cocos2d::CCString::createWithFormat("%i", m_charLimit - m_descText.size())->getCString());
 	}
 	void updateDescText(gd::string desc) = win 0x462ad0, ios inline, m1 0x5137a0, imac 0x5ea9d0 {
 		m_descText = desc;
