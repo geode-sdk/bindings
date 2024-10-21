@@ -12,7 +12,7 @@ public class PaddingInfo {
         this.offset = offset;
     }
 
-    public PaddingInfo(String comment) {
+    public PaddingInfo(String comment, Platform curPlatform) {
         if (comment == null || comment.isEmpty()) {
             this.platforms = Map.of();
             this.offset = -1;
@@ -35,7 +35,7 @@ public class PaddingInfo {
                 offset = addr;
             }
             else {
-                this.platforms.put(Platform.fromShortName(matcher.group("platform")), addr);
+                this.platforms.put(Platform.fromShortName(matcher.group("platform"), curPlatform), addr);
             }
         }
         this.offset = offset;

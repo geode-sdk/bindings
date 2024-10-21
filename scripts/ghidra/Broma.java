@@ -257,7 +257,7 @@ public class Broma {
                 var addrMatcher = broma.forkMatcher(Regexes.GRAB_PLATFORM_ADDRESS, matcher, "platforms", false);
                 while (addrMatcher.find()) {
                     mutPaddings.put(
-                        Platform.fromShortName(addrMatcher.group("platform")),
+                        Platform.fromShortName(addrMatcher.group("platform"), platform),
                         Integer.parseInt(addrMatcher.group("addr"), 16)
                     );
                 }
