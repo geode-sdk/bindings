@@ -6123,7 +6123,7 @@ class GameManager : GManager {
 	TodoReturn resetAllIcons();
 	TodoReturn resetCoinUnlocks();
 	TodoReturn resetDPadSettings(bool);
-	TodoReturn resolutionForKey(int) = ios 0x32e658, m1 0x316998;
+	cocos2d::CCSize resolutionForKey(int) = win 0x180be0, ios 0x32e658, m1 0x316998, imac 0x38da20;
 	void returnToLastScene(GJGameLevel*) = win 0x180350, imac 0x38d180, m1 0x316184;
 	TodoReturn rewardedVideoAdFinished(int);
 	TodoReturn rewardedVideoHidden();
@@ -14116,7 +14116,7 @@ class PlatformToolbox {
 	static TodoReturn downloadAndSavePromoImage(gd::string, gd::string);
 	static TodoReturn gameDidSave();
 	static TodoReturn getDeviceRefreshRate();
-	static TodoReturn getDisplaySize() = ios 0x17793c, m1 0x42d3ac;
+	static cocos2d::CCSize getDisplaySize() = win 0x770e0, ios 0x17793c, m1 0x42d3ac, imac 0x4ce930;
 	static TodoReturn getRawPath(char const*);
 	static TodoReturn getUniqueUserID();
 	static TodoReturn getUserID();
