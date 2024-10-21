@@ -18045,18 +18045,33 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 	// virtual ~ShareCommentLayer();
 	ShareCommentLayer() = ios 0x1df87c;
 
-	static ShareCommentLayer* create(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x460fe0, ios 0x1ddefc;
+	static ShareCommentLayer* create(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x460fe0, ios 0x1ddefc, m1 0x511c2c, imac 0x5e8b30;
 
-	bool init(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x4611f0, ios 0x1de04c;
-	void onClear(cocos2d::CCObject* sender) = ios 0x1deebc, imac 0x5ea310;
-	void onClose(cocos2d::CCObject* sender) = ios 0x1def78;
-	void onPercent(cocos2d::CCObject* sender) = ios 0x1dedf0, imac 0x5ea180;
-	void onShare(cocos2d::CCObject* sender) = win 0x462440, ios 0x1defcc;
-	void updateCharCountLabel() = ios 0x1df5d8, imac 0x5eadc0;
-	void updateDescText(gd::string desc);
-	void updatePercentLabel();
+	bool init(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x4611f0, ios 0x1de04c, m1 0x511f08, imac 0x5e8e90;
+	void onClear(cocos2d::CCObject* sender) = win 0x4622d0, ios 0x1deebc, m1 0x51317c, imac 0x5ea310;
+	void onClose(cocos2d::CCObject* sender) = win 0x4627e0, ios 0x1def78, m1 0x513234, imac 0x5ea3b0;
+	void onPercent(cocos2d::CCObject* sender) = win 0x462340, ios 0x1dedf0, m1 0x512fe4, imac 0x5ea180;
+	void onShare(cocos2d::CCObject* sender) = win 0x462440, ios 0x1defcc, m1 0x513288, imac 0x5ea400;
+	void updateCharCountLabel() = win inline, ios 0x1df5d8, m1 0x513b98, imac 0x5eadc0 {
+		if (m_charLimit * .9f <= m_descText.size()) {
+			m_charCountLabel->setColor({ 255, 0, 0 });
+			m_charCountLabel->setOpacity(255);
+		} else if (m_charLimit * .7f <= m_descText.size()) {
+			m_charCountLabel->setColor({ 0, 0, 0 });
+			m_charCountLabel->setOpacity(255);
+		} else {
+			m_charCountLabel->setColor({ 0, 0, 0 });
+			m_charCountLabel->setOpacity(125);
+		}
+		m_charCountLabel->setString(cocos2d::CCString::createWithFormat("%i", m_charLimit - m_descText.size())->getCString());
+	}
+	void updateDescText(gd::string desc) = win 0x462ad0, ios inline, m1 0x5137a0, imac 0x5ea9d0 {
+		m_descText = desc;
+		this->updateCharCountLabel();
+	}
+	void updatePercentLabel() = win 0x462360, ios 0x1dee00, m1 0x5130b4, imac 0x5ea250;
 
-	virtual void registerWithTouchDispatcher() = m1 0x513870, imac 0x5eaab0, ios 0x1df408;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x513870, imac 0x5eaab0, ios 0x1df408;
 	virtual void keyBackClicked() = win 0x462820, m1 0x5137c8, imac 0x5eaa00, ios 0x1df360;
 	virtual void textInputOpened(CCTextInputNode* textInput) = ios 0x1df514 {}
 	virtual void textInputClosed(CCTextInputNode* textInput) = win 0x462870, m1 0x5138a8, imac 0x5eaaf0, ios 0x1df440;
@@ -18064,6 +18079,20 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 	virtual void uploadActionFinished(int ID, int unk) = win 0x462c00, m1 0x513cac, imac 0x5eaed0, ios 0x1df6dc;
 	virtual void uploadActionFailed(int ID, int unk) = win 0x462c90, m1 0x513de4, imac 0x5eafd0, ios 0x1df76c;
 	virtual void onClosePopup(UploadActionPopup*) = win 0x462d40, m1 0x513f44, imac 0x5eb0f0, ios 0x1df7f0;
+
+	int m_charLimit;
+	int m_itemID;
+	CommentType m_commentType;
+	CCTextInputNode* m_commentInput;
+	gd::string m_descText;
+	gd::string m_placeholderText;
+	cocos2d::CCLabelBMFont* m_charCountLabel;
+	cocos2d::CCLabelBMFont* m_percentLabel;
+	UploadActionPopup* m_uploadPopup;
+	bool m_uploadSuccess;
+	bool m_percentEnabled;
+	int m_percent;
+	ShareCommentDelegate* m_delegate;
 }
 
 [[link(android)]]
