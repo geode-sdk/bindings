@@ -18067,7 +18067,7 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 	}
 	void updateDescText(gd::string desc) = win 0x462ad0, ios inline, m1 0x5137a0, imac 0x5ea9d0 {
 		m_descText = desc;
-		updateCharCountLabel();
+		this->updateCharCountLabel();
 	}
 	void updatePercentLabel() = win 0x462360, ios 0x1dee00, m1 0x5130b4, imac 0x5ea250;
 
