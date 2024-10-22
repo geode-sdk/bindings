@@ -13103,7 +13103,7 @@ class MapSelectLayer : cocos2d::CCLayer {
 	LevelEditorLayer* m_editorLayer;
 }
 
-[[link(android)]]
+[[link(android), depends(GJGroundLayer)]]
 class MenuGameLayer : cocos2d::CCLayer {
 	// virtual ~MenuGameLayer();
 	MenuGameLayer() = ios 0x3a4d88 {}
