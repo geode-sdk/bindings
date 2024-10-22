@@ -6659,7 +6659,7 @@ class GameObject : CCSpritePlus {
 	OBB2D* m_orientedBox;
 	bool m_shouldUseOuterOb;
 	cocos2d::CCSprite* m_glowSpriteMain;
-	cocos2d::CCSprite* m_glowSpriteDetail;
+	int m_maybeGlowSpriteDetail;
 	float m_width;
 	float m_height;
 	bool m_hasSpecialChild;
