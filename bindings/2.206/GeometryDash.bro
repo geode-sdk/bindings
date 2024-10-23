@@ -5487,7 +5487,8 @@ class GameLevelManager : cocos2d::CCNode {
 	gd::string getActiveDailyID(bool, bool, bool, bool, bool, bool, bool, bool);
 	char const* getDiffKey(int);
 	bool getDiffVal(int);
-	gd::string getFolderName(int, bool) = win 0x1453c0, m1 0x4935bc, imac 0x541610;
+	gd::string getFolderName(int, bool)
+	 = win 0x1453c0, m1 0x4935bc, imac 0x541610;
 	char const* getFriendRequestKey(bool, int);
 	void getFriendRequests(bool, int, int);
 	char const* getGauntletKey(int);
@@ -9151,7 +9152,7 @@ class GJGameLevel : cocos2d::CCNode {
 	bool m_unlimitedObjectsEnabled;
 	gd::string m_personalBests;
 	int m_timestamp;
-	int m_unkInt;
+	int m_listPosition;
 	gd::string m_songIDs;
 	gd::string m_sfxIDs;
 	int m_54;
