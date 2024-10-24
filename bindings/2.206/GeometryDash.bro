@@ -4306,7 +4306,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	cocos2d::CCPoint m_clickAtPosition;
 	GameObject* m_selectedObject;
 	GameObject* m_snapObject;
-	void* m_unk538;
+	bool m_isDraggingCamera;
 	void* m_unk540;
 	int m_selectedTab;
 	PAD = win 0x3c;
