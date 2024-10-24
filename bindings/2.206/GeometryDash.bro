@@ -10060,11 +10060,11 @@ class GJRewardItem : cocos2d::CCObject {
 
 	static GJRewardItem* create();
 	static GJRewardItem* create(int chestID, int timeRemaining, gd::string) = win 0x1e75a0;
-
-	GJRewardItem* createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = win 0x1e73b0;
+	static GJRewardItem* createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = win 0x1e73b0;
 	TodoReturn createWithCoder(DS_Dictionary*) = imac 0x8e470;
-	GJRewardItem* createWithObject(GJRewardType, GJRewardObject*);
-	GJRewardItem* createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x1e7330;
+	static GJRewardItem* createWithObject(GJRewardType, GJRewardObject*);
+	static GJRewardItem* createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x1e7330;
+
 	void dataLoaded(DS_Dictionary*);
 	TodoReturn getNextShardType(SpecialRewardItem);
 	TodoReturn getRandomNonMaxShardType();
@@ -10094,8 +10094,8 @@ class GJRewardObject : cocos2d::CCObject {
 		return ret;
 	}
 	static GJRewardObject* create(SpecialRewardItem, int, int) = win 0x1e7160;
+	static GJRewardObject* createItemUnlock(UnlockType, int) = win 0x1e70f0;
 
-	GJRewardObject* createItemUnlock(UnlockType, int) = win 0x1e70f0;
 	TodoReturn createWithCoder(DS_Dictionary*) = imac 0x8def0;
 	void dataLoaded(DS_Dictionary*);
 	bool init(SpecialRewardItem specialRewardItem, int total, int itemID) = win inline {
