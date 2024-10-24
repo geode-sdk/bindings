@@ -10059,19 +10059,19 @@ class GJRewardItem : cocos2d::CCObject {
 	// virtual ~GJRewardItem();
 
 	static GJRewardItem* create();
-	static GJRewardItem* create(int, int, gd::string);
+	static GJRewardItem* create(int chestID, int timeRemaining, gd::string) = win 0x1e75a0;
 
-	TodoReturn createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int);
+	TodoReturn createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = win 0x1e73b0;
 	TodoReturn createWithCoder(DS_Dictionary*) = imac 0x8e470;
 	TodoReturn createWithObject(GJRewardType, GJRewardObject*);
-	TodoReturn createWithObjects(GJRewardType, cocos2d::CCArray*);
+	TodoReturn createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x1e7330;
 	void dataLoaded(DS_Dictionary*);
 	TodoReturn getNextShardType(SpecialRewardItem);
 	TodoReturn getRandomNonMaxShardType();
 	TodoReturn getRandomShardType();
 	TodoReturn getRewardCount(SpecialRewardItem);
 	TodoReturn getRewardObjectForType(SpecialRewardItem);
-	bool init(int, int, gd::string);
+	bool init(int chestID, int timeRemaining, gd::string) = win 0x1e7670;
 	bool isShardType(SpecialRewardItem);
 	TodoReturn rewardItemToStat(SpecialRewardItem);
 
@@ -10089,17 +10089,27 @@ class GJRewardItem : cocos2d::CCObject {
 class GJRewardObject : cocos2d::CCObject {
 	// virtual ~GJRewardObject();
 
-	static GJRewardObject* create();
-	static GJRewardObject* create(SpecialRewardItem, int, int);
+	static GJRewardObject* create() = win inline {
+		auto ret = create(SpecialRewardItem::FireShard, 0, 0); // the first param is meant to be 0
+		return ret;
+	}
+	static GJRewardObject* create(SpecialRewardItem, int, int) = win 0x1e7160;
 
-	TodoReturn createItemUnlock(UnlockType, int);
+	GJRewardObject* createItemUnlock(UnlockType, int) = win 0x1e70f0;
 	TodoReturn createWithCoder(DS_Dictionary*) = imac 0x8def0;
 	void dataLoaded(DS_Dictionary*);
-	bool init(SpecialRewardItem, int, int);
+	bool init(SpecialRewardItem specialRewardItem, int total, int itemID) = win inline {
+		this->m_specialRewardItem = specialRewardItem;
+		this->m_total = total;
+		this->m_itemID = itemID;
+		return true;
+	}
 	bool isSpecialType();
 
 	virtual void encodeWithCoder(DS_Dictionary*) = win 0x1e71d0, m1 0x7ef00, imac 0x8e000, ios 0x34ec04;
-	virtual bool canEncode() = m1 0x7ef80, imac 0x8e080, ios 0x34ec84;
+	virtual bool canEncode() = win inline, m1 0x7ef80, imac 0x8e080, ios 0x34ec84 {
+		return true;
+	}
 
 	SpecialRewardItem m_specialRewardItem;
 	UnlockType m_unlockType;
