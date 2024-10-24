@@ -10072,7 +10072,7 @@ class GJRewardItem : cocos2d::CCObject {
 	void dataLoaded(DS_Dictionary* dict) = win inline, m1 0x7f3c8, imac 0x8e500 {
 		m_chestID = dict->getIntegerForKey("1");
 		m_rewardType = (GJRewardType)dict->getIntegerForKey("2");
-		auto rewardObjects = dict->getArrayForKey("3");
+		auto rewardObjects = dict->getArrayForKey("3", false);
 		CC_SAFE_RETAIN(rewardObjects);
 		CC_SAFE_RELEASE(m_rewardObjects);
 		m_rewardObjects = rewardObjects;
@@ -10095,7 +10095,7 @@ class GJRewardItem : cocos2d::CCObject {
 	static SpecialRewardItem getRandomNonMaxShardType() = win inline, m1 0x67e14, imac 0x74c90 {
 		auto type = getRandomShardType();
 		for (int i = 10; i > 0; i--) {
-			if (GameStatsManager::sharedState()->getStat(rewardItemToStat(type)) < 100) return type;
+			if (GameStatsManager::sharedState()->getStat(rewardItemToStat(type).c_str()) < 100) return type;
 			type = getNextShardType(type);
 		}
 		return (SpecialRewardItem)0;
