@@ -10061,10 +10061,10 @@ class GJRewardItem : cocos2d::CCObject {
 	static GJRewardItem* create();
 	static GJRewardItem* create(int chestID, int timeRemaining, gd::string) = win 0x1e75a0;
 
-	TodoReturn createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = win 0x1e73b0;
+	GJRewardItem* createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = win 0x1e73b0;
 	TodoReturn createWithCoder(DS_Dictionary*) = imac 0x8e470;
-	TodoReturn createWithObject(GJRewardType, GJRewardObject*);
-	TodoReturn createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x1e7330;
+	GJRewardItem* createWithObject(GJRewardType, GJRewardObject*);
+	GJRewardItem* createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x1e7330;
 	void dataLoaded(DS_Dictionary*);
 	TodoReturn getNextShardType(SpecialRewardItem);
 	TodoReturn getRandomNonMaxShardType();
