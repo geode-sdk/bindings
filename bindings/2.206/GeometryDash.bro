@@ -10062,7 +10062,7 @@ class GJRewardItem : cocos2d::CCObject {
 	static GJRewardItem* create(int chestID, int timeRemaining, gd::string) = win 0x1e75a0;
 	static GJRewardItem* createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = win 0x1e73b0;
 	TodoReturn createWithCoder(DS_Dictionary*) = imac 0x8e470;
-	static GJRewardItem* createWithObject(GJRewardType, GJRewardObject*);
+	static GJRewardItem* createWithObject(GJRewardType, GJRewardObject*) = win 0x1e72a0;
 	static GJRewardItem* createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x1e7330;
 
 	void dataLoaded(DS_Dictionary*);
