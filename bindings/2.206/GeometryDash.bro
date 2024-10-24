@@ -13103,7 +13103,7 @@ class MapSelectLayer : cocos2d::CCLayer {
 	LevelEditorLayer* m_editorLayer;
 }
 
-[[link(android), depends(GJGroundLayer)]]
+[[link(android), depends(GJGroundLayer), depends(GameToolbox)]]
 class MenuGameLayer : cocos2d::CCLayer {
 	// virtual ~MenuGameLayer();
 	MenuGameLayer() = ios 0x3a4d88 {}
@@ -15689,7 +15689,11 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 
 	void createSecondaryLayer(int) = win 0x3b0720, ios 0x2fadf4, imac 0x63fc70, m1 0x55f2b0;
 	cocos2d::CCArray* generateChestItems(int) = win 0x3b0b70, ios 0x2fb19c, imac 0x640100, m1 0x55f6ec;
-	cocos2d::ccColor3B getPageColor(int) = imac 0x63f1b0, m1 0x55e820;
+	cocos2d::ccColor3B getPageColor(int page) = win inline, imac 0x63f1b0, m1 0x55e820 {
+		if (page == 1) return cocos2d::ccc3(50, 50, 50);
+		else if (page == 2) return cocos2d::ccc3(70, 0, 120);
+		else return cocos2d::ccc3(70, 0, 75);
+	}
 	void goToPage(int page) = win inline, ios 0x2fa67c, imac 0x63f060, m1 0x55e690 {
 		if (m_inMainLayer) m_mainScrollLayer->moveToPage(page);
 		else m_secondaryScrollLayer->moveToPage(page);
