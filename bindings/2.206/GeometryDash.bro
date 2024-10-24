@@ -10135,7 +10135,8 @@ class GJRewardItem : cocos2d::CCObject {
 		}
 
 		for (int i = 0; i < m_rewardObjects->count(); i++) {
-			if (static_cast<GJRewardObject*>(m_rewardObjects->objectAtIndex(i))->m_specialRewardItem == type) return obj;
+			auto obj = static_cast<GJRewardObject*>(m_rewardObjects->objectAtIndex(i));
+			if (obj->m_specialRewardItem == type) return obj;
 		}
 
 		auto obj = GJRewardObject::create(type, 0, 0);
