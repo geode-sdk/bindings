@@ -801,12 +801,32 @@ class CCLightStrip {
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 	// virtual ~CCMenuItemSpriteExtra();
-	// CCMenuItemSpriteExtra();
+	CCMenuItemSpriteExtra() {
+		m_scaleMultiplier = 1.0f;
+		m_baseScale = 0.0f;
+		m_animationEnabled = false;
+		m_colorEnabled = false;
+		m_volume = 1.0f;
+		m_clickSound = "";
+	}
 
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0xd1e0;
 
 	static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) {
 		return CCMenuItemSpriteExtra::create(sprite, nullptr, target, callback);
+	}
+
+	/// Update the sizing of this button's image
+	/// If you for example have a `ButtonSprite` on this button and change the
+	/// text, you need to call `updateSprite` afterwards to fix the button's
+	/// content size
+	/// @note Geode addition
+	void updateSprite() {
+		auto sprite = this->getNormalImage();
+		auto size = sprite->getScaledContentSize();
+		sprite->setPosition(size / 2);
+		sprite->setAnchorPoint({ .5f, .5f });
+		this->setContentSize(size);
 	}
 
 	bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
@@ -4033,7 +4053,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 	TodoReturn setupLevelInfo();
 	TodoReturn toggleCommentMode(cocos2d::CCNode*);
 	TodoReturn updateCommentModeButtons();
-	TodoReturn updateLevelsLabel();
+	void updateLevelsLabel();
 
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
@@ -4171,7 +4191,7 @@ class LevelBrowserLayer : cocos2d::CCLayer, LevelManagerDelegate, FLAlertLayerPr
 	void onPrevPage(cocos2d::CCObject* sender);
 	void setSearchObject(GJSearchObject*);
 	TodoReturn setupLevelBrowser(cocos2d::CCArray*);
-	TodoReturn updateLevelsLabel();
+	void updateLevelsLabel();
 
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes);
