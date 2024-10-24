@@ -10058,25 +10058,104 @@ class GJRewardDelegate {
 class GJRewardItem : cocos2d::CCObject {
 	// virtual ~GJRewardItem();
 
-	static GJRewardItem* create();
-	static GJRewardItem* create(int chestID, int timeRemaining, gd::string) = win 0x1e75a0;
-	static GJRewardItem* createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = win 0x1e73b0;
-	TodoReturn createWithCoder(DS_Dictionary*) = imac 0x8e470;
-	static GJRewardItem* createWithObject(GJRewardType, GJRewardObject*) = win 0x1e72a0;
-	static GJRewardItem* createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x1e7330;
+	static GJRewardItem* create() = win 0x1e7260, m1 0x7f040, imac 0x8e150;
+	static GJRewardItem* create(int chestID, int timeRemaining, gd::string) = win 0x1e75a0, m1 0x6514c, imac 0x711d0;
+	static GJRewardItem* createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = win 0x1e73b0, m1 0x6b280, imac 0x78900;
+	static GJRewardItem* createWithCoder(DS_Dictionary* dict) = win inline, m1 0x7f31c, imac 0x8e470 {
+		auto ret = create();
+		ret->dataLoaded(dict);
+		return ret;
+	}
+	static GJRewardItem* createWithObject(GJRewardType, GJRewardObject*) = win 0x1e72a0, m1 0x7cce8, imac 0x8ba00;
+	static GJRewardItem* createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x1e7330, m1 0x680b4, imac 0x75030;
 
-	void dataLoaded(DS_Dictionary*);
-	TodoReturn getNextShardType(SpecialRewardItem);
-	TodoReturn getRandomNonMaxShardType();
-	TodoReturn getRandomShardType();
-	TodoReturn getRewardCount(SpecialRewardItem);
-	TodoReturn getRewardObjectForType(SpecialRewardItem);
-	bool init(int chestID, int timeRemaining, gd::string) = win 0x1e7670;
-	bool isShardType(SpecialRewardItem);
-	TodoReturn rewardItemToStat(SpecialRewardItem);
+	void dataLoaded(DS_Dictionary* dict) = win inline, m1 0x7f3c8, imac 0x8e500 {
+		m_chestID = dict->getIntegerForKey("1");
+		m_rewardType = (GJRewardType)dict->getIntegerForKey("2");
+		auto rewardObjects = dict->getArrayForKey("3", false);
+		CC_SAFE_RETAIN(rewardObjects);
+		CC_SAFE_RELEASE(m_rewardObjects);
+		m_rewardObjects = rewardObjects;
+	}
+	static SpecialRewardItem getNextShardType(SpecialRewardItem type) = win inline, m1 0x7f298, imac 0x8e400 {
+		switch (type) {
+			case SpecialRewardItem::FireShard: return SpecialRewardItem::IceShard;
+			case SpecialRewardItem::IceShard: return SpecialRewardItem::PoisonShard;
+			case SpecialRewardItem::PoisonShard: return SpecialRewardItem::ShadowShard;
+			case SpecialRewardItem::ShadowShard: return SpecialRewardItem::LavaShard;
+			case SpecialRewardItem::LavaShard: return SpecialRewardItem::EarthShard;
+			case SpecialRewardItem::EarthShard: return SpecialRewardItem::BloodShard;
+			case SpecialRewardItem::BloodShard: return SpecialRewardItem::MetalShard;
+			case SpecialRewardItem::MetalShard: return SpecialRewardItem::LightShard;
+			case SpecialRewardItem::LightShard: return SpecialRewardItem::SoulShard;
+			case SpecialRewardItem::SoulShard: return SpecialRewardItem::FireShard;
+			default: return (SpecialRewardItem)0;
+		}
+	}
+	static SpecialRewardItem getRandomNonMaxShardType() = win inline, m1 0x67e14, imac 0x74c90 {
+		auto type = getRandomShardType();
+		for (int i = 10; i > 0; i--) {
+			if (GameStatsManager::sharedState()->getStat(rewardItemToStat(type).c_str()) < 100) return type;
+			type = getNextShardType(type);
+		}
+		return (SpecialRewardItem)0;
+	}
+	static SpecialRewardItem getRandomShardType() = win inline, m1 0x7f2bc, imac 0x8e420 {
+		int randomValue = floorf((rand() / (float)RAND_MAX) * 10.f) + 1.f;
+		switch (randomValue) {
+			case 2: return SpecialRewardItem::IceShard;
+			case 3: return SpecialRewardItem::PoisonShard;
+			case 4: return SpecialRewardItem::ShadowShard;
+			case 5: return SpecialRewardItem::LavaShard;
+			case 6: return SpecialRewardItem::EarthShard;
+			case 7: return SpecialRewardItem::BloodShard;
+			case 8: return SpecialRewardItem::MetalShard;
+			case 9: return SpecialRewardItem::LightShard;
+			case 10: return SpecialRewardItem::SoulShard;
+			default: return SpecialRewardItem::FireShard;
+		}
+	}
+	int getRewardCount(SpecialRewardItem type) = win inline, m1 0x6a67c, imac 0x77da0 {
+		if (!m_rewardObjects) return 0;
+
+		int count = 0;
+		for (int i = 0; i < m_rewardObjects->count(); i++) {
+			auto obj = static_cast<GJRewardObject*>(m_rewardObjects->objectAtIndex(i));
+			if (obj->m_specialRewardItem == type) count += obj->m_total;
+		}
+
+		return count;
+	}
+	GJRewardObject* getRewardObjectForType(SpecialRewardItem type) = win inline, m1 0x66600, imac 0x73570 {
+		if (!m_rewardObjects) {
+			auto rewardObjects = cocos2d::CCArray::create();
+			CC_SAFE_RETAIN(rewardObjects);
+			CC_SAFE_RELEASE(m_rewardObjects);
+			m_rewardObjects = rewardObjects;
+		}
+
+		for (int i = 0; i < m_rewardObjects->count(); i++) {
+			auto obj = static_cast<GJRewardObject*>(m_rewardObjects->objectAtIndex(i));
+			if (obj->m_specialRewardItem == type) return obj;
+		}
+
+		auto obj = GJRewardObject::create(type, 0, 0);
+		m_rewardObjects->addObject(obj);
+		return obj;
+	}
+	bool init(int chestID, int timeRemaining, gd::string) = win 0x1e7670, m1 0x7f070, imac 0x8e180;
+	static bool isShardType(SpecialRewardItem type) = win inline, m1 0x664b0, imac 0x73460 {
+		return type == SpecialRewardItem::FireShard || type == SpecialRewardItem::IceShard || type == SpecialRewardItem::PoisonShard
+			|| type == SpecialRewardItem::ShadowShard || type == SpecialRewardItem::LavaShard || type == SpecialRewardItem::EarthShard
+			|| type == SpecialRewardItem::BloodShard || type == SpecialRewardItem::MetalShard || type == SpecialRewardItem::LightShard
+			|| type == SpecialRewardItem::SoulShard;
+	}
+	static gd::string rewardItemToStat(SpecialRewardItem) = win 0x1e78d0, m1 0x664c8, imac 0x73480;
 
 	virtual void encodeWithCoder(DS_Dictionary*) = win 0x1e7b00, m1 0x7f450, imac 0x8e580, ios 0x34f02c;
-	virtual bool canEncode() = m1 0x7f4bc, imac 0x8e5e0, ios 0x34f098;
+	virtual bool canEncode() = win inline, m1 0x7f4bc, imac 0x8e5e0, ios 0x34f098 {
+		return true;
+	}
 
 	int m_chestID;
 	int m_timeRemaining;
@@ -10089,22 +10168,37 @@ class GJRewardItem : cocos2d::CCObject {
 class GJRewardObject : cocos2d::CCObject {
 	// virtual ~GJRewardObject();
 
-	static GJRewardObject* create() = win inline {
+	static GJRewardObject* create() = win inline, m1 0x7ed58, imac 0x8de50 {
 		auto ret = create(SpecialRewardItem::FireShard, 0, 0); // the first param is meant to be 0
 		return ret;
 	}
-	static GJRewardObject* create(SpecialRewardItem, int, int) = win 0x1e7160;
-	static GJRewardObject* createItemUnlock(UnlockType, int) = win 0x1e70f0;
+	static GJRewardObject* create(SpecialRewardItem, int, int) = win 0x1e7160, m1 0x67da4, imac 0x74c20;
+	static GJRewardObject* createItemUnlock(UnlockType, int) = win 0x1e70f0, m1 0x6b634, imac 0x78d00;
 
-	TodoReturn createWithCoder(DS_Dictionary*) = imac 0x8def0;
-	void dataLoaded(DS_Dictionary*);
-	bool init(SpecialRewardItem specialRewardItem, int total, int itemID) = win inline {
+	static GJRewardObject* createWithCoder(DS_Dictionary* dict) = win inline, m1 0x7ede0, imac 0x8def0 {
+		auto ret = create();
+		ret->dataLoaded(dict);
+		return ret;
+	}
+	void dataLoaded(DS_Dictionary* dict) = win inline, m1 0x7ee90, imac 0x8dfa0 {
+		m_specialRewardItem = (SpecialRewardItem)dict->getIntegerForKey("1");
+		m_itemID = dict->getIntegerForKey("2");
+		m_total = dict->getIntegerForKey("3");
+		m_unlockType = (UnlockType)dict->getIntegerForKey("4");
+	}
+	bool init(SpecialRewardItem specialRewardItem, int total, int itemID) = win inline, m1 0x7edb4, imac 0x8deb0 {
 		this->m_specialRewardItem = specialRewardItem;
 		this->m_total = total;
 		this->m_itemID = itemID;
 		return true;
 	}
-	bool isSpecialType();
+	bool isSpecialType() = win inline, m1 0x7edc4, imac 0x8ded0 {
+		auto type = m_specialRewardItem;
+		return type == SpecialRewardItem::FireShard || type == SpecialRewardItem::IceShard || type == SpecialRewardItem::PoisonShard
+			|| type == SpecialRewardItem::ShadowShard || type == SpecialRewardItem::LavaShard || type == SpecialRewardItem::BonusKey
+			|| type == SpecialRewardItem::EarthShard || type == SpecialRewardItem::BloodShard || type == SpecialRewardItem::MetalShard
+			|| type == SpecialRewardItem::LightShard || type == SpecialRewardItem::SoulShard;
+	}
 
 	virtual void encodeWithCoder(DS_Dictionary*) = win 0x1e71d0, m1 0x7ef00, imac 0x8e000, ios 0x34ec04;
 	virtual bool canEncode() = win inline, m1 0x7ef80, imac 0x8e080, ios 0x34ec84 {
