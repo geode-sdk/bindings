@@ -14389,7 +14389,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void createRobot(int) = win 0x366050, m1 0x37dcd4, imac 0x404e20;
 	void createSpider(int) = win 0x366410, m1 0x37e0ac, imac 0x405290;
 	void deactivateParticle() = m1 0x3828c8, imac 0x40a870; // inlined on windows
-	void deactivateStreak(bool) = imac 0x405d80;
+	void deactivateStreak(bool) = imac 0x405d80, m1 0x37eab0;
 	TodoReturn destroyFromHitHead();
 	TodoReturn didHitHead();
 	void disableCustomGlowColor() {
