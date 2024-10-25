@@ -6658,7 +6658,7 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCPoint m_boxOffset;
 	OBB2D* m_orientedBox;
 	bool m_shouldUseOuterOb;
-	cocos2d::CCSprite* m_glowSpriteMain;
+	cocos2d::CCSprite* m_glowSprite;
 	int m_maybeGlowSpriteDetail;
 	float m_width;
 	float m_height;
@@ -6729,10 +6729,10 @@ class GameObject : CCSpritePlus {
 	bool m_startFlipX;
 	bool m_startFlipY;
 
-    // m_unk3ee Also has Invisable Behaviors 
-    bool m_unk3ee; 
+    	// m_unk3ee Also has Invisable Behaviors 
+    	bool m_unk3ee; 
 	bool m_isInvisible;
-    // NOTE: m_unk3D8 might be unused
+    	// NOTE: m_unk3D8 might be unused
 	int m_unk3D8;
 	short m_unk3DC;
 	bool m_unk3DE;
@@ -6758,7 +6758,7 @@ class GameObject : CCSpritePlus {
 	bool m_isSolid;
 	bool m_ignoreEnter;
 	bool m_ignoreFade;
-    // Maybe m_dontFadeTinted ?
+    	// Maybe m_dontFadeTinted ?
 	bool m_unk3FC;
 	bool m_isTintObject;
 	bool m_customSpriteColor;
