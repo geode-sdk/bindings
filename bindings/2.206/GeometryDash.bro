@@ -7774,7 +7774,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool hasItem(int) = m1 0xf9bac, imac 0x11d8a0;
 	bool hasUniqueCoin(EffectGameObject*) = win 0x207020, imac 0x11ce50, m1 0xf91ec;
 	void increaseBatchNodeCapacity() = win 0x1fd9d0;
-	bool isFlipping();
+	bool isFlipping() {
+		return m_gameState.m_levelFlipping != 0.f && m_gameState.m_levelFlipping != 1.f;
+	}
 	bool isPlayer2Button(int);
 	void lightningFlash(cocos2d::CCPoint to, cocos2d::ccColor3B color);
 	void lightningFlash(cocos2d::CCPoint from, cocos2d::CCPoint to, cocos2d::ccColor3B color, float lineWidth, float duration, int displacement, bool flash, float opacity) = win 0x235db0, imac 0x1154f0, m1 0xf2a4c;
@@ -14389,7 +14391,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void createRobot(int) = win 0x366050, m1 0x37dcd4, imac 0x404e20;
 	void createSpider(int) = win 0x366410, m1 0x37e0ac, imac 0x405290;
 	void deactivateParticle() = m1 0x3828c8, imac 0x40a870; // inlined on windows
-	void deactivateStreak(bool) = imac 0x405d80;
+	void deactivateStreak(bool) = imac 0x405d80, m1 0x37eab0;
 	TodoReturn destroyFromHitHead();
 	TodoReturn didHitHead();
 	void disableCustomGlowColor() {
@@ -14447,7 +14449,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	bool isSafeMode(float);
 	bool isSafeSpiderFlip(float);
 	TodoReturn levelFlipFinished() = win 0x3698a0;
-	bool levelFlipping() = win 0x379500;
+	bool levelFlipping() = win 0x379500, m1 inline {
+		return m_playEffects && PlayLayer::get()->isFlipping();																			
+	}
 	TodoReturn levelWillFlip() = imac 0x40c6c0;
 	void loadFromCheckpoint(PlayerCheckpoint*) = win 0x37f9d0, imac 0x425520, m1 0x399e74;
 	void lockPlayer() = win 0x37d2e0, m1 0x3986a8, imac 0x423ad0;
