@@ -3545,7 +3545,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 		auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     		switch (placement) {
         		case DialogChatPlacement::Center:
-            			m_mainLayer->setPosition({winSize.width * 0.5F, winSize.height * 0.5F,});
+            			m_mainLayer->setPosition({winSize.width * 0.5F, winSize.height * 0.5F});
             			break;
         		case DialogChatPlacement::Top:
             			m_mainLayer->setPosition({winSize.width * 0.5F, (winSize.height - 50.F) - 20.F});
