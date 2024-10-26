@@ -3541,7 +3541,20 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 	void handleDialogTap() = win 0xd06b0, m1 0x34e4b0, imac 0x3cb920;
 	bool init(DialogObject*, cocos2d::CCArray*, int) = win 0xcfe20, m1 0x34d9d0, imac 0x3cadd0;
 	void onClose() = win 0xd0850, m1 0x34e6a4, imac 0x3cbb20;
-	void updateChatPlacement(DialogChatPlacement) = m1 0x34e3f4, imac 0x3cb850, ios 0x8ab34;
+	void updateChatPlacement(DialogChatPlacement placement) = win inline, m1 0x34e3f4, imac 0x3cb850, ios 0x8ab34 {
+		auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+    		switch (placement) {
+        		case DialogChatPlacement::Center:
+            			m_mainLayer->setPosition({winSize.width * 0.5F, winSize.height * 0.5F,});
+            			break;
+        		case DialogChatPlacement::Top:
+            			m_mainLayer->setPosition({winSize.width * 0.5F, (winSize.height - 50.F) - 20.F});
+            			break;
+        		case DialogChatPlacement::Bottom:
+            			m_mainLayer->setPosition({winSize.width * 0.5F, 70.F});
+            			break;
+    		}
+	}
 	void updateNavButtonFrame() = win 0xd0630, m1 0x34e394, imac 0x3cb7e0;
 
 	virtual void onEnter() = imac 0x3cbe80, ios 0x8af20;
@@ -4080,7 +4093,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	}
 	void removeOffset(GameObject*) = win 0x11e840;
 	TodoReturn replaceGroupID(GameObject*, int, int);
-	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0x1105b0;
+	void repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0x1105b0;
 	void resetObjectEditorValues(cocos2d::CCArray*);
 	TodoReturn resetSelectedObjectsColor();
 	void resetUI() = win 0xe1270, imac 0x2aac0, m1 0x2b8f4;
@@ -4113,7 +4126,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn smartTypeForKey(int);
 	cocos2d::CCSprite* spriteFromObjectString(gd::string str, bool, bool, int objLimit, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0x10a330, imac 0x34350, m1 0x3459c;
 	TodoReturn toggleDuplicateButton();
-	TodoReturn toggleEditObjectButton() = win 0x116aa0;
+	void toggleEditObjectButton() = win 0x116aa0;
 	void toggleEnableRotate(cocos2d::CCObject*) = win 0x10c6a0;
 	void toggleFreeMove(cocos2d::CCObject*) = win 0x10c520;
 	TodoReturn toggleLockUI(bool) = imac 0x2d5a0, m1 0x2dc08;
