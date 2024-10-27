@@ -18332,6 +18332,11 @@ class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
 [[link(android)]]
 class ShareListLayer : FLAlertLayer {
 	// virtual ~ShareListLayer();
+	ShareListLayer() {
+		m_list = nullptr;
+		m_friendsOnlyToggler = nullptr;
+		m_friendsOnlyLabel = nullptr;
+	}
 
 	static ShareListLayer* create(GJLevelList* list) = win inline, m1 0x2eec80, imac 0x361950 {
 		auto ret = new ShareListLayer();
