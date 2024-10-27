@@ -7021,6 +7021,9 @@ class GameStatsManager : cocos2d::CCNode {
 	// GameStatsManager();
 
 	static GameStatsManager* sharedState() = win 0x1c6e60, m1 0x515b0, imac 0x5aea0, ios 0x33601c;
+	static GameStatsManager* get() {
+		return GameStatsManager::sharedState();
+	}
 
 	int accountIDForIcon(int, UnlockType) = imac 0x32a490;
 	TodoReturn addSimpleSpecialChestReward(gd::string, UnlockType, int, bool);
