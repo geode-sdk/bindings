@@ -13898,19 +13898,54 @@ class NumberInputDelegate {
 [[link(android)]]
 class NumberInputLayer : FLAlertLayer {
 	// virtual ~NumberInputLayer();
+	NumberInputLayer() {
+		m_okButton = nullptr;
+		m_minimum = 4;
+		m_maximum = 4;
+		m_inputString = "";
+		m_delegate = nullptr;
+	}
 
-	static NumberInputLayer* create();
+	static NumberInputLayer* create() = win inline, m1 0x3fffa8, imac 0x49ba80 {
+		auto ret = new NumberInputLayer();
+		if (ret->init()) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn deleteLast();
-	TodoReturn inputNumber(int);
-	void onClose(cocos2d::CCObject* sender);
-	void onDone(cocos2d::CCObject* sender);
-	void onNumber(cocos2d::CCObject* sender);
-	TodoReturn updateNumberState();
+	void deleteLast() = win inline, m1 0x400780, imac 0x49c2c0 {
+		if (!m_inputString.empty()) {
+			m_inputString = m_inputString.substr(0, m_inputString.size() - 1);
+			this->updateNumberState();
+		}
+	}
+	void inputNumber(int num) = win inline, m1 0x4009a0, imac 0x49c4d0 {
+		if (m_inputString.size() < m_maximum) {
+			m_inputString += cocos2d::CCString::createWithFormat("%i", num)->getCString();
+			this->updateNumberState();
+		}
+	}
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x4005f0, imac 0x49c160;
+	void onDone(cocos2d::CCObject* sender) = win inline, m1 0x400948, imac 0x49c480 {
+		if (m_delegate) m_delegate->numberInputClosed(this);
+		this->onClose(nullptr);
+	}
+	void onNumber(cocos2d::CCObject* sender) = win 0x327160, m1 0x40062c, imac 0x49c190;
+	void updateNumberState() = win 0x3272f0, m1 0x4006c4, imac 0x49c210;
 
-	virtual bool init() = m1 0x4000ac, win 0x326bb0, imac 0x49bbe0, ios 0xfa73c;
-	virtual void registerWithTouchDispatcher() = m1 0x400b3c, imac 0x49c650, ios 0xfaefc;
-	virtual void keyBackClicked() = m1 0x400ac0, imac 0x49c5e0, ios 0xfae80;
+	virtual bool init() = win 0x326bb0, m1 0x4000ac, imac 0x49bbe0, ios 0xfa73c;
+	virtual void registerWithTouchDispatcher() = win 0x51ee0, m1 0x400b3c, imac 0x49c650, ios 0xfaefc;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x400ac0, imac 0x49c5e0, ios 0xfae80;
+
+	cocos2d::CCLabelBMFont* m_inputLabel;
+	CCMenuItemSpriteExtra* m_okButton;
+	int m_minimum;
+	int m_maximum;
+	gd::string m_inputString;
+	NumberInputDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -18226,53 +18261,100 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
 [[link(android)]]
 class ShareLevelLayer : FLAlertLayer {
 	// virtual ~ShareLevelLayer();
+	ShareLevelLayer() {
+		m_level = nullptr;
+		m_starsRequested = 0;
+		m_starButtons = nullptr;
+	}
 
-	static ShareLevelLayer* create(GJGameLevel*) = m1 0x221684, imac 0x27c0a0; // inlined
+	static ShareLevelLayer* create(GJGameLevel* level) = win inline, m1 0x221684, imac 0x27c0a0 {
+		auto ret = new ShareLevelLayer();
+		if (ret->init(level)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale); // also inlined
+	CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale) = win inline, m1 0x2229c0, imac 0x27d570 {
+		auto btnSpr = ButtonSprite::create(cocos2d::CCString::createWithFormat("%i", btnID)->getCString(), 20, 0, .5f, true, "bigFont.fnt", "GJ_button_01.png", 30.f);
+		auto btn = CCMenuItemSpriteExtra::create(btnSpr, this, callback);
+		btn->setScale(scale);
+		btn->m_baseScale = scale;
+		if (menu) menu->addChild(btn);
+		return btn;
+	}
 	bool init(GJGameLevel* level) = win 0x463090, m1 0x221788, imac 0x27c1f0;
-	void onClose(cocos2d::CCObject* sender) = win 0x82fc0;
-	void onSettings(cocos2d::CCObject* sender) = win 0x4642f0;
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x222758, imac 0x27d350;
+	void onSettings(cocos2d::CCObject* sender) = win 0x4642f0, m1 0x222980, imac 0x27d530;
 	void onShare(cocos2d::CCObject* sender) = win 0x464440, m1 0x222794, imac 0x27d380;
-	void selectRating(cocos2d::CCObject*) = win 0x464160;
-	void setupStars() = win 0x463d50;
+	void selectRating(cocos2d::CCObject*) = win 0x464160, m1 0x222a88, imac 0x27d640;
+	void setupStars() = win 0x463d50, m1 0x2223fc, imac 0x27cfd0;
 
 	virtual void keyBackClicked() = win 0x465260, m1 0x222e0c, imac 0x27da30, ios 0x286560;
+
+	GJGameLevel* m_level;
+	int m_starsRequested;
+	cocos2d::CCArray* m_starButtons;
+	cocos2d::CCSprite* m_difficultySprite;
 }
 
 [[link(android)]]
 class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
 	// virtual ~ShareLevelSettingsLayer();
+	ShareLevelSettingsLayer() {} // yes, the constructor is empty
 
-	static ShareLevelSettingsLayer* create(GJGameLevel*);
+	static ShareLevelSettingsLayer* create(GJGameLevel* level) = win inline, m1 0x222c04, imac 0x27d7a0 {
+		auto ret = new ShareLevelSettingsLayer();
+		if (ret->init(level)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(GJGameLevel*);
-	void onClose(cocos2d::CCObject* sender);
-	void onCopyable(cocos2d::CCObject* sender);
-	void onEditPassword(cocos2d::CCObject* sender);
-	void onPassword(cocos2d::CCObject* sender);
-	void onUnlisted(cocos2d::CCObject* sender);
-	void onUnlistedFriendsOnly(cocos2d::CCObject* sender);
-	TodoReturn updateSettingsState();
+	bool init(GJGameLevel*) = win 0x4652b0, m1 0x2239b0, imac 0x27e780;
+	void onClose(cocos2d::CCObject* sender) = win 0x465ff0, m1 0x2243b4, imac 0x27f200;
+	void onUnlisted(cocos2d::CCObject* sender) = win 0x465cd0, m1 0x224438, imac 0x27f280;
+	void onUnlistedFriendsOnly(cocos2d::CCObject* sender) = win 0x465ef0, m1 0x2245f4, imac 0x27f470;
+	void updateSettingsState() = win 0x465f10, m1 0x224608, imac 0x27f490;
 
 	virtual void keyBackClicked() = win 0x466070, m1 0x2246c8, imac 0x27f550, ios 0x287b68;
-	virtual void numberInputClosed(NumberInputLayer*) {}
+
+	cocos2d::CCLabelBMFont* m_passwordLabel;
+	GJGameLevel* m_level;
+	CCMenuItemToggler* m_friendsOnlyToggler;
+	cocos2d::CCLabelBMFont* m_friendsOnlyLabel;
 }
 
 [[link(android)]]
 class ShareListLayer : FLAlertLayer {
 	// virtual ~ShareListLayer();
 
-	static ShareListLayer* create(GJLevelList*);
+	static ShareListLayer* create(GJLevelList* list) = win inline, m1 0x2eec80, imac 0x361950 {
+		auto ret = new ShareListLayer();
+		if (ret->init(list)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(GJLevelList*);
-	void onClose(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onShare(cocos2d::CCObject* sender);
-	void onUnlisted(cocos2d::CCObject* sender);
-	TodoReturn updateUnlistedF();
+	bool init(GJLevelList*) = win 0x2e95f0, m1 0x2f0360, imac 0x363180;
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x2f1518, imac 0x3644e0;
+	void onInfo(cocos2d::CCObject* sender) = win 0x2ea790, m1 0x2f1668, imac 0x364610;
+	void onShare(cocos2d::CCObject* sender) = win 0x2eaa50, m1 0x2f1554, imac 0x364510;
+	void onUnlisted(cocos2d::CCObject* sender) = win 0x2ea900, m1 0x2f1720, imac 0x3646c0;
+	void updateUnlistedF() = win 0x2ea970, m1 0x2f1820, imac 0x3647c0;
 
-	virtual void keyBackClicked() = m1 0x2f19e8, imac 0x3649d0, ios 0x258b3c;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x2f19e8, imac 0x3649d0, ios 0x258b3c;
+
+	GJLevelList* m_list;
+	CCMenuItemToggler* m_friendsOnlyToggler;
+	cocos2d::CCLabelBMFont* m_friendsOnlyLabel;
 }
 
 [[link(android)]]
