@@ -18670,7 +18670,7 @@ class SongInfoObject : cocos2d::CCNode {
 	// virtual ~SongInfoObject();
 
 	static SongInfoObject* create(cocos2d::CCDictionary*);
-	static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority, gd::string unk1, bool unk2, int unk3, int unk4) = win 0x3245a0;
+	static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int newType, int priority) = win 0x3245a0;
 	static SongInfoObject* create(int) = win 0x323450, m1 0x4e707c, imac 0x59f080;
 
 	TodoReturn addTags(gd::string);
@@ -18678,7 +18678,7 @@ class SongInfoObject : cocos2d::CCNode {
 	TodoReturn createWithCoder(DS_Dictionary*) = win 0x324b70;
 	TodoReturn getArtistNames(int);
 	TodoReturn getTagsString(bool);
-	bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int priority, gd::string unk1, bool unk2, int unk3, int unk4);
+	bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int newType, int priority);
 
 	virtual void encodeWithCoder(DS_Dictionary*) = win 0x324e80, m1 0x4e7ef4, imac 0x5a01f0, ios 0x1672ac;
 	virtual bool canEncode() = m1 0x4e8088, imac 0x5a03b0, ios 0x167440;
@@ -18691,10 +18691,19 @@ class SongInfoObject : cocos2d::CCNode {
 	gd::string m_songUrl;
 	int m_artistID;
 	float m_fileSize;
-	int m_unkInt1;
-	gd::string m_unkString1;
-	bool m_isUnknownSong;
+	int m_nongType;
+	gd::string m_extraArtists;
+	bool m_isUnknownSong; //better name would probs be m_isUnloaded (source: CustomSongWidget::getSongInfoIfUnloaded)
 	int m_priority;
+	int m_unkInt;
+	int m_BPM;
+	bool m_isNew;
+	int m_newType;
+	gd::string m_extraArtistNames;
+	gd::unordered_set<int> m_artistIDs;
+	gd::set<int> m_tags;
+	gd::string m_longTagsString;
+	gd::string m_shortTagsString;
 }
 
 [[link(android)]]
