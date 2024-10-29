@@ -18384,23 +18384,54 @@ class SimplePlayer : cocos2d::CCSprite {
 
 	static SimplePlayer* create(int) = win 0x2672d0, m1 0x2f84a4, imac 0x36c360, ios 0x313e7c;
 
-	TodoReturn asyncLoadIcon(int, IconType);
-	void createRobotSprite(int); // win inlined
-	void createSpiderSprite(int) = win 0x267aa0, imac 0x36c480;
-	inline void disableCustomGlowColor() {
+	void asyncLoadIcon(int, IconType) = m1 0x2fdc2c, imac 0x371f90;
+	void createRobotSprite(int frame) = win inline, m1 0x2f8560, imac 0x36c420, ios 0x313f2c {
+		if (m_robotSprite) return;
+		auto robotSprite = GJRobotSprite::create(frame);
+		m_robotSprite = robotSprite;
+		addChild(robotSprite);
+		m_robotSprite->setVisible(false);
+	}
+	void createSpiderSprite(int) = win 0x267aa0, m1 0x2f85c0, imac 0x36c480, ios 0x313f8c;
+	void disableCustomGlowColor() = win inline, m1 0x2fc438, imac 0x370560, ios 0x317164 {
 		m_hasCustomGlowColor = false;
 	}
-	inline void enableCustomGlowColor(cocos2d::_ccColor3B const& color) { // ios 0x317144
+	void enableCustomGlowColor(cocos2d::_ccColor3B const& color) = win inline, m1 0x2fc418, imac 0x370530, ios 0x317144 {
 		m_hasCustomGlowColor = true;
 		m_glowColor = color;
 	}
-	TodoReturn hideAll();
-	TodoReturn hideSecondary();
-	TodoReturn iconFinishedLoading(int, IconType);
-	bool init(int) = win 0x2673c0, ios 0x317cb4;
-	void setColors(cocos2d::ccColor3B const&, cocos2d::ccColor3B const&);
-	void setFrames(char const*, char const*, char const*, char const*, char const*) = win 0x268450;
-	void setSecondColor(cocos2d::_ccColor3B const& color) = m1 0x2fdeb8, imac 0x372200, ios 0x3181d0, win inline {
+	void hideAll() = win inline, m1 0x2fdd44, imac 0x3720a0, ios inline {
+		m_firstLayer->setVisible(false);
+		m_secondLayer->setVisible(false);
+		if (m_birdDome) m_birdDome->setVisible(false);
+		if (m_outlineSprite) m_outlineSprite->setVisible(false);
+		if (m_detailSprite) m_detailSprite->setVisible(false);
+		if (m_robotSprite) m_robotSprite->setVisible(false);
+		if (m_spiderSprite) m_spiderSprite->setVisible(false);
+	}
+	void hideSecondary() = win inline, m1 0x2fdee8, imac 0x372230, ios 0x318200 {
+		m_secondLayer->setVisible(false);
+		m_birdDome->setVisible(false);
+		m_detailSprite->setVisible(false);
+		m_outlineSprite->setVisible(false);
+		if (m_robotSprite) {
+			m_robotSprite->hideSecondary();
+			m_robotSprite->m_glowSprite->setVisible(false);
+		}
+		if (m_spiderSprite) {
+			m_spiderSprite->hideSecondary();
+			m_spiderSprite->m_glowSprite->setVisible(false);
+		}
+	}
+	void iconFinishedLoading(int, IconType) = m1 0x2fde08, imac 0x372150;
+	bool init(int) = win 0x2673c0, m1 0x2fd55c, imac 0x371780, ios 0x317cb4;
+	void setColors(cocos2d::ccColor3B const& color1, cocos2d::ccColor3B const& color2) = win inline, m1 0x2fc3d0, imac 0x3704f0, ios inline {
+		m_firstLayer->setColor(color1);
+		m_secondLayer->setColor(color2);
+		updateColors();
+	}
+	void setFrames(char const*, char const*, char const*, char const*, char const*) = win 0x268450, m1 0x2fdf9c, imac 0x3722e0, ios 0x3182b4;
+	void setSecondColor(cocos2d::_ccColor3B const& color) = win inline, m1 0x2fdeb8, imac 0x372200, ios 0x3181d0 {
 		m_secondLayer->setColor(color);
 		updateColors();
 	}
@@ -18431,10 +18462,10 @@ class SimplePlayer : cocos2d::CCSprite {
 	GJSpiderSprite* m_spiderSprite;
 	int m_unknown;
 	bool m_hasGlowOutline;
-	PAD = win 0x7, android 0x7, mac 0x7, ios 0x7;
+	int m_iconRequestID;
 	bool m_hasCustomGlowColor;
 	cocos2d::ccColor3B m_glowColor;
-	PAD = win 0x4, imac 0x4, android32 0x4, android64 0x8, m1 0x8, ios 0x8;
+	bool m_iconLoaded;
 }
 
 [[link(android)]]
