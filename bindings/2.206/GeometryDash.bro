@@ -4655,10 +4655,10 @@ class EndPortalObject : GameObject {
 
 	static EndPortalObject* create() = imac 0x39f2f0;
 
-	TodoReturn getSpawnPos() = win 0x134050, imac 0x39f810, m1 0x3268cc;
+	cocos2d::CCPoint getSpawnPos() = win 0x134050, imac 0x39f810, m1 0x3268cc;
 	void triggerObject(GJBaseGameLayer*) = imac 0x39f780, m1 0x326838;
 	TodoReturn updateColors(cocos2d::ccColor3B);
-	TodoReturn updateEndPos(bool) = win 0x1342c0, imac 0x39fa00, m1 0x326a8c;
+	void updateEndPos(bool) = win 0x1342c0, imac 0x39fa00, m1 0x326a8c;
 
 	virtual bool init() = m1 0x326498, imac 0x39f390, ios 0x407108;
 	virtual void setPosition(cocos2d::CCPoint const&) = m1 0x326930, imac 0x39f890, ios 0x407590;
