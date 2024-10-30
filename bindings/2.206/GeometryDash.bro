@@ -222,7 +222,7 @@ class AchievementManager : cocos2d::CCNode {
 
 	static AchievementManager* sharedState() = win 0x7d50, ios 0xb9340, imac 0x738f50, m1 0x64a8e4;
 
-	TodoReturn achievementForUnlock(int, UnlockType) = win 0x39390, imac 0x790e10;
+	gd::string achievementForUnlock(int, UnlockType) = win 0x39390, m1 0x6979a0, imac 0x790e10;
 	void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x7ea0;
 	void addManualAchievements() = win 0x83c0;
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
@@ -231,12 +231,17 @@ class AchievementManager : cocos2d::CCNode {
 	void encodeDataTo(DS_Dictionary*) = imac 0x790960, m1 0x6974cc;
 	void firstSetup();
 	TodoReturn getAchievementRewardDict();
-	cocos2d::CCDictionary* getAchievementsWithID(char const*);
+	cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x38f40, m1 0x697738, imac 0x790c10;
 	TodoReturn getAllAchievements();
 	cocos2d::CCArray* getAllAchievementsSorted(bool) = win 0x38d20;
 	bool isAchievementAvailable(gd::string);
 	bool isAchievementEarned(char const* ach) = win 0x38c40, ios 0xe9c90, imac 0x790ad0, m1 0x697604;
-	TodoReturn limitForAchievement(gd::string) = imac 0x790d70;
+	int limitForAchievement(gd::string id) = win inline, m1 0x6978d8, imac 0x790d70 {
+		if (auto achievements = getAchievementsWithID(id.c_str())) {
+			if (auto limits = static_cast<cocos2d::CCString*>(achievements->objectForKey("limits"))) return limits->intValue();
+		}
+		return 0;
+	}
 	TodoReturn notifyAchievement(char const*, char const*, char const*);
 	TodoReturn notifyAchievementWithID(char const*);
 	TodoReturn percentageForCount(int, int);
