@@ -505,9 +505,14 @@ class DS_Dictionary {
 	void setArrayForKey(const char*, cocos2d::CCArray*);
 	cocos2d::CCObject* getObjectForKey(const char*);
 	void setObjectForKey(const char*, cocos2d::CCObject*);
+
 	bool loadRootSubDictFromFile(const char*);
 	bool loadRootSubDictFromString(gd::string);
 	bool loadRootSubDictFromCompressedFile(const char*);
+
+	bool saveRootSubDictToCompressedFile(const char*);
+	bool saveRootSubDictToFile(const char*);
+	gd::string saveRootSubDictToString();
 }
 
 [[link(win, android)]]
