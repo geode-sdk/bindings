@@ -7102,7 +7102,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn getSecretCoinKey(char const*);
 	TodoReturn getSpecialChestKeyForItem(int, UnlockType);
 	TodoReturn getSpecialRewardDescription(gd::string, bool);
-	TodoReturn getSpecialUnlockDescription(int, UnlockType, bool) = win 0x1de7b0;
+	gd::string getSpecialUnlockDescription(int, UnlockType, bool) = win 0x1de7b0, m1 0x6b8bc, imac 0x78f50;
 	TodoReturn getStarLevelKey(GJGameLevel*); // inlined
 	int getStat(char const*) = win 0x1cb1d0, imac 0x657a0, ios 0x33c328, m1 0x5aa1c;
 	TodoReturn getStatFromKey(StatKey);
