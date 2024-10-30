@@ -7237,7 +7237,7 @@ class GameStatsManager : cocos2d::CCNode {
 	bool m_unkBoolIncrementStat;
 	cocos2d::CCDictionary* m_unkDict;
 	cocos2d::CCDictionary* m_unlockedItems;
-	gd::map<int, UnlockType> m_accountIDForIcon;
+	gd::map<std::pair<int, UnlockType>, int> m_accountIDForIcon;
 	gd::map<int, gd::string> m_usernameForAccountID;
 	bool m_GS29;
 	int m_activePath;
