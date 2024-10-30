@@ -1,9 +1,5 @@
 // clang-format off
 
-class GDString {
-	void winDtor() = win 0x5620
-}
-
 [[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
 	// virtual ~AccountHelpLayer();
