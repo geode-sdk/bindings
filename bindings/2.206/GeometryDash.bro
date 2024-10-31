@@ -13394,6 +13394,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 	cocos2d::CCLabelBMFont* m_errorLabel;
 	GJCommentListLayer* m_listLayer;
 	LoadingCircle* m_loadingCircle;
+	UploadActionPopup* m_actionPopup;
 	void* m_unkPtr;
 	CCMenuItemSpriteExtra* m_nextButton;
 	CCMenuItemSpriteExtra* m_prevButton;
