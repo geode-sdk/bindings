@@ -11096,12 +11096,21 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
 class GJUserMessage : cocos2d::CCNode {
 	// virtual ~GJUserMessage();
 
-	static GJUserMessage* create() = win 0x16b5f0, m1 0x4b57ac, imac 0x567830;
-	static GJUserMessage* create(cocos2d::CCDictionary*);
+	static GJUserMessage* create() = win 0x16b5f0, m1 0x4b57ac, imac 0x567830, ios 0xb1a80;
+	static GJUserMessage* create(cocos2d::CCDictionary*) = win 0x16aab0, m1 0x4a4340, imac 0x555020, ios 0xa6d3c;
 
-	virtual bool init() = imac 0x5678d0, ios 0xb1b10;
+	virtual bool init() = win 0x767c0, m1 0x4b5848, imac 0x5678d0, ios 0xb1b10;
 
 	int m_messageID;
+	int m_accountID;
+	int m_userID;
+	gd::string m_title;
+	gd::string m_content;
+	gd::string m_username;
+	gd::string m_uploadDate;
+	bool m_read;
+	bool m_outgoing;
+	bool m_toggled;
 }
 
 [[link(android)]]
