@@ -162,7 +162,7 @@ class AchievementCell : TableViewCell {
 class AchievementManager : cocos2d::CCNode {
 	// virtual ~AchievementManager();
 
-	static AchievementManager* sharedState();
+	static AchievementManager* sharedState() = win 0x4e80;
 
 	TodoReturn areAchievementsEarned(cocos2d::CCArray*);
 	TodoReturn checkAchFromUnlock(char const*);
@@ -266,7 +266,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	void setupGLView() = win 0x28770;
 	TodoReturn showLoadingCircle(bool, bool, bool);
 
-	virtual bool applicationDidFinishLaunching();
+	virtual bool applicationDidFinishLaunching() = win 0x289c0;
 	virtual void applicationDidEnterBackground();
 	virtual void applicationWillEnterForeground();
 	virtual void applicationWillBecomeActive();
@@ -1014,46 +1014,46 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 	void setContentOffset(cocos2d::CCPoint, bool);
 	void updateIndicators(float);
 
-	virtual void visit();
+	virtual void visit() = win 0xec90;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xe720;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xea80;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xe820;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xea60;
-	virtual void registerWithTouchDispatcher();
-	virtual void preVisitWithClippingRect(cocos2d::CCRect);
-	virtual void postVisit();
-	virtual bool getIsTouch() const;
-	virtual void setIsTouch(bool);
-	virtual bool getIsScrolling() const;
-	virtual void setIsScrolling(bool);
-	virtual cocos2d::CCLayerColor* getVerticalScrollIndicator() const;
-	virtual void setVerticalScrollIndicator(cocos2d::CCLayerColor*);
-	virtual cocos2d::CCLayerColor* getHorizontalScrollIndicator() const;
-	virtual void setHorizontalScrollIndicator(cocos2d::CCLayerColor*);
-	virtual CCScrollLayerExtDelegate* getScrollDelegate() const;
-	virtual void setScrollDelegate(CCScrollLayerExtDelegate*);
-	virtual cocos2d::CCLayerColor* getContentLayer() const;
-	virtual void setContentLayer(cocos2d::CCLayerColor*);
-	virtual bool getClipsToBounds() const;
-	virtual void setClipsToBounds(bool);
-	virtual bool getShowsHorizontalScrollIndicator() const;
-	virtual void setShowsHorizontalScrollIndicator(bool);
-	virtual bool getShowsVerticalScrollIndicator() const;
-	virtual void setShowsVerticalScrollIndicator(bool);
-	virtual bool getLockHorizontal() const;
-	virtual void setLockHorizontal(bool);
-	virtual bool getLockVertical() const;
-	virtual void setLockVertical(bool);
-	virtual bool getTouchDispatch() const;
-	virtual void setTouchDispatch(bool);
-	virtual float getTopPadding() const;
-	virtual void setTopPadding(float);
-	virtual float getBottomPadding() const;
-	virtual void setBottomPadding(float);
-	virtual float getMaxOffsetTop() const;
-	virtual void setMaxOffsetTop(float);
-	virtual float getMaxOffsetBottom() const;
-	virtual void setMaxOffsetBottom(float);
+	virtual void registerWithTouchDispatcher() = win 0xe6f0;
+	virtual void preVisitWithClippingRect(cocos2d::CCRect) = win 0xedc0;
+	virtual void postVisit() = win 0xee50;
+	virtual bool getIsTouch() const = win 0xdb40;
+	virtual void setIsTouch(bool) = win 0xdb50;
+	virtual bool getIsScrolling() const = win 0xdb60;
+	virtual void setIsScrolling(bool) = win 0xdb70;
+	virtual cocos2d::CCLayerColor* getVerticalScrollIndicator() const = win 0xdb80;
+	virtual void setVerticalScrollIndicator(cocos2d::CCLayerColor*) = win 0xdb90;
+	virtual cocos2d::CCLayerColor* getHorizontalScrollIndicator() const = win 0xdba0;
+	virtual void setHorizontalScrollIndicator(cocos2d::CCLayerColor*) = win 0xdbb0;
+	virtual CCScrollLayerExtDelegate* getScrollDelegate() const = win 0xdbc0;
+	virtual void setScrollDelegate(CCScrollLayerExtDelegate*) = win 0xdbd0;
+	virtual cocos2d::CCLayerColor* getContentLayer() const = win 0x69f0;
+	virtual void setContentLayer(cocos2d::CCLayerColor*) = win 0x6a00;
+	virtual bool getClipsToBounds() const = win 0xdbe0;
+	virtual void setClipsToBounds(bool) = win 0xdbf0;
+	virtual bool getShowsHorizontalScrollIndicator() const = win 0xdc00;
+	virtual void setShowsHorizontalScrollIndicator(bool) = win 0xdc10;
+	virtual bool getShowsVerticalScrollIndicator() const = win 0xdc20;
+	virtual void setShowsVerticalScrollIndicator(bool) = win 0xdc30;
+	virtual bool getLockHorizontal() const = win 0xdc40;
+	virtual void setLockHorizontal(bool) = win 0xdc50;
+	virtual bool getLockVertical() const = win 0xdc60;
+	virtual void setLockVertical(bool) = win 0xdc70;
+	virtual bool getTouchDispatch() const = win 0xdc80;
+	virtual void setTouchDispatch(bool) = win 0xdc90;
+	virtual float getTopPadding() const = win 0xdca0;
+	virtual void setTopPadding(float) = win 0xdcb0;
+	virtual float getBottomPadding() const = win 0xdcd0;
+	virtual void setBottomPadding(float) = win 0xdce0;
+	virtual float getMaxOffsetTop() const = win 0xdd00;
+	virtual void setMaxOffsetTop(float) = win 0xdd10;
+	virtual float getMaxOffsetBottom() const = win 0xdd30;
+	virtual void setMaxOffsetBottom(float) = win 0xdd40;
 
 	cocos2d::CCTouch* m_touch;
 	cocos2d::CCPoint m_touchPosition;
@@ -2508,7 +2508,7 @@ class GameManager : GManager {
 	const char* colorKey(int id, bool second) = win inline {
 		return cocos2d::CCString::createWithFormat("c%i_%i", second, id)->getCString();
 	}
-	TodoReturn completedAchievement(char const*);
+	void completedAchievement(char const*) = win 0x670b0;
 	TodoReturn didExitPlayscene();
 	TodoReturn doQuickSave();
 	TodoReturn eventUnlockFeature(char const*);
@@ -2543,9 +2543,9 @@ class GameManager : GManager {
 	TodoReturn itemPurchased(char const*);
 	TodoReturn levelIsPremium(int, int);
 	TodoReturn likeFacebook();
-	TodoReturn loadBackground(int) = win 0x6aa90;
+	void loadBackground(int) = win 0x6aa90;
 	TodoReturn loadGround(int);
-	void loadVideoSettings();
+	void loadVideoSettings() = win 0x6b090;
 	TodoReturn lockColor(int, bool);
 	TodoReturn lockIcon(int, IconType);
 	void openEditorGuide() = win 0x3f4b0;
@@ -3202,8 +3202,10 @@ class GameStatsManager {
 	TodoReturn hasCompletedOnlineLevel(int);
 	TodoReturn hasCompletedStarLevel(GJGameLevel*);
 	bool hasUniqueItem(char const*) = win 0x78d60;
-	TodoReturn incrementStat(char const*, int);
-	TodoReturn incrementStat(char const*);
+	void incrementStat(char const*, int) = win 0x76f60;
+	void incrementStat(char const* stat) = win inline {
+		return this->incrementStat(stat, 1);
+	}
 	bool isLiteUnlockable(gd::string);
 	bool isUniqueItem(gd::string);
 	bool isUniqueValid(gd::string);
@@ -5283,12 +5285,12 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 }
 
 [[link(android)]]
-class MoreVideoOptionsLayer {
+class MoreVideoOptionsLayer : FLAlertLayer {
 	// virtual ~MoreVideoOptionsLayer();
 
 	static MoreVideoOptionsLayer* create();
 
-	TodoReturn addToggle(char const*, char const*, char const*);
+	void addToggle(char const*, char const*, char const*) = win 0xd5000;
 	TodoReturn countForPage(int);
 	TodoReturn goToPage(int);
 	TodoReturn incrementCountForPage(int);
@@ -5302,11 +5304,19 @@ class MoreVideoOptionsLayer {
 	void onInfo(cocos2d::CCObject* sender);
 	void onNextPage(cocos2d::CCObject* sender);
 	void onPrevPage(cocos2d::CCObject* sender);
-	void onToggle(cocos2d::CCObject* sender);
+	void onToggle(cocos2d::CCObject* sender) = win 0xd5930;
 	TodoReturn pageKey(int);
 
-	virtual bool init();
+	virtual bool init() = win 0xd4bd0;
 	virtual void keyBackClicked();
+
+	int m_lastPage;
+	int m_optionsCount;
+	int m_page;
+	cocos2d::CCDictionary* m_layers;
+	cocos2d::CCDictionary* m_toggles;
+	CCMenuItemSpriteExtra* m_prevPageBtn;
+	CCMenuItemSpriteExtra* m_nextPageBtn;
 }
 
 [[link(android)]]
@@ -7357,7 +7367,9 @@ class UILayer : cocos2d::CCLayerColor {
 	void onDeleteCheck(cocos2d::CCObject* sender);
 	void onPause(cocos2d::CCObject* sender);
 	TodoReturn pCommand(cocos2d::CCNode*);
-	TodoReturn toggleCheckpointsMenu(bool);
+	void toggleCheckpointsMenu(bool enabled) = win inline {
+		this->m_checkpointMenu->setVisible(enabled);
+	}
 
 	virtual bool init() = win 0xfec60;
 	virtual void draw();

@@ -450,6 +450,12 @@ class cocos2d::extension::CCHttpClient {
 }
 
 [[link(win, android)]]
+class cocos2d::extension::CCControlUtils {
+	static cocos2d::extension::HSV HSVfromRGB(cocos2d::extension::RGBA);
+	static cocos2d::extension::RGBA RGBfromHSV(cocos2d::extension::HSV);
+}
+
+[[link(win, android)]]
 class cocos2d::CCIMEDispatcher {
 	static cocos2d::CCIMEDispatcher* sharedDispatcher();
 
