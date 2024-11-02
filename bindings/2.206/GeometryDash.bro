@@ -574,6 +574,15 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
 
 	virtual void draw() = ios 0x3cd5fc {}
 	virtual void updateTweenAction(float, char const*) = m1 0x41ae04, imac 0x4b9b30, ios 0x3cd508;
+
+	cocos2d::CCSpriteBatchNode* m_batchNode;
+	cocos2d::CCArray* m_unk1bc;
+	cocos2d::CCArray* m_unk1c0;
+	float m_unk1c4;
+	float m_unk1c8;
+	bool m_goingDown;
+	float m_notAudioScale;
+	bool m_unk1d4;
 }
 
 [[link(android)]]
@@ -626,6 +635,10 @@ class BonusDropdown : cocos2d::CCNode {
 
 	bool init(gd::string, int);
 	void show();
+
+	cocos2d::CCLayerColor* m_layerColor;
+	float m_unk10c;
+	cocos2d::CCScene* m_scene;
 }
 
 [[link(android)]]
@@ -831,6 +844,13 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
 
 	virtual void keyBackClicked() = win 0x42f860, m1 0x44e984, imac 0x4f5220, ios 0x798ec;
 	virtual void onBack(cocos2d::CCObject* sender) = win 0x42f880, m1 0x44e9a8, imac 0x4f5260, ios 0x79910;
+
+	GJSmartTemplate* m_template;
+	cocos2d::CCArray* m_pages;
+	int m_page;
+	cocos2d::CCNode* m_nextPageBtn;
+	cocos2d::CCNode* m_prevPageBtn;
+	cocos2d::CCArray* m_dotsArray;
 }
 
 [[link(android)]]
@@ -4282,7 +4302,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	CCMenuItemSpriteExtra* m_editGroupBtn;
 	CCMenuItemSpriteExtra* m_editHSVBtn;
 	CCMenuItemSpriteExtra* m_editSpecialBtn;
-	PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
+	cocos2d::CCObject* m_unk3F0;
 	CCMenuItemSpriteExtra* m_copyPasteBtn;
 	CCMenuItemSpriteExtra* m_copyBtn;
 	CCMenuItemSpriteExtra* m_pasteBtn;
@@ -4318,7 +4338,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	LevelEditorLayer* m_editorLayer; // win 0x340
 	cocos2d::CCPoint m_swipeStart;
 	cocos2d::CCPoint m_swipeEnd;
-	PAD = mac 0x8, win 0x8, android32 0x8, android64 0x8, ios 0x8; // could be a CCPoint
+	cocos2d::CCPoint m_unk508;
 	cocos2d::CCPoint m_lastTouchPoint;
 	cocos2d::CCPoint m_cameraTest;
 	cocos2d::CCPoint m_clickAtPosition;
@@ -4842,6 +4862,12 @@ class ExplodeItemNode : cocos2d::CCNode {
 	bool init(cocos2d::CCRenderTexture*);
 
 	virtual void update(float) = m1 0x1c0560, imac 0x20f170, ios 0x63d54;
+
+	cocos2d::CCRenderTexture* m_renderTexture;
+	cocos2d::CCArray* m_sprites;
+	float m_unk1;
+	float m_unk2;
+	bool m_unk3;
 }
 
 [[link(android)]]
@@ -4851,6 +4877,13 @@ class ExplodeItemSprite : cocos2d::CCSprite {
 	static ExplodeItemSprite* create();
 
 	virtual bool init() = imac 0x20f4f0, ios 0x64024;
+	
+	float m_unk1;
+	float m_unk2;
+	float m_unk3;
+	float m_unk4;
+	float m_unk5;
+	cocos2d::CCParticleSystemQuad* m_unk6;
 }
 
 [[link(android)]]
@@ -4917,9 +4950,13 @@ class FindObjectPopup : SetIDPopup {
 
 	static FindObjectPopup* create();
 
-	void onFindObjectID(cocos2d::CCObject* sender);
+	void onFindObjectID(cocos2d::CCObject* sender) = win inline {
+		m_unknownBool = !m_unknownBool;
+	}
 
 	virtual bool init() = m1 0x24a3c8, imac 0x2a8eb0, ios 0x2ef960;
+
+	bool m_unknownBool; // found in FindObjectPopup::onFindObjectID
 }
 
 [[link(android)]]
@@ -5253,6 +5290,8 @@ class FMODLevelVisualizer : cocos2d::CCNode {
 	void updateVisualizer(float, float, float) = win 0x28cb10, imac 0x2ac670, m1 0x24d7dc;
 
 	virtual bool init() = imac 0x2ac230, m1 0x24d36c, ios 0x2f1ba0;
+
+	float m_width;
 }
 
 class FMODMusic {
@@ -13536,13 +13575,13 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 
 	static MoreVideoOptionsLayer* create();
 
-	void addToggle(char const*, char const*, char const*);
-	TodoReturn countForPage(int);
+	void addToggle(char const* label, char const* key, char const* description);
+	int countForPage(int);
 	void goToPage(int);
-	TodoReturn incrementCountForPage(int);
-	TodoReturn infoKey(int);
+	void incrementCountForPage(int);
+	const char* infoKey(int);
 	TodoReturn layerForPage(int);
-	TodoReturn layerKey(int);
+	const char* layerKey(int);
 	TodoReturn nextPosition(int);
 	TodoReturn objectKey(int);
 	TodoReturn objectsForPage(int);
@@ -13552,7 +13591,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 	void onNextPage(cocos2d::CCObject* sender);
 	void onPrevPage(cocos2d::CCObject* sender);
 	void onToggle(cocos2d::CCObject* sender);
-	void pageKey(int);
+	const char* pageKey(int);
 	void updateFPSButtons();
 
 	virtual bool init() = m1 0x6b3ff8, imac 0x7ad0a0, ios 0xf2b2c;
@@ -18725,6 +18764,13 @@ class SongInfoLayer : FLAlertLayer {
 	void showCustomMusicUnlockInfo();
 
 	virtual void keyBackClicked() = m1 0x532a10, imac 0x60d190, ios 0x3b1ec0;
+
+	gd::string m_downloadLink;
+	gd::string m_newgroundsLink;
+	gd::string m_youtubeLink;
+	gd::string m_facebookLink;
+	int m_songID;
+	int m_musicCustomizerMessageIndex;
 }
 
 [[link(android)]]
@@ -19967,12 +20013,21 @@ class WorldSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate {
 	TodoReturn setupWorlds();
 	void showCompleteDialog();
 	TodoReturn tryShowAd();
-	TodoReturn unblockButtons();
-	TodoReturn updateArrows();
+	void unblockButtons();
+	void updateArrows();
 
 	virtual void onExit() = m1 0x34a418, imac 0x3c7350;
 	virtual void keyBackClicked() = m1 0x34a338, imac 0x3c7270;
 	virtual void scrollLayerWillScrollToPage(BoomScrollLayer*, int) = m1 0x34a1f0, imac 0x3c7180;
 	virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int) = m1 0x34a0a8, imac 0x3c7090;
 	virtual void scrollLayerMoved(cocos2d::CCPoint) = m1 0x34a468, imac 0x3c73a0;
+
+	cocos2d::CCSprite* m_background;
+	BoomScrollLayer* m_scrollLayer;
+	CCMenuItemSpriteExtra* m_arrowLeft;
+	CCMenuItemSpriteExtra* m_arrowRight;
+	bool m_cleanupSprites;
+	bool m_unkBool1;
+	GJWorldNode* m_worldNode;
+	bool m_unkBool2;
 }
