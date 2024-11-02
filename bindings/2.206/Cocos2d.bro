@@ -2062,10 +2062,10 @@ class cocos2d::CCRenderTexture {
 	// CCRenderTexture(cocos2d::CCRenderTexture const&);
 	CCRenderTexture() = m1 0x5268fc, imac 0x5ff8b0;
 	void begin() = m1 0x5270d8, imac 0x600170;
-	void beginWithClear(float, float, float, float, float, int, unsigned int);
-	void beginWithClear(float, float, float, float);
-	void beginWithClear(float, float, float, float, float);
-	void beginWithClear(float, float, float, float, float, int);
+	void beginWithClear(float, float, float, float, float, int, unsigned int) = m1 0x527364, imac 0x600440;
+	void beginWithClear(float, float, float, float) = m1 0x5272c4, imac 0x6003a0;
+	void beginWithClear(float, float, float, float, float) = m1 0x5274ac, imac 0x6005e0;
+	void beginWithClear(float, float, float, float, float, int) = m1 0x52757c, imac 0x6006c0;
 	void clear(float, float, float, float);
 	void clearDepth(float);
 	void clearStencil(int);
