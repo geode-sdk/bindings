@@ -45,10 +45,10 @@ inline std::string generateWindowsSymbol(const Class& clazz, const FunctionBindF
 			mangledSymbol = "??1" + mangleWindowsIdent(clazz.name) + "@UAE";
 			break;
 		default:
-			throw new std::runtime_error(fmt::format("Mangling of this function type is not implemented! sorry {}", decl.name));
+			throw std::runtime_error(fmt::format("Mangling of this function type is not implemented! sorry {}", decl.name));
 	}
 	if (!decl.args.empty()) {
-        throw new std::runtime_error(fmt::format("Sorry i cant mangle args either {}", decl.name));
+        throw std::runtime_error(fmt::format("Sorry i cant mangle args either {}", decl.name));
 	} else {
         // X means void, meaning empty arg list, also ends the arg list without needing to use @
         // Z is used to mark no throw() attribute

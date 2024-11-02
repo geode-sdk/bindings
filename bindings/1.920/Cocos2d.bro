@@ -450,6 +450,12 @@ class cocos2d::extension::CCHttpClient {
 }
 
 [[link(win, android)]]
+class cocos2d::extension::CCControlUtils {
+	static cocos2d::extension::HSV HSVfromRGB(cocos2d::extension::RGBA);
+	static cocos2d::extension::RGBA RGBfromHSV(cocos2d::extension::HSV);
+}
+
+[[link(win, android)]]
 class cocos2d::CCIMEDispatcher {
 	static cocos2d::CCIMEDispatcher* sharedDispatcher();
 
@@ -505,9 +511,14 @@ class DS_Dictionary {
 	void setArrayForKey(const char*, cocos2d::CCArray*);
 	cocos2d::CCObject* getObjectForKey(const char*);
 	void setObjectForKey(const char*, cocos2d::CCObject*);
+
 	bool loadRootSubDictFromFile(const char*);
 	bool loadRootSubDictFromString(gd::string);
 	bool loadRootSubDictFromCompressedFile(const char*);
+
+	bool saveRootSubDictToCompressedFile(const char*);
+	bool saveRootSubDictToFile(const char*);
+	gd::string saveRootSubDictToString();
 }
 
 [[link(win, android)]]

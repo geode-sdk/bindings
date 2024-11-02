@@ -29,6 +29,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_temporaryParticles, 0x2f98);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2fd8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_collectedItems, 0x3078);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3158);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk3458, 0x3288);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3298);
@@ -37,6 +38,8 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3388);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x3420);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 
+GEODE_SIZE_CHECK(EnhancedGameObject, 0x5a8);
+GEODE_SIZE_CHECK(EffectGameObject, 0x730);
 
 // GEODE_SIZE_CHECK(PlayerObject, 0xbe8); 
 GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);

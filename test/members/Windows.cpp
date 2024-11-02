@@ -312,6 +312,11 @@ GEODE_SIZE_CHECK(RateLevelLayer, 0x298);
 GEODE_SIZE_CHECK(CustomSongLayer, 0x2b0);
 GEODE_SIZE_CHECK(SelectFontLayer, 0x290);
 GEODE_SIZE_CHECK(CCSpriteWithHue, 0x298);
+GEODE_SIZE_CHECK(TopArtistsLayer, 0x2d0);
+GEODE_SIZE_CHECK(NumberInputLayer, 0x2b8);
+GEODE_SIZE_CHECK(ShareLevelLayer, 0x298);
+GEODE_SIZE_CHECK(ShareLevelSettingsLayer, 0x2a0);
+GEODE_SIZE_CHECK(ShareListLayer, 0x290);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
@@ -390,5 +395,9 @@ GEODE_SIZE_CHECK(CCLightStrip, 0x160);
 
 GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3a8);
 GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
+
+GEODE_MEMBER_CHECK(CountTriggerGameObject, m_pickupTriggerMode, 0x744);
+
+GEODE_SIZE_CHECK(GJEffectManager, 0x7a0)
 
 #endif
