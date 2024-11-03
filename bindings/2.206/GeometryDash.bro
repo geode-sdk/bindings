@@ -8096,8 +8096,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 		m_gameState.m_unkBool8 = cameraFree;
 		m_gameState.m_unkBool9 = obj->m_cameraDisableGridSnap;
 		if (obj->m_cameraEditCameraSettings) {
-			m_gameState.m_unkFloat3 = std::clamp(m_cameraEasingValue, 1.f, 40.f);
-			m_gameState.m_unkFloat2 = std::clamp(m_cameraPaddingValue, 0.f, 1.f);
+			m_gameState.m_unkFloat3 = std::clamp(obj->m_cameraEasingValue, 1.f, 40.f);
+			m_gameState.m_unkFloat2 = std::clamp(obj->m_cameraPaddingValue, 0.f, 1.f);
 		}
 		if (cameraFree != freeMode && updateDual) this->updateDualGround(m_player1, m_gameState.dualRelated, false, 0.f);
 	}
