@@ -3957,7 +3957,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void constrainGameLayerPosition(float, float) = win 0x11e960, imac 0x2ae30, m1 0x2bc50;
 	TodoReturn convertKeyBasedOnNeighbors(int, int, cocos2d::CCPoint, cocos2d::CCArray*);
 	TodoReturn convertToBaseKey(int);
-	gd::string copyObjects(cocos2d::CCArray* objects, bool copyColors, bool sort) = win 0x10f0f0, imac 0x385ed0, m1 0x3143c, ios 0x3f1078;
+	gd::string copyObjects(cocos2d::CCArray* objects, bool copyColors, bool sort) = win 0x10f0f0, imac 0x31080, m1 0x3143c, ios 0x3f1078;
 	TodoReturn copyObjectsDetailed(cocos2d::CCArray*);
 	cocos2d::CCArray* createCustomItems() = win 0xe0c80, imac 0x31990, m1 0x31cb4;
 	TodoReturn createEdgeForObject(GameObject*, int);
