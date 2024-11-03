@@ -8090,7 +8090,17 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void updateCamera(float) = win 0x22ae20, imac 0x148c00, m1 0x11bb40;
 	TodoReturn updateCameraBGArt(cocos2d::CCPoint, float) = imac 0x14fae0;
 	TodoReturn updateCameraEdge(int, int);
-	void updateCameraMode(EffectGameObject*, bool);
+	void updateCameraMode(EffectGameObject* obj, bool updateDual) = win inline, m1 0xf5a04, imac 0x1189b0 {
+		auto cameraFree = obj->m_cameraIsFreeMode;
+		auto freeMode = m_gameState.m_unkBool8;
+		m_gameState.m_unkBool8 = cameraFree;
+		m_gameState.m_unkBool9 = obj->m_cameraDisableGridSnap;
+		if (obj->m_cameraEditCameraSettings) {
+			m_gameState.m_unkFloat3 = std::clamp(m_cameraEasingValue, 1.f, 40.f);
+			m_gameState.m_unkFloat2 = std::clamp(m_cameraPaddingValue, 0.f, 1.f);
+		}
+		if (cameraFree != freeMode && updateDual) this->updateDualGround(m_player1, m_gameState.dualRelated, false, 0.f);
+	}
 	void updateCameraOffsetX(float, float, int, float, int, int) = win 0x225f20, imac 0x144270, m1 0x118618;
 	void updateCameraOffsetY(float, float, int, float, int, int) = win 0x225fc0, imac 0x144370, m1 0x1186ec;
 	void updateCollisionBlocks() = win 0x209060;
