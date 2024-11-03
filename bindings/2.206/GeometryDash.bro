@@ -8090,7 +8090,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void updateCamera(float) = win 0x22ae20, imac 0x148c00, m1 0x11bb40;
 	TodoReturn updateCameraBGArt(cocos2d::CCPoint, float) = imac 0x14fae0;
 	TodoReturn updateCameraEdge(int, int);
-	void updateCameraMode(EffectGameObject* obj, bool updateDual) = win inline, m1 0xf5a04, imac 0x1189b0 {
+	void updateCameraMode(EffectGameObject* obj, bool updateDual) = win inline, m1 0xf5a04, imac 0x1189b0, ios 0x1f0a34 {
 		auto cameraFree = obj->m_cameraIsFreeMode;
 		auto freeMode = m_gameState.m_unkBool8;
 		m_gameState.m_unkBool8 = cameraFree;
