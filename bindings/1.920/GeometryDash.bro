@@ -268,8 +268,8 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 
 	virtual bool applicationDidFinishLaunching() = win 0x289c0;
 	virtual void applicationDidEnterBackground();
-	virtual void applicationWillEnterForeground();
-	virtual void applicationWillBecomeActive();
+	virtual void applicationWillEnterForeground() = win 0x28f00;
+	virtual void applicationWillBecomeActive() = win 0x28c70;
 	virtual void applicationWillResignActive();
 	virtual void trySaveGame() = win 0x293f0;
 	virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x294a0;
@@ -950,7 +950,12 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 	CCMenuItemSpriteExtra* activeItem();
 	void normalTouch(cocos2d::CCObject*) = win 0xda30;
 	void selectedTouch(cocos2d::CCObject*) = win 0xda50;
-	void setSizeMult(float);
+	void setSizeMult(float mult) = win inline {
+		this->m_offButton->setSizeMult(mult);
+		this->m_onButton->setSizeMult(mult);
+		this->toggle(this->m_toggled);
+	}
+
 	void toggle(bool) = win 0xda70;
 
 	virtual void activate();
@@ -2500,7 +2505,7 @@ class GameManager : GManager {
 	static GameManager* sharedState() = win 0x667d0;
 
 	TodoReturn applicationDidEnterBackground();
-	TodoReturn applicationWillEnterForeground();
+	void applicationWillEnterForeground() = win 0x6c690;
 	TodoReturn checkSteamAchievementUnlock();
 	TodoReturn claimItemsResponse(gd::string);
 	cocos2d::ccColor3B colorForIdx(int) = win 0x6a410;
@@ -3139,8 +3144,6 @@ class GameRateDelegate {
 class GameSoundManager {
 	// virtual ~GameSoundManager();
 
-	static GameSoundManager* sharedManager() = win 0x172d0;
-
 	TodoReturn asynchronousSetup();
 	void disableMetering();
 	void enableMetering() = win 0x17c90;
@@ -3168,6 +3171,8 @@ class GameSoundManager {
 	TodoReturn stopLoopedSound(gd::string, bool);
 	TodoReturn updateLoopedVolume(gd::string, float);
 	TodoReturn updateMetering(float);
+
+	static GameSoundManager* sharedManager() = win 0x172d0;
 
 	virtual bool init();
 }
@@ -5601,7 +5606,7 @@ class PauseLayer : CCBlockLayer {
 	void onQuit(cocos2d::CCObject* sender);
 	void onRecordReplays(cocos2d::CCObject* sender);
 	void onRestart(cocos2d::CCObject* sender) = win 0xd7b20;
-	void onResume(cocos2d::CCObject* sender);
+	void onResume(cocos2d::CCObject* sender) = win 0xd7a80;
 	TodoReturn setupProgressBars();
 	TodoReturn sfxSliderChanged(cocos2d::CCObject*);
 	TodoReturn tryShowBanner(float);
@@ -6051,7 +6056,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn exitRollMode(PlayerObject*);
 	TodoReturn flipFinished();
 	TodoReturn flipObjects();
-	TodoReturn fullReset();
+	void fullReset() = win 0xf1e00;
 	TodoReturn get3DLineColor();
 	TodoReturn getBGColor();
 	TodoReturn getCustom01Color();
@@ -6119,7 +6124,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn showCompleteText();
 	void showEndLayer();
 	TodoReturn showHint() = win 0xf0800;
-	TodoReturn showNewBest() = win 0xe5ff0;
+	void showNewBest() = win 0xe5ff0;
 	void showRetryLayer();
 	TodoReturn showTwoPlayerGuide();
 	TodoReturn spawnCircle();
@@ -6160,10 +6165,10 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn visitWithColorFlash();
 
 	virtual void update(float) = win 0xe9360;
-	virtual void onEnterTransitionDidFinish();
-	virtual void onExit();
-	virtual void draw();
-	virtual void visit();
+	virtual void onEnterTransitionDidFinish() = win 0xf3f50;
+	virtual void onExit() = win 0xf3f70;
+	virtual void draw() = win 0xee5e0;
+	virtual void visit() = win 0xe6d00;
 	virtual void updateTweenAction(float, char const*);
 	virtual void circleWaveWillBeRemoved(CCCircleWave*);
 	virtual void flipGravity(PlayerObject*, bool, bool);

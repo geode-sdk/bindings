@@ -51,6 +51,8 @@ class cocos2d::CCDirector {
 class cocos2d::CCEGLView {
 	static cocos2d::CCEGLView* sharedOpenGLView();
 
+	void toggleFullScreen(bool);
+
 	virtual void end();
 	virtual void isOpenGLReady();
 	virtual void swapBuffers();
@@ -411,6 +413,15 @@ class cocos2d::CCScheduler {
 	cocos2d::CCSet* pauseAllTargets();
 	cocos2d::CCSet* pauseAllTargetsWithMinPriority(int);
 	void resumeTargets(cocos2d::CCSet*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCSprite {
+	static cocos2d::CCSprite* create(char const*);
+	static cocos2d::CCSprite* createWithSpriteFrameName(char const*);
+
+	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*);
+	virtual bool initWithSpriteFrameName(char const*);
 }
 
 [[link(win, android)]]
