@@ -2200,6 +2200,23 @@ class cocos2d::CCCallFuncN {
 }
 
 [[link(win, android)]]
+class cocos2d::CCCallFuncO {
+	static cocos2d::CCCallFuncO* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCObject*) = m1 0x6bfe6c, imac 0x7b99e0;
+
+	bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_MenuHandler, cocos2d::CCObject*);
+
+	cocos2d::CCObject* getObject();
+
+	void setObject(cocos2d::CCObject*);
+
+	// CCCallFuncO(cocos2d::CCCallFuncO const&);
+	// CCCallFuncO();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void execute();
+}
+
+[[link(win, android)]]
 class cocos2d::CCClippingNode : cocos2d::CCNode {
 	static cocos2d::CCClippingNode* create() = imac 0x72c380, m1 0x63f068, ios inline {
 		auto pRet = new CCClippingNode();
