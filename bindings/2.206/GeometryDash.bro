@@ -5135,7 +5135,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn printResult(FMOD_RESULT);
 	TodoReturn queuedEffectFinishedLoading(gd::string);
 	TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x56a70;
-	void queueStartMusic(gd::string audioFilename, float, float, float, bool, int ms, int, int, int, int, bool, int, bool) = win 0x59a40;
+	void queueStartMusic(gd::string audioFilename, float, float, float, bool, int ms, int, int, int, int, bool, int, bool) = win 0x59a40, m1 0x36a304, imac 0x3ecd20;
 	TodoReturn registerChannel(FMOD::Channel*, int, int);
 	void releaseRemovedSounds();
 	void resumeAllAudio() = imac 0x3e1f20, m1 0x362064;
@@ -5165,7 +5165,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 		m_sfxVolume = volume;
 		if (m_globalChannel) m_globalChannel->setVolume(volume);
 	}
-	void setMusicTimeMS(unsigned int ms, bool, int channel) = win 0x5af40;
+	void setMusicTimeMS(unsigned int ms, bool, int channel) = win 0x5af40, m1 0x365984, imac 0x3e7130;
 	void setup() = win 0x52d40, m1 0x36103c, imac 0x3e0e30, ios 0x13e5f0;
 	void setupAudioEngine() = win 0x53220, imac 0x3e1270;
 	void start() = win 0x54400;
@@ -12989,7 +12989,7 @@ class LevelTools {
 	static cocos2d::CCDictionary* createStarPackDict();
 	static gd::string fbURLForArtist(int) = win 0x30a990;
 	static int getAudioBPM(int);
-	static gd::string getAudioFileName(int) = win 0x307cb0;
+	static gd::string getAudioFileName(int) = win 0x307cb0, m1 0x4605c4, imac 0x508fb0;
 	static gd::string getAudioString(int) = imac 0x50aba0;
 	static gd::string getAudioTitle(int) = win 0x307130, m1 0x45fe8c, imac 0x508a10;
 	static TodoReturn getLastGameplayReversed();
@@ -13792,7 +13792,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void addDLToActive(char const* tag);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x31c430;
 	void addSongObjectFromString(gd::string);
-	void clearSong(int songID) = win inline {
+	void clearSong(int songID) = win inline, m1 0x4df1b8, imac 0x596330 {
 		const char* key = cocos2d::CCString::createWithFormat("%i", songID)->getCString();
 		m_songObjects->removeObjectForKey(key);
 	}
