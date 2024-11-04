@@ -12989,7 +12989,7 @@ class LevelTools {
 	static cocos2d::CCDictionary* createStarPackDict();
 	static gd::string fbURLForArtist(int) = win 0x30a990;
 	static int getAudioBPM(int);
-	static gd::string getAudioFileName(int) = win 0x307cb0;
+	static gd::string getAudioFileName(int) = win 0x307cb0, m1 0x4605c4, imac 0x508fb0;
 	static gd::string getAudioString(int) = imac 0x50aba0;
 	static gd::string getAudioTitle(int) = win 0x307130, m1 0x45fe8c, imac 0x508a10;
 	static TodoReturn getLastGameplayReversed();
@@ -13792,7 +13792,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 	void addDLToActive(char const* tag);
 	TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x31c430;
 	void addSongObjectFromString(gd::string);
-	void clearSong(int songID) = win inline {
+	void clearSong(int songID) = win inline, m1 0x4df1b8, imac 0x596330 {
 		const char* key = cocos2d::CCString::createWithFormat("%i", songID)->getCString();
 		m_songObjects->removeObjectForKey(key);
 	}
