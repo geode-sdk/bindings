@@ -1494,7 +1494,7 @@ class CreatorLayer : cocos2d::CCLayer {
 }
 
 [[link(android)]]
-class CustomizeObjectLayer {
+class CustomizeObjectLayer : public FLAlertLayer {
 	// virtual ~CustomizeObjectLayer();
 	// CustomizeObjectLayer() = win 0x2da40;
 
