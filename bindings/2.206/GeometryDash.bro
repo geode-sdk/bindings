@@ -4633,7 +4633,7 @@ class EndLevelLayer : GJDropDownLayer {
 	// virtual ~EndLevelLayer();
 	// EndLevelLayer();
 
-	static EndLevelLayer* create();
+	static EndLevelLayer* create(PlayLayer* playLayer);
 
 	TodoReturn coinEnterFinished(cocos2d::CCPoint) = win 0x131d20;
 	TodoReturn coinEnterFinishedO(cocos2d::CCObject*) = win 0x131ce0;
@@ -4642,6 +4642,7 @@ class EndLevelLayer : GJDropDownLayer {
 	TodoReturn getCoinString() = win 0x130820;
 	const char* getEndText() = win 0x132c80;
 	void goEdit() = win 0x1311d0;
+	bool init(PlayLayer* playLayer);
 	void onEdit(cocos2d::CCObject* sender) = win 0x1310d0;
 	void onEveryplay(cocos2d::CCObject* sender);
 	void onHideLayer(cocos2d::CCObject* sender) = win 0x1312a0, m1 0x42aef0, imac 0x4cbff0;
