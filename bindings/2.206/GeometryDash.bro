@@ -4068,8 +4068,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onDeleteSelected(cocos2d::CCObject* sender) = win 0xe2920;
 	void onDeleteSelectedType(cocos2d::CCObject* sender) = win 0xe2eb0, imac 0x32090;
 	void onDeleteStartPos(cocos2d::CCObject* sender) = win 0xe2f00;
-	void onDeselectAll(cocos2d::CCObject* sender) = win 0x10d8e0, m1 0x2cee4;
-	void onDuplicate(cocos2d::CCObject* sender) = win 0x10ef70, m1 0x2bf10;
+	void onDeselectAll(cocos2d::CCObject* sender) = win 0x10d8e0, m1 0x2cee4, imac 0x2c730;
+	void onDuplicate(cocos2d::CCObject* sender) = win 0x10ef70, m1 0x2bf10, imac 0x2b140;
 	void onEditColor(cocos2d::CCObject* sender) = win 0x11ac40;
 	void onFindObject(cocos2d::CCObject* sender);
 	void onGoToBaseLayer(cocos2d::CCObject* sender) = win 0x110ad0;
@@ -14724,7 +14724,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void toggleSwingMode(bool, bool) = win 0x378b30, m1 0x395760, imac 0x420890;
 	void toggleVisibility(bool) = win 0x369590;
 	TodoReturn touchedObject(GameObject*) = imac 0x425980;
-	void tryPlaceCheckpoint() = m1 0x383ebc;
+	void tryPlaceCheckpoint() = m1 0x383ebc, imac 0x40bf00;
 	TodoReturn unrotateGameplayObject(GameObject*) = win 0x36f770;
 	TodoReturn unrotatePreSlopeObjects();
 	TodoReturn updateCheckpointMode(bool);
@@ -15594,7 +15594,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
 	// virtual ~RetryLevelLayer();
 
-	static RetryLevelLayer* create() = win 0x389490, m1 0x45ab4c;
+	static RetryLevelLayer* create() = win 0x389490, m1 0x45ab4c, imac 0x502b80;
 
 	const char* getEndText();
 	void onEveryplay(cocos2d::CCObject* sender);
