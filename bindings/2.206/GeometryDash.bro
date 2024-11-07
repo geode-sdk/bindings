@@ -3983,7 +3983,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void deleteObject(GameObject*, bool) = imac 0x32d80;
 	TodoReturn deleteSmartBlocksFromObjects(cocos2d::CCArray*);
 	TodoReturn deleteTypeFromObjects(int, cocos2d::CCArray*);
-	void deselectAll() = win 0x10d920, imac 0x33050;
+	void deselectAll() = win 0x10d920, imac 0x33050, m1 0x33340;
 	void deselectObject() = imac 0x33260;
 	void deselectObject(GameObject*) = win 0x10d800, imac 0x32fb0;
 	void deselectObjectsColor();
@@ -4030,7 +4030,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getRandomStartKey(int);
 	TodoReturn getRelativeOffset(GameObject*) = imac 0x4f9df0;
-	cocos2d::CCArray* getSelectedObjects() = win 0x10D320, imac 0x3d2a0;
+	cocos2d::CCArray* getSelectedObjects() = win 0x10D320, imac 0x3d2a0, m1 0x3889c;
 	TodoReturn getSimpleButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
 	TodoReturn getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*);
 	TodoReturn getSmartObjectKey(int, GJSmartDirection);
@@ -4068,8 +4068,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onDeleteSelected(cocos2d::CCObject* sender) = win 0xe2920;
 	void onDeleteSelectedType(cocos2d::CCObject* sender) = win 0xe2eb0, imac 0x32090;
 	void onDeleteStartPos(cocos2d::CCObject* sender) = win 0xe2f00;
-	void onDeselectAll(cocos2d::CCObject* sender) = win 0x10d8e0;
-	void onDuplicate(cocos2d::CCObject* sender) = win 0x10ef70;
+	void onDeselectAll(cocos2d::CCObject* sender) = win 0x10d8e0, m1 0x2cee4;
+	void onDuplicate(cocos2d::CCObject* sender) = win 0x10ef70, m1 0x2bf10;
 	void onEditColor(cocos2d::CCObject* sender) = win 0x11ac40;
 	void onFindObject(cocos2d::CCObject* sender);
 	void onGoToBaseLayer(cocos2d::CCObject* sender) = win 0x110ad0;
@@ -8193,7 +8193,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	virtual void updateTimeWarp(float) = win 0x226110, m1 0x118a98, imac 0x1447d0, ios 0x207d58;
 	virtual void updateTimeWarp(GameObject*, float) = win 0x226100, m1 0x118aa4, imac 0x1447b0, ios 0x207d4c;
 	virtual TodoReturn applyTimeWarp(float) = win 0x226160, m1 0x118ae0, imac 0x144820, ios 0x207d90;
-	virtual TodoReturn playGravityEffect(bool) = m1 0xdf6e8, imac 0xfda10, ios 0x214110;
+	virtual void playGravityEffect(bool) = m1 0xdf6e8, imac 0xfda10, ios 0x214110;
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = ios 0x214114;
 	virtual TodoReturn createCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, bool) = win 0x22fe90, m1 0x1234a8, imac 0x152660, ios 0x20f7d4;
 	virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x230190, m1 0x123828, imac 0x1529b0, ios 0x20fa04;
@@ -14724,7 +14724,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void toggleSwingMode(bool, bool) = win 0x378b30, m1 0x395760, imac 0x420890;
 	void toggleVisibility(bool) = win 0x369590;
 	TodoReturn touchedObject(GameObject*) = imac 0x425980;
-	void tryPlaceCheckpoint();
+	void tryPlaceCheckpoint() = m1 0x383ebc;
 	TodoReturn unrotateGameplayObject(GameObject*) = win 0x36f770;
 	TodoReturn unrotatePreSlopeObjects();
 	TodoReturn updateCheckpointMode(bool);
@@ -15229,7 +15229,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 	virtual float posForTime(float) = win 0x390230, m1 0xa6db0, imac 0xbabb0, ios 0x121588;
 	virtual void resetSPTriggered() = win 0x390290, m1 0xa6dd0, imac 0xbac00, ios 0x1215a8;
 	virtual void updateTimeWarp(float) = m1 0xa3594, imac 0xb6b80, ios 0x11e5d0;
-	virtual TodoReturn playGravityEffect(bool) = win 0x38ec60, m1 0xa64f8, imac 0xba2c0, ios 0x120da0;
+	virtual void playGravityEffect(bool) = win 0x38ec60, m1 0xa64f8, imac 0xba2c0, ios 0x120da0;
 	virtual TodoReturn manualUpdateObjectColors(GameObject*) = m1 0xa63d4, win 0x38cf00, imac 0xba180, ios 0x120ccc;
 	virtual void checkpointActivated(CheckpointGameObject*) = win 0x391ae0, m1 0xa800c, imac 0xbc040, ios 0x122614;
 	virtual TodoReturn flipArt(bool) = win 0x38f610, m1 0xa6cd8, imac 0xbaab0, ios 0x1214b0;
@@ -15594,7 +15594,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
 	// virtual ~RetryLevelLayer();
 
-	static RetryLevelLayer* create() = win 0x389490;
+	static RetryLevelLayer* create() = win 0x389490, m1 0x45ab4c;
 
 	const char* getEndText();
 	void onEveryplay(cocos2d::CCObject* sender);
