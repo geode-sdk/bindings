@@ -8486,7 +8486,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	bool m_unk3240;
 	bool m_unk3241;
 	bool m_unk3242;
-	double m_unk3248;
+	double m_extraDelta;
 	bool m_started;
 	bool m_unk3251;
 	float m_unk3254;
