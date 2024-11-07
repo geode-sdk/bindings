@@ -273,7 +273,7 @@ class AchievementNotifier : cocos2d::CCNode {
 	static AchievementNotifier* sharedState() = win 0x39cd0, imac 0x7cf810, m1 0x6d44fc, ios 0x226bb8;
 
 	void achievementDisplayFinished();
-	void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest) = win 0x39db0;
+	void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest) = win 0x39db0, imac 0x7cf8d0, m1 0x6d45a4;
 	void showNextAchievement() = win 0x39e90;
 	void willSwitchToScene(cocos2d::CCScene* scene) = win inline, m1 0x6d4754, imac 0x7cfa80, ios 0x226dec {
 		this->m_nextScene = scene;
