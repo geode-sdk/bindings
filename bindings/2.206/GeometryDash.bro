@@ -4666,13 +4666,23 @@ class EndLevelLayer : GJDropDownLayer {
 	virtual void keyUp(cocos2d::enumKeyCodes) = ios 0x309278 {}
 
 	PlayLayer* m_playLayer;
-	bool m_unknown1;
-	bool m_unknown2;
+	bool m_notLocal;
+	bool m_coinsVerified;
 	bool m_unknown3;
-	bool m_unknown4;
-	bool m_unknown5;
-	int m_unknown6;
+	bool m_exiting;
+	bool m_animateCoins;
+	bool m_endEffectPlayed;
+	cocos2d::CCMenu* m_sideMenu;
 	cocos2d::CCArray* m_coinsToAnimate;
+	cocos2d::CCPoint m_starsPosition;
+	cocos2d::CCPoint m_orbsPosition;
+	cocos2d::CCPoint m_diamondsPosition;
+	int m_orbs;
+	int m_stars;
+	int m_moons;
+	int m_diamonds;
+	bool m_secretKey;
+	bool m_hidden;
 }
 
 [[link(android)]]
