@@ -13946,20 +13946,45 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 [[link(android)]]
 class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
 	// virtual ~MusicSearchResult();
+	MusicSearchResult() = win 0x31aeb0;
 
-	static MusicSearchResult* create(GJSongType);
+	static MusicSearchResult* create(GJSongType songType) = win inline, m1 0x4e9150, imac 0x5a16d0 {
+		auto ret = new MusicSearchResult();
+		if (ret->init(songType)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn applyArtistFilters(cocos2d::CCArray*);
-	TodoReturn applyTagFilters(cocos2d::CCArray*);
-	TodoReturn createArtistFilterObjects();
-	TodoReturn createTagFilterObjects();
-	TodoReturn getFilesMatchingSearch(cocos2d::CCArray*, gd::string);
-	bool init(GJSongType);
-	TodoReturn updateFutureCount(cocos2d::CCArray*, cocos2d::CCArray*);
-	TodoReturn updateObjects() = win 0x325af0;
+	cocos2d::CCArray* applyArtistFilters(cocos2d::CCArray*) = m1 0x4e95a8, imac 0x5a1c60;
+	cocos2d::CCArray* applyTagFilters(cocos2d::CCArray*) = win 0x325a10, m1 0x4e93f0, imac 0x5a1a40;
+	void createArtistFilterObjects() = m1 0x4e92e0, imac 0x5a18d0;
+	void createTagFilterObjects() = m1 0x4e91d0, imac 0x5a1760;
+	cocos2d::CCArray* getFilesMatchingSearch(cocos2d::CCArray*, gd::string) = win 0x326030, m1 0x4e9dec, imac 0x5a2770;
+	bool init(GJSongType songType) = win inline, m1 0x4e91c4, imac 0x5a1750 {
+		m_songType = songType;
+		return true;
+	}
+	void updateFutureCount(cocos2d::CCArray*, cocos2d::CCArray*) = m1 0x4e974c, imac 0x5a1eb0;
+	void updateObjects() = win inline, m1 0x4e9b0c, imac 0x5a23f0 {
+		this->updateObjects(m_sortType);
+	}
 
-	virtual TodoReturn updateObjects(AudioSortType) = m1 0x4e9b1c, imac 0x5a2410, ios 0x168170;
-	virtual TodoReturn stateChanged(OptionsObject*) = win 0x325ae0, m1 0x4e9aec, imac 0x5a23b0, ios 0x168140;
+	virtual void updateObjects(AudioSortType) = win 0x325af0, m1 0x4e9b1c, imac 0x5a2410, ios 0x168170;
+	virtual void stateChanged(OptionsObject*) = win 0x325ae0, m1 0x4e9aec, imac 0x5a23b0, ios 0x168140;
+
+	cocos2d::CCArray* m_filterObjects;
+	cocos2d::CCArray* m_tagFilterObjects;
+	cocos2d::CCArray* m_artistFilterObjects;
+	int m_startIndex;
+	int m_audioType;
+	gd::string m_searchQuery;
+	AudioSortType m_sortType;
+	bool m_tagFilter;
+	bool m_artistFilter;
+	GJSongType m_songType;
 }
 
 [[link(android)]]
@@ -14217,7 +14242,7 @@ class OptionsObject : cocos2d::CCObject {
 
 [[link(android)]]
 class OptionsObjectDelegate {
-	virtual TodoReturn stateChanged(OptionsObject*);
+	virtual void stateChanged(OptionsObject*);
 }
 
 [[link(android)]]
@@ -16215,20 +16240,35 @@ class SelectSettingLayer : FLAlertLayer {
 
 [[link(android)]]
 class SelectSFXSortDelegate {
-	virtual TodoReturn sortSelectClosed(SelectSFXSortLayer*);
+	virtual void sortSelectClosed(SelectSFXSortLayer*);
 }
 
 [[link(android)]]
 class SelectSFXSortLayer : FLAlertLayer {
 	// virtual ~SelectSFXSortLayer();
+	SelectSFXSortLayer() {
+		m_sortType = AudioSortType::NameAscending;
+		m_delegate = nullptr;
+	}
 
-	static SelectSFXSortLayer* create(AudioSortType);
+	static SelectSFXSortLayer* create(AudioSortType sortType) = win inline, m1 0x3bb1a8, imac 0x449b50 {
+		auto ret = new SelectSFXSortLayer();
+		if (ret->init(sortType)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(AudioSortType);
-	void onClose(cocos2d::CCObject* sender);
-	void onSelect(cocos2d::CCObject* sender);
+	bool init(AudioSortType) = win 0x4551f0, m1 0x3bbb78, imac 0x44a5f0;
+	void onClose(cocos2d::CCObject* sender) = win 0x82fc0, m1 0x3bc014, imac 0x44aa80;
+	void onSelect(cocos2d::CCObject* sender) = win 0x455870, m1 0x3bc050, imac 0x44aab0;
 
-	virtual void keyBackClicked() = m1 0x3bc0bc, imac 0x44ab10, ios 0x176cdc;
+	virtual void keyBackClicked() = win 0x82ff0, m1 0x3bc0bc, imac 0x44ab10, ios 0x176cdc;
+
+	AudioSortType m_sortType;
+	SelectSFXSortDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -17543,7 +17583,7 @@ class SetupSFXPopup : SetupAudioTriggerPopup, CustomSFXDelegate, SFXBrowserDeleg
 	virtual void sfxObjectSelected(SFXInfoObject*) = ios 0x18c9e8 {}
 	virtual TodoReturn getActiveSFXID() = win 0x41d1a0, m1 0x423ca4, imac 0x4c41d0, ios 0x18c9f0;
 	virtual TodoReturn overridePlaySFX(SFXInfoObject*) = win 0x41d1b0, m1 0x423cb4, imac 0x4c41f0, ios 0x18ca00;
-	virtual TodoReturn sfxBrowserClosed(SFXBrowser*) = win 0x41d8d0, m1 0x423f1c, imac 0x4c4450, ios 0x18cbf4;
+	virtual void sfxBrowserClosed(SFXBrowser*) = win 0x41d8d0, m1 0x423f1c, imac 0x4c4450, ios 0x18cbf4;
 }
 
 [[link(android)]]
@@ -17986,70 +18026,201 @@ class SetupZoomTriggerPopup : SetupTriggerPopup {
 [[link(android)]]
 class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, SetTextPopupDelegate, SelectSFXSortDelegate {
 	// virtual ~SFXBrowser();
+	SFXBrowser() {
+		m_searchResult = nullptr;
+		m_sfxObjects = nullptr;
+		m_listLayer = nullptr;
+		m_nameLabel = nullptr;
+		m_pathLabel = nullptr;
+		m_infoLabel = nullptr;
+		m_pageLabel = nullptr;
+		m_searchLabel = nullptr;
+		m_prevButton = nullptr;
+		m_refreshButton = nullptr;
+		m_clearSearchButton = nullptr;
+		m_circleSprite = nullptr;
+		m_libraryVersion = 0;
+		m_cellAmount = 0;
+		m_gettingURL = false;
+		m_selectedCell = false;
+		m_snapToSelected = false;
+		m_compactMode = false;
+		m_sortType = AudioSortType::NameAscending;
+		m_delegate = nullptr;
+		#ifdef GEODE_IS_DESKTOP
+		m_autoUpdating = false;
+		#endif
+	}
 
-	static SFXBrowser* create(int);
+	static SFXBrowser* create(int id) = win inline, m1 0x3b9054, imac 0x447700 {
+		auto ret = new SFXBrowser();
+		if (ret->init(id)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(int);
-	void onClearSearch(cocos2d::CCObject* sender);
-	void onClose(cocos2d::CCObject* sender);
-	void onCredits(cocos2d::CCObject* sender);
-	void onExitFolder(cocos2d::CCObject* sender);
-	void onPage(cocos2d::CCObject* sender);
-	void onSearch(cocos2d::CCObject* sender);
-	void onSorting(cocos2d::CCObject* sender);
-	void onToggleCompactMode(cocos2d::CCObject* sender);
-	void onUpdateLibrary(cocos2d::CCObject* sender);
-	void setupList(SFXSearchResult*);
-	TodoReturn trySetupSFXBrowser();
-	TodoReturn updatePageLabel();
+	bool init(int) = win 0x452850, m1 0x3b9198, imac 0x4478c0;
+	void onClearSearch(cocos2d::CCObject* sender) = win 0x4546c0, m1 0x3ba408, imac 0x448c70;
+	void onClose(cocos2d::CCObject* sender) = win 0x454e50, m1 0x3b9f4c, imac 0x4487c0;
+	void onCredits(cocos2d::CCObject* sender) = win 0x4543c0, m1 0x3ba220, imac 0x448aa0;
+	void onExitFolder(cocos2d::CCObject* sender) = win 0x454d00, m1 0x3b9fa4, imac 0x448810;
+	void onPage(cocos2d::CCObject* sender) = win 0x454a60, m1 0x3ba04c, imac 0x4488d0;
+	void onSearch(cocos2d::CCObject* sender) = win 0x454730, m1 0x3ba2ec, imac 0x448b50;
+	void onSorting(cocos2d::CCObject* sender) = win 0x454480, m1 0x3ba174, imac 0x4489e0;
+	void onToggleCompactMode(cocos2d::CCObject* sender) = win 0x454620, m1 0x3ba1bc, imac 0x448a30;
+	void onUpdateLibrary(cocos2d::CCObject* sender) = win 0x453750, m1 0x3ba110, imac 0x448970;
+	void setupList(SFXSearchResult*) = win 0x453be0, m1 0x3ba5f4, imac 0x448e70;
+	void trySetupSFXBrowser() = win 0x453810, m1 0x3ba4d0, imac 0x448d40;
+	void updatePageLabel() = win 0x454b30, m1 0x3bb048, imac 0x449a00;
 
-	virtual void registerWithTouchDispatcher() = m1 0x3bb818, imac 0x44a270, ios 0x1764e4;
+	virtual void registerWithTouchDispatcher() = win 0x41750, m1 0x3bb818, imac 0x44a270, ios 0x1764e4;
 	virtual void keyBackClicked() = win 0x454e90, m1 0x3bb768, imac 0x44a1d0, ios 0x1764d8;
 	virtual void musicActionFinished(GJMusicAction) = win 0x453a00, m1 0x3bae64, imac 0x4497d0, ios 0x175f18;
 	virtual void musicActionFailed(GJMusicAction) = win 0x453aa0, m1 0x3baf34, imac 0x4498d0, ios 0x175f38;
-	virtual TodoReturn sortSelectClosed(SelectSFXSortLayer*) = win 0x4545c0, m1 0x3bb2a8, imac 0x449ca0, ios 0x176220;
+	virtual void sortSelectClosed(SelectSFXSortLayer*) = win 0x4545c0, m1 0x3bb2a8, imac 0x449ca0, ios 0x176220;
 	virtual void setTextPopupClosed(SetTextPopup*, gd::string) = win 0x4548a0, m1 0x3bb52c, imac 0x449f60, ios 0x1763ac;
-	virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = m1 0x3bb5e8, imac 0x44a020, ios 0x176410;
-	virtual int getSelectedCellIdx() = m1 0x3bb748, imac 0x44a190, ios 0x1764b8;
-	virtual TodoReturn shouldSnapToSelected() = m1 0x3bb758, imac 0x44a1b0, ios 0x1764c8;
+	virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x454940, m1 0x3bb5e8, imac 0x44a020, ios 0x176410;
+	virtual int getSelectedCellIdx() = win 0x454a40, m1 0x3bb748, imac 0x44a190, ios 0x1764b8;
+	virtual bool shouldSnapToSelected() = win 0x454a50, m1 0x3bb758, imac 0x44a1b0, ios 0x1764c8;
+
+	SFXSearchResult* m_searchResult;
+	cocos2d::CCArray* m_sfxObjects;
+	GJCommentListLayer* m_listLayer;
+	cocos2d::CCLabelBMFont* m_nameLabel;
+	cocos2d::CCLabelBMFont* m_pathLabel;
+	cocos2d::CCLabelBMFont* m_infoLabel;
+	cocos2d::CCLabelBMFont* m_pageLabel;
+	cocos2d::CCLabelBMFont* m_searchLabel;
+	CCMenuItemSpriteExtra* m_prevButton;
+	CCMenuItemSpriteExtra* m_nextButton;
+	CCMenuItemSpriteExtra* m_backButton;
+	CCMenuItemSpriteExtra* m_refreshButton;
+	CCMenuItemSpriteExtra* m_clearSearchButton;
+	LoadingCircleSprite* m_circleSprite;
+	int m_sfxID;
+	int m_libraryVersion;
+	int m_cellAmount;
+	bool m_gettingURL;
+	bool m_selectedCell;
+	bool m_snapToSelected;
+	bool m_compactMode;
+	AudioSortType m_sortType;
+	SFXBrowserDelegate* m_delegate;
+	win, mac {
+		bool m_autoUpdating;
+	}
 }
 
 [[link(android)]]
 class SFXBrowserDelegate {
-	virtual TodoReturn sfxBrowserClosed(SFXBrowser*);
+	virtual void sfxBrowserClosed(SFXBrowser*);
 }
 
 [[link(android)]]
 class SFXFolderObject : SFXInfoObject {
 	// virtual ~SFXFolderObject();
+	SFXFolderObject() {
+		m_sfxObjects = nullptr;
+	}
 
-	static SFXFolderObject* create(int, gd::string, int);
+	static SFXFolderObject* create(int p0, gd::string p1, int p2) = win inline, m1 0x4e6850, imac 0x59e710 {
+		auto ret = new SFXFolderObject();
+		if (ret->init(p0, p1, p2)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	bool init(int, gd::string, int);
+	bool init(int p0, gd::string p1, int p2) = win inline, m1 0x4e8f10, imac 0x5a14a0 {
+		if (!SFXInfoObject::init(p0, p1, p2)) return false;
+		m_sfxObjects = cocos2d::CCArray::create();
+		m_sfxObjects->retain();
+		return true;
+	}
+
+	cocos2d::CCArray* m_sfxObjects;
 }
 
 [[link(android)]]
 class SFXInfoObject : cocos2d::CCObject {
 	// virtual ~SFXInfoObject();
+	SFXInfoObject() {
+		m_sfxID = 0;
+		m_folderID = 0;
+		m_size = 0;
+		m_duration = 0;
+		m_folder = false;
+		m_unk049 = false;
+		m_name = "";
+	}
 
-	static SFXInfoObject* create(int, gd::string, int, int, int);
+	static SFXInfoObject* create(int id, gd::string name, int folderID, int size, int duration) = win inline, m1 0x4e66f4, imac 0x59e5c0 {
+		auto ret = new SFXInfoObject();
+		if (ret->init(id, name, folderID, size, duration)) {
+			ret->autorelease();
+			return ret;
+		}
+		delete ret;
+		return nullptr;
+	}
 
-	TodoReturn getLowerCaseName();
-	bool init(int, gd::string, int, int, int);
+	gd::string getLowerCaseName() = win inline, m1 0x4e8cd0, imac 0x5a1270 {
+		gd::string name = m_name;
+		for (int i = 0; i < name.size(); i++) {
+			name[i] = std::tolower(name[i]);
+		}
+		return name;
+	}
+	bool init(int id, gd::string name, int folderID, int size, int duration) = win inline, m1 0x4e8c80, imac 0x5a1220 {
+		m_sfxID = id;
+		m_name = name;
+		m_folderID = folderID;
+		m_size = size;
+		m_duration = duration;
+		m_folder = false;
+		return true;
+	}
+
+	int m_sfxID;
+	int m_folderID;
+	int m_size;
+	int m_duration;
+	bool m_folder;
+	bool m_unk049;
+	gd::string m_name;
 }
 
 [[link(android)]]
 class SFXSearchResult : MusicSearchResult {
 	// virtual ~SFXSearchResult();
 
-	static SFXSearchResult* create(int);
+	static SFXSearchResult* create(int) = win 0x326470, m1 0x4ea408, imac 0x5a2dd0;
 
-	TodoReturn getActiveFolder();
-	TodoReturn getSelectedPage(int, int);
-	bool init(int);
-	void setActiveFolder(SFXFolderObject*);
+	SFXFolderObject* getActiveFolder() = win inline, m1 0x4ea4fc, imac 0x5a2ee0 {
+		return m_folderObject;
+	}
+	int getSelectedPage(int, int) = win 0x326a50, m1 0x4eade8, imac 0x5a39c0;
+	bool init(int folderID) = win inline, m1 0x4ea48c, imac 0x5a2e60 {
+		if (!MusicSearchResult::init((GJSongType)-1)) return false;
+		m_folderID = folderID;
+		m_audioType = 1;
+		return true;
+	}
+	void setActiveFolder(SFXFolderObject* folder) = win inline, m1 0x4ea4a4, imac 0x5a2e80 {
+		CC_SAFE_RELEASE(m_folderObject);
+		CC_SAFE_RETAIN(folder);
+		m_folderObject = folder;
+	}
 
-	virtual TodoReturn updateObjects(AudioSortType) = win 0x3264f0, m1 0x4ea504, imac 0x5a2ef0, ios 0x1687d4;
+	virtual void updateObjects(AudioSortType) = win 0x3264f0, m1 0x4ea504, imac 0x5a2ef0, ios 0x1687d4;
+
+	int m_folderID;
+	SFXFolderObject* m_folderObject;
 }
 
 [[link(android)]]
@@ -19293,7 +19464,7 @@ class TableViewCell : cocos2d::CCLayer {
 class TableViewCellDelegate {
 	virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
 	virtual int getSelectedCellIdx();
-	virtual TodoReturn shouldSnapToSelected();
+	virtual bool shouldSnapToSelected();
 	virtual TodoReturn getCellDelegateType();
 }
 
