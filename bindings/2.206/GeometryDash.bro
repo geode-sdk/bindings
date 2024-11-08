@@ -2708,7 +2708,7 @@ class CountTriggerGameObject : EffectGameObject {
 	int m_pickupCount;
 	int m_pickupTriggerMode; // 1 = multiply, 2 = divide
 	bool m_unkPickupBool1;
-	bool m_unkPickupBool2;
+	bool m_isOverride;
 	float m_pickupTriggerMultiplier;
 }
 
@@ -7739,7 +7739,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void animateOutGroundNew(bool) = imac 0x119010;
 	TodoReturn animatePortalY(float, float, float, float);
 	TodoReturn applyLevelSettings(GameObject*) = imac 0x14ce80;
-	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
+	void applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&) = win 0x20b960;
 	void applySFXEditTrigger(int, int, SFXTriggerGameObject*);
 	void applyShake(cocos2d::CCPoint&);
 	void assignNewStickyGroups(cocos2d::CCArray*) = win 0x215530;
@@ -8229,7 +8229,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCNode* m_field_900;
 	cocos2d::CCNode* m_field_908;
 	OBB2D* m_obb2;
-	gd::vector<gd::unordered_map<int,int>*> m_vecUmapIntInt;
+	gd::vector<gd::unordered_map<int,int>> m_spawnRemapTriggers;
 	gd::unordered_map<int, cocos2d::CCPoint> m_umapIntCCPoint;
 	GJEffectManager* m_effectManager;
 	cocos2d::CCSpriteBatchNode* m_unk950;
@@ -19179,10 +19179,10 @@ class SpawnTriggerGameObject : EffectGameObject {
 	TodoReturn addRemap(int, int);
 	TodoReturn changeRemap(int, int, bool);
 	TodoReturn removeRemap(int, int);
-	TodoReturn updateRemapKeys(gd::vector<int> const&) = imac 0x1cccf0;
+	void updateRemapKeys(gd::vector<int> const&) = win 0x48c900, imac 0x1cccf0;
 
 	virtual bool init() = m1 0x186cf8, imac 0x1ccca0, ios 0x397a28;
-	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x186fc4, imac 0x1cd010, ios 0x397c60;
+	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x186fc4, imac 0x1cd010, ios 0x397c60, win 0x48ca10;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x187550, imac 0x1cd500, ios 0x398030;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x187954, imac 0x1cd9a0, ios 0x398380;
 }

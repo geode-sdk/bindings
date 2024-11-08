@@ -403,6 +403,7 @@ GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3a8);
 GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
 
 GEODE_MEMBER_CHECK(CountTriggerGameObject, m_pickupTriggerMode, 0x744);
+GEODE_MEMBER_CHECK(SetupInstantCountPopup, m_itemID, 0x3c0);
 
 GEODE_SIZE_CHECK(GJEffectManager, 0x7a0)
 
