@@ -18172,7 +18172,7 @@ class SFXInfoObject : cocos2d::CCObject {
 	gd::string getLowerCaseName() = win inline, m1 0x4e8cd0, imac 0x5a1270 {
 		gd::string name = m_name;
 		for (int i = 0; i < name.size(); i++) {
-			name[i] = std::tolower(name[i]);
+			name[i] = tolower(name[i]);
 		}
 		return name;
 	}
