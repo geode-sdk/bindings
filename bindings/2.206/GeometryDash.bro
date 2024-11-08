@@ -18137,7 +18137,7 @@ class SFXFolderObject : SFXInfoObject {
 	}
 
 	bool init(int p0, gd::string p1, int p2) = win inline, m1 0x4e8f10, imac 0x5a14a0 {
-		if (!SFXInfoObject::init(p0, p1, p2)) return false;
+		if (!SFXInfoObject::init(p0, p1, p2, 0, 0)) return false;
 		m_sfxObjects = cocos2d::CCArray::create();
 		m_sfxObjects->retain();
 		return true;
