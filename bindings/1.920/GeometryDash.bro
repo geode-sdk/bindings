@@ -2197,7 +2197,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	TodoReturn resumeBackgroundMusic();
 	TodoReturn resumeEffect(unsigned int);
 	TodoReturn rewindBackgroundMusic();
-	void setBackgroundMusicTime(float);
+	void setBackgroundMusicTime(float) = win 0x16a80;
 	void setBackgroundMusicVolume(float);
 	void setEffectsVolume(float);
 	TodoReturn setupAudioEngine();
@@ -2350,7 +2350,7 @@ class GameLevelManager : cocos2d::CCNode {
 	void getStoredOnlineLevels(char const*) = win 0x57ef0;
 	int getTimeLeft(char const*, float) = win 0x585d0;
 	void gotoLevelPage(GJGameLevel*) = win 0x57bb0;
-	TodoReturn handleIt(bool, gd::string, gd::string, GJHttpType);
+	void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x55b50;
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
 	TodoReturn hasDownloadedLevel(int);
@@ -2381,7 +2381,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn onGetLeaderboardScoresCompleted(gd::string, gd::string);
 	TodoReturn onGetLevelCommentsCompleted(gd::string, gd::string);
 	TodoReturn onGetMapPacksCompleted(gd::string, gd::string);
-	TodoReturn onGetOnlineLevelsCompleted(gd::string, gd::string);
+	void onGetOnlineLevelsCompleted(gd::string, gd::string) = win 0x5a260;
 	TodoReturn onLikeItemCompleted(gd::string, gd::string);
 	TodoReturn onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
 	TodoReturn onRateLevelCompleted(gd::string, gd::string);
@@ -4963,7 +4963,7 @@ class LevelTools {
 	static gd::string nameForArtist(int) = win 0xa9f20;
 	static gd::string ngURLForArtist(int) = win 0xaa1c0;
 	TodoReturn offsetBPMForTrack(int);
-	TodoReturn timeForXPos(float, cocos2d::CCArray*, int);
+	float timeForXPos(float, cocos2d::CCArray*, int) = win 0xaa5c0;
 	static gd::string urlForAudio(int) = win 0xa9fe0;
 	static gd::string ytURLForArtist(int) = win 0xaa280;
 }
@@ -6090,7 +6090,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn moveCameraToPos(cocos2d::CCPoint);
 	TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
 	void onQuit();
-	void pauseGame(bool);
+	void pauseGame(bool) = win 0xf38c0;
 	TodoReturn pickupItem(GameObject*);
 	TodoReturn playEndAnimationToPos(cocos2d::CCPoint);
 	TodoReturn playerWillSwitchMode(PlayerObject*, GameObject*);
@@ -6105,7 +6105,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn registerStateObject(GameObject*);
 	void releaseButton(int, bool) = win 0xf0af0;
 	TodoReturn removeAllObjects();
-	TodoReturn removeLastCheckpoint() = win 0xf1d70;
+	void removeLastCheckpoint() = win 0xf1d70;
 	TodoReturn removeObjectFromSection(GameObject*);
 	TodoReturn removePlayer2();
 	TodoReturn reorderObjectSection(GameObject*);
@@ -6139,7 +6139,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn storeCheckpoint(CheckpointObject*);
 	TodoReturn switchToFlyMode(PlayerObject*, GameObject*, bool, int);
 	TodoReturn switchToRollMode(PlayerObject*, GameObject*, bool);
-	TodoReturn timeForXPos(float, bool);
+	float timeForXPos(float, bool) = win 0xee590;
 	TodoReturn toggleDualMode(GameObject*, bool, PlayerObject*, bool);
 	TodoReturn toggleFlipped(bool, bool);
 	TodoReturn toggleGhostEffect(int);
@@ -6984,14 +6984,18 @@ class SongsLayer {
 }
 
 [[link(android)]]
-class SpeedObject {
+class SpeedObject : cocos2d::CCNode {
 	// virtual ~SpeedObject();
 
 	static SpeedObject* create(int, float);
 
-	TodoReturn getSpeedMod();
-	TodoReturn getXPos();
 	bool init(int, float);
+
+	virtual int getSpeedMod() const;
+	virtual float getXPos() const;
+
+	int m_speedMod;
+	float m_xPos;
 }
 
 [[link(android)]]
