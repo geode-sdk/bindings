@@ -317,6 +317,12 @@ GEODE_SIZE_CHECK(NumberInputLayer, 0x2b8);
 GEODE_SIZE_CHECK(ShareLevelLayer, 0x298);
 GEODE_SIZE_CHECK(ShareLevelSettingsLayer, 0x2a0);
 GEODE_SIZE_CHECK(ShareListLayer, 0x290);
+GEODE_SIZE_CHECK(MusicSearchResult, 0x90);
+GEODE_SIZE_CHECK(SelectSFXSortLayer, 0x288);
+GEODE_SIZE_CHECK(SFXBrowser, 0x330);
+GEODE_SIZE_CHECK(SFXFolderObject, 0x78);
+GEODE_SIZE_CHECK(SFXInfoObject, 0x70);
+GEODE_SIZE_CHECK(SFXSearchResult, 0xa0);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
