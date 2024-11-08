@@ -9945,7 +9945,9 @@ class GJOptionsLayer : SetupTriggerPopup {
 	static GJOptionsLayer* create(int) = m1 0x23a7ec, imac 0x297d60;
 
 	void addGVToggle(char const*, char const*, char const*) = win 0x27d8f0, m1 0x23b080, imac 0x298780;
-	void addToggle(char const*, int, bool, char const*) = m1 0x23b644, imac 0x298d70;
+	void addToggle(char const* p0, int p1, bool p2, char const* p3) = win inline, m1 0x23b644, imac 0x298d70 {
+		addToggleInternal(p0, p1, p2, p3);
+	}
 	void addToggleInternal(char const*, int, bool, char const*) = win 0x27da30, m1 0x23b1bc, imac 0x2988a0;
 	int countForPage(int) = win 0x27df30, m1 0x23bf6c, imac 0x299660;
 	void goToPage(int) = win 0x27e450, m1 0x23ac6c, imac 0x298310;
@@ -9957,7 +9959,9 @@ class GJOptionsLayer : SetupTriggerPopup {
 	cocos2d::CCPoint nextPosition(int) = m1 0x23b648, imac 0x298d80;
 	const char* objectKey(int) = m1 0x23c08c, imac 0x299770;
 	cocos2d::CCArray* objectsForPage(int) = win 0x27e100, m1 0x23bbb8, imac 0x2992b0;
-	void offsetToNextPage() = m1 0x23b058, imac 0x298740;
+	void offsetToNextPage() = win inline, m1 0x23b058, imac 0x298740 {
+		m_toggleCount += m_togglesPerPage - m_toggleCount % m_togglesPerPage;
+	}
 	void onInfo(cocos2d::CCObject* sender) = win 0x27e970, m1 0x23bd98, imac 0x2994a0;
 	void onNextPage(cocos2d::CCObject* sender) = win 0x27e430, m1 0x23ac54, imac 0x2982d0;
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x27e440, m1 0x23ac60, imac 0x2982f0;
