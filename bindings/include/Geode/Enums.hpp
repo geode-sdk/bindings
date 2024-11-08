@@ -360,7 +360,14 @@ enum class GJSmartDirection {};
 enum class SmartBlockType {};
 enum class TouchTriggerControl {};
 enum class SmartPrefabResult {};
-enum class AudioSortType {};
+enum class AudioSortType {
+    NameAscending = 0,
+    NameDescending = 1,
+    LengthAscending = 2,
+    LengthDescending = 3,
+    IDAscending = 4,
+    IDDescending = 5
+};
 enum class spriteMode {};
 enum class GJAssetType {
     Song = 1,
