@@ -231,7 +231,7 @@ class AchievementManager : cocos2d::CCNode {
     void encodeDataTo(DS_Dictionary*) = imac 0x76ebd0;
     void firstSetup();
     TodoReturn getAchievementRewardDict();
-    cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x9999999;
+    cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x39d70;
     TodoReturn getAllAchievements();
     cocos2d::CCArray* getAllAchievementsSorted(bool);
     bool isAchievementAvailable(gd::string);
@@ -5116,7 +5116,12 @@ class FMODAudioEngine : cocos2d::CCNode {
     void loadMusic(gd::string path) {
     	this->loadMusic(path, 1.f, 0.f, 1.f, false, 0, 0);
     }
-    void pauseAllAudio() = imac 0x3cb420;
+    void pauseAllAudio() = win inline, imac 0x3cb420 {
+        if (m_allAudioPaused) return;
+        m_allAudioPaused = true;
+        m_backgroundMusicChannel->setPaused(true);
+        m_globalChannel->setPaused(true);
+    }
     void pauseAllEffects() {
     	m_globalChannel->setPaused(true);
     }
@@ -5148,7 +5153,12 @@ class FMODAudioEngine : cocos2d::CCNode {
     void queueStartMusic(gd::string audioFilename, float, float, float, bool, int ms, int, int, int, int, bool, int, bool) = win 0x3de920;
     TodoReturn registerChannel(FMOD::Channel*, int, int);
     void releaseRemovedSounds();
-    void resumeAllAudio() = win 0x9999999, imac 0x3cb470;
+    void resumeAllAudio() = win inline, imac 0x3cb470 {
+        if (!m_allAudioPaused) return;
+        m_allAudioPaused = false;
+        m_backgroundMusicChannel->setPaused(false);
+        m_globalChannel->setPaused(false);
+    }
     void resumeAllEffects() {
     	m_globalChannel->setPaused(false);
     }
@@ -5238,7 +5248,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     FMOD_RESULT m_lastResult;
     int m_sampleRate;
     bool m_reducedQuality;
-    bool m_unkBool1a1;
+    bool m_allAudioPaused;
     int m_musicOffset;
     bool m_unkBool1a8;
     int m_unkInt1ac;
@@ -5655,7 +5665,7 @@ class GameLevelManager : cocos2d::CCNode {
     void invalidateUserList(UserListType, bool) = win 0x160840;
     bool isDLActive(char const* tag);
     bool isFollowingUser(int) = win 0x148840;
-    bool isTimeValid(char const*, float) = win 0x9999999;
+    bool isTimeValid(char const*, float) = win 0x147c90;
     bool isUpdateValid(int id) {
     	const char* str = cocos2d::CCString::createWithFormat("%i", id)->getCString();
 
@@ -5773,7 +5783,7 @@ class GameLevelManager : cocos2d::CCNode {
     void saveFetchedMapPacks(cocos2d::CCArray*);
     void saveGauntlet(GJMapPack*);
     void saveLevel(GJGameLevel*) = win 0x146d40, imac 0x5216f0;
-    void saveLevelList(GJLevelList*) = win 0x9999999;
+    void saveLevelList(GJLevelList*) = win 0x14ee60;
     void saveLocalScore(int, int, int);
     void saveMapPack(GJMapPack*);
     void setActiveSmartTemplate(GJSmartTemplate*);
@@ -6177,7 +6187,7 @@ class GameManager : GManager {
     void queueReloadMenu() = imac 0x378f40;
     TodoReturn rateGame();
     void recountUserStats(gd::string);
-    void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x9999999;
+    void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x187370;
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
     	return this->reloadAll(switchingModes, toFullscreen, false, unused);
     }
@@ -10766,7 +10776,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
     }
 
     void exitVideoAdItems() = imac 0x310ef0;
-    bool init(ShopType) = win 0x9999999, imac 0x30f030;
+    bool init(ShopType) = win 0x2a1f50, imac 0x30f030;
     void onBack(cocos2d::CCObject* sender) = win 0x2a5590, imac 0x3109e0;
     void onCommunityCredits(cocos2d::CCObject* sender) = win 0x2a42c0;
     void onPlushies(cocos2d::CCObject* sender);
@@ -14077,7 +14087,7 @@ class NumberInputLayer : FLAlertLayer {
     		this->updateNumberState();
     	}
     }
-    void onClose(cocos2d::CCObject* sender) = win 0x9999999;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onDone(cocos2d::CCObject* sender) {
     	if (m_delegate) m_delegate->numberInputClosed(this);
     	this->onClose(nullptr);
@@ -15527,7 +15537,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     	return nullptr;
     }
 
-    bool init(int) = win 0x9999999;
+    bool init(int) = win 0x3b1670;
     void onClose(cocos2d::CCObject* sender);
     void onRate(cocos2d::CCObject* sender) = win 0x3b1dc0, imac 0x272a00;
     void selectRating(cocos2d::CCObject*) = win 0x3b1c40;
@@ -16268,7 +16278,7 @@ class SelectSFXSortLayer : FLAlertLayer {
     	return nullptr;
     }
 
-    bool init(AudioSortType) = win 0x9999999;
+    bool init(AudioSortType) = win 0x468a10;
     void onClose(cocos2d::CCObject* sender);
     void onSelect(cocos2d::CCObject* sender) = win 0x469090, imac 0x42d890;
 
@@ -16420,7 +16430,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
     void updateTextInputLabel() = win 0x2946f0, imac 0x299320;
 
     virtual void keyBackClicked() = win 0x294970;
-    virtual void show() = win 0x9999999;
+    virtual void show() = win 0x2947a0;
     virtual void textInputClosed(CCTextInputNode*);
     virtual void textChanged(CCTextInputNode*) = win 0x2945f0, imac 0x2994a0;
     virtual void valueChanged() {}
