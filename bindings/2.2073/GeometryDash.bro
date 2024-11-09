@@ -5900,6 +5900,7 @@ class GameLevelManager : cocos2d::CCNode {
     DownloadMessageDelegate* m_downloadMessageDelegate;
     UploadMessageDelegate* m_uploadMessageDelegate;
     GJRewardDelegate* m_GJRewardDelegate;
+    GJOnlineRewardDelegate* m_GJOnlineRewardDelegate;
     GJChallengeDelegate* m_GJChallengeDelegate;
     GJDailyLevelDelegate* m_GJDailyLevelDelegate;
     OnlineListDelegate* m_onlineListDelegate;
@@ -6265,6 +6266,7 @@ class GameManager : GManager {
     bool m_switchModes;
     bool m_toFullscreen;
     bool m_reloading;
+    bool m_fix;
     bool m_unkBool1;
     bool m_unkBool2;
     bool m_vsyncEnabled;
@@ -9940,6 +9942,12 @@ class GJObjectDecoder : cocos2d::CCNode {
 
     virtual bool init();
     virtual cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = win 0x27c610, imac 0x70e690;
+}
+
+// TODO: Implement functions once Android version is released
+[[link(android)]]
+class GJOnlineRewardDelegate {
+
 }
 
 [[link(android)]]
