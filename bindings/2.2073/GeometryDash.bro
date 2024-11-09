@@ -13783,7 +13783,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
     Slider* m_playSlider;
     cocos2d::CCLabelBMFont* m_playLabel;
     CCMenuItemSpriteExtra* m_playButton;
-    win, mac {() {
+    win, mac {
     	bool m_autoUpdating;
     }
 }
@@ -18112,7 +18112,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     bool m_compactMode;
     AudioSortType m_sortType;
     SFXBrowserDelegate* m_delegate;
-    win, mac {() {
+    win, mac {
     	bool m_autoUpdating;
     }
 }
