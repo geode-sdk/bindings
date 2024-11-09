@@ -4659,7 +4659,7 @@ class EndLevelLayer : GJDropDownLayer {
 
     virtual void keyBackClicked() = win 0x133a80;
     virtual void keyDown(cocos2d::enumKeyCodes) = win 0x135120, imac 0x4afa10;
-    virtual void customSetup() = imac 0x4ac080;
+    virtual void customSetup() = win 0x131240, imac 0x4ac080;
     virtual void showLayer(bool) = win 0x133050;
     virtual void enterAnimFinished() {}
     virtual void keyUp(cocos2d::enumKeyCodes) {}
@@ -5610,12 +5610,12 @@ class GameLevelManager : cocos2d::CCNode {
     char const* getPostCommentKey(int);
     const char * getRateStarsKey(int key);
     char const* getReportKey(int);
-    GJGameLevel* getSavedDailyLevel(int);
+    GJGameLevel* getSavedDailyLevel(int) = win 0x146b80;
     GJGameLevel* getSavedDailyLevelFromLevelID(int) = imac 0x5209f0;
     GJMapPack* getSavedGauntlet(int);
     GJGameLevel* getSavedGauntletLevel(int);
     GJGameLevel* getSavedLevel(GJGameLevel*);
-    GJGameLevel* getSavedLevel(int);
+    GJGameLevel* getSavedLevel(int) = win 0x146ab0;
     GJLevelList* getSavedLevelList(int);
     cocos2d::CCArray* getSavedLevelLists(int);
     cocos2d::CCArray* getSavedLevels(bool, int) = win 0x1453f0;
@@ -5654,7 +5654,7 @@ class GameLevelManager : cocos2d::CCNode {
     void invalidateRequests(bool, bool);
     void invalidateUserList(UserListType, bool) = win 0x160820;
     bool isDLActive(char const* tag);
-    bool isFollowingUser(int);
+    bool isFollowingUser(int) = win 0x148820;
     bool isTimeValid(char const*, float) = win 0x9999999;
     bool isUpdateValid(int id) {
     	const char* str = cocos2d::CCString::createWithFormat("%i", id)->getCString();
@@ -7122,7 +7122,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn getCurrencyKey(GJGameLevel*);
     TodoReturn getDailyLevelKey(int);
     TodoReturn getDemonLevelKey(GJGameLevel*);
-    gd::string getGauntletRewardKey(int) = imac 0x77200;
+    gd::string getGauntletRewardKey(int) = win 0x1e6ba0, imac 0x77200;
     gd::string getItemKey(int, int) = win 0x1de710;
     int getItemUnlockState(int itemID, UnlockType unlockType) {
     	auto key = getItemKey(itemID, (int) unlockType);
@@ -11886,7 +11886,7 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 
     static LevelAreaInnerLayer* create(bool);
 
-    bool init(bool);
+    bool init(bool) = win 0x2be000;
     void onBack(cocos2d::CCObject* sender) = win 0x2c0190;
     void onDoor(cocos2d::CCObject* sender) = win 0x2bfcc0, imac 0x268650;
     void onInfo(cocos2d::CCObject* sender);
@@ -12027,7 +12027,7 @@ class LevelCell : TableViewCell {
 
     static LevelCell* create(float, float) = imac 0x23c590;
 
-    void loadCustomLevelCell();
+    void loadCustomLevelCell() = win 0xadb20;
     void loadFromLevel(GJGameLevel*) = win 0xad940, imac 0x2327f0;
     void loadLocalLevelCell() = win 0xb05f0;
     void onClick(cocos2d::CCObject* sender) = win 0xb1080, imac 0x23fb80;
@@ -12575,7 +12575,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
     static cocos2d::CCScene* scene(GJLevelList*) = win 0x2ee660;
     void updateEditMode();
     void updateSideButtons() = win 0x2f2e00, imac 0x34a390;
-    void updateStatsArt();
+    void updateStatsArt() = win 0x2f0370;
     void verifyListName();
 
     virtual void onEnter() = win 0x2f0320;
@@ -12664,7 +12664,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
     }
 
     void addSecretCoin() = win 0x3074b0;
-    void addSecretDoor();
+    void addSecretDoor() = win 0x307bc0;
     bool init(GJGameLevel*) = win 0x304d10;
     void onInfo(cocos2d::CCObject* sender) = win 0x308f00;
     void onMoreGames(cocos2d::CCObject* sender);
@@ -15203,7 +15203,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     static cocos2d::CCScene* scene(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x38e840, imac 0xab7e0;
     TodoReturn screenFlipObject(GameObject*);
     void setDamageVerifiedIdx(int);
-    void setupHasCompleted();
+    void setupHasCompleted() = win 0x38f640;
     TodoReturn shouldBlend(int);
     void showCompleteEffect() = win 0x391c50, imac 0xb4760;
     void showCompleteText() = win 0x391620, imac 0xb4be0;
@@ -15947,7 +15947,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     TodoReturn updateMessageLabel(gd::string);
     void updateSearchLabel(char const*);
 
-    virtual bool init();
+    virtual bool init() = win 0x3d8410;
     virtual void onExit();
     virtual void keyBackClicked() = win 0x3dc010;
     virtual void textInputOpened(CCTextInputNode*);
@@ -18482,7 +18482,7 @@ class ShardsPage : FLAlertLayer {
     void onIconInfo(cocos2d::CCObject* sender) = win 0x4742f0, imac 0x4b3800;
     void onSwitchPage(cocos2d::CCObject* sender);
 
-    virtual bool init();
+    virtual bool init() = win 0x471300;
     virtual void registerWithTouchDispatcher();
     virtual void keyBackClicked();
     virtual void show();
