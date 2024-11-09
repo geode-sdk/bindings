@@ -7139,9 +7139,9 @@ class GameStatsManager : cocos2d::CCNode {
     int getItemUnlockState(int itemID, UnlockType unlockType) = win 0x1e2a10;
     int getItemUnlockStateLite(int, UnlockType);
     gd::string getLevelKey(GJGameLevel* level) {
-    	return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Local, level->m_dailyID > 0, level->m_gauntletLevel);
+    	return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Local, level->m_dailyID > 0, level->m_gauntletLevel, level->m_dailyID > 200000);
     }
-    gd::string getLevelKey(int, bool, bool, bool) = win 0x1dac30;
+    gd::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x1dac30;
     TodoReturn getListRewardKey(GJLevelList*);
     char const* getMapPackKey(int);
     TodoReturn getNextVideoAdReward();
@@ -7173,7 +7173,7 @@ class GameStatsManager : cocos2d::CCNode {
     	return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
     }
     bool hasCompletedMainLevel(int levelID) {
-    	return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
+    	return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false, false)) != nullptr;
     }
     bool hasCompletedMapPack(int);
     bool hasCompletedOnlineLevel(int);

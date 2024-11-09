@@ -3148,7 +3148,7 @@ class pugi::xml_node {
 
 [[link(android)]]
 class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
-    static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = imac 0x5c59e0;
+    static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x44540, imac 0x5c59e0;
     static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline {
     	auto ret = new CCLightning();
     	if (ret->initWithStrikePoint(p1)) {
@@ -3159,16 +3159,16 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     	return nullptr;
     }
 
-    bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = imac 0x5c5b30;
+    bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x439e0, imac 0x5c5b30;
     bool initWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline {
     	return this->initWithStrikePoint(p1, CCPointZero, .5f);
     }
 
-    CCLightning();
-    ~CCLightning();
+    CCLightning() = win 0x44400;
+    ~CCLightning() = win 0x444d0;
 
-    void strike();
-    void strikeFinished() = imac 0x5c5f00;
+    void strike() = win 0x44880;
+    void strikeFinished() = win 0x448f0, imac 0x5c5f00;
     void strikeRandom() = win inline, ios inline {
     	m_seed = rand();
     	this->strike();
@@ -3178,7 +3178,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     	this->strike();
     }
 
-    virtual void draw() = imac 0x5c5cd0;
+    virtual void draw() = win 0x44700, imac 0x5c5cd0;
     virtual bool isOpacityModifyRGB();
     virtual void setOpacityModifyRGB(bool);
     virtual unsigned char getOpacity();

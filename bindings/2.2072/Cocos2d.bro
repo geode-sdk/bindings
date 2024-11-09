@@ -2531,7 +2531,7 @@ class cocos2d::CCDrawNode {
     void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
     void drawDot(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&) = imac 0x5f8d40;
     bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::_ccColor4F const&) = imac 0x5fa380;
-    bool drawPolygon(cocos2d::CCPoint* verts, unsigned int count, cocos2d::ccColor4F& fillColor const, float borderWidth, cocos2d::ccColor4F& borderColor const);
+    bool drawPolygon(cocos2d::CCPoint*, unsigned int, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&);
     void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&) = imac 0x5f8f20;
     bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&) = imac 0x5fa250;
     void drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&) = imac 0x5f9c00;
@@ -3159,15 +3159,15 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     	return nullptr;
     }
 
-    bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = imac 0x5c4e10;
+    bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x9999999, imac 0x5c4e10;
     bool initWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline {
     	return this->initWithStrikePoint(p1, CCPointZero, .5f);
     }
 
-    CCLightning();
+    CCLightning() = win 0x9999999;
     ~CCLightning();
 
-    void strike();
+    void strike() = win 0x9999999;
     void strikeFinished() = imac 0x5c51e0;
     void strikeRandom() = win inline, ios inline {
     	m_seed = rand();
