@@ -3462,7 +3462,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 
     virtual void registerWithTouchDispatcher();
     virtual void keyBackClicked();
-    virtual void show();
+    virtual void show() = win 0x867a0;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) {}
     virtual void dailyStatusFinished(GJTimedLevelType) = win 0xce560;
     virtual void dailyStatusFailed(GJTimedLevelType, GJErrorCode) = win 0xce860, imac 0x220370;
@@ -9105,7 +9105,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn getListSnapshot();
     TodoReturn getNormalPercent();
     TodoReturn getSongName();
-    gd::string getUnpackedLevelDescription();
+    gd::string getUnpackedLevelDescription() = win 0x16d150;
     void handleStatsConflict(GJGameLevel*) = win 0x16cc80;
     inline bool isPlatformer() {
     	return m_levelLength == 5;
@@ -9643,7 +9643,7 @@ class GJLevelList : cocos2d::CCNode {
     TodoReturn duplicateListLevels(GJLevelList*);
     TodoReturn frameForListDifficulty(int, DifficultyIconType) = imac 0x54d550;
     cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*) = win 0x174160;
-    gd::string getUnpackedDescription();
+    gd::string getUnpackedDescription() = win 0x173b80;
     void handleStatsConflict(GJLevelList*) = imac 0x54b540;
     bool hasMatchingLevels(GJLevelList*) = win 0x173970, imac 0x54b560;
     TodoReturn orderForLevel(int);
@@ -12486,7 +12486,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
     void loadScores();
     void onChangeMode(cocos2d::CCObject* sender) = win 0x2edc20;
     void onChangeType(cocos2d::CCObject* sender) = win 0x2edb80;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onDeleteLocalScores(cocos2d::CCObject* sender) = imac 0x3c88b0;
     void onUpdate(cocos2d::CCObject* sender) = win 0x2edca0;
     TodoReturn reloadLeaderboard(LevelLeaderboardType, LevelLeaderboardMode);
