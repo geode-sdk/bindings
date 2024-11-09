@@ -13371,7 +13371,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onGameCenter(cocos2d::CCObject* sender);
     void onGarage(cocos2d::CCObject* sender) = win 0x320de0;
     void onGooglePlayGames(cocos2d::CCObject* sender);
-    void onMoreGames(cocos2d::CCObject* sender);
+    void onMoreGames(cocos2d::CCObject* sender) = win 0x320760;
     void onMyProfile(cocos2d::CCObject* sender);
     void onNewgrounds(cocos2d::CCObject* sender);
     void onOptions(cocos2d::CCObject* sender) = win 0x320a90;
