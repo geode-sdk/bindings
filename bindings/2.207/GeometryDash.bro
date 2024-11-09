@@ -16010,7 +16010,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     	if (m_inMainLayer) m_mainScrollLayer->moveToPage(page);
     	else m_secondaryScrollLayer->moveToPage(page);
     }
-    bool init(bool) = win 0x9999999;
+    bool init(bool) = win 0x3baf80;
     void moveToMainLayer(cocos2d::CCObject*);
     void moveToSecondaryLayer(int);
     void onBack(cocos2d::CCObject* sender) = win 0x3c0510;
