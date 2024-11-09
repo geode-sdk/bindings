@@ -9773,7 +9773,7 @@ class GJMapPack : cocos2d::CCNode {
     }
     static GJMapPack* create(cocos2d::CCDictionary*) = win 0x16d1f0;
 
-    int completedMaps() = win 0x9999999, imac 0x5489c0;
+    int completedMaps() = win 0x16E060, imac 0x5489c0;
     bool hasCompletedMapPack() {
     	auto total = this->totalMaps();
     	if (total > 0) return this->completedMaps() >= total;
