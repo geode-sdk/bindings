@@ -5134,7 +5134,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     		channel->setPaused(true);
     }
     TodoReturn pitchForIdx(int);
-    void playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10 = win 0x56e10;
+    void playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10;
     void playEffect(gd::string path) = win 0x56d90;
     void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00;
     TodoReturn playEffectAsync(gd::string path);
