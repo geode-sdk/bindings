@@ -61,6 +61,10 @@ inline bool is_cocos_class(std::string const& str) {
     return can_find(str, "cocos2d") || can_find(str, "pugi::") || str == "DS_Dictionary" || str == "ObjectDecoder" || str == "ObjectDecoderDelegate";
 }
 
+inline bool is_in_cocos_dll(std::string const& str) {
+    return is_cocos_class(str) && !can_find(str, "CCLightning");
+}
+
 enum class BindStatus {
     Binded,
     Inlined,
@@ -289,7 +293,7 @@ namespace codegen {
             };
 
             if (codegen::getStatus(*fn) == BindStatus::NeedsBinding || codegen::platformNumber(field) != -1) {
-                if (is_cocos_class(field.parent) && codegen::platform == Platform::Windows) {
+                if (is_in_cocos_dll(field.parent) && codegen::platform == Platform::Windows) {
                     return fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
                 }
                 else {
