@@ -5494,7 +5494,7 @@ class GameEffectsManager : cocos2d::CCNode {
 class GameLevelManager : cocos2d::CCNode {
     // virtual ~GameLevelManager();
 
-    static GameLevelManager* sharedState() = win 0x9999999;
+    static GameLevelManager* sharedState() = win 0x140B00;
     static GameLevelManager* get() {
     	return GameLevelManager::sharedState();
     }
@@ -7073,7 +7073,7 @@ class GameStatsManager : cocos2d::CCNode {
     // virtual ~GameStatsManager();
     // GameStatsManager();
 
-    static GameStatsManager* sharedState() = win 0x9999999;
+    static GameStatsManager* sharedState() = win 0x1CDC90;
     static GameStatsManager* get() {
     	return GameStatsManager::sharedState();
     }
