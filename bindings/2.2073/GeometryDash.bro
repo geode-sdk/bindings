@@ -5779,7 +5779,7 @@ class GameLevelManager : cocos2d::CCNode {
     		this->saveLevelList(static_cast<GJLevelList*>(lists->objectAtIndex(i)));
     	}
     }
-    void saveFetchedLevels(cocos2d::CCArray*) = imac 0x51b5e0;
+    void saveFetchedLevels(cocos2d::CCArray*) = imac 0x51b5e0, win 0x144960;
     void saveFetchedMapPacks(cocos2d::CCArray*);
     void saveGauntlet(GJMapPack*);
     void saveLevel(GJGameLevel*) = win 0x146d40, imac 0x5216f0;
@@ -5818,8 +5818,8 @@ class GameLevelManager : cocos2d::CCNode {
     void updateDescription(int, gd::string);
     void updateLevel(GJGameLevel*) = imac 0x52fa40;
     void updateLevelOrders() = win 0x145680;
-    void updateLevelRewards(GJGameLevel*);
-    void updateSavedLevelList(GJLevelList*);
+    void updateLevelRewards(GJGameLevel*) = win 0x144380;
+    void updateSavedLevelList(GJLevelList*) = win 0x14ef40;
     void updateUsernames();
     void updateUserScore() = win 0x153790;
     void uploadAccountComment(gd::string);
@@ -7125,7 +7125,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1dd630, imac 0x70e50;
     void getBaseDiamonds(int) = imac 0x717d0;
     int getBonusDiamonds(int) = imac 0x717f0;
-    GJChallengeItem* getChallenge(int);
+    GJChallengeItem* getChallenge(int) = win 0x1ded50;
     TodoReturn getChallengeKey(GJChallengeItem*);
     int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1daab0;
     cocos2d::CCArray* getCompletedMapPacks() = win 0x1dc060;
@@ -7144,7 +7144,7 @@ class GameStatsManager : cocos2d::CCNode {
     char const* getMapPackKey(int);
     TodoReturn getNextVideoAdReward();
     TodoReturn getPathRewardKey(int);
-    GJChallengeItem* getQueuedChallenge(int);
+    GJChallengeItem* getQueuedChallenge(int) = win 0x1dee20;
     TodoReturn getRewardForSecretChest(int);
     TodoReturn getRewardForSpecialChest(gd::string);
     TodoReturn getRewardItem(GJRewardType);
@@ -15277,7 +15277,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual void toggleProgressbar() = win 0x39b770;
     virtual TodoReturn toggleInfoLabel() = win 0x39c550;
     virtual void removeAllCheckpoints() = win 0x3a1010;
-    virtual TodoReturn toggleMusicInPractice();
+    virtual TodoReturn toggleMusicInPractice() = win 0x39b910;
     virtual void currencyWillExit(CurrencyRewardLayer*) = win 0x39d760;
     virtual void circleWaveWillBeRemoved(CCCircleWave*) = win 0x39d920;
     virtual void dialogClosed(DialogLayer*) = win 0x39d780;
