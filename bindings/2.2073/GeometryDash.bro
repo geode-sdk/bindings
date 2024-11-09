@@ -910,7 +910,7 @@ class ButtonSprite : cocos2d::CCSprite {
     static ButtonSprite* create(char const* caption, float scale) {
     	return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, scale);
     }
-    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x99999999;
+    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x3f150;
     static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg) {
     	return ButtonSprite::create(caption, width, p2, scale, absolute, font, bg, .0f);
     }
@@ -15399,7 +15399,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 
     virtual void registerWithTouchDispatcher();
     virtual void keyBackClicked();
-    virtual void show();
+    virtual void show() = win 0x99999999;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3ad900, imac 0x7a9ce0;
     virtual void updateUserScoreFinished();
     virtual void updateUserScoreFailed();
@@ -15570,7 +15570,7 @@ class RateLevelLayer : FLAlertLayer {
     	return nullptr;
     }
 
-    bool init(int);
+    bool init(int) = win 0x99999999;
     void onClose(cocos2d::CCObject* sender);
     void onRate(cocos2d::CCObject* sender) = win 0x3b2900, imac 0x551a00;
     void selectRating(cocos2d::CCObject* sender) = win 0x3b27b0, imac 0x5518d0;
