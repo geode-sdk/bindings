@@ -991,7 +991,7 @@ class CCAnimatedSprite : cocos2d::CCSprite {
     static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = imac 0x33ba50;
     bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x3ffc0, imac 0x33bb30;
     void loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x401e0;
-    void runAnimation(gd::string);
+    void runAnimation(gd::string) = win 0x40c80;
     void runAnimationForced(gd::string);
     void stopTween();
     void switchToMode(spriteMode) = win 0x40b10, imac 0x33c530;
@@ -4112,7 +4112,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     	GameManager* gm = GameManager::sharedState();
     	int buttonsPerRow = gm->getIntGameVariable("0049");
     	int buttonRows = gm->getIntGameVariable("0050");
-    	cocos2d::CCArray* customItems = createCustomItems(), win 0xe30c0, imac 0x31670;
+    	cocos2d::CCArray* customItems = createCustomItems();
     	m_buttonBar->loadFromItems(customItems,buttonsPerRow,buttonRows,true);
     }
     void removeOffset(GameObject*) = win 0x120c90;
@@ -5052,7 +5052,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     static FMODAudioEngine* sharedEngine() {
     	auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x6a3e18);
     	if (!*instancePtr) {
-    		*instancePtr = new FMODAudioEngine(), win 0x530d0;
+    		*instancePtr = new FMODAudioEngine();
     		(*instancePtr)->init();
     	}
     	return *instancePtr;
@@ -6181,7 +6181,7 @@ class GameManager : GManager {
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
     	return this->reloadAll(switchingModes, toFullscreen, false, unused);
     }
-    void reloadAllStep2() = imac 0x378390;
+    void reloadAllStep2() = win 0x1872b0, imac 0x378390;
     void reloadAllStep3();
     void reloadAllStep4();
     void reloadAllStep5() = win 0x1875c0, imac 0x378580;
@@ -10148,7 +10148,7 @@ class GJRewardItem : cocos2d::CCObject {
     static GJRewardItem* create(int chestID, int timeRemaining, gd::string) = win 0x1f0a20;
     static GJRewardItem* createSpecial(GJRewardType, int, int, SpecialRewardItem, int, SpecialRewardItem, int, int, int) = win 0x1f0830, imac 0x76fd0;
     static GJRewardItem* createWithCoder(DS_Dictionary* dict) {
-    	auto ret = create(), win 0x1f06e0, imac 0x8e550;
+    	auto ret = create();
     	ret->dataLoaded(dict);
     	return ret;
     }
@@ -10255,7 +10255,7 @@ class GJRewardObject : cocos2d::CCObject {
     // virtual ~GJRewardObject();
 
     static GJRewardObject* create() {
-    	auto ret = create(SpecialRewardItem::FireShard, 0, 0), win 0x1f05e0, imac 0x71770; // the first param is meant to be 0
+    	auto ret = create(SpecialRewardItem::FireShard, 0, 0); // the first param is meant to be 0
     	return ret;
     }
     static GJRewardObject* create(SpecialRewardItem, int, int) = imac 0x71770, win 0x1f05e0;
@@ -11176,7 +11176,7 @@ class GJUserScore : cocos2d::CCNode {
     // virtual ~GJUserScore();
 
     static GJUserScore* create() {
-    	auto ret = new GJUserScore(), win 0x1401b0;
+    	auto ret = new GJUserScore();
     	if (ret->init()) {
     		ret->autorelease();
     		return ret;
@@ -13951,7 +13951,7 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     MusicSearchResult() = win 0x326630;
 
     static MusicSearchResult* create(GJSongType songType) {
-    	auto ret = new MusicSearchResult(), win 0x326630;
+    	auto ret = new MusicSearchResult();
     	if (ret->init(songType)) {
     		ret->autorelease();
     		return ret;
@@ -14633,7 +14633,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void hitGround(GameObject*, bool) = win 0x385e20;
     TodoReturn hitGroundNoJump(GameObject*, bool);
     void incrementJumps() = win 0x376ab0, imac 0x3f0ff0;
-    bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = imac 0x3e7d70;
+    bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x3706a0, imac 0x3e7d70;
     bool isBoostValid(float);
     bool isFlying() {
     	return m_isShip || m_isBird || m_isDart || m_isSwing;
@@ -14779,7 +14779,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerForce(cocos2d::CCPoint, bool);
     void updatePlayerFrame(int) = win 0x387b40;
     void updatePlayerGlow() = win 0x38a190, imac 0x403770;
-    void updatePlayerJetpackFrame(int);
+    void updatePlayerJetpackFrame(int) = win 0x387fa0;
     void updatePlayerRobotFrame(int id) {
         if (id < 1) id = 1;
         else if (id > 0x43) id = 0x44;
@@ -18874,13 +18874,13 @@ class SliderThumb : cocos2d::CCMenuItemImage {
     float getValue() = win 0x712b0, imac 0x2eef20;
     bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
     void setMaxOffset(float offset) {
-    	float value = getValue(), win 0x712b0, imac 0x2eef20;
+    	float value = getValue();
     	m_length = offset;
     	this->setPosition({0, 0});
     	setValue(value);
     }
     void setRotated(bool rotated) {
-    	float value = getValue(), win 0x712b0, imac 0x2eef20;
+    	float value = getValue();
     	m_vertical = rotated;
     	this->setPosition({0, 0});
     	setValue(value);
