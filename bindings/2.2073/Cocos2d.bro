@@ -3159,15 +3159,15 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     	return nullptr;
     }
 
-    bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = imac 0x5c5b30;
+    bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x9999999, imac 0x5c5b30;
     bool initWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline {
     	return this->initWithStrikePoint(p1, CCPointZero, .5f);
     }
 
-    CCLightning();
+    CCLightning() = win 0x9999999;
     ~CCLightning();
 
-    void strike();
+    void strike() = win 0x9999999;
     void strikeFinished() = imac 0x5c5f00;
     void strikeRandom() = win inline, ios inline {
     	m_seed = rand();
