@@ -1425,7 +1425,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     	this->toggle(on);
     }
 
-    virtual void activate();
+    virtual void activate() = win 0x45490;
     virtual void selected();
     virtual void unselected();
     virtual void setEnabled(bool) = win 0x45530;
@@ -2184,7 +2184,7 @@ class CheckpointObject : cocos2d::CCNode {
     TodoReturn getObject();
     void setObject(GameObject*);
 
-    virtual bool init();
+    virtual bool init() = win 0x77db0;
 
     GJGameState m_gameState;
     GJShaderState m_shaderState;
@@ -4911,7 +4911,7 @@ class ExtendedLayer : cocos2d::CCLayer {
     	return nullptr;
     }
 
-    virtual bool init();
+    virtual bool init() = win 0x3ec90;
     virtual void setPosition(cocos2d::CCPoint const&) = win 0x3ecb0;
 
     BoomScrollLayerDelegate* m_delegate;
@@ -10236,7 +10236,7 @@ class GJRewardItem : cocos2d::CCObject {
     		|| type == SpecialRewardItem::BloodShard || type == SpecialRewardItem::MetalShard || type == SpecialRewardItem::LightShard
     		|| type == SpecialRewardItem::SoulShard;
     }
-    static gd::string rewardItemToStat(SpecialRewardItem);
+    static gd::string rewardItemToStat(SpecialRewardItem) = win 0x1f0d50;
 
     virtual void encodeWithCoder(DS_Dictionary*) = win 0x1f0fb0, imac 0x8e980;
     virtual bool canEncode() {
