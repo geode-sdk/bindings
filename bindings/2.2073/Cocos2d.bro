@@ -2531,7 +2531,7 @@ class cocos2d::CCDrawNode {
     void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
     void drawDot(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&) = imac 0x5f9a70;
     bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::_ccColor4F const&) = imac 0x5fb0b0;
-    bool drawPolygon(cocos2d::CCPoint* verts, unsigned int count, cocos2d::ccColor4F &fillColor const, float borderWidth, cocos2d::ccColor4F &borderColor const);
+    bool drawPolygon(cocos2d::CCPoint* verts, unsigned int count, cocos2d::ccColor4F& fillColor const, float borderWidth, cocos2d::ccColor4F& borderColor const);
     void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&) = imac 0x5f9c50;
     bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&) = imac 0x5faf80;
     void drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&) = imac 0x5fa930;
