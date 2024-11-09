@@ -3164,7 +3164,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     	return this->initWithStrikePoint(p1, CCPointZero, .5f);
     }
 
-    CCLightning() = win 0x9999999;
+    CCLightning() = win 0x44400;
     ~CCLightning();
 
     void strike() = win 0x9999999;
