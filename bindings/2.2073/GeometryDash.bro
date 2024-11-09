@@ -7134,13 +7134,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn getDemonLevelKey(GJGameLevel*);
     gd::string getGauntletRewardKey(int) = win 0x1e6d20, imac 0x77ca0;
     gd::string getItemKey(int, int) = win 0x1de890;
-    int getItemUnlockState(int itemID, UnlockType unlockType) {
-    	auto key = getItemKey(itemID, (int) unlockType);
-    	if(auto object = m_unlockedItems->objectForKey(key))
-    		return object->getTag();
-
-    	return 0;
-    }
+    int getItemUnlockState(int itemID, UnlockType unlockType) = win 0x1e2a10;
     int getItemUnlockStateLite(int, UnlockType);
     gd::string getLevelKey(GJGameLevel* level) {
     	return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Local, level->m_dailyID > 0, level->m_gauntletLevel);
@@ -7293,15 +7287,18 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_completedMappacks;
     cocos2d::CCDictionary* m_completedLists;
     cocos2d::CCDictionary* m_weeklyChest;
+    cocos2d::CCDictionary* m_eventChest;
     cocos2d::CCDictionary* m_treasureRoomChests;
     geode::SeedValueSRV m_bonusKey;
     cocos2d::CCDictionary* m_miscChests;
     cocos2d::CCDictionary* m_enabledItems;
+    cocos2d::CCDictionary* m_wraithChests;
     bool m_unkBoolIncrementStat;
     cocos2d::CCDictionary* m_unkDict;
     cocos2d::CCDictionary* m_unlockedItems;
     gd::map<std::pair<int, UnlockType>, int> m_accountIDForIcon;
     gd::map<int, gd::string> m_usernameForAccountID;
+    gd::map<std::pair<int, UnlockType>, int> m_wraithIcons;
     bool m_GS29;
     int m_activePath;
 }
