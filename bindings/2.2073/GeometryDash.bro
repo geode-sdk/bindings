@@ -5007,10 +5007,10 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 
     // virtual void onEnter() = ios 0x2bd0d8; // only exists on armv7...
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x52a00, imac 0x489320;
-    virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x52b50;
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x52aa0, imac 0x489440;
-    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
-    virtual void registerWithTouchDispatcher();
+    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x52b10;
+    virtual void registerWithTouchDispatcher() = win 0x52d60;
     virtual void keyBackClicked() = win 0x52880, imac 0x489200;
     virtual void keyDown(cocos2d::enumKeyCodes) = win 0x52800, imac 0x489150;
     virtual void show() = win 0x52b90, imac 0x4895e0;
@@ -14206,17 +14206,17 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
     void exitLayer();
     void musicSliderChanged(cocos2d::CCObject*) = win 0x35cb50, imac 0x785280;
     void onAccount(cocos2d::CCObject* sender) = win 0x35d640;
-    void onHelp(cocos2d::CCObject* sender) = win 0x35d5f0;
+    void onHelp(cocos2d::CCObject* sender) = win 0x35d700;
     void onMenuMusic(cocos2d::CCObject* sender);
     void onOptions(cocos2d::CCObject* sender) = win 0x35cd30;
     void onProgressBar(cocos2d::CCObject* sender);
-    void onRate(cocos2d::CCObject* sender);
+    void onRate(cocos2d::CCObject* sender) = win 0x35d690;
     void onRecordReplays(cocos2d::CCObject* sender);
     void onSecretVault(cocos2d::CCObject* sender) = win 0x35ce90;
-    void onSoundtracks(cocos2d::CCObject* sender);
-    void onSupport(cocos2d::CCObject* sender);
-    void onVideo(cocos2d::CCObject* sender);
-    void sfxSliderChanged(cocos2d::CCObject*);
+    void onSoundtracks(cocos2d::CCObject* sender) = win 0x35cce0;
+    void onSupport(cocos2d::CCObject* sender) = win 0x35d700;
+    void onVideo(cocos2d::CCObject* sender) = win 0x35d5d0;
+    void sfxSliderChanged(cocos2d::CCObject*) = win 0x35cc50;
     void tryEnableRecord();
 
     virtual void customSetup() = win 0x35bed0;
@@ -14380,7 +14380,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     	m_unkBool1 = p0;
     	return CCBlockLayer::init();
     }
-    void musicSliderChanged(cocos2d::CCObject*);
+    void musicSliderChanged(cocos2d::CCObject*) = win 0x3682a0;
     void onEdit(cocos2d::CCObject* sender);
     void onHelp(cocos2d::CCObject* sender);
     void onNormalMode(cocos2d::CCObject* sender);
@@ -14394,7 +14394,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onSettings(cocos2d::CCObject* sender) = win 0x3676b0;
     void onTime(cocos2d::CCObject* sender);
     void setupProgressBars();
-    void sfxSliderChanged(cocos2d::CCObject*);
+    void sfxSliderChanged(cocos2d::CCObject*) = win 0x35cc50;
     TodoReturn tryShowBanner(float);
     void tryQuit(cocos2d::CCObject* sender) = win 0x368b30;
 
@@ -15174,7 +15174,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
     void loadDefaultColors();
     TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&) = imac 0xbec20;
-    void loadFromCheckpoint(CheckpointObject*);
+    void loadFromCheckpoint(CheckpointObject*) = win 0x3a0690;
     TodoReturn loadLastCheckpoint();
     CheckpointObject * markCheckpoint() = win 0x3a05c0, imac 0xbbf60;
     void onQuit() = win 0x3a3c90;
