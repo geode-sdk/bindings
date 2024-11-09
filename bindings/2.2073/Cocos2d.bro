@@ -3165,7 +3165,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     }
 
     CCLightning() = win 0x44400;
-    ~CCLightning();
+    ~CCLightning() = win 0x444d0;
 
     void strike() = win 0x9999999;
     void strikeFinished() = imac 0x5c5f00;
