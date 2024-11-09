@@ -2860,7 +2860,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onBack(cocos2d::CCObject* sender);
     void onChallenge(cocos2d::CCObject* sender) = win 0x9ddb0, imac 0x286f50;
     void onDailyLevel(cocos2d::CCObject* sender) = win 0x9dd50;
-    void onEventLevel(cocos2d::CCObject* sender);
+    void onEventLevel(cocos2d::CCObject* sender) = win 0x9dd90;
     void onFameLevels(cocos2d::CCObject* sender);
     void onFeaturedLevels(cocos2d::CCObject* sender) = win 0x9d2a0;
     void onGauntlets(cocos2d::CCObject* sender) = win 0x9d590;
@@ -2872,9 +2872,9 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onOnlyFullVersion(cocos2d::CCObject* sender);
     void onPaths(cocos2d::CCObject* sender) = win 0x9d360;
     void onSavedLevels(cocos2d::CCObject* sender) = win 0x9cef0;
-    void onSecretVault(cocos2d::CCObject* sender);
+    void onSecretVault(cocos2d::CCObject* sender) = win 0x9df20;
     void onTopLists(cocos2d::CCObject* sender) = win 0x9d380, imac 0x2870b0;
-    void onTreasureRoom(cocos2d::CCObject* sender);
+    void onTreasureRoom(cocos2d::CCObject* sender) = win 0x9e730;
     void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x9dd70;
 
     virtual bool init() = win 0x9bb10;
@@ -6681,10 +6681,10 @@ class GameObject : CCSpritePlus {
     virtual bool canMultiActivate(bool);
     virtual void updateTextKerning(int);
     virtual int getTextKerning();
-    virtual bool getObjectRectDirty();
-    virtual void setObjectRectDirty(bool);
-    virtual bool getOrientedRectDirty();
-    virtual void setOrientedRectDirty(bool);
+    virtual bool getObjectRectDirty() = win 0x136000;
+    virtual void setObjectRectDirty(bool) = win 0x136010;
+    virtual bool getOrientedRectDirty() = win 0x136020;
+    virtual void setOrientedRectDirty(bool) = win 0x136030;
     virtual GameObjectType getType();
     virtual void setType(GameObjectType);
     virtual cocos2d::CCPoint getStartPos() = win 0x136060, imac 0x1e2160;
@@ -7876,7 +7876,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void pauseAudio() = win 0x231c40;
     TodoReturn performMathOperation(double, double, int);
     TodoReturn performMathRounding(double, int);
-    void pickupItem(EffectGameObject*);
+    void pickupItem(EffectGameObject*) = win 0x210bb0;
     TodoReturn playAnimationCommand(int, int);
     bool playerCircleCollision(PlayerObject*, GameObject*) = win 0x20c810;
     TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
@@ -8895,7 +8895,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn hasPulseEffectForGroupID(int);
     bool isGroupEnabled(int);
     TodoReturn keyForGroupIDColor(int, cocos2d::ccColor3B const&, bool);
-    void loadFromState(EffectManagerState&);
+    void loadFromState(EffectManagerState&) = win 0x25ca20;
     void objectsCollided(int, int) = imac 0x2ccc10;
     TodoReturn opacityForIndex(int);
     TodoReturn opacityModForGroup(int);
@@ -10458,9 +10458,13 @@ class GJScaleControl : cocos2d::CCLayer {
     	return (m_upperBound - m_lowerBound) * value + m_lowerBound;
     }
     float skewFromValue(float) = imac 0x52e30;
-    void sliderChanged(cocos2d::CCObject* sender);
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x128780;
     void updateLabelX(float);
-    void updateLabelXY(float);
+    void updateLabelXY(float value) = win inline {
+        auto str = cocos2d::CCString::createWithFormat("Scale: %.02f", value);
+        m_scaleLabel->setString(str->getCString());
+        m_scaleLabel->limitLabelWidth(100.0f, 0.0f, 0.0f);
+    }
     void updateLabelY(float);
     float valueFromScale(float scale) {
     	auto value = (scale - m_lowerBound) / (m_upperBound - m_lowerBound);
@@ -12228,7 +12232,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateLevelFont(int) = win 0x2d65b0;
     void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x2d1670, imac 0xebc90;
     static void updateObjectLabel(GameObject*) = win 0x2cee20, imac 0xea240;
-    void updateOptions();
+    void updateOptions() = win 0x2cA7d0;
     void updatePreviewAnim();
     void updatePreviewParticle(ParticleGameObject*) = imac 0x1a1db0;
     void updatePreviewParticles();
@@ -13549,8 +13553,8 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
     	return nullptr;
     }
 
-    void audioNext(cocos2d::CCObject* sender);
-    void audioPrevious(cocos2d::CCObject* sender);
+    void audioNext(cocos2d::CCObject* sender) = win 0x301b40;
+    void audioPrevious(cocos2d::CCObject* sender) = win 0x301c60;
     void createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0x302610;
     void onClose(cocos2d::CCObject* sender) = win 0x302870, imac 0x617ab0;
     void onCoins(cocos2d::CCObject* sender);
@@ -14381,7 +14385,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     	return CCBlockLayer::init();
     }
     void musicSliderChanged(cocos2d::CCObject*) = win 0x3682a0;
-    void onEdit(cocos2d::CCObject* sender);
+    void onEdit(cocos2d::CCObject* sender) = win 0x3686c0;
     void onHelp(cocos2d::CCObject* sender);
     void onNormalMode(cocos2d::CCObject* sender) = win 0x368410;
     void onPracticeMode(cocos2d::CCObject* sender) = win 0x368330;
@@ -14822,7 +14826,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     virtual void setScale(float);
     virtual void setPosition(cocos2d::CCPoint const&) = win 0x386790, imac 0x407d00;
     virtual void setVisible(bool) = win 0x38c9d0, imac 0x40b280;
-    virtual void setRotation(float);
+    virtual void setRotation(float) = win 0x38c8d0;
     virtual void setOpacity(unsigned char) = win 0x387c40;
     virtual void setColor(cocos2d::ccColor3B const&) = win 0x387460;
     virtual void setFlipX(bool) = win 0x38c8e0;
@@ -15241,7 +15245,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual void postUpdate(float) = win 0x39d940, imac 0xbbcf0;
     virtual TodoReturn checkForEnd() = win 0x39dd10, imac 0xbc020;
     virtual TodoReturn testTime();
-    virtual void updateVerifyDamage() = imac 0xbc110;
+    virtual void updateVerifyDamage() = win 0x39dee0, imac 0xbc110;
     virtual void updateAttemptTime(float) = win 0x39dfd0, imac 0xbc200;
     virtual void updateVisibility(float) = win 0x3983c0;
     virtual TodoReturn opacityForObject(GameObject*) = win 0x3992f0;
@@ -15249,7 +15253,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual TodoReturn activateEndTrigger(int, bool, bool);
     virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = win 0x395200, imac 0xb7450;
     virtual void toggleGlitter(bool) = win 0x39c8b0;
-    virtual void destroyPlayer(PlayerObject*, GameObject*) = imac 0xbaff0;
+    virtual void destroyPlayer(PlayerObject*, GameObject*) = win 0x39c9d0, imac 0xbaff0;
     virtual TodoReturn toggleGroundVisibility(bool) = win 0x39c700;
     virtual void toggleMGVisibility(bool) = win 0x39c780, imac 0xbae70;
     virtual void toggleHideAttempts(bool) = win 0x39c7c0, imac 0xbae90;
@@ -18335,7 +18339,7 @@ class ShaderLayer : cocos2d::CCLayer {
 
     virtual bool init() = win 0x469670;
     virtual void update(float) = win 0x469670;
-    virtual void visit();
+    virtual void visit() = win 0x470440;
 
     GJShaderState m_state;
     bool m_unk3c0;
