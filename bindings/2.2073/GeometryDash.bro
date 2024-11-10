@@ -1614,7 +1614,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
     	delete ret;
     	return nullptr;
     }
-    static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const& frameName);
+    static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const& frameName) = win 0x49020;
     static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool rotated) {
     	auto ret = new CCSpriteGrayscale();
     	if (ret->initWithTexture(texture, rect, rotated)) {
@@ -2123,7 +2123,7 @@ class CharacterColorPage : FLAlertLayer {
     void onClose(cocos2d::CCObject* sender) = win 0x8a760;
     void onMode(cocos2d::CCObject* sender) = win 0x89550, imac 0x6477b0;
     void onPlayerColor(cocos2d::CCObject* sender) = win 0x89d60;
-    void toggleGlow(cocos2d::CCObject*);
+    void toggleGlow(cocos2d::CCObject*) = win 0x88da0;
     TodoReturn toggleGlowItems(bool);
     void toggleShip(cocos2d::CCObject*) = win 0x88c80, imac 0x647700;
     void updateColorMode(int) = imac 0x647ee0;
@@ -6617,8 +6617,8 @@ class GameObject : CCSpritePlus {
 
     virtual void update(float);
     virtual void setScaleX(float) = win 0x1951b0;
-    virtual void setScaleY(float);
-    virtual void setScale(float);
+    virtual void setScaleY(float) = win 0x195290;
+    virtual void setScale(float) = win 0x195380;
     virtual void setPosition(cocos2d::CCPoint const&) = win 0x194ac0;
     virtual void setVisible(bool) = win 0x195bb0, imac 0x5a4bc0;
     virtual void setRotation(float) = win 0x194d60, imac 0x5a4070;
@@ -6650,8 +6650,8 @@ class GameObject : CCSpritePlus {
     virtual void claimParticle() = win 0x195cd0, imac 0x5a4d20;
     virtual void unclaimParticle() = win 0x196200;
     virtual void particleWasActivated();
-    virtual bool isFlipX();
-    virtual bool isFlipY();
+    virtual bool isFlipX() = win 0x195100;
+    virtual bool isFlipY() = win 0x195110;
     virtual void setRScaleX(float) = win 0x195470;
     virtual void setRScaleY(float) = win 0x1954b0;
     virtual void setRScale(float) = win 0x1954f0, imac 0x5a45e0;
@@ -8170,7 +8170,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void updateVerifyDamage();
     virtual void updateAttemptTime(float);
     virtual void updateVisibility(float);
-    virtual TodoReturn playerTookDamage(PlayerObject*);
+    virtual void playerTookDamage(PlayerObject*);
     virtual TodoReturn opacityForObject(GameObject*) = win 0x231bc0, imac 0x1422d0;
     virtual TodoReturn addToSpeedObjects(EffectGameObject*);
     virtual void objectsCollided(int, int) = win 0x213b70;
@@ -10474,13 +10474,21 @@ class GJScaleControl : cocos2d::CCLayer {
     }
     float skewFromValue(float) = imac 0x52e30;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x128780;
-    void updateLabelX(float);
-    void updateLabelXY(float value) = win inline {
+    void updateLabelX(float value) = win inline {
+        auto str = cocos2d::CCString::createWithFormat("ScaleX %.02f", value); // yes, gd is missing a : there :(
+        m_scaleXLabel->setString(str->getCString());
+        m_scaleXLabel->limitLabelWidth(100.0f, 0.0f, 0.0f);
+    }
+    void updateLabelXY(float value) = win inline { // 0x129000 ?
         auto str = cocos2d::CCString::createWithFormat("Scale: %.02f", value);
         m_scaleLabel->setString(str->getCString());
         m_scaleLabel->limitLabelWidth(100.0f, 0.0f, 0.0f);
     }
-    void updateLabelY(float);
+    void updateLabelY(float value) = win inline {
+        auto str = cocos2d::CCString::createWithFormat("ScaleY: %.02f", value);
+        m_scaleYLabel->setString(str->getCString());
+        m_scaleYLabel->limitLabelWidth(100.0f, 0.0f, 0.0f);
+    }
     float valueFromScale(float scale) {
     	auto value = (scale - m_lowerBound) / (m_upperBound - m_lowerBound);
     	return value < 0 ? 0 : (value > 1 ? 1 : value);
@@ -12257,7 +12265,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     virtual void draw();
     virtual void postUpdate(float) = win 0x2d87b0, imac 0xf2730;
     virtual void updateVisibility(float) = win 0x2d05e0, imac 0xeb0e0;
-    virtual TodoReturn playerTookDamage(PlayerObject*) = win 0x2d87a0, imac 0xf2710;
+    virtual void playerTookDamage(PlayerObject*) = win 0x2d87a0, imac 0xf2710;
     virtual void updateColor(cocos2d::ccColor3B& color, float fadeTime, int colorID, bool blending, float opacity, cocos2d::ccHSVValue& copyHSV, int colorIDToCopy, bool copyOpacity, EffectGameObject* callerObject, int unk1, int unk2) = win 0x2d4f60, imac 0xef4a0;
     virtual void updateDebugDraw() = win 0x2d93f0;
     virtual void addToGroup(GameObject*, int, bool) = win 0x2d5f50, imac 0xefe20;
@@ -13167,7 +13175,7 @@ class LoadingCircle : cocos2d::CCLayerColor {
 class LoadingCircleSprite : cocos2d::CCSprite {
     // virtual ~LoadingCircleSprite();
 
-    static LoadingCircleSprite* create();
+    static LoadingCircleSprite* create() = win 0x6bc30;
 
     void fadeInCircle(bool reverseOpacity) {
     	this->stopActionByTag(0);
@@ -14407,7 +14415,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onQuit(cocos2d::CCObject* sender) = win 0x368d30;
     void onRecordReplays(cocos2d::CCObject* sender);
     void onReplay(cocos2d::CCObject* sender);
-    void onRestart(cocos2d::CCObject* sender);
+    void onRestart(cocos2d::CCObject* sender) = win 0x368580;
     void onRestartFull(cocos2d::CCObject* sender) = win 0x368620;
     void onResume(cocos2d::CCObject* sender) = win 0x3684f0;
     void onSettings(cocos2d::CCObject* sender) = win 0x3676b0;
@@ -15214,7 +15222,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void resetLevel() = win 0x3a1e70, imac 0xb3510;
     void resetLevelFromStart() = win 0x3a1cd0;
     void resume() = win 0x3a36a0;
-    void resumeAndRestart(bool) = imac 0xbf960;
+    void resumeAndRestart(bool) = imac 0xbf960, win 0x3a3390;
     TodoReturn saveActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
     TodoReturn saveDynamicSaveObjects(gd::vector<SavedObjectStateRef>&);
     TodoReturn scanActiveSaveObjects();
@@ -15868,7 +15876,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 
     gd::string getBasicMessage() = win 0x3d0740;
     gd::string getErrorMessage() = win 0x3d12a0;
-    gd::string getMessage();
+    gd::string getMessage() = win 0x3cfe70;
     gd::string getThreadMessage() = win 0x3d0050;
     TodoReturn nodeWithTag(int);
     void onBack(cocos2d::CCObject* sender);
@@ -15880,7 +15888,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     void selectAThread();
     void showCompletedLevel() = win 0x3cc460;
     void showSecretLevel() = win 0x3cc2f0;
-    void updateMessageLabel(gd::string);
+    void updateMessageLabel(gd::string text) = win 0x3cfde0;
     void updateSearchLabel(char const*);
 
     virtual bool init() = win 0x3cae30;
@@ -16034,7 +16042,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void moveToSecondaryLayer(int);
     void onBack(cocos2d::CCObject* sender) = win 0x3c0770;
     void onChestType(cocos2d::CCObject* sender) = win 0x3bdba0, imac 0x61b8d0;
-    void onSelectItem(cocos2d::CCObject* sender);
+    void onSelectItem(cocos2d::CCObject* sender) = win 0x3bec90;
     void onShop(cocos2d::CCObject* sender) = win 0x3bf220, imac 0x61bfa0;
     void onSpecialItem(cocos2d::CCObject* sender);
     void onSwitchPage(cocos2d::CCObject* sender) = win 0x3bd830;
