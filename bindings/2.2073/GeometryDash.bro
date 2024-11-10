@@ -11697,7 +11697,7 @@ class ItemTriggerGameObject : EffectGameObject {
 class KeybindingsLayer : FLAlertLayer {
     // virtual ~KeybindingsLayer();
 
-    static KeybindingsLayer* create();
+    static KeybindingsLayer* create() = win 0x2b80b0;
 
     TodoReturn addKeyPair(char const*, char const*);
     TodoReturn countForPage(int);
@@ -11716,7 +11716,7 @@ class KeybindingsLayer : FLAlertLayer {
     void onToggle(cocos2d::CCObject* sender);
     TodoReturn pageKey(int);
 
-    virtual bool init();
+    virtual bool init() = win 0x2b81a0;
     virtual void keyBackClicked();
 }
 
@@ -13532,7 +13532,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
     void onGPSignIn(cocos2d::CCObject* sender);
     void onGPSignOut(cocos2d::CCObject* sender);
     void onInfo(cocos2d::CCObject* sender);
-    void onKeybindings(cocos2d::CCObject* sender);
+    void onKeybindings(cocos2d::CCObject* sender) = win 0xdba40;
     void onNextPage(cocos2d::CCObject* sender);
     void onParental(cocos2d::CCObject* sender);
     void onPrevPage(cocos2d::CCObject* sender);
