@@ -231,12 +231,12 @@ class AchievementManager : cocos2d::CCNode {
     void encodeDataTo(DS_Dictionary*) = imac 0x76ebd0;
     void firstSetup();
     TodoReturn getAchievementRewardDict();
-    cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x39d70;
+    cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x39d70, imac 0x76ee90;
     TodoReturn getAllAchievements();
     cocos2d::CCArray* getAllAchievementsSorted(bool);
     bool isAchievementAvailable(gd::string);
     bool isAchievementEarned(char const* ach) = win 0x39a70, imac 0x76ed40;
-    int limitForAchievement(gd::string id) {
+    int limitForAchievement(gd::string id) = imac 0x76f000 {
     	if (auto achievements = getAchievementsWithID(id.c_str())) {
     		if (auto limits = static_cast<cocos2d::CCString*>(achievements->objectForKey("limits"))) return limits->intValue();
     	}
@@ -910,7 +910,7 @@ class ButtonSprite : cocos2d::CCSprite {
     static ButtonSprite* create(char const* caption, float scale) {
     	return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, scale);
     }
-    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x3f150;
+    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x3f150, imac 0x92bd0;
     static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg) {
     	return ButtonSprite::create(caption, width, p2, scale, absolute, font, bg, .0f);
     }
@@ -925,7 +925,7 @@ class ButtonSprite : cocos2d::CCSprite {
     	return ButtonSprite::create(topSprite, 0, 0, .0f, 1.f, false, "GJ_button_01.png", false);
     }
 
-    bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3f220;
+    bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3f220, imac 0x92d20;
     bool init(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3eef0, imac 0x92490;
     void setColor(cocos2d::_ccColor3B const& color) {
     	// i love inlined funcs
@@ -1295,8 +1295,8 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     }
     void useAnimationType(MenuAnimationType);
 
-    virtual void activate() = win 0x44d40;
-    virtual void selected() = win 0x44e50;
+    virtual void activate() = win 0x44d40, imac 0x265320;
+    virtual void selected() = win 0x44e50, imac 0x2654a0;
     virtual void unselected() = win 0x45070, imac 0x265720;
 
     /// Set a new image for this button
@@ -1379,7 +1379,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     }
 
     TodoReturn activeItem();
-    bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) {
+    bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = imac 0x5a2d0 {
     	if (!CCMenuItem::initWithTarget(target, callback)) return false;
 
     	m_offButton = CCMenuItemSpriteExtra::create(off, nullptr, this, menu_selector(CCMenuItemToggler::normalTouch));
@@ -1401,8 +1401,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 
     	return true;
     }
-    void normalTouch(cocos2d::CCObject*) = win 0x45580;
-    void selectedTouch(cocos2d::CCObject*) = win 0x455a0;
+    void normalTouch(cocos2d::CCObject*) = win 0x45580, imac 0x5a510;
+    void selectedTouch(cocos2d::CCObject*) = win 0x455a0, imac 0x5a5e0;
     void setSizeMult(float mult) {
     	m_offButton->setSizeMult(mult);
     	m_onButton->setSizeMult(mult);
@@ -1425,9 +1425,9 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     	this->toggle(on);
     }
 
-    virtual void activate() = win 0x45490;
-    virtual void selected();
-    virtual void unselected();
+    virtual void activate() = win 0x45490, imac 0x5a8c0;
+    virtual void selected() = imac 0x5a890;
+    virtual void unselected() = imac 0x5a8f0;
     virtual void setEnabled(bool) = win 0x45530;
 
     /// Update the sizing of this toggle's image
@@ -11656,9 +11656,9 @@ class InheritanceNode : cocos2d::CCObject {
 class ItemInfoPopup : FLAlertLayer {
     // virtual ~ItemInfoPopup();
 
-    static ItemInfoPopup* create(int, UnlockType) = win 0x273d10, imac 0x35bdc0;
+    static ItemInfoPopup* create(int, UnlockType) = win 0x273d10, imac 0x35bdc0, m1 0x2ef0f0;
 
-    bool init(int, UnlockType) = win 0x273e00;
+    bool init(int, UnlockType) = win 0x273e00, imac 0x35e8d0, m1 0x2f18e0;
     bool isUnlockedByDefault(int, UnlockType) = imac 0x35fee0;
     static gd::string nameForUnlockType(int, UnlockType) = win 0x275dd0, imac 0x35fc00;
     void onClose(cocos2d::CCObject* sender);

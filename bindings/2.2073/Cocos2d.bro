@@ -950,15 +950,15 @@ class cocos2d::CCNode {
     virtual cocos2d::CCAffineTransform const nodeToParentTransform() = imac 0x262890;
     virtual cocos2d::CCAffineTransform const nodeToParentTransformFast() = imac 0x262ba0;
     virtual cocos2d::CCAffineTransform const parentToNodeTransform() = imac 0x262ff0;
-    virtual cocos2d::CCAffineTransform nodeToWorldTransform();
-    virtual cocos2d::CCAffineTransform nodeToWorldTransformFast();
+    virtual cocos2d::CCAffineTransform nodeToWorldTransform() = imac 0x263070;
+    virtual cocos2d::CCAffineTransform nodeToWorldTransformFast() = imac 0x263100;
     virtual cocos2d::CCAffineTransform worldToNodeTransform() = imac 0x263190;
-    virtual bool addComponent(cocos2d::CCComponent*);
-    virtual bool removeComponent(char const*);
-    virtual bool removeComponent(cocos2d::CCComponent*);
-    virtual void removeAllComponents();
-    virtual void updateTweenAction(float, char const*);
-    virtual void updateTweenActionInt(float, int);
+    virtual bool addComponent(cocos2d::CCComponent*) = imac 0x2634D0;
+    virtual bool removeComponent(char const*) = imac 0x2634F0;
+    virtual bool removeComponent(cocos2d::CCComponent*) = imac 0x263510;
+    virtual void removeAllComponents() = imac 0x263530;
+    virtual void updateTweenAction(float, char const*) = imac 0x263440;
+    virtual void updateTweenActionInt(float, int) = imac 0x263450;
 }
 
 [[link(win, android)]]
@@ -2645,7 +2645,7 @@ class cocos2d::CCString {
     static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x795800;
     // static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x278aec;
 
-    char const* getCString() const;
+    char const* getCString() const = imac 0x795230;
     //createWithContentsOfFile = ios 0x278b74;
 
     bool boolValue() const = imac 0x7955f0;
@@ -3014,7 +3014,7 @@ class cocos2d::extension::CCScale9Sprite {
     	delete ret;
     	return nullptr;
     }
-    static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect);
+    static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3e39a0;
 
     CCScale9Sprite();
     ~CCScale9Sprite();
