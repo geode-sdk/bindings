@@ -32,12 +32,12 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
     static AccountLayer* create() = win 0x7d560;
 
     TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-    void doBackup() {
+    void doBackup() = win inline {
        	this->updatePage(false);
        	if (!GJAccountManager::sharedState()->getAccountBackupURL()) this->backupAccountFailed((BackupAccountError)-1, 0);
        	else this->showLoadingUI();
     }
-    void doSync() {
+    void doSync() = win inline {
        	this->updatePage(false);
        	if (!GJAccountManager::sharedState()->getAccountSyncURL()) this->syncAccountFailed((BackupAccountError)-1, 0);
        	else this->showLoadingUI();
