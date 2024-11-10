@@ -6698,14 +6698,14 @@ class GameObject : CCSpritePlus {
 	// property 511
 	bool m_hasExtendedCollision;
 	cocos2d::ccColor3B m_maybeGroupColor;
-	bool m_unk280;
-	bool m_unk281;
-	float m_blackChildRelated;
-	bool m_unk288;
+	bool m_useBlackOpacity;
+	bool m_useObjectGlowColor;
+	float m_blackChildOpacity;
+	bool m_maybeBlackChildIsBlendable;
 	bool m_editorEnabled;
 	bool m_isGroupDisabled;
 	bool m_unk28B;
-	bool m_unk28c;
+	bool m_notLinked;
 
 	// somehow related to property 155 and 156 if anyone wants to reverse engineer
 	int m_activeMainColorID;
@@ -6714,16 +6714,17 @@ class GameObject : CCSpritePlus {
 	bool m_detailUsesHSV;
 	float m_positionXOffset;
 	float m_positionYOffset;
-
+	
+	
 	float m_rotationXOffset;
 	float m_unk2A8;
 	float m_rotationYOffset;
 	float m_unk2B0;
 	float m_scaleXOffset;
 	float m_scaleYOffset;
-	float m_unk2BC;
-	float m_unk2C0;
-	bool m_tempOffsetXRelated;
+	float m_realPositionX;
+	float m_realPositionY;
+	bool m_tempOffsetXRelated; // m_lockXPos or m_lockRoation might be a better name? 
 	bool m_isFlipX;
 	bool m_isFlipY;
 	cocos2d::CCPoint m_customBoxOffset;
@@ -6732,7 +6733,7 @@ class GameObject : CCSpritePlus {
 	OBB2D* m_orientedBox;
 	bool m_shouldUseOuterOb;
 	cocos2d::CCSprite* m_glowSprite;
-	int m_unk2F8;
+	int m_maybeGlowSpriteDetail;
 	float m_width;
 	float m_height;
 	bool m_hasSpecialChild;
@@ -6741,22 +6742,22 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCParticleSystemQuad* m_particle;
 	gd::string m_particleString;
 	bool m_hasParticles;
-
+    
 	// property 146
 	bool m_particleUseObjectColor;
 	bool m_hasColorSprite;
-	cocos2d::CCPoint m_unk31c;
-	bool m_isSomeSpriteScalable;
+	cocos2d::CCPoint m_particlePostion;
+	bool m_isSomeSpriteScalable; // Maybe ParticleIsScaled?
 	cocos2d::CCRect m_textureRect;
 	bool m_isDirty;
 	bool m_isObjectPosDirty;
 	bool m_isUnmodifiedPosDirty;
-	float m_unk33C;
+	float m_unk33C; // has some behaviors with objectrect's height
 	cocos2d::CCRect m_objectRect;
 	bool m_isObjectRectDirty;
 	bool m_isOrientedBoxDirty;
 	bool m_colorSpriteLocked;
-	bool m_unk353;
+	bool m_isBlendable;
 	bool m_canRotateFree;
 	bool m_isMirroredByScale;
 
@@ -6768,7 +6769,8 @@ class GameObject : CCSpritePlus {
 	bool m_shouldBlendBase;
 	bool m_shouldBlendDetail;
 	bool m_hasCustomChild;
-	bool m_unk367;
+    // Object is a creature or Monster Object
+	bool m_isAnimated; 
 	cocos2d::CCSprite* m_colorSprite;
 	bool m_unk370;
 	float m_objectRadius;
@@ -6780,6 +6782,7 @@ class GameObject : CCSpritePlus {
 
 	// used in PlayerObject::gameEventTriggered
 	GameObjectType m_savedObjectType;
+    // unk390 is Possibly Another Unknown Object type  
 	int m_unk390;
 	float m_unmodifiedPositionX;
 	float m_unmodifiedPositionY;
@@ -6799,8 +6802,11 @@ class GameObject : CCSpritePlus {
 	float m_customScaleY;
 	bool m_startFlipX;
 	bool m_startFlipY;
-	bool m_unk3ee;
+
+    	// m_unk3ee Also has Invisable Behaviors 
+    	bool m_unk3ee; 
 	bool m_isInvisible;
+    	// NOTE: m_unk3D8 might be unused
 	int m_unk3D8;
 	short m_unk3DC;
 	bool m_unk3DE;
@@ -6822,12 +6828,13 @@ class GameObject : CCSpritePlus {
 
 	// property 1
 	int m_objectID;
-	bool m_unk3F8;
+	bool m_dontTransform;
 	bool m_isSolid;
 	bool m_ignoreEnter;
 	bool m_ignoreFade;
+    	// Maybe m_dontFadeTinted ?
 	bool m_unk3FC;
-	bool m_unk3FD;
+	bool m_isTintObject;
 	bool m_customSpriteColor;
 
 	// property 497
@@ -6841,22 +6848,22 @@ class GameObject : CCSpritePlus {
 	// property 507
 	bool m_hasNoParticles;
 	int m_defaultZOrder;
-	bool m_unk40C;
+	bool m_isPortalObject;
 	bool m_colorZLayerRelated;
-	bool m_unk40E;
-	float m_unk410;
-	float m_unk414;
+	bool m_isAudioScale; 
+	float m_minAudioScale;
+	float m_maxAudioScale;
 	bool m_particleLocked;
 
 	// property 53
 	int m_property53;
-	bool m_gmUnkBool4Related;
-	bool m_unk421;
-	bool m_unk422;
+	bool m_gmUnkBool4Related; // m_doesntFade Maybe?
+	bool m_useGlowBGColor; 
+	bool m_useGlowColor;
 	bool m_cantColorGlow;
 	float m_opacityMod;
-	bool m_slopeBugged;
-	int m_slopeDirection;
+	bool m_slopeBugged; // m_upSlope might be a better name?
+	int m_slopeDirection; //
 	bool m_maybeShouldFixSlopes;
 	float m_opacityMod2;
 
@@ -6864,7 +6871,7 @@ class GameObject : CCSpritePlus {
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
-	bool m_unk448;
+	bool m_isBlendingBatchNode;
 	ZLayer m_defaultZLayer;
 	bool m_zFixedZLayer;
 
@@ -6905,12 +6912,12 @@ class GameObject : CCSpritePlus {
 	// property 61
 	short m_editorLayer2;
 	int m_enabledGroupsCounter;
-	bool m_unk4ac;
-	bool m_unk4ad;
+	bool m_updateCustomContentSize;
+	bool m_hasContentSize;
 
 	// property 121
 	bool m_isNoTouch;
-	cocos2d::CCSize m_unk4b0;
+	cocos2d::CCSize m_lastSize;
 	cocos2d::CCPoint m_lastPosition;
 	int m_unk4C0;
 	int m_unk4C4;
@@ -6930,10 +6937,10 @@ class GameObject : CCSpritePlus {
 	ColorActionSprite* m_unk4E0;
 	ColorActionSprite* m_unk4E8;
 	GJEffectManager* m_goEffectManager;
-	bool m_unk4F8;
-	bool m_isDecoration;
-	bool m_isDecoration2;
-	bool m_unk4fb;
+	bool m_maybeIsGoEffectObject;
+	bool m_isMainDecoration;
+	bool m_isDetailDecoration;
+	bool m_maybeIsNotDamaging;
 	bool m_maybeNotColorable;
 
 	// property 134
@@ -6956,6 +6963,7 @@ class GameObject : CCSpritePlus {
 	bool m_isDontBoostY;
 	// property 509
 	bool m_isDontBoostX;
+    // has Something to do with the ID Number 749
 	bool m_unk507;
 	bool m_unk508;
 	float m_unk50C;
@@ -6971,7 +6979,7 @@ class GameObject : CCSpritePlus {
 	int m_areaOpacityRelated3;
 	int m_unk52C;
 	bool m_unk530;
-	bool m_unk531;
+	bool m_maybeIsUiObject;
 	bool m_unk532;
 }
 
