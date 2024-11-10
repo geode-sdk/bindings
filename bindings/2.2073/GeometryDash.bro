@@ -20269,4 +20269,3 @@ class WorldSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate {
     GJWorldNode* m_worldNode;
     bool m_unkBool2;
 }
-
