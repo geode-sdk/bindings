@@ -231,12 +231,12 @@ class AchievementManager : cocos2d::CCNode {
     void encodeDataTo(DS_Dictionary*) = imac 0x76ebd0;
     void firstSetup();
     TodoReturn getAchievementRewardDict();
-    cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x39d70;
+    cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x39d70, imac 0x76ee90;
     TodoReturn getAllAchievements();
     cocos2d::CCArray* getAllAchievementsSorted(bool);
     bool isAchievementAvailable(gd::string);
     bool isAchievementEarned(char const* ach) = win 0x39a70, imac 0x76ed40;
-    int limitForAchievement(gd::string id) {
+    int limitForAchievement(gd::string id) = imac 0x76f000 {
     	if (auto achievements = getAchievementsWithID(id.c_str())) {
     		if (auto limits = static_cast<cocos2d::CCString*>(achievements->objectForKey("limits"))) return limits->intValue();
     	}
@@ -601,8 +601,8 @@ class BitmapFontCache : cocos2d::CCObject {
     // virtual ~BitmapFontCache();
     BitmapFontCache() {}
 
-    static BitmapFontCache* sharedFontCache() {
-    	auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x687db0);
+    static BitmapFontCache* sharedFontCache() = win inline {
+    	auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x6a4e08);
     	if (!*instancePtr) {
     		*instancePtr = new BitmapFontCache();
     		(*instancePtr)->init();
@@ -616,8 +616,8 @@ class BitmapFontCache : cocos2d::CCObject {
     	m_cache->retain();
     	return true;
     }
-    static void purgeSharedFontCache() {
-    	auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x687db0);
+    static void purgeSharedFontCache() = win inline {
+    	auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x6a4e08);
     	if (*instancePtr) {
     		(*instancePtr)->release();
     		*instancePtr = nullptr;
@@ -910,14 +910,14 @@ class ButtonSprite : cocos2d::CCSprite {
     static ButtonSprite* create(char const* caption, float scale) {
     	return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, scale);
     }
-    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x3f150;
+    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x3f150, imac 0x92bd0;
     static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg) {
     	return ButtonSprite::create(caption, width, p2, scale, absolute, font, bg, .0f);
     }
     static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute) {
     	return ButtonSprite::create(caption, width, p2, scale, absolute, "goldFont.fnt", "GJ_button_01.png", .0f);
     }
-    static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3f150, imac 0x92340;
+    static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3ee40, imac 0x92340;
     static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute) {
     	return ButtonSprite::create(topSprite, width, unused, height, scale, absolute, "GJ_button_01.png", false);
     }
@@ -925,7 +925,7 @@ class ButtonSprite : cocos2d::CCSprite {
     	return ButtonSprite::create(topSprite, 0, 0, .0f, 1.f, false, "GJ_button_01.png", false);
     }
 
-    bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3f220;
+    bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3f220, imac 0x92d20;
     bool init(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3eef0, imac 0x92490;
     void setColor(cocos2d::_ccColor3B const& color) {
     	// i love inlined funcs
@@ -1295,8 +1295,8 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     }
     void useAnimationType(MenuAnimationType);
 
-    virtual void activate() = win 0x44d40;
-    virtual void selected() = win 0x44e50;
+    virtual void activate() = win 0x44d40, imac 0x265320;
+    virtual void selected() = win 0x44e50, imac 0x2654a0;
     virtual void unselected() = win 0x45070, imac 0x265720;
 
     /// Set a new image for this button
@@ -1379,7 +1379,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     }
 
     TodoReturn activeItem();
-    bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) {
+    bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = imac 0x5a2d0 {
     	if (!CCMenuItem::initWithTarget(target, callback)) return false;
 
     	m_offButton = CCMenuItemSpriteExtra::create(off, nullptr, this, menu_selector(CCMenuItemToggler::normalTouch));
@@ -1401,8 +1401,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
 
     	return true;
     }
-    void normalTouch(cocos2d::CCObject*) = win 0x45580;
-    void selectedTouch(cocos2d::CCObject*) = win 0x455a0;
+    void normalTouch(cocos2d::CCObject*) = win 0x45580, imac 0x5a510;
+    void selectedTouch(cocos2d::CCObject*) = win 0x455a0, imac 0x5a5e0;
     void setSizeMult(float mult) {
     	m_offButton->setSizeMult(mult);
     	m_onButton->setSizeMult(mult);
@@ -1425,9 +1425,9 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     	this->toggle(on);
     }
 
-    virtual void activate() = win 0x45490;
-    virtual void selected();
-    virtual void unselected();
+    virtual void activate() = win 0x45490, imac 0x5a8c0;
+    virtual void selected() = imac 0x5a890;
+    virtual void unselected() = imac 0x5a8f0;
     virtual void setEnabled(bool) = win 0x45530;
 
     /// Update the sizing of this toggle's image
@@ -1508,7 +1508,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 [[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
     // virtual ~CCScrollLayerExt() = win 0x46210, ios 0x311ab8;
-    CCScrollLayerExt(cocos2d::CCRect) = win 0x46a50;
+    CCScrollLayerExt(cocos2d::CCRect) = win 0x46a50, m1 0x396fe4, imac 0x41b510;
 
     TodoReturn constraintContent();
     TodoReturn doConstraintContent(bool);
@@ -5050,7 +5050,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     FMODAudioEngine() = win 0x530d0;
 
     static FMODAudioEngine* sharedEngine() {
-    	auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x6a3e18);
+    	auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x6a4e18);
     	if (!*instancePtr) {
     		*instancePtr = new FMODAudioEngine();
     		(*instancePtr)->init();
@@ -5779,7 +5779,7 @@ class GameLevelManager : cocos2d::CCNode {
     		this->saveLevelList(static_cast<GJLevelList*>(lists->objectAtIndex(i)));
     	}
     }
-    void saveFetchedLevels(cocos2d::CCArray*) = imac 0x51b5e0;
+    void saveFetchedLevels(cocos2d::CCArray*) = imac 0x51b5e0, win 0x144960;
     void saveFetchedMapPacks(cocos2d::CCArray*);
     void saveGauntlet(GJMapPack*);
     void saveLevel(GJGameLevel*) = win 0x146d40, imac 0x5216f0;
@@ -5818,8 +5818,8 @@ class GameLevelManager : cocos2d::CCNode {
     void updateDescription(int, gd::string);
     void updateLevel(GJGameLevel*) = imac 0x52fa40;
     void updateLevelOrders() = win 0x145680;
-    void updateLevelRewards(GJGameLevel*);
-    void updateSavedLevelList(GJLevelList*);
+    void updateLevelRewards(GJGameLevel*) = win 0x144380;
+    void updateSavedLevelList(GJLevelList*) = win 0x14ef40;
     void updateUsernames();
     void updateUserScore() = win 0x153790;
     void uploadAccountComment(gd::string);
@@ -5900,6 +5900,7 @@ class GameLevelManager : cocos2d::CCNode {
     DownloadMessageDelegate* m_downloadMessageDelegate;
     UploadMessageDelegate* m_uploadMessageDelegate;
     GJRewardDelegate* m_GJRewardDelegate;
+    GJOnlineRewardDelegate* m_GJOnlineRewardDelegate;
     GJChallengeDelegate* m_GJChallengeDelegate;
     GJDailyLevelDelegate* m_GJDailyLevelDelegate;
     OnlineListDelegate* m_onlineListDelegate;
@@ -6265,6 +6266,7 @@ class GameManager : GManager {
     bool m_switchModes;
     bool m_toFullscreen;
     bool m_reloading;
+    bool m_fix;
     bool m_unkBool1;
     bool m_unkBool2;
     bool m_vsyncEnabled;
@@ -7119,13 +7121,13 @@ class GameStatsManager : cocos2d::CCNode {
     void encodeDataTo(DS_Dictionary*);
     void firstSetup();
     void generateItemUnlockableData() = imac 0x65780;
-    int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1dd390, imac 0x71040;
+    int getAwardedCurrencyForLevel(GJGameLevel*) = win 0x1dd630, imac 0x71040;
     TodoReturn getAwardedDiamondsForLevel(GJGameLevel*) = imac 0x71830;
     int getBaseCurrency(int stars, bool featured, int levelID);
-    int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1dd630, imac 0x70e50;
+    int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1dd390, imac 0x70e50;
     void getBaseDiamonds(int) = imac 0x717d0;
     int getBonusDiamonds(int) = imac 0x717f0;
-    GJChallengeItem* getChallenge(int);
+    GJChallengeItem* getChallenge(int) = win 0x1ded50;
     TodoReturn getChallengeKey(GJChallengeItem*);
     int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1daab0;
     cocos2d::CCArray* getCompletedMapPacks() = win 0x1dc060;
@@ -7137,14 +7139,14 @@ class GameStatsManager : cocos2d::CCNode {
     int getItemUnlockState(int itemID, UnlockType unlockType) = win 0x1e2a10;
     int getItemUnlockStateLite(int, UnlockType);
     gd::string getLevelKey(GJGameLevel* level) {
-    	return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Local, level->m_dailyID > 0, level->m_gauntletLevel);
+    	return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Local, level->m_dailyID > 0, level->m_gauntletLevel, level->m_dailyID > 200000);
     }
-    gd::string getLevelKey(int, bool, bool, bool) = win 0x1dac30;
+    gd::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x1dac30;
     TodoReturn getListRewardKey(GJLevelList*);
     char const* getMapPackKey(int);
     TodoReturn getNextVideoAdReward();
     TodoReturn getPathRewardKey(int);
-    GJChallengeItem* getQueuedChallenge(int);
+    GJChallengeItem* getQueuedChallenge(int) = win 0x1dee20;
     TodoReturn getRewardForSecretChest(int);
     TodoReturn getRewardForSpecialChest(gd::string);
     TodoReturn getRewardItem(GJRewardType);
@@ -7171,7 +7173,7 @@ class GameStatsManager : cocos2d::CCNode {
     	return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
     }
     bool hasCompletedMainLevel(int levelID) {
-    	return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false)) != nullptr;
+    	return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false, false)) != nullptr;
     }
     bool hasCompletedMapPack(int);
     bool hasCompletedOnlineLevel(int);
@@ -9942,6 +9944,12 @@ class GJObjectDecoder : cocos2d::CCNode {
     virtual cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = win 0x27c610, imac 0x70e690;
 }
 
+// TODO: Implement functions once Android version is released
+[[link(android)]]
+class GJOnlineRewardDelegate {
+
+}
+
 [[link(android)]]
 class GJOptionsLayer : SetupTriggerPopup {
     // virtual ~GJOptionsLayer();
@@ -11656,9 +11664,9 @@ class InheritanceNode : cocos2d::CCObject {
 class ItemInfoPopup : FLAlertLayer {
     // virtual ~ItemInfoPopup();
 
-    static ItemInfoPopup* create(int, UnlockType) = win 0x273d10, imac 0x35bdc0;
+    static ItemInfoPopup* create(int, UnlockType) = win 0x273d10, imac 0x35bdc0, m1 0x2ef0f0;
 
-    bool init(int, UnlockType) = win 0x273e00;
+    bool init(int, UnlockType) = win 0x273e00, imac 0x35e8d0, m1 0x2f18e0;
     bool isUnlockedByDefault(int, UnlockType) = imac 0x35fee0;
     static gd::string nameForUnlockType(int, UnlockType) = win 0x275dd0, imac 0x35fc00;
     void onClose(cocos2d::CCObject* sender);
@@ -15285,7 +15293,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual void toggleProgressbar() = win 0x39b770;
     virtual TodoReturn toggleInfoLabel() = win 0x39c550;
     virtual void removeAllCheckpoints() = win 0x3a1010;
-    virtual TodoReturn toggleMusicInPractice();
+    virtual TodoReturn toggleMusicInPractice() = win 0x39b910;
     virtual void currencyWillExit(CurrencyRewardLayer*) = win 0x39d760;
     virtual void circleWaveWillBeRemoved(CCCircleWave*) = win 0x39d920;
     virtual void dialogClosed(DialogLayer*) = win 0x39d780;
@@ -20269,4 +20277,3 @@ class WorldSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate {
     GJWorldNode* m_worldNode;
     bool m_unkBool2;
 }
-
