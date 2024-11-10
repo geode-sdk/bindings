@@ -5050,7 +5050,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     FMODAudioEngine() = win 0x530d0;
 
     static FMODAudioEngine* sharedEngine() {
-    	auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x6a3e18);
+    	auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x6a4e18);
     	if (!*instancePtr) {
     		*instancePtr = new FMODAudioEngine();
     		(*instancePtr)->init();
