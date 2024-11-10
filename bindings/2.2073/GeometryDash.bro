@@ -11656,9 +11656,9 @@ class InheritanceNode : cocos2d::CCObject {
 class ItemInfoPopup : FLAlertLayer {
     // virtual ~ItemInfoPopup();
 
-    static ItemInfoPopup* create(int, UnlockType) = win 0x273d10, imac 0x35bdc0;
+    static ItemInfoPopup* create(int, UnlockType) = win 0x273d10, imac 0x35bdc0, m1 0x2ef0f0;
 
-    bool init(int, UnlockType) = win 0x273e00;
+    bool init(int, UnlockType) = win 0x273e00, imac 0x35e8d0, m1 0x2f18e0;
     bool isUnlockedByDefault(int, UnlockType) = imac 0x35fee0;
     static gd::string nameForUnlockType(int, UnlockType) = win 0x275dd0, imac 0x35fc00;
     void onClose(cocos2d::CCObject* sender);
