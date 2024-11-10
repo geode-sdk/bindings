@@ -983,7 +983,17 @@ class CCAlertCircle : cocos2d::CCNode {
 [[link(android)]]
 class CCAnimatedSprite : cocos2d::CCSprite {
     // virtual ~CCAnimatedSprite();
-    CCAnimatedSprite() = win 0x3feb0;
+    CCAnimatedSprite() = win 0x3feb0, m1 inline, imac inline {
+        m_unkString1 = "";
+        m_unkString2 = "";
+        m_animationManager = nullptr;
+        m_sprite = nullptr;
+        m_fbfSprite = nullptr;
+        m_paSprite = nullptr;
+        m_spriteMode = (spriteMode)0;
+        m_currentAnim = "";
+        m_delegate = nullptr;
+    }
 
     void cleanupSprite() = imac 0x33cff0;
     static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = imac 0x33c5b0;
@@ -1340,7 +1350,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     CCMenuItemToggler() {}
     // virtual ~CCMenuItemToggler();
 
-    static CCMenuItemToggler* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x451e0, imac 0x5a200;
+    static CCMenuItemToggler* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x451e0, m1 0x4fc78, imac 0x5a200;
     static CCMenuItemToggler* createWithSize(const char* spr1, const char* spr2, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback, float scale) {
     	auto sprOff = cocos2d::CCSprite::createWithSpriteFrameName(spr1);
     	auto sprOn = cocos2d::CCSprite::createWithSpriteFrameName(spr2);
@@ -3134,7 +3144,7 @@ class CustomListView : BoomListView {
     }
 
     float getCellHeight(BoomListType) = imac 0x2302f0;
-    void reloadAll() = win 0xabc90;
+    void reloadAll() = win 0xabc90, m1 0x1ec208, imac 0x23c570;
 
     virtual void setupList(float) = win 0xab5c0;
     virtual TableViewCell* getListCell(char const*) = win 0xaa140, imac 0x22f220;
@@ -3725,7 +3735,7 @@ class EditButtonBar : cocos2d::CCNode {
     int getPage();
     void goToPage(int);
     bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = imac 0x5c9b70;
-    void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0xd30a0, imac 0x5c9c20;
+    void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0xd30a0, m1 0x4fe580, imac 0x5c9c20;
     void onLeft(cocos2d::CCObject* sender) = win 0xd3a90;
     void onRight(cocos2d::CCObject* sender) = win 0xd3a20;
     void reloadItems(int rowCount, int columnCount) = win inline {
@@ -5008,7 +5018,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x52b10;
     virtual void registerWithTouchDispatcher() = win 0x52d60;
     virtual void keyBackClicked() = win 0x52880, imac 0x489200;
-    virtual void keyDown(cocos2d::enumKeyCodes) = win 0x52800, imac 0x489150;
+    virtual void keyDown(cocos2d::enumKeyCodes) = win 0x52800, m1 0x3f64d0, imac 0x489150;
     virtual void show() = win 0x52b90, imac 0x4895e0;
 
     cocos2d::CCMenu* m_buttonMenu;
@@ -5932,7 +5942,7 @@ class GameManager : GManager {
     	return GameManager::sharedState();
     }
 
-    static GameManager* sharedState() = win 0x178480, imac 0x363990;
+    static GameManager* sharedState() = win 0x178480, m1 0x2f64e4, imac 0x363990;
 
     PlayLayer* getPlayLayer() {
     	return m_playLayer;
@@ -6109,12 +6119,12 @@ class GameManager : GManager {
 
     void getFontFile(int) = imac 0x36ff90;
     TodoReturn getFontTexture(int);
-    bool getGameVariable(char const*) = win 0x1800f0, imac 0x3640d0;
+    bool getGameVariable(char const*) = win 0x1800f0, m1 0x2f6c8c, imac 0x3640d0;
     TodoReturn getGTexture(int) = imac 0x370a90;
     int getIconRequestID() {
     	return m_iconRequestID++;
     }
-    int getIntGameVariable(char const*) = win 0x1806f0, imac 0x371230;
+    int getIntGameVariable(char const*) = win 0x1806f0, m1 0x3024b4, imac 0x371230;
     gd::string getMenuMusicFile() = win 0x178700;
     TodoReturn getMGTexture(int);
     TodoReturn getNextUniqueObjectKey();
@@ -8830,12 +8840,12 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
     virtual void enterLayer() = win 0x425a0;
     virtual void exitLayer(cocos2d::CCObject*) = win 0x250230, imac 0x5d03b0;
     virtual void showLayer(bool) = win 0x250270;
-    virtual void hideLayer(bool) = win 0x2503c0, imac 0x5d0500;
+    virtual void hideLayer(bool) = win 0x2503c0, m1 0x504674, imac 0x5d0500;
     virtual void layerVisible() = win 0x426a0;
     virtual void layerHidden() = win 0x250510;
     virtual void enterAnimFinished() {}
-    virtual void disableUI() = win 0x2501d0;
-    virtual void enableUI() = win 0x2501f0;
+    virtual void disableUI() = win 0x2501d0, m1 0x504468, imac 0x5d02c0;
+    virtual void enableUI() = win 0x2501f0, m1 0x50447c, imac 0x5d02e0;
 
     cocos2d::CCPoint m_endPosition;
     cocos2d::CCPoint m_startPosition;
@@ -18894,7 +18904,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 
     static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
 
-    float getValue() = win 0x712b0, imac 0x2efa80;
+    float getValue() = win 0x712b0, m1 0x2899dc, imac 0x2efa80;
     bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
     void setMaxOffset(float offset) {
     	float value = getValue();
