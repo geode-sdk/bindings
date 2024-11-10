@@ -1508,7 +1508,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 [[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
     // virtual ~CCScrollLayerExt() = win 0x46210, ios 0x311ab8;
-    CCScrollLayerExt(cocos2d::CCRect) = win 0x46a50;
+    CCScrollLayerExt(cocos2d::CCRect) = win 0x46a50, m1 0x396fe4, imac 0x41b510;
 
     TodoReturn constraintContent();
     TodoReturn doConstraintContent(bool);
