@@ -601,8 +601,8 @@ class BitmapFontCache : cocos2d::CCObject {
     // virtual ~BitmapFontCache();
     BitmapFontCache() {}
 
-    static BitmapFontCache* sharedFontCache() {
-    	auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x687db0);
+    static BitmapFontCache* sharedFontCache() = win inline {
+    	auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x6a4e08);
     	if (!*instancePtr) {
     		*instancePtr = new BitmapFontCache();
     		(*instancePtr)->init();
@@ -616,8 +616,8 @@ class BitmapFontCache : cocos2d::CCObject {
     	m_cache->retain();
     	return true;
     }
-    static void purgeSharedFontCache() {
-    	auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x687db0);
+    static void purgeSharedFontCache() = win inline {
+    	auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x6a4e08);
     	if (*instancePtr) {
     		(*instancePtr)->release();
     		*instancePtr = nullptr;
