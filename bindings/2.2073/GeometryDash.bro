@@ -11695,20 +11695,20 @@ class KeybindingsLayer : FLAlertLayer {
 
     static KeybindingsLayer* create() = win 0x2b80b0;
 
-    TodoReturn addKeyPair(char const*, char const*);
-    TodoReturn countForPage(int);
-    void goToPage(int);
+    TodoReturn addKeyPair(char const*, char const*) = win 0x2b8ab0;
+    TodoReturn countForPage(int) = win 0x2b8e60;
+    void goToPage(int) = win 0x2b9100;
     TodoReturn incrementCountForPage(int);
     TodoReturn infoKey(int);
-    TodoReturn layerForPage(int);
+    TodoReturn layerForPage(int) = win 0x2b8f30;
     TodoReturn layerKey(int);
     TodoReturn nextPosition(int);
     TodoReturn objectKey(int);
     TodoReturn objectsForPage(int);
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onInfo(cocos2d::CCObject* sender);
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
+    void onNextPage(cocos2d::CCObject* sender) = win 0x2b90e0;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x2b90f0;
     void onToggle(cocos2d::CCObject* sender);
     TodoReturn pageKey(int);
 
