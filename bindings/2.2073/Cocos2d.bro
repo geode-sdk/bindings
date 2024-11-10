@@ -227,13 +227,13 @@ class cocos2d::CCMotionStreak {
     	m_pPointState = nullptr;
     	m_pColorPointer = nullptr;
     	m_pTexCoords = nullptr;
-    
+
     	m_bRepeatMode = false;
     	m_fRepeatSpeed = 1.0f;
     	m_fRepeatTime = 0.0f;
     	m_bDontOpacityFade = false;
     	m_tPositionR = cocos2d::CCPointZero;
-    
+
     	m_tBlendFunc.src = GL_SRC_ALPHA;
     	m_tBlendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
     }
@@ -1058,7 +1058,7 @@ class cocos2d::CCLayer {
 [[link(win, android)]]
 class cocos2d::CCLayerGradient {
     static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const&, cocos2d::_ccColor4B const&);
-    static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const& a1, cocos2d::_ccColor4B const& a2, cocos2d::CCPoint const& a3) = ios inline {
+    static cocos2d::CCLayerGradient* create(cocos2d::_ccColor4B const& a1, cocos2d::_ccColor4B const& a2, cocos2d::CCPoint const& a3) = ios inline, imac 0x4a0880 {
     	auto ret = create(a1, a2);
     	ret->setVector(a3);
     	return ret;
@@ -1138,7 +1138,7 @@ class cocos2d::CCOrbitCamera {
 class cocos2d::CCLayerColor {
     static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&) = imac 0x49fd40;
     static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float);
-    static cocos2d::CCLayerColor* create() = ios inline {
+    static cocos2d::CCLayerColor* create() = ios inline, imac 0x49f990 {
     	CCLayerColor* pRet = new CCLayerColor();
     	if (pRet && pRet->init())
     	{
@@ -1333,10 +1333,10 @@ class cocos2d::CCTouchDispatcher {
     int getTargetPrio() const;
 
     void setDispatchEvents(bool);
-    void setPriority(int p1, cocos2d::CCTouchDelegate* p2) = ios inline {
+    void setPriority(int p1, cocos2d::CCTouchDelegate* p2) = ios inline, imac 0x4b9170 {
     	auto* handler = this->findHandler(p2);
     	auto priority = handler->getPriority();
-    
+
     	if (p1 != priority) {
     		handler->setPriority(p1);
     		this->rearrangeHandlers(m_pTargetedHandlers);
@@ -1654,13 +1654,13 @@ class cocos2d::CCDirector {
 class cocos2d::CCNodeRGBA {
     static cocos2d::CCNodeRGBA* create() = ios inline {
     	auto pRet = new cocos2d::CCNodeRGBA();
-    
+
     	if (pRet->init())
     	{
     		pRet->autorelease();
     		return pRet;
     	}
-    
+
     	delete pRet;
     	return nullptr;
     }
@@ -1814,13 +1814,13 @@ class cocos2d::CCLabelBMFont {
     static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = imac 0x5bfe20;
     static cocos2d::CCLabelBMFont* create() = ios inline {
     	auto pRet = new CCLabelBMFont();
-    
+
     	if (pRet && pRet->init())
     	{
     		pRet->autorelease();
     		return pRet;
     	}
-    
+
     	CC_SAFE_DELETE(pRet);
     	return nullptr;
     }
@@ -2217,27 +2217,27 @@ class cocos2d::CCCallFuncO {
 
 [[link(win, android)]]
 class cocos2d::CCClippingNode : cocos2d::CCNode {
-    static cocos2d::CCClippingNode* create() = ios inline {
+    static cocos2d::CCClippingNode* create() = ios inline, imac 0x708ec0 {
     	auto pRet = new CCClippingNode();
-    
+
     	if (pRet->init())
     	{
     		pRet->autorelease();
     		return pRet;
     	}
-    
+
     	delete pRet;
     	return nullptr;
     }
     static cocos2d::CCClippingNode* create(cocos2d::CCNode* stencil) = ios inline {
     	auto pRet = new CCClippingNode();
-    
+
     	if (pRet->init(stencil))
     	{
     		pRet->autorelease();
     		return pRet;
     	}
-    
+
     	delete pRet;
     	return nullptr;
     }
@@ -2255,7 +2255,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     inline void setProgram(CCNode* n, CCGLProgram* p) {
         n->setShaderProgram(p);
         if (!n->getChildren()) return;
-    
+
         CCObject* pObj = NULL;
         CCARRAY_FOREACH(n->getChildren(), pObj)
         {
@@ -2271,12 +2271,12 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	CC_SAFE_RELEASE(m_pStencil);
     	m_pStencil = pStencil;
     	CC_SAFE_RETAIN(m_pStencil);
-    
+
     	m_fAlphaThreshold = 1;
     	m_bInverted = false;
     	// get (only once) the number of bits of the stencil buffer
     	static bool once = true;
-    
+
     	if (once)
     	{
     		//glGetIntegerv(GL_STENCIL_BITS, &g_sStencilBits);
@@ -2286,7 +2286,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     		//}
     		once = false;
     	}
-    
+
     	return true;
     }
 
@@ -2307,7 +2307,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     		CCNode::onExitTransitionDidStart();
     }
 
-    virtual void visit() = ios inline {
+    virtual void visit() = ios inline, imac 0x709150 {
     	// if stencil buffer disabled
     	//if (g_sStencilBits < 1)
     	//{
@@ -2315,7 +2315,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	//	CCNode::visit();
     	//	return;
     	//}
-    
+
     	// return fast (draw nothing, or draw everything if in inverted mode) if:
     	// - nil stencil node
     	// - or stencil node invisible:
@@ -2328,12 +2328,12 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     		}
     		return;
     	}
-    
+
     	// store the current stencil layer (position in the stencil buffer),
     	// this will allow nesting up to n CCClippingNode,
     	// where n is the number of bits of the stencil buffer.
     	static GLint layer = -1;
-    
+
     	// all the _stencilBits are in use?
     	if (false) // this definetly wont break anything :clueless: //if (layer + 1 == g_sStencilBits)
     	{
@@ -2344,27 +2344,27 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     			char warning[200] = {0};
     			//snprintf(warning, sizeof(warning), "Nesting more than %d stencils is not supported. Everything will be drawn without stencil for this node and its childs.", g_sStencilBits);
     			CCLOG("%s", warning);
-    
+
     			once = false;
     		}
     		// draw everything, as if there where no stencil
     		CCNode::visit();
     		return;
     	}
-    
+
     	///////////////////////////////////
     	// INIT
-    
+
     	// increment the current layer
     	layer++;
-    
+
     	// mask of the current layer (ie: for layer 3: 00000100)
     	GLint mask_layer = 0x1 << layer;
     	// mask of all layers less than the current (ie: for layer 3: 00000011)
     	GLint mask_layer_l = mask_layer - 1;
     	// mask of all layers less than or equal to the current (ie: for layer 3: 00000111)
     	GLint mask_layer_le = mask_layer | mask_layer_l;
-    
+
     	// manually save the stencil state
     	GLboolean currentStencilEnabled = GL_FALSE;
     	GLuint currentStencilWriteMask = ~0;
@@ -2382,23 +2382,23 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	glGetIntegerv(GL_STENCIL_FAIL, (GLint *)&currentStencilFail);
     	glGetIntegerv(GL_STENCIL_PASS_DEPTH_FAIL, (GLint *)&currentStencilPassDepthFail);
     	glGetIntegerv(GL_STENCIL_PASS_DEPTH_PASS, (GLint *)&currentStencilPassDepthPass);
-    
+
     	// enable stencil use
     	glEnable(GL_STENCIL_TEST);
     	// check for OpenGL error while enabling stencil test
     	CHECK_GL_ERROR_DEBUG();
-    
+
     	// all bits on the stencil buffer are readonly, except the current layer bit,
     	// this means that operation like glClear or glStencilOp will be masked with this value
     	glStencilMask(mask_layer);
-    
+
     	//glClear(GL_STENCIL_BUFFER_BIT);
     	// manually save the depth test state
     	//GLboolean currentDepthTestEnabled = GL_TRUE;
     	GLboolean currentDepthWriteMask = GL_TRUE;
     	//currentDepthTestEnabled = glIsEnabled(GL_DEPTH_TEST);
     	glGetBooleanv(GL_DEPTH_WRITEMASK, &currentDepthWriteMask);
-    
+
     	// disable depth test while drawing the stencil
     	//glDisable(GL_DEPTH_TEST);
     	// disable update to the depth buffer while drawing the stencil,
@@ -2406,10 +2406,10 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	// it should never prevent something else to be drawn,
     	// only disabling depth buffer update should do
     	glDepthMask(GL_FALSE);
-    
+
     	///////////////////////////////////
     	// CLEAR STENCIL BUFFER
-    
+
     	// manually clear the stencil buffer by drawing a fullscreen rectangle on it
     	// setup the stencil test func like this:
     	// for each pixel in the fullscreen rectangle
@@ -2418,14 +2418,14 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	//     if in inverted mode: set the current layer value to 1 in the stencil buffer
     	glStencilFunc(GL_NEVER, mask_layer, mask_layer);
     	glStencilOp(!m_bInverted ? GL_ZERO : GL_REPLACE, GL_KEEP, GL_KEEP);
-    
+
     	// draw a fullscreen solid rectangle to clear the stencil buffer
     	//ccDrawSolidRect(CCPointZero, ccpFromSize([[CCDirector sharedDirector] winSize]), ccc4f(1, 1, 1, 1));
     	ccDrawSolidRect(CCPointZero, ccpFromSize(CCDirector::sharedDirector()->getWinSize()), ccc4f(1, 1, 1, 1));
-    
+
     	///////////////////////////////////
     	// DRAW CLIPPING STENCIL
-    
+
     	// setup the stencil test func like this:
     	// for each pixel in the stencil node
     	//     never draw it into the frame buffer
@@ -2433,7 +2433,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	//     if in inverted mode: set the current layer value to 0 in the stencil buffer
     	glStencilFunc(GL_NEVER, mask_layer, mask_layer);
     	glStencilOp(!m_bInverted ? GL_REPLACE : GL_ZERO, GL_KEEP, GL_KEEP);
-    
+
     	// enable alpha test only if the alpha threshold < 1,
     	// indeed if alpha threshold == 1, every pixel will be drawn anyways
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
@@ -2464,17 +2464,17 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     		// we need to recursively apply this shader to all the nodes in the stencil node
     		// XXX: we should have a way to apply shader to all nodes without having to do this
     		// setProgram(m_pStencil, program); // this causes fail
-    
+
     #endif
     	}
-    
+
     	// draw the stencil node as if it was one of our child
     	// (according to the stencil test func/op and alpha (or alpha shader) test)
     	kmGLPushMatrix();
     	transform();
     	m_pStencil->visit();
     	kmGLPopMatrix();
-    
+
     	// restore alpha test state
     	if (m_fAlphaThreshold < 1)
     	{
@@ -2662,7 +2662,7 @@ class cocos2d::CCMenuItem {
 
     int getScriptTapHandler();
 
-    void setTarget(cocos2d::CCObject* rec, cocos2d::SEL_MenuHandler selector) = ios inline {
+    void setTarget(cocos2d::CCObject* rec, cocos2d::SEL_MenuHandler selector) = ios inline, imac 0x3abd20 {
     	m_pListener = rec;
     	m_pfnSelector = selector;
     }
@@ -2866,7 +2866,7 @@ class cocos2d {
     		destination,
     		CCPoint{origin.x, destination.y}
     	};
-    
+
     	ccDrawSolidPoly(vertices, 4, color);
     }
     static void ccGLBindTexture2D(unsigned int);
@@ -2990,7 +2990,7 @@ class cocos2d::extension::CCScale9Sprite {
     		ret->autorelease();
     		return ret;
     	}
-    
+
     	delete ret;
     	return nullptr;
     }
@@ -3000,7 +3000,7 @@ class cocos2d::extension::CCScale9Sprite {
     		ret->autorelease();
     		return ret;
     	}
-    
+
     	delete ret;
     	return nullptr;
     }
@@ -3010,7 +3010,7 @@ class cocos2d::extension::CCScale9Sprite {
     		ret->autorelease();
     		return ret;
     	}
-    
+
     	delete ret;
     	return nullptr;
     }
@@ -3149,7 +3149,7 @@ class pugi::xml_node {
 [[link(android)]]
 class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x44540, imac 0x5c59e0;
-    static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline {
+    static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline, imac 0x5c5820 {
     	auto ret = new CCLightning();
     	if (ret->initWithStrikePoint(p1)) {
     		ret->autorelease();
@@ -3173,7 +3173,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     	m_seed = rand();
     	this->strike();
     }
-    void strikeWithSeed(uint64_t seed) = win inline, ios inline {
+    void strikeWithSeed(uint64_t seed) = win inline, ios inline, imac 0x5c5e90 {
     	m_seed = seed;
     	this->strike();
     }
