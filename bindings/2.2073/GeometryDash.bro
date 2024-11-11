@@ -18835,7 +18835,7 @@ class SimplePlayer : cocos2d::CCSprite {
         m_hasGlowOutline = false;
         updateColors();
     }
-    void enableCustomGlowColor(cocos2d::ccColor3B const&) = win inline, m1 0x2ef084, imac 0x35bd40 {
+    void enableCustomGlowColor(cocos2d::ccColor3B const& color) = win inline, m1 0x2ef084, imac 0x35bd40 {
         m_hasCustomGlowColor = true;
         m_glowColor = color;
     }
