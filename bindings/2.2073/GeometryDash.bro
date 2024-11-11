@@ -1433,10 +1433,10 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     	this->toggle(on);
     }
 
-    virtual void activate() = win 0x45490, imac 0x5a8c0;
+    virtual void activate() = win 0x45490, m1 0x503bc, imac 0x5a8c0;
     virtual void selected() = imac 0x5a890;
     virtual void unselected() = imac 0x5a8f0;
-    virtual void setEnabled(bool) = win 0x45530, m1 0x5043c;
+    virtual void setEnabled(bool) = win 0x45530, m1 0x5043c, imac 0x5a920;
 
     /// Update the sizing of this toggle's image
     /// If you for example have a `ButtonSprite` on this toggle and change the
@@ -6194,7 +6194,7 @@ class GameManager : GManager {
     void queueReloadMenu() = imac 0x378f40;
     TodoReturn rateGame();
     void recountUserStats(gd::string);
-    void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x187370;
+    void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x187370, m1 0x309570, imac 0x379070;
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
     	return this->reloadAll(switchingModes, toFullscreen, false, unused);
     }
@@ -14741,7 +14741,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void runNormalRotation() {
     	this->runNormalRotation(false, 1.0f);
     }
-    void runNormalRotation(bool, float) = win 0x9999999, imac 0x3ee3b0;
+    void runNormalRotation(bool, float) = win 0x9999999, m1 0x36f744, imac 0x3ee3b0;
     void runRotateAction(bool, int) = win 0x3774a0;
     TodoReturn saveToCheckpoint(PlayerCheckpoint*);
     void setSecondColor(cocos2d::ccColor3B const&) = win 0x3874f0, imac 0x3ec530, m1 0x36deb8;
