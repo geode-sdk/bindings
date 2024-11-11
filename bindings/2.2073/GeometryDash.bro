@@ -9950,10 +9950,10 @@ class GJObjectDecoder : cocos2d::CCNode {
     virtual cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = win 0x27c610, imac 0x70e690;
 }
 
-// TODO: Implement functions once Android version is released
 [[link(android)]]
 class GJOnlineRewardDelegate {
-
+    virtual void onlineRewardStatusFinished(gd::string) {}
+    virtual void onlineRewardStatusFailed(gd::string) {}
 }
 
 [[link(android)]]
@@ -13816,9 +13816,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
     Slider* m_playSlider;
     cocos2d::CCLabelBMFont* m_playLabel;
     CCMenuItemSpriteExtra* m_playButton;
-    win, mac {
-    	bool m_autoUpdating;
-    }
+    bool m_autoUpdating;
 }
 
 [[link(android)]]
@@ -18145,9 +18143,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     bool m_compactMode;
     AudioSortType m_sortType;
     SFXBrowserDelegate* m_delegate;
-    win, mac {
-    	bool m_autoUpdating;
-    }
+    bool m_autoUpdating;
 }
 
 [[link(android)]]
