@@ -927,8 +927,8 @@ class cocos2d::CCNode {
     virtual void setGrid(cocos2d::CCGridBase*);
     virtual void* getUserData();
     virtual void setUserData(void*);
-    virtual cocos2d::CCObject* getUserObject();
-    virtual void setUserObject(cocos2d::CCObject*);
+    virtual cocos2d::CCObject* getUserObject() = m1 0x20cddc, imac 0x2611b0;
+    virtual void setUserObject(cocos2d::CCObject*) = m1 0x20cdf4, imac 0x2611e0;
     virtual cocos2d::CCGLProgram* getShaderProgram();
     virtual void setShaderProgram(cocos2d::CCGLProgram*);
     virtual cocos2d::CCCamera* getCamera() = imac 0x260ed0, m1 0x20cb70;
