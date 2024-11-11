@@ -14656,7 +14656,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void disablePlayerControls() = win 0x389500, imac 0x4092d0, m1 0x386c20;
     void disableSwingFire() = win 0x385050, m1 0x3808e4;
     void doReversePlayer(bool) = win 0x3825c0, imac 0x3f09e0, m1 0x37174c;
-    void enableCustomGlowColor(cocos2d::ccColor3B const& color) {
+    inline void enableCustomGlowColor(cocos2d::ccColor3B const& color) {
         m_hasCustomGlowColor = true;
         m_glowColor = color;
     }
@@ -18876,7 +18876,7 @@ class SimplePlayer : cocos2d::CCSprite {
         m_hasGlowOutline = true;
         updateColors();
     }
-    void setSecondColor(cocos2d::ccColor3B const&) = win inline {
+    void setSecondColor(cocos2d::ccColor3B const& color) = win inline {
         m_secondLayer->setColor(color);
         updateColors();
     }
