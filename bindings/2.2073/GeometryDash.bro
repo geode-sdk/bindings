@@ -9953,7 +9953,7 @@ class GJObjectDecoder : cocos2d::CCNode {
 [[link(android)]]
 class GJOnlineRewardDelegate {
     virtual void onlineRewardStatusFinished(gd::string) {}
-    virtual void onlineRewardStatusFailed(gd::string) {}
+    virtual void onlineRewardStatusFailed() {}
 }
 
 [[link(android)]]
