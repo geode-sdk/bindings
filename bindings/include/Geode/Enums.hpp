@@ -919,6 +919,8 @@ enum class ShipStreak {
     ShipFire6 = 6,
 };
 
+enum class TextFadeInStyle {};
+
 // Geode Addition
 enum class GameOptionsSetting {
     Off = -1,
