@@ -5317,11 +5317,6 @@ class FMODQueuedEffect {
 }
 
 [[link(android)]]
-class FMODQueuedMusic {
-    // FMODQueuedMusic(FMODQueuedMusic const&);
-}
-
-[[link(android)]]
 class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, RewardedVideoDelegate {
     // virtual ~FollowRewardPage();
 
@@ -6157,7 +6152,6 @@ class GameManager : GManager {
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
         return this->reloadAll(switchingModes, toFullscreen, false, false, unused);
     }
-    TodoReturn reloadAll(bool, bool, bool, bool, bool);
     void reloadAllStep2() = win 0x187420, imac 0x379120, m1 0x309614;
     void reloadAllStep3();
     void reloadAllStep4();
@@ -8830,8 +8824,6 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         m_delegate = nullptr;
         m_fastMenu = false;
     }
-    static GJDropDownLayer* create(char const*, float, bool);
-    static GJDropDownLayer* create(char const*);
 
     static GJDropDownLayer* create(const char* title, float height, bool p2) = win inline, imac 0x5cfd30, m1 0x503f20 {
         GJDropDownLayer* pRet = new GJDropDownLayer();
