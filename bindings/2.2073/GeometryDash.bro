@@ -5118,7 +5118,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn lengthForSound(gd::string path);
     TodoReturn loadAndPlayMusic(gd::string path, unsigned int p1, int p2);
     TodoReturn loadAudioState(FMODAudioState&);
-    void loadMusic(gd::string path, float speed, float p2, float volume, bool shouldLoop, int p5, int p6) = win 0x5a280;
+    void loadMusic(gd::string path, float speed, float p2, float volume, bool shouldLoop, int p5, int p6) = win 0x5a280, m1 0x356590, imac 0x3ceed0;
     void loadMusic(gd::string path) {
     	this->loadMusic(path, 1.f, 0.f, 1.f, false, 0, 0);
     }
@@ -5639,7 +5639,7 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCScene* getSearchScene(char const*) = imac 0x522ea0, m1 0x47eed0;
     int getSplitIntFromKey(char const*, int);
     cocos2d::CCArray* getStoredLevelComments(char const*) = m1 0x494b40;
-    cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0x147780, m1 0x47e3f0;
+    cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0x147780, m1 0x47e3f0, imac 0x522460;
     cocos2d::CCArray* getStoredUserList(UserListType) = imac 0x53f830;
     GJUserMessage* getStoredUserMessage(int);
     GJUserMessage* getStoredUserMessageReply(int);
@@ -18715,10 +18715,10 @@ class SimplePlayer : cocos2d::CCSprite {
     	m_robotSprite->setVisible(false);
     }
     void createSpiderSprite(int) = win 0x272170, imac 0x357cb0, m1 0x2eb254;
-    void disableCustomGlowColor() = win inline {
+    void disableCustomGlowColor() = win inline, m1 0x2ef0a4, imac 0x35bd70 {
     	m_hasCustomGlowColor = false;
     }
-    void enableCustomGlowColor(cocos2d::_ccColor3B const& color) = win inline, m1 0x2ef084 {
+    void enableCustomGlowColor(cocos2d::_ccColor3B const& color) = win inline, m1 0x2ef084, imac 0x35bd40 {
     	m_hasCustomGlowColor = true;
     	m_glowColor = color;
     }
