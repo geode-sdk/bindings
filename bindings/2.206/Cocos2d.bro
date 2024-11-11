@@ -1469,7 +1469,7 @@ class cocos2d::CCImage {
 	bool _saveImageToPNG(char const*, bool);
 	bool hasAlpha();
 	bool isPremultipliedAlpha();
-	bool saveToFile(char const*, bool);
+	bool saveToFile(char const*, bool) = m1 0x3f88f4, imac 0x493b50;
 }
 
 [[link(win, android)]]
@@ -2075,8 +2075,8 @@ class cocos2d::CCRenderTexture {
 	void listenToBackground(cocos2d::CCObject*);
 	void listenToForeground(cocos2d::CCObject*);
 	cocos2d::CCImage* newCCImage(bool) = m1 0x527a30, imac 0x600c30;
-	bool saveToFile(char const*);
-	bool saveToFile(char const*, cocos2d::eImageFormat);
+	bool saveToFile(char const*) = m1 0x5279e0, imac 0x600be0;
+	bool saveToFile(char const*, cocos2d::eImageFormat) = m1 0x527bd4, imac 0x600eb0;
 	void updateInternalScale(float, float);
 
 	virtual void draw() = m1 0x527814, imac 0x600980, ios 0x3c9770;
