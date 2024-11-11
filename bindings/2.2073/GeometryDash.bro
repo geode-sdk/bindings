@@ -7306,7 +7306,7 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_unlockedItems;
     gd::map<std::pair<int, UnlockType>, int> m_accountIDForIcon;
     gd::map<int, gd::string> m_usernameForAccountID;
-    gd::map<std::pair<UnlockType, int>, int> m_wraithIcons;
+    gd::set<std::pair<UnlockType, int>> m_wraithIcons;
     bool m_GS29;
     int m_activePath;
 }
