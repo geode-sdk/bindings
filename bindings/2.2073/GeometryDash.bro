@@ -6153,9 +6153,9 @@ class GameManager : GManager {
     void queueReloadMenu() = imac 0x378f40;
     TodoReturn rateGame();
     void recountUserStats(gd::string);
-    void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool unused) = win 0x187370, m1 0x309570, imac 0x379070;
+    void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool fix, bool unused) = win 0x187370, m1 0x309570, imac 0x379070;
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
-        return this->reloadAll(switchingModes, toFullscreen, false, unused);
+        return this->reloadAll(switchingModes, toFullscreen, false, false, unused);
     }
     TodoReturn reloadAll(bool, bool, bool, bool, bool);
     void reloadAllStep2() = win 0x187420, imac 0x379120, m1 0x309614;
