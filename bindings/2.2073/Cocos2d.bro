@@ -731,7 +731,7 @@ class cocos2d::CCFileUtils {
     virtual gd::string addSuffix(gd::string, gd::string);
     virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const&);
     virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const&);
-    virtual gd::string fullPathForFilename(char const*, bool);
+    virtual gd::string fullPathForFilename(char const*, bool) = m1 0x3a2920, imac 0x427c00;
     virtual char const* fullPathFromRelativeFile(char const*, char const*);
     gd::string getAndroidPath() const;
     virtual unsigned char* getFileData(char const*, char const*, unsigned long*) = imac 0x427150, m1 0x3a1ec4;
@@ -756,7 +756,7 @@ class cocos2d::CCFileUtils {
     virtual void setPopupNotify(bool) = imac 0x429e60;
     virtual void setSearchPaths(gd::vector<gd::string> const&);
     virtual void setSearchResolutionsOrder(gd::vector<gd::string> const&);
-    static cocos2d::CCFileUtils* sharedFileUtils() = imac 0x5f4130;
+    static cocos2d::CCFileUtils* sharedFileUtils() = m1 0x523cac, imac 0x5f4130;
     virtual bool shouldUseHD();
     virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&);
 }
