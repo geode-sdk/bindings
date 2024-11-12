@@ -10587,7 +10587,7 @@ class GJSearchObject : cocos2d::CCNode {
     // virtual ~GJSearchObject();
 
     static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x171900;
-    static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x1717d0;
+    static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x1717d0, imac 0x54a530;
     static GJSearchObject* create(SearchType searchType) = win 0x1716f0, imac 0x54a560, m1 0x4a2c28;
     static GJSearchObject* createFromKey(char const* key) = win 0x170ff0;
 
