@@ -2344,7 +2344,7 @@ class ColorActionSprite : cocos2d::CCNode {
 class ColorChannelSprite : cocos2d::CCSprite {
     // virtual ~ColorChannelSprite();
 
-    static ColorChannelSprite* create() = win 0x2515d0;
+    static ColorChannelSprite* create() = win 0x2515d0, m1 0x2685c0, imac 0x2c46d0;
 
     void updateBlending(bool enabled) = win 0x2519c0, imac 0x2c4aa0;
     void updateCopyLabel(int channelID, bool copyOpacity) = win 0x2516b0, imac 0x2c4790, m1 0x268674;
