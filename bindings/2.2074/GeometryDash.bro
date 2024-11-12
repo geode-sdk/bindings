@@ -19812,7 +19812,7 @@ class TextArea : cocos2d::CCSprite {
     void hideAll();
     bool init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = m1 0x2a41bc, imac 0x30d5f0;
     void setIgnoreColorCode(bool) = imac 0x30da00;
-    void setString(gd::string) = win 0x77090, m1 0x2a42b4;
+    void setString(gd::string) = win 0x77090, m1 0x2a42b4, imac 0x30d6f0;
     void showAll();
     void stopAllCharacterActions() = win 0x774e0, imac 0x30daf0;
 
