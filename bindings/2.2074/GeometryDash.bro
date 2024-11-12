@@ -229,7 +229,7 @@ class AchievementManager : cocos2d::CCNode {
     void encodeDataTo(DS_Dictionary*) = imac 0x76ea90;
     void firstSetup();
     TodoReturn getAchievementRewardDict();
-    cocos2d::CCDictionary* getAchievementsWithID(char const*) = imac 0x76ed50;
+    cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x39d70, imac 0x76ed50;
     TodoReturn getAllAchievements();
     cocos2d::CCArray* getAllAchievementsSorted(bool);
     bool isAchievementAvailable(gd::string);
@@ -1442,7 +1442,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
         this->setContentSize(size);
     }
 
-    virtual void activate();
+    virtual void activate() = win 0x45490;
     virtual void selected();
     virtual void unselected();
     virtual void setEnabled(bool) = win 0x45530, m1 0x50044;
@@ -2185,7 +2185,7 @@ class CheckpointObject : cocos2d::CCNode {
     TodoReturn getObject();
     void setObject(GameObject*);
 
-    virtual bool init() = imac 0xbfa20;
+    virtual bool init() = win 0x77db0, imac 0xbfa20;
 
     GJGameState m_gameState;
     GJShaderState m_shaderState;
@@ -4912,7 +4912,7 @@ class ExtendedLayer : cocos2d::CCLayer {
         return nullptr;
     }
 
-    virtual bool init() = imac 0x394410;
+    virtual bool init() = win 0x3ec90, imac 0x394410;
     virtual void setPosition(cocos2d::CCPoint const&) = win 0x3ecb0, m1 0x322be8;
 
     BoomScrollLayerDelegate* m_delegate;
@@ -9982,7 +9982,7 @@ class GJOnlineRewardDelegate {
 [[link(android)]]
 class GJOptionsLayer : SetupTriggerPopup {
     // virtual ~GJOptionsLayer();
-    GJOptionsLayer();
+    GJOptionsLayer() = win 0x285940;
 
     static GJOptionsLayer* create(int) = imac 0x289c00;
 
@@ -13427,7 +13427,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onGameCenter(cocos2d::CCObject* sender);
     void onGarage(cocos2d::CCObject* sender) = win 0x320f00;
     void onGooglePlayGames(cocos2d::CCObject* sender) = m1 0x30f23c;
-    void onMoreGames(cocos2d::CCObject* sender);
+    void onMoreGames(cocos2d::CCObject* sender) = win 0x320880;
     void onMyProfile(cocos2d::CCObject* sender) = win 0x320720, m1 0x30ee98;
     void onNewgrounds(cocos2d::CCObject* sender);
     void onOptions(cocos2d::CCObject* sender) = win 0x320bb0;
@@ -14128,7 +14128,7 @@ class NumberInputLayer : FLAlertLayer {
             this->updateNumberState();
         }
     }
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onDone(cocos2d::CCObject* sender) = win inline {
         if (m_delegate) m_delegate->numberInputClosed(this);
         this->onClose(nullptr);
@@ -14643,8 +14643,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn convertToClosestRotation(float);
     void copyAttributes(PlayerObject*) = win 0x38a710, imac 0x409ed0, m1 0x3877bc;
     void createFadeOutDartStreak() = win 0x382830;
-    void createRobot(int) = m1 0x36c034;
-    void createSpider(int) = m1 0x36c378;
+    void createRobot(int) = win 0x9999999, m1 0x36c034;
+    void createSpider(int) = win 0x9999999, m1 0x36c378;
     void deactivateParticle() = m1 0x3709e8;
     void deactivateStreak(bool) = imac 0x3eb090, m1 0x36cd60;
     TodoReturn destroyFromHitHead();
@@ -14764,7 +14764,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void runNormalRotation() {
         this->runNormalRotation(false, 1.0f);
     }
-    void runNormalRotation(bool, float) = imac 0x3ee220, m1 0x36f618;
+    void runNormalRotation(bool, float) = win 0x9999999, imac 0x3ee220, m1 0x36f618;
     void runRotateAction(bool, int) = win 0x3775c0;
     TodoReturn saveToCheckpoint(PlayerCheckpoint*);
     void setSecondColor(cocos2d::ccColor3B const&) = win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
@@ -15582,7 +15582,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
         return nullptr;
     }
 
-    bool init(int) = m1 0x21ccfc;
+    bool init(int) = win 0x3B1790, m1 0x21ccfc;
     void onClose(cocos2d::CCObject* sender);
     void onRate(cocos2d::CCObject* sender) = win 0x3b1ee0, imac 0x272470, m1 0x21d444;
     void selectRating(cocos2d::CCObject*) = win 0x3b1d60;
@@ -15629,7 +15629,7 @@ class RateLevelLayer : FLAlertLayer {
         return nullptr;
     }
 
-    bool init(int) = m1 0x4a8498;
+    bool init(int) = win 0x3B23C0, m1 0x4a8498;
     void onClose(cocos2d::CCObject* sender);
     void onRate(cocos2d::CCObject* sender) = win 0x3b2a20, imac 0x551960, m1 0x4a8cac;
     void selectRating(cocos2d::CCObject* sender) = win 0x3b28d0, imac 0x551830, m1 0x4a8b34;
