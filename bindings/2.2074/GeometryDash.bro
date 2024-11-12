@@ -1922,15 +1922,15 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setDelegate(TextInputDelegate* delegate) {
         m_delegate = delegate;
     }
-    void setLabelNormalColor(cocos2d::ccColor3B color) = win inline {
+    void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, imac 0x9eb20 {
         m_textColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline {
+    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, imac 0x9eb00 {
         m_placeholderColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderScale(float v) = win inline {
+    void setLabelPlaceholderScale(float v) = win inline, imac 0x9eae0 {
         m_placeholderScale = v;
         this->refreshLabel();
     }
@@ -1938,15 +1938,15 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_maxLabelLength = v;
         this->refreshLabel();
     }
-    void setMaxLabelScale(float v) = win inline {
+    void setMaxLabelScale(float v) = win inline, imac 0x9eaa0 {
         m_maxLabelScale = v;
         this->refreshLabel();
     }
-    void setMaxLabelWidth(float v) = win inline {
+    void setMaxLabelWidth(float v) = win inline, imac 0x9eac0 {
         m_maxLabelWidth = v;
         this->refreshLabel();
     }
-    void setString(gd::string) = win 0x4f7a0;
+    void setString(gd::string) = win 0x4f7a0, imac 0x9e6d0;
     void updateBlinkLabel() = win inline, imac 0x9ea80 {
         this->updateBlinkLabelToChar(this->m_textField->m_uCursorPos);
     }
