@@ -3364,7 +3364,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     }
     void updateMultiAssetInfo(bool) = win 0xcb760, imac 0x608410, m1 0x535734;
     void updatePlaybackBtn() = win 0xca3b0, imac 0x606f50, m1 0x534418;
-    void updateProgressBar(int);
+    void updateProgressBar(int) = win 0xca550;
     void updateSongInfo() = win 0xca600, m1 0x533504;
     void updateSongObject(SongInfoObject*) = imac 0x605e90;
     void updateWithMultiAssets(gd::string, gd::string, int) = win 0xcb410;
@@ -8850,7 +8850,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
     }
 
     virtual void draw() = win 0x426f0, m1 0x5046c0, imac 0x5d05d0, ios 0x3ab0a0;
-    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x5046fc, imac 0x5d0600, ios 0x3ab0dc { return true; }
+    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3c6a0, m1 0x5046fc, imac 0x5d0600, ios 0x3ab0dc { return true; }
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x50471c, imac 0x5d0660, ios 0x3ab0fc {}
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x50470c, imac 0x5d0620, ios 0x3ab0ec {}
     virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x504714, imac 0x5d0640, ios 0x3ab0f4 {}
