@@ -810,8 +810,8 @@ class cocos2d::CCNode {
     static void resetGlobalOrderOfArrival();
 
     // CCNode(cocos2d::CCNode const&);
-    CCNode() = imac 0x260210;
-    ~CCNode() = imac 0x260520;
+    CCNode() = imac 0x260210, m1 0x20c1a8;
+    ~CCNode() = imac 0x260520, m1 0x20c334;
 
     cocos2d::CCAction* getActionByTag(int);
     cocos2d::CCComponent* getComponent(char const*) const;
@@ -1097,8 +1097,8 @@ class cocos2d::CCObject {
     static cocos2d::CCObject* createWithCoder(DS_Dictionary*);
 
     // CCObject(cocos2d::CCObject const&);
-    CCObject() = imac 0x477bd0;
-    ~CCObject() = imac 0x477ce0;
+    CCObject() = imac 0x477bd0, m1 0x3e6090;
+    ~CCObject() = imac 0x477ce0, m1 0x3e6240;
 
     cocos2d::CCObjectType getObjType() const;
 
@@ -1565,7 +1565,7 @@ class cocos2d::CCDirector {
     unsigned int getTotalFrames();
     cocos2d::CCPoint getVisibleOrigin();
     cocos2d::CCSize getVisibleSize();
-    cocos2d::CCSize getWinSize() = imac 0x470920;
+    cocos2d::CCSize getWinSize() = imac 0x470920, m1 0x3df874;
     cocos2d::CCSize getWinSizeInPixels();
     float getZEye();
     //getScreenTop = ios 0x18260c, idk if i should add the function
@@ -1666,8 +1666,8 @@ class cocos2d::CCNodeRGBA {
     }
 
     // CCNodeRGBA(cocos2d::CCNodeRGBA const&);
-    CCNodeRGBA() = imac 0x262fc0;
-    ~CCNodeRGBA() = imac 0x263070;
+    CCNodeRGBA() = imac 0x262fc0, m1 0x20ec74;
+    ~CCNodeRGBA() = imac 0x263070, m1 0x20ecdc;
 
     virtual bool init() = imac 0x2630a0, m1 0x20ecf0, ios 0x23ce8c;
 
@@ -2654,7 +2654,7 @@ class cocos2d::CCString {
 
 [[link(win, android)]]
 class cocos2d::CCMenuItem {
-    ~CCMenuItem() = imac 0x3ab940;
+    ~CCMenuItem() = imac 0x3ab940, m1 0x337768;
     static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3ab790, m1 0x3375e0;
     static cocos2d::CCMenuItem* create() = imac 0x3ab6d0, m1 0x337538;
 
