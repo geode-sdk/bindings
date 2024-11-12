@@ -14156,12 +14156,12 @@ class OBB2D : cocos2d::CCNode {
     static OBB2D* create(cocos2d::CCPoint, float, float, float) = win 0x6d880;
 
     void calculateWithCenter(cocos2d::CCPoint, float, float, float) = win 0x6da50, imac 0x5dbe20, m1 0x50edb8;
-    TodoReturn computeAxes();
-    TodoReturn getBoundingRect();
+    void computeAxes();
+    cocos2d::CCRect getBoundingRect();
     bool init(cocos2d::CCPoint, float, float, float);
-    TodoReturn orderCorners() = win 0x6dd70;
-    TodoReturn overlaps(OBB2D*);
-    TodoReturn overlaps1Way(OBB2D*) = win 0x6e100;
+    void orderCorners() = win 0x6dd70;
+    bool overlaps(OBB2D*);
+    bool overlaps1Way(OBB2D*) = win 0x6e100;
 }
 
 [[link(android)]]
