@@ -469,7 +469,7 @@ class AnimatedSpriteDelegate {
 [[link(android)]]
 class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     // virtual ~AppDelegate() = ios 0x1b7c90;
-    static AppDelegate* get() = win inline, ios inline {
+    static AppDelegate* get() = win inline, ios inline, imac 0x645fb0, m1 0x56e744 {
             return static_cast<AppDelegate*>(cocos2d::CCApplication::sharedApplication());
         }
 
@@ -1922,15 +1922,15 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setDelegate(TextInputDelegate* delegate) {
         m_delegate = delegate;
     }
-    void setLabelNormalColor(cocos2d::ccColor3B color) = win inline {
+    void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, imac 0x9eb20 {
         m_textColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline {
+    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, imac 0x9eb00 {
         m_placeholderColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderScale(float v) = win inline {
+    void setLabelPlaceholderScale(float v) = win inline, imac 0x9eae0 {
         m_placeholderScale = v;
         this->refreshLabel();
     }
@@ -1938,15 +1938,15 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_maxLabelLength = v;
         this->refreshLabel();
     }
-    void setMaxLabelScale(float v) = win inline {
+    void setMaxLabelScale(float v) = win inline, imac 0x9eaa0 {
         m_maxLabelScale = v;
         this->refreshLabel();
     }
-    void setMaxLabelWidth(float v) = win inline {
+    void setMaxLabelWidth(float v) = win inline, imac 0x9eac0 {
         m_maxLabelWidth = v;
         this->refreshLabel();
     }
-    void setString(gd::string) = win 0x4f7a0;
+    void setString(gd::string) = win 0x4f7a0, imac 0x9e6d0;
     void updateBlinkLabel() = win inline, imac 0x9ea80 {
         this->updateBlinkLabelToChar(this->m_textField->m_uCursorPos);
     }
@@ -10588,7 +10588,7 @@ class GJSearchObject : cocos2d::CCNode {
     // virtual ~GJSearchObject();
 
     static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x171900;
-    static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x1717d0;
+    static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x1717d0, imac 0x54a530;
     static GJSearchObject* create(SearchType searchType) = win 0x1716f0, imac 0x54a4c0, m1 0x4a2b10;
     static GJSearchObject* createFromKey(char const* key) = win 0x170ff0;
 
@@ -11987,7 +11987,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     ~LevelBrowserLayer() = win 0x2c07c0, imac 0x477f30;
 
     static LevelBrowserLayer* create(GJSearchObject*) = win 0x2c09f0, imac 0x478170, m1 0x3e6590;
-    static cocos2d::CCScene* scene(GJSearchObject* search) = win 0x2c09a0;
+    static cocos2d::CCScene* scene(GJSearchObject* search) = win 0x2c09a0, imac 0x478130;
 
     TodoReturn createNewLevel(cocos2d::CCObject*);
     TodoReturn createNewList(cocos2d::CCObject*) = imac 0x47e520;
@@ -13428,7 +13428,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onGameCenter(cocos2d::CCObject* sender);
     void onGarage(cocos2d::CCObject* sender) = win 0x320f00;
     void onGooglePlayGames(cocos2d::CCObject* sender) = m1 0x30f23c;
-    void onMoreGames(cocos2d::CCObject* sender) = win 0x320880;
+    void onMoreGames(cocos2d::CCObject* sender) = win 0x320880, imac 0x37e5c0;
     void onMyProfile(cocos2d::CCObject* sender) = win 0x320720, m1 0x30ee98;
     void onNewgrounds(cocos2d::CCObject* sender);
     void onOptions(cocos2d::CCObject* sender) = win 0x320bb0;
@@ -19812,7 +19812,7 @@ class TextArea : cocos2d::CCSprite {
     void hideAll();
     bool init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) = m1 0x2a41bc, imac 0x30d5f0;
     void setIgnoreColorCode(bool) = imac 0x30da00;
-    void setString(gd::string) = win 0x77090, m1 0x2a42b4;
+    void setString(gd::string) = win 0x77090, m1 0x2a42b4, imac 0x30d6f0;
     void showAll();
     void stopAllCharacterActions() = win 0x774e0, imac 0x30daf0;
 
