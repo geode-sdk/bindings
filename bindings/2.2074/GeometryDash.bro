@@ -9982,7 +9982,7 @@ class GJOnlineRewardDelegate {
 [[link(android)]]
 class GJOptionsLayer : SetupTriggerPopup {
     // virtual ~GJOptionsLayer();
-    GJOptionsLayer();
+    GJOptionsLayer() = win 0x285940;
 
     static GJOptionsLayer* create(int) = imac 0x289c00;
 
