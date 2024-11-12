@@ -2773,7 +2773,7 @@ class cocos2d::CCRotateTo {
 
 [[link(win, android)]]
 class cocos2d::CCDelayTime {
-    static cocos2d::CCDelayTime* create(float) = imac 0x3a42c0;
+    static cocos2d::CCDelayTime* create(float) = m1 0x330e74, imac 0x3a42c0;
 
     // CCDelayTime(cocos2d::CCDelayTime const&);
     // CCDelayTime();
@@ -2851,7 +2851,7 @@ class cocos2d {
     static void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
     static void ccDrawFree();
     static void ccDrawInit();
-    static void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = imac 0x1f65e0;
+    static void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = m1 0x1ac0ec, imac 0x1f65e0;
     static void ccDrawLines(cocos2d::CCPoint const*, unsigned int);
     static void ccDrawPoint(cocos2d::CCPoint const&);
     static void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
