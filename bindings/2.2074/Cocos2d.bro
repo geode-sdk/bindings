@@ -1181,8 +1181,8 @@ class cocos2d::CCLayerRGBA {
     static cocos2d::CCLayerRGBA* create();
 
     // CCLayerRGBA(cocos2d::CCLayerRGBA const&);
-    CCLayerRGBA();
-    ~CCLayerRGBA();
+    CCLayerRGBA() = imac 0x49e3f0;
+    ~CCLayerRGBA() = imac 0x49e760;
 
     virtual bool init() = imac 0x49e9d0, m1 0x4097b0, ios 0x14cb1c;
 
@@ -1706,13 +1706,13 @@ class cocos2d::CCSequence {
 
 [[link(win, android)]]
 class cocos2d::CCSprite {
-    static cocos2d::CCSprite* create(char const*);
-    static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&);
-    static cocos2d::CCSprite* create();
-    static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*);
-    static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = m1 0x2213c4;
-    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*);
-    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
+    static cocos2d::CCSprite* create(char const*) = imac 0x276440;
+    static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&) = imac 0x276530;
+    static cocos2d::CCSprite* create() = imac 0x276760;
+    static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x276630;
+    static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = m1 0x2213c4, imac 0x276730;
+    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x2761b0;
+    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = imac 0x276340;
 
     unsigned int getAtlasIndex();
     float getBlVertexMod() const;
@@ -1731,8 +1731,8 @@ class cocos2d::CCSprite {
     void setBlVertexMod(float);
     void setBrVertexMod(float);
     void setDontDraw(bool);
-    void setFlipX(bool);
-    void setFlipY(bool);
+    void setFlipX(bool) = imac 0x278420;
+    void setFlipY(bool) = imac 0x278470;
     void setTextureAtlas(cocos2d::CCTextureAtlas*);
     void setTlVertexMod(float);
     void setTrVertexMod(float);
@@ -1741,8 +1741,8 @@ class cocos2d::CCSprite {
     // CCSprite(cocos2d::CCSprite const&);
     CCSprite() = imac 0x2762a0;
     ~CCSprite() = imac 0x276d00;
-    bool isFlipX();
-    bool isFlipY();
+    bool isFlipX() = imac 0x278460;
+    bool isFlipY() = imac 0x2784b0;
     bool isTextureRectRotated();
     void updateColor();
 
@@ -2645,7 +2645,7 @@ class cocos2d::CCString {
     static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x7956c0, m1 0x6a8b3c;
     // static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x278aec;
 
-    char const* getCString() const;
+    char const* getCString() const = imac 0x7950f0;
     //createWithContentsOfFile = ios 0x278b74;
 
     bool boolValue() const = imac 0x7954b0, m1 0x6a8838;
@@ -3014,7 +3014,7 @@ class cocos2d::extension::CCScale9Sprite {
     	delete ret;
     	return nullptr;
     }
-    static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect);
+    static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3e3810;
 
     CCScale9Sprite();
     ~CCScale9Sprite();
