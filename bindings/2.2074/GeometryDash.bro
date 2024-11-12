@@ -14162,6 +14162,22 @@ class OBB2D : cocos2d::CCNode {
     void orderCorners() = win 0x6dd70;
     bool overlaps(OBB2D*);
     bool overlaps1Way(OBB2D*) = win 0x6e100;
+    
+    cocos2d::CCPoint m_vertexBottomLeft;
+    cocos2d::CCPoint m_vertexBottomRight;
+    cocos2d::CCPoint m_vertexTopRight;
+    cocos2d::CCPoint m_vertexTopLeft;
+    cocos2d::CCPoint m_position;
+    cocos2d::CCPoint m_unk130;
+    cocos2d::CCPoint m_unk138;
+    cocos2d::CCPoint m_unk140;
+    cocos2d::CCPoint m_horizontalDifference;
+    cocos2d::CCPoint m_verticalDifference;
+    cocos2d::CCPoint m_unk158;
+    cocos2d::CCPoint m_unk160;
+    cocos2d::CCPoint m_unk168;
+    cocos2d::CCPoint m_unk170;
+    cocos2d::CCPoint m_center;
 }
 
 [[link(android)]]
