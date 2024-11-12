@@ -5144,7 +5144,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn printResult(FMOD_RESULT);
     TodoReturn queuedEffectFinishedLoading(gd::string);
     TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x57920;
-    TodoReturn queueStartMusic(gd::string audioFilename, float, float, float, bool, int ms, int, int, int, int, bool, int, bool, bool) = win 0x3de920;
+    TodoReturn queueStartMusic(gd::string audioFilename, float, float, float, bool, int ms, int, int, int, int, bool, int, bool, bool);
     TodoReturn registerChannel(FMOD::Channel*, int, int);
     void releaseRemovedSounds();
     void resumeAllAudio() = win inline, imac 0x3cb470, m1 0x353c74 {
@@ -16041,60 +16041,130 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 }
 
 [[link(android)]]
-class SecretLayer5 {
+class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate, GJOnlineRewardDelegate {
     // virtual ~SecretLayer5();
+    SecretLayer5() {
+        m_unk1b8 = -1;
+        m_unk1bc = -1;
+        m_unk1c0 = 0;
+        m_unk1c4 = 0;
+        m_unk1c8 = 0;
+        m_unk1cc = -1;
+        m_textInput = nullptr;
+        m_messageLabel = nullptr;
+        m_exiting = false;
+        m_torchFires = nullptr;
+        m_loading = false;
+        m_rewardStatus = 0;
+        m_chestID = "";
+        m_uiLocked = false;
+        m_soundEffects = {};
+        m_chatIndex = -1;
+    }
 
-    static SecretLayer5* create();
+    static SecretLayer5* create() = win inline {
+        auto ret = new SecretLayer5();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    TodoReturn animateHead();
-    TodoReturn claimOnlineReward();
-    TodoReturn fadeInMessage();
-    TodoReturn fadeInSubmitMessage();
-    TodoReturn fadeOutMessage();
-    TodoReturn finishLoadingState();
-    TodoReturn getMessage();
-    TodoReturn handleSecretResponse();
-    TodoReturn hideTextInput();
-    TodoReturn incrementChatIdx();
-    TodoReturn nodeWithTag(int);
-    void onBack(cocos2d::CCObject* sender);
-    void onSubmit(cocos2d::CCObject* sender);
-    TodoReturn playWinSFX();
-    TodoReturn scene();
-    TodoReturn showDialog(int);
-    TodoReturn showFailAnimation();
-    TodoReturn showFirstDialog();
-    TodoReturn showSuccessAnimation();
-    TodoReturn showTextInput();
-    TodoReturn unlockUI();
-    TodoReturn updateMessageLabel(gd::string);
-    TodoReturn updateSearchLabel(char const*);
+    void animateHead() = win 0x3ddf20;
+    void claimOnlineReward() = win 0x3df350;
+    void fadeInMessage();
+    void fadeInSubmitMessage() = win 0x3ddd20;
+    void fadeOutMessage() = win 0x3ddef0;
+    void finishLoadingState() = win 0x3de2e0;
+    gd::string getMessage() = win inline {
+        return " ";
+    }
+    void handleSecretResponse() = win 0x3de300;
+    void hideTextInput() = win inline {
+        m_textInput->setTouchEnabled(false);
+        m_textInput->onClickTrackNode(false);
+        m_textInput->setVisible(false);
+        m_messageArea->stopAllActions();
+        m_messageArea->runAction(cocos2d::CCFadeTo::create(.5f, 0));
+    }
+    void incrementChatIdx();
+    cocos2d::CCNode* nodeWithTag(int tag) = win inline {
+        auto ret = cocos2d::CCNode::create();
+        ret->setTag(tag);
+        return ret;
+    }
+    void onBack(cocos2d::CCObject* sender) = win 0x3e0ad0;
+    void onSubmit(cocos2d::CCObject* sender) = win 0x3df780;
+    void playWinSFX() = win 0x3df2c0;
+    static cocos2d::CCScene* scene() = win 0x2c01a0;
+    void showDialog(int);
+    void showFailAnimation() = win 0x3de360;
+    void showFirstDialog() = win 0x3e03b0;
+    void showSuccessAnimation() = win 0x3de920;
+    void showTextInput() = win 0x3df720;
+    void unlockUI() = win 0x3df560;
+    void updateMessageLabel(gd::string text) = win inline {
+        m_messageLabel->setString(text.c_str());
+        m_messageLabel->limitLabelWidth(320.f, .6f, 0.f);
+    }
+    void updateSearchLabel(char const*) = win 0x3e00c0;
 
-    virtual bool init();
-    virtual void onExit();
-    virtual void updateTweenActionInt(float, int);
-    virtual void keyBackClicked();
-    virtual TodoReturn textInputOpened(CCTextInputNode*);
-    virtual TodoReturn textInputClosed(CCTextInputNode*);
-    virtual TodoReturn textChanged(CCTextInputNode*);
-    virtual TodoReturn FLAlert_Clicked(FLAlertLayer*, bool);
-    virtual TodoReturn dialogClosed(DialogLayer*);
-    virtual TodoReturn onlineRewardStatusFinished(gd::string);
-    virtual TodoReturn onlineRewardStatusFailed();
+    virtual bool init() = win 0x3dcb80, m1 0x3d7074, imac 0x467520;
+    virtual void onExit() = win 0x3d2460, m1 0x3db360, imac 0x46bd50;
+    virtual void updateTweenActionInt(float, int) = win 0x3de290, m1 0x3d92e0, imac 0x469ae0;
+    virtual void keyBackClicked() = win 0x3e0b50, m1 0x3db23c, imac 0x46bc50;
+    virtual void textInputOpened(CCTextInputNode*) = win 0x3dfea0, m1 0x3daf04, imac 0x46b9b0;
+    virtual void textInputClosed(CCTextInputNode*) = win 0x3dfff0, m1 0x3dafe4, imac 0x46ba80;
+    virtual void textChanged(CCTextInputNode*) = win 0x3dfff0, m1 0x3db0f4, imac 0x46bb50;
+    virtual void FLAlert_Clicked(FLAlertLayer*, bool) = m1 0x3daefc, imac 0x46b990 {}
+    virtual void dialogClosed(DialogLayer*) = m1 0x3daef4, imac 0x46b970 {}
+    virtual void onlineRewardStatusFinished(gd::string) = win 0x3df570, m1 0x3da474, imac 0x46ad70;
+    virtual void onlineRewardStatusFailed() = win 0x3df6e0, m1 0x3da5dc, imac 0x46aec0;
+
+    int m_unk1b8;
+    int m_unk1bc;
+    int m_unk1c0;
+    int m_unk1c4;
+    int m_unk1c8;
+    int m_unk1cc;
+    CCTextInputNode* m_textInput;
+    cocos2d::CCLabelBMFont* m_messageLabel;
+    CCMenuItemSpriteExtra* m_wraithButton;
+    bool m_exiting;
+    void* m_unk1f0;
+    cocos2d::CCArray* m_torchFires;
+    bool m_loading;
+    int m_rewardStatus; // 0 invalid, 1 valid, 2 claimed
+    gd::string m_chestID;
+    bool m_uiLocked;
+    CCSpriteWithHue* m_wraithSprite;
+    CCSpriteGrayscale* m_wraithGraySprite;
+    cocos2d::CCSprite* m_eyesSprite;
+    cocos2d::CCSprite* m_background;
+    cocos2d::CCSprite* m_lockSprite;
+    gd::vector<int> m_soundEffects;
+    int m_chatIndex;
+    cocos2d::extension::CCScale9Sprite* m_inputBackground;
+    LoadingCircleSprite* m_circleSprite;
+    TextArea* m_messageArea;
 }
 
 [[link(android)]]
-class SecretLayer6 {
+class SecretLayer6 : cocos2d::CCLayer {
     // virtual ~SecretLayer6();
 
     static SecretLayer6* create();
 
     void onBack(cocos2d::CCObject* sender);
-    TodoReturn scene();
-    TodoReturn startGame01();
+    static cocos2d::CCScene* scene();
+    void startGame01();
 
-    virtual bool init();
-    virtual void keyBackClicked();
+    virtual bool init() = m1 0x3db54c, imac 0x46bfb0;
+    virtual void keyBackClicked() = m1 0x3dc0a4, imac 0x46cc30;
+
+    SecretGame01Layer* m_gameLayer;
 }
 
 [[link(android)]]
