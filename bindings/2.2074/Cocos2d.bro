@@ -3159,7 +3159,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     	return nullptr;
     }
 
-    bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = imac 0x5c5a90, m1 0x4fa950;
+    bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x439e0, imac 0x5c5a90, m1 0x4fa950;
     bool initWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline, m1 0x4fa7dc {
     	return this->initWithStrikePoint(p1, CCPointZero, .5f);
     }
