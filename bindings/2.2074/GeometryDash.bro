@@ -5502,7 +5502,7 @@ class GameLevelManager : cocos2d::CCNode {
     static cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x168140, m1 0x477c14;
     // virtual ~GameLevelManager();
 
-    static GameLevelManager* sharedState() = win 0x140b20, m1 0x4641c4;
+    static GameLevelManager* sharedState() = win 0x140b20, imac 0x504a90, m1 0x4641c4;
 
     void acceptFriendRequest(int, int) = imac 0x53e840;
     int accountIDForUserID(int userID);
@@ -18901,7 +18901,7 @@ class SimplePlayer : cocos2d::CCSprite {
         m_robotSprite->setVisible(false);
     }
     void createSpiderSprite(int) = win 0x272290, imac 0x357720, m1 0x2eae5c;
-    void disableCustomGlowColor() = win inline {
+    void disableCustomGlowColor() = win inline, imac inline, m1 inline {
         m_hasCustomGlowColor = false;
     }
 
@@ -18910,7 +18910,7 @@ class SimplePlayer : cocos2d::CCSprite {
         m_hasGlowOutline = false;
         updateColors();
     }
-    void enableCustomGlowColor(cocos2d::ccColor3B const& color) = win inline, m1 0x2eec8c {
+    void enableCustomGlowColor(cocos2d::ccColor3B const& color) = win inline, imac inline, m1 0x2eec8c {
         m_hasCustomGlowColor = true;
         m_glowColor = color;
     }
