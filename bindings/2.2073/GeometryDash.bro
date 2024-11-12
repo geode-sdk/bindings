@@ -976,7 +976,7 @@ class CCAlertCircle : cocos2d::CCNode {
 [[link(android)]]
 class CCAnimatedSprite : cocos2d::CCSprite {
     // virtual ~CCAnimatedSprite();
-    CCAnimatedSprite() = win 0x3feb0, m1 inline, imac inline {
+    CCAnimatedSprite() = win 0x3feb0 {
         m_unkString1 = "";
         m_unkString2 = "";
         m_animationManager = nullptr;
@@ -1509,7 +1509,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 [[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
     // virtual ~CCScrollLayerExt() = win 0x46210, ios 0x311ab8;
-    CCScrollLayerExt(cocos2d::CCRect) = win 0x46a50, m1 0x396fe4, imac 0x41b510;
+    CCScrollLayerExt(cocos2d::CCRect) = win 0x46a50, m1 0x396fe4, imac 0x41b510, ios 0x300a10;
 
     TodoReturn constraintContent();
     TodoReturn doConstraintContent(bool);
