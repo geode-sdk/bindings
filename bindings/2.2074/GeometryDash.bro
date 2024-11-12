@@ -469,7 +469,7 @@ class AnimatedSpriteDelegate {
 [[link(android)]]
 class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     // virtual ~AppDelegate() = ios 0x1b7c90;
-    static AppDelegate* get() = win inline, ios inline {
+    static AppDelegate* get() = win inline, ios inline, imac 0x645fb0, m1 0x56e744 {
             return static_cast<AppDelegate*>(cocos2d::CCApplication::sharedApplication());
         }
 
