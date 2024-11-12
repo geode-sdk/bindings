@@ -15458,7 +15458,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 
     virtual void registerWithTouchDispatcher();
     virtual void keyBackClicked();
-    virtual void show();
+    virtual void show() = win 0x3AE2E0;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3ada20, imac 0x7a9ba0, m1 0x6bb3d4;
     virtual void updateUserScoreFinished() = m1 0x6bba60;
     virtual void updateUserScoreFailed() = win 0x3ae290, imac 0x7aa2e0;
@@ -16633,7 +16633,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
     void updateTextInputLabel() = win 0x294810, imac 0x298d90, m1 0x240bb4;
 
     virtual void keyBackClicked();
-    virtual void show();
+    virtual void show() = win 0x2948C0;
     virtual void textInputClosed(CCTextInputNode*);
     virtual void textChanged(CCTextInputNode*) = win 0x294710, imac 0x298f10, m1 0x240d0c;
     virtual void valueChanged() {}
