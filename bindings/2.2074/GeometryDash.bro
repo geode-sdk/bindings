@@ -15368,6 +15368,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     bool m_endLayerStars;
     PAD = win 0x3a, android32 0x29, android64 0x3a, mac 0x3a, ios 0x3a;
     double m_attemptTime;
+    double m_bestAttemptTime;
     PAD = win 0x1f, android32 0x27, android64 0x1f, mac 0x1f, ios 0x1f;
     bool m_isPaused;
     bool m_disableGravityEffect;
