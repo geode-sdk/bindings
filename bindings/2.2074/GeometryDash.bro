@@ -18901,7 +18901,7 @@ class SimplePlayer : cocos2d::CCSprite {
         m_robotSprite->setVisible(false);
     }
     void createSpiderSprite(int) = win 0x272290, imac 0x357720, m1 0x2eae5c;
-    void disableCustomGlowColor() = win inline, imac inline, m1 inline {
+    void disableCustomGlowColor() {
         m_hasCustomGlowColor = false;
     }
 
@@ -18910,7 +18910,7 @@ class SimplePlayer : cocos2d::CCSprite {
         m_hasGlowOutline = false;
         updateColors();
     }
-    void enableCustomGlowColor(cocos2d::ccColor3B const& color) = win inline, imac inline, m1 0x2eec8c {
+    void enableCustomGlowColor(cocos2d::ccColor3B const& color) {
         m_hasCustomGlowColor = true;
         m_glowColor = color;
     }
@@ -18951,7 +18951,7 @@ class SimplePlayer : cocos2d::CCSprite {
         m_hasGlowOutline = true;
         updateColors();
     }
-    void setSecondColor(cocos2d::ccColor3B const& color) = win inline {
+    void setSecondColor(cocos2d::ccColor3B const& color) {
         m_secondLayer->setColor(color);
         updateColors();
     }
