@@ -15875,7 +15875,7 @@ class SearchSFXPopup : SetTextPopup {
 }
 
 [[link(android)]]
-class SecretGame01Layer {
+class SecretGame01Layer : cocos2d::CCLayer {
     // virtual ~SecretGame01Layer();
 
     static SecretGame01Layer* create();
@@ -15884,7 +15884,7 @@ class SecretGame01Layer {
     TodoReturn gameStep01();
     TodoReturn gameStep02();
     TodoReturn getCountForDifficulty(int);
-    TodoReturn getFrameForDifficulty(int);
+    gd::string getFrameForDifficulty(int);
     TodoReturn getRowsForDifficulty(int);
     TodoReturn getTimeForDifficulty(int);
     void onSelectButton(cocos2d::CCObject* sender);
@@ -16154,6 +16154,9 @@ class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 [[link(android)]]
 class SecretLayer6 : cocos2d::CCLayer {
     // virtual ~SecretLayer6();
+    SecretLayer6() = win inline {
+        m_gameLayer = nullptr;
+    }
 
     static SecretLayer6* create();
 
