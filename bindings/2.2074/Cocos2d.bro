@@ -1944,7 +1944,7 @@ class cocos2d::CCAnimation {
 
 [[link(win, android)]]
 class cocos2d::CCApplication {
-    static cocos2d::CCApplication* sharedApplication();
+    static cocos2d::CCApplication* sharedApplication() = imac 0x314fe0, m1 0x2ab200;
     virtual int run();
     virtual void openURL(char const*) = imac 0x315dc0, m1 0x2aba20, ios 0x1af380;
 }
