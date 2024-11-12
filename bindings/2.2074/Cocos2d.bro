@@ -806,12 +806,12 @@ class cocos2d::CCGLProgram {
 
 [[link(win, android)]]
 class cocos2d::CCNode {
-    static cocos2d::CCNode* create() = m1 0x20cad4;
+    static cocos2d::CCNode* create() = m1 0x20cad4, imac 0x260d40;
     static void resetGlobalOrderOfArrival();
 
     // CCNode(cocos2d::CCNode const&);
-    CCNode();
-    ~CCNode();
+    CCNode() = imac 0x260210;
+    ~CCNode() = imac 0x260520;
 
     cocos2d::CCAction* getActionByTag(int);
     cocos2d::CCComponent* getComponent(char const*) const;
@@ -999,8 +999,8 @@ class cocos2d::CCLayer {
     static cocos2d::CCLayer* create() = imac 0x49d570, m1 0x408478;
 
     // CCLayer(cocos2d::CCLayer const&);
-    CCLayer();
-    ~CCLayer();
+    CCLayer() = imac 0x49cfb0;
+    ~CCLayer() = imac 0x49d2a0;
 
     cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
     cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();
@@ -1097,14 +1097,14 @@ class cocos2d::CCObject {
     static cocos2d::CCObject* createWithCoder(DS_Dictionary*);
 
     // CCObject(cocos2d::CCObject const&);
-    CCObject();
-    ~CCObject();
+    CCObject() = imac 0x477bd0;
+    ~CCObject() = imac 0x477ce0;
 
     cocos2d::CCObjectType getObjType() const;
 
     void setObjType(cocos2d::CCObjectType);
 
-    cocos2d::CCObject* autorelease() = m1 0x3e6314;
+    cocos2d::CCObject* autorelease() = m1 0x3e6314, imac 0x477e10;
     cocos2d::CCObject* copy();
     bool isSingleReference() const = imac 0x477e40;
     void release() = imac 0x477de0, m1 0x3e62e0;
@@ -1137,7 +1137,7 @@ class cocos2d::CCOrbitCamera {
 [[link(win, android)]]
 class cocos2d::CCLayerColor {
     static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&) = imac 0x49fbb0, m1 0x40a558;
-    static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float) = m1 0x40a3dc;
+    static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float) = m1 0x40a3dc, imac 0x49f9e0;
     static cocos2d::CCLayerColor* create() = ios inline, imac 0x49f800, m1 0x40a264 {
     	CCLayerColor* pRet = new CCLayerColor();
     	if (pRet && pRet->init())
@@ -1152,8 +1152,8 @@ class cocos2d::CCLayerColor {
     }
 
     // CCLayerColor(cocos2d::CCLayerColor const&);
-    CCLayerColor();
-    ~CCLayerColor();
+    CCLayerColor() = imac 0x49f1a0;
+    ~CCLayerColor() = imac 0x49f550;
 
     void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
 
@@ -1456,8 +1456,8 @@ class cocos2d::CCImage {
     unsigned short getHeight() const;
     unsigned short getWidth() const;
 
-    CCImage();
-    ~CCImage();
+    CCImage() = imac 0x476a70;
+    ~CCImage() = imac 0x476af0;
 
     bool _initWithJpgData(void*, int);
     bool _initWithPngData(void*, int);
@@ -1666,8 +1666,8 @@ class cocos2d::CCNodeRGBA {
     }
 
     // CCNodeRGBA(cocos2d::CCNodeRGBA const&);
-    CCNodeRGBA();
-    ~CCNodeRGBA();
+    CCNodeRGBA() = imac 0x262fc0;
+    ~CCNodeRGBA() = imac 0x263070;
 
     virtual bool init() = imac 0x2630a0, m1 0x20ecf0, ios 0x23ce8c;
 
@@ -1739,8 +1739,8 @@ class cocos2d::CCSprite {
     void setUseVertexMod(bool);
 
     // CCSprite(cocos2d::CCSprite const&);
-    CCSprite();
-    ~CCSprite();
+    CCSprite() = imac 0x2762a0;
+    ~CCSprite() = imac 0x276d00;
     bool isFlipX();
     bool isFlipY();
     bool isTextureRectRotated();
@@ -2135,7 +2135,7 @@ class cocos2d::CCTransitionMoveInT {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionFade {
-    static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = m1 0xc00b4;
+    static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = m1 0xc00b4, imac 0xd9090;
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&) = imac 0xd8ff0;
 
     // CCTransitionFade(cocos2d::CCTransitionFade const&);
@@ -2654,7 +2654,7 @@ class cocos2d::CCString {
 
 [[link(win, android)]]
 class cocos2d::CCMenuItem {
-    ~CCMenuItem();
+    ~CCMenuItem() = imac 0x3ab940;
     static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3ab790, m1 0x3375e0;
     static cocos2d::CCMenuItem* create() = imac 0x3ab6d0, m1 0x337538;
 
@@ -2773,7 +2773,7 @@ class cocos2d::CCRotateTo {
 
 [[link(win, android)]]
 class cocos2d::CCDelayTime {
-    static cocos2d::CCDelayTime* create(float);
+    static cocos2d::CCDelayTime* create(float) = imac 0x3a42c0;
 
     // CCDelayTime(cocos2d::CCDelayTime const&);
     // CCDelayTime();
