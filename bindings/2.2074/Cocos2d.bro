@@ -384,7 +384,7 @@ class cocos2d::CCScene {
 
     // CCScene(cocos2d::CCScene const&);
     // CCScene() = ios 0x2508a4;
-    ~CCScene();
+    ~CCScene() = imac 0x27ee70;
 
     virtual bool init() = m1 0x228894, imac 0x27eea0, ios 0x2401c0;
 }
@@ -2549,8 +2549,8 @@ class cocos2d::CCSpriteBatchNode {
 
     bool initWithTexture(cocos2d::CCTexture2D*, unsigned int) = imac 0x165a10, m1 0x132e04;
 
-    CCSpriteBatchNode();
-    ~CCSpriteBatchNode();
+    CCSpriteBatchNode() = imac 0x165ce0;
+    ~CCSpriteBatchNode() = imac 0x165d90;
 
     virtual bool init() = imac 0x165c90, m1 0x13306c, ios 0x1d8020;
     virtual void addChild(cocos2d::CCNode*) = imac 0x166160, m1 0x133518, ios 0x1d83e0;
