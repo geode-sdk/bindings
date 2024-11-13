@@ -12090,7 +12090,7 @@ class LevelCell : TableViewCell {
 
     void loadCustomLevelCell() = win 0xadb20;
     void loadFromLevel(GJGameLevel*) = win 0xad940, imac 0x232d00, m1 0x1e2d4c;
-    void loadLocalLevelCell() = win 0xb05f0, m1 0x1ec8ac;
+    void loadLocalLevelCell() = win 0xb05f0, imac 0x23cc80, m1 0x1ec8ac;
     void onClick(cocos2d::CCObject* sender) = win 0xb1080, imac 0x240090, m1 0x1ef99c;
     void onToggle(cocos2d::CCObject* sender);
     void onViewProfile(cocos2d::CCObject* sender) = win 0xb12a0, imac 0x2401f0, m1 0x1efb00;
