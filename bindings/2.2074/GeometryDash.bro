@@ -9114,7 +9114,7 @@ class GJGameLevel : cocos2d::CCNode {
     // virtual ~GJGameLevel();
     //GJGameLevel() = ios 0xb40a8;
 
-    static GJGameLevel* create() = win 0x169b40, imac 0x519030, m1 0x473d34;
+    static GJGameLevel* create() = win 0x169b40, imac 0x5168e0, m1 0x473d34;
     static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x1683e0, m1 0x4760f0;
     static gd::string lengthKeyToString(int key) = win 0x16a0d0, imac 0x5457e0;
 
