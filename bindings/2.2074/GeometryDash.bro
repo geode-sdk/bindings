@@ -3449,7 +3449,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     static DailyLevelPage* create(GJTimedLevelType) = win 0xccfd0;
 
     void claimLevelReward(DailyLevelNode*, GJGameLevel*, cocos2d::CCPoint) = win 0xd06b0, m1 0x1d3470;
-    void createDailyNode(GJGameLevel*, bool, float param_4_00, bool) = win 0xcee40, imac 0x21f7b0, m1 0x1d2700;
+    void createDailyNode(GJGameLevel*, bool, float, bool) = win 0xcee40, imac 0x21f7b0, m1 0x1d2700;
     void createNodeIfLoaded();
     void downloadAndCreateNode();
     void exitDailyNode(DailyLevelNode*, float) = imac 0x21fc20, m1 0x1d2b34;
@@ -8202,7 +8202,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void objectsCollided(int, int) = win 0x213c90, imac 0x11b120, m1 0xf9cf8, ios 0x1ecfb0;
     virtual void updateColor(cocos2d::ccColor3B& color, float fadeTime, int colorID, bool blending, float opacity, cocos2d::ccHSVValue& copyHSV, int colorIDToCopy, bool copyOpacity, EffectGameObject* callerObject, int unk1, int unk2) = win 0x21e5c0, imac 0x12c570, m1 0x1076d8, ios 0x1f3a00;
     virtual void toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int) = win 0x21e7a0, imac 0x12c710, m1 0x107844, ios 0x1f3b6c;
-    virtual void spawnGroup(int param_2_00, bool, double, gd::vector<int> const&, int, int) = win 0x2156a0, imac 0x11c510, m1 0xfad48, ios 0x1edbbc;
+    virtual void spawnGroup(int, bool, double, gd::vector<int> const&, int, int) = win 0x2156a0, imac 0x11c510, m1 0xfad48, ios 0x1edbbc;
     virtual void spawnObject(GameObject*, double, gd::vector<int> const&) = win 0x215b50, imac 0x11c8b0, m1 0xfb108, ios 0x1ede3c;
     virtual TodoReturn activateEndTrigger(int, bool, bool) = m1 0x8fb0, imac 0x7150, ios 0xd590;
     virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) = m1 0x8fb0, imac 0x7150, ios 0xd590;
@@ -8220,7 +8220,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) { return 0.f; }
     virtual float posForTime(float) { return 0.f; }
     virtual void resetSPTriggered() {}
-    virtual void updateScreenRotation(float param_2_00, bool, bool, float, int, float, int, int) = win 0x230720, imac 0x13f1a0, m1 0x116cb0, ios 0x1ff018;
+    virtual void updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x230720, imac 0x13f1a0, m1 0x116cb0, ios 0x1ff018;
     virtual TodoReturn reverseDirection(EffectGameObject*) = win 0x212c80, m1 0xf8e6c, imac 0x11a1f0, ios 0x1ec3d4;
     virtual void rotateGameplay(RotateGameplayGameObject*) = win 0x212ce0, imac 0x11a230, m1 0xf8eb0, ios 0x1ec418;
     virtual TodoReturn didRotateGameplay() = m1 0x8fb0, imac 0x7150, ios 0xd590;
@@ -13152,7 +13152,7 @@ class ListButtonBarDelegate {
 class ListButtonPage : cocos2d::CCLayer {
     // virtual ~ListButtonPage();
 
-    static ListButtonPage* create(cocos2d::CCArray*, cocos2d::CCPoint, int param_4_00, int, float, float, float) = win 0x6b450, imac 0x3de560, m1 0x361358;
+    static ListButtonPage* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float) = win 0x6b450, imac 0x3de560, m1 0x361358;
 
     bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float) = imac 0x3de840, m1 0x361600;
 }
