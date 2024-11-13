@@ -2123,7 +2123,7 @@ class CharacterColorPage : FLAlertLayer {
     cocos2d::CCPoint offsetForIndex(int) = imac 0x648570;
     void onClose(cocos2d::CCObject* sender) = win 0x8a760;
     void onMode(cocos2d::CCObject* sender) = win 0x89550, imac 0x647690, m1 0x56fc80;
-    void onPlayerColor(cocos2d::CCObject* sender) = win 0x89d60, m1 0x570904;
+    void onPlayerColor(cocos2d::CCObject* sender) = win 0x89d60, m1 0x570904, imac 0x648320;
     void toggleGlow(cocos2d::CCObject*) = win 0x88da0, m1 0x570384;
     TodoReturn toggleGlowItems(bool);
     void toggleShip(cocos2d::CCObject*) = win 0x88c80, imac 0x6475e0, m1 0x56fbb8;
@@ -9532,12 +9532,12 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void playShadowEffect();
     void selectTab(IconType) = win 0x26e6f0, imac 0x3595c0, m1 0x2ecd78;
     void setupIconSelect() = win 0x26d930;
-    void setupPage(int, IconType) = win 0x26e7b0, m1 0x2ecea8;
+    void setupPage(int, IconType) = win 0x26e7b0, m1 0x2ecea8, imac 0x359700;
     void setupSpecialPage() = imac 0x359d80, m1 0x2ed500;
     void showUnlockPopupNew(int, UnlockType);
     gd::string titleForUnlock(int, UnlockType);
     void toggleGlow();
-    void updatePlayerColors() = win 0x2701a0, m1 0x2eaef4;
+    void updatePlayerColors() = win 0x2701a0, m1 0x2eaef4, imac 0x3577a0;
     void updatePlayerName(char const*);
 
     virtual bool init() = win 0x26b770, m1 0x2e94a8, imac 0x355ba0, ios 0x301df8;
@@ -14843,7 +14843,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerBirdFrame(int) = win 0x388550, imac 0x405aa0, m1 0x3837cc;
     void updatePlayerDartFrame(int) = win 0x388c50, imac 0x406bf0;
     void updatePlayerForce(cocos2d::CCPoint, bool);
-    void updatePlayerFrame(int) = win 0x387ec0, m1 0x38412c;
+    void updatePlayerFrame(int) = win 0x387ec0, m1 0x38412c, imac 0x406480;
     void updatePlayerGlow() = win 0x38a510, imac 0x4043a0, m1 0x382204;
     void updatePlayerJetpackFrame(int) = win 0x388320, m1 0x382fcc;
     void updatePlayerRobotFrame(int id) = win inline, imac 0x408f60 {
@@ -15244,7 +15244,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void loadFromCheckpoint(CheckpointObject*) = win 0x3a07b0;
     TodoReturn loadLastCheckpoint();
     CheckpointObject * markCheckpoint() = win 0x3a06e0, imac 0xbb9d0, m1 0xaacd4;
-    void onQuit() = win 0x3a3db0, m1 0xa3cac;
+    void onQuit() = win 0x3a3db0, m1 0xa3cac, imac 0xb3c60;
     TodoReturn optimizeColorGroups() = win 0x397d10, imac 0xae840;
     TodoReturn optimizeOpacityGroups() = win 0x397fa0, imac 0xaea30;
     void pauseGame(bool) = win 0x3a31f0, imac 0xbf290, m1 0xadc74;
