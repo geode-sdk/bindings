@@ -6180,7 +6180,7 @@ class GameManager : GManager {
     TodoReturn saveDPadLayout(int, bool);
     void setGameVariable(char const*, bool) = win 0x17fe90, imac 0x370550, m1 0x3018c0;
     void setHasRatingPower(int);
-    void setIntGameVariable(char const*, int) = win 0x1805f0, imac 0x370b70;
+    void setIntGameVariable(char const*, int) = win 0x1805f0, imac 0x370b70, m1 0x301f7c;
     void setPlayerBall(int id) {
         m_playerBall = id;
     }
@@ -9121,7 +9121,7 @@ class GJGameLevel : cocos2d::CCNode {
     bool areCoinsVerified();
     void copyLevelInfo(GJGameLevel*) = win 0x16aaa0;
     TodoReturn createWithCoder(DS_Dictionary*);
-    void dataLoaded(DS_Dictionary*) = win 0x16b150;
+    void dataLoaded(DS_Dictionary*) = win 0x16b150, imac 0x5472c0, m1 0x49fd40;
     int demonIconForDifficulty(DemonDifficultyType) = imac 0x548f50, m1 0x4a1794;
     TodoReturn generateSettingsString();
     gd::string getAudioFileName() = win 0x16a3f0;
@@ -9133,7 +9133,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn getNormalPercent();
     TodoReturn getSongName();
     gd::string getUnpackedLevelDescription() = win 0x16d150;
-    void handleStatsConflict(GJGameLevel*) = win 0x16cc80;
+    void handleStatsConflict(GJGameLevel*) = win 0x16cc80, imac 0x526870, m1 0x482228;
     inline bool isPlatformer() {
         return m_levelLength == 5;
     }
@@ -9667,7 +9667,7 @@ class GJLevelList : cocos2d::CCNode {
     void addLevelToList(GJGameLevel* level) = win 0x173ee0;
     TodoReturn completedLevels() = imac 0x54ca00, m1 0x4a4a48;
     TodoReturn createWithCoder(DS_Dictionary*);
-    void dataLoaded(DS_Dictionary*) = win 0x174cd0, imac 0x54cef0;
+    void dataLoaded(DS_Dictionary*) = win 0x174cd0, imac 0x54cef0, m1 0x4a4f68;
     TodoReturn duplicateListLevels(GJLevelList*);
     TodoReturn frameForListDifficulty(int, DifficultyIconType) = imac 0x54d4b0, m1 0x4a54d8;
     cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*) = win 0x174160;
