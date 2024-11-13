@@ -7186,7 +7186,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedChallenge(GJChallengeItem*);
     bool hasCompletedDailyLevel(int) = win 0x1dfd10;
     bool hasCompletedDemonLevel(GJGameLevel*);
-    bool hasCompletedGauntletLevel(int);
+    bool hasCompletedGauntletLevel(int) = win 0x1db1a0, m1 0x60f64, imac 0x6d3b0;
     bool hasCompletedLevel(GJGameLevel* level) = win inline, imac 0x6d280, m1 0x60e04 {
         return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
     }
@@ -7194,7 +7194,7 @@ class GameStatsManager : cocos2d::CCNode {
         return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false, false)) != nullptr;
     }
     bool hasCompletedMapPack(int);
-    bool hasCompletedOnlineLevel(int);
+    bool hasCompletedOnlineLevel(int) = win 0x1db070, m1 0x60ecc, imac 0x6d330;
     bool hasCompletedStarLevel(GJGameLevel*);
     bool hasPendingUserCoin(char const*);
     bool hasRewardBeenCollected(GJRewardType, int);
