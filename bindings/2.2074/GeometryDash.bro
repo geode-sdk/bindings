@@ -5594,7 +5594,7 @@ class GameLevelManager : cocos2d::CCNode {
     gd::string getLengthStr(bool, bool, bool, bool, bool, bool) = imac 0x528ae0, m1 0x4841e8;
     const char * getLenKey(int len);
     bool getLenVal(int);
-    void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x159870, m1 0x492b0c;
+    void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x159870, imac 0x5392d0, m1 0x492b0c;
     const char* getLevelDownloadKey(int levelID, bool isGauntlet) {
         return cocos2d::CCString::createWithFormat("%i_%i", levelID, isGauntlet)->getCString();
     }
