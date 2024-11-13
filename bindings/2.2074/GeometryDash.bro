@@ -14153,30 +14153,22 @@ class NumberInputLayer : FLAlertLayer {
 class OBB2D : cocos2d::CCNode {
     // virtual ~OBB2D();
 
-    static OBB2D* create(cocos2d::CCPoint, float, float, float) = win 0x6d880;
+    static OBB2D* create(cocos2d::CCPoint center, float width,float height,float rotationAngle) = win 0x6d880;
 
-    void calculateWithCenter(cocos2d::CCPoint, float, float, float) = win 0x6da50, imac 0x5dbe20, m1 0x50edb8;
+    void calculateWithCenter(cocos2d::CCPoint center, float width,float height,float rotationAngle) = win 0x6da50, imac 0x5dbe20, m1 0x50edb8;
     void computeAxes();
     cocos2d::CCRect getBoundingRect();
-    bool init(cocos2d::CCPoint, float, float, float);
+    bool init(cocos2d::CCPoint center, float width,float height,float rotationAngle);
     void orderCorners() = win 0x6dd70;
     bool overlaps(OBB2D*);
     bool overlaps1Way(OBB2D*) = win 0x6e100;
-    
-    cocos2d::CCPoint m_vertexBottomLeft;
-    cocos2d::CCPoint m_vertexBottomRight;
-    cocos2d::CCPoint m_vertexTopRight;
-    cocos2d::CCPoint m_vertexTopLeft;
-    cocos2d::CCPoint m_position;
-    cocos2d::CCPoint m_unk130;
-    cocos2d::CCPoint m_unk138;
-    cocos2d::CCPoint m_unk140;
+
+
+    std::array<cocos2d::CCPoint, 4> m_corners;
+    std::array<cocos2d::CCPoint, 4> m_positions;
     cocos2d::CCPoint m_horizontalDifference;
     cocos2d::CCPoint m_verticalDifference;
-    cocos2d::CCPoint m_unk158;
-    cocos2d::CCPoint m_unk160;
-    cocos2d::CCPoint m_unk168;
-    cocos2d::CCPoint m_unk170;
+    std::array<cocos2d::CCPoint, 4> m_axes;
     cocos2d::CCPoint m_center;
 }
 
