@@ -12088,7 +12088,7 @@ class LevelCell : TableViewCell {
 
     static LevelCell* create(float, float) = imac 0x23caa0, m1 0x1ec704;
 
-    void loadCustomLevelCell() = win 0xadb20, m1 0x1ed1f0;
+    void loadCustomLevelCell() = win 0xadb20, imac 0x23d540, m1 0x1ed1f0;
     void loadFromLevel(GJGameLevel*) = win 0xad940, imac 0x232d00, m1 0x1e2d4c;
     void loadLocalLevelCell() = win 0xb05f0, imac 0x23cc80, m1 0x1ec8ac;
     void onClick(cocos2d::CCObject* sender) = win 0xb1080, imac 0x240090, m1 0x1ef99c;
