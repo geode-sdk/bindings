@@ -14188,17 +14188,20 @@ class ObjectManager : cocos2d::CCNode {
     static ObjectManager* instance() = win 0x6e3d0;
     // virtual ~ObjectManager();
 
-    TodoReturn animLoaded(char const*);
-    TodoReturn getDefinition(char const*);
-    TodoReturn getGlobalAnimCopy(char const*);
-    TodoReturn loadCopiedAnimations() = win 0x6e800;
-    TodoReturn loadCopiedSets();
-    TodoReturn purgeObjectManager();
-    TodoReturn replaceAllOccurencesOfString(cocos2d::CCString*, cocos2d::CCString*, cocos2d::CCDictionary*);
-    void setLoaded(char const*);
+    cocos2d::CCObject* animLoaded(char const* anim);
+    cocos2d::CCObject* getDefinition(char const* definitionKey);
+    cocos2d::CCObject* getGlobalAnimCopy(char const* anim);
+    void loadCopiedAnimations() = win 0x6e800;
+    void loadCopiedSets();
+    void purgeObjectManager();
+    cocos2d::CCDictionary* replaceAllOccurencesOfString(cocos2d::CCString*, cocos2d::CCString*, cocos2d::CCDictionary*);
+    void setLoaded(char const* objectName);
     void setup() = win 0x6e4c0;
 
     virtual bool init() = win 0x6e460, m1 0x69410c, imac 0x77f750, ios 0x24c270;
+
+    cocos2d::CCDictionary* m_objectDefinitions;
+    cocos2d::CCDictionary* m_maybeLoadedAnimations;
 }
 
 [[link(android)]]
