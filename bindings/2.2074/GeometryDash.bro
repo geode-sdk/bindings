@@ -5594,7 +5594,7 @@ class GameLevelManager : cocos2d::CCNode {
     gd::string getLengthStr(bool, bool, bool, bool, bool, bool) = imac 0x528ae0, m1 0x4841e8;
     const char * getLenKey(int len);
     bool getLenVal(int);
-    void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x159870, m1 0x492b0c;
+    void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x159870, imac 0x5392d0, m1 0x492b0c;
     const char* getLevelDownloadKey(int levelID, bool isGauntlet) {
         return cocos2d::CCString::createWithFormat("%i_%i", levelID, isGauntlet)->getCString();
     }
@@ -5638,7 +5638,7 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCScene* getSearchScene(char const*) = imac 0x522e00, m1 0x47edb8;
     int getSplitIntFromKey(char const*, int);
     TodoReturn getStarLevelsString();
-    cocos2d::CCArray* getStoredLevelComments(char const*) = win 0x15b420, m1 0x494a28;
+    cocos2d::CCArray* getStoredLevelComments(char const*) = win 0x15b420, imac 0x53b2f0, m1 0x494a28;
     cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0x147780, imac 0x5223c0, m1 0x47e2d8;
     cocos2d::CCArray* getStoredUserList(UserListType) = imac 0x53f790;
     GJUserMessage* getStoredUserMessage(int);
@@ -12422,7 +12422,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     // LevelInfoLayer() = ios 0x31658;
 
     static LevelInfoLayer* create(GJGameLevel* level, bool challenge) = win 0x2e2860, imac 0x2a9700, m1 0x24f8ac;
-    static cocos2d::CCScene* scene(GJGameLevel* level, bool challenge) = win 0x2e2810, m1 0x24f850;
+    static cocos2d::CCScene* scene(GJGameLevel* level, bool challenge) = win 0x2e2810, imac 0x2a96b0, m1 0x24f850;
 
     void confirmClone(cocos2d::CCObject*) = win 0x2e9000, imac 0x2ae480, m1 0x2543fc;
     void confirmDelete(cocos2d::CCObject*) = win 0x2e9170;
@@ -12432,7 +12432,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void downloadLevel() = win 0x2e5770, m1 0x2523a0;
     void incrementDislikes();
     void incrementLikes();
-    bool init(GJGameLevel* level, bool challenge) = win 0x2e2a90, m1 0x24fa08;
+    bool init(GJGameLevel* level, bool challenge) = win 0x2e2a90, imac 0x2a98e0, m1 0x24fa08;
     void loadLevelStep() = win 0x2e8a00, imac 0x2b07d0, m1 0x2566dc;
     void onAddToList(cocos2d::CCObject* sender) = win 0x2e5160, imac 0x2aee40, m1 0x254e2c;
     void onBack(cocos2d::CCObject* sender) = win 0x2ebce0, imac 0x2ae6d0, m1 0x254684;
