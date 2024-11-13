@@ -5534,7 +5534,7 @@ class GameLevelManager : cocos2d::CCNode {
     void deleteServerLevelList(int);
     void deleteSmartTemplate(GJSmartTemplate*);
     void deleteUserMessages(GJUserMessage* message, cocos2d::CCArray* messages, bool isSender) = win 0x158f20, imac 0x607c40, m1 0x492290;
-    void downloadLevel(int, bool) = win 0x14fde0, m1 0x4889b0;
+    void downloadLevel(int, bool) = win 0x14fde0, imac 0x52dae0, m1 0x4889b0;
     void downloadUserMessage(int, bool);
     void encodeDataTo(DS_Dictionary*) = win 0x148e00, imac 0x524e30, m1 0x480b48;
     void firstSetup();
