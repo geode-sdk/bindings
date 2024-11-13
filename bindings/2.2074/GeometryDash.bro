@@ -19479,12 +19479,61 @@ class SpriteAnimationManager : cocos2d::CCNode {
 [[link(android)]]
 class SpriteDescription : cocos2d::CCObject {
     // virtual ~SpriteDescription();
-    // SpriteDescription();
+    SpriteDescription() {
+        m_position = cocos2d::CCPointMake(0.f, 0.f);
+        m_scale = cocos2d::CCPointMake(0.f, 0.f);
+        m_flipped = cocos2d::CCPointMake(0.f, 0.f);
+        m_rotation = 0;
+        m_zValue = 0;
+        m_tag = 0;
+        m_usesCustomTag = false;
+        m_texture = nullptr;
+    }
 
-    TodoReturn createDescription(cocos2d::CCDictionary*);
-    TodoReturn createDescription(DS_Dictionary*);
-    TodoReturn initDescription(cocos2d::CCDictionary*);
-    TodoReturn initDescription(DS_Dictionary*);
+    static SpriteDescription* createDescription(cocos2d::CCDictionary* dict) = win inline, m1 0x4ac3e8, imac 0x555800 {
+        auto ret = new SpriteDescription();
+        if (ret->initDescription(dict)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static SpriteDescription* createDescription(DS_Dictionary* dict) = win inline, m1 0x4acb54, imac 0x555f80 {
+        auto ret = new SpriteDescription();
+        if (ret->initDescription(dict)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    bool initDescription(cocos2d::CCDictionary* dict) = win inline, m1 0x4acfc4, imac 0x5563d0 {
+        m_position = cocos2d::CCPointFromString(dict->valueForKey("position")->getCString());
+        m_scale = cocos2d::CCPointFromString(dict->valueForKey("scale")->getCString());
+        m_flipped = cocos2d::CCPointFromString(dict->valueForKey("flipped")->getCString());
+        m_rotation = dict->valueForKey("rotation")->floatValue();
+        m_zValue = dict->valueForKey("zValue")->intValue();
+        m_tag = dict->valueForKey("tag")->intValue();
+        m_usesCustomTag = dict->valueForKey("usesCustomTag")->boolValue();
+        if (m_usesCustomTag) {
+            auto frameName = dict->valueForKey("texture")->getCString();
+            m_texture = cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frameName);
+            m_texture->retain();
+            m_texture->setFrameName(frameName);
+        }
+        return true;
+    }
+    bool initDescription(DS_Dictionary* dict) = win 0x41cf0, m1 0x4acd18, imac 0x556150;
+
+    cocos2d::CCPoint m_position;
+    cocos2d::CCPoint m_scale;
+    cocos2d::CCPoint m_flipped;
+    float m_rotation;
+    int m_zValue;
+    int m_tag;
+    bool m_usesCustomTag;
+    cocos2d::CCSpriteFrame* m_texture;
 }
 
 [[link(android)]]
