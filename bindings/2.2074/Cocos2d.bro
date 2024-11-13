@@ -1000,7 +1000,7 @@ class cocos2d::CCLayer {
 
     // CCLayer(cocos2d::CCLayer const&);
     CCLayer() = imac 0x49cfb0, m1 0x408108;
-    ~CCLayer() = imac 0x49d2a0, m1 0x408390;
+    ~CCLayer() = imac 0x49d2a0, m1 0x40828c;
 
     cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
     cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();
@@ -1098,7 +1098,7 @@ class cocos2d::CCObject {
 
     // CCObject(cocos2d::CCObject const&);
     CCObject() = imac 0x477bd0, m1 0x3e6090;
-    ~CCObject() = imac 0x477ce0, m1 0x3e6240;
+    ~CCObject() = imac 0x477ce0, m1 0x3e61b0;
 
     cocos2d::CCObjectType getObjType() const;
 
@@ -1153,7 +1153,7 @@ class cocos2d::CCLayerColor {
 
     // CCLayerColor(cocos2d::CCLayerColor const&);
     CCLayerColor() = imac 0x49f1a0, m1 0x409f38;
-    ~CCLayerColor() = imac 0x49f550, m1 0x40a1b8;
+    ~CCLayerColor() = imac 0x49f550, m1 0x40a0b4;
 
     void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
 
@@ -1457,7 +1457,7 @@ class cocos2d::CCImage {
     unsigned short getWidth() const;
 
     CCImage() = imac 0x476a70, m1 0x3e534c;
-    ~CCImage() = imac 0x476af0, m1 0x3e5320;
+    ~CCImage() = imac 0x476af0, m1 0x3e53b4;
 
     bool _initWithJpgData(void*, int);
     bool _initWithPngData(void*, int);
@@ -1473,7 +1473,7 @@ class cocos2d::CCImage {
 
 [[link(win, android)]]
 class cocos2d::CCIMEDelegate {
-    ~CCIMEDelegate() = imac 0x4a8c30, m1 0x411f7c;
+    ~CCIMEDelegate() = imac 0x4a8c30, m1 0x411f78;
     virtual bool attachWithIME() = imac 0x4a8c50, m1 0x411f90, ios 0x1d47b4;
     virtual bool detachWithIME() = imac 0x4a8e40, m1 0x4121d0, ios 0x1d48b8;
     virtual void deleteForward() = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
@@ -1667,7 +1667,7 @@ class cocos2d::CCNodeRGBA {
 
     // CCNodeRGBA(cocos2d::CCNodeRGBA const&);
     CCNodeRGBA() = imac 0x262fc0, m1 0x20ec74;
-    ~CCNodeRGBA() = imac 0x263070, m1 0x20ecdc;
+    ~CCNodeRGBA() = imac 0x263070, m1 0x20ecd8;
 
     virtual bool init() = imac 0x2630a0, m1 0x20ecf0, ios 0x23ce8c;
 
@@ -1740,7 +1740,7 @@ class cocos2d::CCSprite {
 
     // CCSprite(cocos2d::CCSprite const&);
     CCSprite() = imac 0x2762a0, m1 0x221864;
-    ~CCSprite() = imac 0x276d00, m1 0x221984;
+    ~CCSprite() = imac 0x276d00, m1 0x221938;
     bool isFlipX() = imac 0x278460;
     bool isFlipY() = imac 0x2784b0;
     bool isTextureRectRotated();
@@ -1952,46 +1952,46 @@ class cocos2d::CCApplication {
 [[link(win, android)]]
 class cocos2d::CCArray {
     // static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
-    // static cocos2d::CCArray* create() = imac 0x72cc40, m1 0x63f894, ios 0x2599ec;
-    // static cocos2d::CCArray* createWithArray(cocos2d::CCArray*) = m1 0x63faac;
-    // static cocos2d::CCArray* createWithCapacity(unsigned int) = ios 0x259b9c, imac 0x72cf50;
+    // static cocos2d::CCArray* create();
+    // static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
+    // static cocos2d::CCArray* createWithCapacity(unsigned int);
     static cocos2d::CCArray* createWithContentsOfFile(char const*);
     static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*);
     static cocos2d::CCArray* createWithObject(cocos2d::CCObject*);
 
     bool init() = imac 0x7094e0;
     bool initWithArray(cocos2d::CCArray*);
-    // bool initWithCapacity(unsigned int) = imac 0x72cbb0;
+    // bool initWithCapacity(unsigned int);
     bool initWithObject(cocos2d::CCObject*);
     // bool initWithObjects(cocos2d::CCObject*, ...);
 
     // CCArray(cocos2d::CCArray const&);
     // CCArray(unsigned int);
     // CCArray();
-    // void addObject(cocos2d::CCObject*) = imac 0x72cf20, m1 0x63faa4, ios 0x259b6c;
+    // void addObject(cocos2d::CCObject*);
     void addObjectNew(cocos2d::CCObject*);
-    // void addObjectsFromArray(cocos2d::CCArray*) = ios 0x259BFC;
+    // void addObjectsFromArray(cocos2d::CCArray*);
     unsigned int capacity() const;
-    // bool containsObject(cocos2d::CCObject*) const = ios 0x259CC4;
-    // unsigned int count() const = imac 0x72d2a0, m1 0x63fd7c, ios 0x259c08;
+    // bool containsObject(cocos2d::CCObject*) const;
+    // unsigned int count() const;
     void exchangeObject(cocos2d::CCObject*, cocos2d::CCObject*);
     void exchangeObjectAtIndex(unsigned int, unsigned int);
-    // void fastRemoveObject(cocos2d::CCObject*) = ios 0x259CE8;
+    // void fastRemoveObject(cocos2d::CCObject*);
     void fastRemoveObjectAtIndex(unsigned int);
     void fastRemoveObjectAtIndexChild(unsigned int);
     void fastRemoveObjectAtIndexNew(unsigned int);
     unsigned int indexOfObject(cocos2d::CCObject*) const;
     void insertObject(cocos2d::CCObject*, unsigned int);
     bool isEqualToArray(cocos2d::CCArray*);
-    // cocos2d::CCObject* lastObject() = imac 0x72d310;
-    // cocos2d::CCObject* objectAtIndex(unsigned int) = imac 0x72d2f0, m1 0x63fdac, ios 0x259c24;
+    // cocos2d::CCObject* lastObject();
+    // cocos2d::CCObject* objectAtIndex(unsigned int);
     cocos2d::CCObject* randomObject();
     void recreateNewIndexes();
     void reduceMemoryFootprint();
-    // void removeAllObjects() = m1 0x63ff34, ios 0x259d00;
-    // void removeLastObject(bool) = imac 0x72d440;
+    // void removeAllObjects();
+    // void removeLastObject(bool);
     void removeObject(cocos2d::CCObject*, bool);
-    // void removeObjectAtIndex(unsigned int, bool) = m1 0x63ff18, ios 0x259CF0;
+    // void removeObjectAtIndex(unsigned int, bool);
     void removeObjectAtIndexChild(unsigned int, bool);
     void removeObjectsInArray(cocos2d::CCArray*);
     void replaceObjectAtIndex(unsigned int, cocos2d::CCObject*, bool);
@@ -2136,7 +2136,7 @@ class cocos2d::CCTransitionMoveInT {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionFade {
-    static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = m1 0xc00b4, imac 0xd9090;
+    static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = m1 0xc122c, imac 0xd9090;
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&) = imac 0xd8ff0;
 
     // CCTransitionFade(cocos2d::CCTransitionFade const&);
