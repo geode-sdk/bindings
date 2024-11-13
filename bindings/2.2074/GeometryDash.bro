@@ -2105,7 +2105,7 @@ class CharacterColorPage : FLAlertLayer {
         m_glowLabel = nullptr;
     }
 
-    static CharacterColorPage* create() = win inline, m1 0x56ee50 {
+    static CharacterColorPage* create() = win inline, m1 0x56ee50, imac 0x6467b0 {
         auto ret = new CharacterColorPage();
         if (ret->init()) {
             ret->autorelease();
@@ -11245,7 +11245,7 @@ class GJUserScore : cocos2d::CCNode {
         return nullptr;
     }
 
-    bool isCurrentUser() = win 0x16fb90, m1 0x4a21b8;
+    bool isCurrentUser() = win 0x16fb90, m1 0x4a21b8, imac 0x549af0;
     TodoReturn mergeWithScore(GJUserScore*);
 
     virtual bool init() = win 0x16fb40, m1 0x4a2144, imac 0x549a60, ios 0xb32d8;
@@ -15436,7 +15436,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     bool isCorrect(char const* key);
     bool isOnWatchlist(int);
     void loadPage(int) = win 0x3aee30;
-    void loadPageFromUserInfo(GJUserScore*) = win 0x3a9240, m1 0x6b662c;
+    void loadPageFromUserInfo(GJUserScore*) = win 0x3a9240, m1 0x6b662c, imac 0x7a4660;
     void onBlockUser(cocos2d::CCObject* sender) = win 0x3ad200, m1 0x6b9f98;
     void onClose(cocos2d::CCObject* sender) = win 0x3adfd0;
     void onComment(cocos2d::CCObject* sender) = win 0x3acc50, m1 0x6ba888;
