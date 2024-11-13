@@ -756,7 +756,7 @@ class cocos2d::CCFileUtils {
     virtual void setPopupNotify(bool) = imac 0x429cd0, m1 0x3a4e20, ios 0x155fbc;
     virtual void setSearchPaths(gd::vector<gd::string> const&) = imac 0x429070, m1 0x3a3e68, ios 0x1556b0;
     virtual void setSearchResolutionsOrder(gd::vector<gd::string> const&) = imac 0x428cb0, m1 0x3a3ab0, ios 0x15524c;
-    static cocos2d::CCFileUtils* sharedFileUtils() = imac 0x5f4090, m1 0x523b94;
+    static cocos2d::CCFileUtils* sharedFileUtils() = imac 0x5f4090, m1 0x523b94, ios 0x23604c;
     virtual bool shouldUseHD() = imac 0x4273c0, m1 0x3a21d0, ios 0x154578;
     virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&) = m1 0x3a1a68, imac 0x426ce0, ios 0x153f78;
 }
@@ -1313,7 +1313,7 @@ class cocos2d::CCTouch {
     	return CCDirector::sharedDirector()->convertToGL(m_startPoint);
     }
     cocos2d::CCPoint getDelta() const = ios inline, m1 0x4f7c4 {
-    	return getLocation() - getPreviousLocation() = m1 0x4fb38;
+    	return getLocation() - getPreviousLocation();
     }
 }
 
