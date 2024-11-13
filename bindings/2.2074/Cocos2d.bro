@@ -213,7 +213,7 @@ class cocos2d::CCMotionStreak {
     void setStroke(float);
 
     // CCMotionStreak(cocos2d::CCMotionStreak const&);
-    	CCMotionStreak() = imac inline, m1 inline {
+    	CCMotionStreak() = imac inline, m1 0x4b5cf4 {
     	m_bFastMode = false;
     	m_bStartingPositionInitialized = false;
     	m_pTexture = nullptr;
@@ -247,7 +247,7 @@ class cocos2d::CCMotionStreak {
     void tintWithColor(cocos2d::_ccColor3B);
     void updateFade(float) = imac 0x55fb10;
 
-    ~CCMotionStreak();
+    ~CCMotionStreak() = m1 0x4b5e2c;
 
     virtual void update(float) = imac 0x55fb50, m1 0x4b651c, ios 0x17a624;
     virtual void setPosition(cocos2d::CCPoint const&) = imac 0x55f8b0, m1 0x4b6324, ios 0x17a4f4;
@@ -2525,8 +2525,8 @@ class cocos2d::CCDrawNode {
     void setBlendFunc(cocos2d::_ccBlendFunc const&) = imac 0x5fb270;
 
     // CCDrawNode(cocos2d::CCDrawNode const&);
-    CCDrawNode();
-    ~CCDrawNode();
+    CCDrawNode() = m1 0x528418;
+    ~CCDrawNode() = m1 0x528574;
     void clear() = imac 0x5fb240;
     void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int) = imac 0x5fb090, m1 0x529f50;
     void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
@@ -3017,8 +3017,8 @@ class cocos2d::extension::CCScale9Sprite {
     }
     static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3e3810, m1 0x365afc;
 
-    CCScale9Sprite();
-    ~CCScale9Sprite();
+    CCScale9Sprite() = m1 0x3642fc;
+    ~CCScale9Sprite() = m1 0x3643b0;
 
     virtual bool init() = imac 0x3e2060;
     virtual void setContentSize(const cocos2d::CCSize& size);
