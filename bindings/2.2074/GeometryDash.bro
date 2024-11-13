@@ -2526,7 +2526,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 
     TodoReturn incrementDislikes();
     TodoReturn incrementLikes();
-    void loadFromComment(GJComment*) = win 0xb5480;
+    void loadFromComment(GJComment*) = win 0xb5480, m1 0x1e5f14;
     void onConfirmDelete(cocos2d::CCObject* sender) = win 0xb7850, imac 0x242f80, m1 0x1f220c;
     TodoReturn onDelete();
     void onGoToLevel(cocos2d::CCObject* sender) = win 0xb7b20, imac 0x242dc0, m1 0x1f2078;
@@ -3857,7 +3857,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     }
 
     TodoReturn doResetUnused() = win 0x2d2b80;
-    bool init(LevelEditorLayer*) = win 0xd8990, imac 0x1eb720;
+    bool init(LevelEditorLayer*) = win 0xd8990, imac 0x1eb720, m1 0x228bbc;
     void onAlignX(cocos2d::CCObject* sender);
     void onAlignY(cocos2d::CCObject* sender);
     void onBuildHelper(cocos2d::CCObject* sender);
@@ -5186,7 +5186,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn startMusic(int, int, int, int, bool, int, bool, bool);
     void stop();
     void stopAllEffects() = win 0x598b0, m1 0x353c3c;
-    void stopAllMusic(bool);
+    void stopAllMusic(bool) = imac 0x3cbbf0, m1 0x353f28;
     TodoReturn stopAndGetFade(FMOD::Channel*);
     TodoReturn stopAndRemoveMusic(int);
     void stopChannel(FMOD::Channel*, bool, float) = win 0x58810;
@@ -7332,7 +7332,7 @@ class GameStatsManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GameToolbox {
-    static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x65010, imac 0x4dc890;
+    static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x65010, imac 0x4dc890, m1 0x43f944;
     static void addRThumbScrollButton(cocos2d::CCLayer*) = win 0x650f0, m1 0x43fa2c;
     static void alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x64110;
     static void alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
@@ -7446,7 +7446,7 @@ class GauntletNode : cocos2d::CCNode {
 
     static gd::string frameForType(GauntletType) = win 0x1f9030;
     static gd::string nameForType(GauntletType) = win 0x1fa250;
-    bool init(GJMapPack*) = win 0x1f7970, imac 0x55cb50;
+    bool init(GJMapPack*) = win 0x1f7970, imac 0x55cb50, m1 0x4b2fdc;
     void onClaimReward() = win 0x1f8ff0, imac 0x55ca80;
 
     cocos2d::CCNode* m_gauntletInfoNode;
@@ -8785,7 +8785,7 @@ class GJCommentListLayer : cocos2d::CCLayerColor {
 
     static GJCommentListLayer* create(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x28a320, imac 0x28c900, m1 0x235434;
 
-    bool init(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x28a440;
+    bool init(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x28a440, m1 0x23552c;
 
     BoomListView* m_list;
 }
