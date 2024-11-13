@@ -2156,7 +2156,7 @@ class CheckpointGameObject : EffectGameObject {
     TodoReturn resetCheckpoint();
     TodoReturn updateCheckpointSpriteVisibility();
 
-    virtual bool init() = m1 0x180db0, imac 0x1c36c0, ios 0x388610;
+    virtual bool init() = win 0x4a1240, m1 0x180db0, imac 0x1c36c0, ios 0x388610;
     virtual void setupCustomSprites(gd::string) = imac 0x1c3b10, m1 0x1811f0, ios 0x3889e4;
     virtual void resetObject() = m1 0x18256c, imac 0x1c5120, ios 0x389524;
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a12c0, imac 0x1c3720, m1 0x180e0c, ios 0x38866c;
@@ -13434,7 +13434,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onOptions(cocos2d::CCObject* sender) = win 0x320bb0;
     void onOptionsInstant() = win 0x320bc0, m1 0x30d5b8;
     void onPlay(cocos2d::CCObject* sender) = win 0x320b10, m1 0x30e930;
-    void onQuit(cocos2d::CCObject* sender) = win 0x3210c0;
+    void onQuit(cocos2d::CCObject* sender) = win 0x3210c0, imac 0x37e640, m1 0x30edc0;
     void onRobTop(cocos2d::CCObject* sender) = win 0x3207c0;
     void onStats(cocos2d::CCObject* sender) = win 0x320d50;
     void onTrailer(cocos2d::CCObject* sender);
