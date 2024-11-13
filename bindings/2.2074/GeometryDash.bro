@@ -315,8 +315,8 @@ class AchievementsLayer : GJDropDownLayer {
     }
 
     void loadPage(int) = win 0x82300;
-    void onNextPage(cocos2d::CCObject* sender) = win 0x824e0;
-    void onPrevPage(cocos2d::CCObject* sender) = win 0x824f0;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x824e0, m1 0x3e8068, imac 0x479d50;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x824f0, m1 0x3e8034, imac 0x479d10;
     void setupLevelBrowser(cocos2d::CCArray* arr) = win inline {
         m_listLayer->removeChildByTag(9, true);
         auto* listView = CustomListView::create(arr, BoomListType::Default, 220.f, 356.f);
@@ -12725,8 +12725,8 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
         return nullptr;
     }
 
-    void addSecretCoin() = win 0x307810, m1 0x39cb1c;
-    void addSecretDoor() = win 0x307f20, m1 0x39f3a0;
+    void addSecretCoin() = win 0x307810, m1 0x39cb1c, imac 0x4215a0;
+    void addSecretDoor() = win 0x307f20, m1 0x39ed88, imac 0x423b10;
     bool init(GJGameLevel*) = win 0x305070, m1 0x39dc80;
     void onInfo(cocos2d::CCObject* sender) = win 0x309260;
     void onMoreGames(cocos2d::CCObject* sender);
@@ -12736,7 +12736,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
     void playCoinEffect() = win 0x307a50, imac 0x423cf0, m1 0x39ef58;
     void playStep2();
     void playStep3() = win 0x309160;
-    void updateDynamicPage(GJGameLevel*) = win 0x305d00, m1 0x39b524;
+    void updateDynamicPage(GJGameLevel*) = win 0x305d00, m1 0x39b524, imac 0x420050;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x309700, imac 0x424bf0, m1 0x39fd40, ios 0x3fdab4;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x39fe48, imac 0x424d10, ios 0x3fdbb0 {}
