@@ -378,7 +378,7 @@ class cocos2d::CCAction {
 
 [[link(win, android)]]
 class cocos2d::CCScene {
-    static cocos2d::CCScene* create() = imac 0x27eef0;
+    static cocos2d::CCScene* create() = imac 0x27eef0, m1 0x2288ec;
 
     int getHighestChildZ() = imac 0x27efb0, m1 0x2289cc;
 
@@ -824,10 +824,10 @@ class cocos2d::CCNode {
 
     cocos2d::CCRect boundingBox() = imac 0x260cd0, m1 0x20ca74;
     void childrenAlloc();
-    cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = imac 0x262c40;
+    cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = imac 0x262c40, m1 0x20e94c;
     cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const&);
     cocos2d::CCPoint convertToWindowSpace(cocos2d::CCPoint const&);
-    cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&) = imac 0x262c80;
+    cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&) = imac 0x262c80, m1 0x20e994;
     cocos2d::CCPoint convertToWorldSpaceAR(cocos2d::CCPoint const&);
     cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*) = m1 0x20eaf8;
     cocos2d::CCPoint convertTouchToNodeSpaceAR(cocos2d::CCTouch*);
@@ -843,14 +843,14 @@ class cocos2d::CCNode {
     void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x262210, m1 0x20df28;
     void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = imac 0x2621e0;
     void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = imac 0x262240;
-    void scheduleUpdate() = imac 0x262090;
+    void scheduleUpdate() = imac 0x262090, m1 0x20ddf0;
     void scheduleUpdateWithPriority(int) = imac 0x2620c0;
     void scheduleUpdateWithPriorityLua(int, int) = imac 0x2620f0;
     void sortAllChildrenNoIndex();
     void sortAllChildrenWithIndex();
     void stopAction(cocos2d::CCAction*);
     void stopActionByTag(int);
-    void stopAllActions() = imac 0x260e30;
+    void stopAllActions() = imac 0x260e30, m1 0x20cbec;
     void transform();
     void transformAncestors();
     void unschedule(cocos2d::SEL_SCHEDULE) = imac 0x262270, m1 0x20df6c;
@@ -999,8 +999,8 @@ class cocos2d::CCLayer {
     static cocos2d::CCLayer* create() = imac 0x49d570, m1 0x408478;
 
     // CCLayer(cocos2d::CCLayer const&);
-    CCLayer() = imac 0x49cfb0;
-    ~CCLayer() = imac 0x49d2a0;
+    CCLayer() = imac 0x49cfb0, m1 0x408108;
+    ~CCLayer() = imac 0x49d2a0, m1 0x408390;
 
     cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
     cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();
@@ -1108,7 +1108,7 @@ class cocos2d::CCObject {
     cocos2d::CCObject* copy();
     bool isSingleReference() const = imac 0x477e40;
     void release() = imac 0x477de0, m1 0x3e62e0;
-    void retain() = imac 0x477e00;
+    void retain() = imac 0x477e00, m1 0x3e6304;
     unsigned int retainCount() const;
 
     virtual int getTag() const = m1 0x3e637c, imac 0x477e90, ios 0x88abc;
@@ -1152,8 +1152,8 @@ class cocos2d::CCLayerColor {
     }
 
     // CCLayerColor(cocos2d::CCLayerColor const&);
-    CCLayerColor() = imac 0x49f1a0;
-    ~CCLayerColor() = imac 0x49f550;
+    CCLayerColor() = imac 0x49f1a0, m1 0x409f38;
+    ~CCLayerColor() = imac 0x49f550, m1 0x40a1b8;
 
     void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
 
@@ -1456,8 +1456,8 @@ class cocos2d::CCImage {
     unsigned short getHeight() const;
     unsigned short getWidth() const;
 
-    CCImage() = imac 0x476a70;
-    ~CCImage() = imac 0x476af0;
+    CCImage() = imac 0x476a70, m1 0x3e534c;
+    ~CCImage() = imac 0x476af0, m1 0x3e5320;
 
     bool _initWithJpgData(void*, int);
     bool _initWithPngData(void*, int);
@@ -1706,12 +1706,12 @@ class cocos2d::CCSequence {
 
 [[link(win, android)]]
 class cocos2d::CCSprite {
-    static cocos2d::CCSprite* create(char const*) = imac 0x276440;
+    static cocos2d::CCSprite* create(char const*) = imac 0x276440, m1 0x2210dc;
     static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&) = imac 0x276530;
-    static cocos2d::CCSprite* create() = imac 0x276760;
+    static cocos2d::CCSprite* create() = imac 0x276760, m1 0x2213ec;
     static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x276630;
     static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = m1 0x2213c4, imac 0x276730;
-    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x2761b0;
+    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x2761b0, m1 0x220e60;
     static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = imac 0x276340;
 
     unsigned int getAtlasIndex();
@@ -1731,16 +1731,16 @@ class cocos2d::CCSprite {
     void setBlVertexMod(float);
     void setBrVertexMod(float);
     void setDontDraw(bool);
-    void setFlipX(bool) = imac 0x278420;
-    void setFlipY(bool) = imac 0x278470;
+    void setFlipX(bool) = imac 0x278420, m1 0x222e04;
+    void setFlipY(bool) = imac 0x278470, m1 0x222e38;
     void setTextureAtlas(cocos2d::CCTextureAtlas*);
     void setTlVertexMod(float);
     void setTrVertexMod(float);
     void setUseVertexMod(bool);
 
     // CCSprite(cocos2d::CCSprite const&);
-    CCSprite() = imac 0x2762a0;
-    ~CCSprite() = imac 0x276d00;
+    CCSprite() = imac 0x2762a0, m1 0x221864;
+    ~CCSprite() = imac 0x276d00, m1 0x221984;
     bool isFlipX() = imac 0x278460;
     bool isFlipY() = imac 0x2784b0;
     bool isTextureRectRotated();
@@ -2619,7 +2619,7 @@ class cocos2d::CCSpriteFrame {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteFrameCache {
-    static cocos2d::CCSpriteFrameCache* sharedSpriteFrameCache() = imac 0x307a40;
+    static cocos2d::CCSpriteFrameCache* sharedSpriteFrameCache() = imac 0x307a40, m1 0x29eb7c;
 
     bool init();
 
@@ -2636,7 +2636,7 @@ class cocos2d::CCSpriteFrameCache {
     void removeSpriteFramesFromFile(char const*);
     void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*) = imac 0x3095d0;
     void removeUnusedSpriteFrames() = imac 0x308df0;
-    cocos2d::CCSpriteFrame* spriteFrameByName(char const*) = imac 0x3098e0;
+    cocos2d::CCSpriteFrame* spriteFrameByName(char const*) = imac 0x3098e0, m1 0x2a0b38;
     //purgeSharedSpriteFrameCache = ios 0x3c4dd4
 }
 
@@ -2983,8 +2983,8 @@ class cocos2d::extension::CCControlColourPicker {
 
 [[link(win, android)]]
 class cocos2d::extension::CCScale9Sprite {
-    static cocos2d::extension::CCScale9Sprite* create() = imac 0x3e3e90;
-    static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName) = imac 0x3e3d70, ios inline {
+    static cocos2d::extension::CCScale9Sprite* create() = imac 0x3e3e90, m1 0x36627c;
+    static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName) = imac 0x3e3d70, m1 0x365f30, ios inline {
     	CCScale9Sprite* ret = new CCScale9Sprite;
     	if (ret->initWithSpriteFrameName(spriteFrameName)) {
     		ret->autorelease();
@@ -2994,7 +2994,7 @@ class cocos2d::extension::CCScale9Sprite {
     	delete ret;
     	return nullptr;
     }
-    static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName, cocos2d::CCRect capInsets) = imac 0x3e3c90, ios inline {
+    static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName, cocos2d::CCRect capInsets) = imac 0x3e3c90, m1 0x3661b4, ios inline {
     	CCScale9Sprite* ret = new CCScale9Sprite;
     	if (ret->initWithSpriteFrameName(spriteFrameName, capInsets)) {
     		ret->autorelease();
@@ -3004,7 +3004,7 @@ class cocos2d::extension::CCScale9Sprite {
     	delete ret;
     	return nullptr;
     }
-    static cocos2d::extension::CCScale9Sprite* create(char const* pszname) = imac 0x3e39e0, ios inline {
+    static cocos2d::extension::CCScale9Sprite* create(char const* pszname) = imac 0x3e39e0, m1 0x36612c, ios inline {
     	CCScale9Sprite* ret = new CCScale9Sprite;
     	if (ret->initWithFile(pszname)) {
     		ret->autorelease();
@@ -3014,7 +3014,7 @@ class cocos2d::extension::CCScale9Sprite {
     	delete ret;
     	return nullptr;
     }
-    static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3e3810;
+    static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3e3810, m1 0x366028;
 
     CCScale9Sprite();
     ~CCScale9Sprite();
