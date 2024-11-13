@@ -5638,7 +5638,7 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCScene* getSearchScene(char const*) = imac 0x522e00, m1 0x47edb8;
     int getSplitIntFromKey(char const*, int);
     TodoReturn getStarLevelsString();
-    cocos2d::CCArray* getStoredLevelComments(char const*) = m1 0x494a28;
+    cocos2d::CCArray* getStoredLevelComments(char const*) = win 0x15b420, m1 0x494a28;
     cocos2d::CCArray* getStoredOnlineLevels(char const*) = win 0x147780, imac 0x5223c0, m1 0x47e2d8;
     cocos2d::CCArray* getStoredUserList(UserListType) = imac 0x53f790;
     GJUserMessage* getStoredUserMessage(int);
