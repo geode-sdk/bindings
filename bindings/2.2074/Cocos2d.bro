@@ -2984,7 +2984,7 @@ class cocos2d::extension::CCControlColourPicker {
 [[link(win, android)]]
 class cocos2d::extension::CCScale9Sprite {
     static cocos2d::extension::CCScale9Sprite* create() = imac 0x3e3e90, m1 0x36627c;
-    static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName) = imac 0x3e3d70, m1 0x365f30, ios inline {
+    static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName) = imac 0x3e3d70, m1 0x36612c, ios inline {
     	CCScale9Sprite* ret = new CCScale9Sprite;
     	if (ret->initWithSpriteFrameName(spriteFrameName)) {
     		ret->autorelease();
@@ -2994,7 +2994,7 @@ class cocos2d::extension::CCScale9Sprite {
     	delete ret;
     	return nullptr;
     }
-    static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName, cocos2d::CCRect capInsets) = imac 0x3e3c90, m1 0x3661b4, ios inline {
+    static cocos2d::extension::CCScale9Sprite* createWithSpriteFrameName(char const* spriteFrameName, cocos2d::CCRect capInsets) = imac 0x3e3c90, m1 0x366028, ios inline {
     	CCScale9Sprite* ret = new CCScale9Sprite;
     	if (ret->initWithSpriteFrameName(spriteFrameName, capInsets)) {
     		ret->autorelease();
@@ -3004,7 +3004,7 @@ class cocos2d::extension::CCScale9Sprite {
     	delete ret;
     	return nullptr;
     }
-    static cocos2d::extension::CCScale9Sprite* create(char const* pszname) = imac 0x3e39e0, m1 0x36612c, ios inline {
+    static cocos2d::extension::CCScale9Sprite* create(char const* pszname) = imac 0x3e39e0, m1 0x365d20, ios inline {
     	CCScale9Sprite* ret = new CCScale9Sprite;
     	if (ret->initWithFile(pszname)) {
     		ret->autorelease();
@@ -3014,7 +3014,7 @@ class cocos2d::extension::CCScale9Sprite {
     	delete ret;
     	return nullptr;
     }
-    static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3e3810, m1 0x366028;
+    static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3e3810, m1 0x365afc;
 
     CCScale9Sprite();
     ~CCScale9Sprite();
