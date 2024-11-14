@@ -7196,10 +7196,10 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedMapPack(int);
     bool hasCompletedOnlineLevel(int) = win 0x1db070, m1 0x60ecc, imac 0x6d330;
     bool hasCompletedStarLevel(GJGameLevel*) = imac 0x6d570;
-    bool hasPendingUserCoin(char const*);
+    bool hasPendingUserCoin(char const*) = win 0x1dce90, m1 0x636cc, imac 0x6fcf0;
     bool hasRewardBeenCollected(GJRewardType, int);
     bool hasSecretCoin(char const*) = win 0x1dcf50;
-    bool hasUserCoin(char const*);
+    bool hasUserCoin(char const*) = win 0x1dcd10, m1 0x637c4, imac 0x6fde0;
     TodoReturn incrementActivePath(int);
     TodoReturn incrementChallenge(GJChallengeType, int) = win 0x1df0f0, m1 0x5eb10, imac 0x6b0c0;
     void incrementStat(char const*, int) = win 0x1d1500, imac 0x66960, m1 0x5afdc;
