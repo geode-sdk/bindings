@@ -10629,13 +10629,13 @@ class GJSearchObject : cocos2d::CCNode {
 
 [[link(android), depends(GJValueTween)]]
 class GJShaderState {
-    TodoReturn reset();
-    TodoReturn stopTweenAction(int);
-    TodoReturn timesyncShaderAction(int);
-    TodoReturn timesyncShaderActions();
-    TodoReturn tweenValue(float, float, int, float, int, float);
-    TodoReturn updateTweenAction(float, int);
-    TodoReturn updateTweenActions(float);
+    void reset();
+    void stopTweenAction(int action);
+    void timesyncShaderAction(int action);
+    void timesyncShaderActions();
+    void tweenValue(float fromValue, float toValue, int action, float duration, int easingType, float easingRate);
+    void updateTweenAction(float value, int actionID);
+    void updateTweenActions(float tweenValue);
 
     gd::unordered_map<int, GJValueTween> m_someIntToValueTweenMap;
     gd::unordered_map<int, double> m_someIntToDoubleMap;
@@ -10782,7 +10782,7 @@ class GJShaderState {
     float m_colorChangeBB;
     float m_splitUnk268;
     float m_splitUnk26c;
-    bool m_splitUnk260;
+    bool m_splitUnk270;
     int m_blurRefChannel;
     int m_somethingZLayerUnk278;
     bool m_zLayerDirty;
