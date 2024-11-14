@@ -47,7 +47,7 @@ class cocos2d::CCEaseOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseInOut {
-    static cocos2d::CCEaseInOut* create(cocos2d::CCActionInterval*, float) = m1 0x45e53c;
+    static cocos2d::CCEaseInOut* create(cocos2d::CCActionInterval*, float) = m1 0x45e760, imac 0x4fed70;
 
     // CCEaseInOut(cocos2d::CCEaseInOut const&);
     // CCEaseInOut();
@@ -3017,8 +3017,8 @@ class cocos2d::extension::CCScale9Sprite {
     }
     static cocos2d::extension::CCScale9Sprite* create(char const*, cocos2d::CCRect) = imac 0x3e3810, m1 0x365afc;
 
-    CCScale9Sprite() = m1 0x3642fc;
-    ~CCScale9Sprite() = m1 0x3643b0;
+    CCScale9Sprite() = m1 0x3642fc, imac 0x3e1e50;
+    ~CCScale9Sprite() = m1 0x3643b0, imac 0x3e1f40;
 
     virtual bool init() = m1 0x364478, imac 0x3e2060;
     virtual void setContentSize(const cocos2d::CCSize& size);
