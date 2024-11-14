@@ -3868,7 +3868,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onExitEditor(cocos2d::CCObject* sender) = win 0xdcd60, m1 0x22c7fc;
     void onExitNoSave(cocos2d::CCObject* sender) = imac 0x281ad0, m1 0x22b51c;
     void onHelp(cocos2d::CCObject* sender);
-    void onKeybindings(cocos2d::CCObject* sender);
+    void onKeybindings(cocos2d::CCObject* sender) = m1 0x22bc3c;
     void onNewGroupX(cocos2d::CCObject* sender);
     void onNewGroupY(cocos2d::CCObject* sender);
     void onOptions(cocos2d::CCObject* sender);
@@ -4127,7 +4127,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType, bool) = win 0x11f8d0;
     void selectAll();
     void selectAllWithDirection(bool) = imac 0x3d960;
-    void selectBuildTab(int) = win 0x112f90, imac 0x34340;
+    void selectBuildTab(int) = win 0x112f90, imac 0x34340, m1 0x33974;
     void selectObject(GameObject*, bool) = win 0x10ee50, imac 0x2ec30, m1 0x2e5c8;
     void selectObjects(cocos2d::CCArray*, bool) = win 0x10f140, imac 0x3c830, m1 0x3749c;
     void selectObjectsInRect(cocos2d::CCRect);
@@ -4199,8 +4199,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     float valueFromXPos(float);
     float xPosFromValue(float);
     void zoomGameLayer(bool);
-    void zoomIn(cocos2d::CCObject*) = win 0x110e50, imac 0xced0;
-    void zoomOut(cocos2d::CCObject*) = win 0x110ea0, imac 0xcf20;
+    void zoomIn(cocos2d::CCObject*) = win 0x110e50, imac 0xced0, m1 0xe218;
+    void zoomOut(cocos2d::CCObject*) = win 0x110ea0, imac 0xcf20, m1 0xe270;
 
     virtual void draw() = win 0x121120, imac 0x4e7d0, m1 0x463fc, ios 0x3f0124;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x121c60, imac 0x4f290, m1 0x46de4, ios 0x3f07a0;
@@ -13564,7 +13564,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
     void onGPSignIn(cocos2d::CCObject* sender);
     void onGPSignOut(cocos2d::CCObject* sender);
     void onInfo(cocos2d::CCObject* sender);
-    void onKeybindings(cocos2d::CCObject* sender) = win 0xdba40;
+    void onKeybindings(cocos2d::CCObject* sender) = win 0xdba40, m1 0x69bc4c;
     void onNextPage(cocos2d::CCObject* sender);
     void onParental(cocos2d::CCObject* sender);
     void onPrevPage(cocos2d::CCObject* sender);

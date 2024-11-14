@@ -982,7 +982,7 @@ class cocos2d::CCScheduler {
     void resumeTargets(cocos2d::CCSet*);
     unsigned int scheduleScriptFunc(unsigned int, float, bool);
     void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool) = imac 0x42e250, m1 0x3a8f7c;
-    void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool) = imac 0x42e230;
+    void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool) = imac 0x42e230, m1 0x3a8f6c;
     void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool) = imac 0x42ee60, m1 0x3a9bec;
     void unscheduleAll();
     void unscheduleAllForTarget(cocos2d::CCObject*) = imac 0x42f420;
@@ -1521,7 +1521,7 @@ class cocos2d::CCKeyboardDispatcher {
     void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
     char const* keyToString(cocos2d::enumKeyCodes) = imac 0x1f1aa0, m1 0x1a82e0;
     void removeDelegate(cocos2d::CCKeyboardDelegate*);
-    void updateModifierKeys(bool, bool, bool, bool) = imac 0x1f1a70;
+    void updateModifierKeys(bool, bool, bool, bool) = imac 0x1f1a70, m1 0x1a82c8;
 }
 
 [[link(win, android)]]
@@ -2026,7 +2026,7 @@ class cocos2d::CCDictionary {
     cocos2d::CCObject* objectForKey(gd::string const&) = imac 0x2fa0b0, m1 0x29288c;
     cocos2d::CCObject* objectForKey(intptr_t) = imac 0x2fa440, m1 0x292b98;
     cocos2d::CCObject* randomObject();
-    void removeAllObjects();
+    void removeAllObjects() = m1 0x292260;
     void removeObjectForElememt(cocos2d::CCDictElement*) = imac 0x2fb910;
     void removeObjectForKey(gd::string const&) = imac 0x2fb510, m1 0x293a98;
     void removeObjectForKey(intptr_t) = imac 0x2fba60, m1 0x293f08;
