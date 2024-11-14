@@ -5666,9 +5666,9 @@ class GameLevelManager : cocos2d::CCNode {
     bool hasRatedDemon(int);
     bool hasRatedLevelStars(int);
     bool hasReportedLevel(int);
-    void invalidateMessages(bool, bool);
-    void invalidateRequests(bool, bool);
-    void invalidateUserList(UserListType, bool) = win 0x160840, m1 0x4996f8;
+    void invalidateMessages(bool, bool) = imac 0x538ef0;
+    void invalidateRequests(bool, bool) = imac 0x53e480;
+    void invalidateUserList(UserListType, bool) = win 0x160840, m1 0x4996f8, imac 0x540580;
     bool isDLActive(char const* tag);
     bool isFollowingUser(int) = win 0x148840, m1 0x47fda8;
     bool isTimeValid(char const*, float) = win 0x147c90;
@@ -5775,7 +5775,7 @@ class GameLevelManager : cocos2d::CCNode {
     void resetCommentTimersForLevelID(int, CommentKeyType) = win 0x15c770, imac 0x53c490;
     void resetDailyLevelState(GJTimedLevelType) = imac 0x543920, m1 0x49c920;
     void resetGauntlets();
-    void resetStoredUserInfo(int id) = win inline {
+    void resetStoredUserInfo(int id) = win inline , imac 0x536fc0{
         m_storedUserInfo->removeObjectForKey(id);
     }
     void resetStoredUserList(UserListType);
@@ -5828,7 +5828,7 @@ class GameLevelManager : cocos2d::CCNode {
     void updateLevelRewards(GJGameLevel*) = win 0x144380, m1 0x475db4;
     void updateSavedLevelList(GJLevelList*) = win 0x14ef40, m1 0x487790;
     void updateUsernames();
-    void updateUserScore() = win 0x153790, m1 0x48c508;
+    void updateUserScore() = win 0x153790, m1 0x48c508, imac 0x531c80;
     void uploadAccountComment(gd::string);
     void uploadComment(gd::string, CommentType, int, int);
     void uploadFriendRequest(int, gd::string);
@@ -5837,7 +5837,7 @@ class GameLevelManager : cocos2d::CCNode {
     void uploadLevelList(GJLevelList*);
     void uploadUserMessage(int, gd::string, gd::string) = win 0x1588b0, m1 0x491cac;
     int userIDForAccountID(int);
-    GJUserScore* userInfoForAccountID(int);
+    GJUserScore* userInfoForAccountID(int) = imac 0x518ac0;
     gd::string userNameForUserID(int) = win 0x143e80, m1 0x475748;
     TodoReturn verifyContainerOnlyHasLevels(cocos2d::CCDictionary*);
     void verifyLevelState(GJGameLevel*);
@@ -15432,7 +15432,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     static ProfilePage* create(int accountID, bool ownProfile) = win 0x3a7a20, imac 0x7a3080, m1 0x6b5200;
 
     void blockUser();
-    bool init(int accountID, bool ownProfile) = win 0x3a7c00, m1 0x6b5370;
+    bool init(int accountID, bool ownProfile) = win 0x3a7c00, m1 0x6b5370, imac 0x7a3290;
     bool isCorrect(char const* key);
     bool isOnWatchlist(int);
     void loadPage(int) = win 0x3aee30;
@@ -15457,10 +15457,10 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onStatInfo(cocos2d::CCObject* sender) = win 0x3ac0c0;
     void onTwitch(cocos2d::CCObject* sender) = win 0x3ae760;
     void onTwitter(cocos2d::CCObject* sender) = win 0x3ae5d0;
-    void onUpdate(cocos2d::CCObject* sender);
+    void onUpdate(cocos2d::CCObject* sender) = imac 0x7a4270;
     void onYouTube(cocos2d::CCObject* sender) = win 0x3ae440;
     void setupComments() = m1 0x6b5e30;
-    void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3af120, m1 0x6b64fc;
+    void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3af120, m1 0x6b64fc, imac 0x7a4520;
     void showNoAccountError() = win 0x3ae060;
     TodoReturn toggleMainPageVisibility(bool);
     void toggleShip(cocos2d::CCObject* sender) = win 0x3ac010, imac 0x7a72a0, m1 0x6b8cfc;
