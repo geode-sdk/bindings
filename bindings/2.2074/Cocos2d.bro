@@ -3020,7 +3020,7 @@ class cocos2d::extension::CCScale9Sprite {
     CCScale9Sprite() = m1 0x3642fc;
     ~CCScale9Sprite() = m1 0x3643b0;
 
-    virtual bool init() = imac 0x3e2060;
+    virtual bool init() = m1 0x364478, imac 0x3e2060;
     virtual void setContentSize(const cocos2d::CCSize& size);
     virtual void visit() = imac 0x3e44d0, m1 0x3667fc;
     virtual GLubyte getOpacity();
