@@ -413,7 +413,7 @@ class cocos2d::CCSet {
 [[link(win, android)]]
 class cocos2d::CCShaderCache {
     static void purgeSharedShaderCache();
-    static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1f0310, m1 0x1a6b00;
+    static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1f0310, m1 0x1a6b00, ios 0x12b5e4;
 
     bool init();
 
@@ -422,7 +422,7 @@ class cocos2d::CCShaderCache {
     void addProgram(cocos2d::CCGLProgram*, char const*);
     void loadDefaultShader(cocos2d::CCGLProgram*, int);
     void loadDefaultShaders();
-    cocos2d::CCGLProgram* programForKey(char const*) = m1 0x1a7a58;
+    cocos2d::CCGLProgram* programForKey(char const*) = m1 0x1a7a58, ios 0x12bcc8;
     void reloadDefaultShaders();
 }
 
@@ -769,7 +769,7 @@ class cocos2d::CCGLProgram {
     unsigned int const getProgram();
     int getUniformLocationForName(char const*);
 
-    void setUniformLocationWith1f(int, float);
+    void setUniformLocationWith1f(int, float) = ios 0x1389e0;
     void setUniformLocationWith1i(int, int);
     void setUniformLocationWith2f(int, float, float);
     void setUniformLocationWith2fv(int, float*, unsigned int);
@@ -1280,16 +1280,16 @@ class cocos2d::CCTexture2D {
 class cocos2d::CCTextureCache {
     static void purgeSharedTextureCache();
     static void reloadAllTextures();
-    static cocos2d::CCTextureCache* sharedTextureCache() = imac 0x5d4630, m1 0x508118;
+    static cocos2d::CCTextureCache* sharedTextureCache() = imac 0x5d4630, m1 0x508118, ios 0x115eac;
 
     // CCTextureCache(cocos2d::CCTextureCache const&);
     // CCTextureCache();
     cocos2d::CCTexture2D* addETCImage(char const*);
-    cocos2d::CCTexture2D* addImage(char const*, bool) = imac 0x5d58c0, m1 0x509308;
+    cocos2d::CCTexture2D* addImage(char const*, bool) = imac 0x5d58c0, m1 0x509308, ios 0x116a94;
     void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat) = imac 0x5d4b00;
     void addImageAsyncCallBack(float);
     cocos2d::CCTexture2D* addPVRImage(char const*);
-    cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*) = imac 0x5d6700, m1 0x50a210;
+    cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*) = imac 0x5d6700, m1 0x50a210, ios 0x117460;
     char const* description();
     void dumpCachedTextureInfo();
     void prepareAsyncLoading();
@@ -1305,7 +1305,7 @@ class cocos2d::CCTextureCache {
 [[link(win, android)]]
 class cocos2d::CCTouch {
     cocos2d::CCPoint getLocationInView() const = imac 0x59ab0;
-    cocos2d::CCPoint getLocation() const = m1 0x4f740, imac 0x59b10;
+    cocos2d::CCPoint getLocation() const = m1 0x4f740, imac 0x59b10, ios 0x2fe8dc;
     cocos2d::CCPoint getPreviousLocation() const = ios inline, m1 0x4f76c {
     	return CCDirector::sharedDirector()->convertToGL(m_prevPoint);
     }
@@ -1445,7 +1445,7 @@ class cocos2d::CCEGLView {
 
 [[link(win, android)]]
 class cocos2d::CCImage {
-    bool initWithImageData(void*, int, cocos2d::CCImage::EImageFormat, int, int, int, int) = imac 0x476d80, m1 0x3e5670;
+    bool initWithImageData(void*, int, cocos2d::CCImage::EImageFormat, int, int, int, int) = imac 0x476d80, m1 0x3e5670, ios 0x2f5f0;
     bool initWithImageFile(char const*, cocos2d::CCImage::EImageFormat) = imac 0x476b70, m1 0x3e5430;
     bool initWithImageFileThreadSafe(char const*, cocos2d::CCImage::EImageFormat) = imac 0x477360, m1 0x3e5a5c;
     bool initWithString(char const*, int, int, cocos2d::CCImage::ETextAlign, char const*, int);
@@ -2646,7 +2646,7 @@ class cocos2d::CCString {
     static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x7956c0, m1 0x6a8b3c, ios 0x26800c;
     // static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x278aec;
 
-    char const* getCString() const = imac 0x7950f0, m1 0x6a84a8;
+    char const* getCString() const = imac 0x7950f0, m1 0x6a84a8, ios 0x267ca4; // ios: unsure 
     //createWithContentsOfFile = ios 0x278b74;
 
     bool boolValue() const = imac 0x7954b0, m1 0x6a8838;
@@ -2895,7 +2895,9 @@ class cocos2d {
     static cocos2d::CCPoint ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static cocos2d::CCPoint ccpForAngle(float);
-    static cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const&);
+    static cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const& size) = ios inline {
+        return ccp(size.width, size.height); // todo: not sure if this is correct (also this is only inline bcs i was lazy)
+    }
     static bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static cocos2d::CCPoint ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static float ccpLength(cocos2d::CCPoint const&);
