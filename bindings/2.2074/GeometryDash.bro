@@ -5505,7 +5505,7 @@ class GameLevelManager : cocos2d::CCNode {
     static GameLevelManager* sharedState() = win 0x140b20, imac 0x504a90, m1 0x4641c4;
 
     void acceptFriendRequest(int, int) = imac 0x53e840, m1 0x497a7c;
-    int accountIDForUserID(int userID);
+    int accountIDForUserID(int userID) = imac 0x518ae0;
     void addDLToActive(char const*) = win 0x147a20;
     bool areGauntletsLoaded();
     void banUser(int);
@@ -5813,11 +5813,11 @@ class GameLevelManager : cocos2d::CCNode {
     void storeUserInfo(GJUserScore*);
     void storeUserMessage(GJUserMessage*);
     void storeUserMessageReply(int, GJUserMessage*);
-    void storeUserName(int userID, int accountID, gd::string userName) = win 0x143ca0, m1 0x4754d4;
+    void storeUserName(int userID, int accountID, gd::string userName) = win 0x143ca0, m1 0x4754d4, imac 0x5181b0;
     void storeUserNames(gd::string usernameString) = imac 0x5179d0, m1 0x474d1c;
     void submitUserInfo() = m1 0x48ddc8, imac 0x533e90;
     void suggestLevelStars(int, int, int) = m1 0x48b9ec, imac 0x531110;
-    gd::string tryGetUsername(int) = win 0x144000, m1 0x475900;
+    gd::string tryGetUsername(int) = win 0x144000, m1 0x475900, imac 0x5185d0;
     CommentType typeFromCommentKey(char const*);
     LikeItemType typeFromLikeKey(char const*);
     void unblockUser(int) = m1 0x498f7c, imac 0x53fdd0;
@@ -5838,7 +5838,7 @@ class GameLevelManager : cocos2d::CCNode {
     void uploadUserMessage(int, gd::string, gd::string) = win 0x1588b0, m1 0x491cac, imac 0x538390;
     int userIDForAccountID(int);
     GJUserScore* userInfoForAccountID(int) = imac 0x518ac0;
-    gd::string userNameForUserID(int) = win 0x143e80, m1 0x475748;
+    gd::string userNameForUserID(int) = win 0x143e80, m1 0x475748, imac 0x518420;
     TodoReturn verifyContainerOnlyHasLevels(cocos2d::CCDictionary*);
     void verifyLevelState(GJGameLevel*);
     gd::string writeSpecialFilters(GJSearchObject*) = win 0x14b8b0, imac 0x529260, m1 0x4848d4;
@@ -6493,7 +6493,7 @@ class GameObject : CCSpritePlus {
         m_isDisabled2 = true;
         setOpacity(0);
     }
-    void determineSlopeDirection() = win 0x199340, m1 0x4e0550;
+    void determineSlopeDirection() = win 0x199340, m1 0x4e0550, imac 0x5a6120;
     bool didScaleXChange();
     bool didScaleYChange();
     void dirtifyObjectPos();
@@ -14079,7 +14079,7 @@ class NewgroundsInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
 
     virtual bool init() = imac 0x205a50, m1 0x1baac0, ios 0x1491ec;
     virtual void keyBackClicked() = m1 0x1bb5c4, imac 0x206530, ios 0x149c54;
-    virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xc5690, imac 0x206500, m1 0x1bb56c, ios 0x149bfc;
+    virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xc5690, imac 0x2064d0, m1 0x1bb56c, ios 0x149bfc; //0x206500 is identical but its actually the thunk w/ an inline
 }
 
 [[link(android)]]
