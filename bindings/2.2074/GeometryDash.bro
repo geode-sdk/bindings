@@ -14450,7 +14450,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
         return CCBlockLayer::init();
     }
     void musicSliderChanged(cocos2d::CCObject*) = win 0x3683c0;
-    void onEdit(cocos2d::CCObject* sender) = win 0x3687e0, m1 0x34de9c;
+    void onEdit(cocos2d::CCObject* sender) = win 0x3687e0, m1 0x34de9c, imac 0x3c4be0;
     void onHelp(cocos2d::CCObject* sender);
     void onNormalMode(cocos2d::CCObject* sender) = win 0x368530, m1 0x34d904;
     void onPracticeMode(cocos2d::CCObject* sender) = win 0x368450, m1 0x34d8ac;
