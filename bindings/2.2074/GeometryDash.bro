@@ -12223,7 +12223,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn objectsAtPosition(cocos2d::CCPoint);
     cocos2d::CCArray* objectsInRect(cocos2d::CCRect, bool);
     void onPausePlaytest();
-    void onPlaytest() = win 0x2d7330, m1 0xd5d40;
+    void onPlaytest() = win 0x2d7330, m1 0xd5d40, imac 0xf0f00;
     void onResumePlaytest() = win 0x2d7d60;
     void onStopPlaytest() = win 0x2d7f50, m1 0xd67f8;
     TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*);
@@ -15254,7 +15254,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn optimizeOpacityGroups() = win 0x397fa0, imac 0xaea30;
     void pauseGame(bool) = win 0x3a31f0, imac 0xbf290, m1 0xadc74;
     void playEndAnimationToPos(cocos2d::CCPoint) = win 0x394aa0, imac 0xb6a00, m1 0xa664c;
-    void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = win 0x395430;
+    void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = win 0x395430, imac 0xb6fb0;
     TodoReturn playReplay(gd::string);
     void prepareCreateObjectsFromSetup(gd::string&) = win 0x395f80, m1 0x9dac0;
     void prepareMusic(bool) = imac 0xb3ae0;
@@ -20154,7 +20154,7 @@ class UILayer : cocos2d::CCLayerColor {
 
     static UILayer* create(GJBaseGameLayer*) = imac 0x4b4870, m1 0x41cac4;
 
-    void disableMenu();
+    void disableMenu() = imac 0x4b5c30;
     void doPause() = imac 0x4b63b0;
     TodoReturn editorPlaytest(bool);
     void enableEditorMode();
