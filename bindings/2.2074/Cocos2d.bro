@@ -645,7 +645,7 @@ class cocos2d::CCParticleSystemQuad {
 
 [[link(win, android)]]
 class cocos2d::CCProgressTimer {
-    static cocos2d::CCProgressTimer* create(cocos2d::CCSprite*) = imac 0x5ec770;
+    static cocos2d::CCProgressTimer* create(cocos2d::CCSprite*) = imac 0x5ec770, m1 0x51d3fc;
 
     bool initWithSprite(cocos2d::CCSprite*);
 
