@@ -1304,7 +1304,7 @@ class cocos2d::CCTextureCache {
 
 [[link(win, android)]]
 class cocos2d::CCTouch {
-    cocos2d::CCPoint getLocationInView() const = imac 0x59ab0;
+    cocos2d::CCPoint getLocationInView() const = m1 0x4f71c, imac 0x59ab0;
     cocos2d::CCPoint getLocation() const = m1 0x4f740, imac 0x59b10;
     cocos2d::CCPoint getPreviousLocation() const = ios inline, m1 0x4f76c {
     	return CCDirector::sharedDirector()->convertToGL(m_prevPoint);

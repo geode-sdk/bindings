@@ -5653,7 +5653,7 @@ class GameLevelManager : cocos2d::CCNode {
     void getUserList(UserListType) = win 0x15ffa0, imac 0x5402b0, m1 0x499414;
     void getUserMessages(bool, int, int) = m1 0x490a64, imac 0x537080;
     void getUsers(GJSearchObject*) = win 0x1571c0, m1 0x48fdec, imac 0x536320;
-    void gotoLevelPage(GJGameLevel*) = win 0x1473c0, m1 0x47dd44;
+    void gotoLevelPage(GJGameLevel*) = win 0x1473c0, m1 0x47dd44, imac 0x521e70;
     void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x140e00;
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
     void handleItND(cocos2d::CCNode*, void*);
