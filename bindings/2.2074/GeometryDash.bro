@@ -2170,9 +2170,9 @@ class CheckpointGameObject : EffectGameObject {
 [[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState)]]
 class CheckpointObject : cocos2d::CCNode {
     // virtual ~CheckpointObject();
-    CheckpointObject() = win 0x38e330;
+    CheckpointObject() = win 0x38e330, imac 0xcaa60;
 
-    static CheckpointObject* create() = win inline {
+    static CheckpointObject* create() = win inline, imac inline {
         auto ret = new CheckpointObject();
         if (ret->init()) {
             ret->autorelease();
@@ -5078,7 +5078,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         this->m_pulse3 = 0.0f;
     }
     TodoReturn fadeInBackgroundMusic(float) = imac 0x3d4840;
-    void fadeInMusic(float, int) = win 0x5c3c0;
+    void fadeInMusic(float, int) = win 0x5c3c0, imac 0x3d4f80;
     TodoReturn fadeMusic(float, int, float, float);
     float fadeOutMusic(float, int) = win 0x5c500, m1 0x35d940, imac 0x3d7e20;
     TodoReturn getActiveMusic(int);
@@ -6558,8 +6558,8 @@ class GameObject : CCSpritePlus {
     bool isStoppableTrigger();
     bool isTrigger();
     void loadGroupsFromString(gd::string);
-    TodoReturn makeInvisible();
-    TodoReturn makeVisible();
+    TodoReturn makeInvisible() = imac 0x5a53a0;
+    TodoReturn makeVisible() = imac 0x709ec0;
     float opacityModForMode(int, bool);
     cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int);
     gd::string perspectiveColorFrame(char const*, int);
@@ -7908,7 +7908,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn optimizeMoveGroups();
     TodoReturn orderSpawnObjects();
     TodoReturn parentForZLayer(int, bool, int, int) = imac 0x10f720;
-    void pauseAudio() = win 0x231d60;
+    void pauseAudio() = win 0x231d60, imac 0x141de0;
     TodoReturn performMathOperation(double, double, int);
     TodoReturn performMathRounding(double, int);
     void pickupItem(EffectGameObject*) = win 0x210cd0, imac 0x118560;
@@ -7930,7 +7930,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn prepareTransformParent(bool);
     void preResumeGame() = imac 0x141dd0;
     TodoReturn preUpdateVisibility(float);
-    void processActivatedAudioTriggers(float) = win 0x23d3e0;
+    void processActivatedAudioTriggers(float) = win 0x23d3e0, imac 0x14f3a0;
     void processAdvancedFollowAction(AdvancedFollowInstance&, bool, float);
     void processAdvancedFollowActions(float) = win 0x229e00;
     void processAreaActions(float, bool) = win 0x223ce0;
@@ -14561,7 +14561,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     // virtual ~PlayerCheckpoint();
     PlayerCheckpoint();
 
-    static PlayerCheckpoint* create() = win 0x3a4210;
+    static PlayerCheckpoint* create() = win 0x3a4210, imac 0xbc400;
 
     virtual bool init() = imac 0xbf850, m1 0xae214, ios 0x126030;
 
@@ -14781,7 +14781,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     }
     void runNormalRotation(bool, float) = win 0x9999999, imac 0x3ee220, m1 0x36f618;
     void runRotateAction(bool, int) = win 0x3775c0;
-    TodoReturn saveToCheckpoint(PlayerCheckpoint*);
+    TodoReturn saveToCheckpoint(PlayerCheckpoint*) = imac 0x40a6b0;
     void setSecondColor(cocos2d::ccColor3B const&) = win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
     void setupStreak() = win 0x372a50, m1 0x36c84c;
     void setYVelocity(double, int) = win 0x372fa0;
@@ -15224,7 +15224,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn colorObject(int, cocos2d::ccColor3B);
     TodoReturn commitJumps();
     TodoReturn compareStateSnapshot();
-    CheckpointObject* createCheckpoint() = win 0x39e150;
+    CheckpointObject* createCheckpoint() = win 0x39e150, imac 0xbbd00;
     void createObjectsFromSetupFinished() = win 0x396a10, imac 0xb7490, m1 0xa6fc4;
     void delayedFullReset();
     void delayedResetLevel() = win 0x3a1de0, m1 0xaa970, imac 0xbb590;
@@ -15262,7 +15262,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn processLoadedMoveActions();
     TodoReturn queueCheckpoint();
     void removeAllObjects() = imac 0xb3dd0;
-    void removeCheckpoint(bool) = win 0x3a0ff0, m1 0xaca08;
+    void removeCheckpoint(bool) = win 0x3a0ff0, m1 0xaca08, imac 0xbdfd0;
     void removeFromGroupOld(GameObject*);
     void resetLevel() = win 0x3a1f90, imac 0xb2f80, m1 0xa3120;
     void resetLevelFromStart() = win 0x3a1df0;
@@ -15291,7 +15291,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn startRecording();
     TodoReturn startRecordingDelayed();
     TodoReturn stopRecording();
-    void storeCheckpoint(CheckpointObject*) = win 0x3a0610, m1 0xac964;
+    void storeCheckpoint(CheckpointObject*) = win 0x3a0610, m1 0xac964, imac 0xbdf30;
     TodoReturn takeStateSnapshot();
     TodoReturn toggleBGEffectVisibility(bool);
     TodoReturn toggleDebugDraw(bool);
