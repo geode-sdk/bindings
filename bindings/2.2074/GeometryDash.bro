@@ -12223,7 +12223,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn objectsAtPosition(cocos2d::CCPoint);
     cocos2d::CCArray* objectsInRect(cocos2d::CCRect, bool);
     void onPausePlaytest();
-    void onPlaytest() = win 0x2d7330, m1 0xd5d40;
+    void onPlaytest() = win 0x2d7330, imac 0xf0f00, m1 0xd5d40;
     void onResumePlaytest() = win 0x2d7d60;
     void onStopPlaytest() = win 0x2d7f50, m1 0xd67f8;
     TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*);
@@ -14806,12 +14806,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn testForMoving(float, GameObject*);
     void toggleBirdMode(bool, bool) = win 0x384a90, imac 0x405680, m1 0x383410;
     void toggleDartMode(bool, bool) = win 0x385200, imac 0x406780, m1 0x384438;
-    void toggleFlyMode(bool, bool) = win 0x384760, m1 0x3829b4;
+    void toggleFlyMode(bool, bool) = win 0x384760, imac 0x404b70, m1 0x3829b4;
     void toggleGhostEffect(GhostType) = win 0x3890a0, imac 0x401a30, m1 0x37fd54;
     void togglePlatformerMode(bool val) {
         m_isPlatformer = val;
     }
-    void togglePlayerScale(bool, bool) = win 0x38a970, m1 0x37f99c;
+    void togglePlayerScale(bool, bool) = win 0x38a970, imac 0x401590, m1 0x37f99c;
     void toggleRobotMode(bool, bool) = win 0x385960, imac 0x407240, m1 0x384e24;
     void toggleRollMode(bool, bool) = win 0x3857e0, imac 0x406e60, m1 0x384a4c;
     void toggleSpiderMode(bool, bool) = win 0x385ce0, imac 0x4076c0, m1 0x38525c;
@@ -14833,7 +14833,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateEffects(float param) = win inline {
         m_waveTrail->updateStroke(param);
     }
-    void updateGlowColor() = win 0x3876a0, m1 0x386264;
+    void updateGlowColor() = win 0x3876a0, imac 0x4088a0, m1 0x386264;
     TodoReturn updateInternalActions(float) = win 0x38d0c0;
     void updateJump(float) = win 0x375b90, imac 0x3ec410, m1 0x36ddf4;
     TodoReturn updateJumpVariables();
@@ -14845,7 +14845,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerForce(cocos2d::CCPoint, bool);
     void updatePlayerFrame(int) = win 0x387ec0, m1 0x38412c, imac 0x406480;
     void updatePlayerGlow() = win 0x38a510, imac 0x4043a0, m1 0x382204;
-    void updatePlayerJetpackFrame(int) = win 0x388320, m1 0x382fcc;
+    void updatePlayerJetpackFrame(int) = win 0x388320, imac 0x405210, m1 0x382fcc;
     void updatePlayerRobotFrame(int id) = win inline, imac 0x408f60, m1 0x386940 {
         if (id < 1) id = 1;
         else if (id > 0x43) id = 0x44;
