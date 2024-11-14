@@ -5134,7 +5134,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     }
     TodoReturn pitchForIdx(int);
     void playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10, imac 0x3d1ba0, m1 0x358870;
-    void playEffect(gd::string path) = win 0x56d90, m1 0x3587c0;
+    void playEffect(gd::string path) = win 0x56d90, m1 0x3587c0, imac 0x3d1b10;
     void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0;
     TodoReturn playEffectAsync(gd::string path);
     void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x5a110, imac 0x3d4dc0, m1 0x35b20c;
