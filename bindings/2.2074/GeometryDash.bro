@@ -14261,7 +14261,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
         m_lastVaultDialog = -1;
     }
 
-    static OptionsLayer* create() = win inline {
+    static OptionsLayer* create() = win inline, imac 0x783fb0 {
         auto ret = new OptionsLayer();
         if (ret->init("Settings")) {
             ret->autorelease();
@@ -14460,7 +14460,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onRestart(cocos2d::CCObject* sender) = win 0x3686a0;
     void onRestartFull(cocos2d::CCObject* sender) = win 0x368740;
     void onResume(cocos2d::CCObject* sender) = win 0x368610, m1 0x34d950, imac 0x3c46c0;
-    void onSettings(cocos2d::CCObject* sender) = win 0x3677d0, m1 0x34dac8;
+    void onSettings(cocos2d::CCObject* sender) = win 0x3677d0, m1 0x34dac8, imac 0x3c4840;
     void onTime(cocos2d::CCObject* sender);
     void onTryEdit(cocos2d::CCObject* sender);
     void setupProgressBars();
