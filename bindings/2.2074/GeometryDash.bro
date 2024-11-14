@@ -2124,11 +2124,11 @@ class CharacterColorPage : FLAlertLayer {
     void onClose(cocos2d::CCObject* sender) = win 0x8a760;
     void onMode(cocos2d::CCObject* sender) = win 0x89550, imac 0x647690, m1 0x56fc80;
     void onPlayerColor(cocos2d::CCObject* sender) = win 0x89d60, m1 0x570904, imac 0x648320;
-    void toggleGlow(cocos2d::CCObject*) = win 0x88da0, m1 0x570384;
+    void toggleGlow(cocos2d::CCObject*) = win 0x88da0, m1 0x570384, imac 0x647d80;
     TodoReturn toggleGlowItems(bool);
     void toggleShip(cocos2d::CCObject*) = win 0x88c80, imac 0x6475e0, m1 0x56fbb8;
     void updateColorMode(int) = imac 0x647dc0;
-    void updateIconColors() = win 0x8a540;
+    void updateIconColors() = win 0x8a540, imac 0x647850;
 
     virtual bool init() = win 0x87f30, imac 0x646910, m1 0x56ef58, ios 0x12bf2c;
     virtual void registerWithTouchDispatcher() = m1 0x570eb4, imac 0x6488c0, ios 0x12d844, win 0x425d0;
@@ -9509,7 +9509,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x26b5b0;
+    static cocos2d::CCScene* scene() = win 0x26b5b0, imac 0x3559f0;
 
     gd::string achievementForUnlock(int, UnlockType);
     gd::string descriptionForUnlock(int, UnlockType) = win 0x270a30;
@@ -12440,7 +12440,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onDelete(cocos2d::CCObject* sender);
     void onFavorite(cocos2d::CCObject* sender) = win 0x2e5430, imac 0x2aeab0, m1 0x254a40;
     void onFeatured(cocos2d::CCObject* sender);
-    void onGarage(cocos2d::CCObject* sender) = win 0x2e55b0;
+    void onGarage(cocos2d::CCObject* sender) = win 0x2e55b0, imac 0x2aea50;
     void onInfo(cocos2d::CCObject* sender) = win 0x2e8b60, imac 0x2addb0;
     void onLevelInfo(cocos2d::CCObject* sender) = win 0x2ea510;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x2e54d0, imac 0x2adde0, m1 0x253d3c;
@@ -14811,7 +14811,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn testForMoving(float, GameObject*);
     void toggleBirdMode(bool, bool) = win 0x384a90, imac 0x405680, m1 0x383410;
     void toggleDartMode(bool, bool) = win 0x385200, imac 0x406780, m1 0x384438;
-    void toggleFlyMode(bool, bool) = win 0x384760, m1 0x3829b4;
+    void toggleFlyMode(bool, bool) = win 0x384760, m1 0x3829b4, imac 0x404b70;
     void toggleGhostEffect(GhostType) = win 0x3890a0, imac 0x401a30, m1 0x37fd54;
     void togglePlatformerMode(bool val) {
         m_isPlatformer = val;
@@ -14850,7 +14850,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerForce(cocos2d::CCPoint, bool);
     void updatePlayerFrame(int) = win 0x387ec0, m1 0x38412c, imac 0x406480;
     void updatePlayerGlow() = win 0x38a510, imac 0x4043a0, m1 0x382204;
-    void updatePlayerJetpackFrame(int) = win 0x388320, m1 0x382fcc;
+    void updatePlayerJetpackFrame(int) = win 0x388320, m1 0x382fcc, imac 0x405210;
     void updatePlayerRobotFrame(int id) = win inline, imac 0x408f60 {
         if (id < 1) id = 1;
         else if (id > 0x43) id = 0x44;

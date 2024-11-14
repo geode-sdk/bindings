@@ -2128,7 +2128,7 @@ class cocos2d::CCRepeatForever {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionMoveInT {
-    static cocos2d::CCTransitionMoveInT* create(float, cocos2d::CCScene*);
+    static cocos2d::CCTransitionMoveInT* create(float, cocos2d::CCScene*) = imac 0xd6340;
 
     // CCTransitionMoveInT(cocos2d::CCTransitionMoveInT const&);
     // CCTransitionMoveInT();
