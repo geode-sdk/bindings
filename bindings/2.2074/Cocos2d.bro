@@ -247,7 +247,7 @@ class cocos2d::CCMotionStreak {
     void tintWithColor(cocos2d::_ccColor3B);
     void updateFade(float) = imac 0x55fb10;
 
-    ~CCMotionStreak() = m1 0x4b5e2c;
+    ~CCMotionStreak() = imac 0x55f3b0, m1 0x4b5e2c;
 
     virtual void update(float) = imac 0x55fb50, m1 0x4b651c, ios 0x17a624;
     virtual void setPosition(cocos2d::CCPoint const&) = imac 0x55f8b0, m1 0x4b6324, ios 0x17a4f4;
