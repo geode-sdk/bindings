@@ -3768,7 +3768,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
         CC_SAFE_DELETE(ret);
         return nullptr;
     }
-    static cocos2d::CCScene* scene(GJGameLevel*) = win 0xd3d80, m1 0x19f774;
+    static cocos2d::CCScene* scene(GJGameLevel*) = win 0xd3d80, m1 0x19f774, imac 0x1e8510;
 
     void closeTextInputs() = win 0xd5f60;
     void confirmClone(cocos2d::CCObject*);
@@ -3875,7 +3875,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onPasteWColor(cocos2d::CCObject* sender);
     void onReGroup(cocos2d::CCObject* sender);
     void onResetUnusedColors(cocos2d::CCObject* sender) = imac 0x281e30, m1 0x22b850;
-    void onResume(cocos2d::CCObject* sender) = win 0xdc140;
+    void onResume(cocos2d::CCObject* sender) = win 0xdc140, m1 0x22b2c4, imac 0x2818a0;
     void onSave(cocos2d::CCObject* sender) = win 0xdcbf0, m1 0x22b42c, imac 0x2819f0;
     void onSaveAndExit(cocos2d::CCObject* sender) = win 0xdcd20, imac 0x281980, m1 0x22b3c0;
     void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xdc9a0, imac 0x281910, m1 0x22b330;
@@ -12455,7 +12455,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onRateStars(cocos2d::CCObject* sender) = win 0x2e99c0, m1 0x253e20, imac 0x2aded0;
     void onRateStarsMod(cocos2d::CCObject* sender) = win 0x2e9c80, imac 0x2ae230, m1 0x254168;
     void onSetFolder(cocos2d::CCObject* sender) = win 0x2e5300, imac 0x2aeda0, m1 0x254d6c;
-    void onUpdate(cocos2d::CCObject* sender) = win 0x2ea280;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x2ea280, m1 0x253bec, imac 0x2adcb0;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x2ea460, imac 0x2abc20, m1 0x251b4c;
     void playStep2();
     void playStep3() = m1 0x256650;
@@ -14457,8 +14457,8 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onQuit(cocos2d::CCObject* sender) = win 0x368e50, m1 0x34dffc;
     void onRecordReplays(cocos2d::CCObject* sender);
     void onReplay(cocos2d::CCObject* sender);
-    void onRestart(cocos2d::CCObject* sender) = win 0x3686a0;
-    void onRestartFull(cocos2d::CCObject* sender) = win 0x368740;
+    void onRestart(cocos2d::CCObject* sender) = win 0x3686a0, m1 0x34da8c, imac 0x3c4800;
+    void onRestartFull(cocos2d::CCObject* sender) = win 0x368740, m1 0x34d870, imac 0x3c45d0;
     void onResume(cocos2d::CCObject* sender) = win 0x368610, m1 0x34d950, imac 0x3c46c0;
     void onSettings(cocos2d::CCObject* sender) = win 0x3677d0, m1 0x34dac8, imac 0x3c4840;
     void onTime(cocos2d::CCObject* sender);

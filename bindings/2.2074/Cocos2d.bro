@@ -2,7 +2,7 @@
 class cocos2d::CCEGLViewProtocol {
     CCEGLViewProtocol();
     virtual ~CCEGLViewProtocol();
-    auto getViewPortRect() const = m1 0x45a684;
+    auto getViewPortRect() const = m1 0x45a684, imac 0x4f9c70;
     auto getScaleX() const;
     auto getScaleY() const;
 
@@ -422,7 +422,7 @@ class cocos2d::CCShaderCache {
     void addProgram(cocos2d::CCGLProgram*, char const*);
     void loadDefaultShader(cocos2d::CCGLProgram*, int) = imac 0x1f0c90, m1 0x1a74ac;
     void loadDefaultShaders() = imac 0x1f0550, m1 0x1a6d1c;
-    cocos2d::CCGLProgram* programForKey(char const*) = m1 0x1a7a58;
+    cocos2d::CCGLProgram* programForKey(char const*) = m1 0x1a7a58, imac 0x1f11f0;
     void reloadDefaultShaders();
 }
 
@@ -800,7 +800,7 @@ class cocos2d::CCGLProgram {
     void reset() = imac 0x419530;
     bool updateUniformLocation(int, void*, unsigned int);
     void updateUniforms() = imac 0x418100, m1 0x393c44;
-    void use() = m1 0x393d70;
+    void use() = m1 0x393d70, imac 0x418200;
     char const* vertexShaderLog();
 }
 
@@ -842,7 +842,7 @@ class cocos2d::CCNode {
     void schedule(cocos2d::SEL_SCHEDULE) = imac 0x2621b0, m1 0x20dee8;
     void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x262210, m1 0x20df28;
     void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = imac 0x2621e0;
-    void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = imac 0x262240;
+    void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = imac 0x262240, m1 0x20df48;
     void scheduleUpdate() = imac 0x262090, m1 0x20ddf0;
     void scheduleUpdateWithPriority(int) = imac 0x2620c0;
     void scheduleUpdateWithPriorityLua(int, int) = imac 0x2620f0;
@@ -1248,7 +1248,7 @@ class cocos2d::CCTexture2D {
     void setTexParameters(cocos2d::_ccTexParams*) = imac 0x466860, m1 0x3d66e0;
 
     // CCTexture2D(cocos2d::CCTexture2D const&);
-    ~CCTexture2D() = m1 0x3d5378, imac 0x4653b0;
+    ~CCTexture2D() = m1 0x3d5378, imac 0x4653b0; //imac 0x465400
     CCTexture2D() = m1 0x3d52b0, imac 0x4652f0;
     unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat) = imac 0x465950;
     unsigned int bitsPerPixelForFormat() = imac 0x4669e0;
@@ -1379,9 +1379,9 @@ class cocos2d::CCTouchDispatcher {
 class cocos2d::CCTouchHandler {
     static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
 
-    cocos2d::CCTouchDelegate* getDelegate() = m1 0x3dd4e4;
+    cocos2d::CCTouchDelegate* getDelegate() = m1 0x3dd4e4, imac 0x46e1c0;
     int getEnabledSelectors();
-    int getPriority() = ios inline, m1 0x3dd560 {
+    int getPriority() = ios inline, m1 0x3dd560, imac 0x46e240 {
     	return m_nPriority;
     }
 
@@ -1488,7 +1488,7 @@ class cocos2d::CCIMEDispatcher {
     void addDelegate(cocos2d::CCIMEDelegate*);
     bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
     bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
-    void dispatchDeleteBackward() = m1 0x4124e0;
+    void dispatchDeleteBackward() = m1 0x4124e0, imac 0x4a9140;
     void dispatchDeleteForward();
     void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = imac 0x4a9110, m1 0x4124b4;
     void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
@@ -1583,7 +1583,7 @@ class cocos2d::CCDirector {
     void setDontCallWillSwitch(bool);
     void setGLDefaultValues() = imac 0x46fbd0;
     void setNextDeltaTimeZero(bool);
-    void setNextScene();
+    void setNextScene() = imac 0x470340;
     void setNotificationNode(cocos2d::CCNode*);
     void setOpenGLView(cocos2d::CCEGLView*);
     void setProjection(cocos2d::ccDirectorProjection);
@@ -1601,7 +1601,7 @@ class cocos2d::CCDirector {
     cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = imac 0x470e50, m1 0x3dfd04;
     cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&);
     void createStatsLabel();
-    void drawScene() = m1 0x3deef0;
+    void drawScene() = m1 0x3deef0, imac 0x46fe90;
     void end();
     bool isDisplayStats();
     bool isNextDeltaTimeZero();
@@ -2870,7 +2870,7 @@ class cocos2d {
 
     	ccDrawSolidPoly(vertices, 4, color);
     }
-    static void ccGLBindTexture2D(unsigned int) = m1 0x2dcb6c;
+    static void ccGLBindTexture2D(unsigned int) = m1 0x2dcb6c, imac 0x347f80;
     static void ccGLBindTexture2DN(unsigned int, unsigned int);
     static void ccGLBindVAO(unsigned int);
     static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x347ed0, m1 0x2dcaa4;
@@ -2879,7 +2879,7 @@ class cocos2d {
     static void ccGLDeleteTexture(unsigned int);
     static void ccGLDeleteTextureN(unsigned int, unsigned int);
     static void ccGLEnable(cocos2d::ccGLServerState);
-    static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2dccc8;
+    static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2dccc8, imac 0x3480b0;
     static void ccGLInvalidateStateCache();
     static void ccGLUseProgram(unsigned int);
     static void ccPointSize(float);
