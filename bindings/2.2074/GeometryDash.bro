@@ -8089,7 +8089,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
     void toggleAudioVisualizer(bool) = win 0x242550, m1 0xe2354;
     void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x2113f0, imac 0x113770, m1 0xf2fe8;
-    void toggleFlipped(bool, bool) = win 0x240240, m1 0xf6954;
+    void toggleFlipped(bool, bool) = win 0x240240, m1 0xf6954, imac 0x117af0;
     void toggleGroup(int, bool) = m1 0x1078c4;
     void toggleLockPlayer(bool disable, bool p2) = win inline, imac 0x12cbe0, m1 0x107cb0 {
         auto player = p2 ? m_player2 : m_player1;
@@ -14733,7 +14733,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn playBumpEffect(int, GameObject*) = win 0x389cc0;
     TodoReturn playBurstEffect();
     void playCompleteEffect(bool, bool) = win 0x36e2b0, imac 0x2024c0, m1 0x1b7870;
-    void playDeathEffect() = win 0x3691a0, m1 0x1af8ac;
+    void playDeathEffect() = win 0x3691a0, m1 0x1af8ac, imac 0x1fa350;
     void playDynamicSpiderRun() = win 0x38b740;
     void playerDestroyed(bool) = win 0x381f10, imac 0x402270, m1 0x380548;
     bool playerIsFalling(float);
