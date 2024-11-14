@@ -5620,7 +5620,7 @@ class GameLevelManager : cocos2d::CCNode {
     void getNews();
     int getNextFreeTemplateID();
     gd::string getNextLevelName(gd::string);
-    void getOnlineLevels(GJSearchObject*) = win 0x14bb70;
+    void getOnlineLevels(GJSearchObject*) = win 0x14bb70, m1 0x484cec, imac 0x529700;
     char const* getPageInfo(char const*);
     char const* getPostCommentKey(int);
     const char * getRateStarsKey(int key);
@@ -10592,7 +10592,7 @@ class GJSearchObject : cocos2d::CCNode {
     static GJSearchObject* create(SearchType searchType) = win 0x1716f0, imac 0x54a4c0, m1 0x4a2b10;
     static GJSearchObject* createFromKey(char const* key) = win 0x170ff0;
 
-    char const* getKey() = win 0x171c40;
+    char const* getKey() = win 0x171c40, m1 0x4857e8, imac 0x52a470;
     char const* getNextPageKey();
     GJSearchObject* getNextPageObject();
     GJSearchObject* getPageObject(int page) = win 0x171d90;
@@ -13180,9 +13180,9 @@ class LoadingCircle : cocos2d::CCLayerColor {
     // virtual ~LoadingCircle();
     LoadingCircle() {}
 
-    static LoadingCircle* create() = win 0x6b840;
+    static LoadingCircle* create() = win 0x6b840, m1 0x414ec0, imac 0x4abd70;
 
-    void fadeAndRemove() = win 0x6bb20, m1 0x415170;
+    void fadeAndRemove() = win 0x6bb20, m1 0x415170, imac 0x4ac0a0;
 
     void setFade(bool fade) {
         m_fade = fade;
@@ -13191,7 +13191,7 @@ class LoadingCircle : cocos2d::CCLayerColor {
     inline void setParentLayer(cocos2d::CCLayer* layer) {
         m_parentLayer = layer;
     }
-    void show() = win 0x6ba20, m1 0x415078;
+    void show() = win 0x6ba20, m1 0x415078, imac 0x4abfb0;
 
     virtual bool init() = win 0x6b940, imac 0x4abee0, m1 0x414fbc, ios 0x392d14;
     virtual void draw() = win 0x6bbc0, imac 0x4ac130, m1 0x415220, ios 0x392f78;
@@ -18808,7 +18808,7 @@ class ShareLevelLayer : FLAlertLayer {
         if (menu) menu->addChild(btn);
         return btn;
     }
-    bool init(GJGameLevel* level) = win 0x4769e0, imac 0x529700;
+    bool init(GJGameLevel* level) = win 0x4769e0;
     void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onSettings(cocos2d::CCObject* sender) = win 0x477c40;
     void onShare(cocos2d::CCObject* sender) = win 0x477d90, imac 0x26f3c0, m1 0x21a7ec;
