@@ -1711,7 +1711,7 @@ class cocos2d::CCSprite {
     static cocos2d::CCSprite* create() = imac 0x276760, m1 0x2213ec, ios 0x2373bc;
     static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x276630, m1 0x2212d0;
     static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = m1 0x2213c4, imac 0x276730, ios 0x2375c4;
-    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x2761b0, m1 0x220e60;
+    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x2761b0, m1 0x220e60, ios 0x23743c;
     static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = imac 0x276340;
 
     unsigned int getAtlasIndex();
