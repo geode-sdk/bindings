@@ -207,7 +207,7 @@ class AchievementCell : TableViewCell {
     // virtual ~AchievementCell();
     AchievementCell(char const*, float, float);
 
-    void loadFromDict(cocos2d::CCDictionary*) = win 0xac150;
+    void loadFromDict(cocos2d::CCDictionary*) = win 0xac150, imac 0x230eb0;
     void updateBGColor(int);
 
     virtual bool init() = m1 0x1ec614, imac 0x23c930, ios 0x10ebb4;
@@ -503,7 +503,7 @@ class ArtistCell : TableViewCell {
     // virtual ~ArtistCell();
     ArtistCell(char const*, float, float);
 
-    void loadFromObject(SongInfoObject*) = win 0xb4e90;
+    void loadFromObject(SongInfoObject*) = win 0xb4e90, imac 0x235770;
     void onNewgrounds(cocos2d::CCObject* sender);
     void onYouTube(cocos2d::CCObject* sender);
     void updateBGColor(int);
@@ -9594,7 +9594,7 @@ class GJGroundLayer : cocos2d::CCLayer {
     TodoReturn fadeInFinished();
     TodoReturn getGroundY();
     TodoReturn hideShadows();
-    bool init(int, int) = win 0x2768f0, m1 0x506450;
+    bool init(int, int) = win 0x2768f0, imac 0x5d2870, m1 0x506450;
     void loadGroundSprites(int, bool) = win 0x276e60;
     void positionGround(float) = imac 0x5d38b0;
     TodoReturn scaleGround(float) = win 0x277310, imac 0x5d3350;
@@ -9847,7 +9847,7 @@ class GJMessageCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
     // virtual ~GJMessageCell();
     GJMessageCell(char const*, float, float);
 
-    void loadFromMessage(GJUserMessage*) = win 0xbc7e0;
+    void loadFromMessage(GJUserMessage*) = win 0xbc7e0, imac 0x23aa30;
     TodoReturn markAsRead();
     void onDeleteMessage(cocos2d::CCObject* sender);
     void onToggle(cocos2d::CCObject* sender);
@@ -10162,7 +10162,7 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
     // virtual ~GJRequestCell();
     GJRequestCell(char const*, float, float);
 
-    void loadFromScore(GJUserScore*) = win 0xbb640;
+    void loadFromScore(GJUserScore*) = win 0xbb640, imac 0x23a250;
     TodoReturn markAsRead();
     void onDeleteRequest(cocos2d::CCObject* sender);
     void onToggle(cocos2d::CCObject* sender);
@@ -10569,7 +10569,7 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
     // virtual ~GJScoreCell();
     GJScoreCell(char const*, float, float);
 
-    void loadFromScore(GJUserScore*) = win 0xb7c80, m1 0x1e7b58;
+    void loadFromScore(GJUserScore*) = win 0xb7c80, m1 0x1e7b58, imac 0x237bc0;
     void onBan(cocos2d::CCObject* sender);
     void onCheck(cocos2d::CCObject* sender);
     void onMoreLevels(cocos2d::CCObject* sender);
@@ -11190,7 +11190,7 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
     // virtual ~GJUserCell();
     GJUserCell(char const*, float, float);
 
-    void loadFromScore(GJUserScore*) = win 0xb9f70;
+    void loadFromScore(GJUserScore*) = win 0xb9f70, imac 0x239a60;
     void onCancelFriendRequest(cocos2d::CCObject* sender);
     void onRemoveFriend(cocos2d::CCObject* sender);
     void onSendMessage(cocos2d::CCObject* sender);
@@ -19170,7 +19170,7 @@ class SmartTemplateCell : TableViewCell {
     // virtual ~SmartTemplateCell();
     SmartTemplateCell(char const*, float, float);
 
-    void loadFromObject(GJSmartTemplate*) = win 0xbd8c0;
+    void loadFromObject(GJSmartTemplate*) = win 0xbd8c0, imac 0x23b400;
     void onClick(cocos2d::CCObject* sender);
     void updateBGColor(int) = win 0xbdcb0;
 
@@ -19183,7 +19183,7 @@ class SongCell : TableViewCell {
     // virtual ~SongCell();
     SongCell(char const*, float, float);
 
-    void loadFromObject(SongObject*) = win 0xb3990;
+    void loadFromObject(SongObject*) = win 0xb3990, imac 0x235330;
     void onClick(cocos2d::CCObject* sender);
     TodoReturn updateBGColor(int);
 
