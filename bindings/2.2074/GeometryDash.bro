@@ -3201,7 +3201,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     TodoReturn updateLengthMod(float);
     TodoReturn updatePlaybackBtn();
     TodoReturn updateProgressBar(int);
-    TodoReturn updateSFXInfo() = imac 0x5cbcc0, m1 0x5003a4;
+    void updateSFXInfo() = imac 0x5cbcc0, m1 0x5003a4;
     TodoReturn updateSFXObject(SFXInfoObject*);
     TodoReturn verifySFXID(int);
 
@@ -5707,7 +5707,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onGetAccountCommentsCompleted(gd::string response, gd::string tag);
     void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x15d510;
     void onGetGauntletsCompleted(gd::string response, gd::string tag);
-    void onGetGJChallengesCompleted(gd::string response, gd::string tag) = imac 0x510b00;
+    void onGetGJChallengesCompleted(gd::string response, gd::string tag) = imac 0x510b00, m1 0x46f5b0;
     void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag);
     void onGetGJRewardsCompleted(gd::string response, gd::string tag);
     TodoReturn onGetGJSecretRewardCompleted(gd::string, gd::string);
@@ -5756,7 +5756,7 @@ class GameLevelManager : cocos2d::CCNode {
     void rateStars(int, int) = m1 0x48a7c8, imac 0x52fd00;
     void readFriendRequest(int) = m1 0x498000, imac 0x53edd0;
     TodoReturn removeDelimiterChars(gd::string, bool) = win 0x167f10;
-    void removeDLFromActive(char const*);
+    void removeDLFromActive(char const*) = m1 0x47e944;
     void removeFriend(int) = m1 0x498490, imac 0x53f2b0;
     void removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary*);
     void removeUserFromList(int, UserListType);
@@ -7142,7 +7142,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getBaseCurrencyForLevel(GJGameLevel*) = win 0x1dd4b0, imac 0x708c0, m1 0x642c4;
     void getBaseDiamonds(int) = imac 0x71240, m1 0x64c64;
     int getBonusDiamonds(int) = imac 0x71260, m1 0x64c78;
-    GJChallengeItem* getChallenge(int) = win 0x1dee70;
+    GJChallengeItem* getChallenge(int) = win 0x1dee70, m1 0x66a90;
     TodoReturn getChallengeKey(GJChallengeItem*) = m1 0x66e24, imac 0x73370;
     int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1dabd0;
     cocos2d::CCArray* getCompletedMapPacks() = win 0x1dc180, m1 0x6230c;
@@ -7163,12 +7163,12 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn getNextGoldChestID();
     TodoReturn getNextVideoAdReward();
     TodoReturn getPathRewardKey(int);
-    GJChallengeItem* getQueuedChallenge(int) = win 0x1def40;
+    GJChallengeItem* getQueuedChallenge(int) = win 0x1def40, m1 0x66b94;
     TodoReturn getRewardForSecretChest(int);
     TodoReturn getRewardForSpecialChest(gd::string);
     TodoReturn getRewardItem(GJRewardType);
     TodoReturn getRewardKey(GJRewardType, int);
-    GJChallengeItem* getSecondaryQueuedChallenge(int);
+    GJChallengeItem* getSecondaryQueuedChallenge(int) = m1 0x66c98;
     TodoReturn getSecretChestForItem(int, UnlockType);
     TodoReturn getSecretCoinKey(char const*) = m1 0x63ad4, imac 0x700d0;
     TodoReturn getSecretOnlineRewardKey(int) = m1 0x6beb0;
@@ -7183,7 +7183,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getTotalCollectedCurrency() = win 0x1e08b0, imac 0x743f0, m1 0x67fc4;
     int getTotalCollectedDiamonds() = win 0x1e1180, imac 0x751c0, m1 0x68c58;
     bool hasClaimedListReward(GJLevelList*) = win 0x1dfc30, imac 0x736d0, m1 0x672c8;
-    bool hasCompletedChallenge(GJChallengeItem*);
+    bool hasCompletedChallenge(GJChallengeItem*) = m1 0x66ef8;
     bool hasCompletedDailyLevel(int) = win 0x1dfd10;
     bool hasCompletedDemonLevel(GJGameLevel*);
     bool hasCompletedGauntletLevel(int) = win 0x1db1a0, m1 0x60f64, imac 0x6d3b0;
@@ -7230,10 +7230,10 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn recountSpecialStats() = m1 0x69188;
     TodoReturn recountUserCoins(bool);
     TodoReturn registerRewardsFromItem(GJRewardItem*);
-    TodoReturn removeChallenge(int);
+    TodoReturn removeChallenge(int) = m1 0x6650c;
     void removeErrorFromSpecialChests() = win 0x1f0310;
-    TodoReturn removeQueuedChallenge(int);
-    TodoReturn removeQueuedSecondaryChallenge(int);
+    TodoReturn removeQueuedChallenge(int) = m1 0x66740;
+    TodoReturn removeQueuedSecondaryChallenge(int) = m1 0x66978;
     void resetChallengeTimer();
     TodoReturn resetPreSync();
     TodoReturn resetSpecialChest(gd::string);
@@ -7248,12 +7248,12 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn shopTypeForItemID(int);
     TodoReturn shouldAwardSecretKey();
     TodoReturn starsForMapPack(int);
-    TodoReturn storeChallenge(int, GJChallengeItem*);
+    TodoReturn storeChallenge(int, GJChallengeItem*) = m1 0x663ec;
     TodoReturn storeChallengeTime(int) = imac 0x72930;
     TodoReturn storeEventChest(int, GJRewardItem*);
     TodoReturn storeOnlineChest(gd::string, GJRewardItem*);
     TodoReturn storePendingUserCoin(char const*);
-    TodoReturn storeQueuedChallenge(int, GJChallengeItem*);
+    TodoReturn storeQueuedChallenge(int, GJChallengeItem*) = m1 0x66620;
     TodoReturn storeRewardState(GJRewardType, int, int, gd::string);
     TodoReturn storeSecondaryQueuedChallenge(int, GJChallengeItem*);
     TodoReturn storeSecretCoin(char const*);
@@ -11502,7 +11502,7 @@ class HardStreak : cocos2d::CCDrawNode {
     void firstSetup();
     TodoReturn normalizeAngle(double);
     TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
-    void reset() = win inline, imac 0x9d4e0 {
+    void reset() = win inline, imac 0x9d4e0, m1 0x8ffc8 {
         this->clear();
         m_pointArray->removeAllObjects();
     }
