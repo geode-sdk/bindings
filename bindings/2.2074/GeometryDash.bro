@@ -5058,13 +5058,13 @@ class FMODAudioEngine : cocos2d::CCNode {
     }
 
     TodoReturn activateQueuedMusic(int);
-    FMOD::Channel* channelForChannelID(int) = win 0x58480, imac 0x3cd8a0;
+    FMOD::Channel* channelForChannelID(int) = win 0x58480, imac 0x3cd8a0, m1 0x355668;
     TodoReturn channelForUniqueID(int);
     TodoReturn channelIDForUniqueID(int);
     TodoReturn channelLinkSound(int, FMODSound*);
     TodoReturn channelStopped(FMOD::Channel*, bool);
     TodoReturn channelUnlinkSound(int);
-    void clearAllAudio() = win 0x552e0, imac 0x3cb330;
+    void clearAllAudio() = win 0x552e0, imac 0x3cb330, m1 0x353b90;
     TodoReturn countActiveEffects();
     TodoReturn countActiveMusic();
     TodoReturn createStream(gd::string);
@@ -5082,11 +5082,11 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn fadeMusic(float, int, float, float);
     float fadeOutMusic(float, int) = win 0x5c500, m1 0x35d940, imac 0x3d7e20;
     TodoReturn getActiveMusic(int);
-    FMOD::Channel* getActiveMusicChannel(int musicChannel) = win inline, imac 0x3cf390 {
+    FMOD::Channel* getActiveMusicChannel(int musicChannel) = win inline, imac 0x3cf390, m1 0x356984 {
         // TODO: this might do other checks or whatever but i cant be bothered
         return m_channelIDToChannel[m_musicChannels[musicChannel].m_channelID];
     }
-    float getBackgroundMusicVolume() = win inline, imac 0x3d4880 {
+    float getBackgroundMusicVolume() = win inline, imac 0x3d4880, m1 0x35ad68 {
         return m_musicVolume;
     }
     FMOD::ChannelGroup* getChannelGroup(int, bool) = win 0x56b20;
@@ -5094,7 +5094,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         return m_sfxVolume;
     }
     gd::string getFMODStatus(int) = win 0x5cdb0, imac 0x3d82b0, m1 0x35dce4;
-    float getMeteringValue() = imac 0x3d10a0;
+    float getMeteringValue() = imac 0x3d10a0, m1 0x35805c;
     TodoReturn getMusicChannelID(int);
     unsigned int getMusicLengthMS(int channel) = win 0x5c330;
     TodoReturn getMusicTime(int);
@@ -5125,7 +5125,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void pauseAllEffects() {
         m_globalChannel->setPaused(true);
     }
-    void pauseAllMusic(bool) = imac 0x3d4930;
+    void pauseAllMusic(bool) = imac 0x3d4930, m1 0x35ade0;
     TodoReturn pauseEffect(unsigned int);
     void pauseMusic(int musicChannel) = win inline {
         auto* channel = this->getActiveMusicChannel(musicChannel);
@@ -5133,18 +5133,18 @@ class FMODAudioEngine : cocos2d::CCNode {
             channel->setPaused(true);
     }
     TodoReturn pitchForIdx(int);
-    void playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10, imac 0x3d1ba0;
-    void playEffect(gd::string path) = win 0x56d90;
-    void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550;
+    void playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10, imac 0x3d1ba0, m1 0x358870;
+    void playEffect(gd::string path) = win 0x56d90, m1 0x3587c0;
+    void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0;
     TodoReturn playEffectAsync(gd::string path);
-    void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x5a110, imac 0x3d4dc0;
+    void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x5a110, imac 0x3d4dc0, m1 0x35b20c;
     FMODSound& preloadEffect(gd::string path) = win 0x59260, m1 0x3531c4, imac 0x3ca980;
     void preloadEffectAsync(gd::string path);
     TodoReturn preloadMusic(gd::string path, bool p1, int p2);
     TodoReturn printResult(FMOD_RESULT);
     TodoReturn queuedEffectFinishedLoading(gd::string);
     TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x57920;
-    void queueStartMusic(gd::string audioFilename, float, float, float, bool, int ms, int, int, int, int, bool, int, bool, bool) = win 0x5aa70, imac 0x3d5af0;
+    void queueStartMusic(gd::string audioFilename, float, float, float, bool, int ms, int, int, int, int, bool, int, bool, bool) = win 0x5aa70, imac 0x3d5af0, m1 0x35bdb8;
     TodoReturn registerChannel(FMOD::Channel*, int, int);
     void releaseRemovedSounds();
     void resumeAllAudio() = win inline, imac 0x3cb2e0, m1 0x353b48 {
@@ -5153,7 +5153,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         m_backgroundMusicChannel->setPaused(false);
         m_globalChannel->setPaused(false);
     }
-    void resumeAllEffects() = win inline, imac 0x3d44b0 {
+    void resumeAllEffects() = win inline, imac 0x3d44b0, m1 0x35aa2c {
         m_globalChannel->setPaused(false);
     }
     void resumeAllMusic() = win 0x59e80, imac 0x3d49c0, m1 0x35ae5c;
@@ -5175,11 +5175,11 @@ class FMODAudioEngine : cocos2d::CCNode {
     void setChannelPitch(int, AudioTargetType, float);
     void setChannelVolume(int, AudioTargetType, float) = imac 0x3d0f40;
     void setChannelVolumeMod(int, AudioTargetType, float) = win 0x58f80;
-    void setEffectsVolume(float volume) = win inline, imac 0x3d48d0 {
+    void setEffectsVolume(float volume) = win inline, imac 0x3d48d0, m1 0x35ad90 {
         m_sfxVolume = volume;
         if (m_globalChannel) m_globalChannel->setVolume(volume);
     }
-    void setMusicTimeMS(unsigned int, bool, int) = win 0x5c190, imac 0x3d0290;
+    void setMusicTimeMS(unsigned int, bool, int) = win 0x5c190, imac 0x3d0290, m1 0x357488;
     void setup() = win 0x53bc0, m1 0x352b4c, imac 0x3ca220;
     void setupAudioEngine() = win 0x540a0, imac 0x3ca670;
     void start() = win 0x55280;
