@@ -314,7 +314,7 @@ class AchievementsLayer : GJDropDownLayer {
         return nullptr;
     }
 
-    void loadPage(int) = win 0x82300;
+    void loadPage(int) = win 0x82300, imac 0x35fe50;
     void onNextPage(cocos2d::CCObject* sender) = win 0x824e0;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x824f0;
     void setupLevelBrowser(cocos2d::CCArray* arr) = win inline {
@@ -7333,7 +7333,7 @@ class GameStatsManager : cocos2d::CCNode {
 [[link(android)]]
 class GameToolbox {
     static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x65010, imac 0x4dc890, m1 0x43f944;
-    static void addRThumbScrollButton(cocos2d::CCLayer*) = win 0x650f0, m1 0x43fa2c;
+    static void addRThumbScrollButton(cocos2d::CCLayer*) = win 0x650f0, m1 0x43fa2c, imac 0x4dc960;
     static void alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x64110;
     static void alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
     static TodoReturn bounceTime(float);
@@ -7409,7 +7409,7 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
     }
     static cocos2d::CCScene* scene(GauntletType) = win 0x1f2920, m1 0x30fb40;
 
-    bool init(GauntletType) = win 0x1f2c50, m1 0x30fcf0;
+    bool init(GauntletType) = win 0x1f2c50, m1 0x30fcf0, imac 0x37f7e0;
     void onBack(cocos2d::CCObject* sender) = win 0x1f4f00;
     void onLevel(cocos2d::CCObject* sender) = win 0x1f4880, imac 0x381320, m1 0x3116ec;
     void setupGauntlet(cocos2d::CCArray*) = win 0x1f3850, imac 0x37fea0, m1 0x310394;
@@ -7469,7 +7469,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
     }
     static cocos2d::CCScene* scene(int) = win 0x1f5570;
 
-    void goToPage(int, bool) = win 0x1f6f20, m1 0x4b2c08;
+    void goToPage(int, bool) = win 0x1f6f20, m1 0x4b2c08, imac 0x55c750;
     bool init(int) = win 0x1f56a0, m1 0x4b1310;
     void onBack(cocos2d::CCObject* sender) = win 0x1f70d0;
     void onInfo(cocos2d::CCObject* sender) = win 0x1f6210;
@@ -7477,7 +7477,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
     void onPlay(cocos2d::CCObject* sender) = win 0x1f7190, imac 0x55c2d0, m1 0x4b27b8;
     void onPrev(cocos2d::CCObject* sender) = win 0x1f6f00, imac 0x55b780;
     void onRefresh(cocos2d::CCObject* sender) = win 0x1f6350, imac 0x55b8e0, m1 0x4b1e88;
-    void setupGauntlets() = win 0x1f6790, m1 0x4b1f30;
+    void setupGauntlets() = win 0x1f6790, m1 0x4b1f30, imac 0x55b9a0;
     void unblockPlay();
     void updateArrows();
 
