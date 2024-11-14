@@ -19728,7 +19728,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 [[link(android), depends(CCIndexPath)]]
 class TableViewCell : cocos2d::CCLayer {
     // virtual ~TableViewCell();
-    TableViewCell(char const*, float, float) = win 0x76ad0, imac 0x610480, m1 0x53c9ec;
+    TableViewCell(char const*, float, float) = win 0x76ad0, imac 0x610480, m1 0x53c9ec, ios 0x37ef0;
 
     TodoReturn updateVisibility() = imac 0x610a20;
 
