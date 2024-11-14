@@ -2511,7 +2511,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     bool isInverted() const = ios inline {
     	return m_bInverted;
     }
-    void setInverted(bool bInverted) = ios inline {
+    void setInverted(bool bInverted) = ios inline, imac 0x709410, m1 0x628c20 {
     	m_bInverted = bInverted;
     }
 }
