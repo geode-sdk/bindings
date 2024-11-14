@@ -1235,7 +1235,7 @@ class cocos2d::CCTexture2D {
     bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = m1 0x3d590c;
     bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = imac 0x465650, m1 0x3d557c;
     bool initWithETCFile(char const*) = imac 0x466730, m1 0x3d65b4;
-    bool initWithImage(cocos2d::CCImage*);
+    bool initWithImage(cocos2d::CCImage*) = m1 0x3d5890, imac 0x4659b0;
     bool initWithPVRFile(char const*) = imac 0x466650, m1 0x3d64dc;
     bool initWithString(char const*, char const*, float) = imac 0x4662a0, m1 0x3d6128;
     bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment) = imac 0x466300, m1 0x3d6198;
