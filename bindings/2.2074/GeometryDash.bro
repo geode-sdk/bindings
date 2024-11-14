@@ -18901,7 +18901,7 @@ class SimpleObject : cocos2d::CCObject {
 class SimplePlayer : cocos2d::CCSprite {
     // virtual ~SimplePlayer();
 
-    static SimplePlayer* create(int) = win 0x271ac0, m1 0x2ead40;
+    static SimplePlayer* create(int) = win 0x271ac0, m1 0x2ead40, imac 0x357600;
 
     void asyncLoadIcon(int, IconType) = m1 0x2f0394;
     void createRobotSprite(int frame) = win inline, imac 0x3576c0, m1 0x2eadfc {
