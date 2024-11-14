@@ -1838,10 +1838,24 @@ class cocos2d::CCLabelBMFont {
     cocos2d::CCArray* getTargetArray() const;
 
     void setExtraKerning(int);
-    void setFntFile(char const*) = imac 0x5c3240, m1 0x4f85a4;
+    void setFntFile(char const* filename) = imac 0x5c3240, m1 0x4f85a4, ios inline {
+        if (filename != NULL && strcmp(filename, m_sFntFile.c_str()) != 0 ) {
+            CCBMFontConfiguration *newConf = FNTConfigLoadFile(filename);
+            CCAssert( newConf, "CCLabelBMFont: Impossible to create font. Please check file");
+
+            m_sFntFile = filename;
+
+            CC_SAFE_RETAIN(newConf);
+            CC_SAFE_RELEASE(m_pConfiguration);
+            m_pConfiguration = newConf;
+
+            this->setTexture(CCTextureCache::sharedTextureCache()->addImage(m_pConfiguration->getAtlasName(), false));
+            this->createFontChars();
+        }
+    }
     void setIsBatched(bool);
     void setTargetArray(cocos2d::CCArray*);
-    void createFontChars() = imac 0x5c06b0, m1 0x4f6020;
+    void createFontChars() = imac 0x5c06b0, m1 0x4f6020, ios 0x2fb578;
     int kerningAmountForFirst(unsigned short, unsigned short);
     void limitLabelWidth(float, float, float) = imac 0x5c3360, m1 0x4f869c, ios 0x2fd074;
 
@@ -2835,7 +2849,7 @@ class cocos2d {
     static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
     static cocos2d::CCRect CCRectFromString(char const*);
     static cocos2d::CCSize CCSizeFromString(char const*);
-    static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*);
+    static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = ios 0x2f8b04;
     static void FNTConfigRemoveCache();
     static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
     static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
