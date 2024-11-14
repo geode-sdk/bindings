@@ -8785,7 +8785,7 @@ class GJCommentListLayer : cocos2d::CCLayerColor {
 
     static GJCommentListLayer* create(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x28a320, imac 0x28c900, m1 0x235434;
 
-    bool init(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x28a440, m1 0x23552c;
+    bool init(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x28a440, imac 0x28ca10, m1 0x23552c;
 
     BoomListView* m_list;
 }
@@ -9532,7 +9532,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void playShadowEffect();
     void selectTab(IconType) = win 0x26e6f0, imac 0x3595c0, m1 0x2ecd78;
     void setupIconSelect() = win 0x26d930;
-    void setupPage(int, IconType) = win 0x26e7b0, m1 0x2ecea8;
+    void setupPage(int, IconType) = win 0x26e7b0, imac 0x359700, m1 0x2ecea8;
     void setupSpecialPage() = imac 0x359d80, m1 0x2ed500;
     void showUnlockPopupNew(int, UnlockType);
     gd::string titleForUnlock(int, UnlockType);
