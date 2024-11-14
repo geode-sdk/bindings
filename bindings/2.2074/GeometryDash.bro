@@ -12529,7 +12529,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
     TodoReturn deleteLocalScores();
     TodoReturn getLocalScores();
     TodoReturn getSpriteButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, cocos2d::CCPoint, int) = imac 0x3c8500, m1 0x351164;
-    bool init(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x2ec0c0, m1 0x350244;
+    bool init(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x2ec0c0, m1 0x350244, imac 0x3c7470;
     bool isCorrect(char const*);
     void loadScores() = m1 0x3515ec;
     void onChangeMode(cocos2d::CCObject* sender) = win 0x2edd40, m1 0x351344;
@@ -12615,13 +12615,13 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(GJLevelList*) = win 0x2ee9c0, m1 0x2dcfac;
+    static cocos2d::CCScene* scene(GJLevelList*) = win 0x2ee9c0, m1 0x2dcfac, imac 0x348410;
 
     void cloneList() = win 0x2f3790;
     void confirmClone(cocos2d::CCObject*) = win 0x2f36a0, imac 0x34a2e0, m1 0x2decc4;
     void confirmDelete(cocos2d::CCObject*) = win 0x2f3a20;
     void confirmOwnerDelete(cocos2d::CCObject*) = win 0x2f3b50, imac 0x34a470, m1 0x2dee64;
-    bool init(GJLevelList*) = win 0x2eebf0, m1 0x2dd0cc;
+    bool init(GJLevelList*) = win 0x2eebf0, m1 0x2dd0cc, imac 0x348500;
     void onClaimReward(cocos2d::CCObject* sender) = win 0x2f1650;
     void onDelete();
     void onDescription(cocos2d::CCObject* sender) = imac 0x34a680, m1 0x2df064;
@@ -12637,7 +12637,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
     void ownerDelete();
     void updateEditMode();
     void updateSideButtons() = win 0x2f3160, imac 0x34a960, m1 0x2df334;
-    void updateStatsArt() = win 0x2f06d0, m1 0x2df3c8;
+    void updateStatsArt() = win 0x2f06d0, m1 0x2df3c8, imac 0x34a9f0;
     void verifyListName();
 
     virtual void onEnter() = win 0x2f0680, m1 0x2e01ec, imac 0x34b870, ios 0x2450b4;
@@ -12727,7 +12727,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 
     void addSecretCoin() = win 0x307810, m1 0x39cb1c, imac 0x4215a0;
     void addSecretDoor() = win 0x307f20, m1 0x39ed88, imac 0x423b10;
-    bool init(GJGameLevel*) = win 0x305070, m1 0x39dc80;
+    bool init(GJGameLevel*) = win 0x305070, m1 0x39dc80, imac 0x422900;
     void onInfo(cocos2d::CCObject* sender) = win 0x309260;
     void onMoreGames(cocos2d::CCObject* sender);
     void onPlay(cocos2d::CCObject* sender) = win 0x308cf0, imac 0x421ef0, m1 0x39d360;
