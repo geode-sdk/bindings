@@ -6488,7 +6488,7 @@ class GameObject : CCSpritePlus {
     void createOpacityGroupContainer(int);
     void createSpriteColor(int) = imac 0x58a4e0, m1 0x4d7afc;
     void deselectObject();
-    inline void destroyObject() {
+    inline void destroyObject() { // what ? not inline, imac 0x5a5340
         m_isDisabled = true;
         m_isDisabled2 = true;
         setOpacity(0);
@@ -6564,7 +6564,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int);
     gd::string perspectiveColorFrame(char const*, int);
     gd::string perspectiveFrame(char const*, int);
-    void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a7520, m1 0x1f9910;
+    void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a7520, m1 0x1f9910, imac 0x24c560;
     void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float) = win 0x1a7040;
     void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float) = win 0x1a6f50;
     void playShineEffect() = win 0x196430, imac 0x5a5440, m1 0x4df690;
@@ -6595,13 +6595,13 @@ class GameObject : CCSpritePlus {
     bool shouldBlendColor(GJSpriteColor*, bool);
     bool shouldLockX();
     bool shouldNotHideAnimFreeze();
-    bool shouldShowPickupEffects();
+    bool shouldShowPickupEffects() = imac 0x24c330;
     bool slopeFloorTop();
     bool slopeWallLeft();
     double slopeYPos(cocos2d::CCRect) = win 0x19e430;
     double slopeYPos(float) = win 0x19e430;
     double slopeYPos(GameObject*);
-    void spawnDefaultPickupParticle(GJBaseGameLayer*);
+    void spawnDefaultPickupParticle(GJBaseGameLayer*) = imac 0x24c390;
     void updateBlendMode();
     void updateCustomColorType(short);
     void updateCustomScaleX(float);
@@ -8049,7 +8049,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
     cocos2d::CCParticleSystemQuad* spawnParticle(char const* plist, int zOrder, cocos2d::tCCPositionType positionType, cocos2d::CCPoint position) = win 0x239d50, imac 0x14bf50, m1 0x120f7c;
     TodoReturn spawnParticleTrigger(int, cocos2d::CCPoint, float, float);
-    TodoReturn spawnParticleTrigger(SpawnParticleGameObject*);
+    TodoReturn spawnParticleTrigger(SpawnParticleGameObject*) = imac 0x118670;
     TodoReturn spawnPlayer2();
     TodoReturn speedForShaderTarget(int) = win 0x21e250;
     cocos2d::CCArray* staticObjectsInRect(cocos2d::CCRect, bool) = win 0x20bda0;
