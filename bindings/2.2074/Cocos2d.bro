@@ -1708,7 +1708,7 @@ class cocos2d::CCSequence {
 class cocos2d::CCSprite {
     static cocos2d::CCSprite* create(char const*) = imac 0x276440, m1 0x2210dc, ios 0x2374c8;
     static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&) = imac 0x276530;
-    static cocos2d::CCSprite* create() = imac 0x276760, m1 0x2213ec, ios 0x2373bc;
+    static cocos2d::CCSprite* create() = imac 0x276760, m1 0x2213ec, ios 0x2375ec;
     static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x276630, m1 0x2212d0;
     static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = m1 0x2213c4, imac 0x276730, ios 0x2375c4;
     static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x2761b0, m1 0x220e60, ios 0x23743c;
@@ -2702,14 +2702,14 @@ class cocos2d::CCMenuItemSprite {
 
     virtual void selected() = imac 0x3ad0c0, m1 0x338e40;
     virtual void unselected() = imac 0x3ad160, m1 0x338ecc;
-    virtual void setEnabled(bool) = imac 0x3ad1e0, m1 0x338f4c;
+    virtual void setEnabled(bool) = imac 0x3ad1e0, m1 0x338f4c, ios 0x50bbc;
     virtual cocos2d::CCNode* getNormalImage() = m1 0x338964, imac 0x3acc10;
-    virtual void setNormalImage(cocos2d::CCNode*) = imac 0x3acc20, m1 0x33896c;
+    virtual void setNormalImage(cocos2d::CCNode*) = imac 0x3acc20, m1 0x33896c, ios 0x5076c;
     virtual cocos2d::CCNode* getSelectedImage() = m1 0x338a38, imac 0x3acce0;
-    virtual void setSelectedImage(cocos2d::CCNode*) = imac 0x3accf0, m1 0x338a40;
+    virtual void setSelectedImage(cocos2d::CCNode*) = imac 0x3accf0, m1 0x338a40, ios 0x50840;
     virtual cocos2d::CCNode* getDisabledImage() = m1 0x338ae8, imac 0x3acd80;
-    virtual void setDisabledImage(cocos2d::CCNode*) = imac 0x3acd90, m1 0x338af0;
-    virtual void updateImagesVisibility() = imac 0x3ad200, m1 0x338f6c;
+    virtual void setDisabledImage(cocos2d::CCNode*) = imac 0x3acd90, m1 0x338af0, ios 0x508f0;
+    virtual void updateImagesVisibility() = imac 0x3ad200, m1 0x338f6c, ios 0x50bdc;
 }
 
 [[link(win, android)]]
