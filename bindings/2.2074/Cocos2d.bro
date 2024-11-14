@@ -83,7 +83,7 @@ class cocos2d::CCEaseBackOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBounceOut {
-    static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*);
+    static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*) = imac 0x500c50;
 
     // CCEaseBounceOut(cocos2d::CCEaseBounceOut const&);
     // CCEaseBounceOut();

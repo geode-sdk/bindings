@@ -2874,9 +2874,9 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onOnlyFullVersion(cocos2d::CCObject* sender);
     void onPaths(cocos2d::CCObject* sender) = win 0x9d360;
     void onSavedLevels(cocos2d::CCObject* sender) = win 0x9cef0, m1 0x22f988;
-    void onSecretVault(cocos2d::CCObject* sender) = win 0x9df20;
+    void onSecretVault(cocos2d::CCObject* sender) = win 0x9df20, imac 0x287000;
     void onTopLists(cocos2d::CCObject* sender) = win 0x9d380, imac 0x286b20, m1 0x22ffcc;
-    void onTreasureRoom(cocos2d::CCObject* sender) = win 0x9e730, m1 0x2306ec;
+    void onTreasureRoom(cocos2d::CCObject* sender) = win 0x9e730, m1 0x2306ec, imac 0x287220;
     void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x9dd70;
 
     virtual bool init() = win 0x9bb10, m1 0x22ece0, imac 0x2856f0, ios 0xb81ec;
@@ -7217,7 +7217,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool isSpecialChestLiteUnlockable(gd::string);
     bool isSpecialChestUnlocked(gd::string) = win 0x1e7160, imac 0x76f10, m1 0x6a794;
     bool isStoreItemUnlocked(int);
-    TodoReturn keyCostForSecretChest(int);
+    TodoReturn keyCostForSecretChest(int) = imac 0x76a40;
     TodoReturn linkSpecialChestUnlocks(GJRewardItem*, gd::string);
     TodoReturn logCoins();
     TodoReturn markLevelAsCompletedAndClaimed(GJGameLevel*);
@@ -7267,7 +7267,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn unlockGoldChest(int);
     TodoReturn unlockOnlineChest(gd::string);
     TodoReturn unlockPathChest(int);
-    TodoReturn unlockSecretChest(int);
+    TodoReturn unlockSecretChest(int) = imac 0x8ba60;
     TodoReturn unlockSpecialChest(gd::string);
     TodoReturn updateActivePath(StatKey);
     gd::string usernameForAccountID(int);
@@ -15944,8 +15944,8 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
 class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
     // virtual ~SecretLayer2();
 
-    static SecretLayer2* create();
-    static cocos2d::CCScene* scene() = win 0x3cadf0;
+    static SecretLayer2* create() = imac 0x489fc0;
+    static cocos2d::CCScene* scene() = win 0x3cadf0, imac 0x489f80;
 
     gd::string getBasicMessage() = win 0x3d0880;
     gd::string getErrorMessage() = win 0x3d13e0;
@@ -16217,7 +16217,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         m_lockedDialogIndex = 0;
     }
 
-    static SecretRewardsLayer* create(bool fromShop) = win inline {
+    static SecretRewardsLayer* create(bool fromShop) = win inline, imac 0x6195c0 {
         auto ret = new SecretRewardsLayer();
         if (ret->init(fromShop)) {
             ret->autorelease();
@@ -16226,12 +16226,12 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(bool fromShop) = win 0x3bb1a0;
+    static cocos2d::CCScene* scene(bool fromShop) = win 0x3bb1a0, imac 0x619580;
 
-    void createSecondaryLayer(int) = win 0x3bdf70, m1 0x5488b4;
+    void createSecondaryLayer(int) = win 0x3bdf70, m1 0x5488b4, imac 0x61ccf0;
     TodoReturn fadeInMusic();
     TodoReturn fadeInOutMusic();
-    cocos2d::CCArray* generateChestItems(int) = win 0x3be3c0;
+    cocos2d::CCArray* generateChestItems(int) = win 0x3be3c0, imac 0x61d170;
     cocos2d::ccColor3B getPageColor(int page) = win inline {
         if (page == 1) return cocos2d::ccc3(50, 50, 50);
         else if (page == 2) return cocos2d::ccc3(70, 0, 120);
@@ -16241,15 +16241,15 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         if (m_inMainLayer) m_mainScrollLayer->moveToPage(page);
         else m_secondaryScrollLayer->moveToPage(page);
     }
-    bool init(bool) = win 0x3bb300, m1 0x54543c;
+    bool init(bool) = win 0x3bb300, m1 0x54543c, imac 0x6196f0;
     void moveToMainLayer(cocos2d::CCObject*) = m1 0x548784;
-    void moveToSecondaryLayer(int) = m1 0x548300;
+    void moveToSecondaryLayer(int) = m1 0x548300, imac 0x61c740;
     void onBack(cocos2d::CCObject* sender) = win 0x3c08b0;
     void onChestType(cocos2d::CCObject* sender) = win 0x3bdce0, imac 0x61b830, m1 0x54738c;
     void onGoldChest(cocos2d::CCObject* sender);
-    void onSelectItem(cocos2d::CCObject* sender) = win 0x3bedd0, m1 0x5499c0;
+    void onSelectItem(cocos2d::CCObject* sender) = win 0x3bedd0, m1 0x5499c0, imac 0x61e000;
     void onShop(cocos2d::CCObject* sender) = win 0x3bf360, imac 0x61bf00, m1 0x547ad8;
-    void onSpecialItem(cocos2d::CCObject* sender) = m1 0x547f04;
+    void onSpecialItem(cocos2d::CCObject* sender) = m1 0x547f04, imac 0x61c330;
     void onSwitchPage(cocos2d::CCObject* sender) = win 0x3bd950;
     void showDialog01() = win 0x3c0ae0, imac 0x61e360, m1 0x549d5c;
     void showDialog03() = imac 0x620080, m1 0x54b548;
@@ -16260,9 +16260,9 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         if (cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionMoveInT::create(0.5f, GJShopLayer::scene((ShopType)shop)))) this->setKeypadEnabled(false);
     }
     void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x3bfb80, imac 0x61b870, m1 0x5473e0;
-    void updateBackButton() = win 0x3bde30, m1 0x548658;
+    void updateBackButton() = win 0x3bde30, m1 0x548658, imac 0x61ca90;
     TodoReturn updateUnlockedGoldLabel();
-    void updateUnlockedLabel() = m1 0x5474c0;
+    void updateUnlockedLabel() = m1 0x5474c0, imac 0x61b930;
 
     virtual void onExit() = m1 0x54e664, imac 0x623c00, ios 0x2ee820;
     virtual void keyBackClicked() = win 0x3c0a90, m1 0x54e5f0, imac 0x623b70, ios 0x2ee80c;
