@@ -3365,9 +3365,9 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void updateMultiAssetInfo(bool) = win 0xcb760, imac 0x608410, m1 0x535734;
     void updatePlaybackBtn() = win 0xca3b0, imac 0x606f50, m1 0x534418;
     void updateProgressBar(int) = win 0xca550;
-    void updateSongInfo() = win 0xca600, m1 0x533504;
+    void updateSongInfo() = win 0xca600, m1 0x533504, imac 0x605f20;
     void updateSongObject(SongInfoObject*) = imac 0x605e90;
-    void updateWithMultiAssets(gd::string, gd::string, int) = win 0xcb410, m1 0x535020;
+    void updateWithMultiAssets(gd::string, gd::string, int) = win 0xcb410, m1 0x535020, imac 0x607c40;
     TodoReturn verifySongID(int);
 
     virtual void loadSongInfoFinished(SongInfoObject*) = win 0xcbd40, imac 0x608a80, m1 0x535d24, ios 0x100f84;
@@ -5499,7 +5499,7 @@ class GameLevelManager : cocos2d::CCNode {
     static GameLevelManager* get() {
         return GameLevelManager::sharedState();
     }
-    static cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x168140, m1 0x477c14;
+    static cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x168140, m1 0x477c14, imac 0x51b260;
     // virtual ~GameLevelManager();
 
     static GameLevelManager* sharedState() = win 0x140b20, imac 0x504a90, m1 0x4641c4;
@@ -9115,7 +9115,7 @@ class GJGameLevel : cocos2d::CCNode {
     //GJGameLevel() = ios 0xb40a8;
 
     static GJGameLevel* create() = win 0x169b40, imac 0x5168e0, m1 0x473d34;
-    static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x1683e0, m1 0x4760f0;
+    static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x1683e0, m1 0x4760f0, imac 0x519030;
     static gd::string lengthKeyToString(int key) = win 0x16a0d0, imac 0x5457e0, m1 0x49e59c;
 
     bool areCoinsVerified();
@@ -18808,7 +18808,7 @@ class ShareLevelLayer : FLAlertLayer {
         if (menu) menu->addChild(btn);
         return btn;
     }
-    bool init(GJGameLevel* level) = win 0x4769e0;
+    bool init(GJGameLevel* level) = win 0x4769e0, imac 0x529700;
     void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onSettings(cocos2d::CCObject* sender) = win 0x477c40;
     void onShare(cocos2d::CCObject* sender) = win 0x477d90, imac 0x26f3c0, m1 0x21a7ec;
