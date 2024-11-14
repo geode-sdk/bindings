@@ -1154,8 +1154,8 @@ class CCCounterLabel : cocos2d::CCLabelBMFont {
 }
 
 [[link(android)]]
-class CCExtenderNode {
-    void setOpacity(unsigned int);
+class CCExtenderNode : cocos2d::CCNode {
+    void setOpacity(unsigned int opacity);
 }
 
 [[link(android)]]
