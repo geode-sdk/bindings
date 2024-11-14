@@ -9997,7 +9997,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     void incrementCountForPage(int) = win 0x288b80;
     const char* infoKey(int);
     bool init(int) = win 0x288130, imac 0x289e50, m1 0x232c90;
-    cocos2d::CCLayer* layerForPage(int) = m1 0x233acc, imac 0x28ada0;
+    cocos2d::CCLayer* layerForPage(int) = m1 0x233acc, imac 0x28ada0, win 0x288e10;
     const char* layerKey(int);
     cocos2d::CCPoint nextPosition(int) = imac 0x28aca0, m1 0x2339d4;
     const char* objectKey(int);
