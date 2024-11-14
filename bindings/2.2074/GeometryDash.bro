@@ -716,7 +716,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     int getTotalPages() = win inline {
         return m_dynamic ? m_dynamicObjects->count() : m_pages->count();
     }
-    bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3d230, imac 0x391aa0;
+    bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3d230, imac 0x391aa0, m1 0x32056c;
     void instantMoveToPage(int) = win 0x3ddc0, m1 0x321ccc;
     void moveToPage(int) = win 0x3dea0, imac 0x3934f0, m1 0x321da4;
     void moveToPageEnded() = win 0x3dc30, imac 0x393280, m1 0x321b3c;
