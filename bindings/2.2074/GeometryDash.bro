@@ -1290,7 +1290,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     }
 
     bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x44be0, imac 0x264c10, m1 0x210678;
-    void setSizeMult(float mult) = win inline {
+    void setSizeMult(float mult) = win inline , imac 0x264d80{
         //inlined on windows, member is in CCMenuItemSprite
         m_fSizeMult = mult;
     }
@@ -5612,7 +5612,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJGameLevel* getLocalLevelByName(gd::string);
     TodoReturn getLocalLevelList(int);
     int getLowestLevelOrder() = imac 0x51ed20;
-    GJGameLevel* getMainLevel(int levelID, bool dontGetLevelString) = win 0x1423e0, m1 0x473484;
+    GJGameLevel* getMainLevel(int levelID, bool dontGetLevelString) = win 0x1423e0, m1 0x473484, imac 0x515f50;
     const char* getMapPackKey(int pack);
     void getMapPacks(GJSearchObject*) = win 0x14d470, imac 0x52aa70;
     char const* getMessageKey(int);
@@ -7190,7 +7190,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedLevel(GJGameLevel* level) = win inline, imac 0x6d280, m1 0x60e04 {
         return m_completedLevels->objectForKey(this->getLevelKey(level)) != nullptr;
     }
-    bool hasCompletedMainLevel(int levelID) = win inline, m1 0x60d6c {
+    bool hasCompletedMainLevel(int levelID) = win inline, m1 0x60d6c , imac 0x6d200{
         return m_completedLevels->objectForKey(this->getLevelKey(levelID, false, false, false, false)) != nullptr;
     }
     bool hasCompletedMapPack(int);
@@ -11904,7 +11904,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
         return scene;
     }
 
-    bool init(LeaderboardState) = win 0x2b9cd0, m1 0x45c030;
+    bool init(LeaderboardState) = win 0x2b9cd0, m1 0x45c030, imac 0x4fc4a0;
     bool isCorrect(char const*);
     void onBack(cocos2d::CCObject* sender) = win 0x2bbed0;
     void onCreators(cocos2d::CCObject* sender);
@@ -11915,7 +11915,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
     void refreshTabs() = win 0x2bac80;
     void selectLeaderboard(LeaderboardState) = win 0x2badb0, imac 0x4fd0f0, m1 0x45cc24;
     void setupLevelBrowser(cocos2d::CCArray*) = win 0x2bab20;
-    TodoReturn setupTabs();
+    TodoReturn setupTabs() = imac 0x4fccd0;
     void toggleTabButtons() = win 0x2bb000;
 
     virtual void keyBackClicked() = win 0x2bbf50, m1 0x45dbec, imac 0x4fe1a0, ios 0x3aa800;
@@ -11941,10 +11941,10 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     // virtual ~LevelAreaInnerLayer();
 
-    static LevelAreaInnerLayer* create(bool);
-    static cocos2d::CCScene* scene(bool) = win 0x2be1d0;
+    static LevelAreaInnerLayer* create(bool) = imac 0x267c20;
+    static cocos2d::CCScene* scene(bool) = win 0x2be1d0, imac 0x267950;
 
-    bool init(bool) = win 0x2be2e0, m1 0x2135d4;
+    bool init(bool) = win 0x2be2e0, m1 0x2135d4, imac 0x267d00;
     void onBack(cocos2d::CCObject* sender) = win 0x2c04a0;
     void onDoor(cocos2d::CCObject* sender) = win 0x2bffd0, imac 0x268bd0, m1 0x2143f8;
     void onInfo(cocos2d::CCObject* sender);
@@ -20516,20 +20516,20 @@ class WorldLevelPage : FLAlertLayer {
 class WorldSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate {
     // virtual ~WorldSelectLayer();
 
-    static WorldSelectLayer* create(int);
-    static cocos2d::CCScene* scene(int);
+    static WorldSelectLayer* create(int) = imac 0x3aed30;
+    static cocos2d::CCScene* scene(int) = imac 0x3aec20;
 
     TodoReturn animateInActiveIsland();
     cocos2d::ccColor3B colorForPage(int);
     TodoReturn getColorValue(int, int, float);
     void goToPage(int, bool);
-    bool init(int);
+    bool init(int) = imac 0x3aee20;
     void onBack(cocos2d::CCObject* sender);
     void onFreeLevels(cocos2d::CCObject* sender);
     void onGarage(cocos2d::CCObject* sender);
     void onNext(cocos2d::CCObject* sender);
     void onPrev(cocos2d::CCObject* sender);
-    TodoReturn setupWorlds();
+    TodoReturn setupWorlds() = imac 0x3af740;
     void showCompleteDialog();
     TodoReturn tryShowAd();
     void unblockButtons();
