@@ -838,12 +838,12 @@ class cocos2d::CCNode {
     void pauseSchedulerAndActions();
     void qsortAllChildrenWithIndex();
     void resumeSchedulerAndActions();
-    cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x261f80, m1 0x20dd34;
+    cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x261f80, m1 0x20dd34, ios 0x23c1d0;
     void schedule(cocos2d::SEL_SCHEDULE) = imac 0x2621b0, m1 0x20dee8;
     void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x262210, m1 0x20df28;
     void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = imac 0x2621e0;
     void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = imac 0x262240;
-    void scheduleUpdate() = imac 0x262090, m1 0x20ddf0;
+    void scheduleUpdate() = imac 0x262090, m1 0x20ddf0, ios 0x23c278;
     void scheduleUpdateWithPriority(int) = imac 0x2620c0;
     void scheduleUpdateWithPriorityLua(int, int) = imac 0x2620f0;
     void sortAllChildrenNoIndex();
@@ -1136,8 +1136,8 @@ class cocos2d::CCOrbitCamera {
 
 [[link(win, android)]]
 class cocos2d::CCLayerColor {
-    static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&) = imac 0x49fbb0, m1 0x40a558;
-    static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float) = m1 0x40a3dc, imac 0x49f9e0;
+    static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&) = imac 0x49fbb0, m1 0x40a558, ios 0x14d0c8;
+    static cocos2d::CCLayerColor* create(cocos2d::_ccColor4B const&, float, float) = m1 0x40a3dc, imac 0x49f9e0, ios 0x14cfec;
     static cocos2d::CCLayerColor* create() = ios inline, imac 0x49f800, m1 0x40a264 {
     	CCLayerColor* pRet = new CCLayerColor();
     	if (pRet && pRet->init())
@@ -1245,7 +1245,7 @@ class cocos2d::CCTexture2D {
 
     void setAliasTexParameters();
     void setAntiAliasTexParameters();
-    void setTexParameters(cocos2d::_ccTexParams*) = imac 0x466860, m1 0x3d66e0;
+    void setTexParameters(cocos2d::_ccTexParams*) = imac 0x466860, m1 0x3d66e0, ios 0x131148;
 
     // CCTexture2D(cocos2d::CCTexture2D const&);
     ~CCTexture2D() = m1 0x3d5378;
@@ -2701,7 +2701,7 @@ class cocos2d::CCMenuItemSprite {
 [[link(win, android)]]
 class cocos2d::CCMenu {
     // static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1e1964, m1 0x6a6d58, imac 0x79e7b0;
-    static cocos2d::CCMenu* create() = imac 0x77c950, m1 0x691950;
+    static cocos2d::CCMenu* create() = imac 0x77c950, m1 0x691950, ios 0x1d8d04;
     static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*) = imac 0x77cb50;
     static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = imac 0x77cda0;
     // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
@@ -2741,7 +2741,7 @@ class cocos2d::CCMenu {
 
 [[link(win, android)]]
 class cocos2d::CCRotateBy {
-    static cocos2d::CCRotateBy* create(float, float) = imac 0x3a4bb0, m1 0x33167c;
+    static cocos2d::CCRotateBy* create(float, float) = imac 0x3a4bb0, m1 0x33167c, ios 0x18ea00;
     static cocos2d::CCRotateBy* create(float, float, float);
 
     bool initWithDuration(float, float);
