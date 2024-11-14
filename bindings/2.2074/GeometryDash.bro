@@ -3552,7 +3552,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
         return DialogLayer::createDialogLayer(object, nullptr, background);
     }
     static DialogLayer* createDialogLayer(DialogObject* object, cocos2d::CCArray* objects, int background) = win 0xd1f60, imac 0x3b4280, m1 0x33f928;
-    static DialogLayer* createWithObjects(cocos2d::CCArray* objects, int background) = win inline, imac 0x3b43c0 {
+    static DialogLayer* createWithObjects(cocos2d::CCArray* objects, int background) = win inline, imac 0x3b43c0, m1 0x33fa30 {
         return DialogLayer::createDialogLayer(nullptr, objects, background);
     }
 
@@ -16042,7 +16042,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     TodoReturn playCoinEffect();
     TodoReturn selectAThread();
     void showDialog(int);
-    void showFirstDialog();
+    void showFirstDialog() = m1 0x32b998;
     TodoReturn updateMessageLabel(gd::string);
     void updateSearchLabel(char const*);
 
