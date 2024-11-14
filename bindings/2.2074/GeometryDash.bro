@@ -3533,7 +3533,7 @@ class DemonInfoPopup : FLAlertLayer {
     static DemonInfoPopup* create(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet) = win 0x3afc90, imac 0x7aba80, m1 0x6bd1f0;
     static DemonInfoPopup* createFromString(gd::string) = win 0x3af8c0, imac 0x7a9640, m1 0x6baf10;
 
-    bool init(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet) = win 0x3afdf0, m1 0x6bd34c;
+    bool init(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet) = win 0x3afdf0, imac 0x7abc10, m1 0x6bd34c;
     void onClose(cocos2d::CCObject* sender);
 
     virtual void keyBackClicked() = m1 0x6bdcdc, imac 0x7ac5b0, ios 0x1a0b9c;
@@ -13566,7 +13566,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
     void onNextPage(cocos2d::CCObject* sender);
     void onParental(cocos2d::CCObject* sender);
     void onPrevPage(cocos2d::CCObject* sender);
-    void onSongBrowser(cocos2d::CCObject* sender) = m1 0x69b344;
+    void onSongBrowser(cocos2d::CCObject* sender) = win 0x360630, m1 0x69b344;
     void onToggle(cocos2d::CCObject* sender) = win 0x35fe30;
     const char* pageKey(int);
     void toggleGP();
