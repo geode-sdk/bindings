@@ -3560,8 +3560,8 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     void animateIn(DialogAnimationType) = imac 0x3b5560, m1 0x340b4c;
     void animateInDialog() = imac 0x3b57a0;
     void animateInRandomSide() = win 0xd2c40, m1 0x340aec, imac 0x3b5510;
-    void displayDialogObject(DialogObject*) = win 0xd2570;
-    void displayNextObject() = win 0xd2510, m1 0x33ff28;
+    void displayDialogObject(DialogObject*) = win 0xd2570, m1 0x33ffc8, imac 0x3b4980;
+    void displayNextObject() = win 0xd2510, m1 0x33ff28, imac 0x3b48e0;
     void finishCurrentAnimation() = imac 0x3b4ff0, m1 0x340620;
     void handleDialogTap() = win 0xd2940, m1 0x3404c4;
     bool init(DialogObject*, cocos2d::CCArray*, int) = win 0xd20b0, imac 0x3b43e0, m1 0x33fa48;
@@ -19867,7 +19867,7 @@ class TextArea : cocos2d::CCSprite {
     void colorAllCharactersTo(cocos2d::ccColor3B) = win 0x77600, imac 0x30dfc0, m1 0x2a4b20;
     void colorAllLabels(cocos2d::ccColor3B) = imac 0x30e070, m1 0x2a4be4;
     void fadeIn(float, bool) = m1 0x2a47e4;
-    void fadeInCharacters(float, float, bool, TextFadeInStyle);
+    void fadeInCharacters(float, float, bool, TextFadeInStyle) = m1 0x2a4db0;
     void fadeOut(float) = m1 0x2a49b4;
     void fadeOutAndRemove() = imac 0x30ddf0, m1 0x2a4944;
     void finishFade() = win 0x775a0, imac 0x30ddc0, m1 0x2a4920;
