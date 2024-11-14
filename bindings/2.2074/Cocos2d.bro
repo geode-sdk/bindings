@@ -2031,8 +2031,8 @@ class cocos2d::CCDictionary {
     void removeObjectForKey(gd::string const&) = imac 0x2fb510, m1 0x293a98;
     void removeObjectForKey(intptr_t) = imac 0x2fba60, m1 0x293f08;
     void removeObjectsForKeys(cocos2d::CCArray*);
-    cocos2d::CCString const* valueForKey(gd::string const&) = imac 0x2fa030;
-    cocos2d::CCString const* valueForKey(intptr_t) = imac 0x2fa570;
+    cocos2d::CCString const* valueForKey(gd::string const&) = imac 0x2fa030, m1 0x2927ec;
+    cocos2d::CCString const* valueForKey(intptr_t) = imac 0x2fa570, m1 0x292cd4;
     bool writeToFile(char const*);
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x2fbcf0, m1 0x294174, ios 0x41bfa4;
