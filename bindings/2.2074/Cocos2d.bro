@@ -83,7 +83,7 @@ class cocos2d::CCEaseBackOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBounceOut {
-    static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*);
+    static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*) = imac 0x500c50;
 
     // CCEaseBounceOut(cocos2d::CCEaseBounceOut const&);
     // CCEaseBounceOut();
@@ -247,7 +247,7 @@ class cocos2d::CCMotionStreak {
     void tintWithColor(cocos2d::_ccColor3B);
     void updateFade(float) = imac 0x55fb10;
 
-    ~CCMotionStreak() = m1 0x4b5e2c;
+    ~CCMotionStreak() = imac 0x55f3b0, m1 0x4b5e2c;
 
     virtual void update(float) = imac 0x55fb50, m1 0x4b651c, ios 0x17a624;
     virtual void setPosition(cocos2d::CCPoint const&) = imac 0x55f8b0, m1 0x4b6324, ios 0x17a4f4;
@@ -1984,7 +1984,7 @@ class cocos2d::CCArray {
     void insertObject(cocos2d::CCObject*, unsigned int);
     bool isEqualToArray(cocos2d::CCArray*);
     // cocos2d::CCObject* lastObject();
-    // cocos2d::CCObject* objectAtIndex(unsigned int);
+    // cocos2d::CCObject* objectAtIndex(unsigned int) = imac 0x709d40;
     cocos2d::CCObject* randomObject();
     void recreateNewIndexes();
     void reduceMemoryFootprint();
@@ -2128,7 +2128,7 @@ class cocos2d::CCRepeatForever {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionMoveInT {
-    static cocos2d::CCTransitionMoveInT* create(float, cocos2d::CCScene*);
+    static cocos2d::CCTransitionMoveInT* create(float, cocos2d::CCScene*) = imac 0xd6340;
 
     // CCTransitionMoveInT(cocos2d::CCTransitionMoveInT const&);
     // CCTransitionMoveInT();
