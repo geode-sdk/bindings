@@ -2105,7 +2105,7 @@ class CharacterColorPage : FLAlertLayer {
         m_glowLabel = nullptr;
     }
 
-    static CharacterColorPage* create() = win inline, m1 0x56ee50 {
+    static CharacterColorPage* create() = win inline, m1 0x56ee50, imac 0x6467b0 {
         auto ret = new CharacterColorPage();
         if (ret->init()) {
             ret->autorelease();
@@ -2123,7 +2123,7 @@ class CharacterColorPage : FLAlertLayer {
     cocos2d::CCPoint offsetForIndex(int) = imac 0x648570;
     void onClose(cocos2d::CCObject* sender) = win 0x8a760;
     void onMode(cocos2d::CCObject* sender) = win 0x89550, imac 0x647690, m1 0x56fc80;
-    void onPlayerColor(cocos2d::CCObject* sender) = win 0x89d60, m1 0x570904;
+    void onPlayerColor(cocos2d::CCObject* sender) = win 0x89d60, m1 0x570904, imac 0x648320;
     void toggleGlow(cocos2d::CCObject*) = win 0x88da0, m1 0x570384;
     TodoReturn toggleGlowItems(bool);
     void toggleShip(cocos2d::CCObject*) = win 0x88c80, imac 0x6475e0, m1 0x56fbb8;
@@ -2131,7 +2131,7 @@ class CharacterColorPage : FLAlertLayer {
     void updateIconColors() = win 0x8a540;
 
     virtual bool init() = win 0x87f30, imac 0x646910, m1 0x56ef58, ios 0x12bf2c;
-    virtual void registerWithTouchDispatcher() = m1 0x570eb4, imac 0x6488c0, ios 0x12d844;
+    virtual void registerWithTouchDispatcher() = m1 0x570eb4, imac 0x6488c0, ios 0x12d844, win 0x425d0;
     virtual void keyBackClicked() = win 0x8a7a0, m1 0x570e08, imac 0x648820, ios 0x12d7e8;
     virtual void show() = m1 0x570c80, imac 0x648690, ios 0x12d674;
 
@@ -9537,7 +9537,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void showUnlockPopupNew(int, UnlockType);
     gd::string titleForUnlock(int, UnlockType);
     void toggleGlow();
-    void updatePlayerColors() = win 0x2701a0, m1 0x2eaef4;
+    void updatePlayerColors() = win 0x2701a0, m1 0x2eaef4, imac 0x3577a0;
     void updatePlayerName(char const*);
 
     virtual bool init() = win 0x26b770, m1 0x2e94a8, imac 0x355ba0, ios 0x301df8;
@@ -11245,7 +11245,7 @@ class GJUserScore : cocos2d::CCNode {
         return nullptr;
     }
 
-    bool isCurrentUser() = win 0x16fb90, m1 0x4a21b8;
+    bool isCurrentUser() = win 0x16fb90, m1 0x4a21b8, imac 0x549af0;
     TodoReturn mergeWithScore(GJUserScore*);
 
     virtual bool init() = win 0x16fb40, m1 0x4a2144, imac 0x549a60, ios 0xb32d8;
@@ -14843,7 +14843,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerBirdFrame(int) = win 0x388550, imac 0x405aa0, m1 0x3837cc;
     void updatePlayerDartFrame(int) = win 0x388c50, imac 0x406bf0;
     void updatePlayerForce(cocos2d::CCPoint, bool);
-    void updatePlayerFrame(int) = win 0x387ec0, m1 0x38412c;
+    void updatePlayerFrame(int) = win 0x387ec0, m1 0x38412c, imac 0x406480;
     void updatePlayerGlow() = win 0x38a510, imac 0x4043a0, m1 0x382204;
     void updatePlayerJetpackFrame(int) = win 0x388320, m1 0x382fcc;
     void updatePlayerRobotFrame(int id) = win inline, imac 0x408f60 {
