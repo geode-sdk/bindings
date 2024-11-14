@@ -3084,7 +3084,7 @@ class cocos2d::ZipUtils {
     static void ccSetPvrEncryptionKeyPart(int, unsigned int);
     static gd::string compressString(gd::string const&, bool, int) = imac 0x1f3020, m1 0x1a8b18;
     static gd::string decompressString2(unsigned char*, bool, int, int);
-    static gd::string decompressString(gd::string const&, bool, int) = m1 0x1a921c;
+    static gd::string decompressString(gd::string const&, bool, int) = m1 0x1a921c, imac 0x1f36c0;
     static gd::string encryptDecrypt(gd::string const&, int);
     static gd::string encryptDecryptWKey(gd::string const&, gd::string);
     static unsigned char hexToChar(gd::string const&);
