@@ -3453,7 +3453,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     void createNodeIfLoaded();
     void downloadAndCreateNode();
     void exitDailyNode(DailyLevelNode*, float) = imac 0x21fc20, m1 0x1d2b34;
-    int getDailyTime();
+    int getDailyTime() = imac 0x2202a0;
     gd::string getDailyTimeString(int timeLeft) = win 0xcf200, imac 0x21f120, m1 0x1d1e6c;
     bool init(GJTimedLevelType) = win 0xcd110, imac 0x21e440, m1 0x1d0ebc;
     void onClose(cocos2d::CCObject* sender) = win 0x86940;
@@ -3461,7 +3461,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     void refreshDailyPage();
     void skipDailyLevel(DailyLevelNode*, GJGameLevel*);
     void tryGetDailyStatus() = win 0xcec10;
-    callback void updateTimers(float) = win 0xd0360;
+    callback void updateTimers(float) = win 0xd0360, imac 0x21f570;
 
     virtual void registerWithTouchDispatcher() = m1 0x1d3438, imac 0x220540, ios 0x1bca50;
     virtual void keyBackClicked() = imac 0x2204b0, m1 0x1d339c, ios 0x1bca44;
@@ -5533,7 +5533,7 @@ class GameLevelManager : cocos2d::CCNode {
     void deleteServerLevel(int) = win 0x152350;
     void deleteServerLevelList(int);
     void deleteSmartTemplate(GJSmartTemplate*);
-    void deleteUserMessages(GJUserMessage* message, cocos2d::CCArray* messages, bool isSender) = win 0x158f20, imac 0x607c40, m1 0x492290;
+    void deleteUserMessages(GJUserMessage* message, cocos2d::CCArray* messages, bool isSender) = win 0x158f20, m1 0x492290; //i swear if the 0x607c40 for intel mac makes it back
     void downloadLevel(int, bool) = win 0x14fde0, imac 0x52dae0, m1 0x4889b0;
     void downloadUserMessage(int, bool);
     void encodeDataTo(DS_Dictionary*) = win 0x148e00, imac 0x524e30, m1 0x480b48;
@@ -5565,7 +5565,7 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCArray* getCompletedLevels(bool) = win 0x145860;
     TodoReturn getCompletedWeeklyLevels();
     int getDailyID(GJTimedLevelType);
-    double getDailyTimer(GJTimedLevelType);
+    double getDailyTimer(GJTimedLevelType) = imac 0x543a00;
     char const* getDeleteCommentKey(int, int, int);
     char const* getDeleteMessageKey(int, bool);
     TodoReturn getDemonLevelsString();
@@ -11502,7 +11502,7 @@ class HardStreak : cocos2d::CCDrawNode {
     void firstSetup();
     TodoReturn normalizeAngle(double);
     TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
-    void reset() = win inline {
+    void reset() = win inline , imac 0x9d4e0{
         this->clear();
         m_pointArray->removeAllObjects();
     }
