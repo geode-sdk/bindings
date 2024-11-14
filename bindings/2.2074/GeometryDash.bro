@@ -5545,7 +5545,7 @@ class GameLevelManager : cocos2d::CCNode {
         return cocos2d::CCString::createWithFormat("%i_%i", p0, p1)->getCString();
     }
     void getAccountComments(int accountID, int page, int total) = imac 0x539a30;
-    int getActiveDailyID(GJTimedLevelType);
+    int getActiveDailyID(GJTimedLevelType) = imac 0x5439d0;
     gd::string getActiveDailyID(bool, bool, bool, bool, bool, bool, bool, bool);
     GJSmartTemplate* getActiveSmartTemplate();
     cocos2d::CCArray* getAllSmartTemplates();
@@ -5582,7 +5582,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getGauntletSearchKey(int);
     void getGauntletsearchKey(int);
     void getGJChallenges() = win 0x164ad0, m1 0x49be48;
-    void getGJDailyLevelState(GJTimedLevelType);
+    void getGJDailyLevelState(GJTimedLevelType) = imac 0x543260;
     void getGJRewards(int) = imac 0x542540;
     TodoReturn getGJSecretReward(gd::string);
     void getGJUserInfo(int) = win 0x157880, imac 0x536710, m1 0x4901ac;
@@ -5625,12 +5625,12 @@ class GameLevelManager : cocos2d::CCNode {
     char const* getPostCommentKey(int);
     const char * getRateStarsKey(int key);
     char const* getReportKey(int);
-    GJGameLevel* getSavedDailyLevel(int) = win 0x146ba0, m1 0x47d344;
+    GJGameLevel* getSavedDailyLevel(int) = win 0x146ba0, m1 0x47d344, imac 0x521300;
     GJGameLevel* getSavedDailyLevelFromLevelID(int) = imac 0x521600, m1 0x47d650;
     GJMapPack* getSavedGauntlet(int);
     GJGameLevel* getSavedGauntletLevel(int);
     GJGameLevel* getSavedLevel(GJGameLevel*);
-    GJGameLevel* getSavedLevel(int) = win 0x146ad0, m1 0x47d54c;
+    GJGameLevel* getSavedLevel(int) = win 0x146ad0, m1 0x47d54c, imac 0x521500;
     GJLevelList* getSavedLevelList(int);
     cocos2d::CCArray* getSavedLevelLists(int);
     cocos2d::CCArray* getSavedLevels(bool, int) = win 0x145410, m1 0x47af84, imac 0x51e9f0;
@@ -7195,7 +7195,7 @@ class GameStatsManager : cocos2d::CCNode {
     }
     bool hasCompletedMapPack(int);
     bool hasCompletedOnlineLevel(int) = win 0x1db070, m1 0x60ecc, imac 0x6d330;
-    bool hasCompletedStarLevel(GJGameLevel*);
+    bool hasCompletedStarLevel(GJGameLevel*) = imac 0x6d570;
     bool hasPendingUserCoin(char const*);
     bool hasRewardBeenCollected(GJRewardType, int);
     bool hasSecretCoin(char const*) = win 0x1dcf50;
@@ -12445,14 +12445,14 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onLevelInfo(cocos2d::CCObject* sender) = win 0x2ea510;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x2e54d0, imac 0x2adde0, m1 0x253d3c;
     void onLevelOptions(cocos2d::CCObject* sender) = win 0x2ea3c0;
-    void onLike(cocos2d::CCObject* sender) = win 0x2e9e60, m1 0x253da8;
+    void onLike(cocos2d::CCObject* sender) = win 0x2e9e60, m1 0x253da8, imac 0x2ade50;
     void onLowDetailMode(cocos2d::CCObject* sender);
     void onOwnerDelete(cocos2d::CCObject* sender);
     void onPlay(cocos2d::CCObject* sender) = win 0x2e7bd0;
     void onPlayReplay(cocos2d::CCObject* sender);
     void onRate(cocos2d::CCObject* sender) = win 0x2e96e0, m1 0x256d54;
     void onRateDemon(cocos2d::CCObject* sender) = win 0x2e9ce0, imac 0x2ae030, m1 0x253f84;
-    void onRateStars(cocos2d::CCObject* sender) = win 0x2e99c0, m1 0x253e20;
+    void onRateStars(cocos2d::CCObject* sender) = win 0x2e99c0, m1 0x253e20, imac 0x2aded0;
     void onRateStarsMod(cocos2d::CCObject* sender) = win 0x2e9c80, imac 0x2ae230, m1 0x254168;
     void onSetFolder(cocos2d::CCObject* sender) = win 0x2e5300, imac 0x2aeda0, m1 0x254d6c;
     void onUpdate(cocos2d::CCObject* sender) = win 0x2ea280;
@@ -12460,16 +12460,16 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void playStep2();
     void playStep3() = m1 0x256650;
     void playStep4() = win 0x2e8ab0, m1 0x25678c;
-    void setupLevelInfo() = win 0x2e65c0, m1 0x252478;
-    void setupPlatformerStats() = win 0x2e5a80, m1 0x252fc8;
-    void setupProgressBars() = win 0x2e5eb0, m1 0x25336c;
+    void setupLevelInfo() = win 0x2e65c0, m1 0x252478, imac 0x2ac500;
+    void setupPlatformerStats() = win 0x2e5a80, m1 0x252fc8, imac 0x2ad140;
+    void setupProgressBars() = win 0x2e5eb0, m1 0x25336c, imac 0x2ad480;
     bool shouldDownloadLevel();
     void showSongWarning() = imac 0x2b0590, m1 0x25646c;
     void showUpdateAlert(UpdateResponse) = win 0x2e7710, imac 0x2b00d0, m1 0x255ffc;
-    void tryCloneLevel(cocos2d::CCObject*) = win 0x2e8ba0;
+    void tryCloneLevel(cocos2d::CCObject*) = win 0x2e8ba0, imac 0x2ae5b0;
     TodoReturn tryShowAd();
     void updateLabelValues() = win 0x2ea9d0, imac 0x2af160, m1 0x25517c;
-    void updateSideButtons() = win 0x2e9fc0, m1 0x253fd8;
+    void updateSideButtons() = win 0x2e9fc0, m1 0x253fd8, imac 0x2ae090;
 
     virtual void keyBackClicked() = win 0x2ebdd0, imac 0x2b1280, m1 0x25718c, ios 0x2f294;
     virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2ebde0, imac 0x2b12b0, m1 0x257198, ios 0x2f2a0;
