@@ -1443,8 +1443,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     }
 
     virtual void activate() = win 0x45490, m1 0x4ffc4, imac 0x5a330, ios 0x19494c;
-    virtual void selected() = m1 0x4ff84, imac 0x5a300, ios 0x19490c;
-    virtual void unselected() = m1 0x50004, imac 0x5a360, ios 0x19498c;
+    virtual void selected() = win 0x45440, m1 0x4ff84, imac 0x5a300, ios 0x19490c;
+    virtual void unselected() = win 0x454e0, m1 0x50004, imac 0x5a360, ios 0x19498c;
     virtual void setEnabled(bool) = win 0x45530, m1 0x50044, imac 0x5a390, ios 0x1949cc;
 
     CCMenuItemSpriteExtra* m_offButton;
