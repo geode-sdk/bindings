@@ -490,7 +490,7 @@ class cocos2d::CCParticleSystem {
 
     // CCParticleSystem(cocos2d::CCParticleSystem const&);
     // CCParticleSystem();
-    ~CCParticleSystem();
+    ~CCParticleSystem() = m1 0x6c44c4, imac 0x7b34f0;
     bool addParticle();
     void calculateWorldSpace();
     bool isFull();
@@ -624,7 +624,7 @@ class cocos2d::CCParticleSystemQuad {
 
     // CCParticleSystemQuad(cocos2d::CCParticleSystemQuad const&);
     // CCParticleSystemQuad();
-    ~CCParticleSystemQuad() = imac 0x5eb0b0;
+    ~CCParticleSystemQuad() = imac 0x5eb0b0, m1 0x51c380;
     bool allocMemory() = imac 0x5eaa60, m1 0x51c000;
     void listenBackToForeground(cocos2d::CCObject*);
     [[missing(mac, ios)]]
