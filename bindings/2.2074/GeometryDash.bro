@@ -2760,7 +2760,7 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate, SliderDelegate {
     // virtual ~CreateParticlePopup();
 
-    static CreateParticlePopup* create(gd::string) = win 0x414180;
+    static CreateParticlePopup* create(gd::string);
     static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*, gd::string);
     static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*) = win 0x414180, imac 0x45bb50;
 
