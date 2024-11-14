@@ -7470,14 +7470,14 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
     static cocos2d::CCScene* scene(int) = win 0x1f5570;
 
     void goToPage(int, bool) = win 0x1f6f20, m1 0x4b2c08;
-    bool init(int) = win 0x1f56a0, m1 0x4b1310;
+    bool init(int) = win 0x1f56a0, m1 0x4b1310, imac 0x55acb0;
     void onBack(cocos2d::CCObject* sender) = win 0x1f70d0;
     void onInfo(cocos2d::CCObject* sender) = win 0x1f6210;
     void onNext(cocos2d::CCObject* sender) = win 0x1f6ee0, imac 0x55b7a0;
     void onPlay(cocos2d::CCObject* sender) = win 0x1f7190, imac 0x55c2d0, m1 0x4b27b8;
     void onPrev(cocos2d::CCObject* sender) = win 0x1f6f00, imac 0x55b780;
     void onRefresh(cocos2d::CCObject* sender) = win 0x1f6350, imac 0x55b8e0, m1 0x4b1e88;
-    void setupGauntlets() = win 0x1f6790, m1 0x4b1f30;
+    void setupGauntlets() = win 0x1f6790, m1 0x4b1f30, imac 0x55b9a0;
     void unblockPlay();
     void updateArrows();
 
@@ -9801,7 +9801,7 @@ class GJMapPack : cocos2d::CCNode {
     }
     static GJMapPack* create(cocos2d::CCDictionary*) = win 0x16d210, m1 0x478e24;
 
-    static GJMapPack* create() = win inline {
+    static GJMapPack* create() = win inline, m1 0x4a1910, imac 0x5490c0 {
         auto ret = new GJMapPack();
         if (ret->init()) {
             ret->autorelease();
