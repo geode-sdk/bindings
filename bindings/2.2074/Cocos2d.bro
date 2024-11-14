@@ -686,7 +686,7 @@ class cocos2d::CCProgressTimer {
 
 [[link(win, android)]]
 class cocos2d::CCFadeIn {
-    static cocos2d::CCFadeIn* create(float);
+    static cocos2d::CCFadeIn* create(float) = m1 0x334064, imac 0x3a7bb0;
 
     // CCFadeIn(cocos2d::CCFadeIn const&);
     // CCFadeIn();
