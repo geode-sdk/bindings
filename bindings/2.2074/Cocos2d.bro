@@ -213,7 +213,7 @@ class cocos2d::CCMotionStreak {
     void setStroke(float);
 
     // CCMotionStreak(cocos2d::CCMotionStreak const&);
-    	CCMotionStreak() = imac inline, m1 0x4b5cf4 {
+    CCMotionStreak() = imac inline, m1 0x4b5cf4 {
     	m_bFastMode = false;
     	m_bStartingPositionInitialized = false;
     	m_pTexture = nullptr;
@@ -365,7 +365,7 @@ class cocos2d::CCAction {
     // CCAction(cocos2d::CCAction const&);
     CCAction();
     ~CCAction();
-    char const* description();
+    char const* description() = imac 0x5dcb10, m1 0x50fa50;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x5dcb30, m1 0x50fa7c, ios 0x264878;
     virtual void update(float) = m1 0x50fb64, imac 0x5dcc30, ios 0x264944;
@@ -420,8 +420,8 @@ class cocos2d::CCShaderCache {
     // CCShaderCache(cocos2d::CCShaderCache const&);
     // CCShaderCache();
     void addProgram(cocos2d::CCGLProgram*, char const*);
-    void loadDefaultShader(cocos2d::CCGLProgram*, int);
-    void loadDefaultShaders();
+    void loadDefaultShader(cocos2d::CCGLProgram*, int) = imac 0x1f0c90, m1 0x1a74ac;
+    void loadDefaultShaders() = imac 0x1f0550, m1 0x1a6d1c;
     cocos2d::CCGLProgram* programForKey(char const*) = m1 0x1a7a58;
     void reloadDefaultShaders();
 }
@@ -792,7 +792,7 @@ class cocos2d::CCGLProgram {
     CCGLProgram();
     void addAttribute(char const*, unsigned int) = imac 0x4180e0;
     bool compileShader(unsigned int*, unsigned int, char const*);
-    char const* description();
+    char const* description() = imac 0x4180b0, m1 0x393bfc;
     char const* fragmentShaderLog();
     bool link() = m1 0x393dcc;
     // char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
@@ -831,7 +831,7 @@ class cocos2d::CCNode {
     cocos2d::CCPoint convertToWorldSpaceAR(cocos2d::CCPoint const&);
     cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*) = m1 0x20eaf8;
     cocos2d::CCPoint convertTouchToNodeSpaceAR(cocos2d::CCTouch*);
-    char const* description();
+    char const* description() = imac 0x260e70, m1 0x20cc04;
     void detachChild(cocos2d::CCNode*, bool);
     void insertChild(cocos2d::CCNode*, int);
     unsigned int numberOfRunningActions();
@@ -1290,9 +1290,9 @@ class cocos2d::CCTextureCache {
     void addImageAsyncCallBack(float);
     cocos2d::CCTexture2D* addPVRImage(char const*);
     cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*) = imac 0x5d6700, m1 0x50a210;
-    char const* description();
+    char const* description() = imac 0x5d4910, m1 0x5083f4;
     void dumpCachedTextureInfo();
-    void prepareAsyncLoading();
+    void prepareAsyncLoading() = imac 0x5d4ac0, m1 0x508584;
     bool reloadTexture(char const*);
     void removeAllTextures();
     void removeTexture(cocos2d::CCTexture2D*);
@@ -1575,7 +1575,7 @@ class cocos2d::CCDirector {
     void setActualDeltaTime(float);
     void setAlphaBlending(bool);
     void setContentScaleFactor(float);
-    void setDefaultValues();
+    void setDefaultValues() = imac 0x46f8f0, m1 0x3dea54;
     void setDelegate(cocos2d::CCDirectorDelegate*);
     void setDeltaTime(float);
     void setDepthTest(bool) = imac 0x46fc40;
@@ -1617,7 +1617,7 @@ class cocos2d::CCDirector {
     void purgeCachedData();
     void purgeDirector() = imac 0x471780;
     bool pushScene(cocos2d::CCScene*) = imac 0x471230, m1 0x3e0034;
-    void removeStatsLabel() = imac 0x471990;
+    void removeStatsLabel() = imac 0x471990, m1 0x3e0734;
     bool replaceScene(cocos2d::CCScene*) = imac 0x4712e0, m1 0x3e00fc;
     void resetSmoothFixCounter();
     void reshapeProjection(cocos2d::CCSize const&);
@@ -1625,9 +1625,9 @@ class cocos2d::CCDirector {
     void runWithScene(cocos2d::CCScene*) = imac 0x471190;
     int sceneCount();
     void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
-    void showFPSLabel();
+    void showFPSLabel() = imac 0x470510, m1 0x3df4dc;
     void showStats();
-    void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = imac 0x470800;
+    void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = imac 0x470800, m1 0x3df778;
     void updateContentScale(cocos2d::TextureQuality);
     void updateScreenScale(cocos2d::CCSize);
     void willSwitchToScene(cocos2d::CCScene*) = imac 0x471140, m1 0x3dff18;
@@ -2243,7 +2243,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	return nullptr;
     }
 
-    	CCClippingNode() = ios inline {
+    CCClippingNode() = ios inline {
     	m_pStencil = nullptr;
     	m_fAlphaThreshold = 0.0f;
     	m_bInverted = false;
@@ -2627,7 +2627,7 @@ class cocos2d::CCSpriteFrameCache {
     // CCSpriteFrameCache();
     // CCSpriteFrameCache(cocos2d::CCSpriteFrameCache const&);
     void addSpriteFrame(cocos2d::CCSpriteFrame*, char const*);
-    void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*);
+    void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*) = imac 0x307d30, m1 0x29ee50;
     void addSpriteFramesWithFile(char const*, char const*);
     void addSpriteFramesWithFile(char const*) = imac 0x308940, m1 0x29f998;
     void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*);
@@ -3142,7 +3142,7 @@ class pugi::xml_document {
 [[link(win, android)]]
 class pugi::xml_node {
     // i'm not bothering
-    	xml_node() = m1 inline, imac inline {
+    xml_node() = m1 inline, imac inline {
     	_root = nullptr;
     }
 }
