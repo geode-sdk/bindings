@@ -2124,7 +2124,7 @@ class CharacterColorPage : FLAlertLayer {
     void onClose(cocos2d::CCObject* sender) = win 0x8a760;
     void onMode(cocos2d::CCObject* sender) = win 0x89550, imac 0x647690, m1 0x56fc80;
     void onPlayerColor(cocos2d::CCObject* sender) = win 0x89d60, m1 0x570904, imac 0x648320;
-    void toggleGlow(cocos2d::CCObject*) = win 0x88da0, m1 0x570384;
+    void toggleGlow(cocos2d::CCObject*) = win 0x88da0, imac 0x647d80, m1 0x570384;
     TodoReturn toggleGlowItems(bool);
     void toggleShip(cocos2d::CCObject*) = win 0x88c80, imac 0x6475e0, m1 0x56fbb8;
     void updateColorMode(int) = imac 0x647dc0;
@@ -13380,7 +13380,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 
     void destroyPlayer() = win 0x31e480, imac 0x4e7c20, m1 0x449af8;
     cocos2d::ccColor3B getBGColor(int) = win 0x31cde0, imac 0x4e6b60, m1 0x448bc0;
-    void resetPlayer() = win 0x31d850;
+    void resetPlayer() = win 0x31d850, imac 0x4e7060, m1 0x4490e0;
     void tryJump(float) = win 0x31d0b0, m1 0x448cc4;
     void updateColor(float) = win 0x31cc90, imac 0x4e6e60, m1 0x448f34;
     void updateColors() = imac 0x4e7840, m1 0x449788;
@@ -14841,21 +14841,21 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn updateMove(float) = win 0x374350;
     void updatePlayerArt() = win 0x382a30, imac 0x404530, m1 0x3823c4;
     void updatePlayerBirdFrame(int) = win 0x388550, imac 0x405aa0, m1 0x3837cc;
-    void updatePlayerDartFrame(int) = win 0x388c50, imac 0x406bf0;
+    void updatePlayerDartFrame(int) = win 0x388c50, imac 0x406bf0, m1 0x384808;
     void updatePlayerForce(cocos2d::CCPoint, bool);
     void updatePlayerFrame(int) = win 0x387ec0, m1 0x38412c, imac 0x406480;
     void updatePlayerGlow() = win 0x38a510, imac 0x4043a0, m1 0x382204;
     void updatePlayerJetpackFrame(int) = win 0x388320, m1 0x382fcc;
-    void updatePlayerRobotFrame(int id) = win inline, imac 0x408f60 {
+    void updatePlayerRobotFrame(int id) = win inline, imac 0x408f60, m1 0x386940 {
         if (id < 1) id = 1;
         else if (id > 0x43) id = 0x44;
 
         createRobot(id);
     }
-    void updatePlayerRollFrame(int) = win 0x3887f0, imac 0x406ff0;
+    void updatePlayerRollFrame(int) = win 0x3887f0, imac 0x406ff0, m1 0x384bec;
     void updatePlayerScale() = win 0x38a490;
     void updatePlayerShipFrame(int) = win 0x3880f0, imac 0x404fc0, m1 0x382d90;
-    void updatePlayerSpiderFrame(int id) = win inline, imac 0x408f80 {
+    void updatePlayerSpiderFrame(int id) = win inline, imac 0x408f80, m1 0x386958 {
         if (id < 1) id = 1;
         else if (id > 0x44) id = 0x45;
 
@@ -18898,7 +18898,7 @@ class SimpleObject : cocos2d::CCObject {
 class SimplePlayer : cocos2d::CCSprite {
     // virtual ~SimplePlayer();
 
-    static SimplePlayer* create(int) = win 0x271ac0, m1 0x2ead40;
+    static SimplePlayer* create(int) = win 0x271ac0, imac 0x357600, m1 0x2ead40;
 
     void asyncLoadIcon(int, IconType) = m1 0x2f0394;
     void createRobotSprite(int frame) = win inline, imac 0x3576c0, m1 0x2eadfc {
