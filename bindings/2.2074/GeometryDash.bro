@@ -8132,7 +8132,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateAreaObjectLastValues(GameObject*);
     void updateAudioVisualizer() = win 0x2422f0, imac 0x143430, m1 0x11a1b0;
     void updateBGArtSpeed(float, float) = m1 0x11e5e0;
-    void updateCamera(float) = win 0x235760;
+    void updateCamera(float) = win 0x235760, imac 0x143a60;
     TodoReturn updateCameraBGArt(cocos2d::CCPoint, float) = imac 0x14a5c0;
     TodoReturn updateCameraEdge(int, int);
     void updateCameraMode(EffectGameObject* obj, bool updateDual) = win inline, imac 0x114180 {
@@ -13383,7 +13383,7 @@ class MenuGameLayer : cocos2d::CCLayer {
     void destroyPlayer() = win 0x31e480, imac 0x4e7c20, m1 0x449af8;
     cocos2d::ccColor3B getBGColor(int) = win 0x31cde0, imac 0x4e6b60, m1 0x448bc0;
     void resetPlayer() = win 0x31d850, imac 0x4e7060;
-    void tryJump(float) = win 0x31d0b0, m1 0x448cc4;
+    void tryJump(float) = win 0x31d0b0, m1 0x448cc4, imac 0x4e6c00;
     void updateColor(float) = win 0x31cc90, imac 0x4e6e60, m1 0x448f34;
     void updateColors() = imac 0x4e7840, m1 0x449788;
 
