@@ -243,7 +243,7 @@ class AchievementManager : cocos2d::CCNode {
     TodoReturn notifyAchievement(char const*, char const*, char const*);
     TodoReturn notifyAchievementWithID(char const*);
     TodoReturn percentageForCount(int, int);
-    int percentForAchievement(char const*) = win 0x39a90, imac 0x76ec20;
+    int percentForAchievement(char const*) = win 0x39a90, m1 0x6821b4, imac 0x76ec20;
     void reportAchievementWithID(char const*, int, bool);
     void reportPlatformAchievementWithID(char const*, int);
     void resetAchievement(char const*);
@@ -8703,14 +8703,14 @@ class GJChestSprite : cocos2d::CCSprite {
 
     static GJChestSprite* create(int) = win 0x3ba270, imac 0x20b1d0, m1 0x1bfc94;
 
-    bool init(int chestType) = win inline, m1 0x1c25ec {
+    bool init(int chestType) = win inline, m1 0x1c25ec, imac 0x20ddc0 {
         if (!cocos2d::CCSprite::init()) return false;
         m_chestType = chestType;
         this->setContentSize({ 0, 0 });
         this->switchToState(ChestSpriteState::Closed, false);
         return true;
     }
-    void switchToState(ChestSpriteState, bool) = win 0x3ba470, m1 0x1c103c;
+    void switchToState(ChestSpriteState, bool) = win 0x3ba470, m1 0x1c103c, imac 0x20c800;
 
     virtual void setOpacity(unsigned char) = win 0x3ba400, imac 0x20df10, m1 0x1c2724, ios 0x1c8f68;
     virtual void setColor(cocos2d::ccColor3B const&) = win 0x3ba340, imac 0x20de20, m1 0x1c2650, ios 0x1c8e98;
@@ -13417,7 +13417,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
     void endGame() = win 0x321510;
     void firstNetworkTest() = win 0x320430;
-    void onAchievements(cocos2d::CCObject* sender) = win 0x320960, imac 0x37e370;
+    void onAchievements(cocos2d::CCObject* sender) = win 0x320960, m1 0x30eaa8, imac 0x37e370;
     void onCreator(cocos2d::CCObject* sender) = win 0x320e70;
     void onDaily(cocos2d::CCObject* sender) = win 0x3201e0;
     void onDiscord(cocos2d::CCObject* sender);
