@@ -2218,7 +2218,7 @@ class cocos2d::CCCallFuncO {
 
 [[link(win, android)]]
 class cocos2d::CCClippingNode : cocos2d::CCNode {
-    static cocos2d::CCClippingNode* create() = ios inline, imac 0x708da0 {
+    static cocos2d::CCClippingNode* create() = ios inline, imac 0x708da0, m1 0x628634 {
     	auto pRet = new CCClippingNode();
 
     	if (pRet->init())
@@ -2230,7 +2230,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	delete pRet;
     	return nullptr;
     }
-    static cocos2d::CCClippingNode* create(cocos2d::CCNode* stencil) = ios inline {
+    static cocos2d::CCClippingNode* create(cocos2d::CCNode* stencil) = ios inline, imac 0x708e30, m1 0x6286bc {
     	auto pRet = new CCClippingNode();
 
     	if (pRet->init(stencil))
@@ -2495,7 +2495,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     cocos2d::CCNode* getStencil() const = ios inline {
     	return m_pStencil;
     }
-    void setStencil(cocos2d::CCNode* pStencil) = ios inline {
+    void setStencil(cocos2d::CCNode* pStencil) = ios inline, imac 0x7093a0, m1 0x628bc4 {
     	CC_SAFE_RELEASE(m_pStencil);
     	m_pStencil = pStencil;
     	CC_SAFE_RETAIN(m_pStencil);
@@ -2504,7 +2504,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     float getAlphaThreshold() const = ios inline {
     	return m_fAlphaThreshold;
     }
-    void setAlphaThreshold(float fAlphaThreshold) = ios inline {
+    void setAlphaThreshold(float fAlphaThreshold) = ios inline, imac 0x7093f0, m1 0x628c10 {
     	m_fAlphaThreshold = fAlphaThreshold;
     }
 
