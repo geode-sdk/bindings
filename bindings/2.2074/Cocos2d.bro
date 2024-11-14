@@ -1538,7 +1538,7 @@ class cocos2d::CCKeypadDispatcher {
 
 [[link(win, android)]]
 class cocos2d::CCDirector {
-    static cocos2d::CCDirector* sharedDirector() = imac 0x46f500, m1 0x3de6d0;
+    static cocos2d::CCDirector* sharedDirector() = imac 0x46f500, m1 0x3de6d0, ios 0x178534;
 
     float getActualDeltaTime() const;
     double getAnimationInterval();
@@ -1565,7 +1565,7 @@ class cocos2d::CCDirector {
     unsigned int getTotalFrames();
     cocos2d::CCPoint getVisibleOrigin();
     cocos2d::CCSize getVisibleSize();
-    cocos2d::CCSize getWinSize() = imac 0x470920, m1 0x3df874;
+    cocos2d::CCSize getWinSize() = imac 0x470920, m1 0x3df874, ios 0x1791c4;
     cocos2d::CCSize getWinSizeInPixels();
     float getZEye();
     //getScreenTop = ios 0x18260c, idk if i should add the function
@@ -1618,7 +1618,7 @@ class cocos2d::CCDirector {
     void purgeDirector() = imac 0x471780;
     bool pushScene(cocos2d::CCScene*) = imac 0x471230, m1 0x3e0034;
     void removeStatsLabel() = imac 0x471990;
-    bool replaceScene(cocos2d::CCScene*) = imac 0x4712e0, m1 0x3e00fc;
+    bool replaceScene(cocos2d::CCScene*) = imac 0x4712e0, m1 0x3e00fc, ios 0x179608;
     void resetSmoothFixCounter();
     void reshapeProjection(cocos2d::CCSize const&);
     void resume() = imac 0x471910;
@@ -1666,8 +1666,8 @@ class cocos2d::CCNodeRGBA {
     }
 
     // CCNodeRGBA(cocos2d::CCNodeRGBA const&);
-    CCNodeRGBA() = imac 0x262fc0, m1 0x20ec74;
-    ~CCNodeRGBA() = imac 0x263070, m1 0x20ecd8;
+    CCNodeRGBA() = imac 0x262fc0, m1 0x20ec74, ios 0x23CE40;
+    ~CCNodeRGBA() = imac 0x263070, m1 0x20ecd8, ios 0x23AC80;
 
     virtual bool init() = imac 0x2630a0, m1 0x20ecf0, ios 0x23ce8c;
 
@@ -2191,7 +2191,7 @@ class cocos2d::CCBlink {
 
 [[link(win, android)]]
 class cocos2d::CCCallFunc {
-    static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc) = imac 0x7972a0, m1 0x6aa418;
+    static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc) = imac 0x7972a0, m1 0x6aa418, ios 0x1b110c;
 }
 
 [[link(win, android)]]
@@ -2655,7 +2655,7 @@ class cocos2d::CCString {
 
 [[link(win, android)]]
 class cocos2d::CCMenuItem {
-    ~CCMenuItem() = imac 0x3ab940, m1 0x337768;
+    ~CCMenuItem() = imac 0x3ab940, m1 0x337768, ios 0x505dc;
     static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3ab790, m1 0x3375e0;
     static cocos2d::CCMenuItem* create() = imac 0x3ab6d0, m1 0x337538;
 
