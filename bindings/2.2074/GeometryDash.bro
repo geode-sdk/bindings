@@ -9675,7 +9675,7 @@ class GJLevelList : cocos2d::CCNode {
     void handleStatsConflict(GJLevelList*) = imac 0x54b4a0, m1 0x4a37fc;
     bool hasMatchingLevels(GJLevelList*) = win 0x173970, imac 0x54b4c0, m1 0x4a3814;
     TodoReturn orderForLevel(int);
-    TodoReturn parseListLevels(gd::string) = win 0x173c40;
+    TodoReturn parseListLevels(gd::string) = win 0x173c40, imac 0x52ca10;
     TodoReturn removeLevelFromList(int);
     void reorderLevel(int levelID, int newPosition) = win 0x174070;
     TodoReturn reorderLevelStep(int, bool);
@@ -13056,7 +13056,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 class LevelTools {
     static int artistForAudio(int) = win 0x314320;
     static gd::string base64DecodeString(gd::string);
-    static gd::string base64EncodeString(gd::string);
+    static gd::string base64EncodeString(gd::string) = imac 0x4ee880;
     static cocos2d::CCDictionary* createStarPackDict();
     static gd::string fbURLForArtist(int) = win 0x316430;
     static int getAudioBPM(int);
