@@ -5552,7 +5552,7 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCDictionary* getAllUsedSongIDs();
     GJLevelList* getAllUsedSongIDs(int);
     gd::string getBasePostString() = win 0x14a4b0;
-    bool getBoolForKey(char const* key) = win inline {
+    bool getBoolForKey(char const* key) = win inline, m1 0x49da8c, imac 0x544a30 {
         return m_searchFilters->valueForKey(key)->boolValue();
     }
     gd::string getCommentKey(int ID, int page, int mode, CommentKeyType keytype) {
@@ -5587,7 +5587,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getGJSecretReward(gd::string);
     void getGJUserInfo(int) = win 0x157880, imac 0x536710, m1 0x4901ac;
     int getHighestLevelOrder() = imac 0x51ece0;
-    int getIntForKey(char const* key) = win inline {
+    int getIntForKey(char const* key) = win inline, m1 0x49d874, imac 0x544830 {
         return m_searchFilters->valueForKey(key)->intValue();
     }
     void getLeaderboardScores(char const*) = win 0x1554b0, m1 0x48e540;
@@ -5794,12 +5794,12 @@ class GameLevelManager : cocos2d::CCNode {
     void saveLocalScore(int, int, int);
     void saveMapPack(GJMapPack*);
     void setActiveSmartTemplate(GJSmartTemplate*);
-    void setBoolForKey(bool value, char const* key) = win inline {
+    void setBoolForKey(bool value, char const* key) = win inline, m1 0x49d96c, imac 0x544920 {
         m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", (int)value), key);
     }
     void setDiffVal(int, bool);
     void setFolderName(int, gd::string, bool) = imac 0x524790, m1 0x48055c;
-    void setIntForKey(int value, char const* key) = win inline {
+    void setIntForKey(int value, char const* key) = win inline, m1 0x49d758, imac 0x544720 {
         m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", value), key);
     }
     void setLenVal(int, bool);
@@ -12776,14 +12776,14 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 
     bool checkDiff(int);
     bool checkTime(int);
-    void clearFilters();
+    void clearFilters() = win 0x2f9ca0, m1 0x54146c, imac 0x6151b0;
     void confirmClearFilters(cocos2d::CCObject*);
     inline char const* getDiffKey(int diff) {
         return cocos2d::CCString::createWithFormat("D%i", diff)->getCString();
     }
     gd::string getLevelLenKey() = win 0x14b660;
     gd::string getSearchDiffKey() = m1 0x541e38;
-    GJSearchObject* getSearchObject(SearchType, gd::string) = win 0x2fb290, m1 0x541ae4;
+    GJSearchObject* getSearchObject(SearchType, gd::string) = win 0x2fb290, m1 0x541ae4, imac 0x615780;
     inline char const* getTimeKey(int time) {
         return cocos2d::CCString::createWithFormat("T%i", time)->getCString();
     }
@@ -12801,16 +12801,16 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     void onMostDownloaded(cocos2d::CCObject* sender) = win 0x2fc4c0;
     void onMostLikes(cocos2d::CCObject* sender) = win 0x2fc580;
     void onMostRecent(cocos2d::CCObject* sender) = win 0x2fc880;
-    void onSearch(cocos2d::CCObject* sender) = win 0x2fcb80;
+    void onSearch(cocos2d::CCObject* sender) = win 0x2fcb80, m1 0x53fe68, imac 0x613ba0;
     void onSearchMode(cocos2d::CCObject* sender) = win 0x2f9a30, imac 0x6137c0, m1 0x53fad4;
-    void onSearchUser(cocos2d::CCObject* sender) = win 0x2fcdc0;
+    void onSearchUser(cocos2d::CCObject* sender) = win 0x2fcdc0, m1 0x53fff0, imac 0x613d10;
     void onSpecialDemon(cocos2d::CCObject* sender) = win 0x2f9690, m1 0x540b44;
     void onStarAward(cocos2d::CCObject* sender);
     void onSuggested(cocos2d::CCObject* sender) = win 0x2fc640;
     void onTrending(cocos2d::CCObject* sender) = win 0x2fc700;
     void toggleDifficulty(cocos2d::CCObject*) = win 0x2fd3c0, imac 0x614340, m1 0x540640;
     void toggleDifficultyNum(int, bool) = win 0x2fd720, imac 0x614ae0, m1 0x540e20;
-    void toggleStar(cocos2d::CCObject*) = win 0x2fd0b0;
+    void toggleStar(cocos2d::CCObject*) = win 0x2fd0b0, m1 0x540d30, imac 0x614a10;
     void toggleTime(cocos2d::CCObject*);
     void toggleTimeNum(int, bool) = win 0x2fdb30, imac 0x614c70, m1 0x540fb4;
     void updateSearchLabel(char const*) = win 0x2faf20;
