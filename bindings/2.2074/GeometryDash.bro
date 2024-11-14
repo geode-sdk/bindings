@@ -11378,7 +11378,7 @@ class GManager : cocos2d::CCNode {
     void loadFromString(gd::string&);
     void save() = win 0x6a9a0, imac 0x499190, m1 0x404fe8;
     TodoReturn saveData(DS_Dictionary*, gd::string);
-    void saveGMTo(gd::string) = win 0x6a9a0;
+    void saveGMTo(gd::string); // inlined into save on windows
     TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
 
     virtual bool init() = win 0x6a7c0, imac 0x498f00, m1 0x404d70, ios 0x249774;
