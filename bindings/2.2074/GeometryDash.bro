@@ -8674,12 +8674,12 @@ class GJChallengeDelegate {
 class GJChallengeItem : cocos2d::CCObject {
     // virtual ~GJChallengeItem();
 
-    static GJChallengeItem* create();
+    static GJChallengeItem* create() = m1 0x8286c;
     static GJChallengeItem* create(GJChallengeType challengeType, int goal, int reward, int timeLeft, gd::string questName);
 
     static GJChallengeItem* createFromString(gd::string string) = imac 0x8ef00;
-    static GJChallengeItem* createWithCoder(DS_Dictionary* dsdict) = imac 0x8f320;
-    void dataLoaded(DS_Dictionary* dsdict) = imac 0x8f360;
+    static GJChallengeItem* createWithCoder(DS_Dictionary* dsdict) = imac 0x8f320, m1 0x82a9c;
+    void dataLoaded(DS_Dictionary* dsdict) = imac 0x8f360, m1 0x82af0;
     void incrementCount(int add);
     bool init(GJChallengeType challengeType, int goal, int reward, int timeLeft, gd::string questName);
     void setCount(int value);
@@ -9120,7 +9120,7 @@ class GJGameLevel : cocos2d::CCNode {
 
     bool areCoinsVerified();
     void copyLevelInfo(GJGameLevel*) = win 0x16aaa0;
-    TodoReturn createWithCoder(DS_Dictionary*);
+    TodoReturn createWithCoder(DS_Dictionary*) = m1 0x49fcbc;
     void dataLoaded(DS_Dictionary*) = win 0x16b150, imac 0x5472c0, m1 0x49fd40;
     int demonIconForDifficulty(DemonDifficultyType) = imac 0x548f50, m1 0x4a1794;
     TodoReturn generateSettingsString();
@@ -9666,7 +9666,7 @@ class GJLevelList : cocos2d::CCNode {
 
     void addLevelToList(GJGameLevel* level) = win 0x173ee0;
     TodoReturn completedLevels() = imac 0x54ca00, m1 0x4a4a48;
-    TodoReturn createWithCoder(DS_Dictionary*);
+    TodoReturn createWithCoder(DS_Dictionary*) = m1 0x4a4f38;
     void dataLoaded(DS_Dictionary*) = win 0x174cd0, imac 0x54cef0, m1 0x4a4f68;
     TodoReturn duplicateListLevels(GJLevelList*);
     TodoReturn frameForListDifficulty(int, DifficultyIconType) = imac 0x54d4b0, m1 0x4a54d8;
@@ -9675,7 +9675,7 @@ class GJLevelList : cocos2d::CCNode {
     void handleStatsConflict(GJLevelList*) = imac 0x54b4a0, m1 0x4a37fc;
     bool hasMatchingLevels(GJLevelList*) = win 0x173970, imac 0x54b4c0, m1 0x4a3814;
     TodoReturn orderForLevel(int);
-    TodoReturn parseListLevels(gd::string) = win 0x173c40, imac 0x52ca10;
+    TodoReturn parseListLevels(gd::string) = win 0x173c40, imac 0x52ca10, m1 0x487a60;
     TodoReturn removeLevelFromList(int);
     void reorderLevel(int levelID, int newPosition) = win 0x174070;
     TodoReturn reorderLevelStep(int, bool);
@@ -10887,7 +10887,7 @@ class GJSmartPrefab : cocos2d::CCObject {
 
     static GJSmartPrefab* create();
 
-    TodoReturn createWithCoder(DS_Dictionary*) = imac 0x415b20;
+    TodoReturn createWithCoder(DS_Dictionary*) = imac 0x415b20, m1 0x3914fc;
     void dataLoaded(DS_Dictionary*);
     bool init();
 
@@ -10902,7 +10902,7 @@ class GJSmartTemplate : cocos2d::CCObject {
     static GJSmartTemplate* create() = win 0x2a92e0;
 
     TodoReturn applyTransformationsForType(SmartBlockType, cocos2d::CCSprite*);
-    TodoReturn createWithCoder(DS_Dictionary*) = imac 0x415590;
+    TodoReturn createWithCoder(DS_Dictionary*) = imac 0x415590, m1 0x390f48;
     void dataLoaded(DS_Dictionary*) = win 0x2ade80;
     TodoReturn flipBlockType(SmartBlockType, bool, bool);
     TodoReturn flipBlockTypeX(SmartBlockType);
@@ -13056,7 +13056,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 class LevelTools {
     static int artistForAudio(int) = win 0x314320;
     static gd::string base64DecodeString(gd::string);
-    static gd::string base64EncodeString(gd::string) = imac 0x4ee880;
+    static gd::string base64EncodeString(gd::string) = imac 0x4ee880, m1 0x44fd1c;
     static cocos2d::CCDictionary* createStarPackDict();
     static gd::string fbURLForArtist(int) = win 0x316430;
     static int getAudioBPM(int);
@@ -19234,7 +19234,7 @@ class SongInfoObject : cocos2d::CCNode {
 
     TodoReturn addTags(gd::string);
     TodoReturn containsTag(int);
-    TodoReturn createWithCoder(DS_Dictionary*) = win 0x330690;
+    TodoReturn createWithCoder(DS_Dictionary*) = win 0x330690, m1 0x4d2740;
     TodoReturn getArtistNames(int);
     TodoReturn getTagsString(bool);
     bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int newType, int priority);
