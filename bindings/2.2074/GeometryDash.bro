@@ -1915,7 +1915,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     }
     bool init(float, float, char const*, char const*, int, char const*) = win 0x4f300, imac 0x9dd90, m1 0x90770;
     void refreshLabel() = win 0x4fb40, imac 0x9e850, m1 0x911d4;
-    void setAllowedChars(gd::string filter) = win inline, imac 0x9e650 {
+    void setAllowedChars(gd::string filter) = win inline, imac 0x9e650, m1 0x90fe4 {
         m_allowedChars = filter;
     }
 
@@ -11376,7 +11376,7 @@ class GManager : cocos2d::CCNode {
     void loadDataFromFile(gd::string const&) = win 0x6aa90, imac 0x499410;
     void loadFromCompressedString(gd::string&);
     void loadFromString(gd::string&);
-    void save() = win 0x6a9a0;
+    void save() = win 0x6a9a0, imac 0x499190, m1 0x404fe8;
     TodoReturn saveData(DS_Dictionary*, gd::string);
     void saveGMTo(gd::string) = win 0x6a9a0;
     TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
@@ -13550,7 +13550,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 
     void addToggle(char const*, char const*, char const*) = win 0x35ee10;
     int countForPage(int);
-    void goToPage(int) = win 0x35f890;
+    void goToPage(int) = win 0x35f890, imac 0x787750, m1 0x69b78c;
     void incrementCountForPage(int);
     const char* infoKey(int);
     cocos2d::CCLayer* layerForPage(int);
