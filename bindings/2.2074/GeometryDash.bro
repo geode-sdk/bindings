@@ -658,7 +658,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     static BoomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = imac 0x2f86d0, m1 0x29114c;
 
     TodoReturn addObjectToList(cocos2d::CCNode*);
-    bool init(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = win 0x3bfe0, imac 0x2f8800, m1 0x291258;
+    bool init(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = win 0x3bfe0, imac 0x2f8800, m1 0x291258, ios 0x1d0c00;
 
     bool init(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
         return this->init(entries, nullptr, height, width, 0, type, 0.0f);
@@ -863,8 +863,8 @@ class ButtonPage : cocos2d::CCLayer {
 class ButtonSprite : cocos2d::CCSprite {
     // virtual ~ButtonSprite();
     ButtonSprite() = win 0x3ed20;
-    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x3f150, imac 0x92640, m1 0x8579c;
-    static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3ee40, imac 0x91db0, m1 0x84fe0;
+    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x3f150, imac 0x92640, m1 0x8579c, ios 0x62f8c;
+    static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3ee40, imac 0x91db0, m1 0x84fe0, ios 0x62878;
 
     /// Create a ButtonSprite with a top sprite and a texture.
     /// @param topSprite The top sprite to add on top of the sprite
@@ -1522,7 +1522,7 @@ class CCScrollLayerExt : cocos2d::CCLayer {
     void moveToTop() = win 0x47000, imac 0x41baa0, m1 0x39752c, ios 0x301054; // ?
     void moveToTopWithOffset(float) = win 0x46f60, imac 0x41ba00, m1 0x3975d4, ios 0x300fac; // ?
     TodoReturn scrollingEnd();
-    void scrollLayer(float offset) = win inline, imac 0x41c650, m1 0x39802c {
+    void scrollLayer(float offset) = win inline, imac 0x41c650, m1 0x39802c, ios 0x301924 {
         float y = m_contentLayer->getPositionY() + offset;
         float minY = getMinY();
         float maxY = getMaxY();
@@ -1896,7 +1896,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_kerningAmount = 0;
     }
 
-    static CCTextInputNode* create(float, float, char const*, char const*, int, char const*) = win 0x4f0f0, imac 0x9dbd0, m1 0x90610;
+    static CCTextInputNode* create(float, float, char const*, char const*, int, char const*) = win 0x4f0f0, imac 0x9dbd0, m1 0x90610, ios 0x16fe38;
 
     static CCTextInputNode* create(float width, float height, char const* placeholder, char const* fontPath) {
         return CCTextInputNode::create(width, height, placeholder, 0x18, fontPath);
@@ -1914,7 +1914,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         return m_textField->getString();
     }
     bool init(float, float, char const*, char const*, int, char const*) = win 0x4f300, imac 0x9dd90, m1 0x90770;
-    void refreshLabel() = win 0x4fb40, imac 0x9e850, m1 0x911d4;
+    void refreshLabel() = win 0x4fb40, imac 0x9e850, m1 0x911d4, ios 0x170608;
     void setAllowedChars(gd::string filter) = win inline, imac 0x9e650, m1 0x90fe4 {
         m_allowedChars = filter;
     }
@@ -1926,11 +1926,11 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_textColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, imac 0x9eb00, m1 0x913f8 {
+    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, imac 0x9eb00, m1 0x913f8, ios 0x1707b0 {
         m_placeholderColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderScale(float v) = win inline, imac 0x9eae0, m1 0x913f0 {
+    void setLabelPlaceholderScale(float v) = win inline, imac 0x9eae0, m1 0x913f0, ios 0x1707a8 {
         m_placeholderScale = v;
         this->refreshLabel();
     }
@@ -1938,20 +1938,20 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_maxLabelLength = v;
         this->refreshLabel();
     }
-    void setMaxLabelScale(float v) = win inline, imac 0x9eaa0, m1 0x913e0 {
+    void setMaxLabelScale(float v) = win inline, imac 0x9eaa0, m1 0x913e0, ios 0x170798 {
         m_maxLabelScale = v;
         this->refreshLabel();
     }
-    void setMaxLabelWidth(float v) = win inline, imac 0x9eac0, m1 0x913e8 {
+    void setMaxLabelWidth(float v) = win inline, imac 0x9eac0, m1 0x913e8, ios 0x1707a0 {
         m_maxLabelWidth = v;
         this->refreshLabel();
     }
-    void setString(gd::string) = win 0x4f7a0, imac 0x9e6d0, m1 0x91048;
+    void setString(gd::string) = win 0x4f7a0, imac 0x9e6d0, m1 0x91048, ios 0x170518;
     void updateBlinkLabel() = win inline, imac 0x9ea80 {
         this->updateBlinkLabelToChar(this->m_textField->m_uCursorPos);
     }
     void updateBlinkLabelToChar(int) = win 0x4fe20, imac 0x9eb40, m1 0x9141c;
-    void updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x50d60, imac 0xa0500, m1 0x92afc;
+    void updateCursorPosition(cocos2d::CCPoint, cocos2d::CCRect) = win 0x50d60, imac 0xa0500, m1 0x92afc, ios 0x17197c;
     void updateDefaultFontValues(gd::string) = win 0x4f630, m1 0x90a20;
     void updateLabel(gd::string) = win 0x4f840, imac 0x9e320, m1 0x90d00;
 
@@ -6148,7 +6148,7 @@ class GameManager : GManager {
     void queueReloadMenu() = imac 0x378db0;
     TodoReturn rateGame();
     void recountUserStats(gd::string);
-    void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool fix, bool unused) = win 0x187490, imac 0x378ee0, m1 0x309444;
+    void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool fix, bool unused) = win 0x187490, imac 0x378ee0, m1 0x309444, ios 0x31dbbc;
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
         return this->reloadAll(switchingModes, toFullscreen, false, false, unused);
     }
@@ -13417,7 +13417,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
     static cocos2d::CCScene* scene(bool) = win 0x31ea40, m1 0x30d470, imac 0x37ccf0, ios 0x265504; // ?
 
-    void endGame() = win 0x321510;
+    void endGame() = win 0x321510, ios 0x2673f0;
     void firstNetworkTest() = win 0x320430;
     void onAchievements(cocos2d::CCObject* sender) = win 0x320960, m1 0x30eaa8, imac 0x37e370;
     void onCreator(cocos2d::CCObject* sender) = win 0x320e70;
