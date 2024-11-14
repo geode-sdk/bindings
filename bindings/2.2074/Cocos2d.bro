@@ -384,7 +384,7 @@ class cocos2d::CCScene {
 
     // CCScene(cocos2d::CCScene const&);
     // CCScene() = ios 0x2508a4;
-    ~CCScene() = imac 0x27ee70, m1 0x22887c;
+    ~CCScene() = imac 0x27ee70, m1 0x22887c, ios 0x23ac80; // ios: idfk i just guessed
 
     virtual bool init() = m1 0x228894, imac 0x27eea0, ios 0x2401c0;
 }
@@ -800,7 +800,7 @@ class cocos2d::CCGLProgram {
     void reset() = imac 0x419530;
     bool updateUniformLocation(int, void*, unsigned int);
     void updateUniforms() = imac 0x418100, m1 0x393c44;
-    void use() = m1 0x393d70;
+    void use() = m1 0x393d70, ios 0x1384e8;
     char const* vertexShaderLog();
 }
 
@@ -1806,7 +1806,7 @@ class cocos2d::CCSprite {
 
 [[link(win, android)]]
 class cocos2d::CCLabelBMFont {
-    CCLabelBMFont() = imac 0x5c0350, m1 0x4f5d58;
+    CCLabelBMFont() = imac 0x5c0350, m1 0x4f5d58, ios 0x2fb2e8;
 
     static cocos2d::CCLabelBMFont* create(char const*, char const*) = imac 0x5bfed0, m1 0x4f58bc, ios 0x2faee0;
     static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
@@ -1845,7 +1845,7 @@ class cocos2d::CCLabelBMFont {
     int kerningAmountForFirst(unsigned short, unsigned short);
     void limitLabelWidth(float, float, float) = imac 0x5c3360, m1 0x4f869c, ios 0x2fd074;
 
-    ~CCLabelBMFont() = imac 0x5c0560, m1 0x4f5ee8;
+    ~CCLabelBMFont() = imac 0x5c0560, m1 0x4f5ee8, ios 0x2fb3ac;
     virtual bool init() = imac 0x5c0300, m1 0x4f5d08, ios 0x2fb298;
     virtual void setScaleX(float) = m1 0x4f854c, imac 0x5c3200, ios 0x2fd01c;
     virtual void setScaleY(float) = m1 0x4f8578, imac 0x5c3220, ios 0x2fd048;
@@ -2163,7 +2163,7 @@ class cocos2d::CCTransitionScene {
     // CCTransitionScene(cocos2d::CCTransitionScene const&);
     // CCTransitionScene();
 
-    ~CCTransitionScene() = imac 0xd4e00, m1 0xbd41c;
+    ~CCTransitionScene() = imac 0xd4e00, m1 0xbd41c, ios 0x1ce7a4;
 
     virtual void onEnter() = imac 0xd5240, m1 0xbd884, ios 0x1ceaf4;
     virtual void onExit() = imac 0xd5290, m1 0xbd8d8, ios 0x1ceb48;
@@ -2550,8 +2550,8 @@ class cocos2d::CCSpriteBatchNode {
 
     bool initWithTexture(cocos2d::CCTexture2D*, unsigned int) = imac 0x165a10, m1 0x132e04;
 
-    CCSpriteBatchNode() = imac 0x165ce0, m1 0x1330c8;
-    ~CCSpriteBatchNode() = imac 0x165d90, m1 0x133148;
+    CCSpriteBatchNode() = imac 0x165ce0, m1 0x1330c8, ios 0x1d807c;
+    ~CCSpriteBatchNode() = imac 0x165d90, m1 0x133148, ios 0x1d80ac;
 
     virtual bool init() = imac 0x165c90, m1 0x13306c, ios 0x1d8020;
     virtual void addChild(cocos2d::CCNode*) = imac 0x166160, m1 0x133518, ios 0x1d83e0;
