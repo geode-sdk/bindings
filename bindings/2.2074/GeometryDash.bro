@@ -3559,14 +3559,14 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     void addToMainScene() = win 0xd2a70, m1 0x340748;
     void animateIn(DialogAnimationType) = imac 0x3b5560, m1 0x340b4c;
     void animateInDialog() = imac 0x3b57a0;
-    void animateInRandomSide() = win 0xd2c40, m1 0x340aec;
+    void animateInRandomSide() = win 0xd2c40, m1 0x340aec, imac 0x3b5510;
     void displayDialogObject(DialogObject*) = win 0xd2570;
     void displayNextObject() = win 0xd2510, m1 0x33ff28;
     void finishCurrentAnimation() = imac 0x3b4ff0, m1 0x340620;
     void handleDialogTap() = win 0xd2940, m1 0x3404c4;
     bool init(DialogObject*, cocos2d::CCArray*, int) = win 0xd20b0, imac 0x3b43e0, m1 0x33fa48;
     void onClose() = win 0xd2ae0;
-    void updateChatPlacement(DialogChatPlacement placement) = win inline, m1 0x340408 {
+    void updateChatPlacement(DialogChatPlacement placement) = win inline, m1 0x340408, imac 0x3b4de0 {
         auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
             switch (placement) {
                 case DialogChatPlacement::Center:
@@ -6230,7 +6230,7 @@ class GameManager : GManager {
         m_playerSwing = id;
     }
     void setPlayerUserID(int);
-    void setUGV(char const*, bool) = win 0x180320, m1 0x301c3c;
+    void setUGV(char const*, bool) = win 0x180320, m1 0x301c3c, imac 0x370890;
     void setupGameAnimations() = win 0x1a8870;
     gd::string sheetNameForIcon(int, int) = win 0x17f470, imac 0x36dcb0, m1 0x2ff040;
     TodoReturn shortenAdTimer(float);
@@ -15952,15 +15952,17 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     gd::string getMessage() = win 0x3cffb0;
     gd::string getThreadMessage() = win 0x3d0190;
     TodoReturn nodeWithTag(int);
-    void onBack(cocos2d::CCObject* sender);
-    void onDoor(cocos2d::CCObject* sender) = win 0x3cd5a0;
-    void onSecretLevel(cocos2d::CCObject* sender) = win 0x3cd2f0;
-    void onSubmit(cocos2d::CCObject* sender) = win 0x3cdf00;
+    void onBack(cocos2d::CCObject* sender) = imac 0x48b320;
+    void onDoor(cocos2d::CCObject* sender) = win 0x3cd5a0, imac 0x48ca80;
+    void onSecretLevel(cocos2d::CCObject* sender) = win 0x3cd2f0, imac 0x48ccc0;
+    void onSubmit(cocos2d::CCObject* sender) = win 0x3cdf00, imac 0x48b390;
     void playCoinEffect();
     void selectAThread();
     void showCompletedLevel() = win 0x3cc5a0;
     void showSecretLevel() = win 0x3cc430;
-    void updateMessageLabel(gd::string text) = win 0x3cff20;
+    void updateMessageLabel(gd::string text) = win 0x3cff20, imac inline {
+
+    }
     void updateSearchLabel(char const*);
 
     virtual bool init() = win 0x3caf70, imac 0x48a0f0, m1 0x3f73b4, ios 0x309960;
@@ -15984,7 +15986,7 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
         m_secretChest = nullptr;
     }
 
-    static SecretLayer3* create() = win inline {
+    static SecretLayer3* create() = win inline, imac inline {
         auto ret = new SecretLayer3();
         if (ret->init()) {
             ret->autorelease();
@@ -15993,7 +15995,7 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene();
+    static cocos2d::CCScene* scene() = imac 0x48dc80;
 
     TodoReturn animateEyes();
     TodoReturn firstInteractionStep1();
