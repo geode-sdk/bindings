@@ -1831,7 +1831,7 @@ class cocos2d::CCLabelBMFont {
 
     cocos2d::CCBMFontConfiguration* getConfiguration() const;
     int getExtraKerning() const;
-    char const* getFntFile() = imac 0x5c3320;
+    char const* getFntFile() = imac 0x5c3320, m1 0x4f8678;
     bool getIsBatched() const;
     float getLetterPosXLeft(cocos2d::CCSprite*, float, bool);
     float getLetterPosXRight(cocos2d::CCSprite*, float, bool);
