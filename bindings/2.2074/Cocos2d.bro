@@ -181,7 +181,7 @@ class cocos2d::CCEaseSineOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseSineInOut {
-    static cocos2d::CCEaseSineInOut* create(cocos2d::CCActionInterval*);
+    static cocos2d::CCEaseSineInOut* create(cocos2d::CCActionInterval*) = m1 0x45f3e4, imac 0x4ffa20;
 
     // CCEaseSineInOut(cocos2d::CCEaseSineInOut const&);
     // CCEaseSineInOut();
@@ -321,8 +321,8 @@ class cocos2d::CCScaleBy {
 
 [[link(win, android)]]
 class cocos2d::CCScaleTo {
-    static cocos2d::CCScaleTo* create(float, float);
-    static cocos2d::CCScaleTo* create(float, float, float);
+    static cocos2d::CCScaleTo* create(float, float) = m1 0x333670, imac 0x3a7040;
+    static cocos2d::CCScaleTo* create(float, float, float) = m1 0x333730, imac 0x3a7140;
 
     bool initWithDuration(float, float);
     bool initWithDuration(float, float, float);
@@ -432,8 +432,8 @@ class cocos2d::CCParticleSystem {
     static cocos2d::CCParticleSystem* createWithTotalParticles(unsigned int);
 
     void initParticle(cocos2d::sCCParticle*) = imac 0x7b3670, m1 0x6c4620;
-    bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool);
-    bool initWithDictionary(cocos2d::CCDictionary*, bool) = imac 0x7b31f0;
+    bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool) = imac 0x7b1800, m1 0x6c29f0;
+    bool initWithDictionary(cocos2d::CCDictionary*, bool) = imac 0x7b31f0, m1 0x6c425c;
     bool initWithFile(char const*, bool) = m1 0x6c26d8;
 
     unsigned int getAtlasIndex() const;
