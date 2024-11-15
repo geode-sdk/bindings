@@ -4050,7 +4050,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CreateMenuItem* menuItemFromObjectString(gd::string, int) = win 0x10d090, m1 0x315a4;
     cocos2d::CCPoint moveForCommand(EditCommand command) = win 0x11de20, imac 0x4a7d0, m1 0x435fc;
     void moveGamelayer(cocos2d::CCPoint) = win 0xe16b0, imac 0x2f800, m1 0x2f18c;
-    void moveObject(GameObject*, cocos2d::CCPoint) = win 0x11e290;
+    void moveObject(GameObject*, cocos2d::CCPoint) = win 0x11e290, imac 0x3ef90;
     void moveObjectCall(cocos2d::CCObject*) = win 0x11e000, imac 0x49970;
     void moveObjectCall(EditCommand) = win 0x11e000, imac 0x4a9d0, m1 0x437a8;
     cocos2d::CCPoint offsetForKey(int) = win 0x124bf0;
@@ -14509,7 +14509,7 @@ class PlatformToolbox {
     static TodoReturn getRawPath(char const*);
     static TodoReturn getUniqueUserID();
     static TodoReturn getUserID();
-    static void hideCursor() = win inline {
+    static void hideCursor() = win inline, imac 0x4b0b30 {
         cocos2d::CCEGLView::sharedOpenGLView()->showCursor(false);
     }
     static bool isControllerConnected() = win inline, imac 0x4b1a30, m1 0x41a254 {
@@ -14540,7 +14540,7 @@ class PlatformToolbox {
     static void setKeyboardState(bool);
     static TodoReturn shouldResumeSound();
     static void showAchievements();
-    static void showCursor() = win inline {
+    static void showCursor() = win inline, imac 0x4b0b50 {
         cocos2d::CCEGLView::sharedOpenGLView()->showCursor(true);
     }
     static TodoReturn signInGooglePlay();
