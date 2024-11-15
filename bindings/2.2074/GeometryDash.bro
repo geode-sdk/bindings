@@ -9674,7 +9674,7 @@ class GJLevelList : cocos2d::CCNode {
     // virtual ~GJLevelList();
 
     static GJLevelList* create() = win 0x173760, imac 0x517750, m1 0x474a98;
-    static GJLevelList* create(cocos2d::CCDictionary*) = win 0x172e70, m1 0x478394;
+    static GJLevelList* create(cocos2d::CCDictionary*) = win 0x172e70, imac 0x51bac0, m1 0x478394;
 
     void addLevelToList(GJGameLevel* level) = win 0x173ee0;
     TodoReturn completedLevels() = imac 0x54ca00, m1 0x4a4a48;
