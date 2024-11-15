@@ -6571,7 +6571,7 @@ class GameObject : CCSpritePlus {
     bool isTrigger();
     void loadGroupsFromString(gd::string);
     TodoReturn makeInvisible() = imac 0x5a53a0;
-    TodoReturn makeVisible() = imac 0x709ec0;
+    TodoReturn makeVisible();
     float opacityModForMode(int, bool);
     cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int);
     gd::string perspectiveColorFrame(char const*, int);
