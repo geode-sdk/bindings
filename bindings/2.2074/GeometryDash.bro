@@ -5522,10 +5522,10 @@ class GameLevelManager : cocos2d::CCNode {
     bool createAndGetAccountComments(gd::string, int);
     bool createAndGetCommentsFull(gd::string, int, bool);
     bool createAndGetLevelComments(gd::string, int);
-    cocos2d::CCArray* createAndGetLevelLists(gd::string);
+    cocos2d::CCArray* createAndGetLevelLists(gd::string) = imac 0x51b840;
     cocos2d::CCArray* createAndGetLevels(gd::string);
     cocos2d::CCArray* createAndGetMapPacks(gd::string);
-    cocos2d::CCArray* createAndGetScores(gd::string, GJScoreType);
+    cocos2d::CCArray* createAndGetScores(gd::string, GJScoreType) = imac 0x51cf60;
     GJGameLevel* createNewLevel() = win 0x142800, imac 0x5165d0, m1 0x473a40;
     GJLevelList* createNewLevelList() = win 0x1432b0, m1 0x474704;
     TodoReturn createPageInfo(int, int, int) = m1 0x47e660, imac 0x522710;
@@ -5724,14 +5724,14 @@ class GameLevelManager : cocos2d::CCNode {
     void onGetGJRewardsCompleted(gd::string response, gd::string tag);
     TodoReturn onGetGJSecretRewardCompleted(gd::string, gd::string);
     void onGetGJUserInfoCompleted(gd::string response, gd::string tag);
-    void onGetLeaderboardScoresCompleted(gd::string response, gd::string tag) = win 0x155b80, m1 0x468fa0;
+    void onGetLeaderboardScoresCompleted(gd::string response, gd::string tag) = win 0x155b80, m1 0x468fa0, imac 0x50a9d0;
     void onGetLevelCommentsCompleted(gd::string response, gd::string tag);
     void onGetLevelLeaderboardCompleted(gd::string response, gd::string tag);
-    void onGetLevelListsCompleted(gd::string response, gd::string tag) = win 0x14e970;
+    void onGetLevelListsCompleted(gd::string response, gd::string tag) = win 0x14e970, imac 0x5145d0;
     void onGetLevelSaveDataCompleted(gd::string response, gd::string tag);
     void onGetMapPacksCompleted(gd::string response, gd::string tag) = win 0x14d680;
     void onGetNewsCompleted(gd::string response, gd::string tag);
-    void onGetOnlineLevelsCompleted(gd::string response, gd::string tag) = win 0x14c3d0, m1 0x46708c;
+    void onGetOnlineLevelsCompleted(gd::string response, gd::string tag) = win 0x14c3d0, m1 0x46708c, imac 0x508660;
     void onGetTopArtistsCompleted(gd::string response, gd::string tag);
     void onGetUserListCompleted(gd::string response, gd::string tag);
     void onGetUserMessagesCompleted(gd::string response, gd::string tag);
@@ -5755,7 +5755,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onUpdateUserScoreCompleted(gd::string response, gd::string tag) = imac 0x50a6c0;
     void onUploadCommentCompleted(gd::string response, gd::string tag) = win 0x15bde0, imac 0x50b830, m1 0x469db8;
     void onUploadFriendRequestCompleted(gd::string response, gd::string tag);
-    void onUploadLevelCompleted(gd::string response, gd::string tag) = win 0x14b1a0;
+    void onUploadLevelCompleted(gd::string response, gd::string tag) = win 0x14b1a0, imac 0x5083c0;
     void onUploadLevelListCompleted(gd::string response, gd::string tag) = imac 0x514d50;
     void onUploadUserMessageCompleted(gd::string response, gd::string tag);
     int pageFromCommentKey(char const*);
@@ -5768,7 +5768,7 @@ class GameLevelManager : cocos2d::CCNode {
     void rateStars(int, int) = m1 0x48a7c8, imac 0x52fd00;
     void readFriendRequest(int) = m1 0x498000, imac 0x53edd0;
     TodoReturn removeDelimiterChars(gd::string, bool) = win 0x167f10;
-    void removeDLFromActive(char const*) = m1 0x47e944;
+    void removeDLFromActive(char const*) = m1 0x47e944, imac 0x5229d0;
     void removeFriend(int) = m1 0x498490, imac 0x53f2b0;
     void removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary*);
     void removeUserFromList(int, UserListType);
@@ -5838,7 +5838,7 @@ class GameLevelManager : cocos2d::CCNode {
     void updateLevel(GJGameLevel*) = imac 0x52f9a0, m1 0x48a478;
     void updateLevelOrders() = win 0x145680, m1 0x47b2b0;
     void updateLevelRewards(GJGameLevel*) = win 0x144380, m1 0x475db4;
-    void updateSavedLevelList(GJLevelList*) = win 0x14ef40, m1 0x487790;
+    void updateSavedLevelList(GJLevelList*) = win 0x14ef40, m1 0x487790, imac 0x52c630;
     void updateUsernames();
     void updateUserScore() = win 0x153790, m1 0x48c508, imac 0x531c80;
     void uploadAccountComment(gd::string);
@@ -11243,7 +11243,7 @@ class GJUserMessage : cocos2d::CCNode {
 [[link(android)]]
 class GJUserScore : cocos2d::CCNode {
     GJUserScore() = win 0x1401d0;
-    static GJUserScore* create(cocos2d::CCDictionary*) = win 0x16e1a0, m1 0x479a1c;
+    static GJUserScore* create(cocos2d::CCDictionary*) = win 0x16e1a0, m1 0x479a1c, imac 0x51d290;
     // virtual ~GJUserScore();
 
     static GJUserScore* create() = win inline, m1 0x4a205c, imac 0x549900 {
