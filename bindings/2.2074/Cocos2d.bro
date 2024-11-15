@@ -837,7 +837,7 @@ class cocos2d::CCNode {
     unsigned int numberOfRunningActions();
     void pauseSchedulerAndActions();
     void qsortAllChildrenWithIndex();
-    void resumeSchedulerAndActions();
+    void resumeSchedulerAndActions() = imac 0x261c50;
     cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x261f80, m1 0x20dd34;
     void schedule(cocos2d::SEL_SCHEDULE) = imac 0x2621b0, m1 0x20dee8;
     void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x262210, m1 0x20df28;
@@ -1619,7 +1619,7 @@ class cocos2d::CCDirector {
     bool pushScene(cocos2d::CCScene*) = imac 0x471230, m1 0x3e0034;
     void removeStatsLabel() = imac 0x471990, m1 0x3e0734;
     bool replaceScene(cocos2d::CCScene*) = imac 0x4712e0, m1 0x3e00fc;
-    void resetSmoothFixCounter();
+    void resetSmoothFixCounter() = imac 0x4706e0;
     void reshapeProjection(cocos2d::CCSize const&);
     void resume() = imac 0x471910;
     void runWithScene(cocos2d::CCScene*) = imac 0x471190;

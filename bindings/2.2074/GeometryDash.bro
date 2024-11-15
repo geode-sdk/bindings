@@ -7810,7 +7810,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn claimMoveAction(int, bool);
     TodoReturn claimParticle(gd::string, int);
     TodoReturn claimRotationAction(int, int, float&, float&, bool, bool);
-    TodoReturn clearActivatedAudioTriggers();
+    TodoReturn clearActivatedAudioTriggers() = imac 0x148ac0;
     TodoReturn clearPickedUpItems();
     TodoReturn collectedObject(EffectGameObject*);
     void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x20f480, imac 0x116130;
@@ -7904,7 +7904,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void lightningFlash(cocos2d::CCPoint from, cocos2d::CCPoint to, cocos2d::ccColor3B color, float lineWidth, float duration, int displacement, bool flash, float opacity) = win 0x240770, imac 0x110c50, m1 0xf089c;
     TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
     void loadLevelSettings() = win 0x234770, imac 0x147920, m1 0x11d8c0;
-    void loadStartPosObject() = win 0x230000;
+    void loadStartPosObject() = win 0x230000, imac 0x13e9f0;
     void loadUpToPosition(float, int, int) = win 0x2301a0;
     TodoReturn maxZOrderForShaderZ(int);
     TodoReturn minZOrderForShaderZ(int);
@@ -7919,7 +7919,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
     GJGameEvent objectTypeToGameEvent(int) = win 0x22ce10, imac 0x1144d0;
     TodoReturn optimizeMoveGroups();
-    TodoReturn orderSpawnObjects();
+    TodoReturn orderSpawnObjects() = imac 0x151690;
     TodoReturn parentForZLayer(int, bool, int, int) = imac 0x10f720;
     void pauseAudio() = win 0x231d60, imac 0x141de0;
     TodoReturn performMathOperation(double, double, int);
@@ -8017,7 +8017,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void resetAudio() = win 0x231fc0, m1 0x119004;
     void resetCamera() = win 0x239570, imac 0x148d80;
     void resetGradientLayers() = win 0x21bbf0;
-    TodoReturn resetGroupCounters(bool);
+    TodoReturn resetGroupCounters(bool) = imac 0x13e800;
     void resetLevelVariables() = win 0x234ab0, imac 0x147d80, m1 0x11dcf0;
     TodoReturn resetMoveOptimizedValue();
     void resetPlayer() = win 0x20cbf0, imac 0x112c30;
@@ -8038,7 +8038,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn rotateObject(GameObject*, float);
     void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
     void setGroupParent(GameObject*, int) = imac 0x12d370;
-    void setStartPosObject(StartPosObject* startPos) = win inline {
+    void setStartPosObject(StartPosObject* startPos) = win inline, imac 0x112ed0 {
         if (startPos != m_startPosObject) {
             if (startPos) {
                 startPos->retain();
@@ -8067,7 +8067,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn speedForShaderTarget(int) = win 0x21e250;
     cocos2d::CCArray* staticObjectsInRect(cocos2d::CCRect, bool) = win 0x20bda0;
     TodoReturn stopAllGroundActions();
-    TodoReturn stopCameraShake();
+    TodoReturn stopCameraShake() = imac 0x14a310;
     TodoReturn stopCustomEnterEffect(EnterEffectObject*, bool);
     TodoReturn stopCustomEnterEffect(EnterEffectObject*);
     TodoReturn stopSFXTrigger(SFXTriggerGameObject*);
@@ -8169,7 +8169,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateExtraGameLayers() = imac 0x12c410;
     TodoReturn updateGameplayOffsetX(int, bool);
     TodoReturn updateGameplayOffsetY(int, bool);
-    TodoReturn updateGradientLayers() = win 0x21a830;
+    TodoReturn updateGradientLayers() = win 0x21a830, imac 0x129310;
     TodoReturn updateGroundShadows();
     TodoReturn updateGuideArt() = win 0x240130;
     TodoReturn updateInternalCamOffsetX(float, float, float);
@@ -8196,7 +8196,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateStaticCameraPosToGroup(int, bool, bool, bool, float, float, int, float, bool, float) = win 0x2388b0;
     TodoReturn updateTimeMod(float, bool, bool);
     TodoReturn updateTimerLabels() = win 0x22fae0;
-    void updateZoom(float, float, int, float, int, int) = win 0x230590;
+    void updateZoom(float, float, int, float, int, int) = win 0x230590, imac 0x13f010;
     TodoReturn visitWithColorFlash();
     TodoReturn volumeForProximityEffect(SFXTriggerInstance&) = win 0x23c060;
 
@@ -8964,11 +8964,11 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn registerRotationCommand(GroupCommandObject2*, bool);
     TodoReturn removeAllPulseActions();
     TodoReturn removeColorAction(int);
-    TodoReturn removePersistentFromAllItems();
+    TodoReturn removePersistentFromAllItems() = imac 0x2d7520;
     TodoReturn removePersistentFromAllTimers();
     TodoReturn removeTriggeredID(int, int);
     void reset() = win 0x253d10, imac 0x2c9190;
-    TodoReturn resetEffects() = win 0x254c90;
+    TodoReturn resetEffects() = win 0x254c90, imac 0x2c93a0;
     TodoReturn resetMoveActions();
     TodoReturn resetTempGroupCommands(bool);
     TodoReturn resetToggledGroups();
@@ -12245,7 +12245,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn pasteParticleState(ParticleGameObject*, cocos2d::CCArray*);
     void processLoadedMoveActions() = imac 0xb7920, m1 0xa7448;
     TodoReturn quickUpdateAllPositions() = win 0x2d70c0;
-    TodoReturn recreateGroups();
+    TodoReturn recreateGroups() = imac 0xef9c0;
     void redoLastAction() = win inline {
         return this->handleAction(false, m_redoObjects);
     }
@@ -12280,7 +12280,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn toggleGround(bool) = imac 0xdf280;
     TodoReturn toggleGroupPreview(int, bool);
     TodoReturn toggleLockActiveLayer();
-    TodoReturn transferDefaultColors(GJEffectManager*, GJEffectManager*);
+    TodoReturn transferDefaultColors(GJEffectManager*, GJEffectManager*) = imac 0xed150;
     TodoReturn triggerFollowCommand(EffectGameObject*);
     TodoReturn triggerPlayerFollowCommand(EffectGameObject*);
     TodoReturn triggerRotateCommand(EffectGameObject*);
@@ -12305,7 +12305,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateOptions() = win 0x2ca8f0, m1 0xc4394;
     void updatePreviewAnim();
     void updatePreviewParticle(ParticleGameObject*) = imac 0x1a1820, m1 0x1642bc;
-    void updatePreviewParticles();
+    void updatePreviewParticles() = imac 0xecfe0;
     TodoReturn updateToggledGroups();
     TodoReturn validGroup(GameObject*, bool);
 
@@ -20168,7 +20168,7 @@ class UILayer : cocos2d::CCLayerColor {
 
     void disableMenu() = imac 0x4b5c30;
     void doPause() = imac 0x4b63b0;
-    TodoReturn editorPlaytest(bool);
+    TodoReturn editorPlaytest(bool) = imac 0x4b5c50;
     void enableEditorMode();
     TodoReturn enableMenu();
     void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x4b4c40, imac 0x4b5d70, m1 0x41de7c;
@@ -20184,7 +20184,7 @@ class UILayer : cocos2d::CCLayerColor {
     void resetUINodeState() = win 0x4b4aa0, m1 0x41dac0;
     TodoReturn toggleCheckpointsMenu(bool);
     void toggleMenuVisibility(bool) = m1 0x41e384;
-    void togglePlatformerMode(bool);
+    void togglePlatformerMode(bool) = imac 0x4b5470;
     TodoReturn updateCheckState();
     TodoReturn updateDualMode(bool);
     TodoReturn updateUINodeVisibility(bool);
