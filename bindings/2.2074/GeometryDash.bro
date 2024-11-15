@@ -14293,7 +14293,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
     void onProgressBar(cocos2d::CCObject* sender);
     void onRate(cocos2d::CCObject* sender) = win 0x35d7b0;
     void onRecordReplays(cocos2d::CCObject* sender);
-    void onSecretVault(cocos2d::CCObject* sender) = win 0x35cfb0, m1 0x6990b0;
+    void onSecretVault(cocos2d::CCObject* sender) = win 0x35cfb0, m1 0x6990b0, imac 0x784f20;
     void onSoundtracks(cocos2d::CCObject* sender) = win 0x35ce00;
     void onSupport(cocos2d::CCObject* sender) = win 0x35d820;
     void onVideo(cocos2d::CCObject* sender) = win 0x35d6f0;
