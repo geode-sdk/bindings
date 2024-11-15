@@ -2845,7 +2845,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
         m_versusDialogIndex = 0;
     }
 
-    static CreatorLayer* create() = win inline {
+    static CreatorLayer* create() = win inline, imac 0x285610 {
         auto ret = new CreatorLayer();
         if (ret->init()) {
             ret->autorelease();
@@ -2854,30 +2854,30 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x9b9a0;
+    static cocos2d::CCScene* scene() = win 0x9b9a0, m1 0x22eb40, imac 0x2854f0;
 
     bool canPlayOnlineLevels();
     void checkQuestsStatus() = imac 0x286f00, m1 0x23039c;
     void onAdventureMap(cocos2d::CCObject* sender) = win 0x9dbe0, imac 0x286950, m1 0x22fdf4;
     void onBack(cocos2d::CCObject* sender) = win 0x9f190;
     void onChallenge(cocos2d::CCObject* sender) = win 0x9ddb0, imac 0x2869c0, m1 0x22fe84;
-    void onDailyLevel(cocos2d::CCObject* sender) = win 0x9dd50;
-    void onEventLevel(cocos2d::CCObject* sender) = win 0x9dd90;
+    void onDailyLevel(cocos2d::CCObject* sender) = win 0x9dd50, m1 0x22febc, imac 0x2869f0;
+    void onEventLevel(cocos2d::CCObject* sender) = win 0x9dd90, m1 0x22fefc, imac 0x286a30;
     void onFameLevels(cocos2d::CCObject* sender);
-    void onFeaturedLevels(cocos2d::CCObject* sender) = win 0x9d2a0;
-    void onGauntlets(cocos2d::CCObject* sender) = win 0x9d590, m1 0x22ff1c;
-    void onLeaderboards(cocos2d::CCObject* sender) = win 0x9d0f0, m1 0x22fa48;
-    void onMapPacks(cocos2d::CCObject* sender) = win 0x9d4d0;
+    void onFeaturedLevels(cocos2d::CCObject* sender) = win 0x9d2a0, m1 0x22ff64, imac 0x286aa0;
+    void onGauntlets(cocos2d::CCObject* sender) = win 0x9d590, m1 0x22ff1c, imac 0x286a50;
+    void onLeaderboards(cocos2d::CCObject* sender) = win 0x9d0f0, m1 0x22fa48, imac 0x2865a0;
+    void onMapPacks(cocos2d::CCObject* sender) = win 0x9d4d0, imac 0x286b80;
     void onMultiplayer(cocos2d::CCObject* sender) = win 0x9d610, m1 0x22fa84, imac 0x2865e0;
-    void onMyLevels(cocos2d::CCObject* sender) = win 0x9cce0, m1 0x2300b4;
-    void onOnlineLevels(cocos2d::CCObject* sender) = win 0x9d450;
+    void onMyLevels(cocos2d::CCObject* sender) = win 0x9cce0, m1 0x2300b4, imac 0x286c20;
+    void onOnlineLevels(cocos2d::CCObject* sender) = win 0x9d450, m1 0x230078, imac 0x286be0;
     void onOnlyFullVersion(cocos2d::CCObject* sender) = m1 0x23017c, imac 0x286d00;
-    void onPaths(cocos2d::CCObject* sender) = win 0x9d360;
-    void onSavedLevels(cocos2d::CCObject* sender) = win 0x9cef0, m1 0x22f988;
-    void onSecretVault(cocos2d::CCObject* sender) = win 0x9df20, imac 0x287000;
+    void onPaths(cocos2d::CCObject* sender) = win 0x9d360, imac 0x286b00;
+    void onSavedLevels(cocos2d::CCObject* sender) = win 0x9cef0, m1 0x22f988, imac 0x2864d0;
+    void onSecretVault(cocos2d::CCObject* sender) = win 0x9df20, m1 0x230498, imac 0x287000;
     void onTopLists(cocos2d::CCObject* sender) = win 0x9d380, imac 0x286b20, m1 0x22ffcc;
     void onTreasureRoom(cocos2d::CCObject* sender) = win 0x9e730, m1 0x2306ec, imac 0x287220;
-    void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x9dd70;
+    void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x9dd70, m1 0x22fedc, imac 0x286a10;
 
     virtual bool init() = win 0x9bb10, m1 0x22ece0, imac 0x2856f0, ios 0xb81ec;
     virtual void keyBackClicked() = win 0x9f2b0, m1 0x230ea4, imac 0x287a70, ios 0xb9d0c;
@@ -9513,7 +9513,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
         m_selectedIconType = IconType::Cube;
         m_videoPlaying = false;
     }
-    static GJGarageLayer* node() = win inline {
+    static GJGarageLayer* node() = win inline, m1 0x2e93a8 {
         auto ret = new GJGarageLayer();
         if (ret->init()) {
             ret->autorelease();
@@ -9522,7 +9522,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x26b5b0, imac 0x3559f0;
+    static cocos2d::CCScene* scene() = win 0x26b5b0, imac 0x3559f0, m1 0x2e9364;
 
     gd::string achievementForUnlock(int, UnlockType);
     gd::string descriptionForUnlock(int, UnlockType) = win 0x270a30;
@@ -10830,7 +10830,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(ShopType) = win 0x2a1ef0, m1 0x2a5268;
+    static cocos2d::CCScene* scene(ShopType) = win 0x2a1ef0, m1 0x2a5268, imac 0x30e850;
 
     void exitVideoAdItems() = imac 0x310960, m1 0x2a7298;
     bool init(ShopType) = win 0x2a2070, imac 0x30eaa0, m1 0x2a5450;
@@ -13434,7 +13434,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void firstNetworkTest() = win 0x320430;
     void onAchievements(cocos2d::CCObject* sender) = win 0x320960, m1 0x30eaa8, imac 0x37e370;
     void onCreator(cocos2d::CCObject* sender) = win 0x320e70;
-    void onDaily(cocos2d::CCObject* sender) = win 0x3201e0;
+    void onDaily(cocos2d::CCObject* sender) = win 0x3201e0, m1 0x30f028, imac 0x37e8b0;
     void onDiscord(cocos2d::CCObject* sender);
     void onEveryplay(cocos2d::CCObject* sender) {}
     void onFacebook(cocos2d::CCObject* sender);
@@ -13444,7 +13444,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onGarage(cocos2d::CCObject* sender) = win 0x320f00, m1 0x30e9b0;
     void onGooglePlayGames(cocos2d::CCObject* sender) = m1 0x30f23c;
     void onMoreGames(cocos2d::CCObject* sender) = win 0x320880, imac 0x37e5c0, m1 0x30ed3c;
-    void onMyProfile(cocos2d::CCObject* sender) = win 0x320720, m1 0x30ee98;
+    void onMyProfile(cocos2d::CCObject* sender) = win 0x320720, m1 0x30ee98, imac 0x37e710;
     void onNewgrounds(cocos2d::CCObject* sender) = m1 0x30eb8c, imac 0x37e430;
     void onOptions(cocos2d::CCObject* sender) = win 0x320bb0;
     void onOptionsInstant() = win 0x320bc0, m1 0x30d5b8;
@@ -16229,7 +16229,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         m_lockedDialogIndex = 0;
     }
 
-    static SecretRewardsLayer* create(bool fromShop) = win inline, imac 0x6195c0 {
+    static SecretRewardsLayer* create(bool fromShop) = win inline, imac 0x6195c0, m1 0x545350 {
         auto ret = new SecretRewardsLayer();
         if (ret->init(fromShop)) {
             ret->autorelease();
@@ -16238,7 +16238,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(bool fromShop) = win 0x3bb1a0, imac 0x619580;
+    static cocos2d::CCScene* scene(bool fromShop) = win 0x3bb1a0, imac 0x619580, m1 0x545304;
 
     void createSecondaryLayer(int) = win 0x3bdf70, m1 0x5488b4, imac 0x61ccf0;
     TodoReturn fadeInMusic();
@@ -16256,7 +16256,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     bool init(bool) = win 0x3bb300, m1 0x54543c, imac 0x6196f0;
     void moveToMainLayer(cocos2d::CCObject*) = m1 0x548784;
     void moveToSecondaryLayer(int) = m1 0x548300, imac 0x61c740;
-    void onBack(cocos2d::CCObject* sender) = win 0x3c08b0;
+    void onBack(cocos2d::CCObject* sender) = win 0x3c08b0, m1 0x547320, imac 0x61b7c0;
     void onChestType(cocos2d::CCObject* sender) = win 0x3bdce0, imac 0x61b830, m1 0x54738c;
     void onGoldChest(cocos2d::CCObject* sender) = m1 0x5476f8, imac 0x61bb70;
     void onSelectItem(cocos2d::CCObject* sender) = win 0x3bedd0, m1 0x5499c0, imac 0x61e000;
