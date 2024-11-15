@@ -992,7 +992,7 @@ class CCAnimatedSprite : cocos2d::CCSprite {
     void cleanupSprite() = imac 0x33ca60, m1 0x2d2ebc;
     bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x3ffc0, imac 0x33c100, m1 0x2d2594;
     void loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x401e0, m1 0x2d2790, imac 0x33c2f0;
-    void runAnimation(gd::string) = win 0x40c80;
+    void runAnimation(gd::string) = win 0x40c80, m1 0x2d3058, imac 0x33cc20;
     void runAnimationForced(gd::string);
     void stopTween() = m1 0x2d359c;
     void switchToMode(spriteMode) = win 0x40b10, imac 0x33cb00, m1 0x2d2f4c;
@@ -9528,7 +9528,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onPaint(cocos2d::CCObject* sender) = win 0x271570;
     void onRewardedVideo(cocos2d::CCObject* sender);
     void onSelect(cocos2d::CCObject* sender) = win 0x26f890, imac 0x35a860, m1 0x2edf90;
-    void onSelectTab(cocos2d::CCObject* sender) = win 0x26e6c0, imac 0x359430;
+    void onSelectTab(cocos2d::CCObject* sender) = win 0x26e6c0, imac 0x359430, m1 0x2ecc08;
     void onShards(cocos2d::CCObject* sender) = win 0x271420;
     void onShop(cocos2d::CCObject* sender);
     void onSpecial(cocos2d::CCObject* sender);
@@ -9642,9 +9642,9 @@ class GJItemIcon : cocos2d::CCSprite {
         delete ret;
         return nullptr;
          }
-    static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x273070, imac 0x35a800;
+    static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x273070, imac 0x35a800, m1 0x2edf50;
     static GJItemIcon* createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B) = win 0x272f40, imac 0x35d910, m1 0x2f0b84;
-    static float scaleForType(UnlockType) = win 0x273d90, imac 0x35a830;
+    static float scaleForType(UnlockType) = win 0x273d90, imac 0x35a830, m1 0x2edf70;
     static cocos2d::ccColor3B unlockedColorForType(int) = imac 0x35e100, m1 0x2f130c;
     void changeToLockedState(float) = win 0x273cb0, imac 0x35af50, m1 0x2ee474;
     void darkenStoreItem(cocos2d::ccColor3B) = win 0x2739c0, imac 0x35e160, m1 0x2f1374;
