@@ -14549,7 +14549,7 @@ class PlatformToolbox {
     static TodoReturn toggleCallGLFinish(bool);
     static TodoReturn toggleCPUSleepMode(bool);
     static void toggleForceTimer(bool);
-    static void toggleLockCursor(bool);
+    static void toggleLockCursor(bool isLocked) = imac 0x4b1850;
     static TodoReturn toggleMouseControl(bool);
     static void toggleSmoothFix(bool);
     static void toggleVerticalSync(bool);
@@ -14764,7 +14764,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void pushPlayer(float);
     TodoReturn redirectDash(float);
     TodoReturn redirectPlayerForce(float, float, float, float);
-    void releaseAllButtons() = win 0x389370, m1 0x386970;
+    void releaseAllButtons() = win 0x389370, m1 0x386970, imac 0x408fa0;
     bool releaseButton(PlayerButton) = win 0x3823a0, imac 0x403c40, m1 0x381b48;
     TodoReturn removeAllParticles();
     void removePendingCheckpoint() = win 0x38c400, imac 0x4013f0;
@@ -20179,11 +20179,11 @@ class UILayer : cocos2d::CCLayerColor {
     void onPause(cocos2d::CCObject* sender) = win 0x4b53c0, m1 0x41d39c, imac 0x4b51e0;
     void processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*);
     void processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*) = win 0x4b58d0;
-    TodoReturn refreshDpad();
-    void resetAllButtons() = m1 0x41e4b4;
+    TodoReturn refreshDpad() = imac 0x4b55f0;
+    void resetAllButtons() = m1 0x41e4b4, imac 0x4b6620;
     void resetUINodeState() = win 0x4b4aa0, m1 0x41dac0;
     TodoReturn toggleCheckpointsMenu(bool);
-    void toggleMenuVisibility(bool) = m1 0x41e384;
+    void toggleMenuVisibility(bool) = m1 0x41e384, imac 0x4b64e0;
     void togglePlatformerMode(bool) = imac 0x4b5470;
     TodoReturn updateCheckState();
     TodoReturn updateDualMode(bool);
