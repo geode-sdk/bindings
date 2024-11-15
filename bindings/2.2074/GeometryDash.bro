@@ -5514,7 +5514,7 @@ class GameLevelManager : cocos2d::CCNode {
 
     void acceptFriendRequest(int, int) = imac 0x53e840, m1 0x497a7c;
     int accountIDForUserID(int userID) = imac 0x518ae0, m1 0x475c08;
-    void addDLToActive(char const*) = win 0x147a20;
+    void addDLToActive(char const*) = win 0x147a20, imac 0x5228d0, m1 0x47e834;
     bool areGauntletsLoaded();
     void banUser(int);
     void blockUser(int) = m1 0x498a24, imac 0x53f840;
@@ -5569,7 +5569,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getCompletedEventLevels(int, int);
     TodoReturn getCompletedGauntletDemons();
     TodoReturn getCompletedGauntletLevels();
-    cocos2d::CCArray* getCompletedLevels(bool) = win 0x145860;
+    cocos2d::CCArray* getCompletedLevels(bool) = win 0x145860, imac 0x51ef80, m1 0x47b4a4;
     TodoReturn getCompletedWeeklyLevels();
     int getDailyID(GJTimedLevelType);
     double getDailyTimer(GJTimedLevelType) = imac 0x543a00, m1 0x49ca04;
@@ -5671,7 +5671,7 @@ class GameLevelManager : cocos2d::CCNode {
     void handleItND(cocos2d::CCNode*, void*) = m1 0x466ce4, imac 0x5082a0;
     bool hasDailyStateBeenLoaded(GJTimedLevelType) = imac 0x543960, m1 0x49c950;
     bool hasDownloadedLevel(int);
-    bool hasDownloadedList(int);
+    bool hasDownloadedList(int) = imac 0x52e360, m1 0x48911c;
     bool hasLikedAccountItem(LikeItemType, int, bool, int);
     bool hasLikedItem(LikeItemType, int, bool, int) = win 0x1623d0;
     bool hasLikedItemFullCheck(LikeItemType, int, int) = win 0x162340, imac 0x541500, m1 0x49a5c4;
@@ -5681,7 +5681,7 @@ class GameLevelManager : cocos2d::CCNode {
     void invalidateMessages(bool, bool) = imac 0x538ef0;
     void invalidateRequests(bool, bool) = imac 0x53e480;
     void invalidateUserList(UserListType, bool) = win 0x160840, m1 0x4996f8, imac 0x540580;
-    bool isDLActive(char const* tag);
+    bool isDLActive(char const* tag) = imac 0x5227e0, m1 0x47e73c;
     bool isFollowingUser(int) = win 0x148840, imac 0x523fe0, m1 0x47fda8;
     bool isTimeValid(char const*, float) = win 0x147c90;
     bool isUpdateValid(int id) = win inline {
@@ -9683,7 +9683,7 @@ class GJLevelList : cocos2d::CCNode {
     TodoReturn duplicateListLevels(GJLevelList*);
     TodoReturn frameForListDifficulty(int, DifficultyIconType) = imac 0x54d4b0, m1 0x4a54d8;
     cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*) = win 0x174160;
-    gd::string getUnpackedDescription() = win 0x173b80, imac 0x54b670;
+    gd::string getUnpackedDescription() = win 0x173b80, imac 0x54b670, m1 0x4a39d0;
     void handleStatsConflict(GJLevelList*) = imac 0x54b4a0, m1 0x4a37fc;
     bool hasMatchingLevels(GJLevelList*) = win 0x173970, imac 0x54b4c0, m1 0x4a3814;
     TodoReturn orderForLevel(int);
