@@ -14466,7 +14466,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onHelp(cocos2d::CCObject* sender);
     void onNormalMode(cocos2d::CCObject* sender) = win 0x368530, m1 0x34d904, imac 0x3c4670;
     void onPracticeMode(cocos2d::CCObject* sender) = win 0x368450, m1 0x34d8ac, imac 0x3c4610;
-    void onQuit(cocos2d::CCObject* sender) = win 0x368e50, m1 0x34dffc, imac 0x3c4700;
+    void onQuit(cocos2d::CCObject* sender) = win 0x368e50, m1 0x34dffc, imac 0x3c4d60;
     void onRecordReplays(cocos2d::CCObject* sender);
     void onReplay(cocos2d::CCObject* sender);
     void onRestart(cocos2d::CCObject* sender) = win 0x3686a0, m1 0x34da8c, imac 0x3c4800;
