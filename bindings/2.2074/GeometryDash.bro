@@ -5554,7 +5554,6 @@ class GameLevelManager : cocos2d::CCNode {
     }
     void getAccountComments(int accountID, int page, int total) = imac 0x539a30, m1 0x493268;
     int getActiveDailyID(GJTimedLevelType) = imac 0x5439d0, m1 0x49c9d0;
-    gd::string getActiveDailyID(bool, bool, bool, bool, bool, bool, bool, bool);
     GJSmartTemplate* getActiveSmartTemplate();
     cocos2d::CCArray* getAllSmartTemplates();
     cocos2d::CCDictionary* getAllUsedSongIDs();
