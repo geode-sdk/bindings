@@ -5186,7 +5186,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn startMusic(int, int, int, int, bool, int, bool, bool);
     void stop();
     void stopAllEffects() = win 0x598b0, m1 0x353c3c, imac 0x3cb410;
-    void stopAllMusic(bool) = imac 0x3cbbf0, m1 0x353f28;
+    void stopAllMusic(bool) = win 0x59d70, imac 0x3cbbf0, m1 0x353f28;
     TodoReturn stopAndGetFade(FMOD::Channel*);
     TodoReturn stopAndRemoveMusic(int);
     void stopChannel(FMOD::Channel*, bool, float) = win 0x58810;
@@ -8854,7 +8854,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x50471c, imac 0x5d0660, ios 0x3ab0fc {}
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x50470c, imac 0x5d0620, ios 0x3ab0ec {}
     virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x504714, imac 0x5d0640, ios 0x3ab0f4 {}
-    virtual void registerWithTouchDispatcher() = m1 0x5043b0, imac 0x5d0290, ios 0x3aad90;
+    virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x5043b0, imac 0x5d0290, ios 0x3aad90;
     virtual void keyBackClicked() = win 0x250330, m1 0x5043e8, imac 0x5d02d0, ios 0x3aadc8;
     virtual void customSetup() = m1 0x50434c, imac 0x5d0210, ios 0x3aad2c {}
     virtual void enterLayer() = win 0x425a0, m1 0x504378, imac 0x5d0260, ios 0x3aad58;
