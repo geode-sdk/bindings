@@ -6039,7 +6039,7 @@ class GameManager : GManager {
             return defaultValue;
         return object->intValue();
     }
-    gd::string getMenuMusicFile() = win 0x178700, m1 0x2f63c0;
+    gd::string getMenuMusicFile() = win 0x178700, m1 0x2f63c0, imac 0x3636f0;
     TodoReturn getMGTexture(int);
     TodoReturn getNextUniqueObjectKey();
     TodoReturn getNextUsedKey(int, bool);
@@ -6154,7 +6154,7 @@ class GameManager : GManager {
     TodoReturn lockIcon(int, IconType);
     TodoReturn logLoadedIconInfo();
     void openEditorGuide();
-    void playMenuMusic() = win 0x178810, m1 0x2f66b4;
+    void playMenuMusic() = win 0x178810, m1 0x2f66b4, imac 0x3639a0;
     TodoReturn playSFXTrigger(SFXTriggerGameObject*);
     TodoReturn prepareDPadSettings() = imac 0x375340;
     TodoReturn printGJLog();
