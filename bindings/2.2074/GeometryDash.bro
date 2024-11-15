@@ -1041,7 +1041,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
     }
     static CCBlockLayer* create();
 
-    void decrementForcePrio() = m1 0x461924;
+    void decrementForcePrio() = m1 0x461924, imac 0x502150;
     void incrementForcePrio();
 
     virtual bool init() = win 0x424e0, imac 0x501df0, m1 0x46163c, ios 0x8a2e0;
@@ -15278,7 +15278,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void removeFromGroupOld(GameObject*);
     void resetLevel() = win 0x3a1f90, imac 0xb2f80, m1 0xa3120;
     void resetLevelFromStart() = win 0x3a1df0;
-    void resume() = win 0x3a37c0, m1 0xadf54;
+    void resume() = win 0x3a37c0, m1 0xadf54, imac 0xbf580;
     void resumeAndRestart(bool) = win 0x3a34b0, imac 0xbf3d0;
     TodoReturn saveActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
     TodoReturn saveDynamicSaveObjects(gd::vector<SavedObjectStateRef>&);
