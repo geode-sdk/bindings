@@ -10599,15 +10599,15 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 class GJSearchObject : cocos2d::CCNode {
     // virtual ~GJSearchObject();
 
-    static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x171900, m1 0x4a2868;
+    static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x171900, m1 0x4a2868, imac 0x54a1a0;
     static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x1717d0, imac 0x54a530, m1 0x4a2b7c;
     static GJSearchObject* create(SearchType searchType) = win 0x1716f0, imac 0x54a4c0, m1 0x4a2b10;
-    static GJSearchObject* createFromKey(char const* key) = win 0x170ff0;
+    static GJSearchObject* createFromKey(char const* key) = win 0x170ff0, imac 0x522e20, m1 0x47eddc;
 
     char const* getKey() = win 0x171c40, m1 0x4857e8, imac 0x52a470;
     char const* getNextPageKey();
     GJSearchObject* getNextPageObject();
-    GJSearchObject* getPageObject(int page) = win 0x171d90;
+    GJSearchObject* getPageObject(int page) = win 0x171d90, imac 0x54aca0, m1 0x4a312c;
     GJSearchObject* getPrevPageObject() = imac 0x54af60;
     char const* getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x171f00, m1 0x4a2da8, imac 0x54a780;
     bool init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
@@ -12015,7 +12015,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void onDeleteAll(cocos2d::CCObject* sender) = win 0x2c61f0, imac 0x47a900, m1 0x3e8c88;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0x2c6f10, imac 0x479fc0, m1 0x3e82d8;
     void onFavorites(cocos2d::CCObject* sender) = win 0x2c6030;
-    void onGoToFolder(cocos2d::CCObject* sender) = win 0x2c47c0, m1 0x3e95b4;
+    void onGoToFolder(cocos2d::CCObject* sender) = win 0x2c47c0, m1 0x3e95b4, imac 0x47b1a0;
     void onGoToLastPage(cocos2d::CCObject* sender) = win 0x2c4640;
     void onGoToPage(cocos2d::CCObject* sender) = win 0x2c46b0, imac 0x479eb0, m1 0x3e81a8;
     void onHelp(cocos2d::CCObject* sender);
@@ -12809,7 +12809,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     void onFriends(cocos2d::CCObject* sender) = win 0x2fca00;
     void onLatestStars(cocos2d::CCObject* sender) = win 0x2fc940;
     void onMagic(cocos2d::CCObject* sender) = win 0x2fc7c0;
-    void onMoreOptions(cocos2d::CCObject* sender) = win 0x2f9a80;
+    void onMoreOptions(cocos2d::CCObject* sender) = win 0x2f9a80, imac 0x6137a0;
     void onMostDownloaded(cocos2d::CCObject* sender) = win 0x2fc4c0;
     void onMostLikes(cocos2d::CCObject* sender) = win 0x2fc580;
     void onMostRecent(cocos2d::CCObject* sender) = win 0x2fc880;
@@ -13610,7 +13610,7 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
     // virtual ~MoreSearchLayer();
     inline MoreSearchLayer() {}
 
-    static MoreSearchLayer* create() = win inline, m1 0x541374 {
+    static MoreSearchLayer* create() = win inline, m1 0x541374, imac 0x615070 {
         auto ret = new MoreSearchLayer();
         if (ret->init()) {
             ret->autorelease();
@@ -16553,9 +16553,9 @@ class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
 class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
     // virtual ~SetFolderPopup();
 
-    static SetFolderPopup* create(int value, bool isCreated, gd::string title) = win 0x294e90;
+    static SetFolderPopup* create(int value, bool isCreated, gd::string title) = win 0x294e90, imac 0x29a410, m1 0x241e80;
 
-    bool init(int value, bool isCreated, gd::string title) = win 0x294fd0;
+    bool init(int value, bool isCreated, gd::string title) = win 0x294fd0, imac 0x29a610, m1 0x24202c;
     void onSetFolderName(cocos2d::CCObject* sender) = win 0x295390, imac 0x29a8a0, m1 0x24229c;
 
     virtual void valueChanged() = win 0x295250, imac 0x29aa90, m1 0x24249c, ios 0x2deffc;

@@ -1996,7 +1996,7 @@ class cocos2d::CCArray {
     void removeObjectsInArray(cocos2d::CCArray*);
     void replaceObjectAtIndex(unsigned int, cocos2d::CCObject*, bool);
     void reverseObjects();
-    cocos2d::CCString* stringAtIndex(unsigned int);
+    cocos2d::CCString* stringAtIndex(unsigned int) = imac 0x709d20;
 
     // virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = ios 0x249634, imac 0x70a140, m1 0x62971c;
     // virtual void acceptVisitor(cocos2d::CCDataVisitor&) = ios 0x2496f8, imac 0x70a240, m1 0x62981c;
