@@ -15231,9 +15231,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn compareStateSnapshot();
     CheckpointObject* createCheckpoint() = win 0x39e150, imac 0xbbd00;
     void createObjectsFromSetupFinished() = win 0x396a10, imac 0xb7490, m1 0xa6fc4;
-    void delayedFullReset();
+    void delayedFullReset() = imac 0xbead0, m1 0xad4a0;
     void delayedResetLevel() = win 0x3a1de0, m1 0xaa970, imac 0xbb590;
-    void fullReset() = win 0x3a1ce0, m1 0xad514;
+    void fullReset() = win 0x3a1ce0, imac 0xbeb30 m1 0xad514;
     float getCurrentPercent() = win 0x39ca70, imac 0xba2f0, m1 0xa9848;
     int getCurrentPercentInt() = win inline, ios inline, imac 0xba9f0, m1 0xa9f18 { // i love this
         return static_cast<int>(this->getCurrentPercent());
