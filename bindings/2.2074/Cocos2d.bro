@@ -615,7 +615,7 @@ class cocos2d::CCParticleSnow {
 	// CCParticleSnow(cocos2d::CCParticleSnow const&);
 	// CCParticleSnow();
 
-	virtual bool init();
+	// virtual bool init();
 	virtual bool initWithTotalParticles(unsigned int);
 }
 
