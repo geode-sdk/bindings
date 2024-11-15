@@ -5655,7 +5655,7 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCArray* getStoredUserList(UserListType) = imac 0x53f790;
     GJUserMessage* getStoredUserMessage(int);
     GJUserMessage* getStoredUserMessageReply(int);
-    double getTimeLeft(char const*, float) = win 0x147dd0;
+    double getTimeLeft(char const*, float) = win 0x147dd0, imac 0x522ab0, m1 0x47ea48;
     void getTopArtists(int page, int total) = m1 0x48fa04, imac 0x535f20;
     const char* getTopArtistsKey(int page) = m1 0x48fdc4, imac 0x536300 {
         return cocos2d::CCString::createWithFormat("topArtists_%i", page)->getCString();
@@ -5784,7 +5784,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
     void resetAllTimers();
     TodoReturn resetCommentTimersForAccountID(int);
-    void resetCommentTimersForLevelID(int, CommentKeyType) = win 0x15c770, imac 0x53c490;
+    void resetCommentTimersForLevelID(int, CommentKeyType) = win 0x15c770, imac 0x53c490, m1 0x495b6c;
     void resetDailyLevelState(GJTimedLevelType) = imac 0x543920, m1 0x49c920;
     void resetGauntlets();
     void resetStoredUserInfo(int id) = win inline, imac 0x536fc0 {
@@ -11648,7 +11648,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     void onNextPage(cocos2d::CCObject* sender) = win 0x2b7860, imac 0x79b9b0;
     void onOriginal(cocos2d::CCObject* sender) = win 0x2b5e60, imac 0x79b090;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x2b7870, imac 0x79b990;
-    void onRefreshComments(cocos2d::CCObject* sender);
+    void onRefreshComments(cocos2d::CCObject* sender) = imac 0x79c870, m1 0x6aee78;
     void onSimilar(cocos2d::CCObject* sender);
     TodoReturn reloadWindow() = win 0x2b7bf0;
     void setupCommentsBrowser(cocos2d::CCArray*) = win 0x2b71f0, imac 0x79c0e0, m1 0x6ae750;
@@ -11900,7 +11900,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
         m_tabs = nullptr;
     }
 
-    static LeaderboardsLayer* create(LeaderboardState state) = win inline, imac 0x4fc3a0 {
+    static LeaderboardsLayer* create(LeaderboardState state) = win inline, imac 0x4fc3a0 , m1 0x45bf64{
         auto ret = new LeaderboardsLayer();
         if (ret->init(state)) {
             ret->autorelease();
@@ -11909,7 +11909,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(LeaderboardState state) = win inline {
+    static cocos2d::CCScene* scene(LeaderboardState state) = win inline , m1 0x45be78{
         auto scene = cocos2d::CCScene::create();
         auto layer = LeaderboardsLayer::create(state);
         scene->addChild(layer);
