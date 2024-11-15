@@ -148,7 +148,7 @@ public class ScriptWrapper {
         var arrayMatch = Pattern.compile("^array<(.+), (\\d+)>$").matcher(name);
         if (!arrayMatch.matches()) {
             printfmt("Array type {0} doesn't match the expected format", name);
-            return new ArrayDataType(new PointerDataType(VoidDataType.dataType), 0);
+            return new ArrayDataType(new PointerDataType(VoidDataType.dataType), 0, 0);
         }
         var type = arrayMatch.group(1);
         var size = Integer.parseInt(arrayMatch.group(2));
@@ -180,62 +180,62 @@ public class ScriptWrapper {
                 case "int64_t": inner = LongLongDataType.dataType; break;
                 case "uint64_t": inner = UnsignedLongLongDataType.dataType; break;
                 case "intptr_t": switch (platform) {
-                    case Platform.WINDOWS32:
-                    case Platform.ANDROID32:
+                    case WINDOWS32:
+                    case ANDROID32:
                         inner = IntegerDataType.dataType;
                         break;
-                    case Platform.WINDOWS64:
+                    case WINDOWS64:
                         inner = LongLongDataType.dataType;
                         break;
-                    case Platform.ANDROID64:
-                    case Platform.MAC_INTEL:
-                    case Platform.MAC_ARM:
-                    case Platform.IOS:
+                    case ANDROID64:
+                    case MAC_INTEL:
+                    case MAC_ARM:
+                    case IOS:
                         inner = LongDataType.dataType;
                         break;
                 } break;
                 case "uintptr_t": switch (platform) {
-                    case Platform.WINDOWS32:
-                    case Platform.ANDROID32:
+                    case WINDOWS32:
+                    case ANDROID32:
                         inner = UnsignedIntegerDataType.dataType;
                         break;
-                    case Platform.WINDOWS64:
+                    case WINDOWS64:
                         inner = UnsignedLongLongDataType.dataType;
                         break;
-                    case Platform.ANDROID64:
-                    case Platform.MAC_INTEL:
-                    case Platform.MAC_ARM:
-                    case Platform.IOS:
+                    case ANDROID64:
+                    case MAC_INTEL:
+                    case MAC_ARM:
+                    case IOS:
                         inner = UnsignedLongDataType.dataType;
                         break;
                 } break;
                 case "size_t": switch (platform) {
-                    case Platform.WINDOWS32:
+                    case WINDOWS32:
                         inner = UnsignedIntegerDataType.dataType;
                         break;
-                    case Platform.WINDOWS64:
+                    case WINDOWS64:
                         inner = UnsignedLongLongDataType.dataType;
                         break;
-                    case Platform.ANDROID32:
-                    case Platform.ANDROID64:
-                    case Platform.MAC_INTEL:
-                    case Platform.MAC_ARM:
-                    case Platform.IOS:
+                    case ANDROID32:
+                    case ANDROID64:
+                    case MAC_INTEL:
+                    case MAC_ARM:
+                    case IOS:
                         inner = UnsignedLongDataType.dataType;
                         break;
                 } break;
                 case "time_t": switch (platform) {
-                    case Platform.WINDOWS32:
+                    case WINDOWS32:
                         inner = IntegerDataType.dataType;
                         break;
-                    case Platform.WINDOWS64:
+                    case WINDOWS64:
                         inner = LongLongDataType.dataType;
                         break;
-                    case Platform.ANDROID32:
-                    case Platform.ANDROID64:
-                    case Platform.MAC_INTEL:
-                    case Platform.MAC_ARM:
-                    case Platform.IOS:
+                    case ANDROID32:
+                    case ANDROID64:
+                    case MAC_INTEL:
+                    case MAC_ARM:
+                    case IOS:
                         inner = LongDataType.dataType;
                         break;
                 } break;
@@ -245,7 +245,11 @@ public class ScriptWrapper {
             inner = this.getArrayType(type.substring(5), platform);
         }
 
-        return new ArrayDataType(inner != null ? inner : new PointerDataType(VoidDataType.dataType), inner != null ? size : 0);
+        return new ArrayDataType(
+            inner != null ? inner : new PointerDataType(VoidDataType.dataType),
+            inner != null ? size : 0,
+            inner != null ? inner.getLength() : 0
+        );
     }
 
     DataType addOrGetType(Broma.Type type, Platform platform) throws Exception {
@@ -277,60 +281,60 @@ public class ScriptWrapper {
                 case "int64_t": result = LongLongDataType.dataType; break;
                 case "uint64_t": result = UnsignedLongLongDataType.dataType; break;
                 case "intptr_t": switch (platform) {
-                    case Platform.WINDOWS32:
-                    case Platform.ANDROID32:
+                    case WINDOWS32:
+                    case ANDROID32:
                         result = IntegerDataType.dataType;
                         break;
-                    case Platform.WINDOWS64:
+                    case WINDOWS64:
                         result = LongLongDataType.dataType;
                         break;
-                    case Platform.ANDROID64:
-                    case Platform.MAC_INTEL:
-                    case Platform.MAC_ARM:
-                    case Platform.IOS:
+                    case ANDROID64:
+                    case MAC_INTEL:
+                    case MAC_ARM:
+                    case IOS:
                         result = LongDataType.dataType;
                         break;
                 } break;
                 case "uintptr_t": switch (platform) {
-                    case Platform.WINDOWS32:
-                    case Platform.ANDROID32:
+                    case WINDOWS32:
+                    case ANDROID32:
                         result = UnsignedIntegerDataType.dataType;
                         break;
-                    case Platform.WINDOWS64:
+                    case WINDOWS64:
                         result = UnsignedLongLongDataType.dataType;
                         break;
-                    case Platform.ANDROID64:
-                    case Platform.MAC_INTEL:
-                    case Platform.MAC_ARM:
-                    case Platform.IOS:
+                    case ANDROID64:
+                    case MAC_INTEL:
+                    case MAC_ARM:
+                    case IOS:
                         result = UnsignedLongDataType.dataType;
                         break;
                 } break;
                 case "size_t": switch (platform) {
-                    case Platform.WINDOWS32:
+                    case WINDOWS32:
                         result = UnsignedIntegerDataType.dataType;
                         break;
-                    case Platform.WINDOWS64:
+                    case WINDOWS64:
                         result = UnsignedLongLongDataType.dataType;
                         break;
-                    case Platform.ANDROID32:
-                    case Platform.ANDROID64:
-                    case Platform.MAC_INTEL:
-                    case Platform.MAC_ARM:
-                    case Platform.IOS:
+                    case ANDROID32:
+                    case ANDROID64:
+                    case MAC_INTEL:
+                    case MAC_ARM:
+                    case IOS:
                         result = UnsignedLongDataType.dataType;
                         break;
                 } break;
                 case "time_t": switch (platform) {
-                    case Platform.WINDOWS64:
+                    case WINDOWS64:
                         result = LongLongDataType.dataType;
                         break;
-                    case Platform.WINDOWS32:
-                    case Platform.ANDROID32:
-                    case Platform.ANDROID64:
-                    case Platform.MAC_INTEL:
-                    case Platform.MAC_ARM:
-                    case Platform.IOS:
+                    case WINDOWS32:
+                    case ANDROID32:
+                    case ANDROID64:
+                    case MAC_INTEL:
+                    case MAC_ARM:
+                    case IOS:
                         result = LongDataType.dataType;
                         break;
                 } break;
