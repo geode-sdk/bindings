@@ -1306,14 +1306,14 @@ class cocos2d::CCTextureCache {
 class cocos2d::CCTouch {
     cocos2d::CCPoint getLocationInView() const = m1 0x4f71c, imac 0x59ab0;
     cocos2d::CCPoint getLocation() const = m1 0x4f740, imac 0x59b10;
-    cocos2d::CCPoint getPreviousLocation() const = ios inline, m1 0x4f76c {
+    cocos2d::CCPoint getPreviousLocation() const = ios inline, m1 0x4f76c, imac 0x59b40 {
     	return CCDirector::sharedDirector()->convertToGL(m_prevPoint);
     }
-    cocos2d::CCPoint getStartLocation() const = ios inline, m1 0x4f798 {
+    cocos2d::CCPoint getStartLocation() const = ios inline, m1 0x4f798, imac 0x59b70 {
     	return CCDirector::sharedDirector()->convertToGL(m_startPoint);
     }
-    cocos2d::CCPoint getDelta() const = ios inline, m1 0x4f7c4 {
-    	return getLocation() - getPreviousLocation() = m1 0x4fb38;
+    cocos2d::CCPoint getDelta() const = ios inline, m1 0x4f7c4, imac 0x59ba0 {
+    	return getLocation() - getPreviousLocation();
     }
 }
 
