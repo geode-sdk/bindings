@@ -1955,8 +1955,8 @@ class cocos2d::CCArray {
     // static cocos2d::CCArray* create();
     // static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
     // static cocos2d::CCArray* createWithCapacity(unsigned int);
-    static cocos2d::CCArray* createWithContentsOfFile(char const*) = m1 0x294600, imac 0x2fc1a0;
-    static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*) = m1 0x2944e8, imac 0x2fc090;
+    static cocos2d::CCArray* createWithContentsOfFile(char const*);
+    static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*);
     static cocos2d::CCArray* createWithObject(cocos2d::CCObject*);
 
     bool init() = imac 0x7094e0;
@@ -2005,8 +2005,8 @@ class cocos2d::CCArray {
 [[link(win, android)]]
 class cocos2d::CCDictionary {
     static cocos2d::CCDictionary* create() = m1 0x294464, imac 0x2fc010;
-    static cocos2d::CCDictionary* createWithContentsOfFile(char const*);
-    static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*);
+    static cocos2d::CCDictionary* createWithContentsOfFile(char const*) = m1 0x294600, imac 0x2fc1a0;
+    static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*) = m1 0x2944e8, imac 0x2fc090;
     static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
 
     gd::string getFirstKey();
