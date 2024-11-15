@@ -3886,7 +3886,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onUnlockAllLayers(cocos2d::CCObject* sender);
     TodoReturn playStep2();
     TodoReturn playStep3() = win 0xdcb50;
-    void saveLevel() = win 0xdc310, m1 0x22c274;
+    void saveLevel() = win 0xdc310, m1 0x22c274, imac 0x282980;
     TodoReturn toggleDebugDraw(cocos2d::CCObject*);
     TodoReturn toggleEditorBackground(cocos2d::CCObject*);
     TodoReturn toggleEditorColorMode(cocos2d::CCObject*);
