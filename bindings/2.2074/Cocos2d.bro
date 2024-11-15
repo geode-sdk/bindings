@@ -609,9 +609,9 @@ class cocos2d::CCParticleSystem {
 
 [[link(win, android)]]
 class cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleSystemQuad* create(char const*, bool) = imac 0x5eb190;
-    static cocos2d::CCParticleSystemQuad* create();
-    static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool);
+    static cocos2d::CCParticleSystemQuad* create(char const*, bool) = imac 0x5eb190, m1 0x51c418;
+    static cocos2d::CCParticleSystemQuad* create() = m1 0x51d1bc, imac 0x5ec500;
+    static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool) = m1 0x51c500, imac 0x5eb270;
 
     void initIndices();
     void initTexCoordsWithRect(cocos2d::CCRect const&) = imac 0x5eb360, m1 0x51c5f0;
@@ -1809,10 +1809,10 @@ class cocos2d::CCLabelBMFont {
     CCLabelBMFont() = imac 0x5c0350, m1 0x4f5d58;
 
     static cocos2d::CCLabelBMFont* create(char const*, char const*) = imac 0x5bfed0, m1 0x4f58bc;
-    static cocos2d::CCLabelBMFont* create(char const*, char const*, float);
-    static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment) = imac 0x5bfe20, m1 0x4f5678;
+    static cocos2d::CCLabelBMFont* create(char const*, char const*, float) = m1 0x4f57fc, imac 0x5bfe20;
+    static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment) = imac 0x5bfcd0, m1 0x4f5678;
     static cocos2d::CCLabelBMFont* create(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = imac 0x5bfd80, m1 0x4f573c;
-    static cocos2d::CCLabelBMFont* create() = ios inline {
+    static cocos2d::CCLabelBMFont* create() = ios inline, m1 0x4f55f4, imac 0x5bfc60 {
     	auto pRet = new CCLabelBMFont();
 
     	if (pRet && pRet->init())
@@ -2011,8 +2011,8 @@ class cocos2d::CCDictionary {
 
     gd::string getFirstKey();
 
-    void setObject(cocos2d::CCObject*, gd::string const&) = imac 0x2fa5f0, m1 0x2935bc;
-    void setObject(cocos2d::CCObject*, intptr_t) = imac 0x2fa5f0, m1 0x2935bc;
+    void setObject(cocos2d::CCObject*, gd::string const&) = imac 0x2fa5f0, m1 0x292d74;
+    void setObject(cocos2d::CCObject*, intptr_t) = imac 0x2faff0, m1 0x2935bc;
     void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
     //void setObjectUnSafe(cocos2d::CCObject*, int);
 
@@ -2572,7 +2572,7 @@ class cocos2d::CCSpriteBatchNode {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteFrame {
-    static cocos2d::CCSpriteFrame* create(char const* filename, cocos2d::CCRect const& rect) = ios inline {
+    static cocos2d::CCSpriteFrame* create(char const* filename, cocos2d::CCRect const& rect) = ios inline, m1 0x2d9348, imac 0x343d10 {
     	CCRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
     	return create(filename, rect, false, CCPointZero, rectInPixels.size);
     }
@@ -2626,7 +2626,7 @@ class cocos2d::CCSpriteFrameCache {
 
     // CCSpriteFrameCache();
     // CCSpriteFrameCache(cocos2d::CCSpriteFrameCache const&);
-    void addSpriteFrame(cocos2d::CCSpriteFrame*, char const*);
+    void addSpriteFrame(cocos2d::CCSpriteFrame*, char const*) = m1 0x29fe38, imac 0x308cb0;
     void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*) = imac 0x307d30, m1 0x29ee50;
     void addSpriteFramesWithFile(char const*, char const*);
     void addSpriteFramesWithFile(char const*) = imac 0x308940, m1 0x29f998;
@@ -2835,7 +2835,7 @@ class cocos2d {
     static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
     static cocos2d::CCRect CCRectFromString(char const*);
     static cocos2d::CCSize CCSizeFromString(char const*);
-    static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*);
+    static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = m1 0x4f1f3c, imac 0x5bc460;
     static void FNTConfigRemoveCache();
     static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
     static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&);
