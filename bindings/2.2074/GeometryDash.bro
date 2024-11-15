@@ -5125,7 +5125,14 @@ class FMODAudioEngine : cocos2d::CCNode {
     void pauseAllEffects() {
         m_globalChannel->setPaused(true);
     }
-    void pauseAllMusic(bool) = imac 0x3d4930, m1 0x35ade0;
+    void pauseAllMusic(bool force) = win inline, imac 0x3d4930, m1 0x35ade0 {
+        for (auto& [id, channel] : m_musicChannels) {
+            if (force || !channel.m_unkBool2) {
+                if (auto ch = this->channelForChannelID(channel.m_channelID))
+                    ch->setPaused(true);
+            }
+        }
+    }
     TodoReturn pauseEffect(unsigned int);
     void pauseMusic(int musicChannel) = win inline {
         auto* channel = this->getActiveMusicChannel(musicChannel);
@@ -5303,11 +5310,12 @@ class FMODLevelVisualizer : cocos2d::CCNode {
     float m_width;
 }
 
-[[]]
 class FMODMusic {
     int m_channelID;
-    void* m_unk; // something allocated in fmod, dont know which class though
+    PAD = win 0x8, android 0x8, mac 0x8, ios 0x8; // something allocated in fmod, dont know which class though
     gd::string m_filePath;
+    bool m_unkBool1;
+    bool m_unkBool2;
     // there might be other things, hard to know the size
 }
 
@@ -14553,7 +14561,6 @@ class PlatformToolbox {
     static TodoReturn toggleFullScreen(bool, bool, bool);
 }
 
-[[]]
 class PlayerButtonCommand {
     PlayerButton m_button;
     bool m_isPush;
