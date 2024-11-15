@@ -3846,7 +3846,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
         m_editorLayer = nullptr;
     }
 
-    static EditorPauseLayer* create(LevelEditorLayer*) = win inline, m1 0x228ae4 {
+    static EditorPauseLayer* create(LevelEditorLayer*) = win inline, m1 0x228ae4, imac 0x27f120 {
         auto ret = new EditorPauseLayer();
         if (ret && ret->init(LevelEditorLayer::get())) {
             ret->autorelease();
@@ -14290,7 +14290,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
     void onSoundtracks(cocos2d::CCObject* sender) = win 0x35ce00;
     void onSupport(cocos2d::CCObject* sender) = win 0x35d820;
     void onVideo(cocos2d::CCObject* sender) = win 0x35d6f0;
-    void sfxSliderChanged(cocos2d::CCObject*) = win 0x35cd70;
+    void sfxSliderChanged(cocos2d::CCObject*) = win 0x35cd70, m1 0x699370, imac 0x7851b0;
     void tryEnableRecord() = m1 0x699648, imac 0x785540;
 
     virtual void customSetup() = win 0x35bff0, m1 0x6983b0, imac 0x784200, ios 0xef91c;
@@ -14663,8 +14663,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn convertToClosestRotation(float);
     void copyAttributes(PlayerObject*) = win 0x38a710, imac 0x409ed0, m1 0x3877bc;
     void createFadeOutDartStreak() = win 0x382830;
-    void createRobot(int) = win 0x372180, m1 0x36c034;
-    void createSpider(int) = win 0x372540, m1 0x36c378;
+    void createRobot(int) = win 0x372180, m1 0x36c034, imac 0x3ea2a0;
+    void createSpider(int) = win 0x372540, m1 0x36c378, imac 0x3ea650;
     void deactivateParticle() = m1 0x3709e8, imac 0x3efb60;
     void deactivateStreak(bool) = imac 0x3eb090, m1 0x36cd60;
     TodoReturn destroyFromHitHead();
@@ -16571,8 +16571,8 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     TodoReturn createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int);
     TodoReturn determineStartValues();
     bool init(GameObject* obj, cocos2d::CCArray* objs) = win 0x3e1260, imac 0x2fe5f0, m1 0x296704;
-    void onAddGroup(cocos2d::CCObject* sender) = win 0x3e52b0;
-    void onAddGroupParent(cocos2d::CCObject* sender) = win 0x3e5420;
+    void onAddGroup(cocos2d::CCObject* sender) = win 0x3e52b0, m1 0x298c74, imac 0x300d30;
+    void onAddGroupParent(cocos2d::CCObject* sender) = win 0x3e5420, m1 0x298c7c, imac 0x300d40;
     void onAnim(cocos2d::CCObject* sender);
     void onArrow(int tag, int increment) = win 0x3e39e0;
     void onArrowLeft(cocos2d::CCObject* sender) = win 0x3e3980;

@@ -610,7 +610,7 @@ class cocos2d::CCParticleSystem {
 [[link(win, android)]]
 class cocos2d::CCParticleSystemQuad {
     static cocos2d::CCParticleSystemQuad* create(char const*, bool) = imac 0x5eb190;
-    static cocos2d::CCParticleSystemQuad* create();
+    static cocos2d::CCParticleSystemQuad* create() = m1 0x51d1bc, imac 0x5ec500;
     static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool);
 
     void initIndices();
