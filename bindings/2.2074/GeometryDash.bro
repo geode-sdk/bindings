@@ -2859,7 +2859,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     bool canPlayOnlineLevels();
     void checkQuestsStatus() = imac 0x286f00, m1 0x23039c;
     void onAdventureMap(cocos2d::CCObject* sender) = win 0x9dbe0, imac 0x286950, m1 0x22fdf4;
-    void onBack(cocos2d::CCObject* sender);
+    void onBack(cocos2d::CCObject* sender) = win 0x9f190;
     void onChallenge(cocos2d::CCObject* sender) = win 0x9ddb0, imac 0x2869c0, m1 0x22fe84;
     void onDailyLevel(cocos2d::CCObject* sender) = win 0x9dd50;
     void onEventLevel(cocos2d::CCObject* sender) = win 0x9dd90;
@@ -3880,8 +3880,8 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onSaveAndExit(cocos2d::CCObject* sender) = win 0xdcd20, imac 0x281980, m1 0x22b3c0;
     void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xdc9a0, imac 0x281910, m1 0x22b330;
     void onSelectAll(cocos2d::CCObject* sender) = win 0xdb870;
-    void onSelectAllLeft(cocos2d::CCObject* sender);
-    void onSelectAllRight(cocos2d::CCObject* sender);
+    void onSelectAllLeft(cocos2d::CCObject* sender) = m1 0x22ba48;
+    void onSelectAllRight(cocos2d::CCObject* sender) = m1 0x22ba58;
     void onSong(cocos2d::CCObject* sender);
     void onUnlockAllLayers(cocos2d::CCObject* sender);
     TodoReturn playStep2();
@@ -3992,7 +3992,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void doCopyObjects(bool) = win 0x111900, imac 0x3e700;
     TodoReturn doPasteInPlace(bool);
     void doPasteObjects(bool) = win 0x111a90;
-    void dynamicGroupUpdate(bool) = win 0x117000, imac 0x44e10;
+    void dynamicGroupUpdate(bool) = win 0x117000, imac 0x44e10, m1 0x3ed20;
     TodoReturn edgeForObject(int, int);
     TodoReturn editButton2Usable() = imac 0x492e0;
     TodoReturn editButtonUsable() = imac 0x48580;
@@ -4088,7 +4088,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onPlayback(cocos2d::CCObject* sender) = win 0x110390, imac 0xc930, m1 0xdce0;
     void onPlaytest(cocos2d::CCObject* sender) = win 0x1109a0, imac 0xcb90, m1 0xdef4;
     void onResetSpecialFilter(cocos2d::CCObject* sender);
-    void onSelectBuildTab(cocos2d::CCObject* sender) = imac 0x34310;
+    void onSelectBuildTab(cocos2d::CCObject* sender) = imac 0x34310, m1 0x2b140;
     void onSettings(cocos2d::CCObject* sender) = win 0xe0350;
     void onStopPlaytest(cocos2d::CCObject* sender) = win 0x110d40, m1 0xe134, imac 0xcdd0;
     TodoReturn onTargetIDChange(int);
@@ -4098,7 +4098,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onUpdateDeleteFilter(cocos2d::CCObject* sender);
     void orderDownCustomItem(cocos2d::CCObject*);
     void orderUpCustomItem(cocos2d::CCObject*);
-    cocos2d::CCArray* pasteObjects(gd::string, bool, bool) = win 0x111d10;
+    cocos2d::CCArray* pasteObjects(gd::string, bool, bool) = win 0x111d10, m1 0x35f00;
     TodoReturn playCircleAnim(cocos2d::CCPoint, float, float);
     TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
     TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -4153,7 +4153,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn toggleDuplicateButton();
     void toggleEditObjectButton() = win 0x118f10;
     void toggleEnableRotate(cocos2d::CCObject*) = win 0x10eb00;
-    void toggleFreeMove(cocos2d::CCObject*);
+    void toggleFreeMove(cocos2d::CCObject*) = m1 0xd8b4;
     TodoReturn toggleLockUI(bool);
     void toggleMode(cocos2d::CCObject*) = win 0xe37f0, imac 0x2af00, m1 0xad4c;
     TodoReturn toggleObjectInfoLabel() = win 0xe1730;
@@ -4166,7 +4166,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
               m_unlinkBtn->setEnabled(enable);
               m_unlinkBtn->setVisible(enable);
     }
-    void toggleSwipe(cocos2d::CCObject*);
+    void toggleSwipe(cocos2d::CCObject*) = m1 0xd7b4;
     void transformObject(GameObject*, EditCommand, bool) = win 0x11ed00, imac 0x4be30;
     void transformObjectCall(cocos2d::CCObject*) = win 0x11e7b0;
     void transformObjectCall(EditCommand) = win 0x11e7b0, imac 0x4ae10, m1 0x43bc8;
