@@ -3858,9 +3858,9 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
     TodoReturn doResetUnused() = win 0x2d2b80;
     bool init(LevelEditorLayer*) = win 0xd8990, imac 0x27f220, m1 0x228bbc;
-    void onAlignX(cocos2d::CCObject* sender);
-    void onAlignY(cocos2d::CCObject* sender);
-    void onBuildHelper(cocos2d::CCObject* sender);
+    void onAlignX(cocos2d::CCObject* sender) = win 0xdb9e0;
+    void onAlignY(cocos2d::CCObject* sender) = win 0xdba10;
+    void onBuildHelper(cocos2d::CCObject* sender) = win 0xdb7d0;
     void onCopyWColor(cocos2d::CCObject* sender);
     void onCreateExtras(cocos2d::CCObject* sender) = win 0xdb760;
     void onCreateLoop(cocos2d::CCObject* sender);
@@ -4003,7 +4003,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void editObject(cocos2d::CCObject*) = win 0x11a510, m1 0x2b750, imac 0x2b550;
     void editObject2(cocos2d::CCObject*);
     void editObject3(cocos2d::CCObject*);
-    TodoReturn editObjectSpecial(int);
+    void editObjectSpecial(int) = win 0x11c4b0;
     TodoReturn editorLayerForArray(cocos2d::CCArray*, bool);
     TodoReturn enableButton(CreateMenuItem*);
     TodoReturn findAndSelectObject(int, bool);
@@ -10510,27 +10510,15 @@ class GJScaleControl : cocos2d::CCLayer {
 
     void finishTouch();
     void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&) = win 0x128190, imac 0x3f670;
-    void onToggleLockScale(cocos2d::CCObject* sender);
+    void onToggleLockScale(cocos2d::CCObject* sender) = win 0x128100;
     float scaleFromValue(float value) = win inline, imac 0x52860, m1 0x49c44 {
         return (m_upperBound - m_lowerBound) * value + m_lowerBound;
     }
     float skewFromValue(float) = imac 0x528a0;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x1287a0;
-    void updateLabelX(float value) = win inline, m1 0x49b0c, imac 0x52740 {
-        auto str = cocos2d::CCString::createWithFormat("ScaleX %.02f", value); // yes, gd is missing a : there :(
-        m_scaleXLabel->setString(str->getCString());
-        m_scaleXLabel->limitLabelWidth(100.0f, 0.0f, 0.0f);
-    }
-    void updateLabelXY(float value) = win inline, m1 0x49bdc, imac 0x52800 { // 0x129000 ?
-        auto str = cocos2d::CCString::createWithFormat("Scale: %.02f", value);
-        m_scaleLabel->setString(str->getCString());
-        m_scaleLabel->limitLabelWidth(100.0f, 0.0f, 0.0f);
-    }
-    void updateLabelY(float value) = win inline, m1 0x49b74, imac 0x527a0 {
-        auto str = cocos2d::CCString::createWithFormat("ScaleY: %.02f", value);
-        m_scaleYLabel->setString(str->getCString());
-        m_scaleYLabel->limitLabelWidth(100.0f, 0.0f, 0.0f);
-    }
+    void updateLabelX(float value) = win 0x128f20, m1 0x49b0c, imac 0x52740;
+    void updateLabelXY(float value) = win 0x129020, m1 0x49bdc, imac 0x52800;
+    void updateLabelY(float value) = win 0x128fa0, m1 0x49b74, imac 0x527a0;
     float valueFromScale(float scale) = win inline {
         auto value = (scale - m_lowerBound) / (m_upperBound - m_lowerBound);
         return value < 0 ? 0 : (value > 1 ? 1 : value);
@@ -12304,7 +12292,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateOptions() = win 0x2ca8f0, m1 0xc4394;
     void updatePreviewAnim();
     void updatePreviewParticle(ParticleGameObject*) = imac 0x1a1820, m1 0x1642bc;
-    void updatePreviewParticles() = imac 0xecfe0;
+    void updatePreviewParticles() = imac 0xecfe0, win 0x2d8ec0;
     TodoReturn updateToggledGroups();
     TodoReturn validGroup(GameObject*, bool);
 
@@ -16590,7 +16578,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onNextFreeEditorLayer1(cocos2d::CCObject* sender);
     void onNextFreeEditorLayer2(cocos2d::CCObject* sender);
     void onNextFreeOrderChannel(cocos2d::CCObject* sender);
-    void onNextGroupID1(cocos2d::CCObject* sender) = m1 0x298c40;
+    void onNextGroupID1(cocos2d::CCObject* sender) = win 0x3e48d0, m1 0x298c40;
     void onPaste(cocos2d::CCObject* sender);
     void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x3e51e0, m1 0x29ae48, imac 0x3032f0;
     void onSmoothEase(cocos2d::CCObject* sender);
@@ -16599,17 +16587,17 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onZLayer(cocos2d::CCObject* sender);
     void onZLayerShift(cocos2d::CCObject* sender);
     TodoReturn removeGroupID(int);
-    void updateEditorLabel();
-    void updateEditorLabel2();
+    void updateEditorLabel() = win 0x3e5920;
+    void updateEditorLabel2() = win 0x3e59b0;
     void updateEditorLayerID();
     void updateEditorLayerID2();
     void updateEditorOrder();
     void updateEditorOrderLabel();
-    TodoReturn updateGroupIDButtons();
-    void updateGroupIDLabel();
+    void updateGroupIDButtons() = win 0x3e4940;
+    void updateGroupIDLabel() = win 0x3e5ad0;
     void updateOrderChannel();
     void updateOrderChannelLabel();
-    TodoReturn updateZLayerButtons();
+    void updateZLayerButtons() = win 0x3e5d30;
     void updateZOrder() = win 0x3e5890;
     void updateZOrderLabel() = win 0x3e5a40;
 
