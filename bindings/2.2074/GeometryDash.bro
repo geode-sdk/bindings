@@ -6038,7 +6038,7 @@ class GameManager : GManager {
             return defaultValue;
         return object->intValue();
     }
-    gd::string getMenuMusicFile() = win 0x178700, m1 0x2f63c0;
+    gd::string getMenuMusicFile() = win 0x178700, m1 0x2f63c0, imac 0x3636f0;
     TodoReturn getMGTexture(int);
     TodoReturn getNextUniqueObjectKey();
     TodoReturn getNextUsedKey(int, bool);
@@ -6153,7 +6153,7 @@ class GameManager : GManager {
     TodoReturn lockIcon(int, IconType);
     TodoReturn logLoadedIconInfo();
     void openEditorGuide();
-    void playMenuMusic() = win 0x178810, m1 0x2f66b4;
+    void playMenuMusic() = win 0x178810, m1 0x2f66b4, imac 0x3639a0;
     TodoReturn playSFXTrigger(SFXTriggerGameObject*);
     TodoReturn prepareDPadSettings() = imac 0x375340;
     TodoReturn printGJLog();
@@ -14456,17 +14456,17 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     }
 
     TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-    void goEdit() = win 0x368b80, m1 0x34df78;
+    void goEdit() = win 0x368b80, m1 0x34df78, imac 0x3c4cc0;
     bool init(bool p0) = win inline {
         m_unkBool1 = p0;
         return CCBlockLayer::init();
     }
-    void musicSliderChanged(cocos2d::CCObject*) = win 0x3683c0;
+    void musicSliderChanged(cocos2d::CCObject*) = win 0x3683c0, imac 0x3c4870, m1 0x34daec;
     void onEdit(cocos2d::CCObject* sender) = win 0x3687e0, m1 0x34de9c, imac 0x3c4be0;
     void onHelp(cocos2d::CCObject* sender);
-    void onNormalMode(cocos2d::CCObject* sender) = win 0x368530, m1 0x34d904;
-    void onPracticeMode(cocos2d::CCObject* sender) = win 0x368450, m1 0x34d8ac;
-    void onQuit(cocos2d::CCObject* sender) = win 0x368e50, m1 0x34dffc;
+    void onNormalMode(cocos2d::CCObject* sender) = win 0x368530, m1 0x34d904, imac 0x3c4670;
+    void onPracticeMode(cocos2d::CCObject* sender) = win 0x368450, m1 0x34d8ac, imac 0x3c4610;
+    void onQuit(cocos2d::CCObject* sender) = win 0x368e50, m1 0x34dffc, imac 0x3c4700;
     void onRecordReplays(cocos2d::CCObject* sender);
     void onReplay(cocos2d::CCObject* sender);
     void onRestart(cocos2d::CCObject* sender) = win 0x3686a0, m1 0x34da8c, imac 0x3c4800;
