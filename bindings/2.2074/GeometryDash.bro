@@ -7220,7 +7220,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool isItemEnabled(UnlockType type, int id) = win inline, imac 0x773c0, m1 0x6ac58 {
         return this->isItemUnlocked(type, id) && m_enabledItems->valueForKey(this->getItemKey(id, (int)type))->boolValue();
     }
-    bool isItemUnlocked(UnlockType, int) = win 0x1e2850, imac 0x6b3b0;
+    bool isItemUnlocked(UnlockType, int) = win 0x1e2850, m1 0x05ee84, imac 0x6b3b0;
     bool isPathChestUnlocked(int);
     bool isPathUnlocked(StatKey);
     bool isSecretChestUnlocked(int);
