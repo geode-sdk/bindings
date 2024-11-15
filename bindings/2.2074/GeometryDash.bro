@@ -5002,7 +5002,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 
     void incrementForcePrio() = imac 0x488eb0, m1 0x3f6294;
     bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x51b60, imac 0x488360, m1 0x3f5800;
-    bool init(int) = win 0x51a50, imac 0x488de0;
+    bool init(int) = win 0x51a50, imac 0x488de0, m1 0x3f61c0;
     void onBtn1(cocos2d::CCObject* sender) = win 0x52940, imac 0x488f00, m1 0x3f62e4;
     void onBtn2(cocos2d::CCObject* sender) = win 0x529a0, imac 0x488f60, m1 0x2f6344;
 
@@ -5456,9 +5456,9 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
     static FriendsProfilePage* create(UserListType) = win 0x13e010, imac 0x641780, m1 0x56a370;
 
     bool init(UserListType type) = win 0x13e160, imac 0x641910, m1 0x56a498;
-    void onBlocked(cocos2d::CCObject* sender) = win 0x13ef50;
-    void onClose(cocos2d::CCObject* sender) = win 0x13efe0, m1 0x56ab00;
-    void onUpdate(cocos2d::CCObject* sender);
+    void onBlocked(cocos2d::CCObject* sender) = win 0x13ef50, m1 0x56abb8, imac 0x6420b0;
+    void onClose(cocos2d::CCObject* sender) = win 0x13efe0, m1 0x56ab00, imac 0x641ff0;
+    void onUpdate(cocos2d::CCObject* sender) = m1 0x56ac44, imac 0x642140;
     void setupUsersBrowser(cocos2d::CCArray* users, UserListType type) = win 0x13e870, imac 0x6421b0, m1 0x56aca8;
 
     virtual void registerWithTouchDispatcher() = m1 0x56b2b4, imac 0x6427d0, ios 0x1da854;
@@ -7390,7 +7390,7 @@ class GameToolbox {
     }
     static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool) = win 0x68000, imac 0x4e2fe0, m1 0x44528c;
     static void particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&) = win 0x67540, imac 0x4e1f80, m1 0x444354;
-    static gd::string pointsToString(int) = win 0x69760, m1 0x446d4c;
+    static gd::string pointsToString(int) = win 0x69760, m1 0x446d4c, imac 0x4e49f0;
     static void postClipVisit();
     static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x645c0, imac 0x4dbc50, m1 0x43ed28;
     static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
@@ -15470,7 +15470,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onRequests(cocos2d::CCObject* sender) = win 0x3aeb10;
     void onSendMessage(cocos2d::CCObject* sender) = win 0x3acc00, m1 0x6b9b4c;
     void onSettings(cocos2d::CCObject* sender) = win 0x3ae900, m1 0x6ba868;
-    void onStatInfo(cocos2d::CCObject* sender) = win 0x3ac0c0;
+    void onStatInfo(cocos2d::CCObject* sender) = win 0x3ac0c0, m1 0x6b89e4, imac 0x7a6f70;
     void onTwitch(cocos2d::CCObject* sender) = win 0x3ae760, m1 0x6b9124, imac 0x7a76a0;
     void onTwitter(cocos2d::CCObject* sender) = win 0x3ae5d0, m1 0x6b8f6c, imac 0x7a74f0;
     void onUpdate(cocos2d::CCObject* sender) = imac 0x7a4270;
