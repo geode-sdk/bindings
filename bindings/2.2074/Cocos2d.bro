@@ -789,8 +789,8 @@ class cocos2d::CCGLProgram {
 
     // CCGLProgram(cocos2d::CCGLProgram const&);
     ~CCGLProgram();
-    CCGLProgram();
-    void addAttribute(char const*, unsigned int) = imac 0x4180e0;
+    CCGLProgram() = m1 0x393770, imac 0x417c10;
+    void addAttribute(char const*, unsigned int) = imac 0x4180e0, m1 0x393c30;
     bool compileShader(unsigned int*, unsigned int, char const*);
     char const* description() = imac 0x4180b0, m1 0x393bfc;
     char const* fragmentShaderLog();
@@ -1365,7 +1365,7 @@ class cocos2d::CCTouchDispatcher {
     }
     void registerForcePrio(cocos2d::CCObject*, int) = imac 0x4b8880, m1 0x420540;
     void removeAllDelegates();
-    void removeDelegate(cocos2d::CCTouchDelegate*) = m1 0x420b2c;
+    void removeDelegate(cocos2d::CCTouchDelegate*) = m1 0x420b2c, imac 0x4b8e00;
     void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = imac 0x4b9220, m1 0x420fc0;
     void unregisterForcePrio(cocos2d::CCObject*) = imac 0x4b8920, m1 0x4205f4;
 
