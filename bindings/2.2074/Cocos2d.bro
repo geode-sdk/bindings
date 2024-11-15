@@ -1955,8 +1955,8 @@ class cocos2d::CCArray {
     // static cocos2d::CCArray* create();
     // static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
     // static cocos2d::CCArray* createWithCapacity(unsigned int);
-    static cocos2d::CCArray* createWithContentsOfFile(char const*);
-    static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*);
+    static cocos2d::CCArray* createWithContentsOfFile(char const*) = m1 0x294600, imac 0x2fc1a0;
+    static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*) = m1 0x2944e8, imac 0x2fc090;
     static cocos2d::CCArray* createWithObject(cocos2d::CCObject*);
 
     bool init() = imac 0x7094e0;
@@ -2546,7 +2546,7 @@ class cocos2d::CCDrawNode {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteBatchNode {
-    static cocos2d::CCSpriteBatchNode* createWithTexture(cocos2d::CCTexture2D*, unsigned int);
+    static cocos2d::CCSpriteBatchNode* createWithTexture(cocos2d::CCTexture2D*, unsigned int) = m1 0x132d50, imac 0x165920;
 
     bool initWithTexture(cocos2d::CCTexture2D*, unsigned int) = imac 0x165a10, m1 0x132e04;
 
@@ -2703,7 +2703,7 @@ class cocos2d::CCMenu {
     // static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1e1964, m1 0x6a6d58, imac 0x79e7b0;
     static cocos2d::CCMenu* create() = imac 0x77c950, m1 0x691950;
     static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*) = imac 0x77cb50;
-    static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = imac 0x77cda0;
+    static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = m1 0x691cf4, imac 0x77cda0;
     // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
 
     bool initWithArray(cocos2d::CCArray*);
