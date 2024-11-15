@@ -698,7 +698,7 @@ class cocos2d::CCFadeIn {
 
 [[link(win, android)]]
 class cocos2d::CCFadeOut {
-    static cocos2d::CCFadeOut* create(float);
+    static cocos2d::CCFadeOut* create(float) = imac 0x3a7e30, m1 0x3342b4;
 
     // CCFadeOut(cocos2d::CCFadeOut const&);
     // CCFadeOut();
