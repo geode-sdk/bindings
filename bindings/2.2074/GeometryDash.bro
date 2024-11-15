@@ -14465,9 +14465,9 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void musicSliderChanged(cocos2d::CCObject*) = win 0x3683c0;
     void onEdit(cocos2d::CCObject* sender) = win 0x3687e0, m1 0x34de9c, imac 0x3c4be0;
     void onHelp(cocos2d::CCObject* sender);
-    void onNormalMode(cocos2d::CCObject* sender) = win 0x368530, m1 0x34d904;
-    void onPracticeMode(cocos2d::CCObject* sender) = win 0x368450, m1 0x34d8ac;
-    void onQuit(cocos2d::CCObject* sender) = win 0x368e50, m1 0x34dffc;
+    void onNormalMode(cocos2d::CCObject* sender) = win 0x368530, m1 0x34d904, imac 0x3c4670;
+    void onPracticeMode(cocos2d::CCObject* sender) = win 0x368450, m1 0x34d8ac, imac 0x3c4610;
+    void onQuit(cocos2d::CCObject* sender) = win 0x368e50, m1 0x34dffc, imac 0x3c4d60;
     void onRecordReplays(cocos2d::CCObject* sender);
     void onReplay(cocos2d::CCObject* sender);
     void onRestart(cocos2d::CCObject* sender) = win 0x3686a0, m1 0x34da8c, imac 0x3c4800;
@@ -14833,7 +14833,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void toggleRollMode(bool, bool) = win 0x3857e0, imac 0x406e60, m1 0x384a4c;
     void toggleSpiderMode(bool, bool) = win 0x385ce0, imac 0x4076c0, m1 0x38525c;
     void toggleSwingMode(bool, bool) = win 0x384d90, imac 0x405d60, m1 0x383a5c;
-    void toggleVisibility(bool) = win 0x3756d0;
+    void toggleVisibility(bool) = win 0x3756d0, imac 0x3f1460;
     TodoReturn touchedObject(GameObject*) = imac 0x40ad70;
     void tryPlaceCheckpoint() = m1 0x371f50;
     TodoReturn unrotateGameplayObject(GameObject*) = win 0x37b8b0;
