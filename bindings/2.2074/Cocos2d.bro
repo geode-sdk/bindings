@@ -2644,7 +2644,7 @@ class cocos2d::CCSpriteFrameCache {
 [[link(win, android)]]
 class cocos2d::CCString {
     static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x7956c0, m1 0x6a8b3c;
-    // static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x278aec;
+    // static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x278aec, m1 0x6a8cd0;
 
     char const* getCString() const = imac 0x7950f0, m1 0x6a84a8;
     //createWithContentsOfFile = ios 0x278b74;

@@ -3552,7 +3552,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
         return DialogLayer::createDialogLayer(object, nullptr, background);
     }
     static DialogLayer* createDialogLayer(DialogObject* object, cocos2d::CCArray* objects, int background) = win 0xd1f60, imac 0x3b4280, m1 0x33f928;
-    static DialogLayer* createWithObjects(cocos2d::CCArray* objects, int background) = win inline, imac 0x3b43c0 {
+    static DialogLayer* createWithObjects(cocos2d::CCArray* objects, int background) = win inline, imac 0x3b43c0, m1 0x33fa38 {
         return DialogLayer::createDialogLayer(nullptr, objects, background);
     }
 
@@ -3561,7 +3561,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     void animateInDialog() = imac 0x3b57a0;
     void animateInRandomSide() = win 0xd2c40, m1 0x340aec, imac 0x3b5510;
     void displayDialogObject(DialogObject*) = win 0xd2570, m1 0x33ffc8, imac 0x3b4980;
-    void displayNextObject() = win 0xd2510, m1 0x33ff28;
+    void displayNextObject() = win 0xd2510, m1 0x33ff28, imac 0x3b48e0;
     void finishCurrentAnimation() = imac 0x3b4ff0, m1 0x340620;
     void handleDialogTap() = win 0xd2940, m1 0x3404c4;
     bool init(DialogObject*, cocos2d::CCArray*, int) = win 0xd20b0, imac 0x3b43e0, m1 0x33fa48;
@@ -3612,7 +3612,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 class DialogObject : cocos2d::CCObject {
     // virtual ~DialogObject();
 
-    static DialogObject* create(gd::string character, gd::string text, int characterFrame, float textScale, bool skippable, cocos2d::ccColor3B color) = win 0xd1da0;
+    static DialogObject* create(gd::string character, gd::string text, int characterFrame, float textScale, bool skippable, cocos2d::ccColor3B color) = win 0xd1da0, m1 0x33f4ac;
 
     bool init(gd::string character, gd::string text, int characterFrame, float textScale, bool skippable, cocos2d::ccColor3B color) = win inline, imac 0x3b3eb0, m1 0x33f664 {
         m_character = character;
@@ -5003,8 +5003,8 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     void incrementForcePrio();
     bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x51b60, imac 0x488360, m1 0x3f5800;
     bool init(int) = win 0x51a50, imac 0x488de0;
-    void onBtn1(cocos2d::CCObject* sender) = win 0x52940;
-    void onBtn2(cocos2d::CCObject* sender) = win 0x529a0;
+    void onBtn1(cocos2d::CCObject* sender) = win 0x52940, imac 0x488f00, m1 0x3f62e4;
+    void onBtn2(cocos2d::CCObject* sender) = win 0x529a0, imac 0x488f60, m1 0x2f6344;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x52a00, imac 0x489190, m1 0x3f6568, ios 0x2abcac;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x52b50, m1 0x3f6818, imac 0x4893d0, ios 0x2abe9c;
@@ -19879,7 +19879,7 @@ class TextArea : cocos2d::CCSprite {
     void colorAllCharactersTo(cocos2d::ccColor3B) = win 0x77600, imac 0x30dfc0, m1 0x2a4b20;
     void colorAllLabels(cocos2d::ccColor3B) = imac 0x30e070, m1 0x2a4be4;
     void fadeIn(float, bool) = m1 0x2a47e4;
-    void fadeInCharacters(float, float, bool, TextFadeInStyle);
+    void fadeInCharacters(float, float, bool, TextFadeInStyle) = m1 0x2a4db0;
     void fadeOut(float) = m1 0x2a49b4;
     void fadeOutAndRemove() = imac 0x30ddf0, m1 0x2a4944;
     void finishFade() = win 0x775a0, imac 0x30ddc0, m1 0x2a4920;
