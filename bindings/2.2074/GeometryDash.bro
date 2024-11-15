@@ -11900,7 +11900,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
         m_tabs = nullptr;
     }
 
-    static LeaderboardsLayer* create(LeaderboardState state) = win inline, imac 0x4fc3a0 , m1 0x45bf64{
+    static LeaderboardsLayer* create(LeaderboardState state) = win inline, imac 0x4fc3a0, m1 0x45bf64 {
         auto ret = new LeaderboardsLayer();
         if (ret->init(state)) {
             ret->autorelease();
