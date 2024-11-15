@@ -5513,7 +5513,7 @@ class GameLevelManager : cocos2d::CCNode {
     static GameLevelManager* sharedState() = win 0x140b20, imac 0x504a90, m1 0x4641c4;
 
     void acceptFriendRequest(int, int) = imac 0x53e840, m1 0x497a7c;
-    int accountIDForUserID(int userID) = imac 0x518ae0;
+    int accountIDForUserID(int userID) = imac 0x518ae0, m1 0x475c08;
     void addDLToActive(char const*) = win 0x147a20;
     bool areGauntletsLoaded();
     void banUser(int);
@@ -5666,9 +5666,9 @@ class GameLevelManager : cocos2d::CCNode {
     void getUserMessages(bool, int, int) = m1 0x490a64, imac 0x537080;
     void getUsers(GJSearchObject*) = win 0x1571c0, m1 0x48fdec, imac 0x536320;
     void gotoLevelPage(GJGameLevel*) = win 0x1473c0, m1 0x47dd44, imac 0x521e70;
-    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x140e00;
-    void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
-    void handleItND(cocos2d::CCNode*, void*);
+    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x140e00, m1 0x46479c, imac 0x505160;
+    void handleItDelayed(bool, gd::string, gd::string, GJHttpType) = m1 0x4669d0, imac 0x507fb0;
+    void handleItND(cocos2d::CCNode*, void*) = m1 0x466ce4, imac 0x5082a0;
     bool hasDailyStateBeenLoaded(GJTimedLevelType) = imac 0x543960, m1 0x49c950;
     bool hasDownloadedLevel(int);
     bool hasDownloadedList(int);
@@ -5737,7 +5737,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onGetUserMessagesCompleted(gd::string response, gd::string tag);
     void onGetUsersCompleted(gd::string response, gd::string tag);
     void onLikeItemCompleted(gd::string response, gd::string tag);
-    void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x140d10;
+    void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x140d10, m1 0x464438, imac 0x504de0;
     void onRateDemonCompleted(gd::string response, gd::string tag);
     void onRateStarsCompleted(gd::string response, gd::string tag);
     void onReadFriendRequestCompleted(gd::string response, gd::string tag);
