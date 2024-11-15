@@ -5821,7 +5821,7 @@ class GameLevelManager : cocos2d::CCNode {
     void storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
     void storeDailyLevelState(int, int, GJTimedLevelType) = imac 0x543800;
     void storeFriendRequest(GJFriendRequest*);
-    void storeSearchResult(cocos2d::CCArray* levels, gd::string pageInfo, char const* searchKey) = win 0x147570, m1 0x47dec0;
+    void storeSearchResult(cocos2d::CCArray* levels, gd::string pageInfo, char const* searchKey) = win 0x147570, m1 0x47dec0, imac 0x521fe0;
     void storeUserInfo(GJUserScore*);
     void storeUserMessage(GJUserMessage*);
     void storeUserMessageReply(int, GJUserMessage*);
@@ -7457,7 +7457,7 @@ class GauntletNode : cocos2d::CCNode {
     }
 
     static gd::string frameForType(GauntletType) = win 0x1f9030, m1 0x4b4e50, imac 0x55e760;
-    static gd::string nameForType(GauntletType) = win 0x1fa250, m1 0x4b46dc;
+    static gd::string nameForType(GauntletType) = win 0x1fa250, m1 0x4b46dc, imac 0x55e210;
     bool init(GJMapPack*) = win 0x1f7970, imac 0x55cb50, m1 0x4b2fdc;
     void onClaimReward() = win 0x1f8ff0, imac 0x55ca80;
 
@@ -11246,7 +11246,7 @@ class GJUserScore : cocos2d::CCNode {
     static GJUserScore* create(cocos2d::CCDictionary*) = win 0x16e1a0, m1 0x479a1c;
     // virtual ~GJUserScore();
 
-    static GJUserScore* create() = win inline, m1 0x4a205c {
+    static GJUserScore* create() = win inline, m1 0x4a205c, imac 0x549900 {
         auto ret = new GJUserScore();
         if (ret->init()) {
             ret->autorelease();
