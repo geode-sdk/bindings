@@ -10962,7 +10962,7 @@ class GJSmartTemplate : cocos2d::CCObject {
 class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelegate {
     // virtual ~GJSongBrowser();
 
-    static GJSongBrowser* create() = win 0x2afab0, m1 0x518ed0;
+    static GJSongBrowser* create() = win 0x2afab0, m1 0x518ed0, imac 0x5e7120;
 
     void loadPage(int) = win 0x2b00b0;
     void onDeleteAll(cocos2d::CCObject* sender) = m1 0x519790, imac 0x5e7b90;
@@ -12536,7 +12536,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerProtocol {
     // virtual ~LevelLeaderboard();
 
-    static LevelLeaderboard* create(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x2ebf80, imac 0x3c72e0;
+    static LevelLeaderboard* create(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x2ebf80, imac 0x3c72e0, m1 0x350108;
 
     TodoReturn deleteLocalScores() = m1 0x351994, imac 0x3c8d10;
     TodoReturn getLocalScores();
@@ -12546,9 +12546,9 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
     void loadScores() = m1 0x3515ec;
     void onChangeMode(cocos2d::CCObject* sender) = win 0x2edd40, m1 0x351344;
     void onChangeType(cocos2d::CCObject* sender) = win 0x2edca0;
-    void onClose(cocos2d::CCObject* sender) = win 0x84620;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x35146c, imac 0x3c87f0;
     void onDeleteLocalScores(cocos2d::CCObject* sender) = imac 0x3c8720, m1 0x351394;
-    void onUpdate(cocos2d::CCObject* sender) = win 0x2eddc0, m1 0x3514a8;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x2eddc0, m1 0x3514a8, imac 0x3c8820;
     TodoReturn reloadLeaderboard(LevelLeaderboardType, LevelLeaderboardMode);
     TodoReturn setupLeaderboard(cocos2d::CCArray*) = m1 0x351800, imac 0x3c8b60;
 
