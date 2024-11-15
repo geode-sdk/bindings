@@ -11987,7 +11987,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
     bool onEnterTower() = m1 0x21322c;
     cocos2d::CCAction* showDialog() = m1 0x212f20, imac 0x2675e0;
 
-    virtual bool init() = win 0x2bc1d0 imac 0x2658d0, m1 0x2111e8, ios 0x34353c;
+    virtual bool init() = win 0x2bc1d0, imac 0x2658d0, m1 0x2111e8, ios 0x34353c;
     virtual void keyBackClicked() = win 0x2be1c0, imac 0x267ab0, m1 0x2133f4, ios 0x344fe4;
     virtual void dialogClosed(DialogLayer*) = win 0x2bd3b0, m1 0x213170, imac 0x267810, ios 0x344e04;
     virtual void onExit() = win 0x2be170, m1 0x2133a4, imac 0x267a60, ios 0x344f94;
