@@ -14728,7 +14728,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn playBumpEffect(int, GameObject*) = win 0x389cc0;
     TodoReturn playBurstEffect();
     void playCompleteEffect(bool, bool) = win 0x36e2b0, imac 0x2024c0, m1 0x1b7870;
-    void playDeathEffect() = win 0x3691a0, m1 0x1af8ac;
+    void playDeathEffect() = win 0x3691a0, imac 0x1fa350, m1 0x1af8ac;
     void playDynamicSpiderRun() = win 0x38b740;
     void playerDestroyed(bool) = win 0x381f10, imac 0x402270, m1 0x380548;
     bool playerIsFalling(float);
@@ -14778,7 +14778,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void runRotateAction(bool, int) = win 0x3775c0;
     TodoReturn saveToCheckpoint(PlayerCheckpoint*);
     void setSecondColor(cocos2d::ccColor3B const&) = win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
-    void setupStreak() = win 0x372a50, m1 0x36c84c;
+    void setupStreak() = win 0x372a50, imac 0x3eab20, m1 0x36c84c;
     void setYVelocity(double, int) = win 0x372fa0;
     TodoReturn spawnCircle();
     TodoReturn spawnCircle2();
