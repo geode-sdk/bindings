@@ -1081,7 +1081,7 @@ class CCCircleWave : cocos2d::CCNode {
     // CCCircleWave() = win 0x418b0;
 
     static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x42800, imac 0x167ae0, m1 0x134bb4;
-    static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = win inline {
+    static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = win inline, imac 0x167ad0 {
         return CCCircleWave::create(startRadius, endRadius, duration, fadeIn, true);
     }
 
