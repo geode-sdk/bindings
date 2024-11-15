@@ -23,7 +23,7 @@ class cocos2d::CCEGLViewProtocol {
 
 [[link(win, android)]]
 class cocos2d::CCEaseIn {
-    static cocos2d::CCEaseIn* create(cocos2d::CCActionInterval*, float) = m1 0x45e024;
+    static cocos2d::CCEaseIn* create(cocos2d::CCActionInterval*, float) = m1 0x45e024, imac 0x4fe910;
 
     // CCEaseIn(cocos2d::CCEaseIn const&);
     // CCEaseIn();
@@ -35,7 +35,7 @@ class cocos2d::CCEaseIn {
 
 [[link(win, android)]]
 class cocos2d::CCEaseOut {
-    static cocos2d::CCEaseOut* create(cocos2d::CCActionInterval*, float) = m1 0x45e320;
+    static cocos2d::CCEaseOut* create(cocos2d::CCActionInterval*, float) = m1 0x45e320, imac 0x4feb40;
 
     // CCEaseOut(cocos2d::CCEaseOut const&);
     // CCEaseOut();
@@ -71,7 +71,7 @@ class cocos2d::CCEaseBackIn {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBackOut {
-    static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*) = m1 0x460c04;
+    static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*) = m1 0x460c04, imac 0x501430;
 
     // CCEaseBackOut(cocos2d::CCEaseBackOut const&);
     // CCEaseBackOut();
@@ -108,8 +108,8 @@ class cocos2d::CCEaseElasticIn {
 
 [[link(win, android)]]
 class cocos2d::CCEaseElasticOut {
-    static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*) = m1 0x45f8d0;
-    static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*, float) = m1 0x45f814;
+    static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*) = m1 0x45f8d0, imac 0x5001f0;
+    static cocos2d::CCEaseElasticOut* create(cocos2d::CCActionInterval*, float) = m1 0x45f814, imac 0x500130;
 
     // CCEaseElasticOut(cocos2d::CCEaseElasticOut const&);
     // CCEaseElasticOut();
@@ -308,7 +308,7 @@ class cocos2d::CCRemoveSelf {
 
 [[link(win, android)]]
 class cocos2d::CCScaleBy {
-    static cocos2d::CCScaleBy* create(float, float);
+    static cocos2d::CCScaleBy* create(float, float) = imac 0x3a7430;
     static cocos2d::CCScaleBy* create(float, float, float);
 
     // CCScaleBy(cocos2d::CCScaleBy const&);
@@ -363,8 +363,8 @@ class cocos2d::CCAction {
     void setTarget(cocos2d::CCNode*);
 
     // CCAction(cocos2d::CCAction const&);
-    CCAction();
-    ~CCAction();
+    CCAction() = imac 0x5dc9c0;
+    ~CCAction() = imac 0x5dca60;
     char const* description() = imac 0x5dcb10, m1 0x50fa50;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x5dcb30, m1 0x50fa7c, ios 0x264878;
@@ -608,6 +608,18 @@ class cocos2d::CCParticleSystem {
 }
 
 [[link(win, android)]]
+class cocos2d::CCParticleSnow {
+	static cocos2d::CCParticleSnow* create() = imac 0x473c10;
+	static cocos2d::CCParticleSnow* createWithTotalParticles(unsigned int) = imac 0x473c90;
+
+	// CCParticleSnow(cocos2d::CCParticleSnow const&);
+	// CCParticleSnow();
+
+	virtual bool init();
+	virtual bool initWithTotalParticles(unsigned int);
+}
+
+[[link(win, android)]]
 class cocos2d::CCParticleSystemQuad {
     static cocos2d::CCParticleSystemQuad* create(char const*, bool) = imac 0x5eb190, m1 0x51c418;
     static cocos2d::CCParticleSystemQuad* create() = m1 0x51d1bc, imac 0x5ec500;
@@ -698,7 +710,7 @@ class cocos2d::CCFadeIn {
 
 [[link(win, android)]]
 class cocos2d::CCFadeOut {
-    static cocos2d::CCFadeOut* create(float);
+    static cocos2d::CCFadeOut* create(float) = imac 0x3a7e30;
 
     // CCFadeOut(cocos2d::CCFadeOut const&);
     // CCFadeOut();
@@ -813,7 +825,7 @@ class cocos2d::CCNode {
     CCNode() = imac 0x260210, m1 0x20c1a8;
     ~CCNode() = imac 0x260520, m1 0x20c334;
 
-    cocos2d::CCAction* getActionByTag(int);
+    cocos2d::CCAction* getActionByTag(int) = imac 0x261ff0;
     cocos2d::CCComponent* getComponent(char const*) const;
     int getScriptHandler();
     cocos2d::CCAffineTransform getTransformTemp();
@@ -849,7 +861,7 @@ class cocos2d::CCNode {
     void sortAllChildrenNoIndex();
     void sortAllChildrenWithIndex();
     void stopAction(cocos2d::CCAction*);
-    void stopActionByTag(int);
+    void stopActionByTag(int) = imac 0x261fd0;
     void stopAllActions() = imac 0x260e30, m1 0x20cbec;
     void transform();
     void transformAncestors();
@@ -1063,7 +1075,7 @@ class cocos2d::CCLayerGradient {
     	ret->setVector(a3);
     	return ret;
     }
-    static cocos2d::CCLayerGradient* create();
+    static cocos2d::CCLayerGradient* create() = imac 0x4a0780;
 
     bool getShouldPremultiply() const;
 
@@ -2026,7 +2038,7 @@ class cocos2d::CCDictionary {
     cocos2d::CCObject* objectForKey(gd::string const&) = imac 0x2fa0b0, m1 0x29288c;
     cocos2d::CCObject* objectForKey(intptr_t) = imac 0x2fa440, m1 0x292b98;
     cocos2d::CCObject* randomObject();
-    void removeAllObjects() = m1 0x292260;
+    void removeAllObjects() = m1 0x292260, imac 0x2f9b10;
     void removeObjectForElememt(cocos2d::CCDictElement*) = imac 0x2fb910;
     void removeObjectForKey(gd::string const&) = imac 0x2fb510, m1 0x293a98;
     void removeObjectForKey(intptr_t) = imac 0x2fba60, m1 0x293f08;
@@ -2800,7 +2812,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
 [[link(win, android)]]
 class cocos2d::CCDrawNode {
-    static cocos2d::CCDrawNode* create();
+    static cocos2d::CCDrawNode* create() = imac 0x5f94f0;
 
     cocos2d::_ccBlendFunc getBlendFunc() const;
 
@@ -3183,7 +3195,7 @@ class cocos2d {
     static float ccpLength(cocos2d::CCPoint const&);
     static cocos2d::CCPoint ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
-    static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&);
+    static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&) = imac 0x3428c0;
     static cocos2d::CCPoint ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static float ccpToAngle(cocos2d::CCPoint const&);
