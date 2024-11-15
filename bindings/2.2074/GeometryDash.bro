@@ -5695,7 +5695,7 @@ class GameLevelManager : cocos2d::CCNode {
     int levelIDFromPostCommentKey(char const*);
     int likeFromLikeKey(char const*);
     void likeItem(LikeItemType, int, bool, int) = win 0x161270, m1 0x499d68, imac 0x540b40;
-    void limitSavedLevels() = win 0x148090, imac 0x574700, m1 0x47f58c;
+    void limitSavedLevels() = win 0x148090, imac 0x5236b0, m1 0x47f58c;
     void makeTimeStamp(char const*) = win 0x147b90, imac 0x522290, m1 0x47e18c;
     void markItemAsLiked(LikeItemType, int, bool, int);
     void markLevelAsDownloaded(int) = win 0x151510;
@@ -5763,7 +5763,7 @@ class GameLevelManager : cocos2d::CCNode {
     void performNetworkTest() = m1 0x4642b0, imac 0x504c40;
     void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0x140b70, imac 0x504fa0, m1 0x464634;
     void processOnDownloadLevelCompleted(gd::string response, gd::string tag, bool) = win 0x150350, m1 0x489224, imac 0x52e460;
-    void purgeUnusedLevels() = win 0x148330;
+    void purgeUnusedLevels() = win 0x148330, imac 0x523900;
     void rateDemon(int, int, bool) = m1 0x48c020, imac 0x531730;
     void rateStars(int, int) = m1 0x48a7c8, imac 0x52fd00;
     void readFriendRequest(int) = m1 0x498000, imac 0x53edd0;
@@ -5839,7 +5839,7 @@ class GameLevelManager : cocos2d::CCNode {
     void updateLevelOrders() = win 0x145680, m1 0x47b2b0;
     void updateLevelRewards(GJGameLevel*) = win 0x144380, m1 0x475db4;
     void updateSavedLevelList(GJLevelList*) = win 0x14ef40, m1 0x487790, imac 0x52c630;
-    void updateUsernames();
+    void updateUsernames() = imac 0x523ed0;
     void updateUserScore() = win 0x153790, m1 0x48c508, imac 0x531c80;
     void uploadAccountComment(gd::string);
     void uploadComment(gd::string, CommentType, int, int) = m1 0x494bec, imac 0x53b480;
@@ -7378,7 +7378,7 @@ class GameToolbox {
     static bool isIOS();
     static bool isRateEasing(int);
     static TodoReturn mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
-    static TodoReturn mergeDictsSkipConflict(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
+    static TodoReturn mergeDictsSkipConflict(cocos2d::CCDictionary*, cocos2d::CCDictionary*) = imac 0x4dc610;
     static TodoReturn msToTimeString(int, int) = m1 0x446c04, imac 0x4e48b0;
     static TodoReturn multipliedColorValue(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
     static TodoReturn openAppPage();
