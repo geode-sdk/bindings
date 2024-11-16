@@ -842,12 +842,15 @@ enum class GJHttpType {
     GetTopArtists = 0x35,
     GetAccountBackupURL = 0x36,
     GetAccountSyncURL = 0x37,
-
-    // Yet to be added by Robtop in 2.21
-    // joinLobby = 0x39,
-    // ExitMPLobby = 0x3a,
-
-    DeleteServerLevelList = 0x3e,
+    //0x38 is unused? 
+    JoinLobby = 0x39,
+    ExitLobby = 0x3A,
+    GetCustomContentURL = 0x3B,
+    GetLevelLists = 0x3C,
+    UploadLevelList = 0x3D,
+    DeleteServerLevelList = 0x3E,
+    GetNews = 0x3F,
+    GetGJSecretReward = 0x40
 };
 
 enum class DialogChatPlacement {
