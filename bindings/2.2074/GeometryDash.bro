@@ -18586,6 +18586,9 @@ class ShaderLayer : cocos2d::CCLayer {
     cocos2d::CCPoint m_savedCameraPosition;
     float m_savedCameraRotation;
     float m_shockWaveTimeMult;
+    float m_scaleFactor;
+    float m_aspectRatio;
+    cocos2d::CCSize m_screenSize;
     cocos2d::CCSize m_textureContentSize;
     cocos2d::CCSize m_targetTextureSize;
     // how much bigger is the texture compared to visibleSize
