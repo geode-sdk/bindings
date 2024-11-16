@@ -2812,7 +2812,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
 [[link(win, android)]]
 class cocos2d::CCDrawNode {
-    static cocos2d::CCDrawNode* create() = imac 0x5f94f0;
+    static cocos2d::CCDrawNode* create() = imac 0x5f94f0, m1 0x528650;
 
     cocos2d::_ccBlendFunc getBlendFunc() const;
 
