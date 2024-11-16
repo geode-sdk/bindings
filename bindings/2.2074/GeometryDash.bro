@@ -7210,7 +7210,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedStarLevel(GJGameLevel*) = imac 0x6d570;
     bool hasPendingUserCoin(char const*) = win 0x1dce90, m1 0x636cc, imac 0x6fcf0;
     bool hasRewardBeenCollected(GJRewardType, int);
-    bool hasSecretCoin(char const*) = win 0x1dcf50;
+    bool hasSecretCoin(char const*) = win 0x1dcf50, imac 0x6cdc0, m1 0x60930;
     bool hasUserCoin(char const*) = win 0x1dcd10, m1 0x637c4, imac 0x6fde0;
     TodoReturn incrementActivePath(int);
     TodoReturn incrementChallenge(GJChallengeType, int) = win 0x1df0f0, m1 0x5eb10, imac 0x6b0c0;
@@ -15231,9 +15231,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn compareStateSnapshot();
     CheckpointObject* createCheckpoint() = win 0x39e150, imac 0xbbd00;
     void createObjectsFromSetupFinished() = win 0x396a10, imac 0xb7490, m1 0xa6fc4;
-    void delayedFullReset();
+    void delayedFullReset() = imac 0xbead0, m1 0xad4a0;
     void delayedResetLevel() = win 0x3a1de0, m1 0xaa970, imac 0xbb590;
-    void fullReset() = win 0x3a1ce0, m1 0xad514;
+    void fullReset() = win 0x3a1ce0, imac 0xbeb30, m1 0xad514;
     float getCurrentPercent() = win 0x39ca70, imac 0xba2f0, m1 0xa9848;
     int getCurrentPercentInt() = win inline, ios inline, imac 0xba9f0, m1 0xa9f18 { // i love this
         return static_cast<int>(this->getCurrentPercent());
@@ -15270,9 +15270,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void removeCheckpoint(bool) = win 0x3a0ff0, m1 0xaca08, imac 0xbdfd0;
     void removeFromGroupOld(GameObject*);
     void resetLevel() = win 0x3a1f90, imac 0xb2f80, m1 0xa3120;
-    void resetLevelFromStart() = win 0x3a1df0, imac 0xbee20;
+    void resetLevelFromStart() = win 0x3a1df0, m1 0xad7d0, imac 0xbee20;
     void resume() = win 0x3a37c0, m1 0xadf54, imac 0xbf580;
-    void resumeAndRestart(bool) = win 0x3a34b0, imac 0xbf3d0;
+    void resumeAndRestart(bool) = win 0x3a34b0, imac 0xbf3d0, m1 0xaddbc;
     TodoReturn saveActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
     TodoReturn saveDynamicSaveObjects(gd::vector<SavedObjectStateRef>&);
     TodoReturn scanActiveSaveObjects() = imac 0xaf930;
