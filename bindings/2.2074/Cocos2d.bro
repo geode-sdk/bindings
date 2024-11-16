@@ -1561,7 +1561,7 @@ class cocos2d::CCDirector {
     bool getIsTransitioning() const;
     cocos2d::TextureQuality getLoadedTextureQuality() const;
     cocos2d::CCScene* getNextScene();
-    cocos2d::CCNode* getNotificationNode();
+    cocos2d::CCNode* getNotificationNode() = m1 0x3e07cc, imac 0x471a60;
     cocos2d::CCEGLView* getOpenGLView();
     cocos2d::ccDirectorProjection getProjection();
     cocos2d::CCScene* getRunningScene();
@@ -1596,7 +1596,7 @@ class cocos2d::CCDirector {
     void setGLDefaultValues() = imac 0x46fbd0;
     void setNextDeltaTimeZero(bool);
     void setNextScene() = imac 0x470340;
-    void setNotificationNode(cocos2d::CCNode*);
+    void setNotificationNode(cocos2d::CCNode*) = m1 0x3e07d4, imac 0x471a70;
     void setOpenGLView(cocos2d::CCEGLView*);
     void setProjection(cocos2d::ccDirectorProjection);
     void setSceneReference(cocos2d::CCScene*);
