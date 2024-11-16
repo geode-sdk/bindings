@@ -5147,7 +5147,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x5a110, imac 0x3d4dc0, m1 0x35b20c;
     FMODSound& preloadEffect(gd::string path) = win 0x59260, m1 0x3531c4, imac 0x3ca980;
     void preloadEffectAsync(gd::string path);
-    TodoReturn preloadMusic(gd::string path, bool p1, int p2);
+    FMOD::Sound* preloadMusic(gd::string path, bool p1, int p2) = win 0x5c790, imac 0x3d5220;
     TodoReturn printResult(FMOD_RESULT);
     TodoReturn queuedEffectFinishedLoading(gd::string);
     TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x57920;
