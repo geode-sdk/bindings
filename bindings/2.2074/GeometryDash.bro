@@ -16181,7 +16181,7 @@ class SecretLayer6 : cocos2d::CCLayer {
         }
         delete ret;
         return nullptr;
-    };
+    }
 
     void onBack(cocos2d::CCObject* sender);
     static cocos2d::CCScene* scene();
