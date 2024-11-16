@@ -102,8 +102,8 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
     void hideLoadingUI();
     bool init(gd::string) = win 0x7b8d0, m1 0x3f32c0, imac 0x485ce0;
     void onClose(cocos2d::CCObject* sender);
-    void onForgotPassword(cocos2d::CCObject* sender) = imac 0x487080;
-    void onForgotUser(cocos2d::CCObject* sender) = imac 0x487060;
+    void onForgotPassword(cocos2d::CCObject* sender) = imac 0x487080, win 0x7c490;
+    void onForgotUser(cocos2d::CCObject* sender) = imac 0x487060, win 0x7c470;
     void onSubmit(cocos2d::CCObject* sender) = win 0x7cbc0;
     void resetLabel(int);
     void resetLabels();
@@ -16173,13 +16173,21 @@ class SecretLayer6 : cocos2d::CCLayer {
         m_gameLayer = nullptr;
     }
 
-    static SecretLayer6* create();
+    static SecretLayer6* create() = win inline {
+        auto ret = new SecretLayer6();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    };
 
     void onBack(cocos2d::CCObject* sender);
     static cocos2d::CCScene* scene();
     void startGame01();
 
-    virtual bool init() = imac 0x46be20, m1 0x3db420;
+    virtual bool init() = imac 0x46be20, m1 0x3db420, win 0x3d887c;
     virtual void keyBackClicked() = m1 0x3dbf78, imac 0x46caa0;
 
     SecretGame01Layer* m_gameLayer;
@@ -20119,7 +20127,7 @@ class TutorialLayer : FLAlertLayer {
     void onNext(cocos2d::CCObject* sender);
     void removeTutorialTexture();
 
-    virtual bool init() = imac 0x4c9280, m1 0x42e988, ios 0x1bf188;
+    virtual bool init() = imac 0x4c9280, m1 0x42e988, ios 0x1bf188, win 0x4b31c0;
     virtual void keyBackClicked() = win 0x4b3de0, m1 0x42f414, imac 0x4c9cc0, ios 0x1bfa70;
 }
 
