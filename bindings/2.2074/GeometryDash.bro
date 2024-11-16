@@ -16173,21 +16173,13 @@ class SecretLayer6 : cocos2d::CCLayer {
         m_gameLayer = nullptr;
     }
 
-    static SecretLayer6* create() = win inline {
-        auto ret = new SecretLayer6();
-        if (ret->init()) {
-            ret->autorelease();
-            return ret;
-        }
-        delete ret;
-        return nullptr;
-    }
+    static SecretLayer6* create();
 
     void onBack(cocos2d::CCObject* sender);
     static cocos2d::CCScene* scene();
     void startGame01();
 
-    virtual bool init() = imac 0x46be20, m1 0x3db420, win 0x3d887c;
+    virtual bool init() = imac 0x46be20, m1 0x3db420;
     virtual void keyBackClicked() = m1 0x3dbf78, imac 0x46caa0;
 
     SecretGame01Layer* m_gameLayer;
