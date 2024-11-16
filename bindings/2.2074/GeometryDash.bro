@@ -15264,7 +15264,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void removeCheckpoint(bool) = win 0x3a0ff0, m1 0xaca08, imac 0xbdfd0;
     void removeFromGroupOld(GameObject*);
     void resetLevel() = win 0x3a1f90, imac 0xb2f80, m1 0xa3120;
-    void resetLevelFromStart() = win 0x3a1df0, imac 0xbee20;
+    void resetLevelFromStart() = win 0x3a1df0, m1 0xad7d0, imac 0xbee20;
     void resume() = win 0x3a37c0, m1 0xadf54, imac 0xbf580;
     void resumeAndRestart(bool) = win 0x3a34b0, imac 0xbf3d0, m1 0xaddbc;
     TodoReturn saveActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
