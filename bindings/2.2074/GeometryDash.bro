@@ -18592,6 +18592,8 @@ class ShaderLayer : cocos2d::CCLayer {
     cocos2d::CCSize m_targetTextureSizeExtra;
     int m_textureScaleUniform;
     int m_textureScaleInvUniform;
+    int m_screenAspectUniform;
+    int m_screenAspectINVUniform;
     int m_shaderPositionUniform;
     int m_blurRefColorUniform;
     int m_blurUseRefUniform;
