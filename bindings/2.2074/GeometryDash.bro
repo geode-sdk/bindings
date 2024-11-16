@@ -15551,11 +15551,11 @@ class PurchaseItemPopup : FLAlertLayer {
     // virtual ~PurchaseItemPopup();
     // PurchaseItemPopup();
 
-    static PurchaseItemPopup* create(GJStoreItem*);
+    static PurchaseItemPopup* create(GJStoreItem*) = win 0x2a74d0, m1 0x2a77d0, imac 0x310ed0;
 
     bool init(GJStoreItem*) = win 0x2a75c0, m1 0x2a9818, imac 0x3134b0;
-    void onClose(cocos2d::CCObject* sender);
-    void onPurchase(cocos2d::CCObject* sender) = m1 0x2aa2b8;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x2aa27c, imac 0x314030;
+    void onPurchase(cocos2d::CCObject* sender) = win 0x2a8470, m1 0x2aa2b8, imac 0x314060;
 
     virtual void keyBackClicked() = m1 0x2aa32c, imac 0x3140d0, ios 0x151c10;
 
@@ -20233,10 +20233,10 @@ class UIObjectSettingsPopup : SetupTriggerPopup {
 class UIOptionsLayer : SetupTriggerPopup {
     // virtual ~UIOptionsLayer();
 
-    static UIOptionsLayer* create(bool) = imac 0x29e540;
+    static UIOptionsLayer* create(bool) = win 0x2995e0, imac 0x29e540;
 
     TodoReturn getNode(int);
-    bool init(bool) = m1 0x24645c, imac 0x29ef50;
+    bool init(bool) = win 0x299720, m1 0x24645c, imac 0x29ef50;
     void onReset(cocos2d::CCObject* sender);
     void onSaveLoad(cocos2d::CCObject* sender);
     TodoReturn toggleUIGroup(int) = m1 0x247d74, imac 0x2a0ce0;
@@ -20260,7 +20260,7 @@ class UIPOptionsLayer {
     TodoReturn getTouchRect();
     void onReset(cocos2d::CCObject* sender);
 
-    virtual bool init() = m1 0x24aa70, imac 0x2a3c00, ios 0x2e58fc;
+    virtual bool init() = win 0x29e170, m1 0x24aa70, imac 0x2a3c00, ios 0x2e58fc;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x24b160, imac 0x2a4350, ios 0x2e5fd0;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x24b27c, imac 0x2a4470, ios 0x2e6098;
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x24b3d8, imac 0x2a45e0, ios 0x2e614c;
