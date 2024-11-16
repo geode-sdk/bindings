@@ -196,7 +196,7 @@ GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintB, 0x178);
 
 GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x3c4);
 GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x3d8);
-GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x590);
+GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x5a8);
 
 GEODE_MEMBER_CHECK(SetupInstantCountPopup, m_itemID, 0x2b4);
 
