@@ -2081,7 +2081,7 @@ class cocos2d::CCRenderTexture {
     void clear(float, float, float, float);
     void clearDepth(float);
     void clearStencil(int);
-    void end() = m1 0x5112f8;
+    void end() = imac 0x5de5e0, m1 0x5112f8;
     void endToLua();
     bool isAutoDraw() const;
     void listenToBackground(cocos2d::CCObject*);

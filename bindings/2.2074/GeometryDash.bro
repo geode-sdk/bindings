@@ -18956,7 +18956,7 @@ class SimplePlayer : cocos2d::CCSprite {
         }
     }
     void iconFinishedLoading(int, IconType) = m1 0x2f0570;
-    bool init(int) = win 0x271bb0, imac 0x35ca00;
+    bool init(int) = win 0x271bb0, m1 0x2efd98, imac 0x35ca00;
     void setColors(cocos2d::ccColor3B const& color1, cocos2d::ccColor3B const& color2) = win inline, ios inline, imac 0x35b770, m1 0x2eec44 {
         m_firstLayer->setColor(color1);
         m_secondLayer->setColor(color2);
