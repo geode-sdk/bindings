@@ -1636,7 +1636,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
     }
 
     virtual gd::string getShaderName() = win 0x48fc0, imac 0x5d94e0, m1 0x50c9cc, ios 0x1a7100;
-    virtual const char* shaderBody() = m1 0x50c890, imac 0x5d92d0, ios 0x1a702c;
+    virtual const char* shaderBody() = win 0x48e00, m1 0x50c890, imac 0x5d92d0, ios 0x1a702c;
 }
 
 [[link(android)]]
