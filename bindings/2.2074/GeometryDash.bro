@@ -2702,7 +2702,7 @@ class CountTriggerGameObject : EffectGameObject {
 
     bool init(char const*);
 
-    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = imac 0x1c52f0, m1 0x182718, ios 0x389674;
+    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a26c0, imac 0x1c52f0, m1 0x182718, ios 0x389674;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1c5570, m1 0x182950, ios 0x38981c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1c59a0, m1 0x182cdc, ios 0x389b1c;
 
@@ -12127,7 +12127,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 [[link(android)]]
 class LevelCell : TableViewCell {
     // virtual ~LevelCell();
-    LevelCell(char const*, float, float);
+    LevelCell(char const*, float, float) = win 0xad870;
 
     static LevelCell* create(float, float) = imac 0x23caa0, m1 0x1ec704;
 
@@ -14955,9 +14955,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn yStartUp();
 
     virtual void update(float) = win 0x373010, imac 0x3eb270, m1 0x36cf1c, ios 0x21a2d0;
-    virtual void setScaleX(float) = m1 0x38871c, imac 0x40b0c0, ios 0x22e704;
-    virtual void setScaleY(float) = m1 0x388720, imac 0x40b0d0, ios 0x22e708;
-    virtual void setScale(float) = m1 0x388724, imac 0x40b0e0, ios 0x22e70c;
+    virtual void setScaleX(float) = win 0x38cac0, m1 0x38871c, imac 0x40b0c0, ios 0x22e704;
+    virtual void setScaleY(float) = win 0x38cae0, m1 0x388720, imac 0x40b0d0, ios 0x22e708;
+    virtual void setScale(float) = win 0x38cad0, m1 0x388724, imac 0x40b0e0, ios 0x22e70c;
     virtual void setPosition(cocos2d::CCPoint const&) = win 0x3868b0, imac 0x407b70, m1 0x3856d8, ios 0x22bf7c;
     virtual void setVisible(bool) = win 0x38caf0, imac 0x40b0f0, m1 0x388728, ios 0x22e710;
     virtual void setRotation(float) = win 0x38c9f0, m1 0x3886ac, imac 0x40b030, ios 0x22e694;
@@ -17387,7 +17387,7 @@ class SetupInstantCountPopup : SetupTriggerPopup {
     void onTargetID2Arrow(cocos2d::CCObject* sender);
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x4045c0;
     TodoReturn updateCountTextInputLabel();
-    void updateItemID();
+    void updateItemID() = win 0x401fd0;
     TodoReturn updateItemIDInputLabel();
     TodoReturn updateTargetCount();
     TodoReturn updateTargetID();
