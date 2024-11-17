@@ -11429,12 +11429,49 @@ class GradientTriggerObject : EffectGameObject {
 [[link(android)]]
 class GraphicsReloadLayer : cocos2d::CCLayer {
     // virtual ~GraphicsReloadLayer();
+    GraphicsReloadLayer() {
+        m_resolution = cocos2d::CCSize {};
+    }
 
-    static GraphicsReloadLayer* create(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool, bool);
+    static GraphicsReloadLayer* create(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool windowed, bool borderless, bool fix, bool changedResolution) = win inline {
+        auto ret = new GraphicsReloadLayer();
+        if (ret->init(quality, resolution, windowed, borderless, fix, changedResolution)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    bool init(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool, bool);
-    TodoReturn performReload();
-    static cocos2d::CCScene* scene(cocos2d::TextureQuality, cocos2d::CCSize, bool, bool, bool, bool);
+    bool init(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool windowed, bool borderless, bool fix, bool changedResolution) = win inline {
+        if (!CCLayer::init()) return false;
+        m_quality = quality;
+        m_resolution = resolution;
+        m_changedResolution = changedResolution;
+        m_windowed = windowed;
+        m_borderless = borderless;
+        m_fix = fix;
+        this->runAction(cocos2d::CCSequence::create(
+            cocos2d::CCDelayTime::create(.1f),
+            cocos2d::CCCallFunc::create(this, callfunc_selector(GraphicsReloadLayer::performReload)),
+            nullptr
+        ));
+        return true;
+    }
+    void performReload() = win 0x366490;
+    static cocos2d::CCScene* scene(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool windowed, bool borderless, bool fix, bool changedResolution) = win inline {
+        auto scene = cocos2d::CCScene::create();
+        auto layer = GraphicsReloadLayer::create(quality, resolution, windowed, borderless, fix, changedResolution);
+        scene->addChild(layer);
+        return scene;
+    }
+
+    cocos2d::TextureQuality m_quality;
+    cocos2d::CCSize m_resolution;
+    bool m_windowed;
+    bool m_borderless;
+    bool m_fix;
+    bool m_changedResolution;
 }
 
 [[link(android)]]
@@ -13656,30 +13693,55 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 [[link(android)]]
 class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
     // virtual ~MoreVideoOptionsLayer();
+    MoreVideoOptionsLayer() {
+        m_page = 0;
+        m_toggleCount = 0;
+        m_pageCount = 0;
+        m_fpsInput = nullptr;
+        m_fpsNodes = nullptr;
+    }
 
-    static MoreVideoOptionsLayer* create();
+    static MoreVideoOptionsLayer* create() = win inline {
+        auto ret = new MoreVideoOptionsLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    void addToggle(char const* label, char const* key, char const* description);
-    int countForPage(int);
-    void goToPage(int);
+    void addToggle(char const* label, char const* key, char const* description) = win 0x3639b0;
+    int countForPage(int) = win 0x364010;
+    void goToPage(int) = win 0x364430;
     void incrementCountForPage(int);
     const char* infoKey(int);
-    TodoReturn layerForPage(int);
+    cocos2d::CCLayer* layerForPage(int) = win 0x364270;
     const char* layerKey(int);
-    TodoReturn nextPosition(int);
-    TodoReturn objectKey(int);
-    TodoReturn objectsForPage(int);
-    void onApplyFPS(cocos2d::CCObject* sender);
-    void onClose(cocos2d::CCObject* sender);
-    void onInfo(cocos2d::CCObject* sender);
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
-    void onToggle(cocos2d::CCObject* sender);
+    cocos2d::CCPoint nextPosition(int);
+    const char* objectKey(int);
+    cocos2d::CCArray* objectsForPage(int) = win 0x3640e0;
+    void onApplyFPS(cocos2d::CCObject* sender) = win 0x3652b0;
+    void onClose(cocos2d::CCObject* sender) = win 0x365780;
+    void onInfo(cocos2d::CCObject* sender) = win 0x3655a0;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x364410;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x364420;
+    void onToggle(cocos2d::CCObject* sender) = win 0x364840;
     const char* pageKey(int);
-    void updateFPSButtons();
+    void updateFPSButtons() = win 0x3651e0;
 
-    virtual bool init() = imac 0x78b270, m1 0x69ee4c, ios 0xf4504;
+    virtual bool init() = win 0x362eb0, imac 0x78b270, m1 0x69ee4c, ios 0xf4504;
     virtual void keyBackClicked() = win 0x3657d0, m1 0x6a0f54, imac 0x78d440, ios 0xf5950;
+
+    int m_page;
+    int m_toggleCount;
+    int m_pageCount;
+    cocos2d::CCDictionary* m_values;
+    cocos2d::CCDictionary* m_variables;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_nextButton;
+    CCTextInputNode* m_fpsInput;
+    cocos2d::CCArray* m_fpsNodes;
 }
 
 [[link(android)]]
@@ -20472,26 +20534,26 @@ class UserListDelegate {
 class VideoOptionsLayer : FLAlertLayer {
     // virtual ~VideoOptionsLayer();
 
-    static VideoOptionsLayer* create();
+    static VideoOptionsLayer* create() = win 0x360cd0;
 
-    CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float, bool, cocos2d::CCArray*);
-    void onAdvanced(cocos2d::CCObject* sender);
-    void onApply(cocos2d::CCObject* sender) = imac 0x78a590, m1 0x69e330;
-    void onBorderless(cocos2d::CCObject* sender);
-    void onBorderlessFix(cocos2d::CCObject* sender);
-    void onClose(cocos2d::CCObject* sender);
-    void onFullscreen(cocos2d::CCObject* sender);
+    CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float, bool, cocos2d::CCArray*) = win 0x362c70;
+    void onAdvanced(cocos2d::CCObject* sender) = win 0x362130;
+    void onApply(cocos2d::CCObject* sender) = win 0x362720, m1 0x69e330, imac 0x78a590;
+    void onBorderless(cocos2d::CCObject* sender) = win 0x362280;
+    void onBorderlessFix(cocos2d::CCObject* sender) = win 0x3622a0;
+    void onClose(cocos2d::CCObject* sender) = win 0x362be0;
+    void onFullscreen(cocos2d::CCObject* sender) = win 0x362260;
     void onInfo(cocos2d::CCObject* sender) = m1 0x69ea28;
-    void onResolutionNext(cocos2d::CCObject* sender);
-    void onResolutionPrev(cocos2d::CCObject* sender);
-    void onTextureQualityNext(cocos2d::CCObject* sender);
-    void onTextureQualityPrev(cocos2d::CCObject* sender);
+    void onResolutionNext(cocos2d::CCObject* sender) = win 0x3623a0;
+    void onResolutionPrev(cocos2d::CCObject* sender) = win 0x362390;
+    void onTextureQualityNext(cocos2d::CCObject* sender) = win 0x3622d0;
+    void onTextureQualityPrev(cocos2d::CCObject* sender) = win 0x3622c0;
     void reloadMenu();
-    void toggleResolution();
-    void updateResolution(int) = m1 0x69e634, imac 0x78a8b0;
-    void updateTextureQuality(int);
+    void toggleResolution() = win 0x3624c0;
+    void updateResolution(int) = win 0x3623b0, m1 0x69e634, imac 0x78a8b0;
+    void updateTextureQuality(int) = win 0x3622e0;
 
-    virtual bool init() = imac 0x789140, m1 0x69d004, ios 0xf2d28;
+    virtual bool init() = win 0x360df0, imac 0x789140, m1 0x69d004, ios 0xf2d28;
     virtual void keyBackClicked() = win 0x362c60, m1 0x69eb08, imac 0x78adf0, ios 0xf4440;
 
     CCMenuItemSpriteExtra* m_prevResolutionBtn;
@@ -20503,8 +20565,11 @@ class VideoOptionsLayer : FLAlertLayer {
     cocos2d::CCArray* m_availableResolutions;
     CCMenuItemToggler* m_borderlessToggle;
     cocos2d::CCLabelBMFont* m_borderlessLabel;
+    CCMenuItemToggler* m_fixToggle;
+    cocos2d::CCLabelBMFont* m_fixLabel;
     bool m_windowed;
     bool m_borderless;
+    bool m_fix;
     int m_currentResolution;
 }
 

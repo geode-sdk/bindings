@@ -324,6 +324,8 @@ GEODE_SIZE_CHECK(SFXFolderObject, 0x78);
 GEODE_SIZE_CHECK(SFXInfoObject, 0x70);
 GEODE_SIZE_CHECK(SFXSearchResult, 0xa0);
 GEODE_SIZE_CHECK(SecretLayer5, 0x290);
+GEODE_SIZE_CHECK(GraphicsReloadLayer, 0x1a8);
+GEODE_SIZE_CHECK(MoreVideoOptionsLayer, 0x2c0);
 
 GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
