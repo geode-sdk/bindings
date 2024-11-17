@@ -6182,7 +6182,7 @@ class GameManager : GManager {
     cocos2d::CCSize resolutionForKey(int) = win 0x187890, imac 0x3791c0;
     TodoReturn resumeAudio();
     TodoReturn resumeAudioDelayed();
-    void returnToLastScene(GJGameLevel*) = win 0x187030;
+    void returnToLastScene(GJGameLevel*) = win 0x187030, m1 0x308f8c, imac 0x3789d0;
     TodoReturn rewardedVideoAdFinished(int);
     TodoReturn rewardedVideoHidden();
     TodoReturn rewardedVideoHiddenDelayed();
