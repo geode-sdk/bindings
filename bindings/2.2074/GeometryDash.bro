@@ -11363,7 +11363,7 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
     virtual void textInputOpened(CCTextInputNode*) = m1 0x23ec10, imac 0x296c10, ios 0x2dcd24 {}
     virtual void textInputClosed(CCTextInputNode*) = m1 0x23ebf4, imac 0x296bd0, ios 0x2dcd08;
     virtual void textChanged(CCTextInputNode*) = win 0x2930e0, imac 0x296c30, m1 0x23ec18, ios 0x2dcd2c;
-    virtual void uploadMessageFinished(int) = win 0x2936c0, imac 0x297300, m1 0x23f328, ios 0x2dd168;
+    virtual void uploadMessageFinished(int) = win 0x2936c0, imac 0x297300, m1 0x23f2bc, ios 0x2dd168;
     virtual void uploadMessageFailed(int) = win 0x293740, imac 0x2973c0, m1 0x23f394, ios 0x2dd1f8;
     virtual void onClosePopup(UploadActionPopup*) = win 0x2937f0, imac 0x2974f0, m1 0x23f4d4, ios 0x2dd27c;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x293890, imac 0x297640, m1 0x23f658, ios 0x2dd2f8;
@@ -18777,7 +18777,7 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
     virtual void textInputOpened(CCTextInputNode* textInput) = m1 0x4fdb34, imac 0x5c92d0, ios 0x1d6848 {}
     virtual void textInputClosed(CCTextInputNode* textInput) = win 0x4761c0, imac 0x5c9160, m1 0x4fd9a8, ios 0x1d6774;
     virtual void textChanged(CCTextInputNode* textInput) = win 0x476300, imac 0x5c92f0, m1 0x4fdb3c, ios 0x1d6850;
-    virtual void uploadActionFinished(int ID, int unk) = win 0x476550, imac 0x5c95e0, m1 0x4fddcc, ios 0x1d6a10;
+    virtual void uploadActionFinished(int ID, int unk) = win 0x476550, imac 0x5c9560, m1 0x4fddcc, ios 0x1d6a10;
     virtual void uploadActionFailed(int ID, int unk) = win 0x4765e0, m1 0x4fdf04, imac 0x5c9660, ios 0x1d6aa0;
     virtual void onClosePopup(UploadActionPopup*) = win 0x476690, m1 0x4fe064, imac 0x5c9780, ios 0x1d6b24;
 
@@ -19639,7 +19639,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 
     virtual void customSetup() = imac 0x385810, m1 0x31546c, ios 0x194c28;
     virtual void uploadActionFinished(int, int) = win 0x4b0fb0, imac 0x3876b0, m1 0x317218, ios 0x1964b8;
-    virtual void uploadActionFailed(int, int) = win 0x4b10f0, imac 0x387880, m1 0x317400, ios 0x1965a0;
+    virtual void uploadActionFailed(int, int) = win 0x4b10f0, imac 0x387800, m1 0x31736c, ios 0x1965a0;
     virtual void onClosePopup(UploadActionPopup*) = win 0x4b0f70, m1 0x3171c8, imac 0x387660, ios 0x196468;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x4b1d70, imac 0x387b20, m1 0x3176c4, ios 0x1967b4;
 }
