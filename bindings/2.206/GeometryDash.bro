@@ -2708,7 +2708,7 @@ class CountTriggerGameObject : EffectGameObject {
 	int m_pickupCount;
 	int m_pickupTriggerMode; // 1 = multiply, 2 = divide
 	bool m_unkPickupBool1;
-	bool m_unkPickupBool2;
+	bool m_isOverride;
 	float m_pickupTriggerMultiplier;
 }
 
@@ -6698,14 +6698,14 @@ class GameObject : CCSpritePlus {
 	// property 511
 	bool m_hasExtendedCollision;
 	cocos2d::ccColor3B m_maybeGroupColor;
-	bool m_unk280;
-	bool m_unk281;
-	float m_blackChildRelated;
-	bool m_unk288;
+	bool m_useBlackOpacity;
+	bool m_useObjectGlowColor;
+	float m_blackChildOpacity;
+	bool m_maybeBlackChildIsBlendable;
 	bool m_editorEnabled;
 	bool m_isGroupDisabled;
 	bool m_unk28B;
-	bool m_unk28c;
+	bool m_notLinked;
 
 	// somehow related to property 155 and 156 if anyone wants to reverse engineer
 	int m_activeMainColorID;
@@ -6714,16 +6714,17 @@ class GameObject : CCSpritePlus {
 	bool m_detailUsesHSV;
 	float m_positionXOffset;
 	float m_positionYOffset;
-
+	
+	
 	float m_rotationXOffset;
 	float m_unk2A8;
 	float m_rotationYOffset;
 	float m_unk2B0;
 	float m_scaleXOffset;
 	float m_scaleYOffset;
-	float m_unk2BC;
-	float m_unk2C0;
-	bool m_tempOffsetXRelated;
+	float m_realPositionX;
+	float m_realPositionY;
+	bool m_tempOffsetXRelated; // m_lockXPos or m_lockRoation might be a better name? 
 	bool m_isFlipX;
 	bool m_isFlipY;
 	cocos2d::CCPoint m_customBoxOffset;
@@ -6732,7 +6733,7 @@ class GameObject : CCSpritePlus {
 	OBB2D* m_orientedBox;
 	bool m_shouldUseOuterOb;
 	cocos2d::CCSprite* m_glowSprite;
-	int m_unk2F8;
+	int m_maybeGlowSpriteDetail;
 	float m_width;
 	float m_height;
 	bool m_hasSpecialChild;
@@ -6741,22 +6742,22 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCParticleSystemQuad* m_particle;
 	gd::string m_particleString;
 	bool m_hasParticles;
-
+    
 	// property 146
 	bool m_particleUseObjectColor;
 	bool m_hasColorSprite;
-	cocos2d::CCPoint m_unk31c;
-	bool m_isSomeSpriteScalable;
+	cocos2d::CCPoint m_particlePostion;
+	bool m_isSomeSpriteScalable; // Maybe ParticleIsScaled?
 	cocos2d::CCRect m_textureRect;
 	bool m_isDirty;
 	bool m_isObjectPosDirty;
 	bool m_isUnmodifiedPosDirty;
-	float m_unk33C;
+	float m_unk33C; // has some behaviors with objectrect's height
 	cocos2d::CCRect m_objectRect;
 	bool m_isObjectRectDirty;
 	bool m_isOrientedBoxDirty;
 	bool m_colorSpriteLocked;
-	bool m_unk353;
+	bool m_isBlendable;
 	bool m_canRotateFree;
 	bool m_isMirroredByScale;
 
@@ -6768,7 +6769,8 @@ class GameObject : CCSpritePlus {
 	bool m_shouldBlendBase;
 	bool m_shouldBlendDetail;
 	bool m_hasCustomChild;
-	bool m_unk367;
+    // Object is a creature or Monster Object
+	bool m_isAnimated; 
 	cocos2d::CCSprite* m_colorSprite;
 	bool m_unk370;
 	float m_objectRadius;
@@ -6780,6 +6782,7 @@ class GameObject : CCSpritePlus {
 
 	// used in PlayerObject::gameEventTriggered
 	GameObjectType m_savedObjectType;
+    // unk390 is Possibly Another Unknown Object type  
 	int m_unk390;
 	float m_unmodifiedPositionX;
 	float m_unmodifiedPositionY;
@@ -6799,8 +6802,11 @@ class GameObject : CCSpritePlus {
 	float m_customScaleY;
 	bool m_startFlipX;
 	bool m_startFlipY;
-	bool m_unk3ee;
+
+    	// m_unk3ee Also has Invisable Behaviors 
+    	bool m_unk3ee; 
 	bool m_isInvisible;
+    	// NOTE: m_unk3D8 might be unused
 	int m_unk3D8;
 	short m_unk3DC;
 	bool m_unk3DE;
@@ -6822,12 +6828,13 @@ class GameObject : CCSpritePlus {
 
 	// property 1
 	int m_objectID;
-	bool m_unk3F8;
+	bool m_dontTransform;
 	bool m_isSolid;
 	bool m_ignoreEnter;
 	bool m_ignoreFade;
+    	// Maybe m_dontFadeTinted ?
 	bool m_unk3FC;
-	bool m_unk3FD;
+	bool m_isTintObject;
 	bool m_customSpriteColor;
 
 	// property 497
@@ -6841,22 +6848,22 @@ class GameObject : CCSpritePlus {
 	// property 507
 	bool m_hasNoParticles;
 	int m_defaultZOrder;
-	bool m_unk40C;
+	bool m_isPortalObject;
 	bool m_colorZLayerRelated;
-	bool m_unk40E;
-	float m_unk410;
-	float m_unk414;
+	bool m_isAudioScale; 
+	float m_minAudioScale;
+	float m_maxAudioScale;
 	bool m_particleLocked;
 
 	// property 53
 	int m_property53;
-	bool m_gmUnkBool4Related;
-	bool m_unk421;
-	bool m_unk422;
+	bool m_gmUnkBool4Related; // m_doesntFade Maybe?
+	bool m_useGlowBGColor; 
+	bool m_useGlowColor;
 	bool m_cantColorGlow;
 	float m_opacityMod;
-	bool m_slopeBugged;
-	int m_slopeDirection;
+	bool m_slopeBugged; // m_upSlope might be a better name?
+	int m_slopeDirection; //
 	bool m_maybeShouldFixSlopes;
 	float m_opacityMod2;
 
@@ -6864,7 +6871,7 @@ class GameObject : CCSpritePlus {
 	GJSpriteColor* m_baseColor;
 	// property 22, also used with 42 and 44
 	GJSpriteColor* m_detailColor;
-	bool m_unk448;
+	bool m_isBlendingBatchNode;
 	ZLayer m_defaultZLayer;
 	bool m_zFixedZLayer;
 
@@ -6905,12 +6912,12 @@ class GameObject : CCSpritePlus {
 	// property 61
 	short m_editorLayer2;
 	int m_enabledGroupsCounter;
-	bool m_unk4ac;
-	bool m_unk4ad;
+	bool m_updateCustomContentSize;
+	bool m_hasContentSize;
 
 	// property 121
 	bool m_isNoTouch;
-	cocos2d::CCSize m_unk4b0;
+	cocos2d::CCSize m_lastSize;
 	cocos2d::CCPoint m_lastPosition;
 	int m_unk4C0;
 	int m_unk4C4;
@@ -6930,10 +6937,10 @@ class GameObject : CCSpritePlus {
 	ColorActionSprite* m_unk4E0;
 	ColorActionSprite* m_unk4E8;
 	GJEffectManager* m_goEffectManager;
-	bool m_unk4F8;
-	bool m_isDecoration;
-	bool m_isDecoration2;
-	bool m_unk4fb;
+	bool m_maybeIsGoEffectObject;
+	bool m_isMainDecoration;
+	bool m_isDetailDecoration;
+	bool m_maybeIsNotDamaging;
 	bool m_maybeNotColorable;
 
 	// property 134
@@ -6956,6 +6963,7 @@ class GameObject : CCSpritePlus {
 	bool m_isDontBoostY;
 	// property 509
 	bool m_isDontBoostX;
+    // has Something to do with the ID Number 749
 	bool m_unk507;
 	bool m_unk508;
 	float m_unk50C;
@@ -6971,7 +6979,7 @@ class GameObject : CCSpritePlus {
 	int m_areaOpacityRelated3;
 	int m_unk52C;
 	bool m_unk530;
-	bool m_unk531;
+	bool m_maybeIsUiObject;
 	bool m_unk532;
 }
 
@@ -7739,7 +7747,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	void animateOutGroundNew(bool) = imac 0x119010;
 	TodoReturn animatePortalY(float, float, float, float);
 	TodoReturn applyLevelSettings(GameObject*) = imac 0x14ce80;
-	TodoReturn applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&);
+	void applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&) = win 0x20b960;
 	void applySFXEditTrigger(int, int, SFXTriggerGameObject*);
 	void applyShake(cocos2d::CCPoint&);
 	void assignNewStickyGroups(cocos2d::CCArray*) = win 0x215530;
@@ -8229,7 +8237,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	cocos2d::CCNode* m_field_900;
 	cocos2d::CCNode* m_field_908;
 	OBB2D* m_obb2;
-	gd::vector<gd::unordered_map<int,int>*> m_vecUmapIntInt;
+	gd::vector<gd::unordered_map<int,int>> m_spawnRemapTriggers;
 	gd::unordered_map<int, cocos2d::CCPoint> m_umapIntCCPoint;
 	GJEffectManager* m_effectManager;
 	cocos2d::CCSpriteBatchNode* m_unk950;
@@ -9945,7 +9953,9 @@ class GJOptionsLayer : SetupTriggerPopup {
 	static GJOptionsLayer* create(int) = m1 0x23a7ec, imac 0x297d60;
 
 	void addGVToggle(char const*, char const*, char const*) = win 0x27d8f0, m1 0x23b080, imac 0x298780;
-	void addToggle(char const*, int, bool, char const*) = m1 0x23b644, imac 0x298d70;
+	void addToggle(char const* p0, int p1, bool p2, char const* p3) = win inline, m1 0x23b644, imac 0x298d70 {
+		addToggleInternal(p0, p1, p2, p3);
+	}
 	void addToggleInternal(char const*, int, bool, char const*) = win 0x27da30, m1 0x23b1bc, imac 0x2988a0;
 	int countForPage(int) = win 0x27df30, m1 0x23bf6c, imac 0x299660;
 	void goToPage(int) = win 0x27e450, m1 0x23ac6c, imac 0x298310;
@@ -9957,7 +9967,9 @@ class GJOptionsLayer : SetupTriggerPopup {
 	cocos2d::CCPoint nextPosition(int) = m1 0x23b648, imac 0x298d80;
 	const char* objectKey(int) = m1 0x23c08c, imac 0x299770;
 	cocos2d::CCArray* objectsForPage(int) = win 0x27e100, m1 0x23bbb8, imac 0x2992b0;
-	void offsetToNextPage() = m1 0x23b058, imac 0x298740;
+	void offsetToNextPage() = win inline, m1 0x23b058, imac 0x298740 {
+		m_toggleCount += m_togglesPerPage - m_toggleCount % m_togglesPerPage;
+	}
 	void onInfo(cocos2d::CCObject* sender) = win 0x27e970, m1 0x23bd98, imac 0x2994a0;
 	void onNextPage(cocos2d::CCObject* sender) = win 0x27e430, m1 0x23ac54, imac 0x2982d0;
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x27e440, m1 0x23ac60, imac 0x2982f0;
@@ -19179,10 +19191,10 @@ class SpawnTriggerGameObject : EffectGameObject {
 	TodoReturn addRemap(int, int);
 	TodoReturn changeRemap(int, int, bool);
 	TodoReturn removeRemap(int, int);
-	TodoReturn updateRemapKeys(gd::vector<int> const&) = imac 0x1cccf0;
+	void updateRemapKeys(gd::vector<int> const&) = win 0x48c900, imac 0x1cccf0;
 
 	virtual bool init() = m1 0x186cf8, imac 0x1ccca0, ios 0x397a28;
-	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x186fc4, imac 0x1cd010, ios 0x397c60;
+	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x186fc4, imac 0x1cd010, ios 0x397c60, win 0x48ca10;
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x187550, imac 0x1cd500, ios 0x398030;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x187954, imac 0x1cd9a0, ios 0x398380;
 }
