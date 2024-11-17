@@ -3238,7 +3238,7 @@ class DS_Dictionary {
     void removeKey(char const*);
     bool saveRootSubDictToCompressedFile(char const*);
     bool saveRootSubDictToFile(char const*);
-    gd::string saveRootSubDictToString() = imac 0x16c030;
+    gd::string saveRootSubDictToString() = imac 0x16c030, m1 0x1388ec;
     void setArrayForKey(char const*, cocos2d::CCArray*) = imac 0x170440, m1 0x13c4d0;
     void setBoolForKey(char const*, bool, bool);
     void setBoolForKey(char const*, bool) = imac 0x16e790, m1 0x13ab9c;
@@ -3266,7 +3266,7 @@ class DS_Dictionary {
     void split(gd::string const&, char const*, gd::vector<gd::string>&);
     bool splitWithForm(gd::string const&, gd::vector<gd::string>&);
     void stepBackToRootSubDict();
-    bool stepIntoSubDictWithKey(char const*) = imac 0x16c5d0;
+    bool stepIntoSubDictWithKey(char const*) = imac 0x16c5d0, m1 0x138dc0;
     void stepOutOfSubDict() = imac 0x16c8a0, m1 0x138ff0;
     bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
 }
@@ -3429,8 +3429,8 @@ class cocos2d::CCSpeed {
 
 [[link(win, android)]]
 class pugi::xml_document {
-    xml_document();
-    ~xml_document() = imac 0x62ab90;
+    xml_document() = imac 0x62aa40, m1 0x5553cc;
+    ~xml_document() = imac 0x62ab90, m1 0x555520;
 }
 
 [[link(win, android)]]
