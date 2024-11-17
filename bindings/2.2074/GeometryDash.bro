@@ -5590,7 +5590,7 @@ class GameLevelManager : cocos2d::CCNode {
     void getGauntletsearchKey(int);
     void getGJChallenges() = win 0x164ad0, m1 0x49be48, imac 0x542da0;
     void getGJDailyLevelState(GJTimedLevelType) = imac 0x543260, m1 0x49c2bc;
-    void getGJRewards(int) = imac 0x542540, m1 0x49b6b0;
+    void getGJRewards(int) = win 0x1635e0, imac 0x542540, m1 0x49b6b0;
     TodoReturn getGJSecretReward(gd::string) = m1 0x49b214, imac 0x542050;
     void getGJUserInfo(int) = win 0x157880, imac 0x536710, m1 0x4901ac;
     int getHighestLevelOrder() = imac 0x51ece0;
@@ -12067,7 +12067,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     }
     void setSearchObject(GJSearchObject*);
     void setupLevelBrowser(cocos2d::CCArray*) = win 0x2c36d0, imac 0x47ce70, m1 0x3eafb8;
-    void show();
+    void show() = win 0x2c7a60;
     void updateLevelsLabel();
     void updatePageLabel() = win 0x2c4a70, imac 0x479d90;
 
@@ -16028,7 +16028,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     void showCompletedLevel() = win 0x3cc5a0, m1 0x3f9e98, imac 0x48ce80;
     void showSecretLevel() = win 0x3cc430;
     void updateMessageLabel(gd::string text) = win 0x3cff20;
-    void updateSearchLabel(char const*);
+    void updateSearchLabel(char const*) = win 0x3cfc30;
 
     virtual bool init() = win 0x3caf70, imac 0x48a0f0, m1 0x3f73b4, ios 0x309960;
     virtual void onExit() = imac 0x4900c0, m1 0x3fce88, ios 0x30dc8c;
