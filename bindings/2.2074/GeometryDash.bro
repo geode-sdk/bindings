@@ -8144,7 +8144,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateAreaObjectLastValues(GameObject*);
     void updateAudioVisualizer() = win 0x2422f0, imac 0x143430, m1 0x11a1b0;
     void updateBGArtSpeed(float, float) = m1 0x11e5e0;
-    void updateCamera(float) = win 0x235760, imac 0x143a60;
+    void updateCamera(float) = win 0x235760, imac 0x143a60, m1 0x11a738;
     TodoReturn updateCameraBGArt(cocos2d::CCPoint, float) = imac 0x14a5c0;
     TodoReturn updateCameraEdge(int, int);
     void updateCameraMode(EffectGameObject* obj, bool updateDual) = win inline, imac 0x114180 {
