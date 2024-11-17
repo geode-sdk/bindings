@@ -4694,7 +4694,7 @@ class EndPortalObject : GameObject {
     cocos2d::CCPoint getSpawnPos() = win 0x136560, m1 0x318e60;
     void triggerObject(GJBaseGameLayer*) = m1 0x318dcc;
     TodoReturn updateColors(cocos2d::ccColor3B);
-    void updateEndPos(bool) = win 0x1367d0, m1 0x319020;
+    void updateEndPos(bool) = win 0x1367d0, m1 0x319020, imac 0x3898c0;
 
     virtual bool init() = imac 0x389250, m1 0x318a2c, ios 0x3f66b0;
     virtual void setPosition(cocos2d::CCPoint const&) = m1 0x318ec4, imac 0x389750, ios 0x3f6b38;
@@ -14705,7 +14705,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     }
     TodoReturn handleRotatedSlopeCollision(float, GameObject*, bool);
     TodoReturn hardFlipGravity();
-    void hitGround(GameObject*, bool) = win 0x3861a0;
+    void hitGround(GameObject*, bool) = win 0x3861a0, imac 0x3fa390, m1 0x37951c;
     TodoReturn hitGroundNoJump(GameObject*, bool);
     void incrementJumps() = win 0x376e10, imac 0x3f1bf0, m1 0x3728d8;
     bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x370a00, imac 0x3e8970, m1 0x36a954;
