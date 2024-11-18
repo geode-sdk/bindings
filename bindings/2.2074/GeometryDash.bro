@@ -13257,7 +13257,7 @@ class LoadingCircleSprite : cocos2d::CCSprite {
     /// @param spinSpeed A speed modifier, higher is faster and lower is slower
     static LoadingCircleSprite* create(float spinSpeed) = win 0x6bc30, imac 0x4ac190;
 
-    TodoReturn fadeInCircle(bool, float, float);
+    cocos2d::CCAction* fadeInCircle(bool, float, float) = win 0x6bd30;
     void hideCircle() = win inline, m1 0x415470 {
         this->stopActionByTag(0);
         this->setOpacity(0);
