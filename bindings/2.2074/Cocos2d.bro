@@ -393,17 +393,17 @@ class cocos2d::CCScene {
 class cocos2d::CCSet {
     static cocos2d::CCSet* create();
 
-    //CCSet(cocos2d::CCSet const&) = imac 0x7bf970, m1 0x6c576c;
-    CCSet();
+    //CCSet(cocos2d::CCSet const&) = imac 0x79df40, m1 0x6b0448;
+    CCSet() = imac 0x79def0, m1 0x6b03e8;
     ~CCSet() = imac 0x79e050;
     void addObject(cocos2d::CCObject*) = imac 0x79e300, m1 0x6b07f0;
     cocos2d::CCObject* anyObject() = imac 0x79e4d0, m1 0x6b09ec;
-    cocos2d::CCSetIterator begin();
+    cocos2d::CCSetIterator begin() = imac 0x79e4b0, m1 0x6b09d4;
     bool containsObject(cocos2d::CCObject*) = imac 0x79e460, m1 0x6b0984;
     cocos2d::CCSet* copy();
     int count();
-    cocos2d::CCSetIterator end() = imac 0x79e4c0;
-    cocos2d::CCSet* mutableCopy();
+    cocos2d::CCSetIterator end() = imac 0x79e4c0, m1 0x6b09e0;
+    cocos2d::CCSet* mutableCopy() = imac 0x79e2b0, m1 0x6b079c;
     void removeAllObjects();
     void removeObject(cocos2d::CCObject*) = imac 0x79e3b0;
 
@@ -1229,7 +1229,7 @@ class cocos2d::CCTargetedTouchHandler {
 
     bool initWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
 
-    cocos2d::CCSet* getClaimedTouches();
+    cocos2d::CCSet* getClaimedTouches() = imac 0x46e5e0, m1 0x3dd8b8;
 
     void setSwallowsTouches(bool);
 
