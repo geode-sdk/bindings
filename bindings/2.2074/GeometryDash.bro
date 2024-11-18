@@ -3422,7 +3422,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
     // virtual ~DailyLevelNode();
 
-    static DailyLevelNode* create(GJGameLevel*, DailyLevelPage*, bool) = imac 0x2201c0, m1 0x1d0d8c;
+    static DailyLevelNode* create(GJGameLevel*, DailyLevelPage*, bool) = imac 0x2201c0;
 
     bool init(GJGameLevel*, DailyLevelPage*, bool) = win 0xd0c90, imac 0x2209a0, m1 0x1d3884;
     void onClaimReward(cocos2d::CCObject* sender) = win 0xd18f0, imac 0x221400, m1 0x1d4358;
@@ -3446,7 +3446,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     // virtual ~DailyLevelPage();
     //DailyLevelPage() = ios 0x1c66c0;
 
-    static DailyLevelPage* create(GJTimedLevelType) = win 0xccfd0;
+    static DailyLevelPage* create(GJTimedLevelType) = win 0xccfd0, m1 0x1d0d8c, imac 0x21e2b0;
 
     void claimLevelReward(DailyLevelNode*, GJGameLevel*, cocos2d::CCPoint) = win 0xd06b0, m1 0x1d3470;
     void createDailyNode(GJGameLevel*, bool, float, bool) = win 0xcee40, imac 0x21f7b0, m1 0x1d2700;
