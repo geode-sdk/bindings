@@ -7363,7 +7363,7 @@ class GameToolbox {
     static TodoReturn gen_random(int) = m1 0x464058, imac 0x504920;
     static TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, cocos2d::SEL_CallFunc);
     static TodoReturn getDropActionWEnd(float, float, float, cocos2d::CCAction*, float);
-    static cocos2d::CCActionEase* getEasedAction(cocos2d::CCActionInterval*, int, float) = imac 0x4de7b0;
+    static cocos2d::CCActionEase* getEasedAction(cocos2d::CCActionInterval*, int, float) = imac 0x4de7b0, m1 0x4415e8;
     static TodoReturn getEasedValue(float, int, float) = win 0x68b40;
     static uint64_t getfast_srand();
     static TodoReturn getInvertedEasing(int);
@@ -15858,7 +15858,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
         return item ? m_chestType == (int)item->m_rewardType : false;
     }
     void showCloseButton() = imac 0x20dc90, m1 0x1c2524;
-    bool showCollectReward(GJRewardItem*) = win 0x3b7790, imac 0x209c30;
+    bool showCollectReward(GJRewardItem*) = win 0x3b7790, imac 0x209c30, m1 0x1be8e8;
     void step2() = win 0x3b7950, m1 0x1bfdf0;
     void step3() = win 0x3b7a50, imac 0x20d5a0;
 
@@ -16164,7 +16164,7 @@ class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     gd::string getMessage() = win inline {
         return " ";
     }
-    void handleSecretResponse() = win 0x3de440;
+    void handleSecretResponse() = win 0x3de440, imac 0x469990, m1 0x3d91dc;
     void hideTextInput() = win inline {
         m_textInput->setTouchEnabled(false);
         m_textInput->onClickTrackNode(false);
@@ -16185,7 +16185,7 @@ class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     void showDialog(int);
     void showFailAnimation() = win 0x3de4a0;
     void showFirstDialog() = win 0x3e04f0, m1 0x3d8658, imac 0x468cd0;
-    void showSuccessAnimation() = win 0x3dea60;
+    void showSuccessAnimation() = win 0x3dea60, imac 0x469a50, m1 0x3d9294;
     void showTextInput() = win 0x3df860;
     void unlockUI() = win 0x3df6a0;
     void updateMessageLabel(gd::string text) = win inline {

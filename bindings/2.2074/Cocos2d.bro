@@ -169,7 +169,7 @@ class cocos2d::CCEaseSineIn {
 
 [[link(win, android)]]
 class cocos2d::CCEaseSineOut {
-    static cocos2d::CCEaseSineOut* create(cocos2d::CCActionInterval*);
+    static cocos2d::CCEaseSineOut* create(cocos2d::CCActionInterval*) = imac 0x4ff830, m1 0x45f1f8;
 
     // CCEaseSineOut(cocos2d::CCEaseSineOut const&);
     // CCEaseSineOut();
@@ -3007,7 +3007,7 @@ class cocos2d::CCMenu {
     // CCMenu(cocos2d::CCMenu const&);
     // CCMenu();
     void alignItemsHorizontally();
-    void alignItemsHorizontallyWithPadding(float);
+    void alignItemsHorizontallyWithPadding(float) = imac 0x77d5c0, m1 0x6924f8;
     // void alignItemsInColumns(unsigned int, ...);
     // void alignItemsInColumns(unsigned int, char*);
     void alignItemsInColumnsWithArray(cocos2d::CCArray*);
