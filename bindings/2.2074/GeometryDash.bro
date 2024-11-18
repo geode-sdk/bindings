@@ -13952,7 +13952,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void addDLToActive(char const* tag);
     TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x327f30;
     void addSongObjectFromString(gd::string);
-    void clearSong(int songID) = win inline, m1 0x48795c {
+    void clearSong(int songID) = win inline, m1 0x4cae00, imac 0x577170 {
         const char* key = cocos2d::CCString::createWithFormat("%i", songID)->getCString();
         m_songObjects->removeObjectForKey(key);
     }
