@@ -11203,7 +11203,7 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
 class GJUserMessage : cocos2d::CCNode {
     // virtual ~GJUserMessage();
 
-    static GJUserMessage* create() = win 0x170ec0, imac 0x549f70;
+    static GJUserMessage* create() = win 0x170ec0, imac 0x549f70, m1 0x4a264c;
     static GJUserMessage* create(cocos2d::CCDictionary*) = win 0x170380, m1 0x490df0;
 
     virtual bool init() = m1 0x4a26e8, imac 0x54a010, ios 0xb35d0;
