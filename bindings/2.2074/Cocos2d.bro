@@ -308,7 +308,7 @@ class cocos2d::CCRemoveSelf {
 
 [[link(win, android)]]
 class cocos2d::CCScaleBy {
-    static cocos2d::CCScaleBy* create(float, float) = imac 0x3a7430;
+    static cocos2d::CCScaleBy* create(float, float) = imac 0x3a7430, m1 0x3339d0;
     static cocos2d::CCScaleBy* create(float, float, float);
 
     // CCScaleBy(cocos2d::CCScaleBy const&);
@@ -3172,7 +3172,7 @@ class cocos2d {
     static void ccGLDeleteProgram(unsigned int);
     static void ccGLDeleteTexture(unsigned int);
     static void ccGLDeleteTextureN(unsigned int, unsigned int);
-    static void ccGLEnable(cocos2d::ccGLServerState);
+    static void ccGLEnable(cocos2d::ccGLServerState) = imac 0x3480a0, m1 0x2dccc4;
     static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2dccc8, imac 0x3480b0;
     static void ccGLInvalidateStateCache();
     static void ccGLUseProgram(unsigned int);

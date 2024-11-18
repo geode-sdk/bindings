@@ -3446,7 +3446,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     // virtual ~DailyLevelPage();
     //DailyLevelPage() = ios 0x1c66c0;
 
-    static DailyLevelPage* create(GJTimedLevelType) = win 0xccfd0;
+    static DailyLevelPage* create(GJTimedLevelType) = win 0xccfd0, m1 0x1d0d8c, imac 0x21e2b0;
 
     void claimLevelReward(DailyLevelNode*, GJGameLevel*, cocos2d::CCPoint) = win 0xd06b0, m1 0x1d3470;
     void createDailyNode(GJGameLevel*, bool, float, bool) = win 0xcee40, imac 0x21f7b0, m1 0x1d2700;
@@ -6260,7 +6260,7 @@ class GameManager : GManager {
     TodoReturn tryCacheAd();
     TodoReturn tryShowInterstitial(int, int, int);
     TodoReturn unloadBackground();
-    void unloadIcon(int, int, int) = win 0x17f050, m1 0x30016c;
+    void unloadIcon(int, int, int) = win 0x17f050, m1 0x30016c, imac 0x36ee80;
     void unloadIcons(int);
     TodoReturn unlockColor(int, UnlockType);
     TodoReturn unlockedPremium();
@@ -8161,7 +8161,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateCameraOffsetX(float, float, int, float, int, int) = win 0x230810, imac 0x13f3e0;
     void updateCameraOffsetY(float, float, int, float, int, int) = win 0x2308b0, imac 0x13f4e0;
     void updateCollisionBlocks() = imac 0x11a8b0;
-    void updateCounters(int, int) = win 0x22e760;
+    void updateCounters(int, int) = win 0x22e760, m1 0x114398, imac 0x13bd80;
     void updateDualGround(PlayerObject*, int, bool, float) = win 0x20dcc0, imac 0x113e30, m1 0xf365c;
     void updateEnterEffects(float) = imac 0x10e8e0, m1 0xedfd4;
     TodoReturn updateExtendedCollision(GameObject*, bool);
@@ -8924,7 +8924,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn colorForPulseEffect(cocos2d::ccColor3B const&, PulseEffectAction*);
     TodoReturn controlActionsForControlID(int, GJActionCommand);
     TodoReturn controlActionsForTrigger(EffectGameObject*, GJActionCommand);
-    int countForItem(int) = win 0x25b060;
+    int countForItem(int) = win 0x25b060, imac 0x2d6930, m1 0x2777b8;
     TodoReturn createFollowCommand(float, float, float, int, int, int, int);
     TodoReturn createKeyframeCommand(int, cocos2d::CCArray*, GameObject*, int, int, bool, float, float, float, float, float, float, gd::vector<int> const&);
     TodoReturn createMoveCommand(cocos2d::CCPoint, int, float, int, float, bool, bool, bool, bool, float, float, int, int);
@@ -8972,7 +8972,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn removePersistentFromAllItems() = imac 0x2d7520;
     TodoReturn removePersistentFromAllTimers();
     TodoReturn removeTriggeredID(int, int);
-    void reset() = win 0x253d10, imac 0x2c9190;
+    void reset() = win 0x253d10, imac 0x2c9190, m1 0x26cb18;
     TodoReturn resetEffects() = win 0x254c90, imac 0x2c93a0;
     TodoReturn resetMoveActions();
     TodoReturn resetTempGroupCommands(bool);
@@ -9007,7 +9007,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn updateColorAction(ColorAction*);
     void updateColorEffects(float) = imac 0x2cb7d0, m1 0x26e6c0;
     void updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B);
-    void updateCountForItem(int, int) = win 0x25b120;
+    void updateCountForItem(int, int) = win 0x25b120, imac 0x2d6b10, m1 0x27791c;
     void updateEffects(float) = win 0x254b10, imac 0x2cb6a0, m1 0x26e5bc;
     void updateOpacityAction(OpacityEffectAction*);
     void updateOpacityEffects(float);
@@ -11988,7 +11988,7 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     static cocos2d::CCScene* scene(bool) = win 0x2be1d0, imac 0x267950;
 
     bool init(bool) = win 0x2be2e0, m1 0x2135d4, imac 0x267d00;
-    void onBack(cocos2d::CCObject* sender) = win 0x2c04a0;
+    void onBack(cocos2d::CCObject* sender) = win 0x2c04a0, m1 0x2143a0, imac 0x268b80;
     void onDoor(cocos2d::CCObject* sender) = win 0x2bffd0, imac 0x268bd0, m1 0x2143f8;
     void onInfo(cocos2d::CCObject* sender) = m1 0x2146cc, imac 0x268e70;
     void onNextFloor(cocos2d::CCObject* sender) = m1 0x21453c, imac 0x268d00;
@@ -12067,7 +12067,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     }
     void setSearchObject(GJSearchObject*);
     void setupLevelBrowser(cocos2d::CCArray*) = win 0x2c36d0, imac 0x47ce70, m1 0x3eafb8;
-    void show() = win 0x2c7a60;
+    void show() = win 0x2c7a60, m1 0x3ece8c, imac 0x47f080;
     void updateLevelsLabel();
     void updatePageLabel() = win 0x2c4a70, imac 0x479d90;
 
@@ -13257,7 +13257,7 @@ class LoadingCircleSprite : cocos2d::CCSprite {
     /// @param spinSpeed A speed modifier, higher is faster and lower is slower
     static LoadingCircleSprite* create(float spinSpeed) = win 0x6bc30, imac 0x4ac190;
 
-    cocos2d::CCAction* fadeInCircle(bool, float, float) = win 0x6bd30;
+    cocos2d::CCAction* fadeInCircle(bool, float, float) = win 0x6bd30, imac 0x4ac330, m1 0x4153e4;
     void hideCircle() = win inline, m1 0x415470 {
         this->stopActionByTag(0);
         this->setOpacity(0);
@@ -13952,7 +13952,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void addDLToActive(char const* tag);
     TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x327f30;
     void addSongObjectFromString(gd::string);
-    void clearSong(int songID) = win inline, m1 0x48795c {
+    void clearSong(int songID) = win inline, m1 0x4cae00, imac 0x577170 {
         const char* key = cocos2d::CCString::createWithFormat("%i", songID)->getCString();
         m_songObjects->removeObjectForKey(key);
     }
@@ -16028,7 +16028,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     void showCompletedLevel() = win 0x3cc5a0, m1 0x3f9e98, imac 0x48ce80;
     void showSecretLevel() = win 0x3cc430;
     void updateMessageLabel(gd::string text) = win 0x3cff20;
-    void updateSearchLabel(char const*) = win 0x3cfc30;
+    void updateSearchLabel(char const*) = win 0x3cfc30, m1 0x3f831c, imac 0x48b090;
 
     virtual bool init() = win 0x3caf70, imac 0x48a0f0, m1 0x3f73b4, ios 0x309960;
     virtual void onExit() = imac 0x4900c0, m1 0x3fce88, ios 0x30dc8c;
