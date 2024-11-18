@@ -12113,7 +12113,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 [[link(android)]]
 class LevelCell : TableViewCell {
     // virtual ~LevelCell();
-    LevelCell(char const*, float, float) = win 0xad870;
+    LevelCell(char const*, float, float) = win 0xad870, imac 0x230090, m1 0x1e03b0;
 
     static LevelCell* create(float, float) = imac 0x23caa0, m1 0x1ec704;
 
