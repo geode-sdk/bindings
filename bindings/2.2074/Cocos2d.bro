@@ -395,13 +395,13 @@ class cocos2d::CCSet {
 
     //CCSet(cocos2d::CCSet const&) = imac 0x79df40, m1 0x6b0448;
     CCSet() = imac 0x79def0, m1 0x6b03e8;
-    ~CCSet() = imac 0x79e050;
+    ~CCSet() = imac 0x79e050, m1 0x6b0560;
     void addObject(cocos2d::CCObject*) = imac 0x79e300, m1 0x6b07f0;
     cocos2d::CCObject* anyObject() = imac 0x79e4d0, m1 0x6b09ec;
     cocos2d::CCSetIterator begin() = imac 0x79e4b0, m1 0x6b09d4;
     bool containsObject(cocos2d::CCObject*) = imac 0x79e460, m1 0x6b0984;
     cocos2d::CCSet* copy();
-    int count();
+    int count() = imac 0x79e2f0, m1 0x6b07e4;
     cocos2d::CCSetIterator end() = imac 0x79e4c0, m1 0x6b09e0;
     cocos2d::CCSet* mutableCopy() = imac 0x79e2b0, m1 0x6b079c;
     void removeAllObjects();
@@ -3366,7 +3366,7 @@ class cocos2d::ZipUtils {
     static gd::string base64DecodeEnc(gd::string const&, gd::string);
     static gd::string base64EncodeEnc(gd::string const&, gd::string);
     static gd::string base64URLDecode(gd::string const&);
-    static gd::string base64URLEncode(gd::string const&);
+    static gd::string base64URLEncode(gd::string const&) = imac 0x1f3eb0, m1 0x1a9aa0;
     static void ccDecodeEncodedPvr(unsigned int*, int);
     static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**) = imac 0x1f3290, m1 0x1a8dd8;
     static int ccInflateCCZFile(char const*, unsigned char**);
