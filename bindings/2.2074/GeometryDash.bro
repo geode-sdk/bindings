@@ -6260,7 +6260,7 @@ class GameManager : GManager {
     TodoReturn tryCacheAd();
     TodoReturn tryShowInterstitial(int, int, int);
     TodoReturn unloadBackground();
-    void unloadIcon(int, int, int) = win 0x17f050, m1 0x30016c;
+    void unloadIcon(int, int, int) = win 0x17f050, m1 0x30016c, imac 0x36ee80;
     void unloadIcons(int);
     TodoReturn unlockColor(int, UnlockType);
     TodoReturn unlockedPremium();
@@ -8161,7 +8161,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateCameraOffsetX(float, float, int, float, int, int) = win 0x230810, imac 0x13f3e0;
     void updateCameraOffsetY(float, float, int, float, int, int) = win 0x2308b0, imac 0x13f4e0;
     void updateCollisionBlocks() = imac 0x11a8b0;
-    void updateCounters(int, int) = win 0x22e760;
+    void updateCounters(int, int) = win 0x22e760, m1 0x114398, imac 0x13bd80;
     void updateDualGround(PlayerObject*, int, bool, float) = win 0x20dcc0, imac 0x113e30, m1 0xf365c;
     void updateEnterEffects(float) = imac 0x10e8e0, m1 0xedfd4;
     TodoReturn updateExtendedCollision(GameObject*, bool);
@@ -8924,7 +8924,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn colorForPulseEffect(cocos2d::ccColor3B const&, PulseEffectAction*);
     TodoReturn controlActionsForControlID(int, GJActionCommand);
     TodoReturn controlActionsForTrigger(EffectGameObject*, GJActionCommand);
-    int countForItem(int) = win 0x25b060;
+    int countForItem(int) = win 0x25b060, imac 0x2d6930, m1 0x2777b8;
     TodoReturn createFollowCommand(float, float, float, int, int, int, int);
     TodoReturn createKeyframeCommand(int, cocos2d::CCArray*, GameObject*, int, int, bool, float, float, float, float, float, float, gd::vector<int> const&);
     TodoReturn createMoveCommand(cocos2d::CCPoint, int, float, int, float, bool, bool, bool, bool, float, float, int, int);
@@ -8972,7 +8972,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn removePersistentFromAllItems() = imac 0x2d7520;
     TodoReturn removePersistentFromAllTimers();
     TodoReturn removeTriggeredID(int, int);
-    void reset() = win 0x253d10, imac 0x2c9190;
+    void reset() = win 0x253d10, imac 0x2c9190, m1 0x26cb18;
     TodoReturn resetEffects() = win 0x254c90, imac 0x2c93a0;
     TodoReturn resetMoveActions();
     TodoReturn resetTempGroupCommands(bool);
@@ -9007,7 +9007,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn updateColorAction(ColorAction*);
     void updateColorEffects(float) = imac 0x2cb7d0, m1 0x26e6c0;
     void updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B);
-    void updateCountForItem(int, int) = win 0x25b120;
+    void updateCountForItem(int, int) = win 0x25b120, imac 0x2d6b10, m1 0x27791c;
     void updateEffects(float) = win 0x254b10, imac 0x2cb6a0, m1 0x26e5bc;
     void updateOpacityAction(OpacityEffectAction*);
     void updateOpacityEffects(float);
@@ -11988,7 +11988,7 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     static cocos2d::CCScene* scene(bool) = win 0x2be1d0, imac 0x267950;
 
     bool init(bool) = win 0x2be2e0, m1 0x2135d4, imac 0x267d00;
-    void onBack(cocos2d::CCObject* sender) = win 0x2c04a0;
+    void onBack(cocos2d::CCObject* sender) = win 0x2c04a0, m1 0x2143a0, imac 0x268b80;
     void onDoor(cocos2d::CCObject* sender) = win 0x2bffd0, imac 0x268bd0, m1 0x2143f8;
     void onInfo(cocos2d::CCObject* sender) = m1 0x2146cc, imac 0x268e70;
     void onNextFloor(cocos2d::CCObject* sender) = m1 0x21453c, imac 0x268d00;
