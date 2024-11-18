@@ -20212,6 +20212,11 @@ class UILayer : cocos2d::CCLayerColor {
 
     static UILayer* create(GJBaseGameLayer*) = imac 0x4b4870, m1 0x41cac4;
 
+    static UILayer* get() {
+        if (auto gjbgl = GJBaseGameLayer::get()) return gjbgl->m_uiLayer;
+        return nullptr;
+    }
+
     virtual void draw() = m1 0x41e594, imac 0x4b6710, ios 0x4dcc8 {}
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4b55a0, m1 0x41e5e4, imac 0x4b6760, ios 0x4dd08;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4b5730, imac 0x4b6940, m1 0x41e840, ios 0x4df14;
