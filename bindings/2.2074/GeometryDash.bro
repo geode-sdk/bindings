@@ -3422,7 +3422,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
     // virtual ~DailyLevelNode();
 
-    static DailyLevelNode* create(GJGameLevel*, DailyLevelPage*, bool) = imac 0x2201c0;
+    static DailyLevelNode* create(GJGameLevel*, DailyLevelPage*, bool) = imac 0x2201c0, m1 0x1d0d8c;
 
     bool init(GJGameLevel*, DailyLevelPage*, bool) = win 0xd0c90, imac 0x2209a0, m1 0x1d3884;
     void onClaimReward(cocos2d::CCObject* sender) = win 0xd18f0, imac 0x221400, m1 0x1d4358;
@@ -13257,7 +13257,7 @@ class LoadingCircleSprite : cocos2d::CCSprite {
     /// @param spinSpeed A speed modifier, higher is faster and lower is slower
     static LoadingCircleSprite* create(float spinSpeed) = win 0x6bc30, imac 0x4ac190;
 
-    cocos2d::CCAction* fadeInCircle(bool, float, float) = win 0x6bd30;
+    cocos2d::CCAction* fadeInCircle(bool, float, float) = win 0x6bd30, imac 0x4ac330, m1 0x4153e4;
     void hideCircle() = win inline, m1 0x415470 {
         this->stopActionByTag(0);
         this->setOpacity(0);
