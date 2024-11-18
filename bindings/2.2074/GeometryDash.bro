@@ -1919,7 +1919,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x50880, imac 0x9fa00, m1 0x92124, ios 0x1711fc;
     virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x50bb0, imac 0x9fd40, m1 0x92420, ios 0x171468;
 
-    void addTextArea(TextArea*) = win 0x4f540, m1 0x90ac8;
+    void addTextArea(TextArea*) = win 0x4f540, imac 0x9e100, m1 0x90ac8;
     void forceOffset();
     cocos2d::CCLabelBMFont* getPlaceholderLabel() {
         return m_placeholderLabel;
@@ -4217,7 +4217,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn tryUpdateTimeMarkers();
     void undoLastAction(cocos2d::CCObject*) = win 0x110120;
     void updateButtons() = win 0xe07e0;
-    void updateCreateMenu(bool) = win 0x10d8c0, m1 0x2e0e4;
+    void updateCreateMenu(bool) = win 0x10d8c0, imac 0x2e710, m1 0x2e0e4;
     void updateDeleteButtons() = win 0xe5fb0, m1 0x31c94, imac 0x325d0;
     void updateDeleteMenu() {
         m_deleteMenu->setVisible(m_selectedMode == 1);
