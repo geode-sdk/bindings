@@ -14680,7 +14680,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 
     static PlayerFireBoostSprite* create() = win 0x38cf30, imac 0x3ea580;
 
-    void animateFireIn() = win inline, m1 0x384370 {
+    void animateFireIn() = win inline, m1 0x384370, imac 0x4066d0 {
         this->stopAllActions();
 
         auto scaleto = cocos2d::CCScaleTo::create(0.06f, m_size * 0.6f, m_size * 1.5f);
@@ -14688,7 +14688,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
         auto sequence = cocos2d::CCSequence::create(scaleto, callfunc, nullptr);
         this->runAction(sequence);
     }
-    void animateFireOut() = win inline, m1 0x3843f0 {
+    void animateFireOut() = win inline, m1 0x3843f0, imac 0x406740 {
         this->stopAllActions();
         auto action = cocos2d::CCScaleTo::create(0.4f, 0.01f, 0.01f);
         this->runAction(action);
