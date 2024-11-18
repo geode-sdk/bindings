@@ -707,7 +707,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 
     void addPage(cocos2d::CCLayer*, int) = m1 0x322070;
     void addPage(cocos2d::CCLayer*) = imac 0x393840;
-    void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x393ab0, m1 0x322340;
     void claimTouch(cocos2d::CCTouch*);
     cocos2d::CCLayer* getPage(int) = win inline, imac 0x392d00, m1 0x3216c0 {
         auto index = m_page;
@@ -19745,7 +19745,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
     virtual void scrollViewTouchMoving(CCScrollLayerExt*) = m1 0x5396e8, imac 0x60c850, ios 0x30099c {}
     virtual void scrollViewDidEndMoving(CCScrollLayerExt*) = m1 0x5396f0, imac 0x60c870, ios 0x3009a4 {}
 
-    void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x60af10, m1 0x537f48;
     TodoReturn cellForRowAtIndexPath(CCIndexPath&);
     TodoReturn cellForTouch(cocos2d::CCTouch*);
     TodoReturn checkBoundaryOfCell(cocos2d::CCPoint&, float);
