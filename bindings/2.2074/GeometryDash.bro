@@ -19105,7 +19105,7 @@ class Slider : cocos2d::CCLayer {
         m_groove->setVisible(!visibility);
     }
     bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float) = win 0x71850, imac 0x2f0540, m1 0x28a4c0;
-    void setBarVisibility(bool visibility) = win inline {
+    void setBarVisibility(bool visibility) {
         m_sliderBar->setVisible(visibility);
     }
     void setLiveDragging(bool activateThumb) {
