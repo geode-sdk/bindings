@@ -7757,7 +7757,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
     TodoReturn activateEventTrigger(EventLinkTrigger*, gd::vector<int> const&);
     TodoReturn activateItemCompareTrigger(ItemTriggerGameObject*, gd::vector<int> const&) = win 0x22eed0;
-    void activateItemEditTrigger(ItemTriggerGameObject*) = win 0x22eaf0;
+    void activateItemEditTrigger(ItemTriggerGameObject*) = win 0x22eaf0, imac 0x13c800, m1 0x114c0c;
     void activateObjectControlTrigger(ObjectControlGameObject*);
     TodoReturn activatePersistentItemTrigger(ItemTriggerGameObject*);
     void activatePlayerControlTrigger(PlayerControlGameObject*);
