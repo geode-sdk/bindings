@@ -3957,7 +3957,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void constrainGameLayerPosition(float, float) = win 0x120dd0, imac 0x2afb0, m1 0x2b208;
     TodoReturn convertKeyBasedOnNeighbors(int, int, cocos2d::CCPoint, cocos2d::CCArray*);
     TodoReturn convertToBaseKey(int);
-    gd::string copyObjects(cocos2d::CCArray* objects, bool copyColors, bool sort) = win 0x111560, imac 0x31280;
+    gd::string copyObjects(cocos2d::CCArray* objects, bool copyColors, bool sort) = win 0x111560, imac 0x31280, m1 0x309d4;
     TodoReturn copyObjectsDetailed(cocos2d::CCArray*);
     cocos2d::CCArray* createCustomItems() = win 0xe30e0, imac 0x31b80, m1 0x3122c;
     TodoReturn createEdgeForObject(GameObject*, int);
@@ -13651,8 +13651,8 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
         return nullptr;
     }
 
-    void audioNext(cocos2d::CCObject* sender) = win 0x301c60;
-    void audioPrevious(cocos2d::CCObject* sender) = win 0x301d80;
+    void audioNext(cocos2d::CCObject* sender) = win 0x301c60, imac 0x618230, m1 0x5441d0;
+    void audioPrevious(cocos2d::CCObject* sender) = win 0x301d80, imac 0x6181c0, m1 0x54415c;
     void createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0x302730;
     void onClose(cocos2d::CCObject* sender) = win 0x302990, imac 0x617a10, m1 0x543960;
     void onCoins(cocos2d::CCObject* sender);
@@ -14501,7 +14501,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     // virtual ~PauseLayer();
     PauseLayer() = win inline {}
 
-    static PauseLayer* create(bool p0) = win inline, m1 0x34c250 {
+    static PauseLayer* create(bool p0) = win inline, m1 0x34c250, imac 0x3c2f60 {
         auto ret = new PauseLayer();
         if (ret && ret->init(p0)) {
             ret->autorelease();
