@@ -14215,12 +14215,12 @@ class NumberInputLayer : FLAlertLayer {
 class OBB2D : cocos2d::CCNode {
     // virtual ~OBB2D();
 
-    static OBB2D* create(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x6d880;
+    static OBB2D* create(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x6d880, m1 0x50edb8, imac 0x5dbcf0;
 
-    void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x6da50, imac 0x5dbe20, m1 0x50edb8;
+    void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x6da50, imac 0x5dbe20, m1 0x50ef3c;
     void computeAxes();
     cocos2d::CCRect getBoundingRect();
-    bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle);
+    bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle) = m1 0x50eebc, imac 0x5dbdb0;
     void orderCorners() = win 0x6dd70;
     bool overlaps(OBB2D*);
     bool overlaps1Way(OBB2D*) = win 0x6e100;
