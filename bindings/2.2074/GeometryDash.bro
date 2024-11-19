@@ -6708,8 +6708,8 @@ class GameObject : CCSpritePlus {
     void spawnDefaultPickupParticle(GJBaseGameLayer*) = imac 0x24c390;
     void updateBlendMode();
     void updateCustomColorType(short);
-    void updateCustomScaleX(float);
-    void updateCustomScaleY(float);
+    void updateCustomScaleX(float) = win 0x1956d0;
+    void updateCustomScaleY(float) = win 0x195760;
     void updateHSVState();
     void updateIsOriented() = win 0x19e7b0, imac 0x5b1730, m1 0x4ea58c;
     void updateMainColor();
