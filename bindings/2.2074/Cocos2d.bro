@@ -145,7 +145,7 @@ class cocos2d::CCEaseExponentialInOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseExponentialOut {
-    static cocos2d::CCEaseExponentialOut* create(cocos2d::CCActionInterval*) = m1 0x45e9b0;
+    static cocos2d::CCEaseExponentialOut* create(cocos2d::CCActionInterval*) = m1 0x45e9b0, imac 0x4ff1f0;
 
     // CCEaseExponentialOut(cocos2d::CCEaseExponentialOut const&);
     // CCEaseExponentialOut();
@@ -393,17 +393,17 @@ class cocos2d::CCScene {
 class cocos2d::CCSet {
     static cocos2d::CCSet* create();
 
-    //CCSet(cocos2d::CCSet const&) = imac 0x7bf970, m1 0x6c576c;
-    CCSet();
-    ~CCSet() = imac 0x79e050;
+    //CCSet(cocos2d::CCSet const&) = imac 0x79df40, m1 0x6b0448;
+    CCSet() = imac 0x79def0, m1 0x6b03e8;
+    ~CCSet() = imac 0x79e050, m1 0x6b0560;
     void addObject(cocos2d::CCObject*) = imac 0x79e300, m1 0x6b07f0;
     cocos2d::CCObject* anyObject() = imac 0x79e4d0, m1 0x6b09ec;
-    cocos2d::CCSetIterator begin();
+    cocos2d::CCSetIterator begin() = imac 0x79e4b0, m1 0x6b09d4;
     bool containsObject(cocos2d::CCObject*) = imac 0x79e460, m1 0x6b0984;
     cocos2d::CCSet* copy();
-    int count();
-    cocos2d::CCSetIterator end() = imac 0x79e4c0;
-    cocos2d::CCSet* mutableCopy();
+    int count() = imac 0x79e2f0, m1 0x6b07e4;
+    cocos2d::CCSetIterator end() = imac 0x79e4c0, m1 0x6b09e0;
+    cocos2d::CCSet* mutableCopy() = imac 0x79e2b0, m1 0x6b079c;
     void removeAllObjects();
     void removeObject(cocos2d::CCObject*) = imac 0x79e3b0;
 
@@ -841,7 +841,7 @@ class cocos2d::CCNode {
     cocos2d::CCPoint convertToWindowSpace(cocos2d::CCPoint const&);
     cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&) = imac 0x262c80, m1 0x20e994;
     cocos2d::CCPoint convertToWorldSpaceAR(cocos2d::CCPoint const&);
-    cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*) = m1 0x20eaf8;
+    cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*) = imac 0x262de0, m1 0x20eaf8;
     cocos2d::CCPoint convertTouchToNodeSpaceAR(cocos2d::CCTouch*);
     char const* description() = imac 0x260e70, m1 0x20cc04;
     void detachChild(cocos2d::CCNode*, bool);
@@ -1229,7 +1229,7 @@ class cocos2d::CCTargetedTouchHandler {
 
     bool initWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
 
-    cocos2d::CCSet* getClaimedTouches();
+    cocos2d::CCSet* getClaimedTouches() = imac 0x46e5e0, m1 0x3dd8b8;
 
     void setSwallowsTouches(bool);
 
@@ -1701,7 +1701,7 @@ class cocos2d::CCNodeRGBA {
 class cocos2d::CCSequence {
     static cocos2d::CCSequence* create(cocos2d::CCArray*) = imac 0x3a2980, m1 0x32f72c;
     // static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3a2600, m1 0x33d1fc;
-    static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3a24d0;
+    static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3a24d0, m1 0x32f3e4;
     static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = imac 0x3a26b0, m1 0x32f52c;
 
     bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3a25a0, m1 0x32f4a0;
@@ -1925,13 +1925,13 @@ class cocos2d::CCAnimate {
 [[link(win, android)]]
 class cocos2d::CCAnimation {
     // static cocos2d::CCAnimation* create(cocos2d::CCArray*, float);
-    static cocos2d::CCAnimation* create(cocos2d::CCArray*, float, unsigned int) = imac 0x284c00;
-    static cocos2d::CCAnimation* create();
-    static cocos2d::CCAnimation* createWithSpriteFrames(cocos2d::CCArray*, float) = imac 0x284a00;
+    static cocos2d::CCAnimation* create(cocos2d::CCArray*, float, unsigned int) = m1 0x22e300, imac 0x284c00;
+    static cocos2d::CCAnimation* create() = m1 0x22dffc, imac 0x2848d0;
+    static cocos2d::CCAnimation* createWithSpriteFrames(cocos2d::CCArray*, float) = m1 0x22e128, imac 0x284a00;
 
-    bool init();
-    bool initWithAnimationFrames(cocos2d::CCArray*, float, unsigned int);
-    bool initWithSpriteFrames(cocos2d::CCArray*, float);
+    bool init() = m1 0x22e0cc, imac 0x2849b0;
+    bool initWithAnimationFrames(cocos2d::CCArray*, float, unsigned int) = m1 0x22e3fc, imac 0x284d00;
+    bool initWithSpriteFrames(cocos2d::CCArray*, float) = m1 0x22e1b0, imac 0x284a90;
 
     float getDelayPerUnit() const;
     cocos2d::CCArray* getFrames() const;
@@ -3366,7 +3366,7 @@ class cocos2d::ZipUtils {
     static gd::string base64DecodeEnc(gd::string const&, gd::string);
     static gd::string base64EncodeEnc(gd::string const&, gd::string);
     static gd::string base64URLDecode(gd::string const&);
-    static gd::string base64URLEncode(gd::string const&);
+    static gd::string base64URLEncode(gd::string const&) = imac 0x1f3eb0, m1 0x1a9aa0;
     static void ccDecodeEncodedPvr(unsigned int*, int);
     static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**) = imac 0x1f3290, m1 0x1a8dd8;
     static int ccInflateCCZFile(char const*, unsigned char**);
@@ -3389,7 +3389,7 @@ class cocos2d::ZipUtils {
 class cocos2d::CCSpawn {
     static cocos2d::CCSpawn* create(cocos2d::CCArray*);
     // static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...) = m1 0x33e430, imac 0x3b9e30;
-    static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = m1 0x33096c, imac 0x477e10;
+    static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = m1 0x33096c, imac 0x3a3d20;
     // static cocos2d::CCSpawn* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
 
     bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*);

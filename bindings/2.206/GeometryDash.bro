@@ -3490,6 +3490,12 @@ class DashRingObject : RingObject {
 
 	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x16eaac, imac 0x1b0340, ios 0x38c038;
 	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x16ec04, imac 0x1b04b0, ios 0x38c17c;
+
+	float m_dashSpeed;
+	float m_endBoost;
+	float m_maxDuration;
+	bool m_allowCollide;
+	bool m_stopSlide;
 }
 
 [[link(android)]]
@@ -6496,7 +6502,7 @@ class GameObject : CCSpritePlus {
 	bool getGroupDisabled() = m1 0x4f660c, imac 0x5c73e0;
 	int getGroupID(int) = imac 0x5c7080, m1 0x4f62e0;
 	gd::string getGroupString();
-	cocos2d::CCPoint getLastPosition() = imac 0x5d3a00, m1 0x501170;
+	cocos2d::CCPoint const& getLastPosition() = imac 0x5d3a00, m1 0x501170;
 	GJSpriteColor* getMainColor();
 	int getMainColorMode();
 	int getObjectDirection(); // probably a enum
@@ -6507,7 +6513,7 @@ class GameObject : CCSpritePlus {
 	cocos2d::CCRect getOuterObjectRect();
 	int getParentMode();
 	GJSpriteColor* getRelativeSpriteColor(int);
-	cocos2d::CCPoint getScalePosDelta();
+	cocos2d::CCPoint getScalePosDelta() = m1 0x4f5fc0;
 	GJSpriteColor* getSecondaryColor();
 	int getSecondaryColorMode();
 	float getSlopeAngle();
@@ -6574,9 +6580,9 @@ class GameObject : CCSpritePlus {
 	bool shouldLockX();
 	bool shouldNotHideAnimFreeze();
 	bool shouldShowPickupEffects();
-	bool slopeFloorTop();
+	bool slopeFloorTop() = m1 0x4ffb30;
 	bool slopeWallLeft();
-	double slopeYPos(cocos2d::CCRect);
+	double slopeYPos(cocos2d::CCRect) = m1 0x4ffbec;
 	double slopeYPos(float) = win 0x1973f0;
 	double slopeYPos(GameObject*);
 	void spawnDefaultPickupParticle(GJBaseGameLayer*);
@@ -14588,10 +14594,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	void bumpPlayer(float, int, bool, GameObject*) = win 0x37d6b0, imac 0x423f30, m1 0x398b20;
 	TodoReturn buttonDown(PlayerButton);
 	TodoReturn canStickToGround();
-	TodoReturn checkSnapJumpToObject(GameObject*);
+	void checkSnapJumpToObject(GameObject*) = m1 0x38c5a8;
 	void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x36fa40, m1 0x38714c, imac 0x40fa20;
 	void collidedWithObject(float, GameObject*) = m1 0x38c4ec, imac 0x416340;
-	void collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x36fb00, m1 0x388d80, imac 0x411b50;
+	int collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x36fb00, m1 0x388d80, imac 0x411b50;
 	void collidedWithSlope(float dt, GameObject* object , bool forced) = imac 0x40fac0;
 	void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x36d8a0;
 	TodoReturn convertToClosestRotation(float);
@@ -14614,7 +14620,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 		m_glowColor = color;
 	}
 	void enablePlayerControls() = win 0x37d510, m1 0x398844, imac 0x423c90;
-	void exitPlatformerAnimateJump();
+	void exitPlatformerAnimateJump() = m1 0x383798;
 	void fadeOutStreak2(float) = win 0x37e1a0, m1 0x392438, imac 0x41cfd0, ios 0x237f98;
 	void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = imac 0x418210;
 	void flipGravity(bool, bool) = win 0x3781e0, m1 0x3848b4, imac 0x40c9c0;
@@ -14722,7 +14728,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn saveToCheckpoint(PlayerCheckpoint*);
 	void setSecondColor(cocos2d::ccColor3B const&) = win 0x37b3b0, m1 0x37fac8, imac 0x407090;
 	void setupStreak() = win 0x366920, m1 0x37e59c, imac 0x405810;
-	void setYVelocity(double, int) = win 0x366e70;
+	void setYVelocity(double velocity, int) = win 0x366e70 {
+		double rounded = (int)velocity;
+		if (velocity != rounded) {
+		    m_yVelocity = std::round((velocity - rounded) * 1000) / 1000. + rounded;
+		} else {
+			m_yVelocity = velocity;
+		}
+	}
 	TodoReturn spawnCircle();
 	TodoReturn spawnCircle2();
 	TodoReturn spawnDualCircle();
@@ -14767,10 +14780,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	TodoReturn updateCheckpointMode(bool);
 	TodoReturn updateCheckpointTest();
 	void updateCollide(PlayerCollisionDirection, GameObject*) = win 0x372080, m1 0x38bb70, imac 0x415900;
-	void updateCollideBottom(float, GameObject*);
+	void updateCollideBottom(float, GameObject*) = m1 0x38c9ec;
 	void updateCollideLeft(float, GameObject*);
 	void updateCollideRight(float, GameObject*);
-	void updateCollideTop(float, GameObject*);
+	void updateCollideTop(float, GameObject*) = m1 0x38c960;
 	void updateDashAnimation();
 	void updateDashArt() = win 0x3741f0, imac 0x41a140;
 	void updateEffects(float param) = win inline, imac 0x40bd80, m1 0x383d54 {

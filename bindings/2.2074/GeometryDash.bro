@@ -707,7 +707,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
 
     void addPage(cocos2d::CCLayer*, int) = m1 0x322070;
     void addPage(cocos2d::CCLayer*) = imac 0x393840;
-    void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x393ab0, m1 0x322340;
     void claimTouch(cocos2d::CCTouch*);
     cocos2d::CCLayer* getPage(int) = win inline, imac 0x392d00, m1 0x3216c0 {
         auto index = m_page;
@@ -1919,7 +1919,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x50880, imac 0x9fa00, m1 0x92124, ios 0x1711fc;
     virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x50bb0, imac 0x9fd40, m1 0x92420, ios 0x171468;
 
-    void addTextArea(TextArea*) = win 0x4f540, m1 0x90ac8;
+    void addTextArea(TextArea*) = win 0x4f540, imac 0x9e100, m1 0x90ac8;
     void forceOffset();
     cocos2d::CCLabelBMFont* getPlaceholderLabel() {
         return m_placeholderLabel;
@@ -3492,6 +3492,12 @@ class DashRingObject : RingObject {
     virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1a44b0, m1 0x1669bc, ios 0x37bc10;
 
     bool init(char const*);
+
+    float m_dashSpeed;
+    float m_endBoost;
+    float m_maxDuration;
+    bool m_allowCollide;
+    bool m_stopSlide;
 }
 
 [[link(android)]]
@@ -4217,7 +4223,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn tryUpdateTimeMarkers();
     void undoLastAction(cocos2d::CCObject*) = win 0x110120;
     void updateButtons() = win 0xe07e0;
-    void updateCreateMenu(bool) = win 0x10d8c0, m1 0x2e0e4;
+    void updateCreateMenu(bool) = win 0x10d8c0, imac 0x2e710, m1 0x2e0e4;
     void updateDeleteButtons() = win 0xe5fb0, m1 0x31c94, imac 0x325d0;
     void updateDeleteMenu() {
         m_deleteMenu->setVisible(m_selectedMode == 1);
@@ -6616,7 +6622,7 @@ class GameObject : CCSpritePlus {
     bool getGroupDisabled();
     int getGroupID(int) = m1 0x4e0b24;
     gd::string getGroupString();
-    cocos2d::CCPoint getLastPosition() = imac 0x5b2a90;
+    cocos2d::CCPoint const& getLastPosition() = imac 0x5b2a90;
     GJSpriteColor* getMainColor();
     int getMainColorMode();
     int getObjectDirection();
@@ -14722,7 +14728,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn checkSnapJumpToObject(GameObject*);
     void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bb80, imac 0x3f4c90, m1 0x3751b8;
     void collidedWithObject(float, GameObject*) = imac 0x3fb520, m1 0x37a504;
-    void collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bc40, m1 0x376dd8;
+    int collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bc40, m1 0x376dd8;
     void collidedWithSlope(float dt, GameObject* object, bool forced) = imac 0x3f4d30;
     void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x3799e0;
     TodoReturn convertToClosestRotation(float);
@@ -14854,7 +14860,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn saveToCheckpoint(PlayerCheckpoint*) = imac 0x40a6b0;
     void setSecondColor(cocos2d::ccColor3B const&) = win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
     void setupStreak() = win 0x372a50, imac 0x3eab20, m1 0x36c84c;
-    void setYVelocity(double, int) = win 0x372fa0;
+    void setYVelocity(double velocity, int) = win 0x372fa0 {
+        double rounded = (int)velocity;
+        if (velocity != rounded) {
+            m_yVelocity = std::round((velocity - rounded) * 1000) / 1000. + rounded;
+        } else {
+            m_yVelocity = velocity;
+        }
+    }
     TodoReturn spawnCircle();
     TodoReturn spawnCircle2();
     TodoReturn spawnDualCircle();
@@ -19105,7 +19118,7 @@ class Slider : cocos2d::CCLayer {
         m_groove->setVisible(!visibility);
     }
     bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, char const*, char const*, float) = win 0x71850, imac 0x2f0540, m1 0x28a4c0;
-    void setBarVisibility(bool visibility) = win inline {
+    void setBarVisibility(bool visibility) {
         m_sliderBar->setVisible(visibility);
     }
     void setLiveDragging(bool activateThumb) {
@@ -19745,7 +19758,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
     virtual void scrollViewTouchMoving(CCScrollLayerExt*) = m1 0x5396e8, imac 0x60c850, ios 0x30099c {}
     virtual void scrollViewDidEndMoving(CCScrollLayerExt*) = m1 0x5396f0, imac 0x60c870, ios 0x3009a4 {}
 
-    void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x60af10, m1 0x537f48;
     TodoReturn cellForRowAtIndexPath(CCIndexPath&);
     TodoReturn cellForTouch(cocos2d::CCTouch*);
     TodoReturn checkBoundaryOfCell(cocos2d::CCPoint&, float);
@@ -19894,7 +19907,7 @@ class TeleportPortalObject : RingObject {
 class TextAlertPopup : cocos2d::CCNode {
     // virtual ~TextAlertPopup();
 
-    static TextAlertPopup* create(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x2964a0;
+    static TextAlertPopup* create(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x2964a0, m1 0x2437f0, imac 0x29bfb0;
 
     bool init(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x2965d0, imac 0x29c130, m1 0x243988;
     void setAlertPosition(cocos2d::CCPoint windowOffset, cocos2d::CCPoint pointOffset) = win inline, imac 0x29c480, m1 0x243cc8 {
@@ -20211,6 +20224,11 @@ class UILayer : cocos2d::CCLayerColor {
     // UILayer() = ios 0x51948;
 
     static UILayer* create(GJBaseGameLayer*) = imac 0x4b4870, m1 0x41cac4;
+
+    static UILayer* get() {
+        if (auto gjbgl = GJBaseGameLayer::get()) return gjbgl->m_uiLayer;
+        return nullptr;
+    }
 
     virtual void draw() = m1 0x41e594, imac 0x4b6710, ios 0x4dcc8 {}
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4b55a0, m1 0x41e5e4, imac 0x4b6760, ios 0x4dd08;
