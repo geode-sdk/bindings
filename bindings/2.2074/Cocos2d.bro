@@ -294,7 +294,7 @@ class cocos2d::CCMoveTo {
 
 [[link(win, android)]]
 class cocos2d::CCRemoveSelf {
-    static cocos2d::CCRemoveSelf* create(bool);
+    static cocos2d::CCRemoveSelf* create(bool) = m1 0x6a9d38, imac 0x796bc0;
 
     bool init(bool);
 
@@ -363,8 +363,8 @@ class cocos2d::CCAction {
     void setTarget(cocos2d::CCNode*);
 
     // CCAction(cocos2d::CCAction const&);
-    CCAction() = imac 0x5dc9c0;
-    ~CCAction() = imac 0x5dca60;
+    CCAction() = m1 0x50f94c, imac 0x5dc9c0;
+    ~CCAction() = m1 0x50f9bc, imac 0x5dca60;
     char const* description() = imac 0x5dcb10, m1 0x50fa50;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x5dcb30, m1 0x50fa7c, ios 0x264878;
