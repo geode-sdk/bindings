@@ -13536,16 +13536,16 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void deleteSelected() = win 0x3227d0, m1 0x1cfac8, imac 0x21cf00;
     bool init(bool) = win 0x321850, m1 0x1ce900, imac 0x21bbe0;
     bool isCorrect(char const*);
-    void loadPage(int) = m1 0x1cf6e0;
-    void onClose(cocos2d::CCObject* sender) = win 0x322bf0, m1 0x1cf258;
-    void onDeleteSelected(cocos2d::CCObject* sender) = m1 0x1cf3f4, imac 0x21c760;
+    void loadPage(int) = win 0x322d60, m1 0x1cf6e0, imac 0x21caa0;
+    void onClose(cocos2d::CCObject* sender) = win 0x322bf0, m1 0x1cf258, imac 0x21c5b0;
+    void onDeleteSelected(cocos2d::CCObject* sender) = win 0x3224e0, m1 0x1cf3f4, imac 0x21c760;
     void onNextPage(cocos2d::CCObject* sender) = win 0x323610;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x323620;
     void onSentMessages(cocos2d::CCObject* sender) = win 0x322450;
-    void onToggleAllObjects(cocos2d::CCObject* sender) = m1 0x1cf5c0;
+    void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x322270, m1 0x1cf5c0, imac 0x21c940;
     void onUpdate(cocos2d::CCObject* sender);
     void setupCommentsBrowser(cocos2d::CCArray*) = win 0x323170;
-    void untoggleAll() = m1 0x1d00c4;
+    void untoggleAll() = win 0x322cc0, m1 0x1d00c4, imac 0x21d4b0;
     void updateLevelsLabel();
     void updatePageArrows();
 
@@ -14721,7 +14721,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn addToTouchedRings(RingObject*) = imac 0x404180, m1 0x381fec;
     TodoReturn addToYVelocity(double, int);
     void animatePlatformerJump(float) = win 0x376ef0, imac 0x3f2020, m1 0x372c98;
-    void boostPlayer(float) = win 0x38a150, m1 0x374f48;
+    void boostPlayer(float) = win 0x38a150, m1 0x374f48, imac 0x3f49e0;
     void bumpPlayer(float, int, bool, GameObject*) = win 0x389910, imac 0x409440, m1 0x386e2c;
     TodoReturn buttonDown(PlayerButton);
     TodoReturn canStickToGround();
