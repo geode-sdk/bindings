@@ -1925,13 +1925,13 @@ class cocos2d::CCAnimate {
 [[link(win, android)]]
 class cocos2d::CCAnimation {
     // static cocos2d::CCAnimation* create(cocos2d::CCArray*, float);
-    static cocos2d::CCAnimation* create(cocos2d::CCArray*, float, unsigned int) = imac 0x284c00;
-    static cocos2d::CCAnimation* create();
-    static cocos2d::CCAnimation* createWithSpriteFrames(cocos2d::CCArray*, float) = imac 0x284a00;
+    static cocos2d::CCAnimation* create(cocos2d::CCArray*, float, unsigned int) = m1 0x22e300, imac 0x284c00;
+    static cocos2d::CCAnimation* create() = m1 0x22dffc, imac 0x2848d0;
+    static cocos2d::CCAnimation* createWithSpriteFrames(cocos2d::CCArray*, float) = m1 0x22e128, imac 0x284a00;
 
-    bool init();
-    bool initWithAnimationFrames(cocos2d::CCArray*, float, unsigned int);
-    bool initWithSpriteFrames(cocos2d::CCArray*, float);
+    bool init() = m1 0x22e0cc, imac 0x2849b0;
+    bool initWithAnimationFrames(cocos2d::CCArray*, float, unsigned int) = m1 0x22e3fc, imac 0x22e3fc;
+    bool initWithSpriteFrames(cocos2d::CCArray*, float) = m1 0x22e1b0, imac 0x284a90;
 
     float getDelayPerUnit() const;
     cocos2d::CCArray* getFrames() const;
