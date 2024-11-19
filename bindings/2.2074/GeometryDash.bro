@@ -3492,6 +3492,12 @@ class DashRingObject : RingObject {
     virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1a44b0, m1 0x1669bc, ios 0x37bc10;
 
     bool init(char const*);
+
+    float m_dashSpeed;
+    float m_endBoost;
+    float m_maxDuration;
+    bool m_allowCollide;
+    bool m_stopSlide;
 }
 
 [[link(android)]]
@@ -6616,7 +6622,7 @@ class GameObject : CCSpritePlus {
     bool getGroupDisabled();
     int getGroupID(int) = m1 0x4e0b24;
     gd::string getGroupString();
-    cocos2d::CCPoint getLastPosition() = imac 0x5b2a90;
+    cocos2d::CCPoint const& getLastPosition() = imac 0x5b2a90;
     GJSpriteColor* getMainColor();
     int getMainColorMode();
     int getObjectDirection();
@@ -14722,7 +14728,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn checkSnapJumpToObject(GameObject*);
     void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bb80, imac 0x3f4c90, m1 0x3751b8;
     void collidedWithObject(float, GameObject*) = imac 0x3fb520, m1 0x37a504;
-    void collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bc40, m1 0x376dd8;
+    int collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bc40, m1 0x376dd8;
     void collidedWithSlope(float dt, GameObject* object, bool forced) = imac 0x3f4d30;
     void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x3799e0;
     TodoReturn convertToClosestRotation(float);
@@ -14854,7 +14860,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn saveToCheckpoint(PlayerCheckpoint*) = imac 0x40a6b0;
     void setSecondColor(cocos2d::ccColor3B const&) = win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
     void setupStreak() = win 0x372a50, imac 0x3eab20, m1 0x36c84c;
-    void setYVelocity(double, int) = win 0x372fa0;
+    void setYVelocity(double, int) = win 0x372fa0 {
+        double rounded = (int)velocity;
+        if (velocity != rounded) {
+            m_yVelocity = std::round((velocity - rounded) * 1000) / 1000. + rounded;
+        } else {
+            m_yVelocity = velocity;
+        }
+    }
     TodoReturn spawnCircle();
     TodoReturn spawnCircle2();
     TodoReturn spawnDualCircle();
