@@ -73,13 +73,13 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x2d54);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_debugDrawNode, 0x2d58);
 // GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x2c28); // i dont even know anymore
 
-GEODE_SIZE_CHECK(PlayLayer, 0x2f60);
+GEODE_SIZE_CHECK(PlayLayer, 0x2f68);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x2e24);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x2e38);
 GEODE_MEMBER_CHECK(PlayLayer, m_progressBar, 0x2e44);
 GEODE_MEMBER_CHECK(PlayLayer, m_jumps, 0x2e8c);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x2e99);
-GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x2eff);
+GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x2f07);
 
 GEODE_SIZE_CHECK(DrawGridLayer, 0x1c0);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x17c);
@@ -196,6 +196,8 @@ GEODE_MEMBER_CHECK(GJShaderState, m_lensCircleTintB, 0x178);
 
 GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x3c4);
 GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x3d8);
-GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x590);
+GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x5a8);
+
+GEODE_MEMBER_CHECK(SetupInstantCountPopup, m_itemID, 0x2b4);
 
 #endif

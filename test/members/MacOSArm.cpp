@@ -8,7 +8,7 @@ GEODE_MEMBER_CHECK(PlayLayer, m_unkSomeFloat, 0x35a4);
 GEODE_MEMBER_CHECK(PlayLayer, m_jumps, 0x3680);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x368D);
 GEODE_MEMBER_CHECK(PlayLayer, m_endLayerStars, 0x3694);
-GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36F7);
+GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36FF);
 
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x35b8);
 
