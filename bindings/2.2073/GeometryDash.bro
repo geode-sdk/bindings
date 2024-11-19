@@ -14775,7 +14775,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn saveToCheckpoint(PlayerCheckpoint*);
     void setSecondColor(cocos2d::ccColor3B const&) = win 0x3874f0, imac 0x3ec530, m1 0x36deb8;
     void setupStreak() = win 0x372930, m1 0x36c978;
-    void setYVelocity(double, int) = win 0x372e80 {
+    void setYVelocity(double velocity, int) = win 0x372e80 {
         double rounded = (int)velocity;
         if (velocity != rounded) {
             m_yVelocity = std::round((velocity - rounded) * 1000) / 1000. + rounded;
