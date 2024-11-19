@@ -1930,7 +1930,7 @@ class cocos2d::CCAnimation {
     static cocos2d::CCAnimation* createWithSpriteFrames(cocos2d::CCArray*, float) = m1 0x22e128, imac 0x284a00;
 
     bool init() = m1 0x22e0cc, imac 0x2849b0;
-    bool initWithAnimationFrames(cocos2d::CCArray*, float, unsigned int) = m1 0x22e3fc, imac 0x22e3fc;
+    bool initWithAnimationFrames(cocos2d::CCArray*, float, unsigned int) = m1 0x22e3fc, imac 0x284d00;
     bool initWithSpriteFrames(cocos2d::CCArray*, float) = m1 0x22e1b0, imac 0x284a90;
 
     float getDelayPerUnit() const;
