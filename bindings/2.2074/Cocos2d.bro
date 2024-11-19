@@ -3205,7 +3205,7 @@ class cocos2d {
 
 [[link(win, android)]]
 class DS_Dictionary {
-    DS_Dictionary() = m1 0x135e9c;
+    DS_Dictionary() = m1 0x135e9c, imac 0x169200;
     void addBoolValuesToMapForKey(gd::map<gd::string, bool>&, char const*, bool) = m1 0x13d518, imac 0x171590;
     void addBoolValuesToMapForKeySpecial(gd::map<gd::string, bool>&, char const*, bool) = m1 0x13d1dc, imac 0x171230;
     void checkCompatibility();
@@ -3231,7 +3231,7 @@ class DS_Dictionary {
     cocos2d::CCPoint getVec2ForKey(char const*);
     bool loadRootSubDictFromCompressedFile(char const*) = imac 0x16a5b0, m1 0x1372fc;
     bool loadRootSubDictFromFile(char const*);
-    bool loadRootSubDictFromString(gd::string const&) = m1 0x1376b0;
+    bool loadRootSubDictFromString(gd::string const&) = m1 0x1376b0, imac 0x16a9f0;
     bool rectFromString(gd::string const&, cocos2d::CCRect&);
     void removeAllKeys();
     void removeKey(unsigned int);
