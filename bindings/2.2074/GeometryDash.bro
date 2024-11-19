@@ -13450,7 +13450,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
         return GameManager::get()->m_menuLayer;
     }
 
-    static cocos2d::CCScene* scene(bool) = win 0x31ea40, m1 0x30d470, imac 0x37ccf0;
+    static cocos2d::CCScene* scene(bool isVideoOptionsOpen) = win 0x31ea40, m1 0x30d470, imac 0x37ccf0;
 
     virtual bool init() = win 0x31ebd0, imac 0x37ceb0, m1 0x30d620, ios 0x265660;
     virtual void keyBackClicked() = win 0x3210c0, imac 0x37edc0, m1 0x30f4b0, ios 0x267184;
@@ -18204,14 +18204,14 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void createToggleValueControl(int, gd::string, cocos2d::CCPoint, bool, int, int, float) = win 0x45e900;
     void createToggleValueControlAdvanced(int, gd::string, cocos2d::CCPoint, bool, int, int, float, float, float, cocos2d::CCPoint);
     void createValueControl(int, gd::string, cocos2d::CCPoint, float, float, float) = win 0x45db40;
-    void createValueControlAdvanced(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float, float, int, int, GJInputStyle, int, bool) = win 0x45dc30;
+    cocos2d::CCArray* createValueControlAdvanced(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float, float, int, int, GJInputStyle, int, bool) = win 0x45dc30;
     void createValueControlWArrows(int, gd::string, cocos2d::CCPoint, float);
     cocos2d::CCArray* getGroupContainer(int);
     float getMaxSliderValue(int);
     float getMinSliderValue(int);
     cocos2d::CCArray* getObjects();
     cocos2d::CCArray* getPageContainer(int);
-    float getTriggerValue(int, GameObject*);
+    float getTriggerValue(int, GameObject*) = win 0x4620f0, imac 0x229d20, m1 0x1db6b4;
     float getTruncatedValue(float, int) = win 0x45f750;
     float getTruncatedValueByTag(int, float);
     void goToPage(int, bool) = win 0x45c010;
