@@ -268,7 +268,7 @@ class AchievementManager : cocos2d::CCNode {
 class AchievementNotifier : cocos2d::CCNode {
     // virtual ~AchievementNotifier();
 
-    static AchievementNotifier* sharedState() = win 0x3ab20;
+    static AchievementNotifier* sharedState() = win 0x3ab20, m1 0x6beb0c, imac 0x7ad380;
 
     virtual bool init() = m1 0x6beb88, imac 0x7ad410, ios 0x21727c;
 
