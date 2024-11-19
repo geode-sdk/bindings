@@ -19894,7 +19894,7 @@ class TeleportPortalObject : RingObject {
 class TextAlertPopup : cocos2d::CCNode {
     // virtual ~TextAlertPopup();
 
-    static TextAlertPopup* create(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x2964a0;
+    static TextAlertPopup* create(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x2964a0, m1 0x2437f0, imac 0x29bfb0;
 
     bool init(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x2965d0, imac 0x29c130, m1 0x243988;
     void setAlertPosition(cocos2d::CCPoint windowOffset, cocos2d::CCPoint pointOffset) = win inline, imac 0x29c480, m1 0x243cc8 {
