@@ -5597,7 +5597,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getGauntletSearchKey(int) = m1 0x487f04, imac 0x52cfc0;
     void getGauntletsearchKey(int);
     void getGJChallenges() = win 0x164ad0, m1 0x49be48, imac 0x542da0;
-    void getGJDailyLevelState(GJTimedLevelType) = imac 0x543260, m1 0x49c2bc;
+    void getGJDailyLevelState(GJTimedLevelType) = win 0x165ec0, imac 0x543260, m1 0x49c2bc;
     void getGJRewards(int) = win 0x1635e0, imac 0x542540, m1 0x49b6b0;
     TodoReturn getGJSecretReward(gd::string) = m1 0x49b214, imac 0x542050;
     void getGJUserInfo(int) = win 0x157880, imac 0x536710, m1 0x4901ac;
@@ -5727,8 +5727,8 @@ class GameLevelManager : cocos2d::CCNode {
     void onGetAccountCommentsCompleted(gd::string response, gd::string tag);
     void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x15d510;
     void onGetGauntletsCompleted(gd::string response, gd::string tag);
-    void onGetGJChallengesCompleted(gd::string response, gd::string tag) = imac 0x510b00, m1 0x46f5b0;
-    void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag);
+    void onGetGJChallengesCompleted(gd::string response, gd::string tag) = win 0x164f20, imac 0x510b00, m1 0x46f5b0;
+    void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag) = win 0x1663a0;
     void onGetGJRewardsCompleted(gd::string response, gd::string tag);
     TodoReturn onGetGJSecretRewardCompleted(gd::string, gd::string);
     void onGetGJUserInfoCompleted(gd::string response, gd::string tag);
@@ -7604,14 +7604,14 @@ class GJAccountManager : cocos2d::CCNode {
     bool getAccountSyncURL() = win 0x1fd230, m1 0xbc19c, imac 0xd3a10;
     cocos2d::CCObject* getDLObject(char const*);
     gd::string getShaPassword(gd::string) = win 0x1feee0;
-    void handleIt(bool, gd::string, gd::string, GJHttpType) = m1 0xb8918;
+    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1fb2c0, m1 0xb8918;
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
     void handleItND(cocos2d::CCNode*, void*);
     bool isDLActive(char const* tag);
     void linkToAccount(gd::string, gd::string, int, int);
     void loginAccount(gd::string, gd::string) = m1 0xbb1b8, imac 0xd2940;
     void onBackupAccountCompleted(gd::string, gd::string) = win 0x1fce20;
-    void onGetAccountBackupURLCompleted(gd::string, gd::string) = m1 0xba684, imac 0xd1e40;
+    void onGetAccountBackupURLCompleted(gd::string, gd::string) = win 0x1fc620, m1 0xba684, imac 0xd1e40;
     void onGetAccountSyncURLCompleted(gd::string, gd::string) = m1 0xba8b0, imac 0xd2050;
     void onLoginAccountCompleted(gd::string, gd::string) = win 0x1fbee0;
     void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
@@ -16027,7 +16027,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     gd::string getMessage() = win 0x3cffb0;
     gd::string getThreadMessage() = win 0x3d0190, m1 0x3fc958, imac 0x48faa0;
     TodoReturn nodeWithTag(int);
-    void onBack(cocos2d::CCObject* sender) = imac 0x48b320;
+    void onBack(cocos2d::CCObject* sender) = win 0x3d24e0, imac 0x48b320;
     void onDoor(cocos2d::CCObject* sender) = win 0x3cd5a0, imac 0x48ca80, m1 0x3f9a70;
     void onSecretLevel(cocos2d::CCObject* sender) = win 0x3cd2f0, imac 0x48ccc0, m1 0x3f9cd4;
     void onSubmit(cocos2d::CCObject* sender) = win 0x3cdf00, imac 0x48b390, m1 0x3f8608;
