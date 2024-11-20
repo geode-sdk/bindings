@@ -2048,7 +2048,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
     }
 
     virtual bool init() = win 0x85300, imac 0x389f10, m1 0x319508, ios 0x35df0;
-    virtual void registerWithTouchDispatcher() = imac 0x38b5d0, m1 0x31aab4, ios 0x36ea8;
+    virtual void registerWithTouchDispatcher() = win 0x425d0, imac 0x38b5d0, m1 0x31aab4, ios 0x36ea8;
     virtual void keyBackClicked() = win 0x86980, m1 0x31aa18, imac 0x38b540, ios 0x36e9c;
     virtual void show() = win 0x867a0, imac 0x38b3a0, m1 0x31a88c, ios 0x36d20;
 
