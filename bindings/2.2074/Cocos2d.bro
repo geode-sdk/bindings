@@ -242,8 +242,8 @@ class cocos2d::CCMotionStreak {
     bool isFastMode();
     bool isStartingPositionInitialized();
     void reset() = imac 0x560190;
-    void resumeStroke();
-    void stopStroke();
+    void resumeStroke() = m1 0x4b6510, imac 0x55fb40;
+    void stopStroke() = m1 0x4b6508, imac 0x55fb30;
     void tintWithColor(cocos2d::_ccColor3B);
     void updateFade(float) = imac 0x55fb10;
 
@@ -608,6 +608,30 @@ class cocos2d::CCParticleSystem {
 }
 
 [[link(win, android)]]
+class cocos2d::CCParticleFire {
+	static cocos2d::CCParticleFire* create() = m1 0x3e0d34, imac 0x472260;
+	static cocos2d::CCParticleFire* createWithTotalParticles(unsigned int) = m1 0x3e0dc4, imac 0x4722e0;
+
+	// CCParticleFire(cocos2d::CCParticleFire const&);
+	// CCParticleFire();
+
+	// virtual bool init();
+	// virtual bool initWithTotalParticles(unsigned int);
+}
+
+[[link(win, android)]]
+class cocos2d::CCParticleRain {
+	static cocos2d::CCParticleRain* create() = m1 0x3e2b18, imac 0x473f00;
+	static cocos2d::CCParticleRain* createWithTotalParticles(unsigned int) = m1 0x3e2ba8, imac 0x473f80;
+
+	// CCParticleRain(cocos2d::CCParticleRain const&);
+	// CCParticleRain();
+
+	// virtual bool init();
+	// virtual bool initWithTotalParticles(unsigned int);
+}
+
+[[link(win, android)]]
 class cocos2d::CCParticleSnow {
 	static cocos2d::CCParticleSnow* create() = imac 0x473c10;
 	static cocos2d::CCParticleSnow* createWithTotalParticles(unsigned int) = imac 0x473c90;
@@ -825,7 +849,7 @@ class cocos2d::CCNode {
     CCNode() = imac 0x260210, m1 0x20c1a8;
     ~CCNode() = imac 0x260520, m1 0x20c334;
 
-    cocos2d::CCAction* getActionByTag(int) = imac 0x261ff0;
+    cocos2d::CCAction* getActionByTag(int) = imac 0x261ff0, m1 0x20dd80;
     cocos2d::CCComponent* getComponent(char const*) const;
     int getScriptHandler();
     cocos2d::CCAffineTransform getTransformTemp();
@@ -860,7 +884,7 @@ class cocos2d::CCNode {
     void scheduleUpdateWithPriorityLua(int, int) = imac 0x2620f0;
     void sortAllChildrenNoIndex();
     void sortAllChildrenWithIndex();
-    void stopAction(cocos2d::CCAction*);
+    void stopAction(cocos2d::CCAction*) = m1 0x20dd6c, imac 0x261fb0;
     void stopActionByTag(int) = m1 0x20dd74, imac 0x261fd0;
     void stopAllActions() = imac 0x260e30, m1 0x20cbec;
     void transform();
@@ -1255,7 +1279,7 @@ class cocos2d::CCTexture2D {
 
     cocos2d::CCSize const& getContentSizeInPixels();
 
-    void setAliasTexParameters();
+    void setAliasTexParameters() = m1 0x3d6778, imac 0x4668f0;
     void setAntiAliasTexParameters();
     void setTexParameters(cocos2d::_ccTexParams*) = imac 0x466860, m1 0x3d66e0;
 
@@ -2816,7 +2840,7 @@ class cocos2d::CCDrawNode {
 
     cocos2d::_ccBlendFunc getBlendFunc() const;
 
-    void setBlendFunc(cocos2d::_ccBlendFunc const&) = imac 0x5fb270;
+    void setBlendFunc(cocos2d::_ccBlendFunc const&) = imac 0x5fb270, m1 0x52a104;
 
     // CCDrawNode(cocos2d::CCDrawNode const&);
     CCDrawNode() = m1 0x528418, imac 0x5f9230;
@@ -3175,7 +3199,7 @@ class cocos2d {
     static void ccGLEnable(cocos2d::ccGLServerState) = imac 0x3480a0, m1 0x2dccc4;
     static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2dccc8, imac 0x3480b0;
     static void ccGLInvalidateStateCache();
-    static void ccGLUseProgram(unsigned int);
+    static void ccGLUseProgram(unsigned int) = imac 0x347eb0, m1 0x2dca88;
     static void ccPointSize(float);
     static void ccSetProjectionMatrixDirty();
     static bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
@@ -3365,7 +3389,7 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 class cocos2d::ZipUtils {
     static gd::string base64DecodeEnc(gd::string const&, gd::string);
     static gd::string base64EncodeEnc(gd::string const&, gd::string);
-    static gd::string base64URLDecode(gd::string const&);
+    static gd::string base64URLDecode(gd::string const&) = imac 0x1f3f90, m1 0x1a9990;
     static gd::string base64URLEncode(gd::string const&) = imac 0x1f3eb0, m1 0x1a9aa0;
     static void ccDecodeEncodedPvr(unsigned int*, int);
     static int ccDeflateMemory(unsigned char*, unsigned int, unsigned char**) = imac 0x1f3290, m1 0x1a8dd8;
