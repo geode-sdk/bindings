@@ -121,7 +121,7 @@ class cocos2d::CCEaseElasticOut : CCEaseElastic {
 
 [[link(win, android)]]
 class cocos2d::CCEaseExponentialIn : CCActionEase {
-    static cocos2d::CCEaseExponentialIn* create(cocos2d::CCActionInterval*);
+    static cocos2d::CCEaseExponentialIn* create(cocos2d::CCActionInterval*) = m1 0x45e9b0, imac 0x4fefe0;
 
     // CCEaseExponentialIn(cocos2d::CCEaseExponentialIn const&);
     // CCEaseExponentialIn();
@@ -133,7 +133,7 @@ class cocos2d::CCEaseExponentialIn : CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseExponentialInOut : CCActionEase {
-    static cocos2d::CCEaseExponentialInOut* create(cocos2d::CCActionInterval*);
+    static cocos2d::CCEaseExponentialInOut* create(cocos2d::CCActionInterval*) = m1 0x45ede8, imac 0x4ff400;
 
     // CCEaseExponentialInOut(cocos2d::CCEaseExponentialInOut const&);
     // CCEaseExponentialInOut();
@@ -145,7 +145,7 @@ class cocos2d::CCEaseExponentialInOut : CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseExponentialOut : CCActionEase {
-    static cocos2d::CCEaseExponentialOut* create(cocos2d::CCActionInterval*) = m1 0x45e9b0, imac 0x4ff1f0;
+    static cocos2d::CCEaseExponentialOut* create(cocos2d::CCActionInterval*) = m1 0x45ebd4, imac 0x4ff1f0;
 
     // CCEaseExponentialOut(cocos2d::CCEaseExponentialOut const&);
     // CCEaseExponentialOut();
