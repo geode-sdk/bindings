@@ -4135,7 +4135,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onPlaytest(cocos2d::CCObject* sender) = win 0x1109a0, imac 0xcb90, m1 0xdef4;
     void onResetSpecialFilter(cocos2d::CCObject* sender);
     void onSelectBuildTab(cocos2d::CCObject* sender) = win 0x112f60, imac 0x34310, m1 0x33940;
-    void onSettings(cocos2d::CCObject* sender) = win 0xe0350;
+    void onSettings(cocos2d::CCObject* sender) = win 0xe0350, m1 0x2b46c, imac 0x2b270;
     void onStopPlaytest(cocos2d::CCObject* sender) = win 0x110d40, m1 0xe134, imac 0xcdd0;
     TodoReturn onTargetIDChange(int);
     void onToggleGuide(EffectGameObject*);
@@ -5809,7 +5809,7 @@ class GameLevelManager : cocos2d::CCNode {
     void saveFetchedLevels(cocos2d::CCArray*) = win 0x144960, imac 0x51b540, m1 0x477ed0;
     void saveFetchedMapPacks(cocos2d::CCArray*);
     void saveGauntlet(GJMapPack*);
-    void saveLevel(GJGameLevel*) = win 0x146d40, imac 0x521650;
+    void saveLevel(GJGameLevel*) = win 0x146d40, imac 0x521650, m1 0x47d688;
     void saveLevelList(GJLevelList*) = win 0x14ee60;
     void saveLocalScore(int, int, int);
     void saveMapPack(GJMapPack*);
@@ -7866,7 +7866,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn clearActivatedAudioTriggers() = imac 0x148ac0;
     TodoReturn clearPickedUpItems() = m1 0x292260;
     TodoReturn collectedObject(EffectGameObject*);
-    void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x20f480, imac 0x116130;
+    void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x20f480, imac 0x116130, m1 0xf5554;
     TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
     TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
     TodoReturn controlAreaEffectWithID(int, int, GJActionCommand);
@@ -7883,7 +7883,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void createMiddleground(int) = win 0x2067a0, imac 0x103870, m1 0xe55f4;
     TodoReturn createNewKeyframeAnim();
     TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
-    void createPlayer() = win 0x205fd0, m1 0xe4b94;
+    void createPlayer() = win 0x205fd0, m1 0xe4b94, imac 0x102d80;
     TodoReturn createPlayerCollisionBlock() = win 0x212e90, imac 0x11a410;
     void createTextLayers() = win 0x209960, imac 0x10f2e0, m1 0xee828;
     TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
@@ -7977,12 +7977,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void pauseAudio() = win 0x231d60, imac 0x141de0;
     TodoReturn performMathOperation(double, double, int);
     TodoReturn performMathRounding(double, int);
-    void pickupItem(EffectGameObject*) = win 0x210cd0, imac 0x118560;
+    void pickupItem(EffectGameObject*) = win 0x210cd0, imac 0x118560, m1 0xf7400;
     TodoReturn playAnimationCommand(int, int);
     bool playerCircleCollision(PlayerObject*, GameObject*) = win 0x20c930;
     TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
     void playerTouchedObject(PlayerObject*, GameObject*);
-    void playerTouchedRing(PlayerObject*, RingObject*) = win 0x212960, imac 0x118040;
+    void playerTouchedRing(PlayerObject*, RingObject*) = win 0x212960, imac 0x118040, m1 0xf6eb0;
     void playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x212a70, imac 0x1180f0;
     TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*);
     void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x20da30, imac 0x114200, m1 0xf3a44;
@@ -8091,7 +8091,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn rotateObject(GameObject*, float);
     void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
     void setGroupParent(GameObject*, int) = imac 0x12d370;
-    void setStartPosObject(StartPosObject* startPos) = win inline, imac 0x112ed0 {
+    void setStartPosObject(StartPosObject* startPos) = win inline, imac 0x112ed0, m1 0xf2870 {
         if (startPos != m_startPosObject) {
             if (startPos) {
                 startPos->retain();
@@ -10519,7 +10519,7 @@ class GJScaleControl : cocos2d::CCLayer {
         return (m_upperBound - m_lowerBound) * value + m_lowerBound;
     }
     float skewFromValue(float) = imac 0x528a0;
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x1287a0;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x1287a0, m1 0x49adc, imac 0x526f0;
     void updateLabelX(float value) = win 0x128f20, m1 0x49b0c, imac 0x52740;
     void updateLabelXY(float value) = win 0x129020, m1 0x49bdc, imac 0x52800;
     void updateLabelY(float value) = win 0x128fa0, m1 0x49b74, imac 0x527a0;
@@ -11543,7 +11543,7 @@ class HardStreak : cocos2d::CCDrawNode {
         this->clear();
         m_pointArray->removeAllObjects();
     }
-    void resumeStroke();
+    void resumeStroke() = m1 0x8ff80, imac 0x9d480;
     TodoReturn scheduleAutoUpdate();
     void stopStroke() = win 0x2b17f0;
     callback void updateStroke(float) = win 0x2b1830, m1 0x8f870, imac 0x9cc30;
@@ -12282,7 +12282,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void onPausePlaytest();
     void onPlaytest() = win 0x2d7330, imac 0xf0f00, m1 0xd5d40;
     void onResumePlaytest() = win 0x2d7d60;
-    void onStopPlaytest() = win 0x2d7f50, m1 0xd67f8;
+    void onStopPlaytest() = win 0x2d7f50, m1 0xd67f8, imac 0xf1ae0;
     TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*);
     TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*);
     TodoReturn pasteGroupState(GameObject*, cocos2d::CCArray*);
@@ -12346,7 +12346,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn updateKeyframeVisibility(bool);
     void updateLevelFont(int) = win 0x2d66d0;
     void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x2d1790, imac 0xeb700, m1 0xd102c;
-    void updateOptions() = win 0x2ca8f0, m1 0xc4394;
+    void updateOptions() = win 0x2ca8f0, m1 0xc4394, imac 0xdc880;
     void updatePreviewAnim();
     void updatePreviewParticle(ParticleGameObject*) = imac 0x1a1820, m1 0x1642bc;
     void updatePreviewParticles() = imac 0xecfe0, win 0x2d8ec0;
@@ -13664,7 +13664,7 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
     void onUncompleted(cocos2d::CCObject* sender);
     void selectSong(int songID) = win 0x301ea0, imac 0x618510, m1 0x544498;
     void toggleSongNodes(bool, bool) = win 0x3024a0, imac 0x6183d0, m1 0x544394;
-    void updateAudioLabel() = win 0x3019a0, m1 0x5444e0;
+    void updateAudioLabel() = win 0x3019a0, m1 0x5444e0, imac 0x618560;
     
     virtual bool init() = win 0x2fe020, imac 0x616620, m1 0x542794, ios 0x58bc4;
     virtual void keyBackClicked() = win 0x302d90, imac 0x6187f0, m1 0x5447b8, ios 0x5a8b8;
@@ -14556,7 +14556,7 @@ class PlatformToolbox {
     static TodoReturn getRawPath(char const*);
     static TodoReturn getUniqueUserID();
     static TodoReturn getUserID();
-    static void hideCursor() = win inline, imac 0x4b0b30 {
+    static void hideCursor() = win inline, imac 0x4b0b30, m1 0x41a144 {
         cocos2d::CCEGLView::sharedOpenGLView()->showCursor(false);
     }
     static bool isControllerConnected() = win inline, imac 0x4b1a30, m1 0x41a254 {
@@ -14589,7 +14589,7 @@ class PlatformToolbox {
     static void setKeyboardState(bool);
     static TodoReturn shouldResumeSound();
     static void showAchievements();
-    static void showCursor() = win inline, imac 0x4b0b50 {
+    static void showCursor() = win inline, imac 0x4b0b50, m1 0x419648 {
         cocos2d::CCEGLView::sharedOpenGLView()->showCursor(true);
     }
     static TodoReturn signInGooglePlay();
