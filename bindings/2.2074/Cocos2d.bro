@@ -1263,7 +1263,7 @@ class cocos2d::CCTargetedTouchHandler {
 }
 
 [[link(win, android)]]
-class cocos2d::CCTexture2D : cocos2d::CCObject {
+class cocos2d::CCTexture2D {
     static void PVRImagesHavePremultipliedAlpha(bool) = imac 0x466800;
     static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
     static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat);
