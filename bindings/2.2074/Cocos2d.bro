@@ -1263,7 +1263,7 @@ class cocos2d::CCTargetedTouchHandler {
 }
 
 [[link(win, android)]]
-class cocos2d::CCTexture2D {
+class cocos2d::CCTexture2D : cocos2d::CCObject {
     static void PVRImagesHavePremultipliedAlpha(bool) = imac 0x466800;
     static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
     static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat);
@@ -1480,7 +1480,7 @@ class cocos2d::CCEGLView {
 }
 
 [[link(win, android)]]
-class cocos2d::CCImage {
+class cocos2d::CCImage : cocos2d::CCObject {
     bool initWithImageData(void*, int, cocos2d::CCImage::EImageFormat, int, int, int, int) = imac 0x476d80, m1 0x3e5670;
     bool initWithImageFile(char const*, cocos2d::CCImage::EImageFormat) = imac 0x476b70, m1 0x3e5430;
     bool initWithImageFileThreadSafe(char const*, cocos2d::CCImage::EImageFormat) = imac 0x477360, m1 0x3e5a5c;
