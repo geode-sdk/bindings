@@ -296,7 +296,9 @@ enum class GauntletType {
     Discord = 0x31,
     Split = 0x32,
     NCS = 0x33,
-    NCS2 = 0x34
+    NCS2 = 0x34,
+    Space = 0x35,
+    Cosmos = 0x36
 };
 enum class GJMPErrorCode {};
 enum class GJTimedLevelType {
