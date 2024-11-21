@@ -1480,7 +1480,7 @@ class cocos2d::CCEGLView {
 }
 
 [[link(win, android)]]
-class cocos2d::CCImage : cocos2d::CCObject {
+class cocos2d::CCImage {
     bool initWithImageData(void*, int, cocos2d::CCImage::EImageFormat, int, int, int, int) = imac 0x476d80, m1 0x3e5670;
     bool initWithImageFile(char const*, cocos2d::CCImage::EImageFormat) = imac 0x476b70, m1 0x3e5430;
     bool initWithImageFileThreadSafe(char const*, cocos2d::CCImage::EImageFormat) = imac 0x477360, m1 0x3e5a5c;
