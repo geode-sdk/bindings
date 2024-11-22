@@ -3534,3 +3534,33 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     bool m_cascadeOpacityEnabled;
     bool m_opacityModifyEnabled;
 }
+
+[[link(win, android)]]
+class cocos2d::CCConfiguration {
+	static void purgeConfiguration();
+	static cocos2d::CCConfiguration* sharedConfiguration() = m1 0x4634e8, imac 0x503d50;
+
+	bool init();
+
+	bool getBool(char const*, bool) const;
+	char const* getCString(char const*, char const*) const;
+	int getMaxModelviewStackDepth() const;
+	int getMaxTextureSize() const;
+	int getMaxTextureUnits() const;
+	double getNumber(char const*, double) const;
+	cocos2d::CCObject* getObject(char const*) const;
+
+	void setObject(char const*, cocos2d::CCObject*);
+
+	// CCConfiguration();
+	// CCConfiguration(cocos2d::CCConfiguration const&);
+	bool checkForGLExtension(gd::string const&) const;
+	void dumpInfo() const;
+	void gatherGPUInfo();
+	void loadConfigFile(char const*);
+	bool supportsBGRA8888() const;
+	bool supportsDiscardFramebuffer() const;
+	bool supportsNPOT() const;
+	bool supportsPVRTC() const;
+	bool supportsShareableVAO() const;
+}
