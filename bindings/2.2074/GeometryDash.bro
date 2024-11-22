@@ -15780,6 +15780,10 @@ class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
     void onReplay(cocos2d::CCObject* sender);
     void onRewardedVideo(cocos2d::CCObject* sender);
     TodoReturn setupLastProgress() = win 0x3b4460;
+
+    cocos2d::CCMenu* m_mainMenu;
+    bool m_unk1e8;
+    bool m_unk1e9;
 }
 
 [[link(android)]]
