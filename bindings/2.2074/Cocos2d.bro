@@ -2013,7 +2013,7 @@ class cocos2d::CCArray : cocos2d::CCObject {
     void exchangeObject(cocos2d::CCObject*, cocos2d::CCObject*);
     void exchangeObjectAtIndex(unsigned int, unsigned int);
     // void fastRemoveObject(cocos2d::CCObject*);
-    void fastRemoveObjectAtIndex(unsigned int) = m1 0xbab598;
+    void fastRemoveObjectAtIndex(unsigned int);
     void fastRemoveObjectAtIndexChild(unsigned int);
     void fastRemoveObjectAtIndexNew(unsigned int);
     unsigned int indexOfObject(cocos2d::CCObject*) const;
