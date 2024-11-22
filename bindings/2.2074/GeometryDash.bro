@@ -7344,7 +7344,7 @@ class GameStatsManager : cocos2d::CCNode {
 class GameToolbox {
     static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x65010, imac 0x4dc890, m1 0x43f944;
     static void addRThumbScrollButton(cocos2d::CCLayer*) = win 0x650f0, m1 0x43fa2c, imac 0x4dc960;
-    static void alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x64110;
+    static void alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x64110, m1 0x43e460, imac 0x4db280;
     static void alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
     static TodoReturn bounceTime(float);
     static TodoReturn colorToSepia(cocos2d::ccColor3B, float);
