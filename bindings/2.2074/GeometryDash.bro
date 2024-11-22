@@ -7344,7 +7344,7 @@ class GameStatsManager : cocos2d::CCNode {
 class GameToolbox {
     static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x65010, imac 0x4dc890, m1 0x43f944;
     static void addRThumbScrollButton(cocos2d::CCLayer*) = win 0x650f0, m1 0x43fa2c, imac 0x4dc960;
-    static void alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x64110;
+    static void alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x64110, m1 0x43e460, imac 0x4db280;
     static void alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
     static TodoReturn bounceTime(float);
     static TodoReturn colorToSepia(cocos2d::ccColor3B, float);
@@ -13450,7 +13450,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
         return GameManager::get()->m_menuLayer;
     }
 
-    static cocos2d::CCScene* scene(bool) = win 0x31ea40, m1 0x30d470, imac 0x37ccf0;
+    static cocos2d::CCScene* scene(bool isVideoOptionsOpen) = win 0x31ea40, m1 0x30d470, imac 0x37ccf0;
 
     virtual bool init() = win 0x31ebd0, imac 0x37ceb0, m1 0x30d620, ios 0x265660;
     virtual void keyBackClicked() = win 0x3210c0, imac 0x37edc0, m1 0x30f4b0, ios 0x267184;
@@ -17702,14 +17702,14 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x423720, imac 0x39bfa0, m1 0x3296fc, ios 0x3af7cc;
 
     TodoReturn getColorValue();
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x3250b8, imac 0x397170;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x41f430, m1 0x3250b8, imac 0x397170;
     void onCopy(cocos2d::CCObject* sender);
     void onExclusive(cocos2d::CCObject* sender);
     void onGroupMainOnly(cocos2d::CCObject* sender);
     void onGroupSecondaryOnly(cocos2d::CCObject* sender);
     void onHSVLegacyMode(cocos2d::CCObject* sender);
-    void onPaste(cocos2d::CCObject* sender);
-    void onSelectPulseMode(cocos2d::CCObject* sender);
+    void onPaste(cocos2d::CCObject* sender) = win 0x90de0;
+    void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x422aa0;
     void onSelectSpecialColor(cocos2d::CCObject* sender);
     void onSelectSpecialTargetID(cocos2d::CCObject* sender);
     void onSelectTargetMode(cocos2d::CCObject* sender);
@@ -18204,14 +18204,14 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void createToggleValueControl(int, gd::string, cocos2d::CCPoint, bool, int, int, float) = win 0x45e900;
     void createToggleValueControlAdvanced(int, gd::string, cocos2d::CCPoint, bool, int, int, float, float, float, cocos2d::CCPoint);
     void createValueControl(int, gd::string, cocos2d::CCPoint, float, float, float) = win 0x45db40;
-    void createValueControlAdvanced(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float, float, int, int, GJInputStyle, int, bool) = win 0x45dc30;
+    cocos2d::CCArray* createValueControlAdvanced(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float, float, int, int, GJInputStyle, int, bool) = win 0x45dc30;
     void createValueControlWArrows(int, gd::string, cocos2d::CCPoint, float);
     cocos2d::CCArray* getGroupContainer(int);
     float getMaxSliderValue(int);
     float getMinSliderValue(int);
     cocos2d::CCArray* getObjects();
     cocos2d::CCArray* getPageContainer(int);
-    float getTriggerValue(int, GameObject*);
+    float getTriggerValue(int, GameObject*) = win 0x4620f0, imac 0x229d20, m1 0x1db6b4;
     float getTruncatedValue(float, int) = win 0x45f750;
     float getTruncatedValueByTag(int, float);
     void goToPage(int, bool) = win 0x45c010;
