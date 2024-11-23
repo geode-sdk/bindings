@@ -16244,14 +16244,14 @@ class SecretLayer6 : cocos2d::CCLayer {
         m_gameLayer = nullptr;
     }
 
-    static SecretLayer6* create();
-    static cocos2d::CCScene* scene();
+    static SecretLayer6* create() = m1 0x3db37c, imac 0x46bd70;
+    static cocos2d::CCScene* scene() = m1 0x3db2c0, imac 0x46bca0;
 
     virtual bool init() = imac 0x46be20, m1 0x3db420;
     virtual void keyBackClicked() = m1 0x3dbf78, imac 0x46caa0;
 
-    void onBack(cocos2d::CCObject* sender);
-    void startGame01();
+    void onBack(cocos2d::CCObject* sender) = m1 0x3db8a4, imac 0x46c2e0;
+    void startGame01() = m1 0x3db8f4, imac 0x46c330;
 
     SecretGame01Layer* m_gameLayer;
 }
