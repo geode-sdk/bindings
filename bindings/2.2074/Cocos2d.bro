@@ -2110,7 +2110,7 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
     bool isAutoDraw() const;
     void listenToBackground(cocos2d::CCObject*);
     void listenToForeground(cocos2d::CCObject*);
-    cocos2d::CCImage* newCCImage(bool) = m1 0x5117a4;
+    cocos2d::CCImage* newCCImage(bool) = m1 0x5117a4, imac 0x5deb40;
     bool saveToFile(char const*);
     bool saveToFile(char const*, cocos2d::eImageFormat);
     void updateInternalScale(float, float);
