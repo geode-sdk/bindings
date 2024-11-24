@@ -3211,7 +3211,7 @@ class cocos2d {
     static float ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static cocos2d::CCPoint ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static cocos2d::CCPoint ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-    static float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+    static float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = m1 0x2d8278, imac 0x342880;
     static cocos2d::CCPoint ccpForAngle(float);
     static cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const&);
     static bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
