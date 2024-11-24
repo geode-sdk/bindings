@@ -3790,14 +3790,14 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void closeTextInputs() = win 0xd5f60;
     void confirmClone(cocos2d::CCObject*);
     void confirmDelete(cocos2d::CCObject*) = imac 0x1ead40, m1 0x1a1e40, win 0xd75d0;
-    void confirmMoveToTop(cocos2d::CCObject*) = m1 0x1a20d8, imac 0x1eafd0;
+    void confirmMoveToTop(cocos2d::CCObject*) = m1 0x1a20d8, imac 0x1eafd0, win 0xd7e90;
     bool init(GJGameLevel*) = win 0xd3f10, imac 0x1e87a0, m1 0x19f95c;
     void onBack(cocos2d::CCObject* sender) = win 0xd80e0;
     void onClone() = m1 0x1a3618;
     void onDelete() = m1 0x1a3328;
     void onEdit(cocos2d::CCObject* sender);
     void onGuidelines(cocos2d::CCObject* sender) = win 0xd52e0, imac 0x1eb5e0;
-    void onHelp(cocos2d::CCObject* sender) = m1 0x1a1f28, imac 0x1eae30;
+    void onHelp(cocos2d::CCObject* sender) = m1 0x1a1f28, imac 0x1eae30, win 0xd7c50;
     void onLevelInfo(cocos2d::CCObject* sender) = win 0xd5500, m1 0x1a2420, imac 0x1eb320;
     void onLevelLeaderboard(cocos2d::CCObject* sender);
     void onLevelOptions(cocos2d::CCObject* sender);
@@ -16321,14 +16321,14 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void moveToSecondaryLayer(int) = m1 0x548300, imac 0x61c740;
     void onBack(cocos2d::CCObject* sender) = win 0x3c08b0, m1 0x547320, imac 0x61b7c0;
     void onChestType(cocos2d::CCObject* sender) = win 0x3bdce0, imac 0x61b830, m1 0x54738c;
-    void onGoldChest(cocos2d::CCObject* sender) = m1 0x5476f8, imac 0x61bb70;
+    void onGoldChest(cocos2d::CCObject* sender) = m1 0x5476f8, imac 0x61bb70, win 0x3c0020;
     void onSelectItem(cocos2d::CCObject* sender) = win 0x3bedd0, m1 0x5499c0, imac 0x61e000;
     void onShop(cocos2d::CCObject* sender) = win 0x3bf360, imac 0x61bf00, m1 0x547ad8;
-    void onSpecialItem(cocos2d::CCObject* sender) = m1 0x547f04, imac 0x61c330;
+    void onSpecialItem(cocos2d::CCObject* sender) = m1 0x547f04, imac 0x61c330, win 0x3bf760;
     void onSwitchPage(cocos2d::CCObject* sender) = win 0x3bd950;
     void showDialog01() = win 0x3c0ae0, imac 0x61e360, m1 0x549d5c;
     void showDialog03() = imac 0x620080, m1 0x54b548;
-    void showDialogDiamond() = m1 0x54d868, imac 0x622be0;
+    void showDialogDiamond() = m1 0x54d868, imac 0x622be0, win 0x3c4980;
     void showDialogMechanic() = win 0x3c36f0, imac 0x621630, m1 0x54c6f0;
     void showLockedChest() = m1 0x5483f8;
     void showShop(int shop) = win inline, m1 0x54e370 {
