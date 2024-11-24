@@ -15962,26 +15962,26 @@ class SearchSFXPopup : SetTextPopup {
 
 [[link(android)]]
 class SecretGame01Layer : cocos2d::CCLayer {
-    // virtual ~SecretGame01Layer();
+    // virtual ~SecretGame01Layer() = m1 0x3dc158, imac 0x46cd20;
 
-    static SecretGame01Layer* create();
+    static SecretGame01Layer* create() = m1 0x3db7e4, imac 0x46c200;
 
     virtual void update(float) = m1 0x3dcfe8, imac 0x46dc90;
     virtual bool init() = m1 0x3dc234, imac 0x46ce50;
 
-    TodoReturn didSelectCorrectObject(CCMenuItemSpriteExtra*);
-    TodoReturn gameStep01();
-    TodoReturn gameStep02();
-    TodoReturn getCountForDifficulty(int);
+    TodoReturn didSelectCorrectObject(CCMenuItemSpriteExtra*) = m1 0x3dce10, imac 0x46dad0;
+    TodoReturn gameStep01() = m1 0x3dc610, imac 0x46d200;
+    TodoReturn gameStep02() = m1 0x3dc890, imac 0x46d4d0;
+    TodoReturn getCountForDifficulty(int) = m1 0x3dc418, imac 0x46d040;
     gd::string getFrameForDifficulty(int) = m1 0x3dc440, imac 0x46d070;
-    TodoReturn getRowsForDifficulty(int);
+    TodoReturn getRowsForDifficulty(int) = m1 0x3dc3f4, imac 0x46d010;
     TodoReturn getTimeForDifficulty(int);
-    void onSelectButton(cocos2d::CCObject* sender);
-    TodoReturn resetGame();
-    TodoReturn resetGameTimer();
-    TodoReturn scaleOutGame(bool);
-    TodoReturn showGameOver();
-    TodoReturn showGameWon();
+    void onSelectButton(cocos2d::CCObject* sender) = m1 0x3dc528, imac 0x46d130;
+    TodoReturn resetGame() = m1 0x3db904, imac 0x46c350;
+    TodoReturn resetGameTimer() = m1 0x3dc9d8, imac 0x46d630;
+    TodoReturn scaleOutGame(bool) = m1 0x3dca50, imac 0x46d6c0;
+    TodoReturn showGameOver() = m1 0x3dca44, imac 0x46d6a0;
+    TodoReturn showGameWon() = m1 0x3dcdfc, imac 0x46dab0;
 }
 
 [[link(android)]]
@@ -16239,19 +16239,19 @@ class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 
 [[link(android)]]
 class SecretLayer6 : cocos2d::CCLayer {
-    // virtual ~SecretLayer6();
+    // virtual ~SecretLayer6() = m1 0x3db294, imac 0x64bc50;
     SecretLayer6() = win inline {
         m_gameLayer = nullptr;
     }
 
-    static SecretLayer6* create();
-    static cocos2d::CCScene* scene();
+    static SecretLayer6* create() = m1 0x3db37c, imac 0x46bd70;
+    static cocos2d::CCScene* scene() = m1 0x3db2c0, imac 0x46bca0;
 
     virtual bool init() = imac 0x46be20, m1 0x3db420;
     virtual void keyBackClicked() = m1 0x3dbf78, imac 0x46caa0;
 
-    void onBack(cocos2d::CCObject* sender);
-    void startGame01();
+    void onBack(cocos2d::CCObject* sender) = m1 0x3db8a4, imac 0x46c2e0;
+    void startGame01() = m1 0x3db8f4, imac 0x46c330;
 
     SecretGame01Layer* m_gameLayer;
 }
