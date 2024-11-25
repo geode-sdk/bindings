@@ -9872,6 +9872,10 @@ class GJMessageCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
     void onViewProfile(cocos2d::CCObject* sender);
     void updateBGColor(int);
     TodoReturn updateToggle();
+
+    GJUserMessage* m_message;
+    void* m_unk;
+    CCMenuItemToggler* m_toggler;
 }
 
 [[link(android)]]
