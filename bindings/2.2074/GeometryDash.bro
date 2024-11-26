@@ -6170,7 +6170,7 @@ class GameManager : GManager {
     TodoReturn printGJLog();
     void queueReloadMenu() = imac 0x378db0;
     TodoReturn rateGame();
-    void recountUserStats(gd::string) = m1 0x3032cc, imac 0x372010;
+    void recountUserStats(gd::string) = win 0x181ba0, m1 0x3032cc, imac 0x372010;
     void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool fix, bool unused) = win 0x187490, imac 0x378ee0, m1 0x309444;
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
         return this->reloadAll(switchingModes, toFullscreen, false, false, unused);
@@ -9144,7 +9144,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn getLastBuildPageForTab(int);
     const char* getLengthKey(int length, bool platformer) = imac 0x5457a0, m1 0x49e560;
     TodoReturn getListSnapshot();
-    TodoReturn getNormalPercent();
+    int getNormalPercent();
     TodoReturn getSongName();
     gd::string getUnpackedLevelDescription() = win 0x16d150, m1 0x4a16d8, imac 0x548eb0;
     void handleStatsConflict(GJGameLevel*) = win 0x16cc80, imac 0x526870, m1 0x482228;
@@ -13106,7 +13106,7 @@ class LevelTools {
     static TodoReturn getLastGameplayRotated();
     static TodoReturn getLastTimewarp();
     static GJGameLevel* getLevel(int, bool) = win 0x310320, imac 0x4e8620, m1 0x44a514;
-    static TodoReturn getLevelList();
+    static gd::unordered_set<int> getLevelList() = m1 0x44a138, imac 0x4e82b0;
     static SongInfoObject* getSongObject(int id) = win inline {
         auto artistID = artistForAudio(id);
         return SongInfoObject::create(id, getAudioTitle(id), nameForArtist(artistID), artistID, 0.f, "", "", "", 0, "", false, 0, -1);
