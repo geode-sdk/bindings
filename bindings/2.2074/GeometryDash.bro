@@ -7158,7 +7158,10 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn getChallengeKey(GJChallengeItem*) = m1 0x66e24, imac 0x73370;
     int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1dabd0;
     cocos2d::CCArray* getCompletedMapPacks() = win 0x1dc180, imac 0x6e6c0, m1 0x6230c;
-    TodoReturn getCurrencyKey(GJGameLevel*);
+    gd::string getCurrencyKey(GJGameLevel* level) = win inline, m1 0x64184, imac 0x70790 {
+        auto dailyID = level->m_dailyID.value();
+        return cocos2d::CCString::createWithFormat("%i", dailyID > 0 ? dailyID : level->m_levelID.value())->getCString();
+    }
     TodoReturn getDailyLevelKey(int);
     TodoReturn getDemonLevelKey(GJGameLevel*) = m1 0x60c5c, imac 0x6d140;
     TodoReturn getEventRewardKey(int);
@@ -8982,7 +8985,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn runTouchTriggerCommand(int, bool, TouchTriggerType, TouchTriggerControl, bool, gd::vector<int> const&, int, int);
     TodoReturn saveCompletedMove(int, double, double);
     void saveToState(EffectManagerState&) = win 0x25c520;
-    void setColorAction(ColorAction*, int);
+    void setColorAction(ColorAction*, int) = win 0x254a90, m1 0x26e4cc, imac 0x2cb570;
     void setFollowing(int, int, bool);
     void setupFromString(gd::string);
     bool shouldBlend(int) = imac 0x2ca4e0;
@@ -15349,7 +15352,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     bool isGameplayActive();
     void levelComplete() = win 0x390c30, imac 0xb4050, m1 0xa406c;
     TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
-    void loadDefaultColors() = m1 0xa2300, win 0x39ad80;
+    void loadDefaultColors() = win 0x39ad80, m1 0xa2300, imac 0xb1de0;
     TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&) = imac 0xbe690, m1 0xad05c;
     void loadFromCheckpoint(CheckpointObject*) = win 0x3a07b0, m1 0xacb4c, imac 0xbe120;
     TodoReturn loadLastCheckpoint() = m1 0xacaf4;
