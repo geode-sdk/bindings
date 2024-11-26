@@ -6727,27 +6727,32 @@ class GameObject : CCSpritePlus {
     int m_someOtherIndex;
     int m_innerSectionIndex;
     int m_outerSectionIndex;
-    int m_middleSectionIndex;
 
-    // property 511
-    bool m_hasExtendedCollision;
-    cocos2d::ccColor3B m_maybeGroupColor;
-    bool m_unk280;
-    bool m_unk281;
-    float m_blackChildRelated;
-    bool m_unk288;
-    bool m_editorEnabled;
+    // (Robtop palyed with new things unfortunately...)
+    // int m_middleSectionIndex;
+
+    struct _ccColor3B m_groupColor;
+    bool m_usesBlack;
+    struct _ccColor3B m_groupColorDetail; /* I have a feeling this is the pulse color */
+    bool m_useBlackOpacity;
+    struct _ccColor3B m_blackChildOpacity; // blackChildColor Might be better?
+    bool m_inLevelEditor;
+    bool m_groupEnabled;
     bool m_isGroupDisabled;
-    bool m_unk28B;
-    bool m_unk28c;
-
-    // somehow related to property 155 and 156 if anyone wants to reverse engineer
+    bool m_editorEnabled;
+    bool m_useLighterColor2;
+    bool m_idk1;
+    bool m_idk2;
+    bool m_notLinked;
+    
+    // somehow related to property 155 and 156 if anyone wants to reverse engineer 
     int m_activeMainColorID;
     int m_activeDetailColorID;
     bool m_baseUsesHSV;
     bool m_detailUsesHSV;
     float m_positionXOffset;
     float m_positionYOffset;
+
 
     float m_rotationXOffset;
     float m_unk2A8;
@@ -6775,7 +6780,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCParticleSystemQuad* m_particle;
     gd::string m_particleString;
     bool m_hasParticles;
-
+    
     // property 146
     bool m_particleUseObjectColor;
     bool m_hasColorSprite;
@@ -6802,7 +6807,8 @@ class GameObject : CCSpritePlus {
     bool m_shouldBlendBase;
     bool m_shouldBlendDetail;
     bool m_hasCustomChild;
-    bool m_unk367;
+    // Belongs to Fireballs, Monsters, Bats, Spikeballs w/ Face...
+    bool m_isAnimatedEnemy;
     cocos2d::CCSprite* m_colorSprite;
     bool m_unk370;
     float m_objectRadius;
@@ -6833,7 +6839,7 @@ class GameObject : CCSpritePlus {
     float m_customScaleY;
     bool m_startFlipX;
     bool m_startFlipY;
-    bool m_unk3ee;
+    bool m_isHidden;
     bool m_isInvisible;
     int m_unk3D8;
     short m_unk3DC;
@@ -6856,13 +6862,13 @@ class GameObject : CCSpritePlus {
 
     // property 1
     int m_objectID;
-    bool m_unk3F8;
+    bool m_dontTransform;
     bool m_isSolid;
     bool m_ignoreEnter;
     bool m_ignoreFade;
-    bool m_unk3FC;
-    bool m_unk3FD;
-    bool m_customSpriteColor;
+    bool m_dontFadeTinted;
+    bool m_isTintObject;
+    bool m_isDetailOnly;
 
     // property 497
     short m_customColorType;
@@ -6875,19 +6881,18 @@ class GameObject : CCSpritePlus {
     // property 507
     bool m_hasNoParticles;
     int m_defaultZOrder;
-    bool m_unk40C;
+    bool m_isPortalObject;
     bool m_colorZLayerRelated;
-    bool m_unk40E;
-    float m_unk410;
-    float m_unk414;
+    bool m_isAudioScale;
+    float m_minAudioScale;
+    float m_maxAudioScale;
     bool m_particleLocked;
 
     // property 53
     int m_property53;
-    bool m_gmUnkBool4Related;
-    bool m_unk421;
-    bool m_unk422;
-    bool m_cantColorGlow;
+    bool m_doesntFade;
+    bool m_useGlowBGColor;
+    bool m_useGlowColor;
     float m_opacityMod;
     bool m_slopeBugged;
     int m_slopeDirection;
@@ -6898,7 +6903,7 @@ class GameObject : CCSpritePlus {
     GJSpriteColor* m_baseColor;
     // property 22, also used with 42 and 44
     GJSpriteColor* m_detailColor;
-    bool m_unk448;
+    bool m_isBlendingBatchNode;
     ZLayer m_defaultZLayer;
     bool m_zFixedZLayer;
 
@@ -6939,8 +6944,8 @@ class GameObject : CCSpritePlus {
     // property 61
     short m_editorLayer2;
     int m_enabledGroupsCounter;
-    bool m_unk4ac;
-    bool m_unk4ad;
+    bool m_updateCustomContentSize;
+    bool m_hasContentSize;
 
     // property 121
     bool m_isNoTouch;
@@ -6950,21 +6955,21 @@ class GameObject : CCSpritePlus {
     int m_unk4C4;
     int m_unk4C8;
     int m_unk4CC;
-    int m_unk4D0;
-    bool m_unk4D4;
-    bool m_unk4D5;
-    bool m_unk4D6;
-    bool m_unk4D7;
-    bool m_unk4D8;
-    bool m_unk4D9;
-    bool m_unk4DA;
+    int m_classID;
+    bool m_isTrigger;
+    bool m_isTriggerGroup;
+    bool m_maybeColorTrigger;
+    bool m_ignoreEditorDuration;
+    bool m_isStoppableTrigger;
+    bool m_isEditorSpawnableTrigger;
+    bool m_dontCountTowardsLimit;
 
     // property 103
     bool m_isHighDetail;
-    ColorActionSprite* m_unk4E0;
-    ColorActionSprite* m_unk4E8;
+    ColorActionSprite* m_colorSprite1;
+    ColorActionSprite* m_colorSprite2;
     GJEffectManager* m_goEffectManager;
-    bool m_unk4F8;
+    bool m_maybeIsGoEffect;
     bool m_isDecoration;
     bool m_isDecoration2;
     bool m_unk4fb;
@@ -7003,10 +7008,10 @@ class GameObject : CCSpritePlus {
     GLubyte m_areaOpacityRelated;
     float m_areaOpacityRelated2;
     int m_areaOpacityRelated3;
-    int m_unk52C;
+    int m_unkSavePosSplitVar;
     bool m_unk530;
-    bool m_unk531;
-    bool m_unk532;
+    bool m_isUIObject;
+    bool m_isSpecialObject;
 }
 
 [[link(android)]]
