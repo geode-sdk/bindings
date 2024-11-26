@@ -10206,7 +10206,7 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
     virtual void onClosePopup(UploadActionPopup*) = imac 0x245fd0, m1 0x1f4b44, ios 0x1151e8;
 
     void loadFromScore(GJUserScore*) = win 0xbb640, imac 0x23a250;
-    TodoReturn markAsRead();
+    void markAsRead() = win 0xbbf50;
     void onDeleteRequest(cocos2d::CCObject* sender) = win 0xbc030, m1 0x1f4470, imac 0x245830;
     void onToggle(cocos2d::CCObject* sender);
     void onViewFriendRequest(cocos2d::CCObject* sender) = win 0xbbea0;
