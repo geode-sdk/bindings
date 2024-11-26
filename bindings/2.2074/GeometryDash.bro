@@ -19444,7 +19444,7 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 class SongsLayer : GJDropDownLayer {
     // virtual ~SongsLayer();
 
-    static SongsLayer* create() = m1 0x45b7a8, imac 0x4fba10;
+    static SongsLayer* create() = win 0x47bf80, m1 0x45b7a8, imac 0x4fba10;
 
     virtual void customSetup() = win 0x47c050, m1 0x45b920, imac 0x4fbc40, ios 0x346974;
 }
