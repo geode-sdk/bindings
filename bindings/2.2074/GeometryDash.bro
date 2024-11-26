@@ -6170,7 +6170,7 @@ class GameManager : GManager {
     TodoReturn printGJLog();
     void queueReloadMenu() = imac 0x378db0;
     TodoReturn rateGame();
-    void recountUserStats(gd::string) = m1 0x3032cc, imac 0x372010;
+    void recountUserStats(gd::string) = m1 0x3032cc, imac 0x372010, win 0x181ba0;
     void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool fix, bool unused) = win 0x187490, imac 0x378ee0, m1 0x309444;
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
         return this->reloadAll(switchingModes, toFullscreen, false, false, unused);
@@ -15349,7 +15349,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     bool isGameplayActive();
     void levelComplete() = win 0x390c30, imac 0xb4050, m1 0xa406c;
     TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
-    void loadDefaultColors() = m1 0xa2300;
+    void loadDefaultColors() = m1 0xa2300, win 0x39ad80;
     TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&) = imac 0xbe690, m1 0xad05c;
     void loadFromCheckpoint(CheckpointObject*) = win 0x3a07b0, m1 0xacb4c, imac 0xbe120;
     TodoReturn loadLastCheckpoint() = m1 0xacaf4;
