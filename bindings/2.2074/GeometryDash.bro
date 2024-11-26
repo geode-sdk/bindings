@@ -9864,7 +9864,7 @@ class GJMessageCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
     virtual void uploadActionFailed(int, int) = win 0xbd760, m1 0x1f5568, imac 0x246c10, ios 0x1157d0;
     virtual void onClosePopup(UploadActionPopup*) = imac 0x246d80, m1 0x1f56d0, ios 0x115868;
 
-    void loadFromMessage(GJUserMessage*) = win 0xbc7e0, imac 0x23aa30;
+    void loadFromMessage(GJUserMessage*) = win 0xbc7e0, m1 0x1ea9f8, imac 0x23aa30;
     TodoReturn markAsRead();
     void onDeleteMessage(cocos2d::CCObject* sender);
     void onToggle(cocos2d::CCObject* sender);
