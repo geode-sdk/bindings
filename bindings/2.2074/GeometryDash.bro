@@ -6170,7 +6170,7 @@ class GameManager : GManager {
     TodoReturn printGJLog();
     void queueReloadMenu() = imac 0x378db0;
     TodoReturn rateGame();
-    void recountUserStats(gd::string) = win 0x181ba0, m1 0x3032cc, imac 0x372010;
+    void recountUserStats(gd::string) = m1 0x3032cc, imac 0x372010;
     void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool fix, bool unused) = win 0x187490, imac 0x378ee0, m1 0x309444;
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
         return this->reloadAll(switchingModes, toFullscreen, false, false, unused);
