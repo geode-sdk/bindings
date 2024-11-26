@@ -5424,6 +5424,13 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     TodoReturn untoggleAll();
     TodoReturn updateLevelsLabel();
     TodoReturn updatePageArrows();
+
+    bool m_sent;
+    gd::string m_key;
+    cocos2d::CCLabelBMFont* m_noInternet;
+    cocos2d::CCLabelBMFont* m_unkLabel;
+    GJCommentListLayer* m_listLayer;
+    LoadingCircle* m_circle;
 }
 
 [[link(android)]]
@@ -5451,8 +5458,13 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     void loadFromGJFriendRequest(GJFriendRequest*) = m1 0x23a080, imac 0x291cf0;
     void onAccept(cocos2d::CCObject* sender) = m1 0x23a914, imac 0x292650;
     void onBlock(cocos2d::CCObject* sender) = m1 0x23aab0, imac 0x2927f0;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x28f440;
     void onRemove(cocos2d::CCObject* sender);
+
+    void* m_unk;
+    GJFriendRequest* m_request;
+    LoadingCircle* m_circle;
+    CCMenuItemSpriteExtra* m_closeBtn;
 }
 
 [[link(android)]]
@@ -5541,7 +5553,7 @@ class GameLevelManager : cocos2d::CCNode {
     void dataLoaded(DS_Dictionary*) = win 0x149310, imac 0x525360, m1 0x481004;
     void deleteAccountComment(int, int);
     void deleteComment(int, CommentType, int) = m1 0x496170, imac 0x53ccf0;
-    bool deleteFriendRequests(int, cocos2d::CCArray*, bool) = m1 0x49713c, imac 0x53de30;
+    bool deleteFriendRequests(int, cocos2d::CCArray*, bool) = win 0x15e180, m1 0x49713c, imac 0x53de30;
     void deleteLevel(GJGameLevel*) = win 0x142fe0, imac 0x517010, m1 0x4743e0;
     void deleteLevelComment(int, int);
     void deleteLevelList(GJLevelList*) = win 0x143890, imac 0x517880, m1 0x474ba4;
@@ -5919,7 +5931,7 @@ class GameLevelManager : cocos2d::CCNode {
     LevelDeleteDelegate* m_levelDeleteDelegate;
     LevelListDeleteDelegate* m_levelListDeleteDelegate;
     UserInfoDelegate* m_userInfoDelegate;
-    UploadPopupDelegate* m_uploadPopupDelegate;
+    UploadActionDelegate* m_uploadActionDelegate;
     UserListDelegate* m_userListDelegate;
     FriendRequestDelegate* m_friendRequestDelegate;
     MessageListDelegate* m_messageListDelegate;
@@ -9114,6 +9126,13 @@ class GJFriendRequest : cocos2d::CCNode {
     static GJFriendRequest* create(cocos2d::CCDictionary*);
 
     virtual bool init() = m1 0x4a2484, imac 0x549d80, ios 0xb34b8;
+
+    int m_requestID;
+    int m_accountID;
+    int m_34;
+    gd::string m_message;
+    gd::string m_uploadDate;
+    bool m_is36;
 }
 
 [[link(android)]]
@@ -10188,12 +10207,16 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 
     void loadFromScore(GJUserScore*) = win 0xbb640, imac 0x23a250;
     TodoReturn markAsRead();
-    void onDeleteRequest(cocos2d::CCObject* sender) = m1 0x1f4470, imac 0x245830;
+    void onDeleteRequest(cocos2d::CCObject* sender) = win 0xbc030, m1 0x1f4470, imac 0x245830;
     void onToggle(cocos2d::CCObject* sender);
-    void onViewFriendRequest(cocos2d::CCObject* sender);
+    void onViewFriendRequest(cocos2d::CCObject* sender) = win 0xbbea0;
     void onViewProfile(cocos2d::CCObject* sender);
     TodoReturn updateBGColor(int);
     TodoReturn updateToggle();
+
+    GJUserScore* m_score;
+    UploadActionPopup* m_popup;
+    CCMenuItemToggler* m_toggler;
 }
 
 [[link(android)]]
