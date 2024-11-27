@@ -724,7 +724,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
         return m_dynamic ? m_dynamicObjects->count() : m_pages->count();
     }
     bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3d230, imac 0x391aa0, m1 0x32056c;
-    void instantMoveToPage(int) = win 0x3ddc0, m1 0x321ccc;
+    void instantMoveToPage(int) = win 0x3ddc0, m1 0x321ccc, imac 0x393410;
     void moveToPage(int) = win 0x3dea0, imac 0x3934f0, m1 0x321da4;
     void moveToPageEnded() = win 0x3dc30, imac 0x393280, m1 0x321b3c;
     int pageNumberForPosition(cocos2d::CCPoint) = win 0x3dcc0, imac 0x393070, m1 0x321924;
@@ -743,7 +743,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     void removePageWithNumber(int) = imac 0x393940, m1 0x3221dc;
     void repositionPagesLooped() = win 0x3e060, imac 0x392090, m1 0x320b14;
     void selectPage(int);
-    void setDotScale(float scale) = win inline, m1 0x321608 {
+    void setDotScale(float scale) = win inline, m1 0x321608, imac 0x392c40 {
         for (int i = 0; i < m_dots->count(); i++) {
             static_cast<cocos2d::CCSprite*>(m_dots->objectAtIndex(i))->setScale(scale);
         }
@@ -755,7 +755,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     void setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3d5a0, imac 0x392710, m1 0x321124;
     void togglePageIndicators(bool) = win 0x3db60, imac 0x3931b0, m1 0x321a78;
     void updateDots(float) = win 0x3d960, imac 0x392990, m1 0x321388;
-    void updatePages() = win 0x3d840, m1 0x3209f4;
+    void updatePages() = win 0x3d840, m1 0x3209f4, imac 0x391f70;
 
     cocos2d::CCArray* m_dots;
     int m_slowPage;
