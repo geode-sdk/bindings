@@ -720,7 +720,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     cocos2d::CCPoint getRelativePosForPage(int page) = win inline, imac 0x392cb0, m1 0x321670 {
         return { this->getContentSize().width - m_pageOffset * page, 0.f };
     }
-    int getTotalPages() = win inline {
+    int getTotalPages() = win inline, m1 0x32136c, imac 0x392960 {
         return m_dynamic ? m_dynamicObjects->count() : m_pages->count();
     }
     bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3d230, imac 0x391aa0, m1 0x32056c;
@@ -6138,7 +6138,7 @@ class GameManager : GManager {
     }
     TodoReturn levelIsPremium(int, int);
     TodoReturn likeFacebook();
-    void loadBackground(int) = win 0x17f880, imac 0x36fc40;
+    void loadBackground(int) = win 0x17f880, m1 0x300f5c, imac 0x36fc40;
     void loadBackgroundAsync(int);
 
     void loadDeathEffect(int id) = win inline, imac 0x36fac0, m1 0x300de4 {
@@ -6166,11 +6166,11 @@ class GameManager : GManager {
     TodoReturn loadDpadFromString(UIButtonConfig&, gd::string) = imac 0x375010, m1 0x305914;
     TodoReturn loadDPadLayout(int, bool);
     TodoReturn loadFont(int) = imac 0x36f960;
-    void loadGround(int) = win 0x17fc30, imac 0x370120;
+    void loadGround(int) = win 0x17fc30, m1 0x301484, imac 0x370120;
     void loadGroundAsync(int);
     cocos2d::CCTexture2D* loadIcon(int, int, int) = win 0x17ecf0, imac 0x36e7f0, m1 0x2ffaf4;
     TodoReturn loadIconAsync(int, int, int, cocos2d::CCObject*);
-    void loadMiddleground(int) = win 0x17f9e0, imac 0x36fe10;
+    void loadMiddleground(int) = win 0x17f9e0, m1 0x301148, imac 0x36fe10;
     void loadMiddlegroundAsync(int);
     void loadVideoSettings() = imac 0x375a90;
     TodoReturn lockColor(int, UnlockType);
