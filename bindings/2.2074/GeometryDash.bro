@@ -246,7 +246,7 @@ class AchievementManager : cocos2d::CCNode {
     TodoReturn notifyAchievementWithID(char const*);
     TodoReturn percentageForCount(int, int);
     int percentForAchievement(char const*) = win 0x39a90, m1 0x6821b4, imac 0x76ec20;
-    void reportAchievementWithID(char const*, int, bool);
+    void reportAchievementWithID(char const*, int, bool) = m1 0x682d28, imac 0x76f830;
     void reportPlatformAchievementWithID(char const*, int);
     void resetAchievement(char const*);
     TodoReturn resetAchievements();
@@ -13127,7 +13127,7 @@ class LevelTools {
     static gd::string fbURLForArtist(int) = win 0x316430, m1 0x44df44, imac 0x4ec970;
     static int getAudioBPM(int);
     static gd::string getAudioFileName(int) = win 0x313750, imac 0x4eb120, m1 0x44ca9c;
-    static gd::string getAudioString(int) = imac 0x4ecd10, m1 0x44e26c;
+    static gd::string getAudioString(int) = win 0x316950, imac 0x4ecd10, m1 0x44e26c;
     static gd::string getAudioTitle(int) = win 0x312bd0, imac 0x4eab80, m1 0x44c364;
     static TodoReturn getLastGameplayReversed();
     static TodoReturn getLastGameplayRotated();
