@@ -5465,6 +5465,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     GJFriendRequest* m_request;
     LoadingCircle* m_circle;
     CCMenuItemSpriteExtra* m_closeBtn;
+    UploadActionPopup* m_popup;
 }
 
 [[link(android)]]
