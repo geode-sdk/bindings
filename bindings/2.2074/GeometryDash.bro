@@ -4791,10 +4791,11 @@ class EnhancedGameObject : GameObject {
 
     // property 97
     float m_rotationSpeed;
+
     float m_rotationAngle; 
     float m_rotationDelta;
     float m_rotationAnimationSpeed;
-    bool m_animationRandomizedStart;
+    
     // property 106
     bool m_animationRandomizedStart;
     // property 107
