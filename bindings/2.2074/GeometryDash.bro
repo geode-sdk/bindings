@@ -5420,7 +5420,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void onSentRequests(cocos2d::CCObject* sender);
     void onToggleAllObjects(cocos2d::CCObject* sender);
     void onUpdate(cocos2d::CCObject* sender);
-    void setupCommentsBrowser(cocos2d::CCArray*) = win 0x13da30;
+    void setupCommentsBrowser(cocos2d::CCArray*) = win 0x13da30, m1 0x690494, imac 0x77b660;
     TodoReturn untoggleAll();
     TodoReturn updateLevelsLabel();
     TodoReturn updatePageArrows();
@@ -5458,7 +5458,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     void loadFromGJFriendRequest(GJFriendRequest*) = m1 0x23a080, imac 0x291cf0;
     void onAccept(cocos2d::CCObject* sender) = m1 0x23a914, imac 0x292650;
     void onBlock(cocos2d::CCObject* sender) = m1 0x23aab0, imac 0x2927f0;
-    void onClose(cocos2d::CCObject* sender) = win 0x28f440;
+    void onClose(cocos2d::CCObject* sender) = win 0x28f440, m1 0x23a014, imac 0x291c80;
     void onRemove(cocos2d::CCObject* sender);
 
     void* m_unk;
@@ -10206,11 +10206,11 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
     virtual void uploadActionFailed(int, int) = win 0xbc580, imac 0x245ec0, m1 0x1f4a6c, ios 0x115134;
     virtual void onClosePopup(UploadActionPopup*) = imac 0x245fd0, m1 0x1f4b44, ios 0x1151e8;
 
-    void loadFromScore(GJUserScore*) = win 0xbb640, imac 0x23a250;
-    void markAsRead() = win 0xbbf50;
+    void loadFromScore(GJUserScore*) = win 0xbb640, m1 0x1ea280, imac 0x23a250;
+    void markAsRead() = win 0xbbf50, m1 0x1f4594, imac 0x245960; // inlined on macos
     void onDeleteRequest(cocos2d::CCObject* sender) = win 0xbc030, m1 0x1f4470, imac 0x245830;
     void onToggle(cocos2d::CCObject* sender);
-    void onViewFriendRequest(cocos2d::CCObject* sender) = win 0xbbea0;
+    void onViewFriendRequest(cocos2d::CCObject* sender) = win 0xbbea0, m1 0x1f4398, imac 0x245740;
     void onViewProfile(cocos2d::CCObject* sender);
     TodoReturn updateBGColor(int);
     TodoReturn updateToggle();
@@ -20467,7 +20467,7 @@ class UploadActionDelegate {
 class UploadActionPopup : FLAlertLayer {
     // virtual ~UploadActionPopup();
 
-    static UploadActionPopup* create(UploadPopupDelegate* delegate, gd::string str) = win 0x28db20;
+    static UploadActionPopup* create(UploadPopupDelegate* delegate, gd::string str) = win 0x28db20, m1 0x238c74, imac 0x290720;
 
     virtual void keyBackClicked() = win 0x28e320, m1 0x239564, imac 0x291070, ios 0x2d86e0;
 
