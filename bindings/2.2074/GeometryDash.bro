@@ -3673,7 +3673,11 @@ class DrawGridLayer : cocos2d::CCLayer {
 
     PAD = win 0x70, android32 0x40, android64 0x68, mac 0x58;
     LevelEditorLayer* m_editorLayer;
-    PAD = win 0x6c, android32 0x3c, android64 0x54, mac 0x64;
+    gd::string m_timeMarkerString;
+    cocos2d::CCNode* m_objectLayer;
+    void* m_unkPtr;
+    cocos2d::CCArray* m_effectGameObjects;
+    PAD = win 0x2c, android32 0x28, android64 0x2c, mac 0x2c;
     float m_gridSize;
 }
 
