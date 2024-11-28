@@ -13,8 +13,8 @@ using namespace geode::modifier;
 using cocos2d::CCDestructor;
 
 std::unordered_map<void*, bool>& CCDestructor::destructorLock() {{
-	static auto ret = new std::unordered_map<void*, bool>;
-	return *ret;
+	static thread_local std::unordered_map<void*, bool> ret;
+	return ret;
 }}
 bool& CCDestructor::globalLock() {{
 	static thread_local bool ret = false;
