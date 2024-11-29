@@ -3654,30 +3654,49 @@ class DrawGridLayer : cocos2d::CCLayer {
     virtual void draw() = win 0x2db8f0, imac 0xf5dc0, m1 0xd9de8, ios 0x3658c8;
 
     void addAudioLineObject(AudioLineGuideGameObject*);
-    TodoReturn addToEffects(EffectGameObject*);
-    TodoReturn addToGuides(GameObject*);
-    TodoReturn addToSpeedObjects(EffectGameObject*);
-    TodoReturn getPortalMinMax(GameObject*);
+    void addToEffects(EffectGameObject*);
+    void addToGuides(GameObject*);
+    void addToSpeedObjects(EffectGameObject*);
+    cocos2d::CCPoint getPortalMinMax(GameObject*);
     bool init(cocos2d::CCNode*, LevelEditorLayer*);
     void loadTimeMarkers(gd::string) = win 0x2db3d0, imac 0xdf600;
-    float posForTime(float);
+    cocos2d::CCPoint posForTime(float);
     void postUpdate();
-    TodoReturn removeAudioLineObject(AudioLineGuideGameObject*);
-    TodoReturn removeFromEffects(EffectGameObject*);
-    TodoReturn removeFromGuides(GameObject*);
-    TodoReturn removeFromSpeedObjects(EffectGameObject*);
-    TodoReturn sortSpeedObjects();
+    void removeAudioLineObject(AudioLineGuideGameObject*);
+    void removeFromEffects(EffectGameObject*);
+    void removeFromGuides(GameObject*);
+    void removeFromSpeedObjects(EffectGameObject*);
+    void sortSpeedObjects();
     float timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int);
-    TodoReturn updateMusicGuideTime(float);
+    void updateMusicGuideTime(float);
     void updateTimeMarkers();
 
-    PAD = win 0x70, android32 0x40, android64 0x68, mac 0x58;
+    std::array<cocos2d::CCPoint, 400>* m_pointArray1;
+    std::array<cocos2d::CCPoint, 400>* m_pointArray2;
+    std::array<cocos2d::CCPoint, 400>* m_pointArray3;
+    gd::unordered_map<int, AudioLineGuideGameObject*> m_audioLineObjects;
+    float m_musicTime;
+    float m_playbackTime;
+    float m_oldPlaybackTime;
+    float m_playbackX;
+    float m_playbackY;
+    bool m_sortEffects;
     LevelEditorLayer* m_editorLayer;
     gd::string m_timeMarkerString;
     cocos2d::CCNode* m_objectLayer;
-    void* m_unkPtr;
+    cocos2d::CCArray* m_timeMarkers;
     cocos2d::CCArray* m_effectGameObjects;
-    PAD = win 0x34, android32 0x2c, android64 0x34, mac 0x34;
+    cocos2d::CCArray* m_guideObjects;
+    cocos2d::CCArray* m_speedObjects;
+    void* m_unk258;
+    float m_currentSpeed;
+    float m_slowSpeed;
+    float m_normalSpeed;
+    float m_fastSpeed;
+    float m_fasterSpeed;
+    float m_fastestSpeed;
+    bool m_updateTimeMarkers;
+    bool m_updateSpeedObjects;
     float m_gridSize;
 }
 
@@ -7802,7 +7821,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void toggleMGVisibility(bool) = m1 0x116b64, imac 0x13eff0, ios 0x1fef30;
     virtual void toggleHideAttempts(bool) = m1 0x116b68, imac 0x13f000, ios 0x1fef34;
     virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) { return 0.f; }
-    virtual float posForTime(float) { return 0.f; }
+    virtual cocos2d::CCPoint posForTime(float) { return { 0.f, 0.f }; }
     virtual void resetSPTriggered() {}
     virtual void updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x230720, imac 0x13f1a0, m1 0x116cb0, ios 0x1ff018;
     virtual TodoReturn reverseDirection(EffectGameObject*) = win 0x212c80, m1 0xf8e6c, imac 0x11a1f0, ios 0x1ec3d4;
@@ -12230,7 +12249,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     virtual void updateObjectSection(GameObject*) = win 0x2d6f90, imac 0xf0b10, m1 0xd59e4, ios 0x36221c;
     virtual TodoReturn updateDisabledObjectsLastPos(cocos2d::CCArray*) = win 0x2d7240, imac 0xf0c50, m1 0xd5aec, ios 0x362318;
     virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x2d5f10, imac 0xef260, m1 0xd43f0, ios 0x3613c0;
-    virtual float posForTime(float) = win 0x2d5f80, imac 0xef2f0, m1 0xd447c, ios 0x361430;
+    virtual cocos2d::CCPoint posForTime(float) = win 0x2d5f80, imac 0xef2f0, m1 0xd447c, ios 0x361430;
     virtual void resetSPTriggered() = imac 0xef390, m1 0xd44bc, ios 0x361450;
     virtual TodoReturn didRotateGameplay() = win 0x2d6f20, imac 0xf0910, m1 0xd57e8, ios 0x362078;
     virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2d1700, m1 0xd0ff4, imac 0xeb6d0, ios 0x35ea4c;
@@ -13146,8 +13165,8 @@ class LevelTools {
     static gd::string nameForArtist(int) = win 0x3143f0, m1 0x44d12c;
     static gd::string ngURLForArtist(int) = win 0x315a10, m1 0x44d960, imac 0x4ec2c0;
     static TodoReturn offsetBPMForTrack(int);
-    static float posForTime(float time, cocos2d::CCArray* p1, int p2, bool p3, int& p4);
-    static float posForTimeInternal(float time, cocos2d::CCArray* gameObjects, int speedmodValue, bool disabledSpeedmod, bool, bool, int&, int) = win 0x317ea0;
+    static cocos2d::CCPoint posForTime(float time, cocos2d::CCArray* p1, int p2, bool p3, int& p4);
+    static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* gameObjects, int speedmodValue, bool disabledSpeedmod, bool, bool, int&, int) = win 0x317ea0;
     static TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
     static TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*) = imac 0x66d20;
     static float timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int);
@@ -15328,7 +15347,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual void toggleMGVisibility(bool) = win 0x39c8a0, imac 0xba8e0, m1 0xa9df8, ios 0x122538;
     virtual void toggleHideAttempts(bool) = win 0x39c8e0, imac 0xba900, m1 0xa9e08, ios 0x122548;
     virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x39c6f0, imac 0xba790, m1 0xa9cf8, ios 0x122438;
-    virtual float posForTime(float) = win 0x39c780, imac 0xba810, m1 0xa9d6c, ios 0x1224ac;
+    virtual cocos2d::CCPoint posForTime(float) = win 0x39c780, imac 0xba810, m1 0xa9d6c, ios 0x1224ac;
     virtual void resetSPTriggered() = win 0x39c7e0, imac 0xba860, m1 0xa9d8c, ios 0x1224cc;
     virtual void updateTimeWarp(float) = imac 0xb68e0, m1 0xa6560, ios 0x11f5c4;
     virtual void playGravityEffect(bool) = win 0x39b180, imac 0xb9f30, m1 0xa94b4, ios 0x121cc4;
