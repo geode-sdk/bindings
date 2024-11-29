@@ -3377,7 +3377,17 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void updatePlaybackBtn() = win 0xca3b0, imac 0x606f50, m1 0x534418;
     void updateProgressBar(int) = win 0xca550;
     void updateSongInfo() = win 0xca600, m1 0x533504, imac 0x605f20;
-    void updateSongObject(SongInfoObject*) = imac 0x605e90;
+    void updateSongObject(SongInfoObject* songInfo) = win inline, m1 0x533468, imac 0x605e90 {
+        m_errorLabel->setVisible(false);
+        if (m_bgSpr) m_bgSpr->setVisible(false);
+        if (m_songInfoObject != songInfo) {
+            CC_SAFE_RETAIN(songInfo);
+            CC_SAFE_RELEASE(m_songInfoObject);
+            m_songInfoObject = songInfo;
+        }
+        m_customSongID = songInfo ? songInfo->m_songID : 0;
+        this->updateSongInfo();
+    }
     void updateWithMultiAssets(gd::string, gd::string, int) = win 0xcb410, m1 0x535020, imac 0x607c40;
     TodoReturn verifySongID(int);
 
