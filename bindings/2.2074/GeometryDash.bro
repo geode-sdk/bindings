@@ -3688,7 +3688,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     cocos2d::CCArray* m_effectGameObjects;
     cocos2d::CCArray* m_guideObjects;
     cocos2d::CCArray* m_speedObjects;
-    void* m_unk258;
+    double m_unk258;
     float m_currentSpeed;
     float m_slowSpeed;
     float m_normalSpeed;
