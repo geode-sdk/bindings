@@ -3677,7 +3677,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     cocos2d::CCNode* m_objectLayer;
     void* m_unkPtr;
     cocos2d::CCArray* m_effectGameObjects;
-    PAD = win 0x2c, android32 0x28, android64 0x2c, mac 0x2c;
+    PAD = win 0x34, android32 0x2c, android64 0x34, mac 0x34;
     float m_gridSize;
 }
 
