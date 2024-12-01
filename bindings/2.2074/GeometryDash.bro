@@ -19226,7 +19226,7 @@ class Slider : cocos2d::CCLayer {
     cocos2d::CCSprite* m_groove;
     float m_width;
     float m_height;
-    void* m_unknown;
+    SliderDelegate* m_delegate;
     void* m_unknown2;
 }
 
