@@ -1441,7 +1441,7 @@ class cocos2d::CCEGLView {
     void end();
 
     [[missing(android, mac, ios)]]
-    void toggleFullScreen(bool, bool);
+    void toggleFullScreen(bool, bool, bool);
     [[missing(android, mac, ios)]]
     void pollEvents();
     [[missing(android, mac, ios)]]
