@@ -15886,7 +15886,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
     virtual bool init() = win 0x3b5120, m1 0x1bd4e4, imac 0x208720, ios 0x1c4798;
     virtual void registerWithTouchDispatcher() = m1 0x1bec8c, imac 0x209fc0, ios 0x1c5bcc;
     virtual void keyBackClicked() = m1 0x1bec10, imac 0x209f50, ios 0x1c5b50;
-    virtual void show() = m1 0x1beab8, imac 0x209df0, ios 0x1c5a10;
+    virtual void show() = win 0x3ae2e0, m1 0x1beab8, imac 0x209df0, ios 0x1c5a10;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = m1 0x1bec08, imac 0x209f30, ios 0x1c5b48 {}
     virtual void rewardsStatusFinished(int) = win 0x3b6120, imac 0x209a70, m1 0x1be754, ios 0x1c57bc;
     virtual void rewardsStatusFailed() = win 0x3b6370, imac 0x209d00, m1 0x1be9b4, ios 0x1c597c;
