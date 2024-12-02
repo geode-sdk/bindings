@@ -633,7 +633,8 @@ enum class SpecialRewardItem {
     BloodShard = 0xB,
     MetalShard = 0xC,
     LightShard = 0xD,
-    SoulShard = 0xE
+    SoulShard = 0xE,
+    GoldKey = 0xF
 };
 
 enum class EditCommand {
