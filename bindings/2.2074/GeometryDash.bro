@@ -5106,8 +5106,18 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn channelStopped(FMOD::Channel*, bool);
     TodoReturn channelUnlinkSound(int);
     void clearAllAudio() = win 0x552e0, imac 0x3cb330, m1 0x353b90;
-    TodoReturn countActiveEffects();
-    TodoReturn countActiveMusic();
+    int countActiveEffects() {
+        return m_channelIDToChannel.size() - countActiveMusic();
+    }
+    int countActiveMusic() {
+        int count = 0;
+        for (auto& music : m_musicChannels) {
+            if (music.second.m_channelID > 0) {
+                ++count;
+            }
+        }
+        return count;
+    }
     TodoReturn createStream(gd::string);
     void disableMetering() {
         this->m_metering = false;
@@ -8155,7 +8165,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void setupLevelStart(LevelSettingsObject*) = win 0x20cd60, imac 0x112f20, m1 0xf28b8;
     void setupReplay(gd::string) = win 0x234360, m1 0x11cd28;
     void shakeCamera(float duration, float strength, float interval) = win 0x2356c0;
-    TodoReturn shouldExitHackedLevel() = imac 0x102b90;
+    bool shouldExitHackedLevel() = win 0x205d10, imac 0x102b90;
     TodoReturn sortAllGroupsX();
     TodoReturn sortGroups();
     void sortSectionVector() = win 0x221cc0, imac 0x12faf0, m1 0x10a4a8;
@@ -8554,7 +8564,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCArray* m_temporaryParticles;
     gd::unordered_set<int> m_customParticlesUIDs;
     cocos2d::CCDictionary* m_gradientLayers;
-    void* m_unk2a54;
+    int m_activeGradients;
     ShaderLayer* m_shaderLayer;
     bool m_bUnk31a0;
     bool m_bUnk31a1;
@@ -8600,7 +8610,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     AudioEffectsLayer* m_audioEffectsLayer;
     OBB2D* m_unk3270;
     gd::vector<GameObject*> m_unk3278;
-    int m_unk3290;
+    int m_activeObjects;
     int m_unk3294;
     cocos2d::ccColor3B m_unk3298;
     int m_resumeTimer;
