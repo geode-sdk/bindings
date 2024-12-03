@@ -2533,7 +2533,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     TodoReturn incrementLikes();
     void loadFromComment(GJComment*) = win 0xb5480, m1 0x1e5f14, imac 0x235d50;
     void onConfirmDelete(cocos2d::CCObject* sender) = win 0xb7850, imac 0x242f80, m1 0x1f220c;
-    TodoReturn onDelete();
+    void onDelete() = m1 0x1f26a0, imac 0x243450;
     void onGoToLevel(cocos2d::CCObject* sender) = win 0xb7b20, imac 0x242dc0, m1 0x1f2078;
     void onLike(cocos2d::CCObject* sender) = win 0xb75f0, imac 0x242e90, m1 0x1f212c;
     TodoReturn onUndelete();
