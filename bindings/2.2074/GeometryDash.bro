@@ -14257,13 +14257,13 @@ class NumberInputLayer : FLAlertLayer {
     virtual void registerWithTouchDispatcher() = win 0x52d60, imac 0x480110, m1 0x3ee1f0, ios 0xfc794;
     virtual void keyBackClicked() = m1 0x3ee174, imac 0x4800a0, ios 0xfc718;
 
-    void deleteLast() = win inline, m1 0x3ede24 {
+    void deleteLast() = win inline, m1 0x3ede24, imac 0x47fd60 {
         if (!m_inputString.empty()) {
             m_inputString = m_inputString.substr(0, m_inputString.size() - 1);
             this->updateNumberState();
         }
     }
-    void inputNumber(int num) = win inline, m1 0x3ee054 {
+    void inputNumber(int num) = win inline, m1 0x3ee054, imac 0x47ff90 {
         if (m_inputString.size() < m_maximum) {
             m_inputString += cocos2d::CCString::createWithFormat("%i", num)->getCString();
             this->updateNumberState();
