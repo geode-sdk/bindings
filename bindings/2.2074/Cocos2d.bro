@@ -634,7 +634,7 @@ class cocos2d::CCParticleRain : cocos2d::CCParticleSystemQuad {
 [[link(win, android)]]
 class cocos2d::CCParticleSnow : cocos2d::CCParticleSystemQuad {
 	static cocos2d::CCParticleSnow* create() = imac 0x473c10;
-	static cocos2d::CCParticleSnow* createWithTotalParticles(unsigned int) = imac 0x473c90;
+	static cocos2d::CCParticleSnow* createWithTotalParticles(unsigned int) = imac 0x473c90, m1 0x3e28a0;
 
 	// CCParticleSnow(cocos2d::CCParticleSnow const&);
 	// CCParticleSnow();
