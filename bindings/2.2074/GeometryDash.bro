@@ -4430,7 +4430,7 @@ class EffectGameObject : EnhancedGameObject {
     virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*) = imac 0x1a9f90, m1 0x16b578, ios 0x37f260;
 
     TodoReturn getTargetColorIndex();
-    bool init(char const*);
+    bool init(char const*) = win 0x48d1a0;
     TodoReturn playTriggerEffect() = win 0x48d2b0;
     TodoReturn resetSpawnTrigger();
     void setTargetID(int);
@@ -19930,7 +19930,7 @@ class TeleportPortalObject : RingObject {
     virtual void removeFromGroup2(int) = m1 0x16dea4, imac 0x1acdd0, ios 0x380884;
 
     TodoReturn getTeleportXOff(cocos2d::CCNode*) = win 0x4998f0, imac 0x1acbd0;
-    bool init(char const*, bool) = win 0x48d1a0;
+    bool init(char const*, bool);
     void setPositionOverride(cocos2d::CCPoint);
     void setStartPosOverride(cocos2d::CCPoint);
 
@@ -20239,6 +20239,10 @@ class TriggerControlGameObject : EffectGameObject {
 
     bool init(char const*);
     TodoReturn updateTriggerControlFrame() = m1 0x196494, imac 0x1ddbe0;
+
+    gd::string m_unkString;
+    // The type of a stop trigger for example
+    int m_customTriggerValue;
 }
 
 [[link(android)]]
