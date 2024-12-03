@@ -7876,8 +7876,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void activatePlayerControlTrigger(PlayerControlGameObject*);
     TodoReturn activateResetTrigger(EffectGameObject*);
     void activateSFXEditTrigger(SFXTriggerGameObject*);
-    void activateSFXTrigger(SFXTriggerGameObject*) = win 0x23b6c0;
-    void activateSongEditTrigger(SongTriggerGameObject*) = win 0x23b8c0, imac 0x1495f0;
+    void activateSFXTrigger(SFXTriggerGameObject*) = win 0x23b6c0, m1 0x11f100, imac 0x149850;
+    void activateSongEditTrigger(SongTriggerGameObject*) = win 0x23b8c0, m1 0x11eec4, imac 0x1495f0;
     void activateSongTrigger(SongTriggerGameObject*);
     TodoReturn activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&);
     TodoReturn addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType);
@@ -8042,7 +8042,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
     void playerTouchedObject(PlayerObject*, GameObject*);
     void playerTouchedRing(PlayerObject*, RingObject*) = win 0x212960, imac 0x118040, m1 0xf6eb0;
-    void playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x212a70, imac 0x1180f0;
+    void playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x212a70, m1 0xf6f88, imac 0x1180f0;
     TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*);
     void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x20da30, imac 0x114200, m1 0xf3a44;
     void playExitDualEffect(PlayerObject*) = win 0x2119a0;
@@ -15015,7 +15015,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         createRobot(id);
     }
     void updatePlayerRollFrame(int) = win 0x3887f0, imac 0x406ff0, m1 0x384bec;
-    void updatePlayerScale() = win 0x38a490;
+    void updatePlayerScale() = win 0x38a490, m1 0x3827c8, imac 0x4049a0;
     void updatePlayerShipFrame(int) = win 0x3880f0, imac 0x404fc0, m1 0x382d90;
     void updatePlayerSpiderFrame(int id) = win inline, imac 0x408f80, m1 0x386958 {
         if (id < 1) id = 1;
