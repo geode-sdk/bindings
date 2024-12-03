@@ -5149,7 +5149,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn getMusicChannelID(int);
     unsigned int getMusicLengthMS(int channel) = win 0x5c330;
     TodoReturn getMusicTime(int);
-    unsigned int getMusicTimeMS(int channel) = win 0x5c2d0;
+    unsigned int getMusicTimeMS(int channel) = win 0x5c2d0, m1 0x35d310, imac 0x3d7660;
     TodoReturn getNextChannelID();
     TodoReturn getTweenContainer(AudioTargetType);
     bool isAnyPersistentPlaying();
@@ -7416,7 +7416,7 @@ class GameToolbox {
     static TodoReturn fast_rand();
     static float fast_rand_0_1() = imac 0x4dea80, m1 0x441870;
     static TodoReturn fast_rand_minus1_1();
-    static void fast_srand(uint64_t) = imac 0x4dea30;
+    static void fast_srand(uint64_t) = m1 0x441830, imac 0x4dea30;
     static TodoReturn gen_random(int) = m1 0x464058, imac 0x504920;
     static TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, cocos2d::SEL_CallFunc);
     static TodoReturn getDropActionWEnd(float, float, float, cocos2d::CCAction*, float);
