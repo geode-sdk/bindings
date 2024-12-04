@@ -8061,7 +8061,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processAreaActions(float, bool) = win 0x223ce0;
     void processAreaEffects(gd::vector<EnterEffectInstance>*, GJAreaActionType, float, bool) = win 0x223100, imac 0x1308e0, m1 0x10afe8;
     void processAreaFadeGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, bool);
-    void processAreaMoveGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x2251f0;
+    void processAreaMoveGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x2251f0, m1 0x10c484, imac 0x132070;
     void processAreaRotateGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x224ab0;
     void processAreaTintGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, bool) = win 0x2258c0;
     void processAreaTransformGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x223f40;
@@ -8080,8 +8080,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processDynamicObjectActions(int, float) = win 0x228fa0;
     void processFollowActions() = win 0x22b2a0;
     TodoReturn processItems();
-    void processMoveActions() = win 0x2282d0;
-    void processMoveActionsStep(float, bool) = win 0x2262f0, imac 0x1347b0;
+    void processMoveActions() = win 0x2282d0, m1 0x10ffa0, imac 0x136810;
+    void processMoveActionsStep(float, bool) = win 0x2262f0, m1 0x10e5b8, imac 0x1347b0;
     void processOptionsTrigger(GameOptionsTrigger*) = win 0x21e9a0, imac 0x12c930, m1 0x107a5c;
     void processPlayerFollowActions(float) = win 0x228bf0;
     void processQueuedAudioTriggers() = win 0x235550, imac 0x1491f0;
