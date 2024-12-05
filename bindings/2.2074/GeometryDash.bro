@@ -1196,7 +1196,8 @@ class CCLightFlash : cocos2d::CCNode {
 
     void cleanupFlash() = win 0x43c80, imac 0x4f0e50;
     void fadeAndRemove() = m1 0x451c20;
-    void playEffect(cocos2d::CCPoint, cocos2d::ccColor3B, float, float, float, float, float, float, float, float, float, float, float, float, float, float, int, bool, bool, float) = win 0x433a0, imac 0x4f05e0, m1 0x451680;
+    // param names from https://github.com/gd-hyperdash/Cocos2Dx/blob/master/cocos2dx/extensions/RobTop/CCLightFlash.h and confirmed to be correct
+    void playEffect(cocos2d::CCPoint pos, cocos2d::ccColor3B col, float startWidth, float startWidthVariation, float endWidth, float endWidthVariation, float endHeight, float stripDuration, float stripDurationVariance, float stripInterval, float stripStartDelay, float stripStartDelayVariation, float stripRotation, float stripRotationVariation, float stripOpacity, float stripOpacityVariation, int stripCount, bool circleRotation, bool fadeIn, float delay) = win 0x433a0, imac 0x4f05e0, m1 0x451680;
     void removeLights() = win 0x43c20;
     void showFlash() = win 0x438e0, imac 0x4f0b30, m1 0x451af4;
 
