@@ -13,8 +13,8 @@ using namespace geode::modifier;
 using cocos2d::CCDestructor;
 
 std::unordered_map<void*, bool>& CCDestructor::destructorLock() {{
-	static auto ret = new std::unordered_map<void*, bool>;
-	return *ret;
+	static thread_local std::unordered_map<void*, bool> ret;
+	return ret;
 }}
 bool& CCDestructor::globalLock() {{
 	static thread_local bool ret = false;
@@ -89,6 +89,21 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	// we need to construct it back so that it uhhh ummm doesnt crash
 	// while going to the child destructors
 	auto thing = new (this) {class_name}(geode::CutoffConstructor, sizeof({class_name}));
+	CCDestructor::lock(this) = true;
+}}
+)GEN";
+
+	constexpr char const* declare_destructor_baseless = R"GEN(
+{class_name}::{function_name}({parameters}) {{
+	// basically we destruct it once by calling the gd function, 
+	// then lock it, so that other gd destructors dont get called
+	if (CCDestructor::lock(this)) return;
+	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
+	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
+		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
+		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
+	}});
+	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 	CCDestructor::lock(this) = true;
 }}
 )GEN";
@@ -230,7 +245,7 @@ std::string generateBindingSource(Root const& root) {
 								}
 								break;
 							case FunctionType::Dtor:
-								used_declare_format = format_strings::declare_destructor;
+								used_declare_format = c.superclasses.empty() ? format_strings::declare_destructor_baseless : format_strings::declare_destructor;
 								break;
 						}
 

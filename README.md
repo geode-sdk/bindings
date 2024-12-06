@@ -52,7 +52,7 @@ class Example : Base1, Base2 {
 }
 ```
 
-We are mainly only looking for new addresses for the latest version of GD (Update 2.206). However, if you are interested in documenting older versions, we will also accept those in the interests of the wider modding community. Please put them in the appropriate subfolder under bindings.
+We are mainly only looking for new addresses for the latest version of GD (Update 2.2074). However, if you are interested in documenting older versions, we will also accept those in the interests of the wider modding community. Please put them in the appropriate subfolder under bindings.
 
 ## SyncBromaScript
 

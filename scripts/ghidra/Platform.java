@@ -27,9 +27,9 @@ public enum Platform {
         this.groupName = groupName;
     }
 
-    public static Platform fromShortName(String shortName) {
+    public static Platform fromShortName(String shortName, Platform curPlatform) {
         for (var v : Platform.values()) {
-            if (v.respondsToName(shortName)) {
+            if (v.respondsToName(shortName, curPlatform)) {
                 return v;
             }
         }
@@ -55,8 +55,11 @@ public enum Platform {
     public boolean hasSingleBinary() {
         return this.singleBinary;
     }
-    public boolean respondsToName(String shortName) {
+    public boolean respondsToName(String shortName, Platform curPlatform) {
         if (this.shortName.equals(shortName)) {
+            if ((this == Platform.WINDOWS32 || this == Platform.WINDOWS64) && (curPlatform == Platform.WINDOWS32 || curPlatform == Platform.WINDOWS64)) {
+                return this == curPlatform;
+            }
             return true;
         }
         if (this.groupName != null && this.groupName.equals(shortName)) {

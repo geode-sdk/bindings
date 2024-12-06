@@ -8,7 +8,7 @@ GEODE_MEMBER_CHECK(PlayLayer, m_unkSomeFloat, 0x35a4);
 GEODE_MEMBER_CHECK(PlayLayer, m_jumps, 0x3680);
 GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x368D);
 GEODE_MEMBER_CHECK(PlayLayer, m_endLayerStars, 0x3694);
-GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36F7);
+GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36FF);
 
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x35b8);
 
@@ -60,5 +60,8 @@ GEODE_SIZE_CHECK(CCTextInputNode, 0x258);
 
 GEODE_SIZE_CHECK(CCLightFlash, 0x168);
 GEODE_SIZE_CHECK(CCLightStrip, 0x160);
+
+GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3b0);
+GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
 
 #endif

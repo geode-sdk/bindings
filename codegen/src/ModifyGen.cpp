@@ -145,7 +145,9 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
 
             std::string format_string;
             if (status == BindStatus::Missing) {
-                format_string = format_strings::apply_error;
+                //TODO: this breaks cceglview i think thats why its commented out
+                //format_string = format_strings::apply_error;
+                continue;
             }
             else if (status == BindStatus::Unbindable && fn->prototype.type == FunctionType::Normal) {
                 if (is_cocos_class(c.name)) {
