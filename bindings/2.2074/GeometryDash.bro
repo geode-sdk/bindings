@@ -4015,7 +4015,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
     void activateRotationControl(cocos2d::CCObject*) = win 0x121420;
     void activateScaleControl(cocos2d::CCObject*) = win 0x113280;
-    void activateTransformControl(cocos2d::CCObject*) = win 0x1138d0;
+    void activateTransformControl(cocos2d::CCObject*) = win 0x1138d0, m1 0x3aec4, imac 0x40720;
     TodoReturn addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*);
     TodoReturn addSnapPosition(cocos2d::CCPoint);
     TodoReturn alignObjects(cocos2d::CCArray*, bool);
@@ -11160,7 +11160,7 @@ class GJTransformControl : cocos2d::CCLayer {
     TodoReturn loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&);
     TodoReturn logCurrentZeroPos();
     void onToggleLockScale(cocos2d::CCObject* sender);
-    void refreshControl() = win 0x1295f0;
+    void refreshControl() = win 0x1295f0, m1 0x43948, imac 0x4ab90;
     void saveToState(GJTransformState&);
     void scaleButtons(float) = win 0x129810;
     cocos2d::CCSprite* spriteByTag(int tag) {
