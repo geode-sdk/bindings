@@ -232,7 +232,7 @@ class AchievementManager : cocos2d::CCNode {
     void firstSetup();
     TodoReturn getAchievementRewardDict();
     cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x39d70, imac 0x76ed50;
-    TodoReturn getAllAchievements();
+    cocos2d::CCArray* getAllAchievements();
     cocos2d::CCArray* getAllAchievementsSorted(bool);
     bool isAchievementAvailable(gd::string);
     bool isAchievementEarned(char const* ach) = win 0x39a70, imac 0x76ec00, m1 0x682198;
@@ -484,7 +484,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     float bgScale();
     TodoReturn checkSound();
     TodoReturn hideLoadingCircle();
-    TodoReturn loadingIsFinished();
+    void loadingIsFinished();
     bool musicTest() = win 0x83370;
     void pauseGame() = win 0x82ff0;
     void pauseSound() = win 0x830d0;
@@ -6323,7 +6323,7 @@ class GameManager : GManager {
     TodoReturn subYouTube();
     TodoReturn switchCustomObjects(int, int);
     TodoReturn switchScreenMode(bool, bool, bool, bool);
-    TodoReturn syncPlatformAchievements();
+    void syncPlatformAchievements();
     void toggleGameVariable(char const*) = win 0x180270, imac 0x3707d0, m1 0x301b54;
     TodoReturn tryCacheAd();
     TodoReturn tryShowInterstitial(int, int, int);
@@ -13344,7 +13344,9 @@ class LoadingLayer : cocos2d::CCLayer {
     const char* getLoadingString() = win 0x31a930, imac 0x38fcf0, m1 0x31ea9c;
     bool init(bool) = win 0x319600, imac 0x38f560, m1 0x31e314;
     void loadAssets() = win 0x319ea0, imac 0x38fdb0, m1 0x31eb80;
-    void loadingFinished() = imac 0x390550, m1 0x31f290;
+    void loadingFinished() = imac 0x390550, m1 0x31f290, win inline {
+        cocos2d::CCDirector::sharedDirector()->replaceScene(MenuLayer::scene(m_fromRefresh));
+    }
     void updateProgress(int) = win 0x319e20, imac 0x38fd50;
 
     bool m_unknown;
@@ -14670,12 +14672,12 @@ class PlatformToolbox {
     static TodoReturn signInGooglePlay();
     static TodoReturn signOutGooglePlay();
     static TodoReturn spriteFromSavedFile(gd::string);
-    static TodoReturn toggleCallGLFinish(bool);
-    static TodoReturn toggleCPUSleepMode(bool);
+    static void toggleCallGLFinish(bool);
+    static void toggleCPUSleepMode(bool);
     static void toggleForceTimer(bool);
-    static TodoReturn toggleFullScreen(bool, bool, bool);
+    static void toggleFullScreen(bool, bool, bool);
     static void toggleLockCursor(bool isLocked) = imac 0x4b1850;
-    static TodoReturn toggleMouseControl(bool);
+    static void toggleMouseControl(bool);
     static void toggleSmoothFix(bool);
     static void toggleVerticalSync(bool);
     static TodoReturn tryShowRateDialog(gd::string);
