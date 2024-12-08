@@ -299,7 +299,7 @@ GEODE_SIZE_CHECK(ExtendedLayer, 0x1a0);
 GEODE_SIZE_CHECK(MultilineBitmapFont, 0x748);
 GEODE_SIZE_CHECK(FontObject, 0x4e8);
 GEODE_SIZE_CHECK(BitmapFontCache, 0x40);
-GEODE_SIZE_CHECK(SecretRewardsLayer, 0x238);
+GEODE_SIZE_CHECK(SecretRewardsLayer, 0x258);
 GEODE_SIZE_CHECK(CurrencySprite, 0x2a8);
 GEODE_SIZE_CHECK(CommunityCreditsPage, 0x298);
 GEODE_SIZE_CHECK(AccountLayer, 0x2d0);
