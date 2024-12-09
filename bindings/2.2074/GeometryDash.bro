@@ -4776,7 +4776,7 @@ class EnhancedGameObject : GameObject {
     virtual void triggerActivated(float) = m1 0x4ec328, imac 0x5b3c80, ios 0x2621e8;
     virtual void restoreObject() = imac 0x5b3bb0, m1 0x4ec278, ios 0x262138;
     virtual void animationTriggered() = m1 0x4ec428, imac 0x5b3d50, ios 0x2622c8;
-    virtual void activatedByPlayer(PlayerObject*) = imac 0x5b3c90, m1 0x4ec334, ios 0x2621f4;
+    virtual void activatedByPlayer(PlayerObject*) = win 0x1a1b10, imac 0x5b3c90, m1 0x4ec334, ios 0x2621f4;
     virtual bool hasBeenActivatedByPlayer(PlayerObject*) = imac 0x5b3ce0, m1 0x4ec394, ios 0x26224c;
     virtual bool hasBeenActivated() = m1 0x4ec408, imac 0x5b3d30, ios 0x2622a8;
     virtual void saveActiveColors() = imac 0x5b3d70, m1 0x4ec438, ios 0x2622d8;
