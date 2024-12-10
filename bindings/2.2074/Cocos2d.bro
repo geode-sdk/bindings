@@ -120,6 +120,19 @@ class cocos2d::CCEaseElasticOut : cocos2d::CCEaseElastic {
 }
 
 [[link(win, android)]]
+class cocos2d::CCEaseElasticInOut : cocos2d::CCEaseElastic {
+	static cocos2d::CCEaseElasticInOut* create(cocos2d::CCActionInterval*) = m1 0x45fd14, imac 0x5003f0;
+	static cocos2d::CCEaseElasticInOut* create(cocos2d::CCActionInterval*, float) = m1 0x45fd24, imac 0x500410;
+
+	// CCEaseElasticInOut(cocos2d::CCEaseElasticInOut const&);
+	// CCEaseElasticInOut();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x45fde0, imac 0x5004d0;
+	virtual void update(float) = m1 0x45fed8, imac 0x5005e0;
+	virtual cocos2d::CCActionInterval* reverse() = m1 0x45ffec, imac 0x500700;
+}
+
+[[link(win, android)]]
 class cocos2d::CCEaseExponentialIn : cocos2d::CCActionEase {
     static cocos2d::CCEaseExponentialIn* create(cocos2d::CCActionInterval*) = m1 0x45e9b0, imac 0x4fefe0;
 
@@ -377,6 +390,51 @@ class cocos2d::CCAction : cocos2d::CCObject {
 }
 
 [[link(win, android)]]
+class cocos2d::CCFiniteTimeAction : cocos2d::CCAction {
+    // CCFiniteTimeAction(cocos2d::CCFiniteTimeAction const&);
+    // CCFiniteTimeAction();
+    ~CCFiniteTimeAction() = m1 0x5105d0, imac 0x5dd710;
+
+    virtual cocos2d::CCFiniteTimeAction* reverse() = m1 0x50fb68, imac 0x5dcc40;
+}
+
+[[link(win, android)]]
+class cocos2d::CCActionInstant : cocos2d::CCFiniteTimeAction {
+    // CCActionInstant(cocos2d::CCActionInstant const&);
+    CCActionInstant() = m1 0x6a9794, imac 0x796640;
+    ~CCActionInstant() = m1 0x1ae8b4, imac 0x1f90f0;
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x6a97dc, imac 0x7966a0, ios 0x1b0e04;
+    virtual void update(float) = m1 0x6a98b8, imac 0x796780, ios 0x1b0ec4;
+    virtual bool isDone() = m1 0x6a98a0, imac 0x796750, ios 0x1b0eac;
+    virtual void step(float) = m1 0x6a98a8, imac 0x796760, ios 0x1b0eb4;
+    virtual cocos2d::CCFiniteTimeAction* reverse() = m1 0x6a98bc, imac 0x796790, ios 0x1b0ec8;
+}
+
+[[link(win, android)]]
+class cocos2d::CCActionInterval : cocos2d::CCFiniteTimeAction {
+    static cocos2d::CCActionInterval* create(float);
+
+    bool initWithDuration(float) = m1 0x32f224, imac 0x3a22c0;
+
+    float getAmplitudeRate();
+    float getElapsed();
+    bool getM_bFirstTick() const;
+
+    void setAmplitudeRate(float);
+
+    // CCActionInterval(cocos2d::CCActionInterval const&);
+    // CCActionInterval();
+    ~CCActionInterval() = m1 0x1ae8b4, imac 0x1f90f0;
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x32f248, imac 0x3a2300, ios 0x18d818;
+    virtual bool isDone() = m1 0x32f32c, imac 0x3a2400, ios 0x18d8f0;
+    virtual void startWithTarget(cocos2d::CCNode*) = m1 0x32f3b0, imac 0x3a24a0, ios 0x18d968;
+    virtual void step(float) = m1 0x32f33c, imac 0x3a2420, ios 0x18d900;
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x32f3dc, imac 0x3a24c0, ios 0x18d994;
+}
+
+[[link(win, android)]]
 class cocos2d::CCScene : cocos2d::CCNode {
     static cocos2d::CCScene* create() = imac 0x27eef0, m1 0x2288ec;
 
@@ -615,8 +673,8 @@ class cocos2d::CCParticleFire : cocos2d::CCParticleSystemQuad {
 	// CCParticleFire(cocos2d::CCParticleFire const&);
 	// CCParticleFire();
 
-	// virtual bool init();
-	// virtual bool initWithTotalParticles(unsigned int);
+	// virtual bool init() = m1 0x3e2e48, imac 0x474210;
+	// virtual bool initWithTotalParticles(unsigned int) = m1 0x3e0e58, imac 0x472360;
 }
 
 [[link(win, android)]]
@@ -627,8 +685,8 @@ class cocos2d::CCParticleRain : cocos2d::CCParticleSystemQuad {
 	// CCParticleRain(cocos2d::CCParticleRain const&);
 	// CCParticleRain();
 
-	// virtual bool init();
-	// virtual bool initWithTotalParticles(unsigned int);
+	// virtual bool init() = m1 0x3e2eb8, imac 0x4742f0;
+	// virtual bool initWithTotalParticles(unsigned int) = m1 0x3e2c3c, imac 0x474000;
 }
 
 [[link(win, android)]]
