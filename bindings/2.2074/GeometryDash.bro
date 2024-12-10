@@ -8049,7 +8049,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x212a70, m1 0xf6f88, imac 0x1180f0;
     TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*);
     void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x20da30, imac 0x114200, m1 0xf3a44;
-    void playExitDualEffect(PlayerObject*) = win 0x2119a0;
+    void playExitDualEffect(PlayerObject*) = win 0x2119a0, m1 0xf7ff0, imac 0x119250;
     TodoReturn playFlashEffect(float, int, float);
     TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
     TodoReturn playSpeedParticle(float) = m1 0x121058, imac 0x14c000;
