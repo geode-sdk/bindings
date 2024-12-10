@@ -5544,14 +5544,17 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 [[link(android)]]
 class GameCell : TableViewCell {
     // virtual ~GameCell();
-    GameCell(char const*, float, float);
+    GameCell(char const*, float, float) = m1 0x291758, imac 0x2f8e00;
 
-    virtual bool init() = m1 0x291d60, imac 0x2f9520, ios 0x1d1424;
+    virtual bool init() = win 0x3c7f0, m1 0x291d60, imac 0x2f9520, ios 0x1d1424;
     virtual void draw() = win 0x3cbf0, imac 0x2f95e0, m1 0x291e34, ios 0x1d1468;
 
-    void loadFromString(gd::string) = m1 0x291900, imac 0x2f9000;
-    void onTouch(cocos2d::CCObject* sender);
-    void updateBGColor(int);
+    void loadFromString(gd::string) = win 0x3c800, m1 0x291900, imac 0x2f9000;
+    void onTouch(cocos2d::CCObject* sender) = win 0x3cbc0, m1 0x291d6c, imac 0x2f9540;
+    void updateBGColor(int) = m1 0x291db8, imac 0x2f9580;
+
+    void* m_unk230;
+    gd::string m_gameLink;
 }
 
 [[link(android)]]
@@ -9999,9 +10002,11 @@ class GJMoreGamesLayer : GJDropDownLayer {
 
     static GJMoreGamesLayer* create() = win 0x278610, m1 0x69376c, imac 0x77eca0;
 
-    virtual void customSetup() = imac 0x77f500, m1 0x693ed4, ios 0x6911c;
+    virtual void customSetup() = win 0x278cf0, imac 0x77f500, m1 0x693ed4, ios 0x6911c;
 
-    TodoReturn getMoreGamesList();
+    cocos2d::CCArray* getMoreGamesList() = win 0x278950, m1 0x693ac8, imac 0x77f0f0;
+
+    cocos2d::CCArray* m_moreGamesList;
 }
 
 [[link(android)]]
