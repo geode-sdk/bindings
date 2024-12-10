@@ -393,7 +393,6 @@ class cocos2d::CCAction : cocos2d::CCObject {
 class cocos2d::CCFiniteTimeAction : cocos2d::CCAction {
     // CCFiniteTimeAction(cocos2d::CCFiniteTimeAction const&);
     // CCFiniteTimeAction();
-    ~CCFiniteTimeAction() = m1 0x5105d0, imac 0x5dd710;
 
     virtual cocos2d::CCFiniteTimeAction* reverse() = m1 0x50fb68, imac 0x5dcc40;
 }
@@ -402,7 +401,6 @@ class cocos2d::CCFiniteTimeAction : cocos2d::CCAction {
 class cocos2d::CCActionInstant : cocos2d::CCFiniteTimeAction {
     // CCActionInstant(cocos2d::CCActionInstant const&);
     CCActionInstant() = m1 0x6a9794, imac 0x796640;
-    ~CCActionInstant() = m1 0x1ae8b4, imac 0x1f90f0;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x6a97dc, imac 0x7966a0, ios 0x1b0e04;
     virtual void update(float) = m1 0x6a98b8, imac 0x796780, ios 0x1b0ec4;
@@ -418,7 +416,6 @@ class cocos2d::CCActionInterval : cocos2d::CCFiniteTimeAction {
     bool initWithDuration(float) = m1 0x32f224, imac 0x3a22c0;
 
     float getAmplitudeRate();
-    float getElapsed();
     bool getM_bFirstTick() const;
 
     void setAmplitudeRate(float);
