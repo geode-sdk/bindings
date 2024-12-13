@@ -2077,13 +2077,23 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 }
 
 [[link(android)]]
+class ChanceObject {
+    int m_groupID;
+    int m_oldGroupID;
+    int m_chance;
+    int m_unk010;
+}
+
+[[link(android), depends(ChanceObject)]]
 class ChanceTriggerGameObject : EffectGameObject {
     // virtual ~ChanceTriggerGameObject();
 
-    TodoReturn editChanceObject(int, int);
+    void editChanceObject(int, int);
     bool init(char const*);
-    TodoReturn remapChanceObjects(gd::unordered_map<int, int> const*);
-    TodoReturn revertChanceRemap();
+    void remapChanceObjects(gd::unordered_map<int, int> const*) = win 0x49b580;
+    void revertChanceRemap();
+
+    gd::vector<ChanceObject> m_chanceObjects;
 }
 
 [[link(android)]]
@@ -15714,10 +15724,10 @@ class RandTriggerGameObject : ChanceTriggerGameObject {
 
     static RandTriggerGameObject* create();
 
-    virtual bool init() = m1 0x172148, imac 0x1b1b50, ios 0x38250c;
-    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = imac 0x1b1de0, m1 0x1723c4, ios 0x382630;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1b2040, m1 0x17260c, ios 0x382708;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1b2680, m1 0x172bc0, ios 0x382b10;
+    virtual bool init() = win 0x49b670, m1 0x172148, imac 0x1b1b50, ios 0x38250c;
+    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x49b690, imac 0x1b1de0, m1 0x1723c4, ios 0x382630;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49b860, imac 0x1b2040, m1 0x17260c, ios 0x382708;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49ba60, imac 0x1b2680, m1 0x172bc0, ios 0x382b10;
 
     int getRandomGroupID();
     int getTotalChance();
@@ -16671,17 +16681,26 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 
     static SequenceTriggerGameObject* create();
 
-    virtual bool init() = m1 0x173448, imac 0x1b30a0, ios 0x382e50;
-    virtual void resetObject() = m1 0x173498, imac 0x1b30f0, ios 0x382ea0;
-    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = imac 0x1b33b0, m1 0x173610, ios 0x382ed0;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1b3930, m1 0x173a9c, ios 0x383188;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1b3dd0, m1 0x173ec8, ios 0x3834d8;
+    virtual bool init() = win 0x49bcd0, m1 0x173448, imac 0x1b30a0, ios 0x382e50;
+    virtual void resetObject() = win 0x49bcf0, m1 0x173498, imac 0x1b30f0, ios 0x382ea0;
+    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x49bd20, imac 0x1b33b0, m1 0x173610, ios 0x382ed0;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49c140, imac 0x1b3930, m1 0x173a9c, ios 0x383188;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49c470, imac 0x1b3dd0, m1 0x173ec8, ios 0x3834d8;
 
     void addCount(int, int);
     void addTarget(int, int);
     void deleteTarget(int);
-    int reorderTarget(int, bool);
-    TodoReturn updateSequenceTotalCount();
+    bool reorderTarget(int, bool);
+    void updateSequenceTotalCount();
+
+    gd::unordered_map<int, float> m_sequenceTimes;
+    gd::unordered_map<int, int> m_sequenceIndices;
+    float m_minInt;
+    int m_sequenceMode;
+    int m_resetMode;
+    float m_reset;
+    int m_sequenceTotalCount;
+    bool m_uniqueRemap;
 }
 
 [[link(android)]]
@@ -17880,20 +17899,27 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
 class SetupRandAdvTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupRandAdvTriggerPopup();
 
-    static SetupRandAdvTriggerPopup* create(RandTriggerGameObject*, cocos2d::CCArray*);
+    static SetupRandAdvTriggerPopup* create(RandTriggerGameObject*, cocos2d::CCArray*) = win 0x424f50;
 
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x30bc4c, imac 0x37be30, ios 0x33a20;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x425b10, m1 0x30bc4c, imac 0x37be30, ios 0x33a20;
     virtual void textChanged(CCTextInputNode*) = m1 0x30bc44, imac 0x37be10, ios 0x33a18 {}
 
     void addChance(int, int);
     void addChanceToObject(RandTriggerGameObject*, int, int);
-    void callRemoveFromGroup(float);
-    bool init(RandTriggerGameObject*, cocos2d::CCArray*) = m1 0x30a864, imac 0x37a720;
-    void onAddChance(cocos2d::CCObject* sender);
-    void onRemoveFromGroup(cocos2d::CCObject* sender);
+    void callRemoveFromGroup(float) = win 0x426550;
+    bool init(RandTriggerGameObject*, cocos2d::CCArray*) = win 0x425090, m1 0x30a864, imac 0x37a720;
+    void onAddChance(cocos2d::CCObject* sender) = win 0x426790;
+    void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x4266c0;
     void removeGroupID(int);
     void removeGroupIDFromObject(RandTriggerGameObject*, int);
-    void updateGroupIDButtons() = m1 0x30b24c, imac 0x37b190;
+    void updateGroupIDButtons() = win 0x425bd0, m1 0x30b24c, imac 0x37b190;
+
+    bool m_performedAction;
+    cocos2d::CCArray* m_groupButtons;
+    CCTextInputNode* m_groupIDInput;
+    CCTextInputNode* m_chanceInput;
+    int m_groupToRemove;
+    bool m_removingGroup;
 }
 
 [[link(android)]]
@@ -17986,16 +18012,23 @@ class SetupRotatePopup : SetupTriggerPopup {
 class SetupSequenceTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupSequenceTriggerPopup();
 
-    static SetupSequenceTriggerPopup* create(SequenceTriggerGameObject*);
+    static SetupSequenceTriggerPopup* create(SequenceTriggerGameObject*) = win 0x42b000;
 
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x4cb860, m1 0x430be8, ios 0x1d4388;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x42c340, imac 0x4cb860, m1 0x430be8, ios 0x1d4388;
 
-    bool init(SequenceTriggerGameObject*) = m1 0x42f9c4, imac 0x4ca480;
-    void onAddChance(cocos2d::CCObject* sender);
-    void onChangeOrder(cocos2d::CCObject* sender);
-    void onDeleteSelected(cocos2d::CCObject* sender);
-    void onSelect(cocos2d::CCObject* sender);
-    void updateGroupIDButtons() = m1 0x4308b0, imac 0x4cb510;
+    bool init(SequenceTriggerGameObject*) = win 0x42b130, m1 0x42f9c4, imac 0x4ca480;
+    void onAddChance(cocos2d::CCObject* sender) = win 0x42c990;
+    void onChangeOrder(cocos2d::CCObject* sender) = win 0x42cad0;
+    void onDeleteSelected(cocos2d::CCObject* sender) = win 0x42cbb0;
+    void onSelect(cocos2d::CCObject* sender) = win 0x42c910;
+    void updateGroupIDButtons() = win 0x42c430, m1 0x4308b0, imac 0x4cb510;
+
+    CCMenuItemSpriteExtra* m_selectedButton;
+    bool m_unk3b0;
+    bool m_unk3b1;
+    cocos2d::CCArray* m_groupButtons;
+    int m_unk3c0;
+    bool m_unk3c4;
 }
 
 [[link(android)]]
@@ -18161,16 +18194,22 @@ class SetupSpawnParticlePopup : SetupTriggerPopup {
 class SetupSpawnPopup : SetupTriggerPopup {
     // virtual ~SetupSpawnPopup();
 
-    static SetupSpawnPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupSpawnPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x445be0;
 
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x27ece0, m1 0x2286cc, ios 0xfbd4c;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x40c730, imac 0x27ece0, m1 0x2286cc, ios 0xfbd4c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x2271a4, imac 0x27d4f0;
-    void onAddRemap(cocos2d::CCObject* sender);
-    void onDeleteRemap(cocos2d::CCObject* sender);
-    void onSelectRemap(cocos2d::CCObject* sender);
-    TodoReturn queueUpdateButtons();
-    TodoReturn updateRemapButtons(float);
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x445d20, m1 0x2271a4, imac 0x27d4f0;
+    void onAddRemap(cocos2d::CCObject* sender) = win 0x446910;
+    void onDeleteRemap(cocos2d::CCObject* sender) = win 0x446a80;
+    void onSelectRemap(cocos2d::CCObject* sender) = win 0x447440;
+    void queueUpdateButtons() = win 0x447510;
+    void updateRemapButtons(float) = win 0x446c20;
+
+    bool m_isBusy;
+    cocos2d::CCArray* m_remapButtons;
+    gd::vector<int> m_remapGroups;
+    int m_remapOriginalID;
+    int m_remapNewID;
 }
 
 [[link(android)]]
@@ -19620,15 +19659,23 @@ class SpawnTriggerGameObject : EffectGameObject {
 
     static SpawnTriggerGameObject* create();
 
-    virtual bool init() = m1 0x17f0fc, imac 0x1c1560, ios 0x387770;
+    virtual bool init() = win 0x4a0530, m1 0x17f0fc, imac 0x1c1560, ios 0x387770;
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a06a0, imac 0x1c1900, m1 0x17f408, ios 0x3879b8;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1c1de0, m1 0x17f980, ios 0x387d78;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1c2240, m1 0x17fd34, ios 0x3880cc;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a0a10, imac 0x1c1de0, m1 0x17f980, ios 0x387d78;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a0d50, imac 0x1c2240, m1 0x17fd34, ios 0x3880cc;
 
-    TodoReturn addRemap(int, int);
-    TodoReturn changeRemap(int, int, bool);
-    TodoReturn removeRemap(int, int);
+    void addRemap(int, int);
+    void changeRemap(int, int, bool);
+    void removeRemap(int, int);
     void updateRemapKeys(gd::vector<int> const&) = win 0x4a05a0;
+
+    gd::vector<ChanceObject> m_remapObjects;
+    int m_remapKey;
+    gd::vector<int> m_remapKeys;
+    double m_unk778;
+    float m_spawnDelay;
+    float m_delayRange;
+    bool m_resetRemap;
 }
 
 [[link(android)]]
