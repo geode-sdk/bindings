@@ -2076,14 +2076,6 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
     cocos2d::CCDictionary* m_challengeNodes;
 }
 
-[[link(android)]]
-class ChanceObject {
-    int m_groupID;
-    int m_oldGroupID;
-    int m_chance;
-    int m_unk010;
-}
-
 [[link(android), depends(ChanceObject)]]
 class ChanceTriggerGameObject : EffectGameObject {
     // virtual ~ChanceTriggerGameObject();

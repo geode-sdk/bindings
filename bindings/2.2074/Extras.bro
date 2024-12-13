@@ -35,7 +35,10 @@ class SFXTriggerState {
 }
 
 class ChanceObject {
-
+    int m_groupID;
+    int m_oldGroupID;
+    int m_chance;
+    int m_unk010;
 }
 
 class GameObjectPhysics {
