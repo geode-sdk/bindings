@@ -551,7 +551,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     void loadDefaults();
     void loadScaledDefaults(float) = imac 0x7b60e0;
     void resetSystem() = imac 0x7b4740, m1 0x6c5358;
-    void resumeSystem();
+    void resumeSystem() = imac 0x7b4730, m1 0x6c534c;
     void saveDefaults();
     void stopSystem() = imac 0x7b4700, m1 0x6c5338;
     void toggleUniformColorMode(bool);
@@ -3243,7 +3243,7 @@ class cocos2d {
     	ccDrawSolidPoly(vertices, 4, color);
     }
     static void ccGLBindTexture2D(unsigned int) = m1 0x2dcb6c, imac 0x347f80;
-    static void ccGLBindTexture2DN(unsigned int, unsigned int);
+    static void ccGLBindTexture2DN(unsigned int, unsigned int) = m1 0x2dcbb8, imac 0x347fc0;
     static void ccGLBindVAO(unsigned int);
     static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x347ed0, m1 0x2dcaa4;
     static void ccGLBlendResetToCache();
