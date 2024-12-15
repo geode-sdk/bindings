@@ -3243,7 +3243,7 @@ class cocos2d {
     	ccDrawSolidPoly(vertices, 4, color);
     }
     static void ccGLBindTexture2D(unsigned int) = m1 0x2dcb6c, imac 0x347f80;
-    static void ccGLBindTexture2DN(unsigned int, unsigned int);
+    static void ccGLBindTexture2DN(unsigned int, unsigned int) = m1 0x2dcbb8, imac 0x347fc0;
     static void ccGLBindVAO(unsigned int);
     static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x347ed0, m1 0x2dcaa4;
     static void ccGLBlendResetToCache();
