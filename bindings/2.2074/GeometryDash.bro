@@ -12105,7 +12105,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-    LevelBrowserLayer() {
+    LevelBrowserLayer() = win 0x2c05d0 {
         m_unk = false;
         m_allSelected = false;
         m_noInternet = nullptr;
@@ -12145,7 +12145,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 
     virtual void onEnter() = win 0x2c78b0, imac 0x47ee70, m1 0x3ecc44, ios 0x4116d8;
     virtual void onEnterTransitionDidFinish() = win 0x242b20, imac 0x47f010, m1 0x3ece38, ios 0x411808;
-    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3ecf10, imac 0x47f100, ios 0x4118d8;
+    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3ecf10, imac 0x47f100, ios 0x4118d8 { return true; }
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3ecf30, imac 0x47f160, ios 0x4118f8 {}
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3ecf20, imac 0x47f120, ios 0x4118e8 {}
     virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3ecf28, imac 0x47f140, ios 0x4118f0 {}
