@@ -551,7 +551,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     void loadDefaults();
     void loadScaledDefaults(float) = imac 0x7b60e0;
     void resetSystem() = imac 0x7b4740, m1 0x6c5358;
-    void resumeSystem();
+    void resumeSystem() = imac 0x7b4730, m1 0x6c534c;
     void saveDefaults();
     void stopSystem() = imac 0x7b4700, m1 0x6c5338;
     void toggleUniformColorMode(bool);
