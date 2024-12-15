@@ -12102,14 +12102,46 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-    LevelBrowserLayer() {}
+    LevelBrowserLayer() {
+        m_unk = false;
+        m_allSelected = false;
+        m_noInternet = nullptr;
+        m_list = nullptr;
+        m_rightArrow = nullptr;
+        m_leftArrow = nullptr;
+        m_lastBtn = nullptr;
+        m_cancelSearchBtn = nullptr;
+        m_refreshBtn = nullptr;
+        m_levels = nullptr;
+        m_searchObject = nullptr;
+        m_countText = nullptr;
+        m_pageText = nullptr;
+        m_pageBtn = nullptr;
+        m_folderText = nullptr;
+        m_folderBtn = nullptr;
+        m_allObjectsToggler = nullptr;
+        m_itemCount = 0;
+        m_pageStartIdx = 0;
+        m_pageEndIdx = 0;
+        m_circle = nullptr;
+        m_lastPage = 0;
+        m_isOverlay = false;
+        m_scene = nullptr;
+        m_zOffset = 0;
+        m_unk2 = false;
+        m_listHeight = 0;
+        m_unkFloat = .0f;
+        m_unkFloat2 = .0f;
+        m_delegate = nullptr;
+        m_cached = false;
+    }
     ~LevelBrowserLayer() = win 0x2c07c0, imac 0x477f30;
 
     static LevelBrowserLayer* create(GJSearchObject*) = win 0x2c09f0, imac 0x478170, m1 0x3e6590;
     static cocos2d::CCScene* scene(GJSearchObject* search) = win 0x2c09a0, imac 0x478130, m1 0x3e6544;
 
     virtual void onEnter() = win 0x2c78b0, imac 0x47ee70, m1 0x3ecc44, ios 0x4116d8;
-    virtual void onEnterTransitionDidFinish() = imac 0x47f010, m1 0x3ece38, ios 0x411808;
+    virtual void onEnterTransitionDidFinish() = win 0x242b20, imac 0x47f010, m1 0x3ece38, ios 0x411808;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3ecf10, imac 0x47f100, ios 0x4118d8;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3ecf30, imac 0x47f160, ios 0x4118f8 {}
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3ecf20, imac 0x47f120, ios 0x4118e8 {}
@@ -12737,14 +12769,14 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
     static cocos2d::CCScene* scene(GJLevelList*) = win 0x2ee9c0, m1 0x2dcfac, imac 0x348410;
 
     virtual void onEnter() = win 0x2f0680, m1 0x2e01ec, imac 0x34b870, ios 0x2450b4;
-    virtual void onExit() = m1 0x2e0224, imac 0x34b8a0, ios 0x2450ec;
+    virtual void onExit() = win 0x2f06b0, m1 0x2e0224, imac 0x34b8a0, ios 0x2450ec;
     virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x2f1e80, imac 0x34bc60, m1 0x2e05ec, ios 0x2453b8;
     virtual void loadLevelsFailed(char const*, int) = win 0x2c4370, m1 0x2e081c, imac 0x34bea0, ios 0x245520;
     virtual void onBack(cocos2d::CCObject* sender) = win 0x2f26e0, imac 0x34c3e0, m1 0x2e0c88, ios 0x2457ec;
     virtual void shareCommentClosed(gd::string, ShareCommentLayer*) = win 0x2f2ee0, imac 0x34cb40, m1 0x2e13e8, ios 0x245e38;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2f2b00, imac 0x34c760, m1 0x2e1024, ios 0x245b18;
     virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2f2630, imac 0x34c280, m1 0x2e0b3c, ios 0x24573c;
-    virtual cocos2d::CCArray* updateResultArray(cocos2d::CCArray*) = m1 0x2e0c80, imac 0x34c3c0, ios 0x2457e4;
+    virtual cocos2d::CCArray* updateResultArray(cocos2d::CCArray*) = win 0x2f26d0, m1 0x2e0c80, imac 0x34c3c0, ios 0x2457e4;
     virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x2f21e0, imac 0x34bed0, m1 0x2e0828, ios 0x24552c;
     virtual void likedItem(LikeItemType, int, bool) = win 0x2f3100, imac 0x34cc30, m1 0x2e14dc, ios 0x245efc;
     virtual void iconSelectClosed(SelectListIconLayer*) = win 0x2f33b0, imac 0x34ce70, m1 0x2e16bc, ios 0x24601c;
