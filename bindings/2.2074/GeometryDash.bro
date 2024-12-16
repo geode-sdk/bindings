@@ -2062,7 +2062,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
     void claimItem(ChallengeNode*, GJChallengeItem*, cocos2d::CCPoint) = win 0x869d0, imac 0x38b610, m1 0x31aaec;
     ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x86090, imac 0x38abe0, m1 0x31a168;
     TodoReturn exitNodeAtSlot(int, float) = win 0x863c0, imac 0x38b0a0, m1 0x31a5bc;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x86940, m1 0x319edc, imac 0x38a930;
     TodoReturn tryGetChallenges();
     TodoReturn updateDots() = m1 0x31a344;
     callback void updateTimers(float) = win 0x864b0, m1 0x319f28, imac 0x38a970;
@@ -7129,7 +7129,7 @@ class GameOptionsLayer : GJOptionsLayer {
         this->postSetup();
         return true;
     }
-    void onPracticeMusicSync(cocos2d::CCObject* sender) = m1 0x2458f4;
+    void onPracticeMusicSync(cocos2d::CCObject* sender) = win 0x298be0, m1 0x2458f4, imac 0x29e1b0;
     void onUIOptions(cocos2d::CCObject* sender) = win 0x298d60;
     void onUIPOptions(cocos2d::CCObject* sender) = win 0x298d80, m1 0x245888;
     void showPracticeMusicSyncUnlockInfo() = win 0x298380, m1 0x245968, imac 0x29e230;
