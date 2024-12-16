@@ -12581,7 +12581,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     virtual void keyBackClicked() = win 0x2ebdd0, imac 0x2b1280, m1 0x25718c, ios 0x2f294;
     virtual void keyDown(cocos2d::enumKeyCodes) = win 0x2ebde0, imac 0x2b12b0, m1 0x257198, ios 0x2f2a0;
     virtual void numberInputClosed(NumberInputLayer*) = win 0x2e8e30, imac 0x2b0a70, m1 0x256974, ios 0x2ecd0;
-    virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = imac 0x2aeea0, m1 0x254e84, ios 0x2d6a0;
+    virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x2e51b0, imac 0x2aeea0, m1 0x254e84, ios 0x2d6a0;
     virtual void levelDownloadFinished(GJGameLevel*) = win 0x2e7210, imac 0x2afc80, m1 0x255be8, ios 0x2e2c4;
     virtual void levelDownloadFailed(int) = win 0x2e7570, imac 0x2aff70, m1 0x255ea8, ios 0x2e540;
     virtual void levelUpdateFinished(GJGameLevel*, UpdateResponse) = win 0x2e76a0, imac 0x2b0060, m1 0x255f8c, ios 0x2e600;
@@ -12592,7 +12592,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     virtual void likedItem(LikeItemType, int, bool) = win 0x2e9f50, imac 0x2b0fa0, m1 0x256eb4, ios 0x2f0f8;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2eb810, imac 0x2b10b0, m1 0x256fec, ios 0x2f170;
     virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2e53a0, m1 0x254fdc, imac 0x2aefd0, ios 0x2d7c8;
-    virtual void onEnterTransitionDidFinish() = m1 0x256564, imac 0x2b0660, ios 0x2ea38;
+    virtual void onEnterTransitionDidFinish() = win 0x2e7bb0, m1 0x256564, imac 0x2b0660, ios 0x2ea38;
 
     void confirmClone(cocos2d::CCObject*) = win 0x2e9000, imac 0x2ae480, m1 0x2543fc;
     void confirmDelete(cocos2d::CCObject*) = win 0x2e9170, m1 0x253af0, imac 0x2adbc0;
@@ -12659,16 +12659,19 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void* m_unk3;
     cocos2d::CCSprite* m_likesIcon;
     cocos2d::CCSprite* m_orbsIcon;
-    int m_unk6;
-    int m_unk7;
+    GJLevelType m_levelType;
+    bool m_noUpdateAlert;
+    bool m_enterTransitionFinished;
     LoadingCircle* m_circle;
     GJDifficultySprite* m_difficultySprite;
     cocos2d::CCSprite* m_starsIcon;
     cocos2d::CCLabelBMFont* m_starsLabel;
     cocos2d::CCArray* m_icons;
-    PAD = win 0x10, android32 0x10, android64 0x10, mac 0x10, ios 0x10;
+    float m_iconOffset;
+    cocos2d::CCPoint m_basePosition;
+    float m_baseStarsY;
     bool m_challenge;
-    PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
+    cocos2d::CCScene* m_playScene;
     cocos2d::CCSprite* m_playSprite;
     cocos2d::CCProgressTimer* m_progressTimer;
     CustomSongWidget* m_songWidget;
