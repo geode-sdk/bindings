@@ -2860,7 +2860,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void checkQuestsStatus() = imac 0x286f00, m1 0x23039c;
     void onAdventureMap(cocos2d::CCObject* sender) = win 0x9dbe0, imac 0x286950, m1 0x22fdf4;
     void onBack(cocos2d::CCObject* sender);
-    void onChallenge(cocos2d::CCObject* sender) = win 0x9ddb0, imac 0x2869c0, m1 0x22fe84;
+    void onChallenge(cocos2d::CCObject* sender) = win 0x9ddb0, imac 0x2869c0, m1 0x22fe84, ios 0xb921c;
     void onDailyLevel(cocos2d::CCObject* sender) = win 0x9dd50;
     void onEventLevel(cocos2d::CCObject* sender) = win 0x9dd90;
     void onFameLevels(cocos2d::CCObject* sender);
@@ -13421,7 +13421,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void firstNetworkTest() = win 0x320430;
     void onAchievements(cocos2d::CCObject* sender) = win 0x320960, m1 0x30eaa8, imac 0x37e370;
     void onCreator(cocos2d::CCObject* sender) = win 0x320e70;
-    void onDaily(cocos2d::CCObject* sender) = win 0x3201e0;
+    void onDaily(cocos2d::CCObject* sender) = win 0x3201e0, ios 0x266e68;
     void onDiscord(cocos2d::CCObject* sender);
     void onEveryplay(cocos2d::CCObject* sender) {}
     void onFacebook(cocos2d::CCObject* sender);
