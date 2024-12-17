@@ -10081,7 +10081,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     static GJOptionsLayer* create(int) = imac 0x289c00;
 
     virtual void setupOptions() = m1 0x2333c8, imac 0x28a640, ios 0x2d3b84 {}
-    virtual void didToggleGV(gd::string) = m1 0x8fb0, imac 0x7150, ios 0xd590;
+    virtual void didToggleGV(gd::string) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
     virtual void didToggle(int) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
 
     void addGVToggle(char const*, char const*, char const*) = win 0x288470, imac 0x28a650, m1 0x2333cc;
@@ -18363,17 +18363,17 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     static SetupTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*, float, float, int);
     static SetupTriggerPopup* create(float, float);
 
-    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x93d98, m1 0x1df150, imac 0x22e3e0, ios 0x13803c;
+    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x465a80, m1 0x1df150, imac 0x22e3e0, ios 0x13803c;
     virtual void keyBackClicked() = win 0x44f1d0, m1 0x1d8cf8, imac 0x227290, ios 0x133bfc;
     virtual void show() = win 0x8ba30, m1 0x1d8b74, imac 0x2270d0, ios 0x133b20;
     virtual void pageChanged() = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
     virtual void toggleGroup(int group, bool visible) = win 0x45c310, imac 0x223a40, m1 0x1d68d4, ios 0x131ef0;
     virtual void determineStartValues() = win 0x45d060, imac 0x224c20, m1 0x1d7950, ios 0x132c40;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x45d6a0, imac 0x227130, m1 0x1d8bc0, ios 0x133b6c;
-    virtual void textInputClosed(CCTextInputNode*) = m1 0x1d7c58, imac 0x224fa0, ios 0x132e4c;
+    virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x1d7c58, imac 0x224fa0, ios 0x132e4c;
     virtual void textChanged(CCTextInputNode*) = win 0x45d4e0, imac 0x224fe0, m1 0x1d7c74, ios 0x132e68;
-    virtual void textInputShouldOffset(CCTextInputNode*, float) = imac 0x2272d0, m1 0x1d8d1c, ios 0x133c20;
-    virtual void textInputReturn(CCTextInputNode*) = imac 0x227390, m1 0x1d8dec, ios 0x133c8c;
+    virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x7b5c0, imac 0x2272d0, m1 0x1d8d1c, ios 0x133c20;
+    virtual void textInputReturn(CCTextInputNode*) = win 0x7b620, imac 0x227390, m1 0x1d8dec, ios 0x133c8c;
     virtual void updateInputValue(int, float&) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
     virtual void sliderBegan(Slider*) = win 0x45d7e0, imac 0x227440, m1 0x1d8ea4, ios 0x133cec;
     virtual void sliderEnded(Slider*) = win 0x45d8b0, imac 0x227520, m1 0x1d8f7c, ios 0x133db8;
