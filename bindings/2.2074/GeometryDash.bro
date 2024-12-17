@@ -10085,10 +10085,10 @@ class GJOptionsLayer : SetupTriggerPopup {
     virtual void didToggle(int) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
 
     void addGVToggle(char const*, char const*, char const*) = win 0x288470, imac 0x28a650, m1 0x2333cc;
-    void addToggle(char const* p0, int p1, bool p2, char const* p3) = win inline, m1 0x233518, imac 0x28a780 {
+    void addToggle(char const* p0, int p1, bool p2, char const* p3) = win inline, m1 0x2339d0, imac 0x28ac90 {
         addToggleInternal(p0, p1, p2, p3);
     }
-    void addToggleInternal(char const*, int, bool, char const*) = win 0x2885b0;
+    void addToggleInternal(char const*, int, bool, char const*) = win 0x2885b0, m1 0x233518, imac 0x28a780;
     int countForPage(int);
     void goToPage(int);
     void incrementCountForPage(int) = win 0x288b80;
@@ -13714,7 +13714,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
     virtual void googlePlaySignedIn() = win 0x360ca0, m1 0x69cd00, imac 0x788d40, ios 0xf2c78;
     virtual void dropDownLayerWillClose(GJDropDownLayer*) = win 0x3607f0, m1 0x69ca48, imac 0x788a20, ios 0xf2ac4;
 
-    void addToggle(char const*, char const*, char const*) = win 0x35ee10;
+    void addToggle(char const*, char const*, char const*) = win 0x35ee10, m1 0x69aba0, imac 0x786b10;
     int countForPage(int);
     void goToPage(int) = win 0x35f890, imac 0x787750, m1 0x69b78c;
     void incrementCountForPage(int);
