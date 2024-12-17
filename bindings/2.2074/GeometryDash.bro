@@ -15854,7 +15854,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     // virtual ~RateStarsLayer();
     RateStarsLayer();
 
-    static RateStarsLayer* create(int, bool, bool) = win 0x3b2c40, imac 0x279820;
+    static RateStarsLayer* create(int, bool, bool) = win 0x3b2c40, m1 0x223a90, imac 0x279820;
 
     virtual void keyBackClicked() = win 0x3b3b90, m1 0x224d64, imac 0x27ab50, ios 0x84c9c;
     virtual void uploadActionFinished(int, int) = win 0x3b3990, imac 0x27a810, m1 0x2249d8, ios 0x84b00;
