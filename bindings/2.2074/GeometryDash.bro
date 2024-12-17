@@ -12200,7 +12200,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void setupLevelBrowser(cocos2d::CCArray*) = win 0x2c36d0, imac 0x47ce70, m1 0x3eafb8;
     void show() = win 0x2c7a60, m1 0x3ece8c, imac 0x47f080;
     void updateLevelsLabel();
-    void updatePageLabel() = win 0x2c4a70, imac 0x479d90;
+    void updatePageLabel() = win 0x2c4a70, m1 0x3e809c, imac 0x479d90;
 
     bool m_unk;
     bool m_allSelected;
