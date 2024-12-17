@@ -1101,7 +1101,7 @@ class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCA
     void registerScriptAccelerateHandler(int);
     void registerScriptKeypadHandler(int);
     void unregisterScriptAccelerateHandler();
-    void unregisterScriptKeypadHandler();
+    void unregisterScriptKeypadHandler() = m1 0x408234, imac 0x49d240;
 
     virtual bool init() = imac 0x49d510, m1 0x40841c, ios 0x14bcc0;
     virtual void onEnter() = imac 0x49de10, m1 0x408cf4, ios 0x14c3ac;
