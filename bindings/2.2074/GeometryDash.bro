@@ -10893,7 +10893,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
         m_affordDialogIndex = 0;
     }
 
-    static GJShopLayer* create(ShopType type) = win inline, imac 0x30e990 {
+    static GJShopLayer* create(ShopType type) = win inline, m1 0x2a536c, imac 0x30e990 {
         auto ret = new GJShopLayer();
         if (ret->init(type)) {
             ret->autorelease();
@@ -10908,8 +10908,8 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x2a7290, imac 0x312d20, m1 0x2a91d0, ios 0x150e28;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2a9590, imac 0x3130c0, ios 0x151120 {}
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2a9598, imac 0x3130e0, ios 0x151128 {}
-    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2a95a0, imac 0x313100, ios 0x151130;
-    virtual void registerWithTouchDispatcher() = m1 0x2a95bc, imac 0x313140, ios 0x15114c;
+    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71210, m1 0x2a95a0, imac 0x313100, ios 0x151130;
+    virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x2a95bc, imac 0x313140, ios 0x15114c;
     virtual void keyBackClicked() = win 0x2a58d0, imac 0x311710, m1 0x2a7f40, ios 0x15003c;
     virtual void didPurchaseItem(GJStoreItem*) = win 0x2a4ed0, m1 0x2a78d4, imac 0x311010, ios 0x14fb3c;
     virtual void rewardedVideoFinished() = win 0x2a4520, imac 0x310a30, m1 0x2a7360, ios 0x14f6b4;
@@ -18978,7 +18978,7 @@ class ShardsPage : FLAlertLayer {
         m_page = -1;
     }
 
-    static ShardsPage* create() = win inline {
+    static ShardsPage* create() = win inline, m1 0x41ac58, imac 0x4b26e0 {
         auto ret = new ShardsPage();
         if (ret->init()) {
             ret->autorelease();
@@ -18989,9 +18989,9 @@ class ShardsPage : FLAlertLayer {
     }
 
     virtual bool init() = win 0x471620, imac 0x4b2820, m1 0x41ad58, ios 0x39a9e4;
-    virtual void registerWithTouchDispatcher() = m1 0x41ca28, imac 0x4b47d0, ios 0x39c3c8;
-    virtual void keyBackClicked() = m1 0x41c9ac, imac 0x4b4760, ios 0x39c34c;
-    virtual void show() = m1 0x41c824, imac 0x4b45d0, ios 0x39c1d8;
+    virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x41ca28, imac 0x4b47d0, ios 0x39c3c8;
+    virtual void keyBackClicked() = win 0x84650, m1 0x41c9ac, imac 0x4b4760, ios 0x39c34c;
+    virtual void show() = win 0x867a0, m1 0x41c824, imac 0x4b45d0, ios 0x39c1d8;
 
     void FLAlert_Clicked(FLAlertLayer*, bool);
     void goToPage(int) = imac 0x4b4480, m1 0x41c6d8;
