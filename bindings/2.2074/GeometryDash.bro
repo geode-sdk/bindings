@@ -1468,10 +1468,10 @@ class CCMoveCNode : cocos2d::CCObject {
 class CCNodeContainer : cocos2d::CCNode {
     // virtual ~CCNodeContainer();
 
-    static CCNodeContainer* create();
+    static CCNodeContainer* create() = win 0x242710, m1 0xe4920, imac 0x102b20;
 
-    virtual bool init() = imac 0x154510, m1 0x128138, ios 0x20b410;
-    virtual void visit() = imac 0x154520, m1 0x12813c, ios 0x20b414;
+    virtual bool init() = win 0x77db0, imac 0x154510, m1 0x128138, ios 0x20b410;
+    virtual void visit() = win 0x2427e0, imac 0x154520, m1 0x12813c, ios 0x20b414;
 }
 
 [[link(android)]]
