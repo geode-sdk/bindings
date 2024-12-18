@@ -931,7 +931,7 @@ class cocos2d::CCNode : cocos2d::CCObject {
     cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x261f80, m1 0x20dd34;
     void schedule(cocos2d::SEL_SCHEDULE) = imac 0x2621b0, m1 0x20dee8;
     void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x262210, m1 0x20df28;
-    void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = imac 0x2621e0;
+    void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = imac 0x2621e0, m1 0x20df0c;
     void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = imac 0x262240, m1 0x20df48;
     void scheduleUpdate() = imac 0x262090, m1 0x20ddf0;
     void scheduleUpdateWithPriority(int) = imac 0x2620c0;
@@ -944,7 +944,7 @@ class cocos2d::CCNode : cocos2d::CCObject {
     void transform();
     void transformAncestors();
     void unschedule(cocos2d::SEL_SCHEDULE) = imac 0x262270, m1 0x20df6c;
-    void unscheduleAllSelectors() = imac 0x260e50;
+    void unscheduleAllSelectors() = imac 0x260e50, m1 0x20cbf8;
     void unscheduleUpdate() = imac 0x262160, m1 0x20de9c;
     void updateChildIndexes();
 
