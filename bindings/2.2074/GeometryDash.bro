@@ -1290,7 +1290,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     }
 
     bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x44be0, imac 0x264c10, m1 0x210678, ios 0x214408;
-    void setSizeMult(float mult) = win inline, imac 0x264d80 {
+    void setSizeMult(float mult) = win inline, imac 0x264d80, ios 0x21458c {
         //inlined on windows, member is in CCMenuItemSprite
         m_fSizeMult = mult;
     }
@@ -8170,7 +8170,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateMGOffsetY(float, float, int, float, int, int) = win 0x230950;
     TodoReturn updateOBB2(cocos2d::CCRect) = win 0x6da50;
     void updateParticles(float);
-    TodoReturn updatePlatformerTime();
+    TodoReturn updatePlatformerTime() = ios 0x203714;
     TodoReturn updatePlayerCollisionBlocks();
     void updateProximityVolumeEffects() = win 0x23bd90, imac 0x1465c0, m1 0x11c754, ios 0x2035d4;
     TodoReturn updateQueuedLabels();
@@ -13213,7 +13213,7 @@ class LoadingCircleSprite : cocos2d::CCSprite {
 
     /// Create a Loading Circle Sprite with a spinning action
     /// @param spinSpeed A speed modifier, higher is faster and lower is slower
-    static LoadingCircleSprite* create(float spinSpeed) = win 0x6bc30, imac 0x4ac190;
+    static LoadingCircleSprite* create(float spinSpeed) = win 0x6bc30, imac 0x4ac190, ios 0x392fc0;
 
     TodoReturn fadeInCircle(bool, float, float);
     void hideCircle() = win inline, m1 0x415470 {
@@ -13222,7 +13222,7 @@ class LoadingCircleSprite : cocos2d::CCSprite {
         this->setVisible(false);
     }
 
-    bool init(float);
+    bool init(float) = ios 0x393058;
 }
 
 [[link(android)]]
@@ -15230,8 +15230,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void delayedFullReset();
     void delayedResetLevel() = win 0x3a1de0, m1 0xaa970, imac 0xbb590;
     void fullReset() = win 0x3a1ce0, m1 0xad514;
-    float getCurrentPercent() = win 0x39ca70, imac 0xba2f0, m1 0xa9848;
-    int getCurrentPercentInt() = win inline, ios inline, imac 0xba9f0, m1 0xa9f18 { // i love this
+    float getCurrentPercent() = win 0x39ca70, imac 0xba2f0, m1 0xa9848, ios 0x121fd8;
+    int getCurrentPercentInt() = win inline, ios inline, imac 0xba9f0, m1 0xa9f18 {
         return static_cast<int>(this->getCurrentPercent());
     }
     TodoReturn getEndPosition() = ios 0x11d78c;
@@ -15305,7 +15305,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateEffectPositions() = m1 0xaa9fc, imac 0xbb690;
     void updateInfoLabel() = win 0x39bb90, imac 0xafdc0, m1 0xa0770;
     TodoReturn updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&);
-    void updateProgressbar() = win 0x39b4f0, m1 0xa2124, imac 0xb1c20;
+    void updateProgressbar() = win 0x39b4f0, m1 0xa2124, imac 0xb1c20, ios 0x11bb80;
     void updateScreenRotation(int, bool, bool, float, int, float, int, int);
     void updateTestModeLabel() = win 0x390b40, imac 0xb3d10, m1 0xa3d38;
     void updateTimeWarp(EffectGameObject*, float) = win 0x394a40;
