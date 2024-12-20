@@ -5143,7 +5143,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     float getBackgroundMusicVolume() = win inline, imac 0x3d4880, m1 0x35ad68 {
         return m_musicVolume;
     }
-    FMOD::ChannelGroup* getChannelGroup(int, bool) = win 0x56b20;
+    FMOD::ChannelGroup* getChannelGroup(int, bool) = win 0x56b20, m1 0x358208, imac 0x3d1240;
     float getEffectsVolume() {
         return m_sfxVolume;
     }
