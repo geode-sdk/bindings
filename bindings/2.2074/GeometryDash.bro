@@ -3776,7 +3776,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void confirmClone(cocos2d::CCObject*);
     void confirmDelete(cocos2d::CCObject*) = imac 0x1ead40, m1 0x1a1e40;
     void confirmMoveToTop(cocos2d::CCObject*);
-    bool init(GJGameLevel*) = win 0xd3f10, imac 0x1e87a0, m1 0x19f95c;
+    bool init(GJGameLevel*) = win 0xd3f10, imac 0x1e87a0, m1 0x19f95c, ios 0xebed4;
     void onBack(cocos2d::CCObject* sender) = win 0xd80e0;
     void onClone() = m1 0x1a3618;
     void onDelete() = m1 0x1a3328;
@@ -6569,7 +6569,7 @@ class GameObject : CCSpritePlus {
     void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a7520, m1 0x1f9910, imac 0x24c560;
     void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float) = win 0x1a7040;
     void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float) = win 0x1a6f50;
-    void playShineEffect() = win 0x196430, imac 0x5a5440, m1 0x4df690;
+    void playShineEffect() = win 0x196430, imac 0x5a5440, m1 0x4df690, ios 0x25b4d8;
     void quickUpdatePosition();
     void quickUpdatePosition2();
     void removeColorSprite();
@@ -7787,7 +7787,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn calculateColorGroups();
     TodoReturn cameraMoveX(float, float, float, bool);
     TodoReturn cameraMoveY(float, float, float, bool);
-    bool canBeActivatedByPlayer(PlayerObject*, EffectGameObject*) = win 0x2123e0, imac 0x117880, m1 0xf6710;
+    bool canBeActivatedByPlayer(PlayerObject*, EffectGameObject*) = win 0x2123e0, imac 0x117880, m1 0xf6710, ios 0x1ea898;
     TodoReturn canProcessSFX(SFXTriggerState&, gd::unordered_map<int, int>&, gd::unordered_map<int, float>&, gd::vector<SFXTriggerState>&);
     TodoReturn canTouchObject(GameObject*);
     TodoReturn checkCameraLimitAfterTeleport(PlayerObject*, float) = win 0x2340b0, imac 0x110df0, m1 0xf0a1c;
@@ -7827,7 +7827,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void enterDualMode(GameObject*, bool) = imac 0x119720, m1 0xf84b0;
     void exitStaticCamera(bool exitX, bool exitY, float time, int easingType, float easingRate, bool smoothVelocity, float smoothVelocityMod, bool exitInstant) = win 0x2390e0;
     TodoReturn flipFinished() = ios 0x2036ac;
-    void flipGravity(PlayerObject*, bool, bool) = win 0x20d640, imac 0x114040, m1 0xf3874;
+    void flipGravity(PlayerObject*, bool, bool) = win 0x20d640, imac 0x114040, m1 0xf3874, ios 0x1e7c68;
     TodoReturn flipObjects();
     TodoReturn gameEventToString(GJGameEvent);
     void gameEventTriggered(GJGameEvent, int, int) = win 0x22c8a0, imac 0x110ea0, m1 0xf0ae8, ios 0x1e5c54;
@@ -7918,10 +7918,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool playerCircleCollision(PlayerObject*, GameObject*) = win 0x20c930;
     TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
     void playerTouchedObject(PlayerObject*, GameObject*);
-    void playerTouchedRing(PlayerObject*, RingObject*) = win 0x212960, imac 0x118040;
-    void playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x212a70, imac 0x1180f0;
+    void playerTouchedRing(PlayerObject*, RingObject*) = win 0x212960, imac 0x118040, ios 0x1eadac;
+    void playerTouchedTrigger(PlayerObject*, EffectGameObject*) = win 0x212a70, imac 0x1180f0, ios 0x1eae70;
     TodoReturn playerWasTouchingObject(PlayerObject*, GameObject*);
-    void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x20da30, imac 0x114200, m1 0xf3a44;
+    void playerWillSwitchMode(PlayerObject*, GameObject*) = win 0x20da30, imac 0x114200, m1 0xf3a44, ios 0x1e7e38;
     void playExitDualEffect(PlayerObject*) = win 0x2119a0;
     TodoReturn playFlashEffect(float, int, float);
     TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
@@ -8063,7 +8063,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn swapBackground(int);
     TodoReturn swapGround(int);
     TodoReturn swapMiddleground(int);
-    void switchToFlyMode(PlayerObject* player, GameObject* object, bool unused, int type) = win inline, imac 0x113ad0, m1 0xf3300 {
+    void switchToFlyMode(PlayerObject* player, GameObject* object, bool unused, int type) = win inline, imac 0x113ad0, m1 0xf3300, ios 0x1e7904 {
         player->switchedToMode((GameObjectType)type);
         auto cameraObject = this->processCameraObject(object, player);
         auto noEffects = cameraObject && cameraObject->m_hasNoEffects;
@@ -8090,7 +8090,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x20aa80, imac 0x110400, m1 0xf00d8;
     TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
     void toggleAudioVisualizer(bool) = win 0x242550, m1 0xe2354;
-    void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x2113f0, imac 0x113770, m1 0xf2fe8;
+    void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x2113f0, imac 0x113770, m1 0xf2fe8, ios 0x1e76c4;
     void toggleFlipped(bool, bool) = win 0x240240, m1 0xf6954, imac 0x117af0;
     void toggleGroup(int, bool) = m1 0x1078c4;
     void toggleLockPlayer(bool disable, bool p2) = win inline, imac 0x12cbe0, m1 0x107cb0 {
@@ -12422,9 +12422,9 @@ class LevelFeatureLayer : FLAlertLayer {
 [[link(android)]]
 class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDelegate, RateLevelDelegate, LikeItemDelegate, FLAlertLayerProtocol, LevelDeleteDelegate, NumberInputDelegate, SetIDPopupDelegate, TableViewCellDelegate {
     // virtual ~LevelInfoLayer();
-    // LevelInfoLayer() = ios 0x31658;
+    // LevelInfoLayer() = ios 0x2f310;
 
-    static LevelInfoLayer* create(GJGameLevel* level, bool challenge) = win 0x2e2860, imac 0x2a9700, m1 0x24f8ac;
+    static LevelInfoLayer* create(GJGameLevel* level, bool challenge) = win 0x2e2860, imac 0x2a9700, m1 0x24f8ac, ios 0x2874c;
     static cocos2d::CCScene* scene(GJGameLevel* level, bool challenge) = win 0x2e2810, imac 0x2a96b0, m1 0x24f850;
 
     void confirmClone(cocos2d::CCObject*) = win 0x2e9000, imac 0x2ae480, m1 0x2543fc;
@@ -12435,7 +12435,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void downloadLevel() = win 0x2e5770, m1 0x2523a0;
     void incrementDislikes();
     void incrementLikes();
-    bool init(GJGameLevel* level, bool challenge) = win 0x2e2a90, imac 0x2a98e0, m1 0x24fa08;
+    bool init(GJGameLevel* level, bool challenge) = win 0x2e2a90, imac 0x2a98e0, m1 0x24fa08, ios 0x287d0;
     void loadLevelStep() = win 0x2e8a00, imac 0x2b07d0, m1 0x2566dc;
     void onAddToList(cocos2d::CCObject* sender) = win 0x2e5160, imac 0x2aee40, m1 0x254e2c;
     void onBack(cocos2d::CCObject* sender) = win 0x2ebce0, imac 0x2ae6d0, m1 0x254684;
@@ -14656,7 +14656,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bb80, imac 0x3f4c90, m1 0x3751b8;
     void collidedWithObject(float, GameObject*) = imac 0x3fb520, m1 0x37a504;
     void collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bc40, m1 0x376dd8;
-    void collidedWithSlope(float dt, GameObject* object, bool forced) = imac 0x3f4d30;
+    void collidedWithSlope(float dt, GameObject* object, bool forced) = imac 0x3f4d30, ios 0x220b8c;
     void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x3799e0;
     TodoReturn convertToClosestRotation(float);
     void copyAttributes(PlayerObject*) = win 0x38a710, imac 0x409ed0, m1 0x3877bc;
@@ -14825,7 +14825,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void toggleSpiderMode(bool, bool) = win 0x385ce0, imac 0x4076c0, m1 0x38525c;
     void toggleSwingMode(bool, bool) = win 0x384d90, imac 0x405d60, m1 0x383a5c;
     void toggleVisibility(bool) = win 0x3756d0;
-    TodoReturn touchedObject(GameObject*) = imac 0x40ad70;
+    TodoReturn touchedObject(GameObject*) = imac 0x40ad70, ios 0x22e4ec;
     void tryPlaceCheckpoint() = m1 0x371f50;
     TodoReturn unrotateGameplayObject(GameObject*) = win 0x37b8b0;
     TodoReturn unrotatePreSlopeObjects();
