@@ -6232,7 +6232,7 @@ class GameManager : GManager {
         m_playerSwing = id;
     }
     void setPlayerUserID(int);
-    void setUGV(char const*, bool) = win 0x180320, m1 0x301c3c, imac 0x370890;
+    void setUGV(char const*, bool) = win 0x180320, m1 0x301c3c, imac 0x370890, ios 0x3190a8;
     void setupGameAnimations() = win 0x1a8870;
     gd::string sheetNameForIcon(int, int) = win 0x17f470, imac 0x36dcb0, m1 0x2ff040;
     TodoReturn shortenAdTimer(float);
@@ -15956,7 +15956,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     gd::string getThreadMessage() = win 0x3d0190;
     TodoReturn nodeWithTag(int);
     void onBack(cocos2d::CCObject* sender) = imac 0x48b320;
-    void onDoor(cocos2d::CCObject* sender) = win 0x3cd5a0, imac 0x48ca80;
+    void onDoor(cocos2d::CCObject* sender) = win 0x3cd5a0, imac 0x48ca80, ios 0x30bb3c;
     void onSecretLevel(cocos2d::CCObject* sender) = win 0x3cd2f0, imac 0x48ccc0;
     void onSubmit(cocos2d::CCObject* sender) = win 0x3cdf00, imac 0x48b390;
     void playCoinEffect();
