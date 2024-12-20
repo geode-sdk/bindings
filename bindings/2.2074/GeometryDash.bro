@@ -6560,7 +6560,7 @@ class GameObject : CCSpritePlus {
     bool isStoppableTrigger();
     bool isTrigger();
     void loadGroupsFromString(gd::string);
-    TodoReturn makeInvisible() = imac 0x5a53a0;
+    TodoReturn makeInvisible() = imac 0x5a53a0, ios 0x25b45c;
     TodoReturn makeVisible() = imac 0x709ec0;
     float opacityModForMode(int, bool);
     cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int);
@@ -15251,7 +15251,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&) = imac 0xbe690, m1 0xad05c;
     void loadFromCheckpoint(CheckpointObject*) = win 0x3a07b0;
     TodoReturn loadLastCheckpoint();
-    CheckpointObject * markCheckpoint() = win 0x3a06e0, imac 0xbb9d0, m1 0xaacd4;
+    CheckpointObject * markCheckpoint() = win 0x3a06e0, imac 0xbb9d0, m1 0xaacd4, ios 0x123284;
     void onQuit() = win 0x3a3db0, m1 0xa3cac, imac 0xb3c60, ios 0x11d45c;
     TodoReturn optimizeColorGroups() = win 0x397d10, imac 0xae840;
     TodoReturn optimizeOpacityGroups() = win 0x397fa0, imac 0xaea30;
@@ -15265,7 +15265,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn processLoadedMoveActions();
     TodoReturn queueCheckpoint();
     void removeAllObjects() = imac 0xb3dd0, ios 0x11d5a4;
-    void removeCheckpoint(bool) = win 0x3a0ff0, m1 0xaca08, imac 0xbdfd0;
+    void removeCheckpoint(bool) = win 0x3a0ff0, m1 0xaca08, imac 0xbdfd0, ios 0x124a64;
     void removeFromGroupOld(GameObject*);
     void resetLevel() = win 0x3a1f90, imac 0xb2f80, m1 0xa3120, ios 0x11ca00;
     void resetLevelFromStart() = win 0x3a1df0, ios 0x12584c;
@@ -15294,7 +15294,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn startRecording();
     TodoReturn startRecordingDelayed();
     TodoReturn stopRecording();
-    void storeCheckpoint(CheckpointObject*) = win 0x3a0610, m1 0xac964, imac 0xbdf30;
+    void storeCheckpoint(CheckpointObject*) = win 0x3a0610, m1 0xac964, imac 0xbdf30, ios 0x124a04;
     TodoReturn takeStateSnapshot();
     TodoReturn toggleBGEffectVisibility(bool);
     TodoReturn toggleDebugDraw(bool) = ios 0x11919c;
@@ -20158,9 +20158,9 @@ class UIButtonConfig {
 [[link(android)]]
 class UILayer : cocos2d::CCLayerColor {
     // virtual ~UILayer();
-    // UILayer() = ios 0x51948;
+    // UILayer() = ios 0x4ef74;
 
-    static UILayer* create(GJBaseGameLayer*) = imac 0x4b4870, m1 0x41cac4;
+    static UILayer* create(GJBaseGameLayer*) = imac 0x4b4870, m1 0x41cac4, ios 0x4cb8c;
 
     void disableMenu() = imac 0x4b5c30, ios 0x4d7f4;
     void doPause() = imac 0x4b63b0, ios 0x4dbf8;
@@ -20168,7 +20168,7 @@ class UILayer : cocos2d::CCLayerColor {
     void enableEditorMode();
     TodoReturn enableMenu() = ios 0x4dc44;
     void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x4b4c40, imac 0x4b5d70, m1 0x41de7c, ios 0x4d858;
-    bool init(GJBaseGameLayer*) = win 0x4b3f20, m1 0x41cbc4, imac 0x4b49b0;
+    bool init(GJBaseGameLayer*) = win 0x4b3f20, m1 0x41cbc4, imac 0x4b49b0, ios 0x4cc00;
     bool isJumpButtonPressed(bool) = imac 0x4b6720, m1 0x41e598;
     void onCheck(cocos2d::CCObject* sender);
     void onDeleteCheck(cocos2d::CCObject* sender);
