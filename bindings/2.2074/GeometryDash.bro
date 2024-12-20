@@ -1078,16 +1078,16 @@ class CCCircleAlert : CCCircleWave {
 [[link(android)]]
 class CCCircleWave : cocos2d::CCNode {
     // virtual ~CCCircleWave();
-    // CCCircleWave() = win 0x418b0;
+    // CCCircleWave() = win 0x418b0, ios 0x16fc78;
 
-    static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x42800, imac 0x167ae0, m1 0x134bb4;
+    static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x42800, imac 0x167ae0, m1 0x134bb4, ios 0x16f678;
     static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = win inline, ios 0x16f670 {
         return CCCircleWave::create(startRadius, endRadius, duration, fadeIn, true);
     }
 
     TodoReturn baseSetup(float);
     TodoReturn followObject(cocos2d::CCNode*, bool) = imac 0x167ea0, m1 0x134f0c;
-    bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x428b0, imac 0x167bd0, m1 0x134c88;
+    bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x428b0, imac 0x167bd0, m1 0x134c88, ios 0x16f708;
     TodoReturn updatePosition(float) = win 0x42b30, imac 0x167e60, m1 0x134ec0;
 
     virtual void setPosition(cocos2d::CCPoint const&) = win 0x42af0, imac 0x167e30, m1 0x134e8c, ios 0x16f8d0;
@@ -4088,7 +4088,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onPasteState(cocos2d::CCObject* sender) = win 0x112b40;
     void onPause(cocos2d::CCObject* sender) = win 0xe03d0, imac 0x2ad50, m1 0x2afc0;
     void onPlayback(cocos2d::CCObject* sender) = win 0x110390, imac 0xc930, m1 0xdce0;
-    void onPlaytest(cocos2d::CCObject* sender) = win 0x1109a0, imac 0xcb90, m1 0xdef4;
+    void onPlaytest(cocos2d::CCObject* sender) = win 0x1109a0, imac 0xcb90, m1 0xdef4, ios 0x3bfd14;
     void onResetSpecialFilter(cocos2d::CCObject* sender);
     void onSelectBuildTab(cocos2d::CCObject* sender) = imac 0x34310;
     void onSettings(cocos2d::CCObject* sender) = win 0xe0350;
@@ -4741,7 +4741,7 @@ class EnhancedGameObject : GameObject {
     TodoReturn triggerAnimation();
     TodoReturn updateRotateAction(float);
     TodoReturn updateState(int);
-    void updateUserCoin() = win 0x1a3970, imac 0x5a9770;
+    void updateUserCoin() = win 0x1a3970, imac 0x5a9770, ios 0x25e724;
     TodoReturn waitForAnimationTrigger();
 
     virtual void customSetup() = win 0x1a1ff0, imac 0x5b42e0, m1 0x4ec86c, ios 0x262680;
@@ -6490,7 +6490,7 @@ class GameObject : CCSpritePlus {
     void createOpacityGroupContainer(int);
     void createSpriteColor(int) = imac 0x58a4e0, m1 0x4d7afc;
     void deselectObject();
-    inline void destroyObject() { // what ? not inline, imac 0x5a5340
+    inline void destroyObject() { // what ? not inline, imac 0x5a5340, ios 0x25b428
         m_isDisabled = true;
         m_isDisabled2 = true;
         setOpacity(0);
@@ -6566,7 +6566,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int);
     gd::string perspectiveColorFrame(char const*, int);
     gd::string perspectiveFrame(char const*, int);
-    void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a7520, m1 0x1f9910, imac 0x24c560;
+    void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a7520, m1 0x1f9910, imac 0x24c560, ios 0x349078;
     void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float) = win 0x1a7040;
     void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float) = win 0x1a6f50;
     void playShineEffect() = win 0x196430, imac 0x5a5440, m1 0x4df690, ios 0x25b4d8;
@@ -12226,7 +12226,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn objectsAtPosition(cocos2d::CCPoint);
     cocos2d::CCArray* objectsInRect(cocos2d::CCRect, bool);
     void onPausePlaytest();
-    void onPlaytest() = win 0x2d7330, m1 0xd5d40, imac 0xf0f00;
+    void onPlaytest() = win 0x2d7330, m1 0xd5d40, imac 0xf0f00, ios 0x3624a8;
     void onResumePlaytest() = win 0x2d7d60;
     void onStopPlaytest() = win 0x2d7f50, m1 0xd67f8;
     TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*);
@@ -15228,7 +15228,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn commitJumps();
     TodoReturn compareStateSnapshot();
     CheckpointObject* createCheckpoint() = win 0x39e150, imac 0xbbd00, ios 0x123594;
-    void createObjectsFromSetupFinished() = win 0x396a10, imac 0xb7490, m1 0xa6fc4;
+    void createObjectsFromSetupFinished() = win 0x396a10, imac 0xb7490, m1 0xa6fc4, ios 0x11fdcc;
     void delayedFullReset();
     void delayedResetLevel() = win 0x3a1de0, m1 0xaa970, imac 0xbb590;
     void fullReset() = win 0x3a1ce0, m1 0xad514;
