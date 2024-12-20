@@ -5115,7 +5115,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void loadMusic(gd::string path) {
         this->loadMusic(path, 1.f, 0.f, 1.f, false, 0, 0);
     }
-    TodoReturn loadMusic(gd::string, float, float, float, bool, int, int, bool);
+    TodoReturn loadMusic(gd::string, float, float, float, bool, int, int, bool) = ios 0x13d3f4;
     void pauseAllAudio() = win inline, imac 0x3cb290, m1 0x353afc {
         if (m_allAudioPaused) return;
         m_allAudioPaused = true;
@@ -7379,8 +7379,8 @@ class GameToolbox {
     static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool) = win 0x68000, imac 0x4e2fe0, m1 0x44528c;
     static void particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&) = win 0x67540, imac 0x4e1f80, m1 0x444354;
     static gd::string pointsToString(int) = win 0x69760, m1 0x446d4c;
-    static void postClipVisit();
-    static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x645c0, imac 0x4dbc50, m1 0x43ed28;
+    static void postClipVisit() = ios 0x47a90;
+    static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x645c0, imac 0x4dbc50, m1 0x43ed28, ios 0x479ac;
     static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
     static gd::string saveParticleToString(cocos2d::CCParticleSystemQuad*) = win 0x662d0, imac 0x4deb00, m1 0x4418f4;
     static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
@@ -15857,7 +15857,7 @@ class ScrollingLayer : cocos2d::CCLayerColor {
 
     static ScrollingLayer* create(cocos2d::CCSize, cocos2d::CCPoint, float) = imac 0x340380, m1 0x629898;
 
-    TodoReturn getViewRect();
+    TodoReturn getViewRect() = ios 0x1ba8bc;
     bool init(cocos2d::CCSize, cocos2d::CCPoint, float);
     void setStartOffset(cocos2d::CCPoint) = imac 0x70a760, m1 0x629ca4;
 
