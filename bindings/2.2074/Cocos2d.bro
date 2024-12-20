@@ -854,7 +854,7 @@ class cocos2d::CCNode {
     void transform() = ios 0x23bd34;
     void transformAncestors();
     void unschedule(cocos2d::SEL_SCHEDULE) = imac 0x262270, m1 0x20df6c;
-    void unscheduleAllSelectors();
+    void unscheduleAllSelectors() = ios 0x23b508;
     void unscheduleUpdate() = imac 0x262160, m1 0x20de9c;
     void updateChildIndexes();
 
@@ -1688,9 +1688,9 @@ class cocos2d::CCNodeRGBA {
 [[link(win, android)]]
 class cocos2d::CCSequence {
     static cocos2d::CCSequence* create(cocos2d::CCArray*) = m1 0x32f72c;
-    // static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3b8aa0, m1 0x33d1fc;
-    static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3a24d0, m1 0x32fe54;
-    static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = imac 0x3a26b0, m1 0x32f52c, ios 0x18da90;
+    // static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3b8aa0, m1 0x33d1fc, ios 0x18da90;
+    static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3a24d0, m1 0x32fe54, ios 0x18d99c;
+    static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = imac 0x3a26b0, m1 0x32f52c, ios 0x18dab8;
 
     bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3a25a0, m1 0x32f4a0;
 
