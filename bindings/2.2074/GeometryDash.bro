@@ -184,7 +184,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 
     AchievementBar(unsigned int idk) = win 0x80620;
 
-    static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest);
+    static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest) = ios 0x269870;
 
     bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x80670;
     void show() = win 0x81c20;
@@ -218,7 +218,7 @@ class AchievementCell : TableViewCell {
 class AchievementManager : cocos2d::CCNode {
     // virtual ~AchievementManager();
 
-    static AchievementManager* sharedState() = win 0x7da0, imac 0x715690, m1 0x633e04;
+    static AchievementManager* sharedState() = win 0x7da0, imac 0x715690, m1 0x633e04, ios 0xb9e4c;
 
     gd::string achievementForUnlock(int, UnlockType) = win 0x3a1c0, imac 0x76ef60, m1 0x682554;
     void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x7ef0;
@@ -240,7 +240,7 @@ class AchievementManager : cocos2d::CCNode {
         }
         return 0;
     }
-    TodoReturn notifyAchievement(char const*, char const*, char const*);
+    TodoReturn notifyAchievement(char const*, char const*, char const*) = ios 0xeba9c;
     TodoReturn notifyAchievementWithID(char const*);
     TodoReturn percentageForCount(int, int);
     int percentForAchievement(char const*) = win 0x39a90, m1 0x6821b4, imac 0x76ec20;
@@ -268,11 +268,11 @@ class AchievementManager : cocos2d::CCNode {
 class AchievementNotifier : cocos2d::CCNode {
     // virtual ~AchievementNotifier();
 
-    static AchievementNotifier* sharedState() = win 0x3ab20;
+    static AchievementNotifier* sharedState() = win 0x3ab20, ios 0x21720c;
 
     void achievementDisplayFinished();
-    void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest) = win 0x3ac00, imac 0x7ad440, m1 0x6bebb4;
-    void showNextAchievement() = win 0x3ace0;
+    void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest) = win 0x3ac00, imac 0x7ad440, m1 0x6bebb4, ios 0x2172a8;
+    void showNextAchievement() = win 0x3ace0, ios 0x2172fc;
     void willSwitchToScene(cocos2d::CCScene* scene) = win inline, imac 0x7ad5f0, m1 0x6bed64, ios 0x217440 /* ? */ {
         this->m_nextScene = scene;
 
@@ -928,7 +928,7 @@ class ButtonSprite : cocos2d::CCSprite {
     void setString(char const*) = win 0x3fae0, imac 0x92a40, m1 0x85b60, ios 0x632ac; // ?
     void updateBGImage(char const*) = win 0x3f520, imac 0x92e20, m1 0x85f00;
     void updateSpriteBGSize() = win 0x3f660, imac 0x92190, m1 0x85368;
-    void updateSpriteOffset(cocos2d::CCPoint offset) = win inline, imac 0x92f40, m1 0x8601c {
+    void updateSpriteOffset(cocos2d::CCPoint offset) = win inline, imac 0x92f40, m1 0x8601c, ios 0x6375c {
         m_spritePosition = offset;
         this->updateSpriteBGSize();
     }
@@ -2748,9 +2748,11 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
 class CreateMenuItem : CCMenuItemSpriteExtra {
     // virtual ~CreateMenuItem();
 
-    static CreateMenuItem* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x127700, imac 0x2f300, m1 0x2ed0c;
+    static CreateMenuItem* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x127700, imac 0x2f300, m1 0x2ed0c, ios 0x3df644;
 
-    bool init(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+    bool init(cocos2d::CCNode* p0, cocos2d::CCNode* p1, cocos2d::CCObject* p2, cocos2d::SEL_MenuHandler p3) = ios inline {
+        return CCMenuItemSpriteExtra::init(p0, p1, p2, p3);
+    }
 
     gd::string m_spriteFileName;
     int m_objectID;
@@ -3959,7 +3961,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn convertToBaseKey(int);
     gd::string copyObjects(cocos2d::CCArray* objects, bool copyColors, bool sort) = win 0x111560, imac 0x31280;
     TodoReturn copyObjectsDetailed(cocos2d::CCArray*);
-    cocos2d::CCArray* createCustomItems() = win 0xe30e0, imac 0x31b80, m1 0x3122c;
+    cocos2d::CCArray* createCustomItems() = win 0xe30e0, imac 0x31b80, m1 0x3122c, ios 0x3e0ec8;
     TodoReturn createEdgeForObject(GameObject*, int);
     TodoReturn createExtraObject(int, cocos2d::CCPoint, GameObject*, cocos2d::CCArray*, int, int);
     TodoReturn createExtras(cocos2d::CCArray*);
@@ -4014,7 +4016,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void flipObjectsY(cocos2d::CCArray*);
     TodoReturn getButton(char const*, int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
     CreateMenuItem* getCreateBtn(int id, int bg) = win 0x10d2a0, m1 0x332f0;
-    TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint) = imac 0x2f190;
+    TodoReturn getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint) = imac 0x2f190, ios 0x3df54c;
     TodoReturn getCycledObject(cocos2d::CCArray*, bool);
     TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&) = imac 0x4a120;
     cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint pos) = win inline {
@@ -6030,7 +6032,7 @@ class GameManager : GManager {
     TodoReturn getMGTexture(int);
     TodoReturn getNextUniqueObjectKey();
     TodoReturn getNextUsedKey(int, bool);
-    TodoReturn getOrderedCustomObjectKeys() = imac 0x370e40;
+    TodoReturn getOrderedCustomObjectKeys() = imac 0x370e40, ios 0x319428;
     int getPlayerBall() {
         return m_playerBall;
     }
