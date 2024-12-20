@@ -3512,6 +3512,17 @@ class cocos2d::ZipUtils {
 class cocos2d::CCSpawn : cocos2d::CCActionInterval {
     static cocos2d::CCSpawn* create(cocos2d::CCArray*) = m1 0x3309f8, imac 0x3a3db0;
     // static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...) = m1 0x33e430, imac 0x3b9e30;
+    static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction* first, ...) = m1 inline, imac inline {
+        va_list args;
+        va_start(args, first);
+        auto* array = cocos2d::CCArray::create();
+        array->addObject(first);
+        while (auto* action = va_arg(args, cocos2d::CCFiniteTimeAction*)) {
+            array->addObject(action);
+        }
+        va_end(args);
+        return cocos2d::CCSpawn::create(array);
+    }
     static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = m1 0x33096c, imac 0x3a3d20;
     // static cocos2d::CCSpawn* createWithVariableList(cocos2d::CCFiniteTimeAction*, char*);
 
