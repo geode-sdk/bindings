@@ -130,7 +130,7 @@ public class SyncBromaScript extends GhidraScript {
 
         // Do the imports and exports and members
         if (this.args.importFromBroma) {
-            this.handleImport();
+            //this.handleImport(); //$SABE TODO: uncomment
             if (this.args.syncMembers) {
                 this.handleImportMembers();
             }
@@ -165,7 +165,17 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
-    private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force, boolean ignoreReturnType) throws Exception {
+    class ImportResult {
+        SignatureImport status;
+        boolean yesToAllConfilcts;
+
+        ImportResult(SignatureImport status, boolean yesToAllConfilcts) {
+            this.status = status;
+            this.yesToAllConfilcts = yesToAllConfilcts;
+        }
+    }
+
+    private ImportResult importSignatureFromBroma(Address addr, Broma.Function fun, boolean force, boolean ignoreReturnType, boolean yesToAllConflicts) throws Exception {
         final var name = fun.getName();
         final var className = fun.parent.name.value;
         final var fullName = className + "::" + name;
@@ -207,7 +217,7 @@ public class SyncBromaScript extends GhidraScript {
                     "NOTE: Merged with " + fullName
                 );
                 wrapper.printfmt("Added {0} to merged function list for {1}", fullName, data.getName(true));
-                return SignatureImport.ADDED_MERGED;
+                return new ImportResult(SignatureImport.ADDED_MERGED, yesToAllConflicts);
             }
         }
 
@@ -260,12 +270,14 @@ public class SyncBromaScript extends GhidraScript {
             signatureConflict = false;
         }
         if (signatureConflict) {
-            askContinueConflict(
-                "Signature doesn't match",
-                "Ghidra has a function signature {0} that doesn't match Broma's signature {1} - do you want to override it?",
-                new Signature(data.getReturn(), Arrays.asList(data.getParameters())),
-                bromaSig
-            );
+            if (!yesToAllConflicts) {
+                yesToAllConflicts = askContinueConflict(
+                    "Signature doesn't match",
+                    "Ghidra has a function signature {0} that doesn't match Broma's signature {1} - do you want to override it?",
+                    new Signature(data.getReturn(), Arrays.asList(data.getParameters())),
+                    bromaSig
+                );
+            }
             status = status.promoted(SignatureImport.UPDATED);
         }
 
@@ -415,13 +427,14 @@ public class SyncBromaScript extends GhidraScript {
             data.setReturn(type, storage, SourceType.USER_DEFINED);
         }
 
-        return status;
+        return new ImportResult(status, yesToAllConflicts);
     }
 
     private void handleImport() throws Exception {
         wrapper.printfmt("Loading addresses from Bindings...");
         var importedAddCount = 0;
         var importedUpdateCount = 0;
+        boolean yesToAllConflicts = false;
         for (var bro : bromas) {
             wrapper.printfmt("Reading {0}...", bro.path.getFileName());
             for (var cls : bro.classes) for (var fun : cls.functions) {
@@ -439,7 +452,12 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 var addr = currentProgram.getImageBase().add(offset);
 
-                switch (importSignatureFromBroma(addr, fun, false, false)) {
+                ImportResult result = importSignatureFromBroma(addr, fun, false, false, yesToAllConflicts);
+                yesToAllConflicts = result.yesToAllConfilcts;
+
+                SignatureImport status = result.status;
+
+                switch (status) {
                     case ADDED: {
                         importedAddCount += 1;
                         wrapper.printfmt("Added {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
@@ -463,6 +481,8 @@ public class SyncBromaScript extends GhidraScript {
 
         final var table = currentProgram.getSymbolTable();
         var clsIter = table.getClassNamespaces();
+        boolean yesToAllAddressMismatch = false;
+        boolean yesToAllImportSignature = false;
         while (clsIter.hasNext()) {
             var cls = clsIter.next();
             // Skip imported classes
@@ -583,7 +603,8 @@ public class SyncBromaScript extends GhidraScript {
                 }
 
                 // Get the function signature from Broma
-                importSignatureFromBroma(child.getAddress(), bromaFun, false, !returnTypeUpdated);
+                ImportResult result = importSignatureFromBroma(child.getAddress(), bromaFun, false, !returnTypeUpdated, yesToAllImportSignature);
+                yesToAllImportSignature = result.yesToAllConfilcts;
 
                 // Export parameter names
                 int skipCount = 0;
@@ -607,11 +628,13 @@ public class SyncBromaScript extends GhidraScript {
                 if (bromaFun.platformOffset.isPresent()) {
                     var bromaOffset = Long.parseLong(bromaFun.platformOffset.get().value, 16);
                     if (bromaOffset != Broma.PLACEHOLDER_ADDR && bromaOffset != ghidraOffset) {
-                        askContinueConflict(
-                            "Address mismatch",
-                            "Function {0} has the address 0x{1} in the Broma but the address 0x{2} in Ghidra - do you want to override the Broma's address?",
-                            fullName, Long.toHexString(bromaOffset), Long.toHexString(ghidraOffset)
-                        );
+                        if (!yesToAllAddressMismatch) {
+                            yesToAllAddressMismatch = askContinueConflict(
+                                "Address mismatch",
+                                "Function {0} has the address 0x{1} in the Broma but the address 0x{2} in Ghidra - do you want to override the Broma's address?",
+                                fullName, Long.toHexString(bromaOffset), Long.toHexString(ghidraOffset)
+                            );
+                        }
                         exportedAddrCount += 1;
                         broma.addPatch(bromaFun.platformOffset.get().range, String.format("%x", ghidraOffset));
                     }
@@ -643,9 +666,13 @@ public class SyncBromaScript extends GhidraScript {
         final var manager = currentProgram.getDataTypeManager();
 
         wrapper.printfmt("Importing members...");
+        boolean yesToAll = false;
         for (var bro : this.bromas) {
             wrapper.printfmt("Importing from {0}...", bro.path.getFileName());
             for (var cls : bro.classes) {
+                boolean shouldAdd = false;
+                boolean logging = false;
+                boolean logFinalSize = false;
                 final var fullName = cls.name.value;
                 var category = new CategoryPath("/ClassDataTypes");
                 String name = null;
@@ -653,11 +680,25 @@ public class SyncBromaScript extends GhidraScript {
                     category = category.extend(part);
                     name = part;
                 }
+                if (name.equals("GJGameState")) {
+                    logging = true;
+                    logFinalSize = true;
+                } else {
+                    logging = false;
+                }
+
+                if (logging) {
+                    wrapper.printfmt("Current class is: {0}...", fullName);
+                    wrapper.printfmt("Current class parent(s) is: {0}...", cls.parents.value);
+                }
+                
                 // Make sure the category exists
                 wrapper.createCategoryAll(category);
                 final var classDataTypePath = new DataTypePath(category, name + "_data");
                 var classDataMembers = (Structure) manager.getDataType(classDataTypePath);
-
+                if (logging) {
+                    wrapper.printfmt("@@@@ Before classDataMembers null check");
+                }
                 if (classDataMembers == null) {
                     // Just skip if there are no members to import
                     if (cls.members.isEmpty()) {
@@ -665,10 +706,13 @@ public class SyncBromaScript extends GhidraScript {
                     }
                     // Otherwise create data members struct
                     classDataMembers = new StructureDataType(name + "_data", 0);
-                    manager.getCategory(category).addDataType(classDataMembers, DataTypeConflictHandler.DEFAULT_HANDLER);
+                    shouldAdd = true;
+                    //manager.getCategory(category).addDataType(classDataMembers, DataTypeConflictHandler.DEFAULT_HANDLER);
                 }
-                wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
-
+                if (logging) {
+                    wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
+                    wrapper.printfmt("@@@@ Trying to import members to {0}", classDataMembers.getName());
+                }
                 // Disable packing
                 classDataMembers.setPackingEnabled(false);
 
@@ -683,9 +727,23 @@ public class SyncBromaScript extends GhidraScript {
                         break;
                     }
                 }
-
+                if (logging) {
+                    wrapper.printfmt("@@@@ Members is not zero length");
+                }
                 var offset = 0;
+                int count = 0;
                 for (var mem : cls.members) {
+                    count++;
+                    if (logging && count > 30) {
+                        logging = false;
+                    }
+                    if (logging) {
+                        if (mem.name.isPresent()) {
+                            wrapper.printfmt("@@@@ Doing member: {0}", mem.name.get().value);
+                        } else {
+                            wrapper.printfmt("@@@@ Doing unnamed member");
+                        }
+                    }
                     int length;
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
@@ -702,35 +760,53 @@ public class SyncBromaScript extends GhidraScript {
                             length = 0;
                         }
                     }
-
+                    if (logging) {
+                        wrapper.printfmt("@@@@ Members is not zero length");
+                    }
                     int classLength = classDataMembers.isZeroLength() ? 0 : classDataMembers.getLength();
                     if (offset + length > classLength) {
+                        if (logging) {
+                            wrapper.printfmt("@@@@ CurLength: {0}, growing to: {1}", classLength, offset + length - classLength);
+                        }
                         classDataMembers.growStructure(offset + length - classLength);
                     }
-
+                    if (logging) {
+                        wrapper.printfmt("@@@@ After trying to grow structure");
+                    }
                     if (mem.name.isPresent()) {
                         final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
                         // Make sure alignment is correct
                         var existing = classDataMembers.getComponentAt(offset);
+                        if (logging) {
+                            wrapper.printfmt("@@@@ Before override check -- memType: {0}", memType.getName());
+                        }
                         if (existing != null && existing.getDataType() instanceof Undefined) {
                             if (
                                 !existing.getDataType().isEquivalent(memType) ||
                                 (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value))
                             ) {
-                                askContinueConflict(
-                                    "Override member",
-                                    "Member #{0} in {1} does not match between Broma and Ghidra:\n" + 
-                                    "Broma: {2} {3}\n" + 
-                                    "Ghidra: {4} {5}\n" + 
-                                    "Should the existing member in Ghidra be overwritten with Broma's?",
-                                    existing.getOrdinal(), fullName,
-                                    ScriptWrapper.formatType(memType), mem.name.get().value,
-                                    ScriptWrapper.formatType(existing.getDataType()), existing.getFieldName()
-                                );
+                                if (!yesToAll) {
+                                    yesToAll = askContinueConflict(
+                                        "Override member",
+                                        "Member #{0} in {1} does not match between Broma and Ghidra:\n" + 
+                                        "Broma: {2} {3}\n" + 
+                                        "Ghidra: {4} {5}\n" + 
+                                        "Should the existing member in Ghidra be overwritten with Broma's?",
+                                        existing.getOrdinal(), fullName,
+                                        ScriptWrapper.formatType(memType), mem.name.get().value,
+                                        ScriptWrapper.formatType(existing.getDataType()), existing.getFieldName()
+                                    );
+                                }
                             }
+                        }
+                        if (logging) {
+                            wrapper.printfmt("@@@@ About to clear");
                         }
                         for (int i = length; i > 0; i -= 1) {
                             classDataMembers.clearAtOffset(offset + i - 1);
+                        }
+                        if (logging) {
+                            wrapper.printfmt("@@@@ Replace at offset");
                         }
                         classDataMembers.replaceAtOffset(
                             offset,
@@ -760,10 +836,28 @@ public class SyncBromaScript extends GhidraScript {
                         break;
                     }
                 }
-
+                if (shouldAdd) {
+                    manager.getCategory(category).addDataType(classDataMembers, DataTypeConflictHandler.DEFAULT_HANDLER);
+                }
+                if (logFinalSize) {
+                    wrapper.printfmt("Final size of class {0}: {1}", classDataMembers.getName(), classDataMembers.getLength());
+                }
                 // classDataMembers.setPackingEnabled(true);
                 // classDataMembers.repack();
+
+                var categoryGJ = new CategoryPath("/ClassDataTypes/GJGameState");
+                final var classDataTypePathGJ = new DataTypePath(categoryGJ,"GJGameState_data");
+                var classDataMembersGJ = (Structure) manager.getDataType(classDataTypePathGJ);
+                if (classDataMembersGJ != null) {
+                    wrapper.printfmt("CURRENT LENGTH OF GJGameState_data: {0}",classDataMembersGJ.getLength());
+                }
             }
+        }
+        var category = new CategoryPath("/ClassDataTypes/GJGameState");
+        final var classDataTypePath = new DataTypePath(category,"GJGameState_data");
+        var classDataMembers = (Structure) manager.getDataType(classDataTypePath);
+        if (classDataMembers != null) {
+            wrapper.printfmt("ACTUAL FINAL LENGTH OF GJGameState_data: {0}",classDataMembers.getLength());
         }
     }
 
@@ -948,17 +1042,21 @@ public class SyncBromaScript extends GhidraScript {
         return bromaClass;
     }
 
-    void askContinueConflict(String title, String fmt, Object... args) throws Exception {
-        if (!askYesNo(title, MessageFormat.format(
+    <T> boolean askContinueConflict(String title, String fmt, Object... args) throws Exception {
+        wrapper.printfmt("ASKING !!!!!!!!!!!!");
+        int result = docking.widgets.OptionDialog.showOptionDialog(null, title, MessageFormat.format(
             fmt + "\nIf this is not the case, please fix the conflict manually in the Broma file!",
             args
-        ))) {
-			throw new CancelledException();
+        ), "Yes to all", "Yes", "No", 3); // QUESTION_MESSAGE
+        result -= 1;
+        if (result == -1 || result == 2) {
+            throw new CancelledException();
         }
+        return result == 0;
     }
 
     int askContinueConflict(String title, List<String> options, String fmt, Object... args) throws Exception {
-		return InputWithButtonsDialog.show(
+        return InputWithButtonsDialog.show(
             wrapper,
             title,
             MessageFormat.format(
@@ -971,20 +1069,20 @@ public class SyncBromaScript extends GhidraScript {
     }
 
     int askChoiceBetter(String title, List<String> options, String fmt, Object... args) throws Exception {
-		var choice = Swing.runNow(() -> {
-			InputWithChoicesDialog dialog = new InputWithChoicesDialog(
+        var choice = Swing.runNow(() -> {
+            InputWithChoicesDialog dialog = new InputWithChoicesDialog(
                 title,
                 MessageFormat.format("<html>" + fmt + "</html>", args),
                 options.toArray(String[]::new),
                 options.get(0),
                 null
             );
-			state.getTool().showDialog(dialog);
-			return dialog.getValue();
-		});
-		if (choice == null) {
-			throw new CancelledException();
-		}
+            state.getTool().showDialog(dialog);
+            return dialog.getValue();
+        });
+        if (choice == null) {
+            throw new CancelledException();
+        }
         return options.indexOf(choice);
     }
 }

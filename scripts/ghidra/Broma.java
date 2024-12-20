@@ -299,6 +299,7 @@ public class Broma {
     public class Class extends Parseable {
         public final boolean linked;
         public final Match name;
+        public final Match parents;
         public final List<Function> functions;
         public final List<Member> members;
         public final Range beforeClosingBrace;
@@ -307,6 +308,7 @@ public class Broma {
             super(broma, matcher);
 
             name = new Match(matcher, "name");
+            parents = new Match(matcher, "parents");
             functions = new ArrayList<Function>();
             members = new ArrayList<Member>();
             beforeClosingBrace = new Range(matcher.start("closingbrace"), matcher.start("closingbrace"));
