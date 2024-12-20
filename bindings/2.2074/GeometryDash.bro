@@ -1915,7 +1915,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     }
     bool init(float, float, char const*, char const*, int, char const*) = win 0x4f300, imac 0x9dd90, m1 0x90770;
     void refreshLabel() = win 0x4fb40, imac 0x9e850, m1 0x911d4, ios 0x170608;
-    void setAllowedChars(gd::string filter) = win inline, imac 0x9e650, m1 0x90fe4 {
+    void setAllowedChars(gd::string filter) = win inline, imac 0x9e650, m1 0x90fe4, ios 0x1704b4 {
         m_allowedChars = filter;
     }
 
@@ -5134,7 +5134,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     }
     TodoReturn pitchForIdx(int);
     void playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10, imac 0x3d1ba0, m1 0x358870, ios 0x13ea50;
-    void playEffect(gd::string path) = win 0x56d90, m1 0x3587c0, imac 0x3d1b10;
+    void playEffect(gd::string path) = win 0x56d90, m1 0x3587c0, imac 0x3d1b10, ios 0x13e9b4;
     void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0, ios 0x13d8c4;
     TodoReturn playEffectAsync(gd::string path);
     void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x5a110, imac 0x3d4dc0, m1 0x35b20c, ios 0x1405b0;
@@ -18744,7 +18744,7 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
     void onClose(cocos2d::CCObject* sender) = win 0x476130;
     void onPercent(cocos2d::CCObject* sender) = win 0x475c90, imac 0x5c89e0, m1 0x4fd26c;
     void onShare(cocos2d::CCObject* sender) = win 0x475d90, imac 0x5c8c60;
-    void updateCharCountLabel() = win inline, imac 0x5c9450, m1 0x4fdcb8 {
+    void updateCharCountLabel() = win inline, imac 0x5c9450, m1 0x4fdcb8, ios 0x1d690c {
         if (m_charLimit * .9f <= m_descText.size()) {
             m_charCountLabel->setColor({ 255, 0, 0 });
             m_charCountLabel->setOpacity(255);
