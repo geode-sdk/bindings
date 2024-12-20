@@ -34,7 +34,7 @@ public class Regexes {
             formatRegex(
                 // Grab attributes
                 "(?<attrs>\\[\\[.*?\\]\\]\\s*)?" + 
-                // Grab name and parent class ( assuming single inheritance :') )
+                // Grab name and parent classes
                 "class (?<name>{0})\\s+(?::\\s+(?<parents>(\\w+::)*\\w+(\\s*,\\s+(\\w+::)*\\w+)*)\\s+)?" + 
                 // Grab body (assuming closing brace is on its own line without any preceding whitespace)
                 "\\'{'(?<body>.*?)(?<closingbrace>^\\'})'",
