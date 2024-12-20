@@ -10398,7 +10398,7 @@ class GJRewardObject : cocos2d::CCObject {
     static GJRewardObject* create(SpecialRewardItem, int, int) = win 0x1f0880, imac 0x71c80, m1 0x656b0;
     // virtual ~GJRewardObject();
 
-    static GJRewardObject* create() = win inline, m1 0x81edc {
+    static GJRewardObject* create() = win inline, m1 0x81edc, imac 0x8e760 {
         auto ret = create(SpecialRewardItem::FireShard, 0, 0); // the first param is meant to be 0
         return ret;
     }
@@ -15863,7 +15863,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 
     CCMenuItemSpriteExtra* getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float) = win 0x3b3470;
     bool init(int, bool, bool) = win 0x3b2d90, m1 0x223bd8, imac 0x2799b0;
-    void onClose(cocos2d::CCObject* sender) = win 0x3b3b50;
+    void onClose(cocos2d::CCObject* sender) = win 0x3b3b50, m1 0x224850, imac 0x27a680;
     void onFeature(cocos2d::CCObject* sender) = win 0x3b3440, imac 0x27a650;
     void onRate(cocos2d::CCObject* sender) = win 0x3b37a0, imac 0x27a6d0, m1 0x2248ac;
     void onToggleCoins(cocos2d::CCObject* sender);
