@@ -6144,7 +6144,7 @@ class GameManager : GManager {
     TodoReturn logLoadedIconInfo();
     void openEditorGuide();
     void playMenuMusic() = win 0x178810, m1 0x2f66b4;
-    TodoReturn playSFXTrigger(SFXTriggerGameObject*);
+    TodoReturn playSFXTrigger(SFXTriggerGameObject*) = ios 0x31260c;
     TodoReturn prepareDPadSettings() = imac 0x375340;
     TodoReturn printGJLog();
     void queueReloadMenu() = imac 0x378db0;
@@ -13964,7 +13964,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
     void parseMusicLibrary();
     void parseSFXLibrary();
-    gd::string pathForSFX(int) = win 0x32a230, imac 0x578940, m1 0x4cc334;
+    gd::string pathForSFX(int) = win 0x32a230, imac 0x578940, m1 0x4cc334, ios 0x15a508;
     gd::string pathForSFXFolder(int) = win 0x32a0e0, imac 0x578a00, m1 0x4cc418;
     gd::string pathForSong(int) = win 0x329f00, m1 0x4caf14, imac 0x577270;
     gd::string pathForSongFolder(int) = win 0x329db0, imac 0x578290, m1 0x4cbe10;

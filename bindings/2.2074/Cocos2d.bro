@@ -639,7 +639,7 @@ class cocos2d::CCParticleSnow : cocos2d::CCParticleSystemQuad {
 
 	// virtual bool init() = m1 0x3e2ea8, imac 0x4742d0;
 	virtual bool initWithTotalParticles(unsigned int numberOfParticles) = m1 0x3e2934, imac 0x473d10, ios inline {
-        if( CCParticleSystemQuad::initWithTotalParticles(numberOfParticles) ) 
+        if( CCParticleSystemQuad::initWithTotalParticles(numberOfParticles, false) ) 
         {
             // duration
             m_fDuration = kCCParticleDurationInfinity;
@@ -701,7 +701,28 @@ class cocos2d::CCParticleSnow : cocos2d::CCParticleSystemQuad {
             m_tEndColorVar.b = 0.0f;
             m_tEndColorVar.a = 0.0f;
 
-            CCTexture2D* pTexture = getDefaultTexture();
+            // CCTexture2D* pTexture = getDefaultTexture();
+
+            // getDefaultTexture : https://github.com/cocos2d/cocos2d-x/blob/v2/cocos2dx/particle_nodes/CCParticleExamples.cpp
+            CCTexture2D* pTexture = NULL;
+            CCImage* pImage = NULL;
+            do 
+            {
+                bool bRet = false;
+                const char* key = "__firePngData";
+                pTexture = CCTextureCache::sharedTextureCache()->textureForKey(key);
+                CC_BREAK_IF(pTexture != NULL);
+
+                pImage = new CCImage();
+                CC_BREAK_IF(NULL == pImage);
+                bRet = pImage->initWithImageData((void*)__firePngData, sizeof(__firePngData), CCImage::kFmtPng);
+                CC_BREAK_IF(!bRet);
+
+                pTexture = CCTextureCache::sharedTextureCache()->addUIImage(pImage, key);
+            } while (0);
+
+            CC_SAFE_RELEASE(pImage);
+
             if (pTexture != NULL)
             {
                 setTexture(pTexture);
