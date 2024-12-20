@@ -2856,7 +2856,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x9b9a0, ios 0xb80e4, ios 0x2e7b10;
+    static cocos2d::CCScene* scene() = win 0x9b9a0, ios 0xb80e4;
 
     bool canPlayOnlineLevels();
     void checkQuestsStatus() = imac 0x286f00, m1 0x23039c;
@@ -16230,7 +16230,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(bool fromShop) = win 0x3bb1a0, imac 0x619580;
+    static cocos2d::CCScene* scene(bool fromShop) = win 0x3bb1a0, imac 0x619580, ios 0x2e7b10;
 
     void createSecondaryLayer(int) = win 0x3bdf70, m1 0x5488b4, imac 0x61ccf0, ios 0x2ea580;
     TodoReturn fadeInMusic();
