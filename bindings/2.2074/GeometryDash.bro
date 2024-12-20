@@ -20162,12 +20162,12 @@ class UILayer : cocos2d::CCLayerColor {
     TodoReturn editorPlaytest(bool);
     void enableEditorMode();
     TodoReturn enableMenu() = ios 0x4dc44;
-    void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x4b4c40, imac 0x4b5d70, m1 0x41de7c;
+    void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x4b4c40, imac 0x4b5d70, m1 0x41de7c, ios 0x4d858;
     bool init(GJBaseGameLayer*) = win 0x4b3f20, m1 0x41cbc4, imac 0x4b49b0;
     bool isJumpButtonPressed(bool) = imac 0x4b6720, m1 0x41e598;
     void onCheck(cocos2d::CCObject* sender);
     void onDeleteCheck(cocos2d::CCObject* sender);
-    void onPause(cocos2d::CCObject* sender) = win 0x4b53c0, m1 0x41d39c, imac 0x4b51e0;
+    void onPause(cocos2d::CCObject* sender) = win 0x4b53c0, m1 0x41d39c, imac 0x4b51e0, ios 0x4d164;
     void processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*);
     void processUINodeTouch(GJUITouchEvent, int, cocos2d::CCPoint, GJUINode*) = win 0x4b58d0;
     TodoReturn refreshDpad() = ios 0x4d47c;
