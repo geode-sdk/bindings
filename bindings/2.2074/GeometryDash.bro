@@ -5502,7 +5502,7 @@ class GameLevelManager : cocos2d::CCNode {
     static cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x168140, m1 0x477c14, imac 0x51b260;
     // virtual ~GameLevelManager();
 
-    static GameLevelManager* sharedState() = win 0x140b20, imac 0x504a90, m1 0x4641c4;
+    static GameLevelManager* sharedState() = win 0x140b20, imac 0x504a90, m1 0x4641c4, ios 0x8bbdc;
 
     void acceptFriendRequest(int, int) = imac 0x53e840;
     int accountIDForUserID(int userID);
@@ -5962,7 +5962,7 @@ class GameManager : GManager {
     TodoReturn checkUsedIcons() = win 0x1811b0, imac 0x36b860;
     TodoReturn claimItemsResponse(gd::string);
     TodoReturn clearGJLog();
-    cocos2d::ccColor3B colorForIdx(int) = win 0x17e330, imac 0x36c520, m1 0x2fdae8;
+    cocos2d::ccColor3B colorForIdx(int) = win 0x17e330, imac 0x36c520, m1 0x2fdae8, ios 0x316f24;
     TodoReturn colorForPos(int);
     TodoReturn colorKey(int, UnlockType);
     bool completedAchievement(gd::string) = win 0x17a1d0, m1 0x2f8464;
@@ -6015,7 +6015,7 @@ class GameManager : GManager {
         return object->boolValue();
     }
     TodoReturn getGTexture(int) = imac 0x370500;
-    int getIconRequestID() {
+    int getIconRequestID() = ios 0x3182c0 {
         return m_iconRequestID++;
     }
     int getIntGameVariable(char const*) = win 0x1806f0, imac 0x370ca0, m1 0x3020bc, ios 0x319324;
@@ -6132,7 +6132,7 @@ class GameManager : GManager {
     TodoReturn loadFont(int) = imac 0x36f960;
     void loadGround(int) = win 0x17fc30, imac 0x370120;
     void loadGroundAsync(int);
-    cocos2d::CCTexture2D* loadIcon(int, int, int) = win 0x17ecf0, imac 0x36e7f0, m1 0x2ffaf4;
+    cocos2d::CCTexture2D* loadIcon(int, int, int) = win 0x17ecf0, imac 0x36e7f0, m1 0x2ffaf4, ios 0x317bac;
     TodoReturn loadIconAsync(int, int, int, cocos2d::CCObject*);
     void loadMiddleground(int) = win 0x17f9e0, imac 0x36fe10;
     void loadMiddlegroundAsync(int);
@@ -6542,7 +6542,7 @@ class GameObject : CCSpritePlus {
     bool ignoreEditorDuration();
     bool ignoreEnter();
     bool ignoreFade();
-    bool init(char const*) = m1 0x4d7914;
+    bool init(char const*) = m1 0x4d7914, ios 0x253dc0;
     bool isBasicEnterEffect(int);
     bool isBasicTrigger();
     bool isColorObject();
@@ -7099,9 +7099,9 @@ class GameStatsManager : cocos2d::CCNode {
         return GameStatsManager::sharedState();
     }
     // virtual ~GameStatsManager();
-    // GameStatsManager();
+    // GameStatsManager() = ios 0x340990;
 
-    static GameStatsManager* sharedState() = win 0x1cdf20, imac 0x5a460, m1 0x50108;
+    static GameStatsManager* sharedState() = win 0x1cdf20, imac 0x5a460, m1 0x50108, ios 0x325804;
 
     int accountIDForIcon(int, UnlockType) = imac 0x3171d0;
     TodoReturn addSimpleSpecialChestReward(gd::string, UnlockType, int, bool);
@@ -7205,7 +7205,7 @@ class GameStatsManager : cocos2d::CCNode {
     void incrementStat(char const*, int) = win 0x1d1500, imac 0x66960, m1 0x5afdc;
     TodoReturn incrementStat(char const*);
     bool isGauntletChestUnlocked(int);
-    bool isItemEnabled(UnlockType type, int id) = win inline, imac 0x773c0, m1 0x6ac58 {
+    bool isItemEnabled(UnlockType type, int id) = win inline, imac 0x773c0, m1 0x6ac58, ios 0x336220 {
         return this->isItemUnlocked(type, id) && m_enabledItems->valueForKey(this->getItemKey(id, (int)type))->boolValue();
     }
     bool isItemUnlocked(UnlockType, int) = win 0x1e2850, imac 0x6b3b0;
@@ -7580,7 +7580,7 @@ class GJAccountManager : cocos2d::CCNode {
         return GJAccountManager::sharedState();
     }
 
-    static GJAccountManager* sharedState() = win 0x1faf50, imac 0xcf8d0, m1 0xb8518;
+    static GJAccountManager* sharedState() = win 0x1faf50, imac 0xcf8d0, m1 0xb8518, ios 0x3977dc;
 
     void addDLToActive(char const* tag, cocos2d::CCObject*);
     void addDLToActive(char const* tag);
@@ -10347,7 +10347,7 @@ class GJRobotSprite : CCAnimatedSprite {
     // virtual ~GJRobotSprite();
     // GJRobotSprite();
 
-    static GJRobotSprite* create(int) = win 0x29efd0, m1 0x4f8c84;
+    static GJRobotSprite* create(int) = win 0x29efd0, m1 0x4f8c84, ios 0x23ff78;
 
     void hideGlow();
     bool init(int, gd::string) = win 0x29f080, m1 0x4f8e44;
@@ -10356,7 +10356,7 @@ class GJRobotSprite : CCAnimatedSprite {
     void updateColor01(cocos2d::ccColor3B) = imac 0x5c4a00;
     void updateColor02(cocos2d::ccColor3B);
     void updateColors() = win 0x29f810;
-    void updateFrame(int) = win 0x29fdc0, imac 0x5c4140, m1 0x4f9378;
+    void updateFrame(int) = win 0x29fdc0, imac 0x5c4140, m1 0x4f9378, ios 0x23f5ec;
     void updateGlowColor(cocos2d::ccColor3B, bool) = imac 0x5c4d50, m1 0x4f9da0;
 
     virtual void setOpacity(unsigned char) = win 0x29fcc0, m1 0x4f9e1c, imac 0x5c4dd0, ios 0x23fe10;
@@ -11006,9 +11006,9 @@ class GJSpecialColorSelectDelegate {
 class GJSpiderSprite : GJRobotSprite {
     // virtual ~GJSpiderSprite();
 
-    static GJSpiderSprite* create(int) = win 0x2a0420, m1 0x4fa09c;
+    static GJSpiderSprite* create(int) = win 0x2a0420, m1 0x4fa09c, ios 0x23eff0;
 
-    bool init(int) = imac 0x5c5230, m1 0x4fa1d0;
+    bool init(int) = imac 0x5c5230, m1 0x4fa1d0, ios 0x23f0b8;
 }
 
 [[link(android)]]
@@ -11473,10 +11473,11 @@ class GroupCommandObject2 {
 [[link(android)]]
 class HardStreak : cocos2d::CCDrawNode {
     // virtual ~HardStreak();
+    // HardStreak() = ios 0x6203c;
 
-    static HardStreak* create() = win 0x2b1680;
+    static HardStreak* create() = win 0x2b1680, ios 0x61464;
 
-    void addPoint(cocos2d::CCPoint p0) = win 0x2b2130, imac 0x9d500, m1 0x8ffec;
+    void addPoint(cocos2d::CCPoint point) = win 0x2b2130, imac 0x9d500, m1 0x8ffec, ios 0x61c40;
     TodoReturn clearAboveXPos(float);
     TodoReturn clearBehindXPos(float);
     HardStreak* createDuplicate() = win inline {
@@ -11499,17 +11500,17 @@ class HardStreak : cocos2d::CCDrawNode {
 
         return ret;
     }
-    void firstSetup();
+    void firstSetup() = ios 0x61518;
     TodoReturn normalizeAngle(double);
     TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
-    void reset() = win inline {
+    void reset() = win inline, ios inline {
         this->clear();
         m_pointArray->removeAllObjects();
     }
     void resumeStroke();
     TodoReturn scheduleAutoUpdate();
     void stopStroke() = win 0x2b17f0;
-    callback void updateStroke(float) = win 0x2b1830, m1 0x8f870, imac 0x9cc30;
+    callback void updateStroke(float) = win 0x2b1830, m1 0x8f870, imac 0x9cc30, ios 0x615ac;
 
     virtual bool init() = m1 0x8f704, imac 0x9ca80, ios 0x614d8;
 
@@ -14636,12 +14637,12 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 [[link(android), depends(GJPointDouble)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
-    // PlayerObject() = ios 0x23e4dc;
+    // PlayerObject() = ios 0x22eaa8;
 
-    static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x370960, imac 0x3e88e0, m1 0x36a89c;
+    static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x370960, imac 0x3e88e0, m1 0x36a89c, ios 0x21836c;
 
     void activateStreak() = win 0x38a300, imac 0x3f17c0, m1 0x3724d8;
-    TodoReturn addAllParticles() = win 0x372900;
+    TodoReturn addAllParticles() = win 0x372900, ios 0x21a044;
     TodoReturn addToTouchedRings(RingObject*) = imac 0x404180, m1 0x381fec;
     TodoReturn addToYVelocity(double, int);
     void animatePlatformerJump(float) = win 0x376ef0, imac 0x3f2020, m1 0x372c98;
@@ -14661,7 +14662,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void createRobot(int) = win 0x372180, m1 0x36c034;
     void createSpider(int) = win 0x372540, m1 0x36c378;
     void deactivateParticle() = m1 0x3709e8, imac 0x3efb60;
-    void deactivateStreak(bool) = imac 0x3eb090, m1 0x36cd60;
+    void deactivateStreak(bool) = imac 0x3eb090, m1 0x36cd60, ios 0x21a1dc;
     TodoReturn destroyFromHitHead();
     TodoReturn didHitHead();
     void disableCustomGlowColor() {
@@ -14670,7 +14671,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void disablePlayerControls() = win 0x389620, imac 0x409140, m1 0x386af4;
     void disableSwingFire() = win 0x385170, m1 0x3807b8;
     void doReversePlayer(bool) = win 0x3826e0, imac 0x3f0850, m1 0x371620;
-    inline void enableCustomGlowColor(cocos2d::ccColor3B const& color) {
+    inline void enableCustomGlowColor(cocos2d::ccColor3B const& color) { // ios 0x22ca74, not inline ??
         m_hasCustomGlowColor = true;
         m_glowColor = color;
     }
@@ -14703,7 +14704,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void hitGround(GameObject*, bool) = win 0x3861a0;
     TodoReturn hitGroundNoJump(GameObject*, bool);
     void incrementJumps() = win 0x376e10, imac 0x3f1bf0, m1 0x3728d8;
-    bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x370a00, imac 0x3e8970, m1 0x36a954;
+    bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x370a00, imac 0x3e8970, m1 0x36a954, ios 0x218410;
     bool isBoostValid(float);
     bool isFlying() = win inline, imac 0x3efb00 {
         return m_isShip || m_isBird || m_isDart || m_isSwing;
@@ -14782,8 +14783,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void runNormalRotation(bool, float) = win 0x9999999, imac 0x3ee220, m1 0x36f618;
     void runRotateAction(bool, int) = win 0x3775c0;
     TodoReturn saveToCheckpoint(PlayerCheckpoint*) = imac 0x40a6b0;
-    void setSecondColor(cocos2d::ccColor3B const&) = win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
-    void setupStreak() = win 0x372a50, m1 0x36c84c;
+    void setSecondColor(cocos2d::ccColor3B const&) = win 0x387610, imac 0x3ec3a0, m1 0x36dd8c, ios 0x21af40;
+    void setupStreak() = win 0x372a50, m1 0x36c84c, ios 0x219cd4;
     void setYVelocity(double, int) = win 0x372fa0;
     TodoReturn spawnCircle();
     TodoReturn spawnCircle2();
@@ -14826,7 +14827,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void tryPlaceCheckpoint() = m1 0x371f50;
     TodoReturn unrotateGameplayObject(GameObject*) = win 0x37b8b0;
     TodoReturn unrotatePreSlopeObjects();
-    TodoReturn updateCheckpointMode(bool);
+    TodoReturn updateCheckpointMode(bool) = ios 0x21a034;
     TodoReturn updateCheckpointTest();
     void updateCollide(PlayerCollisionDirection, GameObject*) = win 0x37e1c0, imac 0x3faae0, m1 0x379b88;
     void updateCollideBottom(float, GameObject*);
@@ -14838,7 +14839,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateEffects(float param) = win inline, imac 0x3f0ff0 {
         m_waveTrail->updateStroke(param);
     }
-    void updateGlowColor() = win 0x3876a0, m1 0x386264, imac 0x4088a0;
+    void updateGlowColor() = win 0x3876a0, m1 0x386264, imac 0x4088a0, ios 0x22ca94;
     TodoReturn updateInternalActions(float) = win 0x38d0c0, imac 0x40b720;
     void updateJump(float) = win 0x375b90, imac 0x3ec410, m1 0x36ddf4;
     TodoReturn updateJumpVariables();
@@ -14867,7 +14868,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         createSpider(id);
     }
 
-    void updatePlayerSpriteExtra(gd::string);
+    void updatePlayerSpriteExtra(gd::string) = ios 0x21945c;
     void updatePlayerSwingFrame(int) = win 0x388a20, imac 0x4061a0, m1 0x383e58;
     void updateRobotAnimationSpeed() = win 0x38b350;
     void updateRotation(float, float) = win 0x377370, imac 0x3f0d20, m1 0x371b20;
@@ -15200,14 +15201,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-    PlayLayer() = imac 0xbfcd0;
+    PlayLayer() = imac 0xbfcd0, ios 0x12633c;
     virtual ~PlayLayer() = win 0x38e920, imac 0xab980;
 
-    static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = imac 0xabda0, m1 0x9ccd0;
+    static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = imac 0xabda0, m1 0x9ccd0, ios 0x118740;
     static PlayLayer* get() {
         return GameManager::get()->m_playLayer;
     }
-    static cocos2d::CCScene* scene(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x38ebc0, imac 0xabcf0, m1 0x9cc10;
+    static cocos2d::CCScene* scene(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x38ebc0, imac 0xabcf0, m1 0x9cc10, ios 0x1186d4;
 
     void addCircle(CCCircleWave* cw) {
         m_circleWaveArray->addObject(cw);
@@ -15240,7 +15241,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     double getTempMilliTime() = win 0x3cef0;
     TodoReturn gravityEffectFinished();
     void incrementJumps() = imac 0xbf200, m1 0xadbcc;
-    bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x38ec70, imac 0xabe20, m1 0x9cd6c;
+    bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x38ec70, imac 0xabe20, m1 0x9cd6c, ios 0x1187cc;
     bool isGameplayActive();
     void levelComplete() = win 0x390c30, imac 0xb4050, m1 0xa406c;
     TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
@@ -15406,9 +15407,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 class PointNode : cocos2d::CCObject {
     // virtual ~PointNode();
 
-    static PointNode* create(cocos2d::CCPoint);
+    static PointNode* create(cocos2d::CCPoint point) = ios 0x61d5c;
 
-    bool init(cocos2d::CCPoint p0) = imac inline, m1 inline {
+    bool init(cocos2d::CCPoint p0) = imac inline, m1 inline, ios inline {
         m_point = p0;
 
         return true;
@@ -18903,17 +18904,17 @@ class SimpleObject : cocos2d::CCObject {
 class SimplePlayer : cocos2d::CCSprite {
     // virtual ~SimplePlayer();
 
-    static SimplePlayer* create(int) = win 0x271ac0, m1 0x2ead40, imac 0x357600;
+    static SimplePlayer* create(int) = win 0x271ac0, m1 0x2ead40, imac 0x357600, ios 0x303450;
 
     void asyncLoadIcon(int, IconType) = m1 0x2f0394;
-    void createRobotSprite(int frame) = win inline, imac 0x3576c0, m1 0x2eadfc {
+    void createRobotSprite(int frame) = win inline, imac 0x3576c0, m1 0x2eadfc, ios 0x303560 {
         if (m_robotSprite) return;
         auto robotSprite = GJRobotSprite::create(frame);
         m_robotSprite = robotSprite;
         addChild(robotSprite);
         m_robotSprite->setVisible(false);
     }
-    void createSpiderSprite(int) = win 0x272290, imac 0x357720, m1 0x2eae5c;
+    void createSpiderSprite(int) = win 0x272290, imac 0x357720, m1 0x2eae5c, ios 0x303500;
     void disableCustomGlowColor() {
         m_hasCustomGlowColor = false;
     }
@@ -18951,13 +18952,13 @@ class SimplePlayer : cocos2d::CCSprite {
         }
     }
     void iconFinishedLoading(int, IconType) = m1 0x2f0570;
-    bool init(int) = win 0x271bb0, imac 0x35ca00;
+    bool init(int) = win 0x271bb0, imac 0x35ca00, ios 0x307278;
     void setColors(cocos2d::ccColor3B const& color1, cocos2d::ccColor3B const& color2) = win inline, ios inline, imac 0x35b770, m1 0x2eec44 {
         m_firstLayer->setColor(color1);
         m_secondLayer->setColor(color2);
         updateColors();
     }
-    void setFrames(char const*, char const*, char const*, char const*, char const*) = win 0x272c40, imac 0x35d470, m1 0x2f0704;
+    void setFrames(char const*, char const*, char const*, char const*, char const*) = win 0x272c40, imac 0x35d470, m1 0x2f0704, ios 0x307878;
 
     inline void setGlowOutline(cocos2d::ccColor3B color) {
         enableCustomGlowColor(color);
@@ -18969,7 +18970,7 @@ class SimplePlayer : cocos2d::CCSprite {
         updateColors();
     }
     void updateColors() = win 0x272350, imac 0x35b230, m1 0x2ee780, ios 0x3062ec;
-    void updatePlayerFrame(int, IconType) = win 0x272710, imac 0x3578d0, m1 0x2eb020;
+    void updatePlayerFrame(int, IconType) = win 0x272710, imac 0x3578d0, m1 0x2eb020, ios 0x303714;
 
     virtual void setOpacity(unsigned char) = win 0x272e70, m1 0x2f092c, imac 0x35d690, ios 0x307a98;
     virtual void setColor(cocos2d::ccColor3B const&) = win 0x272320, imac 0x35d330, m1 0x2f05c0, ios 0x307734;

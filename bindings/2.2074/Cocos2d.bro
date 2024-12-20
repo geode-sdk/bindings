@@ -193,8 +193,8 @@ class cocos2d::CCEaseSineInOut {
 
 [[link(win, android)]]
 class cocos2d::CCMotionStreak {
-    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f3e0;
-    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f3e0;
+    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f3e0, ios 0x17a2c0;
+    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f3e0, ios 0x17a1b8;
 
     bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f530, m1 0x4b5ffc;
     bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f530, m1 0x4b5ffc;
@@ -238,7 +238,7 @@ class cocos2d::CCMotionStreak {
     	m_tBlendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
     }
 
-    void enableRepeatMode(float);
+    void enableRepeatMode(float) = ios 0x17a5b4;
     bool isFastMode();
     bool isStartingPositionInitialized();
     void reset() = imac 0x560190;
@@ -499,7 +499,7 @@ class cocos2d::CCParticleSystem {
     void resetSystem() = imac 0x7b4740, m1 0x6c5358;
     void resumeSystem();
     void saveDefaults();
-    void stopSystem() = imac 0x7b4700, m1 0x6c5338;
+    void stopSystem() = imac 0x7b4700, m1 0x6c5338, ios 0x198a18;
     void toggleUniformColorMode(bool);
     void updateVisible();
 
@@ -609,7 +609,7 @@ class cocos2d::CCParticleSystem {
 
 [[link(win, android)]]
 class cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleSystemQuad* create(char const*, bool) = imac 0x5eb190;
+    static cocos2d::CCParticleSystemQuad* create(char const*, bool) = imac 0x5eb190, ios 0x252a98;
     static cocos2d::CCParticleSystemQuad* create();
     static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool);
 
@@ -1966,7 +1966,7 @@ class cocos2d::CCApplication {
 [[link(win, android)]]
 class cocos2d::CCArray {
     // static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
-    // static cocos2d::CCArray* create();
+    // static cocos2d::CCArray* create() = ios 0x249214;
     // static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
     // static cocos2d::CCArray* createWithCapacity(unsigned int);
     static cocos2d::CCArray* createWithContentsOfFile(char const*);
@@ -1982,7 +1982,7 @@ class cocos2d::CCArray {
     // CCArray(cocos2d::CCArray const&);
     // CCArray(unsigned int);
     // CCArray();
-    // void addObject(cocos2d::CCObject*);
+    // void addObject(cocos2d::CCObject*) = ios 0x249394;
     void addObjectNew(cocos2d::CCObject*);
     // void addObjectsFromArray(cocos2d::CCArray*);
     unsigned int capacity() const;
@@ -2002,7 +2002,7 @@ class cocos2d::CCArray {
     cocos2d::CCObject* randomObject();
     void recreateNewIndexes();
     void reduceMemoryFootprint();
-    // void removeAllObjects();
+    // void removeAllObjects() = ios 0x249528;
     // void removeLastObject(bool);
     void removeObject(cocos2d::CCObject*, bool);
     // void removeObjectAtIndex(unsigned int, bool);
@@ -2536,12 +2536,12 @@ class cocos2d::CCDrawNode {
 
     cocos2d::_ccBlendFunc getBlendFunc() const;
 
-    void setBlendFunc(cocos2d::_ccBlendFunc const&) = imac 0x5fb270;
+    void setBlendFunc(cocos2d::_ccBlendFunc const&) = imac 0x5fb270, ios 0x46a38;
 
     // CCDrawNode(cocos2d::CCDrawNode const&);
     CCDrawNode() = m1 0x528418;
     ~CCDrawNode() = m1 0x528574;
-    void clear() = imac 0x5fb240;
+    void clear() = imac 0x5fb240, ios 0x46a20;
     void drawCircle(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&, float, cocos2d::_ccColor4F const&, unsigned int) = imac 0x5fb090, m1 0x529f50;
     void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::_ccColor4F const&);
     void drawDot(cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&) = imac 0x5f99d0, m1 0x528ae8;
@@ -2658,9 +2658,9 @@ class cocos2d::CCSpriteFrameCache {
 [[link(win, android)]]
 class cocos2d::CCString {
     static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x7956c0, m1 0x6a8b3c, ios 0x26800c;
-    // static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x278aec;
+    // static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x2680c0;
 
-    char const* getCString() const = imac 0x7950f0, m1 0x6a84a8, ios 0x267ca4; // ios: unsure 
+    char const* getCString() const = imac 0x7950f0, m1 0x6a84a8, ios 0x267ca4;
     //createWithContentsOfFile = ios 0x278b74;
 
     bool boolValue() const = imac 0x7954b0, m1 0x6a8838;
