@@ -12427,7 +12427,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     static LevelInfoLayer* create(GJGameLevel* level, bool challenge) = win 0x2e2860, imac 0x2a9700, m1 0x24f8ac, ios 0x2874c;
     static cocos2d::CCScene* scene(GJGameLevel* level, bool challenge) = win 0x2e2810, imac 0x2a96b0, m1 0x24f850;
 
-    void confirmClone(cocos2d::CCObject*) = win 0x2e9000, imac 0x2ae480, m1 0x2543fc;
+    void confirmClone(cocos2d::CCObject*) = win 0x2e9000, imac 0x2ae480, m1 0x2543fc, ios 0x2ce7c;
     void confirmDelete(cocos2d::CCObject*) = win 0x2e9170;
     void confirmMoveToBottom(cocos2d::CCObject*) = win 0x2ea8a0;
     void confirmMoveToTop(cocos2d::CCObject*) = win 0x2ea760, imac 0x2aeb30;
@@ -14679,7 +14679,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     }
     void enablePlayerControls() = win 0x389770, imac 0x4091a0, m1 0x386b50;
     void exitPlatformerAnimateJump();
-    void fadeOutStreak2(float) = win 0x38a400, imac 0x402470, m1 0x38071c;
+    void fadeOutStreak2(float) = win 0x38a400, imac 0x402470, m1 0x38071c, ios 0x22861c;
     void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = imac 0x3fd3f0;
     void flipGravity(bool, bool) = win 0x384440, imac 0x3f1c30, m1 0x372910;
     TodoReturn flipMod();
@@ -14732,7 +14732,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn logValues();
     void modeDidChange();
     TodoReturn performSlideCheck();
-    void placeStreakPoint() = win 0x38a8f0, imac 0x3f18a0, m1 0x3725a0;
+    void placeStreakPoint() = win 0x38a8f0, imac 0x3f18a0, m1 0x3725a0, ios 0x21e8b8;
     TodoReturn playBumpEffect(int, GameObject*) = win 0x389cc0;
     TodoReturn playBurstEffect();
     void playCompleteEffect(bool, bool) = win 0x36e2b0, imac 0x2024c0, m1 0x1b7870;
@@ -15444,7 +15444,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     bool isCorrect(char const* key);
     bool isOnWatchlist(int);
     void loadPage(int) = win 0x3aee30;
-    void loadPageFromUserInfo(GJUserScore*) = win 0x3a9240, m1 0x6b662c, imac 0x7a4660;
+    void loadPageFromUserInfo(GJUserScore*) = win 0x3a9240, m1 0x6b662c, imac 0x7a4660, ios 0x19b0d8;
     void onBlockUser(cocos2d::CCObject* sender) = win 0x3ad200, m1 0x6b9f98;
     void onClose(cocos2d::CCObject* sender) = win 0x3adfd0, m1 0x6b5db8, imac 0x7a3d60;
     void onComment(cocos2d::CCObject* sender) = win 0x3acc50, m1 0x6ba888;
