@@ -691,9 +691,9 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 [[link(android)]]
 class BoomScrollLayer : cocos2d::CCLayer {
     // virtual ~BoomScrollLayer();
-    BoomScrollLayer();
+    BoomScrollLayer() = ios 0x12fca0;
 
-    static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2, cocos2d::CCArray* unk3, DynamicScrollDelegate* delegate) = win 0x3d060, imac 0x391a10, m1 0x3204b4;
+    static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2, cocos2d::CCArray* unk3, DynamicScrollDelegate* delegate) = win 0x3d060, imac 0x391a10, m1 0x3204b4, ios 0x12e27c;
     static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2) = win inline, imac 0x391e00, m1 0x320880 {
         return BoomScrollLayer::create(pages, unk1, unk2, nullptr, nullptr);
     }
@@ -716,7 +716,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     int getTotalPages() = win inline {
         return m_dynamic ? m_dynamicObjects->count() : m_pages->count();
     }
-    bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3d230, imac 0x391aa0;
+    bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3d230, imac 0x391aa0, ios 0x12e320;
     void instantMoveToPage(int) = win 0x3ddc0, m1 0x321ccc;
     void moveToPage(int) = win 0x3dea0, imac 0x3934f0, m1 0x321da4;
     void moveToPageEnded() = win 0x3dc30, imac 0x393280, m1 0x321b3c;
@@ -741,7 +741,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
             static_cast<cocos2d::CCSprite*>(m_dots->objectAtIndex(i))->setScale(scale);
         }
     }
-    void setPagesIndicatorPosition(cocos2d::CCPoint pos) = win inline, imac 0x391f40, m1 0x3209cc {
+    void setPagesIndicatorPosition(cocos2d::CCPoint pos) = win inline, imac 0x391f40, m1 0x3209cc, ios 0x12e65c {
         m_dotPosition = pos;
         this->updateDots(0.f);
     }
@@ -2856,7 +2856,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x9b9a0;
+    static cocos2d::CCScene* scene() = win 0x9b9a0, ios 0xb80e4;
 
     bool canPlayOnlineLevels();
     void checkQuestsStatus() = imac 0x286f00, m1 0x23039c;
@@ -3345,7 +3345,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     bool init(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc7700, m1 0x530b8c, imac 0x603240;
     void onCancelDownload(cocos2d::CCObject* sender) = imac 0x5cb850;
     void onDelete(cocos2d::CCObject* sender) = win 0xc9040, m1 0x531eb8;
-    void onDownload(cocos2d::CCObject* sender) = win 0xc9cd0, imac 0x6043b0, m1 0x531c24;
+    void onDownload(cocos2d::CCObject* sender) = win 0xc9cd0, imac 0x6043b0, m1 0x531c24, ios 0xfd9c0;
     void onGetSongInfo(cocos2d::CCObject* sender) = win 0xc9c40, imac 0x6047c0, m1 0x531ff4;
     void onInfo(cocos2d::CCObject* sender) = win 0xc8d50, m1 0x532aec, imac 0x605410;
     void onMore(cocos2d::CCObject* sender) = win 0xc9360, m1 0x532324;
@@ -5975,8 +5975,8 @@ class GameManager : GManager {
     void doQuickSave();
     TodoReturn dpadConfigToString(UIButtonConfig&) = win 0x183540, imac 0x374330, m1 0x304e14;
     TodoReturn eventUnlockFeature(char const*);
-    void fadeInMenuMusic() = win 0x178a90, imac 0x363ca0, m1 0x2f6a1c;
-    void fadeInMusic(gd::string) = win 0x178b80;
+    void fadeInMenuMusic() = win 0x178a90, imac 0x363ca0, m1 0x2f6a1c, ios 0x312450;
+    void fadeInMusic(gd::string) = win 0x178b80, ios 0x3124e0;
     TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*);
     TodoReturn finishedLoadingGAsync(int);
     TodoReturn finishedLoadingGAsync1(cocos2d::CCObject*);
@@ -6087,7 +6087,7 @@ class GameManager : GManager {
         return m_playLayer;
     }
     TodoReturn getPracticeMusicFile() = ios 0x312140;
-    bool getUGV(char const*) = win 0x180480, imac 0x370a10, m1 0x301df0;
+    bool getUGV(char const*) = win 0x180480, imac 0x370a10, m1 0x301df0, ios 0x319198;
     TodoReturn getUnlockForAchievement(gd::string, int&, UnlockType&);
     TodoReturn groundHasSecondaryColor(int);
     TodoReturn iconAndTypeForKey(int, int&, int&);
@@ -7334,7 +7334,7 @@ class GameStatsManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GameToolbox {
-    static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x65010, imac 0x4dc890, m1 0x43f944;
+    static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = win 0x65010, imac 0x4dc890, m1 0x43f944, ios 0x4829c;
     static void addRThumbScrollButton(cocos2d::CCLayer*) = win 0x650f0, m1 0x43fa2c, imac 0x4dc960;
     static void alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x64110;
     static void alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
@@ -14810,11 +14810,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void stopStreak2() = imac 0x409d20, m1 0x387654;
     void storeCollision(PlayerCollisionDirection, int);
     TodoReturn switchedDirTo(PlayerButton) = win 0x382000;
-    void switchedToMode(GameObjectType) = win 0x3860a0, imac 0x401440, m1 0x37f824;
+    void switchedToMode(GameObjectType) = win 0x3860a0, imac 0x401440, m1 0x37f824, ios 0x227a78;
     TodoReturn testForMoving(float, GameObject*);
     void toggleBirdMode(bool, bool) = win 0x384a90, imac 0x405680, m1 0x383410;
     void toggleDartMode(bool, bool) = win 0x385200, imac 0x406780, m1 0x384438;
-    void toggleFlyMode(bool, bool) = win 0x384760, m1 0x3829b4, imac 0x404b70;
+    void toggleFlyMode(bool, bool) = win 0x384760, m1 0x3829b4, imac 0x404b70, ios 0x229f4c;
     void toggleGhostEffect(GhostType) = win 0x3890a0, imac 0x401a30, m1 0x37fd54, ios 0x227ec0;
     void togglePlatformerMode(bool val) {
         m_isPlatformer = val;
@@ -16203,7 +16203,7 @@ class SecretNumberLayer : cocos2d::CCLayer {
 [[link(android)]]
 class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDelegate {
     // virtual ~SecretRewardsLayer();
-    SecretRewardsLayer() {
+    SecretRewardsLayer() = ios 0x2ee850 {
         m_mainLayer = nullptr;
         m_secondaryLayer = nullptr;
         m_chestCounter = nullptr;
@@ -16220,7 +16220,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         m_lockedDialogIndex = 0;
     }
 
-    static SecretRewardsLayer* create(bool fromShop) = win inline, imac 0x6195c0 {
+    static SecretRewardsLayer* create(bool fromShop) = win inline, imac 0x6195c0, ios 0x2e7b5c {
         auto ret = new SecretRewardsLayer();
         if (ret->init(fromShop)) {
             ret->autorelease();
@@ -16231,10 +16231,10 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     }
     static cocos2d::CCScene* scene(bool fromShop) = win 0x3bb1a0, imac 0x619580;
 
-    void createSecondaryLayer(int) = win 0x3bdf70, m1 0x5488b4, imac 0x61ccf0;
+    void createSecondaryLayer(int) = win 0x3bdf70, m1 0x5488b4, imac 0x61ccf0, ios 0x2ea580;
     TodoReturn fadeInMusic();
     TodoReturn fadeInOutMusic();
-    cocos2d::CCArray* generateChestItems(int) = win 0x3be3c0, imac 0x61d170;
+    cocos2d::CCArray* generateChestItems(int) = win 0x3be3c0, imac 0x61d170, ios 0x2ea928;
     cocos2d::ccColor3B getPageColor(int page) = win inline {
         if (page == 1) return cocos2d::ccc3(50, 50, 50);
         else if (page == 2) return cocos2d::ccc3(70, 0, 120);
@@ -16244,15 +16244,15 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         if (m_inMainLayer) m_mainScrollLayer->moveToPage(page);
         else m_secondaryScrollLayer->moveToPage(page);
     }
-    bool init(bool) = win 0x3bb300, m1 0x54543c, imac 0x6196f0;
-    void moveToMainLayer(cocos2d::CCObject*) = m1 0x548784;
-    void moveToSecondaryLayer(int) = m1 0x548300, imac 0x61c740;
-    void onBack(cocos2d::CCObject* sender) = win 0x3c08b0;
-    void onChestType(cocos2d::CCObject* sender) = win 0x3bdce0, imac 0x61b830, m1 0x54738c;
-    void onGoldChest(cocos2d::CCObject* sender);
-    void onSelectItem(cocos2d::CCObject* sender) = win 0x3bedd0, m1 0x5499c0, imac 0x61e000;
+    bool init(bool) = win 0x3bb300, m1 0x54543c, imac 0x6196f0, ios 0x2e7bd0;
+    void moveToMainLayer(cocos2d::CCObject*) = m1 0x548784, ios 0x2ea460;
+    void moveToSecondaryLayer(int) = m1 0x548300, imac 0x61c740, ios 0x2ea248;
+    void onBack(cocos2d::CCObject* sender) = win 0x3c08b0, ios 0x2e95d4;
+    void onChestType(cocos2d::CCObject* sender) = win 0x3bdce0, imac 0x61b830, m1 0x54738c, ios 0x2e9640;
+    void onGoldChest(cocos2d::CCObject* sender) = ios 0x2e9920;
+    void onSelectItem(cocos2d::CCObject* sender) = win 0x3bedd0, m1 0x5499c0, imac 0x61e000, ios 0x2eb188;
     void onShop(cocos2d::CCObject* sender) = win 0x3bf360, imac 0x61bf00, m1 0x547ad8;
-    void onSpecialItem(cocos2d::CCObject* sender) = m1 0x547f04, imac 0x61c330;
+    void onSpecialItem(cocos2d::CCObject* sender) = m1 0x547f04, imac 0x61c330, ios 0x2e9f98;
     void onSwitchPage(cocos2d::CCObject* sender) = win 0x3bd950;
     void showDialog01() = win 0x3c0ae0, imac 0x61e360, m1 0x549d5c;
     void showDialog03() = imac 0x620080, m1 0x54b548;
@@ -16263,9 +16263,9 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         if (cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionMoveInT::create(0.5f, GJShopLayer::scene((ShopType)shop)))) this->setKeypadEnabled(false);
     }
     void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x3bfb80, imac 0x61b870, m1 0x5473e0;
-    void updateBackButton() = win 0x3bde30, m1 0x548658, imac 0x61ca90;
+    void updateBackButton() = win 0x3bde30, m1 0x548658, imac 0x61ca90, ios 0x2ea340;
     TodoReturn updateUnlockedGoldLabel();
-    void updateUnlockedLabel() = m1 0x5474c0, imac 0x61b930;
+    void updateUnlockedLabel() = m1 0x5474c0, imac 0x61b930, ios 0x2e9774;
 
     virtual void onExit() = m1 0x54e664, imac 0x623c00, ios 0x2ee820;
     virtual void keyBackClicked() = win 0x3c0a90, m1 0x54e5f0, imac 0x623b70, ios 0x2ee80c;
