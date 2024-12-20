@@ -7244,7 +7244,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn restorePostSync();
     void setAwardedBonusKeys(int);
     void setStarsForMapPack(int, int) = win 0x1dc090;
-    void setStat(char const*, int) = win 0x1d2300, imac 0x66770, m1 0x5ae04;
+    void setStat(char const*, int) = win 0x1d2300, imac 0x66770, m1 0x5ae04, ios 0x32c038;
     void setStatIfHigher(char const*, int);
     void setupIconCredits() = win 0x1c1190, m1 0x2acd6c;
     TodoReturn shopTypeForItemID(int);
@@ -7266,7 +7266,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn trySelectActivePath() = imac 0x6b5e0;
     void uncompleteLevel(GJGameLevel*) = win 0x1dbbc0;
     void unlockGauntletChest(int);
-    TodoReturn unlockGoldChest(int);
+    TodoReturn unlockGoldChest(int) = ios 0x33e16c;
     TodoReturn unlockOnlineChest(gd::string);
     TodoReturn unlockPathChest(int);
     TodoReturn unlockSecretChest(int) = imac 0x8ba60;
@@ -15781,7 +15781,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
     // virtual ~RewardUnlockLayer();
 
-    static RewardUnlockLayer* create(int, RewardsPage*) = win 0x3b6950, imac 0x209900, m1 0x1be624;
+    static RewardUnlockLayer* create(int, RewardsPage*) = win 0x3b6950, imac 0x209900, m1 0x1be624, ios 0x1c56d8;
 
     void connectionTimeout() = win 0x3b7850, imac 0x20b430, m1 0x1bff18;
     bool init(int, RewardsPage*) = m1 0x1bef6c;
@@ -15794,7 +15794,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
         return item ? m_chestType == (int)item->m_rewardType : false;
     }
     void showCloseButton() = imac 0x20dc90, m1 0x1c2524;
-    bool showCollectReward(GJRewardItem*) = win 0x3b7790, imac 0x209c30;
+    bool showCollectReward(GJRewardItem*) = win 0x3b7790, imac 0x209c30, ios 0x1c58b8;
     void step2() = win 0x3b7950, m1 0x1bfdf0;
     void step3() = win 0x3b7a50, imac 0x20d5a0;
 
@@ -16277,8 +16277,12 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     cocos2d::CCLayer* m_secondaryLayer;
     cocos2d::CCLabelBMFont* m_chestLabel;
     cocos2d::CCLabelBMFont* m_chestCounter;
+    cocos2d::CCSprite* m_goldPriceSprite;
     cocos2d::CCDictionary* m_chestCounters;
     cocos2d::CCLabelBMFont* m_keysLabel;
+    cocos2d::CCLabelBMFont* m_goldKeysLabel;
+    cocos2d::CCSprite* m_keySprite;
+    cocos2d::CCSprite* m_goldKeySprite;
     void* m_unknown;
     CCMenuItemSpriteExtra* m_leftButton;
     CCMenuItemSpriteExtra* m_rightButton;
