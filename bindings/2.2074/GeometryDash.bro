@@ -7032,7 +7032,7 @@ class GameOptionsLayer : GJOptionsLayer {
         m_practiceDialogIndex = 0;
     }
 
-    static GameOptionsLayer* create(GJBaseGameLayer* baseGameLayer) = win inline, imac 0x29d740, m1 0x244f94 {
+    static GameOptionsLayer* create(GJBaseGameLayer* baseGameLayer) = win inline, imac 0x29d740, m1 0x244f94, ios 0x2e122c {
         auto ret = new GameOptionsLayer();
         if (ret->init(baseGameLayer)) {
             ret->autorelease();
@@ -14264,7 +14264,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
         m_lastVaultDialog = -1;
     }
 
-    static OptionsLayer* create() = win inline, imac 0x783fb0 {
+    static OptionsLayer* create() = win inline, imac 0x783fb0, ios 0xef814 {
         auto ret = new OptionsLayer();
         if (ret->init("Settings")) {
             ret->autorelease();
@@ -14463,7 +14463,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onRestart(cocos2d::CCObject* sender) = win 0x3686a0;
     void onRestartFull(cocos2d::CCObject* sender) = win 0x368740;
     void onResume(cocos2d::CCObject* sender) = win 0x368610, m1 0x34d950, imac 0x3c46c0, ios 0x146a48;
-    void onSettings(cocos2d::CCObject* sender) = win 0x3677d0, m1 0x34dac8, imac 0x3c4840;
+    void onSettings(cocos2d::CCObject* sender) = win 0x3677d0, m1 0x34dac8, imac 0x3c4840, ios 0x146b9c;
     void onTime(cocos2d::CCObject* sender);
     void onTryEdit(cocos2d::CCObject* sender);
     void setupProgressBars();
