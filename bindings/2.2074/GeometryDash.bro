@@ -2037,7 +2037,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
     // virtual ~ChallengesPage();
     inline ChallengesPage() {}
 
-    static ChallengesPage* create() = win inline {
+    static ChallengesPage* create() = win inline, ios 0x35d18 {
         auto ret = new ChallengesPage();
         if (ret->init()) {
             ret->autorelease();
@@ -2856,7 +2856,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x9b9a0, ios 0xb80e4;
+    static cocos2d::CCScene* scene() = win 0x9b9a0, ios 0xb80e4, ios 0x2e7b10;
 
     bool canPlayOnlineLevels();
     void checkQuestsStatus() = imac 0x286f00, m1 0x23039c;
@@ -2876,9 +2876,9 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onOnlyFullVersion(cocos2d::CCObject* sender);
     void onPaths(cocos2d::CCObject* sender) = win 0x9d360;
     void onSavedLevels(cocos2d::CCObject* sender) = win 0x9cef0, m1 0x22f988;
-    void onSecretVault(cocos2d::CCObject* sender) = win 0x9df20, imac 0x287000;
+    void onSecretVault(cocos2d::CCObject* sender) = win 0x9df20, imac 0x287000, ios 0xb95f0;
     void onTopLists(cocos2d::CCObject* sender) = win 0x9d380, imac 0x286b20, m1 0x22ffcc;
-    void onTreasureRoom(cocos2d::CCObject* sender) = win 0x9e730, m1 0x2306ec, imac 0x287220;
+    void onTreasureRoom(cocos2d::CCObject* sender) = win 0x9e730, m1 0x2306ec, imac 0x287220, ios 0xb97c8;
     void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x9dd70;
 
     virtual bool init() = win 0x9bb10, m1 0x22ece0, imac 0x2856f0, ios 0xb81ec;
@@ -5614,7 +5614,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJGameLevel* getLocalLevelByName(gd::string);
     TodoReturn getLocalLevelList(int);
     int getLowestLevelOrder() = imac 0x51ed20;
-    GJGameLevel* getMainLevel(int levelID, bool dontGetLevelString) = win 0x1423e0, m1 0x473484, imac 0x515f50;
+    GJGameLevel* getMainLevel(int levelID, bool dontGetLevelString) = win 0x1423e0, m1 0x473484, imac 0x515f50, ios 0x95e78;
     const char* getMapPackKey(int pack);
     void getMapPacks(GJSearchObject*) = win 0x14d470, imac 0x52aa70;
     char const* getMessageKey(int);
@@ -7178,7 +7178,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn getSpecialRewardDescription(gd::string, bool);
     gd::string getSpecialUnlockDescription(int, UnlockType, bool) = win 0x1e6fb0, m1 0x6b4a4, imac 0x77bb0;
     TodoReturn getStarLevelKey(GJGameLevel*);
-    int getStat(char const*) = win 0x1d21e0, imac 0x66610, m1 0x5aca0;
+    int getStat(char const*) = win 0x1d21e0, imac 0x66610, m1 0x5aca0, ios 0x32bf54;
     TodoReturn getStatFromKey(StatKey);
     TodoReturn getStoreItem(int, int);
     TodoReturn getStoreItem(int);
@@ -15946,9 +15946,10 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
 [[link(android)]]
 class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
     // virtual ~SecretLayer2();
+    // SecretLayer2() = ios 0x311b7c;
 
-    static SecretLayer2* create() = imac 0x489fc0;
-    static cocos2d::CCScene* scene() = win 0x3cadf0, imac 0x489f80;
+    static SecretLayer2* create() = imac 0x489fc0, ios 0x3098ec;
+    static cocos2d::CCScene* scene() = win 0x3cadf0, imac 0x489f80, ios 0x3098a8;
 
     gd::string getBasicMessage() = win 0x3d0880;
     gd::string getErrorMessage() = win 0x3d13e0;
@@ -15957,7 +15958,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     TodoReturn nodeWithTag(int);
     void onBack(cocos2d::CCObject* sender) = imac 0x48b320;
     void onDoor(cocos2d::CCObject* sender) = win 0x3cd5a0, imac 0x48ca80, ios 0x30bb3c;
-    void onSecretLevel(cocos2d::CCObject* sender) = win 0x3cd2f0, imac 0x48ccc0;
+    void onSecretLevel(cocos2d::CCObject* sender) = win 0x3cd2f0, imac 0x48ccc0, ios 0x30bd10;
     void onSubmit(cocos2d::CCObject* sender) = win 0x3cdf00, imac 0x48b390;
     void playCoinEffect();
     void selectAThread();
