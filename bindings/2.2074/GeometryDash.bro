@@ -3131,7 +3131,7 @@ class CustomListView : BoomListView {
     inline CustomListView() {}
     ~CustomListView() {}
 
-    static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = win 0xaa010, imac 0x22eb50, m1 0x1df724;
+    static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = win 0xaa010, imac 0x22eb50, m1 0x1df724, ios 0x10364c;
 
     static CustomListView* create(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
         return CustomListView::create(entries, nullptr, width, height, 0, type, 0.0f);
@@ -3966,7 +3966,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn createExtrasForObject(int, GameObject*, cocos2d::CCArray*);
     TodoReturn createGlow();
     void createLoop();
-    void createMoveMenu() = win 0x119350, m1 0x400a8;
+    void createMoveMenu() = win 0x119350, m1 0x400a8, ios 0x3ebe14;
     TodoReturn createNewKeyframeAnim();
     TodoReturn createObject(int, cocos2d::CCPoint) = win 0x10e840;
     TodoReturn createOutlines(cocos2d::CCArray*);
@@ -4043,7 +4043,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn getTouchPoint(cocos2d::CCTouch*, cocos2d::CCEvent*);
     TodoReturn getTransformState();
     TodoReturn getXMin(int) = imac 0x2f470;
-    bool init(LevelEditorLayer* editorLayer) = win 0xdde60, m1 0xad4c, imac 0x9710;
+    bool init(LevelEditorLayer* editorLayer) = win 0xdde60, m1 0xad4c, imac 0x9710, ios 0x3bd3d4;
     bool isLiveColorSelectTrigger(GameObject*);
     bool isSpecialSnapObject(int) = win 0x1272b0, imac 0x4c2f0;
     TodoReturn liveEditColorUsable();
@@ -4131,9 +4131,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void selectObject(GameObject*, bool) = win 0x10ee50, imac 0x2ec30, m1 0x2e5c8;
     void selectObjects(cocos2d::CCArray*, bool) = win 0x10f140, imac 0x3c830, m1 0x3749c;
     void selectObjectsInRect(cocos2d::CCRect);
-    void setupCreateMenu() = win 0xe6910, imac 0xdf10, m1 0xf170;
-    void setupDeleteMenu() = win 0xe38d0, m1 0xe35c;
-    void setupEditMenu() = win inline, m1 0x2ae74 {
+    void setupCreateMenu() = win 0xe6910, imac 0xdf10, m1 0xf170, ios 0x3c09dc;
+    void setupDeleteMenu() = win 0xe38d0, m1 0xe35c, ios 0x3c0020;
+    void setupEditMenu() = win inline, m1 0x2ae74, ios inline {
         this->createMoveMenu();
         this->updateEditMenu();
     }
@@ -11376,7 +11376,7 @@ class GManager : cocos2d::CCNode {
     void loadDataFromFile(gd::string const&) = win 0x6aa90, imac 0x499410;
     void loadFromCompressedString(gd::string&);
     void loadFromString(gd::string&);
-    void save() = win 0x6a9a0, imac 0x499190, m1 0x404fe8;
+    void save() = win 0x6a9a0, imac 0x499190, m1 0x404fe8, ios 0x2499c4;
     TodoReturn saveData(DS_Dictionary*, gd::string);
     void saveGMTo(gd::string) = win 0x6a9a0;
     TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
@@ -13255,7 +13255,7 @@ class LocalLevelManager : GManager {
     }
     // virtual ~LocalLevelManager();
 
-    static LocalLevelManager* sharedState() = win 0x31b070, imac 0x5df020, m1 0x511bc0;
+    static LocalLevelManager* sharedState() = win 0x31b070, imac 0x5df020, m1 0x511bc0, ios 0x1c92a8;
 
     cocos2d::CCDictionary* getAllLevelsInDict() = win 0x31b4e0;
     TodoReturn getAllLevelsWithName(gd::string);
@@ -14490,7 +14490,7 @@ class PlatformToolbox {
     static TodoReturn copyToClipboard(gd::string);
     static TodoReturn doesFileExist(gd::string);
     static TodoReturn downloadAndSavePromoImage(gd::string, gd::string);
-    static TodoReturn gameDidSave();
+    static TodoReturn gameDidSave() = ios 0x16f388;
     static TodoReturn getDeviceRefreshRate();
     static cocos2d::CCSize getDisplaySize() = win 0x786d0, imac 0x4b18f0, m1 0x41a190;
     static TodoReturn getRawPath(char const*);
@@ -18968,7 +18968,7 @@ class SimplePlayer : cocos2d::CCSprite {
         m_secondLayer->setColor(color);
         updateColors();
     }
-    void updateColors() = win 0x272350, imac 0x35b230, m1 0x2ee780;
+    void updateColors() = win 0x272350, imac 0x35b230, m1 0x2ee780, ios 0x3062ec;
     void updatePlayerFrame(int, IconType) = win 0x272710, imac 0x3578d0, m1 0x2eb020;
 
     virtual void setOpacity(unsigned char) = win 0x272e70, m1 0x2f092c, imac 0x35d690, ios 0x307a98;
