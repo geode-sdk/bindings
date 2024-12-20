@@ -7487,14 +7487,14 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(GauntletType) = win 0x1f2920, m1 0x30fb40;
+    static cocos2d::CCScene* scene(GauntletType) = win 0x1f2920, m1 0x30fb40, imac 0x37f5f0;
 
     virtual void keyBackClicked() = win 0x1f4f50, imac 0x381960, m1 0x311db0, ios 0x233c90;
     virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0x1f3440, imac 0x380f10, m1 0x311274, ios 0x2335f0;
     virtual void loadLevelsFailed(char const*, int) = win 0x1f3650, m1 0x31141c, imac 0x3810b0, ios 0x2336c4;
 
     bool init(GauntletType) = win 0x1f2c50, m1 0x30fcf0, imac 0x37f7e0;
-    void onBack(cocos2d::CCObject* sender) = win 0x1f4f00;
+    void onBack(cocos2d::CCObject* sender) = win 0x1f4f00, m1 0x31034c, imac 0x37fe50;
     void onLevel(cocos2d::CCObject* sender) = win 0x1f4880, imac 0x381320, m1 0x3116ec;
     void setupGauntlet(cocos2d::CCArray*) = win 0x1f3850, imac 0x37fea0, m1 0x310394;
     void unlockActiveItem() = win 0x1f48f0, imac 0x381360, m1 0x311730;
@@ -7514,7 +7514,7 @@ class GauntletNode : cocos2d::CCNode {
     // virtual ~GauntletNode();
     GauntletNode() {}
 
-    static GauntletNode* create(GJMapPack* gauntlet) = win inline {
+    static GauntletNode* create(GJMapPack* gauntlet) = win inline, m1 0x4b2728, imac 0x55c250 {
         auto ret = new GauntletNode();
         if (ret->init(gauntlet)) {
             ret->autorelease();
@@ -7527,7 +7527,7 @@ class GauntletNode : cocos2d::CCNode {
     static gd::string frameForType(GauntletType) = win 0x1f9030, m1 0x4b4e50, imac 0x55e760;
     static gd::string nameForType(GauntletType) = win 0x1fa250, m1 0x4b46dc, imac 0x55e210;
     bool init(GJMapPack*) = win 0x1f7970, imac 0x55cb50, m1 0x4b2fdc;
-    void onClaimReward() = win 0x1f8ff0, imac 0x55ca80;
+    void onClaimReward() = win 0x1f8ff0, imac 0x55ca80, m1 0x4b2f30;
 
     cocos2d::CCNode* m_gauntletInfoNode;
     cocos2d::CCNode* m_rewardNode;
@@ -7538,7 +7538,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
     // virtual ~GauntletSelectLayer();
     GauntletSelectLayer() {}
 
-    static GauntletSelectLayer* create(int p0) = win inline, imac 0x55abc0 {
+    static GauntletSelectLayer* create(int p0) = win inline, imac 0x55abc0, m1 0x4b1248 {
         auto ret = new GauntletSelectLayer();
         if (ret->init(p0)) {
             ret->autorelease();
@@ -7547,9 +7547,9 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(int) = win 0x1f5570, imac 0x55aaa0;
+    static cocos2d::CCScene* scene(int) = win 0x1f5570, imac 0x55aaa0, m1 0x4b1168;
 
-    virtual void onExit() = m1 0x4b2f70, imac 0x55cac0, ios 0x1c1d9c;
+    virtual void onExit() = win 0x1f7920, m1 0x4b2f70, imac 0x55cac0, ios 0x1c1d9c;
     virtual void keyBackClicked() = win 0x1f7180, m1 0x4b2e44, imac 0x55c990, ios 0x1c1d50;
     virtual void scrollLayerWillScrollToPage(BoomScrollLayer*, int) = win 0x1f7090, m1 0x4b2da4, imac 0x55c8f0, ios 0x1c1cb0;
     virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int) = win 0x1f7090, m1 0x4b2d04, imac 0x55c850, ios 0x1c1c10;
@@ -7560,13 +7560,16 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
     bool init(int) = win 0x1f56a0, m1 0x4b1310, imac 0x55acb0;
     void onBack(cocos2d::CCObject* sender) = win 0x1f70d0, imac 0x55b7c0, m1 0x4b1d5c;
     void onInfo(cocos2d::CCObject* sender) = win 0x1f6210, m1 0x4b1dd0, imac 0x55b830;
-    void onNext(cocos2d::CCObject* sender) = win 0x1f6ee0, imac 0x55b7a0;
+    void onNext(cocos2d::CCObject* sender) = win 0x1f6ee0, imac 0x55b7a0, m1 0x4b1d48;
     void onPlay(cocos2d::CCObject* sender) = win 0x1f7190, imac 0x55c2d0, m1 0x4b27b8;
-    void onPrev(cocos2d::CCObject* sender) = win 0x1f6f00, imac 0x55b780;
+    void onPrev(cocos2d::CCObject* sender) = win 0x1f6f00, imac 0x55b780, m1 0x4b1d34;
     void onRefresh(cocos2d::CCObject* sender) = win 0x1f6350, imac 0x55b8e0, m1 0x4b1e88;
     void setupGauntlets() = win 0x1f6790, m1 0x4b1f30, imac 0x55b9a0;
-    void unblockPlay();
-    void updateArrows();
+    void unblockPlay() = win 0x1f7080, m1 0x4b2cfc, imac 0x55c840;
+    void updateArrows() = win inline, m1 0x4b23c4, imac 0x55bec0 {
+        m_leftButton->setVisible(m_scrollLayer != nullptr);
+        m_rightButton->setVisible(m_scrollLayer != nullptr);
+    }
 
     cocos2d::CCSprite* m_backgroundSprite;
     BoomScrollLayer* m_scrollLayer;
@@ -7597,9 +7600,22 @@ class GauntletSprite : cocos2d::CCNode {
     }
 
     void addLockedSprite() = win 0x1f4fe0, imac 0x381b50, m1 0x311fe8;
-    void addNormalSprite() = imac 0x381a80, m1 0x311eec;
-    cocos2d::ccColor3B colorForType(GauntletType);
-    bool init(GauntletType gauntletType, bool locked) = win inline, m1 0x311e44 {
+    void addNormalSprite() = win inline, imac 0x381a80, m1 0x311eec {
+        auto normalSprite = cocos2d::CCSprite::createWithSpriteFrameName(GauntletNode::frameForType(m_gauntletType).c_str());
+        this->addChild(normalSprite);
+        normalSprite->setPosition(this->getContentSize() / 2);
+    }
+    cocos2d::ccColor3B colorForType(GauntletType gauntletType) = win inline, m1 0x312314, imac 0x381e70 {
+        switch (gauntletType) {
+            case GauntletType::Fire: return { 255, 200, 200 };
+            case GauntletType::Lava: return { 200, 200, 200 };
+            case GauntletType::Bonus: return { 225, 225, 100 };
+            case GauntletType::Monster: return { 200, 200, 200 };
+            case GauntletType::Doom: return { 200, 200, 200 };
+            default: return { 225, 225, 225 };
+        }
+    }
+    bool init(GauntletType gauntletType, bool locked) = win inline, m1 0x311e44, imac 0x381a00 {
         if (!CCNode::init()) return false;
 
         m_gauntletType = gauntletType;
@@ -7608,7 +7624,18 @@ class GauntletSprite : cocos2d::CCNode {
 
         return true;
     }
-    float luminanceForType(GauntletType) = imac 0x381e40;
+    float luminanceForType(GauntletType gauntletType) = win inline, imac 0x381e40, m1 0x3122f4 {
+        switch (gauntletType) {
+            case GauntletType::Fire: return 1.1f;
+            case GauntletType::Ice: return 0.9f;
+            case GauntletType::Shadow: return 1.6f;
+            case GauntletType::Lava: return 1.3f;
+            case GauntletType::Bonus: return 0.9f;
+            case GauntletType::Chaos: return 1.5f;
+            case GauntletType::Spike: return 0.8f;
+            default: return 1.0f;
+        }
+    }
     void toggleLockedSprite(bool) = win 0x1f5310, imac 0x381930, m1 0x311d70;
 
     GauntletType m_gauntletType;
