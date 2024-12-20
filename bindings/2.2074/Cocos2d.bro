@@ -47,7 +47,7 @@ class cocos2d::CCEaseOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseInOut {
-    static cocos2d::CCEaseInOut* create(cocos2d::CCActionInterval*, float) = m1 0x45e760, imac 0x4fed70;
+    static cocos2d::CCEaseInOut* create(cocos2d::CCActionInterval*, float) = m1 0x45e760, imac 0x4fed70, ios 0x26b474;
 
     // CCEaseInOut(cocos2d::CCEaseInOut const&);
     // CCEaseInOut();
@@ -83,7 +83,7 @@ class cocos2d::CCEaseBackOut {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBounceOut {
-    static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*) = imac 0x500c50;
+    static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*) = imac 0x500c50, ios 0x26c10c;
 
     // CCEaseBounceOut(cocos2d::CCEaseBounceOut const&);
     // CCEaseBounceOut();
@@ -281,7 +281,7 @@ class cocos2d::CCMoveBy {
 
 [[link(win, android)]]
 class cocos2d::CCMoveTo {
-    static cocos2d::CCMoveTo* create(float, cocos2d::CCPoint const&) = imac 0x3a5490, m1 0x331e58;
+    static cocos2d::CCMoveTo* create(float, cocos2d::CCPoint const&) = imac 0x3a5490, m1 0x331e58, ios 0x18f080;
 
     bool initWithDuration(float, cocos2d::CCPoint const&);
 
@@ -321,7 +321,7 @@ class cocos2d::CCScaleBy {
 
 [[link(win, android)]]
 class cocos2d::CCScaleTo {
-    static cocos2d::CCScaleTo* create(float, float);
+    static cocos2d::CCScaleTo* create(float, float) = ios 0x18f9fc;
     static cocos2d::CCScaleTo* create(float, float, float);
 
     bool initWithDuration(float, float);
@@ -849,7 +849,7 @@ class cocos2d::CCNode {
     void sortAllChildrenNoIndex();
     void sortAllChildrenWithIndex();
     void stopAction(cocos2d::CCAction*);
-    void stopActionByTag(int);
+    void stopActionByTag(int) = ios 0x23c208;
     void stopAllActions() = imac 0x260e30, m1 0x20cbec, ios 0x23b4fc;
     void transform() = ios 0x23bd34;
     void transformAncestors();
@@ -2700,8 +2700,8 @@ class cocos2d::CCMenuItem {
 class cocos2d::CCMenuItemSprite {
     bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3acfd0, m1 0x338d28, ios 0x50998;
 
-    virtual void selected() = imac 0x3ad0c0, m1 0x338e40;
-    virtual void unselected() = imac 0x3ad160, m1 0x338ecc;
+    virtual void selected() = imac 0x3ad0c0, m1 0x338e40, ios 0x50ab0;
+    virtual void unselected() = imac 0x3ad160, m1 0x338ecc, ios 0x50b3c;
     virtual void setEnabled(bool) = imac 0x3ad1e0, m1 0x338f4c, ios 0x50bbc;
     virtual cocos2d::CCNode* getNormalImage() = m1 0x338964, imac 0x3acc10;
     virtual void setNormalImage(cocos2d::CCNode*) = imac 0x3acc20, m1 0x33896c, ios 0x5076c;

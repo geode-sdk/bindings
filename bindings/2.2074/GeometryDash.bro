@@ -862,7 +862,7 @@ class ButtonPage : cocos2d::CCLayer {
 [[link(android)]]
 class ButtonSprite : cocos2d::CCSprite {
     // virtual ~ButtonSprite();
-    ButtonSprite() = win 0x3ed20;
+    ButtonSprite() = win 0x3ed20, ios 0x63804;
     static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x3f150, imac 0x92640, m1 0x8579c, ios 0x62f8c;
     static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3ee40, imac 0x91db0, m1 0x84fe0, ios 0x62878;
 
@@ -906,7 +906,7 @@ class ButtonSprite : cocos2d::CCSprite {
     static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg) = imac 0x92780 {
         return ButtonSprite::create(caption, width, p2, scale, absolute, font, bg, .0f);
     }
-    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute) = imac 0x925f0 {
+    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute) = imac 0x925f0, ios 0x62f74 {
         return ButtonSprite::create(caption, width, p2, scale, absolute, "goldFont.fnt", "GJ_button_01.png", .0f);
     }
     static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute) = imac 0x91d90 {
@@ -916,7 +916,7 @@ class ButtonSprite : cocos2d::CCSprite {
         return ButtonSprite::create(topSprite, 0, 0, .0f, 1.f, false, "GJ_button_01.png", false);
     }
 
-    bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3f220, imac 0x92790, m1 0x858d8;
+    bool init(char const*, int, int, float, bool, char const*, char const*, float) = win 0x3f220, imac 0x92790, m1 0x858d8, ios 0x63060;
     bool init(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3eef0, imac 0x91f00, m1 0x85114;
     void setColor(cocos2d::ccColor3B color) {
         // i love inlined funcs
@@ -1269,7 +1269,7 @@ class CCLightStrip : cocos2d::CCNode {
 
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
-    CCMenuItemSpriteExtra() {
+    CCMenuItemSpriteExtra() = ios 0x16ecb8 {
         m_animationEnabled = false; //this is changed to true in init
         m_colorEnabled = false;
         m_colorDip = 0.784314f;
@@ -1289,7 +1289,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
         return CCMenuItemSpriteExtra::create(sprite, nullptr, target, callback);
     }
 
-    bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x44be0, imac 0x264c10, m1 0x210678;
+    bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x44be0, imac 0x264c10, m1 0x210678, ios 0x214408;
     void setSizeMult(float mult) = win inline, imac 0x264d80 {
         //inlined on windows, member is in CCMenuItemSprite
         m_fSizeMult = mult;
@@ -4990,8 +4990,8 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     }
     ~FLAlertLayer() = win 0x517e0;
 
-    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x51940, imac 0x4880e0, m1 0x3f5598, ios 0x2bbef8; // ?
-    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = win 0x51890, imac 0x4882b0, m1 0x3f5738, ios 0x2ab01c; // ? might be wrong one
+    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x51940, imac 0x4880e0, m1 0x3f5598, ios 0x2aaef4;
+    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = win 0x51890, imac 0x4882b0, m1 0x3f5738, ios 0x2ab01c;
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2) {
         return FLAlertLayer::create(delegate, title, desc, btn1, btn2, 300.0);
     }
@@ -5000,7 +5000,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
     }
 
-    void incrementForcePrio();
+    void incrementForcePrio() = ios 0x2abb08;
     bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x51b60, imac 0x488360, m1 0x3f5800, ios 0x2ab0e4;
     bool init(int) = win 0x51a50, imac 0x488de0;
     void onBtn1(cocos2d::CCObject* sender) = win 0x52940;
@@ -5043,12 +5043,12 @@ class FLAlertLayerProtocol {
 [[link(android), depends(FMODAudioState), depends(FMODSoundState), depends(FMODMusic), depends(FMODSound), depends(FMODQueuedEffect), depends(FMODQueuedMusic), depends(FMODSoundTween)]]
 class FMODAudioEngine : cocos2d::CCNode {
     // virtual ~FMODAudioEngine();
-    FMODAudioEngine() = win 0x530d0;
+    FMODAudioEngine() = win 0x530d0, ios 0x142378;
     static FMODAudioEngine* get() {
         return FMODAudioEngine::sharedEngine();
     }
 
-    static FMODAudioEngine* sharedEngine() = win inline, imac 0x3c9e70, m1 0x352964 {
+    static FMODAudioEngine* sharedEngine() = win inline, imac 0x3c9e70, m1 0x352964, ios 0x13b0c8 {
         auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x6a4e18);
         if (!*instancePtr) {
             *instancePtr = new FMODAudioEngine();
@@ -5133,9 +5133,9 @@ class FMODAudioEngine : cocos2d::CCNode {
             channel->setPaused(true);
     }
     TodoReturn pitchForIdx(int);
-    void playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10, imac 0x3d1ba0, m1 0x358870;
+    void playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10, imac 0x3d1ba0, m1 0x358870, ios 0x13ea50;
     void playEffect(gd::string path) = win 0x56d90, m1 0x3587c0, imac 0x3d1b10;
-    void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0;
+    void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0, ios 0x13d8c4;
     TodoReturn playEffectAsync(gd::string path);
     void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x5a110, imac 0x3d4dc0, m1 0x35b20c;
     FMODSound& preloadEffect(gd::string path) = win 0x59260, m1 0x3531c4, imac 0x3ca980;
