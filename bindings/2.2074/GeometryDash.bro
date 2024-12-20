@@ -7793,7 +7793,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn checkCameraLimitAfterTeleport(PlayerObject*, float) = win 0x2340b0, imac 0x110df0, m1 0xf0a1c;
     TodoReturn checkCollision(int, int);
     void checkCollisionBlocks(EffectGameObject*, gd::vector<EffectGameObject*>*, int) = win 0x2139e0;
-    int checkCollisions(PlayerObject*, float, bool) = win 0x20e330, imac 0x114fe0, m1 0xf45f0;
+    int checkCollisions(PlayerObject*, float, bool) = win 0x20e330, imac 0x114fe0, m1 0xf45f0, ios 0x1e87c8;
     void checkRepellPlayer() = win 0x233de0, imac 0x143830, ios 0x201988;
     void checkSpawnObjects() = win 0x215410, imac 0x11c1f0, ios 0x1ed910;
     TodoReturn claimMoveAction(int, bool);
@@ -7802,7 +7802,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn clearActivatedAudioTriggers();
     TodoReturn clearPickedUpItems();
     TodoReturn collectedObject(EffectGameObject*);
-    void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x20f480, imac 0x116130;
+    void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x20f480, imac 0x116130, ios 0x1e9420;
     TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
     TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
     TodoReturn controlAreaEffectWithID(int, int, GJActionCommand);
@@ -7823,14 +7823,14 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn createPlayerCollisionBlock() = win 0x212e90, imac 0x11a410, ios 0x1ec548;
     void createTextLayers() = win 0x209960, imac 0x10f2e0, m1 0xee828, ios 0x1e4644;
     TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
-    void destroyObject(GameObject*) = win 0x210bb0, imac 0x118390, m1 0xf71e8;
+    void destroyObject(GameObject*) = win 0x210bb0, imac 0x118390, m1 0xf71e8, ios 0x1eb004;
     void enterDualMode(GameObject*, bool) = imac 0x119720, m1 0xf84b0;
     void exitStaticCamera(bool exitX, bool exitY, float time, int easingType, float easingRate, bool smoothVelocity, float smoothVelocityMod, bool exitInstant) = win 0x2390e0;
     TodoReturn flipFinished() = ios 0x2036ac;
     void flipGravity(PlayerObject*, bool, bool) = win 0x20d640, imac 0x114040, m1 0xf3874;
     TodoReturn flipObjects();
     TodoReturn gameEventToString(GJGameEvent);
-    void gameEventTriggered(GJGameEvent, int, int) = win 0x22c8a0, imac 0x110ea0, m1 0xf0ae8;
+    void gameEventTriggered(GJGameEvent, int, int) = win 0x22c8a0, imac 0x110ea0, m1 0xf0ae8, ios 0x1e5c54;
     TodoReturn generateEnterEasingBuffer(int, float);
     TodoReturn generateEnterEasingBuffers(EnterEffectObject*);
     TodoReturn generatePickupAnimRandVal(GameObject*, float&, float&);
@@ -7856,7 +7856,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn getItemValue(int, int) = win 0x22ea60;
     float getMaxPortalY() = win 0x20e2b0, ios 0x1e8750;
     TodoReturn getMinDistance(cocos2d::CCPoint, cocos2d::CCArray*, float, int) = win 0x23c430;
-    float getMinPortalY() = win 0x20e1d0;
+    float getMinPortalY() = win 0x20e1d0, ios 0x1e8680;
     float getModifiedDelta(float) = win 0x232060, imac 0x141ee0, m1 0x119084, ios 0x200a54;
     TodoReturn getMoveTargetDelta(EffectGameObject*, bool);
     TodoReturn getOptimizedGroup(int);
@@ -7883,7 +7883,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void groupStickyObjects(cocos2d::CCArray*) = win 0x21f7b0;
     void handleButton(bool down, int button, bool isPlayer1) = win 0x22e190, imac 0x13afc0, m1 0x1136ec, ios 0x1fcb90;
     bool hasItem(int);
-    bool hasUniqueCoin(EffectGameObject*) = win 0x211220, imac 0x118460, m1 0xf72cc;
+    bool hasUniqueCoin(EffectGameObject*) = win 0x211220, imac 0x118460, m1 0xf72cc, ios 0x1eb0e8;
     void increaseBatchNodeCapacity() = win 0x2078e0, ios 0x1df834;
     bool isFlipping() {
         return m_gameState.m_levelFlipping != 0.f && m_gameState.m_levelFlipping != 1.f;
@@ -7913,7 +7913,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void pauseAudio() = win 0x231d60, imac 0x141de0, ios 0x2009a4;
     TodoReturn performMathOperation(double, double, int);
     TodoReturn performMathRounding(double, int);
-    void pickupItem(EffectGameObject*) = win 0x210cd0, imac 0x118560;
+    void pickupItem(EffectGameObject*) = win 0x210cd0, imac 0x118560, ios 0x1eb1e4;
     TodoReturn playAnimationCommand(int, int);
     bool playerCircleCollision(PlayerObject*, GameObject*) = win 0x20c930;
     TodoReturn playerIntersectsCircle(PlayerObject*, GameObject*);
@@ -14665,7 +14665,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void createSpider(int) = win 0x372540, m1 0x36c378;
     void deactivateParticle() = m1 0x3709e8, imac 0x3efb60;
     void deactivateStreak(bool) = imac 0x3eb090, m1 0x36cd60, ios 0x21a1dc;
-    TodoReturn destroyFromHitHead();
+    TodoReturn destroyFromHitHead() = ios 0x22bf34;
     TodoReturn didHitHead();
     void disableCustomGlowColor() {
         m_hasCustomGlowColor = false;
@@ -14693,7 +14693,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn getModifiedSlopeYVel();
     TodoReturn getOldPosition(float);
     cocos2d::ccColor3B getSecondColor();
-    TodoReturn getYVelocity();
+    TodoReturn getYVelocity() = ios 0x21a2c8;
     TodoReturn gravityDown();
     TodoReturn gravityUp();
     TodoReturn handlePlayerCommand(int);
@@ -14703,12 +14703,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     }
     TodoReturn handleRotatedSlopeCollision(float, GameObject*, bool);
     TodoReturn hardFlipGravity();
-    void hitGround(GameObject*, bool) = win 0x3861a0;
+    void hitGround(GameObject*, bool) = win 0x3861a0, ios 0x224188;
     TodoReturn hitGroundNoJump(GameObject*, bool);
     void incrementJumps() = win 0x376e10, imac 0x3f1bf0, m1 0x3728d8;
     bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x370a00, imac 0x3e8970, m1 0x36a954, ios 0x218410;
     bool isBoostValid(float);
-    bool isFlying() = win inline, imac 0x3efb00 {
+    bool isFlying() = win inline, imac 0x3efb00, ios 0x21d2cc {
         return m_isShip || m_isBird || m_isDart || m_isSwing;
     }
     bool isInBasicMode() = win inline, imac 0x3fcbc0 {
@@ -14717,8 +14717,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool isInNormalMode() = win inline, imac 0x3ee1c0 {
         return !this->isFlying() && !m_isBall && !m_isRobot && !m_isSpider;
     }
-    bool isSafeFlip(float);
-    bool isSafeHeadTest();
+    bool isSafeFlip(float) = ios 0x22415c;
+    bool isSafeHeadTest() = ios 0x22d9b8;
     bool isSafeMode(float);
     bool isSafeSpiderFlip(float);
     TodoReturn levelFlipFinished() = win 0x3759e0;
@@ -14747,7 +14747,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void playSpawnEffect() = win 0x381650, imac 0x401bb0, m1 0x37fe98;
     void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x37f340, m1 0x37b928, imac 0x3fcc20;
     void postCollision(float) = win 0x3777f0, m1 0x373790;
-    void preCollision() = imac 0x3f2a40;
+    void preCollision() = imac 0x3f2a40, ios 0x21f300;
     bool preSlopeCollision(float, GameObject*) = win 0x3794b0;
     void propellPlayer(float, bool, int) = win 0x389ac0, m1 0x387134;
     bool pushButton(PlayerButton) = win 0x382110, imac 0x4027d0, m1 0x380a44;
@@ -14831,7 +14831,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn unrotatePreSlopeObjects();
     TodoReturn updateCheckpointMode(bool) = ios 0x21a034;
     TodoReturn updateCheckpointTest() = ios 0x21e288;
-    void updateCollide(PlayerCollisionDirection, GameObject*) = win 0x37e1c0, imac 0x3faae0, m1 0x379b88;
+    void updateCollide(PlayerCollisionDirection, GameObject*) = win 0x37e1c0, imac 0x3faae0, m1 0x379b88, ios 0x224768;
     void updateCollideBottom(float, GameObject*);
     void updateCollideLeft(float, GameObject*);
     void updateCollideRight(float, GameObject*);
