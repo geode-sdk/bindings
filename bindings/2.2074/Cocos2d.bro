@@ -496,8 +496,8 @@ class cocos2d::CCParticleSystem {
     bool isFull();
     void loadDefaults();
     void loadScaledDefaults(float) = imac 0x7b60e0;
-    void resetSystem() = imac 0x7b4740, m1 0x6c5358;
-    void resumeSystem();
+    void resetSystem() = imac 0x7b4740, m1 0x6c5358, ios 0x198a38;
+    void resumeSystem() = ios 0x198a2c;
     void saveDefaults();
     void stopSystem() = imac 0x7b4700, m1 0x6c5338, ios 0x198a18;
     void toggleUniformColorMode(bool);
@@ -1794,7 +1794,7 @@ class cocos2d::CCDirector {
     void popToSceneStackLevel(int);
     void purgeCachedData();
     void purgeDirector() = imac 0x471780;
-    bool pushScene(cocos2d::CCScene*) = imac 0x471230, m1 0x3e0034;
+    bool pushScene(cocos2d::CCScene*) = imac 0x471230, m1 0x3e0034, ios 0x179580;
     void removeStatsLabel() = imac 0x471990;
     bool replaceScene(cocos2d::CCScene*) = imac 0x4712e0, m1 0x3e00fc, ios 0x179608;
     void resetSmoothFixCounter();
@@ -2320,7 +2320,7 @@ class cocos2d::CCRepeatForever {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionMoveInT {
-    static cocos2d::CCTransitionMoveInT* create(float, cocos2d::CCScene*) = imac 0xd6340;
+    static cocos2d::CCTransitionMoveInT* create(float, cocos2d::CCScene*) = imac 0xd6340, ios 0x1cece8;
 
     // CCTransitionMoveInT(cocos2d::CCTransitionMoveInT const&);
     // CCTransitionMoveInT();
@@ -2905,7 +2905,7 @@ class cocos2d::CCMenu {
     // CCMenu(cocos2d::CCMenu const&);
     // CCMenu();
     void alignItemsHorizontally();
-    void alignItemsHorizontallyWithPadding(float);
+    void alignItemsHorizontallyWithPadding(float) = ios 0x1d95bc;
     // void alignItemsInColumns(unsigned int, ...);
     // void alignItemsInColumns(unsigned int, char*);
     void alignItemsInColumnsWithArray(cocos2d::CCArray*);
