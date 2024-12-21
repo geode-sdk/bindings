@@ -37,6 +37,7 @@ enum class SearchType {
     Type26 = 26,
     Sent = 27,
     FeaturedLite = 28,
+    Bonus = 29,
     MyLevels = 98,
     SavedLevels = 99,
     FavouriteLevels = 100,
