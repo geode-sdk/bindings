@@ -14796,7 +14796,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn spawnCircle();
     TodoReturn spawnCircle2();
     TodoReturn spawnDualCircle() = ios 0x228414;
-    TodoReturn spawnFromPlayer(PlayerObject*, bool);
+    TodoReturn spawnFromPlayer(PlayerObject*, bool) = ios 0x22dbb0;
     TodoReturn spawnPortalCircle(cocos2d::ccColor3B, float) = win 0x381930, ios 0x2281c4;
     TodoReturn spawnScaleCircle() = imac 0x401fe0;
     TodoReturn specialGroundHit();
@@ -14829,7 +14829,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void toggleRollMode(bool, bool) = win 0x3857e0, imac 0x406e60, m1 0x384a4c, ios 0x22b698;
     void toggleSpiderMode(bool, bool) = win 0x385ce0, imac 0x4076c0, m1 0x38525c, ios 0x22bc7c;
     void toggleSwingMode(bool, bool) = win 0x384d90, imac 0x405d60, m1 0x383a5c, ios 0x22ab80;
-    void toggleVisibility(bool) = win 0x3756d0;
+    void toggleVisibility(bool) = win 0x3756d0, ios 0x21e598;
     TodoReturn touchedObject(GameObject*) = imac 0x40ad70, ios 0x22e4ec;
     void tryPlaceCheckpoint() = m1 0x371f50;
     TodoReturn unrotateGameplayObject(GameObject*) = win 0x37b8b0;
