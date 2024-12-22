@@ -322,7 +322,7 @@ class cocos2d::CCScaleBy {
 [[link(win, android)]]
 class cocos2d::CCScaleTo {
     static cocos2d::CCScaleTo* create(float, float) = ios 0x18f9fc;
-    static cocos2d::CCScaleTo* create(float, float, float);
+    static cocos2d::CCScaleTo* create(float, float, float) = ios 0x18fa94;
 
     bool initWithDuration(float, float);
     bool initWithDuration(float, float, float);
@@ -864,7 +864,7 @@ class cocos2d::CCProgressTimer {
 
 [[link(win, android)]]
 class cocos2d::CCFadeIn {
-    static cocos2d::CCFadeIn* create(float) = m1 0x334064, imac 0x3a7bb0;
+    static cocos2d::CCFadeIn* create(float) = m1 0x334064, imac 0x3a7bb0, ios 0x18ff90;
 
     // CCFadeIn(cocos2d::CCFadeIn const&);
     // CCFadeIn();
@@ -1018,7 +1018,7 @@ class cocos2d::CCNode {
     void resumeSchedulerAndActions();
     cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x261f80, m1 0x20dd34, ios 0x23c1d0;
     void schedule(cocos2d::SEL_SCHEDULE) = imac 0x2621b0, m1 0x20dee8, ios 0x23c2fc;
-    void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x262210, m1 0x20df28;
+    void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x262210, m1 0x20df28, ios 0x23c320;
     void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = imac 0x2621e0;
     void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = imac 0x262240;
     void scheduleUpdate() = imac 0x262090, m1 0x20ddf0, ios 0x23c278;
