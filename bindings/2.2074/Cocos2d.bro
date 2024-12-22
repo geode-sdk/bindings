@@ -2072,6 +2072,68 @@ class cocos2d::CCLabelBMFont {
 }
 
 [[link(win, android)]]
+class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
+	static cocos2d::CCLabelTTF* create(char const* string, char const* fontName, float fontSize) = m1 0x336634, imac 0x3aa5f0, ios inline {
+        return CCLabelTTF::create(string, fontName, fontSize,
+            CCSizeZero, kCCTextAlignmentCenter, kCCVerticalTextAlignmentTop);
+    }
+	static cocos2d::CCLabelTTF* create(char const* string, char const* fontName, float fontSize, cocos2d::CCSize const& dimensions, cocos2d::CCTextAlignment hAlignment) = m1 0x336790, imac 0x3aa770, ios inline {
+        return CCLabelTTF::create(string, fontName, fontSize, dimensions, hAlignment, kCCVerticalTextAlignmentTop);
+    }
+	static cocos2d::CCLabelTTF* create(char const* string, char const* fontName, float fontSize, cocos2d::CCSize const& dimensions, cocos2d::CCTextAlignment hAlignment, cocos2d::CCVerticalTextAlignment vAlignment) = m1 0x336648, imac 0x3aa610, ios inline {
+        CCLabelTTF *pRet = new CCLabelTTF();
+        if(pRet && pRet->initWithString(string, fontName, fontSize, dimensions, hAlignment, vAlignment))
+        {
+            pRet->autorelease();
+            return pRet;
+        }
+        CC_SAFE_DELETE(pRet);
+        return NULL;
+    }
+	static cocos2d::CCLabelTTF* create() = m1 0x336520, imac 0x3aa4d0;
+	static cocos2d::CCLabelTTF* createWithFontDefinition(char const*, cocos2d::_ccFontDefinition&) = m1 0x336904, imac 0x3aa900;
+
+	bool initWithString(char const* label, char const* fontName, float fontSize) = m1 0x336b18, imac 0x3aab10, ios inline {
+        return this->initWithString(label, fontName, fontSize, 
+            CCSizeZero, kCCTextAlignmentLeft, kCCVerticalTextAlignmentTop);
+    }
+	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment) = m1 0x336b2c, imac 0x3aab30;
+	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment) = m1 0x336798, imac 0x3aa780, ios 0x7270c;
+	bool initWithStringAndTextDefinition(char const*, cocos2d::_ccFontDefinition&) = m1 0x336a6c, imac 0x3aaa70;
+
+	cocos2d::CCSize getDimensions();
+	char const* getFontName() = m1 0x336f98, imac 0x3ab060;
+	float getFontSize();
+	cocos2d::CCTextAlignment getHorizontalAlignment();
+	cocos2d::_ccFontDefinition* getTextDefinition() = m1 0x337110, imac 0x3ab240;
+	cocos2d::CCVerticalTextAlignment getVerticalAlignment();
+
+	void setDimensions(cocos2d::CCSize const&);
+	void setFontFillColor(cocos2d::_ccColor3B const&, bool);
+	void setFontName(char const*) = m1 0x336fb0, imac 0x3ab080;
+	void setFontSize(float);
+	void setHorizontalAlignment(cocos2d::CCTextAlignment);
+	void setTextDefinition(cocos2d::_ccFontDefinition*) = m1 0x337100, imac 0x3ab220;
+	void setVerticalAlignment(cocos2d::CCVerticalTextAlignment);
+
+	// CCLabelTTF(cocos2d::CCLabelTTF const&);
+	CCLabelTTF() = ios 0x725b4;
+	cocos2d::_ccFontDefinition _prepareTextDefinition(bool) = m1 0x337280, imac 0x3ab390;
+	void _updateWithTextDefinition(cocos2d::_ccFontDefinition&, bool) = m1 0x336b34, imac 0x3aab40;
+	char const* description() = m1 0x336e34, imac 0x3aae90;
+	void disableShadow(bool);
+	void disableStroke(bool);
+	void enableShadow(cocos2d::CCSize const&, float, float, bool);
+	void enableStroke(cocos2d::_ccColor3B const&, float, bool);
+	bool updateTexture() = m1 0x336c44, imac 0x3aac60;
+
+	virtual bool init() = m1 0x336af0, imac 0x3aaae0, ios 0x72800;
+
+	virtual void setString(char const*) = m1 0x336bec, imac 0x3aac10, ios 0x7283c;
+	virtual char const* getString() = m1 0x336dfc, imac 0x3aae40, ios 0x729a4;
+}
+
+[[link(win, android)]]
 class cocos2d::CCActionManager {
     void addAction(cocos2d::CCAction*, cocos2d::CCNode*, bool) = m1 0x1d4dfc, imac 0x221dd0, ios 0x2f4378;
     void pauseTarget(cocos2d::CCObject*) = imac 0x221b10, m1 0x1d4aec;
