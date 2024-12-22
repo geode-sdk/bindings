@@ -3867,7 +3867,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onCreateExtras(cocos2d::CCObject* sender) = win 0xdb760;
     void onCreateLoop(cocos2d::CCObject* sender);
     void onCreateTemplate(cocos2d::CCObject* sender);
-    void onExitEditor(cocos2d::CCObject* sender) = win 0xdcd60, m1 0x22c7fc;
+    void onExitEditor(cocos2d::CCObject* sender) = win 0xdcd60, m1 0x22c7fc, ios 0x3975d8;
     void onExitNoSave(cocos2d::CCObject* sender) = imac 0x281ad0;
     void onHelp(cocos2d::CCObject* sender);
     void onKeybindings(cocos2d::CCObject* sender);
@@ -3888,7 +3888,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onUnlockAllLayers(cocos2d::CCObject* sender);
     TodoReturn playStep2();
     TodoReturn playStep3() = win 0xdcb50;
-    void saveLevel() = win 0xdc310, m1 0x22c274;
+    void saveLevel() = win 0xdc310, m1 0x22c274, ios 0x3970b4;
     TodoReturn toggleDebugDraw(cocos2d::CCObject*);
     TodoReturn toggleEditorBackground(cocos2d::CCObject*);
     TodoReturn toggleEditorColorMode(cocos2d::CCObject*);
@@ -5202,7 +5202,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn swapMusicIndex(int, int);
     TodoReturn testFunction(int);
     TodoReturn triggerQueuedMusic(FMODQueuedMusic);
-    TodoReturn unloadAllEffects() = win 0x59aa0;
+    TodoReturn unloadAllEffects() = win 0x59aa0, ios 0x1400c8;
     TodoReturn unloadEffect(gd::string path);
     TodoReturn unregisterChannel(int);
     void updateBackgroundFade();
@@ -6172,7 +6172,7 @@ class GameManager : GManager {
     cocos2d::CCSize resolutionForKey(int) = win 0x187890, imac 0x3791c0;
     TodoReturn resumeAudio();
     TodoReturn resumeAudioDelayed();
-    void returnToLastScene(GJGameLevel*) = win 0x187030;
+    void returnToLastScene(GJGameLevel*) = win 0x187030, ios 0x31d818;
     TodoReturn rewardedVideoAdFinished(int);
     TodoReturn rewardedVideoHidden();
     TodoReturn rewardedVideoHiddenDelayed();
@@ -15254,8 +15254,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn loadActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&);
     void loadDefaultColors() = m1 0xa2300, ios 0x11bcfc;
     TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&) = imac 0xbe690, m1 0xad05c;
-    void loadFromCheckpoint(CheckpointObject*) = win 0x3a07b0;
-    TodoReturn loadLastCheckpoint();
+    void loadFromCheckpoint(CheckpointObject*) = win 0x3a07b0, ios 0x124b9c;
+    TodoReturn loadLastCheckpoint() = ios 0x124b50;
     CheckpointObject * markCheckpoint() = win 0x3a06e0, imac 0xbb9d0, m1 0xaacd4, ios 0x123284;
     void onQuit() = win 0x3a3db0, m1 0xa3cac, imac 0xb3c60, ios 0x11d45c;
     TodoReturn optimizeColorGroups() = win 0x397d10, imac 0xae840;
@@ -19349,7 +19349,7 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
         this->updateAudioLabel();
     }
     void showCustomSongSelect() = win 0xc6e80, imac 0x207d70, m1 0x1bcd0c;
-    void updateAudioLabel() = win 0xc69c0, imac 0x2078a0, m1 0x1bc888, ios 0x0x14adbc;
+    void updateAudioLabel() = win 0xc69c0, imac 0x2078a0, m1 0x1bc888, ios 0x14adbc;
     void updateWidgetVisibility() = win 0xc6d70, imac 0x207ce0, m1 0x1bcc84;
 
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xc6fe0, imac 0x207db0, m1 0x1bcd40, ios 0x14b1a4;
