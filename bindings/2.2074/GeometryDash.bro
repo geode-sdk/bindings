@@ -3825,8 +3825,8 @@ class EditorOptionsLayer : GJOptionsLayer {
 
     static EditorOptionsLayer* create() = imac 0x28bbe0, m1 0x2347d0;
 
-    void onButtonRows(cocos2d::CCObject* sender) = win 0x28a070, imac 0x28c7a0, m1 0x2352e8;
-    void onButtonsPerRow(cocos2d::CCObject* sender) = win 0x289fe0, imac 0x28c720, m1 0x235260;
+    void onButtonRows(cocos2d::CCObject* sender) = win 0x28a070, imac 0x28c7a0, m1 0x2352e8, ios 0x2d5050;
+    void onButtonsPerRow(cocos2d::CCObject* sender) = win 0x289fe0, imac 0x28c720, m1 0x235260, ios 0x2d4fc8;
 
     virtual bool init() = win 0x2896d0, imac 0x28be40, m1 0x23496c, ios 0x2d46d8;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x28a100, imac 0x28c810, m1 0x235368, ios 0x2d50d0;
@@ -4081,7 +4081,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onGroupSticky(cocos2d::CCObject* sender) = win 0x1110f0;
     void onGroupUp(cocos2d::CCObject* sender) = win 0x11da70;
     void onLockLayer(cocos2d::CCObject* sender) = win 0x11dc00, m1 0x31bec;
-    void onNewCustomItem(cocos2d::CCObject* sender) = win 0xe2990, m1 0x304d0;
+    void onNewCustomItem(cocos2d::CCObject* sender) = win 0xe2990, m1 0x304d0, ios 0x3e073c;
     void onPaste(cocos2d::CCObject* sender);
     void onPasteColor(cocos2d::CCObject* sender) = win 0x112cd0;
     void onPasteInPlace(cocos2d::CCObject* sender);
@@ -4111,7 +4111,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn processSmartObjectsFromType(int, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*);
     void recreateButtonTabs();
     void redoLastAction(cocos2d::CCObject*) = win 0x110190;
-    void reloadCustomItems() {
+    void reloadCustomItems() = ios 0x3e0d50 {
         GameManager* gm = GameManager::sharedState();
         int buttonsPerRow = gm->getIntGameVariable("0049");
         int buttonRows = gm->getIntGameVariable("0050");
@@ -5954,7 +5954,7 @@ class GameManager : GManager {
     TodoReturn addDuplicateLastFrame(int);
     TodoReturn addGameAnimation(int, int, float, gd::string, gd::string, int);
     TodoReturn addIconDelegate(cocos2d::CCObject*, int);
-    void addNewCustomObject(gd::string str) = win 0x1807d0, m1 0x302400;
+    void addNewCustomObject(gd::string str) = win 0x1807d0, m1 0x302400, ios 0x319548;
     TodoReturn addToGJLog(cocos2d::CCString*);
     void applicationDidEnterBackground();
     TodoReturn applicationWillEnterForeground() = win 0x186cd0;
@@ -10501,24 +10501,24 @@ class GJScaleControl : cocos2d::CCLayer {
     }
 
     void finishTouch();
-    void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&) = win 0x128190, imac 0x3f670;
+    void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&) = win 0x128190, imac 0x3f670, ios 0x3e76f0;
     void onToggleLockScale(cocos2d::CCObject* sender);
     float scaleFromValue(float value) = win inline, imac 0x52860, m1 0x49c44 {
         return (m_upperBound - m_lowerBound) * value + m_lowerBound;
     }
     float skewFromValue(float) = imac 0x528a0;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x1287a0;
-    void updateLabelX(float value) = win inline {
+    void updateLabelX(float value) = win inline, ios 0x3f306c {
         auto str = cocos2d::CCString::createWithFormat("ScaleX %.02f", value); // yes, gd is missing a : there :(
         m_scaleXLabel->setString(str->getCString());
         m_scaleXLabel->limitLabelWidth(100.0f, 0.0f, 0.0f);
     }
-    void updateLabelXY(float value) = win inline { // 0x129000 ?
+    void updateLabelXY(float value) = win inline, ios 0x3f313c {
         auto str = cocos2d::CCString::createWithFormat("Scale: %.02f", value);
         m_scaleLabel->setString(str->getCString());
         m_scaleLabel->limitLabelWidth(100.0f, 0.0f, 0.0f);
     }
-    void updateLabelY(float value) = win inline {
+    void updateLabelY(float value) = win inline, ios 0x3f30d4 {
         auto str = cocos2d::CCString::createWithFormat("ScaleY: %.02f", value);
         m_scaleYLabel->setString(str->getCString());
         m_scaleYLabel->limitLabelWidth(100.0f, 0.0f, 0.0f);
@@ -15235,7 +15235,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     CheckpointObject* createCheckpoint() = win 0x39e150, imac 0xbbd00, ios 0x123594;
     void createObjectsFromSetupFinished() = win 0x396a10, imac 0xb7490, m1 0xa6fc4, ios 0x11fdcc;
     void delayedFullReset();
-    void delayedResetLevel() = win 0x3a1de0, m1 0xaa970, imac 0xbb590;
+    void delayedResetLevel() = win 0x3a1de0, m1 0xaa970, imac 0xbb590, ios 0x122f20;
     void fullReset() = win 0x3a1ce0, m1 0xad514;
     float getCurrentPercent() = win 0x39ca70, imac 0xba2f0, m1 0xa9848, ios 0x121fd8;
     int getCurrentPercentInt() = win inline, ios inline, imac 0xba9f0, m1 0xa9f18 {
