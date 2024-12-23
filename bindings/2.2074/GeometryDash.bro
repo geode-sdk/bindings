@@ -207,8 +207,8 @@ class AchievementCell : TableViewCell {
     // virtual ~AchievementCell();
     AchievementCell(char const*, float, float);
 
-    void loadFromDict(cocos2d::CCDictionary*) = win 0xac150, imac 0x230eb0;
-    void updateBGColor(int);
+    void loadFromDict(cocos2d::CCDictionary*) = win 0xac150, imac 0x230eb0, ios 0x1042ec;
+    void updateBGColor(int) = ios 0x1051c8;
 
     virtual bool init() = m1 0x1ec614, imac 0x23c930, ios 0x10ebb4;
     virtual void draw() = imac 0x23c940, m1 0x1ec61c, ios 0x10ebbc;
@@ -2526,7 +2526,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 
     TodoReturn incrementDislikes();
     TodoReturn incrementLikes();
-    void loadFromComment(GJComment*) = win 0xb5480, m1 0x1e5f14, imac 0x235d50;
+    void loadFromComment(GJComment*) = win 0xb5480, m1 0x1e5f14, imac 0x235d50, ios 0x108cb0;
     void onConfirmDelete(cocos2d::CCObject* sender) = win 0xb7850, imac 0x242f80, m1 0x1f220c;
     TodoReturn onDelete();
     void onGoToLevel(cocos2d::CCObject* sender) = win 0xb7b20, imac 0x242dc0, m1 0x1f2078;
@@ -2535,7 +2535,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 
     void onUnhide(cocos2d::CCObject* sender) = win 0xb7b00, imac 0x242e70;
     void onViewProfile(cocos2d::CCObject* sender) = imac 0x242d90, m1 0x1f2044;
-    void updateBGColor(int);
+    void updateBGColor(int) = ios 0x10a674;
     void updateLabelValues();
 
     virtual bool init() = win 0xb5460, imac 0x242d60, m1 0x1f202c, ios 0x11371c;
@@ -8785,9 +8785,9 @@ class GJComment : cocos2d::CCNode {
 class GJCommentListLayer : cocos2d::CCLayerColor {
     // virtual ~GJCommentListLayer();
 
-    static GJCommentListLayer* create(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x28a320, imac 0x28c900, m1 0x235434;
+    static GJCommentListLayer* create(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x28a320, imac 0x28c900, m1 0x235434, ios 0x2d519c;
 
-    bool init(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x28a440, imac 0x28ca10, m1 0x23552c;
+    bool init(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x28a440, imac 0x28ca10, m1 0x23552c, ios 0x2d5280;
 
     BoomListView* m_list;
 }
@@ -10573,12 +10573,12 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
     // virtual ~GJScoreCell();
     GJScoreCell(char const*, float, float);
 
-    void loadFromScore(GJUserScore*) = win 0xb7c80, m1 0x1e7b58, imac 0x237bc0;
+    void loadFromScore(GJUserScore*) = win 0xb7c80, m1 0x1e7b58, imac 0x237bc0, ios 0x10a7a0;
     void onBan(cocos2d::CCObject* sender);
     void onCheck(cocos2d::CCObject* sender);
     void onMoreLevels(cocos2d::CCObject* sender);
     void onViewProfile(cocos2d::CCObject* sender) = win 0xb8d60, imac 0x243770, m1 0x1f291c;
-    TodoReturn updateBGColor(int);
+    TodoReturn updateBGColor(int) = ios 0x10a720;
 
     virtual bool init() = win 0xb3f00, m1 0x1f2910, imac 0x243750, ios 0x113ce4;
     virtual void draw() = imac 0x243a20, m1 0x1f2bc0, ios 0x113e88;
@@ -11194,14 +11194,14 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
     // virtual ~GJUserCell();
     GJUserCell(char const*, float, float);
 
-    void loadFromScore(GJUserScore*) = win 0xb9f70, imac 0x239a60;
+    void loadFromScore(GJUserScore*) = win 0xb9f70, imac 0x239a60, ios 0x10c530;
     void onCancelFriendRequest(cocos2d::CCObject* sender);
     void onRemoveFriend(cocos2d::CCObject* sender);
     void onSendMessage(cocos2d::CCObject* sender);
     void onUnblockUser(cocos2d::CCObject* sender);
     void onViewFriendRequest(cocos2d::CCObject* sender);
     void onViewProfile(cocos2d::CCObject* sender);
-    TodoReturn updateBGColor(int);
+    TodoReturn updateBGColor(int) = ios 0x10c4b0;
 
     virtual bool init() = win 0xb9f50, imac 0x2443a0, m1 0x1f31f8, ios 0x114208;
     virtual void draw() = imac 0x244b10, m1 0x1f399c, ios 0x11469c;
@@ -12099,7 +12099,7 @@ class LevelCell : TableViewCell {
     void onClick(cocos2d::CCObject* sender) = win 0xb1080, imac 0x240090, m1 0x1ef99c;
     void onToggle(cocos2d::CCObject* sender) = ios 0x111c44;
     void onViewProfile(cocos2d::CCObject* sender) = win 0xb12a0, imac 0x2401f0, m1 0x1efb00;
-    void updateBGColor(int);
+    void updateBGColor(int) = ios 0x105dc0;
     void updateCellMode(int) = win 0xb0df0, imac 0x23c6a0, m1 0x1ec39c;
     void updateToggle();
 
@@ -12573,11 +12573,11 @@ class LevelListCell : TableViewCell {
 
     static LevelListCell* create(float, float);
 
-    void loadFromList(GJLevelList*) = win 0xbdf90, imac 0x233ae0, m1 0x1e3af4;
+    void loadFromList(GJLevelList*) = win 0xbdf90, imac 0x233ae0, m1 0x1e3af4, ios 0x10698c;
     void onClick(cocos2d::CCObject* sender) = win 0xbf3c0, imac 0x247470, m1 0x1f5bc8;
     void onListInfo(cocos2d::CCObject* sender);
     void onViewProfile(cocos2d::CCObject* sender) = imac 0x247550, m1 0x1f5c90;
-    TodoReturn updateBGColor(int);
+    TodoReturn updateBGColor(int) = ios 0x107e24;
 
     virtual bool init() = m1 0x1f5bc0, imac 0x247460, ios 0x115ae0;
     virtual void draw() = imac 0x2475a0, m1 0x1f5cd8, ios 0x115bf8;
@@ -13310,14 +13310,14 @@ class MapPackCell : TableViewCell {
     // virtual ~MapPackCell();
     MapPackCell(char const*, float, float);
 
-    void loadFromMapPack(GJMapPack*) = win 0xb14e0, imac 0x232f20, m1 0x1e2f88;
+    void loadFromMapPack(GJMapPack*) = win 0xb14e0, imac 0x232f20, m1 0x1e2f88, ios 0x105e40;
     void onClaimReward(cocos2d::CCObject* sender) = m1 0x1f00b0;
     void onClick(cocos2d::CCObject* sender) = win 0xb2000;
     void playCompleteEffect() = win 0xb21d0, imac 0x240940, m1 0x1f012c;
     void reloadCell() = win inline, imac 0x23c5f0 {
         this->loadFromMapPack(m_mapPack);
     }
-    void updateBGColor(int idx) = win inline {
+    void updateBGColor(int idx) = win inline, ios 0x10690c {
         m_backgroundLayer->setColor(idx % 2 == 0 ? cocos2d::ccColor3B { 161, 88, 44 } : cocos2d::ccColor3B { 194, 114, 62 });
         m_backgroundLayer->setOpacity(255);
     }
@@ -19201,9 +19201,9 @@ class SongCell : TableViewCell {
     // virtual ~SongCell();
     SongCell(char const*, float, float);
 
-    void loadFromObject(SongObject*) = win 0xb3990, imac 0x235330;
+    void loadFromObject(SongObject*) = win 0xb3990, imac 0x235330, ios 0x1081fc;
     void onClick(cocos2d::CCObject* sender);
-    TodoReturn updateBGColor(int);
+    TodoReturn updateBGColor(int) = ios 0x10862c;
 
     virtual bool init() = m1 0x1f13c8, imac 0x241b80, ios 0x112de8;
     virtual void draw() = imac 0x241bc0, m1 0x1f13f8, ios 0x112e18;
@@ -19595,8 +19595,8 @@ class StatsCell : TableViewCell {
     StatsCell(char const*, float, float);
 
     TodoReturn getTitleFromKey(char const*);
-    void loadFromObject(StatsObject*) = win 0xb2630, imac 0x235030;
-    void updateBGColor(int);
+    void loadFromObject(StatsObject*) = win 0xb2630, imac 0x235030, ios 0x107ea4;
+    void updateBGColor(int) = ios 0x10819c;
 
     virtual bool init() = m1 0x1f05d8, imac 0x240e40, ios 0x112528;
     virtual void draw() = win 0xad710, imac 0x241930, m1 0x1f1224, ios 0x112c98;
