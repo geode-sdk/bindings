@@ -18808,7 +18808,7 @@ class ShareLevelLayer : FLAlertLayer {
         m_starButtons = nullptr;
     }
 
-    static ShareLevelLayer* create(GJGameLevel* level) = win inline, imac 0x26e170 {
+    static ShareLevelLayer* create(GJGameLevel* level) = win inline, imac 0x26e170, ios 0x27405c {
         auto ret = new ShareLevelLayer();
         if (ret->init(level)) {
             ret->autorelease();
@@ -18826,7 +18826,7 @@ class ShareLevelLayer : FLAlertLayer {
         if (menu) menu->addChild(btn);
         return btn;
     }
-    bool init(GJGameLevel* level) = win 0x4769e0;
+    bool init(GJGameLevel* level) = win 0x4769e0, ios 0x274118;
     void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onSettings(cocos2d::CCObject* sender) = win 0x477c40;
     void onShare(cocos2d::CCObject* sender) = win 0x477d90, imac 0x26f3c0, m1 0x21a7ec, ios 0x274ff8;
