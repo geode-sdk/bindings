@@ -6162,7 +6162,7 @@ class GameManager : GManager {
     TodoReturn removeCustomObject(int);
     TodoReturn removeIconDelegate(int);
     TodoReturn reorderKey(int, bool);
-    void reportAchievementWithID(char const*, int, bool) = win 0x17afd0, imac 0x366830, m1 0x2f9160;
+    void reportAchievementWithID(char const*, int, bool) = win 0x17afd0, imac 0x366830, m1 0x2f9160, ios 0x313e4c;
     void reportPercentageForLevel(int levelID, int percentage, bool isPlatformer) = win 0x17a5f0, ios 0x313a44;
     TodoReturn resetAchievement(gd::string);
     TodoReturn resetAdTimer();
@@ -6495,7 +6495,7 @@ class GameObject : CCSpritePlus {
         m_isDisabled2 = true;
         setOpacity(0);
     }
-    void determineSlopeDirection() = win 0x199340, m1 0x4e0550;
+    void determineSlopeDirection() = win 0x199340, m1 0x4e0550, ios 0x25c100;
     bool didScaleXChange();
     bool didScaleYChange();
     void dirtifyObjectPos();
@@ -6609,7 +6609,7 @@ class GameObject : CCSpritePlus {
     void updateCustomScaleX(float);
     void updateCustomScaleY(float);
     void updateHSVState();
-    void updateIsOriented() = win 0x19e7b0, imac 0x5b1730, m1 0x4ea58c;
+    void updateIsOriented() = win 0x19e7b0, imac 0x5b1730, m1 0x4ea58c, ios 0x260be4;
     TodoReturn updateMainColor();
     void updateMainColorOnly();
     void updateMainOpacity();
@@ -7205,7 +7205,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn incrementActivePath(int);
     TodoReturn incrementChallenge(GJChallengeType, int) = win 0x1df0f0;
     void incrementStat(char const*, int) = win 0x1d1500, imac 0x66960, m1 0x5afdc, ios 0x32c170;
-    TodoReturn incrementStat(char const*);
+    TodoReturn incrementStat(char const*) = ios 0x32c168;
     bool isGauntletChestUnlocked(int);
     bool isItemEnabled(UnlockType type, int id) = win inline, imac 0x773c0, m1 0x6ac58, ios 0x336220 {
         return this->isItemUnlocked(type, id) && m_enabledItems->valueForKey(this->getItemKey(id, (int)type))->boolValue();
@@ -7908,7 +7908,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
     GJGameEvent objectTypeToGameEvent(int) = win 0x22ce10, imac 0x1144d0, ios 0x1e804c;
     TodoReturn optimizeMoveGroups();
-    TodoReturn orderSpawnObjects();
+    TodoReturn orderSpawnObjects() = ios 0x209744;
     TodoReturn parentForZLayer(int, bool, int, int) = imac 0x10f720;
     void pauseAudio() = win 0x231d60, imac 0x141de0, ios 0x2009a4;
     TodoReturn performMathOperation(double, double, int);
@@ -8006,12 +8006,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void resetAudio() = win 0x231fc0, m1 0x119004, ios 0x2009f8;
     void resetCamera() = win 0x239570, imac 0x148d80;
     void resetGradientLayers() = win 0x21bbf0;
-    TodoReturn resetGroupCounters(bool);
+    TodoReturn resetGroupCounters(bool) = ios 0x1fe998;
     void resetLevelVariables() = win 0x234ab0, imac 0x147d80, m1 0x11dcf0, ios 0x2040bc;
     TodoReturn resetMoveOptimizedValue();
     void resetPlayer() = win 0x20cbf0, imac 0x112c30, ios 0x1e71bc;
     void resetSongTriggerValues();
-    TodoReturn resetSpawnChannelIndex() = win 0x23f890, imac 0x149100;
+    TodoReturn resetSpawnChannelIndex() = win 0x23f890, imac 0x149100, ios 0x204b10;
     void resetStaticCamera(bool, bool) = win 0x239850;
     TodoReturn resetStoppedAreaObjects();
     TodoReturn restoreAllUIObjects();
@@ -8105,7 +8105,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         else
             this->m_player2->toggleVisibility(visible);
     }
-    void togglePlayerVisibility(bool visible) = win inline {
+    void togglePlayerVisibility(bool visible) = win inline, ios 0x1feee8 {
         this->togglePlayerVisibility(visible, true);
         this->togglePlayerVisibility(visible, false);
     }
@@ -8944,7 +8944,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn postMoveActions() = win 0x259470, imac 0x2d4110, ios 0x180fc;
     TodoReturn preCollisionCheck() = imac 0x2cc370, ios 0x13ca4;
     TodoReturn prepareMoveActions(float, bool) = win 0x258060, imac 0x2d16c0, ios 0x16a74;
-    TodoReturn processColors() = win 0x253fb0, imac 0x2ca520;
+    TodoReturn processColors() = win 0x253fb0, imac 0x2ca520, ios 0x12d30;
     TodoReturn processCopyColorPulseActions() = imac 0x2cabf0;
     TodoReturn processInheritedColors() = imac 0x2ca840;
     TodoReturn processMoveCalculations();
@@ -8953,11 +8953,11 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn registerRotationCommand(GroupCommandObject2*, bool);
     TodoReturn removeAllPulseActions();
     TodoReturn removeColorAction(int);
-    TodoReturn removePersistentFromAllItems();
+    TodoReturn removePersistentFromAllItems() = ios 0x19ab4;
     TodoReturn removePersistentFromAllTimers();
     TodoReturn removeTriggeredID(int, int);
-    void reset() = win 0x253d10, imac 0x2c9190;
-    TodoReturn resetEffects() = win 0x254c90;
+    void reset() = win 0x253d10, imac 0x2c9190, ios 0x128dc;
+    TodoReturn resetEffects() = win 0x254c90, ios 0x12994;
     TodoReturn resetMoveActions();
     TodoReturn resetTempGroupCommands(bool);
     TodoReturn resetToggledGroups();
@@ -12237,7 +12237,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn pasteParticleState(ParticleGameObject*, cocos2d::CCArray*);
     void processLoadedMoveActions() = imac 0xb7920, m1 0xa7448;
     TodoReturn quickUpdateAllPositions() = win 0x2d70c0;
-    TodoReturn recreateGroups();
+    TodoReturn recreateGroups() = ios 0x36167c;
     void redoLastAction() = win inline {
         return this->handleAction(false, m_redoObjects);
     }
@@ -12253,7 +12253,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void resetObjectVector();
     TodoReturn resetPlayback();
     TodoReturn resetToggledGroups();
-    TodoReturn resetToggledGroupsAndObjects();
+    TodoReturn resetToggledGroupsAndObjects() = ios 0x361304;
     TodoReturn resetUnusedColorChannels();
     TodoReturn reverseKeyframeAnimationOrder(int);
     TodoReturn reverseObjectChanged(EffectGameObject*);
@@ -12272,7 +12272,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn toggleGround(bool) = imac 0xdf280;
     TodoReturn toggleGroupPreview(int, bool);
     TodoReturn toggleLockActiveLayer();
-    TodoReturn transferDefaultColors(GJEffectManager*, GJEffectManager*);
+    TodoReturn transferDefaultColors(GJEffectManager*, GJEffectManager*) = ios 0x35fdcc;
     TodoReturn triggerFollowCommand(EffectGameObject*);
     TodoReturn triggerPlayerFollowCommand(EffectGameObject*);
     TodoReturn triggerRotateCommand(EffectGameObject*);
@@ -12284,7 +12284,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn unlockAllLayers() = imac 0xe9c60;
     TodoReturn updateAnimateOnTriggerObjects(bool) = ios 0x358b20;
     TodoReturn updateArt(float);
-    TodoReturn updateBlendValues();
+    TodoReturn updateBlendValues() = ios 0x360b9c;
     void updateEditor(float) = win 0x2d0330, imac 0xddb40, m1 0xc53b8;
     void updateEditorMode() = win 0x2d2e10, imac 0xdeeb0, m1 0xc6370, ios 0x358880;
     void updateGameObjects() = imac 0xddf40, m1 0xc57c0, ios 0x357eb4;
@@ -13385,7 +13385,7 @@ class MenuGameLayer : cocos2d::CCLayer {
         return nullptr;
     }
 
-    void destroyPlayer() = win 0x31e480, imac 0x4e7c20, m1 0x449af8;
+    void destroyPlayer() = win 0x31e480, imac 0x4e7c20, m1 0x449af8, ios 0x3943f4;
     cocos2d::ccColor3B getBGColor(int) = win 0x31cde0, imac 0x4e6b60, m1 0x448bc0;
     void resetPlayer() = win 0x31d850, imac 0x4e7060, ios 0x393aec;
     void tryJump(float) = win 0x31d0b0, m1 0x448cc4, imac 0x4e6c00, ios 0x393788;

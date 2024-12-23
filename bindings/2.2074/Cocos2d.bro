@@ -3147,7 +3147,7 @@ class cocos2d {
     static float ccpAngleSigned(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static cocos2d::CCPoint ccpClamp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static cocos2d::CCPoint ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-    static float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
+    static float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = ios 0x1b1dec;
     static cocos2d::CCPoint ccpForAngle(float);
     static cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const& size) = ios inline {
         return ccp(size.width, size.height); // todo: not sure if this is correct (also this is only inline bcs i was lazy)
