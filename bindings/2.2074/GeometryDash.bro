@@ -926,7 +926,7 @@ class ButtonSprite : cocos2d::CCSprite {
         if (m_BGSprite) m_BGSprite->setColor(color);
     }
     void setString(char const*) = win 0x3fae0, imac 0x92a40, m1 0x85b60, ios 0x632ac; // ?
-    void updateBGImage(char const*) = win 0x3f520, imac 0x92e20, m1 0x85f00;
+    void updateBGImage(char const*) = win 0x3f520, imac 0x92e20, m1 0x85f00, ios 0x6364c;
     void updateSpriteBGSize() = win 0x3f660, imac 0x92190, m1 0x85368;
     void updateSpriteOffset(cocos2d::CCPoint offset) = win inline, imac 0x92f40, m1 0x8601c, ios 0x6375c {
         m_spritePosition = offset;
@@ -11198,7 +11198,7 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
     void onCancelFriendRequest(cocos2d::CCObject* sender);
     void onRemoveFriend(cocos2d::CCObject* sender);
     void onSendMessage(cocos2d::CCObject* sender);
-    void onUnblockUser(cocos2d::CCObject* sender);
+    void onUnblockUser(cocos2d::CCObject* sender) = ios 0x114254;
     void onViewFriendRequest(cocos2d::CCObject* sender);
     void onViewProfile(cocos2d::CCObject* sender);
     TodoReturn updateBGColor(int) = ios 0x10c4b0;
