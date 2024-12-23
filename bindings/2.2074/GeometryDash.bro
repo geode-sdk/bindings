@@ -11987,8 +11987,8 @@ class LabelGameObject : EffectGameObject {
     TodoReturn queueUpdateLabel(gd::string);
     TodoReturn removeLabel();
     TodoReturn unlockLabelColor();
-    TodoReturn updateLabel(float) = win 0x49af00;
-    TodoReturn updateLabel(gd::string) = imac 0x1b04c0;
+    void updateLabel(float);
+    void updateLabel(gd::string) = win 0x49af00, imac 0x1b04c0;
     TodoReturn updateLabelAlign(int);
     TodoReturn updateLabelIfDirty();
     TodoReturn updatePreviewLabel() = win 0x49ad40;
