@@ -1606,7 +1606,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
         delete ret;
         return nullptr;
     }
-    static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = win inline {
+    static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = win inline, ios 0x1a7110 {
         auto ret = new CCSpriteGrayscale();
         if (ret->initWithSpriteFrame(frame)) {
             ret->autorelease();
@@ -3218,10 +3218,10 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
     // virtual ~CustomSongCell();
     CustomSongCell(char const*, float, float);
 
-    void loadFromObject(SongInfoObject*) = win 0xb3f10, imac 0x2323a0, m1 0x1e2320;
+    void loadFromObject(SongInfoObject*) = win 0xb3f10, imac 0x2323a0, m1 0x1e2320, ios 0x105228;
     void onDelete(cocos2d::CCObject* sender);
     TodoReturn shouldReload();
-    void updateBGColor(int);
+    void updateBGColor(int) = ios 0x1053cc;
 
     virtual bool init() = m1 0x1f152c, imac 0x241da0, ios 0x112efc;
     virtual void draw() = imac 0x241fb0, m1 0x1f16b0, ios 0x113088;
@@ -7411,7 +7411,7 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
     }
     static cocos2d::CCScene* scene(GauntletType) = win 0x1f2920, m1 0x30fb40;
 
-    bool init(GauntletType) = win 0x1f2c50, m1 0x30fcf0, imac 0x37f7e0;
+    bool init(GauntletType) = win 0x1f2c50, m1 0x30fcf0, imac 0x37f7e0, ios 0x2320d4;
     void onBack(cocos2d::CCObject* sender) = win 0x1f4f00;
     void onLevel(cocos2d::CCObject* sender) = win 0x1f4880, imac 0x381320, m1 0x3116ec;
     void setupGauntlet(cocos2d::CCArray*) = win 0x1f3850, imac 0x37fea0, m1 0x310394;
@@ -10166,13 +10166,13 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
     // virtual ~GJRequestCell();
     GJRequestCell(char const*, float, float);
 
-    void loadFromScore(GJUserScore*) = win 0xbb640, imac 0x23a250;
+    void loadFromScore(GJUserScore*) = win 0xbb640, imac 0x23a250, ios 0x10cd28;
     TodoReturn markAsRead();
     void onDeleteRequest(cocos2d::CCObject* sender);
     void onToggle(cocos2d::CCObject* sender);
     void onViewFriendRequest(cocos2d::CCObject* sender);
     void onViewProfile(cocos2d::CCObject* sender);
-    TodoReturn updateBGColor(int);
+    TodoReturn updateBGColor(int) = ios 0x10cca8;
     TodoReturn updateToggle();
 
     virtual bool init() = m1 0x1f4348, imac 0x2456f0, ios 0x114c30;
@@ -18829,7 +18829,7 @@ class ShareLevelLayer : FLAlertLayer {
     bool init(GJGameLevel* level) = win 0x4769e0;
     void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onSettings(cocos2d::CCObject* sender) = win 0x477c40;
-    void onShare(cocos2d::CCObject* sender) = win 0x477d90, imac 0x26f3c0, m1 0x21a7ec;
+    void onShare(cocos2d::CCObject* sender) = win 0x477d90, imac 0x26f3c0, m1 0x21a7ec, ios 0x274ff8;
     void selectRating(cocos2d::CCObject*) = win 0x477ab0, m1 0x21aae0;
     void setupStars() = win 0x4776a0, m1 0x21a0b8;
 
