@@ -5961,7 +5961,7 @@ class GameManager : GManager {
     TodoReturn calculateBaseKeyForIcons();
     TodoReturn canShowRewardedVideo();
     TodoReturn checkSteamAchievementUnlock();
-    TodoReturn checkUsedIcons() = win 0x1811b0, imac 0x36b860;
+    TodoReturn checkUsedIcons() = win 0x1811b0, imac 0x36b860, ios 0x316a40;
     TodoReturn claimItemsResponse(gd::string);
     TodoReturn clearGJLog();
     cocos2d::ccColor3B colorForIdx(int) = win 0x17e330, imac 0x36c520, m1 0x2fdae8, ios 0x316f24;
@@ -6093,7 +6093,7 @@ class GameManager : GManager {
     TodoReturn iconAndTypeForKey(int, int&, int&);
     gd::string iconKey(int, IconType) = win 0x1792b0;
     UnlockType iconTypeToUnlockType(IconType) = win 0x1795c0, m1 0x2f7498, imac 0x364990, ios 0x312cb0;
-    bool isColorUnlocked(int, UnlockType) = win 0x1798c0, imac 0x364f40, m1 0x2f78a8;
+    bool isColorUnlocked(int, UnlockType) = win 0x1798c0, imac 0x364f40, m1 0x2f78a8, ios 0x312fb8;
     bool isIconLoaded(int, int) = imac 0x36d8f0;
     bool isIconUnlocked(int, IconType) = win 0x1794e0, imac 0x3648d0, m1 0x2f7388, ios 0x312be8;
     TodoReturn itemPurchased(char const*);
@@ -7210,7 +7210,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool isItemEnabled(UnlockType type, int id) = win inline, imac 0x773c0, m1 0x6ac58, ios 0x336220 {
         return this->isItemUnlocked(type, id) && m_enabledItems->valueForKey(this->getItemKey(id, (int)type))->boolValue();
     }
-    bool isItemUnlocked(UnlockType, int) = win 0x1e2850, imac 0x6b3b0;
+    bool isItemUnlocked(UnlockType, int) = win 0x1e2850, imac 0x6b3b0, ios 0x32fb64;
     bool isPathChestUnlocked(int);
     bool isPathUnlocked(StatKey);
     bool isSecretChestUnlocked(int);
