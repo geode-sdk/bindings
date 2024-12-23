@@ -4195,7 +4195,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateGroupIDLabel() = imac 0x2ccd0;
     void updateObjectInfoLabel() = win 0xe17c0, m1 0x2f208, imac 0x2f870;
     TodoReturn updatePlaybackBtn() = imac 0x2d5f0;
-    TodoReturn updateSlider() = win 0xe14a0;
+    TodoReturn updateSlider() = win 0xe14a0, ios 0x3dca34;
     TodoReturn updateSpecialUIElements();
     void updateZoom(float) = win 0x110ef0, m1 0x38b14;
     float valueFromXPos(float);
@@ -7983,7 +7983,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn recordAction(int, bool, bool);
     TodoReturn rectIntersectsCircle(cocos2d::CCRect, cocos2d::CCPoint, float);
     void refreshCounterLabels() = win 0x22fe50, imac 0x13dda0;
-    void refreshKeyframeAnims() = m1 0xecb14;
+    void refreshKeyframeAnims() = m1 0xecb14, ios 0x1e34f4;
     TodoReturn regenerateEnterEasingBuffers() = imac 0x106590;
     TodoReturn registerSpawnRemap(gd::vector<ChanceObject>&);
     TodoReturn registerStateObject(EffectGameObject*);
@@ -12139,9 +12139,9 @@ class LevelDownloadDelegate {
 [[link(android)]]
 class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     // virtual ~LevelEditorLayer();
-    LevelEditorLayer() = win 0x2c86d0;
+    LevelEditorLayer() = win 0x2c86d0, ios 0x3684d4;
 
-    static LevelEditorLayer* create(GJGameLevel*, bool) = win 0x2c9650, imac 0xdb210, m1 0xc3090;
+    static LevelEditorLayer* create(GJGameLevel*, bool) = win 0x2c9650, imac 0xdb210, m1 0xc3090, ios 0x3563b8;
 
     static LevelEditorLayer* get() {
         return GameManager::sharedState()->m_levelEditorLayer;
@@ -12216,7 +12216,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn getTriggerGroup(int);
     void handleAction(bool, cocos2d::CCArray*) = win 0x2cde30, imac 0xe3140, m1 0xca1b0;
     bool hasAction(bool);
-    bool init(GJGameLevel*, bool) = win 0x2c96e0, m1 0xc3124, imac 0xdb280;
+    bool init(GJGameLevel*, bool) = win 0x2c96e0, m1 0xc3124, imac 0xdb280, ios 0x35643c;
     bool isLayerLocked(int layer) {
         if (layer < 10000 && m_layerLockingEnabled) {
             return m_lockedLayers.at(layer);
@@ -12282,19 +12282,19 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         return this->handleAction(true, m_undoObjects);
     }
     TodoReturn unlockAllLayers() = imac 0xe9c60;
-    TodoReturn updateAnimateOnTriggerObjects(bool);
+    TodoReturn updateAnimateOnTriggerObjects(bool) = ios 0x358b20;
     TodoReturn updateArt(float);
     TodoReturn updateBlendValues();
     void updateEditor(float) = win 0x2d0330, imac 0xddb40, m1 0xc53b8;
-    void updateEditorMode() = win 0x2d2e10, imac 0xdeeb0, m1 0xc6370;
-    void updateGameObjects() = imac 0xddf40, m1 0xc57c0;
+    void updateEditorMode() = win 0x2d2e10, imac 0xdeeb0, m1 0xc6370, ios 0x358880;
+    void updateGameObjects() = imac 0xddf40, m1 0xc57c0, ios 0x357eb4;
     TodoReturn updateGridLayer();
     TodoReturn updateGridLayerParent();
     TodoReturn updateKeyframeObjects() = win 0x2d9490, imac 0xeb650;
     TodoReturn updateKeyframeVisibility(bool);
     void updateLevelFont(int) = win 0x2d66d0;
     void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x2d1790, imac 0xeb700;
-    void updateOptions() = win 0x2ca8f0, m1 0xc4394;
+    void updateOptions() = win 0x2ca8f0, m1 0xc4394, ios 0x357150;
     void updatePreviewAnim();
     void updatePreviewParticle(ParticleGameObject*) = imac 0x1a1820, m1 0x1642bc;
     void updatePreviewParticles();

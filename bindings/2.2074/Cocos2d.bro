@@ -2258,7 +2258,7 @@ class cocos2d::CCArray {
 
 [[link(win, android)]]
 class cocos2d::CCDictionary {
-    static cocos2d::CCDictionary* create() = m1 0x294464, imac 0x2fc010;
+    static cocos2d::CCDictionary* create() = m1 0x294464, imac 0x2fc010, ios 0x41c0c4;
     static cocos2d::CCDictionary* createWithContentsOfFile(char const*);
     static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*);
     static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
