@@ -6588,7 +6588,7 @@ class GameObject : CCSpritePlus {
     void setDefaultMainColorMode(int);
     void setDefaultSecondaryColorMode(int);
     void setGlowOpacity(unsigned char);
-    void setLastPosition(cocos2d::CCPoint const&) = imac 0x5b2aa0;
+    void setLastPosition(cocos2d::CCPoint const&) = imac 0x5b2aa0, ios 0x26167c;
     void setMainColorMode(int);
     void setSecondaryColorMode(int);
     void setupColorSprite(int, bool);
@@ -7799,7 +7799,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn claimMoveAction(int, bool);
     TodoReturn claimParticle(gd::string, int);
     TodoReturn claimRotationAction(int, int, float&, float&, bool, bool);
-    TodoReturn clearActivatedAudioTriggers();
+    TodoReturn clearActivatedAudioTriggers() = ios 0x204818;
     TodoReturn clearPickedUpItems();
     TodoReturn collectedObject(EffectGameObject*);
     void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x20f480, imac 0x116130, ios 0x1e9420;
@@ -7892,8 +7892,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void lightningFlash(cocos2d::CCPoint to, cocos2d::ccColor3B color);
     void lightningFlash(cocos2d::CCPoint from, cocos2d::CCPoint to, cocos2d::ccColor3B color, float lineWidth, float duration, int displacement, bool flash, float opacity) = win 0x240770, imac 0x110c50, m1 0xf089c, ios 0x1e5a24;
     TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
-    void loadLevelSettings() = win 0x234770, imac 0x147920, m1 0x11d8c0;
-    void loadStartPosObject() = win 0x230000;
+    void loadLevelSettings() = win 0x234770, imac 0x147920, m1 0x11d8c0, ios 0x203d78;
+    void loadStartPosObject() = win 0x230000, ios 0x1feaec;
     void loadUpToPosition(float, int, int) = win 0x2301a0;
     TodoReturn maxZOrderForShaderZ(int);
     TodoReturn minZOrderForShaderZ(int);
@@ -8027,7 +8027,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn rotateObject(GameObject*, float);
     void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
     void setGroupParent(GameObject*, int) = imac 0x12d370;
-    void setStartPosObject(StartPosObject* startPos) = win inline {
+    void setStartPosObject(StartPosObject* startPos) = win inline, ios 0x1e7374 {
         if (startPos != m_startPosObject) {
             if (startPos) {
                 startPos->retain();
@@ -8056,7 +8056,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn speedForShaderTarget(int) = win 0x21e250;
     cocos2d::CCArray* staticObjectsInRect(cocos2d::CCRect, bool) = win 0x20bda0;
     TodoReturn stopAllGroundActions();
-    TodoReturn stopCameraShake();
+    TodoReturn stopCameraShake() = ios 0x20569c;
     TodoReturn stopCustomEnterEffect(EnterEffectObject*, bool);
     TodoReturn stopCustomEnterEffect(EnterEffectObject*);
     TodoReturn stopSFXTrigger(SFXTriggerGameObject*);
@@ -8086,7 +8086,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void switchToRobotMode(PlayerObject*, GameObject*, bool) = imac 0x113cd0;
     void switchToRollMode(PlayerObject*, GameObject*, bool) = imac 0x113c20;
     void switchToSpiderMode(PlayerObject*, GameObject*, bool) = imac 0x113d80, m1 0xf35b0;
-    void syncBGTextures() = win 0x234a10, imac 0x147c70, m1 0x11dbd8;
+    void syncBGTextures() = win 0x234a10, imac 0x147c70, m1 0x11dbd8, ios 0x204004;
     void teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x20aa80, imac 0x110400, m1 0xf00d8;
     TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
     void toggleAudioVisualizer(bool) = win 0x242550, m1 0xe2354;
@@ -8167,7 +8167,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateLayerCapacity(gd::string) = ios 0x1df99c;
     TodoReturn updateLegacyLayerCapacity(int, int, int, int);
     void updateLevelColors() = win 0x207150, m1 0xe5144, imac 0x103350, ios 0x1dec94;
-    void updateMaxGameplayY() = win 0x234930, imac 0x147b20;
+    void updateMaxGameplayY() = win 0x234930, imac 0x147b20, ios 0x203ec4;
     TodoReturn updateMGArtSpeed(float, float);
     void updateMGOffsetY(float, float, int, float, int, int) = win 0x230950;
     TodoReturn updateOBB2(cocos2d::CCRect) = win 0x6da50;
@@ -8185,7 +8185,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateStaticCameraPosToGroup(int, bool, bool, bool, float, float, int, float, bool, float) = win 0x2388b0;
     TodoReturn updateTimeMod(float, bool, bool) = ios 0x1e7bf4;
     TodoReturn updateTimerLabels() = win 0x22fae0, ios 0x1fe480;
-    void updateZoom(float, float, int, float, int, int) = win 0x230590;
+    void updateZoom(float, float, int, float, int, int) = win 0x230590, ios 0x1fef38;
     TodoReturn visitWithColorFlash();
     TodoReturn volumeForProximityEffect(SFXTriggerInstance&) = win 0x23c060;
 
@@ -12183,7 +12183,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn duplicateKeyframeAnimation(int);
     TodoReturn fastUpdateDisabledGroups();
     int findGameObject(int);
-    TodoReturn findStartPosObject();
+    TodoReturn findStartPosObject() = ios 0x362134;
     TodoReturn forceShowSelectedObjects(bool);
     TodoReturn fullUpdateDisabledGroups();
     TodoReturn getAllObjects();
@@ -12297,7 +12297,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateOptions() = win 0x2ca8f0, m1 0xc4394, ios 0x357150;
     void updatePreviewAnim();
     void updatePreviewParticle(ParticleGameObject*) = imac 0x1a1820, m1 0x1642bc;
-    void updatePreviewParticles();
+    void updatePreviewParticles() = ios 0x35fd34;
     TodoReturn updateToggledGroups();
     TodoReturn validGroup(GameObject*, bool);
 
@@ -20169,7 +20169,7 @@ class UILayer : cocos2d::CCLayerColor {
 
     void disableMenu() = imac 0x4b5c30, ios 0x4d7f4;
     void doPause() = imac 0x4b63b0, ios 0x4dbf8;
-    TodoReturn editorPlaytest(bool);
+    TodoReturn editorPlaytest(bool) = ios 0x4d808;
     void enableEditorMode();
     TodoReturn enableMenu() = ios 0x4dc44;
     void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x4b4c40, imac 0x4b5d70, m1 0x41de7c, ios 0x4d858;
