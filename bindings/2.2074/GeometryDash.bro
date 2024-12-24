@@ -210,7 +210,7 @@ class AchievementCell : TableViewCell {
     virtual bool init() = m1 0x1ec614, imac 0x23c930, ios 0x10ebb4;
     virtual void draw() = imac 0x23c940, m1 0x1ec61c, ios 0x10ebbc;
 
-    void loadFromDict(cocos2d::CCDictionary*) = win 0xac150, imac 0x230eb0;
+    void loadFromDict(cocos2d::CCDictionary*) = win 0xac150, imac 0x230eb0, m1 0x1e0ec4;
     void updateBGColor(int);
 }
 
@@ -11309,7 +11309,7 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
     virtual void uploadActionFailed(int, int) = win 0xbb3e0, m1 0x1f3ea8, imac 0x2450a0, ios 0x114a74;
     virtual void onClosePopup(UploadActionPopup*) = win 0xbb4b0, imac 0x245210, m1 0x1f4010, ios 0x114b0c;
 
-    void loadFromScore(GJUserScore*) = win 0xb9f70, imac 0x239a60;
+    void loadFromScore(GJUserScore*) = win 0xb9f70, imac 0x239a60, m1 0x1e9a54;
     void onCancelFriendRequest(cocos2d::CCObject* sender);
     void onRemoveFriend(cocos2d::CCObject* sender) = m1 0x1f3644, imac 0x2447c0;
     void onSendMessage(cocos2d::CCObject* sender);
@@ -19900,7 +19900,7 @@ class StatsCell : TableViewCell {
     virtual void draw() = win 0xad710, imac 0x241930, m1 0x1f1224, ios 0x112c98;
 
     TodoReturn getTitleFromKey(char const*) = m1 0x1f05e0, imac 0x240e50;
-    void loadFromObject(StatsObject*) = win 0xb2630, imac 0x235030;
+    void loadFromObject(StatsObject*) = win 0xb2630, imac 0x235030, m1 0x1e50c0;
     void updateBGColor(int);
 }
 
