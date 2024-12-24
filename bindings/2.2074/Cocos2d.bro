@@ -209,7 +209,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f3e0;
     static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f3e0;
 
-    bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f530, m1 0x4b5ffc;
+    bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f6e0, m1 0x4b6180;
     bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f530, m1 0x4b5ffc;
 
     bool getDontOpacityFade() const;
