@@ -59,7 +59,7 @@ class cocos2d::CCEaseInOut : cocos2d::CCEaseRateAction {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBackIn : cocos2d::CCActionEase {
-    static cocos2d::CCEaseBackIn* create(cocos2d::CCActionInterval*) = m1 0x46082c, imac 0x501240;
+    static cocos2d::CCEaseBackIn* create(cocos2d::CCActionInterval*) = m1 0x460c04, imac 0x501240;
 
     // CCEaseBackIn(cocos2d::CCEaseBackIn const&);
     // CCEaseBackIn();
@@ -71,7 +71,7 @@ class cocos2d::CCEaseBackIn : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBackOut : cocos2d::CCActionEase {
-    static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*) = m1 0x460c04, imac 0x501430;
+    static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*) = m1 0x460de8, imac 0x501430;
 
     // CCEaseBackOut(cocos2d::CCEaseBackOut const&);
     // CCEaseBackOut();
@@ -82,8 +82,32 @@ class cocos2d::CCEaseBackOut : cocos2d::CCActionEase {
 }
 
 [[link(win, android)]]
+class cocos2d::CCEaseBackInOut : cocos2d::CCActionEase {
+    static cocos2d::CCEaseBackInOut* create(cocos2d::CCActionInterval*) = m1 0x460fd8, imac 0x501630;
+
+    // CCEaseBackInOut(cocos2d::CCEaseBackInOut const&);
+    // CCEaseBackInOut();
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x461080, imac 0x5016d0;
+    virtual void update(float) = m1 0x461168, imac 0x5017d0;
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x4611fc, imac 0x501860;
+}
+
+[[link(win, android)]]
+class cocos2d::CCEaseBounceIn : cocos2d::CCEaseBounce {
+    static cocos2d::CCEaseBounceIn* create(cocos2d::CCActionInterval*) = m1 0x4602b4, imac 0x5009b0;
+
+    // CCEaseBounceIn(cocos2d::CCEaseBounceIn const&);
+    // CCEaseBounceIn();
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x46035c, imac 0x500a50, ios 0x26bfe4;
+    virtual void update(float) = m1 0x460444, imac 0x500b50, ios 0x26c0ac;
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x460554, imac 0x500c30, ios 0x26c0ec;
+}
+
+[[link(win, android)]]
 class cocos2d::CCEaseBounceOut : cocos2d::CCEaseBounce {
-    static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*) = imac 0x500c50;
+    static cocos2d::CCEaseBounceOut* create(cocos2d::CCActionInterval*) = imac 0x500c50, m1 0x460574;
 
     // CCEaseBounceOut(cocos2d::CCEaseBounceOut const&);
     // CCEaseBounceOut();
@@ -91,6 +115,18 @@ class cocos2d::CCEaseBounceOut : cocos2d::CCEaseBounce {
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x46061c, imac 0x500cf0, ios 0x26c19c;
     virtual void update(float) = imac 0x500df0, m1 0x460704, ios 0x26c264;
     virtual cocos2d::CCActionInterval* reverse() = imac 0x500eb0, m1 0x46080c, ios 0x26c290;
+}
+
+[[link(win, android)]]
+class cocos2d::CCEaseBounceInOut : cocos2d::CCEaseBounce {
+    static cocos2d::CCEaseBounceInOut* create(cocos2d::CCActionInterval*) = m1 0x46082c, imac 0x500ed0;
+
+    // CCEaseBounceInOut(cocos2d::CCEaseBounceInOut const&);
+    // CCEaseBounceInOut();
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x4608d4, imac 0x500f70;
+    virtual void update(float) = m1 0x4609bc, imac 0x501070;
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x460be4, imac 0x501220;
 }
 
 [[link(win, android)]]
@@ -322,7 +358,7 @@ class cocos2d::CCRemoveSelf : cocos2d::CCActionInstant {
 [[link(win, android)]]
 class cocos2d::CCScaleBy : cocos2d::CCScaleTo {
     static cocos2d::CCScaleBy* create(float, float) = imac 0x3a7430, m1 0x3339d0;
-    static cocos2d::CCScaleBy* create(float, float, float);
+    static cocos2d::CCScaleBy* create(float, float, float) = m1 0x333a68, imac 0x3a74f0;
 
     // CCScaleBy(cocos2d::CCScaleBy const&);
     // CCScaleBy();
@@ -346,6 +382,31 @@ class cocos2d::CCScaleTo : cocos2d::CCActionInterval {
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x3337fc, imac 0x3a7250, ios 0x18fb38;
     virtual void update(float) = imac 0x3a73d0, m1 0x333960, ios 0x18fc90;
     virtual void startWithTarget(cocos2d::CCNode*) = m1 0x3338f4, imac 0x3a7360, ios 0x18fc24;
+}
+
+[[link(win, android)]]
+class cocos2d::CCSkewBy : cocos2d::CCSkewTo {
+    static cocos2d::CCSkewBy* create(float, float, float) = m1 0x33249c, imac 0x3a5bd0;
+
+    // CCSkewBy(cocos2d::CCSkewBy const&);
+    // CCSkewBy();
+
+    virtual void startWithTarget(cocos2d::CCNode*) = m1 0x33257c, imac 0x3a5d00;
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x332658, imac 0x3a5e10;
+    virtual bool initWithDuration(float, float, float) = m1 0x332550, imac 0x3a5cb0;
+}
+
+[[link(win, android)]]
+class cocos2d::CCSkewTo : cocos2d::CCActionInterval {
+    static cocos2d::CCSkewTo* create(float, float, float) = m1 0x332154, imac 0x3a57d0;
+
+    // CCSkewTo(cocos2d::CCSkewTo const&);
+    // CCSkewTo();
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x332248, imac 0x3a5900;
+    virtual void update(float) = m1 0x332410, imac 0x3a5b30;
+    virtual void startWithTarget(cocos2d::CCNode*) = m1 0x332328, imac 0x3a59e0;
+    virtual bool initWithDuration(float, float, float) = m1 0x332220, imac 0x3a58c0;
 }
 
 [[link(win, android)]]
@@ -3043,7 +3104,7 @@ class cocos2d::CCMenuItem : cocos2d::CCNodeRGBA {
 
     // CCMenuItem(cocos2d::CCMenuItem const&);
     // CCMenuItem();
-    cocos2d::CCRect rect();
+    cocos2d::CCRect rect() = m1 0x337934, imac 0x3abb30;
 
     virtual void activate() = imac 0x3abaa0, m1 0x3378a8, ios 0x506b4;
     virtual void selected() = m1 0x337824, imac 0x3aba10, ios 0x50630;
@@ -3115,7 +3176,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
 [[link(win, android)]]
 class cocos2d::CCRotateBy : cocos2d::CCActionInterval {
     static cocos2d::CCRotateBy* create(float, float) = imac 0x3a4bb0, m1 0x33167c;
-    static cocos2d::CCRotateBy* create(float, float, float);
+    static cocos2d::CCRotateBy* create(float, float, float) = m1 0x331744, imac 0x3a4cb0;
 
     bool initWithDuration(float, float);
     bool initWithDuration(float, float, float);
@@ -3132,7 +3193,7 @@ class cocos2d::CCRotateBy : cocos2d::CCActionInterval {
 [[link(win, android)]]
 class cocos2d::CCRotateTo : cocos2d::CCActionInterval {
     static cocos2d::CCRotateTo* create(float, float) = imac 0x3a46d0, m1 0x331280;
-    static cocos2d::CCRotateTo* create(float, float, float);
+    static cocos2d::CCRotateTo* create(float, float, float) = m1 0x33134c, imac 0x3a47d0;
 
     bool initWithDuration(float, float);
     bool initWithDuration(float, float, float);
