@@ -1020,16 +1020,38 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 class CCAnimateFrameCache : cocos2d::CCObject {
     // virtual ~CCAnimateFrameCache();
 
-    static CCAnimateFrameCache* sharedSpriteFrameCache() = win 0x41450;
+    static CCAnimateFrameCache* sharedSpriteFrameCache() = win 0x41450, m1 0x4ab09c, imac 0x5542d0;
 
-    void addCustomSpriteFramesWithFile(char const*);
-    TodoReturn addDict(cocos2d::CCDictionary*, char const*);
-    TodoReturn addDict(DS_Dictionary*, char const*);
-    void addSpriteFramesWithFile(char const*) = win 0x414e0;
-    bool init();
-    TodoReturn purgeSharedSpriteFrameCache();
-    void removeSpriteFrames();
-    TodoReturn spriteFrameByName(char const*);
+    void addCustomSpriteFramesWithFile(char const*) = m1 0x4ab2a0, imac 0x554510;
+    cocos2d::CCDictionary* addDict(cocos2d::CCDictionary*, char const*) = m1 0x4abdb0, imac 0x5551e0;
+    cocos2d::CCDictionary* addDict(DS_Dictionary*, char const*) = win 0x41670, m1 0x4ac488, imac 0x5558b0;
+    cocos2d::CCDictionary* addSpriteFramesWithFile(char const*) = win 0x414e0, m1 0x4ac224, imac 0x555650;
+    bool init() = win inline, m1 0x4ab130, imac 0x554370 {
+        m_animateFrames = cocos2d::CCDictionary::create();
+        m_animateFrames->retain();
+        m_unk040 = cocos2d::CCDictionary::create();
+        m_unk040->retain();
+        m_animateDescriptions = cocos2d::CCDictionary::create();
+        m_animateDescriptions->retain();
+        return true;
+    }
+    void purgeSharedSpriteFrameCache() = win inline, m1 0x4ab174, imac 0x5543c0 {
+        auto** instancePtr = reinterpret_cast<CCAnimateFrameCache**>(geode::base::get() + 0x6a4e10);
+        if (*instancePtr) {
+            (*instancePtr)->release();
+            *instancePtr = nullptr;
+        }
+    }
+    void removeSpriteFrames() = win inline, m1 0x4acbf4, imac 0x556030 {
+        m_animateFrames->removeAllObjects();
+        m_unk040->removeAllObjects();
+        m_animateDescriptions->removeAllObjects();
+    }
+    cocos2d::CCArray* spriteFrameByName(char const*) = win 0x41c40, m1 0x4acc24, imac 0x556060;
+
+    cocos2d::CCDictionary* m_animateFrames;
+    cocos2d::CCDictionary* m_unk040;
+    cocos2d::CCDictionary* m_animateDescriptions;
 }
 
 [[link(android)]]
@@ -7981,7 +8003,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn claimParticle(gd::string, int);
     TodoReturn claimRotationAction(int, int, float&, float&, bool, bool);
     TodoReturn clearActivatedAudioTriggers() = imac 0x148ac0;
-    TodoReturn clearPickedUpItems() = m1 0x292260;
+    TodoReturn clearPickedUpItems();
     TodoReturn collectedObject(EffectGameObject*);
     void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x20f480, imac 0x116130, m1 0xf5554;
     TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
