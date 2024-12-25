@@ -4787,7 +4787,6 @@ class EnhancedGameObject : GameObject {
     bool m_hasCustomRotation;
     // property 98
     bool m_disableRotation;
-    PAD = android32 0x3, win 0x3, android64 0x3, mac 0x3;
 
     // property 97
     float m_rotationSpeed;
@@ -4826,7 +4825,6 @@ class EnhancedGameObject : GameObject {
     bool m_activatedByPlayer1;
     bool m_activatedByPlayer2;
     bool m_hasUniqueCoin;
-    cocos2d::ccColor3B m_unkAnimationColor;
 }    
 
 [[link(android)]]
