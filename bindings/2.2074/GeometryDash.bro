@@ -4770,6 +4770,8 @@ class EnhancedGameObject : GameObject {
     void updateUserCoin() = win 0x1a3970, imac 0x5a9770, m1 0x4e3b94;
     TodoReturn waitForAnimationTrigger();
 
+    // Everyone loves itanium padding
+    bool m_unknownPadding;
     bool m_poweredOn;
     int m_state;
     int m_animationRandomizedStartValue;
