@@ -14974,13 +14974,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void incrementJumps() = win 0x376e10, imac 0x3f1bf0, m1 0x3728d8;
     bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x370a00, imac 0x3e8970, m1 0x36a954;
     bool isBoostValid(float);
-    bool isFlying() = win inline, imac 0x3efb00 {
+    bool isFlying() = win inline, m1 0x37097c, imac 0x3efb00 {
         return m_isShip || m_isBird || m_isDart || m_isSwing;
     }
-    bool isInBasicMode() = win inline, imac 0x3fcbc0 {
+    bool isInBasicMode() = win inline, m1 0x37b8c8, imac 0x3fcbc0 {
         return !this->isFlying() && !m_isBall && !m_isSpider;
     }
-    bool isInNormalMode() = win inline, imac 0x3ee1c0 {
+    bool isInNormalMode() = win inline, m1 0x36f5a8, imac 0x3ee1c0 {
         return !this->isFlying() && !m_isBall && !m_isRobot && !m_isSpider;
     }
     bool isSafeFlip(float);
