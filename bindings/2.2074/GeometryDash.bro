@@ -8286,9 +8286,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         }
         this->toggleGlitter(true);
     }
-    void switchToRobotMode(PlayerObject*, GameObject*, bool) = imac 0x113cd0;
-    void switchToRollMode(PlayerObject*, GameObject*, bool) = imac 0x113c20;
-    void switchToSpiderMode(PlayerObject*, GameObject*, bool) = imac 0x113d80, m1 0xf35b0;
+    void switchToRobotMode(PlayerObject*, GameObject*, bool) = win 0x20d760, imac 0x113cd0, m1 0xf3504;
+    void switchToRollMode(PlayerObject*, GameObject*, bool) = win 0x20d940, imac 0x113c20, m1 0xf3458;
+    void switchToSpiderMode(PlayerObject*, GameObject*, bool) = win 0x20d850, imac 0x113d80, m1 0xf35b0;
     void syncBGTextures() = win 0x234a10, imac 0x147c70, m1 0x11dbd8;
     void teleportPlayer(TeleportPortalObject*, PlayerObject*) = win 0x20aa80, imac 0x110400, m1 0xf00d8;
     TodoReturn testInstantCountTrigger(int, int, int, bool, int, gd::vector<int> const&, int, int);
