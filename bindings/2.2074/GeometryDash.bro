@@ -15097,7 +15097,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void toggleRollMode(bool, bool) = win 0x3857e0, imac 0x406e60, m1 0x384a4c;
     void toggleSpiderMode(bool, bool) = win 0x385ce0, imac 0x4076c0, m1 0x38525c;
     void toggleSwingMode(bool, bool) = win 0x384d90, imac 0x405d60, m1 0x383a5c;
-    void toggleVisibility(bool) = win 0x3756d0, imac 0x3f1460;
+    void toggleVisibility(bool) = win 0x3756d0, imac 0x3f1460, m1 0x37219c;
     TodoReturn touchedObject(GameObject*) = imac 0x40ad70;
     void tryPlaceCheckpoint() = m1 0x371f50;
     TodoReturn unrotateGameplayObject(GameObject*) = win 0x37b8b0;
