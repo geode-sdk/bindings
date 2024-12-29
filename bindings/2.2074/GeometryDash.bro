@@ -11625,13 +11625,29 @@ class GraphicsReloadLayer : cocos2d::CCLayer {
 [[link(android)]]
 class GravityEffectSprite : cocos2d::CCSprite {
     // virtual ~GravityEffectSprite();
+    GravityEffectSprite() {}
 
-    static GravityEffectSprite* create();
+    static GravityEffectSprite* create() = win inline, m1 0x9d8c0, imac 0xacad0, ios 0x119108 {
+        auto ret = new GravityEffectSprite();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual bool init() = imac 0xbfa30, m1 0xae348, ios 0x126114;
-    virtual void draw() = m1 0xae56c, imac 0xbfc90, ios 0x126338;
+    virtual bool init() = win 0x3a4390, imac 0xbfa30, m1 0xae348, ios 0x126114;
+    virtual void draw() = m1 0xae56c, imac 0xbfc90, ios 0x126338 {}
 
-    TodoReturn updateSpritesColor(cocos2d::ccColor3B);
+    void updateSpritesColor(cocos2d::ccColor3B color) = win inline, m1 0xa97a4, imac 0xba240, ios 0x121f34 {
+        if (auto gravityBatchNode = this->getChildByTag(1)) {
+            auto children = gravityBatchNode->getChildren();
+            for (int i = 0; i < children->count(); i++) {
+                static_cast<cocos2d::CCSprite*>(children->objectAtIndex(i))->setColor(color);
+            }
+        }
+    }
 }
 
 [[link(android), depends(KeyframeObject)]]
