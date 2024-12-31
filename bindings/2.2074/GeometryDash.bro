@@ -4162,7 +4162,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn getGroupInfo(GameObject*, cocos2d::CCArray*, int&, int&, int&);
     cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint) = win 0x11e6f0;
     CCMenuItemSpriteExtra* getModeBtn(char const*, int);
-    cocso2d::CCNode* getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*) = win 0x116f30;
+    cocos2d::CCNode* getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*) = win 0x116f30;
     TodoReturn getRandomStartKey(int);
     TodoReturn getRelativeOffset(GameObject*) = imac 0x4dc100;
     cocos2d::CCArray* getSelectedObjects() = win 0x10f780, m1 0x37eac, imac 0x3d330;
