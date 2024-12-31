@@ -4193,9 +4193,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onColorFilter(cocos2d::CCObject* sender);
     void onCopy(cocos2d::CCObject* sender);
     void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0;
-    bool onCreate() = win 0x10dd10, imac 0x2e600;
+    bool onCreate() = win 0x10dd10, m1 0x2dfac, imac 0x2e600;
     void onCreateButton(cocos2d::CCObject* sender) = win 0x10d880, imac 0x34d30, m1 0x342c0;
-    void onCreateObject(int) = win 0x10df10;
+    void onCreateObject(int) = win 0x10df10, m1 0x34758, imac 0x35170;
     void onDelete(cocos2d::CCObject* sender) = win 0xe4760;
     void onDeleteAll(cocos2d::CCObject* sender);
     void onDeleteCustomItem(cocos2d::CCObject* sender) = win 0xe2e80;
@@ -4737,11 +4737,11 @@ class EndLevelLayer : GJDropDownLayer {
     virtual void enterAnimFinished() = m1 0x418a60, imac 0x4afd90, ios 0x2f8174 {}
     virtual void keyUp(cocos2d::enumKeyCodes) = m1 0x419320, imac 0x4b06b0, ios 0x2f8980 {}
 
-    TodoReturn coinEnterFinished(cocos2d::CCPoint) = win 0x134230;
-    TodoReturn coinEnterFinishedO(cocos2d::CCObject*) = win 0x1341f0;
-    TodoReturn currencyEnterFinished();
-    TodoReturn diamondEnterFinished();
-    TodoReturn getCoinString() = win 0x132d30, m1 0x4174b8, imac 0x4ae840;
+    void coinEnterFinished(cocos2d::CCPoint) = win 0x134230, m1 0x418e98, imac 0x4b0230;
+    void coinEnterFinishedO(cocos2d::CCObject*) = win 0x1341f0, m1 0x418e4c, imac 0x4b01f0;
+    void currencyEnterFinished();
+    void diamondEnterFinished();
+    gd::string getCoinString() = win 0x132d30, m1 0x4174b8, imac 0x4ae840;
     const char* getEndText() = win 0x135190, m1 0x6c7abc, imac 0x4aea80;
     void goEdit() = win 0x1336e0;
     bool init(PlayLayer* playLayer);
@@ -4757,8 +4757,8 @@ class EndLevelLayer : GJDropDownLayer {
     void playDiamondEffect(float) = win 0x1349f0;
     void playEndEffect() = win 0x134e80;
     void playStarEffect(float) = win 0x133ab0;
-    TodoReturn starEnterFinished() = win 0x133e50;
-    TodoReturn tryShowBanner(float);
+    void starEnterFinished() = win 0x133e50;
+    void tryShowBanner(float);
 
     PlayLayer* m_playLayer;
     bool m_notLocal;

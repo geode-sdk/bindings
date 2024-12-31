@@ -3065,7 +3065,7 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
     void addSpriteFramesWithFile(char const*, char const*);
     void addSpriteFramesWithFile(char const*) = imac 0x308940, m1 0x29f998;
     void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*);
-    void removeSpriteFrameByName(char const*);
+    void removeSpriteFrameByName(char const*) = m1 0x2a0020, imac 0x308e80;
     void removeSpriteFrames();
     void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*);
     void removeSpriteFramesFromFile(char const*);
