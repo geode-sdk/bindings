@@ -811,9 +811,9 @@ class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
         m_templatePage = 0;
     }
 
-    static BrowseSmartKeyLayer* create(GJSmartTemplate* template, gd::string key) = win inline {
+    static BrowseSmartKeyLayer* create(GJSmartTemplate*, gd::string) = win inline {
         auto ret = new BrowseSmartKeyLayer();
-        if (ret->init(template, key)) {
+        if (ret->init(p0, p1)) {
             ret->autorelease();
             return ret;
         }
@@ -848,9 +848,9 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
         m_dotsArray = nullptr;
     }
 
-    static BrowseSmartTemplateLayer* create(GJSmartTemplate* template, SmartBrowseFilter filter) = win inline {
+    static BrowseSmartTemplateLayer* create(GJSmartTemplate*, SmartBrowseFilter) = win inline {
         auto ret = new BrowseSmartTemplateLayer();
-        if (ret->init(template, filter)) {
+        if (ret->init(p0, p1)) {
             ret->autorelease();
             return ret;
         }
