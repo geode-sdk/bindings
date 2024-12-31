@@ -811,22 +811,28 @@ class CCIndexPath : cocos2d::CCObject {
 }
 
 [[link(android)]]
-class CCLightFlash {
+class CCLightFlash : cocos2d::CCNode {
 	// virtual ~CCLightFlash();
 
 	static CCLightFlash* create();
 
-	TodoReturn cleanupFlash();
-	TodoReturn fadeAndRemove();
-	TodoReturn getFlashP();
-	TodoReturn getFlashZ();
-	TodoReturn playEffect(cocos2d::CCPoint, cocos2d::ccColor3B, float, float, float, float, float, float, float, float, float, float, float, float, float, float, int, bool, bool, float);
-	TodoReturn removeLights();
-	TodoReturn showFlash();
+	void cleanupFlash();
+	void fadeAndRemove();
+	void playEffect(cocos2d::CCPoint, cocos2d::ccColor3B, float, float, float, float, float, float, float, float, float, float, float, float, float, float, int, bool, bool, float);
+	void removeLights();
+	void showFlash();
 
 	virtual bool init();
+	virtual cocos2d::CCNode* getFlashP() const;
 	virtual void setFlashP(cocos2d::CCNode*);
+	virtual int getFlashZ() const;
 	virtual void setFlashZ(int);
+
+	cocos2d::CCArray* m_lightStripArray;
+	cocos2d::CCLayerColor* m_layerColor;
+	bool m_dontFadeOut;
+	cocos2d::CCNode* m_mainLayer; // m_flashP
+	int m_layerColorZOrder; // m_flashZ
 }
 
 [[link(android)]]
@@ -5785,7 +5791,7 @@ class PlayerObject : GameObject {
 	TodoReturn removePendingCheckpoint();
 	TodoReturn resetAllParticles() = win 0xda110;
 	void resetCollisionLog();
-	TodoReturn resetPlayerIcon();
+	void resetPlayerIcon();
 	TodoReturn resetStreak();
 	TodoReturn ringJump();
 	TodoReturn runBallRotation(float);
