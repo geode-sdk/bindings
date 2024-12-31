@@ -6595,7 +6595,7 @@ class GameManager : GManager {
 [[link(android)]]
 class GameObject : CCSpritePlus {
     // virtual ~GameObject();
-    GameObject() = win 0x135ba0;
+    GameObject() = win 0x135ba0, m1 0x199f78, imac 0x1e2350, ios 0x22ee90;
     static GameObject* createWithFrame(char const* name) = win 0x18aca0, imac 0x58a280, m1 0x4d7884;
     static GameObject* createWithKey(int) = win 0x188850, imac 0x585720, m1 0x4d73bc;
     static GameObject* objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x19a260, m1 0x4e2090;
