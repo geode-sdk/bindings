@@ -4706,11 +4706,11 @@ class EndLevelLayer : GJDropDownLayer {
     virtual void enterAnimFinished() = m1 0x418a60, imac 0x4afd90, ios 0x2f8174 {}
     virtual void keyUp(cocos2d::enumKeyCodes) = m1 0x419320, imac 0x4b06b0, ios 0x2f8980 {}
 
-    TodoReturn coinEnterFinished(cocos2d::CCPoint) = win 0x134230;
-    TodoReturn coinEnterFinishedO(cocos2d::CCObject*) = win 0x1341f0;
-    TodoReturn currencyEnterFinished();
-    TodoReturn diamondEnterFinished();
-    TodoReturn getCoinString() = win 0x132d30, m1 0x4174b8, imac 0x4ae840;
+    void coinEnterFinished(cocos2d::CCPoint) = win 0x134230;
+    void coinEnterFinishedO(cocos2d::CCObject*) = win 0x1341f0;
+    void currencyEnterFinished();
+    void diamondEnterFinished();
+    gd::string getCoinString() = win 0x132d30, m1 0x4174b8, imac 0x4ae840;
     const char* getEndText() = win 0x135190, m1 0x6c7abc, imac 0x4aea80;
     void goEdit() = win 0x1336e0;
     bool init(PlayLayer* playLayer);
@@ -4726,8 +4726,8 @@ class EndLevelLayer : GJDropDownLayer {
     void playDiamondEffect(float) = win 0x1349f0;
     void playEndEffect() = win 0x134e80;
     void playStarEffect(float) = win 0x133ab0;
-    TodoReturn starEnterFinished() = win 0x133e50;
-    TodoReturn tryShowBanner(float);
+    void starEnterFinished() = win 0x133e50;
+    void tryShowBanner(float);
 
     PlayLayer* m_playLayer;
     bool m_notLocal;
