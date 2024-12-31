@@ -38,7 +38,19 @@ class ChanceObject {
     int m_groupID;
     int m_oldGroupID;
     int m_chance;
-    int m_unk010;
+    int m_unk00c;
+}
+
+class SmartPrefabResult {
+	GJSmartPrefab* m_smartPrefab;
+	gd::string m_binaryKey;
+	gd::string m_prefabKey;
+	int m_prefabCount;
+	bool m_unrequired;
+	int m_rotation;
+	bool m_flipX;
+	bool m_flipY;
+	bool m_ignoreCorners;
 }
 
 class GameObjectPhysics {

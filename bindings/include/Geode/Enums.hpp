@@ -363,7 +363,6 @@ enum class GJAreaActionType {};
 enum class GJSmartDirection {};
 enum class SmartBlockType {};
 enum class TouchTriggerControl {};
-enum class SmartPrefabResult {};
 enum class AudioSortType {
     NameAscending = 0,
     NameDescending = 1,
