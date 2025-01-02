@@ -3740,4 +3740,4 @@ class cocos2d::CCConfiguration {
 void kmGLLoadIdentity() = imac 0x1f6010, m1 0x1abafc;
 void kmGLMatrixMode(unsigned int mode) = imac 0x1f5f60, m1 0x1aba44;
 void kmGLMultMatrix(const kmMat4* pIn) = imac 0x1f6070, m1 0x1abb60;
-const kmMat4* kmMat4OrthographicProjection(kmMat4* pOut, float left, float right, float bottom, float top, float nearVal, float farVal) = imac 0x3c1240, m1 0x34a914;
+kmMat4* kmMat4OrthographicProjection(kmMat4* pOut, float left, float right, float bottom, float top, float nearVal, float farVal) = imac 0x3c1240, m1 0x34a914;
