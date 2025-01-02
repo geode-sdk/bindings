@@ -10295,13 +10295,13 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 class GJPathSprite : CCSpriteCOpacity {
     // virtual ~GJPathSprite();
 
-    static GJPathSprite* create(int) = win 0x281720, m1 0x284ad4;
+    static GJPathSprite* create(int) = win 0x281720, m1 0x284ad4, imac 0x2ea590;
 
-    void addRankLabel(int) = m1 0x288c2c;
+    void addRankLabel(int) = m1 0x288c2c, imac 0x2eeb50;
     void addShardSprite() = win 0x281d90, imac 0x2ee610, m1 0x2886c0;
     void changeToLockedArt() = win 0x281ad0, imac 0x2ed5b0, m1 0x287840;
-    bool init(int) = imac 0x2eea20;
-    void updateState() = m1 0x284b80;
+    bool init(int) = m1 0x288b0c, imac 0x2eea20;
+    void updateState() = win 0x2818f0, m1 0x284b80, imac 0x2ea630;
 
     int m_pathNumber;
 }
