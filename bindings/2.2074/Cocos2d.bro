@@ -1737,7 +1737,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void setNextScene() = imac 0x470340;
     void setNotificationNode(cocos2d::CCNode*) = m1 0x3e07d4, imac 0x471a70;
     void setOpenGLView(cocos2d::CCEGLView*);
-    void setProjection(cocos2d::ccDirectorProjection);
+    void setProjection(cocos2d::ccDirectorProjection) = imac 0x46fc80, m1 0x3ded3c;
     void setSceneReference(cocos2d::CCScene*);
     void setSmoothFix(bool);
     void setSmoothFixCheck(bool);
@@ -3736,3 +3736,8 @@ class cocos2d::CCConfiguration {
 	bool supportsPVRTC() const;
 	bool supportsShareableVAO() const;
 }
+
+void kmGLLoadIdentity() = imac 0x1f6010, m1 0x1abafc;
+void kmGLMatrixMode(unsigned int mode) = imac 0x1f5f60, m1 0x1aba44;
+void kmGLMultMatrix(const kmMat4* pIn) = imac 0x1f6070, m1 0x1abb60;
+kmMat4* const kmMat4OrthographicProjection(kmMat4* pOut, float left, float right, float bottom, float top, float nearVal, float farVal) = imac 0x3c1240, m1 0x34a914;
