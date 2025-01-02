@@ -811,22 +811,28 @@ class CCIndexPath : cocos2d::CCObject {
 }
 
 [[link(android)]]
-class CCLightFlash {
+class CCLightFlash : cocos2d::CCNode {
 	// virtual ~CCLightFlash();
 
 	static CCLightFlash* create();
 
-	TodoReturn cleanupFlash();
-	TodoReturn fadeAndRemove();
-	TodoReturn getFlashP();
-	TodoReturn getFlashZ();
-	TodoReturn playEffect(cocos2d::CCPoint, cocos2d::ccColor3B, float, float, float, float, float, float, float, float, float, float, float, float, float, float, int, bool, bool, float);
-	TodoReturn removeLights();
-	TodoReturn showFlash();
+	void cleanupFlash();
+	void fadeAndRemove();
+	void playEffect(cocos2d::CCPoint, cocos2d::ccColor3B, float, float, float, float, float, float, float, float, float, float, float, float, float, float, int, bool, bool, float);
+	void removeLights();
+	void showFlash();
 
 	virtual bool init();
+	virtual cocos2d::CCNode* getFlashP() const;
 	virtual void setFlashP(cocos2d::CCNode*);
+	virtual int getFlashZ() const;
 	virtual void setFlashZ(int);
+
+	cocos2d::CCArray* m_lightStripArray;
+	cocos2d::CCLayerColor* m_layerColor;
+	bool m_dontFadeOut;
+	cocos2d::CCNode* m_mainLayer; // m_flashP
+	int m_layerColorZOrder; // m_flashZ
 }
 
 [[link(android)]]
@@ -1634,7 +1640,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 }
 
 [[link(android)]]
-class DrawGridLayer {
+class DrawGridLayer : cocos2d::CCLayer {
 	// virtual ~DrawGridLayer();
 
 	static DrawGridLayer* create(cocos2d::CCNode*, LevelEditorLayer*) = win 0x92db0;
@@ -1645,22 +1651,43 @@ class DrawGridLayer {
 	TodoReturn addToGuides(GameObject*);
 	TodoReturn addToSpeedObjects(GameObject*);
 	TodoReturn clearPlayerPoints();
-	TodoReturn getActiveGridNodeSize();
 	TodoReturn getPortalMinMax(GameObject*);
-	TodoReturn getTimeNeedsUpdate();
 	bool init(cocos2d::CCNode*, LevelEditorLayer*) = win 0x92e60;
 	TodoReturn loadTimeMarkers(gd::string);
 	TodoReturn removeFromEffects(GameObject*);
 	TodoReturn removeFromGuides(GameObject*);
 	TodoReturn removeFromSpeedObjects(GameObject*);
 	TodoReturn sortSpeedObjects();
-	float timeForXPos(float);
+	float timeForXPos(float) = win 0x934f0;
 	TodoReturn updateTimeMarkers();
 	float xPosForTime(float);
 
 	virtual void update(float);
 	virtual void draw() = win 0x93710;
+	virtual bool getTimeNeedsUpdate() const;
+	virtual float getActiveGridNodeSize() const;
 	virtual void setActiveGridNodeSize(float);
+
+	float m_songOffset1;
+	float m_songOffset2;
+	float m_lastMusicXPosition;
+	LevelEditorLayer* m_levelEditorLayer;
+	gd::string m_guidelineString;
+	cocos2d::CCNode* m_gameLayer;
+	cocos2d::CCArray* m_timeMarkers;
+	cocos2d::CCArray* m_effectObjects;
+	cocos2d::CCArray* m_guideObjects;
+	cocos2d::CCArray* m_speedObjects;
+	cocos2d::CCArray* m_playerNodePoints;
+	cocos2d::CCArray* m_player2NodePoints;
+	double m_dUnused1;
+	float m_guidelineSpacing;
+	float m_slowGuidelineSpacing;
+	float m_normalGuidelineSpacing;
+	float m_fastGuidelineSpacing;
+	float m_fasterGuidelineSpacing;
+	bool m_timeNeedsUpdate;
+	float m_activeGridNodeSize;
 }
 
 [[link(android)]]
@@ -1756,6 +1783,12 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3f570;
 	virtual void customSetup() = win 0x3e3d0;
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+
+	bool m_exiting;
+	CCMenuItemSpriteExtra* m_audioOnBtn;
+	CCMenuItemSpriteExtra* m_audioOffBtn;
+	LevelEditorLayer* m_levelEditorLayer;
+	PAD = android32 0x20; // this chunk appears completely unused, but does exist
 }
 
 [[link(android)]]
@@ -5785,7 +5818,7 @@ class PlayerObject : GameObject {
 	TodoReturn removePendingCheckpoint();
 	TodoReturn resetAllParticles() = win 0xda110;
 	void resetCollisionLog();
-	TodoReturn resetPlayerIcon();
+	void resetPlayerIcon() = win 0xdf1b0;
 	TodoReturn resetStreak();
 	TodoReturn ringJump();
 	TodoReturn runBallRotation(float);
@@ -5807,12 +5840,12 @@ class PlayerObject : GameObject {
 	TodoReturn stopRotation(bool);
 	TodoReturn storeCollision(bool, int);
 	TodoReturn switchedToMode(GameObjectType);
-	TodoReturn toggleBirdMode(bool) = win 0xdec10;
-	TodoReturn toggleDartMode(bool) = win 0xdee80;
-	TodoReturn toggleFlyMode(bool) = win 0xdea20;
+	void toggleBirdMode(bool) = win 0xdec10;
+	void toggleDartMode(bool) = win 0xdee80;
+	void toggleFlyMode(bool) = win 0xdea20;
 	TodoReturn toggleGhostEffect(GhostType) = win 0xe06b0;
 	TodoReturn togglePlayerScale(bool) = win 0xe12e0;
-	TodoReturn toggleRollMode(bool) = win 0xdf490;
+	void toggleRollMode(bool) = win 0xdf490;
 	TodoReturn touchedObject(GameObject*);
 	TodoReturn tryPlaceCheckpoint();
 	void updateCheckpointTest();
@@ -6987,7 +7020,7 @@ class SongsLayer {
 class SpeedObject : cocos2d::CCNode {
 	// virtual ~SpeedObject();
 
-	static SpeedObject* create(int, float);
+	static SpeedObject* create(int, float) = win 0xf43f0;
 
 	bool init(int, float);
 
