@@ -3851,7 +3851,16 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-    EditLevelLayer() {}
+    EditLevelLayer() {
+        m_buttonMenu = nullptr;
+        m_level = nullptr;
+        m_textInputs = nullptr;
+        m_folderLabel = nullptr;
+        m_exiting = false;
+        m_levelType = GJLevelType::Default;
+        m_levelName = "";
+        m_descriptionPopup = nullptr;
+    }
     virtual ~EditLevelLayer() = win 0xd3c10;
 
     static EditLevelLayer* create(GJGameLevel* level) = win inline {
@@ -13051,7 +13060,14 @@ class LevelOptionsLayer2 : LevelOptionsLayer {
 [[link(android)]]
 class LevelPage : cocos2d::CCLayer, DialogDelegate {
     // virtual ~LevelPage();
-    LevelPage() {}
+    LevelPage() {
+        m_isBusy = false;
+        m_level = nullptr;
+        m_levelMenu = nullptr;
+        m_levelDisplaySize = cocos2d::CCSize {};
+        m_coinObject = nullptr;
+        m_secretDoor = nullptr;
+    }
 
     static LevelPage* create(GJGameLevel* level) = win inline, imac 0x41fda0, m1 0x39b290 {
         auto ret = new LevelPage();
