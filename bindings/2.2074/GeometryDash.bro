@@ -3851,7 +3851,16 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
-    EditLevelLayer() {}
+    EditLevelLayer() {
+        m_buttonMenu = nullptr;
+        m_level = nullptr;
+        m_textInputs = nullptr;
+        m_folderLabel = nullptr;
+        m_exiting = false;
+        m_levelType = GJLevelType::Default;
+        m_levelName = "";
+        m_descriptionPopup = nullptr;
+    }
     virtual ~EditLevelLayer() = win 0xd3c10;
 
     static EditLevelLayer* create(GJGameLevel* level) = win inline {
@@ -4328,7 +4337,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateGroupIDLabel() = imac 0x2ccd0;
     void updateObjectInfoLabel() = win 0xe17c0, m1 0x2f208, imac 0x2f870;
     TodoReturn updatePlaybackBtn() = imac 0x2d5f0;
-    TodoReturn updateSlider() = win 0xe14a0;
+    void updateSlider() = win 0xe14a0;
     TodoReturn updateSpecialUIElements();
     void updateZoom(float) = win 0x110ef0, m1 0x38b14;
     float valueFromXPos(float);
@@ -13098,7 +13107,14 @@ class LevelOptionsLayer2 : LevelOptionsLayer {
 [[link(android)]]
 class LevelPage : cocos2d::CCLayer, DialogDelegate {
     // virtual ~LevelPage();
-    LevelPage() {}
+    LevelPage() {
+        m_isBusy = false;
+        m_level = nullptr;
+        m_levelMenu = nullptr;
+        m_levelDisplaySize = cocos2d::CCSize {};
+        m_coinObject = nullptr;
+        m_secretDoor = nullptr;
+    }
 
     static LevelPage* create(GJGameLevel* level) = win inline, imac 0x41fda0, m1 0x39b290 {
         auto ret = new LevelPage();
@@ -18656,7 +18672,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     cocos2d::CCArray* createToggleValueControl(int, gd::string, cocos2d::CCPoint, bool, int, int, float) = win 0x45e900, imac 0x228c00, m1 0x1da5ec;
     cocos2d::CCArray* createToggleValueControlAdvanced(int, gd::string, cocos2d::CCPoint, bool, int, int, float, float, float, cocos2d::CCPoint) = imac 0x228d30, m1 0x1da73c;
     cocos2d::CCArray* createValueControl(int, gd::string, cocos2d::CCPoint, float, float, float) = win 0x45db40;
-    cocos2d::CCArray* createValueControlAdvanced(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float, float, int, int, GJInputStyle, int, bool) = win 0x45dc30, imac 0x227b30, m1 0x1d9550;
+    cocos2d::CCArray* createValueControlAdvanced(int property, gd::string label, cocos2d::CCPoint position, float scale, bool unk1, InputValueType valueType, int unk2, bool unk3, float sliderMin, float sliderMax, int page, int group, GJInputStyle inputStyle, int decimalPlaces, bool unk4) = win 0x45dc30, imac 0x227b30, m1 0x1d9550;
     cocos2d::CCArray* createValueControlWArrows(int, gd::string, cocos2d::CCPoint, float);
     cocos2d::CCArray* getGroupContainer(int);
     float getMaxSliderValue(int);
