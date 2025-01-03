@@ -2226,9 +2226,9 @@ class CheckpointGameObject : EffectGameObject {
 [[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState)]]
 class CheckpointObject : cocos2d::CCNode {
     // virtual ~CheckpointObject();
-    CheckpointObject() = win 0x38e330, imac 0xcaa60;
+    CheckpointObject() = win 0x38e330, m1 0xb4190, imac 0xcaa60;
 
-    static CheckpointObject* create() = win inline, imac inline {
+    static CheckpointObject* create() = win inline, m1 0xab538, imac 0xbc3a0 {
         auto ret = new CheckpointObject();
         if (ret->init()) {
             ret->autorelease();
@@ -15693,7 +15693,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn colorObject(int, cocos2d::ccColor3B);
     TodoReturn commitJumps();
     TodoReturn compareStateSnapshot();
-    CheckpointObject* createCheckpoint() = win 0x39e150, imac 0xbbd00;
+    CheckpointObject* createCheckpoint() = win 0x39e150, m1 0xab024, imac 0xbbd00;
     void createObjectsFromSetupFinished() = win 0x396a10, imac 0xb7490, m1 0xa6fc4;
     void delayedFullReset() = imac 0xbead0, m1 0xad4a0;
     void delayedResetLevel() = win 0x3a1de0, m1 0xaa970, imac 0xbb590;
