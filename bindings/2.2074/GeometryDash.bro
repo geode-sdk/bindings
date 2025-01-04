@@ -1089,8 +1089,9 @@ class CCAnimateFrameCache : cocos2d::CCObject {
 class CCBlockLayer : cocos2d::CCLayerColor {
     // virtual ~CCBlockLayer();
 
-    CCBlockLayer() {
-        m_unknown = nullptr;
+    CCBlockLayer() = win 0x42360 {
+        m_closeOnHide = false;
+        m_forcePrioRegistered = false;
     }
     static CCBlockLayer* create();
 
@@ -1116,7 +1117,8 @@ class CCBlockLayer : cocos2d::CCLayerColor {
     void decrementForcePrio() = m1 0x461924, imac 0x502150;
     void incrementForcePrio();
 
-    void* m_unknown;
+    bool m_closeOnHide;
+    bool m_forcePrioRegistered;
 }
 
 [[link(android)]]
@@ -3952,7 +3954,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
     static EditorPauseLayer* create(LevelEditorLayer*) = win inline, m1 0x228ae4, imac 0x27f120 {
         auto ret = new EditorPauseLayer();
-        if (ret && ret->init(LevelEditorLayer::get())) {
+        if (ret && ret->init(p0)) {
             ret->autorelease();
             return ret;
         }
@@ -3965,7 +3967,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     virtual void customSetup() = win 0xd9020, imac 0x27fa70, m1 0x2296c0, ios 0x394ef0;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xdcfa0, imac 0x282f80, m1 0x22c834, ios 0x397610;
 
-    TodoReturn doResetUnused() = win 0x2d2b80;
+    void doResetUnused();
     bool init(LevelEditorLayer*) = win 0xd8990, imac 0x27f220, m1 0x228bbc;
     void onAlignX(cocos2d::CCObject* sender) = win 0xdb9e0;
     void onAlignY(cocos2d::CCObject* sender) = win 0xdba10;
@@ -12615,7 +12617,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn resetPlayback();
     TodoReturn resetToggledGroups();
     TodoReturn resetToggledGroupsAndObjects();
-    TodoReturn resetUnusedColorChannels();
+    void resetUnusedColorChannels() = win 0x2d2b80;
     TodoReturn reverseKeyframeAnimationOrder(int);
     TodoReturn reverseObjectChanged(EffectGameObject*);
     TodoReturn rotationForSlopeNearObject(GameObject*) = imac 0xe1170;
@@ -14812,9 +14814,12 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     // virtual ~PauseLayer();
-    PauseLayer() = win inline {}
+    PauseLayer() = win inline {
+        m_unfocused = false;
+        m_tryingQuit = false;
+    }
 
-    static PauseLayer* create(bool p0) = win inline, m1 0x34c250, imac 0x3c2f60 {
+    static PauseLayer* create(bool) = win inline, m1 0x34c250, imac 0x3c2f60 {
         auto ret = new PauseLayer();
         if (ret && ret->init(p0)) {
             ret->autorelease();
@@ -14832,12 +14837,12 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
     TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
     void goEdit() = win 0x368b80, m1 0x34df78, imac 0x3c4cc0;
-    bool init(bool p0) = win inline {
-        m_unkBool1 = p0;
+    bool init(bool) = win inline {
+        m_unfocused = p0;
         return CCBlockLayer::init();
     }
     void musicSliderChanged(cocos2d::CCObject*) = win 0x3683c0, imac 0x3c4870, m1 0x34daec;
-    void onEdit(cocos2d::CCObject* sender) = win 0x3687e0, m1 0x34de9c, imac 0x3c4be0;
+    void onEdit(cocos2d::CCObject* sender) = win 0x368990, m1 0x34de9c, imac 0x3c4be0;
     void onHelp(cocos2d::CCObject* sender);
     void onNormalMode(cocos2d::CCObject* sender) = win 0x368530, m1 0x34d904, imac 0x3c4670;
     void onPracticeMode(cocos2d::CCObject* sender) = win 0x368450, m1 0x34d8ac, imac 0x3c4610;
@@ -14849,14 +14854,14 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onResume(cocos2d::CCObject* sender) = win 0x368610, m1 0x34d950, imac 0x3c46c0;
     void onSettings(cocos2d::CCObject* sender) = win 0x3677d0, m1 0x34dac8, imac 0x3c4840;
     void onTime(cocos2d::CCObject* sender);
-    void onTryEdit(cocos2d::CCObject* sender) = m1 0x34d760, imac 0x3c44c0;
+    void onTryEdit(cocos2d::CCObject* sender) = win 0x3687e0, m1 0x34d760, imac 0x3c44c0;
     void setupProgressBars();
     void sfxSliderChanged(cocos2d::CCObject*) = win 0x35cd70, m1 0x34db2c, imac 0x3c48b0;
     void tryQuit(cocos2d::CCObject* sender) = win 0x368c50, m1 0x34d988, imac 0x3c4700;
     TodoReturn tryShowBanner(float);
 
-    bool m_unkBool1;
-    bool m_unkBool2;
+    bool m_unfocused;
+    bool m_tryingQuit;
 }
 
 [[link(android)]]
