@@ -3989,7 +3989,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onResume(cocos2d::CCObject* sender) = win 0xdc140, m1 0x22b2c4, imac 0x2818a0;
     void onSave(cocos2d::CCObject* sender) = win 0xdcbf0, m1 0x22b42c, imac 0x2819f0;
     void onSaveAndExit(cocos2d::CCObject* sender) = win 0xdcd20, imac 0x281980, m1 0x22b3c0;
-    void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xdc9a0, imac 0x281910, m1 0x22b330;
+    void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xdc9a0, imac 0x281910, m1 0x22b330, ios 0x3968e0;
     void onSelectAll(cocos2d::CCObject* sender) = win 0xdb870;
     void onSelectAllLeft(cocos2d::CCObject* sender) = win 0xdb9a0, m1 0x22ba48, imac 0x2820b0;
     void onSelectAllRight(cocos2d::CCObject* sender) = win 0xdb9c0, m1 0x22ba58, imac 0x2820d0;
@@ -14313,7 +14313,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     TodoReturn getSongDownloadKey(int);
     void getSongInfo(int, bool) = win 0x328180, imac 0x574190, m1 0x4c82e0;
     TodoReturn getSongInfoKey(int);
-    SongInfoObject* getSongInfoObject(int) = win 0x329b70, imac 0x574030, m1 0x4c8188 ios 0x157b4c;
+    SongInfoObject* getSongInfoObject(int) = win 0x329b70, imac 0x574030, m1 0x4c8188, ios 0x157b4c;
     TodoReturn getSongPriority();
     void handleIt(bool, gd::string, gd::string, GJHttpType) = imac 0x572fd0, m1 0x4c7150;
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
