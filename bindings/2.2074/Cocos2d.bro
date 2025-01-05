@@ -3736,3 +3736,16 @@ class cocos2d::CCConfiguration {
 	bool supportsPVRTC() const;
 	bool supportsShareableVAO() const;
 }
+
+[[link(win, android)]]
+class cocos2d::CCPoolManager {
+	// CCPoolManager();
+	void addObject(cocos2d::CCObject*);
+	void finalize();
+	cocos2d::CCAutoreleasePool* getCurReleasePool();
+	void pop();
+	static void purgePoolManager();
+	void push();
+	void removeObject(cocos2d::CCObject*);
+	static cocos2d::CCPoolManager* sharedPoolManager();
+}
