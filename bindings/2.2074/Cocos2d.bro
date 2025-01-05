@@ -2235,7 +2235,7 @@ class cocos2d::CCArray {
     void fastRemoveObjectAtIndexChild(unsigned int);
     void fastRemoveObjectAtIndexNew(unsigned int);
     unsigned int indexOfObject(cocos2d::CCObject*) const;
-    void insertObject(cocos2d::CCObject*, unsigned int);
+    void insertObject(cocos2d::CCObject*, unsigned int) = ios 0x2494f4;
     bool isEqualToArray(cocos2d::CCArray*);
     // cocos2d::CCObject* lastObject();
     // cocos2d::CCObject* objectAtIndex(unsigned int) = imac 0x709d40;
@@ -2278,7 +2278,7 @@ class cocos2d::CCDictionary {
     char const* charForKey(gd::string const&);
     unsigned int count() = imac 0x2f9d20, m1 0x292434;
     cocos2d::CCObject* objectForKey(gd::string const&) = imac 0x2fa0b0, m1 0x29288c;
-    cocos2d::CCObject* objectForKey(intptr_t) = imac 0x2fa440, m1 0x292b98;
+    cocos2d::CCObject* objectForKey(intptr_t) = imac 0x2fa440, m1 0x292b98, ios 0x41aba8;
     cocos2d::CCObject* randomObject();
     void removeAllObjects();
     void removeObjectForElememt(cocos2d::CCDictElement*) = imac 0x2fb910;

@@ -5134,7 +5134,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         if (channel)
             channel->setPaused(true);
     }
-    TodoReturn pitchForIdx(int);
+    TodoReturn pitchForIdx(int) = ios 0x13e698;
     void playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10, imac 0x3d1ba0, m1 0x358870, ios 0x13ea50;
     void playEffect(gd::string path) = win 0x56d90, m1 0x3587c0, imac 0x3d1b10, ios 0x13e9b4;
     void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0, ios 0x13d8c4;
@@ -7373,13 +7373,13 @@ class GameToolbox {
     static TodoReturn multipliedColorValue(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
     static TodoReturn openAppPage();
     static TodoReturn openRateURL(gd::string, gd::string);
-    static cocos2d::CCParticleSystemQuad* particleFromString(gd::string const& str, cocos2d::CCParticleSystemQuad* system, bool p2) = win inline, imac 0x4e2ed0, m1 0x4451a0 {
+    static cocos2d::CCParticleSystemQuad* particleFromString(gd::string const& str, cocos2d::CCParticleSystemQuad* system, bool p2) = win inline, imac 0x4e2ed0, m1 0x4451a0, ios 0x4b190 {
         cocos2d::ParticleStruct ret;
         GameToolbox::particleStringToStruct(str, ret);
         return GameToolbox::particleFromStruct(ret, system, p2);
     }
-    static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool) = win 0x68000, imac 0x4e2fe0, m1 0x44528c;
-    static void particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&) = win 0x67540, imac 0x4e1f80, m1 0x444354;
+    static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool) = win 0x68000, imac 0x4e2fe0, m1 0x44528c, ios 0x4b264;
+    static void particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&) = win 0x67540, imac 0x4e1f80, m1 0x444354, ios 0x4a7fc;
     static gd::string pointsToString(int) = win 0x69760, m1 0x446d4c;
     static void postClipVisit() = ios 0x47a90;
     static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = win 0x645c0, imac 0x4dbc50, m1 0x43ed28, ios 0x479ac;
@@ -7744,7 +7744,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     }
 
     void activateCustomRing(RingObject*);
-    TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
+    TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float) = ios 0x207e20;
     TodoReturn activateEventTrigger(EventLinkTrigger*, gd::vector<int> const&);
     TodoReturn activateItemCompareTrigger(ItemTriggerGameObject*, gd::vector<int> const&) = win 0x22eed0;
     void activateItemEditTrigger(ItemTriggerGameObject*) = win 0x22eaf0;
@@ -7850,7 +7850,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn getFollowSpeedVal(GameObject*, int, int, float, float);
     float getGroundHeight(PlayerObject*, int);
     TodoReturn getGroundHeightForMode(int) = win 0x20c890;
-    TodoReturn getGroup(int) = win 0x21eed0;
+    TodoReturn getGroup(int) = win 0x21eed0, ios 0x1e39cc;
     TodoReturn getGroupParent(int);
     TodoReturn getGroupParentsString(GameObject*);
     TodoReturn getItemValue(int, int) = win 0x22ea60;
@@ -7859,7 +7859,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float getMinPortalY() = win 0x20e1d0, ios 0x1e8680;
     float getModifiedDelta(float) = win 0x232060, imac 0x141ee0, m1 0x119084, ios 0x200a54;
     TodoReturn getMoveTargetDelta(EffectGameObject*, bool);
-    TodoReturn getOptimizedGroup(int);
+    TodoReturn getOptimizedGroup(int) = ios 0x1f4024;
     PlayerObject* getOtherPlayer(PlayerObject*) = imac 0x1128b0;
     TodoReturn getParticleKey(int, char const*, int, cocos2d::tCCPositionType);
     TodoReturn getParticleKey2(gd::string);
@@ -7874,7 +7874,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn getScaledGroundHeight(float);
     TodoReturn getSingleGroupObject(int);
     TodoReturn getSpecialKey(int, bool, bool);
-    TodoReturn getStaticGroup(int);
+    TodoReturn getStaticGroup(int) = ios 0x1f4088;
     TodoReturn getStickyGroup(int);
     TodoReturn getTargetFlyCameraY(GameObject*);
     TodoReturn getTargetGroup(int, int);
@@ -8163,7 +8163,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateGuideArt() = win 0x240130, ios 0x201694;
     TodoReturn updateInternalCamOffsetX(float, float, float);
     TodoReturn updateInternalCamOffsetY(float, float, float);
-    void updateKeyframeOrder(int) = imac 0x13b9d0, m1 0x11403c;
+    void updateKeyframeOrder(int) = imac 0x13b9d0, m1 0x11403c, ios 0x1fd218;
     TodoReturn updateLayerCapacity(gd::string) = ios 0x1df99c;
     TodoReturn updateLegacyLayerCapacity(int, int, int, int);
     void updateLevelColors() = win 0x207150, m1 0xe5144, imac 0x103350, ios 0x1dec94;
