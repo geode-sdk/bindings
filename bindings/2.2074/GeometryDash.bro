@@ -7439,7 +7439,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn unlockOnlineChest(gd::string);
     TodoReturn unlockPathChest(int);
     TodoReturn unlockSecretChest(int) = imac 0x8ba60;
-    TodoReturn unlockSpecialChest(gd::string);
+    GJRewardItem* unlockSpecialChest(gd::string) = win 0x1e7250, m1 0x6b8c8, imac 0x77ff0;
     TodoReturn updateActivePath(StatKey);
     gd::string usernameForAccountID(int);
     void verifyPathAchievements() = win 0x1d1f80;
