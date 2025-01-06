@@ -10,6 +10,7 @@
 // GEODE_MEMBER_CHECK(PlayerObject, m_playerColor1, 0x7c2);
 
 // // EditorUI
+GEODE_SIZE_CHECK(EditorUI, 0x588);
 // GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x1a0);
 // GEODE_MEMBER_CHECK(EditorUI, m_scaleControl, 0x208);
 // GEODE_MEMBER_CHECK(EditorUI, m_swipeEnabled, 0x23c);
