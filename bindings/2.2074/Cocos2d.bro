@@ -3743,7 +3743,7 @@ class cocos2d::CCPoolManager {
 	void addObject(cocos2d::CCObject*);
 	void finalize();
 	cocos2d::CCAutoreleasePool* getCurReleasePool();
-	void pop();
+	void pop() = m1 0x367288, imac 0x3e4f70;
 	static void purgePoolManager();
 	void push();
 	void removeObject(cocos2d::CCObject*);
