@@ -4348,9 +4348,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void zoomIn(cocos2d::CCObject*) = win 0x110e50, imac 0xced0, m1 0xe218;
     void zoomOut(cocos2d::CCObject*) = win 0x110ea0, imac 0xcf20, m1 0xe270;
 
-
-    PAD = win 0x40, android32 0x1c, android64 0x38, mac 0x28, ios 0x28;
-
+    gd::unordered_map<int, GameObjectEditorState> m_objectEditorStates;
     GJTransformState m_transformState;
     bool m_isPlayingMusic;
     EditButtonBar* m_buttonBar;
@@ -4453,10 +4451,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool m_isDraggingCamera;
     void* m_unk540;
     int m_selectedTab;
-    PAD = win 0x3c;
-    bool m_unk3b4;
-
-    PAD = win 0x8;
+    PAD = win 0x3c, android 0x3c, mac 0x3c, ios 0x3c;
+    bool m_pressedSpace;
+    float m_editorZoom;
+    bool m_isPaused;
+    bool m_reloadItems;
 }
 
 [[link(android)]]
