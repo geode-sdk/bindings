@@ -20750,7 +20750,7 @@ class UILayer : cocos2d::CCLayerColor {
     void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x4b4c40, imac 0x4b5d70, m1 0x41de7c;
     bool init(GJBaseGameLayer*) = win 0x4b3f20, m1 0x41cbc4, imac 0x4b49b0;
     bool isJumpButtonPressed(bool) = imac 0x4b6720, m1 0x41e598;
-    void onCheck(cocos2d::CCObject* sender);
+    void onCheck(cocos2d::CCObject* sender) = win 0x4b54d0, imac 0x4b5230, m1 0x41d3e8;
     void onDeleteCheck(cocos2d::CCObject* sender);
     void onPause(cocos2d::CCObject* sender) = win 0x4b53c0, m1 0x41d39c, imac 0x4b51e0;
     void processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*);
