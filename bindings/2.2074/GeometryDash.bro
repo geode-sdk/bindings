@@ -15025,16 +15025,16 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = win 0x370960, imac 0x3e88e0, m1 0x36a89c;
 
     virtual void update(float) = win 0x373010, imac 0x3eb270, m1 0x36cf1c, ios 0x21a2d0;
-    virtual void setScaleX(float) = win 0x38cac0, m1 0x38871c, imac 0x40b0c0, ios 0x22e704;
-    virtual void setScaleY(float) = win 0x38cae0, m1 0x388720, imac 0x40b0d0, ios 0x22e708;
-    virtual void setScale(float) = win 0x38cad0, m1 0x388724, imac 0x40b0e0, ios 0x22e70c;
+    virtual void setScaleX(float scale) { GameObject::setScaleX(scale); } // win 0x38cac0, m1 0x38871c, imac 0x40b0c0, ios 0x22e704;
+    virtual void setScaleY(float scale) { GameObject::setScaleY(scale); } // win 0x38cae0, m1 0x388720, imac 0x40b0d0, ios 0x22e708;
+    virtual void setScale(float scale) { GameObject::setScale(scale); } // win 0x38cad0, m1 0x388724, imac 0x40b0e0, ios 0x22e70c;
     virtual void setPosition(cocos2d::CCPoint const&) = win 0x3868b0, imac 0x407b70, m1 0x3856d8, ios 0x22bf7c;
     virtual void setVisible(bool) = win 0x38caf0, imac 0x40b0f0, m1 0x388728, ios 0x22e710;
-    virtual void setRotation(float) = win 0x38c9f0, m1 0x3886ac, imac 0x40b030, ios 0x22e694;
+    virtual void setRotation(float angle) { GameObject::setRotation(angle); } // win 0x38c9f0, m1 0x3886ac, imac 0x40b030, ios 0x22e694
     virtual void setOpacity(unsigned char) = win 0x387d60, m1 0x386714, imac 0x408d60, ios 0x22cf10;
     virtual void setColor(cocos2d::ccColor3B const&) = win 0x387580, m1 0x38612c, imac 0x408740, ios 0x22c9d0;
     virtual void setFlipX(bool) = win 0x38ca00, m1 0x3886b0, imac 0x40b040, ios 0x22e698;
-    virtual void setFlipY(bool) = m1 0x388718, imac 0x40b0b0, ios 0x22e700;
+    virtual void setFlipY(bool flip) { GameObject::setFlipY(flip); } // m1 0x388718, imac 0x40b0b0, ios 0x22e700;
     virtual void resetObject() = m1 0x37ed44, imac 0x400590, ios 0x227340;
     virtual cocos2d::CCPoint getRealPosition() = imac 0x408f30, m1 0x386910, ios 0x22d014;
     virtual OBB2D* getOrientedBox() = imac 0x40a260, m1 0x387ab4, ios 0x22dcc0;
