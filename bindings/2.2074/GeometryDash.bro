@@ -8540,7 +8540,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCParticleSystemQuad* m_unk3238;
     bool m_unk3240;
     bool m_unk3241;
-    bool m_unk3242;
+    bool m_playerDied;
     double m_extraDelta;
     bool m_started;
     bool m_unk3251;
