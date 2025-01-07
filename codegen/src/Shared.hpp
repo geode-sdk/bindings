@@ -186,7 +186,10 @@ namespace codegen {
         std::vector<std::string> parameters;
 
         for (auto& [t, n] : f.args) {
-            parameters.push_back(fmt::format("{} {}", t.name, n));
+            if (t.name == "...")
+                parameters.push_back("...");
+            else
+                parameters.push_back(fmt::format("{} {}", t.name, n));
         }
 
         return fmt::format("{}", fmt::join(parameters, ", "));

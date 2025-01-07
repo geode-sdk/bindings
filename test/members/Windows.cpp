@@ -299,7 +299,7 @@ GEODE_SIZE_CHECK(ExtendedLayer, 0x1a0);
 GEODE_SIZE_CHECK(MultilineBitmapFont, 0x748);
 GEODE_SIZE_CHECK(FontObject, 0x4e8);
 GEODE_SIZE_CHECK(BitmapFontCache, 0x40);
-GEODE_SIZE_CHECK(SecretRewardsLayer, 0x238);
+GEODE_SIZE_CHECK(SecretRewardsLayer, 0x258);
 GEODE_SIZE_CHECK(CurrencySprite, 0x2a8);
 GEODE_SIZE_CHECK(CommunityCreditsPage, 0x298);
 GEODE_SIZE_CHECK(AccountLayer, 0x2d0);
@@ -327,7 +327,13 @@ GEODE_SIZE_CHECK(SecretLayer5, 0x290);
 GEODE_SIZE_CHECK(GraphicsReloadLayer, 0x1a8);
 GEODE_SIZE_CHECK(MoreVideoOptionsLayer, 0x2c0);
 
-GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
+GEODE_SIZE_CHECK(EditorUI, 0x5a0);
+// GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
+GEODE_MEMBER_CHECK(EditorUI, m_scaleControl, 0x2d0);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x340);
+GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x4f8);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x530);
+
 
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);

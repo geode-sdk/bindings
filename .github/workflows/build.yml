@@ -46,7 +46,7 @@ jobs:
             -DCMAKE_AR='/usr/bin/ar'
             -DCMAKE_RANLIB='/usr/bin/ranlib'
         - name: Linux
-          os: ubuntu-latest
+          os: ubuntu-22.04
           id: linux
           extra_flags: ''
 

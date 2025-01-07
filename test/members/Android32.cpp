@@ -86,8 +86,8 @@ GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x17c);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x1bc);
 
 GEODE_SIZE_CHECK(LevelEditorLayer, 0x2f48);
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x2e04);
-GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x2e24);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x2e08);
+GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x2e28);
 
 GEODE_SIZE_CHECK(GameObject, 0x488);
 GEODE_MEMBER_CHECK(GameObject, m_particleString, 0x298);
@@ -160,6 +160,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_unkMapIntChannelGroup474, 0x474);
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x16c);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 
+GEODE_SIZE_CHECK(EditorUI, 0x3b8);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
 GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x1c0);

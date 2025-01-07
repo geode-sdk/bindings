@@ -36,6 +36,8 @@ enum class SearchType {
     LevelListsOnClick = 25,
     Type26 = 26,
     Sent = 27,
+    FeaturedLite = 28,
+    Bonus = 29,
     MyLevels = 98,
     SavedLevels = 99,
     FavouriteLevels = 100,
@@ -296,7 +298,9 @@ enum class GauntletType {
     Discord = 0x31,
     Split = 0x32,
     NCS = 0x33,
-    NCS2 = 0x34
+    NCS2 = 0x34,
+    Space = 0x35,
+    Cosmos = 0x36
 };
 enum class GJMPErrorCode {};
 enum class GJTimedLevelType {
@@ -359,7 +363,6 @@ enum class GJAreaActionType {};
 enum class GJSmartDirection {};
 enum class SmartBlockType {};
 enum class TouchTriggerControl {};
-enum class SmartPrefabResult {};
 enum class AudioSortType {
     NameAscending = 0,
     NameDescending = 1,
@@ -630,7 +633,8 @@ enum class SpecialRewardItem {
     BloodShard = 0xB,
     MetalShard = 0xC,
     LightShard = 0xD,
-    SoulShard = 0xE
+    SoulShard = 0xE,
+    GoldKey = 0xF
 };
 
 enum class EditCommand {
@@ -748,7 +752,8 @@ enum class GJRewardType
     Key10Treasure = 0x5,
     Key25Treasure = 0x6,
     Key50Treasure = 0x7,
-    Key100Treasure = 0x8
+    Key100Treasure = 0x8,
+    Gold = 0x9
 };
 
 enum class IconType {
