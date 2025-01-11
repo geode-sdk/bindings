@@ -3989,7 +3989,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onResume(cocos2d::CCObject* sender) = win 0xdc140, m1 0x22b2c4, imac 0x2818a0;
     void onSave(cocos2d::CCObject* sender) = win 0xdcbf0, m1 0x22b42c, imac 0x2819f0;
     void onSaveAndExit(cocos2d::CCObject* sender) = win 0xdcd20, imac 0x281980, m1 0x22b3c0;
-    void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xdc9a0, imac 0x281910, m1 0x22b330;
+    void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xdc9a0, imac 0x281910, m1 0x22b330, ios 0x3968e0;
     void onSelectAll(cocos2d::CCObject* sender) = win 0xdb870;
     void onSelectAllLeft(cocos2d::CCObject* sender) = win 0xdb9a0, m1 0x22ba48, imac 0x2820b0;
     void onSelectAllRight(cocos2d::CCObject* sender) = win 0xdb9c0, m1 0x22ba58, imac 0x2820d0;
@@ -4661,7 +4661,7 @@ class EffectGameObject : EnhancedGameObject {
     // property 95
     int m_itemID2;
     // property 534
-    int m_property534;
+    int m_controlID;
     PAD = android 0x1, win 0x1, mac 0x1;
     // property 94
     bool m_isDynamicBlock;
@@ -5781,7 +5781,9 @@ class GameLevelManager : cocos2d::CCNode {
     }
     void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x155ff0, imac 0x535090, m1 0x48ed8c;
     char const* getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode) = m1 0x48f940, imac 0x535e90;
-    char const* getLevelListKey(int);
+    char const* getLevelListKey(int listID) {
+        return cocos2d::CCString::createWithFormat("%i", listID)->getCString();
+    }
     void getLevelLists(GJSearchObject*) = win 0x14e6e0, m1 0x4873b8, imac 0x52c220;
     void getLevelSaveData() = win 0x14cd40, m1 0x485a64, imac 0x52a7d0;
     char const* getLikeAccountItemKey(LikeItemType, int, bool, int);
@@ -5814,7 +5816,9 @@ class GameLevelManager : cocos2d::CCNode {
         else return this->getSavedLevel(level->m_levelID.value());
     }
     GJGameLevel* getSavedLevel(int) = win 0x146ad0, m1 0x47d54c, imac 0x521500;
-    GJLevelList* getSavedLevelList(int);
+    GJLevelList* getSavedLevelList(int listID) = win inline, m1 0x48795c, imac 0x52c910 {
+        return static_cast<GJLevelList*>(m_favoriteLists->objectForKey(this->getLevelListKey(listID)));
+    }
     cocos2d::CCArray* getSavedLevelLists(int);
     cocos2d::CCArray* getSavedLevels(bool, int) = win 0x145410, m1 0x47af84, imac 0x51e9f0;
     GJMapPack* getSavedMapPack(int);
@@ -5841,8 +5845,10 @@ class GameLevelManager : cocos2d::CCNode {
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType) = m1 0x4669d0, imac 0x507fb0;
     void handleItND(cocos2d::CCNode*, void*) = m1 0x466ce4, imac 0x5082a0;
     bool hasDailyStateBeenLoaded(GJTimedLevelType) = imac 0x543960, m1 0x49c950;
-    bool hasDownloadedLevel(int id);
-    bool hasDownloadedList(int id) = imac 0x52e360, m1 0x48911c;
+    bool hasDownloadedLevel(int id) = win 0x151630, imac 0x52e360, m1 0x48911c;
+    bool hasDownloadedList(int id) = win inline, imac 0x52a7c0, m1 0x485a5c {
+        return this->hasDownloadedLevel(-id);
+    }
     bool hasLikedAccountItem(LikeItemType, int, bool, int);
     bool hasLikedItem(LikeItemType, int, bool, int) = win 0x1623d0;
     bool hasLikedItemFullCheck(LikeItemType, int, int) = win 0x162340, imac 0x541500, m1 0x49a5c4;
@@ -14342,7 +14348,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     TodoReturn getSongDownloadKey(int);
     void getSongInfo(int, bool) = win 0x328180, imac 0x574190, m1 0x4c82e0;
     TodoReturn getSongInfoKey(int);
-    SongInfoObject* getSongInfoObject(int) = win 0x329b70, imac 0x574030, m1 0x4c8188;
+    SongInfoObject* getSongInfoObject(int) = win 0x329b70, imac 0x574030, m1 0x4c8188, ios 0x157b4c;
     TodoReturn getSongPriority();
     void handleIt(bool, gd::string, gd::string, GJHttpType) = imac 0x572fd0, m1 0x4c7150;
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
