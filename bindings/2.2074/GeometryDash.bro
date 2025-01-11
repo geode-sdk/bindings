@@ -3333,7 +3333,7 @@ class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate
     void onMusicBrowser(cocos2d::CCObject* sender) = win 0xc31a0, imac 0x203e50, m1 0x1b902c;
     void onNCSBrowser(cocos2d::CCObject* sender) = imac 0x203e30;
     void onNewgroundsBrowser(cocos2d::CCObject* sender) = win 0xc3300;
-    void onOptions(cocos2d::CCObject* sender) = imac 0x203f00, m1 0x30eaf4;
+    void onOptions(cocos2d::CCObject* sender) = imac 0x203f00, m1 0x1b90cc;
     void onSearch(cocos2d::CCObject* sender) = win 0xc2c80, m1 0x1b90ec;
     void onSongBrowser(cocos2d::CCObject* sender) = m1 0x1b8fac;
     void showNewgroundsMessage() = m1 0x1b9264, imac 0x204090;
@@ -16881,7 +16881,7 @@ class SelectSettingLayer : FLAlertLayer {
     int getSelectedValue() = win inline, imac 0x25cca0 {
         return idxToValue(m_type, m_settingID);
     }
-    bool init(SelectSettingType, int) = win 0x30e690, imac 0x4870a0, m1 0x20aaac;
+    bool init(SelectSettingType, int) = win 0x30e690, imac 0x25e9f0, m1 0x20aaac;
     void onClose(cocos2d::CCObject* sender);
     void onSelect(cocos2d::CCObject* sender) = win 0x30f280, imac 0x25f1b0, m1 0x20b2cc;
 
