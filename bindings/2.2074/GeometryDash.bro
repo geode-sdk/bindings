@@ -5763,7 +5763,9 @@ class GameLevelManager : cocos2d::CCNode {
     }
     void getLevelLeaderboard(GJGameLevel*, LevelLeaderboardType, LevelLeaderboardMode) = win 0x155ff0, imac 0x535090, m1 0x48ed8c;
     char const* getLevelLeaderboardKey(int, LevelLeaderboardType, LevelLeaderboardMode) = m1 0x48f940, imac 0x535e90;
-    char const* getLevelListKey(int);
+    char const* getLevelListKey(int listID) {
+        return cocos2d::CCString::createWithFormat("%i", listID)->getCString();
+    }
     void getLevelLists(GJSearchObject*) = win 0x14e6e0, m1 0x4873b8, imac 0x52c220;
     void getLevelSaveData() = win 0x14cd40, m1 0x485a64, imac 0x52a7d0;
     char const* getLikeAccountItemKey(LikeItemType, int, bool, int);
@@ -5796,7 +5798,9 @@ class GameLevelManager : cocos2d::CCNode {
         else return this->getSavedLevel(level->m_levelID.value());
     }
     GJGameLevel* getSavedLevel(int) = win 0x146ad0, m1 0x47d54c, imac 0x521500;
-    GJLevelList* getSavedLevelList(int);
+    GJLevelList* getSavedLevelList(int listID) = win inline, m1 0x48795c, imac 0x52c910 {
+        return static_cast<GJLevelList*>(m_favoriteLists->objectForKey(this->getLevelListKey(listID)));
+    }
     cocos2d::CCArray* getSavedLevelLists(int);
     cocos2d::CCArray* getSavedLevels(bool, int) = win 0x145410, m1 0x47af84, imac 0x51e9f0;
     GJMapPack* getSavedMapPack(int);
@@ -5823,8 +5827,10 @@ class GameLevelManager : cocos2d::CCNode {
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType) = m1 0x4669d0, imac 0x507fb0;
     void handleItND(cocos2d::CCNode*, void*) = m1 0x466ce4, imac 0x5082a0;
     bool hasDailyStateBeenLoaded(GJTimedLevelType) = imac 0x543960, m1 0x49c950;
-    bool hasDownloadedLevel(int id);
-    bool hasDownloadedList(int id) = imac 0x52e360, m1 0x48911c;
+    bool hasDownloadedLevel(int id) = win 0x151630, imac 0x52e360, m1 0x48911c;
+    bool hasDownloadedList(int id) = win inline, imac 0x52a7c0, m1 0x485a5c {
+        return this->hasDownloadedLevel(-id);
+    }
     bool hasLikedAccountItem(LikeItemType, int, bool, int);
     bool hasLikedItem(LikeItemType, int, bool, int) = win 0x1623d0;
     bool hasLikedItemFullCheck(LikeItemType, int, int) = win 0x162340, imac 0x541500, m1 0x49a5c4;
