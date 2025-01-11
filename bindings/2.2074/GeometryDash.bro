@@ -19698,7 +19698,7 @@ class SmartTemplateCell : TableViewCell {
     SmartTemplateCell(char const*, float, float);
 
     virtual bool init() = win 0x3c7f0, m1 0x1f57a0, imac 0x246ed0, ios 0x1158f0;
-    virtual void draw() = win 0xad7f0, imac 0x246fa0, m1 0x1f585c, ios 0x1159a0;
+    virtual void draw() = win 0xad710, imac 0x246fa0, m1 0x1f585c, ios 0x1159a0;
 
     void loadFromObject(GJSmartTemplate*) = win 0xbd8c0, imac 0x23b400;
     void onClick(cocos2d::CCObject* sender) = win 0xbdda0;
