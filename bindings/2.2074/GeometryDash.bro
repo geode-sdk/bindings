@@ -4348,7 +4348,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void zoomIn(cocos2d::CCObject*) = win 0x110e50, imac 0xced0, m1 0xe218;
     void zoomOut(cocos2d::CCObject*) = win 0x110ea0, imac 0xcf20, m1 0xe270;
 
-    PAD = win 0x40, android32 0x1c, android64 0x38, mac 0x28, ios 0x28;
+    gd::unordered_map<int, GameObjectEditorState> m_objectEditorStates;
     GJTransformState m_transformState;
     bool m_isPlayingMusic;
     EditButtonBar* m_buttonBar;
@@ -7191,7 +7191,19 @@ class GameObjectCopy : cocos2d::CCObject {
 
 [[link(android)]]
 class GameObjectEditorState {
-    TodoReturn loadValues(GameObject*);
+    void loadValues(GameObject* obj) = win inline, m1 0xaa8c, imac 0x9370 {
+        m_position = obj->getPosition();
+        m_scaleX = obj->m_scaleX / obj->m_pixelScaleX;
+        m_scaleY = obj->m_scaleY / obj->m_pixelScaleY;
+        m_rotationX = obj->getRotationX();
+        m_rotationY = obj->getRotationY();
+    }
+
+    cocos2d::CCPoint m_position;
+    float m_scaleX;
+    float m_scaleY;
+    float m_rotationX;
+    float m_rotationY;
 }
 
 [[link(android)]]
