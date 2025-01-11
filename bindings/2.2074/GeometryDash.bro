@@ -4260,7 +4260,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         int buttonsPerRow = gm->getIntGameVariable("0049");
         int buttonRows = gm->getIntGameVariable("0050");
         cocos2d::CCArray* customItems = createCustomItems();
-        m_buttonBar->loadFromItems(customItems,buttonsPerRow,buttonRows,true);
+        m_customTabBar->loadFromItems(customItems,buttonsPerRow,buttonRows,true);
     }
     void removeOffset(GameObject*) = win 0x120cb0;
     TodoReturn replaceGroupID(GameObject*, int, int);
@@ -4349,21 +4349,37 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void zoomOut(cocos2d::CCObject*) = win 0x110ea0, imac 0xcf20, m1 0xe270;
 
     PAD = win 0x40, android32 0x1c, android64 0x38, mac 0x28, ios 0x28;
+    // For some reason, uncommenting this makes the build fail, this should replace the padding above
+    // gd::unordered_map<int, GameObjectEditorState> m_objectEditorStates;
     GJTransformState m_transformState;
     bool m_isPlayingMusic;
-    EditButtonBar* m_buttonBar;
-    PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
-    cocos2d::CCArray* m_unk1cc;
+    EditButtonBar* m_customTabBar;
+    bool m_alertShown;
+    cocos2d::CCArray* m_uiItems;
     float m_gridSize;
-    PAD = win 0x34, android32 0x30, android64 0x34, mac 0x34, ios 0x34;
+    int m_playerTouchID1;
+    int m_playerTouchID2;
+    bool m_playbackActive;
+    float m_playbackStartWarp;
+    float m_playbackStartTime;
+    UndoObject* m_undoObject;
+    bool m_unknownBool1;
+    bool m_unknownBool2;
+    bool m_unknownBool3;
+    bool m_unknownBool4;
+    bool m_unknownBool5;
+    int m_rotationTouchID;
+    int m_scaleTouchID;
+    int m_touchID;
+    int m_transformTouchID;
     cocos2d::CCLabelBMFont* m_objectInfoLabel;
     GJRotationControl* m_rotationControl;
     cocos2d::CCPoint m_pivotPoint;
-    PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
+    bool m_canActivateControls;
     GJScaleControl* m_scaleControl;
     GJTransformControl* m_transformControl;
-    cocos2d::CCNode* m_unk220;
-    cocos2d::CCNode* m_unk224;
+    cocos2d::CCNode* m_transformNode;
+    cocos2d::CCNode* m_transformChild;
     cocos2d::CCDictionary* m_editButtonDict;
     EditButtonBar* m_createButtonBar;
     EditButtonBar* m_editButtonBar;
@@ -4371,21 +4387,21 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     float m_unk238;
     float m_unk23c;
     float m_toolbarHeight;
-    float m_unk244;
+    bool m_unk244;
+    bool m_unk245;
+    bool m_unk246;
+    bool m_unk247;
     bool m_updatedSpeedObjects;
     bool m_unkBool1;
     bool m_unkBool2;
     bool m_stickyControlsEnabled;
-
-    PAD = win 0xc, android32 0xc, android64 0xc, mac 0xc, ios 0xc;
+    bool m_unkBool4;
+    cocos2d::CCPoint m_unk250;
     cocos2d::CCArray* m_unk258;
-    PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8, ios 0x8;
-
+    cocos2d::CCPoint m_unk25c;
     cocos2d::CCArray* m_selectedObjects;
-
-    // most of these are not tested
     cocos2d::CCMenu* m_deleteMenu;
-    cocos2d::CCArray* m_unknownArray4;
+    cocos2d::CCArray* m_customTabControls;
     CCMenuItemSpriteExtra* m_deleteModeBtn;
     CCMenuItemSpriteExtra* m_buildModeBtn;
     CCMenuItemSpriteExtra* m_editModeBtn;
@@ -4418,10 +4434,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCArray* m_createButtonBars;
     cocos2d::CCMenu* m_tabsMenu;
     cocos2d::CCArray* m_tabsArray;
-    cocos2d::CCSprite* m_idkSprite0;
-    cocos2d::CCSprite* m_idkSprite1;
-    CCMenuItemSpriteExtra* m_button27;
-    CCMenuItemSpriteExtra* m_button28;
+    cocos2d::CCSprite* m_deleteAllSprite;
+    cocos2d::CCSprite* m_customDeleteSprite;
+    CCMenuItemSpriteExtra* m_deleteButton;
+    CCMenuItemSpriteExtra* m_deleteAllButton;
     CCMenuItemSpriteExtra* m_deleteFilterNone;
     CCMenuItemSpriteExtra* m_deleteFilterStatic;
     CCMenuItemSpriteExtra* m_deleteFilterDetails;
@@ -4430,10 +4446,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CCMenuItemSpriteExtra* m_layerNextBtn;
     CCMenuItemSpriteExtra* m_layerPrevBtn;
     CCMenuItemSpriteExtra* m_goToBaseBtn;
-    ButtonSprite* m_unk31c;
-    ButtonSprite* m_unk320;
-    int m_selectedCreateObjectID;
-    void* m_unk324;
+    ButtonSprite* m_deleteGroupSprite;
+    ButtonSprite* m_deleteColorSprite;
+    void* m_unk4b8;
+    void* m_unk4c0;
     int m_selectedObjectIndex;
     cocos2d::CCArray* m_createButtonArray;
     cocos2d::CCArray* m_customObjectButtonArray;
@@ -4451,7 +4467,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool m_isDraggingCamera;
     void* m_unk540;
     int m_selectedTab;
-    PAD = win 0x3c, android32 0x28, android64 0x3c, mac 0x3c, ios 0x3c;
+    PAD = win 0x2c, android32 0x20, android64 0x2c, mac 0x2c, ios 0x2c;
+    cocos2d::CCSprite* m_layerLockSprite;
+    void* m_unk580;
     bool m_pressedSpace;
     float m_editorZoom;
     bool m_isPaused;
@@ -7185,7 +7203,19 @@ class GameObjectCopy : cocos2d::CCObject {
 
 [[link(android)]]
 class GameObjectEditorState {
-    TodoReturn loadValues(GameObject*);
+    void loadValues(GameObject* obj) = win inline {
+        m_position = obj->getPosition();
+        m_scaleX = obj->m_scaleX / obj->m_pixelScaleX;
+        m_scaleY = obj->m_scaleY / obj->m_pixelScaleY;
+        m_rotationX = obj->getRotationX();
+        m_rotationY = obj->getRotationY();
+    }
+
+    cocos2d::CCPoint m_position;
+    float m_scaleX;
+    float m_scaleY;
+    float m_rotationX;
+    float m_rotationY;
 }
 
 [[link(android)]]
