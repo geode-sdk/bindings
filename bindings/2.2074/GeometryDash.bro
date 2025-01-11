@@ -20401,7 +20401,7 @@ class TextArea : cocos2d::CCSprite {
     virtual void setOpacity(unsigned char) = win 0x775c0, imac 0x30df50, m1 0x2a4ab4, ios 0xf9e54;
 
     void colorAllCharactersTo(cocos2d::ccColor3B) = win 0x77600, imac 0x30dfc0, m1 0x2a4b20;
-    void colorAllLabels(cocos2d::ccColor3B) = win inline, imac 0x30e070, m1 0x2a4be4 {
+    void colorAllLabels(cocos2d::ccColor3B color) = win inline, imac 0x30e070, m1 0x2a4be4 {
         auto lines = m_label->m_lines;
         for (int i = 0; i < lines->count(); i++) {
             static_cast<cocos2d::CCLabelBMFont*>(lines->objectAtIndex(i))->setColor(color);
