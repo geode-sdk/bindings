@@ -4643,7 +4643,7 @@ class EffectGameObject : EnhancedGameObject {
     // property 95
     int m_itemID2;
     // property 534
-    int m_property534;
+    int m_controlID;
     PAD = android 0x1, win 0x1, mac 0x1;
     // property 94
     bool m_isDynamicBlock;
