@@ -488,7 +488,11 @@ enum class AudioGuidelinesType {
     BPMFinder = 1
 };
 enum class SmartBrowseFilter {};
-enum class GJUITouchEvent {};
+enum class GJUITouchEvent {
+    Pressed = 0,
+    Moved = 1,
+    Ended = 2
+};
 enum class ObjectScaleType {
     XY = 0,
     X = 1,
