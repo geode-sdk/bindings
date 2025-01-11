@@ -4348,7 +4348,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void zoomIn(cocos2d::CCObject*) = win 0x110e50, imac 0xced0, m1 0xe218;
     void zoomOut(cocos2d::CCObject*) = win 0x110ea0, imac 0xcf20, m1 0xe270;
 
-    //gd::unordered_map<int, GameObjectEditorState> m_objectEditorStates;
+    PAD = win 0x40, android32 0x1c, android64 0x38, mac 0x28, ios 0x28;
     GJTransformState m_transformState;
     bool m_isPlayingMusic;
     EditButtonBar* m_buttonBar;
