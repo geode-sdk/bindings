@@ -71,9 +71,18 @@ matjson::Value generateJsonInterface(Root const& root) {
                         { "name", name },
                     }));
                 }
+                auto const functionType = [&] {
+                    switch (fn->prototype.type) {
+                        case FunctionType::Normal: return "normal";
+                        case FunctionType::Ctor: return "ctor";
+                        case FunctionType::Dtor: return "dtor";
+                    }
+                    return "unknown";
+                }();
                 functions.push_back(matjson::Object({
                     { "name", fn->prototype.name },
                     { "args", args },
+                    { "return", fn->prototype.ret.name },
                     { "const", fn->prototype.is_const },
                     { "virtual", fn->prototype.is_virtual },
                     { "static", fn->prototype.is_static },
@@ -84,7 +93,9 @@ matjson::Value generateJsonInterface(Root const& root) {
                         { "ios",       bindingOnPlatform(Platform::iOS, fn) },
                         { "android32", bindingOnPlatform(Platform::Android32, fn) },
                         { "android64", bindingOnPlatform(Platform::Android64, fn) },
-                    }) }
+                    }) },
+                    { "docs", fn->prototype.attributes.docs },
+                    { "kind", functionType },
                 }));
             }
         }
