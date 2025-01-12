@@ -326,6 +326,7 @@ GEODE_SIZE_CHECK(SFXSearchResult, 0xa0);
 GEODE_SIZE_CHECK(SecretLayer5, 0x290);
 GEODE_SIZE_CHECK(GraphicsReloadLayer, 0x1a8);
 GEODE_SIZE_CHECK(MoreVideoOptionsLayer, 0x2c0);
+GEODE_SIZE_CHECK(AnimatedGameObject, 0x610);
 
 GEODE_SIZE_CHECK(EditorUI, 0x5a0);
 // GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);

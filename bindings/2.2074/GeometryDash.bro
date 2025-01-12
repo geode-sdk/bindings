@@ -386,26 +386,59 @@ class AdvFollowSetup {
 [[link(android)]]
 class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePartDelegate {
     // virtual ~AnimatedGameObject();
+    AnimatedGameObject() = win inline {
+        m_animatedSprite = nullptr;
+        m_childSprite = nullptr;
+        m_eyeSpritePart = nullptr;
+        m_finishedAnimating = false;
+        m_playingAnimation = false;
+        m_currentAnimation = "";
+        m_notGrounded = false;
+        m_animationID = 0;
+    }
 
-    static AnimatedGameObject* create(int);
+    static AnimatedGameObject* create(int id) = win inline, m1 0x167618, imac 0x1a5410 {
+        auto ret = new AnimatedGameObject();
+        if (ret->init(id)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void setOpacity(unsigned char) = win 0x48b5e0, m1 0x168658, imac 0x1a64b0, ios 0x37cdc0;
-    virtual void setChildColor(cocos2d::ccColor3B const&) = m1 0x16a064, imac 0x1a80d0, ios 0x37de10;
-    virtual void resetObject() = imac 0x1a8060, m1 0x16a004, ios 0x37ddb8;
-    virtual void activateObject() = m1 0x16855c, imac 0x1a63a0, ios 0x37cce0;
-    virtual void deactivateObject(bool) = imac 0x1a63e0, m1 0x1685a0, ios 0x37cd24;
-    virtual void setObjectColor(cocos2d::ccColor3B const&) = imac 0x1a6590, m1 0x168724, ios 0x37ce8c;
+    virtual void setChildColor(cocos2d::ccColor3B const&) = win 0x48d150, m1 0x16a064, imac 0x1a80d0, ios 0x37de10;
+    virtual void resetObject() = win 0x48cc50, imac 0x1a8060, m1 0x16a004, ios 0x37ddb8;
+    virtual void activateObject() = win 0x48b430, m1 0x16855c, imac 0x1a63a0, ios 0x37cce0;
+    virtual void deactivateObject(bool) = win 0x48b500, imac 0x1a63e0, m1 0x1685a0, ios 0x37cd24;
+    virtual void setObjectColor(cocos2d::ccColor3B const&) = win 0x48b6b0, imac 0x1a6590, m1 0x168724, ios 0x37ce8c;
     virtual void animationFinished(char const*) = win 0x48b6f0, imac 0x1a65c0, m1 0x168758, ios 0x37cec0;
     virtual void displayFrameChanged(cocos2d::CCObject*, gd::string) = win 0x48c9d0, imac 0x1a7930, m1 0x169858, ios 0x37d924;
 
-    TodoReturn animationForID(int, int) = m1 0x169d08;
-    TodoReturn getTweenTime(int, int);
-    bool init(int) = m1 0x16773c, imac 0x1a5560;
-    TodoReturn playAnimation(int);
-    TodoReturn setupAnimatedSize(int);
-    TodoReturn setupChildSprites() = m1 0x167a68, imac 0x1a58c0;
-    TodoReturn updateChildSpriteColor(cocos2d::ccColor3B);
-    TodoReturn updateObjectAnimation();
+    static gd::string animationForID(int, int) = win 0x48cca0, m1 0x169d08, imac 0x1a7df0;
+    static float getTweenTime(int, int) = win inline, m1 0x169ff4, imac 0x1a8050 { return .05f; }
+    bool init(int) = win 0x48a360, m1 0x16773c, imac 0x1a5560;
+    void playAnimation(int) = win 0x48cb20, m1 0x169b90, imac 0x1a7c90;
+    void setupAnimatedSize(int) = m1 0x1678d8, imac 0x1a5700;
+    void setupChildSprites() = win 0x48a8f0, m1 0x167a68, imac 0x1a58c0;
+    void updateChildSpriteColor(cocos2d::ccColor3B color) = win inline, m1 0x16834c, imac 0x1a6160 {
+        if (!m_childSprite) return;
+        auto spriteChildren = m_childSprite->getChildren();
+        for (int i = 0; i < spriteChildren->count(); i++) {
+            static_cast<cocos2d::CCSprite*>(spriteChildren->objectAtIndex(i))->setColor(color);
+        }
+    }
+    void updateObjectAnimation() = win 0x48b1c0, m1 0x1683cc, imac 0x1a61e0;
+
+    CCAnimatedSprite* m_animatedSprite;
+    cocos2d::CCSprite* m_childSprite;
+    CCSpritePart* m_eyeSpritePart;
+    bool m_finishedAnimating;
+    bool m_playingAnimation;
+    gd::string m_currentAnimation;
+    bool m_notGrounded;
+    int m_animationID;
 }
 
 [[link(android)]]
@@ -4829,7 +4862,7 @@ class EndTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class EnhancedGameObject : GameObject {
     // virtual ~EnhancedGameObject();
-    // EnhancedGameObject();
+    EnhancedGameObject() = win 0x188580;
 
     static EnhancedGameObject* create(char const*);
 
@@ -17208,19 +17241,24 @@ class SetupAdvFollowRetargetPopup : SetupTriggerPopup {
 class SetupAnimationPopup : SetupTriggerPopup {
     // virtual ~SetupAnimationPopup();
 
-    static SetupAnimationPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupAnimationPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x3f0fb0, m1 0x34ade8, imac 0x3c1850;
 
-    virtual void determineStartValues() = m1 0x34bdd0, imac 0x3c29f0, ios 0x3bc428;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x34c158, imac 0x3c2e10, ios 0x3bc6dc;
+    virtual void determineStartValues() = win 0x3f1ed0, m1 0x34bdd0, imac 0x3c29f0, ios 0x3bc428;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x3f2480, m1 0x34c158, imac 0x3c2e10, ios 0x3bc6dc;
     virtual void textChanged(CCTextInputNode*) = win 0x3f2060, imac 0x3c2c20, m1 0x34bfb0, ios 0x3bc600;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x34af78, imac 0x3c1a90;
-    void onAnimationIDArrow(cocos2d::CCObject* sender);
-    void onTargetIDArrow(cocos2d::CCObject* sender);
-    TodoReturn updateAnimationID();
-    TodoReturn updateAnimationTextInputLabel();
-    TodoReturn updateTargetID();
-    TodoReturn updateTextInputLabel();
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3f10e0, m1 0x34af78, imac 0x3c1a90;
+    void onAnimationIDArrow(cocos2d::CCObject* sender) = win 0x3f1fd0, m1 0x34bb10, imac 0x3c26f0;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x3f2010, m1 0x34ba68, imac 0x3c2630;
+    void updateAnimationID() = win 0x3f23e0, m1 0x34beac, imac 0x3c2ae0;
+    void updateAnimationTextInputLabel() = win 0x3f2290, m1 0x34bcc0, imac 0x3c28d0;
+    void updateTargetID() = win 0x3f2310, m1 0x34bf2c, imac 0x3c2b80;
+    void updateTextInputLabel() = win 0x3f2210, m1 0x34bbb0, imac 0x3c27b0;
+
+    CCTextInputNode* m_targetIDInput;
+    CCTextInputNode* m_animationIDInput;
+    int m_targetID;
+    int m_animationID;
 }
 
 [[link(android)]]
