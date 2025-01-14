@@ -1046,9 +1046,7 @@ class cocos2d::CCFiniteTimeAction {
 	CCFiniteTimeAction() = ios inline {
         m_fDuration = 0;
     }
-    ~CCFiniteTimeAction() = ios inline {
-
-    }
+    ~CCFiniteTimeAction() = ios inline {}
 
 	virtual cocos2d::CCFiniteTimeAction* reverse() = ios inline {
         CCLOG("cocos2d: FiniteTimeAction#reverse: Implement me");
