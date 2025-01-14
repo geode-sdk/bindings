@@ -20654,8 +20654,17 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
 [[link(android)]]
 class TOSPopup : FLAlertLayer {
     // virtual ~TOSPopup();
+    inline TOSPopup() {}
 
-    static TOSPopup* create();
+    static TOSPopup* create() = win inline {
+        auto ret = new TOSPopup();
+        if(ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x296930, m1 0x243ea8, imac 0x29c720, ios 0x2e0414;
     virtual void keyBackClicked() = m1 0x2444f4, imac 0x29cda0, ios 0x2e0a24 {}
