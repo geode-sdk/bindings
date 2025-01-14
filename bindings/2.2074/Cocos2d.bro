@@ -428,7 +428,7 @@ class cocos2d::CCActionInterval {
 
 	// CCActionInterval(cocos2d::CCActionInterval const&);
 	// CCActionInterval();
-    ~CCActionInterval() = ios 0x264838;
+    // ~CCActionInterval() = ios 0x264838;
 
 	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
 	virtual bool isDone() = ios 0x18d8f0;
