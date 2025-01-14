@@ -418,7 +418,22 @@ class cocos2d::CCAction {
 class cocos2d::CCActionInterval {
 	static cocos2d::CCActionInterval* create(float);
 
-	bool initWithDuration(float);
+	bool initWithDuration(float d) = ios inline {
+        m_fDuration = d;
+
+        // prevent division by 0
+        // This comparison could be in step:, but it might decrease the performance
+        // by 3% in heavy based action games.
+        if (m_fDuration == 0)
+        {
+            m_fDuration = FLT_EPSILON;
+        }
+
+        m_elapsed = 0;
+        m_bFirstTick = true;
+
+        return true;
+    }
 
 	float getAmplitudeRate();
 	float getElapsed();
@@ -1015,6 +1030,30 @@ class cocos2d::CCFileUtils {
     static cocos2d::CCFileUtils* sharedFileUtils() = imac 0x5f4090, m1 0x523b94, ios 0x23604c;
     virtual bool shouldUseHD() = imac 0x4273c0, m1 0x3a21d0, ios 0x154578;
     virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&) = m1 0x3a1a68, imac 0x426ce0, ios 0x153f78;
+}
+
+[[link(win, android)]]
+class cocos2d::CCFiniteTimeAction {
+	float getDuration() = ios inline {
+        return m_fDuration;
+    }
+
+	void setDuration(float duration) = ios inline {
+        m_fDuration = duration;
+    }
+
+	// CCFiniteTimeAction(cocos2d::CCFiniteTimeAction const&);
+	CCFiniteTimeAction() = ios inline {
+        m_fDuration = 0;
+    }
+    ~CCFiniteTimeAction() = ios inline {
+
+    }
+
+	virtual cocos2d::CCFiniteTimeAction* reverse() = ios inline {
+        CCLOG("cocos2d: FiniteTimeAction#reverse: Implement me");
+        return NULL;
+    }
 }
 
 [[link(win, android)]]
