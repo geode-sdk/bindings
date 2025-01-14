@@ -5004,7 +5004,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
 
     void incrementForcePrio() = ios 0x2abb08;
     bool init(FLAlertLayerProtocol*, char const*, gd::string, char const*, char const*, float, bool, float, float) = win 0x51b60, imac 0x488360, m1 0x3f5800, ios 0x2ab0e4;
-    bool init(int) = win 0x51a50, imac 0x488de0;
+    bool init(int) = win 0x51a50, imac 0x488de0, ios 0x2aba58;
     void onBtn1(cocos2d::CCObject* sender) = win 0x52940;
     void onBtn2(cocos2d::CCObject* sender) = win 0x529a0;
 
@@ -8712,7 +8712,7 @@ class GJChestSprite : cocos2d::CCSprite {
         this->switchToState(ChestSpriteState::Closed, false);
         return true;
     }
-    void switchToState(ChestSpriteState, bool) = win 0x3ba470, m1 0x1c103c, imac 0x20c800;
+    void switchToState(ChestSpriteState, bool) = win 0x3ba470, m1 0x1c103c, imac 0x20c800, ios 0x1c7a00;
 
     virtual void setOpacity(unsigned char) = win 0x3ba400, imac 0x20df10, m1 0x1c2724, ios 0x1c8f68;
     virtual void setColor(cocos2d::ccColor3B const&) = win 0x3ba340, imac 0x20de20, m1 0x1c2650, ios 0x1c8e98;
@@ -15788,20 +15788,20 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 
     static RewardUnlockLayer* create(int, RewardsPage*) = win 0x3b6950, imac 0x209900, m1 0x1be624, ios 0x1c56d8;
 
-    void connectionTimeout() = win 0x3b7850, imac 0x20b430, m1 0x1bff18;
-    bool init(int, RewardsPage*) = m1 0x1bef6c;
+    void connectionTimeout() = win 0x3b7850, imac 0x20b430, m1 0x1bff18, ios 0x1c6a60;
+    bool init(int, RewardsPage*) = m1 0x1bef6c, ios 0x1c5cbc;
     void labelEnterFinishedO(cocos2d::CCObject*) = win inline {}
     void onClose(cocos2d::CCObject* sender) = win 0x3ba220, imac 0x20b3d0, m1 0x1bfec0;
     void playDropSound() = win 0x3b78b0, m1 0x1bfd64;
     void playLabelEffect(int, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = imac 0x20d5c0, m1 0x1c1e58;
-    void playRewardEffect();
+    void playRewardEffect() = ios 0x1c6ac8;
     bool readyToCollect(GJRewardItem* item) = win inline, imac 0x209c10, m1 0x1be8c8 {
         return item ? m_chestType == (int)item->m_rewardType : false;
     }
-    void showCloseButton() = imac 0x20dc90, m1 0x1c2524;
+    void showCloseButton() = imac 0x20dc90, m1 0x1c2524, ios 0x1c8d70;
     bool showCollectReward(GJRewardItem*) = win 0x3b7790, imac 0x209c30, ios 0x1c58b8;
-    void step2() = win 0x3b7950, m1 0x1bfdf0;
-    void step3() = win 0x3b7a50, imac 0x20d5a0;
+    void step2() = win 0x3b7950, m1 0x1bfdf0, ios 0x1c6948;
+    void step3() = win 0x3b7a50, imac 0x20d5a0, ios 0x1c86b0;
 
     virtual void keyBackClicked() = m1 0x1c25c8, imac 0x20dd60, ios 0x1c8e14 {}
     virtual void currencyWillExit(CurrencyRewardLayer*) = win 0x3ba210, m1 0x1c25a0, imac 0x20dd20, ios 0x1c8dec;
