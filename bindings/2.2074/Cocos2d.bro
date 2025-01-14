@@ -415,6 +415,29 @@ class cocos2d::CCAction {
 }
 
 [[link(win, android)]]
+class cocos2d::CCActionInterval {
+	static cocos2d::CCActionInterval* create(float);
+
+	bool initWithDuration(float);
+
+	float getAmplitudeRate();
+	float getElapsed();
+	bool getM_bFirstTick() const;
+
+	void setAmplitudeRate(float);
+
+	// CCActionInterval(cocos2d::CCActionInterval const&);
+	// CCActionInterval();
+    ~CCActionInterval() = ios 0x264838;
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual bool isDone() = ios 0x18d8f0;
+	virtual void startWithTarget(cocos2d::CCNode*) = ios 0x18d968;
+	virtual void step(float) = ios 0x18d900;
+	virtual cocos2d::CCActionInterval* reverse() = ios 0x18d994;
+}
+
+[[link(win, android)]]
 class cocos2d::CCScene {
     static cocos2d::CCScene* create() = imac 0x27eef0, m1 0x2288ec, ios 0x240218;
 
@@ -544,8 +567,8 @@ class cocos2d::CCParticleSystem {
     void setWasRemoved(bool);
 
     // CCParticleSystem(cocos2d::CCParticleSystem const&);
-    // CCParticleSystem();
-    ~CCParticleSystem() = m1 0x6c44c4, imac 0x7b34f0;
+    CCParticleSystem() = ios 0x196830;
+    ~CCParticleSystem() = m1 0x6c44c4, imac 0x7b34f0, ios 0x197d38;
     bool addParticle();
     void calculateWorldSpace();
     bool isFull();
@@ -1481,7 +1504,7 @@ class cocos2d::CCTexture2D {
     void setTexParameters(cocos2d::_ccTexParams*) = imac 0x466860, m1 0x3d66e0, ios 0x131148;
 
     // CCTexture2D(cocos2d::CCTexture2D const&);
-    ~CCTexture2D() = m1 0x3d5378;
+    ~CCTexture2D() = m1 0x3d5378, ios 0x130660;
     CCTexture2D() = m1 0x3d52b0, ios 0x1305f8;
     unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat) = imac 0x465950;
     unsigned int bitsPerPixelForFormat() = imac 0x4669e0;
