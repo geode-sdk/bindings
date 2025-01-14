@@ -20174,10 +20174,19 @@ class StatsCell : TableViewCell {
 [[link(android)]]
 class StatsLayer : GJDropDownLayer {
     // virtual ~StatsLayer();
+    inline StatsLayer() {}
 
-    static StatsLayer* create() = m1 0x8e198, imac 0x9b220;
+    static StatsLayer* create() = win inline, m1 0x8e198, imac 0x9b220 {
+        auto ret = new StatsLayer();
+        if(ret->init("Stats", 220.f, false)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual void customSetup() = m1 0x8e310, imac 0x9b450, ios 0x241bac;
+    virtual void customSetup() = win 0x4af100, m1 0x8e310, imac 0x9b450, ios 0x241bac;
 }
 
 [[link(android)]]
