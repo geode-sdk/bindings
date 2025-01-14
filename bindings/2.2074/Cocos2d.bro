@@ -1762,9 +1762,9 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void pause();
     void popScene() = imac 0x471430, m1 0x3e025c;
     bool popSceneWithTransition(float, cocos2d::PopTransition) = imac 0x4714c0, m1 0x3e02e8;
-    void popToRootScene();
-    void popToSceneInStack(cocos2d::CCScene*);
-    void popToSceneStackLevel(int);
+    void popToRootScene() = imac 0x4715a0, m1 0x3e03b8;
+    void popToSceneInStack(cocos2d::CCScene*) = imac 0x471720, m1 0x3e0514;
+    void popToSceneStackLevel(int) = imac 0x4715b0, m1 0x3e03c0;
     void purgeCachedData();
     void purgeDirector() = imac 0x471780;
     bool pushScene(cocos2d::CCScene*) = imac 0x471230, m1 0x3e0034;
