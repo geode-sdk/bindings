@@ -299,7 +299,7 @@ GEODE_SIZE_CHECK(ExtendedLayer, 0x1a0);
 GEODE_SIZE_CHECK(MultilineBitmapFont, 0x748);
 GEODE_SIZE_CHECK(FontObject, 0x4e8);
 GEODE_SIZE_CHECK(BitmapFontCache, 0x40);
-GEODE_SIZE_CHECK(SecretRewardsLayer, 0x238);
+GEODE_SIZE_CHECK(SecretRewardsLayer, 0x258);
 GEODE_SIZE_CHECK(CurrencySprite, 0x2a8);
 GEODE_SIZE_CHECK(CommunityCreditsPage, 0x298);
 GEODE_SIZE_CHECK(AccountLayer, 0x2d0);
@@ -324,8 +324,17 @@ GEODE_SIZE_CHECK(SFXFolderObject, 0x78);
 GEODE_SIZE_CHECK(SFXInfoObject, 0x70);
 GEODE_SIZE_CHECK(SFXSearchResult, 0xa0);
 GEODE_SIZE_CHECK(SecretLayer5, 0x290);
+GEODE_SIZE_CHECK(GraphicsReloadLayer, 0x1a8);
+GEODE_SIZE_CHECK(MoreVideoOptionsLayer, 0x2c0);
+GEODE_SIZE_CHECK(AnimatedGameObject, 0x610);
 
-GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
+GEODE_SIZE_CHECK(EditorUI, 0x5a0);
+// GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
+GEODE_MEMBER_CHECK(EditorUI, m_scaleControl, 0x2d0);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x340);
+GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x4f8);
+GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x530);
+
 
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
@@ -395,7 +404,7 @@ GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x88);
 
 GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x468);
 GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x490);
-GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x64c);
+GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x664);
 
 GEODE_SIZE_CHECK(CCLightFlash, 0x168);
 GEODE_SIZE_CHECK(CCLightStrip, 0x160);
