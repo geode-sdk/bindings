@@ -2532,7 +2532,7 @@ class cocos2d::CCCallFuncO {
 
 [[link(win, android)]]
 class cocos2d::CCClippingNode : cocos2d::CCNode {
-    static cocos2d::CCClippingNode* create() = ios inline, imac 0x708da0, m1 0x628634 {
+    static cocos2d::CCClippingNode* create() = imac 0x708da0, m1 0x628634 {
     	auto pRet = new CCClippingNode();
 
     	if (pRet->init())
@@ -2544,7 +2544,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	delete pRet;
     	return nullptr;
     }
-    static cocos2d::CCClippingNode* create(cocos2d::CCNode* stencil) = ios inline, imac 0x708e30, m1 0x6286bc {
+    static cocos2d::CCClippingNode* create(cocos2d::CCNode* stencil) = imac 0x708e30, m1 0x6286bc {
     	auto pRet = new CCClippingNode();
 
     	if (pRet->init(stencil))
@@ -2557,14 +2557,8 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	return nullptr;
     }
 
-    	CCClippingNode() = ios inline {
-    	m_pStencil = nullptr;
-    	m_fAlphaThreshold = 0.0f;
-    	m_bInverted = false;
-    }
-    virtual ~CCClippingNode() = ios inline {
-    	CC_SAFE_RELEASE(m_pStencil);
-    }
+    CCClippingNode();
+    virtual ~CCClippingNode();
 
     // in normal cocos this is just a static func at the top of the file: https://github.com/cocos2d/cocos2d-x/blob/v2/cocos2dx/misc_nodes/CCClippingNode.cpp#L40
     inline void setProgram(CCNode* n, CCGLProgram* p) {
@@ -2578,11 +2572,11 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
         }
     }
 
-    virtual bool init() = ios inline, m1 0x62875c, imac 0x708ee0 {
+    virtual bool init() = m1 0x62875c, imac 0x708ee0 {
     	return init(nullptr);
     }
 
-    virtual bool init(cocos2d::CCNode* pStencil) = ios inline, m1 0x62876c, imac 0x708f00 {
+    virtual bool init(cocos2d::CCNode* pStencil) = m1 0x62876c, imac 0x708f00 { // ios inline
     	CC_SAFE_RELEASE(m_pStencil);
     	m_pStencil = pStencil;
     	CC_SAFE_RETAIN(m_pStencil);
@@ -2605,24 +2599,24 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	return true;
     }
 
-    virtual void onEnter() = ios inline, m1 0x6287dc, imac 0x708f70 {
+    virtual void onEnter() = m1 0x6287dc, imac 0x708f70 {
     	CCNode::onEnter();
     		m_pStencil->onEnter();
     }
-    virtual void onEnterTransitionDidFinish() = ios inline, m1 0x628808, imac 0x708fa0 {
+    virtual void onEnterTransitionDidFinish() = m1 0x628808, imac 0x708fa0 {
     	CCNode::onEnterTransitionDidFinish();
     		m_pStencil->onEnterTransitionDidFinish();
     }
-    virtual void onExit() = ios inline, m1 0x628864, imac 0x709000 {
+    virtual void onExit() = m1 0x628864, imac 0x709000 {
     	m_pStencil->onExit();
     		CCNode::onExit();
     }
-    virtual void onExitTransitionDidStart() = ios inline, m1 0x628834, imac 0x708fd0 {
+    virtual void onExitTransitionDidStart() = m1 0x628834, imac 0x708fd0 {
     	m_pStencil->onExitTransitionDidStart();
     		CCNode::onExitTransitionDidStart();
     }
 
-    virtual void visit() = ios inline, imac 0x709030, m1 0x628894 {
+    virtual void visit() = imac 0x709030, m1 0x628894 {
     	// if stencil buffer disabled
     	//if (g_sStencilBits < 1)
     	//{
@@ -2806,26 +2800,16 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     	}
     }
 
-    cocos2d::CCNode* getStencil() const = ios inline {
-    	return m_pStencil;
-    }
-    void setStencil(cocos2d::CCNode* pStencil) = ios inline, imac 0x7093a0, m1 0x628bc4 {
-    	CC_SAFE_RELEASE(m_pStencil);
-    	m_pStencil = pStencil;
-    	CC_SAFE_RETAIN(m_pStencil);
-    }
+    cocos2d::CCNode* getStencil() const;
+    void setStencil(cocos2d::CCNode* pStencil) = imac 0x7093a0, m1 0x628bc4;
 
-    float getAlphaThreshold() const = ios inline {
-    	return m_fAlphaThreshold;
-    }
-    void setAlphaThreshold(float fAlphaThreshold) = ios inline, imac 0x7093f0, m1 0x628c10 {
+    float getAlphaThreshold() const;
+    void setAlphaThreshold(float fAlphaThreshold) = imac 0x7093f0, m1 0x628c10 {
     	m_fAlphaThreshold = fAlphaThreshold;
     }
 
-    bool isInverted() const = ios inline {
-    	return m_bInverted;
-    }
-    void setInverted(bool bInverted) = ios inline, imac 0x709410, m1 0x628c20 {
+    bool isInverted() const;
+    void setInverted(bool bInverted) = imac 0x709410, m1 0x628c20 {
     	m_bInverted = bInverted;
     }
 }
