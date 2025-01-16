@@ -15258,8 +15258,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn specialGroundHit();
     TodoReturn speedDown();
     TodoReturn speedUp();
-    void spiderTestJump(bool) = win 0x37e510, m1 0x3727c8;
-    void spiderTestJumpInternal(bool) = win 0x37e5c0, m1 0x37ad3c;
+    void spiderTestJump(bool) = win 0x37e510, m1 0x3727c8, imac 0x3f1ae0;
+    void spiderTestJumpInternal(bool) = win 0x37e5c0, m1 0x37ad3c, imac 0x3fbe50;
     void spiderTestJumpX(bool);
     void spiderTestJumpY(bool);
     void startDashing(DashRingObject*) = win 0x37fae0, m1 0x37e290, imac 0x3ffa00;

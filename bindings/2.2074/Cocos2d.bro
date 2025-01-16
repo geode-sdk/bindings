@@ -1002,7 +1002,7 @@ class cocos2d::CCNode : cocos2d::CCObject {
     void stopAction(cocos2d::CCAction*) = m1 0x20dd6c, imac 0x261fb0;
     void stopActionByTag(int) = m1 0x20dd74, imac 0x261fd0;
     void stopAllActions() = imac 0x260e30, m1 0x20cbec;
-    void transform();
+    void transform() = m1 0x20d820, imac 0x261a70;
     void transformAncestors();
     void unschedule(cocos2d::SEL_SCHEDULE) = imac 0x262270, m1 0x20df6c;
     void unscheduleAllSelectors() = imac 0x260e50, m1 0x20cbf8;
