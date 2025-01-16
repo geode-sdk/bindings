@@ -20,7 +20,7 @@ jobs:
 
     - name: Get changed files in the codegen folder
       id: changed
-      uses: tj-actions/changed-files@v42
+      uses: tj-actions/changed-files@v45
       with:
         files: |
           .github/workflows/build.yml
