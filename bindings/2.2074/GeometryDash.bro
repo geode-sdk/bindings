@@ -13618,16 +13618,21 @@ class LoadingCircleSprite : cocos2d::CCSprite {
 
     /// Create a Loading Circle Sprite with a spinning action
     /// @param spinSpeed A speed modifier, higher is faster and lower is slower
-    static LoadingCircleSprite* create(float spinSpeed) = win 0x6bc30, imac 0x4ac190;
+    static LoadingCircleSprite* create(float spinSpeed) = win 0x6bc30, m1 0x415268, imac 0x4ac190;
 
     cocos2d::CCAction* fadeInCircle(bool, float, float) = win 0x6bd30, imac 0x4ac330, m1 0x4153e4;
-    void hideCircle() = win inline, m1 0x415470 {
+    void hideCircle() = win inline, m1 0x415470, imac 0x4ac3b0 {
         this->stopActionByTag(0);
         this->setOpacity(0);
         this->setVisible(false);
     }
 
-    bool init(float);
+    bool init(float spinSpeed) = win inline, m1 0x41534c, imac 0x4ac270 {
+        if (!CCSprite::initWithFile("loadingCircle.png")) return false;
+        this->setBlendFunc({ GL_SRC_ALPHA, GL_ONE });
+        this->runAction(cocos2d::CCRepeatForever::create(cocos2d::CCRotateBy::create(1.f, spinSpeed * 360.f)));
+        return true;
+    }
 }
 
 [[link(android)]]
