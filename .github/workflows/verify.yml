@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Restore cache
       id: codegen-cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: bin
         key: codegen-${{ hashFiles('codegen/**') }}
@@ -24,7 +24,7 @@ jobs:
         cmake --install build
 
     - name: Upload Codegen binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Codegen
         path: bin/Codegen
@@ -34,10 +34,10 @@ jobs:
     needs: build
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Download Codegen binary
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: Codegen
 
@@ -128,7 +128,7 @@ jobs:
 
     - name: Set up codegen binary cache
       id: codegen-cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: build/bindings/codegen
         # cache by os since for android32 and 64 the codegen binary is the same

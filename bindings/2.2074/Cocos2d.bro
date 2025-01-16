@@ -3389,6 +3389,11 @@ class cocos2d {
 }
 
 [[link(win, android)]]
+void kmGLPushMatrix() = m1 0x1aba8c, imac 0x1f5fa0;
+[[link(win, android)]]
+void kmGLPopMatrix() = m1 0x1abad0, imac 0x1f5fe0;
+
+[[link(win, android)]]
 class DS_Dictionary {
     DS_Dictionary() = m1 0x135e9c, imac 0x169200;
     void addBoolValuesToMapForKey(gd::map<gd::string, bool>&, char const*, bool) = m1 0x13d518, imac 0x171590;
