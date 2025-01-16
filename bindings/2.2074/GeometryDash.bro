@@ -10724,7 +10724,7 @@ class GJScaleControl : cocos2d::CCLayer {
     float skewFromValue(float) = imac 0x528a0;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x1287a0, m1 0x49adc, imac 0x526f0;
     void updateLabelX(float value) = win 0x128f20, m1 0x49b0c, imac 0x52740;
-    void updateLabelXY(float value) = win 0x129020, m1 0x49bdc, imac 0x52800;
+    void updateLabelXY(float value) = win 0x129020, m1 0x49bdc, imac 0x52800, ios 0x3f313c;
     void updateLabelY(float value) = win 0x128fa0, m1 0x49b74, imac 0x527a0;
     float valueFromScale(float scale) = win inline {
         auto value = (scale - m_lowerBound) / (m_upperBound - m_lowerBound);
