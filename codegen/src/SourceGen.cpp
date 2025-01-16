@@ -159,6 +159,10 @@ auto {function_name}({parameters}) -> decltype({function_name}({arguments})) {{
 	return reinterpret_cast<FunctionType>(func)({arguments});
 }}
 )GEN";
+
+	constexpr char const* declare_standalone_definition = R"GEN(
+{return} {function_name}({parameters}) {definition}
+)GEN";
 }}
 
 std::string generateBindingSource(Root const& root) {
@@ -166,6 +170,14 @@ std::string generateBindingSource(Root const& root) {
 
 	for (auto& f : root.functions) {
         if (codegen::getStatus(f) != BindStatus::NeedsBinding) {
+			if (codegen::getStatus(f) == BindStatus::Inlined) {
+				output += fmt::format(format_strings::declare_standalone_definition,
+					fmt::arg("return", f.prototype.ret.name),
+					fmt::arg("function_name", f.prototype.name),
+					fmt::arg("parameters", codegen::getParameters(f.prototype)),
+					fmt::arg("definition", f.inner)
+				);
+			}
             continue;
         }
 
