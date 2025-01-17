@@ -15264,7 +15264,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void spiderTestJumpY(bool);
     void startDashing(DashRingObject*) = win 0x37fae0, m1 0x37e290, imac 0x3ffa00;
     TodoReturn stopBurstEffect();
-    void stopDashing() = win 0x380820;
+    void stopDashing() = win 0x380820, m1 0x370c60, imac 0x3efe00;
     void stopParticles() = win 0x375af0;
     void stopPlatformerJumpAnimation() = win 0x3772d0, imac 0x3f2500, m1 0x37314c;
     TodoReturn stopRotation(bool, int);
