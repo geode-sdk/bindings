@@ -4248,7 +4248,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onDeleteSelectedType(cocos2d::CCObject* sender) = win 0xe5310, imac 0x32240;
     void onDeleteStartPos(cocos2d::CCObject* sender) = win 0xe5360;
     void onDeselectAll(cocos2d::CCObject* sender) = win 0x10fd40, m1 0x2c478;
-    void onDuplicate(cocos2d::CCObject* sender) = win 0x1113e0;
+    void onDuplicate(cocos2d::CCObject* sender) = win 0x1113e0, m1 0x2b4dc, imac 0x2b2e0;
     void onEditColor(cocos2d::CCObject* sender) = win 0x11d0b0;
     void onFindObject(cocos2d::CCObject* sender);
     void onGoToBaseLayer(cocos2d::CCObject* sender) = win 0x112f40;
