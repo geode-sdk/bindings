@@ -15299,7 +15299,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateCollideTop(float, GameObject*);
     void updateDashAnimation() = m1 0x370a18, imac 0x3efb90;
     void updateDashArt() = win 0x380390;
-    void updateEffects(float param) = win inline, imac 0x3f0ff0 {
+    void updateEffects(float param) = win inline, m1 0x371df0, imac 0x3f0ff0 {
         m_waveTrail->updateStroke(param);
     }
     void updateGlowColor() = win 0x3876a0, imac 0x4088a0, m1 0x386264;
@@ -15345,7 +15345,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn updateStaticForce(float, float, bool);
     void updateStreakBlend(bool) = imac 0x3eb160;
     TodoReturn updateStreaks(float);
-    void updateSwingFire() = win 0x385040;
+    void updateSwingFire() = win 0x385040, m1 0x382814, imac 0x4049f0;
     void updateTimeMod(float, bool) = win 0x38afc0, imac 0x3ea990, m1 0x36c61c;
     TodoReturn usingWallLimitedMode();
     TodoReturn yStartDown();
