@@ -89,7 +89,7 @@ jobs:
       shell: bash
       run: |
         sudo apt update
-        sudo apt remove clang
+        sudo apt remove clang-14
         sudo apt install clang-15
       if: matrix.config.id == 'linux'
 
