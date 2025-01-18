@@ -85,6 +85,14 @@ jobs:
         echo "$GITHUB_WORKSPACE/llvm/bin" >> $GITHUB_PATH
       if: matrix.config.id == 'win'
 
+    - name: Update Clang (Linux)
+      shell: bash
+      run: |
+        sudo apt update
+        sudo apt remove clang
+        sudo apt install clang-15
+      if: matrix.config.id == 'linux'
+
     - name: Configure
       run: >
         cmake codegen -B codegen/build
