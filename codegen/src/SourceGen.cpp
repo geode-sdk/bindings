@@ -267,7 +267,7 @@ std::string generateBindingSource(Root const& root) {
 							used_declare_format = format_strings::declare_virtual;
 					}
 
-					output += fmt::format(used_declare_format,
+					output += fmt::format(fmt::runtime(used_declare_format),
 						fmt::arg("class_name", c.name),
 						fmt::arg("unqualified_class_name", codegen::getUnqualifiedClassName(c.name)),
 						fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
