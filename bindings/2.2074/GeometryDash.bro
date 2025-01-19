@@ -12140,9 +12140,22 @@ class KeyframeAnimTriggerObject : EffectGameObject {
 
     static KeyframeAnimTriggerObject* create();
 
-    virtual bool init() = m1 0x16bc30, imac 0x1aa550, ios 0x37f844;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1ab5c0, m1 0x16c950, ios 0x37fc84;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1aa5a0, m1 0x16bc80, ios 0x37f894;
+    virtual bool init() = win 0x498a40, m1 0x16bc30, imac 0x1aa550, ios 0x37f844;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x498eb0, imac 0x1ab5c0, m1 0x16c950, ios 0x37fc84;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x498ab0, imac 0x1aa5a0, m1 0x16bc80, ios 0x37f894;
+
+    // property 520
+    float m_timeMod;
+    // property 521
+    float m_positionXMod;
+    // property 545
+    float m_positionYMod;
+    // property 522
+    float m_rotationMod;
+    // property 523
+    float m_scaleXMod;
+    // property 546
+    float m_scaleYMod;
 }
 
 [[link(android)]]
@@ -12151,12 +12164,43 @@ class KeyframeGameObject : EffectGameObject {
 
     static KeyframeGameObject* create();
 
-    virtual bool init() = m1 0x1750f4, imac 0x1b5420, ios 0x383c34;
+    virtual bool init() = win 0x49c8e0, m1 0x1750f4, imac 0x1b5420, ios 0x383c34;
     virtual void setOpacity(unsigned char) = win 0x49cba0, imac 0x1b5700, m1 0x1753e0, ios 0x383ef8;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1b5860, m1 0x17552c, ios 0x383fa4;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1b5dd0, m1 0x1759d4, ios 0x3843ac;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49cc60, imac 0x1b5860, m1 0x17552c, ios 0x383fa4;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49d0a0, imac 0x1b5dd0, m1 0x1759d4, ios 0x3843ac;
 
-    TodoReturn updateShadowObjects(GJBaseGameLayer*, EditorUI*);
+    void updateShadowObjects(GJBaseGameLayer*, EditorUI*) = win 0x49c970;
+
+    cocos2d::CCArray* m_shadowObjects;
+    cocos2d::CCSprite* m_previewSprite;
+    // property 373
+    int m_keyframeGroup;
+    // property 374
+    int m_keyframeIndex;
+    // property 375
+    bool m_referenceOnly;
+    // property 377
+    bool m_proximity;
+    // property 378
+    bool m_curve;
+    // property 376
+    bool m_closeLoop;
+    // property 379
+    int m_timeMode;
+    float m_unk760;
+    // property 557
+    float m_spawnDelay;
+    // property 380
+    bool m_previewArt;
+    bool m_keyframeActive;
+    // property 459
+    bool m_autoLayer;
+    // property 536
+    int m_direction;
+    // property 537
+    int m_revolutions;
+    // property 524
+    float m_lineOpacity;
 }
 
 [[link(android)]]
@@ -12164,21 +12208,52 @@ class KeyframeObject {
     // KeyframeObject();
     // KeyframeObject(KeyframeObject const&);
 
-    TodoReturn setupSpline(gd::vector<KeyframeObject*>&);
+    void setupSpline(gd::vector<KeyframeObject*>&) = win 0x2b9730;
 
-    PAD = win 0x20;
-    gd::vector<double> m_unkVecDouble1;
-    gd::vector<double> m_unkVecDouble2;
-    gd::vector<double> m_unkVecDouble3;
-    gd::vector<double> m_unkVecDouble4;
-    gd::vector<double> m_unkVecDouble5;
-    PAD = win 0x29;
-    gd::vector<double> m_unkVecDouble6;
-    gd::vector<double> m_unkVecDouble7;
-    gd::vector<double> m_unkVecDouble8;
-    gd::vector<double> m_unkVecDouble9;
-    gd::vector<double> m_unkVecDouble10;
-    PAD = win 0x80;
+    double m_unk000;
+    int m_unk008;
+    float m_unk00c;
+    bool m_unk010;
+    int m_unk014;
+    float m_unk018;
+    bool m_unk01c;
+    bool m_unk01d;
+    bool m_unk01e;
+    gd::vector<double> m_spline1X;
+    gd::vector<double> m_spline1Y;
+    gd::vector<double> m_spline1B;
+    gd::vector<double> m_spline1C;
+    gd::vector<double> m_spline1D;
+    double m_spline1C0;
+    int m_spline1Type;
+    int m_spline1Left;
+    int m_spline1Right;
+    double m_spline1LeftValue;
+    double m_spline1RightValue;
+    bool m_spline1MadeMonotonic;
+    gd::vector<double> m_spline2X;
+    gd::vector<double> m_spline2Y;
+    gd::vector<double> m_spline2B;
+    gd::vector<double> m_spline2C;
+    gd::vector<double> m_spline2D;
+    double m_spline2C0;
+    int m_spline2Type;
+    int m_spline2Left;
+    int m_spline2Right;
+    double m_spline2LeftValue;
+    double m_spline2RightValue;
+    bool m_spline2MadeMonotonic;
+    double m_unk170;
+    double m_unk178;
+    int m_unk180;
+    int m_unk184;
+    cocos2d::CCPoint m_unk188;
+    cocos2d::CCPoint m_unk190;
+    double m_unk198;
+    double m_unk1a0;
+    double m_unk1a8;
+    double m_unk1b0;
+    float m_unk1b8;
 }
 
 [[link(android)]]
@@ -17852,26 +17927,30 @@ class SetupItemEditTriggerPopup : SetupTriggerPopup {
 class SetupKeyframeAnimPopup : SetupTriggerPopup {
     // virtual ~SetupKeyframeAnimPopup();
 
-    static SetupKeyframeAnimPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupKeyframeAnimPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x40c970;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x1a3d5c, imac 0x1ecdd0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x40ca80, m1 0x1a3d5c, imac 0x1ecdd0;
 }
 
 [[link(android)]]
 class SetupKeyframePopup : SetupTriggerPopup {
     // virtual ~SetupKeyframePopup();
 
-    static SetupKeyframePopup* create(KeyframeGameObject*, cocos2d::CCArray*, LevelEditorLayer*);
+    static SetupKeyframePopup* create(KeyframeGameObject*, cocos2d::CCArray*, LevelEditorLayer*) = win 0x40d4a0;
 
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x1effa0, m1 0x1a6778, ios 0x1b7d14;
-    virtual void onCustomButton(cocos2d::CCObject* sender) = imac 0x1efbe0, m1 0x1a6394, ios 0x1b7a24;
-    virtual void valueDidChange(int, float) = imac 0x1ef920, m1 0x1a60a8, ios 0x1b77fc;
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x1efb50, m1 0x1a62f0, ios 0x1b7980;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x40f180, imac 0x1effa0, m1 0x1a6778, ios 0x1b7d14;
+    virtual void onCustomButton(cocos2d::CCObject* sender) = win 0x40e990, imac 0x1efbe0, m1 0x1a6394, ios 0x1b7a24;
+    virtual void valueDidChange(int, float) = win 0x40e8b0, imac 0x1ef920, m1 0x1a60a8, ios 0x1b77fc;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x40e8d0, imac 0x1efb50, m1 0x1a62f0, ios 0x1b7980;
 
-    bool init(KeyframeGameObject*, cocos2d::CCArray*, LevelEditorLayer*) = m1 0x1a4a58, imac 0x1edec0;
-    void onTimeMode(cocos2d::CCObject* sender);
-    TodoReturn refreshPreviewArt();
-    TodoReturn updateTimeModeButtons();
+    bool init(KeyframeGameObject*, cocos2d::CCArray*, LevelEditorLayer*) = win 0x40d5e0, m1 0x1a4a58, imac 0x1edec0;
+    void onTimeMode(cocos2d::CCObject* sender) = win 0x40f090;
+    void refreshPreviewArt() = win 0x40edf0;
+    void updateTimeModeButtons() = win 0x40f0f0;
+
+    cocos2d::CCArray* m_timeModeToggles;
+    LevelEditorLayer* m_editorLayer;
+    bool m_groupIDChanged;
 }
 
 [[link(android)]]
