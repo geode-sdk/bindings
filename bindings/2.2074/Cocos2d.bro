@@ -1002,7 +1002,7 @@ class cocos2d::CCNode : cocos2d::CCObject {
     void stopAction(cocos2d::CCAction*) = m1 0x20dd6c, imac 0x261fb0;
     void stopActionByTag(int) = m1 0x20dd74, imac 0x261fd0;
     void stopAllActions() = imac 0x260e30, m1 0x20cbec;
-    void transform();
+    void transform() = m1 0x20d820, imac 0x261a70;
     void transformAncestors();
     void unschedule(cocos2d::SEL_SCHEDULE) = imac 0x262270, m1 0x20df6c;
     void unscheduleAllSelectors() = imac 0x260e50, m1 0x20cbf8;
@@ -1762,9 +1762,9 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void pause();
     void popScene() = imac 0x471430, m1 0x3e025c;
     bool popSceneWithTransition(float, cocos2d::PopTransition) = imac 0x4714c0, m1 0x3e02e8;
-    void popToRootScene();
-    void popToSceneInStack(cocos2d::CCScene*);
-    void popToSceneStackLevel(int);
+    void popToRootScene() = imac 0x4715a0, m1 0x3e03b8;
+    void popToSceneInStack(cocos2d::CCScene*) = imac 0x471720, m1 0x3e0514;
+    void popToSceneStackLevel(int) = imac 0x4715b0, m1 0x3e03c0;
     void purgeCachedData();
     void purgeDirector() = imac 0x471780;
     bool pushScene(cocos2d::CCScene*) = imac 0x471230, m1 0x3e0034;
@@ -3387,6 +3387,11 @@ class cocos2d {
     static char const* cocos2dVersion();
     static float clampf(float, float, float);
 }
+
+[[link(win, android)]]
+void kmGLPushMatrix() = m1 0x1aba8c, imac 0x1f5fa0;
+[[link(win, android)]]
+void kmGLPopMatrix() = m1 0x1abad0, imac 0x1f5fe0;
 
 [[link(win, android)]]
 class DS_Dictionary {

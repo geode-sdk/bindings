@@ -2616,7 +2616,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     CommentCell(char const*, float, float);
 
     virtual bool init() = win 0xb5460, imac 0x242d60, m1 0x1f202c, ios 0x11371c;
-    virtual void draw() = imac 0x243070, m1 0x1f22f4, ios 0x1139b8;
+    virtual void draw() = win 0xad710, imac 0x243070, m1 0x1f22f4, ios 0x1139b8;
     virtual void likedItem(LikeItemType, int, bool) = win 0xb7750, imac 0x243140, m1 0x1f23a0, ios 0x113a64;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xb79c0, imac 0x2434e0, m1 0x1f271c, ios 0x113bdc;
 
@@ -4248,7 +4248,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onDeleteSelectedType(cocos2d::CCObject* sender) = win 0xe5310, imac 0x32240;
     void onDeleteStartPos(cocos2d::CCObject* sender) = win 0xe5360;
     void onDeselectAll(cocos2d::CCObject* sender) = win 0x10fd40, m1 0x2c478;
-    void onDuplicate(cocos2d::CCObject* sender) = win 0x1113e0;
+    void onDuplicate(cocos2d::CCObject* sender) = win 0x1113e0, m1 0x2b4dc, imac 0x2b2e0;
     void onEditColor(cocos2d::CCObject* sender) = win 0x11d0b0;
     void onFindObject(cocos2d::CCObject* sender);
     void onGoToBaseLayer(cocos2d::CCObject* sender) = win 0x112f40;
@@ -4281,7 +4281,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn playCircleAnim(cocos2d::CCPoint, float, float);
     TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
     TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-    void playtestStopped() = win 0x110d80, imac 0x3df80;
+    void playtestStopped() = win 0x110d80, m1 0x38a54, imac 0x3df80;
     TodoReturn positionIsInSnapped(cocos2d::CCPoint);
     TodoReturn positionWithoutOffset(GameObject*);
     TodoReturn processSelectObjects(cocos2d::CCArray*) = imac 0x3d880;
@@ -10774,7 +10774,7 @@ class GJScaleControl : cocos2d::CCLayer {
     float skewFromValue(float) = imac 0x528a0;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x1287a0, m1 0x49adc, imac 0x526f0;
     void updateLabelX(float value) = win 0x128f20, m1 0x49b0c, imac 0x52740;
-    void updateLabelXY(float value) = win 0x129020, m1 0x49bdc, imac 0x52800;
+    void updateLabelXY(float value) = win 0x129020, m1 0x49bdc, imac 0x52800, ios 0x3f313c;
     void updateLabelY(float value) = win 0x128fa0, m1 0x49b74, imac 0x527a0;
     float valueFromScale(float scale) = win inline, m1 0x49c98, imac 0x528f0 {
         auto value = (scale - m_lowerBound) / (m_upperBound - m_lowerBound);
@@ -13693,16 +13693,21 @@ class LoadingCircleSprite : cocos2d::CCSprite {
 
     /// Create a Loading Circle Sprite with a spinning action
     /// @param spinSpeed A speed modifier, higher is faster and lower is slower
-    static LoadingCircleSprite* create(float spinSpeed) = win 0x6bc30, imac 0x4ac190;
+    static LoadingCircleSprite* create(float spinSpeed) = win 0x6bc30, m1 0x415268, imac 0x4ac190;
 
     cocos2d::CCAction* fadeInCircle(bool, float, float) = win 0x6bd30, imac 0x4ac330, m1 0x4153e4;
-    void hideCircle() = win inline, m1 0x415470 {
+    void hideCircle() = win inline, m1 0x415470, imac 0x4ac3b0 {
         this->stopActionByTag(0);
         this->setOpacity(0);
         this->setVisible(false);
     }
 
-    bool init(float);
+    bool init(float spinSpeed) = win inline, m1 0x41534c, imac 0x4ac270 {
+        if (!CCSprite::initWithFile("loadingCircle.png")) return false;
+        this->setBlendFunc({ GL_SRC_ALPHA, GL_ONE });
+        this->runAction(cocos2d::CCRepeatForever::create(cocos2d::CCRotateBy::create(1.f, spinSpeed * 360.f)));
+        return true;
+    }
 }
 
 [[link(android)]]
@@ -15328,13 +15333,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn specialGroundHit();
     TodoReturn speedDown();
     TodoReturn speedUp();
-    void spiderTestJump(bool) = win 0x37e510, m1 0x3727c8;
-    void spiderTestJumpInternal(bool) = win 0x37e5c0, m1 0x37ad3c;
+    void spiderTestJump(bool) = win 0x37e510, m1 0x3727c8, imac 0x3f1ae0;
+    void spiderTestJumpInternal(bool) = win 0x37e5c0, m1 0x37ad3c, imac 0x3fbe50;
     void spiderTestJumpX(bool);
     void spiderTestJumpY(bool);
     void startDashing(DashRingObject*) = win 0x37fae0, m1 0x37e290, imac 0x3ffa00;
     TodoReturn stopBurstEffect();
-    void stopDashing() = win 0x380820;
+    void stopDashing() = win 0x380820, m1 0x370c60, imac 0x3efe00;
     void stopParticles() = win 0x375af0;
     void stopPlatformerJumpAnimation() = win 0x3772d0, imac 0x3f2500, m1 0x37314c;
     TodoReturn stopRotation(bool, int);
@@ -15369,7 +15374,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateCollideTop(float, GameObject*);
     void updateDashAnimation() = m1 0x370a18, imac 0x3efb90;
     void updateDashArt() = win 0x380390;
-    void updateEffects(float param) = win inline, imac 0x3f0ff0 {
+    void updateEffects(float param) = win inline, m1 0x371df0, imac 0x3f0ff0 {
         m_waveTrail->updateStroke(param);
     }
     void updateGlowColor() = win 0x3876a0, imac 0x4088a0, m1 0x386264;
@@ -15415,7 +15420,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn updateStaticForce(float, float, bool);
     void updateStreakBlend(bool) = imac 0x3eb160;
     TodoReturn updateStreaks(float);
-    void updateSwingFire() = win 0x385040;
+    void updateSwingFire() = win 0x385040, m1 0x382814, imac 0x4049f0;
     void updateTimeMod(float, bool) = win 0x38afc0, imac 0x3ea990, m1 0x36c61c;
     TodoReturn usingWallLimitedMode();
     TodoReturn yStartDown();
@@ -20253,10 +20258,19 @@ class StatsCell : TableViewCell {
 [[link(android)]]
 class StatsLayer : GJDropDownLayer {
     // virtual ~StatsLayer();
+    inline StatsLayer() {}
 
-    static StatsLayer* create() = m1 0x8e198, imac 0x9b220;
+    static StatsLayer* create() = win inline, m1 0x8e198, imac 0x9b220 {
+        auto ret = new StatsLayer();
+        if(ret->init("Stats", 220.f, false)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual void customSetup() = m1 0x8e310, imac 0x9b450, ios 0x241bac;
+    virtual void customSetup() = win 0x4af100, m1 0x8e310, imac 0x9b450, ios 0x241bac;
 }
 
 [[link(android)]]
@@ -20724,8 +20738,17 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
 [[link(android)]]
 class TOSPopup : FLAlertLayer {
     // virtual ~TOSPopup();
+    inline TOSPopup() {}
 
-    static TOSPopup* create();
+    static TOSPopup* create() = win inline {
+        auto ret = new TOSPopup();
+        if(ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x296930, m1 0x243ea8, imac 0x29c720, ios 0x2e0414;
     virtual void keyBackClicked() = m1 0x2444f4, imac 0x29cda0, ios 0x2e0a24 {}
