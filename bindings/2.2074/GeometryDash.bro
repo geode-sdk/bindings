@@ -8220,7 +8220,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void playExitDualEffect(PlayerObject*) = win 0x2119a0, m1 0xf7ff0, imac 0x119250;
     TodoReturn playFlashEffect(float, int, float);
     TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
-    TodoReturn playSpeedParticle(float) = m1 0x121058, imac 0x14c000;
+    void playSpeedParticle(float) = m1 0x121058, imac 0x14c000;
     TodoReturn positionForShaderTarget(int) = win 0x21e1a0;
     TodoReturn positionUIObjects();
     TodoReturn prepareSavePositionObjects();
