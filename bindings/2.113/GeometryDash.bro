@@ -1756,6 +1756,7 @@ class EndLevelLayer : cocos2d::CCLayer {
 [[link(android)]]
 class EndPortalObject : GameObject {
     static EndPortalObject* create() = mac 0x1da8f0, win 0x98a50;
+	void triggerObject() = win 0x9f8e0;
     void updateColors(cocos2d::_ccColor3B) = mac 0x1dacb0, win 0x98eb0;
 }
 
@@ -4916,7 +4917,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void pauseGame(bool) = mac 0x802d0, win 0x20d3c0;
     void pickupItem(GameObject*) = mac 0x7c1d0;
     void playAnimationCommand(int, int) = mac 0x75930, win 0x1ff2f0;
-    void playEndAnimationToPos(cocos2d::CCPoint) = mac 0x759a0;
+    void playEndAnimationToPos(cocos2d::CCPoint) = mac 0x759a0, win 0x1ff380;
     void playExitDualEffect(PlayerObject*) = mac 0x7d1d0, win 0x208e20;
     void playFlashEffect(float, int, float) = mac 0x75e50;
     void playGravityEffect(bool) = mac 0x7b5a0, win 0x207e00;
