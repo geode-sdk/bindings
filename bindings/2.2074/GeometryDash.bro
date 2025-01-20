@@ -12732,7 +12732,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn refreshSpecial(GameObject*);
     TodoReturn removeAllObjects();
     TodoReturn removeAllObjectsOfType(int) = win 0x2cdbb0;
-    TodoReturn removeObject(GameObject*, bool) = imac 0xe27e0, m1 0xc98e4;
+    void removeObject(GameObject*, bool) = win 0x2cda70, imac 0xe27e0, m1 0xc98e4;
     TodoReturn removePlayerCollisionBlock();
     void removeSpecial(GameObject*) = win 0x2cfbb0, imac 0xe28a0, m1 0xc99a4;
     TodoReturn resetDelayedSpawnNodes();
