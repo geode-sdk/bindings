@@ -4123,7 +4123,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn arrayContainsClass(cocos2d::CCArray*, int);
     TodoReturn assignNewGroups(bool) = imac 0x45970;
     TodoReturn canAllowMultiActivate(GameObject*, cocos2d::CCArray*);
-    TodoReturn canSelectObject(GameObject*);
+    // canSelectObject is fucked and trying to use 'this' inside it crashes. instead call EditorUI::get() and static cast it to your modified class
+    bool canSelectObject(GameObject* object) = win 0x10ec30, imac 0x3c770, m1 0x373c8;
     TodoReturn centerCameraOnObject(GameObject*);
     TodoReturn changeSelectedObjects(cocos2d::CCArray*, bool);
     TodoReturn checkDiffAfterTransformAnchor(cocos2d::CCPoint, cocos2d::CCArray*) = win 0x1140e0;
