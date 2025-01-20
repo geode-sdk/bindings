@@ -4144,7 +4144,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn createExtras(cocos2d::CCArray*);
     TodoReturn createExtrasForObject(int, GameObject*, cocos2d::CCArray*);
     TodoReturn createGlow();
-    void createLoop();
+    void createLoop() = win 0x117c90;
     void createMoveMenu() = win 0x119350, m1 0x400a8, imac 0x464d0;
     TodoReturn createNewKeyframeAnim();
     GameObject* createObject(int, cocos2d::CCPoint) = win 0x10e840;
@@ -6706,7 +6706,7 @@ class GameObject : CCSpritePlus {
     virtual float getObjectRotation() = win 0x19e570, imac 0x5b9cb0, m1 0x4efe24, ios 0x264644;
     virtual void updateMainColor(cocos2d::ccColor3B const&) = win 0x19eff0, m1 0x4eae24, imac 0x5b2150, ios 0x2612d0;
     virtual void updateSecondaryColor(cocos2d::ccColor3B const&) = win 0x19f000, m1 0x4eb32c, imac 0x5b2660, ios 0x2614a4;
-    virtual void addToGroup(int) = win 0x199810, imac 0x5a6570, m1 0x4e09b8, ios 0x25c4f0;
+    virtual int addToGroup(int) = win 0x199810, imac 0x5a6570, m1 0x4e09b8, ios 0x25c4f0;
     virtual void removeFromGroup(int) = win 0x199930, imac 0x5a6620, m1 0x4e0a90, ios 0x25c5a0;
     virtual void saveActiveColors() = win 0x19d950, imac 0x5b05d0, m1 0x4e93b4, ios 0x25ff38;
     virtual float spawnXPosition() = win 0x135fe0, imac 0x1e1b50, m1 0x19999c, ios 0x22ea4c;
@@ -20459,7 +20459,7 @@ class TeleportPortalObject : RingObject {
     virtual void setStartPos(cocos2d::CCPoint) = imac 0x1acb00, m1 0x16dbec, ios 0x3805d8;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1af440, m1 0x16fd10, ios 0x381168;
     virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1acea0, m1 0x16df90, ios 0x380960;
-    virtual void addToGroup(int) = imac 0x1acde0, m1 0x16dea8, ios 0x380888;
+    virtual int addToGroup(int) = imac 0x1acde0, m1 0x16dea8, ios 0x380888;
     virtual void removeFromGroup(int) = imac 0x1ace40, m1 0x16df2c, ios 0x3808fc;
     virtual void setRotation2(float) = m1 0x16de9c, imac 0x1acdb0, ios 0x38087c;
     virtual void addToGroup2(int) = m1 0x16dea0, imac 0x1acdc0, ios 0x380880;
