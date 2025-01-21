@@ -6850,7 +6850,7 @@ class GameObject : CCSpritePlus {
     bool isFacingDown() = win 0x19e990, m1 0x4ea740;
     bool isFacingLeft() = win 0x19ea50, m1 0x4ea7d0;
     bool isSettingsObject() = imac 0x5b3690, m1 0x4ebf78;
-    bool isSpawnableTrigger();
+    bool isSpawnableTrigger() = win 0x19f730;
     bool isSpecialObject();
     bool isSpeedObject() = imac 0x5b30f0;
     bool isStoppableTrigger();
