@@ -1032,27 +1032,28 @@ class cocos2d::CCFileUtils {
     virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&) = m1 0x3a1a68, imac 0x426ce0, ios 0x153f78;
 }
 
-[[link(win, android)]]
-class cocos2d::CCFiniteTimeAction {
-	float getDuration() = ios inline {
-        return m_fDuration;
-    }
+// this is literally already in sdk, and adding it here breaks building sdk
+// [[link(win, android)]]
+// class cocos2d::CCFiniteTimeAction {
+	// float getDuration() = ios inline {
+    //     return m_fDuration;
+    // }
 
-	void setDuration(float duration) = ios inline {
-        m_fDuration = duration;
-    }
+	// void setDuration(float duration) = ios inline {
+    //     m_fDuration = duration;
+    // }
 
 	// CCFiniteTimeAction(cocos2d::CCFiniteTimeAction const&);
-	CCFiniteTimeAction() = ios inline {
-        m_fDuration = 0;
-    }
-    ~CCFiniteTimeAction() = ios inline {}
+	// CCFiniteTimeAction() = ios inline {
+    //     m_fDuration = 0;
+    // }
+    // ~CCFiniteTimeAction() = ios inline {}
 
-	virtual cocos2d::CCFiniteTimeAction* reverse() = ios inline {
-        CCLOG("cocos2d: FiniteTimeAction#reverse: Implement me");
-        return NULL;
-    }
-}
+	// virtual cocos2d::CCFiniteTimeAction* reverse() = ios inline {
+    //     CCLOG("cocos2d: FiniteTimeAction#reverse: Implement me");
+    //     return NULL;
+    // }
+// }
 
 [[link(win, android)]]
 class cocos2d::CCGLProgram {
@@ -1902,11 +1903,11 @@ class cocos2d::CCDirector {
     bool isSendCleanupToScene();
     int levelForSceneInStack(cocos2d::CCScene*);
     void pause();
-    void popScene();
+    void popScene() = ios 0x1796e8;
     bool popSceneWithTransition(float, cocos2d::PopTransition) = imac 0x4714c0, m1 0x3e02e8;
     void popToRootScene();
     void popToSceneInStack(cocos2d::CCScene*);
-    void popToSceneStackLevel(int);
+    void popToSceneStackLevel(int) = ios 0x179844;
     void purgeCachedData();
     void purgeDirector() = imac 0x471780;
     bool pushScene(cocos2d::CCScene*) = imac 0x471230, m1 0x3e0034, ios 0x179580;
