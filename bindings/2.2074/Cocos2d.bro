@@ -1803,7 +1803,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
 
 [[link(win, android)]]
 class cocos2d::CCNodeRGBA : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
-    static cocos2d::CCNodeRGBA* create() = mac inline, ios inline {
+    static cocos2d::CCNodeRGBA* create() = m1 0x20ed04, imac 0x2630c0, ios inline {
     	auto pRet = new cocos2d::CCNodeRGBA();
 
     	if (pRet->init()) {
