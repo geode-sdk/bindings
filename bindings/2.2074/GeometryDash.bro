@@ -8059,7 +8059,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&);
     TodoReturn addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType);
     void addCustomEnterEffect(EnterEffectObject*, bool);
-    TodoReturn addGuideArt(GameObject*) = imac 0x151740, m1 0x125938;
+    int addGuideArt(GameObject*) = imac 0x151740, m1 0x125938;
     void addObjectCounter(LabelGameObject*);
     TodoReturn addPickupTrigger(CountTriggerGameObject*);
     TodoReturn addPoints(int);
