@@ -12648,7 +12648,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn addObjectFromVector(gd::vector<gd::string>&, gd::vector<void*>&);
     TodoReturn addObjectsAtPosition(cocos2d::CCPoint, cocos2d::CCArray*, cocos2d::CCArray*);
     TodoReturn addObjectsInRect(cocos2d::CCRect, bool, cocos2d::CCArray*, cocos2d::CCArray*);
-    TodoReturn addObjectToGroup(GameObject*, int);
+    void addObjectToGroup(GameObject*, int) = m1 0xd494c, imac 0xef840; // windows inline, dont have time to recreate atm
     TodoReturn addPlayer2Point(cocos2d::CCPoint, bool);
     TodoReturn addPlayerCollisionBlock();
     TodoReturn addPlayerPoint(cocos2d::CCPoint);
