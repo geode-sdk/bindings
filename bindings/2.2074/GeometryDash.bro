@@ -12667,7 +12667,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     GameObject* createObject(int, cocos2d::CCPoint, bool) = win 0x2cbf90;
     void createObjectsFromSetup(gd::string&);
     cocos2d::CCArray* createObjectsFromString(gd::string const&, bool, bool) = win 0x2cb920, m1 0xc6e60, imac 0xdf9e0;
-    TodoReturn dirtifyTriggers() = win 0x22b740;
+    void dirtifyTriggers() = win 0x22b740;
     TodoReturn duplicateKeyframeAnimation(int);
     TodoReturn fastUpdateDisabledGroups();
     int findGameObject(int);
