@@ -213,7 +213,21 @@ public class Broma {
         
         public CConv getCallingConvention(Platform platform) {
             if (platform != Platform.WINDOWS32) {
-                return CConv.DEFAULT;
+                if (dispatch.isEmpty() || !dispatch.get().value.contains("static")) return CConv.THISCALL;
+
+                switch (platform) {
+                    case WINDOWS64:
+                        return CConv.FASTCALL;
+                    case MAC_INTEL:
+                        return CConv.STDCALL;
+                    case ANDROID32:
+                    case ANDROID64:
+                    case MAC_ARM:
+                    case IOS:
+                        return CConv.CDECL;
+                    default:
+                        return CConv.DEFAULT;
+                }
             }
             if (dispatch.isPresent()) {
                 if (dispatch.get().value.contains("virtual")) {
@@ -257,7 +271,7 @@ public class Broma {
                 var addrMatcher = broma.forkMatcher(Regexes.GRAB_PLATFORM_ADDRESS, matcher, "platforms", false);
                 while (addrMatcher.find()) {
                     mutPaddings.put(
-                        Platform.fromShortName(addrMatcher.group("platform")),
+                        Platform.fromShortName(addrMatcher.group("platform"), platform),
                         Integer.parseInt(addrMatcher.group("addr"), 16)
                     );
                 }

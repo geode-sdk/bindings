@@ -20,7 +20,7 @@ jobs:
 
     - name: Get changed files in the codegen folder
       id: changed
-      uses: tj-actions/changed-files@v42
+      uses: tj-actions/changed-files@v45
       with:
         files: |
           .github/workflows/build.yml
@@ -46,7 +46,7 @@ jobs:
             -DCMAKE_AR='/usr/bin/ar'
             -DCMAKE_RANLIB='/usr/bin/ranlib'
         - name: Linux
-          os: ubuntu-latest
+          os: ubuntu-22.04
           id: linux
           extra_flags: ''
 
@@ -84,6 +84,16 @@ jobs:
         7z x llvm-inst.exe -ollvm bin/clang.exe bin/clang++.exe bin/lld-link.exe bin/llvm-rc.exe bin/*.dll lib/clang/*/include/*
         echo "$GITHUB_WORKSPACE/llvm/bin" >> $GITHUB_PATH
       if: matrix.config.id == 'win'
+
+    - name: Update Clang (Linux)
+      shell: bash
+      run: |
+        sudo apt update
+        sudo apt remove clang-14
+        sudo apt install gcc-12 g++-12
+        sudo ln -sf /usr/bin/gcc-12 /usr/bin/clang
+        sudo ln -sf /usr/bin/g++-12 /usr/bin/clang++
+      if: matrix.config.id == 'linux'
 
     - name: Configure
       run: >

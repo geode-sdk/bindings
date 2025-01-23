@@ -6,7 +6,7 @@
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 #include <fstream>
-#include <ghc/filesystem.hpp>
+#include <filesystem>
 
 using std::istreambuf_iterator;
 
@@ -22,15 +22,15 @@ using namespace broma;
 #include <matjson.hpp>
 
 std::string generateAddressHeader(Root const& root);
-std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
-std::string generateBindingHeader(Root const& root, ghc::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
+std::string generateModifyHeader(Root const& root, std::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
+std::string generateBindingHeader(Root const& root, std::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
 std::string generatePredeclareHeader(Root const& root);
 std::string generateBindingSource(Root const& root);
 std::string generateTextInterface(Root const& root);
 matjson::Value generateJsonInterface(Root const& root);
 
 // returns true if the file contents were different (overwritten), false otherwise
-inline bool writeFile(ghc::filesystem::path const& writePath, std::string const& output) {
+inline bool writeFile(std::filesystem::path const& writePath, std::string const& output) {
     std::ifstream readfile;
     readfile >> std::noskipws;
     readfile.open(writePath);
@@ -58,7 +58,11 @@ inline bool can_find(std::string const& str, char const* text) {
 }
 
 inline bool is_cocos_class(std::string const& str) {
-    return can_find(str, "cocos2d") || can_find(str, "pugi::") || str == "DS_Dictionary";
+    return can_find(str, "cocos2d") || can_find(str, "pugi::") || str == "DS_Dictionary" || str == "ObjectDecoder" || str == "ObjectDecoderDelegate";
+}
+
+inline bool is_in_cocos_dll(std::string const& str) {
+    return is_cocos_class(str) && !can_find(str, "CCLightning");
 }
 
 enum class BindStatus {
@@ -100,8 +104,8 @@ namespace codegen {
     }
 
     template <typename... Args>
-    inline codegen_error error(fmt::format_string<Args...> fmt, Args... args) {
-        return codegen_error(fmt::format(fmt, args...).c_str());
+    inline codegen_error error(fmt::format_string<Args...> fmt, Args&&... args) {
+        return codegen_error(fmt::format(fmt, std::forward<Args>(args)...).c_str());
     }
 
     inline Platform platform;
@@ -182,7 +186,10 @@ namespace codegen {
         std::vector<std::string> parameters;
 
         for (auto& [t, n] : f.args) {
-            parameters.push_back(fmt::format("{} {}", t.name, n));
+            if (t.name == "...")
+                parameters.push_back("...");
+            else
+                parameters.push_back(fmt::format("{} {}", t.name, n));
         }
 
         return fmt::format("{}", fmt::join(parameters, ", "));
@@ -289,7 +296,7 @@ namespace codegen {
             };
 
             if (codegen::getStatus(*fn) == BindStatus::NeedsBinding || codegen::platformNumber(field) != -1) {
-                if (is_cocos_class(field.parent) && codegen::platform == Platform::Windows) {
+                if (is_in_cocos_dll(field.parent) && codegen::platform == Platform::Windows) {
                     return fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
                 }
                 else {

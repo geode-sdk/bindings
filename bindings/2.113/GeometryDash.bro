@@ -3241,7 +3241,7 @@ class GameManager : GManager {
     void accountStatusChanged() = mac 0x1cdad0;
     cocos2d::_ccColor3B colorForIdx(int) = mac 0x1cbc80, win 0xc8d10, ios 0x237488;
     void didExitPlayscene() = mac 0x1d0230;
-    void doQuickSave() = mac 0x1d0200;
+    void doQuickSave() = mac 0x1d0200, win 0xce3e0;
     void fadeInMusic(const char*) = mac 0x1c2ff0, win 0xc4bd0;
     void getBGTexture(int) = mac 0x1cca00;
     void getFontFile(int) = mac 0x1cc5f0;
@@ -4953,7 +4953,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void showCompleteEffect() = mac 0x738e0, win 0x1fe060;
     void showCompleteText() = mac 0x73be0, win 0x1fda90;
     void showEndLayer() = mac 0x74450, win 0x1ffd00;
-    void showHint() = mac 0x7deb0;
+    void showHint() = mac 0x7deb0, win 0x20a910;
     void showNewBest(bool, int, int, bool, bool, bool) = mac 0x74580, win 0x1fe3a0;
     void showRetryLayer() = mac 0x75ba0;
     void showTwoPlayerGuide() = mac 0x6df00, win 0x2003b0;
@@ -5221,14 +5221,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         return collidedWithObject(fl, obj, rect);
     }
     bool collidedWithObject(float, GameObject*, cocos2d::CCRect) = mac 0x21f0b0, win 0x1ebdd0;
-    bool collidedWithSlope(float, GameObject*, bool) = mac 0x21d8d0;
+    bool collidedWithSlope(float, GameObject*, bool) = mac 0x21d8d0, win 0x1ebc00;
     void convertToClosestRotation(float) = mac 0x21c860, win 0x1e9ac0;
     void copyAttributes(PlayerObject*) = mac 0x22dc70, win 0x1f93f0;
     static PlayerObject* create(int, int, cocos2d::CCLayer*) = mac 0x217260, win 0x1e6cf0;
     void deactivateParticle() = mac 0x21a540, win 0x1e8f50;
     void deactivateStreak(bool) = mac 0x218b30;
     void fadeOutStreak2(float) = mac 0x225890, win 0x1f9110;
-    void flashPlayer(float, float, cocos2d::_ccColor3B, cocos2d::_ccColor3B) = mac 0x221c80;
+    void flashPlayer(float, float, cocos2d::_ccColor3B, cocos2d::_ccColor3B) = mac 0x221c80, win 0x1eec50;
     void flipGravity(bool, bool) = mac 0x21c090, win 0x1f59d0;
     void flipMod() = mac 0x21a4c0;
     void getActiveMode() = mac 0x22b950, win 0x1f5df0;
@@ -5250,7 +5250,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool levelFlipping() = mac 0x21a510, win 0x1f6820;
     void levelWillFlip() = mac 0x21b020;
     void loadFromCheckpoint(PlayerCheckpoint*) = mac 0x22e420, win 0x1fa080;
-    void lockPlayer() = mac 0x22d680;
+    void lockPlayer() = mac 0x22d680, win 0x1f4f70;
     void logValues() = mac 0x221220;
     void modeDidChange() = mac 0x22bfd0;
     void placeStreakPoint() = mac 0x21af90, win 0x1f95e0;
@@ -5319,7 +5319,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateCollideTop(float, int) = mac 0x221c20;
     void updateDashAnimation() = mac 0x21a570, win 0x1eea80;
     void updateDashArt() = mac 0x222520, win 0x1ee3c0;
-    void updateGlowColor() = mac 0x22cf10;
+    void updateGlowColor() = mac 0x22cf10, win 0x1f78e0;
     void updateJump(float) = mac 0x219680, win 0x1e8f80;
     void updateJumpVariables() = mac 0x21a740;
     void updatePlayerBirdFrame(int) = mac 0x22bfe0, win 0x1f81a0;

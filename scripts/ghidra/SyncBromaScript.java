@@ -126,7 +126,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bromas.add(new Broma(bro, args.platform));
         }
 
-        wrapper.updateTypeDatabase();
+        wrapper.updateTypeDatabase(args.platform);
 
         // Do the imports and exports and members
         if (this.args.importFromBroma) {
@@ -165,6 +165,8 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
+    boolean overwriteAll = false;
+
     private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force, boolean ignoreReturnType) throws Exception {
         final var name = fun.getName();
         final var className = fun.parent.name.value;
@@ -192,11 +194,12 @@ public class SyncBromaScript extends GhidraScript {
             !force &&
             data.getSymbol().getSource() == SourceType.USER_DEFINED &&
             !data.getName(true).equals(fullName) && 
-            !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName))
+            !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName)) &&
+            !overwriteAll
         ) {
             int choice = askContinueConflict(
                 "Function has a different name",
-                List.of("Add to merged functions list", "Overwrite Ghidra name"),
+                List.of("Add to merged functions list", "Overwrite Ghidra name", "Overwrite all"),
                 "The function {0} at {1} from Broma already has the name " + 
                 "{2} in Ghidra - is this function merged with that?",
                 fullName, Long.toHexString(addr.getOffset()), data.getName(true)
@@ -209,6 +212,7 @@ public class SyncBromaScript extends GhidraScript {
                 wrapper.printfmt("Added {0} to merged function list for {1}", fullName, data.getName(true));
                 return SignatureImport.ADDED_MERGED;
             }
+            overwriteAll = choice == 2;
         }
 
         if (data.getSymbol().getSource() != SourceType.USER_DEFINED) {
@@ -219,7 +223,7 @@ public class SyncBromaScript extends GhidraScript {
 
         // Get the calling convention
         final var conv = fun.getCallingConvention(args.platform);
-        final var bromaSig = wrapper.getBromaSignature(fun, ignoreReturnType);
+        final var bromaSig = wrapper.getBromaSignature(fun, args.platform, ignoreReturnType);
 
         // Check for mismatches between the Broma and Ghidra signatures
         var signatureConflict = false;
@@ -505,7 +509,7 @@ public class SyncBromaScript extends GhidraScript {
                     // For this to be possible, every arg must match type exactly
                     tryMatchFun:
                     for (var tryMatch : bromaFuns) {
-                        var sig = wrapper.getBromaSignature(tryMatch, false);
+                        var sig = wrapper.getBromaSignature(tryMatch, args.platform, false);
                         // Same hotfix as the other reference to offset 0x1fb90
                         var paramCount = fun.getParameterCount();
                         if (ghidraOffset == 0x1fb90) {
@@ -688,9 +692,11 @@ public class SyncBromaScript extends GhidraScript {
                 for (var mem : cls.members) {
                     int length;
                     if (mem.name.isPresent()) {
-                        final var memType = wrapper.addOrGetType(mem.type.get());
-                        length = memType.getLength();
-                        offset += offset % memType.getAlignment();
+                        final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
+                        boolean isPointer = memType instanceof PointerDataType;
+                        length = isPointer ? manager.getDataOrganization().getPointerSize() : memType.getLength();
+                        int alignment = isPointer ? length : memType.getAlignment();
+                        offset = (offset + alignment - 1) / alignment * alignment;
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
@@ -707,7 +713,7 @@ public class SyncBromaScript extends GhidraScript {
                     }
 
                     if (mem.name.isPresent()) {
-                        final var memType = wrapper.addOrGetType(mem.type.get());
+                        final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
                         // Make sure alignment is correct
                         var existing = classDataMembers.getComponentAt(offset);
                         if (existing != null && existing.getDataType() instanceof Undefined) {
@@ -727,16 +733,16 @@ public class SyncBromaScript extends GhidraScript {
                                 );
                             }
                         }
-                        for (int i = memType.getLength(); i > 0; i -= 1) {
+                        for (int i = length; i > 0; i -= 1) {
                             classDataMembers.clearAtOffset(offset + i - 1);
                         }
                         classDataMembers.replaceAtOffset(
                             offset,
-                            memType, memType.getLength(),
+                            memType, length,
                             mem.name.get().value,
                             mem.getComment().orElse(null)
                         );
-                        offset += memType.getLength();
+                        offset += length;
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
@@ -814,7 +820,7 @@ public class SyncBromaScript extends GhidraScript {
 
             // Handle exporting paddings
             if (mem.getDataType() instanceof Undefined) {
-                var pad = new PaddingInfo(mem.getComment());
+                var pad = new PaddingInfo(mem.getComment(), args.platform);
 
                 // If this padding is different between different platforms, 
                 // skip any members inside that padding region 
@@ -833,7 +839,7 @@ public class SyncBromaScript extends GhidraScript {
                         int lastPaddingIndex = i;
                         int originalPadRegionEndIndex = type.getNumComponents() - 1;
                         for (var j = i; j < type.getNumComponents(); j += 1) {
-                            var opad = new PaddingInfo(type.getComponent(j).getComment());
+                            var opad = new PaddingInfo(type.getComponent(j).getComment(), args.platform);
                             if (opad.offset == pad.offset) {
                                 lastPaddingIndex = j;
                             }
@@ -886,7 +892,7 @@ public class SyncBromaScript extends GhidraScript {
                 else {
                     var length = 0;
                     for (var j = i; j < type.getNumComponents(); j += 1) {
-                        var opad = new PaddingInfo(type.getComponent(j).getComment());
+                        var opad = new PaddingInfo(type.getComponent(j).getComment(), args.platform);
                         if (opad.offset != pad.offset) {
                             break;
                         }
