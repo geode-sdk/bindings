@@ -8041,7 +8041,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void toggleProgressbar() = m1 0x8fb0, imac 0x7150, ios 0xd590;
     virtual TodoReturn toggleInfoLabel() = m1 0x8fb0, imac 0x7150, ios 0xd590;
     virtual void removeAllCheckpoints() = m1 0x8fb0, imac 0x7150, ios 0xd590;
-    virtual TodoReturn toggleMusicInPractice() = m1 0x8fb0, imac 0x7150, ios 0xd590;
+    virtual void toggleMusicInPractice() = m1 0x8fb0, imac 0x7150, ios 0xd590;
 
     void activateCustomRing(RingObject*);
     TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
