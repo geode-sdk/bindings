@@ -937,7 +937,7 @@ class ButtonSprite : cocos2d::CCSprite {
     /// @param texture The name of the background sprite file (can't be in a spritesheet)
     /// @param height The height of the button, leave 0 for automatic
     /// @param scale Scale of top sprite
-    static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, bool absolute, float height, const char* texture, float scale) = imac 0x91d90 {
+    static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, bool absolute, float height, const char* texture, float scale) {
         return create(topSprite, width, 0, height, scale, absolute, texture, true);
     }
 
@@ -954,7 +954,7 @@ class ButtonSprite : cocos2d::CCSprite {
         return create(caption, width, 0, scale, absolute, font, texture, height);
     }
 
-    static ButtonSprite* create(char const* caption) = imac 0x925c0 {
+    static ButtonSprite* create(char const* caption) {
         return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, 1.f);
     }
     static ButtonSprite* create(char const* caption, const char* font, const char* texture) {
@@ -964,19 +964,19 @@ class ButtonSprite : cocos2d::CCSprite {
         return ButtonSprite::create(caption, 0, false, font, texture, .0f, scale);
     }
 
-    static ButtonSprite* create(char const* caption, float scale) = imac 0x92610 {
+    static ButtonSprite* create(char const* caption, float scale) {
         return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, scale);
     }
-    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg) = imac 0x92780 {
+    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg) {
         return ButtonSprite::create(caption, width, p2, scale, absolute, font, bg, .0f);
     }
-    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute) = imac 0x925f0 {
+    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute) {
         return ButtonSprite::create(caption, width, p2, scale, absolute, "goldFont.fnt", "GJ_button_01.png", .0f);
     }
-    static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute) = imac 0x91d90 {
+    static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute) {
         return ButtonSprite::create(topSprite, width, unused, height, scale, absolute, "GJ_button_01.png", false);
     }
-    static ButtonSprite* create(cocos2d::CCSprite* topSprite) = imac 0x91d60 {
+    static ButtonSprite* create(cocos2d::CCSprite* topSprite) {
         return ButtonSprite::create(topSprite, 0, 0, .0f, 1.f, false, "GJ_button_01.png", false);
     }
 
