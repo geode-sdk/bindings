@@ -9267,7 +9267,7 @@ class GJEffectManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_unkDict268;
     gd::vector<InheritanceNode*> m_unkVector270;
     gd::unordered_map<int, bool> m_unkMap288;
-    gd::vector<ColorAction*> m_unkVector2c0;
+    gd::vector<ColorAction*> m_colorActionVector;
     gd::vector<ColorActionSprite*> m_unkVector2d8;
     gd::vector<bool> m_unkVector2f0;
     gd::unordered_map<int, int> m_itemIDs;
