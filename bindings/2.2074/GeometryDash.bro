@@ -12682,7 +12682,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn getAllObjects();
     TodoReturn getDelayedSpawnNode();
     TodoReturn getGridPos(cocos2d::CCPoint);
-    TodoReturn getLastObjectX() = imac 0xed530;
+    float getLastObjectX() = win 0x2d5fd0, m1 0xd44fc, imac 0xef3e0;
     gd::string getLevelString() = win 0x2ce530, imac 0xe3a60;
     TodoReturn getLockedLayers();
     TodoReturn getNextColorChannel();
