@@ -9150,7 +9150,9 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn calculateLightBGColor(cocos2d::ccColor3B);
     TodoReturn checkCollision(int const&, int const&);
     void colorActionChanged(ColorAction*) = imac 0x2cb670;
-    bool colorExists(int) = imac 0x2cb640;
+    bool colorExists(int col) = win inline, m1 0x26e578, imac 0x2cb640 {
+        return m_colorActionVector[(std::min)((std::max)(col, 0), 1101)] != nullptr;
+    }
     TodoReturn colorForEffect(cocos2d::ccColor3B, cocos2d::ccHSVValue);
     TodoReturn colorForGroupID(int, cocos2d::ccColor3B const&, bool);
     TodoReturn colorForIndex(int);
@@ -18680,15 +18682,26 @@ class SetupTimerTriggerPopup : SetupTriggerPopup {
 class SetupTimeWarpPopup : SetupTriggerPopup {
     // virtual ~SetupTimeWarpPopup();
 
-    static SetupTimeWarpPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupTimeWarpPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x44ad30, m1 0x45090c, imac 0x4ef5f0;
 
-    virtual void determineStartValues() = m1 0x450fe4, imac 0x4efdd0, ios 0x14b950;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x451134, imac 0x4eff60, ios 0x14ba8c;
+    virtual void determineStartValues() = win 0x44b2c0, m1 0x450fe4, imac 0x4efdd0, ios 0x14b950;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x287920, m1 0x451134, imac 0x4eff60, ios 0x14ba8c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x450a9c, imac 0x4ef830;
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn updateTimeWarp();
-    TodoReturn updateTimeWarpLabel() = m1 0x450f94, imac 0x4efd80;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x44ae50, m1 0x450a9c, imac 0x4ef830;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x44b3d0, m1 0x450eb8, imac 0x4efc70;
+    void updateTimeWarp() = win inline, m1 0x4510c8, imac 0x4efed0 {
+        if (m_gameObject) m_gameObject->m_timeWarpTimeMod = m_timeWarpMod;
+        else if (m_gameObjects) {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_timeWarpTimeMod = m_timeWarpMod;
+            }
+        }
+    }
+    void updateTimeWarpLabel() = win 0x44b4a0, m1 0x450f94, imac 0x4efd80;
+
+    cocos2d::CCLabelBMFont* m_timeWarpLabel;
+    Slider* m_timeWarpSlider;
+    float m_timeWarpMod;
 }
 
 [[link(android)]]
