@@ -10251,8 +10251,8 @@ class GJOptionsLayer : SetupTriggerPopup {
     virtual void didToggle(int) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
 
     void addGVToggle(GJOptionsLayer* optionsLayer, gd::string name, int id, gd::string info) = win 0x288470, imac 0x28a650, m1 0x2333cc;
-    void addToggle(char const* p0, int p1, bool p2, char const* p3) = win inline, m1 0x2339d0, imac 0x28ac90 {
-        addToggleInternal(p0, p1, p2, p3);
+    void addToggle(GJOptionsLayer* optionsLayer, int id, bool unk, gd::string label) = win inline, m1 0x2339d0, imac 0x28ac90 {
+        addToggleInternal(optionsLayer, id, unk, label);
     }
     void addToggleInternal(GJOptionsLayer* optionsLayer, int id, bool, gd::string label) = win 0x2885b0, m1 0x233518, imac 0x28a780;
     int countForPage(int);
