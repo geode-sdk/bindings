@@ -2258,7 +2258,7 @@ class CheckpointGameObject : EffectGameObject {
     TodoReturn updateCheckpointSpriteVisibility();
 }
 
-[[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState)]]
+[[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState), depends(DynamicSaveObject), depends(ActiveSaveObject1), depends(ActiveSaveObject2), depends(SequenceTriggerState)]]
 class CheckpointObject : cocos2d::CCNode {
     // virtual ~CheckpointObject();
     CheckpointObject() = win 0x38e330, m1 0xb4190, imac 0xcaa60;
@@ -5441,7 +5441,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     int m_unkInt4ac;
 }
 
-[[link(android)]]
+[[link(android), depends(FMODSoundTween), depends(FMODQueuedMusic), depends(FMODSoundState)]]
 class FMODAudioState {
     // ~FMODAudioState();
     // FMODAudioState();
@@ -8028,7 +8028,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual TodoReturn didRotateGameplay() = m1 0x8fb0, imac 0x7150, ios 0xd590;
     virtual void updateTimeWarp(float) = win 0x230a00, imac 0x13f940, m1 0x11730c, ios 0x1ff468;
     virtual void updateTimeWarp(GameObject*, float) = win 0x2309f0, m1 0x117300, imac 0x13f920, ios 0x1ff45c;
-    virtual TodoReturn applyTimeWarp(float) = win 0x230a50, imac 0x13f990, m1 0x11734c, ios 0x1ff4a4;
+    virtual void applyTimeWarp(float) = win 0x230a50, imac 0x13f990, m1 0x11734c, ios 0x1ff4a4;
     virtual void playGravityEffect(bool) = m1 0x8fb0, imac 0x7150, ios 0xd590;
     virtual TodoReturn manualUpdateObjectColors(GameObject*) = m1 0x8fb0, imac 0x7150, ios 0xd590;
     virtual TodoReturn createCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, bool) = win 0x23a7f0, imac 0x14cf30, m1 0x122170, ios 0x206ed8;
@@ -8227,7 +8227,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void playExitDualEffect(PlayerObject*) = win 0x2119a0, m1 0xf7ff0, imac 0x119250;
     TodoReturn playFlashEffect(float, int, float);
     TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
-    TodoReturn playSpeedParticle(float) = m1 0x121058, imac 0x14c000;
+    void playSpeedParticle(float) = m1 0x121058, imac 0x14c000;
     TodoReturn positionForShaderTarget(int) = win 0x21e1a0;
     TodoReturn positionUIObjects();
     TodoReturn prepareSavePositionObjects();
@@ -20892,7 +20892,7 @@ class UILayer : cocos2d::CCLayerColor {
     void handleKeypress(cocos2d::enumKeyCodes, bool) = win 0x4b4c40, imac 0x4b5d70, m1 0x41de7c;
     bool init(GJBaseGameLayer*) = win 0x4b3f20, m1 0x41cbc4, imac 0x4b49b0;
     bool isJumpButtonPressed(bool) = imac 0x4b6720, m1 0x41e598;
-    void onCheck(cocos2d::CCObject* sender);
+    void onCheck(cocos2d::CCObject* sender) = win 0x4b54d0, imac 0x4b5230, m1 0x41d3e8;
     void onDeleteCheck(cocos2d::CCObject* sender);
     void onPause(cocos2d::CCObject* sender) = win 0x4b53c0, m1 0x41d39c, imac 0x4b51e0;
     bool processUINodesTouch(GJUITouchEvent, cocos2d::CCTouch*) = win 0x4b5820, imac 0x4b6880, m1 0x41e6ec;
