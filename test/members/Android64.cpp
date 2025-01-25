@@ -165,6 +165,7 @@ GEODE_MEMBER_CHECK(GameLevelManager, m_commentUploadDelegate, 0x2e8);
 GEODE_MEMBER_CHECK(GJAccountManager, m_username, 0x148);
 GEODE_MEMBER_CHECK(GJAccountManager, m_GJP2, 0x160);
 
+GEODE_SIZE_CHECK(EditorUI, 0x598);
 GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x258);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
 GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x300);

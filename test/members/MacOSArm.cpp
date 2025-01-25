@@ -12,6 +12,8 @@ GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x36FF);
 
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x35b8);
 
+GEODE_SIZE_CHECK(EditorUI, 0x588);
+
 // GEODE_SIZE_CHECK(FMODAudioEngine, 0x648);
 GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 

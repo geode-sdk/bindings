@@ -160,6 +160,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_unkMapIntChannelGroup474, 0x474);
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x16c);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 
+GEODE_SIZE_CHECK(EditorUI, 0x3b8);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
 GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x1c0);
