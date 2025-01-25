@@ -3216,4 +3216,3 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     bool m_opacityModifyEnabled;
 }
 
-

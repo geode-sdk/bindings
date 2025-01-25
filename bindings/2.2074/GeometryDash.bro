@@ -5203,7 +5203,54 @@ class FLAlertLayerProtocol {
 [[link(android), depends(FMODAudioState), depends(FMODSoundState), depends(FMODMusic), depends(FMODSound), depends(FMODQueuedEffect), depends(FMODQueuedMusic), depends(FMODSoundTween)]]
 class FMODAudioEngine : cocos2d::CCNode {
     // virtual ~FMODAudioEngine();
-    FMODAudioEngine() = win 0x530d0;
+    FMODAudioEngine() = win 0x530d0, m1 inline, imac inline {
+        m_musicChannels = {};
+        m_unkMap180 = {};
+        m_unkMap1c0 = {};
+        m_musicVolume = .0f;
+        m_sfxVolume = .0f;
+        m_unusedInt164 = 0;
+        m_unusedInt168 = 0;
+        m_pulse1 = .0f;
+        m_pulse2 = .0f;
+        m_pulse3 = .0f;
+        m_pulseCounter = 0;
+        m_metering = false;
+        m_backgroundMusicChannel = nullptr;
+        m_system = nullptr;
+        m_mainDSP = nullptr;
+        m_globalChannelDSP = nullptr;
+        m_globalChannel = nullptr;
+        m_channelGroup2 = nullptr;
+        m_lastResult = FMOD_RESULT::FMOD_OK;
+        m_sampleRate = 0;
+        m_reducedQuality = false;
+        m_allAudioPaused = false;
+        m_musicOffset = 0;
+        m_unkBool1a8 = false;
+        m_unkInt1ac = 0;
+        m_audioState = {};
+        m_unkSoundVector = {};
+        m_unkDSPMap384 = {};
+        m_channelIDToChannel = {};
+        m_unkIntSet3bc = {};
+        m_reverbPreset = FMODReverbPreset::Generic;
+        m_unkMapIntInt3dc = {};
+        m_unkMapIntInt3f8 = {};
+        m_unkMapIntString414 = {};
+        m_queuedEffects = {};
+        m_unkMapStringSound43c = {};
+        m_unkMapIntChannelGroup458 = {};
+        m_unkMapIntChannelGroup474 = {};
+        m_unkInt490 = 0;
+        m_unkInt494 = 0;
+        m_unkInt498 = 0;
+        m_unkInt49c = 0;
+        m_unkInt4a0 = 0;
+        m_unkInt4a4 = 0;
+        m_unkInt4a8 = 0;
+        m_unkInt4ac = 0;
+    }
     static FMODAudioEngine* get() {
         return FMODAudioEngine::sharedEngine();
     }
@@ -5360,7 +5407,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     }
     void setMusicTimeMS(unsigned int, bool, int) = win 0x5c190, imac 0x3d0290, m1 0x357488;
     void setup() = win 0x53bc0, m1 0x352b4c, imac 0x3ca220;
-    void setupAudioEngine() = win 0x540a0, imac 0x3ca670;
+    void setupAudioEngine() = win 0x540a0, m1 0x352f40, imac 0x3ca670;
     void start() = win 0x55280;
     TodoReturn startMusic(int, int, int, int, bool, int, bool, bool);
     void stop();
