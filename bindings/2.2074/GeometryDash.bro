@@ -1897,7 +1897,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
     virtual bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool) = win 0x48590, m1 0x50be48, imac 0x5d87b0, ios 0x1a68c8;
     virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*) = win 0x48660, m1 0x50c148, imac 0x5d8a80, ios 0x1a6b50;
     virtual gd::string getShaderName() = win 0x48400, imac 0x5d8300, m1 0x50b934, ios 0x1a6798;
-    virtual const char* shaderBody() = m1 0x50c28c, imac 0x5d8bc0, ios 0x1a6c5c;
+    virtual const char* shaderBody() = win 0x48900, m1 0x50c28c, imac 0x5d8bc0, ios 0x1a6c5c;
     virtual void updateColor() = win 0x48910, m1 0x50c2a4, imac 0x5d8be0, ios 0x1a6c68;
 
     float getAlpha() = win inline, imac 0x5d9050, m1 0x50c668 {
