@@ -4497,7 +4497,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 class EditTriggersPopup : SetupTriggerPopup {
     // virtual ~EditTriggersPopup();
 
-    static EditTriggersPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static EditTriggersPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x2874a0;
 
     virtual void determineStartValues() = imac 0x288da0, m1 0x231fb4, ios 0x2d2e64;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x288db0, m1 0x231fb8, ios 0x2d2e68;
