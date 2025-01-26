@@ -7834,15 +7834,15 @@ class GhostTrailEffect : cocos2d::CCNode {
     // virtual ~GhostTrailEffect();
     //GhostTrailEffect() = ios 0x305d20;
 
-    static GhostTrailEffect* create() = win 0x69fd0;
+    static GhostTrailEffect* create() = win 0x69fd0, m1 0x5148f0, imac 0x5e22a0;
 
     virtual bool init() = win 0x6a0b0, imac 0x5e2370, m1 0x5149c0, ios 0x2f4eec;
     virtual void draw() = m1 0x514f28, imac 0x5e2920, ios 0x2f5450 {}
 
     TodoReturn doBlendAdditive();
-    void runWithTarget(cocos2d::CCSprite*, float, float, float, float, bool);
+    void runWithTarget(cocos2d::CCSprite*, float, float, float, float, bool) = m1 0x514a1c, imac 0x5e23d0;
     void stopTrail();
-    void trailSnapshot(float) = win 0x6a110;
+    void trailSnapshot(float) = win 0x6a110, m1 0x514ad0, imac 0x5e2470;
 
     PAD = win 0x30;
     cocos2d::ccColor3B m_color;
