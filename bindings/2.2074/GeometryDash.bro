@@ -12755,8 +12755,8 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn getSelectedEditorOrder();
     TodoReturn getSelectedEffectPos();
     TodoReturn getSelectedOrderChannel();
-    TodoReturn getSFXIDs();
-    TodoReturn getSongIDs(bool&);
+    TodoReturn getSFXIDs() = win 0x2cec40;
+    TodoReturn getSongIDs(bool&) = win 0x2ce890;
     TodoReturn getTriggerGroup(int);
     void handleAction(bool, cocos2d::CCArray*) = win 0x2cde30, imac 0xe3140, m1 0xca1b0;
     bool hasAction(bool);
