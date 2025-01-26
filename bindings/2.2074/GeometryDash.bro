@@ -3934,8 +3934,8 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onGuidelines(cocos2d::CCObject* sender) = win 0xd52e0, imac 0x1eb5e0;
     void onHelp(cocos2d::CCObject* sender) = m1 0x1a1f28, imac 0x1eae30, win 0xd7c50;
     void onLevelInfo(cocos2d::CCObject* sender) = win 0xd5500, m1 0x1a2420, imac 0x1eb320;
-    void onLevelLeaderboard(cocos2d::CCObject* sender);
-    void onLevelOptions(cocos2d::CCObject* sender);
+    void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0xd5450;
+    void onLevelOptions(cocos2d::CCObject* sender) = win 0xd54d0;
     void onMoveToTop();
     void onPlay(cocos2d::CCObject* sender) = win 0xd6920, m1 0x1a100c, imac 0x1e9f10;
     void onSetFolder(cocos2d::CCObject* sender) = win 0xd7fc0, imac 0x1eb0b0, m1 0x1a21b8;
@@ -4272,7 +4272,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onSelectBuildTab(cocos2d::CCObject* sender) = win 0x112f60, imac 0x34310, m1 0x33940;
     void onSettings(cocos2d::CCObject* sender) = win 0xe0350, m1 0x2b46c, imac 0x2b270;
     void onStopPlaytest(cocos2d::CCObject* sender) = win 0x110d40, m1 0xe134, imac 0xcdd0;
-    TodoReturn onTargetIDChange(int);
+    void onTargetIDChange(int) = win 0x120860;
     void onToggleGuide(EffectGameObject*);
     TodoReturn onToggleSelectedOrder(EffectGameObject*);
     void onUngroupSticky(cocos2d::CCObject* sender) = win 0x111130, m1 0xe318, imac 0xcfc0;
@@ -6903,7 +6903,7 @@ class GameObject : CCSpritePlus {
     bool isSpecialObject();
     bool isSpeedObject() = imac 0x5b30f0;
     bool isStoppableTrigger();
-    bool isTrigger();
+    bool isTrigger() = win 0x19f2c0;
     void loadGroupsFromString(gd::string);
     TodoReturn makeInvisible() = imac 0x5a53a0;
     TodoReturn makeVisible();
@@ -20103,8 +20103,8 @@ class SongTriggerGameObject : SFXTriggerGameObject {
 
     static SongTriggerGameObject* create(char const*);
 
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1bfaf0, m1 0x17d9bc, ios 0x386bf0;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1bf1f0, m1 0x17d250, ios 0x3869a8;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49fc00, imac 0x1bfaf0, m1 0x17d9bc, ios 0x386bf0;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49f9a0, imac 0x1bf1f0, m1 0x17d250, ios 0x3869a8;
 
     bool init(char const*);
 }
