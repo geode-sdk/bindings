@@ -7839,14 +7839,45 @@ class GhostTrailEffect : cocos2d::CCNode {
     virtual bool init() = win 0x6a0b0, imac 0x5e2370, m1 0x5149c0, ios 0x2f4eec;
     virtual void draw() = m1 0x514f28, imac 0x5e2920, ios 0x2f5450 {}
 
-    TodoReturn doBlendAdditive();
-    void runWithTarget(cocos2d::CCSprite*, float, float, float, float, bool) = m1 0x514a1c, imac 0x5e23d0;
-    void stopTrail();
+    void doBlendAdditive() = win inline, m1 0x514f18, imac 0x5e2900 {
+        m_blendFunc.src = GL_SRC_ALPHA;
+        m_blendFunc.dst = GL_ONE;
+    }
+    void runWithTarget(cocos2d::CCSprite*, float, float, float, float, bool) = win inline, m1 0x514a1c, imac 0x5e23d0 {
+        m_iconSprite = p0;
+        m_snapshotInterval = p1;
+        m_fadeInterval = p2;
+        if (p4 <= .1f) p4 = .1f;
+        m_scaleTwice = p5;
+        m_ghostScale = p4;
+        this->schedule(schedule_selector(GhostTrailEffect::trailSnapshot), p1);
+        if (p3 > 0.f) this->runAction(cocos2d::CCSequence::create(
+            cocos2d::CCDelayTime::create(p3),
+            cocos2d::CCCallFunc::create(this, callfunc_selector(GhostTrailEffect::stopTrail)),
+            nullptr
+        ));
+    }
+    void stopTrail() = win inline, m1 0x514ec8, imac 0x5e28c0 {
+        this->unscheduleAllSelectors();
+        this->stopAllActions();
+        this->removeMeAndCleanup();
+    }
     void trailSnapshot(float) = win 0x6a110, m1 0x514ad0, imac 0x5e2470;
 
-    PAD = win 0x30;
+    float m_snapshotInterval;
+    float m_fadeInterval;
+    float m_ghostScale;
+    bool m_scaleTwice;
+    float m_playerScale;
+    cocos2d::_ccBlendFunc m_blendFunc;
+    cocos2d::CCSprite* m_iconSprite;
+    PlayerObject* m_playerObject;
+    cocos2d::CCLayer* m_objectLayer;
+    float m_opacity;
+    void* m_delegate;
     cocos2d::ccColor3B m_color;
-    PAD = win 0xc;
+    cocos2d::CCPoint m_position;
+    bool m_unk194;
 }
 
 [[link(android)]]
