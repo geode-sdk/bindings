@@ -3730,13 +3730,20 @@ class DialogObject : cocos2d::CCObject {
         m_skippable = skippable;
         return true;
     }
-
     gd::string m_text;
     gd::string m_character;
     int m_characterFrame;
     cocos2d::ccColor3B m_color;
     float m_textScale;
     bool m_skippable;
+    DialogObject() {
+        m_text = "";
+        m_character = "";
+        m_characterFrame = 1;
+        m_color = {0, 0, 0};
+        m_textScale = 0.f;
+        m_skippable = false;
+    }
 }
 
 [[link(android)]]
