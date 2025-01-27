@@ -4878,7 +4878,7 @@ class EnhancedGameObject : GameObject {
     virtual void customSetup() = win 0x1a1ff0, imac 0x5b42e0, m1 0x4ec86c, ios 0x262680;
     virtual void resetObject() = win 0x1a19b0, imac 0x5b3b10, m1 0x4ec1fc, ios 0x2620bc;
     virtual void deactivateObject(bool) = imac 0x5b7190, m1 0x4ed9e8, ios 0x26389c;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x5b3df0, m1 0x4ec4b0, ios 0x26234c;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x1a1cc0, imac 0x5b3df0, m1 0x4ec4b0, ios 0x26234c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x5b71f0, m1 0x4eda50, ios 0x263904;
     virtual void triggerActivated(float) = m1 0x4ec328, imac 0x5b3c80, ios 0x2621e8;
     virtual void restoreObject() = imac 0x5b3bb0, m1 0x4ec278, ios 0x262138;
@@ -6783,13 +6783,13 @@ class GameObject : CCSpritePlus {
     virtual bool canMultiActivate(bool) = m1 0x8fb4, imac 0x7160, ios 0xe7a8;
     virtual void updateTextKerning(int) = m1 0x8fb0, imac 0x7150, ios 0xd590;
     virtual int getTextKerning() = m1 0x8fb4, imac 0x7160, ios 0xe7a8;
-    virtual bool getObjectRectDirty() = win 0x136000, m1 0x1999bc, imac 0x1e1b70, ios 0x22ea6c;
+    virtual bool getObjectRectDirty() const = win 0x136000, m1 0x1999bc, imac 0x1e1b70, ios 0x22ea6c;
     virtual void setObjectRectDirty(bool) = win 0x136010, m1 0x1999c4, imac 0x1e1b80, ios 0x22ea74;
-    virtual bool getOrientedRectDirty() = win 0x136020, m1 0x1999cc, imac 0x1e1b90, ios 0x22ea7c;
+    virtual bool getOrientedRectDirty() const = win 0x136020, m1 0x1999cc, imac 0x1e1b90, ios 0x22ea7c;
     virtual void setOrientedRectDirty(bool) = win 0x136030, m1 0x1999d4, imac 0x1e1ba0, ios 0x22ea84;
-    virtual GameObjectType getType() = m1 0x1999dc, imac 0x1e1bb0, ios 0x22ea8c;
+    virtual GameObjectType getType() const = m1 0x1999dc, imac 0x1e1bb0, ios 0x22ea8c;
     virtual void setType(GameObjectType) = m1 0x1999e4, imac 0x1e1bc0, ios 0x22ea94;
-    virtual cocos2d::CCPoint getStartPos() = win 0x136060, imac 0x1e1bd0, m1 0x1999ec, ios 0x22ea9c;
+    virtual cocos2d::CCPoint getStartPos() const = win 0x136060, imac 0x1e1bd0, m1 0x1999ec, ios 0x22ea9c;
 
     void addColorSprite(gd::string) = win 0x18b830, m1 0x4d83b4, imac 0x58cc00;
     void addColorSpriteToParent(bool) = imac 0x592300;
