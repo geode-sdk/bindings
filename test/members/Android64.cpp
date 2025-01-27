@@ -125,7 +125,7 @@ GEODE_MEMBER_CHECK(GameObject, m_baseColor, 0x438);
 GEODE_MEMBER_CHECK(GameObject, m_groups, 0x478);
 GEODE_MEMBER_CHECK(GameObject, m_isHighDetail, 0x4db);
 GEODE_MEMBER_CHECK(GameObject, m_isPassable, 0x4fd);
-GEODE_MEMBER_CHECK(GameObject, m_property155, 0x518);
+GEODE_MEMBER_CHECK(GameObject, m_mainColorKeyIndex, 0x518);
 
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_circle, 0x278);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x2b0);
