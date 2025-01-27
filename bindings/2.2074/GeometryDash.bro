@@ -8230,8 +8230,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn generateEnterEasingBuffers(EnterEffectObject*);
     TodoReturn generatePickupAnimRandVal(GameObject*, float&, float&);
     TodoReturn generateSpawnRemap() = win 0x218c00, imac 0x106400;
-    TodoReturn generateTargetGroups() = imac 0x109d00;
-    TodoReturn generateVisibilityGroups();
+    void generateTargetGroups() = win 0x21fab0, imac 0x109d00;
+    void generateVisibilityGroups() = win 0x22c1e0;
     TodoReturn getActiveOrderSpawnObjects();
     float getAreaObjectValue(EnterEffectInstance*, GameObject*, cocos2d::CCPoint&, bool&) = win 0x222d90;
     TodoReturn getBumpMod(PlayerObject*, int);
@@ -8302,7 +8302,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn moveObjectToStaticGroup(GameObject*);
     TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
     GJGameEvent objectTypeToGameEvent(int) = win 0x22ce10, imac 0x1144d0;
-    TodoReturn optimizeMoveGroups();
+    void optimizeMoveGroups() = win 0x22b740;
     TodoReturn orderSpawnObjects() = imac 0x151690;
     TodoReturn parentForZLayer(int, bool, int, int) = imac 0x10f720;
     void pauseAudio() = win 0x231d60, imac 0x141de0;
@@ -8322,8 +8322,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
     void playSpeedParticle(float) = m1 0x121058, imac 0x14c000;
     TodoReturn positionForShaderTarget(int) = win 0x21e1a0;
-    TodoReturn positionUIObjects();
-    TodoReturn prepareSavePositionObjects();
+    void positionUIObjects() = win 0x220d90, imac 0x10bbf0, m1 0xebbe0;
+    void prepareSavePositionObjects() = win 0x2142d0;
     TodoReturn prepareTransformParent(bool);
     void preResumeGame() = imac 0x141dd0;
     TodoReturn preUpdateVisibility(float);
@@ -8378,7 +8378,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn recordAction(int, bool, bool);
     TodoReturn rectIntersectsCircle(cocos2d::CCRect, cocos2d::CCPoint, float);
     void refreshCounterLabels() = win 0x22fe50, imac 0x13dda0;
-    void refreshKeyframeAnims() = m1 0xecb14;
+    void refreshKeyframeAnims() = win 0x22e580, m1 0xecb14;
     TodoReturn regenerateEnterEasingBuffers() = imac 0x106590;
     TodoReturn registerSpawnRemap(gd::vector<ChanceObject>&);
     TodoReturn registerStateObject(EffectGameObject*);
@@ -8439,9 +8439,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void shakeCamera(float duration, float strength, float interval) = win 0x2356c0;
     bool shouldExitHackedLevel() = win 0x205d10, imac 0x102b90, m1 0xe49d0;
     TodoReturn sortAllGroupsX();
-    TodoReturn sortGroups();
+    void sortGroups() = win 0x21ef40;
     void sortSectionVector() = win 0x221cc0, imac 0x12faf0, m1 0x10a4a8;
-    TodoReturn sortStickyGroups();
+    void sortStickyGroups() = win 0x21f650;
     void spawnGroupTriggered(int groupID, float, bool, gd::vector<int> const&, int, int);
     TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
     cocos2d::CCParticleSystemQuad* spawnParticle(char const* plist, int zOrder, cocos2d::tCCPositionType positionType, cocos2d::CCPoint position) = win 0x239d50, imac 0x14bf50, m1 0x120f7c;
