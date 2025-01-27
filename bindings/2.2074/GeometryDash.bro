@@ -1126,7 +1126,15 @@ class CCBlockLayer : cocos2d::CCLayerColor {
         m_closeOnHide = false;
         m_forcePrioRegistered = false;
     }
-    static CCBlockLayer* create();
+    static CCBlockLayer* create() = win inline {
+        auto ret = new CCBlockLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x424e0, imac 0x501df0, m1 0x46163c, ios 0x8a2e0;
     virtual void draw() = win 0x426f0, m1 0x4618c0, imac 0x5020a0, ios 0x8a540;
@@ -7247,9 +7255,9 @@ class GameObject : CCSpritePlus {
     float m_pixelScaleY;
 
     // property 155
-    int m_property155;
+    int m_mainColorKeyIndex;
     // property 156
-    int m_property156;
+    int m_detailColorKeyIndex;
     GLubyte m_areaOpacityRelated;
     float m_areaOpacityRelated2;
     int m_areaOpacityRelated3;
