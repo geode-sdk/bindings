@@ -4878,7 +4878,7 @@ class EnhancedGameObject : GameObject {
     virtual void customSetup() = win 0x1a1ff0, imac 0x5b42e0, m1 0x4ec86c, ios 0x262680;
     virtual void resetObject() = win 0x1a19b0, imac 0x5b3b10, m1 0x4ec1fc, ios 0x2620bc;
     virtual void deactivateObject(bool) = imac 0x5b7190, m1 0x4ed9e8, ios 0x26389c;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x5b3df0, m1 0x4ec4b0, ios 0x26234c;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x1a1cc0, imac 0x5b3df0, m1 0x4ec4b0, ios 0x26234c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x5b71f0, m1 0x4eda50, ios 0x263904;
     virtual void triggerActivated(float) = m1 0x4ec328, imac 0x5b3c80, ios 0x2621e8;
     virtual void restoreObject() = imac 0x5b3bb0, m1 0x4ec278, ios 0x262138;
