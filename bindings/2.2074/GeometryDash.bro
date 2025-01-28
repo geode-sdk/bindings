@@ -4543,7 +4543,7 @@ class EffectGameObject : EnhancedGameObject {
     virtual bool canBeOrdered() = win 0x493240, imac 0x1aa430, m1 0x16baec, ios 0x37f714;
     virtual cocos2d::CCLabelBMFont* getObjectLabel() = win 0x47d2b0, m1 0x199b10, imac 0x1e1d20, ios 0x3922c0;
     virtual void setObjectLabel(cocos2d::CCLabelBMFont*) = win 0x47d2c0, m1 0x199b18, imac 0x1e1d30, ios 0x3922c8;
-    virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*) = win 0x48fcd0, imac 0x1a9f90, m1 0x16b578, ios 0x37f260;
+    virtual void stateSensitiveOff(GJBaseGameLayer*) = win 0x48fcd0, imac 0x1a9f90, m1 0x16b578, ios 0x37f260;
 
     TodoReturn getTargetColorIndex();
     bool init(char const*) = win 0x48d1a0;
@@ -4899,11 +4899,11 @@ class EnhancedGameObject : GameObject {
     virtual bool getHasSyncedAnimation() = win 0x188660, m1 0x199ae8, imac 0x1e1cd0, ios 0x26466c;
     virtual bool getHasRotateAction() = win 0x188670, m1 0x199af0, imac 0x1e1ce0, ios 0x264674;
     virtual bool canMultiActivate(bool) = win 0x1a1ae0, imac 0x5b3c60, m1 0x4ec304, ios 0x2621c4;
-    virtual TodoReturn powerOnObject(int) = win 0x1a1aa0, imac 0x5b3bf0, m1 0x4ec2b0, ios 0x262170;
-    virtual TodoReturn powerOffObject() = win 0x1a1ac0, imac 0x5b3c10, m1 0x4ec2c4, ios 0x262184;
-    virtual TodoReturn stateSensitiveOff(GJBaseGameLayer*) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
+    virtual void powerOnObject(int) = win 0x1a1aa0, imac 0x5b3bf0, m1 0x4ec2b0, ios 0x262170;
+    virtual void powerOffObject() = win 0x1a1ac0, imac 0x5b3c10, m1 0x4ec2c4, ios 0x262184;
+    virtual void stateSensitiveOff(GJBaseGameLayer*) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
     virtual void updateSyncedAnimation(float, int) = win 0x1a4e30, imac 0x2499e0, m1 0x1f7c7c, ios 0x347598;
-    virtual TodoReturn updateAnimateOnTrigger(bool) = win 0x1a6af0, imac 0x24b920, m1 0x1f903c, ios 0x348938;
+    virtual void updateAnimateOnTrigger(bool) = win 0x1a6af0, imac 0x24b920, m1 0x1f903c, ios 0x348938;
 
     void createRotateAction(float angle, int clockwiseDirection);
     bool init(char const*) = win 0x1a1800;
@@ -15006,7 +15006,7 @@ class ParticleGameObject : EnhancedGameObject {
     virtual void updateMainParticleOpacity(unsigned char) = imac 0x1a1c90, m1 0x16475c, ios 0x37aba0;
     virtual void updateSecondaryParticleOpacity(unsigned char) = imac 0x1a1cf0, m1 0x1647a8, ios 0x37abec;
     virtual void updateSyncedAnimation(float, int) = imac 0x1a1df0, m1 0x16489c, ios 0x37acd4;
-    virtual TodoReturn updateAnimateOnTrigger(bool) = imac 0x1a1f40, m1 0x1649d8, ios 0x37adfc;
+    virtual void updateAnimateOnTrigger(bool) = imac 0x1a1f40, m1 0x1649d8, ios 0x37adfc;
 
     TodoReturn applyParticleSettings(cocos2d::CCParticleSystemQuad*);
     TodoReturn createAndAddCustomParticle();
@@ -16455,7 +16455,7 @@ class RingObject : EffectGameObject {
     virtual void setRScale(float) = m1 0x165cd8, imac 0x1a3550, ios 0x37b60c;
     virtual void triggerActivated(float) = m1 0x165b30, imac 0x1a33a0, ios 0x37b46c;
     virtual bool shouldDrawEditorHitbox() = imac 0x1a3590, m1 0x165d0c, ios 0x37b638;
-    virtual TodoReturn powerOnObject(int) = m1 0x165b3c, imac 0x1a33b0, ios 0x37b478;
+    virtual void powerOnObject(int) = m1 0x165b3c, imac 0x1a33b0, ios 0x37b478;
 
     bool init(char const*);
     TodoReturn spawnCircle();
