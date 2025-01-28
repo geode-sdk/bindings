@@ -5834,8 +5834,8 @@ class GameLevelManager : cocos2d::CCNode {
     char const* getFriendRequestKey(bool, int) = m1 0x4945e4, imac 0x53af40;
     void getFriendRequests(bool, int, int) = m1 0x49689c, imac 0x53d510;
     char const* getGauntletKey(int);
-    void getGauntletLevels(int) = m1 0x4883b0, imac 0x52d450;
-    void getGauntlets() = m1 0x487fd0, imac 0x52d080;
+    void getGauntletLevels(int) = win 0x14fa90, m1 0x4883b0, imac 0x52d450;
+    void getGauntlets() = win 0x14f180, m1 0x487fd0, imac 0x52d080;
     TodoReturn getGauntletSearchKey(int) = m1 0x487f04, imac 0x52cfc0;
     void getGauntletsearchKey(int);
     void getGJChallenges() = win 0x164ad0, m1 0x49be48, imac 0x542da0;
