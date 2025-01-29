@@ -3331,12 +3331,12 @@ class cocos2d {
     static void ccDrawFree();
     static void ccDrawInit();
     static void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = m1 0x1ac0ec, imac 0x1f65e0;
-    static void ccDrawLines(cocos2d::CCPoint const*, unsigned int);
+    static void ccDrawLines(cocos2d::CCPoint const*, unsigned int) = m1 0x1abfd8, imac 0x1f64d0;
     static void ccDrawPoint(cocos2d::CCPoint const&);
     static void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
     static void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
     static void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
-    static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
+    static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x1ac234, imac 0x1f6710;
     static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F);
     static void ccDrawSolidRect(cocos2d::CCPoint origin, cocos2d::CCPoint destination, cocos2d::_ccColor4F color) = imac 0x1f6800, m1 0x1ac2fc, ios inline {
     	CCPoint vertices[] = {
