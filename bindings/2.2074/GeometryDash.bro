@@ -4533,8 +4533,8 @@ class EffectGameObject : EnhancedGameObject {
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x48d7d0, imac 0x1a85d0, m1 0x16a4f4, ios 0x37e1b4;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x490230, imac 0x187840, m1 0x14f5b0, ios 0x371028;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4932b0, imac 0x17c180, m1 0x1463d0, ios 0x36b454;
-    virtual void setRScaleX(float) = win 0x482d10, m1 0x16a178, imac 0x1a81e0, ios 0x37df18;
-    virtual void setRScaleY(float) = win 0x482d60, m1 0x16a188, imac 0x1a8200, ios 0x37df28;
+    virtual void setRScaleX(float) = win 0x48d210, m1 0x16a178, imac 0x1a81e0, ios 0x37df18;
+    virtual void setRScaleY(float) = win 0x48d260, m1 0x16a188, imac 0x1a8200, ios 0x37df28;
     virtual void triggerActivated(float) = win 0x48ff90, imac 0x1aa260, m1 0x16b854, ios 0x37f520;
     virtual void restoreObject() = win 0x48fd80, imac 0x1aa020, m1 0x16b604, ios 0x37f2ec;
     virtual float spawnXPosition() = win 0x48ff50, imac 0x1aa220, m1 0x16b814, ios 0x37f4e8;
