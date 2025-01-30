@@ -9984,7 +9984,6 @@ class GJGroundLayer : cocos2d::CCLayer {
     }
     void updateGround02Color(cocos2d::ccColor3B color) = win inline, m1 0x506e9c, imac 0x5d32c0 {
         if (!m_ground2Sprite) return;
-
         if (auto children = m_ground2Sprite->getChildren()) {
             for (int i = 0; i < children->count(); i++) {
                 static_cast<cocos2d::CCSprite*>(children->objectAtIndex(i))->setColor(color);
@@ -10011,7 +10010,7 @@ class GJGroundLayer : cocos2d::CCLayer {
     cocos2d::CCSprite* m_lineSprite;
     bool m_showGround;
     bool m_blendLine;
-    float m_offset;
+    float m_ground1Offset;
     int m_lineType;
     float m_groundWidth;
     bool m_showGround1;
@@ -10300,25 +10299,114 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
 [[link(android)]]
 class GJMGLayer : cocos2d::CCLayer {
     // virtual ~GJMGLayer();
+    GJMGLayer() {
+        m_ground1Sprite = nullptr;
+        m_ground2Sprite = nullptr;
+        m_textureWidth = 0.f;
+        m_unk1b0 = nullptr;
+        m_showGround = false;
+        m_groundWidth = 0.f;
+        m_showGround1 = true;
+        m_showGround2 = true;
+        m_unk1c4 = 0.f;
+        m_cameraRotated = false;
+        m_blendMG1 = false;
+        m_blendMG2 = false;
+        m_mg1BatchNode = nullptr;
+        m_mg2BatchNode = nullptr;
+        m_groundScale = 0.f;
+        m_ground2Offset = 0.f;
+    }
 
-    static GJMGLayer* create(int) = imac 0x5d3a40;
+    static GJMGLayer* create(int) = win inline, m1 0x5075c4, imac 0x5d3a40 {
+        auto ret = new GJMGLayer();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void draw() = m1 0x508038, imac 0x5d4520, ios 0x31548 {}
-    virtual void showGround() = m1 0x508008, imac 0x5d44f0, ios 0x3153c;
+    virtual void showGround() = win 0x2774c0, m1 0x508008, imac 0x5d44f0, ios 0x3153c;
 
-    TodoReturn deactivateGround();
-    TodoReturn defaultYOffsetForBG2(int);
-    bool init(int);
-    void loadGroundSprites(int, bool);
-    TodoReturn scaleGround(float);
-    TodoReturn toggleVisible01(bool);
-    TodoReturn toggleVisible02(bool);
-    TodoReturn updateGroundColor(cocos2d::ccColor3B, bool);
-    TodoReturn updateGroundOpacity(unsigned char, bool) = imac 0x5d4300;
-    TodoReturn updateGroundPos(cocos2d::CCPoint);
-    TodoReturn updateGroundWidth(bool);
-    void updateMG01Blend(bool);
-    void updateMG02Blend(bool);
+    void deactivateGround() = win inline, m1 0x508014, imac 0x5d4500 {
+        this->stopAllActions();
+        m_showGround = false;
+    }
+    static float defaultYOffsetForBG2(int) = win inline, m1 0x5075a4, imac 0x5d3a20 {
+        switch (p0) {
+            case 1: return 25.f;
+            case 2: case 3: return 30.f;
+            default: return 0.f;
+        }
+    }
+    bool init(int) = win 0x2776d0, m1 0x5076a0, imac 0x5d3b50;
+    void loadGroundSprites(int, bool) = win 0x277bd0, m1 0x507b28, imac 0x5d4000;
+    void scaleGround(float) = m1 0x507ea8, imac 0x5d4380;
+    void toggleVisible01(bool visible) = win inline, m1 0x507d74, imac 0x5d4230 {
+        if (m_showGround1 == visible) return;
+        m_showGround1 = visible;
+        this->setVisible(visible && m_showGround2);
+    }
+    void toggleVisible02(bool visible) = win inline, m1 0x507da4, imac 0x5d4270 {
+        if (m_showGround2 == visible) return;
+        m_showGround2 = visible;
+        this->setVisible(visible && m_showGround1);
+    }
+    void updateGroundColor(cocos2d::ccColor3B color, bool ground2) = win inline, m1 0x507ce4, imac 0x5d41a0 {
+        auto groundSprite = ground2 ? m_ground2Sprite : m_ground1Sprite;
+        if (!groundSprite) return;
+        if (auto children = groundSprite->getChildren()) {
+            for (int i = 0; i < children->count(); i++) {
+                static_cast<cocos2d::CCSprite*>(children->objectAtIndex(i))->setColor(color);
+            }
+        }
+    }
+    void updateGroundOpacity(unsigned char opacity, bool ground2) = win inline, m1 0x507e20, imac 0x5d4300 {
+        auto groundSprite = ground2 ? m_ground2Sprite : m_ground1Sprite;
+        if (!groundSprite) return;
+        if (auto children = groundSprite->getChildren()) {
+            for (int i = 0; i < children->count(); i++) {
+                static_cast<cocos2d::CCSprite*>(children->objectAtIndex(i))->setOpacity(opacity);
+            }
+        }
+    }
+    void updateGroundPos(cocos2d::CCPoint pos) = win inline, m1 0x507dd0, imac 0x5d42b0 {
+        m_ground1Sprite->setPosition(pos);
+        if (m_ground2Sprite) m_ground2Sprite->setPosition(pos);
+    }
+    void updateGroundWidth(bool) = m1 0x507f24, imac 0x5d4410;
+    void updateMG01Blend(bool blend) = win inline, m1 0x50803c, imac 0x5d4530 {
+        if (m_blendMG1 == blend) return;
+        m_blendMG1 = blend;
+        if (blend) m_mg1BatchNode->setBlendFunc({ GL_SRC_ALPHA, GL_ONE });
+        else m_mg1BatchNode->setBlendFunc({ GL_ONE, GL_ONE_MINUS_SRC_ALPHA });
+    }
+    void updateMG02Blend(bool blend) = win inline, m1 0x508078, imac 0x5d4580 {
+        if (m_blendMG2 == blend) return;
+        m_blendMG2 = blend;
+        if (blend) m_mg2BatchNode->setBlendFunc({ GL_SRC_ALPHA, GL_ONE });
+        else m_mg2BatchNode->setBlendFunc({ GL_ONE, GL_ONE_MINUS_SRC_ALPHA });
+    }
+
+    cocos2d::CCSprite* m_ground1Sprite;
+    cocos2d::CCSprite* m_ground2Sprite;
+    float m_textureWidth;
+    void* m_unk1b0;
+    bool m_showGround;
+    float m_groundWidth;
+    bool m_showGround1;
+    bool m_showGround2;
+    float m_unk1c4;
+    bool m_cameraRotated;
+    bool m_blendMG1;
+    bool m_blendMG2;
+    cocos2d::CCSpriteBatchNode* m_mg1BatchNode;
+    cocos2d::CCSpriteBatchNode* m_mg2BatchNode;
+    float m_groundScale;
+    float m_ground2Offset;
 }
 
 [[link(android)]]
