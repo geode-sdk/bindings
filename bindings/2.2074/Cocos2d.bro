@@ -1673,7 +1673,7 @@ class cocos2d::CCTouchDispatcher {
 class cocos2d::CCTouchHandler {
     static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
 
-    cocos2d::CCTouchDelegate* getDelegate() = m1 0x3dd4e4;
+    cocos2d::CCTouchDelegate* getDelegate() = m1 0x3dd4e4, ios 0x10c34;
     int getEnabledSelectors();
     int getPriority() = ios inline, m1 0x3dd560 {
     	return m_nPriority;
@@ -1924,7 +1924,7 @@ class cocos2d::CCDirector {
     void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = imac 0x470800;
     void updateContentScale(cocos2d::TextureQuality) = ios 0x1792dc;
     void updateScreenScale(cocos2d::CCSize);
-    void willSwitchToScene(cocos2d::CCScene*) = imac 0x471140, m1 0x3dff18;
+    void willSwitchToScene(cocos2d::CCScene*) = imac 0x471140, m1 0x3dff18, ios 0x1794fc;
 
     virtual bool init() = imac 0x46f630, m1 0x3de7f4, ios 0x178608;
     virtual cocos2d::CCScheduler* getScheduler() = m1 0x3e0870, imac 0x471b10, ios 0x179c2c;
