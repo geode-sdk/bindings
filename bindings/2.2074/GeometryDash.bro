@@ -2853,6 +2853,8 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 
     gd::string m_spriteFileName;
     int m_objectID;
+    int m_pageIndex;
+    int m_tabIndex;
 }
 
 [[link(android)]]
@@ -3876,7 +3878,7 @@ class EditButtonBar : cocos2d::CCNode {
 
     int getPage();
     void goToPage(int);
-    bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = imac 0x5c9ad0, m1 0x4fe3bc;
+    bool init(cocos2d::CCArray* objects, cocos2d::CCPoint position, int tab, bool hasCreateItems, int columns, int rows) = imac 0x5c9ad0, m1 0x4fe3bc;
     void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0xd30a0, imac 0x5c9b80, m1 0x4fe468;
     void onLeft(cocos2d::CCObject* sender) = win 0xd3a90, m1 0x4fea94, imac 0x5ca250;
     void onRight(cocos2d::CCObject* sender) = win 0xd3a20, m1 0x4feadc, imac 0x5ca2a0;
@@ -3885,8 +3887,8 @@ class EditButtonBar : cocos2d::CCNode {
     }
 
     cocos2d::CCPoint m_position;
-    int m_unknown;
-    bool m_unknownBool;
+    int m_tabIndex;
+    bool m_hasCreateItems;
     cocos2d::CCArray* m_buttonArray;
     BoomScrollLayer* m_scrollLayer;
     cocos2d::CCArray* m_pagesArray;
