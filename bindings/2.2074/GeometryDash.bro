@@ -8423,7 +8423,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn rotateAreaObjects(GameObject*, cocos2d::CCArray*, float, bool);
     TodoReturn rotateObject(GameObject*, float);
     void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool);
-    void setGroupParent(GameObject*, int) = imac 0x12d370;
+    void setGroupParent(GameObject*, int) = win 0x21f2d0, imac 0x12d370;
     void setStartPosObject(StartPosObject* startPos) = win inline, imac 0x112ed0, m1 0xf2870 {
         if (startPos != m_startPosObject) {
             if (startPos) {
