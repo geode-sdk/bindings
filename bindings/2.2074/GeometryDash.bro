@@ -9939,31 +9939,85 @@ class GJGradientLayer : cocos2d::CCLayerGradient {
 class GJGroundLayer : cocos2d::CCLayer {
     // virtual ~GJGroundLayer();
 
-    static GJGroundLayer* create(int, int) = win 0x276870, imac 0x5d2760;
+    static GJGroundLayer* create(int, int) = win 0x276870, m1 0x50636c, imac 0x5d2760;
 
     virtual void draw() = m1 0x50745c, imac 0x5d38a0, ios 0x30c08 {}
     virtual void showGround() = win 0x2774c0, m1 0x507250, imac 0x5d36c0, ios 0x30aa0;
-    virtual TodoReturn fadeInGround(float) = win 0x2774d0, imac 0x5d36d0, m1 0x50725c, ios 0x30aac;
-    virtual TodoReturn fadeOutGround(float) = win 0x2776c0, m1 0x507430, imac 0x5d3870, ios 0x30c00;
+    virtual void fadeInGround(float) = win 0x2774d0, imac 0x5d36d0, m1 0x50725c, ios 0x30aac;
+    virtual void fadeOutGround(float) = win 0x2776c0, m1 0x507430, imac 0x5d3870, ios 0x30c00;
 
     void createLine(int) = win 0x277120, m1 0x506958, imac 0x5d2d50;
-    TodoReturn deactivateGround();
-    TodoReturn fadeInFinished();
-    TodoReturn getGroundY();
-    TodoReturn hideShadows();
+    void deactivateGround() = win inline, m1 0x507438, imac 0x5d3880 {
+        this->stopAllActions();
+        m_showGround = false;
+    }
+    void fadeInFinished() = win 0x2774c0, m1 0x5072dc, imac 0x5d3740;
+    float getGroundY() = win inline, m1 0x5074a8, imac 0x5d38f0 {
+        return 0.f;
+    }
+    void hideShadows() = win inline, m1 0x5072e8, imac 0x5d3750 {
+        if (auto leftShadow = this->getChildByTag(0)) leftShadow->setVisible(false);
+        if (auto rightShadow = this->getChildByTag(1)) rightShadow->setVisible(false);
+    }
     bool init(int, int) = win 0x2768f0, imac 0x5d2870, m1 0x506450;
-    void loadGroundSprites(int, bool) = win 0x276e60;
-    void positionGround(float) = imac 0x5d38b0;
-    TodoReturn scaleGround(float) = win 0x277310, imac 0x5d3350;
-    void toggleVisible01(bool);
-    void toggleVisible02(bool) = m1 0x506e20;
-    void updateGround01Color(cocos2d::ccColor3B);
-    void updateGround02Color(cocos2d::ccColor3B);
-    TodoReturn updateGroundPos(cocos2d::CCPoint);
-    TodoReturn updateGroundWidth(bool);
-    void updateLineBlend(bool) = imac 0x5d3670, m1 0x507214;
-    TodoReturn updateShadows() = win 0x277550, imac 0x5d35e0;
-    TodoReturn updateShadowXPos(float, float) = win 0x2775f0, imac 0x5d37b0;
+    void loadGroundSprites(int, bool) = win 0x276e60, m1 0x506af4, imac 0x5d2f10;
+    void positionGround(float y) = win inline, m1 0x507460, imac 0x5d38b0 {
+        this->setPosition(0.f, y);
+    }
+    void scaleGround(float) = win 0x277310, m1 0x506f20, imac 0x5d3350;
+    void toggleVisible01(bool visible) = win inline, m1 0x506df0, imac 0x5d31f0 {
+        if (m_showGround1 == visible) return;
+        m_showGround1 = visible;
+        this->setVisible(visible && m_showGround2);
+    }
+    void toggleVisible02(bool visible) = win inline, m1 0x506e20, imac 0x5d3230 {
+        if (m_showGround2 == visible) return;
+        m_showGround2 = visible;
+        this->setVisible(visible && m_showGround1);
+    }
+    void updateGround01Color(cocos2d::ccColor3B color) = win inline, m1 0x506d70, imac 0x5d3170 {
+        if (auto children = m_ground1Sprite->getChildren()) {
+            for (int i = 0; i < children->count(); i++) {
+                static_cast<cocos2d::CCSprite*>(children->objectAtIndex(i))->setColor(color);
+            }
+        }
+    }
+    void updateGround02Color(cocos2d::ccColor3B color) = win inline, m1 0x506e9c, imac 0x5d32c0 {
+        if (!m_ground2Sprite) return;
+
+        if (auto children = m_ground2Sprite->getChildren()) {
+            for (int i = 0; i < children->count(); i++) {
+                static_cast<cocos2d::CCSprite*>(children->objectAtIndex(i))->setColor(color);
+            }
+        }
+    }
+    void updateGroundPos(cocos2d::CCPoint pos) = win inline, m1 0x506e4c, imac 0x5d3270 {
+        m_ground1Sprite->setPosition(pos);
+        if (m_ground2Sprite) m_ground2Sprite->setPosition(pos);
+    }
+    void updateGroundWidth(bool) = m1 0x507014, imac 0x5d3460;
+    void updateLineBlend(bool blend) = win inline, imac 0x5d3670, m1 0x507214 {
+        if (m_blendLine == blend) return;
+        m_blendLine = blend;
+        if (blend) m_lineSprite->setBlendFunc({ GL_SRC_ALPHA, GL_ONE });
+        else m_lineSprite->setBlendFunc({ GL_ONE, GL_ONE_MINUS_SRC_ALPHA });
+    }
+    void updateShadows() = win 0x277550, m1 0x507180, imac 0x5d35e0;
+    void updateShadowXPos(float, float) = win 0x2775f0, m1 0x507368, imac 0x5d37b0;
+
+    cocos2d::CCSprite* m_ground1Sprite;
+    cocos2d::CCSprite* m_ground2Sprite;
+    float m_textureWidth;
+    cocos2d::CCSprite* m_lineSprite;
+    bool m_showGround;
+    bool m_blendLine;
+    float m_offset;
+    int m_lineType;
+    float m_groundWidth;
+    bool m_showGround1;
+    bool m_showGround2;
+    float m_unk1cc;
+    bool m_cameraRotated;
 }
 
 [[link(android)]]
