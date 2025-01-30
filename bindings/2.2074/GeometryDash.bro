@@ -8795,7 +8795,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCLayer* m_objectLayer;
     cocos2d::CCLayer* m_unkff8;
     cocos2d::CCLayer* m_unk1000;
-    cocos2d::CCSprite* m_unk1008;
+    cocos2d::CCSprite* m_background;
     void* m_unk1010;
     GJGroundLayer* m_groundLayer;
     GJGroundLayer* m_groundLayer2;
