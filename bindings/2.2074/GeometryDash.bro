@@ -12766,7 +12766,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     bool canPasteState();
     TodoReturn clearPlayerPoints();
     TodoReturn clearTouchPoints();
-    TodoReturn copyObjectState(GameObject*);
+    void copyObjectState(GameObject*) = win 0x2d8bc0;
     TodoReturn copyParticleState(ParticleGameObject*);
     GameObject* createObject(int, cocos2d::CCPoint, bool) = win 0x2cbf90;
     void createObjectsFromSetup(gd::string&);
@@ -17222,14 +17222,14 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onArrowLeft(cocos2d::CCObject* sender) = win 0x3e3980;
     void onArrowRight(cocos2d::CCObject* sender) = win 0x3e39b0;
     void onClose(cocos2d::CCObject* sender) = win 0x3e5f60, m1 0x298444;
-    void onCopy(cocos2d::CCObject* sender);
+    void onCopy(cocos2d::CCObject* sender) = win 0x3e3ed0;
     void onExtra(cocos2d::CCObject* sender) = win 0x3e40d0;
     void onExtra2(cocos2d::CCObject* sender);
     void onNextFreeEditorLayer1(cocos2d::CCObject* sender);
     void onNextFreeEditorLayer2(cocos2d::CCObject* sender);
     void onNextFreeOrderChannel(cocos2d::CCObject* sender);
     void onNextGroupID1(cocos2d::CCObject* sender) = win 0x3e48d0, m1 0x298c40, imac 0x300d00;
-    void onPaste(cocos2d::CCObject* sender) = win 0x111a80;
+    void onPaste(cocos2d::CCObject* sender) = win 0x3e3f30;
     void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x3e51e0, m1 0x29ae48, imac 0x3032f0;
     void onSmoothEase(cocos2d::CCObject* sender);
     void onToggleGuide(cocos2d::CCObject* sender);
