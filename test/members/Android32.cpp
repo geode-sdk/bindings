@@ -52,7 +52,7 @@ GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d68);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x894);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x898);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0x95c);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownE38, 0x98c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_parentGroupsDict, 0x98c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa48);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_particlesDict, 0x2a04);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_customParticles, 0x2a08);
