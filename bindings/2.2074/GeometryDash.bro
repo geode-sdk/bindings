@@ -13081,7 +13081,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn triggerFollowCommand(EffectGameObject*);
     TodoReturn triggerPlayerFollowCommand(EffectGameObject*);
     TodoReturn triggerRotateCommand(EffectGameObject*);
-    bool tryUpdateSpeedObject(EffectGameObject*, bool) = win 0x2d0190, imac 0xea170;
+    bool tryUpdateSpeedObject(EffectGameObject*, bool) = win 0x2d0190, imac 0xea170, m1 0xcfe2c;
     bool typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float) = win 0x2cc340;
     void undoLastAction() = win inline {
         return this->handleAction(true, m_undoObjects);
