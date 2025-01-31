@@ -328,6 +328,9 @@ GEODE_SIZE_CHECK(GraphicsReloadLayer, 0x1a8);
 GEODE_SIZE_CHECK(MoreVideoOptionsLayer, 0x2c0);
 GEODE_SIZE_CHECK(AnimatedGameObject, 0x610);
 GEODE_SIZE_CHECK(GJMGLayer, 0x1e8);
+GEODE_SIZE_CHECK(GJGradientLayer, 0x260);
+GEODE_SIZE_CHECK(GradientTriggerObject, 0x768);
+GEODE_SIZE_CHECK(SetupGradientPopup, 0x3d0);
 
 GEODE_SIZE_CHECK(EditorUI, 0x5a0);
 // GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);

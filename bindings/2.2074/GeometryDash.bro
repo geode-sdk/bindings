@@ -4525,7 +4525,7 @@ class EditTriggersPopup : SetupTriggerPopup {
 [[link(android)]]
 class EffectGameObject : EnhancedGameObject {
     // virtual ~EffectGameObject();
-    // EffectGameObject() = imac 0x1edce0;
+    EffectGameObject() = win 0x47d040, m1 0x199d84, imac 0x1e2030, ios 0x3925fc;
 
     static EffectGameObject* create(char const*) = m1 0x16a0d4;
 
@@ -9929,10 +9929,37 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 [[link(android)]]
 class GJGradientLayer : cocos2d::CCLayerGradient {
     // virtual ~GJGradientLayer();
+    GJGradientLayer() {
+        m_baseColor = 0;
+        m_detailColor = 0;
+        m_gradientPosition = cocos2d::CCPoint {};
+        m_triggerObject = nullptr;
+        m_noScale = false;
+        m_blendingMode = 0;
+        m_blendingLayer = 0;
+        m_gradientID = 0;
+    }
 
-    static GJGradientLayer* create();
+    static GJGradientLayer* create() = win inline, m1 0x104788, imac 0x1290e0 {
+        auto ret = new GJGradientLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual bool init() = imac 0x154550, m1 0x128178, ios 0x20b450;
+    virtual bool init() = win 0x242810, imac 0x154550, m1 0x128178, ios 0x20b450;
+
+    int m_baseColor;
+    int m_detailColor;
+    cocos2d::CCPoint m_gradientPosition;
+    GradientTriggerObject* m_triggerObject;
+    bool m_noScale;
+    int m_blendingMode;
+    int m_blendingLayer;
+    int m_gradientID;
 }
 
 [[link(android)]]
@@ -11964,12 +11991,56 @@ class GooglePlayManager : cocos2d::CCNode {
 [[link(android)]]
 class GradientTriggerObject : EffectGameObject {
     // virtual ~GradientTriggerObject();
+    GradientTriggerObject() {
+        m_blendingLayer = 0;
+        m_blendingMode = 0;
+        m_gradientID = 0;
+        m_upBottomLeftID = 0;
+        m_downBottomRightID = 0;
+        m_leftTopLeftID = 0;
+        m_rightTopRightID = 0;
+        m_vertexMode = false;
+        m_disable = false;
+        m_disableAll = false;
+        m_previewOpacity = 1.f;
+    }
 
-    static GradientTriggerObject* create();
+    static GradientTriggerObject* create() = win inline, m1 0x151ee4, imac 0x18ab00 {
+        auto ret = new GradientTriggerObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual bool init() = m1 0x151fc0, imac 0x18abe0, ios 0x373678;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x18c520, m1 0x1533c4, ios 0x373c10;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x18ac40, m1 0x152014, ios 0x3736cc;
+    virtual bool init() = win 0x480b40, m1 0x151fc0, imac 0x18abe0, ios 0x373678;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4811d0, imac 0x18c520, m1 0x1533c4, ios 0x373c10;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x480bc0, imac 0x18ac40, m1 0x152014, ios 0x3736cc;
+
+    // property 202
+    int m_blendingLayer;
+    // property 174
+    int m_blendingMode;
+    // property 209
+    int m_gradientID;
+    // property 203
+    int m_upBottomLeftID;
+    // property 204
+    int m_downBottomRightID;
+    // property 205
+    int m_leftTopLeftID;
+    // property 206
+    int m_rightTopRightID;
+    // property 207
+    bool m_vertexMode;
+    // property 208
+    bool m_disable;
+    // property 508
+    bool m_disableAll;
+    // property 456
+    float m_previewOpacity;
 }
 
 [[link(android)]]
@@ -18035,22 +18106,42 @@ class SetupGameplayOffsetPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupGradientPopup : SetupTriggerPopup {
     // virtual ~SetupGradientPopup();
+    SetupGradientPopup() = win inline {
+        m_blendingMode = 0;
+        m_layerButtons = nullptr;
+        m_blendingLayer = 0;
+        m_gradientLabels = nullptr;
+    }
 
-    static SetupGradientPopup* create(GradientTriggerObject*, cocos2d::CCArray*);
+    static SetupGradientPopup* create(GradientTriggerObject*, cocos2d::CCArray*) = win inline, m1 0x50d1d0, imac 0x5d9de0 {
+        auto ret = new SetupGradientPopup();
+        if (ret->init(p0, p1)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void determineStartValues() = win 0x409e70, m1 0x50e9cc, imac 0x5db910, ios 0x343010;
     virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x409f80, imac 0x5dba30, m1 0x50eafc, ios 0x343120;
-    virtual TodoReturn updateToggleItem(int, bool) = win 0x40a000, m1 0x50eb58, imac 0x5dba80, ios 0x34317c;
+    virtual void updateToggleItem(int, bool) = win 0x40a000, m1 0x50eb58, imac 0x5dba80, ios 0x34317c;
     virtual void valueDidChange(int, float) = win 0x40a410, imac 0x5dbc40, m1 0x50ed10, ios 0x343234;
 
-    bool init(GradientTriggerObject*, cocos2d::CCArray*) = m1 0x50d368, imac 0x5da040;
-    void onBlending(cocos2d::CCObject* sender);
-    void onZLayer(cocos2d::CCObject* sender);
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn updateBlending();
-    TodoReturn updateBlendingLabel();
-    TodoReturn updateGradientLabels(bool);
-    TodoReturn updateZLayerButtons();
+    bool init(GradientTriggerObject*, cocos2d::CCArray*) = win 0x408d10, m1 0x50d368, imac 0x5da040;
+    void onBlending(cocos2d::CCObject* sender) = win 0x40a2c0, m1 0x50e720, imac 0x5db640;
+    void onZLayer(cocos2d::CCObject* sender) = win 0x40a1a0, m1 0x50e850, imac 0x5db760;
+    void sliderChanged(cocos2d::CCObject* sender) = m1 0x50ec70, imac 0x5dbba0;
+    void updateBlending() = m1 0x50eca0, imac 0x5dbbc0;
+    void updateBlendingLabel() = win 0x40a380, m1 0x50e66c, imac 0x5db5b0;
+    void updateGradientLabels(bool) = win 0x40a090, m1 0x50e564, imac 0x5db4a0;
+    void updateZLayerButtons() = win 0x40a230, m1 0x50e93c, imac 0x5db870;
+
+    cocos2d::CCLabelBMFont* m_blendingLabel;
+    int m_blendingMode;
+    cocos2d::CCArray* m_layerButtons;
+    int m_blendingLayer;
+    cocos2d::CCArray* m_gradientLabels;
 }
 
 [[link(android)]]
@@ -18973,7 +19064,7 @@ class SetupTransformPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDelegate, SliderDelegate {
     // virtual ~SetupTriggerPopup();
-    // SetupTriggerPopup();
+    SetupTriggerPopup() = win 0x8d6c0;
 
     static SetupTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*, float, float, int);
     static SetupTriggerPopup* create(float, float);
@@ -18996,7 +19087,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     virtual void onCustomButton(cocos2d::CCObject* sender) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
     virtual void updateDefaultTriggerValues() = win 0x45f370, imac 0x229910, m1 0x1db330, ios 0x1358f4;
     virtual TodoReturn updateInputNode(int, float) = win 0x45f860, imac 0x22c1e0, m1 0x1dcdb8, ios 0x1363bc;
-    virtual TodoReturn updateToggleItem(int, bool) = win 0x45fc00, imac 0x22c3d0, m1 0x1dcfe4, ios 0x136588;
+    virtual void updateToggleItem(int, bool) = win 0x45fc00, imac 0x22c3d0, m1 0x1dcfe4, ios 0x136588;
     virtual void valueDidChange(int, float) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
     virtual float getValue(int) = win 0x45fc70, imac 0x22c490, m1 0x1dd09c, ios 0x1365f8;
     virtual TodoReturn triggerValueFromSliderValue(int, float) = win 0x463c60, imac 0x22c840, m1 0x1dd478, ios 0x1367f8;
