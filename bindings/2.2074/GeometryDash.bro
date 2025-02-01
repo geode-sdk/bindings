@@ -9284,7 +9284,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn opacityForIndex(int);
     TodoReturn opacityModForGroup(int);
     TodoReturn pauseTimer(int);
-    TodoReturn playerButton(bool, bool) = win 0x25ae00;
+    void playerButton(bool, bool) = win 0x25ae00, imac 0x2d61b0, m1 0x277110;
     void playerDied();
     TodoReturn postCollisionCheck() = win 0x254f50, imac 0x2cc390;
     TodoReturn postMoveActions() = win 0x259470, imac 0x2d4110;
