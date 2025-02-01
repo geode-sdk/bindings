@@ -5914,7 +5914,7 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCArray* getStoredUserList(UserListType) = imac 0x53f790;
     GJUserMessage* getStoredUserMessage(int);
     GJUserMessage* getStoredUserMessageReply(int);
-    double getTimeLeft(char const*, float) = win 0x147dd0, imac 0x522ab0, m1 0x47ea48;
+    int getTimeLeft(char const*, float) = win 0x147dd0, imac 0x522ab0, m1 0x47ea48;
     void getTopArtists(int page, int total) = m1 0x48fa04, imac 0x535f20;
     const char* getTopArtistsKey(int page) = m1 0x48fdc4, imac 0x536300 {
         return cocos2d::CCString::createWithFormat("topArtists_%i", page)->getCString();
@@ -12326,7 +12326,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     void onNextPage(cocos2d::CCObject* sender) = win 0x2b7860, imac 0x79b9b0;
     void onOriginal(cocos2d::CCObject* sender) = win 0x2b5e60, imac 0x79b090;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x2b7870, imac 0x79b990;
-    void onRefreshComments(cocos2d::CCObject* sender) = imac 0x79c870, m1 0x6aee78;
+    void onRefreshComments(cocos2d::CCObject* sender) = win 0x2b5620, imac 0x79c870, m1 0x6aee78;
     void onSimilar(cocos2d::CCObject* sender);
     TodoReturn reloadWindow() = win 0x2b7bf0;
     void setupCommentsBrowser(cocos2d::CCArray*) = win 0x2b71f0, imac 0x79c0e0, m1 0x6ae750;
