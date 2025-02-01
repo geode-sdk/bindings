@@ -13030,7 +13030,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     }
     GameObject* objectAtPosition(cocos2d::CCPoint) = win 0x2cc940;
     TodoReturn objectMoved(GameObject*) = imac 0xea300;
-    TodoReturn objectsAtPosition(cocos2d::CCPoint);
+    cocos2d::CCArray* objectsAtPosition(cocos2d::CCPoint) = win 0x2ccd00;
     cocos2d::CCArray* objectsInRect(cocos2d::CCRect, bool);
     void onPausePlaytest();
     void onPlaytest() = win 0x2d7330, imac 0xf0f00, m1 0xd5d40;
