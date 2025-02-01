@@ -24,7 +24,7 @@ GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3690);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xdb8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xdc0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xf10);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownE38, 0xf70);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_parentGroupsDict, 0xf70);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xfc8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xff0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer, 0x1018);

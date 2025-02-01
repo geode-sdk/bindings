@@ -4165,7 +4165,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn createGlow();
     void createLoop() = win 0x117c90;
     void createMoveMenu() = win 0x119350, m1 0x400a8, imac 0x464d0;
-    TodoReturn createNewKeyframeAnim();
+    void createNewKeyframeAnim() = win 0x1179f0;
     GameObject* createObject(int, cocos2d::CCPoint) = win 0x10e840;
     TodoReturn createOutlines(cocos2d::CCArray*);
     void createPrefab(GJSmartTemplate*, gd::string, int) = win 0x1160f0;
@@ -8390,7 +8390,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void removeFromGroups(GameObject*) = win 0x21ed10, imac 0x12ce70;
     TodoReturn removeFromStickyGroup(GameObject*) = imac 0x12de90;
     TodoReturn removeGroundLayer() = imac 0x1039d0;
-    TodoReturn removeGroupParent(int);
+    void removeGroupParent(int) = win 0x21f3e0;
     TodoReturn removeKeyframe(KeyframeGameObject*) = imac 0x13bae0;
     TodoReturn removeMiddleground();
     void removeObjectFromSection(GameObject*) = win 0x221a80, imac 0x12e500, m1 0x109388;
@@ -8782,7 +8782,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     gd::vector<cocos2d::CCArray*> m_groups;
     gd::vector<cocos2d::CCArray*> m_staticGroups;
     gd::vector<cocos2d::CCArray*> m_optimizedGroups;
-    cocos2d::CCDictionary* m_unknownE38;
+    cocos2d::CCDictionary* m_parentGroupsDict;
     cocos2d::CCDictionary* m_unknownE40;
     cocos2d::CCDictionary* m_unknownE48;
     cocos2d::CCArray* m_unknownE50;
@@ -17430,7 +17430,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     bool init(GameObject* obj, cocos2d::CCArray* objs) = win 0x3e1260, imac 0x2fe5f0, m1 0x296704;
     void onAddGroup(cocos2d::CCObject* sender) = win 0x3e52b0, m1 0x298c74, imac 0x300d30;
     void onAddGroupParent(cocos2d::CCObject* sender) = win 0x3e5420, m1 0x298c7c, imac 0x300d40;
-    void onAnim(cocos2d::CCObject* sender);
+    void onAnim(cocos2d::CCObject* sender) = win 0x3e4390;
     void onArrow(int tag, int increment) = win 0x3e39e0;
     void onArrowLeft(cocos2d::CCObject* sender) = win 0x3e3980;
     void onArrowRight(cocos2d::CCObject* sender) = win 0x3e39b0;
