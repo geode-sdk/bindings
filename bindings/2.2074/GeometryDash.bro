@@ -4303,7 +4303,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void playtestStopped() = win 0x110d80, m1 0x38a54, imac 0x3df80;
     TodoReturn positionIsInSnapped(cocos2d::CCPoint);
     TodoReturn positionWithoutOffset(GameObject*);
-    TodoReturn processSelectObjects(cocos2d::CCArray*) = win 0x110060, imac 0x3d880;
+    void processSelectObjects(cocos2d::CCArray*) = win 0x110060, imac 0x3d880;
     void processSmartObjectsFromType(int, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*) = win 0x116b80;
     void recreateButtonTabs();
     void redoLastAction(cocos2d::CCObject*) = win 0x110190;
