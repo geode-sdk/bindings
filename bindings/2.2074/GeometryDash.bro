@@ -4689,7 +4689,10 @@ class EffectGameObject : EnhancedGameObject {
     PAD = android 0x8, win 0x8, mac 0x8;
     // property 87
     bool m_isMultiTriggered;
-    PAD = android 0x2, win 0x2, mac 0x2;
+    // property 102
+    bool m_previewDisable;
+    // property 441
+    bool m_spawnOrdered;
     // property 93
     bool m_triggerOnExit;
     // property 95
