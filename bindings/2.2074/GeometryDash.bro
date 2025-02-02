@@ -4166,7 +4166,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void createLoop() = win 0x117c90;
     void createMoveMenu() = win 0x119350, m1 0x400a8, imac 0x464d0;
     void createNewKeyframeAnim() = win 0x1179f0;
-    GameObject* createObject(int, cocos2d::CCPoint) = win 0x10e840;
+    GameObject* createObject(int, cocos2d::CCPoint) = win 0x10e840, m1 0x35d7c, imac 0x3aa80;
     TodoReturn createOutlines(cocos2d::CCArray*);
     void createPrefab(GJSmartTemplate*, gd::string, int) = win 0x1160f0;
     TodoReturn createRockBases(cocos2d::CCArray*) = win 0x12da00, imac 0x5fd600;
@@ -4182,8 +4182,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void deleteSmartBlocksFromObjects(cocos2d::CCArray*) = win 0x116500;
     TodoReturn deleteTypeFromObjects(int, cocos2d::CCArray*);
     void deselectAll() = win 0x10fd80, imac 0x33240, m1 0x328b0;
-    void deselectObject() = win 0x10fc60, imac 0x33450;
-    void deselectObject(GameObject*) = win 0x10fc60, imac 0x331a0;
+    void deselectObject() = win 0x10fc60, m1 0x32a98, imac 0x33450;
+    void deselectObject(GameObject*) = win 0x10fc60, m1 0x32808, imac 0x331a0;
     void deselectObjectsColor();
     TodoReturn deselectTargetPortals() = imac 0x32e10;
     TodoReturn disableButton(CreateMenuItem*);
@@ -12984,7 +12984,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn clearTouchPoints();
     void copyObjectState(GameObject*) = win 0x2d8bc0;
     TodoReturn copyParticleState(ParticleGameObject*);
-    GameObject* createObject(int, cocos2d::CCPoint, bool) = win 0x2cbf90;
+    GameObject* createObject(int, cocos2d::CCPoint, bool) = win 0x2cbf90, m1 0xc7be8, imac 0xe0940;
     void createObjectsFromSetup(gd::string&);
     cocos2d::CCArray* createObjectsFromString(gd::string const&, bool, bool) = win 0x2cb920, m1 0xc6e60, imac 0xdf9e0;
     void dirtifyTriggers() = win 0x22b740;
