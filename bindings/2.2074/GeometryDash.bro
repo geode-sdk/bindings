@@ -8293,7 +8293,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void lightningFlash(cocos2d::CCPoint from, cocos2d::CCPoint to, cocos2d::ccColor3B color, float lineWidth, float duration, int displacement, bool flash, float opacity) = win 0x240770, imac 0x110c50, m1 0xf089c;
     TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
     void loadLevelSettings() = win 0x234770, imac 0x147920, m1 0x11d8c0;
-    void loadStartPosObject() = win 0x230000, imac 0x13e9f0;
+    void loadStartPosObject() = win 0x230000, imac 0x13e9f0, m1 0x116658;
     void loadUpToPosition(float, int, int) = win 0x2301a0;
     TodoReturn maxZOrderForShaderZ(int);
     TodoReturn minZOrderForShaderZ(int);
@@ -20589,7 +20589,7 @@ class StartPosObject : EffectGameObject {
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1ac830, m1 0x16d93c, ios 0x38046c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1ac840, m1 0x16d940, ios 0x380470;
 
-    TodoReturn loadSettingsFromString(gd::string);
+    void loadSettingsFromString(gd::string) = win 0x499510, imac 0x1ac7d0, m1 0x16d8dc;
     void setSettings(LevelSettingsObject*);
 
     LevelSettingsObject* m_startSettings;
