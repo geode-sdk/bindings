@@ -6428,6 +6428,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	bool m_customColor02Blend;
 	bool m_customColor03Blend;
 	bool m_customColor04Blend;
+        bool m_customColor3DBlend;
 }
 
 [[link(android)]]
