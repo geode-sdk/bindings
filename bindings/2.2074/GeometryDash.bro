@@ -16193,8 +16193,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     bool m_unk36cd;
     bool m_unk36ce;
     bool m_unk36cf;
-    geode::SeedValueRSV m_anticheatCoins;
-    bool m_anticheatSpikeCollided;
+    geode::SeedValueRSV m_damageVerifiedIndex;
+    bool m_damageVerified;
     gd::vector<gd::string> m_objectStrings;
     cocos2d::CCArray* m_coinArray;
     bool m_passedIntegrity;
