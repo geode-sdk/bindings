@@ -16188,9 +16188,18 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateTestModeLabel() = win 0x390b40, imac 0xb3d10, m1 0xa3d38;
     void updateTimeWarp(EffectGameObject*, float) = win 0x394a40;
 
-    PAD = win 0x30, android32 0x24, android64 0x2c, mac 0x30, ios 0x30;
+    int m_unk36c8;
+    bool m_unk36cc;
+    bool m_unk36cd;
+    bool m_unk36ce;
+    bool m_unk36cf;
+    geode::SeedValueRSV m_anticheatCoins;
+    bool m_anticheatSpikeCollided;
+    gd::vector<gd::string> m_objectStrings;
     cocos2d::CCArray* m_coinArray;
-    PAD = win 0x6e, android32 0x3e, android64 0x6e, mac 0x6e, ios 0x6e;
+    bool m_passedIntegrity;
+    int m_objectsCreated;
+    PAD = win 0x66, android32 0x36, android64 0x66, mac 0x66, ios 0x66;
     bool m_isIgnoreDamageEnabled;
     cocos2d::CCLabelBMFont* m_statusLabel;
     int m_unk3778;
