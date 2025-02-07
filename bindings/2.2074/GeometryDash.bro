@@ -6890,7 +6890,7 @@ class GameObject : CCSpritePlus {
     int getObjectZOrder();
     cocos2d::CCRect getOuterObjectRect();
     int getParentMode();
-    GJSpriteColor* getRelativeSpriteColor(int);
+    GJSpriteColor* getRelativeSpriteColor(int) = win 0x19eb30;
     cocos2d::CCPoint getScalePosDelta();
     GJSpriteColor* getSecondaryColor();
     int getSecondaryColorMode();
