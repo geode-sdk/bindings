@@ -1870,7 +1870,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
         delete ret;
         return nullptr;
     }
-    static CCSpriteWithHue* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = win inline {
+    static CCSpriteWithHue* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = win inline, imac 0x5d8690, m1 0x50bd18 {
         auto ret = new CCSpriteWithHue();
         if (ret->initWithSpriteFrame(frame)) {
             ret->autorelease();
@@ -1879,7 +1879,9 @@ class CCSpriteWithHue : cocos2d::CCSprite {
         delete ret;
         return nullptr;
     }
-    static CCSpriteWithHue* createWithSpriteFrameName(gd::string const&);
+    static CCSpriteWithHue* createWithSpriteFrameName(gd::string const&) = win inline, imac 0x5d8770, m1 0x50be14 {
+        return CCSpriteWithHue::createWithSpriteFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frameName.c_str()));
+    }
     static CCSpriteWithHue* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool rotated) = win inline {
         auto ret = new CCSpriteWithHue();
         if (ret->initWithTexture(texture, rect, rotated)) {
@@ -16641,7 +16643,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
     virtual void currencyWillExit(CurrencyRewardLayer*) = win 0x3ba210, m1 0x1c25a0, imac 0x20dd20, ios 0x1c8dec;
 
     void connectionTimeout() = win 0x3b7850, imac 0x20b430, m1 0x1bff18;
-    bool init(int, RewardsPage*) = m1 0x1bef6c;
+    bool init(int, RewardsPage*) = win 0x3b6a80, m1 0x1bef6c, imac 0x20a3e0;
     void labelEnterFinishedO(cocos2d::CCObject*) = win inline {}
     void onClose(cocos2d::CCObject* sender) = win 0x3ba220, imac 0x20b3d0, m1 0x1bfec0;
     void playDropSound() = win 0x3b78b0, m1 0x1bfd64;
@@ -16652,8 +16654,8 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
     }
     void showCloseButton() = imac 0x20dc90, m1 0x1c2524;
     bool showCollectReward(GJRewardItem*) = win 0x3b7790, imac 0x209c30, m1 0x1be8e8;
-    void step2() = win 0x3b7950, m1 0x1bfdf0;
-    void step3() = win 0x3b7a50, imac 0x20d5a0;
+    void step2() = win 0x3b7950, imac 0x20b300, m1 0x1bfdf0;
+    void step3() = win 0x3b7a50, imac 0x20d5a0, m1 0x1c1e40;
 
     cocos2d::CCArray* m_backgroundObjects;
     RewardsPage* m_rewardsPage;
