@@ -1879,7 +1879,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
         delete ret;
         return nullptr;
     }
-    static CCSpriteWithHue* createWithSpriteFrameName(gd::string const&) = win inline, imac 0x5d8770, m1 0x50be14 {
+    static CCSpriteWithHue* createWithSpriteFrameName(gd::string const& frameName) = win inline, imac 0x5d8770, m1 0x50be14 {
         return CCSpriteWithHue::createWithSpriteFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frameName.c_str()));
     }
     static CCSpriteWithHue* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool rotated) = win inline {
