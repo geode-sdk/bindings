@@ -10063,7 +10063,14 @@ class GJHttpResult : cocos2d::CCNode {
 [[link(android)]]
 class GJItemIcon : cocos2d::CCSprite {
     // virtual ~GJItemIcon();
-    GJItemIcon() {}
+    GJItemIcon() {
+        m_player = nullptr;
+        m_iconRequestID = 0;
+        m_playerSize = cocos2d::CCSize {};
+        m_isIcon = false;
+        m_unlockID = 0;
+        m_unlockType = (UnlockType)0;
+    }
 
     static GJItemIcon* create(UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7) = win inline, imac 0x35d940, m1 0x2f0ba0 {
         auto ret = new GJItemIcon();
@@ -10073,7 +10080,7 @@ class GJItemIcon : cocos2d::CCSprite {
         }
         delete ret;
         return nullptr;
-         }
+    }
     static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x273070, imac 0x35a800, m1 0x2edf50;
     static GJItemIcon* createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B) = win 0x272f40, imac 0x35d910, m1 0x2f0b84;
     static float scaleForType(UnlockType) = win 0x273d90, imac 0x35a830, m1 0x2edf70;
@@ -10086,7 +10093,7 @@ class GJItemIcon : cocos2d::CCSprite {
     bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x273190, m1 0x2f0cb0, imac 0x35da60;
     void toggleEnabledState(bool) = win 0x273bf0;
 
-    SimplePlayer* m_player;
+    cocos2d::CCSprite* m_player;
     int m_iconRequestID;
     cocos2d::CCSize m_playerSize;
     bool m_isIcon;
