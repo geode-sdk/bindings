@@ -331,6 +331,8 @@ GEODE_SIZE_CHECK(GJMGLayer, 0x1e8);
 GEODE_SIZE_CHECK(GJGradientLayer, 0x260);
 GEODE_SIZE_CHECK(GradientTriggerObject, 0x768);
 GEODE_SIZE_CHECK(SetupGradientPopup, 0x3d0);
+GEODE_SIZE_CHECK(UIPOptionsLayer, 0x3c8);
+GEODE_SIZE_CHECK(UISaveLoadLayer, 0x3b0);
 
 GEODE_SIZE_CHECK(EditorUI, 0x5a0);
 // GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);

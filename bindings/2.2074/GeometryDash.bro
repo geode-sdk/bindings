@@ -11741,33 +11741,51 @@ class GJTransformControlDelegate {
 class GJUINode : cocos2d::CCNode {
     // virtual ~GJUINode();
 
-    static GJUINode* create(UIButtonConfig&) = imac 0x4b5100;
+    static GJUINode* create(UIButtonConfig&) = win 0x4b5d30, imac 0x4b5100;
 
-    virtual void draw() = imac 0x4b8390, m1 0x4200f4, ios 0x4ed2c;
+    virtual void draw() = win 0x4b6870, imac 0x4b8390, m1 0x4200f4, ios 0x4ed2c;
 
-    TodoReturn activeRangeTouchTest(cocos2d::CCPoint);
-    TodoReturn activeTouchTest(cocos2d::CCPoint);
-    TodoReturn getButtonScale();
-    TodoReturn getOpacity();
-    TodoReturn highlightButton(int);
-    bool init(UIButtonConfig&);
+    int activeRangeTouchTest(cocos2d::CCPoint);
+    int activeTouchTest(cocos2d::CCPoint) = win 0x4b6540;
+    float getButtonScale();
+    int getOpacity();
+    void highlightButton(int);
+    bool init(UIButtonConfig&) = win 0x4b5e10;
     void loadFromConfig(UIButtonConfig&);
-    TodoReturn resetState();
-    TodoReturn saveToConfig(UIButtonConfig&);
+    void resetState();
+    void saveToConfig(UIButtonConfig&) = win 0x4b60c0;
     void setOpacity(unsigned char);
-    TodoReturn toggleHighlight(int, bool);
+    void toggleHighlight(int, bool) = win 0x4b67e0;
     void toggleModeB(bool);
-    TodoReturn touchEnded();
-    TodoReturn touchTest(cocos2d::CCPoint);
-    TodoReturn updateButtonFrames() = m1 0x41fdb8, imac 0x4b8000;
-    TodoReturn updateButtonPositions();
-    TodoReturn updateButtonScale(float);
-    TodoReturn updateDeadzone(int);
-    TodoReturn updateDragRadius(float);
-    TodoReturn updateHeight(float);
-    TodoReturn updateRangePos(cocos2d::CCPoint);
-    TodoReturn updateSize(float, float);
-    TodoReturn updateWidth(float);
+    void touchEnded() = win 0x4b6720;
+    int touchTest(cocos2d::CCPoint) = win 0x4b6430;
+    void updateButtonFrames() = win 0x4b6170, m1 0x41fdb8, imac 0x4b8000;
+    void updateButtonPositions() = win 0x4b6330;
+    void updateButtonScale(float);
+    void updateDeadzone(int);
+    void updateDragRadius(float);
+    void updateHeight(float) = win 0x4b62c0;
+    void updateRangePos(cocos2d::CCPoint);
+    void updateSize(float, float);
+    void updateWidth(float) = win 0x4b6250;
+
+    cocos2d::CCSprite* m_firstSprite;
+    cocos2d::CCSprite* m_secondSprite;
+    cocos2d::CCRect m_rect;
+    int m_touchID;
+    cocos2d::CCPoint m_touchDelta;
+    cocos2d::CCPoint m_touchPosition;
+    float m_radius;
+    float m_deadzone;
+    bool m_drawLines;
+    bool m_modeB;
+    bool m_snap;
+    bool m_swiping;
+    bool m_moving;
+    bool m_player2;
+    bool m_oneButton;
+    bool m_split;
+    PlayerButton m_currentButton;
 }
 
 [[link(android)]]
@@ -21208,10 +21226,21 @@ class TutorialPopup : FLAlertLayer {
 
 [[link(android)]]
 class UIButtonConfig {
-    TodoReturn reset() = win 0x1779e0;
-    TodoReturn resetOneBtn();
+    void reset() = win 0x1779e0;
+    void resetOneBtn() = win 0x177a50;
 
-    PAD = win 0x28, android32 0x28, android64 0x28;
+    int m_width;
+    int m_height;
+    float m_deadzone;
+    float m_scale;
+    int m_opacity;
+    float m_radius;
+    bool m_modeB;
+    bool m_snap;
+    cocos2d::CCPoint m_position;
+    bool m_oneButton;
+    bool m_player2;
+    bool m_split;
 }
 
 [[link(android)]]
@@ -21283,6 +21312,7 @@ class UILayer : cocos2d::CCLayerColor {
     bool m_dualMode;
     bool m_dpadType;
     bool m_editorMode;
+    cocos2d::CCArray* m_controllerButtons;
 }
 
 [[link(android)]]
@@ -21305,48 +21335,98 @@ class UIOptionsLayer : SetupTriggerPopup {
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x29c640, imac 0x2a17c0, m1 0x248680, ios 0x2e4038;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x29c790, imac 0x2a1990, m1 0x248840, ios 0x2e41cc;
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x29c8c0, imac 0x2a1b30, m1 0x248a2c, ios 0x2e4314;
-    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x248b64, imac 0x2a1c70, ios 0x2e43ac;
-    virtual void registerWithTouchDispatcher() = m1 0x248b80, imac 0x2a1cb0, ios 0x2e43c8;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x248060, imac 0x2a1040, ios 0x2e3ba4;
-    virtual void valueDidChange(int, float) = imac 0x2a11d0, m1 0x2481b0, ios 0x2e3cf4;
-    virtual float getValue(int) = imac 0x2a14e0, m1 0x248414, ios 0x2e3ecc;
+    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71210, m1 0x248b64, imac 0x2a1c70, ios 0x2e43ac;
+    virtual void registerWithTouchDispatcher() = win 0x9b1a0, m1 0x248b80, imac 0x2a1cb0, ios 0x2e43c8;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x29b720, m1 0x248060, imac 0x2a1040, ios 0x2e3ba4;
+    virtual void valueDidChange(int, float) = win 0x29bb20, imac 0x2a11d0, m1 0x2481b0, ios 0x2e3cf4;
+    virtual float getValue(int) = win 0x29c2a0, imac 0x2a14e0, m1 0x248414, ios 0x2e3ecc;
 
-    TodoReturn getNode(int);
+    GJUINode* getNode(int) = win inline {
+        switch (p0) {
+            case 0: return m_uiNode1;
+            case 1: return m_uiNode2;
+            case 2: return m_uiNode3;
+            case 3: return m_uiNode4;
+            default: return nullptr;
+        }
+    }
     bool init(bool) = win 0x299720, m1 0x24645c, imac 0x29ef50;
-    void onReset(cocos2d::CCObject* sender);
-    void onSaveLoad(cocos2d::CCObject* sender);
-    TodoReturn toggleUIGroup(int) = m1 0x247d74, imac 0x2a0ce0;
+    void onReset(cocos2d::CCObject* sender) = win 0x29ba10;
+    void onSaveLoad(cocos2d::CCObject* sender) = win 0x29b5f0;
+    void toggleUIGroup(int) = win 0x29b430, m1 0x247d74, imac 0x2a0ce0;
+
+    bool m_dual;
+    GJUINode* m_uiNode1;
+    GJUINode* m_uiNode2;
+    GJUINode* m_uiNode3;
+    GJUINode* m_uiNode4;
+    cocos2d::CCLabelBMFont* m_nameLabel;
+    int m_activeUIGroup;
 }
 
 [[link(android)]]
 class UIPOptionsLayer : SetupTriggerPopup {
     // virtual ~UIPOptionsLayer();
+    UIPOptionsLayer() = win inline {
+        m_touchID = -1;
+        m_practiceNode = nullptr;
+        m_touchPosition = cocos2d::CCPoint {};
+        m_touchDelta = cocos2d::CCPoint {};
+    }
 
-    static UIPOptionsLayer* create();
+    static UIPOptionsLayer* create() = win inline {
+        auto ret = new UIPOptionsLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x29e170, m1 0x24aa70, imac 0x2a3c00, ios 0x2e58fc;
-    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x24b160, imac 0x2a4350, ios 0x2e5fd0;
-    virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x24b27c, imac 0x2a4470, ios 0x2e6098;
-    virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x24b3d8, imac 0x2a45e0, ios 0x2e614c;
-    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x24b410, imac 0x2a4620, ios 0x2e6184;
-    virtual void registerWithTouchDispatcher() = m1 0x24b42c, imac 0x2a4660, ios 0x2e61a0;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x24afa8, imac 0x2a4170, ios 0x2e5e18;
-    virtual void valueDidChange(int, float) = m1 0x24b018, imac 0x2a41f0, ios 0x2e5e88;
-    virtual float getValue(int) = m1 0x24b0cc, imac 0x2a42c0, ios 0x2e5f3c;
+    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x29eae0, m1 0x24b160, imac 0x2a4350, ios 0x2e5fd0;
+    virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x29ebf0, m1 0x24b27c, imac 0x2a4470, ios 0x2e6098;
+    virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x29eca0, m1 0x24b3d8, imac 0x2a45e0, ios 0x2e614c;
+    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71210, m1 0x24b410, imac 0x2a4620, ios 0x2e6184;
+    virtual void registerWithTouchDispatcher() = win 0x9b1a0, m1 0x24b42c, imac 0x2a4660, ios 0x2e61a0;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x29e780, m1 0x24afa8, imac 0x2a4170, ios 0x2e5e18;
+    virtual void valueDidChange(int, float) = win 0x29e980, m1 0x24b018, imac 0x2a41f0, ios 0x2e5e88;
+    virtual float getValue(int) = win 0x29ea80, m1 0x24b0cc, imac 0x2a42c0, ios 0x2e5f3c;
 
-    TodoReturn getTouchRect();
-    void onReset(cocos2d::CCObject* sender);
+    cocos2d::CCRect getTouchRect() = win inline {
+        return { m_practiceNode->getPosition() - cocos2d::CCPoint { 70.0f, 25.0f }, { 140.0f, 50.0f } };
+    }
+    void onReset(cocos2d::CCObject* sender) = win 0x29e860;
+
+    int m_touchID;
+    cocos2d::CCNode* m_practiceNode;
+    cocos2d::CCPoint m_touchPosition;
+    cocos2d::CCPoint m_touchDelta;
 }
 
 [[link(android)]]
 class UISaveLoadLayer : SetupTriggerPopup {
     // virtual ~UISaveLoadLayer();
+    UISaveLoadLayer() = win inline {
+        m_optionsLayer = nullptr;
+    }
 
-    static UISaveLoadLayer* create(UIOptionsLayer*);
+    static UISaveLoadLayer* create(UIOptionsLayer*) = win inline {
+        auto ret = new UISaveLoadLayer();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    bool init(UIOptionsLayer*) = m1 0x248bb8, imac 0x2a1cf0;
-    void onLoad(cocos2d::CCObject* sender) = m1 0x2494ec, imac 0x2a25d0;
-    void onSave(cocos2d::CCObject* sender) = m1 0x2492ac, imac 0x2a23a0;
+    bool init(UIOptionsLayer*) = win 0x29c940, m1 0x248bb8, imac 0x2a1cf0;
+    void onLoad(cocos2d::CCObject* sender) = win 0x29d120, m1 0x2494ec, imac 0x2a25d0;
+    void onSave(cocos2d::CCObject* sender) = win 0x29ce90, m1 0x2492ac, imac 0x2a23a0;
+
+    UIOptionsLayer* m_optionsLayer;
 }
 
 [[link(android)]]
