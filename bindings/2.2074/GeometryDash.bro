@@ -2707,7 +2707,7 @@ class CommunityCreditsPage : FLAlertLayer {
     virtual void show() = m1 0x2a35e0, imac 0x30c860, ios 0x1a5b74;
 
     void FLAlert_Clicked(FLAlertLayer*, bool);
-    void goToPage(int) = win 0x96040, m1 0x2a34cc;
+    void goToPage(int) = win 0x96040, m1 0x2a34cc, imac 0x30c750;
     void onClose(cocos2d::CCObject* sender);
     void onSwitchPage(cocos2d::CCObject* sender);
 
