@@ -1062,7 +1062,10 @@ class CCAnimatedSprite : cocos2d::CCSprite {
     bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x3ffc0, imac 0x33c100, m1 0x2d2594;
     void loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x401e0, m1 0x2d2790, imac 0x33c2f0;
     void runAnimation(gd::string) = win 0x40c80, m1 0x2d3058, imac 0x33cc20;
-    void runAnimationForced(gd::string);
+    void runAnimationForced(gd::string) = win inline, m1 0x2d30f0, imac 0x33cca0 {
+        m_animationManager->overridePrio();
+        m_animationManager->runAnimation(p0);
+    }
     void stopTween() = m1 0x2d359c;
     void switchToMode(spriteMode) = win 0x40b10, imac 0x33cb00, m1 0x2d2f4c;
     void tweenToAnimation(gd::string, float) = win 0x40cf0, imac 0x33cd60, m1 0x2d31c4;
@@ -20489,12 +20492,12 @@ class SpriteAnimationManager : cocos2d::CCNode {
     TodoReturn initWithOwner(CCAnimatedSprite*, gd::string);
     TodoReturn loadAnimations(gd::string) = m1 0x62b214;
     TodoReturn offsetCurrentAnimation(float) = imac 0x70e0d0;
-    void overridePrio() = win 0x74420;
+    void overridePrio() = win 0x74420, m1 0x62cb2c, imac 0x70dbc0;
     TodoReturn playSound(gd::string);
     TodoReturn playSoundForAnimation(gd::string);
     TodoReturn queueAnimation(gd::string);
     TodoReturn resetAnimState();
-    TodoReturn runAnimation(gd::string);
+    void runAnimation(gd::string) = win 0x73dd0, m1 0x62c1e8, imac 0x70d190;
     TodoReturn runQueuedAnimation();
     void stopAnimations() = win inline {
         this->overridePrio();
