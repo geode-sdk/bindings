@@ -21295,7 +21295,7 @@ class UIOptionsLayer : SetupTriggerPopup {
 }
 
 [[link(android)]]
-class UIPOptionsLayer {
+class UIPOptionsLayer : SetupTriggerPopup {
     // virtual ~UIPOptionsLayer();
 
     static UIPOptionsLayer* create();
