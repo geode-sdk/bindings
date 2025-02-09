@@ -20499,7 +20499,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
     TodoReturn resetAnimState();
     void runAnimation(gd::string) = win 0x73dd0, m1 0x62c1e8, imac 0x70d190;
     TodoReturn runQueuedAnimation();
-    void stopAnimations() = win inline {
+    void stopAnimations() = win inline, m1 0x62cd30, imac 0x70ddb0 {
         this->overridePrio();
         if (m_sprite->m_paSprite) m_sprite->m_paSprite->stopAllActions();
         if (m_sprite->m_fbfSprite) m_sprite->m_fbfSprite->stopAllActions();
