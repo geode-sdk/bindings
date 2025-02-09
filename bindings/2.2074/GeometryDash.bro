@@ -7266,7 +7266,7 @@ class GameObject : CCSpritePlus {
     int m_mainColorKeyIndex;
     // property 156
     int m_detailColorKeyIndex;
-    GLubyte m_areaOpacityRelated;
+    uint8_t m_areaOpacityRelated;
     float m_areaOpacityRelated2;
     int m_areaOpacityRelated3;
     int m_unk52C;
@@ -15226,47 +15226,47 @@ class ParentalOptionsLayer : FLAlertLayer {
 class ParticleGameObject : EnhancedGameObject {
     // virtual ~ParticleGameObject();
 
-    static ParticleGameObject* create();
+    static ParticleGameObject* create() = win 0x487420;
 
-    virtual bool init() = m1 0x1633a0, imac 0x1a08c0, ios 0x379a74;
-    virtual void setScaleX(float) = m1 0x164424, imac 0x1a1960, ios 0x37a8d4;
-    virtual void setScaleY(float) = m1 0x164494, imac 0x1a19d0, ios 0x37a920;
-    virtual void setScale(float) = m1 0x164504, imac 0x1a1a40, ios 0x37a96c;
-    virtual void setRotation(float) = m1 0x164340, imac 0x1a18a0, ios 0x37a7f0;
-    virtual void setRotationX(float) = m1 0x16438c, imac 0x1a18e0, ios 0x37a83c;
-    virtual void setRotationY(float) = m1 0x1643d8, imac 0x1a1920, ios 0x37a888;
-    virtual void setChildColor(cocos2d::ccColor3B const&) = m1 0x164668, imac 0x1a1ba0, ios 0x37aaac;
-    virtual void customSetup() = m1 0x1635f0, imac 0x1a0b90, ios 0x379c5c;
-    virtual void addMainSpriteToParent(bool) = m1 0x16369c, imac 0x1a0c60, ios 0x379d08;
-    virtual void resetObject() = m1 0x164834, imac 0x1a1d90, ios 0x37ac6c;
-    virtual void deactivateObject(bool) = m1 0x1647f0, imac 0x1a1d50, ios 0x37ac34;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1a08f0, m1 0x1633d8, ios 0x379aac;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1a1f90, m1 0x164a28, ios 0x37ae4c;
-    virtual void claimParticle() = imac 0x1a0d40, m1 0x16377c, ios 0x379de8;
-    virtual void unclaimParticle() = imac 0x1a12e0, m1 0x163d44, ios 0x37a390;
-    virtual void particleWasActivated() = imac 0x1a1360, m1 0x163dd0, ios 0x37a410;
-    virtual void setObjectColor(cocos2d::ccColor3B const&) = m1 0x164574, imac 0x1a1ab0, ios 0x37a9b8;
-    virtual void blendModeChanged() = imac 0x1a0c20, m1 0x16366c, ios 0x379cd8;
-    virtual void updateParticleColor(cocos2d::ccColor3B const&) = m1 0x8fb0, imac 0x7150, ios 0xd590;
-    virtual void updateParticleOpacity(unsigned char) = m1 0x8fb0, imac 0x7150, ios 0xd590;
-    virtual void updateMainParticleOpacity(unsigned char) = imac 0x1a1c90, m1 0x16475c, ios 0x37aba0;
-    virtual void updateSecondaryParticleOpacity(unsigned char) = imac 0x1a1cf0, m1 0x1647a8, ios 0x37abec;
-    virtual void updateSyncedAnimation(float, int) = imac 0x1a1df0, m1 0x16489c, ios 0x37acd4;
-    virtual void updateAnimateOnTrigger(bool) = imac 0x1a1f40, m1 0x1649d8, ios 0x37adfc;
+    virtual bool init() = win 0x487540, m1 0x1633a0, imac 0x1a08c0, ios 0x379a74;
+    virtual void setScaleX(float) = win 0x488900, m1 0x164424, imac 0x1a1960, ios 0x37a8d4;
+    virtual void setScaleY(float) = win 0x488980, m1 0x164494, imac 0x1a19d0, ios 0x37a920;
+    virtual void setScale(float) = win 0x488a00, m1 0x164504, imac 0x1a1a40, ios 0x37a96c;
+    virtual void setRotation(float) = win 0x4884f0, m1 0x164340, imac 0x1a18a0, ios 0x37a7f0;
+    virtual void setRotationX(float) = win 0x488530, m1 0x16438c, imac 0x1a18e0, ios 0x37a83c;
+    virtual void setRotationY(float) = win 0x4886a0, m1 0x1643d8, imac 0x1a1920, ios 0x37a888;
+    virtual void setChildColor(cocos2d::ccColor3B const&) = win 0x488bb0, m1 0x164668, imac 0x1a1ba0, ios 0x37aaac;
+    virtual void customSetup() = win 0x487790, m1 0x1635f0, imac 0x1a0b90, ios 0x379c5c;
+    virtual void addMainSpriteToParent(bool) = win 0x487860, m1 0x16369c, imac 0x1a0c60, ios 0x379d08;
+    virtual void resetObject() = win 0x488e00, m1 0x164834, imac 0x1a1d90, ios 0x37ac6c;
+    virtual void deactivateObject(bool) = win 0x488dc0, m1 0x1647f0, imac 0x1a1d50, ios 0x37ac34;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4875a0, imac 0x1a08f0, m1 0x1633d8, ios 0x379aac;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x489050, imac 0x1a1f90, m1 0x164a28, ios 0x37ae4c;
+    virtual void claimParticle() = win 0x487950, imac 0x1a0d40, m1 0x16377c, ios 0x379de8;
+    virtual void unclaimParticle() = win 0x487f10, imac 0x1a12e0, m1 0x163d44, ios 0x37a390;
+    virtual void particleWasActivated() = win 0x487ff0, imac 0x1a1360, m1 0x163dd0, ios 0x37a410;
+    virtual void setObjectColor(cocos2d::ccColor3B const&) = win 0x488a80, m1 0x164574, imac 0x1a1ab0, ios 0x37a9b8;
+    virtual void blendModeChanged() = win 0x487820, imac 0x1a0c20, m1 0x16366c, ios 0x379cd8;
+    virtual void updateParticleColor(cocos2d::ccColor3B const&) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
+    virtual void updateParticleOpacity(unsigned char) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
+    virtual void updateMainParticleOpacity(unsigned char) = win 0x488ce0, imac 0x1a1c90, m1 0x16475c, ios 0x37aba0;
+    virtual void updateSecondaryParticleOpacity(unsigned char) = win 0x488d60, imac 0x1a1cf0, m1 0x1647a8, ios 0x37abec;
+    virtual void updateSyncedAnimation(float, int) = win 0x488e60, imac 0x1a1df0, m1 0x16489c, ios 0x37acd4;
+    virtual void updateAnimateOnTrigger(bool) = win 0x488fd0, imac 0x1a1f40, m1 0x1649d8, ios 0x37adfc;
 
-    TodoReturn applyParticleSettings(cocos2d::CCParticleSystemQuad*);
+    void applyParticleSettings(cocos2d::CCParticleSystemQuad*) = win 0x487b50;
     TodoReturn createAndAddCustomParticle();
-    TodoReturn createParticlePreviewArt() = m1 0x164140, imac 0x1a16c0;
+    void createParticlePreviewArt() = win 0x4882e0, m1 0x164140, imac 0x1a16c0;
     void setParticleString(gd::string) = win 0x4880b0, imac 0x1a14a0, m1 0x163f24;
     void updateParticle() = win 0x488140, imac 0x1a1530;
-    TodoReturn updateParticleAngle(float, cocos2d::CCParticleSystemQuad*) = imac 0x1a11d0;
-    TodoReturn updateParticlePreviewArtOpacity(float);
-    TodoReturn updateParticleScale(float);
-    TodoReturn updateParticleStruct() = imac 0x1a0d10;
+    void updateParticleAngle(float, cocos2d::CCParticleSystemQuad*) = win 0x4887d0, imac 0x1a11d0;
+    void updateParticlePreviewArtOpacity(float) = win 0x488470;
+    void updateParticleScale(float);
+    void updateParticleStruct() = imac 0x1a0d10;
 
     gd::string m_particleData;
     bool m_updatedParticleData;
-    PAD = android32 0x10f, win 0x123;
+    PAD = android32 0x10f, win 0x12f;
 
     // property 147
     bool m_hasUniformObjectColor;
@@ -18406,39 +18406,107 @@ class SetupObjectOptions2Popup : SetupTriggerPopup {
 [[link(android)]]
 class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
     // virtual ~SetupObjectOptionsPopup();
+    SetupObjectOptionsPopup() {
+        m_gameObject = nullptr;
+        m_gameObjects = nullptr;
+        m_iceBlock = false;
+        m_dontFade = false;
+        m_dontEnter = false;
+        m_noEffects = false;
+        m_noParticle = false;
+        m_noTouch = false;
+        m_passable = false;
+        m_hide = false;
+        m_nonStickX = false;
+        m_nonStickY = false;
+        m_extraSticky = false;
+        m_dontBoostY = false;
+        m_dontBoostX = false;
+        m_noAudioScale = false;
+        m_scaleStick = false;
+        m_highDetail = false;
+        m_groupParent = false;
+        m_areaParent = false;
+        m_gripSlope = false;
+        m_noGlow = false;
+        m_reverse = false;
+        m_extendedCollision = false;
+        m_unk2a6 = false;
+        m_groupIDLayer = nullptr;
+        m_effectObject = false;
+        m_singlePlayerTouch = false;
+    }
 
-    static SetupObjectOptionsPopup* create(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*);
+    static SetupObjectOptionsPopup* create(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win inline {
+        auto ret = new SetupObjectOptionsPopup();
+        if (ret->init(p0, p1, p2)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual void keyBackClicked() = m1 0x29dd48, imac 0x306b70, ios 0x45288;
-    virtual void show() = m1 0x29dd6c, imac 0x306bb0, ios 0x452ac;
+    virtual void keyBackClicked() = win 0x250330, m1 0x29dd48, imac 0x306b70, ios 0x45288;
+    virtual void show() = win 0x8ba30, m1 0x29dd6c, imac 0x306bb0, ios 0x452ac;
     virtual void determineStartValues() = win 0x3e7cd0, imac 0x306760, m1 0x29da98, ios 0x450a4;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x29ddb8, imac 0x306c10, ios 0x452f8;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x29ddb8, imac 0x306c10, ios 0x452f8;
 
-    bool init(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = m1 0x29b3ac, imac 0x3039a0;
-    void onAlwaysHide(cocos2d::CCObject* sender);
-    void onApplyScaleStick(cocos2d::CCObject* sender);
-    void onCenterEffect(cocos2d::CCObject* sender);
-    void onDisableGlow(cocos2d::CCObject* sender);
-    void onDisableObject(cocos2d::CCObject* sender);
-    void onDontBoost(cocos2d::CCObject* sender);
-    void onDontBoostX(cocos2d::CCObject* sender);
-    void onDontEnter(cocos2d::CCObject* sender);
-    void onDontFade(cocos2d::CCObject* sender);
-    void onExtendedCollision(cocos2d::CCObject* sender);
-    void onExtraSticky(cocos2d::CCObject* sender);
-    void onGripSlope(cocos2d::CCObject* sender);
-    void onHideEffects(cocos2d::CCObject* sender);
-    void onHighDetail(cocos2d::CCObject* sender);
-    void onIceBlock(cocos2d::CCObject* sender);
-    void onNoAudioScale(cocos2d::CCObject* sender);
-    void onNonStickX(cocos2d::CCObject* sender);
-    void onNonStickY(cocos2d::CCObject* sender);
-    void onNoParticle(cocos2d::CCObject* sender);
-    void onPassable(cocos2d::CCObject* sender);
-    void onReverse(cocos2d::CCObject* sender);
-    void onSinglePlayerTouch(cocos2d::CCObject* sender);
-    void onToggleAreaParent(cocos2d::CCObject* sender);
-    void onToggleGroupParent(cocos2d::CCObject* sender);
+    bool init(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win 0x3e62f0, m1 0x29b3ac, imac 0x3039a0;
+    void onAlwaysHide(cocos2d::CCObject* sender) = win 0x3e8500;
+    void onApplyScaleStick(cocos2d::CCObject* sender) = win 0x3e88f0;
+    void onCenterEffect(cocos2d::CCObject* sender) = win 0x3e8dd0;
+    void onDisableGlow(cocos2d::CCObject* sender) = win 0x3e83e0;
+    void onDisableObject(cocos2d::CCObject* sender) = win 0x3e8230;
+    void onDontBoost(cocos2d::CCObject* sender) = win 0x3e8740;
+    void onDontBoostX(cocos2d::CCObject* sender) = win 0x3e87d0;
+    void onDontEnter(cocos2d::CCObject* sender) = win 0x3e8080;
+    void onDontFade(cocos2d::CCObject* sender) = win 0x3e7ff0;
+    void onExtendedCollision(cocos2d::CCObject* sender) = win 0x3e8b30;
+    void onExtraSticky(cocos2d::CCObject* sender) = win 0x3e86b0;
+    void onGripSlope(cocos2d::CCObject* sender) = win 0x3e8350;
+    void onHideEffects(cocos2d::CCObject* sender) = win 0x3e8110;
+    void onHighDetail(cocos2d::CCObject* sender) = win 0x3e8aa0;
+    void onIceBlock(cocos2d::CCObject* sender) = win 0x3e7f60;
+    void onNoAudioScale(cocos2d::CCObject* sender) = win 0x3e8860;
+    void onNonStickX(cocos2d::CCObject* sender) = win 0x3e8590;
+    void onNonStickY(cocos2d::CCObject* sender) = win 0x3e8620;
+    void onNoParticle(cocos2d::CCObject* sender) = win 0x3e81a0;
+    void onPassable(cocos2d::CCObject* sender) = win 0x3e8470;
+    void onReverse(cocos2d::CCObject* sender) = win 0x3e8c60;
+    void onSinglePlayerTouch(cocos2d::CCObject* sender) = win 0x3e8d20;
+    void onToggleAreaParent(cocos2d::CCObject* sender) = win 0x3e8a10;
+    void onToggleGroupParent(cocos2d::CCObject* sender) = win 0x3e8980;
+
+    GameObject* m_gameObject;
+    cocos2d::CCArray* m_gameObjects;
+    bool m_iceBlock;
+    bool m_dontFade;
+    bool m_dontEnter;
+    bool m_noEffects;
+    bool m_noParticle;
+    bool m_noTouch;
+    bool m_passable;
+    bool m_hide;
+    bool m_nonStickX;
+    bool m_nonStickY;
+    bool m_extraSticky;
+    bool m_dontBoostY;
+    bool m_dontBoostX;
+    bool m_noAudioScale;
+    bool m_scaleStick;
+    bool m_highDetail;
+    bool m_groupParent;
+    bool m_areaParent;
+    bool m_gripSlope;
+    bool m_noGlow;
+    bool m_reverse;
+    bool m_extendedCollision;
+    bool m_unk2a6;
+    SetGroupIDLayer* m_groupIDLayer;
+    bool m_effectObject;
+    bool m_singlePlayerTouch;
+    bool m_centerEffect;
 }
 
 [[link(android)]]
