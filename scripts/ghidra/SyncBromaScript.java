@@ -758,11 +758,6 @@ public class SyncBromaScript extends GhidraScript {
                             );
                         }
                     }
-
-                    // todo: Funky little hack to fix GameObject_data not fitting inside EndGameObject
-                    if (fullName.equals("GameObject") && offset > 0x26e) {
-                        break;
-                    }
                 }
 
                 // classDataMembers.setPackingEnabled(true);
