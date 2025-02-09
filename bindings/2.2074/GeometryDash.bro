@@ -21331,8 +21331,8 @@ class UIPOptionsLayer : SetupTriggerPopup {
     virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x24b410, imac 0x2a4620, ios 0x2e6184;
     virtual void registerWithTouchDispatcher() = m1 0x24b42c, imac 0x2a4660, ios 0x2e61a0;
     virtual void onClose(cocos2d::CCObject* sender) = m1 0x24afa8, imac 0x2a4170, ios 0x2e5e18;
-    virtual TodoReturn valueDidChange(int, float) = m1 0x24b018, imac 0x2a41f0, ios 0x2e5e88;
-    virtual TodoReturn getValue(int) = m1 0x24b0cc, imac 0x2a42c0, ios 0x2e5f3c;
+    virtual void valueDidChange(int, float) = m1 0x24b018, imac 0x2a41f0, ios 0x2e5e88;
+    virtual void getValue(int) = m1 0x24b0cc, imac 0x2a42c0, ios 0x2e5f3c;
 
     TodoReturn getTouchRect();
     void onReset(cocos2d::CCObject* sender);
