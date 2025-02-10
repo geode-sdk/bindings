@@ -2936,9 +2936,43 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     ParticleGameObject* m_targetObject;
     cocos2d::CCArray* m_targetObjects;
     cocos2d::CCArray* m_particles;
-    bool m_unkBool;
+    bool m_disableTextDelegate;
     cocos2d::CCParticleSystemQuad* m_particle;
-    // there's more but idc about them
+    cocos2d::CCParticleSystemQuad* m_standaloneParticle;
+    int m_touchID;
+    cocos2d::CCPoint m_touchDelta;
+    cocos2d::CCArray* m_inputDicts;
+    cocos2d::CCArray* m_inputDicts2;
+    cocos2d::CCArray* m_pageNodes;
+    cocos2d::CCArray* m_pageButtons;
+    cocos2d::CCArray* m_pageMenus;
+    cocos2d::CCArray* m_pageObjectArrays;
+    ParticlePreviewLayer* m_previewLayer;
+    CCMenuItemSpriteExtra* m_mode1Button;
+    CCMenuItemSpriteExtra* m_mode2Button;
+    CCMenuItemSpriteExtra* m_mode3Button;
+    float m_elapsed;
+    int m_selectedMode;
+    CCMenuItemToggler* m_freeToggler;
+    CCMenuItemToggler* m_relativeToggler;
+    CCMenuItemToggler* m_groupedToggler;
+    CCMenuItemToggler* m_objColorToggler;
+    CCMenuItemToggler* m_uniformColorToggler;
+    CCMenuItemToggler* m_gravityToggler;
+    CCMenuItemToggler* m_radiusToggler;
+    cocos2d::CCSprite* m_selectSprite;
+    cocos2d::CCSprite* m_particleColorSprite;
+    cocos2d::CCSprite* m_startColorSprite;
+    cocos2d::CCSprite* m_endColorSprite;
+    cocos2d::CCArray* m_gravityObjects;
+    cocos2d::CCArray* m_radiusObjects;
+    int m_particleIndex;
+    int m_page;
+    bool m_useObjectColor;
+    bool m_animateOnTrigger;
+    bool m_onlyAnimateActive;
+    bool m_quickStart;
+    float m_respawnResult;
 }
 
 [[link(android)]]
@@ -15264,31 +15298,50 @@ class ParticleGameObject : EnhancedGameObject {
     void updateParticleScale(float);
     void updateParticleStruct() = imac 0x1a0d10;
 
+    // property 145
     gd::string m_particleData;
     bool m_updatedParticleData;
-    PAD = android32 0x10f, win 0x12f;
-
+    cocos2d::ParticleStruct m_particleStruct;
     // property 147
     bool m_hasUniformObjectColor;
-    PAD = android32 0x7, win 0x7;
-
+    int m_popupPage;
     // property 211
     bool m_shouldQuickStart;
-    PAD = android32 0xf, win 0xf;
+    float m_respawnResult;
+    bool m_startingRespawn;
+    bool m_notPreviewing;
 }
 
 [[link(android)]]
 class ParticlePreviewLayer : cocos2d::CCLayerColor {
     // virtual ~ParticlePreviewLayer();
+    ParticlePreviewLayer() {
+        m_particleMode = 0;
+        m_particleSystem = nullptr;
+        m_gravityMode = false;
+    }
 
-    static ParticlePreviewLayer* create(cocos2d::CCParticleSystemQuad*);
+    static ParticlePreviewLayer* create(cocos2d::CCParticleSystemQuad*) = win inline {
+        auto ret = new ParticlePreviewLayer();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void draw() = win 0x41d700, imac 0x464c10, m1 0x3d4c08, ios 0x2d1c18;
     virtual void visit() = win 0x41d620, imac 0x464a90, m1 0x3d4a80, ios 0x2d1b38;
 
     bool init(cocos2d::CCParticleSystemQuad*);
-    TodoReturn postVisit();
-    TodoReturn preVisitWithClippingRect(cocos2d::CCRect);
+    void postVisit();
+    void preVisitWithClippingRect(cocos2d::CCRect);
+
+    int m_particleMode;
+    int m_drawMode;
+    cocos2d::CCParticleSystemQuad* m_particleSystem;
+    bool m_gravityMode;
 }
 
 [[link(android)]]
