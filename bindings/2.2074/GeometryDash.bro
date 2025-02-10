@@ -4929,20 +4929,18 @@ class EnhancedGameObject : GameObject {
     void updateUserCoin() = win 0x1a3970, imac 0x5a9770, m1 0x4e3b94;
     TodoReturn waitForAnimationTrigger();
 
-    // Everyone loves itanium padding
-    bool m_unknownPadding;
     bool m_poweredOn;
     int m_state;
     int m_animationRandomizedStartValue;
     float m_animationStart;
-    // No idea what these 3 fields are supposed to be. But we know what types they are...
-    float field4_0xd;
-    int field5_0x11;
-    bool field6_0x15;
+    float m_unk540;
+    float m_unk544;
+    bool m_unk548;
     float m_frameTime;
     bool m_visible;
     bool m_shouldNotHideAnimFreeze;
     bool m_usesSpecialAnimation;
+    float m_unk554;
     short m_frames;
     bool m_hasCustomAnimation;
     bool m_hasCustomRotation;
