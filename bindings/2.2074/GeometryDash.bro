@@ -2549,14 +2549,14 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x8dc20, imac 0x70eb40, m1 0x62d8e4;
     void onCopy(cocos2d::CCObject* sender) = win 0x90d60;
     void onCopyOpacity(cocos2d::CCObject* sender) = win 0x90b00;
-    void onDefault(cocos2d::CCObject* sender) = win 0x90e60, m1 0x630280;
+    void onDefault(cocos2d::CCObject* sender) = win 0x90e60, m1 0x630280, imac 0x711930;
     void onHSVLegacyMode(cocos2d::CCObject* sender);
-    void onPaste(cocos2d::CCObject* sender) = win 0x90de0;
+    void onPaste(cocos2d::CCObject* sender) = win 0x90de0, m1 0x630234, imac 0x7118f0;
     void onPlayerColor1(cocos2d::CCObject* sender);
     void onPlayerColor2(cocos2d::CCObject* sender);
     void onSelectSpecialColor(cocos2d::CCObject* sender);
     void onTintGround(cocos2d::CCObject* sender);
-    void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x93500;
+    void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x93500, m1 0x630820, imac 0x711fb0;
     void onToggleTintMode(cocos2d::CCObject* sender) = win 0x909b0;
     void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x93420, m1 0x6309c0, imac 0x712170;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x92c50;
@@ -18695,8 +18695,8 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void onGroupMainOnly(cocos2d::CCObject* sender) = win 0x423410;
     void onGroupSecondaryOnly(cocos2d::CCObject* sender) = win 0x423500;
     void onHSVLegacyMode(cocos2d::CCObject* sender) = win 0x423560;
-    void onPaste(cocos2d::CCObject* sender) = win 0x90de0;
-    void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x422aa0;
+    void onPaste(cocos2d::CCObject* sender) = win 0x90de0, m1 0x328b68, imac 0x39b340;
+    void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x422aa0, m1 0x328698, imac 0x39ad60;
     void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x423680;
     void onSelectSpecialTargetID(cocos2d::CCObject* sender) = win 0x4236d0;
     void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x422cd0;
