@@ -15334,7 +15334,12 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
     virtual void draw() = win 0x41d700, imac 0x464c10, m1 0x3d4c08, ios 0x2d1c18;
     virtual void visit() = win 0x41d620, imac 0x464a90, m1 0x3d4a80, ios 0x2d1b38;
 
-    bool init(cocos2d::CCParticleSystemQuad*);
+    bool init(cocos2d::CCParticleSystemQuad*) = win inline {
+        if (!cocos2d::CCLayerColor::initWithColor({ 0, 0, 0, 255 }, 120.f, 180.f)) return false;
+        m_particleSystem = p0;
+        this->addChild(p0, 100);
+        return true;
+    }
     void postVisit();
     void preVisitWithClippingRect(cocos2d::CCRect);
 
