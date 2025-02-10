@@ -918,7 +918,7 @@ class cocos2d::CCGLProgram : cocos2d::CCObject {
     bool initWithVertexShaderFilename(char const*, char const*);
 
     unsigned int const getProgram();
-    int getUniformLocationForName(char const*);
+    int getUniformLocationForName(char const*) = m1 0x3947a0, imac 0x418b80;
 
     void setUniformLocationWith1f(int, float);
     void setUniformLocationWith1i(int, int);
@@ -3462,8 +3462,36 @@ class DS_Dictionary {
 }
 
 [[link(win, android)]]
-class cocos2d::extension::CCControlColourPicker : cocos2d::CCControl {
+class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
+    CCControl() = m1 0x2d38b4, imac 0x33d4d0, ios 0x1a8a80;
+    ~CCControl() = m1 0x2d3b80, imac 0x33d8a0, ios 0x1a8c20;
+
+    virtual bool init() = m1 0x2d3a44, imac 0x33d720, ios 0x1a8ae4;
+    virtual void onEnter() = m1 0x2d3dac, imac 0x33db90, ios 0x1a8cb4;
+    virtual void onExit() = m1 0x2d3db0, imac 0x33dba0, ios 0x1a8cb8;
+    virtual void registerWithTouchDispatcher() = m1 0x2d3d50, imac 0x33db40, ios 0x1a8c58;
+    virtual void setOpacityModifyRGB(bool) = m1 0x2d4850, imac 0x33e630, ios 0x1a90fc;
+    virtual bool isOpacityModifyRGB() = m1 0x2d49a8, imac 0x33e790, ios 0x1a91a4;
+    virtual void setEnabled(bool) = m1 0x2d4a78, imac 0x33e880, ios 0x1a9274;
+    virtual bool isEnabled() = m1 0x2d4a98, imac 0x33e8b0, ios 0x1a9294;
+    virtual void setSelected(bool) = m1 0x2d4aa0, imac 0x33e8c0, ios 0x1a929c;
+    virtual bool isSelected() = m1 0x2d4ab0, imac 0x33e8e0, ios 0x1a92ac;
+    virtual void setHighlighted(bool) = m1 0x2d4ab8, imac 0x33e8f0, ios 0x1a92b4;
+    virtual bool isHighlighted() = m1 0x2d4ac8, imac 0x33e910, ios 0x1a92c4;
+    virtual void needsLayout() = m1 0x2d4a74, imac 0x33e870, ios 0x1a9270;
+    virtual void sendActionsForControlEvents(unsigned int) = m1 0x2d3db4, imac 0x33dbb0, ios 0x1a8cbc;
+    virtual void addTargetWithActionForControlEvents(cocos2d::CCObject*, cocos2d::extension::SEL_CCControlHandler, unsigned int) = m1 0x2d4060, imac 0x33de60, ios 0x1a8eb4;
+    virtual void removeTargetWithActionForControlEvents(cocos2d::CCObject*, cocos2d::extension::SEL_CCControlHandler, unsigned int) = m1 0x2d4520, imac 0x33e300, ios 0x1a8f7c;
+    virtual cocos2d::CCPoint getTouchLocation(cocos2d::CCTouch*) = m1 0x2d49b8, imac 0x33e7b0, ios 0x1a91b4;
+    virtual bool isTouchInside(cocos2d::CCTouch*) = m1 0x2d4a04, imac 0x33e800, ios 0x1a9200;
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl {
     static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x3424e0, m1 0x2d7fe0;
+
+    virtual bool init() = m1 0x2d7a70, imac 0x341e50, ios 0x1b1744;
+    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2d81b8, imac 0x342760, ios 0x1b1d2c;
 }
 
 [[link(win, android)]]
@@ -3573,6 +3601,14 @@ class cocos2d::ZipUtils {
     static gd::string encryptDecryptWKey(gd::string const&, gd::string);
     static unsigned char hexToChar(gd::string const&);
     static gd::string urlDecode(gd::string const&);
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCControlUtils {
+    static cocos2d::CCSprite* addSpriteToTargetWithPosAndAnchor(char const*, cocos2d::CCNode*, cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x3247f0, imac 0x396590;
+    static cocos2d::extension::HSV HSVfromRGB(cocos2d::extension::RGBA) = m1 0x324868, imac 0x3965f0;
+    static cocos2d::extension::RGBA RGBfromHSV(cocos2d::extension::HSV) = m1 0x324914, imac 0x3966e0;
+    static cocos2d::CCRect CCRectUnion(cocos2d::CCRect const&, cocos2d::CCRect const&) = m1 0x324a34, imac 0x396830;
 }
 
 [[link(win, android)]]
