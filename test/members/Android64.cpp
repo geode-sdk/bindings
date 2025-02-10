@@ -24,7 +24,7 @@ GEODE_SIZE_CHECK(GJBaseGameLayer, 0x3690);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0xdb8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0xdc0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xf10);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownE38, 0xf70);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_parentGroupsDict, 0xf70);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xfc8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_objectLayer, 0xff0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groundLayer, 0x1018);
@@ -125,7 +125,7 @@ GEODE_MEMBER_CHECK(GameObject, m_baseColor, 0x438);
 GEODE_MEMBER_CHECK(GameObject, m_groups, 0x478);
 GEODE_MEMBER_CHECK(GameObject, m_isHighDetail, 0x4db);
 GEODE_MEMBER_CHECK(GameObject, m_isPassable, 0x4fd);
-GEODE_MEMBER_CHECK(GameObject, m_property155, 0x518);
+GEODE_MEMBER_CHECK(GameObject, m_mainColorKeyIndex, 0x518);
 
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_circle, 0x278);
 GEODE_MEMBER_CHECK(LevelInfoLayer, m_challenge, 0x2b0);
@@ -165,6 +165,7 @@ GEODE_MEMBER_CHECK(GameLevelManager, m_commentUploadDelegate, 0x2e8);
 GEODE_MEMBER_CHECK(GJAccountManager, m_username, 0x148);
 GEODE_MEMBER_CHECK(GJAccountManager, m_GJP2, 0x160);
 
+GEODE_SIZE_CHECK(EditorUI, 0x598);
 GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x258);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x2f8);
 GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x300);
@@ -194,7 +195,7 @@ GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x78);
 
 GEODE_MEMBER_CHECK(ShaderLayer, m_shader, 0x458);
 GEODE_MEMBER_CHECK(ShaderLayer, m_gameLayer, 0x480);
-GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x63c);
+GEODE_MEMBER_CHECK(ShaderLayer, m_splitYRangeMultUniform, 0x654);
 
 GEODE_MEMBER_CHECK(SetupInstantCountPopup, m_itemID, 0x3e0);
 

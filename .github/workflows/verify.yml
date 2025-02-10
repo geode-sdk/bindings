@@ -42,7 +42,7 @@ jobs:
         name: Codegen
 
     - name: Verify
-      run: 'chmod +x ./Codegen && ./Codegen Win32 bindings/2.2074 out'
+      run: 'chmod +x ./Codegen && ./Codegen Win64 bindings/2.2074 out'
 
   test-members:
     # dont bother running member test if broma isnt even valid

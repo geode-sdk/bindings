@@ -324,17 +324,8 @@ GEODE_SIZE_CHECK(SFXFolderObject, 0x78);
 GEODE_SIZE_CHECK(SFXInfoObject, 0x70);
 GEODE_SIZE_CHECK(SFXSearchResult, 0xa0);
 GEODE_SIZE_CHECK(SecretLayer5, 0x290);
-GEODE_SIZE_CHECK(GraphicsReloadLayer, 0x1a8);
-GEODE_SIZE_CHECK(MoreVideoOptionsLayer, 0x2c0);
-GEODE_SIZE_CHECK(AnimatedGameObject, 0x610);
 
-GEODE_SIZE_CHECK(EditorUI, 0x5a0);
-// GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
-GEODE_MEMBER_CHECK(EditorUI, m_scaleControl, 0x2d0);
-GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x340);
-GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x4f8);
-GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x530);
-
+GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);

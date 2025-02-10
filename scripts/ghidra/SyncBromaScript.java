@@ -165,6 +165,8 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
+    boolean overwriteAll = false;
+
     private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force, boolean ignoreReturnType) throws Exception {
         final var name = fun.getName();
         final var className = fun.parent.name.value;
@@ -192,11 +194,12 @@ public class SyncBromaScript extends GhidraScript {
             !force &&
             data.getSymbol().getSource() == SourceType.USER_DEFINED &&
             !data.getName(true).equals(fullName) && 
-            !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName))
+            !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName)) &&
+            !overwriteAll
         ) {
             int choice = askContinueConflict(
                 "Function has a different name",
-                List.of("Add to merged functions list", "Overwrite Ghidra name"),
+                List.of("Add to merged functions list", "Overwrite Ghidra name", "Overwrite all"),
                 "The function {0} at {1} from Broma already has the name " + 
                 "{2} in Ghidra - is this function merged with that?",
                 fullName, Long.toHexString(addr.getOffset()), data.getName(true)
@@ -209,6 +212,7 @@ public class SyncBromaScript extends GhidraScript {
                 wrapper.printfmt("Added {0} to merged function list for {1}", fullName, data.getName(true));
                 return SignatureImport.ADDED_MERGED;
             }
+            overwriteAll = choice == 2;
         }
 
         if (data.getSymbol().getSource() != SourceType.USER_DEFINED) {
@@ -753,11 +757,6 @@ public class SyncBromaScript extends GhidraScript {
                                 offset, fullName
                             );
                         }
-                    }
-
-                    // todo: Funky little hack to fix GameObject_data not fitting inside EndGameObject
-                    if (fullName.equals("GameObject") && offset > 0x26e) {
-                        break;
                     }
                 }
 

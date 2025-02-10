@@ -1,6 +1,6 @@
 #include "Shared.hpp"
 
-#include <ghc/filesystem.hpp> // bruh
+#include <filesystem>
 
 using namespace codegen;
 
@@ -32,7 +32,7 @@ std::string generateMacFolderHeader(std::string folder, std::string filename) {
 )GEN", folder, filename);
 }
 
-void generateFolderAlias(ghc::filesystem::path const& writeDir, std::string baseName, std::unordered_set<std::string> const& files) {
+void generateFolderAlias(std::filesystem::path const& writeDir, std::string baseName, std::unordered_set<std::string> const& files) {
     auto outputDir = writeDir / baseName;
 
     for (const auto& filename : files) {
@@ -48,11 +48,11 @@ int main(int argc, char** argv) try {
     std::string p = argv[1];
 
     // if (p == "--into-json") {
-    //     auto rootDir = ghc::filesystem::path(argv[2]);
-    //     ghc::filesystem::current_path(rootDir);
+    //     auto rootDir = std::filesystem::path(argv[2]);
+    //     std::filesystem::current_path(rootDir);
 
     //     Root root = broma::parse_file("Entry.bro");
-    //     writeFile(ghc::filesystem::path(argv[3]), generateTextInterface(root));
+    //     writeFile(std::filesystem::path(argv[3]), generateTextInterface(root));
     //     return 0;
     // }
 
@@ -67,21 +67,21 @@ int main(int argc, char** argv) try {
     else if (p == "Android64") codegen::platform = Platform::Android64;
     else throw codegen::error("Invalid platform {}\n", p);
 
-    auto rootDir = ghc::filesystem::path(argv[2]);
-    ghc::filesystem::current_path(rootDir);
+    auto rootDir = std::filesystem::path(argv[2]);
+    std::filesystem::current_path(rootDir);
 
-    auto writeDir = ghc::filesystem::path(argv[3]) / "Geode";
-    ghc::filesystem::create_directories(writeDir);
+    auto writeDir = std::filesystem::path(argv[3]) / "Geode";
+    std::filesystem::create_directories(writeDir);
 
     if (codegen::platform == Platform::Mac) {
-        ghc::filesystem::create_directories(writeDir / "modify_intel");
-        ghc::filesystem::create_directories(writeDir / "binding_intel");
-        ghc::filesystem::create_directories(writeDir / "modify_arm");
-        ghc::filesystem::create_directories(writeDir / "binding_arm");
+        std::filesystem::create_directories(writeDir / "modify_intel");
+        std::filesystem::create_directories(writeDir / "binding_intel");
+        std::filesystem::create_directories(writeDir / "modify_arm");
+        std::filesystem::create_directories(writeDir / "binding_arm");
     }
 
-    ghc::filesystem::create_directories(writeDir / "modify");
-    ghc::filesystem::create_directories(writeDir / "binding");
+    std::filesystem::create_directories(writeDir / "modify");
+    std::filesystem::create_directories(writeDir / "binding");
 
     Root root = broma::parse_file("Entry.bro");
 
@@ -134,10 +134,10 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedPredeclare.hpp", generateMacHeader("GeneratedPredeclare", "hpp"));
         writeFile(writeDir / "GeneratedSource.cpp", generateMacHeader("GeneratedSource", "cpp"));
 
-        auto now = std::chrono::system_clock::now();
+        auto now = std::chrono::file_clock::now();
         if (generatedSourceChanged) {
             // force cmake to rebuild generatedsource
-            ghc::filesystem::last_write_time(writeDir / "GeneratedSource.cpp", now);
+            std::filesystem::last_write_time(writeDir / "GeneratedSource.cpp", now);
         }
 
         generateFolderAlias(writeDir, "modify", generatedModify);
