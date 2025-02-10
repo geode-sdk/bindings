@@ -2870,18 +2870,18 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*, gd::string) = m1 0x3cca7c, imac 0x45bb70;
     static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*) = win 0x414180, m1 0x3cca54, imac 0x45bb50;
 
-    virtual void update(float) = imac 0x463940, m1 0x3d3a48, ios 0x2d0d74;
+    virtual void update(float) = win 0x41a520, imac 0x463940, m1 0x3d3a48, ios 0x2d0d74;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x41d070, imac 0x4644c0, m1 0x3d4520, ios 0x2d15dc;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x41d170, imac 0x4645d0, m1 0x3d4614, ios 0x2d16d0;
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x41d5a0, imac 0x4649a0, m1 0x3d49b0, ios 0x2d1a68;
-    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x3d49ec, imac 0x4649f0, ios 0x2d1aa4;
+    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71210, m1 0x3d49ec, imac 0x4649f0, ios 0x2d1aa4;
     virtual void keyBackClicked() = win 0x41d060, imac 0x464320, m1 0x3d438c, ios 0x2d1504;
     virtual void sliderBegan(Slider*) = win 0x41c7a0, imac 0x4641e0, m1 0x3d423c, ios 0x2d13d4;
     virtual void sliderEnded(Slider*) = win 0x41c860, imac 0x4642c0, m1 0x3d4354, ios 0x2d14ec;
     virtual void colorSelectClosed(cocos2d::CCNode*) = win 0x419e10, imac 0x4636b0, m1 0x3d37d4, ios 0x2d0b10;
-    virtual void textInputShouldOffset(CCTextInputNode*, float) = m1 0x3d4398, imac 0x464350, ios 0x2d1510;
-    virtual void textInputReturn(CCTextInputNode*) = m1 0x3d4468, imac 0x464410, ios 0x2d157c;
-    virtual void textInputClosed(CCTextInputNode*) = m1 0x3d3b8c, imac 0x463ab0, ios 0x2d0ea8;
+    virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x7b5c0, m1 0x3d4398, imac 0x464350, ios 0x2d1510;
+    virtual void textInputReturn(CCTextInputNode*) = win 0x7b620, m1 0x3d4468, imac 0x464410, ios 0x2d157c;
+    virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x3d3b8c, imac 0x463ab0, ios 0x2d0ea8;
     virtual void textChanged(CCTextInputNode*) = win 0x41a6b0, imac 0x463af0, m1 0x3d3ba8, ios 0x2d0ec4;
 
     TodoReturn centerAlignParticle(cocos2d::CCObject*);
@@ -2923,7 +2923,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     void onToggleStartSpinEqualToEnd(cocos2d::CCObject* sender);
     void onUniformColor(cocos2d::CCObject* sender);
     TodoReturn particleValueIsInt(gjParticleValue);
-    TodoReturn sliderChanged(cocos2d::CCObject*);
+    void sliderChanged(cocos2d::CCObject* sender);
     TodoReturn titleForParticleValue(gjParticleValue) = m1 0x3e51c0;
     TodoReturn toggleGravityMode(bool);
     TodoReturn updateColorSprite(int);
@@ -15283,8 +15283,8 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 
     static ParticlePreviewLayer* create(cocos2d::CCParticleSystemQuad*);
 
-    virtual void draw() = imac 0x464c10, m1 0x3d4c08, ios 0x2d1c18;
-    virtual void visit() = imac 0x464a90, m1 0x3d4a80, ios 0x2d1b38;
+    virtual void draw() = win 0x41d700, imac 0x464c10, m1 0x3d4c08, ios 0x2d1c18;
+    virtual void visit() = win 0x41d620, imac 0x464a90, m1 0x3d4a80, ios 0x2d1b38;
 
     bool init(cocos2d::CCParticleSystemQuad*);
     TodoReturn postVisit();
