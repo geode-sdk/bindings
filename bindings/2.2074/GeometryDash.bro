@@ -4305,14 +4305,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onDeleteCustomItem(cocos2d::CCObject* sender) = win 0xe2e80;
     void onDeleteInfo(cocos2d::CCObject* sender) = m1 0x3198c, imac 0x32320;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0xe4d80, m1 0xdb78, imac 0xc7a0;
-    void onDeleteSelectedType(cocos2d::CCObject* sender) = win 0xe5310, imac 0x32240;
-    void onDeleteStartPos(cocos2d::CCObject* sender) = win 0xe5360;
+    void onDeleteSelectedType(cocos2d::CCObject* sender) = win 0xe5310, imac 0x32240, m1 0x318b8;
+    void onDeleteStartPos(cocos2d::CCObject* sender) = win 0xe5360, m1 0x31890;
     void onDeselectAll(cocos2d::CCObject* sender) = win 0x10fd40, m1 0x2c478;
     void onDuplicate(cocos2d::CCObject* sender) = win 0x1113e0, m1 0x2b4dc, imac 0x2b2e0;
     void onEditColor(cocos2d::CCObject* sender) = win 0x11d0b0;
     void onFindObject(cocos2d::CCObject* sender);
     void onGoToBaseLayer(cocos2d::CCObject* sender) = win 0x112f40;
-    void onGoToLayer(cocos2d::CCObject* sender) = win 0x112de0;
+    void onGoToLayer(cocos2d::CCObject* sender) = win 0x112de0, m1 0x2c624;
     void onGroupDown(cocos2d::CCObject* sender) = win 0x11da90;
     void onGroupIDFilter(cocos2d::CCObject* sender) = win 0xe5a80, m1 0x31a68;
     void onGroupSticky(cocos2d::CCObject* sender) = win 0x1110f0, imac 0xcf70, m1 0xe2d4;
@@ -4320,9 +4320,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onLockLayer(cocos2d::CCObject* sender) = win 0x11dc00, m1 0x2c7fc, imac 0x2cc80;
     void onNewCustomItem(cocos2d::CCObject* sender) = win 0xe2990, m1 0x304d0, imac 0x30d30;
     void onPaste(cocos2d::CCObject* sender);
-    void onPasteColor(cocos2d::CCObject* sender) = win 0x112cd0;
+    void onPasteColor(cocos2d::CCObject* sender) = win 0x112cd0, m1 0x2c5d0;
     void onPasteInPlace(cocos2d::CCObject* sender);
-    void onPasteState(cocos2d::CCObject* sender) = win 0x112b40;
+    void onPasteState(cocos2d::CCObject* sender) = win 0x112b40, m1 0x2c57c;
     void onPause(cocos2d::CCObject* sender) = win 0xe03d0, imac 0x2ad50, m1 0x2afc0;
     void onPlayback(cocos2d::CCObject* sender) = win 0x110390, imac 0xc930, m1 0xdce0;
     void onPlaytest(cocos2d::CCObject* sender) = win 0x1109a0, imac 0xcb90, m1 0xdef4;
@@ -14317,7 +14317,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onOptionsInstant() = win 0x320bc0, m1 0x30d5b8;
     void onPlay(cocos2d::CCObject* sender) = win 0x320b10, m1 0x30e930, imac 0x37e1c0;
     void onQuit(cocos2d::CCObject* sender) = win 0x3210d0, imac 0x37e640, m1 0x30edc0;
-    void onRobTop(cocos2d::CCObject* sender) = win 0x3207c0;
+    void onRobTop(cocos2d::CCObject* sender) = win 0x3207c0, m1 0x30ec64;
     void onStats(cocos2d::CCObject* sender) = win 0x320d50, imac 0x37e3f0, m1 0x30eb40;
     void onTrailer(cocos2d::CCObject* sender) = m1 0x30f470, imac 0x37ed80;
     void onTwitch(cocos2d::CCObject* sender);
@@ -20820,16 +20820,16 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 
     TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, cocos2d::CCArray*);
     TodoReturn exitLayer();
-    void onCocos2d(cocos2d::CCObject* sender) = imac 0x387630;
-    void onEmail(cocos2d::CCObject* sender) = m1 0x316600, imac 0x386af0;
+    void onCocos2d(cocos2d::CCObject* sender) = win 0x4b0d10, m1 0x31719c, imac 0x387630;
+    void onEmail(cocos2d::CCObject* sender) = win 0x4b1410, m1 0x316600, imac 0x386af0;
     void onGetReward(cocos2d::CCObject* sender);
-    void onLinks(cocos2d::CCObject* sender) = m1 0x315d64, imac 0x386110;
+    void onLinks(cocos2d::CCObject* sender) = win 0x4b1510, m1 0x315d64, imac 0x386110;
     void onLowDetail(cocos2d::CCObject* sender) = win 0x4b1180, m1 0x316f08, imac 0x3873b0;
-    void onPrivacy(cocos2d::CCObject* sender);
+    void onPrivacy(cocos2d::CCObject* sender) = win 0x296f80, m1 0x3166cc;
     void onRequestAccess(cocos2d::CCObject* sender) = win 0x4b0d30, m1 0x317014, imac 0x3874c0;
-    void onRobTop(cocos2d::CCObject* sender);
-    void onSFX(cocos2d::CCObject* sender) = m1 0x316714, imac 0x386c10;
-    void onTOS(cocos2d::CCObject* sender);
+    void onRobTop(cocos2d::CCObject* sender) = win 0x3207c0, m1 0x317178;
+    void onSFX(cocos2d::CCObject* sender) = win 0x4b0830, m1 0x316714, imac 0x386c10;
+    void onTOS(cocos2d::CCObject* sender) = win 0x296fa0, m1 0x3166f0;
     TodoReturn sendSupportMail() = m1 0x317494, imac 0x387900;
 }
 
