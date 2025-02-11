@@ -17762,12 +17762,12 @@ class SetupAnimationPopup : SetupTriggerPopup {
 class SetupAnimSettingsPopup : SetupTriggerPopup {
     // virtual ~SetupAnimSettingsPopup();
 
-    static SetupAnimSettingsPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupAnimSettingsPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x3f2500;
 
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x9b140, m1 0x8e0ac, ios 0x2e797c;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x3f2e90, imac 0x9b140, m1 0x8e0ac, ios 0x2e797c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x8d8d0, imac 0x9a7f0;
-    TodoReturn updateAnimSettings();
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3f2610, m1 0x8d8d0, imac 0x9a7f0;
+    void updateAnimSettings();
 }
 
 [[link(android)]]
@@ -20608,14 +20608,17 @@ class SpecialAnimGameObject : EnhancedGameObject {
 
     static SpecialAnimGameObject* create(char const*);
 
-    virtual void resetObject() = m1 0x165528, imac 0x1a2cd0, ios 0x37b1ac;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x165534, imac 0x1a2cf0, ios 0x37b1b8;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x165594, imac 0x1a2d50, ios 0x37b218;
-    virtual void updateMainColor(cocos2d::ccColor3B const&) = m1 0x165508, imac 0x1a2c90, ios 0x37b18c;
-    virtual void updateSecondaryColor(cocos2d::ccColor3B const&) = imac 0x1a2cb0, m1 0x165518, ios 0x37b19c;
-    virtual void updateSyncedAnimation(float, int) = imac 0x24b7d0, m1 0x1f8eac, ios 0x3487cc;
+    virtual void resetObject() = win 0x489380, m1 0x165528, imac 0x1a2cd0, ios 0x37b1ac;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x489390, m1 0x165534, imac 0x1a2cf0, ios 0x37b1b8;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x489400, m1 0x165594, imac 0x1a2d50, ios 0x37b218;
+    virtual void updateMainColor(cocos2d::ccColor3B const&) = win 0x489340, m1 0x165508, imac 0x1a2c90, ios 0x37b18c;
+    virtual void updateSecondaryColor(cocos2d::ccColor3B const&) = win 0x489360, imac 0x1a2cb0, m1 0x165518, ios 0x37b19c;
+    virtual void updateSyncedAnimation(float, int) = win 0x1a69c0, imac 0x24b7d0, m1 0x1f8eac, ios 0x3487cc;
 
     bool init(char const*);
+
+    bool m_skipMainColorUpdate;
+    bool m_skipSecondaryColorUpdate;
 }
 
 [[link(android)]]
