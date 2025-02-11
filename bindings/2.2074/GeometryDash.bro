@@ -553,11 +553,13 @@ class ArtTriggerGameObject : EffectGameObject {
 
     static ArtTriggerGameObject* create(char const*);
 
-    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = imac 0x1db7e0, m1 0x194614, ios 0x390034;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1db780, m1 0x19459c, ios 0x38ffcc;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1db260, m1 0x194120, ios 0x38fe3c;
+    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a98a0, imac 0x1db7e0, m1 0x194614, ios 0x390034;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a9820, imac 0x1db780, m1 0x19459c, ios 0x38ffcc;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a98a0, imac 0x1db260, m1 0x194120, ios 0x38fe3c;
 
     bool init(char const*);
+
+    int m_artIndex;
 }
 
 [[link(android)]]
@@ -17864,12 +17866,15 @@ class SetupAreaTriggerPopup : SetupAreaMoveTriggerPopup {
 class SetupArtSwitchPopup : SetupTriggerPopup, SelectArtDelegate {
     // virtual ~SetupArtSwitchPopup();
 
-    static SetupArtSwitchPopup* create(ArtTriggerGameObject*, cocos2d::CCArray*, int);
+    static SetupArtSwitchPopup* create(ArtTriggerGameObject*, cocos2d::CCArray*, int) = win 0x459210;
 
     virtual void selectArtClosed(SelectArtLayer*) = win 0x459ed0, imac 0x56ee90, m1 0x4c38e4, ios 0x4092dc;
 
-    bool init(ArtTriggerGameObject*, cocos2d::CCArray*, int) = m1 0x4c32b0, imac 0x56e840;
-    void onArt(cocos2d::CCObject* sender);
+    bool init(ArtTriggerGameObject*, cocos2d::CCArray*, int) = win 0x4594d0, m1 0x4c32b0, imac 0x56e840;
+    void onArt(cocos2d::CCObject* sender) = win 0x459e80;
+
+    SelectArtType m_artType;
+    cocos2d::CCSprite* m_artSprite;
 }
 
 [[link(android)]]

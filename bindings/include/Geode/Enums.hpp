@@ -691,6 +691,7 @@ enum class PlaybackMode {
 enum class SelectArtType {
     Background = 0,
     Ground = 1,
+    Middleground = 2,
 };
 
 enum class UndoCommand {
