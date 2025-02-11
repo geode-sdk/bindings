@@ -12458,12 +12458,47 @@ class ItemTriggerGameObject : EffectGameObject {
 
     static ItemTriggerGameObject* create(char const*);
 
-    virtual void customSetup() = imac 0x1d3670, m1 0x18db5c, ios 0x38d9e0;
+    virtual void customSetup() = win 0x4a7160, imac 0x1d3670, m1 0x18db5c, ios 0x38d9e0;
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a71a0, imac 0x1d36b0, m1 0x18db94, ios 0x38da18;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1d83a0, m1 0x1916e0, ios 0x38e954;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a8280, imac 0x1d83a0, m1 0x1916e0, ios 0x38e954;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a7300, imac 0x1d3800, m1 0x18dce4, ios 0x38db00;
 
     bool init(char const*);
+
+    // property 476
+    int m_item1Mode;
+    // property 477
+    int m_item2Mode;
+    // property 478
+    int m_targetItemMode;
+    // property 479
+    float m_mod1;
+    // property 484
+    float m_mod2;
+    // property 480
+    int m_resultType1;
+    // property 481
+    int m_resultType2;
+    // property 482
+    int m_resultType3;
+    // property 483
+    float m_tolerance;
+    // property 485
+    int m_roundType1;
+    // property 486
+    int m_roundType2;
+    // property 578
+    int m_signType1;
+    // property 579
+    int m_signType2;
+    // property 491
+    bool m_persistent;
+    // property 492
+    bool m_targetAll;
+    // property 493
+    bool m_reset;
+    // property 494
+    bool m_timer;
 }
 
 [[link(android)]]
@@ -18344,30 +18379,34 @@ class SetupInteractObjectPopup : SetupTriggerPopup {
 class SetupItemCompareTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupItemCompareTriggerPopup();
 
-    static SetupItemCompareTriggerPopup* create(ItemTriggerGameObject*, cocos2d::CCArray*);
+    static SetupItemCompareTriggerPopup* create(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x454d10;
 
-    virtual void valueDidChange(int, float) = imac 0x56bbc0, m1 0x4c0da8, ios 0x40708c;
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x56ba60, m1 0x4c0c50, ios 0x406f44;
+    virtual void valueDidChange(int, float) = win 0x456fe0, imac 0x56bbc0, m1 0x4c0da8, ios 0x40708c;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x4564d0, imac 0x56ba60, m1 0x4c0c50, ios 0x406f44;
 
-    bool init(ItemTriggerGameObject*, cocos2d::CCArray*) = m1 0x4beef4, imac 0x569ae0;
-    void onOpButton(cocos2d::CCObject* sender);
-    TodoReturn updateFormulaLabel();
-    TodoReturn updateOpButton(CCMenuItemSpriteExtra*, int, int);
+    bool init(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x454e30, m1 0x4beef4, imac 0x569ae0;
+    void onOpButton(cocos2d::CCObject* sender) = win 0x456100;
+    void updateFormulaLabel() = win 0x4566d0;
+    void updateOpButton(CCMenuItemSpriteExtra*, int, int) = win 0x4561e0;
+
+    cocos2d::CCLabelBMFont* m_formulaLabel;
 }
 
 [[link(android)]]
 class SetupItemEditTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupItemEditTriggerPopup();
 
-    static SetupItemEditTriggerPopup* create(ItemTriggerGameObject*, cocos2d::CCArray*);
+    static SetupItemEditTriggerPopup* create(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x4524d0;
 
-    virtual void valueDidChange(int, float) = imac 0x569870, m1 0x4bed30, ios 0x405594;
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x569690, m1 0x4beb50, ios 0x4053d4;
+    virtual void valueDidChange(int, float) = win 0x454ce0, imac 0x569870, m1 0x4bed30, ios 0x405594;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x454a40, imac 0x569690, m1 0x4beb50, ios 0x4053d4;
 
     bool init(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x4525f0, m1 0x4bc978, imac 0x567390;
-    void onOpButton(cocos2d::CCObject* sender);
-    TodoReturn updateFormulaLabel() = win 0x453eb0, m1 0x4bdbf4, imac 0x568890;
-    TodoReturn updateOpButton(CCMenuItemSpriteExtra*, int, int);
+    void onOpButton(cocos2d::CCObject* sender) = win 0x4537e0;
+    void updateFormulaLabel() = win 0x453eb0, m1 0x4bdbf4, imac 0x568890;
+    void updateOpButton(CCMenuItemSpriteExtra*, int, int) = win 0x453c50;
+
+    cocos2d::CCLabelBMFont* m_formulaLabel;
 }
 
 [[link(android)]]
@@ -18622,9 +18661,9 @@ class SetupOptionsTriggerPopup : SetupTriggerPopup {
 class SetupPersistentItemTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupPersistentItemTriggerPopup();
 
-    static SetupPersistentItemTriggerPopup* create(ItemTriggerGameObject*, cocos2d::CCArray*);
+    static SetupPersistentItemTriggerPopup* create(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x457390;
 
-    bool init(ItemTriggerGameObject*, cocos2d::CCArray*) = m1 0x4c1454, imac 0x56c420;
+    bool init(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x4574a0, m1 0x4c1454, imac 0x56c420;
 }
 
 [[link(android)]]
@@ -19125,12 +19164,12 @@ class SetupStaticCameraPopup : SetupTriggerPopup {
 class SetupStopTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupStopTriggerPopup();
 
-    static SetupStopTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupStopTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x0459f80;
 
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x56f820, m1 0x4c4118, ios 0x409a2c;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x45a820, imac 0x56f820, m1 0x4c4118, ios 0x409a2c;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x56f7b0, m1 0x4c40a0, ios 0x4099b4;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x4c3b3c, imac 0x56f190;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x45a090, m1 0x4c3b3c, imac 0x56f190;
 }
 
 [[link(android)]]
@@ -21307,14 +21346,14 @@ class TriggerControlGameObject : EffectGameObject {
 
     static TriggerControlGameObject* create(char const*);
 
-    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = imac 0x1ddd40, m1 0x1965fc, ios 0x390e54;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1ddaf0, m1 0x1963a4, ios 0x390c9c;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1dd1f0, m1 0x195c04, ios 0x390a54;
+    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4aa7d0, imac 0x1ddd40, m1 0x1965fc, ios 0x390e54;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4aa6e0, imac 0x1ddaf0, m1 0x1963a4, ios 0x390c9c;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4aa480, imac 0x1dd1f0, m1 0x195c04, ios 0x390a54;
 
     bool init(char const*);
-    TodoReturn updateTriggerControlFrame() = m1 0x196494, imac 0x1ddbe0;
+    void updateTriggerControlFrame() = win 0x4aa800, m1 0x196494, imac 0x1ddbe0;
 
-    gd::string m_unkString;
+    gd::string m_triggerControlFrame;
     // The type of a stop trigger for example
     int m_customTriggerValue;
 }
