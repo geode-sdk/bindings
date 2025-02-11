@@ -4912,9 +4912,9 @@ class EndTriggerGameObject : EffectGameObject {
 
     static EndTriggerGameObject* create();
 
-    virtual bool init() = m1 0x1864c4, imac 0x1ca130, ios 0x38ad10;
+    virtual bool init() = win 0x4a4110, m1 0x1864c4, imac 0x1ca130, ios 0x38ad10;
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a4180, imac 0x1ca180, m1 0x186514, ios 0x38ad60;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1caf50, m1 0x1870ac, ios 0x38b0ec;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a45b0, imac 0x1caf50, m1 0x1870ac, ios 0x38b0ec;
     virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1ca260, m1 0x1865f0, ios 0x38adec;
 
     bool m_noEffects;
@@ -5028,10 +5028,19 @@ class EnhancedTriggerObject : EffectGameObject {
 
     static EnhancedTriggerObject* create(char const*);
 
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1ac3b0, m1 0x16d4e8, ios 0x38017c;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1ab8c0, m1 0x16cbf8, ios 0x37fed8;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x499340, imac 0x1ac3b0, m1 0x16d4e8, ios 0x38017c;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x499070, imac 0x1ab8c0, m1 0x16cbf8, ios 0x37fed8;
 
     bool init(char const*);
+
+    // property 516
+    int m_minXID;
+    // property 517
+    int m_minYID;
+    // property 518
+    int m_maxXID;
+    // property 519
+    int m_maxYID;
 }
 
 [[link(android)]]
@@ -7391,8 +7400,8 @@ class GameOptionsTrigger : EffectGameObject {
 
     static GameOptionsTrigger* create(char const*);
 
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x19fa20, m1 0x162644, ios 0x3792b0;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x19db40, m1 0x160e08, ios 0x378c58;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x486d70, imac 0x19fa20, m1 0x162644, ios 0x3792b0;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x486600, imac 0x19db40, m1 0x160e08, ios 0x378c58;
 
     bool init(char const*);
 
@@ -17840,10 +17849,10 @@ class SetupAreaMoveTriggerPopup : SetupTriggerPopup {
 
     virtual void updateInputValue(int, float&) = win 0x3f63f0, m1 0x428708, imac 0x4c1860, ios 0x3a584;
     virtual void updateDefaultTriggerValues() = win 0x3f5d20, m1 0x4282f8, imac 0x4c14b0, ios 0x3a22c;
-    virtual TodoReturn updateInputNode(int, float) = win 0x3f63c0, m1 0x4286d4, imac 0x4c1830, ios 0x3a550;
+    virtual void updateInputNode(int, float) = win 0x3f63c0, m1 0x4286d4, imac 0x4c1830, ios 0x3a550;
     virtual void valueDidChange(int, float) = win 0x3f6240, imac 0x4c16f0, m1 0x428598, ios 0x3a440;
-    virtual TodoReturn triggerValueFromSliderValue(int, float) = win 0x3f6360, m1 0x42864c, imac 0x4c17c0, ios 0x3a4c8;
-    virtual TodoReturn triggerSliderValueFromValue(int, float) = win 0x3f6390, m1 0x4286a0, imac 0x4c1800, ios 0x3a51c;
+    virtual float triggerValueFromSliderValue(int, float) = win 0x3f6360, m1 0x42864c, imac 0x4c17c0, ios 0x3a4c8;
+    virtual float triggerSliderValueFromValue(int, float) = win 0x3f6390, m1 0x4286a0, imac 0x4c1800, ios 0x3a51c;
 
     TodoReturn addAreaDefaultControls(int) = m1 0x426d30, imac 0x4bfbb0;
     TodoReturn getModeValues(int, int&, bool&, bool&);
@@ -18152,20 +18161,26 @@ class SetupDashRingPopup : SetupTriggerPopup {
 class SetupEndPopup : SetupTriggerPopup {
     // virtual ~SetupEndPopup();
 
-    static SetupEndPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupEndPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x404dc0;
 
-    virtual void determineStartValues() = m1 0x57aac8, imac 0x653460, ios 0x2acca4;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x57ad48, imac 0x653780, ios 0x2ace98;
-    virtual void textInputClosed(CCTextInputNode*) = m1 0x57ac44, imac 0x653630, ios 0x2acdfc;
+    virtual void determineStartValues() = win 0x4058b0, m1 0x57aac8, imac 0x653460, ios 0x2acca4;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x3fc200, m1 0x57ad48, imac 0x653780, ios 0x2ace98;
+    virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x57ac44, imac 0x653630, ios 0x2acdfc;
     virtual void textChanged(CCTextInputNode*) = win 0x405b60, m1 0x57ac60, imac 0x653670, ios 0x2ace18;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x579f20, imac 0x6527b0;
-    void onLockY(cocos2d::CCObject* sender);
-    void onMultiActivate(cocos2d::CCObject* sender);
-    void onReversed(cocos2d::CCObject* sender);
-    void onTargetIDArrow(cocos2d::CCObject* sender);
-    TodoReturn updateTargetID();
-    TodoReturn updateTextInputLabel();
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x404ef0, m1 0x579f20, imac 0x6527b0;
+    void onLockY(cocos2d::CCObject* sender) = win 0x405a80;
+    void onMultiActivate(cocos2d::CCObject* sender) = win 0x4059c0;
+    void onReversed(cocos2d::CCObject* sender) = win 0x4059f0;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x405b10;
+    void updateTargetID() = win 0x405cd0;
+    void updateTextInputLabel() = win 0x405c50;
+
+    CCTextInputNode* m_groupIDInput;
+    bool m_reversed;
+    bool m_lockY;
+    int m_groupID;
+    bool m_multiActivate;
 }
 
 [[link(android)]]
@@ -18177,10 +18192,10 @@ class SetupEnterEffectPopup : SetupTriggerPopup, HSVWidgetDelegate {
     virtual void determineStartValues() = win 0x408580, m1 0x363d00, imac 0x3e1800, ios 0x3f92a4;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x408b60, imac 0x3e1c10, m1 0x3640e0, ios 0x3f94f8;
     virtual void updateInputValue(int, float&) = m1 0x36425c, imac 0x3e1db0, ios 0x3f9650;
-    virtual TodoReturn updateInputNode(int, float) = m1 0x364228, imac 0x3e1d80, ios 0x3f961c;
+    virtual void updateInputNode(int, float) = m1 0x364228, imac 0x3e1d80, ios 0x3f961c;
     virtual void valueDidChange(int, float) = win 0x408750, imac 0x3e19c0, m1 0x363e70, ios 0x3f9410;
-    virtual TodoReturn triggerValueFromSliderValue(int, float) = m1 0x3641a0, imac 0x3e1d10, ios 0x3f9594;
-    virtual TodoReturn triggerSliderValueFromValue(int, float) = m1 0x3641f4, imac 0x3e1d50, ios 0x3f95e8;
+    virtual float triggerValueFromSliderValue(int, float) = m1 0x3641a0, imac 0x3e1d10, ios 0x3f9594;
+    virtual float triggerSliderValueFromValue(int, float) = m1 0x3641f4, imac 0x3e1d50, ios 0x3f95e8;
     virtual void hsvPopupClosed(HSVWidgetPopup*, cocos2d::ccHSVValue) = win 0x408a70, m1 0x363f34, imac 0x3e1a90, ios 0x3f94cc;
 
     bool init(EnterEffectObject*, cocos2d::CCArray*, int) = m1 0x361a0c, imac 0x3deda0;
@@ -18232,9 +18247,9 @@ class SetupGameplayOffsetPopup : SetupTriggerPopup {
     static SetupGameplayOffsetPopup* create(EffectGameObject*, cocos2d::CCArray*);
 
     virtual void updateInputValue(int, float&) = imac 0x783140, m1 0x697480, ios 0x1a29f8;
-    virtual TodoReturn updateInputNode(int, float) = m1 0x697468, imac 0x783120, ios 0x1a29e0;
-    virtual TodoReturn triggerValueFromSliderValue(int, float) = m1 0x697418, imac 0x7830d0, ios 0x1a2990;
-    virtual TodoReturn triggerSliderValueFromValue(int, float) = m1 0x697450, imac 0x783100, ios 0x1a29c8;
+    virtual void updateInputNode(int, float) = m1 0x697468, imac 0x783120, ios 0x1a29e0;
+    virtual float triggerValueFromSliderValue(int, float) = m1 0x697418, imac 0x7830d0, ios 0x1a2990;
+    virtual float triggerSliderValueFromValue(int, float) = m1 0x697450, imac 0x783100, ios 0x1a29c8;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = m1 0x697384, imac 0x783030, ios 0x1a290c;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x696c90, imac 0x782840;
@@ -18472,17 +18487,19 @@ class SetupMGTrigger : SetupTriggerPopup {
 class SetupMoveCommandPopup : SetupTriggerPopup {
     // virtual ~SetupMoveCommandPopup();
 
-    static SetupMoveCommandPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupMoveCommandPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x278ef0;
 
-    virtual void updateInputValue(int, float&) = imac 0x5f1410, m1 0x5211d4, ios 0x273cb8;
-    virtual TodoReturn updateInputNode(int, float) = m1 0x5211a8, imac 0x5f13d0, ios 0x273c8c;
-    virtual void valueDidChange(int, float) = imac 0x5f1450, m1 0x521208, ios 0x273cec;
-    virtual TodoReturn triggerValueFromSliderValue(int, float) = m1 0x5210f4, imac 0x5f12f0, ios 0x273bd8;
-    virtual TodoReturn triggerSliderValueFromValue(int, float) = m1 0x521138, imac 0x5f1340, ios 0x273c1c;
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x5f1650, m1 0x5213d8, ios 0x273eac;
+    virtual void updateInputValue(int, float&) = win 0x27a4d0, imac 0x5f1410, m1 0x5211d4, ios 0x273cb8;
+    virtual void updateInputNode(int, float) = win 0x27a4a0, m1 0x5211a8, imac 0x5f13d0, ios 0x273c8c;
+    virtual void valueDidChange(int, float) = win 0x27a500, imac 0x5f1450, m1 0x521208, ios 0x273cec;
+    virtual float triggerValueFromSliderValue(int, float) = win 0x27a3e0, m1 0x5210f4, imac 0x5f12f0, ios 0x273bd8;
+    virtual float triggerSliderValueFromValue(int, float) = win 0x27a430, m1 0x521138, imac 0x5f1340, ios 0x273c1c;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x27ab70, imac 0x5f1650, m1 0x5213d8, ios 0x273eac;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x279010, m1 0x51fd2c, imac 0x5efb70;
-    TodoReturn updateControlVisibility();
+    void updateControlVisibility() = win 0x27a9b0;
+
+    bool m_smallStep;
 }
 
 [[link(android)]]
@@ -18653,8 +18670,11 @@ class SetupOptionsTriggerPopup : SetupTriggerPopup {
 
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x41e720, imac 0x5cf620, m1 0x503958, ios 0x40be4c;
 
-    TodoReturn addOption(int, gd::string);
-    bool init(GameOptionsTrigger*, cocos2d::CCArray*) = m1 0x502f58, imac 0x5ceaf0;
+    void addOption(int, gd::string) = win 0x41e4c0;
+    bool init(GameOptionsTrigger*, cocos2d::CCArray*) = win 0x41dcc0, m1 0x502f58, imac 0x5ceaf0;
+
+    cocos2d::CCPoint m_togglePosition;
+    int m_togglePage;
 }
 
 [[link(android)]]
@@ -18683,9 +18703,9 @@ class SetupPickupTriggerPopup : SetupTriggerPopup {
 class SetupPlatformerEndPopup : SetupTriggerPopup {
     // virtual ~SetupPlatformerEndPopup();
 
-    static SetupPlatformerEndPopup* create(EndTriggerGameObject*, cocos2d::CCArray*);
+    static SetupPlatformerEndPopup* create(EndTriggerGameObject*, cocos2d::CCArray*) = win 0x405da0;
 
-    bool init(EndTriggerGameObject*, cocos2d::CCArray*) = m1 0x57af4c, imac 0x653a80;
+    bool init(EndTriggerGameObject*, cocos2d::CCArray*) = win 0x405eb0, m1 0x57af4c, imac 0x653a80;
 }
 
 [[link(android)]]
@@ -18891,16 +18911,16 @@ class SetupReverbPopup : SetupTriggerPopup {
 class SetupRotateCommandPopup : SetupTriggerPopup {
     // virtual ~SetupRotateCommandPopup();
 
-    static SetupRotateCommandPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupRotateCommandPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x2a05c0;
 
-    virtual TodoReturn updateInputNode(int, float) = m1 0x8cf4, imac 0x6dd0, ios 0x3fec80;
-    virtual void valueDidChange(int, float) = imac 0x6de0, m1 0x8cf8, ios 0x3fec84;
-    virtual TodoReturn triggerValueFromSliderValue(int, float) = m1 0x8ccc, imac 0x6d80, ios 0x3fec58;
-    virtual TodoReturn triggerSliderValueFromValue(int, float) = m1 0x8cf0, imac 0x6dc0, ios 0x3fec7c;
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = m1 0x8f90, imac 0x7120, ios 0x3fed98;
+    virtual void updateInputNode(int, float) = win 0x2a18a0, m1 0x8cf4, imac 0x6dd0, ios 0x3fec80;
+    virtual void valueDidChange(int, float) = win 0x2a18b0, imac 0x6de0, m1 0x8cf8, ios 0x3fec84;
+    virtual float triggerValueFromSliderValue(int, float) = win 0x2a1860, m1 0x8ccc, imac 0x6d80, ios 0x3fec58;
+    virtual float triggerSliderValueFromValue(int, float) = win 0x2a1890, m1 0x8cf0, imac 0x6dc0, ios 0x3fec7c;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0xc3110, m1 0x8f90, imac 0x7120, ios 0x3fed98;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x2a06d0, m1 0x7bec, imac 0x5890;
-    void onInfiniteDuration(cocos2d::CCObject* sender);
+    void onInfiniteDuration(cocos2d::CCObject* sender) = win 0x2a1c10;
     void updateControlVisibility() = win 0x2a1b30;
 }
 
@@ -19296,12 +19316,12 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     virtual void onPlusButton(cocos2d::CCObject* sender) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
     virtual void onCustomButton(cocos2d::CCObject* sender) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
     virtual void updateDefaultTriggerValues() = win 0x45f370, imac 0x229910, m1 0x1db330, ios 0x1358f4;
-    virtual TodoReturn updateInputNode(int, float) = win 0x45f860, imac 0x22c1e0, m1 0x1dcdb8, ios 0x1363bc;
+    virtual void updateInputNode(int, float) = win 0x45f860, imac 0x22c1e0, m1 0x1dcdb8, ios 0x1363bc;
     virtual void updateToggleItem(int, bool) = win 0x45fc00, imac 0x22c3d0, m1 0x1dcfe4, ios 0x136588;
     virtual void valueDidChange(int, float) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
     virtual float getValue(int) = win 0x45fc70, imac 0x22c490, m1 0x1dd09c, ios 0x1365f8;
-    virtual TodoReturn triggerValueFromSliderValue(int, float) = win 0x463c60, imac 0x22c840, m1 0x1dd478, ios 0x1367f8;
-    virtual TodoReturn triggerSliderValueFromValue(int, float) = win 0x463cf0, imac 0x22c8c0, m1 0x1dd504, ios 0x136864;
+    virtual float triggerValueFromSliderValue(int, float) = win 0x463c60, imac 0x22c840, m1 0x1dd478, ios 0x1367f8;
+    virtual float triggerSliderValueFromValue(int, float) = win 0x463cf0, imac 0x22c8c0, m1 0x1dd504, ios 0x136864;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
     virtual void valuePopupClosed(ConfigureValuePopup*, float) = win 0x464c00, imac 0x22d4e0, m1 0x1de14c, ios 0x13733c;
 
