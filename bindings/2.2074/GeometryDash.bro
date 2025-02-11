@@ -15123,9 +15123,9 @@ class ObjectControlGameObject : EffectGameObject {
 
     static ObjectControlGameObject* create();
 
-    virtual bool init() = m1 0x19559c, imac 0x1dcad0, ios 0x390708;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1dd030, m1 0x195a5c, ios 0x3908e8;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1dcb20, m1 0x1955ec, ios 0x390758;
+    virtual bool init() = win 0x4aa210, m1 0x19559c, imac 0x1dcad0, ios 0x390708;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4aa3f0, imac 0x1dd030, m1 0x195a5c, ios 0x3908e8;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4aa280, imac 0x1dcb20, m1 0x1955ec, ios 0x390758;
 }
 
 [[link(android)]]
@@ -15571,9 +15571,18 @@ class PlayerControlGameObject : EffectGameObject {
 
     static PlayerControlGameObject* create();
 
-    virtual bool init() = m1 0x194730, imac 0x1db900, ios 0x390144;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1dc830, m1 0x195378, ios 0x3904f0;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1db950, m1 0x194780, ios 0x390194;
+    virtual bool init() = win 0x4a9c60, m1 0x194730, imac 0x1db900, ios 0x390144;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4aa090, imac 0x1dc830, m1 0x195378, ios 0x3904f0;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a9cd0, imac 0x1db950, m1 0x194780, ios 0x390194;
+
+    // property 540
+    bool m_stopJump;
+    // property 541
+    bool m_stopMove;
+    // property 542
+    bool m_stopRotation;
+    // property 543
+    bool m_stopSlide;
 }
 
 [[link(android)]]
@@ -18506,20 +18515,29 @@ class SetupMoveCommandPopup : SetupTriggerPopup {
 class SetupObjectControlPopup : SetupTriggerPopup {
     // virtual ~SetupObjectControlPopup();
 
-    static SetupObjectControlPopup* create(ObjectControlGameObject*, cocos2d::CCArray*);
+    static SetupObjectControlPopup* create(ObjectControlGameObject*, cocos2d::CCArray*) = win 0x45a8c0;
 
-    bool init(ObjectControlGameObject*, cocos2d::CCArray*) = m1 0x4c4328;
+    bool init(ObjectControlGameObject*, cocos2d::CCArray*) = win 0x45a9d0, m1 0x4c4328;
 }
 
 [[link(android)]]
 class SetupObjectOptions2Popup : SetupTriggerPopup {
     // virtual ~SetupObjectOptions2Popup();
+    SetupObjectOptions2Popup() {}
 
-    static SetupObjectOptions2Popup* create(GameObject*, cocos2d::CCArray*);
+    static SetupObjectOptions2Popup* create(GameObject*, cocos2d::CCArray*) = win inline {
+        auto ret = new SetupObjectOptions2Popup();
+        if (ret->init(p0, p1)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual void onPlusButton(cocos2d::CCObject* sender) = imac 0x307200, m1 0x29e2d8, ios 0x45758;
+    virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x3e9380, imac 0x307200, m1 0x29e2d8, ios 0x45758;
 
-    bool init(GameObject*, cocos2d::CCArray*) = m1 0x29de30, imac 0x306cd0;
+    bool init(GameObject*, cocos2d::CCArray*) = win 0x3e8e80, m1 0x29de30, imac 0x306cd0;
 }
 
 [[link(android)]]
@@ -18712,9 +18730,9 @@ class SetupPlatformerEndPopup : SetupTriggerPopup {
 class SetupPlayerControlPopup : SetupTriggerPopup {
     // virtual ~SetupPlayerControlPopup();
 
-    static SetupPlayerControlPopup* create(PlayerControlGameObject*, cocos2d::CCArray*);
+    static SetupPlayerControlPopup* create(PlayerControlGameObject*, cocos2d::CCArray*) = win 0x44f720;
 
-    bool init(PlayerControlGameObject*, cocos2d::CCArray*) = m1 0x4b9c68, imac 0x563c90;
+    bool init(PlayerControlGameObject*, cocos2d::CCArray*) = win 0x44f830, m1 0x4b9c68, imac 0x563c90;
 }
 
 [[link(android)]]
@@ -19443,7 +19461,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     cocos2d::CCDictionary* m_maxSliderValues;
     gd::map<int, bool> m_shouldLimitValues;
     bool m_disableSliderDelegate;
-    bool m_unk349;
+    bool m_effectObjects;
     cocos2d::CCArray* m_pageContainers;
     int m_page;
     float m_easingControlScale;
@@ -20815,12 +20833,17 @@ class StartPosObject : EffectGameObject {
 
     static StartPosObject* create();
 
-    virtual bool init() = m1 0x16d800, imac 0x1ac6e0, ios 0x380370;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1ac830, m1 0x16d93c, ios 0x38046c;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1ac840, m1 0x16d940, ios 0x380470;
+    virtual bool init() = win 0x499450, m1 0x16d800, imac 0x1ac6e0, ios 0x380370;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4995b0, imac 0x1ac830, m1 0x16d93c, ios 0x38046c;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4995c0, imac 0x1ac840, m1 0x16d940, ios 0x380470;
 
     void loadSettingsFromString(gd::string) = win 0x499510, imac 0x1ac7d0, m1 0x16d8dc;
-    void setSettings(LevelSettingsObject*);
+    void setSettings(LevelSettingsObject* settings) = win inline {
+        if (settings == m_startSettings) return;
+        CC_SAFE_RETAIN(settings);
+        CC_SAFE_RELEASE(m_startSettings);
+        m_startSettings = settings;
+    }
 
     LevelSettingsObject* m_startSettings;
 }
@@ -21510,11 +21533,11 @@ class UILayer : cocos2d::CCLayerColor {
 class UIObjectSettingsPopup : SetupTriggerPopup {
     // virtual ~UIObjectSettingsPopup();
 
-    static UIObjectSettingsPopup* create(UISettingsGameObject*, cocos2d::CCArray*);
+    static UIObjectSettingsPopup* create(UISettingsGameObject*, cocos2d::CCArray*) = win 0x451310;
 
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x566bc0, m1 0x4bc2fc, ios 0x403440;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x451f60, imac 0x566bc0, m1 0x4bc2fc, ios 0x403440;
 
-    bool init(UISettingsGameObject*, cocos2d::CCArray*) = m1 0x4bb8b4, imac 0x565f70;
+    bool init(UISettingsGameObject*, cocos2d::CCArray*) = win 0x451420, m1 0x4bb8b4, imac 0x565f70;
 }
 
 [[link(android)]]
@@ -21626,9 +21649,18 @@ class UISettingsGameObject : EffectGameObject {
 
     static UISettingsGameObject* create();
 
-    virtual bool init() = m1 0x1872d4, imac 0x1cb1b0, ios 0x38b2f0;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1cc0f0, m1 0x187f74, ios 0x38b69c;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1cb200, m1 0x187324, ios 0x38b340;
+    virtual bool init() = win 0x4a4720, m1 0x1872d4, imac 0x1cb1b0, ios 0x38b2f0;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a4b40, imac 0x1cc0f0, m1 0x187f74, ios 0x38b69c;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a4790, imac 0x1cb200, m1 0x187324, ios 0x38b340;
+
+    // property 385
+    int m_xRef;
+    // property 386
+    int m_yRef;
+    // property 387
+    bool m_xRelative;
+    // property 388
+    bool m_yRelative;
 }
 
 [[link(android)]]
