@@ -8393,7 +8393,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processCommands(float) = win 0x234170, imac 0x1435a0, m1 0x11a2d0;
     void processDynamicObjectActions(int, float) = win 0x228fa0;
     void processFollowActions() = win 0x22b2a0;
-    TodoReturn processItems();
+    void processItems() = win 0x1db3e0;
     void processMoveActions() = win 0x2282d0, m1 0x10ffa0, imac 0x136810;
     void processMoveActionsStep(float, bool) = win 0x2262f0, m1 0x10e5b8, imac 0x1347b0;
     void processOptionsTrigger(GameOptionsTrigger*) = win 0x21e9a0, imac 0x12c930, m1 0x107a5c;
