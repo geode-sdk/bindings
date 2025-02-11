@@ -3322,13 +3322,13 @@ class cocos2d {
     static cocos2d::CCPoint ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
     static void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
     static void ccDrawCatmullRom(cocos2d::CCPointArray*, unsigned int);
-    static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool);
-    static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float);
+    static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool) = imac 0x1f6f00, m1 0x1ac960;
+    static void ccDrawCircle(cocos2d::CCPoint const&, float, float, unsigned int, bool, float, float) = imac 0x1f6ab0, m1 0x1ac600;
     static void ccDrawCircleSegment(cocos2d::CCPoint const&, float, float, float, unsigned int, bool, float, float);
     static void ccDrawColor4B(unsigned char, unsigned char, unsigned char, unsigned char) = imac 0x1f7ec0, m1 0x1ad624;
     static void ccDrawColor4F(float, float, float, float);
     static void ccDrawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
-    static void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int);
+    static void ccDrawFilledCircle(cocos2d::CCPoint const&, float, float, unsigned int) = imac 0x1f7360, m1 0x1acccc;
     static void ccDrawFree();
     static void ccDrawInit();
     static void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = m1 0x1ac0ec, imac 0x1f65e0;
