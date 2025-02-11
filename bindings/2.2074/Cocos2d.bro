@@ -4071,4 +4071,4 @@ class cocos2d::CCActionEase : public cocos2d::CCActionInterval
     static CCActionEase* create(cocos2d::CCActionInterval *pAction);
 
     cocos2d::CCActionInterval *m_pInner;
-};
+}
