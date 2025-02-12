@@ -2,6 +2,7 @@
 public enum CConv {
     DEFAULT(null),
     CDECL("__cdecl"),
+    STDCALL("__stdcall"),
     THISCALL("__thiscall"),
     MEMBERCALL("__thiscall"),
     FASTCALL("__fastcall"),

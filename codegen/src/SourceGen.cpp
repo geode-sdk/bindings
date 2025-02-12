@@ -13,8 +13,8 @@ using namespace geode::modifier;
 using cocos2d::CCDestructor;
 
 std::unordered_map<void*, bool>& CCDestructor::destructorLock() {{
-	static auto ret = new std::unordered_map<void*, bool>;
-	return *ret;
+	static thread_local std::unordered_map<void*, bool> ret;
+	return ret;
 }}
 bool& CCDestructor::globalLock() {{
 	static thread_local bool ret = false;
@@ -159,6 +159,10 @@ auto {function_name}({parameters}) -> decltype({function_name}({arguments})) {{
 	return reinterpret_cast<FunctionType>(func)({arguments});
 }}
 )GEN";
+
+	constexpr char const* declare_standalone_definition = R"GEN(
+{return} {function_name}({parameters}) {definition}
+)GEN";
 }}
 
 std::string generateBindingSource(Root const& root) {
@@ -166,6 +170,14 @@ std::string generateBindingSource(Root const& root) {
 
 	for (auto& f : root.functions) {
         if (codegen::getStatus(f) != BindStatus::NeedsBinding) {
+			if (codegen::getStatus(f) == BindStatus::Inlined) {
+				output += fmt::format(format_strings::declare_standalone_definition,
+					fmt::arg("return", f.prototype.ret.name),
+					fmt::arg("function_name", f.prototype.name),
+					fmt::arg("parameters", codegen::getParameters(f.prototype)),
+					fmt::arg("definition", f.inner)
+				);
+			}
             continue;
         }
 
@@ -255,7 +267,7 @@ std::string generateBindingSource(Root const& root) {
 							used_declare_format = format_strings::declare_virtual;
 					}
 
-					output += fmt::format(used_declare_format,
+					output += fmt::format(fmt::runtime(used_declare_format),
 						fmt::arg("class_name", c.name),
 						fmt::arg("unqualified_class_name", codegen::getUnqualifiedClassName(c.name)),
 						fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
