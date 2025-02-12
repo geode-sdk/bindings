@@ -358,8 +358,8 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
 
     static AdvancedFollowEditObject* create(char const*);
 
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x19d870, m1 0x160b78, ios 0x378a1c;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x19c8a0, m1 0x15fef0, ios 0x37865c;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x486470, imac 0x19d870, m1 0x160b78, ios 0x378a1c;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x486080, imac 0x19c8a0, m1 0x15fef0, ios 0x37865c;
 
     bool init(char const*);
 }
@@ -371,8 +371,8 @@ class AdvancedFollowTriggerObject : EffectGameObject {
 
     static AdvancedFollowTriggerObject* create(char const*);
 
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x19b5d0, m1 0x15ee0c, ios 0x377698;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x192350, m1 0x157e00, ios 0x375858;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x485150, imac 0x19b5d0, m1 0x15ee0c, ios 0x377698;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x482f50, imac 0x192350, m1 0x157e00, ios 0x375858;
 
     int getAdvancedFollowID();
     bool init(char const*);
@@ -2260,17 +2260,21 @@ class CheckpointGameObject : EffectGameObject {
     static CheckpointGameObject* create();
 
     virtual bool init() = win 0x4a1240, m1 0x180db0, imac 0x1c36c0, ios 0x388610;
-    virtual void setupCustomSprites(gd::string) = imac 0x1c3b10, m1 0x1811f0, ios 0x3889e4;
-    virtual void resetObject() = m1 0x18256c, imac 0x1c5120, ios 0x389524;
+    virtual void setupCustomSprites(gd::string) = win 0x4a1680, imac 0x1c3b10, m1 0x1811f0, ios 0x3889e4;
+    virtual void resetObject() = win 0x4a2470, m1 0x18256c, imac 0x1c5120, ios 0x389524;
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a12c0, imac 0x1c3720, m1 0x180e0c, ios 0x38866c;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1c4fe0, m1 0x182434, ios 0x38941c;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1c44f0, m1 0x181b0c, ios 0x389178;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a2340, imac 0x1c4fe0, m1 0x182434, ios 0x38941c;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a2070, imac 0x1c44f0, m1 0x181b0c, ios 0x389178;
     virtual void triggerActivated(float) = win 0x4a12e0, imac 0x1c3740, m1 0x180e24, ios 0x388684;
-    virtual void restoreObject() = imac 0x1c5190, m1 0x1825c4, ios 0x389574;
-    virtual void updateSyncedAnimation(float, int) = imac 0x1c40f0, m1 0x181770, ios 0x388de8;
+    virtual void restoreObject() = win 0x4a2680, imac 0x1c5190, m1 0x1825c4, ios 0x389574;
+    virtual void updateSyncedAnimation(float, int) = win 0x4a1d20, imac 0x1c40f0, m1 0x181770, ios 0x388de8;
 
-    TodoReturn resetCheckpoint();
-    TodoReturn updateCheckpointSpriteVisibility();
+    void resetCheckpoint() = win 0x4a24f0;
+    void updateCheckpointSpriteVisibility();
+
+    bool m_checkpointActivated;
+    // property 448
+    int m_respawnID;
 }
 
 [[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState), depends(DynamicSaveObject), depends(ActiveSaveObject1), depends(ActiveSaveObject2), depends(SequenceTriggerState)]]
@@ -3640,8 +3644,8 @@ class DashRingObject : RingObject {
 
     static DashRingObject* create(char const*);
 
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1a4340, m1 0x166864, ios 0x37bacc;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1a44b0, m1 0x1669bc, ios 0x37bc10;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x489db0, imac 0x1a4340, m1 0x166864, ios 0x37bacc;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x489ff0, imac 0x1a44b0, m1 0x1669bc, ios 0x37bc10;
 
     bool init(char const*);
 
@@ -3941,7 +3945,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 
     static EditGameObjectPopup* create(EffectGameObject*, cocos2d::CCArray*, bool);
 
-    bool init(EffectGameObject*, cocos2d::CCArray*, bool) = m1 0x23facc;
+    bool init(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x2938e0, m1 0x23facc;
 }
 
 [[link(android)]]
@@ -5085,10 +5089,19 @@ class EventLinkTrigger : EffectGameObject {
 
     static EventLinkTrigger* create();
 
-    virtual bool init() = m1 0x17dc54, imac 0x1bfdd0, ios 0x386e24;
-    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = imac 0x1bfe20, m1 0x17dca4, ios 0x386e74;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1c0cf0, m1 0x17e8e0, ios 0x387270;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1bff00, m1 0x17dd78, ios 0x386ef8;
+    virtual bool init() = win 0x49fce0, m1 0x17dc54, imac 0x1bfdd0, ios 0x386e24;
+    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x49fd50, imac 0x1bfe20, m1 0x17dca4, ios 0x386e74;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a0220, imac 0x1c0cf0, m1 0x17e8e0, ios 0x387270;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49fe30, imac 0x1bff00, m1 0x17dd78, ios 0x386ef8;
+
+    // property 430
+    gd::set<int> m_eventIDs;
+    // property 431
+    bool m_resetRemap;
+    // property 447
+    int m_extraID;
+    // property 525
+    int m_extraID2;
 }
 
 [[link(android)]]
@@ -16815,18 +16828,18 @@ class RingObject : EffectGameObject {
 
     static RingObject* create(char const*) = win 0x489570;
 
-    virtual void setScale(float) = m1 0x165ca8, imac 0x1a3520, ios 0x37b5e4;
-    virtual void setRotation(float) = m1 0x165d08, imac 0x1a3580, ios 0x37b634;
-    virtual void resetObject() = m1 0x165c7c, imac 0x1a3500, ios 0x37b5b8;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1a35b0, m1 0x165d1c, ios 0x37b648;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1a3700, m1 0x165e28, ios 0x37b748;
-    virtual void setRScale(float) = m1 0x165cd8, imac 0x1a3550, ios 0x37b60c;
-    virtual void triggerActivated(float) = m1 0x165b30, imac 0x1a33a0, ios 0x37b46c;
-    virtual bool shouldDrawEditorHitbox() = imac 0x1a3590, m1 0x165d0c, ios 0x37b638;
-    virtual void powerOnObject(int) = m1 0x165b3c, imac 0x1a33b0, ios 0x37b478;
+    virtual void setScale(float) = win 0x4898f0, m1 0x165ca8, imac 0x1a3520, ios 0x37b5e4;
+    virtual void setRotation(float) = win 0x38c9f0, m1 0x165d08, imac 0x1a3580, ios 0x37b634;
+    virtual void resetObject() = win 0x4898d0, m1 0x165c7c, imac 0x1a3500, ios 0x37b5b8;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4899b0, imac 0x1a35b0, m1 0x165d1c, ios 0x37b648;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x489ad0, imac 0x1a3700, m1 0x165e28, ios 0x37b748;
+    virtual void setRScale(float) = win 0x489920, m1 0x165cd8, imac 0x1a3550, ios 0x37b60c;
+    virtual void triggerActivated(float) = win 0x489620, m1 0x165b30, imac 0x1a33a0, ios 0x37b46c;
+    virtual bool shouldDrawEditorHitbox() = win 0x4899a0, imac 0x1a3590, m1 0x165d0c, ios 0x37b638;
+    virtual void powerOnObject(int) = win 0x489630, m1 0x165b3c, imac 0x1a33b0, ios 0x37b478;
 
     bool init(char const*);
-    TodoReturn spawnCircle();
+    void spawnCircle() = win 0x4896d0;
 
     bool m_claimTouch;
     // property 504
@@ -17333,14 +17346,22 @@ class SelectEventLayer : SetupTriggerPopup {
 
     static SelectEventLayer* create(SetupEventLinkPopup*, gd::set<int>&);
 
-    virtual void keyBackClicked() = m1 0x4b97a0, imac 0x5636b0, ios 0x401148;
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x5635e0, m1 0x4b96e8, ios 0x401108;
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x5633b0, m1 0x4b94a4, ios 0x400fe0;
+    virtual void keyBackClicked() = win 0x44f1d0, m1 0x4b97a0, imac 0x5636b0, ios 0x401148;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x44f110, imac 0x5635e0, m1 0x4b96e8, ios 0x401108;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x44ef40, imac 0x5633b0, m1 0x4b94a4, ios 0x400fe0;
 
-    TodoReturn addToggle(int, gd::string);
-    bool init(SetupEventLinkPopup*, gd::set<int>&) = m1 0x4b7a04, imac 0x561360;
-    TodoReturn nextPosition();
-    void onInfo(cocos2d::CCObject* sender);
+    void addToggle(int, gd::string) = win 0x44f1f0;
+    bool init(SetupEventLinkPopup*, gd::set<int>&) = win 0x44e0d0, m1 0x4b7a04, imac 0x561360;
+    cocos2d::CCPoint nextPosition();
+    void onInfo(cocos2d::CCObject* sender) = win 0x44f630;
+
+    SetupEventLinkPopup* m_eventLinkPopup;
+    bool m_eventsChanged;
+    int m_unk3b4;
+    int m_toggleCount;
+    int m_maxPage;
+    gd::map<int, gd::string> m_eventInfos;
+    gd::set<int> m_eventIDs;
 }
 
 [[link(android)]]
@@ -18085,7 +18106,7 @@ class SetupCheckpointPopup : SetupTriggerPopup {
 
     static SetupCheckpointPopup* create(CheckpointGameObject*, cocos2d::CCArray*);
 
-    bool init(CheckpointGameObject*, cocos2d::CCArray*) = m1 0x4baeb4, imac 0x565360;
+    bool init(CheckpointGameObject*, cocos2d::CCArray*) = win 0x450a20, m1 0x4baeb4, imac 0x565360;
 }
 
 [[link(android)]]
@@ -18163,7 +18184,7 @@ class SetupDashRingPopup : SetupTriggerPopup {
 
     static SetupDashRingPopup* create(DashRingObject*, cocos2d::CCArray*);
 
-    bool init(DashRingObject*, cocos2d::CCArray*) = m1 0x4c4750, imac 0x56ffe0;
+    bool init(DashRingObject*, cocos2d::CCArray*) = win 0x45ac80, m1 0x4c4750, imac 0x56ffe0;
 }
 
 [[link(android)]]
@@ -18231,11 +18252,11 @@ class SetupEnterTriggerPopup : SetupTriggerPopup {
 class SetupEventLinkPopup : SetupTriggerPopup {
     // virtual ~SetupEventLinkPopup();
 
-    static SetupEventLinkPopup* create(EventLinkTrigger*, cocos2d::CCArray*);
+    static SetupEventLinkPopup* create(EventLinkTrigger*, cocos2d::CCArray*) = win 0x44d830;
 
-    bool init(EventLinkTrigger*, cocos2d::CCArray*) = m1 0x4b6fa8, imac 0x560620;
-    void onSelectEvent(cocos2d::CCObject* sender);
-    TodoReturn updateEventIDs(gd::set<int>&);
+    bool init(EventLinkTrigger*, cocos2d::CCArray*) = win 0x44d940, m1 0x4b6fa8, imac 0x560620;
+    void onSelectEvent(cocos2d::CCObject* sender) = win 0x44deb0;
+    void updateEventIDs(gd::set<int>&);
 }
 
 [[link(android)]]
@@ -19214,44 +19235,46 @@ class SetupStopTriggerPopup : SetupTriggerPopup {
 class SetupTeleportPopup : SetupTriggerPopup {
     // virtual ~SetupTeleportPopup();
 
-    static SetupTeleportPopup* create(TeleportPortalObject*, cocos2d::CCArray*, int, bool);
+    static SetupTeleportPopup* create(TeleportPortalObject*, cocos2d::CCArray*, int, bool) = win 0x448220;
 
-    virtual void determineStartValues() = imac 0x346b20, m1 0x2db89c, ios 0x1008c;
-    virtual void updateDefaultTriggerValues() = imac 0x346b30, m1 0x2db8a0, ios 0x10090;
-    virtual void valueDidChange(int, float) = imac 0x346c30, m1 0x2db9ac, ios 0x10144;
+    virtual void determineStartValues() = win 0x45c310, imac 0x346b20, m1 0x2db89c, ios 0x1008c;
+    virtual void updateDefaultTriggerValues() = win 0x4494c0, imac 0x346b30, m1 0x2db8a0, ios 0x10090;
+    virtual void valueDidChange(int, float) = win 0x4494f0, imac 0x346c30, m1 0x2db9ac, ios 0x10144;
 
-    bool init(TeleportPortalObject*, cocos2d::CCArray*, int, bool) = m1 0x2da580, imac 0x3454c0;
-    void onTeleportGravity(cocos2d::CCObject* sender);
-    TodoReturn updateTeleportGravityState(int);
+    bool init(TeleportPortalObject*, cocos2d::CCArray*, int, bool) = win 0x448360, m1 0x2da580, imac 0x3454c0;
+    void onTeleportGravity(cocos2d::CCObject* sender) = win 0x4495f0;
+    void updateTeleportGravityState(int) = win 0x449680;
+
+    cocos2d::CCArray* m_teleportGravityToggles;
 }
 
 [[link(android)]]
 class SetupTimerControlTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupTimerControlTriggerPopup();
 
-    static SetupTimerControlTriggerPopup* create(TimerTriggerGameObject*, cocos2d::CCArray*);
+    static SetupTimerControlTriggerPopup* create(TimerTriggerGameObject*, cocos2d::CCArray*) = win 0x44a6f0;
 
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x38f290, m1 0x31e0b4, ios 0x327c0;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x44abe0, imac 0x38f290, m1 0x31e0b4, ios 0x327c0;
 
-    bool init(TimerTriggerGameObject*, cocos2d::CCArray*) = m1 0x31dcd8, imac 0x38ee40;
+    bool init(TimerTriggerGameObject*, cocos2d::CCArray*) = win 0x44a800, m1 0x31dcd8, imac 0x38ee40;
 }
 
 [[link(android)]]
 class SetupTimerEventTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupTimerEventTriggerPopup();
 
-    static SetupTimerEventTriggerPopup* create(TimerTriggerGameObject*, cocos2d::CCArray*);
+    static SetupTimerEventTriggerPopup* create(TimerTriggerGameObject*, cocos2d::CCArray*) = win 0x44a090;
 
-    bool init(TimerTriggerGameObject*, cocos2d::CCArray*) = m1 0x31d690, imac 0x38e680;
+    bool init(TimerTriggerGameObject*, cocos2d::CCArray*) = win 0x44a1a0, m1 0x31d690, imac 0x38e680;
 }
 
 [[link(android)]]
 class SetupTimerTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupTimerTriggerPopup();
 
-    static SetupTimerTriggerPopup* create(TimerTriggerGameObject*, cocos2d::CCArray*);
+    static SetupTimerTriggerPopup* create(TimerTriggerGameObject*, cocos2d::CCArray*) = win 0x449710;
 
-    bool init(TimerTriggerGameObject*, cocos2d::CCArray*) = m1 0x31cd50, imac 0x38db20;
+    bool init(TimerTriggerGameObject*, cocos2d::CCArray*) = win 0x449820, m1 0x31cd50, imac 0x38db20;
 }
 
 [[link(android)]]
@@ -19304,9 +19327,9 @@ class SetupTouchTogglePopup : SetupTriggerPopup {
 class SetupTransformPopup : SetupTriggerPopup {
     // virtual ~SetupTransformPopup();
 
-    static SetupTransformPopup* create(TransformTriggerGameObject*, cocos2d::CCArray*);
+    static SetupTransformPopup* create(TransformTriggerGameObject*, cocos2d::CCArray*) = win 0x44c920;
 
-    bool init(TransformTriggerGameObject*, cocos2d::CCArray*) = m1 0x45a9dc, imac 0x4faa20;
+    bool init(TransformTriggerGameObject*, cocos2d::CCArray*) = win 0x44ca30, m1 0x45a9dc, imac 0x4faa20;
 }
 
 [[link(android)]]
@@ -21060,18 +21083,18 @@ class TeleportPortalObject : RingObject {
 
     static TeleportPortalObject* create(char const*, bool) = win 0x499670, imac 0x1ac900, m1 0x16da24;
 
-    virtual void setPosition(cocos2d::CCPoint const&) = imac 0x1acca0, m1 0x16dd84, ios 0x380764;
-    virtual void setRotation(float) = imac 0x1acd50, m1 0x16de2c, ios 0x38080c;
-    virtual void setStartPos(cocos2d::CCPoint) = imac 0x1acb00, m1 0x16dbec, ios 0x3805d8;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1af440, m1 0x16fd10, ios 0x381168;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1acea0, m1 0x16df90, ios 0x380960;
-    virtual int addToGroup(int) = imac 0x1acde0, m1 0x16dea8, ios 0x380888;
-    virtual void removeFromGroup(int) = imac 0x1ace40, m1 0x16df2c, ios 0x3808fc;
-    virtual void setRotation2(float) = m1 0x16de9c, imac 0x1acdb0, ios 0x38087c;
-    virtual void addToGroup2(int) = m1 0x16dea0, imac 0x1acdc0, ios 0x380880;
-    virtual void removeFromGroup2(int) = m1 0x16dea4, imac 0x1acdd0, ios 0x380884;
+    virtual void setPosition(cocos2d::CCPoint const&) = win 0x499850, imac 0x1acca0, m1 0x16dd84, ios 0x380764;
+    virtual void setRotation(float) = win 0x4999d0, imac 0x1acd50, m1 0x16de2c, ios 0x38080c;
+    virtual void setStartPos(cocos2d::CCPoint) = win 0x499790, imac 0x1acb00, m1 0x16dbec, ios 0x3805d8;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49a500, imac 0x1af440, m1 0x16fd10, ios 0x381168;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x499bc0, imac 0x1acea0, m1 0x16df90, ios 0x380960;
+    virtual int addToGroup(int) = win 0x499a80, imac 0x1acde0, m1 0x16dea8, ios 0x380888;
+    virtual void removeFromGroup(int) = win 0x499b30, imac 0x1ace40, m1 0x16df2c, ios 0x3808fc;
+    virtual void setRotation2(float) = win 0x38c9f0, m1 0x16de9c, imac 0x1acdb0, ios 0x38087c;
+    virtual void addToGroup2(int) = win 0x499a60, m1 0x16dea0, imac 0x1acdc0, ios 0x380880;
+    virtual void removeFromGroup2(int) = win 0x499a70, m1 0x16dea4, imac 0x1acdd0, ios 0x380884;
 
-    TodoReturn getTeleportXOff(cocos2d::CCNode*) = win 0x4998f0, imac 0x1acbd0;
+    float getTeleportXOff(cocos2d::CCNode*) = win 0x4998f0, imac 0x1acbd0;
     bool init(char const*, bool);
     void setPositionOverride(cocos2d::CCPoint);
     void setStartPosOverride(cocos2d::CCPoint);
@@ -21102,13 +21125,13 @@ class TeleportPortalObject : RingObject {
     // property 354
     int m_gravityMode;
     // property 443
-    bool m_property443;
+    bool m_staticForceAdditive;
     // property 464
-    bool m_property464;
+    bool m_instantCamera;
     // property 510
-    bool m_property510;
+    bool m_snapGround;
     // property 591
-    bool m_property591;
+    bool m_redirectDash;
 
     GJBaseGameLayer* m_gameLayer;
 }
@@ -21278,11 +21301,30 @@ class TimerTriggerGameObject : EffectGameObject {
 
     static TimerTriggerGameObject* create(char const*);
 
-    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = imac 0x1d1230, m1 0x18bdc8, ios 0x38cf2c;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1d3110, m1 0x18d660, ios 0x38d63c;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1d1340, m1 0x18bed0, ios 0x38cfdc;
+    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a6690, imac 0x1d1230, m1 0x18bdc8, ios 0x38cf2c;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a6e70, imac 0x1d3110, m1 0x18d660, ios 0x38d63c;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a67a0, imac 0x1d1340, m1 0x18bed0, ios 0x38cfdc;
 
     bool init(char const*);
+
+    // property 467
+    double m_startTime;
+    // property 473
+    double m_targetTime;
+    // property 474
+    bool m_stopTimeEnabled;
+    // property 468
+    bool m_dontOverride;
+    // property 469
+    bool m_ignoreTimeWarp;
+    // property 470
+    float m_timeMod;
+    // property 471
+    bool m_startPaused;
+    // property 475
+    bool m_multiActivate;
+    // property 472
+    int m_controlType;
 }
 
 [[link(android)]]
@@ -21376,11 +21418,30 @@ class TransformTriggerGameObject : EffectGameObject {
 
     static TransformTriggerGameObject* create(char const*);
 
-    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = imac 0x1c7c90, m1 0x1847d4, ios 0x38a2c0;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1c7cc0, m1 0x1847f8, ios 0x38a2e4;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1c80a0, m1 0x184ac0, ios 0x38a574;
+    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a3630, imac 0x1c7c90, m1 0x1847d4, ios 0x38a2c0;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a3650, imac 0x1c7cc0, m1 0x1847f8, ios 0x38a2e4;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a3950, imac 0x1c80a0, m1 0x184ac0, ios 0x38a574;
 
     bool init(char const*);
+
+    // property 150
+    float m_objectScaleX;
+    // property 151
+    float m_objectScaleY;
+    // property 450
+    float m_property450;
+    // property 451
+    float m_property451;
+    // property 133
+    bool m_onlyMove;
+    // property 153
+    bool m_divideX;
+    // property 154
+    bool m_divideY;
+    // property 452
+    bool m_relativeRotation;
+    // property 577
+    bool m_relativeScale;
 }
 
 [[link(android)]]

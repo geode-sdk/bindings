@@ -13,8 +13,11 @@ class SFXTriggerInstance {
 }
 
 class EventTriggerInstance {
-	PAD = win 0x10;
-	gd::vector<int> m_unkVecInt;
+	int m_targetID;
+	int m_uniqueID;
+	int m_controlID;
+	bool m_inactive;
+	gd::vector<int> m_remapKeys;
 }
 
 class SongChannelState {
