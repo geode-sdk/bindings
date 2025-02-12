@@ -553,11 +553,13 @@ class ArtTriggerGameObject : EffectGameObject {
 
     static ArtTriggerGameObject* create(char const*);
 
-    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = imac 0x1db7e0, m1 0x194614, ios 0x390034;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1db780, m1 0x19459c, ios 0x38ffcc;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1db260, m1 0x194120, ios 0x38fe3c;
+    virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a98a0, imac 0x1db7e0, m1 0x194614, ios 0x390034;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a9820, imac 0x1db780, m1 0x19459c, ios 0x38ffcc;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a98a0, imac 0x1db260, m1 0x194120, ios 0x38fe3c;
 
     bool init(char const*);
+
+    int m_artIndex;
 }
 
 [[link(android)]]
@@ -2549,14 +2551,14 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = win 0x8dc20, imac 0x70eb40, m1 0x62d8e4;
     void onCopy(cocos2d::CCObject* sender) = win 0x90d60;
     void onCopyOpacity(cocos2d::CCObject* sender) = win 0x90b00;
-    void onDefault(cocos2d::CCObject* sender) = win 0x90e60, m1 0x630280;
+    void onDefault(cocos2d::CCObject* sender) = win 0x90e60, m1 0x630280, imac 0x711930;
     void onHSVLegacyMode(cocos2d::CCObject* sender);
-    void onPaste(cocos2d::CCObject* sender) = win 0x90de0;
+    void onPaste(cocos2d::CCObject* sender) = win 0x90de0, m1 0x630234, imac 0x7118f0;
     void onPlayerColor1(cocos2d::CCObject* sender);
     void onPlayerColor2(cocos2d::CCObject* sender);
     void onSelectSpecialColor(cocos2d::CCObject* sender);
     void onTintGround(cocos2d::CCObject* sender);
-    void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x93500;
+    void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x93500, m1 0x630820, imac 0x711fb0;
     void onToggleTintMode(cocos2d::CCObject* sender) = win 0x909b0;
     void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x93420, m1 0x6309c0, imac 0x712170;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x92c50;
@@ -17690,12 +17692,12 @@ class SetupAnimationPopup : SetupTriggerPopup {
 class SetupAnimSettingsPopup : SetupTriggerPopup {
     // virtual ~SetupAnimSettingsPopup();
 
-    static SetupAnimSettingsPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupAnimSettingsPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x3f2500;
 
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x9b140, m1 0x8e0ac, ios 0x2e797c;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x3f2e90, imac 0x9b140, m1 0x8e0ac, ios 0x2e797c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x8d8d0, imac 0x9a7f0;
-    TodoReturn updateAnimSettings();
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3f2610, m1 0x8d8d0, imac 0x9a7f0;
+    void updateAnimSettings();
 }
 
 [[link(android)]]
@@ -17792,12 +17794,15 @@ class SetupAreaTriggerPopup : SetupAreaMoveTriggerPopup {
 class SetupArtSwitchPopup : SetupTriggerPopup, SelectArtDelegate {
     // virtual ~SetupArtSwitchPopup();
 
-    static SetupArtSwitchPopup* create(ArtTriggerGameObject*, cocos2d::CCArray*, int);
+    static SetupArtSwitchPopup* create(ArtTriggerGameObject*, cocos2d::CCArray*, int) = win 0x459210;
 
     virtual void selectArtClosed(SelectArtLayer*) = win 0x459ed0, imac 0x56ee90, m1 0x4c38e4, ios 0x4092dc;
 
-    bool init(ArtTriggerGameObject*, cocos2d::CCArray*, int) = m1 0x4c32b0, imac 0x56e840;
-    void onArt(cocos2d::CCObject* sender);
+    bool init(ArtTriggerGameObject*, cocos2d::CCArray*, int) = win 0x4594d0, m1 0x4c32b0, imac 0x56e840;
+    void onArt(cocos2d::CCObject* sender) = win 0x459e80;
+
+    SelectArtType m_artType;
+    cocos2d::CCSprite* m_artSprite;
 }
 
 [[link(android)]]
@@ -18555,8 +18560,8 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void onGroupMainOnly(cocos2d::CCObject* sender) = win 0x423410;
     void onGroupSecondaryOnly(cocos2d::CCObject* sender) = win 0x423500;
     void onHSVLegacyMode(cocos2d::CCObject* sender) = win 0x423560;
-    void onPaste(cocos2d::CCObject* sender) = win 0x90de0;
-    void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x422aa0;
+    void onPaste(cocos2d::CCObject* sender) = win 0x90de0, m1 0x328b68, imac 0x39b340;
+    void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x422aa0, m1 0x328698, imac 0x39ad60;
     void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x423680;
     void onSelectSpecialTargetID(cocos2d::CCObject* sender) = win 0x4236d0;
     void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x422cd0;
@@ -20465,14 +20470,17 @@ class SpecialAnimGameObject : EnhancedGameObject {
 
     static SpecialAnimGameObject* create(char const*);
 
-    virtual void resetObject() = m1 0x165528, imac 0x1a2cd0, ios 0x37b1ac;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x165534, imac 0x1a2cf0, ios 0x37b1b8;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x165594, imac 0x1a2d50, ios 0x37b218;
-    virtual void updateMainColor(cocos2d::ccColor3B const&) = m1 0x165508, imac 0x1a2c90, ios 0x37b18c;
-    virtual void updateSecondaryColor(cocos2d::ccColor3B const&) = imac 0x1a2cb0, m1 0x165518, ios 0x37b19c;
-    virtual void updateSyncedAnimation(float, int) = imac 0x24b7d0, m1 0x1f8eac, ios 0x3487cc;
+    virtual void resetObject() = win 0x489380, m1 0x165528, imac 0x1a2cd0, ios 0x37b1ac;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x489390, m1 0x165534, imac 0x1a2cf0, ios 0x37b1b8;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x489400, m1 0x165594, imac 0x1a2d50, ios 0x37b218;
+    virtual void updateMainColor(cocos2d::ccColor3B const&) = win 0x489340, m1 0x165508, imac 0x1a2c90, ios 0x37b18c;
+    virtual void updateSecondaryColor(cocos2d::ccColor3B const&) = win 0x489360, imac 0x1a2cb0, m1 0x165518, ios 0x37b19c;
+    virtual void updateSyncedAnimation(float, int) = win 0x1a69c0, imac 0x24b7d0, m1 0x1f8eac, ios 0x3487cc;
 
     bool init(char const*);
+
+    bool m_skipMainColorUpdate;
+    bool m_skipSecondaryColorUpdate;
 }
 
 [[link(android)]]
