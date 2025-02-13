@@ -763,9 +763,18 @@ class AudioLineGuideGameObject : EffectGameObject {
 
     static AudioLineGuideGameObject* create();
 
-    virtual bool init() = m1 0x19221c, imac 0x1d8d50, ios 0x38f09c;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1d9ac0, m1 0x192cf8, ios 0x38f408;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1d8da0, m1 0x19226c, ios 0x38f0ec;
+    virtual bool init() = win 0x4a8900, m1 0x19221c, imac 0x1d8d50, ios 0x38f09c;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a8cc0, imac 0x1d9ac0, m1 0x192cf8, ios 0x38f408;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a8970, imac 0x1d8da0, m1 0x19226c, ios 0x38f0ec;
+
+    // property 498
+    int m_beatsPerMinute;
+    // property 501
+    int m_beatsPerBar;
+    // property 499
+    Speed m_speed;
+    // property 500
+    bool m_disabled;
 }
 
 [[link(android)]]
@@ -1160,10 +1169,27 @@ class CameraTriggerGameObject : EffectGameObject {
     static CameraTriggerGameObject* create(char const*);
 
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a4cd0, imac 0x1cc3f0, m1 0x18823c, ios 0x38b8e8;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1d0760, m1 0x18b600, ios 0x38c820;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1cc650, m1 0x1883f8, ios 0x38baa4;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a5f70, imac 0x1d0760, m1 0x18b600, ios 0x38c820;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a5030, imac 0x1cc650, m1 0x1883f8, ios 0x38baa4;
 
     bool init(char const*);
+
+    // property 110
+    bool m_exitStatic;
+    // property 212
+    bool m_followObject;
+    // property 213
+    float m_followEasing;
+    // property 164
+    int m_edgeDirection;
+    // property 453
+    bool m_smoothVelocity;
+    // property 454
+    float m_velocityModifier;
+    // property 465
+    bool m_exitInstant;
+    // property 506
+    float m_previewOpacity;
 }
 
 [[link(android)]]
@@ -16992,12 +17018,35 @@ class RotateGameplayGameObject : EffectGameObject {
 
     static RotateGameplayGameObject* create();
 
-    virtual bool init() = m1 0x198058, imac 0x1dfcf0, ios 0x3918bc;
-    virtual void updateStartValues() = m1 0x199834, imac 0x1e1a10, ios 0x392124;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1e1690, m1 0x199544, ios 0x391e68;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1dfd40, m1 0x1980a8, ios 0x39190c;
+    virtual bool init() = win 0x4ab3a0, m1 0x198058, imac 0x1dfcf0, ios 0x3918bc;
+    virtual void updateStartValues() = win 0x4abcc0, m1 0x199834, imac 0x1e1a10, ios 0x392124;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4aba30, imac 0x1e1690, m1 0x199544, ios 0x391e68;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4ab410, imac 0x1dfd40, m1 0x1980a8, ios 0x39190c;
 
-    TodoReturn updateGameplayRotation();
+    void updateGameplayRotation();
+
+    // property 166
+    int m_moveDirection;
+    // property 167
+    int m_groundDirection;
+    // property 169
+    bool m_editVelocity;
+    // property 584
+    bool m_overrideVelocity;
+    // property 582
+    float m_velocityModX;
+    // property 583
+    float m_velocityModY;
+    // property 171
+    bool m_changeChannel;
+    // property 172
+    bool m_channelOnly;
+    // property 173
+    int m_targetChannelID;
+    // property 368
+    bool m_instantOffset;
+    // property 585
+    bool m_dontSlide;
 }
 
 [[link(android)]]
@@ -18110,8 +18159,10 @@ class SetupAudioLineGuidePopup : SetupTriggerPopup, SelectSettingDelegate {
 
     virtual void selectSettingClosed(SelectSettingLayer*) = win 0x4581a0, imac 0x56d390, m1 0x4c21ac, ios 0x408070;
 
-    bool init(AudioLineGuideGameObject*, cocos2d::CCArray*) = m1 0x4c1b08, imac 0x56cbf0;
-    void onSpeed(cocos2d::CCObject* sender);
+    bool init(AudioLineGuideGameObject*, cocos2d::CCArray*) = win 0x457a40, m1 0x4c1b08, imac 0x56cbf0;
+    void onSpeed(cocos2d::CCObject* sender) = win 0x458150;
+
+    cocos2d::CCSprite* m_speedSprite;
 }
 
 [[link(android)]]
@@ -18139,80 +18190,115 @@ class SetupBGSpeedTrigger : SetupTriggerPopup {
 class SetupCameraEdgePopup : SetupTriggerPopup {
     // virtual ~SetupCameraEdgePopup();
 
-    static SetupCameraEdgePopup* create(CameraTriggerGameObject*, cocos2d::CCArray*);
+    static SetupCameraEdgePopup* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x3faea0;
 
-    virtual void determineStartValues() = m1 0x4c63b8, imac 0x5720f0, ios 0x23a898;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x4c6600, imac 0x572390, ios 0x23aa70;
+    virtual void determineStartValues() = win 0x3fbd10, m1 0x4c63b8, imac 0x5720f0, ios 0x23a898;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x3fc200, m1 0x4c6600, imac 0x572390, ios 0x23aa70;
     virtual void textChanged(CCTextInputNode*) = win 0x3fbfc0, m1 0x4c6518, imac 0x572280, ios 0x23a9f0;
 
-    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = m1 0x4c54c0, imac 0x571060;
-    void onCameraEdge(cocos2d::CCObject* sender);
-    void onTargetIDArrow(cocos2d::CCObject* sender);
-    void onUnlockEdge(cocos2d::CCObject* sender);
-    TodoReturn updateTargetID();
-    TodoReturn updateTextInputLabel();
+    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x3fafd0, m1 0x4c54c0, imac 0x571060;
+    void onCameraEdge(cocos2d::CCObject* sender) = win 0x3fbe10;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x3fbf70;
+    void onUnlockEdge(cocos2d::CCObject* sender) = win 0x3fbf40;
+    void updateTargetID() = win 0x3fc130;
+    void updateTextInputLabel() = win 0x3fc0b0;
+
+    CCTextInputNode* m_targetIDInput;
+    int m_targetID;
+    int m_edgeDirection;
+    cocos2d::CCArray* m_directionToggles;
 }
 
 [[link(android)]]
 class SetupCameraGuidePopup : SetupTriggerPopup {
     // virtual ~SetupCameraGuidePopup();
 
-    static SetupCameraGuidePopup* create(CameraTriggerGameObject*, cocos2d::CCArray*);
+    static SetupCameraGuidePopup* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x4582a0;
 
-    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = m1 0x4c2408, imac 0x56d690;
+    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x4583b0, m1 0x4c2408, imac 0x56d690;
 }
 
 [[link(android)]]
 class SetupCameraModePopup : SetupTriggerPopup {
     // virtual ~SetupCameraModePopup();
 
-    static SetupCameraModePopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupCameraModePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x3fc360;
 
-    virtual void determineStartValues() = m1 0x402fc0, imac 0x496b80, ios 0x3a3b64;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x403274, imac 0x496e70, ios 0x3a3dec;
+    virtual void determineStartValues() = win 0x3fcf30, m1 0x402fc0, imac 0x496b80, ios 0x3a3b64;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x287920, m1 0x403274, imac 0x496e70, ios 0x3a3dec;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x4022e4, imac 0x495d30;
-    void onEditCameraSettings(cocos2d::CCObject* sender);
-    void onUnboundMode(cocos2d::CCObject* sender);
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn updateCameraEasing();
-    TodoReturn updateCameraEasingLabel();
-    TodoReturn updateCameraPadding();
-    TodoReturn updateCameraPaddingLabel() = m1 0x402ed4, imac 0x496a80;
-    TodoReturn updateItemVisibility();
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3fc480, m1 0x4022e4, imac 0x495d30;
+    void onEditCameraSettings(cocos2d::CCObject* sender) = win 0x3fd1a0;
+    void onUnboundMode(cocos2d::CCObject* sender) = win 0x3fd0f0;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x3fd320;
+    void updateCameraEasing() = win 0x3fd430;
+    void updateCameraEasingLabel() = win 0x3fd3d0;
+    void updateCameraPadding() = win 0x3fd530;
+    void updateCameraPaddingLabel() = win 0x3fd4c0, m1 0x402ed4, imac 0x496a80;
+    void updateItemVisibility() = win 0x3fd250;
+
+    cocos2d::CCArray* m_freeModeObjects;
+    cocos2d::CCArray* m_cameraSettingsObjects;
+    Slider* m_cameraEasingSlider;
+    cocos2d::CCLabelBMFont* m_cameraEasingLabel;
+    int m_cameraEasing;
+    Slider* m_cameraPaddingSlider;
+    cocos2d::CCLabelBMFont* m_cameraPaddingLabel;
+    float m_cameraPadding;
+    bool m_freeMode;
+    bool m_cameraSettingsEnabled;
+    bool m_cameraModeObjects;
 }
 
 [[link(android)]]
 class SetupCameraOffsetTrigger : SetupTriggerPopup {
     // virtual ~SetupCameraOffsetTrigger();
 
-    static SetupCameraOffsetTrigger* create(CameraTriggerGameObject*, cocos2d::CCArray*);
+    static SetupCameraOffsetTrigger* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x3fd690;
 
-    virtual void determineStartValues() = m1 0x57505c, imac 0x64d090, ios 0x193bc8;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x575a68, imac 0x64dbc0, ios 0x194458;
+    virtual void determineStartValues() = win 0x3fe9f0, m1 0x57505c, imac 0x64d090, ios 0x193bc8;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x3ffc80, m1 0x575a68, imac 0x64dbc0, ios 0x194458;
     virtual void textChanged(CCTextInputNode*) = win 0x3ff6f0, imac 0x64d890, m1 0x5757e8, ios 0x194230;
     virtual void valuePopupClosed(ConfigureValuePopup*, float) = win 0x3fedf0, m1 0x57542c, imac 0x64d460, ios 0x193f00;
 
-    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = m1 0x57347c, imac 0x64b350;
-    void onEasing(cocos2d::CCObject* sender);
-    void onEasingRate(cocos2d::CCObject* sender);
-    void onTargetMode(cocos2d::CCObject* sender);
-    TodoReturn posFromSliderValue(float);
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn sliderValueFromPos(int);
-    TodoReturn sliderXChanged(cocos2d::CCObject*);
-    TodoReturn sliderYChanged(cocos2d::CCObject*);
-    TodoReturn toggleEasingRateVisibility();
-    TodoReturn updateDuration();
-    TodoReturn updateDurLabel(bool);
-    TodoReturn updateEasingLabel();
-    TodoReturn updateEasingRateLabel();
-    TodoReturn updateMoveCommandEasing();
-    TodoReturn updateMoveCommandEasingRate();
-    TodoReturn updateMoveCommandPosX();
-    TodoReturn updateMoveCommandPosY();
-    TodoReturn updateValueXLabel();
-    TodoReturn updateValueYLabel();
+    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x3fd7b0, m1 0x57347c, imac 0x64b350;
+    void onEasing(cocos2d::CCObject* sender) = win 0x3ff1b0;
+    void onEasingRate(cocos2d::CCObject* sender) = win 0x3fed30;
+    void onTargetMode(cocos2d::CCObject* sender) = win 0x3ff610;
+    int posFromSliderValue(float);
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440;
+    float sliderValueFromPos(int);
+    void sliderXChanged(cocos2d::CCObject* sender) = win 0x3ff410;
+    void sliderYChanged(cocos2d::CCObject* sender) = win 0x3ff460;
+    void toggleEasingRateVisibility() = win 0x3ff0a0;
+    void updateDuration() = win 0x26b120;
+    void updateDurLabel(bool);
+    void updateEasingLabel() = win 0x3ff270;
+    void updateEasingRateLabel() = win 0x3feec0;
+    void updateMoveCommandEasing();
+    void updateMoveCommandEasingRate();
+    void updateMoveCommandPosX() = win 0x3ffaa0;
+    void updateMoveCommandPosY() = win 0x3ffb90;
+    void updateValueXLabel() = win 0x3ff4b0;
+    void updateValueYLabel() = win 0x3ff560;
+
+    CCTextInputNode* m_moveTimeInput;
+    Slider* m_moveTimeSlider;
+    float m_moveTime;
+    cocos2d::CCLabelBMFont* m_cameraEasingLabel;
+    EasingType m_cameraEasingType;
+    float m_cameraEasingRate;
+    CCMenuItemSpriteExtra* m_cameraEasingRateButton;
+    cocos2d::CCLabelBMFont* m_cameraEasingRateLabel;
+    CCTextInputNode* m_offsetXInput;
+    CCTextInputNode* m_offsetYInput;
+    Slider* m_offsetXSlider;
+    Slider* m_offsetYSlider;
+    int m_offsetX;
+    int m_offsetY;
+    int m_targetMode;
+    CCMenuItemToggler* m_xOnlyToggler;
+    CCMenuItemToggler* m_yOnlyToggler;
 }
 
 [[link(android)]]
@@ -18246,9 +18332,9 @@ class SetupCameraRotatePopup : SetupTriggerPopup {
 class SetupCameraRotatePopup2 : SetupTriggerPopup {
     // virtual ~SetupCameraRotatePopup2();
 
-    static SetupCameraRotatePopup2* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupCameraRotatePopup2* create(EffectGameObject*, cocos2d::CCArray*) = win 0x3ffd20;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x414974, imac 0x4ab7d0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3ffe30, m1 0x414974, imac 0x4ab7d0;
 }
 
 [[link(android)]]
@@ -18695,7 +18781,7 @@ class SetupObjectControlPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupObjectOptions2Popup : SetupTriggerPopup {
     // virtual ~SetupObjectOptions2Popup();
-    SetupObjectOptions2Popup() {}
+    SetupObjectOptions2Popup() = win inline {}
 
     static SetupObjectOptions2Popup* create(GameObject*, cocos2d::CCArray*) = win inline {
         auto ret = new SetupObjectOptions2Popup();
@@ -19120,10 +19206,10 @@ class SetupRotateGameplayPopup : SetupTriggerPopup {
 
     static SetupRotateGameplayPopup* create(RotateGameplayGameObject*, cocos2d::CCArray*);
 
-    virtual void onPlusButton(cocos2d::CCObject* sender) = m1 0x696a70, imac 0x782510, ios 0x1a2178;
-    virtual void valueDidChange(int, float) = imac 0x782550, m1 0x696aa8, ios 0x1a21b0;
+    virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x429c50, m1 0x696a70, imac 0x782510, ios 0x1a2178;
+    virtual void valueDidChange(int, float) = win 0x429cc0, imac 0x782550, m1 0x696aa8, ios 0x1a21b0;
 
-    bool init(RotateGameplayGameObject*, cocos2d::CCArray*) = m1 0x696194, imac 0x781a90;
+    bool init(RotateGameplayGameObject*, cocos2d::CCArray*) = win 0x429280, m1 0x696194, imac 0x781a90;
 }
 
 [[link(android)]]
@@ -19361,13 +19447,13 @@ class SetupSpawnPopup : SetupTriggerPopup {
 class SetupStaticCameraPopup : SetupTriggerPopup {
     // virtual ~SetupStaticCameraPopup();
 
-    static SetupStaticCameraPopup* create(CameraTriggerGameObject*, cocos2d::CCArray*);
+    static SetupStaticCameraPopup* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x447580;
 
-    virtual void valueDidChange(int, float) = imac 0x388d20, m1 0x3185bc, ios 0x1d207c;
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = m1 0x318650, imac 0x388db0, ios 0x1d2094;
+    virtual void valueDidChange(int, float) = win 0x448090, imac 0x388d20, m1 0x3185bc, ios 0x1d207c;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x42a510, m1 0x318650, imac 0x388db0, ios 0x1d2094;
 
-    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = m1 0x317c2c, imac 0x3881c0;
-    TodoReturn updateState();
+    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x447690, m1 0x317c2c, imac 0x3881c0;
+    void updateState() = win 0x4480b0;
 }
 
 [[link(android)]]
@@ -19627,7 +19713,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     cocos2d::CCLabelBMFont* m_easingLabel;
     cocos2d::CCLabelBMFont* m_easingRateLabel;
     CCMenuItemSpriteExtra* m_easingRateButton;
-    int m_easingIndex;
+    EasingType m_easingType;
     float m_easingRate;
     cocos2d::CCDictionary* m_inputLabels;
     cocos2d::CCDictionary* m_triggerValues;
