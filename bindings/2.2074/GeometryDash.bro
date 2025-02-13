@@ -362,6 +362,17 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x486080, imac 0x19c8a0, m1 0x15fef0, ios 0x37865c;
 
     bool init(char const*);
+
+    // property 566
+    float m_modX;
+    // property 567
+    float m_modXDelta;
+    // property 568
+    float m_modY;
+    // property 569
+    float m_modYDelta;
+    // property 570
+    bool m_redirectDirection;
 }
 
 [[link(android)]]
@@ -376,6 +387,134 @@ class AdvancedFollowTriggerObject : EffectGameObject {
 
     int getAdvancedFollowID();
     bool init(char const*);
+
+    // property 292
+    float m_delay;
+    // property 293
+    float m_delayDelta;
+    // property 300
+    float m_startSpeed;
+    // property 301
+    float m_startSpeedDelta;
+    // property 560
+    int m_startSpeedReference;
+    // property 563
+    float m_startDirection;
+    // property 564
+    float m_startDirectionDelta;
+    // property 565
+    int m_startDirectionReference;
+    // property 298
+    float m_maxSpeed;
+    // property 299
+    float m_maxSpeedDelta;
+    // property 306
+    bool m_xOnly;
+    // property 307
+    bool m_yOnly;
+    // property 308
+    float m_maxRange;
+    // property 309
+    float m_maxRangeDelta;
+    // property 310
+    float m_property310;
+    // property 311
+    float m_property311;
+    // property 334
+    float m_acceleration;
+    // property 335
+    float m_accelerationDelta;
+    // property 312
+    float m_property312;
+    // property 313
+    float m_property313;
+    // property 314
+    float m_property314;
+    // property 315
+    float m_property315;
+    // property 316
+    float m_steerForce;
+    // property 317
+    float m_steerForceDelta;
+    // property 337
+    bool m_steerForceLowEnabled;
+    // property 318
+    float m_steerForceLow;
+    // property 319
+    float m_steerForceLowDelta;
+    // property 338
+    bool m_steerForceHighEnabled;
+    // property 320
+    float m_steerForceHigh;
+    // property 321
+    float m_steerFroceHighDelta;
+    // property 322
+    float m_speedRangeLow;
+    // property 323
+    float m_speedRangeLowDelta;
+    // property 324
+    float m_speedRangeHigh;
+    // property 325
+    float m_speedRangeHighDelta;
+    // property 326
+    float m_breakForce;
+    // property 327
+    float m_breakForceDelta;
+    // property 328
+    float m_breakAngle;
+    // property 329
+    float m_breakAngleDelta;
+    // property 330
+    float m_breakSteerForce;
+    // property 331
+    float m_breakSteerForceDelta;
+    // property 332
+    float m_breakSteerSpeedLimit;
+    // property 333
+    float m_breakSteerSpeedLimitDelta;
+    // property 305
+    bool m_targetDirection;
+    // property 336
+    bool m_ignoreDisabled;
+    // property 339
+    bool m_rotateDirection;
+    // property 340
+    float m_rotationOffset;
+    // property 357
+    float m_nearAcceleration;
+    // property 358
+    float m_nearAccelerationDelta;
+    // property 359
+    float m_nearDistance;
+    // property 360
+    float m_nearDistanceDelta;
+    // property 561
+    float m_nearFriction;
+    // property 562
+    float m_nearFrictionDelta;
+    // property 558
+    float m_friction;
+    // property 559
+    float m_frictionDelta;
+    // property 361
+    float m_easing;
+    // property 362
+    float m_easingDelta;
+    // property 363
+    float m_rotateEasing;
+    // property 364
+    float m_rotateDeadZ;
+    // property 365
+    int m_priority;
+    int m_unk7fc;
+    // property 366
+    int m_maxRangeReference;
+    // property 367
+    int m_followMode;
+    // property 571
+    bool m_exclusive;
+    // property 572
+    int m_startMode;
 }
 
 [[link(android)]]
@@ -4744,7 +4883,8 @@ class EffectGameObject : EnhancedGameObject {
     int m_itemID2;
     // property 534
     int m_controlID;
-    PAD = android 0x1, win 0x1, mac 0x1;
+    // property 535
+    bool m_targetControlID;
     // property 94
     bool m_isDynamicBlock;
     // property 80
@@ -17434,14 +17574,25 @@ class SelectPremadeDelegate {
 [[link(android)]]
 class SelectPremadeLayer : FLAlertLayer {
     // virtual ~SelectPremadeLayer();
+    SelectPremadeLayer() {}
 
-    static SelectPremadeLayer* create();
+    static SelectPremadeLayer* create() = win inline {
+        auto ret = new SelectPremadeLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual bool init() = imac 0x2f5fc0, m1 0x28ef80, ios 0x66fa4;
-    virtual void keyBackClicked() = m1 0x28f4c8, imac 0x2f64c0, ios 0x6745c;
+    virtual bool init() = win 0x3eef30, imac 0x2f5fc0, m1 0x28ef80, ios 0x66fa4;
+    virtual void keyBackClicked() = win 0x84650, m1 0x28f4c8, imac 0x2f64c0, ios 0x6745c;
 
-    void onClose(cocos2d::CCObject* sender);
-    void onSelectPremade(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
+    void onSelectPremade(cocos2d::CCObject* sender) = win 0x3ef540;
+
+    SelectPremadeDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -17773,41 +17924,41 @@ class SetTextPopupDelegate {
 class SetupAdvFollowEditPhysicsPopup : SetupTriggerPopup {
     // virtual ~SetupAdvFollowEditPhysicsPopup();
 
-    static SetupAdvFollowEditPhysicsPopup* create(AdvancedFollowEditObject*, cocos2d::CCArray*);
+    static SetupAdvFollowEditPhysicsPopup* create(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x3ef5a0;
 
-    virtual void valueDidChange(int, float) = imac 0x2f7630, m1 0x2902dc, ios 0x68054;
+    virtual void valueDidChange(int, float) = win 0x3f0440, imac 0x2f7630, m1 0x2902dc, ios 0x68054;
 
-    bool init(AdvancedFollowEditObject*, cocos2d::CCArray*) = m1 0x28f6cc, imac 0x2f6760;
+    bool init(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x3ef6b0, m1 0x28f6cc, imac 0x2f6760;
 }
 
 [[link(android)]]
 class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
     // virtual ~SetupAdvFollowPopup();
 
-    static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject*, cocos2d::CCArray*);
+    static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject*, cocos2d::CCArray*) = win 0x3ea770;
 
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x2f5f20, m1 0x28ef40, ios 0x66f68;
-    virtual void updateDefaultTriggerValues() = imac 0x2f54b0, m1 0x28e4e4, ios 0x667d4;
-    virtual void valueDidChange(int, float) = imac 0x2f55f0, m1 0x28e684, ios 0x66934;
-    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x2f5870, m1 0x28e914, ios 0x66b14;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x287920, imac 0x2f5f20, m1 0x28ef40, ios 0x66f68;
+    virtual void updateDefaultTriggerValues() = win 0x3ed950, imac 0x2f54b0, m1 0x28e4e4, ios 0x667d4;
+    virtual void valueDidChange(int, float) = win 0x3eda40, imac 0x2f55f0, m1 0x28e684, ios 0x66934;
+    virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x3edd80, imac 0x2f5870, m1 0x28e914, ios 0x66b14;
     virtual void selectPremadeClosed(SelectPremadeLayer*, int) = win 0x3ee030, imac 0x2f5aa0, m1 0x28eb1c, ios 0x66cd4;
 
-    bool init(AdvancedFollowTriggerObject*, cocos2d::CCArray*) = m1 0x28aed4, imac 0x2f11d0;
-    void onMode(cocos2d::CCObject* sender);
-    void onPremade(cocos2d::CCObject* sender);
-    void updateMode(int);
+    bool init(AdvancedFollowTriggerObject*, cocos2d::CCArray*) = win 0x3ea890, m1 0x28aed4, imac 0x2f11d0;
+    void onMode(cocos2d::CCObject* sender) = win 0x3ede30;
+    void onPremade(cocos2d::CCObject* sender) = win 0x3edf00;
+    void updateMode(int) = win 0x3ede60;
 }
 
 [[link(android)]]
 class SetupAdvFollowRetargetPopup : SetupTriggerPopup {
     // virtual ~SetupAdvFollowRetargetPopup();
 
-    static SetupAdvFollowRetargetPopup* create(AdvancedFollowEditObject*, cocos2d::CCArray*);
+    static SetupAdvFollowRetargetPopup* create(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x3f0510;
 
-    virtual void updateDefaultTriggerValues() = imac 0x2f7ef0, m1 0x290a24, ios 0x68638;
-    virtual void valueDidChange(int, float) = imac 0x2f8030, m1 0x290bc4, ios 0x68798;
+    virtual void updateDefaultTriggerValues() = win 0x3ed950, imac 0x2f7ef0, m1 0x290a24, ios 0x68638;
+    virtual void valueDidChange(int, float) = win 0x3f0c60, imac 0x2f8030, m1 0x290bc4, ios 0x68798;
 
-    bool init(AdvancedFollowEditObject*, cocos2d::CCArray*) = m1 0x2904a0, imac 0x2f78a0;
+    bool init(AdvancedFollowEditObject*, cocos2d::CCArray*) = win 0x3f0620, m1 0x2904a0, imac 0x2f78a0;
 }
 
 [[link(android)]]
