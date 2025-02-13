@@ -366,11 +366,11 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
     // property 566
     float m_modX;
     // property 567
-    float m_modXDelta;
+    float m_modXVariance;
     // property 568
     float m_modY;
     // property 569
-    float m_modYDelta;
+    float m_modXVariance;
     // property 570
     bool m_redirectDirection;
 }
@@ -391,23 +391,23 @@ class AdvancedFollowTriggerObject : EffectGameObject {
     // property 292
     float m_delay;
     // property 293
-    float m_delayDelta;
+    float m_delayVariance;
     // property 300
     float m_startSpeed;
     // property 301
-    float m_startSpeedDelta;
+    float m_startSpeedVariance;
     // property 560
     int m_startSpeedReference;
     // property 563
     float m_startDirection;
     // property 564
-    float m_startDirectionDelta;
+    float m_startDirectionVariance;
     // property 565
     int m_startDirectionReference;
     // property 298
     float m_maxSpeed;
     // property 299
-    float m_maxSpeedDelta;
+    float m_maxSpeedVariance;
     // property 306
     bool m_xOnly;
     // property 307
@@ -415,7 +415,7 @@ class AdvancedFollowTriggerObject : EffectGameObject {
     // property 308
     float m_maxRange;
     // property 309
-    float m_maxRangeDelta;
+    float m_maxRangeVariance;
     // property 310
     float m_property310;
     // property 311
@@ -423,7 +423,7 @@ class AdvancedFollowTriggerObject : EffectGameObject {
     // property 334
     float m_acceleration;
     // property 335
-    float m_accelerationDelta;
+    float m_accelerationVariance;
     // property 312
     float m_property312;
     // property 313
@@ -435,43 +435,43 @@ class AdvancedFollowTriggerObject : EffectGameObject {
     // property 316
     float m_steerForce;
     // property 317
-    float m_steerForceDelta;
+    float m_steerForceVariance;
     // property 337
     bool m_steerForceLowEnabled;
     // property 318
     float m_steerForceLow;
     // property 319
-    float m_steerForceLowDelta;
+    float m_steerForceLowVariance;
     // property 338
     bool m_steerForceHighEnabled;
     // property 320
     float m_steerForceHigh;
     // property 321
-    float m_steerFroceHighDelta;
+    float m_steerFroceHighVariance;
     // property 322
     float m_speedRangeLow;
     // property 323
-    float m_speedRangeLowDelta;
+    float m_speedRangeLowVariance;
     // property 324
     float m_speedRangeHigh;
     // property 325
-    float m_speedRangeHighDelta;
+    float m_speedRangeHighVariance;
     // property 326
     float m_breakForce;
     // property 327
-    float m_breakForceDelta;
+    float m_breakForceVariance;
     // property 328
     float m_breakAngle;
     // property 329
-    float m_breakAngleDelta;
+    float m_breakAngleVariance;
     // property 330
     float m_breakSteerForce;
     // property 331
-    float m_breakSteerForceDelta;
+    float m_breakSteerForceVariance;
     // property 332
     float m_breakSteerSpeedLimit;
     // property 333
-    float m_breakSteerSpeedLimitDelta;
+    float m_breakSteerSpeedLimitVariance;
     // property 305
     bool m_targetDirection;
     // property 336
@@ -483,23 +483,23 @@ class AdvancedFollowTriggerObject : EffectGameObject {
     // property 357
     float m_nearAcceleration;
     // property 358
-    float m_nearAccelerationDelta;
+    float m_nearAccelerationVariance;
     // property 359
     float m_nearDistance;
     // property 360
-    float m_nearDistanceDelta;
+    float m_nearDistanceVariance;
     // property 561
     float m_nearFriction;
     // property 562
-    float m_nearFrictionDelta;
+    float m_nearFrictionVariance;
     // property 558
     float m_friction;
     // property 559
-    float m_frictionDelta;
+    float m_frictionVariance;
     // property 361
     float m_easing;
     // property 362
-    float m_easingDelta;
+    float m_easingVariance;
     // property 363
     float m_rotateEasing;
     // property 364
@@ -5843,11 +5843,24 @@ class ForceBlockGameObject : EffectGameObject {
 
     static ForceBlockGameObject* create(char const*);
 
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1dacc0, m1 0x193bfc, ios 0x38f9a8;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1d9d40, m1 0x192f78, ios 0x38f600;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a91e0, imac 0x1dacc0, m1 0x193bfc, ios 0x38f9a8;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a8e00, imac 0x1d9d40, m1 0x192f78, ios 0x38f600;
 
-    TodoReturn calculateForceToTarget(GameObject*);
+    cocos2d::CCPoint calculateForceToTarget(GameObject*) = win 0x4a9370;
     bool init(char const*);
+
+    // property 149
+    float m_force;
+    // property 526
+    float m_minForce;
+    // property 527
+    float m_maxForce;
+    // property 528
+    bool m_relativeForce;
+    // property 529
+    bool m_forceRange;
+    // property 530
+    int m_forceID;
 }
 
 [[link(android)]]
@@ -18500,11 +18513,11 @@ class SetupEventLinkPopup : SetupTriggerPopup {
 class SetupForceBlockPopup : SetupTriggerPopup {
     // virtual ~SetupForceBlockPopup();
 
-    static SetupForceBlockPopup* create(ForceBlockGameObject*, cocos2d::CCArray*);
+    static SetupForceBlockPopup* create(ForceBlockGameObject*, cocos2d::CCArray*) = win 0x458970;
 
-    virtual void valueDidChange(int, float) = imac 0x56e580, m1 0x4c30bc, ios 0x408c84;
+    virtual void valueDidChange(int, float) = win 0x4591a0, imac 0x56e580, m1 0x4c30bc, ios 0x408c84;
 
-    bool init(ForceBlockGameObject*, cocos2d::CCArray*) = m1 0x4c2a88, imac 0x56de60;
+    bool init(ForceBlockGameObject*, cocos2d::CCArray*) = win 0x458a80, m1 0x4c2a88, imac 0x56de60;
 }
 
 [[link(android)]]
@@ -19416,9 +19429,9 @@ class SetupSongTriggerPopup : SetupAudioTriggerPopup, MusicDownloadDelegate, Son
 class SetupSpawnParticlePopup : SetupTriggerPopup {
     // virtual ~SetupSpawnParticlePopup();
 
-    static SetupSpawnParticlePopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupSpawnParticlePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x44fdd0;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x4ba358, imac 0x5644d0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x44fee0, m1 0x4ba358, imac 0x5644d0;
 }
 
 [[link(android)]]
@@ -20904,9 +20917,24 @@ class SpawnParticleGameObject : EffectGameObject {
 
     static SpawnParticleGameObject* create();
 
-    virtual bool init() = m1 0x1966f0, imac 0x1dde40, ios 0x390ee8;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1df8e0, m1 0x197cb4, ios 0x391524;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1dde90, m1 0x196740, ios 0x390f38;
+    virtual bool init() = win 0x4aa9e0, m1 0x1966f0, imac 0x1dde40, ios 0x390ee8;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4ab0b0, imac 0x1df8e0, m1 0x197cb4, ios 0x391524;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4aaa50, imac 0x1dde90, m1 0x196740, ios 0x390f38;
+
+    // property 547, property 548
+    cocos2d::CCPoint m_offset;
+    // property 549, property 550
+    cocos2d::CCPoint m_offsetVariance;
+    // property 551
+    bool m_matchRotation;
+    // property 552
+    float m_rotation;
+    // property 553
+    float m_rotationVariance;
+    // property 554
+    float m_scale;
+    // property 555
+    float m_scaleVariance;
 }
 
 [[link(android)]]
