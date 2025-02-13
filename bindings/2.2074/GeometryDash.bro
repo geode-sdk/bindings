@@ -12641,28 +12641,31 @@ class LabelGameObject : EffectGameObject {
 
     static LabelGameObject* create();
 
-    virtual bool init() = m1 0x17033c, imac 0x1afb90, ios 0x38166c;
+    virtual bool init() = win 0x49a900, m1 0x17033c, imac 0x1afb90, ios 0x38166c;
     virtual void setOpacity(unsigned char) = win 0x49ac60, m1 0x170758, imac 0x1affb0, ios 0x38198c;
-    virtual void setupCustomSprites(gd::string) = imac 0x1afbc0, m1 0x17036c, ios 0x38169c;
-    virtual void addMainSpriteToParent(bool) = m1 0x170fd0, imac 0x1b0900, ios 0x381fec;
-    virtual void resetObject() = m1 0x171c8c, imac 0x1b1870, ios 0x3823a0;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1b0690, m1 0x170d8c, ios 0x381e24;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x171028, imac 0x1b0960, ios 0x382044;
-    virtual void setObjectColor(cocos2d::ccColor3B const&) = m1 0x170f88, imac 0x1b08b0, ios 0x381fa4;
-    virtual void updateTextKerning(int) = imac 0x1b0030, m1 0x1707dc, ios 0x381a10;
-    virtual int getTextKerning() = m1 0x199b20, imac 0x1e1d40, ios 0x3922d0;
+    virtual void setupCustomSprites(gd::string) = win 0x49a940, imac 0x1afbc0, m1 0x17036c, ios 0x38169c;
+    virtual void addMainSpriteToParent(bool) = win 0x49b150, m1 0x170fd0, imac 0x1b0900, ios 0x381fec;
+    virtual void resetObject() = win 0x49b570, m1 0x171c8c, imac 0x1b1870, ios 0x3823a0;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49af90, imac 0x1b0690, m1 0x170d8c, ios 0x381e24;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49b1c0, m1 0x171028, imac 0x1b0960, ios 0x382044;
+    virtual void setObjectColor(cocos2d::ccColor3B const&) = win 0x49b100, m1 0x170f88, imac 0x1b08b0, ios 0x381fa4;
+    virtual void updateTextKerning(int) = win 0x49ad20, imac 0x1b0030, m1 0x1707dc, ios 0x381a10;
+    virtual int getTextKerning() = win 0x47d930, m1 0x199b20, imac 0x1e1d40, ios 0x3922d0;
 
-    TodoReturn createLabel(gd::string);
-    TodoReturn queueUpdateLabel(gd::string);
-    TodoReturn removeLabel();
-    TodoReturn unlockLabelColor();
+    void createLabel(gd::string) = win 0x49a9e0;
+    void queueUpdateLabel(gd::string);
+    void removeLabel() = win 0x49ab80;
+    void unlockLabelColor();
     void updateLabel(float);
     void updateLabel(gd::string) = win 0x49af00, imac 0x1b04c0;
-    TodoReturn updateLabelAlign(int);
-    TodoReturn updateLabelIfDirty();
-    TodoReturn updatePreviewLabel() = win 0x49ad40;
+    void updateLabelAlign(int) = win 0x49aca0;
+    void updateLabelIfDirty();
+    void updatePreviewLabel() = win 0x49ad40;
 
-    PAD = android32 0x11;
+    cocos2d::CCLabelBMFont* m_label;
+    bool m_labelDirty;
+    gd::string m_labelString;
+    bool m_labelColorLocked;
 
     // property 391
     int m_alignment;
@@ -12679,7 +12682,7 @@ class LabelGameObject : EffectGameObject {
     // property 488
     int m_kerning;
 
-    PAD = android32 0x8;
+    bool m_updateLabel;
 }
 
 [[link(android)]]
@@ -17637,8 +17640,8 @@ class SetItemIDLayer : SetupTriggerPopup {
     virtual void valueDidChange(int, float) = win 0x3e9de0, imac 0x9c700, m1 0x8f3ac, ios 0x4121f4;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x3e9c40, imac 0x9c5e0, m1 0x8f2a4, ios 0x4120ec;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x8eba0, imac 0x9bdd0;
-    TodoReturn updateEditorLabel();
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3e94e0, m1 0x8eba0, imac 0x9bdd0;
+    void updateEditorLabel();
 }
 
 [[link(android)]]
