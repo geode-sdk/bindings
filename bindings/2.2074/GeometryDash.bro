@@ -8392,9 +8392,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn activatePersistentItemTrigger(ItemTriggerGameObject*);
     void activatePlayerControlTrigger(PlayerControlGameObject*);
     TodoReturn activateResetTrigger(EffectGameObject*);
-    void activateSFXEditTrigger(SFXTriggerGameObject*);
+    void activateSFXEditTrigger(SFXTriggerGameObject*) = win 0x23b8c0;
     void activateSFXTrigger(SFXTriggerGameObject*) = win 0x23b6c0, m1 0x11f100, imac 0x149850;
-    void activateSongEditTrigger(SongTriggerGameObject*) = win 0x23b8c0, m1 0x11eec4, imac 0x1495f0;
+    void activateSongEditTrigger(SongTriggerGameObject*) = win 0x23b3b0, m1 0x11eec4, imac 0x1495f0;
     void activateSongTrigger(SongTriggerGameObject*);
     TodoReturn activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&);
     TodoReturn addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType);
@@ -18184,10 +18184,12 @@ class SetupAudioTriggerPopup : SetupTriggerPopup {
 
     virtual void valueDidChange(int, float) = win 0x42e390, imac 0x4a4700, m1 0x40e62c, ios 0x182804;
 
-    TodoReturn addProxVolControls(int) = m1 0x40d928;
-    TodoReturn addTimeControls(int, float);
-    void onProxMode(cocos2d::CCObject* sender);
-    TodoReturn updateSpecialGroup();
+    void addProxVolControls(int) = win 0x42d3b0, m1 0x40d928;
+    void addTimeControls(int, float) = win 0x42cff0;
+    void onProxMode(cocos2d::CCObject* sender) = win 0x42e240;
+    void updateSpecialGroup() = win 0x42e310;
+
+    cocos2d::CCArray* m_proximityButtons;
 }
 
 [[link(android)]]
@@ -19188,12 +19190,14 @@ class SetupReverbPopup : SetupTriggerPopup {
 
     static SetupReverbPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*);
 
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x4a51d0, m1 0x40f038, ios 0x18304c;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x42eda0, imac 0x4a51d0, m1 0x40f038, ios 0x18304c;
 
-    bool init(SFXTriggerGameObject*, cocos2d::CCArray*) = m1 0x40e8e0, imac 0x4a4a70;
-    void onPlay(cocos2d::CCObject* sender);
-    void onReverb(cocos2d::CCObject* sender);
-    TodoReturn updateReverbLabel();
+    bool init(SFXTriggerGameObject*, cocos2d::CCArray*) = win 0x42e510, m1 0x40e8e0, imac 0x4a4a70;
+    void onPlay(cocos2d::CCObject* sender) = win 0x42ead0;
+    void onReverb(cocos2d::CCObject* sender) = win 0x42ebc0;
+    void updateReverbLabel() = win 0x42ec50;
+
+    cocos2d::CCLabelBMFont* m_reverbLabel;
 }
 
 [[link(android)]]
@@ -19264,9 +19268,9 @@ class SetupSequenceTriggerPopup : SetupTriggerPopup {
 class SetupSFXEditPopup : SetupAudioTriggerPopup {
     // virtual ~SetupSFXEditPopup();
 
-    static SetupSFXEditPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*, bool);
+    static SetupSFXEditPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*, bool) = win 0x431070;
 
-    bool init(SFXTriggerGameObject*, cocos2d::CCArray*, bool) = m1 0x411118, imac 0x4a7b50;
+    bool init(SFXTriggerGameObject*, cocos2d::CCArray*, bool) = win 0x431190, m1 0x411118, imac 0x4a7b50;
 }
 
 [[link(android)]]
@@ -19275,19 +19279,23 @@ class SetupSFXPopup : SetupAudioTriggerPopup, CustomSFXDelegate, SFXBrowserDeleg
 
     static SetupSFXPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*) = win 0x42ee10, m1 0x40f2fc;
 
-    virtual void pageChanged() = imac 0x4a6f10, m1 0x410784, ios 0x184220;
+    virtual void pageChanged() = win 0x4301c0, imac 0x4a6f10, m1 0x410784, ios 0x184220;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x430230, imac 0x4a6f70, m1 0x4107dc, ios 0x184278;
-    virtual void onPlusButton(cocos2d::CCObject* sender) = imac 0x4a7430, m1 0x410c1c, ios 0x184638;
-    virtual void valueDidChange(int, float) = imac 0x4a7310, m1 0x410af8, ios 0x184550;
+    virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x430af0, imac 0x4a7430, m1 0x410c1c, ios 0x184638;
+    virtual void valueDidChange(int, float) = win 0x4309e0, imac 0x4a7310, m1 0x410af8, ios 0x184550;
     virtual void sfxObjectSelected(SFXInfoObject*) = m1 0x410a4c, imac 0x4a7230, ios 0x1844d4 {}
     virtual int getActiveSFXID() = win 0x430920, m1 0x410a54, imac 0x4a7250, ios 0x1844dc;
     virtual bool overridePlaySFX(SFXInfoObject*) = win 0x430930, imac 0x4a7270, m1 0x410a64, ios 0x1844ec;
     virtual void sfxBrowserClosed(SFXBrowser*) = win 0x431050, imac 0x4a74d0, m1 0x410ccc, ios 0x1846e0;
 
-    TodoReturn createSFXWidget();
-    bool init(SFXTriggerGameObject*, cocos2d::CCArray*) = imac 0x4a5870, m1 0x40f4a0;
-    void onBrowseSFX(cocos2d::CCObject* sender);
-    TodoReturn updateLength();
+    void createSFXWidget() = win 0x4305f0;
+    bool init(SFXTriggerGameObject*, cocos2d::CCArray*) = win 0x42ef60, imac 0x4a5870, m1 0x40f4a0;
+    void onBrowseSFX(cocos2d::CCObject* sender) = win 0x430e70;
+    void updateLength() = win 0x430570;
+
+    int m_sfxID;
+    CustomSFXWidget* m_sfxWidget;
+    int m_sfxLength;
 }
 
 [[link(android)]]
@@ -19410,19 +19418,21 @@ class SetupSmartTemplateLayer : FLAlertLayer, TextInputDelegate, FLAlertLayerPro
 class SetupSongTriggerPopup : SetupAudioTriggerPopup, MusicDownloadDelegate, SongPlaybackDelegate {
     // virtual ~SetupSongTriggerPopup();
 
-    static SetupSongTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupSongTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x444470;
 
-    virtual void pageChanged() = imac 0x2c0f70, m1 0x26537c, ios 0x1c4418;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x265410, imac 0x2c1000, ios 0x1c44ac;
-    virtual void valueDidChange(int, float) = imac 0x2c0e70, m1 0x26527c, ios 0x1c4384;
+    virtual void pageChanged() = win 0x445910, imac 0x2c0f70, m1 0x26537c, ios 0x1c4418;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x445990, m1 0x265410, imac 0x2c1000, ios 0x1c44ac;
+    virtual void valueDidChange(int, float) = win 0x4457c0, imac 0x2c0e70, m1 0x26527c, ios 0x1c4384;
     virtual void onPlayback(SongInfoObject*) = win 0x445290, imac 0x2c0c30, m1 0x265068, ios 0x1c417c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x2643d0, imac 0x2bfe60;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x4445b0, m1 0x2643d0, imac 0x2bfe60;
     void onResetSongTime(cocos2d::CCObject* sender);
-    void onSavePlaybackPos(cocos2d::CCObject* sender);
-    TodoReturn updateApplyPrepare(bool);
-    TodoReturn updateLength();
-    TodoReturn updateSongTimeSlider();
+    void onSavePlaybackPos(cocos2d::CCObject* sender) = win 0x445630;
+    void updateApplyPrepare(bool);
+    void updateLength() = win 0x445200;
+    void updateSongTimeSlider();
+
+    SongSelectNode* m_selectNode;
 }
 
 [[link(android)]]
@@ -19967,12 +19977,95 @@ class SFXTriggerGameObject : EffectGameObject {
 
     static SFXTriggerGameObject* create(char const*);
 
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1be340, m1 0x17c1dc, ios 0x385ed0;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1b8850, m1 0x177b40, ios 0x384d08;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49efd0, imac 0x1be340, m1 0x17c1dc, ios 0x385ed0;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49da70, imac 0x1b8850, m1 0x177b40, ios 0x384d08;
 
-    TodoReturn getSFXRefID();
-    TodoReturn getUniqueSFXID();
+    int getSFXRefID();
+    int getUniqueSFXID();
     bool init(char const*);
+
+    gd::string m_soundPath;
+    // property 392
+    int m_soundID;
+    float m_pitch;
+    // property 404
+    int m_speed;
+    // property 405
+    int m_pitchIndex;
+    // property 406
+    float m_volume;
+    // property 408
+    int m_start;
+    // property 409
+    int m_fadeIn;
+    // property 410
+    int m_end;
+    // property 411
+    int m_fadeOut;
+    // property 407
+    bool m_reverb;
+    // property 412
+    bool m_fastFourierTransform;
+    // property 413
+    bool m_loop;
+    // property 414
+    bool m_stopLoop;
+    // property 595
+    bool m_dontReset;
+    // property 415
+    bool m_unique;
+    // property 420
+    bool m_override;
+    // property 416
+    int m_sfxUniqueID;
+    // property 421
+    float m_volumeNear;
+    // property 422
+    float m_volumeMedium;
+    // property 423
+    float m_volumeFar;
+    // property 424
+    int m_minDistNear;
+    // property 425
+    int m_minDistMedium;
+    // property 426
+    int m_minDistFar;
+    // property 458
+    int m_proximityMode;
+    // property 428
+    bool m_cameraDistance;
+    // property 433
+    bool m_preload;
+    // property 489
+    bool m_ignoreVolumeTest;
+    // property 434
+    float m_minInterval;
+    // property 455
+    int m_sfxGroup;
+    // property 417
+    bool m_stop;
+    // property 418
+    bool m_changeSpeed;
+    // property 419
+    bool m_changeVolume;
+    // property 457
+    int m_groupID;
+    int m_unk788;
+    // property 502
+    FMODReverbPreset m_reverbPreset;
+    // property 503
+    bool m_reverbEnabled;
+    // property 490
+    float m_soundDuration;
+    bool m_applyDisabled;
+    // property 596
+    int m_speedVariance;
+    // property 597
+    int m_pitchVariance;
+    // property 598
+    float m_volumeVariance;
+    // property 599
+    bool m_pitchSteps;
 }
 
 [[link(android)]]
@@ -20909,6 +21002,14 @@ class SongTriggerGameObject : SFXTriggerGameObject {
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49f9a0, imac 0x1bf1f0, m1 0x17d250, ios 0x3869a8;
 
     bool init(char const*);
+
+    bool m_unk7a9;
+    // property 399
+    bool m_prep;
+    // property 400
+    bool m_loadPrep;
+    // property 432
+    int m_songChannel;
 }
 
 [[link(android)]]
