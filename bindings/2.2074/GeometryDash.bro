@@ -370,7 +370,7 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
     // property 568
     float m_modY;
     // property 569
-    float m_duration;
+    float m_modYVariance;
     // property 570
     bool m_redirectDirection;
 }
