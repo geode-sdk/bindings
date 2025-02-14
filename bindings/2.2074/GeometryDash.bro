@@ -370,7 +370,7 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
     // property 568
     float m_modY;
     // property 569
-    float m_modYVariance;
+    float m_duration;
     // property 570
     bool m_redirectDirection;
 }
@@ -19323,7 +19323,7 @@ class SetupShaderEffectPopup : SetupTriggerPopup {
     void setupLensCircle() = win 0x436f00, m1 0x25c124, imac 0x2b6cf0;
     void setupMotionBlur() = win 0x438290, m1 0x25d314, imac 0x2b81c0;
     void setupPinch() = win 0x4396d0, m1 0x25e654, imac 0x2b97e0;
-    void setupPixelate() = win 0x436860 m1 0x25baa4, imac 0x2b65f0;
+    void setupPixelate() = win 0x436860, m1 0x25baa4, imac 0x2b65f0;
     void setupRadialBlur() = win 0x437850, m1 0x25c9b0, imac 0x2b76e0;
     void setupSepia() = win 0x43a7c0, m1 0x25f5b0, imac 0x2ba990;
     void setupShaderTrigger() = win 0x432300, m1 0x260cac, imac 0x2bc190;
