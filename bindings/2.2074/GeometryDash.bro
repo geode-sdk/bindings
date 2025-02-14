@@ -19304,34 +19304,40 @@ class SetupShaderEffectPopup : SetupTriggerPopup {
 
     static SetupShaderEffectPopup* create(EffectGameObject*, cocos2d::CCArray*, int);
 
-    virtual void toggleGroup(int, bool) = imac 0x2bd2d0, m1 0x261df0, ios 0x18d670;
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x2bd310, m1 0x261e30, ios 0x18d6b0;
-    virtual void updateDefaultTriggerValues() = imac 0x2bca50, m1 0x2614cc, ios 0x18d054;
-    virtual void valueDidChange(int, float) = imac 0x2bcf90, m1 0x261ab4, ios 0x18d3d8;
+    virtual void toggleGroup(int, bool) = win 0x43c650, imac 0x2bd2d0, m1 0x261df0, ios 0x18d670;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x287920, imac 0x2bd310, m1 0x261e30, ios 0x18d6b0;
+    virtual void updateDefaultTriggerValues() = win 0x432210, imac 0x2bca50, m1 0x2614cc, ios 0x18d054;
+    virtual void valueDidChange(int, float) = win 0x43c220, imac 0x2bcf90, m1 0x261ab4, ios 0x18d3d8;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*, int);
-    void onResetColors(cocos2d::CCObject* sender);
-    void onZLayer(cocos2d::CCObject* sender);
-    TodoReturn setupBulge() = m1 0x25de18, imac 0x2b8e60;
-    TodoReturn setupChromatic() = m1 0x25ad9c, imac 0x2b57d0;
-    TodoReturn setupChromaticGlitch() = m1 0x25b2f8, imac 0x2b5d70;
-    TodoReturn setupColorChange() = m1 0x2601c0, imac 0x2bb610;
-    TodoReturn setupGlitch() = m1 0x25a738, imac 0x2b5110;
-    TodoReturn setupGrayscale() = m1 0x25f120, imac 0x2ba490;
-    TodoReturn setupHueShift() = m1 0x25feb8, imac 0x2bb2f0;
-    TodoReturn setupInvertColor() = m1 0x25f89c, imac 0x2bac60;
-    TodoReturn setupLensCircle() = m1 0x25c124, imac 0x2b6cf0;
-    TodoReturn setupMotionBlur() = m1 0x25d314, imac 0x2b81c0;
-    TodoReturn setupPinch() = m1 0x25e654, imac 0x2b97e0;
-    TodoReturn setupPixelate() = m1 0x25baa4, imac 0x2b65f0;
-    TodoReturn setupRadialBlur() = m1 0x25c9b0, imac 0x2b76e0;
-    TodoReturn setupSepia() = m1 0x25f5b0, imac 0x2ba990;
-    TodoReturn setupShaderTrigger() = m1 0x260cac, imac 0x2bc190;
-    TodoReturn setupShockLine() = m1 0x259658, imac 0x2b3d30;
-    TodoReturn setupShockWave() = m1 0x2584b4, imac 0x2b2840;
-    TodoReturn setupSplitScreen() = m1 0x260808, imac 0x2bbcd0;
-    TodoReturn updateZLayerButtons();
-    TodoReturn zLayerToString(int);
+    bool init(EffectGameObject*, cocos2d::CCArray*, int) = win 0x431f20;
+    void onResetColors(cocos2d::CCObject* sender) = win 0x43bb80;
+    void onZLayer(cocos2d::CCObject* sender) = win 0x432d00;
+    void setupBulge() = win 0x438e00, m1 0x25de18, imac 0x2b8e60;
+    void setupChromatic() = win 0x435a30, m1 0x25ad9c, imac 0x2b57d0;
+    void setupChromaticGlitch() = win 0x435fb0, m1 0x25b2f8, imac 0x2b5d70;
+    void setupColorChange() = win 0x43b4b0, m1 0x2601c0, imac 0x2bb610;
+    void setupGlitch() = win 0x4353b0, m1 0x25a738, imac 0x2b5110;
+    void setupGrayscale() = win 0x43a2c0, m1 0x25f120, imac 0x2ba490;
+    void setupHueShift() = win 0x43b160, m1 0x25feb8, imac 0x2bb2f0;
+    void setupInvertColor() = win 0x43aaf0, m1 0x25f89c, imac 0x2bac60;
+    void setupLensCircle() = win 0x436f00, m1 0x25c124, imac 0x2b6cf0;
+    void setupMotionBlur() = win 0x438290, m1 0x25d314, imac 0x2b81c0;
+    void setupPinch() = win 0x4396d0, m1 0x25e654, imac 0x2b97e0;
+    void setupPixelate() = win 0x436860 m1 0x25baa4, imac 0x2b65f0;
+    void setupRadialBlur() = win 0x437850, m1 0x25c9b0, imac 0x2b76e0;
+    void setupSepia() = win 0x43a7c0, m1 0x25f5b0, imac 0x2ba990;
+    void setupShaderTrigger() = win 0x432300, m1 0x260cac, imac 0x2bc190;
+    void setupShockLine() = win 0x4341b0, m1 0x259658, imac 0x2b3d30;
+    void setupShockWave() = win 0x432ea0, m1 0x2584b4, imac 0x2b2840;
+    void setupSplitScreen() = win 0x43bd40, m1 0x260808, imac 0x2bbcd0;
+    void updateZLayerButtons() = win 0x432df0;
+    gd::string zLayerToString(int) = win 0x432a20;
+
+    cocos2d::CCArray* m_zLayerSprites;
+    int m_zLayerMin;
+    int m_zLayerMax;
+    bool m_changeMin;
+    int m_objectID;
 }
 
 [[link(android)]]
@@ -20074,11 +20080,66 @@ class ShaderGameObject : EffectGameObject {
 
     static ShaderGameObject* create(char const*);
 
-    virtual void customSetup() = imac 0x18c9a0, m1 0x1537ec, ios 0x373f2c;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x191760, m1 0x1573c4, ios 0x374f24;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x18ca10, m1 0x153844, ios 0x373f7c;
+    virtual void customSetup() = win 0x481460, imac 0x18c9a0, m1 0x1537ec, ios 0x373f2c;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4826e0, imac 0x191760, m1 0x1573c4, ios 0x374f24;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4814c0, imac 0x18ca10, m1 0x153844, ios 0x373f7c;
 
     bool init(char const*);
+
+    // property 175
+    float m_speed;
+    // property 176
+    float m_strength;
+    // property 191
+    float m_outer;
+    // property 177
+    float m_timeOff;
+    // property 179
+    float m_waveWidth;
+    // property 180
+    float m_targetX;
+    // property 189
+    float m_targetY;
+    // property 181
+    float m_fadeIn;
+    // property 182
+    float m_fadeOut;
+    // property 290
+    float m_screenOffsetX;
+    // property 291
+    float m_screenOffsetY;
+    // property 184
+    bool m_invert;
+    // property 183
+    float m_inner;
+    // property 512
+    float m_maxSize;
+    // property 185
+    bool m_flip;
+    // property 186
+    bool m_rotate;
+    // property 187
+    bool m_dual;
+    // property 188
+    bool m_useX;
+    // property 190
+    bool m_useY;
+    // property 194
+    bool m_snapGrid;
+    // property 515
+    bool m_hardEdges;
+    // property 192
+    bool m_disableAll;
+    // property 196
+    int m_zLayerMin;
+    // property 197
+    int m_zLayerMax;
+    // property 513
+    bool m_animate;
+    // property 514
+    bool m_relative;
+    // property 531
+    bool m_editorDisabled;
 }
 
 [[link(android), depends(GJShaderState)]]
