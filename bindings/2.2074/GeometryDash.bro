@@ -5220,16 +5220,47 @@ class EnterEffectInstance {
     // EnterEffectInstance(EnterEffectInstance&&);
     EnterEffectInstance(EnterEffectObject*, int, int, int, int, int, int);
 
-    TodoReturn animateValue(int, float, float, float, int, float, int);
-    TodoReturn getValue(int);
-    TodoReturn loadTransitions(EnterEffectObject*, float);
-    TodoReturn loadValuesFromObject(EnterEffectObject*);
-    void setValue(int, float);
-    void updateTransitions(float, GJBaseGameLayer*) = imac 0x5bb680, m1 0x4f1338;
+    void animateValue(int, float, float, float, int, float, int) = win 0x1378e0;
+    float getValue(int);
+    void loadTransitions(EnterEffectObject*, float) = win 0x1378e0;
+    void loadValuesFromObject(EnterEffectObject*) = win 0x136b60;
+    void setValue(int, float) = win 0x137d00;
+    void updateTransitions(float, GJBaseGameLayer*) = win 0x137ad0, imac 0x5bb680, m1 0x4f1338;
 
     gd::map<int,EnterEffectAnimValue> m_enterEffectAnimMap;
-    PAD = win 0x8c;
-    GameObject* m_gameObject;
+    float m_length;
+    float m_lengthVariance;
+    float m_offset;
+    float m_offsetVariance;
+    float m_offsetY;
+    float m_offsetYVariance;
+    float m_modFront;
+    float m_modBack;
+    float m_deadzone;
+    float m_moveDistance;
+    float m_moveDistanceVariance;
+    float m_moveAngle;
+    float m_moveAngleVariance;
+    float m_moveX;
+    float m_moveXVariance;
+    float m_moveY;
+    float m_moveYVariance;
+    float m_relativeFade;
+    float m_scaleX;
+    float m_scaleXVariance;
+    float m_scaleY;
+    float m_scaleYVariance;
+    float m_rotation;
+    float m_rotationVariance;
+    float m_tint;
+    float m_unk074;
+    float m_toOpacity;
+    float m_fromOpacity;
+    cocos2d::ccHSVValue m_hsvValue;
+    float m_hue;
+    float m_saturation;
+    float m_value;
+    EnterEffectObject* m_gameObject;
     PAD = win 0x1c;
     gd::vector<int> m_unkVecInt;
     PAD = win 0x4;
@@ -5247,6 +5278,111 @@ class EnterEffectObject : EffectGameObject {
 
     bool init(char const*);
     void resetEnterAnimValues();
+
+    // property 217
+    int m_enterType;
+    // property 222
+    int m_length;
+    // property 223
+    int m_lengthVariance;
+    // property 220
+    int m_offset;
+    // property 221
+    int m_offsetVariance;
+    // property 252
+    int m_offsetY;
+    // property 253
+    int m_offsetYVariance;
+    // property 218
+    int m_moveDistance;
+    // property 219
+    int m_moveDistanceVariance;
+    // property 233
+    float m_areaScaleX;
+    // property 234
+    float m_areaScaleXVariance;
+    // property 235
+    float m_areaScaleY;
+    // property 236
+    float m_areaScaleYVariance;
+    // property 231
+    int m_moveAngle;
+    // property 232
+    int m_moveAngleVariance;
+    bool m_startAngle;
+    cocos2d::CCPoint m_anglePosition;
+    // property 287
+    bool m_relative;
+    // property 288
+    float m_relativeFade;
+    // property 242
+    EasingType m_easingInType;
+    // property 243
+    float m_easingInRate;
+    int m_easingInBuffer;
+    // property 248
+    EasingType m_easingOutType;
+    // property 249
+    float m_easingOutRate;
+    int m_easingOutBuffer;
+    // property 237
+    int m_moveX;
+    // property 238
+    int m_moveXVariance;
+    // property 239
+    int m_moveY;
+    // property 240
+    int m_moveYVariance;
+    // property 260
+    int m_tintChannelID;
+    // property 224
+    int m_property224;
+    // property 262
+    int m_directionType;
+    // property 241
+    bool m_xyMode;
+    // property 261
+    bool m_easeOutEnabled;
+    // property 263
+    float m_modFront;
+    // property 264
+    float m_modBack;
+    // property 265
+    float m_areaTint;
+    // property 285
+    float m_property285;
+    // property 225
+    int m_effectID;
+    // property 270
+    float m_areaRotation;
+    // property 271
+    float m_areaRotationVariance;
+    // property 275
+    float m_toOpacity;
+    // property 286
+    float m_fromOpacity;
+    // property 276
+    bool m_inbound;
+    // property 278
+    bool m_hsvEnabled;
+    // property 282
+    float m_deadzone;
+    // property 283
+    bool m_twoDirections;
+    // property 539
+    bool m_dontEditAreaParent;
+    // property 341
+    int m_priority;
+    int m_unk7d8;
+    // property 344
+    int m_enterChannel;
+    // property 355
+    bool m_useEffectID;
+    cocos2d::CCPoint m_unk7e4;
+    cocos2d::CCPoint m_unk7ec;
+    bool m_negativeTargetX;
+    int m_areaRange;
+    int m_unk7fc;
 }
 
 [[link(android)]]
@@ -17942,12 +18078,16 @@ class SetLevelOrderPopup : SetIDPopup {
 class SetTargetIDLayer : SetupTriggerPopup {
     // virtual ~SetTargetIDLayer();
 
-    static SetTargetIDLayer* create(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int);
+    static SetTargetIDLayer* create(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = win 0x3ea050;
 
-    virtual void determineStartValues() = imac 0x2a6e20, m1 0x24d528, ios 0x2142c0;
-    virtual void valueDidChange(int, float) = imac 0x2a6e30, m1 0x24d52c, ios 0x2142c4;
+    virtual void determineStartValues() = win 0x287910, imac 0x2a6e20, m1 0x24d528, ios 0x2142c0;
+    virtual void valueDidChange(int, float) = win 0x3ea680, imac 0x2a6e30, m1 0x24d52c, ios 0x2142c4;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = m1 0x24d190, imac 0x2a6a20;
+    bool init(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = win 0x3ea1e0, m1 0x24d190, imac 0x2a6a20;
+
+    int m_objectID;
+    int m_minimumID;
+    int m_maximumID;
 }
 
 [[link(android)]]
@@ -18065,13 +18205,13 @@ class SetupAreaAnimTriggerPopup : SetupAreaTintTriggerPopup {
 
     static SetupAreaAnimTriggerPopup* create(EnterEffectObject*, cocos2d::CCArray*, int);
 
-    virtual void updateDefaultTriggerValues() = m1 0x42e564, imac 0x4c8dd0, ios 0x3e8ec;
-    virtual void valueDidChange(int, float) = imac 0x4c8f70, m1 0x42e720, ios 0x3ea50;
+    virtual void updateDefaultTriggerValues() = win 0x3fab00, m1 0x42e564, imac 0x4c8dd0, ios 0x3e8ec;
+    virtual void valueDidChange(int, float) = win 0x3facd0, imac 0x4c8f70, m1 0x42e720, ios 0x3ea50;
 
-    TodoReturn createValueControlAdvancedAnim(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float min, float max, int, int, GJInputStyle);
-    bool init(EnterEffectObject*, cocos2d::CCArray*, int) = m1 0x42cb08, imac 0x4c6f90;
-    void onDeactivateAnimValue(cocos2d::CCObject* sender);
-    TodoReturn updateTargetIDLabel() = imac 0x4c8f00;
+    void createValueControlAdvancedAnim(int, gd::string, cocos2d::CCPoint, float, bool, InputValueType, int, bool, float min, float max, int, int, GJInputStyle) = win 0x3fa910;
+    bool init(EnterEffectObject*, cocos2d::CCArray*, int) = win 0x3f91a0, m1 0x42cb08, imac 0x4c6f90;
+    void onDeactivateAnimValue(cocos2d::CCObject* sender) = win 0x3fac60;
+    void updateTargetIDLabel() = win 0x3fabe0, imac 0x4c8f00;
 }
 
 [[link(android)]]
@@ -18080,7 +18220,7 @@ class SetupAreaFadeTriggerPopup : SetupAreaMoveTriggerPopup {
 
     static SetupAreaFadeTriggerPopup* create(EnterEffectObject*, cocos2d::CCArray*);
 
-    bool init(EnterEffectObject*, cocos2d::CCArray*) = m1 0x42a2a4, imac 0x4c3d00;
+    bool init(EnterEffectObject*, cocos2d::CCArray*) = win 0x3f7430, m1 0x42a2a4, imac 0x4c3d00;
 }
 
 [[link(android)]]
@@ -18097,13 +18237,16 @@ class SetupAreaMoveTriggerPopup : SetupTriggerPopup {
     virtual float triggerValueFromSliderValue(int, float) = win 0x3f6360, m1 0x42864c, imac 0x4c17c0, ios 0x3a4c8;
     virtual float triggerSliderValueFromValue(int, float) = win 0x3f6390, m1 0x4286a0, imac 0x4c1800, ios 0x3a51c;
 
-    TodoReturn addAreaDefaultControls(int) = m1 0x426d30, imac 0x4bfbb0;
-    TodoReturn getModeValues(int, int&, bool&, bool&);
-    bool init(EnterEffectObject*, cocos2d::CCArray*) = m1 0x42602c, imac 0x4bec20;
-    void onMode(cocos2d::CCObject* sender);
-    void onNextFreeEffectID(cocos2d::CCObject* sender);
-    void onSpecialTarget(cocos2d::CCObject* sender);
-    TodoReturn updateEnterTargetIDState();
+    void addAreaDefaultControls(int) = win 0x3f46f0, m1 0x426d30, imac 0x4bfbb0;
+    void getModeValues(int, int&, bool&, bool&);
+    bool init(EnterEffectObject*, cocos2d::CCArray*) = win 0x3f3850, m1 0x42602c, imac 0x4bec20;
+    void onMode(cocos2d::CCObject* sender) = win 0x3f60e0;
+    void onNextFreeEffectID(cocos2d::CCObject* sender) = win 0x3f5d70;
+    void onSpecialTarget(cocos2d::CCObject* sender) = win 0x3f5de0;
+    void updateEnterTargetIDState() = win 0x3f5e80;
+
+    cocos2d::CCArray* m_modeButtons;
+    cocos2d::CCArray* m_targetButtons;
 }
 
 [[link(android)]]
@@ -18112,7 +18255,7 @@ class SetupAreaRotateTriggerPopup : SetupAreaMoveTriggerPopup {
 
     static SetupAreaRotateTriggerPopup* create(EnterEffectObject*, cocos2d::CCArray*);
 
-    bool init(EnterEffectObject*, cocos2d::CCArray*) = m1 0x4297c8, imac 0x4c2f00;
+    bool init(EnterEffectObject*, cocos2d::CCArray*) = win 0x3f6ce0, m1 0x4297c8, imac 0x4c2f00;
 }
 
 [[link(android)]]
@@ -18126,9 +18269,13 @@ class SetupAreaTintTriggerPopup : SetupAreaMoveTriggerPopup, HSVWidgetDelegate {
     virtual void valueDidChange(int, float) = win 0x3f8680, imac 0x4c57e0, m1 0x42b8b4, ios 0x3c5cc;
     virtual void hsvPopupClosed(HSVWidgetPopup*, cocos2d::ccHSVValue) = win 0x3f8a60, m1 0x42bae8, imac 0x4c5a50, ios 0x3c7d4;
 
-    bool init(EnterEffectObject*, cocos2d::CCArray*) = m1 0x42ad84, imac 0x4c4b30;
-    void onHSV(cocos2d::CCObject* sender);
-    TodoReturn updateHSVButton();
+    bool init(EnterEffectObject*, cocos2d::CCArray*) = win 0x3f7c40, m1 0x42ad84, imac 0x4c4b30;
+    void onHSV(cocos2d::CCObject* sender) = win 0x3f89e0;
+    void updateHSVButton() = win 0x3f8a80;
+
+    CCMenuItemSpriteExtra* m_hsvButton;
+    cocos2d::ccHSVValue m_hsvValue;
+    bool m_hsvChanged;
 }
 
 [[link(android)]]
@@ -18137,7 +18284,7 @@ class SetupAreaTransformTriggerPopup : SetupAreaMoveTriggerPopup {
 
     static SetupAreaTransformTriggerPopup* create(EnterEffectObject*, cocos2d::CCArray*);
 
-    bool init(EnterEffectObject*, cocos2d::CCArray*) = m1 0x428ba8, imac 0x4c1f30;
+    bool init(EnterEffectObject*, cocos2d::CCArray*) = win 0x3f6420, m1 0x428ba8, imac 0x4c1f30;
 }
 
 [[link(android)]]
@@ -18146,7 +18293,7 @@ class SetupAreaTriggerPopup : SetupAreaMoveTriggerPopup {
 
     static SetupAreaTriggerPopup* create(EnterEffectObject*, cocos2d::CCArray*);
 
-    bool init(EnterEffectObject*, cocos2d::CCArray*) = m1 0x42c188, imac 0x4c6330;
+    bool init(EnterEffectObject*, cocos2d::CCArray*) = win 0x3f8c00, m1 0x42c188, imac 0x4c6330;
 }
 
 [[link(android)]]
@@ -18473,19 +18620,27 @@ class SetupEnterEffectPopup : SetupTriggerPopup, HSVWidgetDelegate {
 
     virtual void determineStartValues() = win 0x408580, m1 0x363d00, imac 0x3e1800, ios 0x3f92a4;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x408b60, imac 0x3e1c10, m1 0x3640e0, ios 0x3f94f8;
-    virtual void updateInputValue(int, float&) = m1 0x36425c, imac 0x3e1db0, ios 0x3f9650;
-    virtual void updateInputNode(int, float) = m1 0x364228, imac 0x3e1d80, ios 0x3f961c;
+    virtual void updateInputValue(int, float&) = win 0x3f63f0, m1 0x36425c, imac 0x3e1db0, ios 0x3f9650;
+    virtual void updateInputNode(int, float) = win 0x3f63c0, m1 0x364228, imac 0x3e1d80, ios 0x3f961c;
     virtual void valueDidChange(int, float) = win 0x408750, imac 0x3e19c0, m1 0x363e70, ios 0x3f9410;
-    virtual float triggerValueFromSliderValue(int, float) = m1 0x3641a0, imac 0x3e1d10, ios 0x3f9594;
-    virtual float triggerSliderValueFromValue(int, float) = m1 0x3641f4, imac 0x3e1d50, ios 0x3f95e8;
+    virtual float triggerValueFromSliderValue(int, float) = win 0x3f6360, m1 0x3641a0, imac 0x3e1d10, ios 0x3f9594;
+    virtual float triggerSliderValueFromValue(int, float) = win 0x3f6390, m1 0x3641f4, imac 0x3e1d50, ios 0x3f95e8;
     virtual void hsvPopupClosed(HSVWidgetPopup*, cocos2d::ccHSVValue) = win 0x408a70, m1 0x363f34, imac 0x3e1a90, ios 0x3f94cc;
 
-    bool init(EnterEffectObject*, cocos2d::CCArray*, int) = m1 0x361a0c, imac 0x3deda0;
-    void onEnterType(cocos2d::CCObject* sender);
-    void onHSV(cocos2d::CCObject* sender);
-    void onNextFreeEnterChannel(cocos2d::CCObject* sender);
-    void onNextFreeEnterEffectID(cocos2d::CCObject* sender);
-    TodoReturn updateHSVButton();
+    bool init(EnterEffectObject*, cocos2d::CCArray*, int) = win 0x406570, m1 0x361a0c, imac 0x3deda0;
+    void onEnterType(cocos2d::CCObject* sender) = win 0x408910;
+    void onHSV(cocos2d::CCObject* sender) = win 0x4089f0;
+    void onNextFreeEnterChannel(cocos2d::CCObject* sender) = win 0x4088a0;
+    void onNextFreeEnterEffectID(cocos2d::CCObject* sender) = win 0x3f5d70;
+    void updateHSVButton() = win 0x408a90;
+
+    int m_objectID;
+    CCMenuItemToggler* m_enterOnlyToggler;
+    CCMenuItemToggler* m_exitOnlyToggler;
+    int m_enterType;
+    CCMenuItemSpriteExtra* m_hsvButton;
+    cocos2d::ccHSVValue m_hsvValue;
+    bool m_hsvChanged;
 }
 
 [[link(android)]]
@@ -18494,10 +18649,14 @@ class SetupEnterTriggerPopup : SetupTriggerPopup {
 
     static SetupEnterTriggerPopup* create(EnterEffectObject*, cocos2d::CCArray*);
 
-    virtual void determineStartValues() = imac 0x2896f0, m1 0x232768, ios 0x2d3498;
+    virtual void determineStartValues() = win 0x287eb0, imac 0x2896f0, m1 0x232768, ios 0x2d3498;
 
-    bool init(EnterEffectObject*, cocos2d::CCArray*) = m1 0x232188, imac 0x289090;
-    void onEnterType(cocos2d::CCObject* sender);
+    bool init(EnterEffectObject*, cocos2d::CCArray*) = win 0x287930, m1 0x232188, imac 0x289090;
+    void onEnterType(cocos2d::CCObject* sender) = win 0x287f80;
+
+    CCMenuItemToggler* m_enterOnlyToggler;
+    CCMenuItemToggler* m_exitOnlyToggler;
+    int m_enterType;
 }
 
 [[link(android)]]
