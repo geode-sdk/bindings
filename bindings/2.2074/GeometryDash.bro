@@ -370,7 +370,7 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
     // property 568
     float m_modY;
     // property 569
-    float m_modXVariance;
+    float m_duration;
     // property 570
     bool m_redirectDirection;
 }
@@ -5241,12 +5241,12 @@ class EnterEffectObject : EffectGameObject {
 
     static EnterEffectObject* create(char const*);
 
-    virtual void customSetup() = imac 0x186570, m1 0x14e030, ios 0x36ffc0;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1868b0, m1 0x14e368, ios 0x370254;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x174880, m1 0x140604, ios 0x369c38;
+    virtual void customSetup() = win 0x47fbf0, imac 0x186570, m1 0x14e030, ios 0x36ffc0;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x47fd50, imac 0x1868b0, m1 0x14e368, ios 0x370254;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x47df50, imac 0x174880, m1 0x140604, ios 0x369c38;
 
     bool init(char const*);
-    TodoReturn resetEnterAnimValues();
+    void resetEnterAnimValues();
 }
 
 [[link(android)]]
