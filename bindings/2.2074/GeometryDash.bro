@@ -2871,7 +2871,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     // virtual ~CreateParticlePopup();
 
     static CreateParticlePopup* create(gd::string p0) = m1 0x3ccc68, ios inline {
-        return CreateParticlePopup::create(0, 0, p0) = m1 0x3ccc68, imac 0x45bde0;
+        return CreateParticlePopup::create(0, 0, p0);
     }
     static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*, gd::string) = m1 0x3cca7c, imac 0x45bb70, ios 0x2cae0c;
     static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*) = win 0x414180, m1 0x3cca54, imac 0x45bb50, ios 0x2cad90;
@@ -10004,13 +10004,39 @@ class GJGroundLayer : cocos2d::CCLayer {
     }
     bool init(int, int) = win 0x2768f0, imac 0x5d2870, m1 0x506450, ios 0x2fe60;
     void loadGroundSprites(int, bool) = win 0x276e60, m1 0x506af4, imac 0x5d2f10;
-    void positionGround(float) = win inline, m1 0x507460, imac 0x5d38b0;
-    TodoReturn scaleGround(float) = win 0x277310, m1 0x506f20, imac 0x5d3350;
-    void toggleVisible01(bool) = win inline, m1 0x506df0, imac 0x5d31f0;
-    void toggleVisible02(bool) = win inline, m1 0x506e20, imac 0x5d3230;
-    void updateGround01Color(cocos2d::ccColor3B) = win inline, m1 0x506d70, imac 0x5d3170, ios 0x30630;
-    void updateGround02Color(cocos2d::ccColor3B) = win inline, m1 0x506e9c, imac 0x5d32c0, ios 0x3075c;
-    TodoReturn updateGroundPos(cocos2d::CCPoint);
+    void positionGround(float y) = win inline, m1 0x507460, imac 0x5d38b0  {
+        this->setPosition(0.f, y);
+    }
+    void scaleGround(float) = win 0x277310, m1 0x506f20, imac 0x5d3350;
+    void toggleVisible01(bool visible) = win inline, m1 0x506df0, imac 0x5d31f0 {
+        if (m_showGround1 == visible) return;
+        m_showGround1 = visible;
+        this->setVisible(visible && m_showGround2);
+    }
+    void toggleVisible02(bool visible) = win inline, m1 0x506e20, imac 0x5d3230 {
+        if (m_showGround2 == visible) return;
+        m_showGround2 = visible;
+        this->setVisible(visible && m_showGround1);
+    }
+    void updateGround01Color(cocos2d::ccColor3B color) = win inline, m1 0x506d70, imac 0x5d3170 {
+        if (auto children = m_ground1Sprite->getChildren()) {
+            for (int i = 0; i < children->count(); i++) {
+                static_cast<cocos2d::CCSprite*>(children->objectAtIndex(i))->setColor(color);
+            }
+        }
+    }
+    void updateGround02Color(cocos2d::ccColor3B color) = win inline, m1 0x506e9c, imac 0x5d32c0 {
+        if (!m_ground2Sprite) return;
+        if (auto children = m_ground2Sprite->getChildren()) {
+            for (int i = 0; i < children->count(); i++) {
+                static_cast<cocos2d::CCSprite*>(children->objectAtIndex(i))->setColor(color);
+            }
+        }
+    }
+    void updateGroundPos(cocos2d::CCPoint pos) = win inline, m1 0x506e4c, imac 0x5d3270 {
+        m_ground1Sprite->setPosition(pos);
+        if (m_ground2Sprite) m_ground2Sprite->setPosition(pos);
+    }
     void updateGroundWidth(bool) = m1 0x507014, imac 0x5d3460;
     void updateLineBlend(bool blend) = win inline, imac 0x5d3670, m1 0x507214 {
         if (m_blendLine == blend) return;
@@ -12597,28 +12623,31 @@ class LabelGameObject : EffectGameObject {
 
     static LabelGameObject* create();
 
-    virtual bool init() = m1 0x17033c, imac 0x1afb90, ios 0x38166c;
+    virtual bool init() = win 0x49a900, m1 0x17033c, imac 0x1afb90, ios 0x38166c;
     virtual void setOpacity(unsigned char) = win 0x49ac60, m1 0x170758, imac 0x1affb0, ios 0x38198c;
-    virtual void setupCustomSprites(gd::string) = imac 0x1afbc0, m1 0x17036c, ios 0x38169c;
-    virtual void addMainSpriteToParent(bool) = m1 0x170fd0, imac 0x1b0900, ios 0x381fec;
-    virtual void resetObject() = m1 0x171c8c, imac 0x1b1870, ios 0x3823a0;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = imac 0x1b0690, m1 0x170d8c, ios 0x381e24;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x171028, imac 0x1b0960, ios 0x382044;
-    virtual void setObjectColor(cocos2d::ccColor3B const&) = m1 0x170f88, imac 0x1b08b0, ios 0x381fa4;
-    virtual void updateTextKerning(int) = imac 0x1b0030, m1 0x1707dc, ios 0x381a10;
-    virtual int getTextKerning() = m1 0x199b20, imac 0x1e1d40, ios 0x3922d0;
+    virtual void setupCustomSprites(gd::string) = win 0x49a940, imac 0x1afbc0, m1 0x17036c, ios 0x38169c;
+    virtual void addMainSpriteToParent(bool) = win 0x49b150, m1 0x170fd0, imac 0x1b0900, ios 0x381fec;
+    virtual void resetObject() = win 0x49b570, m1 0x171c8c, imac 0x1b1870, ios 0x3823a0;
+    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49af90, imac 0x1b0690, m1 0x170d8c, ios 0x381e24;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49b1c0, m1 0x171028, imac 0x1b0960, ios 0x382044;
+    virtual void setObjectColor(cocos2d::ccColor3B const&) = win 0x49b100, m1 0x170f88, imac 0x1b08b0, ios 0x381fa4;
+    virtual void updateTextKerning(int) = win 0x49ad20, imac 0x1b0030, m1 0x1707dc, ios 0x381a10;
+    virtual int getTextKerning() = win 0x47d930, m1 0x199b20, imac 0x1e1d40, ios 0x3922d0;
 
-    TodoReturn createLabel(gd::string);
-    TodoReturn queueUpdateLabel(gd::string);
-    TodoReturn removeLabel();
-    TodoReturn unlockLabelColor();
+    void createLabel(gd::string) = win 0x49a9e0;
+    void queueUpdateLabel(gd::string);
+    void removeLabel() = win 0x49ab80;
+    void unlockLabelColor();
     void updateLabel(float);
     void updateLabel(gd::string) = win 0x49af00, imac 0x1b04c0;
-    TodoReturn updateLabelAlign(int);
-    TodoReturn updateLabelIfDirty();
-    TodoReturn updatePreviewLabel() = win 0x49ad40;
+    void updateLabelAlign(int) = win 0x49aca0;
+    void updateLabelIfDirty();
+    void updatePreviewLabel() = win 0x49ad40;
 
-    PAD = android32 0x11;
+    cocos2d::CCLabelBMFont* m_label;
+    bool m_labelDirty;
+    gd::string m_labelString;
+    bool m_labelColorLocked;
 
     // property 391
     int m_alignment;
@@ -12635,7 +12664,7 @@ class LabelGameObject : EffectGameObject {
     // property 488
     int m_kerning;
 
-    PAD = android32 0x8;
+    bool m_updateLabel;
 }
 
 [[link(android)]]
@@ -17574,8 +17603,8 @@ class SetItemIDLayer : SetupTriggerPopup {
     virtual void valueDidChange(int, float) = win 0x3e9de0, imac 0x9c700, m1 0x8f3ac, ios 0x4121f4;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x3e9c40, imac 0x9c5e0, m1 0x8f2a4, ios 0x4120ec;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x8eba0, imac 0x9bdd0;
-    TodoReturn updateEditorLabel();
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3e94e0, m1 0x8eba0, imac 0x9bdd0;
+    void updateEditorLabel();
 }
 
 [[link(android)]]

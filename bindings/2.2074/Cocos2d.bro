@@ -207,38 +207,151 @@ class cocos2d::CCEaseExponentialOut : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseSineIn : cocos2d::CCActionEase {
-    static cocos2d::CCEaseSineIn* create(cocos2d::CCActionInterval*) = m1 0x45f004, imac 0x4ff630;
+    static cocos2d::CCEaseSineIn* create(cocos2d::CCActionInterval* pAction) = m1 0x45f004, imac 0x4ff630, ios inline {
+        CCEaseSineIn *pRet = new CCEaseSineIn();
+        if (pRet)
+        {
+            if (pRet->initWithAction(pAction))
+            {
+                pRet->autorelease();
+            }
+            else
+            {
+                CC_SAFE_RELEASE_NULL(pRet);
+            }
+        }
+
+        return pRet; 
+    }
 
     // CCEaseSineIn(cocos2d::CCEaseSineIn const&);
     // CCEaseSineIn();
 
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x45f0ac, imac 0x4ff6d0;
-    virtual void update(float) = m1 0x45f194, imac 0x4ff7d0;
-    virtual cocos2d::CCActionInterval* reverse() = m1 0x45f1d8, imac 0x4ff810;
+    // I can't use flippin CCZone constructor because codegen does not work with args in constructors
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = m1 0x45f0ac, imac 0x4ff6d0, ios inline {
+        // CCZone* pNewZone = NULL;
+        CCEaseSineIn* pCopy = NULL;
+        if(pZone && pZone->m_pCopyObject)
+        {
+            //in case of being called at sub class
+            pCopy = (CCEaseSineIn*)(pZone->m_pCopyObject);
+        }
+        else
+        {
+            pCopy = new CCEaseSineIn();
+            // pNewZone = new CCZone(pCopy);
+        }
+        pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()));
+        
+        // CC_SAFE_DELETE(pNewZone);
+        return pCopy;
+    }
+    // This doesn't even get called. Why? I don't know.
+    virtual void update(float time) = m1 0x45f194, imac 0x4ff7d0, ios inline {
+        m_pInner->update(-1 * cosf(time * (float)M_PI_2) + 1);
+    }
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x45f1d8, imac 0x4ff810, ios inline {
+        return CCEaseSineOut::create(m_pInner->reverse());
+    }
 }
 
 [[link(win, android)]]
 class cocos2d::CCEaseSineOut : cocos2d::CCActionEase {
-    static cocos2d::CCEaseSineOut* create(cocos2d::CCActionInterval*) = imac 0x4ff830, m1 0x45f1f8;
+    static cocos2d::CCEaseSineOut* create(cocos2d::CCActionInterval* pAction) = imac 0x4ff830, m1 0x45f1f8, ios inline {
+        CCEaseSineOut *pRet = new CCEaseSineOut();
+        if (pRet)
+        {
+            if (pRet->initWithAction(pAction))
+            {
+                pRet->autorelease();
+            }
+            else
+            {
+                CC_SAFE_RELEASE_NULL(pRet);
+            }
+        }
+
+        return pRet; 
+    }
 
     // CCEaseSineOut(cocos2d::CCEaseSineOut const&);
     // CCEaseSineOut();
 
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x45f2a0, imac 0x4ff8d0;
-    virtual void update(float) = m1 0x45f388, imac 0x4ff9d0;
-    virtual cocos2d::CCActionInterval* reverse() = m1 0x45f3c4, imac 0x4ffa00;
+    // I can't use flippin CCZone constructor because codegen does not work with args in constructors
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = m1 0x45f2a0, imac 0x4ff8d0, ios inline {
+        // CCZone* pNewZone = NULL;
+        CCEaseSineOut* pCopy = NULL;
+        if(pZone && pZone->m_pCopyObject)
+        {
+            //in case of being called at sub class
+            pCopy = (CCEaseSineOut*)(pZone->m_pCopyObject);
+        }
+        else
+        {
+            pCopy = new CCEaseSineOut();
+            // pNewZone = new CCZone(pCopy);
+        }
+        pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()));
+        
+        // CC_SAFE_DELETE(pNewZone);
+        return pCopy;
+    }
+    virtual void update(float time) = m1 0x45f388, imac 0x4ff9d0, ios inline {
+        m_pInner->update(sinf(time * (float)M_PI_2));
+    }
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x45f3c4, imac 0x4ffa00, ios inline {
+        return CCEaseSineIn::create(m_pInner->reverse());
+    }
 }
 
 [[link(win, android)]]
 class cocos2d::CCEaseSineInOut : cocos2d::CCActionEase {
-    static cocos2d::CCEaseSineInOut* create(cocos2d::CCActionInterval*) = m1 0x45f3e4, imac 0x4ffa20;
+    static cocos2d::CCEaseSineInOut* create(cocos2d::CCActionInterval* pAction) = m1 0x45f3e4, imac 0x4ffa20, ios inline {
+         CCEaseSineInOut *pRet = new CCEaseSineInOut();
+        if (pRet)
+        {
+            if (pRet->initWithAction(pAction))
+            {
+                pRet->autorelease();
+            }
+            else
+            {
+                CC_SAFE_RELEASE_NULL(pRet);
+            }
+        }
+
+        return pRet; 
+    }
 
     // CCEaseSineInOut(cocos2d::CCEaseSineInOut const&);
     // CCEaseSineInOut();
 
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x45f48c, imac 0x4ffac0;
-    virtual void update(float) = m1 0x45f574, imac 0x4ffbc0;
-    virtual cocos2d::CCActionInterval* reverse() = imac 0x4ffc00, m1 0x45f5c0;
+    // I can't use flippin CCZone constructor because codegen does not work with args in constructors
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = m1 0x45f48c, imac 0x4ffac0, ios inline {
+        // CCZone* pNewZone = NULL;
+        CCEaseSineInOut* pCopy = NULL;
+        if(pZone && pZone->m_pCopyObject)
+        {
+            //in case of being called at sub class
+            pCopy = (CCEaseSineInOut*)(pZone->m_pCopyObject);
+        }
+        else
+        {
+            pCopy = new CCEaseSineInOut();
+            // pNewZone = new CCZone(pCopy);
+        }
+
+        pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()));
+        
+        // CC_SAFE_DELETE(pNewZone);
+        return pCopy;
+    }
+    virtual void update(float time) = m1 0x45f574, imac 0x4ffbc0, ios inline {
+        m_pInner->update(-0.5f * (cosf((float)M_PI * time) - 1));
+    }
+    virtual cocos2d::CCActionInterval* reverse() = imac 0x4ffc00, m1 0x45f5c0, ios inline {
+        return CCEaseSineInOut::create(m_pInner->reverse());
+    }
 }
 
 [[link(win, android)]]
@@ -578,7 +691,7 @@ class cocos2d::CCSet : cocos2d::CCObject {
         
         cocos2d::CCSetIterator it;
 
-        for( it = m_pSet->begin() = imac 0x79e4b0, m1 0x6b09d4; it != m_pSet->end(); ++it)
+        for( it = m_pSet->begin(); it != m_pSet->end(); ++it)
         {
             if (*it)
             {
@@ -4091,4 +4204,29 @@ class cocos2d::CCPoolManager {
 	void push();
 	void removeObject(cocos2d::CCObject*);
 	static cocos2d::CCPoolManager* sharedPoolManager();
+}
+
+[[link(win, android)]]
+class cocos2d::CCActionEase : cocos2d::CCActionInterval {
+    
+    virtual ~CCActionEase() = ios 0x26afb8;
+
+    bool initWithAction(cocos2d::CCActionInterval *pAction) = ios 0x26ae94;
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone);
+    virtual void startWithTarget(cocos2d::CCNode *pTarget) = ios 0x26b00c;
+    virtual void stop() = ios 0x26b03c;
+    virtual void update(float time) = ios 0x26b06c;
+    virtual cocos2d::CCActionInterval* reverse();
+    virtual cocos2d::CCActionInterval* getInnerAction() = ios 0x26b09c;
+
+    static CCActionEase* create(cocos2d::CCActionInterval *pAction);
+
+    cocos2d::CCActionInterval* m_pInner;
+}
+
+[[link(win, android)]]
+class cocos2d::CCZone {
+    // CCZone(cocos2d::CCObject*) = ios 0x2534b4;
+
+    cocos2d::CCObject* m_pCopyObject;
 }
