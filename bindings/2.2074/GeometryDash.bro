@@ -3822,6 +3822,12 @@ class DashRingObject : RingObject {
 }
 
 [[link(android)]]
+class DelayedSpawnNode {
+    EffectGameObject* m_gameObject;
+    float m_spawnDelay;
+}
+
+[[link(android)]]
 class DemonFilterDelegate {
     virtual void demonFilterSelectClosed(int) {}
 }
@@ -4757,16 +4763,16 @@ class EffectGameObject : EnhancedGameObject {
     virtual void setObjectLabel(cocos2d::CCLabelBMFont*) = win 0x47d2c0, m1 0x199b18, imac 0x1e1d30, ios 0x3922c8;
     virtual void stateSensitiveOff(GJBaseGameLayer*) = win 0x48fcd0, imac 0x1a9f90, m1 0x16b578, ios 0x37f260;
 
-    TodoReturn getTargetColorIndex();
+    int getTargetColorIndex();
     bool init(char const*) = win 0x48d1a0;
-    TodoReturn playTriggerEffect() = win 0x48d2b0;
-    TodoReturn resetSpawnTrigger();
+    void playTriggerEffect() = win 0x48d2b0;
+    void resetSpawnTrigger();
     void setTargetID(int);
     void setTargetID2(int);
-    TodoReturn triggerEffectFinished();
-    TodoReturn updateInteractiveHover(float);
-    TodoReturn updateSpecialColor();
-    TodoReturn updateSpeedModType() = win 0x493010;
+    void triggerEffectFinished() = win 0x48d780;
+    void updateInteractiveHover(float) = win 0x48fe30;
+    void updateSpecialColor() = win 0x48fdb0;
+    void updateSpeedModType() = win 0x493010;
 
     // this is probably pretty wrong :D
 
@@ -4776,7 +4782,7 @@ class EffectGameObject : EnhancedGameObject {
     float m_duration;
     // property 35
     float m_opacity;
-    PAD = android32 0x4, android64 0x4, win 0x4, mac 0x4;
+    bool m_triggerEffectPlaying;
     // property 51
     int m_targetGroupID;
     // property 71
@@ -4799,10 +4805,8 @@ class EffectGameObject : EnhancedGameObject {
     bool m_usesPlayerColor2;
     // property 17
     bool m_usesBlending;
-    // property 28
-    float m_moveOffsetX;
-    // property 29
-    float m_moveOffsetY;
+    // property 28, property 29
+    cocos2d::CCPoint m_moveOffset;
     // property 30
     EasingType m_easingType;
     // property 85
@@ -4824,7 +4828,7 @@ class EffectGameObject : EnhancedGameObject {
     // property 144
     float m_moveModY;
     // property 393
-    bool m_property393;
+    bool m_smallStep;
     // property 394
     bool m_isDirectionFollowSnap360;
     // property 395
@@ -4835,7 +4839,8 @@ class EffectGameObject : EnhancedGameObject {
     bool m_isDynamicMode;
     // property 544
     bool m_isSilent;
-    PAD = android 0x6, win 0x6, mac 0x6;
+    // property 535
+    int m_specialTarget;
     // property 68
     float m_rotationDegrees;
     // property 69
@@ -4883,7 +4888,7 @@ class EffectGameObject : EnhancedGameObject {
     // property 86
     bool m_pulseExclusive;
     // property 210
-    bool m_property210;
+    bool m_legacyHSV;
     // property 56
     bool m_activateGroup;
     // property 81
@@ -4896,7 +4901,8 @@ class EffectGameObject : EnhancedGameObject {
     bool m_isDualMode;
     // property 76
     int m_animationID;
-    PAD = android 0x8, win 0x8, mac 0x8;
+    float m_spawnXPosition;
+    int m_spawnOrder;
     // property 87
     bool m_isMultiTriggered;
     // property 102
@@ -4933,12 +4939,17 @@ class EffectGameObject : EnhancedGameObject {
     int m_collectiblePoints;
     // property 463
     bool m_hasNoAnimation;
-    PAD = android32 0x1f, android64 0x23, win 0x23, mac 0x23;
+    void* m_unk698;
+    int m_unk6a0;
+    int m_unk6a4;
+    float m_unk6a8;
+    float m_unk6ac;
+    float m_unk6b0;
+    bool m_unk6b4;
     // property 148
     float m_gravityValue;
     // property 284
     bool m_isSinglePTouch;
-    PAD = android 0x3, win 0x3, mac 0x3;
     // property 371
     float m_zoomValue;
     // property 111
@@ -4952,7 +4963,7 @@ class EffectGameObject : EnhancedGameObject {
     // property 370
     bool m_cameraDisableGridSnap;
     // property 118
-    bool m_property118;
+    bool m_endReversed;
     // property 120
     float m_timeWarpTimeMod;
     // property 13
@@ -4963,15 +4974,20 @@ class EffectGameObject : EnhancedGameObject {
     int m_channelValue;
     // property 117
     bool m_isReverse;
-    PAD = android 0xb, win 0xb, mac 0xb;
+    short m_speedModType;
+    cocos2d::CCPoint m_speedStart;
     // property 12
     int m_secretCoinID;
-    PAD = android32 0x1c, android64 0x24, win 0x24, mac 0x24;
+    cocos2d::CCPoint m_endPosition;
+    float m_spawnTriggerDelay;
+    float m_unk704;
+    bool m_unk708;
+    cocos2d::CCLabelBMFont* m_objectLabel;
     // property 280
     bool m_ignoreGroupParent;
     // property 281
     bool m_ignoreLinkedObjects;
-    PAD = android 0x1, win 0x1, mac 0x1;
+    bool m_channelChanged;
 }
 
 [[link(android), depends(CAState), depends(PulseEffectAction), depends(CountTriggerAction), depends(OpacityEffectAction), depends(TouchToggleAction), depends(CollisionTriggerAction), depends(ToggleTriggerAction), depends(SpawnTriggerAction), depends(GroupCommandObject2), depends(TimerItem), depends(TimerTriggerAction)]]
@@ -13381,9 +13397,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     virtual void removeFromGroup(GameObject*, int) = win 0x2d61c0, imac 0xef940, m1 0xd4a74, ios 0x361620;
     virtual void updateObjectSection(GameObject*) = win 0x2d6f90, imac 0xf0b10, m1 0xd59e4, ios 0x36221c;
     virtual TodoReturn updateDisabledObjectsLastPos(cocos2d::CCArray*) = win 0x2d7240, imac 0xf0c50, m1 0xd5aec, ios 0x362318;
-    virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x2d5f10, imac 0xef260, m1 0xd43f0, ios 0x3613c0;
-    virtual cocos2d::CCPoint posForTime(float) = win 0x2d5f80, imac 0xef2f0, m1 0xd447c, ios 0x361430;
-    virtual void resetSPTriggered() = imac 0xef390, m1 0xd44bc, ios 0x361450;
+    virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x2d5e60, imac 0xef260, m1 0xd43f0, ios 0x3613c0;
+    virtual cocos2d::CCPoint posForTime(float) = win 0x2d5f10, imac 0xef2f0, m1 0xd447c, ios 0x361430;
+    virtual void resetSPTriggered() = win 0x2d5f80, imac 0xef390, m1 0xd44bc, ios 0x361450;
     virtual TodoReturn didRotateGameplay() = win 0x2d6f20, imac 0xf0910, m1 0xd57e8, ios 0x362078;
     virtual TodoReturn manualUpdateObjectColors(GameObject*) = win 0x2d1700, m1 0xd0ff4, imac 0xeb6d0, ios 0x35ea4c;
     virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x2d9060, imac 0xf3080, m1 0xd7c6c, ios 0x363bf0;
@@ -13431,7 +13447,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn forceShowSelectedObjects(bool);
     TodoReturn fullUpdateDisabledGroups();
     TodoReturn getAllObjects();
-    TodoReturn getDelayedSpawnNode();
+    DelayedSpawnNode* getDelayedSpawnNode();
     TodoReturn getGridPos(cocos2d::CCPoint);
     float getLastObjectX() = win 0x2d5fd0, m1 0xd44fc, imac 0xef3e0;
     gd::string getLevelString() = win 0x2ce530, imac 0xe3a60;
@@ -21718,8 +21734,7 @@ class TeleportPortalObject : RingObject {
     bool m_snapGround;
     // property 591
     bool m_redirectDash;
-
-    GJBaseGameLayer* m_gameLayer;
+    cocos2d::CCPoint m_teleportPosition;
 }
 
 [[link(android)]]
