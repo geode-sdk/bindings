@@ -13,8 +13,11 @@ class SFXTriggerInstance {
 }
 
 class EventTriggerInstance {
-	PAD = win 0x10;
-	gd::vector<int> m_unkVecInt;
+	int m_targetID;
+	int m_uniqueID;
+	int m_controlID;
+	bool m_inactive;
+	gd::vector<int> m_remapKeys;
 }
 
 class SongChannelState {
@@ -161,7 +164,14 @@ class TimerItem {
 }
 
 class EnterEffectAnimValue {
-	PAD = win 0x20;
+	int m_key;
+	float m_value;
+	float m_distance;
+	float m_duration;
+	float m_elapsed;
+	EasingType m_easingType;
+	float m_easingRate;
+	int m_easingBuffer;
 }
 
 class DynamicMoveCalculation {
