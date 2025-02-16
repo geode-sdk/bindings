@@ -5158,11 +5158,11 @@ class EnhancedGameObject : GameObject {
     float m_unk540;
     float m_unk544;
     bool m_unk548;
-    float m_frameTime;
+    float m_randomFrameTime;
     bool m_visible;
     bool m_shouldNotHideAnimFreeze;
     bool m_usesSpecialAnimation;
-    float m_unk554;
+    float m_frameTime;
     short m_frames;
     bool m_hasCustomAnimation;
     bool m_hasCustomRotation;
@@ -5172,7 +5172,7 @@ class EnhancedGameObject : GameObject {
     // property 97
     float m_rotationSpeed;
 
-    float m_rotationAngle; 
+    float m_rotationAngle;
     float m_rotationDelta;
     float m_rotationAnimationSpeed;
     
@@ -7421,7 +7421,7 @@ class GameObject : CCSpritePlus {
     OBB2D* m_orientedBox;
     bool m_shouldUseOuterOb;
     cocos2d::CCSprite* m_glowSprite;
-    int m_unk2F8;
+    bool m_unk2F8;
     float m_width;
     float m_height;
     bool m_hasSpecialChild;
