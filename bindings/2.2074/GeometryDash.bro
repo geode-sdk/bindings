@@ -4352,11 +4352,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void activateTransformControl(cocos2d::CCObject*) = win 0x1138d0, m1 0x3aec4, imac 0x40720;
     void addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*) = win 0x114390;
     TodoReturn addSnapPosition(cocos2d::CCPoint);
-    TodoReturn alignObjects(cocos2d::CCArray*, bool);
+    void alignObjects(cocos2d::CCArray* objects, bool axisY) = win 0x1203a0;
     void applyOffset(GameObject*) = win 0x120d40;
     TodoReturn applySpecialOffset(cocos2d::CCPoint, GameObject*, cocos2d::CCPoint);
     TodoReturn arrayContainsClass(cocos2d::CCArray*, int);
-    TodoReturn assignNewGroups(bool) = imac 0x45970;
+    void assignNewGroups(bool groupY) = imac 0x45970, win 0x1178c0;
     TodoReturn canAllowMultiActivate(GameObject*, cocos2d::CCArray*);
     bool canSelectObject(GameObject* object) = win 0x10ec30, imac 0x3c770, m1 0x373c8;
     TodoReturn centerCameraOnObject(GameObject*);
@@ -8750,7 +8750,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processCommands(float) = win 0x234170, imac 0x1435a0, m1 0x11a2d0;
     void processDynamicObjectActions(int, float) = win 0x228fa0;
     void processFollowActions() = win 0x22b2a0;
-    TodoReturn processItems();
+    void processItems() = win 0x210db0;
     void processMoveActions() = win 0x2282d0, m1 0x10ffa0, imac 0x136810;
     void processMoveActionsStep(float, bool) = win 0x2262f0, m1 0x10e5b8, imac 0x1347b0;
     void processOptionsTrigger(GameOptionsTrigger*) = win 0x21e9a0, imac 0x12c930, m1 0x107a5c;
