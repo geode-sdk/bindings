@@ -4978,6 +4978,8 @@ class EffectGameObject : EnhancedGameObject {
     cocos2d::CCPoint m_speedStart;
     // property 12
     int m_secretCoinID;
+    bool m_unk6f4;
+    bool m_unk6f5;
     cocos2d::CCPoint m_endPosition;
     float m_spawnTriggerDelay;
     float m_unk704;
