@@ -773,12 +773,12 @@ GEODE_MEMBER_CHECK(SavedSpecialObjectState, m_animationID, 0x4);
 
 GEODE_SIZE_CHECK(CAState, 0x44);
 GEODE_MEMBER_CHECK(CAState, m_fromColor, 0x0);
-GEODE_MEMBER_CHECK(CAState, m_toColor, 0x4);
-GEODE_MEMBER_CHECK(CAState, m_color, 0x8);
-GEODE_MEMBER_CHECK(CAState, m_property19, 0xc);
-GEODE_MEMBER_CHECK(CAState, m_blending, 0xd);
-GEODE_MEMBER_CHECK(CAState, m_copyOpacity, 0xe);
-GEODE_MEMBER_CHECK(CAState, m_unknown, 0xf);
+GEODE_MEMBER_CHECK(CAState, m_toColor, 0x3);
+GEODE_MEMBER_CHECK(CAState, m_color, 0x6);
+GEODE_MEMBER_CHECK(CAState, m_property19, 0x9);
+GEODE_MEMBER_CHECK(CAState, m_blending, 0xa);
+GEODE_MEMBER_CHECK(CAState, m_copyOpacity, 0xb);
+GEODE_MEMBER_CHECK(CAState, m_unknown, 0xc);
 GEODE_MEMBER_CHECK(CAState, m_playerColor, 0x10);
 GEODE_MEMBER_CHECK(CAState, m_colorID, 0x14);
 GEODE_MEMBER_CHECK(CAState, m_copyID, 0x18);
