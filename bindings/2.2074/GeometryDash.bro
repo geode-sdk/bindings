@@ -4391,7 +4391,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn createRockEdges(cocos2d::CCArray*);
     void createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool) = win 0x115580;
     void createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool) = win 0x116660;
-    UndoObject* createUndoObject(UndoCommand, bool) = win 0x10f830, imac 0x3d3e0;
+    UndoObject* createUndoObject(UndoCommand, bool) = win 0x10f830, m1 0x37f50, imac 0x3d3e0;
     TodoReturn createUndoSelectObject(bool) = win 0x10fb50;
     TodoReturn deactivateRotationControl();
     TodoReturn deactivateScaleControl() = win 0x113480;
@@ -7672,10 +7672,10 @@ class GameObject : CCSpritePlus {
 class GameObjectCopy : cocos2d::CCObject {
     // virtual ~GameObjectCopy();
 
-    static GameObjectCopy* create(GameObject*) = win 0x2db040, imac 0xe3820;
+    static GameObjectCopy* create(GameObject*) = win 0x2db040, m1 0xca710, imac 0xe3820;
 
     bool init(GameObject*);
-    void resetObject() = win 0x2db140, imac 0xe3940;
+    void resetObject() = win 0x2db140, m1 0xca828, imac 0xe3940;
 
     GameObject* m_object;
     cocos2d::CCPoint m_position;
@@ -22332,19 +22332,29 @@ class UISettingsGameObject : EffectGameObject {
     bool m_yRelative;
 }
 
-[[link(android)]]
+[[link(android), depends(GJTransformState)]]
 class UndoObject : cocos2d::CCObject {
     UndoObject() {
         m_objectCopy = nullptr;
+        m_command = (UndoCommand)0;
         m_objects = nullptr;
-        // some of the floats are set to 1.0 but idk which who cares
+        m_redo = false;
+        m_undoTransform = false;
     }
     virtual ~UndoObject() {
         if (m_objectCopy) m_objectCopy->release();
         if (m_objects) m_objects->release();
     }
 
-    static UndoObject* create(GameObject*, UndoCommand) = m1 0xc7594;
+    static UndoObject* create(GameObject* object, UndoCommand command) = win inline, m1 0xc7594, imac 0xe0290 {
+        auto ret = new UndoObject();
+        if (ret->init(object, command)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
     static UndoObject* createWithArray(cocos2d::CCArray* arrOfObjects, UndoCommand command) {
         auto* ret = new UndoObject();
         if (ret->init(arrOfObjects, command)) {
@@ -22365,7 +22375,14 @@ class UndoObject : cocos2d::CCObject {
         }
         return true;
     }
-    bool init(GameObject*, UndoCommand) = m1 0xca710;
+    bool init(GameObject* object, UndoCommand command) = win inline {
+        if (object) {
+            m_objectCopy = GameObjectCopy::create(object);
+            m_objectCopy->retain();
+        }
+        m_command = command;
+        return true;
+    }
     TodoReturn initWithTransformObjects(cocos2d::CCArray*, UndoCommand);
     void setObjects(cocos2d::CCArray*);
 
@@ -22373,6 +22390,7 @@ class UndoObject : cocos2d::CCObject {
     UndoCommand m_command;
     cocos2d::CCArray* m_objects;
     bool m_redo;
+    bool m_undoTransform;
     GJTransformState m_transformState;
 }
 

@@ -73,6 +73,26 @@ class DynamicObjectAction {
 }
 
 class GJTransformState {
+	GJTransformState() {
+        m_unk1 = 0.f;
+        m_unk2 = false;
+        m_unk5 = cocos2d::CCPoint {};
+        m_unk6 = cocos2d::CCPoint {};
+        m_unk7 = cocos2d::CCPoint {};
+        m_angleY = 0.f;
+        m_skewX = 0.f;
+        m_skewY = 0.f;
+        m_unk3 = 0.f;
+        m_unk4 = 0.f;
+        m_unk5.x = 0.f;
+        m_unk5.y = 0.f;
+        m_scaleX = 1.f;
+        m_scaleY = 1.f;
+        m_angleX = 0.f;
+        m_unk8 = 1.f;
+        m_unk9 = 1.f;
+	}
+
 	float m_scaleX;
 	float m_scaleY;
 	float m_angleX;
@@ -80,7 +100,7 @@ class GJTransformState {
 	float m_skewX;
 	float m_skewY;
 	float m_unk1;
-	float m_unk2;
+	bool m_unk2;
 	float m_unk3;
 	float m_unk4;
 	cocos2d::CCPoint m_unk5;
