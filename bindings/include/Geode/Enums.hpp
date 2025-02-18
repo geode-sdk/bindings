@@ -501,9 +501,6 @@ enum class ObjectScaleType {
     X = 1,
     Y = 2
 };
-enum class SavedActiveObjectState {};
-enum class SavedSpecialObjectState {};
-enum class SavedObjectStateRef {};
 
 // Thanks cocoa!
 #ifdef GEODE_IS_MACOS

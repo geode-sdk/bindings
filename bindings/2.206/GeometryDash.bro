@@ -2198,9 +2198,9 @@ class CheckpointObject : cocos2d::CCNode {
 	short m_unkShort1;
 	PAD = win 0x2;
 	void* m_maybeAPointer2;
-	gd::vector<DynamicSaveObject> m_vectorDynamicSaveObjects;
-	gd::vector<ActiveSaveObject1> m_vectorActiveSaveObjects1;
-	gd::vector<ActiveSaveObject2> m_vectorActiveSaveObjects2;
+	gd::vector<SavedObjectStateRef> m_vectorDynamicSaveObjects;
+	gd::vector<SavedActiveObjectState> m_vectorActiveSaveObjects1;
+	gd::vector<SavedSpecialObjectState> m_vectorActiveSaveObjects2;
 	EffectManagerState m_effectManagerState;
 	cocos2d::CCArray* m_gradientTriggerObjectArray;
 	bool m_unkBool1;
