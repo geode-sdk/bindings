@@ -7598,25 +7598,26 @@ class GameObject : CCSpritePlus {
     // property 61
     short m_editorLayer2;
     int m_enabledGroupsCounter;
-    bool m_unk4ac;
-    bool m_unk4ad;
+    bool m_updateCustomContentSize;
+    bool m_hasContentSize;
 
     // property 121
     bool m_isNoTouch;
-    cocos2d::CCSize m_unk4b0;
+    cocos2d::CCSize m_lastSize;
     cocos2d::CCPoint m_lastPosition;
     int m_unk4C0;
     int m_unk4C4;
     int m_unk4C8;
     int m_unk4CC;
-    int m_unk4D0;
-    bool m_unk4D4;
-    bool m_unk4D5;
-    bool m_unk4D6;
-    bool m_unk4D7;
-    bool m_unk4D8;
-    bool m_unk4D9;
-    bool m_unk4DA;
+    // 0: GameObject, 1: EffectGameObject, 2: AnimatedGameObject, 4: EnhancedGameObject, 5: SmartGameObject
+    int m_classType;
+    bool m_isTrigger;
+    bool m_isSpawnOrderTrigger;
+    bool m_isColorTrigger;
+    bool m_dontIgnoreDuration;
+    bool m_canBeControlled;
+    bool m_isSpawnOrderTrigger2;
+    bool m_isStartPos;
 
     // property 103
     bool m_isHighDetail;
