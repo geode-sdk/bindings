@@ -52,7 +52,7 @@ GEODE_SIZE_CHECK(GJBaseGameLayer, 0x2d68);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player1, 0x894);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_player2, 0x898);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0x95c);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unknownE38, 0x98c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_parentGroupsDict, 0x98c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xa48);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_particlesDict, 0x2a04);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_customParticles, 0x2a08);
@@ -160,6 +160,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_unkMapIntChannelGroup474, 0x474);
 GEODE_MEMBER_CHECK(GameManager, m_playLayer, 0x16c);
 GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 
+GEODE_SIZE_CHECK(EditorUI, 0x3b8);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
 GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x1c0);

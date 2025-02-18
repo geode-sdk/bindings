@@ -213,7 +213,21 @@ public class Broma {
         
         public CConv getCallingConvention(Platform platform) {
             if (platform != Platform.WINDOWS32) {
-                return CConv.DEFAULT;
+                if (dispatch.isEmpty() || !dispatch.get().value.contains("static")) return CConv.THISCALL;
+
+                switch (platform) {
+                    case WINDOWS64:
+                        return CConv.FASTCALL;
+                    case MAC_INTEL:
+                        return CConv.STDCALL;
+                    case ANDROID32:
+                    case ANDROID64:
+                    case MAC_ARM:
+                    case IOS:
+                        return CConv.CDECL;
+                    default:
+                        return CConv.DEFAULT;
+                }
             }
             if (dispatch.isPresent()) {
                 if (dispatch.get().value.contains("virtual")) {
@@ -299,7 +313,6 @@ public class Broma {
     public class Class extends Parseable {
         public final boolean linked;
         public final Match name;
-        public final Match parents;
         public final List<Function> functions;
         public final List<Member> members;
         public final Range beforeClosingBrace;
@@ -308,7 +321,6 @@ public class Broma {
             super(broma, matcher);
 
             name = new Match(matcher, "name");
-            parents = new Match(matcher, "parents");
             functions = new ArrayList<Function>();
             members = new ArrayList<Member>();
             beforeClosingBrace = new Range(matcher.start("closingbrace"), matcher.start("closingbrace"));

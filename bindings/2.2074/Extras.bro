@@ -23,11 +23,11 @@ class SFXTriggerInstance {
 }
 
 class EventTriggerInstance {
-	int m_unkInt1;
-	int m_unkInt2;
-	int m_unkInt3;
-	bool m_unkBool1;
-	gd::vector<int> m_unkVecInt;
+	int m_targetID;
+	int m_uniqueID;
+	int m_controlID;
+	bool m_inactive;
+	gd::vector<int> m_remapKeys;
 }
 
 class SongChannelState {
@@ -72,7 +72,19 @@ class ChanceObject {
     int m_groupID;
     int m_oldGroupID;
     int m_chance;
-    int m_unk010;
+    int m_unk00c;
+}
+
+class SmartPrefabResult {
+	GJSmartPrefab* m_smartPrefab;
+	gd::string m_binaryKey;
+	gd::string m_prefabKey;
+	int m_prefabCount;
+	bool m_unrequired;
+	int m_rotation;
+	bool m_flipX;
+	bool m_flipY;
+	bool m_ignoreCorners;
 }
 
 class GameObjectPhysics {
@@ -110,6 +122,26 @@ class DynamicObjectAction {
 }
 
 class GJTransformState {
+	GJTransformState() {
+        m_unk1 = 0.f;
+        m_unk2 = false;
+        m_unk5 = cocos2d::CCPoint {};
+        m_unk6 = cocos2d::CCPoint {};
+        m_unk7 = cocos2d::CCPoint {};
+        m_angleY = 0.f;
+        m_skewX = 0.f;
+        m_skewY = 0.f;
+        m_unk3 = 0.f;
+        m_unk4 = 0.f;
+        m_unk5.x = 0.f;
+        m_unk5.y = 0.f;
+        m_scaleX = 1.f;
+        m_scaleY = 1.f;
+        m_angleX = 0.f;
+        m_unk8 = 1.f;
+        m_unk9 = 1.f;
+	}
+
 	float m_scaleX;
 	float m_scaleY;
 	float m_angleX;
@@ -117,7 +149,7 @@ class GJTransformState {
 	float m_skewX;
 	float m_skewY;
 	float m_unk1;
-	float m_unk2;
+	bool m_unk2;
 	float m_unk3;
 	float m_unk4;
 	cocos2d::CCPoint m_unk5;
@@ -244,14 +276,14 @@ class TimerItem {
 }
 
 class EnterEffectAnimValue {
-	int m_unkInt1;
-	float m_unkFloat1;
-	float m_unkFloat2;
-	float m_unkFloat3;
-	float m_unkFloat4;
-	int m_unkInt2;
-	float m_unkFloat5;
-	int m_unkInt3;
+	int m_key;
+	float m_value;
+	float m_distance;
+	float m_duration;
+	float m_elapsed;
+	EasingType m_easingType;
+	float m_easingRate;
+	int m_easingBuffer;
 }
 
 class DynamicMoveCalculation {
