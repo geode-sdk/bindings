@@ -178,6 +178,9 @@ enum class GJGameEvent {
 };
 
 enum class PulseEffectType {
+	Default = 0,
+	Hsv = 1,
+	Color = 2,
 };
 enum class TouchTriggerType {
 };
