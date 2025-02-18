@@ -7672,7 +7672,7 @@ class GameObject : CCSpritePlus {
 class GameObjectCopy : cocos2d::CCObject {
     // virtual ~GameObjectCopy();
 
-    static GameObjectCopy* create(GameObject*) = imac 0xe3820;
+    static GameObjectCopy* create(GameObject*) = win 0x2db040, imac 0xe3820;
 
     bool init(GameObject*);
     void resetObject() = win 0x2db140, imac 0xe3940;
@@ -22365,7 +22365,7 @@ class UndoObject : cocos2d::CCObject {
         }
         return true;
     }
-    bool init(GameObject*, UndoCommand) = win 0x2db040, m1 0xca710;
+    bool init(GameObject*, UndoCommand) = m1 0xca710;
     TodoReturn initWithTransformObjects(cocos2d::CCArray*, UndoCommand);
     void setObjects(cocos2d::CCArray*);
 
