@@ -15920,15 +15920,15 @@ class PlayerCheckpoint : cocos2d::CCNode {
     bool m_isHidden;
     bool m_isGoingLeft;
     float m_maybeReverseSpeed;
-	bool m_isDashing;
-	float m_dashX;
-	float m_dashY;
-	float m_dashAngle;
-	float m_dashStartTime;
-	DashRingObject* m_dashRing;
-	bool m_isAutoCheckpoint;
-	double m_lastFlipTime;
-	float m_gravityMod;
+    bool m_isDashing;
+    float m_dashX;
+    float m_dashY;
+    float m_dashAngle;
+    float m_dashStartTime;
+    DashRingObject* m_dashRing;
+    bool m_isAutoCheckpoint;
+    double m_lastFlipTime;
+    float m_gravityMod;
     bool m_decreaseBoostSlide;
     int m_followRelated;
     gd::vector<float> m_playerFollowFloats;
@@ -16903,22 +16903,22 @@ class PulseEffectAction {
     float valueForDelta(float currentTime, float fadeInTime, float holdTime, float fadeOutTime);
 
     bool m_stopped;
-	float m_fadeInTime;
-	float m_holdTime;
-	float m_fadeOutTime;
-	float m_runningTime;
-	int m_groupID;
-	float m_interpValue;
-	cocos2d::ccColor3B m_color;
-	PulseEffectType m_pulseEffectType;
-	cocos2d::ccHSVValue m_hsv;
-	int m_colorIndex;
-	bool m_mainOnly;
-	bool m_detailOnly;
-	bool m_isDynamicHsv;
-	int m_unkInt1;
-	int m_controlId;
-	float m_startTime;
+    float m_fadeInTime;
+    float m_holdTime;
+    float m_fadeOutTime;
+    float m_runningTime;
+    int m_groupID;
+    float m_interpValue;
+    cocos2d::ccColor3B m_color;
+    PulseEffectType m_pulseEffectType;
+    cocos2d::ccHSVValue m_hsv;
+    int m_colorIndex;
+    bool m_mainOnly;
+    bool m_detailOnly;
+    bool m_isDynamicHsv;
+    int m_unkInt1;
+    int m_controlId;
+    float m_startTime;
 }
 
 [[link(android)]]

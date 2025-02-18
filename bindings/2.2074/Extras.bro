@@ -1,5 +1,5 @@
 class FMODSound {
-    
+	
 }
 
 class AdvancedFollowInstance {
@@ -69,10 +69,10 @@ class SFXTriggerState {
 }
 
 class ChanceObject {
-    int m_groupID;
-    int m_oldGroupID;
-    int m_chance;
-    int m_unk00c;
+	int m_groupID;
+	int m_oldGroupID;
+	int m_chance;
+	int m_unk00c;
 }
 
 class SmartPrefabResult {
@@ -88,16 +88,14 @@ class SmartPrefabResult {
 }
 
 class GameObjectPhysics {
-	float m_unk0;
-    float m_unk4;
-    int m_unk8;
-    float m_unkc;
-    float m_unk10;
-    float m_unk14;
-    float m_unk18;
-    float m_unk1c;
-    float m_unk20;
-    int m_unk24;
+	GameObject* m_gameObject;
+	cocos2d::CCPoint m_unkPoint1;
+	cocos2d::CCPoint m_unkPoint2;
+	float m_unkFloat1;
+	float m_unkFloat2;
+	int m_unkInt1;
+	int m_unkInt2;
+	int m_unkInt3;
 }
 
 class DynamicObjectAction {
@@ -110,36 +108,36 @@ class DynamicObjectAction {
 	GameObject* m_gameObject7;
 	GameObject* m_gameObject8;
 	float m_unkFloat1;
-    float m_unkFloat2;
-    float m_unkFloat3;
+	float m_unkFloat2;
+	float m_unkFloat3;
 	bool m_unkBool1;
-    bool m_unkBool2;
-    bool m_unkBool3;
+	bool m_unkBool2;
+	bool m_unkBool3;
 	bool m_unkBool4;
 	float m_unkFloat4;
-    float m_unkFloat5;
-    float m_unkFloat6;
+	float m_unkFloat5;
+	float m_unkFloat6;
 }
 
 class GJTransformState {
 	GJTransformState() {
-        m_unk1 = 0.f;
-        m_unk2 = false;
-        m_unk5 = cocos2d::CCPoint {};
-        m_unk6 = cocos2d::CCPoint {};
-        m_unk7 = cocos2d::CCPoint {};
-        m_angleY = 0.f;
-        m_skewX = 0.f;
-        m_skewY = 0.f;
-        m_unk3 = 0.f;
-        m_unk4 = 0.f;
-        m_unk5.x = 0.f;
-        m_unk5.y = 0.f;
-        m_scaleX = 1.f;
-        m_scaleY = 1.f;
-        m_angleX = 0.f;
-        m_unk8 = 1.f;
-        m_unk9 = 1.f;
+		m_unk1 = 0.f;
+		m_unk2 = false;
+		m_unk5 = cocos2d::CCPoint {};
+		m_unk6 = cocos2d::CCPoint {};
+		m_unk7 = cocos2d::CCPoint {};
+		m_angleY = 0.f;
+		m_skewX = 0.f;
+		m_skewY = 0.f;
+		m_unk3 = 0.f;
+		m_unk4 = 0.f;
+		m_unk5.x = 0.f;
+		m_unk5.y = 0.f;
+		m_scaleX = 1.f;
+		m_scaleY = 1.f;
+		m_angleX = 0.f;
+		m_unk8 = 1.f;
+		m_unk9 = 1.f;
 	}
 
 	float m_scaleX;
@@ -161,19 +159,19 @@ class GJTransformState {
 
 class CAState {
 	cocos2d::ccColor3B m_fromColor;
-    cocos2d::ccColor3B m_toColor;
+	cocos2d::ccColor3B m_toColor;
 	cocos2d::ccColor3B m_color;
 	bool m_property19;
 	bool m_blending;
 	bool m_copyOpacity;
 	bool m_unknown;
 	int m_playerColor;
-    int m_colorID;
+	int m_colorID;
 	int m_copyID;
 	int m_unknown2;
 	float m_duration;
 	float m_fromOpacity;
-    float m_toOpacity;
+	float m_toOpacity;
 	float m_deltaTime;
 	float m_unknown3;
 	cocos2d::ccHSVValue m_copyHSV;
@@ -184,15 +182,15 @@ class GJPointDouble {
 }
 
 class SavedObjectStateRef {
-    GameObject* m_gameObject;
-    double m_unkDouble1;
-    double m_unkDouble2;
-    float m_unkFloat1;
-    float m_unkFloat2;
-    float m_addToCustomScaleX;
-    float m_addToCustomScaleY;
-    float m_unkFloat3;
-    float m_unkFloat4;
+	GameObject* m_gameObject;
+	double m_unkDouble1;
+	double m_unkDouble2;
+	float m_unkFloat1;
+	float m_unkFloat2;
+	float m_addToCustomScaleX;
+	float m_addToCustomScaleY;
+	float m_unkFloat3;
+	float m_unkFloat4;
 }
 
 class SavedActiveObjectState {
