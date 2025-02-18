@@ -3085,7 +3085,7 @@ class cocos2d::CCString : cocos2d::CCObject {
 
     bool boolValue() const = imac 0x7954b0, m1 0x6a8838;
     int intValue() const = imac 0x7953c0, m1 0x6a874c;
-    float floatValue() const = imac 0x795410, m1 0x6a87bc;
+    float floatValue() const = imac 0x795440, m1 0x6a87bc;
 }
 
 [[link(win, android)]]
