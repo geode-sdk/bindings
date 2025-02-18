@@ -5249,7 +5249,6 @@ class EnterEffectInstance {
     void updateTransitions(float, GJBaseGameLayer*) = win 0x137ad0, imac 0x5bb680, m1 0x4f1338;
 
     gd::map<int,EnterEffectAnimValue> m_enterEffectAnimMap;
-
     float m_length;
     float m_lengthVariance;
     float m_offset;
