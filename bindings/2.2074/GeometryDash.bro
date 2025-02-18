@@ -21023,7 +21023,7 @@ class SmartGameObject : GameObject {
     bool init(char const* frame) = win inline {
         if (!GameObject::init(frame)) return false;
         m_baseFrame = frame;
-        m_unk4D0 = 5;
+        m_classType = 5;
         m_bUnkBool2 = false;
         return true;
     }
