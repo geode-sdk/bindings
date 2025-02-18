@@ -295,9 +295,9 @@ GEODE_MEMBER_CHECK(SongChannelState, m_unkDouble1, 0x8);
 GEODE_MEMBER_CHECK(SongChannelState, m_songTriggerGameObject2, 0x10);
 GEODE_MEMBER_CHECK(SongChannelState, m_unkDouble2, 0x18);
 
-GEODE_SIZE_CHECK(SongChannelState, 0x10);
-GEODE_MEMBER_CHECK(SongChannelState, m_songTriggerGameObject, 0x0);
-GEODE_MEMBER_CHECK(SongChannelState, m_unkDouble, 0x8);
+GEODE_SIZE_CHECK(SongTriggerState, 0x10);
+GEODE_MEMBER_CHECK(SongTriggerState, m_songTriggerGameObject, 0x0);
+GEODE_MEMBER_CHECK(SongTriggerState, m_unkDouble, 0x8);
 
 GEODE_SIZE_CHECK(SFXStateContainer, 0x20);
 GEODE_MEMBER_CHECK(SFXStateContainer, m_unkDouble1, 0x0);
