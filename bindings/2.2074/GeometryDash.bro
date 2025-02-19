@@ -16668,7 +16668,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn toggleBGEffectVisibility(bool);
     TodoReturn toggleDebugDraw(bool);
     TodoReturn toggleGhostEffect(int);
-    void toggleIgnoreDamage(bool) = m1 0x9d9c8, imac 0xacbb0;
+    void toggleIgnoreDamage(bool value) = win inline, m1 0x9d9c8, imac 0xacbb0 {
+        this->m_0173 = value;
+        if (value) this->m_isIgnoreDamageEnabled = true;
+        this->m_player1->m_maybeCanRunIntoBlocks = value;
+        this->m_player2->m_maybeCanRunIntoBlocks = value;
+        this->updateTestModeLabel();
+    };
     //void toggleDebugDraw(bool) = ios 0x118288;
     void togglePracticeMode(bool practiceMode) = win 0x3a2f20, imac 0xbeca0, m1 0xad654;
     TodoReturn tryStartRecord();
