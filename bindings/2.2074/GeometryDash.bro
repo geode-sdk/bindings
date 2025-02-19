@@ -12611,7 +12611,7 @@ class HardStreak : cocos2d::CCDrawNode {
     }
     void resumeStroke() = m1 0x8ff80, imac 0x9d480;
     TodoReturn scheduleAutoUpdate();
-    void stopStroke() = win 0x2b17f0;
+    void stopStroke() = win 0x2b17f0, m1 0x8ff8c, imac 0x9d4a0;
     callback void updateStroke(float) = win 0x2b1830, m1 0x8f870, imac 0x9cc30;
 
     cocos2d::CCArray* m_pointArray;
@@ -16004,7 +16004,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x3799e0;
     TodoReturn convertToClosestRotation(float);
     void copyAttributes(PlayerObject*) = win 0x38a710, imac 0x409ed0, m1 0x3877bc;
-    void createFadeOutDartStreak() = win 0x382830;
+    void createFadeOutDartStreak() = win 0x382830, m1 0x382128, imac 0x4042d0;
     void createRobot(int) = win 0x372180, m1 0x36c034, imac 0x3ea2a0;
     void createSpider(int) = win 0x372540, m1 0x36c378, imac 0x3ea650;
     void deactivateParticle() = m1 0x3709e8, imac 0x3efb60;
