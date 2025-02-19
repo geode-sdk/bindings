@@ -290,7 +290,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     void enableRepeatMode(float);
     bool isFastMode();
     bool isStartingPositionInitialized();
-    void reset() = imac 0x560190;
+    void reset() = m1 0x4b6c48, imac 0x560190;
     void resumeStroke() = m1 0x4b6510, imac 0x55fb40;
     void stopStroke() = m1 0x4b6508, imac 0x55fb30;
     void tintWithColor(cocos2d::_ccColor3B);
@@ -498,7 +498,7 @@ class cocos2d::CCScene : cocos2d::CCNode {
     int getHighestChildZ() = imac 0x27efb0, m1 0x2289cc;
 
     // CCScene(cocos2d::CCScene const&);
-    CCScene() = imac 0x27ed80, m1 0x228780; // ios 0x2508a4;
+    CCScene() = ios 0x2508a4, m1 0x20c1a8, imac 0x260210;
     ~CCScene() = imac 0x27ee70, m1 0x22887c;
 
     virtual bool init() = m1 0x228894, imac 0x27eea0, ios 0x2401c0;
@@ -915,7 +915,7 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
 [[link(win, android)]]
 class cocos2d::CCGLProgram : cocos2d::CCObject {
     bool initWithVertexShaderByteArray(char const*, char const*) = imac 0x417e60, m1 0x393990;
-    bool initWithVertexShaderFilename(char const*, char const*);
+    bool initWithVertexShaderFilename(char const*, char const*) = m1 0x393a34, imac 0x417f00;
 
     unsigned int const getProgram();
     int getUniformLocationForName(char const*) = m1 0x3947a0, imac 0x418b80;
@@ -1639,8 +1639,8 @@ class cocos2d::CCIMEDispatcher {
     void addDelegate(cocos2d::CCIMEDelegate*);
     bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
     bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
-    void dispatchDeleteBackward() = m1 0x4124e0, imac 0x4a9140;
-    void dispatchDeleteForward() = m1 0x412500, imac 0x4a9160;
+    void dispatchDeleteBackward() = m1 0x412500, imac 0x4a9140;
+    void dispatchDeleteForward() = m1 0x4124e0, imac 0x4a9160;
     void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = imac 0x4a9110, m1 0x4124b4;
     void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
     void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&);

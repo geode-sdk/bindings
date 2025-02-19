@@ -6377,7 +6377,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onDownloadLevelCompleted(gd::string response, gd::string tag);
     void onDownloadUserMessageCompleted(gd::string response, gd::string tag);
     void onGetAccountCommentsCompleted(gd::string response, gd::string tag);
-    void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x15d510;
+    void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x15d510, m1 0x46c964, imac 0x50e7b0;
     void onGetGauntletsCompleted(gd::string response, gd::string tag);
     void onGetGJChallengesCompleted(gd::string response, gd::string tag) = win 0x164f20, imac 0x510b00, m1 0x46f5b0;
     void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag) = win 0x1663a0, imac 0x512730, m1 0x470324;
@@ -7735,8 +7735,8 @@ class GameOptionsLayer : GJOptionsLayer {
         return true;
     }
     void onPracticeMusicSync(cocos2d::CCObject* sender) = win 0x298be0, m1 0x2458f4, imac 0x29e1b0;
-    void onUIOptions(cocos2d::CCObject* sender) = win 0x298d60;
-    void onUIPOptions(cocos2d::CCObject* sender) = win 0x298d80, m1 0x245888;
+    void onUIOptions(cocos2d::CCObject* sender) = win 0x298d60, m1 0x245868, imac 0x29e120;
+    void onUIPOptions(cocos2d::CCObject* sender) = win 0x298d80, m1 0x245888, imac 0x29e140;
     void showPracticeMusicSyncUnlockInfo() = win 0x298380, m1 0x245968, imac 0x29e230;
 
     GJBaseGameLayer* m_baseGameLayer;
@@ -8806,7 +8806,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn resetGroupCounters(bool) = imac 0x13e800;
     void resetLevelVariables() = win 0x234ab0, imac 0x147d80, m1 0x11dcf0;
     TodoReturn resetMoveOptimizedValue();
-    void resetPlayer() = win 0x20cbf0, m1 0xf2608, imac 0x112c30;
+    void resetPlayer() = win 0x20cbf0, m1 0x1164a0, imac 0x112c30;
     void resetSongTriggerValues();
     TodoReturn resetSpawnChannelIndex() = win 0x23f890, m1 0x11ea94, imac 0x149100;
     void resetStaticCamera(bool, bool) = win 0x239850;
@@ -10507,7 +10507,7 @@ class GJLevelList : cocos2d::CCNode {
     virtual bool canEncode() = m1 0x4a54d0, imac 0x54d4a0, ios 0xb58a0;
     virtual bool init() = m1 0x4a3784, imac 0x54b420, ios 0xb42e0;
 
-    void addLevelToList(GJGameLevel* level) = win 0x173ee0;
+    void addLevelToList(GJGameLevel* level) = win 0x173ee0, m1 0x4a3fbc, imac 0x54bdf0;
     TodoReturn completedLevels() = imac 0x54ca00, m1 0x4a4a48;
     TodoReturn createWithCoder(DS_Dictionary*) = m1 0x4a4f38;
     void dataLoaded(DS_Dictionary*) = win 0x174cd0, imac 0x54cef0, m1 0x4a4f68;
@@ -10520,7 +10520,7 @@ class GJLevelList : cocos2d::CCNode {
     TodoReturn orderForLevel(int);
     TodoReturn parseListLevels(gd::string) = win 0x173c40, imac 0x52ca10, m1 0x487a60;
     TodoReturn removeLevelFromList(int);
-    void reorderLevel(int levelID, int newPosition) = win 0x174070;
+    void reorderLevel(int levelID, int newPosition) = win 0x174070, m1 0x4a44e0, imac 0x54c400;
     TodoReturn reorderLevelStep(int, bool);
     void showListInfo() = win 0x174900, imac 0x54ca50, m1 0x4a4aac;
     TodoReturn totalLevels() = imac 0x54c9e0, m1 0x4a4a38;
@@ -10930,7 +10930,7 @@ class GJOptionsLayer : SetupTriggerPopup {
         addToggleInternal(title, id, initial, description);
     }
     void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x2885b0, m1 0x233518, imac 0x28a780;
-    int countForPage(int);
+    int countForPage(int) = m1 0x234378, imac 0x28b620;
     void goToPage(int);
     void incrementCountForPage(int) = win 0x288b80;
     const char* infoKey(int);
@@ -16109,7 +16109,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn resetCollisionValues();
     void resetPlayerIcon() = win 0x385550, imac 0x405460, m1 0x383208;
     TodoReturn resetStateVariables();
-    void resetStreak() = win 0x375870, imac 0x3f16d0;
+    void resetStreak() = win 0x375870, imac 0x3f16d0, m1 0x3723f4;
     void resetTouchedRings(bool) = win 0x3824b0, imac 0x4010d0;
     TodoReturn reverseMod();
     void reversePlayer(EffectGameObject*) = win 0x382600, imac 0x4041e0, m1 0x382044;
@@ -16668,7 +16668,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn toggleBGEffectVisibility(bool);
     TodoReturn toggleDebugDraw(bool);
     TodoReturn toggleGhostEffect(int);
-    TodoReturn toggleIgnoreDamage(bool);
+    void toggleIgnoreDamage(bool) = m1 0x9d9c8, imac 0xacbb0;
     //void toggleDebugDraw(bool) = ios 0x118288;
     void togglePracticeMode(bool practiceMode) = win 0x3a2f20, imac 0xbeca0, m1 0xad654;
     TodoReturn tryStartRecord();
