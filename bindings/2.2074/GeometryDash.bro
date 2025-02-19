@@ -16674,7 +16674,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
         this->m_player1->m_maybeCanRunIntoBlocks = value;
         this->m_player2->m_maybeCanRunIntoBlocks = value;
         this->updateTestModeLabel();
-    };
+    }
     //void toggleDebugDraw(bool) = ios 0x118288;
     void togglePracticeMode(bool practiceMode) = win 0x3a2f20, imac 0xbeca0, m1 0xad654;
     TodoReturn tryStartRecord();
