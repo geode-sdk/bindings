@@ -15344,19 +15344,30 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
 }
 
 [[link(android)]]
-class NCSInfoLayer {
+class NCSInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
     // virtual ~NCSInfoLayer();
+    NCSInfoLayer() {}
 
-    static NCSInfoLayer* create(CustomSongLayer*);
+    static NCSInfoLayer* create(CustomSongLayer*) = win inline, m1 0x1b96c0, imac 0x2044d0 {
+        auto ret = new NCSInfoLayer();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual void keyBackClicked() = m1 0x1bbda8, imac 0x206d40, ios 0x14a3ac;
+    virtual void keyBackClicked() = win 0x84650, m1 0x1bbda8, imac 0x206d40, ios 0x14a3ac;
 
-    bool init(CustomSongLayer*) = m1 0x1bb640, imac 0x2065a0;
-    void onClose(cocos2d::CCObject* sender);
-    void onLibrary(cocos2d::CCObject* sender);
-    void onNCS(cocos2d::CCObject* sender) = imac 0x206cb0;
-    void onNCSIO(cocos2d::CCObject* sender) = imac 0x206cd0;
-    void onNCSUsage(cocos2d::CCObject* sender) = imac 0x206cf0;
+    bool init(CustomSongLayer*) = win 0xc56c0, m1 0x1bb640, imac 0x2065a0;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x1bb2d0, imac 0x2062a0;
+    void onLibrary(cocos2d::CCObject* sender) = win 0xc5f10, m1 0x1bbc9c, imac 0x206c40;
+    void onNCS(cocos2d::CCObject* sender) = win 0xc5eb0, m1 0x1bbd00, imac 0x206cb0;
+    void onNCSIO(cocos2d::CCObject* sender) = win 0xc5ed0, m1 0x1bbd24, imac 0x206cd0;
+    void onNCSUsage(cocos2d::CCObject* sender) = win 0xc5ef0, m1 0x1bbd48, imac 0x206cf0;
+
+    CustomSongLayer* m_songLayer;
 }
 
 [[link(android)]]
