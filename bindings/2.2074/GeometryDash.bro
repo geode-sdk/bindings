@@ -16001,7 +16001,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void collidedWithObject(float, GameObject*) = imac 0x3fb520, m1 0x37a504;
     int collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bc40, m1 0x376dd8;
     void collidedWithSlope(float dt, GameObject* object, bool forced) = imac 0x3f4d30;
-    void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x3799e0;
+    void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x3799e0, m1 0x375914, imac 0x3f5410;
     TodoReturn convertToClosestRotation(float);
     void copyAttributes(PlayerObject*) = win 0x38a710, imac 0x409ed0, m1 0x3877bc;
     void createFadeOutDartStreak() = win 0x382830, m1 0x382128, imac 0x4042d0;
@@ -16127,7 +16127,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         this->runNormalRotation(false, 1.0f);
     }
     void runNormalRotation(bool, float) = win 0x377490, imac 0x3ee220, m1 0x36f618;
-    void runRotateAction(bool, int);
+    void runRotateAction(bool, int) = m1 0x371934, imac 0x3f0b00;
     TodoReturn saveToCheckpoint(PlayerCheckpoint*) = imac 0x40a6b0;
     void setSecondColor(cocos2d::ccColor3B const&) = win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
     void setupStreak() = win 0x372a50, imac 0x3eab20, m1 0x36c84c;
