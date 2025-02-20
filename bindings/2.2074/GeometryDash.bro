@@ -16121,13 +16121,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         this->updatePlayerArt();
     }
     TodoReturn rotatePreSlopeObjects();
-    void runBallRotation(float) = win 0x3775c0;
+    void runBallRotation(float) = win 0x3775c0, m1 0x3732c0, imac 0x3f26a0;
     void runBallRotation2() = win 0x3776f0;
     void runNormalRotation() {
         this->runNormalRotation(false, 1.0f);
     }
     void runNormalRotation(bool, float) = win 0x377490, imac 0x3ee220, m1 0x36f618;
-    void runRotateAction(bool, int) = win 0x3775c0;
+    void runRotateAction(bool, int);
     TodoReturn saveToCheckpoint(PlayerCheckpoint*) = imac 0x40a6b0;
     void setSecondColor(cocos2d::ccColor3B const&) = win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
     void setupStreak() = win 0x372a50, imac 0x3eab20, m1 0x36c84c;
