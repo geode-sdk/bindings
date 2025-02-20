@@ -8952,7 +8952,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
             m_gameState.m_unkFloat3 = std::clamp(obj->m_cameraEasingValue, 1.f, 40.f);
             m_gameState.m_unkFloat2 = std::clamp(obj->m_cameraPaddingValue, 0.f, 1.f);
         }
-        if (cameraFree != freeMode && updateDual) this->updateDualGround(m_player1, m_gameState.dualRelated, false, 0.f);
+        if (cameraFree != freeMode && updateDual) this->updateDualGround(m_player1, m_gameState.m_dualRelated, false, 0.f);
     }
     void updateCameraOffsetX(float, float, int, float, int, int) = win 0x230810, imac 0x13f3e0;
     void updateCameraOffsetY(float, float, int, float, int, int) = win 0x2308b0, imac 0x13f4e0;
@@ -15542,9 +15542,19 @@ class OnlineListDelegate {
 
 [[link(android)]]
 class OpacityEffectAction {
-    TodoReturn step(float);
+    void step(float delta);
 
-    PAD = win 0x2c;
+    float m_duration;
+    float m_fromValue;
+    float m_toValue;
+    bool m_finished;
+    float m_deltaTime;
+    int m_groupID;
+    float m_currentValue;
+    int m_uniqueID;
+    int m_controlID;
+    float m_deltaTimeRelated;
+    float m_durationRelated;
 }
 
 [[link(android)]]
@@ -16899,7 +16909,7 @@ class PromoInterstitial : FLAlertLayer {
 [[link(android)]]
 class PulseEffectAction {
     bool isFinished();
-    void step(float dt);
+    void step(float delta);
     float valueForDelta(float currentTime, float fadeInTime, float holdTime, float fadeOutTime);
 
     bool m_stopped;

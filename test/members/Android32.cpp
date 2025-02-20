@@ -821,6 +821,19 @@ GEODE_MEMBER_CHECK(CountTriggerAction, m_itemID, 0x1c);
 GEODE_MEMBER_CHECK(CountTriggerAction, m_multiActivate, 0x20);
 GEODE_MEMBER_CHECK(CountTriggerAction, m_unkVecInt, 0x24);
 
+GEODE_SIZE_CHECK(OpacityEffectAction, 0x2c);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_duration, 0x0);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_fromValue, 0x4);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_toValue, 0x8);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_finished, 0xc);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_deltaTime, 0x10);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_groupID, 0x14);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_currentValue, 0x18);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_uniqueID, 0x1c);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_controlID, 0x20);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_deltaTimeRelated, 0x24);
+GEODE_MEMBER_CHECK(OpacityEffectAction, m_durationRelated, 0x28);
+
 GEODE_SIZE_CHECK(EffectManagerState, 0x184);
 GEODE_MEMBER_CHECK(EffectManagerState, m_unkVecCAState, 0x0);
 GEODE_MEMBER_CHECK(EffectManagerState, m_unkVecPulseEffectAction, 0xc);
