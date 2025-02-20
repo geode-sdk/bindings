@@ -8477,6 +8477,7 @@ class GJAssetDownloadAction {
 
 [[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
+    GJBaseGameLayer() = win 0x2c7b10;
     ~GJBaseGameLayer() = win 0x200540;
     // GJBaseGameLayer() = ios 0x1256b4;
 
@@ -16537,7 +16538,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-    PlayLayer() = imac 0xbfcd0;
+    PlayLayer() = win 0x38DF50, imac 0xbfcd0;
     virtual ~PlayLayer() = win 0x38e920, imac 0xab980;
 
     static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = imac 0xabda0, m1 0x9ccd0;
