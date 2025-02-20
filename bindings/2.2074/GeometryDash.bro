@@ -12867,44 +12867,55 @@ class KeybindingsLayer : FLAlertLayer {
     static KeybindingsLayer* create() = win 0x2b81d0;
 
     virtual bool init() = win 0x2b82c0, m1 0x5220ec, imac 0x5f25f0;
-    virtual void keyBackClicked() = m1 0x523ab4, imac 0x5f3fc0;
+    virtual void keyBackClicked() = win 0x84650, m1 0x523ab4, imac 0x5f3fc0;
 
-    TodoReturn addKeyPair(char const*, char const*) = win 0x2b8bd0;
-    TodoReturn countForPage(int) = win 0x2b8f80;
+    cocos2d::CCLabelBMFont* addKeyPair(char const*, char const*) = win 0x2b8bd0;
+    int countForPage(int) = win 0x2b8f80;
     void goToPage(int) = win 0x2b9220;
-    TodoReturn incrementCountForPage(int);
-    TodoReturn infoKey(int);
-    TodoReturn layerForPage(int) = win 0x2b9050;
-    TodoReturn layerKey(int);
-    TodoReturn nextPosition(int);
-    TodoReturn objectKey(int);
-    TodoReturn objectsForPage(int);
+    void incrementCountForPage(int);
+    const char* infoKey(int);
+    cocos2d::CCLayer* layerForPage(int) = win 0x2b9050;
+    const char* layerKey(int);
+    cocos2d::CCPoint nextPosition(int);
+    const char* objectKey(int);
+    cocos2d::CCArray* objectsForPage(int);
     void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onInfo(cocos2d::CCObject* sender);
     void onNextPage(cocos2d::CCObject* sender) = win 0x2b9200;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x2b9210;
     void onToggle(cocos2d::CCObject* sender);
-    TodoReturn pageKey(int);
+    const char* pageKey(int);
+
+    int m_page;
+    int m_keyCount;
+    int m_maxPage;
+    cocos2d::CCDictionary* m_values;
+    cocos2d::CCDictionary* m_variables;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_nextButton;
 }
 
 [[link(android)]]
 class KeybindingsManager : cocos2d::CCNode {
     // virtual ~KeybindingsManager();
 
-    static KeybindingsManager* sharedState();
+    static KeybindingsManager* sharedState() = win 0x2b96b0;
 
-    virtual bool init() = m1 0x4364a8, imac 0x4d22c0, ios 0x346ccc;
+    virtual bool init() = m1 0x4364a8, imac 0x4d22c0, ios 0x346ccc { return true; }
 
-    TodoReturn commandForKey(cocos2d::enumKeyCodes, GJKeyGroup, bool, bool, bool);
-    TodoReturn commandForKeyMods(cocos2d::enumKeyCodes, GJKeyGroup);
-    TodoReturn commandForKeyNoMods(cocos2d::enumKeyCodes, GJKeyGroup);
-    TodoReturn commandToKeyForGroup(GJKeyGroup);
+    bool commandForKey(cocos2d::enumKeyCodes, GJKeyGroup, bool, bool, bool);
+    bool commandForKeyMods(cocos2d::enumKeyCodes, GJKeyGroup);
+    bool commandForKeyNoMods(cocos2d::enumKeyCodes, GJKeyGroup);
+    cocos2d::CCDictionary* commandToKeyForGroup(GJKeyGroup);
     void dataLoaded(DS_Dictionary*) = imac 0x4d27e0;
     void encodeDataTo(DS_Dictionary*);
     void firstSetup();
-    TodoReturn groupForCommand(GJKeyCommand);
-    TodoReturn keyForCommand(GJKeyCommand);
-    TodoReturn keyToCommandForGroup(GJKeyGroup);
+    GJKeyGroup groupForCommand(GJKeyCommand);
+    cocos2d::enumKeyCodes keyForCommand(GJKeyCommand);
+    cocos2d::CCDictionary* keyToCommandForGroup(GJKeyGroup);
+
+    cocos2d::CCDictionary* m_keyToCommandDict;
+    cocos2d::CCDictionary* m_commandToKeyDict;
 }
 
 [[link(android)]]
