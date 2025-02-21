@@ -404,7 +404,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     void enableRepeatMode(float) = ios 0x17a5b4;
     bool isFastMode();
     bool isStartingPositionInitialized();
-    void reset() = imac 0x560190;
+    void reset() = m1 0x4b6c48, imac 0x560190;
     void resumeStroke() = m1 0x4b6510, imac 0x55fb40;
     void stopStroke() = m1 0x4b6508, imac 0x55fb30;
     void tintWithColor(cocos2d::_ccColor3B);
@@ -669,7 +669,7 @@ class cocos2d::CCScene : cocos2d::CCNode {
     int getHighestChildZ() = imac 0x27efb0, m1 0x2289cc, ios 0x24028c;
 
     // CCScene(cocos2d::CCScene const&);
-    CCScene() = imac 0x27ed80, m1 0x228780; // ios 0x2508a4;
+    CCScene() = imac 0x27ed80, m1 0x228780, ios 0x2508a4;
     ~CCScene() = imac 0x27ee70, m1 0x22887c, ios 0x23ac80; // ios: idfk i just guessed
 
     virtual bool init() = m1 0x228894, imac 0x27eea0, ios 0x2401c0;
@@ -1292,7 +1292,7 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
 [[link(win, android)]]
 class cocos2d::CCGLProgram : cocos2d::CCObject {
     bool initWithVertexShaderByteArray(char const*, char const*) = imac 0x417e60, m1 0x393990;
-    bool initWithVertexShaderFilename(char const*, char const*);
+    bool initWithVertexShaderFilename(char const*, char const*) = m1 0x393a34, imac 0x417f00;
 
     unsigned int const getProgram();
     int getUniformLocationForName(char const*) = m1 0x3947a0, imac 0x418b80;
@@ -2016,8 +2016,8 @@ class cocos2d::CCIMEDispatcher {
     void addDelegate(cocos2d::CCIMEDelegate*);
     bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
     bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
-    void dispatchDeleteBackward() = m1 0x4124e0, imac 0x4a9140;
-    void dispatchDeleteForward() = m1 0x412500, imac 0x4a9160;
+    void dispatchDeleteBackward() = m1 0x412500, imac 0x4a9140;
+    void dispatchDeleteForward() = m1 0x4124e0, imac 0x4a9160;
     void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = imac 0x4a9110, m1 0x4124b4;
     void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
     void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&);
@@ -2604,7 +2604,7 @@ class cocos2d::CCArray : cocos2d::CCObject {
     void removeObjectsInArray(cocos2d::CCArray*);
     void replaceObjectAtIndex(unsigned int, cocos2d::CCObject*, bool);
     void reverseObjects();
-    cocos2d::CCString* stringAtIndex(unsigned int) = imac 0x709d20;
+    cocos2d::CCString* stringAtIndex(unsigned int) = m1 0x629390, imac 0x709d20;
 
     // virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = ios 0x249634, imac 0x70a140, m1 0x62971c;
     // virtual void acceptVisitor(cocos2d::CCDataVisitor&) = ios 0x2496f8, imac 0x70a240, m1 0x62981c;
@@ -2718,7 +2718,7 @@ class cocos2d::CCRepeat : cocos2d::CCActionInterval {
 class cocos2d::CCRepeatForever : cocos2d::CCActionInterval {
     static cocos2d::CCRepeatForever* create(cocos2d::CCActionInterval*) = m1 0x3304dc, imac 0x3a3770, ios 0x18dfb0;
 
-    bool initWithAction(cocos2d::CCActionInterval*);
+    bool initWithAction(cocos2d::CCActionInterval*) = m1 0x330548, imac 0x3a37e0;
 
     cocos2d::CCActionInterval* getInnerAction();
 
@@ -2726,6 +2726,7 @@ class cocos2d::CCRepeatForever : cocos2d::CCActionInterval {
 
     // CCRepeatForever(cocos2d::CCRepeatForever const&);
     // CCRepeatForever();
+    // ~CCRepeatForever() = m1 0x330460, imac 0x3a36f0;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x3a3800, m1 0x330578, ios 0x18e01c;
     virtual bool isDone() = m1 0x330728, imac 0x3a3990, ios 0x18e1c0;
@@ -3543,6 +3544,7 @@ class cocos2d::CCString : cocos2d::CCObject {
 
     bool boolValue() const = imac 0x7954b0, m1 0x6a8838;
     int intValue() const = imac 0x7953c0, m1 0x6a874c, ios 0x267da8;
+    float floatValue() const = imac 0x795440, m1 0x6a87bc;
 }
 
 [[link(win, android)]]
@@ -3899,6 +3901,17 @@ class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
     virtual void removeTargetWithActionForControlEvents(cocos2d::CCObject*, cocos2d::extension::SEL_CCControlHandler, unsigned int) = m1 0x2d4520, imac 0x33e300, ios 0x1a8f7c;
     virtual cocos2d::CCPoint getTouchLocation(cocos2d::CCTouch*) = m1 0x2d49b8, imac 0x33e7b0, ios 0x1a91b4;
     virtual bool isTouchInside(cocos2d::CCTouch*) = m1 0x2d4a04, imac 0x33e800, ios 0x1a9200;
+}
+
+[[link(win, android)]]
+class ObjectDecoder : cocos2d::CCNode {
+    // virtual ~ObjectDecoder();
+
+    static ObjectDecoder* sharedDecoder() = m1 0x690e28, imac 0x77c040;
+
+    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = m1 0x690ea0, imac 0x77c0c0;
+
+    virtual bool init() = m1 0x690e9c, imac 0x77c0b0, ios 0x235898;
 }
 
 [[link(win, android)]]
