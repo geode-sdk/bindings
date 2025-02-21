@@ -4595,7 +4595,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn updateGridNodeSize(int);
     TodoReturn updateGroupIDBtn2();
     void updateGroupIDLabel() = imac 0x2ccd0;
-    void updateObjectInfoLabel() = win 0xe17c0, m1 0x2f208, imac 0x2f870;
+    void updateObjectInfoLabel() = win 0xe17c0, m1 0x2f208, imac 0x2f870, ios 0x3dfae0;
     TodoReturn updatePlaybackBtn() = imac 0x2d5f0;
     void updateSlider() = win 0xe14a0, ios 0x3dca34;
     TodoReturn updateSpecialUIElements();
