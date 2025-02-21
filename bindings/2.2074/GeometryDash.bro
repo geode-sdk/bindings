@@ -13280,8 +13280,9 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     TodoReturn tryResumeTowerMusic();
     TodoReturn tryShowAd();
 
-    PAD = win 0x8; // $SABE TODO
-    bool m_isBusy;
+    bool m_playing;
+    int m_senderTag;
+    bool m_exiting;
     int m_unk1ac;
 }
 
