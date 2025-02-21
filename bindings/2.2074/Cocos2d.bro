@@ -3489,6 +3489,17 @@ class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
 }
 
 [[link(win, android)]]
+class ObjectDecoder : cocos2d::CCNode {
+    // virtual ~ObjectDecoder();
+
+    static ObjectDecoder* sharedDecoder() = m1 0x690e28, imac 0x77c040;
+
+    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = m1 0x690ea0, imac 0x77c0c0;
+
+    virtual bool init() = m1 0x690e9c, imac 0x77c0b0, ios 0x235898;
+}
+
+[[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl {
     static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x3424e0, m1 0x2d7fe0;
 
