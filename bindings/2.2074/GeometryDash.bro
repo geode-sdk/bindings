@@ -2512,8 +2512,15 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
 
 [[link(android)]]
 class CollisionTriggerAction {
-    PAD = win 0x20;
-    gd::vector<int> m_unkVecInt;
+    bool m_disabled;
+    int m_blockAID;
+    int m_blockBID;
+    int m_targetGroupID;
+    int m_triggerOnExit;
+    bool m_activateGroup;
+    int m_triggerUniqueID;
+    int m_controlID;
+    gd::vector<int> m_remapKeys;
 }
 
 [[link(android)]]
@@ -2958,16 +2965,16 @@ class ConfigureValuePopupDelegate {
 class CountTriggerAction {
     // CountTriggerAction(CountTriggerAction&&);
 
-    bool m_unk0;
+    bool m_disabled;
     int m_previousCount;
     int m_targetCount;
-    int m_targetGroup;
-    bool m_unk10;
-    int m_unk14;
-    int m_unk18;
+    int m_targetGroupID;
+    bool m_activateGroup;
+    int m_triggerUniqueID;
+    int m_controlID;
     int m_itemID;
     bool m_multiActivate;
-    gd::vector<int> m_unkVecInt;
+    gd::vector<int> m_remapKeys;
 }
 
 [[link(android)]]
@@ -15549,10 +15556,11 @@ class OpacityEffectAction {
     float m_fromValue;
     float m_toValue;
     bool m_finished;
+    bool m_disabled;
     float m_deltaTime;
-    int m_groupID;
+    int m_targetGroupID;
     float m_currentValue;
-    int m_uniqueID;
+    int m_triggerUniqueID;
     int m_controlID;
     float m_deltaTimeRelated;
     float m_durationRelated;
@@ -16919,13 +16927,13 @@ class PulseEffectAction {
     void step(float delta);
     float valueForDelta(float currentTime, float fadeInTime, float holdTime, float fadeOutTime);
 
-    bool m_stopped;
+    bool m_disabled;
     float m_fadeInTime;
     float m_holdTime;
     float m_fadeOutTime;
-    float m_runningTime;
-    int m_groupID;
-    float m_interpValue;
+    float m_deltaTime;
+    int m_targetGroupID;
+    float m_currentValue;
     cocos2d::ccColor3B m_color;
     PulseEffectType m_pulseEffectType;
     cocos2d::ccHSVValue m_hsv;
@@ -16933,8 +16941,8 @@ class PulseEffectAction {
     bool m_mainOnly;
     bool m_detailOnly;
     bool m_isDynamicHsv;
-    int m_unkInt1;
-    int m_controlId;
+    int m_triggerUniqueID;
+    int m_controlID;
     float m_startTime;
 }
 
@@ -21338,9 +21346,16 @@ class SpawnTriggerAction {
     bool isFinished();
     TodoReturn step(float);
 
-    PAD = win 0x28;
+    bool m_finished;
+    bool m_disabled;
+    double m_duration;
+    double m_deltaTime;
+    int m_targetGroupID;
+    int m_triggerUniqueID;
+    int m_controlID;
+    bool m_spawnOrdered;
     GameObject* m_gameObject;
-    gd::vector<int> m_unkVecInt;
+    gd::vector<int> m_remapKeys;
 }
 
 [[link(android)]]
@@ -21989,8 +22004,12 @@ class TimerTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class ToggleTriggerAction {
-    PAD = win 0x14;
-    gd::vector<int> m_unkVecInt;
+    bool m_disabled;
+    int m_targetGroupID;
+    bool m_activateGroup;
+    int m_triggerUniqueID;
+    int m_controlID;
+    gd::vector<int> m_remapKeys;
 }
 
 [[link(android)]]
@@ -22068,8 +22087,15 @@ class TOSPopup : FLAlertLayer {
 
 [[link(android)]]
 class TouchToggleAction {
-    PAD = win 0x20;
-    gd::vector<int> m_unkVecInt;
+    bool m_disabled;
+    int m_targetGroupID;
+    bool m_holdMode;
+    TouchTriggerType m_touchTriggerType;
+    TouchTriggerControl m_touchTriggerControl;
+    int m_triggerUniqueID;
+    int m_controlID;
+    bool m_dualMode;
+    gd::vector<int> m_remapKeys;
 }
 
 [[link(android)]]
