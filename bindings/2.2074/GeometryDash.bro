@@ -2991,7 +2991,7 @@ class CountTriggerGameObject : EffectGameObject {
     bool m_multiActivate;
     // property 139
     bool m_isOverride;
-    // property 441
+    // property 449
     float m_pickupTriggerMultiplier;
 }
 
@@ -4853,7 +4853,7 @@ class EffectGameObject : EnhancedGameObject {
     bool m_isDynamicMode;
     // property 544
     bool m_isSilent;
-    // property 535
+    // property 538
     int m_specialTarget;
     // property 68
     float m_rotationDegrees;
@@ -17990,7 +17990,7 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
     // property 438
     float m_reset;
     int m_sequenceTotalCount;
-    // property 509
+    // property 505
     bool m_uniqueRemap;
 }
 
