@@ -804,7 +804,7 @@ GEODE_MEMBER_CHECK(PulseEffectAction, m_controlID, 0x40);
 GEODE_MEMBER_CHECK(PulseEffectAction, m_startTime, 0x44);
 
 GEODE_SIZE_CHECK(CountTriggerAction, 0x40);
-GEODE_MEMBER_CHECK(CountTriggerAction, m_finished, 0x0);
+GEODE_MEMBER_CHECK(CountTriggerAction, m_disabled, 0x0);
 GEODE_MEMBER_CHECK(CountTriggerAction, m_previousCount, 0x4);
 GEODE_MEMBER_CHECK(CountTriggerAction, m_targetCount, 0x8);
 GEODE_MEMBER_CHECK(CountTriggerAction, m_targetGroupID, 0xc);
