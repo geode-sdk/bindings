@@ -12634,7 +12634,7 @@ class GroupCommandObject2 {
     bool m_lockToCameraY;
     bool m_lockedInX;
     bool m_lockedInY;
-    dobule m_moveModX;
+    double m_moveModX;
     double m_moveModY;
     double m_currentRotateOrTransformValue;
     double m_currentRotateOrTransformDelta;
