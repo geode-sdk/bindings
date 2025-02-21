@@ -8836,7 +8836,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn resetGroupCounters(bool) = imac 0x13e800;
     void resetLevelVariables() = win 0x234ab0, imac 0x147d80, m1 0x11dcf0;
     TodoReturn resetMoveOptimizedValue();
-    void resetPlayer() = win 0x20cbf0, m1 0x1164a0, imac 0x112c30;
+    void resetPlayer() = win 0x20cbf0, m1 0xf2608, imac 0x112c30;
     void resetSongTriggerValues();
     TodoReturn resetSpawnChannelIndex() = win 0x23f890, m1 0x11ea94, imac 0x149100;
     void resetStaticCamera(bool, bool) = win 0x239850;
