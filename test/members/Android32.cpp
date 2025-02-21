@@ -1009,6 +1009,17 @@ GEODE_MEMBER_CHECK(TimerItem, m_controlID, 0x34);
 GEODE_MEMBER_CHECK(TimerItem, m_remapKeys, 0x38);
 GEODE_MEMBER_CHECK(TimerItem, m_disabled, 0x44);
 
+GEODE_SIZE_CHECK(TimerTriggerAction, 0x2c);
+GEODE_MEMBER_CHECK(TimerTriggerAction, m_disabled, 0x0);
+GEODE_MEMBER_CHECK(TimerTriggerAction, m_time, 0x4);
+GEODE_MEMBER_CHECK(TimerTriggerAction, m_targetTime, 0x8);
+GEODE_MEMBER_CHECK(TimerTriggerAction, m_targetGroupID, 0xc);
+GEODE_MEMBER_CHECK(TimerTriggerAction, m_triggerUniqueID, 0x10);
+GEODE_MEMBER_CHECK(TimerTriggerAction, m_controlID, 0x14);
+GEODE_MEMBER_CHECK(TimerTriggerAction, m_itemID, 0x18);
+GEODE_MEMBER_CHECK(TimerTriggerAction, m_multiActivate, 0x1c);
+GEODE_MEMBER_CHECK(TimerTriggerAction, m_remapKeys, 0x20);
+
 GEODE_SIZE_CHECK(EffectManagerState, 0x184);
 GEODE_MEMBER_CHECK(EffectManagerState, m_unkVecCAState, 0x0);
 GEODE_MEMBER_CHECK(EffectManagerState, m_unkVecPulseEffectAction, 0xc);
@@ -1028,6 +1039,10 @@ GEODE_MEMBER_CHECK(EffectManagerState, m_unorderedMapInt_pair_double_double, 0x1
 GEODE_MEMBER_CHECK(EffectManagerState, m_unorderedSet_int2, 0x130);
 GEODE_MEMBER_CHECK(EffectManagerState, m_timerItemMap, 0x14c);
 GEODE_MEMBER_CHECK(EffectManagerState, m_unorderedMapInt_vectorTimerTriggerAction, 0x168);
+
+GEODE_SIZE_CHECK(SequenceTriggerState, 0x38);
+GEODE_MEMBER_CHECK(SequenceTriggerState, m_unkUnorderedMap1, 0x0);
+GEODE_MEMBER_CHECK(SequenceTriggerState, m_unkUnorderedMap2, 0x1c);
 
 GEODE_SIZE_CHECK(CheckpointObject, 0xc00);
 GEODE_MEMBER_CHECK(CheckpointObject, m_gameState, 0x108);

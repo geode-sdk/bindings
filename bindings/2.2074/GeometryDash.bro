@@ -13280,7 +13280,7 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     TodoReturn tryResumeTowerMusic();
     TodoReturn tryShowAd();
 
-    PAD = win 0x8;
+    PAD = win 0x8; // $SABE TODO
     bool m_isBusy;
     int m_unk1ac;
 }
@@ -16032,7 +16032,6 @@ class PlayerCheckpoint : cocos2d::CCNode {
     bool m_isRobot;
     bool m_isSpider;
     bool m_isOnGround;
-    PAD = win 0x2;
     int m_hasGhostTrail;
     bool m_isMini;
     float m_speed;
@@ -22089,8 +22088,15 @@ class TextStyleSection : cocos2d::CCObject {
 
 [[link(android)]]
 class TimerTriggerAction {
-    PAD = win 0x20;
-    gd::vector<int> m_unkVecInt;
+    bool m_disabled;
+    float m_time;
+    float m_targetTime;
+    int m_targetGroupID;
+    int m_triggerUniqueID;
+    int m_controlID;
+    int m_itemID;
+    bool m_multiActivate;
+    gd::vector<int> m_remapKeys;
 }
 
 [[link(android)]]
