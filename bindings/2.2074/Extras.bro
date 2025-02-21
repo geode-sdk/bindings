@@ -268,9 +268,18 @@ class FMODSoundState {
 }
 
 class TimerItem {
-	PAD = win 0x38;
-	gd::vector<int> m_unkVecInt;
-	PAD = win 0x4;
+	int m_itemID;
+	double m_time;
+	bool m_paused;
+	float m_timeMod;
+	bool m_ignoreTimeWarp;
+	double m_targetTime;
+	bool m_stopTimeEnabled;
+	int m_targetGroupID;
+	int m_triggerUniqueID;
+	int m_controlID;
+	gd::vector<int> m_remapKeys;
+	bool m_disabled;
 }
 
 class EnterEffectAnimValue {
