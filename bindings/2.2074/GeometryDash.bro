@@ -13105,6 +13105,22 @@ class KeyframeGameObject : EffectGameObject {
 }
 
 [[link(android)]]
+class tk::spline {
+    gd::vector<double> m_x;
+    gd::vector<double> m_y;
+    gd::vector<double> m_b;
+    gd::vector<double> m_c;
+    gd::vector<double> m_d;
+    double m_c0;
+    int m_type;
+    int m_left;
+    int m_right;
+    double m_leftValue;
+    double m_rightValue;
+    bool m_madeMonotonic;
+}
+
+[[link(android), depends(tk::spline)]]
 class KeyframeObject {
     // KeyframeObject();
     // KeyframeObject(KeyframeObject const&);
@@ -13120,30 +13136,8 @@ class KeyframeObject {
     bool m_unk01c;
     bool m_unk01d;
     bool m_unk01e;
-    gd::vector<double> m_spline1X;
-    gd::vector<double> m_spline1Y;
-    gd::vector<double> m_spline1B;
-    gd::vector<double> m_spline1C;
-    gd::vector<double> m_spline1D;
-    double m_spline1C0;
-    int m_spline1Type;
-    int m_spline1Left;
-    int m_spline1Right;
-    double m_spline1LeftValue;
-    double m_spline1RightValue;
-    bool m_spline1MadeMonotonic;
-    gd::vector<double> m_spline2X;
-    gd::vector<double> m_spline2Y;
-    gd::vector<double> m_spline2B;
-    gd::vector<double> m_spline2C;
-    gd::vector<double> m_spline2D;
-    double m_spline2C0;
-    int m_spline2Type;
-    int m_spline2Left;
-    int m_spline2Right;
-    double m_spline2LeftValue;
-    double m_spline2RightValue;
-    bool m_spline2MadeMonotonic;
+    tk::spline m_spline1;
+    tk::spline m_spline2;
     double m_unk170;
     double m_unk178;
     int m_unk180;
