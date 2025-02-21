@@ -694,10 +694,11 @@ class ArtTriggerGameObject : EffectGameObject {
 
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a98a0, imac 0x1db7e0, m1 0x194614, ios 0x390034;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a9820, imac 0x1db780, m1 0x19459c, ios 0x38ffcc;
-    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a98a0, imac 0x1db260, m1 0x194120, ios 0x38fe3c;
+    virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a96b0, imac 0x1db260, m1 0x194120, ios 0x38fe3c;
 
     bool init(char const*);
 
+    // property 533
     int m_artIndex;
 }
 
@@ -2353,6 +2354,7 @@ class ChanceTriggerGameObject : EffectGameObject {
     void remapChanceObjects(gd::unordered_map<int, int> const*) = win 0x49b580;
     void revertChanceRemap();
 
+    // property 435
     gd::vector<ChanceObject> m_chanceObjects;
 }
 
@@ -2981,10 +2983,15 @@ class CountTriggerGameObject : EffectGameObject {
 
     bool init(char const*);
 
+    // property 77
     int m_pickupCount;
+    // property 88
     int m_pickupTriggerMode;
-    bool m_unkPickupBool1;
+    // property 104
+    bool m_multiActivate;
+    // property 139
     bool m_isOverride;
+    // property 441
     float m_pickupTriggerMultiplier;
 }
 
@@ -3814,10 +3821,15 @@ class DashRingObject : RingObject {
 
     bool init(char const*);
 
+    // property 586
     float m_dashSpeed;
+    // property 588
     float m_endBoost;
+    // property 590
     float m_maxDuration;
+    // property 587
     bool m_allowCollide;
+    // property 589
     bool m_stopSlide;
 }
 
@@ -5107,8 +5119,11 @@ class EndTriggerGameObject : EffectGameObject {
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a45b0, imac 0x1caf50, m1 0x1870ac, ios 0x38b0ec;
     virtual gd::string getSaveString(GJBaseGameLayer*) = imac 0x1ca260, m1 0x1865f0, ios 0x38adec;
 
+    // property 460
     bool m_noEffects;
+    // property 461
     bool m_noSFX;
+    // property 487
     bool m_instant;
 }
 
@@ -7754,19 +7769,33 @@ class GameOptionsTrigger : EffectGameObject {
 
     bool init(char const*);
 
+    // property 159
     GameOptionsSetting m_streakAdditive;
+    // property 160
     GameOptionsSetting m_unlinkDualGravity;
+    // property 161
     GameOptionsSetting m_hideGround;
+    // property 162
     GameOptionsSetting m_hideP1;
+    // property 163
     GameOptionsSetting m_hideP2;
+    // property 165
     GameOptionsSetting m_disableP1Controls;
+    // property 199
     GameOptionsSetting m_disableP2Controls;
+    // property 195
     GameOptionsSetting m_hideMG;
+    // property 532
     GameOptionsSetting m_hideAttempts;
+    // property 573
     GameOptionsSetting m_editRespawnTime;
+    // property 574
     float m_respawnTime;
+    // property 575
     GameOptionsSetting m_audioOnDeath;
+    // property 576
     GameOptionsSetting m_noDeathSFX;
+    // property 593
     GameOptionsSetting m_boostSlide;
 }
 
@@ -17952,11 +17981,16 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 
     gd::unordered_map<int, float> m_sequenceTimes;
     gd::unordered_map<int, int> m_sequenceIndices;
+    // property 437
     float m_minInt;
+    // property 436
     int m_sequenceMode;
+    // property 439
     int m_resetMode;
+    // property 438
     float m_reset;
     int m_sequenceTotalCount;
+    // property 509
     bool m_uniqueRemap;
 }
 
@@ -18610,24 +18644,33 @@ class SetupCollisionTriggerPopup : SetupTriggerPopup {
 class SetupCountTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupCountTriggerPopup();
 
-    static SetupCountTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupCountTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x4031a0;
 
-    virtual void determineStartValues() = imac 0x2a8e10, m1 0x24f140, ios 0xf7c00;
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x2a93a0, m1 0x24f618, ios 0xf7fd0;
+    virtual void determineStartValues() = win 0x404390, imac 0x2a8e10, m1 0x24f140, ios 0xf7c00;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x404b30, imac 0x2a93a0, m1 0x24f618, ios 0xf7fd0;
     virtual void textChanged(CCTextInputNode*) = win 0x404650, imac 0x2a9140, m1 0x24f3f4, ios 0xf7e90;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x24de94, imac 0x2a7950;
-    void onEnableGroup(cocos2d::CCObject* sender);
-    void onItemIDArrow(cocos2d::CCObject* sender);
-    void onMultiActivate(cocos2d::CCObject* sender);
-    void onTargetCountArrow(cocos2d::CCObject* sender);
-    void onTargetIDArrow(cocos2d::CCObject* sender);
-    TodoReturn updateCountTextInputLabel();
-    TodoReturn updateItemID();
-    TodoReturn updateItemIDInputLabel();
-    TodoReturn updateTargetCount();
-    TodoReturn updateTargetID();
-    TodoReturn updateTargetIDInputLabel();
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x4032e0, m1 0x24de94, imac 0x2a7950;
+    void onEnableGroup(cocos2d::CCObject* sender) = win 0x401660;
+    void onItemIDArrow(cocos2d::CCObject* sender) = win 0x4045c0;
+    void onMultiActivate(cocos2d::CCObject* sender) = win 0x4044f0;
+    void onTargetCountArrow(cocos2d::CCObject* sender) = win 0x404580;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x404610;
+    void updateCountTextInputLabel() = win 0x401eb0;
+    void updateItemID() = win 0x401f30;
+    void updateItemIDInputLabel() = win 0x4048d0;
+    void updateTargetCount() = win 0x404aa0;
+    void updateTargetID() = win 0x4049d0;
+    void updateTargetIDInputLabel() = win 0x404950;
+
+    CCTextInputNode* m_itemIDInput;
+    CCTextInputNode* m_targetIDInput;
+    CCTextInputNode* m_targetCountInput;
+    int m_itemID;
+    int m_targetID;
+    int m_targetCount;
+    bool m_activateGroup;
+    bool m_multiActivate;
 }
 
 [[link(android)]]
@@ -18843,31 +18886,34 @@ class SetupInstantCountPopup : SetupTriggerPopup {
 
     static SetupInstantCountPopup* create(CountTriggerGameObject*, cocos2d::CCArray*) = win 0x40a520;
 
-    virtual void determineStartValues() = m1 0x505b58, imac 0x5d1dc0, ios 0x1bebe0;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x506090, imac 0x5d23f0, ios 0x1befc0;
+    virtual void determineStartValues() = win 0x40b590, m1 0x505b58, imac 0x5d1dc0, ios 0x1bebe0;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x402140, m1 0x506090, imac 0x5d23f0, ios 0x1befc0;
     virtual void textChanged(CCTextInputNode*) = win 0x40b740, m1 0x505e14, imac 0x5d2100, ios 0x1bee80;
 
     bool init(CountTriggerGameObject*, cocos2d::CCArray*) = win 0x40a660, m1 0x504958, imac 0x5d09c0;
-    void onCountType(cocos2d::CCObject* sender);
-    void onEnableGroup(cocos2d::CCObject* sender);
-    void onTargetCountArrow(cocos2d::CCObject* sender);
-    void onTargetID2Arrow(cocos2d::CCObject* sender);
+    void onCountType(cocos2d::CCObject* sender) = win 0x40ba90;
+    void onEnableGroup(cocos2d::CCObject* sender) = win 0x401660;
+    void onTargetCountArrow(cocos2d::CCObject* sender) = win 0x404580;
+    void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x40b700;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x4045c0;
-    TodoReturn updateCountTextInputLabel();
-    void updateItemID() = win 0x401fd0;
-    TodoReturn updateItemIDInputLabel();
-    TodoReturn updateTargetCount();
-    TodoReturn updateTargetID();
-    TodoReturn updateTargetIDInputLabel();
+    void updateCountTextInputLabel() = win 0x401eb0;
+    void updateItemID() = win 0x401f30;
+    void updateItemIDInputLabel() = win 0x4048d0;
+    void updateTargetCount() = win 0x404aa0;
+    void updateTargetID() = win 0x40b9c0;
+    void updateTargetIDInputLabel() = win 0x404950;
 
-    CCTextInputNode* m_unk3a8;
-    CCTextInputNode* m_unk3b0;
-    CCTextInputNode* m_unk3b8;
+    CCTextInputNode* m_itemIDInput;
+    CCTextInputNode* m_targetIDInput;
+    CCTextInputNode* m_targetCountInput;
     int m_itemID;
     int m_targetID;
     int m_targetCount;
-    int m_unk3cc;
+    bool m_activateGroup;
     int m_mode;
+    CCMenuItemToggler* m_equalsToggler;
+    CCMenuItemToggler* m_largerToggler;
+    CCMenuItemToggler* m_smallerToggler;
 }
 
 [[link(android)]]
@@ -21058,6 +21104,7 @@ class SmartGameObject : GameObject {
     }
     void updateSmartFrame() = win 0x487070;
 
+    // property 157
     bool m_referenceOnly;
     gd::string m_baseFrame;
     gd::string m_smartFrame;
@@ -21337,12 +21384,16 @@ class SpawnTriggerGameObject : EffectGameObject {
     void removeRemap(int, int);
     void updateRemapKeys(gd::vector<int> const&) = win 0x4a05a0;
 
+    // property 442
     gd::vector<ChanceObject> m_remapObjects;
     int m_remapKey;
     gd::vector<int> m_remapKeys;
     double m_unk778;
+    // property 63
     float m_spawnDelay;
+    // property 556
     float m_delayRange;
+    // property 581
     bool m_resetRemap;
 }
 
@@ -21867,6 +21918,7 @@ class TextGameObject : GameObject {
     bool init(cocos2d::CCTexture2D*);
     void updateTextObject(gd::string, bool) = win 0x1a4620, imac 0x5b9030;
 
+    // property 31
     gd::string m_text;
     // property 488
     int m_kerning;
@@ -22096,7 +22148,7 @@ class TriggerControlGameObject : EffectGameObject {
     void updateTriggerControlFrame() = win 0x4aa800, m1 0x196494, imac 0x1ddbe0;
 
     gd::string m_triggerControlFrame;
-    // The type of a stop trigger for example
+    // property 580 (The type of a stop trigger for example)
     int m_customTriggerValue;
 }
 
