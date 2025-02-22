@@ -1,6 +1,6 @@
 // Automatically detect vtables in MacOS GD
 // @author Alk1m123
-// @category GeodeSDK
+// @category GeodeCatgirls
 
 import java.util.HashMap;
 
