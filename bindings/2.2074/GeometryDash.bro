@@ -13434,7 +13434,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         scene->addChild(layer);
         return scene;
     }
-    static void updateObjectLabel(GameObject*) = win 0x2cef40, imac 0xe9cb0;
+    static void updateObjectLabel(GameObject*) = win 0x2cef40, m1 0xcf94c, imac 0xe9cb0;
 
     virtual void draw() = imac 0xf52c0, m1 0xd9514, ios 0x365218;
     virtual void postUpdate(float) = win 0x2d88d0, imac 0xf21a0, m1 0xd6df4, ios 0x363080;
