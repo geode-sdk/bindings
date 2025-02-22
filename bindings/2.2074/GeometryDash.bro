@@ -2501,10 +2501,10 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
 
     TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
     TodoReturn determineStartValues();
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x21ec48, imac 0x273e80;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x8a9f0, m1 0x21ec48, imac 0x273e80;
     void onClose(cocos2d::CCObject* sender);
     void onDynamicBlock(cocos2d::CCObject* sender);
-    void onItemIDArrow(cocos2d::CCObject* sender);
+    void onItemIDArrow(cocos2d::CCObject* sender) = win 0x8b600, m1 0x21f87c, imac 0x274b60;
     void onNextItemID(cocos2d::CCObject* sender);
     TodoReturn updateEditorLabel();
     TodoReturn updateItemID();
@@ -9851,8 +9851,8 @@ class GJFollowCommandLayer : SetupTriggerPopup {
     virtual void textChanged(CCTextInputNode*) = win 0x26a850, imac 0x2c3fe0, m1 0x268044, ios 0x13ac1c;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x268e30, m1 0x2661e4, imac 0x2c1fb0;
-    void onUpdateGroupID(cocos2d::CCObject* sender);
-    void onUpdateGroupID2(cocos2d::CCObject* sender);
+    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x26a790, m1 0x267498, imac 0x2c33a0;
+    void onUpdateGroupID2(cocos2d::CCObject* sender) = win 0x26a7f0, m1 0x267554, imac 0x2c3460;
     TodoReturn sliderChanged(cocos2d::CCObject*);
     TodoReturn sliderXModChanged(cocos2d::CCObject*);
     TodoReturn sliderYModChanged(cocos2d::CCObject*);
@@ -11082,8 +11082,8 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x354000, m1 0x2e7e78, ios 0x16412c;
     virtual void textChanged(CCTextInputNode*) = win 0x284d20, imac 0x353890, m1 0x2e78a0, ios 0x163d48;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x2e54c8, imac 0x351320;
-    void onUpdateGroupID(cocos2d::CCObject* sender);
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x282ed0, m1 0x2e54c8, imac 0x351320;
+    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x284cc0, m1 0x2e6c28, imac 0x352bb0;
     TodoReturn sliderChanged(cocos2d::CCObject*);
     TodoReturn sliderXModChanged(cocos2d::CCObject*);
     TodoReturn sliderYModChanged(cocos2d::CCObject*);
@@ -18623,12 +18623,12 @@ class SetupCollisionTriggerPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = m1 0x313f38, imac 0x383eb0, ios 0x23086c;
     virtual void textChanged(CCTextInputNode*) = win 0x401ac0, imac 0x383bc0, m1 0x313ccc, ios 0x23072c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x3125a4, imac 0x382240;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x400660, m1 0x3125a4, imac 0x382240;
     void onActivateOnExit(cocos2d::CCObject* sender);
     void onEnableGroup(cocos2d::CCObject* sender);
-    void onItemID2Arrow(cocos2d::CCObject* sender);
-    void onItemIDArrow(cocos2d::CCObject* sender);
-    void onTargetIDArrow(cocos2d::CCObject* sender);
+    void onItemID2Arrow(cocos2d::CCObject* sender) = win 0x4019f0, m1 0x3131dc, imac 0x382f70;
+    void onItemIDArrow(cocos2d::CCObject* sender) = win 0x401a30, m1 0x31313c, imac 0x382eb0;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x401a70, m1 0x31327c, imac 0x383030;
     void onTargetP1(cocos2d::CCObject* sender);
     void onTargetP2(cocos2d::CCObject* sender);
     void onTargetPP(cocos2d::CCObject* sender);
@@ -19201,7 +19201,7 @@ class SetupOpacityPopup : SetupTriggerPopup {
     virtual void textChanged(CCTextInputNode*) = win 0x413a50, imac 0x58b20, m1 0x4e9dc, ios 0x28390;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x412860, m1 0x4d5e0, imac 0x57560;
-    void onTargetIDArrow(cocos2d::CCObject* sender);
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x4137f0, m1 0x4e1b0, imac 0x581c0;
     TodoReturn sliderChanged(cocos2d::CCObject*);
     TodoReturn updateDuration();
     TodoReturn updateDurLabel(bool);
@@ -19421,9 +19421,9 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = m1 0x502ddc, imac 0x5ce990, ios 0x1cbc54;
     virtual void textChanged(CCTextInputNode*) = win 0x4288e0, imac 0x5ce6a0, m1 0x502b44, ios 0x1cbad0;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x5016b0, imac 0x5cd0b0;
-    void onTargetID2Arrow(cocos2d::CCObject* sender);
-    void onTargetIDArrow(cocos2d::CCObject* sender);
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x427860, m1 0x5016b0, imac 0x5cd0b0;
+    void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x428890, m1 0x502228, imac 0x5cdd00;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x428840, m1 0x5022d0, imac 0x5cddc0;
     TodoReturn sliderChanged(cocos2d::CCObject*);
     TodoReturn updateChance();
     TodoReturn updateChanceLabel(bool);
@@ -19837,11 +19837,11 @@ class SetupTouchTogglePopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x2a65b0, m1 0x24ce10, ios 0x24b160;
     virtual void textChanged(CCTextInputNode*) = win 0x44c760, imac 0x2a6490, m1 0x24cd0c, ios 0x24b0c4;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x24bc30, imac 0x2a51e0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x44b720, m1 0x24bc30, imac 0x2a51e0;
     void onControlMode(cocos2d::CCObject* sender);
     void onDualTouchMode(cocos2d::CCObject* sender);
     void onHoldMode(cocos2d::CCObject* sender);
-    void onTargetIDArrow(cocos2d::CCObject* sender);
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x3fbf70, m1 0x24c740, imac 0x2a5dd0;
     void onTouchMode(cocos2d::CCObject* sender);
     TodoReturn updateTargetID();
     TodoReturn updateTextInputLabel();
