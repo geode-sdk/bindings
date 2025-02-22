@@ -19964,7 +19964,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
         float change = isRight ? 1.f : -1.f;
         float newValue;
 
-        if (auto triggerValue = static_cast<cocos2d::CCFloat*>(this->m_triggerValues->objectForKey(property)); triggerValue)
+        if (auto triggerValue = static_cast<cocos2d::CCFloat*>(this->m_triggerValues->objectForKey(property)))
             newValue = triggerValue->getValue() + change;
         else
             newValue = change;
