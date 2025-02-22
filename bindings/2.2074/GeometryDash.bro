@@ -14849,7 +14849,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 
     void addToggle(char const*, char const*, char const*) = win 0x35ee10, m1 0x69aba0, imac 0x786b10;
     int countForPage(int);
-    void goToPage(int) = win 0x35f890, imac 0x787750, m1 0x69b78c;
+    void goToPage(int) = win 0x35f890, imac 0x787750, m1 0x69b78c, ios 0xf2024;
     void incrementCountForPage(int);
     const char* infoKey(int);
     cocos2d::CCLayer* layerForPage(int);
