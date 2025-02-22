@@ -1369,8 +1369,15 @@ class cocos2d::CCNode : cocos2d::CCObject {
     cocos2d::CCAction* runAction(cocos2d::CCAction*) = imac 0x261f80, m1 0x20dd34, ios 0x23c1d0;
     void schedule(cocos2d::SEL_SCHEDULE) = imac 0x2621b0, m1 0x20dee8, ios 0x23c2fc;
     void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x262210, m1 0x20df28, ios 0x23c320;
-    void schedule(cocos2d::SEL_SCHEDULE, float, unsigned int, float) = imac 0x2621e0, m1 0x20df0c;
-    void scheduleOnce(cocos2d::SEL_SCHEDULE, float) = imac 0x262240, m1 0x20df48;
+    void schedule(cocos2d::SEL_SCHEDULE selector, float interval, unsigned int repeat, float delay) = imac 0x2621e0, m1 0x20df0c, ios inline {
+        CCAssert( selector, "Argument must be non-nil");
+        CCAssert( interval >=0, "Argument must be positive");
+
+        m_pScheduler->scheduleSelector(selector, this, interval , repeat, delay, !m_bRunning);
+    }
+    void scheduleOnce(cocos2d::SEL_SCHEDULE selector, float delay) = imac 0x262240, m1 0x20df48, ios inline {
+        this->schedule(selector, 0.0f, 0, delay);
+    }
     void scheduleUpdate() = imac 0x262090, m1 0x20ddf0, ios 0x23c278;
     void scheduleUpdateWithPriority(int) = imac 0x2620c0;
     void scheduleUpdateWithPriorityLua(int, int) = imac 0x2620f0;
