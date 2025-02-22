@@ -3549,9 +3549,9 @@ class cocos2d::CCString : cocos2d::CCObject {
     char const* getCString() const = imac 0x7950f0, m1 0x6a84a8, ios 0x267ca4;
     //createWithContentsOfFile = ios 0x278b74;
 
-    bool boolValue() const = imac 0x7954b0, m1 0x6a8838;
+    bool boolValue() const = imac 0x7954b0, m1 0x6a8838, ios 0x267e58;
     int intValue() const = imac 0x7953c0, m1 0x6a874c, ios 0x267da8;
-    float floatValue() const = imac 0x795440, m1 0x6a87bc;
+    float floatValue() const = imac 0x795440, m1 0x6a87bc, ios 0x267dec;
 }
 
 [[link(win, android)]]
