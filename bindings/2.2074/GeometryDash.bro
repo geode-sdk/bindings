@@ -19960,9 +19960,23 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void toggleEaseRateVisibility();
     void toggleLimitValue(int, bool);
     void togglePageArrows(bool);
-    void triggerArrowChanged(int, bool) = win 0x45daa0;
-    void triggerArrowLeft(cocos2d::CCObject*) = win 0x45da40;
-    void triggerArrowRight(cocos2d::CCObject*) = win 0x45da70;
+    void triggerArrowChanged(int property, bool isRight) = win 0x45daa0 {
+        float change = isRight ? 1.f : -1.f;
+        float newValue;
+
+        if (auto triggerValue = static_cast<CCFloat*>(this->m_triggerValues->objectForKey(property)); triggerValue)
+            newValue = triggerValue->getValue() + change;
+        else
+            newValue = change;
+
+        bool delegateDisabled = this->m_disableTextDelegate;
+        this->m_disableTextDelegate = true;
+        this->updateValueControls(property, newValue);
+        this->valueChanged(property, newValue);
+        this->m_disableTextDelegate = delegateDisabled;
+    }
+    void triggerArrowLeft(cocos2d::CCObject*) = win 0x45da40, m1 0x1d91ac, imac 0x2277b0;
+    void triggerArrowRight(cocos2d::CCObject*) = win 0x45da70, m1 0x1d92d8, imac 0x2278c0;
     void triggerSliderChanged(cocos2d::CCObject*) = win 0x45d980;
     void updateCustomEaseLabel(int, int) = win 0x465630;
     void updateCustomEaseRateLabel(int, float) = win 0x465800;
