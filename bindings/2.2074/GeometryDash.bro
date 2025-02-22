@@ -19511,7 +19511,7 @@ class SetupSequenceTriggerPopup : SetupTriggerPopup {
     void onAddChance(cocos2d::CCObject* sender) = win 0x42c990;
     void onChangeOrder(cocos2d::CCObject* sender) = win 0x42cad0;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0x42cbb0;
-    void onSelect(cocos2d::CCObject* sender) = win 0x42c910;
+    void onSelect(cocos2d::CCObject* sender) = win 0x42c910, m1 0x430ccc, imac 0x4cb950;
     void updateGroupIDButtons() = win 0x42c430, m1 0x4308b0, imac 0x4cb510;
 
     CCMenuItemSpriteExtra* m_selectedButton;
