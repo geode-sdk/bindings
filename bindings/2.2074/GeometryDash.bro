@@ -6086,9 +6086,9 @@ class ForceBlockGameObject : EffectGameObject {
 class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, FriendRequestDelegate {
     // virtual ~FRequestProfilePage();
 
-    static FRequestProfilePage* create(bool) = imac 0x7798d0;
+    static FRequestProfilePage* create(bool) = win 0x13bc90, imac 0x7798d0;
 
-    virtual void registerWithTouchDispatcher() = m1 0x68ffa8, imac 0x77b1a0, ios 0x1b91f4;
+    virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x68ffa8, imac 0x77b1a0, ios 0x1b91f4;
     virtual void keyBackClicked() = win 0x13d290, imac 0x77b170, m1 0x68ff9c, ios 0x1b91e8;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x13d070, imac 0x77b090, m1 0x68fe98, ios 0x1b90f0;
     virtual void onClosePopup(UploadActionPopup*) = win 0x13d2a0, m1 0x68ffe0, imac 0x77b1e0, ios 0x1b922c;
@@ -6099,28 +6099,38 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     virtual void setupPageInfo(gd::string, char const*) = win 0x13dcf0, imac 0x77ba20, m1 0x690874, ios 0x1b9714;
     virtual void forceReloadRequests(bool) = win 0x13dcd0, imac 0x77b9e0, m1 0x690840, ios 0x1b96e0;
 
-    TodoReturn deleteSelected() = m1 0x68fcd0, imac 0x77aeb0;
+    void deleteSelected() = win 0x13ce00, m1 0x68fcd0, imac 0x77aeb0;
     bool init(bool) = win 0x13be30, m1 0x68ea04, imac 0x779a80;
-    bool isCorrect(char const*);
-    void loadPage(int);
-    void onClose(cocos2d::CCObject* sender);
-    void onDeleteSelected(cocos2d::CCObject* sender) = m1 0x68f608, imac 0x77a720;
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
-    void onSentRequests(cocos2d::CCObject* sender);
-    void onToggleAllObjects(cocos2d::CCObject* sender);
-    void onUpdate(cocos2d::CCObject* sender);
+    bool isCorrect(char const*) = win 0x13d500;
+    void loadPage(int) = win 0x13d630;
+    void onClose(cocos2d::CCObject* sender) = win 0x13d130;
+    void onDeleteSelected(cocos2d::CCObject* sender) = win 0x13cb10, m1 0x68f608, imac 0x77a720;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x13de80;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x13de90;
+    void onSentRequests(cocos2d::CCObject* sender) = win 0x13d0a0;
+    void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x13c930;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x13ca10;
     void setupCommentsBrowser(cocos2d::CCArray*) = win 0x13da30, m1 0x690494, imac 0x77b660;
-    TodoReturn untoggleAll();
-    TodoReturn updateLevelsLabel();
-    TodoReturn updatePageArrows();
+    void untoggleAll() = win 0x13d1f0;
+    void updateLevelsLabel();
+    void updatePageArrows();
 
     bool m_sent;
     gd::string m_key;
-    cocos2d::CCLabelBMFont* m_noInternet;
-    cocos2d::CCLabelBMFont* m_unkLabel;
+    cocos2d::CCLabelBMFont* m_pageLabel;
+    cocos2d::CCLabelBMFont* m_errorLabel;
     GJCommentListLayer* m_listLayer;
     LoadingCircle* m_circle;
+    UploadActionPopup* m_uploadPopup;
+    void* m_unk2e8;
+    CCMenuItemSpriteExtra* m_nextButton;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_refreshButton;
+    int m_itemCount;
+    int m_pageStartIdx;
+    int m_pageEndIdx;
+    int m_page;
+    bool m_toggledAll;
 }
 
 [[link(android)]]
@@ -10343,7 +10353,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
         m_pageButtons = nullptr;
         m_unknown = nullptr;
         m_supporter = nullptr;
-        bool m_hasClosed = false;
+        m_hasClosed = false;
         m_iconType = IconType::Cube;
         m_iconPages = {};
         m_cursor1 = nullptr;
@@ -15841,25 +15851,33 @@ class ParentalOptionsLayer : FLAlertLayer {
 
     static ParentalOptionsLayer* create();
 
-    virtual bool init() = m1 0x6a1270, imac 0x78d870, ios 0xf5a0c;
-    virtual void keyBackClicked() = m1 0x6a2a4c, imac 0x78f100, ios 0xf69d8;
+    virtual bool init() = win 0x365820, m1 0x6a1270, imac 0x78d870, ios 0xf5a0c;
+    virtual void keyBackClicked() = win 0x84650, m1 0x6a2a4c, imac 0x78f100, ios 0xf69d8;
 
-    TodoReturn addToggle(char const*, char const*, char const*);
-    TodoReturn countForPage(int);
-    void goToPage(int);
-    TodoReturn incrementCountForPage(int);
-    TodoReturn infoKey(int);
-    TodoReturn layerForPage(int);
-    TodoReturn layerKey(int);
-    TodoReturn nextPosition(int);
-    TodoReturn objectKey(int);
-    TodoReturn objectsForPage(int);
-    void onClose(cocos2d::CCObject* sender);
+    void addToggle(char const*, char const*, char const*) = win 0x365c70;
+    int countForPage(int) = win 0x2b8f80;
+    void goToPage(int) = win 0x2b9220;
+    void incrementCountForPage(int);
+    const char* infoKey(int);
+    cocos2d::CCLayer* layerForPage(int) = win 0x366270;
+    const char* layerKey(int);
+    cocos2d::CCPoint nextPosition(int);
+    const char* objectKey(int);
+    cocos2d::CCArray* objectsForPage(int) = win 0x3660e0;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onInfo(cocos2d::CCObject* sender);
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
-    void onToggle(cocos2d::CCObject* sender);
-    TodoReturn pageKey(int);
+    void onNextPage(cocos2d::CCObject* sender) = win 0x2b9200;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x2b9210;
+    void onToggle(cocos2d::CCObject* sender) = win 0x366410;
+    const char* pageKey(int);
+
+    int m_page;
+    int m_toggleCount;
+    int m_maxPage;
+    cocos2d::CCDictionary* m_values;
+    cocos2d::CCDictionary* m_variables;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_nextButton;
 }
 
 [[link(android)]]
