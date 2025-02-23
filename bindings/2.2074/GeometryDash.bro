@@ -1406,18 +1406,54 @@ class CCCountdown : cocos2d::CCSprite {
 [[link(android)]]
 class CCCounterLabel : cocos2d::CCLabelBMFont {
     // virtual ~CCCounterLabel();
+    CCCounterLabel() {
+        m_stepSize = 0;
+        m_targetCount = 0;
+        m_currentCount = 0;
+        m_counterEnabled = false;
+        m_stepCount = 10;
+        m_dontSchedule = false;
+        m_formatterType = FormatterType::Integer;
+    }
 
-    static CCCounterLabel* create(int, char const*, FormatterType);
+    static CCCounterLabel* create(int count, char const* font, FormatterType type) = win inline {
+        auto ret = new CCCounterLabel();
+        if (ret->init(count, font, type)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    TodoReturn calculateStepSize(int);
-    TodoReturn disableCounter();
-    TodoReturn enableCounter();
-    TodoReturn fastUpdateCounter();
-    TodoReturn getTargetCount();
-    bool init(int, char const*, FormatterType);
-    void setTargetCount(int);
-    TodoReturn updateCounter(float);
-    TodoReturn updateString();
+    void calculateStepSize(int);
+    void disableCounter();
+    void enableCounter();
+    void fastUpdateCounter() = win inline {
+        m_currnetCount = m_targetCount;
+        this->updateString();
+    }
+    int getTargetCount() = win inline {
+        return m_targetCount;
+    }
+    bool init(int count, char const* font, FormatterType type) = win inline {
+        if (!cocos2d::CCLabelBMFont::initWithString(" ", font)) return false;
+        m_formatterType = type;
+        m_targetCount = count;
+        this->fastUpdateCounter();
+        return true;
+    }
+    void setTargetCount(int) = win 0x43130;
+    void updateCounter(float) = win 0x431c0;
+    void updateString() = win 0x43240;
+
+    int m_stepSize;
+    int m_targetCount;
+    int m_currentCount;
+    bool m_counterEnabled;
+    int m_stepCount;
+    bool m_dontSchedule;
+    FormatterType m_formatterType;
 }
 
 [[link(android)]]
