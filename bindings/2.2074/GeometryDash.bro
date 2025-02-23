@@ -11419,24 +11419,24 @@ class GJRotateCommandLayer : SetupTriggerPopup {
     void onLockRotation(cocos2d::CCObject* sender);
     void onUpdateGroupID(cocos2d::CCObject* sender);
     void onUpdateGroupID2(cocos2d::CCObject* sender);
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn sliderDegreesChanged(cocos2d::CCObject*);
-    TodoReturn sliderTimesChanged(cocos2d::CCObject*);
-    TodoReturn toggleEasingRateVisibility();
-    TodoReturn updateCommandDegrees();
-    TodoReturn updateCommandTimes();
-    TodoReturn updateDegreesLabel();
-    TodoReturn updateDuration();
-    TodoReturn updateDurLabel(bool);
-    TodoReturn updateEasingLabel();
-    TodoReturn updateEasingRateLabel();
-    TodoReturn updateMoveCommandEasing();
-    TodoReturn updateMoveCommandEasingRate();
-    TodoReturn updateTargetGroupID();
-    TodoReturn updateTargetGroupID2();
-    TodoReturn updateTextInputLabel();
-    TodoReturn updateTextInputLabel2();
-    TodoReturn updateTimesLabel();
+    void sliderChanged(cocos2d::CCObject* sender);
+    void sliderDegreesChanged(cocos2d::CCObject* sender);
+    void sliderTimesChanged(cocos2d::CCObject* sender);
+    void toggleEasingRateVisibility();
+    void updateCommandDegrees();
+    void updateCommandTimes();
+    void updateDegreesLabel();
+    void updateDuration();
+    void updateDurLabel(bool);
+    void updateEasingLabel();
+    void updateEasingRateLabel();
+    void updateMoveCommandEasing();
+    void updateMoveCommandEasingRate();
+    void updateTargetGroupID();
+    void updateTargetGroupID2();
+    void updateTextInputLabel();
+    void updateTextInputLabel2();
+    void updateTimesLabel();
 }
 
 [[link(android)]]
@@ -18622,17 +18622,17 @@ class SetupCameraRotatePopup : SetupTriggerPopup {
     bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x412998, imac 0x4a9690;
     void onEasing(cocos2d::CCObject* sender);
     void onEasingRate(cocos2d::CCObject* sender);
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn sliderDegreesChanged(cocos2d::CCObject*);
-    TodoReturn toggleEasingRateVisibility();
-    TodoReturn updateCommandDegrees();
-    TodoReturn updateDegreesLabel();
-    TodoReturn updateDuration();
-    TodoReturn updateDurLabel(bool);
-    TodoReturn updateEasingLabel();
-    TodoReturn updateEasingRateLabel();
-    TodoReturn updateMoveCommandEasing();
-    TodoReturn updateMoveCommandEasingRate();
+    void sliderChanged(cocos2d::CCObject* sender);
+    void sliderDegreesChanged(cocos2d::CCObject* sender);
+    void toggleEasingRateVisibility();
+    void updateCommandDegrees();
+    void updateDegreesLabel();
+    void updateDuration();
+    void updateDurLabel(bool);
+    void updateEasingLabel();
+    void updateEasingRateLabel();
+    void updateMoveCommandEasing();
+    void updateMoveCommandEasingRate();
 }
 
 [[link(android)]]
