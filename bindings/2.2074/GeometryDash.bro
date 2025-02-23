@@ -17603,7 +17603,10 @@ class ScrollingLayer : cocos2d::CCLayerColor {
         m_size = size;
         return true;
     }
-    void setStartOffset(cocos2d::CCPoint) = imac 0x70a760, m1 0x629ca4;
+    void setStartOffset(cocos2d::CCPoint offset) = win inline, imac 0x70a760, m1 0x629ca4 {
+        m_startOffset = offset;
+        m_contentLayer->setPosition(offset);
+    }
 
     cocos2d::CCPoint m_position;
     cocos2d::CCSize m_size;
