@@ -9859,28 +9859,42 @@ class GJFlyGroundLayer : GJGroundLayer {
 class GJFollowCommandLayer : SetupTriggerPopup {
     // virtual ~GJFollowCommandLayer();
 
-    static GJFollowCommandLayer* create(EffectGameObject*, cocos2d::CCArray*);
+    static GJFollowCommandLayer* create(EffectGameObject*, cocos2d::CCArray*) = win 0x268d00;
 
-    virtual void determineStartValues() = imac 0x2c39d0, m1 0x267ae4, ios 0x13a72c;
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x2c45a0, m1 0x268494, ios 0x13aed4;
+    virtual void determineStartValues() = win 0x26a130, imac 0x2c39d0, m1 0x267ae4, ios 0x13a72c;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x26b1a0, imac 0x2c45a0, m1 0x268494, ios 0x13aed4;
     virtual void textChanged(CCTextInputNode*) = win 0x26a850, imac 0x2c3fe0, m1 0x268044, ios 0x13ac1c;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x268e30, m1 0x2661e4, imac 0x2c1fb0;
     void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x26a790, m1 0x267498, imac 0x2c33a0;
     void onUpdateGroupID2(cocos2d::CCObject* sender) = win 0x26a7f0, m1 0x267554, imac 0x2c3460;
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn sliderXModChanged(cocos2d::CCObject*);
-    TodoReturn sliderYModChanged(cocos2d::CCObject*);
-    TodoReturn updateDuration();
-    TodoReturn updateDurLabel(bool);
-    TodoReturn updateTargetGroupID();
-    TodoReturn updateTargetGroupID2();
-    TodoReturn updateTextInputLabel();
-    TodoReturn updateTextInputLabel2();
-    TodoReturn updateXMod();
-    TodoReturn updateXModLabel();
-    TodoReturn updateYMod();
-    TodoReturn updateYModLabel();
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440;
+    void sliderXModChanged(cocos2d::CCObject* sender) = win 0x26a5d0;
+    void sliderYModChanged(cocos2d::CCObject* sender) = win 0x26a610;
+    void updateDuration() = win 0x26b120;
+    void updateDurLabel(bool) = win 0x26a500;
+    void updateTargetGroupID() = win 0x26ae80;
+    void updateTargetGroupID2() = win 0x26af50;
+    void updateTextInputLabel() = win 0x26ad60;
+    void updateTextInputLabel2() = win 0x26adf0;
+    void updateXMod() = win 0x26b020;
+    void updateXModLabel() = win 0x26a650;
+    void updateYMod() = win 0x26b0a0;
+    void updateYModLabel() = win 0x26a6f0;
+
+    CCTextInputNode* m_moveTimeInput;
+    Slider* m_moveTimeSlider;
+    float m_moveTime;
+    CCTextInputNode* m_xModInput;
+    CCTextInputNode* m_yModInput;
+    Slider* m_xModSlider;
+    Slider* m_yModSlider;
+    float m_xMod;
+    float m_yMod;
+    CCTextInputNode* m_targetIDInput;
+    int m_targetGroupID;
+    CCTextInputNode* m_followIDInput;
+    int m_followGroupID;
 }
 
 [[link(android)]]
@@ -11091,29 +11105,45 @@ class GJPathSprite : CCSpriteCOpacity {
 class GJPFollowCommandLayer : SetupTriggerPopup {
     // virtual ~GJPFollowCommandLayer();
 
-    static GJPFollowCommandLayer* create(EffectGameObject*, cocos2d::CCArray*);
+    static GJPFollowCommandLayer* create(EffectGameObject*, cocos2d::CCArray*) = win 0x282da0;
 
-    virtual void determineStartValues() = imac 0x353270, m1 0x2e7324, ios 0x16384c;
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x354000, m1 0x2e7e78, ios 0x16412c;
+    virtual void determineStartValues() = win 0x284790, imac 0x353270, m1 0x2e7324, ios 0x16384c;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x2855f0, imac 0x354000, m1 0x2e7e78, ios 0x16412c;
     virtual void textChanged(CCTextInputNode*) = win 0x284d20, imac 0x353890, m1 0x2e78a0, ios 0x163d48;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x282ed0, m1 0x2e54c8, imac 0x351320;
     void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x284cc0, m1 0x2e6c28, imac 0x352bb0;
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn sliderXModChanged(cocos2d::CCObject*);
-    TodoReturn sliderYModChanged(cocos2d::CCObject*);
-    TodoReturn updateDuration();
-    TodoReturn updateDurLabel(bool);
-    TodoReturn updateMaxSpeed();
-    TodoReturn updateMaxSpeedLabel();
-    TodoReturn updateOffsetLabel();
-    TodoReturn updatePlayerOffset();
-    TodoReturn updateTargetGroupID();
-    TodoReturn updateTextInputLabel();
-    TodoReturn updateXMod();
-    TodoReturn updateXModLabel();
-    TodoReturn updateYMod();
-    TodoReturn updateYModLabel();
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440;
+    void sliderXModChanged(cocos2d::CCObject* sender) = win 0x284b20;
+    void sliderYModChanged(cocos2d::CCObject* sender) = win 0x284b50;
+    void updateDuration() = win 0x26b120;
+    void updateDurLabel(bool) = win 0x26a500;
+    void updateMaxSpeed();
+    void updateMaxSpeedLabel();
+    void updateOffsetLabel();
+    void updatePlayerOffset();
+    void updateTargetGroupID() = win 0x285420;
+    void updateTextInputLabel() = win 0x285390;
+    void updateXMod() = win 0x2854f0;
+    void updateXModLabel() = win 0x284b80;
+    void updateYMod() = win 0x285570;
+    void updateYModLabel() = win 0x284c20;
+
+    CCTextInputNode* m_moveTimeInput;
+    Slider* m_moveTimeSlider;
+    float m_moveTime;
+    CCTextInputNode* m_speedInput;
+    CCTextInputNode* m_delayInput;
+    CCTextInputNode* m_offsetInput;
+    CCTextInputNode* m_maxSpeedInput;
+    Slider* m_speedSlider;
+    Slider* m_delaySlider;
+    float m_delay;
+    float m_speed;
+    int m_offset;
+    float m_maxSpeed;
+    CCTextInputNode* m_targetIDInput;
+    int m_targetGroupID;
 }
 
 [[link(android)]]
