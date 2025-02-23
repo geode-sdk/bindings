@@ -2493,25 +2493,32 @@ class CheckpointObject : cocos2d::CCNode {
 class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
     // virtual ~CollisionBlockPopup();
 
-    static CollisionBlockPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static CollisionBlockPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x8a8d0;
 
     virtual void keyBackClicked() = win 0x8bb20, imac 0x2753b0, m1 0x220028, ios 0x89a70;
-    virtual void show() = m1 0x21ffdc, imac 0x275350, ios 0x89a24;
-    virtual void textInputClosed(CCTextInputNode*) = m1 0x21fe7c, imac 0x275190, ios 0x89988;
+    virtual void show() = win 0x8ba30, m1 0x21ffdc, imac 0x275350, ios 0x89a24;
+    virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x21fe7c, imac 0x275190, ios 0x89988;
     virtual void textChanged(CCTextInputNode*) = win 0x8b7a0, imac 0x2751d0, m1 0x21fe98, ios 0x899a4;
-    virtual void textInputShouldOffset(CCTextInputNode*, float) = imac 0x2753e0, m1 0x220034, ios 0x89a7c;
-    virtual void textInputReturn(CCTextInputNode*) = imac 0x2754a0, m1 0x220104, ios 0x89ae8;
+    virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x7b5c0, imac 0x2753e0, m1 0x220034, ios 0x89a7c;
+    virtual void textInputReturn(CCTextInputNode*) = win 0x7b620, imac 0x2754a0, m1 0x220104, ios 0x89ae8;
 
-    TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-    TodoReturn determineStartValues();
+    CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
+    void determineStartValues();
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x8a9f0, m1 0x21ec48, imac 0x273e80;
-    void onClose(cocos2d::CCObject* sender);
-    void onDynamicBlock(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x8ba80;
+    void onDynamicBlock(cocos2d::CCObject* sender) = win 0x8b550;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x8b600, m1 0x21f87c, imac 0x274b60;
-    void onNextItemID(cocos2d::CCObject* sender);
-    TodoReturn updateEditorLabel();
-    TodoReturn updateItemID();
-    TodoReturn updateTextInputLabel();
+    void onNextItemID(cocos2d::CCObject* sender) = win 0x8b650;
+    void updateEditorLabel() = win 0x8b890;
+    void updateItemID() = win 0x8b990;
+    void updateTextInputLabel() = win 0x8b910;
+
+    EffectGameObject* m_gameObject;
+    cocos2d::CCArray* m_gameObjects;
+    CCTextInputNode* m_blockIDInput;
+    int m_blockID;
+    bool m_dynamicBlock;
+    bool m_disableDelegate;
 }
 
 [[link(android)]]
@@ -10834,9 +10841,9 @@ class GJMessageCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, FLAlertLayerProtocol, DownloadMessageDelegate {
     // virtual ~GJMessagePopup();
 
-    static GJMessagePopup* create(GJUserMessage*);
+    static GJMessagePopup* create(GJUserMessage*) = win 0x28fd10;
 
-    virtual void keyBackClicked() = m1 0x23ce50, imac 0x294c90, ios 0x2db374;
+    virtual void keyBackClicked() = win 0x84650, m1 0x23ce50, imac 0x294c90, ios 0x2db374;
     virtual void downloadMessageFinished(GJUserMessage*) = win 0x2914b0, imac 0x294d00, m1 0x23cecc, ios 0x2db3f0;
     virtual void downloadMessageFailed(int) = win 0x291500, imac 0x294dc0, m1 0x23cfa4, ios 0x2db464;
     virtual void uploadActionFinished(int, int) = win 0x291540, imac 0x294e60, m1 0x23d05c, ios 0x2db51c;
@@ -10845,12 +10852,19 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x291820, imac 0x295280, m1 0x23d4e4, ios 0x2db774;
 
     void blockUser();
-    bool init(GJUserMessage*);
+    bool init(GJUserMessage*) = win 0x28fe50;
     void loadFromGJMessage(GJUserMessage*) = win 0x290760, m1 0x23c0a8, imac 0x293e60;
-    void onBlock(cocos2d::CCObject* sender);
-    void onClose(cocos2d::CCObject* sender);
-    void onRemove(cocos2d::CCObject* sender);
-    void onReply(cocos2d::CCObject* sender);
+    void onBlock(cocos2d::CCObject* sender) = win 0x291280;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
+    void onRemove(cocos2d::CCObject* sender) = win 0x2910f0;
+    void onReply(cocos2d::CCObject* sender) = win 0x290db0;
+
+    bool m_actionSuccess;
+    cocos2d::CCLabelBMFont* m_errorLabel;
+    GJUserMessage* m_message;
+    LoadingCircle* m_loadingCircle;
+    CCMenuItemSpriteExtra* m_closeButton;
+    UploadActionPopup* m_uploadPopup;
 }
 
 [[link(android)]]
@@ -11213,16 +11227,29 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
 [[link(android)]]
 class GJPromoPopup : FLAlertLayer {
     // virtual ~GJPromoPopup();
+    GJPromoPopup() {
+        m_promoFrame = "";
+    }
 
-    static GJPromoPopup* create(gd::string);
+    static GJPromoPopup* create(gd::string) = win inline {
+        auto ret = new GJPromoPopup();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void onExit() = win 0x29d890, m1 0x249ff4, imac 0x2a3260, ios 0x2e515c;
-    virtual void registerWithTouchDispatcher() = m1 0x24a104, imac 0x2a3370, ios 0x2e519c;
-    virtual void keyBackClicked() = m1 0x24a034, imac 0x2a32a0, ios 0x2e5190;
-    virtual void show() = m1 0x24a13c, imac 0x2a33b0, ios 0x2e51d4;
+    virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x24a104, imac 0x2a3370, ios 0x2e519c;
+    virtual void keyBackClicked() = win 0x27db20, m1 0x24a034, imac 0x2a32a0, ios 0x2e5190;
+    virtual void show() = win 0x867a0, m1 0x24a13c, imac 0x2a33b0, ios 0x2e51d4;
 
     bool init(gd::string) = win 0x29d590, imac 0x2a2f80;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x27dac0;
+
+    gd::string m_promoFrame;
 }
 
 [[link(android)]]
@@ -12511,29 +12538,41 @@ class GJWorldNode : cocos2d::CCNode {
 class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelegate, UploadPopupDelegate, FLAlertLayerProtocol {
     // virtual ~GJWriteMessagePopup();
 
-    static GJWriteMessagePopup* create(int, int) = imac 0x294a70;
+    static GJWriteMessagePopup* create(int, int) = win 0x291a50, imac 0x294a70;
 
-    virtual void registerWithTouchDispatcher() = m1 0x23ebbc, imac 0x296b90, ios 0x2dccd0;
+    virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x23ebbc, imac 0x296b90, ios 0x2dccd0;
     virtual void keyBackClicked() = win 0x2930d0, imac 0x296b60, m1 0x23eba8, ios 0x2dccbc;
     virtual void textInputOpened(CCTextInputNode*) = m1 0x23ec10, imac 0x296c10, ios 0x2dcd24 {}
-    virtual void textInputClosed(CCTextInputNode*) = m1 0x23ebf4, imac 0x296bd0, ios 0x2dcd08;
+    virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x23ebf4, imac 0x296bd0, ios 0x2dcd08;
     virtual void textChanged(CCTextInputNode*) = win 0x2930e0, imac 0x296c30, m1 0x23ec18, ios 0x2dcd2c;
     virtual void uploadMessageFinished(int) = win 0x2936c0, imac 0x297300, m1 0x23f2bc, ios 0x2dd168;
     virtual void uploadMessageFailed(int) = win 0x293740, imac 0x2973c0, m1 0x23f394, ios 0x2dd1f8;
     virtual void onClosePopup(UploadActionPopup*) = win 0x2937f0, imac 0x2974f0, m1 0x23f4d4, ios 0x2dd27c;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x293890, imac 0x297640, m1 0x23f658, ios 0x2dd2f8;
-    virtual void textInputShouldOffset(CCTextInputNode*, float) = imac 0x297720, m1 0x23f778, ios 0x2dd38c;
-    virtual void textInputReturn(CCTextInputNode*) = imac 0x2977e0, m1 0x23f848, ios 0x2dd3f8;
+    virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x7b5c0, imac 0x297720, m1 0x23f778, ios 0x2dd38c;
+    virtual void textInputReturn(CCTextInputNode*) = win 0x7b620, imac 0x2977e0, m1 0x23f848, ios 0x2dd3f8;
 
-    TodoReturn closeMessagePopup(bool);
-    bool init(int, int) = m1 0x23d718, imac 0x295560;
-    void onClearBody(cocos2d::CCObject* sender) = m1 0x23e900, imac 0x2968a0;
-    void onClose(cocos2d::CCObject* sender);
-    void onSend(cocos2d::CCObject* sender) = m1 0x23e4e0, imac 0x296450;
-    TodoReturn updateBody(gd::string);
-    TodoReturn updateCharCountLabel(int);
-    TodoReturn updateSubject(gd::string);
-    TodoReturn updateText(gd::string, int);
+    void closeMessagePopup(bool) = win 0x292ef0;
+    bool init(int, int) = win 0x291be0, m1 0x23d718, imac 0x295560;
+    void onClearBody(cocos2d::CCObject* sender) = win 0x292d50, m1 0x23e900, imac 0x2968a0;
+    void onClose(cocos2d::CCObject* sender) = win 0x292ee0;
+    void onSend(cocos2d::CCObject* sender) = win 0x292a80, m1 0x23e4e0, imac 0x296450;
+    void updateBody(gd::string) = win 0x2932c0;
+    void updateCharCountLabel(int);
+    void updateSubject(gd::string) = win 0x293260;
+    void updateText(gd::string, int) = win 0x293330;
+
+    int m_unk298;
+    int m_messageID;
+    int m_accountID;
+    CCTextInputNode* m_messageInput;
+    CCTextInputNode* m_subjectInput;
+    gd::string m_messageText;
+    gd::string m_subjectText;
+    cocos2d::CCLabelBMFont* m_messageCountLabel;
+    cocos2d::CCLabelBMFont* m_subjectCountLabel;
+    UploadActionPopup* m_uploadPopup;
+    bool m_uploadSuccess;
 }
 
 [[link(android)]]
