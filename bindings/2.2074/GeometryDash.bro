@@ -19911,18 +19911,29 @@ class SetupTouchTogglePopup : SetupTriggerPopup {
 
     static SetupTouchTogglePopup* create(EffectGameObject*, cocos2d::CCArray*);
 
-    virtual void determineStartValues() = imac 0x2a6270, m1 0x24cb44, ios 0x24af20;
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x2a65b0, m1 0x24ce10, ios 0x24b160;
+    virtual void determineStartValues() = win 0x44c350, imac 0x2a6270, m1 0x24cb44, ios 0x24af20;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x44c880, imac 0x2a65b0, m1 0x24ce10, ios 0x24b160;
     virtual void textChanged(CCTextInputNode*) = win 0x44c760, imac 0x2a6490, m1 0x24cd0c, ios 0x24b0c4;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x44b720, m1 0x24bc30, imac 0x2a51e0;
-    void onControlMode(cocos2d::CCObject* sender);
-    void onDualTouchMode(cocos2d::CCObject* sender);
-    void onHoldMode(cocos2d::CCObject* sender);
+    void onControlMode(cocos2d::CCObject* sender) = win 0x44c6a0;
+    void onDualTouchMode(cocos2d::CCObject* sender) = win 0x44c4b0;
+    void onHoldMode(cocos2d::CCObject* sender) = win 0x44c4b0;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x3fbf70, m1 0x24c740, imac 0x2a5dd0;
-    void onTouchMode(cocos2d::CCObject* sender);
-    TodoReturn updateTargetID();
-    TodoReturn updateTextInputLabel();
+    void onTouchMode(cocos2d::CCObject* sender) = win 0x44c5d0;
+    void updateTargetID() = win 0x3fc130;
+    void updateTextInputLabel() = win 0x3fc0b0;
+
+    CCTextInputNode* m_groupIDInput;
+    int m_groupID;
+    bool m_holdMode;
+    int m_toggleMode;
+    int m_playerMode;
+    CCMenuItemToggler* m_toggleOnToggler;
+    CCMenuItemToggler* m_toggleOffToggler;
+    bool m_dualMode;
+    CCMenuItemToggler* m_p1OnlyToggler;
+    CCMenuItemToggler* m_p2OnlyToggler;
 }
 
 [[link(android)]]
