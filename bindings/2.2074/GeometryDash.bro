@@ -19485,22 +19485,30 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
 class SetupRandTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupRandTriggerPopup();
 
-    static SetupRandTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupRandTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x427720;
 
-    virtual void determineStartValues() = m1 0x5028bc, imac 0x5ce3b0, ios 0x1cb858;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x502ddc, imac 0x5ce990, ios 0x1cbc54;
+    virtual void determineStartValues() = win 0x4285e0, m1 0x5028bc, imac 0x5ce3b0, ios 0x1cb858;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x4290c0, m1 0x502ddc, imac 0x5ce990, ios 0x1cbc54;
     virtual void textChanged(CCTextInputNode*) = win 0x4288e0, imac 0x5ce6a0, m1 0x502b44, ios 0x1cbad0;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x427860, m1 0x5016b0, imac 0x5cd0b0;
     void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x428890, m1 0x502228, imac 0x5cdd00;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x428840, m1 0x5022d0, imac 0x5cddc0;
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn updateChance();
-    TodoReturn updateChanceLabel(bool);
-    TodoReturn updateTargetID();
-    TodoReturn updateTargetID2();
-    TodoReturn updateTextInputLabel();
-    TodoReturn updateTextInputLabel2();
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x428730;
+    void updateChance() = win 0x26b120;
+    void updateChanceLabel(bool) = win 0x428770;
+    void updateTargetID() = win 0x428f20;
+    void updateTargetID2() = win 0x428ff0;
+    void updateTextInputLabel() = win 0x428bc0;
+    void updateTextInputLabel2() = win 0x428d70;
+
+    CCTextInputNode* m_chanceInput;
+    Slider* m_chanceSlider;
+    float m_chancePercent;
+    CCTextInputNode* m_groupID1Input;
+    CCTextInputNode* m_groupID2Input;
+    int m_groupID1;
+    int m_groupID2;
 }
 
 [[link(android)]]
