@@ -13427,45 +13427,83 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 [[link(android)]]
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     // virtual ~LevelAreaInnerLayer();
+    LevelAreaInnerLayer() {
+        m_nextFloorButton = nullptr;
+        m_enteringLevel = false;
+        m_levelID = 0;
+        m_exiting = false;
+    }
 
-    static LevelAreaInnerLayer* create(bool) = imac 0x267c20;
-    static cocos2d::CCScene* scene(bool) = win 0x2be1d0, imac 0x267950;
+    static LevelAreaInnerLayer* create(bool returning) = win inline, imac 0x267c20 {
+        auto ret = new LevelAreaInnerLayer();
+        if (ret->init(returning)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static cocos2d::CCScene* scene(bool returning) = win 0x2be1d0, imac 0x267950;
 
     virtual void keyBackClicked() = win 0x2c0550, m1 0x21538c, imac 0x269bf0, ios 0x3467b8;
     virtual void dialogClosed(DialogLayer*) = win 0x2bf9a0, imac 0x2699c0, m1 0x215164, ios 0x346614;
     virtual void onExit() = win 0x2c0500, m1 0x21533c, imac 0x269ba0, ios 0x346768;
 
-    bool init(bool) = win 0x2be2e0, m1 0x2135d4, imac 0x267d00;
+    bool init(bool returning) = win 0x2be2e0, m1 0x2135d4, imac 0x267d00;
     void onBack(cocos2d::CCObject* sender) = win 0x2c04a0, m1 0x2143a0, imac 0x268b80;
     void onDoor(cocos2d::CCObject* sender) = win 0x2bffd0, imac 0x268bd0, m1 0x2143f8;
-    void onInfo(cocos2d::CCObject* sender) = m1 0x2146cc, imac 0x268e70;
-    void onNextFloor(cocos2d::CCObject* sender) = m1 0x21453c, imac 0x268d00;
-    void onOnlineVault(cocos2d::CCObject* sender);
-    bool playStep1();
-    cocos2d::CCAction* showFloor1CompleteDialog() = m1 0x214c58, imac 0x269470;
-    TodoReturn tryResumeTowerMusic();
-    TodoReturn tryShowAd();
+    void onInfo(cocos2d::CCObject* sender) = win 0x2bfa30, m1 0x2146cc, imac 0x268e70;
+    void onNextFloor(cocos2d::CCObject* sender) = win 0x2bf2c0, m1 0x21453c, imac 0x268d00;
+    void onOnlineVault(cocos2d::CCObject* sender) = win 0x2c02c0;
+    bool playStep1() = win 0x2c0190;
+    void showFloor1CompleteDialog() = win 0x2bf3c0, m1 0x214c58, imac 0x269470;
+    void tryResumeTowerMusic() = win 0x2bff30;
+    void tryShowAd();
+
+    CCMenuItemSpriteExtra* m_nextFloorButton;
+    bool m_enteringLevel;
+    int m_levelID;
+    bool m_exiting;
 }
 
 [[link(android)]]
 class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
     // virtual ~LevelAreaLayer();
+    LevelAreaLayer() {
+        m_towerSprite = nullptr;
+        m_godRays = nullptr;
+        m_enteringTower = false;
+        m_exiting = false;
+    }
 
-    static LevelAreaLayer* create();
-    static cocos2d::CCScene* scene();
+    static LevelAreaLayer* create() = win inline {
+        auto ret = new LevelAreaLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static cocos2d::CCScene* scene() = win 0x2bc0c0;
 
     virtual bool init() = win 0x2bc1d0, imac 0x2658d0, m1 0x2111e8, ios 0x34353c;
     virtual void keyBackClicked() = win 0x2be1c0, imac 0x267ab0, m1 0x2133f4, ios 0x344fe4;
     virtual void dialogClosed(DialogLayer*) = win 0x2bd3b0, m1 0x213170, imac 0x267810, ios 0x344e04;
     virtual void onExit() = win 0x2be170, m1 0x2133a4, imac 0x267a60, ios 0x344f94;
 
-    cocos2d::CCAction* addGodRay(float, float, float, float, float, cocos2d::CCPoint);
-    TodoReturn addTorch(cocos2d::CCNode*, cocos2d::CCPoint, int, float, int, bool, int, cocos2d::CCArray*) = m1 0x2124b0, imac 0x266be0;
-    cocos2d::CCAction* fadeInsideTower();
-    void onBack(cocos2d::CCObject* sender);
-    void onClickDoor(cocos2d::CCObject* sender);
-    bool onEnterTower() = m1 0x21322c;
-    cocos2d::CCAction* showDialog() = m1 0x212f20, imac 0x2675e0;
+    void addGodRay(float, float, float, float, float, cocos2d::CCPoint) = win 0x2bdd20;
+    static void addTorch(cocos2d::CCNode*, cocos2d::CCPoint, int, float, int, bool, int, cocos2d::CCArray*) = win 0x2bd690, m1 0x2124b0, imac 0x266be0;
+    void fadeInsideTower() = win 0x2bd530;
+    void onBack(cocos2d::CCObject* sender) = win 0x2be0c0;
+    void onClickDoor(cocos2d::CCObject* sender) = win 0x2bd3c0;
+    bool onEnterTower() = win 0x2bd5e0, m1 0x21322c;
+    void showDialog() = win 0x2bd080, m1 0x212f20, imac 0x2675e0;
+
+    cocos2d::CCSprite* m_towerSprite;
+    cocos2d::CCArray* m_godRays;
+    bool m_enteringTower;
+    bool m_exiting;
 }
 
 [[link(android)]]
@@ -17838,7 +17876,13 @@ class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x2c02c0;
+    static cocos2d::CCScene* scene() = win inline {
+        auto scene = cocos2d::CCScene::create();
+        AppDelegate::get()->m_runningScene = scene;
+        auto layer = SecretLayer5::create();
+        scene->addChild(layer);
+        return scene;
+    }
 
     virtual bool init() = win 0x3dccc0, imac 0x467390, m1 0x3d6f48, ios 0x77e28;
     virtual void onExit() = win 0x3d25a0, imac 0x46bbc0, m1 0x3db234, ios 0x7ae5c;
