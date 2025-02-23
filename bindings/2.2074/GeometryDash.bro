@@ -8500,16 +8500,29 @@ class GJAccountSyncDelegate {
 [[link(android)]]
 class GJActionManager : cocos2d::CCNode {
     // virtual ~GJActionManager();
+    GJActionManager() {
+        m_internalActions = nullptr;
+    }
 
-    static GJActionManager* create();
+    static GJActionManager* create() = win inline {
+        auto ret = new GJActionManager();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual bool init() = m1 0x521a8c, imac 0x5f1e50, ios 0x2fe634;
+    virtual bool init() = win 0x1fb510, m1 0x521a8c, imac 0x5f1e50, ios 0x2fe634;
 
-    TodoReturn getInternalAction(int);
-    TodoReturn runInternalAction(cocos2d::CCAction*, cocos2d::CCNode*) = imac 0x5f1e80;
-    TodoReturn stopAllInternalActions();
-    TodoReturn stopInternalAction(int) = imac 0x5f1ed0;
-    TodoReturn updateInternalActions(float, bool);
+    cocos2d::CCAction* getInternalAction(int);
+    void runInternalAction(cocos2d::CCAction*, cocos2d::CCNode*) = imac 0x5f1e80;
+    void stopAllInternalActions();
+    void stopInternalAction(int) = imac 0x5f1ed0;
+    void updateInternalActions(float, bool);
+
+    cocos2d::CCDictionary* m_internalActions;
 }
 
 [[link(android)]]
