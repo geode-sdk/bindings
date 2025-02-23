@@ -19056,29 +19056,41 @@ class SetupKeyframePopup : SetupTriggerPopup {
 class SetupMGTrigger : SetupTriggerPopup {
     // virtual ~SetupMGTrigger();
 
-    static SetupMGTrigger* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupMGTrigger* create(EffectGameObject*, cocos2d::CCArray*) = win 0x40f3e0;
 
-    virtual void determineStartValues() = m1 0x454a5c, imac 0x4f3d90, ios 0x2f2ad8;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x4551e4, imac 0x4f45f0, ios 0x2f3144;
+    virtual void determineStartValues() = win 0x4104d0, m1 0x454a5c, imac 0x4f3d90, ios 0x2f2ad8;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x410bc0, m1 0x4551e4, imac 0x4f45f0, ios 0x2f3144;
     virtual void textChanged(CCTextInputNode*) = win 0x410830, imac 0x4f4390, m1 0x454fcc, ios 0x2f2f84;
-    virtual void valuePopupClosed(ConfigureValuePopup*, float) = m1 0x454ce8, imac 0x4f4050, ios 0x2f2d1c;
+    virtual void valuePopupClosed(ConfigureValuePopup*, float) = win 0x3fedf0, m1 0x454ce8, imac 0x4f4050, ios 0x2f2d1c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x453360, imac 0x4f2600;
-    void onEasing(cocos2d::CCObject* sender);
-    void onEasingRate(cocos2d::CCObject* sender);
-    TodoReturn posFromSliderValue(float);
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn sliderValueFromPos(int);
-    TodoReturn sliderYChanged(cocos2d::CCObject*);
-    TodoReturn toggleEasingRateVisibility();
-    TodoReturn updateDuration();
-    TodoReturn updateDurLabel(bool);
-    TodoReturn updateEasingLabel();
-    TodoReturn updateEasingRateLabel();
-    TodoReturn updateMoveCommandEasing();
-    TodoReturn updateMoveCommandEasingRate();
-    TodoReturn updateMoveCommandPosY();
-    TodoReturn updateValueYLabel();
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x40f500, m1 0x453360, imac 0x4f2600;
+    void onEasing(cocos2d::CCObject* sender) = win 0x3ff1b0;
+    void onEasingRate(cocos2d::CCObject* sender) = win 0x3fed30;
+    void posFromSliderValue(float);
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440;
+    void sliderValueFromPos(int);
+    void sliderYChanged(cocos2d::CCObject* sender) = win 0x410730;
+    void toggleEasingRateVisibility() = win 0x3ff0a0;
+    void updateDuration() = win 0x26b120;
+    void updateDurLabel(bool) = win 0x26a500;
+    void updateEasingLabel() = win 0x3ff270;
+    void updateEasingRateLabel() = win 0x3feec0;
+    void updateMoveCommandEasing();
+    void updateMoveCommandEasingRate();
+    void updateMoveCommandPosY() = win 0x410ad0;
+    void updateValueYLabel() = win 0x410780;
+
+    CCTextInputNode* m_moveTimeInput;
+    Slider* m_moveTimeSlider;
+    float m_moveTime;
+    cocos2d::CCLabelBMFont* m_mgEasingLabel;
+    EasingType m_mgEasingType;
+    float m_mgEasingRate;
+    CCMenuItemSpriteExtra* m_mgEasingRateButton;
+    cocos2d::CCLabelBMFont* m_mgEasingRateLabel;
+    CCTextInputNode* m_offsetYInput;
+    Slider* m_offsetYSlider;
+    int m_offsetY;
 }
 
 [[link(android)]]
