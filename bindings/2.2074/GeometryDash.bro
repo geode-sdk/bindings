@@ -15811,7 +15811,7 @@ class OptionsObject : cocos2d::CCObject {
 
 [[link(android)]]
 class OptionsObjectDelegate {
-    virtual void stateChanged(OptionsObject*);
+    virtual void stateChanged(OptionsObject*) {}
 }
 
 [[link(android)]]
