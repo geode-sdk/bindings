@@ -18675,27 +18675,39 @@ class SetupCollisionStateTriggerPopup : SetupInstantCollisionTriggerPopup {
 class SetupCollisionTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupCollisionTriggerPopup();
 
-    static SetupCollisionTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupCollisionTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x400520;
 
-    virtual void determineStartValues() = m1 0x3139c4, imac 0x383820, ios 0x230460;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x313f38, imac 0x383eb0, ios 0x23086c;
+    virtual void determineStartValues() = win 0x4014d0, m1 0x3139c4, imac 0x383820, ios 0x230460;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x402140, m1 0x313f38, imac 0x383eb0, ios 0x23086c;
     virtual void textChanged(CCTextInputNode*) = win 0x401ac0, imac 0x383bc0, m1 0x313ccc, ios 0x23072c;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x400660, m1 0x3125a4, imac 0x382240;
-    void onActivateOnExit(cocos2d::CCObject* sender);
-    void onEnableGroup(cocos2d::CCObject* sender);
+    void onActivateOnExit(cocos2d::CCObject* sender) = win 0x401960;
+    void onEnableGroup(cocos2d::CCObject* sender) = win 0x401660;
     void onItemID2Arrow(cocos2d::CCObject* sender) = win 0x4019f0, m1 0x3131dc, imac 0x382f70;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x401a30, m1 0x31313c, imac 0x382eb0;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x401a70, m1 0x31327c, imac 0x383030;
-    void onTargetP1(cocos2d::CCObject* sender);
-    void onTargetP2(cocos2d::CCObject* sender);
-    void onTargetPP(cocos2d::CCObject* sender);
-    TodoReturn updateItemID();
-    TodoReturn updateItemID2();
-    TodoReturn updateItemID2InputLabel();
-    TodoReturn updateItemIDInputLabel();
-    TodoReturn updateTargetID();
-    TodoReturn updateTargetIDInputLabel();
+    void onTargetP1(cocos2d::CCObject* sender) = win 0x4016f0;
+    void onTargetP2(cocos2d::CCObject* sender) = win 0x4017b0;
+    void onTargetPP(cocos2d::CCObject* sender) = win 0x401870;
+    void updateItemID() = win 0x401f30;
+    void updateItemID2() = win 0x401fd0;
+    void updateItemID2InputLabel() = win 0x401e10;
+    void updateItemIDInputLabel() = win 0x401d40;
+    void updateTargetID() = win 0x402070;
+    void updateTargetIDInputLabel() = win 0x401eb0;
+
+    CCTextInputNode* m_blockAInput;
+    CCTextInputNode* m_blockBInput;
+    CCTextInputNode* m_targetIDInput;
+    int m_blockAID;
+    int m_blockBID;
+    int m_targetID;
+    bool m_activateGroup;
+    bool m_triggerOnExit;
+    bool m_targetP1;
+    bool m_targetP2;
+    bool m_targetPP;
 }
 
 [[link(android)]]
