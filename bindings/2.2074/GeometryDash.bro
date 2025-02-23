@@ -3551,33 +3551,70 @@ class CustomSFXDelegate {
 class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProtocol {
     // virtual ~CustomSFXWidget();
 
-    static CustomSFXWidget* create(SFXInfoObject*, CustomSFXDelegate*, bool, bool, bool, bool, bool);
+    static CustomSFXWidget* create(SFXInfoObject*, CustomSFXDelegate*, bool, bool, bool, bool, bool) = win 0xbf920;
 
     virtual void downloadSFXFinished(int) = win 0xc18e0, m1 0x500fac, imac 0x5cc910, ios 0x2f13bc;
     virtual void downloadSFXFailed(int, GJSongError) = win 0xc1960, imac 0x5cc9b0, m1 0x50104c, ios 0x2f1414;
     virtual void songStateChanged() = win 0xc1230, imac 0x5cc8a0, m1 0x500f84, ios 0x2f13a8;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xc1a60, imac 0x5ccb90, m1 0x50125c, ios 0x2f1554;
 
-    TodoReturn deleteSFX() = m1 0x500ad8, imac 0x5cc3f0;
+    void deleteSFX() = m1 0x500ad8, imac 0x5cc3f0;
     void downloadFailed();
-    TodoReturn hideLoadingArt();
-    bool init(SFXInfoObject*, CustomSFXDelegate*, bool, bool, bool, bool, bool) = imac 0x5ca7d0, m1 0x4fef30;
-    void onCancelDownload(cocos2d::CCObject* sender);
-    void onDelete(cocos2d::CCObject* sender) = m1 0x4fff6c, imac 0x5cb890;
-    void onDownload(cocos2d::CCObject* sender);
-    void onPlayback(cocos2d::CCObject* sender);
-    void onSelect(cocos2d::CCObject* sender);
-    void showLoadingArt();
-    TodoReturn startDownload();
-    TodoReturn startMonitorDownload();
-    TodoReturn updateDownloadProgress(float);
-    TodoReturn updateError(GJSongError) = m1 0x50115c, imac 0x5ccaa0;
-    TodoReturn updateLengthMod(float);
-    TodoReturn updatePlaybackBtn();
-    TodoReturn updateProgressBar(int);
-    void updateSFXInfo() = imac 0x5cbcc0, m1 0x5003a4;
-    TodoReturn updateSFXObject(SFXInfoObject*);
-    TodoReturn verifySFXID(int);
+    void hideLoadingArt() = win 0xc0bf0;
+    bool init(SFXInfoObject*, CustomSFXDelegate*, bool, bool, bool, bool, bool) = win 0xbfa60, imac 0x5ca7d0, m1 0x4fef30;
+    void onCancelDownload(cocos2d::CCObject* sender) = win 0xc0c80;
+    void onDelete(cocos2d::CCObject* sender) = win 0xc0950, m1 0x4fff6c, imac 0x5cb890;
+    void onDownload(cocos2d::CCObject* sender) = win 0xc0d10;
+    void onPlayback(cocos2d::CCObject* sender) = win 0xc0ee0;
+    void onSelect(cocos2d::CCObject* sender) = win 0xc0ec0;
+    void showLoadingArt() = win 0xc0a90;
+    void startDownload();
+    void startMonitorDownload() = win 0xc0e10;
+    void updateDownloadProgress(float) = win 0xc1100;
+    void updateError(GJSongError) = m1 0x50115c, imac 0x5ccaa0;
+    void updateLengthMod(float mod) = win inline {
+        m_lengthMod = mod;
+        this->updateSFXInfo();
+    }
+    void updatePlaybackBtn() {}
+    void updateProgressBar(int) = win 0xc11b0;
+    void updateSFXInfo() = win 0xc1240, imac 0x5cbcc0, m1 0x5003a4;
+    void updateSFXObject(SFXInfoObject* object) = win inline {
+        m_errorLabel->setVisible(false);
+        if (m_sfxObject != object) {
+            CC_SAFE_RETAIN(object);
+            CC_SAFE_RELEASE(m_sfxObject);
+            m_sfxObject = object;
+        }
+        if (m_sfxObject) m_sfxID = m_sfxObject->m_sfxID;
+        else m_sfxID = 0;
+        this->updateSFXInfo();
+    }
+    bool verifySFXID(int id) = win inline {
+        return m_sfxID == id && m_sfxID != 0;
+    }
+
+    SFXInfoObject* m_sfxObject;
+    cocos2d::CCMenu* m_buttonMenu;
+    cocos2d::CCLabelBMFont* m_titleLabel;
+    cocos2d::CCLabelBMFont* m_idLabel;
+    cocos2d::CCLabelBMFont* m_errorLabel;
+    CCMenuItemSpriteExtra* m_downloadButton;
+    CCMenuItemSpriteExtra* m_cancelButton;
+    CCMenuItemSpriteExtra* m_selectButton;
+    CCMenuItemSpriteExtra* m_playButton;
+    CCMenuItemSpriteExtra* m_deleteButton;
+    cocos2d::CCSprite* m_progressOutlineSprite;
+    cocos2d::CCSprite* m_progressBarSprite;
+    cocos2d::CCSprite* m_clockSprite;
+    CustomSFXDelegate* m_delegate;
+    bool m_showDelete;
+    bool m_showPlay;
+    bool m_showDownload;
+    bool m_showCancel;
+    bool m_compactMode;
+    int m_sfxID;
+    float m_lengthMod;
 }
 
 [[link(android)]]
@@ -11033,6 +11070,13 @@ class GJMultiplayerManager : cocos2d::CCNode {
     void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType);
     void removeDLFromActive(char const*);
     void uploadComment(gd::string, int) = m1 0x56dad4, imac 0x645130;
+
+    cocos2d::CCDictionary* m_activeDownloads;
+    cocos2d::CCDictionary* m_lobbyScores;
+    cocos2d::CCDictionary* m_scoreArrays;
+    cocos2d::CCDictionary* m_lobbyComments;
+    GJMPDelegate* m_mpDelegate;
+    void* m_exitDelegate;
 }
 
 [[link(android)]]
@@ -12612,11 +12656,17 @@ class GooglePlayDelegate {
 class GooglePlayManager : cocos2d::CCNode {
     // virtual ~GooglePlayManager();
 
-    static GooglePlayManager* sharedState();
+    static GooglePlayManager* sharedState() = win 0x6ac50;
 
-    virtual bool init() = m1 0x3d51f8, imac 0x465240, ios 0x45938;
+    virtual bool init() = m1 0x3d51f8, imac 0x465240, ios 0x45938 { return true; }
 
-    void googlePlaySignedIn();
+    void googlePlaySignedIn() = win inline {
+        if (m_delegate1) m_delegate1->googlePlaySignedIn();
+        if (m_delegate2) m_delegate2->googlePlaySignedIn();
+    }
+
+    GooglePlayDelegate* m_delegate1;
+    GooglePlayDelegate* m_delegate2;
 }
 
 [[link(android)]]
@@ -15379,10 +15429,27 @@ class MusicBrowserDelegate {
 [[link(android)]]
 class MusicDelegateHandler : cocos2d::CCNode {
     // virtual ~MusicDelegateHandler();
+    MusicDelegateHandler() {
+        m_delegate = nullptr;
+    }
 
-    static MusicDelegateHandler* create(MusicDownloadDelegate*);
+    static MusicDelegateHandler* create(MusicDownloadDelegate*) = win inline {
+        auto ret = new MusicDelegateHandler();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    bool init(MusicDownloadDelegate*);
+    bool init(MusicDownloadDelegate*) = win inline {
+        if (!cocos2d::CCNode::init()) return false;
+        m_delegate = p0;
+        return true;
+    }
+
+    MusicDownloadDelegate* m_delegate;
 }
 
 [[link(android)]]
