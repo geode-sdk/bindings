@@ -19263,22 +19263,31 @@ class SetupObjectTogglePopup : SetupTriggerPopup {
 class SetupOpacityPopup : SetupTriggerPopup {
     // virtual ~SetupOpacityPopup();
 
-    static SetupOpacityPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupOpacityPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x412730;
 
-    virtual void determineStartValues() = imac 0x58780, m1 0x4e708, ios 0x280e8;
-    virtual void onClose(cocos2d::CCObject* sender) = imac 0x58d80, m1 0x4ec00, ios 0x284f4;
-    virtual void textInputClosed(CCTextInputNode*) = m1 0x4e9c0, imac 0x58ae0, ios 0x28374;
+    virtual void determineStartValues() = win 0x413660, imac 0x58780, m1 0x4e708, ios 0x280e8;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x3f2480, imac 0x58d80, m1 0x4ec00, ios 0x284f4;
+    virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x4e9c0, imac 0x58ae0, ios 0x28374;
     virtual void textChanged(CCTextInputNode*) = win 0x413a50, imac 0x58b20, m1 0x4e9dc, ios 0x28390;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x412860, m1 0x4d5e0, imac 0x57560;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x4137f0, m1 0x4e1b0, imac 0x581c0;
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn updateDuration();
-    TodoReturn updateDurLabel(bool);
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x413840;
+    void updateDuration() = win 0x413e50;
+    void updateDurLabel(bool) = win 0x413c90;
     void updateOpacity();
-    void updateOpacityLabel();
-    TodoReturn updateTargetID();
-    TodoReturn updateTextInputLabel();
+    void updateOpacityLabel() = win 0x413d60;
+    void updateTargetID() = win 0x413ee0;
+    void updateTextInputLabel() = win 0x413dd0;
+
+    CCTextInputNode* m_groupIDInput;
+    CCTextInputNode* m_fadeTimeInput;
+    cocos2d::CCLabelBMFont* m_opacityLabel;
+    Slider* m_fadeTimeSlider;
+    Slider* m_opacitySlider;
+    float m_opacity;
+    float m_fadeTime;
+    int m_groupID;
 }
 
 [[link(android)]]
@@ -19680,20 +19689,30 @@ class SetupShaderEffectPopup : SetupTriggerPopup {
 class SetupShakePopup : SetupTriggerPopup {
     // virtual ~SetupShakePopup();
 
-    static SetupShakePopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupShakePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x43c850;
 
-    virtual void determineStartValues() = m1 0x576bd0, imac 0x64eeb0, ios 0x3a292c;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x577234, imac 0x64f590, ios 0x3a2e60;
+    virtual void determineStartValues() = win 0x43d6d0, m1 0x576bd0, imac 0x64eeb0, ios 0x3a292c;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x43e120, m1 0x577234, imac 0x64f590, ios 0x3a2e60;
     virtual void textChanged(CCTextInputNode*) = win 0x43dd60, imac 0x64f210, m1 0x576f14, ios 0x3a2c1c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x575d0c, imac 0x64df80;
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn updateDuration();
-    TodoReturn updateDurLabel(bool);
-    TodoReturn updateInterval();
-    TodoReturn updateIntervalLabel(bool);
-    TodoReturn updateShake();
-    TodoReturn updateShakeLabel(bool);
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x43c980, m1 0x575d0c, imac 0x64df80;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x43d8a0;
+    void updateDuration() = win 0x26b120;
+    void updateDurLabel(bool) = win 0x26a500;
+    void updateInterval() = win 0x43dce0;
+    void updateIntervalLabel(bool) = win 0x43dc10;
+    void updateShake() = win 0x43db90;
+    void updateShakeLabel(bool) = win 0x43dac0;
+
+    CCTextInputNode* m_durationInput;
+    Slider* m_durationSlider;
+    float m_duration;
+    CCTextInputNode* m_strengthInput;
+    Slider* m_strengthSlider;
+    float m_strength;
+    CCTextInputNode* m_intervalInput;
+    Slider* m_intervalSlider;
+    float m_interval;
 }
 
 [[link(android)]]
