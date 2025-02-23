@@ -11437,6 +11437,31 @@ class GJRotateCommandLayer : SetupTriggerPopup {
     void updateTextInputLabel();
     void updateTextInputLabel2();
     void updateTimesLabel();
+
+    CCTextInputNode* m_moveTimeInput;
+    Slider* m_moveTimeSlider;
+    float m_moveTime;
+    cocos2d::CCLabelBMFont* m_rotateEasingLabel;
+    EasingType m_rotateEasingType;
+    float m_rotateEasingRate;
+    CCMenuItemSpriteExtra* m_rotateEasingRateButton;
+    cocos2d::CCLabelBMFont* m_rotateEasingRateLabel;
+    CCTextInputNode* m_degreesInput;
+    CCTextInputNode* m_timesInput;
+    Slider* m_degreesSlider;
+    Slider* m_timesSlider;
+    float m_degrees;
+    int m_times360;
+    CCTextInputNode* m_targetIDInput;
+    bool m_disableTextChanged;
+    int m_targetGroupID;
+    CCTextInputNode* m_centerIDInput;
+    int m_centerGroupID;
+    bool m_lockObjectRotation;
+    bool m_followP1;
+    bool m_followP2;
+    CCMenuItemToggler* m_followP1Toggler;
+    CCMenuItemToggler* m_followP2Toggler;
 }
 
 [[link(android)]]
@@ -18633,6 +18658,18 @@ class SetupCameraRotatePopup : SetupTriggerPopup {
     void updateEasingRateLabel();
     void updateMoveCommandEasing();
     void updateMoveCommandEasingRate();
+
+    CCTextInputNode* m_moveTimeInput;
+    Slider* m_moveTimeSlider;
+    float m_moveTime;
+    cocos2d::CCLabelBMFont* m_cameraEasingLabel;
+    EasingType m_cameraEasingType;
+    float m_cameraEasingRate;
+    CCMenuItemSpriteExtra* m_cameraEasingRateButton;
+    cocos2d::CCLabelBMFont* m_cameraEasingRateLabel;
+    CCTextInputNode* m_degreesInput;
+    Slider* m_degreesSlider;
+    float m_degrees;
 }
 
 [[link(android)]]
