@@ -17564,20 +17564,56 @@ class RotateGameplayGameObject : EffectGameObject {
 [[link(android)]]
 class ScrollingLayer : cocos2d::CCLayerColor {
     // virtual ~ScrollingLayer();
-    // ScrollingLayer() = ios 0x1c396c;
+    ScrollingLayer() {
+        m_position = cocos2d::CCPoint {};
+        m_size = cocos2d::CCSize {};
+        m_touchStartPosition = cocos2d::CCPoint {};
+        m_touchPosition = cocos2d::CCPoint {};
+        m_startOffset = cocos2d::CCPoint {};
+        m_scrollFactor = 0.f;
+        m_touchID = -1;
+        m_contentLayer = nullptr;
+        m_parentLayer = nullptr;
+    }
 
-    static ScrollingLayer* create(cocos2d::CCSize, cocos2d::CCPoint, float) = imac 0x340380, m1 0x629898;
+    static ScrollingLayer* create(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) = win inline, imac 0x340380, m1 0x629898 {
+        auto ret = new ScrollingLayer();
+        if (ret->init(size, position, factor)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    virtual void draw() = imac 0x70a580, m1 0x629b24, ios 0x1ba978;
-    virtual void visit() = imac 0x70a650, m1 0x629bc8, ios 0x1baa1c;
+    virtual void draw() = win 0x70ee0, imac 0x70a580, m1 0x629b24, ios 0x1ba978;
+    virtual void visit() = win 0x70fa0, imac 0x70a650, m1 0x629bc8, ios 0x1baa1c;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x70ff0, imac 0x70a7a0, m1 0x629cdc, ios 0x1baaa4;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x710e0, imac 0x70a940, m1 0x629e38, ios 0x1bab64;
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x711f0, m1 0x629f34, imac 0x70aa60, ios 0x1bac60;
-    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x629f6c, imac 0x70aaa0, ios 0x1bac98;
+    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71210, m1 0x629f6c, imac 0x70aaa0, ios 0x1bac98;
 
-    TodoReturn getViewRect();
-    bool init(cocos2d::CCSize, cocos2d::CCPoint, float);
+    cocos2d::CCRect getViewRect() = win 0x70df0;
+    bool init(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) = win inline {
+        if (!cocos2d::CCLayerColor::initWithColor({ 0, 0, 0, 0 })) return false;
+        m_scrollFactor = factor;
+        this->addChild(cocos2d::CCLayerColor::create({ 0, 0, 0, 50 }), -2);
+        m_contentLayer = cocos2d::CCLayer::create();
+        this->addChild(m_contentLayer, -1);
+        m_size = size;
+        return true;
+    }
     void setStartOffset(cocos2d::CCPoint) = imac 0x70a760, m1 0x629ca4;
+
+    cocos2d::CCPoint m_position;
+    cocos2d::CCSize m_size;
+    cocos2d::CCPoint m_touchStartPosition;
+    cocos2d::CCPoint m_touchPosition;
+    cocos2d::CCPoint m_startOffset;
+    float m_scrollFactor;
+    int m_touchID;
+    cocos2d::CCLayer* m_contentLayer;
+    cocos2d::CCLayer* m_parentLayer;
 }
 
 [[link(android)]]
