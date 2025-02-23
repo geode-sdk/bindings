@@ -4377,7 +4377,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void registerWithTouchDispatcher() = win 0x9b1a0, m1 0x480b0, imac 0x507c0, ios 0x3f1954;
     virtual void keyBackClicked() = win 0x1130e0, m1 0x39b48, imac 0x3f0f0, ios 0x3e7358;
     virtual void keyDown(cocos2d::enumKeyCodes) = win 0x123770, imac 0x50800, m1 0x480e8, ios 0x3f198c;
-    virtual cocos2d::CCLayer* getUI() = win 0xdd8f0, imac 0x546c0, m1 0x8fb0, ios 0xd590;
+    virtual EditorUI* getUI() = win 0xdd8f0, imac 0x546c0, m1 0x8fb0, ios 0xd590;
     virtual void setIDPopupClosed(SetIDPopup*, int) = win 0xe5580, imac 0x337d0, m1 0x32e34, ios 0x3e213c;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xe5390, imac 0x33640, m1 0x32c64, ios 0x3e2060;
     virtual void updateTransformControl() = win 0x113b60, imac 0x40b50, m1 0x3b2bc, ios 0x3e8214;
@@ -12280,7 +12280,7 @@ class GJTransformControlDelegate {
     virtual void updateTransformControl();
     virtual void anchorPointMoved(cocos2d::CCPoint);
     virtual cocos2d::CCNode* getTransformNode();
-    virtual cocos2d::CCLayer* getUI();
+    virtual EditorUI* getUI();
 }
 
 [[link(android)]]
@@ -18266,7 +18266,16 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 [[link(android)]]
 class SetIDPopup : FLAlertLayer, TextInputDelegate {
     // virtual ~SetIDPopup();
-    // SetIDPopup();
+    SetIDPopup() = win 0x286480 {
+        m_inputNode = nullptr;
+        m_value = 0;
+        m_disableDelegate = false;
+        m_cancelled = false;
+        m_minimum = 0;
+        m_maximum = 1000;
+        m_default = 0;
+        m_delegate = nullptr;
+    }
 
     static SetIDPopup* create(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x293bb0, m1 0x23ff3c, imac 0x2980c0;
 
@@ -18285,7 +18294,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 
     CCTextInputNode* m_inputNode;
     int m_value;
-    bool m_unkBool;
+    bool m_disableDelegate;
     bool m_cancelled;
     int m_minimum;
     int m_maximum;
@@ -18315,11 +18324,24 @@ class SetItemIDLayer : SetupTriggerPopup {
 [[link(android)]]
 class SetLevelOrderPopup : SetIDPopup {
     // virtual ~SetLevelOrderPopup();
+    SetLevelOrderPopup() {
+        m_levelID = 0;
+    }
 
-    static SetLevelOrderPopup* create(int, int, int);
+    static SetLevelOrderPopup* create(int levelID, int order, int amount) = win inline {
+        auto ret = new SetLevelOrderPopup();
+        if (ret->init(levelID, order, amount)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    bool init(int, int, int) = m1 0x2e1e74;
-    void onOrderButton(cocos2d::CCObject* sender);
+    bool init(int levelID, int order, int amount) = win 0x2f4480, m1 0x2e1e74;
+    void onOrderButton(cocos2d::CCObject* sender) = win 0x2f4750;
+
+    int m_levelID;
 }
 
 [[link(android)]]
@@ -20971,7 +20993,7 @@ class ShareLevelLayer : FLAlertLayer {
         return nullptr;
     }
 
-    virtual void keyBackClicked() = win 0x478bb0, m1 0x21ae64, imac 0x26fa70, ios 0x275560;
+    virtual void keyBackClicked() = win 0x84650, m1 0x21ae64, imac 0x26fa70, ios 0x275560;
 
     CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale) = win inline {
         auto btnSpr = ButtonSprite::create(cocos2d::CCString::createWithFormat("%i", btnID)->getCString(), 20, 0, .5f, true, "bigFont.fnt", "GJ_button_01.png", 30.f);
@@ -21489,19 +21511,41 @@ class SongObject : cocos2d::CCObject {
 [[link(android)]]
 class SongOptionsLayer : FLAlertLayer {
     // virtual ~SongOptionsLayer();
+    SongOptionsLayer() {
+        m_delegate = nullptr;
+    }
 
-    static SongOptionsLayer* create(CustomSongDelegate*);
+    static SongOptionsLayer* create(CustomSongDelegate*) = win inline {
+        auto ret = new SongOptionsLayer();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void keyBackClicked() = win 0xc4920, imac 0x205a20, m1 0x1baab4, ios 0x1491e0;
 
-    bool init(CustomSongDelegate*) = m1 0x1b9c60;
-    void onClose(cocos2d::CCObject* sender);
-    void onFadeIn(cocos2d::CCObject* sender);
-    void onFadeOut(cocos2d::CCObject* sender);
-    void onInfo(cocos2d::CCObject* sender) = m1 0x1ba820, imac 0x2057b0;
-    void onPlayback(cocos2d::CCObject* sender);
-    void onSongPersistent(cocos2d::CCObject* sender);
-    void updatePlaybackBtn();
+    bool init(CustomSongDelegate*) = win 0xc3880, m1 0x1b9c60;
+    void onClose(cocos2d::CCObject* sender) = win 0xc47b0;
+    void onFadeIn(cocos2d::CCObject* sender) = win 0xc42a0;
+    void onFadeOut(cocos2d::CCObject* sender) = win 0x0c42f0;
+    void onInfo(cocos2d::CCObject* sender) = win 0xc4650, m1 0x1ba820, imac 0x2057b0;
+    void onPlayback(cocos2d::CCObject* sender) = win 0xc4390;
+    void onSongPersistent(cocos2d::CCObject* sender) = win 0xc4340;
+    void updatePlaybackBtn() = win inline {
+        auto playbackSprite = static_cast<cocos2d::CCSprite*>(m_playbackButton->getNormalImage());
+        if (FMODAudioEngine::sharedEngine()->isMusicPlaying(0)) {
+            playbackSprite->setDisplayFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("GJ_stopMusicBtn_001.png"));
+        } else {
+            playbackSprite->setDisplayFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("GJ_playMusicBtn_001.png"));
+        }
+    }
+
+    CustomSongDelegate* m_delegate;
+    CCTextInputNode* m_offsetInput;
+    CCMenuItemSpriteExtra* m_playbackButton;
 }
 
 [[link(android)]]
@@ -22431,15 +22475,23 @@ class TriggerEffectDelegate {
 class TutorialLayer : FLAlertLayer {
     // virtual ~TutorialLayer();
 
-    static TutorialLayer* create();
+    static TutorialLayer* create() = win 0x4b30b0;
 
     virtual bool init() = imac 0x4c9280, m1 0x42e988, ios 0x1bf188, win 0x4b31c0;
     virtual void keyBackClicked() = win 0x4b3de0, m1 0x42f414, imac 0x4c9cc0, ios 0x1bfa70;
 
-    void loadPage(int) = m1 0x42ef60, imac 0x4c9800;
-    void onClose(cocos2d::CCObject* sender);
-    void onNext(cocos2d::CCObject* sender);
-    void removeTutorialTexture();
+    void loadPage(int) = win 0x4b3730, m1 0x42ef60, imac 0x4c9800;
+    void onClose(cocos2d::CCObject* sender) = win 0x4b3d60;
+    void onNext(cocos2d::CCObject* sender) = win 0x4b3710;
+    void removeTutorialTexture() = win inline {
+        if (m_page == 0) return;
+        cocos2d::CCTextureCache::sharedTextureCache()->removeTextureForKey(cocos2d::CCString::createWithFormat("tutorial_%02d", m_page)->getCString());
+    }
+
+    cocos2d::CCLayer* m_tutorialLayer;
+    int m_page;
+    CCMenuItemSpriteExtra* m_nextButton;
+    CCMenuItemSpriteExtra* m_exitButton;
 }
 
 [[link(android)]]
@@ -22747,15 +22799,35 @@ class UndoObject : cocos2d::CCObject {
 [[link(android)]]
 class UpdateAccountSettingsPopup : FLAlertLayer, GJAccountSettingsDelegate {
     // virtual ~UpdateAccountSettingsPopup();
+    UpdateAccountSettingsPopup() {
+        m_updateSuccess = false;
+        m_textArea = nullptr;
+        m_loadingCircle = nullptr;
+        m_closeButton = nullptr;
+    }
 
-    static UpdateAccountSettingsPopup* create(GJAccountSettingsLayer*, int, int, int, gd::string, gd::string, gd::string);
+    static UpdateAccountSettingsPopup* create(GJAccountSettingsLayer*, int, int, int, gd::string, gd::string, gd::string) = win inline {
+        auto ret = new UpdateAccountSettingsPopup();
+        if (ret->init(p0, p1, p2, p3, p4, p5, p6)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void keyBackClicked() = win 0x28db10, imac 0x2905c0, m1 0x238b68, ios 0x2d7f70;
     virtual void updateSettingsFinished() = win 0x28d790, imac 0x2903b0, m1 0x238964, ios 0x2d7dc0;
     virtual void updateSettingsFailed() = win 0x28d890, imac 0x2904d0, m1 0x238a7c, ios 0x2d7ea4;
 
-    bool init(GJAccountSettingsLayer*, int, int, int, gd::string, gd::string, gd::string) = m1 0x2383a0;
-    void onClose(cocos2d::CCObject* sender);
+    bool init(GJAccountSettingsLayer*, int, int, int, gd::string, gd::string, gd::string) = win 0x28d200, m1 0x2383a0;
+    void onClose(cocos2d::CCObject* sender) = win 0x28d950;
+
+    bool m_updateSuccess;
+    GJAccountSettingsLayer* m_settingsLayer;
+    TextArea* m_textArea;
+    LoadingCircle* m_loadingCircle;
+    CCMenuItemSpriteExtra* m_closeButton;
 }
 
 [[link(android)]]
@@ -22791,18 +22863,37 @@ class UploadActionPopup : FLAlertLayer {
 [[link(android)]]
 class UploadListPopup : FLAlertLayer, ListUploadDelegate {
     // virtual ~UploadListPopup();
+    UploadListPopup() {
+        m_levelList = nullptr;
+        m_textArea = nullptr;
+        m_loadingCircle = nullptr;
+        m_backButton = nullptr;
+    }
 
-    static UploadListPopup* create(GJLevelList*);
+    static UploadListPopup* create(GJLevelList*) = win inline {
+        auto ret = new UploadListPopup();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void keyBackClicked() = m1 0x2e50c0, imac 0x350cc0, ios 0x248e44 {}
-    virtual void show() = m1 0x2e5060, imac 0x350c50, ios 0x248de4;
+    virtual void show() = win 0x2f7220, m1 0x2e5060, imac 0x350c50, ios 0x248de4;
     virtual void listUploadFinished(GJLevelList*) = win 0x2f6cc0, imac 0x350750, m1 0x2e4b64, ios 0x24893c;
     virtual void listUploadFailed(GJLevelList*, int) = win 0x2f6e90, imac 0x350970, m1 0x2e4d68, ios 0x248b30;
 
     bool init(GJLevelList*) = win 0x2f6780, m1 0x2e46b4, imac 0x350240;
-    void onBack(cocos2d::CCObject* sender);
-    void onClose(cocos2d::CCObject* sender);
-    void onReturnToList(cocos2d::CCObject* sender);
+    void onBack(cocos2d::CCObject* sender) = win 0x2f7280;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
+    void onReturnToList(cocos2d::CCObject* sender) = win 0x2f71d0;
+
+    GJLevelList* m_levelList;
+    TextArea* m_textArea;
+    LoadingCircle* m_loadingCircle;
+    CCMenuItemSpriteExtra* m_backButton;
 }
 
 [[link(android)]]
@@ -22814,18 +22905,37 @@ class UploadMessageDelegate {
 [[link(android)]]
 class UploadPopup : FLAlertLayer, LevelUploadDelegate {
     // virtual ~UploadPopup();
+    UploadPopup() {
+        m_level = nullptr;
+        m_textArea = nullptr;
+        m_loadingCircle = nullptr;
+        m_backButton = nullptr;
+    }
 
-    static UploadPopup* create(GJGameLevel*);
+    static UploadPopup* create(GJGameLevel*) = win inline {
+        auto ret = new UploadPopup();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void keyBackClicked() = m1 0x21b974, imac 0x2706b0, ios 0x275ffc {}
     virtual void show() = win 0x2f7220, m1 0x21b914, imac 0x270640, ios 0x275f9c;
     virtual void levelUploadFinished(GJGameLevel*) = win 0x478710, imac 0x2701e0, m1 0x21b4e4, ios 0x275ba0;
     virtual void levelUploadFailed(GJGameLevel*) = win 0x4788e0, imac 0x270430, m1 0x21b71c, ios 0x275dc8;
 
-    bool init(GJGameLevel*) = m1 0x21afc4, imac 0x26fc40;
-    void onBack(cocos2d::CCObject* sender);
-    void onClose(cocos2d::CCObject* sender);
-    void onReturnToLevel(cocos2d::CCObject* sender);
+    bool init(GJGameLevel*) = win 0x478140, m1 0x21afc4, imac 0x26fc40;
+    void onBack(cocos2d::CCObject* sender) = win 0x478bb0;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
+    void onReturnToLevel(cocos2d::CCObject* sender) = win 0x478ac0;
+
+    GJGameLevel* m_level;
+    TextArea* m_textArea;
+    LoadingCircle* m_loadingCircle;
+    CCMenuItemSpriteExtra* m_backButton;
 }
 
 [[link(android)]]
