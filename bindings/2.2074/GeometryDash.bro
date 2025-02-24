@@ -2111,7 +2111,6 @@ class CCSpritePlus : cocos2d::CCSprite {
     bool m_hasFollower;
     bool m_propagateScaleChanges;
     bool m_propagateFlipChanges;
-    PAD = win 0x1;
 }
 
 [[link(android)]]
@@ -4540,8 +4539,10 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     CCMenuItemSpriteExtra* m_guidelinesOffButton;
     CCMenuItemSpriteExtra* m_guidelinesOnButton;
     LevelEditorLayer* m_editorLayer;
-    PAD = win 0x20;
-
+    void* m_unk250;
+    void* m_unk258;
+    void* m_unk260;
+    void* m_unk268;
 }
 
 [[link(android), depends(GameObjectEditorState), depends(GJTransformState)]]
