@@ -2790,26 +2790,26 @@ class ColorSelectLiveOverlay : FLAlertLayer {
     // virtual ~ColorSelectLiveOverlay();
 
     static ColorSelectLiveOverlay* create(ColorAction*, ColorAction*, EffectGameObject*) = win 0x8bc50, imac 0x551c50;
+    static ColorSelectLiveOverlay* createWithActions(ColorAction*, ColorAction*);
+    static ColorSelectLiveOverlay* createWithObject(EffectGameObject*);
 
     virtual void keyBackClicked() = win 0x8d1b0, m1 0x4aa894, imac 0x553950, ios 0xf9668;
-    virtual void show() = m1 0x4aa94c, imac 0x553a00, ios 0xf967c;
+    virtual void show() = win 0x8ba30, m1 0x4aa94c, imac 0x553a00, ios 0xf967c;
 
-    void closeColorSelect(cocos2d::CCObject*);
+    void closeColorSelect(cocos2d::CCObject* sender) = win 0x8d020;
     void colorValueChanged(cocos2d::ccColor3B);
-    TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-    TodoReturn createWithActions(ColorAction*, ColorAction*);
-    TodoReturn createWithObject(EffectGameObject*);
-    TodoReturn determineStartValues();
-    TodoReturn getColorValue();
+    CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
+    void determineStartValues();
+    cocos2d::ccColor3B getColorValue();
     bool init(ColorAction*, ColorAction*, EffectGameObject*) = win 0x8bda0, m1 0x4a9080, imac 0x551e20;
-    void onSelectTab(cocos2d::CCObject* sender);
-    TodoReturn selectColor(cocos2d::ccColor3B);
-    TodoReturn sliderChanged(cocos2d::CCObject*);
-    TodoReturn textChanged(CCTextInputNode*);
-    void textInputClosed(CCTextInputNode*);
-    TodoReturn toggleControls(bool);
-    TodoReturn updateColorLabel();
-    TodoReturn updateColorValue();
+    void onSelectTab(cocos2d::CCObject* sender) = win 0x8d070;
+    void selectColor(cocos2d::ccColor3B) = win 0x8d200;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x8cd30;
+    void textChanged(CCTextInputNode*) {}
+    void textInputClosed(CCTextInputNode*) {}
+    void toggleControls(bool) = win 0x8d640;
+    void updateColorLabel() = win 0x8d480;
+    void updateColorValue();
     void updateOpacity();
 
     EffectGameObject* m_effectGameObject;
@@ -2817,6 +2817,32 @@ class ColorSelectLiveOverlay : FLAlertLayer {
     cocos2d::CCArray* m_12buttons;
     ColorAction* m_baseColorAction;
     ColorAction* m_detailColorAction;
+    cocos2d::ccColor3B m_mainColor;
+    cocos2d::ccColor3B m_detailColor;
+    cocos2d::ccColor3B m_targetColor;
+    float m_unk2ac;
+    int m_unk2b0;
+    int m_unk2b4;
+    float m_opacity;
+    ColorSelectDelegate* m_delegate;
+    bool m_unk2c8;
+    bool m_unk2c9;
+    bool m_updateColor;
+    Slider* m_hueSlider;
+    Slider* m_saturationSlider;
+    Slider* m_valueSlider;
+    Slider* m_opacitySlider;
+    cocos2d::CCSprite* m_colorSprite;
+    cocos2d::CCSprite* m_oldColorSprite;
+    cocos2d::CCSprite* m_saturationSprite;
+    cocos2d::CCSprite* m_valueSprite;
+    cocos2d::CCSprite* m_opacitySprite;
+    double m_hue;
+    double m_saturation;
+    double m_value;
+    cocos2d::CCLabelBMFont* m_colorLabel;
+    bool m_detailColorSelected;
+    bool m_closeButtonPressed;
 }
 
 [[link(android)]]
