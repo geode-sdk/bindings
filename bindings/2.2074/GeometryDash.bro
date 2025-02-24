@@ -3126,32 +3126,54 @@ class CountTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
     // virtual ~CreateGuidelinesLayer();
+    CreateGuidelinesLayer() = win 0x98fd0;
 
-    static CreateGuidelinesLayer* create(CustomSongDelegate*, AudioGuidelinesType);
+    static CreateGuidelinesLayer* create(CustomSongDelegate*, AudioGuidelinesType) = win inline {
+        auto ret = new CreateGuidelinesLayer();
+        if (ret->init(p0, p1)) {
+            ret->m_delegate = delegate;
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void update(float) = win 0x9adf0, imac 0x4f6f90, m1 0x457810, ios 0x81c38;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x9b0c0, imac 0x4f7200, m1 0x457a68, ios 0x81e38;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x457b90, imac 0x4f72f0, ios 0x81ee4 {}
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x9b140, m1 0x457b98, imac 0x4f7310, ios 0x81eec;
-    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x457c68, imac 0x4f73b0, ios 0x81fb4;
-    virtual void registerWithTouchDispatcher() = m1 0x457c84, imac 0x4f73f0, ios 0x81fd0;
+    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71210, m1 0x457c68, imac 0x4f73b0, ios 0x81fb4;
+    virtual void registerWithTouchDispatcher() = win 0x9b1a0, m1 0x457c84, imac 0x4f73f0, ios 0x81fd0;
     virtual void keyBackClicked() = win 0x9b040, m1 0x4579e4, imac 0x4f7160, ios 0x81db4;
     virtual void keyDown(cocos2d::enumKeyCodes) = win 0x9b1f0, imac 0x4f7430, m1 0x457cbc, ios 0x82008;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x9af60, imac 0x4f7060, m1 0x4578d8, ios 0x81ce0;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x4579a8, imac 0x4f7130, ios 0x81d78;
     virtual void keyUp(cocos2d::enumKeyCodes) = m1 0x457d00, imac 0x4f7480, ios 0x8204c {}
-    virtual TodoReturn playMusic() = win 0x9a6a0, m1 0x456ea4, imac 0x4f6610, ios 0x814f4;
-    virtual TodoReturn registerTouch() = win 0x9b060, imac 0x4f71b0, m1 0x457a20, ios 0x81df0;
+    virtual void playMusic() = win 0x9a6a0, m1 0x456ea4, imac 0x4f6610, ios 0x814f4;
+    virtual void registerTouch() = win 0x9b060, imac 0x4f71b0, m1 0x457a20, ios 0x81df0;
     virtual void onInfo(cocos2d::CCObject* sender) = win 0x9ae10, imac 0x4f6fb0, m1 0x457820, ios 0x81c48;
     virtual void onRecord(cocos2d::CCObject* sender) = win 0x9a510, imac 0x4f6500, m1 0x456d90, ios 0x813e4;
-    virtual TodoReturn recordingDidStop() = win 0x9a800, imac 0x4f66a0, m1 0x456f44, ios 0x81584;
+    virtual void recordingDidStop() = win 0x9a800, imac 0x4f66a0, m1 0x456f44, ios 0x81584;
 
-    TodoReturn doClearGuidelines() = m1 0x456ce8, imac 0x4f6470;
-    TodoReturn getMergedRecordString(gd::string, gd::string);
-    bool init(CustomSongDelegate*, AudioGuidelinesType) = m1 0x455c70, imac 0x4f5320;
-    void onClearGuidelines(cocos2d::CCObject* sender) = m1 0x456b0c, imac 0x4f6280;
-    void onStop(cocos2d::CCObject* sender);
-    TodoReturn toggleItems(bool);
+    void doClearGuidelines() = m1 0x456ce8, imac 0x4f6470;
+    gd::string getMergedRecordString(gd::string, gd::string) = win 0x9aa90;
+    bool init(CustomSongDelegate*, AudioGuidelinesType) = win 0x991e0, m1 0x455c70, imac 0x4f5320;
+    void onClearGuidelines(cocos2d::CCObject* sender) = win 0x9a3e0, m1 0x456b0c, imac 0x4f6280;
+    void onStop(cocos2d::CCObject* sender) = win 0x9a730;
+    void toggleItems(bool) = win 0x9ad10;
+
+    CustomSongDelegate* m_delegate;
+    CCTextInputNode* m_offsetInput;
+    cocos2d::CCArray* m_nonRecordingObjects;
+    cocos2d::CCArray* m_recordingObjects;
+    cocos2d::CCLabelBMFont* m_infoLabel;
+    cocos2d::CCSprite* m_circleSprite;
+    float m_elapsed;
+    bool m_recording;
+    bool m_unk2b5;
+    int m_guidelines;
+    gd::string m_guidelineString;
 }
 
 [[link(android)]]
@@ -5708,17 +5730,23 @@ class FileSaveManager : GManager {
 class FindBPMLayer : CreateGuidelinesLayer {
     // virtual ~FindBPMLayer();
 
-    static FindBPMLayer* create(int);
+    static FindBPMLayer* create(int) = win 0x9b280;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x9b870, imac 0x4f7a00, m1 0x4581b8, ios 0x823f8;
-    virtual TodoReturn playMusic() = win 0x9b6e0, m1 0x458024, imac 0x4f7870, ios 0x82284;
-    virtual TodoReturn registerTouch() = win 0x9b780, imac 0x4f7900, m1 0x4580c0, ios 0x82310;
+    virtual void playMusic() = win 0x9b6e0, m1 0x458024, imac 0x4f7870, ios 0x82284;
+    virtual void registerTouch() = win 0x9b780, imac 0x4f7900, m1 0x4580c0, ios 0x82310;
     virtual void onInfo(cocos2d::CCObject* sender) = m1 0x4581b4, imac 0x4f79f0, ios 0x823f4 {}
     virtual void onRecord(cocos2d::CCObject* sender) = win 0x9b4a0, imac 0x4f7760, m1 0x457f44, ios 0x821e0;
-    virtual TodoReturn recordingDidStop() = win 0x9b660, imac 0x4f77a0, m1 0x457f7c, ios 0x82218;
+    virtual void recordingDidStop() = win 0x9b660, imac 0x4f77a0, m1 0x457f7c, ios 0x82218;
 
-    TodoReturn calculateBPM();
+    void calculateBPM();
     bool init(int);
+
+    int m_songID;
+    cocos2d::CCLabelBMFont* m_bpmLabel;
+    float m_startOffset;
+    int m_beats;
+    int m_beatsPerMinute;
 }
 
 [[link(android)]]
