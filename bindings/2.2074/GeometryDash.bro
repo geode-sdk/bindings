@@ -4993,7 +4993,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool m_swipeModeTriggered;
     cocos2d::CCSprite* m_layerLockSprite;
     void* m_unk580;
-    bool m_holdingSpace;
+    bool m_pressedSpace;
     float m_editorZoom;
     bool m_isPaused;
     bool m_reloadItems;
