@@ -17856,42 +17856,102 @@ class SecretGame01Layer : cocos2d::CCLayer {
 [[link(android)]]
 class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
     // virtual ~SecretLayer();
+    SecretLayer() {
+        m_basicMessageIndex = -1;
+        m_selectedThread = 0;
+        m_threadMessageIndex = 0;
+        m_basicMessageCount = 0;
+        m_doomedIndex = 0;
+        m_searchInput = nullptr;
+        m_messageLabel = nullptr;
+        m_messageThreads = nullptr;
+        m_threadTag = -1;
+    }
 
-    static SecretLayer* create();
-    static cocos2d::CCScene* scene();
+    static SecretLayer* create() = win inline {
+        auto ret = new SecretLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static cocos2d::CCScene* scene() = win inline {
+        auto scene = cocos2d::CCScene::create();
+        AppDelegate::get()->m_runningScene = scene;
+        auto layer = SecretLayer::create();
+        scene->addChild(layer);
+        return scene;
+    }
 
     virtual bool init() = win 0x3c5700, m1 0x515624, imac 0x5e31b0, ios 0x3b58ac;
     virtual void keyBackClicked() = win 0x3cabb0, m1 0x518d94, imac 0x5e6fe0, ios 0x3b85a4;
     virtual void textInputOpened(CCTextInputNode*) = win 0x3c84b0, m1 0x51818c, imac 0x5e60c0, ios 0x3b7ab0;
     virtual void textInputClosed(CCTextInputNode*) = win 0x3c8600, m1 0x51826c, imac 0x5e6190, ios 0x3b7b9c;
-    virtual void textChanged(CCTextInputNode*) = m1 0x51837c, imac 0x5e6260, ios 0x3b7c1c;
+    virtual void textChanged(CCTextInputNode*) = win 0x3c8600, m1 0x51837c, imac 0x5e6260, ios 0x3b7c1c;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = m1 0x518184, imac 0x5e60a0, ios 0x3b7aa8 {}
 
-    TodoReturn getBasicMessage() = imac 0x5e5aa0;
-    TodoReturn getMessage();
-    TodoReturn getThreadMessage() = m1 0x518564, imac 0x5e6420;
-    TodoReturn nodeWithTag(int);
+    gd::string getBasicMessage() = win 0x3c99b0, imac 0x5e5aa0;
+    gd::string getMessage() = win 0x3c8a50;
+    gd::string getThreadMessage() = win 0x3c8c40, m1 0x518564, imac 0x5e6420;
+    cocos2d::CCNode* nodeWithTag(int);
     void onBack(cocos2d::CCObject* sender) = win 0x3cab10;
     void onSubmit(cocos2d::CCObject* sender) = win 0x3c6a40, m1 0x516584, imac 0x5e4170;
-    TodoReturn playCoinEffect();
-    TodoReturn selectAThread();
-    TodoReturn updateMessageLabel(gd::string);
-    void updateSearchLabel(char const*);
+    void playCoinEffect() = win 0x3ca690;
+    void selectAThread();
+    void updateMessageLabel(gd::string) = win 0x3c89c0;
+    void updateSearchLabel(char const*) = win 0x3c86d0;
+
+    int m_basicMessageIndex;
+    int m_selectedThread;
+    int m_threadMessageIndex;
+    int m_basicMessageCount;
+    int m_doomedIndex;
+    CCTextInputNode* m_searchInput;
+    cocos2d::CCLabelBMFont* m_messageLabel;
+    CCMenuItemSpriteExtra* m_submitButton;
+    cocos2d::CCDictionary* m_messageThreads;
+    int m_threadTag;
 }
 
 [[link(android)]]
 class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
     // virtual ~SecretLayer2();
+    SecretLayer2() {
+        m_threadTag = -1;
+        m_basicMessageIndex = -1;
+        m_selectedThread = 0;
+        m_threadMessageIndex = 0;
+        m_basicMessageCount = 0;
+        m_errorMessageIndex = -1;
+        m_searchInput = nullptr;
+        m_messageLabel = nullptr;
+        m_messageThreads = nullptr;
+        m_exiting = false;
+        m_doorDialogIndex = -1;
+        m_secretLevelButton = nullptr;
+        m_secretLevelLabels = nullptr;
+        m_secretDoorButton = nullptr;
+    }
 
-    static SecretLayer2* create() = imac 0x489fc0;
+    static SecretLayer2* create() = win inline, imac 0x489fc0 {
+        auto ret = new SecretLayer2();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
     static cocos2d::CCScene* scene() = win 0x3cadf0, imac 0x489f80, m1 0x3f7288;
 
     virtual bool init() = win 0x3caf70, imac 0x48a0f0, m1 0x3f73b4, ios 0x309960;
-    virtual void onExit() = imac 0x4900c0, m1 0x3fce88, ios 0x30dc8c;
+    virtual void onExit() = win 0x3d25a0, imac 0x4900c0, m1 0x3fce88, ios 0x30dc8c;
     virtual void keyBackClicked() = win 0x3d2590, m1 0x3fcd9c, imac 0x48ffd0, ios 0x30dc80;
     virtual void textInputOpened(CCTextInputNode*) = win 0x3cfa10, m1 0x3fbe64, imac 0x48f060, ios 0x30d318;
     virtual void textInputClosed(CCTextInputNode*) = win 0x3cfb60, m1 0x3fbf44, imac 0x48f130, ios 0x30d404;
-    virtual void textChanged(CCTextInputNode*) = m1 0x3fc054, imac 0x48f200, ios 0x30d484;
+    virtual void textChanged(CCTextInputNode*) = win 0x3cfb60, m1 0x3fc054, imac 0x48f200, ios 0x30d484;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = m1 0x3fbe5c, imac 0x48f040, ios 0x30d310 {}
     virtual void dialogClosed(DialogLayer*) = win 0x3cd250, m1 0x3fa9c0, imac 0x48dbb0, ios 0x30c6f4;
 
@@ -17899,17 +17959,33 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     gd::string getErrorMessage() = win 0x3d13e0;
     gd::string getMessage() = win 0x3cffb0;
     gd::string getThreadMessage() = win 0x3d0190, m1 0x3fc958, imac 0x48faa0;
-    TodoReturn nodeWithTag(int);
+    cocos2d::CCNode* nodeWithTag(int);
     void onBack(cocos2d::CCObject* sender) = win 0x3d24e0, imac 0x48b320, m1 0x3f8594;
     void onDoor(cocos2d::CCObject* sender) = win 0x3cd5a0, imac 0x48ca80, m1 0x3f9a70;
     void onSecretLevel(cocos2d::CCObject* sender) = win 0x3cd2f0, imac 0x48ccc0, m1 0x3f9cd4;
     void onSubmit(cocos2d::CCObject* sender) = win 0x3cdf00, imac 0x48b390, m1 0x3f8608;
-    void playCoinEffect();
+    void playCoinEffect() = win 0x3d2060;
     void selectAThread();
     void showCompletedLevel() = win 0x3cc5a0, m1 0x3f9e98, imac 0x48ce80;
     void showSecretLevel() = win 0x3cc430;
     void updateMessageLabel(gd::string text) = win 0x3cff20;
     void updateSearchLabel(char const*) = win 0x3cfc30, m1 0x3f831c, imac 0x48b090;
+
+    int m_threadTag;
+    int m_basicMessageIndex;
+    int m_selectedThread;
+    int m_threadMessageIndex;
+    int m_basicMessageCount;
+    int m_errorMessageIndex;
+    CCTextInputNode* m_searchInput;
+    cocos2d::CCLabelBMFont* m_messageLabel;
+    CCMenuItemSpriteExtra* m_submitButton;
+    cocos2d::CCDictionary* m_messageThreads;
+    bool m_exiting;
+    int m_doorDialogIndex;
+    CCMenuItemSpriteExtra* m_secretLevelButton;
+    cocos2d::CCArray* m_secretLevelLabels;
+    CCMenuItemSpriteExtra* m_secretDoorButton;
 }
 
 [[link(android)]]
@@ -17966,33 +18042,71 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
 [[link(android)]]
 class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
     // virtual ~SecretLayer4();
+    SecretLayer4() {
+        m_threadTag = -1;
+        m_basicMessageIndex = -1;
+        m_selectedThread = 0;
+        m_threadMessageIndex = 0;
+        m_basicMessageCount = 0;
+        m_errorMessageIndex = -1;
+        m_searchInput = nullptr;
+        m_messageLabel = nullptr;
+        m_messageThreads = nullptr;
+        m_exiting = false;
+    }
 
-    static SecretLayer4* create();
-    static cocos2d::CCScene* scene();
+    static SecretLayer4* create() = win inline {
+        auto ret = new SecretLayer4();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static cocos2d::CCScene* scene() = win inline {
+        auto scene = cocos2d::CCScene::create();
+        AppDelegate::get()->m_runningScene = scene;
+        auto layer = SecretLayer4::create();
+        scene->addChild(layer);
+        return scene;
+    }
 
     virtual bool init() = win 0x3d87b0, imac 0x39db60, m1 0x32ad34, ios 0x3537a8;
-    virtual void onExit() = imac 0x3a2000, m1 0x32efa0, ios 0x355de0;
+    virtual void onExit() = win 0x3d25a0, imac 0x3a2000, m1 0x32efa0, ios 0x355de0;
     virtual void keyBackClicked() = win 0x3dc3b0, m1 0x32eeac, imac 0x3a1f10, ios 0x355dd4;
-    virtual void textInputOpened(CCTextInputNode*) = m1 0x32df80, imac 0x3a1030, ios 0x3557c4;
-    virtual void textInputClosed(CCTextInputNode*) = m1 0x32e060, imac 0x3a1100, ios 0x3558b0;
-    virtual void textChanged(CCTextInputNode*) = m1 0x32e170, imac 0x3a11d0, ios 0x355930;
+    virtual void textInputOpened(CCTextInputNode*) = win 0x3cfa10, m1 0x32df80, imac 0x3a1030, ios 0x3557c4;
+    virtual void textInputClosed(CCTextInputNode*) = win 0x3cfb60, m1 0x32e060, imac 0x3a1100, ios 0x3558b0;
+    virtual void textChanged(CCTextInputNode*) = win 0x3cfb60, m1 0x32e170, imac 0x3a11d0, ios 0x355930;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = m1 0x32df78, imac 0x3a1010, ios 0x3557bc {}
     virtual void dialogClosed(DialogLayer*) = m1 0x32d6dc, imac 0x3a07b0, ios 0x355454 {}
 
-    TodoReturn getBasicMessage() = imac 0x3a1390;
-    TodoReturn getErrorMessage();
-    TodoReturn getMessage();
-    TodoReturn getThreadMessage() = m1 0x32e7b8, imac 0x3a17a0;
-    TodoReturn nodeWithTag(int);
-    void onBack(cocos2d::CCObject* sender);
-    void onChest01(cocos2d::CCObject* sender);
-    void onSubmit(cocos2d::CCObject* sender) = m1 0x32c15c, imac 0x39eff0;
-    TodoReturn playCoinEffect();
-    TodoReturn selectAThread();
+    gd::string getBasicMessage() = win 0x3dba90, imac 0x3a1390;
+    gd::string getErrorMessage() = win 0x3d13e0;
+    gd::string getMessage() = win 0x3daef0;
+    gd::string getThreadMessage() = win 0x3db0d0, m1 0x32e7b8, imac 0x3a17a0;
+    cocos2d::CCNode* nodeWithTag(int);
+    void onBack(cocos2d::CCObject* sender) = win 0x3dc300;
+    void onChest01(cocos2d::CCObject* sender) = win 0x3d9870;
+    void onSubmit(cocos2d::CCObject* sender) = win 0x3d99e0, m1 0x32c15c, imac 0x39eff0;
+    void playCoinEffect();
+    void selectAThread();
     void showDialog(int);
-    void showFirstDialog() = m1 0x32b998, imac 0x39e7d0;
-    TodoReturn updateMessageLabel(gd::string);
-    void updateSearchLabel(char const*);
+    void showFirstDialog() = win 0x3db4f0, m1 0x32b998, imac 0x39e7d0;
+    void updateMessageLabel(gd::string) = win 0x3cff20;
+    void updateSearchLabel(char const*) = win 0x3cfc30;
+
+    int m_threadTag;
+    int m_basicMessageIndex;
+    int m_selectedThread;
+    int m_threadMessageIndex;
+    int m_basicMessageCount;
+    int m_errorMessageIndex;
+    CCTextInputNode* m_searchInput;
+    cocos2d::CCLabelBMFont* m_messageLabel;
+    CCMenuItemSpriteExtra* m_submitButton;
+    cocos2d::CCDictionary* m_messageThreads;
+    bool m_exiting;
 }
 
 [[link(android)]]
