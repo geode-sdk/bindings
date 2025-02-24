@@ -357,7 +357,10 @@ enum class ChestSpriteState {
     Opening = 3,
     Opened = 4
 };
-enum class FormatterType {};
+enum class FormatterType {
+    Integer = 0,
+    Float = 1
+};
 enum class AudioModType {};
 enum class GJAreaActionType {};
 enum class GJSmartDirection {};
@@ -691,6 +694,7 @@ enum class PlaybackMode {
 enum class SelectArtType {
     Background = 0,
     Ground = 1,
+    Middleground = 2,
 };
 
 enum class UndoCommand {
