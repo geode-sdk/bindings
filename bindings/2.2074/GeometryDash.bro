@@ -1430,7 +1430,7 @@ class CCCounterLabel : cocos2d::CCLabelBMFont {
     void disableCounter();
     void enableCounter();
     void fastUpdateCounter() = win inline {
-        m_currnetCount = m_targetCount;
+        m_currentCount = m_targetCount;
         this->updateString();
     }
     int getTargetCount() = win inline {
@@ -3157,7 +3157,6 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
     static CreateGuidelinesLayer* create(CustomSongDelegate*, AudioGuidelinesType) = win inline {
         auto ret = new CreateGuidelinesLayer();
         if (ret->init(p0, p1)) {
-            ret->m_delegate = delegate;
             ret->autorelease();
             return ret;
         }
