@@ -16551,7 +16551,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void createRobot(int) = win 0x372180, m1 0x36c034, imac 0x3ea2a0;
     void createSpider(int) = win 0x372540, m1 0x36c378, imac 0x3ea650;
     void deactivateParticle() = m1 0x3709e8, imac 0x3efb60;
-    void deactivateStreak(bool) = imac 0x3eb090, m1 0x36cd60;
+    void deactivateStreak(bool stop) = win inline, imac 0x3eb090, m1 0x36cd60 {
+        if (!m_streakRelated3 || stop) m_regularTrail->stopStroke();
+        if (m_streakRelated4) {
+            m_streakRelated4 = false;
+            this->fadeOutStreak2(m_playEffects ? .2f : .6f);
+        }
+    }
     TodoReturn destroyFromHitHead();
     TodoReturn didHitHead();
     void disableCustomGlowColor() {
