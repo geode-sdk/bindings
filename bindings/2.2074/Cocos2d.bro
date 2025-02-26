@@ -262,7 +262,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     void setStroke(float);
 
     // CCMotionStreak(cocos2d::CCMotionStreak const&);
-    CCMotionStreak() = imac inline, m1 0x4b5cf4 {
+    CCMotionStreak() = imac 0x55f120, m1 0x4b5cf4 {
     	m_bFastMode = false;
     	m_bStartingPositionInitialized = false;
     	m_pTexture = nullptr;
@@ -287,7 +287,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     	m_tBlendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
     }
 
-    void enableRepeatMode(float);
+    void enableRepeatMode(float) = m1 0x4b64ac, imac 0x55fac0;
     bool isFastMode();
     bool isStartingPositionInitialized();
     void reset() = m1 0x4b6c48, imac 0x560190;
