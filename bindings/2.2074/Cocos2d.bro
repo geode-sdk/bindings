@@ -3464,6 +3464,27 @@ class DS_Dictionary {
 }
 
 [[link(win, android)]]
+class CCContentManager : cocos2d::CCObject {
+    static CCContentManager* sharedManager() = m1 0x13ff04, imac 0x174130;
+
+    cocos2d::CCDictionary* addDict(char const*, bool) = m1 0x140068, imac 0x1742a0;
+    cocos2d::CCDictionary* addDictDS(char const*) = m1 0x14022c, imac 0x174470;
+    void clearCache() = m1 0x14042c, imac 0x174670;
+    bool init() = m1 0x13ff84, imac 0x1741b0;
+}
+
+[[link(win, android)]]
+class ObjectDecoder : cocos2d::CCNode {
+    // virtual ~ObjectDecoder();
+
+    static ObjectDecoder* sharedDecoder() = m1 0x690e28, imac 0x77c040;
+
+    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = m1 0x690ea0, imac 0x77c0c0;
+
+    virtual bool init() = m1 0x690e9c, imac 0x77c0b0, ios 0x235898;
+}
+
+[[link(win, android)]]
 class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
     CCControl() = m1 0x2d38b4, imac 0x33d4d0, ios 0x1a8a80;
     ~CCControl() = m1 0x2d3b80, imac 0x33d8a0, ios 0x1a8c20;
@@ -3486,17 +3507,6 @@ class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
     virtual void removeTargetWithActionForControlEvents(cocos2d::CCObject*, cocos2d::extension::SEL_CCControlHandler, unsigned int) = m1 0x2d4520, imac 0x33e300, ios 0x1a8f7c;
     virtual cocos2d::CCPoint getTouchLocation(cocos2d::CCTouch*) = m1 0x2d49b8, imac 0x33e7b0, ios 0x1a91b4;
     virtual bool isTouchInside(cocos2d::CCTouch*) = m1 0x2d4a04, imac 0x33e800, ios 0x1a9200;
-}
-
-[[link(win, android)]]
-class ObjectDecoder : cocos2d::CCNode {
-    // virtual ~ObjectDecoder();
-
-    static ObjectDecoder* sharedDecoder() = m1 0x690e28, imac 0x77c040;
-
-    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = m1 0x690ea0, imac 0x77c0c0;
-
-    virtual bool init() = m1 0x690e9c, imac 0x77c0b0, ios 0x235898;
 }
 
 [[link(win, android)]]
