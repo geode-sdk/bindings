@@ -6118,7 +6118,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void updateMetering();
     void updateQueuedEffects() = win 0x5aec0;
     void updateQueuedMusic();
-    void updateReverb(FMODReverbPreset, bool) = win 0x54400, imac 0x3cac50;
+    void updateReverb(FMODReverbPreset, bool) = win 0x54400, imac 0x3cac50, m1 0x353444;
     void updateTemporaryEffects() = win 0x5b410, imac 0x3cc820;
     TodoReturn waitUntilSoundReady(FMOD::Sound*);
 
@@ -8861,7 +8861,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void activateCustomRing(RingObject*);
     TodoReturn activatedAudioTrigger(SFXTriggerGameObject*, float);
     TodoReturn activateEventTrigger(EventLinkTrigger*, gd::vector<int> const&);
-    TodoReturn activateItemCompareTrigger(ItemTriggerGameObject*, gd::vector<int> const&) = win 0x22eed0;
+    void activateItemCompareTrigger(ItemTriggerGameObject*, gd::vector<int> const&) = win 0x22eed0;
     void activateItemEditTrigger(ItemTriggerGameObject*) = win 0x22eaf0, imac 0x13c800, m1 0x114c0c;
     void activateObjectControlTrigger(ObjectControlGameObject*);
     TodoReturn activatePersistentItemTrigger(ItemTriggerGameObject*);
@@ -8968,7 +8968,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn getGroup(int) = win 0x21eed0;
     TodoReturn getGroupParent(int);
     TodoReturn getGroupParentsString(GameObject*);
-    TodoReturn getItemValue(int, int) = win 0x22ea60;
+    double getItemValue(int, int) = win 0x22ea60;
     float getMaxPortalY() = win 0x20e2b0;
     TodoReturn getMinDistance(cocos2d::CCPoint, cocos2d::CCArray*, float, int) = win 0x23c430;
     float getMinPortalY() = win 0x20e1d0;
@@ -10061,7 +10061,7 @@ class GJEffectManager : cocos2d::CCNode {
     void updateOpacityEffects(float);
     void updatePulseEffects(float) = win 0x259e30, imac 0x2cb9a0, m1 0x26e850;
     TodoReturn updateSpawnTriggers(float) = win 0x25aa10;
-    TodoReturn updateTimer(int, double);
+    void updateTimer(int, double) = win 0x25b850;
     TodoReturn updateTimers(float, float) = win 0x25b9e0, imac 0x2d82a0;
     TodoReturn wasFollowing(int, int);
     TodoReturn wouldCreateLoop(InheritanceNode*, int);
