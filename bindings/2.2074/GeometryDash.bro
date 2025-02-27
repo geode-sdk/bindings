@@ -3274,15 +3274,15 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     void onToggleStartSizeEqualToEnd(cocos2d::CCObject* sender);
     void onToggleStartSpinEqualToEnd(cocos2d::CCObject* sender);
     void onUniformColor(cocos2d::CCObject* sender);
-    TodoReturn particleValueIsInt(gjParticleValue);
+    bool particleValueIsInt(gjParticleValue) = win 0x41c920;
     void sliderChanged(cocos2d::CCObject* sender);
     TodoReturn titleForParticleValue(gjParticleValue) = m1 0x3e51c0;
     TodoReturn toggleGravityMode(bool);
     TodoReturn updateColorSprite(int);
-    TodoReturn updateInputNodeStringForType(gjParticleValue);
-    TodoReturn updateParticleValueForType(float, gjParticleValue, cocos2d::CCParticleSystemQuad*);
-    TodoReturn updateSliderForType(gjParticleValue);
-    TodoReturn valueForParticleValue(gjParticleValue);
+    void updateInputNodeStringForType(gjParticleValue) = win 0x41c990, m1 0x3d295c, imac 0x462470;
+    void updateParticleValueForType(float, gjParticleValue, cocos2d::CCParticleSystemQuad*) = win 0x41ba90, m1 0x3d2e28, imac 0x462960;
+    void updateSliderForType(gjParticleValue) = win 0x41c700, m1 0x3d2c3c, imac 0x462740;
+    float valueForParticleValue(gjParticleValue) = win 0x41b210;
     void willClose();
 
     ParticleGameObject* m_targetObject;
@@ -3294,7 +3294,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     int m_touchID;
     cocos2d::CCPoint m_touchDelta;
     cocos2d::CCArray* m_inputDicts;
-    cocos2d::CCArray* m_inputDicts2;
+    cocos2d::CCArray* m_sliderDicts;
     cocos2d::CCArray* m_pageNodes;
     cocos2d::CCArray* m_pageButtons;
     cocos2d::CCArray* m_pageMenus;
@@ -4721,7 +4721,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn onAssignNewGroupID();
     void onColorFilter(cocos2d::CCObject* sender);
     void onCopy(cocos2d::CCObject* sender);
-    void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0;
+    void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0, imac 0x2c960, m1 0xd7240;
     bool onCreate() = win 0x10dd10, m1 0x2dfac, imac 0x2e600;
     void onCreateButton(cocos2d::CCObject* sender) = win 0x10d880, imac 0x34d30, m1 0x342c0;
     void onCreateObject(int) = win 0x10df10, m1 0x34758, imac 0x35170;
@@ -4747,7 +4747,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onPaste(cocos2d::CCObject* sender);
     void onPasteColor(cocos2d::CCObject* sender) = win 0x112cd0, m1 0x2c5d0;
     void onPasteInPlace(cocos2d::CCObject* sender);
-    void onPasteState(cocos2d::CCObject* sender) = win 0x112b40, m1 0x2c57c;
+    void onPasteState(cocos2d::CCObject* sender) = win 0x112b40, m1 0x2c57c, imac 0x2c9a0;
     void onPause(cocos2d::CCObject* sender) = win 0xe03d0, imac 0x2ad50, m1 0x2afc0;
     void onPlayback(cocos2d::CCObject* sender) = win 0x110390, imac 0xc930, m1 0xdce0;
     void onPlaytest(cocos2d::CCObject* sender) = win 0x1109a0, imac 0xcb90, m1 0xdef4;
@@ -7627,8 +7627,8 @@ class GameObject : CCSpritePlus {
     void removeGlow() = imac 0x58cb90;
     void reorderColorSprite();
     void resetColorGroups();
-    void resetGroupDisabled();
-    void resetGroups();
+    void resetGroupDisabled() = imac 0x591eb0, m1 0x4d9220;
+    void resetGroups() = imac 0x5a66a0, m1 0x4e0b1c;
     void resetMainColorMode();
     void resetMID();
     void resetMoveOffset();
@@ -9105,7 +9105,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn removeBackground();
     TodoReturn removeCustomEnterEffects(int, bool);
     void removeFromGroupParents(GameObject*) = imac 0x12d4c0;
-    void removeFromGroups(GameObject*) = win 0x21ed10, imac 0x12ce70;
+    void removeFromGroups(GameObject*) = win 0x21ed10, imac 0x12ce70, m1 0x107f34;
     TodoReturn removeFromStickyGroup(GameObject*) = imac 0x12de90;
     TodoReturn removeGroundLayer() = imac 0x1039d0;
     void removeGroupParent(int) = win 0x21f3e0;
@@ -13921,12 +13921,12 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn addTouchPoint(cocos2d::CCPoint);
     TodoReturn addToUndoList(UndoObject*, bool) = imac 0xe0210;
     TodoReturn applyAttributeState(GameObject*, GameObject*);
-    TodoReturn applyGroupState(GameObject*, GameObject*);
+    void applyGroupState(GameObject* dest, GameObject* src) = win 0x2d8d60;
     TodoReturn breakApartTextObject(TextGameObject*);
     bool canPasteState();
     TodoReturn clearPlayerPoints();
     TodoReturn clearTouchPoints();
-    void copyObjectState(GameObject*) = win 0x2d8bc0;
+    void copyObjectState(GameObject*) = win 0x2d8bc0, m1 0xd7240, imac 0xf2600;
     TodoReturn copyParticleState(ParticleGameObject*);
     GameObject* createObject(int, cocos2d::CCPoint, bool) = win 0x2cbf90, m1 0xc7be8, imac 0xe0940;
     void createObjectsFromSetup(gd::string&);
@@ -13951,7 +13951,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn getNextFreeEnterChannel(cocos2d::CCArray*);
     int getNextFreeGradientID(cocos2d::CCArray*) = win 0x2d27b0;
     int getNextFreeGroupID(cocos2d::CCArray*) = win 0x2d2030, imac 0xebbf0, m1 0xd1514;
-    int getNextFreeItemID(cocos2d::CCArray*) = win 0x2d22b0;
+    int getNextFreeItemID(cocos2d::CCArray*) = win 0x2d22b0, imac 0xebf10, m1 0xd1810;
     TodoReturn getNextFreeOrderChannel(cocos2d::CCArray*);
     TodoReturn getNextFreeSFXGroupID(cocos2d::CCArray*);
     TodoReturn getNextFreeSFXID(cocos2d::CCArray*);
@@ -13983,9 +13983,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void onPlaytest() = win 0x2d7330, imac 0xf0f00, m1 0xd5d40;
     void onResumePlaytest() = win 0x2d7d60;
     void onStopPlaytest() = win 0x2d7f50, m1 0xd67f8, imac 0xf1ae0;
-    TodoReturn pasteAttributeState(GameObject*, cocos2d::CCArray*);
+    void pasteAttributeState(GameObject*, cocos2d::CCArray*) = imac 0xf2930, m1 0xd7594;
     TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*);
-    TodoReturn pasteGroupState(GameObject*, cocos2d::CCArray*);
+    void pasteGroupState(GameObject*, cocos2d::CCArray*) = imac 0xf2a30, m1 0xd769c;
     TodoReturn pasteParticleState(ParticleGameObject*, cocos2d::CCArray*);
     void processLoadedMoveActions() = imac 0xb7920, m1 0xa7448;
     TodoReturn quickUpdateAllPositions() = win 0x2d70c0;
@@ -14085,9 +14085,10 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* m_unkArr13;
     cocos2d::CCDictionary* m_unkDict3;
     cocos2d::CCArray* m_unkArr5;
+    GameObject* m_copyStateObject;
 
     // haven't verified the mac and ios paddings
-    PAD = win 0x10, android32 0x8, android64 0x10, mac 0x10, ios 0x10;
+    PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
 
     cocos2d::CCDictionary* m_unkDict4;
     cocos2d::CCArray* m_unkArr7;
