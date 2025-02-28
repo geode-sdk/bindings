@@ -16619,9 +16619,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void createSpider(int) = win 0x372540, m1 0x36c378, imac 0x3ea650;
     void deactivateParticle() = m1 0x3709e8, imac 0x3efb60;
     void deactivateStreak(bool stop) = win inline, imac 0x3eb090, m1 0x36cd60 {
-        if (!m_streakRelated3 || stop) m_regularTrail->stopStroke();
-        if (m_streakRelated4) {
-            m_streakRelated4 = false;
+        if (!m_alwaysShowStreak || stop) m_regularTrail->stopStroke();
+        if (m_fadeOutStreak) {
+            m_fadeOutStreak = false;
             this->fadeOutStreak2(m_playEffects ? .2f : .6f);
         }
     }
@@ -16987,9 +16987,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     float m_landParticlesAngle;
     float m_landParticleRelatedY;
     int m_playerStreak;
-    float m_streakRelated1;
-    bool m_streakRelated2;
-    bool m_streakRelated3;
+    float m_streakFadeTime;
+    bool m_disableStreakTint;
+    bool m_alwaysShowStreak;
     ShipStreak m_shipStreakType;
     double m_slopeRotation;
     double m_currentSlopeYVelocity;
@@ -17003,7 +17003,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_collidedBottomMaxY;
     double m_collidedLeftMaxX;
     double m_collidedRightMinX;
-    bool m_streakRelated4;
+    bool m_fadeOutStreak;
     bool m_canPlaceCheckpoint;
     cocos2d::ccColor3B m_colorRelated;
     cocos2d::ccColor3B m_secondColorRelated;
