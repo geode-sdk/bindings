@@ -41,8 +41,8 @@ void generateFolderAlias(std::filesystem::path const& writeDir, std::string base
 }
 
 int main(int argc, char** argv) try {
-    if (argc != 4) {
-        throw codegen::error("Invalid number of parameters (expected 3, found {})", argc - 1);
+    if (argc < 4) {
+        throw codegen::error("Invalid number of parameters (expected 3 or more, found {})", argc - 1);
     }
 
     std::string p = argv[1];
@@ -72,6 +72,15 @@ int main(int argc, char** argv) try {
 
     auto writeDir = std::filesystem::path(argv[3]) / "Geode";
     std::filesystem::create_directories(writeDir);
+
+    // parse extra arguments
+    bool skipPugixml = false;
+    for (int i = 4; i < argc; i++) {
+        std::string arg = argv[i];
+        if (arg == "--skip-pugixml") {
+            skipPugixml = true;
+        }
+    }
 
     if (codegen::platform == Platform::Mac) {
         std::filesystem::create_directories(writeDir / "modify_intel");
@@ -110,7 +119,7 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedModifyArm.hpp", generateModifyHeader(root, writeDir / "modify_arm", &generatedModify));
         writeFile(writeDir / "GeneratedBindingArm.hpp", generateBindingHeader(root, writeDir / "binding_arm", &generatedBindings));
         writeFile(writeDir / "GeneratedPredeclareArm.hpp", generatePredeclareHeader(root));
-        if (writeFile(writeDir / "GeneratedSourceArm.cpp", generateBindingSource(root))) {
+        if (writeFile(writeDir / "GeneratedSourceArm.cpp", generateBindingSource(root, skipPugixml))) {
             generatedSourceChanged = true;
         }
 
@@ -121,7 +130,7 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedModifyIntel.hpp", generateModifyHeader(root, writeDir / "modify_intel", &generatedModify));
         writeFile(writeDir / "GeneratedBindingIntel.hpp", generateBindingHeader(root, writeDir / "binding_intel", &generatedBindings));
         writeFile(writeDir / "GeneratedPredeclareIntel.hpp", generatePredeclareHeader(root));
-        if (writeFile(writeDir / "GeneratedSourceIntel.cpp", generateBindingSource(root))) {
+        if (writeFile(writeDir / "GeneratedSourceIntel.cpp", generateBindingSource(root, skipPugixml))) {
             generatedSourceChanged = true;
         }
 
@@ -147,7 +156,7 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedModify.hpp", generateModifyHeader(root, writeDir / "modify"));
         writeFile(writeDir / "GeneratedBinding.hpp", generateBindingHeader(root, writeDir / "binding"));
         writeFile(writeDir / "GeneratedPredeclare.hpp", generatePredeclareHeader(root));
-        writeFile(writeDir / "GeneratedSource.cpp", generateBindingSource(root));
+        writeFile(writeDir / "GeneratedSource.cpp", generateBindingSource(root, skipPugixml));
         writeFile(writeDir / "CodegenData.txt", generateTextInterface(root));
     }
 
