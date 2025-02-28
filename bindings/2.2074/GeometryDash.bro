@@ -15159,9 +15159,9 @@ class MapSelectLayer : cocos2d::CCLayer {
     virtual void keyBackClicked() = m1 0x203d60, imac 0x2570c0;
     virtual void scrollWheel(float, float) = imac 0x256ca0, m1 0x20395c;
 
-    TodoReturn checkTouchMonster(cocos2d::CCPoint);
-    TodoReturn createObjectAtPoint(cocos2d::CCPoint);
-    TodoReturn getConstrainedMapPos(cocos2d::CCPoint);
+    bool checkTouchMonster(cocos2d::CCPoint);
+    cocos2d::CCObject* createObjectAtPoint(cocos2d::CCPoint);
+    cocos2d::CCPoint getConstrainedMapPos(cocos2d::CCPoint);
     void onBack(cocos2d::CCObject* sender);
 
     GJBigSprite* m_bigSprite;
