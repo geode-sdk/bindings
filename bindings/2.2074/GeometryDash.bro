@@ -9728,7 +9728,7 @@ class GJBigSprite : cocos2d::CCNode {
     void unloadSprite(gd::string, int);
     void updateSpriteVisibility();
 
-    std::vector<bool> m_spritesLoaded;
+    gd::vector<bool> m_spritesLoaded;
     cocos2d::CCArray* m_spriteNodes;
     float m_scaleX;
     float m_scaleY;
