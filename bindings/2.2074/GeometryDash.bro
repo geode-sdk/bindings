@@ -16015,7 +16015,7 @@ class ObjectManager : cocos2d::CCNode {
     void purgeObjectManager();
     cocos2d::CCDictionary* replaceAllOccurencesOfString(cocos2d::CCString*, cocos2d::CCString*, cocos2d::CCDictionary*);
     void setLoaded(char const* objectName);
-    void setup() = win 0x6e4c0;
+    void setup() = win 0x6e4c0, imac 0x77ff10, m1 0x693934;
 
     cocos2d::CCDictionary* m_objectDefinitions;
     cocos2d::CCDictionary* m_maybeLoadedAnimations;
