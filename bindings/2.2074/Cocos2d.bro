@@ -3045,7 +3045,6 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     void setTexture(cocos2d::CCTexture2D*) = imac 0x344a50, m1 0x2d9df0;
 
     // CCSpriteFrame(cocos2d::CCSpriteFrame const&);
-    CCSpriteFrame() {}
 
     ~CCSpriteFrame() = imac 0x344810, m1 0x2d9be8;
 
