@@ -1381,7 +1381,7 @@ class cocos2d::CCTargetedTouchHandler {
 class cocos2d::CCTexture2D : cocos2d::CCObject {
     static void PVRImagesHavePremultipliedAlpha(bool) = imac 0x466800;
     static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
-    static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat);
+    static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat) = imac 0x4669c0, m1 0x3d683c;
 
     bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = m1 0x3d590c;
     bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = imac 0x465650, m1 0x3d557c;
@@ -1779,7 +1779,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void showFPSLabel() = imac 0x470510, m1 0x3df4dc;
     void showStats();
     void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = imac 0x470800, m1 0x3df778;
-    void updateContentScale(cocos2d::TextureQuality);
+    void updateContentScale(cocos2d::TextureQuality) = imac 0x470c00, m1 0x3dfb18;
     void updateScreenScale(cocos2d::CCSize);
     void willSwitchToScene(cocos2d::CCScene*) = imac 0x471140, m1 0x3dff18;
 
@@ -3046,7 +3046,7 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
 
     // CCSpriteFrame(cocos2d::CCSpriteFrame const&);
     // CCSpriteFrame();
-    // ~CCSpriteFrame() = ios 0x25de00;
+    ~CCSpriteFrame() = imac 0x344810, m1 0x2d9be8;
 
     bool isRotated();
 
