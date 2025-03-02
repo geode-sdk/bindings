@@ -3046,7 +3046,7 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
 
     // CCSpriteFrame(cocos2d::CCSpriteFrame const&);
 
-    ~CCSpriteFrame() = imac 0x344810, m1 0x2d9be8;
+    // ~CCSpriteFrame() = imac 0x344810, m1 0x2d9be8;
 
     bool isRotated();
 
@@ -3063,9 +3063,9 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
     // CCSpriteFrameCache(cocos2d::CCSpriteFrameCache const&);
     void addSpriteFrame(cocos2d::CCSpriteFrame*, char const*) = m1 0x29fe38, imac 0x308cb0;
     void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*) = imac 0x307d30, m1 0x29ee50;
-    void addSpriteFramesWithFile(char const*, char const*);
+    void addSpriteFramesWithFile(char const*, char const*) = m1 0x29f928, imac 0x3088d0;
     void addSpriteFramesWithFile(char const*) = imac 0x308940, m1 0x29f998;
-    void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*);
+    void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*) = m1 0x29f8e0, imac 0x308890;
     void removeSpriteFrameByName(char const*) = m1 0x2a0020, imac 0x308e80;
     void removeSpriteFrames();
     void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*);
