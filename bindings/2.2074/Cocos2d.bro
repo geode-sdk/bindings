@@ -3046,7 +3046,7 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
 
     // CCSpriteFrame(cocos2d::CCSpriteFrame const&);
 
-    ~CCSpriteFrame() = imac 0x344810, m1 0x2d9be8;
+    // ~CCSpriteFrame() = imac 0x344810, m1 0x2d9be8;
 
     bool isRotated();
 
