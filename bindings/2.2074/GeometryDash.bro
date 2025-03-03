@@ -16682,9 +16682,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool isSafeMode(float);
     bool isSafeSpiderFlip(float);
     TodoReturn levelFlipFinished() = win 0x3759e0;
-    bool levelFlipping() = win 0x385760, m1 inline {
-        return m_playEffects && PlayLayer::get()->isFlipping();
-    }
+    bool levelFlipping() = win 0x385760, m1 0x3709bc, imac 0x3efb30;
     TodoReturn levelWillFlip() = imac 0x3f1930;
     TodoReturn limitDashRotation(float&);
     void loadFromCheckpoint(PlayerCheckpoint*) = win 0x38bc30, imac 0x40a910, m1 0x3880ac;
