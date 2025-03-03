@@ -16987,7 +16987,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     float m_landParticlesAngle;
     float m_landParticleRelatedY;
     int m_playerStreak;
-    float m_streakFadeTime;
+    float m_streakStrokeWidth;
     bool m_disableStreakTint;
     bool m_alwaysShowStreak;
     ShipStreak m_shipStreakType;
