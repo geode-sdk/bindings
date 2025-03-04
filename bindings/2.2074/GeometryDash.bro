@@ -15242,9 +15242,9 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onAchievements(cocos2d::CCObject* sender) = win 0x320960, m1 0x30eaa8, imac 0x37e370;
     void onCreator(cocos2d::CCObject* sender) = win 0x320e70, m1 0x30ea2c, imac 0x37e2e0;
     void onDaily(cocos2d::CCObject* sender) = win 0x3201e0, m1 0x30f028, imac 0x37e8b0;
-    void onDiscord(cocos2d::CCObject* sender);
+    void onDiscord(cocos2d::CCObject* sender) = 0x320860, m1 0x30ed18;
     void onEveryplay(cocos2d::CCObject* sender) {}
-    void onFacebook(cocos2d::CCObject* sender);
+    void onFacebook(cocos2d::CCObject* sender) = win 0x3207e0, m1 0x30ec88;
     void onFreeLevels(cocos2d::CCObject* sender);
     void onFullVersion(cocos2d::CCObject* sender);
     void onGameCenter(cocos2d::CCObject* sender);
@@ -15260,9 +15260,9 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onRobTop(cocos2d::CCObject* sender) = win 0x3207c0, m1 0x30ec64, imac 0x37e500;
     void onStats(cocos2d::CCObject* sender) = win 0x320d50, imac 0x37e3f0, m1 0x30eb40;
     void onTrailer(cocos2d::CCObject* sender) = m1 0x30f470, imac 0x37ed80;
-    void onTwitch(cocos2d::CCObject* sender);
-    void onTwitter(cocos2d::CCObject* sender);
-    void onYouTube(cocos2d::CCObject* sender) = win 0x320820;
+    void onTwitch(cocos2d::CCObject* sender) = win 0x320840, m1 0x30ecf4;
+    void onTwitter(cocos2d::CCObject* sender) = win 0x320800, m1 0x30ecac;
+    void onYouTube(cocos2d::CCObject* sender) = win 0x320820, m1 0x30ecd0;
     void openOptions(bool videoOptions) = win 0x320bd0, m1 0x30f360;
     void showGCQuestion() = m1 0x30f144, imac 0x37e9f0;
     void showMeltdownPromo() {}
