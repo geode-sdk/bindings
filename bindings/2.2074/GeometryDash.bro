@@ -2499,10 +2499,10 @@ class CharacterColorPage : FLAlertLayer {
     virtual void keyBackClicked() = win 0x8a7a0, m1 0x570e08, imac 0x648820, ios 0x12d7e8;
     virtual void show() = m1 0x570c80, imac 0x648690, ios 0x12d674;
 
-    int activeColorForMode(int mode);
+    int activeColorForMode(int mode) = win 0x89440, m1 0x570bac, imac 0x6485e0;
     TodoReturn checkColor(int, UnlockType);
     int colorForIndex(int) = imac 0x648300;
-    void createColorMenu() = win 0x88e50, m1 0x56ffac;
+    void createColorMenu() = win 0x88e50, m1 0x56ffac, imac 0x6479b0;
     void FLAlert_Clicked(FLAlertLayer*, bool);
     cocos2d::CCPoint offsetForIndex(int) = imac 0x648570;
     void onClose(cocos2d::CCObject* sender) = win 0x8a760, m1 0x56fb64, imac 0x647590;
@@ -2511,8 +2511,8 @@ class CharacterColorPage : FLAlertLayer {
     void toggleGlow(cocos2d::CCObject*) = win 0x88da0, imac 0x647d80, m1 0x570384;
     TodoReturn toggleGlowItems(bool);
     void toggleShip(cocos2d::CCObject*) = win 0x88c80, imac 0x6475e0, m1 0x56fbb8;
-    void updateColorMode(int) = imac 0x647dc0;
-    void updateIconColors() = win 0x8a540, imac 0x647850;
+    void updateColorMode(int) = win 0x897f0, m1 0x5703bc, imac 0x647dc0;
+    void updateIconColors() = win 0x8a540, m1 0x56fe6c, imac 0x647850;
 
     int m_colorMode;
     float m_height;
