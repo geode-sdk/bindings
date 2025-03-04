@@ -10648,7 +10648,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onSelectTab(cocos2d::CCObject* sender) = win 0x26e6c0, imac 0x359430, m1 0x2ecc08;
     void onShards(cocos2d::CCObject* sender) = win 0x271420, m1 0x2ec208, imac 0x358a80;
     void onShop(cocos2d::CCObject* sender) = win 0x2716f0, m1 0x2ec1a8, imac 0x358a20;
-    void onSpecial(cocos2d::CCObject* sender);
+    void onSpecial(cocos2d::CCObject* sender) = win 0x270120, m1 0x2ededc, imac 0x35a790;
     void onToggleItem(cocos2d::CCObject* sender) = win 0x26ff30, imac 0x35b0c0;
     void playRainbowEffect() = win 0x271230, imac 0x35b4b0, m1 0x2ee9a4;
     void playShadowEffect();
