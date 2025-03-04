@@ -15260,7 +15260,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onRobTop(cocos2d::CCObject* sender) = win 0x3207c0, m1 0x30ec64, imac 0x37e500;
     void onStats(cocos2d::CCObject* sender) = win 0x320d50, imac 0x37e3f0, m1 0x30eb40;
     void onTrailer(cocos2d::CCObject* sender) = m1 0x30f470, imac 0x37ed80;
-    void onTwitch(cocos2d::CCObject* sender) = wind 0x320840;
+    void onTwitch(cocos2d::CCObject* sender) = win 0x320840;
     void onTwitter(cocos2d::CCObject* sender);
     void onYouTube(cocos2d::CCObject* sender) = win 0x320820;
     void openOptions(bool videoOptions) = win 0x320bd0, m1 0x30f360;
