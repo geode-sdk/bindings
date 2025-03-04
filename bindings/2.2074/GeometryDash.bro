@@ -2466,8 +2466,8 @@ class ChanceTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class CharacterColorDelegate {
-    virtual void playerColorChanged();
-    virtual void showUnlockPopup(int, UnlockType);
+    virtual void playerColorChanged() {}
+    virtual void showUnlockPopup(int, UnlockType) {}
 }
 
 [[link(android)]]
