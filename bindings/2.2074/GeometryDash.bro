@@ -15242,7 +15242,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onAchievements(cocos2d::CCObject* sender) = win 0x320960, m1 0x30eaa8, imac 0x37e370;
     void onCreator(cocos2d::CCObject* sender) = win 0x320e70, m1 0x30ea2c, imac 0x37e2e0;
     void onDaily(cocos2d::CCObject* sender) = win 0x3201e0, m1 0x30f028, imac 0x37e8b0;
-    void onDiscord(cocos2d::CCObject* sender) = 0x320860, m1 0x30ed18;
+    void onDiscord(cocos2d::CCObject* sender) = win 0x320860, m1 0x30ed18;
     void onEveryplay(cocos2d::CCObject* sender) {}
     void onFacebook(cocos2d::CCObject* sender) = win 0x3207e0, m1 0x30ec88;
     void onFreeLevels(cocos2d::CCObject* sender);
