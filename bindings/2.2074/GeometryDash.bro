@@ -5048,7 +5048,7 @@ class EffectGameObject : EnhancedGameObject {
     bool init(char const*) = win 0x48d1a0;
     void playTriggerEffect() = win 0x48d2b0;
     void resetSpawnTrigger();
-    void setTargetID(int);
+    void setTargetID(int) = m1 0x157c40;
     void setTargetID2(int);
     void triggerEffectFinished() = win 0x48d780;
     void updateInteractiveHover(float) = win 0x48fe30;
@@ -7615,7 +7615,7 @@ class GameObject : CCSpritePlus {
     bool isSpecialObject();
     bool isSpeedObject() = imac 0x5b30f0;
     bool isStoppableTrigger();
-    bool isTrigger() = win 0x19f2c0;
+    bool isTrigger() = win 0x19f2c0, m1 0x4dca68;
     void loadGroupsFromString(gd::string) = win 0x199b50;
     TodoReturn makeInvisible() = imac 0x5a53a0;
     TodoReturn makeVisible();
@@ -10635,14 +10635,14 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onBack(cocos2d::CCObject* sender) = win 0x271750, imac 0x3588c0, m1 0x2ec048;
     void onInfo(cocos2d::CCObject* sender) = win 0x26d190, m1 0x2ec28c, imac 0x358b10;
     void onNavigate(cocos2d::CCObject* sender) = win 0x26e690, imac 0x359d50, m1 0x2ed4c8;
-    void onPaint(cocos2d::CCObject* sender) = win 0x271570;
+    void onPaint(cocos2d::CCObject* sender) = win 0x271570, m1 0x2ec234;
     void onRewardedVideo(cocos2d::CCObject* sender);
     void onSelect(cocos2d::CCObject* sender) = win 0x26f890, imac 0x35a860, m1 0x2edf90;
     void onSelectTab(cocos2d::CCObject* sender) = win 0x26e6c0, imac 0x359430, m1 0x2ecc08;
     void onShards(cocos2d::CCObject* sender) = win 0x271420, m1 0x2ec208, imac 0x358a80;
     void onShop(cocos2d::CCObject* sender) = win 0x2716f0, m1 0x2ec1a8, imac 0x358a20;
     void onSpecial(cocos2d::CCObject* sender) = win 0x270120, m1 0x2ededc, imac 0x35a790;
-    void onToggleItem(cocos2d::CCObject* sender) = win 0x26ff30, imac 0x35b0c0;
+    void onToggleItem(cocos2d::CCObject* sender) = win 0x26ff30, imac 0x35b0c0, m1 0x2ee60c;
     void playRainbowEffect() = win 0x271230, imac 0x35b4b0, m1 0x2ee9a4;
     void playShadowEffect();
     void selectTab(IconType) = win 0x26e6f0, imac 0x3595c0, m1 0x2ecd78;
