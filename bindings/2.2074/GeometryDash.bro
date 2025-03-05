@@ -6042,7 +6042,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn lengthForSound(gd::string path);
     TodoReturn loadAndPlayMusic(gd::string, unsigned int, int);
     TodoReturn loadAudioState(FMODAudioState&);
-    void loadMusic(gd::string path, float speed, float p2, float volume, bool shouldLoop, int p5, int p6, bool p7) = win 0x5a280, imac 0x3ced40, m1 0x356464;
+    void loadMusic(gd::string path, float speed, float p2, float volume, bool shouldLoop, int p5, int p6, bool dontReset) = win 0x5a280, imac 0x3ced40, m1 0x356464;
     void loadMusic(gd::string path) {
         this->loadMusic(path, 1.f, 0.f, 1.f, false, 0, 0, false);
     }
