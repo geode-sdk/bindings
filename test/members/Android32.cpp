@@ -163,7 +163,7 @@ GEODE_MEMBER_CHECK(GameManager, m_gameLayer, 0x174);
 GEODE_SIZE_CHECK(EditorUI, 0x3b8);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x260);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x370);
-GEODE_MEMBER_CHECK(EditorUI, m_buttonBar, 0x1c0);
+GEODE_MEMBER_CHECK(EditorUI, m_customTabBar, 0x1c0);
 GEODE_MEMBER_CHECK(EditorUI, m_transformControl, 0x218);
 GEODE_MEMBER_CHECK(EditorUI, m_editButtonBar, 0x22c);
 GEODE_MEMBER_CHECK(EditorUI, m_positionSlider, 0x230);
