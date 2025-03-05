@@ -1087,8 +1087,8 @@ GEODE_SIZE_CHECK(CCLightStrip, 0x160);
 GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3a8);
 GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
 
-GEODE_SIZE_CHECK(LevelAreaInnerLayer, 0x1b0);
-GEODE_MEMBER_CHECK(LevelAreaInnerLayer, m_exiting, 0x1a8);
+GEODE_SIZE_CHECK(LevelAreaInnerLayer, 0x1b8);
+GEODE_MEMBER_CHECK(LevelAreaInnerLayer, m_exiting, 0x1b0);
 
 GEODE_MEMBER_CHECK(CountTriggerGameObject, m_pickupTriggerMode, 0x744);
 GEODE_MEMBER_CHECK(SetupInstantCountPopup, m_itemID, 0x3c0);
