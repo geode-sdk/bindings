@@ -7538,13 +7538,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810;
     void createColorGroupContainer(int);
     void createGlow(gd::string);
-    void createGroupContainer(int size) = win inline {
-        if (!m_groups) {
-            auto groups = new short[size];
-            memset(groups, 0, size * sizeof(short));
-            m_groups = reinterpret_cast<decltype(m_groups)>(groups);
-        }
-    }
+    void createGroupContainer(int size) = win 0x199740;
     void createOpacityGroupContainer(int);
     void createSpriteColor(int) = imac 0x58a4e0, m1 0x4d7afc;
     void deselectObject();
@@ -7622,7 +7616,7 @@ class GameObject : CCSpritePlus {
     bool isSpeedObject() = imac 0x5b30f0;
     bool isStoppableTrigger();
     bool isTrigger() = win 0x19f2c0;
-    void loadGroupsFromString(gd::string);
+    void loadGroupsFromString(gd::string) = win 0x199b50;
     TodoReturn makeInvisible() = imac 0x5a53a0;
     TodoReturn makeVisible();
     float opacityModForMode(int, bool);
@@ -7883,7 +7877,7 @@ class GameObject : CCSpritePlus {
     // property 129
     float m_scaleY;
 
-    // property 57
+    // property 57, short array of size either 10 or m_groupCount
     std::array<short, 10>* m_groups;
     // used with property 57
     short m_groupCount;
