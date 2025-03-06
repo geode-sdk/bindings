@@ -5056,7 +5056,7 @@ class EffectGameObject : EnhancedGameObject {
     bool init(char const*) = win 0x48d1a0;
     void playTriggerEffect() = win 0x48d2b0;
     void resetSpawnTrigger();
-    void setTargetID(int);
+    void setTargetID(int) = m1 0x157c40;
     void setTargetID2(int);
     void triggerEffectFinished() = win 0x48d780;
     void updateInteractiveHover(float) = win 0x48fe30;
@@ -7556,13 +7556,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810;
     void createColorGroupContainer(int);
     void createGlow(gd::string);
-    void createGroupContainer(int size) = win inline {
-        if (!m_groups) {
-            auto groups = new short[size];
-            memset(groups, 0, size * sizeof(short));
-            m_groups = reinterpret_cast<decltype(m_groups)>(groups);
-        }
-    }
+    void createGroupContainer(int size) = win 0x199740;
     void createOpacityGroupContainer(int);
     void createSpriteColor(int) = imac 0x58a4e0, m1 0x4d7afc;
     void deselectObject();
@@ -7639,8 +7633,8 @@ class GameObject : CCSpritePlus {
     bool isSpecialObject();
     bool isSpeedObject() = imac 0x5b30f0;
     bool isStoppableTrigger();
-    bool isTrigger() = win 0x19f2c0;
-    void loadGroupsFromString(gd::string);
+    bool isTrigger() = win 0x19f2c0, m1 0x4dca68;
+    void loadGroupsFromString(gd::string) = win 0x199b50;
     TodoReturn makeInvisible() = imac 0x5a53a0;
     TodoReturn makeVisible();
     float opacityModForMode(int, bool);
@@ -7901,7 +7895,7 @@ class GameObject : CCSpritePlus {
     // property 129
     float m_scaleY;
 
-    // property 57
+    // property 57, short array of size either 10 or m_groupCount
     std::array<short, 10>* m_groups;
     // used with property 57
     short m_groupCount;
@@ -10659,14 +10653,14 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onBack(cocos2d::CCObject* sender) = win 0x271750, imac 0x3588c0, m1 0x2ec048;
     void onInfo(cocos2d::CCObject* sender) = win 0x26d190, m1 0x2ec28c, imac 0x358b10;
     void onNavigate(cocos2d::CCObject* sender) = win 0x26e690, imac 0x359d50, m1 0x2ed4c8;
-    void onPaint(cocos2d::CCObject* sender) = win 0x271570;
+    void onPaint(cocos2d::CCObject* sender) = win 0x271570, m1 0x2ec234;
     void onRewardedVideo(cocos2d::CCObject* sender);
     void onSelect(cocos2d::CCObject* sender) = win 0x26f890, imac 0x35a860, m1 0x2edf90;
     void onSelectTab(cocos2d::CCObject* sender) = win 0x26e6c0, imac 0x359430, m1 0x2ecc08;
     void onShards(cocos2d::CCObject* sender) = win 0x271420, m1 0x2ec208, imac 0x358a80;
     void onShop(cocos2d::CCObject* sender) = win 0x2716f0, m1 0x2ec1a8, imac 0x358a20;
     void onSpecial(cocos2d::CCObject* sender) = win 0x270120, m1 0x2ededc, imac 0x35a790;
-    void onToggleItem(cocos2d::CCObject* sender) = win 0x26ff30, imac 0x35b0c0;
+    void onToggleItem(cocos2d::CCObject* sender) = win 0x26ff30, imac 0x35b0c0, m1 0x2ee60c;
     void playRainbowEffect() = win 0x271230, imac 0x35b4b0, m1 0x2ee9a4;
     void playShadowEffect();
     void selectTab(IconType) = win 0x26e6f0, imac 0x3595c0, m1 0x2ecd78;
@@ -13862,7 +13856,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     TodoReturn createNewSmartTemplate(cocos2d::CCObject*);
     TodoReturn deleteSelected();
     TodoReturn exitLayer(cocos2d::CCObject*);
-    cocos2d::CCArray* getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*) = win 0x2c6b80;
+    cocos2d::CCArray* getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*) = win 0x2c6b80, m1 0x3eabe4, imac 0x47ca90;
     gd::string getSearchTitle() = win 0x2c39e0, m1 0x3eb248, imac 0x47d170;
     bool init(GJSearchObject*) = win 0x2c0a60, m1 0x3e66c8, imac 0x478340;
     bool isCorrect(char const*) = win 0x2c2370;
@@ -13883,7 +13877,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void onPrevPage(cocos2d::CCObject* sender) = win 0x2c4c20, m1 0x3e8034, imac 0x479d10;
     void onRefresh(cocos2d::CCObject* sender) = win 0x2c6660, m1 0x3e909c, imac 0x47acf0;
     void onRemoveAllFavorites(cocos2d::CCObject* sender) = m1 0x3e8b28, imac 0x47a7c0;
-    void onSaved(cocos2d::CCObject* sender) = win 0x2c6110;
+    void onSaved(cocos2d::CCObject* sender) = win 0x2c6110, m1 0x3e8e64, imac 0x47aab0;
     void onSavedMode(cocos2d::CCObject* sender) = win 0x2c5b90;
     void onSearch(cocos2d::CCObject* sender) = win 0x2c6840, m1 0x3e96b4, imac 0x47b290;
     void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x2c7250, imac 0x47a2b0;
@@ -15827,7 +15821,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
         const char* key = cocos2d::CCString::createWithFormat("%i", songID)->getCString();
         m_songObjects->removeObjectForKey(key);
     }
-    void clearUnusedSongs() = win 0x329160;
+    void clearUnusedSongs() = win 0x329160, m1 0x4cb000, imac 0x577330;
     void createArtistsInfo(gd::string) = win 0x328c50;
     void createSongsInfo(gd::string, gd::string) = win 0x3288a0, imac 0x575b00, m1 0x4c998c;
     void dataLoaded(DS_Dictionary*) = win 0x32a450, imac 0x578e00, m1 0x4cc790;
