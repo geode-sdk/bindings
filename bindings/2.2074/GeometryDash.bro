@@ -23095,8 +23095,8 @@ class TutorialLayer : FLAlertLayer {
     virtual void keyBackClicked() = win 0x4b3de0, m1 0x42f414, imac 0x4c9cc0, ios 0x1bfa70;
 
     void loadPage(int) = win 0x4b3730, m1 0x42ef60, imac 0x4c9800;
-    void onClose(cocos2d::CCObject* sender) = win 0x4b3d60, m1 = 0x42ee10;
-    void onNext(cocos2d::CCObject* sender) = win 0x4b3710, m1 = 0x42eea4;
+    void onClose(cocos2d::CCObject* sender) = win 0x4b3d60, m1 0x42ee10;
+    void onNext(cocos2d::CCObject* sender) = win 0x4b3710, m1 0x42eea4;
     void removeTutorialTexture() = win inline {
         if (m_page == 0) return;
         cocos2d::CCTextureCache::sharedTextureCache()->removeTextureForKey(cocos2d::CCString::createWithFormat("tutorial_%02d", m_page)->getCString());
