@@ -1581,17 +1581,17 @@ class CCLightStrip : cocos2d::CCNode {
 
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
-    CCMenuItemSpriteExtra() {
+    CCMenuItemSpriteExtra() = win 0x449f0, m1 0x4bbf4, imac 0x54e80, ios 0x16ecb8 {
         m_animationEnabled = false; //this is changed to true in init
         m_colorEnabled = false;
-        m_colorDip = 0.784314f;
+        m_colorDip = 0.78431374f;
         m_scaleMultiplier = 1.f; //this is changed to 1.26f in init
         m_volume = 1.f;
         m_duration = 0.3f;
         m_unselectedDuration = 0.4f;
         m_animationType = MenuAnimationType::Scale;
-        m_unknown4 = 0;
-        //m_baseScale is initialized in init
+        m_iconType = IconType::Cube;
+        m_baseScale = 0.f; //this is changed to 1.f in init
     }
     ~CCMenuItemSpriteExtra() {}
 
@@ -1647,7 +1647,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     float m_unselectedDuration;
     MenuAnimationType m_animationType;
     cocos2d::CCPoint m_startPosition;
-    int m_unknown4;
+    IconType m_iconType;
 }
 
 [[link(android)]]
