@@ -3686,7 +3686,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
     virtual bool init() = m1 0x62875c, imac 0x708ee0;
 
-    virtual bool init(cocos2d::CCNode* pStencil) = im1 0x62876c, imac 0x708f00;
+    virtual bool init(cocos2d::CCNode* pStencil) = m1 0x62876c, imac 0x708f00;
     virtual void onEnter() = m1 0x6287dc, imac 0x708f70;
     virtual void onEnterTransitionDidFinish() = m1 0x628808, imac 0x708fa0;
     virtual void onExit() = m1 0x628864, imac 0x709000;
