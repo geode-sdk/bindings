@@ -656,7 +656,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     void setStroke(float);
 
     // CCMotionStreak(cocos2d::CCMotionStreak const&);
-    CCMotionStreak() = imac inline, m1 0x4b5cf4, ios 0x17a068 {
+    CCMotionStreak() = imac 0x55f120, m1 0x4b5cf4, ios 0x17a068 {
     	m_bFastMode = false;
     	m_bStartingPositionInitialized = false;
     	m_pTexture = nullptr;
@@ -681,7 +681,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     	m_tBlendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
     }
 
-    void enableRepeatMode(float) = ios 0x17a5b4;
+    void enableRepeatMode(float) = m1 0x4b64ac, imac 0x55fac0, ios 0x17a5b4;
     bool isFastMode();
     bool isStartingPositionInitialized();
     void reset() = m1 0x4b6c48, imac 0x560190;
@@ -2215,7 +2215,7 @@ class cocos2d::CCTargetedTouchHandler {
 class cocos2d::CCTexture2D : cocos2d::CCObject {
     static void PVRImagesHavePremultipliedAlpha(bool) = imac 0x466800;
     static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
-    static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat);
+    static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat) = imac 0x4669c0, m1 0x3d683c;
 
     bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = m1 0x3d590c;
     bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = imac 0x465650, m1 0x3d557c, ios 0x1307ac;
@@ -2613,7 +2613,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void showFPSLabel() = imac 0x470510, m1 0x3df4dc;
     void showStats();
     void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = imac 0x470800, m1 0x3df778;
-    void updateContentScale(cocos2d::TextureQuality) = ios 0x1792dc;
+    void updateContentScale(cocos2d::TextureQuality) = imac 0x470c00, m1 0x3dfb18, ios 0x1792dc;
     void updateScreenScale(cocos2d::CCSize);
     void willSwitchToScene(cocos2d::CCScene*) = imac 0x471140, m1 0x3dff18, ios 0x1794fc;
 
@@ -4051,10 +4051,7 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     void setTexture(cocos2d::CCTexture2D*) = imac 0x344a50, m1 0x2d9df0;
 
     // CCSpriteFrame(cocos2d::CCSpriteFrame const&);
-    // CCSpriteFrame();
-    ~CCSpriteFrame() = ios inline { // not gonna even try
-	CC_SAFE_RELEASE(m_pobTexture);
-    }
+    // ~CCSpriteFrame() = imac 0x344810, m1 0x2d9be8, ios 0x24d438;
 
     bool isRotated();
 
@@ -4073,9 +4070,9 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
 	m_pSpriteFrames->setObject(pobFrame, pszFrameName);
     }
     void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*) = imac 0x307d30, m1 0x29ee50, ios 0x3b47bc;
-    void addSpriteFramesWithFile(char const*, char const*);
+    void addSpriteFramesWithFile(char const*, char const*) = m1 0x29f928, imac 0x3088d0;
     void addSpriteFramesWithFile(char const*) = imac 0x308940, m1 0x29f998, ios 0x3b5070;
-    void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*);
+    void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*) = m1 0x29f8e0, imac 0x308890;
     void removeSpriteFrameByName(char const*) = m1 0x2a0020, imac 0x308e80;
     void removeSpriteFrames();
     void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*);
@@ -4447,6 +4444,27 @@ class DS_Dictionary {
 }
 
 [[link(win, android)]]
+class CCContentManager : cocos2d::CCObject {
+    static CCContentManager* sharedManager() = m1 0x13ff04, imac 0x174130;
+
+    cocos2d::CCDictionary* addDict(char const*, bool) = m1 0x140068, imac 0x1742a0;
+    cocos2d::CCDictionary* addDictDS(char const*) = m1 0x14022c, imac 0x174470;
+    void clearCache() = m1 0x14042c, imac 0x174670;
+    bool init() = m1 0x13ff84, imac 0x1741b0;
+}
+
+[[link(win, android)]]
+class ObjectDecoder : cocos2d::CCNode {
+    // virtual ~ObjectDecoder();
+
+    static ObjectDecoder* sharedDecoder() = m1 0x690e28, imac 0x77c040;
+
+    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = m1 0x690ea0, imac 0x77c0c0;
+
+    virtual bool init() = m1 0x690e9c, imac 0x77c0b0, ios 0x235898;
+}
+
+[[link(win, android)]]
 class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
     CCControl() = m1 0x2d38b4, imac 0x33d4d0, ios 0x1a8a80;
     ~CCControl() = m1 0x2d3b80, imac 0x33d8a0, ios 0x1a8c20;
@@ -4469,17 +4487,6 @@ class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
     virtual void removeTargetWithActionForControlEvents(cocos2d::CCObject*, cocos2d::extension::SEL_CCControlHandler, unsigned int) = m1 0x2d4520, imac 0x33e300, ios 0x1a8f7c;
     virtual cocos2d::CCPoint getTouchLocation(cocos2d::CCTouch*) = m1 0x2d49b8, imac 0x33e7b0, ios 0x1a91b4;
     virtual bool isTouchInside(cocos2d::CCTouch*) = m1 0x2d4a04, imac 0x33e800, ios 0x1a9200;
-}
-
-[[link(win, android)]]
-class ObjectDecoder : cocos2d::CCNode {
-    // virtual ~ObjectDecoder();
-
-    static ObjectDecoder* sharedDecoder() = m1 0x690e28, imac 0x77c040;
-
-    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = m1 0x690ea0, imac 0x77c0c0;
-
-    virtual bool init() = m1 0x690e9c, imac 0x77c0b0, ios 0x235898;
 }
 
 [[link(win, android)]]
@@ -4585,13 +4592,13 @@ class cocos2d::ZipUtils {
     static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out) = imac 0x1f3290, m1 0x1a8dd8, ios 0x23d50c;
     static int ccInflateCCZFile(char const*, unsigned char**);
     static int ccInflateGZipFile(char const*, unsigned char**);
-    static int ccInflateMemory(unsigned char* data, unsigned int size, unsigned char** out);
-    static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int*, unsigned int);
-    static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int);
+    static int ccInflateMemory(unsigned char* data, unsigned int size, unsigned char** out) = imac 0x1f3660, m1 0x1a91b0;
+    static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int*, unsigned int) = imac 0x1f45f0, m1 0x1aa1b8;
+    static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int) = imac 0x1f4720, m1 0x1aa2e0;
     static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
     static void ccSetPvrEncryptionKeyPart(int, unsigned int);
     static gd::string compressString(gd::string const& data, bool encrypt, int encryptionKey) = imac 0x1f3020, m1 0x1a8b18, ios 0x23d2b8;
-    static gd::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey);
+    static gd::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1f33b0, m1 0x1a8efc;
     static gd::string decompressString(gd::string const& data, bool encrypt, int encryptionKey) = m1 0x1a921c, imac 0x1f36c0;
     static gd::string encryptDecrypt(gd::string const& data, int encryptionKey);
     static gd::string encryptDecryptWKey(gd::string const&, gd::string);

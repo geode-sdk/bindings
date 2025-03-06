@@ -165,7 +165,7 @@ auto {function_name}({parameters}) -> decltype({function_name}({arguments})) {{
 )GEN";
 }}
 
-std::string generateBindingSource(Root const& root) {
+std::string generateBindingSource(Root const& root, bool skipPugixml) {
 	std::string output(format_strings::source_start);
 
 	for (auto& f : root.functions) {
@@ -193,6 +193,11 @@ std::string generateBindingSource(Root const& root) {
     }
 
 	for (auto& c : root.classes) {
+		if (skipPugixml) {
+			if (c.name.starts_with("pugi::")) {
+				continue;
+			}
+		}
 
 		for (auto& f : c.fields) {
 			if (auto i = f.get_as<InlineField>()) {
