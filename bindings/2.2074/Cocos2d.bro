@@ -561,7 +561,7 @@ class cocos2d::CCEaseSineOut : cocos2d::CCActionEase {
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = m1 0x45f2a0, imac 0x4ff8d0, ios inline {
         // CCZone* pNewZone = NULL;
         CCEaseSineOut* pCopy = NULL;
-        if(pZone && pZone->m_pCopyObject)
+        if(pZone && pZone->m_pCopyObject) 
         {
             //in case of being called at sub class
             pCopy = (CCEaseSineOut*)(pZone->m_pCopyObject);
@@ -571,8 +571,9 @@ class cocos2d::CCEaseSineOut : cocos2d::CCActionEase {
             pCopy = new CCEaseSineOut();
             // pNewZone = new CCZone(pCopy);
         }
+
         pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()));
-        
+    
         // CC_SAFE_DELETE(pNewZone);
         return pCopy;
     }
@@ -911,6 +912,17 @@ class cocos2d::CCSkewTo : cocos2d::CCActionInterval {
         }
 
         return pSkewTo;
+    }
+
+    CCSkewTo() = ios inline {
+	m_fSkewX = 0.0;
+        m_fSkewY = 0.0;
+        m_fStartSkewX = 0.0;
+        m_fStartSkewY = 0.0;
+        m_fEndSkewX = 0.0;
+        m_fEndSkewY = 0.0;
+        m_fDeltaX = 0.0;
+        m_fDeltaY = 0.0;
     }
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = m1 0x332248, imac 0x3a5900, ios inline {
@@ -1840,7 +1852,7 @@ class cocos2d::CCNode : cocos2d::CCObject {
     void transformAncestors();
     void unschedule(cocos2d::SEL_SCHEDULE) = imac 0x262270, m1 0x20df6c, ios 0x23c340;
     void unscheduleAllSelectors() = imac 0x260e50, m1 0x20cbf8, ios 0x23b508;
-    void unscheduleUpdate() = imac 0x262160, m1 0x20de9c;
+    void unscheduleUpdate() = imac 0x262160, m1 0x20de9c, ios 0x23c2b0;
     void updateChildIndexes();
 
     virtual void update(float) = imac 0x262290, m1 0x20df98, ios 0x23c36c;
@@ -2281,7 +2293,7 @@ class cocos2d::CCTextureCache : cocos2d::CCObject {
     bool reloadTexture(char const*);
     void removeAllTextures();
     void removeTexture(cocos2d::CCTexture2D*);
-    void removeTextureForKey(char const*) = imac 0x5d6ca0, m1 0x50a7e4;
+    void removeTextureForKey(char const*) = imac 0x5d6ca0, m1 0x50a7e4, ios 0x1175f0;
     void removeUnusedTextures();
     cocos2d::CCDictionary* snapshotTextures();
     cocos2d::CCTexture2D* textureForKey(char const*) = imac 0x5d6d20, m1 0x50a874, ios 0x117670;
@@ -2318,7 +2330,7 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
     int getTargetPrio() const;
 
     void setDispatchEvents(bool);
-    void setPriority(int p1, cocos2d::CCTouchDelegate* p2) = ios inline, imac 0x4b90d0, m1 0x420e50 {
+    void setPriority(int p1, cocos2d::CCTouchDelegate* p2) = imac 0x4b90d0, m1 0x420e50, ios inline {
     	auto* handler = this->findHandler(p2);
     	auto priority = handler->getPriority();
 
@@ -2344,9 +2356,9 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
     bool isDispatchEvents();
     bool isUsingForcePrio() = imac 0x4b8970;
     void rearrangeHandlers(cocos2d::CCArray* handlers) = ios inline {
-    	std::sort(handlers->data->arr, handlers->data->arr + handlers->data->num, [](const CCObject* p1, const CCObject* p2) {
-    		return ((CCTouchHandler*)p1)->getPriority() < ((CCTouchHandler*)p2)->getPriority();
-    	});
+	std::sort(handlers->data->arr, handlers->data->arr + handlers->data->num, [](const CCObject* p1, const CCObject* p2) {
+		return ((CCTouchHandler*)p1)->getPriority() < ((CCTouchHandler*)p2)->getPriority();
+	});
     }
     void registerForcePrio(cocos2d::CCObject*, int) = imac 0x4b8880, m1 0x420540, ios 0x152340;
     void removeAllDelegates();
@@ -3134,12 +3146,12 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
     void clear(float, float, float, float);
     void clearDepth(float);
     void clearStencil(int);
-    void end() = imac 0x5de5e0, m1 0x5112f8;
+    void end() = imac 0x5de5e0, m1 0x5112f8, ios 0x3b8fb4;
     void endToLua();
     bool isAutoDraw() const;
     void listenToBackground(cocos2d::CCObject*);
     void listenToForeground(cocos2d::CCObject*);
-    cocos2d::CCImage* newCCImage(bool) = m1 0x5117a4, imac 0x5deb40;
+    cocos2d::CCImage* newCCImage(bool flipImage) = m1 0x5117a4, imac 0x5deb40;
     bool saveToFile(char const*);
     bool saveToFile(char const*, cocos2d::eImageFormat);
     void updateInternalScale(float, float);
@@ -3605,8 +3617,46 @@ class cocos2d::CCCallFunc : cocos2d::CCActionInstant {
 }
 
 [[link(win, android)]]
-class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo {
-    static cocos2d::CCCallFuncN* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncN) = imac 0x7976c0, m1 0x6aa86c;
+class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo { // full copy from cocos2dx
+    static cocos2d::CCCallFuncN* create(cocos2d::CCObject* pSelectorTarget, cocos2d::SEL_CallFuncN selector) = imac 0x7976c0, m1 0x6aa86c, ios inline {
+	CCCallFuncN *pRet = new CCCallFuncN();
+
+        if (pRet && pRet->initWithTarget(pSelectorTarget, selector))
+        {
+            pRet->autorelease();
+            return pRet;
+        }
+
+        CC_SAFE_DELETE(pRet);
+        return NULL;
+    }
+
+    bool initWithTarget(cocos2d::CCObject* pSelectorTarget, cocos2d::SEL_CallFuncN selector) = ios inline {
+        if (CCCallFunc::initWithTarget(pSelectorTarget)) {
+            m_pCallFuncN = selector;
+            return true;
+        }
+
+        return false;
+    }
+
+    virtual cocos2d::CCObject* copyWithZone(CCZone* zone) = ios inline {
+        // CCZone* pNewZone = NULL;
+        CCCallFuncN* pRet = NULL;
+
+        if (zone && zone->m_pCopyObject) {
+            //in case of being called at sub class
+            pRet = (CCCallFuncN*) (zone->m_pCopyObject);
+        } else {
+            pRet = new CCCallFuncN();
+            // zone = pNewZone = new CCZone(pRet);
+        }
+
+        CCCallFunc::copyWithZone(zone);
+        pRet->initWithTarget(m_pSelectorTarget, m_pCallFuncN);
+        // CC_SAFE_DELETE(pNewZone);
+        return pRet;
+    }
 }
 
 [[link(win, android)]]
@@ -3631,27 +3681,27 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     static cocos2d::CCClippingNode* create() = ios inline, imac 0x708da0, m1 0x628634 {
     	auto pRet = new CCClippingNode();
 
-    	if (pRet && pRet->init())
-        {
-            pRet->autorelease();
-            return pRet;
-        }
+	if (pRet->init())
+	{
+		pRet->autorelease();
+		return pRet;
+	}
 
-        CC_SAFE_DELETE(pRet);
-        return nullptr;
+	delete pRet;
+	return nullptr;
     }
 
-    static cocos2d::CCClippingNode* create(cocos2d::CCNode* stencil) = ios inline, imac 0x708e30, m1 0x6286bc {
+    static cocos2d::CCClippingNode* create(cocos2d::CCNode* pStencil) = ios inline, imac 0x708e30, m1 0x6286bc {
     	auto pRet = new CCClippingNode();
 
-    	if (pRet && pRet->init(stencil))
-        {
-            pRet->autorelease();
-            return pRet;
-        }
+	if (pRet->init(pStencil))
+	{
+		pRet->autorelease();
+		return pRet;
+	}
 
-        CC_SAFE_DELETE(pRet);
-        return nullptr;
+	delete pRet;
+	return nullptr;
     }
 
     CCClippingNode() = ios inline {
@@ -3664,14 +3714,14 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     }
 
     // in normal cocos this is just a static func at the top of the file: https://github.com/cocos2d/cocos2d-x/blob/v2/cocos2dx/misc_nodes/CCClippingNode.cpp#L40
-    inline void setProgram(CCNode* n, CCGLProgram* p) {
+    static void setProgram(CCNode* n, CCGLProgram* p) {
         n->setShaderProgram(p);
         if (!n->getChildren()) return;
 
         CCObject* pObj = NULL;
         CCARRAY_FOREACH(n->getChildren(), pObj)
         {
-            setProgram((CCNode*)pObj, p); // this causes build to fail
+            setProgram((CCNode*)pObj, p); // add this into geode headers so build wont fail
         }
     }
 
@@ -3681,227 +3731,222 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
     virtual bool init(cocos2d::CCNode* pStencil) = ios inline, m1 0x62876c, imac 0x708f00 {
     	CC_SAFE_RELEASE(m_pStencil);
-    	m_pStencil = pStencil;
-    	CC_SAFE_RETAIN(m_pStencil);
+	m_pStencil = pStencil;
+	CC_SAFE_RETAIN(m_pStencil);
 
-    	m_fAlphaThreshold = 1;
-    	m_bInverted = false;
-    	// get (only once) the number of bits of the stencil buffer
-    	static bool once = true;
+	m_fAlphaThreshold = 1;
+	m_bInverted = false;
+	// get (only once) the number of bits of the stencil buffer
+	static bool once = true;
 
-    	if (once)
-    	{
-    		// glGetIntegerv(GL_STENCIL_BITS, &g_sStencilBits);
-    		// if (g_sStencilBits <= 0)
-    		// {
-    		//	CCLOG("Stencil buffer is not enabled.");
-    		// }
-    		once = false;
-    	}
+	if (once)
+	{
+		glGetIntegerv(GL_STENCIL_BITS, &g_sStencilBits);
+		once = false;
+	}
 
-    	return true;
+	return true;
     }
 
     virtual void onEnter() = ios inline, m1 0x6287dc, imac 0x708f70 {
     	CCNode::onEnter();
-    		m_pStencil->onEnter();
+        m_pStencil->onEnter();
     }
     virtual void onEnterTransitionDidFinish() = ios inline, m1 0x628808, imac 0x708fa0 {
     	CCNode::onEnterTransitionDidFinish();
-    		m_pStencil->onEnterTransitionDidFinish();
+        m_pStencil->onEnterTransitionDidFinish();
     }
     virtual void onExit() = ios inline, m1 0x628864, imac 0x709000 {
     	m_pStencil->onExit();
-    		CCNode::onExit();
+        CCNode::onExit();
     }
     virtual void onExitTransitionDidStart() = ios inline, m1 0x628834, imac 0x708fd0 {
     	m_pStencil->onExitTransitionDidStart();
-    		CCNode::onExitTransitionDidStart();
+        CCNode::onExitTransitionDidStart();
     }
 
     virtual void visit() = ios inline, imac 0x709030, m1 0x628894 {
-    	// return fast (draw nothing, or draw everything if in inverted mode) if:
-    	// - nil stencil node
-    	// - or stencil node invisible:
-    	if (!m_pStencil || !m_pStencil->isVisible())
-    	{
-    		if (m_bInverted)
-    		{
-    			// draw everything
-    			CCNode::visit();
-    		}
-    		return;
-    	}
-
-    	// store the current stencil layer (position in the stencil buffer),
-    	// this will allow nesting up to n CCClippingNode,
-    	// where n is the number of bits of the stencil buffer.
-    	static GLint layer = -1;
-
-    	// all the _stencilBits are in use?
-    	if (false) // this definetly wont break anything :clueless: //if (layer + 1 == g_sStencilBits)
-    	{
-    		// warn once
-    		static bool once = true;
-    		if (once)
-    		{
-    			char warning[200] = {0};
-    			//snprintf(warning, sizeof(warning), "Nesting more than %d stencils is not supported. Everything will be drawn without stencil for this node and its childs.", g_sStencilBits);
-    			CCLOG("%s", warning);
-
-    			once = false;
-    		}
-    		// draw everything, as if there where no stencil
-    		CCNode::visit();
-    		return;
-    	}
-
-    	///////////////////////////////////
-    	// INIT
-
-    	// increment the current layer
-    	layer++;
-
-    	// mask of the current layer (ie: for layer 3: 00000100)
-    	GLint mask_layer = 0x1 << layer;
-    	// mask of all layers less than the current (ie: for layer 3: 00000011)
-    	GLint mask_layer_l = mask_layer - 1;
-    	// mask of all layers less than or equal to the current (ie: for layer 3: 00000111)
-    	GLint mask_layer_le = mask_layer | mask_layer_l;
-
-    	// manually save the stencil state
-    	GLboolean currentStencilEnabled = GL_FALSE;
-    	GLuint currentStencilWriteMask = ~0;
-    	GLenum currentStencilFunc = GL_ALWAYS;
-    	GLint currentStencilRef = 0;
-    	GLuint currentStencilValueMask = ~0;
-    	GLenum currentStencilFail = GL_KEEP;
-    	GLenum currentStencilPassDepthFail = GL_KEEP;
-    	GLenum currentStencilPassDepthPass = GL_KEEP;
-    	currentStencilEnabled = glIsEnabled(GL_STENCIL_TEST);
-    	glGetIntegerv(GL_STENCIL_WRITEMASK, (GLint *)&currentStencilWriteMask);
-    	glGetIntegerv(GL_STENCIL_FUNC, (GLint *)&currentStencilFunc);
-    	glGetIntegerv(GL_STENCIL_REF, &currentStencilRef);
-    	glGetIntegerv(GL_STENCIL_VALUE_MASK, (GLint *)&currentStencilValueMask);
-    	glGetIntegerv(GL_STENCIL_FAIL, (GLint *)&currentStencilFail);
-    	glGetIntegerv(GL_STENCIL_PASS_DEPTH_FAIL, (GLint *)&currentStencilPassDepthFail);
-    	glGetIntegerv(GL_STENCIL_PASS_DEPTH_PASS, (GLint *)&currentStencilPassDepthPass);
-
-    	// enable stencil use
-    	glEnable(GL_STENCIL_TEST);
-    	// check for OpenGL error while enabling stencil test
-    	CHECK_GL_ERROR_DEBUG();
-
-    	// all bits on the stencil buffer are readonly, except the current layer bit,
-    	// this means that operation like glClear or glStencilOp will be masked with this value
-    	glStencilMask(mask_layer);
-
-    	glClear(GL_STENCIL_BUFFER_BIT);
-    	// manually save the depth test state
-    	//GLboolean currentDepthTestEnabled = GL_TRUE;
-    	GLboolean currentDepthWriteMask = GL_TRUE;
-    	//currentDepthTestEnabled = glIsEnabled(GL_DEPTH_TEST);
-    	glGetBooleanv(GL_DEPTH_WRITEMASK, &currentDepthWriteMask);
-
-    	// disable depth test while drawing the stencil
-    	//glDisable(GL_DEPTH_TEST);
-    	// disable update to the depth buffer while drawing the stencil,
-    	// as the stencil is not meant to be rendered in the real scene,
-    	// it should never prevent something else to be drawn,
-    	// only disabling depth buffer update should do
-    	glDepthMask(GL_FALSE);
-
-    	///////////////////////////////////
-    	// CLEAR STENCIL BUFFER
-
-    	// manually clear the stencil buffer by drawing a fullscreen rectangle on it
-    	// setup the stencil test func like this:
-    	// for each pixel in the fullscreen rectangle
-    	//     never draw it into the frame buffer
-    	//     if not in inverted mode: set the current layer value to 0 in the stencil buffer
-    	//     if in inverted mode: set the current layer value to 1 in the stencil buffer
-    	glStencilFunc(GL_NEVER, mask_layer, mask_layer);
-    	glStencilOp(!m_bInverted ? GL_ZERO : GL_REPLACE, GL_KEEP, GL_KEEP);
-
-    	// draw a fullscreen solid rectangle to clear the stencil buffer
-    	//ccDrawSolidRect(CCPointZero, ccpFromSize([[CCDirector sharedDirector] winSize]), ccc4f(1, 1, 1, 1));
-    	ccDrawSolidRect(CCPointZero, ccpFromSize(CCDirector::sharedDirector()->getWinSize()), ccc4f(1, 1, 1, 1));
-
-    	///////////////////////////////////
-    	// DRAW CLIPPING STENCIL
-
-    	// setup the stencil test func like this:
-    	// for each pixel in the stencil node
-    	//     never draw it into the frame buffer
-    	//     if not in inverted mode: set the current layer value to 1 in the stencil buffer
-    	//     if in inverted mode: set the current layer value to 0 in the stencil buffer
-    	glStencilFunc(GL_NEVER, mask_layer, mask_layer);
-    	glStencilOp(!m_bInverted ? GL_REPLACE : GL_ZERO, GL_KEEP, GL_KEEP);
-
-    	// enable alpha test only if the alpha threshold < 1,
-    	// indeed if alpha threshold == 1, every pixel will be drawn anyways
-// whats the deal with ifs if its ios only here
-    	if (m_fAlphaThreshold < 1) {
-    		// since glAlphaTest do not exists in OES, use a shader that writes
-    		// pixel only if greater than an alpha threshold
-    		CCGLProgram *program = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColorAlphaTest);
-    		GLint alphaValueLocation = glGetUniformLocation(program->getProgram(), kCCUniformAlphaTestValue);
-    		// set our alphaThreshold
-    		program->use();
-    		program->setUniformLocationWith1f(alphaValueLocation, m_fAlphaThreshold);
-    		// we need to recursively apply this shader to all the nodes in the stencil node
-    		// XXX: we should have a way to apply shader to all nodes without having to do this
-    		// setProgram(m_pStencil, program); // this causes fail
-    	}
-
-    	// draw the stencil node as if it was one of our child
-    	// (according to the stencil test func/op and alpha (or alpha shader) test)
-    	kmGLPushMatrix();
-    	transform();
-    	m_pStencil->visit();
-    	kmGLPopMatrix();
-
-    	// restore alpha test state
-    	if (m_fAlphaThreshold < 1)
-    	{
-    		// XXX: we need to find a way to restore the shaders of the stencil node and its childs
-    	}
-
-        // restore the depth test state
-        glDepthMask(currentDepthWriteMask);
-        //if (currentDepthTestEnabled) {
-        //    glEnable(GL_DEPTH_TEST);
-        //}
-    
-        ///////////////////////////////////
-        // DRAW CONTENT
-    
-        // setup the stencil test func like this:
-        // for each pixel of this node and its childs
-        //     if all layers less than or equals to the current are set to 1 in the stencil buffer
-        //         draw the pixel and keep the current layer in the stencil buffer
-        //     else
-        //         do not draw the pixel but keep the current layer in the stencil buffer
-        glStencilFunc(GL_EQUAL, mask_layer_le, mask_layer_le);
-        glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
-    
-        // draw (according to the stencil test func) this node and its childs
-        CCNode::visit();
-    
-        ///////////////////////////////////
-        // CLEANUP
-    
-        // manually restore the stencil state
-        glStencilFunc(currentStencilFunc, currentStencilRef, currentStencilValueMask);
-        glStencilOp(currentStencilFail, currentStencilPassDepthFail, currentStencilPassDepthPass);
-        glStencilMask(currentStencilWriteMask);
-        if (!currentStencilEnabled)
+    	// if stencil buffer disabled
+        if (g_sStencilBits < 1)
         {
-            glDisable(GL_STENCIL_TEST);
+            // draw everything, as if there where no stencil
+            CCNode::visit();
+            return;
         }
     
-        // we are done using this layer, decrement
-        layer--;
+        // return fast (draw nothing, or draw everything if in inverted mode) if:
+	// - nil stencil node
+	// - or stencil node invisible:
+	if (!m_pStencil || !m_pStencil->isVisible())
+	{
+		if (m_bInverted)
+		{
+			// draw everything
+			CCNode::visit();
+		}
+		return;
+	}
+
+	// store the current stencil layer (position in the stencil buffer),
+	// this will allow nesting up to n CCClippingNode,
+	// where n is the number of bits of the stencil buffer.
+	static GLint layer = -1;
+
+	// all the _stencilBits are in use?
+	if (layer + 1 == g_sStencilBits) // this definetly wont break anything :clueless: //if (layer + 1 == g_sStencilBits)
+	{
+		// warn once
+		static bool once = true;
+		if (once)
+		{
+			char warning[200] = {0};
+			//snprintf(warning, sizeof(warning), "Nesting more than %d stencils is not supported. Everything will be drawn without stencil for this node and its childs.", g_sStencilBits);
+			CCLOG("%s", warning);
+
+			once = false;
+		}
+		// draw everything, as if there where no stencil
+		CCNode::visit();
+		return;
+	}
+
+	///////////////////////////////////
+	// INIT
+
+	// increment the current layer
+	layer++;
+
+	// mask of the current layer (ie: for layer 3: 00000100)
+	GLint mask_layer = 0x1 << layer;
+	// mask of all layers less than the current (ie: for layer 3: 00000011)
+	GLint mask_layer_l = mask_layer - 1;
+	// mask of all layers less than or equal to the current (ie: for layer 3: 00000111)
+	GLint mask_layer_le = mask_layer | mask_layer_l;
+
+	// manually save the stencil state
+	GLboolean currentStencilEnabled = GL_FALSE;
+	GLuint currentStencilWriteMask = ~0;
+	GLenum currentStencilFunc = GL_ALWAYS;
+	GLint currentStencilRef = 0;
+	GLuint currentStencilValueMask = ~0;
+	GLenum currentStencilFail = GL_KEEP;
+	GLenum currentStencilPassDepthFail = GL_KEEP;
+	GLenum currentStencilPassDepthPass = GL_KEEP;
+	currentStencilEnabled = glIsEnabled(GL_STENCIL_TEST);
+	glGetIntegerv(GL_STENCIL_WRITEMASK, (GLint *)&currentStencilWriteMask);
+	glGetIntegerv(GL_STENCIL_FUNC, (GLint *)&currentStencilFunc);
+	glGetIntegerv(GL_STENCIL_REF, &currentStencilRef);
+	glGetIntegerv(GL_STENCIL_VALUE_MASK, (GLint *)&currentStencilValueMask);
+	glGetIntegerv(GL_STENCIL_FAIL, (GLint *)&currentStencilFail);
+	glGetIntegerv(GL_STENCIL_PASS_DEPTH_FAIL, (GLint *)&currentStencilPassDepthFail);
+	glGetIntegerv(GL_STENCIL_PASS_DEPTH_PASS, (GLint *)&currentStencilPassDepthPass);
+
+	// enable stencil use
+	glEnable(GL_STENCIL_TEST);
+	// check for OpenGL error while enabling stencil test
+	CHECK_GL_ERROR_DEBUG();
+
+	// all bits on the stencil buffer are readonly, except the current layer bit,
+	// this means that operation like glClear or glStencilOp will be masked with this value
+	glStencilMask(mask_layer);
+
+	//glClear(GL_STENCIL_BUFFER_BIT);
+	// manually save the depth test state
+	//GLboolean currentDepthTestEnabled = GL_TRUE;
+	GLboolean currentDepthWriteMask = GL_TRUE;
+	//currentDepthTestEnabled = glIsEnabled(GL_DEPTH_TEST);
+	glGetBooleanv(GL_DEPTH_WRITEMASK, &currentDepthWriteMask);
+
+	// disable depth test while drawing the stencil
+	//glDisable(GL_DEPTH_TEST);
+	// disable update to the depth buffer while drawing the stencil,
+	// as the stencil is not meant to be rendered in the real scene,
+	// it should never prevent something else to be drawn,
+	// only disabling depth buffer update should do
+	glDepthMask(GL_FALSE);
+
+	///////////////////////////////////
+	// CLEAR STENCIL BUFFER
+
+	// manually clear the stencil buffer by drawing a fullscreen rectangle on it
+	// setup the stencil test func like this:
+	// for each pixel in the fullscreen rectangle
+	//     never draw it into the frame buffer
+	//     if not in inverted mode: set the current layer value to 0 in the stencil buffer
+	//     if in inverted mode: set the current layer value to 1 in the stencil buffer
+	glStencilFunc(GL_NEVER, mask_layer, mask_layer);
+	glStencilOp(!m_bInverted ? GL_ZERO : GL_REPLACE, GL_KEEP, GL_KEEP);
+
+	// draw a fullscreen solid rectangle to clear the stencil buffer
+	//ccDrawSolidRect(CCPointZero, ccpFromSize([[CCDirector sharedDirector] winSize]), ccc4f(1, 1, 1, 1));
+	ccDrawSolidRect(CCPointZero, ccpFromSize(CCDirector::sharedDirector()->getWinSize()), ccc4f(1, 1, 1, 1));
+
+	///////////////////////////////////
+	// DRAW CLIPPING STENCIL
+
+	// setup the stencil test func like this:
+	// for each pixel in the stencil node
+	//     never draw it into the frame buffer
+	//     if not in inverted mode: set the current layer value to 1 in the stencil buffer
+	//     if in inverted mode: set the current layer value to 0 in the stencil buffer
+	glStencilFunc(GL_NEVER, mask_layer, mask_layer);
+	glStencilOp(!m_bInverted ? GL_REPLACE : GL_ZERO, GL_KEEP, GL_KEEP);
+
+	// enable alpha test only if the alpha threshold < 1,
+	// indeed if alpha threshold == 1, every pixel will be drawn anyways
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+	GLboolean currentAlphaTestEnabled = GL_FALSE;
+	GLenum currentAlphaTestFunc = GL_ALWAYS;
+GLclampf currentAlphaTestRef = 1;
+#endif
+	if (m_fAlphaThreshold < 1) {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+		// manually save the alpha test state
+		currentAlphaTestEnabled = glIsEnabled(GL_ALPHA_TEST);
+		glGetIntegerv(GL_ALPHA_TEST_FUNC, (GLint *)&currentAlphaTestFunc);
+		glGetFloatv(GL_ALPHA_TEST_REF, &currentAlphaTestRef);
+		// enable alpha testing
+		glEnable(GL_ALPHA_TEST);
+		// check for OpenGL error while enabling alpha test
+		CHECK_GL_ERROR_DEBUG();
+		//pixel will be drawn only if greater than an alpha threshold
+		glAlphaFunc(GL_GREATER, m_fAlphaThreshold);
+#else
+		// since glAlphaTest do not exists in OES, use a shader that writes
+		// pixel only if greater than an alpha threshold
+		CCGLProgram *program = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColorAlphaTest);
+		GLint alphaValueLocation = glGetUniformLocation(program->getProgram(), kCCUniformAlphaTestValue);
+		// set our alphaThreshold
+		program->use();
+		program->setUniformLocationWith1f(alphaValueLocation, m_fAlphaThreshold);
+		// we need to recursively apply this shader to all the nodes in the stencil node
+		// XXX: we should have a way to apply shader to all nodes without having to do this
+		// setProgram(m_pStencil, program); // this causes fail
+
+#endif
+}
+
+	// draw the stencil node as if it was one of our child
+	// (according to the stencil test func/op and alpha (or alpha shader) test)
+	kmGLPushMatrix();
+	transform();
+	m_pStencil->visit();
+	kmGLPopMatrix();
+
+	// restore alpha test state
+	if (m_fAlphaThreshold < 1)
+	{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+		// manually restore the alpha test state
+		glAlphaFunc(currentAlphaTestFunc, currentAlphaTestRef);
+		if (!currentAlphaTestEnabled)
+		{
+			glDisable(GL_ALPHA_TEST);
+		}
+#else
+		// XXX: we need to find a way to restore the shaders of the stencil node and its childs
+#endif
+	}
     }
 
     cocos2d::CCNode* getStencil() const = ios inline {
@@ -4385,8 +4430,8 @@ class DS_Dictionary {
     static void copyFile(char const*, char const*);
     cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
     gd::vector<gd::string> getAllKeys() = imac 0x16ccb0, m1 0x13935c;
-    cocos2d::CCArray* getArrayForKey(char const*, bool) = imac 0x1707b0, m1 0x13c84c;
-    bool getBoolForKey(char const*) = imac 0x16d3e0, m1 0x1399d4;
+    cocos2d::CCArray* getArrayForKey(char const*, bool) = imac 0x1707b0, m1 0x13c84c, ios 0x165ed4;
+    bool getBoolForKey(char const*) = imac 0x16d3e0, m1 0x1399d4, ios 0x165010;
     cocos2d::CCDictionary* getDictForKey(char const*, bool) = m1 0x13d6c8, imac 0x171760;
     float getFloatForKey(char const*) = imac 0x16d4e0, m1 0x139acc;
     unsigned int getIndexOfKey(char const*);
@@ -4394,7 +4439,7 @@ class DS_Dictionary {
     int getIntegerForKey(char const*) = imac 0x16d2a0, m1 0x1398c8, ios 0x164f04;
     gd::string getKey(unsigned int) = imac 0x16cb80, m1 0x139234;
     unsigned int getNumKeys();
-    cocos2d::CCObject* getObjectForKey(char const*) = imac 0x170930, m1 0x13c9b4;
+    cocos2d::CCObject* getObjectForKey(char const*) = imac 0x170930, m1 0x13c9b4, ios 0x165ff0;
     gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
     cocos2d::CCRect getRectForKey(char const*);
     gd::vector<gd::string> getStringArrayForKey(char const*);
@@ -4415,7 +4460,7 @@ class DS_Dictionary {
     void setBoolForKey(char const*, bool, bool);
     void setBoolForKey(char const*, bool) = imac 0x16e790, m1 0x13ab9c;
     void setBoolMapForKey(char const*, gd::map<gd::string, bool>&) = m1 0x13cf9c;
-    void setDictForKey(char const*, cocos2d::CCDictionary*) = imac 0x170db0, m1 0x13cd9c;
+    void setDictForKey(char const*, cocos2d::CCDictionary*) = imac 0x170db0, m1 0x13cd9c, ios 0x1662a8;
     void setFloatForKey(char const*, float) = imac 0x16e9c0, m1 0x13ad84;
     void setFloatForKey(char const*, float, bool);
     void setIntegerForKey(char const*, int) = imac 0x16e4c0, m1 0x13a930;
@@ -4599,7 +4644,7 @@ class cocos2d::ZipUtils {
     static void ccSetPvrEncryptionKeyPart(int, unsigned int);
     static gd::string compressString(gd::string const& data, bool encrypt, int encryptionKey) = imac 0x1f3020, m1 0x1a8b18, ios 0x23d2b8;
     static gd::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1f33b0, m1 0x1a8efc;
-    static gd::string decompressString(gd::string const& data, bool encrypt, int encryptionKey) = m1 0x1a921c, imac 0x1f36c0;
+    static gd::string decompressString(gd::string const& data, bool encrypt, int encryptionKey) = m1 0x1a921c, imac 0x1f36c0, ios 0x23d8a0;
     static gd::string encryptDecrypt(gd::string const& data, int encryptionKey);
     static gd::string encryptDecryptWKey(gd::string const&, gd::string);
     static unsigned char hexToChar(gd::string const&);
