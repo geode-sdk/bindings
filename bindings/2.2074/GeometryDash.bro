@@ -15235,9 +15235,9 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onAchievements(cocos2d::CCObject* sender) = win 0x320960, m1 0x30eaa8, imac 0x37e370;
     void onCreator(cocos2d::CCObject* sender) = win 0x320e70, m1 0x30ea2c, imac 0x37e2e0;
     void onDaily(cocos2d::CCObject* sender) = win 0x3201e0, m1 0x30f028, imac 0x37e8b0;
-    void onDiscord(cocos2d::CCObject* sender) = win 0x320860, m1 0x30ed18;
+    void onDiscord(cocos2d::CCObject* sender) = win 0x320860, m1 0x30ed18, imac 0x37e5a0;
     void onEveryplay(cocos2d::CCObject* sender) {}
-    void onFacebook(cocos2d::CCObject* sender) = win 0x3207e0, m1 0x30ec88;
+    void onFacebook(cocos2d::CCObject* sender) = win 0x3207e0, m1 0x30ec88, imac 0x37e520;
     void onFreeLevels(cocos2d::CCObject* sender);
     void onFullVersion(cocos2d::CCObject* sender);
     void onGameCenter(cocos2d::CCObject* sender);
@@ -15253,9 +15253,9 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onRobTop(cocos2d::CCObject* sender) = win 0x3207c0, m1 0x30ec64, imac 0x37e500;
     void onStats(cocos2d::CCObject* sender) = win 0x320d50, imac 0x37e3f0, m1 0x30eb40;
     void onTrailer(cocos2d::CCObject* sender) = m1 0x30f470, imac 0x37ed80;
-    void onTwitch(cocos2d::CCObject* sender) = win 0x320840, m1 0x30ecf4;
-    void onTwitter(cocos2d::CCObject* sender) = win 0x320800, m1 0x30ecac;
-    void onYouTube(cocos2d::CCObject* sender) = win 0x320820, m1 0x30ecd0;
+    void onTwitch(cocos2d::CCObject* sender) = win 0x320840, m1 0x30ecf4, imac 0x37e580;
+    void onTwitter(cocos2d::CCObject* sender) = win 0x320800, m1 0x30ecac, imac 0x37e540;
+    void onYouTube(cocos2d::CCObject* sender) = win 0x320820, m1 0x30ecd0, imac 0x37e560;
     void openOptions(bool videoOptions) = win 0x320bd0, m1 0x30f360;
     void showGCQuestion() = m1 0x30f144, imac 0x37e9f0;
     void showMeltdownPromo() {}
@@ -23095,8 +23095,8 @@ class TutorialLayer : FLAlertLayer {
     virtual void keyBackClicked() = win 0x4b3de0, m1 0x42f414, imac 0x4c9cc0, ios 0x1bfa70;
 
     void loadPage(int) = win 0x4b3730, m1 0x42ef60, imac 0x4c9800;
-    void onClose(cocos2d::CCObject* sender) = win 0x4b3d60, m1 0x42ee10;
-    void onNext(cocos2d::CCObject* sender) = win 0x4b3710, m1 0x42eea4;
+    void onClose(cocos2d::CCObject* sender) = win 0x4b3d60, m1 0x42ee10, imac 0x4c96e0;
+    void onNext(cocos2d::CCObject* sender) = win 0x4b3710, m1 0x42eea4, imac 0x4c9760;
     void removeTutorialTexture() = win inline {
         if (m_page == 0) return;
         cocos2d::CCTextureCache::sharedTextureCache()->removeTextureForKey(cocos2d::CCString::createWithFormat("tutorial_%02d", m_page)->getCString());
