@@ -4767,7 +4767,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onToggleGuide(EffectGameObject*);
     TodoReturn onToggleSelectedOrder(EffectGameObject*);
     void onUngroupSticky(cocos2d::CCObject* sender) = win 0x111130, m1 0xe318, imac 0xcfc0;
-    void onUpdateDeleteFilter(cocos2d::CCObject* sender);
+    void onUpdateDeleteFilter(cocos2d::CCObject* sender) = win 0x0e5e30;
     void orderDownCustomItem(cocos2d::CCObject*);
     void orderUpCustomItem(cocos2d::CCObject*);
     cocos2d::CCArray* pasteObjects(gd::string, bool, bool) = win 0x111d10, m1 0x35f00, imac 0x3ac10;
