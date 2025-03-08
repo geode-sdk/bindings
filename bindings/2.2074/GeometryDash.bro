@@ -5530,7 +5530,7 @@ class EnterEffectInstance {
     // EnterEffectInstance(EnterEffectInstance const&);
     // EnterEffectInstance(EnterEffectInstance&&);
     // Sabe: idk why but this makes it so my mod works :shrug:
-    EnterEffectInstance() = android64 inline {}
+    EnterEffectInstance() = android64 inline, android32 inline {}
     EnterEffectInstance(EnterEffectObject*, int, int, int, int, int, int);
 
     void animateValue(int, float, float, float, int, float, int) = win 0x1378e0;
