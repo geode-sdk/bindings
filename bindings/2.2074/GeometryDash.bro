@@ -908,14 +908,14 @@ class BoomScrollLayer : cocos2d::CCLayer {
         return m_dynamic ? m_dynamicObjects->count() : m_pages->count();
     }
     bool init(cocos2d::CCArray*, int, bool, cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3d230, imac 0x391aa0, ios 0x12e320, m1 0x32056c;
-    void instantMoveToPage(int) = win 0x3ddc0, m1 0x321ccc, imac 0x393410;
-    void moveToPage(int) = win 0x3dea0, imac 0x3934f0, m1 0x321da4;
-    void moveToPageEnded() = win 0x3dc30, imac 0x393280, m1 0x321b3c;
+    void instantMoveToPage(int) = win 0x3ddc0, m1 0x321ccc, imac 0x393410, ios 0x12f2c0;
+    void moveToPage(int) = win 0x3dea0, imac 0x3934f0, m1 0x321da4, ios 0x12f398;
+    void moveToPageEnded() = win 0x3dc30, imac 0x393280, m1 0x321b3c, ios 0x12f234;
     int pageNumberForPosition(cocos2d::CCPoint) = win 0x3dcc0, imac 0x393070, m1 0x321924;
     cocos2d::CCPoint positionForPageWithNumber(int page) = win inline, imac 0x3933c0, m1 0x321c78 {
         return { this->getContentSize().width + m_pageOffset * page, 0.f };
     }
-    void quickUpdate() = win inline, imac 0x393760, m1 0x322018 {
+    void quickUpdate() = win inline, imac 0x393760, m1 0x322018, ios 0x12f5f0 {
         if (m_pageMoving) {
             m_pageMoving = false;
             m_extendedLayer->stopActionByTag(2);
@@ -925,7 +925,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     }
     void removePage(cocos2d::CCLayer*) = imac 0x3938b0, m1 0x322148;
     void removePageWithNumber(int) = imac 0x393940, m1 0x3221dc;
-    void repositionPagesLooped() = win 0x3e060, imac 0x392090, m1 0x320b14;
+    void repositionPagesLooped() = win 0x3e060, imac 0x392090, m1 0x320b14, ios 0x12e79c;
     void selectPage(int);
     void setDotScale(float scale) = win inline, m1 0x321608, imac 0x392c40 {
         for (int i = 0; i < m_dots->count(); i++) {
@@ -936,10 +936,10 @@ class BoomScrollLayer : cocos2d::CCLayer {
         m_dotPosition = pos;
         this->updateDots(0.f);
     }
-    void setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3d5a0, imac 0x392710, m1 0x321124;
+    void setupDynamicScrolling(cocos2d::CCArray*, DynamicScrollDelegate*) = win 0x3d5a0, imac 0x392710, m1 0x321124, ios 0x12eaac;
     void togglePageIndicators(bool) = win 0x3db60, imac 0x3931b0, m1 0x321a78, ios 0x12f170;
-    void updateDots(float) = win 0x3d960, imac 0x392990, m1 0x321388;
-    void updatePages() = win 0x3d840, m1 0x3209f4, imac 0x391f70;
+    void updateDots(float) = win 0x3d960, imac 0x392990, m1 0x321388, ios 0x12ed10;
+    void updatePages() = win 0x3d840, m1 0x3209f4, imac 0x391f70, ios 0x12e684;
 
     cocos2d::CCArray* m_dots;
     int m_slowPage;
@@ -2292,7 +2292,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x50880, imac 0x9fa00, m1 0x92124, ios 0x1711fc;
     virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x50bb0, imac 0x9fd40, m1 0x92420, ios 0x171468;
 
-    void addTextArea(TextArea*) = win 0x4f540, imac 0x9e100, m1 0x90ac8;
+    void addTextArea(TextArea*) = win 0x4f540, imac 0x9e100, m1 0x90ac8, ios 0x170150;
     void forceOffset();
     cocos2d::CCLabelBMFont* getPlaceholderLabel() {
         return m_placeholderLabel;
@@ -4831,7 +4831,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void showUI(bool) = win 0x110200, m1 0x388f4, imac 0x3de00, ios 0x3e6770;
     void sliderChanged(cocos2d::CCObject*) = win 0xe13a0, imac 0xbd50, m1 0xd16c, ios 0x3bf328;
     static int smartTypeForKey(int) = win 0x12b890;
-    cocos2d::CCSprite* spriteFromObjectString(gd::string str, bool, bool, int objLimit, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0x10c790, imac 0x344a0, m1 0x33ab0;
+    cocos2d::CCSprite* spriteFromObjectString(gd::string str, bool, bool, int objLimit, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0x10c790, imac 0x344a0, m1 0x33ab0, ios 0x3e2af4;
     TodoReturn toggleDuplicateButton();
     void toggleEditObjectButton() = win 0x118f10;
     void toggleEnableRotate(cocos2d::CCObject*) = win 0x10eb00, m1 0xd994, ios 0x3bf870;
@@ -7229,7 +7229,7 @@ class GameManager : GManager {
     void showInterstitialForced();
     void showMainMenuAd();
     void startUpdate();
-    gd::string stringForCustomObject(int customObjectID) = win 0x180950, imac 0x371170, m1 0x3025a0;
+    gd::string stringForCustomObject(int customObjectID) = win 0x180950, imac 0x371170, m1 0x3025a0, ios 0x3195f0;
     TodoReturn subYouTube();
     TodoReturn switchCustomObjects(int, int);
     TodoReturn switchScreenMode(bool, bool, bool, bool);
@@ -7672,7 +7672,7 @@ class GameObject : CCSpritePlus {
     double slopeYPos(float) = win 0x19e430;
     double slopeYPos(GameObject*);
     void spawnDefaultPickupParticle(GJBaseGameLayer*) = imac 0x24c390;
-    void updateBlendMode();
+    void updateBlendMode() = ios 0x25be2c;
     void updateCustomColorType(short);
     void updateCustomScaleX(float) = win 0x1956d0, m1 0x4d922c, imac 0x591ed0, ios 0x25529c;
     void updateCustomScaleY(float) = win 0x195760, m1 0x4d928c, imac 0x591f50, ios 0x2552fc;
@@ -10833,7 +10833,7 @@ class GJItemIcon : cocos2d::CCSprite {
         m_unlockType = (UnlockType)0;
     }
 
-    static GJItemIcon* create(UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7) = win inline, imac 0x35d940, m1 0x2f0ba0 {
+    static GJItemIcon* create(UnlockType p0, int p1, cocos2d::ccColor3B p2, cocos2d::ccColor3B p3, bool p4, bool p5, bool p6, cocos2d::ccColor3B p7) = win inline, imac 0x35d940, m1 0x2f0ba0, ios 0x307bd8 {
         auto ret = new GJItemIcon();
         if (ret->init(p0, p1, p2, p3, p4, p5, p6, p7)) {
             ret->autorelease();
@@ -10853,7 +10853,7 @@ class GJItemIcon : cocos2d::CCSprite {
     void changeToLockedState(float) = win 0x273cb0, imac 0x35af50, m1 0x2ee474, ios 0x306088;
     void darkenStoreItem(cocos2d::ccColor3B) = win 0x2739c0, imac 0x35e160, m1 0x2f1374;
     void darkenStoreItem(ShopType) = win 0x273940;
-    bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x273190, m1 0x2f0cb0, imac 0x35da60;
+    bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x273190, m1 0x2f0cb0, imac 0x35da60, ios 0x307c98;
     void toggleEnabledState(bool) = win 0x273bf0;
 
     cocos2d::CCSprite* m_player;
@@ -14103,7 +14103,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn updateKeyframeObjects() = win 0x2d9490, imac 0xeb650;
     TodoReturn updateKeyframeVisibility(bool);
     void updateLevelFont(int) = win 0x2d66d0, m1 0xd4e04, imac 0xefe30, ios 0x3618c8;
-    void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x2d1790, imac 0xeb700, m1 0xd102c;
+    void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x2d1790, imac 0xeb700, m1 0xd102c, ios 0x35ea84;
     void updateOptions() = win 0x2ca8f0, m1 0xc4394, ios 0x357150, imac 0xdc880;
     void updatePreviewAnim();
     void updatePreviewParticle(ParticleGameObject*) = imac 0x1a1820, m1 0x1642bc;

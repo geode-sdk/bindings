@@ -1130,10 +1130,10 @@ class cocos2d::CCScene : cocos2d::CCNode {
 class cocos2d::CCSet : cocos2d::CCObject {
     static cocos2d::CCSet* create();
 
-    //CCSet(cocos2d::CCSet const&) = imac 0x79df40, m1 0x6b0448;
-    CCSet() = imac 0x79def0, m1 0x6b03e8;
-    ~CCSet() = imac 0x79e050, m1 0x6b0560;
-    void addObject(cocos2d::CCObject*) = imac 0x79e300, m1 0x6b07f0;
+    //CCSet(cocos2d::CCSet const&) = imac 0x79df40, m1 0x6b0448, ios 0x1af714;
+    CCSet() = imac 0x79def0, m1 0x6b03e8, ios 0x1af6b0;
+    ~CCSet() = imac 0x79e050, m1 0x6b0560, ios 0x1af7e8;
+    void addObject(cocos2d::CCObject*) = imac 0x79e300, m1 0x6b07f0, ios 0x1af93c;
     cocos2d::CCObject* anyObject() = imac 0x79e4d0, m1 0x6b09ec, ios inline {
         if (!m_pSet || m_pSet->empty())
         {
@@ -1154,7 +1154,7 @@ class cocos2d::CCSet : cocos2d::CCObject {
     }
     cocos2d::CCSetIterator begin() = imac 0x79e4b0, m1 0x6b09d4, ios 0x1afa04;
     bool containsObject(cocos2d::CCObject*) = imac 0x79e460, m1 0x6b0984, ios 0x1af9b4;
-    cocos2d::CCSet* copy();
+    cocos2d::CCSet* copy() = ios 0x1af8e4;
     int count() = imac 0x79e2f0, m1 0x6b07e4, imac 0x79e2f0, m1 0x6b07e4;
     cocos2d::CCSetIterator end() = imac 0x79e4c0, m1 0x6b09e0, m1 0x6b09e0, ios 0x1afa10;
     cocos2d::CCSet* mutableCopy() = imac 0x79e2b0, m1 0x6b079c, imac 0x79e2b0, m1 0x6b079c;
@@ -2214,7 +2214,7 @@ class cocos2d::CCTargetedTouchHandler {
 
     bool initWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
 
-    cocos2d::CCSet* getClaimedTouches() = imac 0x46e5e0, m1 0x3dd8b8;
+    cocos2d::CCSet* getClaimedTouches() = imac 0x46e5e0, m1 0x3dd8b8, ios 0x10540;
 
     void setSwallowsTouches(bool);
 
@@ -3034,7 +3034,7 @@ class cocos2d::CCArray : cocos2d::CCObject {
     // static cocos2d::CCArray* createWithCapacity(unsigned int);
     static cocos2d::CCArray* createWithContentsOfFile(char const*);
     static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*);
-    static cocos2d::CCArray* createWithObject(cocos2d::CCObject*);
+    static cocos2d::CCArray* createWithObject(cocos2d::CCObject*) = ios 0x249270;
 
     bool init() = imac 0x7094e0;
     bool initWithArray(cocos2d::CCArray*);
