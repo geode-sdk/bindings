@@ -1313,14 +1313,14 @@ class CCBlockLayer : cocos2d::CCLayerColor {
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x46191c, imac 0x502130, ios 0x8a59c {}
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x46190c, imac 0x5020f0, ios 0x8a58c {}
     virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x461914, imac 0x502110, ios 0x8a594 {}
-    virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x4617a4, imac 0x501f60, ios 0x8a424, imac 0x4f01f0;
+    virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x4617a4, imac 0x501f60, ios 0x8a424;
     virtual void keyBackClicked() = win 0x42620, m1 0x4617dc, imac 0x501fa0, ios 0x8a45c;
     virtual void customSetup() = m1 0x461760, imac 0x501f00, ios 0x8a3e0 {}
-    virtual TodoReturn enterLayer() = win 0x425a0, m1 0x46176c, imac 0x501f30, ios 0x8a3ec, imac 0x60d5f0;
+    virtual TodoReturn enterLayer() = win 0x425a0, m1 0x46176c, imac 0x501f30, ios 0x8a3ec;
     virtual TodoReturn exitLayer() = win 0x42640, imac 0x501fd0, m1 0x4617f8, ios 0x8a478;
     virtual void showLayer(bool) = win 0x42680, m1 0x461844, imac 0x502010, ios 0x8a4c4;
     virtual TodoReturn hideLayer(bool) = win 0x42690, m1 0x461850, imac 0x502020, ios 0x8a4d0;
-    virtual TodoReturn layerVisible() = win 0x426a0, m1 0x461860, imac 0x502040, ios 0x8a4e0, imac 0x426e90;
+    virtual TodoReturn layerVisible() = win 0x426a0, m1 0x461860, imac 0x502040, ios 0x8a4e0;
     virtual void layerHidden() = win 0x426b0, m1 0x461870, imac 0x502060, ios 0x8a4f0;
     virtual void enterAnimFinished() = m1 0x46185c, imac 0x502030, ios 0x8a4dc {}
     virtual void disableUI() = m1 0x461764, imac 0x501f10, ios 0x8a3e4 {}
