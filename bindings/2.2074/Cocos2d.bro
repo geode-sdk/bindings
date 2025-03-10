@@ -3067,11 +3067,11 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
     void addSpriteFramesWithFile(char const*) = imac 0x308940, m1 0x29f998;
     void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*) = m1 0x29f8e0, imac 0x308890;
     void removeSpriteFrameByName(char const*) = m1 0x2a0020, imac 0x308e80;
-    void removeSpriteFrames();
-    void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*);
-    void removeSpriteFramesFromFile(char const*);
-    void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*) = imac 0x3095d0;
-    void removeUnusedSpriteFrames() = imac 0x308df0;
+    void removeSpriteFrames() = m1 0x29ff44, imac 0x308db0;
+    void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*) = m1 0x2a05e4, imac 0x309370;
+    void removeSpriteFramesFromFile(char const*) = m1 0x2a030c, imac 0x309190;
+    void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*) = m1 0x2a0830, imac 0x3095d0;
+    void removeUnusedSpriteFrames() = m1 0x29ff90, imac 0x308df0;
     cocos2d::CCSpriteFrame* spriteFrameByName(char const*) = imac 0x3098e0, m1 0x2a0b38;
     //purgeSharedSpriteFrameCache = ios 0x3c4dd4
 }
