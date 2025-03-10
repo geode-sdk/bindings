@@ -97,9 +97,8 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "Android32")
 	)
 endif()
 
-# Get commit hash of geode-sdk/geode@nightly
 execute_process(
-	COMMAND git ls-remote origin -t nightly
+	COMMAND git ls-remote https://github.com/geode-sdk/geode -t nightly
 	WORKING_DIRECTORY $ENV{GEODE_SDK}
 	OUTPUT_VARIABLE GEODE_MEMBER_TEST_GIT_OUTPUT
 	OUTPUT_STRIP_TRAILING_WHITESPACE
