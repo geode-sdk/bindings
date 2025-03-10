@@ -2749,7 +2749,6 @@ class ColorActionSprite : cocos2d::CCNode {
     int m_colorID;
     cocos2d::ccColor3B m_pulseColor;
     ColorAction* m_colorAction;
-    void* m_unk160;
 }
 
 [[link(android)]]
@@ -8357,7 +8356,7 @@ class GameToolbox {
     static gd::string getTimeString(int, bool) = win 0x65e20, imac 0x4de620, m1 0x44145c;
     static TodoReturn hsvFromString(gd::string const&, char const*) = imac 0x4dd030;
     static gd::string intToShortString(int) = win 0x69120, imac 0x4e4250, m1 0x4465bc;
-    static TodoReturn intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284;
+    static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284;
     static bool isIOS();
     static bool isRateEasing(int);
     static TodoReturn mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
@@ -11356,19 +11355,19 @@ class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
 
     static GJPathPage* create(int, GJPathsLayer*) = win 0x27db80, imac 0x2ea7c0, m1 0x284d30;
 
-    virtual void registerWithTouchDispatcher() = m1 0x288950, imac 0x2ee860, ios 0x3b3c68;
+    virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x288950, imac 0x2ee860, ios 0x3b3c68;
     virtual void keyBackClicked() = win 0x281710, m1 0x2887ec, imac 0x2ee720, ios 0x3b3c5c;
-    virtual void show() = m1 0x288988, imac 0x2ee8a0, ios 0x3b3ca0;
+    virtual void show() = win 0x867a0, m1 0x288988, imac 0x2ee8a0, ios 0x3b3ca0;
     virtual void didPurchaseItem(GJStoreItem*) = win 0x27fb40, m1 0x286f08, imac 0x2ecb40, ios 0x3b2b2c;
 
-    bool init(int, GJPathsLayer*) = m1 0x285220, imac 0x2eada0;
+    bool init(int, GJPathsLayer*) = win 0x27dcb0, m1 0x285220, imac 0x2eada0;
     void onActivatePath(cocos2d::CCObject* sender) = win 0x27f8e0, imac 0x2ecb10, m1 0x286ee0;
     void onBack(cocos2d::CCObject* sender) = win 0x281670;
     void onIconInfo(cocos2d::CCObject* sender) = win 0x27f950;
-    void onUnlock(cocos2d::CCObject* sender) = imac 0x2eca20, m1 0x286dd4;
+    void onUnlock(cocos2d::CCObject* sender) = win 0x27fb50, imac 0x2eca20, m1 0x286dd4;
     void playUnlockAnimation() = win 0x280400, m1 0x286f0c, imac 0x2ecb50;
-    void showCantAffordMessage(GJStoreItem*) = m1 0x2874bc, imac 0x2ed200;
-    void unlockAnimationFinished() = imac 0x2edb90, m1 0x287dd0;
+    void showCantAffordMessage(GJStoreItem*) = win 0x27fd30, m1 0x2874bc, imac 0x2ed200;
+    void unlockAnimationFinished() = win 0x281540, imac 0x2edb90, m1 0x287dd0;
     void unlockAnimationStep2() = win 0x280a50, m1 0x287b88, imac 0x2ed8b0;
     void unlockAnimationStep3() = win 0x280cd0, imac 0x2edcf0, m1 0x287f2c;
 
@@ -11386,9 +11385,9 @@ class GJPathRewardPopup : FLAlertLayer {
 
     virtual void keyBackClicked() = m1 0x289388, imac 0x2ef260, ios 0x3b45c0 {}
 
-    void closePopup();
+    void closePopup() = win 0x27dac0;
     bool init(int) = win 0x2825f0, imac 0x2eec40, m1 0x288d28;
-    void onClaim(cocos2d::CCObject* sender) = m1 0x2891c4;
+    void onClaim(cocos2d::CCObject* sender) = win 0x282ad0, m1 0x2891c4;
 
     int m_pathNumber;
 }
@@ -11401,17 +11400,17 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
     static gd::string nameForPath(int) = win 0x27cf60, imac 0x2e9d30, m1 0x2842bc;
 
     virtual bool init() = win 0x27d2d0, m1 0x28456c, imac 0x2ea020, ios 0x3b07ac;
-    virtual void onExit() = win 0x27dac0, m1 0x284c94, imac 0x2ea730, ios 0x3b0e34;
-    virtual void registerWithTouchDispatcher() = m1 0x285028, imac 0x2eab50, ios 0x3b1024;
+    virtual void onExit() = win 0x27d830, m1 0x284c94, imac 0x2ea730, ios 0x3b0e34;
+    virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x285028, imac 0x2eab50, ios 0x3b1024;
     virtual void keyBackClicked() = win 0x27db20, m1 0x284f58, imac 0x2eaa80, ios 0x3b1018;
-    virtual void show() = m1 0x285060, imac 0x2eab90, ios 0x3b105c;
+    virtual void show() = win 0x867a0, m1 0x285060, imac 0x2eab90, ios 0x3b105c;
 
     void darkenButtons(bool) = imac 0x2ea780, m1 0x284ce4;
     void onClose(cocos2d::CCObject* sender) = win 0x27dac0;
-    void onPath(cocos2d::CCObject* sender) = imac 0x2ea6b0, m1 0x284c04;
+    void onPath(cocos2d::CCObject* sender) = win 0x27d880, imac 0x2ea6b0, m1 0x284c04;
 
     cocos2d::CCSprite* m_closeSprite;
-    bool m_running;
+    bool m_exiting;
 }
 
 [[link(android)]]
