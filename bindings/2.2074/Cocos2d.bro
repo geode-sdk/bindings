@@ -25,6 +25,8 @@ class cocos2d::CCEGLViewProtocol {
 class cocos2d::CCActionEase : cocos2d::CCActionInterval {
     static cocos2d::CCActionEase* create(cocos2d::CCActionInterval*);
 
+    // CCActionEase(cocos2d::CCActionEase const&);
+    // CCActionEase();
     ~CCActionEase() = m1 0x45df10, imac 0x4fe4d0;
 
     bool initWithAction(cocos2d::CCActionInterval*);
@@ -40,6 +42,8 @@ class cocos2d::CCActionEase : cocos2d::CCActionInterval {
 class cocos2d::CCEaseRateAction : cocos2d::CCActionEase {
     static cocos2d::CCEaseRateAction* create(cocos2d::CCActionInterval*, float);
 
+    // CCEaseRateAction(cocos2d::CCEaseRateAction const&);
+    // CCEaseRateAction();
     ~CCEaseRateAction() = m1 0x45e26c, imac 0x4fe860;
 
     bool initWithAction(cocos2d::CCActionInterval*, float);
@@ -124,6 +128,8 @@ class cocos2d::CCEaseBackInOut : cocos2d::CCActionEase {
 class cocos2d::CCEaseBounce : cocos2d::CCActionEase {
     static cocos2d::CCEaseBounce* create(cocos2d::CCActionInterval*);
 
+    // CCEaseBounce(cocos2d::CCEaseBounce const&);
+    // CCEaseBounce();
     float bounceTime(float);
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x4600c4, imac 0x5007d0;
@@ -169,6 +175,9 @@ class cocos2d::CCEaseBounceInOut : cocos2d::CCEaseBounce {
 class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
     static cocos2d::CCEaseElastic* create(cocos2d::CCActionInterval*, float);
     static cocos2d::CCEaseElastic* create(cocos2d::CCActionInterval*);
+
+    // CCEaseElastic(cocos2d::CCEaseElastic const&);
+    // CCEaseElastic();
 
     bool initWithAction(cocos2d::CCActionInterval*, float);
 
@@ -1319,6 +1328,9 @@ class cocos2d::CCObject : cocos2d::CCCopying {
 
 [[link(win, android)]]
 class cocos2d::CCActionCamera : cocos2d::CCActionInterval {
+    // CCActionCamera(cocos2d::CCActionCamera const&);
+    // CCActionCamera();
+
     virtual void startWithTarget(cocos2d::CCNode*) = m1 0x2e7f94, imac 0x354130;
     virtual cocos2d::CCActionInterval* reverse() = m1 0x2e8004, imac 0x3541a0;
 }
