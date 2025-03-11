@@ -60,6 +60,12 @@ endif()
 
 target_sources(${PROJECT_NAME} PRIVATE ${GEODE_MEMBER_TEST_CODEGEN_PATH}/Geode/GeneratedSource.cpp)
 
+if (WIN32)
+	if (MSVC)
+		target_compile_options(${PROJECT_NAME} PRIVATE /bigobj)
+	endif()
+endif()
+
 include(../../cmake/CPM.cmake)
 
 CPMAddPackage("gh:geode-sdk/TulipHook@2.4.3")
