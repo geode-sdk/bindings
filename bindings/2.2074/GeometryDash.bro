@@ -4736,7 +4736,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn onAssignNewGroupID();
     void onColorFilter(cocos2d::CCObject* sender);
     void onCopy(cocos2d::CCObject* sender);
-    void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0, imac 0x2c960, m1 0xd7240;
+    void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0, imac 0x2c960, m1 0x2c538;
     bool onCreate() = win 0x10dd10, m1 0x2dfac, imac 0x2e600;
     void onCreateButton(cocos2d::CCObject* sender) = win 0x10d880, imac 0x34d30, m1 0x342c0;
     void onCreateObject(int) = win 0x10df10, m1 0x34758, imac 0x35170;
@@ -10642,7 +10642,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onBack(cocos2d::CCObject* sender) = win 0x271750, imac 0x3588c0, m1 0x2ec048;
     void onInfo(cocos2d::CCObject* sender) = win 0x26d190, m1 0x2ec28c, imac 0x358b10;
     void onNavigate(cocos2d::CCObject* sender) = win 0x26e690, imac 0x359d50, m1 0x2ed4c8;
-    void onPaint(cocos2d::CCObject* sender) = win 0x271570, m1 0x2ec234;
+    void onPaint(cocos2d::CCObject* sender) = win 0x271570, m1 0x2ec234, imac 0x358ab0;
     void onRewardedVideo(cocos2d::CCObject* sender);
     void onSelect(cocos2d::CCObject* sender) = win 0x26f890, imac 0x35a860, m1 0x2edf90;
     void onSelectTab(cocos2d::CCObject* sender) = win 0x26e6c0, imac 0x359430, m1 0x2ecc08;
@@ -10848,7 +10848,7 @@ class GJItemIcon : cocos2d::CCSprite {
     void darkenStoreItem(cocos2d::ccColor3B) = win 0x2739c0, imac 0x35e160, m1 0x2f1374;
     void darkenStoreItem(ShopType) = win 0x273940;
     bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = win 0x273190, m1 0x2f0cb0, imac 0x35da60;
-    void toggleEnabledState(bool) = win 0x273bf0;
+    void toggleEnabledState(bool) = win 0x273bf0, m1 0x2ee554, imac 0x35b000;
 
     cocos2d::CCSprite* m_player;
     int m_iconRequestID;
