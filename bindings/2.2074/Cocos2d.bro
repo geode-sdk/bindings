@@ -130,6 +130,7 @@ class cocos2d::CCEaseBounce : cocos2d::CCActionEase {
 
     // CCEaseBounce(cocos2d::CCEaseBounce const&);
     // CCEaseBounce();
+
     float bounceTime(float);
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x4600c4, imac 0x5007d0;
