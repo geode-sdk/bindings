@@ -80,7 +80,7 @@ if (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 	)
 elseif (GEODE_TARGET_PLATFORM STREQUAL "Win64")
 	set(GEODE_MEMBER_TEST_PLATFORM "win")
-	set(GEODE_MEMBER_TEST_BINARY "Geode.dll")
+	set(GEODE_MEMBER_TEST_BINARY "Geode.lib")
 	target_link_libraries(${PROJECT_NAME} PRIVATE
 		${GEODE_LOADER_PATH}/include/link/win64/libcocos2d.lib
 		${GEODE_LOADER_PATH}/include/link/win64/libExtensions.lib
