@@ -2411,7 +2411,15 @@ class ChallengeNode : cocos2d::CCNode {
 [[link(android)]]
 class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, CurrencyRewardDelegate {
     // virtual ~ChallengesPage();
-    inline ChallengesPage() {}
+    ChallengesPage() {
+        m_dots = nullptr;
+        m_countdownLabel = nullptr;
+        m_circle = nullptr;
+        m_triedToLoad = false;
+        m_unkBool = false;
+        m_currencyRewardLayer = nullptr;
+        m_challengeNodes = nullptr;
+    }
 
     static ChallengesPage* create() = win inline, imac 0x389da0, m1 0x3193ec {
         auto ret = new ChallengesPage();
