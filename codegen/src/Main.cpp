@@ -105,10 +105,10 @@ int main(int argc, char** argv) try {
 
     codegen::populateIds(root);
 
-    if (auto sdk = std::getenv("GEODE_SDK")) {
-        auto sdkPath = std::filesystem::path(sdk);
-        if (std::filesystem::exists(sdkPath / "VERSION")) {
-            std::ifstream versionFile(sdkPath / "VERSION");
+    if (auto sdkPath = std::getenv("GEODE_SDK")) {
+        auto versionPath = std::filesystem::path(sdkPath) / "VERSION";
+        if (std::filesystem::exists(versionPath)) {
+            std::ifstream versionFile(versionPath);
             std::string version;
             std::getline(versionFile, version);
             codegen::sdkVersion = str_to_version(version);
