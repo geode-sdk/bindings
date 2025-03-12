@@ -75,10 +75,19 @@ int main(int argc, char** argv) try {
 
     // parse extra arguments
     bool skipPugixml = false;
+    bool versionSet = false;
     for (int i = 4; i < argc; i++) {
         std::string arg = argv[i];
         if (arg == "--skip-pugixml") {
             skipPugixml = true;
+        } else if (arg.starts_with("--sdk-version=")) {
+            codegen::sdkVersion = str_to_version(arg.substr(14));
+            versionSet = true;
+        } else if (arg == "--sdk-version") {
+            if (i + 1 < argc) {
+                codegen::sdkVersion = str_to_version(argv[++i]);
+                versionSet = true;
+            }
         }
     }
 
@@ -105,13 +114,15 @@ int main(int argc, char** argv) try {
 
     codegen::populateIds(root);
 
-    if (auto sdkPath = std::getenv("GEODE_SDK")) {
-        auto versionPath = std::filesystem::path(sdkPath) / "VERSION";
-        if (std::filesystem::exists(versionPath)) {
-            std::ifstream versionFile(versionPath);
-            std::string version;
-            std::getline(versionFile, version);
-            codegen::sdkVersion = str_to_version(version);
+    if (!versionSet) {
+        if (auto sdkPath = std::getenv("GEODE_SDK")) {
+            auto versionPath = std::filesystem::path(sdkPath) / "VERSION";
+            if (std::filesystem::exists(versionPath)) {
+                std::ifstream versionFile(versionPath);
+                std::string version;
+                std::getline(versionFile, version);
+                codegen::sdkVersion = str_to_version(version);
+            }
         }
     }
 
