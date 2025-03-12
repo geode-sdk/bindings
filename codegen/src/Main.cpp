@@ -105,6 +105,16 @@ int main(int argc, char** argv) try {
 
     codegen::populateIds(root);
 
+    if (auto sdk = std::getenv("GEODE_SDK")) {
+        auto sdkPath = std::filesystem::path(sdk);
+        if (std::filesystem::exists(sdkPath / "VERSION")) {
+            std::ifstream versionFile(sdkPath / "VERSION");
+            std::string version;
+            std::getline(versionFile, version);
+            codegen::sdkVersion = str_to_version(version);
+        }
+    }
+
     if (codegen::platform == Platform::Mac) {
         // on macos, build both platform headers together and then let the preprocessor handle the platform selection
         // this is easier. but not by a lot
