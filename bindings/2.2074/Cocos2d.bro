@@ -2210,7 +2210,8 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
     void setClearStencil(float);
 
     // CCRenderTexture(cocos2d::CCRenderTexture const&);
-    CCRenderTexture();
+    [[since(4.0.1)]]
+    CCRenderTexture() = m1 0x510664, imac 0x5dd7c0;
     void begin() = imac 0x5de080, m1 0x510e4c;
     void beginWithClear(float, float, float, float, float, int, unsigned int) = imac 0x5de350, m1 0x5110d8;
     void beginWithClear(float, float, float, float) = imac 0x5de2b0, m1 0x511038;
@@ -3045,8 +3046,8 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     void setTexture(cocos2d::CCTexture2D*) = imac 0x344a50, m1 0x2d9df0;
 
     // CCSpriteFrame(cocos2d::CCSpriteFrame const&);
-
-    // ~CCSpriteFrame() = imac 0x344810, m1 0x2d9be8;
+    [[since(4.2.1)]]
+    ~CCSpriteFrame() = imac 0x344810, m1 0x2d9be8;
 
     bool isRotated();
 
