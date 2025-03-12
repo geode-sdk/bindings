@@ -13724,7 +13724,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-    LevelBrowserLayer() = win 0x2c05d0 {, imac 0x350d00;
+    LevelBrowserLayer() = win 0x2c05d0 {
         m_unk = false;
         m_allSelected = false;
         m_noInternet = nullptr;
@@ -20819,7 +20819,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void toggleEaseRateVisibility();
     void toggleLimitValue(int, bool);
     void togglePageArrows(bool);
-    void triggerArrowChanged(int property, bool isRight) = win 0x45daa0 {, imac 0x227840;
+    void triggerArrowChanged(int property, bool isRight) = win 0x45daa0 {
         float change = isRight ? 1.f : -1.f;
         float newValue;
 
