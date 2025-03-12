@@ -7627,7 +7627,7 @@ class GameObject : CCSpritePlus {
     TodoReturn makeInvisible() = imac 0x5a53a0;
     TodoReturn makeVisible();
     float opacityModForMode(int, bool);
-    cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int);
+    cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int) = win 0x198f60;
     gd::string perspectiveColorFrame(char const*, int);
     gd::string perspectiveFrame(char const*, int);
     void playDestroyObjectAnim(GJBaseGameLayer*) = win 0x1a7520, m1 0x1f9910, imac 0x24c560;
@@ -9244,7 +9244,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn triggerAreaEffectAnimation(EnterEffectObject*);
     TodoReturn triggerDynamicMoveCommand(EffectGameObject*);
     TodoReturn triggerDynamicRotateCommand(EnhancedTriggerObject*);
-    TodoReturn triggerGradientCommand(GradientTriggerObject*) = win 0x21a3a0, imac 0x128bc0, m1 0x104294;
+    void triggerGradientCommand(GradientTriggerObject*) = win 0x21a3a0, imac 0x128bc0, m1 0x104294;
     TodoReturn triggerGravityChange(EffectGameObject*, int);
     TodoReturn triggerMoveCommand(EffectGameObject*);
     TodoReturn triggerRotateCommand(EnhancedTriggerObject*);
@@ -9520,12 +9520,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     gd::unordered_map<int, std::pair<int, int>> m_unknownE58;
     cocos2d::CCDictionary* m_linkedGroupDict;
     int m_lastUsedLinkedID;
-    cocos2d::CCNode* m_unknownE90;
-    cocos2d::CCNode* m_unknownE98;
-    cocos2d::CCNode* m_unknownEA0;
+    cocos2d::CCNode* m_objectParent;
+    cocos2d::CCNode* m_inShaderParent;
+    cocos2d::CCNode* m_aboveShaderParent;
     cocos2d::CCLayer* m_objectLayer;
-    cocos2d::CCLayer* m_unkff8;
-    cocos2d::CCLayer* m_unk1000;
+    cocos2d::CCLayer* m_inShaderObjectLayer;
+    cocos2d::CCLayer* m_aboveShaderObjectLayer;
     cocos2d::CCSprite* m_background;
     void* m_unk1010;
     GJGroundLayer* m_groundLayer;
@@ -12157,8 +12157,8 @@ class GJShaderState {
     float m_splitUnk268;
     float m_splitUnk26c;
     bool m_splitUnk270;
-    int m_blurRefChannel;
-    int m_somethingZLayerUnk278;
+    int m_minBlendingLayer;
+    int m_maxBlendingLayer;
     bool m_zLayerDirty;
     bool m_somethingZLayerUnk27d;
     bool m_usesShaders;
@@ -16691,7 +16691,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void modeDidChange();
     TodoReturn performSlideCheck();
     void placeStreakPoint() = win 0x38a8f0, imac 0x3f18a0, m1 0x3725a0;
-    TodoReturn playBumpEffect(int, GameObject*) = win 0x389cc0;
+    void playBumpEffect(int, GameObject*) = win 0x389cc0;
     TodoReturn playBurstEffect();
     void playCompleteEffect(bool, bool) = win 0x36e2b0, imac 0x2024c0, m1 0x1b7870;
     void playDeathEffect() = win 0x3691a0, imac 0x1fa350, m1 0x1af8ac;
@@ -16757,7 +16757,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn spawnCircle2();
     TodoReturn spawnDualCircle();
     TodoReturn spawnFromPlayer(PlayerObject*, bool);
-    TodoReturn spawnPortalCircle(cocos2d::ccColor3B, float) = win 0x381930;
+    void spawnPortalCircle(cocos2d::ccColor3B, float) = win 0x381930;
     TodoReturn spawnScaleCircle() = imac 0x401fe0;
     TodoReturn specialGroundHit();
     TodoReturn speedDown();
