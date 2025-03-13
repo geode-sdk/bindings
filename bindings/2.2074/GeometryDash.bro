@@ -9321,7 +9321,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GJGameState m_gameState;
     GJGameLevel* m_level;
     PlaybackMode m_playbackMode;
-    bool m_decimalPercentage;
+    bool m_lowDetailMode;
     bool m_extraLDM;
     bool m_0173;
     bool m_enable22Changes;
@@ -17334,11 +17334,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     float m_unk37e8;
     cocos2d::CCLabelBMFont* m_attemptLabel;
     cocos2d::CCLabelBMFont* m_percentageLabel;
-    bool m_0126;
+    bool m_decimalPercentage;
     cocos2d::CCSprite* m_progressBar;
     cocos2d::CCSprite* m_progressFill;
+    float m_progressWidth;
+    float m_progressHeight;
     // everything after this comment is probably wrong
-    PAD = win 0x6e, android32 0x40, android64 0x66, mac 0x56, ios 0x56;
+    PAD = win 0x66, android32 0x38, android64 0x5e, mac 0x4e, ios 0x4e;
     int m_jumps;
     bool m_hasJumped;
     int m_uncommittedJumps;
