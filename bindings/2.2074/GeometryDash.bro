@@ -4341,7 +4341,9 @@ class DungeonBarsSprite : cocos2d::CCNode {
 
 [[link(android)]]
 class DynamicBitset {
-    TodoReturn resize(unsigned int);
+    void resize(size_t) = win 0x38deb0;
+
+    gd::vector<unsigned int> m_bits;
 }
 
 [[link(android)]]
@@ -17392,9 +17394,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     cocos2d::CCPoint m_unk3918;
     cocos2d::CCPoint m_unk3920;
     cocos2d::CCDictionary* m_colorKeyDict;
-    gd::vector<int> m_keyColors;
-    gd::vector<int> m_keyOpacities;
-    gd::vector<int> m_keyPulses;
+    gd::vector<cocos2d::ccColor3B> m_keyColors;
+    gd::vector<float> m_keyOpacities;
+    DynamicBitset m_keyPulses;
     int m_nextColorKey;
     bool m_tryPlaceCheckpoint;
     CheckpointGameObject* m_activatedCheckpoint;
