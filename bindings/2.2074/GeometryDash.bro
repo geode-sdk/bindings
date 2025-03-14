@@ -2584,20 +2584,21 @@ class CheckpointObject : cocos2d::CCNode {
     GameObject* m_physicalCheckpointObject;
     PlayerCheckpoint* m_player1Checkpoint;
     PlayerCheckpoint* m_player2Checkpoint;
-    void* m_maybeAPointer1;
-    int m_unkInt1;
-    short m_unkShort1;
-    PAD = win 0x2;
-    void* m_maybeAPointer2;
+    int m_unke78;
+    int m_unke7c;
+    float m_unke80;
+    bool m_ground2Invisible;
+    bool m_streakBlend;
+    int m_uniqueID;
+    int m_respawnID;
     gd::vector<DynamicSaveObject> m_vectorDynamicSaveObjects;
     gd::vector<ActiveSaveObject1> m_vectorActiveSaveObjects1;
     gd::vector<ActiveSaveObject2> m_vectorActiveSaveObjects2;
     EffectManagerState m_effectManagerState;
     cocos2d::CCArray* m_gradientTriggerObjectArray;
-    bool m_unkBool1;
-    PAD = win 0x7;
+    bool m_unk11e8;
     gd::unordered_map<int,SequenceTriggerState> m_sequenceTriggerStateUnorderedMap;
-    void* m_maybeAPointer3;
+    int m_commandIndex;
 }
 
 [[link(android)]]
@@ -10495,7 +10496,7 @@ class GJGameState {
     float m_unkFloat8;
     float m_cameraAngle;
     float m_targetCameraAngle;
-    bool m_unk184;
+    bool m_playerStreakBlend;
     float m_timeWarp;
     float m_timeWarpRelated;
     int m_currentChannel;
@@ -16500,9 +16501,9 @@ class PlayerCheckpoint : cocos2d::CCNode {
 
     cocos2d::CCPoint m_position;
     cocos2d::CCPoint m_lastPosition;
-    int m_unkInt1;
+    float m_yVelocity;
     bool m_isUpsideDown;
-    bool m_unk7b3;
+    bool m_isSideways;
     bool m_isShip;
     bool m_isBall;
     bool m_isBird;
@@ -16511,22 +16512,25 @@ class PlayerCheckpoint : cocos2d::CCNode {
     bool m_isRobot;
     bool m_isSpider;
     bool m_isOnGround;
-    PAD = win 0x2;
-    int m_hasGhostTrail;
-    std::array<uint8_t, 4> m_unkBytes1;
+    GhostType m_ghostType;
+    bool m_miniMode;
     float m_speed;
     bool m_isHidden;
     bool m_isGoingLeft;
-    std::array<uint8_t, 34> m_unkBytes2;
-    bool m_hideAttemptCount;
-    std::array<uint8_t, 7> m_unkBytes3;
-    bool m_unkBool;
-    float m_unkFloat1;
-    int m_possiblyFlags;
-    int m_timeOrPercentRelated;
-    std::array<uint8_t, 4> m_unkBytes4;
-    gd::vector<float> m_yPositionVector;
-    std::array<uint8_t, 8> m_unkBytes5;
+    float m_reverseSpeed;
+    bool m_dashing;
+    float m_dashX;
+    float m_dashY;
+    float m_dashAngle;
+    float m_startTime;
+    DashRingObject* m_dashRingObject;
+    bool m_platformerCheckpoint;
+    double m_lastFlipTime;
+    float m_gravityMod;
+    bool m_decreaseBoostSlide;
+    int m_unk1a8;
+    gd::vector<float> m_playerFollowFloats;
+    float m_unk1c8;
 }
 
 [[link(android)]]
@@ -17236,7 +17240,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>&) = imac 0xbe690, m1 0xad05c;
     void loadFromCheckpoint(CheckpointObject*) = win 0x3a07b0, m1 0xacb4c, imac 0xbe120;
     TodoReturn loadLastCheckpoint() = m1 0xacaf4;
-    CheckpointObject * markCheckpoint() = win 0x3a06e0, imac 0xbb9d0, m1 0xaacd4;
+    CheckpointObject* markCheckpoint() = win 0x3a06e0, imac 0xbb9d0, m1 0xaacd4;
     void onQuit() = win 0x3a3db0, m1 0xa3cac, imac 0xb3c60;
     TodoReturn optimizeColorGroups() = win 0x397d10, imac 0xae840;
     TodoReturn optimizeOpacityGroups() = win 0x397fa0, imac 0xaea30;
