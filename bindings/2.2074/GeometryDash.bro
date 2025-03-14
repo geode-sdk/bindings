@@ -4341,7 +4341,9 @@ class DungeonBarsSprite : cocos2d::CCNode {
 
 [[link(android)]]
 class DynamicBitset {
-    TodoReturn resize(unsigned int);
+    void resize(size_t) = win 0x38deb0;
+
+    gd::vector<unsigned int> m_bits;
 }
 
 [[link(android)]]
@@ -17312,35 +17314,53 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     cocos2d::CCArray* m_coinArray;
     bool m_passedIntegrity;
     int m_objectsCreated;
-    PAD = win 0x66, android32 0x36, android64 0x66, mac 0x66, ios 0x66;
+    gd::vector<GameObject*> m_dynamicSaveObjects;
+    gd::vector<GameObject*> m_activeSaveObjects1;
+    gd::vector<GameObject*> m_activeSaveObjects2;
+    gd::vector<DynamicSaveObject> m_dynamicSaveObjects2;
+    int m_unk3768;
+    bool m_platformerRestart;
+    bool m_unk376d;
     bool m_isIgnoreDamageEnabled;
     cocos2d::CCLabelBMFont* m_statusLabel;
-    int m_unk3778;
-    PAD = win 0x18, android32 0x18, android64 0x18, mac 0x18, ios 0x18;
-    float m_unkSomeFloat;
+    float m_unk3778;
+    int m_unk377c;
+    float m_unk3780;
+    float m_unk3784;
+    int m_unk3788;
+    int m_unk378c;
+    bool m_endChecked;
+    float m_endXPosition;
     CheckpointObject* m_currentCheckpoint;
     cocos2d::CCArray* m_checkpointArray;
-    cocos2d::CCArray* m_unk37a8;
-    int m_unk37b0;
-    int m_unk37b4;
-    int m_unk37b8;
+    cocos2d::CCArray* m_speedObjects;
+    bool m_unk37b0;
+    bool m_unk37b1;
+    cocos2d::CCPoint m_enterEffectPosition;
     cocos2d::CCArray* m_unk37c0;
-    int m_unk37c8;
+    bool m_isSilent;
     int m_unk37cc;
     cocos2d::CCArray* m_circleWaveArray;
-    cocos2d::CCArray* m_unk37d8;
-    int m_unk37e0;
-    int m_unk37e4;
-    float m_unk37e8;
+    cocos2d::CCArray* m_collectibles;
+    bool m_unk37e0;
+    int m_pulseRodIndex;
+    float m_maxObjectX;
     cocos2d::CCLabelBMFont* m_attemptLabel;
     cocos2d::CCLabelBMFont* m_percentageLabel;
     bool m_decimalPercentage;
+    bool m_hintShown;
     cocos2d::CCSprite* m_progressBar;
     cocos2d::CCSprite* m_progressFill;
     float m_progressWidth;
     float m_progressHeight;
-    // everything after this comment is probably wrong
-    PAD = win 0x66, android32 0x38, android64 0x5e, mac 0x4e, ios 0x4e;
+    int m_gravityEffectAmount;
+    int m_gravityEffectsPlayed;
+    int m_gravityEffectIndex;
+    cocos2d::CCArray* m_gravityEffects;
+    bool m_doNot;
+    float m_unk383c;
+    bool m_skipAudioStep;
+    gd::unordered_set<int> m_blendingColors;
     int m_jumps;
     bool m_hasJumped;
     int m_uncommittedJumps;
@@ -17349,23 +17369,38 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     bool m_inResetDelay;
     int m_lastAttemptPercent;
     bool m_endLayerStars;
-    PAD = win 0x3a, android32 0x29, android64 0x3a, mac 0x3a, ios 0x3a;
+    int m_orbs;
+    int m_diamonds;
+    bool m_secretKey;
+    bool m_recordingStopped;
+    double m_unk38b0;
+    double m_unk38b8;
+    double m_unk38c0;
+    bool m_unk38c8;
+    float m_unk38cc;
+    int m_unk38d0;
     double m_attemptTime;
     double m_bestAttemptTime;
-    PAD = win 0x1f, android32 0x27, android64 0x1f, mac 0x1f, ios 0x1f;
+    double m_pauseTime;
+    double m_currentTime;
+    double m_pauseDelta;
+    float m_unk3900;
+    bool m_glitterEnabled;
+    bool m_effectsDisabled;
+    bool m_unk3906;
     bool m_isPaused;
     bool m_disableGravityEffect;
     cocos2d::CCLabelBMFont* m_infoLabel;
-    cocos2d::CCPoint m_pUnk38e8;
-    cocos2d::CCPoint m_pUnk38f0;
+    cocos2d::CCPoint m_unk3918;
+    cocos2d::CCPoint m_unk3920;
     cocos2d::CCDictionary* m_colorKeyDict;
-    gd::vector<int> m_keyColors;
-    gd::vector<int> m_keyOpacities;
-    gd::vector<int> m_keyPulses;
+    gd::vector<cocos2d::ccColor3B> m_keyColors;
+    gd::vector<float> m_keyOpacities;
+    DynamicBitset m_keyPulses;
     int m_nextColorKey;
     bool m_tryPlaceCheckpoint;
     CheckpointGameObject* m_activatedCheckpoint;
-    bool m_bUnk3958;
+    bool m_musicPrepared;
     cocos2d::CCPoint m_endPosition;
     EndTriggerGameObject* m_platformerEndTrigger;
 }

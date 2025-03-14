@@ -35,7 +35,7 @@ public class Regexes {
                 // Grab attributes
                 "(?<attrs>\\[\\[.*?\\]\\]\\s*)?" + 
                 // Grab name
-                "class (?<name>{0})\\s+(?::.*?)?" + 
+                "class (?<name>{0})\\s+(?<bases>:.*?)?" + 
                 // Grab body (assuming closing brace is on its own line without any preceding whitespace)
                 "\\'{'(?<body>.*?)(?<closingbrace>^\\'})'",
                 className
