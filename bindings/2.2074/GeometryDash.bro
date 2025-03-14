@@ -14009,7 +14009,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn getNextFreeOrderChannel(cocos2d::CCArray*);
     TodoReturn getNextFreeSFXGroupID(cocos2d::CCArray*);
     TodoReturn getNextFreeSFXID(cocos2d::CCArray*);
-    TodoReturn getObjectRect(GameObject*, bool, bool) = win 0x2cd0f0;
+    cocos2d::CCRect getObjectRect(GameObject*, bool, bool) = win 0x2cd0f0;
     TodoReturn getRelativeOffset(GameObject*);
     TodoReturn getSavedEditorPosition(int) = imac 0xe9750;
     TodoReturn getSavedEditorPositions() = imac 0xe9790;
@@ -14117,72 +14117,90 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     bool m_hideBackground;
     bool m_gv0120;
     bool m_layerLockingEnabled;
-    bool m_unkBool4;
+    bool m_playtestOrderChanged;
     bool m_previewParticles;
     bool m_previewAnimations;
     bool m_previewShaders;
     bool m_hideParticleIcons;
-    bool m_unkBool5;
+    bool m_alwaysHideParticleIcons;
     bool m_playTestSmoothFix;
-
-    // haven't verified the mac and ios paddings
-    PAD = win 0xf, android32 0xf, android64 0xf, mac 0xf, ios 0xf;
-
-    cocos2d::CCArray* m_unkArr0;
-    cocos2d::CCArray* m_unkArr1;
-    cocos2d::CCArray* m_unkArr2;
-    cocos2d::CCArray* m_unkArr3;
-    cocos2d::CCArray* m_unkArr4;
-    cocos2d::CCArray* m_unkArr8;
-    cocos2d::CCArray* m_unkArr11;
-    cocos2d::CCArray* m_unkArr12;
-    cocos2d::CCArray* m_unkArr13;
-    cocos2d::CCDictionary* m_unkDict3;
-    cocos2d::CCArray* m_unkArr5;
+    bool m_hasHighDetail;
+    bool m_unk36ca;
+    int m_unk36cc;
+    bool m_collisionBlocksAdded;
+    int m_unk36d4;
+    cocos2d::CCArray* m_durationObjects;
+    cocos2d::CCArray* m_pulseTriggers;
+    cocos2d::CCArray* m_colorTriggers;
+    cocos2d::CCArray* m_alphaTriggers;
+    cocos2d::CCArray* m_spawnTriggers;
+    cocos2d::CCArray* m_moveTriggers;
+    cocos2d::CCArray* m_cameraGuideTriggers;
+    cocos2d::CCArray* m_particleObjects;
+    cocos2d::CCArray* m_keyframeObjects;
+    cocos2d::CCDictionary* m_unk3720;
+    cocos2d::CCArray* m_specialSpawnObjects;
     GameObject* m_copyStateObject;
-
-    // haven't verified the mac and ios paddings
-    PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
-
-    cocos2d::CCDictionary* m_unkDict4;
-    cocos2d::CCArray* m_unkArr7;
-    bool m_unkBool3;
-    bool m_unkBool2;
+    ParticleGameObject* m_particleObject;
+    cocos2d::CCDictionary* m_unk3740;
+    cocos2d::CCArray* m_unk3748;
+    bool m_keepEditorLayer;
+    bool m_unk3751;
     geode::SeedValueRSV m_coinCount;
-
-    // haven't verified the mac and ios paddings
-    PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8, ios 0x8;
-
-    cocos2d::CCArray* m_unkArr6;
-
-    // haven't verified the mac and ios paddings
-    PAD = win 0x8, android32 0x4, android64 0x8, mac 0x8, ios 0x8;
-
-    cocos2d::CCDictionary* m_unkDict1;
-    cocos2d::CCDictionary* m_unkDict2;
-    bool m_unkBool0;
-    bool m_unkBool1;
+    bool m_unk3760;
+    bool m_colorTriggersChanged;
+    bool m_pulseTriggersChanged;
+    bool m_alphaTriggersChanged;
+    bool m_spawnTriggersChanged;
+    cocos2d::CCArray* m_spawnOrderObjects;
+    bool m_spawnOrderObjectsChanged;
+    bool m_sortSpawnNodes;
+    cocos2d::CCDictionary* m_unk3778;
+    cocos2d::CCDictionary* m_unk3780;
+    bool m_initializing;
     short m_currentLayer;
-
-    // haven't verified the mac and ios paddings
-    PAD = win 0x1c, android32 0x14, android64 0x1c, mac 0x1c, ios 0x1c;
+    float m_playtestZoom;
+    OBB2D* m_currentOBB2D;
+    float m_playtestTimeWarp;
+    float m_playtestCameraZoom;
+    cocos2d::CCSprite* m_playtestDeathSprite;
     float m_trailTimer;
-    PAD = win 0x4, android32 0x4, android64 0x4, mac 0x4, ios 0x4;
-
+    bool m_soloMode;
+    bool m_nonSquareRotation;
     EditorUI* m_editorUI;
     cocos2d::CCArray* m_undoObjects;
     cocos2d::CCArray* m_redoObjects;
     geode::SeedValueRSV m_objectCount;
     DrawGridLayer* m_drawGridLayer;
-    bool m_unkBool;
+    bool m_updateColorSprites;
     bool m_previewMode;
-
-    // 2.206 win pad unknown
-    PAD = win 0xfa, android32 0x7a, android64 0xf4;
-
+    bool m_alwaysPreviewMode;
+    gd::string m_levelString;
+    gd::vector<GameObject*> m_objectVector;
+    gd::vector<GameObject*> m_loadedMoveObjects;
+    cocos2d::CCDictionary* m_triggerGroupsDict;
+    gd::vector<cocos2d::CCArray*> m_triggerGroups;
+    gd::vector<cocos2d::CCPoint> m_playerPoints;
+    gd::vector<gd::vector<cocos2d::CCPoint>> m_player2Points;
+    gd::vector<cocos2d::CCPoint> m_touchPoints;
+    gd::vector<bool> m_sortedGroups;
+    gd::vector<bool> m_toggledGroups;
     gd::vector<bool> m_lockedLayers;
-
-    PAD = win 0xe8, android32 0x8c, android64 0xf8;
+    gd::vector<cocos2d::CCPoint> m_savedPositions;
+    cocos2d::CCPoint m_previewPosition;
+    gd::vector<bool> m_blendingColors;
+    gd::vector<bool> m_blendingColors2;
+    gd::vector<unsigned char> m_toggledGroupStates;
+    gd::vector<float> m_spawnGroupDelays;
+    double m_sessionTime;
+    bool m_removingAll;
+    EffectGameObject* m_playbackObject;
+    int m_playbackOrder;
+    int m_keyframeGroup;
+    gd::vector<DelayedSpawnNode*> m_delayedSpawnNodes;
+    gd::vector<DelayedSpawnNode*> m_delayedSpawnNodes2;
+    bool m_playbackActive;
+    bool m_activateAudioTriggers;
 }
 
 [[link(android)]]
