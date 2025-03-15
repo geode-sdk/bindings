@@ -54,7 +54,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 target_link_directories(${PROJECT_NAME} PRIVATE ${GEODE_LOADER_PATH}/include/link)
 
-if (GEODE_TARGET_PLATFORM STREQUAL "MacOS" OR GEODE_TARGET_PLATFORM STREQUAL "iOS")
+if (GEODE_TARGET_PLATFORM STREQUAL "iOS")
 	return()
 endif()
 

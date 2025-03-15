@@ -115,6 +115,11 @@ namespace codegen {
         x64,
         arm64
     } platformArch = PlatformArch::Default;
+    inline Version sdkVersion = {
+        .major = 99,
+        .minor = 99,
+        .patch = 99
+    };
 
     inline ptrdiff_t platformNumberWithPlatform(Platform p, PlatformNumber const& pn) {
         switch (p) {
@@ -145,7 +150,7 @@ namespace codegen {
     inline BindStatus getStatusWithPlatform(Platform p, FunctionBindField const& fn) {
         if (platformNumberWithPlatform(p, fn.binds) == -2) return BindStatus::Inlined;
 
-        if ((fn.prototype.attributes.missing & p) != Platform::None) return BindStatus::Missing;
+        if ((fn.prototype.attributes.missing & p) != Platform::None || !fn.prototype.attributes.since.is_compatible(codegen::sdkVersion)) return BindStatus::Missing;
         if ((fn.prototype.attributes.links & p) != Platform::None) return BindStatus::Binded;
 
         if (platformNumberWithPlatform(p, fn.binds) != -1) return BindStatus::NeedsBinding;
@@ -156,7 +161,7 @@ namespace codegen {
     inline BindStatus getStatusWithPlatform(Platform p, Function const& f) {
         if (platformNumberWithPlatform(p, f.binds) == -2) return BindStatus::Inlined;
 
-        if ((f.prototype.attributes.missing & p) != Platform::None) return BindStatus::Missing;
+        if ((f.prototype.attributes.missing & p) != Platform::None || !f.prototype.attributes.since.is_compatible(codegen::sdkVersion)) return BindStatus::Missing;
         if ((f.prototype.attributes.links & p) != Platform::None) return BindStatus::Binded;
 
         if (platformNumberWithPlatform(p, f.binds) != -1) return BindStatus::NeedsBinding;
