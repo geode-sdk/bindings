@@ -39,12 +39,13 @@ class cocos2d::CCActionEase : cocos2d::CCActionInterval {
     virtual cocos2d::CCActionInterval* getInnerAction() = m1 0x45e01c, imac 0x4fe5f0, ios 0x26b09c;
 }
 
+[[link(win, android)]]
 class cocos2d::CCEaseRateAction : cocos2d::CCActionEase {
     static cocos2d::CCEaseRateAction* create(cocos2d::CCActionInterval*, float);
 
     // CCEaseRateAction(cocos2d::CCEaseRateAction const&);
     // CCEaseRateAction();
-    ~CCEaseRateAction() = m1 0x45e26c, imac 0x4fe860;
+    // ~CCEaseRateAction() = m1 0x45e26c, imac 0x4fe860;
 
     bool initWithAction(cocos2d::CCActionInterval*, float);
 
@@ -173,6 +174,7 @@ class cocos2d::CCEaseBounceInOut : cocos2d::CCEaseBounce {
     virtual cocos2d::CCActionInterval* reverse() = m1 0x460be4, imac 0x501220;
 }
 
+[[link(win, android)]]
 class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
     static cocos2d::CCEaseElastic* create(cocos2d::CCActionInterval*, float);
     static cocos2d::CCEaseElastic* create(cocos2d::CCActionInterval*);
