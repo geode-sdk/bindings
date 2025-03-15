@@ -4737,7 +4737,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void moveObjectCall(EditCommand) = win 0x11e000, imac 0x4a9d0, m1 0x437a8;
     cocos2d::CCPoint offsetForKey(int) = win 0x124bf0;
     TodoReturn onAssignNewGroupID();
-    void onColorFilter(cocos2d::CCObject* sender);
+    void onColorFilter(cocos2d::CCObject* sender) = win 0xe5bd0, m1 0x31b94, imac 0x324d0;
     void onCopy(cocos2d::CCObject* sender);
     void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0, imac 0x2c960, m1 0x2c538;
     bool onCreate() = win 0x10dd10, m1 0x2dfac, imac 0x2e600;
