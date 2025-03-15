@@ -3071,7 +3071,7 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
     virtual void textChanged(CCTextInputNode*) = win 0x97560, imac 0x41e870, m1 0x39a02c, ios 0x103260;
 
     void createTextInputNode(cocos2d::CCPoint, int) = win 0x97300, imac 0x41dcd0, m1 0x3994ec;
-    bool init(cocos2d::ccHSVValue, bool, bool) = win 0x96a20, imac 0x41d320, m1 0x398bbc;
+    bool init(cocos2d::ccHSVValue hsv, bool unused, bool addInputs) = win 0x96a20, imac 0x41d320, m1 0x398bbc;
     void onClose() = imac 0x41d040, m1 0x398940;
     void onResetHSV(cocos2d::CCObject* sender) = win 0x97b10, imac 0x41e0f0, m1 0x399978;
     void onToggleSConst(cocos2d::CCObject* sender);
@@ -3253,7 +3253,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     virtual void textChanged(CCTextInputNode*) = win 0x41a6b0, imac 0x463af0, m1 0x3d3ba8, ios 0x2d0ec4;
 
     TodoReturn centerAlignParticle(cocos2d::CCObject*);
-    TodoReturn createParticleSlider(gjParticleValue, int, bool, cocos2d::CCPoint, cocos2d::CCArray*);
+    void createParticleSlider(gjParticleValue, int, bool, cocos2d::CCPoint, cocos2d::CCArray*) = win 0x4188d0;
     TodoReturn getPage(int);
     TodoReturn getPageButton(int);
     TodoReturn getPageContainer(int);
@@ -7592,7 +7592,7 @@ class GameObject : CCSpritePlus {
     int getObjectZOrder();
     cocos2d::CCRect getOuterObjectRect();
     int getParentMode();
-    GJSpriteColor* getRelativeSpriteColor(int) = win 0x19eb30;
+    GJSpriteColor* getRelativeSpriteColor(int) = win 0x19eb30, imac 0x5b1ab0, m1 0x4ea8f0;
     cocos2d::CCPoint getScalePosDelta();
     GJSpriteColor* getSecondaryColor();
     int getSecondaryColorMode();
@@ -13172,7 +13172,7 @@ class HSVWidgetPopup : FLAlertLayer {
 
     virtual void keyBackClicked() = win 0x96940, m1 0x398990, imac 0x41d0a0, ios 0x1020a8;
 
-    bool init(cocos2d::ccHSVValue, HSVWidgetDelegate*, gd::string) = win 0x96530, imac 0x41cb40, m1 0x398494;
+    bool init(cocos2d::ccHSVValue hsv, HSVWidgetDelegate* delegate, gd::string title) = win 0x96530, imac 0x41cb40, m1 0x398494;
     void onClose(cocos2d::CCObject* sender) = win 0x96860;
 
     ConfigureHSVWidget* m_widget;
@@ -20216,7 +20216,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x422aa0, m1 0x328698, imac 0x39ad60;
     void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x423680;
     void onSelectSpecialTargetID(cocos2d::CCObject* sender) = win 0x4236d0;
-    void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x422cd0;
+    void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x422cd0, imac 0x39a9b0, m1 0x328320;
     void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x4240e0;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x424050;
     void selectColor(cocos2d::ccColor3B);
@@ -20224,7 +20224,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void updateColorLabels() = win 0x4248f0;
     void updateColorValue();
     void updateCopyColor() = win 0x424b90;
-    void updateCopyColorTextInputLabel() = win 0x424d40;
+    void updateCopyColorTextInputLabel() = win 0x424d40, imac 0x39b6e0, m1 0x328f04;
     void updateFadeInLabel(bool) = win 0x422830;
     void updateFadeInTime() = win 0x423b00;
     void updateFadeOutLabel(bool) = win 0x4229d0;
@@ -20237,7 +20237,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void updatePulseMode();
     void updatePulseTargetType();
     void updateTargetID() = win 0x424ad0;
-    void updateTextInputLabel() = win 0x424c20;
+    void updateTextInputLabel() = win 0x424c20, imac 0x39b4c0, m1 0x328ce8;
 
     cocos2d::extension::CCControlColourPicker* m_colorPicker;
     bool m_unk3c0;
