@@ -45,7 +45,8 @@ class cocos2d::CCEaseRateAction : cocos2d::CCActionEase {
 
     // CCEaseRateAction(cocos2d::CCEaseRateAction const&);
     // CCEaseRateAction();
-    // ~CCEaseRateAction() = m1 0x45e26c, imac 0x4fe860;
+    [[since(4.2.1)]]
+    ~CCEaseRateAction() = m1 0x45e26c, imac 0x4fe860;
 
     bool initWithAction(cocos2d::CCActionInterval*, float);
 
@@ -2346,7 +2347,8 @@ class cocos2d::CCRepeatForever : cocos2d::CCActionInterval {
 
     // CCRepeatForever(cocos2d::CCRepeatForever const&);
     // CCRepeatForever();
-    // ~CCRepeatForever() = m1 0x330460, imac 0x3a36f0;
+    [[since(4.2.1)]]
+    ~CCRepeatForever() = m1 0x330460, imac 0x3a36f0;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x3a3800, m1 0x330578, ios 0x18e01c;
     virtual bool isDone() = m1 0x330728, imac 0x3a3990, ios 0x18e1c0;
