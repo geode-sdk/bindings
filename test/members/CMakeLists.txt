@@ -31,7 +31,7 @@ if (WIN32)
 	add_compile_definitions(_HAS_ITERATOR_DEBUGGING=0)
 endif()
 
-if (${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL Clang OR ${CMAKE_CXX_COMPILER_ID} STREQUAL AppleClang)
 	target_compile_options(${PROJECT_NAME} PRIVATE -Wno-invalid-offsetof -Wno-inaccessible-base)
 endif()
 
