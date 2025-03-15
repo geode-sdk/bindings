@@ -14492,11 +14492,15 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
 
 [[link(android)]]
 class LevelManagerDelegate {
-    virtual void loadLevelsFinished(cocos2d::CCArray*, char const*) {}
-    virtual void loadLevelsFailed(char const*) {}
-    virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) {}
-    virtual void loadLevelsFailed(char const*, int) {}
-    virtual void setupPageInfo(gd::string, char const*) {}
+    virtual void loadLevelsFinished(cocos2d::CCArray* levels, char const* key) {
+        this->loadLevelsFinished(levels, key, 0);
+    }
+    virtual void loadLevelsFailed(char const* key) {
+        this->loadLevelsFailed(key, 0);
+    }
+    virtual void loadLevelsFinished(cocos2d::CCArray* levels, char const* key, int) {}
+    virtual void loadLevelsFailed(char const* key, int) {}
+    virtual void setupPageInfo(gd::string info, char const* key) {}
 }
 
 [[link(android)]]
