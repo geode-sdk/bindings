@@ -1782,7 +1782,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     int getSmoothFixCounter() const;
     unsigned int getTotalFrames();
     cocos2d::CCPoint getVisibleOrigin();
-    cocos2d::CCSize getVisibleSize();
+    cocos2d::CCSize getVisibleSize() = m1 0x3dfed0, imac 0x4710c0;
     cocos2d::CCSize getWinSize() = imac 0x470920, m1 0x3df874;
     cocos2d::CCSize getWinSizeInPixels() = imac 0x471080, m1 0x3dfeb4;
     float getZEye();
@@ -2400,7 +2400,7 @@ class cocos2d::CCTransitionScene : cocos2d::CCScene {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionCrossFade : cocos2d::CCTransitionScene {
-	static cocos2d::CCTransitionCrossFade* create(float, cocos2d::CCScene*) = imac 0xd9450;
+	static cocos2d::CCTransitionCrossFade* create(float, cocos2d::CCScene*) = m1 0xc15c8, imac 0xd9450;
 
 	// CCTransitionCrossFade(cocos2d::CCTransitionCrossFade const&);
 	// CCTransitionCrossFade();
@@ -3456,7 +3456,7 @@ class cocos2d {
     static float ccpLength(cocos2d::CCPoint const&);
     static cocos2d::CCPoint ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
-    static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&) = imac 0x3428c0;
+    static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&) = imac 0x3428c0, m1 0x2d82a8;
     static cocos2d::CCPoint ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static float ccpToAngle(cocos2d::CCPoint const&);

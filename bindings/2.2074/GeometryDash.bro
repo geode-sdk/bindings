@@ -3926,7 +3926,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void onMore(cocos2d::CCObject* sender) = win 0xc9360, m1 0x532324, imac 0x604af0;
     void onPlayback(cocos2d::CCObject* sender) = win 0xc9fd0, imac 0x604850, m1 0x532088;
     void onSelect(cocos2d::CCObject* sender) = win 0xc9f70, imac 0x604760, m1 0x531f98;
-    void positionInfoObjects() = win 0xc88c0, m1 0x532fec;
+    void positionInfoObjects() = win 0xc88c0, m1 0x532fec, imac 0x6059f0;
     void processNextMultiAsset() = win 0xcc240, imac 0x6094a0, m1 0x536698;
     void showError(bool) = win 0xcc710, m1 0x53476c;
     void startDownload() = win 0xc9eb0;
@@ -4737,7 +4737,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void moveObjectCall(EditCommand) = win 0x11e000, imac 0x4a9d0, m1 0x437a8;
     cocos2d::CCPoint offsetForKey(int) = win 0x124bf0;
     TodoReturn onAssignNewGroupID();
-    void onColorFilter(cocos2d::CCObject* sender);
+    void onColorFilter(cocos2d::CCObject* sender) = win 0xe5bd0, m1 0x31b94, imac 0x324d0;
     void onCopy(cocos2d::CCObject* sender);
     void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0, imac 0x2c960, m1 0x2c538;
     bool onCreate() = win 0x10dd10, m1 0x2dfac, imac 0x2e600;
@@ -9952,7 +9952,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
     virtual void enableUI() = win 0x250310, m1 0x504364, imac 0x5d0240, ios 0x3aad44;
 
     bool init(char const*, float, bool) = win 0x24feb0, imac 0x5cfdd0, m1 0x503f2c;
-    bool init(char const* title) = win inline, imac 0x5d01f0 {
+    bool init(char const* title) = win inline, m1 0x50433c, imac 0x5d01f0 {
         return init(title, 220.0f, false);
     }
 
@@ -13092,7 +13092,10 @@ class HardStreak : cocos2d::CCDrawNode {
         this->clear();
         m_pointArray->removeAllObjects();
     }
-    void resumeStroke() = m1 0x8ff80, imac 0x9d480;
+    void resumeStroke() = m1 0x8ff80, imac 0x9d480, win inline {
+        this->m_drawStreak = true;
+        updateStroke(0.f);
+    }
     TodoReturn scheduleAutoUpdate();
     void stopStroke() = win 0x2b17f0, m1 0x8ff8c, imac 0x9d4a0;
     callback void updateStroke(float) = win 0x2b1830, m1 0x8f870, imac 0x9cc30;
@@ -13996,7 +13999,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     DelayedSpawnNode* getDelayedSpawnNode();
     TodoReturn getGridPos(cocos2d::CCPoint);
     float getLastObjectX() = win 0x2d5fd0, m1 0xd44fc, imac 0xef3e0;
-    gd::string getLevelString() = win 0x2ce530, imac 0xe3a60;
+    gd::string getLevelString() = win 0x2ce530, m1 0xca93c, imac 0xe3a60;
     TodoReturn getLockedLayers();
     TodoReturn getNextColorChannel();
     int getNextFreeAreaEffectID(cocos2d::CCArray*) = win 0x2d26d0;
@@ -14665,7 +14668,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
     LevelSelectLayer() {}
     ~LevelSelectLayer() = imac 0x49d170;
 
-    static LevelSelectLayer* create(int page) = win inline, imac 0x41f070 {
+    static LevelSelectLayer* create(int page) = win inline, m1 0x39a698, imac 0x41f070 {
         auto ret = new LevelSelectLayer();
         if (ret->init(page)) {
             ret->autorelease();
@@ -14882,7 +14885,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 
 [[link(android)]]
 class LevelTools {
-    static int artistForAudio(int) = win 0x314320;
+    static int artistForAudio(int) = win 0x314320, m1 0x44d108, imac 0x4eb660;
     static gd::string base64DecodeString(gd::string);
     static gd::string base64EncodeString(gd::string) = imac 0x4ee880, m1 0x44fd1c;
     static cocos2d::CCDictionary* createStarPackDict() = m1 0x44fd8c, imac 0x4ee920;
@@ -14901,7 +14904,7 @@ class LevelTools {
         return SongInfoObject::create(id, getAudioTitle(id), nameForArtist(artistID), artistID, 0.f, "", "", "", 0, "", false, 0, -1);
     }
     static TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
-    static gd::string nameForArtist(int) = win 0x3143f0, m1 0x44d12c;
+    static gd::string nameForArtist(int) = win 0x3143f0, m1 0x44d12c, imac 0x4eb680;
     static gd::string ngURLForArtist(int) = win 0x315a10, m1 0x44d960, imac 0x4ec2c0;
     static TodoReturn offsetBPMForTrack(int);
     static cocos2d::CCPoint posForTime(float time, cocos2d::CCArray* p1, int p2, bool p3, int& p4) = win inline, m1 0x44f1bc, imac 0x4edd00 {
@@ -15124,7 +15127,7 @@ class LocalLevelManager : GManager {
         return ret;
     }
     cocos2d::CCDictionary* getLevelsInNameGroups();
-    gd::string getMainLevelString(int) = win 0x31b3d0;
+    gd::string getMainLevelString(int) = win 0x31b3d0, m1 0x512100, imac 0x5df620;
     TodoReturn markLevelsAsUnmodified();
     TodoReturn moveLevelToTop(GJGameLevel*);
     TodoReturn reorderLevels();
@@ -22126,7 +22129,7 @@ class SongInfoObject : cocos2d::CCNode {
     // virtual ~SongInfoObject();
 
     static SongInfoObject* create(cocos2d::CCDictionary*);
-    static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int newType, int priority) = win 0x3300c0;
+    static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int newType, int priority) = win 0x3300c0, m1 0x4cf4f4, imac 0x57c260;
     static SongInfoObject* create(int) = win 0x32ef70, imac 0x57f2e0, m1 0x4d21ac;
 
     virtual void encodeWithCoder(DS_Dictionary*) = win 0x3309a0, m1 0x4d2d3c, imac 0x5800d0, ios 0x15f0b0;
