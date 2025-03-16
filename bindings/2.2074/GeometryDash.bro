@@ -9326,7 +9326,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     PlaybackMode m_playbackMode;
     bool m_lowDetailMode;
     bool m_extraLDM;
-    bool m_0173;
+    bool m_ignoreDamage;
     bool m_enable22Changes;
     bool m_allowStaticRotate;
     bool m_fixNegativeScale;
@@ -17314,7 +17314,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn toggleDebugDraw(bool);
     TodoReturn toggleGhostEffect(int);
     void toggleIgnoreDamage(bool value) = win inline, m1 0x9d9c8, imac 0xacbb0 {
-        this->m_0173 = value;
+        this->m_ignoreDamage = value;
         if (value) this->m_isIgnoreDamageEnabled = true;
         this->m_player1->m_maybeCanRunIntoBlocks = value;
         this->m_player2->m_maybeCanRunIntoBlocks = value;
