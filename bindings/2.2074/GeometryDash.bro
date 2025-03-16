@@ -3582,7 +3582,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     void updateColorSprite() = win 0xa7e20, imac 0x1e65b0, m1 0x19db70;
     void updateCurrentSelection();
     void updateCustomColorLabels() = win 0xa9490, imac 0x1e5c10, m1 0x19d228;
-    void updateHSVButtons() = win 0xa8270;
+    void updateHSVButtons() = win 0xa8270, imac 0x1e58e0, m1 0x19cf30;
     void updateKerningLabel() = m1 0x19d4a8;
     void updateSelected(int) = win 0xa9660, imac 0x1e6b70, m1 0x19e070;
 
