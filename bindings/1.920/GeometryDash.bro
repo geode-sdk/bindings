@@ -6409,15 +6409,15 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	virtual TodoReturn getCustomColor04Blend() const;
 	virtual TodoReturn getCustomColor3DBlend() const;
 
-	bool m_bUnknown1;
+	bool m_debugDraw;
 	cocos2d::CCDrawNode* m_drawNode;
 	float m_cameraMoveToY;
 	float m_fUnknown1;
 	float m_fUnknown2;
 	float m_fUnknown3;
 	float m_fUnknown4;
+	bool m_bUnknown1;
 	bool m_bUnknown2;
-	bool m_bUnknown3;
 	int m_iUnused1;
 	int m_iUnused4;
 	StartPosObject* m_startPosObject;
@@ -6429,7 +6429,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	EnterEffect m_activeEnterEffect;
 	cocos2d::CCSprite* m_bgSprite;
 	float m_fUnknown5;
-	bool m_bUnknown4;
+	bool m_bUnknown3;
 	cocos2d::CCArray* m_levelSections;
 	cocos2d::CCArray* m_pUnknown1;
 	cocos2d::CCArray* m_activeObjects;
@@ -6448,10 +6448,10 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	int m_iUnused2;
 	int m_iUnused5;
 	bool m_isDead;
-	bool m_bUnknown6;
+	bool m_bUnknown4;
 	bool m_cameraMovingX;
 	bool m_cameraMovingY;
-	bool m_bUnknown7;
+	bool m_bUnknown5;
 	int m_iUnknown1;
 	int m_iUnknown2;
 	int m_iUnknown3;
@@ -6460,9 +6460,9 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	float m_levelLength;
 	float m_fUnknown9;
 	cocos2d::CCLabelBMFont* m_attemptsLabel;
-	bool m_bUnknown9;
+	bool m_bUnknown6;
 	float m_fUnknown10;
-	bool m_bUnknown10;
+	bool m_bUnknown7;
 	float m_fUnknown11;
 	float m_cameraFlip;
 	int m_iUnknown4;
