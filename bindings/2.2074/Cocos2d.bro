@@ -305,7 +305,7 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
         return false;
     }
 
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x45f704, imac 0x4ffd50, ios inline {
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = m1 0x45f704, imac 0x4ffd50, ios inline {
         // CCZone* pNewZone = NULL;
         CCEaseElastic* pCopy = NULL;
         if(pZone && pZone->m_pCopyObject) 
