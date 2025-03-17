@@ -27,9 +27,9 @@ class cocos2d::CCActionEase : cocos2d::CCActionInterval {
 
     // CCActionEase(cocos2d::CCActionEase const&);
     // CCActionEase();
-    ~CCActionEase() = m1 0x45df10, imac 0x4fe4d0;
+    ~CCActionEase() = m1 0x45df10, imac 0x4fe4d0, ios 0x26afb8;
 
-    bool initWithAction(cocos2d::CCActionInterval*);
+    bool initWithAction(cocos2d::CCActionInterval*) = ios 0x26ae94;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x45ddd8, imac 0x4fe380, ios 0x26aedc;
     virtual void startWithTarget(cocos2d::CCNode*) = m1 0x45df8c, imac 0x4fe550, ios 0x26b00c;
@@ -181,18 +181,6 @@ class cocos2d::CCEaseBounce : cocos2d::CCActionEase {
     // CCEaseBounce();
 
     float bounceTime(float) = ios 0x26bea4;
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-    virtual cocos2d::CCActionInterval* reverse();
-}
-
-[[link(win, android)]]
-class cocos2d::CCEaseBounce : cocos2d::CCActionEase {
-    static cocos2d::CCEaseBounce* create(cocos2d::CCActionInterval*);
-
-    // CCEaseBounce(cocos2d::CCEaseBounce const&);
-    // CCEaseBounce();
-
-    float bounceTime(float);
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x4600c4, imac 0x5007d0;
     virtual cocos2d::CCActionInterval* reverse() = m1 0x460294, imac 0x500990;
@@ -284,9 +272,6 @@ class cocos2d::CCEaseBounceInOut : cocos2d::CCEaseBounce {
 
 [[link(win, android)]]
 class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
-    static cocos2d::CCEaseElastic* create(cocos2d::CCActionInterval* pAction) = ios inline {
-	return cocos2d::CCEaseElastic::create(pAction, 0.3f);
-    }
     static cocos2d::CCEaseElastic* create(cocos2d::CCActionInterval* pAction, float fPeriod) = ios inline {
         CCEaseElastic *pRet = new CCEaseElastic();
         if (pRet)
@@ -303,6 +288,12 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
 
         return pRet; 
     }
+    static cocos2d::CCEaseElastic* create(cocos2d::CCActionInterval* pAction) = ios inline {
+        return cocos2d::CCEaseElastic::create(pAction, 0.3f);
+    }
+
+    // CCEaseElastic(cocos2d::CCEaseElastic const&);
+    // CCEaseElastic();
 
     bool initWithAction(CCActionInterval* pAction, float fPeriod) = ios inline {
         if (CCActionEase::initWithAction(pAction))
@@ -314,10 +305,7 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
         return false;
     }
 
-    // CCEaseElastic(cocos2d::CCEaseElastic const&);
-    // CCEaseElastic();
-
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = ios inline {
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x45f704, imac 0x4ffd50, ios inline {
         // CCZone* pNewZone = NULL;
         CCEaseElastic* pCopy = NULL;
         if(pZone && pZone->m_pCopyObject) 
@@ -336,29 +324,15 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
         // CC_SAFE_DELETE(pNewZone);
         return pCopy;
     }
-    virtual cocos2d::CCActionInterval* reverse() = ios inline {
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x45f7fc, imac 0x4ffe60, ios inline {
         return nullptr;
     }
 }
 
 [[link(win, android)]]
-class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
-    static cocos2d::CCEaseElastic* create(cocos2d::CCActionInterval*, float);
-    static cocos2d::CCEaseElastic* create(cocos2d::CCActionInterval*);
-
-    // CCEaseElastic(cocos2d::CCEaseElastic const&);
-    // CCEaseElastic();
-
-    bool initWithAction(cocos2d::CCActionInterval*, float);
-
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x45f704, imac 0x4ffd50;
-    virtual cocos2d::CCActionInterval* reverse() = m1 0x45f7fc, imac 0x4ffe60;
-}
-
-[[link(win, android)]]
 class cocos2d::CCEaseElasticIn : cocos2d::CCEaseElastic {
     static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval* pAction) = m1 0x45f804, imac 0x4ffe70, ios inline {
-	return cocos2d::CCEaseElasticIn::create(pAction, 0.3f);
+        return cocos2d::CCEaseElasticIn::create(pAction, 0.3f);
     }
     static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval*, float) = m1 0x45f814, imac 0x4ffe90, ios 0x26ba20;
 
@@ -385,80 +359,80 @@ class cocos2d::CCEaseElasticOut : cocos2d::CCEaseElastic {
 
 [[link(win, android)]]
 class cocos2d::CCEaseElasticInOut : cocos2d::CCEaseElastic {
-	static cocos2d::CCEaseElasticInOut* create(cocos2d::CCActionInterval* pAction) = m1 0x45fd14, imac 0x5003f0, ios inline {
-	    return CCEaseElasticInOut::create(pAction, 0.3f);
-	}
-	static cocos2d::CCEaseElasticInOut* create(cocos2d::CCActionInterval* pAction, float fPeriod) = m1 0x45fd24, imac 0x500410, ios inline {
-	    CCEaseElasticInOut *pRet = new CCEaseElasticInOut();
-            if (pRet)
+    static cocos2d::CCEaseElasticInOut* create(cocos2d::CCActionInterval* pAction) = m1 0x45fd14, imac 0x5003f0, ios inline {
+        return CCEaseElasticInOut::create(pAction, 0.3f);
+    }
+    static cocos2d::CCEaseElasticInOut* create(cocos2d::CCActionInterval* pAction, float fPeriod) = m1 0x45fd24, imac 0x500410, ios inline {
+        CCEaseElasticInOut *pRet = new CCEaseElasticInOut();
+        if (pRet)
+        {
+            if (pRet->initWithAction(pAction, fPeriod))
             {
-        	if (pRet->initWithAction(pAction, fPeriod))
-        	{
-            	    pRet->autorelease();
-        	}
-                else
-                {
-                    CC_SAFE_RELEASE_NULL(pRet);
-                }
-            }
-
-            return pRet; 
-	}
-
-	// CCEaseElasticInOut(cocos2d::CCEaseElasticInOut const&);
-	// CCEaseElasticInOut();
-
-	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = m1 0x45fde0, imac 0x5004d0, ios inline {
-	    // CCZone* pNewZone = NULL;
-            CCEaseElasticInOut* pCopy = NULL;
-            if(pZone && pZone->m_pCopyObject) 
-    	    {
-                //in case of being called at sub class
-                pCopy = (CCEaseElasticInOut*)(pZone->m_pCopyObject);
-    	    }
-            else
-    	    {
-        	pCopy = new CCEaseElasticInOut();
-                // pNewZone = new CCZone(pCopy);
-            }
-
-            pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()), m_fPeriod);
-
-            // CC_SAFE_DELETE(pNewZone);
-            return pCopy;
-	}
-	virtual void update(float time) = m1 0x45fed8, imac 0x5005e0, ios inline {
-	    float newT = 0;
-            if (time == 0 || time == 1)
-            {
-                newT = time;
+                    pRet->autorelease();
             }
             else
             {
-                time = time * 2;
-                if (! m_fPeriod)
-                {
-                    m_fPeriod = 0.3f * 1.5f;
-                }
+                CC_SAFE_RELEASE_NULL(pRet);
+            }
+        }
 
-                float s = m_fPeriod / 4;
+        return pRet; 
+    }
 
-                time = time - 1;
-                if (time < 0)
-                {
-                    newT = -0.5f * powf(2, 10 * time) * sinf((time -s) * (M_PI * 2) / m_fPeriod);
-                }
-                else
-                {
-                    newT = powf(2, -10 * time) * sinf((time - s) * (M_PI * 2) / m_fPeriod) * 0.5f + 1;
-                }
+    // CCEaseElasticInOut(cocos2d::CCEaseElasticInOut const&);
+    // CCEaseElasticInOut();
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = m1 0x45fde0, imac 0x5004d0, ios inline {
+        // CCZone* pNewZone = NULL;
+        CCEaseElasticInOut* pCopy = NULL;
+        if(pZone && pZone->m_pCopyObject) 
+        {
+            //in case of being called at sub class
+            pCopy = (CCEaseElasticInOut*)(pZone->m_pCopyObject);
+        }
+        else
+        {
+            pCopy = new CCEaseElasticInOut();
+            // pNewZone = new CCZone(pCopy);
+        }
+
+        pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()), m_fPeriod);
+
+        // CC_SAFE_DELETE(pNewZone);
+        return pCopy;
+    }
+    virtual void update(float time) = m1 0x45fed8, imac 0x5005e0, ios inline {
+        float newT = 0;
+        if (time == 0 || time == 1)
+        {
+            newT = time;
+        }
+        else
+        {
+            time = time * 2;
+            if (! m_fPeriod)
+            {
+                m_fPeriod = 0.3f * 1.5f;
             }
 
-            m_pInner->update(newT);
-	}
-	virtual cocos2d::CCActionInterval* reverse() = m1 0x45ffec, imac 0x500700, ios inline {
-	    return CCEaseElasticInOut::create(m_pInner->reverse(), m_fPeriod);
-	}
+            float s = m_fPeriod / 4;
+
+            time = time - 1;
+            if (time < 0)
+            {
+                newT = -0.5f * powf(2, 10 * time) * sinf((time -s) * (M_PI * 2) / m_fPeriod);
+            }
+            else
+            {
+                newT = powf(2, -10 * time) * sinf((time - s) * (M_PI * 2) / m_fPeriod) * 0.5f + 1;
+            }
+        }
+
+        m_pInner->update(newT);
+    }
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x45ffec, imac 0x500700, ios inline {
+        return CCEaseElasticInOut::create(m_pInner->reverse(), m_fPeriod);
+    }
 }
 
 [[link(win, android)]]
@@ -476,59 +450,59 @@ class cocos2d::CCEaseExponentialIn : cocos2d::CCActionEase {
 [[link(win, android)]]
 class cocos2d::CCEaseExponentialInOut : cocos2d::CCActionEase {
     static cocos2d::CCEaseExponentialInOut* create(cocos2d::CCActionInterval* pAction) = m1 0x45ede8, imac 0x4ff400, ios inline {
-	CCEaseExponentialInOut *pRet = new CCEaseExponentialInOut();
-	if (pRet)
-	{
-	    if (pRet->initWithAction(pAction))
-	    {
-	        pRet->autorelease();
-	    }
-	    else
-	    {
-	        CC_SAFE_RELEASE_NULL(pRet);
-	    }
-	}
-	
-	return pRet; 
+        CCEaseExponentialInOut *pRet = new CCEaseExponentialInOut();
+        if (pRet)
+        {
+            if (pRet->initWithAction(pAction))
+            {
+                pRet->autorelease();
+            }
+            else
+            {
+                CC_SAFE_RELEASE_NULL(pRet);
+            }
+        }
+
+        return pRet; 
     }
 
     // CCEaseExponentialInOut(cocos2d::CCEaseExponentialInOut const&);
     // CCEaseExponentialInOut();
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = m1 0x45ee90, imac 0x4ff4a0, ios inline {
-	//CCZone* pNewZone = NULL;
-	CCEaseExponentialInOut* pCopy = NULL;
-	if(pZone && pZone->m_pCopyObject) 
-	{
-	    //in case of being called at sub class
-	    pCopy = (CCEaseExponentialInOut*)(pZone->m_pCopyObject);
-	}
-	else
-	{
-	    pCopy = new CCEaseExponentialInOut();
-	    //pNewZone = new CCZone(pCopy);
-	}
-	
-	pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()));
-	    
-	//CC_SAFE_DELETE(pNewZone);
-	return pCopy;
+        //CCZone* pNewZone = NULL;
+        CCEaseExponentialInOut* pCopy = NULL;
+        if(pZone && pZone->m_pCopyObject) 
+        {
+            //in case of being called at sub class
+            pCopy = (CCEaseExponentialInOut*)(pZone->m_pCopyObject);
+        }
+        else
+        {
+            pCopy = new CCEaseExponentialInOut();
+            //pNewZone = new CCZone(pCopy);
+        }
+
+        pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()));
+
+        //CC_SAFE_DELETE(pNewZone);
+        return pCopy;
     }
     virtual void update(float time) = imac 0x4ff5a0, m1 0x45ef78, ios inline {
-	time /= 0.5f;
-	if (time < 1)
-	{
-	    time = 0.5f * powf(2, 10 * (time - 1));
-	}
-	else
-	{
-	    time = 0.5f * (-powf(2, -10 * (time - 1)) + 2);
-	}
-	
-	m_pInner->update(time);
+        time /= 0.5f;
+        if (time < 1)
+        {
+            time = 0.5f * powf(2, 10 * (time - 1));
+        }
+        else
+        {
+            time = 0.5f * (-powf(2, -10 * (time - 1)) + 2);
+        }
+
+        m_pInner->update(time);
     }
     virtual cocos2d::CCActionInterval* reverse() = imac 0x4ff610, m1 0x45efe4, ios inline {
-	return CCEaseExponentialInOut::create(m_pInner->reverse());
+        return CCEaseExponentialInOut::create(m_pInner->reverse());
     }
 }
 
@@ -4671,24 +4645,6 @@ class cocos2d::CCPoolManager {
 	void push();
 	void removeObject(cocos2d::CCObject*);
 	static cocos2d::CCPoolManager* sharedPoolManager();
-}
-
-[[link(win, android)]]
-class cocos2d::CCActionEase : cocos2d::CCActionInterval {
-    
-    virtual ~CCActionEase() = ios 0x26afb8;
-
-    bool initWithAction(cocos2d::CCActionInterval *pAction) = ios 0x26ae94;
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone);
-    virtual void startWithTarget(cocos2d::CCNode *pTarget) = ios 0x26b00c;
-    virtual void stop() = ios 0x26b03c;
-    virtual void update(float time) = ios 0x26b06c;
-    virtual cocos2d::CCActionInterval* reverse();
-    virtual cocos2d::CCActionInterval* getInnerAction() = ios 0x26b09c;
-
-    static CCActionEase* create(cocos2d::CCActionInterval *pAction);
-
-    cocos2d::CCActionInterval* m_pInner;
 }
 
 [[link(win, android)]]
