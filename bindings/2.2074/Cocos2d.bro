@@ -4522,8 +4522,8 @@ class cocos2d::CCSpeed : cocos2d::CCAction {
 
 [[link(win, android)]]
 class pugi::xml_document {
-    xml_document() = imac 0x62aa40, m1 0x5553cc, m1 0x5553cc, ios 0x3a593c;
-    ~xml_document() = imac 0x62ab90, m1 0x555520, m1 0x555520, ios 0x3a5a20;
+    xml_document() = imac 0x62aa40, m1 0x5553cc, ios 0x3a593c;
+    ~xml_document() = imac 0x62ab90, m1 0x555520, ios 0x3a5a20;
 }
 
 [[link(win, android)]]
