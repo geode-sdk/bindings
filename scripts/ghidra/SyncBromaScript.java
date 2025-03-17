@@ -659,7 +659,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 // Make sure the category exists
                 wrapper.createCategoryAll(category);
-                final var classDataTypePath = new DataTypePath(category, name + "_data");
+                final var classDataTypePath = new DataTypePath(category, name + (cls.hasBases ? "_data" : ""));
                 var classDataMembers = (Structure) manager.getDataType(classDataTypePath);
 
                 if (classDataMembers == null) {
@@ -668,7 +668,7 @@ public class SyncBromaScript extends GhidraScript {
                         continue;
                     }
                     // Otherwise create data members struct
-                    classDataMembers = new StructureDataType(name + "_data", 0);
+                    classDataMembers = new StructureDataType(name + (cls.hasBases ? "_data" : ""), 0);
                     manager.getCategory(category).addDataType(classDataMembers, DataTypeConflictHandler.DEFAULT_HANDLER);
                 }
                 wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
