@@ -4685,7 +4685,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
                 if (auto stickyGroup = m_editorLayer->getStickyGroup(obj->m_linkedGroup)) stickyGroup->removeObject(obj, true);
             }
             this->deleteObject(obj, true);
-            objects->removeObjectAtIndex(obj, true);
+            objects->removeObjectAtIndex(i, true);
         }
     }
     void deselectAll() = win 0x10fd80, imac 0x33240, m1 0x328b0;
@@ -4695,7 +4695,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         m_selectedObject = nullptr;
         this->toggleEditObjectButton();
         m_canActivateControls = true;
-        m_lastTouchPoint = { 0.f, 0.f };
+        m_lastTouchPoint = cocos2d::CCPoint { 0.f, 0.f };
     }
     void deselectObject(GameObject*) = win 0x10fc60, m1 0x32808, imac 0x331a0;
     void deselectObjectsColor();
