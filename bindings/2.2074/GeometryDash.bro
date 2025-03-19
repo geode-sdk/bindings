@@ -4682,7 +4682,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
             auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
             if (obj->m_objectID != id) continue;
             if (obj->m_linkedGroup > 0) {
-                if (auto stickyGroup = m_editorLayer->getStickyGroup(object->m_linkedGroup)) stickyGroup->removeObject(object, true);
+                if (auto stickyGroup = m_editorLayer->getStickyGroup(obj->m_linkedGroup)) stickyGroup->removeObject(obj, true);
             }
             this->deleteObject(obj, true);
             objects->removeObjectAtIndex(obj, true);
