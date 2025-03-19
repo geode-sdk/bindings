@@ -1,6 +1,6 @@
 // Dump virtual tables from the android version of GD
 // @author Mat
-// @category GeodeCatgirls
+// @category GeodeSDK
 
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.mem.*;

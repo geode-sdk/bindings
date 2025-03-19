@@ -1,6 +1,6 @@
 // Sync your RE'd addresses to & from GeometryDash.bro 
 // @author HJfod
-// @category GeodeCatgirls
+// @category GeodeSDK
 
 import java.nio.file.Files;
 import java.nio.file.Path;

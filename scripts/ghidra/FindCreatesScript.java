@@ -1,6 +1,6 @@
 // Automatically detect creates in Windows GD
 // @author Cvolton
-// @category GeodeCatgirls
+// @category GeodeSDK
 
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.listing.Function;
