@@ -8278,7 +8278,7 @@ class GameStatsManager : cocos2d::CCNode {
     void preSaveGameStats() = win 0x1f0630;
     TodoReturn processChallengeQueue(int) = win 0x1df950, m1 0x67160, imac 0x73590;
     TodoReturn processOnlineChests();
-    TodoReturn purchaseItem(int);
+    bool purchaseItem(int) = win 0x1d12e0, m1 0x5aa80, imac 0x663e0;
     TodoReturn recountSpecialStats() = ios 0x3351a4, m1 0x69188;
     TodoReturn recountUserCoins(bool);
     TodoReturn registerRewardsFromItem(GJRewardItem*);
@@ -8319,7 +8319,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn unlockGoldChest(int) = ios 0x33e16c;
     TodoReturn unlockOnlineChest(gd::string);
     TodoReturn unlockPathChest(int);
-    TodoReturn unlockSecretChest(int) = imac 0x8ba60;
+    GJRewardItem* unlockSecretChest(int) = win 0x1e75a0, m1 0x7f6f4, imac 0x8ba60;
     GJRewardItem* unlockSpecialChest(gd::string) = win 0x1e7250, m1 0x6b8c8, imac 0x77ff0;
     TodoReturn updateActivePath(StatKey);
     gd::string usernameForAccountID(int);
