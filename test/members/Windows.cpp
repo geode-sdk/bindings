@@ -340,7 +340,6 @@ GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x340);
 GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x4f8);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x530);
 
-GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
