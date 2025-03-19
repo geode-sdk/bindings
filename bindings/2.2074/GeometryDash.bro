@@ -4659,14 +4659,44 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool) = win 0x116660;
     UndoObject* createUndoObject(UndoCommand, bool) = win 0x10f830, m1 0x37f50, imac 0x3d3e0;
     TodoReturn createUndoSelectObject(bool) = win 0x10fb50;
-    TodoReturn deactivateRotationControl();
-    TodoReturn deactivateScaleControl() = win 0x113480;
-    TodoReturn deactivateTransformControl() = win 0x113ad0;
-    void deleteObject(GameObject*, bool) = imac 0x32f70;
+    void deactivateRotationControl() = win inline {
+        m_rotationTouchID = -1;
+        if (m_rotationControl->isVisible()) {
+            m_rotationControl->setVisible(false);
+            m_rotationControl->finishTouch();
+        }
+    }
+    void deactivateScaleControl() = win 0x113480;
+    void deactivateTransformControl() = win 0x113ad0;
+    void deleteObject(GameObject* object, bool noUndo) = win inline, imac 0x32f70 {
+        if (!object) return;
+        object->m_unk45c = object->m_isSelected;
+        m_editorLayer->removeObject(object, noUndo);
+        this->deactivateRotationControl();
+        this->deactivateScaleControl();
+        this->deactivateTransformControl();
+    }
     void deleteSmartBlocksFromObjects(cocos2d::CCArray*) = win 0x116500;
-    TodoReturn deleteTypeFromObjects(int, cocos2d::CCArray*);
+    void deleteTypeFromObjects(int id, cocos2d::CCArray* objects) = win inline {
+        for (int i = 0; i < objects->count(); i++) {
+            auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
+            if (obj->m_objectID != id) continue;
+            if (obj->m_linkedGroup > 0) {
+                if (auto stickyGroup = m_editorLayer->getStickyGroup(obj->m_linkedGroup)) stickyGroup->removeObject(obj, true);
+            }
+            this->deleteObject(obj, true);
+            objects->removeObjectAtIndex(i, true);
+        }
+    }
     void deselectAll() = win 0x10fd80, imac 0x33240, m1 0x328b0;
-    void deselectObject() = win 0x10fc60, m1 0x32a98, imac 0x33450;
+    void deselectObject() = win inline, m1 0x32a98, imac 0x33450 {
+        this->stopActionByTag(124);
+        if (m_selectedObject) m_selectedObject->deselectObject();
+        m_selectedObject = nullptr;
+        this->toggleEditObjectButton();
+        m_canActivateControls = true;
+        m_lastTouchPoint = cocos2d::CCPoint { 0.f, 0.f };
+    }
     void deselectObject(GameObject*) = win 0x10fc60, m1 0x32808, imac 0x331a0;
     void deselectObjectsColor();
     void deselectTargetPortals() = imac 0x32e10, win 0xe51b0;
@@ -7514,7 +7544,7 @@ class GameObject : CCSpritePlus {
 
     void addColorSprite(gd::string) = win 0x18b830, m1 0x4d83b4, imac 0x58cc00;
     void addColorSpriteToParent(bool) = imac 0x592300;
-    void addColorSpriteToSelf() = imac 0x5a6020;
+    void addColorSpriteToSelf() = win 0x199240, imac 0x5a6020;
     cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool);
     cocos2d::CCSprite* addCustomChild(gd::string, cocos2d::CCPoint, int);
     cocos2d::CCSprite* addCustomColorChild(gd::string);
@@ -7551,7 +7581,10 @@ class GameObject : CCSpritePlus {
     void createGroupContainer(int size) = win 0x199740;
     void createOpacityGroupContainer(int);
     void createSpriteColor(int) = imac 0x58a4e0, m1 0x4d7afc;
-    void deselectObject();
+    void deselectObject() = win inline {
+        m_isSelected = false;
+        this->updateObjectEditorColor();
+    }
     inline void destroyObject() { // what ? not inline, imac 0x5a5340
         m_isDisabled = true;
         m_isDisabled2 = true;
@@ -7588,8 +7621,12 @@ class GameObject : CCSpritePlus {
     int getObjectDirection();
     float getObjectRadius();
     cocos2d::CCRect* getObjectRectPointer();
-    ZLayer getObjectZLayer();
-    int getObjectZOrder();
+    ZLayer getObjectZLayer() = win inline {
+        return m_zLayer != ZLayer::Default ? m_zLayer : m_defaultZLayer;
+    }
+    int getObjectZOrder() = win inline {
+        return m_zOrder != 0 ? m_zOrder : m_defaultZOrder;
+    }
     cocos2d::CCRect getOuterObjectRect();
     int getParentMode();
     GJSpriteColor* getRelativeSpriteColor(int) = win 0x19eb30, imac 0x5b1ab0, m1 0x4ea8f0;
@@ -7661,7 +7698,7 @@ class GameObject : CCSpritePlus {
     void setupColorSprite(int, bool);
     void setupPixelScale();
     void setupSpriteSize();
-    bool shouldBlendColor(GJSpriteColor*, bool);
+    bool shouldBlendColor(GJSpriteColor*, bool) = win 0x18dd00;
     bool shouldLockX();
     bool shouldNotHideAnimFreeze();
     bool shouldShowPickupEffects() = imac 0x24c330;
@@ -7671,7 +7708,15 @@ class GameObject : CCSpritePlus {
     double slopeYPos(float) = win 0x19e430;
     double slopeYPos(GameObject*);
     void spawnDefaultPickupParticle(GJBaseGameLayer*) = imac 0x24c390;
-    void updateBlendMode() = ios 0x25be2c;
+    void updateBlendMode() = win inline, ios 0x25be2c {
+        auto shouldBlend = this->shouldBlendColor(m_baseColor, true);
+        m_shouldBlendBase = shouldBlend;
+        if (!m_colorSprite) {
+            m_shouldBlendDetail = false;
+            return;
+        }
+        m_shouldBlendDetail = m_detailColor->getColorMode() != 1012 ? this->shouldBlendColor(m_detailColor, false) : shouldBlend;
+    }
     void updateCustomColorType(short);
     void updateCustomScaleX(float) = ios 0x25529c, win 0x1956d0, m1 0x4d922c, imac 0x591ed0;
     void updateCustomScaleY(float) = ios 0x2552fc, win 0x195760, m1 0x4d928c, imac 0x591f50;
@@ -9006,7 +9051,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn getSingleGroupObject(int);
     TodoReturn getSpecialKey(int, bool, bool);
     TodoReturn getStaticGroup(int) = ios 0x1f4088;
-    TodoReturn getStickyGroup(int);
+    cocos2d::CCArray* getStickyGroup(int group) = win inline {
+        return static_cast<cocos2d::CCArray*>(m_linkedGroupDict->objectForKey(group));
+    }
     TodoReturn getTargetFlyCameraY(GameObject*);
     TodoReturn getTargetGroup(int, int);
     TodoReturn getTargetGroupOrigin(int, int);
@@ -12452,7 +12499,9 @@ class GJSpiderSprite : GJRobotSprite {
 class GJSpriteColor {
     // GJSpriteColor();
 
-    int getColorMode();
+    int getColorMode() {
+        return m_defaultColorID == m_colorID || m_colorID != 0 ? m_colorID : m_defaultColorID;
+    }
 
     int m_colorID;
     int m_defaultColorID;
@@ -13976,7 +14025,11 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void addSpecial(GameObject*) = ios 0x3595d8, win 0x2cf4a0, m1 0xc7674, imac 0xe0390;
     TodoReturn addToRedoList(UndoObject*);
     TodoReturn addTouchPoint(cocos2d::CCPoint);
-    TodoReturn addToUndoList(UndoObject*, bool) = imac 0xe0210;
+    void addToUndoList(UndoObject* object, bool keepRedo) = win inline, imac 0xe0210 {
+        if (!keepRedo) m_redoObjects->removeAllObjects();
+        if (m_undoObjects->count() >= (m_increaseMaxUndoRedo ? 1000 : 200)) m_undoObjects->removeObjectAtIndex(0, true);
+        m_undoObjects->addObject(object);
+    }
     TodoReturn applyAttributeState(GameObject*, GameObject*);
     void applyGroupState(GameObject* dest, GameObject* src) = win 0x2d8d60;
     TodoReturn breakApartTextObject(TextGameObject*);
