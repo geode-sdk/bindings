@@ -76,7 +76,7 @@ int main(int argc, char** argv) try {
     // parse extra arguments
     std::vector<std::string> extraArgs;
     for (int i = 4; i < argc; i++) {
-        auto arg = std::string(argv[i]);
+        std::string arg = argv[i];
         size_t space;
         while ((space = arg.find(" ")) != std::string::npos) {
             extraArgs.push_back(arg.substr(0, space));
