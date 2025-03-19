@@ -93,10 +93,10 @@ int main(int argc, char** argv) try {
             skipPugixml = true;
         } else if (arg.starts_with("--sdk-version")) {
             if (arg.starts_with("--sdk-version=")) {
-                codegen::sdkVersion = codegen::str_to_version(arg.substr(14));
+                codegen::sdkVersion = codegen::Version::fromString(arg.substr(14));
                 versionSet = true;
             } else if (arg == "--sdk-version" && i + 1 < extraArgs.size()) {
-                codegen::sdkVersion = codegen::str_to_version(extraArgs[++i]);
+                codegen::sdkVersion = codegen::Version::fromString(extraArgs[++i]);
                 versionSet = true;
             }
         }
@@ -132,7 +132,7 @@ int main(int argc, char** argv) try {
                 std::ifstream versionFile(versionPath);
                 std::string version;
                 std::getline(versionFile, version);
-                codegen::sdkVersion = codegen::str_to_version(version);
+                codegen::sdkVersion = codegen::Version::fromString(version);
             }
         }
     }

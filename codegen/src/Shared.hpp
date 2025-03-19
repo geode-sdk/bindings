@@ -129,51 +129,37 @@ namespace codegen {
         int patch = 0;
         VersionType type = VersionType::Release;
         int tag = 0;
+
+        static Version fromString(std::string const& str) {
+            Version v;
+            if (str.empty()) return v;
+
+            std::vector<std::string> parts;
+
+            for (auto& c : str) {
+                if (c == '.' || c == '-') parts.push_back("");
+                else {
+                    if (parts.empty()) parts.push_back("");
+                    parts.back() += c;
+                }
+            }
+
+            if (parts.size() > 0) v.major = std::stoi(parts[0].starts_with("v") ? parts[0].substr(1) : parts[0]);
+            if (parts.size() > 1) v.minor = std::stoi(parts[1]);
+            if (parts.size() > 2) v.patch = std::stoi(parts[2]);
+            if (parts.size() > 3) {
+                if (parts[3].starts_with("alpha")) v.type = VersionType::Alpha;
+                else if (parts[3].starts_with("beta")) v.type = VersionType::Beta;
+                else if (parts[3].starts_with("prerelease")) v.type = VersionType::Prerelease;
+            }
+            if (parts.size() > 4) v.tag = std::stoi(parts[4]);
+
+            return v;
+        }
     };
 
-    inline Version str_to_version(std::string const& str) {
-        Version v;
-        if (str.empty()) return v;
-
-        std::vector<std::string> parts = {};
-
-        for (auto& c : str) {
-            if (c == '.' || c == '-') {
-                parts.push_back("");
-            } else {
-                if (parts.empty())
-                    parts.push_back("");
-                parts.back() += c;
-            }
-        }
-
-        if (parts.size() > 0) {
-            v.major = std::stoi(parts[0].starts_with("v") ? parts[0].substr(1) : parts[0]);
-        }
-        if (parts.size() > 1) {
-            v.minor = std::stoi(parts[1]);
-        }
-        if (parts.size() > 2) {
-            v.patch = std::stoi(parts[2]);
-        }
-        if (parts.size() > 3) {
-            if (parts[3].starts_with("alpha")) {
-                v.type = VersionType::Alpha;
-            } else if (parts[3].starts_with("beta")) {
-                v.type = VersionType::Beta;
-            } else if (parts[3].starts_with("prerelease")) {
-                v.type = VersionType::Prerelease;
-            }
-        }
-        if (parts.size() > 4) {
-            v.tag = std::stoi(parts[4]);
-        }
-
-        return v;
-    }
-
     inline bool operator<(Version const& a, std::string const& b) {
-        auto v = str_to_version(b);
+        auto v = Version::fromString(b);
         return std::tie(a.major, a.minor, a.patch, a.type, a.tag) < std::tie(v.major, v.minor, v.patch, v.type, v.tag);
     }
 
