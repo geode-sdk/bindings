@@ -3408,7 +3408,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
     // virtual ~CurrencyRewardLayer();
     // CurrencyRewardLayer();
 
-    static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType, float, float time) = win 0x9f500, imac 0x78ff00, m1 0x6a36f8;
+    static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType, float, float time) = win 0x9f500, imac 0x78ff00, m1 0x6a36f8, ios 0x31e9b4;
 
     virtual void update(float) = win 0xa2230, imac 0x792fd0, m1 0x6a64a8, ios 0x3212a4;
 
@@ -3455,7 +3455,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
         this->pulseSprite(m_starsSprite);
         m_starsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
     }
-    bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9f750, imac 0x78ffe0, m1 0x6a3800;
+    bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9f750, imac 0x78ffe0, m1 0x6a3800, ios 0x31eabc;
     void pulseSprite(cocos2d::CCSprite*) = win 0xa2c00, imac 0x793fa0, m1 0x6a72f8;
 
     CurrencyRewardDelegate* m_delegate;
@@ -6660,7 +6660,7 @@ class GameLevelManager : cocos2d::CCNode {
     char const* getUploadMessageKey(int) = m1 0x491c84, imac 0x538370;
     char const* getUserInfoKey(int) = m1 0x490184, imac 0x5366f0;
     void getUserList(UserListType) = ios 0xacef4, win 0x15ffa0, imac 0x5402b0, m1 0x499414;
-    void getUserMessages(bool, int, int) = m1 0x490a64, imac 0x537080;
+    void getUserMessages(bool sent, int page, int total) = win 0x157c30, m1 0x490a64, imac 0x537080;
     void getUsers(GJSearchObject*) = ios 0xa79b0, win 0x1571c0, m1 0x48fdec, imac 0x536320;
     void gotoLevelPage(GJGameLevel*) = win 0x1473c0, m1 0x47dd44, imac 0x521e70;
     void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x140e00, m1 0x46479c, imac 0x505160, ios 0x8c0bc;
@@ -14479,7 +14479,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
         m_exited = false;
     }
 
-    static LevelListLayer* create(GJLevelList* list) = win inline, imac 0x3484a0, m1 0x2dd04c {
+    static LevelListLayer* create(GJLevelList* list) = win inline, imac 0x3484a0, m1 0x2dd04c, ios 0x24218c {
         auto ret = new LevelListLayer();
         if (ret->init(list)) {
             ret->autorelease();
@@ -14488,7 +14488,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(GJLevelList*) = win 0x2ee9c0, m1 0x2dcfac, imac 0x348410;
+    static cocos2d::CCScene* scene(GJLevelList*) = win 0x2ee9c0, m1 0x2dcfac, imac 0x348410, ios 0x242140;
 
     virtual void onEnter() = win 0x2f0680, m1 0x2e01ec, imac 0x34b870, ios 0x2450b4;
     virtual void onExit() = win 0x2f06b0, m1 0x2e0224, imac 0x34b8a0, ios 0x2450ec;
@@ -17233,7 +17233,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_enable22Changes;
 }
 
-[[link(android)]]
+[[link(android), depends(DynamicBitset), depends(DynamicSaveObject)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
     PlayLayer() = ios 0x12633c, win 0x38DF50, imac 0xbfcd0;
     virtual ~PlayLayer() = win 0x38e920, imac 0xab980;
@@ -22881,10 +22881,10 @@ class TeleportPortalObject : RingObject {
 class TextAlertPopup : cocos2d::CCNode {
     // virtual ~TextAlertPopup();
 
-    static TextAlertPopup* create(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x2964a0, m1 0x2437f0, imac 0x29bfb0;
+    static TextAlertPopup* create(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x2964a0, m1 0x2437f0, imac 0x29bfb0, ios 0x2dfdec;
 
-    bool init(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x2965d0, imac 0x29c130, m1 0x243988;
-    void setAlertPosition(cocos2d::CCPoint windowOffset, cocos2d::CCPoint pointOffset) = win inline, imac 0x29c480, m1 0x243cc8 {
+    bool init(gd::string text, float delay, float scale, int opacity, gd::string font) = win 0x2965d0, imac 0x29c130, m1 0x243988, ios 0x2dff58;
+    void setAlertPosition(cocos2d::CCPoint windowOffset, cocos2d::CCPoint pointOffset) = win inline, imac 0x29c480, m1 0x243cc8, ios 0x2e0280 {
         if (!m_label) return;
 
         auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
@@ -22893,7 +22893,7 @@ class TextAlertPopup : cocos2d::CCNode {
             windowOffset.y * winSize.height + m_height / 2 + pointOffset.y
         });
     }
-    void setLabelColor(cocos2d::ccColor3B color) = win inline, imac 0x29c440, m1 0x243c8c {
+    void setLabelColor(cocos2d::ccColor3B color) = win inline, imac 0x29c440, m1 0x243c8c, ios 0x2e0244 {
         if (m_label) m_label->setColor(color);
     }
 
