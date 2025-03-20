@@ -5565,7 +5565,7 @@ class EnterEffectInstance {
 
     void animateValue(int, float, float, float, int, float, int) = win 0x1378e0;
     float getValue(int);
-    void loadTransitions(EnterEffectObject*, float) = win 0x1378e0;
+    void loadTransitions(EnterEffectObject*, float) = win 0x136d00;
     void loadValuesFromObject(EnterEffectObject*) = win 0x136b60;
     void setValue(int, float) = win 0x137d00;
     void updateTransitions(float, GJBaseGameLayer*) = win 0x137ad0, imac 0x5bb680, m1 0x4f1338;
@@ -9348,7 +9348,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateMaxGameplayY() = ios 0x203ec4, win 0x234930, imac 0x147b20;
     TodoReturn updateMGArtSpeed(float, float);
     void updateMGOffsetY(float, float, int, float, int, int) = win 0x230950;
-    TodoReturn updateOBB2(cocos2d::CCRect) = win 0x6da50;
+    TodoReturn updateOBB2(cocos2d::CCRect);
     void updateParticles(float);
     TodoReturn updatePlatformerTime() = ios 0x203714;
     TodoReturn updatePlayerCollisionBlocks();
@@ -10028,7 +10028,7 @@ class GJEffectManager : cocos2d::CCNode {
 
     virtual bool init() = win 0x253950, imac 0x2c8f30, m1 0x26c924, ios 0x125e8;
 
-    TodoReturn activeColorForIndex(int) = win 0x254930, imac 0x2ca350;
+    TodoReturn activeColorForIndex(int) = imac 0x2ca350;
     TodoReturn activeOpacityForIndex(int) = imac 0x2ca4b0;
     TodoReturn addAllInheritedColorActions(cocos2d::CCArray*);
     void addCountToItem(int, int);
@@ -14041,7 +14041,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     GameObject* createObject(int, cocos2d::CCPoint, bool) = ios 0x359a70, win 0x2cbf90, m1 0xc7be8, imac 0xe0940;
     void createObjectsFromSetup(gd::string&) = win 0x2cb110, m1 0xc4c50, imac 0xdd250;
     cocos2d::CCArray* createObjectsFromString(gd::string const&, bool, bool) = win 0x2cb920, m1 0xc6e60, imac 0xdf9e0;
-    void dirtifyTriggers() = win 0x22b740;
+    void dirtifyTriggers();
     TodoReturn duplicateKeyframeAnimation(int);
     TodoReturn fastUpdateDisabledGroups();
     int findGameObject(int);
