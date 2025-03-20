@@ -45,6 +45,7 @@ class cocos2d::CCEaseRateAction : cocos2d::CCActionEase {
 
     // CCEaseRateAction(cocos2d::CCEaseRateAction const&);
     // CCEaseRateAction();
+    [[since("4.2.1")]]
     ~CCEaseRateAction() = m1 0x45e26c, imac 0x4fe860;
 
     bool initWithAction(cocos2d::CCActionInterval*, float);
@@ -3186,7 +3187,9 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
     void setClearStencil(float);
 
     // CCRenderTexture(cocos2d::CCRenderTexture const&);
-    CCRenderTexture();
+    [[since("4.0.1")]]
+    CCRenderTexture() = m1 0x510664, imac 0x5dd7c0;
+    [[since("4.0.1")]]
     ~CCRenderTexture() = m1 0x5106fc, imac 0x5dd880;
     void begin() = imac 0x5de080, m1 0x510e4c, ios 0x3b8cac;
     void beginWithClear(float, float, float, float, float, int, unsigned int) = imac 0x5de350, m1 0x5110d8;
@@ -3307,6 +3310,7 @@ class cocos2d::CCRepeatForever : cocos2d::CCActionInterval {
 
     // CCRepeatForever(cocos2d::CCRepeatForever const&);
     // CCRepeatForever();
+    [[since("4.2.1")]]
     ~CCRepeatForever() = m1 0x330460, imac 0x3a36f0;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x3a3800, m1 0x330578, ios 0x18e01c;
@@ -3876,6 +3880,7 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     void setTexture(cocos2d::CCTexture2D*) = imac 0x344a50, m1 0x2d9df0;
 
     // CCSpriteFrame(cocos2d::CCSpriteFrame const&);
+    [[since("4.2.1")]]
     ~CCSpriteFrame() = imac 0x344810, m1 0x2d9be8, ios 0x24d438;
 
     bool isRotated();
