@@ -17233,7 +17233,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_enable22Changes;
 }
 
-[[link(android), depends(DynamicBitset), depends(DynamicSaveObject)]]
+[[link(android), depends(DynamicBitset), depends(DynamicSaveObject), depends(SavedActiveObjectState), depends(SavedObjectStateRef), depends(SavedSpecialObjectState)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
     PlayLayer() = ios 0x12633c, win 0x38DF50, imac 0xbfcd0;
     virtual ~PlayLayer() = win 0x38e920, imac 0xab980;
