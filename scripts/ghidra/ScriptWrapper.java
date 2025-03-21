@@ -32,6 +32,7 @@ import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.Pointer;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.ShortDataType;
+import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.UnionDataType;
@@ -50,6 +51,8 @@ import ghidra.program.model.symbol.SourceType;
 import ghidra.util.exception.CancelledException;
 
 public class ScriptWrapper {
+    List<String> classes = new ArrayList<String>();
+    List<String> enums = new ArrayList<String>();
     GhidraScript wrapped;
     Path bindingsDir;
 
@@ -396,10 +399,27 @@ public class ScriptWrapper {
 
             // Try to get this type
             result = manager.getDataType(typePath);
-            if (result == null) {
+            if (
+                result == null || (classes.contains(type.name.value) && !(result instanceof Structure)) ||
+                (enums.contains(type.name.value) && !(result instanceof ghidra.program.model.data.Enum))
+            ) {
+                if (classes.contains(type.name.value)) {
+                    result = manager.addDataType(
+                        new StructureDataType(category, name, 0),
+                        result == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER
+                    );
+                    printfmt("Created new struct {0}", type.name.value);
+                }
+                else if (enums.contains(type.name.value)) {
+                    result = manager.addDataType(
+                        new EnumDataType(category, name, IntegerDataType.dataType.getLength()),
+                        result == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER
+                    );
+                    printfmt("Created new enum {0}", type.name.value);
+                }
                 // Try to guess the type; if the guess is wrong, the user can fix it manually
                 // If the type is passed without pointer or reference, assume it's an enum
-                if (type.ptr.isEmpty() && type.ref.isEmpty()) {
+                else if (type.ptr.isEmpty() && type.ref.isEmpty()) {
                     result = manager.addDataType(
                         new EnumDataType(category, name, IntegerDataType.dataType.getLength()),
                         DataTypeConflictHandler.DEFAULT_HANDLER

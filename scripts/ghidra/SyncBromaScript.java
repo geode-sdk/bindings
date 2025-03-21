@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
@@ -22,15 +23,14 @@ import ghidra.program.model.data.Composite;
 import ghidra.program.model.data.DataTypeConflictHandler;
 import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
+import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined;
-import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
-import ghidra.program.model.listing.ParameterImpl;
 import ghidra.program.model.listing.Variable;
 import ghidra.program.model.listing.VariableStorage;
 import ghidra.program.model.symbol.SourceType;
@@ -48,6 +48,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean exportToBroma;
         boolean setOptcall;
         boolean syncMembers;
+        boolean syncEnums;
 
         public Args(ScriptWrapper wrapper, Path bindingsDir) throws Exception {
             this.run(wrapper, bindingsDir);
@@ -98,12 +99,19 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Export to Broma", b -> this.exportToBroma = b);
             this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
+            this.bool("Sync enums", b -> this.syncEnums = b);
 
             this.waitForAnswers();
 
             if (this.platform == Platform.WINDOWS32 || this.platform == Platform.WINDOWS64) {
-                bromaFiles = List.of(this.selectedBromaFile);
+                // Extras.bro is an extension of GeometryDash.bro, include it as well
+                bromaFiles = this.selectedBromaFile.equals("GeometryDash.bro") ? 
+                    List.of("Extras.bro", "GeometryDash.bro") : List.of(this.selectedBromaFile);
             }
+            else {
+                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "GeometryDash.bro");
+            }
+
             this.bromaFiles = bromaFiles.stream()
                 .map(f -> Paths.get(bindingsDir.toString(), this.gameVersion, f))
                 .toList();
@@ -126,6 +134,26 @@ public class SyncBromaScript extends GhidraScript {
             this.bromas.add(new Broma(bro, args.platform));
         }
 
+        // Read classes
+        wrapper.classes.addAll(this.bromas.stream()
+            .map(b -> b.classes.stream().map(c -> c.name.value).toList())
+            .flatMap(List::stream)
+            .toList());
+
+        wrapper.printfmt("Found {0} classes in Broma", wrapper.classes.size());
+
+        // Read enums
+        var enumPath = Paths.get(wrapper.bindingsDir.toString(), "include", "Geode", "Enums.hpp");
+        if (Files.exists(enumPath)) {
+            for (var line : Files.readAllLines(enumPath)) {
+                if (line.startsWith("enum class")) {
+                    wrapper.enums.add(line.split(" ")[2]);
+                }
+            }
+        }
+
+        wrapper.printfmt("Found {0} enums in Broma", wrapper.enums.size());
+
         wrapper.updateTypeDatabase(args.platform);
 
         // Do the imports and exports and members
@@ -133,6 +161,9 @@ public class SyncBromaScript extends GhidraScript {
             this.handleImport();
             if (this.args.syncMembers) {
                 this.handleImportMembers();
+            }
+            if (this.args.syncEnums) {
+                this.handleImportEnums();
             }
         }
         if (this.args.exportToBroma) {
@@ -271,22 +302,6 @@ public class SyncBromaScript extends GhidraScript {
                 bromaSig
             );
             status = status.promoted(SignatureImport.UPDATED);
-        }
-
-        // todo: Figure this out
-        // So for some undecipherable reason `EditorUI::init` will *not* decompile 
-        // in Ghidra unless `ButtonSprite::create` has a meaningless unused arg 
-        // at the end of its stack list. Why? I spent an entire day trying to 
-        // figure that one out, and I couldn't. If someone can, please let me know 
-        // so I can remove this ugly hotfix :'(
-        // Same hotfix is in overload resolution in handleExport
-        if (addr.subtract(currentProgram.getImageBase()) == 0x1fb90) {
-            bromaSig.parameters.add(new ParameterImpl(
-                "__see_SyncBromaScript_line_" + Thread.currentThread().getStackTrace()[0].getLineNumber(),
-                Undefined1DataType.dataType,
-                currentProgram,
-                SourceType.USER_DEFINED
-            ));
         }
 
         var shouldReorderParams = 
@@ -510,11 +525,7 @@ public class SyncBromaScript extends GhidraScript {
                     tryMatchFun:
                     for (var tryMatch : bromaFuns) {
                         var sig = wrapper.getBromaSignature(tryMatch, args.platform, false);
-                        // Same hotfix as the other reference to offset 0x1fb90
                         var paramCount = fun.getParameterCount();
-                        if (ghidraOffset == 0x1fb90) {
-                            paramCount -= 1;
-                        }
                         if (paramCount != sig.parameters.size()) {
                             continue tryMatchFun;
                         }
@@ -765,9 +776,82 @@ public class SyncBromaScript extends GhidraScript {
                     }
                 }
 
+                if (classDataMembers.isZeroLength() && offset > 0) {
+                    classDataMembers.growStructure(offset);
+                }
+
                 // classDataMembers.setPackingEnabled(true);
                 // classDataMembers.repack();
             }
+        }
+    }
+
+    private void handleImportEnums() throws Exception {
+        final var manager = currentProgram.getDataTypeManager();
+        final var enumPath = Paths.get(wrapper.bindingsDir.toString(), "include", "Geode", "Enums.hpp");
+        if (!Files.exists(enumPath)) {
+            return;
+        }
+
+        wrapper.printfmt("Importing enums...");
+        var lines = Files.readAllLines(enumPath);
+        for (int i = 0; i < lines.size(); i += 1) {
+            var line = lines.get(i);
+            if (!line.startsWith("enum class")) {
+                continue;
+            }
+
+            var name = line.split(" ")[2];
+            var enumCategory = manager.getCategory(new CategoryPath("/ClassDataTypes/" + name));
+            if (enumCategory == null) {
+                continue;
+            }
+
+            var enumType = enumCategory.getDataType(name);
+            if (enumType == null) {
+                var enumDataType = new EnumDataType(name, 4);
+                enumCategory.addDataType(enumDataType, DataTypeConflictHandler.DEFAULT_HANDLER);
+                enumType = enumDataType;
+            }
+
+            var enumDataType = enumType;
+            var values = new HashMap<String, Integer>();
+            var total = -1;
+            for (i += 1; i < lines.size(); i += 1) {
+                var valueLine = lines.get(i);
+                if (valueLine.contains("};")) {
+                    break;
+                }
+
+                var parts = valueLine.split("=");
+                var key = parts[0].trim();
+                if (key.startsWith("//")) {
+                    continue;
+                }
+
+                var value = 0;
+                if (parts.length > 1) {
+                    var valueString = parts[1].split(",")[0].trim();
+                    value = valueString.startsWith("0x") ? Integer.parseInt(valueString.substring(2), 16) : Integer.parseInt(valueString);
+                    total = value;
+                } else {
+                    key = key.split(",")[0].trim();
+                    value = ++total;
+                }
+
+                values.put(key, value);
+            }
+
+            for (var value : values.keySet()) {
+                var dataTypeEnum = (ghidra.program.model.data.Enum)enumDataType;
+                try {
+                    dataTypeEnum.getValue(value);
+                } catch (NoSuchElementException e) {
+                    dataTypeEnum.add(value, values.get(value));
+                }
+            }
+
+            wrapper.printfmt("Imported {0} enum values for {1}", values.size(), name);
         }
     }
 
