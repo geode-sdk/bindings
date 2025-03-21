@@ -4634,8 +4634,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void clickOnPosition(cocos2d::CCPoint) = ios 0x3dea18, win 0xe1040, imac 0x2dfa0, m1 0x2d9d4;
     TodoReturn closeLiveColorSelect();
     TodoReturn closeLiveHSVSelect();
-    void colorSelectClosed(cocos2d::ccColor3B) = win 0x11dcd0;
-    void constrainGameLayerPosition() = win 0x120dd0;
+    void colorSelectClosed(cocos2d::ccColor3B);
+    void constrainGameLayerPosition();
     void constrainGameLayerPosition(float, float) = ios 0x3dc880, win 0x120dd0, imac 0x2afb0, m1 0x2b208;
     TodoReturn convertKeyBasedOnNeighbors(int, int, cocos2d::CCPoint, cocos2d::CCArray*);
     TodoReturn convertToBaseKey(int);
@@ -4763,7 +4763,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint moveForCommand(EditCommand command) = ios 0x3ee010, win 0x11de20, imac 0x4a7d0, m1 0x435fc;
     void moveGamelayer(cocos2d::CCPoint) = ios 0x3dfa64, win 0xe16b0, imac 0x2f800, m1 0x2f18c;
     void moveObject(GameObject*, cocos2d::CCPoint) = ios 0x3e7270, win 0x11e290, m1 0x399d4, imac 0x3ef90;
-    void moveObjectCall(cocos2d::CCObject*) = win 0x11e000, imac 0x49970;
+    void moveObjectCall(cocos2d::CCObject*) = win 0x11dfd0, imac 0x49970;
     void moveObjectCall(EditCommand) = ios 0x3ee190, win 0x11e000, imac 0x4a9d0, m1 0x437a8;
     cocos2d::CCPoint offsetForKey(int) = win 0x124bf0;
     TodoReturn onAssignNewGroupID();
@@ -4880,7 +4880,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     }
     void toggleSwipe(cocos2d::CCObject*) = ios 0x3bf690, win 0x10e8e0, m1 0xd7b4, imac 0xc3d0;
     void transformObject(GameObject*, EditCommand, bool) = win 0x11ed00, imac 0x4be30;
-    void transformObjectCall(cocos2d::CCObject*) = win 0x11e7b0;
+    void transformObjectCall(cocos2d::CCObject*) = win 0x11e780;
     void transformObjectCall(EditCommand) = ios 0x3ee598, win 0x11e7b0, imac 0x4ae10, m1 0x43bc8;
     void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x11fec0;
     TodoReturn transformObjectsActive();
@@ -7704,7 +7704,7 @@ class GameObject : CCSpritePlus {
     bool shouldShowPickupEffects() = imac 0x24c330;
     bool slopeFloorTop();
     bool slopeWallLeft();
-    double slopeYPos(cocos2d::CCRect) = win 0x19e430;
+    double slopeYPos(cocos2d::CCRect);
     double slopeYPos(float) = win 0x19e430;
     double slopeYPos(GameObject*);
     void spawnDefaultPickupParticle(GJBaseGameLayer*) = imac 0x24c390;
@@ -17383,7 +17383,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateProgressbar() = ios 0x11bb80, win 0x39b4f0, m1 0xa2124, imac 0xb1c20;
     void updateScreenRotation(int, bool, bool, float, int, float, int, int);
     void updateTestModeLabel() = ios 0x11d4e8, win 0x390b40, imac 0xb3d10, m1 0xa3d38;
-    void updateTimeWarp(EffectGameObject*, float) = win 0x394a40;
+    void updateTimeWarp(EffectGameObject*, float);
 
     int m_unk36c8;
     bool m_unk36cc;
