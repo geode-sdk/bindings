@@ -3785,7 +3785,7 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
     virtual void songIDChanged(int) = win 0xb40d0, imac 0x241e90, m1 0x1f15f4, ios 0x112fc4;
     virtual int getActiveSongID() = win 0xb4110, m1 0x1f1650, imac 0x241f10, ios 0x113020;
     virtual gd::string getSongFileName() = win 0xb4130, m1 0x1f1688, imac 0x241f70, ios 0x113058;
-    virtual LevelSettingsObject* getLevelSettings() = m1 0x1f16a0, imac 0x241f90, ios 0x113078;
+    virtual LevelSettingsObject* getLevelSettings() = m1 0x1f16a0, imac 0x241f90, ios 0x113078 { return nullptr; }
 
     void loadFromObject(SongInfoObject*) = ios 0x105228, win 0xb3f10, imac 0x2323a0, m1 0x1e2320;
     void onDelete(cocos2d::CCObject* sender);
