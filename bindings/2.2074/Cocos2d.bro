@@ -948,8 +948,9 @@ class cocos2d::CCSkewTo : cocos2d::CCActionInterval {
         return pSkewTo;
     }
 
+    [[since("4.2.1")]]
     CCSkewTo() = ios inline {
-	m_fSkewX = 0.0;
+        m_fSkewX = 0.0;
         m_fSkewY = 0.0;
         m_fStartSkewX = 0.0;
         m_fStartSkewY = 0.0;
