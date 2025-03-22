@@ -810,6 +810,11 @@ public class SyncBromaScript extends GhidraScript {
                 enumType = enumDataType;
             }
 
+            if (line.contains("};")) {
+                wrapper.printfmt("Imported 0 enum values for {0}", name);
+                continue;
+            }
+
             var enumDataType = enumType;
             var values = new HashMap<String, Integer>();
             var total = -1;
