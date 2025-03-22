@@ -776,10 +776,6 @@ public class SyncBromaScript extends GhidraScript {
                     }
                 }
 
-                if (classDataMembers.isZeroLength() && offset > 0) {
-                    classDataMembers.growStructure(offset);
-                }
-
                 // classDataMembers.setPackingEnabled(true);
                 // classDataMembers.repack();
             }
