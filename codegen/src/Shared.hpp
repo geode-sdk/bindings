@@ -219,6 +219,7 @@ namespace codegen {
 
     inline bool shouldAndroidBind(const FunctionBindField* fn) {
         if (codegen::platform == Platform::Android32 || codegen::platform == Platform::Android64) {
+            if (sdkVersion < fn->prototype.attributes.since) return false;
             if (fn->prototype.type != FunctionType::Normal) return true;
             for (auto& [type, name] : fn->prototype.args) {
                 if (can_find(type.name, "gd::")) return true;
