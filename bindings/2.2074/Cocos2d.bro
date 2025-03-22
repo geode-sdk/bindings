@@ -2781,8 +2781,8 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
     // CCSprite(cocos2d::CCSprite const&);
     CCSprite() = imac 0x2762a0, m1 0x221864, ios 0x2379f0;
     ~CCSprite() = imac 0x276d00, m1 0x221938, ios 0x237a78;
-    bool isFlipX() = imac 0x278460;
-    bool isFlipY() = imac 0x2784b0;
+    bool isFlipX() = m1 0x222e30, imac 0x278460;
+    bool isFlipY() = m1 0x222e64, imac 0x2784b0;
     bool isTextureRectRotated();
     void updateColor();
 
