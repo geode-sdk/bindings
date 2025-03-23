@@ -751,7 +751,7 @@ public class SyncBromaScript extends GhidraScript {
                                     ScriptWrapper.formatType(existing.getDataType()), existing.getFieldName()
                                 )
                             ) {
-                                continue;
+                                break;
                             }
                         }
                         for (int i = length; i > 0; i -= 1) {
