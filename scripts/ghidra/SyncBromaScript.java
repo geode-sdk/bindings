@@ -198,7 +198,7 @@ public class SyncBromaScript extends GhidraScript {
 
     boolean overwriteAll = false;
 
-    private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force, boolean ignoreReturnType) throws Exception {
+    private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force) throws Exception {
         final var name = fun.getName();
         final var className = fun.parent.name.value;
         final var fullName = className + "::" + name;
@@ -254,7 +254,7 @@ public class SyncBromaScript extends GhidraScript {
 
         // Get the calling convention
         final var conv = fun.getCallingConvention(args.platform);
-        final var bromaSig = wrapper.getBromaSignature(fun, args.platform, ignoreReturnType);
+        final var bromaSig = wrapper.getBromaSignature(fun, args.platform, false);
 
         // Check for mismatches between the Broma and Ghidra signatures
         var signatureConflict = false;
@@ -295,12 +295,15 @@ public class SyncBromaScript extends GhidraScript {
             signatureConflict = false;
         }
         if (signatureConflict) {
-            askContinueConflict(
+            if (!askContinueConflict(
                 "Signature doesn't match",
                 "Ghidra has a function signature {0} that doesn't match Broma's signature {1} - do you want to override it?",
                 new Signature(data.getReturn(), Arrays.asList(data.getParameters())),
                 bromaSig
-            );
+            )) {
+                return status;
+            }
+
             status = status.promoted(SignatureImport.UPDATED);
         }
 
@@ -458,7 +461,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 var addr = currentProgram.getImageBase().add(offset);
 
-                switch (importSignatureFromBroma(addr, fun, false, false)) {
+                switch (importSignatureFromBroma(addr, fun, false)) {
                     case ADDED: {
                         importedAddCount += 1;
                         wrapper.printfmt("Added {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
@@ -594,11 +597,10 @@ public class SyncBromaScript extends GhidraScript {
                 ) {
                     broma.addPatch(bromaFun.returnType.get().range, fun.getReturnType().getDisplayName());
                     exportedTypeCount += 1;
-                    returnTypeUpdated = true;
                 }
 
                 // Get the function signature from Broma
-                importSignatureFromBroma(child.getAddress(), bromaFun, false, !returnTypeUpdated);
+                importSignatureFromBroma(child.getAddress(), bromaFun, false);
 
                 // Export parameter names
                 int skipCount = 0;
@@ -622,11 +624,13 @@ public class SyncBromaScript extends GhidraScript {
                 if (bromaFun.platformOffset.isPresent()) {
                     var bromaOffset = Long.parseLong(bromaFun.platformOffset.get().value, 16);
                     if (bromaOffset != Broma.PLACEHOLDER_ADDR && bromaOffset != ghidraOffset) {
-                        askContinueConflict(
+                        if (!askContinueConflict(
                             "Address mismatch",
                             "Function {0} has the address 0x{1} in the Broma but the address 0x{2} in Ghidra - do you want to override the Broma's address?",
                             fullName, Long.toHexString(bromaOffset), Long.toHexString(ghidraOffset)
-                        );
+                        )) {
+                            continue;
+                        }
                         exportedAddrCount += 1;
                         broma.addPatch(bromaFun.platformOffset.get().range, String.format("%x", ghidraOffset));
                     }
@@ -735,9 +739,8 @@ public class SyncBromaScript extends GhidraScript {
                         if (existing != null && existing.getDataType() instanceof Undefined) {
                             if (
                                 !existing.getDataType().isEquivalent(memType) ||
-                                (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value))
-                            ) {
-                                askContinueConflict(
+                                (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value)) &&
+                                !askContinueConflict(
                                     "Override member",
                                     "Member #{0} in {1} does not match between Broma and Ghidra:\n" + 
                                     "Broma: {2} {3}\n" + 
@@ -746,7 +749,9 @@ public class SyncBromaScript extends GhidraScript {
                                     existing.getOrdinal(), fullName,
                                     ScriptWrapper.formatType(memType), mem.name.get().value,
                                     ScriptWrapper.formatType(existing.getDataType()), existing.getFieldName()
-                                );
+                                )
+                            ) {
+                                continue;
                             }
                         }
                         for (int i = length; i > 0; i -= 1) {
@@ -1037,13 +1042,11 @@ public class SyncBromaScript extends GhidraScript {
         return bromaClass;
     }
 
-    void askContinueConflict(String title, String fmt, Object... args) throws Exception {
-        if (!askYesNo(title, MessageFormat.format(
+    boolean askContinueConflict(String title, String fmt, Object... args) throws Exception {
+        return askYesNo(title, MessageFormat.format(
             fmt + "\nIf this is not the case, please fix the conflict manually in the Broma file!",
             args
-        ))) {
-			throw new CancelledException();
-        }
+        ));
     }
 
     int askContinueConflict(String title, List<String> options, String fmt, Object... args) throws Exception {

@@ -672,6 +672,46 @@ public class ScriptWrapper {
         menuHandlerSelector.setCallingConvention("__thiscall");
         manager.addDataType(menuHandlerSelector, DataTypeConflictHandler.REPLACE_HANDLER);
 
+        // cocos2d::SEL_CallFunc
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "SEL_CallFunc"));
+        var callFuncSelector = new FunctionDefinitionDataType(cat, cat.getName());
+        callFuncSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform),
+                "The target object for this callback"
+            ),
+        });
+        callFuncSelector.setReturnType(VoidDataType.dataType);
+        callFuncSelector.setCallingConvention("__thiscall");
+        manager.addDataType(callFuncSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::extension::SEL_HttpResponse
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "extension", "SEL_HttpResponse"));
+        var httpResponseSelector = new FunctionDefinitionDataType(cat, cat.getName());
+        httpResponseSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform),
+                "The target object for this callback"
+            ),
+            new ParameterDefinitionImpl(
+                "client",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::extension::CCHttpClient"), platform),
+                "The HTTP client object"
+            ),
+            new ParameterDefinitionImpl(
+                "response",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::extension::CCHttpResponse"), platform),
+                "The HTTP response object"
+            ),
+        });
+        httpResponseSelector.setReturnType(VoidDataType.dataType);
+        httpResponseSelector.setCallingConvention("__thiscall");
+        manager.addDataType(httpResponseSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
         // geode::SeedValueSRV etc.
 
         for (var x : new String[] { "SR", "RS", "VRS", "VSR", "RVS", "RSV", "SVR", "SRV" }) {
