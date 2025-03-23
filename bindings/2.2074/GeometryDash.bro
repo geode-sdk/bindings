@@ -6951,8 +6951,8 @@ class GameLevelOptionsLayer : GJOptionsLayer {
 
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
-    virtual ~GameManager() = win 0x177af0;
-    // GameManager() = win 0x1721e0, ios 0x32eafc;
+    // virtual ~GameManager();
+    // GameManager() = win 0x177af0, ios 0x32eafc;
 
     static GameManager* get() {
         return GameManager::sharedState();
