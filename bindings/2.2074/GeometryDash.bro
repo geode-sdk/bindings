@@ -6793,7 +6793,7 @@ class GameLevelManager : cocos2d::CCNode {
         m_storedUserInfo->removeObjectForKey(id);
     }
     void resetStoredUserList(UserListType);
-    void resetTimerForKey(char const*);
+    void resetTimerForKey(char const*) = win 0x147fe0, m1 0x47ecac, imac 0x522d00;
     void restoreItems() = m1 0x49ca38, imac 0x543a30;
     void saveFetchedLevelLists(cocos2d::CCArray* lists) = win inline {
         for (int i = 0; i < lists->count(); i++) {
@@ -15918,7 +15918,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     gd::string pathForSongFolder(int) = win 0x329db0, imac 0x578290, m1 0x4cbe10;
     void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int) = imac 0x572e60, m1 0x4c7030, win 0x327a80;
     callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = imac 0x572b10, m1 0x4c6cf0, win 0x327940;
-    void removeDLFromActive(char const*) = imac 0x522d00, m1 0x47ecac;
+    void removeDLFromActive(char const*) = imac 0x573ec0, m1 0x4c7ff4;
     TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
     void showTOS(FLAlertLayerProtocol*) = win 0x32a2f0, imac 0x578c60, m1 0x4cc5ec;
     void songStateChanged() = win 0x328120, m1 0x4c80f8, imac 0x573fa0;
