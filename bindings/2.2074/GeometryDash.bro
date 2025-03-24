@@ -4356,7 +4356,7 @@ class DynamicScrollDelegate {
 class EditButtonBar : cocos2d::CCNode {
     // virtual ~EditButtonBar();
 
-    static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows) = ios 0x418b98, win 0xd2f40, imac 0x5c99e0, m1 0x4fe2c0;
+    static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint size, int tab, bool hasCreateItems, int columns, int rows) = ios 0x418b98, win 0xd2f40, imac 0x5c99e0, m1 0x4fe2c0;
 
     int getPage();
     void goToPage(int);
@@ -4503,12 +4503,12 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
     void doResetUnused();
     bool init(LevelEditorLayer*) = ios 0x394950, win 0xd8990, imac 0x27f220, m1 0x228bbc;
-    void onAlignX(cocos2d::CCObject* sender) = win 0xdb9e0;
-    void onAlignY(cocos2d::CCObject* sender) = win 0xdba10;
-    void onBuildHelper(cocos2d::CCObject* sender) = win 0xdb7b0;
+    void onAlignX(cocos2d::CCObject* sender) = win 0xdb9e0, m1 0x22b9d4, imac 0x282020;
+    void onAlignY(cocos2d::CCObject* sender) = win 0xdba10, m1 0x22ba08, imac 0x282050;
+    void onBuildHelper(cocos2d::CCObject* sender) = win 0xdb7b0, m1 0x22b9a8, imac 0x281fc0;
     void onCopyWColor(cocos2d::CCObject* sender) = win 0xdb7f0;
     void onCreateExtras(cocos2d::CCObject* sender) = win 0xdb760;
-    void onCreateLoop(cocos2d::CCObject* sender) = win 0xdb7d0;
+    void onCreateLoop(cocos2d::CCObject* sender) = win 0xdb7d0, m1 0x22b9b8, imac 0x281fe0;
     void onCreateTemplate(cocos2d::CCObject* sender);
     void onExitEditor(cocos2d::CCObject* sender) = ios 0x3975d8, win 0xdcd60, m1 0x22c7fc, imac 0x282f40;
     void onExitNoSave(cocos2d::CCObject* sender) = ios 0x396a80, win 0xdce30, imac 0x281ad0, m1 0x22b51c;
@@ -4524,7 +4524,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onSave(cocos2d::CCObject* sender) = win 0xdcbf0, m1 0x22b42c, imac 0x2819f0;
     void onSaveAndExit(cocos2d::CCObject* sender) = ios 0x396970, win 0xdcd20, imac 0x281980, m1 0x22b3c0;
     void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xdc9a0, imac 0x281910, m1 0x22b330, ios 0x3968e0;
-    void onSelectAll(cocos2d::CCObject* sender) = ios 0x396e98, win 0xdb870;
+    void onSelectAll(cocos2d::CCObject* sender) = ios 0x396e98, win 0xdb870, m1 0x22ba3c, imac 0x282090;
     void onSelectAllLeft(cocos2d::CCObject* sender) = ios 0x396ea4, win 0xdb9a0, m1 0x22ba48, imac 0x2820b0;
     void onSelectAllRight(cocos2d::CCObject* sender) = ios 0x396eb4, win 0xdb9c0, m1 0x22ba58, imac 0x2820d0;
     void onSong(cocos2d::CCObject* sender);
@@ -4616,7 +4616,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void scaleXYChanged(float, float, bool) = win 0x113820, imac 0x40590, m1 0x3ad30, ios 0x3e7f6c;
 
     void activateRotationControl(cocos2d::CCObject*) = ios 0x3e6664, win 0x121420, m1 0x3878c, imac 0x3dc70;
-    void activateScaleControl(cocos2d::CCObject*) = win 0x113280;
+    void activateScaleControl(cocos2d::CCObject*) = win 0x113280, m1 0x39c78, imac 0x3f250;
     void activateTransformControl(cocos2d::CCObject*) = win 0x1138d0, m1 0x3aec4, imac 0x40720;
     void addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*) = win 0x114390;
     TodoReturn addSnapPosition(cocos2d::CCPoint);
@@ -4715,7 +4715,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void editObject(cocos2d::CCObject*) = win 0x11a510, m1 0x2b750, imac 0x2b550;
     void editObject2(cocos2d::CCObject*);
     void editObject3(cocos2d::CCObject*);
-    void editObjectSpecial(int) = win 0x11c4b0;
+    void editObjectSpecial(int) = win 0x11c4b0, m1 0x42aa0, imac 0x499d0;
     TodoReturn editorLayerForArray(cocos2d::CCArray*, bool);
     TodoReturn enableButton(CreateMenuItem*);
     TodoReturn findAndSelectObject(int, bool);
@@ -4793,7 +4793,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onLockLayer(cocos2d::CCObject* sender) = ios 0x3e16e8, win 0x11dc00, m1 0x2c7fc, imac 0x2cc80;
     void onNewCustomItem(cocos2d::CCObject* sender) = ios 0x3e073c, win 0xe2990, m1 0x304d0, imac 0x30d30;
     void onPaste(cocos2d::CCObject* sender);
-    void onPasteColor(cocos2d::CCObject* sender) = win 0x112cd0, m1 0x2c5d0;
+    void onPasteColor(cocos2d::CCObject* sender) = win 0x112cd0, m1 0x2c5d0, imac 0x2ca00;
     void onPasteInPlace(cocos2d::CCObject* sender);
     void onPasteState(cocos2d::CCObject* sender) = win 0x112b40, m1 0x2c57c, imac 0x2c9a0;
     void onPause(cocos2d::CCObject* sender) = ios 0x3dc64c, win 0xe03d0, imac 0x2ad50, m1 0x2afc0;
