@@ -12019,7 +12019,7 @@ class GJSearchObject : cocos2d::CCNode {
     GJSearchObject* getNextPageObject();
     GJSearchObject* getPageObject(int page) = win 0x171d90, imac 0x54aca0, m1 0x4a312c;
     GJSearchObject* getPrevPageObject() = imac 0x54af60;
-    char const* getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x171f00, m1 0x4a2da8, imac 0x54a780;
+    static char const* getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x171f00, m1 0x4a2da8, imac 0x54a780;
     bool init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode);
     bool isLevelSearchObject() = win 0x1721e0, imac 0x54af80, m1 0x4a3330, ios 0xb4078;
 
