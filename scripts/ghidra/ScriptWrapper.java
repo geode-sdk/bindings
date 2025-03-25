@@ -558,33 +558,57 @@ public class ScriptWrapper {
         else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) { // libc++
             cat = this.createCategoryAll(category.extend("gd", "string_long"));
             var stringLong = new StructureDataType(cat, cat.getName(), 0x0);
-            stringLong.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
+            if (platform == Platform.MAC_INTEL) {
+                stringLong.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
+            } else {
+                stringLong.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            }
             stringLong.add(sizeType, pointerSize, "length", "The length of the string without the terminating null byte");
-            stringLong.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            if (platform == Platform.MAC_INTEL) {
+                stringLong.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            } else {
+                stringLong.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
+            }
             stringLong.setPackingEnabled(true);
 
             cat = this.createCategoryAll(category.extend("gd", "string_short"));
             var stringShort = new StructureDataType(cat, cat.getName(), 0x0);
-            stringShort.add(new ArrayDataType(CharDataType.dataType, 0x17, 0x1), 0x17, "data", "The string data");
-            stringShort.add(CharDataType.dataType, 0x1, "size", "The size of the string data");
+            if (platform == Platform.MAC_INTEL) {
+                stringShort.add(ByteDataType.dataType, 0x1, "size", "The size of the string data");
+            }
+            stringShort.add(new ArrayDataType(CharDataType.dataType, pointerSize * 3 - 1, 0x1), pointerSize * 3 - 1, "data", "The string data");
+            if (platform != Platform.MAC_INTEL) {
+                stringShort.add(ByteDataType.dataType, 0x1, "size", "The size of the string data");
+            }
 
             cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
             var stringDataUnion = new UnionDataType(cat, cat.getName());
             stringDataUnion.add(stringLong, pointerSize * 3, "long", "Long string data");
-            stringDataUnion.add(stringShort, 0x18, "short", "Short string data");
-            stringDataUnion.add(new ArrayDataType(CharDataType.dataType, 0x18, 0x1), 0x18, "raw", "Raw string data");
+            stringDataUnion.add(stringShort, pointerSize * 3, "short", "Short string data");
 
             cat = this.createCategoryAll(category.extend("gd", "string"));
             var string = new StructureDataType(cat, cat.getName(), 0x0);
-            string.add(stringDataUnion, 0x18, "data", "String data with SSO");
+            string.add(stringDataUnion, pointerSize * 3, "data", "String data with SSO");
             string.setPackingEnabled(true);
 
             manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) { // libstdc++
+            cat = this.createCategoryAll(category.extend("gd", "string_data"));
+            var stringData = new StructureDataType(cat, cat.getName(), 0x0);
+            stringData.add(sizeType, pointerSize, "length", "The length of the string without the terminating null byte");
+            stringData.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
+            stringData.add(IntegerDataType.dataType, 0x4, "refcount", "Reference count for copy-on-write");
+            stringData.setPackingEnabled(true);
+
+            cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
+            var stringDataUnion = new UnionDataType(cat, cat.getName());
+            stringDataUnion.add(new PointerDataType(stringData), pointerSize, "data", "Pointer to the string information");
+            stringDataUnion.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+
             cat = this.createCategoryAll(category.extend("gd", "string"));
             var string = new StructureDataType(cat, cat.getName(), 0x0);
-            string.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            string.add(stringDataUnion, pointerSize, "data", "String data");
             string.setPackingEnabled(true);
 
             manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
