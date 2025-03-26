@@ -5361,13 +5361,13 @@ class EndLevelLayer : GJDropDownLayer {
     const char* getEndText() = win 0x135190, m1 0x6c7abc, imac 0x4aea80;
     void goEdit() = win 0x1336e0;
     bool init(PlayLayer* playLayer);
-    void onEdit(cocos2d::CCObject* sender) = win 0x1335e0;
+    void onEdit(cocos2d::CCObject* sender) = win 0x1335e0, m1 0x417a1c, imac 0x4aed20;
     void onEveryplay(cocos2d::CCObject* sender);
     void onHideLayer(cocos2d::CCObject* sender) = win 0x1337b0, imac 0x4aef70, m1 0x417c94;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x132c30;
-    void onMenu(cocos2d::CCObject* sender) = win 0x133460;
-    void onReplay(cocos2d::CCObject* sender) = win 0x133250;
-    void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x133890;
+    void onMenu(cocos2d::CCObject* sender) = win 0x133460, m1 0x417918, imac 0x4aec30;
+    void onReplay(cocos2d::CCObject* sender) = win 0x133250, m1 0x4177f4, imac 0x4aeb30;
+    void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x133890, m1 0x417ab8, imac 0x4aedb0;
     void playCoinEffect(float) = win 0x133fb0, m1 0x41825c, imac 0x4af550;
     void playCurrencyEffect(float) = win 0x134560;
     void playDiamondEffect(float) = win 0x1349f0;
