@@ -8193,7 +8193,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getBonusDiamonds(int) = imac 0x71260, m1 0x64c78;
     GJChallengeItem* getChallenge(int) = ios 0x333cf4, win 0x1dee70, m1 0x66a90, imac 0x73000;
     TodoReturn getChallengeKey(GJChallengeItem*) = m1 0x66e24, imac 0x73370;
-    int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1dabd0;
+    int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1dabd0, m1 0x608b4, imac 0x6cd40;
     cocos2d::CCArray* getCompletedMapPacks() = win 0x1dc180, imac 0x6e6c0, m1 0x6230c;
     gd::string getCurrencyKey(GJGameLevel* level) = win inline, m1 0x64184, imac 0x70790 {
         auto dailyID = level->m_dailyID.value();
