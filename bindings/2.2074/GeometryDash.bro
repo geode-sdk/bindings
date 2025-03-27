@@ -7268,7 +7268,7 @@ class GameManager : GManager {
     TodoReturn tryShowInterstitial(int, int, int);
     TodoReturn unloadBackground();
     void unloadIcon(int, int, int) = ios 0x317ea4, win 0x17f050, m1 0x30016c, imac 0x36ee80;
-    void unloadIcons(int);
+    void unloadIcons(int) = win 0x17f310, m1 0x3008e4, imac 0x36f5c0;
     TodoReturn unlockColor(int, UnlockType);
     TodoReturn unlockedPremium();
     void unlockIcon(int, IconType);
