@@ -195,5 +195,17 @@ class EnterEffectAnimValue {
 }
 
 class DynamicMoveCalculation {
-	// todo
+	PAD = win 0x18;
+}
+
+class SavedActiveObjectState {
+	PAD = win 0x10;
+}
+
+class SavedSpecialObjectState {
+	PAD = win 0x10;
+}
+
+class SavedObjectStateRef {
+	PAD = win 0x30;
 }
