@@ -10033,9 +10033,9 @@ class GJEffectManager : cocos2d::CCNode {
     void playerButton(bool, bool) = win 0x25ae00, imac 0x2d61b0, m1 0x277110;
     void playerDied();
     TodoReturn postCollisionCheck() = win 0x254f50, imac 0x2cc390;
-    TodoReturn postMoveActions() = win 0x259470, imac 0x2d4110;
+    void postMoveActions() = win 0x259470, imac 0x2d4110;
     TodoReturn preCollisionCheck() = imac 0x2cc370;
-    TodoReturn prepareMoveActions(float, bool) = win 0x258060, imac 0x2d16c0;
+    void prepareMoveActions(float, bool) = win 0x258060, imac 0x2d16c0;
     TodoReturn processColors() = win 0x253fb0, imac 0x2ca520;
     TodoReturn processCopyColorPulseActions() = imac 0x2cabf0;
     TodoReturn processInheritedColors() = imac 0x2ca840;
@@ -10090,7 +10090,7 @@ class GJEffectManager : cocos2d::CCNode {
     void updatePulseEffects(float) = win 0x259e30, imac 0x2cb9a0, m1 0x26e850;
     TodoReturn updateSpawnTriggers(float) = win 0x25aa10;
     void updateTimer(int, double) = win 0x25b850;
-    TodoReturn updateTimers(float, float) = win 0x25b9e0, imac 0x2d82a0;
+    void updateTimers(float, float) = win 0x25b9e0, imac 0x2d82a0;
     TodoReturn wasFollowing(int, int);
     TodoReturn wouldCreateLoop(InheritanceNode*, int);
 
