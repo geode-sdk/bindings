@@ -20843,7 +20843,49 @@ class SetupTransformPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDelegate, SliderDelegate {
     // virtual ~SetupTriggerPopup();
-    SetupTriggerPopup() = win 0x8d6c0;
+    SetupTriggerPopup() = win 0x8d6c0, ios 0x10260 {
+        m_gameObject = nullptr;
+        m_gameObjects = nullptr;
+        m_touchTriggered = false;
+        m_spawnTriggered = false;
+        m_touchToggle = nullptr;
+        m_spawnToggle = nullptr;
+        m_multiTriggerContainer = nullptr;
+        m_multiTriggered = false;
+        m_width = 0.f;
+        m_height = 0.f;
+        m_disableTextDelegate = false;
+        m_valueToggles = nullptr;
+        m_inputNodes = nullptr;
+        m_valueControls = nullptr;
+        m_customValueToggles = nullptr;
+        m_disableButtons = nullptr;
+        m_easingLabel = nullptr;
+        m_easingRateLabel = nullptr;
+        m_easingRateButton = nullptr;
+        m_easingType = EasingType::None;
+        m_easingRate = 0.f;
+        m_inputLabels = nullptr;
+        m_triggerValues = nullptr;
+        m_minSliderValues = nullptr;
+        m_maxSliderValues = nullptr;
+        m_shouldLimitValues = {};
+        m_disableSliderDelegate = false;
+        m_effectObjects = false;
+        m_pageContainers = nullptr;
+        m_page = 0;
+        m_easingControlScale = 1.f;
+        m_groupContainers = nullptr;
+        m_customEasingTags = nullptr;
+        m_customEasingLabels = nullptr;
+        m_customEasingButtons = nullptr;
+        m_customEasingScales = nullptr;
+        m_disabledEasingButtons = nullptr;
+        m_prevButton = nullptr;
+        m_nextButton = nullptr;
+        m_hideAll = false;
+    }
+    ~SetupTriggerPopup() = win 0x45b6e0, m1 0x1d5b60, imac 0x222a30, ios 0x1313a4;
 
     static SetupTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*, float, float, int);
     static SetupTriggerPopup* create(float, float);
