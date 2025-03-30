@@ -74,11 +74,31 @@ int main(int argc, char** argv) try {
     std::filesystem::create_directories(writeDir);
 
     // parse extra arguments
-    bool skipPugixml = false;
+    std::vector<std::string> extraArgs;
     for (int i = 4; i < argc; i++) {
         std::string arg = argv[i];
+        size_t space;
+        while ((space = arg.find(" ")) != std::string::npos) {
+            extraArgs.push_back(arg.substr(0, space));
+            arg.erase(0, space + 1);
+        }
+        extraArgs.push_back(arg);
+    }
+
+    bool skipPugixml = false;
+    bool versionSet = false;
+    for (int i = 0; i < extraArgs.size(); i++) {
+        auto& arg = extraArgs[i];
         if (arg == "--skip-pugixml") {
             skipPugixml = true;
+        } else if (arg.starts_with("--sdk-version")) {
+            if (arg.starts_with("--sdk-version=")) {
+                codegen::sdkVersion = codegen::Version::fromString(arg.substr(14));
+                versionSet = true;
+            } else if (arg == "--sdk-version" && i + 1 < extraArgs.size()) {
+                codegen::sdkVersion = codegen::Version::fromString(extraArgs[++i]);
+                versionSet = true;
+            }
         }
     }
 
@@ -104,6 +124,18 @@ int main(int argc, char** argv) try {
     }
 
     codegen::populateIds(root);
+
+    if (!versionSet) {
+        if (auto sdkPath = std::getenv("GEODE_SDK")) {
+            auto versionPath = std::filesystem::path(sdkPath) / "VERSION";
+            if (std::filesystem::exists(versionPath)) {
+                std::ifstream versionFile(versionPath);
+                std::string version;
+                std::getline(versionFile, version);
+                codegen::sdkVersion = codegen::Version::fromString(version);
+            }
+        }
+    }
 
     if (codegen::platform == Platform::Mac) {
         // on macos, build both platform headers together and then let the preprocessor handle the platform selection

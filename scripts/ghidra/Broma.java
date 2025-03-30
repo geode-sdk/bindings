@@ -316,6 +316,7 @@ public class Broma {
         public final List<Function> functions;
         public final List<Member> members;
         public final Range beforeClosingBrace;
+        public final boolean hasBases;
 
         private Class(Broma broma, Platform platform, Matcher matcher) {
             super(broma, matcher);
@@ -324,6 +325,7 @@ public class Broma {
             functions = new ArrayList<Function>();
             members = new ArrayList<Member>();
             beforeClosingBrace = new Range(matcher.start("closingbrace"), matcher.start("closingbrace"));
+            hasBases = matcher.group("bases") != null;
 
             // Check if this class is linked
             var attrs = matcher.group("attrs");
