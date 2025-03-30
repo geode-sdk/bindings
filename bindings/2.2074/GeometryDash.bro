@@ -8927,8 +8927,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void activatePlayerControlTrigger(PlayerControlGameObject*);
     TodoReturn activateResetTrigger(EffectGameObject*);
     void activateSFXEditTrigger(SFXTriggerGameObject*) = win 0x23b8c0;
-    void activateSFXTrigger(SFXTriggerGameObject*) = win 0x23b6c0, m1 0x11f100, imac 0x149850;
-    void activateSongEditTrigger(SongTriggerGameObject*) = win 0x23b3b0, m1 0x11eec4, imac 0x1495f0;
+    void activateSFXTrigger(SFXTriggerGameObject*) = win 0x23b6c0, m1 0x11f100, imac 0x149850, ios 0x204ff0;
+    void activateSongEditTrigger(SongTriggerGameObject*) = win 0x23b3b0, m1 0x11eec4, imac 0x1495f0, ios 0x204e8c;
     void activateSongTrigger(SongTriggerGameObject*) = win 0x23b030, m1 0x11ec1c, imac 0x1492c0;
     TodoReturn activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&);
     void addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType) = win 0x2221a0;
@@ -14968,7 +14968,7 @@ class LevelTools {
     static TodoReturn toggleDebugLogging(bool);
     static gd::string urlForAudio(int) = win 0x3146f0, m1 0x44d310, imac 0x4eb7f0;
     static TodoReturn valueForSpeedMod(int);
-    static bool verifyLevelIntegrity(gd::string, int) = win 0x318500, imac 0x4ee730, m1 0x44fb5c;
+    static bool verifyLevelIntegrity(gd::string, int) = win 0x318500, imac 0x4ee730, m1 0x44fb5c, ios 0x1ac6e8;
     static gd::string ytURLForArtist(int) = win 0x315eb0, m1 0x44dc2c, imac 0x4ec5c0;
 }
 
@@ -16809,7 +16809,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void resetTouchedRings(bool) = ios 0x22798c, win 0x3824b0, imac 0x4010d0;
     TodoReturn reverseMod();
     void reversePlayer(EffectGameObject*) = ios 0x2297ac, win 0x382600, imac 0x4041e0, m1 0x382044;
-    void ringJump(RingObject*, bool) = win 0x382dd0, imac 0x402c50, m1 0x380dec;
+    void ringJump(RingObject*, bool) = win 0x382dd0, imac 0x402c50, m1 0x380dec, ios 0x228ac0;
     void rotateGameplay(int, int, bool, float, float, bool, bool) = win 0x383fc0;
     TodoReturn rotateGameplayObject(GameObject*) = win 0x37b5c0;
     void rotateGameplayOnly(bool param) = win inline {
