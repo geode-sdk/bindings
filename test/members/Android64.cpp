@@ -392,7 +392,7 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkFloat7, 0x174);
 GEODE_MEMBER_CHECK(GJGameState, m_unkFloat8, 0x178);
 GEODE_MEMBER_CHECK(GJGameState, m_cameraAngle, 0x17c);
 GEODE_MEMBER_CHECK(GJGameState, m_targetCameraAngle, 0x180);
-GEODE_MEMBER_CHECK(GJGameState, m_unk184, 0x184);
+GEODE_MEMBER_CHECK(GJGameState, m_playerStreakBlend, 0x184);
 GEODE_MEMBER_CHECK(GJGameState, m_timeWarp, 0x188);
 GEODE_MEMBER_CHECK(GJGameState, m_timeWarpRelated, 0x18c);
 GEODE_MEMBER_CHECK(GJGameState, m_currentChannel, 0x190);
