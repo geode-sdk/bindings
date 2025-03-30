@@ -5089,7 +5089,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     }
     TodoReturn fadeInBackgroundMusic(float) = imac 0x3d3c80;
     void fadeInMusic(float, int) = win 0x5c3c0;
-    float fadeOutMusic(float, int) = win 0x5c500;
+    void fadeOutMusic(float, int) = win 0x5c500;
     TodoReturn getActiveMusic(int);
     FMOD::Channel* getActiveMusicChannel(int musicChannel) {
     	// TODO: this might do other checks or whatever but i cant be bothered
