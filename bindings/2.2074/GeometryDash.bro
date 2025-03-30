@@ -16931,7 +16931,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateSpecial(float) = ios 0x21e1a0, imac 0x3f0f70;
     TodoReturn updateStateVariables();
     TodoReturn updateStaticForce(float, float, bool);
-    void updateStreakBlend(bool) = imac 0x3eb160, win 0x372f30;
+    void updateStreakBlend(bool) = win 0x372f30, m1 0x36ce30, imac 0x3eb160;
     TodoReturn updateStreaks(float);
     void updateSwingFire() = ios 0x229e5c, win 0x385040, m1 0x382814, imac 0x4049f0;
     void updateTimeMod(float, bool) = ios 0x219b6c, win 0x38afc0, imac 0x3ea990, m1 0x36c61c;
@@ -20871,7 +20871,6 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
         m_triggerValues = nullptr;
         m_minSliderValues = nullptr;
         m_maxSliderValues = nullptr;
-        m_shouldLimitValues = {};
         m_disableSliderDelegate = false;
         m_effectObjects = false;
         m_pageContainers = nullptr;
