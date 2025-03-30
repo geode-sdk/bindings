@@ -35,7 +35,7 @@ public class Regexes {
                 // Grab attributes
                 "(?<attrs>\\[\\[.*?\\]\\]\\s*)?" + 
                 // Grab name
-                "class (?<name>{0})\\s+(?::.*?)?" + 
+                "class (?<name>{0})\\s+(?<bases>:.*?)?" + 
                 // Grab body (assuming closing brace is on its own line without any preceding whitespace)
                 "\\'{'(?<body>.*?)(?<closingbrace>^\\'})'",
                 className
@@ -58,7 +58,7 @@ public class Regexes {
                 "\\(\\s*(?<params>(?:{1}\\s*,?\\s*)*)\\)" +
                 "(?:"+
                     // Grab the platforms
-                    "(?:\\s*=\\s*(?<platforms>(?:\\w+\\s+0x[0-9a-fA-F]+\\s*,?\\s*)+))" + 
+                    "(?:\\s*=\\s*(?<platforms>(?:\\w+\\s+(?:0x[0-9a-fA-F]+|inline)\\s*,?\\s*)+))" + 
                     // Or the body
                     "|(?<inlinebody>(?=\\s*\\'{'))" +
                     // Or where we can add platforms
@@ -104,7 +104,7 @@ public class Regexes {
     public static final Pattern GRAB_CLASS = grabClass("(?:\\w+::)*\\w+");
     public static final Pattern GRAB_TYPE = generateRecursiveRegex(
         "(?<lconst>\\bconst\\s+)?(?<sign>\\b(?:signed|unsigned)\\s+)?(?<name>(?:\\w+::)*\\w+)(?<template><(?:{0})(?:\\s*,\\s*(?:{0}))*>)?(?<rconst>\\s+const\\b)?(?<ptr>\\s*\\*+)?(?<ref>\\s*&+)?",
-        2,
+        3,
         "__depth_limit",
         Pattern.DOTALL
     );

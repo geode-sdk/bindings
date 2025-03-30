@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
@@ -22,15 +23,14 @@ import ghidra.program.model.data.Composite;
 import ghidra.program.model.data.DataTypeConflictHandler;
 import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
+import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined;
-import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
-import ghidra.program.model.listing.ParameterImpl;
 import ghidra.program.model.listing.Variable;
 import ghidra.program.model.listing.VariableStorage;
 import ghidra.program.model.symbol.SourceType;
@@ -48,6 +48,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean exportToBroma;
         boolean setOptcall;
         boolean syncMembers;
+        boolean syncEnums;
 
         public Args(ScriptWrapper wrapper, Path bindingsDir) throws Exception {
             this.run(wrapper, bindingsDir);
@@ -98,12 +99,19 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Export to Broma", b -> this.exportToBroma = b);
             this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
+            this.bool("Sync enums", b -> this.syncEnums = b);
 
             this.waitForAnswers();
 
             if (this.platform == Platform.WINDOWS32 || this.platform == Platform.WINDOWS64) {
-                bromaFiles = List.of(this.selectedBromaFile);
+                // Extras.bro is an extension of GeometryDash.bro, include it as well
+                bromaFiles = this.selectedBromaFile.equals("GeometryDash.bro") ? 
+                    List.of("Extras.bro", "GeometryDash.bro") : List.of(this.selectedBromaFile);
             }
+            else {
+                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "GeometryDash.bro");
+            }
+
             this.bromaFiles = bromaFiles.stream()
                 .map(f -> Paths.get(bindingsDir.toString(), this.gameVersion, f))
                 .toList();
@@ -126,13 +134,36 @@ public class SyncBromaScript extends GhidraScript {
             this.bromas.add(new Broma(bro, args.platform));
         }
 
-        wrapper.updateTypeDatabase();
+        // Read classes
+        wrapper.classes.addAll(this.bromas.stream()
+            .map(b -> b.classes.stream().map(c -> c.name.value).toList())
+            .flatMap(List::stream)
+            .toList());
+
+        wrapper.printfmt("Found {0} classes in Broma", wrapper.classes.size());
+
+        // Read enums
+        var enumPath = Paths.get(wrapper.bindingsDir.toString(), "include", "Geode", "Enums.hpp");
+        if (Files.exists(enumPath)) {
+            for (var line : Files.readAllLines(enumPath)) {
+                if (line.startsWith("enum class")) {
+                    wrapper.enums.add(line.split(" ")[2]);
+                }
+            }
+        }
+
+        wrapper.printfmt("Found {0} enums in Broma", wrapper.enums.size());
+
+        wrapper.updateTypeDatabase(args.platform);
 
         // Do the imports and exports and members
         if (this.args.importFromBroma) {
             this.handleImport();
             if (this.args.syncMembers) {
                 this.handleImportMembers();
+            }
+            if (this.args.syncEnums) {
+                this.handleImportEnums();
             }
         }
         if (this.args.exportToBroma) {
@@ -165,7 +196,9 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
-    private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force, boolean ignoreReturnType) throws Exception {
+    boolean overwriteAll = false;
+
+    private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force) throws Exception {
         final var name = fun.getName();
         final var className = fun.parent.name.value;
         final var fullName = className + "::" + name;
@@ -192,11 +225,12 @@ public class SyncBromaScript extends GhidraScript {
             !force &&
             data.getSymbol().getSource() == SourceType.USER_DEFINED &&
             !data.getName(true).equals(fullName) && 
-            !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName))
+            !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName)) &&
+            !overwriteAll
         ) {
             int choice = askContinueConflict(
                 "Function has a different name",
-                List.of("Add to merged functions list", "Overwrite Ghidra name"),
+                List.of("Add to merged functions list", "Overwrite Ghidra name", "Overwrite all"),
                 "The function {0} at {1} from Broma already has the name " + 
                 "{2} in Ghidra - is this function merged with that?",
                 fullName, Long.toHexString(addr.getOffset()), data.getName(true)
@@ -209,6 +243,7 @@ public class SyncBromaScript extends GhidraScript {
                 wrapper.printfmt("Added {0} to merged function list for {1}", fullName, data.getName(true));
                 return SignatureImport.ADDED_MERGED;
             }
+            overwriteAll = choice == 2;
         }
 
         if (data.getSymbol().getSource() != SourceType.USER_DEFINED) {
@@ -219,7 +254,7 @@ public class SyncBromaScript extends GhidraScript {
 
         // Get the calling convention
         final var conv = fun.getCallingConvention(args.platform);
-        final var bromaSig = wrapper.getBromaSignature(fun, ignoreReturnType);
+        final var bromaSig = wrapper.getBromaSignature(fun, args.platform, false);
 
         // Check for mismatches between the Broma and Ghidra signatures
         var signatureConflict = false;
@@ -260,29 +295,16 @@ public class SyncBromaScript extends GhidraScript {
             signatureConflict = false;
         }
         if (signatureConflict) {
-            askContinueConflict(
+            if (!askContinueConflict(
                 "Signature doesn't match",
                 "Ghidra has a function signature {0} that doesn't match Broma's signature {1} - do you want to override it?",
                 new Signature(data.getReturn(), Arrays.asList(data.getParameters())),
                 bromaSig
-            );
-            status = status.promoted(SignatureImport.UPDATED);
-        }
+            )) {
+                return status;
+            }
 
-        // todo: Figure this out
-        // So for some undecipherable reason `EditorUI::init` will *not* decompile 
-        // in Ghidra unless `ButtonSprite::create` has a meaningless unused arg 
-        // at the end of its stack list. Why? I spent an entire day trying to 
-        // figure that one out, and I couldn't. If someone can, please let me know 
-        // so I can remove this ugly hotfix :'(
-        // Same hotfix is in overload resolution in handleExport
-        if (addr.subtract(currentProgram.getImageBase()) == 0x1fb90) {
-            bromaSig.parameters.add(new ParameterImpl(
-                "__see_SyncBromaScript_line_" + Thread.currentThread().getStackTrace()[0].getLineNumber(),
-                Undefined1DataType.dataType,
-                currentProgram,
-                SourceType.USER_DEFINED
-            ));
+            status = status.promoted(SignatureImport.UPDATED);
         }
 
         var shouldReorderParams = 
@@ -439,7 +461,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 var addr = currentProgram.getImageBase().add(offset);
 
-                switch (importSignatureFromBroma(addr, fun, false, false)) {
+                switch (importSignatureFromBroma(addr, fun, false)) {
                     case ADDED: {
                         importedAddCount += 1;
                         wrapper.printfmt("Added {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
@@ -505,12 +527,8 @@ public class SyncBromaScript extends GhidraScript {
                     // For this to be possible, every arg must match type exactly
                     tryMatchFun:
                     for (var tryMatch : bromaFuns) {
-                        var sig = wrapper.getBromaSignature(tryMatch, false);
-                        // Same hotfix as the other reference to offset 0x1fb90
+                        var sig = wrapper.getBromaSignature(tryMatch, args.platform, false);
                         var paramCount = fun.getParameterCount();
-                        if (ghidraOffset == 0x1fb90) {
-                            paramCount -= 1;
-                        }
                         if (paramCount != sig.parameters.size()) {
                             continue tryMatchFun;
                         }
@@ -579,11 +597,10 @@ public class SyncBromaScript extends GhidraScript {
                 ) {
                     broma.addPatch(bromaFun.returnType.get().range, fun.getReturnType().getDisplayName());
                     exportedTypeCount += 1;
-                    returnTypeUpdated = true;
                 }
 
                 // Get the function signature from Broma
-                importSignatureFromBroma(child.getAddress(), bromaFun, false, !returnTypeUpdated);
+                importSignatureFromBroma(child.getAddress(), bromaFun, false);
 
                 // Export parameter names
                 int skipCount = 0;
@@ -607,11 +624,13 @@ public class SyncBromaScript extends GhidraScript {
                 if (bromaFun.platformOffset.isPresent()) {
                     var bromaOffset = Long.parseLong(bromaFun.platformOffset.get().value, 16);
                     if (bromaOffset != Broma.PLACEHOLDER_ADDR && bromaOffset != ghidraOffset) {
-                        askContinueConflict(
+                        if (!askContinueConflict(
                             "Address mismatch",
                             "Function {0} has the address 0x{1} in the Broma but the address 0x{2} in Ghidra - do you want to override the Broma's address?",
                             fullName, Long.toHexString(bromaOffset), Long.toHexString(ghidraOffset)
-                        );
+                        )) {
+                            continue;
+                        }
                         exportedAddrCount += 1;
                         broma.addPatch(bromaFun.platformOffset.get().range, String.format("%x", ghidraOffset));
                     }
@@ -655,7 +674,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 // Make sure the category exists
                 wrapper.createCategoryAll(category);
-                final var classDataTypePath = new DataTypePath(category, name + "_data");
+                final var classDataTypePath = new DataTypePath(category, name + (cls.hasBases ? "_data" : ""));
                 var classDataMembers = (Structure) manager.getDataType(classDataTypePath);
 
                 if (classDataMembers == null) {
@@ -664,7 +683,7 @@ public class SyncBromaScript extends GhidraScript {
                         continue;
                     }
                     // Otherwise create data members struct
-                    classDataMembers = new StructureDataType(name + "_data", 0);
+                    classDataMembers = new StructureDataType(name + (cls.hasBases ? "_data" : ""), 0);
                     manager.getCategory(category).addDataType(classDataMembers, DataTypeConflictHandler.DEFAULT_HANDLER);
                 }
                 wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
@@ -688,9 +707,16 @@ public class SyncBromaScript extends GhidraScript {
                 for (var mem : cls.members) {
                     int length;
                     if (mem.name.isPresent()) {
-                        final var memType = wrapper.addOrGetType(mem.type.get());
-                        length = memType.getLength();
-                        offset += offset % memType.getAlignment();
+                        // Placeholder member for a doubly inherited virtual table
+                        if (fullName.equals("UILayer") && mem.name.get().value.equals("m_stupidDelegate")) {
+                            continue;
+                        }
+
+                        final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
+                        boolean isPointer = memType instanceof PointerDataType;
+                        length = isPointer ? manager.getDataOrganization().getPointerSize() : memType.getLength();
+                        int alignment = isPointer ? length : memType.getAlignment();
+                        offset = (offset + alignment - 1) / alignment * alignment;
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
@@ -707,15 +733,14 @@ public class SyncBromaScript extends GhidraScript {
                     }
 
                     if (mem.name.isPresent()) {
-                        final var memType = wrapper.addOrGetType(mem.type.get());
+                        final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
                         // Make sure alignment is correct
                         var existing = classDataMembers.getComponentAt(offset);
                         if (existing != null && existing.getDataType() instanceof Undefined) {
                             if (
                                 !existing.getDataType().isEquivalent(memType) ||
-                                (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value))
-                            ) {
-                                askContinueConflict(
+                                (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value)) &&
+                                !askContinueConflict(
                                     "Override member",
                                     "Member #{0} in {1} does not match between Broma and Ghidra:\n" + 
                                     "Broma: {2} {3}\n" + 
@@ -724,19 +749,21 @@ public class SyncBromaScript extends GhidraScript {
                                     existing.getOrdinal(), fullName,
                                     ScriptWrapper.formatType(memType), mem.name.get().value,
                                     ScriptWrapper.formatType(existing.getDataType()), existing.getFieldName()
-                                );
+                                )
+                            ) {
+                                break;
                             }
                         }
-                        for (int i = memType.getLength(); i > 0; i -= 1) {
+                        for (int i = length; i > 0; i -= 1) {
                             classDataMembers.clearAtOffset(offset + i - 1);
                         }
                         classDataMembers.replaceAtOffset(
                             offset,
-                            memType, memType.getLength(),
+                            memType, length,
                             mem.name.get().value,
                             mem.getComment().orElse(null)
                         );
-                        offset += memType.getLength();
+                        offset += length;
                     }
                     else {
                         if (mem.paddings.containsKey(args.platform)) {
@@ -752,16 +779,85 @@ public class SyncBromaScript extends GhidraScript {
                             );
                         }
                     }
-
-                    // todo: Funky little hack to fix GameObject_data not fitting inside EndGameObject
-                    if (fullName.equals("GameObject") && offset > 0x26e) {
-                        break;
-                    }
                 }
 
                 // classDataMembers.setPackingEnabled(true);
                 // classDataMembers.repack();
             }
+        }
+    }
+
+    private void handleImportEnums() throws Exception {
+        final var manager = currentProgram.getDataTypeManager();
+        final var enumPath = Paths.get(wrapper.bindingsDir.toString(), "include", "Geode", "Enums.hpp");
+        if (!Files.exists(enumPath)) {
+            return;
+        }
+
+        wrapper.printfmt("Importing enums...");
+        var lines = Files.readAllLines(enumPath);
+        for (int i = 0; i < lines.size(); i += 1) {
+            var line = lines.get(i);
+            if (!line.startsWith("enum class")) {
+                continue;
+            }
+
+            var name = line.split(" ")[2];
+            var enumCategory = manager.getCategory(new CategoryPath("/ClassDataTypes/" + name));
+            if (enumCategory == null) {
+                continue;
+            }
+
+            var enumType = enumCategory.getDataType(name);
+            if (enumType == null) {
+                var enumDataType = new EnumDataType(name, 4);
+                enumCategory.addDataType(enumDataType, DataTypeConflictHandler.DEFAULT_HANDLER);
+                enumType = enumDataType;
+            }
+
+            if (line.contains("};")) {
+                wrapper.printfmt("Imported 0 enum values for {0}", name);
+                continue;
+            }
+
+            var enumDataType = enumType;
+            var values = new HashMap<String, Integer>();
+            var total = -1;
+            for (i += 1; i < lines.size(); i += 1) {
+                var valueLine = lines.get(i);
+                if (valueLine.contains("};")) {
+                    break;
+                }
+
+                var parts = valueLine.split("=");
+                var key = parts[0].trim();
+                if (key.startsWith("//")) {
+                    continue;
+                }
+
+                var value = 0;
+                if (parts.length > 1) {
+                    var valueString = parts[1].split(",")[0].trim();
+                    value = valueString.startsWith("0x") ? Integer.parseInt(valueString.substring(2), 16) : Integer.parseInt(valueString);
+                    total = value;
+                } else {
+                    key = key.split(",")[0].trim();
+                    value = ++total;
+                }
+
+                values.put(key, value);
+            }
+
+            for (var value : values.keySet()) {
+                var dataTypeEnum = (ghidra.program.model.data.Enum)enumDataType;
+                try {
+                    dataTypeEnum.getValue(value);
+                } catch (NoSuchElementException e) {
+                    dataTypeEnum.add(value, values.get(value));
+                }
+            }
+
+            wrapper.printfmt("Imported {0} enum values for {1}", values.size(), name);
         }
     }
 
@@ -814,7 +910,7 @@ public class SyncBromaScript extends GhidraScript {
 
             // Handle exporting paddings
             if (mem.getDataType() instanceof Undefined) {
-                var pad = new PaddingInfo(mem.getComment());
+                var pad = new PaddingInfo(mem.getComment(), args.platform);
 
                 // If this padding is different between different platforms, 
                 // skip any members inside that padding region 
@@ -833,7 +929,7 @@ public class SyncBromaScript extends GhidraScript {
                         int lastPaddingIndex = i;
                         int originalPadRegionEndIndex = type.getNumComponents() - 1;
                         for (var j = i; j < type.getNumComponents(); j += 1) {
-                            var opad = new PaddingInfo(type.getComponent(j).getComment());
+                            var opad = new PaddingInfo(type.getComponent(j).getComment(), args.platform);
                             if (opad.offset == pad.offset) {
                                 lastPaddingIndex = j;
                             }
@@ -886,7 +982,7 @@ public class SyncBromaScript extends GhidraScript {
                 else {
                     var length = 0;
                     for (var j = i; j < type.getNumComponents(); j += 1) {
-                        var opad = new PaddingInfo(type.getComponent(j).getComment());
+                        var opad = new PaddingInfo(type.getComponent(j).getComment(), args.platform);
                         if (opad.offset != pad.offset) {
                             break;
                         }
@@ -946,13 +1042,11 @@ public class SyncBromaScript extends GhidraScript {
         return bromaClass;
     }
 
-    void askContinueConflict(String title, String fmt, Object... args) throws Exception {
-        if (!askYesNo(title, MessageFormat.format(
+    boolean askContinueConflict(String title, String fmt, Object... args) throws Exception {
+        return askYesNo(title, MessageFormat.format(
             fmt + "\nIf this is not the case, please fix the conflict manually in the Broma file!",
             args
-        ))) {
-			throw new CancelledException();
-        }
+        ));
     }
 
     int askContinueConflict(String title, List<String> options, String fmt, Object... args) throws Exception {

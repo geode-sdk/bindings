@@ -13,8 +13,8 @@ using namespace geode::modifier;
 using cocos2d::CCDestructor;
 
 std::unordered_map<void*, bool>& CCDestructor::destructorLock() {{
-	static auto ret = new std::unordered_map<void*, bool>;
-	return *ret;
+	static thread_local std::unordered_map<void*, bool> ret;
+	return ret;
 }}
 bool& CCDestructor::globalLock() {{
 	static thread_local bool ret = false;
@@ -93,6 +93,21 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
+	constexpr char const* declare_destructor_baseless = R"GEN(
+{class_name}::{function_name}({parameters}) {{
+	// basically we destruct it once by calling the gd function, 
+	// then lock it, so that other gd destructors dont get called
+	if (CCDestructor::lock(this)) return;
+	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
+	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
+		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
+		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
+	}});
+	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
+	CCDestructor::lock(this) = true;
+}}
+)GEN";
+
 	constexpr char const* declare_constructor = R"GEN(
 {class_name}::{function_name}({parameters}) : {class_name}(geode::CutoffConstructor, sizeof({class_name})) {{
 	// here we construct it as normal as we can, then destruct it
@@ -144,13 +159,25 @@ auto {function_name}({parameters}) -> decltype({function_name}({arguments})) {{
 	return reinterpret_cast<FunctionType>(func)({arguments});
 }}
 )GEN";
+
+	constexpr char const* declare_standalone_definition = R"GEN(
+{return} {function_name}({parameters}) {definition}
+)GEN";
 }}
 
-std::string generateBindingSource(Root const& root) {
+std::string generateBindingSource(Root const& root, bool skipPugixml) {
 	std::string output(format_strings::source_start);
 
 	for (auto& f : root.functions) {
         if (codegen::getStatus(f) != BindStatus::NeedsBinding) {
+			if (codegen::getStatus(f) == BindStatus::Inlined) {
+				output += fmt::format(format_strings::declare_standalone_definition,
+					fmt::arg("return", f.prototype.ret.name),
+					fmt::arg("function_name", f.prototype.name),
+					fmt::arg("parameters", codegen::getParameters(f.prototype)),
+					fmt::arg("definition", f.inner)
+				);
+			}
             continue;
         }
 
@@ -166,6 +193,11 @@ std::string generateBindingSource(Root const& root) {
     }
 
 	for (auto& c : root.classes) {
+		if (skipPugixml) {
+			if (c.name.starts_with("pugi::")) {
+				continue;
+			}
+		}
 
 		for (auto& f : c.fields) {
 			if (auto i = f.get_as<InlineField>()) {
@@ -230,7 +262,7 @@ std::string generateBindingSource(Root const& root) {
 								}
 								break;
 							case FunctionType::Dtor:
-								used_declare_format = format_strings::declare_destructor;
+								used_declare_format = c.superclasses.empty() ? format_strings::declare_destructor_baseless : format_strings::declare_destructor;
 								break;
 						}
 
@@ -240,7 +272,7 @@ std::string generateBindingSource(Root const& root) {
 							used_declare_format = format_strings::declare_virtual;
 					}
 
-					output += fmt::format(used_declare_format,
+					output += fmt::format(fmt::runtime(used_declare_format),
 						fmt::arg("class_name", c.name),
 						fmt::arg("unqualified_class_name", codegen::getUnqualifiedClassName(c.name)),
 						fmt::arg("const", str_if(" const ", fn->prototype.is_const)),

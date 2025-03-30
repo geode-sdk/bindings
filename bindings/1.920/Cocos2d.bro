@@ -51,6 +51,8 @@ class cocos2d::CCDirector {
 class cocos2d::CCEGLView {
 	static cocos2d::CCEGLView* sharedOpenGLView();
 
+	void toggleFullScreen(bool);
+
 	virtual void end();
 	virtual void isOpenGLReady();
 	virtual void swapBuffers();
@@ -393,6 +395,11 @@ class cocos2d::CCNode {
 }
 
 [[link(win, android)]]
+class cocos2d::CCScene {
+	int getHighestChildZ();
+}
+
+[[link(win, android)]]
 class cocos2d::CCScheduler {
 	virtual void update(float dt);
 	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool);
@@ -411,6 +418,15 @@ class cocos2d::CCScheduler {
 	cocos2d::CCSet* pauseAllTargets();
 	cocos2d::CCSet* pauseAllTargetsWithMinPriority(int);
 	void resumeTargets(cocos2d::CCSet*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCSprite {
+	static cocos2d::CCSprite* create(char const*);
+	static cocos2d::CCSprite* createWithSpriteFrameName(char const*);
+
+	virtual bool initWithSpriteFrame(cocos2d::CCSpriteFrame*);
+	virtual bool initWithSpriteFrameName(char const*);
 }
 
 [[link(win, android)]]
@@ -447,6 +463,12 @@ class cocos2d::CCTouchDispatcher {
 [[link(win, android)]]
 class cocos2d::extension::CCHttpClient {
 	void send(cocos2d::extension::CCHttpRequest*);
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCControlUtils {
+	static cocos2d::extension::HSV HSVfromRGB(cocos2d::extension::RGBA);
+	static cocos2d::extension::RGBA RGBfromHSV(cocos2d::extension::HSV);
 }
 
 [[link(win, android)]]
@@ -487,6 +509,12 @@ class cocos2d::CCMouseDispatcher {
 }
 
 [[link(win, android)]]
+class cocos2d::ZipUtils {
+	static gd::string decompressString(gd::string, bool);
+	static gd::string decompressString2(unsigned char* data, bool decrypt, int size);
+}
+
+[[link(win, android)]]
 class DS_Dictionary {
 	bool getBoolForKey(const char*);
 	float getFloatForKey(const char*);
@@ -505,9 +533,14 @@ class DS_Dictionary {
 	void setArrayForKey(const char*, cocos2d::CCArray*);
 	cocos2d::CCObject* getObjectForKey(const char*);
 	void setObjectForKey(const char*, cocos2d::CCObject*);
+
 	bool loadRootSubDictFromFile(const char*);
 	bool loadRootSubDictFromString(gd::string);
 	bool loadRootSubDictFromCompressedFile(const char*);
+
+	bool saveRootSubDictToCompressedFile(const char*);
+	bool saveRootSubDictToFile(const char*);
+	gd::string saveRootSubDictToString();
 }
 
 [[link(win, android)]]
