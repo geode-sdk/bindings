@@ -5363,7 +5363,7 @@ class EndLevelLayer : GJDropDownLayer {
     bool init(PlayLayer* playLayer);
     void onEdit(cocos2d::CCObject* sender) = win 0x1335e0, m1 0x417a1c, imac 0x4aed20;
     void onEveryplay(cocos2d::CCObject* sender);
-    void onHideLayer(cocos2d::CCObject* sender) = win 0x1337b0, imac 0x4aef70, m1 0x417c94;
+    void onHideLayer(cocos2d::CCObject* sender) = win 0x1337b0, imac 0x4aef70, m1 0x417c94, ios 0x2f7420;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x132c30;
     void onMenu(cocos2d::CCObject* sender) = win 0x133460, m1 0x417918, imac 0x4aec30;
     void onReplay(cocos2d::CCObject* sender) = win 0x133250, m1 0x4177f4, imac 0x4aeb30;
@@ -6051,7 +6051,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn getMusicChannelID(int);
     unsigned int getMusicLengthMS(int channel) = win 0x5c330;
     TodoReturn getMusicTime(int);
-    unsigned int getMusicTimeMS(int channel) = win 0x5c2d0, m1 0x35d310, imac 0x3d7660;
+    unsigned int getMusicTimeMS(int channel) = win 0x5c2d0, m1 0x35d310, imac 0x3d7660, ios 0x141ab4;
     TodoReturn getNextChannelID();
     TodoReturn getTweenContainer(AudioTargetType);
     bool isAnyPersistentPlaying();
@@ -13230,7 +13230,7 @@ class HSVWidgetPopup : FLAlertLayer {
 class InfoAlertButton : CCMenuItemSpriteExtra {
     // virtual ~InfoAlertButton();
 
-    static InfoAlertButton* create(gd::string title, gd::string desc, float spriteScale) = win 0x2b2d80, m1 0x4b57b8, imac 0x55ec10;
+    static InfoAlertButton* create(gd::string title, gd::string desc, float spriteScale) = win 0x2b2d80, m1 0x4b57b8, imac 0x55ec10, ios 0x16e934;
 
     virtual void activate() = win 0x2b2f80, imac 0x55ee90, m1 0x4b5a48, ios 0x16eb48;
 
