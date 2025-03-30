@@ -6051,7 +6051,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn getMusicChannelID(int);
     unsigned int getMusicLengthMS(int channel) = win 0x5c330;
     TodoReturn getMusicTime(int);
-    unsigned int getMusicTimeMS(int channel) = win 0x5c2d0, m1 0x35d310, imac 0x3d7660;
+    unsigned int getMusicTimeMS(int channel) = win 0x5c2d0, m1 0x35d310, imac 0x3d7660, ios 0x141ab4;
     TodoReturn getNextChannelID();
     TodoReturn getTweenContainer(AudioTargetType);
     bool isAnyPersistentPlaying();
