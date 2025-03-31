@@ -1,10 +1,10 @@
 [[link(win, android)]]
 class cocos2d::CCEGLViewProtocol {
-	CCEGLViewProtocol() = win 0xbac00;
-	virtual ~CCEGLViewProtocol() = win 0xbacc0;
-	auto getViewPortRect() const = m1 0x46e314, imac 0x518860;
-	auto getScaleX() const;
-	auto getScaleY() const;
+    CCEGLViewProtocol() = win 0xbac00;
+    virtual ~CCEGLViewProtocol() = win 0xbacc0;
+    auto getViewPortRect() const = m1 0x46e314, imac 0x518860;
+    auto getScaleX() const;
+    auto getScaleY() const;
 
 	virtual cocos2d::CCSize const& getFrameSize() const = imac 0x517f00, m1 0x46da58, ios 0x2f78d4;
 	virtual void setFrameSize(float, float) = imac 0x517f10, m1 0x46da60, ios 0x2f78dc;
@@ -687,10 +687,10 @@ class cocos2d::CCProgressTimer {
 
 [[link(win, android)]]
 class cocos2d::CCFadeIn {
-	static cocos2d::CCFadeIn* create(float) = imac 0x3bde30, m1 0x341bc8;
+    static cocos2d::CCFadeIn* create(float) = imac 0x3bde30, m1 0x341bc8;
 
-	// CCFadeIn(cocos2d::CCFadeIn const&);
-	// CCFadeIn();
+    // CCFadeIn(cocos2d::CCFadeIn const&);
+    // CCFadeIn();
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x3bded0, m1 0x341c54, ios 0x198540;
     virtual void update(float) = ios 0x1985f8;
@@ -806,26 +806,7 @@ class cocos2d::CCGLProgram {
 }
 
 [[link(win, android)]]
-class cocos2d::CCRGBAProtocol
-{
-	virtual void setColor(const ccColor3B& color);
-	virtual const ccColor3B& getColor();
-	virtual const ccColor3B& getDisplayedColor();
-	virtual GLubyte getDisplayedOpacity();
-	virtual GLubyte getOpacity();
-	virtual void setOpacity(GLubyte opacity);
-	virtual void setOpacityModifyRGB(bool bValue);
-	virtual bool isOpacityModifyRGB();
-	virtual bool isCascadeColorEnabled();
-	virtual void setCascadeColorEnabled(bool cascadeColorEnabled);
-	virtual void updateDisplayedColor(const ccColor3B& color);
-	virtual bool isCascadeOpacityEnabled();
-	virtual void setCascadeOpacityEnabled(bool cascadeOpacityEnabled);
-	virtual void updateDisplayedOpacity(GLubyte opacity);
-}
-
-[[link(win, android)]]
-class cocos2d::CCNode : cocos2d::CCObject {
+class cocos2d::CCNode {
 	static cocos2d::CCNode* create() = imac 0x26ee60, m1 0x215170, ios 0x24bbfc;
 	static void resetGlobalOrderOfArrival();
 
@@ -979,45 +960,6 @@ class cocos2d::CCNode : cocos2d::CCObject {
 	virtual void removeAllComponents() = m1 0x21726c, imac 0x271110, ios 0x24d5a0;
 	virtual void updateTweenAction(float, char const*) = m1 0x2171c4, imac 0x271020, ios 0x24d50c;
 	virtual void updateTweenActionInt(float, int) = m1 0x2171c8, imac 0x271030, ios 0x24d510;
-
-	float m_fRotationX;
-	float m_fRotationY;
-	float m_fScaleX;
-	float m_fScaleY;
-	float m_fVertexZ;
-	CCPoint m_obPosition;
-	float m_fSkewX;
-	float m_fSkewY;
-	CCPoint m_obAnchorPointInPoints;
-	CCPoint m_obAnchorPoint;
-	CCSize m_obContentSize;
-	CCAffineTransform m_sAdditionalTransform;
-	CCAffineTransform m_sTransform;
-	CCAffineTransform m_sInverse;
-	CCCamera* m_pCamera;
-	CCGridBase* m_pGrid;
-	CCArray* m_pChildren;
-	CCNode* m_pParent;
-	void* m_pUserData;
-	CCObject* m_pUserObject;
-	CCGLProgram* m_pShaderProgram;
-	ccGLServerState m_eGLServerState;
-	CCScheduler* m_pScheduler;
-	CCActionManager* m_pActionManager;
-	bool m_bRunning;
-	bool m_bTransformDirty;
-	bool m_bInverseDirty;
-	bool m_bAdditionalTransformDirty;
-	PAD = win 0xa, android32 0xa, android64 0xa, mac 0xa, ios 0xa;
-	bool m_bVisible;
-	bool m_bIgnoreAnchorPointForPosition;
-	bool m_bReorderChildDirty;
-	int m_nScriptHandler;
-	int m_nUpdateScriptHandler;
-	ccScriptType m_eScriptType;
-	CCComponentContainer* m_pComponentContainer;
-	bool m_bUnkBool1;
-	bool m_bUnkBool2;
 }
 
 [[link(win, android)]]
@@ -1151,22 +1093,8 @@ class cocos2d::CCLayerGradient {
 	virtual bool isCompressedInterpolation() = imac 0x4bdd20, m1 0x41e788, ios 0x154fa8;
 }
 
-//[[link(win, android)]]
-//class cocos2d::CCCopying
-//{
-//	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
-//}
-
-//[[link(win, android)]]
-//class cocos2d::CCDestructor : cocos2d::CCCopying {
-//	static std::unordered_map<void*, bool>& destructorLock();
-//	static bool& globalLock();
-//	static bool& lock(void* self);
-//	~CCDestructor();
-//}
-
 [[link(win, android)]]
-class cocos2d::CCObject : cocos2d::CCDestructor {
+class cocos2d::CCObject {
 	static cocos2d::CCObject* createWithCoder(DS_Dictionary*);
 
 	// CCObject(cocos2d::CCObject const&);
@@ -1724,7 +1652,7 @@ class cocos2d::CCDirector {
 }
 
 [[link(win, android)]]
-class cocos2d::CCNodeRGBA : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
+class cocos2d::CCNodeRGBA {
 	static cocos2d::CCNodeRGBA* create() = ios inline {
 		auto pRet = new cocos2d::CCNodeRGBA();
 
@@ -1778,21 +1706,7 @@ class cocos2d::CCSequence {
 }
 
 [[link(win, android)]]
-class cocos2d::CCBlendProtocol
-{
-	virtual void setBlendFunc(ccBlendFunc blendFunc);
-	virtual ccBlendFunc getBlendFunc();
-}
-
-[[link(win, android)]]
-class cocos2d::CCTextureProtocol : cocos2d::CCBlendProtocol
-{
-	virtual CCTexture2D* getTexture();
-	virtual void setTexture(CCTexture2D *texture);
-}
-
-[[link(win, android)]]
-class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
+class cocos2d::CCSprite {
 	static cocos2d::CCSprite* create(char const*) = imac 0x2843b0, m1 0x22905c, ios 0x247ca0;
 	static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&);
 	static cocos2d::CCSprite* create() = imac 0x2846b0, m1 0x229354;
@@ -1889,32 +1803,6 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
 
 	virtual void setTexture(cocos2d::CCTexture2D*) = m1 0x22b5c8, imac 0x2871d0, ios 0x249de0;
 	virtual cocos2d::CCTexture2D* getTexture() = m1 0x22b708, imac 0x287340, ios 0x249f20;
-
-	CCTextureAtlas*     m_pobTextureAtlas;
-	unsigned int        m_uAtlasIndex;
-	CCSpriteBatchNode*  m_pobBatchNode;
-	bool                m_bDirty;
-	bool                m_bRecursiveDirty;
-	bool                m_bHasChildren;
-	bool                m_bShouldBeHidden;
-	CCAffineTransform   m_transformToBatch;
-	ccBlendFunc        m_sBlendFunc;
-	CCTexture2D*       m_pobTexture;
-	CCRect m_obRect;
-	bool   m_bRectRotated;
-	CCPoint m_obOffsetPosition;
-	CCPoint m_obUnflippedOffsetPositionFromCenter;
-	ccV3F_C4B_T2F_Quad m_sQuad;
-	bool m_bOpacityModifyRGB;
-	bool m_bFlipX;
-	bool m_bFlipY;
-	bool m_bDontDraw;
-	float m_fTlVertexMod;
-	float m_fTrVertexMod;
-	float m_fBlVertexMod;
-	float m_fBrVertexMod;
-	PAD = win 0x10, android32 0x10, android64 0x10, mac 0x10, ios 0x10;
-	bool m_bUnknown;
 }
 
 [[link(win, android)]]
@@ -2384,6 +2272,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		CC_SAFE_RELEASE(m_pStencil);
 		m_pStencil = pStencil;
 		CC_SAFE_RETAIN(m_pStencil);
+
 		m_fAlphaThreshold = 1;
 		m_bInverted = false;
 		// get (only once) the number of bits of the stencil buffer
@@ -2398,24 +2287,25 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 			//}
 			once = false;
 		}
+
 		return true;
 	}
 
 	virtual void onEnter() = imac 0x72c550, m1 0x63f210, ios inline {
 		CCNode::onEnter();
-			m_pStencil->onEnter();
+    		m_pStencil->onEnter();
 	}
 	virtual void onEnterTransitionDidFinish() = imac 0x72c580, m1 0x63f23c, ios inline {
 		CCNode::onEnterTransitionDidFinish();
-			m_pStencil->onEnterTransitionDidFinish();
+    		m_pStencil->onEnterTransitionDidFinish();
 	}
 	virtual void onExit() = imac 0x72c5e0, m1 0x63f298, ios inline {
 		m_pStencil->onExit();
-			CCNode::onExit();
+    		CCNode::onExit();
 	}
 	virtual void onExitTransitionDidStart() = imac 0x72c5b0, m1 0x63f268, ios inline {
 		m_pStencil->onExitTransitionDidStart();
-			CCNode::onExitTransitionDidStart();
+    		CCNode::onExitTransitionDidStart();
 	}
 
 	virtual void visit() = imac 0x72c610, m1 0x63f2c8, ios inline {
@@ -2426,6 +2316,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		//	CCNode::visit();
 		//	return;
 		//}
+
 		// return fast (draw nothing, or draw everything if in inverted mode) if:
 		// - nil stencil node
 		// - or stencil node invisible:
@@ -2438,10 +2329,12 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 			}
 			return;
 		}
+
 		// store the current stencil layer (position in the stencil buffer),
 		// this will allow nesting up to n CCClippingNode,
 		// where n is the number of bits of the stencil buffer.
 		static GLint layer = -1;
+
 		// all the _stencilBits are in use?
 		if (false) // this definetly wont break anything :clueless: //if (layer + 1 == g_sStencilBits)
 		{
@@ -2452,6 +2345,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 				char warning[200] = {0};
 				//snprintf(warning, sizeof(warning), "Nesting more than %d stencils is not supported. Everything will be drawn without stencil for this node and its childs.", g_sStencilBits);
 				CCLOG("%s", warning);
+
 				once = false;
 			}
 			// draw everything, as if there where no stencil
@@ -2471,6 +2365,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		GLint mask_layer_l = mask_layer - 1;
 		// mask of all layers less than or equal to the current (ie: for layer 3: 00000111)
 		GLint mask_layer_le = mask_layer | mask_layer_l;
+
 		// manually save the stencil state
 		GLboolean currentStencilEnabled = GL_FALSE;
 		GLuint currentStencilWriteMask = ~0;
@@ -2488,6 +2383,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		glGetIntegerv(GL_STENCIL_FAIL, (GLint *)&currentStencilFail);
 		glGetIntegerv(GL_STENCIL_PASS_DEPTH_FAIL, (GLint *)&currentStencilPassDepthFail);
 		glGetIntegerv(GL_STENCIL_PASS_DEPTH_PASS, (GLint *)&currentStencilPassDepthPass);
+
 		// enable stencil use
 		glEnable(GL_STENCIL_TEST);
 		// check for OpenGL error while enabling stencil test
@@ -2503,6 +2399,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		GLboolean currentDepthWriteMask = GL_TRUE;
 		//currentDepthTestEnabled = glIsEnabled(GL_DEPTH_TEST);
 		glGetBooleanv(GL_DEPTH_WRITEMASK, &currentDepthWriteMask);
+
 		// disable depth test while drawing the stencil
 		//glDisable(GL_DEPTH_TEST);
 		// disable update to the depth buffer while drawing the stencil,
@@ -2537,12 +2434,13 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		//     if in inverted mode: set the current layer value to 0 in the stencil buffer
 		glStencilFunc(GL_NEVER, mask_layer, mask_layer);
 		glStencilOp(!m_bInverted ? GL_REPLACE : GL_ZERO, GL_KEEP, GL_KEEP);
+
 		// enable alpha test only if the alpha threshold < 1,
 		// indeed if alpha threshold == 1, every pixel will be drawn anyways
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 		GLboolean currentAlphaTestEnabled = GL_FALSE;
 		GLenum currentAlphaTestFunc = GL_ALWAYS;
-		GLclampf currentAlphaTestRef = 1;
+    	GLclampf currentAlphaTestRef = 1;
 #endif
 		if (m_fAlphaThreshold < 1) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
@@ -2577,6 +2475,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 		transform();
 		m_pStencil->visit();
 		kmGLPopMatrix();
+
 		// restore alpha test state
 		if (m_fAlphaThreshold < 1)
 		{
@@ -2615,10 +2514,6 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 	void setInverted(bool bInverted) = imac 0x72c9f0, m1 0x63f654, ios inline {
 		m_bInverted = bInverted;
 	}
-
-	CCNode* m_pStencil;
-	GLfloat m_fAlphaThreshold;
-	bool    m_bInverted;
 }
 
 [[link(win, android)]]
@@ -2689,7 +2584,7 @@ class cocos2d::CCSpriteFrame {
 	bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e6674, imac 0x358740;
 	bool initWithTextureFilename(char const* filename, cocos2d::CCRect const& rect) = m1 0x2e630c, imac 0x358320, ios inline {
 		CCRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
-			return initWithTextureFilename(filename, rectInPixels, false, CCPointZero, rectInPixels.size);
+    		return initWithTextureFilename(filename, rectInPixels, false, CCPointZero, rectInPixels.size);
 	}
 	bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2e68d8, imac 0x358a60, ios 0x25db44;
 
