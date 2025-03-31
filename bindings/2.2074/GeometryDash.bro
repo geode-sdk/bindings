@@ -7285,7 +7285,7 @@ class GameManager : GManager {
     TodoReturn tryShowInterstitial(int, int, int);
     TodoReturn unloadBackground();
     void unloadIcon(int, int, int) = ios 0x317ea4, win 0x17f050, m1 0x30016c, imac 0x36ee80;
-    void unloadIcons(int) = win 0x17f310, m1 0x3008e4, imac 0x36f5c0;
+    void unloadIcons(int) = win 0x17f310, m1 0x3008e4, imac 0x36f5c0, ios 0x3181c0;
     TodoReturn unlockColor(int, UnlockType);
     TodoReturn unlockedPremium();
     void unlockIcon(int, IconType);
@@ -10705,7 +10705,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     cocos2d::CCArray* getItems(IconType) = win 0x26ee50, m1 0x2edb68;
     cocos2d::CCArray* getItems(int, int, IconType, int) = ios 0x3058b8, imac 0x35a440, win 0x26ef10;
     gd::string getLockFrame(int, UnlockType) = m1 0x2eeb40;
-    void onArrow(cocos2d::CCObject* sender) = win 0x26e590, imac 0x359460, m1 0x2ecc3c;
+    void onArrow(cocos2d::CCObject* sender) = win 0x26e590, imac 0x359460, m1 0x2ecc3c, ios 0x304c48;
     void onBack(cocos2d::CCObject* sender) = win 0x271750, imac 0x3588c0, m1 0x2ec048;
     void onInfo(cocos2d::CCObject* sender) = win 0x26d190, m1 0x2ec28c, imac 0x358b10;
     void onNavigate(cocos2d::CCObject* sender) = ios 0x305378, win 0x26e690, imac 0x359d50, m1 0x2ed4c8;
@@ -10726,7 +10726,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void showUnlockPopupNew(int, UnlockType);
     gd::string titleForUnlock(int, UnlockType);
     void toggleGlow();
-    void updatePlayerColors() = win 0x2701a0, m1 0x2eaef4, imac 0x3577a0;
+    void updatePlayerColors() = win 0x2701a0, m1 0x2eaef4, imac 0x3577a0, ios 0x3035e8;
     void updatePlayerName(char const*);
 
     CCTextInputNode* m_usernameInput;
@@ -11786,7 +11786,7 @@ class GJRobotSprite : CCAnimatedSprite {
     void showGlow();
     void updateColor01(cocos2d::ccColor3B) = imac 0x5c4a00;
     void updateColor02(cocos2d::ccColor3B);
-    void updateColors() = win 0x29f810, m1 0x4f9af8, imac 0x5c4a20;
+    void updateColors() = win 0x29f810, m1 0x4f9af8, imac 0x5c4a20, ios 0x23faf0;
     void updateFrame(int) = ios 0x23f5ec, win 0x29fdc0, imac 0x5c4140, m1 0x4f9378;
     void updateGlowColor(cocos2d::ccColor3B, bool) = imac 0x5c4d50, m1 0x4f9da0;
 
@@ -13426,7 +13426,7 @@ class ItemInfoPopup : FLAlertLayer {
     // virtual ~ItemInfoPopup();
 
     static ItemInfoPopup* create(int, UnlockType) = ios 0x306750, win 0x273e30, imac 0x35b830, m1 0x2eecf8;
-    static gd::string nameForUnlockType(int, UnlockType) = win 0x275ef0, imac 0x35f670, m1 0x2f26cc;
+    static gd::string nameForUnlockType(int, UnlockType) = win 0x275ef0, imac 0x35f670, m1 0x2f26cc, ios 0x309430;
 
     virtual void keyBackClicked() = win 0x84650, m1 0x2f2a7c, imac 0x35f9b0, ios 0x3095a4;
 
@@ -16777,8 +16777,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn convertToClosestRotation(float);
     void copyAttributes(PlayerObject*) = ios 0x22da24, win 0x38a710, imac 0x409ed0, m1 0x3877bc;
     void createFadeOutDartStreak() = ios 0x229880, win 0x382830, m1 0x382128, imac 0x4042d0;
-    void createRobot(int) = win 0x372180, m1 0x36c034, imac 0x3ea2a0;
-    void createSpider(int) = win 0x372540, m1 0x36c378, imac 0x3ea650;
+    void createRobot(int) = win 0x372180, m1 0x36c034, imac 0x3ea2a0, ios 0x2195f4;
+    void createSpider(int) = win 0x372540, m1 0x36c378, imac 0x3ea650, ios 0x2198e4;
     void deactivateParticle() = ios 0x21d328, m1 0x3709e8, imac 0x3efb60;
     void deactivateStreak(bool stop) = ios 0x21a1dc, win inline, imac 0x3eb090, m1 0x36cd60 {
         if (!m_alwaysShowStreak || stop) m_regularTrail->stopStroke();
@@ -17009,7 +17009,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateSpecial(float) = ios 0x21e1a0, imac 0x3f0f70;
     TodoReturn updateStateVariables();
     TodoReturn updateStaticForce(float, float, bool);
-    void updateStreakBlend(bool) = imac 0x3eb160, win 0x372f30;
+    void updateStreakBlend(bool) = win 0x372f30, m1 0x36ce30, imac 0x3eb160, ios 0x21a244;
     TodoReturn updateStreaks(float);
     void updateSwingFire() = ios 0x229e5c, win 0x385040, m1 0x382814, imac 0x4049f0;
     void updateTimeMod(float, bool) = ios 0x219b6c, win 0x38afc0, imac 0x3ea990, m1 0x36c61c;
@@ -20965,7 +20965,6 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
         m_triggerValues = nullptr;
         m_minSliderValues = nullptr;
         m_maxSliderValues = nullptr;
-        m_shouldLimitValues = {};
         m_disableSliderDelegate = false;
         m_effectObjects = false;
         m_pageContainers = nullptr;
