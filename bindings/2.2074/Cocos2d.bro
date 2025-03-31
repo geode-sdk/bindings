@@ -674,7 +674,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f3e0, ios 0x17a2c0;
     static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f3e0, ios 0x17a1b8;
 
-    bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f6e0, m1 0x4b6180;
+    bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f6e0, m1 0x4b6180, ios 0x17a350;
     bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f530, m1 0x4b5ffc;
 
     bool getDontOpacityFade() const;
@@ -3878,7 +3878,7 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     void setRect(cocos2d::CCRect const&) = imac 0x344a90, m1 0x2d9e34;
     void setRectInPixels(cocos2d::CCRect const&) = imac 0x344b70, m1 0x2d9ed0;
     void setRotated(bool);
-    void setTexture(cocos2d::CCTexture2D*) = imac 0x344a50, m1 0x2d9df0;
+    void setTexture(cocos2d::CCTexture2D*) = imac 0x344a50, m1 0x2d9df0, ios 0x24d5a0;
 
     // CCSpriteFrame(cocos2d::CCSpriteFrame const&);
     [[since("4.2.1")]]
@@ -3898,15 +3898,23 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
     // CCSpriteFrameCache();
     // CCSpriteFrameCache(cocos2d::CCSpriteFrameCache const&);
     void addSpriteFrame(cocos2d::CCSpriteFrame* pobFrame, char const* pszFrameName) = m1 0x29fe38, imac 0x308cb0, ios inline {
-	m_pSpriteFrames->setObject(pobFrame, pszFrameName);
+        m_pSpriteFrames->setObject(pobFrame, pszFrameName);
     }
     void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*) = imac 0x307d30, m1 0x29ee50, ios 0x3b47bc;
     void addSpriteFramesWithFile(char const*, char const*) = m1 0x29f928, imac 0x3088d0;
     void addSpriteFramesWithFile(char const*) = imac 0x308940, m1 0x29f998, ios 0x3b5070;
     void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*) = m1 0x29f8e0, imac 0x308890;
-    void removeSpriteFrameByName(char const*) = m1 0x2a0020, imac 0x308e80;
+    void removeSpriteFrameByName(char const* name) = m1 0x2a0020, imac 0x308e80, ios inline {
+        if (!name) return;
+        if (auto key = static_cast<CCString*>(m_pSpriteFramesAliases->objectForKey(name))) {
+            m_pSpriteFrames->removeObjectForKey(key->getCString());
+            m_pSpriteFramesAliases->removeObjectForKey(name);
+        }
+        else m_pSpriteFrames->removeObjectForKey(name);
+        m_pLoadedFileNames->clear();
+    }
     void removeSpriteFrames() = m1 0x29ff44, imac 0x308db0;
-    void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*) = m1 0x2a05e4, imac 0x309370;
+    void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*) = m1 0x2a05e4, imac 0x309370, ios 0x3b53e4;
     void removeSpriteFramesFromFile(char const*) = m1 0x2a030c, imac 0x309190;
     void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*) = m1 0x2a0830, imac 0x3095d0;
     void removeUnusedSpriteFrames() = m1 0x29ff90, imac 0x308df0;
