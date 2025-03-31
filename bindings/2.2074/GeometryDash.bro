@@ -657,11 +657,11 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     TodoReturn checkSound();
     TodoReturn hideLoadingCircle();
     void loadingIsFinished();
-    bool musicTest() = win 0x83370;
+    bool musicTest() = win 0x83370, ios 0x2687e8;
     void pauseGame() = win 0x82ff0;
     void pauseSound() = win 0x830d0;
     void platformShutdown() = win 0x82560;
-    void resumeSound() = win 0x83270, m1 0x56ea64;
+    void resumeSound() = win 0x83270, m1 0x56ea64, ios 0x26879c;
     void setIdleTimerDisabled(bool);
     void setupGLView() = win 0x82580;
     void showLoadingCircle(bool, bool, bool);
@@ -3924,8 +3924,8 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void onGetSongInfo(cocos2d::CCObject* sender) = win 0xc9c40, imac 0x6047c0, m1 0x531ff4;
     void onInfo(cocos2d::CCObject* sender) = ios 0xfe5e8, win 0xc8d50, m1 0x532aec, imac 0x605410;
     void onMore(cocos2d::CCObject* sender) = win 0xc9360, m1 0x532324, imac 0x604af0;
-    void onPlayback(cocos2d::CCObject* sender) = win 0xc9fd0, imac 0x604850, m1 0x532088;
-    void onSelect(cocos2d::CCObject* sender) = win 0xc9f70, imac 0x604760, m1 0x531f98;
+    void onPlayback(cocos2d::CCObject* sender) = win 0xc9fd0, imac 0x604850, m1 0x532088, ios 0xfdd58;
+    void onSelect(cocos2d::CCObject* sender) = win 0xc9f70, imac 0x604760, m1 0x531f98, ios 0xfdc68;
     void positionInfoObjects() = win 0xc88c0, m1 0x532fec, imac 0x6059f0;
     void processNextMultiAsset() = win 0xcc240, imac 0x6094a0, m1 0x536698;
     void showError(bool) = win 0xcc710, m1 0x53476c;
@@ -6035,7 +6035,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn fadeMusic(float, int, float, float);
     float fadeOutMusic(float, int) = ios 0x141e24, win 0x5c500, m1 0x35d940, imac 0x3d7e20;
     TodoReturn getActiveMusic(int);
-    FMOD::Channel* getActiveMusicChannel(int musicChannel) = win inline, imac 0x3cf390, m1 0x356984 {
+    FMOD::Channel* getActiveMusicChannel(int musicChannel) = win inline, imac 0x3cf390, m1 0x356984, ios 0x13d850 {
         // TODO: this might do other checks or whatever but i cant be bothered
         return m_channelIDToChannel[m_musicChannels[musicChannel].m_channelID];
     }
@@ -6049,7 +6049,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     gd::string getFMODStatus(int) = win 0x5cdb0, imac 0x3d82b0, m1 0x35dce4;
     float getMeteringValue() = imac 0x3d10a0, m1 0x35805c;
     TodoReturn getMusicChannelID(int);
-    unsigned int getMusicLengthMS(int channel) = win 0x5c330;
+    unsigned int getMusicLengthMS(int channel) = win 0x5c330, ios 0x141b44;
     TodoReturn getMusicTime(int);
     unsigned int getMusicTimeMS(int channel) = win 0x5c2d0, m1 0x35d310, imac 0x3d7660, ios 0x141ab4;
     TodoReturn getNextChannelID();
@@ -6068,7 +6068,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void loadMusic(gd::string path) {
         this->loadMusic(path, 1.f, 0.f, 1.f, false, 0, 0, false);
     }
-    void pauseAllAudio() = win inline, imac 0x3cb290, m1 0x353afc {
+    void pauseAllAudio() = win inline, imac 0x3cb290, m1 0x353afc, ios 0x13bb40 {
         if (m_allAudioPaused) return;
         m_allAudioPaused = true;
         m_backgroundMusicChannel->setPaused(true);
@@ -6086,7 +6086,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         }
     }
     TodoReturn pauseEffect(unsigned int);
-    void pauseMusic(int musicChannel) = win inline {
+    void pauseMusic(int musicChannel) = win inline, ios inline {
         auto* channel = this->getActiveMusicChannel(musicChannel);
         if (channel)
             channel->setPaused(true);
@@ -6112,7 +6112,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         m_backgroundMusicChannel->setPaused(false);
         m_globalChannel->setPaused(false);
     }
-    void resumeAllEffects() = win inline, imac 0x3d44b0, m1 0x35aa2c {
+    void resumeAllEffects() = win inline, imac 0x3d44b0, m1 0x35aa2c, ios 0x140064 {
         m_globalChannel->setPaused(false);
     }
     void resumeAllMusic() = ios 0x14034c, win 0x59e80, imac 0x3d49c0, m1 0x35ae5c;
@@ -6139,8 +6139,8 @@ class FMODAudioEngine : cocos2d::CCNode {
         if (m_globalChannel) m_globalChannel->setVolume(volume);
     }
     void setMusicTimeMS(unsigned int, bool, int) = ios 0x13e06c, win 0x5c190, imac 0x3d0290, m1 0x357488;
-    void setup() = win 0x53bc0, m1 0x352b4c, imac 0x3ca220;
-    void setupAudioEngine() = win 0x540a0, m1 0x352f40, imac 0x3ca670;
+    void setup() = win 0x53bc0, m1 0x352b4c, imac 0x3ca220, ios 0x13b128;
+    void setupAudioEngine() = win 0x540a0, m1 0x352f40, imac 0x3ca670, ios 0x13b3b4;
     void start() = win 0x55280;
     TodoReturn startMusic(int, int, int, int, bool, int, bool, bool);
     void stop();
@@ -22000,9 +22000,9 @@ class Slider : cocos2d::CCLayer {
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71d50, m1 0x28aa78, imac 0x2f0c00, ios 0x2ef65c;
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71d30, m1 0x28aa58, imac 0x2f0bc0, ios 0x2ef63c;
 
-    void disableSlider();
+    void disableSlider() = ios 0x2ef448;
     void disableTouch();
-    void enableSlider();
+    void enableSlider() = ios 0x2ef530;
     bool getLiveDragging() {
         return m_touchLogic->m_activateThumb;
     }
