@@ -6051,7 +6051,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void fadeInMusic(float, int) = ios 0x1406b8, win 0x5c3c0, m1 0x35b38c, imac 0x3d4f80;
     TodoReturn fadeMusic(float, int, float, float);
     void fadeOutMusic(float, int) = ios 0x141e24, win 0x5c500, m1 0x35d940, imac 0x3d7e20;
-    TodoReturn getActiveMusic(int);
+    gd::string getActiveMusic(int);
     FMOD::Channel* getActiveMusicChannel(int musicChannel) = win inline, imac 0x3cf390, m1 0x356984 {
         // TODO: this might do other checks or whatever but i cant be bothered
         return m_channelIDToChannel[m_musicChannels[musicChannel].m_channelID];
@@ -9669,8 +9669,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_unk3230;
     bool m_unk3234;
     cocos2d::CCParticleSystemQuad* m_unk3238;
-    bool m_unk3240;
-    bool m_unk3241;
+    bool m_unk3268;
+    bool m_unk3269;
     bool m_playerDied;
     double m_extraDelta;
     bool m_started;
