@@ -64,10 +64,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 target_link_directories(${PROJECT_NAME} PRIVATE ${GEODE_LOADER_PATH}/include/link)
 
-if (GEODE_TARGET_PLATFORM STREQUAL "iOS")
-	return()
-endif()
-
 target_sources(${PROJECT_NAME} PRIVATE ${GEODE_MEMBER_TEST_CODEGEN_PATH}/Geode/GeneratedSource.cpp)
 
 if (WIN32)
@@ -88,6 +84,9 @@ if (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 	target_link_libraries(${PROJECT_NAME} PRIVATE
 		${GEODE_LOADER_PATH}/include/link/macos/libfmod.dylib
 	)
+elseif (GEODE_TARGET_PLATFORM STREQUAL "iOS")
+	set(GEODE_MEMBER_TEST_PLATFORM "ios")
+	set(GEODE_MEMBER_TEST_BINARY "Geode.ios.dylib")
 elseif (GEODE_TARGET_PLATFORM STREQUAL "Win64")
 	set(GEODE_MEMBER_TEST_PLATFORM "win")
 	set(GEODE_MEMBER_TEST_BINARY "Geode.lib")
