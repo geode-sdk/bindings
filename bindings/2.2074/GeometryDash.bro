@@ -13787,7 +13787,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-    LevelBrowserLayer() = win 0x2c05d0 {
+    LevelBrowserLayer() = win 0x2c05d0, ios 0x248f60 {
         m_unk = false;
         m_allSelected = false;
         m_noInternet = nullptr;
@@ -13820,7 +13820,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
         m_delegate = nullptr;
         m_cached = false;
     }
-    ~LevelBrowserLayer() = win 0x2c07c0, imac 0x477f30;
+    ~LevelBrowserLayer() = win 0x2c07c0, m1 0x3e63f8, imac 0x477f30, ios 0x40bffc;
 
     static LevelBrowserLayer* create(GJSearchObject*) = ios 0x40c184, win 0x2c09f0, imac 0x478170, m1 0x3e6590;
     static cocos2d::CCScene* scene(GJSearchObject* search) = ios 0x40c138, win 0x2c09a0, imac 0x478130, m1 0x3e6544;
