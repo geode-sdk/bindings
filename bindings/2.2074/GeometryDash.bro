@@ -6012,7 +6012,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void fadeInMusic(float, int) = win 0x5c3c0, m1 0x35b38c, imac 0x3d4f80;
     TodoReturn fadeMusic(float, int, float, float);
     void fadeOutMusic(float, int) = win 0x5c500, m1 0x35d940, imac 0x3d7e20;
-    TodoReturn getActiveMusic(int);
+    gd::string getActiveMusic(int);
     FMOD::Channel* getActiveMusicChannel(int musicChannel) = win inline, imac 0x3cf390, m1 0x356984 {
         // TODO: this might do other checks or whatever but i cant be bothered
         return m_channelIDToChannel[m_musicChannels[musicChannel].m_channelID];
@@ -9613,8 +9613,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_unk3230;
     bool m_unk3234;
     cocos2d::CCParticleSystemQuad* m_unk3238;
-    bool m_unk3240;
-    bool m_unk3241;
+    bool m_unk3268;
+    bool m_unk3269;
     bool m_playerDied;
     double m_extraDelta;
     bool m_started;
@@ -17395,13 +17395,13 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     float m_unkSomeFloat;
     CheckpointObject* m_currentCheckpoint;
     cocos2d::CCArray* m_checkpointArray;
-    cocos2d::CCArray* m_unk37a8;
-    int m_unk37b0;
-    int m_unk37b4;
-    int m_unk37b8;
-    cocos2d::CCArray* m_unk37c0;
-    int m_unk37c8;
-    int m_unk37cc;
+    cocos2d::CCArray* m_unk3788;
+    int m_unk3790;
+    int m_unk3794;
+    int m_unk3798;
+    cocos2d::CCArray* m_unk37a0;
+    int m_unk37a8;
+    int m_unk37ac;
     cocos2d::CCArray* m_circleWaveArray;
     cocos2d::CCArray* m_unk37d8;
     int m_unk37e0;
