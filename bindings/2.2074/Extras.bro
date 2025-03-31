@@ -294,7 +294,7 @@ class EnterEffectAnimValue {
 }
 
 class DynamicMoveCalculation {
-	// todo
+	PAD = win 0x18;
 }
 
 class tk_spline {

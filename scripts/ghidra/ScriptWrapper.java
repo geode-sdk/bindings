@@ -32,6 +32,7 @@ import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.Pointer;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.ShortDataType;
+import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.UnionDataType;
@@ -50,6 +51,8 @@ import ghidra.program.model.symbol.SourceType;
 import ghidra.util.exception.CancelledException;
 
 public class ScriptWrapper {
+    List<String> classes = new ArrayList<String>();
+    List<String> enums = new ArrayList<String>();
     GhidraScript wrapped;
     Path bindingsDir;
 
@@ -396,10 +399,27 @@ public class ScriptWrapper {
 
             // Try to get this type
             result = manager.getDataType(typePath);
-            if (result == null) {
+            if (
+                result == null || (classes.contains(type.name.value) && !(result instanceof Structure)) ||
+                (enums.contains(type.name.value) && !(result instanceof ghidra.program.model.data.Enum))
+            ) {
+                if (classes.contains(type.name.value)) {
+                    result = manager.addDataType(
+                        new StructureDataType(category, name, 0),
+                        result == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER
+                    );
+                    printfmt("Created new struct {0}", type.name.value);
+                }
+                else if (enums.contains(type.name.value)) {
+                    result = manager.addDataType(
+                        new EnumDataType(category, name, IntegerDataType.dataType.getLength()),
+                        result == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER
+                    );
+                    printfmt("Created new enum {0}", type.name.value);
+                }
                 // Try to guess the type; if the guess is wrong, the user can fix it manually
                 // If the type is passed without pointer or reference, assume it's an enum
-                if (type.ptr.isEmpty() && type.ref.isEmpty()) {
+                else if (type.ptr.isEmpty() && type.ref.isEmpty()) {
                     result = manager.addDataType(
                         new EnumDataType(category, name, IntegerDataType.dataType.getLength()),
                         DataTypeConflictHandler.DEFAULT_HANDLER
@@ -538,33 +558,57 @@ public class ScriptWrapper {
         else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) { // libc++
             cat = this.createCategoryAll(category.extend("gd", "string_long"));
             var stringLong = new StructureDataType(cat, cat.getName(), 0x0);
-            stringLong.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
+            if (platform == Platform.MAC_INTEL) {
+                stringLong.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
+            } else {
+                stringLong.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            }
             stringLong.add(sizeType, pointerSize, "length", "The length of the string without the terminating null byte");
-            stringLong.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            if (platform == Platform.MAC_INTEL) {
+                stringLong.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            } else {
+                stringLong.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
+            }
             stringLong.setPackingEnabled(true);
 
             cat = this.createCategoryAll(category.extend("gd", "string_short"));
             var stringShort = new StructureDataType(cat, cat.getName(), 0x0);
-            stringShort.add(new ArrayDataType(CharDataType.dataType, 0x17, 0x1), 0x17, "data", "The string data");
-            stringShort.add(CharDataType.dataType, 0x1, "size", "The size of the string data");
+            if (platform == Platform.MAC_INTEL) {
+                stringShort.add(ByteDataType.dataType, 0x1, "size", "The size of the string data");
+            }
+            stringShort.add(new ArrayDataType(CharDataType.dataType, pointerSize * 3 - 1, 0x1), pointerSize * 3 - 1, "data", "The string data");
+            if (platform != Platform.MAC_INTEL) {
+                stringShort.add(ByteDataType.dataType, 0x1, "size", "The size of the string data");
+            }
 
             cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
             var stringDataUnion = new UnionDataType(cat, cat.getName());
             stringDataUnion.add(stringLong, pointerSize * 3, "long", "Long string data");
-            stringDataUnion.add(stringShort, 0x18, "short", "Short string data");
-            stringDataUnion.add(new ArrayDataType(CharDataType.dataType, 0x18, 0x1), 0x18, "raw", "Raw string data");
+            stringDataUnion.add(stringShort, pointerSize * 3, "short", "Short string data");
 
             cat = this.createCategoryAll(category.extend("gd", "string"));
             var string = new StructureDataType(cat, cat.getName(), 0x0);
-            string.add(stringDataUnion, 0x18, "data", "String data with SSO");
+            string.add(stringDataUnion, pointerSize * 3, "data", "String data with SSO");
             string.setPackingEnabled(true);
 
             manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) { // libstdc++
+            cat = this.createCategoryAll(category.extend("gd", "string_data"));
+            var stringData = new StructureDataType(cat, cat.getName(), 0x0);
+            stringData.add(sizeType, pointerSize, "length", "The length of the string without the terminating null byte");
+            stringData.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
+            stringData.add(IntegerDataType.dataType, 0x4, "refcount", "Reference count for copy-on-write");
+            stringData.setPackingEnabled(true);
+
+            cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
+            var stringDataUnion = new UnionDataType(cat, cat.getName());
+            stringDataUnion.add(new PointerDataType(stringData), pointerSize, "data", "Pointer to the string information");
+            stringDataUnion.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+
             cat = this.createCategoryAll(category.extend("gd", "string"));
             var string = new StructureDataType(cat, cat.getName(), 0x0);
-            string.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            string.add(stringDataUnion, pointerSize, "data", "String data");
             string.setPackingEnabled(true);
 
             manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
@@ -651,6 +695,46 @@ public class ScriptWrapper {
         menuHandlerSelector.setReturnType(VoidDataType.dataType);
         menuHandlerSelector.setCallingConvention("__thiscall");
         manager.addDataType(menuHandlerSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::SEL_CallFunc
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "SEL_CallFunc"));
+        var callFuncSelector = new FunctionDefinitionDataType(cat, cat.getName());
+        callFuncSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform),
+                "The target object for this callback"
+            ),
+        });
+        callFuncSelector.setReturnType(VoidDataType.dataType);
+        callFuncSelector.setCallingConvention("__thiscall");
+        manager.addDataType(callFuncSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::extension::SEL_HttpResponse
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "extension", "SEL_HttpResponse"));
+        var httpResponseSelector = new FunctionDefinitionDataType(cat, cat.getName());
+        httpResponseSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform),
+                "The target object for this callback"
+            ),
+            new ParameterDefinitionImpl(
+                "client",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::extension::CCHttpClient"), platform),
+                "The HTTP client object"
+            ),
+            new ParameterDefinitionImpl(
+                "response",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::extension::CCHttpResponse"), platform),
+                "The HTTP response object"
+            ),
+        });
+        httpResponseSelector.setReturnType(VoidDataType.dataType);
+        httpResponseSelector.setCallingConvention("__thiscall");
+        manager.addDataType(httpResponseSelector, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // geode::SeedValueSRV etc.
 
