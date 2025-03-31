@@ -17892,7 +17892,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
     bool readyToCollect(GJRewardItem* item) = win inline, imac 0x209c10, m1 0x1be8c8 {
         return item ? m_chestType == (int)item->m_rewardType : false;
     }
-    void showCloseButton() = ios 0x1c8d70, imac 0x20dc90, m1 0x1c2524;
+    void showCloseButton() = ios 0x1c8d70, imac 0x20dc90, m1 0x1c2524, win 0x3b9110;
     bool showCollectReward(GJRewardItem*) = ios 0x1c58b8, win 0x3b7790, imac 0x209c30, m1 0x1be8e8;
     void step2() = ios 0x1c6948, win 0x3b7950, imac 0x20b300, m1 0x1bfdf0;
     void step3() = ios 0x1c86b0, win 0x3b7a50, imac 0x20d5a0, m1 0x1c1e40;
