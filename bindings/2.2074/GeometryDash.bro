@@ -15159,7 +15159,7 @@ class LocalLevelManager : GManager {
 
     cocos2d::CCDictionary* getAllLevelsInDict() = win 0x31b4e0;
     TodoReturn getAllLevelsWithName(gd::string);
-    cocos2d::CCArray* getCreatedLevels(int folder) = win inline, m1 0x512cdc, imac 0x5e0390 {
+    cocos2d::CCArray* getCreatedLevels(int folder) = win inline, m1 0x512cdc, imac 0x5e0390, ios 0x1c9dbc {
         if (folder < 1) return m_localLevels;
         auto ret = cocos2d::CCArray::create();
         CCObject* obj;
@@ -15169,7 +15169,7 @@ class LocalLevelManager : GManager {
         }
         return ret;
     }
-    cocos2d::CCArray* getCreatedLists(int folder) = win inline, m1 0x512e48, imac 0x5e04f0 {
+    cocos2d::CCArray* getCreatedLists(int folder) = win inline, m1 0x512e48, imac 0x5e04f0, ios 0x1c9f14 {
         if (folder < 1) return m_localLists;
         auto ret = cocos2d::CCArray::create();
         CCObject* obj;
