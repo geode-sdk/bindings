@@ -3716,6 +3716,7 @@ class cocos2d::CCCallFunc : cocos2d::CCActionInstant {
 
     // CCCallFunc(cocos2d::CCCallFunc const&);
     // CCCallFunc();
+    [[since("4.2.1")]]
     ~CCCallFunc() = ios 0x1b11f0;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = ios 0x1b1264;
