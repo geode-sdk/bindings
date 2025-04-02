@@ -2513,7 +2513,7 @@ class CharacterColorPage : FLAlertLayer {
     void createColorMenu() = ios 0x12cc88, win 0x88e50, m1 0x56ffac, imac 0x6479b0;
     void FLAlert_Clicked(FLAlertLayer*, bool);
     cocos2d::CCPoint offsetForIndex(int) = imac 0x648570;
-    void onClose(cocos2d::CCObject* sender) = win 0x8a760, m1 0x56fb64, imac 0x647590;
+    void onClose(cocos2d::CCObject* sender) = win 0x8a760, m1 0x56fb64, imac 0x647590, ios 0x12c8b0;
     void onMode(cocos2d::CCObject* sender) = ios 0x12c9c8, win 0x89550, imac 0x647690, m1 0x56fc80;
     void onPlayerColor(cocos2d::CCObject* sender) = ios 0x12d378, win 0x89d60, m1 0x570904, imac 0x648320;
     void toggleGlow(cocos2d::CCObject*) = ios 0x12cfe8, win 0x88da0, imac 0x647d80, m1 0x570384;
@@ -4704,7 +4704,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void doCopyObjects(bool) = ios 0x3e6d64, win 0x111900, m1 0x391d4, imac 0x3e700;
     TodoReturn doPasteInPlace(bool);
     void doPasteObjects(bool) = ios 0x3e6e5c, win 0x111a90, m1 0x392cc, imac 0x3e820;
-    void dynamicGroupUpdate(bool) = win 0x117000, imac 0x44e10, m1 0x3ed20;
+    void dynamicGroupUpdate(bool) = win 0x117000, imac 0x44e10, m1 0x3ed20, ios 0x3eafa8;
     TodoReturn edgeForObject(int, int);
     TodoReturn editButton2Usable() = imac 0x492e0;
     TodoReturn editButtonUsable() = imac 0x48580;
@@ -4810,7 +4810,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onUpdateDeleteFilter(cocos2d::CCObject* sender) = win 0xe5e30, m1 0x31900, imac 0x32290;
     void orderDownCustomItem(cocos2d::CCObject*);
     void orderUpCustomItem(cocos2d::CCObject*);
-    cocos2d::CCArray* pasteObjects(gd::string, bool, bool) = win 0x111d10, m1 0x35f00, imac 0x3ac10;
+    cocos2d::CCArray* pasteObjects(gd::string, bool, bool) = win 0x111d10, m1 0x35f00, imac 0x3ac10, ios 0x3e4a98;
     TodoReturn playCircleAnim(cocos2d::CCPoint, float, float);
     TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
     TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -7174,7 +7174,7 @@ class GameManager : GManager {
     void reloadAllStep2() = ios 0x31dc60, win 0x187540, imac 0x378f90, m1 0x3094e8;
     void reloadAllStep3();
     void reloadAllStep4();
-    void reloadAllStep5() = win 0x187850, imac 0x379180, m1 0x3096c0;
+    void reloadAllStep5() = win 0x187850, imac 0x379180, m1 0x3096c0, ios 0x31de38;
     void reloadMenu() = win 0x187460;
     TodoReturn removeCustomObject(int);
     TodoReturn removeIconDelegate(int);
