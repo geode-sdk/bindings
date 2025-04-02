@@ -17772,7 +17772,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     void onFeature(cocos2d::CCObject* sender) = win 0x3b3440, imac 0x27a650;
     void onRate(cocos2d::CCObject* sender) = win 0x3b37a0, imac 0x27a6d0, m1 0x2248ac;
     void onToggleCoins(cocos2d::CCObject* sender);
-    void selectRating(cocos2d::CCObject*) = win 0x3b35b0, m1 0x22466c, imac 0x27a4b0;
+    void selectRating(cocos2d::CCObject*) = win 0x3b35b0, m1 0x22466c, imac 0x27a4b0, ios 0x84808;
 
     bool m_uploadFinished;
     bool m_moderator;
@@ -21777,7 +21777,7 @@ class ShareLevelLayer : FLAlertLayer {
     void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onSettings(cocos2d::CCObject* sender) = win 0x477c40;
     void onShare(cocos2d::CCObject* sender) = ios 0x274ff8, win 0x477d90, imac 0x26f3c0, m1 0x21a7ec;
-    void selectRating(cocos2d::CCObject*) = win 0x477ab0, m1 0x21aae0, imac 0x26f680;
+    void selectRating(cocos2d::CCObject*) = win 0x477ab0, m1 0x21aae0, imac 0x26f680, ios 0x27526c;
     void setupStars() = win 0x4776a0, m1 0x21a0b8, imac 0x26f010;
 
     GJGameLevel* m_level;
