@@ -4057,7 +4057,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     // static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1d8d28, m1 0x6a6d58, imac 0x79e7b0;
     static cocos2d::CCMenu* create() = imac 0x77c950, m1 0x691950, ios 0x1d8d04;
     static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*) = imac 0x77cb50, m1 0x691aa8, ios 0x1d8db0;
-    static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = m1 0x691cf4, imac 0x77cda0;
+    static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = m1 0x691cf4, imac 0x77cda0, ios 0x1d8ff0;
     // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
 
     bool initWithArray(cocos2d::CCArray*) = m1 0x691b60, imac 0x77cc20, ios 0x1d8e5c;
@@ -4486,7 +4486,7 @@ class cocos2d::extension::CCScale9Sprite : cocos2d::CCNodeRGBA {
 [[link(win, android)]]
 class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
     // CCHttpClient() = imac 0x441fb0, m1 0x3b3ec8;
-    static cocos2d::extension::CCHttpClient* getInstance() = imac 0x425520, m1 0x3a04ec;
+    static cocos2d::extension::CCHttpClient* getInstance() = imac 0x425520, m1 0x3a04ec, ios 0x240778;
     static void destroyInstance() = m1 0x3a0550;
     void send(cocos2d::extension::CCHttpRequest* request) = imac 0x426430, m1 0x3a12c0, ios 0x241138;
     bool lazyInitThreadSemphore() = imac 0x425880, m1 0x3a0864;
