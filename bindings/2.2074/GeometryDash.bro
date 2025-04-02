@@ -4814,7 +4814,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn playCircleAnim(cocos2d::CCPoint, float, float);
     TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
     TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-    void playtestStopped() = win 0x110d80, m1 0x38a54, imac 0x3df80;
+    void playtestStopped() = win 0x110d80, m1 0x38a54, imac 0x3df80, ios 0x3e68c0;
     TodoReturn positionIsInSnapped(cocos2d::CCPoint);
     TodoReturn positionWithoutOffset(GameObject*);
     void processSelectObjects(cocos2d::CCArray*) = win 0x110060, imac 0x3d880;
