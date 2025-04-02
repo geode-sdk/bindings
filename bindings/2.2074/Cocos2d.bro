@@ -1906,7 +1906,9 @@ class cocos2d::CCNode : cocos2d::CCObject {
     cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const&);
     cocos2d::CCPoint convertToWindowSpace(cocos2d::CCPoint const&);
     cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&) = imac 0x262c80, m1 0x20e994, ios 0x23cd00;
-    cocos2d::CCPoint convertToWorldSpaceAR(cocos2d::CCPoint const&);
+    cocos2d::CCPoint convertToWorldSpaceAR(cocos2d::CCPoint const& point) = m1 0x20ea40, imac 0x262d20, ios inline {
+        return this->convertToWorldSpace(point + m_obAnchorPointInPoints);
+    }
     cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*) = imac 0x262de0, m1 0x20eaf8, ios 0x23cd48;
     cocos2d::CCPoint convertTouchToNodeSpaceAR(cocos2d::CCTouch*);
     char const* description() = imac 0x260e70, m1 0x20cc04;
