@@ -3719,7 +3719,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     void deleteSFX() = m1 0x500ad8, imac 0x5cc3f0;
     void downloadFailed();
     void hideLoadingArt() = win 0xc0bf0;
-    bool init(SFXInfoObject*, CustomSFXDelegate*, bool, bool, bool, bool, bool) = win 0xbfa60, imac 0x5ca7d0, m1 0x4fef30;
+    bool init(SFXInfoObject*, CustomSFXDelegate*, bool, bool, bool, bool, bool) = win 0xbfa60, imac 0x5ca7d0, m1 0x4fef30, ios 0x2ef954;
     void onCancelDownload(cocos2d::CCObject* sender) = win 0xc0c80;
     void onDelete(cocos2d::CCObject* sender) = win 0xc0950, m1 0x4fff6c, imac 0x5cb890;
     void onDownload(cocos2d::CCObject* sender) = win 0xc0d10;
@@ -12255,7 +12255,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
     virtual void dialogClosed(DialogLayer*) = win 0x2a6f60, imac 0x312b60, m1 0x2a8fec, ios 0x150c68;
 
     void exitVideoAdItems() = imac 0x310960, m1 0x2a7298;
-    bool init(ShopType) = win 0x2a2070, imac 0x30eaa0, m1 0x2a5450;
+    bool init(ShopType) = win 0x2a2070, imac 0x30eaa0, m1 0x2a5450, ios 0x14dd64;
     void onBack(cocos2d::CCObject* sender) = win 0x2a56b0, imac 0x310450, m1 0x2a6d78;
     void onCommunityCredits(cocos2d::CCObject* sender) = win 0x2a43e0;
     void onPlushies(cocos2d::CCObject* sender);
