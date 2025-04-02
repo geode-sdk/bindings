@@ -1987,7 +1987,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
         delete ret;
         return nullptr;
     }
-    static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const& frameName) = win 0x49020, m1 0x50cea4, imac 0x5d9940;
+    static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const& frameName) = win 0x49020, m1 0x50cea4, imac 0x5d9940, ios 0x1a71fc;
     static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool rotated) = win inline, m1 0x50ccb4, imac 0x5d9790 {
         auto ret = new CCSpriteGrayscale();
         if (ret->initWithTexture(texture, rect, rotated)) {
