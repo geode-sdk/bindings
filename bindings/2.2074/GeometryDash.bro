@@ -7105,7 +7105,7 @@ class GameManager : GManager {
     }
     TodoReturn getPracticeMusicFile() = ios 0x312140, m1 0x2f6540, imac 0x363850;
     bool getUGV(char const*) = ios 0x319198, win 0x180480, imac 0x370a10, m1 0x301df0;
-    void getUnlockForAchievement(gd::string, int&, UnlockType&) = win 0x179980, m1 0x2f7a94, imac 0x3650e0;
+    void getUnlockForAchievement(gd::string, int&, UnlockType&) = win 0x179980, m1 0x2f7a94, imac 0x3650e0, ios 0x313158;
     TodoReturn groundHasSecondaryColor(int);
     TodoReturn iconAndTypeForKey(int, int&, int&);
     gd::string iconKey(int, IconType) = win 0x1792b0;
@@ -8276,7 +8276,7 @@ class GameStatsManager : cocos2d::CCNode {
     void preSaveGameStats() = win 0x1f0630;
     TodoReturn processChallengeQueue(int) = win 0x1df950, m1 0x67160, imac 0x73590;
     TodoReturn processOnlineChests();
-    bool purchaseItem(int) = win 0x1d12e0, m1 0x5aa80, imac 0x663e0;
+    bool purchaseItem(int) = win 0x1d12e0, m1 0x5aa80, imac 0x663e0, ios 0x32bdb0;
     TodoReturn recountSpecialStats() = ios 0x3351a4, m1 0x69188;
     TodoReturn recountUserCoins(bool);
     void registerRewardsFromItem(GJRewardItem*) = win 0x1ee170;
@@ -8317,7 +8317,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn unlockGoldChest(int) = ios 0x33e16c;
     void unlockOnlineChest(gd::string) = win 0x1e7410;
     TodoReturn unlockPathChest(int);
-    GJRewardItem* unlockSecretChest(int) = win 0x1e75a0, m1 0x7f6f4, imac 0x8ba60;
+    GJRewardItem* unlockSecretChest(int) = win 0x1e75a0, m1 0x7f6f4, imac 0x8ba60, ios 0x33e00c;
     GJRewardItem* unlockSpecialChest(gd::string) = win 0x1e7250, m1 0x6b8c8, imac 0x77ff0, ios 0x336884;
     TodoReturn updateActivePath(StatKey);
     gd::string usernameForAccountID(int);
