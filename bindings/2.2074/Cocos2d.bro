@@ -1693,7 +1693,7 @@ class cocos2d::CCParticleSystemQuad : cocos2d::CCParticleSystem {
 class cocos2d::CCProgressTimer : cocos2d::CCNodeRGBA {
     static cocos2d::CCProgressTimer* create(cocos2d::CCSprite*) = imac 0x5ec770, m1 0x51d3fc, ios 0x3f5550;
 
-    bool initWithSprite(cocos2d::CCSprite*);
+    bool initWithSprite(cocos2d::CCSprite*) = ios 0x3f55a8;
 
     cocos2d::CCPoint getBarChangeRate() const;
     float getPercentage();
@@ -1711,14 +1711,14 @@ class cocos2d::CCProgressTimer : cocos2d::CCNodeRGBA {
     // CCProgressTimer(cocos2d::CCProgressTimer const&);
     // CCProgressTimer() = ios 0x405f18;
 
-    cocos2d::CCPoint boundaryTexCoord(char);
+    cocos2d::CCPoint boundaryTexCoord(char) = ios 0x3f62fc;
     bool isReverseDirection();
-    cocos2d::_ccTex2F textureCoordFromAlphaPoint(cocos2d::CCPoint);
-    void updateBar();
+    cocos2d::_ccTex2F textureCoordFromAlphaPoint(cocos2d::CCPoint) = ios 0x3f58f4;
+    void updateBar() = ios 0x3f5de0;
     void updateColor();
-    void updateProgress();
-    void updateRadial();
-    cocos2d::_ccVertex2F vertexFromAlphaPoint(cocos2d::CCPoint);
+    void updateProgress() = ios 0x3f57b0;
+    void updateRadial() = ios 0x3f5a28;
+    cocos2d::_ccVertex2F vertexFromAlphaPoint(cocos2d::CCPoint) = ios 0x3f59a8;
 
     virtual cocos2d::_ccColor3B const& getColor() const = m1 0x51d9d4, imac 0x5ece50, ios 0x3f5874;
     virtual unsigned char getOpacity() const = m1 0x51dac4, imac 0x5ecf50, ios 0x3f58e4;
@@ -4262,14 +4262,14 @@ class cocos2d {
     static bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static cocos2d::CCPoint ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static float ccpLength(cocos2d::CCPoint const&);
-    static cocos2d::CCPoint ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
-    static bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
+    static cocos2d::CCPoint ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float) = ios 0x1b1e78;
+    static bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*) = ios 0x1b1f4c;
     static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&) = imac 0x3428c0, m1 0x2d82a8, ios 0x1b1e1c;
     static cocos2d::CCPoint ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static float ccpToAngle(cocos2d::CCPoint const&);
     static char const* cocos2dVersion();
-    static float clampf(float, float, float);
+    static float clampf(float, float, float) = ios 0x1b1edc;
 }
 
 [[link(win, android)]]
