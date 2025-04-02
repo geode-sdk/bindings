@@ -4688,7 +4688,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
             objects->removeObjectAtIndex(i, true);
         }
     }
-    void deselectAll() = win 0x10fd80, imac 0x33240, m1 0x328b0;
+    void deselectAll() = win 0x10fd80, imac 0x33240, m1 0x328b0, ios 0x3e1f84;
     void deselectObject() = win inline, m1 0x32a98, imac 0x33450 {
         this->stopActionByTag(124);
         if (m_selectedObject) m_selectedObject->deselectObject();
@@ -4742,13 +4742,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCNode* getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*) = win 0x116f30;
     TodoReturn getRandomStartKey(int);
     TodoReturn getRelativeOffset(GameObject*) = imac 0x4dc100;
-    cocos2d::CCArray* getSelectedObjects() = win 0x10f780, m1 0x37eac, imac 0x3d330;
+    cocos2d::CCArray* getSelectedObjects() = win 0x10f780, m1 0x37eac, imac 0x3d330, ios 0x3e6210;
     TodoReturn getSimpleButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
     SmartGameObject* getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*) = win 0x116e10;
     static int getSmartObjectKey(int, GJSmartDirection);
     TodoReturn getSnapAngle(GameObject*, cocos2d::CCArray*) = imac 0x4ad60;
-    CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset) = win 0xe11d0, m1 0xd81c, imac 0xc440;
-    CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, imac 0xc2d0, m1 0xd6b0 {
+    CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset) = win 0xe11d0, m1 0xd81c, imac 0xc440, ios 0x3bf6f8;
+    CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, imac 0xc2d0, m1 0xd6b0, ios inline {
         return this->getSpriteButton(spriteFrameName, selector, menu, scale, 1, {0, 0});
     }
     CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset) = win 0xe1260, m1 0x2e9a0, imac 0x2efb0;
@@ -14147,7 +14147,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn updateAnimateOnTriggerObjects(bool) = ios 0x358b20;
     TodoReturn updateArt(float);
     void updateBlendValues() = ios 0x360b9c, win 0x2d5d20;
-    void updateEditor(float) = win 0x2d0330, imac 0xddb40, m1 0xc53b8;
+    void updateEditor(float) = win 0x2d0330, imac 0xddb40, m1 0xc53b8, ios 0x357bd8;
     void updateEditorMode() = ios 0x358880, win 0x2d2e10, imac 0xdeeb0, m1 0xc6370;
     void updateGameObjects() = ios 0x357eb4, imac 0xddf40, m1 0xc57c0, win 0x2d3780;
     TodoReturn updateGridLayer();
