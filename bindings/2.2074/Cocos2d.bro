@@ -1832,7 +1832,7 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
 
 [[link(win, android)]]
 class cocos2d::CCGLProgram : cocos2d::CCObject {
-    bool initWithVertexShaderByteArray(char const*, char const*) = imac 0x417e60, m1 0x393990;
+    bool initWithVertexShaderByteArray(char const*, char const*) = imac 0x417e60, m1 0x393990, ios 0x1380ac;
     bool initWithVertexShaderFilename(char const*, char const*) = m1 0x393a34, imac 0x417f00;
 
     unsigned int const getProgram();
@@ -1857,18 +1857,18 @@ class cocos2d::CCGLProgram : cocos2d::CCObject {
     void setUniformsForBuiltins() = imac 0x419200, m1 0x394f28, ios 0x138d84;
 
     // CCGLProgram(cocos2d::CCGLProgram const&);
-    ~CCGLProgram() = m1 0x3937f0, imac 0x417cb0;
-    CCGLProgram() = m1 0x393770, imac 0x417c10;
-    void addAttribute(char const*, unsigned int) = imac 0x4180e0, m1 0x393c30;
+    ~CCGLProgram() = m1 0x3937f0, imac 0x417cb0, ios 0x1380ec;
+    CCGLProgram() = m1 0x393770, imac 0x417c10, ios 0x1380ac;
+    void addAttribute(char const*, unsigned int) = imac 0x4180e0, m1 0x393c30, ios 0x1383dc;
     bool compileShader(unsigned int*, unsigned int, char const*);
     char const* description() = imac 0x4180b0, m1 0x393bfc;
     char const* fragmentShaderLog();
-    bool link() = m1 0x393dcc, imac 0x418250;
+    bool link() = m1 0x393dcc, imac 0x418250, ios 0x138544;
     // char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
     char const* programLog();
     void reset() = m1 0x3951e0, imac 0x419530;
     bool updateUniformLocation(int, void*, unsigned int);
-    void updateUniforms() = imac 0x418100, m1 0x393c44;
+    void updateUniforms() = imac 0x418100, m1 0x393c44, ios 0x1383f0;
     void use() = m1 0x393d70, imac 0x418200, ios 0x1384e8;
     char const* vertexShaderLog();
 }
