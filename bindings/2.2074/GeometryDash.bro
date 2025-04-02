@@ -4044,7 +4044,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     gd::string getDailyTimeString(int timeLeft) = win 0xcf200, imac 0x21f120, m1 0x1d1e6c;
     bool init(GJTimedLevelType) = ios 0x1baf38, win 0xcd110, imac 0x21e440, m1 0x1d0ebc;
     void onClose(cocos2d::CCObject* sender) = win 0x86940, imac 0x21f070, m1 0x1d1db4;
-    void onTheSafe(cocos2d::CCObject* sender) = win 0xd0bb0, m1 0x1d1e00, imac 0x21f0b0;
+    void onTheSafe(cocos2d::CCObject* sender) = win 0xd0bb0, m1 0x1d1e00, imac 0x21f0b0, ios 0x1bbab8;
     void refreshDailyPage();
     void skipDailyLevel(DailyLevelNode*, GJGameLevel*);
     void tryGetDailyStatus() = win 0xcec10;
@@ -6662,7 +6662,7 @@ class GameLevelManager : cocos2d::CCNode {
     void getUserList(UserListType) = ios 0xacef4, win 0x15ffa0, imac 0x5402b0, m1 0x499414;
     void getUserMessages(bool sent, int page, int total) = win 0x157c30, m1 0x490a64, imac 0x537080, ios 0xa8114;
     void getUsers(GJSearchObject*) = ios 0xa79b0, win 0x1571c0, m1 0x48fdec, imac 0x536320;
-    void gotoLevelPage(GJGameLevel*) = win 0x1473c0, m1 0x47dd44, imac 0x521e70;
+    void gotoLevelPage(GJGameLevel*) = win 0x1473c0, m1 0x47dd44, imac 0x521e70, ios 0x9cd20;
     void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x140e00, m1 0x46479c, imac 0x505160, ios 0x8c0bc;
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType) = m1 0x4669d0, imac 0x507fb0;
     void handleItND(cocos2d::CCNode*, void*) = m1 0x466ce4, imac 0x5082a0;
@@ -6808,12 +6808,12 @@ class GameLevelManager : cocos2d::CCNode {
     void saveLocalScore(int, int, int);
     void saveMapPack(GJMapPack*);
     void setActiveSmartTemplate(GJSmartTemplate*);
-    void setBoolForKey(bool value, char const* key) = win inline, m1 0x49d96c, imac 0x544920 {
+    void setBoolForKey(bool value, char const* key) = win inline, m1 0x49d96c, imac 0x544920, ios 0xaf5bc {
         m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", (int)value), key);
     }
     void setDiffVal(int, bool);
     void setFolderName(int, gd::string, bool) = imac 0x524790, m1 0x48055c;
-    void setIntForKey(int value, char const* key) = win inline, m1 0x49d758, imac 0x544720 {
+    void setIntForKey(int value, char const* key) = win inline, m1 0x49d758, imac 0x544720, ios 0xaf4c0 {
         m_searchFilters->setObject(cocos2d::CCString::createWithFormat("%i", value), key);
     }
     void setLenVal(int, bool);
@@ -8531,7 +8531,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
     void onBack(cocos2d::CCObject* sender) = win 0x1f70d0, imac 0x55b7c0, m1 0x4b1d5c, ios 0x1c0f30;
     void onInfo(cocos2d::CCObject* sender) = win 0x1f6210, m1 0x4b1dd0, imac 0x55b830;
     void onNext(cocos2d::CCObject* sender) = win 0x1f6ee0, imac 0x55b7a0, m1 0x4b1d48;
-    void onPlay(cocos2d::CCObject* sender) = win 0x1f7190, imac 0x55c2d0, m1 0x4b27b8;
+    void onPlay(cocos2d::CCObject* sender) = win 0x1f7190, imac 0x55c2d0, m1 0x4b27b8, ios 0x1c176c;
     void onPrev(cocos2d::CCObject* sender) = win 0x1f6f00, imac 0x55b780, m1 0x4b1d34;
     void onRefresh(cocos2d::CCObject* sender) = win 0x1f6350, imac 0x55b8e0, m1 0x4b1e88;
     void setupGauntlets() = ios 0x1c10e4, win 0x1f6790, m1 0x4b1f30, imac 0x55b9a0;
@@ -8559,7 +8559,7 @@ class GauntletSprite : cocos2d::CCNode {
     // virtual ~GauntletSprite();
     GauntletSprite() {}
 
-    static GauntletSprite* create(GauntletType gauntletType, bool locked) = win inline, imac 0x381250, m1 0x3115c8 {
+    static GauntletSprite* create(GauntletType gauntletType, bool locked) = win inline, imac 0x381250, m1 0x3115c8, ios 0x233794 {
         auto ret = new GauntletSprite();
         if (ret->init(gauntletType, locked)) {
             ret->autorelease();
@@ -11070,7 +11070,7 @@ class GJMapPack : cocos2d::CCNode {
     }
     static GJMapPack* create(cocos2d::CCDictionary*) = win 0x16d210, m1 0x478e24;
 
-    static GJMapPack* create() = win inline, m1 0x4a1910, imac 0x5490c0 {
+    static GJMapPack* create() = win inline, m1 0x4a1910, imac 0x5490c0, ios 0xb2d50 {
         auto ret = new GJMapPack();
         if (ret->init()) {
             ret->autorelease();
@@ -14700,10 +14700,10 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     void onSuggested(cocos2d::CCObject* sender) = win 0x2fc640;
     void onTrending(cocos2d::CCObject* sender) = win 0x2fc700;
     void toggleDifficulty(cocos2d::CCObject*) = win 0x2fd3c0, imac 0x614340, m1 0x540640, ios 0x57610;
-    void toggleDifficultyNum(int, bool) = win 0x2fd720, imac 0x614ae0, m1 0x540e20;
-    void toggleStar(cocos2d::CCObject*) = win 0x2fd0b0, m1 0x540d30, imac 0x614a10;
+    void toggleDifficultyNum(int, bool) = win 0x2fd720, imac 0x614ae0, m1 0x540e20, ios 0x57ae8;
+    void toggleStar(cocos2d::CCObject*) = win 0x2fd0b0, m1 0x540d30, imac 0x614a10, ios 0x579f8;
     void toggleTime(cocos2d::CCObject*);
-    void toggleTimeNum(int, bool) = win 0x2fdb30, imac 0x614c70, m1 0x540fb4;
+    void toggleTimeNum(int, bool) = win 0x2fdb30, imac 0x614c70, m1 0x540fb4, ios 0x57bec;
     void updateSearchLabel(char const*) = win 0x2faf20;
 
     int m_type;
