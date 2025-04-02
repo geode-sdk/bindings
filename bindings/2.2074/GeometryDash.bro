@@ -4888,7 +4888,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void triggerSwipeMode() = win 0x121b80;
     TodoReturn tryUpdateTimeMarkers();
     void undoLastAction(cocos2d::CCObject*) = ios 0x3bf900, win 0x110120;
-    void updateButtons() = win 0xe07e0, m1 0x2c954, imac 0x2cdd0;
+    void updateButtons() = win 0xe07e0, m1 0x2c954, imac 0x2cdd0, ios 0x3dde88;
     void updateCreateMenu(bool) = ios 0x3def70, win 0x10d8c0, imac 0x2e710, m1 0x2e0e4;
     void updateDeleteButtons() = ios 0x3e1790, win 0xe5fb0, m1 0x31c94, imac 0x325d0;
     void updateDeleteMenu() {
@@ -4905,7 +4905,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn updateGroupIDBtn2();
     void updateGroupIDLabel() = imac 0x2ccd0, win 0x11dac0;
     void updateObjectInfoLabel() = ios 0x3dfae0, win 0xe17c0, m1 0x2f208, imac 0x2f870;
-    void updatePlaybackBtn() = imac 0x2d5f0, win 0x110850, ios 0x3de490, m1 0x2d08c;
+    void updatePlaybackBtn() = win 0x110850, m1 0x2d08c, imac 0x2d5f0, ios 0x3de490;
     void updateSlider() = ios 0x3dca34, win 0xe14a0;
     TodoReturn updateSpecialUIElements();
     void updateZoom(float) = ios 0x3e6980, win 0x110ef0, m1 0x38b14, imac 0x3e050;
@@ -7542,7 +7542,7 @@ class GameObject : CCSpritePlus {
     virtual void setType(GameObjectType) = win 0x136050, m1 0x1999e4, imac 0x1e1bc0, ios 0x22ea94;
     virtual cocos2d::CCPoint getStartPos() const = win 0x136060, imac 0x1e1bd0, m1 0x1999ec, ios 0x22ea9c;
 
-    void addColorSprite(gd::string) = win 0x18b830, m1 0x4d83b4, imac 0x58cc00;
+    void addColorSprite(gd::string) = win 0x18b830, m1 0x4d83b4, imac 0x58cc00, ios 0x254690;
     void addColorSpriteToParent(bool) = imac 0x592300, win 0x199040;
     void addColorSpriteToSelf() = win 0x199240, imac 0x5a6020;
     cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool);
@@ -14966,7 +14966,7 @@ class LevelTools {
     static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* gameObjects, int speedmodValue, bool disabledSpeedmod, bool, bool, int&, int) = win 0x317ea0, m1 0x44f1cc, imac 0x4edd30;
     static void sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool) = win 0x3187f0;
     static void sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*) = imac 0x66d20, win 0x318a70;
-    static float timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int) = win 0x3174c0, m1 0x44e860, imac 0x4ed380;
+    static float timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int) = win 0x3174c0, m1 0x44e860, imac 0x4ed380, ios 0x1ab94c;
     static TodoReturn toggleDebugLogging(bool);
     static gd::string urlForAudio(int) = win 0x3146f0, m1 0x44d310, imac 0x4eb7f0;
     static TodoReturn valueForSpeedMod(int);
