@@ -1706,7 +1706,16 @@ class cocos2d::CCProgressTimer : cocos2d::CCNodeRGBA {
     void setReverseDirection(bool);
     void setReverseProgress(bool);
     void setSprite(cocos2d::CCSprite*) = imac 0x5eca70, m1 0x51d68c, ios 0x3f56c4;
-    void setType(cocos2d::CCProgressTimerType) = imac 0x5ecc80, m1 0x51d828;
+    void setType(cocos2d::CCProgressTimerType type) = imac 0x5ecc80, m1 0x51d828, ios inline {
+        if (type != m_eType) {
+            if (m_pVertexData) {
+                free(m_pVertexData);
+                m_pVertexData = nullptr;
+                m_nVertexDataCount = 0;
+            }
+            m_eType = type;
+        }
+    }
 
     // CCProgressTimer(cocos2d::CCProgressTimer const&);
     // CCProgressTimer() = ios 0x405f18;
