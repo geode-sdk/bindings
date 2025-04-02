@@ -3943,7 +3943,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void updatePlaybackBtn() = win 0xca3b0, imac 0x606f50, m1 0x534418;
     void updateProgressBar(int) = win 0xca550;
     void updateSongInfo() = ios 0xfee04, win 0xca600, m1 0x533504, imac 0x605f20;
-    void updateSongObject(SongInfoObject* songInfo) = win inline, m1 0x533468, imac 0x605e90 {
+    void updateSongObject(SongInfoObject* songInfo) = win inline, m1 0x533468, imac 0x605e90, ios 0xfed98 {
         m_errorLabel->setVisible(false);
         if (m_bgSpr) m_bgSpr->setVisible(false);
         if (m_songInfoObject != songInfo) {
@@ -15869,7 +15869,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     TodoReturn getAllSongs();
     void getCustomContentURL() = win 0x32a940, imac 0x579470, m1 0x4ccd84;
     cocos2d::CCObject* getDLObject(char const*) = win 0x39d70;
-    cocos2d::CCArray* getDownloadedSongs() = win 0x3290a0, m1 0x4ca930, imac 0x576c20;
+    cocos2d::CCArray* getDownloadedSongs() = win 0x3290a0, m1 0x4ca930, imac 0x576c20, ios 0x1595bc;
     TodoReturn getDownloadProgress(int);
     TodoReturn getMusicArtistForID(int);
     TodoReturn getMusicObject(int);
@@ -15923,7 +15923,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void removeDLFromActive(char const*) = imac 0x573ec0, m1 0x4c7ff4;
     TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
     void showTOS(FLAlertLayerProtocol*) = win 0x32a2f0, imac 0x578c60, m1 0x4cc5ec;
-    void songStateChanged() = win 0x328120, m1 0x4c80f8, imac 0x573fa0;
+    void songStateChanged() = win 0x328120, m1 0x4c80f8, imac 0x573fa0, ios 0x157abc;
     TodoReturn stopDownload(int) = imac 0x573d80, m1 0x4c7ea4;
     TodoReturn storeMusicObject(SongInfoObject*);
     TodoReturn storeSFXInfoObject(SFXInfoObject*);
