@@ -6660,7 +6660,7 @@ class GameLevelManager : cocos2d::CCNode {
     char const* getUploadMessageKey(int) = m1 0x491c84, imac 0x538370;
     char const* getUserInfoKey(int) = m1 0x490184, imac 0x5366f0;
     void getUserList(UserListType) = ios 0xacef4, win 0x15ffa0, imac 0x5402b0, m1 0x499414;
-    void getUserMessages(bool sent, int page, int total) = win 0x157c30, m1 0x490a64, imac 0x537080;
+    void getUserMessages(bool sent, int page, int total) = win 0x157c30, m1 0x490a64, imac 0x537080, ios 0xa8114;
     void getUsers(GJSearchObject*) = ios 0xa79b0, win 0x1571c0, m1 0x48fdec, imac 0x536320;
     void gotoLevelPage(GJGameLevel*) = win 0x1473c0, m1 0x47dd44, imac 0x521e70;
     void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x140e00, m1 0x46479c, imac 0x505160, ios 0x8c0bc;
@@ -15380,7 +15380,7 @@ class MessageListDelegate {
 class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, MessageListDelegate {
     // virtual ~MessagesProfilePage();
 
-    static MessagesProfilePage* create(bool) = win 0x3216b0, imac 0x21ba30, m1 0x1ce7c4;
+    static MessagesProfilePage* create(bool) = win 0x3216b0, imac 0x21ba30, m1 0x1ce7c4, ios 0x1ccbe4;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x1d0144, imac 0x21d550, ios 0x1ce01c;
     virtual void keyBackClicked() = win 0x322cb0, imac 0x21d520, m1 0x1d0138, ios 0x1ce010;
@@ -15394,10 +15394,10 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     virtual void setupPageInfo(gd::string, char const*) = win 0x323470, imac 0x21daa0, m1 0x1d0664, ios 0x1ce3e4;
 
     void deleteSelected() = win 0x3227d0, m1 0x1cfac8, imac 0x21cf00;
-    bool init(bool) = win 0x321850, m1 0x1ce900, imac 0x21bbe0;
+    bool init(bool) = win 0x321850, m1 0x1ce900, imac 0x21bbe0, ios 0x1ccc58;
     bool isCorrect(char const*);
-    void loadPage(int) = win 0x322d60, m1 0x1cf6e0, imac 0x21caa0;
-    void onClose(cocos2d::CCObject* sender) = win 0x322bf0, m1 0x1cf258, imac 0x21c5b0;
+    void loadPage(int) = win 0x322d60, m1 0x1cf6e0, imac 0x21caa0, ios 0x1cd974;
+    void onClose(cocos2d::CCObject* sender) = win 0x322bf0, m1 0x1cf258, imac 0x21c5b0, ios 0x1cd594;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0x3224e0, m1 0x1cf3f4, imac 0x21c760;
     void onNextPage(cocos2d::CCObject* sender) = win 0x323610;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x323620;
