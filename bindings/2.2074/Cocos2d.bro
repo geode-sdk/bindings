@@ -2585,9 +2585,9 @@ class cocos2d::CCIMEDispatcher {
     void addDelegate(cocos2d::CCIMEDelegate*);
     bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
     bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
-    void dispatchDeleteBackward() = m1 0x412500, imac 0x4a9140;
+    void dispatchDeleteBackward() = m1 0x412500, imac 0x4a9140, ios 0x1d49c4;
     void dispatchDeleteForward() = m1 0x4124e0, imac 0x4a9160;
-    void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = imac 0x4a9110, m1 0x4124b4;
+    void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = imac 0x4a9110, m1 0x4124b4, ios 0x1d4998;
     void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
     void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&);
     void dispatchKeyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&);
