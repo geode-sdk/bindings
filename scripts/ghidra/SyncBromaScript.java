@@ -675,18 +675,21 @@ public class SyncBromaScript extends GhidraScript {
                 // Make sure the category exists
                 wrapper.createCategoryAll(category);
                 final var classDataTypePath = new DataTypePath(category, name + (cls.hasBases ? "_data" : ""));
-                var classDataMembers = (Structure) manager.getDataType(classDataTypePath);
+                var classMembers = manager.getDataType(classDataTypePath);
 
-                if (classDataMembers == null) {
+                if (classMembers == null || !(classMembers instanceof Structure)) {
                     // Just skip if there are no members to import
                     if (cls.members.isEmpty()) {
                         continue;
                     }
                     // Otherwise create data members struct
-                    classDataMembers = new StructureDataType(name + (cls.hasBases ? "_data" : ""), 0);
-                    manager.getCategory(category).addDataType(classDataMembers, DataTypeConflictHandler.DEFAULT_HANDLER);
+                    classMembers = new StructureDataType(name + (cls.hasBases ? "_data" : ""), 0);
+                    manager.getCategory(category).addDataType(classMembers,
+                        classMembers == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER);
                 }
                 wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
+
+                var classDataMembers = (Structure)classMembers;
 
                 // Disable packing
                 classDataMembers.setPackingEnabled(false);
