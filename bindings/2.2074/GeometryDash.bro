@@ -4888,7 +4888,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void triggerSwipeMode() = win 0x121b80;
     TodoReturn tryUpdateTimeMarkers();
     void undoLastAction(cocos2d::CCObject*) = ios 0x3bf900, win 0x110120;
-    void updateButtons() = win 0xe07e0, m1 0x2c954, imac 0x2cdd0;
+    void updateButtons() = win 0xe07e0, m1 0x2c954, imac 0x2cdd0, ios 0x3dde88;
     void updateCreateMenu(bool) = ios 0x3def70, win 0x10d8c0, imac 0x2e710, m1 0x2e0e4;
     void updateDeleteButtons() = ios 0x3e1790, win 0xe5fb0, m1 0x31c94, imac 0x325d0;
     void updateDeleteMenu() {
@@ -12580,7 +12580,7 @@ class GJTransformControl : cocos2d::CCLayer {
         return static_cast<cocos2d::CCSprite*>(m_warpSprites->objectAtIndex(tag - 1));
     }
     TodoReturn updateAnchorSprite(cocos2d::CCPoint);
-    void updateButtons(bool, bool) = win 0x1298d0, m1 0x43f04, imac 0x4b1b0, ios 0x3dde88;
+    void updateButtons(bool, bool) = win 0x1298d0, m1 0x43f04, imac 0x4b1b0;
     TodoReturn updateMinMaxPositions();
 
     // 2lazy
