@@ -4486,7 +4486,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
         m_editorLayer = nullptr;
     }
 
-    static EditorPauseLayer* create(LevelEditorLayer*) = win inline, m1 0x228ae4, imac 0x27f120 {
+    static EditorPauseLayer* create(LevelEditorLayer*) = win inline, m1 0x228ae4, imac 0x27f120, ios 0x394884 {
         auto ret = new EditorPauseLayer();
         if (ret && ret->init(p0)) {
             ret->autorelease();
@@ -16241,7 +16241,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 
     TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
     void exitLayer();
-    void musicSliderChanged(cocos2d::CCObject*) = win 0x35cc70, imac 0x785140, m1 0x699300;
+    void musicSliderChanged(cocos2d::CCObject*) = win 0x35cc70, imac 0x785140, m1 0x699300, ios 0xf0478;
     void onAccount(cocos2d::CCObject* sender) = win 0x35d760, imac 0x784bf0, m1 0x698d70;
     void onHelp(cocos2d::CCObject* sender) = win 0x35d710, imac 0x784c10, m1 0x698d80;
     void onMenuMusic(cocos2d::CCObject* sender);
@@ -16253,7 +16253,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
     void onSoundtracks(cocos2d::CCObject* sender) = win 0x35ce00, m1 0x698de8, imac 0x784c90;
     void onSupport(cocos2d::CCObject* sender) = win 0x35d820, imac 0x784cb0, m1 0x698df8;
     void onVideo(cocos2d::CCObject* sender) = win 0x35d6f0;
-    void sfxSliderChanged(cocos2d::CCObject*) = win 0x35cd70, m1 0x699370, imac 0x7851b0;
+    void sfxSliderChanged(cocos2d::CCObject*) = win 0x35cd70, m1 0x699370, imac 0x7851b0, ios 0xf04e4;
     void tryEnableRecord() = m1 0x699648, imac 0x785540;
 
     cocos2d::CCMenu* m_optionsMenu;
