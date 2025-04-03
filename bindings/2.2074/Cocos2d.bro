@@ -3338,7 +3338,26 @@ class cocos2d::CCRepeat : cocos2d::CCActionInterval {
         // CC_SAFE_DELETE(pNewZone);
         return pCopy;
     }
-    virtual void update(float dt) = imac 0x3a3540, m1 0x330274;
+    virtual void update(float dt) = imac 0x3a3540, m1 0x330274, ios inline {
+        if (dt >= m_fNextDt) {
+            while (dt > m_fNextDt && m_uTotal < m_uTimes) {
+                m_pInnerAction->update(1.0f);
+                m_uTotal++;
+                m_pInnerAction->stop();
+                m_pInnerAction->startWithTarget(m_pTarget);
+                m_fNextDt += m_pInnerAction->getDuration() / m_fDuration;
+            }
+            if (dt >= 1.0f && m_uTotal < m_uTimes) m_uTotal++;
+            if (!m_bActionInstant) {
+                if (m_uTotal == m_uTimes) {
+                    m_pInnerAction->update(1);
+                    m_pInnerAction->stop();
+                }
+                else m_pInnerAction->update(dt - (m_fNextDt - m_pInnerAction->getDuration() / m_fDuration));
+            }
+        }
+        else m_pInnerAction->update(fmodf(dt * m_uTimes, 1.0f));
+    }
     virtual bool isDone() = imac 0x3a3670, m1 0x3303e4, ios inline {
         return m_uTotal == m_uTimes;
     }
