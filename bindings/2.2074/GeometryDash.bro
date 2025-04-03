@@ -1960,7 +1960,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
     // virtual ~CCSpriteGrayscale();
     CCSpriteGrayscale() {}
 
-    static CCSpriteGrayscale* create(gd::string const& file, cocos2d::CCRect const& rect) = win inline, m1 0x50cabc, imac 0x5d95c0 {
+    static CCSpriteGrayscale* create(gd::string const& file, cocos2d::CCRect const& rect) = win inline, m1 0x50cabc, imac 0x5d95c0, ios inline {
         auto ret = new CCSpriteGrayscale();
         if (ret->initWithFile(file.c_str(), rect)) {
             ret->autorelease();
@@ -1969,7 +1969,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
         delete ret;
         return nullptr;
     }
-    static CCSpriteGrayscale* create(gd::string const& file) = win inline, m1 0x50c9f0, imac 0x5d9500 {
+    static CCSpriteGrayscale* create(gd::string const& file) = win inline, m1 0x50c9f0, imac 0x5d9500, ios inline {
         auto ret = new CCSpriteGrayscale();
         if (ret->initWithFile(file.c_str())) {
             ret->autorelease();
@@ -1997,7 +1997,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
         delete ret;
         return nullptr;
     }
-    static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture) = win inline, m1 0x50cb9c, imac 0x5d9690 {
+    static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture) = win inline, m1 0x50cb9c, imac 0x5d9690, ios inline {
         auto ret = new CCSpriteGrayscale();
         if (ret->initWithTexture(texture)) {
             ret->autorelease();
