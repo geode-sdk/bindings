@@ -31,6 +31,8 @@ import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined;
 import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
+import ghidra.program.model.listing.Parameter;
+import ghidra.program.model.listing.ParameterImpl;
 import ghidra.program.model.listing.Variable;
 import ghidra.program.model.listing.VariableStorage;
 import ghidra.program.model.symbol.SourceType;
@@ -279,8 +281,11 @@ public class SyncBromaScript extends GhidraScript {
                 ) {
                     signatureConflict = true;
                 }
-                // Keep existing Ghidra name for args without names in Broma
-                else if (bromaParam.getName() == null && param.getName() != null) {
+                // Keep existing Ghidra name for args without names in Broma (Making sure to not include any duplicates)
+                else if (
+                    bromaParam.getName() == null && param.getName() != null &&
+                    !bromaSig.parameters.subList(0, i).stream().anyMatch(p -> p.getName() != null && p.getName().equals(param.getName()))
+                ) {
                     bromaParam.setName(param.getName(), SourceType.USER_DEFINED);
                 }
             }
@@ -390,10 +395,24 @@ public class SyncBromaScript extends GhidraScript {
             updateType = FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS;
         }
 
+        // Check for already-existing parameter names
+        for (var existingParam : data.getParameters()) {
+            for (var bromaParam : bromaSig.parameters) {
+                if (!existingParam.isAutoParameter() && existingParam.getName() != null && existingParam.getName().equals(bromaParam.getName())) {
+                    existingParam.setName(null, SourceType.USER_DEFINED);
+                }
+            }
+        }
+
+        var conventionName = conv.getGhidraName();
+        if (bromaSig.returnsStruct && bromaSig.memberFunction && (args.platform == Platform.ANDROID32 || args.platform == Platform.MAC_INTEL)) {
+            conventionName = args.platform == Platform.MAC_INTEL ? "__stdcall" : "__cdecl";
+        }
+
         // Apply new signature
         try {
             data.updateFunction(
-                conv.getGhidraName(),
+                conventionName,
                 bromaSig.returnType.orElse(null),
                 updateType,
                 true,
@@ -402,6 +421,35 @@ public class SyncBromaScript extends GhidraScript {
             );
         } catch (Exception e) {
             throw new Error("Died on: " + fullName + " with " + e.getMessage());
+        }
+
+        // Set struct return storage for ARM64
+        if (bromaSig.returnsStruct && (args.platform == Platform.ANDROID64 || args.platform == Platform.MAC_ARM || args.platform == Platform.IOS)) {
+            var newParams = new ArrayList<Parameter>(List.of(data.getParameters()));
+            var foundReturn = newParams.stream().filter(p -> p.getName() != null && p.getName().equals("__return")).findFirst();
+            if (foundReturn.isPresent()) {
+                foundReturn.get().setName(null, SourceType.USER_DEFINED);
+            }
+            newParams.add(0, new ParameterImpl(
+                "__return",
+                data.getReturnType(),
+                new VariableStorage(currentProgram, currentProgram.getRegister("x8")),
+                currentProgram,
+                SourceType.USER_DEFINED
+            ));
+            try {
+                data.updateFunction(
+                    "__cdecl",
+                    bromaSig.returnType.orElse(null),
+                    FunctionUpdateType.CUSTOM_STORAGE,
+                    true,
+                    SourceType.USER_DEFINED,
+                    newParams.toArray(Variable[]::new)
+                );
+            } catch (Exception e) {
+                throw new Error("Died on: " + fullName + " with " + e.getMessage());
+            }
+            data.setReturn(data.getReturnType(), new VariableStorage(currentProgram, currentProgram.getRegister("x0")), SourceType.USER_DEFINED);
         }
 
         // Set return type storage for custom cconvs

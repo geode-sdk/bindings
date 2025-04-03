@@ -4295,9 +4295,9 @@ void kmGLMatrixMode(unsigned int) = m1 0x1aba44, imac 0x1f5f60, ios 0x16bc08;
 [[link(win, android)]]
 void kmGLLoadIdentity() = m1 0x1abafc, imac 0x1f6010, ios 0x16bcc0;
 // [[link(win, android)]] // TODO: Figure this out
-// const kmMat4* kmMat4OrthographicProjection(kmMat4*, float, float, float, float, float, float) = m1 0x1abafc, imac 0x3c1240, ios 0x3ab750;
+// kmMat4* const kmMat4OrthographicProjection(kmMat4*, float, float, float, float, float, float) = m1 0x1abafc, imac 0x3c1240, ios 0x3ab750;
 [[link(win, android)]]
-void kmGLMultMatrix(kmMat4 const*) = m1 0x1abb60, imac 0x1f6070, ios 0x16bd24;
+void kmGLMultMatrix(const kmMat4*) = m1 0x1abb60, imac 0x1f6070, ios 0x16bd24;
 
 [[link(win, android)]]
 class DS_Dictionary {
