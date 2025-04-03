@@ -12256,12 +12256,12 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 
     void exitVideoAdItems() = imac 0x310960, m1 0x2a7298;
     bool init(ShopType) = win 0x2a2070, imac 0x30eaa0, m1 0x2a5450, ios 0x14dd64;
-    void onBack(cocos2d::CCObject* sender) = win 0x2a56b0, imac 0x310450, m1 0x2a6d78;
-    void onCommunityCredits(cocos2d::CCObject* sender) = win 0x2a43e0;
+    void onBack(cocos2d::CCObject* sender) = win 0x2a56b0, imac 0x310450, m1 0x2a6d78, ios 0x14f27c;
+    void onCommunityCredits(cocos2d::CCObject* sender) = win 0x2a43e0, ios 0x14f250;
     void onPlushies(cocos2d::CCObject* sender);
-    void onSelectItem(cocos2d::CCObject* sender) = imac 0x310600, m1 0x2a6f30;
+    void onSelectItem(cocos2d::CCObject* sender) = imac 0x310600, m1 0x2a6f30, ios 0x14f408;
     void onVideoAd(cocos2d::CCObject* sender) = imac 0x310400, m1 0x2a6d2c;
-    void showCantAffordMessage(GJStoreItem*) = m1 0x2a744c, imac 0x310b20;
+    void showCantAffordMessage(GJStoreItem*) = m1 0x2a744c, imac 0x310b20, ios 0x14f74c;
     void showReactMessage() = win 0x2a58e0, m1 0x2a7f4c, imac 0x311740;
     void updateCurrencyCounter() = m1 0x2a73bc;
 
@@ -17641,13 +17641,13 @@ class PurchaseItemPopup : FLAlertLayer {
     // virtual ~PurchaseItemPopup();
     // PurchaseItemPopup();
 
-    static PurchaseItemPopup* create(GJStoreItem*) = win 0x2a74d0, m1 0x2a77d0, imac 0x310ed0;
+    static PurchaseItemPopup* create(GJStoreItem*) = win 0x2a74d0, m1 0x2a77d0, imac 0x310ed0, ios 0x14fa80;
 
     virtual void keyBackClicked() = win 0x84650, m1 0x2aa32c, imac 0x3140d0, ios 0x151c10;
 
-    bool init(GJStoreItem*) = win 0x2a75c0, m1 0x2a9818, imac 0x3134b0;
-    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x2aa27c, imac 0x314030;
-    void onPurchase(cocos2d::CCObject* sender) = win 0x2a8470, m1 0x2aa2b8, imac 0x314060;
+    bool init(GJStoreItem*) = win 0x2a75c0, m1 0x2a9818, imac 0x3134b0, ios 0x151228;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x2aa27c, imac 0x314030, ios 0x151b60;
+    void onPurchase(cocos2d::CCObject* sender) = win 0x2a8470, m1 0x2aa2b8, imac 0x314060, ios 0x151b9c;
 
     GJStoreItem* m_storeItem;
     GJPurchaseDelegate* m_delegate;
