@@ -7045,7 +7045,7 @@ class GameManager : GManager {
             return defaultValue;
         return object->intValue();
     }
-    gd::string getMenuMusicFile() = win 0x178700, m1 0x2f63c0, imac 0x3636f0;
+    gd::string getMenuMusicFile() = win 0x178700, m1 0x2f63c0, imac 0x3636f0, ios 0x312078;
     TodoReturn getMGTexture(int);
     TodoReturn getNextUniqueObjectKey();
     TodoReturn getNextUsedKey(int, bool);
