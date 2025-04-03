@@ -23423,7 +23423,7 @@ class UIOptionsLayer : SetupTriggerPopup {
             default: return nullptr;
         }
     }
-    bool init(bool) = win 0x299720, m1 0x24645c, imac 0x29ef50;
+    bool init(bool) = win 0x299720, m1 0x24645c, imac 0x29ef50, ios 0x2e22a4;
     void onReset(cocos2d::CCObject* sender) = win 0x29ba10;
     void onSaveLoad(cocos2d::CCObject* sender) = win 0x29b5f0;
     void toggleUIGroup(int) = win 0x29b430, m1 0x247d74, imac 0x2a0ce0;
