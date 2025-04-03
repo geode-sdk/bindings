@@ -4408,7 +4408,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
         CC_SAFE_DELETE(ret);
         return nullptr;
     }
-    static cocos2d::CCScene* scene(GJGameLevel*) = win 0xd3d80, m1 0x19f774, imac 0x1e8510;
+    static cocos2d::CCScene* scene(GJGameLevel*) = win 0xd3d80, m1 0x19f774, imac 0x1e8510, ios 0xebdb0;
 
     virtual void keyBackClicked() = win 0xd8570, m1 0x1a3824, imac 0x1ec740, ios 0xef59c;
     virtual void keyDown(cocos2d::enumKeyCodes) = win 0xd8580, imac 0x1ec770, m1 0x1a3830, ios 0xef5a8;
@@ -4801,7 +4801,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onPlaytest(cocos2d::CCObject* sender) = ios 0x3bfd14, win 0x1109a0, imac 0xcb90, m1 0xdef4;
     void onResetSpecialFilter(cocos2d::CCObject* sender) = m1 0x31bec;
     void onSelectBuildTab(cocos2d::CCObject* sender) = ios 0x3e298c, win 0x112f60, imac 0x34310, m1 0x33940;
-    void onSettings(cocos2d::CCObject* sender) = win 0xe0350, m1 0x2b46c, imac 0x2b270;
+    void onSettings(cocos2d::CCObject* sender) = ios 0x3dca74, win 0xe0350, m1 0x2b46c, imac 0x2b270;
     void onStopPlaytest(cocos2d::CCObject* sender) = ios 0x3bfea8, win 0x110d40, m1 0xe134, imac 0xcdd0;
     void onTargetIDChange(int) = win 0x120860;
     void onToggleGuide(EffectGameObject*);
@@ -6127,14 +6127,14 @@ class FMODAudioEngine : cocos2d::CCNode {
     }
     static gd::string reverbToString(FMODReverbPreset) = m1 0x353648, imac 0x3caea0, win 0x54cc0;
     TodoReturn saveAudioState(FMODAudioState&) = win 0x558f0;
-    void setBackgroundMusicVolume(float volume) = win inline, imac 0x3d4890, m1 0x35ad70 {
+    void setBackgroundMusicVolume(float volume) = win inline, imac 0x3d4890, m1 0x35ad70, ios 0x140280 {
         m_musicVolume = volume;
         if (m_backgroundMusicChannel) m_backgroundMusicChannel->setVolume(volume);
     }
     void setChannelPitch(int, AudioTargetType, float);
     void setChannelVolume(int, AudioTargetType, float) = imac 0x3d0f40;
     void setChannelVolumeMod(int, AudioTargetType, float) = win 0x58f80;
-    void setEffectsVolume(float volume) = win inline, imac 0x3d48d0, m1 0x35ad90 {
+    void setEffectsVolume(float volume) = win inline, imac 0x3d48d0, m1 0x35ad90, ios 0x1402a {
         m_sfxVolume = volume;
         if (m_globalChannel) m_globalChannel->setVolume(volume);
     }
@@ -6587,7 +6587,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getGJSecretReward(gd::string) = m1 0x49b214, imac 0x542050;
     void getGJUserInfo(int) = ios 0xa7be0, win 0x157880, imac 0x536710, m1 0x4901ac;
     int getHighestLevelOrder() = imac 0x51ece0;
-    int getIntForKey(char const* key) = win inline, m1 0x49d874, imac 0x544830 {
+    int getIntForKey(char const* key) = win inline, m1 0x49d874, imac 0x544830, ios 0xaf54c {
         return m_searchFilters->valueForKey(key)->intValue();
     }
     void getLeaderboardScores(char const*) = win 0x1554b0, m1 0x48e540, imac 0x5347a0;
@@ -7160,13 +7160,13 @@ class GameManager : GManager {
     TodoReturn lockIcon(int, IconType);
     TodoReturn logLoadedIconInfo();
     void openEditorGuide();
-    void playMenuMusic() = win 0x178810, m1 0x2f66b4, imac 0x3639a0;
+    void playMenuMusic() = win 0x178810, m1 0x2f66b4, imac 0x3639a0, ios 0x312208;
     void playSFXTrigger(SFXTriggerGameObject*) = ios 0x31260c, win 0x178ca0;
     void prepareDPadSettings() = imac 0x375340, win 0x183aa0;
     TodoReturn printGJLog();
     void queueReloadMenu() = imac 0x378db0;
     TodoReturn rateGame();
-    void recountUserStats(gd::string) = m1 0x3032cc, imac 0x372010, win 0x181ba0;
+    void recountUserStats(gd::string) = ios 0x319eac, m1 0x3032cc, imac 0x372010, win 0x181ba0;
     void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool fix, bool unused) = ios 0x31dbbc, win 0x187490, imac 0x378ee0, m1 0x309444;
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
         return this->reloadAll(switchingModes, toFullscreen, false, false, unused);
@@ -7613,7 +7613,7 @@ class GameObject : CCSpritePlus {
     ZLayer getCustomZLayer();
     gd::string getGlowFrame(gd::string);
     bool getGroupDisabled();
-    int getGroupID(int) = m1 0x4e0b24;
+    int getGroupID(int) = m1 0x4e0b24, ios 0x25c624;
     gd::string getGroupString();
     cocos2d::CCPoint const& getLastPosition() = imac 0x5b2a90, ios 0x261674;
     GJSpriteColor* getMainColor();
@@ -7657,7 +7657,7 @@ class GameObject : CCSpritePlus {
     bool isEditorSpawnableTrigger();
     bool isFacingDown() = win 0x19e990, m1 0x4ea740;
     bool isFacingLeft() = win 0x19ea50, m1 0x4ea7d0;
-    bool isSettingsObject() = imac 0x5b3690, m1 0x4ebf78;
+    bool isSettingsObject() = imac 0x5b3690, m1 0x4ebf78, ios 0x261dfc;
     bool isSpawnableTrigger() = win 0x19f730;
     bool isSpecialObject();
     bool isSpeedObject() = imac 0x5b30f0;
@@ -8995,7 +8995,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void createMiddleground(int) = ios 0x1df0e8, win 0x2067a0, imac 0x103870, m1 0xe55f4;
     TodoReturn createNewKeyframeAnim();
     TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
-    void createPlayer() = win 0x205fd0, m1 0xe4b94, imac 0x102d80;
+    void createPlayer() = ios 0x1de6e4, win 0x205fd0, m1 0xe4b94, imac 0x102d80;
     TodoReturn createPlayerCollisionBlock() = ios 0x1ec548, win 0x212e90, imac 0x11a410;
     void createTextLayers() = ios 0x1e4644, win 0x209960, imac 0x10f2e0, m1 0xee828;
     TodoReturn damagingObjectsInRect(cocos2d::CCRect, bool);
@@ -9010,9 +9010,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int generateEnterEasingBuffer(int, float) = win 0x209710;
     void generateEnterEasingBuffers(EnterEffectObject*);
     TodoReturn generatePickupAnimRandVal(GameObject*, float&, float&);
-    TodoReturn generateSpawnRemap() = win 0x218c00, imac 0x106400;
-    void generateTargetGroups() = win 0x21fab0, imac 0x109d00;
-    void generateVisibilityGroups() = win 0x22c1e0;
+    void generateSpawnRemap() = win 0x218c00, imac 0x106400, ios 0x1e0ce0;
+    void generateTargetGroups() = ios 0x1e219c, win 0x21fab0, imac 0x109d00;
+    void generateVisibilityGroups() = ios 0x1e306c, win 0x22c1e0;
     TodoReturn getActiveOrderSpawnObjects();
     float getAreaObjectValue(EnterEffectInstance*, GameObject*, cocos2d::CCPoint&, bool&) = win 0x222d90;
     TodoReturn getBumpMod(PlayerObject*, int) = ios 0x1ec028;
@@ -9085,7 +9085,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn moveObjectToStaticGroup(GameObject*);
     TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
     GJGameEvent objectTypeToGameEvent(int) = ios 0x1e804c, win 0x22ce10, imac 0x1144d0;
-    void optimizeMoveGroups() = win 0x22b740;
+    void optimizeMoveGroups() = ios 0x1e109c, win 0x22b740;
     void orderSpawnObjects() = ios 0x209744, imac 0x151690, win 0x23f7e0;
     cocos2d::CCNode* parentForZLayer(int, bool, int, int) = imac 0x10f720, win 0x209e30;
     void pauseAudio() = ios 0x2009a4, win 0x231d60, imac 0x141de0;
@@ -9105,8 +9105,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
     void playSpeedParticle(float) = m1 0x121058, imac 0x14c000, ios 0x20656c;
     TodoReturn positionForShaderTarget(int) = win 0x21e1a0;
-    void positionUIObjects() = win 0x220d90, imac 0x10bbf0, m1 0xebbe0, ios 0x1e2c9c;
-    void prepareSavePositionObjects() = win 0x2142d0;
+    void positionUIObjects() = ios 0x1e2c9c, win 0x220d90, imac 0x10bbf0, m1 0xebbe0;
+    void prepareSavePositionObjects() = ios 0x1e13c4, win 0x2142d0;
     TodoReturn prepareTransformParent(bool);
     void preResumeGame() = ios 0x200998, imac 0x141dd0;
     TodoReturn preUpdateVisibility(float);
@@ -9142,7 +9142,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processQueuedAudioTriggers() = ios 0x204bdc, win 0x235550, imac 0x1491f0;
     void processQueuedButtons() = ios 0x1fcb04, win 0x22c7f0, imac 0x13af40, m1 0x113650;
     void processRotationActions() = win 0x226510;
-    TodoReturn processSFXObjects() = win 0x23b480, imac 0x525060;
+    void processSFXObjects() = ios 0x1e36b8, win 0x23b480, imac 0x525060;
     TodoReturn processSFXState(SFXTriggerState*, SFXTriggerState*, int, float);
     TodoReturn processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*, SongTriggerGameObject*);
     TodoReturn processStateObjects() = ios 0x1ec358;
@@ -9158,11 +9158,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         m_queuedButtons.push_back(command);
     }
     TodoReturn reAddToStickyGroup(GameObject*) = imac 0x12df20;
-    TodoReturn recordAction(int, bool, bool);
+    void recordAction(int, bool, bool) = ios 0x1fcfd8;
     TodoReturn rectIntersectsCircle(cocos2d::CCRect, cocos2d::CCPoint, float);
     void refreshCounterLabels() = win 0x22fe50, imac 0x13dda0;
     void refreshKeyframeAnims() = ios 0x1e34f4, win 0x22e580, m1 0xecb14;
-    TodoReturn regenerateEnterEasingBuffers() = imac 0x106590;
+    void regenerateEnterEasingBuffers() = imac 0x106590, ios 0x1e0dd0;
     TodoReturn registerSpawnRemap(gd::vector<ChanceObject>&);
     TodoReturn registerStateObject(EffectGameObject*);
     TodoReturn removeBackground();
@@ -9222,9 +9222,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void shakeCamera(float duration, float strength, float interval) = win 0x2356c0;
     bool shouldExitHackedLevel() = ios 0x1de628, win 0x205d10, imac 0x102b90, m1 0xe49d0;
     TodoReturn sortAllGroupsX();
-    void sortGroups() = win 0x21ef40;
+    void sortGroups() = win 0x21ef40, ios 0x1e0e5c;
     void sortSectionVector() = win 0x221cc0, imac 0x12faf0, m1 0x10a4a8;
-    void sortStickyGroups() = win 0x21f650;
+    void sortStickyGroups() = ios 0x1e2084, win 0x21f650;
     void spawnGroupTriggered(int groupID, float, bool, gd::vector<int> const&, int, int);
     TodoReturn spawnObjectsInOrder(cocos2d::CCArray*, double, gd::vector<int> const&, int, int);
     cocos2d::CCParticleSystemQuad* spawnParticle(char const* plist, int zOrder, cocos2d::tCCPositionType positionType, cocos2d::CCPoint position) = win 0x239d50, imac 0x14bf50, m1 0x120f7c, ios 0x2064a4;
@@ -10077,7 +10077,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn opacityForIndex(int);
     TodoReturn opacityModForGroup(int);
     TodoReturn pauseTimer(int);
-    void playerButton(bool, bool) = win 0x25ae00, imac 0x2d61b0, m1 0x277110;
+    void playerButton(bool, bool) = win 0x25ae00, imac 0x2d61b0, m1 0x277110, ios 0x1921c;
     void playerDied();
     void postCollisionCheck() = ios 0x13cbc, win 0x254f50, imac 0x2cc390;
     void postMoveActions() = ios 0x180fc, win 0x259470, imac 0x2d4110;
@@ -11945,7 +11945,7 @@ class GJScaleControl : cocos2d::CCLayer {
         return (m_upperBound - m_lowerBound) * value + m_lowerBound;
     }
     float skewFromValue(float) = imac 0x528a0;
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x1287a0, m1 0x49adc, imac 0x526f0;
+    void sliderChanged(cocos2d::CCObject* sender) = ios 0x3f3064, win 0x1287a0, m1 0x49adc, imac 0x526f0;
     void updateLabelX(float value) = ios 0x3f306c, win 0x128f20, m1 0x49b0c, imac 0x52740;
     void updateLabelXY(float value) = win 0x129020, m1 0x49bdc, imac 0x52800, ios 0x3f313c;
     void updateLabelY(float value) = ios 0x3f30d4, win 0x128fa0, m1 0x49b74, imac 0x527a0;
@@ -13141,7 +13141,7 @@ class HardStreak : cocos2d::CCDrawNode {
         this->clear();
         m_pointArray->removeAllObjects();
     }
-    void resumeStroke() = m1 0x8ff80, imac 0x9d480, win inline, ios 0x61bd4 {
+    void resumeStroke() = ios 0x61bd4, m1 0x8ff80, imac 0x9d480, win inline {
         this->m_drawStreak = true;
         updateStroke(0.f);
     }
@@ -14092,7 +14092,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void onPausePlaytest();
     void onPlaytest() = ios 0x3624a8, win 0x2d7330, imac 0xf0f00, m1 0xd5d40;
     void onResumePlaytest() = win 0x2d7d60;
-    void onStopPlaytest() = win 0x2d7f50, m1 0xd67f8, imac 0xf1ae0;
+    void onStopPlaytest() = ios 0x362c30, win 0x2d7f50, m1 0xd67f8, imac 0xf1ae0;
     void pasteAttributeState(GameObject*, cocos2d::CCArray*) = imac 0xf2930, m1 0xd7594;
     TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*);
     void pasteGroupState(GameObject*, cocos2d::CCArray*) = imac 0xf2a30, m1 0xd769c;
@@ -15503,8 +15503,8 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
         return nullptr;
     }
 
-    void audioNext(cocos2d::CCObject* sender) = win 0x301c60, imac 0x618230, m1 0x5441d0;
-    void audioPrevious(cocos2d::CCObject* sender) = win 0x301d80, imac 0x6181c0, m1 0x54415c;
+    void audioNext(cocos2d::CCObject* sender) = win 0x301c60, imac 0x618230, m1 0x5441d0, ios 0x5a488;
+    void audioPrevious(cocos2d::CCObject* sender) = win 0x301d80, imac 0x6181c0, m1 0x54415c, ios 0x5a444;
     void createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0x302730;
     void onClose(cocos2d::CCObject* sender) = ios 0x59c50, win 0x302990, imac 0x617a10, m1 0x543960;
     void onCoins(cocos2d::CCObject* sender);
@@ -15522,9 +15522,9 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
     void onSongMode(cocos2d::CCObject* sender) = ios 0x5a2e8, win 0x301fe0, imac 0x618070, m1 0x54400c;
     void onTwoPlayer(cocos2d::CCObject* sender);
     void onUncompleted(cocos2d::CCObject* sender);
-    void selectSong(int songID) = win 0x301ea0, imac 0x618510, m1 0x544498;
+    void selectSong(int songID) = win 0x301ea0, imac 0x618510, m1 0x544498, ios 0x5a66c;
     void toggleSongNodes(bool, bool) = win 0x3024a0, imac 0x6183d0, m1 0x544394;
-    void updateAudioLabel() = win 0x3019a0, m1 0x5444e0, imac 0x618560;
+    void updateAudioLabel() = win 0x3019a0, m1 0x5444e0, imac 0x618560, ios 0x5a6b4;
     
     virtual bool init() = win 0x2fe020, imac 0x616620, m1 0x542794, ios 0x58bc4;
     virtual void keyBackClicked() = win 0x302d90, imac 0x6187f0, m1 0x5447b8, ios 0x5a8b8;
@@ -16119,7 +16119,7 @@ class OBB2D : cocos2d::CCNode {
 
     static OBB2D* create(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x6d880, m1 0x50edb8, imac 0x5dbcf0;
 
-    void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x6da50, imac 0x5dbe20, m1 0x50ef3c;
+    void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x6da50, imac 0x5dbe20, m1 0x50ef3c, ios 0x12ffd4;
     void computeAxes();
     cocos2d::CCRect getBoundingRect() = win 0x6e240;
     bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle) = m1 0x50eebc, imac 0x5dbdb0;
@@ -16249,7 +16249,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
     void onProgressBar(cocos2d::CCObject* sender);
     void onRate(cocos2d::CCObject* sender) = win 0x35d7b0;
     void onRecordReplays(cocos2d::CCObject* sender);
-    void onSecretVault(cocos2d::CCObject* sender) = win 0x35cfb0, m1 0x6990b0, imac 0x784f20;
+    void onSecretVault(cocos2d::CCObject* sender) = win 0x35cfb0, m1 0x6990b0, imac 0x784f20, ios 0xf02a0;
     void onSoundtracks(cocos2d::CCObject* sender) = win 0x35ce00, m1 0x698de8, imac 0x784c90;
     void onSupport(cocos2d::CCObject* sender) = win 0x35d820, imac 0x784cb0, m1 0x698df8;
     void onVideo(cocos2d::CCObject* sender) = win 0x35d6f0;
@@ -16468,7 +16468,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
         m_unfocused = p0;
         return CCBlockLayer::init();
     }
-    void musicSliderChanged(cocos2d::CCObject*) = win 0x3683c0, imac 0x3c4870, m1 0x34daec;
+    void musicSliderChanged(cocos2d::CCObject*) = win 0x3683c0, imac 0x3c4870, m1 0x34daec, ios 0x146bc0;
     void onEdit(cocos2d::CCObject* sender) = ios 0x146c38, win 0x368990, m1 0x34de9c, imac 0x3c4be0;
     void onHelp(cocos2d::CCObject* sender);
     void onNormalMode(cocos2d::CCObject* sender) = ios 0x146a18, win 0x368530, m1 0x34d904, imac 0x3c4670;
