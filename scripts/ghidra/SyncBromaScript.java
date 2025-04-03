@@ -144,6 +144,14 @@ public class SyncBromaScript extends GhidraScript {
 
         wrapper.printfmt("Found {0} classes in Broma", wrapper.classes.size());
 
+        // Read functions
+        wrapper.functions.addAll(this.bromas.stream()
+            .map(b -> b.functions.stream().map(f -> f.getName()).toList())
+            .flatMap(List::stream)
+            .toList());
+
+        wrapper.printfmt("Found {0} functions in Broma", wrapper.functions.size());
+
         // Read enums
         var enumPath = Paths.get(wrapper.bindingsDir.toString(), "include", "Geode", "Enums.hpp");
         if (Files.exists(enumPath)) {
@@ -202,8 +210,8 @@ public class SyncBromaScript extends GhidraScript {
 
     private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force) throws Exception {
         final var name = fun.getName();
-        final var className = fun.parent.name.value;
-        final var fullName = className + "::" + name;
+        final var className = fun.parent != null ? fun.parent.name.value : null;
+        final var fullName = className != null ? className + "::" + name : name;
         final var listing = currentProgram.getListing();
 
         var status = SignatureImport.NOCHANGES;
@@ -219,7 +227,9 @@ public class SyncBromaScript extends GhidraScript {
                     addr, fun.platformOffset.get().value, fullName
                 ));
             }
-            data.setParentNamespace(wrapper.addOrGetNamespace(className));
+            if (className != null) {
+                data.setParentNamespace(wrapper.addOrGetNamespace(className));
+            }
         }
 
         // Check if function already has an user-provided name - in this case, it might be merged
@@ -252,7 +262,9 @@ public class SyncBromaScript extends GhidraScript {
             status = status.promoted(SignatureImport.ADDED);
         }
         data.getSymbol().setName(name, SourceType.USER_DEFINED);
-        data.setParentNamespace(wrapper.addOrGetNamespace(className));
+        if (className != null) {
+            data.setParentNamespace(wrapper.addOrGetNamespace(className));
+        }
 
         // Get the calling convention
         final var conv = fun.getCallingConvention(args.platform);
@@ -517,6 +529,30 @@ public class SyncBromaScript extends GhidraScript {
                     case UPDATED: {
                         importedUpdateCount += 1;
                         wrapper.printfmt("Updated {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
+                    } break;
+                    default: break;
+                }
+            }
+
+            for (var fun : bro.functions) {
+                // Only add functions that have an offset on this platform
+                if (fun.platformOffset.isEmpty()) {
+                    continue;
+                }
+                var offset = Long.parseLong(fun.platformOffset.get().value, 16);
+                if (offset == Broma.PLACEHOLDER_ADDR) {
+                    continue;
+                }
+                var addr = currentProgram.getImageBase().add(offset);
+                
+                switch (importSignatureFromBroma(addr, fun, false)) {
+                    case ADDED: {
+                        importedAddCount += 1;
+                        wrapper.printfmt("Added {0} at {1}", fun.getName(), Long.toHexString(addr.getOffset()));
+                    } break;
+                    case UPDATED: {
+                        importedUpdateCount += 1;
+                        wrapper.printfmt("Updated {0} at {1}", fun.getName(), Long.toHexString(addr.getOffset()));
                     } break;
                     default: break;
                 }

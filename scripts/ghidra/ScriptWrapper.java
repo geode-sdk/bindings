@@ -53,6 +53,7 @@ import ghidra.util.exception.CancelledException;
 public class ScriptWrapper {
     List<String> classes = new ArrayList<String>();
     List<String> enums = new ArrayList<String>();
+    List<String> functions = new ArrayList<String>();
     GhidraScript wrapped;
     Path bindingsDir;
 
@@ -473,7 +474,7 @@ public class ScriptWrapper {
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
         // Add `this` arg
-        boolean hasThis = fun.dispatch.isEmpty() || !fun.dispatch.get().value.contains("static");
+        boolean hasThis = fun.parent != null && (fun.dispatch.isEmpty() || !fun.dispatch.get().value.contains("static"));
         if (hasThis && platform != Platform.ANDROID32 && platform != Platform.MAC_INTEL) {
             bromaParams.add(new ParameterImpl(
                 "this",

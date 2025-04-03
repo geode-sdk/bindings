@@ -213,7 +213,7 @@ public class Broma {
         
         public CConv getCallingConvention(Platform platform) {
             if (platform != Platform.WINDOWS32) {
-                if (dispatch.isEmpty() || !dispatch.get().value.contains("static")) return CConv.THISCALL;
+                if (parent != null && (dispatch.isEmpty() || !dispatch.get().value.contains("static"))) return CConv.THISCALL;
 
                 switch (platform) {
                     case WINDOWS64:
@@ -378,6 +378,7 @@ public class Broma {
      */
     private final List<Patch> patches;
     public final List<Class> classes;
+    public final List<Function> functions;
     private boolean committed = false;
 
     private Matcher forkMatcher(Pattern regex, Matcher of, String group, boolean find) {
@@ -393,6 +394,11 @@ public class Broma {
         while (matcher.find()) {
             this.classes.add(new Class(this, platform, matcher));
         }
+
+        var funMatcher = Regexes.GRAB_GLOBAL_FUNCTION.matcher(this.data);
+        while (funMatcher.find()) {
+            this.functions.add(new Function(this, null, platform, funMatcher));
+        }
     }
 
     private Broma() {
@@ -400,6 +406,7 @@ public class Broma {
         this.data = null;
         this.patches = null;
         this.classes = null;
+        this.functions = null;
     }
 
     public static Broma fake() {
@@ -416,6 +423,7 @@ public class Broma {
         data = Files.readString(path);
         patches = new ArrayList<Patch>();
         classes = new ArrayList<Class>();
+        functions = new ArrayList<Function>();
         this.applyRegexes(platform);
     }
 
