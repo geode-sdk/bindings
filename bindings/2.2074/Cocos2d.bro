@@ -2089,7 +2089,7 @@ class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCA
 
     // CCLayer(cocos2d::CCLayer const&);
     CCLayer() = imac 0x49cfb0, m1 0x408108, ios 0x14bb5c;
-    ~CCLayer() = imac 0x49d2a0, m1 0x40828c, ios 0x14bc88;
+    ~CCLayer() = imac 0x49d2a0, m1 0x40828c, ios 0x14bc08;
 
     cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
     cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();
@@ -2251,7 +2251,7 @@ class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
 
     // CCLayerColor(cocos2d::CCLayerColor const&);
     CCLayerColor() = imac 0x49f1a0, m1 0x409f38, ios 0x14cf2c;
-    ~CCLayerColor() = imac 0x49f550, m1 0x40a0b4, ios 0x14bc08;
+    ~CCLayerColor() = imac 0x49f550, m1 0x40a0b4, ios 0x14cf94;
 
     void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
 
@@ -2279,8 +2279,8 @@ class cocos2d::CCLayerRGBA : cocos2d::CCLayer, cocos2d::CCRGBAProtocol {
     static cocos2d::CCLayerRGBA* create();
 
     // CCLayerRGBA(cocos2d::CCLayerRGBA const&);
-    CCLayerRGBA() = imac 0x49e3f0, m1 0x4094b8, ios 0x14bb5c;
-    ~CCLayerRGBA() = imac 0x49e760, m1 0x409620, ios 0x14bc08;
+    CCLayerRGBA() = imac 0x49e3f0, m1 0x4094b8, ios 0x14ca90;
+    ~CCLayerRGBA() = imac 0x49e760, m1 0x409620, ios 0x14cae4;
 
     virtual bool init() = imac 0x49e9d0, m1 0x4097b0, ios 0x14cb1c;
 
