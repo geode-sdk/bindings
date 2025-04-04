@@ -2980,7 +2980,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     void loadFromComment(GJComment*) = ios 0x108cb0, win 0xb5480, m1 0x1e5f14, imac 0x235d50;
     void onConfirmDelete(cocos2d::CCObject* sender) = ios 0x1138fc, win 0xb7850, imac 0x242f80, m1 0x1f220c;
     void onDelete() = m1 0x1f26a0, imac 0x243450;
-    void onGoToLevel(cocos2d::CCObject* sender) = win 0xb7b20, imac 0x242dc0, m1 0x1f2078;
+    void onGoToLevel(cocos2d::CCObject* sender) = win 0xb7b20, imac 0x242dc0, m1 0x1f2078, ios 0x113768;
     void onLike(cocos2d::CCObject* sender) = ios 0x11381c, win 0xb75f0, imac 0x242e90, m1 0x1f212c;
     TodoReturn onUndelete();
 
@@ -5409,7 +5409,7 @@ class EndPortalObject : GameObject {
     cocos2d::CCPoint getSpawnPos() = win 0x136560, m1 0x318e60;
     void triggerObject(GJBaseGameLayer*) = ios 0x3f6a50, m1 0x318dcc;
     TodoReturn updateColors(cocos2d::ccColor3B);
-    void updateEndPos(bool) = win 0x1367d0, m1 0x319020, imac 0x3898c0;
+    void updateEndPos(bool) = win 0x1367d0, m1 0x319020, imac 0x3898c0, ios 0x3f6c94;
 
     cocos2d::CCSprite* m_gradientBar;
     bool m_flippedX;
@@ -6097,9 +6097,9 @@ class FMODAudioEngine : cocos2d::CCNode {
     void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0, ios 0x13d8c4;
     TodoReturn playEffectAsync(gd::string path);
     void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x5a110, imac 0x3d4dc0, m1 0x35b20c, ios 0x1405b0;
-    FMODSound& preloadEffect(gd::string path) = win 0x59260, m1 0x3531c4, imac 0x3ca980;
+    FMODSound& preloadEffect(gd::string path) = win 0x59260, m1 0x3531c4, imac 0x3ca980, ios 0x13b644;
     void preloadEffectAsync(gd::string path);
-    FMOD::Sound* preloadMusic(gd::string path, bool p1, int p2) = win 0x5c790, imac 0x3d5220, m1 0x35b618;
+    FMOD::Sound* preloadMusic(gd::string path, bool p1, int p2) = win 0x5c790, imac 0x3d5220, m1 0x35b618, ios 0x1408d0;
     TodoReturn printResult(FMOD_RESULT);
     TodoReturn queuedEffectFinishedLoading(gd::string);
     TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x57920;
@@ -10689,7 +10689,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     cocos2d::CCArray* getItems(int, int, IconType, int) = ios 0x3058b8, imac 0x35a440, win 0x26ef10;
     gd::string getLockFrame(int, UnlockType) = m1 0x2eeb40;
     void onArrow(cocos2d::CCObject* sender) = win 0x26e590, imac 0x359460, m1 0x2ecc3c, ios 0x304c48;
-    void onBack(cocos2d::CCObject* sender) = win 0x271750, imac 0x3588c0, m1 0x2ec048;
+    void onBack(cocos2d::CCObject* sender) = win 0x271750, imac 0x3588c0, m1 0x2ec048, ios 0x304604;
     void onInfo(cocos2d::CCObject* sender) = win 0x26d190, m1 0x2ec28c, imac 0x358b10;
     void onNavigate(cocos2d::CCObject* sender) = ios 0x305378, win 0x26e690, imac 0x359d50, m1 0x2ed4c8;
     void onPaint(cocos2d::CCObject* sender) = win 0x271570, m1 0x2ec234, imac 0x358ab0;
@@ -14341,7 +14341,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onRateStars(cocos2d::CCObject* sender) = win 0x2e99c0, m1 0x253e20, imac 0x2aded0;
     void onRateStarsMod(cocos2d::CCObject* sender) = win 0x2e9c80, imac 0x2ae230, m1 0x254168;
     void onSetFolder(cocos2d::CCObject* sender) = win 0x2e5300, imac 0x2aeda0, m1 0x254d6c;
-    void onUpdate(cocos2d::CCObject* sender) = win 0x2ea280, m1 0x253bec, imac 0x2adcb0;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x2ea280, m1 0x253bec, imac 0x2adcb0, ios 0x2c79c;
     void onViewProfile(cocos2d::CCObject* sender) = ios 0x2a958, win 0x2ea460, imac 0x2abc20, m1 0x251b4c;
     void playStep2() = win 0x2e8850;
     void playStep3() = ios 0x2eb24, m1 0x256650, win 0x2e8930;
@@ -21705,7 +21705,7 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
     virtual void uploadActionFailed(int ID, int unk) = win 0x4765e0, m1 0x4fdf04, imac 0x5c9660, ios 0x1d6aa0;
     virtual void onClosePopup(UploadActionPopup*) = win 0x476690, m1 0x4fe064, imac 0x5c9780, ios 0x1d6b24;
 
-    bool init(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x474b40, imac 0x5c7820, m1 0x4fc27c;
+    bool init(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x474b40, imac 0x5c7820, m1 0x4fc27c, ios 0x1d53f0;
     void onClear(cocos2d::CCObject* sender) = win 0x475c20, imac 0x5c8b70, m1 0x4fd404;
     void onClose(cocos2d::CCObject* sender) = win 0x476130;
     void onPercent(cocos2d::CCObject* sender) = win 0x475c90, imac 0x5c89e0, m1 0x4fd26c;
