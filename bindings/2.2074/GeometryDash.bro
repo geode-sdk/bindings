@@ -12233,7 +12233,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
         m_affordDialogIndex = 0;
     }
 
-    static GJShopLayer* create(ShopType type) = win inline, m1 0x2a536c, imac 0x30e990 {
+    static GJShopLayer* create(ShopType type) = win inline, m1 0x2a536c, imac 0x30e990, ios 0x14dc8c {
         auto ret = new GJShopLayer();
         if (ret->init(type)) {
             ret->autorelease();
