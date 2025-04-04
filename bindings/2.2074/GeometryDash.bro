@@ -6639,7 +6639,7 @@ class GameLevelManager : cocos2d::CCNode {
         else return this->getSavedLevel(level->m_levelID.value());
     }
     GJGameLevel* getSavedLevel(int) = win 0x146ad0, m1 0x47d54c, imac 0x521500, ios 0x9c74c;
-    GJLevelList* getSavedLevelList(int listID) = win inline, m1 0x48795c, imac 0x52c910 {
+    GJLevelList* getSavedLevelList(int listID) = win inline, m1 0x48795c, imac 0x52c910, ios 0xa2a30 {
         return static_cast<GJLevelList*>(m_favoriteLists->objectForKey(this->getLevelListKey(listID)));
     }
     cocos2d::CCArray* getSavedLevelLists(int);
@@ -6668,8 +6668,8 @@ class GameLevelManager : cocos2d::CCNode {
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType) = m1 0x4669d0, imac 0x507fb0;
     void handleItND(cocos2d::CCNode*, void*) = m1 0x466ce4, imac 0x5082a0;
     bool hasDailyStateBeenLoaded(GJTimedLevelType) = imac 0x543960, m1 0x49c950;
-    bool hasDownloadedLevel(int id) = win 0x151630, imac 0x52e360, m1 0x48911c;
-    bool hasDownloadedList(int id) = win inline, imac 0x52a7c0, m1 0x485a5c {
+    bool hasDownloadedLevel(int id) = win 0x151630, imac 0x52e360, m1 0x48911c, ios 0xa3854;
+    bool hasDownloadedList(int id) = win inline, imac 0x52a7c0, m1 0x485a5c, ios inline {
         return this->hasDownloadedLevel(-id);
     }
     bool hasLikedAccountItem(LikeItemType, int, bool, int);
@@ -15838,7 +15838,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void addDLToActive(char const* tag);
     TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x327f30;
     void addSongObjectFromString(gd::string);
-    void clearSong(int songID) = ios 0xa2a30, win inline, m1 0x4cae00, imac 0x577170 {
+    void clearSong(int songID) = ios 0x159868, win inline, m1 0x4cae00, imac 0x577170 {
         const char* key = cocos2d::CCString::createWithFormat("%i", songID)->getCString();
         m_songObjects->removeObjectForKey(key);
     }
@@ -17560,8 +17560,8 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onFriends(cocos2d::CCObject* sender) = win 0x3aeae0;
     void onInfo(cocos2d::CCObject* sender) = m1 0x6b9300, imac 0x7a7870;
     void onMessages(cocos2d::CCObject* sender) = win 0x3aeab0;
-    void onMyLevels(cocos2d::CCObject* sender) = win 0x3ac8b0, imac 0x7a8a10, m1 0x6ba314;
-    void onMyLists(cocos2d::CCObject* sender) = win 0x3aca60, imac 0x7a8bf0, m1 0x6ba4e8;
+    void onMyLevels(cocos2d::CCObject* sender) = win 0x3ac8b0, imac 0x7a8a10, m1 0x6ba314, ios 0x19e44c;
+    void onMyLists(cocos2d::CCObject* sender) = win 0x3aca60, imac 0x7a8bf0, m1 0x6ba4e8, ios 0x19e58c;
     void onNextPage(cocos2d::CCObject* sender) = win 0x3af530;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x3af540;
     void onRequests(cocos2d::CCObject* sender) = win 0x3aeb10;
@@ -17573,7 +17573,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onUpdate(cocos2d::CCObject* sender) = win 0x3a8bb0, m1 0x6b6288, imac 0x7a4270;
     void onYouTube(cocos2d::CCObject* sender) = win 0x3ae440, m1 0x6b8dbc, imac 0x7a7350;
     void setupComments() = m1 0x6b5e30;
-    void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3af120, m1 0x6b64fc, imac 0x7a4520;
+    void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3af120, m1 0x6b64fc, imac 0x7a4520, ios 0x19afa8;
     void showNoAccountError() = win 0x3ae060, m1 0x6bb250, imac 0x7a99e0;
     void toggleMainPageVisibility(bool);
     void toggleShip(cocos2d::CCObject* sender) = ios 0x19d480, win 0x3ac010, imac 0x7a72a0, m1 0x6b8cfc;
