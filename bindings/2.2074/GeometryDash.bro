@@ -666,7 +666,8 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     void setupGLView() = win 0x82580;
     void showLoadingCircle(bool, bool, bool);
 
-    PAD = win 0x4, android32 0xc, android64 0x18;
+    bool m_glViewSetup;
+    bool m_gamePaused;
     cocos2d::CCScene* m_runningScene;
 }
 
