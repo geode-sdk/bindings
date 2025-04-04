@@ -666,7 +666,8 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     void setupGLView() = win 0x82580;
     void showLoadingCircle(bool, bool, bool);
 
-    PAD = win 0x4, android32 0xc, android64 0x18;
+    bool m_glViewSetup;
+    bool m_gamePaused;
     cocos2d::CCScene* m_runningScene;
 }
 
@@ -6086,7 +6087,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         }
     }
     TodoReturn pauseEffect(unsigned int);
-    void pauseMusic(int musicChannel) = win inline, ios inline {
+    void pauseMusic(int musicChannel) = win inline, m1 0x35d91c, imac 0x3d7e00, ios inline {
         auto* channel = this->getActiveMusicChannel(musicChannel);
         if (channel)
             channel->setPaused(true);
