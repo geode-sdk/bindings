@@ -352,3 +352,6 @@ class FMOD::System {
     FMOD_RESULT setOutput(FMOD_OUTPUTTYPE) = ios 0x4bf760;
     FMOD_RESULT unlockDSP() = ios 0x4c4c48;
 }
+
+[[link(win, android, mac)]]
+FMOD_RESULT FMOD_System_Create(FMOD_SYSTEM**, unsigned int) = ios 0x44a3f8;
