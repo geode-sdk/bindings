@@ -3832,8 +3832,8 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     static cocos2d::CCClippingNode* create() = imac 0x708da0, m1 0x628634;
     static cocos2d::CCClippingNode* create(cocos2d::CCNode* stencil) = imac 0x708e30, m1 0x6286bc;
 
-    CCClippingNode();
-    virtual ~CCClippingNode();
+    CCClippingNode() = m1 0x628524, imac 0x708c50;
+    virtual ~CCClippingNode() = m1 0x6285b8, imac 0x708d10;
 
     virtual bool init() = m1 0x62875c, imac 0x708ee0;
 
