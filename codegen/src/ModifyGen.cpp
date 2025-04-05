@@ -95,6 +95,9 @@ std::string generateModifyHeader(Root const& root, std::filesystem::path const& 
         else if (is_cocos_class(c.name)) {
             class_include = "#include <cocos2d.h>";
         }
+        else if (is_fmod_class(c.name)) {
+            class_include = "#include <fmod.hpp>";
+        }
         else {
             class_include = fmt::format(
                 "#include <Geode/binding/{class_name}.hpp>",
@@ -150,7 +153,7 @@ std::string generateModifyHeader(Root const& root, std::filesystem::path const& 
                 continue;
             }
             else if (status == BindStatus::Unbindable && fn->prototype.type == FunctionType::Normal) {
-                if (is_cocos_class(c.name)) {
+                if (is_cocos_or_fmod_class(c.name)) {
                     format_string = format_strings::apply_error_defined;
                 }
                 else {
@@ -176,7 +179,7 @@ std::string generateModifyHeader(Root const& root, std::filesystem::path const& 
                 }
             }
             else if (fn->prototype.type == FunctionType::Normal) {
-                if (is_cocos_class(c.name)) {
+                if (is_cocos_or_fmod_class(c.name)) {
                     format_string = format_strings::apply_error_defined;
                 }
                 else {

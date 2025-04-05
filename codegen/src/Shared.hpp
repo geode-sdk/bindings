@@ -65,6 +65,14 @@ inline bool is_in_cocos_dll(std::string const& str) {
     return is_cocos_class(str) && !can_find(str, "CCLightning");
 }
 
+inline bool is_fmod_class(std::string const& str) {
+    return can_find(str, "FMOD::");
+}
+
+inline bool is_cocos_or_fmod_class(std::string const& str) {
+    return is_cocos_class(str) || is_fmod_class(str);
+}
+
 enum class BindStatus {
     Binded,
     Inlined,

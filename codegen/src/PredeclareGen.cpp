@@ -26,7 +26,7 @@ std::string generatePredeclareHeader(Root const& root) {
     std::string output("#pragma once\n");
 
     for (auto& cls : root.classes) {
-        if (is_cocos_class(cls.name))
+        if (is_cocos_or_fmod_class(cls.name))
             continue;
 
         output += fmt::format(::format_strings::class_predeclare,
@@ -37,7 +37,7 @@ std::string generatePredeclareHeader(Root const& root) {
     output += ::format_strings::todo_return_begin;
 
     for (auto& cls : root.classes) {
-        if (is_cocos_class(cls.name))
+        if (is_cocos_or_fmod_class(cls.name))
             continue;
 
         output += fmt::format(::format_strings::todo_return_friend,
