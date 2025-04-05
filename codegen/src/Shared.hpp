@@ -66,7 +66,7 @@ inline bool is_in_cocos_dll(std::string const& str) {
 }
 
 inline bool is_fmod_class(std::string const& str) {
-    return can_find(str, "FMOD::");
+    return can_find(str, "FMOD::") || str == "FMOD";
 }
 
 inline bool is_cocos_or_fmod_class(std::string const& str) {
