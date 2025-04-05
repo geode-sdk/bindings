@@ -912,6 +912,10 @@ public class SyncBromaScript extends GhidraScript {
             var total = -1;
             for (i += 1; i < lines.size(); i += 1) {
                 var valueLine = lines.get(i);
+                if (valueLine.trim().isEmpty()) {
+                    continue;
+                }
+
                 if (valueLine.contains("};")) {
                     break;
                 }
