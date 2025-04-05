@@ -88,7 +88,7 @@ public class SyncBromaScript extends GhidraScript {
             // Put latest version at the top
             Collections.reverse(versions);
 
-            var bromaFiles = List.of("Cocos2d.bro", "GeometryDash.bro");
+            var bromaFiles = List.of("Cocos2d.bro", "FMOD.bro", "GeometryDash.bro");
             final var platforms = Arrays.asList(Platform.values()).stream().map(p -> p.getLongName()).toList();
 
             var platform = wrapper.autoDetectPlatform().orElse(null).getLongName();
@@ -111,7 +111,7 @@ public class SyncBromaScript extends GhidraScript {
                     List.of("Extras.bro", "GeometryDash.bro") : List.of(this.selectedBromaFile);
             }
             else {
-                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "GeometryDash.bro");
+                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "FMOD.bro", "GeometryDash.bro");
             }
 
             this.bromaFiles = bromaFiles.stream()
