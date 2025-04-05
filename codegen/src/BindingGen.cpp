@@ -169,7 +169,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
     }
 
         for (auto& cls : root.classes) {
-        if (is_cocos_class(cls.name) || is_fmod_class(cls.name)) continue;
+        if (is_cocos_class(cls.name) || is_fmod_class(cls.name))
             continue;
 
         std::string filename = (codegen::getUnqualifiedClassName(cls.name) + ".hpp");

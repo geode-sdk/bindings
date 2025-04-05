@@ -23,18 +23,18 @@ class FMOD::ChannelControl {
     FMOD_RESULT getNumDSPs(int*) = ios 0x4fd2cc;
     FMOD_RESULT set3DLevel(float) = ios 0x4fe5f4;
     FMOD_RESULT get3DSpread(float*) = ios 0x4fe514;
-    FMOD_RESULT getDSPClock(unsigned long long*, unsigned long long*) = ios 0x4fc598;
+    FMOD_RESULT getDSPClock(uint64_t*, uint64_t*) = ios 0x4fc598;
     FMOD_RESULT getDSPIndex(FMOD::DSP*, int*) = ios 0x4fd4dc;
     FMOD_RESULT getUserData(void**) = ios 0x4fed34;
     FMOD_RESULT set3DSpread(float) = ios 0x4fe42c;
-    FMOD_RESULT setCallback(FMOD_RESULT (*)(FMOD_CHANNELCONTROL*, FMOD_CHANNELCONTROL_TYPE, FMOD_CHANNELCONTROL_CALLBACK_TYPE, void*, void*)) = ios 0x4fbb90;
+    FMOD_RESULT setCallback(FMOD_CHANNELCONTROL_CALLBACK) = ios 0x4fbb90;
     FMOD_RESULT setDSPIndex(FMOD::DSP*, int) = ios 0x4fd3ac;
     FMOD_RESULT setUserData(void*) = ios 0x4fec5c;
-    FMOD_RESULT addFadePoint(unsigned long long, float) = ios 0x4fc9fc;
+    FMOD_RESULT addFadePoint(uint64_t, float) = ios 0x4fc9fc;
     FMOD_RESULT getMixMatrix(float*, int*, int*, int) = ios 0x4fc3fc;
     FMOD_RESULT setMixMatrix(float*, int, int, int) = ios 0x4fc25c;
     FMOD_RESULT getAudibility(float*) = ios 0x4fb140;
-    FMOD_RESULT getFadePoints(unsigned int*, unsigned long long*, float*) = ios 0x4fcda8;
+    FMOD_RESULT getFadePoints(unsigned int*, uint64_t*, float*) = ios 0x4fcda8;
     FMOD_RESULT getVolumeRamp(bool*) = ios 0x4fb060;
     FMOD_RESULT setVolumeRamp(bool) = ios 0x4faf80;
     FMOD_RESULT get3DOcclusion(float*, float*) = ios 0x4fe2fc;
@@ -44,8 +44,8 @@ class FMOD::ChannelControl {
     FMOD_RESULT get3DAttributes(FMOD_VECTOR*, FMOD_VECTOR*) = ios 0x4fd73c;
     FMOD_RESULT getSystemObject(FMOD::System**) = ios 0x4faa58;
     FMOD_RESULT set3DAttributes(FMOD_VECTOR const*, FMOD_VECTOR const*) = ios 0x4fd60c;
-    FMOD_RESULT removeFadePoints(unsigned long long, unsigned long long) = ios 0x4fcc6c;
-    FMOD_RESULT setFadePointRamp(unsigned long long, float) = ios 0x4fcb34;
+    FMOD_RESULT removeFadePoints(uint64_t, uint64_t) = ios 0x4fcc6c;
+    FMOD_RESULT setFadePointRamp(uint64_t, float) = ios 0x4fcb34;
     FMOD_RESULT get3DConeSettings(float*, float*, float*) = ios 0x4fdc40;
     FMOD_RESULT get3DDopplerLevel(float*) = ios 0x4fe8a4;
     FMOD_RESULT set3DConeSettings(float, float, float) = ios 0x4fdacc;
@@ -70,9 +70,9 @@ class FMOD::ChannelControl {
     FMOD_RESULT getMute(bool*) = ios 0x4fb4c8;
     FMOD_RESULT setMode(unsigned int) = ios 0x4fb9d0;
     FMOD_RESULT setMute(bool) = ios 0x4fb3e8;
-    FMOD_RESULT getDelay(unsigned long long*, unsigned long long*, bool*) = ios 0x4fc868;
+    FMOD_RESULT getDelay(uint64_t*, uint64_t*, bool*) = ios 0x4fc868;
     FMOD_RESULT getPitch(float*) = ios 0x4fb308;
-    FMOD_RESULT setDelay(unsigned long long, unsigned long long, bool) = ios 0x4fc6f0;
+    FMOD_RESULT setDelay(uint64_t, uint64_t, bool) = ios 0x4fc6f0;
     FMOD_RESULT setPitch(float) = ios 0x4fb220;
     FMOD_RESULT getPaused(bool*) = ios 0x4facd4;
     FMOD_RESULT getVolume(float*) = ios 0x4faea0;
@@ -95,15 +95,10 @@ class FMOD::ChannelGroup {
 }
 
 [[link(win, android, mac)]]
-class FMOD::ChannelI {
-    FMOD_RESULT validate(FMOD::Channel*, FMOD::ChannelI**, FMOD::SystemLockScope*);
-}
-
-[[link(win, android, mac)]]
 class FMOD::DSP {
     FMOD_RESULT getCPUUsage(unsigned int*, unsigned int*) = ios 0x47f548;
     FMOD_RESULT getUserData(void**) = ios 0x47f108;
-    FMOD_RESULT setCallback(FMOD_RESULT (*)(FMOD_DSP*, FMOD_DSP_CALLBACK_TYPE, void*)) = ios 0x47dd04;
+    FMOD_RESULT setCallback(FMOD_DSP_CALLBACK) = ios 0x47dd04;
     FMOD_RESULT setUserData(void*) = ios 0x47f040;
     FMOD_RESULT getNumInputs(int*) = ios 0x47cc18;
     FMOD_RESULT getWetDryMix(float*, float*, float*) = ios 0x47d5b8;
@@ -158,11 +153,6 @@ class FMOD::DSPConnection {
 }
 
 [[link(win, android, mac)]]
-class FMOD::DSPI {
-    FMOD_RESULT validate(FMOD::DSP*, FMOD::DSPI**, FMOD::SystemLockScope*);
-}
-
-[[link(win, android, mac)]]
 class FMOD::Geometry {
     FMOD_RESULT addPolygon(float, float, bool, int, FMOD_VECTOR const*, int*);
     FMOD_RESULT getPosition(FMOD_VECTOR*);
@@ -184,12 +174,6 @@ class FMOD::Geometry {
     FMOD_RESULT setScale(FMOD_VECTOR const*);
     FMOD_RESULT getActive(bool*);
     FMOD_RESULT setActive(bool);
-}
-
-[[link(win, android, mac)]]
-class FMOD::GeometryI {
-    FMOD_RESULT getUserData(void**);
-    FMOD_RESULT setUserData(void*);
 }
 
 [[link(win, android, mac)]]
@@ -274,12 +258,6 @@ class FMOD::SoundGroup {
 }
 
 [[link(win, android, mac)]]
-class FMOD::SoundI {
-    FMOD_RESULT getUserDataInternal(void**);
-    FMOD_RESULT setUserDataInternal(void*);
-}
-
-[[link(win, android, mac)]]
 class FMOD::System {
     FMOD_RESULT getChannel(int, FMOD::Channel**) = ios 0x4c3434;
     FMOD_RESULT getVersion(unsigned int*) = ios 0x4c3284;
@@ -292,10 +270,10 @@ class FMOD::System {
     FMOD_RESULT mixerResume();
     FMOD_RESULT recordStart(int, FMOD::Sound*, bool) = ios 0x4c5220;
     FMOD_RESULT registerDSP(FMOD_DSP_DESCRIPTION const*, unsigned int*) = ios 0x4c1b90;
-    FMOD_RESULT setCallback(FMOD_RESULT (*)(FMOD_SYSTEM*, unsigned int, void*, void*, void*), unsigned int) = ios 0x4c0b10;
+    FMOD_RESULT setCallback(FMOD_SYSTEM_CALLBACK, unsigned int) = ios 0x4c0b10;
     FMOD_RESULT setUserData(void*) = ios 0x4c5f48;
     FMOD_RESULT createStream(char const*, unsigned int, FMOD_CREATESOUNDEXINFO*, FMOD::Sound**) = ios 0x4c38ec;
-    FMOD_RESULT getFileUsage(long long*, long long*, long long*) = ios 0x4c3614;
+    FMOD_RESULT getFileUsage(int64_t*, int64_t*, int64_t*) = ios 0x4c3614;
     FMOD_RESULT loadGeometry(void const*, int, FMOD::Geometry**) = ios 0x4c58a0;
     FMOD_RESULT mixerSuspend() = ios 0x4c2ff0;
     FMOD_RESULT unloadPlugin(unsigned int) = ios 0x4c0e78;
@@ -306,7 +284,7 @@ class FMOD::System {
     FMOD_RESULT getPluginInfo(unsigned int, FMOD_PLUGINTYPE*, char*, int, unsigned int*) = ios 0x4c1468;
     FMOD_RESULT registerCodec(FMOD_CODEC_DESCRIPTION*, unsigned int*, unsigned int) = ios 0x4c1a2c;
     FMOD_RESULT set3DSettings(float, float, float) = ios 0x4c2648;
-    FMOD_RESULT setFileSystem(FMOD_RESULT (*)(char const*, unsigned int*, void**, void*), FMOD_RESULT (*)(void*, void*), FMOD_RESULT (*)(void*, void*, unsigned int, unsigned int*, void*), FMOD_RESULT (*)(void*, unsigned int, void*), FMOD_RESULT (*)(FMOD_ASYNCREADINFO*, void*), FMOD_RESULT (*)(FMOD_ASYNCREADINFO*, void*), int) = ios 0x4c050c;
+    FMOD_RESULT setFileSystem(FMOD_FILE_OPEN_CALLBACK, FMOD_FILE_CLOSE_CALLBACK, FMOD_FILE_READ_CALLBACK, FMOD_FILE_SEEK_CALLBACK, FMOD_FILE_ASYNCREAD_CALLBACK, FMOD_FILE_ASYNCCANCEL_CALLBACK, int) = ios 0x4c050c;
     FMOD_RESULT setPluginPath(char const*) = ios 0x4c0c3c;
     FMOD_RESULT createGeometry(int, int, FMOD::Geometry**) = ios 0x4c5584;
     FMOD_RESULT createReverb3D(FMOD::Reverb3D**) = ios 0x4c3f10;
@@ -317,7 +295,7 @@ class FMOD::System {
     FMOD_RESULT getOutputHandle(void**) = ios 0x4c335c;
     FMOD_RESULT getPluginHandle(FMOD_PLUGINTYPE, int, unsigned int*) = ios 0x4c1304;
     FMOD_RESULT setNetworkProxy(char const*) = ios 0x4c5b98;
-    FMOD_RESULT attachFileSystem(FMOD_RESULT (*)(char const*, unsigned int*, void**, void*), FMOD_RESULT (*)(void*, void*), FMOD_RESULT (*)(void*, void*, unsigned int, unsigned int*, void*), FMOD_RESULT (*)(void*, unsigned int, void*)) = ios 0x4c07bc;
+    FMOD_RESULT attachFileSystem(FMOD_FILE_OPEN_CALLBACK, FMOD_FILE_CLOSE_CALLBACK, FMOD_FILE_READ_CALLBACK, FMOD_FILE_SEEK_CALLBACK) = ios 0x4c07bc;
     FMOD_RESULT createSoundGroup(char const*, FMOD::SoundGroup**) = ios 0x4c3de8;
     FMOD_RESULT getDSPBufferSize(unsigned int*, int*) = ios 0x4c03e4;
     FMOD_RESULT getDSPInfoByType(FMOD_DSP_TYPE, FMOD_DSP_DESCRIPTION const**) = ios 0x4c4438;
@@ -353,12 +331,12 @@ class FMOD::System {
     FMOD_RESULT setSoftwareChannels(int) = ios 0x4bfe2c;
     FMOD_RESULT setStreamBufferSize(unsigned int, unsigned int) = ios 0x4c23f8;
     FMOD_RESULT getGeometryOcclusion(FMOD_VECTOR const*, FMOD_VECTOR const*, float*, float*) = ios 0x4c5a04;
-    FMOD_RESULT set3DRolloffCallback(float (*)(FMOD_CHANNELCONTROL*, float)) = ios 0x4c2e50;
+    FMOD_RESULT set3DRolloffCallback(FMOD_3D_ROLLOFF_CALLBACK) = ios 0x4c2e50;
     FMOD_RESULT getMasterChannelGroup(FMOD::ChannelGroup**) = ios 0x4c4560;
     FMOD_RESULT getSpeakerModeChannels(FMOD_SPEAKERMODE, int*) = ios 0x4c30b4;
     FMOD_RESULT get3DListenerAttributes(int, FMOD_VECTOR*, FMOD_VECTOR*, FMOD_VECTOR*, FMOD_VECTOR*) = ios 0x4c2c8c;
     FMOD_RESULT set3DListenerAttributes(int, FMOD_VECTOR const*, FMOD_VECTOR const*, FMOD_VECTOR const*, FMOD_VECTOR const*) = ios 0x4c2ac8;
-    FMOD_RESULT attachChannelGroupToPort(FMOD_PORT_TYPE, unsigned long long, FMOD::ChannelGroup*, bool) = ios 0x4c4700;
+    FMOD_RESULT attachChannelGroupToPort(FMOD_PORT_TYPE, uint64_t, FMOD::ChannelGroup*, bool) = ios 0x4c4700;
     FMOD_RESULT detachChannelGroupFromPort(FMOD::ChannelGroup*) = ios 0x4c486c;
     FMOD_RESULT init(int, unsigned int, void*) = ios 0x4c1de0;
     FMOD_RESULT close() = ios 0x4c1f34;
@@ -373,18 +351,4 @@ class FMOD::System {
     FMOD_RESULT setDriver(int) = ios 0x4bfc7c;
     FMOD_RESULT setOutput(FMOD_OUTPUTTYPE) = ios 0x4bf760;
     FMOD_RESULT unlockDSP() = ios 0x4c4c48;
-}
-
-[[link(win, android, mac)]]
-class FMOD::SystemI {
-    FMOD_RESULT createDiskFile(char const*, FMOD_CREATESOUNDEXINFO*, FMOD::File**, bool*);
-    FMOD_RESULT createMemoryFile(FMOD::File**);
-    FMOD_RESULT createClientProfile();
-    FMOD_RESULT setInternalCallback(int, FMOD_RESULT (*)(FMOD_SYSTEM*, unsigned int, void*, void*, void*), void*);
-    FMOD_RESULT validate(FMOD::System*, FMOD::SystemI**, FMOD::SystemLockScope*);
-}
-
-[[link(win, android, mac)]]
-class FMOD {
-    FMOD_RESULT getGlobals(FMOD::Global**);
 }
