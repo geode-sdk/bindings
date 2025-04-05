@@ -354,9 +354,4 @@ class FMOD::System {
 }
 
 [[link(win, android, mac)]]
-class FMOD {
-    FMOD_RESULT getGlobals(FMOD::Global**) = ios 0x4a8ad4;
-}
-
-[[link(win, android, mac)]]
 FMOD_RESULT FMOD_System_Create(FMOD_SYSTEM**, unsigned int) = ios 0x44a3f8;
