@@ -153,7 +153,7 @@ std::string generateModifyHeader(Root const& root, std::filesystem::path const& 
                 continue;
             }
             else if (status == BindStatus::Unbindable && fn->prototype.type == FunctionType::Normal) {
-                if (is_cocos_class(c.name) || is_fmod_class(c.name)) {
+                if (is_cocos_or_fmod_class(c.name)) {
                     format_string = format_strings::apply_error_defined;
                 }
                 else {
@@ -179,7 +179,7 @@ std::string generateModifyHeader(Root const& root, std::filesystem::path const& 
                 }
             }
             else if (fn->prototype.type == FunctionType::Normal) {
-                if (is_cocos_class(c.name) || is_fmod_class(c.name)) {
+                if (is_cocos_or_fmod_class(c.name)) {
                     format_string = format_strings::apply_error_defined;
                 }
                 else {

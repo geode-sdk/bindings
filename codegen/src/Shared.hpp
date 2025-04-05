@@ -69,6 +69,10 @@ inline bool is_fmod_class(std::string const& str) {
     return can_find(str, "FMOD::");
 }
 
+inline bool is_cocos_or_fmod_class(std::string const& str) {
+    return is_cocos_class(str) || is_fmod_class(str);
+}
+
 enum class BindStatus {
     Binded,
     Inlined,
