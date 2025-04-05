@@ -3251,8 +3251,8 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
     [[since("4.0.1")]]
     ~CCRenderTexture() = m1 0x5106fc, imac 0x5dd880, ios 0x3b86dc;
     void begin() = imac 0x5de080, m1 0x510e4c, ios 0x3b8cac;
-    void beginWithClear(float, float, float, float, float, int, unsigned int) = imac 0x5de350, m1 0x5110d8;
-    void beginWithClear(float, float, float, float) = imac 0x5de2b0, m1 0x511038;
+    void beginWithClear(float, float, float, float, float, int, unsigned int) = imac 0x5de350, m1 0x5110d8, ios 0x3b8e8c;
+    void beginWithClear(float, float, float, float) = imac 0x5de2b0, m1 0x511038, ios 0x3b8e7c;
     void beginWithClear(float, float, float, float, float) = imac 0x5de4f0, m1 0x511220;
     void beginWithClear(float, float, float, float, float, int) = imac 0x5de5d0;
     void clear(float, float, float, float);
