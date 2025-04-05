@@ -214,7 +214,7 @@ class FMOD::Sound {
     FMOD_RESULT getNumSyncPoints(int*) = ios 0x4b8314;
     FMOD_RESULT getSyncPointInfo(FMOD_SYNCPOINT*, char*, int, unsigned int*, unsigned int) = ios 0x4b8584;
     FMOD_RESULT get3DConeSettings(float*, float*, float*) = ios 0x4b6dfc;
-    FMOD_RESULT getSubSoundParent(FMOD::Sound**);
+    FMOD_RESULT getSubSoundParent(FMOD::Sound**) = ios 0x4b73d8;
     FMOD_RESULT set3DConeSettings(float, float, float) = ios 0x4b6c44;
     FMOD_RESULT get3DCustomRolloff(FMOD_VECTOR**, int*) = ios 0x4b710c;
     FMOD_RESULT set3DCustomRolloff(FMOD_VECTOR*, int) = ios 0x4b6f98;
@@ -267,7 +267,7 @@ class FMOD::System {
     FMOD_RESULT getCPUUsage(FMOD_CPU_USAGE*) = ios 0x4c354c;
     FMOD_RESULT getUserData(void**) = ios 0x4c6010;
     FMOD_RESULT isRecording(int, bool*) = ios 0x4c545c;
-    FMOD_RESULT mixerResume();
+    FMOD_RESULT mixerResume() = ios 0x4c2ff0;
     FMOD_RESULT recordStart(int, FMOD::Sound*, bool) = ios 0x4c5220;
     FMOD_RESULT registerDSP(FMOD_DSP_DESCRIPTION const*, unsigned int*) = ios 0x4c1b90;
     FMOD_RESULT setCallback(FMOD_SYSTEM_CALLBACK, unsigned int) = ios 0x4c0b10;
@@ -275,7 +275,7 @@ class FMOD::System {
     FMOD_RESULT createStream(char const*, unsigned int, FMOD_CREATESOUNDEXINFO*, FMOD::Sound**) = ios 0x4c38ec;
     FMOD_RESULT getFileUsage(int64_t*, int64_t*, int64_t*) = ios 0x4c3614;
     FMOD_RESULT loadGeometry(void const*, int, FMOD::Geometry**) = ios 0x4c58a0;
-    FMOD_RESULT mixerSuspend() = ios 0x4c2ff0;
+    FMOD_RESULT mixerSuspend() = ios 0x4c2f2c;
     FMOD_RESULT unloadPlugin(unsigned int) = ios 0x4c0e78;
     FMOD_RESULT get3DSettings(float*, float*, float*) = ios 0x4c27b4;
     FMOD_RESULT getDriverInfo(int, char*, int, FMOD_GUID*, int*, FMOD_SPEAKERMODE*, int*) = ios 0x4bf9e8;
@@ -351,6 +351,11 @@ class FMOD::System {
     FMOD_RESULT setDriver(int) = ios 0x4bfc7c;
     FMOD_RESULT setOutput(FMOD_OUTPUTTYPE) = ios 0x4bf760;
     FMOD_RESULT unlockDSP() = ios 0x4c4c48;
+}
+
+[[link(win, android, mac)]]
+class FMOD {
+    FMOD_RESULT getGlobals(FMOD::Global**) = ios 0x4a8ad4;
 }
 
 [[link(win, android, mac)]]

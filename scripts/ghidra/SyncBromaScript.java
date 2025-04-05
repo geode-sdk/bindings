@@ -116,6 +116,7 @@ public class SyncBromaScript extends GhidraScript {
 
             this.bromaFiles = bromaFiles.stream()
                 .map(f -> Paths.get(bindingsDir.toString(), this.gameVersion, f))
+                .filter(Files::exists)
                 .toList();
             
             if (!this.importFromBroma && !this.exportToBroma) {
