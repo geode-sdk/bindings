@@ -672,8 +672,6 @@ public class SyncBromaScript extends GhidraScript {
                     bromaFun = bromaFuns.get(0);
                 }
 
-                boolean returnTypeUpdated = false;
-
                 // Update return type if Ghidra has an user-defined type and 
                 // Broma has TodoReturn
                 if (

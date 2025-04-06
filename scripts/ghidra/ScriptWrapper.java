@@ -262,13 +262,14 @@ public class ScriptWrapper {
         DataType result = null;
 
         // Built-in types
-        if (type.name.value.matches("bool|char|short|int|long|float|double|void")) {
+        if (type.name.value.matches("bool|char|short|int|long|float|double|void|longlong")) {
             switch (type.name.value) {
                 case "bool": result = BooleanDataType.dataType; break;
                 case "char": result = type.unsigned ? UnsignedCharDataType.dataType : CharDataType.dataType; break;
                 case "short": result = type.unsigned ? UnsignedShortDataType.dataType : ShortDataType.dataType; break;
                 case "int": result = type.unsigned ? UnsignedIntegerDataType.dataType : IntegerDataType.dataType; break;
                 case "long": result = type.unsigned ? UnsignedLongDataType.dataType : LongDataType.dataType; break;
+                case "longlong": result = type.unsigned ? UnsignedLongLongDataType.dataType : LongLongDataType.dataType; break;
                 case "float": result = FloatDataType.dataType; break;
                 case "double": result = DoubleDataType.dataType; break;
                 case "void": result = VoidDataType.dataType; break;
