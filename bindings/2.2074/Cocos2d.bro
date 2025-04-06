@@ -1199,8 +1199,8 @@ class cocos2d::CCScene : cocos2d::CCNode {
     int getHighestChildZ() = imac 0x27efb0, m1 0x2289cc, ios 0x24028c;
 
     // CCScene(cocos2d::CCScene const&);
-    CCScene() = imac 0x27ed80, m1 0x228780, ios 0x2508a4;
-    ~CCScene() = imac 0x27ee70, m1 0x22887c, ios 0x23ac80; // ios: idfk i just guessed
+    CCScene() = imac 0x27ed80, m1 0x228780, ios 0x240128;
+    ~CCScene() = imac 0x27ee70, m1 0x22887c, ios 0x2401a8; // ios: idfk i just guessed
 
     virtual bool init() = m1 0x228894, imac 0x27eea0, ios 0x2401c0;
 }
@@ -2766,7 +2766,7 @@ class cocos2d::CCNodeRGBA : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
 
     // CCNodeRGBA(cocos2d::CCNodeRGBA const&);
     CCNodeRGBA() = imac 0x262fc0, m1 0x20ec74, ios 0x23CE40;
-    ~CCNodeRGBA() = imac 0x263070, m1 0x20ecd8, ios 0x23AC80;
+    ~CCNodeRGBA() = imac 0x263070, m1 0x20ecd8, ios 0x23ce74;
 
     virtual bool init() = imac 0x2630a0, m1 0x20ecf0, ios 0x23ce8c;
 

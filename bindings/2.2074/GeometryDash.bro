@@ -93,7 +93,7 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegate, FLAlertLayerProtocol {
     // virtual ~AccountLoginLayer();
 
-    static AccountLoginLayer* create(gd::string) = win 0x7b730, ios 0x16e934;
+    static AccountLoginLayer* create(gd::string) = win 0x7b730, ios 0x87068;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, imac 0x487a60, m1 0x3f4ff4, ios 0x88580;
     virtual void keyBackClicked() = win 0x7cfa0, m1 0x3f4ea4, imac 0x487920, ios 0x88494;
@@ -707,7 +707,7 @@ class ArtTriggerGameObject : EffectGameObject {
 class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDelegate {
     // virtual ~AudioAssetsBrowser();
 
-    static AudioAssetsBrowser* create(gd::vector<int>& songIds, gd::vector<int>& sfxIds) = ios 0xf9894;
+    static AudioAssetsBrowser* create(gd::vector<int>& songIds, gd::vector<int>& sfxIds) = ios 0x1d225c;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x6b1dd4, imac 0x79fa30, ios 0x1d30fc;
     virtual void keyBackClicked() = win 0x84650, m1 0x6b1d58, imac 0x79f9c0, ios 0x1d3080;
@@ -1070,7 +1070,7 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
 class ButtonPage : cocos2d::CCLayer {
     // virtual ~ButtonPage();
 
-    static ButtonPage* create(cocos2d::CCArray*, cocos2d::CCPoint, int, float) = ios 0x61d5c;
+    static ButtonPage* create(cocos2d::CCArray*, cocos2d::CCPoint, int, float) = ios 0x419250;
 
     bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, float);
 }
@@ -10889,7 +10889,9 @@ class GJItemIcon : cocos2d::CCSprite {
         delete ret;
         return nullptr;
     }
-    static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = ios 0x307bd8, win 0x273070, imac 0x35a800, m1 0x2edf50;
+    static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = ios inline, win 0x273070, imac 0x35a800, m1 0x2edf50 {
+        return create(unlockType, itemID, { 175, 175, 175 }, { 255, 255, 255 }, false, true, true, { 255, 255, 255 });
+    }
     static GJItemIcon* createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B) = win 0x272f40, imac 0x35d910, m1 0x2f0b84;
     static float scaleForType(UnlockType) = ios 0x305b68, win 0x273d90, imac 0x35a830, m1 0x2edf70;
     static cocos2d::ccColor3B unlockedColorForType(int) = imac 0x35e100, m1 0x2f130c;
