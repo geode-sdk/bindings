@@ -3556,7 +3556,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     void onClear(cocos2d::CCObject* sender);
     void onClose(cocos2d::CCObject* sender) = ios 0x52e0c, win 0xa9900, m1 0x19c978, imac 0x1e5320;
     void onCopy(cocos2d::CCObject* sender) = win 0xa7900;
-    void onEditColor(cocos2d::CCObject* sender);
+    void onEditColor(cocos2d::CCObject* sender) = win 0xa7d70, imac 0x1e5d20, m1 0x19d354, ios 0x53640;
     void onHSV(cocos2d::CCObject* sender) = ios 0x53190, win 0xa8470, m1 0x19cd5c, imac 0x1e5740;
     void onLiveEdit(cocos2d::CCObject* sender) = m1 0x19d3a8, imac 0x1e5d80;
     void onNextColorChannel(cocos2d::CCObject* sender);
