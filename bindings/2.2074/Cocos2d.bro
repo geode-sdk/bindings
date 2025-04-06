@@ -2692,7 +2692,8 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void setViewport() = imac 0x470d60, m1 0x3dfc30, ios 0x179380;
 
     // CCDirector(cocos2d::CCDirector const&);
-    // CCDirector();
+    CCDirector() = m1 0x3de790, imac 0x46f5d0, ios 0x1785a4;
+    ~CCDirector() = m1 0x3deb9c, imac 0x46fa50, ios 0x17895c;
     void applySmoothFix();
     void calculateDeltaTime();
     void calculateMPF();
@@ -4770,4 +4771,12 @@ class cocos2d::CCZone {
     // CCZone(cocos2d::CCObject*) = ios 0x2534b4;
 
     cocos2d::CCObject* m_pCopyObject;
+}
+
+[[link(android)]]
+class cocos2d::CCDisplayLinkDirector : cocos2d::CCDirector {
+    virtual void setAnimationInterval(double) = win 0xbcf10, m1 0x3e0aa8, imac 0x471d80, ios 0x179e68;
+    virtual void stopAnimation() = win 0xbda50, m1 0x3e0a9c, imac 0x471d70, ios 0x179e5c;
+    virtual void startAnimation() = win 0xbda10, m1 0x3e0a24, imac 0x471cf0, ios 0x179de4;
+    virtual void mainLoop() = win 0xbc600, m1 0x3e0a60, imac 0x471d30, ios 0x179e20;
 }
