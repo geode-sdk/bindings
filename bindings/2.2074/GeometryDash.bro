@@ -654,8 +654,8 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x83590, m1 0x56ecd4, imac 0x6465a0, ios 0x26885c;
 
     float bgScale() = ios 0x268554;
-    TodoReturn checkSound();
-    TodoReturn hideLoadingCircle();
+    void checkSound();
+    void hideLoadingCircle();
     void loadingIsFinished();
     bool musicTest() = win 0x83370, ios 0x2687e8;
     void pauseGame() = win 0x82ff0;
@@ -669,6 +669,13 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     bool m_glViewSetup;
     bool m_gamePaused;
     cocos2d::CCScene* m_runningScene;
+    bool m_loadingFinished;
+    bool m_unk0e9;
+    bool m_ios;
+    bool m_unk0eb;
+    bool m_unk0ec;
+    bool m_unk0ed;
+    float m_saveTime;
 }
 
 [[link(android)]]
