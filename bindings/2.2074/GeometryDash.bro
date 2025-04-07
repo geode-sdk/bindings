@@ -15838,7 +15838,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 
     void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x3299f0, imac 0x577e40, m1 0x4cba2c;
     void addDLToActive(char const* tag);
-    TodoReturn addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x327f30;
+    void addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x327f30, m1 0x4c7c3c, imac 0x573b30, ios 0x157810;
     void addSongObjectFromString(gd::string);
     void clearSong(int songID) = ios 0x159868, win inline, m1 0x4cae00, imac 0x577170 {
         const char* key = cocos2d::CCString::createWithFormat("%i", songID)->getCString();
@@ -15924,7 +15924,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int) = imac 0x572e60, m1 0x4c7030, win 0x327a80;
     callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = imac 0x572b10, m1 0x4c6cf0, win 0x327940;
     void removeDLFromActive(char const*) = imac 0x573ec0, m1 0x4c7ff4;
-    TodoReturn removeMusicDownloadDelegate(MusicDownloadDelegate*);
+    void removeMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x328010, m1 0x4c7d30, imac 0x573c20, ios 0x157894;
     void showTOS(FLAlertLayerProtocol*) = win 0x32a2f0, imac 0x578c60, m1 0x4cc5ec;
     void songStateChanged() = win 0x328120, m1 0x4c80f8, imac 0x573fa0, ios 0x157abc;
     TodoReturn stopDownload(int) = imac 0x573d80, m1 0x4c7ea4;
