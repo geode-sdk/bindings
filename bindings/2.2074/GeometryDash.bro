@@ -13734,7 +13734,7 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     bool init(bool returning) = ios 0x3450dc, win 0x2be2e0, m1 0x2135d4, imac 0x267d00;
     void onBack(cocos2d::CCObject* sender) = ios 0x345c0c, win 0x2c04a0, m1 0x2143a0, imac 0x268b80;
     void onDoor(cocos2d::CCObject* sender) = ios 0x345c64, win 0x2bffd0, imac 0x268bd0, m1 0x2143f8;
-    void onInfo(cocos2d::CCObject* sender) = win 0x2bfa30, m1 0x2146cc, imac 0x268e70;
+    void onInfo(cocos2d::CCObject* sender) = win 0x2bfa30, m1 0x2146cc, imac 0x268e70, ios 0x345ecc;
     void onNextFloor(cocos2d::CCObject* sender) = win 0x2bf2c0, m1 0x21453c, imac 0x268d00;
     void onOnlineVault(cocos2d::CCObject* sender) = win 0x2c02c0;
     bool playStep1() = ios 0x3466a8, win 0x2c0190;
@@ -15852,7 +15852,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void deleteSong(int) = ios 0x159818, imac 0x577120, m1 0x4cada0;
     void downloadCustomSong(int) = ios 0x159d0c, win 0x32ad40, imac 0x5778d0, m1 0x4cb4c4;
     void downloadMusicLibrary() = m1 0x4cd97c, imac 0x57a200;
-    void downloadSFX(int) = imac 0x57d0e0, m1 0x4d01c0;
+    void downloadSFX(int) = win 0x32ca80, imac 0x57d0e0, m1 0x4d01c0, ios 0x15ced4;
     void downloadSFXFailed(int, GJSongError);
     void downloadSFXFinished(int);
     void downloadSFXLibrary();
@@ -15897,7 +15897,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
         return m_resourceSongUnorderedSet.contains(id);
     }
     bool isRunningActionForSongID(int) = imac 0x573cb0;
-    bool isSFXDownloaded(int) = imac 0x5784f0, m1 0x4cbfe4;
+    bool isSFXDownloaded(int) = win 0x329fb0, imac 0x5784f0, m1 0x4cbfe4, ios 0x15a418;
     bool isSFXLibraryLoaded();
     bool isSongDownloaded(int) = ios 0x159650, win 0x329c80, imac 0x576cc0, m1 0x4ca9c8;
     void limitDownloadedSongs() = ios 0x159790, m1 0x4cac6c, imac 0x576fe0;
