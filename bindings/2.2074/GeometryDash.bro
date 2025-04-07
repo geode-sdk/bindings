@@ -15870,7 +15870,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     TodoReturn getAllMusicTags(OptionsObjectDelegate*);
     TodoReturn getAllSFXObjects(bool);
     TodoReturn getAllSongs();
-    void getCustomContentURL() = win 0x32a940, imac 0x579470, m1 0x4ccd84;
+    void getCustomContentURL() = win 0x32a940, imac 0x579470, m1 0x4ccd84, ios 0x15ab1c;
     cocos2d::CCObject* getDLObject(char const*) = win 0x39d70;
     cocos2d::CCArray* getDownloadedSongs() = win 0x3290a0, m1 0x4ca930, imac 0x576c20, ios 0x1595bc;
     TodoReturn getDownloadProgress(int);
