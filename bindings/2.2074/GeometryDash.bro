@@ -6708,7 +6708,7 @@ class GameLevelManager : cocos2d::CCNode {
     void markLevelAsDownloaded(int) = win 0x151510;
     void markLevelAsRatedDemon(int id) = win inline, m1 0x48b1c8, imac 0x530870 {
         if (m_ratedDemons->count() > 999) m_ratedDemons->removeObjectForKey(m_ratedDemons->getFirstKey());
-        m_ratedDemons->setObject(m_unkStr4, cocos2d::CCString::createWithFormat("%i", id)->getCString());
+        m_ratedDemons->setObject(m_trueString, cocos2d::CCString::createWithFormat("%i", id)->getCString());
     }
     void markLevelAsRatedStars(int);
     void markLevelAsReported(int);
@@ -6884,13 +6884,13 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_dailyLevels;
     int m_dailyTimeLeft;
     int m_dailyID;
-    int m_dailyIDUnk;
+    int m_activeDailyID;
     int m_weeklyTimeLeft;
     int m_weeklyID;
-    int m_weeklyIDUnk;
+    int m_activeWeeklyID;
     int m_eventTimeLeft;
     int m_eventID;
-    int m_eventIDUnk;
+    int m_activeEventID;
     cocos2d::CCDictionary* m_gauntletLevels;
     gd::map<gd::string, bool> m_availableFilters;
     cocos2d::CCDictionary* m_timerDict;
@@ -6908,10 +6908,10 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_friendRequests;
     cocos2d::CCDictionary* m_userMessages;
     cocos2d::CCDictionary* m_userReplies;
-    gd::string m_searchSceneStr;
-    gd::string m_searchType9Str;
+    gd::string m_searchKey;
+    gd::string m_mapPackKey;
     LeaderboardState m_leaderboardState;
-    bool m_unkEditLevelLayerOnBack;
+    bool m_returnToLocalLevels;
     LevelManagerDelegate* m_levelManagerDelegate;
     LevelDownloadDelegate* m_levelDownloadDelegate;
     LevelCommentDelegate* m_levelCommentDelegate;
@@ -6934,10 +6934,10 @@ class GameLevelManager : cocos2d::CCNode {
     GJChallengeDelegate* m_GJChallengeDelegate;
     GJDailyLevelDelegate* m_GJDailyLevelDelegate;
     OnlineListDelegate* m_onlineListDelegate;
-    int m_unkDownload;
+    SearchType m_searchType;
     int m_mapPack;
     gd::string m_unkStr3;
-    cocos2d::CCString* m_unkStr4;
+    cocos2d::CCString* m_trueString;
     cocos2d::CCArray* m_smartTemplates;
     GJSmartTemplate* m_smartTemplate;
     bool m_testedNetwork;
@@ -7299,7 +7299,7 @@ class GameManager : GManager {
     bool m_toFullscreen;
     bool m_reloading;
     bool m_fix;
-    bool m_unkBool1;
+    bool m_reloadTextures;
     bool m_unkBool2;
     bool m_vsyncEnabled;
     cocos2d::CCDictionary* m_valueKeeper;
@@ -7315,7 +7315,7 @@ class GameManager : GManager {
     bool m_loaded;
     bool m_googlePlaySignedIn;
     gd::string m_editorClipboard;
-    int m_unkSize4_4;
+    int m_copiedObjectCount;
     PlayLayer* m_playLayer;
     LevelEditorLayer* m_levelEditorLayer;
     GJBaseGameLayer* m_gameLayer;
@@ -7329,7 +7329,7 @@ class GameManager : GManager {
     bool m_unknownBool5;
     gd::string m_playerUDID;
     gd::string m_playerName;
-    bool m_commentsEnabled;
+    bool m_scoreUpdated;
     geode::SeedValueRSV m_playerUserID;
     float m_bgVolume;
     float m_sfxVolume;
@@ -7372,7 +7372,7 @@ class GameManager : GManager {
     bool m_recordGameplay;
     bool m_showProgressBar;
     bool m_performanceMode;
-    bool m_unkBool4;
+    bool m_addGlow;
     bool m_clickedGarage;
     bool m_clickedEditor;
     bool m_clickedName;
@@ -7381,12 +7381,12 @@ class GameManager : GManager {
     bool m_showedRateDiffDialog;
     bool m_showedRateStarDialog;
     bool m_showedLowDetailDialog;
-    void* m_unkPtr2;
-    void* m_unkPtr3;
-    int m_unkSize4_5;
-    int m_unkSize4_6;
-    int m_unkSize4_7;
-    int m_unkSize4_8;
+    GameRateDelegate* m_gameRateDelegate1;
+    GameRateDelegate* m_gameRateDelegate2;
+    cocos2d::ccColor3B m_copiedColor;
+    int m_currentLevelID;
+    int m_currentColorChannel;
+    int m_currentGroupID;
     int m_loadedBgID;
     int m_loadedGroundID;
     int m_loadedMG;
@@ -7399,10 +7399,9 @@ class GameManager : GManager {
     bool m_shouldLoadG1;
     bool m_finishedLoadingMG1;
     bool m_finishedLoadingMG2;
-    bool m_unkBool5;
-    int m_unkSize4_9;
-    int m_unkSize4_10;
-    int m_unkSize4_11;
+    int m_sessionAttempts;
+    int m_sessionAttempts2;
+    int m_sessionNormalAttempts;
     int m_bootups;
     bool m_hasRatedGame;
     bool m_unkBool6;
@@ -7414,28 +7413,28 @@ class GameManager : GManager {
     int m_resolution;
     int m_texQuality;
     bool m_somethingInMenuLayer;
-    void* m_unkPtr4;
+    DailyLevelPage* m_dailyLevelPage;
     bool m_ropeGarageEnter;
-    int m_unkSize4_12;
+    int m_currentGauntlet;
     int m_unkSize4_13;
     bool m_unkBool10;
     int m_unkSize4_14;
     bool m_disableThumbstick;
     float m_customFPSTarget;
-    bool m_unkBool11;
+    bool m_loadingLevel;
     int m_customMenuSongID;
     int m_customPracticeSongID;
-    gd::map<int, int> m_loadIcon;
-    gd::map<int, gd::map<int, int>> m_loadIcon2;
+    gd::map<int, int> m_iconLoadCounts;
+    gd::map<int, gd::map<int, int>> m_iconRequests;
     gd::map<int, bool> m_isIconBeingLoaded;
     gd::vector<int> m_keyStartForIcon;
     gd::map<int, gd::vector<cocos2d::CCObject*>> m_iconDelegates;
     int m_iconRequestID;
     cocos2d::CCArray* m_unkArray;
-    void* m_someAdPointer;
-    int m_unkSize4_15;
-    int m_unkSize4_16;
-    int m_unkSize4_17;
+    RewardedVideoDelegate* m_rewardedVideoDelegate;
+    SearchType m_localSearchType;
+    SearchType m_savedSearchType;
+    int m_levelSearchType;
     UIButtonConfig m_dpad1;
     UIButtonConfig m_dpad2;
     UIButtonConfig m_dpad3;
@@ -7447,12 +7446,11 @@ class GameManager : GManager {
     gd::string m_dpadLayoutDual1;
     gd::string m_dpadLayoutDual2;
     gd::string m_dpadLayoutDual3;
-    int m_unkSize4_18;
-    int m_unkSize4_19;
-    int m_unkSize4_20;
+    int m_leaderboardLevelID;
+    int m_leaderboardLevelTime;
+    int m_leaderboardLevelPoints;
     bool m_shouldResetShader;
-    float m_practicePosX;
-    float m_practicePosY;
+    cocos2d::CCPoint m_practicePos;
     float m_practiceOpacity;
 }
 
@@ -8376,13 +8374,14 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_miscChests;
     cocos2d::CCDictionary* m_enabledItems;
     cocos2d::CCDictionary* m_wraithChests;
-    bool m_unkBoolIncrementStat;
+    bool m_skipIncrementChallenge;
     cocos2d::CCDictionary* m_unkDict;
     cocos2d::CCDictionary* m_unlockedItems;
     gd::map<std::pair<int, UnlockType>, int> m_accountIDForIcon;
     gd::map<int, gd::string> m_usernameForAccountID;
     gd::set<std::pair<UnlockType, int>> m_wraithIcons;
-    bool m_GS29;
+    bool m_pathBugFixed;
+    bool m_tryFixPathBug;
     int m_activePath;
 }
 
@@ -15958,6 +15957,10 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     int m_musicLibraryVersion;
     int m_musicObjectCount;
     bool m_requestedMusicLibraryDownloaded;
+    bool m_unk1d9;
+    bool m_unk1da;
+    bool m_unk1db;
+    bool m_downloadingMusicLibrary;
     bool m_triedToLoadLibraries;
     bool m_unkBool;
     gd::unordered_set<int> m_resourceSfxUnorderedSet;
