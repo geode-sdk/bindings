@@ -13146,7 +13146,7 @@ class HardStreak : cocos2d::CCDrawNode {
     void firstSetup() = ios 0x61518;
     TodoReturn normalizeAngle(double);
     TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
-    void reset() = win inline, imac 0x9d4e0, m1 0x8ffc8 {
+    void reset() = win inline, imac 0x9d4e0, m1 0x8ffc8, ios 0x61c1c {
         this->clear();
         m_pointArray->removeAllObjects();
     }
