@@ -940,3 +940,12 @@ enum class GameOptionsSetting {
     Disabled = 0,
     On = 1,
 };
+
+// Geode Addition
+enum class GameObjectClassType {
+    Game = 0,
+    Effect = 1,
+    Animated = 2,
+    Enhanced = 4,
+    Smart = 5,
+};
