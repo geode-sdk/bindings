@@ -868,7 +868,7 @@ class cocos2d::CCScaleBy : cocos2d::CCScaleTo {
 
         return pScaleBy;
     }
-    static cocos2d::CCScaleBy* create(float duration, float sx, float sy) = m1 0x333a60, imac 0x3a74f0, ios inline {
+    static cocos2d::CCScaleBy* create(float duration, float sx, float sy) = m1 0x333a68, imac 0x3a74f0, ios inline {
         cocos2d::CCScaleBy *pScaleBy = new cocos2d::CCScaleBy();
         pScaleBy->initWithDuration(duration, sx, sy);
         pScaleBy->autorelease();
