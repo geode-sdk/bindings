@@ -11617,7 +11617,15 @@ class GJRewardItem : cocos2d::CCObject {
         return ret;
     }
     static GJRewardItem* createWithObject(GJRewardType, GJRewardObject*) = win 0x1f09c0, imac 0x8be90, m1 0x7fad0;
-    static GJRewardItem* createWithObjects(GJRewardType, cocos2d::CCArray*) = win 0x1f0a50, imac 0x71cf0, m1 0x65720;
+    static GJRewardItem* createWithObjects(GJRewardType type, cocos2d::CCArray* objects) = win 0x1f0a50, imac 0x71cf0, m1 0x65720, ios inline {
+        auto ret = create();
+        if (ret->m_rewardObjects != objects) {
+            CC_SAFE_RETAIN(objects);
+            CC_SAFE_RELEASE(ret->m_rewardObjects);
+            ret->m_rewardObjects = objects;
+        }
+        return ret;
+    }
     static SpecialRewardItem getNextShardType(SpecialRewardItem type) = win inline {
         switch (type) {
             case SpecialRewardItem::FireShard: return SpecialRewardItem::IceShard;
@@ -11724,7 +11732,11 @@ class GJRewardObject : cocos2d::CCObject {
         auto ret = create(SpecialRewardItem::FireShard, 0, 0); // the first param is meant to be 0
         return ret;
     }
-    static GJRewardObject* createItemUnlock(UnlockType, int) = win 0x1f0810, imac 0x71c10, m1 0x65638;
+    static GJRewardObject* createItemUnlock(UnlockType type, int id) = win 0x1f0810, imac 0x71c10, m1 0x65638, ios inline {
+        auto ret = create(SpecialRewardItem::CustomItem, 1, id);
+        ret->m_unlockType = type;
+        return ret;
+    }
 
     static GJRewardObject* createWithCoder(DS_Dictionary* dict) = win inline, imac 0x8e800, m1 0x81f64 {
         auto ret = create();
