@@ -763,7 +763,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     void enableRepeatMode(float) = m1 0x4b64ac, imac 0x55fac0, ios 0x17a5b4;
     bool isFastMode();
     bool isStartingPositionInitialized();
-    void reset() = m1 0x4b6c48, imac 0x560190;
+    void reset() = m1 0x4b6c48, imac 0x560190, ios 0x17ab00;
     void resumeStroke() = m1 0x4b6510, imac 0x55fb40;
     void stopStroke() = m1 0x4b6508, imac 0x55fb30;
     void tintWithColor(cocos2d::_ccColor3B);
