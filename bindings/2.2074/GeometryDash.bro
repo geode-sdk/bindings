@@ -2719,8 +2719,8 @@ class ColorAction : cocos2d::CCObject {
     cocos2d::ccHSVValue m_copyHSV;
     int m_copyID;
     bool m_unknown;
-    bool m_unknown2;
     bool m_copyOpacity;
+    bool m_unknown2;
     int m_uniqueID;
     int m_controlID;
     bool m_legacyHSV;
@@ -2924,7 +2924,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x93690, imac 0x715130, m1 0x633898, ios 0x418764;
     virtual void keyBackClicked() = win 0x91740, m1 0x6316a4, imac 0x712fc0, ios 0x417888;
 
-    void closeColorSelect(cocos2d::CCObject*) = win 0x914a0, imac 0x711290;
+    void closeColorSelect(cocos2d::CCObject*) = win 0x914a0, m1 0x62fc94, imac 0x711290;
     cocos2d::ccColor3B const& getColorValue();
     bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = ios 0x414324, win 0x8dc20, imac 0x70eb40, m1 0x62d8e4;
     void onCopy(cocos2d::CCObject* sender) = win 0x90d60;
@@ -4303,7 +4303,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     void removeFromGuides(GameObject*);
     void removeFromSpeedObjects(EffectGameObject*);
     void sortSpeedObjects();
-    float timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int) = win inline, m1 0xd2ce4, imac 0xed530 {
+    float timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int) = win inline, m1 0xd2ce4, imac 0xed530, ios 0x360104 {
         return LevelTools::timeForPos(p0, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, p1, p2, p3, m_editorLayer->m_levelSettings->m_platformerMode, p4, p5, p6);
     }
     void updateMusicGuideTime(float);
