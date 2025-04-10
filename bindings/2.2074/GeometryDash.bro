@@ -2651,7 +2651,7 @@ class CollisionTriggerAction {
 class ColorAction : cocos2d::CCObject {
     // virtual ~ColorAction();
 
-    static ColorAction* create() = win 0x251b40, imac 0x2c5030;
+    static ColorAction* create() = win 0x251b40, m1 0x268edc, imac 0x2c5030;
     static ColorAction* create(cocos2d::ccColor3B, bool, int);
     static ColorAction* create(cocos2d::ccColor3B, cocos2d::ccColor3B, float, double, bool, int, float, float);
     static ColorAction* create(cocos2d::ccColor3B, cocos2d::ccColor3B, float, double, bool);
@@ -2870,19 +2870,49 @@ class ColorSelectLiveOverlay : FLAlertLayer {
 
 [[link(android)]]
 class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelegate, GJSpecialColorSelectDelegate {
+    ColorSelectPopup() = ios 0x41893c {
+        m_colorPicker = nullptr;
+        m_unk3c0 = false;
+        m_opacityLabel = nullptr;
+        m_fadeTimeSlider = nullptr;
+        m_opacitySlider = nullptr;
+        m_currentColorSprite = nullptr;
+        m_originalColorSprite = nullptr;
+        m_delegate = nullptr;
+        m_fadeTime = 0.f;
+        m_playerColor = 0;
+        m_blending = 0;
+        m_opacity = 1.f;
+        m_colorAction = nullptr;
+        m_colorInput = nullptr;
+        m_backgroundTrigger = false;
+        m_tintGround = false;
+        m_legacyHSV = false;
+        m_colorTrigger = false;
+        m_noChannel = false;
+        m_newColorTrigger = false;
+        m_colorID = 0;
+        m_initializing = false;
+        m_copyColorID = 0;
+        m_copyOpacity = false;
+        m_hsv = { 0.f, 1.f, 1.f, false, false };
+        m_fadeTimeInput = nullptr;
+        m_showCopyObjects = false;
+    }
+
     static gd::string colorToHex(cocos2d::ccColor3B) = win 0x926d0;
-    static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array, ColorAction* action) = win 0x8da30, imac 0x70e810;
+    static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array, ColorAction* action) = win 0x8da30, m1 0x62d6a0, imac 0x70e810;
     // virtual ~ColorSelectPopup();
 
-    static ColorSelectPopup* create(cocos2d::ccColor3B color) = win inline, m1 0x62d8a8 {
+    static ColorSelectPopup* create(cocos2d::ccColor3B color) = win inline, m1 0x62d8a8, imac 0x70eb10 {
         auto action = ColorAction::create();
         action->m_color = color;
         return ColorSelectPopup::create(action);
     }
-    static ColorSelectPopup* create(ColorAction* action) = win inline, imac 0x70eaf0 {
+    static ColorSelectPopup* create(ColorAction* action) = win inline, m1 0x62d898, imac 0x70eaf0 {
         return ColorSelectPopup::create(nullptr, nullptr, action);
     }
-    static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array) = win inline, m1 0x62d6a0 {
+    static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array) = win inline {
         return ColorSelectPopup::create(effect, array, nullptr);
     }
     static cocos2d::ccColor3B hexToColor(gd::string) = win 0x91a60;
