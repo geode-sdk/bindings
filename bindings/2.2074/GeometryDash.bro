@@ -6877,7 +6877,7 @@ class GameLevelManager : cocos2d::CCNode {
     void unblockUser(int) = m1 0x498f7c, imac 0x53fdd0;
     void unfollowUser(int) = imac 0x5240e0;
     void updateDescription(int, gd::string) = m1 0x499750, imac 0x5405d0;
-    void updateLevel(GJGameLevel*) = imac 0x52f9a0, m1 0x48a478;
+    void updateLevel(GJGameLevel*) = win 0x151700, imac 0x52f9a0, m1 0x48a478, ios 0xa44a0;
     void updateLevelOrders() = win 0x145680, m1 0x47b2b0;
     void updateLevelRewards(GJGameLevel*) = win 0x144380, m1 0x475db4;
     void updateSavedLevelList(GJLevelList*) = ios 0xa2948, win 0x14ef40, m1 0x487790, imac 0x52c630;
