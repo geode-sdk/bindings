@@ -2500,7 +2500,7 @@ class CharacterColorPage : FLAlertLayer {
         m_glowLabel = nullptr;
     }
 
-    static CharacterColorPage* create() = win inline, m1 0x56ee50, imac 0x6467b0 {
+    static CharacterColorPage* create() = win inline, m1 0x56ee50, imac 0x6467b0, ios 0x12be6c {
         auto ret = new CharacterColorPage();
         if (ret->init()) {
             ret->autorelease();
@@ -10728,7 +10728,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onBack(cocos2d::CCObject* sender) = win 0x271750, imac 0x3588c0, m1 0x2ec048, ios 0x304604;
     void onInfo(cocos2d::CCObject* sender) = win 0x26d190, m1 0x2ec28c, imac 0x358b10;
     void onNavigate(cocos2d::CCObject* sender) = ios 0x305378, win 0x26e690, imac 0x359d50, m1 0x2ed4c8;
-    void onPaint(cocos2d::CCObject* sender) = win 0x271570, m1 0x2ec234, imac 0x358ab0;
+    void onPaint(cocos2d::CCObject* sender) = win 0x271570, m1 0x2ec234, imac 0x358ab0, ios 0x3047e0;
     void onRewardedVideo(cocos2d::CCObject* sender);
     void onSelect(cocos2d::CCObject* sender) = ios 0x305b88, win 0x26f890, imac 0x35a860, m1 0x2edf90;
     void onSelectTab(cocos2d::CCObject* sender) = win 0x26e6c0, imac 0x359430, m1 0x2ecc08;
