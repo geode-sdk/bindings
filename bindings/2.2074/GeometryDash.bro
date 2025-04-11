@@ -14075,7 +14075,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void addSpecial(GameObject*) = ios 0x3595d8, win 0x2cf4a0, m1 0xc7674, imac 0xe0390;
     TodoReturn addToRedoList(UndoObject*);
     TodoReturn addTouchPoint(cocos2d::CCPoint);
-    void addToUndoList(UndoObject* object, bool keepRedo) = win inline, imac 0xe0210 {
+    void addToUndoList(UndoObject* object, bool keepRedo) = win inline, m1 0xc7520, imac 0xe0210, ios 0x3594f4 {
         if (!keepRedo) m_redoObjects->removeAllObjects();
         if (m_undoObjects->count() >= (m_increaseMaxUndoRedo ? 1000 : 200)) m_undoObjects->removeObjectAtIndex(0, true);
         m_undoObjects->addObject(object);
