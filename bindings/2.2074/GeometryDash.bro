@@ -223,7 +223,7 @@ class AchievementManager : cocos2d::CCNode {
     virtual bool init() = win 0x7e60, m1 0x633ef4, imac 0x7157a0, ios 0xb9ecc;
 
     gd::string achievementForUnlock(int, UnlockType) = win 0x3a1c0, imac 0x76ef60, m1 0x682554, ios 0xeb6d8;
-    void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x7ef0;
+    void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x7ef0, m1 0x681c8c, imac 0x76e740, ios 0xeb16c;
     void addManualAchievements() = win 0x8410, m1 0x633f7c, imac 0x715830;
     TodoReturn areAchievementsEarned(cocos2d::CCArray*);
     TodoReturn checkAchFromUnlock(char const*);
