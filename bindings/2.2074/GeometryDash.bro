@@ -4685,10 +4685,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn createExtras(cocos2d::CCArray*);
     TodoReturn createExtrasForObject(int, GameObject*, cocos2d::CCArray*);
     TodoReturn createGlow();
-    void createLoop() = win 0x117c90;
+    void createLoop() = win 0x117c90, m1 0x3fa34, imac 0x45d70, ios 0x3eb930;
     void createMoveMenu() = ios 0x3ebe14, win 0x119350, m1 0x400a8, imac 0x464d0;
     void createNewKeyframeAnim() = win 0x1179f0;
-    GameObject* createObject(int, cocos2d::CCPoint) = win 0x10e840, m1 0x35d7c, imac 0x3aa80;
+    GameObject* createObject(int, cocos2d::CCPoint) = win 0x10e840, m1 0x35d7c, imac 0x3aa80, ios 0x3e4914;
     TodoReturn createOutlines(cocos2d::CCArray*);
     void createPrefab(GJSmartTemplate*, gd::string, int) = win 0x1160f0;
     TodoReturn createRockBases(cocos2d::CCArray*) = win 0x12da00, imac 0x5fd600;
@@ -7694,7 +7694,7 @@ class GameObject : CCSpritePlus {
     bool isFacingDown() = win 0x19e990, m1 0x4ea740;
     bool isFacingLeft() = win 0x19ea50, m1 0x4ea7d0;
     bool isSettingsObject() = imac 0x5b3690, m1 0x4ebf78, ios 0x261dfc;
-    bool isSpawnableTrigger() = win 0x19f730;
+    bool isSpawnableTrigger() = win 0x19f730, m1 0x4eb740, imac 0x5b2ac0, ios 0x261684;
     bool isSpecialObject();
     bool isSpeedObject() = imac 0x5b30f0;
     bool isStoppableTrigger();
@@ -14110,7 +14110,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     int getNextFreeEditorLayer(cocos2d::CCArray*);
     TodoReturn getNextFreeEnterChannel(cocos2d::CCArray*);
     int getNextFreeGradientID(cocos2d::CCArray*) = win 0x2d27b0;
-    int getNextFreeGroupID(cocos2d::CCArray*) = win 0x2d2030, imac 0xebbf0, m1 0xd1514;
+    int getNextFreeGroupID(cocos2d::CCArray*) = win 0x2d2030, imac 0xebbf0, m1 0xd1514, ios 0x35ef38;
     int getNextFreeItemID(cocos2d::CCArray*) = win 0x2d22b0, imac 0xebf10, m1 0xd1810;
     TodoReturn getNextFreeOrderChannel(cocos2d::CCArray*);
     TodoReturn getNextFreeSFXGroupID(cocos2d::CCArray*);
@@ -22499,7 +22499,7 @@ class SpawnTriggerAction {
     gd::vector<int> m_unkVecInt;
 }
 
-[[link(android)]]
+[[link(android), depends(ChanceObject)]]
 class SpawnTriggerGameObject : EffectGameObject {
     // virtual ~SpawnTriggerGameObject();
 
