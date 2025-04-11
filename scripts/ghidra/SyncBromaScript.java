@@ -31,6 +31,8 @@ import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.Undefined;
 import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
+import ghidra.program.model.listing.Parameter;
+import ghidra.program.model.listing.ParameterImpl;
 import ghidra.program.model.listing.Variable;
 import ghidra.program.model.listing.VariableStorage;
 import ghidra.program.model.symbol.SourceType;
@@ -86,7 +88,7 @@ public class SyncBromaScript extends GhidraScript {
             // Put latest version at the top
             Collections.reverse(versions);
 
-            var bromaFiles = List.of("Cocos2d.bro", "GeometryDash.bro");
+            var bromaFiles = List.of("Cocos2d.bro", "FMOD.bro", "GeometryDash.bro");
             final var platforms = Arrays.asList(Platform.values()).stream().map(p -> p.getLongName()).toList();
 
             var platform = wrapper.autoDetectPlatform().orElse(null).getLongName();
@@ -109,11 +111,12 @@ public class SyncBromaScript extends GhidraScript {
                     List.of("Extras.bro", "GeometryDash.bro") : List.of(this.selectedBromaFile);
             }
             else {
-                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "GeometryDash.bro");
+                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "FMOD.bro", "GeometryDash.bro");
             }
 
             this.bromaFiles = bromaFiles.stream()
                 .map(f -> Paths.get(bindingsDir.toString(), this.gameVersion, f))
+                .filter(Files::exists)
                 .toList();
             
             if (!this.importFromBroma && !this.exportToBroma) {
@@ -141,6 +144,14 @@ public class SyncBromaScript extends GhidraScript {
             .toList());
 
         wrapper.printfmt("Found {0} classes in Broma", wrapper.classes.size());
+
+        // Read functions
+        wrapper.functions.addAll(this.bromas.stream()
+            .map(b -> b.functions.stream().map(f -> f.getName()).toList())
+            .flatMap(List::stream)
+            .toList());
+
+        wrapper.printfmt("Found {0} functions in Broma", wrapper.functions.size());
 
         // Read enums
         var enumPath = Paths.get(wrapper.bindingsDir.toString(), "include", "Geode", "Enums.hpp");
@@ -200,8 +211,8 @@ public class SyncBromaScript extends GhidraScript {
 
     private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force) throws Exception {
         final var name = fun.getName();
-        final var className = fun.parent.name.value;
-        final var fullName = className + "::" + name;
+        final var className = fun.parent != null ? fun.parent.name.value : null;
+        final var fullName = className != null ? className + "::" + name : name;
         final var listing = currentProgram.getListing();
 
         var status = SignatureImport.NOCHANGES;
@@ -217,7 +228,9 @@ public class SyncBromaScript extends GhidraScript {
                     addr, fun.platformOffset.get().value, fullName
                 ));
             }
-            data.setParentNamespace(wrapper.addOrGetNamespace(className));
+            if (className != null) {
+                data.setParentNamespace(wrapper.addOrGetNamespace(className));
+            }
         }
 
         // Check if function already has an user-provided name - in this case, it might be merged
@@ -250,7 +263,9 @@ public class SyncBromaScript extends GhidraScript {
             status = status.promoted(SignatureImport.ADDED);
         }
         data.getSymbol().setName(name, SourceType.USER_DEFINED);
-        data.setParentNamespace(wrapper.addOrGetNamespace(className));
+        if (className != null) {
+            data.setParentNamespace(wrapper.addOrGetNamespace(className));
+        }
 
         // Get the calling convention
         final var conv = fun.getCallingConvention(args.platform);
@@ -279,8 +294,11 @@ public class SyncBromaScript extends GhidraScript {
                 ) {
                     signatureConflict = true;
                 }
-                // Keep existing Ghidra name for args without names in Broma
-                else if (bromaParam.getName() == null && param.getName() != null) {
+                // Keep existing Ghidra name for args without names in Broma (Making sure to not include any duplicates)
+                else if (
+                    bromaParam.getName() == null && param.getName() != null &&
+                    !bromaSig.parameters.subList(0, i).stream().anyMatch(p -> p.getName() != null && p.getName().equals(param.getName()))
+                ) {
                     bromaParam.setName(param.getName(), SourceType.USER_DEFINED);
                 }
             }
@@ -390,10 +408,24 @@ public class SyncBromaScript extends GhidraScript {
             updateType = FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS;
         }
 
+        // Check for already-existing parameter names
+        for (var existingParam : data.getParameters()) {
+            for (var bromaParam : bromaSig.parameters) {
+                if (!existingParam.isAutoParameter() && existingParam.getName() != null && existingParam.getName().equals(bromaParam.getName())) {
+                    existingParam.setName(null, SourceType.USER_DEFINED);
+                }
+            }
+        }
+
+        var conventionName = conv.getGhidraName();
+        if (bromaSig.returnsStruct && bromaSig.memberFunction && (args.platform == Platform.ANDROID32 || args.platform == Platform.MAC_INTEL)) {
+            conventionName = args.platform == Platform.MAC_INTEL ? "__stdcall" : "__cdecl";
+        }
+
         // Apply new signature
         try {
             data.updateFunction(
-                conv.getGhidraName(),
+                conventionName,
                 bromaSig.returnType.orElse(null),
                 updateType,
                 true,
@@ -402,6 +434,35 @@ public class SyncBromaScript extends GhidraScript {
             );
         } catch (Exception e) {
             throw new Error("Died on: " + fullName + " with " + e.getMessage());
+        }
+
+        // Set struct return storage for ARM64
+        if (bromaSig.returnsStruct && (args.platform == Platform.ANDROID64 || args.platform == Platform.MAC_ARM || args.platform == Platform.IOS)) {
+            var newParams = new ArrayList<Parameter>(List.of(data.getParameters()));
+            var foundReturn = newParams.stream().filter(p -> p.getName() != null && p.getName().equals("__return")).findFirst();
+            if (foundReturn.isPresent()) {
+                foundReturn.get().setName(null, SourceType.USER_DEFINED);
+            }
+            newParams.add(0, new ParameterImpl(
+                "__return",
+                data.getReturnType(),
+                new VariableStorage(currentProgram, currentProgram.getRegister("x8")),
+                currentProgram,
+                SourceType.USER_DEFINED
+            ));
+            try {
+                data.updateFunction(
+                    "__cdecl",
+                    bromaSig.returnType.orElse(null),
+                    FunctionUpdateType.CUSTOM_STORAGE,
+                    true,
+                    SourceType.USER_DEFINED,
+                    newParams.toArray(Variable[]::new)
+                );
+            } catch (Exception e) {
+                throw new Error("Died on: " + fullName + " with " + e.getMessage());
+            }
+            data.setReturn(data.getReturnType(), new VariableStorage(currentProgram, currentProgram.getRegister("x0")), SourceType.USER_DEFINED);
         }
 
         // Set return type storage for custom cconvs
@@ -446,11 +507,45 @@ public class SyncBromaScript extends GhidraScript {
         var importedUpdateCount = 0;
         for (var bro : bromas) {
             wrapper.printfmt("Reading {0}...", bro.path.getFileName());
-            for (var cls : bro.classes) for (var fun : cls.functions) {
-                var name = fun.getName();
-                var className = cls.name.value;
-                var fullName = className + "::" + name;
+            for (var cls : bro.classes) {
+                // CCLightning is in the Geometry Dash binary, but it is only in Cocos2d.bro
+                if (
+                    (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) &&
+                    args.selectedBromaFile.equals("Cocos2d.bro") && !cls.name.value.equals("cocos2d::CCLightning")
+                ) {
+                    continue;
+                }
 
+                for (var fun : cls.functions) {
+                    var name = fun.getName();
+                    var className = cls.name.value;
+                    var fullName = className + "::" + name;
+
+                    // Only add functions that have an offset on this platform
+                    if (fun.platformOffset.isEmpty()) {
+                        continue;
+                    }
+                    var offset = Long.parseLong(fun.platformOffset.get().value, 16);
+                    if (offset == Broma.PLACEHOLDER_ADDR) {
+                        continue;
+                    }
+                    var addr = currentProgram.getImageBase().add(offset);
+
+                    switch (importSignatureFromBroma(addr, fun, false)) {
+                        case ADDED: {
+                            importedAddCount += 1;
+                            wrapper.printfmt("Added {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
+                        } break;
+                        case UPDATED: {
+                            importedUpdateCount += 1;
+                            wrapper.printfmt("Updated {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
+                        } break;
+                        default: break;
+                    }
+                }
+            }
+
+            for (var fun : bro.functions) {
                 // Only add functions that have an offset on this platform
                 if (fun.platformOffset.isEmpty()) {
                     continue;
@@ -460,15 +555,15 @@ public class SyncBromaScript extends GhidraScript {
                     continue;
                 }
                 var addr = currentProgram.getImageBase().add(offset);
-
+                
                 switch (importSignatureFromBroma(addr, fun, false)) {
                     case ADDED: {
                         importedAddCount += 1;
-                        wrapper.printfmt("Added {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
+                        wrapper.printfmt("Added {0} at {1}", fun.getName(), Long.toHexString(addr.getOffset()));
                     } break;
                     case UPDATED: {
                         importedUpdateCount += 1;
-                        wrapper.printfmt("Updated {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
+                        wrapper.printfmt("Updated {0} at {1}", fun.getName(), Long.toHexString(addr.getOffset()));
                     } break;
                     default: break;
                 }
@@ -587,8 +682,6 @@ public class SyncBromaScript extends GhidraScript {
                     bromaFun = bromaFuns.get(0);
                 }
 
-                boolean returnTypeUpdated = false;
-
                 // Update return type if Ghidra has an user-defined type and 
                 // Broma has TodoReturn
                 if (
@@ -675,18 +768,21 @@ public class SyncBromaScript extends GhidraScript {
                 // Make sure the category exists
                 wrapper.createCategoryAll(category);
                 final var classDataTypePath = new DataTypePath(category, name + (cls.hasBases ? "_data" : ""));
-                var classDataMembers = (Structure) manager.getDataType(classDataTypePath);
+                var classMembers = manager.getDataType(classDataTypePath);
 
-                if (classDataMembers == null) {
+                if (classMembers == null || !(classMembers instanceof Structure)) {
                     // Just skip if there are no members to import
                     if (cls.members.isEmpty()) {
                         continue;
                     }
                     // Otherwise create data members struct
-                    classDataMembers = new StructureDataType(name + (cls.hasBases ? "_data" : ""), 0);
-                    manager.getCategory(category).addDataType(classDataMembers, DataTypeConflictHandler.DEFAULT_HANDLER);
+                    classMembers = new StructureDataType(name + (cls.hasBases ? "_data" : ""), 0);
+                    manager.getCategory(category).addDataType(classMembers,
+                        classMembers == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER);
                 }
                 wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
+
+                var classDataMembers = (Structure)classMembers;
 
                 // Disable packing
                 classDataMembers.setPackingEnabled(false);
@@ -825,6 +921,10 @@ public class SyncBromaScript extends GhidraScript {
             var total = -1;
             for (i += 1; i < lines.size(); i += 1) {
                 var valueLine = lines.get(i);
+                if (valueLine.trim().isEmpty()) {
+                    continue;
+                }
+
                 if (valueLine.contains("};")) {
                     break;
                 }

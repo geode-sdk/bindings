@@ -53,6 +53,7 @@ import ghidra.util.exception.CancelledException;
 public class ScriptWrapper {
     List<String> classes = new ArrayList<String>();
     List<String> enums = new ArrayList<String>();
+    List<String> functions = new ArrayList<String>();
     GhidraScript wrapped;
     Path bindingsDir;
 
@@ -261,13 +262,14 @@ public class ScriptWrapper {
         DataType result = null;
 
         // Built-in types
-        if (type.name.value.matches("bool|char|short|int|long|float|double|void")) {
+        if (type.name.value.matches("bool|char|short|int|long|float|double|void|longlong")) {
             switch (type.name.value) {
                 case "bool": result = BooleanDataType.dataType; break;
                 case "char": result = type.unsigned ? UnsignedCharDataType.dataType : CharDataType.dataType; break;
                 case "short": result = type.unsigned ? UnsignedShortDataType.dataType : ShortDataType.dataType; break;
                 case "int": result = type.unsigned ? UnsignedIntegerDataType.dataType : IntegerDataType.dataType; break;
                 case "long": result = type.unsigned ? UnsignedLongDataType.dataType : LongDataType.dataType; break;
+                case "longlong": result = type.unsigned ? UnsignedLongLongDataType.dataType : LongLongDataType.dataType; break;
                 case "float": result = FloatDataType.dataType; break;
                 case "double": result = DoubleDataType.dataType; break;
                 case "void": result = VoidDataType.dataType; break;
@@ -473,7 +475,8 @@ public class ScriptWrapper {
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
         // Add `this` arg
-        if (fun.dispatch.isEmpty() || !fun.dispatch.get().value.contains("static")) {
+        boolean hasThis = fun.parent != null && (fun.dispatch.isEmpty() || !fun.dispatch.get().value.contains("static"));
+        if (hasThis && platform != Platform.ANDROID32 && platform != Platform.MAC_INTEL) {
             bromaParams.add(new ParameterImpl(
                 "this",
                 addOrGetType(Broma.Type.ptr(fun.parent.broma, fun.parent.name.value), platform),
@@ -483,25 +486,42 @@ public class ScriptWrapper {
         }
         // Parse return type, or null if this is a destructor
         ReturnParameterImpl bromaRetType = null;
+        boolean hasStructReturn = false;
         if (fun.returnType.isPresent() && !ignoreReturnType) {
             var type = addOrGetType(fun.returnType.get(), platform);
             // Struct return
             if (type instanceof Composite) {
+                hasStructReturn = true;
                 type = new PointerDataType(type);
-                bromaParams.add(new ParameterImpl("__return", type, wrapped.getCurrentProgram(), SourceType.USER_DEFINED));
+                if (platform != Platform.ANDROID64 && platform != Platform.MAC_ARM && platform != Platform.IOS) {
+                    bromaParams.add(new ParameterImpl("__return", type, wrapped.getCurrentProgram(), SourceType.USER_DEFINED));
+                }
             }
             bromaRetType = new ReturnParameterImpl(type, wrapped.getCurrentProgram());
         }
-        // Params
-        for (var param : fun.params) {
+        // Add `this` arg (Intel macOS / 32-bit Android)
+        if (hasThis && (platform == Platform.ANDROID32 || platform == Platform.MAC_INTEL)) {
             bromaParams.add(new ParameterImpl(
-                param.name.map(p -> p.value).orElse(null),
-                addOrGetType(param.type, platform),
+                "this",
+                addOrGetType(Broma.Type.ptr(fun.parent.broma, fun.parent.name.value), platform),
                 wrapped.getCurrentProgram(),
                 SourceType.USER_DEFINED
             ));
         }
-        return new Signature(bromaRetType, bromaParams);
+        // Params
+        for (var param : fun.params) {
+            var paramType = addOrGetType(param.type, platform);
+            bromaParams.add(new ParameterImpl(
+                param.name.map(p -> p.value).orElse(null),
+                paramType instanceof Composite ? new PointerDataType(paramType) : paramType,
+                wrapped.getCurrentProgram(),
+                SourceType.USER_DEFINED
+            ));
+        }
+        Signature bromaSig = new Signature(bromaRetType, bromaParams);
+        bromaSig.memberFunction = hasThis;
+        bromaSig.returnsStruct = hasStructReturn;
+        return bromaSig;
     }
 
     void askContinue(String title, String fmt, Object... args) throws Exception {

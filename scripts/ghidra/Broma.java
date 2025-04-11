@@ -113,11 +113,11 @@ public class Broma {
         public final Optional<Match> ptr;
         public final Optional<Match> ref;
 
-        private Type(String name) {
+        private Type(String name, boolean unsigned) {
             super(0);
             this.name = new Match(name);
             this.template = Optional.empty();
-            this.unsigned = false;
+            this.unsigned = unsigned;
             this.ptr = Optional.of(new Match("*"));
             this.ref = Optional.empty();
         }
@@ -127,7 +127,7 @@ public class Broma {
          * @param name
          */
         public static Type ptr(Broma broma, String name) {
-            return broma.new Type(name);
+            return broma.new Type(name, false);
         }
 
         private Type(Broma broma, Platform platform, Matcher matcher) {
@@ -147,8 +147,16 @@ public class Broma {
 
         private Param(Broma broma, Platform platform, Matcher matcher) {
             super(broma, matcher);
-            type = new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true));
-            name = Match.maybe(broma, matcher, "name");
+            Type type = new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true));
+            Optional<Match> name = Match.maybe(broma, matcher, "name");
+            if (name.isPresent() && name.get().value.equals("long")) {
+                // Special case for long longs in the function signature
+                // This is a hack, but it works for now
+                type = new Type(type.name.value + "long", type.unsigned);
+                name = Optional.empty();
+            }
+            this.type = type;
+            this.name = name;
             nameInsertionPoint = Match.maybe(broma, matcher, "insertnamehere");
         }
     }
@@ -213,7 +221,7 @@ public class Broma {
         
         public CConv getCallingConvention(Platform platform) {
             if (platform != Platform.WINDOWS32) {
-                if (dispatch.isEmpty() || !dispatch.get().value.contains("static")) return CConv.THISCALL;
+                if (parent != null && (dispatch.isEmpty() || !dispatch.get().value.contains("static"))) return CConv.THISCALL;
 
                 switch (platform) {
                     case WINDOWS64:
@@ -378,6 +386,7 @@ public class Broma {
      */
     private final List<Patch> patches;
     public final List<Class> classes;
+    public final List<Function> functions;
     private boolean committed = false;
 
     private Matcher forkMatcher(Pattern regex, Matcher of, String group, boolean find) {
@@ -393,6 +402,11 @@ public class Broma {
         while (matcher.find()) {
             this.classes.add(new Class(this, platform, matcher));
         }
+
+        var funMatcher = Regexes.GRAB_GLOBAL_FUNCTION.matcher(this.data);
+        while (funMatcher.find()) {
+            this.functions.add(new Function(this, null, platform, funMatcher));
+        }
     }
 
     private Broma() {
@@ -400,6 +414,7 @@ public class Broma {
         this.data = null;
         this.patches = null;
         this.classes = null;
+        this.functions = null;
     }
 
     public static Broma fake() {
@@ -416,6 +431,7 @@ public class Broma {
         data = Files.readString(path);
         patches = new ArrayList<Patch>();
         classes = new ArrayList<Class>();
+        functions = new ArrayList<Function>();
         this.applyRegexes(platform);
     }
 
