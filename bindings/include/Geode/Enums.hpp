@@ -179,6 +179,9 @@ enum class GJGameEvent {
 };
 
 enum class PulseEffectType {
+    Default = 0,
+    Hsv = 1,
+    Color = 2,
 };
 enum class TouchTriggerType {
 };
@@ -910,11 +913,11 @@ enum class LeaderboardState {
 
 // Wylie Addition (https://github.com/Wyliemaster/GD-Decompiled/blob/main/GD/code/headers/Layers/LevelSettingsLayer.h)
 enum class Speed {
-	Normal = 0,
-	Slow = 1,
-	Fast = 2,
-	Faster = 3,
-	Fastest = 4,
+    Normal = 0,
+    Slow = 1,
+    Fast = 2,
+    Faster = 3,
+    Fastest = 4,
 };
 
 enum class CircleMode {
