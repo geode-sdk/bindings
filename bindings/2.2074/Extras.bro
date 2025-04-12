@@ -51,6 +51,7 @@ class SFXStateContainer {
 	bool m_unkBool;
 }
 
+[[depends(SFXStateContainer)]]
 class SFXTriggerState {
 	SFXTriggerGameObject* m_sfxTriggerGameObject;
 	int m_unkInt1;
@@ -65,7 +66,7 @@ class SFXTriggerState {
 	int m_unkInt2;
 	bool m_processed;
 	bool m_unkBool1;
-	SFXStateContainer m_sfxStateContainers[3];
+	std::array<SFXStateContainer, 3> m_sfxStateContainers;
 }
 
 class ChanceObject {
@@ -237,8 +238,8 @@ class FMODQueuedMusic {
 // not an official name, I just had to make it a class cause of padding
 class SoundStateContainer {
 	int m_fadePointCount;
-	float m_fadePointVolumes[4];
-	uint64_t m_fadePointOffsets[4];
+	std::array<float, 4> m_fadePointVolumes;
+	std::array<uint64_t, 4> m_fadePointOffsets;
 	uint64_t m_currentOffset;
 	int m_loopStartMs;
 	int m_loopEndMs;
