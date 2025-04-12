@@ -8279,7 +8279,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn getSpecialChestKeyForItem(int, UnlockType);
     TodoReturn getSpecialRewardDescription(gd::string, bool);
     gd::string getSpecialUnlockDescription(int, UnlockType, bool) = win 0x1e6fb0, m1 0x6b4a4, imac 0x77bb0, ios 0x336794;
-    char const* getStarLevelKey(GJGameLevel*) = win inline, m1 0x60ce4, imac 0x6d1a0, ios 0x330a04 {
+    char const* getStarLevelKey(GJGameLevel* level) = win inline, m1 0x60ce4, imac 0x6d1a0, ios 0x330a04 {
         int dailyID = level->m_dailyID.value();
         if (dailyID > 0) return cocos2d::CCString::createWithFormat("dstar_%i",dailyID)->getCString();
         int levelID = level->m_levelID.value();
