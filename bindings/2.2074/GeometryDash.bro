@@ -13887,7 +13887,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x2bc0c0;
+    static cocos2d::CCScene* scene() = win 0x2bc0c0, m1 0x211068, imac 0x265710, ios 0x343450;
 
     virtual bool init() = win 0x2bc1d0, imac 0x2658d0, m1 0x2111e8, ios 0x34353c;
     virtual void keyBackClicked() = win 0x2be1c0, imac 0x267ab0, m1 0x2133f4, ios 0x344fe4;
