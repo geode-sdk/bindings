@@ -4255,7 +4255,7 @@ class cocos2d {
     static void ccDrawFree();
     static void ccDrawInit();
     static void ccDrawLine(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = m1 0x1ac0ec, imac 0x1f65e0, ios 0x24b408;
-    static void ccDrawLines(cocos2d::CCPoint const*, unsigned int) = m1 0x1abfd8, imac 0x1f64d0;
+    static void ccDrawLines(cocos2d::CCPoint const*, unsigned int) = m1 0x1abfd8, imac 0x1f64d0, ios 0x24b34c;
     static void ccDrawPoint(cocos2d::CCPoint const&);
     static void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
     static void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
