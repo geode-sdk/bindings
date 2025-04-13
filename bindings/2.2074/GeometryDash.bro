@@ -10341,7 +10341,7 @@ class GJGameLevel : cocos2d::CCNode {
     virtual bool init() = win 0x169ba0, imac 0x544f30, m1 0x49de78, ios 0xaf984;
 
     bool areCoinsVerified();
-    void copyLevelInfo(GJGameLevel*) = win 0x16aaa0;
+    void copyLevelInfo(GJGameLevel*) = win 0x16aaa0, m1 0x49f54c, imac 0x5468b0, ios 0xb0cf8;
     TodoReturn createWithCoder(DS_Dictionary*) = ios 0xb12c4, m1 0x49fcbc;
     void dataLoaded(DS_Dictionary*) = ios 0xb12f4, win 0x16b150, imac 0x5472c0, m1 0x49fd40;
     int demonIconForDifficulty(DemonDifficultyType) = imac 0x548f50, m1 0x4a1794;
@@ -22425,7 +22425,7 @@ class SongObject : cocos2d::CCObject {
         m_audioID = 0;
     }
 
-    static SongObject* create(int audioID) = win inline {
+    static SongObject* create(int audioID) = win inline, m1 0x1f12d0, imac 0x241a00, ios 0x112d44 {
         auto ret = new SongObject();
         if(ret->init(audioID)) {
             ret->autorelease();
