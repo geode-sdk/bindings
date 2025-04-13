@@ -18898,13 +18898,13 @@ class SelectSettingDelegate {
 class SelectSettingLayer : FLAlertLayer {
     // virtual ~SelectSettingLayer();
 
-    static SelectSettingLayer* create(SelectSettingType, int) = win 0x30e580, imac 0x25c9f0;
+    static SelectSettingLayer* create(SelectSettingType, int) = win 0x30e580, m1 0x208e98, imac 0x25c9f0, ios 0x17f228;
 
-    static gd::string frameForItem(SelectSettingType, int) = win 0x30ede0, imac 0x25efd0, m1 0x20b08c;
-    static gd::string frameForValue(SelectSettingType type, int value) = win inline, imac 0x25c690 {
+    static gd::string frameForItem(SelectSettingType, int) = win 0x30ede0, imac 0x25efd0, m1 0x20b08c, ios 0x180b3c;
+    static gd::string frameForValue(SelectSettingType type, int value) = win inline, m1 0x208c2c, imac 0x25c690, ios 0x17f09c {
         return frameForItem(type, valueToIdx(type, value));
     }
-    static int idxToValue(SelectSettingType type, int idx) = win inline, imac 0x25f2b0 {
+    static int idxToValue(SelectSettingType type, int idx) = win inline, m1 0x20b404, imac 0x25f2b0, ios inline {
         if (type != SelectSettingType::StartingSpeed) return idx;
 
         switch (idx) {
@@ -18914,7 +18914,7 @@ class SelectSettingLayer : FLAlertLayer {
             default: return 0;
         }
     }
-    static int valueToIdx(SelectSettingType type, int value) = win inline, imac 0x25efa0 {
+    static int valueToIdx(SelectSettingType type, int value) = win inline, m1 0x20b060, imac 0x25efa0, ios inline {
         if (type != SelectSettingType::StartingSpeed) return value;
 
         switch (value) {
@@ -18926,15 +18926,16 @@ class SelectSettingLayer : FLAlertLayer {
     }
 
     virtual void keyBackClicked() = win 0x30f380, m1 0x20b430, imac 0x25f2e0, ios 0x180cbc;
-    gd::string getSelectedFrame() = win inline, imac 0x25ccd0 {
+
+    gd::string getSelectedFrame() = win inline, m1 0x209154, imac 0x25ccd0, ios 0x17f484 {
         return frameForValue(m_type, m_settingID);
     }
-    int getSelectedValue() = win inline, imac 0x25cca0 {
+    int getSelectedValue() = win inline, m1 0x209120, imac 0x25cca0, ios 0x17f450 {
         return idxToValue(m_type, m_settingID);
     }
-    bool init(SelectSettingType, int) = win 0x30e690, imac 0x25e9f0, m1 0x20aaac;
-    void onClose(cocos2d::CCObject* sender);
-    void onSelect(cocos2d::CCObject* sender) = win 0x30f280, imac 0x25f1b0, m1 0x20b2cc;
+    bool init(SelectSettingType, int) = win 0x30e690, imac 0x25e9f0, m1 0x20aaac, ios 0x18061c;
+    void onClose(cocos2d::CCObject* sender) = win 0x30f330, m1 0x20b3a4, imac 0x25f260, ios 0x180c5c;
+    void onSelect(cocos2d::CCObject* sender) = win 0x30f280, imac 0x25f1b0, m1 0x20b2cc, ios 0x180b9c;
 
     cocos2d::CCArray* m_settingSprites;
     int m_settingID;
