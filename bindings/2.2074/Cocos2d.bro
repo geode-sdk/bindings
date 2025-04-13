@@ -2339,7 +2339,7 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
     bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment) = imac 0x466300, m1 0x3d6198;
     bool initWithString(char const*, cocos2d::_ccFontDefinition*);
 
-    cocos2d::CCSize const& getContentSizeInPixels();
+    cocos2d::CCSize const& getContentSizeInPixels() = m1 0x3d54cc, imac 0x465550, ios 0x130738;
 
     void setAliasTexParameters() = m1 0x3d6778, imac 0x4668f0, ios 0x1311e0;
     void setAntiAliasTexParameters();
@@ -4747,7 +4747,7 @@ class cocos2d::CCConfiguration {
 
 	// CCConfiguration();
 	// CCConfiguration(cocos2d::CCConfiguration const&);
-	bool checkForGLExtension(gd::string const&) const;
+	bool checkForGLExtension(gd::string const&) const = m1 0x4634b4, imac 0x503d20, ios 0x3252b0;
 	void dumpInfo() const;
 	void gatherGPUInfo();
 	void loadConfigFile(char const*);
