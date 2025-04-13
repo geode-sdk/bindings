@@ -16711,7 +16711,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     // virtual ~PlayerCheckpoint();
     PlayerCheckpoint();
 
-    static PlayerCheckpoint* create() = win 0x3a4210, imac 0xbc400;
+    static PlayerCheckpoint* create() = win 0x3a4210, imac 0xbc400, m1 0xab5b8, ios 0x123974;
 
     virtual bool init() = win 0x77db0, imac 0xbf850, m1 0xae214, ios 0x126030;
 
