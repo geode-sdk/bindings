@@ -4481,7 +4481,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0xd5450;
     void onLevelOptions(cocos2d::CCObject* sender) = win 0xd54d0;
     void onMoveToTop();
-    void onPlay(cocos2d::CCObject* sender) = win 0xd6920, m1 0x1a100c, imac 0x1e9f10;
+    void onPlay(cocos2d::CCObject* sender) = win 0xd6920, m1 0x1a100c, imac 0x1e9f10, ios 0xed444;
     void onSetFolder(cocos2d::CCObject* sender) = ios 0xee43c, win 0xd7fc0, imac 0x1eb0b0, m1 0x1a21b8;
     void onShare(cocos2d::CCObject* sender) = ios 0xed54c, win 0xd6f20, m1 0x1a1164, imac 0x1ea050;
     void onTest(cocos2d::CCObject* sender) = m1 0x1a3298;
@@ -5410,7 +5410,7 @@ class EndLevelLayer : GJDropDownLayer {
     void onEveryplay(cocos2d::CCObject* sender);
     void onHideLayer(cocos2d::CCObject* sender) = win 0x1337b0, imac 0x4aef70, m1 0x417c94, ios 0x2f7420;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x132c30;
-    void onMenu(cocos2d::CCObject* sender) = win 0x133460, m1 0x417918, imac 0x4aec30;
+    void onMenu(cocos2d::CCObject* sender) = win 0x133460, m1 0x417918, imac 0x4aec30, ios 0x2f70d4;
     void onReplay(cocos2d::CCObject* sender) = win 0x133250, m1 0x4177f4, imac 0x4aeb30;
     void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x133890, m1 0x417ab8, imac 0x4aedb0;
     void playCoinEffect(float) = win 0x133fb0, m1 0x41825c, imac 0x4af550;
@@ -7505,7 +7505,7 @@ class GameManager : GManager {
 class GameObject : CCSpritePlus {
     // virtual ~GameObject();
     GameObject() = win 0x135ba0, m1 0x199f78, imac 0x1e2350, ios 0x22ee90;
-    static GameObject* createWithFrame(char const* name) = win 0x18aca0, imac 0x58a280, m1 0x4d7884;
+    static GameObject* createWithFrame(char const* name) = ios 0x253d3c, win 0x18aca0, imac 0x58a280, m1 0x4d7884;
     static GameObject* createWithKey(int) = ios 0x253594, win 0x188850, imac 0x585720, m1 0x4d73bc;
     static GameObject* objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x19a260, imac 0x5a7da0, m1 0x4e2090, ios 0x25d1e4;
 
@@ -16711,7 +16711,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     // virtual ~PlayerCheckpoint();
     PlayerCheckpoint();
 
-    static PlayerCheckpoint* create() = win 0x3a4210, imac 0xbc400;
+    static PlayerCheckpoint* create() = win 0x3a4210, imac 0xbc400, m1 0xab5b8, ios 0x123974;
 
     virtual bool init() = win 0x77db0, imac 0xbf850, m1 0xae214, ios 0x126030;
 
@@ -17465,8 +17465,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = ios 0x11f9e8, win 0x395430, imac 0xb6fb0, m1 0xa6b84;
     TodoReturn playReplay(gd::string);
     void prepareCreateObjectsFromSetup(gd::string&) = win 0x395f80, m1 0x9dac0, ios 0x119218;
-    void prepareMusic(bool) = ios 0x11d2f4, imac 0xb3ae0, win 0x3a3ae0;
-    void processCreateObjectsFromSetup() = ios 0x119504, win 0x396230, m1 0x9de44;
+    void prepareMusic(bool) = ios 0x11d2f4, imac 0xb3ae0, win 0x3a3ae0, m1 0xb3ae0;
+    void processCreateObjectsFromSetup() = ios 0x119504, win 0x396230, m1 0x9de44, imac 0xad090;
     TodoReturn processLoadedMoveActions();
     TodoReturn queueCheckpoint();
     void removeAllObjects() = ios 0x11d5a4, imac 0xb3dd0, win 0x3a3fb0;
