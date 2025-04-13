@@ -249,6 +249,7 @@ class SoundStateContainer {
 	int m_usePlayOffsets;
 }
 
+[[depends(SoundStateContainer)]]
 class FMODSoundState {
 	gd::string m_filePath;
 	float m_speed;
