@@ -4289,7 +4289,7 @@ class DownloadMessageDelegate {
 class DrawGridLayer : cocos2d::CCLayer {
     // virtual ~DrawGridLayer();
 
-    static DrawGridLayer* create(cocos2d::CCNode*, LevelEditorLayer*) = win 0x2db1f0, m1 0xc4b04, imac 0xdd0d0;
+    static DrawGridLayer* create(cocos2d::CCNode*, LevelEditorLayer*) = win 0x2db1f0, m1 0xc4b04, imac 0xdd0d0, ios 0x3575ac;
 
     virtual void update(float) = win 0x2db6f0, imac 0xf5c30, m1 0xd9cd8, ios 0x3657b8;
     virtual void draw() = win 0x2db8f0, imac 0xf5dc0, m1 0xd9de8, ios 0x3658c8;
@@ -4299,7 +4299,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     void addToGuides(GameObject*);
     void addToSpeedObjects(EffectGameObject*);
     cocos2d::CCPoint getPortalMinMax(GameObject*);
-    bool init(cocos2d::CCNode*, LevelEditorLayer*) = m1 0xd9aa0, imac 0xf59b0;
+    bool init(cocos2d::CCNode*, LevelEditorLayer*) = m1 0xd9aa0, imac 0xf59b0, ios 0x3655bc;
     void loadTimeMarkers(gd::string) = win 0x2db3d0, m1 0xc6aa4, imac 0xdf600;
     cocos2d::CCPoint posForTime(float) = win inline, m1 0xd449c, imac 0xef340, ios inline {
         return LevelTools::posForTime(p0, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, m_editorLayer->m_levelSettings->m_platformerMode, m_editorLayer->m_gameState.m_unkInt17);
