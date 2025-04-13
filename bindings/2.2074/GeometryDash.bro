@@ -8684,7 +8684,7 @@ class GhostTrailEffect : cocos2d::CCNode {
         m_blendFunc.src = GL_SRC_ALPHA;
         m_blendFunc.dst = GL_ONE;
     }
-    void runWithTarget(cocos2d::CCSprite*, float, float, float, float, bool) = win inline, m1 0x514a1c, imac 0x5e23d0 {
+    void runWithTarget(cocos2d::CCSprite*, float, float, float, float, bool) = win inline, m1 0x514a1c, imac 0x5e23d0, ios 0x2f4f48 {
         m_iconSprite = p0;
         m_snapshotInterval = p1;
         m_fadeInterval = p2;
@@ -8698,12 +8698,12 @@ class GhostTrailEffect : cocos2d::CCNode {
             nullptr
         ));
     }
-    void stopTrail() = win inline, m1 0x514ec8, imac 0x5e28c0 {
+    void stopTrail() = win inline, m1 0x514ec8, imac 0x5e28c0, ios 0x2f53f0 {
         this->unscheduleAllSelectors();
         this->stopAllActions();
         this->removeMeAndCleanup();
     }
-    void trailSnapshot(float) = win 0x6a110, m1 0x514ad0, imac 0x5e2470;
+    void trailSnapshot(float) = win 0x6a110, m1 0x514ad0, imac 0x5e2470, ios 0x2f4ff8;
 
     float m_snapshotInterval;
     float m_fadeInterval;
