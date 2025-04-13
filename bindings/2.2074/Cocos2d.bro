@@ -2619,7 +2619,7 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
     void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
     char const* keyToString(cocos2d::enumKeyCodes) = imac 0x1f1aa0, m1 0x1a82e0;
-    void removeDelegate(cocos2d::CCKeyboardDelegate*);
+    void removeDelegate(cocos2d::CCKeyboardDelegate*) = ios 0x239960, imac 0x1f1600, m1 0x1a7e48;
     void updateModifierKeys(bool, bool, bool, bool) = imac 0x1f1a70, m1 0x1a82c8;
 }
 
