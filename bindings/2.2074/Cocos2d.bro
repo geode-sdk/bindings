@@ -2499,8 +2499,8 @@ class cocos2d::CCTouchHandler {
 class cocos2d::CCEGLView {
     // CCEGLView();
     // CCEGLView(cocos2d::CCEGLView const&);
+    virtual void end() = m1 0x4512e4, imac 0x4f0140, ios 0x12da5c;
     virtual void swapBuffers() = m1 0x45133c, imac 0x4f01b0, ios 0x12da84;
-    void end();
 
     [[missing(android, mac, ios)]]
     void toggleFullScreen(bool, bool, bool);
