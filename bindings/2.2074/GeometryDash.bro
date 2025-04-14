@@ -6209,7 +6209,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn stopChannelTween(int, AudioTargetType, AudioModType);
     TodoReturn stopChannelTweens(int, AudioTargetType);
     TodoReturn stopMusic(int);
-    TodoReturn stopMusicNotInSet(std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >&);
+    TodoReturn stopMusicNotInSet(gd::unordered_set<int>&);
     TodoReturn storeEffect(FMOD::Sound* sound, gd::string path) = win 0x59510;
     TodoReturn swapMusicIndex(int, int);
     TodoReturn testFunction(int);
