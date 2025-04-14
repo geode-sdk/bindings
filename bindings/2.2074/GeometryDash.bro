@@ -16641,7 +16641,7 @@ class PlatformToolbox {
     static TodoReturn copyToClipboard(gd::string);
     static TodoReturn doesFileExist(gd::string);
     static TodoReturn downloadAndSavePromoImage(gd::string, gd::string);
-    static TodoReturn gameDidSave() = ios 0x16f388;
+    static void gameDidSave() = m1 0x41a0c4, imac 0x4b17a0, ios 0x16f388;
     static TodoReturn getDeviceRefreshRate();
     static cocos2d::CCSize getDisplaySize() = win 0x786d0, imac 0x4b18f0, m1 0x41a190;
     static TodoReturn getRawPath(char const*);
@@ -16669,7 +16669,7 @@ class PlatformToolbox {
     static TodoReturn onNativeResume();
     static TodoReturn onToggleKeyboard();
     static TodoReturn openAppPage();
-    static void platformShutdown();
+    static void platformShutdown() = m1 0x41a1d4, imac 0x4b1950;
     static TodoReturn refreshWindow();
     static TodoReturn reportAchievementWithID(char const*, int);
     static TodoReturn reportLoadingFinished();
