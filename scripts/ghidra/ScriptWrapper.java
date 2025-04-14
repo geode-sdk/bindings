@@ -148,110 +148,31 @@ public class ScriptWrapper {
         return ret;
     }
 
-    DataType getArrayType(String name, Platform platform) {
+    DataType getArrayType(String name, Platform platform) throws Exception {
         var arrayMatch = Pattern.compile("^array<(.+), (\\d+)>$").matcher(name);
         if (!arrayMatch.matches()) {
             printfmt("Array type {0} doesn't match the expected format", name);
             return new ArrayDataType(new PointerDataType(VoidDataType.dataType), 0, 0);
         }
+
         var type = arrayMatch.group(1);
-        var size = Integer.parseInt(arrayMatch.group(2));
-        DataType inner = null;
-        if (type.matches("bool|char|short|int|long|float|double|void|unsigned char|unsigned short|unsigned int|unsigned long")) {
-            switch (type) {
-                case "bool": inner = BooleanDataType.dataType; break;
-                case "char": inner = CharDataType.dataType; break;
-                case "short": inner = ShortDataType.dataType; break;
-                case "int": inner = IntegerDataType.dataType; break;
-                case "long": inner = LongDataType.dataType; break;
-                case "float": inner = FloatDataType.dataType; break;
-                case "double": inner = DoubleDataType.dataType; break;
-                case "void": inner = VoidDataType.dataType; break;
-                case "unsigned char": inner = UnsignedCharDataType.dataType; break;
-                case "unsigned short": inner = UnsignedShortDataType.dataType; break;
-                case "unsigned int": inner = UnsignedIntegerDataType.dataType; break;
-                case "unsigned long": inner = UnsignedLongDataType.dataType; break;
-            }
+        var typeIsUnsigned = type.startsWith("unsigned ");
+        if (typeIsUnsigned) {
+            type = type.substring(9);
         }
-        else if (type.matches("int8_t|uint8_t|int16_t|uint16_t|int32_t|uint32_t|int64_t|uint64_t|intptr_t|uintptr_t|size_t|time_t")) {
-            switch (type) {
-                case "int8_t": inner = ByteDataType.dataType; break;
-                case "uint8_t": inner = UnsignedCharDataType.dataType; break;
-                case "int16_t": inner = ShortDataType.dataType; break;
-                case "uint16_t": inner = UnsignedShortDataType.dataType; break;
-                case "int32_t": inner = IntegerDataType.dataType; break;
-                case "uint32_t": inner = UnsignedIntegerDataType.dataType; break;
-                case "int64_t": inner = LongLongDataType.dataType; break;
-                case "uint64_t": inner = UnsignedLongLongDataType.dataType; break;
-                case "intptr_t": switch (platform) {
-                    case WINDOWS32:
-                    case ANDROID32:
-                        inner = IntegerDataType.dataType;
-                        break;
-                    case WINDOWS64:
-                        inner = LongLongDataType.dataType;
-                        break;
-                    case ANDROID64:
-                    case MAC_INTEL:
-                    case MAC_ARM:
-                    case IOS:
-                        inner = LongDataType.dataType;
-                        break;
-                } break;
-                case "uintptr_t": switch (platform) {
-                    case WINDOWS32:
-                    case ANDROID32:
-                        inner = UnsignedIntegerDataType.dataType;
-                        break;
-                    case WINDOWS64:
-                        inner = UnsignedLongLongDataType.dataType;
-                        break;
-                    case ANDROID64:
-                    case MAC_INTEL:
-                    case MAC_ARM:
-                    case IOS:
-                        inner = UnsignedLongDataType.dataType;
-                        break;
-                } break;
-                case "size_t": switch (platform) {
-                    case WINDOWS32:
-                        inner = UnsignedIntegerDataType.dataType;
-                        break;
-                    case WINDOWS64:
-                        inner = UnsignedLongLongDataType.dataType;
-                        break;
-                    case ANDROID32:
-                    case ANDROID64:
-                    case MAC_INTEL:
-                    case MAC_ARM:
-                    case IOS:
-                        inner = UnsignedLongDataType.dataType;
-                        break;
-                } break;
-                case "time_t": switch (platform) {
-                    case WINDOWS32:
-                        inner = IntegerDataType.dataType;
-                        break;
-                    case WINDOWS64:
-                        inner = LongLongDataType.dataType;
-                        break;
-                    case ANDROID32:
-                    case ANDROID64:
-                    case MAC_INTEL:
-                    case MAC_ARM:
-                    case IOS:
-                        inner = LongDataType.dataType;
-                        break;
-                } break;
-            }
+        var typeHasPointer = type.endsWith("*");
+        if (typeHasPointer) {
+            type = type.substring(0, type.length() - 1);
         }
-        else if (type.startsWith("std::array")) {
-            inner = this.getArrayType(type.substring(5), platform);
+        var typeTemplate = type.contains("<") ? type.substring(type.indexOf("<")) : "";
+        if (!typeTemplate.isEmpty()) {
+            type = type.substring(0, type.indexOf("<"));
         }
+        DataType inner = this.addOrGetType(Broma.fake().new Type(type, typeTemplate, typeHasPointer, typeIsUnsigned), platform);
 
         return new ArrayDataType(
             inner != null ? inner : new PointerDataType(VoidDataType.dataType),
-            inner != null ? size : 0,
+            inner != null ? Integer.parseInt(arrayMatch.group(2)) : 0,
             inner != null ? inner.getLength() : 0
         );
     }

@@ -113,12 +113,12 @@ public class Broma {
         public final Optional<Match> ptr;
         public final Optional<Match> ref;
 
-        private Type(String name, boolean unsigned) {
+        public Type(String name, String template, boolean pointer, boolean unsigned) {
             super(0);
             this.name = new Match(name);
-            this.template = Optional.empty();
+            this.template = template.isEmpty() ? Optional.empty() : Optional.of(new Match(template));
             this.unsigned = unsigned;
-            this.ptr = Optional.of(new Match("*"));
+            this.ptr = pointer ? Optional.of(new Match("*")) : Optional.empty();
             this.ref = Optional.empty();
         }
 
@@ -127,7 +127,7 @@ public class Broma {
          * @param name
          */
         public static Type ptr(Broma broma, String name) {
-            return broma.new Type(name, false);
+            return broma.new Type(name, "", true, false);
         }
 
         private Type(Broma broma, Platform platform, Matcher matcher) {
@@ -152,7 +152,7 @@ public class Broma {
             if (name.isPresent() && name.get().value.equals("long")) {
                 // Special case for long longs in the function signature
                 // This is a hack, but it works for now
-                type = new Type(type.name.value + "long", type.unsigned);
+                type = new Type(type.name.value + "long", "", false, type.unsigned);
                 name = Optional.empty();
             }
             this.type = type;
