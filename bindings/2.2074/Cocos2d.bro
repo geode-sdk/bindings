@@ -2073,7 +2073,7 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
     void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool) = imac 0x42e250, m1 0x3a8f7c, ios 0x1ad808;
     void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool) = imac 0x42e230, m1 0x3a8f6c, ios 0x1ad7f8;
     void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool) = imac 0x42ee60, m1 0x3a9bec, ios 0x1ae428;
-    void unscheduleAll();
+    void unscheduleAll() = m1 0x3a8d94, imac 0x42e060, ios 0x1ad6a0;
     void unscheduleAllForTarget(cocos2d::CCObject*) = imac 0x42f420;
     void unscheduleAllWithMinPriority(int);
     void unscheduleScriptEntry(unsigned int);
@@ -2702,7 +2702,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&);
     void createStatsLabel();
     void drawScene() = m1 0x3deef0, imac 0x46fe90, ios 0x178c64;
-    void end();
+    void end() = m1 0x3e02dc, imac 0x4714b0, ios 0x179760;
     bool isDisplayStats();
     bool isNextDeltaTimeZero();
     bool isPaused();
@@ -2715,7 +2715,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void popToSceneInStack(cocos2d::CCScene*) = imac 0x471720, m1 0x3e0514;
     void popToSceneStackLevel(int) = imac 0x4715b0, m1 0x3e03c0, ios 0x179844;
     void purgeCachedData();
-    void purgeDirector() = imac 0x471780;
+    void purgeDirector() = m1 0x3e0564, imac 0x471780, ios 0x17997c;
     bool pushScene(cocos2d::CCScene*) = imac 0x471230, m1 0x3e0034, ios 0x179580;
     void removeStatsLabel() = imac 0x471990, m1 0x3e0734;
     bool replaceScene(cocos2d::CCScene*) = imac 0x4712e0, m1 0x3e00fc, ios 0x179608;
