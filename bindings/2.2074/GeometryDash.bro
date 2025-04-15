@@ -6214,7 +6214,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     TodoReturn swapMusicIndex(int, int);
     TodoReturn testFunction(int);
     TodoReturn triggerQueuedMusic(FMODQueuedMusic);
-    TodoReturn unloadAllEffects() = ios 0x1400c8, win 0x59aa0;
+    void unloadAllEffects() = ios 0x1400c8, win 0x59aa0, imac 0x3d4540, m1 0x35aa94;
     TodoReturn unloadEffect(gd::string path);
     TodoReturn unregisterChannel(int);
     void updateBackgroundFade();
@@ -9240,7 +9240,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn reparentObject(cocos2d::CCNode*, cocos2d::CCNode*);
     void resetActiveEnterEffects() = ios 0x1e3a30, win 0x209060, imac 0x10d800, m1 0xed248;
     int resetAreaObjectValues(GameObject*, bool) = win 0x222950;
-    void resetAudio() = ios 0x2009f8, win 0x231fc0, m1 0x119004;
+    void resetAudio() = ios 0x2009f8, win 0x231fc0, m1 0x119004, imac 0x141e50;
     void resetCamera() = ios 0x2048f8, win 0x239570, m1 0x11e7d4, imac 0x148d80;
     void resetGradientLayers() = win 0x21bbf0;
     TodoReturn resetGroupCounters(bool) = ios 0x1fe998, imac 0x13e800;
