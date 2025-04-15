@@ -507,31 +507,41 @@ public class SyncBromaScript extends GhidraScript {
         var importedUpdateCount = 0;
         for (var bro : bromas) {
             wrapper.printfmt("Reading {0}...", bro.path.getFileName());
-            for (var cls : bro.classes) for (var fun : cls.functions) {
-                var name = fun.getName();
-                var className = cls.name.value;
-                var fullName = className + "::" + name;
-
-                // Only add functions that have an offset on this platform
-                if (fun.platformOffset.isEmpty()) {
+            for (var cls : bro.classes) {
+                // CCLightning is in the Geometry Dash binary, but it is only in Cocos2d.bro
+                if (
+                    (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) &&
+                    args.selectedBromaFile.equals("Cocos2d.bro") && !cls.name.value.equals("cocos2d::CCLightning")
+                ) {
                     continue;
                 }
-                var offset = Long.parseLong(fun.platformOffset.get().value, 16);
-                if (offset == Broma.PLACEHOLDER_ADDR) {
-                    continue;
-                }
-                var addr = currentProgram.getImageBase().add(offset);
 
-                switch (importSignatureFromBroma(addr, fun, false)) {
-                    case ADDED: {
-                        importedAddCount += 1;
-                        wrapper.printfmt("Added {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
-                    } break;
-                    case UPDATED: {
-                        importedUpdateCount += 1;
-                        wrapper.printfmt("Updated {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
-                    } break;
-                    default: break;
+                for (var fun : cls.functions) {
+                    var name = fun.getName();
+                    var className = cls.name.value;
+                    var fullName = className + "::" + name;
+
+                    // Only add functions that have an offset on this platform
+                    if (fun.platformOffset.isEmpty()) {
+                        continue;
+                    }
+                    var offset = Long.parseLong(fun.platformOffset.get().value, 16);
+                    if (offset == Broma.PLACEHOLDER_ADDR) {
+                        continue;
+                    }
+                    var addr = currentProgram.getImageBase().add(offset);
+
+                    switch (importSignatureFromBroma(addr, fun, false)) {
+                        case ADDED: {
+                            importedAddCount += 1;
+                            wrapper.printfmt("Added {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
+                        } break;
+                        case UPDATED: {
+                            importedUpdateCount += 1;
+                            wrapper.printfmt("Updated {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
+                        } break;
+                        default: break;
+                    }
                 }
             }
 
@@ -671,8 +681,6 @@ public class SyncBromaScript extends GhidraScript {
                 else {
                     bromaFun = bromaFuns.get(0);
                 }
-
-                boolean returnTypeUpdated = false;
 
                 // Update return type if Ghidra has an user-defined type and 
                 // Broma has TodoReturn

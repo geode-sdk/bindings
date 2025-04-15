@@ -150,7 +150,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 )GEN";
 
 	constexpr char const* declare_standalone = R"GEN(
-auto {function_name}({parameters}) -> decltype({function_name}({arguments})) {{
+{return} {function_name}({parameters}) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({parameter_types});
 	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
@@ -182,6 +182,7 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
         }
 
 		output += fmt::format(format_strings::declare_standalone,
+			fmt::arg("return", f.prototype.ret.name),
 			fmt::arg("convention", codegen::getModifyConventionName(f)),
 			fmt::arg("function_name", f.prototype.name),
 			fmt::arg("address_inline", codegen::getAddressString(f)),
