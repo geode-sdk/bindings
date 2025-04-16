@@ -51,6 +51,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean setOptcall;
         boolean syncMembers;
         boolean syncEnums;
+        boolean fillStandardTypes;
 
         public Args(ScriptWrapper wrapper, Path bindingsDir) throws Exception {
             this.run(wrapper, bindingsDir);
@@ -102,6 +103,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
             this.bool("Sync enums", b -> this.syncEnums = b);
+            this.bool("Fill standard types", false, b -> this.fillStandardTypes = b);
 
             this.waitForAnswers();
 
@@ -136,6 +138,8 @@ public class SyncBromaScript extends GhidraScript {
         for (var bro : this.args.bromaFiles) {
             this.bromas.add(new Broma(bro, args.platform));
         }
+
+        wrapper.fillStandardTypes = this.args.fillStandardTypes;
 
         // Read classes
         wrapper.classes.addAll(this.bromas.stream()

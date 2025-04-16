@@ -113,7 +113,7 @@ public class Broma {
         public final Optional<Match> ptr;
         public final Optional<Match> ref;
 
-        public Type(String name, String template, boolean pointer, boolean unsigned) {
+        private Type(String name, String template, boolean pointer, boolean unsigned) {
             super(0);
             this.name = new Match(name);
             this.template = template.isEmpty() ? Optional.empty() : Optional.of(new Match(template));
@@ -419,6 +419,22 @@ public class Broma {
 
     public static Broma fake() {
         return new Broma();
+    }
+
+    public static Type fakeType(String name) {
+        var unsigned = name.startsWith("unsigned ");
+        if (unsigned) {
+            name = name.substring(9);
+        }
+        var pointer = name.endsWith("*");
+        if (pointer) {
+            name = name.substring(0, name.length() - 1).trim();
+        }
+        var template = name.contains("<") ? name.substring(name.indexOf("<")) : "";
+        if (template.length() > 0) {
+            name = name.substring(0, name.indexOf("<")).trim();
+        }
+        return fake().new Type(name, template, pointer, unsigned);
     }
 
     /**
