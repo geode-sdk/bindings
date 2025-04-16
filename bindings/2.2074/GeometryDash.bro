@@ -9924,13 +9924,13 @@ class GJColorSetupLayer : FLAlertLayer, ColorSelectDelegate, FLAlertLayerProtoco
     virtual void keyBackClicked() = win 0x24fda0, m1 0x1af784, imac 0x1fa230, ios 0x191cf8;
     virtual void colorSelectClosed(cocos2d::CCNode*) = win 0x24fcd0, imac 0x1fa200, m1 0x1af778, ios 0x191cec;
 
-    bool init(LevelSettingsObject*) = win 0x24f0c0, imac 0x1f96a0, m1 0x1aec70;
+    bool init(LevelSettingsObject*) = win 0x24f0c0, imac 0x1f96a0, m1 0x1aec70, ios 0x191334;
     void onClose(cocos2d::CCObject* sender) = win 0x24fd50;
     void onColor(cocos2d::CCObject* sender) = win 0x24fc00, imac 0x1f9db0, m1 0x1af318;
     void onPage(cocos2d::CCObject* sender) = win 0x24fbb0, imac 0x1fa000;
     void showPage(int) = win 0x24fce0, imac 0x1fa0f0, m1 0x1af66c;
-    void updateSpriteColor(ColorChannelSprite*, cocos2d::CCLabelBMFont*, int) = win 0x24fa40, imac 0x1fa160, m1 0x1af6d0;
-    void updateSpriteColors() = win 0x24f920, imac 0x1f9e70, m1 0x1af3dc;
+    void updateSpriteColor(ColorChannelSprite*, cocos2d::CCLabelBMFont*, int) = win 0x24fa40, m1 0x1af6d0, imac 0x1fa160, ios 0x191c58;
+    void updateSpriteColors() = win 0x24f920, m1 0x1af3dc, imac 0x1f9e70, ios 0x191a18;
 
     LevelSettingsObject* m_settingsObject;
     cocos2d::CCDictionary* m_unk290;
@@ -19056,9 +19056,9 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onAddGroup(cocos2d::CCObject* sender) = ios 0x41208, win 0x3e52b0, m1 0x298c74, imac 0x300d30;
     void onAddGroupParent(cocos2d::CCObject* sender) = ios 0x41210, win 0x3e5420, m1 0x298c7c, imac 0x300d40;
     void onAnim(cocos2d::CCObject* sender) = win 0x3e4390;
-    void onArrow(int tag, int increment) = win 0x3e39e0, m1 0x29a170, imac 0x302410;
-    void onArrowLeft(cocos2d::CCObject* sender) = win 0x3e3980, m1 0x29a100, imac 0x3023b0;
-    void onArrowRight(cocos2d::CCObject* sender) = win 0x3e39b0, m1 0x29a138, imac 0x3023e0;
+    void onArrow(int tag, int increment) = win 0x3e39e0, m1 0x29a170, imac 0x302410, ios 0x42264;
+    void onArrowLeft(cocos2d::CCObject* sender) = win 0x3e3980, m1 0x29a100, imac 0x3023b0, ios 0x421f4;
+    void onArrowRight(cocos2d::CCObject* sender) = win 0x3e39b0, m1 0x29a138, imac 0x3023e0, ios 0x4222c;
     void onClose(cocos2d::CCObject* sender) = win 0x3e5f60, m1 0x298444, imac 0x3004c0, ios 0x40b20;
     void onCopy(cocos2d::CCObject* sender) = win 0x3e3ed0;
     void onExtra(cocos2d::CCObject* sender) = win 0x3e40d0, m1 0x29a028, imac 0x3022c0, ios 0x4211c;
@@ -19081,7 +19081,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void updateEditorLayerID2();
     void updateEditorOrder();
     void updateEditorOrderLabel();
-    void updateGroupIDButtons() = win 0x3e4940, m1 0x299a60, imac 0x301c70;
+    void updateGroupIDButtons() = win 0x3e4940, m1 0x299a60, imac 0x301c70, ios 0x41bd8;
     void updateGroupIDLabel() = ios 0x418c4, win 0x3e5ad0, m1 0x29950c, imac 0x301720;
     void updateOrderChannel();
     void updateOrderChannelLabel();
@@ -19143,10 +19143,10 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
     virtual void textChanged(CCTextInputNode*) = win 0x294710, imac 0x298f10, m1 0x240d0c, ios 0x2de42c;
     virtual void valueChanged() = m1 0x240e60, imac 0x299020, ios 0x2de4c8 {}
 
-    bool init(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x293ce0, imac 0x298360, m1 0x240198;
+    bool init(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x293ce0, imac 0x298360, m1 0x240198, ios 0x2dd9fc;
     void onCancel(cocos2d::CCObject* sender) = win 0x294950, imac 0x298cf0, m1 0x240b14;
     void onClose(cocos2d::CCObject* sender) = win 0x2949f0;
-    void onItemIDArrow(cocos2d::CCObject* sender) = win 0x2946a0, imac 0x298ca0, m1 0x240ab8;
+    void onItemIDArrow(cocos2d::CCObject* sender) = win 0x2946a0, m1 0x240ab8, imac 0x298ca0, ios 0x2de2ec;
     void onResetValue(cocos2d::CCObject* sender) = win 0x2946f0, imac 0x298c80;
     void updateTextInputLabel() = win 0x294810, imac 0x298d90, m1 0x240bb4, ios 0x2de354;
 
@@ -21096,7 +21096,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     cocos2d::CCArray* createToggleValueControl(int, gd::string, cocos2d::CCPoint, bool, int, int, float) = win 0x45e900, imac 0x228c00, m1 0x1da5ec, ios 0x134e78;
     cocos2d::CCArray* createToggleValueControlAdvanced(int, gd::string, cocos2d::CCPoint, bool, int, int, float, float, float, cocos2d::CCPoint) = imac 0x228d30, m1 0x1da73c, ios 0x134fb8;
     cocos2d::CCArray* createValueControl(int, gd::string, cocos2d::CCPoint, float, float, float) = win 0x45db40;
-    cocos2d::CCArray* createValueControlAdvanced(int property, gd::string label, cocos2d::CCPoint position, float scale, bool unk1, InputValueType valueType, int unk2, bool unk3, float sliderMin, float sliderMax, int page, int group, GJInputStyle inputStyle, int decimalPlaces, bool unk4) = win 0x45dc30, imac 0x227b30, m1 0x1d9550;
+    cocos2d::CCArray* createValueControlAdvanced(int property, gd::string label, cocos2d::CCPoint position, float scale, bool unk1, InputValueType valueType, int unk2, bool unk3, float sliderMin, float sliderMax, int page, int group, GJInputStyle inputStyle, int decimalPlaces, bool unk4) = win 0x45dc30, m1 0x1d9550, imac 0x227b30, ios 0x134204;
     cocos2d::CCArray* createValueControlWArrows(int, gd::string, cocos2d::CCPoint, float);
     cocos2d::CCArray* getGroupContainer(int);
     float getMaxSliderValue(int);
@@ -21142,7 +21142,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void toggleEaseRateVisibility();
     void toggleLimitValue(int, bool);
     void togglePageArrows(bool);
-    void triggerArrowChanged(int property, bool isRight) = win 0x45daa0 {
+    void triggerArrowChanged(int property, bool isRight) = win 0x45daa0, ios 0x133fc8 {
         float change = isRight ? 1.f : -1.f;
         float newValue;
 
@@ -21157,8 +21157,8 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
         this->valueChanged(property, newValue);
         this->m_disableTextDelegate = delegateDisabled;
     }
-    void triggerArrowLeft(cocos2d::CCObject*) = win 0x45da40, m1 0x1d91ac, imac 0x2277b0;
-    void triggerArrowRight(cocos2d::CCObject*) = win 0x45da70, m1 0x1d92d8, imac 0x2278c0;
+    void triggerArrowLeft(cocos2d::CCObject*) = win 0x45da40, m1 0x1d91ac, imac 0x2277b0, ios 0x133f90;
+    void triggerArrowRight(cocos2d::CCObject*) = win 0x45da70, m1 0x1d92d8, imac 0x2278c0, ios 0x13405c;
     void triggerSliderChanged(cocos2d::CCObject*) = win 0x45d980;
     void updateCustomEaseLabel(int, int) = win 0x465630;
     void updateCustomEaseRateLabel(int, float) = win 0x465800;
@@ -21173,7 +21173,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void updateSlider(int);
     void updateSpawnedByTrigger() = win 0x45d320;
     void updateTouchTriggered() = win 0x45d230;
-    void updateValue(int property, float value) = win 0x463b50, imac 0x2289d0, m1 0x1da380;
+    void updateValue(int property, float value) = win 0x463b50, m1 0x1da380, imac 0x2289d0, ios 0x134ca8;
     void updateValueControls(int property, float value) = ios 0x134094, win 0x45f7c0, imac 0x227950, m1 0x1d9370;
     void valueChanged(int property, float value) = ios 0x132fa0, win 0x45fd90, imac 0x225210, m1 0x1d7e68;
 
