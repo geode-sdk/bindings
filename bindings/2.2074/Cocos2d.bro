@@ -4787,3 +4787,13 @@ class cocos2d::CCDisplayLinkDirector : cocos2d::CCDirector {
     virtual void startAnimation() = win 0xbda10, m1 0x3e0a24, imac 0x471cf0, ios 0x179de4;
     virtual void mainLoop() = win 0xbc600, m1 0x3e0a60, imac 0x471d30, ios 0x179e20;
 }
+
+[[link(win, android)]]
+class cocos2d::CCScriptEngineManager {
+    cocos2d::CCScriptEngineProtocol* getScriptEngine();
+    void setScriptEngine(cocos2d::CCScriptEngineProtocol*);
+    void removeScriptEngine();
+    
+    static cocos2d::CCScriptEngineManager* sharedManager();
+    static void purgeSharedManager();
+}
