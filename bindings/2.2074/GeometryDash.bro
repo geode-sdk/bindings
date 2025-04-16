@@ -17465,7 +17465,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = ios 0x11f9e8, win 0x395430, imac 0xb6fb0, m1 0xa6b84;
     TodoReturn playReplay(gd::string);
     void prepareCreateObjectsFromSetup(gd::string&) = win 0x395f80, m1 0x9dac0, ios 0x119218;
-    void prepareMusic(bool) = ios 0x11d2f4, imac 0xb3ae0, win 0x3a3ae0, m1 0xb3ae0;
+    void prepareMusic(bool) = ios 0x11d2f4, imac 0xb3ae0, win 0x3a3ae0, m1 0xa3b18;
     void processCreateObjectsFromSetup() = ios 0x119504, win 0x396230, m1 0x9de44, imac 0xad090;
     TodoReturn processLoadedMoveActions();
     TodoReturn queueCheckpoint();
