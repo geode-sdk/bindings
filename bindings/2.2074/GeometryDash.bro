@@ -20403,7 +20403,7 @@ class SetupPortalPopup : FLAlertLayer, TextInputDelegate {
 class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelegate, GJSpecialColorSelectDelegate {
     // virtual ~SetupPulsePopup();
 
-    static SetupPulsePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x41f250;
+    static SetupPulsePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x41f250, ios 0x3abb04;
 
     virtual void show() = win 0x423fa0, m1 0x32a368, imac 0x39ce50, ios 0x3affd0;
     virtual void determineStartValues() = win 0x422ef0, m1 0x32924c, imac 0x39ba60, ios 0x3af378;
@@ -20414,7 +20414,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x423720, imac 0x39bfa0, m1 0x3296fc, ios 0x3af7cc;
 
     cocos2d::ccColor3B getColorValue();
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x41f430, m1 0x3250b8, imac 0x397170;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x41f430, m1 0x3250b8, imac 0x397170, ios 0x3abb88;
     void onCopy(cocos2d::CCObject* sender) = win 0x90d60;
     void onExclusive(cocos2d::CCObject* sender) = win 0x423380;
     void onGroupMainOnly(cocos2d::CCObject* sender) = win 0x423410;
@@ -20426,7 +20426,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void onSelectSpecialTargetID(cocos2d::CCObject* sender) = win 0x4236d0;
     void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x422cd0, imac 0x39a9b0, m1 0x328320;
     void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x4240e0;
-    void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x424050;
+    void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x424050, m1 0x328578, imac 0x39ac30, ios 0x3aeae4;
     void selectColor(cocos2d::ccColor3B);
     void sliderChanged(cocos2d::CCObject* sender) = win 0x4238c0;
     void updateColorLabels() = win 0x4248f0;
