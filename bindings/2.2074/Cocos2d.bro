@@ -2187,7 +2187,7 @@ class cocos2d::CCObject : cocos2d::CCCopying {
 
     // CCObject(cocos2d::CCObject const&);
     CCObject() = imac 0x477bd0, m1 0x3e6090, ios 0x88938;
-    ~CCObject() = imac 0x477ce0, m1 0x3e61b0, ios 0x88a10;
+    ~CCObject() = imac 0x477c70, m1 0x3e6120, ios 0x88980;
 
     cocos2d::CCObjectType getObjType() const;
 
@@ -4763,14 +4763,14 @@ class cocos2d::CCConfiguration {
 [[link(win, android)]]
 class cocos2d::CCPoolManager {
 	// CCPoolManager();
-	void addObject(cocos2d::CCObject*);
+	void addObject(cocos2d::CCObject*) = m1 0x367390, imac 0x3e5070, ios 0x1b448c;
 	void finalize();
 	cocos2d::CCAutoreleasePool* getCurReleasePool();
 	void pop() = m1 0x367288, imac 0x3e4f70, ios 0x1b43d0; // should be
 	static void purgePoolManager();
 	void push();
 	void removeObject(cocos2d::CCObject*);
-	static cocos2d::CCPoolManager* sharedPoolManager();
+	static cocos2d::CCPoolManager* sharedPoolManager() = m1 0x366e98, imac 0x3e4b70, ios 0x1b41f4;
 }
 
 [[link(win, android)]]
@@ -4791,9 +4791,12 @@ class cocos2d::CCDisplayLinkDirector : cocos2d::CCDirector {
 [[link(win, android)]]
 class cocos2d::CCScriptEngineManager {
     cocos2d::CCScriptEngineProtocol* getScriptEngine();
-    void setScriptEngine(cocos2d::CCScriptEngineProtocol*);
+    void setScriptEngine(cocos2d::CCScriptEngineProtocol* engine) = m1 0x29eaa8, imac 0x307980, ios inline {
+        if (m_pScriptEngine) delete m_pScriptEngine;
+        m_pScriptEngine = engine;
+    }
     void removeScriptEngine();
     
-    static cocos2d::CCScriptEngineManager* sharedManager();
+    static cocos2d::CCScriptEngineManager* sharedManager() = m1 0x29e3d8, imac 0x3072f0, ios 0x2726e0;
     static void purgeSharedManager();
 }
