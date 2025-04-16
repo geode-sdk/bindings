@@ -20425,7 +20425,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x423680;
     void onSelectSpecialTargetID(cocos2d::CCObject* sender) = win 0x4236d0;
     void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x422cd0, m1 0x328320, imac 0x39a9b0, ios 0x3ae920;
-    void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x4240e0, m1 0x328578, imac 0x39ac30, ios 0x3aeae4;
+    void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x4240e0, m1 0x328bec, imac 0x39b3b0, ios 0x3aef74;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x424050, m1 0x328578, imac 0x39ac30, ios 0x3aeae4;
     void selectColor(cocos2d::ccColor3B);
     void sliderChanged(cocos2d::CCObject* sender) = win 0x4238c0;
