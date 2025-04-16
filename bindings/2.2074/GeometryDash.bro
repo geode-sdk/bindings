@@ -2911,15 +2911,15 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array, ColorAction* action) = win 0x8da30, m1 0x62d6a0, imac 0x70e810, ios 0x41424c;
     // virtual ~ColorSelectPopup();
 
-    static ColorSelectPopup* create(cocos2d::ccColor3B color) = win inline, m1 0x62d8a8, imac 0x70eb10 {
+    static ColorSelectPopup* create(cocos2d::ccColor3B color) = win inline, m1 0x62d8a8, imac 0x70eb10, ios 0x4142e8 {
         auto action = ColorAction::create();
         action->m_color = color;
         return ColorSelectPopup::create(action);
     }
-    static ColorSelectPopup* create(ColorAction* action) = win inline, m1 0x62d898, imac 0x70eaf0 {
+    static ColorSelectPopup* create(ColorAction* action) = win inline, m1 0x62d898, imac 0x70eaf0, ios 0x4142d8 {
         return ColorSelectPopup::create(nullptr, nullptr, action);
     }
-    static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array) = win inline {
+    static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array) = win inline, ios 0x414244 {
         return ColorSelectPopup::create(effect, array, nullptr);
     }
     static cocos2d::ccColor3B hexToColor(gd::string) = win 0x91a60;
