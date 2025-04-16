@@ -886,7 +886,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     BoomScrollLayer() = ios 0x12fca0;
 
     static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2, cocos2d::CCArray* unk3, DynamicScrollDelegate* delegate) = win 0x3d060, imac 0x391a10, m1 0x3204b4, ios 0x12e27c;
-    static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2) = win inline, imac 0x391e00, m1 0x320880 {
+    static BoomScrollLayer* create(cocos2d::CCArray* pages, int unk1, bool unk2) = win inline, imac 0x391e00, m1 0x320880, ios 0x12e5b4 {
         return BoomScrollLayer::create(pages, unk1, unk2, nullptr, nullptr);
     }
 
@@ -919,7 +919,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     void instantMoveToPage(int) = ios 0x12f2c0, win 0x3ddc0, m1 0x321ccc, imac 0x393410;
     void moveToPage(int) = ios 0x12f398, win 0x3dea0, imac 0x3934f0, m1 0x321da4;
     void moveToPageEnded() = ios 0x12f234, win 0x3dc30, imac 0x393280, m1 0x321b3c;
-    int pageNumberForPosition(cocos2d::CCPoint) = win 0x3dcc0, imac 0x393070, m1 0x321924;
+    int pageNumberForPosition(cocos2d::CCPoint) = win 0x3dcc0, imac 0x393070, m1 0x321924, ios 0x12f030;
     cocos2d::CCPoint positionForPageWithNumber(int page) = win inline, imac 0x3933c0, m1 0x321c78 {
         return { this->getContentSize().width + m_pageOffset * page, 0.f };
     }
@@ -14175,7 +14175,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     DelayedSpawnNode* getDelayedSpawnNode();
     TodoReturn getGridPos(cocos2d::CCPoint);
     float getLastObjectX() = win 0x2d5fd0, m1 0xd44fc, imac 0xef3e0;
-    gd::string getLevelString() = win 0x2ce530, m1 0xca93c, imac 0xe3a60;
+    gd::string getLevelString() = win 0x2ce530, m1 0xca93c, imac 0xe3a60, ios 0x35bcb8;
     TodoReturn getLockedLayers();
     int getNextColorChannel() = win 0x2d2890;
     int getNextFreeAreaEffectID(cocos2d::CCArray*) = win 0x2d26d0;
@@ -14722,7 +14722,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
         m_secretDoor = nullptr;
     }
 
-    static LevelPage* create(GJGameLevel* level) = win inline, imac 0x41fda0, m1 0x39b290 {
+    static LevelPage* create(GJGameLevel* level) = win inline, imac 0x41fda0, m1 0x39b290, ios 0x3fa19c {
         auto ret = new LevelPage();
         if (ret->init(level)) {
             ret->autorelease();
@@ -14745,8 +14745,8 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
     void onInfo(cocos2d::CCObject* sender) = ios 0x3fbac4, win 0x309260, m1 0x39d69c, imac 0x422200;
     void onMoreGames(cocos2d::CCObject* sender);
     void onPlay(cocos2d::CCObject* sender) = ios 0x3fb8bc, win 0x308cf0, imac 0x421ef0, m1 0x39d360;
-    void onSecretDoor(cocos2d::CCObject* sender) = win 0x308130, imac 0x424140, m1 0x39f3a0;
-    void onTheTower(cocos2d::CCObject* sender) = win 0x307150, m1 0x39e83c, imac 0x423570;
+    void onSecretDoor(cocos2d::CCObject* sender) = win 0x308130, imac 0x424140, m1 0x39f3a0, ios 0x3fd2c8;
+    void onTheTower(cocos2d::CCObject* sender) = win 0x307150, m1 0x39e83c, imac 0x423570, ios 0x3fc938;
     void playCoinEffect() = win 0x307a50, imac 0x423cf0, m1 0x39ef58;
     void playStep2();
     void playStep3() = win 0x309160;
