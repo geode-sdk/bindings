@@ -17374,7 +17374,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 [[link(android), depends(DynamicBitset), depends(SavedActiveObjectState), depends(SavedObjectStateRef), depends(SavedSpecialObjectState)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
     PlayLayer() = ios 0x12633c, win 0x38DF50, m1 0xae588, imac 0xbfcd0;
-    ~PlayLayer() = win 0x38e920, m1 0x9c9c4, imac 0xabc70, ios 0x1184d4;
+    ~PlayLayer() = win 0x38e920, m1 0x9c9c4, imac 0xab980, ios 0x1184d4;
 
     static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = ios 0x118740, imac 0xabda0, m1 0x9ccd0;
     static PlayLayer* get() {
