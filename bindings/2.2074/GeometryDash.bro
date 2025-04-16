@@ -2624,10 +2624,10 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
 
     CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
     void determineStartValues();
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x8a9f0, m1 0x21ec48, imac 0x273e80;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x8a9f0, m1 0x21ec48, imac 0x273e80, ios 0x88cd0;
     void onClose(cocos2d::CCObject* sender) = win 0x8ba80;
     void onDynamicBlock(cocos2d::CCObject* sender) = win 0x8b550;
-    void onItemIDArrow(cocos2d::CCObject* sender) = win 0x8b600, m1 0x21f87c, imac 0x274b60;
+    void onItemIDArrow(cocos2d::CCObject* sender) = win 0x8b600, m1 0x21f87c, imac 0x274b60, ios 0x89734;
     void onNextItemID(cocos2d::CCObject* sender) = win 0x8b650;
     void updateEditorLabel() = win 0x8b890;
     void updateItemID() = win 0x8b990;
@@ -10272,9 +10272,9 @@ class GJFollowCommandLayer : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x26b1a0, imac 0x2c45a0, m1 0x268494, ios 0x13aed4;
     virtual void textChanged(CCTextInputNode*) = win 0x26a850, imac 0x2c3fe0, m1 0x268044, ios 0x13ac1c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x268e30, m1 0x2661e4, imac 0x2c1fb0;
-    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x26a790, m1 0x267498, imac 0x2c33a0;
-    void onUpdateGroupID2(cocos2d::CCObject* sender) = win 0x26a7f0, m1 0x267554, imac 0x2c3460;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x268e30, m1 0x2661e4, imac 0x2c1fb0, ios 0x139368;
+    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x26a790, m1 0x267498, imac 0x2c33a0, ios 0x13a3b8;
+    void onUpdateGroupID2(cocos2d::CCObject* sender) = win 0x26a7f0, m1 0x267554, imac 0x2c3460, ios 0x13a420;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440;
     void sliderXModChanged(cocos2d::CCObject* sender) = win 0x26a5d0;
     void sliderYModChanged(cocos2d::CCObject* sender) = win 0x26a610;
