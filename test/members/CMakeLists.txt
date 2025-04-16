@@ -11,8 +11,18 @@ add_compile_definitions(GEODE_IS_MEMBER_TEST)
 # they still take a little bit to compile, thanks to msvc being very fast!
 if (WIN32)
 	target_sources(${PROJECT_NAME} PRIVATE Windows.cpp)
-else()
-	target_sources(${PROJECT_NAME} PRIVATE MacOSArm.cpp MacOSIntel.cpp Android32.cpp Android64.cpp iOS.cpp)
+elseif(APPLE)
+	if ("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR IOS)
+		target_sources(${PROJECT_NAME} PRIVATE iOS.cpp)
+	else()
+		target_sources(${PROJECT_NAME} PRIVATE MacOSArm.cpp MacOSIntel.cpp)
+	endif()
+elseif(ANDROID)
+	if (ANDROID_ABI STREQUAL "armeabi-v7a")
+		target_sources(${PROJECT_NAME} PRIVATE Android32.cpp)
+	elseif(ANDROID_ABI STREQUAL "arm64-v8a")
+		target_sources(${PROJECT_NAME} PRIVATE Android64.cpp)
+	endif()
 endif()
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
@@ -31,7 +41,7 @@ if (WIN32)
 	add_compile_definitions(_HAS_ITERATOR_DEBUGGING=0)
 endif()
 
-if (${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL Clang OR ${CMAKE_CXX_COMPILER_ID} STREQUAL AppleClang)
 	target_compile_options(${PROJECT_NAME} PRIVATE -Wno-invalid-offsetof -Wno-inaccessible-base)
 endif()
 
@@ -53,3 +63,96 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 	${GeodeBindings_SOURCE_DIR}/bindings/include
 )
 target_link_directories(${PROJECT_NAME} PRIVATE ${GEODE_LOADER_PATH}/include/link)
+
+target_sources(${PROJECT_NAME} PRIVATE ${GEODE_MEMBER_TEST_CODEGEN_PATH}/Geode/GeneratedSource.cpp)
+
+if (WIN32)
+	if (MSVC)
+		target_compile_options(${PROJECT_NAME} PRIVATE /bigobj)
+	endif()
+endif()
+
+include(../../cmake/CPM.cmake)
+
+CPMAddPackage("gh:geode-sdk/TulipHook@2.4.3")
+
+target_link_libraries(${PROJECT_NAME} PRIVATE TulipHookInclude)
+
+if (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
+	set(GEODE_MEMBER_TEST_PLATFORM "mac")
+	set(GEODE_MEMBER_TEST_BINARY "Geode.dylib")
+	target_link_libraries(${PROJECT_NAME} PRIVATE
+		${GEODE_LOADER_PATH}/include/link/macos/libfmod.dylib
+	)
+elseif (GEODE_TARGET_PLATFORM STREQUAL "iOS")
+	set(GEODE_MEMBER_TEST_PLATFORM "ios")
+	set(GEODE_MEMBER_TEST_BINARY "Geode.ios.dylib")
+elseif (GEODE_TARGET_PLATFORM STREQUAL "Win64")
+	set(GEODE_MEMBER_TEST_PLATFORM "win")
+	set(GEODE_MEMBER_TEST_BINARY "Geode.lib")
+	target_link_libraries(${PROJECT_NAME} PRIVATE
+		${GEODE_LOADER_PATH}/include/link/win64/libcocos2d.lib
+		${GEODE_LOADER_PATH}/include/link/win64/libExtensions.lib
+		${GEODE_LOADER_PATH}/include/link/win64/glew32.lib
+		${GEODE_LOADER_PATH}/include/link/win64/fmod.lib
+	)
+elseif (GEODE_TARGET_PLATFORM STREQUAL "Android64")
+	set(GEODE_MEMBER_TEST_PLATFORM "android64")
+	set(GEODE_MEMBER_TEST_BINARY "Geode.android64.so")
+	target_link_libraries(${PROJECT_NAME} PRIVATE
+		${GEODE_LOADER_PATH}/include/link/android64/libcocos2dcpp.so
+		${GEODE_LOADER_PATH}/include/link/android64/libfmod.so
+	)
+elseif (GEODE_TARGET_PLATFORM STREQUAL "Android32")
+	set(GEODE_MEMBER_TEST_PLATFORM "android32")
+	set(GEODE_MEMBER_TEST_BINARY "Geode.android32.so")
+	target_link_libraries(${PROJECT_NAME} PRIVATE
+		${GEODE_LOADER_PATH}/include/link/android32/libcocos2dcpp.so
+		${GEODE_LOADER_PATH}/include/link/android32/libfmod.so
+	)
+endif()
+
+message(STATUS "Fetching Geode nightly Git hash")
+
+execute_process(
+	COMMAND git ls-remote https://github.com/geode-sdk/geode -t nightly
+	WORKING_DIRECTORY $ENV{GEODE_SDK}
+	OUTPUT_VARIABLE GEODE_MEMBER_TEST_GIT_OUTPUT
+	ERROR_VARIABLE GEODE_MEMBER_TEST_GIT_ERROR
+	OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+if (GEODE_MEMBER_TEST_GIT_ERROR)
+	message(STATUS "Failed to fetch Geode nightly Git hash, using existing binaries")
+else()
+	string(REGEX MATCH "^[0-9a-f]+" GEODE_MEMBER_TEST_GIT_HASH ${GEODE_MEMBER_TEST_GIT_OUTPUT})
+	string(SUBSTRING ${GEODE_MEMBER_TEST_GIT_HASH} 0 7 GEODE_MEMBER_TEST_GIT_HASH)
+
+	if ("$CACHE{GEODE_MEMBER_TEST_GIT_HASH}" STREQUAL "${GEODE_MEMBER_TEST_GIT_HASH}")
+		message(STATUS "Using cached Geode binaries from ${GEODE_MEMBER_TEST_GIT_HASH}")
+	else()
+		message(STATUS "Downloading Geode binaries from ${GEODE_MEMBER_TEST_GIT_HASH}")
+
+		file(DOWNLOAD
+			https://github.com/geode-sdk/geode/releases/download/nightly/geode-${GEODE_MEMBER_TEST_GIT_HASH}-${GEODE_MEMBER_TEST_PLATFORM}.zip
+			${CMAKE_CURRENT_BINARY_DIR}/geode.zip
+			STATUS GEODE_MEMBER_TEST_DOWNLOAD_STATUS
+		)
+		list(GET GEODE_MEMBER_TEST_DOWNLOAD_STATUS 0 GEODE_MEMBER_TEST_DOWNLOAD_STATUS_CODE)
+		if (GEODE_MEMBER_TEST_DOWNLOAD_STATUS_CODE EQUAL 0)
+			message(STATUS "Downloaded Geode binaries")
+		else()
+			list(GET GEODE_MEMBER_TEST_DOWNLOAD_STATUS 1 GEODE_MEMBER_TEST_DOWNLOAD_STATUS_MESSAGE)
+			message(FATAL_ERROR "Downloading Geode binaries failed: ${GEODE_MEMBER_TEST_DOWNLOAD_STATUS_MESSAGE}")
+		endif()
+
+		set(GEODE_MEMBER_TEST_GIT_HASH ${GEODE_MEMBER_TEST_GIT_HASH} CACHE STRING "Git hash of the Geode binaries")
+
+		file(ARCHIVE_EXTRACT
+			INPUT ${CMAKE_CURRENT_BINARY_DIR}/geode.zip
+			DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/geode
+			PATTERNS ${GEODE_MEMBER_TEST_BINARY}
+		)
+	endif()
+endif()
+
+target_link_libraries(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/geode/${GEODE_MEMBER_TEST_BINARY})

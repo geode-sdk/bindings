@@ -150,7 +150,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 )GEN";
 
 	constexpr char const* declare_standalone = R"GEN(
-auto {function_name}({parameters}) -> decltype({function_name}({arguments})) {{
+{return} {function_name}({parameters}) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({parameter_types});
 	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
@@ -159,17 +159,30 @@ auto {function_name}({parameters}) -> decltype({function_name}({arguments})) {{
 	return reinterpret_cast<FunctionType>(func)({arguments});
 }}
 )GEN";
+
+	constexpr char const* declare_standalone_definition = R"GEN(
+{return} {function_name}({parameters}) {definition}
+)GEN";
 }}
 
-std::string generateBindingSource(Root const& root) {
+std::string generateBindingSource(Root const& root, bool skipPugixml) {
 	std::string output(format_strings::source_start);
 
 	for (auto& f : root.functions) {
         if (codegen::getStatus(f) != BindStatus::NeedsBinding) {
+			if (codegen::getStatus(f) == BindStatus::Inlined) {
+				output += fmt::format(format_strings::declare_standalone_definition,
+					fmt::arg("return", f.prototype.ret.name),
+					fmt::arg("function_name", f.prototype.name),
+					fmt::arg("parameters", codegen::getParameters(f.prototype)),
+					fmt::arg("definition", f.inner)
+				);
+			}
             continue;
         }
 
 		output += fmt::format(format_strings::declare_standalone,
+			fmt::arg("return", f.prototype.ret.name),
 			fmt::arg("convention", codegen::getModifyConventionName(f)),
 			fmt::arg("function_name", f.prototype.name),
 			fmt::arg("address_inline", codegen::getAddressString(f)),
@@ -181,13 +194,18 @@ std::string generateBindingSource(Root const& root) {
     }
 
 	for (auto& c : root.classes) {
+		if (skipPugixml) {
+			if (c.name.starts_with("pugi::")) {
+				continue;
+			}
+		}
 
 		for (auto& f : c.fields) {
 			if (auto i = f.get_as<InlineField>()) {
 				// yeah there are no inlines on cocos
 			} else if (auto fn = f.get_as<FunctionBindField>()) {
 				if (codegen::getStatus(*fn) == BindStatus::Inlined) {
-					if (is_cocos_class(c.name) && (c.attributes.links & codegen::platform) != Platform::None) {
+					if (is_cocos_or_fmod_class(c.name) && (c.attributes.links & codegen::platform) != Platform::None) {
 						continue;
 					}
 
@@ -255,7 +273,7 @@ std::string generateBindingSource(Root const& root) {
 							used_declare_format = format_strings::declare_virtual;
 					}
 
-					output += fmt::format(used_declare_format,
+					output += fmt::format(fmt::runtime(used_declare_format),
 						fmt::arg("class_name", c.name),
 						fmt::arg("unqualified_class_name", codegen::getUnqualifiedClassName(c.name)),
 						fmt::arg("const", str_if(" const ", fn->prototype.is_const)),

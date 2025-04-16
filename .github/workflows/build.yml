@@ -2,34 +2,19 @@
 
 on:
   pull_request:
+    paths:
+      - '.github/workflows/build.yml'
+      - 'codegen/**'
   push:
     branches:
     - '**'
+    paths:
+      - '.github/workflows/build.yml'
+      - 'codegen/**'
+      
 
 jobs:
-  filter:
-    runs-on: ubuntu-latest
-    name: Filter
-    outputs:
-      should-run: ${{ steps.changed.outputs.any_changed }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
-    - name: Get changed files in the codegen folder
-      id: changed
-      uses: tj-actions/changed-files@v42
-      with:
-        files: |
-          .github/workflows/build.yml
-          codegen/**
-
   build:
-    needs: filter
-    if: needs.filter.outputs.should-run == 'true'
-
     strategy:
       fail-fast: false
       matrix:
@@ -43,10 +28,11 @@ jobs:
           id: mac
           extra_flags: >
             -DCMAKE_OSX_ARCHITECTURES='x86_64;arm64'
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15
             -DCMAKE_AR='/usr/bin/ar'
             -DCMAKE_RANLIB='/usr/bin/ranlib'
         - name: Linux
-          os: ubuntu-latest
+          os: ubuntu-22.04
           id: linux
           extra_flags: ''
 
@@ -77,13 +63,23 @@ jobs:
         7z x ninja.zip -o"$GITHUB_WORKSPACE/ninja"
         echo "$GITHUB_WORKSPACE/ninja" >> $GITHUB_PATH
 
-    - name: Update LLVM (Windows)
+    # - name: Update LLVM (Windows)
+    #   shell: bash
+    #   run: |
+    #     curl -L https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/LLVM-17.0.6-win64.exe -o llvm-inst.exe
+    #     7z x llvm-inst.exe -ollvm bin/clang.exe bin/clang++.exe bin/lld-link.exe bin/llvm-rc.exe bin/*.dll lib/clang/*/include/*
+    #     echo "$GITHUB_WORKSPACE/llvm/bin" >> $GITHUB_PATH
+    #   if: matrix.config.id == 'win'
+
+    - name: Update Clang (Linux)
       shell: bash
       run: |
-        curl -L https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/LLVM-17.0.6-win64.exe -o llvm-inst.exe
-        7z x llvm-inst.exe -ollvm bin/clang.exe bin/clang++.exe bin/lld-link.exe bin/llvm-rc.exe bin/*.dll lib/clang/*/include/*
-        echo "$GITHUB_WORKSPACE/llvm/bin" >> $GITHUB_PATH
-      if: matrix.config.id == 'win'
+        sudo apt update
+        sudo apt remove clang-14
+        sudo apt install gcc-12 g++-12
+        sudo ln -sf /usr/bin/gcc-12 /usr/bin/clang
+        sudo ln -sf /usr/bin/g++-12 /usr/bin/clang++
+      if: matrix.config.id == 'linux'
 
     - name: Configure
       run: >

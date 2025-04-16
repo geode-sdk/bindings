@@ -35,7 +35,7 @@ public class Regexes {
                 // Grab attributes
                 "(?<attrs>\\[\\[.*?\\]\\]\\s*)?" + 
                 // Grab name
-                "class (?<name>{0})\\s+(?::.*?)?" + 
+                "class (?<name>{0})\\s+(?<bases>:.*?)?" + 
                 // Grab body (assuming closing brace is on its own line without any preceding whitespace)
                 "\\'{'(?<body>.*?)(?<closingbrace>^\\'})'",
                 className
@@ -63,6 +63,32 @@ public class Regexes {
                     "|(?<inlinebody>(?=\\s*\\'{'))" +
                     // Or where we can add platforms
                     "|(?<insertplatformshere>\\s*(?=;))" + 
+                ")",
+                GRAB_TYPE, GRAB_PARAM, funName
+            ),
+            Pattern.DOTALL | Pattern.MULTILINE
+        );
+    }
+    public static final Pattern grabGlobalFunction(String funName) {
+        return Pattern.compile(
+            formatRegex(
+                // Grab attributes
+                "(?<attrs>\\[\\[.*?\\]\\]\\s*)?" +
+                // Must match start of line (MULTILINE flag required)
+                "(?<=^)" + 
+                // Get the dispatch modifier keyword if one is defined
+                "(?<dispatch>(?:inline|virtual|static|callback)\\s+)?" +
+                // Grab the return type and name of the function, or the name if it's a destructor
+                "(?:(?:(?<return>{0})\\s+(?<name>{2}))|(?<destructor>~{2}))" +
+                // Grab the parameters
+                "\\(\\s*(?<params>(?:{1}\\s*,?\\s*)*)\\)" +
+                "(?:" +
+                    // Grab the platforms
+                    "(?:\\s*=\\s*(?<platforms>(?:\\w+\\s+(?:0x[0-9a-fA-F]+|inline)\\s*,?\\s*)+))" +
+                    // Or the body
+                    "|(?<inlinebody>(?=\\s*\\'{'))" +
+                    // Or where we can add platforms
+                    "|(?<insertplatformshere>\\s*(?=;))" +
                 ")",
                 GRAB_TYPE, GRAB_PARAM, funName
             ),
@@ -116,6 +142,7 @@ public class Regexes {
         Pattern.DOTALL
     );
     public static final Pattern GRAB_FUNCTION = grabFunction("\\w+");
+    public static final Pattern GRAB_GLOBAL_FUNCTION = grabGlobalFunction("\\w+");
     public static final Pattern GRAB_MEMBER = grabMemberOrPad("\\w+");
     public static final Pattern GRAB_PLATFORM_ADDRESS = grabPlatformAddress("\\w+");
 }

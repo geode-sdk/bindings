@@ -2197,9 +2197,9 @@ class CheckpointObject : cocos2d::CCNode {
     short m_unkShort1;
     PAD = win 0x2;
     void* m_maybeAPointer2;
-    gd::vector<DynamicSaveObject> m_vectorDynamicSaveObjects;
-    gd::vector<ActiveSaveObject1> m_vectorActiveSaveObjects1;
-    gd::vector<ActiveSaveObject2> m_vectorActiveSaveObjects2;
+    gd::vector<SavedObjectStateRef> m_vectorDynamicSaveObjects;
+    gd::vector<SavedActiveObjectState> m_vectorActiveSaveObjects1;
+    gd::vector<SavedSpecialObjectState> m_vectorActiveSaveObjects2;
     EffectManagerState m_effectManagerState;
     cocos2d::CCArray* m_gradientTriggerObjectArray;
     bool m_unkBool1;
@@ -5089,7 +5089,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     }
     TodoReturn fadeInBackgroundMusic(float) = imac 0x3d3c80;
     void fadeInMusic(float, int) = win 0x5c3c0;
-    float fadeOutMusic(float, int) = win 0x5c500;
+    void fadeOutMusic(float, int) = win 0x5c500;
     TodoReturn getActiveMusic(int);
     FMOD::Channel* getActiveMusicChannel(int musicChannel) {
     	// TODO: this might do other checks or whatever but i cant be bothered
@@ -8501,7 +8501,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCParticleSystemQuad* m_unk3238;
     bool m_unk3240;
     bool m_unk3241;
-    bool m_unk3242;
+    bool m_playerDied;
     double m_extraDelta;
     bool m_started;
     bool m_unk3251;

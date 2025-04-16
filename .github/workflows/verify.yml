@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Restore cache
       id: codegen-cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: bin
         key: codegen-${{ hashFiles('codegen/**') }}
@@ -24,7 +24,7 @@ jobs:
         cmake --install build
 
     - name: Upload Codegen binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Codegen
         path: bin/Codegen
@@ -34,15 +34,15 @@ jobs:
     needs: build
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Download Codegen binary
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: Codegen
 
     - name: Verify
-      run: 'chmod +x ./Codegen && ./Codegen Win32 bindings/2.200 out'
+      run: 'chmod +x ./Codegen && ./Codegen Win64 bindings/2.2074 out'
 
   test-members:
     # dont bother running member test if broma isnt even valid
@@ -128,19 +128,19 @@ jobs:
 
     - name: Set up codegen binary cache
       id: codegen-cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: build/bindings/codegen
         # cache by os since for android32 and 64 the codegen binary is the same
         key: codegen-${{ hashFiles('codegen/**') }}-${{ matrix.config.os }}
 
-    - name: Set up android env
-      run: >
-        sudo apt install ninja-build &&
-        sudo add-apt-repository ppa:ubuntu-toolchain-r/test &&
-        sudo apt-get update &&
-        sudo apt-get install --only-upgrade libstdc++6
-      if: matrix.config.os == 'ubuntu-latest'
+    # - name: Set up android env
+    #   run: >
+    #     sudo apt install ninja-build &&
+    #     sudo add-apt-repository ppa:ubuntu-toolchain-r/test &&
+    #     sudo apt-get update &&
+    #     sudo apt-get install --only-upgrade libstdc++6
+    #   if: matrix.config.os == 'ubuntu-latest'
 
     - name: Set GEODE_SDK
       shell: bash

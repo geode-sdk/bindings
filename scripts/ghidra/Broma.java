@@ -113,12 +113,12 @@ public class Broma {
         public final Optional<Match> ptr;
         public final Optional<Match> ref;
 
-        private Type(String name) {
+        private Type(String name, String template, boolean pointer, boolean unsigned) {
             super(0);
             this.name = new Match(name);
-            this.template = Optional.empty();
-            this.unsigned = false;
-            this.ptr = Optional.of(new Match("*"));
+            this.template = template.isEmpty() ? Optional.empty() : Optional.of(new Match(template));
+            this.unsigned = unsigned;
+            this.ptr = pointer ? Optional.of(new Match("*")) : Optional.empty();
             this.ref = Optional.empty();
         }
 
@@ -127,7 +127,7 @@ public class Broma {
          * @param name
          */
         public static Type ptr(Broma broma, String name) {
-            return broma.new Type(name);
+            return broma.new Type(name, "", true, false);
         }
 
         private Type(Broma broma, Platform platform, Matcher matcher) {
@@ -147,8 +147,16 @@ public class Broma {
 
         private Param(Broma broma, Platform platform, Matcher matcher) {
             super(broma, matcher);
-            type = new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true));
-            name = Match.maybe(broma, matcher, "name");
+            Type type = new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true));
+            Optional<Match> name = Match.maybe(broma, matcher, "name");
+            if (name.isPresent() && name.get().value.equals("long")) {
+                // Special case for long longs in the function signature
+                // This is a hack, but it works for now
+                type = new Type(type.name.value + "long", "", false, type.unsigned);
+                name = Optional.empty();
+            }
+            this.type = type;
+            this.name = name;
             nameInsertionPoint = Match.maybe(broma, matcher, "insertnamehere");
         }
     }
@@ -213,7 +221,21 @@ public class Broma {
         
         public CConv getCallingConvention(Platform platform) {
             if (platform != Platform.WINDOWS32) {
-                return CConv.DEFAULT;
+                if (parent != null && (dispatch.isEmpty() || !dispatch.get().value.contains("static"))) return CConv.THISCALL;
+
+                switch (platform) {
+                    case WINDOWS64:
+                        return CConv.FASTCALL;
+                    case MAC_INTEL:
+                        return CConv.STDCALL;
+                    case ANDROID32:
+                    case ANDROID64:
+                    case MAC_ARM:
+                    case IOS:
+                        return CConv.CDECL;
+                    default:
+                        return CConv.DEFAULT;
+                }
             }
             if (dispatch.isPresent()) {
                 if (dispatch.get().value.contains("virtual")) {
@@ -302,6 +324,7 @@ public class Broma {
         public final List<Function> functions;
         public final List<Member> members;
         public final Range beforeClosingBrace;
+        public final boolean hasBases;
 
         private Class(Broma broma, Platform platform, Matcher matcher) {
             super(broma, matcher);
@@ -310,6 +333,7 @@ public class Broma {
             functions = new ArrayList<Function>();
             members = new ArrayList<Member>();
             beforeClosingBrace = new Range(matcher.start("closingbrace"), matcher.start("closingbrace"));
+            hasBases = matcher.group("bases") != null;
 
             // Check if this class is linked
             var attrs = matcher.group("attrs");
@@ -362,6 +386,7 @@ public class Broma {
      */
     private final List<Patch> patches;
     public final List<Class> classes;
+    public final List<Function> functions;
     private boolean committed = false;
 
     private Matcher forkMatcher(Pattern regex, Matcher of, String group, boolean find) {
@@ -377,6 +402,11 @@ public class Broma {
         while (matcher.find()) {
             this.classes.add(new Class(this, platform, matcher));
         }
+
+        var funMatcher = Regexes.GRAB_GLOBAL_FUNCTION.matcher(this.data);
+        while (funMatcher.find()) {
+            this.functions.add(new Function(this, null, platform, funMatcher));
+        }
     }
 
     private Broma() {
@@ -384,10 +414,27 @@ public class Broma {
         this.data = null;
         this.patches = null;
         this.classes = null;
+        this.functions = null;
     }
 
     public static Broma fake() {
         return new Broma();
+    }
+
+    public static Type fakeType(String name) {
+        var unsigned = name.startsWith("unsigned ");
+        if (unsigned) {
+            name = name.substring(9);
+        }
+        var pointer = name.endsWith("*");
+        if (pointer) {
+            name = name.substring(0, name.length() - 1).trim();
+        }
+        var template = name.contains("<") ? name.substring(name.indexOf("<")) : "";
+        if (template.length() > 0) {
+            name = name.substring(0, name.indexOf("<")).trim();
+        }
+        return fake().new Type(name, template, pointer, unsigned);
     }
 
     /**
@@ -400,6 +447,7 @@ public class Broma {
         data = Files.readString(path);
         patches = new ArrayList<Patch>();
         classes = new ArrayList<Class>();
+        functions = new ArrayList<Function>();
         this.applyRegexes(platform);
     }
 

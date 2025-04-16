@@ -37,6 +37,7 @@ enum class SearchType {
     Type26 = 26,
     Sent = 27,
     FeaturedLite = 28,
+    Bonus = 29,
     MyLevels = 98,
     SavedLevels = 99,
     FavouriteLevels = 100,
@@ -178,6 +179,9 @@ enum class GJGameEvent {
 };
 
 enum class PulseEffectType {
+    Default = 0,
+    Hsv = 1,
+    Color = 2,
 };
 enum class TouchTriggerType {
 };
@@ -356,13 +360,15 @@ enum class ChestSpriteState {
     Opening = 3,
     Opened = 4
 };
-enum class FormatterType {};
+enum class FormatterType {
+    Integer = 0,
+    Float = 1
+};
 enum class AudioModType {};
 enum class GJAreaActionType {};
 enum class GJSmartDirection {};
 enum class SmartBlockType {};
 enum class TouchTriggerControl {};
-enum class SmartPrefabResult {};
 enum class AudioSortType {
     NameAscending = 0,
     NameDescending = 1,
@@ -488,15 +494,16 @@ enum class AudioGuidelinesType {
     BPMFinder = 1
 };
 enum class SmartBrowseFilter {};
-enum class GJUITouchEvent {};
+enum class GJUITouchEvent {
+    Pressed = 0,
+    Moved = 1,
+    Ended = 2
+};
 enum class ObjectScaleType {
     XY = 0,
     X = 1,
     Y = 2
 };
-enum class SavedActiveObjectState {};
-enum class SavedSpecialObjectState {};
-enum class SavedObjectStateRef {};
 
 // Thanks cocoa!
 #ifdef GEODE_IS_MACOS
@@ -687,6 +694,7 @@ enum class PlaybackMode {
 enum class SelectArtType {
     Background = 0,
     Ground = 1,
+    Middleground = 2,
 };
 
 enum class UndoCommand {
@@ -905,11 +913,11 @@ enum class LeaderboardState {
 
 // Wylie Addition (https://github.com/Wyliemaster/GD-Decompiled/blob/main/GD/code/headers/Layers/LevelSettingsLayer.h)
 enum class Speed {
-	Normal = 0,
-	Slow = 1,
-	Fast = 2,
-	Faster = 3,
-	Fastest = 4,
+    Normal = 0,
+    Slow = 1,
+    Fast = 2,
+    Faster = 3,
+    Fastest = 4,
 };
 
 enum class CircleMode {
@@ -934,4 +942,13 @@ enum class GameOptionsSetting {
     Off = -1,
     Disabled = 0,
     On = 1,
+};
+
+// Geode Addition
+enum class GameObjectClassType {
+    Game = 0,
+    Effect = 1,
+    Animated = 2,
+    Enhanced = 4,
+    Smart = 5,
 };
