@@ -2784,9 +2784,9 @@ class ColorChannelSprite : cocos2d::CCSprite {
     virtual bool init() = win 0x251690, imac 0x2c4770, m1 0x268668, ios 0x10764;
 
     void updateBlending(bool enabled) = win 0x2519c0, imac 0x2c4aa0;
-    void updateCopyLabel(int channelID, bool copyOpacity) = win 0x2516b0, imac 0x2c4790, m1 0x268674;
+    void updateCopyLabel(int channelID, bool copyOpacity) = win 0x2516b0, m1 0x268674, imac 0x2c4790, ios 0x10770;
     void updateOpacity(float alpha) = ios 0x10910, win 0x251870, imac 0x2c4950, m1 0x26881c;
-    void updateValues(ColorAction* action) = ios 0x10b74, win inline, imac 0x2c4bb0, m1 0x268a84 {
+    void updateValues(ColorAction* action) = win inline, imac 0x2c4bb0, m1 0x268a84, ios 0x10b74 {
         if (!action) {
             this->setColor(cocos2d::ccWHITE);
             this->updateCopyLabel(0, false);
@@ -2908,7 +2908,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     }
 
     static gd::string colorToHex(cocos2d::ccColor3B) = win 0x926d0;
-    static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array, ColorAction* action) = win 0x8da30, m1 0x62d6a0, imac 0x70e810;
+    static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array, ColorAction* action) = win 0x8da30, m1 0x62d6a0, imac 0x70e810, ios 0x41424c;
     // virtual ~ColorSelectPopup();
 
     static ColorSelectPopup* create(cocos2d::ccColor3B color) = win inline, m1 0x62d8a8, imac 0x70eb10 {
@@ -10097,7 +10097,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn calculateLightBGColor(cocos2d::ccColor3B);
     TodoReturn checkCollision(int const&, int const&);
     void colorActionChanged(ColorAction*) = imac 0x2cb670;
-    bool colorExists(int col) = win inline, m1 0x26e578, imac 0x2cb640 {
+    bool colorExists(int col) = win inline, m1 0x26e578, imac 0x2cb640, ios 0x13770 {
         return m_colorActionVector[(std::min)((std::max)(col, 0), 1101)] != nullptr;
     }
     TodoReturn colorForEffect(cocos2d::ccColor3B, cocos2d::ccHSVValue);
