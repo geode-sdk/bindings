@@ -19950,7 +19950,7 @@ class SetupInstantCollisionTriggerPopup : SetupTriggerPopup {
     virtual void updateDefaultTriggerValues() = win 0x402bc0, m1 0x314a58, imac 0x384b90, ios 0x231200;
     virtual void valueDidChange(int, float) = win 0x402990, imac 0x384880, m1 0x314748, ios 0x230f18;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x314130, imac 0x384160;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x402270, m1 0x314130, imac 0x384160;
     TodoReturn updateSpecialNodes();
 }
 
