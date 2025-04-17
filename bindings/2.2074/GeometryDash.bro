@@ -1028,7 +1028,7 @@ class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
     int m_templatePage;
 }
 
-[[link(android)]]
+[[link(android), depends(SmartPrefabResult)]]
 class BrowseSmartTemplateLayer : FLAlertLayer {
     // virtual ~BrowseSmartTemplateLayer();
     BrowseSmartTemplateLayer() = win 0x43e390 {
@@ -12352,7 +12352,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
     int m_affordDialogIndex;
 }
 
-[[link(android)]]
+[[link(android), depends(SmartPrefabResult)]]
 class GJSmartBlockPreview : cocos2d::CCNode {
     // virtual ~GJSmartBlockPreview();
 
@@ -12414,7 +12414,7 @@ class GJSmartPrefab : cocos2d::CCObject {
     int m_prefabChance;
 }
 
-[[link(android)]]
+[[link(android), depends(SmartPrefabResult)]]
 class GJSmartTemplate : cocos2d::CCObject {
     // virtual ~GJSmartTemplate();
 

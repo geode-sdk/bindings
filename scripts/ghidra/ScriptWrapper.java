@@ -905,18 +905,13 @@ public class ScriptWrapper {
             }
             else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) {
                 point.add(Undefined1DataType.dataType, 0x1, "comparator", "The comparator for the " + className);
-                if (node != null) {
-                    point.add(node, node.getLength(), "root", "The root node of the " + className);
+                for (var i = 1; i < pointerSize; i++) {
+                    point.add(Undefined1DataType.dataType, 0x1);
                 }
-                else {
-                    for (var i = 1; i < pointerSize; i++) {
-                        point.add(Undefined1DataType.dataType, 0x1);
-                    }
-                    point.add(BooleanDataType.dataType, 0x1, "black", "Whether the root node is black");
-                    point.add(PointerDataType.dataType, pointerSize, "root", "The root node of the " + className);
-                    point.add(PointerDataType.dataType, pointerSize, "left", "The leftmost node of the " + className);
-                    point.add(PointerDataType.dataType, pointerSize, "right", "The rightmost node of the " + className);
-                }
+                point.add(BooleanDataType.dataType, 0x1, "black", "Whether the root node is black");
+                point.add(nodePointer, pointerSize, "root", "The root node of the " + className);
+                point.add(nodePointer, pointerSize, "left", "The leftmost node of the " + className);
+                point.add(nodePointer, pointerSize, "right", "The rightmost node of the " + className);
             }
             point.add(sizeType, pointerSize, "length", "The length of the " + className);
             point.setPackingEnabled(true);
