@@ -5260,9 +5260,9 @@ class EffectGameObject : EnhancedGameObject {
     // property 81
     bool m_touchHoldMode;
     // property 82
-    TouchToggleMode m_touchToggleMode;
+    TouchTriggerType m_touchToggleMode;
     // property 198
-    int m_touchPlayerMode;
+    TouchTriggerControl m_touchPlayerMode;
     // property 89
     bool m_isDualMode;
     // property 76
@@ -16070,10 +16070,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     gd::map<int, gd::string> m_musicTags;
     int m_musicLibraryVersion;
     int m_musicObjectCount;
-    bool m_requestedMusicLibraryDownloaded;
-    bool m_unk1d9;
-    bool m_unk1da;
-    bool m_unk1db;
+    int m_ncsSongCount;
     bool m_downloadingMusicLibrary;
     bool m_triedToLoadLibraries;
     bool m_unkBool;
@@ -23422,7 +23419,7 @@ class TriggerControlGameObject : EffectGameObject {
 
     gd::string m_triggerControlFrame;
     // property 580 (The type of a stop trigger for example)
-    int m_customTriggerValue;
+    GJActionCommand m_customTriggerValue;
 }
 
 [[link(android)]]

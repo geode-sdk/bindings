@@ -184,6 +184,9 @@ enum class PulseEffectType {
     Color = 2,
 };
 enum class TouchTriggerType {
+    Normal = 0,
+    ToggleOn = 1,
+    ToggleOff = 2,
 };
 enum class PlayerButton {
     Jump = 1,
@@ -222,7 +225,10 @@ enum class GJSongError {
     DownloadSongFailed = 1,
     DownloadSFXFailed = 2
 };
-enum class GJSongType {}; //probs normal and ncs
+enum class GJSongType {
+    Music = 0,
+    NCS = 1,
+};
 enum class LikeItemType {
     Unknown = 0,
     Level = 1,
@@ -232,6 +238,8 @@ enum class LikeItemType {
 };
 
 enum class CommentError {
+    Failed = 0,
+    Banned = 1
 };
 enum class BackupAccountError {
     BackupOrSyncFailed = -3,
@@ -242,8 +250,19 @@ enum class GJMusicAction {
     UpdateSFXLibrary = 4,
     UpdateMusicLibrary = 6
 };
-enum class CellAction {};
-enum class GJActionCommand {};
+enum class CellAction {
+    Click = 1,
+    Delete = 2,
+    Up = 3,
+    Down = 4,
+    Swap = 5,
+    Edit = 6
+};
+enum class GJActionCommand {
+    Stop = 0,
+    Pause = 1,
+    Resume = 2
+};
 enum class DifficultyIconType {
     ShortText = 0,
     DefaultText = 1,
@@ -305,7 +324,9 @@ enum class GauntletType {
     Space = 0x35,
     Cosmos = 0x36
 };
-enum class GJMPErrorCode {};
+enum class GJMPErrorCode {
+    Failed = 0
+};
 enum class GJTimedLevelType {
     Daily = 0,
     Weekly = 1,
@@ -368,7 +389,11 @@ enum class AudioModType {};
 enum class GJAreaActionType {};
 enum class GJSmartDirection {};
 enum class SmartBlockType {};
-enum class TouchTriggerControl {};
+enum class TouchTriggerControl {
+    Both = 0,
+    Player1 = 1,
+    Player2 = 2
+};
 enum class AudioSortType {
     NameAscending = 0,
     NameDescending = 1,
@@ -893,13 +918,6 @@ enum class MoveTargetType {
     Both = 0,
     XOnly = 1,
     YOnly = 2,
-};
-
-// Geode Addition
-enum class TouchToggleMode {
-    Normal = 0,
-    ToggleOn = 1,
-    ToggleOff = 2,
 };
 
 // Geode Addition

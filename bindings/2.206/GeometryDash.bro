@@ -4528,7 +4528,7 @@ class EffectGameObject : EnhancedGameObject {
 	// property 81
 	bool m_touchHoldMode;
 	// property 82
-	TouchToggleMode m_touchToggleMode;
+	TouchTriggerType m_touchToggleMode;
 	// property 198
 	int m_touchPlayerMode; // TODO: add enum
 	// property 89
