@@ -19663,7 +19663,7 @@ class SetupCollisionStateTriggerPopup : SetupInstantCollisionTriggerPopup {
 
     static SetupCollisionStateTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x314c08, imac 0x384de0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x402cf0, m1 0x314c08, imac 0x384de0;
 }
 
 [[link(android)]]
