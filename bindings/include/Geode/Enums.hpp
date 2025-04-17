@@ -385,7 +385,10 @@ enum class FormatterType {
     Integer = 0,
     Float = 1
 };
-enum class AudioModType {};
+enum class AudioModType {
+    Speed = 0,
+    Volume = 1
+};
 enum class GJAreaActionType {};
 enum class GJSmartDirection {};
 enum class SmartBlockType {};

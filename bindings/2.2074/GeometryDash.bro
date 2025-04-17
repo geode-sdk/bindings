@@ -6147,17 +6147,17 @@ class FMODAudioEngine : cocos2d::CCNode {
             channel->setPaused(true);
     }
     static float pitchForIdx(int) = ios 0x13e698, win 0x569b0;
-    void playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10, imac 0x3d1ba0, m1 0x358870, ios 0x13ea50;
-    void playEffect(gd::string path) = win 0x56d90, m1 0x3587c0, imac 0x3d1b10, ios 0x13e9b4;
-    void playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0, ios 0x13d8c4;
-    TodoReturn playEffectAsync(gd::string path);
+    int playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10, imac 0x3d1ba0, m1 0x358870, ios 0x13ea50;
+    int playEffect(gd::string path) = win 0x56d90, m1 0x3587c0, imac 0x3d1b10, ios 0x13e9b4;
+    int playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0, ios 0x13d8c4;
+    int playEffectAsync(gd::string path);
     void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x5a110, imac 0x3d4dc0, m1 0x35b20c, ios 0x1405b0;
     FMODSound& preloadEffect(gd::string path) = win 0x59260, m1 0x3531c4, imac 0x3ca980, ios 0x13b644;
     void preloadEffectAsync(gd::string path);
     FMOD::Sound* preloadMusic(gd::string path, bool p1, int p2) = win 0x5c790, imac 0x3d5220, m1 0x35b618, ios 0x1408d0;
     TodoReturn printResult(FMOD_RESULT);
     TodoReturn queuedEffectFinishedLoading(gd::string);
-    TodoReturn queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x57920;
+    int queuePlayEffect(gd::string, float, float, float, float, bool, bool, int, int, int, int, bool, int, bool, int, float, int) = win 0x57920;
     void queueStartMusic(gd::string audioFilename, float, float, float, bool, int ms, int, int, int, int, bool, int, bool, bool) = win 0x5aa70, imac 0x3d5af0, m1 0x35bdb8, ios 0x140e60;
     TodoReturn registerChannel(FMOD::Channel*, int, int);
     void releaseRemovedSounds();
@@ -9424,7 +9424,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateTimerLabels() = ios 0x1fe480, win 0x22fae0;
     void updateZoom(float, float, int, float, int, int) = ios 0x1fef38, win 0x230590, imac 0x13f010;
     void visitWithColorFlash() = win 0x241d30;
-    TodoReturn volumeForProximityEffect(SFXTriggerInstance&) = win 0x23c060;
+    float volumeForProximityEffect(SFXTriggerInstance&) = win 0x23c060;
 
     PAD = win 0x8, android 0x8, mac 0x8, ios 0x8;
     GJGameState m_gameState;
