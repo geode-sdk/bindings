@@ -5652,8 +5652,8 @@ class EnterEffectInstance {
     float m_value;
     EnterEffectObject* m_gameObject;
     bool m_unkBool1;
-    float m_unkFloat1;
-    float m_unkFloat2;
+    int m_targetID;
+    int m_centerID;
     float m_unkFloat3;
     float m_unkFloat4;
     bool m_unkBool2;
@@ -5661,7 +5661,7 @@ class EnterEffectInstance {
     bool m_unkBool4;
     float m_unkFloat5;
     gd::vector<int> m_unkVecInt;
-    float m_unkFloat6;
+    int m_controlID;
 }
 
 [[link(android)]]
@@ -7216,7 +7216,7 @@ class GameManager : GManager {
     TodoReturn logLoadedIconInfo();
     void openEditorGuide();
     void playMenuMusic() = win 0x178810, m1 0x2f66b4, imac 0x3639a0, ios 0x312208;
-    void playSFXTrigger(SFXTriggerGameObject*) = ios 0x31260c, win 0x178ca0;
+    int playSFXTrigger(SFXTriggerGameObject*) = ios 0x31260c, win 0x178ca0;
     void prepareDPadSettings() = imac 0x375340, win 0x183aa0;
     TodoReturn printGJLog();
     void queueReloadMenu() = imac 0x378db0;
@@ -9437,7 +9437,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_allowStaticRotate;
     bool m_fixNegativeScale;
     bool m_startingFromBeginning;
-    gd::vector<gd::vector<int>*> m_field_8B0;
+    gd::vector<SFXTriggerGameObject*> m_activeSfxTriggers;
     gd::vector<int> m_unkVectorTypeIsWrong;
     cocos2d::CCNode* m_field_8E0;
     cocos2d::CCNode* m_field_8E8;
@@ -22655,44 +22655,86 @@ class SpecialAnimGameObject : EnhancedGameObject {
 [[link(android)]]
 class SpriteAnimationManager : cocos2d::CCNode {
     // virtual ~SpriteAnimationManager();
+    SpriteAnimationManager() {
+        m_sprite = nullptr;
+        m_priorityDict = nullptr;
+        m_typeDict = nullptr;
+        m_soundDict = nullptr;
+        m_queuedAnimation = "";
+        m_frameDict = nullptr;
+        m_currentAnimation = "";
+        m_nextAnimation = "";
+    }
 
-    TodoReturn animationFinished();
-    TodoReturn callAnimationFinished();
-    TodoReturn createAnimations(gd::string) = m1 0x62a3ac;
-    TodoReturn createWithOwner(CCAnimatedSprite*, gd::string);
-    TodoReturn doCleanup();
-    TodoReturn executeAnimation(gd::string);
-    TodoReturn finishAnimation(gd::string);
-    TodoReturn getAnimType(gd::string);
-    TodoReturn getPrio(gd::string);
-    TodoReturn initWithOwner(CCAnimatedSprite*, gd::string);
-    TodoReturn loadAnimations(gd::string) = m1 0x62b214;
-    TodoReturn offsetCurrentAnimation(float) = imac 0x70e0d0;
+    void animationFinished() = win 0x745f0;
+    void callAnimationFinished() = win 0x74640;
+    static void createAnimations(gd::string) = win 0x72fa0, m1 0x62a3ac;
+    static SpriteAnimationManager* createWithOwner(CCAnimatedSprite*, gd::string) = win inline {
+        auto ret = new SpriteAnimationManager();
+        if (ret->initWithOwner(p0, p1)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    void doCleanup() = win inline {
+        m_animateDict->removeAllObjects();
+        this->release();
+    }
+    void executeAnimation(gd::string) = win 0x73f30;
+    void finishAnimation(gd::string);
+    int getAnimType(gd::string) = win inline {
+        return m_typeDict->valueForKey(p0)->intValue();
+    }
+    int getPrio(gd::string) = win 0x74720;
+    bool initWithOwner(CCAnimatedSprite*, gd::string) = win 0x72360;
+    void loadAnimations(gd::string) = win 0x725d0, m1 0x62b214;
+    void offsetCurrentAnimation(float) = win inline, imac 0x70e0d0 {
+        if (auto action = static_cast<cocos2d::CCActionInterval*>(m_sprite->m_sprite->getActionByTag(1))) {
+            if (action->m_bFirstTick) action->step(0.f);
+            action->step(p0);
+        }
+    }
     void overridePrio() = win 0x74420, m1 0x62cb2c, imac 0x70dbc0;
-    TodoReturn playSound(gd::string);
-    TodoReturn playSoundForAnimation(gd::string);
-    TodoReturn queueAnimation(gd::string);
-    TodoReturn resetAnimState();
+    void playSound(gd::string);
+    void playSoundForAnimation(gd::string);
+    void queueAnimation(gd::string) = win 0x74510;
+    void resetAnimState() = win inline {
+        m_queuedAnimation = "not_used";
+        m_nextAnimation = "not_used";
+    }
     void runAnimation(gd::string) = win 0x73dd0, m1 0x62c1e8, imac 0x70d190;
-    TodoReturn runQueuedAnimation();
+    void runQueuedAnimation();
     void stopAnimations() = win inline, m1 0x62cd30, imac 0x70ddb0 {
         this->overridePrio();
         if (m_sprite->m_paSprite) m_sprite->m_paSprite->stopAllActions();
         if (m_sprite->m_fbfSprite) m_sprite->m_fbfSprite->stopAllActions();
     }
-    TodoReturn storeAnimation(cocos2d::CCAnimate*, cocos2d::CCAnimate*, gd::string, int, spriteMode, cocos2d::CCSpriteFrame*);
-    TodoReturn storeSoundForAnimation(cocos2d::CCString*, gd::string, float);
-    TodoReturn switchToFirstFrameOfAnimation(gd::string);
-    TodoReturn updateAnimationSpeed(float) = imac 0x70cf30;
+    void storeAnimation(cocos2d::CCAnimate*, cocos2d::CCAnimate*, gd::string, int, spriteMode, cocos2d::CCSpriteFrame*) = win 0x73b60;
+    void storeSoundForAnimation(cocos2d::CCString*, gd::string, float) = win inline {
+        m_soundDict->setObject(p0, p1);
+        m_soundDict->setObject(cocos2d::CCString::createWithFormat("%f", p2), p1);
+    }
+    void switchToFirstFrameOfAnimation(gd::string);
+    void updateAnimationSpeed(float) = win inline, imac 0x70cf30 {
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        if (m_animateDict) HASH_ITER(hh, m_animateDict->m_pElements, element, temp) {
+            if (element->getObject()->getObjType() == (cocos2d::CCObjectType)0) {
+                static_cast<cocos2d::CCAnimate*>(element->getObject())->setSpeedMod(p0);
+            }
+        }
+    }
 
     CCAnimatedSprite* m_sprite;
-    cocos2d::CCDictionary* m_animationDict1;
-    cocos2d::CCDictionary* m_animationDict2;
-    cocos2d::CCDictionary* m_animationDict3;
+    cocos2d::CCDictionary* m_priorityDict;
+    cocos2d::CCDictionary* m_typeDict;
+    cocos2d::CCDictionary* m_soundDict;
     gd::string m_queuedAnimation;
     float m_speed;
-    cocos2d::CCDictionary* m_animationDict4;
-    cocos2d::CCDictionary* m_animationDict5;
+    cocos2d::CCDictionary* m_animateDict;
+    cocos2d::CCDictionary* m_frameDict;
     gd::string m_currentAnimation;
     gd::string m_nextAnimation;
 }

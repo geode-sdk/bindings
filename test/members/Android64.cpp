@@ -239,8 +239,8 @@ GEODE_MEMBER_CHECK(EnterEffectInstance, m_saturation, 0xb4);
 GEODE_MEMBER_CHECK(EnterEffectInstance, m_value, 0xb8);
 GEODE_MEMBER_CHECK(EnterEffectInstance, m_gameObject, 0xc0);
 GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkBool1, 0xc8);
-GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkFloat1, 0xcc);
-GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkFloat2, 0xd0);
+GEODE_MEMBER_CHECK(EnterEffectInstance, m_targetID, 0xcc);
+GEODE_MEMBER_CHECK(EnterEffectInstance, m_centerID, 0xd0);
 GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkFloat3, 0xd4);
 GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkFloat4, 0xd8);
 GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkBool2, 0xdc);
@@ -248,7 +248,7 @@ GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkBool3, 0xdd);
 GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkBool4, 0xde);
 GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkFloat5, 0xe0);
 GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkVecInt, 0xe8);
-GEODE_MEMBER_CHECK(EnterEffectInstance, m_unkFloat6, 0x100);
+GEODE_MEMBER_CHECK(EnterEffectInstance, m_controlID, 0x100);
 
 GEODE_SIZE_CHECK(AdvancedFollowInstance, 0x20);
 GEODE_MEMBER_CHECK(AdvancedFollowInstance, m_gameObject, 0x0);
@@ -283,9 +283,9 @@ GEODE_MEMBER_CHECK(DynamicObjectAction, m_unkFloat5, 0x54);
 GEODE_MEMBER_CHECK(DynamicObjectAction, m_unkFloat6, 0x58);
 
 GEODE_SIZE_CHECK(SFXTriggerInstance, 0x18);
-GEODE_MEMBER_CHECK(SFXTriggerInstance, m_unkFloat1, 0x0);
-GEODE_MEMBER_CHECK(SFXTriggerInstance, m_unkFloat2, 0x4);
-GEODE_MEMBER_CHECK(SFXTriggerInstance, m_unkFloat3, 0x8);
+GEODE_MEMBER_CHECK(SFXTriggerInstance, m_groupID1, 0x0);
+GEODE_MEMBER_CHECK(SFXTriggerInstance, m_groupID2, 0x4);
+GEODE_MEMBER_CHECK(SFXTriggerInstance, m_controlID, 0x8);
 GEODE_MEMBER_CHECK(SFXTriggerInstance, m_sfxTriggerGameObject, 0x10);
 
 GEODE_SIZE_CHECK(SongChannelState, 0x20);

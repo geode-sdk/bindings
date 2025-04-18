@@ -336,7 +336,11 @@ enum class SongSelectType {
     Default = 0,
     Custom = 1
 };
-enum class AudioTargetType {};
+enum class AudioTargetType {
+    SFXChannel = 0,
+    SFXGroup = 1,
+    MusicChannel = 2
+};
 enum class FMODReverbPreset {
     Generic = 0,
     PaddedCell = 1,
@@ -389,9 +393,46 @@ enum class AudioModType {
     Speed = 0,
     Volume = 1
 };
-enum class GJAreaActionType {};
-enum class GJSmartDirection {};
-enum class SmartBlockType {};
+enum class GJAreaActionType {
+    Move = 0,
+    Rotate = 1,
+    Scale = 2,
+    Fade = 3,
+    Tint = 4
+};
+enum class GJSmartDirection {
+    Top = 1,
+    Bottom = 2,
+    Left = 3,
+    Right = 4,
+    TopLeft = 5,
+    TopRight = 6,
+    BottomLeft = 7,
+    BottomRight = 8
+};
+enum class SmartBlockType {
+    Block = 0x31,
+    NormalSlope1 = 0x32,
+    NormalSlope2 = 0x33,
+    NormalSlope3 = 0x34,
+    NormalSlope4 = 0x35,
+    WideSlope1 = 0x36,
+    WideSlope2 = 0x37,
+    WideSlope3 = 0x38,
+    WideSlope4 = 0x39,
+    WideSlope5 = 0x41,
+    WideSlope6 = 0x42,
+    WideSlope7 = 0x43,
+    WideSlope8 = 0x44,
+    WideSlope9 = 0x45,
+    WideSlope10 = 0x46,
+    WideSlope11 = 0x47,
+    WideSlope12 = 0x48,
+    WideSlope13 = 0x49,
+    WideSlope14 = 0x4A,
+    WideSlope15 = 0x4B,
+    WideSlope16 = 0x4C
+};
 enum class TouchTriggerControl {
     Both = 0,
     Player1 = 1,
@@ -405,7 +446,10 @@ enum class AudioSortType {
     IDAscending = 4,
     IDDescending = 5
 };
-enum class spriteMode {};
+enum class spriteMode {
+    FrameByFrame = 1,
+    PartAnim = 2
+};
 enum class GJAssetType {
     Song = 1,
     SFX = 2
