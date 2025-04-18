@@ -3453,7 +3453,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
     // virtual ~CurrencyRewardLayer();
     // CurrencyRewardLayer();
 
-    static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType, float, float time) = win 0x9f500, imac 0x78ff00, m1 0x6a36f8, ios 0x31e9b4;
+    static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float, float time) = win 0x9f500, imac 0x78ff00, m1 0x6a36f8, ios 0x31e9b4;
 
     virtual void update(float) = win 0xa2230, imac 0x792fd0, m1 0x6a64a8, ios 0x3212a4;
 
@@ -3500,7 +3500,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
         this->pulseSprite(m_starsSprite);
         m_starsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
     }
-    bool init(int, int, int, int, CurrencySpriteType, int, CurrencySpriteType, int, cocos2d::CCPoint, CurrencyRewardType, float, float) = win 0x9f750, imac 0x78ffe0, m1 0x6a3800, ios 0x31eabc;
+    bool init(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float, float time) = win 0x9f750, imac 0x78ffe0, m1 0x6a3800, ios 0x31eabc;
     void pulseSprite(cocos2d::CCSprite*) = win 0xa2c00, imac 0x793fa0, m1 0x6a72f8;
 
     CurrencyRewardDelegate* m_delegate;
@@ -3526,7 +3526,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
     int m_keys;
     int m_shards;
     float m_elapsed;
-    int m_unknown;
+    float m_unknown;
     float m_time;
     cocos2d::CCPoint m_orbsPosition;
     cocos2d::CCPoint m_starsPosition;
@@ -8287,7 +8287,9 @@ class GameStatsManager : cocos2d::CCNode {
         return cocos2d::CCString::createWithFormat("star_%i",levelID)->getCString();
     }
     int getStat(char const*) = ios 0x32bf54, win 0x1d21e0, imac 0x66610, m1 0x5aca0;
-    TodoReturn getStatFromKey(StatKey);
+    int getStatFromKey(StatKey key) = win inline {
+        return this->getStat(GameToolbox::intToString((int)key).c_str());
+    }
     TodoReturn getStoreItem(int, int);
     TodoReturn getStoreItem(int);
     int getTotalCollectedCurrency() = ios 0x3349f0, win 0x1e08b0, imac 0x743f0, m1 0x67fc4;
@@ -12440,7 +12442,7 @@ class GJSmartTemplate : cocos2d::CCObject {
     GJSmartPrefab* getPrefab(gd::string, bool, bool) = win 0x2ab4e0;
     cocos2d::CCArray* getPrefabs(gd::string);
     GJSmartPrefab* getPrefabWithID(gd::string, int) = win 0x2abdd0;
-    GJSmartPrefab* getRandomPrefab(gd::string);
+    GJSmartPrefab* getRandomPrefab(gd::string) = win 0x2ab370;
     static gd::string getSimplifiedKey(gd::string) = win 0x2a9a10;
     static SmartBlockType getSimplifiedType(SmartBlockType, bool&);
     void getTemplateState(gd::vector<SmartPrefabResult>&) = win 0x2ad890;
@@ -21410,7 +21412,7 @@ class SFXSearchResult : MusicSearchResult {
     }
     int getSelectedPage(int, int) = win 0x332580;
     bool init(int folderID) = win inline, imac 0x582990, m1 0x4d5004 {
-        if (!MusicSearchResult::init((GJSongType)-1)) return false;
+        if (!MusicSearchResult::init(GJSongType::Music)) return false;
         m_folderID = folderID;
         m_audioType = 1;
         return true;
@@ -22945,8 +22947,8 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
         m_array2->retain();
         m_cellArray = cocos2d::CCArray::create();
         m_cellArray->retain();
-        m_array3 = cocos2d::CCArray::create();
-        m_array3->retain();
+        m_indexPathArray = cocos2d::CCArray::create();
+        m_indexPathArray->retain();
         m_touchLastY = 0.f;
         m_cancellingTouches = false;
         m_idk2 = false;
@@ -23003,7 +23005,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
     bool m_touchMoved;
     cocos2d::CCArray* m_cellArray;
     cocos2d::CCArray* m_array2;
-    cocos2d::CCArray* m_array3;
+    cocos2d::CCArray* m_indexPathArray;
     TableViewDelegate* m_tableDelegate;
     TableViewDataSource* m_dataSource;
     TableViewCellDelegate* m_cellDelegate;
@@ -23163,7 +23165,7 @@ class TextArea : cocos2d::CCSprite {
         }
     }
     void fadeIn(float, bool) = m1 0x2a47e4;
-    void fadeInCharacters(float, float, bool, TextFadeInStyle) = m1 0x2a4db0;
+    float fadeInCharacters(float, float, bool, TextFadeInStyle) = win 0x77890, m1 0x2a4db0;
     void fadeOut(float) = m1 0x2a49b4;
     void fadeOutAndRemove() = imac 0x30ddf0, m1 0x2a4944;
     void finishFade() = win 0x775a0, imac 0x30ddc0, m1 0x2a4920;

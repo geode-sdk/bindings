@@ -226,7 +226,7 @@ enum class GJSongError {
     DownloadSFXFailed = 2
 };
 enum class GJSongType {
-    Music = 0,
+    Music = -1,
     NCS = 1,
 };
 enum class LikeItemType {
@@ -463,7 +463,18 @@ enum class LevelLeaderboardMode {
     Time = 0,
     Points = 1
 };
-enum class StatKey {};
+enum class StatKey {
+    FirePath = 30,
+    IcePath = 31,
+    PoisonPath = 32,
+    ShadowPath = 33,
+    LavaPath = 34,
+    EarthPath = 35,
+    BloodPath = 36,
+    MetalPath = 37,
+    LightPath = 38,
+    SoulPath = 39
+};
 enum class TextStyleType {
     Colored = 1,
     Instant = 2,
@@ -560,7 +571,11 @@ enum class gjParticleValue {
     FrictionR = 0x47,
     PlusMinus26 = 0x48
 };
-enum class ColorSelectType {};
+enum class ColorSelectType {
+    Pulse = 0,
+    Color = 1,
+    Filter = 2
+};
 enum class AudioGuidelinesType {
     GuidelineCreator = 0,
     BPMFinder = 1
@@ -950,7 +965,7 @@ enum class DialogAnimationType {
     FromLeft = 2,
     FromRight = 3,
     FromTop = 4,
-    // a 5th type is defined which acts exactly the same as FromTop
+    FromTop2 = 5
 };
 
 // Geode Addition
@@ -1000,7 +1015,10 @@ enum class ShipStreak {
     ShipFire6 = 6,
 };
 
-enum class TextFadeInStyle {};
+enum class TextFadeInStyle {
+    Fade = 0,
+    Scale = 1
+};
 
 // Geode Addition
 enum class GameOptionsSetting {
