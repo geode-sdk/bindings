@@ -444,7 +444,8 @@ enum class AudioSortType {
     LengthAscending = 2,
     LengthDescending = 3,
     IDAscending = 4,
-    IDDescending = 5
+    IDDescending = 5,
+    SongOrder = 6
 };
 enum class spriteMode {
     FrameByFrame = 1,

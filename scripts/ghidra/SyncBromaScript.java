@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
@@ -909,33 +908,26 @@ public class SyncBromaScript extends GhidraScript {
             }
 
             var name = line.split(" ")[2];
-            var enumCategory = manager.getCategory(new CategoryPath("/ClassDataTypes/" + name));
-            if (enumCategory == null) {
-                continue;
-            }
-
-            var enumType = enumCategory.getDataType(name);
-            if (enumType == null) {
-                var enumDataType = new EnumDataType(name, 4);
-                enumCategory.addDataType(enumDataType, DataTypeConflictHandler.DEFAULT_HANDLER);
-                enumType = enumDataType;
-            }
+            var enumCategory = manager.getCategory(wrapper.createCategoryAll(new CategoryPath("/ClassDataTypes/" + name)));
+            var enumDataType = new EnumDataType(name, 4);
 
             if (line.contains("};")) {
                 wrapper.printfmt("Imported 0 enum values for {0}", name);
+                enumCategory.addDataType(enumDataType, DataTypeConflictHandler.REPLACE_HANDLER);
                 continue;
             }
 
-            var enumDataType = enumType;
             var values = new HashMap<String, Integer>();
             var total = -1;
             for (i += 1; i < lines.size(); i += 1) {
                 var valueLine = lines.get(i);
-                if (valueLine.trim().isEmpty()) {
+                var trimmedLine = valueLine.trim();
+
+                if (trimmedLine.isEmpty() || trimmedLine.startsWith("{")) {
                     continue;
                 }
 
-                if (valueLine.contains("};")) {
+                if (trimmedLine.startsWith("};")) {
                     break;
                 }
 
@@ -959,14 +951,10 @@ public class SyncBromaScript extends GhidraScript {
             }
 
             for (var value : values.keySet()) {
-                var dataTypeEnum = (ghidra.program.model.data.Enum)enumDataType;
-                try {
-                    dataTypeEnum.getValue(value);
-                } catch (NoSuchElementException e) {
-                    dataTypeEnum.add(value, values.get(value));
-                }
+                enumDataType.add(value, values.get(value));
             }
 
+            enumCategory.addDataType(enumDataType, DataTypeConflictHandler.REPLACE_HANDLER);
             wrapper.printfmt("Imported {0} enum values for {1}", values.size(), name);
         }
     }
