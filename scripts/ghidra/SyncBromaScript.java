@@ -25,6 +25,7 @@ import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
+import ghidra.program.model.data.FunctionDefinition;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
@@ -813,9 +814,12 @@ public class SyncBromaScript extends GhidraScript {
                         }
 
                         final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
-                        boolean isPointer = memType instanceof PointerDataType;
+                        boolean isPointer = memType instanceof PointerDataType || memType instanceof FunctionDefinition;
                         length = isPointer ? manager.getDataOrganization().getPointerSize() : memType.getLength();
                         int alignment = isPointer ? length : memType.getAlignment();
+                        if (memType instanceof FunctionDefinition && args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64) {
+                            length *= 2;
+                        }
                         offset = (offset + alignment - 1) / alignment * alignment;
                     }
                     else {
@@ -859,7 +863,7 @@ public class SyncBromaScript extends GhidraScript {
                         }
                         classDataMembers.replaceAtOffset(
                             offset,
-                            memType, length,
+                            memType instanceof FunctionDefinition ? new PointerDataType(memType) : memType, length,
                             mem.name.get().value,
                             mem.getComment().orElse(null)
                         );
@@ -881,8 +885,10 @@ public class SyncBromaScript extends GhidraScript {
                     }
                 }
 
-                // classDataMembers.setPackingEnabled(true);
-                // classDataMembers.repack();
+                if (!cls.hasBases) {
+                    classDataMembers.setPackingEnabled(true);
+                    classDataMembers.repack();
+                }
             }
         }
     }

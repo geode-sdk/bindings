@@ -968,6 +968,23 @@ enum class DialogAnimationType {
     FromTop2 = 5
 };
 
+enum class GJColorIndex {
+    BG = 1000,
+    G1 = 1001,
+    L = 1002,
+    TDL = 1003,
+    Obj = 1004,
+    P1 = 1005,
+    P2 = 1006,
+    LBG = 1007,
+    G2 = 1009,
+    Black = 1010,
+    White = 1011,
+    Lighter = 1012,
+    MG = 1013,
+    MG2 = 1014
+};
+
 // Geode Addition
 enum class ComparisonType {
     Equals = 0,

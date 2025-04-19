@@ -1414,8 +1414,7 @@ class CCCountdown : cocos2d::CCSprite {
     float m_unk260;
     int m_seconds;
     cocos2d::CCLabelBMFont* m_countdownLabel;
-    // cocos2d::SEL_CallFunc m_callbackSelector;
-    PAD = win 0xc, android64 0x14, android32 0xc, mac 0x14, ios 0x14;
+    cocos2d::SEL_CallFunc m_callbackSelector;
     cocos2d::CCNode* m_targetNode;
 }
 
@@ -2744,6 +2743,30 @@ class ColorAction2 {
     TodoReturn resetAction();
     TodoReturn step(float);
     TodoReturn updateCustomColor(cocos2d::ccColor3B, cocos2d::ccColor3B);
+
+    bool m_stepFinished;
+    bool m_stepFinished2;
+    cocos2d::ccColor3B m_color;
+    float m_currentOpacity;
+    float m_deltaTime;
+    cocos2d::ccColor3B m_fromColor;
+    cocos2d::ccColor3B m_toColor;
+    float m_duration;
+    bool m_blending;
+    int m_playerColor;
+    int m_colorID;
+    float m_fromOpacity;
+    float m_toOpacity;
+    cocos2d::ccHSVValue m_copyHSV;
+    int m_copyID;
+    bool m_unknown;
+    bool m_copyOpacity;
+    bool m_unknown2;
+    int m_uniqueID;
+    bool m_legacyHSV;
+    ColorActionSprite* m_colorSprite;
+    float m_actionDelay;
+    float m_stepInterval;
 }
 
 [[link(android)]]
@@ -23532,8 +23555,7 @@ class TutorialPopup : FLAlertLayer {
 
     gd::string m_unk298;
     bool m_callbackRegistered;
-    // cocos2d::SEL_MenuHandler m_callbackSelector;
-    PAD = win 0xf, android64 0x17, android32 0xf, mac 0x17, ios 0x17;
+    cocos2d::SEL_MenuHandler m_callbackSelector;
     cocos2d::CCNode* m_targetNode;
     CCMenuItemSpriteExtra* m_closeButton;
 }

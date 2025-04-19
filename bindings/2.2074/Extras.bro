@@ -184,7 +184,8 @@ class CAState {
 }
 
 class GJPointDouble {
-
+	double m_x;
+	double m_y;
 }
 
 class SavedObjectStateRef {
@@ -301,7 +302,9 @@ class EnterEffectAnimValue {
 }
 
 class DynamicMoveCalculation {
-	PAD = win 0x18;
+	CCMoveCNode* m_moveNode;
+	cocos2d::CCPoint m_offset;
+	GameObject* m_gameObject;
 }
 
 class tk_spline {
