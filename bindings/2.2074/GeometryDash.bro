@@ -6149,7 +6149,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     static float pitchForIdx(int) = ios 0x13e698, win 0x569b0;
     int playEffect(gd::string path, float speed, float p2, float volume) = win 0x56e10, imac 0x3d1ba0, m1 0x358870, ios 0x13ea50;
     int playEffect(gd::string path) = win 0x56d90, m1 0x3587c0, imac 0x3d1b10, ios 0x13e9b4;
-    int playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int p12, bool override, bool p14, int p15, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0, ios 0x13d8c4;
+    int playEffectAdvanced(gd::string path, float speed, float p2, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int effectID, bool override, bool noPreload, int channelID, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0, ios 0x13d8c4;
     int playEffectAsync(gd::string path);
     void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x5a110, imac 0x3d4dc0, m1 0x35b20c, ios 0x1405b0;
     FMODSound& preloadEffect(gd::string path) = win 0x59260, m1 0x3531c4, imac 0x3ca980, ios 0x13b644;
@@ -6229,7 +6229,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 
     // not sure on the name, the system is quite confusing
     gd::unordered_map<int, FMODMusic> m_musicChannels;
-    gd::unordered_map<gd::string, FMODMusic> m_unkMap180;
+    gd::unordered_map<gd::string, FMODSound> m_unkMap180;
     gd::unordered_set<gd::string> m_unkMap1c0;
     float m_musicVolume;
     float m_sfxVolume;
@@ -6326,7 +6326,26 @@ class FMODMusic {
 
 [[link(android)]]
 class FMODQueuedEffect {
-    PAD = win 0x70, android32 0x48, android64 0x58;
+    gd::string m_filePath;
+    float m_speed;
+    float m_unk024;
+    float m_volume;
+    float m_pitch;
+    bool m_fastFourierTransform;
+    bool m_reverb;
+    int m_start;
+    int m_end;
+    int m_fadeIn;
+    int m_fadeOut;
+    bool m_loop;
+    int m_effectID;
+    bool m_override;
+    bool m_unk04d;
+    int m_channelID;
+    FMOD::Sound* m_sound;
+    int m_uniqueID;
+    int m_minInterval;
+    int m_group;
 }
 
 [[link(android)]]
@@ -13408,7 +13427,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     virtual void updateUserScoreFinished() = win 0x2b7730, imac 0x79d750, m1 0x6afcb0, ios 0x35294c;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2b5ce0, imac 0x79cb10, m1 0x6af108, ios 0x3523c0;
 
-    void confirmReport(cocos2d::CCObject*) = win 0x2b5780, m1 0x6add08, imac 0x79b630;
+    void confirmReport(cocos2d::CCObject*) = win 0x2b5780, m1 0x6add08, imac 0x79b630, ios 0x3513b8;
     int getAccountID();
     int getID() {
         if(m_score) return m_score->m_userID;
@@ -14822,7 +14841,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     void onSearchUser(cocos2d::CCObject* sender) = ios 0x56ddc, win 0x2fcdc0, m1 0x53fff0, imac 0x613d10;
     void onSpecialDemon(cocos2d::CCObject* sender) = win 0x2f9690, m1 0x540b44;
     void onStarAward(cocos2d::CCObject* sender);
-    void onSuggested(cocos2d::CCObject* sender) = win 0x2fc640;
+    void onSuggested(cocos2d::CCObject* sender) = win 0x2fc640, m1 0x54034c, imac 0x614030, ios 0x57194;
     void onTrending(cocos2d::CCObject* sender) = win 0x2fc700;
     void toggleDifficulty(cocos2d::CCObject*) = win 0x2fd3c0, imac 0x614340, m1 0x540640, ios 0x57610;
     void toggleDifficultyNum(int, bool) = win 0x2fd720, imac 0x614ae0, m1 0x540e20, ios 0x57ae8;
@@ -23859,8 +23878,8 @@ class UploadActionPopup : FLAlertLayer {
     }
     bool init(UploadPopupDelegate* delegate, gd::string str) = win 0x28dc60, imac 0x2908c0, m1 0x238df0;
     void onClose(cocos2d::CCObject* sender) = win 0x28e2d0;
-    void showFailMessage(gd::string message) = win 0x28e1d0, m1 0x2393d4, imac 0x290ee0;
-    void showSuccessMessage(gd::string message) = win 0x28e0c0, m1 0x23926c, imac 0x290d70;
+    void showFailMessage(gd::string message) = win 0x28e1d0, m1 0x2393d4, imac 0x290ee0, ios 0x2d85c8;
+    void showSuccessMessage(gd::string message) = win 0x28e0c0, m1 0x23926c, imac 0x290d70, ios 0x2d84d8;
 
     UploadPopupDelegate* m_delegate;
     TextArea* m_textArea;
