@@ -145,7 +145,7 @@ else()
 			message(FATAL_ERROR "Downloading Geode binaries failed: ${GEODE_MEMBER_TEST_DOWNLOAD_STATUS_MESSAGE}")
 		endif()
 
-		set(GEODE_MEMBER_TEST_GIT_HASH ${GEODE_MEMBER_TEST_GIT_HASH} CACHE STRING "Git hash of the Geode binaries")
+		set(GEODE_MEMBER_TEST_GIT_HASH ${GEODE_MEMBER_TEST_GIT_HASH} CACHE STRING "Git hash of the Geode binaries" FORCE)
 
 		file(ARCHIVE_EXTRACT
 			INPUT ${CMAKE_CURRENT_BINARY_DIR}/geode.zip

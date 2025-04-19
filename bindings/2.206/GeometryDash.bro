@@ -824,7 +824,7 @@ class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
 	virtual void onBack(cocos2d::CCObject* sender) = m1 0x450094, imac 0x4f6c90, ios 0x7aa48;
 }
 
-[[link(android)]]
+[[link(android), depends(SmartPrefabResult)]]
 class BrowseSmartTemplateLayer : FLAlertLayer {
 	// virtual ~BrowseSmartTemplateLayer();
 
@@ -4528,7 +4528,7 @@ class EffectGameObject : EnhancedGameObject {
 	// property 81
 	bool m_touchHoldMode;
 	// property 82
-	TouchToggleMode m_touchToggleMode;
+	TouchTriggerType m_touchToggleMode;
 	// property 198
 	int m_touchPlayerMode; // TODO: add enum
 	// property 89
@@ -10814,7 +10814,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	int m_affordDialogIndex;
 }
 
-[[link(android)]]
+[[link(android), depends(SmartPrefabResult)]]
 class GJSmartBlockPreview : cocos2d::CCNode {
 	// virtual ~GJSmartBlockPreview();
 
@@ -10854,7 +10854,7 @@ class GJSmartPrefab : cocos2d::CCObject {
 	virtual bool canEncode() = m1 0x3a4c04, imac 0x432110, ios 0x858c;
 }
 
-[[link(android)]]
+[[link(android), depends(SmartPrefabResult)]]
 class GJSmartTemplate : cocos2d::CCObject {
 	// virtual ~GJSmartTemplate();
 

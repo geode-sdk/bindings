@@ -16,9 +16,9 @@ class AdvancedFollowInstance {
 }
 
 class SFXTriggerInstance {
-	float m_unkFloat1;
-	float m_unkFloat2;
-	float m_unkFloat3;
+	int m_groupID1;
+	int m_groupID2;
+	int m_controlID;
 	SFXTriggerGameObject* m_sfxTriggerGameObject;
 }
 

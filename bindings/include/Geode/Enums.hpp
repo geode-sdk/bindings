@@ -184,6 +184,9 @@ enum class PulseEffectType {
     Color = 2,
 };
 enum class TouchTriggerType {
+    Normal = 0,
+    ToggleOn = 1,
+    ToggleOff = 2,
 };
 enum class PlayerButton {
     Jump = 1,
@@ -222,7 +225,10 @@ enum class GJSongError {
     DownloadSongFailed = 1,
     DownloadSFXFailed = 2
 };
-enum class GJSongType {}; //probs normal and ncs
+enum class GJSongType {
+    Music = -1,
+    NCS = 1,
+};
 enum class LikeItemType {
     Unknown = 0,
     Level = 1,
@@ -232,6 +238,8 @@ enum class LikeItemType {
 };
 
 enum class CommentError {
+    Failed = 0,
+    Banned = 1
 };
 enum class BackupAccountError {
     BackupOrSyncFailed = -3,
@@ -242,8 +250,19 @@ enum class GJMusicAction {
     UpdateSFXLibrary = 4,
     UpdateMusicLibrary = 6
 };
-enum class CellAction {};
-enum class GJActionCommand {};
+enum class CellAction {
+    Click = 1,
+    Delete = 2,
+    Up = 3,
+    Down = 4,
+    Swap = 5,
+    Edit = 6
+};
+enum class GJActionCommand {
+    Stop = 0,
+    Pause = 1,
+    Resume = 2
+};
 enum class DifficultyIconType {
     ShortText = 0,
     DefaultText = 1,
@@ -305,7 +324,9 @@ enum class GauntletType {
     Space = 0x35,
     Cosmos = 0x36
 };
-enum class GJMPErrorCode {};
+enum class GJMPErrorCode {
+    Failed = 0
+};
 enum class GJTimedLevelType {
     Daily = 0,
     Weekly = 1,
@@ -315,7 +336,11 @@ enum class SongSelectType {
     Default = 0,
     Custom = 1
 };
-enum class AudioTargetType {};
+enum class AudioTargetType {
+    SFXChannel = 0,
+    SFXGroup = 1,
+    MusicChannel = 2
+};
 enum class FMODReverbPreset {
     Generic = 0,
     PaddedCell = 1,
@@ -364,11 +389,55 @@ enum class FormatterType {
     Integer = 0,
     Float = 1
 };
-enum class AudioModType {};
-enum class GJAreaActionType {};
-enum class GJSmartDirection {};
-enum class SmartBlockType {};
-enum class TouchTriggerControl {};
+enum class AudioModType {
+    Speed = 0,
+    Volume = 1
+};
+enum class GJAreaActionType {
+    Move = 0,
+    Rotate = 1,
+    Scale = 2,
+    Fade = 3,
+    Tint = 4
+};
+enum class GJSmartDirection {
+    Top = 1,
+    Bottom = 2,
+    Left = 3,
+    Right = 4,
+    TopLeft = 5,
+    TopRight = 6,
+    BottomLeft = 7,
+    BottomRight = 8
+};
+enum class SmartBlockType {
+    Block = 0x31,
+    NormalSlope1 = 0x32,
+    NormalSlope2 = 0x33,
+    NormalSlope3 = 0x34,
+    NormalSlope4 = 0x35,
+    WideSlope1 = 0x36,
+    WideSlope2 = 0x37,
+    WideSlope3 = 0x38,
+    WideSlope4 = 0x39,
+    WideSlope5 = 0x41,
+    WideSlope6 = 0x42,
+    WideSlope7 = 0x43,
+    WideSlope8 = 0x44,
+    WideSlope9 = 0x45,
+    WideSlope10 = 0x46,
+    WideSlope11 = 0x47,
+    WideSlope12 = 0x48,
+    WideSlope13 = 0x49,
+    WideSlope14 = 0x4A,
+    WideSlope15 = 0x4B,
+    WideSlope16 = 0x4C
+};
+enum class TouchTriggerControl {
+    Both = 0,
+    Player1 = 1,
+    Player2 = 2
+};
 enum class AudioSortType {
     NameAscending = 0,
     NameDescending = 1,
@@ -377,7 +446,10 @@ enum class AudioSortType {
     IDAscending = 4,
     IDDescending = 5
 };
-enum class spriteMode {};
+enum class spriteMode {
+    FrameByFrame = 1,
+    PartAnim = 2
+};
 enum class GJAssetType {
     Song = 1,
     SFX = 2
@@ -391,7 +463,18 @@ enum class LevelLeaderboardMode {
     Time = 0,
     Points = 1
 };
-enum class StatKey {};
+enum class StatKey {
+    FirePath = 30,
+    IcePath = 31,
+    PoisonPath = 32,
+    ShadowPath = 33,
+    LavaPath = 34,
+    EarthPath = 35,
+    BloodPath = 36,
+    MetalPath = 37,
+    LightPath = 38,
+    SoulPath = 39
+};
 enum class TextStyleType {
     Colored = 1,
     Instant = 2,
@@ -488,7 +571,11 @@ enum class gjParticleValue {
     FrictionR = 0x47,
     PlusMinus26 = 0x48
 };
-enum class ColorSelectType {};
+enum class ColorSelectType {
+    Pulse = 0,
+    Color = 1,
+    Filter = 2
+};
 enum class AudioGuidelinesType {
     GuidelineCreator = 0,
     BPMFinder = 1
@@ -878,7 +965,7 @@ enum class DialogAnimationType {
     FromLeft = 2,
     FromRight = 3,
     FromTop = 4,
-    // a 5th type is defined which acts exactly the same as FromTop
+    FromTop2 = 5
 };
 
 // Geode Addition
@@ -893,13 +980,6 @@ enum class MoveTargetType {
     Both = 0,
     XOnly = 1,
     YOnly = 2,
-};
-
-// Geode Addition
-enum class TouchToggleMode {
-    Normal = 0,
-    ToggleOn = 1,
-    ToggleOff = 2,
 };
 
 // Geode Addition
@@ -935,7 +1015,10 @@ enum class ShipStreak {
     ShipFire6 = 6,
 };
 
-enum class TextFadeInStyle {};
+enum class TextFadeInStyle {
+    Fade = 0,
+    Scale = 1
+};
 
 // Geode Addition
 enum class GameOptionsSetting {
