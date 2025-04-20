@@ -2705,7 +2705,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     bool isPaused();
     bool isSendCleanupToScene();
     int levelForSceneInStack(cocos2d::CCScene*);
-    void pause();
+    void pause() = m1 0x3e066c, imac 0x4718c0, ios 0x179a84;
     void popScene() = imac 0x471430, m1 0x3e025c, ios 0x1796e8;
     bool popSceneWithTransition(float, cocos2d::PopTransition) = imac 0x4714c0, m1 0x3e02e8, ios 0x17976c;
     void popToRootScene() = imac 0x4715a0, m1 0x3e03b8;
