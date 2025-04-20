@@ -22669,7 +22669,7 @@ class SpawnTriggerGameObject : EffectGameObject {
     gd::vector<ChanceObject> m_remapObjects;
     int m_remapKey;
     gd::vector<int> m_remapKeys;
-    double m_unk778;
+    double m_currentDelay;
     // property 63
     float m_spawnDelay;
     // property 556
@@ -22737,7 +22737,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
     void loadAnimations(gd::string) = win 0x725d0, m1 0x62b214;
     void offsetCurrentAnimation(float) = win inline, imac 0x70e0d0 {
         if (auto action = static_cast<cocos2d::CCActionInterval*>(m_sprite->m_sprite->getActionByTag(1))) {
-            if (action->m_bFirstTick) action->step(0.f);
+            //if (action->m_bFirstTick) action->step(0.f);
             action->step(p0);
         }
     }
