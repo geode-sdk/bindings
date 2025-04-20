@@ -6302,7 +6302,10 @@ class FMODAudioEngine : cocos2d::CCNode {
 [[link(android), depends(FMODSoundTween), depends(FMODQueuedMusic), depends(FMODSoundState)]]
 class FMODAudioState {
     // ~FMODAudioState();
-    // FMODAudioState();
+    FMODAudioState() = win 0x52e40, ios 0x12ad78, m1 inline, imac inline {
+        m_unkFloat1 = 0.f;
+        m_unkFloat2 = 0.f;
+    }
 
     float m_unkFloat1;
     float m_unkFloat2;
@@ -9298,7 +9301,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn restoreDefaultGameplayOffsetX();
     TodoReturn restoreDefaultGameplayOffsetY();
     TodoReturn restoreRemap(EffectGameObject*, gd::unordered_map<int, int>&);
-    void resumeAudio() = ios 0x2009d0, imac inline {
+    void resumeAudio() = win 0x231eb0, m1 0x118fdc, imac 0x141e20, ios 0x2009d0 {
         FMODAudioEngine::sharedEngine()->resumeAllAudio();
         FMODAudioEngine::sharedEngine()->resumeAllMusic();
         FMODAudioEngine::sharedEngine()->m_system->update();
@@ -14257,7 +14260,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* objectsInRect(cocos2d::CCRect, bool);
     void onPausePlaytest();
     void onPlaytest() = ios 0x3624a8, win 0x2d7330, imac 0xf0f00, m1 0xd5d40;
-    void onResumePlaytest() = win 0x2d7d60;
+    void onResumePlaytest() = win 0x2d7d60, m1 0xd66bc, imac 0xf1990, ios 0x362b04;
     void onStopPlaytest() = ios 0x362c30, win 0x2d7f50, m1 0xd67f8, imac 0xf1ae0;
     void pasteAttributeState(GameObject*, cocos2d::CCArray*) = imac 0xf2930, m1 0xd7594;
     TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*);
@@ -17670,10 +17673,19 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 [[link(android)]]
 class PointNode : cocos2d::CCObject {
     // virtual ~PointNode();
+    PointNode() {}
 
-    static PointNode* create(cocos2d::CCPoint) = ios 0x61d5c;
+    static PointNode* create(cocos2d::CCPoint) = win inline, m1 0x90144, imac 0x9d620, ios 0x61d5c {
+        auto ret = new PointNode();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    bool init(cocos2d::CCPoint p0) = imac inline, m1 inline {
+    bool init(cocos2d::CCPoint p0) = win inline, m1 0x90478, imac 0x9d9a0, ios inline {
         m_point = p0;
 
         return true;
@@ -18427,7 +18439,7 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
         m_secretChest = nullptr;
     }
 
-    static SecretLayer3* create() = win inline, imac inline {
+    static SecretLayer3* create() = win inline, m1 0x3fd114, imac 0x490490, ios 0x30ddb4 {
         auto ret = new SecretLayer3();
         if (ret->init()) {
             ret->autorelease();
@@ -18436,7 +18448,13 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = imac 0x48dc80;
+    static cocos2d::CCScene* scene() = win inline, m1 0x3faa88, imac 0x48dc80, ios 0x30c760 {
+        auto scene = cocos2d::CCScene::create();
+        AppDelegate::get()->m_runningScene = scene;
+        auto layer = SecretLayer3::create();
+        scene->addChild(layer);
+        return scene;
+    }
 
     virtual bool init() = win 0x3d2b20, imac 0x490560, m1 0x3fd1cc, ios 0x30de60;
     virtual void onExit() = win 0x3d8430, imac 0x4953f0, m1 0x401c1c, ios 0x31197c;
