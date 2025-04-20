@@ -706,7 +706,7 @@ GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat2, 0x220);
 GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat3, 0x258);
 GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat4, 0x290);
 GEODE_MEMBER_CHECK(FMODAudioState, m_queuedMusicForChannels1, 0x2c8);
-GEODE_MEMBER_CHECK(FMODAudioState, m_queuedMusicForChannels1, 0x300);
+GEODE_MEMBER_CHECK(FMODAudioState, m_queuedMusicForChannels2, 0x300);
 GEODE_MEMBER_CHECK(FMODAudioState, m_soundStateForChannels, 0x338);
 GEODE_MEMBER_CHECK(FMODAudioState, m_unkUint64_1, 0x370);
 
