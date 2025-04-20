@@ -712,9 +712,9 @@ GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat1, 0xf8);
 GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat2, 0x114);
 GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat3, 0x130);
 GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFloat4, 0x14c);
-GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFMODQueuedMusic1, 0x168);
-GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFMODQueuedMusic2, 0x184);
-GEODE_MEMBER_CHECK(FMODAudioState, m_unkMapIntFMODSoundState, 0x1a0);
+GEODE_MEMBER_CHECK(FMODAudioState, m_queuedMusicForChannels1, 0x168);
+GEODE_MEMBER_CHECK(FMODAudioState, m_queuedMusicForChannels2, 0x184);
+GEODE_MEMBER_CHECK(FMODAudioState, m_soundStateForChannels, 0x1a0);
 GEODE_MEMBER_CHECK(FMODAudioState, m_unkUint64_1, 0x1c0);
 
 GEODE_SIZE_CHECK(PlayerCheckpoint, 0x180);
