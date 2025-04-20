@@ -4067,6 +4067,22 @@ class cocos2d::CCMenuItem : cocos2d::CCNodeRGBA {
 
 [[link(win, android)]]
 class cocos2d::CCMenuItemSprite : cocos2d::CCMenuItem {
+    static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*) = m1 0x338b98, imac 0x3ace20, ios inline {
+        return create(p0, p1, p2, nullptr, nullptr);
+    }
+    static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x338d14, imac 0x3acfb0, ios inline {
+        return create(p0, p1, nullptr, p2, p3);
+    }
+    static cocos2d::CCMenuItemSprite* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x338ba8, imac 0x3ace40, ios inline {
+        auto ret = new CCMenuItemSprite();
+        if (ret->initWithNormalSprite(p0, p1, p2, p3, p4)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+
     bool initWithNormalSprite(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3acfd0, m1 0x338d28, ios 0x50998;
 
     virtual void selected() = imac 0x3ad0c0, m1 0x338e40, ios 0x50ab0;
