@@ -6322,9 +6322,9 @@ class FMODAudioState {
     gd::unordered_map<int,float> m_unkMapIntFloat2;
     gd::unordered_map<int,float> m_unkMapIntFloat3;
     gd::unordered_map<int,float> m_unkMapIntFloat4;
-    gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic1;
-    gd::unordered_map<int,FMODQueuedMusic> m_unkMapIntFMODQueuedMusic2;
-    gd::unordered_map<int,FMODSoundState> m_unkMapIntFMODSoundState;
+    gd::unordered_map<int,FMODQueuedMusic> m_queuedMusicForChannels1;
+    gd::unordered_map<int,FMODQueuedMusic> m_queuedMusicForChannels2;
+    gd::unordered_map<int,FMODSoundState> m_soundStateForChannels;
     uint64_t m_unkUint64_1;
 }
 
@@ -9808,7 +9808,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     UILayer* m_uiLayer;
     cocos2d::CCArray* m_unk3470;
     cocos2d::CCDictionary* m_unk3478;
-    cocos2d::CCNode* m_unk3480;
+    cocos2d::CCNode* m_uiTriggerUI;
     double m_timePlayed;
     bool m_levelEndAnimationStarted;
     int m_unknown3494;
