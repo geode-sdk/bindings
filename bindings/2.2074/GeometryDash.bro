@@ -2526,7 +2526,7 @@ class CharacterColorPage : FLAlertLayer {
     void toggleGlow(cocos2d::CCObject*) = ios 0x12cfe8, win 0x88da0, imac 0x647d80, m1 0x570384;
     TodoReturn toggleGlowItems(bool);
     void toggleShip(cocos2d::CCObject*) = ios 0x12c904, win 0x88c80, imac 0x6475e0, m1 0x56fbb8;
-    void updateColorMode(int) = win 0x897f0, m1 0x5703bc, imac 0x647dc0;
+    void updateColorMode(int) = win 0x897f0, m1 0x5703bc, imac 0x647dc0, ios 0x12d020;
     void updateIconColors() = ios 0x12cb4c, win 0x8a540, m1 0x56fe6c, imac 0x647850;
 
     int m_colorMode;
