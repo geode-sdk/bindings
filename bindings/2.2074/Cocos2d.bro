@@ -4533,7 +4533,7 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::ZipUtils {
     static gd::string base64DecodeEnc(gd::string const&, gd::string);
-    static gd::string base64EncodeEnc(gd::string const&, gd::string);
+    static gd::string base64EncodeEnc(gd::string const&, gd::string) = imac 0x1f3b90, m1 0x1a9720, ios 0x23dd10;
     static gd::string base64URLDecode(gd::string const&) = imac 0x1f3dd0, m1 0x1a9990, ios 0x23df70;
     static gd::string base64URLEncode(gd::string const&) = imac 0x1f3eb0, m1 0x1a9aa0, ios 0x23e064;
     static void ccDecodeEncodedPvr(unsigned int*, int);
