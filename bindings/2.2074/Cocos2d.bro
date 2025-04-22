@@ -220,7 +220,7 @@ class cocos2d::CCEaseBackInOut : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBounce : cocos2d::CCActionEase {
-    static cocos2d::CCEaseBounce* create(cocos2d::CCActionInterval*) {
+    static cocos2d::CCEaseBounce* create(cocos2d::CCActionInterval* pAction) = ios inline {
         CCEaseBounce *pRet = new CCEaseBounce();
         if (pRet)
         {
