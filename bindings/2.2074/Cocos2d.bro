@@ -227,21 +227,24 @@ class cocos2d::CCEaseBounce : cocos2d::CCActionEase {
 
     float bounceTime(float) = ios 0x26bea4;
 
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x4600c4, imac 0x5007d0, ios inline {
-        CCEaseBounce *pRet = new CCEaseBounce();
-        if (pRet)
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* pZone) = m1 0x4600c4, imac 0x5007d0, ios inline {
+        CCZone* pNewZone = NULL;
+        CCEaseBounce* pCopy = NULL;
+        if(pZone && pZone->m_pCopyObject) 
         {
-            if (pRet->initWithAction(pAction))
-            {
-                pRet->autorelease();
-            }
-            else
-            {
-                CC_SAFE_RELEASE_NULL(pRet);
-            }
+            //in case of being called at sub class
+            pCopy = (CCEaseBounce*)(pZone->m_pCopyObject);
+        }
+        else
+        {
+            pCopy = new CCEaseBounce();
+            pNewZone = new CCZone(pCopy);
         }
 
-        return pRet; 
+        pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()));
+        
+        CC_SAFE_DELETE(pNewZone);
+        return pCopy; 
     }
     virtual cocos2d::CCActionInterval* reverse() = m1 0x460294, imac 0x500990, ios inline {
         return CCEaseBounce::create(m_pInner->reverse());
