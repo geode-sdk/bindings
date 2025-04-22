@@ -47,12 +47,10 @@ public:
 )GEN";
 
     constexpr char const* error_definition = R"GEN(    
-private:
     [[deprecated("{class_name}::{function_name} not implemented")]]
     /**
 {docs}{docs_addresses}     */
     {static}{virtual}{return_type} {function_name}({parameters}){const};
-public:
 )GEN";
 
     constexpr char const* structor_definition = R"GEN(
