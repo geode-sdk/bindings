@@ -3030,7 +3030,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 
 [[link(android)]]
 class ColorSetupDelegate {
-    virtual void colorSetupClosed(int);
+    virtual void colorSetupClosed(int) {}
 }
 
 [[link(android)]]
@@ -3065,8 +3065,8 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 
 [[link(android)]]
 class CommentUploadDelegate {
-    virtual void commentUploadFinished(int);
-    virtual void commentUploadFailed(int, CommentError);
+    virtual void commentUploadFinished(int) {}
+    virtual void commentUploadFailed(int, CommentError) {}
     virtual void commentDeleteFailed(int, int) {}
 }
 
@@ -3768,9 +3768,9 @@ class CustomSFXCell : TableViewCell, CustomSFXDelegate {
 
 [[link(android)]]
 class CustomSFXDelegate {
-    virtual void sfxObjectSelected(SFXInfoObject*);
-    virtual int getActiveSFXID();
-    virtual bool overridePlaySFX(SFXInfoObject*);
+    virtual void sfxObjectSelected(SFXInfoObject*) {}
+    virtual int getActiveSFXID() { return 0; }
+    virtual bool overridePlaySFX(SFXInfoObject*) { return false; }
 }
 
 [[link(android)]]
@@ -3866,8 +3866,8 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
 
 [[link(android)]]
 class CustomSongDelegate {
-    virtual void songIDChanged(int);
-    virtual int getActiveSongID();
+    virtual void songIDChanged(int) {}
+    virtual int getActiveSongID() {}
     virtual gd::string getSongFileName();
     virtual LevelSettingsObject* getLevelSettings();
 }
@@ -4304,8 +4304,8 @@ class DialogObject : cocos2d::CCObject {
 
 [[link(android)]]
 class DownloadMessageDelegate {
-    virtual void downloadMessageFinished(GJUserMessage*);
-    virtual void downloadMessageFailed(int);
+    virtual void downloadMessageFinished(GJUserMessage*) {}
+    virtual void downloadMessageFailed(int) {}
 }
 
 [[link(android)]]
@@ -6501,10 +6501,10 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 
 [[link(android)]]
 class FriendRequestDelegate {
-    virtual void loadFRequestsFinished(cocos2d::CCArray*, char const*);
-    virtual void loadFRequestsFailed(char const*, GJErrorCode);
-    virtual void setupPageInfo(gd::string, char const*);
-    virtual void forceReloadRequests(bool);
+    virtual void loadFRequestsFinished(cocos2d::CCArray*, char const*) {}
+    virtual void loadFRequestsFailed(char const*, GJErrorCode) {}
+    virtual void setupPageInfo(gd::string, char const*) {}
+    virtual void forceReloadRequests(bool) {}
 }
 
 [[link(android)]]
@@ -8769,19 +8769,19 @@ class GhostTrailEffect : cocos2d::CCNode {
 
 [[link(android)]]
 class GJAccountBackupDelegate {
-    virtual void backupAccountFinished();
-    virtual void backupAccountFailed(BackupAccountError, int);
+    virtual void backupAccountFinished() {}
+    virtual void backupAccountFailed(BackupAccountError, int) {}
 }
 
 [[link(android)]]
 class GJAccountDelegate {
-    virtual void accountStatusChanged();
+    virtual void accountStatusChanged() {}
 }
 
 [[link(android)]]
 class GJAccountLoginDelegate {
-    virtual void loginAccountFinished(int, int);
-    virtual void loginAccountFailed(AccountError);
+    virtual void loginAccountFinished(int, int) {}
+    virtual void loginAccountFailed(AccountError) {}
 }
 
 [[link(android)]]
@@ -8847,8 +8847,8 @@ class GJAccountManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GJAccountRegisterDelegate {
-    virtual void registerAccountFinished();
-    virtual void registerAccountFailed(AccountError);
+    virtual void registerAccountFinished() {}
+    virtual void registerAccountFailed(AccountError) {}
 }
 
 [[link(android)]]
@@ -8919,8 +8919,8 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
 
 [[link(android)]]
 class GJAccountSyncDelegate {
-    virtual void syncAccountFinished();
-    virtual void syncAccountFailed(BackupAccountError, int);
+    virtual void syncAccountFinished() {}
+    virtual void syncAccountFailed(BackupAccountError, int) {}
 }
 
 [[link(android)]]
@@ -10033,8 +10033,8 @@ class GJCommentListLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class GJDailyLevelDelegate {
-    virtual void dailyStatusFinished(GJTimedLevelType);
-    virtual void dailyStatusFailed(GJTimedLevelType, GJErrorCode);
+    virtual void dailyStatusFinished(GJTimedLevelType) {}
+    virtual void dailyStatusFailed(GJTimedLevelType, GJErrorCode) {}
 }
 
 [[link(android)]]
@@ -11403,10 +11403,10 @@ class GJMoreGamesLayer : GJDropDownLayer {
 
 [[link(android)]]
 class GJMPDelegate {
-    virtual void joinLobbyFinished(int);
-    virtual void joinLobbyFailed(int, GJMPErrorCode);
-    virtual void didUploadMPComment(int);
-    virtual void updateComments();
+    virtual void joinLobbyFinished(int) {}
+    virtual void joinLobbyFailed(int, GJMPErrorCode) {}
+    virtual void didUploadMPComment(int) {}
+    virtual void updateComments() {}
 }
 
 [[link(android)]]
@@ -18801,7 +18801,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 
 [[link(android)]]
 class SelectArtDelegate {
-    virtual void selectArtClosed(SelectArtLayer*);
+    virtual void selectArtClosed(SelectArtLayer*) {}
 }
 
 [[link(android)]]
@@ -18919,7 +18919,7 @@ class SelectListIconLayer : FLAlertLayer {
 
 [[link(android)]]
 class SelectPremadeDelegate {
-    virtual void selectPremadeClosed(SelectPremadeLayer*, int);
+    virtual void selectPremadeClosed(SelectPremadeLayer*, int) {}
 }
 
 [[link(android)]]
@@ -18948,7 +18948,7 @@ class SelectPremadeLayer : FLAlertLayer {
 
 [[link(android)]]
 class SelectSettingDelegate {
-    virtual void selectSettingClosed(SelectSettingLayer*);
+    virtual void selectSettingClosed(SelectSettingLayer*) {}
 }
 
 [[link(android)]]
@@ -21378,7 +21378,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
 
 [[link(android)]]
 class SFXBrowserDelegate {
-    virtual void sfxBrowserClosed(SFXBrowser*);
+    virtual void sfxBrowserClosed(SFXBrowser*) {}
 }
 
 [[link(android)]]
@@ -22543,7 +22543,7 @@ class SongOptionsLayer : FLAlertLayer {
 
 [[link(android)]]
 class SongPlaybackDelegate {
-    virtual void onPlayback(SongInfoObject*);
+    virtual void onPlayback(SongInfoObject*) {}
 }
 
 [[link(android)]]
@@ -23255,7 +23255,7 @@ class TextArea : cocos2d::CCSprite {
 
 [[link(android)]]
 class TextAreaDelegate {
-    virtual void fadeInTextFinished(TextArea*);
+    virtual void fadeInTextFinished(TextArea*) {}
 }
 
 [[link(android)]]
@@ -23964,8 +23964,8 @@ class UploadListPopup : FLAlertLayer, ListUploadDelegate {
 
 [[link(android)]]
 class UploadMessageDelegate {
-    virtual void uploadMessageFinished(int);
-    virtual void uploadMessageFailed(int);
+    virtual void uploadMessageFinished(int) {}
+    virtual void uploadMessageFailed(int) {}
 }
 
 [[link(android)]]
@@ -24037,17 +24037,17 @@ class URLViewLayer : GJDropDownLayer {
 
 [[link(android)]]
 class UserInfoDelegate {
-    virtual void getUserInfoFinished(GJUserScore*);
-    virtual void getUserInfoFailed(int);
-    virtual void userInfoChanged(GJUserScore*);
+    virtual void getUserInfoFinished(GJUserScore*) {}
+    virtual void getUserInfoFailed(int) {}
+    virtual void userInfoChanged(GJUserScore*) {}
 }
 
 [[link(android)]]
 class UserListDelegate {
-    virtual void getUserListFinished(cocos2d::CCArray*, UserListType);
-    virtual void getUserListFailed(UserListType, GJErrorCode);
-    virtual void userListChanged(cocos2d::CCArray*, UserListType);
-    virtual void forceReloadList(UserListType);
+    virtual void getUserListFinished(cocos2d::CCArray*, UserListType) {}
+    virtual void getUserListFailed(UserListType, GJErrorCode) {}
+    virtual void userListChanged(cocos2d::CCArray*, UserListType) {}
+    virtual void forceReloadList(UserListType) {}
 }
 
 [[link(android)]]

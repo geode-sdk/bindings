@@ -4502,9 +4502,9 @@ class cocos2d::extension::CCScale9Sprite : cocos2d::CCNodeRGBA {
     virtual bool init() = m1 0x364478, imac 0x3e2060, ios 0x21536c;
     virtual void setContentSize(const cocos2d::CCSize& size) = m1 0x365484, imac 0x3e3190, ios 0x216264;
     virtual void visit() = imac 0x3e44d0, m1 0x3667fc, ios 0x216f54;
-    virtual GLubyte getOpacity() = m1 0x366b28, imac 0x3e4800, ios 0x21710c;
-    virtual void setOpacity(GLubyte opacity);
-    virtual void updateDisplayedOpacity(GLubyte parentOpacity);
+    virtual unsigned char getOpacity() = m1 0x366b28, imac 0x3e4800, ios 0x21710c;
+    virtual void setOpacity(unsigned char) = m1 0x3669c0, imac 0x3e46a0, ios 0x217058;
+    virtual void updateDisplayedOpacity(unsigned char) = m1 0x366650, imac 0x3e42a0, ios 0x216da8;
     virtual const cocos2d::ccColor3B& getColor() = m1 0x3669b0, imac 0x3e4680, ios 0x217048;
     virtual void setColor(const cocos2d::ccColor3B& color) = m1 0x366830, imac 0x3e4500, ios 0x216f88;
     virtual void updateDisplayedColor(const cocos2d::ccColor3B& parentColor) = m1 0x3666bc, imac 0x3e4310, ios 0x216e14;
