@@ -635,7 +635,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 
 [[link(android)]]
 class AnimatedSpriteDelegate {
-    virtual void animationFinished(char const*);
+    virtual void animationFinished(char const*) {}
 }
 
 [[link(android)]]
@@ -989,10 +989,10 @@ class BoomScrollLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class BoomScrollLayerDelegate {
-    virtual void scrollLayerScrollingStarted(BoomScrollLayer*);
-    virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int);
-    virtual void scrollLayerMoved(cocos2d::CCPoint);
-    virtual void scrollLayerWillScrollToPage(BoomScrollLayer*, int);
+    virtual void scrollLayerScrollingStarted(BoomScrollLayer*) {}
+    virtual void scrollLayerScrolledToPage(BoomScrollLayer*, int) {}
+    virtual void scrollLayerMoved(cocos2d::CCPoint) {}
+    virtual void scrollLayerWillScrollToPage(BoomScrollLayer*, int) {}
 }
 
 [[link(android)]]
@@ -2835,7 +2835,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
 
 [[link(android)]]
 class ColorSelectDelegate {
-    virtual void colorSelectClosed(cocos2d::CCNode*);
+    virtual void colorSelectClosed(cocos2d::CCNode*) {}
 }
 
 [[link(android)]]
@@ -3189,7 +3189,7 @@ class ConfigureValuePopup : FLAlertLayer, TextInputDelegate {
 
 [[link(android)]]
 class ConfigureValuePopupDelegate {
-    virtual void valuePopupClosed(ConfigureValuePopup*, float);
+    virtual void valuePopupClosed(ConfigureValuePopup*, float) {}
 }
 
 [[link(android)]]
@@ -8233,7 +8233,7 @@ class GameOptionsTrigger : EffectGameObject {
 
 [[link(android)]]
 class GameRateDelegate {
-    virtual void updateRate();
+    virtual void updateRate() {}
 }
 
 [[link(android)]]
@@ -8853,8 +8853,8 @@ class GJAccountRegisterDelegate {
 
 [[link(android)]]
 class GJAccountSettingsDelegate {
-    virtual void updateSettingsFinished();
-    virtual void updateSettingsFailed();
+    virtual void updateSettingsFinished() {}
+    virtual void updateSettingsFailed() {}
 }
 
 [[link(android)]]
@@ -9907,8 +9907,8 @@ class GJBigSpriteNode : cocos2d::CCNode {
 
 [[link(android)]]
 class GJChallengeDelegate {
-    virtual void challengeStatusFinished();
-    virtual void challengeStatusFailed();
+    virtual void challengeStatusFinished() {}
+    virtual void challengeStatusFailed() {}
 }
 
 [[link(android)]]
@@ -11668,7 +11668,7 @@ class GJPromoPopup : FLAlertLayer {
 
 [[link(android)]]
 class GJPurchaseDelegate {
-    virtual void didPurchaseItem(GJStoreItem*);
+    virtual void didPurchaseItem(GJStoreItem*) {}
 }
 
 [[link(android)]]
@@ -11699,8 +11699,8 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
 
 [[link(android)]]
 class GJRewardDelegate {
-    virtual void rewardsStatusFinished(int);
-    virtual void rewardsStatusFailed();
+    virtual void rewardsStatusFinished(int) {}
+    virtual void rewardsStatusFailed() {}
 }
 
 [[link(android)]]
@@ -12602,7 +12602,7 @@ class GJSpecialColorSelect : FLAlertLayer {
 
 [[link(android)]]
 class GJSpecialColorSelectDelegate {
-    virtual void colorSelectClosed(GJSpecialColorSelect*, int);
+    virtual void colorSelectClosed(GJSpecialColorSelect*, int) {}
 }
 
 [[link(android)]]
@@ -12730,22 +12730,22 @@ class GJTransformControl : cocos2d::CCLayer {
 
 [[link(android)]]
 class GJTransformControlDelegate {
-    virtual void transformScaleXChanged(float);
-    virtual void transformScaleYChanged(float);
-    virtual void transformScaleXYChanged(float, float);
-    virtual void transformRotationXChanged(float);
-    virtual void transformRotationYChanged(float);
-    virtual void transformRotationChanged(float);
-    virtual void transformResetRotation();
-    virtual void transformRestoreRotation();
-    virtual void transformSkewXChanged(float);
-    virtual void transformSkewYChanged(float);
-    virtual void transformChangeBegin();
-    virtual void transformChangeEnded();
-    virtual void updateTransformControl();
-    virtual void anchorPointMoved(cocos2d::CCPoint);
-    virtual cocos2d::CCNode* getTransformNode();
-    virtual EditorUI* getUI();
+    virtual void transformScaleXChanged(float) {}
+    virtual void transformScaleYChanged(float) {}
+    virtual void transformScaleXYChanged(float, float) {}
+    virtual void transformRotationXChanged(float) {}
+    virtual void transformRotationYChanged(float) {}
+    virtual void transformRotationChanged(float) {}
+    virtual void transformResetRotation() {}
+    virtual void transformRestoreRotation() {}
+    virtual void transformSkewXChanged(float) {}
+    virtual void transformSkewYChanged(float) {}
+    virtual void transformChangeBegin() {}
+    virtual void transformChangeEnded() {}
+    virtual void updateTransformControl() {}
+    virtual void anchorPointMoved(cocos2d::CCPoint) {}
+    virtual cocos2d::CCNode* getTransformNode() { return nullptr; }
+    virtual EditorUI* getUI() { return nullptr; }
 }
 
 [[link(android)]]
@@ -15202,7 +15202,7 @@ class ListButtonBar : cocos2d::CCNode {
 
 [[link(android)]]
 class ListButtonBarDelegate {
-    virtual void listButtonBarSwitchedPage(ListButtonBar*, int);
+    virtual void listButtonBarSwitchedPage(ListButtonBar*, int) {}
 }
 
 [[link(android)]]
@@ -15230,8 +15230,8 @@ class ListCell : TableViewCell {
 
 [[link(android)]]
 class ListUploadDelegate {
-    virtual void listUploadFinished(GJLevelList*);
-    virtual void listUploadFailed(GJLevelList*, int);
+    virtual void listUploadFinished(GJLevelList*) {}
+    virtual void listUploadFailed(GJLevelList*, int) {}
 }
 
 [[link(android)]]
@@ -18025,8 +18025,8 @@ class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
 
 [[link(android)]]
 class RewardedVideoDelegate {
-    virtual void rewardedVideoFinished();
-    virtual bool shouldOffsetRewardCurrency();
+    virtual void rewardedVideoFinished() {}
+    virtual bool shouldOffsetRewardCurrency() { return false; }
 }
 
 [[link(android)]]
@@ -18675,9 +18675,6 @@ class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 [[link(android)]]
 class SecretLayer6 : cocos2d::CCLayer {
     // virtual ~SecretLayer6() = m1 0x3db294, imac 0x64bc50;
-    SecretLayer6() = win inline {
-        m_gameLayer = nullptr;
-    }
 
     static SecretLayer6* create() = m1 0x3db37c, imac 0x46bd70;
     static cocos2d::CCScene* scene() = m1 0x3db2c0, imac 0x46bca0;
@@ -19005,7 +19002,7 @@ class SelectSettingLayer : FLAlertLayer {
 
 [[link(android)]]
 class SelectSFXSortDelegate {
-    virtual void sortSelectClosed(SelectSFXSortLayer*);
+    virtual void sortSelectClosed(SelectSFXSortLayer*) {}
 }
 
 [[link(android)]]
@@ -21901,7 +21898,7 @@ class ShardsPage : FLAlertLayer {
 
 [[link(android)]]
 class ShareCommentDelegate {
-    virtual void shareCommentClosed(gd::string, ShareCommentLayer*);
+    virtual void shareCommentClosed(gd::string, ShareCommentLayer*) {}
 }
 
 [[link(android)]]
@@ -22864,7 +22861,7 @@ class SpriteDescription : cocos2d::CCObject {
 
 [[link(android)]]
 class SpritePartDelegate {
-    virtual void displayFrameChanged(cocos2d::CCObject*, gd::string);
+    virtual void displayFrameChanged(cocos2d::CCObject*, gd::string) {}
 }
 
 [[link(android)]]
@@ -23099,10 +23096,10 @@ class TableViewCell : cocos2d::CCLayer {
 
 [[link(android)]]
 class TableViewCellDelegate {
-    virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*);
-    virtual int getSelectedCellIdx();
-    virtual bool shouldSnapToSelected();
-    virtual int getCellDelegateType();
+    virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) { return false; }
+    virtual int getSelectedCellIdx() { return 0; }
+    virtual bool shouldSnapToSelected() { return true; }
+    virtual int getCellDelegateType() { return 0; }
 }
 
 [[link(android)]]
