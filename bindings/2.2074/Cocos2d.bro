@@ -220,7 +220,22 @@ class cocos2d::CCEaseBackInOut : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBounce : cocos2d::CCActionEase {
-    static cocos2d::CCEaseBounce* create(cocos2d::CCActionInterval*);
+    static cocos2d::CCEaseBounce* create(cocos2d::CCActionInterval*) {
+        CCEaseBounce *pRet = new CCEaseBounce();
+        if (pRet)
+        {
+            if (pRet->initWithAction(pAction))
+            {
+                pRet->autorelease();
+            }
+            else
+            {
+                CC_SAFE_RELEASE_NULL(pRet);
+            }
+        }
+
+        return pRet; 
+    }
 
     // CCEaseBounce(cocos2d::CCEaseBounce const&);
     // CCEaseBounce();
