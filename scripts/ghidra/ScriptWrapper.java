@@ -56,6 +56,7 @@ public class ScriptWrapper {
     List<String> functions = new ArrayList<String>();
     GhidraScript wrapped;
     Path bindingsDir;
+    boolean fillStandardTypes;
 
     ScriptWrapper(GhidraScript script) throws CancelledException {
         this.wrapped = script;
@@ -148,127 +149,88 @@ public class ScriptWrapper {
         return ret;
     }
 
-    DataType getArrayType(String name, Platform platform) {
-        var arrayMatch = Pattern.compile("^array<(.+), (\\d+)>$").matcher(name);
+    DataType getArrayType(String name, Platform platform) throws Exception {
+        var arrayMatch = Pattern.compile("^array<(.+), *(\\d+)>$").matcher(name);
         if (!arrayMatch.matches()) {
             printfmt("Array type {0} doesn't match the expected format", name);
             return new ArrayDataType(new PointerDataType(VoidDataType.dataType), 0, 0);
         }
-        var type = arrayMatch.group(1);
-        var size = Integer.parseInt(arrayMatch.group(2));
-        DataType inner = null;
-        if (type.matches("bool|char|short|int|long|float|double|void|unsigned char|unsigned short|unsigned int|unsigned long")) {
-            switch (type) {
-                case "bool": inner = BooleanDataType.dataType; break;
-                case "char": inner = CharDataType.dataType; break;
-                case "short": inner = ShortDataType.dataType; break;
-                case "int": inner = IntegerDataType.dataType; break;
-                case "long": inner = LongDataType.dataType; break;
-                case "float": inner = FloatDataType.dataType; break;
-                case "double": inner = DoubleDataType.dataType; break;
-                case "void": inner = VoidDataType.dataType; break;
-                case "unsigned char": inner = UnsignedCharDataType.dataType; break;
-                case "unsigned short": inner = UnsignedShortDataType.dataType; break;
-                case "unsigned int": inner = UnsignedIntegerDataType.dataType; break;
-                case "unsigned long": inner = UnsignedLongDataType.dataType; break;
-            }
-        }
-        else if (type.matches("int8_t|uint8_t|int16_t|uint16_t|int32_t|uint32_t|int64_t|uint64_t|intptr_t|uintptr_t|size_t|time_t")) {
-            switch (type) {
-                case "int8_t": inner = ByteDataType.dataType; break;
-                case "uint8_t": inner = UnsignedCharDataType.dataType; break;
-                case "int16_t": inner = ShortDataType.dataType; break;
-                case "uint16_t": inner = UnsignedShortDataType.dataType; break;
-                case "int32_t": inner = IntegerDataType.dataType; break;
-                case "uint32_t": inner = UnsignedIntegerDataType.dataType; break;
-                case "int64_t": inner = LongLongDataType.dataType; break;
-                case "uint64_t": inner = UnsignedLongLongDataType.dataType; break;
-                case "intptr_t": switch (platform) {
-                    case WINDOWS32:
-                    case ANDROID32:
-                        inner = IntegerDataType.dataType;
-                        break;
-                    case WINDOWS64:
-                        inner = LongLongDataType.dataType;
-                        break;
-                    case ANDROID64:
-                    case MAC_INTEL:
-                    case MAC_ARM:
-                    case IOS:
-                        inner = LongDataType.dataType;
-                        break;
-                } break;
-                case "uintptr_t": switch (platform) {
-                    case WINDOWS32:
-                    case ANDROID32:
-                        inner = UnsignedIntegerDataType.dataType;
-                        break;
-                    case WINDOWS64:
-                        inner = UnsignedLongLongDataType.dataType;
-                        break;
-                    case ANDROID64:
-                    case MAC_INTEL:
-                    case MAC_ARM:
-                    case IOS:
-                        inner = UnsignedLongDataType.dataType;
-                        break;
-                } break;
-                case "size_t": switch (platform) {
-                    case WINDOWS32:
-                        inner = UnsignedIntegerDataType.dataType;
-                        break;
-                    case WINDOWS64:
-                        inner = UnsignedLongLongDataType.dataType;
-                        break;
-                    case ANDROID32:
-                    case ANDROID64:
-                    case MAC_INTEL:
-                    case MAC_ARM:
-                    case IOS:
-                        inner = UnsignedLongDataType.dataType;
-                        break;
-                } break;
-                case "time_t": switch (platform) {
-                    case WINDOWS32:
-                        inner = IntegerDataType.dataType;
-                        break;
-                    case WINDOWS64:
-                        inner = LongLongDataType.dataType;
-                        break;
-                    case ANDROID32:
-                    case ANDROID64:
-                    case MAC_INTEL:
-                    case MAC_ARM:
-                    case IOS:
-                        inner = LongDataType.dataType;
-                        break;
-                } break;
-            }
-        }
-        else if (type.startsWith("std::array")) {
-            inner = this.getArrayType(type.substring(5), platform);
-        }
+
+        DataType inner = this.addOrGetType(arrayMatch.group(1), platform);
 
         return new ArrayDataType(
             inner != null ? inner : new PointerDataType(VoidDataType.dataType),
-            inner != null ? size : 0,
+            inner != null ? Integer.parseInt(arrayMatch.group(2)) : 0,
             inner != null ? inner.getLength() : 0
         );
+    }
+
+    DataType addOrGetPair(String name, Platform platform) throws Exception {
+        final var manager = wrapped.getCurrentProgram().getDataTypeManager();
+        var cat = this.createCategoryAll(new CategoryPath("/ClassDataTypes/std/pair"));
+        var existing = manager.getDataType(cat, name);
+        if (existing != null) {
+            return existing;
+        }
+
+        var pair = new StructureDataType(cat, name, 0);
+
+        var template = name.substring(5, name.length() - 1);
+        var templateCount = 0;
+        var firstMatch = "";
+        var secondMatch = "";
+        for (var i = 0; i < template.length(); i++) {
+            if (template.charAt(i) == '<') {
+                templateCount++;
+            }
+            else if (template.charAt(i) == '>') {
+                templateCount--;
+            }
+            else if (template.charAt(i) == ',' && templateCount == 0) {
+                firstMatch = template.substring(0, i).trim();
+                secondMatch = template.substring(i + 1).trim();
+                break;
+            }
+        }
+
+        if (firstMatch.isEmpty() || secondMatch.isEmpty()) {
+            printfmt("Pair type {0} doesn't match the expected format", name);
+            return manager.addDataType(pair, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
+
+        var first = this.addOrGetType(firstMatch, platform);
+        var second = this.addOrGetType(secondMatch, platform);
+
+        if (first == null || second == null) {
+            printfmt("Pair type {0} doesn't match the expected format", name);
+            return manager.addDataType(pair, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
+
+        pair.add(first, "first", "First element of the pair");
+        pair.add(second, "second", "Second element of the pair");
+        pair.setPackingEnabled(true);
+        return manager.addDataType(pair, DataTypeConflictHandler.REPLACE_HANDLER);
+    }
+
+    DataType addOrGetType(String name, Platform platform) throws Exception {
+        return this.addOrGetType(Broma.fakeType(name), platform);
     }
 
     DataType addOrGetType(Broma.Type type, Platform platform) throws Exception {
         final var manager = wrapped.getCurrentProgram().getDataTypeManager();
 
         DataType result = null;
+        var normalizedTemplate = type.template.isPresent() ? type.template.get().value.replaceAll("\\s*,\\s*", ",") : "";
 
         // Built-in types
-        if (type.name.value.matches("bool|char|short|int|long|float|double|void")) {
+        if (type.name.value.matches("bool|char|short|int|long|float|double|void|longlong")) {
             switch (type.name.value) {
                 case "bool": result = BooleanDataType.dataType; break;
                 case "char": result = type.unsigned ? UnsignedCharDataType.dataType : CharDataType.dataType; break;
                 case "short": result = type.unsigned ? UnsignedShortDataType.dataType : ShortDataType.dataType; break;
                 case "int": result = type.unsigned ? UnsignedIntegerDataType.dataType : IntegerDataType.dataType; break;
                 case "long": result = type.unsigned ? UnsignedLongDataType.dataType : LongDataType.dataType; break;
+                case "longlong": result = type.unsigned ? UnsignedLongLongDataType.dataType : LongLongDataType.dataType; break;
                 case "float": result = FloatDataType.dataType; break;
                 case "double": result = DoubleDataType.dataType; break;
                 case "void": result = VoidDataType.dataType; break;
@@ -346,11 +308,15 @@ public class ScriptWrapper {
         }
         // STL containers are fully known
         else if (type.name.value.startsWith("gd::")) {
-            result = this.updateTypeDatabaseWithSTL(type.name.value.substring(4), type.template.isPresent() ? type.template.get().value : "", platform);
+            result = this.updateTypeDatabaseWithSTL(type.name.value.substring(4), normalizedTemplate, platform);
+        }
+        // STL pair
+        else if (type.name.value.startsWith("std::pair")) {
+            result = this.addOrGetPair(type.name.value.substring(5) + normalizedTemplate, platform);
         }
         // Array types
         else if (type.name.value.startsWith("std::array")) {
-            result = this.getArrayType(type.name.value.substring(5) + type.template.get().value, platform);
+            result = this.getArrayType(type.name.value.substring(5) + normalizedTemplate, platform);
         }
         // Broma-specific type
         else if (type.name.value.equals("TodoReturn")) {
@@ -777,7 +743,8 @@ public class ScriptWrapper {
         final var category = new CategoryPath("/ClassDataTypes");
 
         var cat = this.createCategoryAll(category.extend("gd", templated));
-        var existing = manager.getDataType(cat, templated.startsWith("vector") && template.startsWith("<bool>") ? "vector<bool>" : cat.getName());
+        var structureName = this.fillStandardTypes || (templated.startsWith("vector") && template.startsWith("<bool>")) ? templated + template : cat.getName();
+        var existing = manager.getDataType(cat, structureName);
         if (existing != null) {
             return existing;
         }
@@ -826,63 +793,127 @@ public class ScriptWrapper {
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("vector")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x0);
-            point.add(PointerDataType.dataType, pointerSize, "start", "Pointer to the first element in the vector");
-            point.add(PointerDataType.dataType, pointerSize, "last", "Pointer to one past the last element in the vector");
-            point.add(PointerDataType.dataType, pointerSize, "capacity", "Pointer to the end of the current vector allocation");
+            var point = new StructureDataType(cat, structureName, 0x0);
+            var dataType = this.fillStandardTypes
+                ? new PointerDataType(this.addOrGetType(template.substring(1, template.length() - 1), platform))
+                : PointerDataType.dataType;
+            point.add(dataType, pointerSize, "start", "Pointer to the first element in the vector");
+            point.add(dataType, pointerSize, "last", "Pointer to one past the last element in the vector");
+            point.add(dataType, pointerSize, "capacity", "Pointer to the end of the current vector allocation");
             point.setPackingEnabled(true);
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("unordered_map") || templated.startsWith("unordered_set")) {
-            var point = new StructureDataType(cat, cat.getName(), 0x0);
+            var isSet = templated.startsWith("unordered_set");
+            var className = isSet ? "unordered_set" : "unordered_map";
+            StructureDataType node = null;
+            if (this.fillStandardTypes) {
+                node = new StructureDataType(cat, className + "_node" + template, 0x0);
+                node.add(new PointerDataType(node), pointerSize, "next", "Pointer to the next node in the bucket");
+                if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
+                    node.add(new PointerDataType(node), pointerSize, "prev", "Pointer to the previous node in the bucket");
+                }
+                else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) {
+                    node.add(sizeType, pointerSize, "hash", "Hash value of the node");
+                }
+                var dataType = isSet
+                    ? this.addOrGetType(template.substring(1, template.length() - 1), platform)
+                    : this.addOrGetPair("pair" + template, platform);
+                node.add(dataType, dataType.getLength(), "value", "The value of the node");
+                if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) {
+                    node.add(sizeType, pointerSize, "hash", "Hash value of the node");
+                }
+                node.setPackingEnabled(true);
+                manager.addDataType(node, DataTypeConflictHandler.REPLACE_HANDLER);
+            }
+
+            var nodePointer = node != null ? new PointerDataType(node) : PointerDataType.dataType;
+            var point = new StructureDataType(cat, structureName, 0x0);
             if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
                 point.add(FloatDataType.dataType, 0x4, "factor", "");
             }
 
-            point.add(PointerDataType.dataType, pointerSize, "listptr", "");
+            point.add(nodePointer, pointerSize, "listptr", "");
             point.add(sizeType, pointerSize, "listlen", "");
-            point.add(PointerDataType.dataType, pointerSize, "start", "");
 
             if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
-                point.add(PointerDataType.dataType, pointerSize, "last", "");
-                point.add(PointerDataType.dataType, pointerSize, "capacity", "");
+                var nodePointerPointer = node != null ? new PointerDataType(nodePointer) : PointerDataType.dataType;
+                point.add(nodePointerPointer, pointerSize, "start", "");
+                point.add(nodePointerPointer, pointerSize, "last", "");
+                point.add(nodePointerPointer, pointerSize, "capacity", "");
                 point.add(sizeType, pointerSize, "mask", "");
                 point.add(sizeType, pointerSize, "max", "");
             }
             else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) {
+                point.add(nodePointer, pointerSize, "start", "");
                 point.add(sizeType, pointerSize, "size", "");
                 point.add(FloatDataType.dataType, 0x4, "factor", "");
             }
             else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) {
+                point.add(nodePointer, pointerSize, "start", "");
                 point.add(sizeType, pointerSize, "size", "");
                 point.add(FloatDataType.dataType, 0x4, "factor", "");
                 point.add(sizeType, pointerSize, "resize", "");
-                point.add(PointerDataType.dataType, pointerSize, "single", "");
+                point.add(nodePointer, pointerSize, "single", "");
             }
             point.setPackingEnabled(true);
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (templated.startsWith("map") || templated.startsWith("set")) {
             var isSet = templated.startsWith("set");
-            var point = new StructureDataType(cat, cat.getName(), 0x0);
+            var className = isSet ? "set" : "map";
+            StructureDataType node = null;
+            if (this.fillStandardTypes) {
+                node = new StructureDataType(cat, className + "_node" + template, 0x0);
+                if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
+                    node.add(new PointerDataType(node), pointerSize, "left", "Pointer to the left child of the node");
+                    node.add(new PointerDataType(node), pointerSize, "parent", "Pointer to the parent of the node");
+                    node.add(new PointerDataType(node), pointerSize, "right", "Pointer to the right child of the node");
+                    node.add(BooleanDataType.dataType, 0x1, "black", "Whether the node is black");
+                }
+                else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) {
+                    node.add(new PointerDataType(node), pointerSize, "left", "Pointer to the left child of the node");
+                    node.add(new PointerDataType(node), pointerSize, "right", "Pointer to the right child of the node");
+                    node.add(new PointerDataType(node), pointerSize, "parent", "Pointer to the parent of the node");
+                    node.add(BooleanDataType.dataType, 0x1, "black", "Whether the node is black");
+                }
+                else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) {
+                    node.add(BooleanDataType.dataType, 0x1, "black", "Whether the node is black");
+                    node.add(new PointerDataType(node), pointerSize, "parent", "Pointer to the parent of the node");
+                    node.add(new PointerDataType(node), pointerSize, "left", "Pointer to the left child of the node");
+                    node.add(new PointerDataType(node), pointerSize, "right", "Pointer to the right child of the node");
+                }
+                if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
+                    node.add(BooleanDataType.dataType, 0x1, "nil", "Whether the node is nil");
+                }
+                var dataType = isSet
+                    ? this.addOrGetType(template.substring(1, template.length() - 1), platform)
+                    : this.addOrGetPair("pair" + template, platform);
+                node.add(dataType, dataType.getLength(), "value", "The value of the node");
+                node.setPackingEnabled(true);
+                manager.addDataType(node, DataTypeConflictHandler.REPLACE_HANDLER);
+            }
+
+            var nodePointer = node != null ? new PointerDataType(node) : PointerDataType.dataType;
+            var point = new StructureDataType(cat, structureName, 0x0);
             if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
-                point.add(PointerDataType.dataType, pointerSize, "ptr", "The pointer to the main node of the " + (isSet ? "set" : "map"));
+                point.add(nodePointer, pointerSize, "ptr", "The pointer to the main node of the " + className);
             }
             else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) {
-                point.add(PointerDataType.dataType, pointerSize, "start", "Pointer to the first element in the " + (isSet ? "set" : "map"));
-                point.add(PointerDataType.dataType, pointerSize, "last", "Pointer to one past the last element in the " + (isSet ? "set" : "map"));
+                point.add(nodePointer, pointerSize, "start", "Pointer to the first element in the " + className);
+                point.add(nodePointer, pointerSize, "last", "Pointer to one past the last element in the " + className);
             }
             else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) {
-                point.add(Undefined1DataType.dataType, 0x1, "comparator", "The comparator for the " + (isSet ? "set" : "map"));
+                point.add(Undefined1DataType.dataType, 0x1, "comparator", "The comparator for the " + className);
                 for (var i = 1; i < pointerSize; i++) {
                     point.add(Undefined1DataType.dataType, 0x1);
                 }
                 point.add(BooleanDataType.dataType, 0x1, "black", "Whether the root node is black");
-                point.add(PointerDataType.dataType, pointerSize, "root", "The root node of the " + (isSet ? "set" : "map"));
-                point.add(PointerDataType.dataType, pointerSize, "left", "The leftmost node of the " + (isSet ? "set" : "map"));
-                point.add(PointerDataType.dataType, pointerSize, "right", "The rightmost node of the " + (isSet ? "set" : "map"));
+                point.add(nodePointer, pointerSize, "root", "The root node of the " + className);
+                point.add(nodePointer, pointerSize, "left", "The leftmost node of the " + className);
+                point.add(nodePointer, pointerSize, "right", "The rightmost node of the " + className);
             }
-            point.add(sizeType, pointerSize, "length", "The length of the " + (isSet ? "set" : "map"));
+            point.add(sizeType, pointerSize, "length", "The length of the " + className);
             point.setPackingEnabled(true);
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }

@@ -113,12 +113,12 @@ public class Broma {
         public final Optional<Match> ptr;
         public final Optional<Match> ref;
 
-        private Type(String name) {
+        private Type(String name, String template, boolean pointer, boolean unsigned) {
             super(0);
             this.name = new Match(name);
-            this.template = Optional.empty();
-            this.unsigned = false;
-            this.ptr = Optional.of(new Match("*"));
+            this.template = template.isEmpty() ? Optional.empty() : Optional.of(new Match(template));
+            this.unsigned = unsigned;
+            this.ptr = pointer ? Optional.of(new Match("*")) : Optional.empty();
             this.ref = Optional.empty();
         }
 
@@ -127,7 +127,7 @@ public class Broma {
          * @param name
          */
         public static Type ptr(Broma broma, String name) {
-            return broma.new Type(name);
+            return broma.new Type(name, "", true, false);
         }
 
         private Type(Broma broma, Platform platform, Matcher matcher) {
@@ -147,8 +147,16 @@ public class Broma {
 
         private Param(Broma broma, Platform platform, Matcher matcher) {
             super(broma, matcher);
-            type = new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true));
-            name = Match.maybe(broma, matcher, "name");
+            Type type = new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "type", true));
+            Optional<Match> name = Match.maybe(broma, matcher, "name");
+            if (name.isPresent() && name.get().value.equals("long")) {
+                // Special case for long longs in the function signature
+                // This is a hack, but it works for now
+                type = new Type(type.name.value + "long", "", false, type.unsigned);
+                name = Optional.empty();
+            }
+            this.type = type;
+            this.name = name;
             nameInsertionPoint = Match.maybe(broma, matcher, "insertnamehere");
         }
     }
@@ -411,6 +419,22 @@ public class Broma {
 
     public static Broma fake() {
         return new Broma();
+    }
+
+    public static Type fakeType(String name) {
+        var unsigned = name.startsWith("unsigned ");
+        if (unsigned) {
+            name = name.substring(9);
+        }
+        var pointer = name.endsWith("*");
+        if (pointer) {
+            name = name.substring(0, name.length() - 1).trim();
+        }
+        var template = name.contains("<") ? name.substring(name.indexOf("<")) : "";
+        if (template.length() > 0) {
+            name = name.substring(0, name.indexOf("<")).trim();
+        }
+        return fake().new Type(name, template, pointer, unsigned);
     }
 
     /**

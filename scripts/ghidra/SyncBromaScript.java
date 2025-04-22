@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
@@ -25,6 +24,7 @@ import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
+import ghidra.program.model.data.FunctionDefinition;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
@@ -51,6 +51,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean setOptcall;
         boolean syncMembers;
         boolean syncEnums;
+        boolean fillStandardTypes;
 
         public Args(ScriptWrapper wrapper, Path bindingsDir) throws Exception {
             this.run(wrapper, bindingsDir);
@@ -88,7 +89,7 @@ public class SyncBromaScript extends GhidraScript {
             // Put latest version at the top
             Collections.reverse(versions);
 
-            var bromaFiles = List.of("Cocos2d.bro", "GeometryDash.bro");
+            var bromaFiles = List.of("Cocos2d.bro", "FMOD.bro", "GeometryDash.bro");
             final var platforms = Arrays.asList(Platform.values()).stream().map(p -> p.getLongName()).toList();
 
             var platform = wrapper.autoDetectPlatform().orElse(null).getLongName();
@@ -102,6 +103,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
             this.bool("Sync enums", b -> this.syncEnums = b);
+            this.bool("Fill standard types", false, b -> this.fillStandardTypes = b);
 
             this.waitForAnswers();
 
@@ -111,11 +113,12 @@ public class SyncBromaScript extends GhidraScript {
                     List.of("Extras.bro", "GeometryDash.bro") : List.of(this.selectedBromaFile);
             }
             else {
-                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "GeometryDash.bro");
+                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "FMOD.bro", "GeometryDash.bro");
             }
 
             this.bromaFiles = bromaFiles.stream()
                 .map(f -> Paths.get(bindingsDir.toString(), this.gameVersion, f))
+                .filter(Files::exists)
                 .toList();
             
             if (!this.importFromBroma && !this.exportToBroma) {
@@ -135,6 +138,8 @@ public class SyncBromaScript extends GhidraScript {
         for (var bro : this.args.bromaFiles) {
             this.bromas.add(new Broma(bro, args.platform));
         }
+
+        wrapper.fillStandardTypes = this.args.fillStandardTypes;
 
         // Read classes
         wrapper.classes.addAll(this.bromas.stream()
@@ -506,31 +511,41 @@ public class SyncBromaScript extends GhidraScript {
         var importedUpdateCount = 0;
         for (var bro : bromas) {
             wrapper.printfmt("Reading {0}...", bro.path.getFileName());
-            for (var cls : bro.classes) for (var fun : cls.functions) {
-                var name = fun.getName();
-                var className = cls.name.value;
-                var fullName = className + "::" + name;
-
-                // Only add functions that have an offset on this platform
-                if (fun.platformOffset.isEmpty()) {
+            for (var cls : bro.classes) {
+                // CCLightning is in the Geometry Dash binary, but it is only in Cocos2d.bro
+                if (
+                    (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) &&
+                    args.selectedBromaFile.equals("Cocos2d.bro") && !cls.name.value.equals("cocos2d::CCLightning")
+                ) {
                     continue;
                 }
-                var offset = Long.parseLong(fun.platformOffset.get().value, 16);
-                if (offset == Broma.PLACEHOLDER_ADDR) {
-                    continue;
-                }
-                var addr = currentProgram.getImageBase().add(offset);
 
-                switch (importSignatureFromBroma(addr, fun, false)) {
-                    case ADDED: {
-                        importedAddCount += 1;
-                        wrapper.printfmt("Added {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
-                    } break;
-                    case UPDATED: {
-                        importedUpdateCount += 1;
-                        wrapper.printfmt("Updated {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
-                    } break;
-                    default: break;
+                for (var fun : cls.functions) {
+                    var name = fun.getName();
+                    var className = cls.name.value;
+                    var fullName = className + "::" + name;
+
+                    // Only add functions that have an offset on this platform
+                    if (fun.platformOffset.isEmpty()) {
+                        continue;
+                    }
+                    var offset = Long.parseLong(fun.platformOffset.get().value, 16);
+                    if (offset == Broma.PLACEHOLDER_ADDR) {
+                        continue;
+                    }
+                    var addr = currentProgram.getImageBase().add(offset);
+
+                    switch (importSignatureFromBroma(addr, fun, false)) {
+                        case ADDED: {
+                            importedAddCount += 1;
+                            wrapper.printfmt("Added {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
+                        } break;
+                        case UPDATED: {
+                            importedUpdateCount += 1;
+                            wrapper.printfmt("Updated {0} at {1}", fullName, Long.toHexString(addr.getOffset()));
+                        } break;
+                        default: break;
+                    }
                 }
             }
 
@@ -671,8 +686,6 @@ public class SyncBromaScript extends GhidraScript {
                     bromaFun = bromaFuns.get(0);
                 }
 
-                boolean returnTypeUpdated = false;
-
                 // Update return type if Ghidra has an user-defined type and 
                 // Broma has TodoReturn
                 if (
@@ -800,9 +813,12 @@ public class SyncBromaScript extends GhidraScript {
                         }
 
                         final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
-                        boolean isPointer = memType instanceof PointerDataType;
+                        boolean isPointer = memType instanceof PointerDataType || memType instanceof FunctionDefinition;
                         length = isPointer ? manager.getDataOrganization().getPointerSize() : memType.getLength();
                         int alignment = isPointer ? length : memType.getAlignment();
+                        if (memType instanceof FunctionDefinition && args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64) {
+                            length *= 2;
+                        }
                         offset = (offset + alignment - 1) / alignment * alignment;
                     }
                     else {
@@ -846,7 +862,7 @@ public class SyncBromaScript extends GhidraScript {
                         }
                         classDataMembers.replaceAtOffset(
                             offset,
-                            memType, length,
+                            memType instanceof FunctionDefinition ? new PointerDataType(memType) : memType, length,
                             mem.name.get().value,
                             mem.getComment().orElse(null)
                         );
@@ -868,8 +884,10 @@ public class SyncBromaScript extends GhidraScript {
                     }
                 }
 
-                // classDataMembers.setPackingEnabled(true);
-                // classDataMembers.repack();
+                if (!cls.hasBases) {
+                    classDataMembers.setPackingEnabled(true);
+                    classDataMembers.repack();
+                }
             }
         }
     }
@@ -890,29 +908,26 @@ public class SyncBromaScript extends GhidraScript {
             }
 
             var name = line.split(" ")[2];
-            var enumCategory = manager.getCategory(new CategoryPath("/ClassDataTypes/" + name));
-            if (enumCategory == null) {
-                continue;
-            }
-
-            var enumType = enumCategory.getDataType(name);
-            if (enumType == null) {
-                var enumDataType = new EnumDataType(name, 4);
-                enumCategory.addDataType(enumDataType, DataTypeConflictHandler.DEFAULT_HANDLER);
-                enumType = enumDataType;
-            }
+            var enumCategory = manager.getCategory(wrapper.createCategoryAll(new CategoryPath("/ClassDataTypes/" + name)));
+            var enumDataType = new EnumDataType(name, 4);
 
             if (line.contains("};")) {
                 wrapper.printfmt("Imported 0 enum values for {0}", name);
+                enumCategory.addDataType(enumDataType, DataTypeConflictHandler.REPLACE_HANDLER);
                 continue;
             }
 
-            var enumDataType = enumType;
             var values = new HashMap<String, Integer>();
             var total = -1;
             for (i += 1; i < lines.size(); i += 1) {
                 var valueLine = lines.get(i);
-                if (valueLine.contains("};")) {
+                var trimmedLine = valueLine.trim();
+
+                if (trimmedLine.isEmpty() || trimmedLine.startsWith("{")) {
+                    continue;
+                }
+
+                if (trimmedLine.startsWith("};")) {
                     break;
                 }
 
@@ -936,14 +951,10 @@ public class SyncBromaScript extends GhidraScript {
             }
 
             for (var value : values.keySet()) {
-                var dataTypeEnum = (ghidra.program.model.data.Enum)enumDataType;
-                try {
-                    dataTypeEnum.getValue(value);
-                } catch (NoSuchElementException e) {
-                    dataTypeEnum.add(value, values.get(value));
-                }
+                enumDataType.add(value, values.get(value));
             }
 
+            enumCategory.addDataType(enumDataType, DataTypeConflictHandler.REPLACE_HANDLER);
             wrapper.printfmt("Imported {0} enum values for {1}", values.size(), name);
         }
     }

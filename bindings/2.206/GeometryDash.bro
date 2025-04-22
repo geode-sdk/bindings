@@ -824,7 +824,7 @@ class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
 	virtual void onBack(cocos2d::CCObject* sender) = m1 0x450094, imac 0x4f6c90, ios 0x7aa48;
 }
 
-[[link(android)]]
+[[link(android), depends(SmartPrefabResult)]]
 class BrowseSmartTemplateLayer : FLAlertLayer {
 	// virtual ~BrowseSmartTemplateLayer();
 
@@ -2198,9 +2198,9 @@ class CheckpointObject : cocos2d::CCNode {
 	short m_unkShort1;
 	PAD = win 0x2;
 	void* m_maybeAPointer2;
-	gd::vector<DynamicSaveObject> m_vectorDynamicSaveObjects;
-	gd::vector<ActiveSaveObject1> m_vectorActiveSaveObjects1;
-	gd::vector<ActiveSaveObject2> m_vectorActiveSaveObjects2;
+	gd::vector<SavedObjectStateRef> m_vectorDynamicSaveObjects;
+	gd::vector<SavedActiveObjectState> m_vectorActiveSaveObjects1;
+	gd::vector<SavedSpecialObjectState> m_vectorActiveSaveObjects2;
 	EffectManagerState m_effectManagerState;
 	cocos2d::CCArray* m_gradientTriggerObjectArray;
 	bool m_unkBool1;
@@ -4528,7 +4528,7 @@ class EffectGameObject : EnhancedGameObject {
 	// property 81
 	bool m_touchHoldMode;
 	// property 82
-	TouchToggleMode m_touchToggleMode;
+	TouchTriggerType m_touchToggleMode;
 	// property 198
 	int m_touchPlayerMode; // TODO: add enum
 	// property 89
@@ -4625,12 +4625,12 @@ class EffectManagerState {
 	gd::vector<CollisionTriggerAction> m_vectorCollisionTriggerAction;
 	gd::vector<ToggleTriggerAction> m_vectorToggleTriggerAction;
 	gd::vector<SpawnTriggerAction> m_vectorSpawnTriggerAction;
-	gd::unordered_map<int,int> m_unorderedMapInt_int;
+	gd::unordered_map<int,int> m_itemCountMap;
 	gd::unordered_map<int,bool> m_unorderedMapInt_bool;
 	gd::vector<GroupCommandObject2> m_vectorGroupCommandObject2;
 	gd::unordered_map<int,std::pair<double,double>> m_unorderedMapInt_pair_double_double;
 	gd::unordered_set<int> m_unorderedSet_int2;
-	gd::unordered_map<int,TimerItem> m_unorderedMapInt_TimerItem;
+	gd::unordered_map<int,TimerItem> m_timerItemMap;
 	gd::unordered_map<int,gd::vector<TimerTriggerAction>> m_unorderedMapInt_vectorTimerTriggerAction;
 }
 
@@ -5090,7 +5090,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 	}
 	TodoReturn fadeInBackgroundMusic(float) = imac 0x3eb9f0;
 	void fadeInMusic(float, int) = win 0x5b170;
-	float fadeOutMusic(float, int) = win 0x5b2b0, m1 0x36bec0, imac 0x3ef250;
+	void fadeOutMusic(float, int) = win 0x5b2b0, m1 0x36bec0, imac 0x3ef250;
 	TodoReturn getActiveMusic(int);
 	FMOD::Channel* getActiveMusicChannel(int musicChannel) = m1 0x364ca8, imac 0x3e5fd0, win inline {
 		// TODO: this might do other checks or whatever but i cant be bothered
@@ -8158,7 +8158,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 	TodoReturn updateSavePositionObjects();
 	void updateShaderLayer(float) = win 0x212aa0, imac 0x12fdd0, m1 0x107d80;
 	void updateSpecialGroupData() = win 0x1fecf0, imac 0x10aa20, m1 0xea268;
-	TodoReturn updateSpecialLabels() = win 0x228fb0;
+	void updateSpecialLabels() = win 0x228fb0;
 	void updateStaticCameraPos(cocos2d::CCPoint pos, bool staticX, bool staticY, bool followOrSmoothEase, float time, int easingType, float easingRate) = win 0x22e360, imac 0x1191c0, m1 0xf60ec;
 	TodoReturn updateStaticCameraPosToGroup(int, bool, bool, bool, float, float, int, float, bool, float) = win 0x22df70;
 	TodoReturn updateTimeMod(float, bool, bool);
@@ -8960,8 +8960,8 @@ class GJEffectManager : cocos2d::CCNode {
 	TodoReturn timeForItem(int);
 	TodoReturn timerExists(int);
 	TodoReturn toggleGroup(int, bool);
-	TodoReturn toggleItemPersistent(int, bool);
-	TodoReturn toggleTimerPersistent(int, bool);
+	void toggleItemPersistent(int, bool);
+	void toggleTimerPersistent(int, bool);
 	TodoReturn transferPersistentItems();
 	TodoReturn traverseInheritanceChain(InheritanceNode*);
 	TodoReturn tryGetMoveCommandNode(int);
@@ -9000,10 +9000,10 @@ class GJEffectManager : cocos2d::CCNode {
 	gd::vector<ColorAction*> m_unkVector2c0;
 	gd::vector<ColorActionSprite*> m_unkVector2d8;
 	gd::vector<bool> m_unkVector2f0;
-	gd::unordered_map<int, int> m_itemIDs;
-	gd::unordered_map<int, int> m_unkMap350;
-	gd::unordered_set<int> m_unkMap388;
-	gd::unordered_map<int, TimerItem> m_unkMap3c0;
+	gd::unordered_map<int, int> m_itemCountMap;
+	gd::unordered_map<int, int> m_persistentItemCountMap;
+	gd::unordered_set<int> m_persistentTimerItemSet;
+	gd::unordered_map<int, TimerItem> m_timerItemMap;
 	gd::unordered_map<int, std::vector<TimerTriggerAction>> m_unkMap3f8;
 	cocos2d::CCArray* m_unkArray430;
 	gd::vector<bool> m_unkVector438;
@@ -10814,7 +10814,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
 	int m_affordDialogIndex;
 }
 
-[[link(android)]]
+[[link(android), depends(SmartPrefabResult)]]
 class GJSmartBlockPreview : cocos2d::CCNode {
 	// virtual ~GJSmartBlockPreview();
 
@@ -10854,7 +10854,7 @@ class GJSmartPrefab : cocos2d::CCObject {
 	virtual bool canEncode() = m1 0x3a4c04, imac 0x432110, ios 0x858c;
 }
 
-[[link(android)]]
+[[link(android), depends(SmartPrefabResult)]]
 class GJSmartTemplate : cocos2d::CCObject {
 	// virtual ~GJSmartTemplate();
 
@@ -11914,6 +11914,10 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
 
 	virtual void keyBackClicked() = win 0x2b52c0, m1 0x21d698, imac 0x277aa0, ios 0x355720;
 	virtual void dialogClosed(DialogLayer*) = win 0x2b4940, m1 0x21d4c8, imac 0x2778c0, ios 0x3555d4;
+
+	PAD = win 0x8;
+	bool m_isBusy;
+	int m_unk1ac;
 }
 
 [[link(android)]]
