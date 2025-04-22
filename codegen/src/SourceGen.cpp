@@ -231,14 +231,14 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 							);
 							break;
 					}
-				} else if (
-					(codegen::getStatus(*fn) != BindStatus::Unbindable || codegen::platformNumber(fn->binds) != -1) &&
-					codegen::platformNumber(fn->binds) != 0x9999999
-				) {
+				} else if (codegen::getStatus(*fn) != BindStatus::Unbindable || codegen::platformNumber(fn->binds) != -1) {
 					char const* used_declare_format = nullptr;
 
 					if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && !codegen::shouldAndroidBind(fn)) {
 						continue;
+					}
+					else if (codegen::platformNumber(fn->binds) == 0x9999999) {
+						used_declare_format = format_strings::declare_unimplemented_error;
 					}
 
 					if (!used_declare_format) {
