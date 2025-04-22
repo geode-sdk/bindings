@@ -3868,8 +3868,8 @@ class CustomSongCell : TableViewCell, CustomSongDelegate {
 class CustomSongDelegate {
     virtual void songIDChanged(int) {}
     virtual int getActiveSongID() { return 0; }
-    virtual gd::string getSongFileName();
-    virtual LevelSettingsObject* getLevelSettings();
+    virtual gd::string getSongFileName() { return ""; }
+    virtual LevelSettingsObject* getLevelSettings() { return nullptr; }
 }
 
 [[link(android)]]
@@ -4417,7 +4417,7 @@ class DynamicBitset {
 
 [[link(android)]]
 class DynamicScrollDelegate {
-    virtual void updatePageWithObject(cocos2d::CCObject* p0, cocos2d::CCObject* p1);
+    virtual void updatePageWithObject(cocos2d::CCObject* p0, cocos2d::CCObject* p1) {}
 }
 
 [[link(android)]]
@@ -23104,8 +23104,8 @@ class TableViewCellDelegate {
 
 [[link(android)]]
 class TableViewDataSource {
-    virtual int numberOfRowsInSection(unsigned int, TableView*);
-    virtual unsigned int numberOfSectionsInTableView(TableView*);
+    virtual int numberOfRowsInSection(unsigned int, TableView*) { return 0; }
+    virtual unsigned int numberOfSectionsInTableView(TableView*) { return 0; }
     virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView*, TableViewCellEditingStyle, CCIndexPath&) {}
     virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath&, TableView*) { return nullptr; }
 }
@@ -23117,8 +23117,8 @@ class TableViewDelegate {
     virtual void TableViewWillDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
     virtual void TableViewDidDisplayCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
     virtual void TableViewWillReloadCellForRowAtIndexPath(CCIndexPath&, TableViewCell*, TableView*) {}
-    virtual float cellHeightForRowAtIndexPath(CCIndexPath&, TableView*);
-    virtual void didSelectRowAtIndexPath(CCIndexPath&, TableView*);
+    virtual float cellHeightForRowAtIndexPath(CCIndexPath&, TableView*) { return 0; }
+    virtual void didSelectRowAtIndexPath(CCIndexPath&, TableView*) {}
 }
 
 [[link(android)]]
@@ -23526,9 +23526,9 @@ class TriggerControlGameObject : EffectGameObject {
 
 [[link(android)]]
 class TriggerEffectDelegate {
-    virtual void toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int);
-    virtual void spawnGroup(int, bool, double, gd::vector<int> const&, int, int);
-    virtual void spawnObject(GameObject*, double, gd::vector<int> const&);
+    virtual void toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int) {}
+    virtual void spawnGroup(int, bool, double, gd::vector<int> const&, int, int) {}
+    virtual void spawnObject(GameObject*, double, gd::vector<int> const&) {}
 }
 
 [[link(android)]]
