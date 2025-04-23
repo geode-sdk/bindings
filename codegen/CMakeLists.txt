@@ -17,6 +17,7 @@ add_executable(${PROJECT_NAME}
 	# glob sucks so just list em out
 	src/Main.cpp
 	src/AndroidSymbol.cpp
+	src/WindowsSymbol.cpp
 	src/BindingGen.cpp
 	src/JsonInterfaceGen.cpp
 	src/ModifyGen.cpp
