@@ -34,15 +34,26 @@ inline std::string generateWindowsSymbol(const Class& clazz, const FunctionBindF
 	std::string mangledSymbol;
 	switch (decl.type) {
 		case FunctionType::Ctor:
-            // writing this down so i dont forget:
-            // Q - public (https://en.wikiversity.org/wiki/Visual_C%2B%2B_name_mangling#Function_2)
-            // A - not const (https://en.wikiversity.org/wiki/Visual_C%2B%2B_name_mangling#CV-class_Modifier)
-            // E - thiscall (https://en.wikiversity.org/wiki/Visual_C%2B%2B_name_mangling#Function_Property)
-			mangledSymbol = "??0" + mangleWindowsIdent(clazz.name) + "@QAE";
+			if (codegen::platformArch == codegen::PlatformArch::x86) {
+				// writing this down so i dont forget:
+				// Q - public (https://en.wikiversity.org/wiki/Visual_C%2B%2B_name_mangling#Function_2)
+				// A - not const (https://en.wikiversity.org/wiki/Visual_C%2B%2B_name_mangling#CV-class_Modifier)
+				// E - thiscall (https://en.wikiversity.org/wiki/Visual_C%2B%2B_name_mangling#Function_Property)
+				mangledSymbol = "??0" + mangleWindowsIdent(clazz.name) + "@QAE";
+			} else {
+				// 64-bit changed this slightly
+				mangledSymbol = "??0" + mangleWindowsIdent(clazz.name) + "@QEAA";				
+			}
 			break;
 		case FunctionType::Dtor:
             // U - public virtual
-			mangledSymbol = "??1" + mangleWindowsIdent(clazz.name) + "@UAE";
+
+			if (codegen::platformArch == codegen::PlatformArch::x86) {
+				mangledSymbol = "??1" + mangleWindowsIdent(clazz.name) + "@UAE";
+			} else {
+				mangledSymbol = "??1" + mangleWindowsIdent(clazz.name) + "@UEAA";
+			}
+			
 			break;
 		default:
 			throw std::runtime_error(fmt::format("Mangling of this function type is not implemented! sorry {}", decl.name));
