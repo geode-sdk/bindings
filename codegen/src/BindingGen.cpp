@@ -47,10 +47,12 @@ public:
 )GEN";
 
     constexpr char const* error_definition = R"GEN(    
+private:
     [[deprecated("{class_name}::{function_name} not implemented")]]
     /**
 {docs}{docs_addresses}     */
     {static}{virtual}{return_type} {function_name}({parameters}){const};
+public:
 )GEN";
 
     constexpr char const* structor_definition = R"GEN(
@@ -265,11 +267,8 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
 
                 fb = &fn->prototype;
 
-                if (codegen::platformNumber(fn->binds) == -1 && codegen::getStatus(*fn) != BindStatus::Binded) {
-                    used_format = format_strings::error_definition;
-
-                    if (fb->type != FunctionType::Normal)
-                        continue;
+                if (codegen::platformNumber(fn->binds) == -1 && codegen::getStatus(*fn) != BindStatus::Binded && fb->type != FunctionType::Normal) {
+                    continue;
                 }
 
                 addressDocs = generateAddressDocs(*fn, fn->binds);
