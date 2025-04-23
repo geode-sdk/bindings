@@ -14887,8 +14887,16 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
 
 [[link(android)]]
 class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrollDelegate {
-    LevelSelectLayer() {}
-    ~LevelSelectLayer() = imac 0x49d170;
+    // virtual ~LevelSelectLayer();
+    LevelSelectLayer() {
+        m_width = 0.f;
+        m_backgroundSprite = nullptr;
+        m_groundLayer = nullptr;
+        m_scrollLayer = nullptr;
+        m_unknown = 0;
+        m_scrolls = 0;
+        m_masterDetectiveUnlocked = false;
+    }
 
     static LevelSelectLayer* create(int page) = ios 0x3f97fc, win inline, m1 0x39a698, imac 0x41f070 {
         auto ret = new LevelSelectLayer();
@@ -14907,14 +14915,14 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
     virtual void scrollLayerMoved(cocos2d::CCPoint) = win 0x3046c0, imac 0x4217c0, m1 0x39cd34, ios 0x3fb4a4;
 
     cocos2d::ccColor3B colorForPage(int page) = win 0x3049e0, imac 0x421bd0, m1 0x39d12c, ios 0x3fb724;
-    cocos2d::ccColor3B getColorValue(int, int, float) = imac 0x421930, m1 0x39ce88;
+    cocos2d::ccColor3B getColorValue(int, int, float) = imac 0x421930, m1 0x39ce88, ios 0x3fb5f4;
     bool init(int page) = ios 0x3f98b8, win 0x303840, m1 0x39a760, imac 0x41f160;
-    void onBack(cocos2d::CCObject* sender) = win 0x304e80, m1 0x39b424, imac 0x41ff50;
-    void onDownload(cocos2d::CCObject* sender) = win 0x304600, m1 0x39b36c, imac 0x41fea0;
+    void onBack(cocos2d::CCObject* sender) = win 0x304e80, m1 0x39b424, imac 0x41ff50, ios 0x3fa2c0;
+    void onDownload(cocos2d::CCObject* sender) = win 0x304600, m1 0x39b36c, imac 0x41fea0, ios 0x3fa208;
     void onInfo(cocos2d::CCObject* sender) = ios 0x3fa308, win 0x305000, m1 0x39b46c, imac 0x41ffa0;
-    void onNext(cocos2d::CCObject* sender) = win 0x304d80, m1 0x39b3f4, imac 0x41ff20;
-    void onPlay(cocos2d::CCObject* sender) = imac 0x421ea0, m1 0x39d328;
-    void onPrev(cocos2d::CCObject* sender) = win 0x304e00, m1 0x39b3c4, imac 0x41fef0;
+    void onNext(cocos2d::CCObject* sender) = win 0x304d80, m1 0x39b3f4, imac 0x41ff20, ios 0x3fa290;
+    void onPlay(cocos2d::CCObject* sender) = imac 0x421ea0, m1 0x39d328, ios 0x3fb884;
+    void onPrev(cocos2d::CCObject* sender) = win 0x304e00, m1 0x39b3c4, imac 0x41fef0, ios 0x3fa260;
     void tryShowAd();
 
     float m_width;
