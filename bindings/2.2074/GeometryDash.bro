@@ -12643,7 +12643,7 @@ class GJStoreItem : cocos2d::CCNode {
         m_shopType = ShopType::Normal;
     }
 
-    static GJStoreItem* create(int index, int typeID, int unlockType, int price, ShopType shopType) = win inline, imac 0x66200, m1 0x5a890 {
+    static GJStoreItem* create(int index, int typeID, int unlockType, int price, ShopType shopType) = win inline, imac 0x66200, m1 0x5a890, ios 0x32bc54 {
         auto ret = new GJStoreItem();
         if (ret->init(index, typeID, unlockType, price, shopType)) {
             ret->autorelease();

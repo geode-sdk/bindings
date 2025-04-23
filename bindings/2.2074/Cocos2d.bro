@@ -3941,7 +3941,7 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
         return ret;
     }
     static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D* pobTexture, cocos2d::CCRect const& rect) = m1 0x2d94f4, imac 0x343f20, ios inline {
-	CCSpriteFrame *pSpriteFrame = new CCSpriteFrame();;
+        CCSpriteFrame *pSpriteFrame = new CCSpriteFrame();;
         pSpriteFrame->initWithTexture(pobTexture, rect);
         pSpriteFrame->autorelease();
     
@@ -3950,13 +3950,13 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = ios 0x24d078;
 
     bool initWithTexture(cocos2d::CCTexture2D* pobTexture, cocos2d::CCRect const& rect) = ios inline {
-	CCRect rectInPixels = CC_RECT_POINTS_TO_PIXELS(rect);
+        CCRect rectInPixels = CC_RECT_POINTS_TO_PIXELS(rect);
         return initWithTexture(pobTexture, rectInPixels, false, CCPointZero, rectInPixels.size);
     }
     bool initWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = imac 0x344270, m1 0x2d97ac, ios 0x24d17c;
     bool initWithTextureFilename(char const* filename, cocos2d::CCRect const& rect) = ios inline {
-    	CCRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
-    		return initWithTextureFilename(filename, rectInPixels, false, CCPointZero, rectInPixels.size);
+        CCRect rectInPixels = CC_RECT_POINTS_TO_PIXELS( rect );
+    	return initWithTextureFilename(filename, rectInPixels, false, CCPointZero, rectInPixels.size);
     }
     bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = imac 0x3445a0, m1 0x2d9a18, ios 0x24d2dc;
 
@@ -4002,9 +4002,15 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
         m_pSpriteFrames->setObject(pobFrame, pszFrameName);
     }
     void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*) = imac 0x307d30, m1 0x29ee50, ios 0x3b47bc;
-    void addSpriteFramesWithFile(char const*, char const*) = m1 0x29f928, imac 0x3088d0;
+    void addSpriteFramesWithFile(char const* plist, char const* textureFilename) = m1 0x29f928, imac 0x3088d0, ios inline {
+        if (auto texture = CCTextureCache::sharedTextureCache()->addImage(textureFilename, false)) {
+            this->addSpriteFramesWithFile(plist, texture);
+        }
+    }
     void addSpriteFramesWithFile(char const*) = imac 0x308940, m1 0x29f998, ios 0x3b5070;
-    void addSpriteFramesWithFile(char const*, cocos2d::CCTexture2D*) = m1 0x29f8e0, imac 0x308890;
+    void addSpriteFramesWithFile(char const* plist, cocos2d::CCTexture2D* texture) = m1 0x29f8e0, imac 0x308890, ios inline {
+        this->addSpriteFramesWithDictionary(CCContentManager::sharedManager()->addDict(plist, false), texture);
+    }
     void removeSpriteFrameByName(char const* name) = m1 0x2a0020, imac 0x308e80, ios inline {
         if (!name) return;
         if (auto key = static_cast<CCString*>(m_pSpriteFramesAliases->objectForKey(name))) {
@@ -4016,7 +4022,7 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
     }
     void removeSpriteFrames() = m1 0x29ff44, imac 0x308db0;
     void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*) = m1 0x2a05e4, imac 0x309370, ios 0x3b53e4;
-    void removeSpriteFramesFromFile(char const*) = m1 0x2a030c, imac 0x309190;
+    void removeSpriteFramesFromFile(char const*) = m1 0x2a030c, imac 0x309190, ios 0x3b52d4;
     void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*) = m1 0x2a0830, imac 0x3095d0;
     void removeUnusedSpriteFrames() = m1 0x29ff90, imac 0x308df0;
     cocos2d::CCSpriteFrame* spriteFrameByName(char const*) = imac 0x3098e0, m1 0x2a0b38, ios 0x3b5508;
@@ -4409,9 +4415,9 @@ class DS_Dictionary {
 
 [[link(win, android)]]
 class CCContentManager : cocos2d::CCObject {
-    static CCContentManager* sharedManager() = m1 0x13ff04, imac 0x174130;
+    static CCContentManager* sharedManager() = m1 0x13ff04, imac 0x174130, ios 0x40a69c;
 
-    cocos2d::CCDictionary* addDict(char const*, bool) = m1 0x140068, imac 0x1742a0;
+    cocos2d::CCDictionary* addDict(char const*, bool) = m1 0x140068, imac 0x1742a0, ios 0x40a764;
     cocos2d::CCDictionary* addDictDS(char const*) = m1 0x14022c, imac 0x174470;
     void clearCache() = m1 0x14042c, imac 0x174670;
     bool init() = m1 0x13ff84, imac 0x1741b0;
