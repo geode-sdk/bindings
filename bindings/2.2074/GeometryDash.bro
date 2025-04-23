@@ -2624,7 +2624,7 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
     CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
     void determineStartValues();
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x8a9f0, m1 0x21ec48, imac 0x273e80, ios 0x88cd0;
-    void onClose(cocos2d::CCObject* sender) = win 0x8ba80;
+    void onClose(cocos2d::CCObject* sender) = win 0x8ba80, m1 0x21f6a4, imac 0x274950, ios 0x8967c;
     void onDynamicBlock(cocos2d::CCObject* sender) = win 0x8b550;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x8b600, m1 0x21f87c, imac 0x274b60, ios 0x89734;
     void onNextItemID(cocos2d::CCObject* sender) = win 0x8b650;
@@ -9276,7 +9276,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void removeFromGroups(GameObject*) = win 0x21ed10, imac 0x12ce70, m1 0x107f34;
     TodoReturn removeFromStickyGroup(GameObject*) = imac 0x12de90;
     TodoReturn removeGroundLayer() = imac 0x1039d0;
-    void removeGroupParent(int) = win 0x21f3e0;
+    void removeGroupParent(int) = win 0x21f3e0, m1 0x1080e8, imac 0x12d030, ios 0x1f4208;
     TodoReturn removeKeyframe(KeyframeGameObject*) = imac 0x13bae0;
     TodoReturn removeMiddleground();
     void removeObjectFromSection(GameObject*) = win 0x221a80, imac 0x12e500, m1 0x109388, ios 0x1f4e48;
@@ -9309,7 +9309,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn rotateAreaObjects(GameObject*, cocos2d::CCArray*, float, bool);
     TodoReturn rotateObject(GameObject*, float);
     void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool) = win 0x226ec0;
-    void setGroupParent(GameObject*, int) = win 0x21f2d0, imac 0x12d370;
+    void setGroupParent(GameObject*, int) = win 0x21f2d0, m1 0x10842c, imac 0x12d370, ios 0x1f4398;
     void setStartPosObject(StartPosObject* startPos) = ios 0x1e7374, win inline, imac 0x112ed0, m1 0xf2870 {
         if (startPos != m_startPosObject) {
             if (startPos) {
@@ -19240,7 +19240,7 @@ class SetItemIDLayer : SetupTriggerPopup {
     virtual void valueDidChange(int, float) = win 0x3e9de0, imac 0x9c700, m1 0x8f3ac, ios 0x4121f4;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x3e9c40, imac 0x9c5e0, m1 0x8f2a4, ios 0x4120ec;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3e94e0, m1 0x8eba0, imac 0x9bdd0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3e94e0, m1 0x8eba0, imac 0x9bdd0, ios 0x411ae0;
     void updateEditorLabel();
 }
 
@@ -20018,7 +20018,7 @@ class SetupInstantCollisionTriggerPopup : SetupTriggerPopup {
     virtual void updateDefaultTriggerValues() = win 0x402bc0, m1 0x314a58, imac 0x384b90, ios 0x231200;
     virtual void valueDidChange(int, float) = win 0x402990, imac 0x384880, m1 0x314748, ios 0x230f18;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x402270, m1 0x314130, imac 0x384160;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x402270, m1 0x314130, imac 0x384160, ios 0x2309b4;
     TodoReturn updateSpecialNodes();
 }
 
@@ -20026,7 +20026,7 @@ class SetupInstantCollisionTriggerPopup : SetupTriggerPopup {
 class SetupInstantCountPopup : SetupTriggerPopup {
     // virtual ~SetupInstantCountPopup();
 
-    static SetupInstantCountPopup* create(CountTriggerGameObject*, cocos2d::CCArray*) = win 0x40a520;
+    static SetupInstantCountPopup* create(CountTriggerGameObject*, cocos2d::CCArray*) = win 0x40a520, m1 0x5047c4, imac 0x5d0770, ios 0x1bdc18;
 
     virtual void determineStartValues() = win 0x40b590, m1 0x505b58, imac 0x5d1dc0, ios 0x1bebe0;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x402140, m1 0x506090, imac 0x5d23f0, ios 0x1befc0;
@@ -20081,7 +20081,7 @@ class SetupItemCompareTriggerPopup : SetupTriggerPopup {
     virtual void valueDidChange(int, float) = win 0x456fe0, imac 0x56bbc0, m1 0x4c0da8, ios 0x40708c;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x4564d0, imac 0x56ba60, m1 0x4c0c50, ios 0x406f44;
 
-    bool init(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x454e30, m1 0x4beef4, imac 0x569ae0;
+    bool init(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x454e30, m1 0x4beef4, imac 0x569ae0, ios 0x4056a8;
     void onOpButton(cocos2d::CCObject* sender) = win 0x456100;
     void updateFormulaLabel() = win 0x4566d0;
     void updateOpButton(CCMenuItemSpriteExtra*, int, int) = win 0x4561e0;
@@ -20098,7 +20098,7 @@ class SetupItemEditTriggerPopup : SetupTriggerPopup {
     virtual void valueDidChange(int, float) = win 0x454ce0, imac 0x569870, m1 0x4bed30, ios 0x405594;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x454a40, imac 0x569690, m1 0x4beb50, ios 0x4053d4;
 
-    bool init(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x4525f0, m1 0x4bc978, imac 0x567390;
+    bool init(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x4525f0, m1 0x4bc978, imac 0x567390, ios 0x4038d4;
     void onOpButton(cocos2d::CCObject* sender) = win 0x4537e0;
     void updateFormulaLabel() = win 0x453eb0, m1 0x4bdbf4, imac 0x568890;
     void updateOpButton(CCMenuItemSpriteExtra*, int, int) = win 0x453c50;
@@ -20190,7 +20190,7 @@ class SetupMoveCommandPopup : SetupTriggerPopup {
     virtual float triggerSliderValueFromValue(int, float) = win 0x27a430, m1 0x521138, imac 0x5f1340, ios 0x273c1c;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x27ab70, imac 0x5f1650, m1 0x5213d8, ios 0x273eac;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x279010, m1 0x51fd2c, imac 0x5efb70;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x279010, m1 0x51fd2c, imac 0x5efb70, ios 0x272a50;
     void updateControlVisibility() = win 0x27a9b0;
 
     bool m_smallStep;
@@ -20340,7 +20340,7 @@ class SetupObjectTogglePopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x40c730, imac 0x3631a0, m1 0x2f5e64, ios 0x1a66f8;
     virtual void valueDidChange(int, float) = win 0x4125e0, imac 0x363120, m1 0x2f5dec, ios 0x1a6688;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x411c90, m1 0x2f54d8, imac 0x362720;
+    bool init(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x411c90, m1 0x2f54d8, imac 0x362720, ios 0x1a5f18;
 }
 
 [[link(android)]]
@@ -20407,7 +20407,7 @@ class SetupPickupTriggerPopup : SetupTriggerPopup {
     virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x40c610, imac 0x598b0, m1 0x4f578, ios 0x47158;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x41f090, imac 0x598f0, m1 0x4f5b0, ios 0x47190;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x41e900, m1 0x4ee48, imac 0x59080;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x41e900, m1 0x4ee48, imac 0x59080, ios 0x46b80;
     void updateState() = win 0x41f020;
 }
 
@@ -20911,7 +20911,7 @@ class SetupSpawnPopup : SetupTriggerPopup {
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x40c730, imac 0x27ece0, m1 0x2286cc, ios 0xfbd4c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x445d20, m1 0x2271a4, imac 0x27d4f0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x445d20, m1 0x2271a4, imac 0x27d4f0, ios 0xfac18;
     void onAddRemap(cocos2d::CCObject* sender) = win 0x446910;
     void onDeleteRemap(cocos2d::CCObject* sender) = win 0x446a80;
     void onSelectRemap(cocos2d::CCObject* sender) = win 0x447440;
@@ -21143,7 +21143,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void addObjectsToGroup(cocos2d::CCArray*, int);
     void addObjectsToPage(cocos2d::CCArray*, int);
     void addObjectToGroup(cocos2d::CCObject*, int);
-    void addObjectToPage(cocos2d::CCObject*, int) = win 0x45c400;
+    void addObjectToPage(cocos2d::CCObject*, int) = win 0x45c400, m1 0x1d6a04, imac 0x223b70, ios 0x131fd8;
     void addTitle(gd::string) = win 0x45c490;
     void closeInputNodes();
     void createCustomButton(int, gd::string, gd::string, cocos2d::CCPoint, float, float, bool, int, int) = win 0x45f110;
