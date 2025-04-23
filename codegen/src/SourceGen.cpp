@@ -231,18 +231,10 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 							);
 							break;
 					}
-				} else {
+				} else if (codegen::getStatus(*fn) != BindStatus::Unbindable || codegen::platformNumber(fn->binds) != -1) {
 					char const* used_declare_format = nullptr;
 
-					if (
-						(
-							codegen::getStatus(*fn) == BindStatus::Unbindable && 
-							codegen::platformNumber(fn->binds) == -1 && 
-							fn->prototype.is_virtual && fn->prototype.type != FunctionType::Dtor
-						) || (
-							codegen::platformNumber(fn->binds) == 0x9999999
-						)
-					) {
+					if (codegen::platformNumber(fn->binds) == 0x9999999) {
 						used_declare_format = format_strings::declare_unimplemented_error;
 					}
 					else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && !codegen::shouldAndroidBind(fn)) {
