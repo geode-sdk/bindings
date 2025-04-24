@@ -6302,10 +6302,10 @@ class FMODAudioEngine : cocos2d::CCNode {
 [[link(android), depends(FMODSoundTween), depends(FMODQueuedMusic), depends(FMODSoundState)]]
 class FMODAudioState {
     // ~FMODAudioState();
-    FMODAudioState() = win 0x52e40, ios 0x12ad78, m1 inline, imac inline {
-        m_unkFloat1 = 0.f;
-        m_unkFloat2 = 0.f;
-    }
+    // FMODAudioState() = win 0x52e40, ios 0x12ad78, m1 inline, imac inline {
+    //     m_unkFloat1 = 0.f;
+    //     m_unkFloat2 = 0.f;
+    // }
 
     float m_unkFloat1;
     float m_unkFloat2;
