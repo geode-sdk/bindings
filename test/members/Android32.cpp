@@ -34,6 +34,7 @@ GEODE_SIZE_CHECK(TableView, 0x1dc);
 GEODE_SIZE_CHECK(CCTextInputNode, 0x1a0);
 GEODE_SIZE_CHECK(CCTouchDispatcher, 0x6c);
 GEODE_SIZE_CHECK(CCSpritePlus, 0x208);
+GEODE_SIZE_CHECK(TextArea, 0x248);
 
 // GEODE_MEMBER_CHECK(CCTouchDispatcher, m_forcePrio, 0x60);
 
