@@ -10129,7 +10129,6 @@ class GJEffectManager : cocos2d::CCNode {
     // GJEffectManager();
 
     static GJEffectManager* create() = win 0x2538f0;
-    virtual void rewardedVideoFinished();
 
     virtual bool init() = win 0x253950, imac 0x2c8f30, m1 0x26c924, ios 0x125e8;
 
