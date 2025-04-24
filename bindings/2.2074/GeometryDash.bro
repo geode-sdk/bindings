@@ -23244,7 +23244,7 @@ class TextArea : cocos2d::CCSprite {
     bool m_disableColor;
     MultilineBitmapFont* m_label;
     float m_width;
-    int m_unknown;
+    float m_unknown;
     gd::string m_fontFile;
     float m_height;
     bool m_unkBool;

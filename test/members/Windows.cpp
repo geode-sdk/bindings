@@ -607,7 +607,25 @@ GEODE_SIZE_CHECK(GradientTriggerObject, 0x768);
 GEODE_SIZE_CHECK(SetupGradientPopup, 0x3d0);
 GEODE_SIZE_CHECK(UIPOptionsLayer, 0x3c8);
 GEODE_SIZE_CHECK(UISaveLoadLayer, 0x3b0);
+
 GEODE_SIZE_CHECK(TextArea, 0x2d8);
+GEODE_MEMBER_CHECK(TextArea, m_disableColor, 0x258);
+GEODE_MEMBER_CHECK(TextArea, m_label, 0x260);
+GEODE_MEMBER_CHECK(TextArea, m_width, 0x268);
+GEODE_MEMBER_CHECK(TextArea, m_unknown, 0x26c);
+GEODE_MEMBER_CHECK(TextArea, m_fontFile, 0x270);
+GEODE_MEMBER_CHECK(TextArea, m_height, 0x290);
+GEODE_MEMBER_CHECK(TextArea, m_unkBool, 0x294);
+GEODE_MEMBER_CHECK(TextArea, m_anchorPoint, 0x298);
+GEODE_MEMBER_CHECK(TextArea, m_allShown, 0x2a0);
+GEODE_MEMBER_CHECK(TextArea, m_scale, 0x2a4);
+GEODE_MEMBER_CHECK(TextArea, m_rectHeight, 0x2a8);
+GEODE_MEMBER_CHECK(TextArea, m_rectWidth, 0x2ac);
+GEODE_MEMBER_CHECK(TextArea, m_maxWidth, 0x2b0);
+GEODE_MEMBER_CHECK(TextArea, m_unkPoint, 0x2b4);
+GEODE_MEMBER_CHECK(TextArea, m_delegate, 0x2c0);
+GEODE_MEMBER_CHECK(TextArea, m_shakeCharacters, 0x2c8);
+GEODE_MEMBER_CHECK(TextArea, m_shakeElapsed, 0x2d0);
 
 GEODE_SIZE_CHECK(EditorUI, 0x5a0);
 // GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);

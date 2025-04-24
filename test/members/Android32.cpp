@@ -34,7 +34,25 @@ GEODE_SIZE_CHECK(TableView, 0x1dc);
 GEODE_SIZE_CHECK(CCTextInputNode, 0x1a0);
 GEODE_SIZE_CHECK(CCTouchDispatcher, 0x6c);
 GEODE_SIZE_CHECK(CCSpritePlus, 0x208);
+
 GEODE_SIZE_CHECK(TextArea, 0x248);
+GEODE_MEMBER_CHECK(TextArea, m_disableColor, 0x1fc);
+GEODE_MEMBER_CHECK(TextArea, m_label, 0x200);
+GEODE_MEMBER_CHECK(TextArea, m_width, 0x204);
+GEODE_MEMBER_CHECK(TextArea, m_unknown, 0x208);
+GEODE_MEMBER_CHECK(TextArea, m_fontFile, 0x20c);
+GEODE_MEMBER_CHECK(TextArea, m_height, 0x210);
+GEODE_MEMBER_CHECK(TextArea, m_unkBool, 0x214);
+GEODE_MEMBER_CHECK(TextArea, m_anchorPoint, 0x218);
+GEODE_MEMBER_CHECK(TextArea, m_allShown, 0x220);
+GEODE_MEMBER_CHECK(TextArea, m_scale, 0x224);
+GEODE_MEMBER_CHECK(TextArea, m_rectHeight, 0x228);
+GEODE_MEMBER_CHECK(TextArea, m_rectWidth, 0x22c);
+GEODE_MEMBER_CHECK(TextArea, m_maxWidth, 0x230);
+GEODE_MEMBER_CHECK(TextArea, m_unkPoint, 0x234);
+GEODE_MEMBER_CHECK(TextArea, m_delegate, 0x23c);
+GEODE_MEMBER_CHECK(TextArea, m_shakeCharacters, 0x240);
+GEODE_MEMBER_CHECK(TextArea, m_shakeElapsed, 0x244);
 
 // GEODE_MEMBER_CHECK(CCTouchDispatcher, m_forcePrio, 0x60);
 
