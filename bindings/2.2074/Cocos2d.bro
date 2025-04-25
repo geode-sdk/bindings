@@ -2674,7 +2674,7 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
     void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
     char const* keyToString(cocos2d::enumKeyCodes) = imac 0x1f1aa0, m1 0x1a82e0;
-    void removeDelegate(cocos2d::CCKeyboardDelegate*) = ios 0x239960, imac 0x1f1600, m1 0x1a7e48;
+    void removeDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1f1600, m1 0x1a7e48; // ios 0x239960
     void updateModifierKeys(bool, bool, bool, bool) = imac 0x1f1a70, m1 0x1a82c8;
 }
 
@@ -3201,9 +3201,9 @@ class cocos2d::CCArray : cocos2d::CCObject {
     // static cocos2d::CCArray* createWithCapacity(unsigned int);
     static cocos2d::CCArray* createWithContentsOfFile(char const*);
     static cocos2d::CCArray* createWithContentsOfFileThreadSafe(char const*);
-    static cocos2d::CCArray* createWithObject(cocos2d::CCObject*) = ios 0x249270;
+    // static cocos2d::CCArray* createWithObject(cocos2d::CCObject*) = ios 0x249270;
 
-    bool init() = imac 0x7094e0;
+    // bool init() = imac 0x7094e0;
     bool initWithArray(cocos2d::CCArray*);
     // bool initWithCapacity(unsigned int);
     bool initWithObject(cocos2d::CCObject*);
@@ -3221,11 +3221,11 @@ class cocos2d::CCArray : cocos2d::CCObject {
     void exchangeObject(cocos2d::CCObject*, cocos2d::CCObject*);
     void exchangeObjectAtIndex(unsigned int, unsigned int);
     // void fastRemoveObject(cocos2d::CCObject*);
-    void fastRemoveObjectAtIndex(unsigned int) = imac 0x709f10, m1 0x629530;
+   // void fastRemoveObjectAtIndex(unsigned int) = imac 0x709f10, m1 0x629530;
     void fastRemoveObjectAtIndexChild(unsigned int);
     void fastRemoveObjectAtIndexNew(unsigned int);
     unsigned int indexOfObject(cocos2d::CCObject*) const;
-    void insertObject(cocos2d::CCObject*, unsigned int) = ios 0x2494f4;
+    // void insertObject(cocos2d::CCObject*, unsigned int) = ios 0x2494f4;
     bool isEqualToArray(cocos2d::CCArray*);
     // cocos2d::CCObject* lastObject();
     // cocos2d::CCObject* objectAtIndex(unsigned int) = m1 0x6293a0, imac 0x709d40;
@@ -4620,9 +4620,9 @@ class cocos2d::ZipUtils {
     static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out) = imac 0x1f3290, m1 0x1a8dd8, ios 0x23d50c;
     static int ccInflateCCZFile(char const*, unsigned char**);
     static int ccInflateGZipFile(char const*, unsigned char**);
-    static int ccInflateMemory(unsigned char* data, unsigned int size, unsigned char** out) = imac 0x1f3660, m1 0x1a91b0;
-    static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int*, unsigned int) = imac 0x1f45f0, m1 0x1aa1b8;
-    static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int) = imac 0x1f4720, m1 0x1aa2e0;
+    // static int ccInflateMemory(unsigned char* data, unsigned int size, unsigned char** out) = imac 0x1f3660, m1 0x1a91b0;
+    // static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int*, unsigned int) = imac 0x1f45f0, m1 0x1aa1b8;
+    // static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int) = imac 0x1f4720, m1 0x1aa2e0;
     static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
     static void ccSetPvrEncryptionKeyPart(int, unsigned int);
     static gd::string compressString(gd::string const& data, bool encrypt, int encryptionKey) = imac 0x1f3020, m1 0x1a8b18, ios 0x23d2b8;
