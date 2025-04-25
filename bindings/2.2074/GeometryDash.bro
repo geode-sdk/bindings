@@ -10041,11 +10041,11 @@ class GJDailyLevelDelegate {
 class GJDifficultySprite : cocos2d::CCSprite {
     // virtual ~GJDifficultySprite();
 
-    static GJDifficultySprite* create(GJDifficulty, GJDifficultyName) = ios 0x2e5348, win 0x29d8d0, imac 0x2a3530, m1 0x24a2c0;
+    static GJDifficultySprite* create(int, GJDifficultyName) = ios 0x2e5348, win 0x29d8d0, imac 0x2a3530, m1 0x24a2c0;
 
-    static gd::string getDifficultyFrame(GJDifficulty, GJDifficultyName) = win 0x29d9b0, imac 0x2a3680, m1 0x24a464, ios 0x2e5474;
-    bool init(GJDifficulty, GJDifficultyName) = imac 0x2a3610, m1 0x24a3cc;
-    void updateDifficultyFrame(GJDifficulty, GJDifficultyName) = ios 0x2e5534, win 0x29da90, imac 0x2a37c0, m1 0x24a5b0;
+    static gd::string getDifficultyFrame(int, GJDifficultyName) = win 0x29d9b0, imac 0x2a3680, m1 0x24a464, ios 0x2e5474;
+    bool init(int, GJDifficultyName) = imac 0x2a3610, m1 0x24a3cc;
+    void updateDifficultyFrame(int, GJDifficultyName) = ios 0x2e5534, win 0x29da90, imac 0x2a37c0, m1 0x24a5b0;
     void updateFeatureState(GJFeatureState) = ios 0x2e56ac, win 0x29dbb0, imac 0x2a3940, m1 0x24a728;
     void updateFeatureStateFromLevel(GJGameLevel* level) = win inline, ios 0x2e5674, m1 0x24a6f0 {
         if (!level) return;
@@ -10065,6 +10065,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
         }
 
         this->updateFeatureState(featureState);
+    }
 
     GJFeatureState m_featureState;
 }
