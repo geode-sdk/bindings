@@ -788,8 +788,13 @@ class AudioLineGuideGameObject : EffectGameObject {
 
 [[link(android)]]
 class BitmapFontCache : cocos2d::CCObject {
-    // virtual ~BitmapFontCache();
-    BitmapFontCache() {}
+    BitmapFontCache() {
+        m_cache = nullptr;
+    }
+    ~BitmapFontCache() {
+        CC_SAFE_RELEASE(m_cache);
+    }
+
     static void purgeSharedFontCache() = win inline {
         auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x6a4e08);
         if (*instancePtr) {
@@ -842,7 +847,16 @@ class BoomListLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
-    BoomListView() {}
+    BoomListView() {
+        m_tableView = nullptr;
+        m_entries = nullptr;
+        m_type = BoomListType::Default;
+        m_height = 0.f;
+        m_width = 0.f;
+        m_itemSeparation = 0.f;
+        m_currentPage = 0;
+        m_locked = false;
+    }
     ~BoomListView() {
         CC_SAFE_RELEASE(m_entries);
     }
@@ -1390,8 +1404,7 @@ class CCCircleWaveDelegate {
 
 [[link(android)]]
 class CCContentLayer : cocos2d::CCLayerColor {
-    inline CCContentLayer() {}
-    ~CCContentLayer();
+    CCContentLayer() {}
 
     static CCContentLayer* create(cocos2d::ccColor4B const&, float, float);
 
@@ -1478,10 +1491,18 @@ class CCExtenderNode : cocos2d::CCNode {
 
 [[link(android)]]
 class CCIndexPath : cocos2d::CCObject {
-    CCIndexPath() {}
+    CCIndexPath() {
+        m_row = 0;
+        m_section = 0;
+    }
     // virtual ~CCIndexPath();
 
-    TodoReturn CCIndexPathWithSectionRow(int, int);
+    static CCIndexPath* CCIndexPathWithSectionRow(int section, int row) {
+        auto ret = new CCIndexPath();
+        ret->m_row = row;
+        ret->m_section = section;
+        return ret;
+    }
 
     int m_row;
     int m_section;
@@ -1659,7 +1680,12 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 
 [[link(android)]]
 class CCMenuItemToggler : cocos2d::CCMenuItem {
-    CCMenuItemToggler() {}
+    CCMenuItemToggler() {
+        m_offButton = nullptr;
+        m_onButton = nullptr;
+        m_toggled = false;
+        m_notClickable = false;
+    }
     // virtual ~CCMenuItemToggler();
 
     static CCMenuItemToggler* create(cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = ios 0x19452c, win 0x451e0, imac 0x59c70, m1 0x4f880;
@@ -2391,8 +2417,14 @@ class CCURLObject : cocos2d::CCObject {
 
 [[link(android), depends(ChallengesPage), depends(GJChallengeItem)]]
 class ChallengeNode : cocos2d::CCNode {
-    // virtual ~ChallengeNode();
-    inline ChallengeNode() {}
+    ChallengeNode() {
+        m_challengeItem = nullptr;
+        m_countdownLabel = nullptr;
+        m_unloaded = false;
+    }
+    ~ChallengeNode() {
+        CC_SAFE_RELEASE(m_challengeItem);
+    }
 
     static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = ios 0x36c94, win inline, imac 0x38b290, m1 0x31a788 {
         auto ret = new ChallengeNode();
@@ -2417,7 +2449,6 @@ class ChallengeNode : cocos2d::CCNode {
 
 [[link(android)]]
 class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, CurrencyRewardDelegate {
-    // virtual ~ChallengesPage();
     ChallengesPage() {
         m_dots = nullptr;
         m_countdownLabel = nullptr;
@@ -2426,6 +2457,13 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
         m_unkBool = false;
         m_currencyRewardLayer = nullptr;
         m_challengeNodes = nullptr;
+    }
+    ~ChallengesPage() {
+        auto glm = GameLevelManager::sharedState();
+        if (glm->m_GJChallengeDelegate == this) glm->m_GJChallengeDelegate = nullptr;
+        if (m_currencyRewardLayer) m_currencyRewardLayer->m_delegate = nullptr;
+        CC_SAFE_RELEASE(m_challengeNodes);
+        CC_SAFE_RELEASE(m_dots);
     }
 
     static ChallengesPage* create() = ios 0x35d18, win inline, imac 0x389da0, m1 0x3193ec {
@@ -3719,8 +3757,9 @@ class CustomizeObjectSettingsPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class CustomListView : BoomListView {
-    inline CustomListView() {}
-    ~CustomListView() {}
+    CustomListView() {
+        m_cellMode = 0;
+    }
 
     static CustomListView* create(cocos2d::CCArray*, TableViewCellDelegate*, float, float, int, BoomListType, float) = ios 0x10364c, win 0xaa010, imac 0x22eb50, m1 0x1df724;
 
@@ -3735,7 +3774,7 @@ class CustomListView : BoomListView {
     float getCellHeight(BoomListType) = ios 0x103e9c, imac 0x22fd60;
     void reloadAll() = ios 0x10e7b0, win 0xabc90, imac 0x23bfe0, m1 0x1ebe10;
 
-    int m_unknown;
+    int m_cellMode;
 }
 
 [[link(android)]]
@@ -4164,8 +4203,15 @@ class DemonFilterDelegate {
 
 [[link(android)]]
 class DemonFilterSelectLayer : FLAlertLayer {
-    // virtual ~DemonFilterSelectLayer();
-    DemonFilterSelectLayer() {}
+    DemonFilterSelectLayer() {
+        m_demons = nullptr;
+        m_unkPtr = nullptr;
+        m_currentDemon = 0;
+        m_delegate = nullptr;
+    }
+    ~DemonFilterSelectLayer() {
+        CC_SAFE_RELEASE(m_demons);
+    }
 
     static DemonFilterSelectLayer* create() = win inline {
         auto ret = new DemonFilterSelectLayer();
@@ -5864,7 +5910,9 @@ class ExplodeItemSprite : cocos2d::CCSprite {
 [[link(android)]]
 class ExtendedLayer : cocos2d::CCLayer {
     // virtual ~ExtendedLayer();
-    ExtendedLayer() {}
+    ExtendedLayer() {
+        m_delegate = nullptr;
+    }
 
     static ExtendedLayer* create() = win inline {
         auto ret = new ExtendedLayer();
@@ -8503,7 +8551,7 @@ class GameToolbox {
     static float fast_rand_0_1() = imac 0x4dea80, m1 0x441870, ios 0x49540;
     static TodoReturn fast_rand_minus1_1();
     static void fast_srand(uint64_t) = ios 0x49534, m1 0x441830, imac 0x4dea30;
-    static TodoReturn gen_random(int) = m1 0x464058, imac 0x504920;
+    static gd::string gen_random(int) = m1 0x464058, imac 0x504920;
     static TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, cocos2d::SEL_CallFunc);
     static TodoReturn getDropActionWEnd(float, float, float, cocos2d::CCAction*, float);
     static cocos2d::CCActionEase* getEasedAction(cocos2d::CCActionInterval*, int, float) = imac 0x4de7b0, m1 0x4415e8;
@@ -8515,7 +8563,7 @@ class GameToolbox {
     static TodoReturn getRelativeOffset(GameObject*, cocos2d::CCPoint) = win 0x64970;
     static gd::string getResponse(cocos2d::extension::CCHttpResponse*) = win 0x64310, imac 0x4dba00, m1 0x43eb40;
     static gd::string getTimeString(int, bool) = win 0x65e20, imac 0x4de620, m1 0x44145c, ios 0x49338;
-    static TodoReturn hsvFromString(gd::string const&, char const*) = imac 0x4dd030;
+    static cocos2d::ccHSVValue hsvFromString(gd::string const&, char const*) = win 0x654e0, imac 0x4dd030;
     static gd::string intToShortString(int) = win 0x69120, imac 0x4e4250, m1 0x4465bc, ios 0x4bd08;
     static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284;
     static bool isIOS();
@@ -8541,7 +8589,7 @@ class GameToolbox {
     static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
     static gd::string stringFromHSV(cocos2d::ccHSVValue, char const*) = win 0x656f0;
     static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*) = win 0x65c30, m1 0x440d54;
-    static gd::map<gd::string,gd::string> stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x65890;
+    static void stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x65890;
     static TodoReturn strongColor(cocos2d::ccColor3B);
     static TodoReturn timestampToHumanReadable(long) = m1 0x4469a4, imac 0x4e4690;
     static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue) = ios 0x4854c, win 0x65290, m1 0x43fbfc, imac 0x4dcb20;
@@ -8550,8 +8598,20 @@ class GameToolbox {
 
 [[link(android)]]
 class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
-    // virtual ~GauntletLayer();
-    GauntletLayer() {}
+    GauntletLayer() {
+        m_levels = nullptr;
+        m_loadingCircle = nullptr;
+        m_backgroundSprite = nullptr;
+        m_unkPtr = nullptr;
+        m_activeItemButton = nullptr;
+        m_activeObjects = nullptr;
+        m_tryAgainText = nullptr;
+    }
+    ~GauntletLayer() {
+        auto glm = GameLevelManager::sharedState();
+        if (glm->m_levelManagerDelegate == this) glm->m_levelManagerDelegate = nullptr;
+        CC_SAFE_RELEASE(m_activeObjects);
+    }
 
     static GauntletLayer* create(GauntletType gauntletType) = win inline, imac 0x37f700, m1 0x30fc28 {
         auto ret = new GauntletLayer();
@@ -8587,7 +8647,10 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
 [[link(android)]]
 class GauntletNode : cocos2d::CCNode {
     // virtual ~GauntletNode();
-    GauntletNode() {}
+    GauntletNode() {
+        m_gauntletInfoNode = nullptr;
+        m_rewardNode = nullptr;
+    }
 
     static GauntletNode* create(GJMapPack* gauntlet) = win inline, m1 0x4b2728, imac 0x55c250 {
         auto ret = new GauntletNode();
@@ -8610,8 +8673,22 @@ class GauntletNode : cocos2d::CCNode {
 
 [[link(android)]]
 class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelManagerDelegate {
-    // virtual ~GauntletSelectLayer();
-    GauntletSelectLayer() {}
+    GauntletSelectLayer() {
+        m_backgroundSprite = nullptr;
+        m_scrollLayer = nullptr;
+        m_refreshButton = nullptr;
+        m_exiting = false;
+        m_playing = false;
+        m_tryAgainText = nullptr;
+        m_loadingCircle = nullptr;
+        m_gauntlets = nullptr;
+        m_playBlocked = false;
+    }
+    ~GauntletSelectLayer() {
+        auto glm = GameLevelManager::sharedState();
+        if (glm->m_levelManagerDelegate == this) glm->m_levelManagerDelegate = nullptr;
+        CC_SAFE_RELEASE(m_gauntlets);
+    }
 
     static GauntletSelectLayer* create(int p0) = win inline, imac 0x55abc0, m1 0x4b1248, ios 0x1c0448 {
         auto ret = new GauntletSelectLayer();
@@ -13034,7 +13111,11 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 
 [[link(android)]]
 class GManager : cocos2d::CCNode {
-    inline GManager() {}
+    GManager() {
+        m_setup = false;
+        m_saved = false;
+        m_quickSave = false;
+    }
     // virtual ~GManager();
 
     virtual bool init() = win 0x6a7c0, imac 0x498f00, m1 0x404d70, ios 0x249774;
@@ -13069,7 +13150,7 @@ class GooglePlayDelegate {
 class GooglePlayManager : cocos2d::CCNode {
     // virtual ~GooglePlayManager();
 
-    static GooglePlayManager* sharedState() = ios 0x458d8, win 0x6ac50;
+    static GooglePlayManager* sharedState() = win 0x6ac50, m1 0x3d5188, imac 0x4651e0, ios 0x458d8;
 
     virtual bool init() = m1 0x3d51f8, imac 0x465240, ios 0x45938 { return true; }
 
@@ -15262,7 +15343,11 @@ class ListUploadDelegate {
 [[link(android)]]
 class LoadingCircle : cocos2d::CCLayerColor {
     // virtual ~LoadingCircle();
-    LoadingCircle() {}
+    LoadingCircle() {
+        m_sprite = nullptr;
+        m_parentLayer = nullptr;
+        m_fade = false;
+    }
 
     static LoadingCircle* create() = ios 0x392c28, win 0x6b840, m1 0x414ec0, imac 0x4abd70;
 
@@ -15626,8 +15711,20 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 
 [[link(android)]]
 class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJDropDownLayerDelegate {
-    // virtual ~MoreOptionsLayer();
-    MoreOptionsLayer() {}
+    MoreOptionsLayer() {
+        m_page = -1;
+        m_toggleCount = 0;
+        m_pageCount = 0;
+        m_gpSignInBtn = nullptr;
+        m_gpSignOutBtn = nullptr;
+        m_categoryLabel = nullptr;
+    }
+    ~MoreOptionsLayer() {
+        CC_SAFE_RELEASE(m_objects);
+        CC_SAFE_RELEASE(m_variables);
+        auto gpm = GooglePlayManager::sharedState();
+        if (gpm->m_delegate2 == this) gpm->m_delegate2 = nullptr;
+    }
 
     static MoreOptionsLayer* create() = ios 0xf0558, win inline, imac 0x785240, m1 0x6993f0 {
         auto ret = new MoreOptionsLayer();
@@ -15686,8 +15783,12 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 
 [[link(android)]]
 class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
-    // virtual ~MoreSearchLayer();
-    inline MoreSearchLayer() {}
+    MoreSearchLayer() {}
+    ~MoreSearchLayer() {
+        CC_SAFE_RELEASE(m_commonSongNodes);
+        CC_SAFE_RELEASE(m_normalSongNodes);
+        CC_SAFE_RELEASE(m_customSongNodes);
+    }
 
     static MoreSearchLayer* create() = ios 0x57e9c, win inline, m1 0x541374, imac 0x615070 {
         auto ret = new MoreSearchLayer();
@@ -18918,8 +19019,14 @@ class SelectListIconDelegate {
 
 [[link(android)]]
 class SelectListIconLayer : FLAlertLayer {
-    // virtual ~SelectListIconLayer();
-    SelectListIconLayer() {}
+    SelectListIconLayer() {
+        m_difficulties = nullptr;
+        m_currentDifficulty = 0;
+        m_delegate = nullptr;
+    }
+    ~SelectListIconLayer() {
+        CC_SAFE_RELEASE(m_difficulties);
+    }
 
     static SelectListIconLayer* create(int difficulty) = win inline, imac 0x34cd20 {
         auto ret = new SelectListIconLayer();
@@ -22940,7 +23047,7 @@ class StatsCell : TableViewCell {
 [[link(android)]]
 class StatsLayer : GJDropDownLayer {
     // virtual ~StatsLayer();
-    inline StatsLayer() {}
+    StatsLayer() {}
 
     static StatsLayer* create() = win inline, m1 0x8e198, imac 0x9b220 {
         auto ret = new StatsLayer();
@@ -23466,7 +23573,7 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
 [[link(android)]]
 class TOSPopup : FLAlertLayer {
     // virtual ~TOSPopup();
-    inline TOSPopup() {}
+    TOSPopup() {}
 
     static TOSPopup* create() = win inline {
         auto ret = new TOSPopup();
