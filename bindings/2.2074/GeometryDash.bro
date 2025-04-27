@@ -14306,10 +14306,16 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     GameObject* createObject(int, cocos2d::CCPoint, bool) = ios 0x359a70, win 0x2cbf90, m1 0xc7be8, imac 0xe0940;
     void createObjectsFromSetup(gd::string&) = win 0x2cb110, m1 0xc4c50, imac 0xdd250, ios 0x3576e8;
     cocos2d::CCArray* createObjectsFromString(gd::string const&, bool, bool) = win 0x2cb920, m1 0xc6e60, imac 0xdf9e0, ios 0x3590e4;
-    void dirtifyTriggers();
+    void dirtifyTriggers() = win inline, m1 0xd58e0, imac 0xf0a00, ios 0x36211c {
+        m_triggersChanged = true;
+        m_colorTriggersChanged = true;
+        m_pulseTriggersChanged = true;
+        m_alphaTriggersChanged = true;
+        m_spawnTriggersChanged = true;
+    }
     cocos2d::CCArray* duplicateKeyframeAnimation(int) = win 0x2d9210;
     TodoReturn fastUpdateDisabledGroups();
-    int findGameObject(int);
+    GameObject* findGameObject(int);
     TodoReturn findStartPosObject() = ios 0x362134;
     TodoReturn forceShowSelectedObjects(bool);
     TodoReturn fullUpdateDisabledGroups();
@@ -14468,7 +14474,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     bool m_keepEditorLayer;
     bool m_unk3751;
     geode::SeedValueRSV m_coinCount;
-    bool m_unk3760;
+    bool m_triggersChanged;
     bool m_colorTriggersChanged;
     bool m_pulseTriggersChanged;
     bool m_alphaTriggersChanged;
