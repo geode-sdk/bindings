@@ -10125,7 +10125,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
     bool init(int, GJDifficultyName) = imac 0x2a3610, m1 0x24a3cc;
     void updateDifficultyFrame(int, GJDifficultyName) = ios 0x2e5534, win 0x29da90, imac 0x2a37c0, m1 0x24a5b0;
     void updateFeatureState(GJFeatureState) = ios 0x2e56ac, win 0x29dbb0, imac 0x2a3940, m1 0x24a728;
-    void updateFeatureStateFromLevel(GJGameLevel* level) = win inline, ios 0x2e5674, m1 0x24a6f0 {
+    void updateFeatureStateFromLevel(GJGameLevel* level) = win inline, ios 0x2e5674, m1 0x24a6f0, imac 0x2a38f0 {
         if (!level) return;
 
         GJFeatureState featureState;
@@ -19316,7 +19316,6 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
 
 [[link(android)]]
 class SetIDPopup : FLAlertLayer, TextInputDelegate {
-    // virtual ~SetIDPopup();
     SetIDPopup() = win 0x286480 {
         m_inputNode = nullptr;
         m_value = 0;
@@ -19327,6 +19326,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
         m_default = 0;
         m_delegate = nullptr;
     }
+    ~SetIDPopup() = win 0x293b10, m1 0x23fd6c, imac 0x297e20, ios 0x2dd760;
 
     static SetIDPopup* create(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x293bb0, m1 0x23ff3c, imac 0x2980c0, ios 0x2dd808;
 
@@ -19338,7 +19338,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
 
     bool init(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x293ce0, imac 0x298360, m1 0x240198, ios 0x2dd9fc;
     void onCancel(cocos2d::CCObject* sender) = win 0x294950, imac 0x298cf0, m1 0x240b14;
-    void onClose(cocos2d::CCObject* sender) = win 0x2949f0;
+    void onClose(cocos2d::CCObject* sender) = win 0x2949f0, m1 0x240a14, imac 0x298bf0, ios 0x2de248;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x2946a0, m1 0x240ab8, imac 0x298ca0, ios 0x2de2ec;
     void onResetValue(cocos2d::CCObject* sender) = win 0x2946f0, imac 0x298c80;
     void updateTextInputLabel() = win 0x294810, imac 0x298d90, m1 0x240bb4, ios 0x2de354;

@@ -1969,7 +1969,9 @@ class cocos2d::CCNode : cocos2d::CCObject {
     char const* description() = imac 0x260e70, m1 0x20cc04;
     void detachChild(cocos2d::CCNode*, bool);
     void insertChild(cocos2d::CCNode*, int);
-    unsigned int numberOfRunningActions();
+    unsigned int numberOfRunningActions() = m1 0x20dd8c, imac 0x262010, ios inline {
+        return m_pActionManager->numberOfRunningActionsInTarget(this);
+    }
     void pauseSchedulerAndActions() = m1 0x20dc28, imac 0x261e70, ios 0x23c0c4;
     void qsortAllChildrenWithIndex();
     void resumeSchedulerAndActions() = imac 0x261c50, m1 0x20da08, ios 0x23bed0;
@@ -1977,10 +1979,7 @@ class cocos2d::CCNode : cocos2d::CCObject {
     void schedule(cocos2d::SEL_SCHEDULE) = imac 0x2621b0, m1 0x20dee8, ios 0x23c2fc;
     void schedule(cocos2d::SEL_SCHEDULE, float) = imac 0x262210, m1 0x20df28, ios 0x23c320;
     void schedule(cocos2d::SEL_SCHEDULE selector, float interval, unsigned int repeat, float delay) = imac 0x2621e0, m1 0x20df0c, ios inline {
-        CCAssert( selector, "Argument must be non-nil");
-        CCAssert( interval >=0, "Argument must be positive");
-
-        m_pScheduler->scheduleSelector(selector, this, interval , repeat, delay, !m_bRunning);
+        m_pScheduler->scheduleSelector(selector, this, interval, repeat, delay, !m_bRunning);
     }
     void scheduleOnce(cocos2d::SEL_SCHEDULE selector, float delay) = imac 0x262240, m1 0x20df48, ios inline {
         this->schedule(selector, 0.0f, 0, delay);
@@ -3122,6 +3121,21 @@ class cocos2d::CCActionManager : cocos2d::CCObject {
     void removeAction(cocos2d::CCAction*) = ios 0x2f493c;
     void pauseTarget(cocos2d::CCObject*) = imac 0x221b10, m1 0x1d4aec;
     void resumeTarget(cocos2d::CCObject*) = m1 0x1d4be8;
+    unsigned int numberOfRunningActionsInTarget(cocos2d::CCObject* target) = m1 0x1d58cc, imac 0x2227b0, ios inline {
+        struct tHashElement {
+            ccArray* actions;
+            CCObject* target;
+            unsigned int actionIndex;
+            CCAction* currentAction;
+            bool currentActionSalvaged;
+            bool paused;
+            UT_hash_handle hh;
+        };
+
+        tHashElement* element = nullptr;
+        HASH_FIND_INT(reinterpret_cast<tHashElement*>(m_pTargets), &target, element);
+        return element && element->actions ? element->actions->num : 0;
+    }
 }
 
 [[link(win, android)]]
