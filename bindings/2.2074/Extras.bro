@@ -127,23 +127,18 @@ class DynamicObjectAction {
 
 class GJTransformState {
 	GJTransformState() {
-		m_unk1 = 0.f;
-		m_unk2 = false;
-		m_unk5 = cocos2d::CCPoint {};
-		m_unk6 = cocos2d::CCPoint {};
-		m_unk7 = cocos2d::CCPoint {};
-		m_angleY = 0.f;
-		m_skewX = 0.f;
-		m_skewY = 0.f;
-		m_unk3 = 0.f;
-		m_unk4 = 0.f;
-		m_unk5.x = 0.f;
-		m_unk5.y = 0.f;
 		m_scaleX = 1.f;
 		m_scaleY = 1.f;
 		m_angleX = 0.f;
-		m_unk8 = 1.f;
-		m_unk9 = 1.f;
+		m_angleY = 0.f;
+		m_skewX = 0.f;
+		m_skewY = 0.f;
+		m_transformRotation = 0.f;
+		m_transformReset = false;
+		m_transformRotationX = 0.f;
+		m_transformRotationY = 0.f;
+		m_transformScaleX = 1.f;
+		m_transformScaleY = 1.f;
 	}
 
 	float m_scaleX;
@@ -152,15 +147,15 @@ class GJTransformState {
 	float m_angleY;
 	float m_skewX;
 	float m_skewY;
-	float m_unk1;
-	bool m_unk2;
-	float m_unk3;
-	float m_unk4;
-	cocos2d::CCPoint m_unk5;
-	cocos2d::CCPoint m_unk6;
-	cocos2d::CCPoint m_unk7;
-	float m_unk8;
-	float m_unk9;
+	float m_transformRotation;
+	bool m_transformReset;
+	float m_transformRotationX;
+	float m_transformRotationY;
+	cocos2d::CCPoint m_transformPosition;
+	cocos2d::CCPoint m_transformSkewX;
+	cocos2d::CCPoint m_transformSkewY;
+	float m_transformScaleX;
+	float m_transformScaleY;
 }
 
 class CAState {

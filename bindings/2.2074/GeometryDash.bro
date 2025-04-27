@@ -12066,8 +12066,6 @@ class GJRotateCommandLayer : SetupTriggerPopup {
 class GJRotationControl : cocos2d::CCLayer {
     // virtual ~GJRotationControl();
     GJRotationControl() {
-        m_cursorDifference = cocos2d::CCPointMake(0.0f, 0.0f);
-        m_controlPosition = cocos2d::CCPointMake(0.0f, 0.0f);
         m_controlSprite = nullptr;
         m_startingRotation = 0.0f;
         m_currentRotation = 0.0f;
@@ -12782,10 +12780,10 @@ class GJTransformControl : cocos2d::CCLayer {
     TodoReturn applyRotation(float);
     TodoReturn calculateRotationOffset();
     void finishTouch();
-    void loadFromState(GJTransformState&);
-    TodoReturn loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&);
+    void loadFromState(GJTransformState&) = win 0x25cb40;
+    void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&) = win 0x128190;
     TodoReturn logCurrentZeroPos();
-    void onToggleLockScale(cocos2d::CCObject* sender);
+    void onToggleLockScale(cocos2d::CCObject* sender) = win 0x129780;
     void refreshControl() = win 0x1295f0, m1 0x43948, imac 0x4ab90;
     void saveToState(GJTransformState&);
     void scaleButtons(float) = win 0x129810;
@@ -12796,29 +12794,28 @@ class GJTransformControl : cocos2d::CCLayer {
     void updateButtons(bool, bool) = win 0x1298d0, m1 0x43f04, imac 0x4b1b0;
     TodoReturn updateMinMaxPositions();
 
-    // 2lazy
     cocos2d::CCNode* m_mainNodeParent;
     cocos2d::CCNode* m_mainNode;
-    cocos2d::CCArray* m_unk1;
+    cocos2d::CCArray* m_objects;
     int m_touchID;
     short m_transformButtonType;
     GJTransformControlDelegate* m_delegate;
     cocos2d::CCPoint m_cursorDifference;
-    cocos2d::CCPoint m_touchStart;
-    cocos2d::CCPoint m_unk3;
-    cocos2d::CCPoint m_unk4;
-    cocos2d::CCPoint m_unk5;
-    cocos2d::CCPoint m_unk6;
-    cocos2d::CCPoint m_unk7;
+    cocos2d::CCPoint m_topRight;
+    cocos2d::CCPoint m_bottomLeft;
+    cocos2d::CCPoint m_topRightPosition;
+    cocos2d::CCPoint m_bottomLeftPosition;
+    cocos2d::CCPoint m_topRightOrigin;
+    cocos2d::CCPoint m_bottomLeftOrigin;
     cocos2d::CCArray* m_warpSprites;
     cocos2d::CCPoint m_rotatePosition;
     CCMenuItemSpriteExtra* m_warpLockButton;
     float m_scaleX;
     float m_scaleY;
     bool m_warpLocked;
-    float m_unk10;
-    float m_unk11;
-    float m_unk12;
+    float m_rotationX;
+    float m_rotationY;
+    float m_rotation;
     float m_buttonScale;
 }
 
