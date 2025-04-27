@@ -8231,8 +8231,8 @@ class GameOptionsLayer : GJOptionsLayer {
         return true;
     }
     void onPracticeMusicSync(cocos2d::CCObject* sender) = win 0x298be0, m1 0x2458f4, imac 0x29e1b0, ios 0x2e1a04;
-    void onUIOptions(cocos2d::CCObject* sender) = win 0x298d60, m1 0x245868, imac 0x29e120;
-    void onUIPOptions(cocos2d::CCObject* sender) = win 0x298d80, m1 0x245888, imac 0x29e140;
+    void onUIOptions(cocos2d::CCObject* sender) = win 0x298d60, m1 0x245868, imac 0x29e120, ios 0x2e19c8;
+    void onUIPOptions(cocos2d::CCObject* sender) = win 0x298d80, m1 0x245888, imac 0x29e140, ios 0x2e19e8;
     void showPracticeMusicSyncUnlockInfo() = win 0x298380, m1 0x245968, imac 0x29e230;
 
     GJBaseGameLayer* m_baseGameLayer;
@@ -11572,7 +11572,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     virtual void didToggle(int toggle) {}
 
     void addGVToggle(char const* title, char const* variable, char const* description) = win 0x288470, imac 0x28a650, m1 0x2333cc;
-    void addToggle(char const* title, int id, bool initial, char const* description) = win inline, m1 0x2339d0, imac 0x28ac90 {
+    void addToggle(char const* title, int id, bool initial, char const* description) = win inline, m1 0x2339d0, imac 0x28ac90, ios 0x2d3c4c {
         addToggleInternal(title, id, initial, description);
     }
     void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x2885b0, m1 0x233518, imac 0x28a780;
@@ -17673,7 +17673,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn toggleBGEffectVisibility(bool);
     TodoReturn toggleDebugDraw(bool) = ios 0x11919c;
     TodoReturn toggleGhostEffect(int);
-    void toggleIgnoreDamage(bool value) = win inline, m1 0x9d9c8, imac 0xacbb0 {
+    void toggleIgnoreDamage(bool value) = win inline, m1 0x9d9c8, imac 0xacbb0, ios 0x1191f4 {
         this->m_ignoreDamage = value;
         if (value) this->m_isIgnoreDamageEnabled = true;
         this->m_player1->m_maybeCanRunIntoBlocks = value;
