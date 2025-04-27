@@ -390,8 +390,8 @@ enum class FormatterType {
     Float = 1
 };
 enum class AudioModType {
-    Speed = 0,
-    Volume = 1
+    Volume = 0,
+    Pitch = 1
 };
 enum class GJAreaActionType {
     Move = 0,

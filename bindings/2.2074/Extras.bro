@@ -212,9 +212,12 @@ class SequenceTriggerState {
 }
 
 class FMODSoundTween {
-	double m_unkDouble1;
-	double m_unkDouble2;
-	double m_unkDouble3;
+	float m_interval;
+	float m_duration;
+	float m_start;
+	float m_end;
+	float m_value;
+	bool m_finished;
 }
 
 class FMODQueuedMusic {
@@ -264,9 +267,9 @@ class FMODSoundState {
 	float m_pitch;
 	bool m_fastFourierTransform;
 	bool m_reverb;
-	int m_unkInt1;
-	bool m_unkBool1;
-	int m_keyForFMODMusicMap;
+	int m_effectID;
+	bool m_isMusic;
+	int m_musicID;
 	bool m_unkBool2;
 }
 
