@@ -74,9 +74,18 @@ endif()
 
 include(../../cmake/CPM.cmake)
 
-CPMAddPackage("gh:geode-sdk/TulipHook@2.4.3")
+CPMAddPackage("gh:geode-sdk/TulipHook@2.4.4")
 
 target_link_libraries(${PROJECT_NAME} PRIVATE TulipHookInclude)
+
+if (ADD_EXTRA_PACKAGES)
+	set(MAT_JSON_AS_INTERFACE ON)
+	CPMAddPackage("gh:geode-sdk/json@3.2.1")
+	CPMAddPackage("gh:fmtlib/fmt#11.1.4")
+
+	target_compile_definitions(${PROJECT_NAME} PRIVATE -DGEODE_MOD_ID="")
+	target_link_libraries(${PROJECT_NAME} PRIVATE fmt mat-json GeodeResult)
+endif()
 
 if (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 	set(GEODE_MEMBER_TEST_PLATFORM "mac")
