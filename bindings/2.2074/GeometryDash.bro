@@ -2297,7 +2297,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_textField = nullptr;
         m_delegate = nullptr;
         m_maxLabelLength = 0;
-        m_placeholderLabel = nullptr;
+        m_textLabel = nullptr;
         m_filterSwearWords = false;
         m_usePasswordChar = false;
         m_forceOffset = false;
@@ -2333,7 +2333,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void addTextArea(TextArea*) = ios 0x170150, win 0x4f540, imac 0x9e100, m1 0x90ac8;
     void forceOffset();
     cocos2d::CCLabelBMFont* getPlaceholderLabel() {
-        return m_placeholderLabel;
+        return m_textLabel;
     }
     gd::string getString() = win inline, imac 0x9e790, m1 0x91118, ios 0x1705d4 {
         return m_textField->getString();
