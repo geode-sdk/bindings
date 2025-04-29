@@ -4375,8 +4375,8 @@ class DrawGridLayer : cocos2d::CCLayer {
     cocos2d::CCPoint getPortalMinMax(GameObject*);
     bool init(cocos2d::CCNode*, LevelEditorLayer*) = m1 0xd9aa0, imac 0xf59b0, ios 0x3655bc;
     void loadTimeMarkers(gd::string) = win 0x2db3d0, m1 0xc6aa4, imac 0xdf600;
-    cocos2d::CCPoint posForTime(float) = win inline, m1 0xd449c, imac 0xef340, ios inline {
-        return LevelTools::posForTime(p0, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, m_editorLayer->m_levelSettings->m_platformerMode, m_editorLayer->m_gameState.m_unkInt17);
+    cocos2d::CCPoint posForTime(float time) = win inline, m1 0xd449c, imac 0xef340, ios inline {
+        return LevelTools::posForTime(time, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, m_editorLayer->m_levelSettings->m_platformerMode, m_editorLayer->m_gameState.m_unkInt17);
     }
     void postUpdate();
     void removeAudioLineObject(AudioLineGuideGameObject*);
@@ -4384,8 +4384,8 @@ class DrawGridLayer : cocos2d::CCLayer {
     void removeFromGuides(GameObject*);
     void removeFromSpeedObjects(EffectGameObject*);
     void sortSpeedObjects();
-    float timeForPos(cocos2d::CCPoint, int, int, bool, bool, bool, int) = win inline, m1 0xd2ce4, imac 0xed530, ios 0x360104 {
-        return LevelTools::timeForPos(p0, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, p1, p2, p3, m_editorLayer->m_levelSettings->m_platformerMode, p4, p5, p6);
+    float timeForPos(cocos2d::CCPoint position, int order, int channel, bool songTriggers, bool ignoreWarp, bool ignoreRotate, int id) = win inline, m1 0xd2ce4, imac 0xed530, ios 0x360104 {
+        return LevelTools::timeForPos(position, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, order, channel, songTriggers, m_editorLayer->m_levelSettings->m_platformerMode, ignoreWarp, ignoreRotate, id);
     }
     void updateMusicGuideTime(float);
     void updateTimeMarkers();
@@ -9070,8 +9070,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void toggleGroundVisibility(bool) = m1 0x116b60, imac 0x13efe0, ios 0x1fef2c {}
     virtual void toggleMGVisibility(bool) = m1 0x116b64, imac 0x13eff0, ios 0x1fef30 {}
     virtual void toggleHideAttempts(bool) = m1 0x116b68, imac 0x13f000, ios 0x1fef34 {}
-    virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) { return 0.f; }
-    virtual cocos2d::CCPoint posForTime(float) { return { 0.f, 0.f }; }
+    virtual float timeForPos(cocos2d::CCPoint position, int order, int channel, bool songTriggers, int id) { return 0.f; }
+    virtual cocos2d::CCPoint posForTime(float time) { return { 0.f, 0.f }; }
     virtual void resetSPTriggered() {}
     virtual void updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x230720, imac 0x13f1a0, m1 0x116cb0, ios 0x1ff018;
     virtual TodoReturn reverseDirection(EffectGameObject*) = win 0x212c80, m1 0xf8e6c, imac 0x11a1f0, ios 0x1ec3d4;
@@ -9249,7 +9249,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
     void loadLevelSettings() = ios 0x203d78, win 0x234770, imac 0x147920, m1 0x11d8c0;
     void loadStartPosObject() = ios 0x1feaec, win 0x230000, imac 0x13e9f0, m1 0x116658;
-    void loadUpToPosition(float, int, int) = win 0x2301a0;
+    void loadUpToPosition(float position, int order, int channel) = win 0x2301a0;
     TodoReturn maxZOrderForShaderZ(int);
     TodoReturn minZOrderForShaderZ(int);
     TodoReturn modifyGroupPhysics(AdvancedFollowEditObject*, cocos2d::CCArray*);
@@ -9932,7 +9932,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_rotatedCountDisplay;
     int m_followedCountDisplay;
 
-    int m_unknown3684;
+    bool m_loadingStartPosition;
+    bool m_processingAudioTriggers;
+    bool m_audioPaused;
+    bool m_startOptimization;
     GJGameLoadingLayer* m_loadingLayer;
     cocos2d::CCDrawNode* m_debugDrawNode;
     void* m_unk3678;
@@ -14254,8 +14257,8 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     virtual void removeFromGroup(GameObject*, int) = win 0x2d61c0, imac 0xef940, m1 0xd4a74, ios 0x361620;
     virtual void updateObjectSection(GameObject*) = win 0x2d6f90, imac 0xf0b10, m1 0xd59e4, ios 0x36221c;
     virtual void updateDisabledObjectsLastPos(cocos2d::CCArray*) = win 0x2d7240, imac 0xf0c50, m1 0xd5aec, ios 0x362318;
-    virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x2d5e60, imac 0xef260, m1 0xd43f0, ios 0x3613c0;
-    virtual cocos2d::CCPoint posForTime(float) = win 0x2d5f10, imac 0xef2f0, m1 0xd447c, ios 0x361430;
+    virtual float timeForPos(cocos2d::CCPoint position, int order, int channel, bool songTriggers, int id) = win 0x2d5e60, imac 0xef260, m1 0xd43f0, ios 0x3613c0;
+    virtual cocos2d::CCPoint posForTime(float time) = win 0x2d5f10, imac 0xef2f0, m1 0xd447c, ios 0x361430;
     virtual void resetSPTriggered() = win 0x2d5f80, imac 0xef390, m1 0xd44bc, ios 0x361450;
     virtual void didRotateGameplay() = win 0x2d6f20, imac 0xf0910, m1 0xd57e8, ios 0x362078;
     virtual void manualUpdateObjectColors(GameObject*) = win 0x2d1700, m1 0xd0ff4, imac 0xeb6d0, ios 0x35ea4c;
@@ -15235,13 +15238,13 @@ class LevelTools {
     static gd::string nameForArtist(int) = win 0x3143f0, m1 0x44d12c, imac 0x4eb680, ios 0x1ab840;
     static gd::string ngURLForArtist(int) = win 0x315a10, m1 0x44d960, imac 0x4ec2c0, ios 0x1ab89c;
     static TodoReturn offsetBPMForTrack(int);
-    static cocos2d::CCPoint posForTime(float time, cocos2d::CCArray* p1, int p2, bool p3, int& p4) = win inline, m1 0x44f1bc, imac 0x4edd00, ios 0x1abfb4 {
-        return posForTimeInternal(time, p1, p2, p3, false, false, p4, 0);
+    static cocos2d::CCPoint posForTime(float time, cocos2d::CCArray* objects, int speed, bool platformer, int& channel) = win inline, m1 0x44f1bc, imac 0x4edd00, ios 0x1abfb4 {
+        return posForTimeInternal(time, objects, speed, platformer, false, false, channel, 0);
     }
-    static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* gameObjects, int speedmodValue, bool disabledSpeedmod, bool, bool, int&, int) = win 0x317ea0, m1 0x44f1cc, imac 0x4edd30, ios 0x1abfc4;
+    static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* objects, int speed, bool platformer, bool ignoreMinorAxis, bool ignoreWarp, int& channel, int) = win 0x317ea0, m1 0x44f1cc, imac 0x4edd30, ios 0x1abfc4;
     static void sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool) = win 0x3187f0;
     static void sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*) = imac 0x66d20, win 0x318a70;
-    static float timeForPos(cocos2d::CCPoint position, cocos2d::CCArray* objects, int speed, int order, int channel, bool, bool platformer, bool, bool, int) = win 0x3174c0, m1 0x44e860, imac 0x4ed380, ios 0x1ab94c;
+    static float timeForPos(cocos2d::CCPoint position, cocos2d::CCArray* objects, int speed, int order, int channel, bool songTriggers, bool platformer, bool ignoreWarp, bool ignoreRotate, int id) = win 0x3174c0, m1 0x44e860, imac 0x4ed380, ios 0x1ab94c;
     static TodoReturn toggleDebugLogging(bool);
     static gd::string urlForAudio(int) = win 0x3146f0, m1 0x44d310, imac 0x4eb7f0, ios 0x1ab86c;
     static TodoReturn valueForSpeedMod(int);
@@ -17568,8 +17571,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual void toggleGroundVisibility(bool) = win 0x39c820, m1 0xa9dc8, imac 0xba8b0, ios 0x122508;
     virtual void toggleMGVisibility(bool) = win 0x39c8a0, imac 0xba8e0, m1 0xa9df8, ios 0x122538;
     virtual void toggleHideAttempts(bool) = win 0x39c8e0, imac 0xba900, m1 0xa9e08, ios 0x122548;
-    virtual float timeForPos(cocos2d::CCPoint, int, int, bool, int) = win 0x39c6f0, imac 0xba790, m1 0xa9cf8, ios 0x122438;
-    virtual cocos2d::CCPoint posForTime(float) = win 0x39c780, imac 0xba810, m1 0xa9d6c, ios 0x1224ac;
+    virtual float timeForPos(cocos2d::CCPoint position, int order, int channel, bool songTriggers, int id) = win 0x39c6f0, imac 0xba790, m1 0xa9cf8, ios 0x122438;
+    virtual cocos2d::CCPoint posForTime(float time) = win 0x39c780, imac 0xba810, m1 0xa9d6c, ios 0x1224ac;
     virtual void resetSPTriggered() = win 0x39c7e0, imac 0xba860, m1 0xa9d8c, ios 0x1224cc;
     virtual void updateTimeWarp(float) = win 0x394a40, imac 0xb68e0, m1 0xa6560, ios 0x11f5c4;
     virtual void playGravityEffect(bool) = win 0x39b180, imac 0xb9f30, m1 0xa94b4, ios 0x121cc4;
