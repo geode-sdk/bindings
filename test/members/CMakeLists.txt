@@ -7,8 +7,6 @@ add_library(${PROJECT_NAME} SHARED)
 set(GEODE_IS_MEMBER_TEST ON)
 add_compile_definitions(GEODE_IS_MEMBER_TEST)
 
-# even though the other source files do nothing on windows,
-# they still take a little bit to compile, thanks to msvc being very fast!
 if (WIN32)
 	target_sources(${PROJECT_NAME} PRIVATE Windows.cpp)
 elseif(APPLE)
@@ -74,18 +72,13 @@ endif()
 
 include(../../cmake/CPM.cmake)
 
-CPMAddPackage("gh:geode-sdk/TulipHook@2.4.4")
+set(MAT_JSON_AS_INTERFACE ON)
 CPMAddPackage("gh:fmtlib/fmt#11.1.4")
+CPMAddPackage("gh:geode-sdk/json@3.2.1")
+CPMAddPackage("gh:geode-sdk/TulipHook@2.4.4")
 
-target_link_libraries(${PROJECT_NAME} PRIVATE fmt TulipHookInclude)
-
-if (ADD_EXTRA_PACKAGES)
-	set(MAT_JSON_AS_INTERFACE ON)
-	CPMAddPackage("gh:geode-sdk/json@3.2.1")
-
-	target_compile_definitions(${PROJECT_NAME} PRIVATE -DGEODE_MOD_ID="")
-	target_link_libraries(${PROJECT_NAME} PRIVATE mat-json GeodeResult)
-endif()
+target_compile_definitions(${PROJECT_NAME} PRIVATE -DGEODE_MOD_ID="")
+target_link_libraries(${PROJECT_NAME} PRIVATE fmt GeodeResult mat-json TulipHookInclude)
 
 if (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 	set(GEODE_MEMBER_TEST_PLATFORM "mac")
