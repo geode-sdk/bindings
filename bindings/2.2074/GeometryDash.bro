@@ -15241,7 +15241,7 @@ class LevelTools {
     static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* gameObjects, int speedmodValue, bool disabledSpeedmod, bool, bool, int&, int) = win 0x317ea0, m1 0x44f1cc, imac 0x4edd30, ios 0x1abfc4;
     static void sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool) = win 0x3187f0;
     static void sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*) = imac 0x66d20, win 0x318a70;
-    static float timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int) = win 0x3174c0, m1 0x44e860, imac 0x4ed380, ios 0x1ab94c;
+    static float timeForPos(cocos2d::CCPoint position, cocos2d::CCArray* objects, int speed, int order, int channel, bool, bool platformer, bool, bool, int) = win 0x3174c0, m1 0x44e860, imac 0x4ed380, ios 0x1ab94c;
     static TodoReturn toggleDebugLogging(bool);
     static gd::string urlForAudio(int) = win 0x3146f0, m1 0x44d310, imac 0x4eb7f0, ios 0x1ab86c;
     static TodoReturn valueForSpeedMod(int);
@@ -20313,7 +20313,7 @@ class SetupMoveCommandPopup : SetupTriggerPopup {
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x27ab70, imac 0x5f1650, m1 0x5213d8, ios 0x273eac;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x279010, m1 0x51fd2c, imac 0x5efb70, ios 0x272a50;
-    void updateControlVisibility() = win 0x27a9b0;
+    void updateControlVisibility() = win 0x27a9b0, m1 0x520f38, imac 0x5f1140, ios 0x273a1c;
 
     bool m_smallStep;
 }
@@ -20530,7 +20530,11 @@ class SetupPickupTriggerPopup : SetupTriggerPopup {
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x41f090, imac 0x598f0, m1 0x4f5b0, ios 0x47190;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x41e900, m1 0x4ee48, imac 0x59080, ios 0x46b80;
-    void updateState() = win 0x41f020;
+    void updateState() = win 0x41f020, m1 0x4f518, imac 0x59840, ios inline {
+        auto pickupTriggerMode = this->getValue(88);
+        this->toggleGroup(1, pickupTriggerMode == 0.0f);
+        this->toggleGroup(2, pickupTriggerMode != 0.0f);
+    }
 }
 
 [[link(android)]]
