@@ -8320,7 +8320,7 @@ class GameStatsManager : cocos2d::CCNode {
     void createSecretChestRewards() = win 0x1e7760;
     void createSpecialChestItems() = m1 0x52580, imac 0x5d1d0, win 0x1e2c90;
     void createStoreItems() = ios 0x325a70, win 0x1ce830, m1 0x504f8;
-    void dataLoaded(DS_Dictionary*) = win 0x1ef0b0, m1 0x808bc;
+    void dataLoaded(DS_Dictionary*) = win 0x1ef0b0, m1 0x808bc, imac 0x8cee0, ios 0x33f030;
     void encodeDataTo(DS_Dictionary*) = ios 0x33ec78, m1 0x803f4;
     void firstSetup();
     void generateItemUnlockableData() = imac 0x651f0, m1 0x59b18, win 0x1ce340;
