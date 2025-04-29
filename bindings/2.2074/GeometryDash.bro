@@ -10001,9 +10001,9 @@ class GJChallengeItem : cocos2d::CCObject {
     void setCount(int value);
 
     GJChallengeType m_challengeType;
-    geode::SeedValueSRV m_count;
-    geode::SeedValueSRV m_reward;
-    geode::SeedValueSRV m_goal;
+    geode::SeedValueRSV m_count;
+    geode::SeedValueRSV m_reward;
+    geode::SeedValueRSV m_goal;
     int m_timeLeft;
     bool m_canClaim;
     int m_position;
