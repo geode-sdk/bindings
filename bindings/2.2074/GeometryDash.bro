@@ -4682,8 +4682,8 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onSelectAllRight(cocos2d::CCObject* sender) = ios 0x396eb4, win 0xdb9c0, m1 0x22ba58, imac 0x2820d0;
     void onSong(cocos2d::CCObject* sender);
     void onUnlockAllLayers(cocos2d::CCObject* sender) = win 0xdb720;
-    TodoReturn playStep2();
-    TodoReturn playStep3() = win 0xdcb50;
+    void playStep2() = win 0xdca20, m1 0x22c6d0, imac 0x282e10;
+    void playStep3() = win 0xdcb50, m1 0x22c7a0, imac 0x282ee0;
     void saveLevel() = ios 0x3970b4, win 0xdc310, m1 0x22c274, imac 0x282980;
     void toggleDebugDraw(cocos2d::CCObject* sender) = win 0xdbdd0;
     void toggleEditorBackground(cocos2d::CCObject*);
@@ -4937,14 +4937,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool onCreate() = ios 0x3dee84, win 0x10dd10, m1 0x2dfac, imac 0x2e600;
     void onCreateButton(cocos2d::CCObject* sender) = ios 0x3e32f0, win 0x10d880, imac 0x34d30, m1 0x342c0;
     void onCreateObject(int) = ios 0x3e35c0, win 0x10df10, m1 0x34758, imac 0x35170;
-    void onDelete(cocos2d::CCObject* sender) = win 0xe4760;
+    void onDelete(cocos2d::CCObject* sender) = win 0xe4760, m1 0x2db50, imac 0x2e140;
     void onDeleteAll(cocos2d::CCObject* sender);
     void onDeleteCustomItem(cocos2d::CCObject* sender) = win 0xe2e80, m1 0x31018, imac 0x31960, ios 0x3e0dbc;
     void onDeleteInfo(cocos2d::CCObject* sender) = m1 0x3198c, imac 0x32320;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0xe4d80, m1 0xdb78, imac 0xc7a0;
     void onDeleteSelectedType(cocos2d::CCObject* sender) = win 0xe5310, imac 0x32240, m1 0x318b8;
     void onDeleteStartPos(cocos2d::CCObject* sender) = win 0xe5360, m1 0x31890, imac 0x32210, ios 0x3e13f4;
-    void onDeselectAll(cocos2d::CCObject* sender) = ios 0x3dda90, win 0x10fd40, m1 0x2c478;
+    void onDeselectAll(cocos2d::CCObject* sender) = ios 0x3dda90, win 0x10fd40, m1 0x2c478, imac 0x2c890;
     void onDuplicate(cocos2d::CCObject* sender) = ios 0x3dcae4, win 0x1113e0, m1 0x2b4dc, imac 0x2b2e0;
     void onEditColor(cocos2d::CCObject* sender) = win 0x11d0b0;
     void onFindObject(cocos2d::CCObject* sender);
@@ -5017,17 +5017,17 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void showMaxCoinError() = m1 0x345f0, imac 0x35020;
     void showMaxError() = win 0x111170, m1 0x342fc, imac 0x34d70;
     void showUI(bool) = ios 0x3e6770, win 0x110200, m1 0x388f4, imac 0x3de00;
-    void sliderChanged(cocos2d::CCObject*) = ios 0x3bf328, win 0xe13a0, imac 0xbd50;
+    void sliderChanged(cocos2d::CCObject*) = ios 0x3bf328, win 0xe13a0, imac 0xbd50, m1 0xd16c;
     static int smartTypeForKey(int) = win 0x12b890;
     cocos2d::CCSprite* spriteFromObjectString(gd::string str, bool, bool, int objLimit, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0x10c790, imac 0x344a0, m1 0x33ab0, ios 0x3e2af4;
     TodoReturn toggleDuplicateButton();
     void toggleEditObjectButton() = win 0x118f10;
-    void toggleEnableRotate(cocos2d::CCObject*) = ios 0x3bf870, win 0x10eb00;
+    void toggleEnableRotate(cocos2d::CCObject*) = ios 0x3bf870, win 0x10eb00, imac 0xc5b0, m1 0xd994;
     void toggleFreeMove(cocos2d::CCObject*) = ios 0x3bf790, win 0x10e980, m1 0xd8b4, imac 0xc4c0;
     TodoReturn toggleLockUI(bool);
     void toggleMode(cocos2d::CCObject*) = ios 0x3dc7b8, win 0xe37f0, imac 0x2af00, m1 0x2b140;
     TodoReturn toggleObjectInfoLabel() = win 0xe1730;
-    void toggleSnap(cocos2d::CCObject*) = ios 0x3bf7f8, win 0x10ea20;
+    void toggleSnap(cocos2d::CCObject*) = ios 0x3bf7f8, win 0x10ea20, imac 0xc530, m1 0xd91c;
     TodoReturn toggleSpecialEditButtons();
     void toggleStickyControls(bool enable) = ios 0x3de424, win inline, imac 0x2d590, m1 0x2d020 {
         m_stickyControlsEnabled = enable;
@@ -5061,7 +5061,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateGridNodeSize() = ios 0x3df914, win 0xe1560, imac 0x2f620, m1 0x2f000;
     TodoReturn updateGridNodeSize(int);
     TodoReturn updateGroupIDBtn2();
-    void updateGroupIDLabel() = imac 0x2ccd0, win 0x11dac0;
+    void updateGroupIDLabel() = imac 0x2ccd0, win 0x11dac0, m1 0x2c844;
     void updateObjectInfoLabel() = ios 0x3dfae0, win 0xe17c0, m1 0x2f208, imac 0x2f870;
     void updatePlaybackBtn() = win 0x110850, m1 0x2d08c, imac 0x2d5f0, ios 0x3de490;
     void updateSlider() = ios 0x3dca34, win 0xe14a0;
@@ -14407,7 +14407,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn getRelativeOffset(GameObject*);
     TodoReturn getSavedEditorPosition(int) = imac 0xe9750;
     TodoReturn getSavedEditorPositions() = imac 0xe9790;
-    TodoReturn getSectionCount() = imac 0xe9bb0;
+    TodoReturn getSectionCount() = imac 0xe9bb0, m1 0xcf870;
     TodoReturn getSelectedEditorOrder();
     TodoReturn getSelectedEffectPos();
     TodoReturn getSelectedOrderChannel();
