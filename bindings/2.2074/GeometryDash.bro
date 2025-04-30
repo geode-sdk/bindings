@@ -4597,8 +4597,8 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onSelectAllRight(cocos2d::CCObject* sender) = ios 0x396eb4, win 0xdb9c0, m1 0x22ba58, imac 0x2820d0;
     void onSong(cocos2d::CCObject* sender);
     void onUnlockAllLayers(cocos2d::CCObject* sender) = win 0xdb720;
-    TodoReturn playStep2();
-    TodoReturn playStep3() = win 0xdcb50;
+    void playStep2() = win 0xdca20, m1 0x22c6d0, imac 0x282e10;
+    void playStep3() = win 0xdcb50, m1 0x22c7a0, imac 0x282ee0;
     void saveLevel() = ios 0x3970b4, win 0xdc310, m1 0x22c274, imac 0x282980;
     void toggleDebugDraw(cocos2d::CCObject* sender) = win 0xdbdd0;
     void toggleEditorBackground(cocos2d::CCObject*);
