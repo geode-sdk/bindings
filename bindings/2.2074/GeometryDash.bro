@@ -7771,7 +7771,7 @@ class GameObject : CCSpritePlus {
     void dirtifyObjectRect();
     void disableObject() = imac 0x5a5400;
     bool dontCountTowardsLimit();
-    void duplicateAttributes(GameObject*);
+    void duplicateAttributes(GameObject*) = win 0x19ed00;
     void duplicateColorMode(GameObject*);
     void duplicateValues(GameObject*) = win 0x19ee40;
     cocos2d::ccColor3B editorColorForCustomMode(int);
@@ -14362,7 +14362,10 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         if (m_undoObjects->count() >= (m_increaseMaxUndoRedo ? 1000 : 200)) m_undoObjects->removeObjectAtIndex(0, true);
         m_undoObjects->addObject(object);
     }
-    TodoReturn applyAttributeState(GameObject*, GameObject*);
+    void applyAttributeState(GameObject*, GameObject*) = win inline {
+        p0->duplicateAttributes(p1);
+        p0->m_shouldUpdateColorSprite = true;
+    }
     void applyGroupState(GameObject* dest, GameObject* src) = win 0x2d8d60;
     TodoReturn breakApartTextObject(TextGameObject*);
     bool canPasteState();
@@ -14431,9 +14434,30 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void onPlaytest() = ios 0x3624a8, win 0x2d7330, imac 0xf0f00, m1 0xd5d40;
     void onResumePlaytest() = win 0x2d7d60, m1 0xd66bc, imac 0xf1990, ios 0x362b04;
     void onStopPlaytest() = ios 0x362c30, win 0x2d7f50, m1 0xd67f8, imac 0xf1ae0;
-    void pasteAttributeState(GameObject*, cocos2d::CCArray*) = imac 0xf2930, m1 0xd7594;
+    void pasteAttributeState(GameObject*, cocos2d::CCArray*) = win inline, imac 0xf2930, m1 0xd7594 {
+        if (!m_copyStateObject) return;
+
+        if (!p0) {
+            CCObject* obj;
+            CCARRAY_FOREACH(p1, obj) {
+                this->applyAttributeState(static_cast<GameObject*>(obj), m_copyStateObject);
+            }
+        }
+        else this->applyAttributeState(p0, m_copyStateObject);
+
+        if (!GameManager::sharedState()->getGameVariable("0156")) this->pasteGroupState(p0, p1);
+    }
     TodoReturn pasteColorState(GameObject*, cocos2d::CCArray*);
-    void pasteGroupState(GameObject*, cocos2d::CCArray*) = imac 0xf2a30, m1 0xd769c;
+    void pasteGroupState(GameObject*, cocos2d::CCArray*) = win inline, imac 0xf2a30, m1 0xd769c {
+        if (!m_copyStateObject) return;
+
+        if (p0) return this->applyGroupState(p0, m_copyStateObject);
+
+        CCObject* obj;
+        CCARRAY_FOREACH(p1, obj) {
+            this->applyGroupState(static_cast<GameObject*>(obj), m_copyStateObject);
+        }
+    }
     TodoReturn pasteParticleState(ParticleGameObject*, cocos2d::CCArray*);
     void processLoadedMoveActions() = imac 0xb7920, m1 0xa7448;
     TodoReturn quickUpdateAllPositions() = win 0x2d70c0;
