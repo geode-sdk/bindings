@@ -52,8 +52,8 @@ public class Regexes {
                 "(?<=^(?:(?: '{'0,4'}')|\\t))" + 
                 // Get the dispatch modifier keyword if one is defined
                 "(?<dispatch>(?:inline|virtual|static|callback)\\s+)?" +
-                // Grab the return type and name of the function, or the name if it's a destructor
-                "(?:(?:(?<return>{0})\\s+(?<name>{2}))|(?<destructor>~{2}))" + 
+                // Grab the return type and name of the function, or the name if it's a destructor or constructor
+                "(?:(?:(?<return>{0})\\s+(?<name>{2}))|(?<destructor>~{2})|(?<constructor>{2}))" +
                 // Grab the parameters
                 "\\(\\s*(?<params>(?:{1}\\s*,?\\s*)*)\\)" +
                 "(?:"+
@@ -78,8 +78,8 @@ public class Regexes {
                 "(?<=^)" + 
                 // Get the dispatch modifier keyword if one is defined
                 "(?<dispatch>(?:inline|virtual|static|callback)\\s+)?" +
-                // Grab the return type and name of the function, or the name if it's a destructor
-                "(?:(?:(?<return>{0})\\s+(?<name>{2}))|(?<destructor>~{2}))" +
+                // Grab the return type and name of the function
+                "(?:(?:(?<return>{0})\\s+(?<name>{2})))" +
                 // Grab the parameters
                 "\\(\\s*(?<params>(?:{1}\\s*,?\\s*)*)\\)" +
                 "(?:" +

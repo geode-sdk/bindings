@@ -449,7 +449,7 @@ public class ScriptWrapper {
                 SourceType.USER_DEFINED
             ));
         }
-        // Parse return type, or null if this is a destructor
+        // Parse return type, or null if this is a destructor or constructor
         ReturnParameterImpl bromaRetType = null;
         boolean hasStructReturn = false;
         if (fun.returnType.isPresent() && !ignoreReturnType) {
@@ -463,6 +463,17 @@ public class ScriptWrapper {
                 }
             }
             bromaRetType = new ReturnParameterImpl(type, wrapped.getCurrentProgram());
+        }
+        // Constructor return type
+        if (fun.constructor.isPresent()) {
+            bromaRetType = new ReturnParameterImpl(
+                addOrGetType(Broma.Type.ptr(fun.parent.broma, fun.parent.name.value), platform),
+                wrapped.getCurrentProgram()
+            );
+        }
+        // Destructor return type
+        if (fun.destructor.isPresent()) {
+            bromaRetType = new ReturnParameterImpl(VoidDataType.dataType, wrapped.getCurrentProgram());
         }
         // Add `this` arg (Intel macOS / 32-bit Android)
         if (hasThis && (platform == Platform.ANDROID32 || platform == Platform.MAC_INTEL)) {

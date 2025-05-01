@@ -167,6 +167,7 @@ public class Broma {
         public final Optional<Type> returnType;
         public final Optional<Match> name;
         public final Optional<Match> destructor;
+        public final Optional<Match> constructor;
         public final List<Param> params;
         public final Optional<Match> platformOffset;
         public final Optional<Range> platformOffsetAddPoint;
@@ -186,7 +187,8 @@ public class Broma {
                 returnType = Optional.empty();
             }
             name = Match.maybe(broma, matcher, "name");
-            destructor = Match.maybe(broma, matcher, "destructor");
+            destructor = parent != null ? Match.maybe(broma, matcher, "destructor") : Optional.empty();
+            constructor = parent != null ? Match.maybe(broma, matcher, "constructor") : Optional.empty();
             platformOffsetInsertPoint = Match.maybe(broma, matcher, "insertplatformshere");
             params = new ArrayList<Param>();
 
@@ -216,7 +218,7 @@ public class Broma {
         }
 
         public String getName() {
-            return this.name.orElseGet(() -> this.destructor.get()).value;
+            return this.name.orElseGet(() -> this.destructor.orElseGet(() -> this.constructor.get())).value;
         }
         
         public CConv getCallingConvention(Platform platform) {
