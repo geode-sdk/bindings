@@ -2353,7 +2353,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     gd::string getString() = win inline, imac 0x9e790, m1 0x91118, ios 0x1705d4 {
         return m_textField->getString();
     }
-    bool init(float, float, char const*, char const*, int, char const*) = win 0x4f300, imac 0x9dd90, m1 0x90770;
+    bool init(float, float, char const*, char const*, int, char const*) = win 0x4f300, imac 0x9dd90, m1 0x90770, ios 0x16feec;
     void refreshLabel() = ios 0x170608, win 0x4fb40, imac 0x9e850, m1 0x911d4;
     void setAllowedChars(gd::string filter) = win inline, imac 0x9e650, m1 0x90fe4, ios 0x1704b4 {
         m_allowedChars = filter;
