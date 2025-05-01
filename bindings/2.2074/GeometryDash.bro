@@ -12842,8 +12842,8 @@ class GJTransformControl : cocos2d::CCLayer {
     TodoReturn applyRotation(float);
     TodoReturn calculateRotationOffset();
     void finishTouch();
-    void loadFromState(GJTransformState&) = win 0x25cb40;
-    void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&) = win 0x128190;
+    void loadFromState(GJTransformState&);
+    void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&);
     TodoReturn logCurrentZeroPos();
     void onToggleLockScale(cocos2d::CCObject* sender) = win 0x129780;
     void refreshControl() = win 0x1295f0, m1 0x43948, imac 0x4ab90;
