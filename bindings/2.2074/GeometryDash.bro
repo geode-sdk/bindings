@@ -4682,8 +4682,8 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onSelectAllRight(cocos2d::CCObject* sender) = ios 0x396eb4, win 0xdb9c0, m1 0x22ba58, imac 0x2820d0;
     void onSong(cocos2d::CCObject* sender);
     void onUnlockAllLayers(cocos2d::CCObject* sender) = win 0xdb720;
-    void playStep2() = win 0xdca20, m1 0x22c6d0, imac 0x282e10;
-    void playStep3() = win 0xdcb50, m1 0x22c7a0, imac 0x282ee0;
+    void playStep2() = win 0xdca20, m1 0x22c6d0, imac 0x282e10, ios 0x3974d0;
+    void playStep3() = win 0xdcb50, m1 0x22c7a0, imac 0x282ee0, ios 0x3975a0;
     void saveLevel() = ios 0x3970b4, win 0xdc310, m1 0x22c274, imac 0x282980;
     void toggleDebugDraw(cocos2d::CCObject* sender) = win 0xdbdd0;
     void toggleEditorBackground(cocos2d::CCObject*);
@@ -4933,11 +4933,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn onAssignNewGroupID();
     void onColorFilter(cocos2d::CCObject* sender) = win 0xe5bd0, m1 0x31b94, imac 0x324d0;
     void onCopy(cocos2d::CCObject* sender);
-    void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0, imac 0x2c960, m1 0x2c538;
+    void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0, imac 0x2c960, m1 0x2c538, ios 0x3ddb38;
     bool onCreate() = ios 0x3dee84, win 0x10dd10, m1 0x2dfac, imac 0x2e600;
     void onCreateButton(cocos2d::CCObject* sender) = ios 0x3e32f0, win 0x10d880, imac 0x34d30, m1 0x342c0;
     void onCreateObject(int) = ios 0x3e35c0, win 0x10df10, m1 0x34758, imac 0x35170;
-    void onDelete(cocos2d::CCObject* sender) = win 0xe4760, m1 0x2db50, imac 0x2e140;
+    void onDelete(cocos2d::CCObject* sender) = win 0xe4760, m1 0x2db50, imac 0x2e140, ios 0x3deb7c;
     void onDeleteAll(cocos2d::CCObject* sender);
     void onDeleteCustomItem(cocos2d::CCObject* sender) = win 0xe2e80, m1 0x31018, imac 0x31960, ios 0x3e0dbc;
     void onDeleteInfo(cocos2d::CCObject* sender) = m1 0x3198c, imac 0x32320;
@@ -4957,7 +4957,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onLockLayer(cocos2d::CCObject* sender) = ios 0x3e16e8, win 0x11dc00, m1 0x2c7fc, imac 0x2cc80;
     void onNewCustomItem(cocos2d::CCObject* sender) = ios 0x3e073c, win 0xe2990, m1 0x304d0, imac 0x30d30;
     void onPaste(cocos2d::CCObject* sender);
-    void onPasteColor(cocos2d::CCObject* sender) = win 0x112cd0, m1 0x2c5d0, imac 0x2ca00;
+    void onPasteColor(cocos2d::CCObject* sender) = win 0x112cd0, m1 0x2c5d0, imac 0x2ca00, ios 0x3ddbd0;
     void onPasteInPlace(cocos2d::CCObject* sender);
     void onPasteState(cocos2d::CCObject* sender) = win 0x112b40, m1 0x2c57c, imac 0x2c9a0, ios 0x3ddb7c;
     void onPause(cocos2d::CCObject* sender) = ios 0x3dc64c, win 0xe03d0, imac 0x2ad50, m1 0x2afc0;
@@ -5061,7 +5061,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateGridNodeSize() = ios 0x3df914, win 0xe1560, imac 0x2f620, m1 0x2f000;
     TodoReturn updateGridNodeSize(int);
     TodoReturn updateGroupIDBtn2();
-    void updateGroupIDLabel() = imac 0x2ccd0, win 0x11dac0, m1 0x2c844;
+    void updateGroupIDLabel() = imac 0x2ccd0, win 0x11dac0, m1 0x2c844, ios 0x3ddd7c;
     void updateObjectInfoLabel() = ios 0x3dfae0, win 0xe17c0, m1 0x2f208, imac 0x2f870;
     void updatePlaybackBtn() = win 0x110850, m1 0x2d08c, imac 0x2d5f0, ios 0x3de490;
     void updateSlider() = ios 0x3dca34, win 0xe14a0;
@@ -12845,7 +12845,7 @@ class GJTransformControl : cocos2d::CCLayer {
     void loadFromState(GJTransformState&);
     void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&);
     TodoReturn logCurrentZeroPos();
-    void onToggleLockScale(cocos2d::CCObject* sender) = win 0x129780;
+    void onToggleLockScale(cocos2d::CCObject* sender) = win 0x129780, m1 0x4a8fc, imac 0x537b0, ios 0x3f3ae4;
     void refreshControl() = win 0x1295f0, m1 0x43948, imac 0x4ab90;
     void saveToState(GJTransformState&);
     void scaleButtons(float) = win 0x129810;
