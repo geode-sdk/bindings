@@ -7362,7 +7362,7 @@ class GameManager : GManager {
     TodoReturn resetAllIcons();
     TodoReturn resetCoinUnlocks();
     TodoReturn resetDPadSettings(bool);
-    cocos2d::CCSize resolutionForKey(int) = win 0x187890, imac 0x3791c0;
+    cocos2d::CCSize resolutionForKey(int) = win 0x187890, m1 0x309710, imac 0x3791c0, ios 0x31de78;
     TodoReturn resumeAudio();
     TodoReturn resumeAudioDelayed();
     void returnToLastScene(GJGameLevel*) = ios 0x31d818, win 0x187030, m1 0x308f8c, imac 0x3789d0;
