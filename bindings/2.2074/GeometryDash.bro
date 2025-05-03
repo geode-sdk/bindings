@@ -3697,7 +3697,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     TodoReturn getHSV();
     void highlightSelected(ButtonSprite*) = ios 0x54060, win 0xa97d0, m1 0x19e1b8, imac 0x1e6d00;
     bool init(GameObject*, cocos2d::CCArray*) = ios 0x50fa4, win 0xa4d00, imac 0x1e3120, m1 0x19a9d0;
-    void onBreakApart(cocos2d::CCObject* sender) = m1 0x19d61c, imac 0x1e6010;
+    void onBreakApart(cocos2d::CCObject* sender) = win 0xa9410, m1 0x19d61c, imac 0x1e6010;
     void onBrowse(cocos2d::CCObject* sender);
     void onClear(cocos2d::CCObject* sender);
     void onClose(cocos2d::CCObject* sender) = ios 0x52e0c, win 0xa9900, m1 0x19c978, imac 0x1e5320;
