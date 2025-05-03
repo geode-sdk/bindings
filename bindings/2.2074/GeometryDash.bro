@@ -18660,7 +18660,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     void selectAThread();
     void showCompletedLevel() = win 0x3cc5a0, m1 0x3f9e98, imac 0x48ce80;
     void showSecretLevel() = win 0x3cc430;
-    void updateMessageLabel(gd::string text) = win 0x3cff20;
+    void updateMessageLabel(gd::string text) = win 0x3cff20, m1 0x3f8234, imac 0x48afb0, ios 0x30a674;
     void updateSearchLabel(char const*) = ios 0x30a754, win 0x3cfc30, m1 0x3f831c, imac 0x48b090;
 
     int m_threadTag;
