@@ -4662,7 +4662,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onBuildHelper(cocos2d::CCObject* sender) = win 0xdb7b0, m1 0x22b9a8, imac 0x281fc0;
     void onCopyWColor(cocos2d::CCObject* sender) = win 0xdb7f0;
     void onCreateExtras(cocos2d::CCObject* sender) = win 0xdb760;
-    void onCreateLoop(cocos2d::CCObject* sender) = win 0xdb7d0, m1 0x22b9b8, imac 0x281fe0;
+    void onCreateLoop(cocos2d::CCObject* sender) = win 0xdb7d0, m1 0x22b9b8, imac 0x281fe0, ios 0x396e14;
     void onCreateTemplate(cocos2d::CCObject* sender);
     void onExitEditor(cocos2d::CCObject* sender) = ios 0x3975d8, win 0xdcd60, m1 0x22c7fc, imac 0x282f40;
     void onExitNoSave(cocos2d::CCObject* sender) = ios 0x396a80, win 0xdce30, imac 0x281ad0, m1 0x22b51c;
