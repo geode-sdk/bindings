@@ -2737,18 +2737,19 @@ class ColorAction : cocos2d::CCObject {
         m_fromColor = state.m_fromColor;
         m_toColor = state.m_toColor;
         m_color = state.m_color;
-        m_property19 = state.m_property19;
+        m_paused = state.m_paused;
         m_blending = state.m_blending;
         m_copyOpacity = state.m_copyOpacity;
-        m_unknown = state.m_unknown;
+        m_legacyHSV = state.m_legacyHSV;
         m_playerColor = state.m_playerColor;
         m_colorID = state.m_colorID;
         m_copyID = state.m_copyID;
-        m_unknown2 = state.m_unknown2;
+        m_uniqueID = state.m_uniqueID;
         m_duration = state.m_duration;
         m_fromOpacity = state.m_fromOpacity;
         m_toOpacity = state.m_toOpacity;
         m_deltaTime = state.m_deltaTime;
+        m_currentOpacity = state.m_currentOpacity;
         m_copyHSV = state.m_copyHSV;
     }
     TodoReturn resetAction();
@@ -2756,18 +2757,19 @@ class ColorAction : cocos2d::CCObject {
         state.m_fromColor = m_fromColor;
         state.m_toColor = m_toColor;
         state.m_color = m_color;
-        state.m_property19 = m_property19;
+        state.m_paused = m_paused;
         state.m_blending = m_blending;
         state.m_copyOpacity = m_copyOpacity;
-        state.m_unknown = m_unknown;
+        state.m_legacyHSV = m_legacyHSV;
         state.m_playerColor = m_playerColor;
         state.m_colorID = m_colorID;
         state.m_copyID = m_copyID;
-        state.m_unknown2 = m_unknown2;
+        state.m_uniqueID = m_uniqueID;
         state.m_duration = m_duration;
         state.m_fromOpacity = m_fromOpacity;
         state.m_toOpacity = m_toOpacity;
         state.m_deltaTime = m_deltaTime;
+        state.m_currentOpacity = m_currentOpacity;
         state.m_copyHSV = m_copyHSV;
     }
     void setupFromMap(gd::map<gd::string, gd::string>&) = win 0x252800;
@@ -2777,8 +2779,7 @@ class ColorAction : cocos2d::CCObject {
     // TodoReturn writeSaveString(fmt::BasicWriter<char>&);
 
     bool m_stepFinished;
-    // property 19
-    bool m_property19;
+    bool m_paused;
     cocos2d::ccColor3B m_color;
     float m_currentOpacity;
     float m_deltaTime;
@@ -2792,9 +2793,9 @@ class ColorAction : cocos2d::CCObject {
     float m_toOpacity;
     cocos2d::ccHSVValue m_copyHSV;
     int m_copyID;
-    bool m_unknown;
+    bool m_copyColorCalculated;
     bool m_copyOpacity;
-    bool m_unknown2;
+    bool m_copyColorLoop;
     int m_uniqueID;
     int m_controlID;
     bool m_legacyHSV;
@@ -2813,7 +2814,7 @@ class ColorAction2 {
     TodoReturn updateCustomColor(cocos2d::ccColor3B, cocos2d::ccColor3B);
 
     bool m_stepFinished;
-    bool m_stepFinished2;
+    bool m_paused;
     cocos2d::ccColor3B m_color;
     float m_currentOpacity;
     float m_deltaTime;
@@ -2827,9 +2828,9 @@ class ColorAction2 {
     float m_toOpacity;
     cocos2d::ccHSVValue m_copyHSV;
     int m_copyID;
-    bool m_unknown;
+    bool m_copyColorCalculated;
     bool m_copyOpacity;
-    bool m_unknown2;
+    bool m_copyColorLoop;
     int m_uniqueID;
     bool m_legacyHSV;
     ColorActionSprite* m_colorSprite;
@@ -2875,7 +2876,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
     virtual bool init() = win 0x251690, imac 0x2c4770, m1 0x268668, ios 0x10764;
 
     void updateBlending(bool enabled) = win 0x2519c0, imac 0x2c4aa0;
-    void updateCopyLabel(int channelID, bool copyOpacity) = win 0x2516b0, m1 0x268674, imac 0x2c4790, ios 0x10770;
+    void updateCopyLabel(int channelID, bool copyColorLoop) = win 0x2516b0, m1 0x268674, imac 0x2c4790, ios 0x10770;
     void updateOpacity(float alpha) = ios 0x10910, win 0x251870, imac 0x2c4950, m1 0x26881c;
     void updateValues(ColorAction* action) = win inline, imac 0x2c4bb0, m1 0x268a84, ios 0x10b74 {
         if (!action) {
@@ -2885,7 +2886,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
             this->updateBlending(false);
             return;
         }
-        this->updateCopyLabel(action->m_copyID, action->m_copyOpacity);
+        this->updateCopyLabel(action->m_copyID, action->m_copyColorLoop);
         this->updateOpacity(action->m_fromOpacity);
         this->updateBlending(action->m_blending);
         if (action->m_copyID != 0 && !action->m_copyOpacity) {
@@ -4405,7 +4406,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     bool init(cocos2d::CCNode*, LevelEditorLayer*) = m1 0xd9aa0, imac 0xf59b0, ios 0x3655bc;
     void loadTimeMarkers(gd::string) = win 0x2db3d0, m1 0xc6aa4, imac 0xdf600;
     cocos2d::CCPoint posForTime(float time) = win inline, m1 0xd449c, imac 0xef340, ios inline {
-        return LevelTools::posForTime(time, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, m_editorLayer->m_levelSettings->m_platformerMode, m_editorLayer->m_gameState.m_unkInt17);
+        return LevelTools::posForTime(time, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, m_editorLayer->m_levelSettings->m_platformerMode, m_editorLayer->m_gameState.m_rotateChannel);
     }
     void postUpdate();
     void removeAudioLineObject(AudioLineGuideGameObject*);
@@ -9090,9 +9091,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void addToSpeedObjects(EffectGameObject*) {}
     virtual void objectsCollided(int, int) = win 0x213c90, imac 0x11b120, m1 0xf9cf8, ios 0x1ecfb0;
     virtual void updateColor(cocos2d::ccColor3B& color, float fadeTime, int colorID, bool blending, float opacity, cocos2d::ccHSVValue& copyHSV, int colorIDToCopy, bool copyOpacity, EffectGameObject* callerObject, int unk1, int unk2) = win 0x21e5c0, imac 0x12c570, m1 0x1076d8, ios 0x1f3a00;
-    virtual void toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int) = win 0x21e7a0, imac 0x12c710, m1 0x107844, ios 0x1f3b6c;
-    virtual void spawnGroup(int, bool, double, gd::vector<int> const&, int, int) = win 0x2156a0, imac 0x11c510, m1 0xfad48, ios 0x1edbbc;
-    virtual void spawnObject(GameObject*, double, gd::vector<int> const&) = win 0x215b50, imac 0x11c8b0, m1 0xfb108, ios 0x1ede3c;
+    virtual void toggleGroupTriggered(int group, bool activate, gd::vector<int> const& remapKeys, int triggerID, int controlID) = win 0x21e7a0, imac 0x12c710, m1 0x107844, ios 0x1f3b6c;
+    virtual void spawnGroup(int group, bool ordered, double delay, gd::vector<int> const& remapKeys, int triggerID, int controlID) = win 0x2156a0, imac 0x11c510, m1 0xfad48, ios 0x1edbbc;
+    virtual void spawnObject(GameObject* object, double delay, gd::vector<int> const& remapKeys) = win 0x215b50, imac 0x11c8b0, m1 0xfb108, ios 0x1ede3c;
     virtual void activateEndTrigger(int, bool, bool) {}
     virtual void activatePlatformerEndTrigger(EndTriggerGameObject*, gd::vector<int> const&) {}
     virtual void toggleGlitter(bool) {}
@@ -9376,7 +9377,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void refreshCounterLabels() = win 0x22fe50, imac 0x13dda0;
     void refreshKeyframeAnims() = ios 0x1e34f4, win 0x22e580, m1 0xecb14;
     void regenerateEnterEasingBuffers() = imac 0x106590, ios 0x1e0dd0;
-    TodoReturn registerSpawnRemap(gd::vector<ChanceObject>&);
+    int registerSpawnRemap(gd::vector<ChanceObject>&);
     TodoReturn registerStateObject(EffectGameObject*);
     TodoReturn removeBackground();
     TodoReturn removeCustomEnterEffects(int, bool);
@@ -9799,11 +9800,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
 
     gd::unordered_map<int, gd::vector<LabelGameObject*>> m_umapIntVectorLabelGameObjectPtr;
     gd::unordered_map<int, gd::vector<LabelGameObject*>> m_umapIntVectorLabelGameObjectPtr2;
-    gd::map<std::pair<int, int>, int> m_mapTupleIntIntIntTupleIntIntInt;
+    gd::set<std::tuple<int, int, int>> m_mapTupleIntIntIntTupleIntIntInt;
     bool m_increasedLayerCapacity;
     std::array<float, 2000> m_massiveFloatArray;
 
-    gd::map<std::pair<int, int>, int> m_mapPairIntIntPairFloatFloat;
+    gd::map<std::pair<int, int>, std::pair<float, float>> m_mapPairIntIntPairFloatFloat;
     gd::vector<float> field_3058;
     gd::unordered_map<int, int> m_umapIntInt3;
     int m_easingRelated;
@@ -10401,7 +10402,7 @@ class GJEffectManager : cocos2d::CCNode {
     gd::unordered_set<int> m_unkMap460;
     gd::map<int, int> m_unkMap498;
     gd::unordered_set<int> m_unkMap4c8;
-    gd::vector<SpawnTriggerAction> m_nukVector500;
+    gd::vector<SpawnTriggerAction> m_spawnTriggerActions;
     gd::vector<GroupCommandObject2*> m_unkVector518;
     gd::vector<GroupCommandObject2*> m_unkVector530;
     gd::vector<CCObject*> m_unkVector548;
@@ -10780,7 +10781,7 @@ class GJGameState {
     float m_timeWarp;
     float m_timeWarpRelated;
     int m_currentChannel;
-    int m_unkInt17;
+    int m_rotateChannel;
     gd::unordered_map<int, int> m_spawnChannelRelated0;
     gd::unordered_map<int, bool> m_spawnChannelRelated1;
     double m_totalTime;
@@ -15340,10 +15341,10 @@ class LevelTools {
     static gd::string nameForArtist(int) = win 0x3143f0, m1 0x44d12c, imac 0x4eb680, ios 0x1ab840;
     static gd::string ngURLForArtist(int) = win 0x315a10, m1 0x44d960, imac 0x4ec2c0, ios 0x1ab89c;
     static TodoReturn offsetBPMForTrack(int);
-    static cocos2d::CCPoint posForTime(float time, cocos2d::CCArray* objects, int speed, bool platformer, int& channel) = win inline, m1 0x44f1bc, imac 0x4edd00, ios 0x1abfb4 {
-        return posForTimeInternal(time, objects, speed, platformer, false, false, channel, 0);
+    static cocos2d::CCPoint posForTime(float time, cocos2d::CCArray* objects, int speed, bool platformer, int& rotateChannel) = win inline, m1 0x44f1bc, imac 0x4edd00, ios 0x1abfb4 {
+        return posForTimeInternal(time, objects, speed, platformer, false, false, rotateChannel, 0);
     }
-    static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* objects, int speed, bool platformer, bool ignoreMinorAxis, bool ignoreWarp, int& channel, int) = win 0x317ea0, m1 0x44f1cc, imac 0x4edd30, ios 0x1abfc4;
+    static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* objects, int speed, bool platformer, bool ignoreMinorAxis, bool ignoreWarp, int& rotateChannel, int) = win 0x317ea0, m1 0x44f1cc, imac 0x4edd30, ios 0x1abfc4;
     static void sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool) = win 0x3187f0;
     static void sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*) = imac 0x66d20, win 0x318a70;
     static float timeForPos(cocos2d::CCPoint position, cocos2d::CCArray* objects, int speed, int order, int channel, bool songTriggers, bool platformer, bool ignoreWarp, bool ignoreRotate, int id) = win 0x3174c0, m1 0x44e860, imac 0x4ed380, ios 0x1ab94c;
@@ -23820,9 +23821,9 @@ class TriggerControlGameObject : EffectGameObject {
 
 [[link(android)]]
 class TriggerEffectDelegate {
-    virtual void toggleGroupTriggered(int, bool, gd::vector<int> const&, int, int) {}
-    virtual void spawnGroup(int, bool, double, gd::vector<int> const&, int, int) {}
-    virtual void spawnObject(GameObject*, double, gd::vector<int> const&) {}
+    virtual void toggleGroupTriggered(int group, bool activate, gd::vector<int> const& remapKeys, int triggerID, int controlID) {}
+    virtual void spawnGroup(int group, bool ordered, double delay, gd::vector<int> const& remapKeys, int triggerID, int controlID) {}
+    virtual void spawnObject(GameObject* object, double delay, gd::vector<int> const& remapKeys) {}
 }
 
 [[link(android)]]

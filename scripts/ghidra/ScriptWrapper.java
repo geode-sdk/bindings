@@ -212,6 +212,55 @@ public class ScriptWrapper {
         return manager.addDataType(pair, DataTypeConflictHandler.REPLACE_HANDLER);
     }
 
+    DataType addOrGetTuple(String name, Platform platform) throws Exception {
+        final var manager = wrapped.getCurrentProgram().getDataTypeManager();
+        var cat = this.createCategoryAll(new CategoryPath("/ClassDataTypes/std/tuple"));
+        var existing = manager.getDataType(cat, name);
+        if (existing != null) {
+            return existing;
+        }
+
+        var tuple = new StructureDataType(cat, name, 0);
+
+        var template = name.substring(6, name.length() - 1);
+        var templateCount = 0;
+        ArrayList<String> matches = new ArrayList<String>();
+        for (var i = 0; i < template.length(); i++) {
+            if (template.charAt(i) == '<') {
+                templateCount++;
+            }
+            else if (template.charAt(i) == '>') {
+                templateCount--;
+            }
+            else if (template.charAt(i) == ',' && templateCount == 0) {
+                matches.add(template.substring(0, i).trim());
+                template = template.substring(i + 1);
+                i = -1;
+            }
+            else if (i == template.length() - 1) {
+                matches.add(template.trim());
+            }
+        }
+
+        if (matches.isEmpty()) {
+            printfmt("Tuple type {0} doesn't match the expected format", name);
+            return manager.addDataType(tuple, DataTypeConflictHandler.REPLACE_HANDLER);
+        }
+
+        for (var i = 0; i < matches.size(); i++) {
+            var inner = this.addOrGetType(matches.get(i), platform);
+
+            if (inner == null) {
+                printfmt("Tuple type {0} doesn't match the expected format", name);
+                return manager.addDataType(tuple, DataTypeConflictHandler.REPLACE_HANDLER);
+            }
+
+            tuple.add(inner, "element" + (i + 1), "Element " + (i + 1) + " of the tuple");
+        }
+        tuple.setPackingEnabled(true);
+        return manager.addDataType(tuple, DataTypeConflictHandler.REPLACE_HANDLER);
+    }
+
     DataType addOrGetType(String name, Platform platform) throws Exception {
         return this.addOrGetType(Broma.fakeType(name), platform);
     }
@@ -313,6 +362,10 @@ public class ScriptWrapper {
         // STL pair
         else if (type.name.value.startsWith("std::pair")) {
             result = this.addOrGetPair(type.name.value.substring(5) + normalizedTemplate, platform);
+        }
+        // STL tuple
+        else if (type.name.value.startsWith("std::tuple")) {
+            result = this.addOrGetTuple(type.name.value.substring(5) + normalizedTemplate, platform);
         }
         // Array types
         else if (type.name.value.startsWith("std::array")) {
