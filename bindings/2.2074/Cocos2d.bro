@@ -1385,7 +1385,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     void calculateWorldSpace();
     bool isFull();
     void loadDefaults();
-    void loadScaledDefaults(float) = imac 0x7b60e0;
+    void loadScaledDefaults(float) = m1 0x6c66b4, imac 0x7b60e0, ios 0x199ab8;
     void resetSystem() = imac 0x7b4740, m1 0x6c5358, ios 0x198a38;
     void resumeSystem() = imac 0x7b4730, m1 0x6c534c, ios 0x198a2c;
     void saveDefaults();
