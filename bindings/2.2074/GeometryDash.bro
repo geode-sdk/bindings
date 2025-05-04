@@ -6544,7 +6544,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     virtual void forceReloadRequests(bool) = win 0x13dcd0, imac 0x77b9e0, m1 0x690840, ios 0x1b96e0;
 
     void deleteSelected() = ios 0x1b8f60, win 0x13ce00, m1 0x68fcd0, imac 0x77aeb0;
-    bool init(bool) = win 0x13be30, m1 0x68ea04, imac 0x779a80;
+    bool init(bool) = win 0x13be30, m1 0x68ea04, imac 0x779a80, ios 0x1b7f6c;
     bool isCorrect(char const*) = win 0x13d500;
     void loadPage(int) = win 0x13d630;
     void onClose(cocos2d::CCObject* sender) = win 0x13d130;
@@ -8966,16 +8966,11 @@ class GJAccountSettingsDelegate {
 
 [[link(android)]]
 class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
-    // virtual ~GJAccountSettingsLayer();
-
-    inline GJAccountSettingsLayer() {
+    GJAccountSettingsLayer() {
         m_accountID = 0;
         m_messageStatus = 0;
         m_friendStatus = 0;
         m_commentHistoryStatus = 0;
-        m_youtubeURL = "";
-        m_twitterURL = "";
-        m_twitchURL = "";
         m_youtubeInput = nullptr;
         m_twitterInput = nullptr;
         m_twitchInput = nullptr;
@@ -8983,8 +8978,13 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
         m_friendRequestSettings = nullptr;
         m_commentSettings = nullptr;
     }
+    ~GJAccountSettingsLayer() {
+        CC_SAFE_RELEASE(m_messageSettings);
+        CC_SAFE_RELEASE(m_friendRequestSettings);
+        CC_SAFE_RELEASE(m_commentSettings);
+    }
 
-    static GJAccountSettingsLayer* create(int a1) = win inline, imac 0x28d2c0, m1 0x235cbc {
+    static GJAccountSettingsLayer* create(int a1) = win inline, imac 0x28d2c0, m1 0x235cbc, ios 0x2d57b8 {
         GJAccountSettingsLayer* pRet = new GJAccountSettingsLayer();
         if (pRet && pRet->init(a1)) {
             pRet->autorelease();
@@ -9001,7 +9001,7 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
     virtual void textInputReturn(CCTextInputNode*) = win 0x7b620, imac 0x28f440, m1 0x237bc0, ios 0x2d73b8;
 
     TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float) = imac 0x28ec10;
-    bool init(int) = win 0x28a850, m1 0x235dd4, imac 0x28d440;
+    bool init(int) = win 0x28a850, m1 0x235dd4, imac 0x28d440, ios 0x2d5888;
     void onClose(cocos2d::CCObject* sender) = imac 0x28ef80;
     void onCommentSetting(cocos2d::CCObject* sender);
     void onFriendRequests(cocos2d::CCObject* sender);
@@ -11771,7 +11771,7 @@ class GJPromoPopup : FLAlertLayer {
     // virtual ~GJPromoPopup();
     GJPromoPopup() {}
 
-    static GJPromoPopup* create(gd::string) = win inline {
+    static GJPromoPopup* create(gd::string) = win inline, m1 0x249be0, imac 0x2a2de0, ios 0x2e4d9c {
         auto ret = new GJPromoPopup();
         if (ret->init(p0)) {
             ret->autorelease();
@@ -11786,8 +11786,8 @@ class GJPromoPopup : FLAlertLayer {
     virtual void keyBackClicked() = win 0x27db20, m1 0x24a034, imac 0x2a32a0, ios 0x2e5190;
     virtual void show() = win 0x867a0, m1 0x24a13c, imac 0x2a33b0, ios 0x2e51d4;
 
-    bool init(gd::string) = win 0x29d590, imac 0x2a2f80;
-    void onClose(cocos2d::CCObject* sender) = win 0x27dac0;
+    bool init(gd::string) = win 0x29d590, m1 0x249d48, imac 0x2a2f80, ios 0x2e4eb4;
+    void onClose(cocos2d::CCObject* sender) = win 0x27dac0, m1 0x249f8c, imac 0x2a3200, ios 0x2e50f4;
 
     gd::string m_promoFrame;
 }
@@ -15062,7 +15062,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     void onMoreOptions(cocos2d::CCObject* sender) = win 0x2f9a80, imac 0x6137a0;
     void onMostDownloaded(cocos2d::CCObject* sender) = win 0x2fc4c0;
     void onMostLikes(cocos2d::CCObject* sender) = win 0x2fc580;
-    void onMostRecent(cocos2d::CCObject* sender) = win 0x2fc880, m1 0x540424, imac 0x614110;
+    void onMostRecent(cocos2d::CCObject* sender) = win 0x2fc880, m1 0x540424, imac 0x614110, ios 0x572dc;
     void onSearch(cocos2d::CCObject* sender) = ios 0x56c98, win 0x2fcb80, m1 0x53fe68, imac 0x613ba0;
     void onSearchMode(cocos2d::CCObject* sender) = win 0x2f9a30, imac 0x6137c0, m1 0x53fad4;
     void onSearchUser(cocos2d::CCObject* sender) = ios 0x56ddc, win 0x2fcdc0, m1 0x53fff0, imac 0x613d10;
@@ -15376,11 +15376,11 @@ class LikeItemDelegate {
 class LikeItemLayer : FLAlertLayer {
     // virtual ~LikeItemLayer();
 
-    static LikeItemLayer* create(LikeItemType, int, int) = win 0x318ea0, imac 0x5e1410;
+    static LikeItemLayer* create(LikeItemType, int, int) = win 0x318ea0, m1 0x513b04, imac 0x5e1410, ios 0x24bbb0;
 
     virtual void keyBackClicked() = win 0x84650, m1 0x514184, imac 0x5e1b00, ios 0x24c0fc;
 
-    bool init(LikeItemType, int, int) = win 0x318fa0, imac 0x5e1580, m1 0x513c28;
+    bool init(LikeItemType, int, int) = win 0x318fa0, imac 0x5e1580, m1 0x513c28, ios 0x24bc88;
     void onClose(cocos2d::CCObject* sender);
     void onDislike(cocos2d::CCObject* sender) = win 0x319380, m1 0x514090, imac 0x5e1a00;
     void onLike(cocos2d::CCObject* sender) = win 0x319370;
@@ -18139,7 +18139,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
         CC_SAFE_RELEASE(m_demons);
     }
 
-    static RateDemonLayer* create(int levelID) = win inline, m1 0x21cbdc, imac 0x271bd0 {
+    static RateDemonLayer* create(int levelID) = win inline, m1 0x21cbdc, imac 0x271bd0, ios 0x41def0 {
         auto ret = new RateDemonLayer();
         if (ret->init(levelID)) {
             ret->autorelease();
@@ -18154,7 +18154,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     virtual void uploadActionFailed(int, int) = win 0x3b2110, imac 0x272690, m1 0x21d6bc, ios 0x41e6ac;
     virtual void onClosePopup(UploadActionPopup*) = win 0x3b21e0, imac 0x272800, m1 0x21d82c, ios 0x41e748;
 
-    bool init(int) = win 0x3b1790, m1 0x21ccfc, imac 0x271d40;
+    bool init(int) = win 0x3b1790, m1 0x21ccfc, imac 0x271d40, ios 0x41dfc8;
     void onClose(cocos2d::CCObject* sender) = win 0x3b2260, m1 0x21d3e8, imac 0x272420;
     void onRate(cocos2d::CCObject* sender) = win 0x3b1ee0, imac 0x272470, m1 0x21d444;
     void selectRating(cocos2d::CCObject*) = win 0x3b1d60, m1 0x21d2dc, imac 0x272330;
@@ -18217,7 +18217,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     // virtual ~RateStarsLayer();
     RateStarsLayer();
 
-    static RateStarsLayer* create(int, bool, bool) = win 0x3b2c40, m1 0x223a90, imac 0x279820;
+    static RateStarsLayer* create(int, bool, bool) = win 0x3b2c40, m1 0x223a90, imac 0x279820, ios 0x84128;
 
     virtual void keyBackClicked() = win 0x3b3b90, m1 0x224d64, imac 0x27ab50, ios 0x84c9c;
     virtual void uploadActionFinished(int, int) = win 0x3b3990, imac 0x27a810, m1 0x2249d8, ios 0x84b00;
@@ -18225,7 +18225,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     virtual void onClosePopup(UploadActionPopup*) = win 0x3b3ad0, imac 0x27aa70, m1 0x224c78, ios 0x84c20;
 
     CCMenuItemSpriteExtra* getStarsButton(int, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float) = win 0x3b3470;
-    bool init(int, bool, bool) = win 0x3b2d90, m1 0x223bd8, imac 0x2799b0;
+    bool init(int, bool, bool) = win 0x3b2d90, m1 0x223bd8, imac 0x2799b0, ios 0x841b4;
     void onClose(cocos2d::CCObject* sender) = win 0x3b3b50, m1 0x224850, imac 0x27a680;
     void onFeature(cocos2d::CCObject* sender) = win 0x3b3440, imac 0x27a650;
     void onRate(cocos2d::CCObject* sender) = win 0x3b37a0, imac 0x27a6d0, m1 0x2248ac;
@@ -22290,7 +22290,7 @@ class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
     // virtual ~ShareLevelSettingsLayer();
     ShareLevelSettingsLayer() {}
 
-    static ShareLevelSettingsLayer* create(GJGameLevel* level) = win inline, m1 0x21ac5c {
+    static ShareLevelSettingsLayer* create(GJGameLevel* level) = win inline, m1 0x21ac5c, imac 0x26f7e0, ios 0x2753e8 {
         auto ret = new ShareLevelSettingsLayer();
         if (ret->init(level)) {
             ret->autorelease();
@@ -22302,7 +22302,7 @@ class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
 
     virtual void keyBackClicked() = win 0x4799c0, m1 0x21c6d0, imac 0x271520, ios 0x276b68;
 
-    bool init(GJGameLevel*) = win 0x478c00, imac 0x270760, m1 0x21b9b8;
+    bool init(GJGameLevel*) = win 0x478c00, imac 0x270760, m1 0x21b9b8, ios 0x27603c;
     void onClose(cocos2d::CCObject* sender) = win 0x479940;
     void onUnlisted(cocos2d::CCObject* sender) = win 0x479620, imac 0x271250, m1 0x21c440;
     void onUnlistedFriendsOnly(cocos2d::CCObject* sender);
@@ -24210,7 +24210,7 @@ class UploadActionPopup : FLAlertLayer {
         this->setKeypadEnabled(false);
         this->removeFromParentAndCleanup(true);
     }
-    bool init(UploadPopupDelegate* delegate, gd::string str) = win 0x28dc60, imac 0x2908c0, m1 0x238df0;
+    bool init(UploadPopupDelegate* delegate, gd::string str) = win 0x28dc60, imac 0x2908c0, m1 0x238df0, ios 0x2d80e0;
     void onClose(cocos2d::CCObject* sender) = win 0x28e2d0;
     void showFailMessage(gd::string message) = win 0x28e1d0, m1 0x2393d4, imac 0x290ee0, ios 0x2d85c8;
     void showSuccessMessage(gd::string message) = win 0x28e0c0, m1 0x23926c, imac 0x290d70, ios 0x2d84d8;
