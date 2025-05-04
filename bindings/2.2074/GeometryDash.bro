@@ -3399,7 +3399,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     virtual void textChanged(CCTextInputNode*) = win 0x41a6b0, imac 0x463af0, m1 0x3d3ba8, ios 0x2d0ec4;
 
     TodoReturn centerAlignParticle(cocos2d::CCObject*);
-    void createParticleSlider(gjParticleValue, int, bool, cocos2d::CCPoint, cocos2d::CCArray*) = win 0x4188d0;
+    void createParticleSlider(gjParticleValue value, int page, bool centerLabel, cocos2d::CCPoint position, cocos2d::CCArray* displayNodes) = win 0x4188d0;
     TodoReturn getPage(int);
     TodoReturn getPageButton(int);
     TodoReturn getPageContainer(int);
@@ -15328,9 +15328,15 @@ class LevelTools {
     static gd::string getAudioFileName(int) = win 0x313750, imac 0x4eb120, m1 0x44ca9c, ios 0x1ab7f0;
     static gd::string getAudioString(int) = win 0x316950, imac 0x4ecd10, m1 0x44e26c, ios 0x1ab920;
     static gd::string getAudioTitle(int) = win 0x312bd0, imac 0x4eab80, m1 0x44c364, ios 0x1ab7c0;
-    static TodoReturn getLastGameplayReversed();
-    static TodoReturn getLastGameplayRotated();
-    static TodoReturn getLastTimewarp();
+    static bool getLastGameplayReversed() = win inline, m1 0x44f67c, imac 0x4ee310, ios inline {
+        return *reinterpret_cast<bool*>(geode::base::get() + GEODE_WINDOWS(0x6a4c06) GEODE_IOS(0x85f0c0));
+    }
+    static bool getLastGameplayRotated() = win inline, m1 0x44f688, imac 0x4ee320, ios 0x1ac47c {
+        return *reinterpret_cast<bool*>(geode::base::get() + 0x6a4c05);
+    }
+    static float getLastTimewarp() = win inline, m1 0x44f670, imac 0x4ee300, ios 0x1ac470 {
+        return *reinterpret_cast<float*>(geode::base::get() + 0x69c198);
+    }
     static GJGameLevel* getLevel(int, bool) = win 0x310320, imac 0x4e8620, m1 0x44a514, ios 0x1aa160;
     static gd::unordered_set<int> getLevelList() = m1 0x44a138, imac 0x4e82b0;
     static SongInfoObject* getSongObject(int id) = win inline, m1 0x44f694, imac 0x4ee330, ios 0x1ac488 {
