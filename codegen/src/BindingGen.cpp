@@ -169,7 +169,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
     }
 
         for (auto& cls : root.classes) {
-        if (is_cocos_class(cls.name))
+        if (is_cocos_or_fmod_class(cls.name))
             continue;
 
         std::string filename = (codegen::getUnqualifiedClassName(cls.name) + ".hpp");
@@ -195,7 +195,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
         }
 
         for (auto dep : cls.attributes.depends) {
-            if (is_cocos_class(dep)) continue;
+            if (is_cocos_or_fmod_class(dep)) continue;
 
             std::string depfilename = (codegen::getUnqualifiedClassName(dep) + ".hpp");
 
@@ -267,11 +267,8 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
 
                 fb = &fn->prototype;
 
-                if (codegen::platformNumber(fn->binds) == -1 && codegen::getStatus(*fn) != BindStatus::Binded) {
-                    used_format = format_strings::error_definition;
-
-                    if (fb->type != FunctionType::Normal)
-                        continue;
+                if (codegen::platformNumber(fn->binds) == -1 && codegen::getStatus(*fn) != BindStatus::Binded && fb->type != FunctionType::Normal) {
+                    continue;
                 }
 
                 addressDocs = generateAddressDocs(*fn, fn->binds);

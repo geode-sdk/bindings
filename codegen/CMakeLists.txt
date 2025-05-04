@@ -4,7 +4,7 @@ project(Codegen LANGUAGES C CXX)
 include(../cmake/CPM.cmake)
 
 CPMAddPackage("gh:fmtlib/fmt#11.0.2")
-CPMAddPackage("gh:geode-sdk/Broma#aad1438")
+CPMAddPackage("gh:geode-sdk/Broma#26217a4")
 CPMAddPackage("gh:geode-sdk/json@3.2.1")
 
 target_compile_definitions(fmt PUBLIC -DFMT_CONSTEVAL=)
@@ -17,6 +17,7 @@ add_executable(${PROJECT_NAME}
 	# glob sucks so just list em out
 	src/Main.cpp
 	src/AndroidSymbol.cpp
+	src/WindowsSymbol.cpp
 	src/BindingGen.cpp
 	src/JsonInterfaceGen.cpp
 	src/ModifyGen.cpp
