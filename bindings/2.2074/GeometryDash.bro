@@ -9229,7 +9229,20 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void generateVisibilityGroups() = ios 0x1e306c, win 0x22c1e0;
     TodoReturn getActiveOrderSpawnObjects();
     float getAreaObjectValue(EnterEffectInstance*, GameObject*, cocos2d::CCPoint&, bool&) = win 0x222d90;
-    TodoReturn getBumpMod(PlayerObject*, int) = ios 0x1ec028;
+    float getBumpMod(PlayerObject* player, int type) = win inline, ios 0x1ec028 {
+        if (static_cast<GameObjectType>(type) == GameObjectType::PinkJumpPad) {
+            if (player->m_isShip) return .35f;
+            if (player->m_isBird) return .4f;
+            if (player->m_isBall || player->m_isSpider) return .7f;
+            return .65f;
+        }
+        if (static_cast<GameObjectType>(type) == GameObjectType::RedJumpPad) {
+            if (player->m_isShip) return (player->m_vehicleSize < 1.f) ? .95f : .63f;            
+            if (player->m_isBird) return (player->m_vehicleSize < 1.f) ? .98f : .6f;
+            return 1.25f;
+        }
+        return 1.f;
+    }
     TodoReturn getCameraEdgeValue(int) = ios 0x1ff2e4, imac 0x13f630;
     TodoReturn getCapacityString();
     TodoReturn getCenterGroupObject(int, int);
