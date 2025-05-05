@@ -15400,9 +15400,9 @@ class LikeItemLayer : FLAlertLayer {
     virtual void keyBackClicked() = win 0x84650, m1 0x514184, imac 0x5e1b00, ios 0x24c0fc;
 
     bool init(LikeItemType, int, int) = win 0x318fa0, imac 0x5e1580, m1 0x513c28, ios 0x24bc88;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, imac 0x5e1950, m1 0x513fdc;
     void onDislike(cocos2d::CCObject* sender) = win 0x319380, m1 0x514090, imac 0x5e1a00;
-    void onLike(cocos2d::CCObject* sender) = win 0x319370;
+    void onLike(cocos2d::CCObject* sender) = win 0x319370, imac 0x5e1980, m1 0x514018;
     void triggerLike(bool isLiked) = win 0x319390;
 
     LikeItemType m_itemType;
@@ -15420,8 +15420,8 @@ class ListButtonBar : cocos2d::CCNode {
     int getPage();
     void goToPage(int) = win 0x6b380, m1 0x361584;
     bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = win 0x6ae80, imac 0x3de110, m1 0x360f58;
-    void onLeft(cocos2d::CCObject* sender) = win 0x6b430, m1 0x361460;
-    void onRight(cocos2d::CCObject* sender) = win 0x6b410, m1 0x3614ec;
+    void onLeft(cocos2d::CCObject* sender) = win 0x6b430, m1 0x361460, imac 0x3de670;
+    void onRight(cocos2d::CCObject* sender) = win 0x6b410, m1 0x3614ec, imac 0x3de710;
 
     BoomScrollLayer* m_scrollLayer;
     cocos2d::CCArray* m_pages;
