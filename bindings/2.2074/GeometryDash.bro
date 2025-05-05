@@ -17191,7 +17191,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool isInBasicMode() = ios 0x225fa0, win inline, m1 0x37b8c8, imac 0x3fcbc0 {
         return !this->isFlying() && !m_isBall && !m_isSpider;
     }
-    bool isInNormalMode() = win inline, m1 0x36f5a8, imac 0x3ee1c0 {
+    bool isInNormalMode() = win inline, m1 0x36f5a8, imac 0x3ee1c0, ios 0x21c1bc {
         return !this->isFlying() && !m_isBall && !m_isRobot && !m_isSpider;
     }
     bool isSafeFlip(float) = ios 0x22415c;
