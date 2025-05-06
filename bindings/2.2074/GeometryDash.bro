@@ -21204,8 +21204,8 @@ class SetupSpawnPopup : SetupTriggerPopup {
     void onAddRemap(cocos2d::CCObject* sender) = win 0x446910;
     void onDeleteRemap(cocos2d::CCObject* sender) = win 0x446a80;
     void onSelectRemap(cocos2d::CCObject* sender) = win 0x447440;
-    void queueUpdateButtons() = win 0x447510;
-    void updateRemapButtons(float) = win 0x446c20, m1 0x227d98, imac 0x27e2e0;
+    void queueUpdateButtons() = win 0x447510, ios 0xfbc20;
+    void updateRemapButtons(float) = win 0x446c20, m1 0x227d98, imac 0x27e2e0, ios 0xfb69c;
 
     bool m_isBusy;
     cocos2d::CCArray* m_remapButtons;
@@ -21460,7 +21460,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     float getTriggerValue(int property, GameObject* object) = win 0x4620f0, imac 0x229d20, m1 0x1db6b4, ios 0x135bc8;
     float getTruncatedValue(float, int) = win 0x45f750;
     float getTruncatedValueByTag(int, float);
-    void goToPage(int, bool) = win 0x45c010;
+    void goToPage(int, bool) = win 0x45c010, m1 0x1d6540, imac 0x223650, ios 0x131bac;
     void hideAll();
     bool init(EffectGameObject* trigger, cocos2d::CCArray* triggers, float width, float height, int background) = win 0x45b900, imac 0x222f20, m1 0x1d5eb4, ios 0x13154c;
     void onCustomEaseArrow(int, bool) = win 0x465590;
