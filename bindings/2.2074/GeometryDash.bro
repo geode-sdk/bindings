@@ -21204,7 +21204,7 @@ class SetupSpawnPopup : SetupTriggerPopup {
     void onAddRemap(cocos2d::CCObject* sender) = win 0x446910;
     void onDeleteRemap(cocos2d::CCObject* sender) = win 0x446a80;
     void onSelectRemap(cocos2d::CCObject* sender) = win 0x447440;
-    void queueUpdateButtons() = win 0x447510, ios 0xfbc20;
+    void queueUpdateButtons() = win 0x447510, m1 0x228568, imac 0x27eb80, ios 0xfbc20;
     void updateRemapButtons(float) = win 0x446c20, m1 0x227d98, imac 0x27e2e0, ios 0xfb69c;
 
     bool m_isBusy;
