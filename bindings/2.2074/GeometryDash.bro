@@ -15478,10 +15478,10 @@ class LikeItemLayer : FLAlertLayer {
     virtual void keyBackClicked() = win 0x84650, m1 0x514184, imac 0x5e1b00, ios 0x24c0fc;
 
     bool init(LikeItemType, int, int) = win 0x318fa0, imac 0x5e1580, m1 0x513c28, ios 0x24bc88;
-    void onClose(cocos2d::CCObject* sender) = win 0x84620, imac 0x5e1950, m1 0x513fdc;
-    void onDislike(cocos2d::CCObject* sender) = win 0x319380, m1 0x514090, imac 0x5e1a00;
-    void onLike(cocos2d::CCObject* sender) = win 0x319370, imac 0x5e1980, m1 0x514018;
-    void triggerLike(bool isLiked) = win 0x319390;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, imac 0x5e1950, m1 0x513fdc, ios 0x24c034;
+    void onDislike(cocos2d::CCObject* sender) = win 0x319380, m1 0x514090, imac 0x5e1a00, ios 0x24c078;
+    void onLike(cocos2d::CCObject* sender) = win 0x319370, imac 0x5e1980, m1 0x514018, ios 0x24c070;
+    void triggerLike(bool isLiked) = win 0x319390, m1 0x514108, imac 0x5e1a80, ios 0x24c080;
 
     LikeItemType m_itemType;
     int m_itemID;
