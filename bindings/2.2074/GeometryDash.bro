@@ -6212,7 +6212,9 @@ class FMODAudioEngine : cocos2d::CCNode {
         return m_sfxVolume;
     }
     gd::string getFMODStatus(int) = win 0x5cdb0, imac 0x3d82b0, m1 0x35dce4;
-    float getMeteringValue() = imac 0x3d10a0, m1 0x35805c;
+    float getMeteringValue() = imac 0x3d10a0, m1 0x35805c {
+        return m_pulse1;
+    }
     int getMusicChannelID(int musicID) {
         if (m_fmodMusic.count(musicID) == 0) return 0;
         return m_fmodMusic[musicID].m_channelID;
@@ -6394,7 +6396,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void updateChannelTweens(float) = win 0x567c0, imac 0x3cd220;
     void updateMetering();
     void updateQueuedEffects() = win 0x5aec0;
-    void updateQueuedMusic();
+    void updateQueuedMusic() = win 0x5b6a0;
     void updateReverb(FMODReverbPreset, bool) = win 0x54400, imac 0x3cac50, m1 0x353444;
     void updateTemporaryEffects() = win 0x5b410, imac 0x3cc820;
     FMOD_OPENSTATE waitUntilSoundReady(FMOD::Sound* sound) {
