@@ -819,7 +819,7 @@ class CCContentLayer : cocos2d::CCLayerColor {
 
 	static CCContentLayer* create(cocos2d::ccColor4B const&, float, float);
 
-	virtual void setPosition(cocos2d::CCPoint const&);
+	virtual void setPosition(cocos2d::CCPoint const&) = win 0xb7b0;
 }
 
 [[link(android)]]
