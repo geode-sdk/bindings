@@ -1294,7 +1294,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	cocos2d::CCTextFieldTTF* m_textField;
 	TextInputDelegate* m_delegate;
 	int m_maxLabelLength; // m_charLimit
-	cocos2d::CCLabelBMFont* m_placeholderLabel;
+	cocos2d::CCLabelBMFont* m_textLabel;
 	bool m_filterSwearWords; // m_profanityFilter
 	bool m_usePasswordChar; // m_isPassword
 	bool m_forceOffset;
