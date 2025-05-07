@@ -15756,7 +15756,7 @@ class MenuGameLayer : cocos2d::CCLayer {
         m_backgroundSpeed = 0.f;
     }
 
-    static MenuGameLayer* create() = ios 0x39325c, win inline {
+    static MenuGameLayer* create() = win inline, m1 0x4486c4, imac 0x4e65f0, ios 0x39325c {
         auto ret = new MenuGameLayer();
         if (ret->init()) {
             ret->autorelease();
