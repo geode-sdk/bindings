@@ -53,6 +53,7 @@ class cocos2d::CCEGLView {
 
 	void toggleFullScreen(bool);
 
+	void pollEvents();
 	virtual void end();
 	virtual void isOpenGLReady();
 	virtual void swapBuffers();
