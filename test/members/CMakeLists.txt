@@ -62,11 +62,13 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 		${GEODE_LOADER_PATH}/include/link/macos/libfmod.dylib
 	)
 
+	add_definitions(-DGL_SILENCE_DEPRECATION)
 	target_sources(${PROJECT_NAME} PRIVATE MacOSArm.cpp MacOSIntel.cpp)
 elseif (GEODE_TARGET_PLATFORM STREQUAL "iOS")
 	set(GEODE_MEMBER_TEST_PLATFORM "ios")
 	set(GEODE_MEMBER_TEST_BINARY "Geode.ios.dylib")
 
+	add_definitions(-DGLES_SILENCE_DEPRECATION)
 	target_sources(${PROJECT_NAME} PRIVATE iOS.cpp)
 endif()
 

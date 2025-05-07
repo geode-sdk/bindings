@@ -6344,7 +6344,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void setup() = win 0x53bc0, m1 0x352b4c, imac 0x3ca220, ios 0x13b128;
     void setupAudioEngine() = win 0x540a0, m1 0x352f40, imac 0x3ca670, ios 0x13b3b4;
     void start() = win 0x55280;
-    void startMusic(int start, int end, int fadeIn, int fadeOut, bool loop, int musicID, bool noResume, bool) = win 0x5a5f0;
+    void startMusic(int start, int end, int fadeIn, int fadeOut, bool loop, int musicID, bool noResume, bool dontReset) = win 0x5a5f0;
     void stop() {
         if (m_stopped) return;
         m_stopped = true;
