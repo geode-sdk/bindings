@@ -23935,15 +23935,15 @@ class TriggerEffectDelegate {
 class TutorialLayer : FLAlertLayer {
     // virtual ~TutorialLayer();
 
-    static TutorialLayer* create() = win 0x4b30b0;
+    static TutorialLayer* create() = win 0x4b30b0, m1 0x42e884, imac 0x4c9130, ios 0x1bf0cc;
 
     virtual bool init() = imac 0x4c9280, m1 0x42e988, ios 0x1bf188, win 0x4b31c0;
     virtual void keyBackClicked() = win 0x4b3de0, m1 0x42f414, imac 0x4c9cc0, ios 0x1bfa70;
 
-    void loadPage(int) = win 0x4b3730, m1 0x42ef60, imac 0x4c9800;
-    void onClose(cocos2d::CCObject* sender) = win 0x4b3d60, m1 0x42ee10, imac 0x4c96e0;
-    void onNext(cocos2d::CCObject* sender) = win 0x4b3710, m1 0x42eea4, imac 0x4c9760;
-    void removeTutorialTexture() = win inline {
+    void loadPage(int) = win 0x4b3730, m1 0x42ef60, imac 0x4c9800, ios 0x1bf678;
+    void onClose(cocos2d::CCObject* sender) = win 0x4b3d60, m1 0x42ee10, imac 0x4c96e0, ios 0x1bf608;
+    void onNext(cocos2d::CCObject* sender) = win 0x4b3710, m1 0x42eea4, imac 0x4c9760, ios 0x1bf660;
+    void removeTutorialTexture() = win inline, m1 0x42f3bc, imac 0x4c9c70, ios 0x1bfa18 {
         if (m_page == 0) return;
         cocos2d::CCTextureCache::sharedTextureCache()->removeTextureForKey(cocos2d::CCString::createWithFormat("tutorial_%02d", m_page)->getCString());
     }
