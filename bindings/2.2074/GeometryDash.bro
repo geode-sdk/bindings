@@ -16784,7 +16784,9 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
     void onSecretVault(cocos2d::CCObject* sender) = win 0x35cfb0, m1 0x6990b0, imac 0x784f20, ios 0xf02a0;
     void onSoundtracks(cocos2d::CCObject* sender) = win 0x35ce00, m1 0x698de8, imac 0x784c90;
     void onSupport(cocos2d::CCObject* sender) = win 0x35d820, imac 0x784cb0, m1 0x698df8;
-    void onVideo(cocos2d::CCObject* sender) = win 0x35d6f0;
+    void onVideo(cocos2d::CCObject* sender) = win 0x35d6f0, m1 0x698db8, imac 0x784c50, ios inline {
+        VideoOptionsLayer::create()->show();
+    }
     void sfxSliderChanged(cocos2d::CCObject*) = win 0x35cd70, m1 0x699370, imac 0x7851b0, ios 0xf04e4;
     void tryEnableRecord() = m1 0x699648, imac 0x785540;
 
