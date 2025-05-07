@@ -2662,6 +2662,24 @@ class cocos2d::CCTouchHandler {
 }
 
 [[link(win, android)]]
+class cocos2d::CCMouseHandler : cocos2d::CCObject {
+    static cocos2d::CCMouseHandler* handlerWithDelegate(cocos2d::CCMouseDelegate*) = m1 0x21dc04, imac 0x272be0, ios 0x888b8;
+
+    // CCMouseHandler(cocos2d::CCMouseHandler const&);
+    // CCMouseHandler();
+    ~CCMouseHandler() = m1 0x21da98, imac 0x272a60, ios 0x88804;
+
+    cocos2d::CCMouseDelegate* getDelegate() = m1 0x21da3c, imac 0x2729f0, ios 0x887fc;
+    void setDelegate(cocos2d::CCMouseDelegate*) = m1 0x21db44, imac 0x272b20, ios inline {
+        if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(p0)) delegate->retain();
+        if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(m_pDelegate)) delegate->release();
+        m_pDelegate = p0;
+    }
+
+    virtual bool initWithDelegate(cocos2d::CCMouseDelegate*) = m1 0x21dbb0, imac 0x272b90, ios 0x88870;
+}
+
+[[link(win, android)]]
 class cocos2d::CCEGLView {
     // CCEGLView();
     // CCEGLView(cocos2d::CCEGLView const&);
