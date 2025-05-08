@@ -12,7 +12,7 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
     void doUnlink();
     void exitLayer();
     void onAccountManagement(cocos2d::CCObject* sender) = m1 0xb7bf0, imac 0xcefa0, win 0x7fa10, ios 0x16aa60;
-    void onReLogin(cocos2d::CCObject* sender);
+    void onReLogin(cocos2d::CCObject* sender) = win 0x7f9d0;
     void onUnlink(cocos2d::CCObject* sender) = m1 0xb7cc4, imac 0xcf070, win 0x7fb20, ios 0x16ab14;
     void updatePage() = m1 0xb7e88, imac 0xcf230, win 0x7fcd0, ios 0x16ac58;
     void verifyUnlink() = m1 0xb81d4, imac 0xcf580, ios 0x16af54;
