@@ -60,12 +60,12 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
         this->toggleUI(true);
         m_loadingCircle->setVisible(false);
     }
-    void onBackup(cocos2d::CCObject* sender) = m1 0xb5a14, imac 0xccbf0, ios 0x169434;
-    void onHelp(cocos2d::CCObject* sender) = m1 0xb5f34, imac 0xcd130, ios 0x169770;
-    void onLogin(cocos2d::CCObject* sender);
-    void onMore(cocos2d::CCObject* sender);
+    void onBackup(cocos2d::CCObject* sender) = win 0x7dfd0, m1 0xb5a14, imac 0xccbf0, ios 0x169434;
+    void onHelp(cocos2d::CCObject* sender) = win 0x7e5e0, m1 0xb5f34, imac 0xcd130, ios 0x169770;
+    void onLogin(cocos2d::CCObject* sender) = win 0x7de10;
+    void onMore(cocos2d::CCObject* sender) = win 0x7e700;
     void onRegister(cocos2d::CCObject* sender) = win 0x7de50, m1 0xb59f8, ios 0x169418;
-    void onSync(cocos2d::CCObject* sender) = m1 0xb5d2c, imac 0xccf40, ios 0x169620;
+    void onSync(cocos2d::CCObject* sender) = win 0x7e360, m1 0xb5d2c, imac 0xccf40, ios 0x169620;
     void showLoadingUI() {
         this->toggleUI(false);
         m_loadingCircle->setVisible(true);
