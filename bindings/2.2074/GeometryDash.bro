@@ -110,15 +110,15 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
     void disableNodes();
     void hideLoadingUI();
     bool init(gd::string) = win 0x7b8d0, m1 0x3f32c0, imac 0x485ce0, ios 0x871a0;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x7cf50;
     void onForgotPassword(cocos2d::CCObject* sender) = imac 0x487080, win 0x7c490;
     void onForgotUser(cocos2d::CCObject* sender) = imac 0x487060, win 0x7c470;
     void onSubmit(cocos2d::CCObject* sender) = win 0x7cbc0;
     void resetLabel(int);
     void resetLabels();
     void showLoadingUI();
-    void toggleUI(bool);
-    void updateLabel(AccountError) = m1 0x3f49d0, imac 0x4874c0, ios 0x88134;
+    void toggleUI(bool) = win 0x7d000;
+    void updateLabel(AccountError) = m1 0x3f49d0, imac 0x4874c0, ios 0x88134, win 0x7c9d0;
 
     CCTextInputNode* m_usernameInput;
     CCTextInputNode* m_passwordInput;
