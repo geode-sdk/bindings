@@ -3465,7 +3465,34 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
     bool isAutoDraw() const;
     void listenToBackground(cocos2d::CCObject*);
     void listenToForeground(cocos2d::CCObject*);
-    cocos2d::CCImage* newCCImage(bool flipImage) = m1 0x5117a4, imac 0x5deb40;
+    cocos2d::CCImage* newCCImage(bool flipImage) = m1 0x5117a4, imac 0x5deb40, ios inline {
+        if (!m_pTexture) return nullptr;
+
+        auto& s = m_pTexture->getContentSizeInPixels();
+        int width = s.width;
+        int height = s.height;
+        auto buffer = new uint8_t[width * height * 4];
+        auto data = new uint8_t[width * height * 4];
+        auto image = new CCImage();
+
+        this->begin();
+        glPixelStorei(GL_PACK_ALIGNMENT, 1);
+        glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        this->end();
+
+        if (flipImage) {
+            for (int i = 0; i < height; i++) {
+                memcpy(&buffer[i * width * 4], &data[(height - i - 1) * width * 4], width * 4);
+            }
+
+            image->initWithImageData(buffer, width * height * 4, CCImage::kFmtRawData, width, height, 8);
+        }
+        else image->initWithImageData(data, width * height * 4, CCImage::kFmtRawData, width, height, 8);    
+
+        delete[] buffer;
+        delete[] data;
+        return image;
+    }
     bool saveToFile(char const*);
     bool saveToFile(char const*, cocos2d::eImageFormat);
     void updateInternalScale(float, float);

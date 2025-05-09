@@ -41,6 +41,7 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "Android64")
 	target_link_libraries(${PROJECT_NAME} PRIVATE
 		${GEODE_LOADER_PATH}/include/link/android64/libcocos2dcpp.so
 		${GEODE_LOADER_PATH}/include/link/android64/libfmod.so
+		GLESv2
 	)
 
 	target_sources(${PROJECT_NAME} PRIVATE Android64.cpp)
@@ -51,6 +52,7 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "Android32")
 	target_link_libraries(${PROJECT_NAME} PRIVATE
 		${GEODE_LOADER_PATH}/include/link/android32/libcocos2dcpp.so
 		${GEODE_LOADER_PATH}/include/link/android32/libfmod.so
+		GLESv2
 	)
 
 	target_sources(${PROJECT_NAME} PRIVATE Android32.cpp)
@@ -59,6 +61,7 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 	set(GEODE_MEMBER_TEST_BINARY "Geode.dylib")
 
 	target_link_libraries(${PROJECT_NAME} PRIVATE
+		"-framework OpenGL"
 		${GEODE_LOADER_PATH}/include/link/macos/libfmod.dylib
 	)
 
@@ -67,6 +70,10 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 elseif (GEODE_TARGET_PLATFORM STREQUAL "iOS")
 	set(GEODE_MEMBER_TEST_PLATFORM "ios")
 	set(GEODE_MEMBER_TEST_BINARY "Geode.ios.dylib")
+
+	target_link_libraries(${PROJECT_NAME} PRIVATE
+		"-framework OpenGLES"
+	)
 
 	add_definitions(-DGLES_SILENCE_DEPRECATION)
 	target_sources(${PROJECT_NAME} PRIVATE iOS.cpp)
