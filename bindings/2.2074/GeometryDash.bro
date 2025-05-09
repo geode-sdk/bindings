@@ -4971,7 +4971,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onToggleGuide(EffectGameObject*);
     TodoReturn onToggleSelectedOrder(EffectGameObject*);
     void onUngroupSticky(cocos2d::CCObject* sender) = ios 0x3bffdc, win 0x111130, m1 0xe318, imac 0xcfc0;
-    void onUpdateDeleteFilter(cocos2d::CCObject* sender) = win 0xe5e30, m1 0x31900, imac 0x32290;
+    void onUpdateDeleteFilter(cocos2d::CCObject* sender) = win 0xe5e30, m1 0x31900, imac 0x32290, ios 0x3e1464;
     void orderDownCustomItem(cocos2d::CCObject*);
     void orderUpCustomItem(cocos2d::CCObject*);
     cocos2d::CCArray* pasteObjects(gd::string, bool, bool) = win 0x111d10, m1 0x35f00, imac 0x3ac10, ios 0x3e4a98;
@@ -14367,7 +14367,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         p0->m_shouldUpdateColorSprite = true;
     }
     void applyGroupState(GameObject* dest, GameObject* src) = win 0x2d8d60;
-    TodoReturn breakApartTextObject(TextGameObject*);
+    TodoReturn breakApartTextObject(TextGameObject*) = win 0x2d6c10;
     bool canPasteState();
     TodoReturn clearPlayerPoints();
     TodoReturn clearTouchPoints();
@@ -14467,7 +14467,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     }
     TodoReturn refreshSpecial(GameObject*);
     TodoReturn removeAllObjects();
-    TodoReturn removeAllObjectsOfType(int) = win 0x2cdbb0, imac 0xe2db0;
+    void removeAllObjectsOfType(int objectID) = win 0x2cdbb0, imac 0xe2db0, m1 0xc9e54, ios 0x35b3f0;
     void removeObject(GameObject*, bool) = win 0x2cda70, imac 0xe27e0, m1 0xc98e4, ios 0x35aedc;
     TodoReturn removePlayerCollisionBlock();
     void removeSpecial(GameObject*) = ios 0x35af54, win 0x2cfbb0, imac 0xe28a0, m1 0xc99a4;
