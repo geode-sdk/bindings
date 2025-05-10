@@ -18835,11 +18835,11 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
     void onChest02(cocos2d::CCObject* sender);
     void onClick(cocos2d::CCObject* sender) = win 0x3d5090, m1 0x3fe930, imac 0x491cf0;
     TodoReturn revealStep1();
-    TodoReturn revealStep2() = m1 0x400938, imac 0x493f90;
+    TodoReturn revealStep2() = m1 0x400938, imac 0x493f90, win 0x3d6aa0;
     TodoReturn revealStep3();
-    TodoReturn revealStep4() = m1 0x400cdc, imac 0x494350;
-    TodoReturn revealStep5() = m1 0x401420, imac 0x494b70;
-    void showUnlockDialog() = m1 0x4003cc, imac 0x4939e0;
+    TodoReturn revealStep4() = m1 0x400cdc, imac 0x494350, win 0x3d6f30;
+    TodoReturn revealStep5() = m1 0x401420, imac 0x494b70, win 0x3d7780;
+    void showUnlockDialog() = m1 0x4003cc, imac 0x4939e0, win 0x3d63a0;
 
     DungeonBarsSprite* m_dungeonBars;
     bool m_lockInput;
