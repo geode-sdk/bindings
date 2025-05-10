@@ -303,7 +303,7 @@ class AchievementsLayer : GJDropDownLayer {
         m_pageLabel = nullptr;
     }
 
-    static AchievementsLayer* create() = win inline {
+    static AchievementsLayer* create() = win inline, ios 0x419b94 {
         auto ret = new AchievementsLayer();
         if (ret->init("Achievements")) {
             ret->autorelease();
@@ -23266,9 +23266,9 @@ class SpritePartDelegate {
 class StarInfoPopup : FLAlertLayer {
     // virtual ~StarInfoPopup();
 
-    static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool) = win 0x3b0cb0, imac 0x7ac620, m1 0x6bdd58;
-    static StarInfoPopup* createFromString(gd::string) = win 0x3b0720, m1 0x6baa6c, imac 0x7a9160;
-    static StarInfoPopup* createFromStringMoons(gd::string) = win 0x3b0a00, m1 0x6bacd4, imac 0x7a93f0;
+    static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool) = win 0x3b0cb0, imac 0x7ac620, m1 0x6bdd58, ios 0x1a0c18;
+    static StarInfoPopup* createFromString(gd::string) = win 0x3b0720, m1 0x6baa6c, imac 0x7a9160, ios 0x19e8c8;
+    static StarInfoPopup* createFromStringMoons(gd::string) = win 0x3b0a00, m1 0x6bacd4, imac 0x7a93f0, ios 0x19ea78;
 
     virtual void keyBackClicked() = win 0x84650, m1 0x6be87c, imac 0x7ad0e0, ios 0x1a1584;
 
@@ -23315,7 +23315,7 @@ class StatsLayer : GJDropDownLayer {
     // virtual ~StatsLayer();
     StatsLayer() {}
 
-    static StatsLayer* create() = win inline, m1 0x8e198, imac 0x9b220 {
+    static StatsLayer* create() = win inline, m1 0x8e198, imac 0x9b220, ios 0x241ac4 {
         auto ret = new StatsLayer();
         if(ret->init("Stats", 220.f, false)) {
             ret->autorelease();
