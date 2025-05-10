@@ -375,7 +375,7 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
     // CCEaseElastic(cocos2d::CCEaseElastic const&);
     // CCEaseElastic();
 
-    bool initWithAction(CCActionInterval* pAction, float fPeriod) = ios inline {
+    bool initWithAction(cocos2d::CCActionInterval* pAction, float fPeriod) = ios inline {
         if (CCActionEase::initWithAction(pAction))
         {
             m_fPeriod = fPeriod;
@@ -399,7 +399,7 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
             pNewZone = new CCZone(pCopy);
         }
 
-        pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()), m_fPeriod);
+        pCopy->initWithAction((cocos2d::CCActionInterval *)(m_pInner->copy()->autorelease()), m_fPeriod);
 
         CC_SAFE_DELETE(pNewZone);
         return pCopy;
@@ -4011,8 +4011,8 @@ class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo { // full co
         return false;
     }
 
-    virtual cocos2d::CCObject* copyWithZone(CCZone* zone) = ios inline {
-        CCZone* pNewZone = NULL;
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* zone) = ios inline {
+        cocos2d::CCZone* pNewZone = NULL;
         CCCallFuncN* pRet = NULL;
 
         if (zone && zone->m_pCopyObject) {
