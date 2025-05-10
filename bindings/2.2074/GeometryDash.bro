@@ -6188,7 +6188,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         this->m_pulse2 = 0.1f;
         this->m_pulse3 = 0.0f;
     }
-    void fadeInBackgroundMusic(float value) = win inline, imac 0x3d4840 {
+    void fadeInBackgroundMusic(float value) = win inline, m1 0x35ad28, imac 0x3d4840, ios 0x140238 {
         m_backgroundMusicChannel->setVolume(value);
         m_backgroundMusicFade = value;
         m_musicFadeStart = -1.f;
