@@ -12,7 +12,7 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
     void doUnlink();
     void exitLayer();
     void onAccountManagement(cocos2d::CCObject* sender) = m1 0xb7bf0, imac 0xcefa0, win 0x7fa10, ios 0x16aa60;
-    void onReLogin(cocos2d::CCObject* sender);
+    void onReLogin(cocos2d::CCObject* sender) = win 0x7f9d0;
     void onUnlink(cocos2d::CCObject* sender) = m1 0xb7cc4, imac 0xcf070, win 0x7fb20, ios 0x16ab14;
     void updatePage() = m1 0xb7e88, imac 0xcf230, win 0x7fcd0, ios 0x16ac58;
     void verifyUnlink() = m1 0xb81d4, imac 0xcf580, ios 0x16af54;
@@ -60,12 +60,12 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
         this->toggleUI(true);
         m_loadingCircle->setVisible(false);
     }
-    void onBackup(cocos2d::CCObject* sender) = m1 0xb5a14, imac 0xccbf0, ios 0x169434;
-    void onHelp(cocos2d::CCObject* sender) = m1 0xb5f34, imac 0xcd130, ios 0x169770;
-    void onLogin(cocos2d::CCObject* sender);
-    void onMore(cocos2d::CCObject* sender);
+    void onBackup(cocos2d::CCObject* sender) = win 0x7dfd0, m1 0xb5a14, imac 0xccbf0, ios 0x169434;
+    void onHelp(cocos2d::CCObject* sender) = win 0x7e5e0, m1 0xb5f34, imac 0xcd130, ios 0x169770;
+    void onLogin(cocos2d::CCObject* sender) = win 0x7de10;
+    void onMore(cocos2d::CCObject* sender) = win 0x7e700;
     void onRegister(cocos2d::CCObject* sender) = win 0x7de50, m1 0xb59f8, ios 0x169418;
-    void onSync(cocos2d::CCObject* sender) = m1 0xb5d2c, imac 0xccf40, ios 0x169620;
+    void onSync(cocos2d::CCObject* sender) = win 0x7e360, m1 0xb5d2c, imac 0xccf40, ios 0x169620;
     void showLoadingUI() {
         this->toggleUI(false);
         m_loadingCircle->setVisible(true);
@@ -110,15 +110,15 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
     void disableNodes();
     void hideLoadingUI();
     bool init(gd::string) = win 0x7b8d0, m1 0x3f32c0, imac 0x485ce0, ios 0x871a0;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x7cf50;
     void onForgotPassword(cocos2d::CCObject* sender) = imac 0x487080, win 0x7c490;
     void onForgotUser(cocos2d::CCObject* sender) = imac 0x487060, win 0x7c470;
     void onSubmit(cocos2d::CCObject* sender) = win 0x7cbc0;
     void resetLabel(int);
     void resetLabels();
     void showLoadingUI();
-    void toggleUI(bool);
-    void updateLabel(AccountError) = m1 0x3f49d0, imac 0x4874c0, ios 0x88134;
+    void toggleUI(bool) = win 0x7d000;
+    void updateLabel(AccountError) = m1 0x3f49d0, imac 0x4874c0, ios 0x88134, win 0x7c9d0;
 
     CCTextInputNode* m_usernameInput;
     CCTextInputNode* m_passwordInput;
@@ -2457,7 +2457,7 @@ class ChallengeNode : cocos2d::CCNode {
     }
 
     bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = ios 0x37094, win 0x86ce0, imac 0x38b860, m1 0x31ad04;
-    void onClaimReward(cocos2d::CCObject* sender) = imac 0x38c470;
+    void onClaimReward(cocos2d::CCObject* sender) = imac 0x38c470, win 0x87d30;
     void updateTimeLabel(gd::string);
 
     ChallengesPage* m_challengesPage;
@@ -3814,7 +3814,7 @@ class CustomListView : BoomListView {
     virtual TableViewCell* getListCell(char const*) = win 0xaa140, imac 0x22ec90, m1 0x1df834, ios 0x10375c;
     virtual void loadCell(TableViewCell*, int) = win 0xaaf00, imac 0x230830, m1 0x1e0870, ios 0x103ec4;
 
-    float getCellHeight(BoomListType) = ios 0x103e9c, imac 0x22fd60;
+    float getCellHeight(BoomListType) = ios 0x103e9c, imac 0x22fd60, win 0xaadf0;
     void reloadAll() = ios 0x10e7b0, win 0xabc90, imac 0x23bfe0, m1 0x1ebe10;
 
     int m_cellMode;
@@ -4282,7 +4282,7 @@ class DemonInfoPopup : FLAlertLayer {
     virtual void keyBackClicked() = win 0x84650, m1 0x6bdcdc, imac 0x7ac5b0, ios 0x1a0b9c;
 
     bool init(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet) = ios 0x1a02a8, win 0x3afdf0, imac 0x7abc10, m1 0x6bd34c;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
 }
 
 [[link(android)]]
@@ -14909,7 +14909,7 @@ class LevelListCell : TableViewCell {
     void loadFromList(GJLevelList*) = ios 0x10698c, win 0xbdf90, imac 0x233ae0, m1 0x1e3af4;
     void onClick(cocos2d::CCObject* sender) = ios 0x115ae8, win 0xbf3c0, imac 0x247470, m1 0x1f5bc8;
     void onListInfo(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender) = imac 0x247550, m1 0x1f5c90;
+    void onViewProfile(cocos2d::CCObject* sender) = imac 0x247550, m1 0x1f5c90, win 0xbf4f0;
     TodoReturn updateBGColor(int) = ios 0x107e24;
 
     GJLevelList* m_levelList;
@@ -16226,9 +16226,9 @@ class MultiplayerLayer : cocos2d::CCLayer {
 class MultiTriggerPopup : SetupTriggerPopup {
     // virtual ~MultiTriggerPopup();
 
-    static MultiTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static MultiTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x450f80;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x4bb4cc, imac 0x565ad0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x4bb4cc, imac 0x565ad0, win 0x451090;
 }
 
 [[link(android)]]
@@ -16645,7 +16645,9 @@ class OBB2D : cocos2d::CCNode {
     cocos2d::CCRect getBoundingRect() = win 0x6e240;
     bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle) = m1 0x50eebc, imac 0x5dbdb0;
     void orderCorners() = win 0x6dd70;
-    bool overlaps(OBB2D*);
+    bool overlaps(OBB2D* other) = win inline {
+        return this->overlaps1Way(other) && other->overlaps1Way(this);
+    }
     bool overlaps1Way(OBB2D*) = win 0x6e100;
 
 
@@ -18833,11 +18835,11 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
     void onChest02(cocos2d::CCObject* sender);
     void onClick(cocos2d::CCObject* sender) = win 0x3d5090, m1 0x3fe930, imac 0x491cf0;
     TodoReturn revealStep1();
-    TodoReturn revealStep2() = m1 0x400938, imac 0x493f90;
+    TodoReturn revealStep2() = m1 0x400938, imac 0x493f90, win 0x3d6aa0;
     TodoReturn revealStep3();
-    TodoReturn revealStep4() = m1 0x400cdc, imac 0x494350;
-    TodoReturn revealStep5() = m1 0x401420, imac 0x494b70;
-    void showUnlockDialog() = m1 0x4003cc, imac 0x4939e0;
+    TodoReturn revealStep4() = m1 0x400cdc, imac 0x494350, win 0x3d6f30;
+    TodoReturn revealStep5() = m1 0x401420, imac 0x494b70, win 0x3d7780;
+    void showUnlockDialog() = m1 0x4003cc, imac 0x4939e0, win 0x3d63a0;
 
     DungeonBarsSprite* m_dungeonBars;
     bool m_lockInput;
@@ -22449,7 +22451,7 @@ class ShareListLayer : FLAlertLayer {
     void onInfo(cocos2d::CCObject* sender) = win 0x2f6270, m1 0x2e4024, imac 0x34faa0;
     void onShare(cocos2d::CCObject* sender) = win 0x2f6530, m1 0x2e3f10, imac 0x34f9a0;
     void onUnlisted(cocos2d::CCObject* sender) = win 0x2f63e0, imac 0x34fb50, m1 0x2e40dc;
-    void updateUnlistedF() = m1 0x2e41dc;
+    void updateUnlistedF() = m1 0x2e41dc, win 0x2f6450;
 
     GJLevelList* m_list;
     CCMenuItemToggler* m_friendsOnlyToggler;
