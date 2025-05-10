@@ -4853,8 +4853,8 @@ class cocos2d::CCSpawn : cocos2d::CCActionInterval {
                 // ExtraAction doesnt exist for some reason
                 CCFiniteTimeAction* action = new CCFiniteTimeAction();
                 if (action) {
-                    pRet->autorelease();
-		}
+                    action->autorelease();
+                }
                 prev = createWithTwoActions(prev, action);
             }
             pRet = (CCSpawn*)prev;
