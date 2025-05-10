@@ -4991,7 +4991,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void replaceGroupID(GameObject*, int, int) = win 0x117680;
     void repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0x112a20;
     void resetObjectEditorValues(cocos2d::CCArray*);
-    void resetSelectedObjectsColor() = win 0x11dd50;
+    void resetSelectedObjectsColor() = win 0x11dd50, m1 0x43568, imac 0x4a720, ios 0x3edf7c;
     void resetUI() = ios 0x3dc538, win 0xe36d0, imac 0x2ac40, m1 0x2aeac;
     void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = ios 0x3e5484, win 0x11f4b0, m1 0x37044, imac 0x3c3d0;
     TodoReturn rotationforCommand(EditCommand);
