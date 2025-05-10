@@ -7019,7 +7019,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onUploadUserMessageCompleted(gd::string response, gd::string tag);
     int pageFromCommentKey(char const*);
     void parseRestoreData(gd::string);
-    void performNetworkTest() = m1 0x4642b0, imac 0x504c40, win 0x8bcbc
+    void performNetworkTest() = m1 0x4642b0, imac 0x504c40, ios 0x8bcbc; // win inline 
     void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0x140b70, imac 0x504fa0, m1 0x464634, ios 0x8bf54;
     void processOnDownloadLevelCompleted(gd::string response, gd::string tag, bool) = win 0x150350, m1 0x489224, imac 0x52e460, ios 0xa38dc;
     void purgeUnusedLevels() = win 0x148330, imac 0x523900;
@@ -15853,7 +15853,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void videoOptionsClosed() = win inline {
         m_menuGameLayer->m_videoOptionsOpen = false;
     }
-    void videoOptionsOpened() = win inline, imac 0x37ecd0 {
+    void videoOptionsOpened() = win inline, imac 0x37ecd0, ios 0x267168 {
         m_menuGameLayer->m_videoOptionsOpen = true;
     }
     void willClose() = ios 0x26548c, win 0x3211f0, m1 0x30d274;
