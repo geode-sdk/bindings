@@ -14909,7 +14909,7 @@ class LevelListCell : TableViewCell {
     void loadFromList(GJLevelList*) = ios 0x10698c, win 0xbdf90, imac 0x233ae0, m1 0x1e3af4;
     void onClick(cocos2d::CCObject* sender) = ios 0x115ae8, win 0xbf3c0, imac 0x247470, m1 0x1f5bc8;
     void onListInfo(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender) = imac 0x247550, m1 0x1f5c90;
+    void onViewProfile(cocos2d::CCObject* sender) = imac 0x247550, m1 0x1f5c90, win 0xbf4f0;
     TodoReturn updateBGColor(int) = ios 0x107e24;
 
     GJLevelList* m_levelList;
@@ -16645,7 +16645,9 @@ class OBB2D : cocos2d::CCNode {
     cocos2d::CCRect getBoundingRect() = win 0x6e240;
     bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle) = m1 0x50eebc, imac 0x5dbdb0;
     void orderCorners() = win 0x6dd70;
-    bool overlaps(OBB2D*);
+    bool overlaps(OBB2D* other) = win inline {
+        return this->overlaps1Way(other) && other->overlaps1Way(this);
+    }
     bool overlaps1Way(OBB2D*) = win 0x6e100;
 
 
