@@ -16071,7 +16071,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
         CC_SAFE_RELEASE(m_variables);
     }
 
-    static MoreVideoOptionsLayer* create() = win inline {
+    static MoreVideoOptionsLayer* create() = win inline, ios 0xf4170 {
         auto ret = new MoreVideoOptionsLayer();
         if (ret->init()) {
             ret->autorelease();
@@ -16084,7 +16084,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
     virtual bool init() = win 0x362eb0, imac 0x78b270, m1 0x69ee4c, ios 0xf4504;
     virtual void keyBackClicked() = win 0x3657d0, m1 0x6a0f54, imac 0x78d440, ios 0xf5950;
 
-    void addToggle(char const* label, char const* key, char const* description) = win 0x3639b0;
+    void addToggle(char const* label, char const* key, char const* description) = win 0x3639b0, ios 0xf491c;
     int countForPage(int) = win 0x364010;
     void goToPage(int) = win 0x364430;
     void incrementCountForPage(int);
@@ -16096,10 +16096,10 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
     cocos2d::CCArray* objectsForPage(int) = win 0x3640e0;
     void onApplyFPS(cocos2d::CCObject* sender) = win 0x3652b0;
     void onClose(cocos2d::CCObject* sender) = win 0x365780;
-    void onInfo(cocos2d::CCObject* sender) = win 0x3655a0;
-    void onNextPage(cocos2d::CCObject* sender) = win 0x364410;
-    void onPrevPage(cocos2d::CCObject* sender) = win 0x364420;
-    void onToggle(cocos2d::CCObject* sender) = win 0x364840;
+    void onInfo(cocos2d::CCObject* sender) = win 0x3655a0, ios 0xf573c;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x364410, ios 0xf4d18;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x364420, ios 0xf4d0c;
+    void onToggle(cocos2d::CCObject* sender) = win 0x364840, ios 0xf519c;
     const char* pageKey(int);
     void updateFPSButtons() = win 0x3651e0;
 
@@ -24472,20 +24472,20 @@ class VideoOptionsLayer : FLAlertLayer {
     virtual bool init() = win 0x360df0, imac 0x789140, m1 0x69d004, ios 0xf2d28;
     virtual void keyBackClicked() = win 0x362c60, m1 0x69eb08, imac 0x78adf0, ios 0xf4440;
 
-    CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float, bool, cocos2d::CCArray*) = win 0x362c70;
-    void onAdvanced(cocos2d::CCObject* sender) = win 0x362130;
+    CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float, bool, cocos2d::CCArray*) = win 0x362c70, ios 0xf3ab8;
+    void onAdvanced(cocos2d::CCObject* sender) = win 0x362130, ios 0xf4154;
     void onApply(cocos2d::CCObject* sender) = win 0x362720, m1 0x69e330, imac 0x78a590;
     void onBorderless(cocos2d::CCObject* sender) = win 0x362280;
-    void onBorderlessFix(cocos2d::CCObject* sender) = win 0x3622a0;
+    void onBorderlessFix(cocos2d::CCObject* sender) = win 0x3622a0; //ios 0xf3d24
     void onClose(cocos2d::CCObject* sender) = win 0x362be0;
-    void onFullscreen(cocos2d::CCObject* sender) = win 0x362260;
+    void onFullscreen(cocos2d::CCObject* sender) = win 0x362260, ios 0xf3d14;
     void onInfo(cocos2d::CCObject* sender) = m1 0x69ea28;
     void onResolutionNext(cocos2d::CCObject* sender) = win 0x3623a0;
     void onResolutionPrev(cocos2d::CCObject* sender) = win 0x362390;
     void onTextureQualityNext(cocos2d::CCObject* sender) = win 0x3622d0;
     void onTextureQualityPrev(cocos2d::CCObject* sender) = win 0x3622c0;
     void reloadMenu();
-    void toggleResolution() = win 0x3624c0;
+    void toggleResolution() = win 0x3624c0, ios 0xf4234;
     void updateResolution(int) = win 0x3623b0, m1 0x69e634, imac 0x78a8b0;
     void updateTextureQuality(int) = win 0x3622e0;
 
