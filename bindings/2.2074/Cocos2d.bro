@@ -375,7 +375,7 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
     // CCEaseElastic(cocos2d::CCEaseElastic const&);
     // CCEaseElastic();
 
-    bool initWithAction(CCActionInterval* pAction, float fPeriod) = ios inline {
+    bool initWithAction(cocos2d::CCActionInterval* pAction, float fPeriod) = ios inline {
         if (CCActionEase::initWithAction(pAction))
         {
             m_fPeriod = fPeriod;
@@ -399,7 +399,7 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
             pNewZone = new CCZone(pCopy);
         }
 
-        pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()), m_fPeriod);
+        pCopy->initWithAction((cocos2d::CCActionInterval *)(m_pInner->copy()->autorelease()), m_fPeriod);
 
         CC_SAFE_DELETE(pNewZone);
         return pCopy;
@@ -747,11 +747,11 @@ class cocos2d::CCEaseSineInOut : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
-    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f3e0, ios 0x17a2c0;
-    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f3e0, ios 0x17a1b8;
+    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = m1 0x4b6074, imac 0x55f5a0, ios 0x17a2c0;
+    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = m1 0x4b5ee0, imac 0x55f3e0, ios 0x17a1b8;
 
     bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f6e0, m1 0x4b6180, ios 0x17a350;
-    bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f530, m1 0x4b5ffc;
+    bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f530, m1 0x4b5ffc, ios 0x17a248;
 
     bool getDontOpacityFade() const;
     float getM_fMaxSeg() const {
@@ -3465,7 +3465,34 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
     bool isAutoDraw() const;
     void listenToBackground(cocos2d::CCObject*);
     void listenToForeground(cocos2d::CCObject*);
-    cocos2d::CCImage* newCCImage(bool flipImage) = m1 0x5117a4, imac 0x5deb40;
+    cocos2d::CCImage* newCCImage(bool flipImage) = m1 0x5117a4, imac 0x5deb40, ios inline {
+        if (!m_pTexture) return nullptr;
+
+        auto& s = m_pTexture->getContentSizeInPixels();
+        int width = s.width;
+        int height = s.height;
+        auto buffer = new uint8_t[width * height * 4];
+        auto data = new uint8_t[width * height * 4];
+        auto image = new CCImage();
+
+        this->begin();
+        glPixelStorei(GL_PACK_ALIGNMENT, 1);
+        glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        this->end();
+
+        if (flipImage) {
+            for (int i = 0; i < height; i++) {
+                memcpy(&buffer[i * width * 4], &data[(height - i - 1) * width * 4], width * 4);
+            }
+
+            image->initWithImageData(buffer, width * height * 4, CCImage::kFmtRawData, width, height, 8);
+        }
+        else image->initWithImageData(data, width * height * 4, CCImage::kFmtRawData, width, height, 8);    
+
+        delete[] buffer;
+        delete[] data;
+        return image;
+    }
     bool saveToFile(char const*);
     bool saveToFile(char const*, cocos2d::eImageFormat);
     void updateInternalScale(float, float);
@@ -3984,8 +4011,8 @@ class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo { // full co
         return false;
     }
 
-    virtual cocos2d::CCObject* copyWithZone(CCZone* zone) = ios inline {
-        CCZone* pNewZone = NULL;
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* zone) = ios inline {
+        cocos2d::CCZone* pNewZone = NULL;
         CCCallFuncN* pRet = NULL;
 
         if (zone && zone->m_pCopyObject) {
@@ -4149,7 +4176,7 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     
         return pSpriteFrame;
     }
-    static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = ios 0x24d078;
+    static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2d96a0, imac 0x344130, ios 0x24d078;
 
     bool initWithTexture(cocos2d::CCTexture2D* pobTexture, cocos2d::CCRect const& rect) = ios inline {
         CCRect rectInPixels = CC_RECT_POINTS_TO_PIXELS(rect);
@@ -4826,8 +4853,8 @@ class cocos2d::CCSpawn : cocos2d::CCActionInterval {
                 // ExtraAction doesnt exist for some reason
                 CCFiniteTimeAction* action = new CCFiniteTimeAction();
                 if (action) {
-                    pRet->autorelease();
-		}
+                    action->autorelease();
+                }
                 prev = createWithTwoActions(prev, action);
             }
             pRet = (CCSpawn*)prev;

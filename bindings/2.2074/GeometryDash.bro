@@ -4823,7 +4823,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool) = win 0x115580;
     void createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool) = win 0x116660;
     UndoObject* createUndoObject(UndoCommand, bool) = win 0x10f830, m1 0x37f50, imac 0x3d3e0, ios 0x3e62ac;
-    TodoReturn createUndoSelectObject(bool) = win 0x10fb50;
+    void createUndoSelectObject(bool) = win 0x10fb50;
     void deactivateRotationControl() = win inline {
         m_rotationTouchID = -1;
         if (m_rotationControl->isVisible()) {
@@ -4991,7 +4991,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void replaceGroupID(GameObject*, int, int) = win 0x117680;
     void repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0x112a20;
     void resetObjectEditorValues(cocos2d::CCArray*);
-    TodoReturn resetSelectedObjectsColor();
+    void resetSelectedObjectsColor() = win 0x11dd50, m1 0x43568, imac 0x4a720, ios 0x3edf7c;
     void resetUI() = ios 0x3dc538, win 0xe36d0, imac 0x2ac40, m1 0x2aeac;
     void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = ios 0x3e5484, win 0x11f4b0, m1 0x37044, imac 0x3c3d0;
     TodoReturn rotationforCommand(EditCommand);
@@ -6188,7 +6188,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         this->m_pulse2 = 0.1f;
         this->m_pulse3 = 0.0f;
     }
-    void fadeInBackgroundMusic(float value) = win inline, imac 0x3d4840 {
+    void fadeInBackgroundMusic(float value) = win inline, m1 0x35ad28, imac 0x3d4840, ios 0x140238 {
         m_backgroundMusicChannel->setVolume(value);
         m_backgroundMusicFade = value;
         m_musicFadeStart = -1.f;
@@ -24039,7 +24039,7 @@ class UILayer : cocos2d::CCLayerColor {
     TodoReturn toggleCheckpointsMenu(bool) = ios 0x4d21c;
     void toggleMenuVisibility(bool) = ios 0x4dc58, m1 0x41e384, imac 0x4b64e0;
     void togglePlatformerMode(bool) = ios 0x4d3a0, imac 0x4b5470, win 0x4b4a30, m1 0x41d60c;
-    TodoReturn updateCheckState();
+    void updateCheckState() = win 0x4b4840, m1 0x41d494, imac 0x4b52e0, ios 0x4d22c;
     TodoReturn updateDualMode(bool) = ios 0x4d438;
     TodoReturn updateUINodeVisibility(bool);
 
