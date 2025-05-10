@@ -4011,8 +4011,8 @@ class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo { // full co
         return false;
     }
 
-    virtual cocos2d::CCObject* copyWithZone(CCZone* zone) = ios inline {
-        CCZone* pNewZone = NULL;
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* zone) = ios inline {
+        cocos2d::CCZone* pNewZone = NULL;
         CCCallFuncN* pRet = NULL;
 
         if (zone && zone->m_pCopyObject) {
