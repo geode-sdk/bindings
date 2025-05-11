@@ -4609,15 +4609,15 @@ class DS_Dictionary {
     void removeKey(char const*);
     bool saveRootSubDictToCompressedFile(char const*);
     bool saveRootSubDictToFile(char const*);
-    gd::string saveRootSubDictToString() = imac 0x16c030, m1 0x1388ec, m1 0x1388ec, ios 0x164824;
+    gd::string saveRootSubDictToString() = imac 0x16c030, m1 0x1388ec, ios 0x164824;
     void setArrayForKey(char const*, cocos2d::CCArray*) = imac 0x170440, m1 0x13c4d0;
     void setBoolForKey(char const*, bool, bool);
-    void setBoolForKey(char const*, bool) = imac 0x16e790, m1 0x13ab9c;
+    void setBoolForKey(char const*, bool) = imac 0x16e790, m1 0x13ab9c, ios 0x165750;
     void setBoolMapForKey(char const*, gd::map<gd::string, bool>&) = m1 0x13cf9c;
     void setDictForKey(char const*, cocos2d::CCDictionary*) = imac 0x170db0, m1 0x13cd9c, ios 0x1662a8;
     void setFloatForKey(char const*, float) = imac 0x16e9c0, m1 0x13ad84;
     void setFloatForKey(char const*, float, bool);
-    void setIntegerForKey(char const*, int) = imac 0x16e4c0, m1 0x13a930;
+    void setIntegerForKey(char const*, int) = imac 0x16e4c0, m1 0x13a930, ios 0x16551c;
     void setIntegerForKey(char const*, int, bool);
     void setObjectForKey(char const*, cocos2d::CCObject*);
     void setRectArrayForKey(char const*, gd::vector<cocos2d::CCRect> const&);
@@ -4626,10 +4626,12 @@ class DS_Dictionary {
     void setRectForKey(char const*, cocos2d::CCRect const&, bool);
     void setStringArrayForKey(char const*, gd::vector<gd::string> const&);
     void setStringArrayForKey(char const*, gd::vector<gd::string> const&, bool);
-    void setStringForKey(char const*, gd::string const&) = imac 0x16ecb0, m1 0x13b008;
+    void setStringForKey(char const*, gd::string const&) = imac 0x16ecb0, m1 0x13b008, ios 0x165acc;
     void setStringForKey(char const*, gd::string const&, bool);
-    void setSubDictForKey(char const*);
-    void setSubDictForKey(char const*, bool, bool);
+    void setSubDictForKey(char const*) = m1 0x13a5f4, imac 0x16e0d0, ios inline {
+        this->setSubDictForKey(p0, false, false);
+    }
+    void setSubDictForKey(char const*, bool, bool) = m1 0x13a698, imac 0x16e180, ios 0x16532c;
     void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&);
     void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&, bool);
     void setVec2ForKey(char const*, cocos2d::CCPoint const&);
@@ -4637,8 +4639,10 @@ class DS_Dictionary {
     void split(gd::string const&, char const*, gd::vector<gd::string>&);
     bool splitWithForm(gd::string const&, gd::vector<gd::string>&);
     void stepBackToRootSubDict();
-    bool stepIntoSubDictWithKey(char const*) = imac 0x16c5d0, m1 0x138dc0, m1 0x138dc0, ios 0x164b90;
-    void stepOutOfSubDict() = imac 0x16c8a0, m1 0x138ff0;
+    bool stepIntoSubDictWithKey(char const*) = imac 0x16c5d0, m1 0x138dc0, ios 0x164b90;
+    void stepOutOfSubDict() = imac 0x16c8a0, m1 0x138ff0, ios inline {
+        if (dictTree.size() > 1) dictTree.pop_back();
+    }
     bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
 }
 
