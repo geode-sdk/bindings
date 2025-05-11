@@ -9637,7 +9637,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateCameraOffsetY(float, float, int, float, int, int) = ios 0x1ff220, win 0x2308b0, imac 0x13f4e0;
     void updateCollisionBlocks() = ios 0x1ec828, imac 0x11a8b0;
     void updateCounters(int, int) = win 0x22e760, m1 0x114398, imac 0x13bd80;
-    void updateDualGround(PlayerObject*, int, bool, float) = ios 0x1e7b4c, win 0x20dcc0, imac 0x113e30, m1 0xf365c;
+    void updateDualGround(PlayerObject* object, int mode, bool instant, float duration) = ios 0x1e7b4c, win 0x20dcc0, imac 0x113e30, m1 0xf365c;
     void updateEnterEffects(float) = win 0x209630, imac 0x10e8e0, m1 0xedfd4;
     TodoReturn updateExtendedCollision(GameObject*, bool);
     TodoReturn updateExtraGameLayers() = imac 0x12c410;
@@ -9670,7 +9670,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateStaticCameraPosToGroup(int, bool, bool, bool, float, float, int, float, bool, float) = win 0x2388b0;
     TodoReturn updateTimeMod(float, bool, bool) = ios 0x1e7bf4;
     TodoReturn updateTimerLabels() = ios 0x1fe480, win 0x22fae0;
-    void updateZoom(float, float, int, float, int, int) = ios 0x1fef38, win 0x230590, imac 0x13f010;
+    void updateZoom(float zoom, float duration, int easing, float rate, int uniqueID, int controlID) = win 0x230590, m1 0x116b6c, imac 0x13f010, ios 0x1fef38;
     void visitWithColorFlash() = win 0x241d30;
     float volumeForProximityEffect(SFXTriggerInstance&) = win 0x23c060;
 
@@ -9950,7 +9950,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_unk2a98;
     cocos2d::CCDictionary* m_collectedItems;
     float m_levelLength;
-    int m_unk2aa4;
+    bool m_unk2aa4;
+    bool m_unk2aa5;
     EndPortalObject* m_endPortal;
     bool m_isTestMode;
     bool m_unk3089;
@@ -10795,8 +10796,10 @@ class GJGameState {
     TodoReturn controlTweenAction(int, int, GJActionCommand);
     GameObjectPhysics& getGameObjectPhysics(GameObject*) = win 0x200400;
     TodoReturn processStateTriggers() = ios 0x1dacdc, win 0x200290;
-    void stopTweenAction(int) = win 0x2444e0, m1 0x4d160;
-    TodoReturn tweenValue(float, float, int, float, int, float, int, int) = win 0x200140;
+    void stopTweenAction(int action) = win inline, m1 0xdfb0c, imac 0xfcd00, ios inline {
+        m_tweenActions.erase(action);
+    }
+    void tweenValue(float from, float to, int action, float duration, int easing, float rate, int uniqueID, int controlID) = win 0x200140, m1 0xdfa70, imac 0xfcc50, ios 0x1daa70;
     TodoReturn updateTweenAction(float, int);
     TodoReturn updateTweenActions(float) = ios 0x1daba8;
 
@@ -13189,8 +13192,8 @@ class GJValueTween {
     float m_easingRate;
     bool m_finished;
     bool m_disabled;
-    int m_unkInt1;
-    int m_unkInt2;
+    int m_uniqueID;
+    int m_controlID;
 }
 
 [[link(android)]]
@@ -17268,7 +17271,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
             this->m_gameLayer->gameEventTriggered(static_cast<GJGameEvent>(p0), p1, static_cast<int>(this->m_savedObjectType));
         }
     }
-    bool getActiveMode() = ios 0x229efc, imac 0x404b10, m1 0x38294c;
+    GameObjectType getActiveMode() = win inline, imac 0x404b10, m1 0x38294c, ios 0x229efc {
+        if (this->isFlying()) return GameObjectType::ShipPortal;
+        else if (m_isBall) return GameObjectType::BallPortal;
+        else if (m_isSpider) return GameObjectType::SpiderPortal;
+        else return GameObjectType::CubePortal;
+    }
     TodoReturn getCurrentXVelocity();
     TodoReturn getModifiedSlopeYVel();
     TodoReturn getOldPosition(float);
