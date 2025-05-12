@@ -303,7 +303,7 @@ class AchievementsLayer : GJDropDownLayer {
         m_pageLabel = nullptr;
     }
 
-    static AchievementsLayer* create() = win inline {
+    static AchievementsLayer* create() = win inline, ios 0x419b94 {
         auto ret = new AchievementsLayer();
         if (ret->init("Achievements")) {
             ret->autorelease();
@@ -7019,7 +7019,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onUploadUserMessageCompleted(gd::string response, gd::string tag);
     int pageFromCommentKey(char const*);
     void parseRestoreData(gd::string);
-    void performNetworkTest() = m1 0x4642b0, imac 0x504c40;
+    void performNetworkTest() = m1 0x4642b0, imac 0x504c40, ios 0x8bcbc; // win inline 
     void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0x140b70, imac 0x504fa0, m1 0x464634, ios 0x8bf54;
     void processOnDownloadLevelCompleted(gd::string response, gd::string tag, bool) = win 0x150350, m1 0x489224, imac 0x52e460, ios 0xa38dc;
     void purgeUnusedLevels() = win 0x148330, imac 0x523900;
@@ -15821,13 +15821,13 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x321290, imac 0x37edf0, m1 0x30f4bc, ios 0x267244;
 
     void endGame() = ios 0x2673f0, win 0x321510, imac 0x37f070, m1 0x30f72c;
-    void firstNetworkTest() = win 0x320430;
+    void firstNetworkTest() = win 0x320430, ios 0x266ecc;
     void onAchievements(cocos2d::CCObject* sender) = ios 0x2669e8, win 0x320960, m1 0x30eaa8, imac 0x37e370;
     void onCreator(cocos2d::CCObject* sender) = ios 0x266990, win 0x320e70, m1 0x30ea2c, imac 0x37e2e0;
     void onDaily(cocos2d::CCObject* sender) = ios 0x266e68, win 0x3201e0, m1 0x30f028, imac 0x37e8b0;
-    void onDiscord(cocos2d::CCObject* sender) = win 0x320860, m1 0x30ed18, imac 0x37e5a0;
+    void onDiscord(cocos2d::CCObject* sender) = win 0x320860, m1 0x30ed18, imac 0x37e5a0, ios 0x266c34; 
     void onEveryplay(cocos2d::CCObject* sender) {}
-    void onFacebook(cocos2d::CCObject* sender) = win 0x3207e0, m1 0x30ec88, imac 0x37e520;
+    void onFacebook(cocos2d::CCObject* sender) = win 0x3207e0, m1 0x30ec88, imac 0x37e520, ios 0x266ba4;
     void onFreeLevels(cocos2d::CCObject* sender);
     void onFullVersion(cocos2d::CCObject* sender);
     void onGameCenter(cocos2d::CCObject* sender);
@@ -15835,28 +15835,28 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onGooglePlayGames(cocos2d::CCObject* sender) = m1 0x30f23c;
     void onMoreGames(cocos2d::CCObject* sender) = ios 0x266c58, win 0x320880, imac 0x37e5c0, m1 0x30ed3c;
     void onMyProfile(cocos2d::CCObject* sender) = ios 0x266cdc, win 0x320720, m1 0x30ee98, imac 0x37e710;
-    void onNewgrounds(cocos2d::CCObject* sender) = m1 0x30eb8c, imac 0x37e430, win 0x320f90;
+    void onNewgrounds(cocos2d::CCObject* sender) = m1 0x30eb8c, imac 0x37e430, win 0x320f90, ios 0x266acc;
     void onOptions(cocos2d::CCObject* sender) = ios 0x266a34, win 0x320bb0, imac 0x37e3b0, m1 0x30eaf4;
     void onOptionsInstant() = win 0x320bc0, m1 0x30d5b8, imac 0x37ce50, ios 0x265658;
     void onPlay(cocos2d::CCObject* sender) = ios 0x2668dc, win 0x320b10, m1 0x30e930, imac 0x37e1c0;
     void onQuit(cocos2d::CCObject* sender) = ios 0x267188, win 0x3210d0, imac 0x37e640, m1 0x30edc0;
-    void onRobTop(cocos2d::CCObject* sender) = win 0x3207c0, m1 0x30ec64, imac 0x37e500;
+    void onRobTop(cocos2d::CCObject* sender) = win 0x3207c0, m1 0x30ec64, imac 0x37e500, ios 0x266b80;
     void onStats(cocos2d::CCObject* sender) = ios 0x266a80, win 0x320d50, imac 0x37e3f0, m1 0x30eb40;
     void onTrailer(cocos2d::CCObject* sender) = m1 0x30f470, imac 0x37ed80;
-    void onTwitch(cocos2d::CCObject* sender) = win 0x320840, m1 0x30ecf4, imac 0x37e580;
-    void onTwitter(cocos2d::CCObject* sender) = win 0x320800, m1 0x30ecac, imac 0x37e540;
-    void onYouTube(cocos2d::CCObject* sender) = win 0x320820, m1 0x30ecd0, imac 0x37e560;
+    void onTwitch(cocos2d::CCObject* sender) = win 0x320840, m1 0x30ecf4, imac 0x37e580, ios 0x266c10;
+    void onTwitter(cocos2d::CCObject* sender) = win 0x320800, m1 0x30ecac, imac 0x37e540, ios 0x266bc8;
+    void onYouTube(cocos2d::CCObject* sender) = win 0x320820, m1 0x30ecd0, imac 0x37e560, ios 0x266bec;
     void openOptions(bool videoOptions) = win 0x320bd0, m1 0x30f360, imac 0x37ec50, ios 0x2670e0;
     void showGCQuestion() = m1 0x30f144, imac 0x37e9f0;
     void showMeltdownPromo() {}
     void showTOS() = win 0x320600, m1 0x30f044;
     void syncPlatformAchievements(float);
     void tryShowAd(float) = m1 0x30f0a4;
-    void updateUserProfileButton() = win 0x320330;
+    void updateUserProfileButton() = win 0x320330, ios 0x266d3c;
     void videoOptionsClosed() = win inline {
         m_menuGameLayer->m_videoOptionsOpen = false;
     }
-    void videoOptionsOpened() = win inline, imac 0x37ecd0 {
+    void videoOptionsOpened() = win inline, imac 0x37ecd0, ios 0x267168 {
         m_menuGameLayer->m_videoOptionsOpen = true;
     }
     void willClose() = ios 0x26548c, win 0x3211f0, m1 0x30d274;
@@ -16074,7 +16074,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
         CC_SAFE_RELEASE(m_variables);
     }
 
-    static MoreVideoOptionsLayer* create() = win inline {
+    static MoreVideoOptionsLayer* create() = win inline, ios 0xf4170 {
         auto ret = new MoreVideoOptionsLayer();
         if (ret->init()) {
             ret->autorelease();
@@ -16087,7 +16087,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
     virtual bool init() = win 0x362eb0, imac 0x78b270, m1 0x69ee4c, ios 0xf4504;
     virtual void keyBackClicked() = win 0x3657d0, m1 0x6a0f54, imac 0x78d440, ios 0xf5950;
 
-    void addToggle(char const* label, char const* key, char const* description) = win 0x3639b0;
+    void addToggle(char const* label, char const* key, char const* description) = win 0x3639b0, ios 0xf491c;
     int countForPage(int) = win 0x364010;
     void goToPage(int) = win 0x364430;
     void incrementCountForPage(int);
@@ -16099,10 +16099,10 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
     cocos2d::CCArray* objectsForPage(int) = win 0x3640e0;
     void onApplyFPS(cocos2d::CCObject* sender) = win 0x3652b0;
     void onClose(cocos2d::CCObject* sender) = win 0x365780;
-    void onInfo(cocos2d::CCObject* sender) = win 0x3655a0;
-    void onNextPage(cocos2d::CCObject* sender) = win 0x364410;
-    void onPrevPage(cocos2d::CCObject* sender) = win 0x364420;
-    void onToggle(cocos2d::CCObject* sender) = win 0x364840;
+    void onInfo(cocos2d::CCObject* sender) = win 0x3655a0, ios 0xf573c;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x364410, ios 0xf4d18;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x364420, ios 0xf4d0c;
+    void onToggle(cocos2d::CCObject* sender) = win 0x364840, ios 0xf519c;
     const char* pageKey(int);
     void updateFPSButtons() = win 0x3651e0;
 
@@ -23274,9 +23274,9 @@ class SpritePartDelegate {
 class StarInfoPopup : FLAlertLayer {
     // virtual ~StarInfoPopup();
 
-    static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool) = win 0x3b0cb0, imac 0x7ac620, m1 0x6bdd58;
-    static StarInfoPopup* createFromString(gd::string) = win 0x3b0720, m1 0x6baa6c, imac 0x7a9160;
-    static StarInfoPopup* createFromStringMoons(gd::string) = win 0x3b0a00, m1 0x6bacd4, imac 0x7a93f0;
+    static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool) = win 0x3b0cb0, imac 0x7ac620, m1 0x6bdd58, ios 0x1a0c18;
+    static StarInfoPopup* createFromString(gd::string) = win 0x3b0720, m1 0x6baa6c, imac 0x7a9160, ios 0x19e8c8;
+    static StarInfoPopup* createFromStringMoons(gd::string) = win 0x3b0a00, m1 0x6bacd4, imac 0x7a93f0, ios 0x19ea78;
 
     virtual void keyBackClicked() = win 0x84650, m1 0x6be87c, imac 0x7ad0e0, ios 0x1a1584;
 
@@ -23323,7 +23323,7 @@ class StatsLayer : GJDropDownLayer {
     // virtual ~StatsLayer();
     StatsLayer() {}
 
-    static StatsLayer* create() = win inline, m1 0x8e198, imac 0x9b220 {
+    static StatsLayer* create() = win inline, m1 0x8e198, imac 0x9b220, ios 0x241ac4 {
         auto ret = new StatsLayer();
         if(ret->init("Stats", 220.f, false)) {
             ret->autorelease();
@@ -24480,20 +24480,20 @@ class VideoOptionsLayer : FLAlertLayer {
     virtual bool init() = win 0x360df0, imac 0x789140, m1 0x69d004, ios 0xf2d28;
     virtual void keyBackClicked() = win 0x362c60, m1 0x69eb08, imac 0x78adf0, ios 0xf4440;
 
-    CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float, bool, cocos2d::CCArray*) = win 0x362c70;
-    void onAdvanced(cocos2d::CCObject* sender) = win 0x362130;
+    CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint, float, float, bool, cocos2d::CCArray*) = win 0x362c70, ios 0xf3ab8;
+    void onAdvanced(cocos2d::CCObject* sender) = win 0x362130, ios 0xf4154;
     void onApply(cocos2d::CCObject* sender) = win 0x362720, m1 0x69e330, imac 0x78a590;
     void onBorderless(cocos2d::CCObject* sender) = win 0x362280;
-    void onBorderlessFix(cocos2d::CCObject* sender) = win 0x3622a0;
+    void onBorderlessFix(cocos2d::CCObject* sender) = win 0x3622a0; //ios 0xf3d24
     void onClose(cocos2d::CCObject* sender) = win 0x362be0;
-    void onFullscreen(cocos2d::CCObject* sender) = win 0x362260;
+    void onFullscreen(cocos2d::CCObject* sender) = win 0x362260, ios 0xf3d14;
     void onInfo(cocos2d::CCObject* sender) = m1 0x69ea28;
     void onResolutionNext(cocos2d::CCObject* sender) = win 0x3623a0;
     void onResolutionPrev(cocos2d::CCObject* sender) = win 0x362390;
     void onTextureQualityNext(cocos2d::CCObject* sender) = win 0x3622d0;
     void onTextureQualityPrev(cocos2d::CCObject* sender) = win 0x3622c0;
     void reloadMenu();
-    void toggleResolution() = win 0x3624c0;
+    void toggleResolution() = win 0x3624c0, ios 0xf4234;
     void updateResolution(int) = win 0x3623b0, m1 0x69e634, imac 0x78a8b0;
     void updateTextureQuality(int) = win 0x3622e0;
 
