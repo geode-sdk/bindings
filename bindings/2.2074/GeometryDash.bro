@@ -10967,7 +10967,7 @@ class GJGameState {
 
 [[link(android)]]
 class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, GameRateDelegate, ListButtonBarDelegate, DialogDelegate, CharacterColorDelegate, RewardedVideoDelegate {
-    GJGarageLayer() = ios 0x309620, win inline {
+    GJGarageLayer() = ios 0x309620 {
         m_playerObject = nullptr;
         m_unknown = nullptr;
         m_supporter = nullptr;
