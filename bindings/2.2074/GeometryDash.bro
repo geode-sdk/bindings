@@ -11034,7 +11034,9 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void setupIconSelect() = ios 0x303b74, win 0x26d930, m1 0x2eb53c, imac 0x357db0;
     void setupPage(int, IconType) = ios 0x304de4, win 0x26e7b0, imac 0x359700, m1 0x2ecea8;
     void setupSpecialPage() = ios 0x3053b0, win 0x26f1e0, imac 0x359d80, m1 0x2ed500;
-    void showUnlockPopupNew(int, UnlockType);
+    void showUnlockPopupNew(int, UnlockType) = ios 0x306750, win inline {
+        ItemInfoPopup::create(p0, p1)->show();
+    }
     gd::string titleForUnlock(int, UnlockType);
     void toggleGlow();
     void updatePlayerColors() = win 0x2701a0, m1 0x2eaef4, imac 0x3577a0, ios 0x3035e8;
@@ -15677,7 +15679,7 @@ class LocalLevelManager : GManager {
     TodoReturn markLevelsAsUnmodified();
     TodoReturn moveLevelToTop(GJGameLevel*);
     TodoReturn reorderLevels();
-    TodoReturn reorderLists();
+    void reorderLists() = ios 0x1c9ec4; //win inline
     TodoReturn tryLoadMainLevelString(int) = m1 0x511d80, imac 0x5df200;
     TodoReturn updateLevelOrder() = win 0x31b9d0;
     TodoReturn updateLevelRevision() = win 0x31b640, m1 0x512700, imac 0x5dfd20;
@@ -15895,16 +15897,16 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     virtual void forceReloadMessages(bool) = win 0x323450, imac 0x21da60, m1 0x1d0630, ios 0x1ce3b0;
     virtual void setupPageInfo(gd::string, char const*) = win 0x323470, imac 0x21daa0, m1 0x1d0664, ios 0x1ce3e4;
 
-    void deleteSelected() = win 0x3227d0, m1 0x1cfac8, imac 0x21cf00;
+    void deleteSelected() = win 0x3227d0, m1 0x1cfac8, imac 0x21cf00, ios 0x1cdb9c;
     bool init(bool) = win 0x321850, m1 0x1ce900, imac 0x21bbe0, ios 0x1ccc58;
-    bool isCorrect(char const*);
+    bool isCorrect(char const*) = ios 0x1ce054;
     void loadPage(int) = win 0x322d60, m1 0x1cf6e0, imac 0x21caa0, ios 0x1cd974;
     void onClose(cocos2d::CCObject* sender) = win 0x322bf0, m1 0x1cf258, imac 0x21c5b0, ios 0x1cd594;
-    void onDeleteSelected(cocos2d::CCObject* sender) = win 0x3224e0, m1 0x1cf3f4, imac 0x21c760;
+    void onDeleteSelected(cocos2d::CCObject* sender) = win 0x3224e0, m1 0x1cf3f4, imac 0x21c760, ios 0x1cd6e0;
     void onNextPage(cocos2d::CCObject* sender) = win 0x323610;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x323620;
-    void onSentMessages(cocos2d::CCObject* sender) = win 0x322450;
-    void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x322270, m1 0x1cf5c0, imac 0x21c940;
+    void onSentMessages(cocos2d::CCObject* sender) = win 0x322450, ios 0x1cd654;
+    void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x322270, m1 0x1cf5c0, imac 0x21c940, ios 0x1cd860;
     void onUpdate(cocos2d::CCObject* sender);
     void setupCommentsBrowser(cocos2d::CCArray*) = win 0x323170;
     void untoggleAll() = win 0x322cc0, m1 0x1d00c4, imac 0x21d4b0;
