@@ -6964,7 +6964,7 @@ class GameLevelManager : cocos2d::CCNode {
     void markListAsDownloaded(int id) = win inline {
         this->markLevelAsDownloaded(-id);
     }
-    void messageWasRemoved(int, bool);
+    void messageWasRemoved(int, bool) = ios 0xa933c;
     void onAcceptFriendRequestCompleted(gd::string response, gd::string tag);
     void onBanUserCompleted(gd::string response, gd::string tag);
     void onBlockUserCompleted(gd::string response, gd::string tag);
@@ -6972,16 +6972,16 @@ class GameLevelManager : cocos2d::CCNode {
     void onDeleteFriendRequestCompleted(gd::string response, gd::string tag);
     void onDeleteServerLevelCompleted(gd::string response, gd::string tag);
     void onDeleteServerLevelListCompleted(gd::string response, gd::string tag) = imac 0x514f40;
-    void onDeleteUserMessagesCompleted(gd::string response, gd::string tag);
+    void onDeleteUserMessagesCompleted(gd::string response, gd::string tag) = ios 0x92294;
     void onDownloadLevelCompleted(gd::string response, gd::string tag);
     void onDownloadUserMessageCompleted(gd::string response, gd::string tag);
     void onGetAccountCommentsCompleted(gd::string response, gd::string tag);
     void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x15d510, m1 0x46c964, imac 0x50e7b0;
     void onGetGauntletsCompleted(gd::string response, gd::string tag);
     void onGetGJChallengesCompleted(gd::string response, gd::string tag) = win 0x164f20, imac 0x510b00, m1 0x46f5b0;
-    void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag) = win 0x1663a0, imac 0x512730, m1 0x470324;
+    void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag) = win 0x1663a0, imac 0x512730, m1 0x470324, ios 0x93e20;
     void onGetGJRewardsCompleted(gd::string response, gd::string tag);
-    TodoReturn onGetGJSecretRewardCompleted(gd::string, gd::string);
+    TodoReturn onGetGJSecretRewardCompleted(gd::string, gd::string) = ios 0x955f4;
     void onGetGJUserInfoCompleted(gd::string response, gd::string tag) = win 0x157aa0;
     void onGetLeaderboardScoresCompleted(gd::string response, gd::string tag) = win 0x155b80, m1 0x468fa0, imac 0x50a9d0;
     void onGetLevelCommentsCompleted(gd::string response, gd::string tag);
@@ -7015,7 +7015,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onUploadCommentCompleted(gd::string response, gd::string tag) = win 0x15bde0, imac 0x50b830, m1 0x469db8;
     void onUploadFriendRequestCompleted(gd::string response, gd::string tag);
     void onUploadLevelCompleted(gd::string response, gd::string tag) = win 0x14b1a0, imac 0x5083c0;
-    void onUploadLevelListCompleted(gd::string response, gd::string tag) = imac 0x514d50;
+    void onUploadLevelListCompleted(gd::string response, gd::string tag) = imac 0x514d50, ios 0x95464;
     void onUploadUserMessageCompleted(gd::string response, gd::string tag);
     int pageFromCommentKey(char const*);
     void parseRestoreData(gd::string);
@@ -7027,7 +7027,7 @@ class GameLevelManager : cocos2d::CCNode {
     void rateStars(int, int) = m1 0x48a7c8, imac 0x52fd00;
     void readFriendRequest(int) = m1 0x498000, imac 0x53edd0;
     TodoReturn removeDelimiterChars(gd::string, bool) = win 0x167f10;
-    void removeDLFromActive(char const*) = m1 0x47e944, imac 0x5229d0, win 0x147ae0;
+    void removeDLFromActive(char const*) = m1 0x47e944, imac 0x5229d0, win 0x147ae0, ios 0x9d340;
     void removeFriend(int) = m1 0x498490, imac 0x53f2b0;
     void removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary*);
     void removeUserFromList(int, UserListType);
@@ -7078,7 +7078,7 @@ class GameLevelManager : cocos2d::CCNode {
     void setLevelStars(int, int, bool);
     int specialFromLikeKey(char const*);
     void storeCommentsResult(cocos2d::CCArray*, gd::string, char const*);
-    void storeDailyLevelState(int, int, GJTimedLevelType) = imac 0x543800;
+    void storeDailyLevelState(int, int, GJTimedLevelType) = imac 0x543800, ios 0xaed8c;
     void storeFriendRequest(GJFriendRequest* request) = win inline, m1 0x4909e8, imac 0x536f90 {
         if (request && request->m_accountID > 0) m_friendRequests->setObject(request, request->m_accountID);
     }
@@ -8430,7 +8430,7 @@ class GameStatsManager : cocos2d::CCNode {
     void completedStarLevel(GJGameLevel*) = m1 0x61598, ios 0x330f2c;
     int countSecretChests(GJRewardType);
     int countUnlockedSecretChests(GJRewardType);
-    TodoReturn createReward(GJRewardType, int, gd::string);
+    TodoReturn createReward(GJRewardType, int, gd::string) = ios 0x332fb4;
     void createSecretChestItems() = imac 0x5d080, m1 0x5243c;
     void createSecretChestRewards() = win 0x1e7760;
     void createSpecialChestItems() = m1 0x52580, imac 0x5d1d0, win 0x1e2c90;
@@ -15903,8 +15903,8 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void loadPage(int) = win 0x322d60, m1 0x1cf6e0, imac 0x21caa0, ios 0x1cd974;
     void onClose(cocos2d::CCObject* sender) = win 0x322bf0, m1 0x1cf258, imac 0x21c5b0, ios 0x1cd594;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0x3224e0, m1 0x1cf3f4, imac 0x21c760, ios 0x1cd6e0;
-    void onNextPage(cocos2d::CCObject* sender) = win 0x323610, 0x1cd8f8;
-    void onPrevPage(cocos2d::CCObject* sender) = win 0x323620, 0x1cd904;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x323610, ios 0x1cd8f8;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x323620, ios 0x1cd904;
     void onSentMessages(cocos2d::CCObject* sender) = win 0x322450, ios 0x1cd654;
     void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x322270, m1 0x1cf5c0, imac 0x21c940, ios 0x1cd860;
     void onUpdate(cocos2d::CCObject* sender) = ios 0x1cd910;
@@ -16352,7 +16352,7 @@ class MusicDownloadDelegate {
 
 [[link(android)]]
 class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
-    static cocos2d::CCDictionary* responseToDict(gd::string, char const*);
+    static cocos2d::CCDictionary* responseToDict(gd::string, char const*) = ios 0x158138;
     // virtual ~MusicDownloadManager();
 
     static MusicDownloadManager* sharedState() = ios 0x156e20, win 0x3277b0, imac 0x572a00, m1 0x4c6c2c;
@@ -16362,7 +16362,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x3299f0, imac 0x577e40, m1 0x4cba2c;
     void addDLToActive(char const* tag);
     void addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x327f30, m1 0x4c7c3c, imac 0x573b30, ios 0x157810;
-    void addSongObjectFromString(gd::string);
+    void addSongObjectFromString(gd::string) = ios 0x157f54; // may return CCObject
     void clearSong(int songID) = ios 0x159868, win inline, m1 0x4cae00, imac 0x577170 {
         const char* key = cocos2d::CCString::createWithFormat("%i", songID)->getCString();
         m_songObjects->removeObjectForKey(key);
@@ -22840,7 +22840,7 @@ class SongInfoLayer : FLAlertLayer {
 class SongInfoObject : cocos2d::CCNode {
     // virtual ~SongInfoObject();
 
-    static SongInfoObject* create(cocos2d::CCDictionary*) = win 0x32f0d0;
+    static SongInfoObject* create(cocos2d::CCDictionary*) = win 0x32f0d0, ios 0x158280;
     static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x3300c0, m1 0x4cf4f4, imac 0x57c260, ios 0x15c574;
     static SongInfoObject* create(int) = win 0x32ef70, imac 0x57f2e0, m1 0x4d21ac, ios 0x15e750;
 
