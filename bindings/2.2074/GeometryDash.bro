@@ -4583,7 +4583,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onBack(cocos2d::CCObject* sender) = win 0xd80e0;
     void onClone() = m1 0x1a3618;
     void onDelete() = m1 0x1a3328;
-    void onEdit(cocos2d::CCObject* sender);
+    void onEdit(cocos2d::CCObject* sender) = win 0xd6d80, imac 0x1e9db0, m1 0x1a0ec4, ios 0xed344;
     void onGuidelines(cocos2d::CCObject* sender) = win 0xd52e0, imac 0x1eb5e0;
     void onHelp(cocos2d::CCObject* sender) = m1 0x1a1f28, imac 0x1eae30, win 0xd7c50;
     void onLevelInfo(cocos2d::CCObject* sender) = ios 0xee63c, win 0xd5500, m1 0x1a2420, imac 0x1eb320;
