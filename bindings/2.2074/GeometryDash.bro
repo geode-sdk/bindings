@@ -5332,7 +5332,7 @@ class EffectGameObject : EnhancedGameObject {
     // property 402
     float m_rotationOffset;
     // property 403
-    EasingType m_dynamicModeEasing;
+    int m_dynamicModeEasing;
     // property 72
     float m_followXMod;
     // property 73
