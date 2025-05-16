@@ -6934,7 +6934,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool hasRatedDemon(int id) = win 0x152280, m1 0x48b328, imac 0x5309d0;
     bool hasRatedLevelStars(int id);
     bool hasReportedLevel(int id);
-    void invalidateMessages(bool, bool) = imac 0x538ef0;
+    void invalidateMessages(bool, bool) = imac 0x538ef0, 0xa9250;
     void invalidateRequests(bool, bool) = imac 0x53e480;
     void invalidateUserList(UserListType, bool) = win 0x160840, m1 0x4996f8, imac 0x540580;
     bool isDLActive(char const* tag) = imac 0x5227e0, m1 0x47e73c, win 0x147960;
@@ -15903,11 +15903,11 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void loadPage(int) = win 0x322d60, m1 0x1cf6e0, imac 0x21caa0, ios 0x1cd974;
     void onClose(cocos2d::CCObject* sender) = win 0x322bf0, m1 0x1cf258, imac 0x21c5b0, ios 0x1cd594;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0x3224e0, m1 0x1cf3f4, imac 0x21c760, ios 0x1cd6e0;
-    void onNextPage(cocos2d::CCObject* sender) = win 0x323610;
-    void onPrevPage(cocos2d::CCObject* sender) = win 0x323620;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x323610, 0x1cd8f8;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x323620, 0x1cd904;
     void onSentMessages(cocos2d::CCObject* sender) = win 0x322450, ios 0x1cd654;
     void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x322270, m1 0x1cf5c0, imac 0x21c940, ios 0x1cd860;
-    void onUpdate(cocos2d::CCObject* sender);
+    void onUpdate(cocos2d::CCObject* sender) = ios 0x1cd910;
     void setupCommentsBrowser(cocos2d::CCArray*) = win 0x323170, ios 0x1ce0a4;
     void untoggleAll() = win 0x322cc0, m1 0x1d00c4, imac 0x21d4b0;
     void updateLevelsLabel();
