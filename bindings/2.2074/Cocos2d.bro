@@ -2829,7 +2829,7 @@ class cocos2d::CCIMEDispatcher {
     void removeDelegate(cocos2d::CCIMEDelegate*);
 }
 
-[[link(win, android)]]
+[[link(win, android, ios)]]
 class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes);
 
