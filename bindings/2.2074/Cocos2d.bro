@@ -2009,44 +2009,89 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
 [[link(win, android)]]
 class cocos2d::CCGLProgram : cocos2d::CCObject {
     bool initWithVertexShaderByteArray(char const*, char const*) = imac 0x417e60, m1 0x393990, ios 0x138260;
-    bool initWithVertexShaderFilename(char const*, char const*) = m1 0x393a34, imac 0x417f00;
+    bool initWithVertexShaderFilename(char const*, char const*) = m1 0x393b00, imac 0x417fd0, ios inline {
+        return this->initWithVertexShaderByteArray(
+            CCString::createWithContentsOfFile(CCFileUtils::sharedFileUtils()->fullPathForFilename(p0, false).c_str())->getCString(),
+            CCString::createWithContentsOfFile(CCFileUtils::sharedFileUtils()->fullPathForFilename(p1, false).c_str())->getCString()
+        );
+    }
 
     unsigned int const getProgram();
-    int getUniformLocationForName(char const*) = m1 0x3947a0, imac 0x418b80;
+    int getUniformLocationForName(char const*) = m1 0x3947a0, imac 0x418b80, ios inline {
+        return glGetUniformLocation(m_uProgram, p0);
+    }
 
-    void setUniformLocationWith1f(int, float) = ios 0x1389e0;
-    void setUniformLocationWith1i(int, int);
-    void setUniformLocationWith2f(int, float, float);
-    void setUniformLocationWith2fv(int, float*, unsigned int);
-    void setUniformLocationWith2i(int, int, int);
-    void setUniformLocationWith2iv(int, int*, unsigned int);
-    void setUniformLocationWith3f(int, float, float, float) = ios 0x138aec;
-    void setUniformLocationWith3fv(int, float*, unsigned int) = ios 0x138c7c;
-    void setUniformLocationWith3i(int, int, int, int);
-    void setUniformLocationWith3iv(int, int*, unsigned int);
-    void setUniformLocationWith4f(int, float, float, float, float);
-    void setUniformLocationWith4fv(int, float*, unsigned int);
-    void setUniformLocationWith4i(int, int, int, int, int);
-    void setUniformLocationWith4iv(int, int*, unsigned int);
-    void setUniformLocationWithMatrix3fv(int, float*, unsigned int);
-    void setUniformLocationWithMatrix4fv(int, float*, unsigned int);
+    void setUniformLocationWith1f(int, float) = m1 0x394ad8, imac 0x418e60, ios 0x1389e0;
+    void setUniformLocationWith1i(int, int) = m1 0x393d78, imac 0x418210, ios 0x1384f0;
+    void setUniformLocationWith2f(int, float, float) = m1 0x394b38, imac 0x418ea0, ios 0x138a40;
+    void setUniformLocationWith2fv(int, float*, unsigned int) = m1 0x394d74, imac 0x419070, ios inline {
+        if (this->updateUniformLocation(p0, p1, p2 * 8)) glUniform2fv(p0, p2, p1);
+    }
+    void setUniformLocationWith2i(int, int, int) = m1 0x3947a8, imac 0x418b90, ios inline {
+        GLint ints[2] = { p1, p2 };
+        if (this->updateUniformLocation(p0, ints, 8)) glUniform2i(p0, p1, p2);
+    }
+    void setUniformLocationWith2iv(int, int*, unsigned int) = m1 0x3949d8, imac 0x418d70, ios inline {
+        if (this->updateUniformLocation(p0, p1, p2 * 8)) glUniform2iv(p0, p2, p1);
+    }
+    void setUniformLocationWith3f(int, float, float, float) = m1 0x394be4, imac 0x418f30, ios 0x138aec;
+    void setUniformLocationWith3fv(int, float*, unsigned int) = m1 0x394dc8, imac 0x4190c0, ios inline {
+        if (this->updateUniformLocation(p0, p1, p2 * 12)) glUniform3fv(p0, p2, p1);
+    }
+    void setUniformLocationWith3i(int, int, int, int) = m1 0x394854, imac 0x418c20, ios inline {
+        GLint ints[3] = { p1, p2, p3 };
+        if (this->updateUniformLocation(p0, ints, 12)) glUniform3i(p0, p1, p2, p3);
+    }
+    void setUniformLocationWith3iv(int, int*, unsigned int) = m1 0x394a2c, imac 0x418dc0, ios inline {
+        if (this->updateUniformLocation(p0, p1, p2 * 12)) glUniform3iv(p0, p2, p1);
+    }
+    void setUniformLocationWith4f(int, float, float, float, float) = m1 0x394ca8, imac 0x418fd0, ios 0x138bb0;
+    void setUniformLocationWith4fv(int, float*, unsigned int) = m1 0x394e7c, imac 0x419160, ios 0x138cd8;
+    void setUniformLocationWith4i(int, int, int, int, int) = m1 0x39490c, imac 0x418cc0, ios inline {
+        GLint ints[4] = { p1, p2, p3, p4 };
+        if (this->updateUniformLocation(p0, ints, 16)) glUniform4i(p0, p1, p2, p3, p4);
+    }
+    void setUniformLocationWith4iv(int, int*, unsigned int) = m1 0x394a84, imac 0x418e10, ios inline {
+        if (this->updateUniformLocation(p0, p1, p2 * 16)) glUniform4iv(p0, p2, p1);
+    }
+    void setUniformLocationWithMatrix3fv(int, float*, unsigned int) = m1 0x394e20, imac 0x419110, ios 0x138c7c;
+    void setUniformLocationWithMatrix4fv(int, float*, unsigned int) = m1 0x394ed0, imac 0x4191b0, ios 0x138d2c;
     void setUniformsForBuiltins() = imac 0x419200, m1 0x394f28, ios 0x138d84;
 
     // CCGLProgram(cocos2d::CCGLProgram const&);
     ~CCGLProgram() = m1 0x3937f0, imac 0x417cb0, ios 0x1380ec;
     CCGLProgram() = m1 0x393770, imac 0x417c10, ios 0x1380ac;
     void addAttribute(char const*, unsigned int) = imac 0x4180e0, m1 0x393c30, ios 0x1383dc;
-    bool compileShader(unsigned int*, unsigned int, char const*);
-    char const* description() = imac 0x4180b0, m1 0x393bfc;
-    char const* fragmentShaderLog();
+    bool compileShader(unsigned int*, unsigned int, char const*) = m1 0x393a34, imac 0x417f00, ios 0x138304;
+    char const* description() = imac 0x4180b0, m1 0x393bfc, ios inline {
+        return CCString::createWithFormat("<CCGLProgram = " CC_FORMAT_PRINTF_SIZE_T " | Program = %i, VertexShader = %i, FragmentShader = %i>",
+            (size_t)this, m_uProgram, m_uVertShader, m_uFragShader)->getCString();
+    }
+    char const* fragmentShaderLog() = m1 0x3940a8, imac 0x4184f0, ios inline {
+        return this->logForOpenGLObject(m_uFragShader, (GLInfoFunction)&glGetShaderiv, (GLLogFunction)&glGetShaderInfoLog);
+    }
     bool link() = m1 0x393dcc, imac 0x418250, ios 0x138544;
-    // char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
-    char const* programLog();
-    void reset() = m1 0x3951e0, imac 0x419530;
-    bool updateUniformLocation(int, void*, unsigned int);
+    char const* logForOpenGLObject(unsigned int, GLInfoFunction, GLLogFunction) = m1 0x393e10, imac 0x418290, ios inline {
+        GLint logLength = 0;
+        p1(p0, GL_INFO_LOG_LENGTH, &logLength);
+        if (logLength < 1) return nullptr;
+        auto logBytes = (char*)malloc(logLength);
+        GLint charsWritten = 0;
+        p2(p0, logLength, &charsWritten, logBytes);
+        auto log = CCString::create(logBytes);
+        free(logBytes);
+        return log->getCString();
+    }
+    char const* programLog() = m1 0x3941f0, imac 0x418620, ios inline {
+        return this->logForOpenGLObject(m_uProgram, (GLInfoFunction)&glGetProgramiv, (GLLogFunction)&glGetProgramInfoLog);
+    }
+    void reset() = m1 0x3951e0, imac 0x419530, ios 0x138f20;
+    bool updateUniformLocation(int, void*, unsigned int) = m1 0x394338, imac 0x418750, ios 0x138588;
     void updateUniforms() = imac 0x418100, m1 0x393c44, ios 0x1383f0;
     void use() = m1 0x393d70, imac 0x418200, ios 0x1384e8;
-    char const* vertexShaderLog();
+    char const* vertexShaderLog() = m1 0x393f60, imac 0x4183c0, ios inline {
+        return this->logForOpenGLObject(m_uVertShader, (GLInfoFunction)&glGetShaderiv, (GLLogFunction)&glGetShaderInfoLog);
+    }
 }
 
 [[link(win, android)]]
