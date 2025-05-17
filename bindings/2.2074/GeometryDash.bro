@@ -17385,7 +17385,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn spawnCircle2();
     TodoReturn spawnDualCircle();
     TodoReturn spawnFromPlayer(PlayerObject*, bool);
-    TodoReturn spawnPortalCircle(cocos2d::ccColor3B, float) = win 0x381930;
+    void spawnPortalCircle(cocos2d::ccColor3B, float) = win 0x381930;
     TodoReturn spawnScaleCircle() = imac 0x401fe0;
     TodoReturn specialGroundHit();
     TodoReturn speedDown();
@@ -17402,7 +17402,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn stopRotation(bool, int);
     void stopStreak2() = ios 0x22d978, imac 0x409d20, m1 0x387654;
     void storeCollision(PlayerCollisionDirection, int);
-    TodoReturn switchedDirTo(PlayerButton) = win 0x382000;
+    bool switchedDirTo(PlayerButton) = win 0x382000;
     void switchedToMode(GameObjectType) = ios 0x227a78, win 0x3860a0, imac 0x401440, m1 0x37f824;
     TodoReturn testForMoving(float, GameObject*);
     void toggleBirdMode(bool, bool) = ios 0x22a6e8, win 0x384a90, imac 0x405680, m1 0x383410;
@@ -17420,7 +17420,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void toggleVisibility(bool) = ios 0x21e598, win 0x3756d0, imac 0x3f1460, m1 0x37219c;
     TodoReturn touchedObject(GameObject*) = ios 0x22e4ec, imac 0x40ad70;
     void tryPlaceCheckpoint() = ios 0x21e35c, m1 0x371f50, win 0x38c480;
-    TodoReturn unrotateGameplayObject(GameObject*) = win 0x37b8b0;
+    void unrotateGameplayObject(GameObject*) = win 0x37b8b0;
     TodoReturn unrotatePreSlopeObjects();
     TodoReturn updateCheckpointMode(bool) = ios 0x21a034;
     TodoReturn updateCheckpointTest() = ios 0x21e288;
@@ -17435,11 +17435,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         m_waveTrail->updateStroke(param);
     }
     void updateGlowColor() = ios 0x22ca94, win 0x3876a0, imac 0x4088a0, m1 0x386264;
-    TodoReturn updateInternalActions(float) = ios 0x22ea40, win 0x38d0c0, imac 0x40b720;
+    void updateInternalActions(float) = ios 0x22ea40, win 0x38d0c0, imac 0x40b720;
     void updateJump(float) = ios 0x21afa8, win 0x375b90, imac 0x3ec410, m1 0x36ddf4;
     TodoReturn updateJumpVariables();
     TodoReturn updateLastGroundObject(GameObject*);
-    TodoReturn updateMove(float) = win 0x374350;
+    void updateMove(float) = win 0x374350;
     void updatePlayerArt() = ios 0x229afc, win 0x382a30, imac 0x404530, m1 0x3823c4;
     void updatePlayerBirdFrame(int) = ios 0x22a960, win 0x388550, imac 0x405aa0, m1 0x3837cc;
     void updatePlayerDartFrame(int) = ios 0x22b4dc, win 0x388c50, imac 0x406bf0, m1 0x384808;
