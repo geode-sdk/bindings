@@ -28,7 +28,7 @@ std::string generateTextInterface(Root const& root) {
                     // skip unbinded functions
                     continue;
                 }
-                else if (status != BindStatus::NeedsBinding && !codegen::shouldAndroidBind(fn)) {
+                else if (status != BindStatus::NeedsBinding) {
                     continue;
                 }
                 output += fmt::format("{}::{} - {:#x}\n", c.name, fn->prototype.name, codegen::platformNumber(fn->binds));

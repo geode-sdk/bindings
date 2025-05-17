@@ -207,7 +207,10 @@ namespace codegen {
         if (platformNumberWithPlatform(p, fn.binds) == -2) return BindStatus::Inlined;
 
         if ((fn.prototype.attributes.missing & p) != Platform::None || codegen::sdkVersion < fn.prototype.attributes.since) return BindStatus::Missing;
-        if ((fn.prototype.attributes.links & p) != Platform::None) return BindStatus::Binded;
+        if ((fn.prototype.attributes.links & p) != Platform::None) {
+            if (fn.prototype.type == FunctionType::Normal) return BindStatus::Binded;
+            else return BindStatus::NeedsBinding;
+        }
 
         if (platformNumberWithPlatform(p, fn.binds) != -1) return BindStatus::NeedsBinding;
 
@@ -223,17 +226,6 @@ namespace codegen {
         if (platformNumberWithPlatform(p, f.binds) != -1) return BindStatus::NeedsBinding;
 
         return BindStatus::Unbindable;
-    }
-
-    inline bool shouldAndroidBind(const FunctionBindField* fn) {
-        if (codegen::platform == Platform::Android32 || codegen::platform == Platform::Android64) {
-            if (sdkVersion < fn->prototype.attributes.since) return false;
-            if (fn->prototype.type != FunctionType::Normal) return true;
-            for (auto& [type, name] : fn->prototype.args) {
-                if (can_find(type.name, "gd::")) return true;
-            }
-        }
-        return false;
     }
 
     inline BindStatus getStatus(FunctionBindField const& fn) {
@@ -350,34 +342,45 @@ namespace codegen {
 
     inline std::string getAddressString(Class const& c, Field const& field) {
         if (auto fn = field.get_as<FunctionBindField>()) {
-            const auto isWindowsCocosCtor = [&] {
+            const auto canResolveWindows = [&] {
                 return codegen::platform == Platform::Windows
                     && is_cocos_class(field.parent) 
                     // && codegen::getStatus(field) == BindStatus::Binded
                     && fn->prototype.type != FunctionType::Normal;
             };
 
-            if (codegen::getStatus(*fn) == BindStatus::NeedsBinding || codegen::platformNumber(field) != -1) {
-                if (is_in_cocos_dll(field.parent) && codegen::platform == Platform::Windows) {
-                    return fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
+            const auto canResolveAndroid = [&] {
+                if (codegen::platform == Platform::Android32 || codegen::platform == Platform::Android64) {
+                    if (sdkVersion < fn->prototype.attributes.since) return false;
+                    if (fn->prototype.type != FunctionType::Normal) return true;
+                    for (auto& [type, name] : fn->prototype.args) {
+                        if (can_find(type.name, "gd::")) return true;
+                    }
                 }
-                else {
-                    return fmt::format("base::get() + 0x{:x}", codegen::platformNumber(fn->binds));
-                }
-            }
-            else if (codegen::shouldAndroidBind(fn)) {
+                return false;
+            };
+
+            if (canResolveAndroid()) {
                 auto const mangled = generateAndroidSymbol(c, fn);
                 return fmt::format( // thumb
                     "reinterpret_cast<uintptr_t>(dlsym(dlopen(\"libcocos2dcpp.so\", RTLD_NOW), \"{}\"))",
                     mangled
                 );
             }
-            else if (isWindowsCocosCtor()) {
+            else if (canResolveWindows()) {
                 auto const mangled = generateWindowsSymbol(c, fn);
                 return fmt::format(
                     "reinterpret_cast<uintptr_t>(GetProcAddress(GetModuleHandleA(\"libcocos2d.dll\"), \"{}\"))",
                     mangled
                 );
+            }
+            else if (codegen::getStatus(*fn) == BindStatus::NeedsBinding || codegen::platformNumber(field) != -1) {
+                if (is_in_cocos_dll(field.parent) && codegen::platform == Platform::Windows) {
+                    return fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
+                }
+                else {
+                    return fmt::format("base::get() + 0x{:x}", codegen::platformNumber(fn->binds));
+                }
             }
             else if (codegen::getStatus(*fn) == BindStatus::Binded && fn->prototype.type == FunctionType::Normal) {
                 return fmt::format(
