@@ -55,10 +55,15 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 )GEN";
 
 	constexpr char const* declare_destructor = R"GEN(
+{destructor_hack_begin}
 {class_name}::{function_name}({parameters}) {{
 	// basically we destruct it once by calling the gd function, 
 	// then lock it, so that other gd destructors dont get called
+#ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK
 	if (!geode::DestructorLock::isLocked(this)) {{
+#else
+	if (!cocos2d::CCDestructor::destructorLock().count(this)) {{
+#endif
 		using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
 		static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 			.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
@@ -69,16 +74,26 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 		// we need to construct it back so that it uhhh ummm doesnt crash
 		// while going to the child destructors
 		auto thing = new (this) {class_name}(geode::CutoffConstructor, sizeof({class_name}));
+#ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK
 		geode::DestructorLock::addLock(this);
+#else
+		cocos2d::CCDestructor::destructorLock().insert({{(void*)this, true}});
+#endif
 	}}
 }}
+{destructor_hack_end}
 )GEN";
 
 	constexpr char const* declare_destructor_baseless = R"GEN(
+{destructor_hack_begin}
 {class_name}::{function_name}({parameters}) {{
 	// basically we destruct it once by calling the gd function, 
 	// then we release the lock because there are no other destructors after this
+#ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK
 	if (!geode::DestructorLock::isLocked(this)) {{
+#else
+	if (!cocos2d::CCDestructor::destructorLock().count(this)) {{
+#endif
 		using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
 		static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 			.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
@@ -87,17 +102,27 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 		reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 	}}
 	else {{
+#ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK
 		geode::DestructorLock::removeLock(this);
+#else
+		cocos2d::CCDestructor::destructorLock().erase(this);
+#endif
 	}}
 }}
+{destructor_hack_end}
 )GEN";
 
 	constexpr char const* declare_constructor = R"GEN(
+{destructor_hack_begin}
 {class_name}::{function_name}({parameters}) : {class_name}(geode::CutoffConstructor, sizeof({class_name})) {{
 	// here we construct it as normal as we can, then destruct it
 	// using the generated functions. this ensures no memory gets leaked
 	// no crashes :pray:
+#ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK
 	geode::DestructorLock::addLock(this);
+#else
+	cocos2d::CCDestructor::destructorLock().insert({{(void*)this, true}});
+#endif
 	{class_name}::~{unqualified_class_name}();
 
 	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
@@ -107,9 +132,11 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	}});
 	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 }}
+{destructor_hack_end}
 )GEN";
 
 	constexpr char const* declare_constructor_begin = R"GEN(
+{destructor_hack_begin}
 {class_name}::{function_name}({parameters}) {{
 	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
 	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
@@ -118,6 +145,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	}});
 	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 }}
+{destructor_hack_end}
 )GEN";
 
 	constexpr char const* declare_unimplemented_error = R"GEN(
@@ -222,12 +250,18 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 					}
 				} else if (codegen::getStatus(*fn) != BindStatus::Unbindable || codegen::platformNumber(fn->binds) != -1) {
 					char const* used_declare_format = nullptr;
+					char const* destructor_hack_begin = "";
+					char const* destructor_hack_end = "";
 
 					if (codegen::platformNumber(fn->binds) == 0x9999999) {
 						used_declare_format = format_strings::declare_unimplemented_error;
 					}
 					else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && codegen::getStatus(*fn) != BindStatus::NeedsRebinding) {
 						continue;
+					}
+					if (codegen::getStatus(*fn) == BindStatus::NeedsRebinding && codegen::platform == Platform::Windows) {
+						destructor_hack_begin = "#ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK";
+						destructor_hack_end = "#endif\n";
 					}
 
 					if (!used_declare_format) {
@@ -264,7 +298,9 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 						fmt::arg("parameters", codegen::getParameters(fn->prototype)),
 						fmt::arg("parameter_types", codegen::getParameterTypes(fn->prototype)),
 						fmt::arg("arguments", codegen::getParameterNames(fn->prototype)),
-						fmt::arg("parameter_comma", str_if(", ", !fn->prototype.args.empty()))
+						fmt::arg("parameter_comma", str_if(", ", !fn->prototype.args.empty())),
+						fmt::arg("destructor_hack_begin", destructor_hack_begin),
+						fmt::arg("destructor_hack_end", destructor_hack_end)
 					);
 				}
 			}
