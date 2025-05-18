@@ -17,7 +17,7 @@ std::unordered_map<void*, bool>& cocos2d::CCDestructor::destructorLock() {{
 	return s_lock;
 }}
 
-bool& CCDestructor::globalLock() {{
+bool& cocos2d::CCDestructor::globalLock() {{
 	static thread_local bool ret = false;
 	return ret; 
 }}
@@ -26,7 +26,7 @@ bool& cocos2d::CCDestructor::lock(void* self) {{
 	return destructorLock()[self];
 }}
 
-CCDestructor::~CCDestructor() {{
+cocos2d::CCDestructor::~CCDestructor() {{
 	destructorLock().erase(this);
 }}
 #endif
