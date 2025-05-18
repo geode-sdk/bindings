@@ -3377,6 +3377,40 @@ class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
 
     ~CCApplication() = m1 0x2ab124, imac 0x314ee0, ios 0x1af2ec;
 
+    [[missing(android, mac, ios)]]
+    void toggleVerticalSync(bool);
+    [[missing(android, mac, ios)]]
+    void setupVerticalSync();
+    [[missing(android, mac, ios)]]
+    void updateVerticalSync();
+    [[missing(android, mac, ios)]]
+    void updateControllerKeys(CXBOXController* controller, int userIndex);
+
+    [[missing(android, mac, ios)]]
+    int getTimeElapsed();
+    [[missing(android, mac, ios)]]
+    void resetForceTimer();
+
+    [[missing(android, mac, ios)]]
+    void leftMouseDown();
+    [[missing(android, mac, ios)]]
+    void leftMouseUp();
+
+    [[missing(android, mac, ios)]]
+    void logTimeElapsed(gd::string);
+
+    [[missing(android, mac, ios)]]
+    void moveMouse(int relX, int relY);
+
+    [[missing(android, mac, ios)]]
+    void shutdownApplication();
+    [[missing(android, mac, ios)]]
+    void toggleMouseControl(bool);
+    [[missing(android, mac, ios)]]
+    void updateController();
+    [[missing(android, mac, ios)]]
+    void updateMouseControl();
+
     virtual int run();
     virtual void setAnimationInterval(double) = m1 0x2ab1cc, imac 0x314f90, ios 0x1af3fc;
     virtual cocos2d::ccLanguageType getCurrentLanguage() = m1 0x2ab20c, imac 0x314ff0, ios 0x1af448;
