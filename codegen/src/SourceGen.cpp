@@ -86,7 +86,9 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 		}});
 		reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 	}}
-	geode::DestructorLock::removeLock(this);
+	else {{
+		geode::DestructorLock::removeLock(this);
+	}}
 }}
 )GEN";
 
