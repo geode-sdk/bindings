@@ -226,7 +226,7 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 					if (codegen::platformNumber(fn->binds) == 0x9999999) {
 						used_declare_format = format_strings::declare_unimplemented_error;
 					}
-					else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding) {
+					else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && codegen::getStatus(*fn) != BindStatus::NeedsRebinding) {
 						continue;
 					}
 

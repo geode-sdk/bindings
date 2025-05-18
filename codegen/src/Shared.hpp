@@ -61,8 +61,12 @@ inline bool is_cocos_class(std::string const& str) {
     return can_find(str, "cocos2d") || can_find(str, "pugi::") || str == "DS_Dictionary" || str == "ObjectDecoder" || str == "ObjectDecoderDelegate" || str == "CCContentManager";
 }
 
+inline bool is_in_extensions_dll(std::string const& str) {
+    return can_find(str, "cocos2d::extension");
+}
+
 inline bool is_in_cocos_dll(std::string const& str) {
-    return is_cocos_class(str) && !can_find(str, "CCLightning");
+    return is_cocos_class(str) && !can_find(str, "CCLightning") && !is_in_extensions_dll(str);
 }
 
 inline bool is_fmod_class(std::string const& str) {
@@ -79,6 +83,7 @@ enum class BindStatus {
     NeedsBinding,
     Unbindable,
     Missing,
+    NeedsRebinding,
 };
 
 struct codegen_error : std::runtime_error {
@@ -208,8 +213,15 @@ namespace codegen {
 
         if ((fn.prototype.attributes.missing & p) != Platform::None || codegen::sdkVersion < fn.prototype.attributes.since) return BindStatus::Missing;
         if ((fn.prototype.attributes.links & p) != Platform::None) {
-            if (fn.prototype.type == FunctionType::Normal) return BindStatus::Binded;
-            else return BindStatus::NeedsBinding;
+            if (fn.prototype.type != FunctionType::Normal) return BindStatus::NeedsRebinding;
+
+            if ((int)p & (int)Platform::Android) {
+                for (auto& [type, name] : fn.prototype.args) {
+                    if (can_find(type.name, "gd::")) return BindStatus::NeedsRebinding;
+                }
+            }
+            
+            return BindStatus::Binded;
         }
 
         if (platformNumberWithPlatform(p, fn.binds) != -1) return BindStatus::NeedsBinding;
@@ -277,14 +289,14 @@ namespace codegen {
             if (codegen::platformArch == PlatformArch::x86) {
                 // for windows x86, aka versions before 2.206
                 if (fn->prototype.is_static) {
-                    if (status == BindStatus::Binded) return "Cdecl";
+                    if (status == BindStatus::Binded || status == BindStatus::NeedsRebinding) return "Cdecl";
                     else return "Optcall";
                 }
                 else if (fn->prototype.is_virtual || fn->prototype.is_callback) {
                     return "Thiscall";
                 }
                 else {
-                    if (status == BindStatus::Binded) return "Thiscall";
+                    if (status == BindStatus::Binded || status == BindStatus::NeedsRebinding) return "Thiscall";
                     else return "Membercall";
                 }
             } else {
@@ -342,41 +354,45 @@ namespace codegen {
 
     inline std::string getAddressString(Class const& c, Field const& field) {
         if (auto fn = field.get_as<FunctionBindField>()) {
-            const auto canResolveWindows = [&] {
-                return codegen::platform == Platform::Windows
-                    && is_cocos_class(field.parent) 
-                    // && codegen::getStatus(field) == BindStatus::Binded
-                    && fn->prototype.type != FunctionType::Normal;
-            };
-
-            const auto canResolveAndroid = [&] {
-                if (codegen::platform == Platform::Android32 || codegen::platform == Platform::Android64) {
-                    if (sdkVersion < fn->prototype.attributes.since) return false;
-                    if (fn->prototype.type != FunctionType::Normal) return true;
-                    for (auto& [type, name] : fn->prototype.args) {
-                        if (can_find(type.name, "gd::")) return true;
+            if (codegen::getStatus(*fn) == BindStatus::NeedsRebinding) {
+                if ((int)codegen::platform & (int)Platform::Android) {
+                    auto const mangled = generateAndroidSymbol(c, fn);
+                    return fmt::format( // thumb
+                        "reinterpret_cast<uintptr_t>(dlsym(dlopen(\"libcocos2dcpp.so\", RTLD_NOW), \"{}\"))",
+                        mangled
+                    );
+                }
+                else if (codegen::platform == Platform::Windows) {
+                    auto const mangled = generateWindowsSymbol(c, fn);
+                    if (is_in_cocos_dll(field.parent)) {
+                        return fmt::format(
+                            "reinterpret_cast<uintptr_t>(GetProcAddress((HMODULE)base::getCocos(), \"{}\"))",
+                            mangled
+                        );
+                    }
+                    else if (is_in_extensions_dll(field.parent)) {
+                        return fmt::format(
+                            "reinterpret_cast<uintptr_t>(GetProcAddress((HMODULE)base::getExtensions(), \"{}\"))",
+                            mangled
+                        );
+                    }
+                    else {
+                        // Uhhhh im not sure
+                        return "(void*)0x9911991122";
                     }
                 }
-                return false;
-            };
-
-            if (canResolveAndroid()) {
-                auto const mangled = generateAndroidSymbol(c, fn);
-                return fmt::format( // thumb
-                    "reinterpret_cast<uintptr_t>(dlsym(dlopen(\"libcocos2dcpp.so\", RTLD_NOW), \"{}\"))",
-                    mangled
-                );
-            }
-            else if (canResolveWindows()) {
-                auto const mangled = generateWindowsSymbol(c, fn);
-                return fmt::format(
-                    "reinterpret_cast<uintptr_t>(GetProcAddress(GetModuleHandleA(\"libcocos2d.dll\"), \"{}\"))",
-                    mangled
-                );
             }
             else if (codegen::getStatus(*fn) == BindStatus::NeedsBinding || codegen::platformNumber(field) != -1) {
-                if (is_in_cocos_dll(field.parent) && codegen::platform == Platform::Windows) {
-                    return fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
+                if (codegen::platform == Platform::Windows) {
+                    if (is_in_cocos_dll(field.parent)) {
+                        return fmt::format("base::getCocos() + 0x{:x}", codegen::platformNumber(fn->binds));
+                    }
+                    else if (is_in_extensions_dll(field.parent)) {
+                        return fmt::format("base::getExtensions() + 0x{:x}", codegen::platformNumber(fn->binds));
+                    }
+                    else {
+                        return fmt::format("base::get() + 0x{:x}", codegen::platformNumber(fn->binds));
+                    }
                 }
                 else {
                     return fmt::format("base::get() + 0x{:x}", codegen::platformNumber(fn->binds));
