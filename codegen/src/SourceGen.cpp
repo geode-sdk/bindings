@@ -11,6 +11,13 @@ namespace { namespace format_strings {
 using namespace geode;
 using namespace geode::modifier;
 
+#ifndef GEODE_USE_NEW_DESTRUCTOR_LOCK
+std::unordered_map<void*, bool>& cocos2d::CCDestructor::destructorLock() {{
+	static thread_local std::unordered_map<void*, bool> s_lock;
+	return s_lock;
+}}
+#endif
+
 auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadata) {
 	auto wrapped = geode::hook::createWrapper(reinterpret_cast<void*>(address), metadata);
 	if (wrapped.isErr()) {{
