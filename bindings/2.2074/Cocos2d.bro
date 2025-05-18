@@ -1948,6 +1948,7 @@ class cocos2d::CCFadeTo : cocos2d::CCActionInterval {
 class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     // CCFileUtils(); // one of these two is 0x15bfa8
     // CCFileUtils(cocos2d::CCFileUtils const&);
+    ~CCFileUtils();
     virtual void addSearchPath(char const*) = m1 0x3a42d4, imac 0x4294e0, ios 0x155a30;
     virtual void addSearchResolutionsOrder(char const*) = imac 0x428f30, m1 0x3a3d24, ios 0x155538;
     virtual gd::string addSuffix(gd::string, gd::string) = imac 0x4273f0, m1 0x3a21f4, ios 0x15459c;
@@ -2269,6 +2270,7 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
 
     // CCScheduler(cocos2d::CCScheduler const&);
     // CCScheduler();
+    ~CCScheduler();
 
     void appendIn(cocos2d::_listEntry**, cocos2d::CCObject*, bool);
     bool isTargetPaused(cocos2d::CCObject*);

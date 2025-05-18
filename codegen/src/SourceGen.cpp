@@ -10,22 +10,6 @@ namespace { namespace format_strings {
 
 using namespace geode;
 using namespace geode::modifier;
-using cocos2d::CCDestructor;
-
-std::unordered_map<void*, bool>& CCDestructor::destructorLock() {{
-	static thread_local std::unordered_map<void*, bool> ret;
-	return ret;
-}}
-bool& CCDestructor::globalLock() {{
-	static thread_local bool ret = false;
-	return ret; 
-}}
-bool& CCDestructor::lock(void* self) {
-	return destructorLock()[self];
-}
-CCDestructor::~CCDestructor() {{
-	destructorLock().erase(this);
-}}
 
 auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadata) {
 	auto wrapped = geode::hook::createWrapper(reinterpret_cast<void*>(address), metadata);
@@ -34,11 +18,6 @@ auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadat
 	}}
 	return wrapped.unwrap();
 }
-
-// So apparently Clang considers cdecl to return floats through ST0, whereas 
-// MSVC thinks they are returned through XMM0. This has caused a lot of pain 
-// and misery for me
-
 )GEN";
 
 	constexpr char const* declare_member = R"GEN(
@@ -79,32 +58,37 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 {class_name}::{function_name}({parameters}) {{
 	// basically we destruct it once by calling the gd function, 
 	// then lock it, so that other gd destructors dont get called
-	if (CCDestructor::lock(this)) return;
-	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
-	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
-		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
-		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
-	}});
-	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
-	// we need to construct it back so that it uhhh ummm doesnt crash
-	// while going to the child destructors
-	auto thing = new (this) {class_name}(geode::CutoffConstructor, sizeof({class_name}));
-	CCDestructor::lock(this) = true;
+	if (!geode::DestructorLock::isLocked(this)) {{
+		using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
+		static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
+			.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
+			.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
+		}});
+		reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
+
+		// we need to construct it back so that it uhhh ummm doesnt crash
+		// while going to the child destructors
+		auto thing = new (this) {class_name}(geode::CutoffConstructor, sizeof({class_name}));
+		geode::DestructorLock::addLock(this);
+	}}
 }}
 )GEN";
 
 	constexpr char const* declare_destructor_baseless = R"GEN(
 {class_name}::{function_name}({parameters}) {{
 	// basically we destruct it once by calling the gd function, 
-	// then lock it, so that other gd destructors dont get called
-	if (CCDestructor::lock(this)) return;
-	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
-	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
-		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
-		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
-	}});
-	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
-	CCDestructor::lock(this) = true;
+	// then we release the lock because there are no other destructors after this
+	if (!geode::DestructorLock::isLocked(this)) {{
+		using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
+		static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
+			.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
+			.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
+		}});
+		reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
+	}}
+	else {{
+		geode::DestructorLock::removeLock(this);
+	}}
 }}
 )GEN";
 
@@ -113,8 +97,9 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	// here we construct it as normal as we can, then destruct it
 	// using the generated functions. this ensures no memory gets leaked
 	// no crashes :pray:
-	CCDestructor::lock(this) = true;
+	geode::DestructorLock::addLock(this);
 	{class_name}::~{unqualified_class_name}();
+
 	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
 	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
@@ -164,6 +149,10 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 {return} {function_name}({parameters}) {definition}
 )GEN";
 }}
+
+bool areSuperclassesEmpty(Class const& c) {
+	return c.superclasses.empty() || (c.superclasses.size() == 1 && c.superclasses[0].find("CCCopying") != std::string::npos);
+}
 
 std::string generateBindingSource(Root const& root, bool skipPugixml) {
 	std::string output(format_strings::source_start);
@@ -237,7 +226,7 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 					if (codegen::platformNumber(fn->binds) == 0x9999999) {
 						used_declare_format = format_strings::declare_unimplemented_error;
 					}
-					else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && !codegen::shouldAndroidBind(fn)) {
+					else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && codegen::getStatus(*fn) != BindStatus::NeedsRebinding) {
 						continue;
 					}
 
@@ -247,7 +236,7 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 								used_declare_format = format_strings::declare_member;
 								break;
 							case FunctionType::Ctor:
-								if (c.superclasses.empty()) {
+								if (areSuperclassesEmpty(c)) {
 									used_declare_format = format_strings::declare_constructor_begin;
 								}
 								else {
@@ -255,7 +244,7 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 								}
 								break;
 							case FunctionType::Dtor:
-								used_declare_format = c.superclasses.empty() ? format_strings::declare_destructor_baseless : format_strings::declare_destructor;
+								used_declare_format = areSuperclassesEmpty(c) ? format_strings::declare_destructor_baseless : format_strings::declare_destructor;
 								break;
 						}
 
