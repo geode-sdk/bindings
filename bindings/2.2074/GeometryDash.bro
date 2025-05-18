@@ -9150,7 +9150,7 @@ class GJAssetDownloadAction {
 [[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GJBaseGameLayer() = win 0x2c7b10;
-    ~GJBaseGameLayer() = win 0x200540;
+    ~GJBaseGameLayer() = win 0x200540, m1 0xe02d8, imac 0xfd6a0, ios 0x1dae3c;
     // GJBaseGameLayer() = ios 0x1256b4;
 
     static GJBaseGameLayer* get() {
