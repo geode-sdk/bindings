@@ -30,11 +30,13 @@ machine = 'x64' if 'machine (x64)' in headers_raw else 'x86'
 exports_raw = subprocess.run(["dumpbin", "/exports", DLL_FILE], capture_output=True).stdout.decode()
 exports = [l.split()[3] for l in exports_raw.splitlines()[19:] if len(l.split()) > 3]
 
-# Removes constructors and destructors
-for e in exports:
-    if e.startswith('??0') or e.startswith('??1'):
-        print(f"Removing {e}")
-exports = [e for e in exports if not e.startswith('??0') and not e.startswith('??1')]
+if DLL_NAME in ('libcocos2d', 'libExtensions'):
+    # Removes constructors and destructors
+    should_remove = lambda e: e.startswith('??0') or e.startswith('??1')
+    for e in exports:
+        if should_remove(e)
+            print(f"Removing {e}")
+    exports = [e for e in exports if not should_remove(e)]
 
 with open(DEF_FILE, 'w') as file:
     file.write(f"LIBRARY {DLL_NAME}.dll\n")
