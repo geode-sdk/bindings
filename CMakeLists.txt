@@ -169,6 +169,9 @@ endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_VISIBILITY_PRESET hidden)
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
+target_compile_definitions(${PROJECT_NAME} PUBLIC
+	GEODE_USE_NEW_DESTRUCTOR_LOCK=1
+)
 
 if (WIN32)
 	if (MSVC)
