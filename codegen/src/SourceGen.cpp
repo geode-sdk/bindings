@@ -16,6 +16,10 @@ std::unordered_map<void*, bool>& cocos2d::CCDestructor::destructorLock() {{
 	static thread_local std::unordered_map<void*, bool> s_lock;
 	return s_lock;
 }}
+
+bool& cocos2d::CCDestructor::lock(void* self) {{
+	return destructorLock()[self];
+}}
 #endif
 
 auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadata) {
@@ -69,7 +73,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 #ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK
 	if (!geode::DestructorLock::isLocked(this)) {{
 #else
-	if (!cocos2d::CCDestructor::destructorLock().count(this)) {{
+	if (!cocos2d::CCDestructor::lock(this)) {{
 #endif
 		using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
 		static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
@@ -84,7 +88,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 #ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK
 		geode::DestructorLock::addLock(this);
 #else
-		cocos2d::CCDestructor::destructorLock().insert({{(void*)this, true}});
+		cocos2d::CCDestructor::lock(this) = true;
 #endif
 	}}
 }}
@@ -99,7 +103,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 #ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK
 	if (!geode::DestructorLock::isLocked(this)) {{
 #else
-	if (!cocos2d::CCDestructor::destructorLock().count(this)) {{
+	if (!cocos2d::CCDestructor::lock(this)) {{
 #endif
 		using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
 		static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
@@ -112,7 +116,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 #ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK
 		geode::DestructorLock::removeLock(this);
 #else
-		cocos2d::CCDestructor::destructorLock().erase(this);
+		cocos2d::CCDestructor::lock(this) = false;
 #endif
 	}}
 }}
@@ -128,7 +132,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 #ifdef GEODE_USE_NEW_DESTRUCTOR_LOCK
 	geode::DestructorLock::addLock(this);
 #else
-	cocos2d::CCDestructor::destructorLock().insert({{(void*)this, true}});
+	cocos2d::CCDestructor::lock(this) = true;
 #endif
 	{class_name}::~{unqualified_class_name}();
 
