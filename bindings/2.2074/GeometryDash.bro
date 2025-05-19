@@ -21554,7 +21554,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     cocos2d::CCArray* createToggleValueControl(int, gd::string, cocos2d::CCPoint, bool, int, int, float) = win 0x45e900, imac 0x228c00, m1 0x1da5ec, ios 0x134e78;
     cocos2d::CCArray* createToggleValueControlAdvanced(int, gd::string, cocos2d::CCPoint, bool, int, int, float, float, float, cocos2d::CCPoint) = imac 0x228d30, m1 0x1da73c, ios 0x134fb8;
     cocos2d::CCArray* createValueControl(int, gd::string, cocos2d::CCPoint, float, float, float) = win 0x45db40;
-    cocos2d::CCArray* createValueControlAdvanced(int property, gd::string label, cocos2d::CCPoint position, float scale, bool unk1, InputValueType valueType, int unk2, bool unk3, float sliderMin, float sliderMax, int page, int group, GJInputStyle inputStyle, int decimalPlaces, bool unk4) = win 0x45dc30, m1 0x1d9550, imac 0x227b30, ios 0x134204;
+    cocos2d::CCArray* createValueControlAdvanced(int property, gd::string label, cocos2d::CCPoint position, float scale, bool noSlider, InputValueType valueType, int length, bool arrows, float sliderMin, float sliderMax, int page, int group, GJInputStyle inputStyle, int decimalPlaces, bool allowDisable) = win 0x45dc30, m1 0x1d9550, imac 0x227b30, ios 0x134204;
     cocos2d::CCArray* createValueControlWArrows(int, gd::string, cocos2d::CCPoint, float);
     cocos2d::CCArray* getGroupContainer(int);
     float getMaxSliderValue(int);

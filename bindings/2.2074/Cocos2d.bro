@@ -5030,7 +5030,12 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     }
 
     CCLightning() = win 0x44400, ios 0x347014;
-    ~CCLightning() = win 0x444d0, ios 0x3470bc;
+    ~CCLightning() = win inline, ios 0x3470bc {
+        if (m_lightningPoints) {
+            free(m_lightningPoints);
+            m_lightningPoints = nullptr;
+        }
+    }
 
     void strike() = win 0x44880, m1 0x4faa74, ios 0x347290;
     void strikeFinished() = win 0x448f0, imac 0x5c5e60;
