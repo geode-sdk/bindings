@@ -11034,7 +11034,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void setupIconSelect() = ios 0x303b74, win 0x26d930, m1 0x2eb53c, imac 0x357db0;
     void setupPage(int, IconType) = ios 0x304de4, win 0x26e7b0, imac 0x359700, m1 0x2ecea8;
     void setupSpecialPage() = ios 0x3053b0, win 0x26f1e0, imac 0x359d80, m1 0x2ed500;
-    void showUnlockPopupNew(int, UnlockType) = ios 0x306750, win inline {
+    void showUnlockPopupNew(int, UnlockType) {
         ItemInfoPopup::create(p0, p1)->show();
     }
     gd::string titleForUnlock(int, UnlockType);
@@ -12101,14 +12101,16 @@ class GJRobotSprite : CCAnimatedSprite {
     // virtual ~GJRobotSprite();
     // GJRobotSprite();
 
-    static GJRobotSprite* create(int) = ios 0x23ff78, win 0x29efd0, m1 0x4f8c84;
+    static GJRobotSprite* create(int) = win 0x29efd0, m1 0x4f8c84, imac 0x5c3a10, ios 0x23eff0;
 
     virtual void setOpacity(unsigned char) = win 0x29fcc0, m1 0x4f9e1c, imac 0x5c4dd0, ios 0x23fe10;
     virtual void hideSecondary() = win 0x2a03b0, m1 0x4f9f00, imac 0x5c4ee0, ios 0x23fef4;
 
     void hideGlow();
-    bool init(int, gd::string) = win 0x29f080, m1 0x4f8e44;
-    bool init(int) = imac 0x5c3b50, m1 0x4f8db4;
+    bool init(int, gd::string) = win 0x29f080, m1 0x4f8e44, imac 0x5c3bc0, ios 0x23f13c;
+    bool init(int) = win inline, m1 0x4f8db4, imac 0x5c3b50, ios 0x23f0b8 {
+        return GJRobotSprite::init(p0, "Robot");
+    }
     void showGlow();
     void updateColor01(cocos2d::ccColor3B) = imac 0x5c4a00;
     void updateColor02(cocos2d::ccColor3B);
@@ -12836,9 +12838,11 @@ class GJSpecialColorSelectDelegate {
 class GJSpiderSprite : GJRobotSprite {
     // virtual ~GJSpiderSprite();
 
-    static GJSpiderSprite* create(int) = ios 0x23eff0, win 0x2a0420, m1 0x4fa09c;
+    static GJSpiderSprite* create(int) = win 0x2a0420, m1 0x4fa09c, imac 0x5c50e0, ios 0x23ff78;
 
-    bool init(int) = ios 0x23f0b8, imac 0x5c5230, m1 0x4fa1d0;
+    bool init(int) = win inline, m1 0x4fa1d0, imac 0x5c5230, ios 0x240040 {
+        return GJRobotSprite::init(p0, "Spider");
+    }
 }
 
 [[link(android)]]
@@ -22489,14 +22493,14 @@ class SimplePlayer : cocos2d::CCSprite {
     virtual void setColor(cocos2d::ccColor3B const&) = win 0x272320, imac 0x35d330, m1 0x2f05c0, ios 0x307734;
 
     void asyncLoadIcon(int, IconType) = m1 0x2f0394;
-    void createRobotSprite(int frame) = ios 0x303560, win inline, imac 0x3576c0, m1 0x2eadfc {
+    void createRobotSprite(int frame) = win inline, imac 0x3576c0, m1 0x2eadfc, ios 0x303500 {
         if (m_robotSprite) return;
         auto robotSprite = GJRobotSprite::create(frame);
         m_robotSprite = robotSprite;
         addChild(robotSprite);
         m_robotSprite->setVisible(false);
     }
-    void createSpiderSprite(int) = ios 0x303500, win 0x272290, imac 0x357720, m1 0x2eae5c;
+    void createSpiderSprite(int) = win 0x272290, imac 0x357720, m1 0x2eae5c, ios 0x303560;
     void disableCustomGlowColor() {
         m_hasCustomGlowColor = false;
     }
