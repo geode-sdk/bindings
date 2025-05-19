@@ -267,8 +267,11 @@ public class SyncBromaScript extends GhidraScript {
             status = status.promoted(SignatureImport.ADDED);
         }
         data.getSymbol().setName(name, SourceType.USER_DEFINED);
-        if (className != null && !data.getParentNamespace().getName(true).equals(className)) {
-            data.setParentNamespace(wrapper.addOrGetNamespace(className));
+        if (className != null) {
+            try {
+                data.setParentNamespace(wrapper.addOrGetNamespace(className));
+            }
+            catch (Exception e) {}
         }
 
         // Get the calling convention
