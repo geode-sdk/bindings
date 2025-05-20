@@ -1298,10 +1298,10 @@ class CCAnimateFrameCache : cocos2d::CCObject {
     static CCAnimateFrameCache* sharedSpriteFrameCache() = win 0x41450, m1 0x4ab09c, imac 0x5542d0, ios 0x1b44d8;
 
     void addCustomSpriteFramesWithFile(char const*) = m1 0x4ab2a0, imac 0x554510;
-    cocos2d::CCDictionary* addDict(cocos2d::CCDictionary*, char const*) = m1 0x4abdb0, imac 0x5551e0, ios 0x1b45f4;
-    cocos2d::CCDictionary* addDict(DS_Dictionary*, char const*) = win 0x41670, m1 0x4ac488, imac 0x5558b0;
-    cocos2d::CCDictionary* addSpriteFramesWithFile(char const*) = win 0x414e0, m1 0x4ac224, imac 0x555650;
-    bool init() = win inline, m1 0x4ab130, imac 0x554370 {
+    cocos2d::CCDictionary* addDict(cocos2d::CCDictionary*, char const*) = m1 0x4abdb0, imac 0x5551e0;
+    cocos2d::CCDictionary* addDict(DS_Dictionary*, char const*) = win 0x41670, m1 0x4ac488, imac 0x5558b0, ios 0x1b45f4;
+    cocos2d::CCDictionary* addSpriteFramesWithFile(char const*) = win 0x414e0, m1 0x4ac224, imac 0x555650, ios 0x1b47ec;
+    bool init() = win inline, m1 0x4ab130, imac 0x554370, ios 0x1b4544 {
         m_animateFrames = cocos2d::CCDictionary::create();
         m_animateFrames->retain();
         m_unk040 = cocos2d::CCDictionary::create();
@@ -1310,14 +1310,14 @@ class CCAnimateFrameCache : cocos2d::CCObject {
         m_animateDescriptions->retain();
         return true;
     }
-    void purgeSharedSpriteFrameCache() = win inline, m1 0x4ab174, imac 0x5543c0 {
-        auto** instancePtr = reinterpret_cast<CCAnimateFrameCache**>(geode::base::get() + 0x6a4e10);
+    void purgeSharedSpriteFrameCache() = win inline, m1 0x4ab174, imac 0x5543c0, ios inline {
+        auto** instancePtr = reinterpret_cast<CCAnimateFrameCache**>(geode::base::get() + GEODE_WINDOWS(0x6a4e10) GEODE_IOS(0x85f2d0));
         if (*instancePtr) {
             (*instancePtr)->release();
             *instancePtr = nullptr;
         }
     }
-    void removeSpriteFrames() = win inline, m1 0x4acbf4, imac 0x556030 {
+    void removeSpriteFrames() = win inline, m1 0x4acbf4, imac 0x556030, ios 0x1b491c {
         m_animateFrames->removeAllObjects();
         m_unk040->removeAllObjects();
         m_animateDescriptions->removeAllObjects();
