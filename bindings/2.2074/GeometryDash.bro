@@ -1295,6 +1295,9 @@ class CCAnimatedSprite : cocos2d::CCSprite {
 class CCAnimateFrameCache : cocos2d::CCObject {
     // virtual ~CCAnimateFrameCache();
 
+    static CCAnimateFrameCache* get() {
+        return CCAnimateFrameCache::sharedSpriteFrameCache();
+    }
     static CCAnimateFrameCache* sharedSpriteFrameCache() = win 0x41450, m1 0x4ab09c, imac 0x5542d0, ios 0x1b44d8;
 
     void addCustomSpriteFramesWithFile(char const*) = m1 0x4ab2a0, imac 0x554510;
