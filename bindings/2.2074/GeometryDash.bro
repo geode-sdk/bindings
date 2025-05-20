@@ -16696,13 +16696,13 @@ class ObjectControlGameObject : EffectGameObject {
 
 [[link(android)]]
 class ObjectManager : cocos2d::CCNode {
-    static ObjectManager* instance() = win 0x6e3d0, imac 0x77f670, m1 0x694044;
+    static ObjectManager* instance() = win 0x6e3d0, imac 0x77f670, m1 0x694044, ios 0x24c1dc;
     // virtual ~ObjectManager();
 
     virtual bool init() = win 0x6e460, m1 0x69410c, imac 0x77f750, ios 0x24c270;
 
     bool animLoaded(char const* anim);
-    cocos2d::CCDictionary* getDefinition(char const* definitionKey) = win 0x6f870;
+    cocos2d::CCDictionary* getDefinition(char const* definitionKey) = win 0x6f870, m1 0x695a18, imac 0x7811e0, ios 0x24ce50;
     cocos2d::CCDictionary* getGlobalAnimCopy(char const* anim);
     void loadCopiedAnimations() = win 0x6e800;
     void loadCopiedSets() = win 0x6ed50, m1 0x6945cc;
