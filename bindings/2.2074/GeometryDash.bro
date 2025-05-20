@@ -1900,6 +1900,22 @@ class CCNodeContainer : cocos2d::CCNode {
 [[link(android)]]
 class CCPartAnimSprite : cocos2d::CCSprite {
     // virtual ~CCPartAnimSprite();
+    CCPartAnimSprite() {
+        m_spritePartIDs = nullptr;
+        m_spriteFrame = nullptr;
+        m_hasChanged = false;
+        m_spriteParts = nullptr;
+    }
+
+    static CCPartAnimSprite* createWithAnimDesc(char const*, cocos2d::CCTexture2D*, bool) = win inline {
+        auto ret = new CCPartAnimSprite();
+        if (ret->initWithAnimDesc(p0, p1, p2)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void setScaleX(float) = win 0x466b0, imac 0x361ca0, m1 0x2f4b18, ios 0x833f0;
     virtual void setScaleY(float) = win 0x466d0, imac 0x361cc0, m1 0x2f4b40, ios 0x83418;
@@ -1910,18 +1926,17 @@ class CCPartAnimSprite : cocos2d::CCSprite {
     virtual bool isFrameDisplayed(cocos2d::CCSpriteFrame*) = win 0x46330, imac 0x3619b0, m1 0x2f4814, ios 0x831c0;
     virtual cocos2d::CCSpriteFrame* displayFrame() = win 0x46350, m1 0x2f482c, imac 0x3619d0, ios 0x831d8;
 
-    TodoReturn changeTextureOfID(char const*, char const*);
-    TodoReturn countParts();
-    TodoReturn createWithAnimDesc(char const*, cocos2d::CCTexture2D*, bool);
-    TodoReturn dirtify();
-    TodoReturn getSpriteForKey(char const*);
-    TodoReturn initWithAnimDesc(char const*, cocos2d::CCTexture2D*, bool);
+    void changeTextureOfID(char const*, char const*);
+    int countParts();
+    void dirtify();
+    cocos2d::CCSprite* getSpriteForKey(char const*);
+    bool initWithAnimDesc(char const*, cocos2d::CCTexture2D*, bool) = win 0x45910;
     void setColor(cocos2d::ccColor3B) = win 0x467c0;
     void setFlipX(bool);
     void setFlipY(bool);
-    TodoReturn transformSprite(SpriteDescription*);
-    TodoReturn tweenSpriteTo(SpriteDescription*, float);
-    TodoReturn tweenToFrame(cocos2d::CCSpriteFrame*, float);
+    void transformSprite(SpriteDescription*);
+    void tweenSpriteTo(SpriteDescription*, float);
+    void tweenToFrame(cocos2d::CCSpriteFrame*, float) = win 0x46360;
 
     cocos2d::CCDictionary* m_spritePartIDs;
     cocos2d::CCSpriteFrame* m_spriteFrame;
@@ -16686,18 +16701,18 @@ class ObjectManager : cocos2d::CCNode {
 
     virtual bool init() = win 0x6e460, m1 0x69410c, imac 0x77f750, ios 0x24c270;
 
-    cocos2d::CCObject* animLoaded(char const* anim);
-    cocos2d::CCObject* getDefinition(char const* definitionKey) = win 0x6f870;
-    cocos2d::CCObject* getGlobalAnimCopy(char const* anim);
+    bool animLoaded(char const* anim);
+    cocos2d::CCDictionary* getDefinition(char const* definitionKey) = win 0x6f870;
+    cocos2d::CCDictionary* getGlobalAnimCopy(char const* anim);
     void loadCopiedAnimations() = win 0x6e800;
-    void loadCopiedSets() = m1 0x6945cc;
+    void loadCopiedSets() = win 0x6ed50, m1 0x6945cc;
     void purgeObjectManager();
-    cocos2d::CCDictionary* replaceAllOccurencesOfString(cocos2d::CCString*, cocos2d::CCString*, cocos2d::CCDictionary*);
+    static cocos2d::CCDictionary* replaceAllOccurencesOfString(cocos2d::CCString*, cocos2d::CCString*, cocos2d::CCDictionary*) = win 0x6f1a0;
     void setLoaded(char const* objectName);
     void setup() = win 0x6e4c0, imac 0x77ff10, m1 0x694934;
 
     cocos2d::CCDictionary* m_objectDefinitions;
-    cocos2d::CCDictionary* m_maybeLoadedAnimations;
+    cocos2d::CCDictionary* m_loadedAnimations;
 }
 
 [[link(android)]]
