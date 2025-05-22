@@ -3774,7 +3774,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 [[link(android)]]
 class CustomizeObjectSettingsPopup : SetupTriggerPopup {
     // virtual ~CustomizeObjectSettingsPopup();
-    CustomizeObjectSettingsPopup() = win inline {
+    CustomizeObjectSettingsPopup() = win 0xa7ab0 {
         m_customizeLayer = nullptr;
         m_settingsChanged = false;
     }
