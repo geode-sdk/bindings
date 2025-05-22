@@ -189,7 +189,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
     virtual void setOpacity(unsigned char) = win 0x81ea0, imac 0x602ea0, m1 0x53086c, ios 0x26ab9c;
 
     bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x80670, m1 0x52f0fc, imac 0x6015e0, ios 0x26992c;
-    void show() = win 0x81c20;
+    void show() = win 0x81c20, m1 0x53062c, ios 0x26a97c, imac 0x602c50;
 
     cocos2d::CCLayerColor* m_layerColor;
     int m_unkUnused;
@@ -272,9 +272,9 @@ class AchievementNotifier : cocos2d::CCNode {
 
     virtual bool init() = win 0x3abd0, m1 0x6beb88, imac 0x7ad410, ios 0x21727c;
 
-    void achievementDisplayFinished() = win 0x3ae40;
+    void achievementDisplayFinished() = win 0x3ae40, m1 0x6bed20, ios 0x2173fc, imac 0x7ad5a0;
     void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest) = ios 0x2172a8, win 0x3ac00, imac 0x7ad440, m1 0x6bebb4;
-    void showNextAchievement() = ios 0x2172fc, win 0x3ace0;
+    void showNextAchievement() = ios 0x2172fc, win 0x3ace0, m1 0x6bec08 imac 0x7ad490;
     void willSwitchToScene(cocos2d::CCScene* scene) = ios 0x217440, win inline, imac 0x7ad5f0, m1 0x6bed64 {
         this->m_nextScene = scene;
 
