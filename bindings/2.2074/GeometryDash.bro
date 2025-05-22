@@ -3127,7 +3127,7 @@ class ColorSetupDelegate {
 [[link(android)]]
 class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     // virtual ~CommentCell();
-    CommentCell(char const*, float, float);
+    CommentCell(char const*, float, float) = win 0xb53c0;
 
     virtual bool init() = win 0xb5460, imac 0x242d60, m1 0x1f202c, ios 0x11371c;
     virtual void draw() = win 0xad710, imac 0x243070, m1 0x1f22f4, ios 0x1139b8;
@@ -3850,7 +3850,7 @@ class CustomMusicCell : CustomSongCell {
 [[link(android)]]
 class CustomSFXCell : TableViewCell, CustomSFXDelegate {
     // virtual ~CustomSFXCell();
-    CustomSFXCell(char const*, float, float);
+    CustomSFXCell(char const*, float, float) = win 0xb4380;
 
     virtual bool init() = win 0xb4410, imac 0x2421a0, m1 0x1f17e8, ios 0x11316c;
     virtual void draw() = win 0xad710, imac 0x2422a0, m1 0x1f188c, ios 0x113210;
@@ -3946,7 +3946,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
 [[link(android)]]
 class CustomSongCell : TableViewCell, CustomSongDelegate {
     // virtual ~CustomSongCell();
-    CustomSongCell(char const*, float, float);
+    CustomSongCell(char const*, float, float) = win 0xb3e80;
 
     virtual bool init() = win 0xb3f00, m1 0x1f152c, imac 0x241da0, ios 0x112efc;
     virtual void draw() = win 0xad710, imac 0x241fb0, m1 0x1f16b0, ios 0x113088;
@@ -14926,7 +14926,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 [[link(android)]]
 class LevelListCell : TableViewCell {
     // virtual ~LevelListCell();
-    LevelListCell(char const*, float, float);
+    LevelListCell(char const*, float, float) = win 0xbdf10;
 
     static LevelListCell* create(float, float);
 
