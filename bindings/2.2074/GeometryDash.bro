@@ -9289,7 +9289,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn claimRotationAction(int, int, float&, float&, bool, bool);
     TodoReturn clearActivatedAudioTriggers() = ios 0x204818, imac 0x148ac0;
     TodoReturn clearPickedUpItems();
-    TodoReturn collectedObject(EffectGameObject*);
+    void collectedObject(EffectGameObject*) = ios 0x1fd4b8;
     void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x20f480, imac 0x116130, m1 0xf5554, ios 0x1e9420;
     TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
     TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
@@ -9654,7 +9654,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateCameraOffsetX(float, float, int, float, int, int) = ios 0x1ff1a0, win 0x230810, imac 0x13f3e0;
     void updateCameraOffsetY(float, float, int, float, int, int) = ios 0x1ff220, win 0x2308b0, imac 0x13f4e0;
     void updateCollisionBlocks() = ios 0x1ec828, imac 0x11a8b0;
-    void updateCounters(int, int) = win 0x22e760, m1 0x114398, imac 0x13bd80;
+    void updateCounters(int itemId, int value) = win 0x22e760, m1 0x114398, imac 0x13bd80, ios 0x1fd510;
     void updateDualGround(PlayerObject* object, int mode, bool instant, float duration) = ios 0x1e7b4c, win 0x20dcc0, imac 0x113e30, m1 0xf365c;
     void updateEnterEffects(float) = win 0x209630, imac 0x10e8e0, m1 0xedfd4;
     TodoReturn updateExtendedCollision(GameObject*, bool);
@@ -10377,7 +10377,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn activeColorForIndex(int) = imac 0x2ca350;
     TodoReturn activeOpacityForIndex(int) = imac 0x2ca4b0;
     TodoReturn addAllInheritedColorActions(cocos2d::CCArray*);
-    void addCountToItem(int, int);
+    void addCountToItem(int itemId, int value) = ios 0x196d4;
     TodoReturn addMoveCalculation(CCMoveCNode*, cocos2d::CCPoint, GameObject*);
     TodoReturn calculateBaseActiveColors();
     TodoReturn calculateInheritedColor(int, ColorAction*);
@@ -10483,7 +10483,7 @@ class GJEffectManager : cocos2d::CCNode {
     void updatePulseEffects(float) = win 0x259e30, imac 0x2cb9a0, m1 0x26e850;
     TodoReturn updateSpawnTriggers(float) = ios 0x18e14, win 0x25aa10;
     void updateTimer(int, double) = win 0x25b850;
-    void updateTimers(float, float) = win 0x25b9e0, imac 0x2d82a0;
+    void updateTimers(float, float) = win 0x25b9e0, imac 0x2d82a0, ios 0x19fcc;
     TodoReturn wasFollowing(int, int);
     TodoReturn wouldCreateLoop(InheritanceNode*, int);
 
