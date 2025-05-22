@@ -22311,9 +22311,9 @@ class ShardsPage : FLAlertLayer {
 
     void FLAlert_Clicked(FLAlertLayer*, bool);
     void goToPage(int) = imac 0x4b4480, m1 0x41c6d8;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x84620;
     void onIconInfo(cocos2d::CCObject* sender) = win 0x474610, imac 0x4b4410, m1 0x41c660;
-    void onSwitchPage(cocos2d::CCObject* sender);
+    void onSwitchPage(cocos2d::CCObject* sender) = win 0x474650;
 
     cocos2d::CCDictionary* m_pages;
     CCMenuItemSpriteExtra* m_prevButton;
