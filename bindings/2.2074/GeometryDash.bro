@@ -6160,8 +6160,6 @@ class FMODAudioEngine : cocos2d::CCNode {
         m_sfxVisualizerVolume = .0f;
     }
 
-    void FMODAudioEngine::~FMODAudioEngine() = ios 0x787810;
-
     static FMODAudioEngine* get() {
         return FMODAudioEngine::sharedEngine();
     }
