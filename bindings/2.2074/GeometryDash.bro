@@ -6388,9 +6388,9 @@ class FMODAudioEngine : cocos2d::CCNode {
         this->stopChannelTween(id, target, AudioModType::Volume);
         this->stopChannelTween(id, target, AudioModType::Pitch);
     }
-    void stopMusic(int id) = win inline {
+    void stopMusic(int id) = win inline, ios 0x141c7c {
         this->stopAndRemoveMusic(id);
-    }, ios 0x141c7c;
+    }
     void stopMusicNotInSet(gd::unordered_set<int>& musicIDs) = win inline {
         std::unordered_set<int> totalIDs;
         for (auto& [id, _] : m_fmodMusic) {
