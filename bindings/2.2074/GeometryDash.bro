@@ -6159,6 +6159,9 @@ class FMODAudioEngine : cocos2d::CCNode {
         m_sfxVisualizerPeak = .0f;
         m_sfxVisualizerVolume = .0f;
     }
+
+    void FMODAudioEngine::~FMODAudioEngine() = ios 0x787810;
+
     static FMODAudioEngine* get() {
         return FMODAudioEngine::sharedEngine();
     }
@@ -6172,13 +6175,12 @@ class FMODAudioEngine : cocos2d::CCNode {
         return *instancePtr;
     }
 
-    virtual void update(float) = win 0x55390, imac 0x3cc160, m1 0x3542a0, ios 0x13becc;
-
     void activateQueuedMusic(int);
     FMOD::Channel* channelForChannelID(int) = win 0x58480, imac 0x3cd8a0, m1 0x355668;
     FMOD::Channel* channelForUniqueID(int id) = win inline {
         return this->channelForChannelID(this->channelIDForUniqueID(id));
     }
+    virtual void update(float) = win 0x55390, imac 0x3cc160, m1 0x3542a0, ios 0x13becc;
     int channelIDForUniqueID(int) = win 0x583c0;
     void channelLinkSound(int, FMODSound*);
     void channelStopped(FMOD::Channel*, bool) = win 0x580b0;
@@ -6390,7 +6392,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     }
     void stopMusic(int id) = win inline {
         this->stopAndRemoveMusic(id);
-    }
+    }, ios 0x141c7c;
     void stopMusicNotInSet(gd::unordered_set<int>& musicIDs) = win inline {
         std::unordered_set<int> totalIDs;
         for (auto& [id, _] : m_fmodMusic) {
@@ -7752,7 +7754,7 @@ class GameObject : CCSpritePlus {
     virtual void activateObject() = win 0x18db60, imac 0x5921a0, m1 0x4d945c, ios 0x25544c;
     virtual void deactivateObject(bool) = win 0x18dc10, imac 0x592510, m1 0x4d97e0, ios 0x2557d0;
     virtual void transferObjectRect(cocos2d::CCRect&) = win 0x1946d0, imac 0x5a3660, m1 0x4ddae0, ios 0x259cf0;
-    virtual cocos2d::CCRect const& getObjectRect() = win 0x194720, imac 0x5a36d0, m1 0x4ddb58, ios 0x259d68;
+    virtual cocos2d::CCRect const& getObjectRect() = win 0x194720, imac 0x5a36d0, m1 0x4ddb58, ios 0x259d7c;
     virtual cocos2d::CCRect getObjectRect(float, float) = win 0x194740, imac 0x5a3700, m1 0x4ddb6c, ios 0x259d7c;
     virtual cocos2d::CCRect getObjectRect2(float, float) = win 0x1948d0, imac 0x5a3930, m1 0x4ddd50, ios 0x259f50;
     virtual cocos2d::CCRect getObjectTextureRect() = win 0x194970, imac 0x5a3a00, m1 0x4dde14, ios 0x259fd4;
