@@ -158,7 +158,7 @@ std::string generateModifyHeader(Root const& root, std::filesystem::path const& 
             else if (status == BindStatus::Inlined && fn->prototype.type == FunctionType::Normal || codegen::platformNumber(fn->binds) == 0x9999999) {
                 format_string = format_strings::apply_error_inline;
             }
-            else if ((status == BindStatus::NeedsBinding && codegen::platformNumber(f) > 0) || status == BindStatus::Binded) {
+            else if ((status == BindStatus::NeedsBinding && codegen::platformNumber(f) > 0) || status == BindStatus::Binded || status == BindStatus::NeedsRebinding) {
                 // only if has an address
                 // allow bound functions (including ctors/dtors)
                 switch (fn->prototype.type) {

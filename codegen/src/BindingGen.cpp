@@ -93,21 +93,32 @@ std::string generateAddressDocs(T const& f, PlatformNumber pn) {
     for (auto platform : {Platform::MacArm, Platform::MacIntel, Platform::Windows, Platform::iOS, Platform::Android}) {
         auto status = codegen::getStatusWithPlatform(platform, f);
 
-        if (status == BindStatus::NeedsBinding) {
-            ret += fmt::format("     * @note[short] {}: 0x{:x}\n", 
-                nameForPlatform(platform),
-                codegen::platformNumberWithPlatform(platform, pn)
-            );
-        }
-        else if (status == BindStatus::Binded) {
-            ret += fmt::format("     * @note[short] {}\n", 
-                nameForPlatform(platform)
-            );
-        }
-        else if (status == BindStatus::Inlined) {
-            ret += fmt::format("     * @note[short] {}: Out of line\n", 
-                nameForPlatform(platform)
-            );
+        auto num = codegen::platformNumberWithPlatform(platform, pn);
+
+        switch (status) {
+            case BindStatus::NeedsBinding:
+                ret += fmt::format("     * @note[short] {}: 0x{:x}\n", 
+                    nameForPlatform(platform),
+                    num
+                );
+                break;
+            case BindStatus::NeedsRebinding:
+                ret += fmt::format("     * @note[short] {}: Rebinded\n", 
+                    nameForPlatform(platform)
+                );
+                break;
+            case BindStatus::Binded:
+                ret += fmt::format("     * @note[short] {}\n", 
+                    nameForPlatform(platform)
+                );
+                break;
+            case BindStatus::Inlined:
+                ret += fmt::format("     * @note[short] {}: Out of line\n", 
+                    nameForPlatform(platform)
+                );
+                break;
+            default:
+                break;
         }
     }
 
@@ -267,7 +278,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
 
                 fb = &fn->prototype;
 
-                if (codegen::platformNumber(fn->binds) == -1 && codegen::getStatus(*fn) != BindStatus::Binded && fb->type != FunctionType::Normal) {
+                if (codegen::platformNumber(fn->binds) == -1 && codegen::getStatus(*fn) == BindStatus::NeedsBinding) {
                     continue;
                 }
 

@@ -28,7 +28,7 @@ std::string generateTextInterface(Root const& root) {
                     // skip unbinded functions
                     continue;
                 }
-                else if (status != BindStatus::NeedsBinding && !codegen::shouldAndroidBind(fn)) {
+                else if (status != BindStatus::NeedsBinding) {
                     continue;
                 }
                 output += fmt::format("{}::{} - {:#x}\n", c.name, fn->prototype.name, codegen::platformNumber(fn->binds));
@@ -62,6 +62,7 @@ matjson::Value generateJsonInterface(Root const& root) {
 
         // Array because 
         std::vector<matjson::Value> functions;
+        std::vector<matjson::Value> fields;
         for (auto& f : c.fields) {
             if (auto fn = f.get_as<FunctionBindField>()) {
                 std::vector<matjson::Value> args;
@@ -98,10 +99,18 @@ matjson::Value generateJsonInterface(Root const& root) {
                     { "kind", functionType },
                 }));
             }
+            else if (auto m = f.get_as<MemberField>()) {
+                fields.push_back(matjson::makeObject({
+                    { "name", m->name },
+                    { "type", m->type.name },
+                    { "count", m->count }
+                }));
+            }
         }
         classes.push_back(matjson::makeObject({
             { "name", c.name },
             { "functions", functions },
+            { "fields", fields },
         }));
     }
 

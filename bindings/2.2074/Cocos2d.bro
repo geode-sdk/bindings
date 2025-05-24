@@ -375,7 +375,7 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
     // CCEaseElastic(cocos2d::CCEaseElastic const&);
     // CCEaseElastic();
 
-    bool initWithAction(CCActionInterval* pAction, float fPeriod) = ios inline {
+    bool initWithAction(cocos2d::CCActionInterval* pAction, float fPeriod) = ios inline {
         if (CCActionEase::initWithAction(pAction))
         {
             m_fPeriod = fPeriod;
@@ -399,7 +399,7 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
             pNewZone = new CCZone(pCopy);
         }
 
-        pCopy->initWithAction((CCActionInterval *)(m_pInner->copy()->autorelease()), m_fPeriod);
+        pCopy->initWithAction((cocos2d::CCActionInterval *)(m_pInner->copy()->autorelease()), m_fPeriod);
 
         CC_SAFE_DELETE(pNewZone);
         return pCopy;
@@ -747,11 +747,11 @@ class cocos2d::CCEaseSineInOut : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
-    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f3e0, ios 0x17a2c0;
-    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f3e0, ios 0x17a1b8;
+    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = m1 0x4b6074, imac 0x55f5a0, ios 0x17a2c0;
+    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::_ccColor3B const&, char const*) = m1 0x4b5ee0, imac 0x55f3e0, ios 0x17a1b8;
 
     bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x55f6e0, m1 0x4b6180, ios 0x17a350;
-    bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f530, m1 0x4b5ffc;
+    bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f530, m1 0x4b5ffc, ios 0x17a248;
 
     bool getDontOpacityFade() const;
     float getM_fMaxSeg() const {
@@ -1385,7 +1385,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     void calculateWorldSpace();
     bool isFull();
     void loadDefaults();
-    void loadScaledDefaults(float) = imac 0x7b60e0;
+    void loadScaledDefaults(float) = m1 0x6c66b4, imac 0x7b60e0, ios 0x199ab8;
     void resetSystem() = imac 0x7b4740, m1 0x6c5358, ios 0x198a38;
     void resumeSystem() = imac 0x7b4730, m1 0x6c534c, ios 0x198a2c;
     void saveDefaults();
@@ -1700,6 +1700,118 @@ class cocos2d::CCParticleRain : cocos2d::CCParticleSystemQuad {
 }
 
 [[link(win, android)]]
+class cocos2d::CCParticleExplosion : cocos2d::CCParticleSystemQuad {
+    static cocos2d::CCParticleExplosion* create() = m1 0x3e2214, imac 0x473670, ios inline {
+        auto ret = new CCParticleExplosion();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static cocos2d::CCParticleExplosion* createWithTotalParticles(unsigned int) = m1 0x3e22a4, imac 0x4736f0, ios inline {
+        auto ret = new CCParticleExplosion();
+        if (ret->initWithTotalParticles(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+
+    // CCParticleExplosion(cocos2d::CCParticleExplosion const&);
+    // CCParticleExplosion();
+
+    // virtual bool init();
+    virtual bool initWithTotalParticles(unsigned int) = m1 0x3e2338, imac 0x473770, ios inline {
+        if (!CCParticleSystemQuad::initWithTotalParticles(p0, false)) return false;
+        m_fDuration = .1f;
+        this->setEmitterMode(kCCParticleModeGravity);
+        this->setGravity({ 0.f, 0.f });
+        this->setSpeed(70.f);
+        this->setSpeedVar(40.f);
+        this->setRadialAccel(0.f);
+        this->setRadialAccelVar(0.f);
+        this->setTangentialAccel(0.f);
+        this->setTangentialAccelVar(0.f);
+        m_fAngle = 90.f;
+        m_fAngleVar = 360.f;
+        this->setPosition(CCDirector::sharedDirector()->getWinSize() / 2.f);
+        this->setPosVar({ 0.f, 0.f });
+        m_fLife = 5.f;
+        m_fLifeVar = 2.f;
+        m_fStartSize = 15.f;
+        m_fStartSizeVar = 10.f;
+        m_fEndSize = kCCParticleStartSizeEqualToEndSize;
+        m_fEmissionRate = m_uTotalParticles / m_fDuration;
+        m_tStartColor = { .7f, .1f, .2f, 1.f };
+        m_tStartColorVar = { .5f, .5f, .5f, 0.f };
+        m_tEndColor = { .5f, .5f, .5f, 0.f };
+        m_tEndColorVar = { .5f, .5f, .5f, 0.f };
+        auto textureCache = CCTextureCache::sharedTextureCache();
+        auto texture = textureCache->textureForKey("__firePngData");
+        if (!texture) {
+            unsigned char __firePngData[] = {
+                0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00, 0x00, 0x0D, 0x49, 0x48, 0x44, 0x52, 
+                0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x20, 0x08, 0x06, 0x00, 0x00, 0x00, 0x73, 0x7A, 0x7A, 
+                0xF4, 0x00, 0x00, 0x00, 0x04, 0x67, 0x41, 0x4D, 0x41, 0x00, 0x00, 0xAF, 0xC8, 0x37, 0x05, 0x8A, 
+                0xE9, 0x00, 0x00, 0x00, 0x19, 0x74, 0x45, 0x58, 0x74, 0x53, 0x6F, 0x66, 0x74, 0x77, 0x61, 0x72, 
+                0x65, 0x00, 0x41, 0x64, 0x6F, 0x62, 0x65, 0x20, 0x49, 0x6D, 0x61, 0x67, 0x65, 0x52, 0x65, 0x61, 
+                0x64, 0x79, 0x71, 0xC9, 0x65, 0x3C, 0x00, 0x00, 0x02, 0x64, 0x49, 0x44, 0x41, 0x54, 0x78, 0xDA, 
+                0xC4, 0x97, 0x89, 0x6E, 0xEB, 0x20, 0x10, 0x45, 0xBD, 0xE1, 0x2D, 0x4B, 0xFF, 0xFF, 0x37, 0x5F, 
+                0x5F, 0x0C, 0xD8, 0xC4, 0xAE, 0x2D, 0xDD, 0xA9, 0x6E, 0xA7, 0x38, 0xC1, 0x91, 0xAA, 0x44, 0xBA, 
+                0xCA, 0x06, 0xCC, 0x99, 0x85, 0x01, 0xE7, 0xCB, 0xB2, 0x64, 0xEF, 0x7C, 0x55, 0x2F, 0xCC, 0x69, 
+                0x56, 0x15, 0xAB, 0x72, 0x68, 0x81, 0xE6, 0x55, 0xFE, 0xE8, 0x62, 0x79, 0x62, 0x04, 0x36, 0xA3, 
+                0x06, 0xC0, 0x9B, 0xCA, 0x08, 0xC0, 0x7D, 0x55, 0x80, 0xA6, 0x54, 0x98, 0x67, 0x11, 0xA8, 0xA1, 
+                0x86, 0x3E, 0x0B, 0x44, 0x41, 0x00, 0x33, 0x19, 0x1F, 0x21, 0x43, 0x9F, 0x5F, 0x02, 0x68, 0x49, 
+                0x1D, 0x20, 0x1A, 0x82, 0x28, 0x09, 0xE0, 0x4E, 0xC6, 0x3D, 0x64, 0x57, 0x39, 0x80, 0xBA, 0xA3, 
+                0x00, 0x1D, 0xD4, 0x93, 0x3A, 0xC0, 0x34, 0x0F, 0x00, 0x3C, 0x8C, 0x59, 0x4A, 0x99, 0x44, 0xCA, 
+                0xA6, 0x02, 0x88, 0xC7, 0xA7, 0x55, 0x67, 0xE8, 0x44, 0x10, 0x12, 0x05, 0x0D, 0x30, 0x92, 0xE7, 
+                0x52, 0x33, 0x32, 0x26, 0xC3, 0x38, 0xF7, 0x0C, 0xA0, 0x06, 0x40, 0x0F, 0xC3, 0xD7, 0x55, 0x17, 
+                0x05, 0xD1, 0x92, 0x77, 0x02, 0x20, 0x85, 0xB7, 0x19, 0x18, 0x28, 0x4D, 0x05, 0x19, 0x9F, 0xA1, 
+                0xF1, 0x08, 0xC0, 0x05, 0x10, 0x57, 0x7C, 0x4F, 0x01, 0x10, 0xEF, 0xC5, 0xF8, 0xAC, 0x76, 0xC8, 
+                0x2E, 0x80, 0x14, 0x99, 0xE4, 0xFE, 0x44, 0x51, 0xB8, 0x52, 0x14, 0x3A, 0x32, 0x22, 0x00, 0x13, 
+                0x85, 0xBF, 0x52, 0xC6, 0x05, 0x8E, 0xE5, 0x63, 0x00, 0x86, 0xB6, 0x9C, 0x86, 0x38, 0xAB, 0x54, 
+                0x74, 0x18, 0x5B, 0x50, 0x58, 0x6D, 0xC4, 0xF3, 0x89, 0x6A, 0xC3, 0x61, 0x8E, 0xD9, 0x03, 0xA8, 
+                0x08, 0xA0, 0x55, 0xBB, 0x40, 0x40, 0x3E, 0x00, 0xD2, 0x53, 0x47, 0x94, 0x0E, 0x38, 0xD0, 0x7A, 
+                0x73, 0x64, 0x57, 0xF0, 0x16, 0xFE, 0x95, 0x82, 0x86, 0x1A, 0x4C, 0x4D, 0xE9, 0x68, 0xD5, 0xAE, 
+                0xB8, 0x00, 0xE2, 0x8C, 0xDF, 0x4B, 0xE4, 0xD7, 0xC1, 0xB3, 0x4C, 0x75, 0xC2, 0x36, 0xD2, 0x3F, 
+                0x2A, 0x7C, 0xF7, 0x0C, 0x50, 0x60, 0xB1, 0x4A, 0x81, 0x18, 0x88, 0xD3, 0x22, 0x75, 0xD1, 0x63, 
+                0x5C, 0x80, 0xF7, 0x19, 0x15, 0xA2, 0xA5, 0xB9, 0xB5, 0x5A, 0xB7, 0xA4, 0x34, 0x7D, 0x03, 0x48, 
+                0x5F, 0x17, 0x90, 0x52, 0x01, 0x19, 0x95, 0x9E, 0x1E, 0xD1, 0x30, 0x30, 0x9A, 0x21, 0xD7, 0x0D, 
+                0x81, 0xB3, 0xC1, 0x92, 0x0C, 0xE7, 0xD4, 0x1B, 0xBE, 0x49, 0xF2, 0x04, 0x15, 0x2A, 0x52, 0x06, 
+                0x69, 0x31, 0xCA, 0xB3, 0x22, 0x71, 0xBD, 0x1F, 0x00, 0x4B, 0x82, 0x66, 0xB5, 0xA7, 0x37, 0xCF, 
+                0x6F, 0x78, 0x0F, 0xF8, 0x5D, 0xC6, 0xA4, 0xAC, 0xF7, 0x23, 0x05, 0x6C, 0xE4, 0x4E, 0xE2, 0xE3, 
+                0x95, 0xB7, 0xD3, 0x40, 0xF3, 0xA5, 0x06, 0x1C, 0xFE, 0x1F, 0x09, 0x2A, 0xA8, 0xF5, 0xE6, 0x3D, 
+                0x00, 0xDD, 0xAD, 0x02, 0x2D, 0xC4, 0x4D, 0x66, 0xA0, 0x6A, 0x1F, 0xD5, 0x2E, 0xF8, 0x8F, 0xFF, 
+                0x2D, 0xC6, 0x4F, 0x04, 0x1E, 0x14, 0xD0, 0xAC, 0x01, 0x3C, 0xAA, 0x5C, 0x1F, 0xA9, 0x2E, 0x72, 
+                0xBA, 0x49, 0xB5, 0xC7, 0xFA, 0xC0, 0x27, 0xD2, 0x62, 0x69, 0xAE, 0xA7, 0xC8, 0x04, 0xEA, 0x0F, 
+                0xBF, 0x1A, 0x51, 0x50, 0x61, 0x16, 0x8F, 0x1B, 0xD5, 0x5E, 0x03, 0x75, 0x35, 0xDD, 0x09, 0x6F, 
+                0x88, 0xC4, 0x0D, 0x73, 0x07, 0x82, 0x61, 0x88, 0xE8, 0x59, 0x30, 0x45, 0x8E, 0xD4, 0x7A, 0xA7, 
+                0xBD, 0xDA, 0x07, 0x67, 0x81, 0x40, 0x30, 0x88, 0x55, 0xF5, 0x11, 0x05, 0xF0, 0x58, 0x94, 0x9B, 
+                0x48, 0xEC, 0x60, 0xF1, 0x09, 0xC7, 0xF1, 0x66, 0xFC, 0xDF, 0x0E, 0x84, 0x7F, 0x74, 0x1C, 0x8F, 
+                0x58, 0x44, 0x77, 0xAC, 0x59, 0xB5, 0xD7, 0x67, 0x00, 0x12, 0x85, 0x4F, 0x2A, 0x4E, 0x17, 0xBB, 
+                0x1F, 0xC6, 0x00, 0xB8, 0x99, 0xB0, 0xE7, 0x23, 0x9D, 0xF7, 0xCF, 0x6E, 0x44, 0x83, 0x4A, 0x45, 
+                0x32, 0x40, 0x86, 0x81, 0x7C, 0x8D, 0xBA, 0xAB, 0x1C, 0xA7, 0xDE, 0x09, 0x87, 0x48, 0x21, 0x26, 
+                0x5F, 0x4A, 0xAD, 0xBA, 0x6E, 0x4F, 0xCA, 0xFB, 0x23, 0xB7, 0x62, 0xF7, 0xCA, 0xAD, 0x58, 0x22, 
+                0xC1, 0x00, 0x47, 0x9F, 0x0B, 0x7C, 0xCA, 0x73, 0xC1, 0xDB, 0x9F, 0x8C, 0xF2, 0x17, 0x1E, 0x4E, 
+                0xDF, 0xF2, 0x6C, 0xF8, 0x67, 0xAF, 0x22, 0x7B, 0xF3, 0xEB, 0x4B, 0x80, 0x01, 0x00, 0xB8, 0x21, 
+                0x72, 0x89, 0x08, 0x10, 0x07, 0x7D, 0x00, 0x00, 0x00, 0x00, 0x49, 0x45, 0x4E, 0x44, 0xAE, 0x42, 
+                0x60, 0x82
+            };
+            auto image = new CCImage();
+            if (image->initWithImageData(reinterpret_cast<void*>(__firePngData), sizeof(__firePngData), CCImage::kFmtPng)) {
+                texture = textureCache->addUIImage(image, "__firePngData");
+            }
+        }
+        if (texture) this->setTexture(texture);
+        this->setBlendAdditive(false);
+        return true;
+    }
+}
+
+[[link(win, android)]]
 class cocos2d::CCParticleSystemQuad : cocos2d::CCParticleSystem {
     static cocos2d::CCParticleSystemQuad* create(char const*, bool) = imac 0x5eb190, m1 0x51c418, ios 0x252a98;
     static cocos2d::CCParticleSystemQuad* create() = m1 0x51d1bc, imac 0x5ec500, ios inline {
@@ -1836,6 +1948,7 @@ class cocos2d::CCFadeTo : cocos2d::CCActionInterval {
 class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     // CCFileUtils(); // one of these two is 0x15bfa8
     // CCFileUtils(cocos2d::CCFileUtils const&);
+    ~CCFileUtils();
     virtual void addSearchPath(char const*) = m1 0x3a42d4, imac 0x4294e0, ios 0x155a30;
     virtual void addSearchResolutionsOrder(char const*) = imac 0x428f30, m1 0x3a3d24, ios 0x155538;
     virtual gd::string addSuffix(gd::string, gd::string) = imac 0x4273f0, m1 0x3a21f4, ios 0x15459c;
@@ -1897,44 +2010,89 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
 [[link(win, android)]]
 class cocos2d::CCGLProgram : cocos2d::CCObject {
     bool initWithVertexShaderByteArray(char const*, char const*) = imac 0x417e60, m1 0x393990, ios 0x138260;
-    bool initWithVertexShaderFilename(char const*, char const*) = m1 0x393a34, imac 0x417f00;
+    bool initWithVertexShaderFilename(char const*, char const*) = m1 0x393b00, imac 0x417fd0, ios inline {
+        return this->initWithVertexShaderByteArray(
+            CCString::createWithContentsOfFile(CCFileUtils::sharedFileUtils()->fullPathForFilename(p0, false).c_str())->getCString(),
+            CCString::createWithContentsOfFile(CCFileUtils::sharedFileUtils()->fullPathForFilename(p1, false).c_str())->getCString()
+        );
+    }
 
     unsigned int const getProgram();
-    int getUniformLocationForName(char const*) = m1 0x3947a0, imac 0x418b80;
+    int getUniformLocationForName(char const*) = m1 0x3947a0, imac 0x418b80, ios inline {
+        return glGetUniformLocation(m_uProgram, p0);
+    }
 
-    void setUniformLocationWith1f(int, float) = ios 0x1389e0;
-    void setUniformLocationWith1i(int, int);
-    void setUniformLocationWith2f(int, float, float);
-    void setUniformLocationWith2fv(int, float*, unsigned int);
-    void setUniformLocationWith2i(int, int, int);
-    void setUniformLocationWith2iv(int, int*, unsigned int);
-    void setUniformLocationWith3f(int, float, float, float) = ios 0x138aec;
-    void setUniformLocationWith3fv(int, float*, unsigned int) = ios 0x138c7c;
-    void setUniformLocationWith3i(int, int, int, int);
-    void setUniformLocationWith3iv(int, int*, unsigned int);
-    void setUniformLocationWith4f(int, float, float, float, float);
-    void setUniformLocationWith4fv(int, float*, unsigned int);
-    void setUniformLocationWith4i(int, int, int, int, int);
-    void setUniformLocationWith4iv(int, int*, unsigned int);
-    void setUniformLocationWithMatrix3fv(int, float*, unsigned int);
-    void setUniformLocationWithMatrix4fv(int, float*, unsigned int);
+    void setUniformLocationWith1f(int, float) = m1 0x394ad8, imac 0x418e60, ios 0x1389e0;
+    void setUniformLocationWith1i(int, int) = m1 0x393d78, imac 0x418210, ios 0x1384f0;
+    void setUniformLocationWith2f(int, float, float) = m1 0x394b38, imac 0x418ea0, ios 0x138a40;
+    void setUniformLocationWith2fv(int, float*, unsigned int) = m1 0x394d74, imac 0x419070, ios inline {
+        if (this->updateUniformLocation(p0, p1, p2 * 8)) glUniform2fv(p0, p2, p1);
+    }
+    void setUniformLocationWith2i(int, int, int) = m1 0x3947a8, imac 0x418b90, ios inline {
+        GLint ints[2] = { p1, p2 };
+        if (this->updateUniformLocation(p0, ints, 8)) glUniform2i(p0, p1, p2);
+    }
+    void setUniformLocationWith2iv(int, int*, unsigned int) = m1 0x3949d8, imac 0x418d70, ios inline {
+        if (this->updateUniformLocation(p0, p1, p2 * 8)) glUniform2iv(p0, p2, p1);
+    }
+    void setUniformLocationWith3f(int, float, float, float) = m1 0x394be4, imac 0x418f30, ios 0x138aec;
+    void setUniformLocationWith3fv(int, float*, unsigned int) = m1 0x394dc8, imac 0x4190c0, ios inline {
+        if (this->updateUniformLocation(p0, p1, p2 * 12)) glUniform3fv(p0, p2, p1);
+    }
+    void setUniformLocationWith3i(int, int, int, int) = m1 0x394854, imac 0x418c20, ios inline {
+        GLint ints[3] = { p1, p2, p3 };
+        if (this->updateUniformLocation(p0, ints, 12)) glUniform3i(p0, p1, p2, p3);
+    }
+    void setUniformLocationWith3iv(int, int*, unsigned int) = m1 0x394a2c, imac 0x418dc0, ios inline {
+        if (this->updateUniformLocation(p0, p1, p2 * 12)) glUniform3iv(p0, p2, p1);
+    }
+    void setUniformLocationWith4f(int, float, float, float, float) = m1 0x394ca8, imac 0x418fd0, ios 0x138bb0;
+    void setUniformLocationWith4fv(int, float*, unsigned int) = m1 0x394e7c, imac 0x419160, ios 0x138cd8;
+    void setUniformLocationWith4i(int, int, int, int, int) = m1 0x39490c, imac 0x418cc0, ios inline {
+        GLint ints[4] = { p1, p2, p3, p4 };
+        if (this->updateUniformLocation(p0, ints, 16)) glUniform4i(p0, p1, p2, p3, p4);
+    }
+    void setUniformLocationWith4iv(int, int*, unsigned int) = m1 0x394a84, imac 0x418e10, ios inline {
+        if (this->updateUniformLocation(p0, p1, p2 * 16)) glUniform4iv(p0, p2, p1);
+    }
+    void setUniformLocationWithMatrix3fv(int, float*, unsigned int) = m1 0x394e20, imac 0x419110, ios 0x138c7c;
+    void setUniformLocationWithMatrix4fv(int, float*, unsigned int) = m1 0x394ed0, imac 0x4191b0, ios 0x138d2c;
     void setUniformsForBuiltins() = imac 0x419200, m1 0x394f28, ios 0x138d84;
 
     // CCGLProgram(cocos2d::CCGLProgram const&);
     ~CCGLProgram() = m1 0x3937f0, imac 0x417cb0, ios 0x1380ec;
     CCGLProgram() = m1 0x393770, imac 0x417c10, ios 0x1380ac;
     void addAttribute(char const*, unsigned int) = imac 0x4180e0, m1 0x393c30, ios 0x1383dc;
-    bool compileShader(unsigned int*, unsigned int, char const*);
-    char const* description() = imac 0x4180b0, m1 0x393bfc;
-    char const* fragmentShaderLog();
+    bool compileShader(unsigned int*, unsigned int, char const*) = m1 0x393a34, imac 0x417f00, ios 0x138304;
+    char const* description() = imac 0x4180b0, m1 0x393bfc, ios inline {
+        return CCString::createWithFormat("<CCGLProgram = " CC_FORMAT_PRINTF_SIZE_T " | Program = %i, VertexShader = %i, FragmentShader = %i>",
+            (size_t)this, m_uProgram, m_uVertShader, m_uFragShader)->getCString();
+    }
+    char const* fragmentShaderLog() = m1 0x3940a8, imac 0x4184f0, ios inline {
+        return this->logForOpenGLObject(m_uFragShader, (GLInfoFunction)&glGetShaderiv, (GLLogFunction)&glGetShaderInfoLog);
+    }
     bool link() = m1 0x393dcc, imac 0x418250, ios 0x138544;
-    // char const* logForOpenGLObject(unsigned int, void (__cdecl*)(unsigned int, unsigned int, int*), void (__cdecl*)(unsigned int, int, int*, char*));
-    char const* programLog();
-    void reset() = m1 0x3951e0, imac 0x419530;
-    bool updateUniformLocation(int, void*, unsigned int);
+    char const* logForOpenGLObject(unsigned int, GLInfoFunction, GLLogFunction) = m1 0x393e10, imac 0x418290, ios inline {
+        GLint logLength = 0;
+        p1(p0, GL_INFO_LOG_LENGTH, &logLength);
+        if (logLength < 1) return nullptr;
+        auto logBytes = (char*)malloc(logLength);
+        GLint charsWritten = 0;
+        p2(p0, logLength, &charsWritten, logBytes);
+        auto log = CCString::create(logBytes);
+        free(logBytes);
+        return log->getCString();
+    }
+    char const* programLog() = m1 0x3941f0, imac 0x418620, ios inline {
+        return this->logForOpenGLObject(m_uProgram, (GLInfoFunction)&glGetProgramiv, (GLLogFunction)&glGetProgramInfoLog);
+    }
+    void reset() = m1 0x3951e0, imac 0x419530, ios 0x138f20;
+    bool updateUniformLocation(int, void*, unsigned int) = m1 0x394338, imac 0x418750, ios 0x138588;
     void updateUniforms() = imac 0x418100, m1 0x393c44, ios 0x1383f0;
     void use() = m1 0x393d70, imac 0x418200, ios 0x1384e8;
-    char const* vertexShaderLog();
+    char const* vertexShaderLog() = m1 0x393f60, imac 0x4183c0, ios inline {
+        return this->logForOpenGLObject(m_uVertShader, (GLInfoFunction)&glGetShaderiv, (GLLogFunction)&glGetShaderInfoLog);
+    }
 }
 
 [[link(win, android)]]
@@ -2112,6 +2270,7 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
 
     // CCScheduler(cocos2d::CCScheduler const&);
     // CCScheduler();
+    ~CCScheduler();
 
     void appendIn(cocos2d::_listEntry**, cocos2d::CCObject*, bool);
     bool isTargetPaused(cocos2d::CCObject*);
@@ -2550,6 +2709,24 @@ class cocos2d::CCTouchHandler {
 }
 
 [[link(win, android)]]
+class cocos2d::CCMouseHandler : cocos2d::CCObject {
+    static cocos2d::CCMouseHandler* handlerWithDelegate(cocos2d::CCMouseDelegate*) = m1 0x21dc04, imac 0x272be0, ios 0x888b8;
+
+    // CCMouseHandler(cocos2d::CCMouseHandler const&);
+    // CCMouseHandler();
+    ~CCMouseHandler() = m1 0x21da98, imac 0x272a60, ios 0x88804;
+
+    cocos2d::CCMouseDelegate* getDelegate() = m1 0x21da3c, imac 0x2729f0, ios 0x887fc;
+    void setDelegate(cocos2d::CCMouseDelegate*) = m1 0x21db44, imac 0x272b20, ios inline {
+        if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(p0)) delegate->retain();
+        if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(m_pDelegate)) delegate->release();
+        m_pDelegate = p0;
+    }
+
+    virtual bool initWithDelegate(cocos2d::CCMouseDelegate*) = m1 0x21dbb0, imac 0x272b90, ios 0x88870;
+}
+
+[[link(win, android)]]
 class cocos2d::CCEGLView {
     // CCEGLView();
     // CCEGLView(cocos2d::CCEGLView const&);
@@ -2654,7 +2831,7 @@ class cocos2d::CCIMEDispatcher {
     void removeDelegate(cocos2d::CCIMEDelegate*);
 }
 
-[[link(win, android)]]
+[[link(win, android, ios)]]
 class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes);
 
@@ -3200,6 +3377,40 @@ class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
 
     ~CCApplication() = m1 0x2ab124, imac 0x314ee0, ios 0x1af2ec;
 
+    [[missing(android, mac, ios)]]
+    void toggleVerticalSync(bool);
+    [[missing(android, mac, ios)]]
+    void setupVerticalSync();
+    [[missing(android, mac, ios)]]
+    void updateVerticalSync();
+    [[missing(android, mac, ios)]]
+    void updateControllerKeys(CXBOXController* controller, int userIndex);
+
+    [[missing(android, mac, ios)]]
+    int getTimeElapsed();
+    [[missing(android, mac, ios)]]
+    void resetForceTimer();
+
+    [[missing(android, mac, ios)]]
+    void leftMouseDown();
+    [[missing(android, mac, ios)]]
+    void leftMouseUp();
+
+    [[missing(android, mac, ios)]]
+    void logTimeElapsed(gd::string);
+
+    [[missing(android, mac, ios)]]
+    void moveMouse(int relX, int relY);
+
+    [[missing(android, mac, ios)]]
+    void shutdownApplication();
+    [[missing(android, mac, ios)]]
+    void toggleMouseControl(bool);
+    [[missing(android, mac, ios)]]
+    void updateController();
+    [[missing(android, mac, ios)]]
+    void updateMouseControl();
+
     virtual int run();
     virtual void setAnimationInterval(double) = m1 0x2ab1cc, imac 0x314f90, ios 0x1af3fc;
     virtual cocos2d::ccLanguageType getCurrentLanguage() = m1 0x2ab20c, imac 0x314ff0, ios 0x1af448;
@@ -3335,7 +3546,34 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
     bool isAutoDraw() const;
     void listenToBackground(cocos2d::CCObject*);
     void listenToForeground(cocos2d::CCObject*);
-    cocos2d::CCImage* newCCImage(bool flipImage) = m1 0x5117a4, imac 0x5deb40;
+    cocos2d::CCImage* newCCImage(bool flipImage) = m1 0x5117a4, imac 0x5deb40, ios inline {
+        if (!m_pTexture) return nullptr;
+
+        auto& s = m_pTexture->getContentSizeInPixels();
+        int width = s.width;
+        int height = s.height;
+        auto buffer = new uint8_t[width * height * 4];
+        auto data = new uint8_t[width * height * 4];
+        auto image = new CCImage();
+
+        this->begin();
+        glPixelStorei(GL_PACK_ALIGNMENT, 1);
+        glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        this->end();
+
+        if (flipImage) {
+            for (int i = 0; i < height; i++) {
+                memcpy(&buffer[i * width * 4], &data[(height - i - 1) * width * 4], width * 4);
+            }
+
+            image->initWithImageData(buffer, width * height * 4, CCImage::kFmtRawData, width, height, 8);
+        }
+        else image->initWithImageData(data, width * height * 4, CCImage::kFmtRawData, width, height, 8);    
+
+        delete[] buffer;
+        delete[] data;
+        return image;
+    }
     bool saveToFile(char const*);
     bool saveToFile(char const*, cocos2d::eImageFormat);
     void updateInternalScale(float, float);
@@ -3854,8 +4092,8 @@ class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo { // full co
         return false;
     }
 
-    virtual cocos2d::CCObject* copyWithZone(CCZone* zone) = ios inline {
-        CCZone* pNewZone = NULL;
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* zone) = ios inline {
+        cocos2d::CCZone* pNewZone = NULL;
         CCCallFuncN* pRet = NULL;
 
         if (zone && zone->m_pCopyObject) {
@@ -4019,7 +4257,7 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     
         return pSpriteFrame;
     }
-    static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = ios 0x24d078;
+    static cocos2d::CCSpriteFrame* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = m1 0x2d96a0, imac 0x344130, ios 0x24d078;
 
     bool initWithTexture(cocos2d::CCTexture2D* pobTexture, cocos2d::CCRect const& rect) = ios inline {
         CCRect rectInPixels = CC_RECT_POINTS_TO_PIXELS(rect);
@@ -4452,15 +4690,15 @@ class DS_Dictionary {
     void removeKey(char const*);
     bool saveRootSubDictToCompressedFile(char const*);
     bool saveRootSubDictToFile(char const*);
-    gd::string saveRootSubDictToString() = imac 0x16c030, m1 0x1388ec, m1 0x1388ec, ios 0x164824;
+    gd::string saveRootSubDictToString() = imac 0x16c030, m1 0x1388ec, ios 0x164824;
     void setArrayForKey(char const*, cocos2d::CCArray*) = imac 0x170440, m1 0x13c4d0;
     void setBoolForKey(char const*, bool, bool);
-    void setBoolForKey(char const*, bool) = imac 0x16e790, m1 0x13ab9c;
+    void setBoolForKey(char const*, bool) = imac 0x16e790, m1 0x13ab9c, ios 0x165750;
     void setBoolMapForKey(char const*, gd::map<gd::string, bool>&) = m1 0x13cf9c;
     void setDictForKey(char const*, cocos2d::CCDictionary*) = imac 0x170db0, m1 0x13cd9c, ios 0x1662a8;
     void setFloatForKey(char const*, float) = imac 0x16e9c0, m1 0x13ad84;
     void setFloatForKey(char const*, float, bool);
-    void setIntegerForKey(char const*, int) = imac 0x16e4c0, m1 0x13a930;
+    void setIntegerForKey(char const*, int) = imac 0x16e4c0, m1 0x13a930, ios 0x16551c;
     void setIntegerForKey(char const*, int, bool);
     void setObjectForKey(char const*, cocos2d::CCObject*);
     void setRectArrayForKey(char const*, gd::vector<cocos2d::CCRect> const&);
@@ -4469,10 +4707,12 @@ class DS_Dictionary {
     void setRectForKey(char const*, cocos2d::CCRect const&, bool);
     void setStringArrayForKey(char const*, gd::vector<gd::string> const&);
     void setStringArrayForKey(char const*, gd::vector<gd::string> const&, bool);
-    void setStringForKey(char const*, gd::string const&) = imac 0x16ecb0, m1 0x13b008;
+    void setStringForKey(char const*, gd::string const&) = imac 0x16ecb0, m1 0x13b008, ios 0x165acc;
     void setStringForKey(char const*, gd::string const&, bool);
-    void setSubDictForKey(char const*);
-    void setSubDictForKey(char const*, bool, bool);
+    void setSubDictForKey(char const*) = m1 0x13a5f4, imac 0x16e0d0, ios inline {
+        this->setSubDictForKey(p0, false, false);
+    }
+    void setSubDictForKey(char const*, bool, bool) = m1 0x13a698, imac 0x16e180, ios 0x16532c;
     void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&);
     void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&, bool);
     void setVec2ForKey(char const*, cocos2d::CCPoint const&);
@@ -4480,8 +4720,10 @@ class DS_Dictionary {
     void split(gd::string const&, char const*, gd::vector<gd::string>&);
     bool splitWithForm(gd::string const&, gd::vector<gd::string>&);
     void stepBackToRootSubDict();
-    bool stepIntoSubDictWithKey(char const*) = imac 0x16c5d0, m1 0x138dc0, m1 0x138dc0, ios 0x164b90;
-    void stepOutOfSubDict() = imac 0x16c8a0, m1 0x138ff0;
+    bool stepIntoSubDictWithKey(char const*) = imac 0x16c5d0, m1 0x138dc0, ios 0x164b90;
+    void stepOutOfSubDict() = imac 0x16c8a0, m1 0x138ff0, ios inline {
+        if (dictTree.size() > 1) dictTree.pop_back();
+    }
     bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
 }
 
@@ -4658,7 +4900,7 @@ class cocos2d::ZipUtils {
     static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
     static void ccSetPvrEncryptionKeyPart(int, unsigned int);
     static gd::string compressString(gd::string const& data, bool encrypt, int encryptionKey) = imac 0x1f3020, m1 0x1a8b18, ios 0x23d2b8;
-    static gd::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1f33b0, m1 0x1a8efc;
+    static gd::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1f33b0, m1 0x1a8efc, ios 0x23d618;
     static gd::string decompressString(gd::string const& data, bool encrypt, int encryptionKey) = m1 0x1a921c, imac 0x1f36c0, ios 0x23d8a0;
     static gd::string encryptDecrypt(gd::string const& data, int encryptionKey);
     static gd::string encryptDecryptWKey(gd::string const&, gd::string);
@@ -4696,8 +4938,8 @@ class cocos2d::CCSpawn : cocos2d::CCActionInterval {
                 // ExtraAction doesnt exist for some reason
                 CCFiniteTimeAction* action = new CCFiniteTimeAction();
                 if (action) {
-                    pRet->autorelease();
-		}
+                    action->autorelease();
+                }
                 prev = createWithTwoActions(prev, action);
             }
             pRet = (CCSpawn*)prev;
@@ -4788,7 +5030,12 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     }
 
     CCLightning() = win 0x44400, ios 0x347014;
-    ~CCLightning() = win 0x444d0, ios 0x3470bc;
+    ~CCLightning() = win inline, ios 0x3470bc {
+        if (m_lightningPoints) {
+            free(m_lightningPoints);
+            m_lightningPoints = nullptr;
+        }
+    }
 
     void strike() = win 0x44880, m1 0x4faa74, ios 0x347290;
     void strikeFinished() = win 0x448f0, imac 0x5c5e60;
