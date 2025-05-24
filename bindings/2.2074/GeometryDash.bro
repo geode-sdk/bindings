@@ -7277,8 +7277,8 @@ class GameManager : GManager {
     TodoReturn finishedLoadingMGAsync(int);
     TodoReturn finishedLoadingMGAsync1(cocos2d::CCObject*);
     TodoReturn finishedLoadingMGAsync2(cocos2d::CCObject*);
-    TodoReturn followTwitch() = ios 0x317578, win inline, imac inline;
-    TodoReturn followTwitter() = ios 0x317480, win inline, imac inline;
+    TodoReturn followTwitch() = ios 0x317578, win inline, imac inline, m1 inline;
+    TodoReturn followTwitter() = ios 0x317480, win inline, imac inline, m1 0x2fe774;
     TodoReturn framesForAnimation(int);
     TodoReturn frameTimeForAnimation(int);
     TodoReturn generateSecretNumber();
@@ -7389,13 +7389,13 @@ class GameManager : GManager {
     bool isIconLoaded(int, int) = imac 0x36d8f0;
     bool isIconUnlocked(int, IconType) = ios 0x312be8, win 0x1794e0, imac 0x3648d0, m1 0x2f7388;
     TodoReturn itemPurchased(char const*);
-    TodoReturn joinDiscord() = ios 0x3175f4, win inline, imac inline;
-    void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670, win inline, imac inline;
+    TodoReturn joinDiscord() = ios 0x3175f4, win inline, imac inline, m1 inline;
+    void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670, win inline, imac inline, m1 inline;
     int keyForIcon(int iconIdx, int iconEnum) {
         return m_keyStartForIcon.at(iconEnum) + iconIdx - 1;
     }
     TodoReturn levelIsPremium(int, int);
-    TodoReturn likeFacebook() = ios 0x317404, win inline, imac inline;
+    TodoReturn likeFacebook() = ios 0x317404, win inline, imac inline, m1 0x2fe6f4;
     void loadBackground(int) = win 0x17f880, m1 0x300f5c, imac 0x36fc40, ios 0x3185c0;
     void loadBackgroundAsync(int);
 
@@ -7534,7 +7534,7 @@ class GameManager : GManager {
     void showMainMenuAd();
     void startUpdate();
     gd::string stringForCustomObject(int customObjectID) = win 0x180950, imac 0x371170, m1 0x3025a0, ios 0x3195f0;
-    TodoReturn subYouTube() = ios 0x3174fc, win inline, imac inline;
+    TodoReturn subYouTube() = ios 0x3174fc, win inline, imac inline, m1 0x2fe7f4;
     TodoReturn switchCustomObjects(int, int);
     TodoReturn switchScreenMode(bool, bool, bool, bool);
     void syncPlatformAchievements();
@@ -7752,7 +7752,7 @@ class GameObject : CCSpritePlus {
     virtual void activateObject() = win 0x18db60, imac 0x5921a0, m1 0x4d945c, ios 0x25544c;
     virtual void deactivateObject(bool) = win 0x18dc10, imac 0x592510, m1 0x4d97e0, ios 0x2557d0;
     virtual void transferObjectRect(cocos2d::CCRect&) = win 0x1946d0, imac 0x5a3660, m1 0x4ddae0, ios 0x259cf0;
-    virtual cocos2d::CCRect const& getObjectRect() = win 0x194720, imac 0x5a36d0, m1 0x4ddb58, ios 0x259d7c;
+    virtual cocos2d::CCRect const& getObjectRect() = win 0x194720, imac 0x5a36d0, m1 0x4ddb6c, ios 0x259d7c;
     virtual cocos2d::CCRect getObjectRect(float, float) = win 0x194740, imac 0x5a3700, m1 0x4ddb6c, ios 0x259d7c;
     virtual cocos2d::CCRect getObjectRect2(float, float) = win 0x1948d0, imac 0x5a3930, m1 0x4ddd50, ios 0x259f50;
     virtual cocos2d::CCRect getObjectTextureRect() = win 0x194970, imac 0x5a3a00, m1 0x4dde14, ios 0x259fd4;
@@ -8720,7 +8720,7 @@ class GameToolbox {
     static void stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x65890;
     static TodoReturn strongColor(cocos2d::ccColor3B);
     static TodoReturn timestampToHumanReadable(long) = m1 0x4469a4, imac 0x4e4690;
-    static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue) = ios 0x4854c, win 0x65290, m1 0x43fbfc, imac 0x4dcb20;
+    static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue) = ios 0x4854c, win 0x65290, m1 0x43fbe0, imac 0x4dcb20;
     static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, float, float, float) = m1 0x43fbe0, imac 0x4dcaf0;
 }
 
