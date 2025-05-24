@@ -7389,8 +7389,8 @@ class GameManager : GManager {
     bool isIconLoaded(int, int) = imac 0x36d8f0;
     bool isIconUnlocked(int, IconType) = ios 0x312be8, win 0x1794e0, imac 0x3648d0, m1 0x2f7388;
     TodoReturn itemPurchased(char const*);
-    TodoReturn joinDiscord() = ios 0x3175f4, win inline, imac inline, m1 inline;
-    void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670, win inline, imac inline, m1 inline;
+    TodoReturn joinDiscord() = ios 0x3175f4;
+    void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670;
     int keyForIcon(int iconIdx, int iconEnum) {
         return m_keyStartForIcon.at(iconEnum) + iconIdx - 1;
     }
