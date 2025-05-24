@@ -7277,8 +7277,8 @@ class GameManager : GManager {
     TodoReturn finishedLoadingMGAsync(int);
     TodoReturn finishedLoadingMGAsync1(cocos2d::CCObject*);
     TodoReturn finishedLoadingMGAsync2(cocos2d::CCObject*);
-    TodoReturn followTwitch() = ios 0x317578, win inline;
-    TodoReturn followTwitter() = ios 0x317480, win inline;
+    TodoReturn followTwitch() = ios 0x317578, win inline, imac inline;
+    TodoReturn followTwitter() = ios 0x317480, win inline, imac inline;
     TodoReturn framesForAnimation(int);
     TodoReturn frameTimeForAnimation(int);
     TodoReturn generateSecretNumber();
@@ -7389,13 +7389,13 @@ class GameManager : GManager {
     bool isIconLoaded(int, int) = imac 0x36d8f0;
     bool isIconUnlocked(int, IconType) = ios 0x312be8, win 0x1794e0, imac 0x3648d0, m1 0x2f7388;
     TodoReturn itemPurchased(char const*);
-    TodoReturn joinDiscord() = ios 0x3175f4, win inline;
-    void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670, win inline;
+    TodoReturn joinDiscord() = ios 0x3175f4, win inline, imac inline;
+    void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670, win inline, imac inline;
     int keyForIcon(int iconIdx, int iconEnum) {
         return m_keyStartForIcon.at(iconEnum) + iconIdx - 1;
     }
     TodoReturn levelIsPremium(int, int);
-    TodoReturn likeFacebook() = ios 0x317404, win inline;
+    TodoReturn likeFacebook() = ios 0x317404, win inline, imac inline;
     void loadBackground(int) = win 0x17f880, m1 0x300f5c, imac 0x36fc40, ios 0x3185c0;
     void loadBackgroundAsync(int);
 
@@ -7534,7 +7534,7 @@ class GameManager : GManager {
     void showMainMenuAd();
     void startUpdate();
     gd::string stringForCustomObject(int customObjectID) = win 0x180950, imac 0x371170, m1 0x3025a0, ios 0x3195f0;
-    TodoReturn subYouTube() = ios 0x3174fc, win inline;
+    TodoReturn subYouTube() = ios 0x3174fc, win inline, imac inline;
     TodoReturn switchCustomObjects(int, int);
     TodoReturn switchScreenMode(bool, bool, bool, bool);
     void syncPlatformAchievements();
