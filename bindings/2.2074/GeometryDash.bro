@@ -7277,8 +7277,8 @@ class GameManager : GManager {
     TodoReturn finishedLoadingMGAsync(int);
     TodoReturn finishedLoadingMGAsync1(cocos2d::CCObject*);
     TodoReturn finishedLoadingMGAsync2(cocos2d::CCObject*);
-    TodoReturn followTwitch();
-    TodoReturn followTwitter();
+    TodoReturn followTwitch() = ios 0x317578;
+    TodoReturn followTwitter() = ios 0x317480;
     TodoReturn framesForAnimation(int);
     TodoReturn frameTimeForAnimation(int);
     TodoReturn generateSecretNumber();
@@ -7389,13 +7389,13 @@ class GameManager : GManager {
     bool isIconLoaded(int, int) = imac 0x36d8f0;
     bool isIconUnlocked(int, IconType) = ios 0x312be8, win 0x1794e0, imac 0x3648d0, m1 0x2f7388;
     TodoReturn itemPurchased(char const*);
-    TodoReturn joinDiscord();
-    void joinReddit() = m1 0x2fe974, imac 0x36d2c0;
+    TodoReturn joinDiscord() = ios 0x3175f4;
+    void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670;
     int keyForIcon(int iconIdx, int iconEnum) {
         return m_keyStartForIcon.at(iconEnum) + iconIdx - 1;
     }
     TodoReturn levelIsPremium(int, int);
-    TodoReturn likeFacebook();
+    TodoReturn likeFacebook() = ios 0x317404;
     void loadBackground(int) = win 0x17f880, m1 0x300f5c, imac 0x36fc40, ios 0x3185c0;
     void loadBackgroundAsync(int);
 
@@ -7534,7 +7534,7 @@ class GameManager : GManager {
     void showMainMenuAd();
     void startUpdate();
     gd::string stringForCustomObject(int customObjectID) = win 0x180950, imac 0x371170, m1 0x3025a0, ios 0x3195f0;
-    TodoReturn subYouTube();
+    TodoReturn subYouTube() = ios 0x3174fc; // to-do
     TodoReturn switchCustomObjects(int, int);
     TodoReturn switchScreenMode(bool, bool, bool, bool);
     void syncPlatformAchievements();
