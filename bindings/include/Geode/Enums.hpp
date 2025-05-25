@@ -672,7 +672,8 @@ enum class ShopType {
     Secret = 1,
     Community = 2,
     Mechanic = 3,
-    Diamond = 4
+    Diamond = 4,
+    Paths = 5
 };
 
 // Geode Addition
