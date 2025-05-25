@@ -6159,7 +6159,6 @@ class FMODAudioEngine : cocos2d::CCNode {
         m_sfxVisualizerPeak = .0f;
         m_sfxVisualizerVolume = .0f;
     }
-
     static FMODAudioEngine* get() {
         return FMODAudioEngine::sharedEngine();
     }
@@ -6173,12 +6172,13 @@ class FMODAudioEngine : cocos2d::CCNode {
         return *instancePtr;
     }
 
+    virtual void update(float) = win 0x55390, imac 0x3cc160, m1 0x3542a0, ios 0x13becc;
+
     void activateQueuedMusic(int);
     FMOD::Channel* channelForChannelID(int) = win 0x58480, imac 0x3cd8a0, m1 0x355668;
     FMOD::Channel* channelForUniqueID(int id) = win inline {
         return this->channelForChannelID(this->channelIDForUniqueID(id));
     }
-    virtual void update(float) = win 0x55390, imac 0x3cc160, m1 0x3542a0, ios 0x13becc;
     int channelIDForUniqueID(int) = win 0x583c0;
     void channelLinkSound(int, FMODSound*);
     void channelStopped(FMOD::Channel*, bool) = win 0x580b0;
@@ -6375,7 +6375,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void stopAllEffects() = ios 0x13bc58, win 0x598b0, m1 0x353c3c, imac 0x3cb410;
     void stopAllMusic(bool) = ios 0x13bd04, win 0x59d70, imac 0x3cbbf0, m1 0x353f28;
     float stopAndGetFade(FMOD::Channel*) = win 0x58a20, m1 0x35a2bc;
-    void stopAndRemoveMusic(int) = win 0x5ca80;
+    void stopAndRemoveMusic(int) = win 0x5ca80, ios 0x141c7c;
     void stopChannel(FMOD::Channel*, bool, float) = win 0x58810;
     void stopChannel(int, AudioTargetType, bool, float) = win 0x58540;
     void stopChannel(int id) = win inline {
@@ -6388,7 +6388,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         this->stopChannelTween(id, target, AudioModType::Volume);
         this->stopChannelTween(id, target, AudioModType::Pitch);
     }
-    void stopMusic(int id) = win inline, ios 0x141c7c {
+    void stopMusic(int id) = win inline, ios inline {
         this->stopAndRemoveMusic(id);
     }
     void stopMusicNotInSet(gd::unordered_set<int>& musicIDs) = win inline {
