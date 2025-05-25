@@ -6563,7 +6563,7 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 
     void onClose(cocos2d::CCObject* sender);
     void onRewardedVideo(cocos2d::CCObject* sender) = m1 0x38b228;
-    void onSpecialItem(cocos2d::CCObject* sender) = win 0x13a340, m1 0x38a858, imac 0x40e310;
+    void onSpecialItem(cocos2d::CCObject* sender) = win 0x13a340, m1 0x38a858, imac 0x40e310, ios 0x41d1d8;
     void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x13b510, imac 0x40e910, m1 0x38ae04;
 
     cocos2d::CCArray* m_chests;
