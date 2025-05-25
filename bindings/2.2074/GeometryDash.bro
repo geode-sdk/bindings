@@ -6375,7 +6375,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void stopAllEffects() = ios 0x13bc58, win 0x598b0, m1 0x353c3c, imac 0x3cb410;
     void stopAllMusic(bool) = ios 0x13bd04, win 0x59d70, imac 0x3cbbf0, m1 0x353f28;
     float stopAndGetFade(FMOD::Channel*) = win 0x58a20, m1 0x35a2bc;
-    void stopAndRemoveMusic(int) = win 0x5ca80;
+    void stopAndRemoveMusic(int) = win 0x5ca80, ios 0x141c7c;
     void stopChannel(FMOD::Channel*, bool, float) = win 0x58810;
     void stopChannel(int, AudioTargetType, bool, float) = win 0x58540;
     void stopChannel(int id) = win inline {
@@ -6388,7 +6388,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         this->stopChannelTween(id, target, AudioModType::Volume);
         this->stopChannelTween(id, target, AudioModType::Pitch);
     }
-    void stopMusic(int id) = win inline {
+    void stopMusic(int id) = win inline, ios inline {
         this->stopAndRemoveMusic(id);
     }
     void stopMusicNotInSet(gd::unordered_set<int>& musicIDs) = win inline {
@@ -6563,7 +6563,7 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 
     void onClose(cocos2d::CCObject* sender);
     void onRewardedVideo(cocos2d::CCObject* sender) = m1 0x38b228;
-    void onSpecialItem(cocos2d::CCObject* sender) = win 0x13a340, m1 0x38a858, imac 0x40e310;
+    void onSpecialItem(cocos2d::CCObject* sender) = win 0x13a340, m1 0x38a858, imac 0x40e310, ios 0x41d1d8;
     void switchToOpenedState(CCMenuItemSpriteExtra*) = win 0x13b510, imac 0x40e910, m1 0x38ae04;
 
     cocos2d::CCArray* m_chests;
@@ -7277,8 +7277,8 @@ class GameManager : GManager {
     TodoReturn finishedLoadingMGAsync(int);
     TodoReturn finishedLoadingMGAsync1(cocos2d::CCObject*);
     TodoReturn finishedLoadingMGAsync2(cocos2d::CCObject*);
-    TodoReturn followTwitch();
-    TodoReturn followTwitter();
+    TodoReturn followTwitch() = ios 0x317578;
+    TodoReturn followTwitter() = ios 0x317480, m1 0x2fe774;
     TodoReturn framesForAnimation(int);
     TodoReturn frameTimeForAnimation(int);
     TodoReturn generateSecretNumber();
@@ -7389,13 +7389,13 @@ class GameManager : GManager {
     bool isIconLoaded(int, int) = imac 0x36d8f0;
     bool isIconUnlocked(int, IconType) = ios 0x312be8, win 0x1794e0, imac 0x3648d0, m1 0x2f7388;
     TodoReturn itemPurchased(char const*);
-    TodoReturn joinDiscord();
-    void joinReddit() = m1 0x2fe974, imac 0x36d2c0;
+    TodoReturn joinDiscord() = ios 0x3175f4;
+    void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670;
     int keyForIcon(int iconIdx, int iconEnum) {
         return m_keyStartForIcon.at(iconEnum) + iconIdx - 1;
     }
     TodoReturn levelIsPremium(int, int);
-    TodoReturn likeFacebook();
+    TodoReturn likeFacebook() = ios 0x317404, m1 0x2fe6f4;
     void loadBackground(int) = win 0x17f880, m1 0x300f5c, imac 0x36fc40, ios 0x3185c0;
     void loadBackgroundAsync(int);
 
@@ -7534,7 +7534,7 @@ class GameManager : GManager {
     void showMainMenuAd();
     void startUpdate();
     gd::string stringForCustomObject(int customObjectID) = win 0x180950, imac 0x371170, m1 0x3025a0, ios 0x3195f0;
-    TodoReturn subYouTube();
+    TodoReturn subYouTube() = ios 0x3174fc, m1 0x2fe7f4;
     TodoReturn switchCustomObjects(int, int);
     TodoReturn switchScreenMode(bool, bool, bool, bool);
     void syncPlatformAchievements();
@@ -8452,7 +8452,7 @@ class GameStatsManager : cocos2d::CCNode {
     void createSecretChestItems() = imac 0x5d080, m1 0x5243c;
     void createSecretChestRewards() = win 0x1e7760;
     void createSpecialChestItems() = m1 0x52580, imac 0x5d1d0, win 0x1e2c90;
-    void createStoreItems() = ios 0x325a70, win 0x1ce830, m1 0x504f8;
+    void createStoreItems() = ios 0x325a70, win 0x1ce830, m1 0x504f8, imac 0x5a9f0;
     void dataLoaded(DS_Dictionary*) = win 0x1ef0b0, m1 0x808bc, imac 0x8cee0, ios 0x33f030;
     void encodeDataTo(DS_Dictionary*) = ios 0x33ec78, m1 0x803f4;
     void firstSetup();
@@ -15641,7 +15641,7 @@ class LoadingLayer : cocos2d::CCLayer {
     static LoadingLayer* create(bool) = imac 0x38f480;
     static cocos2d::CCScene* scene(bool) = win 0x3194f0, m1 0x31e17c;
 
-    const char* getLoadingString() = win 0x31a930, imac 0x38fcf0, m1 0x31ea9c;
+    const char* getLoadingString() = win 0x31a930, imac 0x38fcf0, m1 0x31ea9c, ios 0x1d7514;
     bool init(bool) = ios 0x1d6e44, win 0x319600, imac 0x38f560, m1 0x31e314;
     void loadAssets() = ios 0x1d75f0, win 0x319ea0, imac 0x38fdb0, m1 0x31eb80;
     void loadingFinished() = imac 0x390550, m1 0x31f290, win inline, ios 0x1d7c84 {
