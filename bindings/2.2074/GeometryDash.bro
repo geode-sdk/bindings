@@ -7752,7 +7752,7 @@ class GameObject : CCSpritePlus {
     virtual void activateObject() = win 0x18db60, imac 0x5921a0, m1 0x4d945c, ios 0x25544c;
     virtual void deactivateObject(bool) = win 0x18dc10, imac 0x592510, m1 0x4d97e0, ios 0x2557d0;
     virtual void transferObjectRect(cocos2d::CCRect&) = win 0x1946d0, imac 0x5a3660, m1 0x4ddae0, ios 0x259cf0;
-    virtual cocos2d::CCRect const& getObjectRect() = win 0x194720, imac 0x5a36d0, m1 0x4ddb6c, ios 0x259d7c;
+    virtual cocos2d::CCRect const& getObjectRect() = win 0x194720, imac 0x5a36d0, m1 0x4ddb58, ios 0x259d7c;
     virtual cocos2d::CCRect getObjectRect(float, float) = win 0x194740, imac 0x5a3700, m1 0x4ddb6c, ios 0x259d7c;
     virtual cocos2d::CCRect getObjectRect2(float, float) = win 0x1948d0, imac 0x5a3930, m1 0x4ddd50, ios 0x259f50;
     virtual cocos2d::CCRect getObjectTextureRect() = win 0x194970, imac 0x5a3a00, m1 0x4dde14, ios 0x259fd4;
