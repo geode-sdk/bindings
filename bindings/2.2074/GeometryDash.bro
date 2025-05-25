@@ -3716,7 +3716,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     TodoReturn getHSV();
     void highlightSelected(ButtonSprite*) = ios 0x54060, win 0xa97d0, m1 0x19e1b8, imac 0x1e6d00;
     bool init(GameObject*, cocos2d::CCArray*) = ios 0x50fa4, win 0xa4d00, imac 0x1e3120, m1 0x19a9d0;
-    void onBreakApart(cocos2d::CCObject* sender) = m1 0x19d61c, imac 0x1e6010;
+    void onBreakApart(cocos2d::CCObject* sender) = win 0xa9410, m1 0x19d61c, imac 0x1e6010;
     void onBrowse(cocos2d::CCObject* sender);
     void onClear(cocos2d::CCObject* sender);
     void onClose(cocos2d::CCObject* sender) = ios 0x52e0c, win 0xa9900, m1 0x19c978, imac 0x1e5320;
@@ -4991,8 +4991,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn onToggleSelectedOrder(EffectGameObject*);
     void onUngroupSticky(cocos2d::CCObject* sender) = ios 0x3bffdc, win 0x111130, m1 0xe318, imac 0xcfc0;
     void onUpdateDeleteFilter(cocos2d::CCObject* sender) = win 0xe5e30, m1 0x31900, imac 0x32290, ios 0x3e1464;
-    void orderDownCustomItem(cocos2d::CCObject*);
-    void orderUpCustomItem(cocos2d::CCObject*);
+    void orderDownCustomItem(cocos2d::CCObject*) = win 0xe3050;
+    void orderUpCustomItem(cocos2d::CCObject*) = win 0xe2fc0;
     cocos2d::CCArray* pasteObjects(gd::string, bool, bool) = win 0x111d10, m1 0x35f00, imac 0x3ac10, ios 0x3e4a98;
     TodoReturn playCircleAnim(cocos2d::CCPoint, float, float);
     TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
