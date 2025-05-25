@@ -8720,7 +8720,7 @@ class GameToolbox {
     static void stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x65890;
     static TodoReturn strongColor(cocos2d::ccColor3B);
     static TodoReturn timestampToHumanReadable(long) = m1 0x4469a4, imac 0x4e4690;
-    static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue) = ios 0x4854c, win 0x65290, m1 0x43fbe0, imac 0x4dcb20;
+    static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue) = ios 0x4854c, win 0x65290, m1 0x43fbfc, imac 0x4dcb20;
     static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, float, float, float) = m1 0x43fbe0, imac 0x4dcaf0;
 }
 
