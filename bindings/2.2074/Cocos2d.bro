@@ -4607,8 +4607,8 @@ class cocos2d {
     static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x347ed0, m1 0x2dcaa4, ios 0x191e84;
     static void ccGLBlendResetToCache();
     static void ccGLDeleteProgram(unsigned int);
-    static void ccGLDeleteTexture(unsigned int);
-    static void ccGLDeleteTextureN(unsigned int, unsigned int);
+    static void ccGLDeleteTexture(unsigned int) = m1 0x2dcc18, imac 0x348000, ios 0x191f60;
+    static void ccGLDeleteTextureN(unsigned int, unsigned int) = m1 0x2dcc58, imac 0x348040;
     static void ccGLEnable(cocos2d::ccGLServerState) = imac 0x3480a0, m1 0x2dccc4, ios 0x191fbc;
     static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2dccc8, imac 0x3480b0, ios 0x191fc0;
     static void ccGLInvalidateStateCache();
