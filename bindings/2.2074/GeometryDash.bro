@@ -749,7 +749,7 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
 class AudioEffectsLayer : cocos2d::CCLayerColor {
     // virtual ~AudioEffectsLayer();
 
-    static AudioEffectsLayer* create(gd::string);
+    static AudioEffectsLayer* create(gd::string) = ios 0x3bc848;
 
     virtual void draw() = m1 0x407cdc, imac 0x49cba0, ios 0x3bcf70 {}
     virtual void updateTweenAction(float, char const*) = win 0x84fb0, imac 0x49ca70, m1 0x407ba0, ios 0x3bce70;
@@ -831,7 +831,7 @@ class BitmapFontCache : cocos2d::CCObject {
 class BonusDropdown : cocos2d::CCNode {
     // virtual ~BonusDropdown();
 
-    static BonusDropdown* create(gd::string, int) = ios 0x3bc848;
+    static BonusDropdown* create(gd::string, int);
 
     bool init(gd::string, int) = m1 0x3ee364, imac 0x480290;
     void show();
@@ -7606,7 +7606,7 @@ class GameManager : GManager {
     bool m_clickedTwitter;
     bool m_clickedYouTube;
     bool m_clickedTwitch;
-    bool m_clickedDiscord_;
+    bool m_clickedDiscord;
     bool m_clickedReddit;
     double m_socialsDuration;
     bool m_showedAd;
