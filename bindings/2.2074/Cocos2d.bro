@@ -1,8 +1,9 @@
 [[link(win, android)]]
 class cocos2d::CCEGLViewProtocol {
-    CCEGLViewProtocol();
-    virtual ~CCEGLViewProtocol();
-    const cocos2d::CCRect& getViewPortRect() const = m1 0x45a684, imac 0x4fa5e0, ios inline {
+    CCEGLViewProtocol() = m1 0x459be0, imac 0x4f9a90, ios 0x2e66b0;
+    ~CCEGLViewProtocol() = m1 0x459c34, imac 0x4f9af0, ios 0x2e6704;
+
+    cocos2d::CCRect const& getViewPortRect() const = m1 0x45a684, imac 0x4fa5e0, ios inline {
         return m_obViewPortRect;
     }
     float getScaleX() const;
@@ -21,6 +22,10 @@ class cocos2d::CCEGLViewProtocol {
     virtual cocos2d::CCRect getScissorRect() = imac 0x4f9e30, m1 0x459ea8, ios 0x2e6974;
     virtual void setViewName(char const*) = imac 0x4f9ed0, m1 0x459f38, ios 0x2e6a04;
     virtual void pollInputEvents() = m1 0x45a69c, imac 0x4fa610, ios 0x2e701c;
+    virtual void handleTouchesBegin(int, int*, float*, float*) = m1 0x459f5c, imac 0x4f9f00, ios 0x2e6a20;
+    virtual void handleTouchesMove(int, int*, float*, float*) = m1 0x45a21c, imac 0x4fa1d0, ios 0x2e6c58;
+    virtual void handleTouchesEnd(int, int*, float*, float*) = m1 0x45a54c, imac 0x4fa4e0, ios 0x2e6ecc;
+    virtual void handleTouchesCancel(int, int*, float*, float*) = m1 0x45a5e8, imac 0x4fa560, ios 0x2e6f68;
 }
 
 [[link(win, android)]]
@@ -2730,10 +2735,23 @@ class cocos2d::CCMouseHandler : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCEGLView {
-    // CCEGLView();
-    // CCEGLView(cocos2d::CCEGLView const&);
+    CCEGLView() = m1 0x451210, imac 0x4f0030, ios 0x12d970;
+    ~CCEGLView() = m1 0x451260, imac 0x4f0090, ios 0x12d9e8;
+
     virtual void end() = m1 0x4512e4, imac 0x4f0140, ios 0x12da5c;
     virtual void swapBuffers() = m1 0x45133c, imac 0x4f01b0, ios 0x12da84;
+    virtual bool isOpenGLReady() = m1 0x4512b8, imac 0x4f0110, ios 0x12da00;
+    virtual void setIMEKeyboardState(bool) = m1 0x451358, imac 0x4f01f0, ios 0x12daa0;
+    [[missing(android, mac, ios)]]
+    virtual void setFrameSize(float, float);
+    [[missing(win, android)]]
+    virtual bool setContentScaleFactor(float) = m1 0x4512dc, imac 0x4f0130, ios 0x12da24;
+    [[missing(android, ios)]]
+    virtual void setViewPortInPoints(float, float, float, float) = m1 0x451390, imac 0x4f0240;
+    [[missing(android, ios)]]
+    virtual void setScissorInPoints(float, float, float, float) = m1 0x451438, imac 0x4f0330;
+    [[missing(win, android, ios)]]
+    virtual void setMultiTouchMask(bool) = m1 0x4514e0, imac 0x4f0420;
 
     [[missing(android, mac, ios)]]
     void toggleFullScreen(bool, bool, bool);
