@@ -2,9 +2,11 @@
 class cocos2d::CCEGLViewProtocol {
     CCEGLViewProtocol();
     virtual ~CCEGLViewProtocol();
-    auto getViewPortRect() const = m1 0x45a684, imac 0x4fa5e0;
-    auto getScaleX() const;
-    auto getScaleY() const;
+    const cocos2d::CCRect& getViewPortRect() const = m1 0x45a684, imac 0x4fa5e0, ios inline {
+        return m_obViewPortRect;
+    }
+    float getScaleX() const;
+    float getScaleY() const;
 
     virtual cocos2d::CCSize const& getFrameSize() const = m1 0x459d60, imac 0x4f9c70, ios 0x2e682c;
     virtual void setFrameSize(float, float) = m1 0x459d68, imac 0x4f9c80, ios 0x2e6834;
@@ -3071,8 +3073,8 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
     // CCSprite(cocos2d::CCSprite const&);
     CCSprite() = imac 0x2762a0, m1 0x221864, ios 0x2379f0;
     ~CCSprite() = imac 0x276d00, m1 0x221938, ios 0x237a78;
-    bool isFlipX() = m1 0x222e30, imac 0x278460;
-    bool isFlipY() = m1 0x222e64, imac 0x2784b0;
+    bool isFlipX() = m1 0x222e30, imac 0x278460, ios 0x238ecc;
+    bool isFlipY() = m1 0x222e64, imac 0x2784b0, ios 0x238f00;
     bool isTextureRectRotated();
     void updateColor();
 
