@@ -316,7 +316,7 @@ class AchievementsLayer : GJDropDownLayer {
     virtual void keyDown(cocos2d::enumKeyCodes) = win 0x82260, imac 0x360030, m1 0x2f3078, ios 0x41a244;
     virtual void customSetup() = win 0x81fb0, m1 0x2f2c18, imac 0x35fb70, ios 0x419c40;
 
-    void loadPage(int) = win 0x82300, imac 0x35fe50;
+    void loadPage(int) = win 0x82300, imac 0x35fe50, m1 0x2f2ea8, ios 0x419efc;
     void onNextPage(cocos2d::CCObject* sender) = win 0x824e0;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x824f0;
     void setupLevelBrowser(cocos2d::CCArray* arr) = win inline {
