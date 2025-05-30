@@ -19162,7 +19162,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void onSelectItem(cocos2d::CCObject* sender) = ios 0x2eb188, win 0x3bedd0, m1 0x5499c0, imac 0x61e000;
     void onShop(cocos2d::CCObject* sender) = win 0x3bf360, imac 0x61bf00, m1 0x547ad8;
     void onSpecialItem(cocos2d::CCObject* sender) = ios 0x2e9f98, m1 0x547f04, imac 0x61c330, win 0x3bf760;
-    void onSwitchPage(cocos2d::CCObject* sender) = win 0x3bd950;
+    void onSwitchPage(cocos2d::CCObject* sender) = win 0x3bd950, imac 0x61c050, m1 0x547c1c, ios 0x2e9d28;
     void showDialog01() = win 0x3c0ae0, imac 0x61e360, m1 0x549d5c;
     void showDialog03() = imac 0x620080, m1 0x54b548;
     void showDialogDiamond() = m1 0x54d868, imac 0x622be0, win 0x3c4980;
