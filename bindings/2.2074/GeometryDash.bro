@@ -24426,7 +24426,7 @@ class UploadPopup : FLAlertLayer, LevelUploadDelegate {
         if (glm->m_levelUploadDelegate == this) glm->m_levelUploadDelegate = nullptr;
     }
 
-    static UploadPopup* create(GJGameLevel*) = win inline {
+    static UploadPopup* create(GJGameLevel*) = m1 0x8fd4, win inline {
         auto ret = new UploadPopup();
         if (ret->init(p0)) {
             ret->autorelease();

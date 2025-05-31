@@ -411,8 +411,6 @@ namespace codegen {
                 return "";
             }
         }
-        else {
-            return "";
-        }
+        return "";
     }
 }

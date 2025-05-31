@@ -67,8 +67,6 @@ int main(int argc, char** argv) try {
     else if (p == "Android64") codegen::platform = Platform::Android64;
     else throw codegen::error("Invalid platform {}\n", p);
 
-    auto rootDir = std::filesystem::path(argv[2]);
-    std::filesystem::current_path(rootDir);
 
     auto writeDir = std::filesystem::path(argv[3]) / "Geode";
     std::filesystem::create_directories(writeDir);
@@ -112,7 +110,8 @@ int main(int argc, char** argv) try {
     std::filesystem::create_directories(writeDir / "modify");
     std::filesystem::create_directories(writeDir / "binding");
 
-    Root root = broma::parse_file("Entry.bro");
+    auto rootDir = std::filesystem::path(argv[2]);
+    Root root = broma::parse_file(rootDir / "Entry.bro");
 
     for (auto cls : root.classes) {
         for (auto dep : cls.attributes.depends) {
