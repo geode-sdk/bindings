@@ -21741,7 +21741,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
         CC_SAFE_RELEASE(m_searchResult);
     }
 
-    static SFXBrowser* create(int id) = win inline, imac 0x42a4d0, m1 0x3a5570 {
+    static SFXBrowser* create(int id) = win inline, imac 0x42a4d0, m1 0x3a5570, ios inline {
         auto ret = new SFXBrowser();
         if (ret->init(id)) {
             ret->autorelease();
