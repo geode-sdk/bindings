@@ -17289,7 +17289,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void fadeOutStreak2(float) = ios 0x22861c, win 0x38a400, imac 0x402470, m1 0x38071c;
     void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = imac 0x3fd3f0;
     void flipGravity(bool, bool) = ios 0x21eb30, win 0x384440, imac 0x3f1c30, m1 0x372910;
-    TodoReturn flipMod();
+    float flipMod() {
+        return m_isUpsideDown ? -1.f : 1.f;
+    }
     void gameEventTriggered(int p0, int p1) = win inline, imac 0x3f1ff0, m1 0x372c80 {
         if (this->m_gameLayer) {
             this->m_gameLayer->gameEventTriggered(static_cast<GJGameEvent>(p0), p1, static_cast<int>(this->m_savedObjectType));
