@@ -21741,7 +21741,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
         CC_SAFE_RELEASE(m_searchResult);
     }
 
-    static SFXBrowser* create(int id) = win inline, imac 0x42a4d0, m1 0x3a5570, ios inline {
+    static SFXBrowser* create(int id) = win inline, imac 0x42a4d0, m1 0x3a5570, ios 0x16bec0 {
         auto ret = new SFXBrowser();
         if (ret->init(id)) {
             ret->autorelease();
@@ -21761,7 +21761,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     virtual int getSelectedCellIdx() = win 0x4683a0, m1 0x3a7b8c, imac 0x42ce50, ios 0x16df5c;
     virtual bool shouldSnapToSelected() = win 0x4683b0, m1 0x3a7b9c, imac 0x42ce70, ios 0x16df6c;
 
-    bool init(int) = win 0x4661b0, imac 0x42a690, m1 0x3a56b4;
+    bool init(int) = win 0x4661b0, imac 0x42a690, m1 0x3a56b4, ios 0x16bf34;
     void onClearSearch(cocos2d::CCObject* sender) = imac 0x42b9a0;
     void onClose(cocos2d::CCObject* sender);
     void onCredits(cocos2d::CCObject* sender) = m1 0x3a6740;
