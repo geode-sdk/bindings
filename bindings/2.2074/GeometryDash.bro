@@ -13613,7 +13613,7 @@ class HardStreak : cocos2d::CCDrawNode {
         updateStroke(0.f);
     }
     TodoReturn scheduleAutoUpdate();
-    void stopStroke() = win 0x2b17f0, m1 0x8ff8c, imac 0x9d4a0;
+    void stopStroke() = win 0x2b17f0, m1 0x8ff8c, imac 0x9d4a0, ios 0x61be0;
     callback void updateStroke(float) = ios 0x615ac, win 0x2b1830, m1 0x8f870, imac 0x9cc30;
 
     cocos2d::CCArray* m_pointArray;
@@ -17459,7 +17459,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         m_waveTrail->updateStroke(param);
     }
     void updateGlowColor() = ios 0x22ca94, win 0x3876a0, imac 0x4088a0, m1 0x386264;
-    void updateInternalActions(float) = ios 0x22ea40, win 0x38d0c0, imac 0x40b720;
+    void updateInternalActions(float) = win 0x38d0c0, m1 0x388d0c, imac 0x40b720, ios 0x22ea40;
     void updateJump(float) = ios 0x21afa8, win 0x375b90, imac 0x3ec410, m1 0x36ddf4;
     TodoReturn updateJumpVariables();
     TodoReturn updateLastGroundObject(GameObject*);
