@@ -17245,7 +17245,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     virtual void animationFinished(char const*) = win 0x38cb10, imac 0x40b1e0, m1 0x3887fc, ios 0x22e720;
 
     void activateStreak() = ios 0x21e810, win 0x38a300, imac 0x3f17c0, m1 0x3724d8;
-    TodoReturn addAllParticles() = ios 0x21a044, win 0x372900;
+    void addAllParticles() = ios 0x21a044, win 0x372900, imac 0x3eaed0, m1 0x36cbc8;
     TodoReturn addToTouchedRings(RingObject*) = imac 0x404180, m1 0x381fec;
     TodoReturn addToYVelocity(double, int);
     void animatePlatformerJump(float) = ios 0x21ecec, win 0x376ef0, imac 0x3f2020, m1 0x372c98;
@@ -17370,7 +17370,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn removeAllParticles();
     void removePendingCheckpoint() = ios 0x227a2c, win 0x38c400, imac 0x4013f0;
     TodoReturn removePlacedCheckpoint() = imac 0x402230;
-    TodoReturn resetAllParticles() = ios 0x21e6d8, imac 0x3f1660;
+    void resetAllParticles() = ios 0x21e6d8, imac 0x3f1660, m1 0x372390, win 0x375a70;
     TodoReturn resetCollisionLog(bool) = ios 0x21f2a0, imac 0x3f2900;
     TodoReturn resetCollisionValues();
     void resetPlayerIcon() = ios 0x22a544, win 0x385550, imac 0x405460, m1 0x383208;
