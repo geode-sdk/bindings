@@ -803,8 +803,8 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     bool isFastMode();
     bool isStartingPositionInitialized();
     void reset() = m1 0x4b6c48, imac 0x560190, ios 0x17ab00;
-    void resumeStroke() = m1 0x4b6510, imac 0x55fb40;
-    void stopStroke() = m1 0x4b6508, imac 0x55fb30;
+    void resumeStroke() = m1 0x4b6510, imac 0x55fb40, ios 0x17a618;
+    void stopStroke() = m1 0x4b6508, imac 0x55fb30, ios 0x17a610;
     void tintWithColor(cocos2d::_ccColor3B);
     void updateFade(float) = imac 0x55fb10;
 
@@ -4771,7 +4771,7 @@ class ObjectDecoder : cocos2d::CCNode {
 [[link(win, android)]]
 class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
     CCControl() = m1 0x2d38b4, imac 0x33d4d0, ios 0x1a8a80;
-    ~CCControl() = m1 0x2d3b80, imac 0x33d8a0, ios 0x1a8c20;
+    ~CCControl() = m1 0x2d3b10, imac 0x33d7f0, ios 0x1a8bb0;
 
     virtual bool init() = m1 0x2d3a44, imac 0x33d720, ios 0x1a8ae4;
     virtual void onEnter() = m1 0x2d3dac, imac 0x33db90, ios 0x1a8cb4;
@@ -4799,6 +4799,38 @@ class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl 
 
     virtual bool init() = m1 0x2d7a70, imac 0x341e50, ios 0x1b1744;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2d81b8, imac 0x342760, ios 0x1b1d2c;
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCControlHuePicker : cocos2d::extension::CCControl {
+    CCControlHuePicker() = m1 0x2d8834, imac 0x342fa0, ios 0x1b3948;
+    ~CCControlHuePicker() = m1 0x2d89a4, imac 0x3431b0, ios 0x1b39c4;
+
+    bool checkSliderPosition(cocos2d::CCPoint) = m1 0x2d8f7c, imac 0x343900, ios 0x1b3eb4;
+    void updateSliderPosition(cocos2d::CCPoint) = m1 0x2d8ee4, imac 0x343860, ios 0x1b3e20;
+
+    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2d9064, imac 0x343a00, ios 0x1b3f38;
+    virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2d9168, imac 0x343b00, ios 0x1b3fc0;
+    virtual void setEnabled(bool) = m1 0x2d8e94, imac 0x343810, ios 0x1b3dd0;
+    virtual bool initWithTargetAndPos(cocos2d::CCNode*, cocos2d::CCPoint) = m1 0x2d8c00, imac 0x343510, ios 0x1b3af8;
+    virtual void setHue(float) = m1 0x2d8db4, imac 0x3436f0, ios 0x1b3cf4;
+    virtual void setHuePercentage(float) = m1 0x2d8dd0, imac 0x343720, ios 0x1b3d10;
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCControlSaturationBrightnessPicker : cocos2d::extension::CCControl {
+    CCControlSaturationBrightnessPicker() = m1 0x2e863c, imac 0x354950, ios 0x1bfae0;
+    ~CCControlSaturationBrightnessPicker() = m1 0x2e87bc, imac 0x354b70, ios 0x1bfb6c;
+
+    bool checkSliderPosition(cocos2d::CCPoint) = m1 0x2e8ebc, imac 0x355430, ios 0x1c00e0;
+    void updateSliderPosition(cocos2d::CCPoint) = m1 0x2e8d28, imac 0x355230, ios 0x1bff4c;
+
+    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2e8fd8, imac 0x355580, ios 0x1c01fc;
+    virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2e90dc, imac 0x355680, ios 0x1c0284;
+    virtual void setEnabled(bool) = m1 0x2e8bdc, imac 0x3550a0, ios 0x1bfe08;
+    virtual bool initWithTargetAndPos(cocos2d::CCNode*, cocos2d::CCPoint) = m1 0x2e8974, imac 0x354df0, ios 0x1bfc0c;
+    virtual void updateWithHSV(cocos2d::extension::HSV) = m1 0x2e8c2c, imac 0x3550f0, ios 0x1bfe58;
+    virtual void updateDraggerWithHSV(cocos2d::extension::HSV) = m1 0x2e8ca0, imac 0x355190, ios 0x1bfec8;
 }
 
 [[link(win, android)]]

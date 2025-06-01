@@ -9412,7 +9412,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GJGameEvent objectTypeToGameEvent(int) = ios 0x1e804c, win 0x22ce10, imac 0x1144d0;
     void optimizeMoveGroups() = ios 0x1e109c, win 0x22b740;
     void orderSpawnObjects() = ios 0x209744, imac 0x151690, win 0x23f7e0;
-    cocos2d::CCNode* parentForZLayer(int, bool, int, int) = imac 0x10f720, win 0x209e30;
+    cocos2d::CCNode* parentForZLayer(int, bool, int, int) = imac 0x10f720, win 0x209e30, ios 0x1e4a2c, m1 0xeec10;
     void pauseAudio() = ios 0x2009a4, win 0x231d60, imac 0x141de0;
     TodoReturn performMathOperation(double, double, int);
     TodoReturn performMathRounding(double, int);
@@ -13613,7 +13613,7 @@ class HardStreak : cocos2d::CCDrawNode {
         updateStroke(0.f);
     }
     TodoReturn scheduleAutoUpdate();
-    void stopStroke() = win 0x2b17f0, m1 0x8ff8c, imac 0x9d4a0;
+    void stopStroke() = win 0x2b17f0, m1 0x8ff8c, imac 0x9d4a0, ios 0x61be0;
     callback void updateStroke(float) = ios 0x615ac, win 0x2b1830, m1 0x8f870, imac 0x9cc30;
 
     cocos2d::CCArray* m_pointArray;
@@ -17245,7 +17245,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     virtual void animationFinished(char const*) = win 0x38cb10, imac 0x40b1e0, m1 0x3887fc, ios 0x22e720;
 
     void activateStreak() = ios 0x21e810, win 0x38a300, imac 0x3f17c0, m1 0x3724d8;
-    TodoReturn addAllParticles() = ios 0x21a044, win 0x372900;
+    void addAllParticles() = ios 0x21a044, win 0x372900, imac 0x3eaed0, m1 0x36cbc8;
     TodoReturn addToTouchedRings(RingObject*) = imac 0x404180, m1 0x381fec;
     TodoReturn addToYVelocity(double, int);
     void animatePlatformerJump(float) = ios 0x21ecec, win 0x376ef0, imac 0x3f2020, m1 0x372c98;
@@ -17347,7 +17347,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void placeStreakPoint() = ios 0x21e8b8, win 0x38a8f0, imac 0x3f18a0, m1 0x3725a0;
     void playBumpEffect(int, GameObject*) = win 0x389cc0;
     TodoReturn playBurstEffect();
-    void playCompleteEffect(bool, bool) = win 0x36e2b0, imac 0x2024c0, m1 0x1b7870;
+    void playCompleteEffect(bool, bool) = win 0x36e2b0, imac 0x2024c0, m1 0x1b7870, ios 0x60a60;
     void playDeathEffect() = ios 0x5b138, win 0x3691a0, imac 0x1fa350, m1 0x1af8ac;
     void playDynamicSpiderRun() = win 0x38b740;
     void playerDestroyed(bool) = ios 0x22853c, win 0x381f10, imac 0x402270, m1 0x380548;
@@ -17372,7 +17372,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn removeAllParticles();
     void removePendingCheckpoint() = ios 0x227a2c, win 0x38c400, imac 0x4013f0;
     TodoReturn removePlacedCheckpoint() = imac 0x402230;
-    TodoReturn resetAllParticles() = ios 0x21e6d8, imac 0x3f1660;
+    void resetAllParticles() = ios 0x21e6d8, imac 0x3f1660, m1 0x372390, win 0x375a70;
     TodoReturn resetCollisionLog(bool) = ios 0x21f2a0, imac 0x3f2900;
     TodoReturn resetCollisionValues();
     void resetPlayerIcon() = ios 0x22a544, win 0x385550, imac 0x405460, m1 0x383208;
@@ -17461,7 +17461,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         m_waveTrail->updateStroke(param);
     }
     void updateGlowColor() = ios 0x22ca94, win 0x3876a0, imac 0x4088a0, m1 0x386264;
-    void updateInternalActions(float) = ios 0x22ea40, win 0x38d0c0, imac 0x40b720;
+    void updateInternalActions(float) = win 0x38d0c0, m1 0x388d0c, imac 0x40b720, ios 0x22ea40;
     void updateJump(float) = ios 0x21afa8, win 0x375b90, imac 0x3ec410, m1 0x36ddf4;
     TodoReturn updateJumpVariables();
     TodoReturn updateLastGroundObject(GameObject*);
@@ -21743,7 +21743,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
         CC_SAFE_RELEASE(m_searchResult);
     }
 
-    static SFXBrowser* create(int id) = win inline, imac 0x42a4d0, m1 0x3a5570 {
+    static SFXBrowser* create(int id) = win inline, imac 0x42a4d0, m1 0x3a5570, ios 0x16bec0 {
         auto ret = new SFXBrowser();
         if (ret->init(id)) {
             ret->autorelease();
@@ -21763,7 +21763,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     virtual int getSelectedCellIdx() = win 0x4683a0, m1 0x3a7b8c, imac 0x42ce50, ios 0x16df5c;
     virtual bool shouldSnapToSelected() = win 0x4683b0, m1 0x3a7b9c, imac 0x42ce70, ios 0x16df6c;
 
-    bool init(int) = win 0x4661b0, imac 0x42a690, m1 0x3a56b4;
+    bool init(int) = win 0x4661b0, imac 0x42a690, m1 0x3a56b4, ios 0x16bf34;
     void onClearSearch(cocos2d::CCObject* sender) = imac 0x42b9a0;
     void onClose(cocos2d::CCObject* sender);
     void onCredits(cocos2d::CCObject* sender) = m1 0x3a6740;
