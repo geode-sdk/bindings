@@ -13040,7 +13040,7 @@ class GJUINode : cocos2d::CCNode {
     void resetState();
     void saveToConfig(UIButtonConfig&) = win 0x4b60c0;
     void setOpacity(unsigned char);
-    void toggleHighlight(int, bool) = win 0x4b67e0;
+    void toggleHighlight(int, bool) = win 0x4b67e0, imac 0x4b6f20, m1 0x41f110, ios 0x4e370;
     void toggleModeB(bool);
     void touchEnded() = win 0x4b6720;
     int touchTest(cocos2d::CCPoint) = win 0x4b6430;
