@@ -31,18 +31,16 @@ char getWindowsAccessToken(const MemberFunctionProto& proto)
 		{
 			case AccessModifier::Private:   return 'E';
 			case AccessModifier::Protected: return 'M';
+			default: return 'U';
 		}
-
-		return 'U';
 	}
 
 	switch (proto.access)
 	{
 		case AccessModifier::Private:   return 'A';
 		case AccessModifier::Protected: return 'I';
+		default: return 'Q';
 	}
-
-	return 'Q';
 }
 
 std::string generateWindowsSymbol(const Class& clazz, const FunctionBindField* fn) {
