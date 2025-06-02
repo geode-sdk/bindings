@@ -13034,7 +13034,7 @@ class GJUINode : cocos2d::CCNode {
     int activeTouchTest(cocos2d::CCPoint) = win 0x4b6540;
     float getButtonScale();
     int getOpacity();
-    void highlightButton(int) = m1 0x41f110, imac 0x4b6f20, ios 0x4e370;
+    void highlightButton(int) = imac 0x4b6f20, m1 0x41f110, ios 0x4e370;
     bool init(UIButtonConfig&) = win 0x4b5e10;
     void loadFromConfig(UIButtonConfig&);
     void resetState();
