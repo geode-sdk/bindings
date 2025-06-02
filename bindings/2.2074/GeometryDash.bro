@@ -14614,7 +14614,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void resetUnusedColorChannels() = win 0x2d2b80;
     TodoReturn reverseKeyframeAnimationOrder(int);
     TodoReturn reverseObjectChanged(EffectGameObject*);
-    TodoReturn rotationForSlopeNearObject(GameObject*) = imac 0xe1170;
+    float rotationForSlopeNearObject(GameObject*) = imac 0xe1170, win 0x2cc7b0;
     ColorAction* runColorEffect(EffectGameObject*, int, float, float, bool) = win 0x2d4ee0;
     TodoReturn saveEditorPosition(cocos2d::CCPoint&, int) = imac 0xe9730;
     void setObjectCount(int);
