@@ -9658,10 +9658,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateDualGround(PlayerObject* object, int mode, bool instant, float duration) = ios 0x1e7b4c, win 0x20dcc0, imac 0x113e30, m1 0xf365c;
     void updateEnterEffects(float) = win 0x209630, imac 0x10e8e0, m1 0xedfd4;
     TodoReturn updateExtendedCollision(GameObject*, bool);
-    TodoReturn updateExtraGameLayers() = imac 0x12c410;
+    void updateExtraGameLayers() = imac 0x12c410, win 0x21e4a0;
     TodoReturn updateGameplayOffsetX(int, bool);
     TodoReturn updateGameplayOffsetY(int, bool);
-    TodoReturn updateGradientLayers() = ios 0x1f1910, win 0x21a830, imac 0x129310;
+    void updateGradientLayers() = ios 0x1f1910, win 0x21a830, imac 0x129310;
     TodoReturn updateGroundShadows();
     TodoReturn updateGuideArt() = ios 0x201694, win 0x240130;
     TodoReturn updateInternalCamOffsetX(float, float, float);
