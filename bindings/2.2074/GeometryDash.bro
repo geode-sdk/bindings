@@ -13034,13 +13034,13 @@ class GJUINode : cocos2d::CCNode {
     int activeTouchTest(cocos2d::CCPoint) = win 0x4b6540;
     float getButtonScale();
     int getOpacity();
-    void highlightButton(int);
+    void highlightButton(int) = m1 0x41f110, imac 0x4b6f20, ios 0x4e370;
     bool init(UIButtonConfig&) = win 0x4b5e10;
     void loadFromConfig(UIButtonConfig&);
     void resetState();
     void saveToConfig(UIButtonConfig&) = win 0x4b60c0;
     void setOpacity(unsigned char);
-    void toggleHighlight(int, bool) = win 0x4b67e0, imac 0x4b6f20, m1 0x41f110, ios 0x4e370;
+    void toggleHighlight(int, bool) = win 0x4b67e0;
     void toggleModeB(bool);
     void touchEnded() = win 0x4b6720;
     int touchTest(cocos2d::CCPoint) = win 0x4b6430;
