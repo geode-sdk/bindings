@@ -17718,7 +17718,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     gd::unordered_set<int> m_touchedRings;
     GameObject* m_lastActivatedPortal;
     bool m_hasEverJumped;
-    bool m_ringOrStreakRelated;
+    bool m_hasEverHitRing;
     cocos2d::ccColor3B m_playerColor1;
     cocos2d::ccColor3B m_playerColor2;
     cocos2d::CCPoint m_position;
