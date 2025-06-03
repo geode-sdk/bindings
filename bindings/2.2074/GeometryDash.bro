@@ -4929,7 +4929,17 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn getSimpleButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
     SmartGameObject* getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*) = win 0x116e10;
     static int getSmartObjectKey(int, GJSmartDirection);
-    TodoReturn getSnapAngle(GameObject*, cocos2d::CCArray*) = imac 0x4ad60;
+    float getSnapAngle(GameObject*, cocos2d::CCArray*) = win inline, m1 0x43b14, imac 0x4ad60, ios 0x3ee4e4 {
+        if (p1 && p1->count() > 0) {
+            for (int i = 0; i < p1->count(); i++) {
+                auto rotation = m_editorLayer->rotationForSlopeNearObject(static_cast<GameObject*>(p1->objectAtIndex(i)));
+                if (rotation != -1.f) return rotation;
+            }
+            return -1.f;
+        }
+        else if (p0) return m_editorLayer->rotationForSlopeNearObject(p0);
+        else return -1.f;
+    }
     CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset) = win 0xe11d0, m1 0xd81c, imac 0xc440, ios 0x3bf6f8;
     CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, imac 0xc2d0, m1 0xd6b0, ios inline {
         return this->getSpriteButton(spriteFrameName, selector, menu, scale, 1, {0, 0});
@@ -5012,7 +5022,15 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void resetSelectedObjectsColor() = win 0x11dd50, m1 0x43568, imac 0x4a720, ios 0x3edf7c;
     void resetUI() = ios 0x3dc538, win 0xe36d0, imac 0x2ac40, m1 0x2aeac;
     void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = ios 0x3e5484, win 0x11f4b0, m1 0x37044, imac 0x3c3d0;
-    TodoReturn rotationforCommand(EditCommand);
+    float rotationforCommand(EditCommand) = win inline, m1 0x43788, imac 0x4a9b0, ios inline {
+        switch (p0) {
+            case EditCommand::RotateCW: return 90.f;
+            case EditCommand::RotateCCW: return -90.f;
+            case EditCommand::RotateCW45: return 45.f;
+            case EditCommand::RotateCCW45: return -45.f;
+            default: return 0.f;
+        }
+    }
     void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType, bool) = win 0x11f8d0;
     void selectAll() = ios 0x3e6388;
     void selectAllWithDirection(bool) = ios 0x3e651c, imac 0x3d960;
@@ -5056,7 +5074,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
               m_unlinkBtn->setVisible(enable);
     }
     void toggleSwipe(cocos2d::CCObject*) = ios 0x3bf690, win 0x10e8e0, m1 0xd7b4, imac 0xc3d0;
-    void transformObject(GameObject*, EditCommand, bool) = win 0x11ed00, imac 0x4be30;
+    void transformObject(GameObject*, EditCommand, bool) = win 0x11ed00, m1 0x44924, imac 0x4be30, ios 0x3ef1e0;
     void transformObjectCall(cocos2d::CCObject*) = win 0x11e780;
     void transformObjectCall(EditCommand) = ios 0x3ee598, win 0x11e7b0, imac 0x4ae10, m1 0x43bc8;
     void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x11fec0;
@@ -12960,7 +12978,14 @@ class GJTransformControl : cocos2d::CCLayer {
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x12ae60, imac 0x54360, m1 0x4b374, ios 0x3f42a4;
     virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71210, m1 0x4b54c, imac 0x54570, ios 0x3f447c;
 
-    TodoReturn applyRotation(float);
+    void applyRotation(float) = win inline, m1 0x3bb0c, imac 0x41470, ios 0x3e894c {
+        if (m_rotationY != p0) {
+            m_rotationY = p0;
+            m_mainNode->setRotation(p0);
+            if (m_delegate) m_delegate->transformRotationChanged(p0);
+        }
+        this->updateButtons(false, false);
+    }
     TodoReturn calculateRotationOffset();
     void finishTouch();
     void loadFromState(GJTransformState&);
@@ -12974,7 +12999,7 @@ class GJTransformControl : cocos2d::CCLayer {
         return static_cast<cocos2d::CCSprite*>(m_warpSprites->objectAtIndex(tag - 1));
     }
     TodoReturn updateAnchorSprite(cocos2d::CCPoint);
-    void updateButtons(bool, bool) = win 0x1298d0, m1 0x43f04, imac 0x4b1b0;
+    void updateButtons(bool, bool) = win 0x1298d0, m1 0x43f04, imac 0x4b1b0, ios 0x3ee8a8;
     TodoReturn updateMinMaxPositions();
 
     cocos2d::CCNode* m_mainNodeParent;
@@ -14614,7 +14639,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void resetUnusedColorChannels() = win 0x2d2b80;
     TodoReturn reverseKeyframeAnimationOrder(int);
     TodoReturn reverseObjectChanged(EffectGameObject*);
-    float rotationForSlopeNearObject(GameObject*) = imac 0xe1170, win 0x2cc7b0;
+    float rotationForSlopeNearObject(GameObject*) = win 0x2cc7b0, m1 0xc83a0, imac 0xe1170, ios 0x35a114;
     ColorAction* runColorEffect(EffectGameObject*, int, float, float, bool) = win 0x2d4ee0;
     TodoReturn saveEditorPosition(cocos2d::CCPoint&, int) = imac 0xe9730;
     void setObjectCount(int);

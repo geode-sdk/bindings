@@ -2973,7 +2973,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void resetSmoothFixCounter() = imac 0x4706e0, ios 0x178ff4;
     void reshapeProjection(cocos2d::CCSize const&);
     void resume() = imac 0x471910;
-    void runWithScene(cocos2d::CCScene*) = imac 0x471190;
+    void runWithScene(cocos2d::CCScene*) = m1 0x3dff70, imac 0x471190, ios 0x179554;
     int sceneCount();
     void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
     void showFPSLabel() = imac 0x470510, m1 0x3df4dc;
