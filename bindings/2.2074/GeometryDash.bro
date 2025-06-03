@@ -8549,7 +8549,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasSecretCoin(char const*) = ios 0x33078c, win 0x1dcf50, imac 0x6cdc0, m1 0x60930;
     bool hasUserCoin(char const*) = ios 0x331f50, win 0x1dcd10, m1 0x637c4, imac 0x6fde0;
     TodoReturn incrementActivePath(int);
-    void incrementChallenge(GJChallengeType, int) = win 0x1df0f0, m1 0x5eb10, imac 0x6b0c0, ios 0x32f8b4;
+    void incrementChallenge(GJChallengeType type, int amount) = win 0x1df0f0, m1 0x5eb10, imac 0x6b0c0, ios 0x32f8b4;
     void incrementStat(char const*, int) = ios 0x32c170, win 0x1d1500, imac 0x66960, m1 0x5afdc;
     TodoReturn incrementStat(char const*) = ios 0x32c168;
     bool isGauntletChestUnlocked(int);
@@ -8596,7 +8596,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn shopTypeForItemID(int);
     TodoReturn shouldAwardSecretKey();
     TodoReturn starsForMapPack(int);
-    void storeChallenge(int, GJChallengeItem*) = m1 0x663ec, imac 0x729d0, win 0x1ded90;
+    void storeChallenge(int position, GJChallengeItem* challenge) = m1 0x663ec, imac 0x729d0, win 0x1ded90;
     TodoReturn storeChallengeTime(int) = imac 0x72930;
     TodoReturn storeEventChest(int, GJRewardItem*);
     TodoReturn storeOnlineChest(gd::string, GJRewardItem*);
@@ -17957,7 +17957,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void showCompleteText() = ios 0x11e3a0, win 0x3919a0, imac 0xb50f0, m1 0xa4ecc;
     void showEndLayer();
     void showHint() = win 0x39d8c0, imac 0xbb420;
-    void showNewBest(bool, int, int, bool, bool, bool) = ios 0x11eb6c, win 0x3925f0, m1 0xa5a94, imac 0xb5d40;
+    void showNewBest(bool newReward, int orbs, int diamonds, bool demonKey, bool noRetry, bool noTitle) = ios 0x11eb6c, win 0x3925f0, m1 0xa5a94, imac 0xb5d40;
     void showRetryLayer() = win 0x3959c0;
     void showTwoPlayerGuide() = ios 0x11b870, m1 0xa1d74, imac 0xb1890;
     void spawnCircle() = ios 0x11dfa0;
