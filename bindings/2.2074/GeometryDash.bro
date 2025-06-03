@@ -8549,7 +8549,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasSecretCoin(char const*) = ios 0x33078c, win 0x1dcf50, imac 0x6cdc0, m1 0x60930;
     bool hasUserCoin(char const*) = ios 0x331f50, win 0x1dcd10, m1 0x637c4, imac 0x6fde0;
     TodoReturn incrementActivePath(int);
-    TodoReturn incrementChallenge(GJChallengeType, int) = win 0x1df0f0, m1 0x5eb10, imac 0x6b0c0, ios 0x32f8b4;
+    void incrementChallenge(GJChallengeType, int) = win 0x1df0f0, m1 0x5eb10, imac 0x6b0c0, ios 0x32f8b4;
     void incrementStat(char const*, int) = ios 0x32c170, win 0x1d1500, imac 0x66960, m1 0x5afdc;
     TodoReturn incrementStat(char const*) = ios 0x32c168;
     bool isGauntletChestUnlocked(int);
@@ -8572,7 +8572,7 @@ class GameStatsManager : cocos2d::CCNode {
     void postLoadGameStats();
     void preProcessReward(GJRewardItem*) = win 0x1deb00;
     void preSaveGameStats() = win 0x1f0630;
-    TodoReturn processChallengeQueue(int) = win 0x1df950, m1 0x67160, imac 0x73590;
+    void processChallengeQueue(int) = win 0x1df950, m1 0x67160, imac 0x73590;
     TodoReturn processOnlineChests();
     bool purchaseItem(int) = win 0x1d12e0, m1 0x5aa80, imac 0x663e0, ios 0x32bdb0;
     TodoReturn recountSpecialStats() = ios 0x3351a4, m1 0x69188;
@@ -8596,7 +8596,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn shopTypeForItemID(int);
     TodoReturn shouldAwardSecretKey();
     TodoReturn starsForMapPack(int);
-    TodoReturn storeChallenge(int, GJChallengeItem*) = m1 0x663ec, imac 0x729d0;
+    void storeChallenge(int, GJChallengeItem*) = m1 0x663ec, imac 0x729d0, win 0x1ded90;
     TodoReturn storeChallengeTime(int) = imac 0x72930;
     TodoReturn storeEventChest(int, GJRewardItem*);
     TodoReturn storeOnlineChest(gd::string, GJRewardItem*);
@@ -9030,7 +9030,7 @@ class GJAccountManager : cocos2d::CCNode {
     bool getAccountSyncURL() = win 0x1fd230, m1 0xbc19c, imac 0xd3a10;
     cocos2d::CCObject* getDLObject(char const*);
     gd::string getShaPassword(gd::string) = win 0x1feee0;
-    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1fb2c0, m1 0xb8918, imac 0xcfd00, ios 0x157254;
+    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1fb2c0, m1 0xb8918, ios 0x157254;
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
     void handleItND(cocos2d::CCNode*, void*);
     bool isDLActive(char const* tag);
@@ -10158,7 +10158,7 @@ class GJChallengeItem : cocos2d::CCObject {
     // virtual ~GJChallengeItem();
 
     static GJChallengeItem* create() = m1 0x8286c;
-    static GJChallengeItem* create(GJChallengeType challengeType, int goal, int reward, int timeLeft, gd::string questName);
+    static GJChallengeItem* create(GJChallengeType challengeType, int goal, int reward, int timeLeft, gd::string questName) = win 0x1f1520;
 
     static GJChallengeItem* createFromString(gd::string string) = imac 0x8ef00;
     static GJChallengeItem* createWithCoder(DS_Dictionary* dsdict) = imac 0x8f320, m1 0x82a9c;
