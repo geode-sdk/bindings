@@ -4803,7 +4803,9 @@ class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl 
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlHuePicker : cocos2d::extension::CCControl {
+    [[since("4.2.1")]]
     CCControlHuePicker() = m1 0x2d8834, imac 0x342fa0, ios 0x1b3948;
+    [[since("4.2.1")]]
     virtual ~CCControlHuePicker() = m1 0x2d89a4, imac 0x3431b0, ios 0x1b39c4;
 
     bool checkSliderPosition(cocos2d::CCPoint) = m1 0x2d8f7c, imac 0x343900, ios 0x1b3eb4;
@@ -4819,7 +4821,9 @@ class cocos2d::extension::CCControlHuePicker : cocos2d::extension::CCControl {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlSaturationBrightnessPicker : cocos2d::extension::CCControl {
+    [[since("4.2.1")]]
     CCControlSaturationBrightnessPicker() = m1 0x2e863c, imac 0x354950, ios 0x1bfae0;
+    [[since("4.2.1")]]
     virtual ~CCControlSaturationBrightnessPicker() = m1 0x2e87bc, imac 0x354b70, ios 0x1bfb6c;
 
     bool checkSliderPosition(cocos2d::CCPoint) = m1 0x2e8ebc, imac 0x355430, ios 0x1c00e0;
