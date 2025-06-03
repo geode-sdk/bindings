@@ -9030,7 +9030,7 @@ class GJAccountManager : cocos2d::CCNode {
     bool getAccountSyncURL() = win 0x1fd230, m1 0xbc19c, imac 0xd3a10;
     cocos2d::CCObject* getDLObject(char const*);
     gd::string getShaPassword(gd::string) = win 0x1feee0;
-    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1fb2c0, m1 0xb8918, ios 0x157254;
+    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1fb2c0, m1 0xb8918, imac 0xcfd00, ios 0x157254;
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
     void handleItND(cocos2d::CCNode*, void*);
     bool isDLActive(char const* tag);
