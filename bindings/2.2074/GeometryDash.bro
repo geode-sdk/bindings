@@ -13784,23 +13784,25 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     bool init(GJGameLevel*, GJUserScore*, GJLevelList*) = ios 0x34f334, win 0x2b33a0, m1 0x6ab874, imac 0x798e00;
     bool isCorrect(char const*);
     void loadPage(int, bool) = ios 0x3518ac, win 0x2b6c80, imac 0x79bd10, m1 0x6ae3e8;
-    void onClose(cocos2d::CCObject* sender) = win 0x2b6ac0, m1 0x6adff8, imac 0x79b910;
-    void onComment(cocos2d::CCObject* sender) = win 0x2b5f20, m1 0x6ad908, imac 0x79b1e0;
+    void onClose(cocos2d::CCObject* sender) = win 0x2b6ac0, m1 0x6adff8, imac 0x79b910, ios 0x35157c;
+    void onComment(cocos2d::CCObject* sender) = win 0x2b5f20, m1 0x6ad908, imac 0x79b1e0, ios 0x3510a0;
     void onCopyLevelID(cocos2d::CCObject* sender) = win 0x2b5ba0, m1 0x6aef98, imac 0x79c9c0, ios 0x352274;
-    void onGetComments(cocos2d::CCObject* sender) = imac 0x79bd00;
+    void onGetComments(cocos2d::CCObject* sender) = win inline, imac 0x79bd00, m1 0x6ae3dc, ios 0x3518a0 {
+        this->loadPage(0, false);
+    };
     void onLevelInfo(cocos2d::CCObject* sender) = ios 0x351d4c, win 0x2b64e0, m1 0x6ae924, imac 0x79c2f0;
     void onMore(cocos2d::CCObject* sender) = ios 0x350d94, win 0x2b5e00, imac 0x79ae40, m1 0x6ad570;
-    void onNextPage(cocos2d::CCObject* sender) = win 0x2b7860, imac 0x79b9b0;
-    void onOriginal(cocos2d::CCObject* sender) = win 0x2b5e60, imac 0x79b090;
-    void onPrevPage(cocos2d::CCObject* sender) = win 0x2b7870, imac 0x79b990;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x2b7860, imac 0x79b9b0, m1 0x6ae07c, ios 0x351600;
+    void onOriginal(cocos2d::CCObject* sender) = win 0x2b5e60, imac 0x79b090, m1 0x6ad7c8, ios 0x350fe0;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x2b7870, imac 0x79b990, m1 0x6ae06c, ios 0x3515f0;
     void onRefreshComments(cocos2d::CCObject* sender) = ios 0x3521c4, win 0x2b5620, imac 0x79c870, m1 0x6aee78;
     void onSimilar(cocos2d::CCObject* sender);
     TodoReturn reloadWindow() = win 0x2b7bf0;
     void setupCommentsBrowser(cocos2d::CCArray*) = ios 0x351b78, win 0x2b71f0, imac 0x79c0e0, m1 0x6ae750;
-    void setupLevelInfo() = win 0x2b5420, m1 0x6ad5cc, imac 0x79ae90;
-    void toggleCommentMode(cocos2d::CCObject* sender) = win 0x2b7e10, imac 0x79bab0, m1 0x6ae170;
-    void toggleExtendedMode(cocos2d::CCObject* sender) = win 0x2b7aa0;
-    void toggleSmallCommentMode(cocos2d::CCObject* sender) = win 0x2b7b00;
+    void setupLevelInfo() = win 0x2b5420, m1 0x6ad5cc, imac 0x79ae90, ios 0x350de8;
+    void toggleCommentMode(cocos2d::CCObject* sender) = win 0x2b7e10, imac 0x79bab0, m1 0x6ae170, ios 0x3516f4;
+    void toggleExtendedMode(cocos2d::CCObject* sender) = win 0x2b7aa0, imac 0x79bb90, m1 0x6ae250, ios 0x351750;
+    void toggleSmallCommentMode(cocos2d::CCObject* sender) = win 0x2b7b00, imac 0x79bbc0, m1 0x6ae280, ios 0x351780;
     TodoReturn updateCommentModeButtons() = win 0x2b7ed0;
     TodoReturn updateLevelsLabel();
 
