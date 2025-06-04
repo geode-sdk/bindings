@@ -12,7 +12,7 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
     void doUnlink();
     void exitLayer();
     void onAccountManagement(cocos2d::CCObject* sender) = m1 0xb7bf0, imac 0xcefa0, win 0x7fa10, ios 0x16aa60;
-    void onReLogin(cocos2d::CCObject* sender) = win 0x7f9d0;
+    void onReLogin(cocos2d::CCObject* sender) = win 0x7f9d0, imac 0xcef40, m1 0xb7b80, ios 0x16a9e8;
     void onUnlink(cocos2d::CCObject* sender) = m1 0xb7cc4, imac 0xcf070, win 0x7fb20, ios 0x16ab14;
     void updatePage() = m1 0xb7e88, imac 0xcf230, win 0x7fcd0, ios 0x16ac58;
     void verifyUnlink() = m1 0xb81d4, imac 0xcf580, ios 0x16af54;
@@ -62,9 +62,9 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
     }
     void onBackup(cocos2d::CCObject* sender) = win 0x7dfd0, m1 0xb5a14, imac 0xccbf0, ios 0x169434;
     void onHelp(cocos2d::CCObject* sender) = win 0x7e5e0, m1 0xb5f34, imac 0xcd130, ios 0x169770;
-    void onLogin(cocos2d::CCObject* sender) = win 0x7de10;
-    void onMore(cocos2d::CCObject* sender) = win 0x7e700;
-    void onRegister(cocos2d::CCObject* sender) = win 0x7de50, m1 0xb59f8, ios 0x169418;
+    void onLogin(cocos2d::CCObject* sender) = win 0x7de10, imac 0xccb40, m1 0xb5960, ios 0x169380;
+    void onMore(cocos2d::CCObject* sender) = win 0x7e700, imac 0xcd1f0, m1 0xb600c, ios 0x169824;
+    void onRegister(cocos2d::CCObject* sender) = win 0x7de50, imac 0xccbd0, m1 0xb59f8, ios 0x169418;
     void onSync(cocos2d::CCObject* sender) = win 0x7e360, m1 0xb5d2c, imac 0xccf40, ios 0x169620;
     void showLoadingUI() {
         this->toggleUI(false);
@@ -110,10 +110,10 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
     void disableNodes();
     void hideLoadingUI();
     bool init(gd::string) = win 0x7b8d0, m1 0x3f32c0, imac 0x485ce0, ios 0x871a0;
-    void onClose(cocos2d::CCObject* sender) = win 0x7cf50;
-    void onForgotPassword(cocos2d::CCObject* sender) = imac 0x487080, win 0x7c490;
-    void onForgotUser(cocos2d::CCObject* sender) = imac 0x487060, win 0x7c470;
-    void onSubmit(cocos2d::CCObject* sender) = win 0x7cbc0;
+    void onClose(cocos2d::CCObject* sender) = win 0x7cf50, imac 0x486990, m1 0x3f3e60, ios 0x878e4;
+    void onForgotPassword(cocos2d::CCObject* sender) = imac 0x487080, win 0x7c490, ios 0x87ec4, m1 0x3f4598;
+    void onForgotUser(cocos2d::CCObject* sender) = imac 0x487060, win 0x7c470, ios 0x87ea0, m1 0x3f4574;
+    void onSubmit(cocos2d::CCObject* sender) = win 0x7cbc0, imac 0x4869f0, m1 0x3f3ec8, ios 0x8794c;
     void resetLabel(int);
     void resetLabels();
     void showLoadingUI();
