@@ -4537,8 +4537,8 @@ class cocos2d::CCDelayTime : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCTextFieldTTF : cocos2d::CCLabelTTF, cocos2d::CCIMEDelegate {
-    // CCTextFieldTTF();
-    // virtual ~CCTextFieldTTF();
+    CCTextFieldTTF() = m1 0x2154a4, imac 0x269d00, ios 0x1cbd3c;
+    virtual ~CCTextFieldTTF() = m1 0x21557c, imac 0x269e20, ios 0x1cbe04;
 
     static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize);
     static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize);
