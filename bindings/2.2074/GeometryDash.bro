@@ -13787,9 +13787,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     void onClose(cocos2d::CCObject* sender) = win 0x2b6ac0, m1 0x6adff8, imac 0x79b910, ios 0x35157c;
     void onComment(cocos2d::CCObject* sender) = win 0x2b5f20, m1 0x6ad908, imac 0x79b1e0, ios 0x3510a0;
     void onCopyLevelID(cocos2d::CCObject* sender) = win 0x2b5ba0, m1 0x6aef98, imac 0x79c9c0, ios 0x352274;
-    void onGetComments(cocos2d::CCObject* sender) = win inline, imac 0x79bd00, m1 0x6ae3dc, ios 0x3518a0 {
-        this->loadPage(0, false);
-    }
+    void onGetComments(cocos2d::CCObject* sender) = win 0x2b64d0, imac 0x79bd00, m1 0x6ae3dc, ios 0x3518a0;
     void onLevelInfo(cocos2d::CCObject* sender) = ios 0x351d4c, win 0x2b64e0, m1 0x6ae924, imac 0x79c2f0;
     void onMore(cocos2d::CCObject* sender) = ios 0x350d94, win 0x2b5e00, imac 0x79ae40, m1 0x6ad570;
     void onNextPage(cocos2d::CCObject* sender) = win 0x2b7860, imac 0x79b9b0, m1 0x6ae07c, ios 0x351600;
