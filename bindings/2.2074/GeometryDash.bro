@@ -17156,7 +17156,7 @@ class PlatformToolbox {
     static void toggleMouseControl(bool);
     static void toggleSmoothFix(bool);
     static void toggleVerticalSync(bool);
-    static TodoReturn tryShowRateDialog(gd::string);
+    static void tryShowRateDialog(gd::string) = ios 0x16efe4;
     static TodoReturn updateMouseControl();
     static TodoReturn updateWindowedSize(float, float);
 }
