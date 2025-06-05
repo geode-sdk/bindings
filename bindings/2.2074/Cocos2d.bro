@@ -3295,8 +3295,8 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
 	void setVerticalAlignment(cocos2d::CCVerticalTextAlignment);
 
 	// CCLabelTTF(cocos2d::CCLabelTTF const&);
-	CCLabelTTF() = ios 0x725b4;
-    virtual ~CCLabelTTF() = ios 0x7267c;
+	CCLabelTTF() = m1 0x336200, imac 0x3aa150, ios 0x725b4;
+    virtual ~CCLabelTTF() = m1 0x336380, imac 0x3aa310, ios 0x7267c;
 	cocos2d::_ccFontDefinition _prepareTextDefinition(bool) = m1 0x337280, imac 0x3ab390;
 	void _updateWithTextDefinition(cocos2d::_ccFontDefinition&, bool) = m1 0x336b34, imac 0x3aab40;
 	char const* description() = m1 0x336e34, imac 0x3aae90;
