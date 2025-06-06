@@ -23,31 +23,54 @@ std::string mangleWindowsIdent(std::string_view str) {
 	}
 }
 
+char getWindowsAccessToken(const MemberFunctionProto& proto)
+{
+	if (proto.is_virtual)
+	{
+		switch (proto.access)
+		{
+			case AccessModifier::Private:   return 'E';
+			case AccessModifier::Protected: return 'M';
+			default: return 'U';
+		}
+	}
+
+	switch (proto.access)
+	{
+		case AccessModifier::Private:   return 'A';
+		case AccessModifier::Protected: return 'I';
+		default: return 'Q';
+	}
+}
+
 std::string generateWindowsSymbol(const Class& clazz, const FunctionBindField* fn) {
 	auto& decl = fn->prototype;
 
+	char access_token = getWindowsAccessToken(decl);
 
 	std::string mangledSymbol;
 	switch (decl.type) {
 		case FunctionType::Ctor:
 			if (codegen::platformArch == codegen::PlatformArch::x86) {
 				// writing this down so i dont forget:
-				// Q - public (https://en.wikiversity.org/wiki/Visual_C%2B%2B_name_mangling#Function_2)
+				// Q - public, A - private, I - protected (https://en.wikiversity.org/wiki/Visual_C%2B%2B_name_mangling#Function_2)
 				// A - not const (https://en.wikiversity.org/wiki/Visual_C%2B%2B_name_mangling#CV-class_Modifier)
 				// E - thiscall (https://en.wikiversity.org/wiki/Visual_C%2B%2B_name_mangling#Function_Property)
-				mangledSymbol = "??0" + mangleWindowsIdent(clazz.name) + "@QAE";
+				mangledSymbol = "??0" + mangleWindowsIdent(clazz.name) + "@" + access_token + "AE";
 			} else {
 				// 64-bit changed this slightly
-				mangledSymbol = "??0" + mangleWindowsIdent(clazz.name) + "@QEAA";				
+				mangledSymbol = "??0" + mangleWindowsIdent(clazz.name) + "@" + access_token + "EAA";				
 			}
 			break;
 		case FunctionType::Dtor:
             // U - public virtual
+			// E - private virtual
+			// M - protected virtual
 
 			if (codegen::platformArch == codegen::PlatformArch::x86) {
-				mangledSymbol = "??1" + mangleWindowsIdent(clazz.name) + "@UAE";
+				mangledSymbol = "??1" + mangleWindowsIdent(clazz.name) + "@" + access_token + "AE";
 			} else {
-				mangledSymbol = "??1" + mangleWindowsIdent(clazz.name) + "@UEAA";
+				mangledSymbol = "??1" + mangleWindowsIdent(clazz.name) + "@" + access_token + "EAA";
 			}
 			
 			break;
