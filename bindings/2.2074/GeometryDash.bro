@@ -22879,8 +22879,8 @@ class SongCell : TableViewCell {
 class SongInfoLayer : FLAlertLayer {
     // virtual ~SongInfoLayer();
 
-    static SongInfoLayer* create(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string, int) = win 0x4047a130, m1 0x51a5bc, imac 0x5e8d00, ios 0x3a033c;
-    static SongInfoLayer* create(int) = win 0x40479f20, m1 0x51a108, imac 0x5e8700, ios 0x39ff80;
+    static SongInfoLayer* create(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string, int) = win 0x47a130, m1 0x51a5bc, imac 0x5e8d00, ios 0x3a033c;
+    static SongInfoLayer* create(int) = win 0x479f20, m1 0x51a108, imac 0x5e8700, ios 0x39ff80;
 
     virtual void keyBackClicked() = win 0x84650, m1 0x51be3c, imac 0x5ea640, ios 0x3a1940;
 
