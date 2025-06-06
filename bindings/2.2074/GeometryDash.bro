@@ -4799,8 +4799,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void scaleXYChanged(float, float, bool) = win 0x113820, imac 0x40590, m1 0x3ad30, ios 0x3e7f6c;
 
     void activateRotationControl(cocos2d::CCObject*) = ios 0x3e6664, win 0x121420, m1 0x3878c, imac 0x3dc70;
-    void activateScaleControl(cocos2d::CCObject*) = win 0x113280, m1 0x39c78, imac 0x3f250;
-    void activateTransformControl(cocos2d::CCObject*) = win 0x1138d0, m1 0x3aec4, imac 0x40720;
+    void activateScaleControl(cocos2d::CCObject*) = win 0x113280, m1 0x39c78, imac 0x3f250, ios 0x3e7408;
+    void activateTransformControl(cocos2d::CCObject*) = win 0x1138d0, m1 0x3aec4, imac 0x40720, ios 0x3e803c;
     void addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*) = win 0x114390;
     TodoReturn addSnapPosition(cocos2d::CCPoint);
     void alignObjects(cocos2d::CCArray* objects, bool axisY) = win 0x1203a0;
@@ -4842,7 +4842,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool) = win 0x116660;
     UndoObject* createUndoObject(UndoCommand, bool) = win 0x10f830, m1 0x37f50, imac 0x3d3e0, ios 0x3e62ac;
     void createUndoSelectObject(bool) = win 0x10fb50;
-    void deactivateRotationControl() = win inline {
+    void deactivateRotationControl() = win inline, m1 0xd338, imac 0xbf40, ios 0x3bf430 {
         m_rotationTouchID = -1;
         if (m_rotationControl->isVisible()) {
             m_rotationControl->setVisible(false);
@@ -4850,7 +4850,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         }
     }
     void deactivateScaleControl() = win 0x113480;
-    void deactivateTransformControl() = win 0x113ad0;
+    void deactivateTransformControl() = win 0x113ad0, m1 0xd5dc, imac 0xc200, ios 0x3bf614;
     void deleteObject(GameObject* object, bool noUndo) = win inline, imac 0x32f70 {
         if (!object) return;
         object->m_unk45c = object->m_isSelected;
@@ -5013,7 +5013,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void processSelectObjects(cocos2d::CCArray*) = win 0x110060, imac 0x3d880;
     void processSmartObjectsFromType(int, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*) = win 0x116b80;
     void recreateButtonTabs();
-    void redoLastAction(cocos2d::CCObject*) = ios 0x3bf964, win 0x110190;
+    void redoLastAction(cocos2d::CCObject*) = win 0x110190, m1 0xdb14, imac 0xc740, ios 0x3bf964;
     void reloadCustomItems() = win 0xe35f0, m1 0x30fac, imac 0x318f0, ios 0x3e0d50;
     void removeOffset(GameObject*) = win 0x120cb0;
     void replaceGroupID(GameObject*, int, int) = win 0x117680;
@@ -5077,12 +5077,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void transformObject(GameObject*, EditCommand, bool) = win 0x11ed00, m1 0x44924, imac 0x4be30, ios 0x3ef1e0;
     void transformObjectCall(cocos2d::CCObject*) = win 0x11e780;
     void transformObjectCall(EditCommand) = ios 0x3ee598, win 0x11e7b0, imac 0x4ae10, m1 0x43bc8;
-    void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x11fec0;
+    void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x11fec0, m1 0x3b5d4, imac 0x40ec0, ios 0x3e8474;
     TodoReturn transformObjectsActive();
     TodoReturn transformObjectsReset();
     void triggerSwipeMode() = win 0x121b80;
     TodoReturn tryUpdateTimeMarkers();
-    void undoLastAction(cocos2d::CCObject*) = ios 0x3bf900, win 0x110120;
+    void undoLastAction(cocos2d::CCObject*) = win 0x110120, m1 0xdab0, imac 0xc6e0, ios 0x3bf900;
     void updateButtons() = win 0xe07e0, m1 0x2c954, imac 0x2cdd0, ios 0x3dde88;
     void updateCreateMenu(bool) = ios 0x3def70, win 0x10d8c0, imac 0x2e710, m1 0x2e0e4;
     void updateDeleteButtons() = ios 0x3e1790, win 0xe5fb0, m1 0x31c94, imac 0x325d0;
@@ -12236,7 +12236,7 @@ class GJRotateCommandLayer : SetupTriggerPopup {
 [[link(android)]]
 class GJRotationControl : cocos2d::CCLayer {
     // virtual ~GJRotationControl();
-    GJRotationControl() {
+    GJRotationControl() = ios 0x3f4734 {
         m_controlSprite = nullptr;
         m_startingRotation = 0.0f;
         m_currentRotation = 0.0f;
@@ -12244,7 +12244,7 @@ class GJRotationControl : cocos2d::CCLayer {
         m_delegate = nullptr;
     }
 
-    static GJRotationControl* create() = win inline, m1 0xd254 {
+    static GJRotationControl* create() = win inline, m1 0xd254, imac 0xbe40, ios 0x3bf3bc {
         auto ret = new GJRotationControl();
         if (ret->init()) {
             ret->autorelease();
@@ -12261,7 +12261,7 @@ class GJRotationControl : cocos2d::CCLayer {
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x127c20, imac 0x52100, m1 0x4950c, ios 0x3f2b58;
     virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71210, m1 0x49604, imac 0x521d0, ios 0x3f2b8c;
 
-    void finishTouch() = win 0x127900, imac 0xbf40, m1 0xd338;
+    void finishTouch() = win 0x127900, m1 0x46460, imac 0x4e840, ios 0x3f0188;
     void setAngle(float) = imac 0x51d00, m1 0x4914c;
     void updateSliderPosition(cocos2d::CCPoint) = imac 0x51d80, m1 0x491cc;
 
@@ -12995,9 +12995,9 @@ class GJTransformControl : cocos2d::CCLayer {
     void loadValues(GameObject*, cocos2d::CCArray*, gd::unordered_map<int, GameObjectEditorState>&);
     TodoReturn logCurrentZeroPos();
     void onToggleLockScale(cocos2d::CCObject* sender) = win 0x129780, m1 0x4a8fc, imac 0x537b0, ios 0x3f3ae4;
-    void refreshControl() = win 0x1295f0, m1 0x43948, imac 0x4ab90;
+    void refreshControl() = win 0x1295f0, m1 0x43948, imac 0x4ab90, ios 0x3ee31c;
     void saveToState(GJTransformState&);
-    void scaleButtons(float) = win 0x129810;
+    void scaleButtons(float) = win 0x129810, m1 0x38e08, imac 0x3e380, ios 0x3e6b10;
     cocos2d::CCSprite* spriteByTag(int tag) {
         return static_cast<cocos2d::CCSprite*>(m_warpSprites->objectAtIndex(tag - 1));
     }
@@ -14663,7 +14663,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn triggerRotateCommand(EffectGameObject*);
     bool tryUpdateSpeedObject(EffectGameObject*, bool) = win 0x2d0190, imac 0xea170, m1 0xcfe2c;
     bool typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float) = win 0x2cc340;
-    void undoLastAction() = win inline {
+    void undoLastAction() = win inline, m1 0xca930, imac 0xe3a40, ios 0x35bcac {
         return this->handleAction(true, m_undoObjects);
     }
     TodoReturn unlockAllLayers() = imac 0xe9c60;

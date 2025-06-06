@@ -2950,7 +2950,22 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void calculateMPF();
     void checkSceneReference();
     cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = imac 0x470e50, m1 0x3dfd04, ios 0x1793d8;
-    cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&);
+    cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&) = m1 0x3dfde0, imac 0x470f70, ios inline {
+        kmMat4 projection;
+        kmGLGetMatrix(KM_GL_PROJECTION, &projection);
+        kmMat4 modelView;
+        kmGLGetMatrix(KM_GL_MODELVIEW, &modelView);
+        kmMat4 transform;
+        kmMat4Multiply(&transform, &projection, &modelView);
+        kmVec3 clipCoord;
+        kmVec3 glCoord = { p0.x, p0.y, 0.0f };
+        kmVec3TransformCoord(&clipCoord, &glCoord, &transform);
+        auto glSize = m_pobOpenGLView->getDesignResolutionSize();
+        return {
+            glSize.width * (clipCoord.x * 0.5f + 0.5f),
+            glSize.height * (-clipCoord.y * 0.5f + 0.5f)
+        };
+    }
     void createStatsLabel();
     void drawScene() = m1 0x3deef0, imac 0x46fe90, ios 0x178c64;
     void end() = m1 0x3e02dc, imac 0x4714b0, ios 0x179760;
@@ -4609,7 +4624,7 @@ class cocos2d {
     static void ccDrawPoints(cocos2d::CCPoint const*, unsigned int);
     static void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
     static void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
-    static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x1ac234, imac 0x1f6710;
+    static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x1ac234, imac 0x1f6710, ios 0x24b4e8;
     static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F) = ios 0x24b5b0;
     static void ccDrawSolidRect(cocos2d::CCPoint origin, cocos2d::CCPoint destination, cocos2d::_ccColor4F color) = imac 0x1f6800, m1 0x1ac2fc, ios inline {
     	CCPoint vertices[] = {
@@ -4674,6 +4689,12 @@ void kmGLLoadIdentity() = m1 0x1abafc, imac 0x1f6010, ios 0x16bcc0;
 kmMat4* const kmMat4OrthographicProjection(kmMat4*, float, float, float, float, float, float) = m1 0x34a914, imac 0x3c1240, ios 0x3ab750;
 [[link(win, android)]]
 void kmGLMultMatrix(const kmMat4*) = m1 0x1abb60, imac 0x1f6070, ios 0x16bd24;
+[[link(win, android)]]
+void kmGLGetMatrix(unsigned int, kmMat4*) = m1 0x1abbc4, imac 0x1f60d0, ios 0x16bd58;
+[[link(win, android)]]
+kmMat4* const kmMat4Multiply(kmMat4*, const kmMat4*, const kmMat4*) = m1 0x349ef0, imac 0x3c0610, ios 0x3ab4d0;
+[[link(win, android)]]
+kmVec3* kmVec3TransformCoord(kmVec3*, const kmVec3*, const kmMat4*) = m1 0x5217a0, imac 0x5f1af0, ios 0x32577c;
 
 [[link(win, android)]]
 class DS_Dictionary {
