@@ -4841,7 +4841,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool) = win 0x115580;
     void createSmartObjectsFromType(int, cocos2d::CCArray*, bool, bool) = win 0x116660;
     UndoObject* createUndoObject(UndoCommand, bool) = win 0x10f830, m1 0x37f50, imac 0x3d3e0, ios 0x3e62ac;
-    void createUndoSelectObject(bool) = win 0x10fb50;
+    void createUndoSelectObject(bool) = win 0x10fb50, m1 0x2e58c, imac 0x2ebf0, ios 0x3df104;
     void deactivateRotationControl() = win inline, m1 0xd338, imac 0xbf40, ios 0x3bf430 {
         m_rotationTouchID = -1;
         if (m_rotationControl->isVisible()) {
@@ -24302,9 +24302,9 @@ class UndoObject : cocos2d::CCObject {
         delete ret;
         return nullptr;
     }
-    static UndoObject* createWithArray(cocos2d::CCArray* arrOfObjects, UndoCommand command) {
-        auto* ret = new UndoObject();
-        if (ret->init(arrOfObjects, command)) {
+    static UndoObject* createWithArray(cocos2d::CCArray* array, UndoCommand command) = win inline, m1 0xca030, imac 0xe2fa0, ios 0x35b554 {
+        auto ret = new UndoObject();
+        if (ret->init(array, command)) {
             ret->autorelease();
             return ret;
         }
@@ -24313,13 +24313,13 @@ class UndoObject : cocos2d::CCObject {
     }
     static UndoObject* createWithTransformObjects(cocos2d::CCArray*, UndoCommand);
 
-    bool init(cocos2d::CCArray* array, UndoCommand command) {
-        m_command = command;
-        if (array != nullptr) {
+    bool init(cocos2d::CCArray* array, UndoCommand command) = win inline {
+        if (array) {
             m_objects = cocos2d::CCArray::create();
             m_objects->addObjectsFromArray(array);
             m_objects->retain();
         }
+        m_command = command;
         return true;
     }
     bool init(GameObject* object, UndoCommand command) = win inline {
@@ -24330,7 +24330,7 @@ class UndoObject : cocos2d::CCObject {
         m_command = command;
         return true;
     }
-    TodoReturn initWithTransformObjects(cocos2d::CCArray*, UndoCommand);
+    bool initWithTransformObjects(cocos2d::CCArray*, UndoCommand);
     void setObjects(cocos2d::CCArray*);
 
     GameObjectCopy* m_objectCopy;
