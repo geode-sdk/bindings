@@ -22868,8 +22868,8 @@ class SongCell : TableViewCell {
     virtual bool init() = win 0x3c7f0, m1 0x1f13c8, imac 0x241b80, ios 0x112de8;
     virtual void draw() = win 0xad710, imac 0x241bc0, m1 0x1f13f8, ios 0x112e18;
 
-    void loadFromObject(SongObject*) = ios 0x1081fc, win 0xb3990, imac 0x235330;
-    void onClick(cocos2d::CCObject* sender) = win 0xb3da0;
+    void loadFromObject(SongObject*) = ios 0x1081fc, win 0xb3990, imac 0x235330, m1 0x1e5430;
+    void onClick(cocos2d::CCObject* sender) = win 0xb3da0, m1 0x1f13d4, imac 0x241ba0, ios 0x112df4;
     void updateBGColor(int) = ios 0x10862c;
 
     SongObject* m_songObject;
@@ -22879,8 +22879,8 @@ class SongCell : TableViewCell {
 class SongInfoLayer : FLAlertLayer {
     // virtual ~SongInfoLayer();
 
-    static SongInfoLayer* create(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string, int);
-    static SongInfoLayer* create(int);
+    static SongInfoLayer* create(gd::string, gd::string, gd::string, gd::string, gd::string, gd::string, int, gd::string, int) = win 0x4047a130, m1 0x51a5bc, imac 0x5e8d00, ios 0x3a033c;
+    static SongInfoLayer* create(int) = win 0x40479f20, m1 0x51a108, imac 0x5e8700, ios 0x39ff80;
 
     virtual void keyBackClicked() = win 0x84650, m1 0x51be3c, imac 0x5ea640, ios 0x3a1940;
 
