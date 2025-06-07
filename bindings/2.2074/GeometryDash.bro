@@ -21068,7 +21068,7 @@ class SetupRotatePopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x42acd0, m1 0x4d7138, imac 0x585460, ios 0x267a44;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x42ad70, imac 0x5854e0, m1 0x4d71b4, ios 0x267ac0;
 
-    bool init(EnhancedGameObject*, cocos2d::CCArray*) = m1 0x4d6c50, imac 0x584ec0;
+    bool init(EnhancedGameObject*, cocos2d::CCArray*) = win 0x42a770, m1 0x4d6c50, imac 0x584ec0, ios 0x267614;
 }
 
 [[link(android)]]
