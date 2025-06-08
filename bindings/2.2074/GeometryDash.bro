@@ -6976,7 +6976,7 @@ class GameLevelManager : cocos2d::CCNode {
     void invalidateMessages(bool, bool) = imac 0x538ef0, ios 0xa9250;
     void invalidateRequests(bool, bool) = imac 0x53e480;
     void invalidateUserList(UserListType, bool) = win 0x160840, m1 0x4996f8, imac 0x540580;
-    bool isDLActive(char const* tag) = imac 0x5227e0, m1 0x47e73c, win 0x147960;
+    bool isDLActive(char const* tag) = win 0x147960, m1 0x47e73c, imac 0x5227e0, ios 0x9d250;
     bool isFollowingUser(int) = ios 0x9df80, win 0x148840, imac 0x523fe0, m1 0x47fda8;
     bool isTimeValid(char const*, float) = win 0x147c90;
     bool isUpdateValid(int id) = win inline {
@@ -7021,7 +7021,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag) = win 0x1663a0, imac 0x512730, m1 0x470324, ios 0x93e20;
     void onGetGJRewardsCompleted(gd::string response, gd::string tag);
     TodoReturn onGetGJSecretRewardCompleted(gd::string, gd::string) = ios 0x955f4;
-    void onGetGJUserInfoCompleted(gd::string response, gd::string tag) = win 0x157aa0;
+    void onGetGJUserInfoCompleted(gd::string response, gd::string tag) = win 0x157aa0, m1 0x46b2a8, imac 0x50d1a0, ios 0x90bb4;
     void onGetLeaderboardScoresCompleted(gd::string response, gd::string tag) = win 0x155b80, m1 0x468fa0, imac 0x50a9d0;
     void onGetLevelCommentsCompleted(gd::string response, gd::string tag);
     void onGetLevelLeaderboardCompleted(gd::string response, gd::string tag);
@@ -7149,7 +7149,9 @@ class GameLevelManager : cocos2d::CCNode {
     void uploadLevelList(GJLevelList*) = m1 0x486180, imac 0x52aed0;
     void uploadUserMessage(int, gd::string, gd::string) = win 0x1588b0, m1 0x491cac, imac 0x538390, ios 0xa8ba4;
     int userIDForAccountID(int);
-    GJUserScore* userInfoForAccountID(int) = imac 0x518ac0;
+    GJUserScore* userInfoForAccountID(int id) = win inline, m1 0x475bfc, imac 0x518ac0, ios 0x9759c {
+        return static_cast<GJUserScore*>(m_storedUserInfo->objectForKey(id));
+    }
     gd::string userNameForUserID(int) = win 0x143e80, m1 0x475748, imac 0x518420, ios 0x9735c;
     TodoReturn verifyContainerOnlyHasLevels(cocos2d::CCDictionary*);
     void verifyLevelState(GJGameLevel*);
