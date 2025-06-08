@@ -7842,7 +7842,7 @@ class GameObject : CCSpritePlus {
     void addColorSpriteToParent(bool) = imac 0x592300, win 0x199040;
     void addColorSpriteToSelf() = win 0x199240, imac 0x5a6020;
     cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool);
-    cocos2d::CCSprite* addCustomChild(gd::string, cocos2d::CCPoint, int);
+    cocos2d::CCSprite* addCustomChild(gd::string frame, cocos2d::CCPoint offset, int zOrder) = win 0x194330, m1 0x4dd6a8, imac 0x5a3240, ios 0x259a28;
     cocos2d::CCSprite* addCustomColorChild(gd::string);
     void addEmptyGlow() = m1 0x4d825c;
     void addGlow(gd::string) = win 0x18af60, imac 0x58a5c0, m1 0x4d7bd0, ios 0x254034;
@@ -10037,7 +10037,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_someQueuedButtonSize;
     bool m_portalIndicators;
     bool m_orbIndicators;
-    cocos2d::CCArray* m_unk3378;
+    cocos2d::CCArray* m_indicatorSprites;
     float m_unk3380;
     gd::vector<int> m_unk3388;
     gd::vector<int> m_unk33a0;
