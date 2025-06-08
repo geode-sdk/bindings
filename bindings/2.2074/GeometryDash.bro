@@ -9270,7 +9270,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&);
     void addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType) = win 0x2221a0;
     void addCustomEnterEffect(EnterEffectObject*, bool);
-    TodoReturn addGuideArt(GameObject*) = imac 0x151740, m1 0x125938;
+    bool addGuideArt(GameObject*) = win 0x23f940, imac 0x151740, m1 0x125938, ios 0x2097dc;
     void addObjectCounter(LabelGameObject*);
     TodoReturn addPickupTrigger(CountTriggerGameObject*);
     TodoReturn addPoints(int);
@@ -10035,8 +10035,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     gd::vector<PlayerButtonCommand> m_queuedButtons4;
     gd::vector<PlayerButtonCommand> m_queuedButtons5;
     int m_someQueuedButtonSize;
-    bool m_unk3374;
-    bool m_unk3375;
+    bool m_portalIndicators;
+    bool m_orbIndicators;
     cocos2d::CCArray* m_unk3378;
     float m_unk3380;
     gd::vector<int> m_unk3388;
