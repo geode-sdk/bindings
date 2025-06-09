@@ -8195,7 +8195,7 @@ class GameObject : CCSpritePlus {
     bool m_unk422;
     bool m_cantColorGlow;
     float m_opacityMod;
-    bool m_slopeBugged;
+    bool m_slopeUphill;
     int m_slopeDirection;
     bool m_maybeShouldFixSlopes;
     float m_opacityMod2;
