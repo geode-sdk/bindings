@@ -7050,7 +7050,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onUnblockUserCompleted(gd::string response, gd::string tag);
     void onUpdateDescriptionCompleted(gd::string response, gd::string tag);
     void onUpdateLevelCompleted(gd::string response, gd::string tag);
-    void onUpdateUserScoreCompleted(gd::string response, gd::string tag) = imac 0x50a6c0;
+    void onUpdateUserScoreCompleted(gd::string response, gd::string tag) = win 0x155180, m1 0x468d5c, imac 0x50a6c0, ios 0x8f694;
     void onUploadCommentCompleted(gd::string response, gd::string tag) = win 0x15bde0, imac 0x50b830, m1 0x469db8;
     void onUploadFriendRequestCompleted(gd::string response, gd::string tag);
     void onUploadLevelCompleted(gd::string response, gd::string tag) = win 0x14b1a0, imac 0x5083c0;
