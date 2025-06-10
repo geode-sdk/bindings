@@ -4601,7 +4601,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onBack(cocos2d::CCObject* sender) = win 0xd80e0;
     void onClone() = m1 0x1a3618;
     void onDelete() = m1 0x1a3328;
-    void onEdit(cocos2d::CCObject* sender);
+    void onEdit(cocos2d::CCObject* sender) = win 0xd6d80, imac 0x1e9db0, m1 0x1a0ec4, ios 0xed344;
     void onGuidelines(cocos2d::CCObject* sender) = win 0xd52e0, imac 0x1eb5e0;
     void onHelp(cocos2d::CCObject* sender) = m1 0x1a1f28, imac 0x1eae30, win 0xd7c50;
     void onLevelInfo(cocos2d::CCObject* sender) = ios 0xee63c, win 0xd5500, m1 0x1a2420, imac 0x1eb320;
@@ -4890,7 +4890,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void dynamicGroupUpdate(bool) = win 0x117000, imac 0x44e10, m1 0x3ed20, ios 0x3eafa8;
     TodoReturn edgeForObject(int, int);
     TodoReturn editButton2Usable() = imac 0x492e0;
-    TodoReturn editButtonUsable() = imac 0x48580;
+    bool editButtonUsable() = win 0x1182f0, imac 0x48580, m1 0x41e60, ios 0x3eccac;
     TodoReturn editColor();
     TodoReturn editColorButtonUsable();
     void editGroup(cocos2d::CCObject*) = win 0x11d880, imac 0x2c8f0, m1 0x2c4d0;
@@ -7050,7 +7050,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onUnblockUserCompleted(gd::string response, gd::string tag);
     void onUpdateDescriptionCompleted(gd::string response, gd::string tag);
     void onUpdateLevelCompleted(gd::string response, gd::string tag);
-    void onUpdateUserScoreCompleted(gd::string response, gd::string tag) = imac 0x50a6c0;
+    void onUpdateUserScoreCompleted(gd::string response, gd::string tag) = win 0x155180, m1 0x468d5c, imac 0x50a6c0, ios 0x8f694;
     void onUploadCommentCompleted(gd::string response, gd::string tag) = win 0x15bde0, imac 0x50b830, m1 0x469db8;
     void onUploadFriendRequestCompleted(gd::string response, gd::string tag);
     void onUploadLevelCompleted(gd::string response, gd::string tag) = win 0x14b1a0, imac 0x5083c0;
@@ -7842,7 +7842,7 @@ class GameObject : CCSpritePlus {
     void addColorSpriteToParent(bool) = imac 0x592300, win 0x199040;
     void addColorSpriteToSelf() = win 0x199240, imac 0x5a6020;
     cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool);
-    cocos2d::CCSprite* addCustomChild(gd::string, cocos2d::CCPoint, int);
+    cocos2d::CCSprite* addCustomChild(gd::string frame, cocos2d::CCPoint offset, int zOrder) = win 0x194330, m1 0x4dd6a8, imac 0x5a3240, ios 0x259a28;
     cocos2d::CCSprite* addCustomColorChild(gd::string);
     void addEmptyGlow() = m1 0x4d825c;
     void addGlow(gd::string) = win 0x18af60, imac 0x58a5c0, m1 0x4d7bd0, ios 0x254034;
@@ -7963,7 +7963,7 @@ class GameObject : CCSpritePlus {
     TodoReturn makeInvisible() = ios 0x25b45c, imac 0x5a53a0;
     TodoReturn makeVisible();
     float opacityModForMode(int, bool);
-    cocos2d::CCSpriteBatchNode* parentForZLayer(int, bool, int) = win 0x198f60;
+    cocos2d::CCNode* parentForZLayer(int zLayer, bool blending, int parentMode) = win 0x198f60;
     gd::string perspectiveColorFrame(char const*, int);
     gd::string perspectiveFrame(char const*, int);
     void playDestroyObjectAnim(GJBaseGameLayer*) = ios 0x349078, win 0x1a7520, m1 0x1f9910, imac 0x24c560;
@@ -8195,7 +8195,7 @@ class GameObject : CCSpritePlus {
     bool m_unk422;
     bool m_cantColorGlow;
     float m_opacityMod;
-    bool m_slopeBugged;
+    bool m_slopeUphill;
     int m_slopeDirection;
     bool m_maybeShouldFixSlopes;
     float m_opacityMod2;
@@ -8311,7 +8311,7 @@ class GameObject : CCSpritePlus {
     int m_areaOpacityRelated3;
     int m_unk52C;
     bool m_unk530;
-    bool m_unk531;
+    bool m_isUIObject;
     bool m_unk532;
 }
 
@@ -9241,8 +9241,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void playGravityEffect(bool) {}
     virtual void manualUpdateObjectColors(GameObject*) {}
     virtual TodoReturn createCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, bool) = win 0x23a7f0, imac 0x14cf30, m1 0x122170, ios 0x206ed8;
-    virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x23aaf0, imac 0x14d2c0, m1 0x122520, ios 0x207108;
-    virtual TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = win 0x23acf0, imac 0x14d4c0, m1 0x122760, ios 0x207348;
+    virtual cocos2d::CCParticleSystemQuad* claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x23aaf0, imac 0x14d2c0, m1 0x122520, ios 0x207108;
+    virtual void unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = win 0x23acf0, imac 0x14d4c0, m1 0x122760, ios 0x207348;
     virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*) = win 0x23c8a0, imac 0x14e3e0, m1 0x123474, ios 0x207e14;
     virtual void checkpointActivated(CheckpointGameObject*) = win 0x240530, imac 0x152790, m1 0x126808, ios 0x20a194;
     virtual void flipArt(bool) = m1 0x126804, imac 0x152780, ios 0x20a190 {}
@@ -9270,7 +9270,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&);
     void addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType) = win 0x2221a0;
     void addCustomEnterEffect(EnterEffectObject*, bool);
-    TodoReturn addGuideArt(GameObject*) = imac 0x151740, m1 0x125938;
+    bool addGuideArt(GameObject*) = win 0x23f940, imac 0x151740, m1 0x125938, ios 0x2097dc;
     void addObjectCounter(LabelGameObject*);
     TodoReturn addPickupTrigger(CountTriggerGameObject*);
     TodoReturn addPoints(int);
@@ -9435,7 +9435,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GJGameEvent objectTypeToGameEvent(int) = ios 0x1e804c, win 0x22ce10, imac 0x1144d0;
     void optimizeMoveGroups() = ios 0x1e109c, win 0x22b740;
     void orderSpawnObjects() = ios 0x209744, imac 0x151690, win 0x23f7e0;
-    cocos2d::CCNode* parentForZLayer(int, bool, int, int) = imac 0x10f720, win 0x209e30, ios 0x1e4a2c, m1 0xeec10;
+    cocos2d::CCNode* parentForZLayer(int zLayer, bool blending, int parentMode, int uiObject) = imac 0x10f720, win 0x209e30, ios 0x1e4a2c, m1 0xeec10;
     void pauseAudio() = ios 0x2009a4, win 0x231d60, imac 0x141de0;
     TodoReturn performMathOperation(double, double, int);
     TodoReturn performMathRounding(double, int);
@@ -9686,7 +9686,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateGameplayOffsetY(int, bool);
     void updateGradientLayers() = ios 0x1f1910, win 0x21a830, imac 0x129310;
     TodoReturn updateGroundShadows();
-    TodoReturn updateGuideArt() = ios 0x201694, win 0x240130;
+    void updateGuideArt() = win 0x240130, m1 0x11a0e0, imac 0x143360, ios 0x201694;
     TodoReturn updateInternalCamOffsetX(float, float, float);
     TodoReturn updateInternalCamOffsetY(float, float, float);
     void updateKeyframeOrder(int) = ios 0x1fd218, imac 0x13b9d0, m1 0x11403c, win 0x22e4b0;
@@ -9728,153 +9728,153 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_startingFromBeginning;
     gd::vector<SFXTriggerGameObject*> m_activeSfxTriggers;
     gd::vector<int> m_unkVectorTypeIsWrong;
-    cocos2d::CCNode* m_field_8E0;
-    cocos2d::CCNode* m_field_8E8;
-    cocos2d::CCNode* m_field_8F0;
-    cocos2d::CCNode* m_field_8F8;
-    cocos2d::CCNode* m_field_900;
-    cocos2d::CCNode* m_field_908;
+    cocos2d::CCNode* m_hoverNode;
+    cocos2d::CCNode* m_areaTransformNode;
+    cocos2d::CCNode* m_areaSkewNode;
+    cocos2d::CCNode* m_areaScaleNode;
+    cocos2d::CCNode* m_areaRotateNode;
+    cocos2d::CCNode* m_areaTransformNode2;
     OBB2D* m_obb2;
     gd::vector<gd::unordered_map<int,int>> m_spawnRemapTriggers;
-    gd::unordered_map<int, cocos2d::CCPoint> m_umapIntCCPoint;
+    gd::unordered_map<int, cocos2d::CCPoint> m_uiObjectPositions;
     GJEffectManager* m_effectManager;
-    cocos2d::CCSpriteBatchNode* m_unk950;
-    cocos2d::CCSpriteBatchNode* m_unk958;
-    cocos2d::CCSpriteBatchNode* m_unk960;
-    cocos2d::CCSpriteBatchNode* m_unk968;
-    cocos2d::CCSpriteBatchNode* m_unk970;
-    cocos2d::CCSpriteBatchNode* m_unk978;
-    cocos2d::CCSpriteBatchNode* m_unk980;
-    cocos2d::CCSpriteBatchNode* m_unk988;
-    CCNodeContainer* m_unk990;
-    cocos2d::CCSpriteBatchNode* m_unk998;
-    cocos2d::CCSpriteBatchNode* m_unk9a0;
-    cocos2d::CCSpriteBatchNode* m_unk9a8;
-    cocos2d::CCSpriteBatchNode* m_unk9b0;
-    cocos2d::CCSpriteBatchNode* m_unk9b8;
-    cocos2d::CCSpriteBatchNode* m_unk9c0;
-    cocos2d::CCSpriteBatchNode* m_unk9c8;
-    cocos2d::CCSpriteBatchNode* m_unk9d0;
-    cocos2d::CCSpriteBatchNode* m_unk9d8;
-    cocos2d::CCSpriteBatchNode* m_unk9e0;
-    cocos2d::CCSpriteBatchNode* m_unk9e8;
-    cocos2d::CCSpriteBatchNode* m_unk9f0;
-    cocos2d::CCSpriteBatchNode* m_unk9f8;
-    CCNodeContainer* m_unka00;
-    cocos2d::CCSpriteBatchNode* m_unka08;
-    cocos2d::CCSpriteBatchNode* m_unka10;
-    cocos2d::CCSpriteBatchNode* m_unka18;
-    cocos2d::CCSpriteBatchNode* m_unka20;
-    cocos2d::CCSpriteBatchNode* m_unka28;
-    cocos2d::CCSpriteBatchNode* m_unka30;
-    cocos2d::CCSpriteBatchNode* m_unka38;
-    cocos2d::CCSpriteBatchNode* m_unka40;
-    cocos2d::CCSpriteBatchNode* m_unka48;
-    cocos2d::CCSpriteBatchNode* m_unka50;
-    cocos2d::CCSpriteBatchNode* m_unka58;
-    cocos2d::CCSpriteBatchNode* m_unka60;
-    cocos2d::CCSpriteBatchNode* m_unka68;
-    CCNodeContainer* m_unka70;
-    cocos2d::CCSpriteBatchNode* m_unka78;
-    cocos2d::CCSpriteBatchNode* m_unka80;
-    cocos2d::CCSpriteBatchNode* m_unka88;
-    cocos2d::CCSpriteBatchNode* m_unka90;
-    cocos2d::CCSpriteBatchNode* m_unka98;
-    cocos2d::CCSpriteBatchNode* m_unkaa0;
-    cocos2d::CCSpriteBatchNode* m_unkaa8;
-    cocos2d::CCSpriteBatchNode* m_unkab0;
-    cocos2d::CCSpriteBatchNode* m_unkab8;
-    cocos2d::CCSpriteBatchNode* m_unkac0;
-    cocos2d::CCSpriteBatchNode* m_unkac8;
-    cocos2d::CCSpriteBatchNode* m_unkad0;
-    cocos2d::CCSpriteBatchNode* m_unkad8;
-    CCNodeContainer* m_unkae0;
-    cocos2d::CCSpriteBatchNode* m_unkae8;
-    cocos2d::CCSpriteBatchNode* m_unkaf0;
-    cocos2d::CCSpriteBatchNode* m_unkaf8;
-    cocos2d::CCSpriteBatchNode* m_unkb00;
-    cocos2d::CCSpriteBatchNode* m_unkb08;
-    cocos2d::CCSpriteBatchNode* m_unkb10;
-    cocos2d::CCSpriteBatchNode* m_unkb18;
-    cocos2d::CCSpriteBatchNode* m_unkb20;
-    cocos2d::CCSpriteBatchNode* m_unkb28;
-    cocos2d::CCSpriteBatchNode* m_unkb30;
-    cocos2d::CCSpriteBatchNode* m_unkb38;
-    cocos2d::CCSpriteBatchNode* m_unkb40;
-    cocos2d::CCSpriteBatchNode* m_unkb48;
-    cocos2d::CCSpriteBatchNode* m_unkb50;
-    void* m_unkb5c;
-    cocos2d::CCSpriteBatchNode* m_unkb60;
-    cocos2d::CCSpriteBatchNode* m_unkb68;
-    cocos2d::CCSpriteBatchNode* m_unkb70;
-    cocos2d::CCSpriteBatchNode* m_unkb78;
-    CCNodeContainer* m_unkb80;
-    cocos2d::CCSpriteBatchNode* m_unkb88;
-    cocos2d::CCSpriteBatchNode* m_unkb90;
-    cocos2d::CCSpriteBatchNode* m_unkb98;
-    cocos2d::CCSpriteBatchNode* m_unkba0;
-    cocos2d::CCSpriteBatchNode* m_unkba8;
-    cocos2d::CCSpriteBatchNode* m_unkbb0;
-    cocos2d::CCSpriteBatchNode* m_unkbb8;
-    cocos2d::CCSpriteBatchNode* m_unkbc0;
-    cocos2d::CCSpriteBatchNode* m_unkbc8;
-    cocos2d::CCSpriteBatchNode* m_unkbd0;
-    cocos2d::CCSpriteBatchNode* m_unkbd8;
-    cocos2d::CCSpriteBatchNode* m_unkbe0;
-    cocos2d::CCSpriteBatchNode* m_unkbe8;
-    CCNodeContainer* m_unkbf0;
-    cocos2d::CCSpriteBatchNode* m_unkbf8;
-    cocos2d::CCSpriteBatchNode* m_unkc00;
-    cocos2d::CCSpriteBatchNode* m_unkc08;
-    cocos2d::CCSpriteBatchNode* m_unkc10;
-    cocos2d::CCSpriteBatchNode* m_unkc18;
-    cocos2d::CCSpriteBatchNode* m_unkc20;
-    cocos2d::CCSpriteBatchNode* m_unkc28;
-    cocos2d::CCSpriteBatchNode* m_unkc30;
-    cocos2d::CCSpriteBatchNode* m_unkc38;
-    cocos2d::CCSpriteBatchNode* m_unkc40;
-    cocos2d::CCSpriteBatchNode* m_unkc48;
-    cocos2d::CCSpriteBatchNode* m_unkc50;
-    cocos2d::CCSpriteBatchNode* m_unkc58;
-    CCNodeContainer* m_unkc60;
-    cocos2d::CCSpriteBatchNode* m_unkc68;
-    cocos2d::CCSpriteBatchNode* m_unkc70;
-    cocos2d::CCSpriteBatchNode* m_unkc78;
-    cocos2d::CCSpriteBatchNode* m_unkc80;
-    cocos2d::CCSpriteBatchNode* m_unkc88;
-    cocos2d::CCSpriteBatchNode* m_unkc90;
-    cocos2d::CCSpriteBatchNode* m_unkc98;
-    cocos2d::CCSpriteBatchNode* m_unkca0;
-    cocos2d::CCSpriteBatchNode* m_unkca8;
-    cocos2d::CCSpriteBatchNode* m_unkcb0;
-    cocos2d::CCSpriteBatchNode* m_unkcb8;
-    cocos2d::CCSpriteBatchNode* m_unkcc0;
-    cocos2d::CCSpriteBatchNode* m_unkcc8;
-    CCNodeContainer* m_unkcd0;
-    cocos2d::CCSpriteBatchNode* m_unkcd8;
-    cocos2d::CCSpriteBatchNode* m_unkce0;
-    cocos2d::CCSpriteBatchNode* m_unkce8;
-    cocos2d::CCSpriteBatchNode* m_unkcf0;
-    cocos2d::CCSpriteBatchNode* m_unkcf8;
-    cocos2d::CCSpriteBatchNode* m_unkd00;
-    cocos2d::CCSpriteBatchNode* m_unkd08;
-    cocos2d::CCSpriteBatchNode* m_unkd10;
-    cocos2d::CCSpriteBatchNode* m_unkd18;
-    cocos2d::CCSpriteBatchNode* m_unkd20;
-    cocos2d::CCSpriteBatchNode* m_unkd28;
-    cocos2d::CCSpriteBatchNode* m_unkd30;
-    cocos2d::CCSpriteBatchNode* m_unkd38;
-    CCNodeContainer* m_unkd40;
-    cocos2d::CCSpriteBatchNode* m_unkd48;
-    cocos2d::CCSpriteBatchNode* m_unkd50;
-    cocos2d::CCSpriteBatchNode* m_unkd58;
-    cocos2d::CCSpriteBatchNode* m_unkd60;
-    cocos2d::CCSpriteBatchNode* m_unkd68;
-    cocos2d::CCSpriteBatchNode* m_unkd70;
-    cocos2d::CCSpriteBatchNode* m_unkd78;
-    cocos2d::CCSpriteBatchNode* m_unkd80;
-    cocos2d::CCSpriteBatchNode* m_unkd88;
-    cocos2d::CCSpriteBatchNode* m_unkd90;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerT5;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerT5;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerT5;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerT5;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerT5;
+    cocos2d::CCSpriteBatchNode* m_gameLayerT4;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerT4;
+    cocos2d::CCSpriteBatchNode* m_glowLayerT4;
+    CCNodeContainer* m_specialLayerT4;
+    cocos2d::CCSpriteBatchNode* m_textLayerT4;
+    cocos2d::CCSpriteBatchNode* m_textBlendingLayerT4;
+    cocos2d::CCSpriteBatchNode* m_fireLayerT4;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerT4;
+    cocos2d::CCSpriteBatchNode* m_pixelLayerT4;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerT4;
+    cocos2d::CCSpriteBatchNode* m_particleLayerT4;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerT4;
+    cocos2d::CCSpriteBatchNode* m_game2LayerT4;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerT4;
+    cocos2d::CCSpriteBatchNode* m_gameLayerT3;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerT3;
+    cocos2d::CCSpriteBatchNode* m_glowLayerT3;
+    CCNodeContainer* m_specialLayerT3;
+    cocos2d::CCSpriteBatchNode* m_textLayerT3;
+    cocos2d::CCSpriteBatchNode* m_textBlendingLayerT3;
+    cocos2d::CCSpriteBatchNode* m_fireLayerT3;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerT3;
+    cocos2d::CCSpriteBatchNode* m_pixelLayerT3;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerT3;
+    cocos2d::CCSpriteBatchNode* m_particleLayerT3;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerT3;
+    cocos2d::CCSpriteBatchNode* m_game2LayerT3;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerT3;
+    cocos2d::CCSpriteBatchNode* m_gameLayerT2;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerT2;
+    cocos2d::CCSpriteBatchNode* m_glowLayerT2;
+    CCNodeContainer* m_specialLayerT2;
+    cocos2d::CCSpriteBatchNode* m_textLayerT2;
+    cocos2d::CCSpriteBatchNode* m_textBlendingLayerT2;
+    cocos2d::CCSpriteBatchNode* m_fireLayerT2;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerT2;
+    cocos2d::CCSpriteBatchNode* m_pixelLayerT2;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerT2;
+    cocos2d::CCSpriteBatchNode* m_particleLayerT2;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerT2;
+    cocos2d::CCSpriteBatchNode* m_game2LayerT2;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerT2;
+    cocos2d::CCSpriteBatchNode* m_gameLayerT1;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerT1;
+    cocos2d::CCSpriteBatchNode* m_glowLayerT1;
+    CCNodeContainer* m_specialLayerT1;
+    cocos2d::CCSpriteBatchNode* m_textLayerT1;
+    cocos2d::CCSpriteBatchNode* m_textBlendingLayerT1;
+    cocos2d::CCSpriteBatchNode* m_fireLayerT1;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerT1;
+    cocos2d::CCSpriteBatchNode* m_pixelLayerT1;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerT1;
+    cocos2d::CCSpriteBatchNode* m_particleLayerT1;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerT1;
+    cocos2d::CCSpriteBatchNode* m_game2LayerT1;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerT1;
+    cocos2d::CCSpriteBatchNode* m_game2LayerB0;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerB0;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerB0;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerB0;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerB0;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerB0;
+    cocos2d::CCSpriteBatchNode* m_gameLayerB1;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerB1;
+    cocos2d::CCSpriteBatchNode* m_glowLayerB1;
+    CCNodeContainer* m_specialLayerB1;
+    cocos2d::CCSpriteBatchNode* m_textLayerB1;
+    cocos2d::CCSpriteBatchNode* m_textBlendingLayerB1;
+    cocos2d::CCSpriteBatchNode* m_fireLayerB1;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerB1;
+    cocos2d::CCSpriteBatchNode* m_pixelLayerB1;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerB1;
+    cocos2d::CCSpriteBatchNode* m_particleLayerB1;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerB1;
+    cocos2d::CCSpriteBatchNode* m_game2LayerB1;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerB1;
+    cocos2d::CCSpriteBatchNode* m_gameLayerB2;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerB2;
+    cocos2d::CCSpriteBatchNode* m_glowLayerB2;
+    CCNodeContainer* m_specialLayerB2;
+    cocos2d::CCSpriteBatchNode* m_textLayerB2;
+    cocos2d::CCSpriteBatchNode* m_textBlendingLayerB2;
+    cocos2d::CCSpriteBatchNode* m_fireLayerB2;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerB2;
+    cocos2d::CCSpriteBatchNode* m_pixelLayerB2;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerB2;
+    cocos2d::CCSpriteBatchNode* m_particleLayerB2;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerB2;
+    cocos2d::CCSpriteBatchNode* m_game2LayerB2;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerB2;
+    cocos2d::CCSpriteBatchNode* m_gameLayerB3;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerB3;
+    cocos2d::CCSpriteBatchNode* m_glowLayerB3;
+    CCNodeContainer* m_specialLayerB3;
+    cocos2d::CCSpriteBatchNode* m_textLayerB3;
+    cocos2d::CCSpriteBatchNode* m_textBlendingLayerB3;
+    cocos2d::CCSpriteBatchNode* m_fireLayerB3;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerB3;
+    cocos2d::CCSpriteBatchNode* m_pixelLayerB3;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerB3;
+    cocos2d::CCSpriteBatchNode* m_particleLayerB3;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerB3;
+    cocos2d::CCSpriteBatchNode* m_game2LayerB3;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerB3;
+    cocos2d::CCSpriteBatchNode* m_gameLayerB4;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerB4;
+    cocos2d::CCSpriteBatchNode* m_glowLayerB4;
+    CCNodeContainer* m_specialLayerB4;
+    cocos2d::CCSpriteBatchNode* m_textLayerB4;
+    cocos2d::CCSpriteBatchNode* m_textBlendingLayerB4;
+    cocos2d::CCSpriteBatchNode* m_fireLayerB4;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerB4;
+    cocos2d::CCSpriteBatchNode* m_pixelLayerB4;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerB4;
+    cocos2d::CCSpriteBatchNode* m_particleLayerB4;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerB4;
+    cocos2d::CCSpriteBatchNode* m_game2LayerB4;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerB4;
+    cocos2d::CCSpriteBatchNode* m_gameLayerB5;
+    cocos2d::CCSpriteBatchNode* m_gameBlendingLayerB5;
+    cocos2d::CCSpriteBatchNode* m_glowLayerB5;
+    CCNodeContainer* m_specialLayerB5;
+    cocos2d::CCSpriteBatchNode* m_textLayerB5;
+    cocos2d::CCSpriteBatchNode* m_textBlendingLayerB5;
+    cocos2d::CCSpriteBatchNode* m_fireLayerB5;
+    cocos2d::CCSpriteBatchNode* m_fireBlendingLayerB5;
+    cocos2d::CCSpriteBatchNode* m_pixelLayerB5;
+    cocos2d::CCSpriteBatchNode* m_pixelBlendingLayerB5;
+    cocos2d::CCSpriteBatchNode* m_particleLayerB5;
+    cocos2d::CCSpriteBatchNode* m_particleBlendingLayerB5;
+    cocos2d::CCSpriteBatchNode* m_game2LayerB5;
+    cocos2d::CCSpriteBatchNode* m_game2BlendingLayerB5;
     PlayerObject* m_player1;
     PlayerObject* m_player2;
     LevelSettingsObject* m_levelSettings;
@@ -9972,7 +9972,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_bUnk31a0;
     bool m_bUnk31a1;
     StartPosObject* m_startPosObject;
-    bool m_unk3188;
+    bool m_useReplay;
+    bool m_unk3189;
     int m_unk318c;
     int m_unk3190;
     gd::vector<GameObject*> m_unk3198;
@@ -9986,9 +9987,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCNode* m_unk2a84;
     int m_unk2a88;
     float m_unk2a8c;
-    int m_unk2a90;
-    int m_unk2a94;
-    int m_unk2a98;
+    float m_unk2a90;
+    float m_unk2a94;
+    bool m_unk2a98;
     cocos2d::CCDictionary* m_collectedItems;
     float m_levelLength;
     bool m_unk2aa4;
@@ -10018,14 +10019,17 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_unk3294;
     cocos2d::ccColor3B m_unk3298;
     int m_resumeTimer;
-    bool m_unk32a0;
-    int m_unk32a4;
-    gd::string m_unk32a8;
+    bool m_recordInputs;
+    bool m_unk32a1;
+    bool m_unk32a2;
+    bool m_unk32a3;
+    bool m_unk32a4;
+    gd::string m_recordString;
     cocos2d::CCObject* m_unk32c8;
     int m_unk32d0;
+    bool m_unk32d4;
     double m_unk32d8;
-    int m_coinsCollected;
-    int m_unk32e4;
+    uint64_t m_coinsCollected;
     int m_replayRandSeed;
     int m_unk32ec;
     int m_unk32f0;
@@ -10035,9 +10039,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     gd::vector<PlayerButtonCommand> m_queuedButtons4;
     gd::vector<PlayerButtonCommand> m_queuedButtons5;
     int m_someQueuedButtonSize;
-    bool m_unk3374;
-    bool m_unk3375;
-    cocos2d::CCArray* m_unk3378;
+    bool m_portalIndicators;
+    bool m_orbIndicators;
+    cocos2d::CCArray* m_indicatorSprites;
     float m_unk3380;
     gd::vector<int> m_unk3388;
     gd::vector<int> m_unk33a0;
@@ -10050,8 +10054,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCDictionary* m_unk3458;
     int m_unk3460;
     UILayer* m_uiLayer;
-    cocos2d::CCArray* m_unk3470;
-    cocos2d::CCDictionary* m_unk3478;
+    cocos2d::CCArray* m_uiObjects;
+    cocos2d::CCDictionary* m_uiObjectLayers;
     cocos2d::CCNode* m_uiTriggerUI;
     double m_timePlayed;
     bool m_levelEndAnimationStarted;
@@ -10110,9 +10114,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_startOptimization;
     GJGameLoadingLayer* m_loadingLayer;
     cocos2d::CCDrawNode* m_debugDrawNode;
-    void* m_unk3678;
+    std::array<cocos2d::CCPoint, 400>* m_debugDrawPoints;
     bool m_isDebugDrawEnabled;
-    bool m_unk3501;
+    bool m_disablePlayerHitbox;
     GameObject* m_anticheatSpike;
 }
 
@@ -14495,8 +14499,8 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     virtual void resetSPTriggered() = win 0x2d5f80, imac 0xef390, m1 0xd44bc, ios 0x361450;
     virtual void didRotateGameplay() = win 0x2d6f20, imac 0xf0910, m1 0xd57e8, ios 0x362078;
     virtual void manualUpdateObjectColors(GameObject*) = win 0x2d1700, m1 0xd0ff4, imac 0xeb6d0, ios 0x35ea4c;
-    virtual TodoReturn claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x2d9060, imac 0xf3080, m1 0xd7c6c, ios 0x363bf0;
-    virtual TodoReturn unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = win 0x2d9120, imac 0xf3140, m1 0xd7d4c, ios 0x363cbc;
+    virtual cocos2d::CCParticleSystemQuad* claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x2d9060, imac 0xf3080, m1 0xd7c6c, ios 0x363bf0;
+    virtual void unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = win 0x2d9120, imac 0xf3140, m1 0xd7d4c, ios 0x363cbc;
     virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*) = win 0x2d87c0, imac 0xf20a0, m1 0xd6d1c, ios 0x362fa8;
     virtual void checkpointActivated(CheckpointGameObject*) = win 0x2d87f0, imac 0xf20d0, m1 0xd6d34, ios 0x362fc0;
     virtual void addKeyframe(KeyframeGameObject*) = win 0x2d9160, imac 0xf3180, m1 0xd7d8c, ios 0x363cfc;
@@ -15570,11 +15574,11 @@ class LikeItemLayer : FLAlertLayer {
 class ListButtonBar : cocos2d::CCNode {
     // virtual ~ListButtonBar();
 
-    static ListButtonBar* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = ios 0x16b2d8, win 0x6ad70, imac 0x3de040, m1 0x360e74;
+    static ListButtonBar* create(cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset, float arrowOffset, int arrowType) = ios 0x16b2d8, win 0x6ad70, imac 0x3de040, m1 0x360e74;
 
     int getPage();
     void goToPage(int) = win 0x6b380, m1 0x361584;
-    bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float, float, int) = win 0x6ae80, imac 0x3de110, m1 0x360f58;
+    bool init(cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset, float arrowOffset, int arrowType) = win 0x6ae80, imac 0x3de110, m1 0x360f58;
     void onLeft(cocos2d::CCObject* sender) = win 0x6b430, m1 0x361460, imac 0x3de670, ios 0x16b8c4;
     void onRight(cocos2d::CCObject* sender) = win 0x6b410, m1 0x3614ec, imac 0x3de710, ios 0x16b8d4;
 
@@ -15593,9 +15597,9 @@ class ListButtonBarDelegate {
 class ListButtonPage : cocos2d::CCLayer {
     // virtual ~ListButtonPage();
 
-    static ListButtonPage* create(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float) = win 0x6b450, imac 0x3de560, m1 0x361358;
+    static ListButtonPage* create(cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset) = win 0x6b450, imac 0x3de560, m1 0x361358;
 
-    bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, int, float, float, float) = imac 0x3de840, m1 0x361600;
+    bool init(cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset) = imac 0x3de840, m1 0x361600;
 }
 
 [[link(android)]]
@@ -17267,7 +17271,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
     // PlayerObject() = ios 0x23e4dc;
 
-    static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = ios 0x21836c, win 0x370960, imac 0x3e88e0, m1 0x36a89c;
+    static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool ignoreDamage) = ios 0x21836c, win 0x370960, imac 0x3e88e0, m1 0x36a89c;
 
     virtual void update(float) = win 0x373010, imac 0x3eb270, m1 0x36cf1c, ios 0x21a2d0;
     virtual void setScaleX(float scale) { GameObject::setScaleX(scale); } // win 0x38cac0, m1 0x38871c, imac 0x40b0c0, ios 0x22e704;
@@ -17362,7 +17366,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void hitGround(GameObject*, bool) = ios 0x224188, win 0x3861a0, imac 0x3fa390, m1 0x37951c;
     TodoReturn hitGroundNoJump(GameObject*, bool);
     void incrementJumps() = ios 0x21eaf8, win 0x376e10, imac 0x3f1bf0, m1 0x3728d8;
-    bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = ios 0x218410, win 0x370a00, imac 0x3e8970, m1 0x36a954;
+    bool init(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool ignoreDamage) = ios 0x218410, win 0x370a00, imac 0x3e8970, m1 0x36a954;
     bool isBoostValid(float);
     bool isFlying() = ios 0x21d2cc, win inline, m1 0x37097c, imac 0x3efb00 {
         return m_isShip || m_isBird || m_isDart || m_isSwing;
@@ -19994,7 +19998,7 @@ class SetupBGSpeedTrigger : SetupTriggerPopup {
 class SetupCameraEdgePopup : SetupTriggerPopup {
     // virtual ~SetupCameraEdgePopup();
 
-    static SetupCameraEdgePopup* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x3faea0;
+    static SetupCameraEdgePopup* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x3faea0, m1 0x4c5330, imac 0x570e20, ios 0x239aa0;
 
     virtual void determineStartValues() = win 0x3fbd10, m1 0x4c63b8, imac 0x5720f0, ios 0x23a898;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x3fc200, m1 0x4c6600, imac 0x572390, ios 0x23aa70;
@@ -20058,14 +20062,14 @@ class SetupCameraModePopup : SetupTriggerPopup {
 class SetupCameraOffsetTrigger : SetupTriggerPopup {
     // virtual ~SetupCameraOffsetTrigger();
 
-    static SetupCameraOffsetTrigger* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x3fd690;
+    static SetupCameraOffsetTrigger* create(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x3fd690, m1 0x5732f0, imac 0x64b110, ios 0x192364;
 
     virtual void determineStartValues() = win 0x3fe9f0, m1 0x57505c, imac 0x64d090, ios 0x193bc8;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x3ffc80, m1 0x575a68, imac 0x64dbc0, ios 0x194458;
     virtual void textChanged(CCTextInputNode*) = win 0x3ff6f0, imac 0x64d890, m1 0x5757e8, ios 0x194230;
     virtual void valuePopupClosed(ConfigureValuePopup*, float) = win 0x3fedf0, m1 0x57542c, imac 0x64d460, ios 0x193f00;
 
-    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x3fd7b0, m1 0x57347c, imac 0x64b350;
+    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x3fd7b0, m1 0x57347c, imac 0x64b350, ios 0x192440;
     void onEasing(cocos2d::CCObject* sender) = win 0x3ff1b0;
     void onEasingRate(cocos2d::CCObject* sender) = win 0x3fed30;
     void onTargetMode(cocos2d::CCObject* sender) = win 0x3ff610;
@@ -20223,7 +20227,7 @@ class SetupCollisionTriggerPopup : SetupTriggerPopup {
 class SetupCountTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupCountTriggerPopup();
 
-    static SetupCountTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x4031a0;
+    static SetupCountTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x4031a0, imac 0x2a7700, m1 0x24dd00, ios 0xf6b70;
 
     virtual void determineStartValues() = win 0x404390, imac 0x2a8e10, m1 0x24f140, ios 0xf7c00;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x404b30, imac 0x2a93a0, m1 0x24f618, ios 0xf7fd0;
@@ -20789,7 +20793,7 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
 class SetupObjectTogglePopup : SetupTriggerPopup {
     // virtual ~SetupObjectTogglePopup();
 
-    static SetupObjectTogglePopup* create(EffectGameObject*, cocos2d::CCArray*, bool);
+    static SetupObjectTogglePopup* create(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x411b70, m1 0x2f5348, imac 0x3624f0, ios 0x1a5e38;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x40c730, imac 0x3631a0, m1 0x2f5e64, ios 0x1a66f8;
     virtual void valueDidChange(int, float) = win 0x4125e0, imac 0x363120, m1 0x2f5dec, ios 0x1a6688;
@@ -21023,7 +21027,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
 class SetupRandAdvTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupRandAdvTriggerPopup();
 
-    static SetupRandAdvTriggerPopup* create(RandTriggerGameObject*, cocos2d::CCArray*) = win 0x424f50;
+    static SetupRandAdvTriggerPopup* create(RandTriggerGameObject*, cocos2d::CCArray*) = win 0x424f50, m1 0x30a6c8, imac 0x37a4e0, ios 0x32990;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x425b10, m1 0x30bc4c, imac 0x37be30, ios 0x33a20;
     virtual void textChanged(CCTextInputNode*) = m1 0x30bc44, imac 0x37be10, ios 0x33a18 {}
@@ -21050,7 +21054,7 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
 class SetupRandTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupRandTriggerPopup();
 
-    static SetupRandTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x427720;
+    static SetupRandTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x427720, m1 0x501514, imac 0x5cce60, ios 0x1ca8d0;
 
     virtual void determineStartValues() = win 0x4285e0, m1 0x5028bc, imac 0x5ce3b0, ios 0x1cb858;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x4290c0, m1 0x502ddc, imac 0x5ce990, ios 0x1cbc54;
@@ -21139,7 +21143,7 @@ class SetupRotatePopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x42acd0, m1 0x4d7138, imac 0x585460, ios 0x267a44;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x42ad70, imac 0x5854e0, m1 0x4d71b4, ios 0x267ac0;
 
-    bool init(EnhancedGameObject*, cocos2d::CCArray*) = m1 0x4d6c50, imac 0x584ec0;
+    bool init(EnhancedGameObject*, cocos2d::CCArray*) = win 0x42a770, m1 0x4d6c50, imac 0x584ec0, ios 0x267614;
 }
 
 [[link(android)]]
@@ -21484,7 +21488,7 @@ class SetupTimeWarpPopup : SetupTriggerPopup {
 class SetupTouchTogglePopup : SetupTriggerPopup {
     // virtual ~SetupTouchTogglePopup();
 
-    static SetupTouchTogglePopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupTouchTogglePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x44b5e0, imac 0x2a4f80, m1 0x24ba90, ios 0x24a11c;
 
     virtual void determineStartValues() = win 0x44c350, imac 0x2a6270, m1 0x24cb44, ios 0x24af20;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x44c880, imac 0x2a65b0, m1 0x24ce10, ios 0x24b160;
@@ -21746,12 +21750,12 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 class SetupZoomTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupZoomTriggerPopup();
 
-    static SetupZoomTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupZoomTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x465b70, imac 0x30cb90, m1 0x2a38bc, ios 0x1ba2f4;
 
     virtual void determineStartValues() = win 0x287910, imac 0x30d1e0, m1 0x2a3de4, ios 0x1ba6e0;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x287920, imac 0x30d1f0, m1 0x2a3de8, ios 0x1ba6e4;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x2a3a44, imac 0x30cdc0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x465c80, m1 0x2a3a44, imac 0x30cdc0, ios 0x1ba3cc;
 }
 
 [[link(android)]]

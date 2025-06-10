@@ -187,8 +187,14 @@ public class FindVtablesScript extends GhidraScript {
             
             if (vtableOffsets.containsKey(offset) && vtableOffsets.get(offset) > 0) {
                 try {
+                    String symbolName = "vtable-" + vtableOffsets.get(offset);
+                    // If a symbol with the same name already exists, delete it
+                    Symbol existingSymbol = currentProgram.getSymbolTable().getSymbol(symbolName, toAddr(offset), symbol.getParentNamespace());
+                    if (existingSymbol != null) {
+                        existingSymbol.delete();
+                    }
                     // println("Found vtable at " + offset);
-                    symbol.setName("vtable-" + vtableOffsets.get(offset), symbol.getSource());
+                    symbol.setName(symbolName, symbol.getSource());
                 }
                 catch (Exception e) {
                     // println("Failed to rename vtable at " + e.getMessage());

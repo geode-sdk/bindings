@@ -2760,6 +2760,8 @@ class cocos2d::CCEGLView {
     [[missing(android, mac, ios)]]
     void setupWindow(cocos2d::CCRect);
     [[missing(android, mac, ios)]]
+    bool initGlew();
+    [[missing(android, mac, ios)]]
     void onGLFWCharCallback(GLFWwindow* window, unsigned int entered);
     [[missing(android, mac, ios)]]
     void onGLFWCursorEnterFunCallback(GLFWwindow* window, int entered);
