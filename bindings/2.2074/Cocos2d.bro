@@ -2123,7 +2123,7 @@ class cocos2d::CCNode : cocos2d::CCObject {
     cocos2d::CCRect boundingBox() = imac 0x260cd0, m1 0x20ca74, ios 0x23b390;
     void childrenAlloc();
     cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = imac 0x262c40, m1 0x20e94c, ios 0x23ccb8;
-    cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const& point) = imac inline, m1 inline, ios inline {
+    cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const& worldPoint) = imac inline, m1 inline, ios inline {
         cocos2d::CCPoint nodePoint = convertToNodeSpace(worldPoint);
         return ccpSub(nodePoint, m_obAnchorPointInPoints);
     }
