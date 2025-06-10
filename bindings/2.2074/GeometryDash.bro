@@ -9972,7 +9972,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_bUnk31a0;
     bool m_bUnk31a1;
     StartPosObject* m_startPosObject;
-    bool m_unk3188;
+    bool m_useReplay;
+    bool m_unk3189;
     int m_unk318c;
     int m_unk3190;
     gd::vector<GameObject*> m_unk3198;
@@ -9986,9 +9987,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCNode* m_unk2a84;
     int m_unk2a88;
     float m_unk2a8c;
-    int m_unk2a90;
-    int m_unk2a94;
-    int m_unk2a98;
+    float m_unk2a90;
+    float m_unk2a94;
+    bool m_unk2a98;
     cocos2d::CCDictionary* m_collectedItems;
     float m_levelLength;
     bool m_unk2aa4;
@@ -10018,11 +10019,15 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_unk3294;
     cocos2d::ccColor3B m_unk3298;
     int m_resumeTimer;
-    bool m_unk32a0;
-    int m_unk32a4;
-    gd::string m_unk32a8;
+    bool m_recordInputs;
+    bool m_unk32a1;
+    bool m_unk32a2;
+    bool m_unk32a3;
+    bool m_unk32a4;
+    gd::string m_recordString;
     cocos2d::CCObject* m_unk32c8;
     int m_unk32d0;
+    bool m_unk32d4;
     double m_unk32d8;
     int m_coinsCollected;
     int m_unk32e4;
@@ -10110,9 +10115,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_startOptimization;
     GJGameLoadingLayer* m_loadingLayer;
     cocos2d::CCDrawNode* m_debugDrawNode;
-    void* m_unk3678;
+    std::array<cocos2d::CCPoint, 400>* m_debugDrawPoints;
     bool m_isDebugDrawEnabled;
-    bool m_unk3501;
+    bool m_disablePlayerHitbox;
     GameObject* m_anticheatSpike;
 }
 
@@ -17267,7 +17272,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
     // PlayerObject() = ios 0x23e4dc;
 
-    static PlayerObject* create(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = ios 0x21836c, win 0x370960, imac 0x3e88e0, m1 0x36a89c;
+    static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool ignoreDamage) = ios 0x21836c, win 0x370960, imac 0x3e88e0, m1 0x36a89c;
 
     virtual void update(float) = win 0x373010, imac 0x3eb270, m1 0x36cf1c, ios 0x21a2d0;
     virtual void setScaleX(float scale) { GameObject::setScaleX(scale); } // win 0x38cac0, m1 0x38871c, imac 0x40b0c0, ios 0x22e704;
@@ -17362,7 +17367,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void hitGround(GameObject*, bool) = ios 0x224188, win 0x3861a0, imac 0x3fa390, m1 0x37951c;
     TodoReturn hitGroundNoJump(GameObject*, bool);
     void incrementJumps() = ios 0x21eaf8, win 0x376e10, imac 0x3f1bf0, m1 0x3728d8;
-    bool init(int, int, GJBaseGameLayer*, cocos2d::CCLayer*, bool) = ios 0x218410, win 0x370a00, imac 0x3e8970, m1 0x36a954;
+    bool init(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool ignoreDamage) = ios 0x218410, win 0x370a00, imac 0x3e8970, m1 0x36a954;
     bool isBoostValid(float);
     bool isFlying() = ios 0x21d2cc, win inline, m1 0x37097c, imac 0x3efb00 {
         return m_isShip || m_isBird || m_isDart || m_isSwing;
