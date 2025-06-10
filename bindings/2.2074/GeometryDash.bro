@@ -17122,11 +17122,7 @@ class PlatformToolbox {
         cocos2d::CCEGLView::sharedOpenGLView()->showCursor(false);
     }
     static bool isControllerConnected() = ios 0x16f3d8, win inline, imac 0x4b1a30, m1 0x41a254 {
-        #ifdef GEODE_IS_WINDOWS
-            return cocos2d::CCApplication::sharedApplication()->getControllerConnected();
-        #else
-            return false;
-        #endif
+        return cocos2d::CCApplication::sharedApplication()->getControllerConnected();
     }
     static bool isHD();
     static bool isLocalPlayerAuthenticated();
