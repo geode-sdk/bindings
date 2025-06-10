@@ -7963,7 +7963,7 @@ class GameObject : CCSpritePlus {
     TodoReturn makeInvisible() = ios 0x25b45c, imac 0x5a53a0;
     TodoReturn makeVisible();
     float opacityModForMode(int, bool);
-    cocos2d::CCSpriteBatchNode* parentForZLayer(int zLayer, bool blending, int parentMode) = win 0x198f60;
+    cocos2d::CCNode* parentForZLayer(int zLayer, bool blending, int parentMode) = win 0x198f60;
     gd::string perspectiveColorFrame(char const*, int);
     gd::string perspectiveFrame(char const*, int);
     void playDestroyObjectAnim(GJBaseGameLayer*) = ios 0x349078, win 0x1a7520, m1 0x1f9910, imac 0x24c560;
