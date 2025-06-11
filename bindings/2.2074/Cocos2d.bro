@@ -2123,7 +2123,10 @@ class cocos2d::CCNode : cocos2d::CCObject {
     cocos2d::CCRect boundingBox() = imac 0x260cd0, m1 0x20ca74, ios 0x23b390;
     void childrenAlloc();
     cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = imac 0x262c40, m1 0x20e94c, ios 0x23ccb8;
-    cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const&);
+    cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const& worldPoint) = imac inline, m1 inline, ios inline {
+        cocos2d::CCPoint nodePoint = convertToNodeSpace(worldPoint);
+        return ccpSub(nodePoint, m_obAnchorPointInPoints);
+    }
     cocos2d::CCPoint convertToWindowSpace(cocos2d::CCPoint const&);
     cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&) = imac 0x262c80, m1 0x20e994, ios 0x23cd00;
     cocos2d::CCPoint convertToWorldSpaceAR(cocos2d::CCPoint const& point) = m1 0x20ea40, imac 0x262d20, ios inline {
@@ -4606,7 +4609,7 @@ class cocos2d {
     static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = m1 0x4f1f3c, imac 0x5bc460, ios 0x2f8b04;
     static void FNTConfigRemoveCache();
     static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
-    static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&) = m1 0x1df1e8, imac 0x22e4c0;
+    static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&) = m1 0x1df1e8, imac 0x22e4c0, ios 0x40b1f8;
     static cocos2d::CCSize __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&) = m1 0x1df244, imac 0x22e530;
     static cocos2d::CCPoint ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
     static void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
