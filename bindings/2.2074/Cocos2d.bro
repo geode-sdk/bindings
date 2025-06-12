@@ -2597,6 +2597,48 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
 }
 
 [[link(win, android)]]
+class cocos2d::CCTextureAtlas : cocos2d::CCObject {
+	static cocos2d::CCTextureAtlas* create(char const*, unsigned int);
+	static cocos2d::CCTextureAtlas* createWithTexture(cocos2d::CCTexture2D*, unsigned int);
+
+	bool initWithFile(char const*, unsigned int);
+	bool initWithTexture(cocos2d::CCTexture2D*, unsigned int);
+
+	void setDirty(bool);
+
+	// CCTextureAtlas(cocos2d::CCTextureAtlas const&);
+	// CCTextureAtlas();
+	char const* description();
+	void drawNumberOfQuads(unsigned int);
+	void drawNumberOfQuads(unsigned int, unsigned int);
+	void drawQuads();
+	void fillWithEmptyQuadsFromIndex(unsigned int, unsigned int);
+	void increaseTotalQuadsWith(unsigned int);
+	void insertQuad(cocos2d::_ccV3F_C4B_T2F_Quad*, unsigned int);
+	void insertQuadFromIndex(unsigned int, unsigned int);
+	void insertQuads(cocos2d::_ccV3F_C4B_T2F_Quad*, unsigned int, unsigned int);
+	bool isDirty();
+	void listenBackToForeground(cocos2d::CCObject*);
+	void mapBuffers();
+	void moveQuadsFromIndex(unsigned int, unsigned int);
+	void moveQuadsFromIndex(unsigned int, unsigned int, unsigned int);
+	void removeAllQuads();
+	void removeQuadAtIndex(unsigned int);
+	void removeQuadsAtIndex(unsigned int, unsigned int);
+	bool resizeCapacity(unsigned int);
+	void setupIndices();
+	void setupVBO();
+	void updateQuad(cocos2d::_ccV3F_C4B_T2F_Quad*, unsigned int);
+
+	virtual unsigned int getTotalQuads();
+	virtual unsigned int getCapacity();
+	virtual cocos2d::CCTexture2D* getTexture();
+	virtual void setTexture(cocos2d::CCTexture2D*);
+	virtual cocos2d::_ccV3F_C4B_T2F_Quad* getQuads();
+	virtual void setQuads(cocos2d::_ccV3F_C4B_T2F_Quad*);
+}
+
+[[link(win, android)]]
 class cocos2d::CCTextureCache : cocos2d::CCObject {
     static void purgeSharedTextureCache();
     static void reloadAllTextures();
