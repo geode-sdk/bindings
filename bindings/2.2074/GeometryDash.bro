@@ -9296,8 +9296,22 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void bumpPlayer(PlayerObject*, EffectGameObject*) = ios 0x1eab1c, win 0x2124f0, imac 0x117ce0, m1 0xf6b04;
     TodoReturn buttonIDToButton(int);
     TodoReturn calculateColorGroups();
-    TodoReturn cameraMoveX(float, float, float, bool);
-    TodoReturn cameraMoveY(float, float, float, bool);
+    
+    void cameraMoveX(float value, float duration, float rate, bool) {
+        float x = m_gameState.m_cameraPosition.x;
+        m_gameState.m_unkBool4 = true;
+        m_gameState.tweenValue(x, value, 1, duration, 1, rate, -1, -1);
+    }
+
+    void cameraMoveY(float value, float duration, float rate, bool force) {
+        if (!m_gameState.m_unkBool5 || m_gameState.m_unkInt13 != value || force) {
+            float y = m_gameState.m_cameraPosition.y;
+            m_gameState.m_unkBool5 = true;
+            m_gameState.m_unkInt13 = value;
+            m_gameState.tweenValue(y, value, 2, duration, 1, rate, -1, -1);
+        }
+    }
+
     bool canBeActivatedByPlayer(PlayerObject*, EffectGameObject*) = ios 0x1ea898, win 0x2123e0, imac 0x117880, m1 0xf6710;
     TodoReturn canProcessSFX(SFXTriggerState&, gd::unordered_map<int, int>&, gd::unordered_map<int, float>&, gd::vector<SFXTriggerState>&);
     TodoReturn canTouchObject(GameObject*);
@@ -9426,7 +9440,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn modifyGroupPhysics(AdvancedFollowEditObject*, cocos2d::CCArray*);
     TodoReturn modifyObjectPhysics(AdvancedFollowEditObject*, GameObjectPhysics&);
     void moveAreaObject(GameObject*, float, float) = win 0x2257d0;
-    TodoReturn moveCameraToPos(cocos2d::CCPoint);
+    void moveCameraToPos(cocos2d::CCPoint pos) {
+        this->cameraMoveX(pos.x, 1.2f, 1.8f, false);
+        this->cameraMoveY(pos.y, 1.2f, 1.8f, false);
+    }
     void moveObject(GameObject*, double, double, bool);
     void moveObjects(cocos2d::CCArray*, double, double, bool) = win 0x228a70;
     void moveObjectsSilent(int, double, double);
@@ -10906,7 +10923,7 @@ class GJGameState {
     bool m_unkBool6;
     bool m_gravityRelated;
     int m_unkInt12;
-    int m_unkInt13;
+    float m_unkInt13;
     int m_unkInt14;
     int m_unkInt15;
     bool m_unkBool7;
