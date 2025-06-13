@@ -5084,10 +5084,10 @@ class pugi::xml_document {
     ~xml_document() = imac 0x62ab90, m1 0x555520, ios 0x3a5a20;
 }
 
-[[link(win, android)]]
+[[link(android)]]
 class pugi::xml_node {
     // i'm not bothering
-    xml_node() = m1 inline, imac inline, ios inline {
+    xml_node() {
     	_root = nullptr;
     }
 }
