@@ -21659,7 +21659,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void onEase(cocos2d::CCObject* sender) = win 0x464ac0;
     void onEaseRate(cocos2d::CCObject* sender) = win 0x464b30;
     void onMultiTrigger(cocos2d::CCObject* sender);
-    void onPage(cocos2d::CCObject* sender) = win 0x45bf30;
+    void onPage(cocos2d::CCObject* sender) = win 0x45bf30, m1 0x1d6454, imac 0x223570, ios 0x131ac0;
     void onSpawnedByTrigger(cocos2d::CCObject* sender) = win 0x45d2d0;
     void onToggleTriggerValue(cocos2d::CCObject* sender) = win 0x45f6c0, m1 0x1da960, imac 0x228f60, ios 0x13516c;
     void onTouchTriggered(cocos2d::CCObject* sender) = win 0x45d1e0;
