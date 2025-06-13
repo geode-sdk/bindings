@@ -1,8 +1,29 @@
 // clang-format off
 
 [[link(win, android)]]
-class cocos2d::CCApplication {
+class cocos2d::CCAction : cocos2d::CCObject {
+	// CCAction(cocos2d::CCAction const&);
+	CCAction();
+	virtual ~CCAction();
+}
+
+[[link(win, android)]]
+class cocos2d::CCActionInstant : cocos2d::CCFiniteTimeAction {
+	// CCActionInstant(cocos2d::CCActionInstant const&);
+	CCActionInstant();
+
+	virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+	virtual void update(float);
+	virtual bool isDone();
+	virtual void step(float);
+	virtual cocos2d::CCFiniteTimeAction* reverse();
+}
+
+[[link(win, android)]]
+class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
 	static cocos2d::CCApplication* sharedApplication();
+
+	virtual ~CCApplication();
 
 	virtual int run();
 	virtual void setAnimationInterval(double);
@@ -11,7 +32,10 @@ class cocos2d::CCApplication {
 }
 
 [[link(win, android)]]
-class cocos2d::CCDictionary {
+class cocos2d::CCDictionary : cocos2d::CCObject {
+	CCDictionary();
+	virtual ~CCDictionary();
+
 	static cocos2d::CCDictionary* create();
 	static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*);
 	static cocos2d::CCDictionary* createWithContentsOfFile(const char*);
@@ -39,7 +63,10 @@ class cocos2d::CCDictionary {
 }
 
 [[link(win, android)]]
-class cocos2d::CCDirector {
+class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
+	CCDirector();
+	virtual ~CCDirector();
+
 	void drawScene();
 	void setContentScaleFactor(float);
 	void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
@@ -49,6 +76,9 @@ class cocos2d::CCDirector {
 
 [[link(win, android)]]
 class cocos2d::CCEGLView {
+	protected CCEGLView();
+	protected virtual ~CCEGLView();
+
 	static cocos2d::CCEGLView* sharedOpenGLView();
 
 	void toggleFullScreen(bool);
@@ -61,9 +91,17 @@ class cocos2d::CCEGLView {
 }
 
 [[link(win, android)]]
-class cocos2d::CCFileUtils {
+class cocos2d::CCEGLViewProtocol {
+	CCEGLViewProtocol();
+	virtual ~CCEGLViewProtocol();
+}
+
+[[link(win, android)]]
+class cocos2d::CCFileUtils : cocos2d::TypeInfo {
 	// CCFileUtils();
 	// CCFileUtils(cocos2d::CCFileUtils const&);
+	virtual ~CCFileUtils();
+
 	static CCFileUtils* sharedFileUtils();
 	static void purgeFileUtils();
 	void removeAllPaths();
@@ -102,13 +140,13 @@ class cocos2d::CCFileUtils {
 }
 
 [[link(win, android)]]
-class cocos2d::CCLayerColor {
+class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
 	static cocos2d::CCLayerColor* create();
  	static cocos2d::CCLayerColor* create(const cocos2d::ccColor4B&, float, float);
  	static cocos2d::CCLayerColor* create(const cocos2d::ccColor4B&);
 
 	CCLayerColor();
-	~CCLayerColor();
+	virtual ~CCLayerColor();
 
 	void changeWidth(float);
 	void changeHeight(float);
@@ -127,11 +165,11 @@ class cocos2d::CCLayerColor {
 }
 
 [[link(win, android)]]
-class cocos2d::CCLayerRGBA {
+class cocos2d::CCLayerRGBA : cocos2d::CCLayer, cocos2d::CCRGBAProtocol {
 	static cocos2d::CCLayerRGBA* create();
 
 	CCLayerRGBA();
-	~CCLayerRGBA();
+	virtual ~CCLayerRGBA();
 
 	virtual bool init();
 	virtual GLubyte getOpacity();
@@ -151,11 +189,11 @@ class cocos2d::CCLayerRGBA {
 }
 
 [[link(win, android)]]
-class cocos2d::CCLayer {
+class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCAccelerometerDelegate, cocos2d::CCKeypadDelegate, cocos2d::CCKeyboardDelegate, cocos2d::CCMouseDelegate {
 	static CCLayer *create();
 
 	CCLayer();
-	~CCLayer();
+	virtual ~CCLayer();
 
 	void registerScriptAccelerateHandler(int);
 	void unregisterScriptAccelerateHandler();
@@ -199,7 +237,9 @@ class cocos2d::CCLayer {
 }
 
 [[link(win, android)]]
-class cocos2d::CCMenuItem {
+class cocos2d::CCMenuItem : cocos2d::CCNodeRGBA {
+	virtual ~CCMenuItem();
+
 	static cocos2d::CCMenuItem* create();
 	static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
 
@@ -219,7 +259,7 @@ class cocos2d::CCMenuItem {
 }
 
 [[link(win, android)]]
-class cocos2d::CCMenu {
+class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
 	static cocos2d::CCMenu* create();
 	// static CCMenu* create(CCMenuItem* item, ...);
 	static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*);
@@ -256,11 +296,11 @@ class cocos2d::CCMenu {
 }
 
 [[link(win, android)]]
-class cocos2d::CCNode {
+class cocos2d::CCNode : cocos2d::CCObject {
 	static cocos2d::CCNode* create();
 
 	CCNode();
-	~CCNode();
+	virtual ~CCNode();
 
 	int getScriptHandler();
 	void scheduleUpdateWithPriorityLua(int, int);
@@ -396,12 +436,47 @@ class cocos2d::CCNode {
 }
 
 [[link(win, android)]]
-class cocos2d::CCScene {
+class cocos2d::CCNodeRGBA : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
+	CCNodeRGBA();
+	virtual ~CCNodeRGBA();
+}
+
+[[link(win, android)]]
+class cocos2d::CCObject : cocos2d::CCCopying {
+	// CCObject(cocos2d::CCObject const&);
+	CCObject();
+	virtual ~CCObject();
+
+	void release();
+	void retain();
+	cocos2d::CCObject* autorelease();
+	cocos2d::CCObject* copy();
+	bool isSingleReference() const;
+	unsigned int retainCount() const;
+
+	virtual bool isEqual(cocos2d::CCObject const*);
+	virtual void acceptVisitor(cocos2d::CCDataVisitor&);
+	virtual void update(float dt);
+	virtual cocos2d::CCObjectType getObjType() const;
+	virtual void setObjType(cocos2d::CCObjectType);
+	virtual void encodeWithCoder(DS_Dictionary*);
+	virtual bool canEncode();
+
+	static cocos2d::CCObject* createWithCoder(DS_Dictionary*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCScene : cocos2d::CCNode {
+	CCScene();
+	virtual ~CCScene();
+
 	int getHighestChildZ();
 }
 
 [[link(win, android)]]
-class cocos2d::CCScheduler {
+class cocos2d::CCScheduler : cocos2d::CCObject {
+	virtual ~CCScheduler();
+
 	virtual void update(float dt);
 	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool);
 	void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool);
@@ -422,7 +497,10 @@ class cocos2d::CCScheduler {
 }
 
 [[link(win, android)]]
-class cocos2d::CCSprite {
+class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
+	CCSprite();
+	virtual ~CCSprite();
+
 	static cocos2d::CCSprite* create(char const*);
 	static cocos2d::CCSprite* createWithSpriteFrameName(char const*);
 
@@ -431,7 +509,7 @@ class cocos2d::CCSprite {
 }
 
 [[link(win, android)]]
-class cocos2d::CCSpriteFrameCache {
+class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
 	bool init();
 	void addSpriteFramesWithDictionary(cocos2d::CCDictionary*, cocos2d::CCTexture2D*);
 	void addSpriteFramesWithFile(const char*);
@@ -448,7 +526,14 @@ class cocos2d::CCSpriteFrameCache {
 }
 
 [[link(win, android)]]
-class cocos2d::CCTouchDispatcher {
+class cocos2d::CCTexture2D : cocos2d::CCObject {
+	// CCTexture2D(cocos2d::CCTexture2D const&);
+	virtual ~CCTexture2D();
+	CCTexture2D();
+}
+
+[[link(win, android)]]
+class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate {
 	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
 
 	virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*);
@@ -462,7 +547,7 @@ class cocos2d::CCTouchDispatcher {
 }
 
 [[link(win, android)]]
-class cocos2d::extension::CCHttpClient {
+class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 	void send(cocos2d::extension::CCHttpRequest*);
 }
 
@@ -470,6 +555,12 @@ class cocos2d::extension::CCHttpClient {
 class cocos2d::extension::CCControlUtils {
 	static cocos2d::extension::HSV HSVfromRGB(cocos2d::extension::RGBA);
 	static cocos2d::extension::RGBA RGBfromHSV(cocos2d::extension::HSV);
+}
+
+[[link(win, android)]]
+class cocos2d::CCImage : cocos2d::CCObject {
+	CCImage();
+	virtual ~CCImage();
 }
 
 [[link(win, android)]]
@@ -494,12 +585,12 @@ class cocos2d::CCIMEDispatcher {
 }
 
 [[link(win, android)]]
-class cocos2d::CCKeyboardDispatcher {
+class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
 	bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool);
 }
 
 [[link(win, android)]]
-class cocos2d::CCMouseDispatcher {
+class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
 	// CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
 	// CCMouseDispatcher();
 	void addDelegate(cocos2d::CCMouseDelegate*);
@@ -545,7 +636,7 @@ class DS_Dictionary {
 }
 
 [[link(win, android)]]
-class ObjectDecoder {
+class ObjectDecoder : cocos2d::CCNode {
 	// virtual ~ObjectDecoder();
 
 	static ObjectDecoder* sharedDecoder();
