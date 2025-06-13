@@ -454,7 +454,7 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkVecFloat1, 0x26c);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint10, 0x278);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint11, 0x27c);
 GEODE_MEMBER_CHECK(GJGameState, m_unkUint12, 0x280);
-GEODE_MEMBER_CHECK(GJGameState, m_unkPoint31, 0x284);
+GEODE_MEMBER_CHECK(GJGameState, m_cameraStepDiff, 0x284);
 GEODE_MEMBER_CHECK(GJGameState, m_unkFloat10, 0x28c);
 GEODE_MEMBER_CHECK(GJGameState, m_timeModRelated, 0x290);
 GEODE_MEMBER_CHECK(GJGameState, m_timeModRelated2, 0x294);
