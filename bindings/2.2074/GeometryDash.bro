@@ -9661,7 +9661,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn triggerDynamicRotateCommand(EnhancedTriggerObject*);
     void triggerGradientCommand(GradientTriggerObject*) = win 0x21a3a0, imac 0x128bc0, m1 0x104294;
     TodoReturn triggerGravityChange(EffectGameObject*, int);
-    TodoReturn triggerMoveCommand(EffectGameObject*);
+    void triggerMoveCommand(EffectGameObject*) = win 0x219690;
     TodoReturn triggerRotateCommand(EnhancedTriggerObject*);
     void triggerShaderCommand(ShaderGameObject*) = win 0x21bc80;
     void triggerTransformCommand(TransformTriggerGameObject*) = win 0x21a110;
@@ -10440,7 +10440,7 @@ class GJEffectManager : cocos2d::CCNode {
     int countForItem(int) = win 0x25b060, imac 0x2d6930, m1 0x2777b8;
     TodoReturn createFollowCommand(float, float, float, int, int, int, int);
     TodoReturn createKeyframeCommand(int, cocos2d::CCArray*, GameObject*, int, int, bool, float, float, float, float, float, float, gd::vector<int> const&);
-    TodoReturn createMoveCommand(cocos2d::CCPoint, int, float, int, float, bool, bool, bool, bool, float, float, int, int);
+    void createMoveCommand(cocos2d::CCPoint pt, int groupID, float duration, int easingType, float easingRate, bool lockPlayerX, bool lockPlayerY, bool lockCameraX, bool lockCameraY, float moveModX, float moveModY, int uniqueID, int controlID) = win 0x255370;
     TodoReturn createPlayerFollowCommand(float, float, int, float, float, int, int, int);
     TodoReturn createRotateCommand(float, float, int, int, int, float, bool, bool, bool, int, int);
     TodoReturn createTransformCommand(double, double, double, double, bool, float, int, int, int, float, bool, bool, int, int);
@@ -10971,7 +10971,7 @@ class GJGameState {
     float m_unkUint10;
     int m_unkUint11;
     int m_unkUint12;
-    cocos2d::CCPoint m_unkPoint31;
+    cocos2d::CCPoint m_cameraStepDiff;
     float m_unkFloat10;
     unsigned int m_timeModRelated;
     bool m_timeModRelated2;
