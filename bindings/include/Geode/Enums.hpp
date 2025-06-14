@@ -944,7 +944,7 @@ enum class GJHttpType {
     GetTopArtists = 0x35,
     GetAccountBackupURL = 0x36,
     GetAccountSyncURL = 0x37,
-    //0x38 is unused? 
+    NetworkTest = 0x38,
     JoinLobby = 0x39,
     ExitLobby = 0x3A,
     GetCustomContentURL = 0x3B,
