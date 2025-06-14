@@ -14361,7 +14361,14 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     virtual cocos2d::CCArray* updateResultArray(cocos2d::CCArray*) = win 0x2c0770, m1 0x3ecf38, imac 0x47f180, ios 0x411900;
     virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x2c7950, imac 0x47eef0, m1 0x3eccf0, ios 0x411764;
 
-    TodoReturn createNewLevel(cocos2d::CCObject*);
+    void createNewLevel(cocos2d::CCObject*) = ios 0x411048, win inline, m1 inline, imac inline  {
+        this->setKeypadEnabled(false);
+        this->setKeyboardEnabled(false);
+        GameLevelManager* glm = GameLevelManager::sharedState();
+        GJGameLevel* newLevel = glm->createNewLevel();
+        // glm-> = true; // on windows it says offset_0x2b4 in ghidra but i have no idea how to do anything with members in bindings
+        cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(0.5f, EditLevelLayer::scene(newLevel)));
+    }
     TodoReturn createNewList(cocos2d::CCObject*) = imac 0x47e520;
     TodoReturn createNewSmartTemplate(cocos2d::CCObject*);
     TodoReturn deleteSelected();
