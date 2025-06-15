@@ -7142,8 +7142,8 @@ class GameLevelManager : cocos2d::CCNode {
     void updateUsernames() = imac 0x523ed0;
     void updateUserScore() = ios 0xa5620, win 0x153790, m1 0x48c508, imac 0x531c80;
     void uploadAccountComment(gd::string);
-    void uploadComment(gd::string, CommentType, int, int) = m1 0x494bec, imac 0x53b480;
-    void uploadFriendRequest(int, gd::string) = m1 0x496bfc, imac 0x53d870;
+    void uploadComment(gd::string, CommentType, int, int) = win 0x15b510, m1 0x494bec, imac 0x53b480, ios 0xaa938;
+    void uploadFriendRequest(int, gd::string) = win 0x15dba0, m1 0x496bfc, imac 0x53d870, ios 0xab968;
     void uploadLevel(GJGameLevel*) = m1 0x482908, imac 0x526fe0;
     void uploadLevelComment(int, gd::string, int);
     void uploadLevelList(GJLevelList*) = m1 0x486180, imac 0x52aed0;
@@ -22416,10 +22416,10 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
     virtual void onClosePopup(UploadActionPopup*) = win 0x476690, m1 0x4fe064, imac 0x5c9780, ios 0x1d6b24;
 
     bool init(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x474b40, imac 0x5c7820, m1 0x4fc27c, ios 0x1d53f0;
-    void onClear(cocos2d::CCObject* sender) = win 0x475c20, imac 0x5c8b70, m1 0x4fd404;
-    void onClose(cocos2d::CCObject* sender) = win 0x476130;
-    void onPercent(cocos2d::CCObject* sender) = win 0x475c90, imac 0x5c89e0, m1 0x4fd26c;
-    void onShare(cocos2d::CCObject* sender) = win 0x475d90, imac 0x5c8c60;
+    void onClear(cocos2d::CCObject* sender) = win 0x475c20, imac 0x5c8b70, m1 0x4fd404, ios 0x1d61f0;
+    void onClose(cocos2d::CCObject* sender) = win 0x476130, imac 0x5c8c10, m1 0x4fd4bc, ios 0x1d62ac;
+    void onPercent(cocos2d::CCObject* sender) = win 0x475c90, imac 0x5c89e0, m1 0x4fd26c, ios 0x1d6124;
+    void onShare(cocos2d::CCObject* sender) = win 0x475d90, imac 0x5c8c60, m1 0x4fd510, ios 0x1d6300;
     void updateCharCountLabel() = ios 0x1d690c, win inline, imac 0x5c9450, m1 0x4fdcb8 {
         if (m_charLimit * .9f <= m_descText.size()) {
             m_charCountLabel->setColor({ 255, 0, 0 });
