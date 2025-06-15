@@ -20,7 +20,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x34c0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_massiveFloatArray, 0xf6c);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_varianceValues, 0xf6c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x2f14);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPlatformer, 0x2f2e);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_particlesDict, 0x2f50);
@@ -33,7 +33,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_collectedItems, 0x3078);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3158);
-GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unk3458, 0x3288);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_keyframeGroups, 0x3288);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3298);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sections, 0x32e0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3388);
