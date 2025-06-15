@@ -1465,7 +1465,7 @@ class CCCounterLabel : cocos2d::CCLabelBMFont {
         m_formatterType = FormatterType::Integer;
     }
 
-    static CCCounterLabel* create(int count, char const* font, FormatterType type) = win inline {
+    static CCCounterLabel* create(int count, char const* font, FormatterType type) = win inline, ios 0x3ec2c, m1 0x45b328, imac 0x4fb550 {
         auto ret = new CCCounterLabel();
         if (ret->init(count, font, type)) {
             ret->autorelease();
