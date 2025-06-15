@@ -6718,11 +6718,11 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
 
     void blockUser();
     bool init(GJFriendRequest*) = ios 0x2d889c, win 0x28e4b0, imac 0x2916b0, m1 0x239a00;
-    void loadFromGJFriendRequest(GJFriendRequest*) = m1 0x23a080, imac 0x291cf0;
-    void onAccept(cocos2d::CCObject* sender) = m1 0x23a914, imac 0x292650;
-    void onBlock(cocos2d::CCObject* sender) = m1 0x23aab0, imac 0x2927f0;
+    void loadFromGJFriendRequest(GJFriendRequest*) = win 0x28eb20, m1 0x23a080, imac 0x291cf0, ios 0x2d8ed0;
+    void onAccept(cocos2d::CCObject* sender) = win 0x28f4e0, m1 0x23a914, imac 0x292650, ios 0x2d9744;
+    void onBlock(cocos2d::CCObject* sender) = win 0x28f6f0, m1 0x23aab0, imac 0x2927f0, ios 0x2d9880;
     void onClose(cocos2d::CCObject* sender) = ios 0x2d8e64, win 0x28f440, m1 0x23a014, imac 0x291c80;
-    void onRemove(cocos2d::CCObject* sender);
+    void onRemove(cocos2d::CCObject* sender) = win 0x28f5f0, imac 0x292720, m1 0x23a9e0, ios 0x2d97e0;
 
     void* m_unk;
     GJFriendRequest* m_request;
@@ -6801,7 +6801,7 @@ class GameLevelManager : cocos2d::CCNode {
 
     virtual bool init() = win 0x142230, m1 0x473374, imac 0x515dc0, ios 0x95d68;
 
-    void acceptFriendRequest(int, int) = imac 0x53e840, m1 0x497a7c;
+    void acceptFriendRequest(int, int) = win 0x15e780, imac 0x53e840, m1 0x497a7c, ios 0xac1c4;
     int accountIDForUserID(int userID) = imac 0x518ae0, m1 0x475c08;
     void addDLToActive(char const*) = win 0x147a20, imac 0x5228d0, m1 0x47e834;
     bool areGauntletsLoaded();
