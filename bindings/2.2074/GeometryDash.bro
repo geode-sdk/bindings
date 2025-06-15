@@ -17467,7 +17467,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void stopDashing() = ios 0x21d57c, win 0x380820, m1 0x370c60, imac 0x3efe00;
     void stopParticles() = ios 0x21ea18, win 0x375af0;
     void stopPlatformerJumpAnimation() = ios 0x21effc, win 0x3772d0, imac 0x3f2500, m1 0x37314c;
-    TodoReturn stopRotation(bool, int);
+    void stopRotation(bool, int);
     void stopStreak2() = ios 0x22d978, imac 0x409d20, m1 0x387654;
     void storeCollision(PlayerCollisionDirection, int);
     bool switchedDirTo(PlayerButton) = win 0x382000;
@@ -17538,7 +17538,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateRotation(float) = ios 0x224ca4, win 0x37b1f0, imac 0x3fb360, m1 0x37a378;
     void updateShipRotation(float) = win 0x37ae10;
     void updateShipSpriteExtra(gd::string) = ios 0x219528;
-    TodoReturn updateSlopeRotation(float);
+    void updateSlopeRotation(float);
     TodoReturn updateSlopeYVelocity(float);
     void updateSpecial(float) = ios 0x21e1a0, imac 0x3f0f70;
     TodoReturn updateStateVariables();
