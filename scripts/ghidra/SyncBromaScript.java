@@ -99,7 +99,7 @@ public class SyncBromaScript extends GhidraScript {
             this.choice("Broma file (Windows-only)", bromaFiles, f -> this.selectedBromaFile = f);
             this.choice("Game version", versions, v -> this.gameVersion = v);
             this.bool("Import from Broma", b -> this.importFromBroma = b);
-            this.bool("Export to Broma", b -> this.exportToBroma = b);
+            this.bool("Export to Broma", false, b -> this.exportToBroma = b);
             this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
             this.bool("Sync enums", b -> this.syncEnums = b);
