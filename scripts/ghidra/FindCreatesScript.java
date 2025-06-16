@@ -7,18 +7,18 @@ import ghidra.program.model.listing.Function;
 import ghidra.program.model.listing.FunctionIterator;
 import ghidra.program.model.listing.FunctionManager;
 import ghidra.program.model.address.Address;
-import ghidra.program.model.address.AddressFactory;
+//import ghidra.program.model.address.AddressFactory;
 import ghidra.program.model.symbol.Reference;
 import ghidra.program.model.symbol.SourceType;
 import ghidra.program.model.listing.Instruction;
 import ghidra.program.model.listing.InstructionIterator;
-import ghidra.program.model.symbol.Symbol;
-import ghidra.program.model.symbol.SymbolIterator;
-import ghidra.program.model.symbol.ExternalLocation;
-import ghidra.program.database.function.FunctionDB;
-import ghidra.program.model.data.DataType;
-import ghidra.program.model.data.DataTypeManager;
-import ghidra.program.model.data.Structure;
+//import ghidra.program.model.symbol.Symbol;
+//import ghidra.program.model.symbol.SymbolIterator;
+//import ghidra.program.model.symbol.ExternalLocation;
+//import ghidra.program.database.function.FunctionDB;
+//import ghidra.program.model.data.DataType;
+//import ghidra.program.model.data.DataTypeManager;
+//import ghidra.program.model.data.Structure;
 
 public class FindCreatesScript extends GhidraScript {
     FunctionManager functionManager = null;
@@ -135,7 +135,7 @@ public class FindCreatesScript extends GhidraScript {
 
                 Address calledFunctionAddress = operandReferences[0].getToAddress();
 
-                Symbol symbol = getSymbolAt(calledFunctionAddress);
+                //Symbol symbol = getSymbolAt(calledFunctionAddress);
 
                 /*if (symbol != null && symbol.isExternal()) {
                     
@@ -220,7 +220,7 @@ public class FindCreatesScript extends GhidraScript {
                 if(size > 500) continue; //likely a ccdict create
 
                 InstructionIterator instructionIterator = currentProgram.getListing().getInstructions(func.getBody(), true);
-                Function beforeLastFunction = null;
+                //Function beforeLastFunction = null;
                 Function lastFunction = null;
                 Instruction lastInstruction = null;
 
@@ -256,7 +256,7 @@ public class FindCreatesScript extends GhidraScript {
                         Function calledFunction = functionManager.getFunctionAt(calledFunctionAddress);
                         if (calledFunction != null) {
                             //println("Called Function: " + calledFunction.getName());
-                            beforeLastFunction = lastFunction;
+                            //beforeLastFunction = lastFunction;
                             lastFunction = calledFunction;
                         } else {
                             lastFunction = null;
