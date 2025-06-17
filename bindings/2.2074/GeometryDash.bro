@@ -754,7 +754,7 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
     virtual void draw() = m1 0x407cdc, imac 0x49cba0, ios 0x3bcf70 {}
     virtual void updateTweenAction(float, char const*) = win 0x84fb0, imac 0x49ca70, m1 0x407ba0, ios 0x3bce70;
 
-    void audioStep(float) = win 0x84d80, imac 0x49c860;
+    void audioStep(float) = win 0x84d80, imac 0x49c860, m1 0x407970, ios 0x3bcc5c;
     TodoReturn getBGSquare();
     TodoReturn goingDown();
     bool init(gd::string) = win 0x84b90;
