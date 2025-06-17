@@ -17831,9 +17831,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     float m_unkAAC;
     float m_unkAngle1;
     float m_yVelocityRelated3;
-    bool m_gamevar0060;
+    bool m_defaultMiniIcon;
     bool m_swapColors;
-    bool m_gamevar0062;
+    bool m_switchDashFireColor;
     int m_followRelated;
     gd::vector<float> m_playerFollowFloats;
     float m_unk838;
