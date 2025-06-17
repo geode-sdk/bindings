@@ -12224,7 +12224,7 @@ class GJRobotSprite : CCAnimatedSprite {
     IconType m_iconType;
     int m_iconRequestID;
     CCSpritePart* m_headSprite;
-    CCSpritePart* m_lastSprite;
+    CCSpritePart* m_footSprite;
 }
 
 [[link(android)]]
