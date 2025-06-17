@@ -5971,8 +5971,8 @@ class ExplodeItemNode : cocos2d::CCNode {
     cocos2d::CCRenderTexture* m_renderTexture;
     cocos2d::CCArray* m_sprites;
     float m_unk1;
-    float m_unk2;
-    bool m_unk3;
+    float m_floorHeight;
+    bool m_noGravity;
 }
 
 [[link(android)]]
@@ -5983,12 +5983,12 @@ class ExplodeItemSprite : cocos2d::CCSprite {
 
     virtual bool init() = win 0x36f5c0, imac 0x202eb0, m1 0x1b8200, ios 0x6132c;
 
-    float m_unk1;
-    float m_unk2;
-    float m_unk3;
-    float m_unk4;
-    float m_unk5;
-    cocos2d::CCParticleSystemQuad* m_unk6;
+    float m_xVelocity;
+    float m_yVelocity;
+    float m_timeRemaining;
+    float m_fadeOutTime;
+    float m_rotVelocity;
+    cocos2d::CCParticleSystemQuad* m_particles;
 }
 
 [[link(android)]]
