@@ -8469,8 +8469,42 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn completedLevel(GJGameLevel*) = ios 0x330d54, imac 0x6d6b0;
     void completedMapPack(GJMapPack*) = win 0x1dbe30;
     void completedStarLevel(GJGameLevel*) = m1 0x61598, ios 0x330f2c;
-    int countSecretChests(GJRewardType);
-    int countUnlockedSecretChests(GJRewardType);
+    int countSecretChests(GJRewardType rewardType) = win inline, imac 0x8bdd0, m1 0x7fa48, ios 0x33e264 {
+        using namespace cocos2d;
+        if (!m_allTreasureRoomChests) {
+            return 0;
+        }
+        
+        if (rewardType == GJRewardType::Unknown) {
+            return m_allTreasureRoomChests->count();
+        }
+
+        int count = 0;
+        CCDictElement* obj;
+        CCDICT_FOREACH(m_allTreasureRoomChests, obj) {
+            auto chest = static_cast<GJRewardItem*>(obj->getObject());
+            if (chest->m_rewardType == rewardType) count++;
+        }
+        return count;
+    }
+    int countUnlockedSecretChests(GJRewardType rewardType) = win inline, imac 0x8be30, m1 0x7fa8c, ios 0x33e2a8 {
+        using namespace cocos2d;
+        if (!m_treasureRoomChests) {
+            return 0;
+        }
+        
+        if (rewardType == GJRewardType::Unknown) {
+            return m_treasureRoomChests->count();
+        }
+
+        int count = 0;
+        CCDictElement* obj;
+        CCDICT_FOREACH(m_treasureRoomChests, obj) {
+            auto chest = static_cast<GJRewardItem*>(obj->getObject());
+            if (chest->m_rewardType == rewardType) count++;
+        }
+        return count;
+    }
     TodoReturn createReward(GJRewardType, int, gd::string) = ios 0x332fb4;
     void createSecretChestItems() = imac 0x5d080, m1 0x5243c;
     void createSecretChestRewards() = win 0x1e7760;
