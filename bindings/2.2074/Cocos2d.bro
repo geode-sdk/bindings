@@ -1307,18 +1307,18 @@ class cocos2d::CCSet : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCShaderCache : cocos2d::CCObject {
-    static void purgeSharedShaderCache();
+    static void purgeSharedShaderCache() = m1 0x1a6c20, imac 0x1f0430, ios 0x12b69c;
     static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1f0310, m1 0x1a6b00, ios 0x12b5e4;
 
-    bool init();
+    bool init() = m1 0x1a6bd0, imac 0x1f03e0, ios 0x12b64c;
 
     // CCShaderCache(cocos2d::CCShaderCache const&);
     // CCShaderCache();
-    void addProgram(cocos2d::CCGLProgram*, char const*);
-    void loadDefaultShader(cocos2d::CCGLProgram*, int) = imac 0x1f0c90, m1 0x1a74ac;
-    void loadDefaultShaders() = imac 0x1f0550, m1 0x1a6d1c;
+    void addProgram(cocos2d::CCGLProgram*, char const*) = m1 0x1a7b4c, imac 0x1f12e0, ios 0x12bd34;
+    void loadDefaultShader(cocos2d::CCGLProgram*, int) = imac 0x1f0c90, m1 0x1a74ac, ios 0x12bac4;
+    void loadDefaultShaders() = imac 0x1f0550, m1 0x1a6d1c, ios 0x12b718;
     cocos2d::CCGLProgram* programForKey(char const*) = m1 0x1a7a58, imac 0x1f11f0, ios 0x12bcc8;
-    void reloadDefaultShaders();
+    void reloadDefaultShaders() = m1 0x1a76b0, imac 0x1f0e70;
 }
 
 [[link(win, android)]]
@@ -2068,7 +2068,7 @@ class cocos2d::CCGLProgram : cocos2d::CCObject {
 
     // CCGLProgram(cocos2d::CCGLProgram const&);
     virtual ~CCGLProgram() = m1 0x3937f0, imac 0x417cb0, ios 0x1380ec;
-    CCGLProgram() = m1 0x393770, imac 0x417c10, ios 0x1380ac;
+    CCGLProgram() = m1 0x3937b0, imac 0x417c60, ios 0x1380ac;
     void addAttribute(char const*, unsigned int) = imac 0x4180e0, m1 0x393c30, ios 0x1383dc;
     bool compileShader(unsigned int*, unsigned int, char const*) = m1 0x393a34, imac 0x417f00, ios 0x138304;
     char const* description() = imac 0x4180b0, m1 0x393bfc, ios inline {
