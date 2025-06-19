@@ -645,7 +645,6 @@ class cocos2d::CCEaseSineIn : cocos2d::CCActionEase {
         CC_SAFE_DELETE(pNewZone);
         return pCopy;
     }
-    // This doesn't even get called. Why? I don't know.
     virtual void update(float time) = m1 0x45f194, imac 0x4ff7d0, ios inline {
         m_pInner->update(-1 * cosf(time * (float)M_PI_2) + 1);
     }
@@ -1318,7 +1317,33 @@ class cocos2d::CCShaderCache : cocos2d::CCObject {
     void loadDefaultShader(cocos2d::CCGLProgram*, int) = imac 0x1f0c90, m1 0x1a74ac, ios 0x12bac4;
     void loadDefaultShaders() = imac 0x1f0550, m1 0x1a6d1c, ios 0x12b718;
     cocos2d::CCGLProgram* programForKey(char const*) = m1 0x1a7a58, imac 0x1f11f0, ios 0x12bcc8;
-    void reloadDefaultShaders() = m1 0x1a76b0, imac 0x1f0e70;
+    void reloadDefaultShaders() = m1 0x1a76b0, imac 0x1f0e70, ios inline {
+        CCGLProgram* program;
+        program = this->programForKey(kCCShader_PositionTextureColor);
+        program->reset();
+        this->loadDefaultShader(program, 0);
+        program = this->programForKey(kCCShader_PositionTextureColorAlphaTest);
+        program->reset();
+        this->loadDefaultShader(program, 1);
+        program = this->programForKey(kCCShader_PositionColor);
+        program->reset();
+        this->loadDefaultShader(program, 2);
+        program = this->programForKey(kCCShader_PositionTexture);
+        program->reset();
+        this->loadDefaultShader(program, 3);
+        program = this->programForKey(kCCShader_PositionTexture_uColor);
+        program->reset();
+        this->loadDefaultShader(program, 4);
+        program = this->programForKey(kCCShader_PositionTextureA8Color);
+        program->reset();
+        this->loadDefaultShader(program, 5);
+        program = this->programForKey(kCCShader_Position_uColor);
+        program->reset();
+        this->loadDefaultShader(program, 6);
+        program = this->programForKey(kCCShader_PositionLengthTexureColor);
+        program->reset();
+        this->loadDefaultShader(program, 7);
+    }
 }
 
 [[link(win, android)]]
