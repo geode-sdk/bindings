@@ -7273,7 +7273,7 @@ class GameManager : GManager {
     TodoReturn addToGJLog(cocos2d::CCString*);
     void applicationDidEnterBackground();
     TodoReturn applicationWillEnterForeground() = win 0x186cd0;
-    TodoReturn calculateBaseKeyForIcons();
+    void calculateBaseKeyForIcons() = m1 0x2f6240, imac 0x363550, ios 0x311f24;
     TodoReturn canShowRewardedVideo();
     TodoReturn checkSteamAchievementUnlock();
     TodoReturn checkUsedIcons() = ios 0x316a40, win 0x1811b0, imac 0x36b860;
@@ -7548,7 +7548,7 @@ class GameManager : GManager {
     }
     void setPlayerUserID(int);
     void setUGV(char const*, bool) = ios 0x3190a8, win 0x180320, m1 0x301c3c, imac 0x370890;
-    void setupGameAnimations() = win 0x1a8870, m1 0x1fa990, imac 0x24d5f0;
+    void setupGameAnimations() = win 0x1a8870, m1 0x1fa990, imac 0x24d5f0, ios 0x349e78;
     gd::string sheetNameForIcon(int, int) = win 0x17f470, imac 0x36dcb0, m1 0x2ff040, ios 0x317a00;
     TodoReturn shortenAdTimer(float);
     TodoReturn shouldShowInterstitial(int, int, int);
@@ -7939,7 +7939,7 @@ class GameObject : CCSpritePlus {
     bool ignoreEditorDuration() = win 0x1a0180;
     bool ignoreEnter();
     bool ignoreFade();
-    bool init(char const* frame) = ios 0x253dc0, win inline, m1 0x4d7914 {
+    bool init(char const* frame) = win inline, m1 0x4d7914, imac 0x58a2f0, ios 0x253dc0 {
         if (!CCSpritePlus::initWithSpriteFrameName(frame)) return false;
         this->commonSetup();
         m_bUnkBool2 = true;
@@ -9194,7 +9194,7 @@ class GJActionManager : cocos2d::CCNode {
         CC_SAFE_RELEASE(m_internalActions);
     }
 
-    static GJActionManager* create() = win inline {
+    static GJActionManager* create() = win inline, m1 0x5219f8, imac 0x5f1dc0, ios 0x2fe5b8 {
         auto ret = new GJActionManager();
         if (ret->init()) {
             ret->autorelease();
@@ -17300,7 +17300,7 @@ class PlayerControlGameObject : EffectGameObject {
 class PlayerFireBoostSprite : cocos2d::CCSprite {
     // virtual ~PlayerFireBoostSprite();
 
-    static PlayerFireBoostSprite* create() = win 0x38cf30, imac 0x3ea580;
+    static PlayerFireBoostSprite* create() = win 0x38cf30, m1 0x36c2a4, imac 0x3ea580, ios 0x219854;
 
     virtual bool init() = win 0x38cfd0, m1 0x388cac, imac 0x40b6c0, ios 0x22e9e0;
 
@@ -17317,7 +17317,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
         auto action = cocos2d::CCScaleTo::create(0.4f, 0.01f, 0.01f);
         this->runAction(action);
     }
-    void loopFireAnimation() = ios 0x22af54, win 0x38d030, m1 0x384094;
+    void loopFireAnimation() = win 0x38d030, m1 0x384094, imac 0x4063f0, ios 0x22af54;
 
     float m_size;
 }
@@ -17501,14 +17501,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void saveToCheckpoint(PlayerCheckpoint*) = imac 0x40a6b0, win 0x38b980;
     void setSecondColor(cocos2d::ccColor3B const&) = ios 0x21af40, win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
     void setupStreak() = ios 0x219cd4, win 0x372a50, imac 0x3eab20, m1 0x36c84c;
-    void setYVelocity(double velocity, int) = win 0x372fa0 {
-        double rounded = (int)velocity;
-        if (velocity != rounded) {
-            m_yVelocity = std::round((velocity - rounded) * 1000) / 1000. + rounded;
-        } else {
-            m_yVelocity = velocity;
-        }
-    }
+    void setYVelocity(double velocity, int) = win 0x372fa0, m1 0x36c5dc, imac 0x3ea920, ios 0x219b38;
     TodoReturn spawnCircle();
     TodoReturn spawnCircle2();
     TodoReturn spawnDualCircle();
@@ -17550,7 +17543,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void tryPlaceCheckpoint() = ios 0x21e35c, m1 0x371f50, win 0x38c480;
     void unrotateGameplayObject(GameObject*) = win 0x37b8b0;
     TodoReturn unrotatePreSlopeObjects();
-    TodoReturn updateCheckpointMode(bool) = ios 0x21a034;
+    void updateCheckpointMode(bool) = win inline, m1 0x36cbb8, imac 0x3eaeb0, ios 0x21a034 {
+        m_quickCheckpointMode = p0;
+    }
     TodoReturn updateCheckpointTest() = ios 0x21e288;
     void updateCollide(PlayerCollisionDirection, GameObject*) = ios 0x224768, win 0x37e1c0, imac 0x3faae0, m1 0x379b88;
     void updateCollideBottom(float, GameObject*);
@@ -17591,13 +17586,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         createSpider(id);
     }
 
-    void updatePlayerSpriteExtra(gd::string) = ios 0x21945c;
+    void updatePlayerSpriteExtra(gd::string) = win 0x388e80, m1 0x36be6c, imac 0x3ea100, ios 0x21945c;
     void updatePlayerSwingFrame(int) = ios 0x22ada0, win 0x388a20, imac 0x4061a0, m1 0x383e58;
     void updateRobotAnimationSpeed() = win 0x38b350;
     void updateRotation(float, float) = win 0x377370, imac 0x3f0d20, m1 0x371b20;
     void updateRotation(float) = ios 0x224ca4, win 0x37b1f0, imac 0x3fb360, m1 0x37a378;
     void updateShipRotation(float) = win 0x37ae10;
-    void updateShipSpriteExtra(gd::string) = ios 0x219528;
+    void updateShipSpriteExtra(gd::string) = win 0x388f90, m1 0x36bf50, imac 0x3ea1d0, ios 0x219528;
     void updateSlopeRotation(float);
     TodoReturn updateSlopeYVelocity(float);
     void updateSpecial(float) = ios 0x21e1a0, imac 0x3f0f70;
@@ -17623,7 +17618,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     DashRingObject* m_dashRing;
     double m_slopeStartTime;
     bool m_justPlacedStreak;
-    GameObject* m_maybeLastGroundObject;
+    cocos2d::CCNode* m_maybeLastGroundObject;
     cocos2d::CCDictionary* m_collisionLogTop;
     cocos2d::CCDictionary* m_collisionLogBottom;
     cocos2d::CCDictionary* m_collisionLogLeft;
@@ -17714,8 +17709,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_lastSpiderFlipTime;
     bool m_unkBool5;
     bool m_maybeIsVehicleGlowing;
-    bool m_gv0096;
-    bool m_gv0100;
+    bool m_switchWaveTrailColor;
+    bool m_practiceDeathEffect;
     double m_accelerationOrSpeed;
     double m_snapDistance;
     bool m_ringJumpRelated;
@@ -17898,9 +17893,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_isOutOfBounds;
     float m_fallStartY;
     bool m_disablePlayerSqueeze;
-    bool m_robotHasRun3;
-    bool m_robotHasRun2;
-    bool m_item20;
+    bool m_robotAnimation1Enabled;
+    bool m_robotAnimation2Enabled;
+    bool m_spiderAnimationEnabled;
     bool m_ignoreDamage;
     bool m_enable22Changes;
 }

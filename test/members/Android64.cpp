@@ -79,7 +79,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_isHidden, 0x703);
 GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x708);
 GEODE_MEMBER_CHECK(PlayerObject, m_iconSprite, 0x710);
 GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x788);
-GEODE_MEMBER_CHECK(PlayerObject, m_gv0096, 0x802);
+GEODE_MEMBER_CHECK(PlayerObject, m_switchWaveTrailColor, 0x802);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotSprite, 0x870);
 GEODE_MEMBER_CHECK(PlayerObject, m_landParticles1, 0x8e0);
 GEODE_MEMBER_CHECK(PlayerObject, m_hasCustomGlowColor, 0x950);

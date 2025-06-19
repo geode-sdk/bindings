@@ -129,7 +129,7 @@ GEODE_MEMBER_CHECK(PlayerObject, m_ghostTrail, 0x5d0);
 GEODE_MEMBER_CHECK(PlayerObject, m_waveTrail, 0x610);
 GEODE_MEMBER_CHECK(PlayerObject, m_trailingParticleLife, 0x630);
 GEODE_MEMBER_CHECK(PlayerObject, m_padRingRelated, 0x640);
-GEODE_MEMBER_CHECK(PlayerObject, m_gv0096, 0x68a);
+GEODE_MEMBER_CHECK(PlayerObject, m_switchWaveTrailColor, 0x68a);
 GEODE_MEMBER_CHECK(PlayerObject, m_ringRelatedSet, 0x6a4);
 GEODE_MEMBER_CHECK(PlayerObject, m_objectSnappedTo, 0x6c0);
 GEODE_MEMBER_CHECK(PlayerObject, m_spiderSprite, 0x6d0);
