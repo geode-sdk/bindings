@@ -17441,7 +17441,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool levelFlipping() = win 0x385760, m1 0x3709bc, imac 0x3efb30, ios 0x21d2fc;
     TodoReturn levelWillFlip() = imac 0x3f1930;
     TodoReturn limitDashRotation(float&);
-    void loadFromCheckpoint(PlayerCheckpoint*) = win 0x38bc30, imac 0x40a910, m1 0x3880ac;
+    void loadFromCheckpoint(PlayerCheckpoint*) = win 0x38bc30, imac 0x40a910, m1 0x3880ac, ios 0x22e1c0;
     void lockPlayer() = ios 0x22d0b8, win 0x389540, imac 0x408fe0, m1 0x3869b4;
     TodoReturn logValues();
     void modeDidChange();
