@@ -8611,7 +8611,7 @@ class GameStatsManager : cocos2d::CCNode {
     void postLoadGameStats();
     void preProcessReward(GJRewardItem*) = win 0x1deb00;
     void preSaveGameStats() = win 0x1f0630;
-    void processChallengeQueue(int position) = win 0x1df950, m1 0x67160, imac 0x73590;
+    void processChallengeQueue(int position) = win 0x1df950, m1 0x67160, imac 0x73590, ios 0x334078;
     TodoReturn processOnlineChests();
     bool purchaseItem(int) = win 0x1d12e0, m1 0x5aa80, imac 0x663e0, ios 0x32bdb0;
     TodoReturn recountSpecialStats() = ios 0x3351a4, m1 0x69188;
