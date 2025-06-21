@@ -17375,7 +17375,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         }
     }
     TodoReturn destroyFromHitHead() = ios 0x22bf34;
-    TodoReturn didHitHead();
+    void didHitHead() = win 0x37de00, m1 0x37aabc, imac 0x3fbb50, ios 0x2252b8;
     void disableCustomGlowColor() {
         m_hasCustomGlowColor = false;
     }
