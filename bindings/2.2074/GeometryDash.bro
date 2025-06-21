@@ -16104,15 +16104,16 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
     cocos2d::CCArray* objectsForPage(int);
     void offsetToNextPage();
     void onClose(cocos2d::CCObject* sender) = win 0x360b30, m1 0x69b6c8, imac 0x787670;
-    void onFMODDebug(cocos2d::CCObject* sender) = win 0x3606a0, m1 0x69b39c, imac 0x787360;
+    void onFMODDebug(cocos2d::CCObject* sender) = win 0x3606a0, m1 0x69b39c, imac 0x787360, ios 0xf1e00;
     void onGPSignIn(cocos2d::CCObject* sender);
     void onGPSignOut(cocos2d::CCObject* sender);
     void onInfo(cocos2d::CCObject* sender);
+    // doesn't seem to exist on iOS
     void onKeybindings(cocos2d::CCObject* sender) = win 0xdba40, m1 0x69bc4c, imac 0x787c40;
     void onNextPage(cocos2d::CCObject* sender);
     void onParental(cocos2d::CCObject* sender);
     void onPrevPage(cocos2d::CCObject* sender);
-    void onSongBrowser(cocos2d::CCObject* sender) = win 0x360630, m1 0x69b344, imac 0x787300;
+    void onSongBrowser(cocos2d::CCObject* sender) = win 0x360630, m1 0x69b344, imac 0x787300, ios 0xf1da8;
     void onToggle(cocos2d::CCObject* sender) = win 0x35fe30;
     const char* pageKey(int);
     void toggleGP();
