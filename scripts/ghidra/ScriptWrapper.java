@@ -5,7 +5,9 @@ import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -15,6 +17,7 @@ import ghidra.program.model.data.BooleanDataType;
 import ghidra.program.model.data.ByteDataType;
 import ghidra.program.model.data.CategoryPath;
 import ghidra.program.model.data.CharDataType;
+import ghidra.program.model.data.ComponentOffsetSettingsDefinition;
 import ghidra.program.model.data.Composite;
 import ghidra.program.model.data.DataType;
 import ghidra.program.model.data.DataTypeConflictHandler;
@@ -34,6 +37,7 @@ import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.ShortDataType;
 import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
+import ghidra.program.model.data.TypedefDataType;
 import ghidra.program.model.data.Undefined1DataType;
 import ghidra.program.model.data.UnionDataType;
 import ghidra.program.model.data.UnsignedCharDataType;
@@ -54,6 +58,7 @@ public class ScriptWrapper {
     List<String> classes = new ArrayList<String>();
     List<String> enums = new ArrayList<String>();
     List<String> functions = new ArrayList<String>();
+    Map<Long, Integer> offsets = new HashMap<Long, Integer>();
     GhidraScript wrapped;
     Path bindingsDir;
     boolean fillStandardTypes;
@@ -266,6 +271,10 @@ public class ScriptWrapper {
     }
 
     DataType addOrGetType(Broma.Type type, Platform platform) throws Exception {
+        return this.addOrGetType(type, platform, 0);
+    }
+
+    DataType addOrGetType(Broma.Type type, Platform platform, int offset) throws Exception {
         final var manager = wrapped.getCurrentProgram().getDataTypeManager();
 
         DataType result = null;
@@ -455,6 +464,19 @@ public class ScriptWrapper {
                     printfmt("Created new type {0}, assumed it's a struct", typePath);
                 }
             }
+
+            // Adjust pointer offset if needed
+            if (offset > 0) {
+                var oldResult = result;
+                result = manager.getDataType(new DataTypePath(category, name + "_" + offset));
+                if (result == null) {
+                    result = manager.addDataType(
+                        new TypedefDataType(category, name + "_" + offset, new PointerDataType(oldResult)),
+                        DataTypeConflictHandler.DEFAULT_HANDLER
+                    );
+                    ComponentOffsetSettingsDefinition.DEF.setValue(result.getDefaultSettings(), offset);
+                }
+            }
         }
 
         // Apply any modifiers
@@ -462,7 +484,7 @@ public class ScriptWrapper {
         // Constants don't exist in Ghidra lol
 
         // Make the type a pointer if it's a ptr or ref
-        if (type.ptr.isPresent()) {
+        if (type.ptr.isPresent() && offset <= 0) {
             // Make sure to support multi-level pointers like int**
             for (var i = 0; i < type.ptr.get().value.length(); i++) {
                 result = new PointerDataType(result);
@@ -492,12 +514,17 @@ public class ScriptWrapper {
     Signature getBromaSignature(Broma.Function fun, Platform platform, boolean ignoreReturnType) throws Exception {
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
+        // Get class offset
+        var offset = offsets.get(wrapped.getCurrentProgram().getImageBase().add(Long.parseLong(fun.platformOffset.get().value, 16)).getOffset());
+        if (offset == null) {
+            offset = 0;
+        }
         // Add `this` arg
         boolean hasThis = fun.parent != null && (fun.dispatch.isEmpty() || !fun.dispatch.get().value.contains("static"));
         if (hasThis && platform != Platform.ANDROID32 && platform != Platform.MAC_INTEL) {
             bromaParams.add(new ParameterImpl(
                 "this",
-                addOrGetType(Broma.Type.ptr(fun.parent.broma, fun.parent.name.value), platform),
+                addOrGetType(Broma.Type.ptr(fun.parent.broma, fun.parent.name.value), platform, offset),
                 wrapped.getCurrentProgram(),
                 SourceType.USER_DEFINED
             ));
@@ -532,7 +559,7 @@ public class ScriptWrapper {
         if (hasThis && (platform == Platform.ANDROID32 || platform == Platform.MAC_INTEL)) {
             bromaParams.add(new ParameterImpl(
                 "this",
-                addOrGetType(Broma.Type.ptr(fun.parent.broma, fun.parent.name.value), platform),
+                addOrGetType(Broma.Type.ptr(fun.parent.broma, fun.parent.name.value), platform, offset),
                 wrapped.getCurrentProgram(),
                 SourceType.USER_DEFINED
             ));
