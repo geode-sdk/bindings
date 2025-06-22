@@ -17389,7 +17389,15 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void enablePlayerControls() = win 0x389770, imac 0x4091a0, m1 0x386b50;
     void exitPlatformerAnimateJump();
     void fadeOutStreak2(float) = ios 0x22861c, win 0x38a400, imac 0x402470, m1 0x38071c;
-    void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = imac 0x3fd3f0;
+    void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = win inline, m1 0x37c04c, imac 0x3fd3f0, ios inline {
+        m_colorRelated2 = mainColor;
+        m_flashRelated3 = secondColor;
+        this->setColor(m_colorRelated2);
+        this->setSecondColor(m_flashRelated3);
+        m_flashTime = m_totalTime;
+        m_flashRelated = p0;
+        m_flashRelated1 = p1;
+    }
     void flipGravity(bool, bool) = ios 0x21eb30, win 0x384440, imac 0x3f1c30, m1 0x372910;
     float flipMod() {
         return m_isUpsideDown ? -1.f : 1.f;
