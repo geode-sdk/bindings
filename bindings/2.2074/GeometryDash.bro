@@ -20230,10 +20230,19 @@ class SetupCheckpointPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupCoinLayer : SetupTriggerPopup {
     // virtual ~SetupCoinLayer();
+    SetupCoinLayer() {}
 
-    static SetupCoinLayer* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupCoinLayer* create(EffectGameObject*, cocos2d::CCArray*) = win inline, m1 0x4c0ddc, imac 0x56bbf0, ios 0x4070c0 {
+        auto ret = new SetupCoinLayer();
+        if (ret->init(p0, p1)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x4c0f68, imac 0x56be20;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x457000, m1 0x4c0f68, imac 0x56be20, ios 0x40719c;
 }
 
 [[link(android)]]
@@ -21660,14 +21669,14 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) {}
     virtual void valuePopupClosed(ConfigureValuePopup*, float) = win 0x464c00, imac 0x22d4e0, m1 0x1de14c, ios 0x13733c;
 
-    void addCloseButton(gd::string) = win 0x45c590;
-    void addHelpButton(gd::string, gd::string, float) = win 0x45c6a0;
+    void addCloseButton(gd::string) = win 0x45c590, m1 0x1d6d74, imac 0x223f40, ios 0x13216c;
+    void addHelpButton(gd::string, gd::string, float) = win 0x45c6a0, m1 0x1d6df4, imac 0x223fc0, ios 0x1321e8;
     void addInfoLabel(gd::string, float, cocos2d::CCPoint, int, int) = win 0x45ee90;
     void addObjectsToGroup(cocos2d::CCArray*, int);
     void addObjectsToPage(cocos2d::CCArray*, int);
     void addObjectToGroup(cocos2d::CCObject*, int);
     void addObjectToPage(cocos2d::CCObject*, int) = win 0x45c400, m1 0x1d6a04, imac 0x223b70, ios 0x131fd8;
-    void addTitle(gd::string) = win 0x45c490;
+    void addTitle(gd::string) = win 0x45c490, m1 0x1d6cac, imac 0x223e70, ios 0x1320a4;
     void closeInputNodes();
     void createCustomButton(int, gd::string, gd::string, cocos2d::CCPoint, float, float, bool, int, int) = win 0x45f110;
     void createCustomEasingControls(gd::string, cocos2d::CCPoint, float, int, int, int, int) = win 0x464cc0;
@@ -21709,11 +21718,11 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void onSpawnedByTrigger(cocos2d::CCObject* sender) = win 0x45d2d0;
     void onToggleTriggerValue(cocos2d::CCObject* sender) = win 0x45f6c0, m1 0x1da960, imac 0x228f60, ios 0x13516c;
     void onTouchTriggered(cocos2d::CCObject* sender) = win 0x45d1e0;
-    void postSetup() = win inline {
+    void postSetup() = win inline, m1 0x1db304, imac 0x2298f0, ios 0x1358c8 {
         this->updateDefaultTriggerValues();
         m_disableTextDelegate = false;
     }
-    void preSetup() = win inline {
+    void preSetup() = win inline, m1 0x1db2f0, imac 0x2298d0, ios 0x1358b4 {
         m_disableTextDelegate = true;
         this->determineStartValues();
     }
