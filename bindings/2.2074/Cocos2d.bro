@@ -4520,6 +4520,22 @@ class cocos2d::CCMenuItemSprite : cocos2d::CCMenuItem {
 }
 
 [[link(win, android)]]
+class cocos2d::CCMenuItemImage : cocos2d::CCMenuItemSprite {
+    static cocos2d::CCMenuItemImage* create();
+    static cocos2d::CCMenuItemImage* create(const char*, const char*);
+    static cocos2d::CCMenuItemImage* create(const char*, const char*, const char*);
+    static cocos2d::CCMenuItemImage* create(const char*, const char*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+    static cocos2d::CCMenuItemImage* create(const char*, const char*, const char*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+
+    virtual bool init() = m1 0x339194, imac 0x3ad430, ios 0x50cb8;
+
+    bool initWithNormalImage(const char*, const char*, const char*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x33927c, imac 0x3ad500, ios 0x50ce8;
+    void setNormalSpriteFrame(cocos2d::CCSpriteFrame*);
+    void setSelectedSpriteFrame(cocos2d::CCSpriteFrame*);
+    void setDisabledSpriteFrame(cocos2d::CCSpriteFrame*);
+}
+
+[[link(win, android)]]
 class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     // static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1d8d28, m1 0x6a6d58, imac 0x79e7b0;
     static cocos2d::CCMenu* create() = imac 0x77c950, m1 0x691950, ios 0x1d8d04;

@@ -22751,11 +22751,11 @@ class SlideInLayer : cocos2d::CCLayerColor {
 class Slider : cocos2d::CCLayer {
     // virtual ~Slider();
 
-    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x71720, imac 0x2f0420, m1 0x28a3b0, ios 0x2ef18c; //pretty sure
-    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) = imac 0x2f01e0, m1 0x28a198 {
+    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x71720, imac 0x2f0420, m1 0x28a3b0, ios 0x2ef18c;
+    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) = win inline, imac 0x2f01e0, m1 0x28a198, ios 0x2ef140 {
         return Slider::create(target, handler, 1.f);
     }
-    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, float scale) = imac 0x2f0300, m1 0x28a29c {
+    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, float scale) = win inline, imac 0x2f0300, m1 0x28a29c, ios 0x2ef168 {
         return Slider::create(target, handler, "sliderBar.png", "slidergroove.png", "sliderthumb.png", "sliderthumbsel.png", scale);
     }
 
@@ -22832,11 +22832,26 @@ class SliderDelegate {
 [[link(android)]]
 class SliderThumb : cocos2d::CCMenuItemImage {
     // virtual ~SliderThumb();
+    SliderThumb() {
+        m_length = 0.f;
+        m_vertical = false;
+    }
 
-    static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
+    static SliderThumb* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*) = win inline, m1 0x2893f4, imac 0x2ef2e0, ios 0x2ee934 {
+        auto ret = new SliderThumb();
+        if (ret->init(p0, p1, p2, p3)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     float getValue() = ios 0x2eea84, win 0x712b0, imac 0x2ef4f0, m1 0x2895e4;
-    bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*);
+    bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*) = win inline, m1 0x2894ec, imac 0x2ef3d0, ios inline {
+        m_length = 200.f;
+        return cocos2d::CCMenuItemImage::initWithNormalImage(p2, p3, nullptr, p0, p1);
+    }
     void setMaxOffset(float offset) {
         float value = getValue();
         m_length = offset;
@@ -22858,15 +22873,34 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 [[link(android), depends(SliderThumb)]]
 class SliderTouchLogic : cocos2d::CCMenu {
     // virtual ~SliderTouchLogic();
+    SliderTouchLogic() {}
 
-    static SliderTouchLogic* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float) = imac 0x2ef7b0;
+    static SliderTouchLogic* create(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float) = win inline, m1 0x289840, imac 0x2ef7b0, ios 0x2eec80 {
+        auto ret = new SliderTouchLogic();
+        if (ret->init(p0, p1, p2, p3, p4)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x714b0, m1 0x289cc8, imac 0x2efc70, ios 0x2eeeb0;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x715a0, imac 0x2efea0, m1 0x289edc, ios 0x2eefa8;
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71560, m1 0x289e2c, imac 0x2efde0, ios 0x2eef58;
     virtual void registerWithTouchDispatcher() = win 0x716d0, m1 0x28a160, imac 0x2f01a0, ios 0x2ef108;
 
-    bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float);
+    bool init(cocos2d::CCNode*, cocos2d::SEL_MenuHandler, char const*, char const*, float) = win inline, m1 0x28998c, imac 0x2ef8f0, ios 0x2eedc4 {
+        if (!cocos2d::CCMenu::init()) return false;
+        m_rotated = false;
+        m_length = p4 * 200.f;
+        this->setPosition({ 0.f, 0.f });
+        m_thumb = SliderThumb::create(p0, p1, p2, p3);
+        this->addChild(m_thumb);
+        m_thumb->setScale(p4);
+        m_activateThumb = false;
+        return true;
+    }
     void setMaxOffset(float offset) {
         float newOffset = m_thumb->getScale() * offset;
         m_length = newOffset;
