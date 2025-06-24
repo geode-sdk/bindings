@@ -4521,18 +4521,52 @@ class cocos2d::CCMenuItemSprite : cocos2d::CCMenuItem {
 
 [[link(win, android)]]
 class cocos2d::CCMenuItemImage : cocos2d::CCMenuItemSprite {
-    static cocos2d::CCMenuItemImage* create();
-    static cocos2d::CCMenuItemImage* create(const char*, const char*);
-    static cocos2d::CCMenuItemImage* create(const char*, const char*, const char*);
-    static cocos2d::CCMenuItemImage* create(const char*, const char*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
-    static cocos2d::CCMenuItemImage* create(const char*, const char*, const char*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
+    static cocos2d::CCMenuItemImage* create() = m1 0x339058, imac 0x3ad2f0, ios inline {
+        auto ret = new CCMenuItemImage();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static cocos2d::CCMenuItemImage* create(char const*, char const*) = m1 0x3393cc, imac 0x3ad640, ios inline {
+        return create(p0, p1, nullptr, nullptr, nullptr);
+    }
+    static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*) = m1 0x3395ec, imac 0x3ad8a0, ios inline {
+        auto ret = new CCMenuItemImage();
+        if (ret->initWithNormalImage(p0, p1, p2, nullptr, nullptr)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static cocos2d::CCMenuItemImage* create(char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x339534, imac 0x3ad7d0, ios inline {
+        return create(p0, p1, nullptr, p2, p3);
+    }
+    static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x339470, imac 0x3ad6f0, ios inline {
+        auto ret = new CCMenuItemImage();
+        if (ret->initWithNormalImage(p0, p1, p2, p3, p4)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+
+    bool initWithNormalImage(char const*, char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x33927c, imac 0x3ad500, ios 0x50ce8;
+    void setNormalSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x339694, imac 0x3ad960, ios inline {
+        this->setNormalImage(CCSprite::createWithSpriteFrame(p0));
+    }
+    void setSelectedSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x3396c8, imac 0x3ad990, ios inline {
+        this->setSelectedImage(CCSprite::createWithSpriteFrame(p0));
+    }
+    void setDisabledSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x3396fc, imac 0x3ad9c0, ios inline {
+        this->setDisabledImage(CCSprite::createWithSpriteFrame(p0));
+    }
 
     virtual bool init() = m1 0x339194, imac 0x3ad430, ios 0x50cb8;
-
-    bool initWithNormalImage(const char*, const char*, const char*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x33927c, imac 0x3ad500, ios 0x50ce8;
-    void setNormalSpriteFrame(cocos2d::CCSpriteFrame*);
-    void setSelectedSpriteFrame(cocos2d::CCSpriteFrame*);
-    void setDisabledSpriteFrame(cocos2d::CCSpriteFrame*);
 }
 
 [[link(win, android)]]
