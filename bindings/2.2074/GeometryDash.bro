@@ -5961,12 +5961,20 @@ class EventLinkTrigger : EffectGameObject {
 class ExplodeItemNode : cocos2d::CCNode {
     // virtual ~ExplodeItemNode();
 
-    static ExplodeItemNode* create(cocos2d::CCRenderTexture*) = win 0x36e780;
+    static ExplodeItemNode* create(cocos2d::CCRenderTexture*) = win 0x36e780, m1 0x1b6f88, imac 0x201ac0, ios 0x6031c;
 
     virtual void update(float) = win 0x36f1f0, imac 0x202b30, m1 0x1b7f14, ios 0x6105c;
 
-    void createSprites(int, int, float, float, float, float, float, float, cocos2d::ccColor4F, cocos2d::ccColor4F, bool) = win 0x36e840;
-    bool init(cocos2d::CCRenderTexture*);
+    void createSprites(int, int, float, float, float, float, float, float, cocos2d::ccColor4F, cocos2d::ccColor4F, bool) = win 0x36e840, m1 0x1b703c, imac 0x201b70, ios 0x603a8;
+    bool init(cocos2d::CCRenderTexture*) = win inline, m1 0x1b7e18, imac 0x202a40, ios 0x60f6c {
+        if (!cocos2d::CCNode::init()) return false;
+        m_floorHeight = 90.f;
+        m_renderTexture = p0;
+        p0->retain();
+        m_sprites = cocos2d::CCArray::create();
+        m_sprites->retain();
+        return true;
+    }
 
     cocos2d::CCRenderTexture* m_renderTexture;
     cocos2d::CCArray* m_sprites;
@@ -9479,7 +9487,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         this->cameraMoveY(pos.y, 1.2f, 1.8f, false);
     }
     void moveObject(GameObject*, double, double, bool);
-    void moveObjects(cocos2d::CCArray*, double, double, bool) = win 0x228a70;
+    void moveObjects(cocos2d::CCArray*, double, double, bool) = win 0x228a70, m1 0x111020, imac 0x137c20, ios 0x1fb324;
     void moveObjectsSilent(int, double, double);
     TodoReturn moveObjectToStaticGroup(GameObject*);
     TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
@@ -9534,7 +9542,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processDynamicObjectActions(int, float) = win 0x228fa0;
     void processFollowActions() = win 0x22b2a0;
     void processItems() = ios 0x1eb7a4, win 0x210db0;
-    void processMoveActions() = win 0x2282d0, m1 0x10ffa0, imac 0x136810;
+    void processMoveActions() = win 0x2282d0, m1 0x10ffa0, imac 0x136810, ios 0x1fa624;
     void processMoveActionsStep(float, bool) = ios 0x1f9088, win 0x2262f0, m1 0x10e5b8, imac 0x1347b0;
     void processOptionsTrigger(GameOptionsTrigger*) = win 0x21e9a0, imac 0x12c930, m1 0x107a5c;
     void processPlayerFollowActions(float) = win 0x228bf0;
@@ -9618,7 +9626,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void setupLayers() = win 0x203760, imac 0x1003c0, m1 0xe24c4;
     void setupLevelStart(LevelSettingsObject*) = ios 0x1e73bc, win 0x20cd60, imac 0x112f20, m1 0xf28b8;
     void setupReplay(gd::string) = win 0x234360, m1 0x11cd28;
-    void shakeCamera(float duration, float strength, float interval) = win 0x2356c0;
+    void shakeCamera(float duration, float strength, float interval) = win 0x2356c0, m1 0x11f9ac, imac 0x14a270, ios 0x205614;
     bool shouldExitHackedLevel() = ios 0x1de628, win 0x205d10, imac 0x102b90, m1 0xe49d0;
     TodoReturn sortAllGroupsX();
     void sortGroups() = win 0x21ef40, ios 0x1e0e5c;
