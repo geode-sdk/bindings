@@ -4613,8 +4613,8 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onShare(cocos2d::CCObject* sender) = ios 0xed54c, win 0xd6f20, m1 0x1a1164, imac 0x1ea050;
     void onTest(cocos2d::CCObject* sender) = m1 0x1a3298;
     void onUpdateDescription(cocos2d::CCObject* sender) = m1 0x1a1d60, imac 0x1eac60;
-    void playStep2();
-    void playStep3() = m1 0x1a3248;
+    void playStep2() = win 0xd6ae0, m1 0x1a3184, imac 0x1ec070, ios 0xef04c;
+    void playStep3() = win 0xd6bc0, m1 0x1a3248, imac 0x1ec130, ios 0xef110;
     void setupLevelInfo() = win 0xd5720, m1 0x1a1540, imac 0x1ea490;
     void updateDescText(char const*);
     void verifyLevelName() = win 0xd8290;
