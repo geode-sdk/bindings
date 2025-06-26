@@ -2897,7 +2897,6 @@ class cocos2d::CCIMEDelegate {
     virtual ~CCIMEDelegate() = imac 0x4a8c30, m1 0x411f78, ios 0x1d46f8; // ios: ?
     virtual bool attachWithIME() = imac 0x4a8c50, m1 0x411f90, ios 0x1d47b4;
     virtual bool detachWithIME() = imac 0x4a8e40, m1 0x4121d0, ios 0x1d48b8;
-    virtual void deleteForward() = m1 0x8fb0, imac 0x7150, ios 0xd590;
 }
 
 [[link(win, android)]]
