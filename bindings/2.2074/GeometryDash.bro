@@ -14946,7 +14946,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onViewProfile(cocos2d::CCObject* sender) = ios 0x2a958, win 0x2ea460, imac 0x2abc20, m1 0x251b4c;
     void playStep2() = win 0x2e8850;
     void playStep3() = ios 0x2eb24, m1 0x256650, win 0x2e8930;
-    void playStep4() = win 0x2e8ab0, m1 0x25678c;
+    void playStep4() = win 0x2e8ab0, m1 0x25678c, imac 0x2b0880, ios 0x2ec60;
     void setupLevelInfo() = win 0x2e65c0, m1 0x252478, imac 0x2ac500;
     void setupPlatformerStats() = ios 0x2bc9c, win 0x2e5a80, m1 0x252fc8, imac 0x2ad140;
     void setupProgressBars() = ios 0x2bff8, win 0x2e5eb0, m1 0x25336c, imac 0x2ad480;
