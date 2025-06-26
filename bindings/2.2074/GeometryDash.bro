@@ -9539,21 +9539,21 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         return ret;
     }
     void processCommands(float) = ios 0x201880, win 0x234170, imac 0x1435a0, m1 0x11a2d0;
-    void processDynamicObjectActions(int, float) = win 0x228fa0;
-    void processFollowActions() = win 0x22b2a0;
+    void processDynamicObjectActions(int, float) = win 0x228fa0, m1 0x10e6e4, imac 0x1348e0, ios 0x1f91ac;
+    void processFollowActions() = win 0x22b2a0, m1 0x110514, imac 0x136e50, ios 0x1faabc;
     void processItems() = ios 0x1eb7a4, win 0x210db0;
     void processMoveActions() = win 0x2282d0, m1 0x10ffa0, imac 0x136810, ios 0x1fa624;
     void processMoveActionsStep(float, bool) = ios 0x1f9088, win 0x2262f0, m1 0x10e5b8, imac 0x1347b0;
     void processOptionsTrigger(GameOptionsTrigger*) = win 0x21e9a0, imac 0x12c930, m1 0x107a5c;
-    void processPlayerFollowActions(float) = win 0x228bf0;
+    void processPlayerFollowActions(float) = win 0x228bf0, m1 0x110124, imac 0x1369f0, ios 0x1fa734;
     void processQueuedAudioTriggers() = ios 0x204bdc, win 0x235550, imac 0x1491f0;
     void processQueuedButtons() = ios 0x1fcb04, win 0x22c7f0, imac 0x13af40, m1 0x113650;
-    void processRotationActions() = win 0x226510;
+    void processRotationActions() = win 0x226510, m1 0x10f80c, imac 0x135f40, ios 0x1fa040;
     void processSFXObjects() = ios 0x1e36b8, win 0x23b480, imac 0x525060;
     TodoReturn processSFXState(SFXTriggerState*, SFXTriggerState*, int, float);
     TodoReturn processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*, SongTriggerGameObject*);
     TodoReturn processStateObjects() = ios 0x1ec358;
-    void processTransformActions(bool) = win 0x2273a0;
+    void processTransformActions(bool) = win 0x2273a0, m1 0x10ecc4, imac 0x135010, ios 0x1f9698;
     void queueButton(int button, bool push, bool isPlayer2) = ios 0x1fc9b8, win inline, imac 0x13ad90, m1 0x1134ec {
         if (button <= 0 || button > 3) {
             return;
