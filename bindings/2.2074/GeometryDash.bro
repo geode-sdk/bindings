@@ -7978,7 +7978,11 @@ class GameObject : CCSpritePlus {
     void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float) = win 0x1a7040;
     void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float) = win 0x1a6f50;
     void playShineEffect() = ios 0x25b4d8, win 0x196430, imac 0x5a5440, m1 0x4df690;
-    void quickUpdatePosition();
+    void quickUpdatePosition() = win inline, m1 0x4de084, imac 0x5a3cd0, ios 0x25a1d0 {
+        auto pos = ccp(m_positionX, m_positionY);
+        cocos2d::CCSprite::setPosition(pos);
+        if (m_colorSprite && !m_colorSpriteLocked) m_colorSprite->setPosition(pos);
+    }
     void quickUpdatePosition2();
     void removeColorSprite();
     void removeGlow() = imac 0x58cb90;
@@ -9519,8 +9523,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn preUpdateVisibility(float);
     void processActivatedAudioTriggers(float) = ios 0x208724, win 0x23d3e0, imac 0x14f3a0;
     void processAdvancedFollowAction(AdvancedFollowInstance&, bool, float) = win 0x22a020;
-    void processAdvancedFollowActions(float) = win 0x229e00;
-    void processAreaActions(float, bool) = win 0x223ce0;
+    void processAdvancedFollowActions(float) = win 0x229e00, m1 0x110348, imac 0x136c60, ios 0x1fa914;
+    void processAreaActions(float, bool) = win 0x223ce0, m1 0x10d458, imac 0x133460, ios 0x1f822c;
     void processAreaEffects(gd::vector<EnterEffectInstance>*, GJAreaActionType, float, bool) = win 0x223100, imac 0x1308e0, m1 0x10afe8;
     void processAreaFadeGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, bool);
     void processAreaMoveGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x2251f0, m1 0x10c484, imac 0x132070;
@@ -10557,7 +10561,10 @@ class GJEffectManager : cocos2d::CCNode {
     void toggleTimerPersistent(int, bool);
     TodoReturn transferPersistentItems();
     TodoReturn traverseInheritanceChain(InheritanceNode*);
-    TodoReturn tryGetMoveCommandNode(int);
+    CCMoveCNode* tryGetMoveCommandNode(int) = win inline, m1 0x272cb0, imac 0x2d0bd0, ios 0x1667c {
+        auto it = m_unkMap618.find(p0);
+        return it != m_unkMap618.end() ? it->second : nullptr;
+    }
     TodoReturn updateActiveOpacityEffects();
     TodoReturn updateColorAction(ColorAction*);
     void updateColorEffects(float) = imac 0x2cb7d0, m1 0x26e6c0;
