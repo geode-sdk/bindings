@@ -15295,7 +15295,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
         return cocos2d::CCString::createWithFormat("T%i", time)->getCString();
     }
     bool init(int) = ios 0x54e44, win 0x2f7740, imac 0x611100, m1 0x53d3b8;
-    void onBack(cocos2d::CCObject* sender) = win 0x2fd040;
+    void onBack(cocos2d::CCObject* sender) = win 0x2fd040, ios = 0x57a90, imac = 0x614a90, m1 = 0x540dc8;
     void onClearFreeSearch(cocos2d::CCObject* sender) = win 0x2fd000, imac 0x613e40, m1 0x540128;
     void onClose(cocos2d::CCObject* sender) = win inline {
         m_searchInput->onClickTrackNode(false);
