@@ -1738,7 +1738,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
         ret->m_offButton->setContentSize({maxWidth, maxHeight});
         ret->m_onButton->setContentSize({maxWidth, maxHeight});
 
-             ret->m_offButton->setPosition({maxWidth/2, maxHeight/2});
+        ret->m_offButton->setPosition({maxWidth/2, maxHeight/2});
         ret->m_onButton->setPosition({maxWidth/2, maxHeight/2});
 
         sprOff->setPosition({maxWidth/2, maxHeight/2});
@@ -1752,7 +1752,9 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     virtual void unselected() = win 0x454e0, m1 0x50004, imac 0x5a360, ios 0x19498c;
     virtual void setEnabled(bool) = win 0x45530, m1 0x50044, imac 0x5a390, ios 0x1949cc;
 
-    TodoReturn activeItem();
+    CCMenuItemSpriteExtra* activeItem() = win inline, m1 0x4ff68, imac 0x5a2e0, ios 0x1948f0 {
+        return m_toggled ? m_onButton : m_offButton;
+    }
     bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = ios 0x1945fc, win inline, imac 0x59d40, m1 0x4f964 {
         if (!CCMenuItem::initWithTarget(target, callback)) return false;
 
@@ -1782,8 +1784,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     bool isToggled() {
         return m_toggled;
     }
-    void normalTouch(cocos2d::CCObject*) = win 0x45580, imac 0x59f80;
-    void selectedTouch(cocos2d::CCObject*) = win 0x455a0;
+    void normalTouch(cocos2d::CCObject*) = win 0x45580, m1 0x4fbbc, imac 0x59f80, ios 0x1947ac;
+    void selectedTouch(cocos2d::CCObject*) = win 0x455a0, m1 0x4fcac, imac 0x5a050, ios 0x1947c0;
     void setClickable(bool on) {
         m_notClickable = !on;
     }
@@ -10516,9 +10518,9 @@ class GJEffectManager : cocos2d::CCNode {
     void playerButton(bool, bool) = win 0x25ae00, imac 0x2d61b0, m1 0x277110, ios 0x1921c;
     void playerDied();
     void postCollisionCheck() = ios 0x13cbc, win 0x254f50, imac 0x2cc390;
-    void postMoveActions() = ios 0x180fc, win 0x259470, imac 0x2d4110;
+    void postMoveActions() = win 0x259470, m1 0x275628, imac 0x2d4110, ios 0x180fc;
     void preCollisionCheck() = ios 0x13ca4, imac 0x2cc370;
-    void prepareMoveActions(float, bool) = ios 0x16a74, win 0x258060, imac 0x2d16c0;
+    void prepareMoveActions(float, bool) = win 0x258060, m1 0x27353c, imac 0x2d16c0, ios 0x16a74;
     void processColors() = ios 0x12d30, win 0x253fb0, imac 0x2ca520;
     void processCopyColorPulseActions() = imac 0x2cabf0;
     void processInheritedColors() = imac 0x2ca840, win 0x254190;
@@ -10576,7 +10578,7 @@ class GJEffectManager : cocos2d::CCNode {
     void updatePulseEffects(float) = win 0x259e30, imac 0x2cb9a0, m1 0x26e850;
     TodoReturn updateSpawnTriggers(float) = ios 0x18e14, win 0x25aa10;
     void updateTimer(int, double) = win 0x25b850;
-    void updateTimers(float, float) = win 0x25b9e0, imac 0x2d82a0, ios 0x19fcc;
+    void updateTimers(float, float) = win 0x25b9e0, m1 0x2789fc, imac 0x2d82a0, ios 0x19fcc;
     TodoReturn wasFollowing(int, int);
     TodoReturn wouldCreateLoop(InheritanceNode*, int);
 
