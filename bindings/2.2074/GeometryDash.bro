@@ -7502,7 +7502,7 @@ class GameManager : GManager {
     TodoReturn rewardedVideoHidden();
     TodoReturn rewardedVideoHiddenDelayed();
     // partially inlined on windows
-    void safePopScene() = ios 0x31dab8, win 0x1873e0, m1 0x309298, imac 0x378d40;
+    bool safePopScene() = ios 0x31dab8, win 0x1873e0, m1 0x309298, imac 0x378d40;
     TodoReturn saveAdTimer();
     TodoReturn saveDPadLayout(int, bool);
     void setGameVariable(char const*, bool) = ios 0x318f14, win 0x17fe90, imac 0x370550, m1 0x3018c0;
