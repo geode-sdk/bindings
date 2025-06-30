@@ -99,7 +99,7 @@ public class SyncBromaScript extends GhidraScript {
             this.choice("Broma file (Windows-only)", bromaFiles, f -> this.selectedBromaFile = f);
             this.choice("Game version", versions, v -> this.gameVersion = v);
             this.bool("Import from Broma", b -> this.importFromBroma = b);
-            this.bool("Export to Broma", b -> this.exportToBroma = b);
+            this.bool("Export to Broma", false, b -> this.exportToBroma = b);
             this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
             this.bool("Sync enums", b -> this.syncEnums = b);
@@ -428,6 +428,9 @@ public class SyncBromaScript extends GhidraScript {
         if (bromaSig.returnsStruct && bromaSig.memberFunction && (args.platform == Platform.ANDROID32 || args.platform == Platform.MAC_INTEL)) {
             conventionName = args.platform == Platform.MAC_INTEL ? "__stdcall" : "__cdecl";
         }
+        else if (bromaSig.memberFunction && wrapper.offsets.get(addr.getOffset()) != null) {
+            conventionName = "__fastcall";
+        }
 
         // Apply new signature
         try {
@@ -512,6 +515,8 @@ public class SyncBromaScript extends GhidraScript {
         wrapper.printfmt("Loading addresses from Bindings...");
         var importedAddCount = 0;
         var importedUpdateCount = 0;
+        var symbolTable = currentProgram.getSymbolTable();
+        var pointerSize = currentProgram.getDataTypeManager().getDataOrganization().getPointerSize();
         for (var bro : bromas) {
             wrapper.printfmt("Reading {0}...", bro.path.getFileName());
             for (var cls : bro.classes) {
@@ -521,6 +526,22 @@ public class SyncBromaScript extends GhidraScript {
                     args.selectedBromaFile.equals("Cocos2d.bro") && !cls.name.value.equals("cocos2d::CCLightning")
                 ) {
                     continue;
+                }
+
+                // Get class adjustments
+                if (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) {
+                    for (var metaPtr : symbolTable.getSymbols("vftable_meta_ptr", wrapper.addOrGetNamespace(cls.name.value))) {
+                        var objectLocator = args.platform == Platform.WINDOWS64 ? getLong(metaPtr.getAddress()) : getInt(metaPtr.getAddress());
+                        var offset = getInt(toAddr(objectLocator + 4));
+                        var vftableData = currentProgram.getListing().getDataAt(metaPtr.getAddress().add(8));
+                        var vftableType = vftableData != null ? vftableData.getDataType() : null;
+                        if (vftableType != null && offset > 0) {
+                            for (var i = 0; i < vftableType.getLength(); i += pointerSize) {
+                                var address = metaPtr.getAddress().add(i + 8);
+                                wrapper.offsets.put(args.platform == Platform.WINDOWS64 ? getLong(address) : getInt(address), offset);
+                            }
+                        }
+                    }
                 }
 
                 for (var fun : cls.functions) {
@@ -550,6 +571,8 @@ public class SyncBromaScript extends GhidraScript {
                         default: break;
                     }
                 }
+
+                wrapper.offsets.clear();
             }
 
             for (var fun : bro.functions) {

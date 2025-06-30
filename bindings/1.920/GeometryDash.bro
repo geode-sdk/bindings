@@ -2209,8 +2209,8 @@ class FileSaveManager {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-	// virtual ~FLAlertLayer();
 	// FLAlertLayer();
+	virtual ~FLAlertLayer() = win 0x152b0;
 
 	FLAlertLayer() {
 		m_buttonMenu = nullptr;
@@ -6259,7 +6259,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn markCheckpoint();
 	TodoReturn moveCameraToPos(cocos2d::CCPoint);
 	TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
-	void onQuit();
+	void onQuit() = win 0xf3b80;
 	void pauseGame(bool) = win 0xf38c0;
 	TodoReturn pickupItem(GameObject*);
 	TodoReturn playEndAnimationToPos(cocos2d::CCPoint);

@@ -645,7 +645,6 @@ class cocos2d::CCEaseSineIn : cocos2d::CCActionEase {
         CC_SAFE_DELETE(pNewZone);
         return pCopy;
     }
-    // This doesn't even get called. Why? I don't know.
     virtual void update(float time) = m1 0x45f194, imac 0x4ff7d0, ios inline {
         m_pInner->update(-1 * cosf(time * (float)M_PI_2) + 1);
     }
@@ -1307,18 +1306,44 @@ class cocos2d::CCSet : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCShaderCache : cocos2d::CCObject {
-    static void purgeSharedShaderCache();
+    static void purgeSharedShaderCache() = m1 0x1a6c20, imac 0x1f0430, ios 0x12b69c;
     static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1f0310, m1 0x1a6b00, ios 0x12b5e4;
 
-    bool init();
+    bool init() = m1 0x1a6bd0, imac 0x1f03e0, ios 0x12b64c;
 
     // CCShaderCache(cocos2d::CCShaderCache const&);
     // CCShaderCache();
-    void addProgram(cocos2d::CCGLProgram*, char const*);
-    void loadDefaultShader(cocos2d::CCGLProgram*, int) = imac 0x1f0c90, m1 0x1a74ac;
-    void loadDefaultShaders() = imac 0x1f0550, m1 0x1a6d1c;
+    void addProgram(cocos2d::CCGLProgram*, char const*) = m1 0x1a7b4c, imac 0x1f12e0, ios 0x12bd34;
+    void loadDefaultShader(cocos2d::CCGLProgram*, int) = imac 0x1f0c90, m1 0x1a74ac, ios 0x12bac4;
+    void loadDefaultShaders() = imac 0x1f0550, m1 0x1a6d1c, ios 0x12b718;
     cocos2d::CCGLProgram* programForKey(char const*) = m1 0x1a7a58, imac 0x1f11f0, ios 0x12bcc8;
-    void reloadDefaultShaders();
+    void reloadDefaultShaders() = m1 0x1a76b0, imac 0x1f0e70, ios inline {
+        CCGLProgram* program;
+        program = this->programForKey(kCCShader_PositionTextureColor);
+        program->reset();
+        this->loadDefaultShader(program, 0);
+        program = this->programForKey(kCCShader_PositionTextureColorAlphaTest);
+        program->reset();
+        this->loadDefaultShader(program, 1);
+        program = this->programForKey(kCCShader_PositionColor);
+        program->reset();
+        this->loadDefaultShader(program, 2);
+        program = this->programForKey(kCCShader_PositionTexture);
+        program->reset();
+        this->loadDefaultShader(program, 3);
+        program = this->programForKey(kCCShader_PositionTexture_uColor);
+        program->reset();
+        this->loadDefaultShader(program, 4);
+        program = this->programForKey(kCCShader_PositionTextureA8Color);
+        program->reset();
+        this->loadDefaultShader(program, 5);
+        program = this->programForKey(kCCShader_Position_uColor);
+        program->reset();
+        this->loadDefaultShader(program, 6);
+        program = this->programForKey(kCCShader_PositionLengthTexureColor);
+        program->reset();
+        this->loadDefaultShader(program, 7);
+    }
 }
 
 [[link(win, android)]]
@@ -2068,7 +2093,7 @@ class cocos2d::CCGLProgram : cocos2d::CCObject {
 
     // CCGLProgram(cocos2d::CCGLProgram const&);
     virtual ~CCGLProgram() = m1 0x3937f0, imac 0x417cb0, ios 0x1380ec;
-    CCGLProgram() = m1 0x393770, imac 0x417c10, ios 0x1380ac;
+    CCGLProgram() = m1 0x3937b0, imac 0x417c60, ios 0x1380ac;
     void addAttribute(char const*, unsigned int) = imac 0x4180e0, m1 0x393c30, ios 0x1383dc;
     bool compileShader(unsigned int*, unsigned int, char const*) = m1 0x393a34, imac 0x417f00, ios 0x138304;
     char const* description() = imac 0x4180b0, m1 0x393bfc, ios inline {
@@ -2123,7 +2148,9 @@ class cocos2d::CCNode : cocos2d::CCObject {
     cocos2d::CCRect boundingBox() = imac 0x260cd0, m1 0x20ca74, ios 0x23b390;
     void childrenAlloc();
     cocos2d::CCPoint convertToNodeSpace(cocos2d::CCPoint const&) = imac 0x262c40, m1 0x20e94c, ios 0x23ccb8;
-    cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const&);
+    cocos2d::CCPoint convertToNodeSpaceAR(cocos2d::CCPoint const& worldPoint) = m1 0x20e9dc, imac 0x262cc0, ios inline {
+        return convertToNodeSpace(worldPoint) - m_obAnchorPointInPoints;
+    }
     cocos2d::CCPoint convertToWindowSpace(cocos2d::CCPoint const&);
     cocos2d::CCPoint convertToWorldSpace(cocos2d::CCPoint const&) = imac 0x262c80, m1 0x20e994, ios 0x23cd00;
     cocos2d::CCPoint convertToWorldSpaceAR(cocos2d::CCPoint const& point) = m1 0x20ea40, imac 0x262d20, ios inline {
@@ -2595,6 +2622,48 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
 }
 
 [[link(win, android)]]
+class cocos2d::CCTextureAtlas : cocos2d::CCObject {
+	static cocos2d::CCTextureAtlas* create(char const*, unsigned int);
+	static cocos2d::CCTextureAtlas* createWithTexture(cocos2d::CCTexture2D*, unsigned int);
+
+	bool initWithFile(char const*, unsigned int);
+	bool initWithTexture(cocos2d::CCTexture2D*, unsigned int);
+
+	void setDirty(bool);
+
+	// CCTextureAtlas(cocos2d::CCTextureAtlas const&);
+	// CCTextureAtlas();
+	char const* description();
+	void drawNumberOfQuads(unsigned int);
+	void drawNumberOfQuads(unsigned int, unsigned int);
+	void drawQuads();
+	void fillWithEmptyQuadsFromIndex(unsigned int, unsigned int);
+	void increaseTotalQuadsWith(unsigned int);
+	void insertQuad(cocos2d::_ccV3F_C4B_T2F_Quad*, unsigned int);
+	void insertQuadFromIndex(unsigned int, unsigned int);
+	void insertQuads(cocos2d::_ccV3F_C4B_T2F_Quad*, unsigned int, unsigned int);
+	bool isDirty();
+	void listenBackToForeground(cocos2d::CCObject*);
+	void mapBuffers();
+	void moveQuadsFromIndex(unsigned int, unsigned int);
+	void moveQuadsFromIndex(unsigned int, unsigned int, unsigned int);
+	void removeAllQuads();
+	void removeQuadAtIndex(unsigned int);
+	void removeQuadsAtIndex(unsigned int, unsigned int);
+	bool resizeCapacity(unsigned int);
+	void setupIndices();
+	void setupVBO();
+	void updateQuad(cocos2d::_ccV3F_C4B_T2F_Quad*, unsigned int);
+
+	virtual unsigned int getTotalQuads();
+	virtual unsigned int getCapacity();
+	virtual cocos2d::CCTexture2D* getTexture();
+	virtual void setTexture(cocos2d::CCTexture2D*);
+	virtual cocos2d::_ccV3F_C4B_T2F_Quad* getQuads();
+	virtual void setQuads(cocos2d::_ccV3F_C4B_T2F_Quad*);
+}
+
+[[link(win, android)]]
 class cocos2d::CCTextureCache : cocos2d::CCObject {
     static void purgeSharedTextureCache();
     static void reloadAllTextures();
@@ -2828,7 +2897,6 @@ class cocos2d::CCIMEDelegate {
     virtual ~CCIMEDelegate() = imac 0x4a8c30, m1 0x411f78, ios 0x1d46f8; // ios: ?
     virtual bool attachWithIME() = imac 0x4a8c50, m1 0x411f90, ios 0x1d47b4;
     virtual bool detachWithIME() = imac 0x4a8e40, m1 0x4121d0, ios 0x1d48b8;
-    virtual void deleteForward() = m1 0x8fb0, imac 0x7150, ios 0xd590 {}
 }
 
 [[link(win, android)]]
@@ -4451,6 +4519,56 @@ class cocos2d::CCMenuItemSprite : cocos2d::CCMenuItem {
 }
 
 [[link(win, android)]]
+class cocos2d::CCMenuItemImage : cocos2d::CCMenuItemSprite {
+    static cocos2d::CCMenuItemImage* create() = m1 0x339058, imac 0x3ad2f0, ios inline {
+        auto ret = new CCMenuItemImage();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static cocos2d::CCMenuItemImage* create(char const*, char const*) = m1 0x3393cc, imac 0x3ad640, ios inline {
+        return create(p0, p1, nullptr, nullptr, nullptr);
+    }
+    static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*) = m1 0x3395ec, imac 0x3ad8a0, ios inline {
+        auto ret = new CCMenuItemImage();
+        if (ret->initWithNormalImage(p0, p1, p2, nullptr, nullptr)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static cocos2d::CCMenuItemImage* create(char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x339534, imac 0x3ad7d0, ios inline {
+        return create(p0, p1, nullptr, p2, p3);
+    }
+    static cocos2d::CCMenuItemImage* create(char const*, char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x339470, imac 0x3ad6f0, ios inline {
+        auto ret = new CCMenuItemImage();
+        if (ret->initWithNormalImage(p0, p1, p2, p3, p4)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+
+    bool initWithNormalImage(char const*, char const*, char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = m1 0x33927c, imac 0x3ad500, ios 0x50ce8;
+    void setNormalSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x339694, imac 0x3ad960, ios inline {
+        this->setNormalImage(CCSprite::createWithSpriteFrame(p0));
+    }
+    void setSelectedSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x3396c8, imac 0x3ad990, ios inline {
+        this->setSelectedImage(CCSprite::createWithSpriteFrame(p0));
+    }
+    void setDisabledSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x3396fc, imac 0x3ad9c0, ios inline {
+        this->setDisabledImage(CCSprite::createWithSpriteFrame(p0));
+    }
+
+    virtual bool init() = m1 0x339194, imac 0x3ad430, ios 0x50cb8;
+}
+
+[[link(win, android)]]
 class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     // static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1d8d28, m1 0x6a6d58, imac 0x79e7b0;
     static cocos2d::CCMenu* create() = imac 0x77c950, m1 0x691950, ios 0x1d8d04;
@@ -4606,7 +4724,7 @@ class cocos2d {
     static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = m1 0x4f1f3c, imac 0x5bc460, ios 0x2f8b04;
     static void FNTConfigRemoveCache();
     static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
-    static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&) = m1 0x1df1e8, imac 0x22e4c0;
+    static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&) = m1 0x1df1e8, imac 0x22e4c0, ios 0x40b1f8;
     static cocos2d::CCSize __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&) = m1 0x1df244, imac 0x22e530;
     static cocos2d::CCPoint ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
     static void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
@@ -5082,10 +5200,10 @@ class pugi::xml_document {
     ~xml_document() = imac 0x62ab90, m1 0x555520, ios 0x3a5a20;
 }
 
-[[link(win, android)]]
+[[link(android)]]
 class pugi::xml_node {
     // i'm not bothering
-    xml_node() = m1 inline, imac inline, ios inline {
+    xml_node() {
     	_root = nullptr;
     }
 }
@@ -5136,10 +5254,10 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     virtual void updateDisplayedOpacity(unsigned char) = win 0x44980, m1 0x4fad78, imac 0x5c5f90, ios 0x3474ac;
     virtual bool isCascadeOpacityEnabled() = win 0x44990, m1 0x4fad88, imac 0x5c5fb0, ios 0x3474bc;
     virtual void setCascadeOpacityEnabled(bool) = win 0x449a0, m1 0x4fad98, imac 0x5c5fd0, ios 0x3474cc;
-    virtual cocos2d::_ccColor3B const& getColor() = win 0x44940, m1 0x4fad1c, imac 0x5c5ef0, ios 0x347450;
-    virtual cocos2d::_ccColor3B const& getDisplayedColor() = win 0x449b0, m1 0x4fada8, imac 0x5c5ff0, ios 0x3474dc;
-    virtual void setColor(cocos2d::_ccColor3B const&) = win 0x44950, m1 0x4fad2c, imac 0x5c5f10, ios 0x347460;
-    virtual void updateDisplayedColor(cocos2d::_ccColor3B const&) = win 0x449c0, m1 0x4fadb8, imac 0x5c6010, ios 0x3474ec;
+    virtual cocos2d::ccColor3B const& getColor() = win 0x44940, m1 0x4fad1c, imac 0x5c5ef0, ios 0x347450;
+    virtual cocos2d::ccColor3B const& getDisplayedColor() = win 0x449b0, m1 0x4fada8, imac 0x5c5ff0, ios 0x3474dc;
+    virtual void setColor(cocos2d::ccColor3B const&) = win 0x44950, m1 0x4fad2c, imac 0x5c5f10, ios 0x347460;
+    virtual void updateDisplayedColor(cocos2d::ccColor3B const&) = win 0x449c0, m1 0x4fadb8, imac 0x5c6010, ios 0x3474ec;
     virtual bool isCascadeColorEnabled() = win 0x449d0, m1 0x4fade0, imac 0x5c6050, ios 0x347514;
     virtual void setCascadeColorEnabled(bool) = win 0x449e0, m1 0x4fadf0, imac 0x5c6070, ios 0x347524;
 

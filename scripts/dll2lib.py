@@ -34,7 +34,7 @@ if DLL_NAME in ('libcocos2d', 'libExtensions'):
     # Removes constructors and destructors
     should_remove = lambda e: e.startswith('??0') or e.startswith('??1')
     for e in exports:
-        if should_remove(e)
+        if should_remove(e):
             print(f"Removing {e}")
     exports = [e for e in exports if not should_remove(e)]
 
