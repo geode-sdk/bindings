@@ -4874,7 +4874,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         }
     }
     void deselectAll() = win 0x10fd80, imac 0x33240, m1 0x328b0, ios 0x3e1f84;
-    void deselectObject() = win inline, m1 0x32a98, imac 0x33450 {
+    void deselectObject() = win inline, m1 0x32a98, imac 0x33450, ios 0x3e2010 {
         this->stopActionByTag(124);
         if (m_selectedObject) m_selectedObject->deselectObject();
         m_selectedObject = nullptr;
@@ -4882,7 +4882,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         m_canActivateControls = true;
         m_lastTouchPoint = cocos2d::CCPoint { 0.f, 0.f };
     }
-    void deselectObject(GameObject*) = win 0x10fc60, m1 0x32808, imac 0x331a0;
+    void deselectObject(GameObject*) = win 0x10fc60, m1 0x32808, imac 0x331a0, ios 0x3e1f00;
     void deselectObjectsColor() = win 0x10f0b0;
     void deselectTargetPortals() = imac 0x32e10, win 0xe51b0;
     TodoReturn disableButton(CreateMenuItem*);
@@ -4914,7 +4914,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CreateMenuItem* getCreateMenuItemButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint) = ios 0x3df54c, imac 0x2f190, m1 0x2eb94;
     TodoReturn getCycledObject(cocos2d::CCArray*, bool);
     TodoReturn getEditColorTargets(ColorAction*&, ColorAction*&, EffectGameObject*&) = imac 0x4a120;
-    cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint pos) = win inline, m1 0x35130, imac 0x35c40 {
+    cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint pos) = win inline, m1 0x35130, imac 0x35c40, ios 0x3e3cc8 {
         auto size = m_editorLayer->m_drawGridLayer->m_gridSize;
         auto xVal = std::floorf(pos.x / size);
         auto yVal = std::floorf(pos.y / size);
@@ -7502,7 +7502,7 @@ class GameManager : GManager {
     TodoReturn rewardedVideoHidden();
     TodoReturn rewardedVideoHiddenDelayed();
     // partially inlined on windows
-    void safePopScene() = ios 0x31dab8, win 0x1873e0, m1 0x309298, imac 0x378d40;
+    bool safePopScene() = ios 0x31dab8, win 0x1873e0, m1 0x309298, imac 0x378d40;
     TodoReturn saveAdTimer();
     TodoReturn saveDPadLayout(int, bool);
     void setGameVariable(char const*, bool) = ios 0x318f14, win 0x17fe90, imac 0x370550, m1 0x3018c0;
@@ -8745,7 +8745,7 @@ class GameToolbox {
     }
     static CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, float buttonScale, float maxLabelScale, float maxLabelWidth, cocos2d::CCPoint labelOffset, char const* font, bool labelTop, int labelTag, cocos2d::CCArray* container) = win 0x64670, imac 0x4dbe90, m1 0x43ef50, ios 0x47bcc;
     static bool doWeHaveInternet() = m1 0x43e8a8, imac 0x4db770;
-    static TodoReturn easeToText(int) = m1 0x445748, imac 0x4e34f0;
+    static gd::string easeToText(int easingType) = win 0x68570, m1 0x445748, imac 0x4e34f0, ios 0x4b720;
     static TodoReturn fast_rand();
     static float fast_rand_0_1() = imac 0x4dea80, m1 0x441870, ios 0x49540;
     static TodoReturn fast_rand_minus1_1();
@@ -8769,7 +8769,7 @@ class GameToolbox {
     static bool isRateEasing(int);
     static TodoReturn mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
     static TodoReturn mergeDictsSkipConflict(cocos2d::CCDictionary*, cocos2d::CCDictionary*) = imac 0x4dc610;
-    static TodoReturn msToTimeString(int, int) = m1 0x446c04, imac 0x4e48b0;
+    static gd::string msToTimeString(int milliseconds, int formattingMode) = win 0x69630, m1 0x446c04, imac 0x4e48b0, ios 0x4c158;
     static TodoReturn multipliedColorValue(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
     static TodoReturn openAppPage();
     static TodoReturn openRateURL(gd::string, gd::string) = m1 0x43ea18, imac 0x4db8e0;
@@ -10061,7 +10061,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_skipArtReload;
     EndPortalObject* m_endPortal;
     bool m_isTestMode;
-    bool m_unk3229;
+    bool m_freezeStartCamera;
     bool m_unk322a;
     float m_cameraUnzoomedHeightOffset;
     float m_targetCameraHeightOffset;
