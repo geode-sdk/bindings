@@ -10061,7 +10061,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_skipArtReload;
     EndPortalObject* m_endPortal;
     bool m_isTestMode;
-    bool m_unk3229;
+    bool m_freezeStartCamera;
     bool m_unk322a;
     float m_cameraUnzoomedHeightOffset;
     float m_targetCameraHeightOffset;
