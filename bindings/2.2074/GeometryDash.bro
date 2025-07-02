@@ -9280,7 +9280,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual cocos2d::CCPoint posForTime(float time) { return { 0.f, 0.f }; }
     virtual void resetSPTriggered() {}
     virtual void updateScreenRotation(float, bool, bool, float, int, float, int, int) = win 0x230720, imac 0x13f1a0, m1 0x116cb0, ios 0x1ff018;
-    virtual TodoReturn reverseDirection(EffectGameObject*) = win 0x212c80, m1 0xf8e6c, imac 0x11a1f0, ios 0x1ec3d4;
+    virtual void reverseDirection(EffectGameObject*) = win 0x212c80, m1 0xf8e6c, imac 0x11a1f0, ios 0x1ec3d4;
     virtual void rotateGameplay(RotateGameplayGameObject*) = win 0x212ce0, imac 0x11a230, m1 0xf8eb0, ios 0x1ec418;
     virtual void didRotateGameplay() {}
     virtual void updateTimeWarp(float) = win 0x230a00, imac 0x13f940, m1 0x11730c, ios 0x1ff468;
@@ -9288,7 +9288,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void applyTimeWarp(float) = win 0x230a50, imac 0x13f990, m1 0x11734c, ios 0x1ff4a4;
     virtual void playGravityEffect(bool) {}
     virtual void manualUpdateObjectColors(GameObject*) {}
-    virtual TodoReturn createCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, bool) = win 0x23a7f0, imac 0x14cf30, m1 0x122170, ios 0x206ed8;
+    virtual cocos2d::CCParticleSystemQuad* createCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, bool) = win 0x23a7f0, imac 0x14cf30, m1 0x122170, ios 0x206ed8;
     virtual cocos2d::CCParticleSystemQuad* claimCustomParticle(gd::string const&, cocos2d::ParticleStruct const&, int, int, int, bool) = win 0x23aaf0, imac 0x14d2c0, m1 0x122520, ios 0x207108;
     virtual void unclaimCustomParticle(gd::string const&, cocos2d::CCParticleSystemQuad*) = win 0x23acf0, imac 0x14d4c0, m1 0x122760, ios 0x207348;
     virtual TodoReturn activatedAudioTrigger(SFXTriggerGameObject*) = win 0x23c8a0, imac 0x14e3e0, m1 0x123474, ios 0x207e14;
@@ -9308,14 +9308,14 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void activateItemCompareTrigger(ItemTriggerGameObject*, gd::vector<int> const&) = win 0x22eed0;
     void activateItemEditTrigger(ItemTriggerGameObject*) = win 0x22eaf0, imac 0x13c800, m1 0x114c0c;
     void activateObjectControlTrigger(ObjectControlGameObject*);
-    TodoReturn activatePersistentItemTrigger(ItemTriggerGameObject*);
+    void activatePersistentItemTrigger(ItemTriggerGameObject* trigger) = win 0x22f2e0;
     void activatePlayerControlTrigger(PlayerControlGameObject*);
-    TodoReturn activateResetTrigger(EffectGameObject*);
+    void activateResetTrigger(EffectGameObject*);
     void activateSFXEditTrigger(SFXTriggerGameObject*) = win 0x23b8c0;
     void activateSFXTrigger(SFXTriggerGameObject*) = win 0x23b6c0, m1 0x11f100, imac 0x149850, ios 0x204ff0;
     void activateSongEditTrigger(SongTriggerGameObject*) = win 0x23b3b0, m1 0x11eec4, imac 0x1495f0, ios 0x204e8c;
     void activateSongTrigger(SongTriggerGameObject*) = win 0x23b030, m1 0x11ec1c, imac 0x1492c0;
-    TodoReturn activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&);
+    void activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&) = win 0x22f700;
     void addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType) = win 0x2221a0;
     void addCustomEnterEffect(EnterEffectObject*, bool);
     bool addGuideArt(GameObject*) = win 0x23f940, imac 0x151740, m1 0x125938, ios 0x2097dc;
@@ -10554,7 +10554,7 @@ class GJEffectManager : cocos2d::CCNode {
     bool shouldBlend(int) = imac 0x2ca4e0;
     TodoReturn spawnGroup(int, float, bool, gd::vector<int> const&, int, int) = win 0x25a920;
     TodoReturn spawnObject(GameObject*, float, gd::vector<int> const&, int, int);
-    TodoReturn startTimer(int, double, double, bool, bool, bool, float, bool, int, gd::vector<int> const&, int, int);
+    void startTimer(int, double, double, bool, bool, bool, float, bool, int, gd::vector<int> const&, int, int) = win 0x25b5f0;
     TodoReturn storeTriggeredID(int, int) = win 0x25ac60, imac 0x2d5e20;
     TodoReturn timeForItem(int) = win 0x25bfd0;
     TodoReturn timerExists(int);
