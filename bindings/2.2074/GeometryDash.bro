@@ -6823,7 +6823,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool createAndGetLevelComments(gd::string, int);
     cocos2d::CCArray* createAndGetLevelLists(gd::string) = imac 0x51b840;
     cocos2d::CCArray* createAndGetLevels(gd::string) = win 0x1446b0;
-    cocos2d::CCArray* createAndGetMapPacks(gd::string);
+    cocos2d::CCArray* createAndGetMapPacks(gd::string) = win 0x144e90;
     cocos2d::CCArray* createAndGetScores(gd::string, GJScoreType) = imac 0x51cf60, win 0x145130;
     GJGameLevel* createNewLevel() = win 0x142800, imac 0x5165d0, m1 0x473a40;
     GJLevelList* createNewLevelList() = ios 0x96a04, win 0x1432b0, m1 0x474704;
@@ -8622,7 +8622,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn linkSpecialChestUnlocks(GJRewardItem*, gd::string);
     TodoReturn logCoins();
     TodoReturn markLevelAsCompletedAndClaimed(GJGameLevel*);
-    void postLoadGameStats();
+    void postLoadGameStats() = win 0x1f0460;
     void preProcessReward(GJRewardItem*) = win 0x1deb00;
     void preSaveGameStats() = win 0x1f0630;
     void processChallengeQueue(int position) = win 0x1df950, m1 0x67160, imac 0x73590, ios 0x334078;
