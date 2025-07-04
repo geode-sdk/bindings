@@ -4691,13 +4691,13 @@ class cocos2d {
     static cocos2d::CCAffineTransform CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float);
     static void CCLuaLog(char const*);
     static void CCMessageBox(char const*, char const*);
-    static cocos2d::CCPoint CCPointFromString(char const*);
+    static cocos2d::CCPoint CCPointFromString(char const*) = m1 0x4a7ec0, imac 0x550ab0, ios 0x1a9c78;
     static void CCProfilingBeginTimingBlock(char const*);
     static void CCProfilingEndTimingBlock(char const*);
     static void CCProfilingResetTimingBlock(char const*);
     static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
-    static cocos2d::CCRect CCRectFromString(char const*);
-    static cocos2d::CCSize CCSizeFromString(char const*);
+    static cocos2d::CCRect CCRectFromString(char const*) = m1 0x4a7204, imac 0x54fcc0, ios 0x1a93ec;
+    static cocos2d::CCSize CCSizeFromString(char const*) = m1 0x4a7fec, imac 0x550bb0, ios 0x1a9d4c;
     static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = m1 0x4f1f3c, imac 0x5bc460, ios 0x2f8b04;
     static void FNTConfigRemoveCache();
     static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
