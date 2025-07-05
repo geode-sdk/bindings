@@ -4913,9 +4913,18 @@ class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl {
+    ~CCControlColourPicker();
+    
     static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x3424e0, m1 0x2d7fe0, ios 0x1b1bd8;
+    
+    ccColor3B const& getColorValue() const;
+    virtual void setColorValue(ccColor3B const&);
 
     virtual bool init() = m1 0x2d7a70, imac 0x341e50, ios 0x1b1744;
+    void hueSliderValueChanged(CCObject* sender, CCControlEvent controlEvent);
+    void colourSliderValueChanged(CCObject* sender, CCControlEvent controlEvent);
+    void updateControlPicker();
+    void updateHueAndControlPicker();
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2d81b8, imac 0x342760, ios 0x1b1d2c;
 }
 
