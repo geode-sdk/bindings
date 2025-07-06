@@ -2376,7 +2376,15 @@ class cocos2d::CCLayerGradient : cocos2d::CCLayerColor {
     	ret->setVector(a3);
     	return ret;
     }
-    static cocos2d::CCLayerGradient* create() = imac 0x4a0780;
+    static cocos2d::CCLayerGradient* create() = m1 0x40b05c, imac 0x4a0780, ios inline {
+        auto ret = new CCLayerGradient();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     bool getShouldPremultiply() const;
 
@@ -3615,8 +3623,16 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::CCRenderTexture : cocos2d::CCNode {
     static cocos2d::CCRenderTexture* create(int, int) = imac 0x5ddfa0, m1 0x510d58, ios 0x3b8bc8;
-    static cocos2d::CCRenderTexture* create(int, int, cocos2d::CCTexture2DPixelFormat) = imac 0x5dda60, m1 0x510844;
-    static cocos2d::CCRenderTexture* create(int, int, cocos2d::CCTexture2DPixelFormat, unsigned int) = imac 0x5ddb30;
+    static cocos2d::CCRenderTexture* create(int, int, cocos2d::CCTexture2DPixelFormat) = imac 0x5dda60, m1 0x510844, ios 0x3b87c0;
+    static cocos2d::CCRenderTexture* create(int, int, cocos2d::CCTexture2DPixelFormat, unsigned int) = m1 0x510924, imac 0x5ddb30, ios inline {
+        auto ret = new CCRenderTexture();
+        if (ret->initWithWidthAndHeight(p0, p1, p2, p3)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     bool initWithWidthAndHeight(int, int, cocos2d::CCTexture2DPixelFormat);
     bool initWithWidthAndHeight(int, int, cocos2d::CCTexture2DPixelFormat, unsigned int) = m1 0x510a0c, ios 0x3b8888;
@@ -3634,14 +3650,32 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
 
     // CCRenderTexture(cocos2d::CCRenderTexture const&);
     [[since("4.0.1")]]
-    CCRenderTexture() = m1 0x510664, imac 0x5dd7c0;
+    CCRenderTexture() = m1 0x510664, imac 0x5dd7c0, ios inline {
+        m_pSprite = nullptr;
+        m_uFBO = 0;
+        m_uDepthRenderBufffer = 0;
+        m_nOldFBO = 0;
+        m_pTexture = nullptr;
+        m_pTextureCopy = nullptr;
+        m_pUITextureImage = nullptr;
+        m_ePixelFormat = kCCTexture2DPixelFormat_RGBA8888;
+        m_uClearFlags = 0;
+        m_sClearColor = { 0.0f, 0.0f, 0.0f, 0.0f };
+        m_fClearDepth = 0.0f;
+        m_nClearStencil = 0;
+        m_bAutoDraw = false;
+    }
     [[since("4.0.1")]]
     virtual ~CCRenderTexture() = m1 0x5106fc, imac 0x5dd880, ios 0x3b86dc;
     void begin() = imac 0x5de080, m1 0x510e4c, ios 0x3b8cac;
     void beginWithClear(float, float, float, float, float, int, unsigned int) = imac 0x5de350, m1 0x5110d8, ios 0x3b8e8c;
     void beginWithClear(float, float, float, float) = imac 0x5de2b0, m1 0x511038, ios 0x3b8e7c;
-    void beginWithClear(float, float, float, float, float) = imac 0x5de4f0, m1 0x511220;
-    void beginWithClear(float, float, float, float, float, int) = imac 0x5de5d0;
+    void beginWithClear(float, float, float, float, float) = imac 0x5de4f0, m1 0x511220, ios inline {
+        this->beginWithClear(p0, p1, p2, p3, p4, 0, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    }
+    void beginWithClear(float, float, float, float, float, int) = m1 0x5112f0, imac 0x5de5d0, ios inline {
+        this->beginWithClear(p0, p1, p2, p3, p4, p5, GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+    }
     void clear(float, float, float, float);
     void clearDepth(float);
     void clearStencil(int);
