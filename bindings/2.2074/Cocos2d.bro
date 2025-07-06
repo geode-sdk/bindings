@@ -2572,8 +2572,30 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
     // CCTexture2D(cocos2d::CCTexture2D const&);
     virtual ~CCTexture2D() = m1 0x3d5378, ios 0x130660, imac 0x4653b0; //imac 0x465400
     CCTexture2D() = m1 0x3d52b0, imac 0x4652f0, ios 0x1305f8;
-    unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat) = imac 0x465950;
-    unsigned int bitsPerPixelForFormat() = imac 0x4669e0;
+    unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat) = m1 0x3d582c, imac 0x465950, ios inline {
+        switch (p0) {
+            case kCCTexture2DPixelFormat_RGBA8888:
+            case kCCTexture2DPixelFormat_RGB888:
+                return 32;
+            case kCCTexture2DPixelFormat_RGB565:
+            case kCCTexture2DPixelFormat_RGBA4444:
+            case kCCTexture2DPixelFormat_RGB5A1:
+            case kCCTexture2DPixelFormat_AI88:
+                return 16;
+            case kCCTexture2DPixelFormat_A8:
+            case kCCTexture2DPixelFormat_I8:
+                return 8;
+            case kCCTexture2DPixelFormat_PVRTC4:
+                return 4;
+            case kCCTexture2DPixelFormat_PVRTC2:
+                return 2;
+            default:
+                return -1;
+        }
+    }
+    unsigned int bitsPerPixelForFormat() = m1 0x3d6854, imac 0x4669e0, ios inline {
+        return this->bitsPerPixelForFormat(m_ePixelFormat);
+    }
     char const* description() = imac 0x465970, m1 0x3d584c;
     void drawAtPoint(cocos2d::CCPoint const&) = m1 0x3d62d0;
     void drawInRect(cocos2d::CCRect const&) = m1 0x3d63e8;
@@ -3801,7 +3823,7 @@ class cocos2d::CCTransitionMoveInT : cocos2d::CCTransitionMoveInL {
 [[link(win, android)]]
 class cocos2d::CCTransitionFade : cocos2d::CCTransitionScene {
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = m1 0xc122c, imac 0xd9090, ios 0x1cee8c;
-    static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&) = imac 0xd8ff0;
+    static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::_ccColor3B const&) = m1 0xc1190, imac 0xd8ff0, ios 0x1cedf0;
 
     // CCTransitionFade(cocos2d::CCTransitionFade const&);
     // CCTransitionFade();
@@ -5208,7 +5230,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     }
 
     bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x439e0, imac 0x5c5a90, m1 0x4fa950, ios 0x3471b0;
-    bool initWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline, m1 0x4fa7dc {
+    bool initWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline, m1 0x4fa7dc, imac 0x5c58e0 {
     	return this->initWithStrikePoint(p1, CCPointZero, .5f);
     }
 

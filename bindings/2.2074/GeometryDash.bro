@@ -4958,7 +4958,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint moveForCommand(EditCommand command) = ios 0x3ee010, win 0x11de20, imac 0x4a7d0, m1 0x435fc;
     void moveGamelayer(cocos2d::CCPoint) = ios 0x3dfa64, win 0xe16b0, imac 0x2f800, m1 0x2f18c;
     void moveObject(GameObject*, cocos2d::CCPoint) = ios 0x3e7270, win 0x11e290, m1 0x399d4, imac 0x3ef90;
-    void moveObjectCall(cocos2d::CCObject*) = win 0x11dfd0, imac 0x49970;
+    void moveObjectCall(cocos2d::CCObject*) = win 0x11dfd0, m1 0x42a38, imac 0x49970, ios 0x3ed6f4;
     void moveObjectCall(EditCommand) = ios 0x3ee190, win 0x11e000, imac 0x4a9d0, m1 0x437a8;
     cocos2d::CCPoint offsetForKey(int) = win 0x124bf0;
     TodoReturn onAssignNewGroupID();
@@ -10389,9 +10389,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
 [[link(android)]]
 class GJDropDownLayer : cocos2d::CCLayerColor {
     // virtual ~GJDropDownLayer();
-    inline GJDropDownLayer() {
-        m_endPosition = cocos2d::CCPointMake(0.f, 0.f);
-        m_startPosition = cocos2d::CCPointMake(0.f, 0.f);
+    GJDropDownLayer() {
         m_buttonMenu = nullptr;
         m_listLayer = nullptr;
         m_mainLayer = nullptr;
@@ -10400,23 +10398,17 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
         m_fastMenu = false;
     }
 
-    static GJDropDownLayer* create(const char* title, float height, bool p2) = win inline, imac 0x5cfc90, m1 0x503e08 {
-        GJDropDownLayer* pRet = new GJDropDownLayer();
-        if (pRet && pRet->init(title, height, p2)) {
-            pRet->autorelease();
-            return pRet;
+    static GJDropDownLayer* create(const char* title, float height, bool) = win inline, imac 0x5cfc90, m1 0x503e08, ios inline {
+        auto ret = new GJDropDownLayer();
+        if (ret->init(title, height, p2)) {
+            ret->autorelease();
+            return ret;
         }
-        CC_SAFE_DELETE(pRet);
+        delete ret;
         return nullptr;
     }
-    static GJDropDownLayer* create(const char* title) = win inline, imac 0x5d01d0 {
-        GJDropDownLayer* pRet = new GJDropDownLayer();
-        if (pRet && pRet->init(title)) {
-            pRet->autorelease();
-            return pRet;
-        }
-        CC_SAFE_DELETE(pRet);
-        return nullptr;
+    static GJDropDownLayer* create(const char* title) = win inline, m1 0x50432c, imac 0x5d01d0, ios inline {
+        return create(title, 220.0f, false);
     }
 
     virtual void draw() = win 0x426f0, m1 0x5046c0, imac 0x5d05d0, ios 0x3ab0a0;
@@ -11514,7 +11506,7 @@ class GJMapPack : cocos2d::CCNode {
         CC_SAFE_RELEASE(m_levels);
     }
 
-    static GJMapPack* create(cocos2d::CCDictionary*) = win 0x16d210, m1 0x478e24;
+    static GJMapPack* create(cocos2d::CCDictionary*) = win 0x16d210, m1 0x478e24, imac 0x51c560, ios 0x99770;
 
     static GJMapPack* create() = win inline, m1 0x4a1910, imac 0x5490c0, ios 0xb2d50 {
         auto ret = new GJMapPack();
@@ -13226,7 +13218,7 @@ class GJUserMessage : cocos2d::CCNode {
     // virtual ~GJUserMessage();
 
     static GJUserMessage* create() = win 0x170ec0, imac 0x549f70, m1 0x4a264c, ios 0xb3540;
-    static GJUserMessage* create(cocos2d::CCDictionary*) = win 0x170380, m1 0x490df0, ios 0xa8330;
+    static GJUserMessage* create(cocos2d::CCDictionary*) = win 0x170380, m1 0x490df0, imac 0x537410, ios 0xa8330;
 
     virtual bool init() = win 0x77db0, m1 0x4a26e8, imac 0x54a010, ios 0xb35d0;
 
@@ -23163,8 +23155,8 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
     void audioPrevious(cocos2d::CCObject* sender) = ios 0x14aec0, win 0xc6af0, imac 0x207990, m1 0x1bc9a0;
     bool init(int, bool, LevelSettingsObject*, SongSelectType, cocos2d::CCPoint, cocos2d::CCNode*, cocos2d::CCMenu*, bool) = ios 0x14a5b8, win 0xc60b0, imac 0x207080, m1 0x1bc070;
     void onOpenCustomSong(cocos2d::CCObject* sender);
-    void onSongMode(cocos2d::CCObject* sender) = imac 0x207a10;
-    void onSongMode(int) = win 0xc6b50, imac 0x207ae0, m1 0x1bcabc;
+    void onSongMode(cocos2d::CCObject* sender) = win 0xc6b20, m1 0x1bca0c, imac 0x207a10, ios 0x14af2c;
+    void onSongMode(int) = win 0xc6b50, imac 0x207ae0, m1 0x1bcabc, ios 0x14afbc;
     void selectSong(int id) = win inline, imac 0x207ab0 {
         auto songID = id;
         if (songID > 21) songID = 21;
