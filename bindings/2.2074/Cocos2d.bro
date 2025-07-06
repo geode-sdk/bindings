@@ -2915,8 +2915,8 @@ class cocos2d::CCIMEDispatcher {
     void addDelegate(cocos2d::CCIMEDelegate*);
     bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
     bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
-    void dispatchDeleteBackward() = m1 0x412500, imac 0x4a9140, ios 0x1d49c4;
-    void dispatchDeleteForward() = m1 0x4124e0, imac 0x4a9160;
+    void dispatchDeleteBackward() = m1 0x4124e0, imac 0x4a9140, ios 0x1d49c4;
+    void dispatchDeleteForward() = m1 0x412500, imac 0x4a9160;
     void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = imac 0x4a9110, m1 0x4124b4, ios 0x1d4998;
     void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
     void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&);
@@ -3181,8 +3181,8 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
     void setUseVertexMod(bool);
 
     // CCSprite(cocos2d::CCSprite const&);
-    CCSprite() = imac 0x2762a0, m1 0x221864, ios 0x2379f0;
-    virtual ~CCSprite() = imac 0x276d00, m1 0x221938, ios 0x237a78;
+    CCSprite() = imac 0x276c00, m1 0x221864, ios 0x2379f0;
+    virtual ~CCSprite() = imac 0x276ca0, m1 0x2218ec, ios 0x237a78;
     bool isFlipX() = m1 0x222e30, imac 0x278460, ios 0x238ecc;
     bool isFlipY() = m1 0x222e64, imac 0x2784b0, ios 0x238f00;
     bool isTextureRectRotated();

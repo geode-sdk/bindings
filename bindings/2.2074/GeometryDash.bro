@@ -5558,7 +5558,7 @@ class EndLevelLayer : GJDropDownLayer {
     void currencyEnterFinished();
     void diamondEnterFinished();
     gd::string getCoinString() = win 0x132d30, m1 0x4174b8, imac 0x4ae840;
-    const char* getEndText() = win 0x135190, m1 0x6c7abc, imac 0x4aea80;
+    const char* getEndText() = win 0x135190, m1 0x41770c, imac 0x4aea80;
     void goEdit() = win 0x1336e0;
     bool init(PlayLayer* playLayer);
     void onEdit(cocos2d::CCObject* sender) = win 0x1335e0, m1 0x417a1c, imac 0x4aed20, ios 0x2f71c0;
@@ -16406,7 +16406,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
     void onArtistFilters(cocos2d::CCObject* sender) = win 0x325b10, imac 0x5f73a0, m1 0x5267d8;
     void onClearSearch(cocos2d::CCObject* sender) = imac 0x5f72e0;
     void onClose(cocos2d::CCObject* sender) = win 0x325c00;
-    void onPage(cocos2d::CCObject* sender) = win 0x325790, imac 0x42b670, m1 0x526478;
+    void onPage(cocos2d::CCObject* sender) = win 0x325790, imac 0x5f70b0, m1 0x526478;
     void onPlaybackControl(cocos2d::CCObject* sender) = win 0x324b90, imac 0x5f7860, m1 0x526c88;
     void onSearch(cocos2d::CCObject* sender) = win 0x3258b0, imac 0x5f71b0, m1 0x52657c;
     void onTagFilters(cocos2d::CCObject* sender) = win 0x325aa0, imac 0x5f7340, m1 0x526770;
@@ -17187,7 +17187,7 @@ class PlatformToolbox {
     static TodoReturn getRawPath(char const*);
     static TodoReturn getUniqueUserID();
     static TodoReturn getUserID();
-    static void hideCursor() = ios 0x16f40c, win inline, imac 0x4b0b30, m1 0x41a144 {
+    static void hideCursor() = ios 0x16f40c, win inline, imac 0x4b0b30, m1 0x419630 {
         cocos2d::CCEGLView::sharedOpenGLView()->showCursor(false);
     }
     static bool isControllerConnected() = ios 0x16f3d8, win inline, imac 0x4b1a30, m1 0x41a254 {
@@ -18697,14 +18697,14 @@ class RotateGameplayGameObject : EffectGameObject {
 [[link(android)]]
 class ScrollingLayer : cocos2d::CCLayerColor {
     // virtual ~ScrollingLayer();
-    ScrollingLayer() {
+    ScrollingLayer() = m1 0x629f88, imac 0x70aae0, ios 0x1bacb4 {
         m_scrollFactor = 0.f;
         m_touchID = -1;
         m_contentLayer = nullptr;
         m_parentLayer = nullptr;
     }
 
-    static ScrollingLayer* create(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) = win inline, imac 0x340380, m1 0x629898 {
+    static ScrollingLayer* create(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) = win inline, m1 0x629898, imac 0x70a2c0, ios 0x1ba74c {
         auto ret = new ScrollingLayer();
         if (ret->init(size, position, factor)) {
             ret->autorelease();
@@ -20570,8 +20570,8 @@ class SetupInstantCountPopup : SetupTriggerPopup {
     void onCountType(cocos2d::CCObject* sender) = win 0x40ba90;
     void onEnableGroup(cocos2d::CCObject* sender) = win 0x401660;
     void onTargetCountArrow(cocos2d::CCObject* sender) = win 0x404580, m1 0x5055c8, imac 0x5d1780, ios 0x1be868;
-    void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x40b700, m1 0x505658, imac 0x5d16c0, ios 0x1be8b4;
-    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x4045c0, m1 0x505520, imac 0x5d1830, ios 0x1be814;
+    void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x40b700, m1 0x505658, imac 0x5d1830, ios 0x1be8b4;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x4045c0, m1 0x505520, imac 0x5d16c0, ios 0x1be814;
     void updateCountTextInputLabel() = win 0x401eb0;
     void updateItemID() = win 0x401f30;
     void updateItemIDInputLabel() = win 0x4048d0;
@@ -21893,7 +21893,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     void onClose(cocos2d::CCObject* sender);
     void onCredits(cocos2d::CCObject* sender) = m1 0x3a6740;
     void onExitFolder(cocos2d::CCObject* sender) = win 0x468660, imac 0x42b5b0, m1 0x3a64c4;
-    void onPage(cocos2d::CCObject* sender) = win 0x4683c0, m1 0x3a656c;
+    void onPage(cocos2d::CCObject* sender) = win 0x4683c0, m1 0x3a656c, imac 0x42b670;
     void onSearch(cocos2d::CCObject* sender) = win 0x468090;
     void onSorting(cocos2d::CCObject* sender) = win 0x467de0, imac 0x42b780, m1 0x3a6694;
     void onToggleCompactMode(cocos2d::CCObject* sender) = win 0x467f80, imac 0x42b7d0, m1 0x3a66dc;
