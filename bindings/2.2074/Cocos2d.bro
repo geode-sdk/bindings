@@ -760,13 +760,13 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f530, m1 0x4b5ffc, ios 0x17a248;
 
     bool getDontOpacityFade() const;
-    float getM_fMaxSeg() const {
+    float getM_fMaxSeg() const = android inline, mac inline, ios inline {
     	return m_fMaxSeg;
     }
 
     void setDontOpacityFade(bool);
     void setFastMode(bool);
-    void setM_fMaxSeg(float maxSeg) {
+    void setM_fMaxSeg(float maxSeg) = android inline, mac inline, ios inline {
     	m_fMaxSeg = maxSeg;
     }
     void setStartingPositionInitialized(bool);
@@ -4982,7 +4982,7 @@ class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl 
 
     static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x3424e0, m1 0x2d7fe0, ios 0x1b1bd8;
 
-    cocos2d::ccColor3B const& getColorValue() const {
+    cocos2d::ccColor3B const& getColorValue() const = android inline, mac inline, ios inline {
         return m_rgb;
     }
 
@@ -5385,7 +5385,7 @@ class cocos2d::CCPoolManager {
 
 [[link(win, android)]]
 class cocos2d::CCZone {
-    CCZone(cocos2d::CCObject* object) {
+    CCZone(cocos2d::CCObject* object) = win inline, m1 0xdf7f8, imac 0xfc970, ios 0x2534b4 {
         m_pCopyObject = object;
     }
 }
