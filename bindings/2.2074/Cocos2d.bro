@@ -3761,7 +3761,7 @@ class cocos2d::CCRepeat : cocos2d::CCActionInterval {
 
     // CCRepeat(cocos2d::CCRepeat const&);
     // CCRepeat();
-    virtual ~CCRepeat() {
+    virtual ~CCRepeat() = mac inline, ios inline {
         CC_SAFE_RELEASE(m_pInnerAction);
     }
 
@@ -4969,19 +4969,32 @@ class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl {
-    ~CCControlColourPicker();
-    
+    CCControlColourPicker() = android inline, mac inline, ios inline {
+        m_colourPicker = nullptr;
+        m_huePicker = nullptr;
+        m_background = nullptr;
+        m_colorTarget = nullptr;
+        m_delegate = nullptr;
+    }
+    ~CCControlColourPicker() = mac inline, ios inline {}
+
     static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x3424e0, m1 0x2d7fe0, ios 0x1b1bd8;
-    
-    ccColor3B const& getColorValue() const;
-    virtual void setColorValue(ccColor3B const&);
+
+    cocos2d::ccColor3B const& getColorValue() const {
+        return m_rgb;
+    }
+
+    void hueSliderValueChanged(cocos2d::CCObject*, unsigned int) = m1 0x2d7d44, imac 0x342180, ios 0x1b19d8;
+    void colourSliderValueChanged(cocos2d::CCObject*, unsigned int) = m1 0x2d7e2c, imac 0x3422b0, ios 0x1b1abc;
+    void updateControlPicker() = m1 0x2d8170, imac 0x342700, ios inline {
+        m_huePicker->setHue(m_hsv.h);
+        m_colourPicker->updateWithHSV(m_hsv);
+    }
+    void updateHueAndControlPicker() = m1 0x2d7eec, imac 0x342390, ios 0x1b1b78;
 
     virtual bool init() = m1 0x2d7a70, imac 0x341e50, ios 0x1b1744;
-    void hueSliderValueChanged(CCObject* sender, CCControlEvent controlEvent);
-    void colourSliderValueChanged(CCObject* sender, CCControlEvent controlEvent);
-    void updateControlPicker();
-    void updateHueAndControlPicker();
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x2d81b8, imac 0x342760, ios 0x1b1d2c;
+    virtual void setColorValue(ccColor3B const&) = m1 0x2d8074, imac 0x3425b0, ios 0x1b1c6c;
 }
 
 [[link(win, android)]]
@@ -5245,7 +5258,7 @@ class pugi::xml_document {
 [[link(android)]]
 class pugi::xml_node {
     // i'm not bothering
-    xml_node() {
+    xml_node() = win inline, mac inline, ios inline {
     	_root = nullptr;
     }
 }

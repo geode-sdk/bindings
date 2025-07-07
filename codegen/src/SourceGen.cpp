@@ -242,10 +242,6 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 				// yeah there are no inlines on cocos
 			} else if (auto fn = f.get_as<FunctionBindField>()) {
 				if (codegen::getStatus(*fn) == BindStatus::Inlined) {
-					if (is_cocos_or_fmod_class(c.name) && (c.attributes.links & codegen::platform) != Platform::None) {
-						continue;
-					}
-
 					switch (fn->prototype.type) {
 						case FunctionType::Ctor:
 						case FunctionType::Dtor:
