@@ -22461,7 +22461,7 @@ class ShareCommentDelegate {
 class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate, UploadPopupDelegate {
     // virtual ~ShareCommentLayer();
 
-    static ShareCommentLayer* create(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x474930;
+    static ShareCommentLayer* create(gd::string title, int charLimit, CommentType type, int ID, gd::string desc) = win 0x474930, m1 0x4fc050, imac 0x5c7580, ios 0x1d52a0;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x4fd970, imac 0x5c9120, ios 0x1d673c;
     virtual void keyBackClicked() = win 0x476170, m1 0x4fd8c8, imac 0x5c9070, ios 0x1d6694;
