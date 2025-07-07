@@ -2534,11 +2534,13 @@ class cocos2d::CCLayerRGBA : cocos2d::CCLayer, cocos2d::CCRGBAProtocol {
 class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
     // CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
     // CCMouseDispatcher();
-    void addDelegate(cocos2d::CCMouseDelegate*);
+    void addDelegate(cocos2d::CCMouseDelegate*) = m1 0x4b0c20, imac 0x55a410, ios 0x2fe4e0;
     bool dispatchScrollMSG(float, float) = imac 0x55a490, m1 0x4b0cb4;
-    void forceAddDelegate(cocos2d::CCMouseDelegate*);
-    void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
-    void removeDelegate(cocos2d::CCMouseDelegate*);
+    void forceAddDelegate(cocos2d::CCMouseDelegate*) = m1 0x4b0c78, imac 0x55a460, ios inline {
+        if (auto handler = CCMouseHandler::handlerWithDelegate(p0)) m_pMouseHandlers->addObject(handler);
+    }
+    void forceRemoveDelegate(cocos2d::CCMouseDelegate*) = m1 0x4b0b8c, imac 0x55a380, ios 0x2fe44c;
+    void removeDelegate(cocos2d::CCMouseDelegate*) = m1 0x4b0ad4, imac 0x55a2e0, ios 0x2fe404;
 }
 
 [[link(win, android)]]
