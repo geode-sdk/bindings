@@ -2718,8 +2718,8 @@ class cocos2d::CCTouchDelegate {
     // CCTouchDelegate(cocos2d::CCTouchDelegate const&);
     // CCTouchDelegate();
 
-    virtual void setPreviousPriority(int) {}
-    virtual int getPreviousPriority() { return 0; }
+    virtual void setPreviousPriority(int) = mac inline, ios inline {}
+    virtual int getPreviousPriority() = mac inline, ios inline { return 0; }
 }
 
 [[link(win, android)]]
