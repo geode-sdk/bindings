@@ -4339,7 +4339,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     void displayDialogObject(DialogObject*) = win 0xd2570, m1 0x33ffc8, imac 0x3b4980, ios 0x8add0;
     void displayNextObject() = win 0xd2510, m1 0x33ff28, imac 0x3b48d0, ios 0x8ad70;
     void finishCurrentAnimation() = imac 0x3b4ff0, m1 0x340620, ios 0x8b2dc;
-    void handleDialogTap() = win 0xd2940, m1 0x3404c4, ios 0x8b214;
+    void handleDialogTap() = win 0xd2940, m1 0x3404c4, imac 0x3b4eb0, ios 0x8b214;
     bool init(DialogObject*, cocos2d::CCArray*, int) = win 0xd20b0, imac 0x3b43e0, m1 0x33fa48, ios 0x8a944;
     void onClose() = win 0xd2ae0, ios 0x8b334;
     void updateChatPlacement(DialogChatPlacement placement) = ios 0x8b158, win inline, m1 0x340408, imac 0x3b4de0 {
