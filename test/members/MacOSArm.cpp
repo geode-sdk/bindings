@@ -20,6 +20,7 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x34c0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe88);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_varianceValues, 0xf6c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x2f14);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPlatformer, 0x2f2e);
@@ -43,7 +44,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 GEODE_SIZE_CHECK(EnhancedGameObject, 0x5a8);
 GEODE_SIZE_CHECK(EffectGameObject, 0x730);
 
-// GEODE_SIZE_CHECK(PlayerObject, 0xbe8); 
+// GEODE_SIZE_CHECK(PlayerObject, 0xbe8);
 GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
 // GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
 // GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
