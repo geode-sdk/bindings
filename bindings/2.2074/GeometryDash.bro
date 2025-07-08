@@ -7868,12 +7868,12 @@ class GameObject : CCSpritePlus {
     bool canChangeSecondaryColor();
     bool canRotateFree();
     cocos2d::ccColor3B colorForMode(int, bool);
-    void commonInteractiveSetup();
+    void commonInteractiveSetup() = win 0x193e00;
     void commonSetup() = win 0x18ad70;
     void copyGroups(GameObject*) = win 0x1999c0, m1 0x4e0b44;
     cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810;
     void createColorGroupContainer(int);
-    void createGlow(gd::string);
+    void createGlow(gd::string) = win 0x18b750;
     void createGroupContainer(int size) = win 0x199740;
     void createOpacityGroupContainer(int);
     void createSpriteColor(int) = imac 0x58a4e0, m1 0x4d7afc;
@@ -8191,8 +8191,8 @@ class GameObject : CCSpritePlus {
     // property 53
     int m_property53;
     bool m_gmUnkBool4Related;
-    bool m_unk421;
-    bool m_unk422;
+    bool m_glowUsesLighterBG; // lighter version of BG color
+    bool m_glowCopiesLBG; // specifically the LBG color
     bool m_cantColorGlow;
     float m_opacityMod;
     bool m_slopeUphill;
@@ -9377,7 +9377,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void createGroundLayer(int, int) = ios 0x1def60, win 0x206920, imac 0x103660, m1 0xe5410;
     void createMiddleground(int) = ios 0x1df0e8, win 0x2067a0, imac 0x103870, m1 0xe55f4;
     TodoReturn createNewKeyframeAnim();
-    TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
+    cocos2d::CCParticleSystemQuad* createParticle(int, char const*, int, cocos2d::tCCPositionType) = win 0x23a060;
     void createPlayer() = ios 0x1de6e4, win 0x205fd0, m1 0xe4b94, imac 0x102d80;
     TodoReturn createPlayerCollisionBlock() = ios 0x1ec548, win 0x212e90, imac 0x11a410;
     void createTextLayers() = ios 0x1e4644, win 0x209960, imac 0x10f2e0, m1 0xee828;
@@ -10068,7 +10068,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     gd::vector<GameObject*> m_activeObjects;
     int m_activeObjectsCount;
     int m_activeObjectsIndex;
-    cocos2d::ccColor3B m_backgroundColor;
+    // different to LBG; this is used for the glow of ice spikes, breakable blocks, certain saws, etc.
+    cocos2d::ccColor3B m_lighterBGColor;
     int m_resumeTimer;
     bool m_recordInputs;
     bool m_unk32a1;
@@ -10459,7 +10460,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn addMoveCalculation(CCMoveCNode*, cocos2d::CCPoint, GameObject*);
     TodoReturn calculateBaseActiveColors();
     TodoReturn calculateInheritedColor(int, ColorAction*);
-    TodoReturn calculateLightBGColor(cocos2d::ccColor3B);
+    TodoReturn calculateLightBGColor(cocos2d::ccColor3B) = win 0x25c090;
     TodoReturn checkCollision(int const&, int const&);
     void colorActionChanged(ColorAction*) = imac 0x2cb670;
     bool colorExists(int col) = win inline, m1 0x26e578, imac 0x2cb640, ios 0x13770 {
@@ -10580,7 +10581,7 @@ class GJEffectManager : cocos2d::CCNode {
     gd::vector<InheritanceNode*> m_unkVector270;
     gd::unordered_map<int, bool> m_unkMap288;
     gd::vector<ColorAction*> m_colorActionVector;
-    gd::vector<ColorActionSprite*> m_unkVector2d8;
+    gd::vector<ColorActionSprite*> m_colorActionSpriteVector;
     gd::vector<bool> m_unkVector2f0;
     gd::unordered_map<int, int> m_itemCountMap;
     gd::unordered_map<int, int> m_persistentItemCountMap;
@@ -18059,7 +18060,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateAttempts() = win 0x3a2c70, imac 0xbeeb0, m1 0xad858, ios 0x1258d4;
     void updateEffectPositions() = m1 0xaa9fc, imac 0xbb690;
     void updateInfoLabel() = ios 0x11b150, win 0x39bb90, imac 0xafdc0, m1 0xa0770;
-    TodoReturn updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&);
+    void updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&) = win 0x3994e0;
     void updateProgressbar() = ios 0x11bb80, win 0x39b4f0, m1 0xa2124, imac 0xb1c20;
     void updateScreenRotation(int, bool, bool, float, int, float, int, int);
     void updateTestModeLabel() = ios 0x11d4e8, win 0x390b40, imac 0xb3d10, m1 0xa3d38;
