@@ -2287,7 +2287,7 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
     bool isTargetPaused(cocos2d::CCObject*);
     cocos2d::CCSet* pauseAllTargets();
     cocos2d::CCSet* pauseAllTargetsWithMinPriority(int);
-    void pauseTarget(cocos2d::CCObject*) = imac 0x42f860, m1 0x3aa664;
+    void pauseTarget(cocos2d::CCObject*) = imac 0x42f860, m1 0x3aa664, ios 0x1aed80;
     void priorityIn(cocos2d::_listEntry**, cocos2d::CCObject*, int, bool);
     void removeHashElement(cocos2d::_hashSelectorEntry*);
     void removeUpdateFromHash(cocos2d::_listEntry*);
@@ -3412,7 +3412,7 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
 class cocos2d::CCActionManager : cocos2d::CCObject {
     void addAction(cocos2d::CCAction*, cocos2d::CCNode*, bool) = m1 0x1d4dfc, imac 0x221dd0, ios 0x2f4378;
     void removeAction(cocos2d::CCAction*) = ios 0x2f493c;
-    void pauseTarget(cocos2d::CCObject*) = imac 0x221b10, m1 0x1d4aec;
+    void pauseTarget(cocos2d::CCObject*) = imac 0x221b10, m1 0x1d4aec, ios 0x2f4184;
     void resumeTarget(cocos2d::CCObject*) = m1 0x1d4be8, imac 0x221bf0, ios 0x2f4280;
     unsigned int numberOfRunningActionsInTarget(cocos2d::CCObject* target) = m1 0x1d58cc, imac 0x2227b0, ios inline {
         struct tHashElement {
@@ -4183,7 +4183,7 @@ class cocos2d::CCTurnOffTiles : cocos2d::CCTiledGrid3DAction {
 
 [[link(win, android)]]
 class cocos2d::CCBlink : cocos2d::CCActionInterval {
-    static cocos2d::CCBlink* create(float, unsigned int) = imac 0x3a7800, m1 0x333d14;
+    static cocos2d::CCBlink* create(float, unsigned int) = imac 0x3a7800, m1 0x333d14, ios 0x18fd00;
 
     bool initWithDuration(float, unsigned int);
 
