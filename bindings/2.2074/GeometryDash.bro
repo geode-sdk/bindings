@@ -8746,16 +8746,28 @@ class GameToolbox {
     static CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, float buttonScale, float maxLabelScale, float maxLabelWidth, cocos2d::CCPoint labelOffset, char const* font, bool labelTop, int labelTag, cocos2d::CCArray* container) = win 0x64670, imac 0x4dbe90, m1 0x43ef50, ios 0x47bcc;
     static bool doWeHaveInternet() = m1 0x43e8a8, imac 0x4db770;
     static gd::string easeToText(int easingType) = win 0x68570, m1 0x445748, imac 0x4e34f0, ios 0x4b720;
-    static TodoReturn fast_rand();
-    static float fast_rand_0_1() = imac 0x4dea80, m1 0x441870, ios 0x49540;
-    static TodoReturn fast_rand_minus1_1();
-    static void fast_srand(uint64_t) = ios 0x49534, m1 0x441830, imac 0x4dea30;
+    static uint64_t fast_rand() = win inline, m1 0x441848, imac 0x4dea50, ios inline {
+        auto value = GameToolbox::getfast_srand() * 214013 + 2531011;
+        GameToolbox::fast_srand(value);
+        return value >> 16 & 32767;
+    }
+    static float fast_rand_0_1() = win inline, imac 0x4dea80, m1 0x441870, ios 0x49540 {
+        return GameToolbox::fast_rand() / 32767.f;
+    }
+    static float fast_rand_minus1_1() = win inline, m1 0x4418ac, imac 0x4deac0, ios 0x49578 {
+        return GameToolbox::fast_rand_0_1() * 2.f - 1.f;
+    }
+    static void fast_srand(uint64_t) = win inline, ios 0x49534, m1 0x441830, imac 0x4dea30 {
+        *reinterpret_cast<uint64_t*>(geode::base::get() + 0x6a4e20) = p0;
+    }
     static gd::string gen_random(int) = m1 0x464058, imac 0x504920;
     static TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, cocos2d::SEL_CallFunc);
     static TodoReturn getDropActionWEnd(float, float, float, cocos2d::CCAction*, float);
     static cocos2d::CCActionEase* getEasedAction(cocos2d::CCActionInterval*, int, float) = imac 0x4de7b0, m1 0x4415e8;
     static TodoReturn getEasedValue(float, int, float) = win 0x68b40;
-    static uint64_t getfast_srand();
+    static uint64_t getfast_srand() = win inline, m1 0x44183c, imac 0x4dea40, ios inline {
+        return *reinterpret_cast<uint64_t*>(geode::base::get() + GEODE_WINDOWS(0x6a4e20) GEODE_IOS(0x85d890));
+    }
     static TodoReturn getInvertedEasing(int);
     static TodoReturn getLargestMergedIntDicts(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
     static TodoReturn getMultipliedHSV(cocos2d::ccHSVValue const&, float);
