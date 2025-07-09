@@ -17513,7 +17513,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn reverseMod();
     void reversePlayer(EffectGameObject*) = ios 0x2297ac, win 0x382600, imac 0x4041e0, m1 0x382044;
     void ringJump(RingObject*, bool) = win 0x382dd0, imac 0x402c50, m1 0x380dec, ios 0x228ac0;
-    void rotateGameplay(int, int, bool, float, float, bool, bool) = win 0x383fc0;
+    void rotateGameplay(int, int, bool, float, float, bool, bool) = win 0x383fc0, m1 0x37f1a8, imac 0x400c30, ios 0x227648;
     TodoReturn rotateGameplayObject(GameObject*) = win 0x37b5c0;
     void rotateGameplayOnly(bool param) = win inline {
         m_isSideways = param;
