@@ -19667,7 +19667,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onNextFreeEditorLayer2(cocos2d::CCObject* sender);
     void onNextFreeOrderChannel(cocos2d::CCObject* sender);
     void onNextGroupID1(cocos2d::CCObject* sender) = ios 0x411d4, win 0x3e48d0, m1 0x298c40, imac 0x300d00;
-    void onPaste(cocos2d::CCObject* sender) = win 0x3e3f30;
+    void onPaste(cocos2d::CCObject* sender) = win 0x3e3f30, ios 0x420a8, imac 0x3021d0, m1 0x299f48;
     void onRemoveFromGroup(cocos2d::CCObject* sender) = ios 0x42ac8, win 0x3e51e0, m1 0x29ae48, imac 0x3032f0;
     void onSmoothEase(cocos2d::CCObject* sender);
     void onToggleGuide(cocos2d::CCObject* sender);
