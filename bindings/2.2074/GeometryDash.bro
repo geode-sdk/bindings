@@ -20494,7 +20494,7 @@ class SetupGradientPopup : SetupTriggerPopup {
     virtual void updateToggleItem(int, bool) = win 0x40a000, m1 0x50eb58, imac 0x5dba80, ios 0x34317c;
     virtual void valueDidChange(int, float) = win 0x40a410, imac 0x5dbc40, m1 0x50ed10, ios 0x343234;
 
-    bool init(GradientTriggerObject*, cocos2d::CCArray*) = win 0x408d10, m1 0x50d368, imac 0x5da040;
+    bool init(GradientTriggerObject*, cocos2d::CCArray*) = win 0x408d10, m1 0x50d368, imac 0x5da040, ios 0x341f78;
     void onBlending(cocos2d::CCObject* sender) = win 0x40a2c0, m1 0x50e720, imac 0x5db640;
     void onZLayer(cocos2d::CCObject* sender) = win 0x40a1a0, m1 0x50e850, imac 0x5db760;
     void sliderChanged(cocos2d::CCObject* sender) = m1 0x50ec70, imac 0x5dbba0;
