@@ -2108,20 +2108,32 @@ class CCSpritePart : CCSpritePlus {
 [[link(android)]]
 class CCSpritePlus : cocos2d::CCSprite {
     // virtual ~CCSpritePlus();
-    CCSpritePlus() = win 0x456a0;
-    ~CCSpritePlus() {
-        CC_SAFE_RELEASE(m_followers);
+    CCSpritePlus() = win 0x456a0 {
+        m_followers = nullptr;
+        m_followingSprite = nullptr;
+        m_hasFollower = false;
+        m_propagateScaleChanges = false;
+        m_propagateFlipChanges = false;
     }
+    ~CCSpritePlus() = win 0x47cc0, m1 0x3ddc34, imac 0x46e9b0, ios 0x1b9b34;
 
     /// Creates a sprite by a given sprite frame
     /// @param frame the frame to give to the specific sprite
     /// @return CCSpritePlus object and returns null if initialization fails
-    static CCSpritePlus* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame);
+    static CCSpritePlus* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = win inline, m1 0x3ddd1c, imac 0x46ead0, ios 0x1b9b98 {
+        auto ret = new CCSpritePlus();
+        if (ret->initWithSpriteFrame(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     /// Creates a sprite by a given sprite's frame name
     /// @param frame the frame or filename to give to the specific sprite
     /// @return CCSpritePlus object and returns null if initialization fails
-    static CCSpritePlus* createWithSpriteFrameName(char const* frame) = win 0x47d10;
+    static CCSpritePlus* createWithSpriteFrameName(char const* frame) = win 0x47d10, m1 0x3dddcc, imac 0x46eb70, ios 0x1b9c3c;
 
     /// Sets X's scale on itself and it's followers
     /// @param fScaleX the scale of X to set
@@ -2171,24 +2183,38 @@ class CCSpritePlus : cocos2d::CCSprite {
 
     /// Adds a follower to the sprite
     /// @param follower Something that will follow this sprite
-    void addFollower(cocos2d::CCNode* follower) = imac 0x46f180;
+    void addFollower(cocos2d::CCNode* follower) = win inline, m1 0x3de350, imac 0x46f180, ios 0x1ba128 {
+        m_hasFollower = true;
+        if (!m_followers) {
+            m_followers = cocos2d::CCArray::create();
+            m_followers->retain();
+        }
+        m_followers->addObject(follower);
+    }
 
     /// Attaches a sprite to the sprite. and other way around
     /// you can think of this as attaching 2 lego blocks together and letting
     /// it drag along.
     /// @param sprite the sprite to attach to the main sprite and vice versa
-    void followSprite(CCSpritePlus* sprite);
+    void followSprite(CCSpritePlus* sprite) = win inline, m1 0x3de3ec, imac 0x46f220, ios 0x1ba1a8 {
+        m_followingSprite = sprite;
+        sprite->addFollower(this);
+    }
 
     /// Obtains the first following sprite if it has a follower on hand
     /// @return nullptr if there is no follower avalible
-    CCSpritePlus* getFollower();
+    CCSpritePlus* getFollower() = win inline, m1 0x3de494, imac 0x46f2c0, ios 0x1ba1d0 {
+        return m_hasFollower ? static_cast<CCSpritePlus*>(m_followers->objectAtIndex(0)) : nullptr;
+    }
 
     /// Removes a specific following sprite from this sprite.
     /// @param sprite follower sprite that will be removed.
-    void removeFollower(cocos2d::CCNode* sprite) = win 0x48370;
+    void removeFollower(cocos2d::CCNode* sprite) = win 0x48370, m1 0x3de3a4, imac 0x46f1d0, ios 0x1ba16c;
 
     /// Stops this child sprite from following it's given parent
-    void stopFollow();
+    void stopFollow() = win inline, m1 0x3de444, imac 0x46f270, ios 0x1ba1bc {
+        if (m_followingSprite) m_followingSprite->removeFollower(this);
+    }
 
     cocos2d::CCArray* m_followers;
     CCSpritePlus* m_followingSprite;
