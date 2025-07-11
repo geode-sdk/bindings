@@ -3488,6 +3488,29 @@ class cocos2d::CCAnimation : cocos2d::CCObject {
 }
 
 [[link(win, android)]]
+class cocos2d::CCAnimationCache : cocos2d::CCObject {
+    static cocos2d::CCAnimationCache* sharedAnimationCache() = m1 0x3cb55c, imac 0x45a5d0, ios 0x1d4ed8;
+    static void purgeSharedAnimationCache() = m1 0x3cb66c, imac 0x45a6e0, ios 0x1d4f88;
+
+    bool init() = m1 0x3cb624, imac 0x45a6a0, ios 0x1d4f40;
+
+    CCAnimationCache() = m1 0x3cb698, imac 0x45a710, ios inline {
+        m_pAnimations = nullptr;
+    }
+    virtual ~CCAnimationCache() = m1 0x3cb6bc, imac 0x45a740, ios 0x1d4fb4;
+
+    void addAnimation(cocos2d::CCAnimation*, const char*) = m1 0x3cb774, imac 0x45a800, ios 0x1d5008;
+    void addAnimationsWithDictionary(cocos2d::CCDictionary*, const char*) = m1 0x3cc124, imac 0x45b1b0;
+    void addAnimationsWithFile(const char*) = m1 0x3cc37c, imac 0x45b3d0;
+    cocos2d::CCAnimation* animationByName(const char*) = m1 0x3cb988, imac 0x45a9f0, ios 0x1d5078;
+	void parseVersion1(cocos2d::CCDictionary*) = m1 0x3cba7c, imac 0x45aae0;
+	void parseVersion2(cocos2d::CCDictionary*) = m1 0x3cbce8, imac 0x45ad80;
+    void removeAnimationByName(const char*) = m1 0x3cb880, imac 0x45a900, ios inline {
+        if (p0) m_pAnimations->removeObjectForKey(p0);
+    }
+}
+
+[[link(win, android)]]
 class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
     static cocos2d::CCApplication* sharedApplication() = imac 0x314fe0, m1 0x2ab200, ios 0x1af428;
 
@@ -4982,7 +5005,7 @@ class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl 
         m_colorTarget = nullptr;
         m_delegate = nullptr;
     }
-    ~CCControlColourPicker() = mac inline, ios inline {}
+    virtual ~CCControlColourPicker() = m1 0x2d81c8, imac 0x342780, ios 0x1b1d3c;
 
     static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x3424e0, m1 0x2d7fe0, ios 0x1b1bd8;
 
