@@ -649,3 +649,8 @@ class ObjectDecoder : cocos2d::CCNode {
 
 	// ObjectDecoderDelegate* m_delegate;
 }
+
+// [[link(win, android)]]
+// class pugi::xml_document {
+//	gd::string save_string(const char*, unsigned int, pugi::xml_encoding) const;
+// }
