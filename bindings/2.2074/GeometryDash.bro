@@ -15658,6 +15658,12 @@ class LikeItemDelegate {
 [[link(android)]]
 class LikeItemLayer : FLAlertLayer {
     // virtual ~LikeItemLayer();
+    LikeItemLayer() = win inline {
+        m_itemType = LikeItemType::Unknown;
+        m_itemID = 0;
+        m_commentSourceID = 0;
+        m_likeDelegate = nullptr;
+    }
 
     static LikeItemLayer* create(LikeItemType, int, int) = win 0x318ea0, m1 0x513b04, imac 0x5e1410, ios 0x24bbb0;
 
