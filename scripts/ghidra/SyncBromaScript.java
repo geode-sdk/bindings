@@ -103,7 +103,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
             this.bool("Sync enums", b -> this.syncEnums = b);
-            this.bool("Fill standard types", false, b -> this.fillStandardTypes = b);
+            this.bool("Fill standard types", b -> this.fillStandardTypes = b);
 
             this.waitForAnswers();
 
