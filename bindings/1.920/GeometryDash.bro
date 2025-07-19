@@ -2697,7 +2697,7 @@ class GameManager : GManager {
 	void reportPercentageForLevel(int, int, bool) = win 0x67920;
 	TodoReturn resetAchievement(char const*);
 	TodoReturn resetCoinUnlocks();
-	TodoReturn resolutionForKey(int);
+	cocos2d::CCSize resolutionForKey(int) = win 0x6cca0;
 	TodoReturn returnToLastScene(GJGameLevel*);
 	void setGameVariable(char const*, bool) = win 0x6abe0;
 	void setIntGameVariable(char const*, int) = win 0x6aed0;
@@ -4701,7 +4701,7 @@ class LevelEditorLayer : cocos2d::CCLayer, LevelSettingsDelegate, GameplayDelega
 	TodoReturn spawnPlayer2();
 	TodoReturn switchToFlyMode(PlayerObject*, GameObject*, bool, int);
 	TodoReturn switchToRollMode(PlayerObject*, GameObject*, bool);
-	TodoReturn toggleDualMode(GameObject*, bool, PlayerObject*, bool);
+	void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0x92110;
 	TodoReturn typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float);
 	TodoReturn undoLastAction();
 	TodoReturn updateDualGround(PlayerObject*, int, bool);
@@ -6020,7 +6020,7 @@ class PlayerObject : GameObject {
 	void setupStreak() = win 0xd98f0;
 	TodoReturn spawnCircle();
 	TodoReturn spawnDualCircle();
-	TodoReturn spawnFromPlayer(PlayerObject*);
+	void spawnFromPlayer(PlayerObject*) = win 0xe11c0;
 	TodoReturn spawnPortalCircle(cocos2d::ccColor3B, float);
 	TodoReturn spawnScaleCircle();
 	TodoReturn specialGroundHit();
@@ -6353,7 +6353,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn spawnCircle();
 	TodoReturn spawnFirework();
 	TodoReturn spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint);
-	TodoReturn spawnPlayer2();
+	void spawnPlayer2() = win 0xef0d0;
 	TodoReturn startGame();
 	TodoReturn startRecording();
 	TodoReturn startRecordingDelayed();
@@ -6363,7 +6363,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn switchToFlyMode(PlayerObject*, GameObject*, bool, int);
 	TodoReturn switchToRollMode(PlayerObject*, GameObject*, bool);
 	float timeForXPos(float, bool) = win 0xee590;
-	TodoReturn toggleDualMode(GameObject*, bool, PlayerObject*, bool);
+	void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = win 0xeef10;
 	TodoReturn toggleFlipped(bool, bool);
 	TodoReturn toggleGhostEffect(int);
 	TodoReturn toggleGlitter(bool);
@@ -7737,7 +7737,7 @@ class VideoOptionsLayer : FLAlertLayer {
 	void updateResolution(int);
 	void updateTextureQuality(int);
 
-	virtual bool init();
+	virtual bool init() = win 0xd3360;
 	virtual void keyBackClicked();
 
 	CCMenuItemSpriteExtra* m_prevResolution;

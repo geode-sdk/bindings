@@ -81,8 +81,10 @@ class cocos2d::CCEGLView {
 
 	static cocos2d::CCEGLView* sharedOpenGLView();
 
+	[[missing(android, mac, ios)]]
 	void toggleFullScreen(bool);
 
+	[[missing(android, mac, ios)]]
 	void pollEvents();
 	virtual void end();
 	virtual void isOpenGLReady();
