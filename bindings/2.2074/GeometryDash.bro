@@ -7322,7 +7322,14 @@ class GameManager : GManager {
     int countForType(IconType) = ios 0x3178fc, win 0x17ebe0, m1 0x2febfc, imac 0x36d6f0;
     TodoReturn defaultFrameForAnimation(int);
     TodoReturn defaultYOffsetForBG2(int);
-    TodoReturn didExitPlayscene() = imac 0x378540, m1 0x308a38;
+    void didExitPlayscene() = win inline, imac 0x378540, m1 0x308a38, ios 0x31d618 {
+        if (this->m_unkBool8) {
+            this->m_unkBool8 = false;
+            if (cocos2d::CCDirector::get()->m_nSmoothFixCounter >= 10) {
+                this->setGameVariable("0023", false);
+            }
+        }
+    }
     void doQuickSave();
     TodoReturn dpadConfigToString(UIButtonConfig&) = win 0x183540, imac 0x374330, m1 0x304e14;
     TodoReturn eventUnlockFeature(char const*);
