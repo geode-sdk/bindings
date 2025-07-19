@@ -4924,9 +4924,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void editGroup(cocos2d::CCObject*) = win 0x11d880, imac 0x2c8f0, m1 0x2c4d0;
     TodoReturn editHSV();
     void editObject(cocos2d::CCObject*) = win 0x11a510, m1 0x2b750, imac 0x2b550, ios 0x3dcd18;
-    void editObject2(cocos2d::CCObject*);
-    void editObject3(cocos2d::CCObject*);
-    void editObjectSpecial(int) = win 0x11c4b0, m1 0x42aa0, imac 0x499d0;
+    void editObject2(cocos2d::CCObject*) = win 0x11c4a0, m1 0x2b748, imac 0x2b540, ios 0x3dcd10;
+    void editObject3(cocos2d::CCObject*) = m1 0x4304c, imac 0x4a0e0;
+    void editObjectSpecial(int) = win 0x11c4b0, m1 0x42aa0, imac 0x499d0, ios 0x3ed75c;
     TodoReturn editorLayerForArray(cocos2d::CCArray*, bool);
     TodoReturn enableButton(CreateMenuItem*);
     TodoReturn findAndSelectObject(int, bool);
