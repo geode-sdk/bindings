@@ -21626,7 +21626,7 @@ class SetupTouchTogglePopup : SetupTriggerPopup {
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x44b720, m1 0x24bc30, imac 0x2a51e0, ios 0x24a1a0;
     void onControlMode(cocos2d::CCObject* sender) = win 0x44c6a0;
-    void onDualTouchMode(cocos2d::CCObject* sender) = win 0x44c4b0;
+    void onDualTouchMode(cocos2d::CCObject* sender) = win 0x44c540;
     void onHoldMode(cocos2d::CCObject* sender) = win 0x44c4b0;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x3fbf70, m1 0x24c740, imac 0x2a5dd0, ios 0x24abf0;
     void onTouchMode(cocos2d::CCObject* sender) = win 0x44c5d0;
