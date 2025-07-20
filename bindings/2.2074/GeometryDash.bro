@@ -7325,7 +7325,7 @@ class GameManager : GManager {
     void didExitPlayscene() = win inline, imac 0x378540, m1 0x308a38, ios 0x31d618 {
         if (this->m_unkBool8) {
             this->m_unkBool8 = false;
-            if (cocos2d::CCDirector::get()->m_nSmoothFixCounter >= 10) {
+            if (cocos2d::CCDirector::sharedDirector()->getSmoothFixCounter() >= 10) {
                 this->setGameVariable("0023", false);
             }
         }
