@@ -8500,8 +8500,8 @@ class GameStatsManager : cocos2d::CCNode {
     void addStoreItem(int, int, int, int, ShopType) = ios 0x32bb90, win 0x1d1000, imac 0x660d0, m1 0x5a758;
     bool areChallengesLoaded() = imac 0x729b0;
     TodoReturn areRewardsLoaded();
-    void awardCurrencyForLevel(GJGameLevel*) = win 0x1dd990, imac 0x70c90, m1 0x64700;
-    void awardDiamondsForLevel(GJGameLevel*) = win 0x1de170;
+    void awardCurrencyForLevel(GJGameLevel*) = win 0x1dd990, imac 0x70c90, m1 0x64700, ios 0x33282c;
+    void awardDiamondsForLevel(GJGameLevel*) = win 0x1de170, ios 0x332ce4;
     TodoReturn awardSecretKey() = ios 0x33e2ec;
     TodoReturn canItemBeUnlocked(int, UnlockType);
     TodoReturn checkAchievement(char const*) = win 0x1d2470;
