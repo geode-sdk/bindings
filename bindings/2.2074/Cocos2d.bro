@@ -3494,9 +3494,11 @@ class cocos2d::CCAnimationCache : cocos2d::CCObject {
 
     bool init() = m1 0x3cb624, imac 0x45a6a0, ios 0x1d4f40;
 
+    [[since("4.2.1")]]
     CCAnimationCache() = m1 0x3cb698, imac 0x45a710, ios inline {
         m_pAnimations = nullptr;
     }
+    [[since("4.2.1")]]
     virtual ~CCAnimationCache() = m1 0x3cb6bc, imac 0x45a740, ios 0x1d4fb4;
 
     void addAnimation(cocos2d::CCAnimation*, const char*) = m1 0x3cb774, imac 0x45a800, ios 0x1d5008;
@@ -3790,6 +3792,7 @@ class cocos2d::CCRepeat : cocos2d::CCActionInterval {
 
     // CCRepeat(cocos2d::CCRepeat const&);
     // CCRepeat();
+    [[since("4.2.1")]]
     virtual ~CCRepeat() = mac inline, ios inline {
         CC_SAFE_RELEASE(m_pInnerAction);
     }
