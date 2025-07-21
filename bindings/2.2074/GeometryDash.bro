@@ -20156,14 +20156,14 @@ class SetupCameraModePopup : SetupTriggerPopup {
     virtual void determineStartValues() = win 0x3fcf30, m1 0x402fc0, imac 0x496b80, ios 0x3a3b64;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x287920, m1 0x403274, imac 0x496e70, ios 0x3a3dec;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3fc480, m1 0x4022e4, imac 0x495d30;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3fc480, m1 0x4022e4, imac 0x495d30, ios 0x3a30d8;
     void onEditCameraSettings(cocos2d::CCObject* sender) = win 0x3fd1a0;
     void onUnboundMode(cocos2d::CCObject* sender) = win 0x3fd0f0;
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x3fd320;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x3fd320, m1 0x402d08, imac 0x496860, ios 0x3a3970;
     void updateCameraEasing() = win 0x3fd430;
-    void updateCameraEasingLabel() = win 0x3fd3d0;
+    void updateCameraEasingLabel() = win 0x3fd3d0, m1 0x402e88, imac 0x496a30, ios 0x3a3a2c;
     void updateCameraPadding() = win 0x3fd530;
-    void updateCameraPaddingLabel() = win 0x3fd4c0, m1 0x402ed4, imac 0x496a80;
+    void updateCameraPaddingLabel() = win 0x3fd4c0, m1 0x402ed4, imac 0x496a80, ios 0x3a3a78;
     void updateItemVisibility() = win 0x3fd250;
 
     cocos2d::CCArray* m_freeModeObjects;
