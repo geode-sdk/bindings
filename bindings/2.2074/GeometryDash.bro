@@ -16603,10 +16603,10 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
         return this->getDLObject(tag) != nullptr;
     }
     bool isMusicLibraryLoaded();
-    bool isResourceSFX(int id) {
+    bool isResourceSFX(int id) = win inline, m1 inline, imac inline, ios inline {
         return m_resourceSfxUnorderedSet.contains(id);
     }
-    bool isResourceSong(int id) {
+    bool isResourceSong(int id) = win inline, m1 inline, imac inline, ios inline {
         return m_resourceSongUnorderedSet.contains(id);
     }
     bool isRunningActionForSongID(int) = imac 0x573cb0;
