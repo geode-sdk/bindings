@@ -9128,7 +9128,7 @@ class GJAccountManager : cocos2d::CCNode {
     bool getAccountSyncURL() = win 0x1fd230, m1 0xbc19c, imac 0xd3a10;
     cocos2d::CCObject* getDLObject(char const*);
     gd::string getShaPassword(gd::string) = win 0x1feee0;
-    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1fb2c0, m1 0xb8918, imac 0xcfd00, ios 0x157254;
+    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1fb2c0, m1 0xb8918, imac 0xcfd00, ios 0x397ad0;
     void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
     void handleItND(cocos2d::CCNode*, void*);
     bool isDLActive(char const* tag);
@@ -9142,7 +9142,7 @@ class GJAccountManager : cocos2d::CCNode {
     void onRegisterAccountCompleted(gd::string, gd::string) = win 0x1fb8f0;
     void onSyncAccountCompleted(gd::string, gd::string) = win 0x1fdab0, imac 0xd0e80, m1 0xb9924;
     void onUpdateAccountSettingsCompleted(gd::string, gd::string) = win 0x1fed80;
-    void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x1fb070, ios 0x156ed8;
+    void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x1fb070, ios 0x397860;
     void registerAccount(gd::string, gd::string, gd::string) = m1 0xbaf14, imac 0xd2690;
     void removeDLFromActive(char const*);
     bool syncAccount(gd::string) = m1 0xbc4d8;
@@ -16545,107 +16545,205 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 
     virtual bool init() = win 0x327d90, imac 0x573980, m1 0x4c7abc, ios 0x157718;
 
-    void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x3299f0, imac 0x577e40, m1 0x4cba2c;
-    void addDLToActive(char const* tag);
+    void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x3299f0, imac 0x577e40, m1 0x4cba2c, ios 0x15a104;
+    void addDLToActive(char const* tag) = win inline, m1 0x4c8778, imac 0x574660, ios inline {
+        addDLToActive(tag, cocos2d::CCNode::create());
+    }
     void addMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x327f30, m1 0x4c7c3c, imac 0x573b30, ios 0x157810;
-    void addSongObjectFromString(gd::string) = ios 0x157f54; // may return CCObject
+    SongInfoObject* addSongObjectFromString(gd::string) = win 0x3285f0, m1 0x4c881c, imac 0x574700, ios 0x157f54;
     void clearSong(int songID) = ios 0x159868, win inline, m1 0x4cae00, imac 0x577170 {
         const char* key = cocos2d::CCString::createWithFormat("%i", songID)->getCString();
         m_songObjects->removeObjectForKey(key);
     }
     void clearUnusedSongs() = win 0x329160, m1 0x4cb000, imac 0x577330, ios 0x1599b8;
-    void createArtistsInfo(gd::string) = win 0x328c50;
+    cocos2d::CCDictionary* createArtistsInfo(gd::string) = win 0x328c50, m1 0x4c9d78, imac 0x575f50, ios 0x158f58;
     void createSongsInfo(gd::string, gd::string) = win 0x3288a0, imac 0x575b00, m1 0x4c998c, ios 0x158a10;
-    void dataLoaded(DS_Dictionary*) = win 0x32a450, imac 0x578e00, m1 0x4cc790;
-    void deleteSFX(int);
-    void deleteSong(int) = ios 0x159818, imac 0x577120, m1 0x4cada0;
+    void dataLoaded(DS_Dictionary*) = win 0x32a450, imac 0x578e00, m1 0x4cc790, ios 0x15a848;
+    void deleteSFX(int id) = win inline, m1 0x4d1e60, imac 0x57ef40, ios 0x15e438 {
+        remove(this->pathForSFX(id).c_str());
+    }
+    void deleteSong(int id) = win inline, ios 0x159818, imac 0x577120, m1 0x4cada0 {
+        remove(this->pathForSong(id).c_str());
+    }
     void downloadCustomSong(int) = ios 0x159d0c, win 0x32ad40, imac 0x5778d0, m1 0x4cb4c4;
-    void downloadMusicLibrary() = m1 0x4cd97c, imac 0x57a200;
+    void downloadMusicLibrary() = win 0x32b370, m1 0x4cd97c, imac 0x57a200, ios 0x15b410;
     void downloadSFX(int) = win 0x32ca80, imac 0x57d0e0, m1 0x4d01c0, ios 0x15ced4;
-    void downloadSFXFailed(int, GJSongError);
-    void downloadSFXFinished(int);
-    void downloadSFXLibrary();
+    void downloadSFXFailed(int, GJSongError) = win 0x32edf0, m1 0x4d06e4, imac 0x57d5f0, ios 0x15d28c;
+    void downloadSFXFinished(int) = win inline, m1 0x4d0758, imac 0x57d660, ios 0x15d300 {
+        for (int i = 0; i < m_musicDownloadDelegates->count(); i++) {
+            static_cast<MusicDelegateHandler*>(m_musicDownloadDelegates->objectAtIndex(i))->m_delegate->downloadSFXFinished(p0);
+        }
+    }
+    void downloadSFXLibrary() = win 0x32d220, m1 0x4d0b28, imac 0x57d9f0, ios 0x15d624;
     void downloadSong(int) = ios 0x159a58, win 0x329460, imac 0x577410, m1 0x4cb0d0;
-    void downloadSongFailed(int, GJSongError);
-    void downloadSongFinished(int);
-    void encodeDataTo(DS_Dictionary*) = m1 0x4cc738;
-    TodoReturn filterMusicByArtistID(int, cocos2d::CCArray*);
-    TodoReturn filterMusicByTag(int, cocos2d::CCArray*);
-    void firstSetup();
-    TodoReturn generateCustomContentURL(gd::string) = win 0x32e2e0, m1 0x4ccfdc, imac 0x5796c0;
-    TodoReturn generateResourceAssetList();
-    TodoReturn getAllMusicArtists(OptionsObjectDelegate*);
-    TodoReturn getAllMusicObjects(GJSongType);
-    TodoReturn getAllMusicTags(OptionsObjectDelegate*);
-    TodoReturn getAllSFXObjects(bool);
-    TodoReturn getAllSongs();
+    void downloadSongFailed(int, GJSongError) = win 0x32ed70, m1 0x4cbb38, imac 0x577f40, ios 0x15a170;
+    void downloadSongFinished(int) = win inline, m1 0x4cbbac, imac 0x577fb0, ios 0x15a1e4 {
+        for (int i = 0; i < m_musicDownloadDelegates->count(); i++) {
+            static_cast<MusicDelegateHandler*>(m_musicDownloadDelegates->objectAtIndex(i))->m_delegate->downloadSongFinished(p0);
+        }
+    }
+    void encodeDataTo(DS_Dictionary*) = win inline, m1 0x4cc738, imac 0x578da0, ios 0x15a7f0 {
+        p0->setDictForKey("MDLM_001", m_songObjects);
+        p0->setDictForKey("MDLM_003", m_MDLM003);
+        p0->setIntegerForKey("MDLM_002", m_songPriority);
+    }
+    cocos2d::CCArray* filterMusicByArtistID(int, cocos2d::CCArray*) = win 0x32c920, m1 0x4cfe50, imac 0x57ccb0, ios 0x15ccf0;
+    cocos2d::CCArray* filterMusicByTag(int, cocos2d::CCArray*) = win 0x32c9d0, m1 0x4cffa8, imac 0x57ced0, ios 0x15cd88;
+    void firstSetup() = win inline, m1 0x4cc6d0, imac 0x578d40, ios 0x15a7b8 {
+        if (!m_songObjects) {
+            auto songObjects = cocos2d::CCDictionary::create();
+            CC_SAFE_RETAIN(songObjects);
+            CC_SAFE_RELEASE(m_songObjects);
+            m_songObjects = songObjects;
+        }
+        m_songPriority = 0;
+    }
+    gd::string generateCustomContentURL(gd::string) = win 0x32e2e0, m1 0x4ccfdc, imac 0x5796c0, ios 0x15ad00;
+    void generateResourceAssetList() = m1 0x4c7b90, imac 0x573a70, ios 0x157764;
+    cocos2d::CCArray* getAllMusicArtists(OptionsObjectDelegate*) = m1 0x4cfd44, imac 0x57cb90, ios 0x15cbe8;
+    cocos2d::CCArray* getAllMusicObjects(GJSongType) = m1 0x4cfb30, imac 0x57c940, ios 0x15ca38;
+    cocos2d::CCArray* getAllMusicTags(OptionsObjectDelegate*) = m1 0x4cfbec, imac 0x57ca30, ios 0x15caac;
+    cocos2d::CCArray* getAllSFXObjects(bool) = m1 0x4d1db8, imac 0x57ee80, ios 0x15e3cc;
+    cocos2d::CCArray* getAllSongs() = m1 0x4cac1c, imac 0x576f80, ios 0x159740;
     void getCustomContentURL() = win 0x32a940, imac 0x579470, m1 0x4ccd84, ios 0x15ab1c;
     cocos2d::CCObject* getDLObject(char const*) = win 0x39d70, m1 0x4c7f00, imac 0x573dd0, ios 0x1579ec;
     cocos2d::CCArray* getDownloadedSongs() = win 0x3290a0, m1 0x4ca930, imac 0x576c20, ios 0x1595bc;
-    TodoReturn getDownloadProgress(int);
-    TodoReturn getMusicArtistForID(int);
-    TodoReturn getMusicObject(int);
-    TodoReturn getSFXDownloadKey(int) = m1 0x4cbcd8, imac 0x5780c0;
-    TodoReturn getSFXDownloadProgress(int);
-    TodoReturn getSFXFolderObjectForID(int);
-    TodoReturn getSFXFolderPathForID(int, bool);
-    TodoReturn getSFXObject(int);
-    TodoReturn getSongDownloadKey(int);
+    int getDownloadProgress(int id) = win inline, m1 0x4cbc18, imac 0x578020, ios 0x15a250 {
+        if (auto dlObject = static_cast<cocos2d::extension::CCHttpRequest*>(this->getDLObject(this->getSongDownloadKey(id)))) {
+            return dlObject->getDownloadProgress();
+        }
+        return -1;
+    }
+    MusicArtistObject* getMusicArtistForID(int id) = win inline, m1 0x4cfb1c, imac 0x57c920, ios 0x15ca24 {
+        return m_musicArtists ? static_cast<MusicArtistObject*>(m_musicArtists->objectForKey(id)) : nullptr;
+    }
+    SongInfoObject* getMusicObject(int id) = win inline, m1 0x4cbd00, imac 0x5780e0, ios inline {
+        return m_musicObjects ? static_cast<SongInfoObject*>(m_musicObjects->objectForKey(id)) : nullptr;
+    }
+    char const* getSFXDownloadKey(int id) = win inline, m1 0x4cbcd8, imac 0x5780c0, ios inline {
+        return cocos2d::CCString::createWithFormat("sfx_%i", id)->getCString();
+    }
+    int getSFXDownloadProgress(int id) = win inline, m1 0x4cbc78, imac 0x578070, ios 0x15a2a4 {
+        if (auto dlObject = static_cast<cocos2d::extension::CCHttpRequest*>(this->getDLObject(this->getSFXDownloadKey(id)))) {
+            return dlObject->getDownloadProgress();
+        }
+        return -1;
+    }
+    SFXFolderObject* getSFXFolderObjectForID(int id) = win inline, m1 0x4d1b18, imac 0x57eb20, ios 0x15e280 {
+        if (auto sfxObject = sharedState()->getSFXObject(id)) {
+            if (sfxObject->m_folder) return static_cast<SFXFolderObject*>(sfxObject);
+            if (auto folderObject = static_cast<SFXFolderObject*>(sharedState()->getSFXObject(sfxObject->m_folderID))) {
+                if (folderObject->m_folder) return folderObject;
+            }
+        }
+        return nullptr;
+    }
+    gd::string getSFXFolderPathForID(int, bool) = win 0x32e0c0, m1 0x4d1cec, imac 0x57edc0, ios 0x15e2ec;
+    SFXInfoObject* getSFXObject(int id) = win inline, m1 0x4d1b04, imac 0x57eb00, ios 0x15e26c {
+        return m_sfxObjects ? static_cast<SFXInfoObject*>(m_sfxObjects->objectForKey(id)) : nullptr;
+    }
+    char const* getSongDownloadKey(int id) = win inline, m1 0x4c7e7c, imac 0x573d60, ios inline {
+        return cocos2d::CCString::createWithFormat("d_%i", id)->getCString();
+    }
     void getSongInfo(int, bool) = ios 0x157c10, win 0x328180, imac 0x574190, m1 0x4c82e0;
-    TodoReturn getSongInfoKey(int);
+    char const* getSongInfoKey(int id) = win inline, m1 0x4c7e54, imac 0x573d40, ios inline {
+        return cocos2d::CCString::createWithFormat("i_%i", id)->getCString();
+    }
     SongInfoObject* getSongInfoObject(int) = win 0x329b70, imac 0x574030, m1 0x4c8188, ios 0x157b4c;
-    TodoReturn getSongPriority();
-    void handleIt(bool, gd::string, gd::string, GJHttpType) = imac 0x572fd0, m1 0x4c7150;
-    void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
-    void handleItND(cocos2d::CCNode*, void*);
-    TodoReturn incrementPriorityForSong(int) = ios 0x157b18, imac 0x574000;
+    int getSongPriority() = win inline, m1 0x4c82cc, imac 0x574170, ios inline {
+        return ++m_songPriority;
+    }
+    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x327ca0, imac 0x572fd0, m1 0x4c7150, ios 0x157254;
+    void handleItDelayed(bool, gd::string, gd::string, GJHttpType) = m1 0x4c7340, imac 0x5731a0;
+    void handleItND(cocos2d::CCNode*, void*) = m1 0x4c74ac, imac 0x5732e0;
+    void incrementPriorityForSong(int id) = win inline, ios 0x157b18, imac 0x574000, m1 0x4c8154 {
+        if (auto songObject = this->getSongInfoObject(id)) {
+            songObject->m_priority = this->getSongPriority();
+        }
+    }
     bool isDLActive(char const* tag) = win inline, m1 0x4c7e38, imac 0x573d20, ios inline {
         return this->getDLObject(tag) != nullptr;
     }
-    bool isMusicLibraryLoaded();
-    bool isResourceSFX(int id) = win inline, m1 inline, imac inline, ios inline {
-        return m_resourceSfxUnorderedSet.contains(id);
+    bool isMusicLibraryLoaded() = win inline, m1 0x4cf4d0, imac 0x57c240, ios inline {
+        return m_musicObjects && m_musicObjects->count() != 0;
     }
-    bool isResourceSong(int id) = win inline, m1 inline, imac inline, ios inline {
-        return m_resourceSongUnorderedSet.contains(id);
+    bool isResourceSFX(int id) = win inline, m1 0x4cc238, imac 0x5787b0, ios inline {
+        return m_resourceSfxUnorderedSet.count(id) != 0;
     }
-    bool isRunningActionForSongID(int) = imac 0x573cb0;
+    bool isResourceSong(int id) = win inline, m1 0x4cbd14, imac 0x578100, ios inline {
+        return m_resourceSongUnorderedSet.count(id) != 0;
+    }
+    bool isRunningActionForSongID(int) = win 0x3280a0, m1 0x4c7db0, imac 0x573cb0, ios 0x157914;
     bool isSFXDownloaded(int) = win 0x329fb0, imac 0x5784f0, m1 0x4cbfe4, ios 0x15a418;
-    bool isSFXLibraryLoaded();
+    bool isSFXLibraryLoaded() = win inline, m1 0x4d1830, imac 0x57e850, ios inline {
+        return m_sfxObjects && m_sfxObjects->count() != 0;
+    }
     bool isSongDownloaded(int) = ios 0x159650, win 0x329c80, imac 0x576cc0, m1 0x4ca9c8;
-    void limitDownloadedSongs() = ios 0x159790, m1 0x4cac6c, imac 0x576fe0;
-    void loadSongInfoFailed(int, GJSongError);
-    void loadSongInfoFinished(SongInfoObject*) = win 0x32ec70;
-    void musicActionFailed(GJMusicAction);
-    void musicActionFinished(GJMusicAction);
-    TodoReturn nameForTagID(int);
-    void onDownloadMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
-    void onDownloadSFXCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = imac 0x57d3b0, m1 0x4d04ac;
-    void onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
+    void limitDownloadedSongs() = win inline, ios 0x159790, m1 0x4cac6c, imac 0x576fe0 {
+        auto gameManager = GameManager::sharedState();
+        auto menuSongID = gameManager->m_customMenuSongID;
+        auto practiceSongID = gameManager->m_customPracticeSongID;
+        auto downloadedSongs = this->getDownloadedSongs();
+        while (downloadedSongs->count() > 50) {
+            auto songObject = static_cast<SongInfoObject*>(downloadedSongs->lastObject());
+            if (songObject->m_songID != menuSongID && songObject->m_songID != practiceSongID) {
+                this->deleteSong(songObject->m_songID);
+            }
+            downloadedSongs->removeLastObject();
+        }
+    }
+    void loadSongInfoFailed(int, GJSongError) = win 0x32ecf0, m1 0x4c87a8, imac 0x574690, ios 0x157ee0;
+    void loadSongInfoFinished(SongInfoObject*) = win 0x32ec70, m1 0x4c870c, imac 0x5745f0, ios 0x157e74;
+    void musicActionFailed(GJMusicAction) = win 0x32eef0, m1 0x4ccf04, imac 0x5795e0, ios 0x15ac28;
+    void musicActionFinished(GJMusicAction) = win 0x32ee70, m1 0x4ccf70, imac 0x579650, ios 0x15ac94;
+    gd::string nameForTagID(int) = m1 0x4d007c, imac 0x57cfa0, ios 0x15ce1c;
+    void onDownloadMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x32b600, m1 0x4cdb90, imac 0x57a3d0, ios 0x15b5f0;
+    void onDownloadSFXCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x32cce0, imac 0x57d3b0, m1 0x4d04ac, ios 0x15d148;
+    void onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x32d480, m1 0x4d0d10, imac 0x57db90, ios 0x15d804;
     void onDownloadSongCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = ios 0x159f80, win 0x329750, imac 0x577ba0, m1 0x4cb7b4;
-    void onGetCustomContentURLCompleted(gd::string, gd::string) = imac 0x5736a0, m1 0x4c7868;
+    void onGetCustomContentURLCompleted(gd::string, gd::string) = win 0x32abb0, imac 0x5736a0, m1 0x4c7868, ios 0x15758c;
     void onGetSongInfoCompleted(gd::string, gd::string) = win 0x328460, m1 0x4c75d8, imac 0x573400, ios 0x157414;
-    void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = ios 0x15701c, imac 0x572ca0, m1 0x4c6e34;
-    void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
-    void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
-    void parseMusicLibrary();
-    void parseSFXLibrary();
+    void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x327ba0, ios 0x15701c, imac 0x572ca0, m1 0x4c6e34;
+    void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x32b240, m1 0x4cd82c, imac 0x57a0b0, ios 0x15b338;
+    void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x32d0e0, m1 0x4d09d8, imac 0x57d8a0, ios 0x15d54c;
+    void parseMusicLibrary() = win 0x32b7b0, m1 0x4cddbc, imac 0x57a620, ios 0x15b72c;
+    void parseSFXLibrary() = win 0x32d610, m1 0x4d0ee0, imac 0x57dd60, ios 0x15d920;
     gd::string pathForSFX(int) = win 0x32a230, imac 0x578940, m1 0x4cc334, ios 0x15a508;
     gd::string pathForSFXFolder(int) = win 0x32a0e0, imac 0x578a00, m1 0x4cc418, ios 0x15a5d4;
     gd::string pathForSong(int) = win 0x329f00, m1 0x4caf14, imac 0x577270, ios 0x1598e4;
     gd::string pathForSongFolder(int) = win 0x329db0, imac 0x578290, m1 0x4cbe10, ios 0x15a2f8;
-    void ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int) = imac 0x572e60, m1 0x4c7030, win 0x327a80;
-    callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = imac 0x572b10, m1 0x4c6cf0, win 0x327940;
-    void removeDLFromActive(char const*) = imac 0x573ec0, m1 0x4c7ff4;
+    cocos2d::extension::CCHttpRequest* ProcessHttpGetRequest(gd::string, gd::string, cocos2d::extension::SEL_HttpResponse, int, int) = imac 0x572e60, m1 0x4c7030, win 0x327a80, ios 0x157134;
+    callback void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = imac 0x572b10, m1 0x4c6cf0, win 0x327940, ios 0x156ed8;
+    void removeDLFromActive(char const*) = win 0x329ac0, imac 0x573ec0, m1 0x4c7ff4, ios 0x157a58;
     void removeMusicDownloadDelegate(MusicDownloadDelegate*) = win 0x328010, m1 0x4c7d30, imac 0x573c20, ios 0x157894;
-    void showTOS(FLAlertLayerProtocol*) = win 0x32a2f0, imac 0x578c60, m1 0x4cc5ec;
+    void showTOS(FLAlertLayerProtocol*) = win 0x32a2f0, imac 0x578c60, m1 0x4cc5ec, ios 0x15a6f4;
     void songStateChanged() = win 0x328120, m1 0x4c80f8, imac 0x573fa0, ios 0x157abc;
-    TodoReturn stopDownload(int) = imac 0x573d80, m1 0x4c7ea4;
-    TodoReturn storeMusicObject(SongInfoObject*);
-    TodoReturn storeSFXInfoObject(SFXInfoObject*);
-    TodoReturn tryLoadLibraries();
-    TodoReturn tryUpdateMusicLibrary() = m1 0x4cd618, imac 0x579ed0;
-    TodoReturn tryUpdateSFXLibrary() = m1 0x4d07c4, imac 0x57d6d0;
+    void stopDownload(int id) = win inline, imac 0x573d80, m1 0x4c7ea4, ios 0x157990 {
+        auto key = this->getSongDownloadKey(id);
+        if (auto dlObject = static_cast<cocos2d::extension::CCHttpRequest*>(this->getDLObject(key))) {
+            dlObject->setShouldCancel(true);
+        }
+        this->removeDLFromActive(key);
+    }
+    void storeMusicObject(SongInfoObject*) = win inline, m1 0x4cfb10, imac 0x57c900, ios inline {
+        m_musicObjects->setObject(p0, p0->m_songID);
+    }
+    void storeSFXInfoObject(SFXInfoObject*) = win inline, m1 0x4d1854, imac 0x57e870, ios 0x15dfbc {
+        m_sfxObjects->setObject(p0, p0->m_sfxID);
+        if (p0->m_folderID > 0) {
+            if (auto folderObject = static_cast<SFXFolderObject*>(m_sfxObjects->objectForKey(p0->m_folderID))) {
+                if (folderObject->m_folder) folderObject->m_sfxObjects->addObject(p0);
+            }
+        }
+    }
+    void tryLoadLibraries() = win inline, m1 0x4d1aa0, imac 0x57eaa0, ios 0x15e208 {
+        if (m_triedToLoadLibraries) return;
+        m_triedToLoadLibraries = true;
+        if (!this->isSFXLibraryLoaded()) this->parseSFXLibrary();
+        if (!this->isMusicLibraryLoaded()) this->parseMusicLibrary();
+    }
+    void tryUpdateMusicLibrary() = win 0x32afb0, m1 0x4cd618, imac 0x579ed0, ios 0x15b158;
+    void tryUpdateSFXLibrary() = win 0x32ce40, m1 0x4d07c4, imac 0x57d6d0, ios 0x15d36c;
 
     cocos2d::CCDictionary* m_activeDownloads;
     cocos2d::CCArray* m_musicDownloadDelegates;
