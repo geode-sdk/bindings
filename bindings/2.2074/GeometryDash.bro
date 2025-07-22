@@ -5059,7 +5059,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
             default: return 0.f;
         }
     }
-    void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType, bool) = win 0x11f8d0;
+    void scaleObjects(cocos2d::CCArray*, float, float, cocos2d::CCPoint, ObjectScaleType, bool) = win 0x11f8d0, m1 0x3a654, imac 0x3fd70, ios 0x3e7b70;
     void selectAll() = ios 0x3e6388;
     void selectAllWithDirection(bool) = ios 0x3e651c, imac 0x3d960;
     void selectBuildTab(int) = ios 0x3e29c0, win 0x112f90, imac 0x34340, m1 0x33974;
@@ -14681,7 +14681,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn getNextFreeEnterChannel(cocos2d::CCArray*);
     int getNextFreeGradientID(cocos2d::CCArray*) = win 0x2d27b0;
     int getNextFreeGroupID(cocos2d::CCArray*) = win 0x2d2030, imac 0xebbf0, m1 0xd1514, ios 0x35ef38;
-    int getNextFreeItemID(cocos2d::CCArray*) = win 0x2d22b0, imac 0xebf10, m1 0xd1810;
+    int getNextFreeItemID(cocos2d::CCArray*) = win 0x2d22b0, imac 0xebf10, m1 0xd1810, ios 0x35f1a4;
     TodoReturn getNextFreeOrderChannel(cocos2d::CCArray*);
     TodoReturn getNextFreeSFXGroupID(cocos2d::CCArray*);
     TodoReturn getNextFreeSFXID(cocos2d::CCArray*);
@@ -20106,7 +20106,7 @@ class SetupAreaMoveTriggerPopup : SetupTriggerPopup {
 
     void addAreaDefaultControls(int) = win 0x3f46f0, m1 0x426d30, imac 0x4bfbb0;
     void getModeValues(int, int&, bool&, bool&);
-    bool init(EnterEffectObject*, cocos2d::CCArray*) = win 0x3f3850, m1 0x42602c, imac 0x4bec20;
+    bool init(EnterEffectObject*, cocos2d::CCArray*) = win 0x3f3850, m1 0x42602c, imac 0x4bec20, ios 0x38410;
     void onMode(cocos2d::CCObject* sender) = win 0x3f60e0;
     void onNextFreeEffectID(cocos2d::CCObject* sender) = win 0x3f5d70;
     void onSpecialTarget(cocos2d::CCObject* sender) = win 0x3f5de0;
@@ -20251,7 +20251,7 @@ class SetupCameraGuidePopup : SetupTriggerPopup {
 class SetupCameraModePopup : SetupTriggerPopup {
     // virtual ~SetupCameraModePopup();
 
-    static SetupCameraModePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x3fc360;
+    static SetupCameraModePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x3fc360, m1 0x402158, imac 0x495af0, ios 0x3a2ffc;
 
     virtual void determineStartValues() = win 0x3fcf30, m1 0x402fc0, imac 0x496b80, ios 0x3a3b64;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x287920, m1 0x403274, imac 0x496e70, ios 0x3a3dec;
@@ -20574,7 +20574,7 @@ class SetupEventLinkPopup : SetupTriggerPopup {
 
     static SetupEventLinkPopup* create(EventLinkTrigger*, cocos2d::CCArray*) = win 0x44d830;
 
-    bool init(EventLinkTrigger*, cocos2d::CCArray*) = win 0x44d940, m1 0x4b6fa8, imac 0x560620;
+    bool init(EventLinkTrigger*, cocos2d::CCArray*) = win 0x44d940, m1 0x4b6fa8, imac 0x560620, ios 0x3fef1c;
     void onSelectEvent(cocos2d::CCObject* sender) = win 0x44deb0;
     void updateEventIDs(gd::set<int>&);
 }
@@ -21071,7 +21071,7 @@ class SetupOptionsTriggerPopup : SetupTriggerPopup {
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x41e720, imac 0x5cf620, m1 0x503958, ios 0x40be4c;
 
     void addOption(int, gd::string) = win 0x41e4c0;
-    bool init(GameOptionsTrigger*, cocos2d::CCArray*) = win 0x41dcc0, m1 0x502f58, imac 0x5ceaf0;
+    bool init(GameOptionsTrigger*, cocos2d::CCArray*) = win 0x41dcc0, m1 0x502f58, imac 0x5ceaf0, ios 0x40b5ec;
 
     cocos2d::CCPoint m_togglePosition;
     int m_togglePage;
@@ -21626,7 +21626,7 @@ class SetupStaticCameraPopup : SetupTriggerPopup {
     virtual void valueDidChange(int, float) = win 0x448090, imac 0x388d20, m1 0x3185bc, ios 0x1d207c;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x42a510, m1 0x318650, imac 0x388db0, ios 0x1d2094;
 
-    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x447690, m1 0x317c2c, imac 0x3881c0;
+    bool init(CameraTriggerGameObject*, cocos2d::CCArray*) = win 0x447690, m1 0x317c2c, imac 0x3881c0, ios 0x1d1858;
     void updateState() = win 0x4480b0;
 }
 
