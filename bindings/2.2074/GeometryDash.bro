@@ -17485,7 +17485,29 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 [[link(android), depends(GJPointDouble)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
-    // PlayerObject() = ios 0x23e4dc;
+    PlayerObject() {
+        // Almost all members are initialized to zeros, so we can cheat here to avoid unnecessary code
+        auto selfSize = sizeof(PlayerObject) - offsetof(PlayerObject, m_mainLayer);
+        memset((void*)((uintptr_t)this + offsetof(PlayerObject, m_mainLayer)), 0, selfSize);
+
+        m_lastCollisionBottom = -1;
+        m_lastCollisionTop = -1;
+        m_lastCollisionLeft = -1;
+        m_lastCollisionRight = -1;
+        m_unk50C = -1;
+        m_unk510 = -1;
+        new (&m_rotateObjectsRelated) decltype(m_rotateObjectsRelated)();
+        new (&m_maybeRotatedObjectsMap) decltype(m_maybeRotatedObjectsMap)();
+        m_rotateSpeed = 1.0f;
+        new (&m_ringRelatedSet) decltype(m_ringRelatedSet)();
+        m_playerSpeed = 0.9f;
+        m_platformerVelocityRelated = 1.0f;
+        new (&m_touchedRings) decltype(m_touchedRings)();
+        m_gravityMod = 1.0f;
+        new (&m_jumpPadRelated) decltype(m_jumpPadRelated)();
+        new (&m_holdingButtons) decltype(m_holdingButtons)();
+        new (&m_currentRobotAnimation) gd::string("run");
+    }
 
     static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = ios 0x21836c, win 0x370960, imac 0x3e88e0, m1 0x36a89c;
 
