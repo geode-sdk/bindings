@@ -17486,9 +17486,18 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
     PlayerObject() {
+
+#if defined(__clang__)
+# pragma clang diagnostic push
+# pragma clang diagnostic ignored "-Winvalid-offsetof"
+#endif
         // Almost all members are initialized to zeros, so we can cheat here to avoid unnecessary code
         auto selfSize = sizeof(PlayerObject) - offsetof(PlayerObject, m_mainLayer);
         memset((void*)((uintptr_t)this + offsetof(PlayerObject, m_mainLayer)), 0, selfSize);
+
+#if defined(__clang__) 
+# pragma clang diagnostic pop
+#endif
 
         m_lastCollisionBottom = -1;
         m_lastCollisionTop = -1;
