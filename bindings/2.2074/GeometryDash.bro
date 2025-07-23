@@ -5106,8 +5106,15 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void transformObjectCall(cocos2d::CCObject*) = win 0x11e780;
     void transformObjectCall(EditCommand) = ios 0x3ee598, win 0x11e7b0, imac 0x4ae10, m1 0x43bc8;
     void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x11fec0, m1 0x3b5d4, imac 0x40ec0, ios 0x3e8474;
-    TodoReturn transformObjectsActive();
-    void transformObjectsReset() = m1 0x45a68;
+    void transformObjectsActive() = win 0x11fe00, m1 0x44f58, imac 0x4d0b0, ios 0x3ef7d0;
+    void transformObjectsReset() = win inline, m1 0x45a68, imac 0x4ddb0, ios 0x3ef998 {
+        auto selectedObjects = m_selectedObjects;
+        if (!selectedObjects || selectedObjects->count() == 0) {
+            if (!m_selectedObject) return;
+            selectedObjects = cocos2d::CCArray::createWithObject(m_selectedObject);
+        }
+        if (selectedObjects) this->transformObjects(selectedObjects, m_pivotPoint, 1.f, 1.f, 0.f, 0.f, m_transformState.m_skewX, m_transformState.m_skewY);
+    }
     void triggerSwipeMode() = win 0x121b80, m1 0x46b70, imac 0x4f010, ios 0x3f0680;
     TodoReturn tryUpdateTimeMarkers();
     void undoLastAction(cocos2d::CCObject*) = win 0x110120, m1 0xdab0, imac 0xc6e0, ios 0x3bf900;
