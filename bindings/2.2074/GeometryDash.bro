@@ -14624,7 +14624,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn addObjectFromVector(gd::vector<gd::string>&, gd::vector<void*>&);
     TodoReturn addObjectsAtPosition(cocos2d::CCPoint, cocos2d::CCArray*, cocos2d::CCArray*);
     TodoReturn addObjectsInRect(cocos2d::CCRect, bool, cocos2d::CCArray*, cocos2d::CCArray*);
-    void addObjectToGroup(GameObject* object, int group) =  ios 0x36152c, m1 0xd494c, imac 0xef840, win inline {
+    void addObjectToGroup(GameObject* object, int group) = ios 0x36152c, m1 0xd494c, imac 0xef840, win inline {
         if (object->addToGroup(group) != 1) {
             return;
         }
@@ -14675,7 +14675,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     gd::string getLevelString() = win 0x2ce530, m1 0xca93c, imac 0xe3a60, ios 0x35bcb8;
     TodoReturn getLockedLayers();
     int getNextColorChannel() = win 0x2d2890, m1 0xd2474, imac 0xecb90, ios 0x35f9e0;
-    int getNextFreeAreaEffectID(cocos2d::CCArray*) = win 0x2d26d0, m1 0xd1f4c, imac 0xec66, ios 0x35f678;
+    int getNextFreeAreaEffectID(cocos2d::CCArray*) = win 0x2d26d0, m1 0xd1f4c, imac 0xec660, ios 0x35f678;
     TodoReturn getNextFreeBlockID(cocos2d::CCArray*);
     int getNextFreeEditorLayer(cocos2d::CCArray*);
     TodoReturn getNextFreeEnterChannel(cocos2d::CCArray*);
