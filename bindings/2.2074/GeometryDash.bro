@@ -14936,8 +14936,49 @@ class LevelFeatureLayer : FLAlertLayer {
 
 [[link(android)]]
 class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDelegate, RateLevelDelegate, LikeItemDelegate, FLAlertLayerProtocol, LevelDeleteDelegate, NumberInputDelegate, SetIDPopupDelegate, TableViewCellDelegate {
-    // virtual ~LevelInfoLayer();
-    // LevelInfoLayer() = ios 0x31658;
+    LevelInfoLayer() = ios 0x2f310 {
+        m_isBusy = false;
+        m_playBtnMenu = nullptr;
+        m_level = nullptr;
+        m_coins = nullptr;
+        m_likeBtn = nullptr;
+        m_starRateBtn = nullptr;
+        m_demonRateBtn = nullptr;
+        m_unk2 = nullptr;
+        m_lengthLabel = nullptr;
+        m_exactLengthLabel = nullptr;
+        m_downloadsLabel = nullptr;
+        m_likesLabel = nullptr;
+        m_orbsLabel = nullptr;
+        m_folderLabel = nullptr;
+        m_cloneBtn = nullptr;
+        m_unk3 = nullptr;
+        m_likesIcon = nullptr;
+        m_orbsIcon = nullptr;
+        m_levelType = GJLevelType::Default;
+        m_noUpdateAlert = false;
+        m_enterTransitionFinished = false;
+        m_circle = nullptr;
+        m_difficultySprite = nullptr;
+        m_starsIcon = nullptr;
+        m_starsLabel = nullptr;
+        m_icons = nullptr;
+        m_iconOffset = 0.f;
+        m_challenge = false;
+        m_playScene = nullptr;
+        m_playSprite = nullptr;
+        m_progressTimer = nullptr;
+        m_songWidget = nullptr;
+    }
+    ~LevelInfoLayer() = win inline, m1 0x24f700, imac 0x2a9490, ios 0x285b0 {
+        CC_SAFE_RELEASE(m_level);
+        CC_SAFE_RELEASE(m_circle);
+        CC_SAFE_RELEASE(m_coins);
+        CC_SAFE_RELEASE(m_icons);
+        auto glm = GameLevelManager::sharedState();
+        if (glm->m_levelDownloadDelegate == this) glm->m_levelDownloadDelegate = nullptr;
+        if (glm->m_levelUpdateDelegate == this) glm->m_levelUpdateDelegate = nullptr;
+    }
 
     static LevelInfoLayer* create(GJGameLevel* level, bool challenge) = ios 0x2874c, win 0x2e2860, imac 0x2a9700, m1 0x24f8ac;
     static cocos2d::CCScene* scene(GJGameLevel* level, bool challenge) = win 0x2e2810, imac 0x2a96b0, m1 0x24f850, ios 0x286f0;
