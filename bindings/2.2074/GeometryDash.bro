@@ -13253,12 +13253,12 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
     virtual void onClosePopup(UploadActionPopup*) = win 0xbb4b0, imac 0x245210, m1 0x1f4010, ios 0x114b0c;
 
     void loadFromScore(GJUserScore*) = ios 0x10c530, win 0xb9f70, imac 0x239a60, m1 0x1e9a54;
-    void onCancelFriendRequest(cocos2d::CCObject* sender) = win 0xbaa50;
-    void onRemoveFriend(cocos2d::CCObject* sender) = win 0xbabf0, m1 0x1f3644, imac 0x2447c0;
-    void onSendMessage(cocos2d::CCObject* sender) = win 0xbae30;
+    void onCancelFriendRequest(cocos2d::CCObject* sender) = win 0xbaa50, m1 0x1f34f4, imac 0x244680, ios 0x1143e4;
+    void onRemoveFriend(cocos2d::CCObject* sender) = win 0xbabf0, m1 0x1f3644, imac 0x2447c0, ios 0x114504;
+    void onSendMessage(cocos2d::CCObject* sender) = win 0xbae30, m1 0x1f3608, imac 0x244790, ios 0x1144c8;
     void onUnblockUser(cocos2d::CCObject* sender) = ios 0x114254, win 0xba840, m1 0x1f3244, imac 0x2443f0;
     void onViewFriendRequest(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender) = win 0xba800;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0xba800, m1 0x1f3208, imac 0x2443c0, ios 0x114218;
     void updateBGColor(int) = ios 0x10c4b0;
 
     GJUserScore* m_userScore;
