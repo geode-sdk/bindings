@@ -6908,7 +6908,12 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getCompletedGauntletLevels();
     cocos2d::CCArray* getCompletedLevels(bool) = ios 0x9b350, win 0x145860, imac 0x51ef80, m1 0x47b4a4;
     int getCompletedWeeklyLevels() = win 0x1464b0;
-    int getDailyID(GJTimedLevelType);
+    int getDailyID(GJTimedLevelType) = win inline, m1 0x49c99c, imac 0x5439a0, ios 0xaef08 {
+        if (type == GJTimedLevelType::Daily) return m_dailyID;
+        if (type == GJTimedLevelType::Weekly) return m_weeklyID;
+        if (type == GJTimedLevelType::Event) return m_eventID;
+        return 0;
+    }
     double getDailyTimer(GJTimedLevelType) = imac 0x543a00, m1 0x49ca04;
     char const* getDeleteCommentKey(int, int, int) = m1 0x494660, imac 0x53afa0;
     char const* getDeleteMessageKey(int, bool) = m1 0x492778, imac 0x538ed0;
