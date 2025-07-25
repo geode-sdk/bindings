@@ -6885,7 +6885,7 @@ class GameLevelManager : cocos2d::CCNode {
         return cocos2d::CCString::createWithFormat("%i_%i", p0, p1)->getCString();
     }
     void getAccountComments(int accountID, int page, int total) = imac 0x539a30, m1 0x493268;
-    int getActiveDailyID(GJTimedLevelType type) = win inline, imac 0x5439d0, m1 0x49c9d0, ios 0xaef08 {
+    int getActiveDailyID(GJTimedLevelType type) = win inline, imac 0x5439d0, m1 0x49c9d0, ios 0xaef3c {
         if (type == GJTimedLevelType::Daily) return m_activeDailyID;
         if (type == GJTimedLevelType::Weekly) return m_activeWeeklyID;
         if (type == GJTimedLevelType::Event) return m_activeEventID;
