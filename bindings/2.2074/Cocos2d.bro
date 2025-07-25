@@ -1840,7 +1840,7 @@ class cocos2d::CCParticleSystemQuad : cocos2d::CCParticleSystem {
 
     unsigned char getOpacity();
 
-    void setDisplayFrame(cocos2d::CCSpriteFrame*);
+    void setDisplayFrame(cocos2d::CCSpriteFrame*) = m1 0x51c9b8, imac 0x5eb6d0, ios 0x252dd4;
     void setOpacity(unsigned char);
     void setTextureWithRect(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
 
