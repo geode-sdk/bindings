@@ -6885,7 +6885,12 @@ class GameLevelManager : cocos2d::CCNode {
         return cocos2d::CCString::createWithFormat("%i_%i", p0, p1)->getCString();
     }
     void getAccountComments(int accountID, int page, int total) = imac 0x539a30, m1 0x493268;
-    int getActiveDailyID(GJTimedLevelType) = imac 0x5439d0, m1 0x49c9d0;
+    int getActiveDailyID(GJTimedLevelType type) = win inline, imac 0x5439d0, m1 0x49c9d0, ios 0xaef3c {
+        if (type == GJTimedLevelType::Daily) return m_activeDailyID;
+        if (type == GJTimedLevelType::Weekly) return m_activeWeeklyID;
+        if (type == GJTimedLevelType::Event) return m_activeEventID;
+        return 0;
+    }
     GJSmartTemplate* getActiveSmartTemplate();
     cocos2d::CCArray* getAllSmartTemplates();
     cocos2d::CCDictionary* getAllUsedSongIDs();
@@ -6921,7 +6926,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getGauntletSearchKey(int) = m1 0x487f04, imac 0x52cfc0;
     void getGauntletsearchKey(int);
     void getGJChallenges() = win 0x164ad0, m1 0x49be48, imac 0x542da0;
-    void getGJDailyLevelState(GJTimedLevelType) = win 0x165ec0, imac 0x543260, m1 0x49c2bc;
+    void getGJDailyLevelState(GJTimedLevelType) = win 0x165ec0, imac 0x543260, m1 0x49c2bc, ios 0xaea0c;
     void getGJRewards(int) = ios 0xae25c, win 0x1635e0, imac 0x542540, m1 0x49b6b0;
     TodoReturn getGJSecretReward(gd::string) = m1 0x49b214, imac 0x542050;
     void getGJUserInfo(int) = ios 0xa7be0, win 0x157880, imac 0x536710, m1 0x4901ac;
