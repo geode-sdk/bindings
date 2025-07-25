@@ -6247,7 +6247,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void channelLinkSound(int, FMODSound*);
     void channelStopped(FMOD::Channel*, bool) = win 0x580b0;
     void channelUnlinkSound(int) = win 0x57e20;
-    void clearAllAudio() = win 0x552e0, imac 0x3cb330, m1 0x353b90;
+    void clearAllAudio() = win 0x552e0, imac 0x3cb330, m1 0x353b90, ios 0x13bbd4;
     int countActiveEffects() {
         return m_channelIDToChannel.size() - countActiveMusic();
     }
