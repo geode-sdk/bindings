@@ -4190,13 +4190,13 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
     // virtual ~DailyLevelNode();
 
-    static DailyLevelNode* create(GJGameLevel*, DailyLevelPage*, bool) = imac 0x2201c0;
+    static DailyLevelNode* create(GJGameLevel*, DailyLevelPage*, bool) = imac 0x2201c0, m1 0x1d30c0, ios 0x1bc7c8;
 
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xd1c30, imac 0x2216d0, m1 0x1d4660, ios 0x1bda58;
 
     bool init(GJGameLevel*, DailyLevelPage*, bool) = ios 0x1bcd9c, win 0xd0c90, imac 0x2209a0, m1 0x1d3884;
-    void onClaimReward(cocos2d::CCObject* sender) = win 0xd18f0, imac 0x221400, m1 0x1d4358;
-    void onSkipLevel(cocos2d::CCObject* sender) = win 0xd1a10, m1 0x1d4470, imac 0x221500;
+    void onClaimReward(cocos2d::CCObject* sender) = win 0xd18f0, imac 0x221400, m1 0x1d4358, ios 0x1bd830;
+    void onSkipLevel(cocos2d::CCObject* sender) = win 0xd1a10, m1 0x1d4470, imac 0x221500, ios 0x1bd928;
     void showSkipButton() = win 0xd1890;
     void updateTimeLabel(gd::string);
 
@@ -4226,17 +4226,17 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     virtual void levelDownloadFailed(int) = win 0xcebf0, imac 0x2200f0, m1 0x1d2fec, ios 0x1bc6f4;
 
     void claimLevelReward(DailyLevelNode*, GJGameLevel*, cocos2d::CCPoint) = win 0xd06b0, m1 0x1d3470, imac 0x220580;
-    void createDailyNode(GJGameLevel*, bool, float, bool) = win 0xcee40, imac 0x21f7b0, m1 0x1d2700;
-    void createNodeIfLoaded();
-    void downloadAndCreateNode();
+    void createDailyNode(GJGameLevel*, bool, float, bool) = win 0xcee40, imac 0x21f7b0, m1 0x1d2700, ios 0x1bbfc4;
+    void createNodeIfLoaded() = win 0xced50, m1 0x1d302c, imac 0x220130, ios 0x1bc734;
+    void downloadAndCreateNode() = win 0xceca0, ios 0x1bc3c4;
     void exitDailyNode(DailyLevelNode*, float) = imac 0x21fc20, m1 0x1d2b34;
     int getDailyTime() = imac 0x2202a0;
-    gd::string getDailyTimeString(int timeLeft) = win 0xcf200, imac 0x21f120, m1 0x1d1e6c;
+    gd::string getDailyTimeString(int timeLeft) = win 0xcf200, imac 0x21f120, m1 0x1d1e6c, ios 0x1bbb24;
     bool init(GJTimedLevelType) = ios 0x1baf38, win 0xcd110, imac 0x21e440, m1 0x1d0ebc;
-    void onClose(cocos2d::CCObject* sender) = win 0x86940, imac 0x21f070, m1 0x1d1db4;
+    void onClose(cocos2d::CCObject* sender) = win 0x86940, imac 0x21f070, m1 0x1d1db4, ios 0x1bba6c;
     void onTheSafe(cocos2d::CCObject* sender) = win 0xd0bb0, m1 0x1d1e00, imac 0x21f0b0, ios 0x1bbab8;
     void refreshDailyPage();
-    void skipDailyLevel(DailyLevelNode*, GJGameLevel*);
+    void skipDailyLevel(DailyLevelNode*, GJGameLevel*) = win 0xd0980, m1 0x1d3620, imac 0x220700, ios 0x1bcbdc;
     void tryGetDailyStatus() = win 0xcec10;
     callback void updateTimers(float) = ios 0x1bbe2c, win 0xd0360, imac 0x21f570, m1 0x1d24a8;
 
@@ -6908,7 +6908,12 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getCompletedGauntletLevels();
     cocos2d::CCArray* getCompletedLevels(bool) = ios 0x9b350, win 0x145860, imac 0x51ef80, m1 0x47b4a4;
     int getCompletedWeeklyLevels() = win 0x1464b0;
-    int getDailyID(GJTimedLevelType);
+    int getDailyID(GJTimedLevelType) = win inline, m1 0x49c99c, imac 0x5439a0, ios 0xaef08 {
+        if (type == GJTimedLevelType::Daily) return m_dailyID;
+        if (type == GJTimedLevelType::Weekly) return m_weeklyID;
+        if (type == GJTimedLevelType::Event) return m_eventID;
+        return 0;
+    }
     double getDailyTimer(GJTimedLevelType) = imac 0x543a00, m1 0x49ca04;
     char const* getDeleteCommentKey(int, int, int) = m1 0x494660, imac 0x53afa0;
     char const* getDeleteMessageKey(int, bool) = m1 0x492778, imac 0x538ed0;
