@@ -1833,7 +1833,7 @@ class cocos2d::CCParticleSystemQuad : cocos2d::CCParticleSystem {
         CC_SAFE_DELETE(pParticleSystemQuad);
         return nullptr;
     }
-    static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool) = m1 0x51c500, imac 0x5eb270;
+    static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool) = m1 0x51c500, imac 0x5eb270, ios 0x252b1c;
     
     void initIndices();
     void initTexCoordsWithRect(cocos2d::CCRect const&) = imac 0x5eb360, m1 0x51c5f0;
