@@ -6908,7 +6908,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getCompletedGauntletLevels();
     cocos2d::CCArray* getCompletedLevels(bool) = ios 0x9b350, win 0x145860, imac 0x51ef80, m1 0x47b4a4;
     int getCompletedWeeklyLevels() = win 0x1464b0;
-    int getDailyID(GJTimedLevelType) = win inline, m1 0x49c99c, imac 0x5439a0, ios 0xaef08 {
+    int getDailyID(GJTimedLevelType type) = win inline, m1 0x49c99c, imac 0x5439a0, ios 0xaef08 {
         if (type == GJTimedLevelType::Daily) return m_dailyID;
         if (type == GJTimedLevelType::Weekly) return m_weeklyID;
         if (type == GJTimedLevelType::Event) return m_eventID;
