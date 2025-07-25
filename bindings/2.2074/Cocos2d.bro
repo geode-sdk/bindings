@@ -4324,7 +4324,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
     virtual void onExitTransitionDidStart() = m1 0x628834, imac 0x708fd0;
     virtual void visit() = imac 0x709030, m1 0x628894;
 
-    cocos2d::CCNode* getStencil() const;
+    cocos2d::CCNode* getStencil() const = m1 0x628bbc, imac 0x709390;
     void setStencil(cocos2d::CCNode* pStencil) = imac 0x7093a0, m1 0x628bc4;
 
     float getAlphaThreshold() const;
