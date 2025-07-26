@@ -7954,7 +7954,7 @@ class GameObject : CCSpritePlus {
     cocos2d::ccColor3B editorColorForCustomMode(int);
     cocos2d::ccColor3B editorColorForMode(int) = win 0x19e0a0;
     void fastRotateObject(float);
-    cocos2d::ccColor3B getActiveColorForMode(int, bool) = win 0x19f140, m1 0x4eb568, imac 0x5b28b0,	ios 0x26151c;
+    cocos2d::ccColor3B getActiveColorForMode(int, bool) = win 0x19f140, m1 0x4eb568, imac 0x5b28b0, ios 0x26151c;
     char* getBallFrame(int) = m1 0x4e937c, imac 0x5b05a0;
     cocos2d::CCRect getBoundingRect();
     cocos2d::CCPoint getBoxOffset();
@@ -10529,7 +10529,7 @@ class GJEffectManager : cocos2d::CCNode {
         return m_colorActionVector[(std::min)((std::max)(col, 0), 1101)] != nullptr;
     }
     TodoReturn colorForEffect(cocos2d::ccColor3B, cocos2d::ccHSVValue);
-    TodoReturn colorForGroupID(int, cocos2d::ccColor3B const&, bool) = win 0x25a780, m1 0x2767c0, imac 0x2d5730, ios 0x18ca8;
+    cocos2d::ccColor3B colorForGroupID(int, cocos2d::ccColor3B const&, bool) = win 0x25a780, m1 0x2767c0, imac 0x2d5730, ios 0x18ca8;
     TodoReturn colorForIndex(int);
     TodoReturn colorForPulseEffect(cocos2d::ccColor3B const&, PulseEffectAction*);
     TodoReturn controlActionsForControlID(int, GJActionCommand);
