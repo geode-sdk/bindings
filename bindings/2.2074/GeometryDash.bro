@@ -2623,7 +2623,7 @@ class CharacterColorPage : FLAlertLayer {
     virtual void keyBackClicked() = win 0x8a7a0, m1 0x570e08, imac 0x648820, ios 0x12d7e8;
     virtual void show() = win 0x867a0, m1 0x570c80, imac 0x648690, ios 0x12d674;
 
-    int activeColorForMode(int mode) = win 0x89440, m1 0x570bac, imac 0x6485e0;
+    int activeColorForMode(int mode) = win 0x89440, m1 0x570bac, imac 0x6485e0, ios 0x12d5b4;
     TodoReturn checkColor(int, UnlockType);
     int colorForIndex(int) = imac 0x648300, win 0x8a050;
     void createColorMenu() = ios 0x12cc88, win 0x88e50, m1 0x56ffac, imac 0x6479b0;
@@ -7922,7 +7922,7 @@ class GameObject : CCSpritePlus {
     bool canChangeMainColor();
     bool canChangeSecondaryColor();
     bool canRotateFree();
-    cocos2d::ccColor3B colorForMode(int, bool);
+    cocos2d::ccColor3B colorForMode(int, bool) = win 0x19f010, m1 0x4eaf28, imac 0x5b2260, ios 0x261330;
     void commonInteractiveSetup();
     void commonSetup() = win 0x18ad70;
     void copyGroups(GameObject*) = win 0x1999c0, m1 0x4e0b44;
@@ -7954,7 +7954,7 @@ class GameObject : CCSpritePlus {
     cocos2d::ccColor3B editorColorForCustomMode(int);
     cocos2d::ccColor3B editorColorForMode(int) = win 0x19e0a0;
     void fastRotateObject(float);
-    cocos2d::ccColor3B getActiveColorForMode(int, bool) = imac 0x5b28b0;
+    cocos2d::ccColor3B getActiveColorForMode(int, bool) = win 0x19f140, m1 0x4eb568, imac 0x5b28b0,	ios 0x26151c;
     char* getBallFrame(int) = m1 0x4e937c, imac 0x5b05a0;
     cocos2d::CCRect getBoundingRect();
     cocos2d::CCPoint getBoxOffset();
@@ -10529,12 +10529,12 @@ class GJEffectManager : cocos2d::CCNode {
         return m_colorActionVector[(std::min)((std::max)(col, 0), 1101)] != nullptr;
     }
     TodoReturn colorForEffect(cocos2d::ccColor3B, cocos2d::ccHSVValue);
-    TodoReturn colorForGroupID(int, cocos2d::ccColor3B const&, bool);
+    TodoReturn colorForGroupID(int, cocos2d::ccColor3B const&, bool) = win 0x25a780, m1 0x2767c0, imac 0x2d5730, ios 0x18ca8;
     TodoReturn colorForIndex(int);
     TodoReturn colorForPulseEffect(cocos2d::ccColor3B const&, PulseEffectAction*);
     TodoReturn controlActionsForControlID(int, GJActionCommand);
     TodoReturn controlActionsForTrigger(EffectGameObject*, GJActionCommand);
-    int countForItem(int) = win 0x25b060, imac 0x2d6930, m1 0x2777b8;
+    int countForItem(int) = win 0x25b060, imac 0x2d6930, m1 0x2777b8, ios 0x19694;
     TodoReturn createFollowCommand(float, float, float, int, int, int, int);
     TodoReturn createKeyframeCommand(int, cocos2d::CCArray*, GameObject*, int, int, bool, float, float, float, float, float, float, gd::vector<int> const&);
     void createMoveCommand(cocos2d::CCPoint pt, int groupID, float duration, int easingType, float easingRate, bool lockPlayerX, bool lockPlayerY, bool lockCameraX, bool lockCameraY, float moveModX, float moveModY, int uniqueID, int controlID) = win 0x255370;
