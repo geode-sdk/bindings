@@ -7899,12 +7899,12 @@ class GameObject : CCSpritePlus {
     virtual cocos2d::CCPoint getStartPos() const = win 0x136060, imac 0x1e1bd0, m1 0x1999ec, ios 0x22ea9c;
 
     void addColorSprite(gd::string) = win 0x18b830, m1 0x4d83b4, imac 0x58cc00, ios 0x254690;
-    void addColorSpriteToParent(bool) = imac 0x592300, win 0x199040;
-    void addColorSpriteToSelf() = win 0x199240, imac 0x5a6020;
+    void addColorSpriteToParent(bool) = imac 0x592300, m1 0x4d95b8, win 0x199040;
+    void addColorSpriteToSelf() = win 0x199240, m1 0x4e045c, imac 0x5a6020;
     cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool);
     cocos2d::CCSprite* addCustomChild(gd::string frame, cocos2d::CCPoint offset, int zOrder) = win 0x194330, m1 0x4dd6a8, imac 0x5a3240, ios 0x259a28;
     cocos2d::CCSprite* addCustomColorChild(gd::string);
-    void addEmptyGlow() = m1 0x4d825c;
+    void addEmptyGlow() = m1 0x4d825c, imac 0x58ca90;
     void addGlow(gd::string) = win 0x18af60, imac 0x58a5c0, m1 0x4d7bd0, ios 0x254034;
     cocos2d::CCSprite* addInternalChild(cocos2d::CCSprite*, gd::string, cocos2d::CCPoint, int);
     cocos2d::CCSprite* addInternalCustomColorChild(gd::string, cocos2d::CCPoint, int);
@@ -7920,7 +7920,7 @@ class GameObject : CCSpritePlus {
     void addToCustomScaleY(float);
     void addToOpacityGroup(int);
     void addToTempOffset(double, double);
-    void assignUniqueID() = imac 0x58a5a0;
+    void assignUniqueID() = m1 0x4d7bb4, imac 0x58a5a0;
     bool belongsToGroup(int);
     void calculateOrientedBox();
     bool canChangeCustomColor();
@@ -7929,8 +7929,8 @@ class GameObject : CCSpritePlus {
     bool canRotateFree();
     cocos2d::ccColor3B colorForMode(int, bool) = win 0x19f010, m1 0x4eaf28, imac 0x5b2260, ios 0x261330;
     void commonInteractiveSetup();
-    void commonSetup() = win 0x18ad70;
-    void copyGroups(GameObject*) = win 0x1999c0, m1 0x4e0b44;
+    void commonSetup() = win 0x18ad70, m1 0x4d7950, imac 0x58a320;
+    void copyGroups(GameObject*) = win 0x1999c0, m1 0x4e0b44, imac 0x5a66d0;
     cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810;
     void createColorGroupContainer(int);
     void createGlow(gd::string);
@@ -7951,7 +7951,7 @@ class GameObject : CCSpritePlus {
     bool didScaleYChange();
     void dirtifyObjectPos();
     void dirtifyObjectRect();
-    void disableObject() = imac 0x5a5400;
+    void disableObject() = m1 0x4df648, imac 0x5a5400;
     bool dontCountTowardsLimit();
     void duplicateAttributes(GameObject*) = win 0x19ed00;
     void duplicateColorMode(GameObject*);
@@ -7969,9 +7969,9 @@ class GameObject : CCSpritePlus {
     ZLayer getCustomZLayer();
     gd::string getGlowFrame(gd::string);
     bool getGroupDisabled();
-    int getGroupID(int) = m1 0x4e0b24, ios 0x25c624;
+    int getGroupID(int) = m1 0x4e0b24, imac 0x5a66b0, ios 0x25c624;
     gd::string getGroupString();
-    cocos2d::CCPoint const& getLastPosition() = imac 0x5b2a90, ios 0x261674;
+    cocos2d::CCPoint const& getLastPosition() = m1 0x4eb730, imac 0x5b2a90, ios 0x261674;
     GJSpriteColor* getMainColor();
     int getMainColorMode();
     int getObjectDirection() = win 0x1995a0;
@@ -7984,7 +7984,7 @@ class GameObject : CCSpritePlus {
         return m_zOrder != 0 ? m_zOrder : m_defaultZOrder;
     }
     cocos2d::CCRect getOuterObjectRect();
-    int getParentMode();
+    int getParentMode() = m1 0x4df4f0, imac 0x5a5250;
     GJSpriteColor* getRelativeSpriteColor(int) = win 0x19eb30, imac 0x5b1ab0, m1 0x4ea8f0, ios 0x260ed8;
     cocos2d::CCPoint getScalePosDelta();
     GJSpriteColor* getSecondaryColor();
@@ -7993,7 +7993,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCPoint getUnmodifiedPosition();
     cocos2d::ccColor3B groupColor(cocos2d::ccColor3B const&, bool);
     float groupOpacityMod() = win 0x199d30, imac 0x5a7040, m1 0x4e157c;
-    void groupWasDisabled() = imac 0x5a6a20;
+    void groupWasDisabled() = m1 0x4e0e84, imac 0x5a6a20;
     void groupWasEnabled();
     bool hasSecondaryColor();
     bool ignoreEditorDuration() = win 0x1a0180;
@@ -8008,19 +8008,19 @@ class GameObject : CCSpritePlus {
     bool isBasicEnterEffect(int);
     bool isBasicTrigger();
     bool isColorObject();
-    bool isColorTrigger() = imac 0x5b3020;
+    bool isColorTrigger() = m1 0x4eb8d4, imac 0x5b3020;
     bool isConfigurablePortal();
     bool isEditorSpawnableTrigger();
-    bool isFacingDown() = win 0x19e990, m1 0x4ea740;
-    bool isFacingLeft() = win 0x19ea50, m1 0x4ea7d0;
+    bool isFacingDown() = win 0x19e990, m1 0x4ea740, imac 0x5b1910;
+    bool isFacingLeft() = win 0x19ea50, m1 0x4ea7d0, imac 0x5b1990;
     bool isSettingsObject() = imac 0x5b3690, m1 0x4ebf78, ios 0x261dfc;
     bool isSpawnableTrigger() = win 0x19f730, m1 0x4eb740, imac 0x5b2ac0, ios 0x261684;
     bool isSpecialObject();
     bool isSpeedObject() = m1 0x4eb9b4, imac 0x5b30f0;
     bool isStoppableTrigger();
-    bool isTrigger() = win 0x19f2c0, m1 0x4dca68;
+    bool isTrigger() = win 0x19f2c0, m1 0x4dca68, imac 0x59de80;
     void loadGroupsFromString(gd::string) = win 0x199b50, imac 0x5a6d00, m1 0x4e1100, ios 0x25c9f8;
-    TodoReturn makeInvisible() = ios 0x25b45c, imac 0x5a53a0;
+    void makeInvisible() = ios 0x25b45c, imac 0x5a53a0, m1 0x4df614;
     TodoReturn makeVisible();
     float opacityModForMode(int, bool);
     cocos2d::CCNode* parentForZLayer(int zLayer, bool blending, int parentMode) = win 0x198f60, imac 0x592280, m1 0x4d953c, ios 0x25552c;
@@ -8037,7 +8037,7 @@ class GameObject : CCSpritePlus {
     }
     void quickUpdatePosition2();
     void removeColorSprite();
-    void removeGlow() = imac 0x58cb90;
+    void removeGlow() = m1 0x4d834c, imac 0x58cb90;
     void reorderColorSprite();
     void resetColorGroups();
     void resetGroupDisabled() = imac 0x591eb0, m1 0x4d9220;
@@ -8052,7 +8052,7 @@ class GameObject : CCSpritePlus {
     void setDefaultMainColorMode(int);
     void setDefaultSecondaryColorMode(int);
     void setGlowOpacity(unsigned char);
-    void setLastPosition(cocos2d::CCPoint const&) = ios 0x26167c, imac 0x5b2aa0;
+    void setLastPosition(cocos2d::CCPoint const&) = ios 0x26167c, imac 0x5b2aa0, m1 0x4eb738;
     void setMainColorMode(int);
     void setSecondaryColorMode(int);
     void setupColorSprite(int, bool);
@@ -8061,13 +8061,13 @@ class GameObject : CCSpritePlus {
     bool shouldBlendColor(GJSpriteColor*, bool) = win 0x18dd00;
     bool shouldLockX();
     bool shouldNotHideAnimFreeze();
-    bool shouldShowPickupEffects() = imac 0x24c330;
+    bool shouldShowPickupEffects() = m1 0x1f96ac, imac 0x24c330;
     bool slopeFloorTop();
     bool slopeWallLeft();
     double slopeYPos(cocos2d::CCRect);
     double slopeYPos(float) = win 0x19e430;
     double slopeYPos(GameObject*);
-    void spawnDefaultPickupParticle(GJBaseGameLayer*) = imac 0x24c390;
+    void spawnDefaultPickupParticle(GJBaseGameLayer*) = m1 0x1f9738, imac 0x24c390;
     void updateBlendMode() = win inline, ios 0x25be2c {
         auto shouldBlend = this->shouldBlendColor(m_baseColor, true);
         m_shouldBlendBase = shouldBlend;
@@ -8089,7 +8089,7 @@ class GameObject : CCSpritePlus {
     void updateSecondaryColor();
     void updateSecondaryColorOnly();
     void updateSecondaryOpacity();
-    void updateStartPos() = imac 0x591af0, win 0x18d670;
+    void updateStartPos() = imac 0x591af0, m1 0x4d8ef8, win 0x18d670;
     void updateUnmodifiedPositions();
     void usesFreezeAnimation();
     void usesSpecialAnimation();
@@ -9811,7 +9811,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateExtraGameLayers() = imac 0x12c410, win 0x21e4a0;
     TodoReturn updateGameplayOffsetX(int, bool);
     TodoReturn updateGameplayOffsetY(int, bool);
-    void updateGradientLayers() = ios 0x1f1910, win 0x21a830, imac 0x129310;
+    void updateGradientLayers() = ios 0x1f1910, win 0x21a830, m1 0x104930, imac 0x129310;
     TodoReturn updateGroundShadows();
     void updateGuideArt() = win 0x240130, m1 0x11a0e0, imac 0x143360, ios 0x201694;
     TodoReturn updateInternalCamOffsetX(float, float, float);
@@ -9839,7 +9839,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateTimeMod(float, bool, bool) = ios 0x1e7bf4;
     TodoReturn updateTimerLabels() = ios 0x1fe480, win 0x22fae0;
     void updateZoom(float zoom, float duration, int easing, float rate, int uniqueID, int controlID) = win 0x230590, m1 0x116b6c, imac 0x13f010, ios 0x1fef38;
-    void visitWithColorFlash() = win 0x241d30;
+    void visitWithColorFlash() = win 0x241d30, m1 0x127f6c, imac 0x154340;
     float volumeForProximityEffect(SFXTriggerInstance&) = win 0x23c060;
 
     PAD = win 0x8, android 0x8, mac 0x8, ios 0x8;
@@ -10520,8 +10520,8 @@ class GJEffectManager : cocos2d::CCNode {
 
     virtual bool init() = win 0x253950, imac 0x2c8f30, m1 0x26c924, ios 0x125e8;
 
-    TodoReturn activeColorForIndex(int) = imac 0x2ca350;
-    TodoReturn activeOpacityForIndex(int) = imac 0x2ca4b0;
+    cocos2d::ccColor3B activeColorForIndex(int) = m1 0x26d510, imac 0x2ca350;
+    float activeOpacityForIndex(int) = m1 0x26d668, imac 0x2ca4b0;
     TodoReturn addAllInheritedColorActions(cocos2d::CCArray*);
     void addCountToItem(int itemId, int value) = ios 0x196d4;
     TodoReturn addMoveCalculation(CCMoveCNode*, cocos2d::CCPoint, GameObject*);
@@ -10529,7 +10529,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn calculateInheritedColor(int, ColorAction*);
     TodoReturn calculateLightBGColor(cocos2d::ccColor3B);
     TodoReturn checkCollision(int const&, int const&);
-    void colorActionChanged(ColorAction*) = imac 0x2cb670;
+    void colorActionChanged(ColorAction*) = m1 0x26e59c, imac 0x2cb670;
     bool colorExists(int col) = win inline, m1 0x26e578, imac 0x2cb640, ios 0x13770 {
         return m_colorActionVector[(std::min)((std::max)(col, 0), 1101)] != nullptr;
     }
@@ -10549,35 +10549,35 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn getAllColorActions();
     TodoReturn getAllColorSprites();
     ColorAction* getColorAction(int) = ios 0x12b80, win 0x254870, imac 0x2ca1e0, m1 0x26d3c4;
-    ColorActionSprite* getColorSprite(int) = win 0x254930, imac 0x2ca3a0;
+    ColorActionSprite* getColorSprite(int) = win 0x254930, m1 0x26d56c, imac 0x2ca3a0;
     TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
     TodoReturn getMixedColor(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
     TodoReturn getMoveCommandNode(GroupCommandObject2*);
     TodoReturn getMoveCommandObject();
     TodoReturn getOpacityActionForGroup(int);
-    TodoReturn getSaveString() = imac 0x2d9360;
+    gd::string getSaveString() = m1 0x279654, imac 0x2d9360;
     TodoReturn getTempGroupCommand();
     TodoReturn handleObjectCollision(bool, int, int);
     TodoReturn hasActiveDualTouch();
-    TodoReturn hasBeenTriggered(int, int) = imac 0x2d5fd0;
+    bool hasBeenTriggered(int, int) = m1 0x276f60, imac 0x2d5fd0;
     TodoReturn hasPulseEffectForGroupID(int);
     bool isGroupEnabled(int);
     TodoReturn keyForGroupIDColor(int, cocos2d::ccColor3B const&, bool);
-    void loadFromState(EffectManagerState&) = win 0x25cb40;
-    void objectsCollided(int, int) = imac 0x2cc680;
+    void loadFromState(EffectManagerState&) = win 0x25cb40, m1 0x27a3c0, imac 0x2da290;
+    void objectsCollided(int, int) = m1 0x26f310, imac 0x2cc680;
     void onRewardedVideo(cocos2d::CCObject* sender);
     TodoReturn opacityForIndex(int);
     TodoReturn opacityModForGroup(int);
     TodoReturn pauseTimer(int);
     void playerButton(bool, bool) = win 0x25ae00, imac 0x2d61b0, m1 0x277110, ios 0x1921c;
     void playerDied();
-    void postCollisionCheck() = ios 0x13cbc, win 0x254f50, imac 0x2cc390;
+    void postCollisionCheck() = ios 0x13cbc, win 0x254f50, m1 0x26f040, imac 0x2cc390;
     void postMoveActions() = win 0x259470, m1 0x275628, imac 0x2d4110, ios 0x180fc;
     void preCollisionCheck() = ios 0x13ca4, imac 0x2cc370, m1 0x26f028;
     void prepareMoveActions(float, bool) = win 0x258060, m1 0x27353c, imac 0x2d16c0, ios 0x16a74;
     void processColors() = ios 0x12d30, win 0x253fb0, m1 0x26d6d0, imac 0x2ca520;
-    void processCopyColorPulseActions() = imac 0x2cabf0;
-    void processInheritedColors() = imac 0x2ca840, win 0x254190;
+    void processCopyColorPulseActions() = m1 0x26dc58, imac 0x2cabf0;
+    void processInheritedColors() = m1 0x26d980, imac 0x2ca840, win 0x254190;
     TodoReturn processMoveCalculations();
     TodoReturn processPulseActions();
     TodoReturn registerCollisionTrigger(int, int, int, bool, bool, gd::vector<int> const&, int, int);
@@ -10605,11 +10605,11 @@ class GJEffectManager : cocos2d::CCNode {
     void setColorAction(ColorAction*, int) = win 0x254a90, m1 0x26e4cc, imac 0x2cb570;
     void setFollowing(int, int, bool);
     void setupFromString(gd::string) = win 0x25c290;
-    bool shouldBlend(int) = imac 0x2ca4e0;
+    bool shouldBlend(int) = m1 0x26d69c, imac 0x2ca4e0;
     TodoReturn spawnGroup(int, float, bool, gd::vector<int> const&, int, int) = win 0x25a920;
     TodoReturn spawnObject(GameObject*, float, gd::vector<int> const&, int, int);
     void startTimer(int, double, double, bool, bool, bool, float, bool, int, gd::vector<int> const&, int, int) = win 0x25b5f0;
-    TodoReturn storeTriggeredID(int, int) = win 0x25ac60, imac 0x2d5e20;
+    void storeTriggeredID(int, int) = win 0x25ac60, m1 0x276d94, imac 0x2d5e20;
     TodoReturn timeForItem(int) = win 0x25bfd0;
     TodoReturn timerExists(int);
     TodoReturn toggleGroup(int, bool);
