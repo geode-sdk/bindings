@@ -8204,7 +8204,7 @@ class GameObject : CCSpritePlus {
 
     // property 53
     int m_property53;
-    bool m_gmUnkBool4Related;
+    bool m_isFadingBlock;
     bool m_glowUsesLighterBG; // lighter version of BG color
     bool m_glowCopiesLBG; // specifically the LBG color
     bool m_cantColorGlow;
@@ -10082,8 +10082,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     gd::vector<GameObject*> m_activeObjects;
     int m_activeObjectsCount;
     int m_activeObjectsIndex;
-    // different to LBG; this is used for the glow of ice spikes, breakable blocks, certain saws, etc.
-    cocos2d::ccColor3B m_lighterBGColor;
+    cocos2d::ccColor3B m_lighterBGColor; // not to be confused with the 'LBG' color
     int m_resumeTimer;
     bool m_recordInputs;
     bool m_unk32a1;
@@ -10853,7 +10852,7 @@ class GJGameLevel : cocos2d::CCNode {
     int m_requiredCoins;
     bool m_isUnlocked;
     cocos2d::CCPoint m_lastCameraPos;
-    float m_fastEditorZoom;
+    float m_lastEditorZoom;
     int m_lastBuildTab;
     int m_lastBuildPage;
     int m_lastBuildGroupID;
@@ -11022,7 +11021,8 @@ class GJGameState {
     gd::map<std::pair<int, int>, int> m_unkMapPairIntIntInt;
     float m_unkUint13;
     cocos2d::CCPoint m_unkPoint32;
-    cocos2d::CCPoint m_unkPoint33;
+    // same as m_cameraPosition but still updates in the editor when not playtesting?
+    cocos2d::CCPoint m_cameraPosition2;
     bool m_unkBool20;
     bool m_unkBool21;
     bool m_unkBool22;
