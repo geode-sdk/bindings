@@ -235,7 +235,7 @@ class AchievementManager : cocos2d::CCNode {
     cocos2d::CCArray* getAllAchievements();
     cocos2d::CCArray* getAllAchievementsSorted(bool);
     bool isAchievementAvailable(gd::string);
-    bool isAchievementEarned(char const* ach) = ios 0xeb53c, win 0x39a70, imac 0x76ec00, m1 0x682198, ios 0xeb5d0;
+    bool isAchievementEarned(char const* ach) = ios 0xeb53c, win 0x39a70, imac 0x76ec00, m1 0x682198;
     int limitForAchievement(gd::string id) = win inline, imac 0x76eec0, m1 0x68248c, ios 0xeb63c {
         if (auto achievements = getAchievementsWithID(id.c_str())) {
             if (auto limits = static_cast<cocos2d::CCString*>(achievements->objectForKey("limits"))) return limits->intValue();
@@ -6653,11 +6653,11 @@ class FontObject : cocos2d::CCObject {
     int getFontWidth(int p0) = win inline, m1 0x1c38d8, imac 0x20f360, ios 0x2f3e58 {
         return m_hugeIntArray[p0];
     }
-    bool initWithConfigFile(char const* p0, float p1) = win inline, ios 0x2f3928 {
+    bool initWithConfigFile(char const* p0, float p1) = win inline, ios inline {
         this->parseConfigFile(p0, p1);
         return true;
     }
-    void parseConfigFile(char const*, float) = win 0x3b620, m1 0x1c2ff4, imac 0x20e8e0;
+    void parseConfigFile(char const*, float) = win 0x3b620, m1 0x1c2ff4, imac 0x20e8e0, ios 0x2f3928;
 
     std::array<int, 300> m_hugeIntArray;
 }
