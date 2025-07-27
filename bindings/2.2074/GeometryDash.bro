@@ -2921,7 +2921,7 @@ class ColorChannelSprite : cocos2d::CCSprite {
 
     virtual bool init() = win 0x251690, imac 0x2c4770, m1 0x268668, ios 0x10764;
 
-    void updateBlending(bool enabled) = win 0x2519c0, m1 0x26897c, imac 0x2c4aa0;
+    void updateBlending(bool enabled) = win 0x2519c0, m1 0x26897c, imac 0x2c4aa0, ios 0x10a6c;
     void updateCopyLabel(int channelID, bool copyColorLoop) = win 0x2516b0, m1 0x268674, imac 0x2c4790, ios 0x10770;
     void updateOpacity(float alpha) = ios 0x10910, win 0x251870, imac 0x2c4950, m1 0x26881c;
     void updateValues(ColorAction* action) = win inline, imac 0x2c4bb0, m1 0x268a84, ios 0x10b74 {
@@ -10343,14 +10343,14 @@ class GJChestSprite : cocos2d::CCSprite {
 class GJColorSetupLayer : FLAlertLayer, ColorSelectDelegate, FLAlertLayerProtocol {
     // virtual ~GJColorSetupLayer();
 
-    static GJColorSetupLayer* create(LevelSettingsObject*) = win 0x24ef80, imac 0x1f9510, m1 0x1aeb44;
+    static GJColorSetupLayer* create(LevelSettingsObject*) = win 0x24ef80, imac 0x1f9510, m1 0x1aeb44, ios 0x1912c0;
 
     virtual void keyBackClicked() = win 0x24fda0, m1 0x1af784, imac 0x1fa230, ios 0x191cf8;
     virtual void colorSelectClosed(cocos2d::CCNode*) = win 0x24fcd0, imac 0x1fa200, m1 0x1af778, ios 0x191cec;
 
     bool init(LevelSettingsObject*) = win 0x24f0c0, imac 0x1f96a0, m1 0x1aec70, ios 0x191334;
     void onClose(cocos2d::CCObject* sender) = win 0x24fd50;
-    void onColor(cocos2d::CCObject* sender) = win 0x24fc00, imac 0x1f9db0, m1 0x1af318;
+    void onColor(cocos2d::CCObject* sender) = win 0x24fc00, imac 0x1f9db0, m1 0x1af318, ios 0x191990;
     void onPage(cocos2d::CCObject* sender) = win 0x24fbb0, m1 0x1af574, imac 0x1fa000;
     void showPage(int) = win 0x24fce0, imac 0x1fa0f0, m1 0x1af66c;
     void updateSpriteColor(ColorChannelSprite*, cocos2d::CCLabelBMFont*, int) = win 0x24fa40, m1 0x1af6d0, imac 0x1fa160, ios 0x191c58;
