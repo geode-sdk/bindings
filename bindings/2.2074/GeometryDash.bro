@@ -7333,7 +7333,7 @@ class GameManager : GManager {
     TodoReturn claimItemsResponse(gd::string);
     TodoReturn clearGJLog();
     cocos2d::ccColor3B colorForIdx(int) = ios 0x316f24, win 0x17e330, imac 0x36c520, m1 0x2fdae8;
-    TodoReturn colorForPos(int);
+    TodoReturn os(int);
     gd::string colorKey(int, UnlockType) = win 0x179790;
     void completedAchievement(gd::string) = win 0x17a1d0, m1 0x2f8464, imac 0x365aa0;
     int countForType(IconType) = ios 0x3178fc, win 0x17ebe0, m1 0x2febfc, imac 0x36d6f0;
@@ -10536,7 +10536,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn colorForEffect(cocos2d::ccColor3B, cocos2d::ccHSVValue);
     cocos2d::ccColor3B colorForGroupID(int, cocos2d::ccColor3B const&, bool) = win 0x25a780, m1 0x2767c0, imac 0x2d5730, ios 0x18ca8;
     TodoReturn colorForIndex(int);
-    TodoReturn colorForPulseEffect(cocos2d::ccColor3B const&, PulseEffectAction*);
+    cocos2d::ccColor3B colorForPulseEffect(cocos2d::ccColor3B const&, PulseEffectAction*) = win 0x25a3d0;
     TodoReturn controlActionsForControlID(int, GJActionCommand);
     TodoReturn controlActionsForTrigger(EffectGameObject*, GJActionCommand);
     int countForItem(int) = win 0x25b060, imac 0x2d6930, m1 0x2777b8, ios 0x19694;
