@@ -5065,10 +5065,23 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void selectBuildTab(int) = ios 0x3e29c0, win 0x112f90, imac 0x34340, m1 0x33974;
     void selectObject(GameObject*, bool) = ios 0x3df140, win 0x10ee50, imac 0x2ec30, m1 0x2e5c8;
     void selectObjects(cocos2d::CCArray*, bool) = ios 0x3e58c4, win 0x10f140, imac 0x3c830, m1 0x3749c;
-    void selectObjectsInRect(cocos2d::CCRect);
+    void selectObjectsInRect(cocos2d::CCRect) = win inline, m1 0x37db0, imac 0x3d230, ios 0x3e612c {
+        auto objects = m_editorLayer->objectsInRect(p0, false);
+        if (objects->count() > 0) {
+            for (int i = 0; i < objects->count(); i++) {
+                auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
+                if ((m_selectedObject && m_selectedObject->m_uniqueID != obj->m_uniqueID) || !m_selectedObjects->containsObject(obj)) {
+                    this->createUndoSelectObject(false);
+                    break;
+                }
+            }
+            this->selectObjects(objects, false);
+            this->updateSpecialUIElements();
+        }
+    }
     void setupCreateMenu() = ios 0x3c09dc, win 0xe6910, imac 0xdf10, m1 0xf170;
     void setupDeleteMenu() = ios 0x3c0020, win 0xe38d0, m1 0xe35c, imac 0xd010;
-    void setupEditMenu() = win inline, m1 0x2ae74, imac 0x2ac00 {
+    void setupEditMenu() = win inline, m1 0x2ae74, imac 0x2ac00, ios inline {
         this->createMoveMenu();
         this->updateEditMenu();
     }
@@ -5137,7 +5150,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateObjectInfoLabel() = ios 0x3dfae0, win 0xe17c0, m1 0x2f208, imac 0x2f870;
     void updatePlaybackBtn() = win 0x110850, m1 0x2d08c, imac 0x2d5f0, ios 0x3de490;
     void updateSlider() = win 0xe14a0, m1 0x2b3c0, imac 0x2b1b0, ios 0x3dca34;
-    TodoReturn updateSpecialUIElements();
+    void updateSpecialUIElements() = win inline, m1 0x2e6c0, imac 0x2ed30, ios inline {
+        this->updateObjectInfoLabel();
+        this->updateScaleControl();
+    }
     void updateZoom(float) = ios 0x3e6980, win 0x110ef0, m1 0x38b14, imac 0x3e050;
     float valueFromXPos(float);
     float xPosFromValue(float) = win 0x121010;
@@ -14725,7 +14741,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     GameObject* objectAtPosition(cocos2d::CCPoint) = win 0x2cc940, m1 0xc8ab0, imac 0xe1870, ios 0x35a5f4;
     void objectMoved(GameObject*) = m1 0xcfff4, imac 0xea300;
     cocos2d::CCArray* objectsAtPosition(cocos2d::CCPoint) = win 0x2ccd00, m1 0xc9198, imac 0xe2010, ios 0x35ac18;
-    cocos2d::CCArray* objectsInRect(cocos2d::CCRect, bool);
+    cocos2d::CCArray* objectsInRect(cocos2d::CCRect, bool) = win 0x2cd590, m1 0xc8534, imac 0xe12f0, ios 0x35a2a4;
     void onPausePlaytest();
     void onPlaytest() = ios 0x3624a8, win 0x2d7330, imac 0xf0f00, m1 0xd5d40;
     void onResumePlaytest() = win 0x2d7d60, m1 0xd66bc, imac 0xf1990, ios 0x362b04;
