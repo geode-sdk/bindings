@@ -5334,7 +5334,7 @@ class EffectGameObject : EnhancedGameObject {
     virtual void stateSensitiveOff(GJBaseGameLayer*) = win 0x48fcd0, imac 0x1a9f90, m1 0x16b578, ios 0x37f260;
 
     int getTargetColorIndex();
-    bool init(char const*) = win 0x48d1a0;
+    bool init(char const*) = win 0x48d1a0, m1 0x4ec0c4, imac 0x5b37d0, ios 0x261f48;
     void playTriggerEffect() = win 0x48d2b0;
     void resetSpawnTrigger();
     void setTargetID(int) = m1 0x157c40, imac 0x192130;
@@ -9707,7 +9707,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
             m_startPosObject = startPos;
         }
     }
-    void setupLayers() = win 0x203760, imac 0x1003c0, m1 0xe24c4;
+    void setupLayers() = win 0x203760, imac 0x1003c0, m1 0xe24c4, ios 0x1dc590;
     void setupLevelStart(LevelSettingsObject*) = ios 0x1e73bc, win 0x20cd60, imac 0x112f20, m1 0xf28b8;
     void setupReplay(gd::string) = win 0x234360, m1 0x11cd28, imac 0x146c20;
     void shakeCamera(float duration, float strength, float interval) = win 0x2356c0, m1 0x11f9ac, imac 0x14a270, ios 0x205614;
