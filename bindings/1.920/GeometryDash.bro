@@ -2950,9 +2950,11 @@ class GameObject : CCSpritePlus {
 	TodoReturn addCustomColorChild(gd::string);
 	void addGlow() = win 0x6d820;
 	TodoReturn addToBottom();
-	TodoReturn calculateOrientedBox();
+	void calculateOrientedBox() = win 0x75a20;
 	bool canChangeCustomColor() = win 0x710a0;
-	TodoReturn canRotateFree();
+	bool canRotateFree() = win inline {
+		return m_objectType != GameObjectType::Solid && m_objectType != GameObjectType::Breakable && m_objectType != GameObjectType::Slope;
+	}
 	void createAndAddParticle(int, char const*, int, cocos2d::tCCPositionType) = win 0x72bd0;
 	void createObject(char const*) = win 0x6d420;
 	void createRotateAction(float) = win 0x72230;
@@ -4648,7 +4650,7 @@ class LevelEditorLayer : cocos2d::CCLayer, LevelSettingsDelegate, GameplayDelega
 
 	static LevelEditorLayer* create(GJGameLevel*) = win 0x8c220;
 
-	TodoReturn addObjectFromString(gd::string);
+	GameObject* addObjectFromString(gd::string) = win 0x8d090;
 	void addSpecial(GameObject*) = win 0x8ed10;
 	TodoReturn addToRedoList(UndoObject*);
 	TodoReturn addToSection(GameObject*);
@@ -4657,7 +4659,7 @@ class LevelEditorLayer : cocos2d::CCLayer, LevelSettingsDelegate, GameplayDelega
 	void checkCollisions(PlayerObject*, float) = win 0x8f4b0;
 	TodoReturn createBackground();
 	TodoReturn createObject(int, cocos2d::CCPoint);
-	TodoReturn createObjectsFromSetup(gd::string);
+	void createObjectsFromSetup(gd::string) = win 0x8cbd0;
 	void createObjectsFromString(gd::string, bool) = win 0x8ce20;
 	TodoReturn enterDualMode(GameObject*, bool);
 	TodoReturn getAllObjects();
