@@ -7853,8 +7853,8 @@ class GameObject : CCSpritePlus {
     virtual void transferObjectRect(cocos2d::CCRect&) = win 0x1946d0, imac 0x5a3660, m1 0x4ddae0, ios 0x259cf0;
     virtual cocos2d::CCRect const& getObjectRect() = win 0x194720, imac 0x5a36d0, m1 0x4ddb58, ios 0x259d68;
     virtual cocos2d::CCRect getObjectRect(float, float) = win 0x194740, imac 0x5a3700, m1 0x4ddb6c, ios 0x259d7c;
-    virtual cocos2d::CCRect getObjectRect2(float, float) = win 0x1948d0, imac 0x5a3930, m1 0x4ddd50, ios 0x259f50;
-    virtual cocos2d::CCRect getObjectTextureRect() = win 0x194970, imac 0x5a3a00, m1 0x4dde14, ios 0x259fd4;
+    virtual cocos2d::CCRect* getObjectRect2(float, float) = win 0x1948d0, imac 0x5a3930, m1 0x4ddd50, ios 0x259f50;
+    virtual cocos2d::CCRect* getObjectTextureRect() = win 0x194970, imac 0x5a3a00, m1 0x4dde14, ios 0x259fd4;
     virtual cocos2d::CCPoint getRealPosition() = win 0x194ba0, imac 0x5a3ca0, m1 0x4de06c, ios 0x25a1b8;
     virtual void setStartPos(cocos2d::CCPoint) = win 0x18d5d0, m1 0x4d8e7c, imac 0x591a70, ios 0x254ef4;
     virtual void updateStartValues() = win 0x18d9a0, m1 0x4d92ec, imac 0x591fd0, ios 0x25535c;
