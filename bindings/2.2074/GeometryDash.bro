@@ -21052,7 +21052,7 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
         CC_SAFE_RELEASE(m_gameObjects);
     }
 
-    static SetupObjectOptionsPopup* create(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win inline {
+    static SetupObjectOptionsPopup* create(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win inline, m1 0x29a778, imac 0x302ae0, ios 0x42654 {
         auto ret = new SetupObjectOptionsPopup();
         if (ret->init(p0, p1, p2)) {
             ret->autorelease();
@@ -21067,7 +21067,7 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
     virtual void determineStartValues() = win 0x3e7cd0, imac 0x306760, m1 0x29da98, ios 0x450a4;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x29ddb8, imac 0x306c10, ios 0x452f8;
 
-    bool init(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win 0x3e62f0, m1 0x29b3ac, imac 0x3039a0;
+    bool init(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win 0x3e62f0, m1 0x29b3ac, imac 0x3039a0, ios 0x42e7c;
     void onAlwaysHide(cocos2d::CCObject* sender) = win 0x3e8500;
     void onApplyScaleStick(cocos2d::CCObject* sender) = win 0x3e88f0;
     void onCenterEffect(cocos2d::CCObject* sender) = win 0x3e8dd0;
