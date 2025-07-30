@@ -3074,7 +3074,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     virtual void keyBackClicked() = win 0x91740, m1 0x6316a4, imac 0x712fc0, ios 0x417888;
 
     void closeColorSelect(cocos2d::CCObject*) = win 0x914a0, m1 0x62fc94, imac 0x711290, ios 0x4164b0;
-    cocos2d::ccColor3B const& getColorValue();
+    cocos2d::ccColor3B getColorValue();
     bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = ios 0x414324, win 0x8dc20, imac 0x70eb40, m1 0x62d8e4;
     void onCopy(cocos2d::CCObject* sender) = win 0x90d60;
     void onCopyOpacity(cocos2d::CCObject* sender) = win 0x90b00;
@@ -7332,7 +7332,9 @@ class GameManager : GManager {
     virtual void dataLoaded(DS_Dictionary*) = win 0x183b40, m1 0x306384, imac 0x375ba0, ios 0x31b6a4;
     virtual void firstLoad() = win 0x185750, imac 0x377060, m1 0x3076a8, ios 0x31c908;
 
-    TodoReturn accountStatusChanged();
+    void accountStatusChanged() = win inline, m1 0x302bd8, imac 0x3717e0, ios 0x3198f0 {
+        if (m_menuLayer) m_menuLayer->updateUserProfileButton();
+    }
     int activeIconForType(IconType) = ios 0x31781c, win 0x17ea70, imac 0x36d480, m1 0x2feb3c;
     TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string);
     TodoReturn addDuplicateLastFrame(int);
@@ -16114,7 +16116,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void showTOS() = win 0x320600, m1 0x30f044, imac 0x37e8d0;
     void syncPlatformAchievements(float);
     void tryShowAd(float) = m1 0x30f0a4, imac 0x37e940;
-    void updateUserProfileButton() = win 0x320330, ios 0x266d3c;
+    void updateUserProfileButton() = win 0x320330, m1 0x30eef8, imac 0x37e770, ios 0x266d3c;
     void videoOptionsClosed() = win inline {
         m_menuGameLayer->m_videoOptionsOpen = false;
     }
