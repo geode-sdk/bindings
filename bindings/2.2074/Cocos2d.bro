@@ -5440,3 +5440,18 @@ class cocos2d::CCScriptEngineManager {
     static cocos2d::CCScriptEngineManager* sharedManager() = m1 0x29e3d8, imac 0x3072f0, ios 0x2726e0;
     static void purgeSharedManager();
 }
+
+[[link(win, android)]]
+class cocos2d::CCJumpBy : cocos2d::CCActionInterval {
+    static cocos2d::CCJumpBy* create(float, cocos2d::CCPoint const&, float, unsigned int) = m1 0x332700, imac 0x3a5ef0;
+
+    // CCJumpBy(cocos2d::CCJumpBy const&);
+    // CCJumpBy();
+
+    bool initWithDuration(float duration, const CCPoint& position, float height, unsigned int jumps);
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*);
+    virtual void startWithTarget(CCNode*);
+    virtual void update(float);
+    virtual cocos2d::CCActionInterval* reverse();
+}
