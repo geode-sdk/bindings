@@ -153,7 +153,7 @@ class AchievementBar : cocos2d::CCNode {
 
 	static AchievementBar* create(char const*, char const*, char const*) = win 0x273d0;
 
-	bool init(char const*, char const*, char const*);
+	bool init(char const*, char const*, char const*) = win 0x274a0;
 	void show() = win 0x27d80;
 
 	virtual cocos2d::CCNode* getTargetScene() const;
@@ -169,7 +169,7 @@ class AchievementCell : TableViewCell {
 	// virtual ~AchievementCell();
 	AchievementCell(char const*, float, float);
 
-	TodoReturn loadFromDict(cocos2d::CCDictionary*);
+	void loadFromDict(cocos2d::CCDictionary*) = win 0x2f560;
 	TodoReturn updateBGColor(int);
 
 	virtual bool init();
@@ -4658,7 +4658,7 @@ class LevelEditorLayer : cocos2d::CCLayer, LevelSettingsDelegate, GameplayDelega
 	TodoReturn animateInDualGround(GameObject*, float, bool);
 	void checkCollisions(PlayerObject*, float) = win 0x8f4b0;
 	TodoReturn createBackground();
-	TodoReturn createObject(int, cocos2d::CCPoint);
+	GameObject* createObject(int, cocos2d::CCPoint) = win 0x8d150;
 	void createObjectsFromSetup(gd::string) = win 0x8cbd0;
 	void createObjectsFromString(gd::string, bool) = win 0x8ce20;
 	TodoReturn enterDualMode(GameObject*, bool);
@@ -6356,7 +6356,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn spawnFirework();
 	TodoReturn spawnParticle(char const*, int, cocos2d::tCCPositionType, cocos2d::CCPoint);
 	void spawnPlayer2() = win 0xef0d0;
-	TodoReturn startGame();
+	void startGame() = win 0xe5290;
 	TodoReturn startRecording();
 	TodoReturn startRecordingDelayed();
 	TodoReturn stopCameraShake();
