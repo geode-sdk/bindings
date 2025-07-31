@@ -17729,7 +17729,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void playDynamicSpiderRun() = win 0x38b740;
     void playerDestroyed(bool) = ios 0x22853c, win 0x381f10, imac 0x402270, m1 0x380548;
     bool playerIsFalling(float);
-    TodoReturn playerIsFallingBugged();
+    bool playerIsFallingBugged() = win 0x3846a0;
     TodoReturn playerIsMovingUp();
     TodoReturn playerTeleported();
     TodoReturn playingEndEffect() = ios 0x22d27c, imac 0x4093c0, m1 0x386d90;
