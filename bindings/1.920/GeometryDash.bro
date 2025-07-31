@@ -5000,7 +5000,7 @@ class LevelSettingsDelegate {
 }
 
 [[link(android)]]
-class LevelSettingsLayer {
+class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate, FLAlertLayerProtocol, CustomSongLayerDelegate {
 	// virtual ~LevelSettingsLayer();
 	// LevelSettingsLayer();
 
@@ -5009,8 +5009,6 @@ class LevelSettingsLayer {
 	void audioNext(cocos2d::CCObject*) = win 0x9a360;
 	void audioPrevious(cocos2d::CCObject*) = win 0x9a3e0;
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0x99830;
-	TodoReturn getDelegate();
-	TodoReturn getEditorLayer();
 	bool init(LevelSettingsObject*) = win 0x97050;
 	void on3DLine(cocos2d::CCObject* sender) = win 0x9a090;
 	void onBG(cocos2d::CCObject* sender) = win 0x99f10;
@@ -5044,8 +5042,37 @@ class LevelSettingsLayer {
 	virtual void colorSelectClosed(ColorSelectPopup*);
 	virtual TodoReturn customSongLayerClosed();
 	virtual TodoReturn selectArtClosed(SelectArtLayer*);
+	virtual LevelSettingsDelegate* getDelegate() const;
 	virtual void setDelegate(LevelSettingsDelegate*);
+	virtual LevelEditorLayer* getEditorLayer() const;
 	virtual void setEditorLayer(LevelEditorLayer*);
+
+	int m_songIndex; // 0x1cc
+	Speed m_speed; // 0x1d0
+	cocos2d::CCSprite* m_bgBtnSpr; // 0x1d4
+	cocos2d::CCSprite* m_gBtnSpr; // 0x1d8
+	cocos2d::CCSprite* m_lBtnSpr; // 0x1dc
+	cocos2d::CCSprite* m_objBtnSpr; // 0x1e0
+	cocos2d::CCSprite* m_dlBtnSpr; // 0x1e4
+	cocos2d::CCSprite* m_col1BtnSpr; // 0x1e8
+	cocos2d::CCSprite* m_col2BtnSpr; // 0x1ec
+	cocos2d::CCSprite* m_col3BtnSpr; // 0x1f0
+	cocos2d::CCSprite* m_col4BtnSpr; // 0x1f4
+	cocos2d::CCSprite* m_bgIcon; // 0x1f8
+	cocos2d::CCSprite* m_gIcon; // 0x1fc
+	LevelSettingsObject* m_settingsObject; // 0x200
+	cocos2d::CCLabelBMFont* m_selectedSong; // 0x204
+	cocos2d::CCArray* m_unkArray208; // 0x208
+	cocos2d::CCArray* m_unkArray20c; // 0x20c
+	LevelSettingsDelegate* m_delegate; // 0x210
+	LevelEditorLayer* m_editorLayer; // 0x214
+	cocos2d::CCArray* m_unkArray218; // 0x218
+	cocos2d::CCArray* m_unkArray21c; // 0x21c
+	CCMenuItemSpriteExtra* m_normalBtn; // 0x220
+	CCMenuItemSpriteExtra* m_customBtn; // 0x224
+	CCMenuItemSpriteExtra* m_selectCustomSongBtn; // 0x228
+	CCMenuItemSpriteExtra* m_changeSongBtn; // 0x22c
+	CustomSongWidget* m_customSongWidget; // 0x230
 }
 
 [[link(android)]]
