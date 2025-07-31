@@ -3657,6 +3657,7 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
+
 	virtual void customSetup();
 	virtual void enterLayer();
 	virtual void exitLayer(cocos2d::CCObject*) = win 0x7bee0;
@@ -3669,11 +3670,10 @@ class GJDropDownLayer : cocos2d::CCLayerColor {
 	virtual void enableUI();
 	virtual bool getHideBackButton() const;
 	virtual void setHideBackButton(bool);
-
+	virtual cocos2d::CCLayer* getInternalLayer() const;
 	virtual bool getRemoveOnExit() const;
 	virtual void setRemoveOnExit(bool);
-	cocos2d::CCLayer* getInternalLayer() const;
-	virtual GJDropDownLayerDelegate* getDelegate();
+	virtual GJDropDownLayerDelegate* getDelegate() const;
 	virtual void setDelegate(GJDropDownLayerDelegate*);
 
 	cocos2d::CCPoint m_endPosition;
