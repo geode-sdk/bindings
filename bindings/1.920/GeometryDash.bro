@@ -6867,20 +6867,22 @@ class SelectArtLayer {
 }
 
 [[link(android)]]
-class SetGroupIDLayer {
+class SetGroupIDLayer : FLAlertLayer {
 	// virtual ~SetGroupIDLayer();
 	// SetGroupIDLayer();
 
-	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*);
+	static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*) = win 0xf7820;
 
-	bool init(GameObject*, cocos2d::CCArray*);
+	bool init(GameObject*, cocos2d::CCArray*) = win 0xf78d0;
 	void onClose(cocos2d::CCObject* sender);
-	void onDown(cocos2d::CCObject* sender);
-	void onUp(cocos2d::CCObject* sender);
-	TodoReturn updateGroupID();
-	TodoReturn updateLabel();
+	void onDown(cocos2d::CCObject* sender) = win 0xf7e20;
+	void onUp(cocos2d::CCObject* sender) = win 0xf7dd0;
+	void updateGroupID() = win 0xf7e80;
+	void updateLabel();
 
 	virtual void keyBackClicked();
+
+	
 }
 
 [[link(android)]]
