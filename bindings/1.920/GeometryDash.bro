@@ -1913,9 +1913,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getModeBtn(char const*, int);
 	TodoReturn getRelativeOffset(GameObject*);
 	cocos2d::CCArray* getSelectedObjects();
-	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
-	TodoReturn getSpriteButton(char const*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float);
-	TodoReturn getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint);
+	CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint) = win 0x41790;
+	CCMenuItemSpriteExtra* getSpriteButton(char const* sprite, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale, int buttonID, cocos2d::CCPoint point) = win inline {
+		return this->getSpriteButton(cocos2d::CCSprite::createWithSpriteFrameName(sprite), callback, menu, scale, buttonID, point);
+	}
+	CCMenuItemSpriteExtra* getSpriteButton(char const* sprite, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale) = win inline {
+		return this->getSpriteButton(sprite, callback, menu, scale, 1, {0.f, 0.f});
+	}
 	void getTouchPoint(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d450;
 	TodoReturn getXMin(int);
 	bool init(LevelEditorLayer*) = win 0x3fdc0;
