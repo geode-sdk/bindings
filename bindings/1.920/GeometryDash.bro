@@ -1924,7 +1924,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getXMin(int);
 	bool init(LevelEditorLayer*) = win 0x3fdc0;
 	bool isSpecialSnapObject(int);
-	cocos2d::CCPoint* moveForCommand(EditCommand) = win 0x4b040;
+	cocos2d::CCPoint* moveForCommand(cocos2d::CCPoint*, EditCommand) = win 0x4b040;
 	TodoReturn moveGamelayer(cocos2d::CCPoint);
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x4b410;
 	void moveObjectCall(cocos2d::CCObject*) = win 0x4b2a0;
