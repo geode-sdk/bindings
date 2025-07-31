@@ -7038,7 +7038,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
     bool hasLikedAccountItem(LikeItemType, int, bool, int);
     bool hasLikedItem(LikeItemType, int, bool, int) = win 0x1623d0;
-    bool hasLikedItemFullCheck(LikeItemType, int, int) = win 0x162340, imac 0x541500, m1 0x49a5c4;
+    bool hasLikedItemFullCheck(LikeItemType, int, int) = win 0x162340, imac 0x541500, m1 0x49a5c4, ios 0xad8d4;
     bool hasRatedDemon(int id) = win 0x152280, m1 0x48b328, imac 0x5309d0;
     bool hasRatedLevelStars(int id);
     bool hasReportedLevel(int id);
@@ -8534,7 +8534,7 @@ class GameStatsManager : cocos2d::CCNode {
     void addSpecialRewardDescription(gd::string, gd::string);
     void addStoreItem(int, int, int, int, ShopType) = ios 0x32bb90, win 0x1d1000, imac 0x660d0, m1 0x5a758;
     bool areChallengesLoaded() = m1 0x663dc, imac 0x729b0;
-    TodoReturn areRewardsLoaded();
+    bool areRewardsLoaded() = ios 0x3333c4;
     void awardCurrencyForLevel(GJGameLevel*) = win 0x1dd990, imac 0x70c90, m1 0x64700, ios 0x33282c;
     void awardDiamondsForLevel(GJGameLevel*) = win 0x1de170, ios 0x332ce4;
     TodoReturn awardSecretKey() = ios 0x33e2ec;
@@ -12296,12 +12296,12 @@ class GJRobotSprite : CCAnimatedSprite {
     bool init(int) = win inline, m1 0x4f8db4, imac 0x5c3b50, ios 0x23f0b8 {
         return GJRobotSprite::init(p0, "Robot");
     }
-    void showGlow();
+    void showGlow() = ios 0x23fab4;
     void updateColor01(cocos2d::ccColor3B) = m1 0x4f9ae4, imac 0x5c4a00;
     void updateColor02(cocos2d::ccColor3B) = m1 0x4f9d90, imac 0x5c4d30;
     void updateColors() = win 0x29f810, m1 0x4f9af8, imac 0x5c4a20, ios 0x23faf0;
     void updateFrame(int) = ios 0x23f5ec, win 0x29fdc0, imac 0x5c4140, m1 0x4f9378;
-    void updateGlowColor(cocos2d::ccColor3B, bool) = imac 0x5c4d50, m1 0x4f9da0;
+    void updateGlowColor(cocos2d::ccColor3B, bool) = imac 0x5c4d50, m1 0x4f9da0, ios 0x23fd94;
 
     cocos2d::CCArray* m_unkArray;
     bool m_hasExtra;
@@ -15078,7 +15078,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void tryCloneLevel(cocos2d::CCObject*) = ios 0x2cf6c, win 0x2e8ba0, imac 0x2ae5b0, m1 0x254548;
     TodoReturn tryShowAd();
     void updateLabelValues() = ios 0x2d910, win 0x2ea9d0, imac 0x2af160, m1 0x25517c;
-    void updateSideButtons() = win 0x2e9fc0, m1 0x253fd8, imac 0x2ae090;
+    void updateSideButtons() = win 0x2e9fc0, m1 0x253fd8, imac 0x2ae090, ios 0x2cacc;
 
     bool m_isBusy;
     cocos2d::CCMenu* m_playBtnMenu;
@@ -17772,7 +17772,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         this->runNormalRotation(false, 1.0f);
     }
     void runNormalRotation(bool, float) = ios 0x21c204, win 0x377490, imac 0x3ee220, m1 0x36f618;
-    void runRotateAction(bool, int) = m1 0x371934, imac 0x3f0b00;
+    void runRotateAction(bool, int) = m1 0x371934, imac 0x3f0b00, ios 0x21df28;
     void saveToCheckpoint(PlayerCheckpoint*) = imac 0x40a6b0, m1 0x387f00, win 0x38b980;
     void setSecondColor(cocos2d::ccColor3B const&) = ios 0x21af40, win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
     void setupStreak() = ios 0x219cd4, win 0x372a50, imac 0x3eab20, m1 0x36c84c;
@@ -19412,7 +19412,7 @@ class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     void onSubmit(cocos2d::CCObject* sender) = ios 0x78d64, win 0x3df8c0, m1 0x3d8188, imac 0x468830;
     void playWinSFX() = win 0x3df400;
     void showDialog(int);
-    void showFailAnimation() = win 0x3de4a0;
+    void showFailAnimation() = win 0x3de4a0, ios 0x7a2e8;
     void showFirstDialog() = win 0x3e04f0, m1 0x3d8658, imac 0x468cd0;
     void showSuccessAnimation() = win 0x3dea60, imac 0x469a50, m1 0x3d9294, ios 0x79b14;
     void showTextInput() = win 0x3df860;
@@ -22496,25 +22496,25 @@ class ShaderLayer : cocos2d::CCLayer {
     void preSplitScreenShader() = m1 0x348a18, imac 0x3be890;
     bool resetAllShaders() = win 0x4710f0;
     void resetTargetContainer();
-    void setupBulgeShader() = m1 0x343da0, imac 0x3b8c80;
-    void setupChromaticGlitchUniforms() = m1 0x343b30, imac 0x3b8a10;
-    void setupChromaticUniforms() = m1 0x343acc, imac 0x3b89b0;
-    void setupColorChangeShader() = m1 0x3440ec, imac 0x3b8fc0;
-    void setupCommonUniforms() = m1 0x3434e0, imac 0x3b83b0;
-    void setupGlitchUniforms() = m1 0x3439fc, imac 0x3b88e0;
-    void setupGrayscaleShader() = m1 0x343f80, imac 0x3b8e60;
-    void setupHueShiftShader() = m1 0x344088, imac 0x3b8f60;
+    void setupBulgeShader() = m1 0x343da0, imac 0x3b8c80, ios 0x26dbbc;
+    void setupChromaticGlitchUniforms() = m1 0x343b30, imac 0x3b8a10, ios 0x26d94c;
+    void setupChromaticUniforms() = m1 0x343acc, imac 0x3b89b0, ios 0x26d8e8;
+    void setupColorChangeShader() = m1 0x3440ec, imac 0x3b8fc0, ios 0x26de88;
+    void setupCommonUniforms() = m1 0x3434e0, imac 0x3b83b0, ios 0x26d2fc;
+    void setupGlitchUniforms() = m1 0x3439fc, imac 0x3b88e0, ios 0x26d818;
+    void setupGrayscaleShader() = m1 0x343f80, imac 0x3b8e60, ios 0x26dd9c;
+    void setupHueShiftShader() = m1 0x344088, imac 0x3b8f60, ios 0x26de24;
     void setupInvertColorShader() = m1 0x344048, imac 0x3b8f20;
-    void setupLensCircleShader() = m1 0x343c48, imac 0x3b8b30;
-    void setupMotionBlurShader() = m1 0x343ef8, imac 0x3b8de0;
-    void setupPinchShader() = m1 0x343e4c, imac 0x3b8d30;
-    void setupRadialBlurShader() = m1 0x343d3c, imac 0x3b8c20;
+    void setupLensCircleShader() = m1 0x343c48, imac 0x3b8b30, ios 0x26da64;
+    void setupMotionBlurShader() = m1 0x343ef8, imac 0x3b8de0, ios 0x26dd14;
+    void setupPinchShader() = m1 0x343e4c, imac 0x3b8d30, ios 0x26dc68;
+    void setupRadialBlurShader() = m1 0x343d3c, imac 0x3b8c20, ios 0x26db58;
     void setupSepiaShader() = m1 0x344008, imac 0x3b8ee0;
-    void setupShader(bool) = win 0x4698c0, m1 0x342bc0, imac 0x3b79f0;
-    void setupShockLineUniforms() = m1 0x343830, imac 0x3b8710;
-    void setupShockWaveUniforms() = m1 0x343664, imac 0x3b8540;
-    void setupSplitScreenShader() = m1 0x344150, imac 0x3b9020;
-    void toggleAntiAlias(bool) = win 0x46a4f0;
+    void setupShader(bool) = win 0x4698c0, m1 0x342bc0, imac 0x3b79f0, ios 0x26cdd0;
+    void setupShockLineUniforms() = m1 0x343830, imac 0x3b8710, ios 0x26d64c;
+    void setupShockWaveUniforms() = m1 0x343664, imac 0x3b8540, ios 0x26d480;
+    void setupSplitScreenShader() = m1 0x344150, imac 0x3b9020, ios 0x26deec;
+    void toggleAntiAlias(bool) = win 0x46a4f0, ios 0x26d298;
     void triggerBulge(float, float, float, float, float, int, int, float, bool);
     void triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool);
     void triggerChromaticX(float, float, int, float, bool) = m1 0x346b7c, imac 0x3bc640;
