@@ -1581,6 +1581,10 @@ class CustomizeObjectLayer : FLAlertLayer {
 	void onSelectColor(cocos2d::CCObject* sender) = win 0x2e600;
 
 	virtual void keyBackClicked();
+
+	GameObject* m_targetObject; // 0x1bc
+    	cocos2d::CCArray* m_targetObjects; // 0x1c0
+    	cocos2d::CCArray* m_buttonsArray; // 0x1c4
 }
 
 [[link(android)]]
@@ -6909,7 +6913,9 @@ class SetGroupIDLayer : FLAlertLayer {
 
 	virtual void keyBackClicked();
 
-	
+	GameObject* m_targetObject; // 0x1bc
+	cocos2d::CCArray* m_targetObjects; // 0x1c0
+	cocos2d::CCLabelBMFont* m_groupLabel; // 0x1c4
 }
 
 [[link(android)]]
