@@ -12763,7 +12763,7 @@ class GJShaderState {
         tween.m_currentValue = 0.f;
         tween.m_finished = false;
         tween.m_disabled = false;
-        tween.m_easingType = (EasingType)easingType;
+        tween.m_easingType = easingType;
         tween.m_uniqueID = -1;
         tween.m_controlID = -1;
         tween.m_fromValue = fromValue;
