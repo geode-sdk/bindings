@@ -5009,8 +5009,6 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 	void audioNext(cocos2d::CCObject*) = win 0x9a360;
 	void audioPrevious(cocos2d::CCObject*) = win 0x9a3e0;
 	TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0x99830;
-	TodoReturn getDelegate();
-	TodoReturn getEditorLayer();
 	bool init(LevelSettingsObject*) = win 0x97050;
 	void on3DLine(cocos2d::CCObject* sender) = win 0x9a090;
 	void onBG(cocos2d::CCObject* sender) = win 0x99f10;
@@ -5044,7 +5042,9 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 	virtual void colorSelectClosed(ColorSelectPopup*);
 	virtual TodoReturn customSongLayerClosed();
 	virtual TodoReturn selectArtClosed(SelectArtLayer*);
+	virtual LevelSettingsDelegate* getDelegate() const;
 	virtual void setDelegate(LevelSettingsDelegate*);
+	virtual LevelEditorLayer* getEditorLayer() const;
 	virtual void setEditorLayer(LevelEditorLayer*);
 
 	int m_songIndex; // 0x1cc
