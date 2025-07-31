@@ -8534,7 +8534,9 @@ class GameStatsManager : cocos2d::CCNode {
     void addSpecialRewardDescription(gd::string, gd::string);
     void addStoreItem(int, int, int, int, ShopType) = ios 0x32bb90, win 0x1d1000, imac 0x660d0, m1 0x5a758;
     bool areChallengesLoaded() = m1 0x663dc, imac 0x729b0;
-    bool areRewardsLoaded() = ios 0x3333c4;
+    bool areRewardsLoaded() = win inline, m1 0x6599c, imac 0x71f60, ios 0x3333c4 {
+        return m_rewardItems->objectForKey(1) != nullptr;
+    }
     void awardCurrencyForLevel(GJGameLevel*) = win 0x1dd990, imac 0x70c90, m1 0x64700, ios 0x33282c;
     void awardDiamondsForLevel(GJGameLevel*) = win 0x1de170, ios 0x332ce4;
     TodoReturn awardSecretKey() = ios 0x33e2ec;
@@ -12291,17 +12293,32 @@ class GJRobotSprite : CCAnimatedSprite {
     virtual void setOpacity(unsigned char) = win 0x29fcc0, m1 0x4f9e1c, imac 0x5c4dd0, ios 0x23fe10;
     virtual void hideSecondary() = win 0x2a03b0, m1 0x4f9f00, imac 0x5c4ee0, ios 0x23fef4;
 
-    void hideGlow();
+    void hideGlow() = win inline, m1 0x4f9ad0, imac 0x5c49e0, ios 0x23fac8 {
+        m_glowSprite->setVisible(false);
+    }
     bool init(int, gd::string) = win 0x29f080, m1 0x4f8e44, imac 0x5c3bc0, ios 0x23f13c;
     bool init(int) = win inline, m1 0x4f8db4, imac 0x5c3b50, ios 0x23f0b8 {
         return GJRobotSprite::init(p0, "Robot");
     }
-    void showGlow() = ios 0x23fab4;
-    void updateColor01(cocos2d::ccColor3B) = m1 0x4f9ae4, imac 0x5c4a00;
-    void updateColor02(cocos2d::ccColor3B) = m1 0x4f9d90, imac 0x5c4d30;
+    void showGlow() = win inline, m1 0x4f9abc, imac 0x5c49c0, ios 0x23fab4 {
+        m_glowSprite->setVisible(true);
+    }
+    void updateColor01(cocos2d::ccColor3B) = win inline, m1 0x4f9ae4, imac 0x5c4a00, ios 0x23fadc {
+        m_color = p0;
+        this->updateColors();
+    }
+    void updateColor02(cocos2d::ccColor3B) = win inline, m1 0x4f9d90, imac 0x5c4d30, ios 0x23fd84 {
+        m_secondColor = p0;
+        this->updateColors();
+    }
     void updateColors() = win 0x29f810, m1 0x4f9af8, imac 0x5c4a20, ios 0x23faf0;
     void updateFrame(int) = ios 0x23f5ec, win 0x29fdc0, imac 0x5c4140, m1 0x4f9378;
-    void updateGlowColor(cocos2d::ccColor3B, bool) = imac 0x5c4d50, m1 0x4f9da0, ios 0x23fd94;
+    void updateGlowColor(cocos2d::ccColor3B, bool) = win inline, imac 0x5c4d50, m1 0x4f9da0, ios 0x23fd94 {
+        auto children = m_glowSprite->getChildren();
+        for (int i = 0; i < children->count(); i++) {
+            static_cast<cocos2d::CCSprite*>(children->objectAtIndex(i))->setColor(p0);
+        }
+    }
 
     cocos2d::CCArray* m_unkArray;
     bool m_hasExtra;
@@ -17772,7 +17789,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         this->runNormalRotation(false, 1.0f);
     }
     void runNormalRotation(bool, float) = ios 0x21c204, win 0x377490, imac 0x3ee220, m1 0x36f618;
-    void runRotateAction(bool, int) = m1 0x371934, imac 0x3f0b00, ios 0x21df28;
+    void runRotateAction(bool, int) = win inline, m1 0x371934, imac 0x3f0b00, ios 0x21df28 {
+        if (!m_isLocked && !m_isDashing) {
+            this->stopRotation(p0, 22);
+            if (m_isBall) this->runBallRotation(1.f);
+            else this->runNormalRotation();
+        }
+    }
     void saveToCheckpoint(PlayerCheckpoint*) = imac 0x40a6b0, m1 0x387f00, win 0x38b980;
     void setSecondColor(cocos2d::ccColor3B const&) = ios 0x21af40, win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
     void setupStreak() = ios 0x219cd4, win 0x372a50, imac 0x3eab20, m1 0x36c84c;
@@ -17795,7 +17818,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void stopDashing() = ios 0x21d57c, win 0x380820, m1 0x370c60, imac 0x3efe00;
     void stopParticles() = ios 0x21ea18, win 0x375af0;
     void stopPlatformerJumpAnimation() = ios 0x21effc, win 0x3772d0, imac 0x3f2500, m1 0x37314c;
-    void stopRotation(bool, int);
+    void stopRotation(bool, int) = win inline, m1 0x3731d8, imac 0x3f2590, ios 0x21f088 {
+        m_isRotating = false;
+        m_isBallRotating2 = false;
+        m_isBallRotating = false;
+        m_rotationSpeed = 0.f;
+    }
     void stopStreak2() = ios 0x22d978, imac 0x409d20, m1 0x387654;
     void storeCollision(PlayerCollisionDirection, int);
     bool switchedDirTo(PlayerButton) = win 0x382000;
@@ -19412,7 +19440,7 @@ class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     void onSubmit(cocos2d::CCObject* sender) = ios 0x78d64, win 0x3df8c0, m1 0x3d8188, imac 0x468830;
     void playWinSFX() = win 0x3df400;
     void showDialog(int);
-    void showFailAnimation() = win 0x3de4a0, ios 0x7a2e8;
+    void showFailAnimation() = win 0x3de4a0, m1 0x3d9aec, imac 0x46a330, ios 0x7a2e8;
     void showFirstDialog() = win 0x3e04f0, m1 0x3d8658, imac 0x468cd0;
     void showSuccessAnimation() = win 0x3dea60, imac 0x469a50, m1 0x3d9294, ios 0x79b14;
     void showTextInput() = win 0x3df860;
