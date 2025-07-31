@@ -6208,7 +6208,7 @@ class FLAlertLayerProtocol {
 [[link(android), depends(FMODAudioState), depends(FMODSoundState), depends(FMODMusic), depends(FMODSound), depends(FMODQueuedEffect), depends(FMODQueuedMusic), depends(FMODSoundTween)]]
 class FMODAudioEngine : cocos2d::CCNode {
     // virtual ~FMODAudioEngine();
-    FMODAudioEngine() = ios 0x142378, win 0x530d0, mac inline {
+    FMODAudioEngine() = ios 0x142378, win 0x530d0 {
         m_musicVolume = 1.f;
         m_sfxVolume = 1.f;
         m_backgroundMusicFade = .0f;
@@ -6556,10 +6556,10 @@ class FMODAudioEngine : cocos2d::CCNode {
 [[link(android), depends(FMODSoundTween), depends(FMODQueuedMusic), depends(FMODSoundState)]]
 class FMODAudioState {
     // ~FMODAudioState();
-    // FMODAudioState() = win 0x52e40, ios 0x12ad78, mac inline {
-    //     m_interval = 0.f;
-    //     m_elapsed = 0.f;
-    // }
+    FMODAudioState() = win 0x52e40, ios 0x12ad78 {
+        m_interval = 0.f;
+        m_elapsed = 0.f;
+    }
 
     float m_interval;
     float m_elapsed;
@@ -8834,7 +8834,7 @@ class GameToolbox {
     static TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, cocos2d::SEL_CallFunc);
     static TodoReturn getDropActionWEnd(float, float, float, cocos2d::CCAction*, float);
     static cocos2d::CCActionEase* getEasedAction(cocos2d::CCActionInterval*, int, float) = imac 0x4de7b0, m1 0x4415e8;
-    static TodoReturn getEasedValue(float, int, float) = win 0x68b40;
+    static float getEasedValue(float, int, float) = win 0x68b40;
     static uint64_t getfast_srand() = win inline, m1 0x44183c, imac 0x4dea40, ios inline {
         return *reinterpret_cast<uint64_t*>(geode::base::get() + GEODE_WINDOWS(0x6a4e20) GEODE_IOS(0x85d890));
     }
@@ -12598,16 +12598,191 @@ class GJSearchObject : cocos2d::CCNode {
 
 [[link(android), depends(GJValueTween)]]
 class GJShaderState {
-    void reset();
-    void stopTweenAction(int action);
-    void timesyncShaderAction(int action);
-    void timesyncShaderActions();
-    void tweenValue(float fromValue, float toValue, int action, float duration, int easingType, float easingRate);
-    void updateTweenAction(float value, int actionID);
-    void updateTweenActions(float tweenValue);
+    GJShaderState() {
+        m_time = 0.0;
+        m_prevTime = -1.0;
+        m_textureScaleX = 1.f;
+        m_textureScaleY = 1.f;
+        m_blurUnk60 = 0;
+        m_shockWaveUnk68 = 0.f;
+        m_shockWaveUnk74 = 0.f;
+        m_shockLineUnkb8 = 0.0;
+        m_shockLineUnke8 = 0;
+        m_shockLineUnkec = false;
+        m_glitchUnk108 = 0.f;
+        m_chromaticUnk124 = 0.f;
+        m_chromaticUnk128 = 0.f;
+        m_cGUnk13c = 0.f;
+        m_cGUnk140 = 0.f;
+        m_cGUnk144 = 1.f;
+        m_cGUnk148 = 0.f;
+        m_cGUnk14c = 0.f;
+        m_cGUnk150 = false;
+        m_cGUnk151 = false;
+        m_pixelateTargetX = 1.f;
+        m_pixelateTargetY = 1.f;
+        m_pixelateSnapGrid = false;
+        m_pixelatePixelating = false;
+        m_lensCircleUnk160 = 1.f;
+        m_lensCircleUnk164 = 0.f;
+        m_lensCircleStrength = 0.f;
+        m_lensCircleUnk16c = 0;
+        m_lensCircleUnk170 = 0;
+        m_lensCircleUnk174 = false;
+        m_lensCircleAdditive = false;
+        m_radialBlurUnk18c = 0.f;
+        m_radialBlurUnk190 = 0.f;
+        m_motionBlurUnk1ac = 0.f;
+        m_motionBlurUnk1b0 = 0.f;
+        m_motionBlurSpeedX = 0.f;
+        m_motionBlurSpeedY = 0.f;
+        m_motionBlurUnk1bc = 1.f;
+        m_motionBlurUnk1c0 = 1.f;
+        m_motionBlurUnk1c4 = 0;
+        m_motionBlurUnk1c8 = 0;
+        m_motionBlurDual = false;
+        m_bulgeValue = 0.f;
+        m_bulgeUnk1d4 = false;
+        m_bulgeUnk1d8 = 0;
+        m_bulgeRadius = 0.f;
+        m_pinchUnk1f0 = 0.f;
+        m_pinchUnk1f4 = 0.f;
+        m_pinchUnk1f8 = false;
+        m_pinchUnk1f9 = false;
+        m_pinchUnk1fc = 0;
+        m_pinchUnk200 = 0;
+        m_pinchUnk218 = 0.f;
+        m_grayscaleValue = 0.f;
+        m_grayscaleUnk22c = 0;
+        m_sepiaValue = 0.f;
+        m_invertColorEditRGB = 0.f;
+        m_invertColorR = 1.f;
+        m_invertColorG = 1.f;
+        m_invertColorB = 1.f;
+        m_invertColorClampRGB = false;
+        m_hueShiftDegrees = 0.f;
+        m_colorChangeCR = 1.f;
+        m_colorChangeCG = 1.f;
+        m_colorChangeCB = 1.f;
+        m_colorChangeBR = 0.f;
+        m_colorChangeBG = 0.f;
+        m_colorChangeBB = 0.f;
+        m_splitUnk268 = 0.f;
+        m_splitUnk26c = 0.f;
+        m_splitUnk270 = false;
+        m_minBlendingLayer = 0;
+        m_maxBlendingLayer = 0;
+        m_zLayerDirty = false;
+        m_somethingZLayerUnk27d = false;
+        m_usesShaders = false;
+    }
 
-    gd::unordered_map<int, GJValueTween> m_someIntToValueTweenMap;
-    gd::unordered_map<int, double> m_someIntToDoubleMap;
+    void reset() = win inline {
+        m_cGUnk144 = 1.f;
+        m_shockWaveUnk68 = 0.f;
+        m_shockLineUnkb8 = 0.0;
+        m_glitchUnk108 = 0.f;
+        m_chromaticUnk124 = 0.f;
+        m_chromaticUnk128 = 0.f;
+        m_blurIntensity = 0.f;
+        m_cGUnk150 = false;
+        m_cGUnk138 = 0.f;
+        m_cGUnk13c = 0.f;
+        m_cGUnk140 = 0.f;
+        m_cGUnk148 = 0.f;
+        m_cGUnk14c = 0.f;
+        m_pixelateTargetX = 0.f;
+        m_pixelateTargetY = 0.f;
+        m_pixelateSnapGrid = false;
+        m_lensCircleStrength = 0.f;
+        m_lensCircleUnk16c = 0;
+        m_lensCircleUnk170 = 0;
+        m_radialBlurUnk18c = 0.f;
+        m_motionBlurUnk1ac = 0.f;
+        m_motionBlurUnk1b0 = 0.f;
+        m_motionBlurUnk1c4 = 0;
+        m_motionBlurUnk1c8 = 0;
+        m_motionBlurSpeedX = 0.f;
+        m_motionBlurSpeedY = 0.f;
+        m_textureScaleX = 1.f;
+        m_textureScaleY = 1.f;
+        m_lensCircleUnk160 = 1.f;
+        m_lensCircleUnk164 = 0.f;
+        m_radialBlurUnk19c.x = 0.f;
+        m_radialBlurUnk19c.y = 0.f;
+        m_bulgeValue = 0.f;
+        m_pinchUnk1f0 = 0.f;
+        m_pinchUnk1f4 = 0.f;
+        m_pinchUnk1fc = 0;
+        m_pinchUnk200 = 0;
+        m_pinchUnk1f8 = false;
+        m_pinchUnk1f9 = false;
+        m_pinchUnk20c.x = 0.f;
+        m_pinchUnk20c.y = 0.f;
+        m_grayscaleValue = 0.f;
+        m_prevTime = -1.f;
+        m_sepiaValue = 0.f;
+        m_invertColorEditRGB = 0.f;
+        m_hueShiftDegrees = 0.f;
+        m_invertColorR = 1.f;
+        m_invertColorG = 1.f;
+        m_invertColorB = 1.f;
+        m_colorChangeCR = 1.f;
+        m_colorChangeCG = 1.f;
+        m_colorChangeCB = 1.f;
+        m_colorChangeBR = 0.f;
+        m_colorChangeBG = 0.f;
+        m_colorChangeBB = 0.f;
+        m_invertColorClampRGB = false;
+        m_splitUnk268 = 0.f;
+        m_splitUnk26c = 0.f;
+        m_zLayerDirty = false;
+        m_somethingZLayerUnk27d = false;
+        m_minBlendingLayer = 0;
+        m_maxBlendingLayer = 0;
+    }
+    void stopTweenAction(int action) = win inline {
+        m_tweenActions.erase(action);
+    }
+    void timesyncShaderAction(int action) = win 0x4696c0;
+    void timesyncShaderActions() = win inline {
+        for (auto& pair : m_tweenTimes) {
+            this->timesyncShaderAction(pair.first);
+        }
+    }
+    void tweenValue(float fromValue, float toValue, int action, float duration, int easingType, float easingRate) = win inline {
+        this->stopTweenAction(action);
+        if (duration <= 0.f) {
+            this->updateTweenAction(toValue, action);
+            return;
+        }
+        GJValueTween tween;
+        tween.m_easingRate = easingRate;
+        tween.m_duration = duration;
+        tween.m_deltaTime = 0.f;
+        tween.m_currentValue = 0.f;
+        tween.m_finished = false;
+        tween.m_disabled = false;
+        tween.m_easingType = (EasingType)easingType;
+        tween.m_uniqueID = -1;
+        tween.m_controlID = -1;
+        tween.m_fromValue = fromValue;
+        tween.m_toValue = toValue;
+        m_tweenActions.emplace(action, tween);
+        m_tweenTimes[action] = m_time;
+    }
+    void updateTweenAction(float value, int actionID) = win 0x469300;
+    void updateTweenActions(float tweenValue) = win inline {
+        for (auto it = m_tweenActions.begin(); it != m_tweenActions.end();) {
+            it->second.step(tweenValue);
+            this->updateTweenAction(it->second.m_currentValue, it->first);
+            if (it->second.m_finished) it = m_tweenActions.erase(it);
+            else ++it;
+        }
+    }
+
+    gd::unordered_map<int, GJValueTween> m_tweenActions;
+    gd::unordered_map<int, double> m_tweenTimes;
     double m_time;
     double m_prevTime;
     double m_startTime;

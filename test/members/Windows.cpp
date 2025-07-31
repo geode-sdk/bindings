@@ -334,8 +334,8 @@ GEODE_MEMBER_CHECK(GJGameState, m_pauseCounter, 0x6bc);
 GEODE_MEMBER_CHECK(GJGameState, m_pauseBufferTimer, 0x6c0);
 
 GEODE_SIZE_CHECK(GJShaderState, 0x2c8);
-GEODE_MEMBER_CHECK(GJShaderState, m_someIntToValueTweenMap, 0x0);
-GEODE_MEMBER_CHECK(GJShaderState, m_someIntToDoubleMap, 0x40);
+GEODE_MEMBER_CHECK(GJShaderState, m_tweenActions, 0x0);
+GEODE_MEMBER_CHECK(GJShaderState, m_tweenTimes, 0x40);
 GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x80);
 GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x88);
 GEODE_MEMBER_CHECK(GJShaderState, m_startTime, 0x90);
