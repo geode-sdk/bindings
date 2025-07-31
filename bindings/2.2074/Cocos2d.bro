@@ -2120,7 +2120,7 @@ class cocos2d::CCNode : cocos2d::CCObject {
     bool getUseChildIndex();
 
     void setAdditionalTransform(cocos2d::CCAffineTransform const&);
-    void setUseChildIndex(bool);
+    void setUseChildIndex(bool) = m1 0x20d228, imac 0x261460, ios 0x23b978;
 
     cocos2d::CCRect boundingBox() = imac 0x260cd0, m1 0x20ca74, ios 0x23b390;
     void childrenAlloc();
