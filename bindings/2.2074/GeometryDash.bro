@@ -243,7 +243,7 @@ class AchievementManager : cocos2d::CCNode {
         return 0;
     }
     void notifyAchievement(char const*, char const*, char const*) = m1 0x682bcc, imac 0x76f700, ios 0xeba9c;
-    TodoReturn notifyAchievementWithID(char const*);
+    void notifyAchievementWithID(char const*) = win 0x3a470;
     TodoReturn percentageForCount(int, int);
     int percentForAchievement(char const*) = win 0x39a90, m1 0x6821b4, imac 0x76ec20, ios 0xeb558;
     void reportAchievementWithID(char const*, int, bool) = m1 0x682d28, imac 0x76f830, ios 0xebb58;
