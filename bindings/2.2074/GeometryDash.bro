@@ -17785,7 +17785,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn rotatePreSlopeObjects();
     void runBallRotation(float) = win 0x3775c0, m1 0x3732c0, imac 0x3f26a0, ios 0x21f098;
     void runBallRotation2() = win 0x3776f0;
-    void runNormalRotation() {
+    void runNormalRotation() = win inline, m1 0x3731e8, imac 0x3f25b0, ios inline {
         this->runNormalRotation(false, 1.0f);
     }
     void runNormalRotation(bool, float) = ios 0x21c204, win 0x377490, imac 0x3ee220, m1 0x36f618;
@@ -22316,9 +22316,14 @@ class SFXSearchResult : MusicSearchResult {
         return true;
     }
     void setActiveFolder(SFXFolderObject* folder) = win inline, imac 0x5829b0, m1 0x4d501c {
-        CC_SAFE_RELEASE(m_folderObject);
-        CC_SAFE_RETAIN(folder);
-        m_folderObject = folder;
+        if (folder != m_folderObject) {
+            CC_SAFE_RELEASE(m_folderObject);
+            CC_SAFE_RETAIN(folder);
+            m_folderObject = folder;
+        }
+        else if (!folder) {
+            CC_SAFE_RELEASE_NULL(m_folderObject);
+        }
     }
 
     int m_folderID;
