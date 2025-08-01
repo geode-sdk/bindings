@@ -1581,6 +1581,10 @@ class CustomizeObjectLayer : FLAlertLayer {
 	void onSelectColor(cocos2d::CCObject* sender) = win 0x2e600;
 
 	virtual void keyBackClicked();
+
+	GameObject* m_targetObject; // 0x1bc
+    	cocos2d::CCArray* m_targetObjects; // 0x1c0
+    	cocos2d::CCArray* m_buttonsArray; // 0x1c4
 }
 
 [[link(android)]]
@@ -1871,7 +1875,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn applyOffset(GameObject*);
 	TodoReturn applySpecialOffset(cocos2d::CCPoint, GameObject*, cocos2d::CCPoint);
 	TodoReturn changeSelectedObjects(cocos2d::CCArray*);
-	TodoReturn clickOnPosition(cocos2d::CCPoint);
+	void clickOnPosition(cocos2d::CCPoint) = win 0x41640;
 	void colorSelectClosed(cocos2d::ccColor3B);
 	void constrainGameLayerPosition() = win 0x4c8c0;
 	TodoReturn constrainGameLayerPosition(float, float);
@@ -1909,7 +1913,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn getCycledObject(cocos2d::CCArray*, bool);
 	void getGridSnappedPos(cocos2d::CCPoint) = win 0x4d370;
 	void getGroupCenter(cocos2d::CCArray*) = win 0x4cc00;
-	TodoReturn getLimitedPosition(cocos2d::CCPoint);
+	cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint) = win 0x4b500;
 	TodoReturn getModeBtn(char const*, int);
 	TodoReturn getRelativeOffset(GameObject*);
 	cocos2d::CCArray* getSelectedObjects();
@@ -1985,7 +1989,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void toggleSnap(cocos2d::CCObject*) = win 0x47c90;
 	void toggleSpecialEditButtons() = win 0x499e0;
 	void toggleSwipe(cocos2d::CCObject*) = win 0x47ad0;
-	TodoReturn transformObject(GameObject*, EditCommand, bool);
+	void transformObject(GameObject*, EditCommand, bool) = win 0x4b7e0;
 	void transformObjectCall(cocos2d::CCObject*) = win 0x4b580;
 	void transformObjectCall(EditCommand) = win 0x4b5a0;
 	TodoReturn tryDeleteObject(GameObject*, bool);
@@ -2010,9 +2014,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void zoomOut(cocos2d::CCObject*) = win 0x48bd0;
 
 	virtual void draw();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d5e0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4da20;
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4de40;
 	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
@@ -5039,7 +5043,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 	virtual void registerWithTouchDispatcher();
 	virtual void keyBackClicked();
 	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
-	virtual void colorSelectClosed(ColorSelectPopup*);
+	virtual void colorSelectClosed(ColorSelectPopup*) = win 0x9a0c0;
 	virtual TodoReturn customSongLayerClosed();
 	virtual TodoReturn selectArtClosed(SelectArtLayer*);
 	virtual LevelSettingsDelegate* getDelegate() const;
@@ -6285,7 +6289,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	static PlayLayer* create(GJGameLevel*) = win 0xe3530;
 
 	TodoReturn addCircle(CCCircleWave*);
-	TodoReturn addToSection(GameObject*);
+	void addToSection(GameObject*) = win 0xe9280;
 	TodoReturn addToSpeedObjects(GameObject*);
 	TodoReturn animateInDualGround(GameObject*, float, bool);
 	TodoReturn animateInGround(bool);
@@ -6909,7 +6913,9 @@ class SetGroupIDLayer : FLAlertLayer {
 
 	virtual void keyBackClicked();
 
-	
+	GameObject* m_targetObject; // 0x1bc
+	cocos2d::CCArray* m_targetObjects; // 0x1c0
+	cocos2d::CCLabelBMFont* m_groupLabel; // 0x1c4
 }
 
 [[link(android)]]
