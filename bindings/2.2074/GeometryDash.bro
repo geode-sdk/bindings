@@ -12598,7 +12598,7 @@ class GJSearchObject : cocos2d::CCNode {
 
 [[link(android), depends(GJValueTween)]]
 class GJShaderState {
-    GJShaderState() {
+    GJShaderState() = win 0x38db00, m1 0xb43b8, imac 0xcae30, ios 0x12ab94 {
         m_time = 0.0;
         m_prevTime = -1.0;
         m_textureScaleX = 1.f;
@@ -12677,7 +12677,7 @@ class GJShaderState {
         m_usesShaders = false;
     }
 
-    void reset() = win inline {
+    void reset() = win inline, m1 0x34278c, imac 0x3b73f0, ios 0x26caf4 {
         m_cGUnk144 = 1.f;
         m_shockWaveUnk68 = 0.f;
         m_shockLineUnkb8 = 0.0;
@@ -12741,16 +12741,16 @@ class GJShaderState {
         m_minBlendingLayer = 0;
         m_maxBlendingLayer = 0;
     }
-    void stopTweenAction(int action) = win inline {
+    void stopTweenAction(int action) = win inline, m1 0x3422dc, imac 0x3b6c70, ios inline {
         m_tweenActions.erase(action);
     }
-    void timesyncShaderAction(int action) = win 0x4696c0;
-    void timesyncShaderActions() = win inline {
+    void timesyncShaderAction(int action) = win 0x4696c0, m1 0x342628, imac 0x3b7210, ios 0x26ca64;
+    void timesyncShaderActions() = win inline, m1 0x3425f0, imac 0x3b71d0, ios 0x26ca2c {
         for (auto& pair : m_tweenTimes) {
             this->timesyncShaderAction(pair.first);
         }
     }
-    void tweenValue(float fromValue, float toValue, int action, float duration, int easingType, float easingRate) = win inline {
+    void tweenValue(float fromValue, float toValue, int action, float duration, int easingType, float easingRate) = win inline, m1 0x3421f8, imac 0x3b6b80, ios 0x26c680 {
         this->stopTweenAction(action);
         if (duration <= 0.f) {
             this->updateTweenAction(toValue, action);
@@ -12771,8 +12771,8 @@ class GJShaderState {
         m_tweenActions.emplace(action, tween);
         m_tweenTimes[action] = m_time;
     }
-    void updateTweenAction(float value, int actionID) = win 0x469300;
-    void updateTweenActions(float tweenValue) = win inline {
+    void updateTweenAction(float value, int actionID) = win 0x469300, m1 0x342300, imac 0x3b6c90, ios 0x26c764;
+    void updateTweenActions(float tweenValue) = win inline, m1 0x342554, imac 0x3b7130, ios 0x26c9b8 {
         for (auto it = m_tweenActions.begin(); it != m_tweenActions.end();) {
             it->second.step(tweenValue);
             this->updateTweenAction(it->second.m_currentValue, it->first);
@@ -22674,8 +22674,28 @@ class ShaderGameObject : EffectGameObject {
 [[link(android), depends(GJShaderState)]]
 class ShaderLayer : cocos2d::CCLayer {
     // virtual ~ShaderLayer();
+    ShaderLayer() = m1 0x3492f8, imac 0x3bf2d0, ios 0x272580 {
+        m_timesyncShaderActions = false;
+        m_shader = nullptr;
+        m_renderTexture = nullptr;
+        m_sprite = nullptr;
+        m_antiAlias = false;
+        m_configuredAntiAlias = false;
+        m_gameLayer = nullptr;
+        m_savedCameraRotation = 0.f;
+        m_shockWaveTimeMult = 1.f;
+        m_scaleFactor = 1.f;
+    }
 
-    static ShaderLayer* create();
+    static ShaderLayer* create() = win inline, m1 0x342a7c, imac 0x3b78d0, ios 0x26ccb4 {
+        auto ret = new ShaderLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x4697b0, imac 0x3b7930, m1 0x342afc, ios 0x26cd28;
     virtual void update(float) = win 0x46a560, imac 0x3b91b0, m1 0x3442d4, ios 0x26e070;
@@ -22702,7 +22722,7 @@ class ShaderLayer : cocos2d::CCLayer {
     void preShockLineShader() = m1 0x346300, imac 0x3bbbd0;
     void preShockWaveShader() = m1 0x345d94, imac 0x3bb510;
     void preSplitScreenShader() = m1 0x348a18, imac 0x3be890;
-    bool resetAllShaders() = win 0x4710f0;
+    bool resetAllShaders() = win 0x4710f0, m1 0x349270, imac 0x3bf240, ios 0x272510;
     void resetTargetContainer();
     void setupBulgeShader() = m1 0x343da0, imac 0x3b8c80, ios 0x26dbbc;
     void setupChromaticGlitchUniforms() = m1 0x343b30, imac 0x3b8a10, ios 0x26d94c;
