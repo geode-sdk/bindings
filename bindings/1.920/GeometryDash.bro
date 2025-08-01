@@ -6289,7 +6289,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	static PlayLayer* create(GJGameLevel*) = win 0xe3530;
 
 	TodoReturn addCircle(CCCircleWave*);
-	TodoReturn addToSection(GameObject*);
+	void addToSection(GameObject*) = win 0xe9280;
 	TodoReturn addToSpeedObjects(GameObject*);
 	TodoReturn animateInDualGround(GameObject*, float, bool);
 	TodoReturn animateInGround(bool);
