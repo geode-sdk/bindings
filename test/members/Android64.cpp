@@ -652,7 +652,7 @@ GEODE_MEMBER_CHECK(GJShaderState, m_splitUnk270, 0x2a8);
 GEODE_MEMBER_CHECK(GJShaderState, m_minBlendingLayer, 0x2ac);
 GEODE_MEMBER_CHECK(GJShaderState, m_maxBlendingLayer, 0x2b0);
 GEODE_MEMBER_CHECK(GJShaderState, m_zLayerDirty, 0x2b4);
-GEODE_MEMBER_CHECK(GJShaderState, m_somethingZLayerUnk27d, 0x2b5);
+GEODE_MEMBER_CHECK(GJShaderState, m_noPlayerParticles, 0x2b5);
 GEODE_MEMBER_CHECK(GJShaderState, m_usesShaders, 0x2b6);
 
 GEODE_SIZE_CHECK(FMODSoundTween, 0x18);

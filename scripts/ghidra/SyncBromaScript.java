@@ -25,6 +25,7 @@ import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.FunctionDefinition;
+import ghidra.program.model.data.Pointer;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
@@ -444,6 +445,33 @@ public class SyncBromaScript extends GhidraScript {
             );
         } catch (Exception e) {
             throw new Error("Died on: " + fullName + " with " + e.getMessage());
+        }
+
+        // Fix the this parameter for member functions
+        if (bromaSig.memberFunction && wrapper.offsets.get(addr.getOffset()) == null) {
+            var firstParam = data.getParameter(0);
+            var firstType = firstParam.getDataType();
+            if (firstParam.getName().equals("this") && firstType instanceof Pointer && ((Pointer)firstType).getDataType() instanceof VoidDataType) {
+                var newConvention = "__cdecl";
+                if (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) {
+                    newConvention = "__fastcall";
+                }
+                else if (args.platform == Platform.MAC_INTEL) {
+                    newConvention = "__stdcall";
+                }
+                try {
+                    data.updateFunction(
+                        newConvention,
+                        bromaSig.returnType.orElse(null),
+                        updateType,
+                        true,
+                        SourceType.USER_DEFINED,
+                        bromaSig.parameters.toArray(Variable[]::new)
+                    );
+                } catch (Exception e) {
+                    throw new Error("Died on: " + fullName + " with " + e.getMessage());
+                }
+            }
         }
 
         // Set struct return storage for ARM64
