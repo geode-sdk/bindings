@@ -22703,24 +22703,114 @@ class ShaderLayer : cocos2d::CCLayer {
 
     cocos2d::CCPoint objectPosToShaderPos(cocos2d::CCPoint) = win 0x46a890;
     void performCalculations() = ios 0x272244, win 0x46fbd0, imac 0x3beb80, m1 0x348c6c;
-    void preBulgeShader();
-    void preChromaticGlitchShader() = m1 0x346e7c, imac 0x3bc990;
-    void preChromaticShader() = m1 0x346bf4, imac 0x3bc6a0;
-    void preColorChangeShader() = m1 0x348888, imac 0x3be680;
-    void preCommonShader() = m1 0x3444e0, imac 0x3b93c0;
-    void preGlitchShader() = m1 0x346724, imac 0x3bc0f0;
-    void preGrayscaleShader() = m1 0x3483ec, imac 0x3be160;
-    void preHueShiftShader();
-    void preInvertColorShader();
-    void preLensCircleShader() = m1 0x347844, imac 0x3bd4a0;
-    void preMotionBlurShader() = m1 0x347d98, imac 0x3bda20;
+    void preBulgeShader() = win inline {
+        if (m_state.m_bulgeValue <= 0.f) {
+            if (this->getActionByTag(21)) {
+                m_state.m_usesShaders = true;
+            }
+            m_sprite->getShaderProgram()->setUniformLocationWith1f(m_bulgeValueUniform, 0.f);
+        }
+    }
+    void preChromaticGlitchShader() = win 0x46d840, m1 0x346e7c, imac 0x3bc990;
+    void preChromaticShader() = win inline, m1 0x346bf4, imac 0x3bc6a0 {
+        if (m_state.m_chromaticUnk124 != 0.f || m_state.m_chromaticUnk128 != 0.f || this->getActionByTag(1) || this->getActionByTag(2)) {
+            m_state.m_usesShaders = true;
+        }
+        auto scale = m_state.m_chromaticUnk12c && m_gameLayer ? abs(m_gameLayer->m_objectLayer->getScale()) : 1.f;
+        auto shaderProgram = m_sprite->getShaderProgram();
+        shaderProgram->setUniformLocationWith1f(m_chromaticXOffUniform, (m_scaleFactor / 1.2018504f) * m_state.m_chromaticUnk124 * m_state.m_textureScaleX * scale);
+        shaderProgram->setUniformLocationWith1f(m_chromaticYOffUniform, (m_scaleFactor / 1.2018504f) * m_state.m_chromaticUnk128 * m_state.m_textureScaleY * scale);
+    }
+    void preColorChangeShader() = win inline, m1 0x348888, imac 0x3be680 {
+        auto shaderProgram = m_sprite->getShaderProgram();
+        if (m_state.m_colorChangeCR != 1.f || m_state.m_colorChangeCG != 1.f || m_state.m_colorChangeCB != 1.f ||
+            m_state.m_colorChangeBR != 0.f || m_state.m_colorChangeBG != 0.f || m_state.m_colorChangeBB != 0.f) {
+            m_state.m_usesShaders = true;
+            shaderProgram->setUniformLocationWith3f(m_colorChangeCUniform, std::max(m_state.m_colorChangeCR, .001f), m_state.m_colorChangeCG, m_state.m_colorChangeCB);
+            shaderProgram->setUniformLocationWith3f(m_colorChangeBUniform, m_state.m_colorChangeBR, m_state.m_colorChangeBG, m_state.m_colorChangeBB);
+        }
+        else {
+            shaderProgram->setUniformLocationWith3f(m_colorChangeCUniform, 0.f, 0.f, 0.f);
+            if (this->getActionByTag(42) || this->getActionByTag(43) || this->getActionByTag(44) || this->getActionByTag(39) || this->getActionByTag(40) || this->getActionByTag(41)) {
+                m_state.m_usesShaders = true;
+            }
+        }
+    }
+    void preCommonShader() = win inline, m1 0x3444e0, imac 0x3b93c0 {
+        auto shaderProgram = m_sprite->getShaderProgram();
+        shaderProgram->setUniformLocationWith3f(m_blurRefColorUniform, m_state.m_blurRefColor.r / 255.f, m_state.m_blurRefColor.g / 255.f, m_state.m_blurRefColor.b / 255.f);
+        shaderProgram->setUniformLocationWith1f(m_blurUseRefUniform, m_state.m_minBlendingLayer > 1);
+        shaderProgram->setUniformLocationWith1f(m_blurIntensityUniform, m_state.m_blurIntensity + 1.f);
+        shaderProgram->setUniformLocationWith2f(m_textureScaleUniform, m_state.m_textureScaleX, m_state.m_textureScaleY);
+        shaderProgram->setUniformLocationWith2f(m_textureScaleInvUniform, 1.f / m_state.m_textureScaleX, 1.f / m_state.m_textureScaleY);
+        shaderProgram->setUniformLocationWith1f(m_blurOnlyEmptyUniform, m_state.m_minBlendingLayer > 1 && m_state.m_blurOnlyEmpty);
+        shaderProgram->setUniformLocationWith1f(m_screenAspectINVUniform, m_state.m_screenSize.height / m_state.m_screenSize.width);
+        shaderProgram->setUniformLocationWith1f(m_shaderPositionUniform, m_state.m_screenSize.width / m_state.m_screenSize.height);
+    }
+    void preGlitchShader() = win 0x46d0d0, m1 0x346724, imac 0x3bc0f0;
+    void preGrayscaleShader() = win inline, m1 0x3483ec, imac 0x3be160 {
+        if (m_state.m_grayscaleValue > 0.f || this->getActionByTag(32)) {
+            m_state.m_usesShaders = true;
+        }
+        auto shaderProgram = m_sprite->getShaderProgram();
+        shaderProgram->setUniformLocationWith1f(m_grayscaleValueUniform, m_state.m_grayscaleValue);
+        if (m_state.m_grayscaleValue > 0.f) {
+            shaderProgram->setUniformLocationWith1f(m_grayscaleUseLumUniform, m_state.m_grayscaleUseLum);
+            shaderProgram->setUniformLocationWith3f(m_grayscaleTintUniform, m_state.m_grayscaleTint.r / 255.f, m_state.m_grayscaleTint.g / 255.f, m_state.m_grayscaleTint.b / 255.f);
+        }
+    }
+    void preHueShiftShader() = win inline {
+        if (m_state.m_hueShiftDegrees != 0.f || this->getActionByTag(38)) {
+            m_state.m_usesShaders = true;
+        }
+        auto radians = m_state.m_hueShiftDegrees * (M_PI / 180.f);
+        auto shaderProgram = m_sprite->getShaderProgram();
+        shaderProgram->setUniformLocationWith1f(m_hueShiftCosAUniform, cosf(radians));
+        shaderProgram->setUniformLocationWith1f(m_hueShiftSinAUniform, sinf(radians));
+    }
+    void preInvertColorShader() = win inline {
+        if (m_state.m_invertColorEditRGB > 0.f || this->getActionByTag(34)) {
+            m_state.m_usesShaders = true;
+        }
+        auto shaderProgram = m_sprite->getShaderProgram();
+        auto edit = m_state.m_invertColorEditRGB;
+        auto r = edit * m_state.m_invertColorR;
+        auto g = edit * m_state.m_invertColorG;
+        auto b = edit * m_state.m_invertColorB;
+        if (m_state.m_invertColorClampRGB) {
+            r = std::min(r, 1.f);
+            g = std::min(g, 1.f);
+            b = std::min(b, 1.f);
+        }
+        shaderProgram->setUniformLocationWith4f(m_invertColorUniform, r, g, b, edit);
+    }
+    void preLensCircleShader() = win 0x46e380, m1 0x347844, imac 0x3bd4a0;
+    void preMotionBlurShader() = win 0x46e850, m1 0x347d98, imac 0x3bda20;
     cocos2d::CCPoint prepareTargetContainer() = win 0x46dd70;
-    void prePinchShader();
-    void prePixelateShader() = m1 0x347240, imac 0x3bcdd0;
-    void preRadialBlurShader() = m1 0x347ae8, imac 0x3bd770;
-    void preSepiaShader();
-    void preShockLineShader() = m1 0x346300, imac 0x3bbbd0;
-    void preShockWaveShader() = m1 0x345d94, imac 0x3bb510;
+    void prePinchShader() = win inline {
+        if (m_state.m_pinchUnk1f0 != 0.0 || m_state.m_pinchUnk1f4 != 0.0 || this->getActionByTag(25) || this->getActionByTag(26)) {
+            m_state.m_usesShaders = true;
+        }
+    }
+    void prePixelateShader() = win 0x46dbc0, m1 0x347240, imac 0x3bcdd0;
+    void preRadialBlurShader() = win inline, m1 0x347ae8, imac 0x3bd770 {
+        if (m_state.m_radialBlurUnk18c != 0.f && this->getActionByTag(16)) {
+            m_state.m_usesShaders = true;
+        }
+        auto shaderProgram = m_sprite->getShaderProgram();
+        shaderProgram->setUniformLocationWith1f(m_radialBlurValueUniform, m_state.m_radialBlurUnk18c / 45.f); 
+        if (m_state.m_radialBlurUnk18c != 0.f) {
+            shaderProgram->setUniformLocationWith1f(m_blurFadeUniform, std::clamp(m_radialBlurUnk190 * .2f, .0f, .2f));
+        }
+    }
+    void preSepiaShader() = win inline {
+        if (m_state.m_sepiaValue > 0.f || this->getActionByTag(33)) {
+            m_state.m_usesShaders = true;
+        }
+        m_sprite->getShaderProgram()->setUniformLocationWith1f(m_sepiaValueUniform, m_state.m_sepiaValue);
+    }
+    void preShockLineShader() = win 0x46cbc0, m1 0x346300, imac 0x3bbbd0;
+    void preShockWaveShader() = win 0x46c070, m1 0x345d94, imac 0x3bb510;
     void preSplitScreenShader() = win 0x46f8b0, m1 0x348a18, imac 0x3be890;
     bool resetAllShaders() = win 0x4710f0, m1 0x349270, imac 0x3bf240, ios 0x272510;
     void resetTargetContainer() = win inline {
@@ -22780,76 +22870,76 @@ class ShaderLayer : cocos2d::CCLayer {
         if (p2 > 0.f) {
             if (m_timesyncShaderActions) m_state.timesyncShaderAction(p1);
             switch (p1) {
-                case 1: value = m_chromaticUnk124; break;
-                case 2: value = m_chromaticUnk128; break;
-                case 3: value = m_cGUnk13c; break;
-                case 4: value = m_cGUnk140; break;
-                case 5: value = m_cGUnk148; break;
-                case 6: value = m_cGUnk14c; break;
-                case 7: value = m_cGUnk144; break;
-                case 8: value = m_cGUnk138; break;
-                case 9: value = m_pixelateTargetX; break;
-                case 10: value = m_pixelateTargetY; break;
-                case 11: value = m_lensCircleUnk160; break;
-                case 12: value = m_lensCircleUnk164; break;
-                case 13: value = m_lensCircleStrength; break;
-                case 14: value = (m_lensCircleUnk184).x; break;
-                case 15: value = (m_lensCircleUnk184).y; break;
-                case 16: value = m_radialBlurUnk18c; break;
-                case 17: value = (m_radialBlurUnk1a4).x; break;
-                case 18: value = (m_radialBlurUnk1a4).y; break;
-                case 19: value = m_motionBlurUnk1ac; break;
-                case 20: value = m_motionBlurUnk1b0; break;
-                case 21: value = m_bulgeValue; break;
-                case 22: value = (m_bulgeUnk1e8).x; break;
-                case 23: value = (m_bulgeUnk1e8).y; break;
-                case 24: value = m_bulgeRadius; break;
-                case 25: value = m_pinchUnk1f0; break;
-                case 26: value = m_pinchUnk1f4; break;
-                case 27: value = (m_pinchUnk20c).x; break;
-                case 28: value = (m_pinchUnk20c).y; break;
-                case 29: value = m_pinchUnk218; break;
-                case 30: value = (m_pinchUnk21c).x; break;
-                case 31: value = (m_pinchUnk21c).y; break;
-                case 32: value = m_grayscaleValue; break;
-                case 33: value = m_sepiaValue; break;
-                case 34: value = m_invertColorEditRGB; break;
-                case 35: value = m_invertColorR; break;
-                case 36: value = m_invertColorG; break;
-                case 37: value = m_invertColorB; break;
-                case 38: value = m_hueShiftDegrees; break;
-                case 39: value = m_colorChangeCR; break;
-                case 40: value = m_colorChangeCG; break;
-                case 41: value = m_colorChangeCB; break;
-                case 42: value = m_colorChangeBR; break;
-                case 43: value = m_colorChangeBG; break;
-                case 44: value = m_colorChangeBB; break;
-                case 45: value = m_splitUnk268; break;
-                case 46: value = m_splitUnk26c; break;
-                case 47: value = m_blurIntensity; break;
-                case 48: value = m_radialBlurUnk190; break;
-                case 49: value = m_glitchUnk108; break;
-                case 50: value = m_shockWaveUnk74; break;
-                case 51: value = m_shockWaveUnk78; break;
-                case 52: value = m_shockWaveUnk7c; break;
-                case 53: value = m_shockWaveUnk80; break;
-                case 54: value = m_shockWaveUnk84; break;
-                case 55: value = m_shockWaveUnk88; break;
-                case 56: value = m_shockWaveUnk90; break;
-                case 57: value = (m_shockWaveUnka4).x; break;
-                case 58: value = (m_shockWaveUnka4).y; break;
-                case 59: value = m_shockWaveUnk94; break;
-                case 60: value = m_shockWaveUnka0; break;
-                case 61: value = m_shockWaveUnk70; break;
-                case 62: value = m_shockLineUnkc8; break;
-                case 63: value = m_shockLineUnke4; break;
-                case 64: value = m_shockLineUnkd4; break;
-                case 65: value = m_shockLineUnkd8; break;
-                case 66: value = m_shockLineUnkdc; break;
-                case 67: value = m_shockLineUnke0; break;
-                case 68: value = m_shockLineUnkd0; break;
-                case 69: value = m_shockLineUnkf0; break;
-                case 70: value = m_shockLineUnkc4; break;
+                case 1: value = m_state.m_chromaticUnk124; break;
+                case 2: value = m_state.m_chromaticUnk128; break;
+                case 3: value = m_state.m_cGUnk13c; break;
+                case 4: value = m_state.m_cGUnk140; break;
+                case 5: value = m_state.m_cGUnk148; break;
+                case 6: value = m_state.m_cGUnk14c; break;
+                case 7: value = m_state.m_cGUnk144; break;
+                case 8: value = m_state.m_cGUnk138; break;
+                case 9: value = m_state.m_pixelateTargetX; break;
+                case 10: value = m_state.m_pixelateTargetY; break;
+                case 11: value = m_state.m_lensCircleUnk160; break;
+                case 12: value = m_state.m_lensCircleUnk164; break;
+                case 13: value = m_state.m_lensCircleStrength; break;
+                case 14: value = m_state.m_lensCircleUnk184.x; break;
+                case 15: value = m_state.m_lensCircleUnk184.y; break;
+                case 16: value = m_state.m_radialBlurUnk18c; break;
+                case 17: value = m_state.m_radialBlurUnk1a4.x; break;
+                case 18: value = m_state.m_radialBlurUnk1a4.y; break;
+                case 19: value = m_state.m_motionBlurUnk1ac; break;
+                case 20: value = m_state.m_motionBlurUnk1b0; break;
+                case 21: value = m_state.m_bulgeValue; break;
+                case 22: value = m_state.m_bulgeUnk1e8.x; break;
+                case 23: value = m_state.m_bulgeUnk1e8.y; break;
+                case 24: value = m_state.m_bulgeRadius; break;
+                case 25: value = m_state.m_pinchUnk1f0; break;
+                case 26: value = m_state.m_pinchUnk1f4; break;
+                case 27: value = m_state.m_pinchUnk20c.x; break;
+                case 28: value = m_state.m_pinchUnk20c.y; break;
+                case 29: value = m_state.m_pinchUnk218; break;
+                case 30: value = m_state.m_pinchUnk21c.x; break;
+                case 31: value = m_state.m_pinchUnk21c.y; break;
+                case 32: value = m_state.m_grayscaleValue; break;
+                case 33: value = m_state.m_sepiaValue; break;
+                case 34: value = m_state.m_invertColorEditRGB; break;
+                case 35: value = m_state.m_invertColorR; break;
+                case 36: value = m_state.m_invertColorG; break;
+                case 37: value = m_state.m_invertColorB; break;
+                case 38: value = m_state.m_hueShiftDegrees; break;
+                case 39: value = m_state.m_colorChangeCR; break;
+                case 40: value = m_state.m_colorChangeCG; break;
+                case 41: value = m_state.m_colorChangeCB; break;
+                case 42: value = m_state.m_colorChangeBR; break;
+                case 43: value = m_state.m_colorChangeBG; break;
+                case 44: value = m_state.m_colorChangeBB; break;
+                case 45: value = m_state.m_splitUnk268; break;
+                case 46: value = m_state.m_splitUnk26c; break;
+                case 47: value = m_state.m_blurIntensity; break;
+                case 48: value = m_state.m_radialBlurUnk190; break;
+                case 49: value = m_state.m_glitchUnk108; break;
+                case 50: value = m_state.m_shockWaveUnk74; break;
+                case 51: value = m_state.m_shockWaveUnk78; break;
+                case 52: value = m_state.m_shockWaveUnk7c; break;
+                case 53: value = m_state.m_shockWaveUnk80; break;
+                case 54: value = m_state.m_shockWaveUnk84; break;
+                case 55: value = m_state.m_shockWaveUnk88; break;
+                case 56: value = m_state.m_shockWaveUnk90; break;
+                case 57: value = m_state.m_shockWaveUnka4.x; break;
+                case 58: value = m_state.m_shockWaveUnka4.y; break;
+                case 59: value = m_state.m_shockWaveUnk94; break;
+                case 60: value = m_state.m_shockWaveUnka0; break;
+                case 61: value = m_state.m_shockWaveUnk70; break;
+                case 62: value = m_state.m_shockLineUnkc8; break;
+                case 63: value = m_state.m_shockLineUnke4; break;
+                case 64: value = m_state.m_shockLineUnkd4; break;
+                case 65: value = m_state.m_shockLineUnkd8; break;
+                case 66: value = m_state.m_shockLineUnkdc; break;
+                case 67: value = m_state.m_shockLineUnke0; break;
+                case 68: value = m_state.m_shockLineUnkd0; break;
+                case 69: value = m_state.m_shockLineUnkf0; break;
+                case 70: value = m_state.m_shockLineUnkc4; break;
             }
         }
         this->tweenValue(value, p0, p1, p2, p3, p4);
