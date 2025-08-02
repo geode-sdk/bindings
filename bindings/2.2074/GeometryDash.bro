@@ -22701,7 +22701,7 @@ class ShaderLayer : cocos2d::CCLayer {
     virtual void update(float) = win 0x46a560, imac 0x3b91b0, m1 0x3442d4, ios 0x26e070;
     virtual void visit() = win 0x470580, imac 0x3bee90, m1 0x348f24, ios 0x272320;
 
-    cocos2d::CCPoint objectPosToShaderPos(cocos2d::CCPoint) = win 0x46a890;
+    cocos2d::CCPoint objectPosToShaderPos(cocos2d::CCPoint position) = win 0x46a890;
     void performCalculations() = ios 0x272244, win 0x46fbd0, imac 0x3beb80, m1 0x348c6c;
     void preBulgeShader() = win inline {
         if (m_state.m_bulgeValue <= 0.f) {
@@ -22902,144 +22902,123 @@ class ShaderLayer : cocos2d::CCLayer {
     void setupSepiaShader() = win inline, m1 0x344008, imac 0x3b8ee0 {
         m_sepiaValueUniform = glGetUniformLocation(m_sprite->getShaderProgram()->getProgram(), "_sepiaValue");
     }
-    void setupShader(bool) = win 0x4698c0, m1 0x342bc0, imac 0x3b79f0, ios 0x26cdd0;
+    void setupShader(bool reset) = win 0x4698c0, m1 0x342bc0, imac 0x3b79f0, ios 0x26cdd0;
     void setupShockLineUniforms() = win 0x46c9c0, m1 0x343830, imac 0x3b8710, ios 0x26d64c;
     void setupShockWaveUniforms() = win 0x46be70, m1 0x343664, imac 0x3b8540, ios 0x26d480;
     void setupSplitScreenShader() = win 0x46f700, m1 0x344150, imac 0x3b9020, ios 0x26deec;
-    void toggleAntiAlias(bool) = win 0x46a4f0, ios 0x26d298;
-    void triggerBulge(float, float, float, float, float, int, int, float, bool);
-    void triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool);
-    void triggerChromaticX(float, float, int, float, bool) = m1 0x346b7c, imac 0x3bc640;
-    void triggerChromaticY(float, float, int, float, bool) = m1 0x346bb8, imac 0x3bc670;
-    void triggerColorChange(float, float, float, float, float, float, float, int, float);
-    void triggerGlitch(float, float, float, float, float, float, float, bool);
-    void triggerGrayscale(float, float, bool, int, int, float);
-    void triggerHueShift(float, float, int, float);
-    void triggerInvertColor(float, float, float, float, float, bool, bool, bool, int, float);
-    void triggerLensCircle(float, float, float, float, int, int, float, float, int, float, bool);
-    void triggerMotionBlurX(float, float, float, float, int, float, bool, int, int, float, bool, bool);
-    void triggerMotionBlurY(float, float, float, float, int, float, bool, int, int, float, bool, bool);
-    void triggerPinchX(float, float, float, float, float, bool, int, int, float, bool) = m1 0x3481ac, imac 0x3bdf10;
-    void triggerPinchY(float, float, float, float, float, bool, int, int, float, bool) = m1 0x34828c, imac 0x3bdff0;
-    void triggerPixelateX(float, float, bool, bool, int, float, bool) = m1 0x347168, imac 0x3bccf0;
-    void triggerPixelateY(float, float, bool, bool, int, float, bool) = m1 0x3471d4, imac 0x3bcd60;
-    void triggerRadialBlur(float, float, float, float, int, float, float, bool, int, int, float, bool);
-    void triggerSepia(float, float, int, float);
-    void triggerShockLine(float, float, bool, bool, bool, bool, float, float, float, float, float, float, int, bool, bool, bool, float, bool, float, int, float) = m1 0x34610c, imac 0x3bb970;
-    void triggerShockWave(float, float, float, float, float, float, float, bool, float, float, float, int, bool, bool, bool, float, float, bool, float, int, float) = m1 0x3457bc, imac 0x3bac70;
-    void triggerSplitScreenCols(float, float, int, float) = m1 0x348a00, imac 0x3be870;
-    void triggerSplitScreenRows(float, float, int, float) = m1 0x3489e8, imac 0x3be850;
-    void tweenValue(float, float, int, float, int, float) = win 0x470f60;
-    void tweenValueAuto(float, int, float, int, float) = win inline, m1 0x3459f0, imac 0x3baef0 {
-        if (p0 == -909190.f) return;
-        auto value = 0.f;
-        if (p2 > 0.f) {
-            if (m_timesyncShaderActions) m_state.timesyncShaderAction(p1);
-            switch (p1) {
-                case 1: value = m_state.m_chromaticUnk124; break;
-                case 2: value = m_state.m_chromaticUnk128; break;
-                case 3: value = m_state.m_cGUnk13c; break;
-                case 4: value = m_state.m_cGUnk140; break;
-                case 5: value = m_state.m_cGUnk148; break;
-                case 6: value = m_state.m_cGUnk14c; break;
-                case 7: value = m_state.m_cGUnk144; break;
-                case 8: value = m_state.m_cGUnk138; break;
-                case 9: value = m_state.m_pixelateTargetX; break;
-                case 10: value = m_state.m_pixelateTargetY; break;
-                case 11: value = m_state.m_lensCircleUnk160; break;
-                case 12: value = m_state.m_lensCircleUnk164; break;
-                case 13: value = m_state.m_lensCircleStrength; break;
-                case 14: value = m_state.m_lensCircleUnk184.x; break;
-                case 15: value = m_state.m_lensCircleUnk184.y; break;
-                case 16: value = m_state.m_radialBlurUnk18c; break;
-                case 17: value = m_state.m_radialBlurUnk1a4.x; break;
-                case 18: value = m_state.m_radialBlurUnk1a4.y; break;
-                case 19: value = m_state.m_motionBlurUnk1ac; break;
-                case 20: value = m_state.m_motionBlurUnk1b0; break;
-                case 21: value = m_state.m_bulgeValue; break;
-                case 22: value = m_state.m_bulgeUnk1e8.x; break;
-                case 23: value = m_state.m_bulgeUnk1e8.y; break;
-                case 24: value = m_state.m_bulgeRadius; break;
-                case 25: value = m_state.m_pinchUnk1f0; break;
-                case 26: value = m_state.m_pinchUnk1f4; break;
-                case 27: value = m_state.m_pinchUnk20c.x; break;
-                case 28: value = m_state.m_pinchUnk20c.y; break;
-                case 29: value = m_state.m_pinchUnk218; break;
-                case 30: value = m_state.m_pinchUnk21c.x; break;
-                case 31: value = m_state.m_pinchUnk21c.y; break;
-                case 32: value = m_state.m_grayscaleValue; break;
-                case 33: value = m_state.m_sepiaValue; break;
-                case 34: value = m_state.m_invertColorEditRGB; break;
-                case 35: value = m_state.m_invertColorR; break;
-                case 36: value = m_state.m_invertColorG; break;
-                case 37: value = m_state.m_invertColorB; break;
-                case 38: value = m_state.m_hueShiftDegrees; break;
-                case 39: value = m_state.m_colorChangeCR; break;
-                case 40: value = m_state.m_colorChangeCG; break;
-                case 41: value = m_state.m_colorChangeCB; break;
-                case 42: value = m_state.m_colorChangeBR; break;
-                case 43: value = m_state.m_colorChangeBG; break;
-                case 44: value = m_state.m_colorChangeBB; break;
-                case 45: value = m_state.m_splitUnk268; break;
-                case 46: value = m_state.m_splitUnk26c; break;
-                case 47: value = m_state.m_blurIntensity; break;
-                case 48: value = m_state.m_radialBlurUnk190; break;
-                case 49: value = m_state.m_glitchUnk108; break;
-                case 50: value = m_state.m_shockWaveUnk74; break;
-                case 51: value = m_state.m_shockWaveUnk78; break;
-                case 52: value = m_state.m_shockWaveUnk7c; break;
-                case 53: value = m_state.m_shockWaveUnk80; break;
-                case 54: value = m_state.m_shockWaveUnk84; break;
-                case 55: value = m_state.m_shockWaveUnk88; break;
-                case 56: value = m_state.m_shockWaveUnk90; break;
-                case 57: value = m_state.m_shockWaveUnka4.x; break;
-                case 58: value = m_state.m_shockWaveUnka4.y; break;
-                case 59: value = m_state.m_shockWaveUnk94; break;
-                case 60: value = m_state.m_shockWaveUnka0; break;
-                case 61: value = m_state.m_shockWaveUnk70; break;
-                case 62: value = m_state.m_shockLineUnkc8; break;
-                case 63: value = m_state.m_shockLineUnke4; break;
-                case 64: value = m_state.m_shockLineUnkd4; break;
-                case 65: value = m_state.m_shockLineUnkd8; break;
-                case 66: value = m_state.m_shockLineUnkdc; break;
-                case 67: value = m_state.m_shockLineUnke0; break;
-                case 68: value = m_state.m_shockLineUnkd0; break;
-                case 69: value = m_state.m_shockLineUnkf0; break;
-                case 70: value = m_state.m_shockLineUnkc4; break;
-            }
-        }
-        this->tweenValue(value, p0, p1, p2, p3, p4);
+    void toggleAntiAlias(bool antiAlias) = win 0x46a4f0, ios 0x26d298;
+    void triggerBulge(float fadeTime, float bulge, float screenOffsetX, float screenOffsetY, float radius, int targetID, int easingType, float easingRate, bool relative) = win 0x46eb60;
+    void triggerChromaticGlitch(bool enable, float duration, float speed, float strength, float rgbOffset, float lineThickness, float lineStrength, float segmentHeight, int easingType, float easingRate, bool relative, bool relativePos) = win 0x46d520;
+    void triggerChromaticX(float fadeTime, float targetX, int easingType, float easingRate, bool relative) = win inline, m1 0x346b7c, imac 0x3bc640 {
+        this->tweenValueAuto(targetX, 1, fadeTime, easingType, easingRate);
+        m_state.m_chromaticUnk12c = relative;
     }
-    void updateEffectOffsets(cocos2d::CCPoint) = win 0x46aa50;
-    void updateMotionBlurSpeedX(float, float) = win inline {
+    void triggerChromaticY(float fadeTime, float targetY, int easingType, float easingRate, bool relative) = win inline, m1 0x346bb8, imac 0x3bc670 {
+        this->tweenValueAuto(targetY, 2, fadeTime, easingType, easingRate);
+        m_state.m_chromaticUnk12c = relative;
+    }
+    void triggerColorChange(float fadeTime, float cr, float cg, float cb, float br, float bg, float bb, int easingType, float easingRate) = win 0x46f430;
+    void triggerGlitch(float fadeTime, float strength, float speed, float sliceHeight, float maxSliceXOff, float maxColXOff, float maxColYOff, bool relative) = win inline {
+        this->tweenValueAuto(strength, 49, fadeTime, 0, 0.f);
+        m_state.m_glitchUnk10c = speed;
+        m_state.m_glitchUnk110 = sliceHeight;
+        m_state.m_glitchUnk114 = maxSliceXOff;
+        m_state.m_glitchUnk118 = maxColXOff;
+        m_state.m_glitchUnk11c = maxColYOff;
+        m_state.m_glitchUnk120 = relative;
+    }
+    void triggerGrayscale(float fadeTime, float target, bool useLuminance, int tintChannel, int easingType, float easingRate) = win inline {
+        if (tintChannel > -1) m_state.m_grayscaleUnk22c = tintChannel;
+        m_state.m_grayscaleUseLum = useLuminance;
+        this->tweenValueAuto(target, 32, fadeTime, easingType, easingRate);
+    }
+    void triggerHueShift(float fadeTime, float degrees, int easingType, float easingRate) = win inline {
+        this->tweenValueAuto(degrees, 38, fadeTime, easingType, easingRate);
+    }
+    void triggerInvertColor(float fadeTime, float target, float r, float g, float b, bool editRGB, bool tweenRGB, bool clampRGB, int easingType, float easingRate) = win 0x46f1b0;
+    void triggerLensCircle(float fadeTime, float size, float fade, float strength, int targetID, int tintChannel, float screenOffsetX, float screenOffsetY, int easingType, float easingRate, bool relative) = win 0x46e0e0;
+    void triggerMotionBlurX(float fadeTime, float targetX, float intensity, float fade, int targetID, float followEase, bool dualDir, int refChannel, int easingType, float easingRate, bool relative, bool emptyOnly) = win inline {
+        m_state.m_blurUnk60 = refChannel;
+        this->tweenValueAuto(fade, 48, fadeTime, 0, 0.f);
+        this->tweenValueAuto(intensity, 47, fadeTime, 0, 0.f);
+        this->tweenValueAuto(targetX, 19, fadeTime, easingType, easingRate);
+        m_state.m_blurOnlyEmpty = emptyOnly;
+        m_state.m_motionBlurUnk1bc = followEase;
+        m_state.m_motionBlurUnk1c4 = targetID;
+        m_state.m_motionBlurDual = dualDir;
+        m_state.m_motionBlurUnk1cd = relative;
+    }
+    void triggerMotionBlurY(float fadeTime, float targetY, float intensity, float fade, int targetID, float followEase, bool dualDir, int refChannel, int easingType, float easingRate, bool relative, bool emptyOnly) = win inline {
+        m_state.m_blurUnk60 = refChannel;
+        this->tweenValueAuto(fade, 48, fadeTime, 0, 0.f);
+        this->tweenValueAuto(intensity, 47, fadeTime, 0, 0.f);
+        this->tweenValueAuto(targetY, 20, fadeTime, easingType, easingRate);
+        m_state.m_blurOnlyEmpty = emptyOnly;
+        m_state.m_motionBlurUnk1c0 = followEase;
+        m_state.m_motionBlurUnk1c8 = targetID;
+        m_state.m_motionBlurDual = dualDir;
+        m_state.m_motionBlurUnk1cd = relative;
+    }
+    void triggerPinchX(float fadeTime, float targetX, float screenOffsetX, float radius, float modifier, bool target, int targetID, int easingType, float easingRate, bool relative) = win 0x46ed70, m1 0x3481ac, imac 0x3bdf10;
+    void triggerPinchY(float fadeTime, float targetY, float screenOffsetY, float radius, float modifier, bool target, int targetID, int easingType, float easingRate, bool relative) = win 0x46ef90, m1 0x34828c, imac 0x3bdff0;
+    void triggerPixelateX(float fadeTime, float targetX, bool snapGrid, bool hardEdges, int easingType, float easingRate, bool relative) = win inline, m1 0x347168, imac 0x3bccf0 {
+        m_state.m_pixelateSnapGrid = snapGrid;
+        if (m_state.m_pixelateTargetX < 1.f) m_state.m_pixelateTargetX = 1.f;
+        this->tweenValueAuto(targetX, 9, fadeTime, easingType, easingRate);
+        m_state.m_pixelateRelative = relative;
+        m_state.m_pixelateHardEdges = hardEdges;
+    }
+    void triggerPixelateY(float fadeTime, float targetY, bool snapGrid, bool hardEdges, int easingType, float easingRate, bool relative) = win inline, m1 0x3471d4, imac 0x3bcd60 {
+        m_state.m_pixelateSnapGrid = snapGrid;
+        if (m_state.m_pixelateTargetY < 1.f) m_state.m_pixelateTargetY = 1.f;
+        this->tweenValueAuto(targetY, 10, fadeTime, easingType, easingRate);
+        m_state.m_pixelateRelative = relative;
+        m_state.m_pixelateHardEdges = hardEdges;
+    }
+    void triggerRadialBlur(float fadeTime, float size, float intensity, float fade, int refChannel, float screenOffsetX, float screenOffsetY, bool target, int targetID, int easingType, float easingRate, bool emptyOnly) = win 0x46e5b0;
+    void triggerSepia(float fadeTime, float target, int easingType, float easingRate) = win inline {
+        this->tweenValueAuto(target, 33, fadeTime, easingType, easingRate);
+    }
+    void triggerShockLine(float speed, float thickness, bool rotate, bool flip, bool dual, bool invert, float strength, float waveWidth, float fadeIn, float fadeOut, float timeOffset, float screenOffset, int targetID, bool target, bool follow, bool relative, float maxSize, bool animate, float fadeTime, int easingType, float easingRate) = win 0x46c510, m1 0x34610c, imac 0x3bb970;
+    void triggerShockWave(float speed, float thickness, float strength, float waveWidth, float fadeIn, float fadeOut, float timeOffset, bool invert, float inner, float screenOffsetX, float screenOffsetY, int targetID, bool target, bool follow, bool relative, float outer, float maxSize, bool animate, float fadeTime, int easingType, float easingRate) = win 0x46b8b0, m1 0x3457bc, imac 0x3bac70;
+    void triggerSplitScreenCols(float fadeTime, float targetX, int easingType, float easingRate) = win inline, m1 0x348a00, imac 0x3be870 {
+        this->tweenValueAuto(targetX, 46, fadeTime, easingType, easingRate);
+    }
+    void triggerSplitScreenRows(float fadeTime, float targetY, int easingType, float easingRate) = win inline, m1 0x3489e8, imac 0x3be850 {
+        this->tweenValueAuto(targetY, 45, fadeTime, easingType, easingRate);
+    }
+    void tweenValue(float fromValue, float toValue, int action, float duration, int easingType, float easingRate) = win 0x470f60;
+    void tweenValueAuto(float value, int action, float duration, int easingType, float easingRate) = win 0x470860, m1 0x3459f0, imac 0x3baef0;
+    void updateEffectOffsets(cocos2d::CCPoint center) = win 0x46aa50;
+    void updateMotionBlurSpeedX(float x, float dt) = win inline {
         auto divisor = m_state.m_motionBlurUnk1bc;
         if (divisor > 1.f) {
-            if (p1 > 0.f) divisor /= p1;
-            m_state.m_motionBlurSpeedX += (p0 - m_state.m_motionBlurSpeedX) / divisor;
+            if (dt > 0.f) divisor /= dt;
+            m_state.m_motionBlurSpeedX += (x - m_state.m_motionBlurSpeedX) / divisor;
         }
-        else m_state.m_motionBlurSpeedX = p0;
+        else m_state.m_motionBlurSpeedX = x;
     }
-    void updateMotionBlurSpeedY(float, float) = win inline {
+    void updateMotionBlurSpeedY(float y, float dt) = win inline {
         auto divisor = m_state.m_motionBlurUnk1c0;
         if (divisor > 1.f) {
-            if (p1 > 0.f) divisor /= p1;
-            m_state.m_motionBlurSpeedY += (p0 - m_state.m_motionBlurSpeedY) / divisor;
+            if (dt > 0.f) divisor /= dt;
+            m_state.m_motionBlurSpeedY += (y - m_state.m_motionBlurSpeedY) / divisor;
         }
-        else m_state.m_motionBlurSpeedY = p0;
+        else m_state.m_motionBlurSpeedY = y;
     }
-    void updateShockLineCenter(cocos2d::CCPoint) = win inline, m1 0x3462d8, imac 0x3bbb90 {
+    void updateShockLineCenter(cocos2d::CCPoint center) = win inline, m1 0x3462d8, imac 0x3bbb90 {
         if (m_state.m_shockLineCenterDirty) {
             if (!m_state.m_shockLineCenterMoving) m_state.m_shockLineCenterDirty = false;
-            m_state.m_shockLineCenter = p0;
+            m_state.m_shockLineCenter = center;
         }
     }
-    void updateShockWaveCenter(cocos2d::CCPoint) = win inline, m1 0x345d6c, imac 0x3bb4d0 {
+    void updateShockWaveCenter(cocos2d::CCPoint center) = win inline, m1 0x345d6c, imac 0x3bb4d0 {
         if (m_state.m_shockWaveCenterDirty) {
             if (!m_state.m_shockWaveCenterMoving) m_state.m_shockWaveCenterDirty = false;
-            m_state.m_shockWaveCenter = p0;
+            m_state.m_shockWaveCenter = center;
         }
     }
-    bool updateZLayer(int, int, bool) = win 0x471070, m1 0x3433f0, imac 0x3b82d0;
+    bool updateZLayer(int minLayer, int maxLayer, bool noParticles) = win 0x471070, m1 0x3433f0, imac 0x3b82d0;
 
     GJShaderState m_state;
     bool m_timesyncShaderActions;
