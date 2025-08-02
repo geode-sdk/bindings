@@ -9562,7 +9562,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool isPlayer2Button(int);
     void lightningFlash(cocos2d::CCPoint to, cocos2d::ccColor3B color);
     void lightningFlash(cocos2d::CCPoint from, cocos2d::CCPoint to, cocos2d::ccColor3B color, float lineWidth, float duration, int displacement, bool flash, float opacity) = ios 0x1e5a24, win 0x240770, imac 0x110c50, m1 0xf089c;
-    void loadGroupParentsFromString(GameObject*, gd::string), win 0x21f4b0, m1 0x108974, imac 0x12d9a0, ios 0x1f47a8;
+    void loadGroupParentsFromString(GameObject*, gd::string) = win 0x21f4b0, m1 0x108974, imac 0x12d9a0, ios 0x1f47a8;
     void loadLevelSettings() = ios 0x203d78, win 0x234770, imac 0x147920, m1 0x11d8c0;
     void loadStartPosObject() = ios 0x1feaec, win 0x230000, imac 0x13e9f0, m1 0x116658;
     void loadUpToPosition(float position, int order, int channel) = win 0x2301a0;
