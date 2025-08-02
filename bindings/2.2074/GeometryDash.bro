@@ -8845,7 +8845,7 @@ class GameToolbox {
     static cocos2d::CCPoint getRelativeOffset(GameObject*, cocos2d::CCPoint) = win 0x64970, m1 0x43f1f4, imac 0x4dc100;
     static gd::string getResponse(cocos2d::extension::CCHttpResponse*) = win 0x64310, imac 0x4dba00, m1 0x43eb40;
     static gd::string getTimeString(int, bool) = win 0x65e20, imac 0x4de620, m1 0x44145c, ios 0x49338;
-    static cocos2d::ccHSVValue hsvFromString(gd::string const&, char const*) = win 0x654e0, m1 0x44007c, imac 0x4dd030;
+    static cocos2d::ccHSVValue hsvFromString(gd::string const&, char const*) = win 0x654e0, m1 0x44007c, imac 0x4dd030, ios 0x487fc;
     static gd::string intToShortString(int) = win 0x69120, imac 0x4e4250, m1 0x4465bc, ios 0x4bd08;
     static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284;
     static bool isIOS();
