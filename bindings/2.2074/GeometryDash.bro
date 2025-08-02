@@ -7981,7 +7981,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCPoint getBoxOffset();
     gd::string getColorFrame(gd::string);
     int getColorIndex();
-    gd::string getColorKey(bool, bool) = win, 0x199db0, m1 0x4e1704, imac 0x5a7190, ios 0x25ccd4;
+    gd::string getColorKey(bool, bool) = win 0x199db0, m1 0x4e1704, imac 0x5a7190, ios 0x25ccd4;
     ZLayer getCustomZLayer();
     gd::string getGlowFrame(gd::string);
     bool getGroupDisabled();
