@@ -503,8 +503,8 @@ GEODE_MEMBER_CHECK(GJGameState, m_pauseCounter, 0x6e4);
 GEODE_MEMBER_CHECK(GJGameState, m_pauseBufferTimer, 0x6e8);
 
 GEODE_SIZE_CHECK(GJShaderState, 0x2b8);
-GEODE_MEMBER_CHECK(GJShaderState, m_someIntToValueTweenMap, 0x0);
-GEODE_MEMBER_CHECK(GJShaderState, m_someIntToDoubleMap, 0x38);
+GEODE_MEMBER_CHECK(GJShaderState, m_tweenActions, 0x0);
+GEODE_MEMBER_CHECK(GJShaderState, m_tweenTimes, 0x38);
 GEODE_MEMBER_CHECK(GJShaderState, m_time, 0x70);
 GEODE_MEMBER_CHECK(GJShaderState, m_prevTime, 0x78);
 GEODE_MEMBER_CHECK(GJShaderState, m_startTime, 0x80);
@@ -652,7 +652,7 @@ GEODE_MEMBER_CHECK(GJShaderState, m_splitUnk270, 0x2a8);
 GEODE_MEMBER_CHECK(GJShaderState, m_minBlendingLayer, 0x2ac);
 GEODE_MEMBER_CHECK(GJShaderState, m_maxBlendingLayer, 0x2b0);
 GEODE_MEMBER_CHECK(GJShaderState, m_zLayerDirty, 0x2b4);
-GEODE_MEMBER_CHECK(GJShaderState, m_somethingZLayerUnk27d, 0x2b5);
+GEODE_MEMBER_CHECK(GJShaderState, m_noPlayerParticles, 0x2b5);
 GEODE_MEMBER_CHECK(GJShaderState, m_usesShaders, 0x2b6);
 
 GEODE_SIZE_CHECK(FMODSoundTween, 0x18);
