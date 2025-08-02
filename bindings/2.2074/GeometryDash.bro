@@ -8085,7 +8085,7 @@ class GameObject : CCSpritePlus {
     void setAreaOpacity(float, float, int);
     void setCustomZLayer(int zLayer) = win inline {
         if (m_zFixedZLayer) return;
-        m_zLayer = zLayer;
+        m_zLayer = static_cast<ZLayer>(zLayer);
     }
     void setDefaultMainColorMode(int);
     void setDefaultSecondaryColorMode(int);
