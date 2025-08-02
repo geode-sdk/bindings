@@ -4450,7 +4450,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     void addToSpeedObjects(EffectGameObject*);
     cocos2d::CCPoint getPortalMinMax(GameObject*);
     bool init(cocos2d::CCNode*, LevelEditorLayer*) = m1 0xd9aa0, imac 0xf59b0, ios 0x3655bc;
-    void loadTimeMarkers(gd::string) = win 0x2db3d0, m1 0xc6aa4, imac 0xdf600;
+    void loadTimeMarkers(gd::string) = win 0x2db3d0, m1 0xc6aa4, imac 0xdf600, ios 0x358dbc;
     cocos2d::CCPoint posForTime(float time) = win inline, m1 0xd449c, imac 0xef340, ios inline {
         return LevelTools::posForTime(time, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, m_editorLayer->m_levelSettings->m_platformerMode, m_editorLayer->m_gameState.m_rotateChannel);
     }
@@ -9522,9 +9522,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn getGroupParent(int);
     TodoReturn getGroupParentsString(GameObject*);
     double getItemValue(int, int) = win 0x22ea60;
-    float getMaxPortalY() = ios 0x1e8750, win 0x20e2b0;
+    float getMaxPortalY() = ios 0x1e8750, imac 0x114f30, m1 0xf4544, win 0x20e2b0;
     TodoReturn getMinDistance(cocos2d::CCPoint, cocos2d::CCArray*, float, int) = win 0x23c430;
-    float getMinPortalY() = ios 0x1e8680, win 0x20e1d0;
+    float getMinPortalY() = ios 0x1e8680, imac 0x114e50, m1 0xf4468, win 0x20e1d0;
     float getModifiedDelta(float) = ios 0x200a54, win 0x232060, imac 0x141ee0, m1 0x119084;
     TodoReturn getMoveTargetDelta(EffectGameObject*, bool);
     TodoReturn getOptimizedGroup(int) = ios 0x1f4024;
