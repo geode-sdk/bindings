@@ -748,8 +748,17 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
 [[link(android)]]
 class AudioEffectsLayer : cocos2d::CCLayerColor {
     // virtual ~AudioEffectsLayer();
+    AudioEffectsLayer() {}
 
-    static AudioEffectsLayer* create(gd::string) = ios 0x3bc848;
+    static AudioEffectsLayer* create(gd::string audioString) = win inline, ios 0x3bc848 {
+        auto ret = new AudioEffectsLayer();
+        if (ret->init(audioString)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void draw() = m1 0x407cdc, imac 0x49cba0, ios 0x3bcf70 {}
     virtual void updateTweenAction(float, char const*) = win 0x84fb0, imac 0x49ca70, m1 0x407ba0, ios 0x3bce70;
@@ -764,10 +773,10 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
     cocos2d::CCSpriteBatchNode* m_batchNode;
     cocos2d::CCArray* m_unk1bc;
     cocos2d::CCArray* m_unk1c0;
-    float m_unk1c4;
-    float m_unk1c8;
+    float m_timeElapsed;
+    float m_audioPulseMod;
     bool m_goingDown;
-    float m_notAudioScale;
+    float m_audioScale;
     bool m_unk1d4;
 }
 
@@ -1401,9 +1410,17 @@ class CCCircleWave : cocos2d::CCNode {
     virtual void updateTweenAction(float, char const*) = win 0x42b70, imac 0x167f30, m1 0x134f9c, ios 0x16f9e0;
 
     TodoReturn baseSetup(float);
-    TodoReturn followObject(cocos2d::CCNode*, bool) = imac 0x167ea0, m1 0x134f0c;
+    void followObject(cocos2d::CCNode* newTarget, bool staticPosition) = win inline, imac 0x167ea0, m1 0x134f0c, ios 0x16f950 {
+        if (m_target) m_target->release();
+
+        newTarget->retain();
+        this->unschedule(schedule_selector(CCCircleWave::updatePosition));
+        if (!staticPosition) this->schedule(schedule_selector(CCCircleWave::updatePosition));
+
+        this->setPosition(newTarget->getPosition());
+    }
     bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x428b0, imac 0x167bd0, m1 0x134c88, ios 0x16f708;
-    TodoReturn updatePosition(float) = win 0x42b30, imac 0x167e60, m1 0x134ec0;
+    void updatePosition(float dt) = win 0x42b30, imac 0x167e60, m1 0x134ec0;
 
     cocos2d::CCNode* m_target;
     float m_width;
@@ -8140,7 +8157,7 @@ class GameObject : CCSpritePlus {
     double m_positionX;
     double m_positionY;
     cocos2d::CCPoint m_startPosition;
-    bool m_unk3b8;
+    bool m_isAudioScale;
 
     // property 372
     bool m_hasNoAudioScale;
@@ -8197,9 +8214,9 @@ class GameObject : CCSpritePlus {
     int m_defaultZOrder;
     bool m_unk40C;
     bool m_colorZLayerRelated;
-    bool m_unk40E;
-    float m_unk410;
-    float m_unk414;
+    bool m_customAudioScale;
+    float m_minAudioScale;
+    float m_maxAudioScale;
     bool m_particleLocked;
 
     // property 53
@@ -17524,7 +17541,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn spawnCircle2();
     TodoReturn spawnDualCircle();
     TodoReturn spawnFromPlayer(PlayerObject*, bool);
-    void spawnPortalCircle(cocos2d::ccColor3B, float) = win 0x381930;
+    void spawnPortalCircle(cocos2d::ccColor3B color, float startRadius) = win 0x381930, imac 0x401eb0, m1 0x3801c0, ios 0x2281c4;
     TodoReturn spawnScaleCircle() = imac 0x401fe0;
     TodoReturn specialGroundHit();
     TodoReturn speedDown();
@@ -17841,7 +17858,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_unkA99;
     double m_totalTime;
     bool m_isBeingSpawnedByDualPortal;
-    float m_unkAAC;
+    float m_audioScale;
     float m_unkAngle1;
     float m_yVelocityRelated3;
     bool m_defaultMiniIcon;
