@@ -7944,7 +7944,14 @@ class GameObject : CCSpritePlus {
     bool canChangeCustomColor();
     bool canChangeMainColor();
     bool canChangeSecondaryColor();
-    bool canRotateFree() = m1 0x4e0904, imac 0x5a64b0;
+    bool canRotateFree() = m1 0x4e0904, imac 0x5a64b0, win inline {
+        auto type = m_objectType;
+        return (
+            type != GameObjectType::Solid
+            && type != GameObjectType::Breakable
+            && type != GameObjectType::Slope
+        ) || m_isNoTouch;
+    }
     cocos2d::ccColor3B colorForMode(int, bool) = win 0x19f010, m1 0x4eaf28, imac 0x5b2260, ios 0x261330;
     void commonInteractiveSetup();
     void commonSetup() = win 0x18ad70, m1 0x4d7950, imac 0x58a320;
@@ -8068,10 +8075,18 @@ class GameObject : CCSpritePlus {
     void resetMainColorMode();
     void resetMID();
     void resetMoveOffset();
-    void resetRScaleForced();
+    void resetRScaleForced() = win inline {
+        m_fScaleX = 0.f;
+        m_fScaleY = 0.f;
+        setRScaleX(1.f);
+        setRScaleY(1.f);
+    }
     void resetSecondaryColorMode();
     void setAreaOpacity(float, float, int);
-    void setCustomZLayer(int);
+    void setCustomZLayer(int zLayer) = win inline {
+        if (m_zFixedZLayer) return;
+        m_zLayer = zLayer;
+    }
     void setDefaultMainColorMode(int);
     void setDefaultSecondaryColorMode(int);
     void setGlowOpacity(unsigned char);
@@ -8849,6 +8864,7 @@ class GameToolbox {
     static cocos2d::CCPoint getRelativeOffset(GameObject*, cocos2d::CCPoint) = win 0x64970, m1 0x43f1f4, imac 0x4dc100;
     static gd::string getResponse(cocos2d::extension::CCHttpResponse*) = win 0x64310, imac 0x4dba00, m1 0x43eb40;
     static gd::string getTimeString(int, bool) = win 0x65e20, imac 0x4de620, m1 0x44145c, ios 0x49338;
+    // on windows, 2nd param is ignored and assumed to be "a"
     static cocos2d::ccHSVValue hsvFromString(gd::string const&, char const*) = win 0x654e0, m1 0x44007c, imac 0x4dd030, ios 0x487fc;
     static gd::string intToShortString(int) = win 0x69120, imac 0x4e4250, m1 0x4465bc, ios 0x4bd08;
     static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284;
@@ -17265,7 +17281,7 @@ class ObjectToolbox : cocos2d::CCNode {
 
     TodoReturn allKeys();
     float gridNodeSizeForKey(int key) = ios 0x2aa858, win 0x35ae80, imac 0x704100, m1 0x6282d0;
-    const char* intKeyToFrame(int key) = ios 0x2aa804 {
+    const char* intKeyToFrame(int key) = ios 0x2aa804, win inline {
         return m_allKeys[key].c_str();
     }
     const char* perspectiveBlockFrame(int) = win 0x35b8a0;
@@ -17485,7 +17501,11 @@ class ParticleGameObject : EnhancedGameObject {
     void updateParticleAngle(float, cocos2d::CCParticleSystemQuad*) = win 0x4887d0, m1 0x163c2c, imac 0x1a11d0;
     void updateParticlePreviewArtOpacity(float) = win 0x488470;
     void updateParticleScale(float);
-    void updateParticleStruct() = m1 0x16375c, imac 0x1a0d10;
+    void updateParticleStruct() = m1 0x16375c, imac 0x1a0d10, win inline {
+        if (!m_updatedParticleData) return;
+        m_updatedParticleData = false;
+        GameToolbox::particleStringToStruct(m_particleData, m_particleStruct);
+    }
 
     // property 145
     gd::string m_particleData;
