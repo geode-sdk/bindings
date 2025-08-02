@@ -8864,7 +8864,6 @@ class GameToolbox {
     static cocos2d::CCPoint getRelativeOffset(GameObject*, cocos2d::CCPoint) = win 0x64970, m1 0x43f1f4, imac 0x4dc100;
     static gd::string getResponse(cocos2d::extension::CCHttpResponse*) = win 0x64310, imac 0x4dba00, m1 0x43eb40;
     static gd::string getTimeString(int, bool) = win 0x65e20, imac 0x4de620, m1 0x44145c, ios 0x49338;
-    // on windows, 2nd param is ignored and assumed to be "a"
     static cocos2d::ccHSVValue hsvFromString(gd::string const&, char const*) = win 0x654e0, m1 0x44007c, imac 0x4dd030, ios 0x487fc;
     static gd::string intToShortString(int) = win 0x69120, imac 0x4e4250, m1 0x4465bc, ios 0x4bd08;
     static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284;
@@ -17281,7 +17280,7 @@ class ObjectToolbox : cocos2d::CCNode {
 
     TodoReturn allKeys();
     float gridNodeSizeForKey(int key) = ios 0x2aa858, win 0x35ae80, imac 0x704100, m1 0x6282d0;
-    const char* intKeyToFrame(int key) = ios 0x2aa804, win inline {
+    const char* intKeyToFrame(int key) = ios 0x2aa804 {
         return m_allKeys[key].c_str();
     }
     const char* perspectiveBlockFrame(int) = win 0x35b8a0;
