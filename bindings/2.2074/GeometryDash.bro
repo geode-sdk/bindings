@@ -22822,24 +22822,90 @@ class ShaderLayer : cocos2d::CCLayer {
             this->setRotation(0.f);
         }
     }
-    void setupBulgeShader() = m1 0x343da0, imac 0x3b8c80, ios 0x26dbbc;
-    void setupChromaticGlitchUniforms() = m1 0x343b30, imac 0x3b8a10, ios 0x26d94c;
-    void setupChromaticUniforms() = m1 0x343acc, imac 0x3b89b0, ios 0x26d8e8;
-    void setupColorChangeShader() = m1 0x3440ec, imac 0x3b8fc0, ios 0x26de88;
-    void setupCommonUniforms() = m1 0x3434e0, imac 0x3b83b0, ios 0x26d2fc;
-    void setupGlitchUniforms() = m1 0x3439fc, imac 0x3b88e0, ios 0x26d818;
-    void setupGrayscaleShader() = m1 0x343f80, imac 0x3b8e60, ios 0x26dd9c;
-    void setupHueShiftShader() = m1 0x344088, imac 0x3b8f60, ios 0x26de24;
-    void setupInvertColorShader() = m1 0x344048, imac 0x3b8f20;
-    void setupLensCircleShader() = m1 0x343c48, imac 0x3b8b30, ios 0x26da64;
-    void setupMotionBlurShader() = m1 0x343ef8, imac 0x3b8de0, ios 0x26dd14;
-    void setupPinchShader() = m1 0x343e4c, imac 0x3b8d30, ios 0x26dc68;
-    void setupRadialBlurShader() = m1 0x343d3c, imac 0x3b8c20, ios 0x26db58;
-    void setupSepiaShader() = m1 0x344008, imac 0x3b8ee0;
+    void setupBulgeShader() = win inline, m1 0x343da0, imac 0x3b8c80, ios 0x26dbbc {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_bulgeValueUniform = glGetUniformLocation(program, "_bulgeValue");
+        m_bulgeValue2Uniform = glGetUniformLocation(program, "_bulgeValue2");
+        m_bulgeOriginUniform = glGetUniformLocation(program, "_bulgeOrigin");
+        m_bulgeRadiusUniform = glGetUniformLocation(program, "_bulgeRadius");
+    }
+    void setupChromaticGlitchUniforms() = win inline, m1 0x343b30, imac 0x3b8a10, ios 0x26d94c {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_cGRGBOffsetUniform = glGetUniformLocation(program, "_cGRGBOffset");
+        m_cGYOffsetUniform = glGetUniformLocation(program, "_cGYOffset");
+        m_cGTimeUniform = glGetUniformLocation(program, "_cGTime");
+        m_cGStrengthUniform = glGetUniformLocation(program, "_cGStrength");
+        m_cGHeightUniform = glGetUniformLocation(program, "_cGHeight");
+        m_cGLineThickUniform = glGetUniformLocation(program, "_cGLineThick");
+        m_cGLineStrengthUniform = glGetUniformLocation(program, "_cGLineStrength");
+    }
+    void setupChromaticUniforms() = win inline, m1 0x343acc, imac 0x3b89b0, ios 0x26d8e8 {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_chromaticXOffUniform = glGetUniformLocation(program, "_chromaticXOff");
+        m_chromaticYOffUniform = glGetUniformLocation(program, "_chromaticYOff");
+    }
+    void setupColorChangeShader() = win inline, m1 0x3440ec, imac 0x3b8fc0, ios 0x26de88 {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_colorChangeCUniform = glGetUniformLocation(program, "_colorChangeC");
+        m_colorChangeBUniform = glGetUniformLocation(program, "_colorChangeB");
+    }
+    void setupCommonUniforms() = win 0x46a6e0, m1 0x3434e0, imac 0x3b83b0, ios 0x26d2fc;
+    void setupGlitchUniforms() = win inline, m1 0x3439fc, imac 0x3b88e0, ios 0x26d818 {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_glitchBotUniform = glGetUniformLocation(program, "_glitchBot");
+        m_glitchTopUniform = glGetUniformLocation(program, "_glitchTop");
+        m_glitchXOffsetUniform = glGetUniformLocation(program, "_glitchXOffset");
+        m_glitchColOffsetUniform = glGetUniformLocation(program, "_glitchColOffset");
+        m_glitchRndUniform = glGetUniformLocation(program, "_glitchRnd");
+    }
+    void setupGrayscaleShader() = win inline, m1 0x343f80, imac 0x3b8e60, ios 0x26dd9c {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_grayscaleValueUniform = glGetUniformLocation(program, "_grayscaleValue");
+        m_grayscaleTintUniform = glGetUniformLocation(program, "_grayscaleTint");
+        m_grayscaleUseLumUniform = glGetUniformLocation(program, "_grayscaleUseLum");
+    }
+    void setupHueShiftShader() = win inline, m1 0x344088, imac 0x3b8f60, ios 0x26de24 {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_hueShiftCosAUniform = glGetUniformLocation(program, "_hueShiftCosA");
+        m_hueShiftSinAUniform = glGetUniformLocation(program, "_hueShiftSinA");
+    }
+    void setupInvertColorShader() = win inline, m1 0x344048, imac 0x3b8f20 {
+        m_invertColorValueUniform = glGetUniformLocation(m_sprite->getShaderProgram()->getProgram(), "_invertColorValue");
+    }
+    void setupLensCircleShader() = win inline, m1 0x343c48, imac 0x3b8b30, ios 0x26da64 {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_lensCircleOriginUniform = glGetUniformLocation(program, "_lensCircleOrigin");
+        m_lensCircleStartUniform = glGetUniformLocation(program, "_lensCircleStart");
+        m_lensCircleEndUniform = glGetUniformLocation(program, "_lensCircleEnd");
+        m_lensCircleStrengthUniform = glGetUniformLocation(program, "_lensCircleStrength");
+        m_lensCircleTintUniform = glGetUniformLocation(program, "_lensCircleTint");
+        m_lensCircleAdditiveUniform = glGetUniformLocation(program, "_lensCircleAdditive");
+    }
+    void setupMotionBlurShader() = win inline, m1 0x343ef8, imac 0x3b8de0, ios 0x26dd14 {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_motionBlurValueUniform = glGetUniformLocation(program, "_motionBlurValue");
+        m_motionBlurMultUniform = glGetUniformLocation(program, "_motionBlurMult");
+        m_motionBlurDualUniform = glGetUniformLocation(program, "_motionBlurDual");
+    }
+    void setupPinchShader() = win inline, m1 0x343e4c, imac 0x3b8d30, ios 0x26dc68 {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_pinchValueUniform = glGetUniformLocation(program, "_pinchValue");
+        m_pinchCenterPosUniform = glGetUniformLocation(program, "_pinchCenterPos");
+        m_pinchCalcUniform = glGetUniformLocation(program, "_pinchCalc1");
+        m_pinchRadiusUniform = glGetUniformLocation(program, "_pinchRadius");
+    }
+    void setupRadialBlurShader() = win inline, m1 0x343d3c, imac 0x3b8c20, ios 0x26db58 {
+        auto program = m_sprite->getShaderProgram()->getProgram();
+        m_radialBlurCenterUniform = glGetUniformLocation(program, "_radialBlurCenter");
+        m_radialBlurValueUniform = glGetUniformLocation(program, "_radialBlurValue");
+    }
+    void setupSepiaShader() = win inline, m1 0x344008, imac 0x3b8ee0 {
+        m_sepiaValueUniform = glGetUniformLocation(m_sprite->getShaderProgram()->getProgram(), "_sepiaValue");
+    }
     void setupShader(bool) = win 0x4698c0, m1 0x342bc0, imac 0x3b79f0, ios 0x26cdd0;
-    void setupShockLineUniforms() = m1 0x343830, imac 0x3b8710, ios 0x26d64c;
-    void setupShockWaveUniforms() = m1 0x343664, imac 0x3b8540, ios 0x26d480;
-    void setupSplitScreenShader() = m1 0x344150, imac 0x3b9020, ios 0x26deec;
+    void setupShockLineUniforms() = win 0x46c9c0, m1 0x343830, imac 0x3b8710, ios 0x26d64c;
+    void setupShockWaveUniforms() = win 0x46be70, m1 0x343664, imac 0x3b8540, ios 0x26d480;
+    void setupSplitScreenShader() = win 0x46f700, m1 0x344150, imac 0x3b9020, ios 0x26deec;
     void toggleAntiAlias(bool) = win 0x46a4f0, ios 0x26d298;
     void triggerBulge(float, float, float, float, float, int, int, float, bool);
     void triggerChromaticGlitch(bool, float, float, float, float, float, float, float, int, float, bool, bool);
