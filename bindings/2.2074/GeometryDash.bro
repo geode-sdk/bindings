@@ -7987,7 +7987,7 @@ class GameObject : CCSpritePlus {
     bool getGroupDisabled();
     int getGroupID(int index) = win inline, m1 0x4e0b24, imac 0x5a66b0, ios 0x25c624 {
         if ((unsigned int)index < 10 && m_groups) {
-            return m_groups[index];
+            return (int)((*m_groups)[index]);
         }
         return 0;
     }
