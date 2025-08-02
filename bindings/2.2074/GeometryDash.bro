@@ -22726,7 +22726,7 @@ class ShaderLayer : cocos2d::CCLayer {
         if (m_state.m_colorChangeCR != 1.f || m_state.m_colorChangeCG != 1.f || m_state.m_colorChangeCB != 1.f ||
             m_state.m_colorChangeBR != 0.f || m_state.m_colorChangeBG != 0.f || m_state.m_colorChangeBB != 0.f) {
             m_state.m_usesShaders = true;
-            shaderProgram->setUniformLocationWith3f(m_colorChangeCUniform, std::max(m_state.m_colorChangeCR, .001f), m_state.m_colorChangeCG, m_state.m_colorChangeCB);
+            shaderProgram->setUniformLocationWith3f(m_colorChangeCUniform, (std::max)(m_state.m_colorChangeCR, .001f), m_state.m_colorChangeCG, m_state.m_colorChangeCB);
             shaderProgram->setUniformLocationWith3f(m_colorChangeBUniform, m_state.m_colorChangeBR, m_state.m_colorChangeBG, m_state.m_colorChangeBB);
         }
         else {
@@ -22744,8 +22744,8 @@ class ShaderLayer : cocos2d::CCLayer {
         shaderProgram->setUniformLocationWith2f(m_textureScaleUniform, m_state.m_textureScaleX, m_state.m_textureScaleY);
         shaderProgram->setUniformLocationWith2f(m_textureScaleInvUniform, 1.f / m_state.m_textureScaleX, 1.f / m_state.m_textureScaleY);
         shaderProgram->setUniformLocationWith1f(m_blurOnlyEmptyUniform, m_state.m_minBlendingLayer > 1 && m_state.m_blurOnlyEmpty);
-        shaderProgram->setUniformLocationWith1f(m_screenAspectINVUniform, m_state.m_screenSize.height / m_state.m_screenSize.width);
-        shaderProgram->setUniformLocationWith1f(m_shaderPositionUniform, m_state.m_screenSize.width / m_state.m_screenSize.height);
+        shaderProgram->setUniformLocationWith1f(m_screenAspectINVUniform, m_screenSize.height / m_screenSize.width);
+        shaderProgram->setUniformLocationWith1f(m_shaderPositionUniform, m_screenSize.width / m_screenSize.height);
     }
     void preGlitchShader() = win 0x46d0d0, m1 0x346724, imac 0x3bc0f0;
     void preGrayscaleShader() = win inline, m1 0x3483ec, imac 0x3be160 {
@@ -22778,11 +22778,11 @@ class ShaderLayer : cocos2d::CCLayer {
         auto g = edit * m_state.m_invertColorG;
         auto b = edit * m_state.m_invertColorB;
         if (m_state.m_invertColorClampRGB) {
-            r = std::min(r, 1.f);
-            g = std::min(g, 1.f);
-            b = std::min(b, 1.f);
+            r = (std::min)(r, 1.f);
+            g = (std::min)(g, 1.f);
+            b = (std::min)(b, 1.f);
         }
-        shaderProgram->setUniformLocationWith4f(m_invertColorUniform, r, g, b, edit);
+        shaderProgram->setUniformLocationWith4f(m_invertColorValueUniform, r, g, b, edit);
     }
     void preLensCircleShader() = win 0x46e380, m1 0x347844, imac 0x3bd4a0;
     void preMotionBlurShader() = win 0x46e850, m1 0x347d98, imac 0x3bda20;
@@ -22800,7 +22800,7 @@ class ShaderLayer : cocos2d::CCLayer {
         auto shaderProgram = m_sprite->getShaderProgram();
         shaderProgram->setUniformLocationWith1f(m_radialBlurValueUniform, m_state.m_radialBlurUnk18c / 45.f); 
         if (m_state.m_radialBlurUnk18c != 0.f) {
-            shaderProgram->setUniformLocationWith1f(m_blurFadeUniform, std::clamp(m_radialBlurUnk190 * .2f, .0f, .2f));
+            shaderProgram->setUniformLocationWith1f(m_blurFadeUniform, std::clamp(m_state.m_radialBlurUnk190 * .2f, .0f, .2f));
         }
     }
     void preSepiaShader() = win inline {
