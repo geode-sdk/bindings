@@ -9599,7 +9599,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn playFlashEffect(float, int, float);
     TodoReturn playKeyframeAnimation(KeyframeAnimTriggerObject*, gd::vector<int> const&);
     void playSpeedParticle(float) = m1 0x121058, imac 0x14c000, ios 0x20656c;
-    cocos2d::CCPoint positionForShaderTarget(int) = win 0x21e1a0;
+    cocos2d::CCPoint positionForShaderTarget(int) = win 0x21e1a0, m1 0x107208, imac 0x12c0b0, ios 0x1f360c;
     void positionUIObjects() = ios 0x1e2c9c, win 0x220d90, imac 0x10bbf0, m1 0xebbe0;
     void prepareSavePositionObjects() = ios 0x1e13c4, win 0x2142d0;
     TodoReturn prepareTransformParent(bool);
@@ -9726,7 +9726,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn spawnParticleTrigger(int, cocos2d::CCPoint, float, float);
     void spawnParticleTrigger(SpawnParticleGameObject*) = m1 0xf7520, imac 0x118670;
     TodoReturn spawnPlayer2() = ios 0x1eb934;
-    cocos2d::CCPoint speedForShaderTarget(int) = win 0x21e250;
+    cocos2d::CCPoint speedForShaderTarget(int) = win 0x21e250, m1 0x107334, imac 0x12c1d0, ios 0x1f36d4;
     cocos2d::CCArray* staticObjectsInRect(cocos2d::CCRect, bool) = win 0x20bda0;
     TodoReturn stopAllGroundActions();
     void stopCameraShake() = ios 0x20569c, imac 0x14a310, m1 0x11fa34;
@@ -9793,7 +9793,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn triggerGravityChange(EffectGameObject*, int);
     void triggerMoveCommand(EffectGameObject*) = win 0x219690;
     TodoReturn triggerRotateCommand(EnhancedTriggerObject*);
-    void triggerShaderCommand(ShaderGameObject*) = win 0x21bc80, m1 0x105a4c, imac 0x12a6a0;
+    void triggerShaderCommand(ShaderGameObject*) = win 0x21bc80, m1 0x105a4c, imac 0x12a6a0, ios 0x1f27b0;
     void triggerTransformCommand(TransformTriggerGameObject*) = win 0x21a110;
     TodoReturn tryGetGroupParent(int);
     GameObject* tryGetMainObject(int) = ios 0x1ec2b4, win 0x21f170, imac 0x11a040, m1 0xf8cc4;
@@ -22671,7 +22671,6 @@ class ShaderGameObject : EffectGameObject {
 
 [[link(android), depends(GJShaderState)]]
 class ShaderLayer : cocos2d::CCLayer {
-    // virtual ~ShaderLayer();
     ShaderLayer() = m1 0x3492f8, imac 0x3bf2d0, ios 0x272580 {
         m_timesyncShaderActions = false;
         m_shader = nullptr;
@@ -22683,6 +22682,9 @@ class ShaderLayer : cocos2d::CCLayer {
         m_savedCameraRotation = 0.f;
         m_shockWaveTimeMult = 1.f;
         m_scaleFactor = 1.f;
+    }
+    ~ShaderLayer() = win inline, m1 0x342928, imac 0x3b76d0, ios 0x26cc0c {
+        CC_SAFE_RELEASE(m_renderTexture);
     }
 
     static ShaderLayer* create() = win inline, m1 0x342a7c, imac 0x3b78d0, ios 0x26ccb4 {
@@ -22699,9 +22701,9 @@ class ShaderLayer : cocos2d::CCLayer {
     virtual void update(float) = win 0x46a560, imac 0x3b91b0, m1 0x3442d4, ios 0x26e070;
     virtual void visit() = win 0x470580, imac 0x3bee90, m1 0x348f24, ios 0x272320;
 
-    cocos2d::CCPoint objectPosToShaderPos(cocos2d::CCPoint position) = win 0x46a890;
+    cocos2d::CCPoint objectPosToShaderPos(cocos2d::CCPoint position) = win 0x46a890, m1 0x344654, imac 0x3b9590, ios 0x26e2f8;
     void performCalculations() = ios 0x272244, win 0x46fbd0, imac 0x3beb80, m1 0x348c6c;
-    void preBulgeShader() = win inline {
+    void preBulgeShader() = win inline, m1 0x34813c, imac 0x3bdea0, ios 0x27171c {
         if (m_state.m_bulgeValue <= 0.f) {
             if (this->getActionByTag(21)) {
                 m_state.m_usesShaders = true;
@@ -22709,8 +22711,8 @@ class ShaderLayer : cocos2d::CCLayer {
             m_sprite->getShaderProgram()->setUniformLocationWith1f(m_bulgeValueUniform, 0.f);
         }
     }
-    void preChromaticGlitchShader() = win 0x46d840, m1 0x346e7c, imac 0x3bc990;
-    void preChromaticShader() = win inline, m1 0x346bf4, imac 0x3bc6a0 {
+    void preChromaticGlitchShader() = win 0x46d840, m1 0x346e7c, imac 0x3bc990, ios 0x27053c;
+    void preChromaticShader() = win inline, m1 0x346bf4, imac 0x3bc6a0, ios 0x2702b8 {
         if (m_state.m_chromaticTargetX != 0.f || m_state.m_chromaticTargetY != 0.f || this->getActionByTag(1) || this->getActionByTag(2)) {
             m_state.m_usesShaders = true;
         }
@@ -22719,7 +22721,7 @@ class ShaderLayer : cocos2d::CCLayer {
         shaderProgram->setUniformLocationWith1f(m_chromaticXOffUniform, (m_scaleFactor / 1.2018504f) * m_state.m_chromaticTargetX * m_state.m_textureScaleX * scale);
         shaderProgram->setUniformLocationWith1f(m_chromaticYOffUniform, (m_scaleFactor / 1.2018504f) * m_state.m_chromaticTargetY * m_state.m_textureScaleY * scale);
     }
-    void preColorChangeShader() = win inline, m1 0x348888, imac 0x3be680 {
+    void preColorChangeShader() = win inline, m1 0x348888, imac 0x3be680, ios 0x271e64 {
         auto shaderProgram = m_sprite->getShaderProgram();
         if (m_state.m_colorChangeCR != 1.f || m_state.m_colorChangeCG != 1.f || m_state.m_colorChangeCB != 1.f ||
             m_state.m_colorChangeBR != 0.f || m_state.m_colorChangeBG != 0.f || m_state.m_colorChangeBB != 0.f) {
@@ -22734,7 +22736,7 @@ class ShaderLayer : cocos2d::CCLayer {
             }
         }
     }
-    void preCommonShader() = win inline, m1 0x3444e0, imac 0x3b93c0 {
+    void preCommonShader() = win inline, m1 0x3444e0, imac 0x3b93c0, ios 0x26e184 {
         auto shaderProgram = m_sprite->getShaderProgram();
         shaderProgram->setUniformLocationWith3f(m_blurRefColorUniform, m_state.m_blurRefColor.r / 255.f, m_state.m_blurRefColor.g / 255.f, m_state.m_blurRefColor.b / 255.f);
         shaderProgram->setUniformLocationWith1f(m_blurUseRefUniform, m_state.m_minBlendingLayer > 1);
@@ -22745,8 +22747,8 @@ class ShaderLayer : cocos2d::CCLayer {
         shaderProgram->setUniformLocationWith1f(m_screenAspectINVUniform, m_screenSize.height / m_screenSize.width);
         shaderProgram->setUniformLocationWith1f(m_shaderPositionUniform, m_screenSize.width / m_screenSize.height);
     }
-    void preGlitchShader() = win 0x46d0d0, m1 0x346724, imac 0x3bc0f0;
-    void preGrayscaleShader() = win inline, m1 0x3483ec, imac 0x3be160 {
+    void preGlitchShader() = win 0x46d0d0, m1 0x346724, imac 0x3bc0f0, ios 0x26feb8;
+    void preGrayscaleShader() = win inline, m1 0x3483ec, imac 0x3be160, ios 0x2719cc {
         if (m_state.m_grayscaleValue > 0.f || this->getActionByTag(32)) {
             m_state.m_usesShaders = true;
         }
@@ -22757,7 +22759,7 @@ class ShaderLayer : cocos2d::CCLayer {
             shaderProgram->setUniformLocationWith3f(m_grayscaleTintUniform, m_state.m_grayscaleTint.r / 255.f, m_state.m_grayscaleTint.g / 255.f, m_state.m_grayscaleTint.b / 255.f);
         }
     }
-    void preHueShiftShader() = win inline {
+    void preHueShiftShader() = win inline, m1 0x3486dc, imac 0x3be4d0, ios 0x271cbc {
         if (m_state.m_hueShiftDegrees != 0.f || this->getActionByTag(38)) {
             m_state.m_usesShaders = true;
         }
@@ -22766,7 +22768,7 @@ class ShaderLayer : cocos2d::CCLayer {
         shaderProgram->setUniformLocationWith1f(m_hueShiftCosAUniform, cosf(radians));
         shaderProgram->setUniformLocationWith1f(m_hueShiftSinAUniform, sinf(radians));
     }
-    void preInvertColorShader() = win inline {
+    void preInvertColorShader() = win inline, m1 0x348610, imac 0x3be3e0, ios 0x271bf0 {
         if (m_state.m_invertColorEditRGB > 0.f || this->getActionByTag(34)) {
             m_state.m_usesShaders = true;
         }
@@ -22782,17 +22784,17 @@ class ShaderLayer : cocos2d::CCLayer {
         }
         shaderProgram->setUniformLocationWith4f(m_invertColorValueUniform, r, g, b, edit);
     }
-    void preLensCircleShader() = win 0x46e380, m1 0x347844, imac 0x3bd4a0;
-    void preMotionBlurShader() = win 0x46e850, m1 0x347d98, imac 0x3bda20;
-    cocos2d::CCPoint prepareTargetContainer() = win 0x46dd70;
-    void prePinchShader() = win inline {
+    void preLensCircleShader() = win 0x46e380, m1 0x347844, imac 0x3bd4a0, ios 0x270e78;
+    void preMotionBlurShader() = win 0x46e850, m1 0x347d98, imac 0x3bda20, ios 0x271398;
+    cocos2d::CCPoint prepareTargetContainer() = win 0x46dd70, m1 0x347418, imac 0x3bd030, ios 0x270a4c;
+    void prePinchShader() = win inline, m1 0x34836c, imac 0x3be0d0, ios 0x27194c {
         if (m_state.m_pinchTargetX != 0.0 || m_state.m_pinchTargetY != 0.0 || this->getActionByTag(25) || this->getActionByTag(26)) {
             m_state.m_usesShaders = true;
         }
     }
-    void prePixelateShader() = win 0x46dbc0, m1 0x347240, imac 0x3bcdd0;
-    void preRadialBlurShader() = win inline, m1 0x347ae8, imac 0x3bd770 {
-        if (m_state.m_radialBlurSize != 0.f && this->getActionByTag(16)) {
+    void prePixelateShader() = win 0x46dbc0, m1 0x347240, imac 0x3bcdd0, ios 0x2708e8;
+    void preRadialBlurShader() = win inline, m1 0x347ae8, imac 0x3bd770, ios 0x27110c {
+        if (m_state.m_radialBlurSize != 0.f || this->getActionByTag(16)) {
             m_state.m_usesShaders = true;
         }
         auto shaderProgram = m_sprite->getShaderProgram();
@@ -22801,17 +22803,17 @@ class ShaderLayer : cocos2d::CCLayer {
             shaderProgram->setUniformLocationWith1f(m_blurFadeUniform, std::clamp(m_state.m_radialBlurFade * .2f, .0f, .2f));
         }
     }
-    void preSepiaShader() = win inline {
+    void preSepiaShader() = win inline, m1 0x3484e4, imac 0x3be290, ios 0x271ac4 {
         if (m_state.m_sepiaValue > 0.f || this->getActionByTag(33)) {
             m_state.m_usesShaders = true;
         }
         m_sprite->getShaderProgram()->setUniformLocationWith1f(m_sepiaValueUniform, m_state.m_sepiaValue);
     }
-    void preShockLineShader() = win 0x46cbc0, m1 0x346300, imac 0x3bbbd0;
-    void preShockWaveShader() = win 0x46c070, m1 0x345d94, imac 0x3bb510;
-    void preSplitScreenShader() = win 0x46f8b0, m1 0x348a18, imac 0x3be890;
+    void preShockLineShader() = win 0x46cbc0, m1 0x346300, imac 0x3bbbd0, ios 0x26fac8;
+    void preShockWaveShader() = win 0x46c070, m1 0x345d94, imac 0x3bb510, ios 0x26f58c;
+    void preSplitScreenShader() = win 0x46f8b0, m1 0x348a18, imac 0x3be890, ios 0x271ff0;
     bool resetAllShaders() = win 0x4710f0, m1 0x349270, imac 0x3bf240, ios 0x272510;
-    void resetTargetContainer() = win inline {
+    void resetTargetContainer() = win inline, m1 0x3476a0, imac 0x3bd310, ios 0x270cd4 {
         if (m_gameLayer) {
             auto parent = m_state.m_minBlendingLayer < 2 ? m_gameLayer->m_objectParent : m_gameLayer->m_inShaderParent;
             parent->setPosition(m_savedCameraPosition);
@@ -22867,7 +22869,7 @@ class ShaderLayer : cocos2d::CCLayer {
         m_hueShiftCosAUniform = glGetUniformLocation(program, "_hueShiftCosA");
         m_hueShiftSinAUniform = glGetUniformLocation(program, "_hueShiftSinA");
     }
-    void setupInvertColorShader() = win inline, m1 0x344048, imac 0x3b8f20 {
+    void setupInvertColorShader() = win inline, m1 0x344048, imac 0x3b8f20, ios inline {
         m_invertColorValueUniform = glGetUniformLocation(m_sprite->getShaderProgram()->getProgram(), "_invertColorValue");
     }
     void setupLensCircleShader() = win inline, m1 0x343c48, imac 0x3b8b30, ios 0x26da64 {
@@ -22897,26 +22899,26 @@ class ShaderLayer : cocos2d::CCLayer {
         m_radialBlurCenterUniform = glGetUniformLocation(program, "_radialBlurCenter");
         m_radialBlurValueUniform = glGetUniformLocation(program, "_radialBlurValue");
     }
-    void setupSepiaShader() = win inline, m1 0x344008, imac 0x3b8ee0 {
+    void setupSepiaShader() = win inline, m1 0x344008, imac 0x3b8ee0, ios inline {
         m_sepiaValueUniform = glGetUniformLocation(m_sprite->getShaderProgram()->getProgram(), "_sepiaValue");
     }
     void setupShader(bool reset) = win 0x4698c0, m1 0x342bc0, imac 0x3b79f0, ios 0x26cdd0;
     void setupShockLineUniforms() = win 0x46c9c0, m1 0x343830, imac 0x3b8710, ios 0x26d64c;
     void setupShockWaveUniforms() = win 0x46be70, m1 0x343664, imac 0x3b8540, ios 0x26d480;
     void setupSplitScreenShader() = win 0x46f700, m1 0x344150, imac 0x3b9020, ios 0x26deec;
-    void toggleAntiAlias(bool antiAlias) = win 0x46a4f0, ios 0x26d298;
-    void triggerBulge(float fadeTime, float bulge, float screenOffsetX, float screenOffsetY, float radius, int targetID, int easingType, float easingRate, bool relative) = win 0x46eb60;
-    void triggerChromaticGlitch(bool enable, float duration, float speed, float strength, float rgbOffset, float lineThickness, float lineStrength, float segmentHeight, int easingType, float easingRate, bool relative, bool relativePos) = win 0x46d520;
-    void triggerChromaticX(float fadeTime, float targetX, int easingType, float easingRate, bool relative) = win inline, m1 0x346b7c, imac 0x3bc640 {
+    void toggleAntiAlias(bool antiAlias) = win 0x46a4f0, m1 0x34347c, imac 0x3b8350, ios 0x26d298;
+    void triggerBulge(float fadeTime, float bulge, float screenOffsetX, float screenOffsetY, float radius, int targetID, int easingType, float easingRate, bool relative) = win 0x46eb60, m1 0x348070, imac 0x3bddd0, ios 0x271650;
+    void triggerChromaticGlitch(bool enable, float duration, float speed, float strength, float rgbOffset, float lineThickness, float lineStrength, float segmentHeight, int easingType, float easingRate, bool relative, bool relativePos) = win 0x46d520, m1 0x346cfc, imac 0x3bc7e0, ios 0x2703c0;
+    void triggerChromaticX(float fadeTime, float targetX, int easingType, float easingRate, bool relative) = win inline, m1 0x346b7c, imac 0x3bc640, ios 0x270240 {
         this->tweenValueAuto(targetX, 1, fadeTime, easingType, easingRate);
         m_state.m_chromaticRelative = relative;
     }
-    void triggerChromaticY(float fadeTime, float targetY, int easingType, float easingRate, bool relative) = win inline, m1 0x346bb8, imac 0x3bc670 {
+    void triggerChromaticY(float fadeTime, float targetY, int easingType, float easingRate, bool relative) = win inline, m1 0x346bb8, imac 0x3bc670, ios 0x27027c {
         this->tweenValueAuto(targetY, 2, fadeTime, easingType, easingRate);
         m_state.m_chromaticRelative = relative;
     }
-    void triggerColorChange(float fadeTime, float cr, float cg, float cb, float br, float bg, float bb, int easingType, float easingRate) = win 0x46f430;
-    void triggerGlitch(float fadeTime, float strength, float speed, float sliceHeight, float maxSliceXOff, float maxColXOff, float maxColYOff, bool relative) = win inline {
+    void triggerColorChange(float fadeTime, float cr, float cg, float cb, float br, float bg, float bb, int easingType, float easingRate) = win 0x46f430, m1 0x34878c, imac 0x3be590, ios 0x271d68;
+    void triggerGlitch(float fadeTime, float strength, float speed, float sliceHeight, float maxSliceXOff, float maxColXOff, float maxColYOff, bool relative) = win inline, m1 0x346694, imac 0x3bc050, ios 0x26fe2c {
         this->tweenValueAuto(strength, 49, fadeTime, 0, 0.f);
         m_state.m_glitchSpeed = speed;
         m_state.m_glitchSliceHeight = sliceHeight;
@@ -22925,17 +22927,17 @@ class ShaderLayer : cocos2d::CCLayer {
         m_state.m_glitchMaxColYOff = maxColYOff;
         m_state.m_glitchRelative = relative;
     }
-    void triggerGrayscale(float fadeTime, float target, bool useLuminance, int tintChannel, int easingType, float easingRate) = win inline {
+    void triggerGrayscale(float fadeTime, float target, bool useLuminance, int tintChannel, int easingType, float easingRate) = win inline, m1 0x3483c8, imac 0x3be130, ios 0x2719a8 {
         if (tintChannel > -1) m_state.m_grayscaleTintChannel = tintChannel;
         m_state.m_grayscaleUseLum = useLuminance;
         this->tweenValueAuto(target, 32, fadeTime, easingType, easingRate);
     }
-    void triggerHueShift(float fadeTime, float degrees, int easingType, float easingRate) = win inline {
+    void triggerHueShift(float fadeTime, float degrees, int easingType, float easingRate) = win inline, m1 0x3486c4, imac 0x3be4b0, ios 0x271ca4 {
         this->tweenValueAuto(degrees, 38, fadeTime, easingType, easingRate);
     }
-    void triggerInvertColor(float fadeTime, float target, float r, float g, float b, bool editRGB, bool tweenRGB, bool clampRGB, int easingType, float easingRate) = win 0x46f1b0;
-    void triggerLensCircle(float fadeTime, float size, float fade, float strength, int targetID, int tintChannel, float screenOffsetX, float screenOffsetY, int easingType, float easingRate, bool relative) = win 0x46e0e0;
-    void triggerMotionBlurX(float fadeTime, float targetX, float intensity, float fade, int targetID, float followEase, bool dualDir, int refChannel, int easingType, float easingRate, bool relative, bool emptyOnly) = win inline {
+    void triggerInvertColor(float fadeTime, float target, float r, float g, float b, bool editRGB, bool tweenRGB, bool clampRGB, int easingType, float easingRate) = win 0x46f1b0, m1 0x34853c, imac 0x3be2f0, ios 0x271b1c;
+    void triggerLensCircle(float fadeTime, float size, float fade, float strength, int targetID, int tintChannel, float screenOffsetX, float screenOffsetY, int easingType, float easingRate, bool relative) = win 0x46e0e0, m1 0x347734, imac 0x3bd390, ios 0x270d68;
+    void triggerMotionBlurX(float fadeTime, float targetX, float intensity, float fade, int targetID, float followEase, bool dualDir, int refChannel, int easingType, float easingRate, bool relative, bool emptyOnly) = win inline, m1 0x347bf0, imac 0x3bd880, ios 0x2711f0 {
         m_state.m_blurRefChannel = refChannel;
         this->tweenValueAuto(fade, 48, fadeTime, 0, 0.f);
         this->tweenValueAuto(intensity, 47, fadeTime, 0, 0.f);
@@ -22946,7 +22948,7 @@ class ShaderLayer : cocos2d::CCLayer {
         m_state.m_motionBlurDual = dualDir;
         m_state.m_motionBlurRelative = relative;
     }
-    void triggerMotionBlurY(float fadeTime, float targetY, float intensity, float fade, int targetID, float followEase, bool dualDir, int refChannel, int easingType, float easingRate, bool relative, bool emptyOnly) = win inline {
+    void triggerMotionBlurY(float fadeTime, float targetY, float intensity, float fade, int targetID, float followEase, bool dualDir, int refChannel, int easingType, float easingRate, bool relative, bool emptyOnly) = win inline, m1 0x347cc4, imac 0x3bd950, ios 0x2712c4 {
         m_state.m_blurRefChannel = refChannel;
         this->tweenValueAuto(fade, 48, fadeTime, 0, 0.f);
         this->tweenValueAuto(intensity, 47, fadeTime, 0, 0.f);
@@ -22957,38 +22959,40 @@ class ShaderLayer : cocos2d::CCLayer {
         m_state.m_motionBlurDual = dualDir;
         m_state.m_motionBlurRelative = relative;
     }
-    void triggerPinchX(float fadeTime, float targetX, float screenOffsetX, float radius, float modifier, bool target, int targetID, int easingType, float easingRate, bool relative) = win 0x46ed70, m1 0x3481ac, imac 0x3bdf10;
-    void triggerPinchY(float fadeTime, float targetY, float screenOffsetY, float radius, float modifier, bool target, int targetID, int easingType, float easingRate, bool relative) = win 0x46ef90, m1 0x34828c, imac 0x3bdff0;
-    void triggerPixelateX(float fadeTime, float targetX, bool snapGrid, bool hardEdges, int easingType, float easingRate, bool relative) = win inline, m1 0x347168, imac 0x3bccf0 {
+    void triggerPinchX(float fadeTime, float targetX, float screenOffsetX, float radius, float modifier, bool target, int targetID, int easingType, float easingRate, bool relative) = win 0x46ed70, m1 0x3481ac, imac 0x3bdf10, ios 0x27178c;
+    void triggerPinchY(float fadeTime, float targetY, float screenOffsetY, float radius, float modifier, bool target, int targetID, int easingType, float easingRate, bool relative) = win 0x46ef90, m1 0x34828c, imac 0x3bdff0, ios 0x27186c;
+    void triggerPixelateX(float fadeTime, float targetX, bool snapGrid, bool hardEdges, int easingType, float easingRate, bool relative) = win inline, m1 0x347168, imac 0x3bccf0, ios 0x270810 {
         m_state.m_pixelateSnapGrid = snapGrid;
         if (m_state.m_pixelateTargetX < 1.f) m_state.m_pixelateTargetX = 1.f;
         this->tweenValueAuto(targetX, 9, fadeTime, easingType, easingRate);
         m_state.m_pixelateRelative = relative;
         m_state.m_pixelateHardEdges = hardEdges;
     }
-    void triggerPixelateY(float fadeTime, float targetY, bool snapGrid, bool hardEdges, int easingType, float easingRate, bool relative) = win inline, m1 0x3471d4, imac 0x3bcd60 {
+    void triggerPixelateY(float fadeTime, float targetY, bool snapGrid, bool hardEdges, int easingType, float easingRate, bool relative) = win inline, m1 0x3471d4, imac 0x3bcd60, ios 0x27087c {
         m_state.m_pixelateSnapGrid = snapGrid;
         if (m_state.m_pixelateTargetY < 1.f) m_state.m_pixelateTargetY = 1.f;
         this->tweenValueAuto(targetY, 10, fadeTime, easingType, easingRate);
         m_state.m_pixelateRelative = relative;
         m_state.m_pixelateHardEdges = hardEdges;
     }
-    void triggerRadialBlur(float fadeTime, float size, float intensity, float fade, int refChannel, float screenOffsetX, float screenOffsetY, bool target, int targetID, int easingType, float easingRate, bool emptyOnly) = win 0x46e5b0;
-    void triggerSepia(float fadeTime, float target, int easingType, float easingRate) = win inline {
+    void triggerRadialBlur(float fadeTime, float size, float intensity, float fade, int refChannel, float screenOffsetX, float screenOffsetY, bool target, int targetID, int easingType, float easingRate, bool emptyOnly) = win 0x46e5b0, m1 0x3479e4, imac 0x3bd670, ios 0x271008;
+    void triggerSepia(float fadeTime, float target, int easingType, float easingRate) = win inline, m1 0x3484cc, imac 0x3be270, ios 0x271aac {
         this->tweenValueAuto(target, 33, fadeTime, easingType, easingRate);
     }
-    void triggerShockLine(float speed, float thickness, bool rotate, bool flip, bool dual, bool invert, float strength, float waveWidth, float fadeIn, float fadeOut, float timeOffset, float screenOffset, int targetID, bool target, bool follow, bool relative, float maxSize, bool animate, float fadeTime, int easingType, float easingRate) = win 0x46c510, m1 0x34610c, imac 0x3bb970;
-    void triggerShockWave(float speed, float thickness, float strength, float waveWidth, float fadeIn, float fadeOut, float timeOffset, bool invert, float inner, float screenOffsetX, float screenOffsetY, int targetID, bool target, bool follow, bool relative, float outer, float maxSize, bool animate, float fadeTime, int easingType, float easingRate) = win 0x46b8b0, m1 0x3457bc, imac 0x3bac70;
-    void triggerSplitScreenCols(float fadeTime, float targetX, int easingType, float easingRate) = win inline, m1 0x348a00, imac 0x3be870 {
+    void triggerShockLine(float speed, float thickness, bool rotate, bool flip, bool dual, bool invert, float strength, float waveWidth, float fadeIn, float fadeOut, float timeOffset, float screenOffset, int targetID, bool target, bool follow, bool relative, float maxSize, bool animate, float fadeTime, int easingType, float easingRate) = win 0x46c510, m1 0x34610c, imac 0x3bb970, ios 0x26f8dc;
+    void triggerShockWave(float speed, float thickness, float strength, float waveWidth, float fadeIn, float fadeOut, float timeOffset, bool invert, float inner, float screenOffsetX, float screenOffsetY, int targetID, bool target, bool follow, bool relative, float outer, float maxSize, bool animate, float fadeTime, int easingType, float easingRate) = win 0x46b8b0, m1 0x3457bc, imac 0x3bac70, ios 0x26f03c;
+    void triggerSplitScreenCols(float fadeTime, float targetX, int easingType, float easingRate) = win inline, m1 0x348a00, imac 0x3be870, ios 0x271fd8 {
         this->tweenValueAuto(targetX, 46, fadeTime, easingType, easingRate);
     }
-    void triggerSplitScreenRows(float fadeTime, float targetY, int easingType, float easingRate) = win inline, m1 0x3489e8, imac 0x3be850 {
+    void triggerSplitScreenRows(float fadeTime, float targetY, int easingType, float easingRate) = win inline, m1 0x3489e8, imac 0x3be850, ios 0x271fc0 {
         this->tweenValueAuto(targetY, 45, fadeTime, easingType, easingRate);
     }
-    void tweenValue(float fromValue, float toValue, int action, float duration, int easingType, float easingRate) = win 0x470f60;
-    void tweenValueAuto(float value, int action, float duration, int easingType, float easingRate) = win 0x470860, m1 0x3459f0, imac 0x3baef0;
-    void updateEffectOffsets(cocos2d::CCPoint center) = win 0x46aa50;
-    void updateMotionBlurSpeedX(float x, float dt) = win inline {
+    void tweenValue(float fromValue, float toValue, int action, float duration, int easingType, float easingRate) = win 0x470f60, m1 0x349184, imac 0x3bf130, ios inline {
+        m_state.tweenValue(fromValue, toValue, action, duration, easingType, easingRate);
+    }
+    void tweenValueAuto(float value, int action, float duration, int easingType, float easingRate) = win 0x470860, m1 0x3459f0, imac 0x3baef0, ios 0x26f270;
+    void updateEffectOffsets(cocos2d::CCPoint center) = win 0x46aa50, m1 0x344764, imac 0x3b96e0, ios 0x26e390;
+    void updateMotionBlurSpeedX(float x, float dt) = win inline, m1 0x348008, imac 0x3bdd10, ios 0x2715e8 {
         auto divisor = m_state.m_motionBlurFollowEaseX;
         if (divisor > 1.f) {
             if (dt > 0.f) divisor /= dt;
@@ -22996,7 +23000,7 @@ class ShaderLayer : cocos2d::CCLayer {
         }
         else m_state.m_motionBlurSpeedX = x;
     }
-    void updateMotionBlurSpeedY(float y, float dt) = win inline {
+    void updateMotionBlurSpeedY(float y, float dt) = win inline, m1 0x34803c, imac 0x3bdd70, ios 0x27161c {
         auto divisor = m_state.m_motionBlurFollowEaseY;
         if (divisor > 1.f) {
             if (dt > 0.f) divisor /= dt;
@@ -23004,19 +23008,19 @@ class ShaderLayer : cocos2d::CCLayer {
         }
         else m_state.m_motionBlurSpeedY = y;
     }
-    void updateShockLineCenter(cocos2d::CCPoint center) = win inline, m1 0x3462d8, imac 0x3bbb90 {
+    void updateShockLineCenter(cocos2d::CCPoint center) = win inline, m1 0x3462d8, imac 0x3bbb90, ios 0x26faa8 {
         if (m_state.m_shockLineCenterDirty) {
             if (!m_state.m_shockLineCenterMoving) m_state.m_shockLineCenterDirty = false;
             m_state.m_shockLineCenter = center;
         }
     }
-    void updateShockWaveCenter(cocos2d::CCPoint center) = win inline, m1 0x345d6c, imac 0x3bb4d0 {
+    void updateShockWaveCenter(cocos2d::CCPoint center) = win inline, m1 0x345d6c, imac 0x3bb4d0, ios 0x26f56c {
         if (m_state.m_shockWaveCenterDirty) {
             if (!m_state.m_shockWaveCenterMoving) m_state.m_shockWaveCenterDirty = false;
             m_state.m_shockWaveCenter = center;
         }
     }
-    bool updateZLayer(int minLayer, int maxLayer, bool noParticles) = win 0x471070, m1 0x3433f0, imac 0x3b82d0;
+    bool updateZLayer(int minLayer, int maxLayer, bool noParticles) = win 0x471070, m1 0x3433f0, imac 0x3b82d0, ios 0x26d224;
 
     GJShaderState m_state;
     bool m_timesyncShaderActions;
