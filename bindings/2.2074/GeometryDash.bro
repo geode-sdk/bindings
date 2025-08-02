@@ -5024,7 +5024,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onSelectBuildTab(cocos2d::CCObject* sender) = ios 0x3e298c, win 0x112f60, imac 0x34310, m1 0x33940;
     void onSettings(cocos2d::CCObject* sender) = ios 0x3dca74, win 0xe0350, m1 0x2b46c, imac 0x2b270;
     void onStopPlaytest(cocos2d::CCObject* sender) = ios 0x3bfea8, win 0x110d40, m1 0xe134, imac 0xcdd0;
-    void onTargetIDChange(int) = win 0x120860;
+    void onTargetIDChange(int) = win 0x120860, m1 0x45f90, imac 0x4e330, ios 0x3efe54;
     void onToggleGuide(EffectGameObject*);
     TodoReturn onToggleSelectedOrder(EffectGameObject*);
     void onUngroupSticky(cocos2d::CCObject* sender) = ios 0x3bffdc, win 0x111130, m1 0xe318, imac 0xcfc0;
@@ -7983,11 +7983,16 @@ class GameObject : CCSpritePlus {
     cocos2d::CCPoint getBoxOffset();
     gd::string getColorFrame(gd::string);
     int getColorIndex();
-    gd::string getColorKey(bool, bool) = m1 0x4e1704, imac 0x5a7190;
+    gd::string getColorKey(bool, bool) = win 0x199db0, m1 0x4e1704, imac 0x5a7190, ios 0x25ccd4;
     ZLayer getCustomZLayer();
     gd::string getGlowFrame(gd::string);
     bool getGroupDisabled();
-    int getGroupID(int) = m1 0x4e0b24, imac 0x5a66b0, ios 0x25c624;
+    int getGroupID(int index) = win inline, m1 0x4e0b24, imac 0x5a66b0, ios 0x25c624 {
+        if (index < 10 && m_groups) {
+            return m_groups->at(index);
+        }
+        return 0;
+    }
     gd::string getGroupString();
     cocos2d::CCPoint const& getLastPosition() = m1 0x4eb730, imac 0x5b2a90, ios 0x261674;
     GJSpriteColor* getMainColor();
@@ -8036,7 +8041,7 @@ class GameObject : CCSpritePlus {
     bool isSpecialObject();
     bool isSpeedObject() = m1 0x4eb9b4, imac 0x5b30f0;
     bool isStoppableTrigger();
-    bool isTrigger() = win 0x19f2c0, m1 0x4dca68, imac 0x59de80;
+    bool isTrigger() = win 0x19f2c0, m1 0x4dca68, imac 0x59de80, ios 0x258c90;
     void loadGroupsFromString(gd::string) = win 0x199b50, imac 0x5a6d00, m1 0x4e1100, ios 0x25c9f8;
     void makeInvisible() = ios 0x25b45c, imac 0x5a53a0, m1 0x4df614;
     TodoReturn makeVisible();
@@ -8844,7 +8849,7 @@ class GameToolbox {
     static cocos2d::CCPoint getRelativeOffset(GameObject*, cocos2d::CCPoint) = win 0x64970, m1 0x43f1f4, imac 0x4dc100;
     static gd::string getResponse(cocos2d::extension::CCHttpResponse*) = win 0x64310, imac 0x4dba00, m1 0x43eb40;
     static gd::string getTimeString(int, bool) = win 0x65e20, imac 0x4de620, m1 0x44145c, ios 0x49338;
-    static cocos2d::ccHSVValue hsvFromString(gd::string const&, char const*) = win 0x654e0, m1 0x44007c, imac 0x4dd030;
+    static cocos2d::ccHSVValue hsvFromString(gd::string const&, char const*) = win 0x654e0, m1 0x44007c, imac 0x4dd030, ios 0x487fc;
     static gd::string intToShortString(int) = win 0x69120, imac 0x4e4250, m1 0x4465bc, ios 0x4bd08;
     static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284;
     static bool isIOS();
@@ -9561,7 +9566,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool isPlayer2Button(int);
     void lightningFlash(cocos2d::CCPoint to, cocos2d::ccColor3B color);
     void lightningFlash(cocos2d::CCPoint from, cocos2d::CCPoint to, cocos2d::ccColor3B color, float lineWidth, float duration, int displacement, bool flash, float opacity) = ios 0x1e5a24, win 0x240770, imac 0x110c50, m1 0xf089c;
-    TodoReturn loadGroupParentsFromString(GameObject*, gd::string);
+    void loadGroupParentsFromString(GameObject*, gd::string) = win 0x21f4b0, m1 0x108974, imac 0x12d9a0, ios 0x1f47a8;
     void loadLevelSettings() = ios 0x203d78, win 0x234770, imac 0x147920, m1 0x11d8c0;
     void loadStartPosObject() = ios 0x1feaec, win 0x230000, imac 0x13e9f0, m1 0x116658;
     void loadUpToPosition(float position, int order, int channel) = win 0x2301a0;
@@ -9577,10 +9582,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void moveObject(GameObject*, double, double, bool);
     void moveObjects(cocos2d::CCArray*, double, double, bool) = win 0x228a70, m1 0x111020, imac 0x137c20, ios 0x1fb324;
     void moveObjectsSilent(int, double, double);
-    TodoReturn moveObjectToStaticGroup(GameObject*);
+    void moveObjectToStaticGroup(GameObject*) = win 0x22c060, m1 0x1133c0, imac 0x13ac40, ios 0x1fc900;
     TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
     GJGameEvent objectTypeToGameEvent(int) = ios 0x1e804c, win 0x22ce10, m1 0xf3c84, imac 0x1144d0;
-    void optimizeMoveGroups() = ios 0x1e109c, win 0x22b740;
+    void optimizeMoveGroups() = ios 0x1e109c, win 0x22b740, m1 0xe81a4, imac 0x106b60;
     void orderSpawnObjects() = ios 0x209744, imac 0x151690, m1 0x1258a0, win 0x23f7e0;
     cocos2d::CCNode* parentForZLayer(int zLayer, bool blending, int parentMode, int uiObject) = imac 0x10f720, win 0x209e30, ios 0x1e4a2c, m1 0xeec10;
     void pauseAudio() = ios 0x2009a4, win 0x231d60, m1 0x118fb0, imac 0x141de0;
@@ -14965,7 +14970,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn pasteParticleState(ParticleGameObject*, cocos2d::CCArray*);
     void processLoadedMoveActions() = imac 0xb7920, m1 0xa7448;
     TodoReturn quickUpdateAllPositions() = win 0x2d70c0;
-    void recreateGroups() = ios 0x36167c, imac 0xef9c0, m1 0xd4af8;
+    void recreateGroups() = ios 0x36167c, imac 0xef9c0, m1 0xd4af8, win 0x2d6370;
     void redoLastAction() = win inline {
         return this->handleAction(false, m_redoObjects);
     }
@@ -15768,7 +15773,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 
     virtual bool init() = win 0x2dd320, imac 0xf7a30, m1 0xdb388, ios 0x366b34;
 
-    gd::string getSaveString() = win 0x2dd630, m1 0xcacc0, imac 0xe3e10;
+    gd::string getSaveString() = win 0x2dd630, m1 0xcacc0, imac 0xe3e10, ios 0x35bf4c;
     void setupColorsFromLegacyMode(cocos2d::CCDictionary*) = win 0x2e0840, imac 0xf93f0, m1 0xdcba8;
     bool shouldUseYSection() = win inline {
         return m_platformerMode || m_dynamicLevelHeight;
