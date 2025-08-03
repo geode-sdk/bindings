@@ -9549,11 +9549,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float getMinPortalY() = ios 0x1e8680, imac 0x114e50, m1 0xf4468, win 0x20e1d0;
     float getModifiedDelta(float) = ios 0x200a54, win 0x232060, imac 0x141ee0, m1 0x119084;
     TodoReturn getMoveTargetDelta(EffectGameObject*, bool);
-    CCArray* getOptimizedGroup(int groupID) = ios 0x1f4024, win inline {
+    cocos2d::CCArray* getOptimizedGroup(int groupID) = ios 0x1f4024, win inline {
         groupID = std::clamp(groupID, 0, 9999);
         auto group = m_optimizedGroups[groupID];
         if (group) return group;
-        group = CCArray::create();
+        group = cocos2d::CCArray::create();
         m_optimizedGroupDict->setObject(group, groupID);
         m_optimizedGroups[groupID] = group;
         return group;
@@ -9572,11 +9572,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn getScaledGroundHeight(float);
     TodoReturn getSingleGroupObject(int);
     TodoReturn getSpecialKey(int, bool, bool);
-    CCArray* getStaticGroup(int groupID) = ios 0x1f4088, win inline {
+    cocos2d::CCArray* getStaticGroup(int groupID) = ios 0x1f4088, win inline {
         groupID = std::clamp(groupID, 0, 9999);
         auto group = m_staticGroups[groupID];
         if (group) return group;
-        group = CCArray::create();
+        group = cocos2d::CCArray::create();
         m_staticGroupDict->setObject(group, groupID);
         m_staticGroups[groupID] = group;
         return group;
