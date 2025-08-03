@@ -7827,8 +7827,8 @@ class GameObject : CCSpritePlus {
     // virtual ~GameObject();
     GameObject() = win 0x135ba0, m1 0x199f78, imac 0x1e2350, ios 0x22ee90;
     static GameObject* createWithFrame(char const* name) = ios 0x253d3c, win 0x18aca0, imac 0x58a280, m1 0x4d7884;
-    static GameObject* createWithKey(int) = ios 0x253594, win 0x188850, imac 0x585720, m1 0x4d73bc;
-    static GameObject* objectFromVector(gd::vector<gd::string>&, gd::vector<void*>&, GJBaseGameLayer*, bool) = win 0x19a260, imac 0x5a7da0, m1 0x4e2090, ios 0x25d1e4;
+    static GameObject* createWithKey(int key) = ios 0x253594, win 0x188850, imac 0x585720, m1 0x4d73bc;
+    static GameObject* objectFromVector(gd::vector<gd::string>& propValues, gd::vector<void*>& propIsPresent, GJBaseGameLayer* gameLayer, bool lowDetail) = win 0x19a260, imac 0x5a7da0, m1 0x4e2090, ios 0x25d1e4;
 
     virtual void update(float) = m1 0x4d99a0, imac 0x5926c0, ios 0x255980 {}
     virtual void setScaleX(float) = win 0x1952d0, m1 0x4de6e4, imac 0x5a42e0, ios 0x25a750;
@@ -7860,7 +7860,7 @@ class GameObject : CCSpritePlus {
     virtual cocos2d::CCPoint getRealPosition() = win 0x194ba0, imac 0x5a3ca0, m1 0x4de06c, ios 0x25a1b8;
     virtual void setStartPos(cocos2d::CCPoint) = win 0x18d5d0, m1 0x4d8e7c, imac 0x591a70, ios 0x254ef4;
     virtual void updateStartValues() = win 0x18d9a0, m1 0x4d92ec, imac 0x591fd0, ios 0x25535c;
-    virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) {}
+    virtual void customObjectSetup(gd::vector<gd::string>& propValues, gd::vector<void*>& propIsPresent) {}
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x19bd50, imac 0x5a9880, m1 0x4e3ca8, ios 0x25e828;
     virtual void claimParticle() = win 0x195df0, imac 0x5a4c80, m1 0x4defb4, ios 0x25af30;
     virtual void unclaimParticle() = win 0x196320, m1 0x4df574, imac 0x5a52c0, ios 0x25b3d0;
@@ -7990,7 +7990,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCPoint getBoxOffset();
     gd::string getColorFrame(gd::string);
     int getColorIndex();
-    gd::string getColorKey(bool, bool) = win 0x199db0, m1 0x4e1704, imac 0x5a7190, ios 0x25ccd4;
+    gd::string getColorKey(bool isMainColor, bool) = win 0x199db0, m1 0x4e1704, imac 0x5a7190, ios 0x25ccd4;
     ZLayer getCustomZLayer();
     gd::string getGlowFrame(gd::string);
     bool getGroupDisabled();
@@ -8025,7 +8025,9 @@ class GameObject : CCSpritePlus {
     float groupOpacityMod() = win 0x199d30, imac 0x5a7040, m1 0x4e157c;
     void groupWasDisabled() = m1 0x4e0e84, imac 0x5a6a20;
     void groupWasEnabled();
-    bool hasSecondaryColor();
+    bool hasSecondaryColor() = win inline {
+        return m_colorSprite;
+    }
     bool ignoreEditorDuration() = win 0x1a0180;
     bool ignoreEnter();
     bool ignoreFade();
@@ -8049,7 +8051,7 @@ class GameObject : CCSpritePlus {
     bool isSpeedObject() = m1 0x4eb9b4, imac 0x5b30f0;
     bool isStoppableTrigger();
     bool isTrigger() = win 0x19f2c0, m1 0x4dca68, imac 0x59de80, ios 0x258c90;
-    void loadGroupsFromString(gd::string) = win 0x199b50, imac 0x5a6d00, m1 0x4e1100, ios 0x25c9f8;
+    void loadGroupsFromString(gd::string groupList) = win 0x199b50, imac 0x5a6d00, m1 0x4e1100, ios 0x25c9f8;
     void makeInvisible() = ios 0x25b45c, imac 0x5a53a0, m1 0x4df614;
     TodoReturn makeVisible();
     float opacityModForMode(int, bool);
@@ -8864,7 +8866,7 @@ class GameToolbox {
     static cocos2d::CCPoint getRelativeOffset(GameObject*, cocos2d::CCPoint) = win 0x64970, m1 0x43f1f4, imac 0x4dc100;
     static gd::string getResponse(cocos2d::extension::CCHttpResponse*) = win 0x64310, imac 0x4dba00, m1 0x43eb40;
     static gd::string getTimeString(int, bool) = win 0x65e20, imac 0x4de620, m1 0x44145c, ios 0x49338;
-    static cocos2d::ccHSVValue hsvFromString(gd::string const&, char const*) = win 0x654e0, m1 0x44007c, imac 0x4dd030, ios 0x487fc; // on windows, 2nd param is ignored and assumed to be "a"
+    static cocos2d::ccHSVValue hsvFromString(gd::string const& str, char const* delim) = win 0x654e0, m1 0x44007c, imac 0x4dd030, ios 0x487fc; // on windows, 2nd param is ignored and assumed to be "a"
     static gd::string intToShortString(int) = win 0x69120, imac 0x4e4250, m1 0x4465bc, ios 0x4bd08;
     static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284;
     static bool isIOS();
@@ -9547,7 +9549,15 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float getMinPortalY() = ios 0x1e8680, imac 0x114e50, m1 0xf4468, win 0x20e1d0;
     float getModifiedDelta(float) = ios 0x200a54, win 0x232060, imac 0x141ee0, m1 0x119084;
     TodoReturn getMoveTargetDelta(EffectGameObject*, bool);
-    TodoReturn getOptimizedGroup(int) = ios 0x1f4024;
+    cocos2d::CCArray* getOptimizedGroup(int groupID) = ios 0x1f4024, win inline {
+        groupID = std::clamp(groupID, 0, 9999);
+        auto group = m_optimizedGroups[groupID];
+        if (group) return group;
+        group = cocos2d::CCArray::create();
+        m_optimizedGroupDict->setObject(group, groupID);
+        m_optimizedGroups[groupID] = group;
+        return group;
+    }
     PlayerObject* getOtherPlayer(PlayerObject*) = m1 0xf228c, imac 0x1128b0;
     TodoReturn getParticleKey(int, char const*, int, cocos2d::tCCPositionType);
     TodoReturn getParticleKey2(gd::string);
@@ -9562,7 +9572,15 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn getScaledGroundHeight(float);
     TodoReturn getSingleGroupObject(int);
     TodoReturn getSpecialKey(int, bool, bool);
-    TodoReturn getStaticGroup(int) = ios 0x1f4088;
+    cocos2d::CCArray* getStaticGroup(int groupID) = ios 0x1f4088, win inline {
+        groupID = std::clamp(groupID, 0, 9999);
+        auto group = m_staticGroups[groupID];
+        if (group) return group;
+        group = cocos2d::CCArray::create();
+        m_staticGroupDict->setObject(group, groupID);
+        m_staticGroups[groupID] = group;
+        return group;
+    }
     cocos2d::CCArray* getStickyGroup(int group) = win inline {
         return static_cast<cocos2d::CCArray*>(m_linkedGroupDict->objectForKey(group));
     }
@@ -9581,7 +9599,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool isPlayer2Button(int);
     void lightningFlash(cocos2d::CCPoint to, cocos2d::ccColor3B color);
     void lightningFlash(cocos2d::CCPoint from, cocos2d::CCPoint to, cocos2d::ccColor3B color, float lineWidth, float duration, int displacement, bool flash, float opacity) = ios 0x1e5a24, win 0x240770, imac 0x110c50, m1 0xf089c;
-    void loadGroupParentsFromString(GameObject*, gd::string) = win 0x21f4b0, m1 0x108974, imac 0x12d9a0, ios 0x1f47a8;
+    void loadGroupParentsFromString(GameObject* object, gd::string groupList) = win 0x21f4b0, m1 0x108974, imac 0x12d9a0, ios 0x1f47a8;
     void loadLevelSettings() = ios 0x203d78, win 0x234770, imac 0x147920, m1 0x11d8c0;
     void loadStartPosObject() = ios 0x1feaec, win 0x230000, imac 0x13e9f0, m1 0x116658;
     void loadUpToPosition(float position, int order, int channel) = win 0x2301a0;
@@ -18493,7 +18511,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void playEndAnimationToPos(cocos2d::CCPoint) = ios 0x11f5e0, win 0x394aa0, imac 0xb6a00, m1 0xa664c;
     void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = ios 0x11f9e8, win 0x395430, imac 0xb6fb0, m1 0xa6b84;
     TodoReturn playReplay(gd::string);
-    void prepareCreateObjectsFromSetup(gd::string&) = win 0x395f80, m1 0x9dac0, imac 0xacca0, ios 0x119218;
+    void prepareCreateObjectsFromSetup(gd::string& levelString) = win 0x395f80, m1 0x9dac0, imac 0xacca0, ios 0x119218;
     void prepareMusic(bool) = ios 0x11d2f4, imac 0xb3ae0, win 0x3a3ae0, m1 0xa3b18;
     void processCreateObjectsFromSetup() = ios 0x119504, win 0x396230, m1 0x9de44, imac 0xad090;
     TodoReturn processLoadedMoveActions();
@@ -24240,7 +24258,7 @@ class StartPosObject : EffectGameObject {
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4995b0, imac 0x1ac830, m1 0x16d93c, ios 0x38046c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4995c0, imac 0x1ac840, m1 0x16d940, ios 0x380470;
 
-    void loadSettingsFromString(gd::string) = win 0x499510, imac 0x1ac7d0, m1 0x16d8dc, ios 0x380430;
+    void loadSettingsFromString(gd::string objectString) = win 0x499510, imac 0x1ac7d0, m1 0x16d8dc, ios 0x380430;
     void setSettings(LevelSettingsObject* settings) = win inline {
         if (settings == m_startSettings) return;
         CC_SAFE_RETAIN(settings);
