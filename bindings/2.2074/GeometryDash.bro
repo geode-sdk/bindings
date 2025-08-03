@@ -750,7 +750,7 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
     // virtual ~AudioEffectsLayer();
     AudioEffectsLayer() {}
 
-    static AudioEffectsLayer* create(gd::string audioString) = win inline, ios 0x3bc848 {
+    static AudioEffectsLayer* create(gd::string audioString) = win inline, imac 0x49c150, m1 0x407314, ios 0x3bc848 {
         auto ret = new AudioEffectsLayer();
         if (ret->init(audioString)) {
             ret->autorelease();
@@ -18175,7 +18175,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     double m_pauseDelta;
     float m_unk3900;
     bool m_glitterEnabled;
-    bool m_effectsDisabled;
+    bool m_bgEffectDisabled;
     bool m_unk3906;
     bool m_isPaused;
     bool m_disableGravityEffect;
