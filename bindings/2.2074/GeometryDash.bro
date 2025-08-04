@@ -20152,9 +20152,9 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onCopy(cocos2d::CCObject* sender) = win 0x3e3ed0;
     void onExtra(cocos2d::CCObject* sender) = win 0x3e40d0, m1 0x29a028, imac 0x3022c0, ios 0x4211c;
     void onExtra2(cocos2d::CCObject* sender) = win 0x3e4250;
-    void onNextFreeEditorLayer1(cocos2d::CCObject* sender);
-    void onNextFreeEditorLayer2(cocos2d::CCObject* sender);
-    void onNextFreeOrderChannel(cocos2d::CCObject* sender);
+    void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = win 0x3e57b0, ios 0x40ce4, imac 0x3006e0, m1 0x298608;
+    void onNextFreeEditorLayer2(cocos2d::CCObject* sender) = win 0x3e5820, ios 0x40d20, imac 0x300770, m1 0x298690;
+    void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x3e5cc0, ios 0x41888, imac 0x301650 m1 0x29944c;
     void onNextGroupID1(cocos2d::CCObject* sender) = ios 0x411d4, win 0x3e48d0, m1 0x298c40, imac 0x300d00;
     void onPaste(cocos2d::CCObject* sender) = win 0x3e3f30, ios 0x420a8, imac 0x3021d0, m1 0x299f48;
     void onRemoveFromGroup(cocos2d::CCObject* sender) = ios 0x42ac8, win 0x3e51e0, m1 0x29ae48, imac 0x3032f0;
