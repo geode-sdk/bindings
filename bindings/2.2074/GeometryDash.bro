@@ -1083,7 +1083,7 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
     void addPrefabMenuItem(SmartPrefabResult, int) = win 0x4420b0;
     void baseSetup() = win 0x442540;
     void createDots();
-    void createPrefab(gd::string, int) = win 0x442c60, m1 0x3dfc0 imac 0x43f80, ios 0x3ea55c;
+    void createPrefab(gd::string, int) = win 0x442c60, m1 0x3dfc0, imac 0x43f80, ios 0x3ea55c;
     void goToPage(int) = win 0x442af0;
     bool init(GJSmartTemplate*, SmartBrowseFilter) = win 0x441a40, m1 0x439948, imac 0x4d5f10;
     void onClick(cocos2d::CCObject* sender) = win 0x442ff0;
