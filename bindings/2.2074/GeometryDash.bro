@@ -1083,7 +1083,7 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
     void addPrefabMenuItem(SmartPrefabResult, int) = win 0x4420b0;
     void baseSetup() = win 0x442540;
     void createDots();
-    void createPrefab(gd::string, int) = win 0x442c60, m1 0x3dfc0, imac 0x43f80, ios 0x3ea55c;
+    void createPrefab(gd::string, int) = win 0x442c60;
     void goToPage(int) = win 0x442af0;
     bool init(GJSmartTemplate*, SmartBrowseFilter) = win 0x441a40, m1 0x439948, imac 0x4d5f10;
     void onClick(cocos2d::CCObject* sender) = win 0x442ff0;
@@ -4863,7 +4863,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void createNewKeyframeAnim() = win 0x1179f0;
     GameObject* createObject(int, cocos2d::CCPoint) = win 0x10e840, m1 0x35d7c, imac 0x3aa80, ios 0x3e4914;
     TodoReturn createOutlines(cocos2d::CCArray*);
-    void createPrefab(GJSmartTemplate*, gd::string, int) = win 0x1160f0;
+    void createPrefab(GJSmartTemplate*, gd::string, int) = win 0x1160f0, m1 0x3dfc0, imac 0x43f80, ios 0x3ea55c;
     cocos2d::CCArray* createRockBases(cocos2d::CCArray*) = win 0x12da00, m1 0x52bf0c, imac 0x5fd600;
     TodoReturn createRockEdges(cocos2d::CCArray*);
     void createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool) = win 0x115580;
