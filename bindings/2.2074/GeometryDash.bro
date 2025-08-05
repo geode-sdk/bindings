@@ -4863,7 +4863,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void createNewKeyframeAnim() = win 0x1179f0;
     GameObject* createObject(int, cocos2d::CCPoint) = win 0x10e840, m1 0x35d7c, imac 0x3aa80, ios 0x3e4914;
     TodoReturn createOutlines(cocos2d::CCArray*);
-    void createPrefab(GJSmartTemplate*, gd::string, int) = win 0x1160f0;
+    void createPrefab(GJSmartTemplate*, gd::string, int) = win 0x1160f0, m1 0x3dfc0, imac 0x43f80, ios 0x3ea55c;
     cocos2d::CCArray* createRockBases(cocos2d::CCArray*) = win 0x12da00, m1 0x52bf0c, imac 0x5fd600;
     TodoReturn createRockEdges(cocos2d::CCArray*);
     void createSmartObjectsFromTemplate(GJSmartTemplate*, cocos2d::CCArray*, bool, bool, bool, bool) = win 0x115580;
@@ -4930,8 +4930,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn editorLayerForArray(cocos2d::CCArray*, bool);
     TodoReturn enableButton(CreateMenuItem*);
     TodoReturn findAndSelectObject(int, bool);
-    void findSnapObject(cocos2d::CCArray*, float) = win 0x121790;
-    void findSnapObject(cocos2d::CCPoint, float) = win 0x121690;
+    void findSnapObject(cocos2d::CCArray*, float) = win 0x121790, m1 0x46738, imac 0x4eb50, ios 0x3f0448;
+    void findSnapObject(cocos2d::CCPoint, float) = win 0x121690, m1 0x46620, imac 0x4ea40, ios 0x3f0338;
     TodoReturn findTriggerTest();
     void flipObjectsX(cocos2d::CCArray*) = win 0x11f0f0, m1 0x3ddc0, imac 0x43d70, ios 0x3ea3d4;
     void flipObjectsY(cocos2d::CCArray*) = win 0x11f2d0, m1 0x3dc18, imac 0x43ba0, ios 0x3ea24c;
@@ -21859,19 +21859,19 @@ class SetupShakePopup : SetupTriggerPopup {
 class SetupSmartBlockLayer : FLAlertLayer, TextInputDelegate, SelectArtDelegate {
     // virtual ~SetupSmartBlockLayer();
 
-    static SetupSmartBlockLayer* create(SmartGameObject*, cocos2d::CCArray*) = win 0x43e530;
+    static SetupSmartBlockLayer* create(SmartGameObject*, cocos2d::CCArray*) = win 0x43e530, ios 0x72e9c;
 
     virtual void keyBackClicked() = win 0x4406d0, imac 0x4d46d0, m1 0x4383cc, ios 0x74300;
     virtual void show() = win 0x8ba30, m1 0x438368, imac 0x4d4640, ios 0x7429c;
     virtual void selectArtClosed(SelectArtLayer*) = win 0x440690, imac 0x4d46a0, m1 0x4383b4, ios 0x742e8;
 
     void determineStartValues();
-    bool init(SmartGameObject*, cocos2d::CCArray*) = win 0x43e670, m1 0x436e18, imac 0x4d2e00;
+    bool init(SmartGameObject*, cocos2d::CCArray*) = win 0x43e670, m1 0x436e18, imac 0x4d2e00, ios 0x72f8c;
     void onAllowFlipping(cocos2d::CCObject* sender) = win 0x43f750;
     void onAllowRotation(cocos2d::CCObject* sender) = win 0x43f6d0;
     void onClose(cocos2d::CCObject* sender) = win 0x440030;
     void onCreate(cocos2d::CCObject* sender) = win 0x4400f0;
-    void onCreateAll(cocos2d::CCObject* sender) = win 0x43fd80;
+    void onCreateAll(cocos2d::CCObject* sender) = win 0x43fd80, m1 0x437f50, imac 0x4d41d0, ios 0x73f48;
     void onCreateTemplate(cocos2d::CCObject* sender) = win 0x440520;
     void onDontDelete(cocos2d::CCObject* sender) = win 0x43f890;
     void onIgnoreCorners(cocos2d::CCObject* sender) = win 0x43f900;
