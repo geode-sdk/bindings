@@ -5337,8 +5337,12 @@ class EffectGameObject : EnhancedGameObject {
     bool init(char const*) = win 0x48d1a0, m1 0x4ec0c4, imac 0x5b37d0, ios 0x261f48;
     void playTriggerEffect() = win 0x48d2b0;
     void resetSpawnTrigger();
-    void setTargetID(int) = m1 0x157c40, imac 0x192130;
-    void setTargetID2(int) = m1 0x157c58, imac 0x192150;
+    void setTargetID(int id) = win inline, m1 0x157c40, imac 0x192130, ios 0x3756ec {
+        m_targetGroupID = std::clamp(id, 0, 9999);
+    }
+    void setTargetID2(int id) = win inline, m1 0x157c58, imac 0x192150, ios 0x375704 {
+        m_centerGroupID = std::clamp(id, 0, 9999);
+    }
     void triggerEffectFinished() = win 0x48d780;
     void updateInteractiveHover(float) = win 0x48fe30;
     void updateSpecialColor() = win 0x48fdb0;
@@ -15007,7 +15011,10 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void redoLastAction() = win inline {
         return this->handleAction(false, m_redoObjects);
     }
-    TodoReturn refreshSpecial(GameObject*);
+    void refreshSpecial(GameObject*) = win inline, m1 0xd01b8, imac 0xea7f0, ios 0x35de50 {
+        this->removeSpecial(p0);
+        this->addSpecial(p0);
+    }
     TodoReturn removeAllObjects();
     void removeAllObjectsOfType(int objectID) = win 0x2cdbb0, imac 0xe2db0, m1 0xc9e54, ios 0x35b3f0;
     void removeObject(GameObject*, bool) = win 0x2cda70, imac 0xe27e0, m1 0xc98e4, ios 0x35aedc;
