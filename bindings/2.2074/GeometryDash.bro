@@ -4116,12 +4116,12 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void onMore(cocos2d::CCObject* sender) = win 0xc9360, m1 0x532324, imac 0x604af0;
     void onPlayback(cocos2d::CCObject* sender) = win 0xc9fd0, imac 0x604850, m1 0x532088, ios 0xfdd58;
     void onSelect(cocos2d::CCObject* sender) = win 0xc9f70, imac 0x604760, m1 0x531f98, ios 0xfdc68;
-    void positionInfoObjects() = win 0xc88c0, m1 0x532fec, imac 0x6059f0;
-    void processNextMultiAsset() = win 0xcc240, imac 0x6094a0, m1 0x536698;
-    void showError(bool) = win 0xcc710, m1 0x53476c, imac 0x607280;
+    void positionInfoObjects() = win 0xc88c0, m1 0x532fec, imac 0x6059f0, ios 0xfe8c8;
+    void processNextMultiAsset() = win 0xcc240, imac 0x6094a0, m1 0x536698, ios 0x1014a8;
+    void showError(bool) = win 0xcc710, m1 0x53476c, imac 0x607280, ios 0xfff40;
     void startDownload() = win 0xc9eb0;
     TodoReturn startMonitorDownload();
-    void startMultiAssetDownload() = win 0xcc0a0, m1 0x534ad8, imac 0x607610;
+    void startMultiAssetDownload() = win 0xcc0a0, m1 0x534ad8, imac 0x607610, ios 0x1001cc;
     TodoReturn toggleUpdateButton(bool);
     void updateDownloadProgress(float) = win 0xca4a0, imac 0x607ab0, m1 0x534ebc;
     void updateError(GJSongError) = win 0xcc640, imac 0x608cf0, m1 0x535f6c;
