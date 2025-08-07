@@ -18925,9 +18925,9 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     virtual void onClosePopup(UploadActionPopup*) = win 0x3b21e0, imac 0x272800, m1 0x21d82c, ios 0x41e748;
 
     bool init(int) = win 0x3b1790, m1 0x21ccfc, imac 0x271d40, ios 0x41dfc8;
-    void onClose(cocos2d::CCObject* sender) = win 0x3b2260, m1 0x21d3e8, imac 0x272420;
-    void onRate(cocos2d::CCObject* sender) = win 0x3b1ee0, imac 0x272470, m1 0x21d444;
-    void selectRating(cocos2d::CCObject*) = win 0x3b1d60, m1 0x21d2dc, imac 0x272330;
+    void onClose(cocos2d::CCObject* sender) = win 0x3b2260, m1 0x21d3e8, imac 0x272420, ios 0x41e4b0;
+    void onRate(cocos2d::CCObject* sender) = win 0x3b1ee0, imac 0x272470, m1 0x21d444, ios 0x41e50c;
+    void selectRating(cocos2d::CCObject*) = win 0x3b1d60, m1 0x21d2dc, imac 0x272330, ios 0x41e3b4;
 
     bool m_uploadFinished;
     CCMenuItemSpriteExtra* m_submitButton;
