@@ -13565,7 +13565,7 @@ class GJUserScore : cocos2d::CCNode {
 
     virtual bool init() = win 0x16fb40, m1 0x4a2144, imac 0x549a60, ios 0xb32d8;
 
-    bool isCurrentUser() = win 0x16fb90, m1 0x4a21b8, imac 0x549af0;
+    bool isCurrentUser() = win 0x16fb90, m1 0x4a21b8, imac 0x549af0, ios 0xb3320;;
     TodoReturn mergeWithScore(GJUserScore*);
 
     gd::string m_userName;
