@@ -81,8 +81,10 @@ class cocos2d::CCEGLView {
 
 	static cocos2d::CCEGLView* sharedOpenGLView();
 
+	[[missing(android, mac, ios)]]
 	void toggleFullScreen(bool);
 
+	[[missing(android, mac, ios)]]
 	void pollEvents();
 	virtual void end();
 	virtual void isOpenGLReady();
@@ -649,3 +651,8 @@ class ObjectDecoder : cocos2d::CCNode {
 
 	// ObjectDecoderDelegate* m_delegate;
 }
+
+// [[link(win, android)]]
+// class pugi::xml_document {
+//	gd::string save_string(const char*, unsigned int, pugi::xml_encoding) const;
+// }
