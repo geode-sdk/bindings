@@ -1413,7 +1413,9 @@ class CCCircleWave : cocos2d::CCNode {
     void followObject(cocos2d::CCNode* newTarget, bool staticPosition) = win inline, imac 0x167ea0, m1 0x134f0c, ios 0x16f950 {
         if (m_target) m_target->release();
 
+        m_target = newTarget;
         newTarget->retain();
+
         this->unschedule(schedule_selector(CCCircleWave::updatePosition));
         if (!staticPosition) this->schedule(schedule_selector(CCCircleWave::updatePosition));
 
@@ -8103,7 +8105,7 @@ class GameObject : CCSpritePlus {
     OBB2D* m_orientedBox;
     bool m_shouldUseOuterOb;
     cocos2d::CCSprite* m_glowSprite;
-    bool m_unk2F8;
+    bool m_isRingPoweredOn;
     float m_width;
     float m_height;
     bool m_hasSpecialChild;
@@ -17482,7 +17484,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void modeDidChange();
     TodoReturn performSlideCheck();
     void placeStreakPoint() = ios 0x21e8b8, win 0x38a8f0, imac 0x3f18a0, m1 0x3725a0;
-    void playBumpEffect(int, GameObject*) = win 0x389cc0;
+    void playBumpEffect(int objectType, GameObject* player) = win 0x389cc0;
     TodoReturn playBurstEffect();
     void playCompleteEffect(bool, bool) = win 0x36e2b0, imac 0x2024c0, m1 0x1b7870, ios 0x60a60;
     void playDeathEffect() = ios 0x5b138, win 0x3691a0, imac 0x1fa350, m1 0x1af8ac;
@@ -17542,7 +17544,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn spawnDualCircle();
     TodoReturn spawnFromPlayer(PlayerObject*, bool);
     void spawnPortalCircle(cocos2d::ccColor3B color, float startRadius) = win 0x381930, imac 0x401eb0, m1 0x3801c0, ios 0x2281c4;
-    TodoReturn spawnScaleCircle() = imac 0x401fe0;
+    void spawnScaleCircle() = win 0x381b40, imac 0x401fe0;
     TodoReturn specialGroundHit();
     TodoReturn speedDown();
     TodoReturn speedUp();
@@ -18668,7 +18670,7 @@ class RingObject : EffectGameObject {
     virtual void powerOnObject(int) = win 0x489630, m1 0x165b3c, imac 0x1a33b0, ios 0x37b478;
 
     bool init(char const*);
-    void spawnCircle() = win 0x4896d0;
+    void spawnCircle() = win 0x4896d0, m1 0x165b94;
 
     bool m_claimTouch;
     // property 504
