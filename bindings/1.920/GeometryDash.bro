@@ -5836,7 +5836,7 @@ class PauseLayer : CCBlockLayer {
 	// virtual ~PauseLayer();
 	// PauseLayer();
 
-	static PauseLayer* create(bool);
+	static PauseLayer* create(bool) = win 0xd5e90;
 
 	void createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0xd6eb0;
 	TodoReturn goEdit();
@@ -5844,12 +5844,12 @@ class PauseLayer : CCBlockLayer {
 	TodoReturn musicSliderChanged(cocos2d::CCObject*);
 	void onAutoCheckpoints(cocos2d::CCObject* sender);
 	void onAutoRetry(cocos2d::CCObject* sender);
-	void onEdit(cocos2d::CCObject* sender);
+	void onEdit(cocos2d::CCObject* sender) = win 0xd7bf0;
 	void onHelp(cocos2d::CCObject* sender);
-	void onNormalMode(cocos2d::CCObject* sender);
-	void onPracticeMode(cocos2d::CCObject* sender);
+	void onNormalMode(cocos2d::CCObject* sender) = win 0xd79e0;
+	void onPracticeMode(cocos2d::CCObject* sender) = win 0xd78e0;
 	void onProgressBar(cocos2d::CCObject* sender) = win 0xd8010;
-	void onQuit(cocos2d::CCObject* sender);
+	void onQuit(cocos2d::CCObject* sender) = win 0xd7f00;
 	void onRecordReplays(cocos2d::CCObject* sender);
 	void onRestart(cocos2d::CCObject* sender) = win 0xd7b20;
 	void onResume(cocos2d::CCObject* sender) = win 0xd7a80;
