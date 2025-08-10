@@ -5363,7 +5363,7 @@ class EffectGameObject : EnhancedGameObject {
 
     int getTargetColorIndex();
     bool init(char const*) = win 0x48d1a0, m1 0x4ec0c4, imac 0x5b37d0, ios 0x261f48;
-    void playTriggerEffect() = win 0x48d2b0;
+    void playTriggerEffect() = win 0x48d2b0, imac 0x1a8220, m1 0x16a198, ios 0x37df38;
     void resetSpawnTrigger();
     void setTargetID(int id) = win inline, m1 0x157c40, imac 0x192130, ios 0x3756ec {
         m_targetGroupID = std::clamp(id, 0, 9999);
