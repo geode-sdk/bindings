@@ -18605,7 +18605,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateAttempts() = win 0x3a2c70, imac 0xbeeb0, m1 0xad858, ios 0x1258d4;
     void updateEffectPositions() = m1 0xaa9fc, imac 0xbb690;
     void updateInfoLabel() = ios 0x11b150, win 0x39bb90, imac 0xafdc0, m1 0xa0770;
-    void updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B) = win 0x3994e0, imac 0xb8a10, m1 0xa8264, ios 0x120b50;
+    void updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&) = win 0x3994e0, imac 0xb8a10, m1 0xa8264, ios 0x120b50;
     void updateProgressbar() = ios 0x11bb80, win 0x39b4f0, m1 0xa2124, imac 0xb1c20;
     void updateScreenRotation(int, bool, bool, float, int, float, int, int);
     void updateTestModeLabel() = ios 0x11d4e8, win 0x390b40, imac 0xb3d10, m1 0xa3d38;
