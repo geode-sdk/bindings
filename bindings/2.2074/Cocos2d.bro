@@ -4520,6 +4520,10 @@ class cocos2d::CCString : cocos2d::CCObject {
     bool boolValue() const = imac 0x7954b0, m1 0x6a8838, ios 0x267e58;
     int intValue() const = imac 0x7953c0, m1 0x6a874c, ios 0x267da8;
     float floatValue() const = imac 0x795440, m1 0x6a87bc, ios 0x267dec;
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x6a88e4, imac 0x795530, ios 0x267ec4;
+    virtual bool isEqual(cocos2d::CCObject const*) = m1 0x6a89f0, imac 0x795580, ios 0x267f1c;
+    virtual void acceptVisitor(cocos2d::CCDataVisitor&) = m1 0x6a8df0, imac 0x7959f0, ios 0x2681b0;
 }
 
 [[link(win, android)]]
