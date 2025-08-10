@@ -748,7 +748,16 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
 [[link(android)]]
 class AudioEffectsLayer : cocos2d::CCLayerColor {
     // virtual ~AudioEffectsLayer();
-    AudioEffectsLayer() {}
+    AudioEffectsLayer() {
+        m_batchNode = nullptr;
+        m_unk1bc = nullptr;
+        m_unk1c0 = nullptr;
+        m_timeElapsed = 0;
+        m_audioPulseMod = 0;
+        m_goingDown = false;
+        m_audioScale = 0;
+        m_unk1d4 = false;
+    }
 
     static AudioEffectsLayer* create(gd::string audioString) = win inline, imac 0x49c150, m1 0x407314, ios 0x3bc848 {
         auto ret = new AudioEffectsLayer();
@@ -18044,7 +18053,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void setYVelocity(double velocity, int) = win 0x372fa0, m1 0x36c5dc, imac 0x3ea920, ios 0x219b38;
     TodoReturn spawnCircle();
     TodoReturn spawnCircle2();
-    TodoReturn spawnDualCircle();
+    void spawnDualCircle() = win 0x381d40;
     TodoReturn spawnFromPlayer(PlayerObject*, bool);
     void spawnPortalCircle(cocos2d::ccColor3B color, float startRadius) = win 0x381930, imac 0x401eb0, m1 0x3801c0, ios 0x2281c4;
     void spawnScaleCircle() = win 0x381b40, m1 0x3802e0, imac 0x401fe0;
