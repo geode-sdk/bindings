@@ -14245,6 +14245,25 @@ class ItemInfoPopup : FLAlertLayer {
 [[link(android)]]
 class ItemTriggerGameObject : EffectGameObject {
     // virtual ~ItemTriggerGameObject();
+    inline ItemTriggerGameObject() {
+        m_item1Mode = 0;
+        m_item2Mode = 0;
+        m_targetItemMode = 1;
+        m_mod1 = 1.0f;
+        m_mod2 = 1.0f;
+        m_resultType1 = 0;
+        m_resultType2 = 1;
+        m_resultType3 = 3;
+        m_tolerance = 0.0f;
+        m_roundType1 = 0;
+        m_roundType2 = 0;
+        m_signType1 = 0;
+        m_signType2 = 0;
+        m_persistent = false;
+        m_targetAll = false;
+        m_reset = false;
+        m_timer = false;
+    }
 
     static ItemTriggerGameObject* create(char const*);
 
@@ -23417,6 +23436,21 @@ class SimpleObject : cocos2d::CCObject {
 [[link(android)]]
 class SimplePlayer : cocos2d::CCSprite {
     // virtual ~SimplePlayer();
+
+    inline SimplePlayer() {
+        m_firstLayer = nullptr;
+        m_secondLayer = nullptr;
+        m_birdDome = nullptr;
+        m_outlineSprite = nullptr;
+        m_detailSprite = nullptr;
+        m_robotSprite = nullptr;
+        m_spiderSprite = nullptr;
+        m_unknown = 0;
+        m_hasGlowOutline = false;
+        m_iconRequestID = 0;
+        m_hasCustomGlowColor = false;
+        m_iconLoaded = false;
+    }
 
     static SimplePlayer* create(int) = ios 0x303450, win 0x271ac0, imac 0x357600, m1 0x2ead40;
 
