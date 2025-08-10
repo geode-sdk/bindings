@@ -17990,7 +17990,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void modeDidChange();
     TodoReturn performSlideCheck();
     void placeStreakPoint() = ios 0x21e8b8, win 0x38a8f0, imac 0x3f18a0, m1 0x3725a0;
-    void playBumpEffect(int objectType, GameObject* player) = win 0x389cc0;
+    void playBumpEffect(int objectType, GameObject* player) = win 0x389cc0, imac 0x409610, m1 0x387014, ios 0x22d428;
     TodoReturn playBurstEffect();
     void playCompleteEffect(bool, bool) = win 0x36e2b0, imac 0x2024c0, m1 0x1b7870, ios 0x60a60;
     void playDeathEffect() = ios 0x5b138, win 0x3691a0, imac 0x1fa350, m1 0x1af8ac;
@@ -18053,10 +18053,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void setYVelocity(double velocity, int) = win 0x372fa0, m1 0x36c5dc, imac 0x3ea920, ios 0x219b38;
     TodoReturn spawnCircle();
     TodoReturn spawnCircle2();
-    void spawnDualCircle() = win 0x381d40;
+    void spawnDualCircle() = win 0x381d40, imac 0x402130, m1 0x380420, ios 0x228414;
     TodoReturn spawnFromPlayer(PlayerObject*, bool);
     void spawnPortalCircle(cocos2d::ccColor3B color, float startRadius) = win 0x381930, imac 0x401eb0, m1 0x3801c0, ios 0x2281c4;
-    void spawnScaleCircle() = win 0x381b40, m1 0x3802e0, imac 0x401fe0;
+    void spawnScaleCircle() = win 0x381b40, m1 0x3802e0, imac 0x401fe0, ios 0x2282e0;
     TodoReturn specialGroundHit();
     TodoReturn speedDown();
     TodoReturn speedUp();
