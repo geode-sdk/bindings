@@ -15758,7 +15758,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
     void onCol(cocos2d::CCObject* sender);
     void onDisable(cocos2d::CCObject* sender);
     void onFGArt(cocos2d::CCObject* sender) = win 0x30d130, m1 0x208830, imac 0x25c2c0;
-    void onGameplayMode(cocos2d::CCObject* sender) = win 0x30c3a0, imac 0x25c010, m1 0x2085a4;
+    void onGameplayMode(cocos2d::CCObject* sender) = win 0x30c3a0, imac 0x25c010, m1 0x2085a4, ios 0x17eb20;
     void onGArt(cocos2d::CCObject* sender) = win 0x30d0b0, imac 0x25c1d0, m1 0x208768;
     void onLiveEdit(cocos2d::CCObject* sender) = win 0x30cd90, imac 0x25bfd0, m1 0x208560;
     void onMode(cocos2d::CCObject* sender) = win 0x30c570, imac 0x25c710, m1 0x208c90;
@@ -15772,7 +15772,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
     void showPicker(ColorAction*) = m1 0x2094f0, imac 0x25d090;
     void updateColorSprite(ColorChannelSprite*) = win 0x30cf00, imac 0x25d100, m1 0x209530;
     void updateColorSprites() = win 0x30ce90, imac 0x25bc60, m1 0x20824c;
-    void updateGameplayModeButtons() = win 0x30c3e0, imac 0x25c0e0, m1 0x208678;
+    void updateGameplayModeButtons() = win 0x30c3e0, imac 0x25c0e0, m1 0x208678, ios 0x17eb60;
 
     SongSelectNode* m_songSelectNode;
     Speed m_speed;
