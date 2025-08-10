@@ -5320,7 +5320,7 @@ class LoadingLayer : cocos2d::CCLayer {
 	const char* getLoadingString() = win 0xabef0;
 	bool init(bool) = win 0xab150;
 	void loadAssets() = win 0xab9a0;
-	void loadingFinished() = win 0xad850;
+	void loadingFinished() = win 0xab850;
 	void updateProgress(int);
 
 	bool m_unknown;
