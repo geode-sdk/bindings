@@ -358,7 +358,7 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
 	void triggerEffect(float) = win 0x29990;
 
 	virtual void draw();
-	virtual void updateTweenAction(float, char const*);
+	virtual void updateTweenAction(float, char const*) = win 0x29ac0;
 	virtual float getAudioScale() const;
 	virtual bool getRainActive() const;
 	virtual void setRainActive(bool);
@@ -777,7 +777,7 @@ class CCCircleWave : cocos2d::CCNode {
 
 	virtual cocos2d::CCPoint const& getPosition();
 	virtual void removeMeAndCleanup();
-	virtual void draw();
+	virtual void draw() = win 0xb4b0;
 	virtual void updateTweenAction(float, char const*);
 	virtual float getWidth() const;
 	virtual void setWidth(float);
@@ -6807,14 +6807,14 @@ class RetryLevelLayer {
 }
 
 [[link(android)]]
-class RingObject {
+class RingObject : GameObject {
 	// virtual ~RingObject();
 
 	static RingObject* create(char const*);
 
 	bool init(char const*);
-	TodoReturn spawnCircle();
-	TodoReturn updateColors(cocos2d::ccColor3B);
+	void spawnCircle() = win 0xf6d40;
+	void updateColors(cocos2d::ccColor3B);
 
 	virtual void setScale(float);
 	virtual void setPosition(cocos2d::CCPoint const&);
