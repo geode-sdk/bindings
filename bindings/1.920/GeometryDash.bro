@@ -6821,9 +6821,9 @@ class RingObject : GameObject {
 	virtual void setVisible(bool);
 	virtual void resetObject();
 	virtual void setRScale(float);
-	virtual TodoReturn triggerActivated();
-	virtual TodoReturn powerOnObject();
-	virtual TodoReturn powerOffObject();
+	virtual bool triggerActivated();
+	virtual void powerOnObject();
+	virtual void powerOffObject();
 }
 
 [[link(android)]]
