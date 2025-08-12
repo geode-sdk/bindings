@@ -4224,6 +4224,18 @@ class cocos2d::CCBlink : cocos2d::CCActionInterval {
 }
 
 [[link(win, android)]]
+class cocos2d::CCHide : cocos2d::CCActionInstant {
+    static cocos2d::CCHide* create() = m1 0x6a9994, imac 0x796870, ios 0x1b0f4c;
+
+    // CCHide(cocos2d::CCHide const&);
+    // CCHide();
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x6a9b1c, imac 0x7969e0, ios 0x1b1064;
+    virtual void update(float) = m1 0x6a9ab0, imac 0x796970, ios 0x1b104c;
+    virtual cocos2d::CCFiniteTimeAction* reverse() = m1 0x6a9ac4, imac 0x796990, ios 0x1b1060;
+}
+
+[[link(win, android)]]
 class cocos2d::CCCallFunc : cocos2d::CCActionInstant {
     static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc) = imac 0x7972a0, m1 0x6aa418, ios 0x1b110c;
 
