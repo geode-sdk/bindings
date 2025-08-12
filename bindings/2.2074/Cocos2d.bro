@@ -4236,6 +4236,18 @@ class cocos2d::CCHide : cocos2d::CCActionInstant {
 }
 
 [[link(win, android)]]
+class cocos2d::CCShow : cocos2d::CCActionInstant {
+    static cocos2d::CCShow* create() = m1 0x6a98d0, imac 0x7967b0, ios 0x1b0edc;
+
+    // CCShow(cocos2d::CCShow const&);
+    // CCShow();
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x6a99ec, imac 0x7968c0, ios 0x1b0fa4;
+    virtual void update(float) = m1 0x6a9928, imac 0x796800, ios 0x1b0f34;
+    virtual cocos2d::CCFiniteTimeAction* reverse() = m1 0x6a993c, imac 0x796820, ios 0x1b0f48;
+}
+
+[[link(win, android)]]
 class cocos2d::CCCallFunc : cocos2d::CCActionInstant {
     static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc) = imac 0x7972a0, m1 0x6aa418, ios 0x1b110c;
 
