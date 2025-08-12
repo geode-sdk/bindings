@@ -23589,9 +23589,27 @@ class Slider : cocos2d::CCLayer {
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71d50, m1 0x28aa78, imac 0x2f0c00, ios 0x2ef65c;
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x71d30, m1 0x28aa58, imac 0x2f0bc0, ios 0x2ef63c;
 
-    void disableSlider() = ios 0x2ef448;
+    void disableSlider() = win inline, m1 0x28a66c, imac 0x2f06f0, ios 0x2ef448 {
+        if (!m_enabled) return;
+        m_enabled = false;
+        m_touchLogic->setTouchEnabled(false);
+        m_sliderBar->setColor({ 150, 150, 150 });
+        m_groove->setColor({ 150, 150, 150 });
+        if (auto normalImage = static_cast<CCSprite*>(m_touchLogic->m_thumb->getNormalImage())) {
+            normalImage->setColor({ 150, 150, 150 });
+        }
+    }
     void disableTouch();
-    void enableSlider() = ios 0x2ef530;
+    void enableSlider() = win inline, m1 0x28a8c0, imac 0x2f0990, ios 0x2ef530 {
+        if (m_enabled) return;
+        m_enabled = true;
+        m_touchLogic->setTouchEnabled(true);
+        m_sliderBar->setColor({ 255, 255, 255 });
+        m_groove->setColor({ 255, 255, 255 });
+        if (auto normalImage = static_cast<CCSprite*>(m_touchLogic->m_thumb->getNormalImage())) {
+            normalImage->setColor({ 255, 255, 255 });
+        }
+    }
     bool getLiveDragging() {
         return m_touchLogic->m_activateThumb;
     }
@@ -23646,7 +23664,7 @@ class Slider : cocos2d::CCLayer {
     float m_width;
     float m_height;
     SliderDelegate* m_delegate;
-    void* m_unknown2;
+    bool m_enabled;
 }
 
 [[link(android)]]
