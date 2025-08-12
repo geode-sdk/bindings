@@ -4387,7 +4387,7 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     void drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::_ccColor4F const&) = imac 0x5fa890, m1 0x5298c0, ios 0x462c0;
     void ensureCapacity(unsigned int) = imac 0x5f95c0, m1 0x528728, ios 0x45b14;
     void listenBackToForeground(cocos2d::CCObject*) = m1 0x52a110, imac 0x5fb280;
-    void render() = imac 0x5f9770, m1 0x5288b4;
+    void render() = imac 0x5f9770, m1 0x5288b4, ios 0x45c70;
 
     virtual bool init() = imac 0x5f9610, m1 0x52877c, ios 0x45b68;
     virtual void draw() = m1 0x52893c, imac 0x5f9800, ios 0x45cf8;
