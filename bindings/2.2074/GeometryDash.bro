@@ -23595,7 +23595,7 @@ class Slider : cocos2d::CCLayer {
         m_touchLogic->setTouchEnabled(false);
         m_sliderBar->setColor({ 150, 150, 150 });
         m_groove->setColor({ 150, 150, 150 });
-        if (auto normalImage = static_cast<CCSprite*>(m_touchLogic->m_thumb->getNormalImage())) {
+        if (auto normalImage = static_cast<cocos2d::CCSprite*>(m_touchLogic->m_thumb->getNormalImage())) {
             normalImage->setColor({ 150, 150, 150 });
         }
     }
@@ -23606,7 +23606,7 @@ class Slider : cocos2d::CCLayer {
         m_touchLogic->setTouchEnabled(true);
         m_sliderBar->setColor({ 255, 255, 255 });
         m_groove->setColor({ 255, 255, 255 });
-        if (auto normalImage = static_cast<CCSprite*>(m_touchLogic->m_thumb->getNormalImage())) {
+        if (auto normalImage = static_cast<cocos2d::CCSprite*>(m_touchLogic->m_thumb->getNormalImage())) {
             normalImage->setColor({ 255, 255, 255 });
         }
     }
