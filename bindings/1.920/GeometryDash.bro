@@ -6306,7 +6306,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn claimParticle(gd::string);
 	TodoReturn clearPickedUpItems();
 	TodoReturn colorObject(int, cocos2d::ccColor3B);
-	CheckpointObject* createCheckpoint();
+	CheckpointObject* createCheckpoint() = win 0xf1010;
 	void createObjectsFromSetup(gd::string) = win 0xe81c0;
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
 	void delayedResetLevel() = win 0xf1f10;
