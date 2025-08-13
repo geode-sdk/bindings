@@ -5149,7 +5149,7 @@ class cocos2d::extension::CCScale9Sprite : cocos2d::CCNodeRGBA {
     CCScale9Sprite() = m1 0x3642fc, imac 0x3e1e50, ios 0x2151f4;
     virtual ~CCScale9Sprite() = m1 0x3643b0, imac 0x3e1f40, ios 0x215354;
 
-    void updatePositions() = m1 0x3654ac, imac 0x3e31b0, ios 0x21628c;
+    // void updatePositions() = m1 0x3654ac, imac 0x3e31b0, ios 0x21628c;
 
     virtual bool init() = m1 0x364478, imac 0x3e2060, ios 0x21536c;
     virtual void setContentSize(const cocos2d::CCSize& size) = m1 0x365484, imac 0x3e3190, ios 0x216264;
