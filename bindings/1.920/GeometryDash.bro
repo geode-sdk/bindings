@@ -6048,8 +6048,8 @@ class PlayerObject : GameObject {
 	void resetPlayerIcon() = win 0xdf1b0;
 	TodoReturn resetStreak();
 	TodoReturn ringJump();
-	TodoReturn runBallRotation(float);
-	TodoReturn runBallRotation2();
+	void runBallRotation(float) = win 0xdac10;
+	void runBallRotation2() = win 0xdad10;
 	TodoReturn runNormalRotation();
 	TodoReturn runRotateAction(bool);
 	void saveToCheckpoint(PlayerCheckpoint*);
@@ -6067,7 +6067,7 @@ class PlayerObject : GameObject {
 	TodoReturn speedDown();
 	TodoReturn speedUp();
 	TodoReturn stopBurstEffect();
-	TodoReturn stopRotation(bool);
+	void stopRotation(bool) = win 0xdaa10;
 	TodoReturn storeCollision(bool, int);
 	TodoReturn switchedToMode(GameObjectType);
 	void toggleBirdMode(bool) = win 0xdec10;
