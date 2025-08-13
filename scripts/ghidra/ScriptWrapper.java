@@ -544,15 +544,18 @@ public class ScriptWrapper {
             }
             bromaRetType = new ReturnParameterImpl(type, wrapped.getCurrentProgram());
         }
+        // Get class name without namespaces
+        String className = fun.parent != null ? fun.parent.name.value : "";
+        if (className.contains("::")) className = className.substring(className.lastIndexOf("::") + 2);
         // Constructor return type
-        if (fun.constructor.isPresent()) {
+        if (fun.constructor.isPresent() || fun.getName().equals(className)) {
             bromaRetType = new ReturnParameterImpl(
                 addOrGetType(Broma.Type.ptr(fun.parent.broma, fun.parent.name.value), platform),
                 wrapped.getCurrentProgram()
             );
         }
         // Destructor return type
-        if (fun.destructor.isPresent()) {
+        if (fun.destructor.isPresent() || fun.getName().equals("~" + className)) {
             bromaRetType = new ReturnParameterImpl(VoidDataType.dataType, wrapped.getCurrentProgram());
         }
         // Add `this` arg (Intel macOS / 32-bit Android)
