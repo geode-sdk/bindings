@@ -924,7 +924,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     void addPage(cocos2d::CCLayer*) = m1 0x322070, imac 0x3937c0;
     void cancelAndStoleTouch(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x393ab0, m1 0x322340;
     void claimTouch(cocos2d::CCTouch*);
-    cocos2d::CCLayer* getPage(int) = win inline, imac 0x392d00, m1 0x3216c0 {
+    cocos2d::CCLayer* getPage(int) = win inline, imac 0x392d00, m1 0x3216c0, ios 0x12ef14 {
         auto index = m_page;
         if (m_dynamic) index = index % m_pages->count();
         return static_cast<cocos2d::CCLayer*>(m_pages->objectAtIndex(index));
