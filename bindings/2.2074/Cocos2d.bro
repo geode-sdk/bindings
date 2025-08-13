@@ -5439,7 +5439,7 @@ class cocos2d::CCPoolManager {
 	void pop() = m1 0x367288, imac 0x3e4f70, ios 0x1b43d0; // should be
 	static void purgePoolManager();
 	void push();
-	void removeObject(cocos2d::CCObject*);
+	void removeObject(cocos2d::CCObject*) = m1 0x36733c, imac 0x3e5020, ios 0x1b4438;
 	static cocos2d::CCPoolManager* sharedPoolManager() = m1 0x366e98, imac 0x3e4b70, ios 0x1b41f4;
 }
 
