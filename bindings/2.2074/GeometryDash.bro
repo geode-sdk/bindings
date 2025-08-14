@@ -11331,14 +11331,14 @@ class GJGradientLayer : cocos2d::CCLayerGradient {
 class GJGroundLayer : cocos2d::CCLayer {
     // virtual ~GJGroundLayer();
 
-    static GJGroundLayer* create(int, int) = ios 0x2fddc, win 0x276870, m1 0x50636c, imac 0x5d2760;
+    static GJGroundLayer* create(int groundID, int lineType) = ios 0x2fddc, win 0x276870, m1 0x50636c, imac 0x5d2760;
 
     virtual void draw() = m1 0x50745c, imac 0x5d38a0, ios 0x30c08 {}
     virtual void showGround() = win 0x2774c0, m1 0x507250, imac 0x5d36c0, ios 0x30aa0;
     virtual void fadeInGround(float) = win 0x2774d0, imac 0x5d36d0, m1 0x50725c, ios 0x30aac;
     virtual void fadeOutGround(float) = win 0x2776c0, m1 0x507430, imac 0x5d3870, ios 0x30c00;
 
-    void createLine(int) = win 0x277120, m1 0x506958, imac 0x5d2d50;
+    void createLine(int lineType) = win 0x277120, m1 0x506958, imac 0x5d2d50;
     void deactivateGround() = win inline, m1 0x507438, imac 0x5d3880 {
         this->stopAllActions();
         m_showGround = false;
@@ -11351,7 +11351,7 @@ class GJGroundLayer : cocos2d::CCLayer {
         if (auto leftShadow = this->getChildByTag(0)) leftShadow->setVisible(false);
         if (auto rightShadow = this->getChildByTag(1)) rightShadow->setVisible(false);
     }
-    bool init(int, int) = ios 0x2fe60, win 0x2768f0, imac 0x5d2870, m1 0x506450;
+    bool init(int groundID, int lineType) = ios 0x2fe60, win 0x2768f0, imac 0x5d2870, m1 0x506450;
     void loadGroundSprites(int, bool) = win 0x276e60, m1 0x506af4, imac 0x5d2f10;
     void positionGround(float y) = win inline, m1 0x507460, imac 0x5d38b0 {
         this->setPosition(0.f, y);
