@@ -19378,7 +19378,7 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
         m_messageThreads = nullptr;
         m_threadTag = -1;
     }
-    ~SecretLayer() {
+    ~SecretLayer() = win inline, m1 0x515254, imac 0x5e2c60, ios 0x3b5700 {
         CC_SAFE_RELEASE(m_messageThreads);
     }
 
@@ -19447,7 +19447,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
         m_secretLevelLabels = nullptr;
         m_secretDoorButton = nullptr;
     }
-    ~SecretLayer2() {
+    ~SecretLayer2() = win inline, m1 0x3f700c, imac 0x489bc0, ios 0x3097f4 {
         CC_SAFE_RELEASE(m_messageThreads);
         CC_SAFE_RELEASE(m_secretLevelLabels);
     }
@@ -19514,7 +19514,7 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
         m_demonBody = nullptr;
         m_secretChest = nullptr;
     }
-    ~SecretLayer3() {
+    ~SecretLayer3() = win inline, m1 0x3fcf18, imac 0x4901b0, ios 0x30dd18 {
         CC_SAFE_RELEASE(m_locksArray);
     }
 
@@ -19566,7 +19566,7 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
-    SecretLayer4() {
+    SecretLayer4() = ios 0x355e30 {
         m_threadTag = -1;
         m_basicMessageIndex = -1;
         m_selectedThread = 0;
@@ -19578,7 +19578,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
         m_messageThreads = nullptr;
         m_exiting = false;
     }
-    ~SecretLayer4() {
+    ~SecretLayer4() = win inline, m1 0x32a9e0, imac 0x39d6a0, ios 0x353648 {
         CC_SAFE_RELEASE(m_messageThreads);
     }
 
@@ -19638,7 +19638,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 
 [[link(android)]]
 class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate, GJOnlineRewardDelegate {
-    SecretLayer5() {
+    SecretLayer5() = ios 0x7aeac {
         m_threadTag = -1;
         m_basicMessageIndex = -1;
         m_selectedThread = 0;
@@ -19654,7 +19654,7 @@ class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
         m_uiLocked = false;
         m_chatIndex = -1;
     }
-    ~SecretLayer5() {
+    ~SecretLayer5() = win inline, m1 0x3d6d00, imac 0x467070, ios 0x77c88 {
         CC_SAFE_RELEASE(m_torchFires);
         auto glm = GameLevelManager::sharedState();
         if (glm->m_GJOnlineRewardDelegate == this) glm->m_GJOnlineRewardDelegate = nullptr;
@@ -19800,7 +19800,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
         m_rewardType = GJRewardType::Unknown;
         m_lockedDialogIndex = 0;
     }
-    ~SecretRewardsLayer() {
+    ~SecretRewardsLayer() = win inline, m1 0x5450f4, imac 0x619250, ios 0x2e7a70 {
         CC_SAFE_RELEASE(m_chestCounters);
     }
 
@@ -19947,7 +19947,7 @@ class SelectFontLayer : FLAlertLayer {
         m_editorLayer = nullptr;
         m_fontLabel = nullptr;
     }
-    ~SelectFontLayer() {
+    ~SelectFontLayer() = win inline, m1 0x230fc8, imac 0x287b90, ios 0x2d21e0 {
         CCNode::removeAllChildrenWithCleanup(true);
     }
 
@@ -19985,7 +19985,7 @@ class SelectListIconLayer : FLAlertLayer {
         m_currentDifficulty = 0;
         m_delegate = nullptr;
     }
-    ~SelectListIconLayer() {
+    ~SelectListIconLayer() = win inline, m1 0x2e21f8, imac 0x34d990, ios 0x24691c {
         CC_SAFE_RELEASE(m_difficulties);
     }
 
@@ -20283,7 +20283,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
         m_default = 0;
         m_delegate = nullptr;
     }
-    ~SetIDPopup() = win 0x293b10, m1 0x23fd6c, imac 0x297e20, ios 0x2dd760;
+    ~SetIDPopup() = win 0x293b10, m1 0x23fcfc, imac 0x297d70, ios 0x2dd760;
 
     static SetIDPopup* create(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x293bb0, m1 0x23ff3c, imac 0x2980c0, ios 0x2dd808;
 
@@ -21019,13 +21019,13 @@ class SetupGameplayOffsetPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupGradientPopup : SetupTriggerPopup {
-    SetupGradientPopup() {
+    SetupGradientPopup() = ios 0x343274 {
         m_blendingMode = 0;
         m_layerButtons = nullptr;
         m_blendingLayer = 0;
         m_gradientLabels = nullptr;
     }
-    ~SetupGradientPopup() {
+    ~SetupGradientPopup() = win inline, m1 0x50cf3c, imac 0x5d99e0, ios 0x341e38 {
         CC_SAFE_RELEASE(m_layerButtons);
     }
 
@@ -21353,7 +21353,7 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
         m_effectObject = false;
         m_singlePlayerTouch = false;
     }
-    ~SetupObjectOptionsPopup() {
+    ~SetupObjectOptionsPopup() = win inline, m1 0x29b178, imac 0x303650, ios 0x42dbc {
         CC_SAFE_RELEASE(m_gameObject);
         CC_SAFE_RELEASE(m_gameObjects);
     }
@@ -22419,7 +22419,7 @@ class SetupZoomTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, SetTextPopupDelegate, SelectSFXSortDelegate {
-    SFXBrowser() {
+    SFXBrowser() = ios 0x16e7fc {
         m_searchResult = nullptr;
         m_sfxObjects = nullptr;
         m_listLayer = nullptr;
@@ -22442,7 +22442,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
         m_delegate = nullptr;
         m_autoUpdating = false;
     }
-    ~SFXBrowser() {
+    ~SFXBrowser() = win inline, m1 0x3a5494, imac 0x42a350, ios 0x16bde4 {
         MusicDownloadManager::sharedState()->removeMusicDownloadDelegate(this);
         CC_SAFE_RELEASE(m_sfxObjects);
         CC_SAFE_RELEASE(m_searchResult);
@@ -22519,7 +22519,7 @@ class SFXFolderObject : SFXInfoObject {
     SFXFolderObject() {
         m_sfxObjects = nullptr;
     }
-    ~SFXFolderObject() {
+    ~SFXFolderObject() = win inline, m1 0x4d3a34, imac 0x581030, ios 0x15f994 {
         CC_SAFE_RELEASE(m_sfxObjects);
     }
 
@@ -23275,7 +23275,7 @@ class ShardsPage : FLAlertLayer {
         m_tierSprite = nullptr;
         m_page = -1;
     }
-    ~ShardsPage() {
+    ~ShardsPage() = win inline, m1 0x41aa34, imac 0x4b23b0, ios 0x39a884 {
         CC_SAFE_RELEASE(m_pages);
     }
 
@@ -23373,7 +23373,7 @@ class ShareLevelLayer : FLAlertLayer {
         m_starsRequested = 0;
         m_starButtons = nullptr;
     }
-    ~ShareLevelLayer() {
+    ~ShareLevelLayer() = win inline, m1 0x219160, imac 0x26ddf0, ios 0x273fac {
         CC_SAFE_RELEASE(m_level);
         CC_SAFE_RELEASE(m_starButtons);
     }
@@ -23447,7 +23447,7 @@ class ShareListLayer : FLAlertLayer {
         m_friendsOnlyToggler = nullptr;
         m_friendsOnlyLabel = nullptr;
     }
-    ~ShareListLayer() {
+    ~ShareListLayer() = win inline, m1 0x2e2b7c, imac 0x34e380, ios 0x246fbc {
         CC_SAFE_RELEASE(m_list);
     }
 
@@ -24201,7 +24201,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
         m_soundDict = nullptr;
         m_frameDict = nullptr;
     }
-    ~SpriteAnimationManager() {
+    ~SpriteAnimationManager() = win inline, m1 0x62d2f4, imac 0x70e370, ios 0x3249bc {
         CC_SAFE_RELEASE(m_frameDict);
         CC_SAFE_RELEASE(m_priorityDict);
         CC_SAFE_RELEASE(m_typeDict);
@@ -24284,14 +24284,14 @@ class SpriteAnimationManager : cocos2d::CCNode {
 
 [[link(android)]]
 class SpriteDescription : cocos2d::CCObject {
-    SpriteDescription() {
+    SpriteDescription() = ios 0x1b4d00 {
         m_rotation = 0;
         m_zValue = 0;
         m_tag = 0;
         m_usesCustomTag = false;
         m_texture = nullptr;
     }
-    ~SpriteDescription() {
+    ~SpriteDescription() = win inline, m1 0x4ad3d0, imac 0x556790, ios 0x1b4cac {
         CC_SAFE_RELEASE(m_texture);
     }
 
@@ -24429,7 +24429,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
     SupportLayer() {
         m_uploadPopup = nullptr;
     }
-    ~SupportLayer() {
+    ~SupportLayer() = win inline, m1 0x315128, imac 0x3853b0, ios 0x194b5c {
         auto glm = GameLevelManager::sharedState();
         if (glm->m_uploadActionDelegate == this) glm->m_uploadActionDelegate = nullptr;
     }
