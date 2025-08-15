@@ -8708,7 +8708,7 @@ class GameStatsManager : cocos2d::CCNode {
         return cocos2d::CCString::createWithFormat("star_%i",levelID)->getCString();
     }
     int getStat(char const*) = ios 0x32bf54, win 0x1d21e0, imac 0x66610, m1 0x5aca0;
-    int getStatFromKey(StatKey key) = win inline {
+    int getStatFromKey(StatKey key) = ios 0x33027c, m1 0x5ff6c, imac 0x6c410, win inline {
         return this->getStat(GameToolbox::intToString((int)key).c_str());
     }
     TodoReturn getStoreItem(int, int);
@@ -8740,7 +8740,7 @@ class GameStatsManager : cocos2d::CCNode {
         return this->isItemUnlocked(type, id) && m_enabledItems->valueForKey(this->getItemKey(id, (int)type))->boolValue();
     }
     bool isItemUnlocked(UnlockType, int) = ios 0x32fb64, win 0x1e2850, m1 0x5ee84, imac 0x6b3b0;
-    bool isPathChestUnlocked(int);
+    bool isPathChestUnlocked(int) = ios 0x336a94, m1 0x5ff6c, imac 0x781f0;
     bool isPathUnlocked(StatKey);
     bool isSecretChestUnlocked(int) = win 0x1e74d0, imac 0x76e10, m1 0x6a68c, ios 0x336044;
     bool isSecretCoin(gd::string) = m1 0x63c18, imac 0x70200;
@@ -12007,7 +12007,7 @@ class GJOptionsLayer : SetupTriggerPopup {
 class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
     // virtual ~GJPathPage();
 
-    static GJPathPage* create(int, GJPathsLayer*) = win 0x27db80, imac 0x2ea7c0, m1 0x284d30;
+    static GJPathPage* create(int, GJPathsLayer*) = win 0x27db80, imac 0x2ea7c0, m1 0x284d30, ios 0x3b0e84;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x288950, imac 0x2ee860, ios 0x3b3c68;
     virtual void keyBackClicked() = win 0x281710, m1 0x2887ec, imac 0x2ee720, ios 0x3b3c5c;
@@ -12035,13 +12035,21 @@ class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
 class GJPathRewardPopup : FLAlertLayer {
     // virtual ~GJPathRewardPopup();
 
-    static GJPathRewardPopup* create(int) = m1 0x284e5c, imac 0x2ea940;
+    static GJPathRewardPopup* create(int p0) = m1 0x284e5c, imac 0x2ea940, ios 0x3b0f64, win inline {
+        auto ret = new GJPathRewardPopup();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void keyBackClicked() = m1 0x289388, imac 0x2ef260, ios 0x3b45c0 {}
 
     void closePopup() = win 0x27dac0;
-    bool init(int) = win 0x2825f0, imac 0x2eec40, m1 0x288d28;
-    void onClaim(cocos2d::CCObject* sender) = win 0x282ad0, m1 0x2891c4, imac 0x2ef0d0;
+    bool init(int) = win 0x2825f0, imac 0x2eec40, m1 0x288d28, ios 0x3b3fb4;
+    void onClaim(cocos2d::CCObject* sender) = win 0x282ad0, m1 0x2891c4, imac 0x2ef0d0, ios 0x3b4448;
 
     int m_pathNumber;
 }
@@ -12060,8 +12068,8 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
     virtual void show() = win 0x867a0, m1 0x285060, imac 0x2eab90, ios 0x3b105c;
 
     void darkenButtons(bool) = imac 0x2ea780, m1 0x284ce4;
-    void onClose(cocos2d::CCObject* sender) = win 0x27dac0;
-    void onPath(cocos2d::CCObject* sender) = win 0x27d880, imac 0x2ea6b0, m1 0x284c04;
+    void onClose(cocos2d::CCObject* sender) = win 0x27dac0, imac 0x2ea530, m1 0x284a6c, ios 0x3b0c18;
+    void onPath(cocos2d::CCObject* sender) = win 0x27d880, imac 0x2ea6b0, m1 0x284c04, ios 0x3b0da4;
 
     cocos2d::CCSprite* m_closeSprite;
     bool m_exiting;
