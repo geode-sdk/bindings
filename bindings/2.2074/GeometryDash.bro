@@ -1197,6 +1197,17 @@ class ButtonSprite : cocos2d::CCSprite {
 class CameraTriggerGameObject : EffectGameObject {
     // virtual ~CameraTriggerGameObject();
 
+    CameraTriggerGameObject() {
+        m_exitStatic = false;
+        m_followObject = false;
+        m_followEasing = 1.f;
+        m_edgeDirection = 0;
+        m_smoothVelocity = false;
+        m_velocityModifier = 0.f;
+        m_exitInstant = false;
+        m_previewOpacity = 1.f;
+    }
+
     static CameraTriggerGameObject* create(char const*);
 
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a4cd0, imac 0x1cc3f0, m1 0x18823c, ios 0x38b8e8;
@@ -4246,6 +4257,14 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 class DashRingObject : RingObject {
     // virtual ~DashRingObject();
 
+    DashRingObject() {
+        m_dashSpeed = 1.f;
+        m_endBoost = 1.f;
+        m_maxDuration = 0.f;
+        m_allowCollide = false;
+        m_stopSlide = false;
+    }
+
     static DashRingObject* create(char const*);
 
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x489db0, imac 0x1a4340, m1 0x166864, ios 0x37bacc;
@@ -5907,6 +5926,67 @@ class EnterEffectInstance {
 [[link(android)]]
 class EnterEffectObject : EffectGameObject {
     // virtual ~EnterEffectObject();
+
+    // make every member zero
+    EnterEffectObject() {
+        m_enterType = 0;
+        m_length = 0;
+        m_lengthVariance = 0;
+        m_offset = 0;
+        m_offsetVariance = 0;
+        m_offsetY = 0;
+        m_offsetYVariance = 0;
+        m_moveDistance = 0;
+        m_moveDistanceVariance = 0;
+        m_areaScaleX = 0.0f;
+        m_areaScaleXVariance = 0.0f;
+        m_areaScaleY = 0.0f;
+        m_areaScaleYVariance = 0.0f;
+        m_moveAngle = 0;
+        m_moveAngleVariance = 0;
+        m_startAngle = false;
+        m_anglePosition = cocos2d::CCPoint{0, 0};
+        m_relative = false;
+        m_relativeFade = 0.0f;
+        m_easingInType = EasingType::None;
+        m_easingInRate = 2.0f;
+        m_easingInBuffer = 0;
+        m_easingOutType = EasingType::None;
+        m_easingOutRate = 2.0f;
+        m_easingOutBuffer = 0;
+        m_moveX = 0;
+        m_moveXVariance = 0;
+        m_moveY = 0;
+        m_moveYVariance = 0;
+        m_tintChannelID = 0;
+        m_property224 = 0;
+        m_directionType = 0;
+        m_xyMode = false;
+        m_easeOutEnabled = false;
+        m_modFront = 1.0f;
+        m_modBack = 1.0f;
+        m_areaTint = 0.0f;
+        m_property285 = 0.0f;
+        m_effectID = 0;
+        m_areaRotation = 0.0f;
+        m_areaRotationVariance = 0.0f;
+        m_toOpacity = 0.0f;
+        m_fromOpacity = 0.0f;
+        m_inbound = false;
+        m_hsvEnabled = false;
+        m_deadzone = 0.0f;
+        m_twoDirections = false;
+        m_dontEditAreaParent = false;
+        m_priority = 0;
+        m_unk7d8 = 0;
+        m_enterChannel = 0;
+        m_useEffectID = false;
+        m_unk7e4 = cocos2d::CCPoint{0, 0};
+        m_unk7ec = cocos2d::CCPoint{0, 0};
+        m_negativeTargetX = false;
+        m_areaRange = 0;
+        m_unk7fc = 0;
+    }
 
     static EnterEffectObject* create(char const*);
 
@@ -9742,7 +9822,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void removeFromGroups(GameObject*) = win 0x21ed10, imac 0x12ce70, m1 0x107f34;
     void removeFromStickyGroup(GameObject*) = m1 0x108e28, imac 0x12de90;
     void removeGroundLayer() = m1 0xe5734, imac 0x1039d0;
-    void removeGroupParent(int) = win 0x21f3e0, m1 0x1080e8, imac 0x12d030, ios 0x1f4208;
+    void removeGroupParent(int groupID) = win 0x21f3e0, m1 0x1080e8, imac 0x12d030, ios 0x1f4208;
     void removeKeyframe(KeyframeGameObject*) = m1 0x11410c, imac 0x13bae0;
     TodoReturn removeMiddleground();
     void removeObjectFromSection(GameObject*) = win 0x221a80, imac 0x12e500, m1 0x109388, ios 0x1f4e48;
@@ -9775,7 +9855,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn rotateAreaObjects(GameObject*, cocos2d::CCArray*, float, bool);
     TodoReturn rotateObject(GameObject*, float);
     void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool) = win 0x226ec0;
-    void setGroupParent(GameObject*, int) = win 0x21f2d0, m1 0x10842c, imac 0x12d370, ios 0x1f4398;
+    void setGroupParent(GameObject* object, int groupID) = win 0x21f2d0, m1 0x10842c, imac 0x12d370, ios 0x1f4398;
     void setStartPosObject(StartPosObject* startPos) = ios 0x1e7374, win inline, imac 0x112ed0, m1 0xf2870 {
         if (startPos != m_startPosObject) {
             if (startPos) {
@@ -10862,7 +10942,7 @@ class GJGameLevel : cocos2d::CCNode {
         return level;
     }*/
     // virtual ~GJGameLevel();
-    //GJGameLevel() = ios 0xb40a8;
+    GJGameLevel() = win 0x13f6d0;
 
     static GJGameLevel* create() = ios 0x9637c, win 0x169b40, imac 0x5168e0, m1 0x473d34;
     static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x1683e0, m1 0x4760f0, imac 0x519030, ios 0x978ec;
@@ -10881,7 +10961,7 @@ class GJGameLevel : cocos2d::CCNode {
     gd::string getAudioFileName() = win 0x16a3f0, imac 0x545b00, m1 0x49e8d8, ios 0xb0188;
     int getAverageDifficulty() = win 0x16a230, imac 0x545880, m1 0x49e674, ios 0xb0034;
     char const* getCoinKey(int coinNumber) = win 0x16a2a0, imac 0x535eb0, m1 0x48f96c, ios 0xa76cc;
-    TodoReturn getLastBuildPageForTab(int);
+    int getLastBuildPageForTab(int) = win 0x16a320;
     const char* getLengthKey(int length, bool platformer) = imac 0x5457a0, m1 0x49e560;
     TodoReturn getListSnapshot();
     int getNormalPercent();
@@ -14406,6 +14486,15 @@ class KeybindingsManager : cocos2d::CCNode {
 class KeyframeAnimTriggerObject : EffectGameObject {
     // virtual ~KeyframeAnimTriggerObject();
 
+    KeyframeAnimTriggerObject() {
+        m_timeMod = 1.0f;
+        m_positionXMod = 1.0f;
+        m_positionYMod = 1.0f;
+        m_rotationMod = 1.0f;
+        m_scaleXMod = 1.0f;
+        m_scaleYMod = 1.0f;
+    }
+
     static KeyframeAnimTriggerObject* create();
 
     virtual bool init() = win 0x498a40, m1 0x16bc30, imac 0x1aa550, ios 0x37f844;
@@ -14429,6 +14518,26 @@ class KeyframeAnimTriggerObject : EffectGameObject {
 [[link(android)]]
 class KeyframeGameObject : EffectGameObject {
     // virtual ~KeyframeGameObject();
+
+    KeyframeGameObject() {
+        m_shadowObjects = nullptr;
+        m_previewSprite = nullptr;
+        m_keyframeGroup = 0;
+        m_keyframeIndex = 0;
+        m_referenceOnly = false;
+        m_proximity = false;
+        m_curve = false;
+        m_closeLoop = false;
+        m_timeMode = 0;
+        m_unk760 = 0.0f;
+        m_spawnDelay = 0.0f;
+        m_previewArt = false;
+        m_keyframeActive = false;
+        m_autoLayer = false;
+        m_direction = 0;
+        m_revolutions = 0;
+        m_lineOpacity = 1.0f;
+    }
 
     static KeyframeGameObject* create();
 
@@ -19199,6 +19308,11 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 class RingObject : EffectGameObject {
     // virtual ~RingObject();
 
+    RingObject() {
+        m_claimTouch = false;
+        m_isSpawnOnly = false;
+    }
+
     static RingObject* create(char const*) = win 0x489570;
 
     virtual void setScale(float) = win 0x4898f0, m1 0x165ca8, imac 0x1a3520, ios 0x37b5e4;
@@ -22725,6 +22839,36 @@ class SFXTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class ShaderGameObject : EffectGameObject {
     // virtual ~ShaderGameObject();
+
+    ShaderGameObject() {
+        m_speed = 1.f;
+        m_strength = 1.f;
+        m_outer = 1.f;
+        m_timeOff = 0.f;
+        m_waveWidth = 1.f;
+        m_targetX = 1.f;
+        m_targetY = 1.f;
+        m_fadeIn = 1.f;
+        m_fadeOut = 1.f;
+        m_screenOffsetX = 0.f;
+        m_screenOffsetY = 0.f;
+        m_invert = false;
+        m_inner = 0.f;
+        m_maxSize = 0.f;
+        m_flip = false;
+        m_rotate = false;
+        m_dual = false;
+        m_useX = false;
+        m_useY = false;
+        m_snapGrid = false;
+        m_hardEdges = false;
+        m_disableAll = false;
+        m_zLayerMin = 0;
+        m_zLayerMax = 0;
+        m_animate = false;
+        m_relative = false;
+        m_editorDisabled = false;
+    }
 
     static ShaderGameObject* create(char const*);
 
