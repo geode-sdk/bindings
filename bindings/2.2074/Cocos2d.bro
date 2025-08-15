@@ -2934,7 +2934,7 @@ class cocos2d::CCIMEDispatcher {
 
 [[link(win, android, ios)]]
 class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
-    static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes);
+    static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes) = m1 0x1a82ac, imac 0x1f1a50;
 
     bool getAltKeyPressed() const;
     bool getBlockRepeat() const;
@@ -2946,12 +2946,12 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
 
     // CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
     // CCKeyboardDispatcher();
-    void addDelegate(cocos2d::CCKeyboardDelegate*);
+    void addDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x1a7f94, imac 0x1f1730; // ios 0x239960
     bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool) = imac 0x1f17b0, m1 0x1a8028;
-    void forceAddDelegate(cocos2d::CCKeyboardDelegate*);
-    void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*);
+    void forceAddDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x1a7fec, imac 0x1f1780; // ios 0x2399a8
+    void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x1a7f00, imac 0x1f16a0; // ios 0x2398cc
     char const* keyToString(cocos2d::enumKeyCodes) = imac 0x1f1aa0, m1 0x1a82e0;
-    void removeDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1f1600, m1 0x1a7e48; // ios 0x239960
+    void removeDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1f1600, m1 0x1a7e48; // ios 0x239884
     void updateModifierKeys(bool, bool, bool, bool) = imac 0x1f1a70, m1 0x1a82c8;
 }
 
@@ -2960,11 +2960,11 @@ class cocos2d::CCKeypadDispatcher : cocos2d::CCObject {
     // CCKeypadDispatcher(cocos2d::CCKeypadDispatcher const&);
     // CCKeypadDispatcher();
 
-    void addDelegate(cocos2d::CCKeypadDelegate*);
-    bool dispatchKeypadMSG(cocos2d::ccKeypadMSGType);
-    void forceAddDelegate(cocos2d::CCKeypadDelegate*);
-    void forceRemoveDelegate(cocos2d::CCKeypadDelegate*);
-    void removeDelegate(cocos2d::CCKeypadDelegate*);
+    void addDelegate(cocos2d::CCKeypadDelegate*) = m1 0x514590, imac 0x5e1f00, ios 0x1b0bb4;
+    bool dispatchKeypadMSG(cocos2d::ccKeypadMSGType) = m1 0x514624, imac 0x5e1f80, ios 0x1b0c38;
+    void forceAddDelegate(cocos2d::CCKeypadDelegate*) = m1 0x5145e8, imac 0x5e1f50, ios 0x1b0bfc;
+    void forceRemoveDelegate(cocos2d::CCKeypadDelegate*) = m1 0x5144fc, imac 0x5e1e70, ios 0x1b0b20;
+    void removeDelegate(cocos2d::CCKeypadDelegate*) = m1 0x514444, imac 0x5e1dd0, ios 0x1b0ad8;
 }
 
 [[link(win, android)]]
