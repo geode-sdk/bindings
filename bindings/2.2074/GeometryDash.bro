@@ -528,7 +528,7 @@ class AdvFollowSetup {
 
 [[link(android)]]
 class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePartDelegate {
-    AnimatedGameObject() = win inline {
+    AnimatedGameObject() {
         m_animatedSprite = nullptr;
         m_childSprite = nullptr;
         m_eyeSpritePart = nullptr;
@@ -537,7 +537,7 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
         m_notGrounded = false;
         m_animationID = 0;
     }
-    ~AnimatedGameObject() {
+    ~AnimatedGameObject() = win inline, m1 0x16749c, imac 0x1a5260, ios 0x37bf5c {
         CC_SAFE_RELEASE(m_eyeSpritePart);
     }
 
@@ -796,7 +796,7 @@ class BitmapFontCache : cocos2d::CCObject {
     BitmapFontCache() {
         m_cache = nullptr;
     }
-    ~BitmapFontCache() {
+    ~BitmapFontCache() = win inline, m1 0x1c2c18, imac 0x20e4e0, ios 0x2f3740 {
         CC_SAFE_RELEASE(m_cache);
     }
 
@@ -862,7 +862,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
         m_currentPage = 0;
         m_locked = false;
     }
-    ~BoomListView() {
+    ~BoomListView() = win inline, m1 0x290f3c, imac 0x2f83b0, ios 0x1d0b60 {
         CC_SAFE_RELEASE(m_entries);
     }
 
@@ -902,7 +902,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 [[link(android)]]
 class BoomScrollLayer : cocos2d::CCLayer {
     BoomScrollLayer() = ios 0x12fca0;
-    ~BoomScrollLayer() {
+    ~BoomScrollLayer() = win inline, m1 0x321734, imac 0x392d80, ios 0x12ef80 {
         CC_SAFE_RELEASE(m_dynamicObjects);
         CC_SAFE_RELEASE(m_pages);
         CC_SAFE_RELEASE(m_dots);
@@ -1060,11 +1060,7 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
         m_prevPageBtn = nullptr;
         m_dotsArray = nullptr;
     }
-    ~BrowseSmartTemplateLayer() = win 0x441980 {
-        CC_SAFE_RELEASE(m_template);
-        CC_SAFE_RELEASE(m_pages);
-        CC_SAFE_RELEASE(m_dotsArray);
-    }
+    ~BrowseSmartTemplateLayer() = win 0x441980, m1 0x439728, imac 0x4d5be0, ios 0x7523c;
 
     static BrowseSmartTemplateLayer* create(GJSmartTemplate*, SmartBrowseFilter) = win inline {
         auto ret = new BrowseSmartTemplateLayer();
@@ -1538,7 +1534,7 @@ class CCLightFlash : cocos2d::CCNode {
         m_mainLayer = nullptr;
         m_layerColorZOrder = 0;
     }
-    ~CCLightFlash() {
+    ~CCLightFlash() = win inline, m1 0x451e38, imac 0x4f0e90, ios 0x35738 {
         CC_SAFE_RELEASE(m_lightStripArray);
     }
 
@@ -1644,7 +1640,6 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
         m_iconType = IconType::Cube;
         m_baseScale = 0.f; //this is changed to 1.f in init
     }
-    ~CCMenuItemSpriteExtra() {}
 
     static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = ios 0x214364, win 0x44b40, imac 0x264b80, m1 0x2105c0;
 
@@ -2364,7 +2359,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_valueType = (InputValueType)0;
         m_kerningAmount = 0;
     }
-    ~CCTextInputNode() {
+    ~CCTextInputNode() = win inline, m1 0x904f8, imac 0x9da20, ios 0x16fd40 {
         if (m_selected) CCTextInputNode::onClickTrackNode(false);
     }
 
@@ -2483,12 +2478,12 @@ class CCURLObject : cocos2d::CCObject {
 
 [[link(android), depends(ChallengesPage), depends(GJChallengeItem)]]
 class ChallengeNode : cocos2d::CCNode {
-    ChallengeNode() {
+    ChallengeNode() = ios 0x37dc8 {
         m_challengeItem = nullptr;
         m_countdownLabel = nullptr;
         m_unloaded = false;
     }
-    ~ChallengeNode() {
+    ~ChallengeNode() = win inline, m1 0x31ac4c, imac 0x38b790, ios 0x37040 {
         CC_SAFE_RELEASE(m_challengeItem);
     }
 
@@ -2524,7 +2519,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
         m_currencyRewardLayer = nullptr;
         m_challengeNodes = nullptr;
     }
-    ~ChallengesPage() {
+    ~ChallengesPage() = win inline, m1 0x3192fc, imac 0x389c00, ios 0x35c28 {
         auto glm = GameLevelManager::sharedState();
         if (glm->m_GJChallengeDelegate == this) glm->m_GJChallengeDelegate = nullptr;
         if (m_currencyRewardLayer) m_currencyRewardLayer->m_delegate = nullptr;
@@ -2601,7 +2596,7 @@ class CharacterColorPage : FLAlertLayer {
         m_glowToggler = nullptr;
         m_glowLabel = nullptr;
     }
-    ~CharacterColorPage() {
+    ~CharacterColorPage() = win inline, m1 0x56ed88, imac 0x646660, ios 0x12bda4 {
         CC_SAFE_RELEASE(m_playerObjects);
         CC_SAFE_RELEASE(m_modeButtons);
         CC_SAFE_RELEASE(m_colorButtons);
@@ -2677,7 +2672,7 @@ class CheckpointGameObject : EffectGameObject {
 [[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState), depends(SavedObjectStateRef), depends(SavedActiveObjectState), depends(SavedSpecialObjectState), depends(SequenceTriggerState)]]
 class CheckpointObject : cocos2d::CCNode {
     CheckpointObject() = win 0x38e330, m1 0xb4190, imac 0xcaa60, ios 0x12aa1c;
-    ~CheckpointObject() {
+    ~CheckpointObject() = win inline, m1 0xae218, imac 0xbf860, ios 0x126034 {
         CC_SAFE_RELEASE(m_physicalCheckpointObject);
         CC_SAFE_RELEASE(m_player1Checkpoint);
         CC_SAFE_RELEASE(m_player2Checkpoint);
@@ -3044,7 +3039,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
         m_fadeTimeInput = nullptr;
         m_showCopyObjects = false;
     }
-    ~ColorSelectPopup() {
+    ~ColorSelectPopup() = win inline, m1 0x62d5b4, imac 0x70e670, ios 0x414160 {
         CC_SAFE_RELEASE(m_colorAction);
         CC_SAFE_RELEASE(m_colorObjects);
         CC_SAFE_RELEASE(m_copyObjects);
@@ -3218,7 +3213,7 @@ class CommunityCreditsPage : FLAlertLayer {
         m_nextButton = nullptr;
         m_page = -1;
     }
-    ~CommunityCreditsPage() {
+    ~CommunityCreditsPage() = win inline, m1 0x2a11d4, imac 0x30a080, ios 0x1a3628 {
         CC_SAFE_RELEASE(m_pageObjects);
     }
 
@@ -3356,10 +3351,7 @@ class CountTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
     CreateGuidelinesLayer() = win 0x98fd0;
-    ~CreateGuidelinesLayer() = win 0x99120 {
-        CC_SAFE_RELEASE(m_nonRecordingObjects);
-        CC_SAFE_RELEASE(m_recordingObjects);
-    }
+    ~CreateGuidelinesLayer() = win 0x99120, m1 0x4558b0, imac 0x4f4e30, ios 0x801a8;
 
     static CreateGuidelinesLayer* create(CustomSongDelegate*, AudioGuidelinesType) = win inline {
         auto ret = new CreateGuidelinesLayer();
@@ -3690,8 +3682,8 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class CurrencySprite : CCSpritePlus {
-    CurrencySprite() = win 0x9f3c0;
-    ~CurrencySprite() {
+    CurrencySprite() = win 0x9f3c0, ios 0x322b4c;
+    ~CurrencySprite() = win inline, m1 0x6a73d8, imac 0x794060, ios 0x321f80 {
         CC_SAFE_RELEASE(m_burstSprite);
     }
 
@@ -4053,7 +4045,7 @@ class CustomSongLayerDelegate {
 
 [[link(android), depends(GJAssetDownloadAction)]]
 class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProtocol {
-    CustomSongWidget() = win inline {
+    CustomSongWidget() = ios 0x101734 {
         m_songInfoObject = nullptr;
         m_songLabel = nullptr;
         m_artistLabel = nullptr;
@@ -4083,7 +4075,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
         m_totalBytes = 0;
         m_nextSongID = 0;
     }
-    ~CustomSongWidget() {
+    ~CustomSongWidget() = win inline, m1 0x5309a0, imac 0x602fb0, ios 0xfc894 {
         MusicDownloadManager::sharedState()->removeMusicDownloadDelegate(this);
         CC_SAFE_RELEASE(m_songInfoObject);
     }
@@ -4292,7 +4284,7 @@ class DemonFilterSelectLayer : FLAlertLayer {
         m_currentDemon = 0;
         m_delegate = nullptr;
     }
-    ~DemonFilterSelectLayer() {
+    ~DemonFilterSelectLayer() = win inline, m1 0x5447c4, imac 0x618820, ios 0x5a8c4 {
         CC_SAFE_RELEASE(m_demons);
     }
 
@@ -4591,7 +4583,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
         m_levelType = GJLevelType::Default;
         m_descriptionPopup = nullptr;
     }
-    ~EditLevelLayer() {
+    ~EditLevelLayer() = win inline, m1 0x19f664, imac 0x1e8350, ios 0xebcb8 {
         CC_SAFE_RELEASE(m_textInputs);
         CC_SAFE_RELEASE(m_level);
         CC_SAFE_RELEASE(m_descriptionPopup);
@@ -4762,8 +4754,8 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 
 [[link(android), depends(GameObjectEditorState), depends(GJTransformState)]]
 class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJRotationControlDelegate, GJScaleControlDelegate, GJTransformControlDelegate, MusicDownloadDelegate, SetIDPopupDelegate {
-    EditorUI() = win 0xdd4b0;
-    ~EditorUI() {
+    EditorUI() = win 0xdd4b0, m1 0x4b6a8, imac 0x54780, ios 0x3f44b0;
+    ~EditorUI() = win inline, m1 0xab00, imac 0x93e0, ios 0x3bd1fc {
         CC_SAFE_RELEASE(m_selectedObjects);
         CC_SAFE_RELEASE(m_deleteObjects);
         CC_SAFE_RELEASE(m_createButtonArray);
@@ -5691,7 +5683,47 @@ class EndTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class EnhancedGameObject : GameObject {
     // virtual ~EnhancedGameObject();
-    EnhancedGameObject() = win 0x188580;
+    EnhancedGameObject() = win 0x188580, ios 0x264720 {
+        m_poweredOn = false;
+        m_state = 0;
+        m_animationRandomizedStartValue = 0;
+        m_animationStart = 0.f;
+        m_unk540 = 0.f;
+        m_unk544 = 0.f;
+        m_unk548 = false;
+        m_randomFrameTime = 1.f;
+        m_visible = false;
+        m_shouldNotHideAnimFreeze = false;
+        m_usesSpecialAnimation = false;
+        m_frameTime = 1.f;
+        m_frames = 1;
+        m_hasCustomAnimation = false;
+        m_hasCustomRotation = false;
+        m_disableRotation = false;
+        m_rotationSpeed = 0.f;
+        m_rotationAngle = 0.f;
+        m_rotationDelta = 0.f;
+        m_rotationAnimationSpeed = 0.f;
+        m_animationRandomizedStart = false;
+        m_animationSpeed = 1.f;
+        m_animationShouldUseSpeed = false;
+        m_animateOnTrigger = false;
+        m_disableDelayedLoop = false;
+        m_disableAnimShine = false;
+        m_singleFrame = 0;
+        m_animationOffset = false;
+        m_animationTriggered = false;
+        m_unkAnimationInt = 0;
+        m_maybeAnimationVariableXInt = 0;
+        m_maybeAnimationVariableYInt = 0;
+        m_animateOnlyWhenActive = false;
+        m_isNoMultiActivate = false;
+        m_isMultiActivate = false;
+        m_activated = false;
+        m_activatedByPlayer1 = false;
+        m_activatedByPlayer2 = false;
+        m_hasUniqueCoin = false;
+    }
 
     static EnhancedGameObject* create(char const*);
 
@@ -6155,9 +6187,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         m_containsBorder = 0;
         m_forcePrioRegistered = false;
     }
-    ~FLAlertLayer() = win 0x517e0 {
-        if (m_forcePrioRegistered) cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->unregisterForcePrio(this);
-    }
+    ~FLAlertLayer() = win 0x517e0, m1 0x3f5238, imac 0x487cb0, ios 0x2aad7c;
 
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x51940, imac 0x4880e0, m1 0x3f5598, ios 0x2aaef4;
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = win 0x51890, imac 0x4882b0, m1 0x3f5738, ios 0x2ab01c;
@@ -6211,7 +6241,6 @@ class FLAlertLayerProtocol {
 
 [[link(android), depends(FMODAudioState), depends(FMODSoundState), depends(FMODMusic), depends(FMODSound), depends(FMODQueuedEffect), depends(FMODQueuedMusic), depends(FMODSoundTween)]]
 class FMODAudioEngine : cocos2d::CCNode {
-    // virtual ~FMODAudioEngine();
     FMODAudioEngine() = ios 0x142378, win 0x530d0 {
         m_musicVolume = 1.f;
         m_sfxVolume = 1.f;
@@ -6243,6 +6272,11 @@ class FMODAudioEngine : cocos2d::CCNode {
         m_sfxVisualizerPeak = .0f;
         m_sfxVisualizerVolume = .0f;
     }
+    ~FMODAudioEngine() = win inline, m1 0x35262c, imac 0x3c99d0, ios 0x13afd8 {
+        m_system->close();
+        if (m_system) m_system->release();
+    }
+
     static FMODAudioEngine* get() {
         return FMODAudioEngine::sharedEngine();
     }
@@ -8914,7 +8948,7 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
         m_activeObjects = nullptr;
         m_tryAgainText = nullptr;
     }
-    ~GauntletLayer() {
+    ~GauntletLayer() = win inline, m1 0x30f864, imac 0x37f200, ios 0x231f14 {
         auto glm = GameLevelManager::sharedState();
         if (glm->m_levelManagerDelegate == this) glm->m_levelManagerDelegate = nullptr;
         CC_SAFE_RELEASE(m_activeObjects);
@@ -8991,7 +9025,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
         m_gauntlets = nullptr;
         m_playBlocked = false;
     }
-    ~GauntletSelectLayer() {
+    ~GauntletSelectLayer() = win inline, m1 0x4b0e70, imac 0x55a680, ios 0x1c0340 {
         auto glm = GameLevelManager::sharedState();
         if (glm->m_levelManagerDelegate == this) glm->m_levelManagerDelegate = nullptr;
         CC_SAFE_RELEASE(m_gauntlets);
@@ -9255,7 +9289,7 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
         m_friendRequestSettings = nullptr;
         m_commentSettings = nullptr;
     }
-    ~GJAccountSettingsLayer() {
+    ~GJAccountSettingsLayer() = win inline, m1 0x235ba8, imac 0x28d120, ios 0x2d56c4 {
         CC_SAFE_RELEASE(m_messageSettings);
         CC_SAFE_RELEASE(m_friendRequestSettings);
         CC_SAFE_RELEASE(m_commentSettings);
@@ -9312,7 +9346,7 @@ class GJActionManager : cocos2d::CCNode {
     GJActionManager() {
         m_internalActions = nullptr;
     }
-    ~GJActionManager() {
+    ~GJActionManager() = win inline, m1 0x521940, imac 0x5f1cf0, ios 0x2fe564 {
         CC_SAFE_RELEASE(m_internalActions);
     }
 
@@ -11208,7 +11242,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
         m_selectedIconType = IconType::Cube;
         m_videoPlaying = false;
     }
-    ~GJGarageLayer() {
+    ~GJGarageLayer() = m1 0x2e9268, imac 0x355830, ios 0x301c44 {
         auto gm = GameManager::sharedState();
         gm->m_gameRateDelegate1 = nullptr;
         CC_SAFE_RELEASE(m_tabButtons);
@@ -11427,14 +11461,14 @@ class GJHttpResult : cocos2d::CCNode {
 
 [[link(android)]]
 class GJItemIcon : cocos2d::CCSprite {
-    GJItemIcon() {
+    GJItemIcon() = ios 0x3096bc {
         m_player = nullptr;
         m_iconRequestID = 0;
         m_isIcon = false;
         m_unlockID = 0;
         m_unlockType = (UnlockType)0;
     }
-    ~GJItemIcon() {
+    ~GJItemIcon() = win inline, m1 0x2f0a9c, imac 0x35d7f0, ios 0x307b58 {
         GameManager::sharedState()->unloadIcons(m_iconRequestID);
     }
 
@@ -11617,7 +11651,7 @@ class GJMapObject : cocos2d::CCNode {
 
 [[link(android)]]
 class GJMapPack : cocos2d::CCNode {
-    GJMapPack() {
+    GJMapPack() = ios 0xb64a0 {
         m_levels = nullptr;
         m_packID = 0;
         m_difficulty = GJDifficulty::Auto;
@@ -11626,7 +11660,7 @@ class GJMapPack : cocos2d::CCNode {
         m_MId = 0;
         m_isGauntlet = false;
     }
-    ~GJMapPack() {
+    ~GJMapPack() = win inline, m1 0x4a17ac, imac 0x548f70, ios 0xb2cdc {
         CC_SAFE_RELEASE(m_levels);
     }
 
@@ -12990,7 +13024,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
         m_zolgurothDialogIndex = 0;
         m_affordDialogIndex = 0;
     }
-    ~GJShopLayer() {
+    ~GJShopLayer() = win inline, m1 0x2a5160, imac 0x30e6c0, ios 0x14db54 {
         cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->unregisterForcePrio(this);
         auto gm = GameManager::sharedState();
         if (gm->m_rewardedVideoDelegate == this) gm->m_rewardedVideoDelegate = nullptr;
@@ -13323,7 +13357,7 @@ class GJStoreItem : cocos2d::CCNode {
 
 [[link(android)]]
 class GJTransformControl : cocos2d::CCLayer {
-    GJTransformControl() {
+    GJTransformControl() = m1 0x4bdb4, imac 0x55060, ios 0x3f4830 {
         m_objects = nullptr;
         m_touchID = -1;
         m_transformButtonType = 0;
@@ -13338,7 +13372,7 @@ class GJTransformControl : cocos2d::CCLayer {
         m_rotation = 0.0f;
         m_buttonScale = 1.0f;
     }
-    ~GJTransformControl() {
+    ~GJTransformControl() = win inline, m1 0x4a3e4, imac 0x53190, ios 0x3f37c8 {
         CC_SAFE_RELEASE(m_warpSprites);
         CC_SAFE_RELEASE(m_objects);
     }
@@ -14057,7 +14091,7 @@ class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
         m_unkBool2 = false;
         m_unkBool3 = false;
     }
-    ~HSVLiveOverlay() {
+    ~HSVLiveOverlay() = win inline, m1 0x205158, imac 0x258690, ios 0x1a2a7c {
         CCNode::removeAllChildrenWithCleanup(true);
         CC_SAFE_RELEASE(m_unkArray);
         CC_SAFE_RELEASE(m_controls);
@@ -14641,7 +14675,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
         m_enteringTower = false;
         m_exiting = false;
     }
-    ~LevelAreaLayer() {
+    ~LevelAreaLayer() = m1 0x210e6c, imac 0x265430, ios 0x3433b4 {
         CC_SAFE_RELEASE(m_godRays);
     }
 
@@ -15439,7 +15473,7 @@ class LevelListDeleteDelegate {
 
 [[link(android)]]
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
-    LevelListLayer() {
+    LevelListLayer() = m1 0x2e50e8, imac 0x350d00, ios 0x248e4c {
         m_buttonMenu = nullptr;
         m_levelList = nullptr;
         m_likeButton = nullptr;
@@ -15451,7 +15485,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
         m_featureSprite = nullptr;
         m_exited = false;
     }
-    ~LevelListLayer() {
+    ~LevelListLayer() = win inline, m1 0x2dce44, imac 0x3481e0, ios 0x241ff8 {
         GameManager::sharedState()->m_sceneEnum = 13;
         CC_SAFE_RELEASE(m_levelList);
         CC_SAFE_RELEASE(m_objects);
@@ -15569,14 +15603,14 @@ class LevelOptionsLayer2 : LevelOptionsLayer {
 
 [[link(android)]]
 class LevelPage : cocos2d::CCLayer, DialogDelegate {
-    LevelPage() {
+    LevelPage() = ios 0x3fdc14 {
         m_isBusy = false;
         m_level = nullptr;
         m_levelMenu = nullptr;
         m_coinObject = nullptr;
         m_secretDoor = nullptr;
     }
-    ~LevelPage() {
+    ~LevelPage() = win inline, m1 0x39dbb4, imac 0x4227a0, ios 0x3fbdac {
         CC_SAFE_RELEASE(m_level);
         CC_SAFE_RELEASE(m_dynamicObjects);
         CC_SAFE_RELEASE(m_progressObjects);
@@ -16450,7 +16484,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 
 [[link(android)]]
 class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJDropDownLayerDelegate {
-    MoreOptionsLayer() {
+    MoreOptionsLayer() = ios 0xf6a54 {
         m_page = -1;
         m_toggleCount = 0;
         m_pageCount = 0;
@@ -16458,7 +16492,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
         m_gpSignOutBtn = nullptr;
         m_categoryLabel = nullptr;
     }
-    ~MoreOptionsLayer() {
+    ~MoreOptionsLayer() = win inline, m1 0x6997a8, imac 0x785690, ios 0xf071c {
         CC_SAFE_RELEASE(m_objects);
         CC_SAFE_RELEASE(m_variables);
         auto gpm = GooglePlayManager::sharedState();
@@ -16523,7 +16557,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 [[link(android)]]
 class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
     MoreSearchLayer() {}
-    ~MoreSearchLayer() {
+    ~MoreSearchLayer() = win inline, m1 0x542554, imac 0x6162b0, ios 0x58b00 {
         CC_SAFE_RELEASE(m_commonSongNodes);
         CC_SAFE_RELEASE(m_normalSongNodes);
         CC_SAFE_RELEASE(m_customSongNodes);
@@ -16587,7 +16621,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
         m_fpsInput = nullptr;
         m_fpsNodes = nullptr;
     }
-    ~MoreVideoOptionsLayer() {
+    ~MoreVideoOptionsLayer() = win inline, m1 0x69ebbc, imac 0x78aeb0, ios 0xf444c {
         CC_SAFE_RELEASE(m_values);
         CC_SAFE_RELEASE(m_variables);
     }
@@ -16680,7 +16714,7 @@ class MPLobbyLayer : cocos2d::CCLayer, GJMPDelegate, UploadPopupDelegate, Upload
 
 [[link(android)]]
 class MultilineBitmapFont : cocos2d::CCSprite {
-    MultilineBitmapFont() {
+    MultilineBitmapFont() = ios 0x23574c {
         m_specialDescriptors = nullptr;
         m_characters = nullptr;
         m_lines = nullptr;
@@ -16692,7 +16726,7 @@ class MultilineBitmapFont : cocos2d::CCSprite {
         m_maxWidth = 0.f;
         m_disableColor = false;
     }
-    ~MultilineBitmapFont() {
+    ~MultilineBitmapFont() = win inline, m1 0x3e4e60, imac 0x4764a0, ios 0x23565c {
         CC_SAFE_RELEASE(m_characters);
         CC_SAFE_RELEASE(m_lines);
         CC_SAFE_RELEASE(m_specialDescriptors);
@@ -17819,7 +17853,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 [[link(android), depends(GJPointDouble)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
-    PlayerObject() {
+    PlayerObject() = m1 0x388d18, imac 0x40b740, ios 0x22eaa8 {
 
 #if defined(__clang__)
 # pragma clang diagnostic push
@@ -17851,6 +17885,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         new (&m_holdingButtons) decltype(m_holdingButtons)();
         new (&m_currentRobotAnimation) gd::string("run");
     }
+    ~PlayerObject() = win 0x370730, m1 0x36a6a8, imac 0x3e8600, ios 0x2181f8;
 
     static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = ios 0x21836c, win 0x370960, imac 0x3e88e0, m1 0x36a89c;
 
@@ -18922,7 +18957,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
         m_popup = nullptr;
         m_delegate = nullptr;
     }
-    ~RateDemonLayer() {
+    ~RateDemonLayer() = win inline, m1 0x21c940, imac 0x2717f0, ios 0x41de20 {
         auto glm = GameLevelManager::sharedState();
         if (glm->m_uploadActionDelegate == this) glm->m_uploadActionDelegate = nullptr;
         CC_SAFE_RELEASE(m_demons);
@@ -18973,7 +19008,7 @@ class RateLevelLayer : FLAlertLayer {
         m_levelRate = 0;
         m_delegate = nullptr;
     }
-    ~RateLevelLayer() {
+    ~RateLevelLayer() = win inline, m1 0x4a8170, imac 0x550d00, ios 0x62108 {
         CC_SAFE_RELEASE(m_difficulties);
     }
 
@@ -19079,7 +19114,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
         m_rightOpen = false;
         m_openLayer = nullptr;
     }
-    ~RewardsPage() {
+    ~RewardsPage() = win inline, m1 0x1bd0b4, imac 0x208190, ios 0x1c4608 {
         auto glm = GameLevelManager::sharedState();
         if (glm->m_GJRewardDelegate == this) glm->m_GJRewardDelegate = nullptr;
     }
@@ -24846,7 +24881,7 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
         m_loadingCircle = nullptr;
         m_page = 0;
     }
-    ~TopArtistsLayer() {
+    ~TopArtistsLayer() = win inline, m1 0x294794, imac 0x2fc320, ios 0x1a783c {
         auto glm = GameLevelManager::sharedState();
         if (glm->m_onlineListDelegate == this) glm->m_onlineListDelegate = nullptr;
     }
@@ -25253,14 +25288,14 @@ class UISettingsGameObject : EffectGameObject {
 
 [[link(android), depends(GJTransformState)]]
 class UndoObject : cocos2d::CCObject {
-    UndoObject() {
+    UndoObject() = ios 0x368734 {
         m_objectCopy = nullptr;
         m_command = (UndoCommand)0;
         m_objects = nullptr;
         m_redo = false;
         m_undoTransform = false;
     }
-    ~UndoObject() {
+    ~UndoObject() = win inline, m1 0xd9518, imac 0xf52d0, ios 0x36521c {
         CC_SAFE_RELEASE(m_objectCopy);
         CC_SAFE_RELEASE(m_objects);
     }
@@ -25321,7 +25356,7 @@ class UpdateAccountSettingsPopup : FLAlertLayer, GJAccountSettingsDelegate {
         m_loadingCircle = nullptr;
         m_closeButton = nullptr;
     }
-    ~UpdateAccountSettingsPopup() {
+    ~UpdateAccountSettingsPopup() = win inline, m1 0x2380a4, imac 0x28f9a0, ios 0x2d77a4 {
         auto gjam = GJAccountManager::sharedState();
         if (gjam->m_accountSettingsDelegate == this) gjam->m_accountSettingsDelegate = nullptr;
     }
@@ -25388,7 +25423,7 @@ class UploadListPopup : FLAlertLayer, ListUploadDelegate {
         m_loadingCircle = nullptr;
         m_backButton = nullptr;
     }
-    ~UploadListPopup() {
+    ~UploadListPopup() = win inline, m1 0x2e4420, imac 0x34fed0, ios 0x2483e8 {
         CC_SAFE_RELEASE(m_levelList);
         auto glm = GameLevelManager::sharedState();
         if (glm->m_listUploadDelegate == this) glm->m_listUploadDelegate = nullptr;
@@ -25434,7 +25469,7 @@ class UploadPopup : FLAlertLayer, LevelUploadDelegate {
         m_loadingCircle = nullptr;
         m_backButton = nullptr;
     }
-    ~UploadPopup() {
+    ~UploadPopup() = win inline, m1 0x21aee0, imac 0x26fae0, ios 0x2755dc {
         CC_SAFE_RELEASE(m_level);
         auto glm = GameLevelManager::sharedState();
         if (glm->m_levelUploadDelegate == this) glm->m_levelUploadDelegate = nullptr;
