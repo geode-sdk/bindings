@@ -12034,6 +12034,9 @@ class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
 [[link(android)]]
 class GJPathRewardPopup : FLAlertLayer {
     // virtual ~GJPathRewardPopup();
+    GJPathRewardPopup() {
+        m_pathNumber = 0;
+    }
 
     static GJPathRewardPopup* create(int p0) = m1 0x284e5c, imac 0x2ea940, ios 0x3b0f64, win inline {
         auto ret = new GJPathRewardPopup();
