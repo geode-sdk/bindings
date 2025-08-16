@@ -2,7 +2,7 @@
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
     // virtual ~AccountHelpLayer();
 
-    static AccountHelpLayer* create() = m1 0xb7368, imac 0xce580, ios 0x2655a4;
+    static AccountHelpLayer* create() = m1 0xb7368, imac 0xce580, ios 0x16a4bc;
 
     virtual void customSetup() = win 0x7f5c0, m1 0xb77d4, imac 0xceb60, ios 0x16a644;
     virtual void layerHidden() = win 0x80320, imac 0xcf810, m1 0xb844c, ios 0x16b0cc;
@@ -656,7 +656,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     virtual void applicationWillBecomeActive() = win 0x82d40, m1 0x56e754, imac 0x645fd0, ios 0x268578;
     virtual void applicationWillResignActive() = win 0x82d90, m1 0x56e768, imac 0x645ff0, ios 0x26858c;
     virtual void trySaveGame(bool) = win 0x834b0, imac 0x6464c0, m1 0x56ebfc, ios 0x268884;
-    virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x83590, m1 0x56ecd4, imac 0x6465a0, ios 0x26885c;
+    virtual void willSwitchToScene(cocos2d::CCScene*) = win 0x83590, m1 0x56ecd4, imac 0x6465a0, ios 0x268954;
 
     float bgScale() = ios 0x268554;
     void checkSound();
@@ -1308,8 +1308,8 @@ class CCAnimateFrameCache : cocos2d::CCObject {
     static CCAnimateFrameCache* sharedSpriteFrameCache() = win 0x41450, m1 0x4ab09c, imac 0x5542d0, ios 0x1b44d8;
 
     void addCustomSpriteFramesWithFile(char const*) = m1 0x4ab2a0, imac 0x554510;
-    cocos2d::CCDictionary* addDict(cocos2d::CCDictionary*, char const*) = m1 0x4abdb0, imac 0x5551e0;
-    cocos2d::CCDictionary* addDict(DS_Dictionary*, char const*) = win 0x41670, m1 0x4ac488, imac 0x5558b0, ios 0x1b45f4;
+    cocos2d::CCDictionary* addDict(cocos2d::CCDictionary*, char const*) = m1 0x4abdb0, imac 0x5551e0, ios 0x1b45f4;
+    cocos2d::CCDictionary* addDict(DS_Dictionary*, char const*) = win 0x41670, m1 0x4ac488, imac 0x5558b0;
     cocos2d::CCDictionary* addSpriteFramesWithFile(char const*) = win 0x414e0, m1 0x4ac224, imac 0x555650, ios 0x1b47ec;
     bool init() = win inline, m1 0x4ab130, imac 0x554370, ios 0x1b4544 {
         m_animateFrames = cocos2d::CCDictionary::create();
@@ -5022,7 +5022,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onGroupIDFilter(cocos2d::CCObject* sender) = win 0xe5a80, m1 0x31a68, imac 0x323d0;
     void onGroupSticky(cocos2d::CCObject* sender) = ios 0x3bff98, win 0x1110f0, imac 0xcf70, m1 0xe2d4;
     void onGroupUp(cocos2d::CCObject* sender) = ios 0x3ddcec, win 0x11da70;
-    void onLockLayer(cocos2d::CCObject* sender) = ios 0x3e16e8, win 0x11dc00, m1 0x2c7fc, imac 0x2cc80;
+    void onLockLayer(cocos2d::CCObject* sender) = ios 0x3ddd34, win 0x11dc00, m1 0x2c7fc, imac 0x2cc80;
     void onNewCustomItem(cocos2d::CCObject* sender) = ios 0x3e073c, win 0xe2990, m1 0x304d0, imac 0x30d30;
     void onPaste(cocos2d::CCObject* sender);
     void onPasteColor(cocos2d::CCObject* sender) = win 0x112cd0, m1 0x2c5d0, imac 0x2ca00, ios 0x3ddbd0;
@@ -5031,7 +5031,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onPause(cocos2d::CCObject* sender) = ios 0x3dc64c, win 0xe03d0, imac 0x2ad50, m1 0x2afc0;
     void onPlayback(cocos2d::CCObject* sender) = ios 0x3bfb28, win 0x110390, imac 0xc930, m1 0xdce0;
     void onPlaytest(cocos2d::CCObject* sender) = ios 0x3bfd14, win 0x1109a0, imac 0xcb90, m1 0xdef4;
-    void onResetSpecialFilter(cocos2d::CCObject* sender) = m1 0x31bec, imac 0x32530;
+    void onResetSpecialFilter(cocos2d::CCObject* sender) = win 0xe5d60, m1 0x31bec, imac 0x32530, ios 0x3e16e8;
     void onSelectBuildTab(cocos2d::CCObject* sender) = ios 0x3e298c, win 0x112f60, imac 0x34310, m1 0x33940;
     void onSettings(cocos2d::CCObject* sender) = ios 0x3dca74, win 0xe0350, m1 0x2b46c, imac 0x2b270;
     void onStopPlaytest(cocos2d::CCObject* sender) = ios 0x3bfea8, win 0x110d40, m1 0xe134, imac 0xcdd0;
@@ -5345,7 +5345,7 @@ class EffectGameObject : EnhancedGameObject {
     virtual void stateSensitiveOff(GJBaseGameLayer*) = win 0x48fcd0, imac 0x1a9f90, m1 0x16b578, ios 0x37f260;
 
     int getTargetColorIndex();
-    bool init(char const*) = win 0x48d1a0, m1 0x4ec0c4, imac 0x5b37d0, ios 0x261f48;
+    bool init(char const*) = win 0x48d1a0;
     void playTriggerEffect() = win 0x48d2b0;
     void resetSpawnTrigger();
     void setTargetID(int id) = win inline, m1 0x157c40, imac 0x192130, ios 0x3756ec {
@@ -5769,7 +5769,7 @@ class EnhancedGameObject : GameObject {
     virtual void updateAnimateOnTrigger(bool) = win 0x1a6af0, imac 0x24b920, m1 0x1f903c, ios 0x348938;
 
     void createRotateAction(float angle, int clockwiseDirection);
-    bool init(char const*) = win 0x1a1800;
+    bool init(char const*) = win 0x1a1800, m1 0x4ec0c4, imac 0x5b37d0, ios 0x261f48;
     TodoReturn previewAnimateOnTrigger();
     TodoReturn refreshRotateAction();
     TodoReturn resetSyncedAnimation();
@@ -7470,7 +7470,7 @@ class GameManager : GManager {
     TodoReturn clearGJLog();
     cocos2d::ccColor3B colorForIdx(int) = ios 0x316f24, win 0x17e330, imac 0x36c520, m1 0x2fdae8;
     TodoReturn colorForPos(int);
-    gd::string colorKey(int, UnlockType) = win 0x179790;
+    gd::string colorKey(int, UnlockType) = win 0x179790, m1 0x2f766c, imac 0x364cb0, ios 0x312e84;
     void completedAchievement(gd::string) = win 0x17a1d0, m1 0x2f8464, imac 0x365aa0;
     int countForType(IconType) = ios 0x3178fc, win 0x17ebe0, m1 0x2febfc, imac 0x36d6f0;
     TodoReturn defaultFrameForAnimation(int);
@@ -7602,7 +7602,7 @@ class GameManager : GManager {
     void getUnlockForAchievement(gd::string, int&, UnlockType&) = win 0x179980, m1 0x2f7a94, imac 0x3650e0, ios 0x313158;
     TodoReturn groundHasSecondaryColor(int);
     TodoReturn iconAndTypeForKey(int, int&, int&);
-    gd::string iconKey(int, IconType) = win 0x1792b0;
+    gd::string iconKey(int, IconType) = win 0x1792b0, m1 0x2f7060, imac 0x364400, ios 0x3129e8;
     UnlockType iconTypeToUnlockType(IconType) = ios 0x312cb0, win 0x1795c0, m1 0x2f7498, imac 0x364990;
     bool isColorUnlocked(int, UnlockType) = ios 0x312fb8, win 0x1798c0, imac 0x364f40, m1 0x2f78a8;
     bool isIconLoaded(int, int) = m1 0x2fec84, imac 0x36d8f0;
@@ -8755,7 +8755,7 @@ class GameStatsManager : cocos2d::CCNode {
     TodoReturn getDailyLevelKey(int);
     TodoReturn getDemonLevelKey(GJGameLevel*) = m1 0x60c5c, imac 0x6d140;
     TodoReturn getEventRewardKey(int);
-    gd::string getGauntletRewardKey(int) = win 0x1e6e40, imac 0x77710, m1 0x6b024, ios 0x3129e8;
+    gd::string getGauntletRewardKey(int) = win 0x1e6e40, imac 0x77710, m1 0x6b024, ios 0x33648c;
     gd::string getItemKey(int, int) = win 0x1de9b0, ios 0x32ba84;
     int getItemUnlockState(int itemID, UnlockType unlockType) = ios 0x336148, win 0x1e2b30, m1 0x6a898, imac 0x77010;
     int getItemUnlockStateLite(int, UnlockType);
@@ -9445,7 +9445,12 @@ class GJActionManager : cocos2d::CCNode {
     cocos2d::CCAction* getInternalAction(int);
     void runInternalAction(cocos2d::CCAction*, cocos2d::CCNode*) = m1 0x521ac4, imac 0x5f1e80;
     void stopAllInternalActions();
-    void stopInternalAction(int) = m1 0x521b0c, imac 0x5f1ed0;
+    void stopInternalAction(int id) = win inline, m1 0x521b0c, imac 0x5f1ed0, ios 0x2fe6a8 {
+        if (auto action = static_cast<cocos2d::CCAction*>(m_internalActions->objectForKey(id))) {
+            action->stop();
+            m_internalActions->removeObjectForKey(id);
+        }
+    }
     void updateInternalActions(float, bool);
 
     cocos2d::CCDictionary* m_internalActions;
@@ -18265,7 +18270,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         createRobot(id);
     }
     void updatePlayerRollFrame(int) = ios 0x22b7d4, win 0x3887f0, imac 0x406ff0, m1 0x384bec;
-    void updatePlayerScale() = ios 0x2fe6a8, win 0x38a490, m1 0x3827c8, imac 0x4049a0;
+    void updatePlayerScale() = win 0x38a490, m1 0x3827c8, imac 0x4049a0, ios inline {
+        m_actionManager->stopInternalAction(6);
+        this->setScaleX(m_vehicleSize);
+        this->setScaleY(m_vehicleSize);
+    }
     void updatePlayerShipFrame(int) = ios 0x22a1dc, win 0x3880f0, imac 0x404fc0, m1 0x382d90;
     void updatePlayerSpiderFrame(int id) = ios 0x22d05c, win inline, imac 0x408f80, m1 0x386958 {
         if (id < 1) id = 1;
@@ -20831,8 +20840,8 @@ class SetupCameraOffsetTrigger : SetupTriggerPopup {
     void updateEasingRateLabel() = win 0x3feec0;
     void updateMoveCommandEasing();
     void updateMoveCommandEasingRate();
-    void updateMoveCommandPosX() = win 0x3ffaa0, m1 0x575638, imac 0x64d6b0, ios 0x194168;
-    void updateMoveCommandPosY() = win 0x3ffb90, m1 0x575710, imac 0x64d7a0, ios 0x1940a0;
+    void updateMoveCommandPosX() = win 0x3ffaa0, m1 0x575638, imac 0x64d6b0, ios 0x1940a0;
+    void updateMoveCommandPosY() = win 0x3ffb90, m1 0x575710, imac 0x64d7a0, ios 0x194168;
     void updateValueXLabel() = win 0x3ff4b0;
     void updateValueYLabel() = win 0x3ff560;
 
@@ -21823,12 +21832,12 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
     virtual void textChanged(CCTextInputNode*) = win 0x4288e0, imac 0x5ce6a0, m1 0x502b44, ios 0x1cbad0;
 
     bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x427860, m1 0x5016b0, imac 0x5cd0b0, ios 0x1ca9c0;
-    void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x428890, m1 0x502228, imac 0x5cdd00, ios 0x1cb520;
-    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x428840, m1 0x5022d0, imac 0x5cddc0, ios 0x1cb4cc;
+    void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x428890, m1 0x5022d0, imac 0x5cddc0, ios 0x1cb520;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x428840, m1 0x502228, imac 0x5cdd00, ios 0x1cb4cc;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x428730;
-    void updateChance() = win 0x26b120, m1 0x502a3c, imac 0x5ce560, ios 0x1cb9c8;
+    void updateChance() = win 0x26b120, m1 0x5029cc, imac 0x5ce4e0, ios 0x1cb960;
     void updateChanceLabel(bool) = win 0x428770;
-    void updateTargetID() = win 0x428f20, m1 0x5029cc, imac 0x5ce4e0, ios 0x1cb960;
+    void updateTargetID() = win 0x428f20, m1 0x502a3c, imac 0x5ce560, ios 0x1cb9c8;
     void updateTargetID2() = win 0x428ff0, m1 0x502ac0, imac 0x5ce600, ios 0x1cba4c;
     void updateTextInputLabel() = win 0x428bc0;
     void updateTextInputLabel2() = win 0x428d70;
