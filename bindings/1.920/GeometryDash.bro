@@ -4746,9 +4746,9 @@ class LevelEditorLayer : cocos2d::CCLayer, LevelSettingsDelegate, GameplayDelega
 	virtual float getClkTimer() const;
 	virtual gd::string getOldLevelString() const;
 
-	bool m_bUnknown1;
-	int m_iUnknown1;
-	int m_iUnknown2;
+	bool m_debugDraw;
+	int m_firstVisibleSection;
+	int m_lastVisibleSection;
 	int m_groupIDFilter;
 	StartPosObject* m_startPosObject;
 	float m_gameLayerScale;
@@ -6579,8 +6579,8 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	bool m_cameraMovingX;
 	bool m_cameraMovingY;
 	bool m_bUnknown5;
-	int m_iUnknown1;
-	int m_iUnknown2;
+	int m_firstVisibleSection;
+	int m_lastVisibleSection;
 	int m_iUnknown3;
 	float m_fUnknown8;
 	bool m_groundMoving;
