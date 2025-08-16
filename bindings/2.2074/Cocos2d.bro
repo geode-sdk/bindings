@@ -2548,6 +2548,7 @@ class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::CCTargetedTouchHandler {
     static cocos2d::CCTargetedTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
+    ~CCTargetedTouchHandler() = m1 0x46e7f0, imac 0x46e5a0, ios 0x10634;
 
     bool initWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
 
@@ -2776,6 +2777,7 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
 [[link(win, android)]]
 class cocos2d::CCTouchHandler {
     static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
+    ~CCTouchHandler() = ios 0x10430, m1 0x3dd6e4, imac 0x46e3f0;
 
     cocos2d::CCTouchDelegate* getDelegate() = m1 0x3dd4e4, imac 0x46e1c0, ios 0x103c4;
     int getEnabledSelectors();
