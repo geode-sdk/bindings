@@ -15040,10 +15040,12 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     static LevelEditorLayer* get() {
         return GameManager::sharedState()->m_levelEditorLayer;
     }
-    static cocos2d::CCScene* scene(GJGameLevel* level, bool p1) = win inline {
+    static cocos2d::CCScene* scene(GJGameLevel* level, bool p1) = win inline, m1 0xc2fe0, imac 0xdb170, ios 0x356354 {
         auto scene = cocos2d::CCScene::create();
+        AppDelegate::get()->m_runningScene = scene;
         auto layer = LevelEditorLayer::create(level, p1);
         scene->addChild(layer);
+        scene->setObjType(cocos2d::CCObjectType::LevelEditorLayer);
         return scene;
     }
     static void updateObjectLabel(GameObject*) = win 0x2cef40, m1 0xcf94c, imac 0xe9cb0, ios 0x35d6a4;
