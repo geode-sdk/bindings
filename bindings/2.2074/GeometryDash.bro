@@ -5775,7 +5775,7 @@ class EnhancedGameObject : GameObject {
     virtual void updateSyncedAnimation(float, int) = win 0x1a4e30, imac 0x2499e0, m1 0x1f7c7c, ios 0x347598;
     virtual void updateAnimateOnTrigger(bool) = win 0x1a6af0, imac 0x24b920, m1 0x1f903c, ios 0x348938;
 
-    void createRotateAction(float angle, int clockwiseDirection);
+    void createRotateAction(float angle, int clockwiseDirection) = win 0x1a4300;
     bool init(char const*) = win 0x1a1800, m1 0x4ec0c4, imac 0x5b37d0, ios 0x261f48;
     TodoReturn previewAnimateOnTrigger();
     TodoReturn refreshRotateAction();
