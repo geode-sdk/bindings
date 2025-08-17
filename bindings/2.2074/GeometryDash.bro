@@ -5345,7 +5345,7 @@ class EffectGameObject : EnhancedGameObject {
     virtual void stateSensitiveOff(GJBaseGameLayer*) = win 0x48fcd0, imac 0x1a9f90, m1 0x16b578, ios 0x37f260;
 
     int getTargetColorIndex();
-    bool init(char const* p0) = win 0x48d1a0, m1 inline, imac inline, ios inline {
+    bool init(char const* p0) = win 0x48d1a0, m1 0x1405bc, imac 0x174830, ios inline {
         if (!EnhancedGameObject::init(p0)) return false;
         m_classType = (GameObjectClassType)1;
         m_triggerTargetColor = {255,255,255};
@@ -19342,7 +19342,7 @@ class RingObject : EffectGameObject {
         m_isSpawnOnly = false;
     }
 
-    static RingObject* create(char const*) = win 0x489570;
+    static RingObject* create(char const*) = win 0x489570, m1 0x165a10, imac 0x1a3270, ios 0x37b3a8;
 
     virtual void setScale(float) = win 0x4898f0, m1 0x165ca8, imac 0x1a3520, ios 0x37b5e4;
     virtual void setRotation(float) = win 0x38c9f0, m1 0x165d08, imac 0x1a3580, ios 0x37b634;
@@ -19354,7 +19354,7 @@ class RingObject : EffectGameObject {
     virtual bool shouldDrawEditorHitbox() = win 0x4899a0, imac 0x1a3590, m1 0x165d0c, ios 0x37b638;
     virtual void powerOnObject(int) = win 0x489630, m1 0x165b3c, imac 0x1a33b0, ios 0x37b478;
 
-    bool init(char const* p0) {
+    bool init(char const* p0) = win inline, m1 0x165ae0, imac 0x1a3340, ios inline {
         if (!EffectGameObject::init(p0)) return false;
         m_unk421 = true;
         m_isTouchTriggered = true;
