@@ -5324,7 +5324,7 @@ class EffectGameObject : EnhancedGameObject {
     // virtual ~EffectGameObject();
     EffectGameObject() = win 0x47d040, m1 0x199d84, imac 0x1e2030, ios 0x3925fc;
 
-    static EffectGameObject* create(char const*) = m1 0x16a0d4, imac 0x1a8150;
+    static EffectGameObject* create(char const*) = m1 0x16a0d4, imac 0x1a8150, ios 0x37de80;
 
     virtual void setOpacity(unsigned char) = win 0x48d790, m1 0x16a470, imac 0x1a8550, ios 0x37e130;
     virtual void firstSetup() = win 0x48ffb0, imac 0x1aa2d0, m1 0x16b8dc, ios 0x37f594;
@@ -5345,7 +5345,14 @@ class EffectGameObject : EnhancedGameObject {
     virtual void stateSensitiveOff(GJBaseGameLayer*) = win 0x48fcd0, imac 0x1a9f90, m1 0x16b578, ios 0x37f260;
 
     int getTargetColorIndex();
-    bool init(char const*) = win 0x48d1a0;
+    bool init(char const* p0) = win 0x48d1a0, m1 inline, imac inline, ios inline {
+        if (!EnhancedGameObject::init(p0)) return false;
+        m_classType = (GameObjectClassType)1;
+        m_triggerTargetColor = {255,255,255};
+        m_legacyHSV = true;
+        m_duration = 0.5;
+        return true;
+    }
     void playTriggerEffect() = win 0x48d2b0;
     void resetSpawnTrigger();
     void setTargetID(int id) = win inline, m1 0x157c40, imac 0x192130, ios 0x3756ec {
@@ -8074,7 +8081,7 @@ class GameObject : CCSpritePlus {
     void commonInteractiveSetup();
     void commonSetup() = win 0x18ad70, m1 0x4d7950, imac 0x58a320;
     void copyGroups(GameObject*) = win 0x1999c0, m1 0x4e0b44, imac 0x5a66d0;
-    cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810;
+    cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810, ios 0x2589ec;
     void createColorGroupContainer(int);
     void createGlow(gd::string);
     void createGroupContainer(int size) = win 0x199740;
@@ -8348,7 +8355,7 @@ class GameObject : CCSpritePlus {
     double m_positionX;
     double m_positionY;
     cocos2d::CCPoint m_startPosition;
-    bool m_unk3b8;
+    bool m_usesAudioScale;
 
     // property 372
     bool m_hasNoAudioScale;
@@ -19345,7 +19352,12 @@ class RingObject : EffectGameObject {
     virtual bool shouldDrawEditorHitbox() = win 0x4899a0, imac 0x1a3590, m1 0x165d0c, ios 0x37b638;
     virtual void powerOnObject(int) = win 0x489630, m1 0x165b3c, imac 0x1a33b0, ios 0x37b478;
 
-    bool init(char const*);
+    bool init(char const* p0) {
+        if (!EffectGameObject::init(p0)) return false;
+        m_unk421 = true;
+        m_isTouchTriggered = true;
+        return true;
+    }
     void spawnCircle() = win 0x4896d0;
 
     bool m_claimTouch;
