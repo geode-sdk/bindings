@@ -3349,7 +3349,7 @@ class GameStatsManager : cocos2d::CCNode {
 
 	void checkAchievement(char const*) = win 0x77280;
 	TodoReturn completedDemonLevel(GJGameLevel*);
-	void completedLevel(GJGameLevel*);
+	void completedLevel(GJGameLevel*) = win 0x785c0;
 	void completedMapPack(GJMapPack*) = win 0x78b30;
 	TodoReturn completedStarLevel(GJGameLevel*);
 	void dataLoaded(DS_Dictionary*) = win 0x79150;
@@ -6361,7 +6361,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn playFlashEffect(float, int, float);
 	TodoReturn playGravityEffect(bool);
 	TodoReturn playSpeedParticle(float);
-	TodoReturn processItems();
+	void processItems() = win 0xee230;
 	void pushButton(int, bool) = win 0xf0a00;
 	TodoReturn recordAction(bool, PlayerObject*);
 	TodoReturn registerActiveObject(GameObject*);
