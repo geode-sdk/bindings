@@ -8250,7 +8250,7 @@ class GameObject : CCSpritePlus {
     void updateMainColor();
     void updateMainColorOnly();
     void updateMainOpacity();
-    void updateObjectEditorColor() = win 0x19e370;
+    void updateObjectEditorColor() = win 0x19e370, ios 0x260770, imac 0x5b0f10, m1 0x4e9d50;
     void updateSecondaryColor();
     void updateSecondaryColorOnly();
     void updateSecondaryOpacity();
