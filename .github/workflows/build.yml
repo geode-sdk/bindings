@@ -63,13 +63,13 @@ jobs:
         7z x ninja.zip -o"$GITHUB_WORKSPACE/ninja"
         echo "$GITHUB_WORKSPACE/ninja" >> $GITHUB_PATH
 
-    - name: Update LLVM (Windows)
-      shell: bash
-      run: |
-        curl -L https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.7/LLVM-19.1.7-win64.exe -o llvm-inst.exe
-        7z x llvm-inst.exe -ollvm bin/clang.exe bin/clang++.exe bin/lld-link.exe bin/llvm-rc.exe bin/*.dll lib/clang/*/include/*
-        echo "$GITHUB_WORKSPACE/llvm/bin" >> $GITHUB_PATH
-      if: matrix.config.id == 'win'
+    # - name: Update LLVM (Windows)
+    #   shell: bash
+    #   run: |
+    #     curl -L https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.7/LLVM-19.1.7-win64.exe -o llvm-inst.exe
+    #     7z x llvm-inst.exe -ollvm bin/clang.exe bin/clang++.exe bin/lld-link.exe bin/llvm-rc.exe bin/*.dll lib/clang/*/include/*
+    #     echo "$GITHUB_WORKSPACE/llvm/bin" >> $GITHUB_PATH
+    #   if: matrix.config.id == 'win'
 
     - name: Update Clang (Linux)
       shell: bash
