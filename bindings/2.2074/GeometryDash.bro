@@ -8227,7 +8227,7 @@ class GameObject : CCSpritePlus {
     bool m_isDirty;
     bool m_isObjectPosDirty;
     bool m_isUnmodifiedPosDirty;
-    float m_unk33C;
+    float m_fadeMargin;
     cocos2d::CCRect m_objectRect;
     bool m_isObjectRectDirty;
     bool m_isOrientedBoxDirty;
@@ -8278,10 +8278,10 @@ class GameObject : CCSpritePlus {
     bool m_unk3ee;
     bool m_isInvisible;
     int m_unk3D8;
-    short m_unk3DC;
+    short m_varianceIndex;
     bool m_unk3DE;
-    short m_unk3E0;
-    short m_unk3E2;
+    short m_enterType;
+    short m_exitType;
 
     // property 343
     short m_enterChannel;
@@ -8299,11 +8299,12 @@ class GameObject : CCSpritePlus {
     // property 1
     int m_objectID;
     bool m_unk3F8;
-    bool m_isSolid;
+    bool m_intrinsicDontFade;
     bool m_ignoreEnter;
     bool m_ignoreFade;
-    bool m_unk3FC;
-    bool m_unk3FD;
+    // true for object IDs 207-213 and 693-694
+    bool m_isSolidColorBlock;
+    bool m_baseOrDetailBlending;
     bool m_customSpriteColor;
 
     // property 497
@@ -8398,7 +8399,7 @@ class GameObject : CCSpritePlus {
     bool m_isColorTrigger;
     bool m_dontIgnoreDuration;
     bool m_canBeControlled;
-    bool m_isSpawnOrderTrigger2;
+    bool m_activateInEditor;
     bool m_isStartPos;
 
     // property 103
@@ -10228,7 +10229,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float m_cameraWidth;
     float m_cameraHeight;
     float m_cameraUnzoomedX;
-    float m_cameraX;
+    float m_halfCameraWidth;
     AudioEffectsLayer* m_audioEffectsLayer;
     OBB2D* m_cameraObb2;
     gd::vector<GameObject*> m_activeObjects;
@@ -11192,8 +11193,8 @@ class GJGameState {
     gd::map<std::pair<GJGameEvent, int>, int> m_unkMapPairGJGameEventIntInt;
     gd::unordered_map<int, gd::vector<EnterEffectInstance>> m_unorderedMapEnterEffectInstanceVectors1;
     gd::unordered_map<int, gd::vector<EnterEffectInstance>> m_unorderedMapEnterEffectInstanceVectors2;
-    gd::vector<int> m_unkVecInt1;
-    gd::vector<int> m_unkVecInt2;
+    gd::vector<int> m_enterChannelMap;
+    gd::vector<int> m_exitChannelMap;
     gd::vector<EnterEffectInstance> m_enterEffectInstances1;
     gd::vector<EnterEffectInstance> m_enterEffectInstances2;
     gd::vector<EnterEffectInstance> m_enterEffectInstances3;
@@ -15135,7 +15136,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* m_particleObjects;
     cocos2d::CCArray* m_keyframeObjects;
     cocos2d::CCDictionary* m_unk3720;
-    cocos2d::CCArray* m_specialSpawnObjects;
+    cocos2d::CCArray* m_playtestTriggers;
     GameObject* m_copyStateObject;
     ParticleGameObject* m_particleObject;
     cocos2d::CCDictionary* m_unk3740;
@@ -18505,9 +18506,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     }
     void addObject(GameObject*) = ios 0x11bef8, win 0x396eb0, imac 0xb2190, m1 0xa2668;
     void addToGroupOld(GameObject*);
-    void applyCustomEnterEffect(GameObject*, bool) = win 0x399aa0;
+    void applyCustomEnterEffect(GameObject* object, bool isRight) = win 0x399aa0;
 
-    void applyEnterEffect(GameObject*, int, bool) = win 0x39a790;
+    void applyEnterEffect(GameObject* object, int enterType, bool isRight) = win 0x39a790;
     bool canPauseGame() = ios 0x125b68, win inline, imac 0xbf270, m1 0xadc4c {
         return !m_hasCompletedLevel && !m_levelEndAnimationStarted;
     }
