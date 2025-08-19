@@ -222,19 +222,52 @@ class AchievementManager : cocos2d::CCNode {
 
     virtual bool init() = win 0x7e60, m1 0x633ef4, imac 0x7157a0, ios 0xb9ecc;
 
-    gd::string achievementForUnlock(int, UnlockType) = win 0x3a1c0, imac 0x76ef60, m1 0x682554, ios 0xeb6d8;
-    void addAchievement(gd::string, gd::string, gd::string, gd::string, gd::string, int) = win 0x7ef0, m1 0x681c8c, imac 0x76e740, ios 0xeb16c;
+    gd::string achievementForUnlock(int id, UnlockType type) = win 0x3a1c0, imac 0x76ef60, m1 0x682554, ios 0xeb6d8;
+    void addAchievement(gd::string identifier, gd::string title, gd::string achievedDescription, gd::string unachievedDescription, gd::string icon, int limits) = win 0x7ef0, m1 0x681c8c, imac 0x76e740, ios 0xeb16c;
     void addManualAchievements() = win 0x8410, m1 0x633f7c, imac 0x715830, ios 0xb9f54;
-    TodoReturn areAchievementsEarned(cocos2d::CCArray*);
-    TodoReturn checkAchFromUnlock(char const*);
-    void dataLoaded(DS_Dictionary*) = m1 0x681ff4, imac 0x76ea20, ios 0xeb448;
-    void encodeDataTo(DS_Dictionary*) = m1 0x682060, imac 0x76ea90, ios 0xeb498;
-    void firstSetup();
-    TodoReturn getAchievementRewardDict();
-    cocos2d::CCDictionary* getAchievementsWithID(char const*) = win 0x39d70, m1 0x6822dc, imac 0x76ed50;
-    cocos2d::CCArray* getAllAchievements();
-    cocos2d::CCArray* getAllAchievementsSorted(bool);
-    bool isAchievementAvailable(gd::string);
+    bool areAchievementsEarned(cocos2d::CCArray* achievements) = win inline, m1 0x68210c, imac 0x76eb90, ios inline {
+        for (int i = 0; i < achievements->count(); i++) {
+            if (!this->isAchievementEarned(static_cast<cocos2d::CCString*>(achievements->objectAtIndex(i))->getCString())) {
+                return false;
+            }
+        }
+        return true;
+    }
+    void checkAchFromUnlock(char const* id) = win inline, m1 0x68207c, imac 0x76eac0, ios inline {}
+    void dataLoaded(DS_Dictionary* dict) = win inline, m1 0x681ff4, imac 0x76ea20, ios 0xeb448 {
+        auto reportedAchievements = dict->getDictForKey("reportedAchievements", false);
+        if (m_reportedAchievements) {
+            GameToolbox::mergeDictsSaveLargestInt(m_reportedAchievements, reportedAchievements);
+        }
+        else if (reportedAchievements) {
+            CC_SAFE_RETAIN(reportedAchievements);
+            CC_SAFE_RELEASE(m_reportedAchievements);
+            m_reportedAchievements = reportedAchievements;
+        }
+    }
+    void encodeDataTo(DS_Dictionary* dict) = win inline, m1 0x682060, imac 0x76ea90, ios 0xeb498 {
+        dict->setDictForKey("reportedAchievements", m_reportedAchievements);
+    }
+    void firstSetup() = win inline, m1 0x681fa8, imac 0x76e9d0, ios 0xeb420 {
+        auto reportedAchievements = cocos2d::CCDictionary::create();
+        if (m_reportedAchievements != reportedAchievements) {
+            CC_SAFE_RETAIN(reportedAchievements);
+            CC_SAFE_RELEASE(m_reportedAchievements);
+            m_reportedAchievements = reportedAchievements;
+        }
+    }
+    cocos2d::CCDictionary* getAchievementRewardDict();
+    cocos2d::CCDictionary* getAchievementsWithID(char const* id) = win 0x39d70, m1 0x6822dc, imac 0x76ed50, ios 0xeb5d0;
+    cocos2d::CCArray* getAllAchievements() = win inline, m1 0x6822d4, imac 0x76ed40, ios 0xeb5c8 {
+        return m_allAchievements;
+    }
+    cocos2d::CCArray* getAllAchievementsSorted(bool available) = win 0x39b50, m1 0x681678, imac 0x76e0b0, ios 0xeae18;
+    bool isAchievementAvailable(gd::string id) = win inline, m1 0x6823d0, imac 0x76ee40, ios inline {
+        if (auto achievements = getAchievementsWithID(id.c_str())) {
+            return achievements->objectForKey("un") == nullptr;
+        }
+        return false;
+    }
     bool isAchievementEarned(char const* ach) = ios 0xeb53c, win 0x39a70, imac 0x76ec00, m1 0x682198;
     int limitForAchievement(gd::string id) = win inline, imac 0x76eec0, m1 0x68248c, ios 0xeb63c {
         if (auto achievements = getAchievementsWithID(id.c_str())) {
@@ -242,16 +275,26 @@ class AchievementManager : cocos2d::CCNode {
         }
         return 0;
     }
-    void notifyAchievement(char const*, char const*, char const*) = m1 0x682bcc, imac 0x76f700, ios 0xeba9c;
-    void notifyAchievementWithID(char const*) = win 0x3a470;
-    TodoReturn percentageForCount(int, int);
-    int percentForAchievement(char const*) = win 0x39a90, m1 0x6821b4, imac 0x76ec20, ios 0xeb558;
-    void reportAchievementWithID(char const*, int, bool) = m1 0x682d28, imac 0x76f830, ios 0xebb58;
-    void reportPlatformAchievementWithID(char const*, int);
-    void resetAchievement(char const*);
-    TodoReturn resetAchievements();
-    TodoReturn setup();
-    void storeAchievementUnlocks();
+    void notifyAchievement(char const* title, char const* description, char const* icon) = win inline, m1 0x682bcc, imac 0x76f700, ios 0xeba9c {
+        if (!m_dontNotify) AchievementNotifier::sharedState()->notifyAchievement(title, description, icon, true);
+    }
+    void notifyAchievementWithID(char const* id) = win 0x3a470, m1 0x6829cc, imac 0x76f530, ios 0xeb958;
+    int percentageForCount(int count, int total) = win inline, m1 0x6822ac, imac 0x76ed10, ios inline {
+        return std::min<int>(100, ((float)count / (float)total) * 100.f);
+    }
+    int percentForAchievement(char const* id) = win 0x39a90, m1 0x6821b4, imac 0x76ec20, ios 0xeb558;
+    void reportAchievementWithID(char const* id, int percent, bool dontNotify) = m1 0x682d28, imac 0x76f830, ios 0xebb58;
+    void reportPlatformAchievementWithID(char const* id, int percent) = m1 0x682e90, imac 0x76f9b0, ios inline {
+        PlatformToolbox::reportAchievementWithID(id, percent);
+    }
+    void resetAchievement(char const* id) = win inline, m1 0x682c24, imac 0x76f750, ios 0xebaf4 {
+        m_reportedAchievements->removeObjectForKey(id);
+    }
+    void resetAchievements() = win inline, m1 0x682e9c, imac 0x76f9c0, ios inline {
+        m_reportedAchievements->removeAllObjects();
+    }
+    void setup() = win inline, m1 0x682078, imac 0x76eab0, ios inline {}
+    void storeAchievementUnlocks() = win 0x39e20, m1 0x681858, imac 0x76e2a0, ios 0xeaf78;
 
     cocos2d::CCArray* m_allAchievements;
     cocos2d::CCDictionary* m_platformAchievements;
@@ -8996,8 +9039,8 @@ class GameToolbox {
     static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284;
     static bool isIOS();
     static bool isRateEasing(int);
-    static TodoReturn mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
-    static void mergeDictsSkipConflict(cocos2d::CCDictionary*, cocos2d::CCDictionary*) = m1 0x43f6d0, imac 0x4dc610;
+    static void mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*) = win 0x64b70, m1 0x43f440, imac 0x4dc370, ios 0x48050;
+    static void mergeDictsSkipConflict(cocos2d::CCDictionary*, cocos2d::CCDictionary*) = win 0x64dd0, m1 0x43f6d0, imac 0x4dc610, ios 0x48188;
     static gd::string msToTimeString(int milliseconds, int formattingMode) = win 0x69630, m1 0x446c04, imac 0x4e48b0, ios 0x4c158;
     static TodoReturn multipliedColorValue(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
     static TodoReturn openAppPage();
@@ -11334,7 +11377,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
         m_selectedIconType = IconType::Cube;
         m_videoPlaying = false;
     }
-    ~GJGarageLayer() = m1 0x2e9268, imac 0x355830, ios 0x301c44 {
+    ~GJGarageLayer() = win inline, m1 0x2e9268, imac 0x355830, ios 0x301c44 {
         auto gm = GameManager::sharedState();
         gm->m_gameRateDelegate1 = nullptr;
         CC_SAFE_RELEASE(m_tabButtons);
@@ -11366,36 +11409,60 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     virtual void playerColorChanged() = win 0x270170, imac 0x35b6f0, m1 0x2eebd4, ios 0x306698;
     virtual void rewardedVideoFinished() = win 0x26d380, m1 0x2ec838, imac 0x3590c0, ios 0x304934;
 
-    gd::string achievementForUnlock(int, UnlockType);
-    gd::string descriptionForUnlock(int, UnlockType) = win 0x270a30;
-    cocos2d::CCArray* getItems(IconType) = win 0x26ee50, m1 0x2edef8, imac 0x35a7b0;
-    cocos2d::CCArray* getItems(int, int, IconType, int) = ios 0x3058b8, imac 0x35a440, m1 0x2edb68, win 0x26ef10;
-    gd::string getLockFrame(int, UnlockType) = m1 0x2eeb40, imac 0x35b650;
+    static gd::string achievementForUnlock(int id, UnlockType type) = win inline, m1 0x2ef6f4, imac 0x35c290, ios inline {
+        auto achievementManager = AchievementManager::sharedState();
+        auto achievement = achievementManager->achievementForUnlock(id, type);
+        return achievementManager->isAchievementAvailable(achievement) ? achievement : "";
+    }
+    static gd::string descriptionForUnlock(int id, UnlockType type) = win 0x270a30, m1 0x2ef554, imac 0x35c100, ios 0x306d48;
+    cocos2d::CCArray* getItems(IconType type) = win 0x26ee50, m1 0x2edef8, imac 0x35a7b0, ios 0x305b10;
+    cocos2d::CCArray* getItems(int count, int page, IconType type, int current) = ios 0x3058b8, imac 0x35a440, m1 0x2edb68, win 0x26ef10;
+    gd::string getLockFrame(int id, UnlockType type) = win inline, m1 0x2eeb40, imac 0x35b650, ios inline {
+        return "GJ_lock_001";
+    }
     void onArrow(cocos2d::CCObject* sender) = win 0x26e590, imac 0x359460, m1 0x2ecc3c, ios 0x304c48;
     void onBack(cocos2d::CCObject* sender) = win 0x271750, imac 0x3588c0, m1 0x2ec048, ios 0x304604;
-    void onInfo(cocos2d::CCObject* sender) = win 0x26d190, m1 0x2ec28c, imac 0x358b10;
+    void onInfo(cocos2d::CCObject* sender) = win 0x26d190, m1 0x2ec28c, imac 0x358b10, ios 0x304838;
     void onNavigate(cocos2d::CCObject* sender) = ios 0x305378, win 0x26e690, imac 0x359d50, m1 0x2ed4c8;
     void onPaint(cocos2d::CCObject* sender) = win 0x271570, m1 0x2ec234, imac 0x358ab0, ios 0x3047e0;
-    void onRewardedVideo(cocos2d::CCObject* sender);
+    void onRewardedVideo(cocos2d::CCObject* sender) = m1 0x2ec4b0, imac 0x358d10;
     void onSelect(cocos2d::CCObject* sender) = ios 0x305b88, win 0x26f890, imac 0x35a860, m1 0x2edf90;
-    void onSelectTab(cocos2d::CCObject* sender) = win 0x26e6c0, imac 0x359430, m1 0x2ecc08;
+    void onSelectTab(cocos2d::CCObject* sender) = win 0x26e6c0, imac 0x359430, m1 0x2ecc08, ios 0x304c14;
     void onShards(cocos2d::CCObject* sender) = ios 0x3047b4, win 0x271420, m1 0x2ec208, imac 0x358a80;
     void onShop(cocos2d::CCObject* sender) = ios 0x304754, win 0x2716f0, m1 0x2ec1a8, imac 0x358a20;
     void onSpecial(cocos2d::CCObject* sender) = ios 0x305af4, win 0x270120, m1 0x2ededc, imac 0x35a790;
-    void onToggleItem(cocos2d::CCObject* sender) = win 0x26ff30, imac 0x35b0c0, m1 0x2ee60c;
-    void playRainbowEffect() = win 0x271230, imac 0x35b4b0, m1 0x2ee9a4;
-    void playShadowEffect();
-    void selectTab(IconType) = ios 0x304d0c, win 0x26e6f0, imac 0x3595c0, m1 0x2ecd78;
-    void setupIconSelect() = ios 0x303b74, win 0x26d930, m1 0x2eb53c, imac 0x357db0;
-    void setupPage(int, IconType) = ios 0x304de4, win 0x26e7b0, imac 0x359700, m1 0x2ecea8;
-    void setupSpecialPage() = ios 0x3053b0, win 0x26f1e0, imac 0x359d80, m1 0x2ed500;
-    void showUnlockPopupNew(int, UnlockType) {
-        ItemInfoPopup::create(p0, p1)->show();
+    void onToggleItem(cocos2d::CCObject* sender) = win 0x26ff30, imac 0x35b0c0, m1 0x2ee60c, ios 0x30621c;
+    void playRainbowEffect() = win 0x271230, imac 0x35b4b0, m1 0x2ee9a4, ios 0x3064fc;
+    void playShadowEffect() = win inline, m1 0x2efbdc, imac 0x35c7c0, ios inline {
+        auto circleWave = CCCircleWave::create(20.f, 60.f, .3f, false);
+        circleWave->m_color.r = 0;
+        circleWave->m_color.g = 0;
+        circleWave->m_color.b = 0;
+        circleWave->m_opacityMod = .5f;
+        circleWave->m_blendAdditive = false;
+        circleWave->setPosition(m_playerObject->getPosition());
+        this->addChild(circleWave, -1);
     }
-    gd::string titleForUnlock(int, UnlockType);
-    void toggleGlow();
+    void selectTab(IconType type) = ios 0x304d0c, win 0x26e6f0, imac 0x3595c0, m1 0x2ecd78;
+    void setupIconSelect() = ios 0x303b74, win 0x26d930, m1 0x2eb53c, imac 0x357db0;
+    void setupPage(int page, IconType type) = ios 0x304de4, win 0x26e7b0, imac 0x359700, m1 0x2ecea8;
+    void setupSpecialPage() = ios 0x3053b0, win 0x26f1e0, imac 0x359d80, m1 0x2ed500;
+    void showUnlockPopupNew(int id, UnlockType type) = win inline, m1 0x2eecd4, imac 0x35b810, ios inline {
+        ItemInfoPopup::create(id, type)->show();
+    }
+    static gd::string titleForUnlock(int id, UnlockType type) = win inline, m1 0x2ef3bc, imac 0x35bf80, ios 0x306c5c {
+        auto achievementManager = AchievementManager::sharedState();
+        return achievementManager->getAchievementsWithID(achievementManager->achievementForUnlock(id, type).c_str())->valueForKey("title")->getCString();
+    }
+    void toggleGlow() = win inline, m1 0x2eeb6c, imac 0x35b680, ios inline {
+        auto gameManager = GameManager::sharedState();
+        gameManager->m_playerGlow = !gameManager->m_playerGlow;
+        m_playerObject->m_hasGlowOutline = gameManager->m_playerGlow;
+        m_playerObject->updateColors();
+        if (gameManager->m_playerGlow) this->playRainbowEffect();
+    }
     void updatePlayerColors() = win 0x2701a0, m1 0x2eaef4, imac 0x3577a0, ios 0x3035e8;
-    void updatePlayerName(char const*);
+    void updatePlayerName(char const* name) = win inline, m1 0x2ec998, imac 0x3591f0, ios inline {}
 
     CCTextInputNode* m_usernameInput;
     SimplePlayer* m_playerObject;
@@ -17860,7 +17927,7 @@ class PlatformToolbox {
     static TodoReturn openAppPage();
     static void platformShutdown() = m1 0x41a1d4, imac 0x4b1950;
     static TodoReturn refreshWindow();
-    static TodoReturn reportAchievementWithID(char const*, int);
+    static void reportAchievementWithID(char const*, int) = m1 0x4195f8, imac 0x4b0ae0, ios 0x16ef50;
     static TodoReturn reportLoadingFinished();
     static void resizeWindow(float width, float height);
     static TodoReturn saveAndEncryptStringToFile(gd::string&, char const*, char const*);
