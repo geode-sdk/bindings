@@ -17500,12 +17500,12 @@ class OBB2D : cocos2d::CCNode {
 
     void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x6da50, imac 0x5dbe20, m1 0x50ef3c, ios 0x12ffd4;
     void computeAxes() = win inline, m1 0x50f0b4, imac 0x5dbfd0, ios 0x13014c {
-        m_horizontalDifference = m_corners[1] - m_corners[0];
-        m_verticalDifference = m_corners[3] - m_corners[0];
-        m_horizontalDifference = m_horizontalDifference * (1.f / (m_horizontalDifference.x * m_horizontalDifference.x + m_horizontalDifference.y * m_horizontalDifference.y));
-        m_horizontalDifference2 = m_corners[0].x * m_horizontalDifference.x + m_corners[0].y * m_horizontalDifference.y;
-        m_verticalDifference = m_verticalDifference * (1.f / (m_verticalDifference.x * m_verticalDifference.x + m_verticalDifference.y * m_verticalDifference.y));
-        m_verticalDifference2 = m_corners[0].x * m_verticalDifference.x + m_corners[0].y * m_verticalDifference.y;
+        m_edges[0] = m_corners[1] - m_corners[0];
+        m_edges[1] = m_corners[3] - m_corners[0];
+        for (int i = 0; i < 2; i++) {
+            m_edges[i] = m_edges[i] * (1.f / (m_edges[i].x * m_edges[i].x + m_edges[i].y * m_edges[i].y));
+            m_projections[i] = m_corners[0].x * m_edges[i].x + m_corners[0].y * m_edges[i].y;
+        }
     }
     cocos2d::CCRect getBoundingRect() = win 0x6e240, m1 0x50f6e8, imac 0x5dc6d0, ios 0x1304d8;
     bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win inline, m1 0x50eebc, imac 0x5dbdb0, ios 0x12ff54 {
@@ -17521,11 +17521,9 @@ class OBB2D : cocos2d::CCNode {
 
     std::array<cocos2d::CCPoint, 4> m_corners;
     std::array<cocos2d::CCPoint, 4> m_positions;
-    cocos2d::CCPoint m_horizontalDifference;
-    cocos2d::CCPoint m_verticalDifference;
+    std::array<cocos2d::CCPoint, 2> m_edges;
     std::array<cocos2d::CCPoint, 2> m_axes;
-    double m_horizontalDifference2;
-    double m_verticalDifference2;
+    std::array<double, 2> m_projections;
     cocos2d::CCPoint m_center;
 }
 
