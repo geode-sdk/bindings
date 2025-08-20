@@ -17432,14 +17432,19 @@ class OBB2D : cocos2d::CCNode {
     static OBB2D* create(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x6d880, m1 0x50edb8, imac 0x5dbcf0, ios 0x12fde8;
 
     void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x6da50, imac 0x5dbe20, m1 0x50ef3c, ios 0x12ffd4;
-    void computeAxes();
-    cocos2d::CCRect getBoundingRect() = win 0x6e240;
-    bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle) = m1 0x50eebc, imac 0x5dbdb0;
-    void orderCorners() = win 0x6dd70;
-    bool overlaps(OBB2D* other) = win inline, ios 0x1303f4 {
+    void computeAxes() = m1 0x50f0b4, imac 0x5dbfd0, ios 0x13014c;
+    cocos2d::CCRect getBoundingRect() = win 0x6e240 m1 0x50f6e8, imac 0x5dc6d0, ios 0x1304d8;
+    bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win inline, m1 0x50eebc, imac 0x5dbdb0, ios 0x12ff54 {
+        if (!CCNode::init()) return false;
+        m_center = center;
+        calculateWithCenter(m_center, width, height, rotationAngle);
+        return true;
+    }
+    void orderCorners() = win 0x6dd70, m1 0x50f1c8, imac 0x5dc130, ios 0x13022c;
+    bool overlaps(OBB2D* other) = win inline, m1 0x50f55c, imac 0x5dc4b0, ios 0x1303f4 {
         return this->overlaps1Way(other) && other->overlaps1Way(this);
     }
-    bool overlaps1Way(OBB2D*) = win 0x6e100;
+    bool overlaps1Way(OBB2D*) = win 0x6e100, m1 0x50f598, imac 0x5dc4e0, ios 0x130430;
 
 
     std::array<cocos2d::CCPoint, 4> m_corners;
