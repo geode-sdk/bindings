@@ -36,8 +36,8 @@ class cocos2d::CCActionEase : cocos2d::CCActionInterval {
     // CCActionEase();
     virtual ~CCActionEase() = m1 0x45ded4, imac 0x4fe490, ios 0x26afb8;
 
-    bool initWithAction(cocos2d::CCActionInterval* p0) = ios 0x26ae94, imac inline, m1 inline {
-        bool result = CCActionInterval::initWithDuration(p0->getDuration());
+    bool initWithAction(cocos2d::CCActionInterval* pAction) = ios 0x26ae94, imac inline, m1 inline {
+        bool result = CCActionInterval::initWithDuration(pAction->getDuration());
         if (result) {
             m_pInner = pAction;
             pAction->retain();
