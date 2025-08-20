@@ -17521,8 +17521,7 @@ class OBB2D : cocos2d::CCNode {
 
     std::array<cocos2d::CCPoint, 4> m_corners;
     std::array<cocos2d::CCPoint, 4> m_positions;
-    std::array<cocos2d::CCPoint, 2> m_edges;
-    std::array<cocos2d::CCPoint, 2> m_axes;
+    std::array<cocos2d::CCPoint, 4> m_edges;
     std::array<double, 2> m_projections;
     cocos2d::CCPoint m_center;
 }
