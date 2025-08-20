@@ -10642,17 +10642,7 @@ class GJEffectManager : cocos2d::CCNode {
     ColorAction* getColorAction(int) = ios 0x12b80, win 0x254870, imac 0x2ca1e0, m1 0x26d3c4;
     ColorActionSprite* getColorSprite(int) = win 0x254930, m1 0x26d56c, imac 0x2ca3a0;
     TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
-    cocos2d::ccColor3B getMixedColor(cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, float ratio) = win inline, imac 0x2d90d0, m1 0x279460, ios 0x1a5d4 {
-        float r = color1.r * (1.f - ratio) + color2.r * ratio;
-        float g = color1.g * (1.f - ratio) + color2.g * ratio;
-        float b = color1.b * (1.f - ratio) + color2.b * ratio;
-
-        return {
-            static_cast<GLubyte>(std::clamp(r, 0.f, 255.f)),
-            static_cast<GLubyte>(std::clamp(g, 0.f, 255.f)),
-            static_cast<GLubyte>(std::clamp(b, 0.f, 255.f))
-        };
-    }
+    cocos2d::ccColor3B getMixedColor(cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, float ratio) = imac 0x2d90d0, m1 0x279460, ios 0x1a5d4;
     TodoReturn getMoveCommandNode(GroupCommandObject2*);
     TodoReturn getMoveCommandObject();
     TodoReturn getOpacityActionForGroup(int);
@@ -18616,69 +18606,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateAttempts() = win 0x3a2c70, imac 0xbeeb0, m1 0xad858, ios 0x1258d4;
     void updateEffectPositions() = m1 0xaa9fc, imac 0xbb690;
     void updateInfoLabel() = ios 0x11b150, win 0x39bb90, imac 0xafdc0, m1 0xa0770;
-    void updateInvisibleBlock(GameObject* object, float rightFadeBound, float leftFadeBound, float rightFadeWidth, float leftFadeWidth, cocos2d::ccColor3B const& lbgColor) = win 0x3994e0, imac 0xb8a10, m1 0xa8264, ios 0x120b50 {
-        // inlined on android64 and android64 alone 😭
-
-        float objX = object->getRealPosition().x;
-
-        if (objX <= m_cameraUnzoomedX) objX += object->m_fadeMargin;
-        else objX -= object->m_fadeMargin;
-
-        // compute fade near edges of screen:
-
-        float cameraX = m_gameState.m_cameraPosition2.x;
-        float cameraCenterX = m_halfCameraWidth + cameraX;
-
-        float fadeFactor;
-
-        if (objX <= cameraCenterX) {
-            fadeFactor = 0.014285714f * (m_halfCameraWidth - (cameraCenterX - objX));
-        } else {
-            fadeFactor = 0.02f * (m_halfCameraWidth - (objX - cameraCenterX));
-        }
-
-        float cameraFade = std::clamp(fadeFactor, 0.f, 1.f) * 255.f;
-
-        // compute fade near center of screen:
-
-        float distance;
-        float divisor;
-
-        if (objX <= cameraX + rightFadeBound) {
-            distance = (cameraX + leftFadeBound) - objX;
-            divisor = leftFadeWidth;
-        } else {
-            distance = objX - cameraX - rightFadeBound;
-            divisor = rightFadeWidth;
-        }
-
-        if (divisor <= 1.f) divisor = 1.f;
-
-        float ratio = std::clamp(distance / divisor, 0.f, 1.f);
-        float playerFade = (ratio * 0.95f + 0.05f) * 255.f;
-
-        // set final opacity based on both fades:
-
-        object->setOpacity(std::min(cameraFade, playerFade));
-
-        // set glow opacity and color:
-
-        if (object->m_glowSprite) {
-            float glowFade = (ratio * 0.85f + 0.15f) * 255.f;
-            glowFade = std::min(cameraFade, glowFade);
-
-            object->m_glowSprite->setOpacity(glowFade * object->m_opacityMod);
-        }
-
-        float opacity = object->getOpacity() / 255.f;
-
-        if (opacity > 0.8f) {
-            float ratio = (1.0f - (opacity - 0.8f) / 0.2f) * 0.3f + 0.7f;
-            object->setGlowColor(m_effectManager->getMixedColor(lbgColor, m_lighterBGColor, ratio));
-        } else {
-            object->setGlowColor(m_lighterBGColor);
-        }
-    }
+    void updateInvisibleBlock(GameObject* object, float rightFadeBound, float leftFadeBound, float rightFadeWidth, float leftFadeWidth, cocos2d::ccColor3B const& lbgColor) = win 0x3994e0, imac 0xb8a10, m1 0xa8264, ios 0x120b50;
     void updateProgressbar() = ios 0x11bb80, win 0x39b4f0, m1 0xa2124, imac 0xb1c20;
     void updateScreenRotation(int, bool, bool, float, int, float, int, int);
     void updateTestModeLabel() = ios 0x11d4e8, win 0x390b40, imac 0xb3d10, m1 0xa3d38;

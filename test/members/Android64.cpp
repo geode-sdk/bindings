@@ -472,8 +472,8 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkMapPairGJGameEventIntVectorEventTriggerInst
 GEODE_MEMBER_CHECK(GJGameState, m_unkMapPairGJGameEventIntInt, 0x400);
 GEODE_MEMBER_CHECK(GJGameState, m_unorderedMapEnterEffectInstanceVectors1, 0x430);
 GEODE_MEMBER_CHECK(GJGameState, m_unorderedMapEnterEffectInstanceVectors2, 0x468);
-GEODE_MEMBER_CHECK(GJGameState, m_unkVecInt1, 0x4a0);
-GEODE_MEMBER_CHECK(GJGameState, m_unkVecInt2, 0x4b8);
+GEODE_MEMBER_CHECK(GJGameState, m_enterChannelMap, 0x4a0);
+GEODE_MEMBER_CHECK(GJGameState, m_exitChannelMap, 0x4b8);
 GEODE_MEMBER_CHECK(GJGameState, m_enterEffectInstances1, 0x4d0);
 GEODE_MEMBER_CHECK(GJGameState, m_enterEffectInstances2, 0x4e8);
 GEODE_MEMBER_CHECK(GJGameState, m_enterEffectInstances3, 0x500);
