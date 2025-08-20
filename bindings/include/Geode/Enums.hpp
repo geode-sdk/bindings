@@ -885,7 +885,8 @@ enum class GJScoreType {
 enum class LevelLeaderboardType {
     Friends = 0,
     Global = 1,
-    Weekly = 2
+    Weekly = 2,
+    Local = 3
 };
 
 enum class GJHttpType {
