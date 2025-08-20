@@ -36,7 +36,14 @@ class cocos2d::CCActionEase : cocos2d::CCActionInterval {
     // CCActionEase();
     virtual ~CCActionEase() = m1 0x45ded4, imac 0x4fe490, ios 0x26afb8;
 
-    bool initWithAction(cocos2d::CCActionInterval*) = ios 0x26ae94;
+    bool initWithAction(cocos2d::CCActionInterval* p0) = ios 0x26ae94, imac inline, m1 inline {
+        bool result = CCActionInterval::initWithDuration(p0->getDuration());
+        if (result) {
+            m_pInner = pAction;
+            pAction->retain();
+        }
+        return result;
+	}
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x45ddd8, imac 0x4fe380, ios 0x26aedc;
     virtual void startWithTarget(cocos2d::CCNode*) = m1 0x45df8c, imac 0x4fe550, ios 0x26b00c;
@@ -4887,7 +4894,9 @@ class cocos2d {
     static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&) = imac 0x3428c0, m1 0x2d82a8, ios 0x1b1e1c;
     static cocos2d::CCPoint ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
-    static float ccpToAngle(cocos2d::CCPoint const&);
+    static float ccpToAngle(cocos2d::CCPoint const& point) = m1 inline, imac inline, ios inline {
+        return point.getAngle();
+    }
     static char const* cocos2dVersion();
     static float clampf(float, float, float) = m1 0x2d8370, imac 0x3429d0, ios 0x1b1edc;
 }
