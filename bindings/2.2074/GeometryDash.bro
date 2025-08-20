@@ -17438,7 +17438,7 @@ class OBB2D : cocos2d::CCNode {
         if (!CCNode::init()) return false;
         m_center = center;
         calculateWithCenter(m_center, width, height, rotationAngle);
-        return true;
+        return true; 
     }
     void orderCorners() = win 0x6dd70, m1 0x50f1c8, imac 0x5dc130, ios 0x13022c;
     bool overlaps(OBB2D* other) = win inline, m1 0x50f55c, imac 0x5dc4b0, ios 0x1303f4 {
