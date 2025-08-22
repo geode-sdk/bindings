@@ -8085,8 +8085,8 @@ class GameObject : CCSpritePlus {
     virtual cocos2d::CCPoint getStartPos() const = win 0x136060, imac 0x1e1bd0, m1 0x1999ec, ios 0x22ea9c;
 
     void addColorSprite(gd::string) = win 0x18b830, m1 0x4d83b4, imac 0x58cc00, ios 0x254690;
-    void addColorSpriteToParent(bool) = imac 0x592300, m1 0x4d95b8, win 0x199040;
-    void addColorSpriteToSelf() = win 0x199240, m1 0x4e045c, imac 0x5a6020;
+    void addColorSpriteToParent(bool) = imac 0x592300, m1 0x4d95b8, win 0x199040, ios 0x2555a8;
+    void addColorSpriteToSelf() = win 0x199240, m1 0x4e045c, imac 0x5a6020, ios 0x25c010;
     cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool);
     cocos2d::CCSprite* addCustomChild(gd::string frame, cocos2d::CCPoint offset, int zOrder) = win 0x194330, m1 0x4dd6a8, imac 0x5a3240, ios 0x259a28;
     cocos2d::CCSprite* addCustomColorChild(gd::string) = win 0x1943f0, m1 0x4dd750, imac 0x5a32e0, ios 0x259ad0;
