@@ -4686,7 +4686,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     // void alignItemsInRows(unsigned int, char*);
     void alignItemsInRowsWithArray(cocos2d::CCArray*);
     void alignItemsVertically();
-    void alignItemsVerticallyWithPadding(float);
+    void alignItemsVerticallyWithPadding(float) = imac 0x77d370, m1 0x69230c, ios 0x1d93e0;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*);
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
 
