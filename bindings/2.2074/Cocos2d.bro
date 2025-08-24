@@ -4364,7 +4364,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     static cocos2d::CCDrawNode* create() = imac 0x5f94f0, m1 0x528650, ios 0x45aa0;
 
-    cocos2d::_ccBlendFunc getBlendFunc() const = m1 0x52a0fc, imac 0x5fb250;
+    cocos2d::_ccBlendFunc getBlendFunc() const = m1 0x52a0fc, imac 0x5fb260;
 
     void setBlendFunc(cocos2d::_ccBlendFunc const&) = imac 0x5fb270, m1 0x52a104, ios 0x46a38;
 
