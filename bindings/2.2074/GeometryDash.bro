@@ -20387,15 +20387,7 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
     // virtual ~SetColorIDPopup();
 
-    static SetColorIDPopup* create(int current) = win inline, m1 0x24125c, imac 0x299530, ios 0x2de58c {
-        auto ret = new SetColorIDPopup();
-        if (ret->init(p0)) {
-            ret->autorelease();
-            return ret;
-        }
-        delete ret;
-        return nullptr;
-    }
+    static SetColorIDPopup* create(int);
 
     virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x294cf0, imac 0x299980, m1 0x24164c, ios 0x2de844;
 
