@@ -5042,7 +5042,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void moveObjectCall(EditCommand) = ios 0x3ee190, win 0x11e000, imac 0x4a9d0, m1 0x437a8;
     cocos2d::CCPoint offsetForKey(int) = win 0x124bf0, m1 0x35208, imac 0x35d10, ios 0x3e3d3c;
     TodoReturn onAssignNewGroupID();
-    void onColorFilter(cocos2d::CCObject* sender) = win 0xe5bd0, m1 0x31b94, imac 0x324d0;
+    void onColorFilter(cocos2d::CCObject* sender) = win 0xe5bd0, m1 0x31b94, imac 0x324d0, ios 0x3e1690;
     void onCopy(cocos2d::CCObject* sender);
     void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0, imac 0x2c960, m1 0x2c538, ios 0x3ddb38;
     bool onCreate() = ios 0x3dee84, win 0x10dd10, m1 0x2dfac, imac 0x2e600;
@@ -20387,12 +20387,20 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
     // virtual ~SetColorIDPopup();
 
-    static SetColorIDPopup* create(int);
+    static SetColorIDPopup* create(int current) = win inline, m1 0x24125c, imac 0x299530, ios 0x2de58c {
+        auto ret = new SetColorIDPopup();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x294cf0, imac 0x299980, m1 0x24164c, ios 0x2de844;
 
-    bool init(int) = m1 0x241384, imac 0x2996b0;
-    void onSelectSpecialColor(cocos2d::CCObject* sender);
+    bool init(int) = win 0x294aa0, m1 0x241384, imac 0x2996b0, ios 0x2de600;
+    void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x294c80, m1 0x2415e8, imac 0x299930, ios 0x2de7e0;
 }
 
 [[link(android)]]
@@ -20404,8 +20412,8 @@ class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
     virtual void valueChanged() = win 0x295250, imac 0x29aa90, m1 0x24249c, ios 0x2deffc;
     virtual void setTextPopupClosed(SetTextPopup*, gd::string) = win 0x295590, imac 0x29af60, m1 0x242914, ios 0x2df330;
 
-    bool init(int value, bool isCreated, gd::string title) = win 0x294fd0, imac 0x29a610, m1 0x24202c;
-    void onSetFolderName(cocos2d::CCObject* sender) = win 0x295390, imac 0x29a8a0, m1 0x24229c;
+    bool init(int value, bool isCreated, gd::string title) = win 0x294fd0, imac 0x29a610, m1 0x24202c, ios 0x2debf4;
+    void onSetFolderName(cocos2d::CCObject* sender) = win 0x295390, imac 0x29a8a0, m1 0x24229c, ios 0x2dee60;
 
     bool m_isCreated;
     cocos2d::CCLabelBMFont* m_titleLabel;
@@ -20423,20 +20431,20 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     virtual void textChanged(CCTextInputNode*) = win 0x3e4400, imac 0x302ee0, m1 0x29aa5c, ios 0x4283c;
 
     TodoReturn addGroupID(int);
-    void callRemoveFromGroup(float) = win 0x3e5000;
-    CCTextInputNode* createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int) = win 0x3e34b0, m1 0x298718, imac 0x300800;
-    TodoReturn determineStartValues();
+    void callRemoveFromGroup(float) = win 0x3e5000, m1 0x29af14, imac 0x3033c0, ios 0x42b94;
+    CCTextInputNode* createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int) = win 0x3e34b0, m1 0x298718, imac 0x300800, ios 0x40d5c;
+    void determineStartValues() = win 0x3e3b50, m1 0x298e08, imac 0x300ef0, ios 0x41334;
     bool init(GameObject* obj, cocos2d::CCArray* objs) = ios 0x3f110, win 0x3e1260, imac 0x2fe5f0, m1 0x296704;
     void onAddGroup(cocos2d::CCObject* sender) = ios 0x41208, win 0x3e52b0, m1 0x298c74, imac 0x300d30;
     void onAddGroupParent(cocos2d::CCObject* sender) = ios 0x41210, win 0x3e5420, m1 0x298c7c, imac 0x300d40;
-    void onAnim(cocos2d::CCObject* sender) = win 0x3e4390;
+    void onAnim(cocos2d::CCObject* sender) = win 0x3e4390, m1 0x29a078, imac 0x302320, ios 0x4216c;
     void onArrow(int tag, int increment) = win 0x3e39e0, m1 0x29a170, imac 0x302410, ios 0x42264;
     void onArrowLeft(cocos2d::CCObject* sender) = win 0x3e3980, m1 0x29a100, imac 0x3023b0, ios 0x421f4;
     void onArrowRight(cocos2d::CCObject* sender) = win 0x3e39b0, m1 0x29a138, imac 0x3023e0, ios 0x4222c;
     void onClose(cocos2d::CCObject* sender) = win 0x3e5f60, m1 0x298444, imac 0x3004c0, ios 0x40b20;
-    void onCopy(cocos2d::CCObject* sender) = win 0x3e3ed0;
+    void onCopy(cocos2d::CCObject* sender) = win 0x3e3ed0, m1 0x299f20, imac 0x3021a0, ios 0x42080;
     void onExtra(cocos2d::CCObject* sender) = win 0x3e40d0, m1 0x29a028, imac 0x3022c0, ios 0x4211c;
-    void onExtra2(cocos2d::CCObject* sender) = win 0x3e4250;
+    void onExtra2(cocos2d::CCObject* sender) = win 0x3e4250, m1 0x29a050, imac 0x3022f0, ios 0x42144;
     void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = win 0x3e57b0, ios 0x40ce4, imac 0x3006e0, m1 0x298608;
     void onNextFreeEditorLayer2(cocos2d::CCObject* sender) = win 0x3e5820, ios 0x40d20, imac 0x300770, m1 0x298690;
     void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x3e5cc0, ios 0x41888, imac 0x301650, m1 0x29944c;
@@ -20444,13 +20452,13 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onPaste(cocos2d::CCObject* sender) = win 0x3e3f30, ios 0x420a8, imac 0x3021d0, m1 0x299f48;
     void onRemoveFromGroup(cocos2d::CCObject* sender) = ios 0x42ac8, win 0x3e51e0, m1 0x29ae48, imac 0x3032f0;
     void onSmoothEase(cocos2d::CCObject* sender);
-    void onToggleGuide(cocos2d::CCObject* sender);
-    void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x3e3410;
-    void onZLayer(cocos2d::CCObject* sender);
-    void onZLayerShift(cocos2d::CCObject* sender);
+    void onToggleGuide(cocos2d::CCObject* sender) = win 0x3e3380, m1 0x29a0a8, imac 0x302350, ios 0x421c8;
+    void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x3e3410, m1 0x29a0d4, imac 0x302380, ios 0x4219c;
+    void onZLayer(cocos2d::CCObject* sender) = win 0x3e5520, m1 0x298d00, imac 0x300dd0, ios 0x41294;
+    void onZLayerShift(cocos2d::CCObject* sender) = win 0x3e55e0, m1 0x2990e8, imac 0x3012f0, ios 0x41614;
     TodoReturn removeGroupID(int);
-    void updateEditorLabel() = win 0x3e5920;
-    void updateEditorLabel2() = win 0x3e59b0;
+    void updateEditorLabel() = win 0x3e5920, m1 0x299640, imac 0x301850, ios 0x41964;
+    void updateEditorLabel2() = win 0x3e59b0, m1 0x299774, imac 0x301980, ios 0x41a04;
     void updateEditorLayerID();
     void updateEditorLayerID2();
     void updateEditorOrder();
@@ -20459,9 +20467,9 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void updateGroupIDLabel() = ios 0x418c4, win 0x3e5ad0, m1 0x29950c, imac 0x301720;
     void updateOrderChannel();
     void updateOrderChannelLabel();
-    void updateZLayerButtons() = win 0x3e5d30;
+    void updateZLayerButtons() = win 0x3e5d30, ios 0x41b48;
     void updateZOrder() = win 0x3e5890;
-    void updateZOrderLabel() = win 0x3e5a40;
+    void updateZOrderLabel() = win 0x3e5a40, m1 0x2998a8, imac 0x301ab0, ios 0x41aa4;
 
     GameObject* m_targetObject;
     cocos2d::CCArray* m_targetObjects;
@@ -20518,10 +20526,10 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
     virtual void valueChanged() = m1 0x240e60, imac 0x299020, ios 0x2de4c8 {}
 
     bool init(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x293ce0, imac 0x298360, m1 0x240198, ios 0x2dd9fc;
-    void onCancel(cocos2d::CCObject* sender) = win 0x294950, imac 0x298cf0, m1 0x240b14;
+    void onCancel(cocos2d::CCObject* sender) = win 0x294950, imac 0x298cf0, m1 0x240b14, ios 0x2de348;
     void onClose(cocos2d::CCObject* sender) = win 0x2949f0, m1 0x240a14, imac 0x298bf0, ios 0x2de248;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x2946a0, m1 0x240ab8, imac 0x298ca0, ios 0x2de2ec;
-    void onResetValue(cocos2d::CCObject* sender) = win 0x2946f0, m1 0x240aac, imac 0x298c80;
+    void onResetValue(cocos2d::CCObject* sender) = win 0x2946f0, m1 0x240aac, imac 0x298c80, ios 0x2de2e0;
     void updateTextInputLabel() = win 0x294810, imac 0x298d90, m1 0x240bb4, ios 0x2de354;
 
     CCTextInputNode* m_inputNode;
@@ -20560,7 +20568,7 @@ class SetLevelOrderPopup : SetIDPopup {
         m_levelID = 0;
     }
 
-    static SetLevelOrderPopup* create(int levelID, int order, int amount) = win inline {
+    static SetLevelOrderPopup* create(int levelID, int order, int amount) = win inline, m1 0x2e09f0, imac 0x34c0c0, ios 0x2456a8 {
         auto ret = new SetLevelOrderPopup();
         if (ret->init(levelID, order, amount)) {
             ret->autorelease();
@@ -20570,8 +20578,8 @@ class SetLevelOrderPopup : SetIDPopup {
         return nullptr;
     }
 
-    bool init(int levelID, int order, int amount) = win 0x2f4480, m1 0x2e1e74, imac 0x34d660;
-    void onOrderButton(cocos2d::CCObject* sender) = win 0x2f4750;
+    bool init(int levelID, int order, int amount) = win 0x2f4480, m1 0x2e1e74, imac 0x34d660, ios 0x2465cc;
+    void onOrderButton(cocos2d::CCObject* sender) = win 0x2f4750, m1 0x2e21a0, imac 0x34d950, ios 0x2468d4;
 
     int m_levelID;
 }
@@ -20580,12 +20588,12 @@ class SetLevelOrderPopup : SetIDPopup {
 class SetTargetIDLayer : SetupTriggerPopup {
     // virtual ~SetTargetIDLayer();
 
-    static SetTargetIDLayer* create(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = win 0x3ea050;
+    static SetTargetIDLayer* create(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = win 0x3ea050, m1 0x24cf04, imac 0x2a66f0, ios 0x213dfc;
 
     virtual void determineStartValues() = win 0x287910, imac 0x2a6e20, m1 0x24d528, ios 0x2142c0;
     virtual void valueDidChange(int, float) = win 0x3ea680, imac 0x2a6e30, m1 0x24d52c, ios 0x2142c4;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = win 0x3ea1e0, m1 0x24d190, imac 0x2a6a20;
+    bool init(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = win 0x3ea1e0, m1 0x24d190, imac 0x2a6a20, ios 0x213fc0;
 
     int m_objectID;
     int m_minimumID;
@@ -20603,11 +20611,11 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
     virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x24365c, imac 0x29bdf0, ios 0x2dfcf0;
     virtual void textChanged(CCTextInputNode*) = win 0x296280, imac 0x29be30, m1 0x243678, ios 0x2dfd0c;
 
-    bool init(gd::string, gd::string, int, gd::string, gd::string, bool, float) = win 0x295940, m1 0x242cc0, imac 0x29b3e0;
-    void onCancel(cocos2d::CCObject* sender) = win 0x296370;
-    void onClose(cocos2d::CCObject* sender) = win 0x296400, m1 0x2435a0, imac 0x29bd30;
-    void onResetValue(cocos2d::CCObject* sender) = win 0x296220;
-    void updateTextInputLabel() = win inline, imac 0x2571f0, m1 0x203e84 {
+    bool init(gd::string, gd::string, int, gd::string, gd::string, bool, float) = win 0x295940, m1 0x242cc0, imac 0x29b3e0, ios 0x2df4a4;
+    void onCancel(cocos2d::CCObject* sender) = win 0x296370, m1 0x2435a0, imac 0x29bd30, ios 0x2dfc48;
+    void onClose(cocos2d::CCObject* sender) = win 0x296400, m1 0x2433ec, imac 0x29bba0, ios 0x2dfb30;
+    void onResetValue(cocos2d::CCObject* sender) = win 0x296220, m1 0x2434d4, imac 0x29bc80, ios 0x2dfc18;
+    void updateTextInputLabel() = win inline, imac inline, m1 inline, ios 0x2dfc54 {
         m_disableDelegate = true;
         m_input->setString(m_value);
         m_disableDelegate = false;
