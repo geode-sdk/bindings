@@ -13636,7 +13636,7 @@ class GJTransformControlDelegate {
 class GJUINode : cocos2d::CCNode {
     // virtual ~GJUINode();
 
-    static GJUINode* create(UIButtonConfig&) = win 0x4b5d30, m1 0x41d2c0, imac 0x4b5100;
+    static GJUINode* create(UIButtonConfig&) = win 0x4b5d30, m1 0x41d2c0, imac 0x4b5100, ios 0x4d0f0;
 
     virtual void draw() = win 0x4b6870, imac 0x4b8390, m1 0x4200f4, ios 0x4ed2c;
 
@@ -13666,7 +13666,7 @@ class GJUINode : cocos2d::CCNode {
     void toggleModeB(bool);
     void touchEnded() = win 0x4b6720;
     int touchTest(cocos2d::CCPoint) = win 0x4b6430;
-    void updateButtonFrames() = win 0x4b6170, m1 0x41fdb8, imac 0x4b8000;
+    void updateButtonFrames() = win 0x4b6170, m1 0x41fdb8, imac 0x4b8000, ios 0x4ea84;
     void updateButtonPositions() = win 0x4b6330;
     void updateButtonScale(float);
     void updateDeadzone(int);
