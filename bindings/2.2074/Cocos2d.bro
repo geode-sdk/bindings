@@ -4364,7 +4364,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     static cocos2d::CCDrawNode* create() = imac 0x5f94f0, m1 0x528650, ios 0x45aa0;
 
-    cocos2d::_ccBlendFunc getBlendFunc() const = m1 0x52a0fc, imac 0x5fb260;
+    cocos2d::_ccBlendFunc getBlendFunc() const = m1 0x52a0fc, imac 0x5fb260, ios 0x46a30;
 
     void setBlendFunc(cocos2d::_ccBlendFunc const&) = imac 0x5fb270, m1 0x52a104, ios 0x46a38;
 
@@ -4855,10 +4855,25 @@ class cocos2d {
     static void ccGLBindTexture2DN(unsigned int, unsigned int) = m1 0x2dcbb8, imac 0x347fc0, ios 0x191f08;
     static void ccGLBindVAO(unsigned int);
     static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x347ed0, m1 0x2dcaa4, ios 0x191e84;
-    static void ccGLBlendResetToCache() = m1 0x2dcb18, imac 0x347f30;
+    static void ccGLBlendResetToCache() = m1 0x2dcb18, imac 0x347f30, ios inline {
+        glBlendEquation(GL_FUNC_ADD);
+        auto sfactor = *reinterpret_cast<GLenum*>(geode::base::get() + 0x83f124);
+        auto dfactor = *reinterpret_cast<GLenum*>(geode::base::get() + 0x83f128);
+        if (sfactor == GL_ONE && dfactor == GL_ZERO) {
+            glDisable(GL_BLEND);
+        }
+        else {
+            glEnable(GL_BLEND);
+            glBlendFunc(sfactor, dfactor);
+        }
+    }
     static void ccGLDeleteProgram(unsigned int);
     static void ccGLDeleteTexture(unsigned int) = m1 0x2dcc18, imac 0x348000, ios 0x191f60;
-    static void ccGLDeleteTextureN(unsigned int, unsigned int) = m1 0x2dcc58, imac 0x348040;
+    static void ccGLDeleteTextureN(unsigned int, unsigned int) = m1 0x2dcc58, imac 0x348040, ios inline {
+        auto currentTexture = reinterpret_cast<GLuint*>(geode::base::get() + 0x83f0e4 + p0 * 4);
+        if (*currentTexture == p1) *currentTexture = -1;
+        glDeleteTextures(1, &p1);
+    }
     static void ccGLEnable(cocos2d::ccGLServerState) = imac 0x3480a0, m1 0x2dccc4, ios 0x191fbc;
     static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2dccc8, imac 0x3480b0, ios 0x191fc0;
     static void ccGLInvalidateStateCache();
