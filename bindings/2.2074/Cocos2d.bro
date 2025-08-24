@@ -4364,7 +4364,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     static cocos2d::CCDrawNode* create() = imac 0x5f94f0, m1 0x528650, ios 0x45aa0;
 
-    cocos2d::_ccBlendFunc getBlendFunc() const = m1 0x52a0fc, imac 0x347f30;
+    cocos2d::_ccBlendFunc getBlendFunc() const = m1 0x52a0fc, imac 0x5fb250;
 
     void setBlendFunc(cocos2d::_ccBlendFunc const&) = imac 0x5fb270, m1 0x52a104, ios 0x46a38;
 
@@ -4855,7 +4855,7 @@ class cocos2d {
     static void ccGLBindTexture2DN(unsigned int, unsigned int) = m1 0x2dcbb8, imac 0x347fc0, ios 0x191f08;
     static void ccGLBindVAO(unsigned int);
     static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x347ed0, m1 0x2dcaa4, ios 0x191e84;
-    static void ccGLBlendResetToCache() = m1 0x2dcb18, imac 0x5fb250;
+    static void ccGLBlendResetToCache() = m1 0x2dcb18, imac 0x347f30;
     static void ccGLDeleteProgram(unsigned int);
     static void ccGLDeleteTexture(unsigned int) = m1 0x2dcc18, imac 0x348000, ios 0x191f60;
     static void ccGLDeleteTextureN(unsigned int, unsigned int) = m1 0x2dcc58, imac 0x348040;
