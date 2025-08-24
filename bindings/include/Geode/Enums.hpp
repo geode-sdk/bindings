@@ -615,6 +615,8 @@ enum class BoomListType {
     Comment = 0x7,
     Comment2 = 0x8,
     Comment3 = 0x9,
+    List = 0xa,
+    Game = 0xb,
     Song = 0xc,
     Score = 0xd,
     MapPack = 0xe,
