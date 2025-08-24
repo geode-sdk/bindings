@@ -14203,7 +14203,7 @@ class HardStreak : cocos2d::CCDrawNode {
     void addPoint(cocos2d::CCPoint p0) = win 0x2b2130, imac 0x9d500, m1 0x8ffec, ios 0x61c40;
     TodoReturn clearAboveXPos(float);
     TodoReturn clearBehindXPos(float);
-    HardStreak* createDuplicate() = win inline {
+    HardStreak* createDuplicate() = m1 0x90354, imac 0x9d850, win inline {
         auto ret = HardStreak::create();
         ret->setBlendFunc(this->getBlendFunc());
         ret->m_currentPoint = m_currentPoint;
