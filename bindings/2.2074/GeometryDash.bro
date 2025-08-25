@@ -20386,8 +20386,17 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
 [[link(android)]]
 class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
     // virtual ~SetColorIDPopup();
+    SetColorIDPopup() = ios 0x2e6420 {}
 
-    static SetColorIDPopup* create(int);
+    static SetColorIDPopup* create(int) = win inline, m1 0x24125c, imac 0x299530, ios 0x2de58c {
+        auto ret = new SetColorIDPopup();
+        if (ret->init(p0)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x294cf0, imac 0x299980, m1 0x24164c, ios 0x2de844;
 
@@ -20459,7 +20468,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void updateGroupIDLabel() = ios 0x418c4, win 0x3e5ad0, m1 0x29950c, imac 0x301720;
     void updateOrderChannel();
     void updateOrderChannelLabel();
-    void updateZLayerButtons() = win 0x3e5d30, ios 0x41b48;
+    void updateZLayerButtons() = win 0x3e5d30, m1 0x2999d0, imac 0x301be0, ios 0x41b48;
     void updateZOrder() = win 0x3e5890;
     void updateZOrderLabel() = win 0x3e5a40, m1 0x2998a8, imac 0x301ab0, ios 0x41aa4;
 
@@ -20607,7 +20616,7 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
     void onCancel(cocos2d::CCObject* sender) = win 0x296370, m1 0x2435a0, imac 0x29bd30, ios 0x2dfc48;
     void onClose(cocos2d::CCObject* sender) = win 0x296400, m1 0x2433ec, imac 0x29bba0, ios 0x2dfb30;
     void onResetValue(cocos2d::CCObject* sender) = win 0x296220, m1 0x2434d4, imac 0x29bc80, ios 0x2dfc18;
-    void updateTextInputLabel() = win inline, imac inline, m1 inline, ios 0x2dfc54 {
+    void updateTextInputLabel() = win inline, imac 0x29bd50, m1 0x2435ac, ios 0x2dfc54 {
         m_disableDelegate = true;
         m_input->setString(m_value);
         m_disableDelegate = false;
