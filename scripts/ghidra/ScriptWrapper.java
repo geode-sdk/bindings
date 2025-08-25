@@ -25,6 +25,7 @@ import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
+import ghidra.program.model.data.FunctionDefinition;
 import ghidra.program.model.data.FunctionDefinitionDataType;
 import ghidra.program.model.data.IntegerDataType;
 import ghidra.program.model.data.LongDataType;
@@ -579,6 +580,14 @@ public class ScriptWrapper {
                 wrapped.getCurrentProgram(),
                 SourceType.USER_DEFINED
             ));
+            if (paramType instanceof FunctionDefinition && platform != Platform.WINDOWS32 && platform != Platform.WINDOWS64) {
+                bromaParams.add(new ParameterImpl(
+                    param.name.map(p -> p.value + "_adj").orElse(null),
+                    platform == Platform.ANDROID32 ? IntegerDataType.dataType : LongDataType.dataType,
+                    wrapped.getCurrentProgram(),
+                    SourceType.USER_DEFINED
+                ));
+            }
         }
         Signature bromaSig = new Signature(bromaRetType, bromaParams);
         bromaSig.memberFunction = hasThis;
@@ -792,6 +801,46 @@ public class ScriptWrapper {
         callFuncSelector.setReturnType(VoidDataType.dataType);
         callFuncSelector.setCallingConvention("__thiscall");
         manager.addDataType(callFuncSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::SEL_CallFuncN
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "SEL_CallFuncN"));
+        var callFuncNSelector = new FunctionDefinitionDataType(cat, cat.getName());
+        callFuncNSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform),
+                "The target object for this callback"
+            ),
+            new ParameterDefinitionImpl(
+                "data",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCNode"), platform),
+                "The data object for this callback"
+            ),
+        });
+        callFuncNSelector.setReturnType(VoidDataType.dataType);
+        callFuncNSelector.setCallingConvention("__thiscall");
+        manager.addDataType(callFuncNSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::SEL_SCHEDULE
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "SEL_SCHEDULE"));
+        var scheduleSelector = new FunctionDefinitionDataType(cat, cat.getName());
+        scheduleSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform),
+                "The target object for this callback"
+            ),
+            new ParameterDefinitionImpl(
+                "dt",
+                FloatDataType.dataType,
+                "The delta time for this callback"
+            ),
+        });
+        scheduleSelector.setReturnType(VoidDataType.dataType);
+        scheduleSelector.setCallingConvention("__thiscall");
+        manager.addDataType(scheduleSelector, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::extension::SEL_HttpResponse
 
