@@ -4886,7 +4886,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*) = win 0x114390;
     TodoReturn addSnapPosition(cocos2d::CCPoint);
     void alignObjects(cocos2d::CCArray* objects, bool axisY) = win 0x1203a0, m1 0x45afc, imac 0x4de50, ios 0x3efa20;
-    void applyOffset(GameObject*) = win 0x120d40, ios 0x3e4a18, m1 inline, imac inline {
+    void applyOffset(GameObject* object) = win 0x120d40, ios 0x3e4a18, m1 inline, imac inline {
         auto offset = GameToolbox::getRelativeOffset(object, this->offsetForKey(object->m_objectID));
         object->setPosition(object->getPosition() + offset);
         m_editorLayer->removeObjectFromSection(object);
