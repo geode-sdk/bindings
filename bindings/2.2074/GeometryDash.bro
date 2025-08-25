@@ -8271,11 +8271,7 @@ class GameObject : CCSpritePlus {
     bool shouldBlendColor(GJSpriteColor*, bool) = win 0x18dd00;
     bool shouldLockX();
     bool shouldNotHideAnimFreeze();
-<<<<<<< Updated upstream
     bool shouldShowPickupEffects() = m1 0x1f96ac, imac 0x24c330;
-    bool slopeFloorTop();
-=======
-    bool shouldShowPickupEffects() = imac 0x24c330;
     bool slopeFloorTop() {
         switch (m_slopeDirection) {
         case 1:
@@ -8287,7 +8283,6 @@ class GameObject : CCSpritePlus {
             return false;
         }
     }
->>>>>>> Stashed changes
     bool slopeWallLeft();
     double slopeYPos(cocos2d::CCRect);
     double slopeYPos(float) = win 0x19e430, m1 0x4ea270;
@@ -18259,17 +18254,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn playingEndEffect() = ios 0x22d27c, imac 0x4093c0, m1 0x386d90;
     void playSpawnEffect() = ios 0x227ff8, win 0x381650, imac 0x401bb0, m1 0x37fe98;
     void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = ios 0x225fe0, win 0x37f340, m1 0x37b928, imac 0x3fcc20;
-<<<<<<< Updated upstream
     void postCollision(float) = ios 0x21f410, win 0x3777f0, m1 0x373790, imac 0x3f2c40;
     void preCollision() = ios 0x21f300, imac 0x3f2a40, m1 0x373634;
     bool preSlopeCollision(float, GameObject*) = win 0x3794b0, m1 0x379014, imac 0x3f9dd0, ios 0x223cb4;
     void propellPlayer(float, bool, int) = ios 0x22d548, win 0x389ac0, m1 0x387134, imac 0x409750;
-=======
-    void postCollision(float) = ios 0x21f410, win 0x3777f0, m1 0x373790;
-    void preCollision() = ios 0x21f300, imac 0x3f2a40;
-    bool preSlopeCollision(float, GameObject*) = win 0x3794b0, m1 0x379014;
-    void propellPlayer(float, bool, int) = ios 0x22d548, win 0x389ac0, m1 0x387134;
->>>>>>> Stashed changes
     bool pushButton(PlayerButton) = ios 0x228864, win 0x382110, imac 0x4027d0, m1 0x380a44;
     TodoReturn pushDown();
     void pushPlayer(float);
@@ -18332,19 +18320,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void stopDashing() = ios 0x21d57c, win 0x380820, m1 0x370c60, imac 0x3efe00;
     void stopParticles() = ios 0x21ea18, win 0x375af0;
     void stopPlatformerJumpAnimation() = ios 0x21effc, win 0x3772d0, imac 0x3f2500, m1 0x37314c;
-<<<<<<< Updated upstream
     void stopRotation(bool, int) = win inline, m1 0x3731d8, imac 0x3f2590, ios 0x21f088 {
         m_isRotating = false;
         m_isBallRotating2 = false;
         m_isBallRotating = false;
         m_rotationSpeed = 0.f;
-=======
-    void stopRotation(bool, int) {
-        m_isRotating = false;
-        m_isBallRotating2 = false;
-        m_isBallRotating = false;
-        m_rotationSpeed = 0.0;
->>>>>>> Stashed changes
     }
     void stopStreak2() = ios 0x22d978, imac 0x409d20, m1 0x387654;
     void storeCollision(PlayerCollisionDirection, int);
@@ -18421,13 +18401,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateRotation(float, float) = win 0x377370, imac 0x3f0d20, m1 0x371b20;
     void updateRotation(float) = ios 0x224ca4, win 0x37b1f0, imac 0x3fb360, m1 0x37a378;
     void updateShipRotation(float) = win 0x37ae10;
-<<<<<<< Updated upstream
     void updateShipSpriteExtra(gd::string) = win 0x388f90, m1 0x36bf50, imac 0x3ea1d0, ios 0x219528;
-    void updateSlopeRotation(float);
-=======
-    void updateShipSpriteExtra(gd::string) = ios 0x219528;
     void updateSlopeRotation(float) = m1 0x379e4c;
->>>>>>> Stashed changes
     TodoReturn updateSlopeYVelocity(float);
     void updateSpecial(float) = ios 0x21e1a0, imac 0x3f0f70, m1 0x371d78;
     TodoReturn updateStateVariables();
