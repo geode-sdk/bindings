@@ -7113,7 +7113,6 @@ class GameLevelManager : cocos2d::CCNode {
     void getGauntletLevels(int) = win 0x14fa90, m1 0x4883b0, imac 0x52d450, ios 0xa3048;
     void getGauntlets() = win 0x14f180, m1 0x487fd0, imac 0x52d080, ios 0xa2e1c;
     gd::string getGauntletSearchKey(int) = m1 0x487f04, imac 0x52cfc0;
-    void getGauntletsearchKey(int);
     void getGJChallenges() = win 0x164ad0, m1 0x49be48, imac 0x542da0, ios 0xae728;
     void getGJDailyLevelState(GJTimedLevelType) = win 0x165ec0, imac 0x543260, m1 0x49c2bc, ios 0xaea0c;
     void getGJRewards(int) = ios 0xae25c, win 0x1635e0, imac 0x542540, m1 0x49b6b0;
