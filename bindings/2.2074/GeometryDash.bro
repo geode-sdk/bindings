@@ -5097,7 +5097,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void recreateButtonTabs();
     void redoLastAction(cocos2d::CCObject*) = win 0x110190, m1 0xdb14, imac 0xc740, ios 0x3bf964;
     void reloadCustomItems() = win 0xe35f0, m1 0x30fac, imac 0x318f0, ios 0x3e0d50;
-    void removeOffset(GameObject*) = win 0x120cb0, ios 0x3e4998;
+    void removeOffset(GameObject* object) = win 0x120cb0, ios 0x3e4998, m1 inline, imac inline {
+        auto offset = GameToolbox::getRelativeOffset(object, this->offsetForKey(object->m_objectID));
+        object->setPosition(object->getPosition() - offset);
+        m_editorLayer->removeObjectFromSection(object);
+        m_editorLayer->addToSection(object);
+    }
     void replaceGroupID(GameObject*, int, int) = win 0x117680;
     void repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0x112a20, ios 0x3e30e4, imac 0x34b10, m1 0x34094;
     void resetObjectEditorValues(cocos2d::CCArray*);
