@@ -2868,7 +2868,7 @@ class ColorAction : cocos2d::CCObject {
         state.m_copyHSV = m_copyHSV;
     }
     void setupFromMap(gd::map<gd::string, gd::string>&) = win 0x252800;
-    void setupFromString(gd::string) = win 0x252720, m1 0x26b258, imac 0x2c7390;
+    void setupFromString(gd::string) = win 0x252720, m1 0x26b258, imac 0x2c7390, ios 0x1196c;
     void step(float) = win 0x251c30;
     void updateCustomColor(cocos2d::ccColor3B, cocos2d::ccColor3B);
     // TodoReturn writeSaveString(fmt::BasicWriter<char>&);
@@ -4886,7 +4886,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*) = win 0x114390;
     TodoReturn addSnapPosition(cocos2d::CCPoint);
     void alignObjects(cocos2d::CCArray* objects, bool axisY) = win 0x1203a0, m1 0x45afc, imac 0x4de50, ios 0x3efa20;
-    void applyOffset(GameObject*) = win 0x120d40, ios 0x3e4a18;
+    void applyOffset(GameObject*) = win 0x120d40, ios 0x3e4a18, m1 inline, imac inline {
+        auto offset = GameToolbox::getRelativeOffset(object, this->offsetForKey(object->m_objectID));
+        object->setPosition(object->getPosition() + offset);
+        m_editorLayer->removeObjectFromSection(object);
+        m_editorLayer->addToSection(object);
+    }
     TodoReturn applySpecialOffset(cocos2d::CCPoint, GameObject*, cocos2d::CCPoint);
     TodoReturn arrayContainsClass(cocos2d::CCArray*, int);
     void assignNewGroups(bool groupY) = win 0x1178c0, m1 0x3f6a0, imac 0x45970, ios 0x3eb650;
@@ -5411,7 +5416,7 @@ class EffectGameObject : EnhancedGameObject {
     }
     void triggerEffectFinished() = win 0x48d780;
     void updateInteractiveHover(float) = win 0x48fe30;
-    void updateSpecialColor() = win 0x48fdb0;
+    void updateSpecialColor() = win 0x48fdb0, m1 0x16b68c, imac 0x1aa0b0, ios 0x37f374;
     void updateSpeedModType() = win 0x493010, ios 0x37f5ac;
 
     // this is probably pretty wrong :D
@@ -5823,7 +5828,7 @@ class EnhancedGameObject : GameObject {
     virtual void updateSyncedAnimation(float, int) = win 0x1a4e30, imac 0x2499e0, m1 0x1f7c7c, ios 0x347598;
     virtual void updateAnimateOnTrigger(bool) = win 0x1a6af0, imac 0x24b920, m1 0x1f903c, ios 0x348938;
 
-    void createRotateAction(float angle, int clockwiseDirection) = win 0x1a4300;
+    void createRotateAction(float angle, int clockwiseDirection) = win 0x1a4300, m1 0x4ef08c, ios 0x263ed8, imac 0x5b8de0;
     bool init(char const*) = win 0x1a1800, m1 0x4ec0c4, imac 0x5b37d0, ios 0x261f48;
     TodoReturn previewAnimateOnTrigger();
     TodoReturn refreshRotateAction();
@@ -7698,11 +7703,11 @@ class GameManager : GManager {
     TodoReturn loadDpadFromString(UIButtonConfig&, gd::string) = imac 0x375010, m1 0x305914;
     TodoReturn loadDPadLayout(int, bool);
     void loadFont(int) = m1 0x300c70, imac 0x36f960;
-    void loadGround(int) = win 0x17fc30, m1 0x301484, imac 0x370120;
+    void loadGround(int) = win 0x17fc30, m1 0x301484, imac 0x370120, ios 0x318ad8;
     void loadGroundAsync(int);
     cocos2d::CCTexture2D* loadIcon(int, int, int) = ios 0x317bac, win 0x17ecf0, imac 0x36e7f0, m1 0x2ffaf4;
     TodoReturn loadIconAsync(int, int, int, cocos2d::CCObject*);
-    void loadMiddleground(int) = win 0x17f9e0, m1 0x301148, imac 0x36fe10;
+    void loadMiddleground(int) = win 0x17f9e0, m1 0x301148, imac 0x36fe10, ios 0x3187ac;
     void loadMiddlegroundAsync(int);
     void loadVideoSettings() = m1 0x306228, imac 0x375a90;
     TodoReturn lockColor(int, UnlockType);
@@ -9618,7 +9623,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void applyRemap(EffectGameObject*, gd::vector<int> const&, gd::unordered_map<int, int>&) = win 0x215ce0;
     void applySFXEditTrigger(int, int, SFXTriggerGameObject*) = win 0x23bba0;
     void applyShake(cocos2d::CCPoint&) = ios 0x20574c;
-    void assignNewStickyGroups(cocos2d::CCArray*) = win 0x21f990;
+    void assignNewStickyGroups(cocos2d::CCArray*) = win 0x21f990, imac 0x12dd80, ios 0x1f4a50, m1 0x108d18;
     TodoReturn asyncBGLoaded(int);
     TodoReturn asyncGLoaded(int);
     TodoReturn asyncMGLoaded(int);
@@ -9879,7 +9884,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn removeBackground();
     TodoReturn removeCustomEnterEffects(int, bool);
     void removeFromGroupParents(GameObject*) = m1 0x108584, imac 0x12d4c0;
-    void removeFromGroups(GameObject*) = win 0x21ed10, imac 0x12ce70, m1 0x107f34;
+    void removeFromGroups(GameObject*) = win 0x21ed10, imac 0x12ce70, m1 0x107f34, ios 0x1f40ec;
     void removeFromStickyGroup(GameObject*) = m1 0x108e28, imac 0x12de90;
     void removeGroundLayer() = m1 0xe5734, imac 0x1039d0;
     void removeGroupParent(int groupID) = win 0x21f3e0, m1 0x1080e8, imac 0x12d030, ios 0x1f4208;
@@ -10785,7 +10790,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn getAllColorActions();
     TodoReturn getAllColorSprites();
     ColorAction* getColorAction(int) = ios 0x12b80, win 0x254870, imac 0x2ca1e0, m1 0x26d3c4;
-    ColorActionSprite* getColorSprite(int) = win 0x254930, m1 0x26d56c, imac 0x2ca3a0;
+    ColorActionSprite* getColorSprite(int) = win 0x254930, m1 0x26d56c, imac 0x2ca3a0, ios 0x12c50;
     TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
     TodoReturn getMixedColor(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
     TodoReturn getMoveCommandNode(GroupCommandObject2*);
@@ -14731,7 +14736,7 @@ class LabelGameObject : EffectGameObject {
     void updateLabel(gd::string) = win 0x49af00, m1 0x170ba0, imac 0x1b04c0;
     void updateLabelAlign(int) = win 0x49aca0;
     void updateLabelIfDirty();
-    void updatePreviewLabel() = win 0x49ad40;
+    void updatePreviewLabel() = win 0x49ad40, m1 0x1707f0, ios 0x381a24, imac 0x1b0050;
 
     cocos2d::CCLabelBMFont* m_label;
     bool m_labelDirty;
@@ -15308,7 +15313,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn triggerFollowCommand(EffectGameObject*);
     TodoReturn triggerPlayerFollowCommand(EffectGameObject*);
     TodoReturn triggerRotateCommand(EffectGameObject*);
-    bool tryUpdateSpeedObject(EffectGameObject*, bool) = win 0x2d0190, imac 0xea170, m1 0xcfe2c;
+    bool tryUpdateSpeedObject(EffectGameObject*, bool) = win 0x2d0190, imac 0xea170, m1 0xcfe2c, ios 0x35db50;
     bool typeExistsAtPosition(int, cocos2d::CCPoint, bool, bool, float) = win 0x2cc340, m1 0xc7ed4, imac 0xe0c40, ios 0x359ca0;
     void undoLastAction() = win inline, m1 0xca930, imac 0xe3a40, ios 0x35bcac {
         return this->handleAction(true, m_undoObjects);
@@ -16066,7 +16071,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 
     static LevelSettingsObject* create() = ios 0x357b18, win 0x2dd1f0;
     static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary*) = win 0x2deff0, imac 0xf7bf0, m1 0xdb500;
-    static LevelSettingsObject* objectFromString(gd::string const& str) = win inline {
+    static LevelSettingsObject* objectFromString(gd::string const& str) {
         return objectFromDict(GameToolbox::stringSetupToDict(str, ","));
     }
 
@@ -25273,7 +25278,7 @@ class TriggerControlGameObject : EffectGameObject {
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4aa480, imac 0x1dd1f0, m1 0x195c04, ios 0x390a54;
 
     bool init(char const*);
-    void updateTriggerControlFrame() = win 0x4aa800, m1 0x196494, imac 0x1ddbe0;
+    void updateTriggerControlFrame() = win 0x4aa800, m1 0x196494, imac 0x1ddbe0, ios 0x390d78;
 
     gd::string m_triggerControlFrame;
     // property 580 (The type of a stop trigger for example)
