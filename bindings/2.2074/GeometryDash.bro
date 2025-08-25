@@ -4886,12 +4886,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void addObjectsToSmartTemplate(GJSmartTemplate*, cocos2d::CCArray*) = win 0x114390;
     TodoReturn addSnapPosition(cocos2d::CCPoint);
     void alignObjects(cocos2d::CCArray* objects, bool axisY) = win 0x1203a0, m1 0x45afc, imac 0x4de50, ios 0x3efa20;
-    void applyOffset(GameObject* object) = win 0x120d40, ios 0x3e4a18, m1 inline, imac inline {
-        auto offset = GameToolbox::getRelativeOffset(object, this->offsetForKey(object->m_objectID));
-        object->setPosition(object->getPosition() + offset);
-        m_editorLayer->removeObjectFromSection(object);
-        m_editorLayer->addToSection(object);
-    }
+    void applyOffset(GameObject* object) = win 0x120d40, ios 0x3e4a18, m1 0x35e80, imac 0x3ab90;
     TodoReturn applySpecialOffset(cocos2d::CCPoint, GameObject*, cocos2d::CCPoint);
     TodoReturn arrayContainsClass(cocos2d::CCArray*, int);
     void assignNewGroups(bool groupY) = win 0x1178c0, m1 0x3f6a0, imac 0x45970, ios 0x3eb650;
@@ -5102,12 +5097,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void recreateButtonTabs();
     void redoLastAction(cocos2d::CCObject*) = win 0x110190, m1 0xdb14, imac 0xc740, ios 0x3bf964;
     void reloadCustomItems() = win 0xe35f0, m1 0x30fac, imac 0x318f0, ios 0x3e0d50;
-    void removeOffset(GameObject* object) = win 0x120cb0, ios 0x3e4998, m1 inline, imac inline {
-        auto offset = GameToolbox::getRelativeOffset(object, this->offsetForKey(object->m_objectID));
-        object->setPosition(object->getPosition() - offset);
-        m_editorLayer->removeObjectFromSection(object);
-        m_editorLayer->addToSection(object);
-    }
+    void removeOffset(GameObject* object) = win 0x120cb0, ios 0x3e4998, m1 0x35e00, imac 0x3ab10;
     void replaceGroupID(GameObject*, int, int) = win 0x117680;
     void repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint, bool) = win 0x112a20, ios 0x3e30e4, imac 0x34b10, m1 0x34094;
     void resetObjectEditorValues(cocos2d::CCArray*);

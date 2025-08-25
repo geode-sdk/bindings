@@ -512,6 +512,22 @@ public class ScriptWrapper {
         return path;
     }
 
+    boolean typeIsStruct(DataType type, Platform platform) {
+        if (!(type instanceof Composite)) {
+            return false;
+        }
+        if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
+            return true;
+        }
+        if (type.getName().startsWith("CCPoint") || type.getName().startsWith("CCSize") || type.getName().startsWith("CCRect")) {
+            return true;
+        }
+        if (type.getLength() > 10) {
+            return true;
+        }
+        return false;
+    }
+
     Signature getBromaSignature(Broma.Function fun, Platform platform, boolean ignoreReturnType) throws Exception {
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
@@ -536,7 +552,7 @@ public class ScriptWrapper {
         if (fun.returnType.isPresent() && !ignoreReturnType) {
             var type = addOrGetType(fun.returnType.get(), platform);
             // Struct return
-            if (type instanceof Composite && (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64 || type.getLength() > 10)) {
+            if (typeIsStruct(type, platform)) {
                 hasStructReturn = true;
                 type = new PointerDataType(type);
                 if (platform != Platform.ANDROID64 && platform != Platform.MAC_ARM && platform != Platform.IOS) {
@@ -571,7 +587,7 @@ public class ScriptWrapper {
         // Params
         for (var param : fun.params) {
             var paramType = addOrGetType(param.type, platform);
-            if (paramType instanceof Composite && (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64 || paramType.getLength() > 10)) {
+            if (typeIsStruct(paramType, platform)) {
                 paramType = new PointerDataType(paramType);
             }
             bromaParams.add(new ParameterImpl(
