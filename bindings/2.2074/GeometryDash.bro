@@ -20444,8 +20444,8 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onPaste(cocos2d::CCObject* sender) = win 0x3e3f30, ios 0x420a8, imac 0x3021d0, m1 0x299f48;
     void onRemoveFromGroup(cocos2d::CCObject* sender) = ios 0x42ac8, win 0x3e51e0, m1 0x29ae48, imac 0x3032f0;
     void onSmoothEase(cocos2d::CCObject* sender);
-    void onToggleGuide(cocos2d::CCObject* sender) = win 0x3e3380, m1 0x29a0a8, imac 0x302350, ios 0x421c8;
-    void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x3e3410, m1 0x29a0d4, imac 0x302380, ios 0x4219c;
+    void onToggleGuide(cocos2d::CCObject* sender) = win 0x3e3380, m1 0x29a0a8, imac 0x302350, ios 0x4219c;
+    void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x3e3410, m1 0x29a0d4, imac 0x302380, ios 0x421c8;
     void onZLayer(cocos2d::CCObject* sender) = win 0x3e5520, m1 0x298d00, imac 0x300dd0, ios 0x41294;
     void onZLayerShift(cocos2d::CCObject* sender) = win 0x3e55e0, m1 0x2990e8, imac 0x3012f0, ios 0x41614;
     TodoReturn removeGroupID(int);
