@@ -9069,7 +9069,7 @@ class GameToolbox {
     static gd::string saveParticleToString(cocos2d::CCParticleSystemQuad*) = win 0x662d0, imac 0x4deb00, m1 0x4418f4, ios 0x495bc;
     static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
     static gd::string stringFromHSV(cocos2d::ccHSVValue, char const*) = win 0x656f0;
-    static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*) = win 0x65c30, m1 0x440d54, imac 0x4dded0;
+    static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*) = win 0x65c30, m1 0x440d54, imac 0x4dded0, ios 0x48f84;
     static void stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x65890;
     static TodoReturn strongColor(cocos2d::ccColor3B);
     static TodoReturn timestampToHumanReadable(long) = m1 0x4469a4, imac 0x4e4690;
@@ -16070,7 +16070,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     // virtual ~LevelSettingsObject();
 
     static LevelSettingsObject* create() = ios 0x357b18, win 0x2dd1f0;
-    static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary*) = win 0x2deff0, imac 0xf7bf0, m1 0xdb500;
+    static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary*) = win 0x2deff0, imac 0xf7bf0, m1 0xdb500, ios 0x366c8c;
     static LevelSettingsObject* objectFromString(gd::string const& str) {
         return objectFromDict(GameToolbox::stringSetupToDict(str, ","));
     }
