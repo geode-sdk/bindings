@@ -4680,7 +4680,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void confirmDelete(cocos2d::CCObject*) = ios 0xee16c, imac 0x1ead40, m1 0x1a1e40, win 0xd75d0;
     void confirmMoveToTop(cocos2d::CCObject*) = m1 0x1a20d8, imac 0x1eafd0, win 0xd7e90;
     bool init(GJGameLevel*) = ios 0xebed4, win 0xd3f10, imac 0x1e87a0, m1 0x19f95c;
-    void onBack(cocos2d::CCObject* sender) = win 0xd80e0;
+    void onBack(cocos2d::CCObject* sender) = ios 0xee518, win 0xd80e0, imac 0x1eb1a0, m1 0x1a22a4;
     void onClone() = m1 0x1a3618, imac 0x1ec500;
     void onDelete() = m1 0x1a3328, imac 0x1ec220;
     void onEdit(cocos2d::CCObject* sender) = win 0xd6d80, imac 0x1e9db0, m1 0x1a0ec4, ios 0xed344;
