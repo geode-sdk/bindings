@@ -29,6 +29,7 @@ import ghidra.program.model.data.Pointer;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.Structure;
 import ghidra.program.model.data.StructureDataType;
+import ghidra.program.model.data.TypeDef;
 import ghidra.program.model.data.Undefined;
 import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
@@ -214,7 +215,7 @@ public class SyncBromaScript extends GhidraScript {
 
     boolean overwriteAll = false;
 
-    private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean force) throws Exception {
+    private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean skipTodo) throws Exception {
         final var name = fun.getName();
         final var className = fun.parent != null ? fun.parent.name.value : null;
         final var fullName = className != null ? className + "::" + name : name;
@@ -240,7 +241,6 @@ public class SyncBromaScript extends GhidraScript {
 
         // Check if function already has an user-provided name - in this case, it might be merged
         if (
-            !force &&
             data.getSymbol().getSource() == SourceType.USER_DEFINED &&
             !data.getName(true).equals(fullName) && 
             !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName)) &&
@@ -434,10 +434,12 @@ public class SyncBromaScript extends GhidraScript {
         }
 
         // Apply new signature
+        Variable returnType = bromaSig.returnType.orElse(null);
+        if (skipTodo && fun.returnType.isPresent() && fun.returnType.get().name.value.contains("TodoReturn")) returnType = data.getReturn();
         try {
             data.updateFunction(
                 conventionName,
-                bromaSig.returnType.orElse(null),
+                returnType,
                 updateType,
                 true,
                 SourceType.USER_DEFINED,
@@ -462,7 +464,7 @@ public class SyncBromaScript extends GhidraScript {
                 try {
                     data.updateFunction(
                         newConvention,
-                        bromaSig.returnType.orElse(null),
+                        returnType,
                         updateType,
                         true,
                         SourceType.USER_DEFINED,
@@ -491,7 +493,7 @@ public class SyncBromaScript extends GhidraScript {
             try {
                 data.updateFunction(
                     "__cdecl",
-                    bromaSig.returnType.orElse(null),
+                    returnType,
                     FunctionUpdateType.CUSTOM_STORAGE,
                     true,
                     SourceType.USER_DEFINED,
@@ -689,8 +691,11 @@ public class SyncBromaScript extends GhidraScript {
                             var param = fun.getParameter(i);
                             var ghidraDataType = param.getDataType();
                             var ghidraPointerDataType = ghidraDataType;
-                            if (ghidraDataType instanceof PointerDataType) {
-                                ghidraPointerDataType = ((PointerDataType)ghidraDataType).getDataType();
+                            if (ghidraDataType instanceof Pointer) {
+                                ghidraPointerDataType = ((Pointer)ghidraDataType).getDataType();
+                            }
+                            if (ghidraDataType instanceof TypeDef) {
+                                ghidraDataType = ((TypeDef)ghidraDataType).getBaseDataType();
                             }
                             var bromaDataType = sig.parameters.get(i).getDataType();
                             if (
@@ -751,7 +756,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
 
                 // Get the function signature from Broma
-                importSignatureFromBroma(child.getAddress(), bromaFun, false);
+                importSignatureFromBroma(child.getAddress(), bromaFun, true);
 
                 // Export parameter names
                 int skipCount = 0;
@@ -867,7 +872,7 @@ public class SyncBromaScript extends GhidraScript {
                         }
 
                         final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
-                        boolean isPointer = memType instanceof PointerDataType || memType instanceof FunctionDefinition;
+                        boolean isPointer = memType instanceof Pointer || memType instanceof FunctionDefinition;
                         length = isPointer ? manager.getDataOrganization().getPointerSize() : memType.getLength();
                         int alignment = isPointer ? length : memType.getAlignment();
                         if (memType instanceof FunctionDefinition && args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64) {

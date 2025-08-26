@@ -532,7 +532,7 @@ public class ScriptWrapper {
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
         // Get class offset
-        var offset = offsets.get(wrapped.getCurrentProgram().getImageBase().add(Long.parseLong(fun.platformOffset.get().value, 16)).getOffset());
+        var offset = fun.platformOffset.isPresent() ? offsets.get(wrapped.getCurrentProgram().getImageBase().add(Long.parseLong(fun.platformOffset.get().value, 16)).getOffset()) : null;
         if (offset == null) {
             offset = 0;
         }
