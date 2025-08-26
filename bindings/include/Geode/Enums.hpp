@@ -880,8 +880,10 @@ enum class GJChallengeType {
 };
 
 enum class GJScoreType {
-    Unknown = 0,
-    Creator = 1
+    Top = 0,
+    Creator = 1,
+    Search = 2,
+    LevelScore = 3
 };
 
 enum class LevelLeaderboardType {

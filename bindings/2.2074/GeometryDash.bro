@@ -7142,7 +7142,7 @@ class GameLevelManager : cocos2d::CCNode {
     char const* getLikeItemKey(LikeItemType, int, bool, int);
     GJGameLevel* getLocalLevel(int);
     GJGameLevel* getLocalLevelByName(gd::string);
-    GJLevelList* getLocalLevelList(int);
+    GJLevelList* getLocalLevelList(int) = win 0x143240;
     int getLowestLevelOrder() = m1 0x47b274, imac 0x51ed20;
     GJGameLevel* getMainLevel(int levelID, bool dontGetLevelString) = ios 0x95e78, win 0x1423e0, m1 0x473484, imac 0x515f50;
     const char* getMapPackKey(int pack);
@@ -7238,58 +7238,100 @@ class GameLevelManager : cocos2d::CCNode {
         this->markLevelAsDownloaded(-id);
     }
     void messageWasRemoved(int, bool) = ios 0xa933c;
-    void onAcceptFriendRequestCompleted(gd::string response, gd::string tag);
-    void onBanUserCompleted(gd::string response, gd::string tag);
-    void onBlockUserCompleted(gd::string response, gd::string tag);
-    void onDeleteCommentCompleted(gd::string response, gd::string tag);
-    void onDeleteFriendRequestCompleted(gd::string response, gd::string tag);
-    void onDeleteServerLevelCompleted(gd::string response, gd::string tag);
-    void onDeleteServerLevelListCompleted(gd::string response, gd::string tag) = m1 0x47279c, imac 0x514f40;
-    void onDeleteUserMessagesCompleted(gd::string response, gd::string tag) = ios 0x92294;
-    void onDownloadLevelCompleted(gd::string response, gd::string tag);
-    void onDownloadUserMessageCompleted(gd::string response, gd::string tag);
-    void onGetAccountCommentsCompleted(gd::string response, gd::string tag);
-    void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x15d510, m1 0x46c964, imac 0x50e7b0;
-    void onGetGauntletsCompleted(gd::string response, gd::string tag);
-    void onGetGJChallengesCompleted(gd::string response, gd::string tag) = win 0x164f20, imac 0x5117a0, m1 0x46f5b0;
+    void onAcceptFriendRequestCompleted(gd::string response, gd::string tag) = win 0x15eaa0, m1 0x46b86c, imac 0x50d720, ios 0x91000;
+    void onBanUserCompleted(gd::string response, gd::string tag) = win inline, m1 0x46e3d0, imac 0x510440, ios 0x92920 {
+        if (response != "-1") this->resetTimerForKey("leaderboard_top");
+    }
+    void onBlockUserCompleted(gd::string response, gd::string tag) = win 0x15f820, m1 0x46be34, imac 0x50dc90, ios 0x91388;
+    void onDeleteCommentCompleted(gd::string response, gd::string tag) = win 0x15cfc0, m1 0x46a914, imac 0x50c8c0, ios 0x90564;
+    void onDeleteFriendRequestCompleted(gd::string response, gd::string tag) = win 0x15e580, m1 0x46b660, imac 0x50d520, ios 0x90e84;
+    void onDeleteServerLevelCompleted(gd::string response, gd::string tag) = win 0x152740, m1 0x468a40, imac 0x50a3c0, ios 0x8f474;
+    void onDeleteServerLevelListCompleted(gd::string response, gd::string tag) = win inline, m1 0x47279c, imac 0x514f40, ios 0x95540 {
+        m_queuedLists.erase(tag);
+        auto responseInt = atoi(response.c_str());
+        if (response == "-1") {
+            if (m_levelListDeleteDelegate) m_levelListDeleteDelegate->levelListDeleteFailed(responseInt);
+        }
+        else {
+            if (m_levelListDeleteDelegate) m_levelListDeleteDelegate->levelListDeleteFinished(responseInt);
+        }
+    }
+    void onDeleteUserMessagesCompleted(gd::string response, gd::string tag) = win 0x159390, m1 0x46d8bc, imac 0x50f860, ios 0x92294;
+    void onDownloadLevelCompleted(gd::string response, gd::string tag) = win inline, m1 0x468670, imac 0x50a060, ios 0x8f1bc {
+        this->processOnDownloadLevelCompleted(response, tag, false);
+    }
+    void onDownloadUserMessageCompleted(gd::string response, gd::string tag) = win 0x158730, m1 0x46da9c, imac 0x50fa30, ios 0x923dc;
+    void onGetAccountCommentsCompleted(gd::string response, gd::string tag) = win 0x15a510, m1 0x469890, imac 0x50b2e0, ios 0x8fd44;
+    void onGetFriendRequestsCompleted(gd::string response, gd::string tag) = win 0x15d510, m1 0x46c964, imac 0x50e7b0, ios 0x9197c;
+    void onGetGauntletsCompleted(gd::string response, gd::string tag) = win 0x14f470, m1 0x471154, imac 0x5136f0, ios 0x947e4;
+    void onGetGJChallengesCompleted(gd::string response, gd::string tag) = win 0x164f20, imac 0x5117a0, m1 0x46f5b0, ios 0x935e0;
     void onGetGJDailyLevelStateCompleted(gd::string response, gd::string tag) = win 0x1663a0, imac 0x512730, m1 0x470324, ios 0x93e20;
-    void onGetGJRewardsCompleted(gd::string response, gd::string tag) = m1 0x46eac8, imac 0x510b00;
-    void onGetGJSecretRewardCompleted(gd::string, gd::string) = ios 0x955f4;
+    void onGetGJRewardsCompleted(gd::string response, gd::string tag) = win 0x163d50, m1 0x46eac8, imac 0x510b00, ios 0x92e90;
+    void onGetGJSecretRewardCompleted(gd::string, gd::string) = win 0x162960, m1 0x47287c, imac 0x5150a0, ios 0x955f4;
     void onGetGJUserInfoCompleted(gd::string response, gd::string tag) = win 0x157aa0, m1 0x46b2a8, imac 0x50d1a0, ios 0x90bb4;
-    void onGetLeaderboardScoresCompleted(gd::string response, gd::string tag) = win 0x155b80, m1 0x468fa0, imac 0x50a9d0;
-    void onGetLevelCommentsCompleted(gd::string response, gd::string tag) = win 0x159da0;
-    void onGetLevelLeaderboardCompleted(gd::string response, gd::string tag);
-    void onGetLevelListsCompleted(gd::string response, gd::string tag) = win 0x14e970, m1 0x471f08, imac 0x5145d0;
-    void onGetLevelSaveDataCompleted(gd::string response, gd::string tag) = win 0x14d020;
+    void onGetLeaderboardScoresCompleted(gd::string response, gd::string tag) = win 0x155b80, m1 0x468fa0, imac 0x50a9d0, ios 0x8f7e4;
+    void onGetLevelCommentsCompleted(gd::string response, gd::string tag) = win 0x159da0, m1 0x469368, imac 0x50ad90, ios 0x8fa64;
+    void onGetLevelLeaderboardCompleted(gd::string response, gd::string tag) = win inline, m1 0x470fd8, imac 0x513580, ios 0x94674 {
+        this->removeDLFromActive(tag.c_str());
+        if (response == "-1") {
+            if (m_leaderboardManagerDelegate) m_leaderboardManagerDelegate->loadLeaderboardFailed(tag.c_str());
+        }
+        else {
+            auto scores = this->createAndGetScores(response, GJScoreType::LevelScore);
+            this->storeSearchResult(scores, " ", tag.c_str());
+            if (m_leaderboardManagerDelegate) m_leaderboardManagerDelegate->loadLeaderboardFinished(scores, tag.c_str());
+        }
+    }
+    void onGetLevelListsCompleted(gd::string response, gd::string tag) = win 0x14e970, m1 0x471f08, imac 0x5145d0, ios 0x95060;
+    void onGetLevelSaveDataCompleted(gd::string response, gd::string tag) = win 0x14d020, m1 0x46e5e4, imac 0x510610, ios 0x92ae0;
     void onGetMapPacksCompleted(gd::string response, gd::string tag) = win 0x14d680, m1 0x467ce8, imac 0x509510, ios 0x8ebfc;
-    void onGetNewsCompleted(gd::string response, gd::string tag);
+    void onGetNewsCompleted(gd::string response, gd::string tag) = win inline, m1 0x472878, imac 0x515090, ios inline {}
     void onGetOnlineLevelsCompleted(gd::string response, gd::string tag) = win 0x14c3d0, m1 0x46708c, imac 0x508660, ios 0x8e490;
-    void onGetTopArtistsCompleted(gd::string response, gd::string tag);
-    void onGetUserListCompleted(gd::string response, gd::string tag) = win 0x1601b0;
-    void onGetUserMessagesCompleted(gd::string response, gd::string tag);
-    void onGetUsersCompleted(gd::string response, gd::string tag) = win 0x157420;
-    void onLikeItemCompleted(gd::string response, gd::string tag);
+    void onGetTopArtistsCompleted(gd::string response, gd::string tag) = win 0x156d40, m1 0x471874, imac 0x513ef0, ios 0x94cbc;
+    void onGetUserListCompleted(gd::string response, gd::string tag) = win 0x1601b0, m1 0x46c388, imac 0x50e190, ios 0x91620;
+    void onGetUserMessagesCompleted(gd::string response, gd::string tag) = win 0x157e70, m1 0x46d148, imac 0x50f040, ios 0x91e30;
+    void onGetUsersCompleted(gd::string response, gd::string tag) = win 0x157420, m1 0x46defc, imac 0x50ff90, ios 0x92654;
+    void onLikeItemCompleted(gd::string response, gd::string tag) = win 0x161880, m1 0x46aacc, imac 0x50ca60, ios 0x90680;
     void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = ios 0x8be3c, win 0x140d10, m1 0x464438, imac 0x504de0;
-    void onRateDemonCompleted(gd::string response, gd::string tag) = win 0x1532b0;
-    void onRateStarsCompleted(gd::string response, gd::string tag);
-    void onReadFriendRequestCompleted(gd::string response, gd::string tag);
-    void onRemoveFriendCompleted(gd::string response, gd::string tag);
-    void onReportLevelCompleted(gd::string response, gd::string tag);
-    void onRequestUserAccessCompleted(gd::string response, gd::string tag);
-    void onRestoreItemsCompleted(gd::string response, gd::string tag) = imac 0x50cc20, m1 0x46acc0;
-    void onSetLevelFeaturedCompleted(gd::string response, gd::string tag);
-    void onSetLevelStarsCompleted(gd::string response, gd::string tag);
-    void onSubmitUserInfoCompleted(gd::string response, gd::string tag);
-    void onSuggestLevelStarsCompleted(gd::string response, gd::string tag);
-    void onUnblockUserCompleted(gd::string response, gd::string tag);
-    void onUpdateDescriptionCompleted(gd::string response, gd::string tag);
-    void onUpdateLevelCompleted(gd::string response, gd::string tag);
+    void onRateDemonCompleted(gd::string response, gd::string tag) = win 0x1532b0, m1 0x470d14, imac 0x5132a0, ios 0x944a4;
+    void onRateStarsCompleted(gd::string response, gd::string tag) = win 0x151fc0, m1 0x4688a0, imac 0x50a230, ios 0x8f384;
+    void onReadFriendRequestCompleted(gd::string response, gd::string tag) = win inline, m1 0x46baa0, imac 0x50d940, ios 0x91168 {
+        m_friendReqAndUserBlocks->removeObjectForKey(tag);
+    }
+    void onRemoveFriendCompleted(gd::string response, gd::string tag) = win 0x15f2c0, m1 0x46bbb0, imac 0x50da30, ios 0x911dc;
+    void onReportLevelCompleted(gd::string response, gd::string tag) = win 0x167ad0, m1 0x46aed0, imac 0x50cdf0, ios 0x90988;
+    void onRequestUserAccessCompleted(gd::string response, gd::string tag) = win 0x161fb0, m1 0x46e458, imac 0x5104c0, ios 0x92994;
+    void onRestoreItemsCompleted(gd::string response, gd::string tag) = win 0x1670f0, imac 0x50cc20, m1 0x46acc0, ios 0x907c0;
+    void onSetLevelFeaturedCompleted(gd::string response, gd::string tag) = win inline, m1 0x468d58, imac 0x50a6b0, ios 0x8f65c {}
+    void onSetLevelStarsCompleted(gd::string response, gd::string tag) = win 0x153600, m1 0x468bc8, imac 0x50a530, ios 0x8f564;
+    void onSubmitUserInfoCompleted(gd::string response, gd::string tag) = win inline, m1 0x46aecc, imac 0x50cde0, ios 0x90950 {}
+    void onSuggestLevelStarsCompleted(gd::string response, gd::string tag) = win 0x152be0, m1 0x46e8d0, imac 0x510900, ios 0x92d20;
+    void onUnblockUserCompleted(gd::string response, gd::string tag) = win 0x15fd40, m1 0x46c124, imac 0x50df50, ios 0x91500;
+    void onUpdateDescriptionCompleted(gd::string response, gd::string tag) = win 0x161010, m1 0x46b04c, imac 0x50cf60, ios 0x90a68;
+    void onUpdateLevelCompleted(gd::string response, gd::string tag) = win inline, m1 0x468788, imac 0x50a140, ios 0x8f2a0 {
+        this->processOnDownloadLevelCompleted(response, tag, true);
+    }
     void onUpdateUserScoreCompleted(gd::string response, gd::string tag) = win 0x155180, m1 0x468d5c, imac 0x50a6c0, ios 0x8f694;
-    void onUploadCommentCompleted(gd::string response, gd::string tag) = win 0x15bde0, imac 0x50b830, m1 0x469db8;
-    void onUploadFriendRequestCompleted(gd::string response, gd::string tag);
-    void onUploadLevelCompleted(gd::string response, gd::string tag) = win 0x14b1a0, m1 0x466e10, imac 0x5083c0;
-    void onUploadLevelListCompleted(gd::string response, gd::string tag) = m1 0x472600, imac 0x514d50, ios 0x95464;
-    void onUploadUserMessageCompleted(gd::string response, gd::string tag);
+    void onUploadCommentCompleted(gd::string response, gd::string tag) = win 0x15bde0, imac 0x50b830, m1 0x469db8, ios 0x90024;
+    void onUploadFriendRequestCompleted(gd::string response, gd::string tag) = win 0x15dfb0, m1 0x46b488, imac 0x50d350, ios 0x90d3c;
+    void onUploadLevelCompleted(gd::string response, gd::string tag) = win 0x14b1a0, m1 0x466e10, imac 0x5083c0, ios 0x8e328;
+    void onUploadLevelListCompleted(gd::string response, gd::string tag) = win inline, m1 0x472600, imac 0x514d50, ios 0x95464 {
+        m_queuedLists.erase(tag);
+        auto listID = atoi(response.c_str());
+        auto uniqueID = atoi(tag.c_str());
+        if (listID < 0) {
+            if (m_listUploadDelegate) m_listUploadDelegate->listUploadFailed(this->getLocalLevelList(uniqueID), listID);
+        }
+        else {
+            auto levelList = this->getLocalLevelList(uniqueID);
+            if (levelList) {
+                levelList->m_listID = listID;
+                levelList->m_uploaded = true;
+            }
+            if (m_listUploadDelegate) m_listUploadDelegate->listUploadFinished(levelList);
+        }
+    }
+    void onUploadUserMessageCompleted(gd::string response, gd::string tag) = win 0x158d00, m1 0x46dc78, imac 0x50fc20, ios 0x92518;
     int pageFromCommentKey(char const*);
     void parseRestoreData(gd::string);
     void performNetworkTest() = m1 0x4642b0, imac 0x504c40, ios 0x8bcbc; // win inline 
@@ -9353,36 +9395,70 @@ class GJAccountManager : cocos2d::CCNode {
 
     virtual bool init() = win 0x1fb510, imac 0xd2340, m1 0xbab8c, ios 0x399040;
 
-    void addDLToActive(char const* tag, cocos2d::CCObject*);
-    void addDLToActive(char const* tag);
-    bool backupAccount(gd::string) = win 0x1fc8f0, m1 0xbbce4, imac 0xd34c0, ios 0x3999b0;
-    void dataLoaded(DS_Dictionary*) = m1 0xbcd78, imac 0xd4730;
-    void encodeDataTo(DS_Dictionary*) = imac 0xd46d0, m1 0xbcd20;
-    void firstSetup();
+    void addDLToActive(char const* tag, cocos2d::CCObject* object) = win inline, m1 0xbad04, imac 0xd24b0, ios 0x3990e4 {
+        m_activeDownloads->setObject(object, tag);
+    }
+    void addDLToActive(char const* tag) = win inline, m1 0xbacd4, imac 0xd2480, ios inline {
+        this->addDLToActive(tag, cocos2d::CCNode::create());
+    }
+    bool backupAccount(gd::string url) = win 0x1fc8f0, m1 0xbbce4, imac 0xd34c0, ios 0x3999b0;
+    void dataLoaded(DS_Dictionary* dict) = win inline, m1 0xbcd78, imac 0xd4730, ios 0x39a538 {
+        m_username = dict->getStringForKey("GJA_001");
+        m_accountID = dict->getIntegerForKey("GJA_003");
+        m_password = dict->getStringForKey("GJA_002");
+        m_GJP2 = dict->getStringForKey("GJA_005");
+        if (!m_password.empty() && m_GJP2.empty()) {
+            m_GJP2 = this->getShaPassword(m_password);
+        }
+    }
+    void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0xd46d0, m1 0xbcd20, ios 0x39a4e0 {
+        dict->setStringForKey("GJA_001", m_username);
+        dict->setIntegerForKey("GJA_003", m_accountID);
+        dict->setStringForKey("GJA_005", m_GJP2);
+    }
+    void firstSetup() = win inline, m1 0xbcd1c, imac 0xd46c0, ios inline {}
     bool getAccountBackupURL() = win 0x1fc2d0, m1 0xbb9b0, imac 0xd3180, ios 0x3997ec;
     bool getAccountSyncURL() = win 0x1fd230, m1 0xbc19c, imac 0xd3a10, ios 0x399d24;
-    cocos2d::CCObject* getDLObject(char const*);
-    gd::string getShaPassword(gd::string) = win 0x1feee0;
-    void handleIt(bool, gd::string, gd::string, GJHttpType) = win 0x1fb2c0, m1 0xb8918, imac 0xcfd00, ios 0x397ad0;
-    void handleItDelayed(bool, gd::string, gd::string, GJHttpType);
-    void handleItND(cocos2d::CCNode*, void*);
-    bool isDLActive(char const* tag);
-    void linkToAccount(gd::string, gd::string, int, int) = win 0x1fe820;
-    void loginAccount(gd::string, gd::string) = win 0x1fba80, m1 0xbb1b8, imac 0xd2940, ios 0x399368;
-    void onBackupAccountCompleted(gd::string, gd::string) = win 0x1fce20;
-    void onGetAccountBackupURLCompleted(gd::string, gd::string) = win 0x1fc620, m1 0xba684, imac 0xd1e40;
-    void onGetAccountSyncURLCompleted(gd::string, gd::string) = m1 0xba8b0, imac 0xd2050;
-    void onLoginAccountCompleted(gd::string, gd::string) = win 0x1fbee0;
-    void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
-    void onRegisterAccountCompleted(gd::string, gd::string) = win 0x1fb8f0;
-    void onSyncAccountCompleted(gd::string, gd::string) = win 0x1fdab0, imac 0xd0e80, m1 0xb9924;
-    void onUpdateAccountSettingsCompleted(gd::string, gd::string) = win 0x1fed80;
-    void ProcessHttpRequest(gd::string, gd::string, gd::string, GJHttpType) = win 0x1fb070, m1 0xb85c4, imac 0xcf9a0, ios 0x397860;
-    void registerAccount(gd::string, gd::string, gd::string) = win 0x1fb620, m1 0xbaf14, imac 0xd2690, ios 0x3991b4;
-    void removeDLFromActive(char const*);
-    bool syncAccount(gd::string) = win 0x1fd840, m1 0xbc4d8, imac 0xd3d60, ios 0x399ee8;
-    void unlinkFromAccount();
-    void updateAccountSettings(int, int, int, gd::string, gd::string, gd::string) = win 0x1fea30, m1 0xbc948, imac 0xd4200, ios 0x39a27c;
+    cocos2d::CCObject* getDLObject(char const* tag) = win inline, m1 0xbabe0, imac 0xd2390, ios 0x399078 {
+        return m_activeDownloads->objectForKey(tag);
+    }
+    gd::string getShaPassword(gd::string password) = win 0x1feee0, m1 0xbcf34, imac 0xd48f0, ios 0x39a6e4;
+    void handleIt(bool success, gd::string response, gd::string tag, GJHttpType type) = win 0x1fb2c0, m1 0xb8918, imac 0xcfd00, ios 0x397ad0;
+    void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = m1 0xb8f70, imac 0xd0500;
+    void handleItND(cocos2d::CCNode* node, void* data) = m1 0xb90dc, imac 0xd0640;
+    bool isDLActive(char const* tag) = win inline, m1 0xbabc4, imac 0xd2370, ios inline {
+        return this->getDLObject(tag) != nullptr;
+    }
+    void linkToAccount(gd::string username, gd::string gjp2, int accountID, int userID) = win 0x1fe820, m1 0xbc794, imac 0xd4020, ios 0x39a0c8;
+    void loginAccount(gd::string username, gd::string gjp2) = win 0x1fba80, m1 0xbb1b8, imac 0xd2940, ios 0x399368;
+    void onBackupAccountCompleted(gd::string response, gd::string tag) = win 0x1fce20, m1 0xb9664, imac 0xd0bc0, ios 0x3982a0;
+    void onGetAccountBackupURLCompleted(gd::string response, gd::string tag) = win 0x1fc620, m1 0xba684, imac 0xd1e40, ios 0x398cc8;
+    void onGetAccountSyncURLCompleted(gd::string response, gd::string tag) = win 0x1fd570, m1 0xba8b0, imac 0xd2050, ios 0x398e3c;
+    void onLoginAccountCompleted(gd::string response, gd::string tag) = win 0x1fbee0, m1 0xb92e4, imac 0xd0820, ios 0x3980b8;
+    void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x1fb1c0, m1 0xb871c, imac 0xcfb40, ios 0x3979b8;
+    void onRegisterAccountCompleted(gd::string response, gd::string tag) = win 0x1fb8f0, m1 0xb9208, imac 0xd0760, ios 0x398000;
+    void onSyncAccountCompleted(gd::string response, gd::string tag) = win 0x1fdab0, imac 0xd0e80, m1 0xb9924, ios 0x39847c;
+    void onUpdateAccountSettingsCompleted(gd::string response, gd::string tag) = win 0x1fed80, m1 0xba5c8, imac 0xd1da0, ios 0x398c3c;
+    void ProcessHttpRequest(gd::string url, gd::string params, gd::string tag, GJHttpType type) = win 0x1fb070, m1 0xb85c4, imac 0xcf9a0, ios 0x397860;
+    void registerAccount(gd::string response, gd::string tag, gd::string data) = win 0x1fb620, m1 0xbaf14, imac 0xd2690, ios 0x3991b4;
+    void removeDLFromActive(char const* tag) = win inline, m1 0xbae10, imac 0xd25b0, ios 0x399150 {
+        m_activeDownloads->removeObjectForKey(tag);
+    }
+    bool syncAccount(gd::string url) = win 0x1fd840, m1 0xbc4d8, imac 0xd3d60, ios 0x399ee8;
+    void unlinkFromAccount() = win inline, m1 0xbc8b0, imac 0xd4150, ios 0x39a1e4 {
+        m_GJP2 = "";
+        m_password = "";
+        m_username = "";
+        m_accountID = 0;
+        auto gameManager = GameManager::sharedState();
+        gameManager->m_shouldLoadUnlockValueKeeper = true;
+        gameManager->firstLoad();
+        gameManager->m_shouldLoadUnlockValueKeeper = false;
+        LocalLevelManager::sharedState()->firstLoad();
+        if (m_accountDelegate) m_accountDelegate->accountStatusChanged();
+        gameManager->accountStatusChanged();
+    }
+    void updateAccountSettings(int messageStatus, int friendRequestStatus, int commentStatus, gd::string youtube, gd::string twitter, gd::string twitch) = win 0x1fea30, m1 0xbc948, imac 0xd4200, ios 0x39a27c;
 
     cocos2d::CCDictionary* m_activeDownloads;
     gd::string m_username;
