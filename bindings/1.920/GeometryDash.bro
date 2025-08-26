@@ -2977,8 +2977,14 @@ class GameObject : CCSpritePlus {
 	TodoReturn disableObject();
 	TodoReturn getBallFrame(int);
 	TodoReturn getColorFrame(gd::string);
-	TodoReturn getColorMode();
-	void getEditorColor() = win 0x756b0;
+	GJCustomColorMode getColorMode() = win inline {
+  		GJCustomColorMode customColor = this->m_selectedObject->m_customColorMode;
+  		if ((this->m_selectedObject->m_defaultColorMode == customColor) || this->m_selectedObject->m_canChangeCustomColor || (customColor == GJCustomColorMode::Default)) {
+    		customColor = this->m_selectedObject->m_defaultColorMode;
+  		}
+  		return customColor;
+	}
+	cocos2d::ccColor3B getEditorColor() = win 0x756b0;
 	TodoReturn getOuterObjectRect();
 	TodoReturn hasBeenActivated();
 	TodoReturn hasBeenActivatedByPlayer(GameObject*);
@@ -2992,15 +2998,21 @@ class GameObject : CCSpritePlus {
 	TodoReturn reorderColorSprite();
 	TodoReturn resetCustomColorMode();
 	void selectObject(cocos2d::ccColor3B) = win 0x75660;
-	void setChildColor(cocos2d::ccColor3B);
+	void setChildColor(cocos2d::ccColor3B color) = win inline {
+		if (this->m_hasColor) {
+			if (this->m_colorSprite) {
+				this->m_colorSprite->setColor(color);
+			}
+		}
+	}
 	void setDefaultColorMode(GJCustomColorMode);
 	void setGlowColor(cocos2d::ccColor3B);
 	void setGlowOpacity(unsigned char);
 	void setMyAction(cocos2d::CCAction*);
-	void setObjectColor(cocos2d::ccColor3B);
+	void setObjectColor(cocos2d::ccColor3B) = win 0x75560;
 	TodoReturn setupCoinAnimation();
 	TodoReturn setupCustomSprites();
-	bool shouldBlend();
+	bool shouldBlend() = win 0x6ecc0;
 	bool shouldBlendColor() = win 0x6ece0;
 	bool slopeFloorTop() = win inline {
 		return this->m_slopeType == 1 || this->m_slopeType == 3 || this->m_slopeType == 5 || this->m_slopeType == 6;
