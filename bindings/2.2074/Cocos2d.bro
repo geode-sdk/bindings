@@ -2781,13 +2781,13 @@ class cocos2d::CCTouchHandler : cocos2d::CCObject {
 
     cocos2d::CCTouchDelegate* getDelegate() = m1 0x3dd4e4, imac 0x46e1c0, ios 0x103c4;
     int getEnabledSelectors();
-    int getPriority() = ios inline, m1 0x3dd560, imac 0x46e240 {
+    int getPriority() = ios inline, m1 0x3dd558, imac 0x46e240 {
     	return m_nPriority;
     }
 
     void setDelegate(cocos2d::CCTouchDelegate*);
     void setEnalbedSelectors(int);
-    void setPriority(int prio) = ios inline {
+    void setPriority(int prio) = ios inline, m1 0x3dd560, imac 0x46e250 {
     	m_nPriority = prio;
     }
 
