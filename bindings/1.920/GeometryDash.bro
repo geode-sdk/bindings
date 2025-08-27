@@ -2978,9 +2978,9 @@ class GameObject : CCSpritePlus {
 	TodoReturn getBallFrame(int);
 	TodoReturn getColorFrame(gd::string);
 	GJCustomColorMode getColorMode() = win inline {
-  		GJCustomColorMode customColor = this->m_selectedObject->m_customColorMode;
-  		if ((this->m_selectedObject->m_defaultColorMode == customColor) || this->m_selectedObject->m_canChangeCustomColor || (customColor == GJCustomColorMode::Default)) {
-    		customColor = this->m_selectedObject->m_defaultColorMode;
+  		GJCustomColorMode customColor = this->m_customColorMode;
+  		if ((this->m_defaultColorMode == customColor) || this->m_canChangeCustomColor || (customColor == GJCustomColorMode::Default)) {
+    		customColor = this->m_defaultColorMode;
   		}
   		return customColor;
 	}
