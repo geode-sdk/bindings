@@ -532,7 +532,9 @@ public class ScriptWrapper {
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
         // Get class offset
-        var offset = fun.platformOffset.isPresent() ? offsets.get(wrapped.getCurrentProgram().getImageBase().add(Long.parseLong(fun.platformOffset.get().value, 16)).getOffset()) : null;
+        var offset = fun.platformOffset.isPresent()
+            ? offsets.get(wrapped.getCurrentProgram().getImageBase().add(Long.parseLong(fun.platformOffset.get().value, 16)).getOffset())
+            : null;
         if (offset == null) {
             offset = 0;
         }
@@ -631,12 +633,15 @@ public class ScriptWrapper {
 
         var pointerSize = manager.getDataOrganization().getPointerSize();
         DataType sizeType = null;
+        DataType diffType = null;
         switch (platform) {
             case WINDOWS32:
                 sizeType = UnsignedIntegerDataType.dataType;
+                diffType = IntegerDataType.dataType;
                 break;
             case WINDOWS64:
                 sizeType = UnsignedLongLongDataType.dataType;
+                diffType = LongLongDataType.dataType;
                 break;
             case ANDROID32:
             case ANDROID64:
@@ -644,6 +649,7 @@ public class ScriptWrapper {
             case MAC_ARM:
             case IOS:
                 sizeType = UnsignedLongDataType.dataType;
+                diffType = LongDataType.dataType;
                 break;
         }
 
@@ -750,6 +756,19 @@ public class ScriptWrapper {
         rect.setPackingEnabled(true);
         manager.addDataType(rect, DataTypeConflictHandler.REPLACE_HANDLER);
 
+        // cocos2d::CCAffineTransform
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "CCAffineTransform"));
+        var affineTransform = new StructureDataType(cat, cat.getName(), 0x0);
+        affineTransform.add(FloatDataType.dataType, 0x4, "a", "Scale factor for the x-axis");
+        affineTransform.add(FloatDataType.dataType, 0x4, "b", "Shear factor for the x-axis");
+        affineTransform.add(FloatDataType.dataType, 0x4, "c", "Shear factor for the y-axis");
+        affineTransform.add(FloatDataType.dataType, 0x4, "d", "Scale factor for the y-axis");
+        affineTransform.add(FloatDataType.dataType, 0x4, "tx", "Translation distance for the x-axis");
+        affineTransform.add(FloatDataType.dataType, 0x4, "ty", "Translation distance for the y-axis");
+        affineTransform.setPackingEnabled(true);
+        manager.addDataType(affineTransform, DataTypeConflictHandler.REPLACE_HANDLER);
+
         // cocos2d::ccColor3B
 
         cat = this.createCategoryAll(category.extend("cocos2d", "ccColor3B"));
@@ -770,6 +789,74 @@ public class ScriptWrapper {
         color4B.add(ByteDataType.dataType, 0x1, "a", "Alpha component");
         color4B.setPackingEnabled(true);
         manager.addDataType(color4B, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccTex2F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccTex2F"));
+        var tex2F = new StructureDataType(cat, cat.getName(), 0x0);
+        tex2F.add(FloatDataType.dataType, 0x4, "u", "U texture coordinate");
+        tex2F.add(FloatDataType.dataType, 0x4, "v", "V texture coordinate");
+        tex2F.setPackingEnabled(true);
+        manager.addDataType(tex2F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccVertex2F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccVertex2F"));
+        var vertex2F = new StructureDataType(cat, cat.getName(), 0x0);
+        vertex2F.add(FloatDataType.dataType, 0x4, "x", "X position of the vertex");
+        vertex2F.add(FloatDataType.dataType, 0x4, "y", "Y position of the vertex");
+        vertex2F.setPackingEnabled(true);
+        manager.addDataType(vertex2F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccVertex3F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccVertex3F"));
+        var vertex3F = new StructureDataType(cat, cat.getName(), 0x0);
+        vertex3F.add(FloatDataType.dataType, 0x4, "x", "X position of the vertex");
+        vertex3F.add(FloatDataType.dataType, 0x4, "y", "Y position of the vertex");
+        vertex3F.add(FloatDataType.dataType, 0x4, "z", "Z position of the vertex");
+        vertex3F.setPackingEnabled(true);
+        manager.addDataType(vertex3F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccBlendFunc
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccBlendFunc"));
+        var blendFunc = new StructureDataType(cat, cat.getName(), 0x0);
+        blendFunc.add(UnsignedIntegerDataType.dataType, 0x4, "src", "Source blend factor");
+        blendFunc.add(UnsignedIntegerDataType.dataType, 0x4, "dst", "Destination blend factor");
+        blendFunc.setPackingEnabled(true);
+        manager.addDataType(blendFunc, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccV2F_C4B_T2F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccV2F_C4B_T2F"));
+        var v2F_C4B_T2F = new StructureDataType(cat, cat.getName(), 0x0);
+        v2F_C4B_T2F.add(vertex2F, 0x8, "vertices", "Vertex coordinates");
+        v2F_C4B_T2F.add(color4B, 0x4, "colors", "Vertex colors");
+        v2F_C4B_T2F.add(tex2F, 0x8, "texCoords", "Texture coordinates");
+        v2F_C4B_T2F.setPackingEnabled(true);
+        manager.addDataType(v2F_C4B_T2F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccV3F_C4B_T2F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccV3F_C4B_T2F"));
+        var v3F_C4B_T2F = new StructureDataType(cat, cat.getName(), 0x0);
+        v3F_C4B_T2F.add(vertex3F, 0xc, "vertices", "Vertex coordinates");
+        v3F_C4B_T2F.add(color4B, 0x4, "colors", "Vertex colors");
+        v3F_C4B_T2F.add(tex2F, 0x8, "texCoords", "Texture coordinates");
+        v3F_C4B_T2F.setPackingEnabled(true);
+        manager.addDataType(v3F_C4B_T2F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccV3F_C4B_T2F_Quad
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccV3F_C4B_T2F_Quad"));
+        var v3F_C4B_T2F_Quad = new StructureDataType(cat, cat.getName(), 0x0);
+        v3F_C4B_T2F_Quad.add(v3F_C4B_T2F, 0x18, "tl", "Top-left vertex");
+        v3F_C4B_T2F_Quad.add(v3F_C4B_T2F, 0x18, "bl", "Bottom-left vertex");
+        v3F_C4B_T2F_Quad.add(v3F_C4B_T2F, 0x18, "tr", "Top-right vertex");
+        v3F_C4B_T2F_Quad.add(v3F_C4B_T2F, 0x18, "br", "Bottom-right vertex");
+        v3F_C4B_T2F_Quad.setPackingEnabled(true);
+        manager.addDataType(v3F_C4B_T2F_Quad, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::ccHSVValue
 
@@ -882,6 +969,71 @@ public class ScriptWrapper {
         httpResponseSelector.setReturnType(VoidDataType.dataType);
         httpResponseSelector.setCallingConvention("__thiscall");
         manager.addDataType(httpResponseSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // UT_hash_bucket, UT_hash_handle, UT_hash_table
+
+        cat = this.createCategoryAll(category.extend("UT_hash_bucket"));
+        var utHashBucket = new StructureDataType(cat, cat.getName(), 0x0);
+
+        cat = this.createCategoryAll(category.extend("UT_hash_handle"));
+        var utHashHandle = new StructureDataType(cat, cat.getName(), 0x0);
+
+        cat = this.createCategoryAll(category.extend("UT_hash_table"));
+        var utHashTable = new StructureDataType(cat, cat.getName(), 0x0);
+        
+        utHashBucket.add(new PointerDataType(utHashHandle), pointerSize, "hh_head", "Pointer to the head of the hash handle linked list");
+        utHashBucket.add(UnsignedIntegerDataType.dataType, 0x4, "count", "Number of elements in the bucket");
+        utHashBucket.add(UnsignedIntegerDataType.dataType, 0x4, "expand_mult", "Expansion multiplier for the bucket");
+        utHashBucket.setPackingEnabled(true);
+        manager.addDataType(utHashBucket, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        utHashBucket.add(new PointerDataType(utHashTable), pointerSize, "tbl", "Pointer to the hash table");
+        utHashBucket.add(new PointerDataType(VoidDataType.dataType), pointerSize, "prev", "Pointer to the previous bucket");
+        utHashBucket.add(new PointerDataType(VoidDataType.dataType), pointerSize, "next", "Pointer to the next bucket");
+        utHashBucket.add(new PointerDataType(utHashHandle), pointerSize, "hh_prev", "Pointer to the previous hash handle");
+        utHashBucket.add(new PointerDataType(utHashHandle), pointerSize, "hh_next", "Pointer to the next hash handle");
+        utHashBucket.add(new PointerDataType(VoidDataType.dataType), pointerSize, "key", "Pointer to the key");
+        utHashBucket.add(UnsignedIntegerDataType.dataType, 0x4, "keylen", "Length of the key");
+        utHashBucket.add(UnsignedIntegerDataType.dataType, 0x4, "hashv", "Hash value");
+        utHashBucket.setPackingEnabled(true);
+        manager.addDataType(utHashBucket, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        utHashTable.add(new PointerDataType(utHashBucket), pointerSize, "buckets", "Pointer to the array of hash buckets");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "num_buckets", "Number of buckets in the table");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "log2_num_buckets", "Log2 of the number of buckets in the table");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "num_items", "Number of items in the table");
+        utHashTable.add(new PointerDataType(utHashHandle), pointerSize, "tail", "Pointer to the tail hash handle");
+        utHashTable.add(diffType, pointerSize, "hho", "Hash handle offset");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "ideal_chain_maxlen", "Ideal maximum chain length");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "nonideal_items", "Number of non-ideal items");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "ineff_expands", "Number of inefficient expansions");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "noexpand", "Number of no-expansion attempts");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "signature", "Signature");
+        utHashTable.setPackingEnabled(true);
+        manager.addDataType(utHashTable, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccArray
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccArray"));
+        var ccArray = new StructureDataType(cat, cat.getName(), 0x0);
+        ccArray.add(UnsignedIntegerDataType.dataType, 0x4, "num", "Number of elements in the array");
+        ccArray.add(UnsignedIntegerDataType.dataType, 0x4, "max", "Capacity of the array");
+        ccArray.add(UnsignedIntegerDataType.dataType, 0x4, "childIndex", "Index of the child element");
+        ccArray.add(new PointerDataType(this.addOrGetType(
+            Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform)), pointerSize, "arr", "Pointer to the array of elements");
+        ccArray.setPackingEnabled(true);
+        manager.addDataType(ccArray, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::CCDictElement
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "CCDictElement"));
+        var ccDictElement = new StructureDataType(cat, cat.getName(), 0x0);
+        ccDictElement.add(new ArrayDataType(CharDataType.dataType, 256), 256, "m_szKey", "Key string");
+        ccDictElement.add(diffType, pointerSize, "m_iKey", "Integer key");
+        ccDictElement.add(new PointerDataType(this.addOrGetType(
+            Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform)), pointerSize, "m_pObject", "Pointer to the object");
+        ccDictElement.setPackingEnabled(true);
+        manager.addDataType(ccDictElement, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // geode::SeedValueSRV etc.
 
