@@ -977,7 +977,7 @@ public class SyncBromaScript extends GhidraScript {
                 var fullName = cls.name.value;
                 wrapper.printfmt("Correcting members for {0}", fullName);
 
-                var cocosClass = bro.path.getFileName().endsWith("Cocos2d.bro") || fullName.equals("cocos2d::CCLightning");
+                var cocosClass = bro.path.getFileName().endsWith("Cocos2d.bro") && !fullName.equals("cocos2d::CCLightning");
 
                 var baseList = new ArrayList<List<String>>();
                 var currentClass = fullName;
