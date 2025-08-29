@@ -1993,29 +1993,6 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&) = m1 0x3a1a68, imac 0x426ce0, ios 0x153f78;
 }
 
-// this is literally already in sdk, and adding it here breaks building sdk
-// [[link(win, android)]]
-// class cocos2d::CCFiniteTimeAction {
-	// float getDuration() = ios inline {
-    //     return m_fDuration;
-    // }
-
-	// void setDuration(float duration) = ios inline {
-    //     m_fDuration = duration;
-    // }
-
-	// CCFiniteTimeAction(cocos2d::CCFiniteTimeAction const&);
-	// CCFiniteTimeAction() = ios inline {
-    //     m_fDuration = 0;
-    // }
-    // ~CCFiniteTimeAction() = ios inline {}
-
-	// virtual cocos2d::CCFiniteTimeAction* reverse() = ios inline {
-    //     CCLOG("cocos2d: FiniteTimeAction#reverse: Implement me");
-    //     return NULL;
-    // }
-// }
-
 [[link(win, android)]]
 class cocos2d::CCGLProgram : cocos2d::CCObject {
     bool initWithVertexShaderByteArray(char const*, char const*) = imac 0x417e60, m1 0x393990, ios 0x138260;
@@ -2582,7 +2559,7 @@ class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
     virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x40a244, imac 0x49f7c0, ios 0x14cfcc;
 
     std::array<cocos2d::ccVertex2F, 4> m_pSquareVertices;
-    std::array<cocos2d::ccColor4B, 4> m_pSquareColors;
+    std::array<cocos2d::ccColor4F, 4> m_pSquareColors;
     cocos2d::ccBlendFunc m_tBlendFunc;
 }
 
@@ -2901,7 +2878,7 @@ class cocos2d::CCMouseHandler : cocos2d::CCObject {
 }
 
 [[link(win, android)]]
-class cocos2d::CCEGLView : cocos2d::CCEGLViewProtocol {
+class cocos2d::CCEGLView {
     protected CCEGLView() = m1 0x451210, imac 0x4f0030, ios 0x12d970;
     protected virtual ~CCEGLView() = m1 0x451260, imac 0x4f0090, ios inline {}
 
@@ -4592,6 +4569,12 @@ class cocos2d::CCSpriteBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x1346d4, imac 0x1675e0, ios 0x1d8bc4;
     virtual cocos2d::CCTexture2D* getTexture() = m1 0x1346e4, imac 0x167600, ios 0x1d8bd4;
     virtual void setTexture(cocos2d::CCTexture2D*) = m1 0x134704, imac 0x167630, ios 0x1d8bf4;
+
+    cocos2d::CCTextureAtlas* m_pobTextureAtlas;
+    cocos2d::ccBlendFunc m_blendFunc;
+    cocos2d::CCArray* m_pobDescendants;
+    bool m_bManualSortChildren;
+    bool m_bManualSortAllChildrenDirty;
 }
 
 [[link(win, android)]]

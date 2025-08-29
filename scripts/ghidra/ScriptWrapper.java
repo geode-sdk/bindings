@@ -790,6 +790,17 @@ public class ScriptWrapper {
         color4B.setPackingEnabled(true);
         manager.addDataType(color4B, DataTypeConflictHandler.REPLACE_HANDLER);
 
+        // cocos2d::ccColor4F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccColor4F"));
+        var color4F = new StructureDataType(cat, cat.getName(), 0x0);
+        color4F.add(FloatDataType.dataType, 0x4, "r", "Red component");
+        color4F.add(FloatDataType.dataType, 0x4, "g", "Green component");
+        color4F.add(FloatDataType.dataType, 0x4, "b", "Blue component");
+        color4F.add(FloatDataType.dataType, 0x4, "a", "Alpha component");
+        color4F.setPackingEnabled(true);
+        manager.addDataType(color4F, DataTypeConflictHandler.REPLACE_HANDLER);
+
         // cocos2d::ccTex2F
 
         cat = this.createCategoryAll(category.extend("cocos2d", "ccTex2F"));
@@ -987,16 +998,16 @@ public class ScriptWrapper {
         utHashBucket.setPackingEnabled(true);
         manager.addDataType(utHashBucket, DataTypeConflictHandler.REPLACE_HANDLER);
 
-        utHashBucket.add(new PointerDataType(utHashTable), pointerSize, "tbl", "Pointer to the hash table");
-        utHashBucket.add(new PointerDataType(VoidDataType.dataType), pointerSize, "prev", "Pointer to the previous bucket");
-        utHashBucket.add(new PointerDataType(VoidDataType.dataType), pointerSize, "next", "Pointer to the next bucket");
-        utHashBucket.add(new PointerDataType(utHashHandle), pointerSize, "hh_prev", "Pointer to the previous hash handle");
-        utHashBucket.add(new PointerDataType(utHashHandle), pointerSize, "hh_next", "Pointer to the next hash handle");
-        utHashBucket.add(new PointerDataType(VoidDataType.dataType), pointerSize, "key", "Pointer to the key");
-        utHashBucket.add(UnsignedIntegerDataType.dataType, 0x4, "keylen", "Length of the key");
-        utHashBucket.add(UnsignedIntegerDataType.dataType, 0x4, "hashv", "Hash value");
-        utHashBucket.setPackingEnabled(true);
-        manager.addDataType(utHashBucket, DataTypeConflictHandler.REPLACE_HANDLER);
+        utHashHandle.add(new PointerDataType(utHashTable), pointerSize, "tbl", "Pointer to the hash table");
+        utHashHandle.add(new PointerDataType(VoidDataType.dataType), pointerSize, "prev", "Pointer to the previous bucket");
+        utHashHandle.add(new PointerDataType(VoidDataType.dataType), pointerSize, "next", "Pointer to the next bucket");
+        utHashHandle.add(new PointerDataType(utHashHandle), pointerSize, "hh_prev", "Pointer to the previous hash handle");
+        utHashHandle.add(new PointerDataType(utHashHandle), pointerSize, "hh_next", "Pointer to the next hash handle");
+        utHashHandle.add(new PointerDataType(VoidDataType.dataType), pointerSize, "key", "Pointer to the key");
+        utHashHandle.add(UnsignedIntegerDataType.dataType, 0x4, "keylen", "Length of the key");
+        utHashHandle.add(UnsignedIntegerDataType.dataType, 0x4, "hashv", "Hash value");
+        utHashHandle.setPackingEnabled(true);
+        manager.addDataType(utHashHandle, DataTypeConflictHandler.REPLACE_HANDLER);
 
         utHashTable.add(new PointerDataType(utHashBucket), pointerSize, "buckets", "Pointer to the array of hash buckets");
         utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "num_buckets", "Number of buckets in the table");
