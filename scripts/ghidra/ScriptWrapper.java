@@ -1041,8 +1041,8 @@ public class ScriptWrapper {
         var ccDictElement = new StructureDataType(cat, cat.getName(), 0x0);
         ccDictElement.add(new ArrayDataType(CharDataType.dataType, 256), 256, "m_szKey", "Key string");
         ccDictElement.add(diffType, pointerSize, "m_iKey", "Integer key");
-        ccDictElement.add(new PointerDataType(this.addOrGetType(
-            Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform)), pointerSize, "m_pObject", "Pointer to the object");
+        ccDictElement.add(this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform), pointerSize, "m_pObject", "Pointer to the object");
+        ccDictElement.add(utHashHandle, utHashHandle.getLength(), "hh", "Hash handle for the element");
         ccDictElement.setPackingEnabled(true);
         manager.addDataType(ccDictElement, DataTypeConflictHandler.REPLACE_HANDLER);
 

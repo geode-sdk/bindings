@@ -968,16 +968,16 @@ public class SyncBromaScript extends GhidraScript {
             }
         }
 
+        wrapper.printfmt("Correcting members...");
         for (var bro : this.bromas) {
-            if (bro.path.getFileName().endsWith("FMOD.bro")) continue;
+            var bromaPath = bro.path.getFileName();
+            if (bromaPath.endsWith("FMOD.bro")) continue;
 
+            wrapper.printfmt("Correcting members for {0}...", bromaPath);
             for (var cls : bro.classes) {
                 if (!cls.bases.isPresent()) continue;
 
                 var fullName = cls.name.value;
-                wrapper.printfmt("Correcting members for {0}", fullName);
-
-                var cocosClass = bro.path.getFileName().endsWith("Cocos2d.bro") && !fullName.equals("cocos2d::CCLightning");
 
                 var baseList = new ArrayList<List<String>>();
                 var currentClass = fullName;
@@ -1001,6 +1001,19 @@ public class SyncBromaScript extends GhidraScript {
                 if (classType == null || !(classType instanceof Structure)) continue;
                 var classStruct = (Structure)classType;
                 classStruct.setPackingEnabled(false);
+
+                var noTables = true;
+                var allStructures = manager.getAllStructures();
+                var targetPath = new DataTypePath(category, name + "_vftable").getPath();
+                while (allStructures.hasNext()) {
+                    var type = allStructures.next();
+                    if (type.getDataTypePath().getPath().startsWith(targetPath)) {
+                        noTables = false;
+                        break;
+                    }
+                }
+
+                wrapper.printfmt("Correcting members for {0}", fullName);
 
                 var index = 0;
                 for (var i = baseList.size() - 1; i >= 0; i--) {
@@ -1029,7 +1042,7 @@ public class SyncBromaScript extends GhidraScript {
                         }
 
                         for (; j < bases.size(); j++) {
-                            if (cocosClass) {
+                            if (noTables) {
                                 var dataType = wrapper.addOrGetType(bases.get(j), args.platform);
                                 if (dataType instanceof Structure structure) {
                                     if (structure.isZeroLength()) structure.growStructure(pointerSize);
