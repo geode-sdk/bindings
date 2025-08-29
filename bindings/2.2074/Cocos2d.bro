@@ -2901,7 +2901,7 @@ class cocos2d::CCMouseHandler : cocos2d::CCObject {
 }
 
 [[link(win, android)]]
-class cocos2d::CCEGLView {
+class cocos2d::CCEGLView : cocos2d::CCEGLViewProtocol {
     protected CCEGLView() = m1 0x451210, imac 0x4f0030, ios 0x12d970;
     protected virtual ~CCEGLView() = m1 0x451260, imac 0x4f0090, ios inline {}
 
@@ -5506,7 +5506,7 @@ class cocos2d::CCSpeed : cocos2d::CCAction {
 }
 
 [[link(win, android)]]
-class pugi::xml_document {
+class pugi::xml_document : pugi::xml_node {
     xml_document() = imac 0x62aa40, m1 0x5553cc, ios 0x3a593c;
     ~xml_document() = imac 0x62ab90, m1 0x555520, ios 0x3a5a20;
 }
@@ -5595,7 +5595,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
 }
 
 [[link(win, android)]]
-class cocos2d::CCConfiguration {
+class cocos2d::CCConfiguration : cocos2d::CCObject {
 	static void purgeConfiguration();
 	static cocos2d::CCConfiguration* sharedConfiguration() = m1 0x4634e8, imac 0x503d50, ios 0x3252e4;
 

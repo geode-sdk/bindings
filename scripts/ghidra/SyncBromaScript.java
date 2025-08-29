@@ -46,7 +46,6 @@ public class SyncBromaScript extends GhidraScript {
     class Args extends InputParameters {
         Platform platform;
         List<Path> bromaFiles;
-        private String selectedBromaFile;
         String gameVersion;
         boolean importFromBroma;
         boolean exportToBroma;
@@ -85,7 +84,10 @@ public class SyncBromaScript extends GhidraScript {
             List<String> versions = new ArrayList<String>();
             for (var file : Files.list(bindingsDir).toArray(Path[]::new)) {
                 if (Files.isDirectory(file)) {
-                    versions.add(file.getFileName().toString());
+                    var filename = file.getFileName().toString();
+                    if (!filename.equals("include")) {
+                        versions.add(filename);
+                    }
                 }
             }
             // Put latest version at the top
@@ -98,7 +100,6 @@ public class SyncBromaScript extends GhidraScript {
             var isWindows = platform != null && platform.equals(Platform.WINDOWS32.getLongName());
 
             this.choice("Target platform", platforms, platform, p -> this.platform = Platform.fromLongName(p));
-            this.choice("Broma file (Windows-only)", bromaFiles, f -> this.selectedBromaFile = f);
             this.choice("Game version", versions, v -> this.gameVersion = v);
             this.bool("Import from Broma", b -> this.importFromBroma = b);
             this.bool("Export to Broma", false, b -> this.exportToBroma = b);
@@ -109,10 +110,8 @@ public class SyncBromaScript extends GhidraScript {
 
             this.waitForAnswers();
 
-            if (this.platform == Platform.WINDOWS32 || this.platform == Platform.WINDOWS64) {
-                // Extras.bro is an extension of GeometryDash.bro, include it as well
-                bromaFiles = this.selectedBromaFile.equals("GeometryDash.bro") ? 
-                    List.of("Extras.bro", "GeometryDash.bro") : List.of(this.selectedBromaFile);
+            if (this.platform != Platform.IOS) {
+                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "GeometryDash.bro");
             }
             else {
                 bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "FMOD.bro", "GeometryDash.bro");
@@ -553,7 +552,7 @@ public class SyncBromaScript extends GhidraScript {
                 // CCLightning is in the Geometry Dash binary, but it is only in Cocos2d.bro
                 if (
                     (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) &&
-                    args.selectedBromaFile.equals("Cocos2d.bro") && !cls.name.value.equals("cocos2d::CCLightning")
+                    cls.name.value.startsWith("cocos2d::") && !cls.name.value.equals("cocos2d::CCLightning")
                 ) {
                     continue;
                 }
@@ -816,6 +815,7 @@ public class SyncBromaScript extends GhidraScript {
 
     private void handleImportMembers() throws Exception {
         final var manager = currentProgram.getDataTypeManager();
+        final var pointerSize = manager.getDataOrganization().getPointerSize();
 
         wrapper.printfmt("Importing members...");
         for (var bro : this.bromas) {
@@ -830,7 +830,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 // Make sure the category exists
                 wrapper.createCategoryAll(category);
-                final var classDataTypePath = new DataTypePath(category, name + (cls.hasBases ? "_data" : ""));
+                final var classDataTypePath = new DataTypePath(category, name + (cls.bases.isPresent() ? "_data" : ""));
                 var classMembers = manager.getDataType(classDataTypePath);
 
                 if (classMembers == null || !(classMembers instanceof Structure)) {
@@ -839,7 +839,7 @@ public class SyncBromaScript extends GhidraScript {
                         continue;
                     }
                     // Otherwise create data members struct
-                    classMembers = new StructureDataType(name + (cls.hasBases ? "_data" : ""), 0);
+                    classMembers = new StructureDataType(name + (cls.bases.isPresent() ? "_data" : ""), 0);
                     manager.getCategory(category).addDataType(classMembers,
                         classMembers == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER);
                 }
@@ -873,7 +873,7 @@ public class SyncBromaScript extends GhidraScript {
 
                         final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
                         boolean isPointer = memType instanceof Pointer || memType instanceof FunctionDefinition;
-                        length = isPointer ? manager.getDataOrganization().getPointerSize() : memType.getLength();
+                        length = isPointer ? pointerSize : memType.getLength();
                         int alignment = isPointer ? length : memType.getAlignment();
                         if (memType instanceof FunctionDefinition && args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64) {
                             length *= 2;
@@ -943,9 +943,15 @@ public class SyncBromaScript extends GhidraScript {
                     }
                 }
 
-                if (!cls.hasBases) {
+                if (cls.bases.isEmpty()) {
                     classDataMembers.setPackingEnabled(true);
                     classDataMembers.repack();
+                }
+                else if ((args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) && !classDataMembers.isZeroLength()) {
+                    var length = classDataMembers.getLength();
+                    if (length % pointerSize != 0) {
+                        classDataMembers.growStructure(pointerSize - (length % pointerSize));
+                    }
                 }
             }
         }
