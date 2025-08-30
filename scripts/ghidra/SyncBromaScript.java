@@ -827,7 +827,10 @@ public class SyncBromaScript extends GhidraScript {
 
                 var bases = cls.bases.isPresent() ? cls.bases.get().value.substring(1) : "";
                 if (fullName.equals("UILayer")) bases += ", cocos2d::CCKeyboardDelegate";
-                basesMap.put(fullName, Arrays.stream(bases.split(",")).map(String::trim).toList());
+                var basesList = Arrays.stream(bases.split(",")).map(String::trim).toList();
+                var needsClear = (!fullName.startsWith("cocos2d::") || fullName.equals("cocos2d::CCLightning"))
+                    && basesList.size() == 1 && basesList.get(0).startsWith("cocos2d::");
+                basesMap.put(fullName, basesList);
 
                 var isBaseless = cls.bases.isEmpty() && !cls.functions.stream().anyMatch(f -> {
                     return f.dispatch.isPresent() && f.dispatch.get().value.equals("virtual");
@@ -862,6 +865,10 @@ public class SyncBromaScript extends GhidraScript {
                 // Disable packing
                 classDataMembers.setPackingEnabled(false);
 
+                if (needsClear) {
+                    classDataMembers.setLength(0);
+                }
+
                 // Delete any padding at the end of the struct 
                 // (so if the struct has shrunk in broma, we refit it properly)
                 while (!classDataMembers.isZeroLength()) {
@@ -875,6 +882,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
 
                 var offset = 0;
+                var overwriteStatus = 0;
                 for (var mem : cls.members) {
                     int length;
                     if (mem.name.isPresent()) {
@@ -912,20 +920,32 @@ public class SyncBromaScript extends GhidraScript {
                         var existing = classDataMembers.getComponentAt(offset);
                         if (existing != null && existing.getDataType() instanceof Undefined) {
                             if (
-                                !existing.getDataType().isEquivalent(memType) ||
-                                (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value)) &&
-                                !askContinueConflict(
+                                (!existing.getDataType().isEquivalent(memType) ||
+                                (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value))) &&
+                                overwriteStatus <= 0
+                            ) {
+                                if (overwriteStatus < 0) continue;
+                                var result = askContinueConflict(
                                     "Override member",
-                                    "Member #{0} in {1} does not match between Broma and Ghidra:\n" + 
-                                    "Broma: {2} {3}\n" + 
-                                    "Ghidra: {4} {5}\n" + 
+                                    List.of("Yes", "Yes to All", "No", "No to All"),
+                                    "Member #{0} in {1} does not match between Broma and Ghidra:<br><br>" + 
+                                    "Broma: {2} {3}<br>" + 
+                                    "Ghidra: {4} {5}<br><br>" + 
                                     "Should the existing member in Ghidra be overwritten with Broma's?",
                                     existing.getOrdinal(), fullName,
                                     ScriptWrapper.formatType(memType), mem.name.get().value,
                                     ScriptWrapper.formatType(existing.getDataType()), existing.getFieldName()
-                                )
-                            ) {
-                                break;
+                                );
+                                switch (result) {
+                                    case 1:
+                                        overwriteStatus = 1;
+                                        break;
+                                    case 2:
+                                        continue;
+                                    case 3:
+                                        overwriteStatus = -1;
+                                        continue;
+                                }
                             }
                         }
                         for (int i = length; i > 0; i -= 1) {
@@ -1014,6 +1034,19 @@ public class SyncBromaScript extends GhidraScript {
                 }
 
                 wrapper.printfmt("Correcting members for {0}", fullName);
+
+                for (var component : classStruct.getComponents()) {
+                    var fieldName = component.getFieldName();
+                    if (fieldName != null && baseList.stream().anyMatch(b -> {
+                        if (b == null || b.isEmpty()) return false;
+                        var baseFieldName = b.get(0);
+                        if (baseFieldName == null) return false;
+                        var baseFieldSplit = baseFieldName.split("::");
+                        return baseFieldSplit.length > 0 && (baseFieldSplit[baseFieldSplit.length - 1] + "_data").equals(fieldName);
+                    })) {
+                        classStruct.clearAtOffset(component.getOffset());
+                    }
+                }
 
                 var index = 0;
                 for (var i = baseList.size() - 1; i >= 0; i--) {
