@@ -46,7 +46,6 @@ public class SyncBromaScript extends GhidraScript {
     class Args extends InputParameters {
         Platform platform;
         List<Path> bromaFiles;
-        private String selectedBromaFile;
         String gameVersion;
         boolean importFromBroma;
         boolean exportToBroma;
@@ -85,7 +84,10 @@ public class SyncBromaScript extends GhidraScript {
             List<String> versions = new ArrayList<String>();
             for (var file : Files.list(bindingsDir).toArray(Path[]::new)) {
                 if (Files.isDirectory(file)) {
-                    versions.add(file.getFileName().toString());
+                    var filename = file.getFileName().toString();
+                    if (!filename.equals("include")) {
+                        versions.add(filename);
+                    }
                 }
             }
             // Put latest version at the top
@@ -98,7 +100,6 @@ public class SyncBromaScript extends GhidraScript {
             var isWindows = platform != null && platform.equals(Platform.WINDOWS32.getLongName());
 
             this.choice("Target platform", platforms, platform, p -> this.platform = Platform.fromLongName(p));
-            this.choice("Broma file (Windows-only)", bromaFiles, f -> this.selectedBromaFile = f);
             this.choice("Game version", versions, v -> this.gameVersion = v);
             this.bool("Import from Broma", b -> this.importFromBroma = b);
             this.bool("Export to Broma", false, b -> this.exportToBroma = b);
@@ -109,10 +110,8 @@ public class SyncBromaScript extends GhidraScript {
 
             this.waitForAnswers();
 
-            if (this.platform == Platform.WINDOWS32 || this.platform == Platform.WINDOWS64) {
-                // Extras.bro is an extension of GeometryDash.bro, include it as well
-                bromaFiles = this.selectedBromaFile.equals("GeometryDash.bro") ? 
-                    List.of("Extras.bro", "GeometryDash.bro") : List.of(this.selectedBromaFile);
+            if (this.platform != Platform.IOS) {
+                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "GeometryDash.bro");
             }
             else {
                 bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "FMOD.bro", "GeometryDash.bro");
@@ -553,7 +552,7 @@ public class SyncBromaScript extends GhidraScript {
                 // CCLightning is in the Geometry Dash binary, but it is only in Cocos2d.bro
                 if (
                     (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) &&
-                    args.selectedBromaFile.equals("Cocos2d.bro") && !cls.name.value.equals("cocos2d::CCLightning")
+                    cls.name.value.startsWith("cocos2d::") && !cls.name.value.equals("cocos2d::CCLightning")
                 ) {
                     continue;
                 }
@@ -816,12 +815,24 @@ public class SyncBromaScript extends GhidraScript {
 
     private void handleImportMembers() throws Exception {
         final var manager = currentProgram.getDataTypeManager();
+        final var pointerSize = manager.getDataOrganization().getPointerSize();
+
+        var basesMap = new HashMap<String, List<String>>();
 
         wrapper.printfmt("Importing members...");
         for (var bro : this.bromas) {
             wrapper.printfmt("Importing from {0}...", bro.path.getFileName());
             for (var cls : bro.classes) {
                 final var fullName = cls.name.value;
+
+                var bases = cls.bases.isPresent() ? cls.bases.get().value.substring(1) : "";
+                if (fullName.equals("UILayer")) bases += ", cocos2d::CCKeyboardDelegate";
+                basesMap.put(fullName, Arrays.stream(bases.split(",")).map(String::trim).toList());
+
+                var isBaseless = cls.bases.isEmpty() && !cls.functions.stream().anyMatch(f -> {
+                    return f.dispatch.isPresent() && f.dispatch.get().value.equals("virtual");
+                });
+
                 var category = new CategoryPath("/ClassDataTypes");
                 String name = null;
                 for (var part : fullName.split("::")) {
@@ -830,7 +841,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 // Make sure the category exists
                 wrapper.createCategoryAll(category);
-                final var classDataTypePath = new DataTypePath(category, name + (cls.hasBases ? "_data" : ""));
+                final var classDataTypePath = new DataTypePath(category, name + (isBaseless ? "" : "_data"));
                 var classMembers = manager.getDataType(classDataTypePath);
 
                 if (classMembers == null || !(classMembers instanceof Structure)) {
@@ -839,9 +850,10 @@ public class SyncBromaScript extends GhidraScript {
                         continue;
                     }
                     // Otherwise create data members struct
-                    classMembers = new StructureDataType(name + (cls.hasBases ? "_data" : ""), 0);
-                    manager.getCategory(category).addDataType(classMembers,
-                        classMembers == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER);
+                    classMembers = manager.getCategory(category).addDataType(
+                        new StructureDataType(name + (isBaseless ? "" : "_data"), 0),
+                        classMembers == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER
+                    );
                 }
                 wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
 
@@ -873,7 +885,7 @@ public class SyncBromaScript extends GhidraScript {
 
                         final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
                         boolean isPointer = memType instanceof Pointer || memType instanceof FunctionDefinition;
-                        length = isPointer ? manager.getDataOrganization().getPointerSize() : memType.getLength();
+                        length = isPointer ? pointerSize : memType.getLength();
                         int alignment = isPointer ? length : memType.getAlignment();
                         if (memType instanceof FunctionDefinition && args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64) {
                             length *= 2;
@@ -943,9 +955,111 @@ public class SyncBromaScript extends GhidraScript {
                     }
                 }
 
-                if (!cls.hasBases) {
+                if (isBaseless) {
                     classDataMembers.setPackingEnabled(true);
                     classDataMembers.repack();
+                }
+                else if ((args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) && !classDataMembers.isZeroLength()) {
+                    var length = classDataMembers.getLength();
+                    if (length % pointerSize != 0) {
+                        classDataMembers.growStructure(pointerSize - (length % pointerSize));
+                    }
+                }
+            }
+        }
+
+        wrapper.printfmt("Correcting members...");
+        for (var bro : this.bromas) {
+            var bromaPath = bro.path.getFileName();
+            if (bromaPath.endsWith("FMOD.bro")) continue;
+
+            wrapper.printfmt("Correcting members for {0}...", bromaPath);
+            for (var cls : bro.classes) {
+                if (!cls.bases.isPresent()) continue;
+
+                var fullName = cls.name.value;
+
+                var baseList = new ArrayList<List<String>>();
+                var currentClass = fullName;
+                baseList.add(List.of(currentClass));
+                var currentList = basesMap.get(currentClass);
+                baseList.add(currentList);
+                while (currentList != null && !currentList.isEmpty() && !currentList.get(0).equals("cocos2d::CCCopying")) {
+                    currentClass = currentList.get(0);
+                    currentList = basesMap.get(currentClass);
+                    baseList.add(currentList);
+                }
+                
+                var category = new CategoryPath("/ClassDataTypes");
+                String name = null;
+                for (var part : fullName.split("::")) {
+                    category = category.extend(part);
+                    name = part;
+                }
+                
+                var classType = manager.getDataType(new DataTypePath(category, name));
+                if (classType == null || !(classType instanceof Structure)) continue;
+                var classStruct = (Structure)classType;
+                classStruct.setPackingEnabled(false);
+
+                var noTables = true;
+                var allStructures = manager.getAllStructures();
+                var targetPath = new DataTypePath(category, name + "_vftable").getPath();
+                while (allStructures.hasNext()) {
+                    var type = allStructures.next();
+                    if (type.getDataTypePath().getPath().startsWith(targetPath)) {
+                        noTables = false;
+                        break;
+                    }
+                }
+
+                wrapper.printfmt("Correcting members for {0}", fullName);
+
+                var index = 0;
+                for (var i = baseList.size() - 1; i >= 0; i--) {
+                    var bases = baseList.get(i);
+                    if (bases != null && !bases.isEmpty()) {
+                        var baseName = bases.get(0);
+                        var j = baseName.equals("cocos2d::CCCopying") ? 0 : 1;
+                        if (j == 1) {
+                            var subcategory = new CategoryPath("/ClassDataTypes");
+                            String subname = null;
+                            for (var part : baseName.split("::")) {
+                                subcategory = subcategory.extend(part);
+                                subname = part;
+                            }
+
+                            var baseClass = manager.getDataType(new DataTypePath(subcategory, subname + "_data"));
+                            if (baseClass != null && baseClass instanceof Structure baseStruct) {
+                                var baseLength = baseStruct.getLength();
+                                var classLength = classStruct.isZeroLength() ? 0 : classStruct.getLength();
+                                if (index + baseLength > classLength) {
+                                    classStruct.growStructure(index + baseLength - classLength);
+                                }
+                                classStruct.replaceAtOffset(index, baseStruct, baseLength, baseStruct.getName(), null);
+                                index += baseLength;
+                            }
+                        }
+
+                        for (; j < bases.size(); j++) {
+                            if (noTables) {
+                                var dataType = wrapper.addOrGetType(bases.get(j), args.platform);
+                                if (dataType instanceof Structure structure) {
+                                    if (structure.isZeroLength()) structure.growStructure(pointerSize);
+                                    else if (structure.getLength() < pointerSize) structure.growStructure(pointerSize);
+                                    else if (structure.getLength() > pointerSize) structure.setLength(pointerSize);
+ 
+                                    var classLength = classStruct.isZeroLength() ? 0 : classStruct.getLength();
+                                    if (index + pointerSize > classLength) {
+                                        classStruct.growStructure(index + pointerSize - classLength);
+                                    }
+
+                                    classStruct.replaceAtOffset(index, structure, pointerSize, structure.getName(), null);
+                                }
+                            }
+                            index += pointerSize;
+                        }
+                    }
                 }
             }
         }
