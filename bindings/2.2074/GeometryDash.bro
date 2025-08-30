@@ -10981,7 +10981,7 @@ class GJEffectManager : cocos2d::CCNode {
     gd::vector<SpawnTriggerAction> m_spawnTriggerActions;
     gd::vector<GroupCommandObject2*> m_unkVector518;
     gd::vector<GroupCommandObject2*> m_unkVector530;
-    gd::vector<CCObject*> m_unkVector548;
+    gd::vector<cocos2d::CCObject*> m_unkVector548;
     gd::vector<GroupCommandObject2> m_unkVector560;
     gd::unordered_map<int, std::pair<double, double>> m_unkMap578;
     gd::vector<GroupCommandObject2*> m_unkVector5b0;

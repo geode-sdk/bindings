@@ -1166,9 +1166,12 @@ class cocos2d::CCAction : cocos2d::CCObject {
     virtual void startWithTarget(cocos2d::CCNode*) = imac 0x5dcbf0, m1 0x50fb48, ios 0x264928;
     virtual void stop() = m1 0x50fb50, imac 0x5dcc00, ios 0x264930;
     virtual void step(float) = m1 0x50fb60, imac 0x5dcc20, ios 0x264940;
+
+    cocos2d::CCNode* m_pOriginalTarget;
+    cocos2d::CCNode* m_pTarget;
+    int m_nTag;
+    float m_fSpeedMod;
 }
-
-
 
 [[link(win, android)]]
 class cocos2d::CCActionInstant : cocos2d::CCFiniteTimeAction {
@@ -1218,6 +1221,9 @@ class cocos2d::CCActionInterval : cocos2d::CCFiniteTimeAction {
     virtual void startWithTarget(cocos2d::CCNode*) = m1 0x32f3b0, imac 0x3a24a0, ios 0x18d968;
     virtual void step(float) = m1 0x32f33c, imac 0x3a2420, ios 0x18d900;
     virtual cocos2d::CCActionInterval* reverse() = m1 0x32f3dc, imac 0x3a24c0, ios 0x18d994;
+
+    float m_elapsed;
+    bool m_bFirstTick;
 }
 
 [[link(win, android)]]
@@ -1228,6 +1234,8 @@ class cocos2d::CCFiniteTimeAction : cocos2d::CCAction {
     virtual cocos2d::CCFiniteTimeAction* reverse() = m1 0x50fb68, imac 0x5dcc40, ios inline {
         return nullptr;
     }
+
+    float m_fDuration;
 }
 
 [[link(win, android)]]
@@ -1279,6 +1287,8 @@ class cocos2d::CCSet : cocos2d::CCObject {
     void removeObject(cocos2d::CCObject*) = m1 0x6b08b0, imac 0x79e3b0, ios 0x1af980;
 
     virtual void acceptVisitor(cocos2d::CCDataVisitor&) = m1 0x6b06b4, imac 0x79e1c0, ios 0x1af8cc;
+
+    gd::set<cocos2d::CCObject*> m_pSet;
 }
 
 [[link(win, android)]]
@@ -3573,6 +3583,13 @@ class cocos2d::CCAnimate : cocos2d::CCActionInterval {
     virtual void startWithTarget(cocos2d::CCNode*) = m1 0x3359f8, imac 0x3a98b0, ios 0x190d8c;
     virtual void stop() = imac 0x3a9920, m1 0x335a60, ios 0x190df4;
     virtual cocos2d::CCActionInterval* reverse() = imac 0x3a9ba0, m1 0x335ca8, ios 0x191034;
+
+    gd::vector<float>* m_pSplitTimes;
+    int m_nNextFrame;
+    cocos2d::CCSpriteFrame* m_pOrigFrame;
+    uint32_t m_uExecutedLoops;
+    bool m_bRecenterFrames;
+    bool m_bRecenterChildren;
 }
 
 [[link(win, android)]]
@@ -3897,7 +3914,7 @@ class cocos2d::CCRepeat : cocos2d::CCActionInterval {
             m_pInnerAction = pAction;
             pAction->retain();
 
-            m_bActionInstant = dynamic_cast<CCActionInstant*>(pAction) ? true : false;
+            m_bActionInstant = geode::cast::typeinfo_cast<CCActionInstant*>(pAction) ? true : false;
             //an instant action needs to be executed one time less in the update method since it uses startWithTarget to execute the action
             if (m_bActionInstant) 
             {
@@ -3918,7 +3935,7 @@ class cocos2d::CCRepeat : cocos2d::CCActionInterval {
     // CCRepeat(cocos2d::CCRepeat const&);
     // CCRepeat();
     [[since("4.2.1")]]
-    virtual ~CCRepeat() = mac inline, ios inline {
+    virtual ~CCRepeat() = m1 0x330134, imac 0x3a3400, ios inline {
         CC_SAFE_RELEASE(m_pInnerAction);
     }
 
@@ -4693,6 +4710,8 @@ class cocos2d::CCString : cocos2d::CCObject {
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x6a88e4, imac 0x795530, ios 0x267ec4;
     virtual bool isEqual(cocos2d::CCObject const*) = m1 0x6a89f0, imac 0x795580, ios 0x267f1c;
     virtual void acceptVisitor(cocos2d::CCDataVisitor&) = m1 0x6a8df0, imac 0x7959f0, ios 0x2681b0;
+
+    gd::string m_sString; 
 }
 
 [[link(win, android)]]
