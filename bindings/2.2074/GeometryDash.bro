@@ -6483,11 +6483,11 @@ class FMODAudioEngine : cocos2d::CCNode {
         if (m_fmodMusic.count(musicID) == 0) return 0;
         return m_fmodMusic[musicID].m_channelID;
     }
-    unsigned int getMusicLengthMS(int channel) = win 0x5c330, ios 0x141b44;
+    unsigned int getMusicLengthMS(int channel) = win 0x5c330, m1 0x35d400, imac 0x3d7750, ios 0x141b44;
     float getMusicTime(int channel) {
         return this->getMusicTimeMS(channel) / 1000.f;
     }
-    unsigned int getMusicTimeMS(int channel) = win 0x5c2d0, m1 0x35d400, imac 0x3d7750, ios 0x141ab4;
+    unsigned int getMusicTimeMS(int channel) = win 0x5c2d0, m1 0x35d310, imac 0x3d7660, ios 0x141ab4;
     int getNextChannelID();
     gd::map<std::pair<int, int>, FMODSoundTween>& getTweenContainer(AudioTargetType type) {
         switch (type) {
