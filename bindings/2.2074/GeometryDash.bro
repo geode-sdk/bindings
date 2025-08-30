@@ -6483,7 +6483,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         if (m_fmodMusic.count(musicID) == 0) return 0;
         return m_fmodMusic[musicID].m_channelID;
     }
-    unsigned int getMusicLengthMS(int channel) = win 0x5c330, ios 0x141b44;
+    unsigned int getMusicLengthMS(int channel) = win 0x5c330, m1 0x35d400, imac 0x3d7750, ios 0x141b44;
     float getMusicTime(int channel) {
         return this->getMusicTimeMS(channel) / 1000.f;
     }
