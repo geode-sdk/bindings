@@ -760,15 +760,11 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f530, m1 0x4b5ffc, ios 0x17a248;
 
     bool getDontOpacityFade() const;
-    float getM_fMaxSeg() const = android inline, mac inline, ios inline {
-    	return m_fMaxSeg;
-    }
+    float getM_fMaxSeg() const;
 
     void setDontOpacityFade(bool);
     void setFastMode(bool);
-    void setM_fMaxSeg(float maxSeg) = android inline, mac inline, ios inline {
-    	m_fMaxSeg = maxSeg;
-    }
+    void setM_fMaxSeg(float);
     void setStartingPositionInitialized(bool);
     void setStroke(float);
 
@@ -1975,7 +1971,6 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const&) = m1 0x3a1a60, imac 0x426cd0, ios 0x153f70;
     virtual gd::string fullPathForFilename(char const*, bool) = imac 0x427a70, m1 0x3a27f4, ios 0x1549ec;
     virtual char const* fullPathFromRelativeFile(char const*, char const*) = imac 0x428a50, m1 0x3a3828, ios 0x1550e0;
-    gd::string getAndroidPath() const;
     virtual unsigned char* getFileData(char const*, char const*, unsigned long*) = imac 0x426fc0, m1 0x3a1d98, ios 0x15425c;
     virtual unsigned char* getFileDataFromZip(char const*, char const*, unsigned long*) = imac 0x427100, m1 0x3a1f04, ios 0x1543ac;
     virtual gd::string getFullPathForDirectoryAndFilename(gd::string const&, gd::string const&) = imac 0x429c50, m1 0x3a4c8c, ios 0x155f2c;
@@ -1993,7 +1988,6 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     void removeAllPaths();
     virtual void removeFullPath(char const*) = m1 0x3a35b8, imac 0x4288f0, ios 0x155044;
     virtual void removeSearchPath(char const*) = m1 0x3a45f4, imac 0x429700, ios 0x155bc4;
-    void setAndroidPath(gd::string);
     virtual void setFilenameLookupDictionary(cocos2d::CCDictionary*) = imac 0x429a70, m1 0x3a4a4c, ios 0x155d54;
     virtual void setPopupNotify(bool) = imac 0x429cd0, m1 0x3a4e20, ios 0x155fbc;
     virtual void setSearchPaths(gd::vector<gd::string> const&) = imac 0x429070, m1 0x3a3e68, ios 0x1556b0;
@@ -4626,9 +4620,6 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     }
     bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = imac 0x3445a0, m1 0x2d9a18, ios 0x24d2dc;
 
-    gd::string getFrameName() const = mac inline {
-    	return m_strFrameName;
-    }
     cocos2d::CCPoint const& getOffset();
     cocos2d::CCPoint const& getOffsetInPixels();
     cocos2d::CCSize const& getOriginalSize();
@@ -4637,7 +4628,6 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     cocos2d::CCRect const& getRectInPixels();
     cocos2d::CCTexture2D* getTexture() = imac 0x344d90, m1 0x2da058, ios 0x24d5f4;
 
-    void setFrameName(gd::string);
     void setOffset(cocos2d::CCPoint const&) = imac 0x344c60, m1 0x2d9f78;
     void setOffsetInPixels(cocos2d::CCPoint const&) = imac 0x344d00, m1 0x2d9fec;
     void setOriginalSize(cocos2d::CCSize const&);
