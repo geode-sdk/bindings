@@ -9,6 +9,7 @@ on:
       - 'cmake/**'
       - 'codegen/**'
       - 'test/**'
+      - 'CMakeLists.txt'
   push:
     branches:
     - '**'
@@ -19,6 +20,7 @@ on:
       - 'cmake/**'
       - 'codegen/**'
       - 'test/**'
+      - 'CMakeLists.txt'
 
 jobs:
   build:
