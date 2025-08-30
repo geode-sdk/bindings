@@ -21,6 +21,7 @@ import ghidra.program.model.data.CategoryPath;
 import ghidra.program.model.data.Composite;
 import ghidra.program.model.data.DataTypeConflictHandler;
 import ghidra.program.model.data.DataTypePath;
+import ghidra.program.model.data.DefaultDataType;
 import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
@@ -873,7 +874,7 @@ public class SyncBromaScript extends GhidraScript {
                 // (so if the struct has shrunk in broma, we refit it properly)
                 while (!classDataMembers.isZeroLength()) {
                     var comp = classDataMembers.getComponent(classDataMembers.getNumComponents() - 1);
-                    if (comp.getDataType() instanceof Undefined) {
+                    if (comp.getDataType() instanceof DefaultDataType) {
                         classDataMembers.delete(classDataMembers.getNumComponents() - 1);
                     }
                     else {
