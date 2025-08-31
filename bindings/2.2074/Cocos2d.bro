@@ -5382,6 +5382,36 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
     void send(cocos2d::extension::CCHttpRequest* request) = imac 0x426430, m1 0x3a12c0, ios 0x241138;
     bool lazyInitThreadSemphore() = imac 0x425880, m1 0x3a0864;
     void dispatchResponseCallbacks(float);
+
+    int _timeoutForConnect;
+    int _timeoutForRead;
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCHttpRequest : cocos2d::CCObject {
+    int _requestType;
+    gd::string _url;
+    gd::vector<char> _requestData;
+    gd::string _tag;
+    cocos2d::CCObject* _pTarget;
+    cocos2d::extension::SEL_HttpResponse _pSelector;
+    void* _pUserData;
+    gd::vector<gd::string> _headers;
+    int _type;
+    bool _shouldCancel;
+    int _downloadProgress;
+    int _readTimeout;
+    int _connectTimeout;
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCHttpResponse : cocos2d::CCObject {
+    cocos2d::extension::CCHttpRequest* _pHttpRequest;
+    bool _succeed;
+    gd::vector<char> _responseData;
+    gd::vector<char> _responseHeader;
+    int _responseCode;
+    gd::string _errorBuffer;
 }
 
 [[link(win, android)]]
