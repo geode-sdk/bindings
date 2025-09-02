@@ -7164,7 +7164,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJGameLevel* getSavedDailyLevel(int) = ios 0x9c644, win 0x146ba0, m1 0x47d344, imac 0x521300;
     GJGameLevel* getSavedDailyLevelFromLevelID(int) = imac 0x521600, m1 0x47d650;
     GJMapPack* getSavedGauntlet(int);
-    GJGameLevel* getSavedGauntletLevel(int) = win 0x146c70, m1 0x47d448, imac 0x521400;
+    GJGameLevel* getSavedGauntletLevel(int) = win 0x146c70, m1 0x47d448, imac 0x521400, ios 0x9c6c8;
     GJGameLevel* getSavedLevel(GJGameLevel* level) = ios 0x98f70, win inline, m1 0x4780e4, imac 0x51b7f0 {
         if (!level) return nullptr;
         else if (level->m_dailyID.value() > 0) return this->getSavedDailyLevel(level->m_dailyID.value());
