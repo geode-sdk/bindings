@@ -8327,9 +8327,9 @@ class GameObject : CCSpritePlus {
 
     // property 53
     int m_property53;
-    bool m_isFadingBlock;
-    bool m_glowUsesLighterBG; // lighter version of BG color
-    bool m_glowCopiesLBG; // specifically the LBG color
+    bool m_isInvisibleBlock;
+    bool m_updateGlowColor;
+    bool m_glowColorIsLBG;
     bool m_cantColorGlow;
     float m_opacityMod;
     bool m_slopeUphill;
@@ -8399,7 +8399,7 @@ class GameObject : CCSpritePlus {
     bool m_isColorTrigger;
     bool m_dontIgnoreDuration;
     bool m_canBeControlled;
-    bool m_activateInEditor;
+    bool m_activateTriggerInEditor;
     bool m_isStartPos;
 
     // property 103
@@ -10235,7 +10235,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     gd::vector<GameObject*> m_activeObjects;
     int m_activeObjectsCount;
     int m_activeObjectsIndex;
-    cocos2d::ccColor3B m_lighterBGColor; // not to be confused with the 'LBG' color
+    cocos2d::ccColor3B m_lightBGColor;
     int m_resumeTimer;
     bool m_recordInputs;
     bool m_unk32a1;
