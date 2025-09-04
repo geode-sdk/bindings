@@ -8130,12 +8130,17 @@ class GameObject : CCSpritePlus {
     void addColorSprite(gd::string) = win 0x18b830, m1 0x4d83b4, imac 0x58cc00, ios 0x254690;
     void addColorSpriteToParent(bool) = imac 0x592300, m1 0x4d95b8, win 0x199040, ios 0x2555a8;
     void addColorSpriteToSelf() = win 0x199240, m1 0x4e045c, imac 0x5a6020, ios 0x25c010;
-    cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool) = win inline, imac 0x5a30a0, m1 0x4dd4c0, ios inline;
+    cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool) = imac 0x5a30a0, m1 0x4dd4c0;
     cocos2d::CCSprite* addCustomChild(gd::string frame, cocos2d::CCPoint offset, int zOrder) = win 0x194330, m1 0x4dd6a8, imac 0x5a3240, ios 0x259a28;
     cocos2d::CCSprite* addCustomColorChild(gd::string) = win 0x1943f0, m1 0x4dd750, imac 0x5a32e0, ios 0x259ad0;
     void addEmptyGlow() = win 0x18b6e0, m1 0x4d825c, imac 0x58ca90, ios 0x2545d8;
     void addGlow(gd::string) = win 0x18af60, imac 0x58a5c0, m1 0x4d7bd0, ios 0x254034;
-    cocos2d::CCSprite* addInternalChild(cocos2d::CCSprite*, gd::string, cocos2d::CCPoint, int) = win inline, imac 0x5a3480, m1 0x4dd8ec, ios inline;
+    cocos2d::CCSprite* addInternalChild(cocos2d::CCSprite* parent, gd::string frame, cocos2d::CCPoint offset, int zOrder) = win inline, imac 0x5a3480, m1 0x4dd8ec, ios inline {
+        auto spr = cocos2d::CCSprite::createWithSpriteFrameName(frame.c_str());
+        spr->setPosition(parent->convertToNodeSpace({0.f, 0.f}) + offset);
+        parent->addChild(spr, zOrder);
+        return spr;
+    }
     cocos2d::CCSprite* addInternalCustomColorChild(gd::string, cocos2d::CCPoint, int) = win 0x194530, m1 0x4dd828, imac 0x5a33d0, ios 0x259b68;
     cocos2d::CCSprite* addInternalGlowChild(gd::string, cocos2d::CCPoint) = win 0x194600, imac 0x5a3510, m1 0x4dd990, ios 0x259c18;
     void addNewSlope01(bool);
@@ -8169,7 +8174,15 @@ class GameObject : CCSpritePlus {
     void copyGroups(GameObject*) = win 0x1999c0, m1 0x4e0b44, imac 0x5a66d0;
     cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810, ios 0x2589ec;
     void createColorGroupContainer(int);
-    void createGlow(gd::string) = win 0x18b750, imac inline, m1 inline, ios 0x254544;
+    void createGlow(gd::string frame) = win 0x18b750, imac inline, m1 inline, ios 0x254544 {
+        if (m_glowSprite != nullptr) {
+            m_glowSprite->release();
+            m_glowSprite->removeMeAndCleanup();
+        }
+        m_glowSprite = cocos2d::CCSprite::createWithSpriteFrameName(frame.c_str());
+        m_glowSprite->setPosition(this->getPosition());
+        m_glowSprite->setOpacity(255);
+    }
     void createGroupContainer(int size) = win 0x199740;
     void createOpacityGroupContainer(int);
     void createSpriteColor(int) = imac 0x58a4e0, m1 0x4d7afc;
