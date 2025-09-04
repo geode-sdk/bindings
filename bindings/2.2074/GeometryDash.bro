@@ -8548,7 +8548,7 @@ class GameObject : CCSpritePlus {
     // property 53
     int m_property53;
     bool m_isInvisibleBlock;
-    bool m_updateGlowColor;
+    bool m_customGlowColor;
     bool m_glowColorIsLBG;
     bool m_cantColorGlow;
     float m_opacityMod;
@@ -19558,7 +19558,7 @@ class RingObject : EffectGameObject {
 
     bool init(char const* p0) = win inline, m1 0x165ae0, imac 0x1a3340, ios inline {
         if (!EffectGameObject::init(p0)) return false;
-        m_unk421 = true;
+        m_customGlowColor = true;
         m_isTouchTriggered = true;
         return true;
     }
