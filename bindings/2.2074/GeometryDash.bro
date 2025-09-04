@@ -19026,8 +19026,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     cocos2d::CCSprite* m_progressFill;
     float m_progressWidth;
     float m_progressHeight;
-    int m_totalgravityEffects;
-    int m_activegravityEffects;
+    int m_totalGravityEffects;
+    int m_activeGravityEffects;
     int m_gravityEffectIndex;
     cocos2d::CCArray* m_gravityEffects;
     bool m_doNot;
