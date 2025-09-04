@@ -615,6 +615,8 @@ enum class BoomListType {
     Comment = 0x7,
     Comment2 = 0x8,
     Comment3 = 0x9,
+    List = 0xa,
+    Game = 0xb,
     Song = 0xc,
     Score = 0xd,
     MapPack = 0xe,
@@ -878,14 +880,17 @@ enum class GJChallengeType {
 };
 
 enum class GJScoreType {
-    Unknown = 0,
-    Creator = 1
+    Top = 0,
+    Creator = 1,
+    Search = 2,
+    LevelScore = 3
 };
 
 enum class LevelLeaderboardType {
     Friends = 0,
     Global = 1,
-    Weekly = 2
+    Weekly = 2,
+    Local = 3
 };
 
 enum class GJHttpType {

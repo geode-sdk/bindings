@@ -25,6 +25,7 @@ import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
+import ghidra.program.model.data.FunctionDefinition;
 import ghidra.program.model.data.FunctionDefinitionDataType;
 import ghidra.program.model.data.IntegerDataType;
 import ghidra.program.model.data.LongDataType;
@@ -511,11 +512,29 @@ public class ScriptWrapper {
         return path;
     }
 
+    boolean typeIsStruct(DataType type, Platform platform) {
+        if (!(type instanceof Composite)) {
+            return false;
+        }
+        if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
+            return true;
+        }
+        if (type.getName().startsWith("CCPoint") || type.getName().startsWith("CCSize") || type.getName().startsWith("CCRect")) {
+            return true;
+        }
+        if (type.getLength() > 10) {
+            return true;
+        }
+        return false;
+    }
+
     Signature getBromaSignature(Broma.Function fun, Platform platform, boolean ignoreReturnType) throws Exception {
         // Parse args
         List<Variable> bromaParams = new ArrayList<Variable>();
         // Get class offset
-        var offset = offsets.get(wrapped.getCurrentProgram().getImageBase().add(Long.parseLong(fun.platformOffset.get().value, 16)).getOffset());
+        var offset = fun.platformOffset.isPresent()
+            ? offsets.get(wrapped.getCurrentProgram().getImageBase().add(Long.parseLong(fun.platformOffset.get().value, 16)).getOffset())
+            : null;
         if (offset == null) {
             offset = 0;
         }
@@ -535,7 +554,7 @@ public class ScriptWrapper {
         if (fun.returnType.isPresent() && !ignoreReturnType) {
             var type = addOrGetType(fun.returnType.get(), platform);
             // Struct return
-            if (type instanceof Composite) {
+            if (typeIsStruct(type, platform)) {
                 hasStructReturn = true;
                 type = new PointerDataType(type);
                 if (platform != Platform.ANDROID64 && platform != Platform.MAC_ARM && platform != Platform.IOS) {
@@ -544,15 +563,18 @@ public class ScriptWrapper {
             }
             bromaRetType = new ReturnParameterImpl(type, wrapped.getCurrentProgram());
         }
+        // Get class name without namespaces
+        String className = fun.parent != null ? fun.parent.name.value : "";
+        if (className.contains("::")) className = className.substring(className.lastIndexOf("::") + 2);
         // Constructor return type
-        if (fun.constructor.isPresent()) {
+        if (fun.constructor.isPresent() || fun.getName().equals(className)) {
             bromaRetType = new ReturnParameterImpl(
                 addOrGetType(Broma.Type.ptr(fun.parent.broma, fun.parent.name.value), platform),
                 wrapped.getCurrentProgram()
             );
         }
         // Destructor return type
-        if (fun.destructor.isPresent()) {
+        if (fun.destructor.isPresent() || fun.getName().equals("~" + className)) {
             bromaRetType = new ReturnParameterImpl(VoidDataType.dataType, wrapped.getCurrentProgram());
         }
         // Add `this` arg (Intel macOS / 32-bit Android)
@@ -567,12 +589,23 @@ public class ScriptWrapper {
         // Params
         for (var param : fun.params) {
             var paramType = addOrGetType(param.type, platform);
+            if (typeIsStruct(paramType, platform)) {
+                paramType = new PointerDataType(paramType);
+            }
             bromaParams.add(new ParameterImpl(
                 param.name.map(p -> p.value).orElse(null),
-                paramType instanceof Composite ? new PointerDataType(paramType) : paramType,
+                paramType,
                 wrapped.getCurrentProgram(),
                 SourceType.USER_DEFINED
             ));
+            if (paramType instanceof FunctionDefinition && platform != Platform.WINDOWS32 && platform != Platform.WINDOWS64) {
+                bromaParams.add(new ParameterImpl(
+                    param.name.map(p -> p.value + "_adj").orElse(null),
+                    platform == Platform.ANDROID32 ? IntegerDataType.dataType : LongDataType.dataType,
+                    wrapped.getCurrentProgram(),
+                    SourceType.USER_DEFINED
+                ));
+            }
         }
         Signature bromaSig = new Signature(bromaRetType, bromaParams);
         bromaSig.memberFunction = hasThis;
@@ -600,12 +633,15 @@ public class ScriptWrapper {
 
         var pointerSize = manager.getDataOrganization().getPointerSize();
         DataType sizeType = null;
+        DataType diffType = null;
         switch (platform) {
             case WINDOWS32:
                 sizeType = UnsignedIntegerDataType.dataType;
+                diffType = IntegerDataType.dataType;
                 break;
             case WINDOWS64:
                 sizeType = UnsignedLongLongDataType.dataType;
+                diffType = LongLongDataType.dataType;
                 break;
             case ANDROID32:
             case ANDROID64:
@@ -613,6 +649,7 @@ public class ScriptWrapper {
             case MAC_ARM:
             case IOS:
                 sizeType = UnsignedLongDataType.dataType;
+                diffType = LongDataType.dataType;
                 break;
         }
 
@@ -719,6 +756,19 @@ public class ScriptWrapper {
         rect.setPackingEnabled(true);
         manager.addDataType(rect, DataTypeConflictHandler.REPLACE_HANDLER);
 
+        // cocos2d::CCAffineTransform
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "CCAffineTransform"));
+        var affineTransform = new StructureDataType(cat, cat.getName(), 0x0);
+        affineTransform.add(FloatDataType.dataType, 0x4, "a", "Scale factor for the x-axis");
+        affineTransform.add(FloatDataType.dataType, 0x4, "b", "Shear factor for the x-axis");
+        affineTransform.add(FloatDataType.dataType, 0x4, "c", "Shear factor for the y-axis");
+        affineTransform.add(FloatDataType.dataType, 0x4, "d", "Scale factor for the y-axis");
+        affineTransform.add(FloatDataType.dataType, 0x4, "tx", "Translation distance for the x-axis");
+        affineTransform.add(FloatDataType.dataType, 0x4, "ty", "Translation distance for the y-axis");
+        affineTransform.setPackingEnabled(true);
+        manager.addDataType(affineTransform, DataTypeConflictHandler.REPLACE_HANDLER);
+
         // cocos2d::ccColor3B
 
         cat = this.createCategoryAll(category.extend("cocos2d", "ccColor3B"));
@@ -739,6 +789,85 @@ public class ScriptWrapper {
         color4B.add(ByteDataType.dataType, 0x1, "a", "Alpha component");
         color4B.setPackingEnabled(true);
         manager.addDataType(color4B, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccColor4F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccColor4F"));
+        var color4F = new StructureDataType(cat, cat.getName(), 0x0);
+        color4F.add(FloatDataType.dataType, 0x4, "r", "Red component");
+        color4F.add(FloatDataType.dataType, 0x4, "g", "Green component");
+        color4F.add(FloatDataType.dataType, 0x4, "b", "Blue component");
+        color4F.add(FloatDataType.dataType, 0x4, "a", "Alpha component");
+        color4F.setPackingEnabled(true);
+        manager.addDataType(color4F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccTex2F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccTex2F"));
+        var tex2F = new StructureDataType(cat, cat.getName(), 0x0);
+        tex2F.add(FloatDataType.dataType, 0x4, "u", "U texture coordinate");
+        tex2F.add(FloatDataType.dataType, 0x4, "v", "V texture coordinate");
+        tex2F.setPackingEnabled(true);
+        manager.addDataType(tex2F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccVertex2F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccVertex2F"));
+        var vertex2F = new StructureDataType(cat, cat.getName(), 0x0);
+        vertex2F.add(FloatDataType.dataType, 0x4, "x", "X position of the vertex");
+        vertex2F.add(FloatDataType.dataType, 0x4, "y", "Y position of the vertex");
+        vertex2F.setPackingEnabled(true);
+        manager.addDataType(vertex2F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccVertex3F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccVertex3F"));
+        var vertex3F = new StructureDataType(cat, cat.getName(), 0x0);
+        vertex3F.add(FloatDataType.dataType, 0x4, "x", "X position of the vertex");
+        vertex3F.add(FloatDataType.dataType, 0x4, "y", "Y position of the vertex");
+        vertex3F.add(FloatDataType.dataType, 0x4, "z", "Z position of the vertex");
+        vertex3F.setPackingEnabled(true);
+        manager.addDataType(vertex3F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccBlendFunc
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccBlendFunc"));
+        var blendFunc = new StructureDataType(cat, cat.getName(), 0x0);
+        blendFunc.add(UnsignedIntegerDataType.dataType, 0x4, "src", "Source blend factor");
+        blendFunc.add(UnsignedIntegerDataType.dataType, 0x4, "dst", "Destination blend factor");
+        blendFunc.setPackingEnabled(true);
+        manager.addDataType(blendFunc, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccV2F_C4B_T2F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccV2F_C4B_T2F"));
+        var v2F_C4B_T2F = new StructureDataType(cat, cat.getName(), 0x0);
+        v2F_C4B_T2F.add(vertex2F, 0x8, "vertices", "Vertex coordinates");
+        v2F_C4B_T2F.add(color4B, 0x4, "colors", "Vertex colors");
+        v2F_C4B_T2F.add(tex2F, 0x8, "texCoords", "Texture coordinates");
+        v2F_C4B_T2F.setPackingEnabled(true);
+        manager.addDataType(v2F_C4B_T2F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccV3F_C4B_T2F
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccV3F_C4B_T2F"));
+        var v3F_C4B_T2F = new StructureDataType(cat, cat.getName(), 0x0);
+        v3F_C4B_T2F.add(vertex3F, 0xc, "vertices", "Vertex coordinates");
+        v3F_C4B_T2F.add(color4B, 0x4, "colors", "Vertex colors");
+        v3F_C4B_T2F.add(tex2F, 0x8, "texCoords", "Texture coordinates");
+        v3F_C4B_T2F.setPackingEnabled(true);
+        manager.addDataType(v3F_C4B_T2F, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccV3F_C4B_T2F_Quad
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccV3F_C4B_T2F_Quad"));
+        var v3F_C4B_T2F_Quad = new StructureDataType(cat, cat.getName(), 0x0);
+        v3F_C4B_T2F_Quad.add(v3F_C4B_T2F, 0x18, "tl", "Top-left vertex");
+        v3F_C4B_T2F_Quad.add(v3F_C4B_T2F, 0x18, "bl", "Bottom-left vertex");
+        v3F_C4B_T2F_Quad.add(v3F_C4B_T2F, 0x18, "tr", "Top-right vertex");
+        v3F_C4B_T2F_Quad.add(v3F_C4B_T2F, 0x18, "br", "Bottom-right vertex");
+        v3F_C4B_T2F_Quad.setPackingEnabled(true);
+        manager.addDataType(v3F_C4B_T2F_Quad, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::ccHSVValue
 
@@ -787,6 +916,46 @@ public class ScriptWrapper {
         callFuncSelector.setCallingConvention("__thiscall");
         manager.addDataType(callFuncSelector, DataTypeConflictHandler.REPLACE_HANDLER);
 
+        // cocos2d::SEL_CallFuncN
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "SEL_CallFuncN"));
+        var callFuncNSelector = new FunctionDefinitionDataType(cat, cat.getName());
+        callFuncNSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform),
+                "The target object for this callback"
+            ),
+            new ParameterDefinitionImpl(
+                "data",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCNode"), platform),
+                "The data object for this callback"
+            ),
+        });
+        callFuncNSelector.setReturnType(VoidDataType.dataType);
+        callFuncNSelector.setCallingConvention("__thiscall");
+        manager.addDataType(callFuncNSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::SEL_SCHEDULE
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "SEL_SCHEDULE"));
+        var scheduleSelector = new FunctionDefinitionDataType(cat, cat.getName());
+        scheduleSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform),
+                "The target object for this callback"
+            ),
+            new ParameterDefinitionImpl(
+                "dt",
+                FloatDataType.dataType,
+                "The delta time for this callback"
+            ),
+        });
+        scheduleSelector.setReturnType(VoidDataType.dataType);
+        scheduleSelector.setCallingConvention("__thiscall");
+        manager.addDataType(scheduleSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
         // cocos2d::extension::SEL_HttpResponse
 
         cat = this.createCategoryAll(category.extend("cocos2d", "extension", "SEL_HttpResponse"));
@@ -811,6 +980,71 @@ public class ScriptWrapper {
         httpResponseSelector.setReturnType(VoidDataType.dataType);
         httpResponseSelector.setCallingConvention("__thiscall");
         manager.addDataType(httpResponseSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // UT_hash_bucket, UT_hash_handle, UT_hash_table
+
+        cat = this.createCategoryAll(category.extend("UT_hash_bucket"));
+        var utHashBucket = new StructureDataType(cat, cat.getName(), 0x0);
+
+        cat = this.createCategoryAll(category.extend("UT_hash_handle"));
+        var utHashHandle = new StructureDataType(cat, cat.getName(), 0x0);
+
+        cat = this.createCategoryAll(category.extend("UT_hash_table"));
+        var utHashTable = new StructureDataType(cat, cat.getName(), 0x0);
+        
+        utHashBucket.add(new PointerDataType(utHashHandle), pointerSize, "hh_head", "Pointer to the head of the hash handle linked list");
+        utHashBucket.add(UnsignedIntegerDataType.dataType, 0x4, "count", "Number of elements in the bucket");
+        utHashBucket.add(UnsignedIntegerDataType.dataType, 0x4, "expand_mult", "Expansion multiplier for the bucket");
+        utHashBucket.setPackingEnabled(true);
+        manager.addDataType(utHashBucket, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        utHashHandle.add(new PointerDataType(utHashTable), pointerSize, "tbl", "Pointer to the hash table");
+        utHashHandle.add(new PointerDataType(VoidDataType.dataType), pointerSize, "prev", "Pointer to the previous bucket");
+        utHashHandle.add(new PointerDataType(VoidDataType.dataType), pointerSize, "next", "Pointer to the next bucket");
+        utHashHandle.add(new PointerDataType(utHashHandle), pointerSize, "hh_prev", "Pointer to the previous hash handle");
+        utHashHandle.add(new PointerDataType(utHashHandle), pointerSize, "hh_next", "Pointer to the next hash handle");
+        utHashHandle.add(new PointerDataType(VoidDataType.dataType), pointerSize, "key", "Pointer to the key");
+        utHashHandle.add(UnsignedIntegerDataType.dataType, 0x4, "keylen", "Length of the key");
+        utHashHandle.add(UnsignedIntegerDataType.dataType, 0x4, "hashv", "Hash value");
+        utHashHandle.setPackingEnabled(true);
+        manager.addDataType(utHashHandle, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        utHashTable.add(new PointerDataType(utHashBucket), pointerSize, "buckets", "Pointer to the array of hash buckets");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "num_buckets", "Number of buckets in the table");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "log2_num_buckets", "Log2 of the number of buckets in the table");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "num_items", "Number of items in the table");
+        utHashTable.add(new PointerDataType(utHashHandle), pointerSize, "tail", "Pointer to the tail hash handle");
+        utHashTable.add(diffType, pointerSize, "hho", "Hash handle offset");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "ideal_chain_maxlen", "Ideal maximum chain length");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "nonideal_items", "Number of non-ideal items");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "ineff_expands", "Number of inefficient expansions");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "noexpand", "Number of no-expansion attempts");
+        utHashTable.add(UnsignedIntegerDataType.dataType, 0x4, "signature", "Signature");
+        utHashTable.setPackingEnabled(true);
+        manager.addDataType(utHashTable, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::ccArray
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "ccArray"));
+        var ccArray = new StructureDataType(cat, cat.getName(), 0x0);
+        ccArray.add(UnsignedIntegerDataType.dataType, 0x4, "num", "Number of elements in the array");
+        ccArray.add(UnsignedIntegerDataType.dataType, 0x4, "max", "Capacity of the array");
+        ccArray.add(UnsignedIntegerDataType.dataType, 0x4, "childIndex", "Index of the child element");
+        ccArray.add(new PointerDataType(this.addOrGetType(
+            Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform)), pointerSize, "arr", "Pointer to the array of elements");
+        ccArray.setPackingEnabled(true);
+        manager.addDataType(ccArray, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::CCDictElement
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "CCDictElement"));
+        var ccDictElement = new StructureDataType(cat, cat.getName(), 0x0);
+        ccDictElement.add(new ArrayDataType(CharDataType.dataType, 256), 256, "m_szKey", "Key string");
+        ccDictElement.add(diffType, pointerSize, "m_iKey", "Integer key");
+        ccDictElement.add(this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform), pointerSize, "m_pObject", "Pointer to the object");
+        ccDictElement.add(utHashHandle, utHashHandle.getLength(), "hh", "Hash handle for the element");
+        ccDictElement.setPackingEnabled(true);
+        manager.addDataType(ccDictElement, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // geode::SeedValueSRV etc.
 

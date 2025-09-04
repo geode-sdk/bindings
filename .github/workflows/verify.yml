@@ -1,6 +1,26 @@
 name: 'Verify bindings syntax'
 
-on: [push, pull_request]
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/*'
+      - 'bindings/2.2074/*'
+      - 'bindings/include/**'
+      - 'cmake/**'
+      - 'codegen/**'
+      - 'test/**'
+      - 'CMakeLists.txt'
+  push:
+    branches:
+    - '**'
+    paths:
+      - '.github/workflows/*'
+      - 'bindings/2.2074/*'
+      - 'bindings/include/**'
+      - 'cmake/**'
+      - 'codegen/**'
+      - 'test/**'
+      - 'CMakeLists.txt'
 
 jobs:
   build:

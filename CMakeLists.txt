@@ -157,12 +157,12 @@ if (GEODE_IS_MEMBER_TEST)
 endif()
 
 add_library(${PROJECT_NAME} ${GEODE_CODEGEN_PATH}/Geode/GeneratedSource.cpp)
-target_include_directories(${PROJECT_NAME} PUBLIC
+target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC
 	${GEODE_CODEGEN_PATH}
 )
 
 if (NOT BINDINGS_VERSIONED_ONLY)
-	target_include_directories(${PROJECT_NAME} PUBLIC
+	target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC
 		${CMAKE_CURRENT_SOURCE_DIR}/bindings/include
 	)
 endif()
