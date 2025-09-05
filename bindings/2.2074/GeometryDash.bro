@@ -7023,7 +7023,7 @@ class GameLevelManager : cocos2d::CCNode {
     static GameLevelManager* get() {
         return GameLevelManager::sharedState();
     }
-    static cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x168140, m1 0x477c14, imac 0x51b260;
+    static cocos2d::CCDictionary* responseToDict(gd::string, bool) = win 0x168140, m1 0x477c14, imac 0x51b260, ios 0x98c58;
     // virtual ~GameLevelManager();
 
     static GameLevelManager* sharedState() = ios 0x8bbdc, win 0x140b20, imac 0x504a90, m1 0x4641c4;
@@ -7037,13 +7037,17 @@ class GameLevelManager : cocos2d::CCNode {
     void banUser(int);
     bool blockUser(int) = win 0x15f510, m1 0x498a24, imac 0x53f840, ios 0xac9c8;
     void cleanupDailyLevels() = win 0x1485e0;
-    bool createAndGetAccountComments(gd::string, int);
-    bool createAndGetCommentsFull(gd::string, int, bool) = win 0x15aa50;
-    bool createAndGetLevelComments(gd::string, int);
+    cocos2d::CCArray* createAndGetAccountComments(gd::string, int) = win inline, m1 0x4935d8, imac 0x539da0, ios 0xa9b88 {
+        return this->createAndGetCommentsFull(p0, p1, true);
+    }
+    cocos2d::CCArray* createAndGetCommentsFull(gd::string, int, bool) = win 0x15aa50, m1 0x493688, imac 0x539e30, ios 0xa9c24;
+    cocos2d::CCArray* createAndGetLevelComments(gd::string, int) = win inline, m1 0x4931b8, imac 0x5399b0, ios 0xa98e8 {
+        return this->createAndGetCommentsFull(p0, p1, false);
+    }
     cocos2d::CCArray* createAndGetLevelLists(gd::string) = m1 0x478128, imac 0x51b840;
     cocos2d::CCArray* createAndGetLevels(gd::string) = win 0x1446b0;
     cocos2d::CCArray* createAndGetMapPacks(gd::string) = win 0x144e90, m1 0x478bc4, imac 0x51c2d0, ios 0x99610;
-    cocos2d::CCArray* createAndGetScores(gd::string, GJScoreType) = imac 0x51cf60, m1 0x479718, win 0x145130;
+    cocos2d::CCArray* createAndGetScores(gd::string, GJScoreType) = ios 0x99d40, imac 0x51cf60, m1 0x479718, win 0x145130;
     GJGameLevel* createNewLevel() = win 0x142800, imac 0x5165d0, m1 0x473a40;
     GJLevelList* createNewLevelList() = ios 0x96a04, win 0x1432b0, m1 0x474704, imac 0x517330;
     gd::string createPageInfo(int, int, int) = m1 0x47e660, imac 0x522710;
@@ -7224,7 +7228,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
     int itemIDFromLikeKey(char const*);
     bool keyHasTimer(char const*);
-    int levelIDFromCommentKey(char const*) = win 0x15b110;
+    int levelIDFromCommentKey(char const*) = win 0x15b110, m1 0x493084, imac 0x5398a0, ios 0xa9854;
     int levelIDFromPostCommentKey(char const*);
     int likeFromLikeKey(char const*);
     void likeItem(LikeItemType, int, bool, int) = win 0x161270, m1 0x499d68, imac 0x540b40, ios 0xad3b0;
@@ -7396,13 +7400,15 @@ class GameLevelManager : cocos2d::CCNode {
     void setLevelFeatured(int, int, bool);
     void setLevelStars(int, int, bool);
     int specialFromLikeKey(char const*);
-    void storeCommentsResult(cocos2d::CCArray*, gd::string, char const*) = win 0x15b220;
+    void storeCommentsResult(cocos2d::CCArray*, gd::string, char const*) = win 0x15b220, m1 0x491640, imac 0x537d50, ios 0xa88b0;
     void storeDailyLevelState(int, int, GJTimedLevelType) = m1 0x49c7e4, imac 0x543800, ios 0xaed8c;
-    void storeFriendRequest(GJFriendRequest* request) = win inline, m1 0x4909e8, imac 0x536f90 {
+    void storeFriendRequest(GJFriendRequest* request) = win inline, m1 0x4909e8, imac 0x536f90, ios inline {
         if (request && request->m_accountID > 0) m_friendRequests->setObject(request, request->m_accountID);
     }
     void storeSearchResult(cocos2d::CCArray* levels, gd::string pageInfo, char const* searchKey) = win 0x147570, m1 0x47dec0, imac 0x521fe0, ios 0x9ce4c;
-    void storeUserInfo(GJUserScore*);
+    void storeUserInfo(GJUserScore* score) = win inline, m1 0x4904e8, imac 0x536a60, ios inline {
+        if (score && score->m_accountID > 0) m_storedUserInfo->setObject(score, score->m_accountID);
+    }
     void storeUserMessage(GJUserMessage*);
     void storeUserMessageReply(int, GJUserMessage*);
     void storeUserName(int userID, int accountID, gd::string userName) = win 0x143ca0, m1 0x4754d4, imac 0x5181b0, ios 0x97218;
@@ -11062,9 +11068,23 @@ class GJFollowCommandLayer : SetupTriggerPopup {
 [[link(android)]]
 class GJFriendRequest : cocos2d::CCNode {
     // virtual ~GJFriendRequest();
+    GJFriendRequest() {
+        m_requestID = 0;
+        m_accountID = 0;
+        m_34 = 0;
+        m_is36 = false;
+    }
 
-    static GJFriendRequest* create();
-    static GJFriendRequest* create(cocos2d::CCDictionary*) = win 0x16fc70;
+    static GJFriendRequest* create() = win inline, m1 0x4a23ec, imac 0x549cf0, ios 0xb342c {
+        auto ret = new GJFriendRequest();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static GJFriendRequest* create(cocos2d::CCDictionary*) = win 0x16fc70, m1 0x490504, imac 0x536a90, ios 0xa7da4;
 
     virtual bool init() = win 0x77db0, m1 0x4a2484, imac 0x549d80, ios 0xb34b8;
 
