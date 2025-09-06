@@ -3964,11 +3964,11 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     void downloadFailed();
     void hideLoadingArt() = win 0xc0bf0;
     bool init(SFXInfoObject*, CustomSFXDelegate*, bool, bool, bool, bool, bool) = win 0xbfa60, imac 0x5ca7d0, m1 0x4fef30, ios 0x2ef954;
-    void onCancelDownload(cocos2d::CCObject* sender) = win 0xc0c80, m1 0x4fff30, imac 0x5cb850;
-    void onDelete(cocos2d::CCObject* sender) = win 0xc0950, m1 0x4fff6c, imac 0x5cb890;
-    void onDownload(cocos2d::CCObject* sender) = win 0xc0d10;
-    void onPlayback(cocos2d::CCObject* sender) = win 0xc0ee0;
-    void onSelect(cocos2d::CCObject* sender) = win 0xc0ec0;
+    void onCancelDownload(cocos2d::CCObject* sender) = win 0xc0c80, m1 0x4fff30, imac 0x5cb850, ios 0x2f070c;
+    void onDelete(cocos2d::CCObject* sender) = win 0xc0950, m1 0x4fff6c, imac 0x5cb890, ios 0x2f0748;
+    void onDownload(cocos2d::CCObject* sender) = win 0xc0d10, m1 0x4ffdec, imac 0x5cb6f0, ios 0x2f0658;
+    void onPlayback(cocos2d::CCObject* sender) = win 0xc0ee0, m1 0x50006c, imac 0x5cb9a0, ios 0x2f0824;
+    void onSelect(cocos2d::CCObject* sender) = win 0xc0ec0, m1 0x50004c, imac 0x5cb970, ios 0x2f0804;
     void showLoadingArt() = win 0xc0a90;
     void startDownload();
     void startMonitorDownload() = win 0xc0e10;
