@@ -8180,15 +8180,7 @@ class GameObject : CCSpritePlus {
     void copyGroups(GameObject*) = win 0x1999c0, m1 0x4e0b44, imac 0x5a66d0;
     cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810, ios 0x2589ec;
     void createColorGroupContainer(int);
-    void createGlow(gd::string frame) = win 0x18b750, imac inline, m1 inline, ios 0x254544 {
-        if (m_glowSprite != nullptr) {
-            m_glowSprite->release();
-            m_glowSprite->removeMeAndCleanup();
-        }
-        m_glowSprite = cocos2d::CCSprite::createWithSpriteFrameName(frame.c_str());
-        m_glowSprite->setPosition(this->getPosition());
-        m_glowSprite->setOpacity(255);
-    }
+    void createGlow(gd::string frame) = win 0x18b750, imac 0x58c9f0, m1 0x4d81c8, ios 0x254544;
     void createGroupContainer(int size) = win 0x199740;
     void createOpacityGroupContainer(int);
     void createSpriteColor(int) = imac 0x58a4e0, m1 0x4d7afc;
@@ -18266,7 +18258,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
             this->fadeOutStreak2(m_playEffects ? .2f : .6f);
         }
     }
-    TodoReturn destroyFromHitHead() = ios 0x22bf34;
+    bool destroyFromHitHead() = win inline, m1 0x385668, imac 0x407b10, ios 0x22bf34 {
+        return !this->isFlying() && !m_isBall && !m_isSpider && m_stateHitHead < 1;
+    }
     void didHitHead() = win 0x37de00, m1 0x37aabc, imac 0x3fbb50, ios 0x2252b8;
     void disableCustomGlowColor() {
         m_hasCustomGlowColor = false;
@@ -18333,11 +18327,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool isInNormalMode() = win inline, m1 0x36f5a8, imac 0x3ee1c0, ios 0x21c1bc {
         return !this->isFlying() && !m_isBall && !m_isRobot && !m_isSpider;
     }
-    bool isSafeFlip(float p0) = m1 inline, ios 0x22415c {
+    bool isSafeFlip(float p0) = win inline, m1 0x3794f0, imac 0x3fa350, ios 0x22415c {
         return m_lastFlipTime != 0.0 && m_totalTime - m_lastFlipTime < p0;
     }
-    bool isSafeHeadTest() = ios 0x22d9b8;
-    bool isSafeMode(float p0) {
+    bool isSafeHeadTest() = win inline, m1 0x387694, imac 0x409d60, ios 0x22d9b8 {
+        return this->isSafeFlip(0.2f) || this->isSafeMode(0.2f) || m_stateHitHead > 0;
+    }
+    bool isSafeMode(float p0) = win inline, m1 0x3794c4, imac 0x3fa310, ios inline {
         return m_gameModeChangedTime != 0.0 && m_totalTime - m_gameModeChangedTime < p0;
     }
     bool isSafeSpiderFlip(float);
