@@ -1933,7 +1933,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x4b410;
 	void moveObjectCall(cocos2d::CCObject*) = win 0x4b2a0;
 	void moveObjectCall(EditCommand) = win 0x4b2c0;
-	void offsetForKey(int) = win 0x4efe0;
+	cocos2d::CCPoint* offsetForKey(int) = win 0x4efe0;
 	void onCopy(cocos2d::CCObject* sender) = win 0x490c0;
 	void onCreate() = win 0x47690;
 	void onCreateButton(cocos2d::CCObject* sender) = win 0x47400;
