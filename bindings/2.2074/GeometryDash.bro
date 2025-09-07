@@ -9926,7 +9926,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processAreaTintGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, bool) = win 0x2258c0;
     void processAreaTransformGroupAction(cocos2d::CCArray*, EnterEffectInstance*, cocos2d::CCPoint, int, int, int, int, int, bool, bool) = win 0x223f40;
     void processAreaVisualActions(float) = imac 0x1339e0, m1 0x10d908;
-    GameObject* processCameraObject(GameObject* object, PlayerObject* player) = win inline, imac 0x112ba0, m1 0xf2584 {
+    GameObject* processCameraObject(GameObject* object, PlayerObject* player) = win inline, imac 0x112ba0, m1 0xf2584, ios 0x1e7138 {
         if (object) {
             player->m_lastPortalPos = object->getPosition();
             player->m_lastActivatedPortal = object;
@@ -18386,7 +18386,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void ringJump(RingObject*, bool) = win 0x382dd0, imac 0x402c50, m1 0x380dec, ios 0x228ac0;
     void rotateGameplay(int, int, bool, float, float, bool, bool) = win 0x383fc0, m1 0x37f1a8, imac 0x400c30, ios 0x227648;
     TodoReturn rotateGameplayObject(GameObject*) = win 0x37b5c0;
-    void rotateGameplayOnly(bool param) = win inline {
+    void rotateGameplayOnly(bool param) = win inline, m1 0x38270c, imac 0x4048d0, ios 0x229e20 {
         m_isSideways = param;
         this->updatePlayerArt();
     }
