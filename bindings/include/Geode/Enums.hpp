@@ -204,7 +204,8 @@ enum class UserListType {
     Blocked = 1,
 };
 enum class GJErrorCode {
-    NotFound = -1,
+    NotFound = -2,
+    GenericError = -1,
     UpdateApp = 3
 };
 enum class AccountError {
