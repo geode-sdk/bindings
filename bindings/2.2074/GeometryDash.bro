@@ -760,6 +760,14 @@ class ArtTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDelegate {
+    AudioAssetsBrowser() {
+        m_songInfoObjects = nullptr;
+        m_songList = nullptr;
+        m_pageIndicatorLabel = nullptr;
+        m_songsIds = {};
+        m_sfxIds = {};
+        m_loadingCircle = nullptr;
+    }
     // virtual ~AudioAssetsBrowser();
 
     static AudioAssetsBrowser* create(gd::vector<int>& songIds, gd::vector<int>& sfxIds) = win inline, m1 0x6b0df0, imac 0x79e830, ios 0x1d225c {
