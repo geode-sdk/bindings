@@ -204,7 +204,8 @@ enum class UserListType {
     Blocked = 1,
 };
 enum class GJErrorCode {
-    NotFound = -1,
+    NotFound = -2,
+    GenericError = -1,
     UpdateApp = 3
 };
 enum class AccountError {
@@ -836,9 +837,12 @@ enum class GJDifficulty {
 
 enum class GJLevelType {
     Default = 0,
-    Local = 1,
+    Main = 1,
+    //TODO: remove for Geode 5.0.0, this is confusing because Local usually means Editor in RobTop terms
+    Local [[deprecated("Use Main instead")]] = 1,
     Editor = 2,
-    Saved = 3
+    Saved = 3,
+    SearchResult = 4
 };
 
 enum class GJRewardType

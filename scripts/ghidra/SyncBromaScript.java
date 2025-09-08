@@ -1138,6 +1138,10 @@ public class SyncBromaScript extends GhidraScript {
                     break;
                 }
 
+                if (trimmedLine.contains("[[deprecated")) {
+                    continue;
+                }
+
                 var parts = valueLine.split("=");
                 var key = parts[0].trim();
                 if (key.startsWith("//")) {
