@@ -839,7 +839,8 @@ enum class GJLevelType {
     Default = 0,
     Local = 1,
     Editor = 2,
-    Saved = 3
+    Saved = 3,
+    SearchResult = 4
 };
 
 enum class GJRewardType
