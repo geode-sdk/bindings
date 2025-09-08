@@ -760,9 +760,25 @@ class ArtTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDelegate {
+    AudioAssetsBrowser() {
+        m_songInfoObjects = nullptr;
+        m_songList = nullptr;
+        m_pageIndicatorLabel = nullptr;
+        m_songsIds = {};
+        m_sfxIds = {};
+        m_loadingCircle = nullptr;
+    }
     // virtual ~AudioAssetsBrowser();
 
-    static AudioAssetsBrowser* create(gd::vector<int>& songIds, gd::vector<int>& sfxIds) = ios 0x1d225c;
+    static AudioAssetsBrowser* create(gd::vector<int>& songIds, gd::vector<int>& sfxIds) = win inline, m1 0x6b0df0, imac 0x79e830, ios 0x1d225c {
+        auto ret = new AudioAssetsBrowser();
+        if (ret->init(songIds, sfxIds)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x6b1dd4, imac 0x79fa30, ios 0x1d30fc;
     virtual void keyBackClicked() = win 0x84650, m1 0x6b1d58, imac 0x79f9c0, ios 0x1d3080;
