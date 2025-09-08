@@ -24860,7 +24860,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
     // virtual ~TableView() = ios 0x30f51c;
     inline TableView(cocos2d::CCRect rect) : CCScrollLayerExt(rect) {
         m_touchStartPosition2 = cocos2d::CCPointMake(0.f, 0.f);
-        m_unknown2 = cocos2d::CCPointMake(0.f, 0.f);
+        m_lastCellPos = cocos2d::CCPointMake(0.f, 0.f);
         m_touchPosition2 = cocos2d::CCPointMake(0.f, 0.f);
         m_tableDelegate = nullptr;
         m_dataSource = nullptr;
@@ -24874,8 +24874,8 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
         m_unused3 = nullptr;
         m_delegate = this;
         m_touchOutOfBoundary = false;
-        m_array2 = cocos2d::CCArray::create();
-        m_array2->retain();
+        m_cellRemovedArray = cocos2d::CCArray::create();
+        m_cellRemovedArray->retain();
         m_cellArray = cocos2d::CCArray::create();
         m_cellArray->retain();
         m_indexPathArray = cocos2d::CCArray::create();
