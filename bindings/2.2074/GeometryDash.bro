@@ -11095,10 +11095,10 @@ class GJFriendRequest : cocos2d::CCNode {
 
     int m_requestID;
     int m_accountID;
-    int m_34;
+    int m_unusedToAccountID;
     gd::string m_message;
     gd::string m_uploadDate;
-    bool m_is36;
+    bool m_isRead;
 }
 
 [[link(android)]]
