@@ -11076,8 +11076,8 @@ class GJFriendRequest : cocos2d::CCNode {
     GJFriendRequest() {
         m_requestID = 0;
         m_accountID = 0;
-        m_34 = 0;
-        m_is36 = false;
+        m_unusedToAccountID = 0;
+        m_isRead = false;
     }
 
     static GJFriendRequest* create() = win inline, m1 0x4a23ec, imac 0x549cf0, ios 0xb342c {
