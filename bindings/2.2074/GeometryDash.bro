@@ -11176,10 +11176,10 @@ class GJGameLevel : cocos2d::CCNode {
     gd::string m_recordString;
     gd::string m_uploadDate;
     gd::string m_updateDate;
-    gd::string m_unkString1;
-    gd::string m_unkString2;
+    gd::string m_lockedEditorLayers;
+    gd::string m_savedCameraPositions;
 
-    cocos2d::CCPoint m_unkPoint;
+    cocos2d::CCPoint m_previewLock;
     geode::SeedValueRSV m_userID;
     geode::SeedValueRSV m_accountID;
     GJDifficulty m_difficulty;
@@ -11273,12 +11273,12 @@ class GJGameLevel : cocos2d::CCNode {
     int m_listPosition;
     gd::string m_songIDs;
     gd::string m_sfxIDs;
-    int m_54;
+    int m_54; //aka k106
     int m_bestTime;
     int m_bestPoints;
-    int m_k111;
-    gd::string m_unkString3;
-    gd::string m_unkString4;
+    int m_platformerSeed;
+    gd::string m_localBestTimes;
+    gd::string m_localBestPoints;
 }
 
 [[link(android)]]
@@ -16277,7 +16277,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     // property kA42
     bool m_reverseSync;
     // property kA45
-    bool m_propertykA45;
+    bool m_decreaseBoostSlide;
 }
 
 [[link(android)]]
