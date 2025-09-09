@@ -18269,7 +18269,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void createFadeOutDartStreak() = ios 0x229880, win 0x382830, m1 0x382128, imac 0x4042d0;
     void createRobot(int) = win 0x372180, m1 0x36c034, imac 0x3ea2a0, ios 0x2195f4;
     void createSpider(int) = win 0x372540, m1 0x36c378, imac 0x3ea650, ios 0x2198e4;
-    void deactivateParticle() = ios 0x21d328, m1 0x3709e8, imac 0x3efb60;
+    void deactivateParticle() = win inline, ios 0x21d328, m1 0x3709e8, imac 0x3efb60 {
+        if (m_hasGroundParticles) m_playerGroundParticles->stopSystem();
+        m_hasGroundParticles = false;
+    }
     void deactivateStreak(bool stop) = ios 0x21a1dc, win inline, imac 0x3eb090, m1 0x36cd60 {
         if (!m_alwaysShowStreak || stop) m_regularTrail->stopStroke();
         if (m_fadeOutStreak) {
