@@ -4606,7 +4606,7 @@ class LevelBrowserLayer : cocos2d::CCLayer, LevelManagerDelegate, FLAlertLayerPr
 	void onNextPage(cocos2d::CCObject* sender) = win 0x8ac70;
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x8ad10;
 	void setSearchObject(GJSearchObject*);
-	TodoReturn setupLevelBrowser(cocos2d::CCArray*);
+	void setupLevelBrowser(cocos2d::CCArray*) = win 0x8a680;
 	void updateLevelsLabel() = win 0x8ac10;
 
 	virtual void keyBackClicked();
