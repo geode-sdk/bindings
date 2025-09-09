@@ -1952,7 +1952,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onPause(cocos2d::CCObject* sender) = win 0x411f0;
 	void onPlayback(cocos2d::CCObject* sender) = win 0x48610;
 	void onPlaytest(cocos2d::CCObject* sender) = win 0x489c0;
-	void onSelectBuildTab(cocos2d::CCObject* sender) = win 0x494e0;
+	void onSelectBuildTab(cocos2d::CCObject* sender) = win 0x494c0;
 	void onSettings(cocos2d::CCObject* sender) = win 0x41190;
 	void onStopPlaytest(cocos2d::CCObject* sender) = win 0x48ab0;
 	void onToggleGuide(cocos2d::CCObject* sender) = win 0x41d10;
@@ -1968,7 +1968,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void resetUI() = win 0x41ed0;
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = win 0x4c280;
 	TodoReturn rotationforCommand(EditCommand);
-	void selectBuildTab(int);
+	void selectBuildTab(int) = win 0x494e0;
 	void selectObject(GameObject*) = win 0x47f10;
 	void selectObjects(cocos2d::CCArray*) = win 0x47fa0;
 	TodoReturn selectObjectsInRect(cocos2d::CCRect);
