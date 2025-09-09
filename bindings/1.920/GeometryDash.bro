@@ -1874,7 +1874,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void activateRotationControl(cocos2d::CCObject*) = win 0x4cdd0;
 	void applyOffset(GameObject*) = win 0x4c810;
 	cocos2d::CCPoint* applySpecialOffset(cocos2d::CCPoint, GameObject*, cocos2d::CCPoint) = win 0x4c610;
-	void changeSelectedObjects(cocos2d::CCArray*) = win inline;
+	void changeSelectedObjects(cocos2d::CCArray*);
 	void clickOnPosition(cocos2d::CCPoint) = win 0x41640;
 	void colorSelectClosed(cocos2d::ccColor3B);
 	void constrainGameLayerPosition() = win 0x4c8c0;
@@ -1882,8 +1882,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void copyObjects(cocos2d::CCArray*) = win 0x48fc0;
 	void createMoveMenu() = win 0x49d20;
 	void createUndoSelectObject(bool) = win 0x48240;
-	void deactivateRotationControl() = win inline;
-	void deleteObject(GameObject*, bool) = win inline;
+	void deactivateRotationControl();
+	void deleteObject(GameObject*, bool);
 	void deselectAll() = win 0x48380;
 	void deselectObject() = win inline {
 		if (this->m_selectedObject != nullptr) {
@@ -1895,11 +1895,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 		this->m_touchDown = true;
 	}
 	void deselectObject(GameObject*) = win 0x482b0;
-	void disableButton(CCMenuItemSpriteExtra*) = win inline;
+	void disableButton(CCMenuItemSpriteExtra*);
 	bool editButtonUsable() = win 0x49680;
 	void editGroup(cocos2d::CCObject*) = win 0x4af10;
 	void editObject(cocos2d::CCObject*) = win 0x4ae20;
-	void enableButton(CCMenuItemSpriteExtra*) = win inline;
+	void enableButton(CCMenuItemSpriteExtra*);
 	void findSnapObject(cocos2d::CCArray*, float) = win 0x4d0e0;
 	void findSnapObject(cocos2d::CCPoint, float) = win 0x4d020;
 	void flipObjectsX(cocos2d::CCArray*) = win 0x4bab0;
