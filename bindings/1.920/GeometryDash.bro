@@ -1910,13 +1910,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 		return this->getCreateBtn(id, bg, false);
 	}
 
-	TodoReturn getCycledObject(cocos2d::CCArray*, bool);
+	GameObject* getCycledObject(cocos2d::CCArray*, bool) = win 0x4e4b0;
 	void getGridSnappedPos(cocos2d::CCPoint) = win 0x4d370;
 	void getGroupCenter(cocos2d::CCArray*) = win 0x4cc00;
 	cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint) = win 0x4b500;
 	TodoReturn getModeBtn(char const*, int);
 	TodoReturn getRelativeOffset(GameObject*);
-	cocos2d::CCArray* getSelectedObjects();
+	cocos2d::CCArray* getSelectedObjects() = win 0x48200;
 	CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite*, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*, float, int, cocos2d::CCPoint) = win 0x41790;
 	CCMenuItemSpriteExtra* getSpriteButton(char const* sprite, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale, int buttonID, cocos2d::CCPoint point) = win inline {
 		return this->getSpriteButton(cocos2d::CCSprite::createWithSpriteFrameName(sprite), callback, menu, scale, buttonID, point);
@@ -1925,7 +1925,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 		return this->getSpriteButton(sprite, callback, menu, scale, 1, {0.f, 0.f});
 	}
 	void getTouchPoint(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d450;
-	TodoReturn getXMin(int);
+	float getXMin(int);
 	bool init(LevelEditorLayer*) = win 0x3fdc0;
 	bool isSpecialSnapObject(int);
 	cocos2d::CCPoint moveForCommand(EditCommand) = win 0x4b040;
@@ -1940,11 +1940,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onCreateObject(int) = win 0x47730;
 	void onDelete(cocos2d::CCObject* sender);
 	void onDeleteAll(cocos2d::CCObject* sender) = win 0x48340;
-	void onDeleteInfo(cocos2d::CCObject* sender);
+	void onDeleteInfo(cocos2d::CCObject* sender) = win 0x42770;
 	void onDeleteSelected(cocos2d::CCObject* sender) = win 0x42bc0;
-	void onDeleteSelectedType(cocos2d::CCObject* sender);
-	void onDeleteStartPos(cocos2d::CCObject* sender);
-	void onDeselectAll(cocos2d::CCObject* sender);
+	void onDeleteSelectedType(cocos2d::CCObject* sender) = win 0x42e60;
+	void onDeleteStartPos(cocos2d::CCObject* sender) = win 0x42ed0;
+	void onDeselectAll(cocos2d::CCObject* sender) = win 0x48340;
 	void onDuplicate(cocos2d::CCObject* sender) = win 0x48e70;
 	void onGroupDown(cocos2d::CCObject* sender) = win 0x4afc0;
 	void onGroupUp(cocos2d::CCObject* sender) = win 0x4af50;
@@ -1952,23 +1952,23 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void onPause(cocos2d::CCObject* sender) = win 0x411f0;
 	void onPlayback(cocos2d::CCObject* sender) = win 0x48610;
 	void onPlaytest(cocos2d::CCObject* sender) = win 0x489c0;
-	void onSelectBuildTab(cocos2d::CCObject* sender);
+	void onSelectBuildTab(cocos2d::CCObject* sender) = win 0x494c0;
 	void onSettings(cocos2d::CCObject* sender) = win 0x41190;
 	void onStopPlaytest(cocos2d::CCObject* sender) = win 0x48ab0;
-	void onToggleGuide(cocos2d::CCObject* sender);
+	void onToggleGuide(cocos2d::CCObject* sender) = win 0x41d10;
 	void onUpdateDeleteFilter(cocos2d::CCObject* sender) = win 0x42f20;
 	cocos2d::CCArray* pasteObjects(gd::string) = win 0x492a0;
-	TodoReturn playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	TodoReturn playtestStopped();
+	void playerTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d4b0;
+	void playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d580;
+	void playtestStopped() = win 0x48ad0;
 	TodoReturn positionWithoutOffset(GameObject*);
 	void redoLastAction(cocos2d::CCObject*) = win 0x48580;
-	TodoReturn removeOffset(GameObject*);
-	TodoReturn repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint);
+	void removeOffset(GameObject*) = win 0x4c760;
+	void repositionObjectsToCenter(cocos2d::CCArray*, cocos2d::CCPoint) = win 0x49440;
 	void resetUI() = win 0x41ed0;
 	void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint) = win 0x4c280;
 	TodoReturn rotationforCommand(EditCommand);
-	TodoReturn selectBuildTab(int);
+	void selectBuildTab(int) = win 0x494e0;
 	void selectObject(GameObject*) = win 0x47f10;
 	void selectObjects(cocos2d::CCArray*) = win 0x47fa0;
 	TodoReturn selectObjectsInRect(cocos2d::CCRect);
@@ -4606,7 +4606,7 @@ class LevelBrowserLayer : cocos2d::CCLayer, LevelManagerDelegate, FLAlertLayerPr
 	void onNextPage(cocos2d::CCObject* sender) = win 0x8ac70;
 	void onPrevPage(cocos2d::CCObject* sender) = win 0x8ad10;
 	void setSearchObject(GJSearchObject*);
-	TodoReturn setupLevelBrowser(cocos2d::CCArray*);
+	void setupLevelBrowser(cocos2d::CCArray*) = win 0x8a680;
 	void updateLevelsLabel() = win 0x8ac10;
 
 	virtual void keyBackClicked();
