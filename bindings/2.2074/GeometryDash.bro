@@ -7234,7 +7234,7 @@ class GameLevelManager : cocos2d::CCNode {
     gd::string getStarLevelsString() = win 0x145bf0;
     cocos2d::CCArray* getStoredLevelComments(char const*) = win 0x15b420, imac 0x53b2f0, m1 0x494a28;
     cocos2d::CCArray* getStoredOnlineLevels(char const*) = ios 0x9d020, win 0x147780, imac 0x5223c0, m1 0x47e2d8;
-    cocos2d::CCArray* getStoredUserList(UserListType) = m1 0x498928, imac 0x53f790;
+    cocos2d::CCArray* getStoredUserList(UserListType) = win 0x1606b0, m1 0x498928, imac 0x53f790, ios 0xac918;
     GJUserMessage* getStoredUserMessage(int);
     GJUserMessage* getStoredUserMessageReply(int);
     int getTimeLeft(char const*, float) = win 0x147dd0, imac 0x522ab0, m1 0x47ea48;
