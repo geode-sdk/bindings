@@ -7264,7 +7264,10 @@ class GameLevelManager : cocos2d::CCNode {
     bool hasReportedLevel(int id);
     void invalidateMessages(bool, bool) = m1 0x4927a4, imac 0x538ef0, ios 0xa9250;
     void invalidateRequests(bool, bool) = m1 0x49772c, imac 0x53e480;
-    void invalidateUserList(UserListType, bool) = win 0x160840, m1 0x4996f8, imac 0x540580;
+    void invalidateUserList(UserListType, bool) = win inline, m1 0x4996f8, imac 0x540580, ios 0xad0b0 {
+        this->resetStoredUserList(p0);
+        if (p1 && m_userListDelegate) m_userListDelegate->forceReloadList(p0);
+    }
     bool isDLActive(char const* tag) = win 0x147960, m1 0x47e73c, imac 0x5227e0, ios 0x9d250;
     bool isFollowingUser(int) = ios 0x9df80, win 0x148840, imac 0x523fe0, m1 0x47fda8;
     bool isTimeValid(char const*, float) = win 0x147c90;
@@ -7419,7 +7422,7 @@ class GameLevelManager : cocos2d::CCNode {
     void resetStoredUserInfo(int id) = win inline, m1 0x490a04, imac 0x536fc0 {
         m_storedUserInfo->removeObjectForKey(id);
     }
-    void resetStoredUserList(UserListType);
+    void resetStoredUserList(UserListType) = win 0x160840, m1 0x497f28, imac 0x53ed30, ios 0xac410;
     void resetTimerForKey(char const*) = win 0x147fe0, m1 0x47ecac, imac 0x522d00;
     void restoreItems() = m1 0x49ca38, imac 0x543a30;
     void saveFetchedLevelLists(cocos2d::CCArray* lists) = win inline {
