@@ -1498,7 +1498,7 @@ class CCCircleWave : cocos2d::CCNode {
         this->setPosition(newTarget->getPosition());
     }
     bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x428b0, imac 0x167bd0, m1 0x134c88, ios 0x16f708;
-    void updatePosition(float dt) = win 0x42b30, imac 0x167e60, m1 0x134ec0;
+    void updatePosition(float dt) = win 0x42b30, imac 0x167e60, m1 0x134ec0, ios 0x16f904;
 
     cocos2d::CCNode* m_target;
     float m_width;
@@ -10905,7 +10905,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn addMoveCalculation(CCMoveCNode*, cocos2d::CCPoint, GameObject*);
     void calculateBaseActiveColors() = win 0x2540d0;
     void calculateInheritedColor(int, ColorAction*) = win 0x2544b0;
-    TodoReturn calculateLightBGColor(cocos2d::ccColor3B) = win 0x25c090;
+    void calculateLightBGColor(cocos2d::ccColor3B) = win 0x25c090, m1 0x2792bc, imac 0x2d8f40, ios 0x1a4e8;
     TodoReturn checkCollision(int const&, int const&);
     void colorActionChanged(ColorAction*) = m1 0x26e59c, imac 0x2cb670;
     bool colorExists(int col) = win inline, m1 0x26e578, imac 0x2cb640, ios 0x13770 {
@@ -10929,7 +10929,12 @@ class GJEffectManager : cocos2d::CCNode {
     ColorAction* getColorAction(int) = ios 0x12b80, win 0x254870, imac 0x2ca1e0, m1 0x26d3c4;
     ColorActionSprite* getColorSprite(int) = win 0x254930, m1 0x26d56c, imac 0x2ca3a0, ios 0x12c50;
     TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
-    cocos2d::ccColor3B getMixedColor(cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, float ratio) = imac 0x2d90d0, m1 0x279460, ios 0x1a5d4;
+    static cocos2d::ccColor3B getMixedColor(cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, float ratio) = win inline, imac 0x2d90d0, m1 0x279460, ios 0x1a5d4 {
+        auto r = color1.r * ratio + color2.r * (1.f - ratio);
+        auto g = color1.g * ratio + color2.g * (1.f - ratio);
+        auto b = color1.b * ratio + color2.b * (1.f - ratio);
+        return { std::clamp<uint8_t>(r, 0, 255), std::clamp<uint8_t>(g, 0, 255), std::clamp<uint8_t>(b, 0, 255) };
+    }
     CCMoveCNode* getMoveCommandNode(GroupCommandObject2*) = win 0x257c40;
     CCMoveCNode* getMoveCommandObject() = win 0x257b40;
     TodoReturn getOpacityActionForGroup(int);
@@ -18921,9 +18926,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     }
     void addObject(GameObject*) = ios 0x11bef8, win 0x396eb0, imac 0xb2190, m1 0xa2668;
     void addToGroupOld(GameObject*);
-    void applyCustomEnterEffect(GameObject* object, bool isRight) = win 0x399aa0;
+    void applyCustomEnterEffect(GameObject* object, bool isRight) = win 0x399aa0, m1 0xa84dc, imac 0xb8c90, ios 0x120d98;
 
-    void applyEnterEffect(GameObject* object, int enterType, bool isRight) = win 0x39a790;
+    void applyEnterEffect(GameObject* object, int enterType, bool isRight) = win 0x39a790, m1 0xa8c7c, imac 0xb9650, ios 0x121518;
     bool canPauseGame() = ios 0x125b68, win inline, imac 0xbf270, m1 0xadc4c {
         return !m_hasCompletedLevel && !m_levelEndAnimationStarted;
     }
@@ -19613,7 +19618,7 @@ class RingObject : EffectGameObject {
         m_isTouchTriggered = true;
         return true;
     }
-    void spawnCircle() = win 0x4896d0, m1 0x165b94;
+    void spawnCircle() = win 0x4896d0, m1 0x165b94, imac 0x1a3410, ios 0x37b4d0;
 
     bool m_claimTouch;
     // property 504
