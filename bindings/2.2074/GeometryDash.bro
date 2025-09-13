@@ -807,8 +807,26 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
 [[link(android)]]
 class AudioEffectsLayer : cocos2d::CCLayerColor {
     // virtual ~AudioEffectsLayer();
+    AudioEffectsLayer() {
+        m_batchNode = nullptr;
+        m_unk1bc = nullptr;
+        m_unk1c0 = nullptr;
+        m_timeElapsed = 0;
+        m_audioPulseMod = 0;
+        m_goingDown = false;
+        m_audioScale = 0;
+        m_unk1d4 = false;
+    }
 
-    static AudioEffectsLayer* create(gd::string) = ios 0x3bc848;
+    static AudioEffectsLayer* create(gd::string audioString) = win inline, imac 0x49c150, m1 0x407314, ios 0x3bc848 {
+        auto ret = new AudioEffectsLayer();
+        if (ret->init(audioString)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void draw() = m1 0x407cdc, imac 0x49cba0, ios 0x3bcf70 {}
     virtual void updateTweenAction(float, char const*) = win 0x84fb0, imac 0x49ca70, m1 0x407ba0, ios 0x3bce70;
@@ -823,10 +841,10 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
     cocos2d::CCSpriteBatchNode* m_batchNode;
     cocos2d::CCArray* m_unk1bc;
     cocos2d::CCArray* m_unk1c0;
-    float m_unk1c4;
-    float m_unk1c8;
+    float m_timeElapsed;
+    float m_audioPulseMod;
     bool m_goingDown;
-    float m_notAudioScale;
+    float m_audioScale;
     bool m_unk1d4;
 }
 
@@ -1468,9 +1486,19 @@ class CCCircleWave : cocos2d::CCNode {
     virtual void updateTweenAction(float, char const*) = win 0x42b70, imac 0x167f30, m1 0x134f9c, ios 0x16f9e0;
 
     TodoReturn baseSetup(float);
-    TodoReturn followObject(cocos2d::CCNode*, bool) = imac 0x167ea0, m1 0x134f0c;
+    void followObject(cocos2d::CCNode* newTarget, bool staticPosition) = win inline, imac 0x167ea0, m1 0x134f0c, ios 0x16f950 {
+        if (m_target) m_target->release();
+
+        m_target = newTarget;
+        newTarget->retain();
+
+        this->unschedule(schedule_selector(CCCircleWave::updatePosition));
+        if (!staticPosition) this->schedule(schedule_selector(CCCircleWave::updatePosition));
+
+        this->setPosition(newTarget->getPosition());
+    }
     bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x428b0, imac 0x167bd0, m1 0x134c88, ios 0x16f708;
-    TodoReturn updatePosition(float) = win 0x42b30, imac 0x167e60, m1 0x134ec0;
+    void updatePosition(float dt) = win 0x42b30, imac 0x167e60, m1 0x134ec0;
 
     cocos2d::CCNode* m_target;
     float m_width;
@@ -5417,7 +5445,7 @@ class EffectGameObject : EnhancedGameObject {
         m_duration = 0.5;
         return true;
     }
-    void playTriggerEffect() = win 0x48d2b0;
+    void playTriggerEffect() = win 0x48d2b0, imac 0x1a8220, m1 0x16a198, ios 0x37df38;
     void resetSpawnTrigger();
     void setTargetID(int id) = win inline, m1 0x157c40, imac 0x192130, ios 0x3756ec {
         m_targetGroupID = std::clamp(id, 0, 9999);
@@ -8194,7 +8222,7 @@ class GameObject : CCSpritePlus {
         ) || m_isNoTouch;
     }
     cocos2d::ccColor3B colorForMode(int, bool) = win 0x19f010, m1 0x4eaf28, imac 0x5b2260, ios 0x261330;
-    void commonInteractiveSetup();
+    void commonInteractiveSetup() = win 0x193e00, imac 0x59d6a0, m1 0x4dc750, ios 0x25893c;
     void commonSetup() = win 0x18ad70, m1 0x4d7950, imac 0x58a320;
     void copyGroups(GameObject*) = win 0x1999c0, m1 0x4e0b44, imac 0x5a66d0;
     cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810, ios 0x2589ec;
@@ -8430,7 +8458,7 @@ class GameObject : CCSpritePlus {
     OBB2D* m_orientedBox;
     bool m_shouldUseOuterOb;
     cocos2d::CCSprite* m_glowSprite;
-    bool m_unk2F8;
+    bool m_isRingPoweredOn;
     float m_width;
     float m_height;
     bool m_hasSpecialChild;
@@ -8449,7 +8477,7 @@ class GameObject : CCSpritePlus {
     bool m_isDirty;
     bool m_isObjectPosDirty;
     bool m_isUnmodifiedPosDirty;
-    float m_unk33C;
+    float m_fadeMargin;
     cocos2d::CCRect m_objectRect;
     bool m_isObjectRectDirty;
     bool m_isOrientedBoxDirty;
@@ -8500,10 +8528,10 @@ class GameObject : CCSpritePlus {
     bool m_unk3ee;
     bool m_isInvisible;
     int m_unk3D8;
-    short m_unk3DC;
+    short m_varianceIndex;
     bool m_unk3DE;
-    short m_unk3E0;
-    short m_unk3E2;
+    short m_enterType;
+    short m_exitType;
 
     // property 343
     short m_enterChannel;
@@ -8521,11 +8549,12 @@ class GameObject : CCSpritePlus {
     // property 1
     int m_objectID;
     bool m_unk3F8;
-    bool m_isSolid;
+    bool m_intrinsicDontFade;
     bool m_ignoreEnter;
     bool m_ignoreFade;
-    bool m_unk3FC;
-    bool m_unk3FD;
+    // true for object IDs 207-213 and 693-694
+    bool m_isSolidColorBlock;
+    bool m_baseOrDetailBlending;
     bool m_customSpriteColor;
 
     // property 497
@@ -8541,16 +8570,16 @@ class GameObject : CCSpritePlus {
     int m_defaultZOrder;
     bool m_unk40C;
     bool m_colorZLayerRelated;
-    bool m_unk40E;
-    float m_unk410;
-    float m_unk414;
+    bool m_customAudioScale;
+    float m_minAudioScale;
+    float m_maxAudioScale;
     bool m_particleLocked;
 
     // property 53
     int m_property53;
-    bool m_gmUnkBool4Related;
-    bool m_unk421;
-    bool m_unk422;
+    bool m_isInvisibleBlock;
+    bool m_customGlowColor;
+    bool m_glowColorIsLBG;
     bool m_cantColorGlow;
     float m_opacityMod;
     bool m_slopeUphill;
@@ -8620,7 +8649,7 @@ class GameObject : CCSpritePlus {
     bool m_isColorTrigger;
     bool m_dontIgnoreDuration;
     bool m_canBeControlled;
-    bool m_isSpawnOrderTrigger2;
+    bool m_activateTriggerInEditor;
     bool m_isStartPos;
 
     // property 103
@@ -9786,7 +9815,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void createGroundLayer(int, int) = ios 0x1def60, win 0x206920, imac 0x103660, m1 0xe5410;
     void createMiddleground(int) = ios 0x1df0e8, win 0x2067a0, imac 0x103870, m1 0xe55f4;
     TodoReturn createNewKeyframeAnim();
-    TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
+    cocos2d::CCParticleSystemQuad* createParticle(int, char const*, int, cocos2d::tCCPositionType) = win 0x23a060, imac 0x14c650, m1 0x12165c, ios 0x2068c0;
     void createPlayer() = ios 0x1de6e4, win 0x205fd0, m1 0xe4b94, imac 0x102d80;
     void createPlayerCollisionBlock() = ios 0x1ec548, win 0x212e90, m1 0xf9014, imac 0x11a410;
     void createTextLayers() = ios 0x1e4644, win 0x209960, imac 0x10f2e0, m1 0xee828;
@@ -10487,13 +10516,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float m_cameraWidth;
     float m_cameraHeight;
     float m_cameraUnzoomedX;
-    float m_cameraX;
+    float m_halfCameraWidth;
     AudioEffectsLayer* m_audioEffectsLayer;
     OBB2D* m_cameraObb2;
     gd::vector<GameObject*> m_activeObjects;
     int m_activeObjectsCount;
     int m_activeObjectsIndex;
-    cocos2d::ccColor3B m_backgroundColor;
+    cocos2d::ccColor3B m_lightBGColor;
     int m_resumeTimer;
     bool m_recordInputs;
     bool m_unk32a1;
@@ -10876,7 +10905,7 @@ class GJEffectManager : cocos2d::CCNode {
     TodoReturn addMoveCalculation(CCMoveCNode*, cocos2d::CCPoint, GameObject*);
     void calculateBaseActiveColors() = win 0x2540d0;
     void calculateInheritedColor(int, ColorAction*) = win 0x2544b0;
-    TodoReturn calculateLightBGColor(cocos2d::ccColor3B);
+    TodoReturn calculateLightBGColor(cocos2d::ccColor3B) = win 0x25c090;
     TodoReturn checkCollision(int const&, int const&);
     void colorActionChanged(ColorAction*) = m1 0x26e59c, imac 0x2cb670;
     bool colorExists(int col) = win inline, m1 0x26e578, imac 0x2cb640, ios 0x13770 {
@@ -10900,7 +10929,7 @@ class GJEffectManager : cocos2d::CCNode {
     ColorAction* getColorAction(int) = ios 0x12b80, win 0x254870, imac 0x2ca1e0, m1 0x26d3c4;
     ColorActionSprite* getColorSprite(int) = win 0x254930, m1 0x26d56c, imac 0x2ca3a0, ios 0x12c50;
     TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
-    TodoReturn getMixedColor(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
+    cocos2d::ccColor3B getMixedColor(cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, float ratio) = imac 0x2d90d0, m1 0x279460, ios 0x1a5d4;
     CCMoveCNode* getMoveCommandNode(GroupCommandObject2*) = win 0x257c40;
     CCMoveCNode* getMoveCommandObject() = win 0x257b40;
     TodoReturn getOpacityActionForGroup(int);
@@ -11000,7 +11029,7 @@ class GJEffectManager : cocos2d::CCNode {
     gd::vector<InheritanceNode*> m_unkVector270;
     gd::unordered_map<int, bool> m_unkMap288;
     gd::vector<ColorAction*> m_colorActionVector;
-    gd::vector<ColorActionSprite*> m_unkVector2d8;
+    gd::vector<ColorActionSprite*> m_colorActionSpriteVector;
     gd::vector<bool> m_unkVector2f0;
     gd::unordered_map<int, int> m_itemCountMap;
     gd::unordered_map<int, int> m_persistentItemCountMap;
@@ -11277,7 +11306,7 @@ class GJGameLevel : cocos2d::CCNode {
     int m_requiredCoins;
     bool m_isUnlocked;
     cocos2d::CCPoint m_lastCameraPos;
-    float m_fastEditorZoom;
+    float m_lastEditorZoom;
     int m_lastBuildTab;
     int m_lastBuildPage;
     int m_lastBuildGroupID;
@@ -11446,7 +11475,8 @@ class GJGameState {
     gd::map<std::pair<int, int>, int> m_unkMapPairIntIntInt;
     float m_unkUint13;
     cocos2d::CCPoint m_unkPoint32;
-    cocos2d::CCPoint m_unkPoint33;
+    // same as m_cameraPosition but still updates in the editor when not playtesting?
+    cocos2d::CCPoint m_cameraPosition2;
     bool m_unkBool20;
     bool m_unkBool21;
     bool m_unkBool22;
@@ -11464,8 +11494,8 @@ class GJGameState {
     gd::map<std::pair<GJGameEvent, int>, int> m_unkMapPairGJGameEventIntInt;
     gd::unordered_map<int, gd::vector<EnterEffectInstance>> m_unorderedMapEnterEffectInstanceVectors1;
     gd::unordered_map<int, gd::vector<EnterEffectInstance>> m_unorderedMapEnterEffectInstanceVectors2;
-    gd::vector<int> m_unkVecInt1;
-    gd::vector<int> m_unkVecInt2;
+    gd::vector<int> m_enterChannelMap;
+    gd::vector<int> m_exitChannelMap;
     gd::vector<EnterEffectInstance> m_enterEffectInstances1;
     gd::vector<EnterEffectInstance> m_enterEffectInstances2;
     gd::vector<EnterEffectInstance> m_enterEffectInstances3;
@@ -15429,7 +15459,10 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn timeObjectChanged();
     TodoReturn toggleBackground(bool);
     TodoReturn toggleGrid(bool);
-    void toggleGround(bool) = m1 0xc6720, imac 0xdf280;
+    void toggleGround(bool enable) = win inline, m1 0xc6720, imac 0xdf280, ios 0x358ba0 {
+        m_hideGround = !enable;
+        m_groundLayer->setVisible(enable);
+    }
     void toggleGroupPreview(int, bool) = win 0x2d59b0;
     TodoReturn toggleLockActiveLayer();
     void transferDefaultColors(GJEffectManager*, GJEffectManager*) = ios 0x35fdcc, m1 0xd298c, imac 0xed150, win 0x2d3450;
@@ -15493,7 +15526,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* m_particleObjects;
     cocos2d::CCArray* m_keyframeObjects;
     cocos2d::CCDictionary* m_unk3720;
-    cocos2d::CCArray* m_specialSpawnObjects;
+    cocos2d::CCArray* m_playtestTriggers;
     GameObject* m_copyStateObject;
     ParticleGameObject* m_particleObject;
     cocos2d::CCDictionary* m_unk3740;
@@ -18369,7 +18402,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void modeDidChange();
     TodoReturn performSlideCheck();
     void placeStreakPoint() = ios 0x21e8b8, win 0x38a8f0, imac 0x3f18a0, m1 0x3725a0;
-    void playBumpEffect(int, GameObject*) = win 0x389cc0;
+    void playBumpEffect(int objectType, GameObject* player) = win 0x389cc0, imac 0x409610, m1 0x387014, ios 0x22d428;
     TodoReturn playBurstEffect();
     void playCompleteEffect(bool, bool) = win 0x36e2b0, imac 0x2024c0, m1 0x1b7870, ios 0x60a60;
     void playDeathEffect() = ios 0x5b138, win 0x3691a0, imac 0x1fa350, m1 0x1af8ac;
@@ -18430,12 +18463,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void setSecondColor(cocos2d::ccColor3B const&) = ios 0x21af40, win 0x387610, imac 0x3ec3a0, m1 0x36dd8c;
     void setupStreak() = ios 0x219cd4, win 0x372a50, imac 0x3eab20, m1 0x36c84c;
     void setYVelocity(double velocity, int) = win 0x372fa0, m1 0x36c5dc, imac 0x3ea920, ios 0x219b38;
-    TodoReturn spawnCircle();
+    void spawnCircle() = win 0x381780, imac 0x401d20, m1 0x380028, ios 0x2280e4;
     TodoReturn spawnCircle2();
-    TodoReturn spawnDualCircle();
+    void spawnDualCircle() = win 0x381d40, imac 0x402130, m1 0x380420, ios 0x228414;
     TodoReturn spawnFromPlayer(PlayerObject*, bool);
-    void spawnPortalCircle(cocos2d::ccColor3B, float) = win 0x381930;
-    void spawnScaleCircle() = m1 0x3802e0, imac 0x401fe0;
+    void spawnPortalCircle(cocos2d::ccColor3B color, float startRadius) = win 0x381930, imac 0x401eb0, m1 0x3801c0, ios 0x2281c4;
+    void spawnScaleCircle() = win 0x381b40, m1 0x3802e0, imac 0x401fe0, ios 0x2282e0;
     TodoReturn specialGroundHit();
     TodoReturn speedDown();
     TodoReturn speedUp();
@@ -18760,7 +18793,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_unkA99;
     double m_totalTime;
     bool m_isBeingSpawnedByDualPortal;
-    float m_unkAAC;
+    float m_audioScale;
     float m_unkAngle1;
     float m_yVelocityRelated3;
     bool m_defaultMiniIcon;
@@ -18888,9 +18921,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     }
     void addObject(GameObject*) = ios 0x11bef8, win 0x396eb0, imac 0xb2190, m1 0xa2668;
     void addToGroupOld(GameObject*);
-    void applyCustomEnterEffect(GameObject*, bool) = win 0x399aa0;
+    void applyCustomEnterEffect(GameObject* object, bool isRight) = win 0x399aa0;
 
-    void applyEnterEffect(GameObject*, int, bool) = win 0x39a790;
+    void applyEnterEffect(GameObject* object, int enterType, bool isRight) = win 0x39a790;
     bool canPauseGame() = ios 0x125b68, win inline, imac 0xbf270, m1 0xadc4c {
         return !m_hasCompletedLevel && !m_levelEndAnimationStarted;
     }
@@ -18988,7 +19021,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateAttempts() = win 0x3a2c70, imac 0xbeeb0, m1 0xad858, ios 0x1258d4;
     void updateEffectPositions() = m1 0xaa9fc, imac 0xbb690;
     void updateInfoLabel() = ios 0x11b150, win 0x39bb90, imac 0xafdc0, m1 0xa0770;
-    void updateInvisibleBlock(GameObject*, float, float, float, float, cocos2d::ccColor3B const&) = win 0x3994e0;
+    void updateInvisibleBlock(GameObject* object, float rightFadeBound, float leftFadeBound, float rightFadeWidth, float leftFadeWidth, cocos2d::ccColor3B const& lbgColor) = win 0x3994e0, imac 0xb8a10, m1 0xa8264, ios 0x120b50;
     void updateProgressbar() = ios 0x11bb80, win 0x39b4f0, m1 0xa2124, imac 0xb1c20;
     void updateScreenRotation(int, bool, bool, float, int, float, int, int);
     void updateTestModeLabel() = ios 0x11d4e8, win 0x390b40, imac 0xb3d10, m1 0xa3d38;
@@ -19044,8 +19077,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     cocos2d::CCSprite* m_progressFill;
     float m_progressWidth;
     float m_progressHeight;
-    int m_gravityEffectAmount;
-    int m_gravityEffectsPlayed;
+    int m_totalGravityEffects;
+    int m_activeGravityEffects;
     int m_gravityEffectIndex;
     cocos2d::CCArray* m_gravityEffects;
     bool m_doNot;
@@ -19077,7 +19110,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     double m_pauseDelta;
     float m_unk3900;
     bool m_glitterEnabled;
-    bool m_effectsDisabled;
+    bool m_bgEffectDisabled;
     bool m_unk3906;
     bool m_isPaused;
     bool m_disableGravityEffect;
@@ -19576,11 +19609,11 @@ class RingObject : EffectGameObject {
 
     bool init(char const* p0) = win inline, m1 0x165ae0, imac 0x1a3340, ios inline {
         if (!EffectGameObject::init(p0)) return false;
-        m_unk421 = true;
+        m_customGlowColor = true;
         m_isTouchTriggered = true;
         return true;
     }
-    void spawnCircle() = win 0x4896d0;
+    void spawnCircle() = win 0x4896d0, m1 0x165b94;
 
     bool m_claimTouch;
     // property 504
