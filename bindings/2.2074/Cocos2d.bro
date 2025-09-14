@@ -1900,7 +1900,8 @@ class cocos2d::CCProgressTimer : cocos2d::CCNodeRGBA {
     }
 
     // CCProgressTimer(cocos2d::CCProgressTimer const&);
-    // CCProgressTimer() = ios 0x405f18;
+    CCProgressTimer() = m1 0x51d2f4, imac 0x5ec630, ios 0x3f54cc;
+    virtual ~CCProgressTimer() = m1 0x51d70c, imac 0x5ecb00, ios 0x3f5744;
 
     cocos2d::CCPoint boundaryTexCoord(char) = ios 0x3f62fc;
     bool isReverseDirection();
