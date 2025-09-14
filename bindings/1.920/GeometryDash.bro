@@ -5996,8 +5996,8 @@ class PlayerObject : GameObject {
 	TodoReturn boostPlayer(float);
 	TodoReturn buttonDown(PlayerButton);
 	TodoReturn checkSnapJumpToObject(GameObject*);
-	TodoReturn collidedWithObject(float, GameObject*, cocos2d::CCRect);
-	TodoReturn collidedWithObject(float, GameObject*);
+	void collidedWithObject(float, GameObject*, cocos2d::CCRect) = win 0xdc510;
+	void collidedWithObject(float, GameObject*);
 	void collidedWithSlope(float, GameObject*) = win 0xdb5e0;
 	TodoReturn convertToClosestRotation(float);
 	TodoReturn copyAttributes(PlayerObject*);
@@ -6041,7 +6041,7 @@ class PlayerObject : GameObject {
 	TodoReturn playBurstEffect();
 	TodoReturn playerDestroyed(bool) = win 0xddda0;
 	bool playerIsFalling();
-	TodoReturn postCollision();
+	void postCollision() = win 0xdae00;
 	TodoReturn preCollision();
 	TodoReturn preSlopeCollision(float, GameObject*);
 	TodoReturn propellPlayer(float);
@@ -6091,9 +6091,9 @@ class PlayerObject : GameObject {
 	TodoReturn touchedObject(GameObject*);
 	TodoReturn tryPlaceCheckpoint();
 	void updateCheckpointTest() = win 0xd9ea0;
-	TodoReturn updateCollide(bool, int);
-	TodoReturn updateCollideBottom(float, int);
-	TodoReturn updateCollideTop(float, int);
+	void updateCollide(bool, int) = win 0xdd210;
+	void updateCollideBottom(float, int) = win 0xdd330;
+	void updateCollideTop(float, int) = win 0xdd2c0;
 	void updateGlowColor() = win 0xdfc80;
 	TodoReturn updateJump(float);
 	void updatePlayerBirdFrame(int) = win 0xe0290;
@@ -6363,7 +6363,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	void loadLastCheckpoint() = win 0xf15b0;
 	TodoReturn markCheckpoint();
 	TodoReturn moveCameraToPos(cocos2d::CCPoint);
-	TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
+	void objectIntersectsCircle(GameObject*, GameObject*) = win 0x90400;
 	void onQuit() = win 0xf3b80;
 	void pauseGame(bool) = win 0xf38c0;
 	TodoReturn pickupItem(GameObject*);
