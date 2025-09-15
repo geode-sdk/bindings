@@ -14367,7 +14367,7 @@ class GroupCommandObject2 {
 class HardStreak : cocos2d::CCDrawNode {
     // virtual ~HardStreak();
 
-    static HardStreak* create() = ios 0x61464, win 0x2b1680;
+    static HardStreak* create() = ios 0x61464, imac 0x9c9b0, m1 0x8f63c, win 0x2b1680;
 
     virtual bool init() = win 0x2b1740, m1 0x8f704, imac 0x9ca80, ios 0x614d8;
 
