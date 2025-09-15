@@ -3803,7 +3803,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     void onSettings(cocos2d::CCObject* sender) = win 0xa7ab0;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = ios 0x53524, win 0xa8ea0, imac 0x1e5b40, m1 0x19d154;
     TodoReturn recreateLayer();
-    void sliderChanged(cocos2d::CCObject*) = win 0xa77b0, imac 0x1e5e50 m1 0x19d45c, ios 0x536d4;
+    void sliderChanged(cocos2d::CCObject*) = win 0xa77b0, imac 0x1e5e50, m1 0x19d45c, ios 0x536d4;
     void toggleVisible() = ios 0x542c0, win 0xa8af0, imac 0x1e7220, m1 0x19e668;
     void updateChannelLabel(int channel) = ios 0x53ce0, win inline, imac 0x1e6680, m1 0x19dc40 {
         if (channel > 999) {
