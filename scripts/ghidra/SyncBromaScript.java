@@ -1005,7 +1005,11 @@ public class SyncBromaScript extends GhidraScript {
                 baseList.add(List.of(currentClass));
                 var currentList = basesMap.get(currentClass);
                 baseList.add(currentList);
-                while (currentList != null && !currentList.isEmpty() && !currentList.get(0).equals("cocos2d::CCCopying")) {
+                while (
+                    currentList != null && !currentList.isEmpty() &&
+                    !currentList.get(0).equals("cocos2d::CCCopying") &&
+                    !currentList.get(0).equals("cocos2d::CCApplicationProtocol")
+                ) {
                     currentClass = currentList.get(0);
                     currentList = basesMap.get(currentClass);
                     baseList.add(currentList);
@@ -1043,7 +1047,7 @@ public class SyncBromaScript extends GhidraScript {
                         var baseFieldName = b.get(0);
                         if (baseFieldName == null) return false;
                         var baseFieldSplit = baseFieldName.split("::");
-                        return baseFieldSplit.length > 0 && (baseFieldSplit[baseFieldSplit.length - 1] + "_data").equals(fieldName);
+                        return baseFieldSplit.length > 0 && fieldName.equals(baseFieldSplit[baseFieldSplit.length - 1] + "_data");
                     })) {
                         classStruct.clearAtOffset(component.getOffset());
                     }
@@ -1054,7 +1058,7 @@ public class SyncBromaScript extends GhidraScript {
                     var bases = baseList.get(i);
                     if (bases != null && !bases.isEmpty()) {
                         var baseName = bases.get(0);
-                        var j = baseName.equals("cocos2d::CCCopying") ? 0 : 1;
+                        var j = baseName.equals("cocos2d::CCCopying") || baseName.equals("cocos2d::CCApplicationProtocol") ? 0 : 1;
                         if (j == 1) {
                             var subcategory = new CategoryPath("/ClassDataTypes");
                             String subname = null;

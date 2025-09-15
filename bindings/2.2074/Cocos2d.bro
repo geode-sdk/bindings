@@ -795,6 +795,30 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x4b646c, imac 0x55fa20, ios 0x17a574;
     virtual cocos2d::CCTexture2D* getTexture() = m1 0x4b63bc, imac 0x55f950, ios 0x17a504;
     virtual void setTexture(cocos2d::CCTexture2D*) = m1 0x4b63cc, imac 0x55f970, ios 0x17a514;
+
+    bool m_bFastMode;
+    bool m_bStartingPositionInitialized;
+    bool m_bStroke;
+    cocos2d::CCTexture2D* m_pTexture;
+    cocos2d::ccBlendFunc m_tBlendFunc;
+    float m_fStroke;
+    float m_fFadeDelta;
+    float m_fMinSeg;
+    uint32_t m_uMaxPoints;
+    uint32_t m_uNuPoints;
+    uint32_t m_uPreviousNuPoints;
+    cocos2d::CCPoint* m_pPointVertexes;
+    float* m_pPointState;
+    cocos2d::ccVertex2F* m_pVertices;
+    uint8_t* m_pColorPointer;
+    cocos2d::ccTex2F* m_pTexCoords;
+    bool m_bRepeatMode;
+    float m_fRepeatSpeed;
+    float m_fRepeatTime;
+    bool m_idk;
+    float m_fMaxSeg;
+    bool m_bDontOpacityFade;
+    cocos2d::CCPoint m_tPositionR;
 }
 
 [[link(win, android)]]
@@ -3689,6 +3713,8 @@ class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
     virtual cocos2d::ccLanguageType getCurrentLanguage() = m1 0x2ab20c, imac 0x314ff0, ios 0x1af448;
     virtual cocos2d::TargetPlatform getTargetPlatform() = m1 0x2ab1f8, imac 0x314fd0, ios 0x1af60c;
     virtual void openURL(char const*) = imac 0x315dc0, m1 0x2aba20, ios 0x1af380;
+
+    PAD = win 0xc8, mac 0x30;
 }
 
 [[link(win, android)]]
