@@ -3803,7 +3803,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     void onSettings(cocos2d::CCObject* sender) = win 0xa7ab0;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = ios 0x53524, win 0xa8ea0, imac 0x1e5b40, m1 0x19d154;
     TodoReturn recreateLayer();
-    void sliderChanged(cocos2d::CCObject*);
+    void sliderChanged(cocos2d::CCObject*) = win 0xa77b0, imac 0x1e5e50 m1 0x19d45c, ios 0x536d4;
     void toggleVisible() = ios 0x542c0, win 0xa8af0, imac 0x1e7220, m1 0x19e668;
     void updateChannelLabel(int channel) = ios 0x53ce0, win inline, imac 0x1e6680, m1 0x19dc40 {
         if (channel > 999) {
@@ -3821,7 +3821,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     void updateCurrentSelection();
     void updateCustomColorLabels() = ios 0x535ac, win 0xa9490, imac 0x1e5c10, m1 0x19d228;
     void updateHSVButtons() = win 0xa8270, imac 0x1e58e0, m1 0x19cf30, ios 0x53348;
-    void updateKerningLabel() = m1 0x19d4a8, imac 0x1e5ec0;
+    void updateKerningLabel() = win 0xa7600, m1 0x19d4a8, imac 0x1e5ec0, ios 0x53720;
     void updateSelected(int) = ios 0x53f4c, win 0xa9660, imac 0x1e6b70, m1 0x19e070;
 
     GameObject* m_targetObject;
@@ -9086,7 +9086,7 @@ class GameToolbox {
     static gd::string getTimeString(int, bool) = win 0x65e20, imac 0x4de620, m1 0x44145c, ios 0x49338;
     static cocos2d::ccHSVValue hsvFromString(gd::string const& str, char const* delim) = win 0x654e0, m1 0x44007c, imac 0x4dd030, ios 0x487fc; // on windows, 2nd param is ignored and assumed to be "a"
     static gd::string intToShortString(int) = win 0x69120, imac 0x4e4250, m1 0x4465bc, ios 0x4bd08;
-    static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284;
+    static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284, ios 0x4bc24;
     static bool isIOS();
     static bool isRateEasing(int);
     static void mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*) = win 0x64b70, m1 0x43f440, imac 0x4dc370, ios 0x48050;
