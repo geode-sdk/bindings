@@ -6494,10 +6494,10 @@ class FMODAudioEngine : cocos2d::CCNode {
         return count;
     }
     FMOD::Sound* createStream(gd::string) = win 0x5cb70;
-    void disableMetering() = ios 0x13e688 {
+    void disableMetering() = win inline, m1 0x358054, imac 0x3d1090, ios 0x13e688 {
         this->m_metering = false;
     }
-    void enableMetering() = ios 0x13e668 {
+    void enableMetering() = win inline, m1 0x358034, imac 0x3d1060, ios 0x13e668 {
         this->m_metering = true;
         this->m_pulse1 = 0.1f;
         this->m_pulse2 = 0.1f;
@@ -7662,8 +7662,22 @@ class GameManager : GManager {
         return m_levelEditorLayer;
     }
 
-    void getFontFile(int) = ios 0x318378, imac 0x36fa00, m1 0x300d14;
-    TodoReturn getFontTexture(int);
+    const char* getFontFile(int) = win inline, ios 0x318378, imac 0x36fa00, m1 0x300d14 {
+        p0 = std::clamp(p0, 0, 59);
+        this->loadFont(p0);
+        if (p0 != 0) {
+            return cocos2d::CCString::createWithFormat("gjFont%02d.fnt", p0)->getCString();
+        }
+        return "bigFont.fnt";
+    }
+    const char* getFontTexture(int) = win inline, m1 0x300d7c, imac 0x36fa60, ios 0x3183e0 {
+        p0 = std::clamp(p0, 0, 59);
+        this->loadFont(p0);
+        if (p0 != 0) {
+            return cocos2d::CCString::createWithFormat("gjFont%02d.png", p0)->getCString();
+        }
+        return "bigFont.png";
+    }
 
     GJBaseGameLayer* getGameLayer() {
         return m_gameLayer;
@@ -9915,7 +9929,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void handleButton(bool down, int button, bool isPlayer1) = ios 0x1fcb90, win 0x22e190, imac 0x13afc0, m1 0x1136ec;
     bool hasItem(int);
     bool hasUniqueCoin(EffectGameObject*) = ios 0x1eb0e8, win 0x211220, imac 0x118460, m1 0xf72cc;
-    void increaseBatchNodeCapacity() = ios 0x1df834, win 0x2078e0;
+    void increaseBatchNodeCapacity() = ios 0x1df834, imac 0x104150, m1 0xe5e08, win 0x2078e0;
     bool isFlipping() {
         return m_gameState.m_levelFlipping != 0.f && m_gameState.m_levelFlipping != 1.f;
     }
@@ -10198,7 +10212,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateInternalCamOffsetX(float, float, float);
     TodoReturn updateInternalCamOffsetY(float, float, float);
     void updateKeyframeOrder(int) = ios 0x1fd218, imac 0x13b9d0, m1 0x11403c, win 0x22e4b0;
-    void updateLayerCapacity(gd::string) = ios 0x1df99c, win 0x2079c0;
+    void updateLayerCapacity(gd::string) = ios 0x1df99c, imac 0x1042f0, m1 0xe5f78, win 0x2079c0;
     TodoReturn updateLegacyLayerCapacity(int, int, int, int);
     void updateLevelColors() = ios 0x1dec94, win 0x207150, m1 0xe5144, imac 0x103350;
     void updateMaxGameplayY() = ios 0x203ec4, win 0x234930, m1 0x11da78, imac 0x147b20;
@@ -18965,8 +18979,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     CheckpointObject* loadLastCheckpoint() = ios 0x124b50, m1 0xacaf4, imac 0xbe0d0;
     CheckpointObject* markCheckpoint() = ios 0x123284, win 0x3a06e0, imac 0xbb9d0, m1 0xaacd4;
     void onQuit() = ios 0x11d45c, win 0x3a3db0, m1 0xa3cac, imac 0xb3c60;
-    void optimizeColorGroups() = win 0x397d10, m1 0x9f2d8, imac 0xae840;
-    void optimizeOpacityGroups() = win 0x397fa0, m1 0x9f52c, imac 0xaea30;
+    void optimizeColorGroups() = win 0x397d10, m1 0x9f2d8, imac 0xae840, ios 0x11a5b8;
+    void optimizeOpacityGroups() = win 0x397fa0, m1 0x9f52c, imac 0xaea30, ios 0x11a718;
     void pauseGame(bool) = ios 0x125b90, win 0x3a31f0, imac 0xbf290, m1 0xadc74;
     void playEndAnimationToPos(cocos2d::CCPoint) = ios 0x11f5e0, win 0x394aa0, imac 0xb6a00, m1 0xa664c;
     void playPlatformerEndAnimationToPos(cocos2d::CCPoint, bool) = ios 0x11f9e8, win 0x395430, imac 0xb6fb0, m1 0xa6b84;
@@ -18987,8 +19001,21 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void resumeAndRestart(bool) = ios 0x125cc0, win 0x3a34b0, imac 0xbf3d0, m1 0xaddbc;
     void saveActiveSaveObjects(gd::vector<SavedActiveObjectState>&, gd::vector<SavedSpecialObjectState>&) = win 0x3a1ae0;
     void saveDynamicSaveObjects(gd::vector<SavedObjectStateRef>&) = win 0x3a17d0;
-    void scanActiveSaveObjects() = m1 0xa0398, imac 0xaf930;
-    void scanDynamicSaveObjects() = win 0x3a1180, m1 0x9f780, imac 0xaec20;
+    void scanActiveSaveObjects() = win inline, m1 0xa0398, imac 0xaf930, ios 0x11aef4 {
+        CCObject* obj;
+        CCARRAY_FOREACH(m_objects, obj) {
+            auto object = static_cast<GameObject*>(obj);
+            if (object->canAllowMultiActivate()) {
+                if (!object->canMultiActivate(m_isPlatformer)) {
+                    m_activeSaveObjects1.push_back(object);
+                }
+            }
+            else if (object->m_classType == GameObjectClassType::Animated) {
+                if (static_cast<AnimatedGameObject*>(object)->m_notGrounded) m_activeSaveObjects2.push_back(object);
+            }
+        }
+    }
+    void scanDynamicSaveObjects() = win 0x3a1180, m1 0x9f780, imac 0xaec20, ios 0x11a878;
     void screenFlipObject(GameObject*) = win 0x399880;
     void setDamageVerifiedIdx(int);
     void setupHasCompleted() = ios 0x119a3c, win 0x38f9c0, imac 0xadac0, m1 0x9e66c;
@@ -18999,7 +19026,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void showHint() = win 0x39d8c0, imac 0xbb420, m1 0xaa800, ios 0x122db8;
     void showNewBest(bool newReward, int orbs, int diamonds, bool demonKey, bool noRetry, bool noTitle) = ios 0x11eb6c, win 0x3925f0, m1 0xa5a94, imac 0xb5d40;
     void showRetryLayer() = win 0x3959c0, imac 0xb7400, m1 0xa6f44, ios 0x11fc60;
-    void showTwoPlayerGuide() = ios 0x11b870, m1 0xa1d74, imac 0xb1890;
+    void showTwoPlayerGuide() = win 0x395be0, ios 0x11b870, m1 0xa1d74, imac 0xb1890;
     void spawnCircle() = ios 0x11dfa0;
     TodoReturn spawnFirework() = m1 0xa5800, imac 0xb5a80;
     void startGame() = ios 0x11d400, win 0x390bd0, m1 0xa3c50, imac 0xb3c00;
