@@ -5353,7 +5353,7 @@ class LocalLevelManager : GManager {
 	static LocalLevelManager* sharedState() = win 0xac180;
 
 	TodoReturn getAllLevelsInDict();
-	TodoReturn getAllLevelsWithName(gd::string);
+	cocos2d::CCArray* getAllLevelsWithName(gd::string) = win 0xac700;
 	TodoReturn getLevelsInNameGroups();
 	gd::string getMainLevelString(int) = win 0xac310;
 	TodoReturn markLevelsAsUnmodified();
