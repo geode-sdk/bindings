@@ -156,13 +156,20 @@ if (GEODE_IS_MEMBER_TEST)
 	return()
 endif()
 
+if (GEODE_BUILDING_DOCS)
+	set(GEODE_INCLUDE_SYSTEM_SPECIFIER "")
+else()
+	set(GEODE_INCLUDE_SYSTEM_SPECIFIER SYSTEM)
+endif()
+
+
 add_library(${PROJECT_NAME} ${GEODE_CODEGEN_PATH}/Geode/GeneratedSource.cpp)
-target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC
+target_include_directories(${PROJECT_NAME} ${GEODE_INCLUDE_SYSTEM_SPECIFIER} PUBLIC
 	${GEODE_CODEGEN_PATH}
 )
 
 if (NOT BINDINGS_VERSIONED_ONLY)
-	target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC
+	target_include_directories(${PROJECT_NAME} ${GEODE_INCLUDE_SYSTEM_SPECIFIER} PUBLIC
 		${CMAKE_CURRENT_SOURCE_DIR}/bindings/include
 	)
 endif()
