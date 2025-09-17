@@ -7613,7 +7613,7 @@ class GameManager : GManager {
     TodoReturn applicationWillEnterForeground() = win 0x186cd0;
     void calculateBaseKeyForIcons() = m1 0x2f6240, imac 0x363550, ios 0x311f24;
     TodoReturn canShowRewardedVideo();
-    TodoReturn checkSteamAchievementUnlock();
+    void checkSteamAchievementUnlock() = win 0x17b1a0;
     void checkUsedIcons() = ios 0x316a40, win 0x1811b0, m1 0x2fcce8, imac 0x36b860;
     TodoReturn claimItemsResponse(gd::string);
     TodoReturn clearGJLog();
@@ -7841,7 +7841,7 @@ class GameManager : GManager {
     void resetAchievement(gd::string) = win 0x17a390, m1 0x2f8614, imac 0x365c30;
     TodoReturn resetAdTimer();
     TodoReturn resetAllIcons();
-    TodoReturn resetCoinUnlocks();
+    void resetCoinUnlocks() = win 0x17db50;
     TodoReturn resetDPadSettings(bool);
     cocos2d::CCSize resolutionForKey(int) = win 0x187890, m1 0x309710, imac 0x3791c0, ios 0x31de78;
     TodoReturn resumeAudio();
