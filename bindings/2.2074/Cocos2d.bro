@@ -4877,8 +4877,8 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInRowsWithArray(cocos2d::CCArray*);
     void alignItemsVertically();
     void alignItemsVerticallyWithPadding(float) = imac 0x77d370, m1 0x69230c, ios 0x1d93e0;
-    cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*);
-    cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
+    cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = m1 0x691fb4, imac 0x77d050, ios 0x1d923c;
+    cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = m1 0x693500, imac 0x77e9e0, ios 0x1d9790;
 
     virtual bool init() = imac 0x77cdb0, m1 0x691d14, ios 0x1d9010;
     virtual void addChild(cocos2d::CCNode*) = m1 0x691d1c, imac 0x77cdc0, ios 0x1d9018;
