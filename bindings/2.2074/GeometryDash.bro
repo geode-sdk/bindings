@@ -9144,7 +9144,9 @@ class GameToolbox {
         return GameToolbox::createToggleButton(label, selector, state, menu, position, parent, labelParent, .7f, .5f, 80.f, { 8.f, 0.f }, "bigFont.fnt", false, 0, container);
     }
     static CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, float buttonScale, float maxLabelScale, float maxLabelWidth, cocos2d::CCPoint labelOffset, char const* font, bool labelTop, int labelTag, cocos2d::CCArray* container) = win 0x64670, imac 0x4dbe90, m1 0x43ef50, ios 0x47bcc;
-    static bool doWeHaveInternet() = m1 0x43e8a8, imac 0x4db770;
+    static bool doWeHaveInternet() = win inline, m1 0x43e8a8, imac 0x4db770, ios 0x4776c {
+        return true;
+    }
     static gd::string easeToText(int easingType) = win 0x68570, m1 0x445748, imac 0x4e34f0, ios 0x4b720;
     static uint64_t fast_rand() = win inline, m1 0x441848, imac 0x4dea50, ios inline {
         auto value = GameToolbox::getfast_srand() * 214013 + 2531011;
