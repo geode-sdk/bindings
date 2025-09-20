@@ -1419,13 +1419,13 @@ class CCAnimateFrameCache : cocos2d::CCObject {
 
 [[link(android)]]
 class CCBlockLayer : cocos2d::CCLayerColor {
-    // virtual ~CCBlockLayer();
-
     CCBlockLayer() = win 0x42360 {
         m_closeOnHide = false;
         m_forcePrioRegistered = false;
     }
-    static CCBlockLayer* create() = win inline {
+    ~CCBlockLayer() = win 0x42430, m1 0x4612fc, imac 0x5019a0, ios 0x8a228;
+
+    static CCBlockLayer* create() = win inline, m1 0x461584, imac 0x501d20, ios inline {
         auto ret = new CCBlockLayer();
         if (ret->init()) {
             ret->autorelease();
@@ -1444,18 +1444,28 @@ class CCBlockLayer : cocos2d::CCLayerColor {
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x4617a4, imac 0x501f60, ios 0x8a424;
     virtual void keyBackClicked() = win 0x42620, m1 0x4617dc, imac 0x501fa0, ios 0x8a45c;
     virtual void customSetup() = m1 0x461760, imac 0x501f00, ios 0x8a3e0 {}
-    virtual TodoReturn enterLayer() = win 0x425a0, m1 0x46176c, imac 0x501f30, ios 0x8a3ec;
-    virtual TodoReturn exitLayer() = win 0x42640, imac 0x501fd0, m1 0x4617f8, ios 0x8a478;
+    virtual void enterLayer() = win 0x425a0, m1 0x46176c, imac 0x501f30, ios 0x8a3ec;
+    virtual void exitLayer() = win 0x42640, imac 0x501fd0, m1 0x4617f8, ios 0x8a478;
     virtual void showLayer(bool) = win 0x42680, m1 0x461844, imac 0x502010, ios 0x8a4c4;
-    virtual TodoReturn hideLayer(bool) = win 0x42690, m1 0x461850, imac 0x502020, ios 0x8a4d0;
-    virtual TodoReturn layerVisible() = win 0x426a0, m1 0x461860, imac 0x502040, ios 0x8a4e0;
+    virtual void hideLayer(bool) = win 0x42690, m1 0x461850, imac 0x502020, ios 0x8a4d0;
+    virtual void layerVisible() = win 0x426a0, m1 0x461860, imac 0x502040, ios 0x8a4e0;
     virtual void layerHidden() = win 0x426b0, m1 0x461870, imac 0x502060, ios 0x8a4f0;
     virtual void enterAnimFinished() = m1 0x46185c, imac 0x502030, ios 0x8a4dc {}
     virtual void disableUI() = m1 0x461764, imac 0x501f10, ios 0x8a3e4 {}
     virtual void enableUI() = m1 0x461768, imac 0x501f20, ios 0x8a3e8 {}
 
-    void decrementForcePrio() = ios 0x8a5a4, m1 0x461924, imac 0x502150;
-    void incrementForcePrio();
+    void decrementForcePrio() = win inline, ios 0x8a5a4, m1 0x461924, imac 0x502150 {
+        if (m_forcePrioRegistered) {
+            m_forcePrioRegistered = false;
+            cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->unregisterForcePrio(this);
+        }
+    }
+    void incrementForcePrio() = win inline, m1 0x461710, imac 0x501eb0, ios 0x8a390 {
+        if (!m_forcePrioRegistered) {
+            m_forcePrioRegistered = true;
+            cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->registerForcePrio(this, 2);
+        }
+    }
 
     bool m_closeOnHide;
     bool m_forcePrioRegistered;
@@ -18036,12 +18046,12 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     // virtual ~PauseLayer();
-    PauseLayer() = win inline {
+    PauseLayer() {
         m_unfocused = false;
         m_tryingQuit = false;
     }
 
-    static PauseLayer* create(bool) = win inline, m1 0x34c250, imac 0x3c2f60 {
+    static PauseLayer* create(bool) = win inline, m1 0x34c250, imac 0x3c2f60, ios 0x1453f8 {
         auto ret = new PauseLayer();
         if (ret && ret->init(p0)) {
             ret->autorelease();
@@ -18057,30 +18067,30 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x368de0, imac 0x3c4e00, m1 0x34e0b0, ios 0x146e3c;
     virtual void keyUp(cocos2d::enumKeyCodes) = m1 0x34e268, imac 0x3c4fa0, ios 0x146f58 {}
 
-    TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
+    void createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = m1 0x34dc74, imac 0x3c49f0;
     void goEdit() = ios 0x146d14, win 0x368b80, m1 0x34df78, imac 0x3c4cc0;
-    bool init(bool) = win inline {
+    bool init(bool) = win inline, m1 0x34c31c, imac 0x3c3050, ios inline {
         m_unfocused = p0;
         return CCBlockLayer::init();
     }
     void musicSliderChanged(cocos2d::CCObject*) = win 0x3683c0, imac 0x3c4870, m1 0x34daec, ios 0x146bc0;
     void onEdit(cocos2d::CCObject* sender) = ios 0x146c38, win 0x368990, m1 0x34de9c, imac 0x3c4be0;
-    void onHelp(cocos2d::CCObject* sender);
+    void onHelp(cocos2d::CCObject* sender) = m1 0x34dfe0, imac 0x3c4d40;
     void onNormalMode(cocos2d::CCObject* sender) = ios 0x146a18, win 0x368530, m1 0x34d904, imac 0x3c4670;
     void onPracticeMode(cocos2d::CCObject* sender) = ios 0x1469dc, win 0x368450, m1 0x34d8ac, imac 0x3c4610;
     void onQuit(cocos2d::CCObject* sender) = ios 0x146da0, win 0x368e50, m1 0x34dffc, imac 0x3c4d60;
-    void onRecordReplays(cocos2d::CCObject* sender);
-    void onReplay(cocos2d::CCObject* sender);
+    void onRecordReplays(cocos2d::CCObject* sender) = m1 0x34de6c, imac 0x3c4bb0;
+    void onReplay(cocos2d::CCObject* sender) = m1 0x34dba0, imac 0x3c4930;
     void onRestart(cocos2d::CCObject* sender) = ios 0x146b60, win 0x3686a0, m1 0x34da8c, imac 0x3c4800;
     void onRestartFull(cocos2d::CCObject* sender) = ios 0x1469a0, win 0x368740, m1 0x34d870, imac 0x3c45d0;
     void onResume(cocos2d::CCObject* sender) = ios 0x146a48, win 0x368610, m1 0x34d950, imac 0x3c46c0;
     void onSettings(cocos2d::CCObject* sender) = ios 0x146b9c, win 0x3677d0, m1 0x34dac8, imac 0x3c4840;
-    void onTime(cocos2d::CCObject* sender);
-    void onTryEdit(cocos2d::CCObject* sender) = win 0x3687e0, m1 0x34d760, imac 0x3c44c0;
-    void setupProgressBars();
+    void onTime(cocos2d::CCObject* sender) = m1 0x34db9c, imac 0x3c4920;
+    void onTryEdit(cocos2d::CCObject* sender) = win 0x3687e0, m1 0x34d760, imac 0x3c44c0, ios 0x1468bc;
+    void setupProgressBars() = win 0x367980, m1 0x34cdf0, imac 0x3c3b60, ios 0x145f70;
     void sfxSliderChanged(cocos2d::CCObject*) = ios 0x146bfc, win 0x35cd70, m1 0x34db2c, imac 0x3c48b0;
     void tryQuit(cocos2d::CCObject* sender) = ios 0x146a80, win 0x368c50, m1 0x34d988, imac 0x3c4700;
-    TodoReturn tryShowBanner(float);
+    void tryShowBanner(float) = m1 0x34db6c, imac 0x3c48f0;
 
     bool m_unfocused;
     bool m_tryingQuit;
