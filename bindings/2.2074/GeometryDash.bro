@@ -18131,13 +18131,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void activateStreak() = ios 0x21e810, win 0x38a300, imac 0x3f17c0, m1 0x3724d8;
     void addAllParticles() = ios 0x21a044, win 0x372900, imac 0x3eaed0, m1 0x36cbc8;
     TodoReturn addToTouchedRings(RingObject*) = imac 0x404180, m1 0x381fec;
-    TodoReturn addToYVelocity(double, int);
+    void addToYVelocity(double, int);
     void animatePlatformerJump(float) = ios 0x21ecec, win 0x376ef0, imac 0x3f2020, m1 0x372c98;
     void boostPlayer(float) = win 0x38a150, m1 0x374f48, imac 0x3f49e0, ios 0x2208a8;
     void bumpPlayer(float, int, bool, GameObject*) = ios 0x22d2f8, win 0x389910, imac 0x409440, m1 0x386e2c;
     TodoReturn buttonDown(PlayerButton);
     TodoReturn canStickToGround();
-    TodoReturn checkSnapJumpToObject(GameObject*);
+    void checkSnapJumpToObject(GameObject*);
     void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bb80, imac 0x3f4c90, m1 0x3751b8, ios 0x220ae4;
     void collidedWithObject(float, GameObject*) = imac 0x3fb520, m1 0x37a504, ios 0x224e30;
     int collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bc40, m1 0x376dd8, imac 0x3f6de0;
@@ -18242,7 +18242,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn performSlideCheck();
     void placeStreakPoint() = ios 0x21e8b8, win 0x38a8f0, imac 0x3f18a0, m1 0x3725a0;
     void playBumpEffect(int, GameObject*) = win 0x389cc0;
-    TodoReturn playBurstEffect();
+    void playBurstEffect();
     void playCompleteEffect(bool, bool) = win 0x36e2b0, imac 0x2024c0, m1 0x1b7870, ios 0x60a60;
     void playDeathEffect() = ios 0x5b138, win 0x3691a0, imac 0x1fa350, m1 0x1af8ac;
     void playDynamicSpiderRun() = win 0x38b740;
@@ -18275,7 +18275,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn resetStateVariables();
     void resetStreak() = ios 0x21e73c, win 0x375870, imac 0x3f16d0, m1 0x3723f4;
     void resetTouchedRings(bool) = ios 0x22798c, win 0x3824b0, m1 0x37f644, imac 0x4010d0;
-    TodoReturn reverseMod();
+    int reverseMod() {
+        return (m_isGoingLeft ? -1 : 1);
+    }
     void reversePlayer(EffectGameObject*) = ios 0x2297ac, win 0x382600, imac 0x4041e0, m1 0x382044;
     void ringJump(RingObject*, bool) = win 0x382dd0, imac 0x402c50, m1 0x380dec, ios 0x228ac0;
     void rotateGameplay(int, int, bool, float, float, bool, bool) = win 0x383fc0, m1 0x37f1a8, imac 0x400c30, ios 0x227648;
@@ -18400,7 +18402,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateRobotAnimationSpeed() = win 0x38b350;
     void updateRotation(float, float) = win 0x377370, imac 0x3f0d20, m1 0x371b20;
     void updateRotation(float) = ios 0x224ca4, win 0x37b1f0, imac 0x3fb360, m1 0x37a378;
-    void updateShipRotation(float) = win 0x37ae10;
+    void updateShipRotation(float) = win 0x37ae10, m1 0x379fb0;
     void updateShipSpriteExtra(gd::string) = win 0x388f90, m1 0x36bf50, imac 0x3ea1d0, ios 0x219528;
     void updateSlopeRotation(float) = m1 0x379e4c;
     TodoReturn updateSlopeYVelocity(float);
