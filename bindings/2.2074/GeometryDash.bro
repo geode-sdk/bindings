@@ -11849,16 +11849,25 @@ class GJItemIcon : cocos2d::CCSprite {
     static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = ios inline, win 0x273070, imac 0x35a800, m1 0x2edf50 {
         return create(unlockType, itemID, { 175, 175, 175 }, { 255, 255, 255 }, false, true, true, { 255, 255, 255 });
     }
-    static GJItemIcon* createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B) = win 0x272f40, imac 0x35d910, m1 0x2f0b84;
+    static GJItemIcon* createStoreItem(UnlockType, int, bool, cocos2d::ccColor3B) = win 0x272f40, imac 0x35d910, m1 0x2f0b84, ios 0x307bbc;
     static float scaleForType(UnlockType) = ios 0x305b68, win 0x273d90, imac 0x35a830, m1 0x2edf70;
-    static cocos2d::ccColor3B unlockedColorForType(int) = imac 0x35e100, m1 0x2f130c;
+    static cocos2d::ccColor3B unlockedColorForType(int) = win inline, imac 0x35e100, m1 0x2f130c, ios 0x3081e4 {
+        switch (p0) {
+            case 1: return { 10, 30, 20 };
+            case 2: return { 33, 22, 66 };
+            case 3: return { 20, 20, 40 };
+            case 4: return { 20, 30, 50 };
+            case 5: return { 50, 50, 50 };
+            default: return { 60, 30, 20 };
+        }
+    }
 
     virtual void setOpacity(unsigned char) = win 0x2738a0, imac 0x35dfc0, m1 0x2f11e0, ios 0x308148;
     void changeToLockedState(float) = ios 0x306088, win 0x273cb0, imac 0x35af50, m1 0x2ee474;
-    void darkenStoreItem(cocos2d::ccColor3B) = win 0x2739c0, imac 0x35e160, m1 0x2f1374;
-    void darkenStoreItem(ShopType) = win 0x273940;
+    void darkenStoreItem(cocos2d::ccColor3B) = win 0x2739c0, imac 0x35e160, m1 0x2f1374, ios 0x308248;
+    void darkenStoreItem(ShopType) = win 0x273940, m1 0x2ee44c, imac 0x35aee0, ios 0x306060;
     bool init(UnlockType, int, cocos2d::ccColor3B, cocos2d::ccColor3B, bool, bool, bool, cocos2d::ccColor3B) = ios 0x307c98, win 0x273190, m1 0x2f0cb0, imac 0x35da60;
-    void toggleEnabledState(bool) = win 0x273bf0, m1 0x2ee554, imac 0x35b000;
+    void toggleEnabledState(bool) = win 0x273bf0, m1 0x2ee554, imac 0x35b000, ios 0x306164;
 
     cocos2d::CCSprite* m_player;
     int m_iconRequestID;
@@ -12379,7 +12388,7 @@ class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
     virtual void show() = win 0x867a0, m1 0x288988, imac 0x2ee8a0, ios 0x3b3ca0;
     virtual void didPurchaseItem(GJStoreItem*) = win 0x27fb40, m1 0x286f08, imac 0x2ecb40, ios 0x3b2b2c;
 
-    bool init(int, GJPathsLayer*) = win 0x27dcb0, m1 0x285220, imac 0x2eada0;
+    bool init(int, GJPathsLayer*) = win 0x27dcb0, m1 0x285220, imac 0x2eada0, ios 0x3b1208;
     void onActivatePath(cocos2d::CCObject* sender) = win 0x27f8e0, imac 0x2ecb10, m1 0x286ee0;
     void onBack(cocos2d::CCObject* sender) = win 0x281670;
     void onIconInfo(cocos2d::CCObject* sender) = win 0x27f950;
@@ -12449,10 +12458,19 @@ class GJPathSprite : CCSpriteCOpacity {
 
     static GJPathSprite* create(int) = win 0x281720, m1 0x284ad4, imac 0x2ea590, ios 0x3b0c80;
 
-    void addRankLabel(int) = m1 0x288c2c, imac 0x2eeb50;
-    void addShardSprite() = win 0x281d90, imac 0x2ee610, m1 0x2886c0;
-    void changeToLockedArt() = win 0x281ad0, imac 0x2ed5b0, m1 0x287840;
-    bool init(int) = m1 0x288b0c, imac 0x2eea20;
+    void addRankLabel(int) = win inline, m1 0x288c2c, imac 0x2eeb50, ios 0x3b3ebc {
+        auto rankLabel = cocos2d::CCLabelBMFont::create(GameToolbox::intToString(p0).c_str(), "bigFont.fnt");
+        rankLabel->setScale(0.55f);
+        this->addChild(rankLabel, 1);
+        rankLabel->setPosition(this->convertToNodeSpace({ 0.f, 0.f }) + cocos2d::CCPoint { 0.f, 1.f });
+    }
+    void addShardSprite() = win 0x281d90, imac 0x2ee610, m1 0x2886c0, ios 0x3b3b44;
+    void changeToLockedArt() = win 0x281ad0, imac 0x2ed5b0, m1 0x287840, ios 0x3b3298;
+    bool init(int) = win inline, m1 0x288b0c, imac 0x2eea20, ios 0x3b3e14 {
+        if (!cocos2d::CCSprite::initWithSpriteFrameName(cocos2d::CCString::createWithFormat("pathIcon_%02d_001.png", p0)->getCString())) return false;
+        m_pathNumber = p0;
+        return true;
+    }
     void updateState() = win 0x2818f0, m1 0x284b80, imac 0x2ea630, ios 0x3b0d20;
 
     int m_pathNumber;
