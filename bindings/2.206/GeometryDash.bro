@@ -7148,7 +7148,7 @@ class GameStatsManager : cocos2d::CCNode {
 	}
 	int getItemUnlockStateLite(int, UnlockType);
 	gd::string getLevelKey(GJGameLevel* level) = win inline {
-		return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Local, level->m_dailyID > 0, level->m_gauntletLevel);
+		return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Main, level->m_dailyID > 0, level->m_gauntletLevel);
 	}
 	gd::string getLevelKey(int, bool, bool, bool) = win 0x1d3950, m1 0x60dcc, imac 0x6ceb0;
 	TodoReturn getListRewardKey(GJLevelList*);

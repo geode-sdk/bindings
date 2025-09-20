@@ -760,15 +760,11 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     bool initWithFade(float, float, float, cocos2d::_ccColor3B const&, char const*) = imac 0x55f530, m1 0x4b5ffc, ios 0x17a248;
 
     bool getDontOpacityFade() const;
-    float getM_fMaxSeg() const = android inline, mac inline, ios inline {
-    	return m_fMaxSeg;
-    }
+    float getM_fMaxSeg() const;
 
     void setDontOpacityFade(bool);
     void setFastMode(bool);
-    void setM_fMaxSeg(float maxSeg) = android inline, mac inline, ios inline {
-    	m_fMaxSeg = maxSeg;
-    }
+    void setM_fMaxSeg(float);
     void setStartingPositionInitialized(bool);
     void setStroke(float);
 
@@ -799,6 +795,30 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x4b646c, imac 0x55fa20, ios 0x17a574;
     virtual cocos2d::CCTexture2D* getTexture() = m1 0x4b63bc, imac 0x55f950, ios 0x17a504;
     virtual void setTexture(cocos2d::CCTexture2D*) = m1 0x4b63cc, imac 0x55f970, ios 0x17a514;
+
+    bool m_bFastMode;
+    bool m_bStartingPositionInitialized;
+    bool m_bStroke;
+    cocos2d::CCTexture2D* m_pTexture;
+    cocos2d::ccBlendFunc m_tBlendFunc;
+    float m_fStroke;
+    float m_fFadeDelta;
+    float m_fMinSeg;
+    uint32_t m_uMaxPoints;
+    uint32_t m_uNuPoints;
+    uint32_t m_uPreviousNuPoints;
+    cocos2d::CCPoint* m_pPointVertexes;
+    float* m_pPointState;
+    cocos2d::ccVertex2F* m_pVertices;
+    uint8_t* m_pColorPointer;
+    cocos2d::ccTex2F* m_pTexCoords;
+    bool m_bRepeatMode;
+    float m_fRepeatSpeed;
+    float m_fRepeatTime;
+    bool m_idk;
+    float m_fMaxSeg;
+    bool m_bDontOpacityFade;
+    cocos2d::CCPoint m_tPositionR;
 }
 
 [[link(win, android)]]
@@ -1166,9 +1186,12 @@ class cocos2d::CCAction : cocos2d::CCObject {
     virtual void startWithTarget(cocos2d::CCNode*) = imac 0x5dcbf0, m1 0x50fb48, ios 0x264928;
     virtual void stop() = m1 0x50fb50, imac 0x5dcc00, ios 0x264930;
     virtual void step(float) = m1 0x50fb60, imac 0x5dcc20, ios 0x264940;
+
+    cocos2d::CCNode* m_pOriginalTarget;
+    cocos2d::CCNode* m_pTarget;
+    int m_nTag;
+    float m_fSpeedMod;
 }
-
-
 
 [[link(win, android)]]
 class cocos2d::CCActionInstant : cocos2d::CCFiniteTimeAction {
@@ -1218,6 +1241,9 @@ class cocos2d::CCActionInterval : cocos2d::CCFiniteTimeAction {
     virtual void startWithTarget(cocos2d::CCNode*) = m1 0x32f3b0, imac 0x3a24a0, ios 0x18d968;
     virtual void step(float) = m1 0x32f33c, imac 0x3a2420, ios 0x18d900;
     virtual cocos2d::CCActionInterval* reverse() = m1 0x32f3dc, imac 0x3a24c0, ios 0x18d994;
+
+    float m_elapsed;
+    bool m_bFirstTick;
 }
 
 [[link(win, android)]]
@@ -1228,6 +1254,8 @@ class cocos2d::CCFiniteTimeAction : cocos2d::CCAction {
     virtual cocos2d::CCFiniteTimeAction* reverse() = m1 0x50fb68, imac 0x5dcc40, ios inline {
         return nullptr;
     }
+
+    float m_fDuration;
 }
 
 [[link(win, android)]]
@@ -1279,6 +1307,8 @@ class cocos2d::CCSet : cocos2d::CCObject {
     void removeObject(cocos2d::CCObject*) = m1 0x6b08b0, imac 0x79e3b0, ios 0x1af980;
 
     virtual void acceptVisitor(cocos2d::CCDataVisitor&) = m1 0x6b06b4, imac 0x79e1c0, ios 0x1af8cc;
+
+    gd::set<cocos2d::CCObject*> m_pSet;
 }
 
 [[link(win, android)]]
@@ -1894,7 +1924,8 @@ class cocos2d::CCProgressTimer : cocos2d::CCNodeRGBA {
     }
 
     // CCProgressTimer(cocos2d::CCProgressTimer const&);
-    // CCProgressTimer() = ios 0x405f18;
+    CCProgressTimer() = m1 0x51d2f4, imac 0x5ec630, ios 0x3f54cc;
+    virtual ~CCProgressTimer() = m1 0x51d70c, imac 0x5ecb00, ios 0x3f5744;
 
     cocos2d::CCPoint boundaryTexCoord(char) = ios 0x3f62fc;
     bool isReverseDirection();
@@ -1965,7 +1996,6 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const&) = m1 0x3a1a60, imac 0x426cd0, ios 0x153f70;
     virtual gd::string fullPathForFilename(char const*, bool) = imac 0x427a70, m1 0x3a27f4, ios 0x1549ec;
     virtual char const* fullPathFromRelativeFile(char const*, char const*) = imac 0x428a50, m1 0x3a3828, ios 0x1550e0;
-    gd::string getAndroidPath() const;
     virtual unsigned char* getFileData(char const*, char const*, unsigned long*) = imac 0x426fc0, m1 0x3a1d98, ios 0x15425c;
     virtual unsigned char* getFileDataFromZip(char const*, char const*, unsigned long*) = imac 0x427100, m1 0x3a1f04, ios 0x1543ac;
     virtual gd::string getFullPathForDirectoryAndFilename(gd::string const&, gd::string const&) = imac 0x429c50, m1 0x3a4c8c, ios 0x155f2c;
@@ -1983,7 +2013,6 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     void removeAllPaths();
     virtual void removeFullPath(char const*) = m1 0x3a35b8, imac 0x4288f0, ios 0x155044;
     virtual void removeSearchPath(char const*) = m1 0x3a45f4, imac 0x429700, ios 0x155bc4;
-    void setAndroidPath(gd::string);
     virtual void setFilenameLookupDictionary(cocos2d::CCDictionary*) = imac 0x429a70, m1 0x3a4a4c, ios 0x155d54;
     virtual void setPopupNotify(bool) = imac 0x429cd0, m1 0x3a4e20, ios 0x155fbc;
     virtual void setSearchPaths(gd::vector<gd::string> const&) = imac 0x429070, m1 0x3a3e68, ios 0x1556b0;
@@ -1992,29 +2021,6 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual bool shouldUseHD() = imac 0x4273c0, m1 0x3a21d0, ios 0x154578;
     virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&) = m1 0x3a1a68, imac 0x426ce0, ios 0x153f78;
 }
-
-// this is literally already in sdk, and adding it here breaks building sdk
-// [[link(win, android)]]
-// class cocos2d::CCFiniteTimeAction {
-	// float getDuration() = ios inline {
-    //     return m_fDuration;
-    // }
-
-	// void setDuration(float duration) = ios inline {
-    //     m_fDuration = duration;
-    // }
-
-	// CCFiniteTimeAction(cocos2d::CCFiniteTimeAction const&);
-	// CCFiniteTimeAction() = ios inline {
-    //     m_fDuration = 0;
-    // }
-    // ~CCFiniteTimeAction() = ios inline {}
-
-	// virtual cocos2d::CCFiniteTimeAction* reverse() = ios inline {
-    //     CCLOG("cocos2d: FiniteTimeAction#reverse: Implement me");
-    //     return NULL;
-    // }
-// }
 
 [[link(win, android)]]
 class cocos2d::CCGLProgram : cocos2d::CCObject {
@@ -2271,6 +2277,47 @@ class cocos2d::CCNode : cocos2d::CCObject {
     virtual void removeAllComponents() = m1 0x20ec64, imac 0x262fa0, ios 0x23ce30;
     virtual void updateTweenAction(float, char const*) = m1 0x20ebc4, imac 0x262eb0, ios 0x23cda0;
     virtual void updateTweenActionInt(float, int) = m1 0x20ebc8, imac 0x262ec0, ios 0x23cda4;
+
+    float m_fRotationX;
+    float m_fRotationY;
+    float m_fScaleX;
+    float m_fScaleY;
+    float m_fVertexZ;
+    cocos2d::CCPoint m_obPosition;
+    float m_fSkewX;
+    float m_fSkewY;
+    cocos2d::CCPoint m_obAnchorPointInPoints;
+    cocos2d::CCPoint m_obAnchorPoint;
+    cocos2d::CCSize m_obContentSize;
+    cocos2d::CCAffineTransform m_sAdditionalTransform;
+    cocos2d::CCAffineTransform m_sTransform;
+    cocos2d::CCAffineTransform m_sInverse;
+    cocos2d::CCCamera* m_pCamera;
+    cocos2d::CCGridBase* m_pGrid;
+    cocos2d::CCArray* m_pChildren;
+    cocos2d::CCNode* m_pParent;
+    void* m_pUserData;
+    cocos2d::CCObject* m_pUserObject;
+    cocos2d::CCGLProgram* m_pShaderProgram;
+    cocos2d::ccGLServerState m_eGLServerState;
+    cocos2d::CCScheduler* m_pScheduler;
+    cocos2d::CCActionManager* m_pActionManager;
+    bool m_bRunning;
+    bool m_bTransformDirty;
+    bool m_bPositionDirty;
+    float m_fTransformX;
+    float m_fTransformY;
+    bool m_bInverseDirty;
+    bool m_bAdditionalTransformDirty;
+    bool m_bVisible;
+    bool m_bIgnoreAnchorPointForPosition;
+    bool m_bReorderChildDirty;
+    int m_nScriptHandler;
+    int m_nUpdateScriptHandler;
+    cocos2d::ccScriptType m_eScriptType;
+    cocos2d::CCComponentContainer* m_pComponentContainer;
+    bool m_bUseChildIndex;
+    bool m_bDontPauseSchedulerAndActions;
 }
 
 [[link(win, android)]]
@@ -2366,6 +2413,18 @@ class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCA
     virtual void keyMenuClicked() = imac 0x49dd10, m1 0x408bf4, ios 0x14c2e0;
 
     virtual void keyDown(cocos2d::enumKeyCodes) = imac 0x49dd90, m1 0x408c84, ios 0x14c370;
+
+    bool m_bTouchEnabled;
+    bool m_bAccelerometerEnabled;
+    bool m_bKeypadEnabled;
+    bool m_bKeyboardEnabled;
+    bool m_bMouseEnabled;
+    cocos2d::CCTouchScriptHandlerEntry* m_pScriptTouchHandlerEntry;
+    cocos2d::CCScriptHandlerEntry* m_pScriptKeypadHandlerEntry;
+    cocos2d::CCScriptHandlerEntry* m_pScriptAccelerateHandlerEntry;
+    int m_nTouchPriority;
+    cocos2d::ccTouchesMode m_eTouchMode;
+    int m_uPreviousPriority;
 }
 
 [[link(win, android)]]
@@ -2411,6 +2470,14 @@ class cocos2d::CCLayerGradient : cocos2d::CCLayerColor {
     virtual void setVector(cocos2d::CCPoint const&) = imac 0x4a0bf0, m1 0x40b49c, ios 0x14d9a8;
     virtual void setCompressedInterpolation(bool) = m1 0x40b550, imac 0x4a0cc0, ios 0x14da5c;
     virtual bool isCompressedInterpolation() = m1 0x40b548, imac 0x4a0cb0, ios 0x14da54;
+
+    cocos2d::ccColor3B m_startColor;
+    cocos2d::ccColor3B m_endColor;
+    uint8_t m_startOpacity;
+    uint8_t m_endOpacity;
+    cocos2d::CCPoint m_AlongVector;
+    bool m_bCompressedInterpolation;
+    bool m_bShouldPremultiply;
 }
 
 [[link(win, android)]]
@@ -2440,6 +2507,19 @@ class cocos2d::CCObject : cocos2d::CCCopying {
     virtual void encodeWithCoder(DS_Dictionary*) = m1 0x3e638c, imac 0x477eb0, ios 0x88acc;
     virtual bool canEncode() = m1 0x3e6398, imac 0x477ed0, ios 0x88ad8;
     virtual void setTag(int) = m1 0x3e6384, imac 0x477ea0, ios 0x88ac4;
+
+    uint32_t m_uID;
+    int m_nLuaID;
+    int m_nTag;
+    uint32_t m_uReference;
+    uint32_t m_uAutoReleaseCount;
+    cocos2d::CCObjectType m_eObjType;
+    int m_uIndexInArray;
+    int m_nChildIndex;
+    int m_unknown2;
+    int m_nZOrder;
+    int m_uOrderOfArrival;
+    int m_unknown5;
 }
 
 [[link(win, android)]]
@@ -2506,6 +2586,10 @@ class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
 
     virtual void setBlendFunc(cocos2d::_ccBlendFunc) = m1 0x40a254, imac 0x49f7e0, ios 0x14cfdc;
     virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x40a244, imac 0x49f7c0, ios 0x14cfcc;
+
+    std::array<cocos2d::ccVertex2F, 4> m_pSquareVertices;
+    std::array<cocos2d::ccColor4F, 4> m_pSquareColors;
+    cocos2d::ccBlendFunc m_tBlendFunc;
 }
 
 [[link(win, android)]]
@@ -2530,6 +2614,13 @@ class cocos2d::CCLayerRGBA : cocos2d::CCLayer, cocos2d::CCRGBAProtocol {
     virtual bool isCascadeOpacityEnabled() = m1 0x409dfc, imac 0x49f120, ios 0x14ceec;
     virtual void setCascadeOpacityEnabled(bool) = m1 0x409e0c, imac 0x49f140, ios 0x14cefc;
     virtual void updateDisplayedOpacity(unsigned char) = m1 0x409b60, imac 0x49ed80, ios 0x14cd28;
+
+    uint8_t _displayedOpacity;
+    uint8_t _realOpacity;
+    cocos2d::ccColor3B _displayedColor;
+    cocos2d::ccColor3B _realColor;
+    bool _cascadeOpacityEnabled;
+    bool _cascadeColorEnabled;
 }
 
 [[link(win, android)]]
@@ -2781,13 +2872,13 @@ class cocos2d::CCTouchHandler : cocos2d::CCObject {
 
     cocos2d::CCTouchDelegate* getDelegate() = m1 0x3dd4e4, imac 0x46e1c0, ios 0x103c4;
     int getEnabledSelectors();
-    int getPriority() = ios inline, m1 0x3dd560, imac 0x46e240 {
+    int getPriority() = ios inline, m1 0x3dd558, imac 0x46e240 {
     	return m_nPriority;
     }
 
     void setDelegate(cocos2d::CCTouchDelegate*);
     void setEnalbedSelectors(int);
-    void setPriority(int prio) = ios inline {
+    void setPriority(int prio) = ios inline, m1 0x3dd560, imac 0x46e250 {
     	m_nPriority = prio;
     }
 
@@ -3131,6 +3222,13 @@ class cocos2d::CCNodeRGBA : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     virtual bool isCascadeOpacityEnabled() = m1 0x20f070, imac 0x263430, ios 0x23d024;
     virtual void setCascadeOpacityEnabled(bool) = m1 0x20f080, imac 0x263450, ios 0x23d034;
     virtual void updateDisplayedOpacity(unsigned char) = m1 0x20eee0, imac 0x2632b0, ios 0x23cf60;
+
+    uint8_t _displayedOpacity;
+    uint8_t _realOpacity;
+    cocos2d::ccColor3B _displayedColor;
+    cocos2d::ccColor3B _realColor;
+    bool _cascadeColorEnabled;
+    bool _cascadeOpacityEnabled;
 }
 
 [[link(win, android)]]
@@ -3250,6 +3348,35 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
 
     virtual void setTexture(cocos2d::CCTexture2D*) = imac 0x279250, m1 0x223640, ios 0x2395e8;
     virtual cocos2d::CCTexture2D* getTexture() = m1 0x223780, imac 0x2793c0, ios 0x239728;
+
+    cocos2d::CCTextureAtlas* m_pobTextureAtlas;
+    uint32_t m_uAtlasIndex;
+    cocos2d::CCSpriteBatchNode* m_pobBatchNode;
+    bool m_bDirty;
+    bool m_bRecursiveDirty;
+    bool m_bHasChildren;
+    bool m_bShouldBeHidden;
+    cocos2d::CCAffineTransform m_transformToBatch;
+    cocos2d::ccBlendFunc m_sBlendFunc;
+    cocos2d::CCTexture2D* m_pobTexture;
+    cocos2d::CCRect m_obRect;
+    bool m_bRectRotated;
+    cocos2d::CCPoint m_obOffsetPosition;
+    cocos2d::CCPoint m_obUnflippedOffsetPositionFromCenter;
+    cocos2d::ccV3F_C4B_T2F_Quad m_sQuad;
+    bool m_bOpacityModifyRGB;
+    bool m_bFlipX;
+    bool m_bFlipY;
+    bool m_bDontDraw;
+    bool m_bUseVertexMod;
+    float m_fTlVertexMod;
+    float m_fTrVertexMod;
+    float m_fBlVertexMod;
+    float m_fBrVertexMod;
+    float m_fTextureLeft;
+    float m_fTextureRight;
+    float m_fTextureBottom;
+    float m_fTextureTop;
 }
 
 [[link(win, android)]]
@@ -3344,7 +3471,27 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
     virtual void setCascadeOpacityEnabled(bool) = m1 0x4f7214, imac 0x5c1a50, ios 0x2fc23c;
     virtual void updateDisplayedOpacity(unsigned char) = imac 0x5c1750, m1 0x4f6f38, ios 0x2fc0b0;
 
-    //purgeCachedData = ios 0x30958c
+    uint16_t* m_sString;
+    gd::string m_sFntFile;
+    uint16_t* m_sInitialString;
+    gd::string m_sInitialStringUTF8;
+    cocos2d::CCTextAlignment m_pAlignment;
+    float m_fWidth;
+    cocos2d::CCBMFontConfiguration* m_pConfiguration;
+    bool m_bLineBreakWithoutSpaces;
+    cocos2d::CCPoint m_tImageOffset;
+    cocos2d::CCSprite* m_pReusedChar;
+    uint8_t m_cDisplayedOpacity;
+    uint8_t m_cRealOpacity;
+    cocos2d::ccColor3B m_tDisplayedColor;
+    cocos2d::ccColor3B m_tRealColor;
+    bool m_bCascadeColorEnabled;
+    bool m_bCascadeOpacityEnabled;
+    bool m_bIsOpacityModifyRGB;
+    bool m_bIsBatched;
+    cocos2d::CCArray* m_pTargetArray;
+    cocos2d::CCTexture2D* m_pSomeTexture;
+    int m_nExtraKerning;
 }
 
 [[link(win, android)]]
@@ -3455,6 +3602,13 @@ class cocos2d::CCAnimate : cocos2d::CCActionInterval {
     virtual void startWithTarget(cocos2d::CCNode*) = m1 0x3359f8, imac 0x3a98b0, ios 0x190d8c;
     virtual void stop() = imac 0x3a9920, m1 0x335a60, ios 0x190df4;
     virtual cocos2d::CCActionInterval* reverse() = imac 0x3a9ba0, m1 0x335ca8, ios 0x191034;
+
+    gd::vector<float>* m_pSplitTimes;
+    int m_nNextFrame;
+    cocos2d::CCSpriteFrame* m_pOrigFrame;
+    uint32_t m_uExecutedLoops;
+    bool m_bRecenterFrames;
+    bool m_bRecenterChildren;
 }
 
 [[link(win, android)]]
@@ -3559,6 +3713,8 @@ class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
     virtual cocos2d::ccLanguageType getCurrentLanguage() = m1 0x2ab20c, imac 0x314ff0, ios 0x1af448;
     virtual cocos2d::TargetPlatform getTargetPlatform() = m1 0x2ab1f8, imac 0x314fd0, ios 0x1af60c;
     virtual void openURL(char const*) = imac 0x315dc0, m1 0x2aba20, ios 0x1af380;
+
+    PAD = win 0xc8, mac 0x30;
 }
 
 [[link(win, android)]]
@@ -3612,6 +3768,8 @@ class cocos2d::CCArray : cocos2d::CCObject {
 
     // virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = ios 0x249634, imac 0x70a140, m1 0x62971c;
     // virtual void acceptVisitor(cocos2d::CCDataVisitor&) = ios 0x2496f8, imac 0x70a240, m1 0x62981c;
+
+    cocos2d::ccArray* data;
 }
 
 [[link(win, android)]]
@@ -3649,6 +3807,9 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x2fbcf0, m1 0x294174, ios 0x41bfa4;
     virtual void acceptVisitor(cocos2d::CCDataVisitor&) = m1 0x2945e8, imac 0x2fc180, ios 0x41c1c8;
+
+    cocos2d::CCDictElement* m_pElements;
+    int m_eDictType;
 }
 
 [[link(win, android)]]
@@ -3774,7 +3935,7 @@ class cocos2d::CCRepeat : cocos2d::CCActionInterval {
             m_pInnerAction = pAction;
             pAction->retain();
 
-            m_bActionInstant = dynamic_cast<CCActionInstant*>(pAction) ? true : false;
+            m_bActionInstant = geode::cast::typeinfo_cast<CCActionInstant*>(pAction) ? true : false;
             //an instant action needs to be executed one time less in the update method since it uses startWithTarget to execute the action
             if (m_bActionInstant) 
             {
@@ -3795,7 +3956,7 @@ class cocos2d::CCRepeat : cocos2d::CCActionInterval {
     // CCRepeat(cocos2d::CCRepeat const&);
     // CCRepeat();
     [[since("4.2.1")]]
-    virtual ~CCRepeat() = mac inline, ios inline {
+    virtual ~CCRepeat() = m1 0x330134, imac 0x3a3400, ios inline {
         CC_SAFE_RELEASE(m_pInnerAction);
     }
 
@@ -4405,6 +4566,20 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
 
     virtual bool init() = imac 0x5f9610, m1 0x52877c, ios 0x45b68;
     virtual void draw() = m1 0x52893c, imac 0x5f9800, ios 0x45cf8;
+
+    uint32_t m_uVao;
+    uint32_t m_uVbo;
+    uint32_t m_uBufferCapacity;
+    int m_nBufferCount;
+    cocos2d::ccV2F_C4B_T2F* m_pBuffer;
+    cocos2d::ccBlendFunc m_sBlendFunc;
+    bool m_bDirty;
+    bool m_bUseArea;
+    cocos2d::CCRect m_rDrawArea;
+    float m_fMinAreaX;
+    float m_fMaxAreaX;
+    float m_fMaxAreaY;
+    float m_fMinAreaY;
 }
 
 [[link(win, android)]]
@@ -4432,6 +4607,12 @@ class cocos2d::CCSpriteBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x1346d4, imac 0x1675e0, ios 0x1d8bc4;
     virtual cocos2d::CCTexture2D* getTexture() = m1 0x1346e4, imac 0x167600, ios 0x1d8bd4;
     virtual void setTexture(cocos2d::CCTexture2D*) = m1 0x134704, imac 0x167630, ios 0x1d8bf4;
+
+    cocos2d::CCTextureAtlas* m_pobTextureAtlas;
+    cocos2d::ccBlendFunc m_blendFunc;
+    cocos2d::CCArray* m_pobDescendants;
+    bool m_bManualSortChildren;
+    bool m_bManualSortAllChildrenDirty;
 }
 
 [[link(win, android)]]
@@ -4466,9 +4647,6 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     }
     bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = imac 0x3445a0, m1 0x2d9a18, ios 0x24d2dc;
 
-    gd::string getFrameName() const = mac inline {
-    	return m_strFrameName;
-    }
     cocos2d::CCPoint const& getOffset();
     cocos2d::CCPoint const& getOffsetInPixels();
     cocos2d::CCSize const& getOriginalSize();
@@ -4477,7 +4655,6 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     cocos2d::CCRect const& getRectInPixels();
     cocos2d::CCTexture2D* getTexture() = imac 0x344d90, m1 0x2da058, ios 0x24d5f4;
 
-    void setFrameName(gd::string);
     void setOffset(cocos2d::CCPoint const&) = imac 0x344c60, m1 0x2d9f78;
     void setOffsetInPixels(cocos2d::CCPoint const&) = imac 0x344d00, m1 0x2d9fec;
     void setOriginalSize(cocos2d::CCSize const&);
@@ -4550,6 +4727,8 @@ class cocos2d::CCString : cocos2d::CCObject {
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x6a88e4, imac 0x795530, ios 0x267ec4;
     virtual bool isEqual(cocos2d::CCObject const*) = m1 0x6a89f0, imac 0x795580, ios 0x267f1c;
     virtual void acceptVisitor(cocos2d::CCDataVisitor&) = m1 0x6a8df0, imac 0x7959f0, ios 0x2681b0;
+
+    gd::string m_sString; 
 }
 
 [[link(win, android)]]
@@ -4579,6 +4758,13 @@ class cocos2d::CCMenuItem : cocos2d::CCNodeRGBA {
     virtual bool isEnabled() = m1 0x33792c, imac 0x3abb20, ios 0x50738;
     virtual void setEnabled(bool) = m1 0x337924, imac 0x3abb10, ios 0x50730;
     virtual bool isSelected() = m1 0x337950, imac 0x3abb80, ios 0x5075c;
+
+    bool m_bSelected;
+    bool m_bEnabled;
+    cocos2d::CCObject* m_pListener;
+    cocos2d::SEL_MenuHandler m_pfnSelector;
+    int m_nScriptTapHandler;
+    float m_fSizeMult;
 }
 
 [[link(win, android)]]
@@ -4611,6 +4797,10 @@ class cocos2d::CCMenuItemSprite : cocos2d::CCMenuItem {
     virtual cocos2d::CCNode* getDisabledImage() = m1 0x338ae8, imac 0x3acd80, ios 0x508e8;
     virtual void setDisabledImage(cocos2d::CCNode*) = imac 0x3acd90, m1 0x338af0, ios 0x508f0;
     virtual void updateImagesVisibility() = imac 0x3ad200, m1 0x338f6c, ios 0x50bdc;
+
+    cocos2d::CCNode* m_pNormalImage;
+    cocos2d::CCNode* m_pSelectedImage;
+    cocos2d::CCNode* m_pDisabledImage;
 }
 
 [[link(win, android)]]
@@ -4687,8 +4877,8 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInRowsWithArray(cocos2d::CCArray*);
     void alignItemsVertically();
     void alignItemsVerticallyWithPadding(float) = imac 0x77d370, m1 0x69230c, ios 0x1d93e0;
-    cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*);
-    cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool);
+    cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = m1 0x691fb4, imac 0x77d050, ios 0x1d923c;
+    cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = m1 0x693500, imac 0x77e9e0, ios 0x1d9790;
 
     virtual bool init() = imac 0x77cdb0, m1 0x691d14, ios 0x1d9010;
     virtual void addChild(cocos2d::CCNode*) = m1 0x691d1c, imac 0x77cdc0, ios 0x1d9018;
@@ -4702,6 +4892,10 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x77d230, m1 0x6921c4, ios 0x1d9378;
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x77d150, m1 0x6920d4, ios 0x1d9288;
     virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x77d1d0, m1 0x69215c, ios 0x1d9310;
+
+    bool m_bEnabled;
+    cocos2d::tCCMenuState m_eState;
+    cocos2d::CCMenuItem* m_pSelectedItem;
 }
 
 [[link(win, android)]]
@@ -5215,6 +5409,36 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
     void send(cocos2d::extension::CCHttpRequest* request) = imac 0x426430, m1 0x3a12c0, ios 0x241138;
     bool lazyInitThreadSemphore() = imac 0x425880, m1 0x3a0864;
     void dispatchResponseCallbacks(float);
+
+    int _timeoutForConnect;
+    int _timeoutForRead;
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCHttpRequest : cocos2d::CCObject {
+    int _requestType;
+    gd::string _url;
+    gd::vector<char> _requestData;
+    gd::string _tag;
+    cocos2d::CCObject* _pTarget;
+    cocos2d::extension::SEL_HttpResponse _pSelector;
+    void* _pUserData;
+    gd::vector<gd::string> _headers;
+    int _type;
+    bool _shouldCancel;
+    int _downloadProgress;
+    int _readTimeout;
+    int _connectTimeout;
+}
+
+[[link(win, android)]]
+class cocos2d::extension::CCHttpResponse : cocos2d::CCObject {
+    cocos2d::extension::CCHttpRequest* _pHttpRequest;
+    bool _succeed;
+    gd::vector<char> _responseData;
+    gd::vector<char> _responseHeader;
+    int _responseCode;
+    gd::string _errorBuffer;
 }
 
 [[link(win, android)]]
@@ -5331,7 +5555,7 @@ class cocos2d::CCSpeed : cocos2d::CCAction {
 }
 
 [[link(win, android)]]
-class pugi::xml_document {
+class pugi::xml_document : pugi::xml_node {
     xml_document() = imac 0x62aa40, m1 0x5553cc, ios 0x3a593c;
     ~xml_document() = imac 0x62ab90, m1 0x555520, ios 0x3a5a20;
 }
@@ -5420,7 +5644,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
 }
 
 [[link(win, android)]]
-class cocos2d::CCConfiguration {
+class cocos2d::CCConfiguration : cocos2d::CCObject {
 	static void purgeConfiguration();
 	static cocos2d::CCConfiguration* sharedConfiguration() = m1 0x4634e8, imac 0x503d50, ios 0x3252e4;
 

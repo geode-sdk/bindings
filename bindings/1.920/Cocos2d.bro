@@ -142,6 +142,11 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
 }
 
 [[link(win, android)]]
+class cocos2d::CCGLProgram : cocos2d::CCObject {
+	bool compileShader(unsigned int*, unsigned int, const char*);
+}
+
+[[link(win, android)]]
 class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
 	static cocos2d::CCLayerColor* create();
  	static cocos2d::CCLayerColor* create(const cocos2d::ccColor4B&, float, float);
