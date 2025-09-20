@@ -15194,7 +15194,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void onNew(cocos2d::CCObject* sender) = win 0x2c57c0, imac 0x47a340, ios 0x40e01c, m1 0x3e8664;
     void onNextPage(cocos2d::CCObject* sender) = win 0x2c4ba0, m1 0x3e8068, imac 0x479d50, ios 0x40db78;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x2c4c20, m1 0x3e8034, imac 0x479d10, ios 0x40db44;
-    void onRefresh(cocos2d::CCObject* sender) = win 0x2c6660, m1 0x3e909c, imac 0x47acf0;
+    void onRefresh(cocos2d::CCObject* sender) = win 0x2c6660, m1 0x3e909c, imac 0x47acf0, ios 0x40e6f8;
     void onRemoveAllFavorites(cocos2d::CCObject* sender) = m1 0x3e8b28, imac 0x47a7c0;
     void onSaved(cocos2d::CCObject* sender) = win 0x2c6110, m1 0x3e8e64, imac 0x47aab0, ios 0x40e520;
     void onSavedMode(cocos2d::CCObject* sender) = win 0x2c5b90;
