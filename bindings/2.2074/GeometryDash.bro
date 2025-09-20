@@ -22584,7 +22584,7 @@ class SetupTimeWarpPopup : SetupTriggerPopup {
     virtual void determineStartValues() = win 0x44b2c0, m1 0x450fe4, imac 0x4efdd0, ios 0x14b950;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x287920, m1 0x451134, imac 0x4eff60, ios 0x14ba8c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x44ae50, m1 0x450a9c, imac 0x4ef830;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x44ae50, m1 0x450a9c, imac 0x4ef830, ios 0x14b528;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x44b3d0, m1 0x450eb8, imac 0x4efc70;
     void updateTimeWarp() = win inline, m1 0x4510c8, imac 0x4efed0 {
         if (m_gameObject) m_gameObject->m_timeWarpTimeMod = m_timeWarpMod;
@@ -22594,7 +22594,7 @@ class SetupTimeWarpPopup : SetupTriggerPopup {
             }
         }
     }
-    void updateTimeWarpLabel() = win 0x44b4a0, m1 0x450f94, imac 0x4efd80;
+    void updateTimeWarpLabel() = win 0x44b4a0, m1 0x450f94, imac 0x4efd80, ios 0x14b900;
 
     cocos2d::CCLabelBMFont* m_timeWarpLabel;
     Slider* m_timeWarpSlider;
