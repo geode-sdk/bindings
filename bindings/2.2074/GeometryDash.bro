@@ -8413,9 +8413,19 @@ class GameObject : CCSpritePlus {
         }
     }
     bool slopeWallLeft();
-    double slopeYPos(cocos2d::CCRect);
-    double slopeYPos(float) = win 0x19e430, m1 0x4ea270;
-    double slopeYPos(GameObject*);
+    double slopeYPos(cocos2d::CCRect) = win inline, m1 0x4ea200, imac 0x5b1380, ios 0x26087c {
+        auto floorTop = this->slopeFloorTop();
+        if (m_slopeUphill) {
+            return this->slopeYPos(floorTop ? p0.getMaxX() : p0.getMinX());
+        }
+        else {
+            return this->slopeYPos(floorTop ? p0.getMinX() : p0.getMaxX());
+        }
+    }
+    double slopeYPos(float) = win 0x19e430, m1 0x4ea270, imac 0x5b13d0, ios 0x2608e0;
+    double slopeYPos(GameObject*) = win inline, m1 0x4ea160, imac 0x5b1310, ios inline {
+        return this->slopeYPos(p0->getObjectRect());
+    }
     void spawnDefaultPickupParticle(GJBaseGameLayer*) = m1 0x1f9738, imac 0x24c390;
     void updateBlendMode() = win inline, ios 0x25be2c {
         auto shouldBlend = this->shouldBlendColor(m_baseColor, true);
@@ -18331,7 +18341,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     int collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bc40, m1 0x376dd8, imac 0x3f6de0;
     void collidedWithSlope(float dt, GameObject* object, bool forced) = ios 0x220b8c, imac 0x3f4d30, m1 0x375274;
     void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x3799e0, m1 0x375914, imac 0x3f5410;
-    TodoReturn convertToClosestRotation(float);
+    float convertToClosestRotation(float) = win 0x377370, m1 0x371c6c, imac 0x3f0e60, ios 0x21e0a4;
     void copyAttributes(PlayerObject*) = ios 0x22da24, win 0x38a710, imac 0x409ed0, m1 0x3877bc;
     void createFadeOutDartStreak() = ios 0x229880, win 0x382830, m1 0x382128, imac 0x4042d0;
     void createRobot(int) = win 0x372180, m1 0x36c034, imac 0x3ea2a0, ios 0x2195f4;
@@ -18595,11 +18605,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerSpriteExtra(gd::string) = win 0x388e80, m1 0x36be6c, imac 0x3ea100, ios 0x21945c;
     void updatePlayerSwingFrame(int) = ios 0x22ada0, win 0x388a20, imac 0x4061a0, m1 0x383e58;
     void updateRobotAnimationSpeed() = win 0x38b350;
-    void updateRotation(float, float) = win 0x377370, imac 0x3f0d20, m1 0x371b20;
+    void updateRotation(float, float) = win 0x37b430, imac 0x3f0d20, m1 0x371b20, ios 0x21df64;
     void updateRotation(float) = ios 0x224ca4, win 0x37b1f0, imac 0x3fb360, m1 0x37a378;
-    void updateShipRotation(float) = win 0x37ae10, m1 0x379fb0;
+    void updateShipRotation(float) = win 0x37ae10, m1 0x379fb0, imac 0x3fafc0, ios 0x224964;
     void updateShipSpriteExtra(gd::string) = win 0x388f90, m1 0x36bf50, imac 0x3ea1d0, ios 0x219528;
-    void updateSlopeRotation(float) = m1 0x379e4c;
+    void updateSlopeRotation(float) = win 0x37ad90, m1 0x379e4c, imac 0x3fae30, ios 0x2248e8;
     TodoReturn updateSlopeYVelocity(float);
     void updateSpecial(float) = ios 0x21e1a0, imac 0x3f0f70, m1 0x371d78;
     TodoReturn updateStateVariables();
