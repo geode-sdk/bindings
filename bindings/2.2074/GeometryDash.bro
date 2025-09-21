@@ -4946,7 +4946,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn addSnapPosition(cocos2d::CCPoint);
     void alignObjects(cocos2d::CCArray* objects, bool axisY) = win 0x1203a0, m1 0x45afc, imac 0x4de50, ios 0x3efa20;
     void applyOffset(GameObject* object) = win 0x120d40, ios 0x3e4a18, m1 0x35e80, imac 0x3ab90;
-    TodoReturn applySpecialOffset(cocos2d::CCPoint, GameObject*, cocos2d::CCPoint);
+    cocos2d::CCPoint applySpecialOffset(cocos2d::CCPoint, GameObject*, cocos2d::CCPoint) = win 0x120ab0, m1 0x46220, imac 0x4e5d0, ios 0x3effe8;
     TodoReturn arrayContainsClass(cocos2d::CCArray*, int);
     void assignNewGroups(bool groupY) = win 0x1178c0, m1 0x3f6a0, imac 0x45970, ios 0x3eb650;
     TodoReturn canAllowMultiActivate(GameObject*, cocos2d::CCArray*);
@@ -5000,7 +5000,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         this->deactivateScaleControl();
         this->deactivateTransformControl();
     }
-    void deleteSmartBlocksFromObjects(cocos2d::CCArray*) = win 0x116500;
+    void deleteSmartBlocksFromObjects(cocos2d::CCArray*) = win 0x116500, m1 0x34134, imac 0x34bb0, ios 0x3e3184;
     void deleteTypeFromObjects(int id, cocos2d::CCArray* objects) = win inline {
         for (int i = 0; i < objects->count(); i++) {
             auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
@@ -5061,11 +5061,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     }
     cocos2d::CCPoint getGroupCenter(cocos2d::CCArray* objs, bool) = win 0x121190, m1 0x36e28, imac 0x3c1b0, ios 0x3e5280;
     TodoReturn getGroupInfo(GameObject*, cocos2d::CCArray*, int&, int&, int&);
-    cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint) = win 0x11e6f0, ios 0x3ee478;
+    cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint) = win 0x11e6f0, m1 0x43aa4, imac 0x4acf0, ios 0x3ee478;
     CCMenuItemSpriteExtra* getModeBtn(char const*, int);
     cocos2d::CCNode* getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*) = win 0x116f30;
     TodoReturn getRandomStartKey(int);
-    cocos2d::CCPoint getRelativeOffset(GameObject*) = m1 0x35c3c, imac 0x3a960;
+    cocos2d::CCPoint getRelativeOffset(GameObject*) = win inline, m1 0x35c3c, imac 0x3a960, ios 0x3e482c {
+        return GameToolbox::getRelativeOffset(p0, this->offsetForKey(p0->m_objectID));
+    }
     cocos2d::CCArray* getSelectedObjects() = win 0x10f780, m1 0x37eac, imac 0x3d330, ios 0x3e6210;
     TodoReturn getSimpleButton(gd::string, cocos2d::SEL_MenuHandler, cocos2d::CCMenu*);
     SmartGameObject* getSmartNeighbor(SmartGameObject*, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*) = win 0x116e10;
@@ -5150,7 +5152,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn playerTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
     void playtestStopped() = win 0x110d80, m1 0x38a54, imac 0x3df80, ios 0x3e68c0;
     TodoReturn positionIsInSnapped(cocos2d::CCPoint);
-    TodoReturn positionWithoutOffset(GameObject*);
+    cocos2d::CCPoint positionWithoutOffset(GameObject*) = win inline, m1 0x461c0, imac 0x4e560, ios 0x3eff88 {
+        return p0->getPosition() - this->getRelativeOffset(p0);
+    }
     void processSelectObjects(cocos2d::CCArray*) = win 0x110060, m1 0x38398, imac 0x3d880;
     void processSmartObjectsFromType(int, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*) = win 0x116b80;
     void recreateButtonTabs();
@@ -5200,13 +5204,15 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     }
     TodoReturn setupTransformControl();
     bool shouldDeleteObject(GameObject*) = win 0xe4c50, m1 0x323a8, imac 0x32d40, ios 0x3e1cd8;
-    TodoReturn shouldSnap(GameObject*);
+    bool shouldSnap(GameObject*) = win inline, m1 0x46b24, imac 0x4efe0, ios inline {
+        return (int)p0->getRotation() % 90 == 0;
+    }
     void showDeleteConfirmation() = m1 0x32b90, imac 0x33560;
     void showLiveColorSelectForMode(int);
     void showLiveColorSelectForModeSpecial(int);
-    void showMaxBasicError() = m1 0x34474, imac 0x34ec0;
-    void showMaxCoinError() = m1 0x345f0, imac 0x35020;
-    void showMaxError() = win 0x111170, m1 0x342fc, imac 0x34d70;
+    void showMaxBasicError() = win 0x1112a0, m1 0x34474, imac 0x34ec0, ios 0x3e340c;
+    void showMaxCoinError() = m1 0x345f0, imac 0x35020, ios 0x3e34f0;
+    void showMaxError() = win 0x111170, m1 0x342fc, imac 0x34d70, ios 0x3e332c;
     void showUI(bool) = ios 0x3e6770, win 0x110200, m1 0x388f4, imac 0x3de00;
     void sliderChanged(cocos2d::CCObject*) = ios 0x3bf328, win 0xe13a0, imac 0xbd50, m1 0xd16c;
     static int smartTypeForKey(int) = win 0x12b890;
@@ -5466,7 +5472,7 @@ class EffectGameObject : EnhancedGameObject {
     void triggerEffectFinished() = win 0x48d780;
     void updateInteractiveHover(float) = win 0x48fe30;
     void updateSpecialColor() = win 0x48fdb0, m1 0x16b68c, imac 0x1aa0b0, ios 0x37f374;
-    void updateSpeedModType() = win 0x493010, ios 0x37f5ac;
+    void updateSpeedModType() = win 0x493010, m1 0x16b8f4, imac 0x1aa2f0, ios 0x37f5ac;
 
     // this is probably pretty wrong :D
 
@@ -8448,7 +8454,7 @@ class GameObject : CCSpritePlus {
     void updateSecondaryColor();
     void updateSecondaryColorOnly();
     void updateSecondaryOpacity();
-    void updateStartPos() = imac 0x591af0, m1 0x4d8ef8, win 0x18d670;
+    void updateStartPos() = imac 0x591af0, m1 0x4d8ef8, win 0x18d670, ios 0x254f70;
     void updateUnmodifiedPositions();
     void usesFreezeAnimation();
     void usesSpecialAnimation();
@@ -13543,7 +13549,7 @@ class GJSmartTemplate : cocos2d::CCObject {
     virtual void encodeWithCoder(DS_Dictionary*) = win 0x2ae150, imac 0x415960, m1 0x3912e8, ios 0xc430;
     virtual bool canEncode() = m1 0x390f40, imac 0x415580, ios 0xc1c4 { return true; }
 
-    static void applyTransformationsForType(SmartBlockType, cocos2d::CCSprite*) = win 0x2ac080;
+    static void applyTransformationsForType(SmartBlockType, cocos2d::CCSprite*) = win 0x2ac080, m1 0x38fb80, imac 0x413f70, ios 0xb83c;
     static GJSmartTemplate* createWithCoder(DS_Dictionary* dict) = win inline, imac 0x415590, m1 0x390f48, ios 0xc1cc {
         auto ret = GJSmartTemplate::create();
         ret->dataLoaded(dict);
@@ -13559,7 +13565,7 @@ class GJSmartTemplate : cocos2d::CCObject {
     GJSmartPrefab* getPrefab(cocos2d::CCPoint, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*, SmartGameObject*);
     GJSmartPrefab* getPrefab(gd::string, bool, bool) = win 0x2ab4e0, m1 0x38e528, imac 0x412600;
     cocos2d::CCArray* getPrefabs(gd::string);
-    GJSmartPrefab* getPrefabWithID(gd::string, int) = win 0x2abdd0;
+    GJSmartPrefab* getPrefabWithID(gd::string, int) = win 0x2abdd0, m1 0x38f514, imac 0x4138e0, ios 0xb2a8;
     GJSmartPrefab* getRandomPrefab(gd::string) = win 0x2ab370;
     static gd::string getSimplifiedKey(gd::string) = win 0x2a9a10;
     static SmartBlockType getSimplifiedType(SmartBlockType, bool&);
@@ -13591,7 +13597,7 @@ class GJSmartTemplate : cocos2d::CCObject {
     gd::string logTemplateStatus(bool) = win 0x2ad2f0, m1 0x390450, imac 0x4148f0;
     static cocos2d::CCPoint offsetForDir(GJSmartDirection, int) = win 0x2abe90;
     static cocos2d::CCPoint offsetForObject(SmartGameObject*);
-    static cocos2d::CCPoint offsetForType(SmartBlockType) = win 0x2abf90;
+    static cocos2d::CCPoint offsetForType(SmartBlockType) = win 0x2abf90, m1 0x38fa8c, imac 0x413df0, ios 0xb754;
     void removePrefab(gd::string, int);
     void resetScannedPrefabs();
     static SmartBlockType rotateBlockType(SmartBlockType, int) = win 0x2ac840;
@@ -13603,7 +13609,34 @@ class GJSmartTemplate : cocos2d::CCObject {
     SmartPrefabResult scanForPrefab(gd::string) = win 0x2aa480;
     static bool shouldDiscardObject(SmartBlockType, GJSmartDirection);
     static SmartBlockType smartObjectToType(SmartGameObject*, cocos2d::CCPoint) = win 0x2ac1c0;
-    static int smartTypeToObjectKey(SmartBlockType);
+    static int smartTypeToObjectKey(SmartBlockType) = win inline, m1 0x38fc84, imac 0x4140a0, ios 0xb910 {
+        switch (p0) {
+            case SmartBlockType::NormalSlope1:
+            case SmartBlockType::NormalSlope2:
+            case SmartBlockType::NormalSlope3:
+            case SmartBlockType::NormalSlope4:
+                return 2896;
+            case SmartBlockType::WideSlope1:
+            case SmartBlockType::WideSlope2:
+            case SmartBlockType::WideSlope3:
+            case SmartBlockType::WideSlope4:
+            case SmartBlockType::WideSlope5:
+            case SmartBlockType::WideSlope6:
+            case SmartBlockType::WideSlope7:
+            case SmartBlockType::WideSlope8:
+            case SmartBlockType::WideSlope9:
+            case SmartBlockType::WideSlope10:
+            case SmartBlockType::WideSlope11:
+            case SmartBlockType::WideSlope12:
+            case SmartBlockType::WideSlope13:
+            case SmartBlockType::WideSlope14:
+            case SmartBlockType::WideSlope15:
+            case SmartBlockType::WideSlope16:
+                return 2897;
+            default:
+                return 2895;
+        }
+    }
 
     cocos2d::CCDictionary* m_prefabArrays;
     cocos2d::CCDictionary* m_remapDict1;
@@ -22431,7 +22464,7 @@ class SetupSmartBlockLayer : FLAlertLayer, TextInputDelegate, SelectArtDelegate 
     void onDontDelete(cocos2d::CCObject* sender) = win 0x43f890;
     void onIgnoreCorners(cocos2d::CCObject* sender) = win 0x43f900;
     void onNearbyReference(cocos2d::CCObject* sender) = win 0x43f820;
-    void onPasteTemplate(cocos2d::CCObject* sender) = win 0x43f980, m1 0x437d78, imac 0x4d3f90;
+    void onPasteTemplate(cocos2d::CCObject* sender) = win 0x43f980, m1 0x437d78, imac 0x4d3f90, ios 0x73d94;
     void onReferenceOnly(cocos2d::CCObject* sender) = win 0x43f640;
     void onSelectPremade(cocos2d::CCObject* sender) = win 0x440620;
     void onSelectTemplate(cocos2d::CCObject* sender) = win 0x4406a0;
@@ -24361,7 +24394,7 @@ class SmartGameObject : GameObject {
         m_bUnkBool2 = false;
         return true;
     }
-    void updateSmartFrame() = win 0x487070;
+    void updateSmartFrame() = win 0x487070, m1 0x162ab4, imac 0x19fe80, ios 0x379684;
 
     // property 157
     bool m_referenceOnly;
