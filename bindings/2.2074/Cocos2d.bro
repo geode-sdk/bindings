@@ -3087,8 +3087,12 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     bool getSmoothFixCheck() const;
     int getSmoothFixCounter() const;
     unsigned int getTotalFrames();
-    cocos2d::CCPoint getVisibleOrigin();
-    cocos2d::CCSize getVisibleSize() = m1 0x3dfed0, imac 0x4710c0;
+    cocos2d::CCPoint getVisibleOrigin() = m1 0x3dfef4, imac 0x471100, ios inline {
+        return m_pobOpenGLView ? m_pobOpenGLView->getVisibleOrigin() : cocos2d::CCPoint { 0.f, 0.f };
+    }
+    cocos2d::CCSize getVisibleSize() = m1 0x3dfed0, imac 0x4710c0, ios inline {
+        return m_pobOpenGLView ? m_pobOpenGLView->getVisibleSize() : cocos2d::CCSize { 0.f, 0.f };
+    }
     cocos2d::CCSize getWinSize() = imac 0x470920, m1 0x3df874, ios 0x1791c4;
     cocos2d::CCSize getWinSizeInPixels() = imac 0x471080, m1 0x3dfeb4, ios 0x1794e0;
     float getZEye();
@@ -4042,6 +4046,34 @@ class cocos2d::CCRepeatForever : cocos2d::CCActionInterval {
 }
 
 [[link(win, android)]]
+class cocos2d::CCBezierBy : cocos2d::CCActionInterval {
+    static cocos2d::CCBezierBy* create(float, cocos2d::_ccBezierConfig const&) = m1 0x332e24, imac 0x3a66f0, ios 0x18f2f4;
+
+    bool initWithDuration(float, cocos2d::_ccBezierConfig const&) = m1 0x332f40, imac 0x3a6830, ios 0x18f3bc;
+
+    // CCBezierBy(cocos2d::CCBezierBy const&);
+    // CCBezierBy();
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x332ff4, imac 0x3a68f0, ios 0x18f470;
+    virtual void update(float) = m1 0x33314c, imac 0x3a6a80, ios 0x18f580;
+    virtual void startWithTarget(cocos2d::CCNode*) = m1 0x332fa0, imac 0x3a68a0, ios 0x18f41c;
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x3332b8, imac 0x3a6c20, ios 0x18f6ec;
+}
+
+[[link(win, android)]]
+class cocos2d::CCBezierTo : cocos2d::CCBezierBy {
+    static cocos2d::CCBezierTo* create(float, cocos2d::_ccBezierConfig const&) = m1 0x333390, imac 0x3a6cf0, ios 0x18f7c4;
+
+    bool initWithDuration(float, cocos2d::_ccBezierConfig const&) = m1 0x333440, imac 0x3a6dd0, ios 0x18f844;
+
+    // CCBezierTo(cocos2d::CCBezierTo const&);
+    // CCBezierTo();
+
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x3334a0, imac 0x3a6e40, ios 0x18f8a4;
+    virtual void startWithTarget(cocos2d::CCNode*) = m1 0x3335a8, imac 0x3a6f70, ios 0x18f96c;
+}
+
+[[link(win, android)]]
 class cocos2d::CCTransitionMoveInT : cocos2d::CCTransitionMoveInL {
     static cocos2d::CCTransitionMoveInT* create(float, cocos2d::CCScene*) = imac 0xd6340, m1 0xbe858, ios 0x1cece8;
 
@@ -4417,16 +4449,16 @@ class cocos2d::CCCallFunc : cocos2d::CCActionInstant {
     // CCCallFunc(cocos2d::CCCallFunc const&);
     // CCCallFunc();
     [[since("4.2.1")]]
-    virtual ~CCCallFunc() = ios 0x1b11f0;
+    virtual ~CCCallFunc() = m1 0x6aa558, imac 0x7973f0, ios 0x1b11f0;
 
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = ios 0x1b1264;
-    virtual void update(float) = ios 0x1b1364;
-    virtual bool initWithTarget(cocos2d::CCObject*) = ios 0x1b11b0;
-    virtual void execute() = ios 0x1b1370;
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x6aa670, imac 0x7974f0, ios 0x1b1264;
+    virtual void update(float) = m1 0x6aa77c, imac 0x7975f0, ios 0x1b1364;
+    virtual bool initWithTarget(cocos2d::CCObject*) = m1 0x6aa518, imac 0x7973b0, ios 0x1b11b0;
+    virtual void execute() = m1 0x6aa788, imac 0x797600, ios 0x1b1370;
 }
 
 [[link(win, android)]]
-class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo { // full copy from cocos2dx
+class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo {
     static cocos2d::CCCallFuncN* create(cocos2d::CCObject* pSelectorTarget, cocos2d::SEL_CallFuncN selector) = imac 0x7976c0, m1 0x6aa86c, ios inline {
 	CCCallFuncN *pRet = new CCCallFuncN();
 
@@ -4440,7 +4472,7 @@ class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo { // full co
         return NULL;
     }
 
-    bool initWithTarget(cocos2d::CCObject* pSelectorTarget, cocos2d::SEL_CallFuncN selector) = ios inline {
+    virtual bool initWithTarget(cocos2d::CCObject* pSelectorTarget, cocos2d::SEL_CallFuncN selector) = m1 0x6aa97c, imac 0x7977f0, ios inline {
         if (CCCallFunc::initWithTarget(pSelectorTarget)) {
             m_pCallFuncN = selector;
             return true;
@@ -4449,7 +4481,7 @@ class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo { // full co
         return false;
     }
 
-    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* zone) = ios inline {
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone* zone) = m1 0x6aa9d0, imac 0x797840, ios inline {
         cocos2d::CCZone* pNewZone = NULL;
         CCCallFuncN* pRet = NULL;
 
@@ -4467,13 +4499,55 @@ class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo { // full co
         return pRet;
     }
     
-    virtual void execute() = ios inline {
+    virtual void execute() = m1 0x6aa7f8, imac 0x797660, ios inline {
         if (m_pCallFuncN) {
             (m_pSelectorTarget->*m_pCallFuncN)(m_pTarget);
         }
         // if (m_nScriptHandler) {
         //     CCScriptEngineManager::sharedManager()->getScriptEngine()->executeCallFuncActionEvent(this, m_pTarget);
         // }
+    }
+}
+
+[[link(win, android)]]
+class cocos2d::CCCallFuncND : cocos2d::CCCallFuncN {
+    static cocos2d::CCCallFuncND* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*) = m1 0x6aaab0, imac 0x797930, ios inline {
+        auto ret = new CCCallFuncND();
+        if (ret->initWithTarget(p0, p1, p2)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+
+    // CCCallFuncND(cocos2d::CCCallFuncND const&);
+    // CCCallFuncND();
+
+    virtual bool initWithTarget(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*) = m1 0x6aab78, imac 0x797a20, ios inline {
+        if (!CCCallFunc::initWithTarget(p0)) return false;
+        m_pData = p2;
+        m_pCallFuncND = p1;
+        return true;
+    }
+    virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x6aabdc, imac 0x797a90, ios inline {
+        cocos2d::CCZone* zone = nullptr;
+        cocos2d::CCCallFuncND* ret = nullptr;
+        if (p0 && p0->m_pCopyObject) {
+            ret = static_cast<cocos2d::CCCallFuncND*>(p0->m_pCopyObject);
+        } else {
+            ret = new cocos2d::CCCallFuncND();
+            zone = p0 = new cocos2d::CCZone(ret);
+        }
+        CCCallFunc::copyWithZone(p0);
+        ret->initWithTarget(m_pSelectorTarget, m_pCallFuncND, m_pData);
+        CC_SAFE_DELETE(zone);
+        return ret;
+    }
+    virtual void execute() = m1 0x6aacd8, imac 0x797bb0, ios inline {
+        if (m_pCallFuncND) {
+            (m_pSelectorTarget->*m_pCallFuncND)(m_pTarget, m_pData);
+        }
     }
 }
 
