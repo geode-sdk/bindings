@@ -8881,7 +8881,9 @@ class GameStatsManager : cocos2d::CCNode {
     void addSimpleSpecialChestReward(gd::string, UnlockType, int, bool) = win 0x1e6d10;
     void addSpecialRewardDescription(gd::string, gd::string);
     void addStoreItem(int, int, int, int, ShopType) = ios 0x32bb90, win 0x1d1000, imac 0x660d0, m1 0x5a758;
-    bool areChallengesLoaded() = m1 0x663dc, imac 0x729b0;
+    bool areChallengesLoaded() = win inline, m1 0x663dc, imac 0x729b0, ios 0x3339d0 {
+        return m_challengeTime > 0;
+    }
     bool areRewardsLoaded() = win inline, m1 0x6599c, imac 0x71f60, ios 0x3333c4 {
         return m_rewardItems->objectForKey(1) != nullptr;
     }
@@ -8953,7 +8955,9 @@ class GameStatsManager : cocos2d::CCNode {
     void getBaseDiamonds(int) = imac 0x71240, m1 0x64c64;
     int getBonusDiamonds(int) = imac 0x71260, m1 0x64c78;
     GJChallengeItem* getChallenge(int) = ios 0x333cf4, win 0x1dee70, m1 0x66a90, imac 0x73000;
-    TodoReturn getChallengeKey(GJChallengeItem*) = m1 0x66e24, imac 0x73370;
+    gd::string getChallengeKey(GJChallengeItem* chal) = win inline, m1 0x66e24, imac 0x73370, ios 0x333efc {
+        return cocos2d::CCString::createWithFormat("c%i%i", chal->m_position, chal->m_timeLeft)->getCString();
+    }
     int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1dabd0, m1 0x608b4, imac 0x6cd40, ios 0x330730;
     cocos2d::CCArray* getCompletedMapPacks() = win 0x1dc180, imac 0x6e6c0, m1 0x6230c, ios 0x331520;
     gd::string getCurrencyKey(GJGameLevel* level) = win inline, m1 0x64184, imac 0x70790 {
@@ -9051,7 +9055,9 @@ class GameStatsManager : cocos2d::CCNode {
     void removeErrorFromSpecialChests() = win 0x1f0310;
     TodoReturn removeQueuedChallenge(int) = m1 0x66740, imac 0x72cf0;
     TodoReturn removeQueuedSecondaryChallenge(int) = m1 0x66978, imac 0x72f00;
-    void resetChallengeTimer();
+    void resetChallengeTimer() = win inline, imac 0x72990, m1 0x663d4, ios 0x3339c8 {
+        m_challengeTime = 0;
+    }
     TodoReturn resetPreSync();
     TodoReturn resetSpecialChest(gd::string);
     TodoReturn resetSpecialStatAchievements() = imac 0x76aa0, m1 0x6a2f8;
