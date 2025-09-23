@@ -1855,7 +1855,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3f570;
 	virtual void customSetup() = win 0x3e3d0;
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3f480;
 
 	bool m_exiting;
 	CCMenuItemSpriteExtra* m_audioOnBtn;
