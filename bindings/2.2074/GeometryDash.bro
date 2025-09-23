@@ -15091,7 +15091,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
     void refreshTabs() = win 0x2bac80;
     void selectLeaderboard(LeaderboardState) = win 0x2badb0, imac 0x4fd0f0, m1 0x45cc24;
     void setupLevelBrowser(cocos2d::CCArray*) = win 0x2bab20;
-    TodoReturn setupTabs() = imac 0x4fccd0, m1 0x45c848;
+    void setupTabs() = imac 0x4fccd0, m1 0x45c848, win 0x2ba5d0;
     void toggleTabButtons() = win 0x2bb000;
 
     GJListLayer* m_list;
