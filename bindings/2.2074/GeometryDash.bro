@@ -10183,7 +10183,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateAudioVisualizer() = ios 0x201760, win 0x2422f0, imac 0x143430, m1 0x11a1b0;
     void updateBGArtSpeed(float, float) = m1 0x11e5e0, imac 0x148a40;
     void updateCamera(float) = ios 0x201b6c, win 0x235760, imac 0x143a60, m1 0x11a738;
-    void updateCameraBGArt(cocos2d::CCPoint, float) = imac 0x14a5c0, m1 0x11fc80, win 0x237ec0;
+    void updateCameraBGArt(cocos2d::CCPoint, float) = imac 0x14a5c0, m1 0x11fc80, win 0x237ec0, ios 0x20584c;
     TodoReturn updateCameraEdge(int, int);
     void updateCameraMode(EffectGameObject* obj, bool updateDual) = ios 0x1e7dc8, win inline, m1 0xf39d4, imac 0x114180 {
         auto cameraFree = obj->m_cameraIsFreeMode;
@@ -11734,12 +11734,12 @@ class GJGroundLayer : cocos2d::CCLayer {
         this->setPosition(0.f, y);
     }
     float scaleGround(float) = win 0x277310, m1 0x506f20, imac 0x5d3350;
-    void toggleVisible01(bool visible) = win inline, m1 0x506df0, imac 0x5d31f0 {
+    void toggleVisible01(bool visible) = win inline, m1 0x506df0, imac 0x5d31f0, ios 0x306b0 {
         if (m_showGround1 == visible) return;
         m_showGround1 = visible;
         this->setVisible(visible && m_showGround2);
     }
-    void toggleVisible02(bool visible) = win inline, m1 0x506e20, imac 0x5d3230 {
+    void toggleVisible02(bool visible) = win inline, m1 0x506e20, imac 0x5d3230, ios 0x306e0 {
         if (m_showGround2 == visible) return;
         m_showGround2 = visible;
         this->setVisible(visible && m_showGround1);
@@ -11759,7 +11759,7 @@ class GJGroundLayer : cocos2d::CCLayer {
             }
         }
     }
-    void updateGroundPos(cocos2d::CCPoint pos) = win inline, m1 0x506e4c, imac 0x5d3270 {
+    void updateGroundPos(cocos2d::CCPoint pos) = win inline, m1 0x506e4c, imac 0x5d3270, ios 0x3070c {
         m_ground1Sprite->setPosition(pos);
         if (m_ground2Sprite) m_ground2Sprite->setPosition(pos);
     }
@@ -12160,7 +12160,7 @@ class GJMGLayer : cocos2d::CCLayer {
         m_showGround1 = visible;
         this->setVisible(visible && m_showGround2);
     }
-    void toggleVisible02(bool visible) = win inline, m1 0x507da4, imac 0x5d4270 {
+    void toggleVisible02(bool visible) = win inline, m1 0x507da4, imac 0x5d4270, ios 0x312d8 {
         if (m_showGround2 == visible) return;
         m_showGround2 = visible;
         this->setVisible(visible && m_showGround1);
