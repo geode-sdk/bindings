@@ -15085,7 +15085,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
     void onBack(cocos2d::CCObject* sender) = win 0x2bbed0;
     void onCreators(cocos2d::CCObject* sender);
     void onGlobal(cocos2d::CCObject* sender);
-    void onInfo(cocos2d::CCObject* sender) = m1 0x45c5c0, imac 0x4fca80;
+    void onInfo(cocos2d::CCObject* sender) = m1 0x45c5c0, imac 0x4fca80, win 0x2bb9a0;
     void onTop(cocos2d::CCObject* sender);
     void onWeek(cocos2d::CCObject* sender);
     void refreshTabs() = win 0x2bac80;
