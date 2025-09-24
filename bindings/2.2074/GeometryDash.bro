@@ -9138,7 +9138,7 @@ class GameToolbox {
     static void alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
     static TodoReturn bounceTime(float);
     static TodoReturn colorToSepia(cocos2d::ccColor3B, float);
-    static TodoReturn contentScaleClipRect(cocos2d::CCRect&);
+    static cocos2d::CCRect contentScaleClipRect(cocos2d::CCRect&);
     static TodoReturn createHashString(gd::string const&, int);
     static CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, cocos2d::CCArray* container) = win inline, m1 0x43ee18, imac 0x4dbd60, ios 0x47a98 {
         return GameToolbox::createToggleButton(label, selector, state, menu, position, parent, labelParent, .7f, .5f, 80.f, { 8.f, 0.f }, "bigFont.fnt", false, 0, container);
@@ -18655,7 +18655,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     cocos2d::CCSprite* m_dashFireSprite;
     bool m_isBallRotating;
     bool m_unk669;
-    GameObject* m_currentSlope3;
+    GameObject* m_currentPotentialSlope;
     GameObject* m_currentSlope;
     double unk_584;
     int m_collidingWithSlopeId;
