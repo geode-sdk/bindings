@@ -766,10 +766,10 @@ GEODE_MEMBER_CHECK(PlayerCheckpoint, m_followRelated2, 0x1c8);
 
 GEODE_SIZE_CHECK(SavedObjectStateRef, 0x30);
 GEODE_MEMBER_CHECK(SavedObjectStateRef, m_gameObject, 0x0);
-GEODE_MEMBER_CHECK(SavedObjectStateRef, m_unkDouble1, 0x8);
-GEODE_MEMBER_CHECK(SavedObjectStateRef, m_unkDouble2, 0x10);
-GEODE_MEMBER_CHECK(SavedObjectStateRef, m_unkFloat1, 0x18);
-GEODE_MEMBER_CHECK(SavedObjectStateRef, m_unkFloat2, 0x1c);
+GEODE_MEMBER_CHECK(SavedObjectStateRef, m_positionX, 0x8);
+GEODE_MEMBER_CHECK(SavedObjectStateRef, m_positionY, 0x10);
+GEODE_MEMBER_CHECK(SavedObjectStateRef, m_rotationXOffset, 0x18);
+GEODE_MEMBER_CHECK(SavedObjectStateRef, m_rotationYOffset, 0x1c);
 GEODE_MEMBER_CHECK(SavedObjectStateRef, m_addToCustomScaleX, 0x20);
 GEODE_MEMBER_CHECK(SavedObjectStateRef, m_addToCustomScaleY, 0x24);
 GEODE_MEMBER_CHECK(SavedObjectStateRef, m_unkFloat3, 0x28);
@@ -777,8 +777,8 @@ GEODE_MEMBER_CHECK(SavedObjectStateRef, m_unkFloat4, 0x2c);
 
 GEODE_SIZE_CHECK(SavedActiveObjectState, 0x10);
 GEODE_MEMBER_CHECK(SavedActiveObjectState, m_gameObject, 0x0);
-GEODE_MEMBER_CHECK(SavedActiveObjectState, m_unkBool1, 0x8);
-GEODE_MEMBER_CHECK(SavedActiveObjectState, m_unkBool2, 0x9);
+GEODE_MEMBER_CHECK(SavedActiveObjectState, m_activatedByPlayer1, 0x8);
+GEODE_MEMBER_CHECK(SavedActiveObjectState, m_activatedByPlayer2, 0x9);
 
 GEODE_SIZE_CHECK(SavedSpecialObjectState, 0x10);
 GEODE_MEMBER_CHECK(SavedSpecialObjectState, m_gameObject, 0x0);
