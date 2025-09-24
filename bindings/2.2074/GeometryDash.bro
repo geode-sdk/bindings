@@ -8344,7 +8344,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCRect getOuterObjectRect();
     int getParentMode() = m1 0x4df4f0, imac 0x5a5250, win 0x197bb0;
     GJSpriteColor* getRelativeSpriteColor(int) = win 0x19eb30, imac 0x5b1ab0, m1 0x4ea8f0, ios 0x260ed8;
-    cocos2d::CCPoint getScalePosDelta() = m1 0x4e07fc;
+    cocos2d::CCPoint getScalePosDelta() = win 0x199620, m1 0x4e07fc, imac 0x5a63a0, ios 0x25c3a4;
     GJSpriteColor* getSecondaryColor();
     int getSecondaryColorMode();
     float getSlopeAngle() {
@@ -18661,7 +18661,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void bumpPlayer(float, int, bool, GameObject*) = ios 0x22d2f8, win 0x389910, imac 0x409440, m1 0x386e2c;
     TodoReturn buttonDown(PlayerButton);
     TodoReturn canStickToGround();
-    void checkSnapJumpToObject(GameObject*) = m1 0x37a5c0;
+    void checkSnapJumpToObject(GameObject*) = win 0x37de80, m1 0x37a5c0, imac 0x3fb5d0, ios 0x224e8c;
     void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bb80, imac 0x3f4c90, m1 0x3751b8, ios 0x220ae4;
     void collidedWithObject(float, GameObject*) = imac 0x3fb520, m1 0x37a504, ios 0x224e30;
     int collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bc40, m1 0x376dd8, imac 0x3f6de0;
@@ -18698,7 +18698,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         m_glowColor = color;
     }
     void enablePlayerControls() = win 0x389770, imac 0x4091a0, m1 0x386b50;
-    void exitPlatformerAnimateJump() = m1 0x371834;
+    void exitPlatformerAnimateJump() = win 0x3771a0, m1 0x371834, imac 0x3f09f0, ios 0x21de6c;
     void fadeOutStreak2(float) = ios 0x22861c, win 0x38a400, imac 0x402470, m1 0x38071c;
     void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = win inline, m1 0x37c04c, imac 0x3fd3f0, ios inline {
         m_colorRelated2 = mainColor;
@@ -18741,7 +18741,15 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     TodoReturn handleRotatedSlopeCollision(float, GameObject*, bool);
     TodoReturn hardFlipGravity();
     void hitGround(GameObject*, bool) = ios 0x224188, win 0x3861a0, imac 0x3fa390, m1 0x37951c;
-    TodoReturn hitGroundNoJump(GameObject*, bool);
+    void hitGroundNoJump(GameObject*, bool) = win 0x386140, m1 0x37a92c, imac 0x3fb970, ios inline {
+        auto isOnGround = m_isOnGround;
+        auto isOnGround2 = m_isOnGround2;
+        auto lastLandTime = m_lastLandTime;
+        this->hitGround(nullptr, p1);
+        m_isOnGround = isOnGround;
+        m_isOnGround2 = isOnGround2;
+        m_lastLandTime = lastLandTime;
+    }
     void incrementJumps() = ios 0x21eaf8, win 0x376e10, imac 0x3f1bf0, m1 0x3728d8;
     bool init(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = ios 0x218410, win 0x370a00, imac 0x3e8970, m1 0x36a954;
     bool isBoostValid(float);
@@ -18887,7 +18895,38 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         m_rotationSpeed = 0.f;
     }
     void stopStreak2() = ios 0x22d978, imac 0x409d20, m1 0x387654;
-    void storeCollision(PlayerCollisionDirection, int);
+    void storeCollision(PlayerCollisionDirection, int) = win inline, m1 0x373580, imac 0x3f2970, ios inline {
+        switch (p0) {
+            case PlayerCollisionDirection::Top: {
+                if (m_lastCollisionTop != p1) {
+                    m_lastCollisionTop = p1;
+                    if (m_collisionLogTop) m_collisionLogTop->setObject(m_maybeLastGroundObject, p1);
+                }
+                break;
+            }
+            case PlayerCollisionDirection::Bottom: {
+                if (m_lastCollisionBottom != p1) {
+                    m_lastCollisionBottom = p1;
+                    if (m_collisionLogBottom) m_collisionLogBottom->setObject(m_maybeLastGroundObject, p1);
+                }
+                break;
+            }
+            case PlayerCollisionDirection::Left: {
+                if (m_lastCollisionLeft != p1) {
+                    m_lastCollisionLeft = p1;
+                    if (m_collisionLogLeft) m_collisionLogLeft->setObject(m_maybeLastGroundObject, p1);
+                }
+                break;
+            }
+            case PlayerCollisionDirection::Right: {
+                if (m_lastCollisionRight != p1) {
+                    m_lastCollisionRight = p1;
+                    if (m_collisionLogRight) m_collisionLogRight->setObject(m_maybeLastGroundObject, p1);
+                }
+                break;
+            }
+        }
+    }
     bool switchedDirTo(PlayerButton) = win 0x382000;
     void switchedToMode(GameObjectType) = ios 0x227a78, win 0x3860a0, imac 0x401440, m1 0x37f824;
     TodoReturn testForMoving(float, GameObject*);
@@ -18913,10 +18952,28 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     }
     void updateCheckpointTest() = m1 0x371e70, imac 0x3f10a0, ios 0x21e288;
     void updateCollide(PlayerCollisionDirection, GameObject*) = ios 0x224768, win 0x37e1c0, imac 0x3faae0, m1 0x379b88;
-    void updateCollideBottom(float, GameObject*) = m1 0x37aa04;
-    void updateCollideLeft(float, GameObject*);
-    void updateCollideRight(float, GameObject*);
-    void updateCollideTop(float, GameObject*) = m1 0x37a978;
+    void updateCollideBottom(float, GameObject*) = win inline, m1 0x37aa04, imac 0x3fba70, ios 0x225244 {
+        auto id = p1 ? p1->m_uniqueID : 0;
+        if (m_collidedBottomMaxY == 0.0) {
+            m_collidedBottomMaxY = p0;
+        }
+        else {
+            m_collidedBottomMaxY = m_isUpsideDown ? std::min<double>(m_collidedBottomMaxY, p0) : std::max<double>(m_collidedBottomMaxY, p0);
+        }
+        if (id != 0) this->storeCollision(PlayerCollisionDirection::Bottom, id);
+    }
+    void updateCollideLeft(float, GameObject*) = win 0x37e3d0, m1 0x37abfc, imac 0x3fbcc0, ios 0x225384;
+    void updateCollideRight(float, GameObject*) = win 0x37e470, m1 0x37ab80, imac 0x3fbc20, ios 0x225308;
+    void updateCollideTop(float, GameObject*) = win inline, m1 0x37a978, imac 0x3fb9d0, ios 0x2251d0 {
+        auto id = p1 ? p1->m_uniqueID : 0;
+        if (m_collidedTopMinY == 0.0) {
+            m_collidedTopMinY = p0;
+        }
+        else {
+            m_collidedTopMinY = m_isUpsideDown ? std::max<double>(m_collidedTopMinY, p0) : std::min<double>(m_collidedTopMinY, p0);
+        }
+        if (id != 0) this->storeCollision(PlayerCollisionDirection::Top, id);
+    }
     void updateDashAnimation() = m1 0x370a18, imac 0x3efb90, win 0x380ef0;
     void updateDashArt() = ios 0x2266ac, win 0x380390, m1 0x37dbd0, imac 0x3ff300;
     void updateEffects(float param) = ios 0x21e210, win inline, m1 0x371df0, imac 0x3f0ff0 {
