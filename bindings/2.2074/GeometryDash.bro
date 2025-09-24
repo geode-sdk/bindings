@@ -8318,7 +8318,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCRect getOuterObjectRect();
     int getParentMode() = m1 0x4df4f0, imac 0x5a5250, win 0x197bb0;
     GJSpriteColor* getRelativeSpriteColor(int) = win 0x19eb30, imac 0x5b1ab0, m1 0x4ea8f0, ios 0x260ed8;
-    cocos2d::CCPoint getScalePosDelta();
+    cocos2d::CCPoint getScalePosDelta() = m1 0x4e07fc;
     GJSpriteColor* getSecondaryColor();
     int getSecondaryColorMode();
     float getSlopeAngle() {
@@ -18369,7 +18369,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         m_unk50C = -1;
         m_unk510 = -1;
         new (&m_rotateObjectsRelated) decltype(m_rotateObjectsRelated)();
-        new (&m_maybeRotatedObjectsMap) decltype(m_maybeRotatedObjectsMap)();
+        new (&m_potentialSlopeMap) decltype(m_potentialSlopeMap)();
         m_rotateSpeed = 1.0f;
         new (&m_ringRelatedSet) decltype(m_ringRelatedSet)();
         m_playerSpeed = 0.9f;
@@ -18410,7 +18410,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void bumpPlayer(float, int, bool, GameObject*) = ios 0x22d2f8, win 0x389910, imac 0x409440, m1 0x386e2c;
     TodoReturn buttonDown(PlayerButton);
     TodoReturn canStickToGround();
-    void checkSnapJumpToObject(GameObject*);
+    void checkSnapJumpToObject(GameObject*) = m1 0x37a5c0;
     void collidedWithObject(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bb80, imac 0x3f4c90, m1 0x3751b8, ios 0x220ae4;
     void collidedWithObject(float, GameObject*) = imac 0x3fb520, m1 0x37a504, ios 0x224e30;
     int collidedWithObjectInternal(float, GameObject*, cocos2d::CCRect, bool) = win 0x37bc40, m1 0x376dd8, imac 0x3f6de0;
@@ -18447,7 +18447,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         m_glowColor = color;
     }
     void enablePlayerControls() = win 0x389770, imac 0x4091a0, m1 0x386b50;
-    void exitPlatformerAnimateJump();
+    void exitPlatformerAnimateJump() = m1 0x371834;
     void fadeOutStreak2(float) = ios 0x22861c, win 0x38a400, imac 0x402470, m1 0x38071c;
     void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = win inline, m1 0x37c04c, imac 0x3fd3f0, ios inline {
         m_colorRelated2 = mainColor;
@@ -18635,10 +18635,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     }
     void updateCheckpointTest() = m1 0x371e70, imac 0x3f10a0, ios 0x21e288;
     void updateCollide(PlayerCollisionDirection, GameObject*) = ios 0x224768, win 0x37e1c0, imac 0x3faae0, m1 0x379b88;
-    void updateCollideBottom(float, GameObject*);
+    void updateCollideBottom(float, GameObject*) = m1 0x37aa04;
     void updateCollideLeft(float, GameObject*);
     void updateCollideRight(float, GameObject*);
-    void updateCollideTop(float, GameObject*);
+    void updateCollideTop(float, GameObject*) = m1 0x37a978;
     void updateDashAnimation() = m1 0x370a18, imac 0x3efb90, win 0x380ef0;
     void updateDashArt() = ios 0x2266ac, win 0x380390, m1 0x37dbd0, imac 0x3ff300;
     void updateEffects(float param) = ios 0x21e210, win inline, m1 0x371df0, imac 0x3f0ff0 {
@@ -18748,7 +18748,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     cocos2d::CCArray* m_particleSystems;
     float m_slopeAngleRadians;
     gd::unordered_map<int, GJPointDouble> m_rotateObjectsRelated;
-    gd::unordered_map<int, GameObject*> m_maybeRotatedObjectsMap;
+    gd::unordered_map<int, GameObject*> m_potentialSlopeMap;
     float m_rotationSpeed;
     float m_rotateSpeed;
     bool m_isRotating;
