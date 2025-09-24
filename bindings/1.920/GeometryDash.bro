@@ -1855,7 +1855,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3f570;
 	virtual void customSetup() = win 0x3e3d0;
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3f480;
 
 	bool m_exiting;
 	CCMenuItemSpriteExtra* m_audioOnBtn;
@@ -2016,7 +2016,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void zoomIn(cocos2d::CCObject*) = win 0x48b70;
 	void zoomOut(cocos2d::CCObject*) = win 0x48bd0;
 
-	virtual void draw();
+	virtual void draw() = win 0x4cbb0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d5e0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4da20;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4de40;
@@ -4736,7 +4736,7 @@ class LevelEditorLayer : cocos2d::CCLayer, LevelSettingsDelegate, GameplayDelega
 	TodoReturn validGroup(GameObject*);
 
 	virtual void update(float) = win 0x91620;
-	virtual void draw();
+	virtual void draw() = win 0x926b0;
 	virtual void levelSettingsUpdated();
 	virtual void flipGravity(PlayerObject*, bool, bool) = win 0x905b0;
 	virtual int getGroupIDFilter() const;
