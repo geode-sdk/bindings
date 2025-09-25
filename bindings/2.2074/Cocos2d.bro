@@ -5647,9 +5647,9 @@ class pugi::xml_node {
 [[link(android)]]
 class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x44540, imac 0x5c5940, m1 0x4fa830, ios 0x347118;
-    static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline, imac 0x5c5780, m1 0x4fa6c4 {
+    static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint) = win inline, ios inline, imac 0x5c5780, m1 0x4fa6c4 {
     	auto ret = new CCLightning();
-    	if (ret->initWithStrikePoint(p1)) {
+    	if (ret->initWithStrikePoint(p0)) {
     		ret->autorelease();
     		return ret;
     	}
@@ -5658,12 +5658,12 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     }
 
     bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x439e0, imac 0x5c5a90, m1 0x4fa950, ios 0x3471b0;
-    bool initWithStrikePoint(cocos2d::CCPoint p1) = win inline, ios inline, m1 0x4fa7dc, imac 0x5c58e0 {
-    	return this->initWithStrikePoint(p1, CCPointZero, .5f);
+    bool initWithStrikePoint(cocos2d::CCPoint) = win inline, ios inline, m1 0x4fa7dc, imac 0x5c58e0 {
+    	return this->initWithStrikePoint(p0, CCPointZero, .5f);
     }
 
-    CCLightning() = win 0x44400, ios 0x347014;
-    virtual ~CCLightning() = win inline, ios 0x3470bc {
+    CCLightning() = win 0x44400, m1 0x4fa4a4, imac 0x5c54e0, ios 0x347014;
+    virtual ~CCLightning() = win inline, m1 0x4fa5f4, imac 0x5c5680, ios 0x3470bc {
         if (m_lightningPoints) {
             free(m_lightningPoints);
             m_lightningPoints = nullptr;
