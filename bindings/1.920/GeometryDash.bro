@@ -3306,7 +3306,7 @@ class GameplayDelegate {
 
 [[link(android)]]
 class GameRateDelegate {
-	virtual TodoReturn updateRate();
+	virtual void updateRate() {}
 }
 
 [[link(android)]]
@@ -4002,16 +4002,16 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	}
 
 	virtual bool init() = win 0x7c5c0;
-	virtual void keyBackClicked();
-	virtual void textInputOpened(CCTextInputNode*);
-	virtual void textInputClosed(CCTextInputNode*);
-	virtual void textChanged(CCTextInputNode*);
-	virtual void listButtonBarSwitchedPage(ListButtonBar*, int);
-	virtual TodoReturn updateRate();
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
-	virtual cocos2d::CCSprite* getRateSprite() const;
-	virtual void setRateSprite(cocos2d::CCSprite*);
-	virtual bool getDoSelect() const;
+	virtual void keyBackClicked() = win 0x2d9d0;
+	virtual void textInputOpened(CCTextInputNode*) = win 0x7d3f0;
+	virtual void textInputClosed(CCTextInputNode*) = win 0x7d580;
+	virtual void textChanged(CCTextInputNode*) = win 0x374f0;
+	virtual void listButtonBarSwitchedPage(ListButtonBar*, int) = win 0x7ed00;
+	virtual void updateRate() = win 0x7f610;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x7f540;
+	virtual cocos2d::CCSprite* getRateSprite() const = win 0xf710;
+	virtual void setRateSprite(cocos2d::CCSprite*) = win 0x53ed0;
+	virtual bool getDoSelect() const = win 0x7c2e0;
 
 	CCTextInputNode* m_nameInput;
 	SimplePlayer* m_playerPreview;
