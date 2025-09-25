@@ -3306,7 +3306,7 @@ class GameplayDelegate {
 
 [[link(android)]]
 class GameRateDelegate {
-	virtual TodoReturn updateRate();
+	virtual void updateRate() {}
 }
 
 [[link(android)]]
@@ -4002,16 +4002,16 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	}
 
 	virtual bool init() = win 0x7c5c0;
-	virtual void keyBackClicked();
-	virtual void textInputOpened(CCTextInputNode*);
-	virtual void textInputClosed(CCTextInputNode*);
-	virtual void textChanged(CCTextInputNode*);
-	virtual void listButtonBarSwitchedPage(ListButtonBar*, int);
-	virtual TodoReturn updateRate();
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
-	virtual cocos2d::CCSprite* getRateSprite() const;
-	virtual void setRateSprite(cocos2d::CCSprite*);
-	virtual bool getDoSelect() const;
+	virtual void keyBackClicked() = win 0x2d9d0;
+	virtual void textInputOpened(CCTextInputNode*) = win 0x7d3f0;
+	virtual void textInputClosed(CCTextInputNode*) = win 0x7d580;
+	virtual void textChanged(CCTextInputNode*) = win 0x374f0;
+	virtual void listButtonBarSwitchedPage(ListButtonBar*, int) = win 0x7ed00;
+	virtual void updateRate() = win 0x7f610;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x7f540;
+	virtual cocos2d::CCSprite* getRateSprite() const = win 0xf710;
+	virtual void setRateSprite(cocos2d::CCSprite*) = win 0x53ed0;
+	virtual bool getDoSelect() const = win 0x7c2e0;
 
 	CCTextInputNode* m_nameInput;
 	SimplePlayer* m_playerPreview;
@@ -4160,24 +4160,32 @@ class GJObjectDecoder : cocos2d::CCNode, ObjectDecoderDelegate {
 }
 
 [[link(android)]]
-class GJRotationControl {
+class GJRotationControl : cocos2d::CCLayer {
 	// virtual ~GJRotationControl();
 	// GJRotationControl();
 
-	static GJRotationControl* create();
+	static GJRotationControl* create() = win 0x4fc40;
 
-	TodoReturn finishTouch();
+	void finishTouch() = win 0x4ff70;
 	TodoReturn getDelegate();
 	void setAngle(float);
-	TodoReturn updateSliderPosition(cocos2d::CCPoint);
+	void updateSliderPosition(cocos2d::CCPoint) = win 0x4fdf0;
 
-	virtual bool init();
-	virtual void draw();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool init() = win 0x4fce0;
+	virtual void draw() = win 0x50140;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4ffd0;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x500b0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x50120;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1ca60;
 	virtual void setDelegate(GJRotationControlDelegate*);
+
+	cocos2d::CCPoint m_cursorDifference;
+    cocos2d::CCPoint m_controlPosition;
+    cocos2d::CCSprite* m_controlSprite;
+    float m_startingRotation;
+    float m_currentRotation;
+    int m_touchID;
+    GJRotationControlDelegate* m_delegate;
 }
 
 [[link(android)]]
