@@ -2002,7 +2002,15 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn updateEditMenu();
 	void updateGridNodeSize() = win 0x41ae0;
 	void updateGridNodeSize(int);
-	TodoReturn updateGroupIDLabel();
+	void updateGroupIDLabel() {
+		int currentGroup = this->m_editorLayer->m_groupIDFilter;
+		if (currentGroup < 0) {
+			this->m_currentLayerLabel->setString("All");
+		}
+		else {
+			this->m_currentLayerLabel->setString(CCString::createWithFormat("%i", currentGroup)->getCString());
+		}
+	}
 	TodoReturn updatePercentLabel();
 	void updatePlaybackBtn() = win 0x487c0;
 	TodoReturn updateSlider();
