@@ -10198,7 +10198,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn getTargetGroup(int, int);
     TodoReturn getTargetGroupOrigin(int, int);
     void gravBumpPlayer(PlayerObject* player, EffectGameObject* object) = win inline, ios 0x1eac54, imac 0x117ef0, m1 0xf6d28 {
-        auto flip = player->m_isSideways ? !object->isFacingDown() : !object->isFacingLeft();
+        auto flip = player->m_isSideways ? !object->isFacingLeft() : !object->isFacingDown();
         if (player->m_isUpsideDown != flip && this->canBeActivatedByPlayer(player, object)) {
             if (object->m_isReverse) player->reversePlayer(object);
             if (!object->m_hasNoEffects) this->playGravityEffect(flip);
