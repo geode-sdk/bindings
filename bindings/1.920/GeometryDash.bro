@@ -2008,7 +2008,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 			this->m_currentLayerLabel->setString("All");
 		}
 		else {
-			this->m_currentLayerLabel->setString(CCString::createWithFormat("%i", currentGroup)->getCString());
+			this->m_currentLayerLabel->setString(cocos2d::CCString::createWithFormat("%i", currentGroup)->getCString());
 		}
 	}
 	TodoReturn updatePercentLabel();
