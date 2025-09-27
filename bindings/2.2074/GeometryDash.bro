@@ -8462,7 +8462,7 @@ class GameObject : CCSpritePlus {
     }
     cocos2d::CCPoint getUnmodifiedPosition();
     cocos2d::ccColor3B groupColor(cocos2d::ccColor3B const&, bool);
-    float groupOpacityMod() = win 0x199d30, imac 0x5a7040, m1 0x4e157c;
+    float groupOpacityMod() = win 0x199d30, imac 0x5a7040, m1 0x4e157c, ios 0x25cb6c;
     void groupWasDisabled() = m1 0x4e0e84, imac 0x5a6a20;
     void groupWasEnabled();
     bool hasSecondaryColor() = win inline {
@@ -8483,9 +8483,11 @@ class GameObject : CCSpritePlus {
     bool isColorTrigger() = m1 0x4eb8d4, imac 0x5b3020;
     bool isConfigurablePortal();
     bool isEditorSpawnableTrigger();
-    bool isFacingDown() = win 0x19e990, m1 0x4ea740, imac 0x5b1910;
-    bool isFacingLeft() = win 0x19ea50, m1 0x4ea7d0, imac 0x5b1990;
-    bool isSettingsObject() = imac 0x5b3690, m1 0x4ebf78, ios 0x261dfc;
+    bool isFacingDown() = win 0x19e990, m1 0x4ea740, imac 0x5b1910, ios 0x260d28;
+    bool isFacingLeft() = win 0x19ea50, m1 0x4ea7d0, imac 0x5b1990, ios 0x260db8;
+    bool isSettingsObject() = win inline, imac 0x5b3690, m1 0x4ebf78, ios 0x261dfc {
+        return m_objectID == 3662 || m_objectID == 3613;
+    }
     bool isSpawnableTrigger() = win 0x19f730, m1 0x4eb740, imac 0x5b2ac0, ios 0x261684;
     bool isSpecialObject();
     bool isSpeedObject() = m1 0x4eb9b4, imac 0x5b30f0;
