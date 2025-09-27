@@ -1879,7 +1879,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void colorSelectClosed(cocos2d::ccColor3B);
 	void constrainGameLayerPosition() = win 0x4c8c0;
 	void constrainGameLayerPosition(float, float) = win 0x41e60;
-	void copyObjects(cocos2d::CCArray*) = win 0x48fc0;
+	gd::string copyObjects(cocos2d::CCArray*) = win 0x48fc0;
 	void createMoveMenu() = win 0x49d20;
 	void createUndoSelectObject(bool) = win 0x48240;
 	void deactivateRotationControl();
