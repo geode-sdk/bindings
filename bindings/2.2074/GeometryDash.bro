@@ -14615,7 +14615,7 @@ class GManager : cocos2d::CCNode {
     virtual void dataLoaded(DS_Dictionary*) = m1 0x4058bc, imac 0x499ab0, ios 0x249ffc {}
     virtual void firstLoad() = m1 0x4058c0, imac 0x499ac0, ios 0x24a000 {}
 
-    TodoReturn getCompressedSaveString();
+    gd::string getCompressedSaveString() = win 0x6a7f0;
     TodoReturn getSaveString();
     TodoReturn load();
     void loadDataFromFile(gd::string const&) = win 0x6aa90, imac 0x499410, m1 0x405284;
