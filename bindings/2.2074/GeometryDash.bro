@@ -3479,7 +3479,7 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
     void onResetHSV(cocos2d::CCObject* sender) = win 0x97b10, imac 0x41e0f0, m1 0x399978, ios 0x102d7c;
     void onToggleSConst(cocos2d::CCObject* sender);
     void onToggleVConst(cocos2d::CCObject* sender);
-    void sliderChanged(cocos2d::CCObject* sender) = m1 0x399748, imac 0x41df00;
+    void sliderChanged(cocos2d::CCObject* sender) = m1 0x399748, imac 0x41df00, win 0x978f0;
     void updateLabels() = ios 0x102df4, win 0x97b90, imac 0x41e170, m1 0x3999f0;
     void updateSliders() = ios 0x103180, win 0x97820, imac 0x41e750, m1 0x399f4c;
 
@@ -3509,8 +3509,8 @@ class ConfigureValuePopup : FLAlertLayer, TextInputDelegate {
 
     bool init(ConfigureValuePopupDelegate*, float, float, float, gd::string, gd::string) = win 0x98550, m1 0x5399a8, imac 0x60cbd0;
     void onClose(cocos2d::CCObject* sender) = win 0x98f30;
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x98d00, imac 0x60d460, m1 0x53a17c;
-    void updateTextInputLabel() = win 0x98d50, imac 0x60d4b0, m1 0x53a1c0;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x98d00, imac 0x60d460, m1 0x53a17c, ios 0x153cc0;
+    void updateTextInputLabel() = win 0x98d50, imac 0x60d4b0, m1 0x53a1c0, ios 0x153d04;
 
     float m_value;
     float m_minimum;
@@ -22924,7 +22924,7 @@ class SetupGravityTriggerPopup : SetupTriggerPopup {
 
     virtual void valueDidChange(int, float) = win 0x411950, imac 0x4b22c0, m1 0x41a934, ios 0x419a94;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x41a4d4, imac 0x4b1e10;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x41a4d4, imac 0x4b1e10, win 0x4114d0;
 }
 
 [[link(android)]]
@@ -24186,10 +24186,10 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void triggerArrowRight(cocos2d::CCObject*) = win 0x45da70, m1 0x1d92d8, imac 0x2278c0, ios 0x13405c;
     void triggerSliderChanged(cocos2d::CCObject*) = win 0x45d980, m1 0x1d9054, imac 0x227610, ios 0x133e84;
     void updateCustomEaseLabel(int, int) = win 0x465630;
-    void updateCustomEaseRateLabel(int, float) = win 0x465800;
+    void updateCustomEaseRateLabel(int, float) = win 0x465800, ios 0x1373fc, imac 0x22d590, m1 0x1de210;
     void updateCustomToggleTrigger(int, bool);
     void updateEaseLabel();
-    void updateEaseRateLabel();
+    void updateEaseRateLabel() = ios 0x1371dc, imac 0x22d2f0, m1 0x1ddf50, win 0x4647d0;
     void updateEditorLabel() = win 0x45d160, m1 0x1d7a48, imac 0x224d40, ios 0x132cf4;
     void updateInputNodeLabel(int, gd::string) = win 0x463be0;
     void updateLabel(int, gd::string);
