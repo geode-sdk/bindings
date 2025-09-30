@@ -3479,7 +3479,7 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
     void onResetHSV(cocos2d::CCObject* sender) = win 0x97b10, imac 0x41e0f0, m1 0x399978, ios 0x102d7c;
     void onToggleSConst(cocos2d::CCObject* sender);
     void onToggleVConst(cocos2d::CCObject* sender);
-    void sliderChanged(cocos2d::CCObject* sender) = m1 0x399748, imac 0x41df00, win 0x978f0;
+    void sliderChanged(cocos2d::CCObject* sender) = m1 0x399748, imac 0x41df00, win 0x978f0, ios 0x102b68;
     void updateLabels() = ios 0x102df4, win 0x97b90, imac 0x41e170, m1 0x3999f0;
     void updateSliders() = ios 0x103180, win 0x97820, imac 0x41e750, m1 0x399f4c;
 
@@ -22924,7 +22924,7 @@ class SetupGravityTriggerPopup : SetupTriggerPopup {
 
     virtual void valueDidChange(int, float) = win 0x411950, imac 0x4b22c0, m1 0x41a934, ios 0x419a94;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x41a4d4, imac 0x4b1e10, win 0x4114d0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x41a4d4, imac 0x4b1e10, win 0x4114d0, ios 0x4196c8;
 }
 
 [[link(android)]]
