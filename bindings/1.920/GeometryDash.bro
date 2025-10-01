@@ -3981,7 +3981,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onBack(cocos2d::CCObject* sender);
 	void onBallIcon(cocos2d::CCObject* sender);
 	void onBirdIcon(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender) = win 0x7d290;
 	void onPlayerColor1(cocos2d::CCObject* sender) = win 0x7e990;
 	void onPlayerColor2(cocos2d::CCObject* sender) = win 0x7ea80;
 	void onPlayerIcon(cocos2d::CCObject* sender) = win 0x7e070;
