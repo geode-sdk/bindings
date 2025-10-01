@@ -10197,7 +10197,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     }
 
     bool canBeActivatedByPlayer(PlayerObject*, EffectGameObject*) = ios 0x1ea898, win 0x2123e0, imac 0x117880, m1 0xf6710;
-    TodoReturn canProcessSFX(SFXTriggerState&, gd::unordered_map<int, int>&, gd::unordered_map<int, float>&, gd::vector<SFXTriggerState>&);
+    bool canProcessSFX(SFXTriggerState&, gd::unordered_map<int, int>&, gd::unordered_map<int, float>&, gd::vector<SFXTriggerState>&) = win 0x23cc10, m1 0x12379c, imac 0x14e7d0, ios 0x20811c;
     TodoReturn canTouchObject(GameObject*);
     void checkCameraLimitAfterTeleport(PlayerObject*, float) = ios 0x1e5b9c, win 0x2340b0, imac 0x110df0, m1 0xf0a1c;
     TodoReturn checkCollision(int, int);
@@ -10487,8 +10487,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
             player->m_lastActivatedPortal = object;
         }
         auto ret = object;
-        if (m_gameState.m_isDualMode && m_gameState.m_unkGameObjPtr2) ret = m_gameState.m_unkGameObjPtr2;
-        if (object) m_gameState.m_unkGameObjPtr1 = object;
+        if (m_gameState.m_isDualMode && m_gameState.m_lastActivatedPortal2) ret = m_gameState.m_lastActivatedPortal2;
+        if (object) m_gameState.m_lastActivatedPortal1 = object;
         return ret;
     }
     void processCommands(float) = ios 0x201880, win 0x234170, imac 0x1435a0, m1 0x11a2d0;
@@ -10503,8 +10503,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processQueuedButtons() = ios 0x1fcb04, win 0x22c7f0, imac 0x13af40, m1 0x113650;
     void processRotationActions() = win 0x226510, m1 0x10f80c, imac 0x135f40, ios 0x1fa040;
     void processSFXObjects() = ios 0x1e36b8, win 0x23b480, m1 0xecce8, imac 0x10d2f0;
-    TodoReturn processSFXState(SFXTriggerState*, SFXTriggerState*, int, float);
-    TodoReturn processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*, SongTriggerGameObject*);
+    void processSFXState(SFXTriggerState*, SFXTriggerState*, int, float) = win 0x23e880, m1 0x123afc, imac 0x14ec60, ios 0x2082e0;
+    bool processSongState(int, float, float, int, float, float, gd::vector<SongTriggerState>*, SongTriggerGameObject*) = win 0x23edc0, m1 0x125454, imac 0x151010, ios 0x209364;
     void processStateObjects() = win inline, m1 0xf8dd0, imac 0x11a140, ios 0x1ec358 {
         for (auto it = m_gameState.m_stateObjects.begin(); it != m_gameState.m_stateObjects.end();) {
             auto obj = it->second;
@@ -12191,8 +12191,8 @@ class GJGameState {
     int m_unkUint5;
     float m_unkUint6;
     float m_unkUint7;
-    GameObject* m_unkGameObjPtr1;
-    GameObject* m_unkGameObjPtr2;
+    GameObject* m_lastActivatedPortal1;
+    GameObject* m_lastActivatedPortal2;
     cocos2d::CCPoint m_cameraPosition;
     bool m_unkBool10;
     float m_levelFlipping;
