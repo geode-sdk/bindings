@@ -27196,7 +27196,7 @@ class UIPOptionsLayer : SetupTriggerPopup {
     cocos2d::CCRect getTouchRect() = win inline {
         return { m_practiceNode->getPosition() - cocos2d::CCPoint { 70.0f, 25.0f }, { 140.0f, 50.0f } };
     }
-    void onReset(cocos2d::CCObject* sender) = win 0x29e860;
+    void onReset(cocos2d::CCObject* sender) = win 0x29e860, m1 0x24af00, imac 0x2a40c0, ios 0x2e5d70;
 
     int m_touchID;
     cocos2d::CCNode* m_practiceNode;
