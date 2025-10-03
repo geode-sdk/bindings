@@ -2976,7 +2976,7 @@ class GameObject : CCSpritePlus {
 	}
 	void createAndAddParticle(int, char const*, int, cocos2d::tCCPositionType) = win 0x72bd0;
 	void createObject(char const*) = win 0x6d420;
-	void createRotateAction(float) = win 0x72230;
+	cocos2d::CCRepeatForever* createRotateAction(float) = win 0x72230;
 	TodoReturn customScaleMod(char const*);
 	void customSetup() = win 0x6ee50;
 	void deselectObject() = win 0x75780;
