@@ -2449,11 +2449,11 @@ class cocos2d::CCLayerGradient : cocos2d::CCLayerColor {
         return nullptr;
     }
 
-    bool getShouldPremultiply() const = mac inline, ios inline {
+    bool getShouldPremultiply() const = android inline, mac inline, ios inline {
         return m_bShouldPremultiply;
     }
 
-    void setShouldPremultiply(bool) = mac inline, ios inline {
+    void setShouldPremultiply(bool) = android inline, mac inline, ios inline {
         m_bShouldPremultiply = p0;
     }
     void setValues(cocos2d::_ccColor3B const&, unsigned char, cocos2d::_ccColor3B const&, unsigned char, cocos2d::CCPoint const&);
